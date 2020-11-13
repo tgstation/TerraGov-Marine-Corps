@@ -1,26 +1,26 @@
 
-//Gun attachable items code. Lets you add various effects to firearms.
-//Some attachables are hardcoded in the projectile firing system, like grenade launchers, flamethrowers.
-/*
-When you are adding new guns into the attachment list, or even old guns, make sure that said guns
-properly accept overlays. You can find the proper offsets in the individual gun dms, so make sure
-you set them right. It's a pain to go back to find which guns are set incorrectly.
-To summarize: rail attachments should go on top of the rail. For rifles, this usually means the middle of the gun.
-For handguns, this is usually toward the back of the gun. SMGs usually follow rifles.
-Muzzle attachments should connect to the barrel, not sit under or above it. The only exception is the bayonet.
-Underrail attachments should just fit snugly, that's about it. Stocks are pretty obvious.
-
-All attachment offsets are now in a list, including stocks. Guns that don't take attachments can keep the list null.
-~N
-
-Defined in conflicts.dm of the #defines folder.
-#define ATTACH_REMOVABLE	1
-#define ATTACH_ACTIVATION	2
-#define ATTACH_PROJECTILE	4
-#define ATTACH_RELOADABLE	8
-#define ATTACH_WEAPON		16
-#define ATTACH_UTILITY		32
-*/
+///Gun attachable items code. Lets you add various effects to firearms.
+///Some attachables are hardcoded in the projectile firing system, like grenade launchers, flamethrowers.
+/**
+ *When you are adding new guns into the attachment list, or even old guns, make sure that said guns
+ *properly accept overlays. You can find the proper offsets in the individual gun dms, so make sure
+ *you set them right. It's a pain to go back to find which guns are set incorrectly.
+ *To summarize: rail attachments should go on top of the rail. For rifles, this usually means the middle of the gun.
+ *For handguns, this is usually toward the back of the gun. SMGs usually follow rifles.
+ *Muzzle attachments should connect to the barrel, not sit under or above it. The only exception is the bayonet.
+ *Underrail attachments should just fit snugly, that's about it. Stocks are pretty obvious.
+ *
+ *All attachment offsets are now in a list, including stocks. Guns that don't take attachments can keep the list null.
+ *~N
+ *
+ *Defined in conflicts.dm of the #defines folder.
+ *#define ATTACH_REMOVABLE	1
+ *#define ATTACH_ACTIVATION	2
+ *#define ATTACH_PROJECTILE	4
+ *#define ATTACH_RELOADABLE	8
+ *#define ATTACH_WEAPON		16
+ *#define ATTACH_UTILITY	32
+ */
 
 /obj/item/attachable
 	name = "attachable item"
@@ -28,67 +28,110 @@ Defined in conflicts.dm of the #defines folder.
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = null
 	item_state = null
-	var/attach_icon //the sprite to show when the attachment is attached when we want it different from the icon_state.
-	var/pixel_shift_x = 16 //Determines the amount of pixels to move the icon state for the overlay.
-	var/pixel_shift_y = 16 //Uses the bottom left corner of the item.
+	///the sprite to show when the attachment is attached when we want it different from the icon_state.
+	var/attach_icon
+	///Determines the amount of pixels to move the icon state for the overlay. in the x direction
+	var/pixel_shift_x = 16
+	///Determines the amount of pixels to move the icon state for the overlay. in the y direction
+	var/pixel_shift_y = 16
 
 	flags_atom = CONDUCT
 	materials = list(/datum/material/metal = 100)
 	w_class = WEIGHT_CLASS_SMALL
 	force = 1.0
-	var/slot = null //"muzzle", "rail", "under", "stock"
+	///"muzzle", "rail", "under", "stock" the particular 'slot' the attachment can attach to. must always be a singular slot.
+	var/slot = null
 
-	/*
-	Anything that isn't used as the gun fires should be a flat number, never a percentange. It screws with the calculations,
-	and can mean that the order you attach something/detach something will matter in the final number. It's also completely
-	inaccurate. Don't worry if force is ever negative, it won't runtime.
-	*/
-	//These bonuses are applied only as the gun fires a projectile.
+	/**
+	 *Anything that isn't used as the gun fires should be a flat number, never a percentange. It screws with the calculations,
+	 *and can mean that the order you attach something/detach something will matter in the final number. It's also completely
+	 *inaccurate. Don't worry if force is ever negative, it won't runtime.
+	 *
+	 *These bonuses are applied only as the gun fires a projectile.
+	 *
+	 *These are flat bonuses applied and are passive, though they may be applied at different points.
+	 */
 
-	//These are flat bonuses applied and are passive, though they may be applied at different points.
-	var/accuracy_mod 	= 0 //Modifier to firing accuracy, works off a multiplier.
-	var/scoped_accuracy_mod = 0 //as above but for scoped.
-	var/accuracy_unwielded_mod = 0 //same as above but for onehanded.
-	var/damage_mod 		= 0 //Modifer to the damage mult, works off a multiplier.
-	var/damage_falloff_mod = 0 //Modifier to damage falloff, works off a multiplier.
-	var/melee_mod 		= 0 //Changing to a flat number so this actually doesn't screw up the calculations.
-	var/scatter_mod 	= 0 //Increases or decreases scatter chance.
-	var/scatter_unwielded_mod = 0 //same as above but for onehanded firing.
-	var/recoil_mod 		= 0 //If positive, adds recoil, if negative, lowers it. Recoil can't go below 0.
-	var/recoil_unwielded_mod = 0 //same as above but for onehanded firing.
-	var/burst_scatter_mod = 0 //Modifier to scatter from wielded burst fire, works off a multiplier.
-	var/silence_mod 	= 0 //Adds silenced to weapon
-	var/light_mod 		= 0 //Adds an x-brightness flashlight to the weapon, which can be toggled on and off.
-	var/delay_mod 		= 0 //Changes firing delay. Cannot go below 0.
-	var/burst_delay_mod = 0 //Changes burst firing delay. Cannot go below 0.
-	var/burst_mod 		= 0 //Changes burst rate. 1 == 0.
-	var/size_mod 		= 0 //Increases the weight class.
-	var/aim_speed_mod	= 0 //Changes the aiming speed slowdown of the wearer by this value.
-	var/wield_delay_mod	= 0 //How long ADS takes (time before firing)
-	var/attach_shell_speed_mod = 0 //Changes the speed of projectiles fired
-	var/movement_acc_penalty_mod = 0 //Modifies accuracy/scatter penalty when firing onehanded while moving.
-	var/attach_delay = 30 //How long in deciseconds it takes to attach a weapon with level 1 firearms training. Default is 30 seconds.
-	var/detach_delay = 30 //How long in deciseconds it takes to detach a weapon with level 1 firearms training. Default is 30 seconds.
-	var/fire_delay_mod = 0 //how long in deciseconds this adds to your base fire delay.
+	///Modifier to firing accuracy, works off a multiplier.
+	var/accuracy_mod 	= 0
+	///Modifier to firing accuracy but for when scoped in, works off a multiplier.
+	var/scoped_accuracy_mod = 0
+	///Modifier to firing accuracy but for when onehanded.
+	var/accuracy_unwielded_mod = 0
+	///Modifer to the damage mult, works off a multiplier.
+	var/damage_mod 		= 0
+	///Modifier to damage falloff, works off a multiplier.
+	var/damage_falloff_mod = 0
+	///Flat number that adjusts the amount of mêlée force the weapon this is attached to has.
+	var/melee_mod 		= 0
+	///Increases or decreases scatter chance.
+	var/scatter_mod 	= 0
+	///Increases or decreases scatter chance but for onehanded firing.
+	var/scatter_unwielded_mod = 0
+	///If positive, adds recoil, if negative, lowers it. Recoil can't go below 0.
+	var/recoil_mod 		= 0
+	///If positive, adds recoil, if negative, lowers it. but for onehanded firing. Recoil can't go below 0.
+	var/recoil_unwielded_mod = 0
+	///Modifier to scatter from wielded burst fire, works off a multiplier.
+	var/burst_scatter_mod = 0
+	///Adds silenced to weapon. changing its fire sound, muzzle flash, and volume. TRUE or FALSE
+	var/silence_mod 	= 0
+	///Adds an x-brightness flashlight to the weapon, which can be toggled on and off.
+	var/light_mod 		= 0
+	///Changes firing delay. Cannot go below 0.
+	var/delay_mod 		= 0
+	///Changes burst firing delay. Cannot go below 0.
+	var/burst_delay_mod = 0
+	///Changes amount of shots in a burst
+	var/burst_mod 		= 0
+	///Increases the weight class.
+	var/size_mod 		= 0
+	///Changes the slowdown amount when wielding a weapon by this value.
+	var/aim_speed_mod	= 0
+	///How long ADS takes (time before firing)
+	var/wield_delay_mod	= 0
+	///Changes the speed of projectiles fired
+	var/attach_shell_speed_mod = 0
+	///Modifies accuracy/scatter penalty when firing onehanded while moving.
+	var/movement_acc_penalty_mod = 0
+	///How long in deciseconds it takes to attach a weapon with level 1 firearms training. Default is 30 seconds.
+	var/attach_delay = 30
+	///How long in deciseconds it takes to detach a weapon with level 1 firearms training. Default is 30 seconds.
+	var/detach_delay = 30
+	///how long in deciseconds this adds to your base fire delay.
+	var/fire_delay_mod = 0
 
-	var/attachment_firing_delay = 0 //the delay between shots, for attachments that fires stuff
+	///the delay between shots, for attachments that fire stuff
+	var/attachment_firing_delay = 0
 
+	///The specific sound played when activating this attachment.
 	var/activation_sound = 'sound/machines/click.ogg'
 
+	///various yes no flags associated with attachments
 	var/flags_attach_features = ATTACH_REMOVABLE
 
-	var/bipod_deployed = FALSE //only used by bipod
-	var/current_rounds 	= 0 //How much it has.
-	var/max_rounds 		= 0 //How much ammo it can store
+	///only used by bipod, denotes whether the bipod is currently deployed
+	var/bipod_deployed = FALSE
+	///How much ammo it currently has.
+	var/current_rounds 	= 0
+	///How much ammo it can store
+	var/max_rounds 		= 0
+	///Determines # of tiles distance the attachable can fire, if it's not a projectile.
 	var/max_range		= 0
 
+	///what ability to give the user when attached to a weapon they are holding.
 	var/attachment_action_type
-	var/scope_zoom_mod = FALSE //codex
+	///used for the codex to denote if a weapon has the ability to zoom in or not.
+	var/scope_zoom_mod = FALSE
 
-	var/ammo_mod = null			//what ammo the gun could also fire, different lasers usually.
-	var/charge_mod = 0		//how much charge difference it now costs to shoot. negative means more shots per mag.
-	var/gun_firemode_list_mod = null //what firemodes this attachment allows/adds.
+	///what ammo the gun could also fire, different lasers usually.
+	var/ammo_mod = null
+	///how much charge difference it now costs to shoot. negative means more shots per mag.
+	var/charge_mod = 0
+	///what firemodes this attachment allows/adds.
+	var/gun_firemode_list_mod = null
 
+	///what gun this attachment is currently attached to, if any.
 	var/obj/item/weapon/gun/master_gun
 
 
@@ -279,7 +322,7 @@ Defined in conflicts.dm of the #defines folder.
 	desc = "A small tube with exhaust ports to expel noise and gas.\nDoes not completely silence a weapon, but does make it much quieter and a little more accurate and stable at the cost of bullet speed."
 	icon_state = "suppressor"
 	slot = "muzzle"
-	silence_mod = 1
+	silence_mod = TRUE
 	pixel_shift_y = 16
 	attach_icon = "suppressor_a"
 	attach_shell_speed_mod = -1
@@ -655,10 +698,14 @@ Defined in conflicts.dm of the #defines folder.
 	attachment_action_type = /datum/action/item_action/toggle
 	scope_zoom_mod = TRUE // codex
 	accuracy_unwielded_mod = -0.05
+	///how many tiles to shift the users viewpoint
 	var/zoom_offset = 11
+	///how many tiles to increase the users view box
 	var/zoom_viewsize = 12
-	var/zoom_accuracy = SCOPE_RAIL
+	scoped_accuracy_mod = SCOPE_RAIL
+	///TRUE FALSE as to whether a scope can apply nightvision
 	var/has_nightvision = FALSE
+	///TRUE FALSE as to whether the attachment is currently giving nightvision
 	var/active_nightvision = FALSE
 
 
@@ -735,7 +782,7 @@ Defined in conflicts.dm of the #defines folder.
 	aim_speed_mod = 0.04 SECONDS
 	zoom_offset = 5
 	zoom_viewsize = 7
-	zoom_accuracy = SCOPE_RAIL_MINI
+	scoped_accuracy_mod = SCOPE_RAIL_MINI
 	scope_zoom_mod = TRUE
 	has_nightvision = FALSE
 
@@ -750,7 +797,7 @@ Defined in conflicts.dm of the #defines folder.
 	name = "m42a rail scope"
 	attach_icon = "none"
 	desc = "A rail mounted zoom sight scope specialized for the M42A Sniper Rifle . Allows zoom by activating the attachment. Can activate its targeting laser while zoomed to take aim for increased damage and penetration. Use F12 if your HUD doesn't come back."
-	zoom_accuracy = SCOPE_RAIL_SNIPER
+	scoped_accuracy_mod = SCOPE_RAIL_SNIPER
 	flags_attach_features = ATTACH_ACTIVATION
 
 /obj/item/attachable/scope/slavic
@@ -1178,10 +1225,12 @@ Defined in conflicts.dm of the #defines folder.
 /obj/item/attachable/attached_gun
 	attachment_action_type = /datum/action/item_action/toggle
 	//Some attachments may be fired. So here are the variables related to that.
+	///the ammo datum that an attachment gun fires
 	var/datum/ammo/ammo = null //If it has a default bullet-like ammo.
-	max_range 		= 0 //Determines # of tiles distance the attachable can fire, if it's not a projectile.
+	///the type of casing an attachment gun leaves behind, if any.
 	var/type_of_casings = null
-	var/fire_sound = null //Sound to play when firing it alternately
+	///Sound to play when firing it alternately
+	var/fire_sound = null
 
 
 /obj/item/attachable/attached_gun/Initialize() //Let's make sure if something needs an ammo type, it spawns with one.
@@ -1228,7 +1277,8 @@ Defined in conflicts.dm of the #defines folder.
 	slot = "under"
 	fire_sound = 'sound/weapons/guns/fire/m92_attachable.ogg'
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_RELOADABLE|ATTACH_WEAPON
-	var/list/loaded_grenades = list() //list of grenade types loaded in the UGL
+	///list of grenade types loaded in the UGL
+	var/list/loaded_grenades = list()
 	attachment_firing_delay = 21
 
 /obj/item/attachable/attached_gun/grenade/unremovable
@@ -1567,10 +1617,15 @@ Defined in conflicts.dm of the #defines folder.
 	melee_mod = -10
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION
 	attachment_action_type = /datum/action/item_action/toggle
+	///person holding the gun that this is attached to
 	var/mob/living/master_user
+	///bonus to accuracy when the bipod is deployed
 	var/deployment_accuracy_mod = 0.30
+	///bonus to recoil when the bipod is deployed
 	var/deployment_recoil_mod = -2
+	///bonus to scatter applied when the bipod is deployed
 	var/deployment_scatter_mod = -20
+	///bonus to burst scatter applied when the bipod is deployed
 	var/deployment_burst_scatter_mod = -3
 
 
