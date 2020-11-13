@@ -208,6 +208,10 @@
 		to_chat(owner, "<span class='xenowarning'>Even we cannot go there!</span>")
 		return FALSE
 
+	if(isclosedturf(T) || isspaceturf(T))
+		to_chat(owner, "<span class='xenowarning'>We cannot blink here!</span>")
+		return FALSE
+
 	var/distance = get_dist(owner, T)
 	if(distance > TINDALOS_BLINK_RANGE) //Needs to be in range.
 		to_chat(owner, "<span class='xenowarning'>Our destination is too far away! It must be [distance - TINDALOS_BLINK_RANGE] tiles closer!</span>")
