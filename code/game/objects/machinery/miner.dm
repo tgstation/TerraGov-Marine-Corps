@@ -66,7 +66,7 @@
 	if(user.skills.getRating("construction")<SKILL_CONSTRUCTION_ADVANCED)
 		to_chat(user, "<span class='info'>You can't figure out how to assemble the complex module.</span>")
 		return FALSE
-	var/static/list/modules = list(MINER_RESISTANT = image(icon = 'icons/obj/mining_drill.dmi',icon_state = "mining_drill_balls"),MINER_COMPACTOR = image(icon = 'icons/obj/mining_drill.dmi',icon_state = "mining_drill_balls"),MINER_OVERCLOCKED = image(icon = 'icons/obj/mining_drill.dmi', icon_state = "mining_drill_balls"))
+	var/static/list/modules = list(MINER_RESISTANT = image(icon = 'icons/obj/mining_drill.dmi',icon_state = "mining_drill_reinforced"),MINER_COMPACTOR = image(icon = 'icons/obj/mining_drill.dmi',icon_state = "mining_drill_balls"),MINER_OVERCLOCKED = image(icon = 'icons/obj/mining_drill.dmi', icon_state = "mining_drill_balls"))
 	var/choice = show_radial_menu(user, src, modules, require_near = TRUE, tooltips = TRUE)
 	user.visible_message("<span class='notice'>[user] begins attaching a module to [src]'s sockets.</span>")
 	if(!do_after(user, 15 SECONDS, TRUE, src, BUSY_ICON_BUILD))
@@ -78,7 +78,7 @@
 		if(MINER_RESISTANT)
 			max_miner_integrity = 500
 			miner_integrity = 500
-			miner_upgrade_type = "balls"
+			miner_upgrade_type = "reinforced"
 		if(MINER_COMPACTOR)
 			mineral_produced = /obj/item/phoronboxcompact
 			miner_upgrade_type = "compat"
