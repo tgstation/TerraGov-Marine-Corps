@@ -1,4 +1,0 @@
-author: "lovegreenstuff"
-delete-after: True
-changes: 
-  - balance: "Removed two lines of code that made carrier MOB_SIZE_BIG and slower to drag. That last one is mostly just because every other MOB_SIZE_BIG xeno has that bit, and it's just for precedent's sake."
