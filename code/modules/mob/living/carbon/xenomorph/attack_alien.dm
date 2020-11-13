@@ -45,80 +45,6 @@
 		return
 	Paralyze(16 SECONDS)
 
-/mob/living/carbon/human/attack_alien_disarm(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
-	if(!can_xeno_slash(X))
-		return FALSE
-
-	if(!prob(X.melee_accuracy))
-		playsound(loc, 'sound/weapons/slashmiss.ogg', 25, TRUE)
-		X.visible_message("<span class='danger'>\The [X] slashes at [src], narroly missing!</span>",
-		"<span class='danger'>Our slash against [src] narroly misses!</span>")
-		return FALSE
-
-	var/damage = X.xeno_caste.melee_damage
-	if(!damage)
-		return FALSE
-
-	var/datum/limb/affecting = get_xeno_slash_zone(X, set_location, random_location, no_head)
-	var/armor_block = 0
-
-	var/list/damage_mod = list()
-	var/list/armor_mod = list()
-
-	var/signal_return = SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_LIVING, src, damage, damage_mod, armor_mod)
-
-	// if we don't get any non-stacking bonuses dont apply dam_bonus
-	if(!(signal_return & COMSIG_XENOMORPH_BONUS_APPLIED ))
-		damage_mod += dam_bonus
-
-	if(!(signal_return & COMPONENT_BYPASS_ARMOR))
-		armor_block = run_armor_check(affecting, "melee")
-
-	for(var/i in damage_mod)
-		damage += i
-
-	for(var/i in armor_mod)
-		armor_block *= i
-
-	if(!(signal_return & COMPONENT_BYPASS_SHIELDS))
-		damage = check_shields(COMBAT_MELEE_ATTACK, damage, "melee")
-
-	if(!damage)
-		X.visible_message("<span class='danger'>\The [X]'s slash is blocked by [src]'s shield!</span>",
-			"<span class='danger'>Our slash is blocked by [src]'s shield!</span>", null, COMBAT_MESSAGE_RANGE)
-		return FALSE
-
-	var/attack_sound = "alien_claw_flesh"
-	var/attack_message1 = "<span class='danger'>\The [X] slashes [src]!</span>"
-	var/attack_message2 = "<span class='danger'>We slash [src]!</span>"
-	var/log = "slashed"
-
-	//Somehow we will deal no damage on this attack
-	if(!damage)
-		playsound(X.loc, 'sound/weapons/alien_claw_swipe.ogg', 25, 1)
-		X.do_attack_animation(src)
-		X.visible_message("<span class='danger'>\The [X] lunges at [src]!</span>", \
-		"<span class='danger'>We lunge at [src]!</span>", null, 5)
-		return FALSE
-
-	X.do_attack_animation(src, ATTACK_EFFECT_REDSLASH)
-
-	//The normal attack proceeds
-	playsound(loc, attack_sound, 25, 1)
-	X.visible_message("[attack_message1]", \
-	"[attack_message2]")
-
-	if(status_flags & XENO_HOST && stat != DEAD)
-		log_combat(X, src, log, addition = "while they were infected")
-	else //Normal xenomorph friendship with benefits
-		log_combat(X, src, log)
-
-	apply_damage(damage, BRUTE, affecting, armor_block, TRUE, TRUE) //This should slicey dicey
-	UPDATEHEALTH(src)
-
-
-	return TRUE
-
 /mob/living/proc/can_xeno_slash(mob/living/carbon/xenomorph/X)
 	if(CHECK_BITFIELD(X.xeno_caste.caste_flags, CASTE_IS_INTELLIGENT)) // intelligent ignore restrictions
 		return TRUE
@@ -239,9 +165,20 @@
 	apply_damage(damage, BRUTE, affecting, armor_block, TRUE, TRUE) //This should slicey dicey
 	UPDATEHEALTH(src)
 
-
 	return TRUE
 
+/mob/living/silicon/attack_alien_disarm(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
+	if(stat == DEAD) //A bit of visual flavor for attacking Cyborgs. Sparks!
+		return FALSE
+	. = ..()
+	if(!.)
+		return
+	var/datum/effect_system/spark_spread/spark_system
+	spark_system = new /datum/effect_system/spark_spread()
+	spark_system.set_up(5, 0, src)
+	spark_system.attach(src)
+	spark_system.start(src)
+	playsound(loc, "alien_claw_metal", 25, TRUE)
 
 /mob/living/silicon/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
 	if(stat == DEAD) //A bit of visual flavor for attacking Cyborgs. Sparks!
