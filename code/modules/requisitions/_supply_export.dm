@@ -11,7 +11,7 @@
 	SSpoints.supply_points += .
 
 /obj/item/phoronboxcompact/supply_export()
-	. = 15
+	. = 20
 	SSpoints.supply_points += .
 
 /obj/structure/ore_box/platinum/supply_export()
