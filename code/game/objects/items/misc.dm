@@ -11,26 +11,6 @@
 	attack_verb = list("called", "rang")
 	hitsound = 'sound/weapons/ring.ogg'
 
-/obj/item/phoronboxcompact
-	name = "compressed phoron box"
-	desc = "A medium sized and very heavy box , filled to the brim with compressed phoron crystals"
-	icon = 'icons/obj/items/items.dmi'
-	icon_state = "phoronbox_compact"
-	item_state = "phoronbox_compact"
-	max_integrity = 20
-	w_class = WEIGHT_CLASS_HUGE
-	flags_item = TWOHANDED
-	force = 5
-	throw_range = 3
-	throwforce = 15 // Heavy box. heavy damage.
-
-/obj/item/phoronboxcompact/pickup(mob/user)
-	. = ..()
- 	wield(user)
-
-/obj/item/phoronboxcompact/dropped(mob/user)
-	. = ..()
-	unwield(user)
 
 /obj/item/clock
 	name = "digital clock"
@@ -137,3 +117,23 @@
 	gender = PLURAL
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "ectoplasm"
+
+/obj/item/phoronboxcompact
+	name = "compressed phoron box"
+	desc = "A medium sized and very heavy box , filled to the brim with compressed phoron crystals"
+	icon = 'icons/obj/items/items.dmi'
+	icon_state = "phoronbox_compact"
+	item_state = "phoronbox_compact"
+	w_class = WEIGHT_CLASS_HUGE
+	flags_item = TWOHANDED
+	force = 5.0
+	throw_range = 3
+	throwforce = 15.0
+
+/obj/item/phoronboxcompact/pickup(mob/user)
+	. = ..()
+	wield(user)
+
+/obj/item/phoronboxcompact/dropped(mob/user)
+	. = ..()
+	unwield(user)
