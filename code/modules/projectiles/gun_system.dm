@@ -565,8 +565,6 @@ and you're good to go.
 	else
 		ammo.iff_signal = iff_signal
 
-	message_admins("[ammo.iff_signal]")
-
 	var/turf/targloc = get_turf(target)
 
 	/*
