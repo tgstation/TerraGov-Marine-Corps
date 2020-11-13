@@ -66,7 +66,7 @@
 	if(user.skills.getRating("construction")<SKILL_CONSTRUCTION_ADVANCED)
 		to_chat(user, "<span class='info'>You can't figure out how to assemble the complex module.</span>")
 		return FALSE
-	var/static/list/modules = list(MINER_RESISTANT = image(icon = 'icons/obj/mining_drill.dmi',icon_state = "mining_drill_reinforceddisplay"),MINER_COMPACTOR = image(icon = 'icons/obj/mining_drill.dmi',icon_state = "mining_drill_balls"),MINER_OVERCLOCKED = image(icon = 'icons/obj/mining_drill.dmi', icon_state = "mining_drill_balls"))
+	var/static/list/modules = list(MINER_RESISTANT = image(icon = 'icons/obj/mining_drill.dmi',icon_state = "mining_drill_reinforceddisplay"),MINER_COMPACTOR = image(icon = 'icons/obj/mining_drill.dmi',icon_state = "mining_drill_compactordisplay"),MINER_OVERCLOCKED = image(icon = 'icons/obj/mining_drill.dmi', icon_state = "mining_drill_balls"))
 	var/choice = show_radial_menu(user, src, modules, require_near = TRUE, tooltips = TRUE)
 	user.visible_message("<span class='notice'>[user] begins attaching a module to [src]'s sockets.</span>")
 	if(!do_after(user, 15 SECONDS, TRUE, src, BUSY_ICON_BUILD))
@@ -76,12 +76,12 @@
 
 	switch(choice)
 		if(MINER_RESISTANT)
-			max_miner_integrity = 500
-			miner_integrity = 500
+			max_miner_integrity = 300
+			miner_integrity = 300
 			miner_upgrade_type = "reinforced"
 		if(MINER_COMPACTOR)
 			mineral_produced = /obj/item/phoronboxcompact
-			miner_upgrade_type = "compact"
+			miner_upgrade_type = "compactor"
 		if(MINER_OVERCLOCKED)
 			required_ticks = 50
 			miner_upgrade_type = "overclocked"
@@ -118,7 +118,8 @@
 		user.visible_message("<span class='notice'>[user] dismantles the [miner_upgrade_type] from the miner</span>")
 		var/obj/item/stack/sheet/plasteel/stack = /obj/item/stack/sheet/plasteel
 		stack = new /obj/item/stack/sheet/plasteel
-		stack.amount = MINER_REQUIRED_PLASTEEL_SHEETS - round(1/3*MINER_REQUIRED_PLASTEEL_SHEETS)
+		stack.amount = MINER_REQUIRED_PLASTEEL_SHEETS - 5
+		stack.loc = user.loc
 		miner_upgrade_type = ""
 		max_miner_integrity = 100
 		miner_integrity = 100
