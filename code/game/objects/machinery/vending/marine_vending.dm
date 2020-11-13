@@ -658,7 +658,6 @@
 		/obj/item/clothing/mask/gas = 10,
 		/obj/item/clothing/mask/gas/tactical = 10,
 		/obj/item/clothing/mask/gas/tactical/coif = 10,
-		/obj/item/belt_harness/marine = 10,
 		/obj/item/armor_module/storage/general = 20,
 		/obj/item/armor_module/storage/engineering = 20,
 		/obj/item/armor_module/storage/medical = 20,
@@ -758,7 +757,6 @@
 		/obj/item/clothing/head/white_dress = 50,
 		/obj/item/clothing/shoes/white = 50,
 		/obj/item/clothing/gloves/white = 50,
-		/obj/item/clothing/suit/modular = 20,
 	)
 
 	prices = list()
