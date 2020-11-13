@@ -2,25 +2,25 @@
 ///Gun attachable items code. Lets you add various effects to firearms.
 ///Some attachables are hardcoded in the projectile firing system, like grenade launchers, flamethrowers.
 /**
- *When you are adding new guns into the attachment list, or even old guns, make sure that said guns
- *properly accept overlays. You can find the proper offsets in the individual gun dms, so make sure
- *you set them right. It's a pain to go back to find which guns are set incorrectly.
- *To summarize: rail attachments should go on top of the rail. For rifles, this usually means the middle of the gun.
- *For handguns, this is usually toward the back of the gun. SMGs usually follow rifles.
- *Muzzle attachments should connect to the barrel, not sit under or above it. The only exception is the bayonet.
- *Underrail attachments should just fit snugly, that's about it. Stocks are pretty obvious.
- *
- *All attachment offsets are now in a list, including stocks. Guns that don't take attachments can keep the list null.
- *~N
- *
- *Defined in conflicts.dm of the #defines folder.
- *#define ATTACH_REMOVABLE	1
- *#define ATTACH_ACTIVATION	2
- *#define ATTACH_PROJECTILE	4
- *#define ATTACH_RELOADABLE	8
- *#define ATTACH_WEAPON		16
- *#define ATTACH_UTILITY	32
- */
+  *When you are adding new guns into the attachment list, or even old guns, make sure that said guns
+  *properly accept overlays. You can find the proper offsets in the individual gun dms, so make sure
+  *you set them right. It's a pain to go back to find which guns are set incorrectly.
+  *To summarize: rail attachments should go on top of the rail. For rifles, this usually means the middle of the gun.
+  *For handguns, this is usually toward the back of the gun. SMGs usually follow rifles.
+  *Muzzle attachments should connect to the barrel, not sit under or above it. The only exception is the bayonet.
+  *Underrail attachments should just fit snugly, that's about it. Stocks are pretty obvious.
+  *
+  *All attachment offsets are now in a list, including stocks. Guns that don't take attachments can keep the list null.
+  *~N
+  *
+  *Defined in conflicts.dm of the #defines folder.
+  *#define ATTACH_REMOVABLE	1
+  *#define ATTACH_ACTIVATION	2
+  *#define ATTACH_PROJECTILE	4
+  *#define ATTACH_RELOADABLE	8
+  *#define ATTACH_WEAPON		16
+  *#define ATTACH_UTILITY	32
+  */
 
 /obj/item/attachable
 	name = "attachable item"
@@ -43,14 +43,14 @@
 	var/slot = null
 
 	/**
-	 *Anything that isn't used as the gun fires should be a flat number, never a percentange. It screws with the calculations,
-	 *and can mean that the order you attach something/detach something will matter in the final number. It's also completely
-	 *inaccurate. Don't worry if force is ever negative, it won't runtime.
-	 *
-	 *These bonuses are applied only as the gun fires a projectile.
-	 *
-	 *These are flat bonuses applied and are passive, though they may be applied at different points.
-	 */
+	  *Anything that isn't used as the gun fires should be a flat number, never a percentange. It screws with the calculations,
+	  *and can mean that the order you attach something/detach something will matter in the final number. It's also completely
+	  *inaccurate. Don't worry if force is ever negative, it won't runtime.
+	  *
+	  *These bonuses are applied only as the gun fires a projectile.
+	  *
+	  *These are flat bonuses applied and are passive, though they may be applied at different points.
+	  */
 
 	///Modifier to firing accuracy, works off a multiplier.
 	var/accuracy_mod 	= 0
