@@ -1,7 +1,7 @@
 
-///Gun attachable items code. Lets you add various effects to firearms.
-///Some attachables are hardcoded in the projectile firing system, like grenade launchers, flamethrowers.
-/**
+/**Gun attachable items code. Lets you add various effects to firearms.
+  *Some attachables are hardcoded in the projectile firing system, like grenade launchers, flamethrowers.
+  *
   *When you are adding new guns into the attachment list, or even old guns, make sure that said guns
   *properly accept overlays. You can find the proper offsets in the individual gun dms, so make sure
   *you set them right. It's a pain to go back to find which guns are set incorrectly.
@@ -14,12 +14,12 @@
   *~N
   *
   *Defined in conflicts.dm of the #defines folder.
-  *#define ATTACH_REMOVABLE	1
-  *#define ATTACH_ACTIVATION	2
-  *#define ATTACH_PROJECTILE	4
-  *#define ATTACH_RELOADABLE	8
-  *#define ATTACH_WEAPON		16
-  *#define ATTACH_UTILITY	32
+  *#define ATTACH_REMOVABLE		(1<<0)
+  *#define ATTACH_ACTIVATION	(1<<1)
+  *#define ATTACH_PROJECTILE	(1<<2)
+  *#define ATTACH_RELOADABLE	(1<<3)
+  *#define ATTACH_WEAPON		(1<<4)
+  *#define ATTACH_UTILITY		(1<<5)
   */
 
 /obj/item/attachable
@@ -75,7 +75,7 @@
 	///Modifier to scatter from wielded burst fire, works off a multiplier.
 	var/burst_scatter_mod = 0
 	///Adds silenced to weapon. changing its fire sound, muzzle flash, and volume. TRUE or FALSE
-	var/silence_mod 	= 0
+	var/silence_mod 	= FALSE
 	///Adds an x-brightness flashlight to the weapon, which can be toggled on and off.
 	var/light_mod 		= 0
 	///Changes firing delay. Cannot go below 0.
