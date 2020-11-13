@@ -2,19 +2,15 @@ Any time you make a change to the schema files, remember to increment the databa
 
 The latest database version is 1.1; The query to update the schema revision table is:
 
-INSERT INTO `schema_revision` (`major`, `minor`) VALUES (1, 1);
+INSERT INTO `schema_revision` (`major`, `minor`) VALUES (2, 0);
 or
-INSERT INTO `SS13_schema_revision` (`major`, `minor`) VALUES (1, 1);
+INSERT INTO `SS13_schema_revision` (`major`, `minor`) VALUES (2, 0);
 
 In any query remember to add a prefix to the table names if you use one.
 
 ----------------------------------------------------
 
-Version 1.0, 28 February 2018, by LaKiller8 - initial release, inspired by /tg/station schema
-
-----------------------------------------------------
-
-Version 1.1 13 November 2020, by TiviPlus - Update with /tg/station style datumized poll handling:
+Version 2.0 13 November 2020, by TiviPlus - Fixed various ban queries and update with /tg/station style datumized poll handling:
 
 Updates and improvements to poll handling.
 Added the `deleted` column to tables 'poll_option', 'poll_textreply' and 'poll_vote' and the columns `created_datetime`, `subtitle`, `allow_revoting` and `deleted` to 'poll_question'.
@@ -53,5 +49,9 @@ UPDATE `poll_textreply` SET deleted = 1 WHERE pollid = poll_id;
 END
 $$
 DELIMITER ;
+
+----------------------------------------------------
+
+Version 1.0, 28 February 2018, by LaKiller8 - initial release, inspired by /tg/station schema
 
 -----------------------------------------------------

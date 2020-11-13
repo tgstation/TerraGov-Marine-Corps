@@ -203,7 +203,7 @@ SUBSYSTEM_DEF(blackbox)
 			"lakey" = L.ckey,
 			"brute" = L.getBruteLoss(),
 			"fire" = L.getFireLoss(),
-			"brain" = -1, //L.GetBrainLoss(),
+			"brain" = -1, //L.GetBrainLoss(), Byond errors that the proc isnt defined and I have no idea why and the person before me either :/
 			"oxy" = L.getOxyLoss(),
 			"tox" = L.getToxLoss(),
 			"clone" = L.getCloneLoss(),

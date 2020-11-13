@@ -151,6 +151,7 @@ CREATE TABLE IF NOT EXISTS `messages` (
   `lasteditor` varchar(32) DEFAULT NULL,
   `edits` text DEFAULT NULL,
   `deleted` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `deleted_ckey` VARCHAR(32) NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `idx_msg_ckey_time` (`targetckey`,`timestamp`,`deleted`),
   KEY `idx_msg_type_ckeys_time` (`type`,`targetckey`,`adminckey`,`timestamp`,`deleted`),
@@ -308,15 +309,42 @@ CREATE TABLE IF NOT EXISTS `stickyban` (
   PRIMARY KEY (`ckey`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Data exporting was unselected.
--- Dumping structure for table feedback.stickyban_matched_ckey
-CREATE TABLE IF NOT EXISTS `stickyban_matched_ckey` (
-  `stickyban` varchar(32) NOT NULL,
-  `matched_ckey` varchar(32) NOT NULL,
-  `first_matched` timestamp NOT NULL DEFAULT current_timestamp(),
-  `exempt` tinyint(1) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`stickyban`,`matched_ckey`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+--
+-- Table structure for table `stickyban_matched_ckey`
+--
+DROP TABLE IF EXISTS `stickyban_matched_ckey`;
+CREATE TABLE `stickyban_matched_ckey` (
+	`stickyban` VARCHAR(32) NOT NULL,
+	`matched_ckey` VARCHAR(32) NOT NULL,
+	`first_matched` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	`last_matched` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	`exempt` TINYINT(1) NOT NULL DEFAULT '0',
+	PRIMARY KEY (`stickyban`, `matched_ckey`)
+) ENGINE=InnoDB;
+
+--
+-- Table structure for table `stickyban_matched_ip`
+--
+DROP TABLE IF EXISTS `stickyban_matched_ip`;
+CREATE TABLE `stickyban_matched_ip` (
+	`stickyban` VARCHAR(32) NOT NULL,
+	`matched_ip` INT UNSIGNED NOT NULL,
+	`first_matched` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	`last_matched` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	PRIMARY KEY (`stickyban`, `matched_ip`)
+) ENGINE=InnoDB;
+
+--
+-- Table structure for table `stickyban_matched_cid`
+--
+DROP TABLE IF EXISTS `stickyban_matched_cid`;
+CREATE TABLE `stickyban_matched_cid` (
+	`stickyban` VARCHAR(32) NOT NULL,
+	`matched_cid` VARCHAR(32) NOT NULL,
+	`first_matched` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	`last_matched` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	PRIMARY KEY (`stickyban`, `matched_cid`)
+) ENGINE=InnoDB;
 
 DELIMITER $$
 CREATE PROCEDURE `set_poll_deleted`(
