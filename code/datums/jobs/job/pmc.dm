@@ -72,7 +72,7 @@
 	suit_store = /obj/item/weapon/gun/rifle/standard_smartmachinegun/pmc
 	r_store = /obj/item/storage/pouch/general/large
 	l_store = /obj/item/storage/pouch/firstaid/full
-	back = /obj/item/storage/backpack/satchel
+	back = /obj/item/storage/backpack/lightpack
 
 
 /datum/outfit/job/pmc/gunner/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
