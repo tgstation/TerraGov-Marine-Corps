@@ -478,7 +478,7 @@ and you're good to go.
 	//The workhorse of the bullet procs.
 
 
-	if(!CHECK_BITFIELD(flags_gun_features, GUN_HAS_IFF))
+	if(!CHECK_BITFIELD(flags_gun_features, GUN_HAS_IFF) && !istype(ammo, /datum/ammo/bullet/turret))
 		ammo.iff_signal = 0
 	else
 		ammo.iff_signal = iff_signal
