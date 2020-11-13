@@ -1,6 +1,6 @@
 /datum/xeno_caste/tindalos
-	caste_name = "Tindalos"
-	display_name = "Tindalos"
+	caste_name = "Wraith"
+	display_name = "Wraith"
 	upgrade_name = ""
 	caste_desc = "A strange xeno that utilizes its psychic powers to move out of phase with reality."
 	caste_type_path = /mob/living/carbon/xenomorph/tindalos

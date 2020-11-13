@@ -1,7 +1,7 @@
 /mob/living/carbon/xenomorph/tindalos
 	caste_base_type = /mob/living/carbon/xenomorph/tindalos
-	name = "Tindalos"
-	desc = "A strange quadruped alien. The air around it warps and shimmers like a heat mirage."
+	name = "Wraith"
+	desc = "A strange tendriled alien. The air around it warps and shimmers like a heat mirage."
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
 	icon_state = "Tindalos Walking"
 	health = 150

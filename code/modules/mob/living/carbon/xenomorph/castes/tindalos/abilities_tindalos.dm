@@ -25,6 +25,7 @@
 	"<span class='xenodanger'>We complete our work, binding our essence to this point.</span>", null, 5) //Fluff
 	var/obj/effect/alien/warp_beacon/WB = new(T) //Create the new beacon.
 	playsound(T, 'sound/weapons/emitter.ogg', 25, 1)
+	QDEL_NULL(TI.warp_beacon) //Delete the old beacon
 	TI.warp_beacon = WB //Set our warp beacon
 
 	succeed_activate()
@@ -56,7 +57,7 @@
 	TI.do_jitter_animation(2000) //Animation
 
 	var/distance = get_dist(TI, TI.warp_beacon) //Get the distance so we can calculate the wind up
-	var/hyperposition_windup = clamp(TINDALOS_HYPERPOSITION_MIN_WINDUP, distance * 0.5 SECONDS - 10 SECONDS, TINDALOS_HYPERPOSITION_MAX_WINDUP)
+	var/hyperposition_windup = clamp(TINDALOS_HYPERPOSITION_MIN_WINDUP, distance * 0.5 SECONDS - 5 SECONDS, TINDALOS_HYPERPOSITION_MAX_WINDUP)
 
 	TI.visible_message("<span class='warning'>The air starts to violently roil and shimmer around [TI]!</span>", \
 	"<span class='xenodanger'>We begin to teleport to our warp beacon located at [A] (X: [WB.x], Y: [WB.y]). We estimate this will take [hyperposition_windup * 0.1] seconds.</span>")
@@ -100,7 +101,7 @@
 	teleport_debuff_aoe(TI) //Apply tele debuff
 
 	var/area/A = get_area(WB)
-	TI.visible_message("<span class='warning'>\ [TI] suddenly vanishes in a bleak cloud of warped space!</span>", \
+	TI.visible_message("<span class='warning'>\ [TI] suddenly vanishes in a vortex of warped space!</span>", \
 	"<span class='xenonotice'>We teleport, swapping positions with our warp beacon. Our warp beacon has moved to [A] (X: [WB.x], Y: [WB.y]).</span>", null, 5) //Let user know the new location
 
 
@@ -217,7 +218,7 @@
 		to_chat(owner, "<span class='xenowarning'>Our destination is too far away! It must be [distance - TINDALOS_BLINK_RANGE] tiles closer!</span>")
 		return FALSE
 
-	if(!owner.line_of_sight(T)) //Needs to be in line of sight.
+	if(!owner.line_of_sight(T) || A.opacity) //Needs to be in line of sight.
 		to_chat(owner, "<span class='xenowarning'>We can't blink without line of sight to our destination!</span>")
 		return FALSE
 
@@ -338,7 +339,7 @@
 		duration *= 0.5
 
 	banishment_target.visible_message("<span class='warning'>Space abruptly twists and warps around [banishment_target.name] as it suddenly vanishes!</span>", \
-	"<span class='highdanger'>The world around you spin wildly, reality seeming to twist and tear until you find yourself in a forsaken place beyond space and time.</span>")
+	"<span class='highdanger'>The world around you reels, reality seeming to twist and tear until you find yourself trapped in a forsaken void beyond space and time.</span>")
 	playsound(banished_turf, 'sound/weapons/emitter2.ogg', 50, 1) //this isn't quiet
 
 	to_chat(TI,"<span class='xenodanger'>We have banished [banishment_target.name] to nullspace for [duration * 0.1] seconds.</span>")
@@ -379,7 +380,7 @@
 	teleport_debuff_aoe(banishment_target) //Debuff/distortion when we reappear
 
 	banishment_target.visible_message("<span class='warning'>[banishment_target.name] abruptly reappears!</span>", \
-	"<span class='warning'>You suddenly rematerialize back in what you believe to be reality. It takes you a moment to regain your bearings.</span>")
+	"<span class='warning'>You suddenly reappear back in what you believe to be reality. It takes you a moment to regain your bearings.</span>")
 
 	if(isliving(banishment_target))
 		var/mob/living/L = banishment_target
@@ -410,6 +411,10 @@
 	var/mob/living/carbon/xenomorph/tindalos/TI = owner
 
 	var/datum/action/xeno_action/activable/banish/B = locate(/datum/action/xeno_action/activable/banish) in TI.xeno_abilities
+
+	if(!B.banishment_target)
+		to_chat(TI,"<span class='xenodanger'>We have no targets banished!</span>")
+		return fail_activate()
 
 	B.banish_deactivate() //manual deactivate
 	succeed_activate()
