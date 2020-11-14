@@ -248,7 +248,7 @@
 		return fail_activate()
 	var/total_huggers = length(X.huggers)
 	X.visible_message("<span class='warning'>[X] crushes the huggers on it's back, releasing a burst of energy!</span>",\
-		"<span class='xenowarning'>We contract our spines, crushing [huggers] little ones and releasing their psychic energy!</span>")
+		"<span class='xenowarning'>We contract our spines, crushing [total_huggers] little ones and releasing their psychic energy!</span>")
 	new /obj/effect/overlay/temp/emp_pulse(X.loc)
 	new /obj/effect/spawner/gibspawner/xeno(X.loc)
 	for(var/mob/living/victim in view(3))//yes this throws back friendly xenos too
