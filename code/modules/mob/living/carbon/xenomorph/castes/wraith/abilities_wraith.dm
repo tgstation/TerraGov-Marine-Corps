@@ -51,6 +51,7 @@
 
 	if(!WB)
 		to_chat(TI, "<span class='xenodanger'>We have no warp beacon to teleport to!</span>")
+		return fail_activate()
 
 	var/area/A = get_area(WB)
 
@@ -76,7 +77,7 @@
 
 	add_cooldown()
 
-/datum/action/xeno_action/hyperposition/proc/hyperposition_warp() //This handles the location swap between the Tindalos and the Warp Beacon
+/datum/action/xeno_action/hyperposition/proc/hyperposition_warp() //This handles the location swap between the Wraith and the Warp Beacon
 
 	var/mob/living/carbon/xenomorph/wraith/TI = owner
 	var/obj/effect/alien/warp_beacon/WB = TI.warp_beacon
@@ -245,7 +246,7 @@
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "wraith_blinks") //Statistics
 
 
-/datum/action/xeno_action/activable/blink/proc/blink_warp(mob/living/carbon/xenomorph/wraith/TI, turf/T, mob/pulled = null) //This handles the location swap between the Tindalos and the Warp Beacon
+/datum/action/xeno_action/activable/blink/proc/blink_warp(mob/living/carbon/xenomorph/wraith/TI, turf/T, mob/pulled = null) //This handles the location swap between the Wraith and the Warp Beacon
 
 	TI.face_atom(T) //Face the target so we don't look like an ass
 
@@ -260,7 +261,7 @@
 	teleport_debuff_aoe(TI) //Debuff when we reappear
 
 
-/datum/action/xeno_action/proc/teleport_debuff_aoe(atom/movable/teleporter) //Called by many of the Tindalos' teleportation effects
+/datum/action/xeno_action/proc/teleport_debuff_aoe(atom/movable/teleporter) //Called by many of the Wraith' teleportation effects
 
 	if(!teleporter) //Sanity
 		return
@@ -396,7 +397,7 @@
 		var/mob/living/L = banishment_target
 		L.Stun(1 SECONDS) //Short stun upon returning to reality
 
-	to_chat(TI, "<span class='xenodanger'>Our target [banishment_target.name] has returned to reality.</span>") //Always alert the Tindalos
+	to_chat(TI, "<span class='xenodanger'>Our target [banishment_target.name] has returned to reality.</span>") //Always alert the Wraith
 
 	banishment_target = null //Clear vars
 	banished_turf = null
