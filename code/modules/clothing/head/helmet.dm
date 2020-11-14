@@ -556,7 +556,6 @@ obj/item/clothing/head/helmet/marine/pilot/green
 	icon = 'icons/obj/clothing/cm_hats.dmi'
 	sprite_sheet_id = 1
 	icon_state = "spec"
-	soft_armor = list("melee" = 35, "bullet" = 35, "laser" = 35, "energy" = 15, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 15, "acid" = 15)
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS
 
@@ -566,7 +565,6 @@ obj/item/clothing/head/helmet/marine/pilot/green
 	icon = 'icons/obj/clothing/cm_hats.dmi'
 	sprite_sheet_id = 1
 	icon_state = "durag"
-	soft_armor = list("melee" = 35, "bullet" = 35, "laser" = 35, "energy" = 15, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 15, "acid" = 15)
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS|HIDETOPHAIR
 
