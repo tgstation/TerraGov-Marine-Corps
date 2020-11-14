@@ -44087,10 +44087,6 @@
 "xAI" = (
 /turf/closed/wall/r_wall/prison,
 /area/prison/research/secret/biolab)
-"xGi" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/asteroid,
-/area/prison/residential/central)
 "xHS" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -54874,7 +54870,7 @@ bhC
 bkL
 bhC
 bhC
-xGi
+bhC
 bhC
 aVP
 bRB
