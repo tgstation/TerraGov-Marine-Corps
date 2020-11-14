@@ -26,7 +26,6 @@
 /obj/item/clock/examine(mob/user, distance, infix, suffix)
 	. = ..()
 	to_chat(user, "The [src] reads: [GLOB.current_date_string] - [stationTimestamp()]")
-	
 
 /obj/item/bananapeel
 	name = "banana peel"
@@ -149,5 +148,4 @@
 	desc = "A Very heavy and solid box , filled with pure titanium"
 	icon_state = "platinumbox_compact"
 	item_state = "platinumbox_comact"
-
 
