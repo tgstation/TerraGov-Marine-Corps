@@ -1,0 +1,4 @@
+author: "ma44"
+delete-after: True
+changes: 
+  - tweak: "The admins can now only spawn so many things with AI attached overall"
