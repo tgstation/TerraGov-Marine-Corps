@@ -150,4 +150,30 @@
 	icon_state = "platinumbox_compact"
 	item_state = "platinumbox_comact"
 
+/obj/item/minerupgrade
+	name = "Miner upgrade"
+	desc = "Subtype item, should not exist."
+	icon = 'icons/obj/mining.dmi'
+	icon_state = "mining_drill_reinforceddisplay"
+	w_class = WEIGHT_CLASS_NORMAL
+	var/uptype /// Used to determine what type of upgrade it is for use in miner.dm
+
+/obj/item/minerupgrade/reinforcement
+	name = "Reinforced components box"
+	desc = "A very neatly folded box of reinforced components , meant to replace weak components used in normal mining wells."
+	icon_state = "mining_drill_reinforceddisplay"
+	uptype = MINER_RESISTANT
+
+/obj/item/minerupgrade/overclock
+	name =  "High-efficiency drill"
+	desc = "A box with a few pumps and a big drill , meant to replace the standard drill used in normal mining wells for faster extraction."
+	icon_state = "mining_drill_overclockeddisplay"
+	uptype = MINER_OVERCLOCKED
+
+/obj/item/minerupgrade/compactor
+	name = "Crystalizer module"
+	desc = "A bulky module meant to replace the normal crystalizer in mining wells,used to compress boxes for easy carrying"
+	icon_state = "mining_drill_compactordisplay"
+	uptype = MINER_COMPACTOR
+
 

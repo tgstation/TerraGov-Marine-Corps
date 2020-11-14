@@ -63,20 +63,19 @@
 		if(MINER_DESTROYED)
 			icon_state = "mining_drill_error_[miner_upgrade_type]"
 
-/obj/machinery/miner/proc/attempt_upgrade(obj/item/plastee,mob/user,params)
+/obj/machinery/miner/proc/attempt_upgrade(obj/item/minerupgrade/upgrade,mob/user,params)
 	if(miner_upgrade_type)
 		return FALSE
 	if(user.skills.getRating("construction")<SKILL_CONSTRUCTION_ADVANCED)
-		to_chat(user, "<span class='info'>You can't figure out how to assemble the complex module.</span>")
+		to_chat(user, "<span class='info'>You can't figure out how to install the complex module.</span>")
 		return FALSE
-	var/static/list/modules = list(MINER_RESISTANT = image(icon = 'icons/obj/mining_drill.dmi',icon_state = "mining_drill_reinforceddisplay"),MINER_COMPACTOR = image(icon = 'icons/obj/mining_drill.dmi',icon_state = "mining_drill_compactordisplay"),MINER_OVERCLOCKED = image(icon = 'icons/obj/mining_drill.dmi', icon_state = "mining_drill_overclockeddisplay"))
-	var/choice = show_radial_menu(user, src, modules, require_near = TRUE, tooltips = TRUE)
 	user.visible_message("<span class='notice'>[user] begins attaching a module to [src]'s sockets.</span>")
+	to_chat(user, "<span class='info'>You begin installing the [upgrade] on the miner.</span>")
 	if(!do_after(user, 15 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 		return FALSE
 	if(!plastee.use(MINER_REQUIRED_PLASTEEL_SHEETS))
 		return FALSE
-
+	var/choice = upgrade.uptype
 	switch(choice)
 		if(MINER_RESISTANT)
 			max_miner_integrity = 300
@@ -97,15 +96,12 @@
 /obj/machinery/miner/attackby(obj/item/I,mob/user,params)
 	. = ..()
 
-	if(istype(I,/obj/item/stack/sheet/plasteel))
-		var/obj/item/stack/sheet/plasteel/plastee = I
-		if(plastee.get_amount() < MINER_REQUIRED_PLASTEEL_SHEETS)
-			to_chat(user, "<span class='info'>You require 20 plasteel sheets to attach a module to [src]'s module sockets.</span>")
-			return FALSE
+	if(istype(I,/obj/item/minerupgrade)
+		var/obj/item/minerupgrader/upgrade = I
 		if(!(miner_status == MINER_RUNNING))
 			to_chat(user, "<span class='info'>[src]'s module sockets seem bolted down.</span>")
 			return FALSE
-		src.attempt_upgrade(plastee,user)
+		src.attempt_upgrade(upgrade,user)
 
 /obj/machinery/miner/welder_act(mob/living/user, obj/item/I)
 	. = ..()
