@@ -707,6 +707,7 @@
 		/obj/item/clothing/head/white_dress = 50,
 		/obj/item/clothing/shoes/white = 50,
 		/obj/item/clothing/gloves/white = 50,
+		/obj/item/clothing/suit/storage/marine/harness = 5,
 		/obj/item/clothing/suit/modular = 20,
 		/obj/item/armor_module/armor/chest/marine/skirmisher = 20,
 		/obj/item/armor_module/armor/chest/marine = 20,
