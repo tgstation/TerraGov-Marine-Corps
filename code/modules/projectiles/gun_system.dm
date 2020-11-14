@@ -102,6 +102,7 @@
 
 	var/general_codex_key = "guns"
 
+	var/gun_can_aim = FALSE //determines whether aim mode is available
 
 //----------------------------------------------------------
 				//				    \\
@@ -134,6 +135,7 @@
 	setup_firemodes()
 	AddComponent(/datum/component/automatic_fire, fire_delay, burst_delay, burst_amount, gun_firemode, loc) //This should go after handle_starting_attachment() and setup_firemodes() to get the proper values set.
 
+	setup_aim_mode()
 	muzzle_flash = new(src, muzzleflash_iconstate)
 
 
@@ -477,12 +479,6 @@ and you're good to go.
 /obj/item/weapon/gun/proc/load_into_chamber(mob/user)
 	//The workhorse of the bullet procs.
 
-
-	if(!CHECK_BITFIELD(flags_gun_features, GUN_HAS_IFF))
-		ammo.iff_signal = 0
-	else
-		ammo.iff_signal = iff_signal
-
 	//Let's check on the active attachable. It loads ammo on the go, so it never chambers anything
 	if(active_attachable && active_attachable.flags_attach_features & ATTACH_PROJECTILE)
 		if(active_attachable.current_rounds > 0) //If it's still got ammo and stuff.
@@ -510,6 +506,11 @@ and you're good to go.
 	if(!chambered)
 		stack_trace("null ammo while create_bullet(). User: [usr]")
 		chambered = GLOB.ammo_list[/datum/ammo/bullet] //Slap on a default bullet if somehow ammo wasn't passed.
+
+	if(!CHECK_BITFIELD(flags_gun_features, GUN_HAS_IFF))
+		ammo.iff_signal = 0
+	else
+		ammo.iff_signal = iff_signal
 
 	var/obj/projectile/P = new /obj/projectile(src)
 	P.generate_bullet(chambered)

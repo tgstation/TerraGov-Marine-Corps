@@ -82,3 +82,20 @@
 			current_action_vis_obj = autoburst
 	button.vis_contents += current_action_vis_obj
 	action_firemode = holder_gun.gun_firemode
+
+/datum/action/item_action/aim_mode
+	var/obj/item/weapon/gun/holder_gun
+
+/datum/action/item_action/aim_mode/New()
+	. = ..()
+	name = "Aiming stance"
+	holder_item = holder_gun
+	button.name = name
+	button.overlays.Cut()
+	update_button_icon()
+
+/datum/action/item_action/aim_mode/action_activate()
+	if(target)
+		var/obj/item/weapon/gun/I = target
+		var/mob/user = owner
+		I.toggle_aim_mode(user)

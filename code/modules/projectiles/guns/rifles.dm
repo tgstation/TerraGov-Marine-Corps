@@ -11,6 +11,7 @@
 	aim_slowdown = 0.35
 	wield_delay = 0.6 SECONDS
 	gun_skill_category = GUN_SKILL_RIFLES
+	gun_can_aim = TRUE
 
 	burst_amount = 3
 	burst_delay = 0.2 SECONDS
@@ -803,6 +804,7 @@
 	starting_attachment_types = list(/obj/item/attachable/stock/sx16, /obj/item/attachable/sx16barrel)
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 16,"rail_x" = 18, "rail_y" = 19, "under_x" = 26, "under_y" = 15, "stock_x" = 10, "stock_y" = 14)
 	gun_skill_category = GUN_SKILL_SHOTGUNS
+	gun_can_aim = FALSE
 
 	fire_delay = 0.7 SECONDS
 	burst_amount = 1

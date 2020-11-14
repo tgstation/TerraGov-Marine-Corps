@@ -861,6 +861,35 @@ should be alright.
 		if((GUN_FIREMODE_AUTOMATIC in gun_firemode_list) && !(GUN_FIREMODE_AUTOBURST in gun_firemode_list))
 			add_firemode(GUN_FIREMODE_AUTOBURST, user)
 
+/obj/item/weapon/gun/proc/toggle_aim_mode(mob/user)
+	message_admins("IFF [flags_gun_features]")
+	message_admins("fire delay [fire_delay]")
+	if(CHECK_BITFIELD(flags_gun_features, GUN_HAS_IFF))
+		DISABLE_BITFIELD(flags_gun_features, GUN_HAS_IFF)
+		user.remove_movespeed_modifier(MOVESPEED_ID_AIM_MODE_SLOWDOWN)
+		modify_fire_delay(-fire_delay/2)
+		to_chat(user, "<span class='notice'>You relax.</b>.</span>")
+		return
+
+	if(!CHECK_BITFIELD(flags_gun_features, WIELDED))
+		wield(user)
+
+	if(do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_BAR))
+		modify_fire_delay(fire_delay)
+		to_chat(user, "<span class='notice'>You slow your breathing and line up your aim.</b>.</span>")
+		ENABLE_BITFIELD(flags_gun_features, GUN_HAS_IFF)
+		user.add_movespeed_modifier(MOVESPEED_ID_AIM_MODE_SLOWDOWN, TRUE, 0, NONE, TRUE, 6)
+
+	else
+		to_chat(user, "<span class='notice'>Your concentration is interrupted.</b>.</span>")
+
+/obj/item/weapon/gun/proc/setup_aim_mode()
+	if(gun_can_aim)
+		var/datum/action/new_action = new /datum/action/item_action/aim_mode(src)
+		if(isliving(loc))
+			var/mob/living/living_user = loc
+			if(src == living_user.l_hand || src == living_user.r_hand)
+				new_action.give_action(living_user)
 
 //----------------------------------------------------------
 				//				   	   \\
