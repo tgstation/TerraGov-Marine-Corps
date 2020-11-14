@@ -32,6 +32,8 @@
 	update_neighbours()
 
 /obj/effect/alien/weeds/Destroy()
+	for(var/mob/living/L in range(1, src))
+		SEND_SIGNAL(L, COMSIG_LIVING_WEEDS_ADJACENT_REMOVED)
 	for(var/obj/effect/alien/A in loc.contents)
 		if(QDELETED(A) || A == src || A.ignore_weed_destruction)
 			continue
