@@ -372,9 +372,7 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 	damage = damage / length(parts) //damage all limbs equally.
 	while(parts.len)
 		var/datum/limb/picked = pick_n_take(parts)
-
-		var/def_zone = picked.name
-		apply_damage(damage, damagetype, def_zone, run_armor_check(def_zone, armortype), sharp, edge, updating_health)
+		apply_damage(damage, damagetype, picked, run_armor_check(def_zone, armortype), sharp, edge, updating_health)
 
 ////////////////////////////////////////////
 
