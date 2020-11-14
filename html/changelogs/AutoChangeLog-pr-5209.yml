@@ -1,5 +1,0 @@
-author: "spookydonut"
-delete-after: True
-changes: 
-  - tweak: "Hivemind is now unable to move to turfs that previously caused it to be moved back to it's core, it now has an action button to manually move back to the core."
-  - bugfix: "Hivemind now is moved back to the core when it loses weeds nearby or is hit by flamer fire"
