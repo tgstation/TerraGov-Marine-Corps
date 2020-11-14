@@ -109,8 +109,11 @@
 	// *** Acid spray *** //
 	///Number of tiles of the acid spray cone extends outward to. Not recommended to go beyond 4.
 	var/acid_spray_range = 0
+	///The damage acid spray causes on hit.
 	var/acid_spray_damage_on_hit = 0
+	///The damage acid spray causes over time.
 	var/acid_spray_damage = 0
+	///The damage acid spray causes to structure.
 	var/acid_spray_structure_damage = 0
 
 	// *** Pheromones *** //
@@ -150,7 +153,9 @@
 	var/crest_defense_slowdown = 0
 
 	// *** Crusher Abilities *** //
+	///The damage the stomp causes, counts armor
 	var/stomp_damage = 0
+	///How much tiles Crest toss throws the victim.
 	var/crest_toss_distance = 0
 
 	// *** Queen Abilities *** //
