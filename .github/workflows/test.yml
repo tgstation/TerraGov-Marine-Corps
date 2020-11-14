@@ -71,12 +71,10 @@ jobs:
           mysql -u root -proot tg_ci < SQL/tgmc-schema.sql
           mysql -u root -proot -e 'CREATE DATABASE tg_ci_prefixed;'
           mysql -u root -proot tg_ci_prefixed < SQL/tgmc-schema.sql
-          sudo dpkg --add-architecture i386
-          sudo apt update
       - name: Install rust-g
         run: |
           sudo dpkg --add-architecture i386
-          sudo apt update || true
+          sudo apt update
           sudo apt install libssl1.1:i386
           bash tools/ci/install_rust_g.sh
       - name: Compile and run tests
