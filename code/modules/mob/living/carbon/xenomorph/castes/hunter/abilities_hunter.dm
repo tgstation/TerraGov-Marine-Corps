@@ -323,9 +323,9 @@
 	name = "Stealth Stinger"
 	action_icon_state = "neuro_sting"
 	mechanics_text = "Use on an adjacent target while stealthed and your sneak attack is ready, while stationary or off run intent. Injects Acid while on Harm intent and Neurotoxin while on any other intent."
-	plasma_cost = HUNTER_STINGER_PLASMA_COST
+	plasma_cost = 50
 	keybind_signal = COMSIG_XENOABILITY_STEALTH_STINGER
-	cooldown_timer = HUNTER_STINGER_COOLDOWN
+	cooldown_timer = 30 SECONDS
 
 /datum/action/xeno_action/activable/sneak_stinger/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -419,9 +419,9 @@
 	name = "Hunter's Mark"
 	action_icon_state = "hunter_mark"
 	mechanics_text = "Psychically mark a creature you have line of sight to, allowing you to sense its direction, distance and location."
-	plasma_cost = HUNTER_STINGER_PLASMA_COST
+	plasma_cost = 75
 	keybind_signal = COMSIG_XENOABILITY_HUNTER_MARK
-	cooldown_timer = HUNTER_MARK_COOLDOWN
+	cooldown_timer = 60 SECONDS
 
 /datum/action/xeno_action/activable/hunter_mark/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
