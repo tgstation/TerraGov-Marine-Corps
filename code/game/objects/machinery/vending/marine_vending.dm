@@ -647,6 +647,7 @@
 	products = list(
 		/obj/item/clothing/under/marine/jaeger = 30,
 		/obj/item/clothing/suit/storage/marine/pasvest = 40,
+		/obj/item/clothing/suit/storage/marine/harness = 5,
 		/obj/item/clothing/suit/armor/vest/pilot = 20,
 		/obj/item/clothing/head/helmet/marine = 40,
 		/obj/item/clothing/head/helmet/marine/heavy = 10,
@@ -702,7 +703,6 @@
 		/obj/item/clothing/shoes/marine = 20,
 		/obj/item/clothing/under/marine/standard = 20,
 		/obj/item/clothing/under/marine/jaeger = 30,
-		/obj/item/clothing/suit/storage/marine/harness = 50,
 		/obj/item/storage/backpack/marine/standard = 10,
 		/obj/item/storage/backpack/marine/satchel = 10,
 		/obj/item/tool/weldpack/marinestandard = 10,
