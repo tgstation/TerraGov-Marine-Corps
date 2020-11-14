@@ -46,7 +46,6 @@
 	// *** Boiler Abilities *** //
 	max_ammo = 4
 	bomb_strength = 1 //Multiplier to the effectiveness of the boiler glob.
-	acid_delay = 9 SECONDS
 	acid_spray_damage = 16
 	acid_spray_damage_on_hit = 35
 	acid_spray_structure_damage = 45

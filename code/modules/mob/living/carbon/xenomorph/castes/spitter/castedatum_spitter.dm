@@ -45,7 +45,6 @@
 
 	acid_spray_damage_on_hit = 35
 	acid_spray_damage = 16
-	acid_delay = 30 SECONDS //30 second delay on acid spray.
 	acid_spray_structure_damage = 45
 
 
@@ -92,7 +91,6 @@
 	// *** Ranged Attack *** //
 	spit_delay = 1.2 SECONDS
 
-	acid_delay = 30 SECONDS //30 second delay on acid spray.
 
 
 /datum/xeno_caste/spitter/elder
@@ -126,7 +124,6 @@
 	// *** Ranged Attack *** //
 	spit_delay = 1.1 SECONDS
 
-	acid_delay = 30 SECONDS //30 second delay on acid spray.
 
 
 /datum/xeno_caste/spitter/ancient
@@ -160,5 +157,4 @@
 	// *** Ranged Attack *** //
 	spit_delay = 1 SECONDS
 
-	acid_delay = 30 SECONDS //30 second delay on acid spray.
 
