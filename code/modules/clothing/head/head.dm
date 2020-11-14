@@ -31,8 +31,6 @@
 	sprite_sheet_id = 1
 	icon_state = "beanie_cargo"
 	flags_inv_hide = HIDETOPHAIR
-	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 10, "bio" = 5, "rad" = 0, "fire" = 5, "acid" = 5)
-
 
 /obj/item/clothing/head/tgmcberet
 	name = "\improper TGMC beret"
@@ -40,7 +38,6 @@
 	icon = 'icons/obj/clothing/cm_hats.dmi'
 	sprite_sheet_id = 1
 	icon_state = "beret"
-	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 10, "bio" = 5, "rad" = 0, "fire" = 5, "acid" = 5)
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
 
 /obj/item/clothing/head/tgmcberet/tan
@@ -58,24 +55,21 @@
 	name = "\improper Command Master at Arms beret"
 	desc = "A beret with the lieutenant insignia emblazoned on it. It shines with the glow of corrupt authority and a smudge of doughnut."
 	icon_state = "beretwo"
-	soft_armor = list("melee" = 15, "bullet" = 50, "laser" = 50, "energy" = 15, "bomb" = 50, "bio" = 5, "rad" = 0, "fire" = 50, "acid" = 5)
 	flags_item_map_variant = NONE
 
 /obj/item/clothing/head/tgmcberet/fc
 	name = "\improper Field Commander beret"
 	desc = "A beret with the field commander insignia emblazoned on it. It commands loyalty and bravery in all who gaze upon it."
 	icon_state = "beretfc"
-	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 10, "bio" = 5, "rad" = 0, "fire" = 50, "acid" = 50)
 	flags_item_map_variant = NONE
 
 
 /obj/item/clothing/head/tgmccap
 	name = "\improper TGMC cap"
-	desc = "A casual cap occasionally worn by Squad-leaders and Combat-Engineers. While it has limited combat functionality, some prefer to wear it instead of the standard issue helmet."
+	desc = "A casual cap occasionally worn by Squad-leaders and Combat-Engineers."
 	icon_state = "cap"
 	icon = 'icons/obj/clothing/cm_hats.dmi'
 	sprite_sheet_id = 1
-	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 10, "bio" = 5, "rad" = 0, "fire" = 5, "acid" = 5)
 	var/flipped_cap = FALSE
 	var/base_cap_icon
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
@@ -118,14 +112,12 @@
 	desc = "The pinnacle of tacticool technology."
 	icon_state = "booniehat"
 	item_state = "booniehat"
-	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 10, "bio" = 5, "rad" = 0, "fire" = 5, "acid" = 5)
 
 /obj/item/clothing/head/slouch
 	name = "\improper TGMC slouch hat"
-	desc = "A nice slouch hat worn by some TGMC troopers while on planets with hot weather, or just for style. While it has limited combat functionality, some prefer to wear it instead of the standard issue helmet."
+	desc = "A nice slouch hat worn by some TGMC troopers while on planets with hot weather, or just for style."
 	icon_state = "slouch_hat"
 	icon = 'icons/obj/clothing/cm_hats.dmi'
-	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 10, "bio" = 5, "rad" = 0, "fire" = 5, "acid" = 5)
 
 /obj/item/clothing/head/headband
 	name = "\improper TGMC headband"
@@ -162,13 +154,11 @@
 
 
 /*============================BERETS=================================*/
-//Berets have armor, so they have their own category. PMC caps are helmets, so they're in helmets.dm.
 
 /obj/item/clothing/head/beret/marine
 	name = "marine officer beret"
 	desc = "A beret with the TGMC insignia emblazoned on it. It radiates respect and authority."
 	icon_state = "hosberet"
-	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 10, "bio" = 5, "rad" = 0, "fire" = 5, "acid" = 5)
 	flags_inventory = BLOCKSHARPOBJ
 
 /obj/item/clothing/head/beret/marine/captain
