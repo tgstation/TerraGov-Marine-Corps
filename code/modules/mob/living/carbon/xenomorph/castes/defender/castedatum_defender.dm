@@ -154,4 +154,4 @@
 	// *** Defender Abilities *** //
 	crest_defense_armor = 30
 	crest_defense_slowdown = 0.8
-	fortify_armor = 55
+	fortify_armor = 50 //still has more total armor than in elder, but doesn't reach 95% levels as intended.
