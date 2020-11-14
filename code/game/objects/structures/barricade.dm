@@ -341,6 +341,7 @@
 	max_integrity = 150
 	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 15, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 10)
 	climbable = FALSE
+	resistance_flags = null
 	crusher_resistant = TRUE
 	stack_type = /obj/item/stack/rods
 	destroyed_stack_amount = 3
