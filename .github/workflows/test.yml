@@ -73,7 +73,6 @@ jobs:
           mysql -u root -proot tg_ci_prefixed < SQL/tgmc-schema.sql
           sudo dpkg --add-architecture i386
           sudo apt update
-          sudo apt install libstdc++6:i386 gcc-multilib g++-7 g++-7-multilib libmariadb-client-lgpl-dev:i386 libmariadbd-dev
       - name: Install rust-g
         run: |
           sudo dpkg --add-architecture i386
