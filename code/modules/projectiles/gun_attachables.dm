@@ -13,13 +13,9 @@
   *All attachment offsets are now in a list, including stocks. Guns that don't take attachments can keep the list null.
   *~N
   *
-  *Defined in conflicts.dm of the #defines folder.
-  *#define ATTACH_REMOVABLE		(1<<0)
-  *#define ATTACH_ACTIVATION	(1<<1)
-  *#define ATTACH_PROJECTILE	(1<<2)
-  *#define ATTACH_RELOADABLE	(1<<3)
-  *#define ATTACH_WEAPON		(1<<4)
-  *#define ATTACH_UTILITY		(1<<5)
+  *Anything that isn't used as the gun fires should be a flat number, never a percentange. It screws with the calculations,
+  *and can mean that the order you attach something/detach something will matter in the final number. It's also completely
+  *inaccurate. Don't worry if force is ever negative, it won't runtime.
   */
 
 /obj/item/attachable
@@ -41,16 +37,6 @@
 	force = 1.0
 	///"muzzle", "rail", "under", "stock" the particular 'slot' the attachment can attach to. must always be a singular slot.
 	var/slot = null
-
-	/**
-	  *Anything that isn't used as the gun fires should be a flat number, never a percentange. It screws with the calculations,
-	  *and can mean that the order you attach something/detach something will matter in the final number. It's also completely
-	  *inaccurate. Don't worry if force is ever negative, it won't runtime.
-	  *
-	  *These bonuses are applied only as the gun fires a projectile.
-	  *
-	  *These are flat bonuses applied and are passive, though they may be applied at different points.
-	  */
 
 	///Modifier to firing accuracy, works off a multiplier.
 	var/accuracy_mod 	= 0
@@ -107,7 +93,7 @@
 	///The specific sound played when activating this attachment.
 	var/activation_sound = 'sound/machines/click.ogg'
 
-	///various yes no flags associated with attachments
+	///various yes no flags associated with attachments. See defines for these: [ATTACH_REMOVABLE]
 	var/flags_attach_features = ATTACH_REMOVABLE
 
 	///only used by bipod, denotes whether the bipod is currently deployed
@@ -703,9 +689,9 @@
 	///how many tiles to increase the users view box
 	var/zoom_viewsize = 12
 	scoped_accuracy_mod = SCOPE_RAIL
-	///TRUE FALSE as to whether a scope can apply nightvision
+	///BOOLEAN as to whether a scope can apply nightvision
 	var/has_nightvision = FALSE
-	///TRUE FALSE as to whether the attachment is currently giving nightvision
+	///BOOLEAN as to whether the attachment is currently giving nightvision
 	var/active_nightvision = FALSE
 
 
