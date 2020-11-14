@@ -74,9 +74,9 @@
 	cost = 40
 	export_obj = /mob/living/carbon/xenomorph/spitter
 
-/datum/supply_export/xemomorph/tindalos
+/datum/supply_export/xemomorph/wraith
 	cost = 40
-	export_obj = /mob/living/carbon/xenomorph/tindalos
+	export_obj = /mob/living/carbon/xenomorph/wraith
 
 
 /datum/supply_export/xemomorph/praetorian

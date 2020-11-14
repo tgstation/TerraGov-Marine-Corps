@@ -1,9 +1,9 @@
-/datum/xeno_caste/tindalos
+/datum/xeno_caste/wraith
 	caste_name = "Wraith"
 	display_name = "Wraith"
 	upgrade_name = ""
 	caste_desc = "A strange xeno that utilizes its psychic powers to move out of phase with reality."
-	caste_type_path = /mob/living/carbon/xenomorph/tindalos
+	caste_type_path = /mob/living/carbon/xenomorph/wraith
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_BASETYPE
 	wound_type = "screecher" //used to match appropriate wound overlays
@@ -54,12 +54,12 @@
 		/datum/action/xeno_action/recall
 	)
 
-/datum/xeno_caste/tindalos/young
+/datum/xeno_caste/wraith/young
 	upgrade_name = "Young"
 
 	upgrade = XENO_UPGRADE_ZERO
 
-/datum/xeno_caste/tindalos/mature
+/datum/xeno_caste/wraith/mature
 	upgrade_name = "Mature"
 	caste_desc = "A manipulator of space and time. It looks a little more dangerous."
 
@@ -85,7 +85,7 @@
 	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 25, "energy" = 25, "bomb" = XENO_BOMB_RESIST_0, "bio" = 15, "rad" = 20, "fire" = 20, "acid" = 15)
 
 
-/datum/xeno_caste/tindalos/elder
+/datum/xeno_caste/wraith/elder
 	upgrade_name = "Elder"
 	caste_desc = "A manipulator of space and time. It looks pretty strong."
 
@@ -114,7 +114,7 @@
 	soft_armor = list("melee" = 20, "bullet" = 20, "laser" = 30, "energy" = 30, "bomb" = XENO_BOMB_RESIST_0, "bio" = 18, "rad" = 25, "fire" = 25, "acid" = 18)
 
 
-/datum/xeno_caste/tindalos/ancient
+/datum/xeno_caste/wraith/ancient
 	upgrade_name = "Ancient"
 	caste_desc = "A master manipulator of space and time."
 	ancient_message = "We are the master of space and time. Reality bends to our will."

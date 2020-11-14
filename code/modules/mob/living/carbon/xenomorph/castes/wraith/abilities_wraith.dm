@@ -3,19 +3,19 @@
 // ***************************************
 /datum/action/xeno_action/place_warp_beacon
 	name = "Place Warp Beacon"
-	action_icon_state = "oldbuild_tunnel"
+	action_icon_state = "warp_beacon"
 	mechanics_text = "Binds our psychic essence to a spot of our choosing. We can use Hyperposition to swap locations with this essence."
-	plasma_cost = TINDALOS_PLACE_WARP_BEACON_PLASMA_COST
-	cooldown_timer = TINDALOS_PLACE_WARP_BEACON_COOLDOWN
+	plasma_cost = 150
+	cooldown_timer = 60 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_PLACE_WARP_BEACON
 
 /datum/action/xeno_action/place_warp_beacon/action_activate()
-	var/mob/living/carbon/xenomorph/tindalos/TI = owner
+	var/mob/living/carbon/xenomorph/wraith/TI = owner
 
 	TI.visible_message("<span class='xenowarning'>The air starts to violently roil and shimmer around [TI]!</span>", \
 	"<span class='xenodanger'>We begin to imprint our essence upon reality, causing the air about us to roil and shimmer...</span>") //Fluff
 
-	if(!do_after(TI, TINDALOS_PLACE_WARP_BEACON_WINDUP, TRUE, TI, BUSY_ICON_BUILD)) //Channel time/wind up
+	if(!do_after(TI, WRAITH_PLACE_WARP_BEACON_WINDUP, TRUE, TI, BUSY_ICON_BUILD)) //Channel time/wind up
 		TI.visible_message("<span class='xenowarning'>The space around [TI] abruptly stops shifting and wavering.</span>", \
 		"<span class='xenodanger'>We cease binding our essence to this place...</span>")
 		return fail_activate()
@@ -39,14 +39,14 @@
 	name = "Hyperposition"
 	action_icon_state = "hyperposition"
 	mechanics_text = "We teleport back to our warp beacon after a delay. The delay scales with the distance teleported."
-	plasma_cost = TINDALOS_HYPERPOSITION_PLASMA_COST
-	cooldown_timer = TINDALOS_HYPERPOSITION_COOLDOWN
+	plasma_cost = 25
+	cooldown_timer = 5 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_HYPERPOSITION
 
 
 /datum/action/xeno_action/hyperposition/action_activate()
 
-	var/mob/living/carbon/xenomorph/tindalos/TI = owner
+	var/mob/living/carbon/xenomorph/wraith/TI = owner
 	var/obj/effect/alien/warp_beacon/WB = TI.warp_beacon
 
 	if(!WB)
@@ -57,7 +57,7 @@
 	TI.do_jitter_animation(2000) //Animation
 
 	var/distance = get_dist(TI, TI.warp_beacon) //Get the distance so we can calculate the wind up
-	var/hyperposition_windup = clamp(TINDALOS_HYPERPOSITION_MIN_WINDUP, distance * 0.5 SECONDS - 5 SECONDS, TINDALOS_HYPERPOSITION_MAX_WINDUP)
+	var/hyperposition_windup = clamp(WRAITH_HYPERPOSITION_MIN_WINDUP, distance * 0.5 SECONDS - 5 SECONDS, WRAITH_HYPERPOSITION_MAX_WINDUP)
 
 	TI.visible_message("<span class='warning'>The air starts to violently roil and shimmer around [TI]!</span>", \
 	"<span class='xenodanger'>We begin to teleport to our warp beacon located at [A] (X: [WB.x], Y: [WB.y]). We estimate this will take [hyperposition_windup * 0.1] seconds.</span>")
@@ -71,17 +71,17 @@
 	hyperposition_warp() //We swap positions with our warp beacon
 
 	succeed_activate()
-	GLOB.round_statistics.tindalos_hyperpositions++
-	SSblackbox.record_feedback("tally", "round_statistics", 1, "tindalos_hyperpositions") //Statistics
+	GLOB.round_statistics.wraith_hyperpositions++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "wraith_hyperpositions") //Statistics
 
 	add_cooldown()
 
 /datum/action/xeno_action/hyperposition/proc/hyperposition_warp() //This handles the location swap between the Tindalos and the Warp Beacon
 
-	var/mob/living/carbon/xenomorph/tindalos/TI = owner
+	var/mob/living/carbon/xenomorph/wraith/TI = owner
 	var/obj/effect/alien/warp_beacon/WB = TI.warp_beacon
 	var/beacon_turf = get_turf(WB)
-	var/tindalos_turf = get_turf(TI)
+	var/wraith_turf = get_turf(TI)
 
 	if(!TI) //Sanity
 		return FALSE
@@ -90,11 +90,11 @@
 		to_chat(TI, "<span class='xenodanger'>We have no warp beacon to teleport to!</span>")
 		return FALSE
 
-	if(!beacon_turf || !tindalos_turf)
+	if(!beacon_turf || !wraith_turf)
 		to_chat(TI, "<span class='xenodanger'>Our warp beacon is currently beyond our power to influence!</span>")
 		return FALSE
 
-	WB.forceMove(tindalos_turf) //Move the beacon to where we are leaving
+	WB.forceMove(wraith_turf) //Move the beacon to where we are leaving
 	teleport_debuff_aoe(TI) //Apply tele debuff
 
 	TI.forceMove(beacon_turf) //Move to where the beacon was
@@ -112,46 +112,47 @@
 	name = "Phase Shift"
 	action_icon_state = "stealth_on"
 	mechanics_text = "We force ourselves temporarily out of sync with reality, allowing us to become incorporeal and move through any physical obstacles for a short duration."
-	plasma_cost = TINDALOS_PHASE_SHIFT_PLASMA_COST
-	cooldown_timer = TINDALOS_PHASE_SHIFT_COOLDOWN
+	plasma_cost = 75
+	cooldown_timer = 20 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_PHASE_SHIFT
 	var/turf/starting_turf = null
 
 
 /datum/action/xeno_action/phase_shift/action_activate()
-	var/mob/living/carbon/xenomorph/tindalos/TI = owner
+	var/mob/living/carbon/xenomorph/wraith/TI = owner
 
 	TI.visible_message("<span class='warning'>[TI.name] is becoming faint and translucent!</span>", \
 	"<span class='xenodanger'>We begin to move out of phase with reality....</span>") //Fluff
 
 	TI.do_jitter_animation(2000) //Animation
 
-	if(!do_after(TI, TINDALOS_PHASE_SHIFT_WINDUP, TRUE, TI, BUSY_ICON_FRIENDLY)) //Channel time/wind up
+	if(!do_after(TI, WRAITH_PHASE_SHIFT_WINDUP, TRUE, TI, BUSY_ICON_FRIENDLY)) //Channel time/wind up
 		TI.visible_message("<span class='xenowarning'>[TI]'s form abruptly consolidates, returning to normalcy.</span>", \
 		"<span class='xenodanger'>We abort our desynchronization.</span>")
 		return fail_activate()
 
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, TI, "<span class='highdanger'>We begin to move back into phase with reality...</span>"), TINDALOS_PHASE_SHIFT_DURATION * 0.7) //Warn them when Phase Shift is about to end
-	addtimer(CALLBACK(TI, /mob/.proc/playsound_local, TI, 'sound/voice/hiss4.ogg', 50), TINDALOS_PHASE_SHIFT_DURATION * 0.7)
-	addtimer(CALLBACK(src, .proc/phase_shift_deactivate), TINDALOS_PHASE_SHIFT_DURATION)
+	addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, TI, "<span class='highdanger'>We begin to move back into phase with reality...</span>"), WRAITH_PHASE_SHIFT_DURATION * 0.7) //Warn them when Phase Shift is about to end
+	addtimer(CALLBACK(TI, /mob/.proc/playsound_local, TI, 'sound/voice/hiss4.ogg', 50), WRAITH_PHASE_SHIFT_DURATION * 0.7)
+	addtimer(CALLBACK(src, .proc/phase_shift_deactivate), WRAITH_PHASE_SHIFT_DURATION)
 
 	TI.status_flags = GODMODE | INCORPOREAL //Become temporarily invulnerable and incorporeal
 	TI.resistance_flags = RESIST_ALL
 	TI.density = FALSE
 	TI.throwpass = TRUE
-	TI.alpha = TINDALOS_PHASE_SHIFT_ALPHA //Become translucent
-	succeed_activate()
+	TI.alpha = WRAITH_PHASE_SHIFT_ALPHA //Become translucent
+
 	starting_turf = get_turf(TI) //Get our starting turf so we can calculate the stun duration later.
 
-	GLOB.round_statistics.tindalos_phase_shifts++
-	SSblackbox.record_feedback("tally", "round_statistics", 1, "tindalos_phase_shifts") //Statistics
+	GLOB.round_statistics.wraith_phase_shifts++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "wraith_phase_shifts") //Statistics
 
+	succeed_activate()
 	add_cooldown()
 
 
 /datum/action/xeno_action/phase_shift/proc/phase_shift_deactivate()
 
-	var/mob/living/carbon/xenomorph/tindalos/TI = owner
+	var/mob/living/carbon/xenomorph/wraith/TI = owner
 
 	if(!TI) //Sanity
 		return
@@ -167,16 +168,17 @@
 	var/current_turf = get_turf(TI)
 
 	if(isclosedturf(current_turf) || isspaceturf(current_turf)) //So we rematerialized in a solid wall/space for some reason; Darwin award winner folks.
-		to_chat(owner, "<span class='highdanger'>As we idiotically rematerialize in an obviously unsafe position, we revert to where we slipped out of reality through sheer instinct, albeit at great cost.</span>")
-		TI.apply_damage(TI.health - 1, BURN) //1 HP left
-		TI.Stun(10 SECONDS) //That oughta teach them.
+		to_chat(TI, "<span class='highdanger'>As we idiotically rematerialize in an obviously unsafe position, we revert to where we slipped out of reality through sheer instinct, albeit at great cost.</span>")
+		TI.adjustFireLoss(TI.maxHealth * 0.5, TRUE) //Lose half of our maximum health
+		TI.apply_status_effect(STATUS_EFFECT_STUN, 10 SECONDS) //That oughta teach them.
 		TI.forceMove(starting_turf)
+		teleport_debuff_aoe(TI) //Debuff when we reappear
 		starting_turf = null
 		return
 
 	var/distance = get_dist(current_turf, starting_turf)
-	var/phase_shift_stun_time = clamp(1 SECONDS, distance * 0.1 SECONDS, 3 SECONDS) //Recovery time
-	TI.Stun(phase_shift_stun_time * 2)
+	var/phase_shift_stun_time = clamp(0.5 SECONDS, distance * 0.1 SECONDS, 3 SECONDS) //Recovery time
+	TI.apply_status_effect(STATUS_EFFECT_STUN, phase_shift_stun_time * 2)
 
 	TI.visible_message("<span class='warning'>[TI.name] form wavers and becomes opaque.</span>", \
 	"<span class='highdanger'>We phase back into reality, our mind reeling from the experience. We estimate we will take [phase_shift_stun_time * 0.1] seconds to recover!</span>")
@@ -184,7 +186,11 @@
 	starting_turf = null
 
 /datum/action/xeno_action/evasion/on_cooldown_finish()
-	to_chat(owner, "<span class='xenonotice'>We are able to take evasive action again.</span>")
+
+	if(!owner) //Sanity
+		return
+
+	to_chat(owner, "<span class='xenonotice'>We are able to fade from reality again.</span>")
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
 
@@ -197,8 +203,8 @@
 	action_icon_state = "blink"
 	mechanics_text = "We teleport ourselves a short distance to a location within line of sight."
 	use_state_flags = XABB_TURF_TARGET
-	plasma_cost = TINDALOS_BLINK_PLASMA_COST
-	cooldown_timer = TINDALOS_BLINK_COOLDOWN
+	plasma_cost = 50
+	cooldown_timer = 0.5 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_BLINK
 
 /datum/action/xeno_action/activable/blink/can_use_ability(atom/A, silent = FALSE, override_flags)
@@ -214,8 +220,8 @@
 		return FALSE
 
 	var/distance = get_dist(owner, T)
-	if(distance > TINDALOS_BLINK_RANGE) //Needs to be in range.
-		to_chat(owner, "<span class='xenowarning'>Our destination is too far away! It must be [distance - TINDALOS_BLINK_RANGE] tiles closer!</span>")
+	if(distance > WRAITH_BLINK_RANGE) //Needs to be in range.
+		to_chat(owner, "<span class='xenowarning'>Our destination is too far away! It must be [distance - WRAITH_BLINK_RANGE] tiles closer!</span>")
 		return FALSE
 
 	if(!owner.line_of_sight(T) || A.opacity) //Needs to be in line of sight.
@@ -223,7 +229,7 @@
 		return FALSE
 
 /datum/action/xeno_action/activable/blink/use_ability(atom/A)
-	var/mob/living/carbon/xenomorph/tindalos/TI = owner
+	var/mob/living/carbon/xenomorph/wraith/TI = owner
 	var/turf/T = get_turf(A)
 	var/mob/pulled
 
@@ -235,11 +241,11 @@
 	succeed_activate()
 	add_cooldown()
 
-	GLOB.round_statistics.tindalos_blinks++
-	SSblackbox.record_feedback("tally", "round_statistics", 1, "tindalos_blinks") //Statistics
+	GLOB.round_statistics.wraith_blinks++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "wraith_blinks") //Statistics
 
 
-/datum/action/xeno_action/activable/blink/proc/blink_warp(mob/living/carbon/xenomorph/tindalos/TI, turf/T, mob/pulled = null) //This handles the location swap between the Tindalos and the Warp Beacon
+/datum/action/xeno_action/activable/blink/proc/blink_warp(mob/living/carbon/xenomorph/wraith/TI, turf/T, mob/pulled = null) //This handles the location swap between the Tindalos and the Warp Beacon
 
 	TI.face_atom(T) //Face the target so we don't look like an ass
 
@@ -248,7 +254,7 @@
 	TI.forceMove(T) //Teleport to our target turf
 
 	if(pulled) //bring the pulled target with us if applicable
-		cooldown_timer *= TINDALOS_BLINK_DRAG_MULTIPLIER
+		cooldown_timer *= WRAITH_BLINK_DRAG_MULTIPLIER
 		to_chat(TI, "<span class='xenodanger'>We bring [pulled.name] with us. We won't be ready to blink again for [cooldown_timer * 0.1] seconds due to the strain of doing so.</span>")
 
 	teleport_debuff_aoe(TI) //Debuff when we reappear
@@ -276,17 +282,21 @@
 					continue
 
 			shake_camera(target, 2, 1)
-			target.adjust_stagger(TINDALOS_TELEPORT_DEBUFF_STACKS)
-			target.add_slowdown(TINDALOS_TELEPORT_DEBUFF_STACKS)
-			target.adjust_drugginess(TINDALOS_TELEPORT_DEBUFF_STACKS) //minor visual distortion
-			to_chat(target, TINDALOS_TELEPORT_DEBUFF_MSG)
+			target.adjust_stagger(WRAITH_TELEPORT_DEBUFF_STACKS)
+			target.add_slowdown(WRAITH_TELEPORT_DEBUFF_STACKS)
+			target.adjust_drugginess(WRAITH_TELEPORT_DEBUFF_STACKS) //minor visual distortion
+			to_chat(target, WRAITH_TELEPORT_DEBUFF_MSG)
 
 /datum/action/xeno_action/evasion/on_cooldown_finish()
-	if(cooldown_timer > TINDALOS_BLINK_COOLDOWN) //Reset the cooldown if increased from dragging someone.
+	if(!owner) //Sanity
+		return
+
+	if(cooldown_timer > initial(cooldown_timer) ) //Reset the cooldown if increased from dragging someone.
 		to_chat(owner, "<span class='xenonotice'>We are able to take blink again.</span>")
 		owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
-		cooldown_timer = TINDALOS_BLINK_COOLDOWN
+		cooldown_timer = initial(cooldown_timer)
 	return ..()
+
 // ***************************************
 // *********** Banish
 // ***************************************
@@ -295,8 +305,8 @@
 	action_icon_state = "banish"
 	mechanics_text = "We banish a target object or creature within line of sight to nullspace for a short duration. Can target onself and allies."
 	use_state_flags = XACT_TARGET_SELF
-	plasma_cost = TINDALOS_BANISH_PLASMA_COST
-	cooldown_timer = TINDALOS_BANISH_COOLDOWN
+	plasma_cost = 100
+	cooldown_timer = 20 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_BANISH
 	var/turf/banished_turf = null //The turf the target was banished on
 	var/atom/movable/banishment_target = null //Target we've banished
@@ -309,8 +319,8 @@
 		return FALSE
 
 	var/distance = get_dist(owner, A)
-	if(distance > TINDALOS_BANISH_RANGE) //Needs to be in range.
-		to_chat(owner, "<span class='xenowarning'>Our target is too far away! It must be [distance - TINDALOS_BANISH_RANGE] tiles closer!</span>")
+	if(distance > WRAITH_BANISH_RANGE) //Needs to be in range.
+		to_chat(owner, "<span class='xenowarning'>Our target is too far away! It must be [distance - WRAITH_BANISH_RANGE] tiles closer!</span>")
 		return FALSE
 
 	if(!owner.line_of_sight(A)) //Needs to be in line of sight.
@@ -318,7 +328,7 @@
 		return FALSE
 
 /datum/action/xeno_action/activable/banish/use_ability(atom/movable/A)
-	var/mob/living/carbon/xenomorph/tindalos/TI = owner
+	var/mob/living/carbon/xenomorph/wraith/TI = owner
 	banished_turf = get_turf(A) //Set the banishment turf.
 	banishment_target = A //Set the banishment target
 
@@ -328,7 +338,7 @@
 	banishment_target.moveToNullspace() //Banish the target to Brazil; yes he's going there
 	new /obj/effect/temp_visual/banishment_portal(banished_turf)
 
-	var/duration = TINDALOS_BANISH_BASE_DURATION //Set the duration
+	var/duration = WRAITH_BANISH_BASE_DURATION //Set the duration
 
 	if(isxeno(banishment_target) ) //We halve the max duration for living non-allies
 		var/mob/living/carbon/xenomorph/X = banishment_target
@@ -350,11 +360,11 @@
 	succeed_activate()
 	add_cooldown()
 
-	GLOB.round_statistics.tindalos_banishes++
-	SSblackbox.record_feedback("tally", "round_statistics", 1, "tindalos_banishes") //Statistics
+	GLOB.round_statistics.wraith_banishes++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "wraith_banishes") //Statistics
 
 /datum/action/xeno_action/activable/banish/proc/banish_warning()
-	var/mob/living/carbon/xenomorph/tindalos/TI = owner
+	var/mob/living/carbon/xenomorph/wraith/TI = owner
 
 	if(!TI) //Sanity
 		return
@@ -368,7 +378,7 @@
 
 /datum/action/xeno_action/activable/banish/proc/banish_deactivate()
 
-	var/mob/living/carbon/xenomorph/tindalos/TI = owner
+	var/mob/living/carbon/xenomorph/wraith/TI = owner
 
 	if(!TI) //Sanity
 		return
@@ -384,10 +394,7 @@
 
 	if(isliving(banishment_target))
 		var/mob/living/L = banishment_target
-		var/stun_time = 1 SECONDS
-		if(isxeno(L))
-			stun_time *= 2 //Compensate for halved stun time
-		L.Stun(stun_time) //Short stun upon returning to reality
+		L.Stun(1 SECONDS) //Short stun upon returning to reality
 
 	to_chat(TI, "<span class='xenodanger'>Our target [banishment_target.name] has returned to reality.</span>") //Always alert the Tindalos
 
@@ -408,7 +415,7 @@
 
 /datum/action/xeno_action/recall/action_activate()
 
-	var/mob/living/carbon/xenomorph/tindalos/TI = owner
+	var/mob/living/carbon/xenomorph/wraith/TI = owner
 
 	var/datum/action/xeno_action/activable/banish/B = locate(/datum/action/xeno_action/activable/banish) in TI.xeno_abilities
 

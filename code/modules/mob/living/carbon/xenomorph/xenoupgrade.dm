@@ -356,11 +356,11 @@
 //----SHRIKE END----//
 //============//
 
-/mob/living/carbon/xenomorph/tindalos/mature
+/mob/living/carbon/xenomorph/wraith/mature
 	upgrade = XENO_UPGRADE_ONE
 
-/mob/living/carbon/xenomorph/tindalos/elder
+/mob/living/carbon/xenomorph/wraith/elder
 	upgrade = XENO_UPGRADE_TWO
 
-/mob/living/carbon/xenomorph/tindalos/ancient
+/mob/living/carbon/xenomorph/wraith/ancient
 	upgrade = XENO_UPGRADE_THREE

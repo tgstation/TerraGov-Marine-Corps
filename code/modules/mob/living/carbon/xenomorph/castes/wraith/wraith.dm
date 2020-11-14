@@ -1,9 +1,9 @@
-/mob/living/carbon/xenomorph/tindalos
-	caste_base_type = /mob/living/carbon/xenomorph/tindalos
+/mob/living/carbon/xenomorph/wraith
+	caste_base_type = /mob/living/carbon/xenomorph/wraith
 	name = "Wraith"
 	desc = "A strange tendriled alien. The air around it warps and shimmers like a heat mirage."
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
-	icon_state = "Tindalos Walking"
+	icon_state = "Wraith Walking"
 	health = 150
 	maxHealth = 150
 	plasma_stored = 150
@@ -16,7 +16,7 @@
 	)
 
 
-/mob/living/carbon/xenomorph/tindalos/Move(NewLoc, Dir = 0)
+/mob/living/carbon/xenomorph/wraith/Move(NewLoc, Dir = 0)
 
 	if(status_flags & INCORPOREAL)
 
@@ -29,10 +29,10 @@
 
 	..()
 
-/mob/living/carbon/xenomorph/tindalos/proc/check_passable(turf/T)
+/mob/living/carbon/xenomorph/wraith/proc/check_passable(turf/T)
 	SHOULD_BE_PURE(TRUE)
 	. = TRUE
-	if(locate(TINDALOS_PHASE_SHIFT_BLOCKERS) in T) //Cannot go through plasma gas or fire
+	if(locate(WRAITH_PHASE_SHIFT_BLOCKERS) in T) //Cannot go through plasma gas or fire
 		return FALSE
 
 	for(var/atom/A in T) //Cannot go through dense objects that are indestructible for balance/design reasons, etc

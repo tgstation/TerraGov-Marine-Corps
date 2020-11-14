@@ -817,7 +817,7 @@ to_chat will check for valid clients itself already so no need to double check f
 /mob/living/carbon/xenomorph/warrior/Corrupted
 	hivenumber = XENO_HIVE_CORRUPTED
 
-/mob/living/carbon/xenomorph/tindalos/Corrupted
+/mob/living/carbon/xenomorph/wraith/Corrupted
 	hivenumber = XENO_HIVE_CORRUPTED
 
 // ***************************************
@@ -886,7 +886,7 @@ to_chat will check for valid clients itself already so no need to double check f
 /mob/living/carbon/xenomorph/warrior/Alpha
 	hivenumber = XENO_HIVE_ALPHA
 
-/mob/living/carbon/xenomorph/tindalos/Alpha
+/mob/living/carbon/xenomorph/wraith/Alpha
 	hivenumber = XENO_HIVE_ALPHA
 
 /datum/hive_status/beta
@@ -952,7 +952,7 @@ to_chat will check for valid clients itself already so no need to double check f
 /mob/living/carbon/xenomorph/warrior/Beta
 	hivenumber = XENO_HIVE_BETA
 
-/mob/living/carbon/xenomorph/tindalos/Beta
+/mob/living/carbon/xenomorph/wraith/Beta
 	hivenumber = XENO_HIVE_BETA
 
 /datum/hive_status/zeta
@@ -1018,7 +1018,7 @@ to_chat will check for valid clients itself already so no need to double check f
 /mob/living/carbon/xenomorph/warrior/Zeta
 	hivenumber = XENO_HIVE_ZETA
 
-/mob/living/carbon/xenomorph/tindalos/Zeta
+/mob/living/carbon/xenomorph/wraith/Zeta
 	hivenumber = XENO_HIVE_ZETA
 
 /datum/hive_status/admeme
