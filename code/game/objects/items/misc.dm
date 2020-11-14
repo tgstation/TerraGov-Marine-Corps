@@ -10,7 +10,6 @@
 	w_class = WEIGHT_CLASS_SMALL
 	attack_verb = list("called", "rang")
 	hitsound = 'sound/weapons/ring.ogg'
-	
 
 /obj/item/clock
 	name = "digital clock"
@@ -148,4 +147,3 @@
 	desc = "A Very heavy and solid box , filled with pure titanium"
 	icon_state = "platinumbox_compact"
 	item_state = "platinumbox_comact"
-
