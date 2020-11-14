@@ -126,6 +126,19 @@
 	key = "tail3"
 	sound = 'sound/effects/alien_tail_swipe3.ogg'
 
+/datum/emote/living/carbon/xenomorph/hunter
+	mob_type_allowed_typecache = /mob/living/carbon/xenomorph/hunter
+
+//Solid Snake Hunter taunt
+/datum/emote/living/carbon/xenomorph/hunter/solidhunter
+	key = "solidhunter"
+	key_third_person = "solidhunter"
+	message = "strikes a cool pose."
+	emote_type = EMOTE_VISIBLE
+	icon = 'icons/Xeno/48x48_Hunter_New.dmi'
+	icon_state = "ryu-taunt"
+	disable_control = TRUE
+
 
 /datum/emote/living/carbon/xenomorph/run_emote(mob/user, params, type_override, intentional = FALSE, prefix)
 	if(istype(user, /mob/living/carbon/xenomorph/larva))

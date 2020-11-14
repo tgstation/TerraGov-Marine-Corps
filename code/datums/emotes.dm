@@ -23,6 +23,11 @@
 	var/stat_allowed = CONSCIOUS
 	var/sound //Sound to play when emote is called
 	var/flags_emote = NONE
+	var/icon = null //Icon change
+	var/icon_state = null //Icon change
+	var/obj/effect/temp_visual/SFX = null //special/temp visual effects
+	var/duration = 3 SECONDS //Duration of icon changes
+	var/disable_control = FALSE
 
 	var/static/list/emote_list = list()
 
@@ -80,6 +85,31 @@
 		user.audible_message(msg, audible_message_flags = EMOTE_MESSAGE, emote_prefix = prefix)
 	else
 		user.visible_message(msg, visible_message_flags = EMOTE_MESSAGE, emote_prefix = prefix)
+
+	if(icon && icon_state && isliving(user)) //For temporary mob icon changes
+		var/mob/living/L = user
+
+		L.emoting = TRUE //Pause icon tick updates
+		L.icon = icon
+		L.icon_state = icon_state
+
+		addtimer(CALLBACK(src, .proc/emote_icon_deactivate, L), duration)
+		if(disable_control)
+			L.apply_status_effect(STATUS_EFFECT_STUN, duration)
+
+	if(SFX) //For temporary visuals
+		new SFX(user) //put it at the user's location
+
+
+/datum/emote/proc/emote_icon_deactivate(mob/living/L) //Reverting temp icon changes
+
+	if(!L) //sanity
+		return
+
+	L.emoting = FALSE //Unpause icon tick updates
+	L.icon = initial(icon) //revert our icon state
+	L.icon_state = initial(icon_state)
+	L.update_icons()
 
 
 /datum/emote/proc/get_sound(mob/living/user)

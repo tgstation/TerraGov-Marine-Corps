@@ -16,7 +16,9 @@
 	return FALSE
 
 /mob/living/carbon/xenomorph/update_icons()
-	if(stat == DEAD)
+	if(emoting) //while emoting we pause updates to our icon
+
+	else if(stat == DEAD)
 		icon_state = "[xeno_caste.caste_name] Dead"
 	else if(lying_angle)
 		if((resting || IsSleeping()) && (!IsParalyzed() && !IsUnconscious() && health > 0))

@@ -119,3 +119,6 @@
 
 	/// How much friendly fire damage has this mob done in the last 30 seconds.
 	var/list/friendly_fire = list()
+
+	/// Use this to pause tick icon updates when doing a taunt/other icon based emote. Currently used only for Xenos ATM, but easily expandible to others
+	var/emoting = FALSE
