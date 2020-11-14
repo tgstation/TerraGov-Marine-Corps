@@ -33,7 +33,7 @@
 	var/miner_integrity = 100
 	///Max health of the miner
 	var/max_miner_integrity = 100
-	///What type of upgrade it has installed
+	///What type of upgrade it has installed , used to change the icon of the miner.
 	var/miner_upgrade_type
 
 /obj/machinery/miner/damaged	//mapping and all that shebang
