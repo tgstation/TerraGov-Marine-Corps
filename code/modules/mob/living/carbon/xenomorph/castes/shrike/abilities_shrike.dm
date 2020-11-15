@@ -117,7 +117,7 @@
 	succeed_activate()
 	add_cooldown()
 	if(ishuman(victim))
-		victim.apply_effects(1, 2) 	// Stun
+		victim.apply_effects(1, 0.1) 	// The fling stuns you enough to remove your gun, otherwise the marine effectively isn't stunned for long.
 		shake_camera(victim, 2, 1)
 
 	var/facing = get_dir(owner, victim)
@@ -188,7 +188,7 @@
 			affected.throw_at(throwlocation, 6, 1, owner, TRUE)
 			if(ishuman(affected)) //if they're human, they also should get knocked off their feet from the blast.
 				var/mob/living/carbon/human = affected
-				human.apply_effects(1, 2) 	// Stun
+				human.apply_effects(1, 1) 	// Stun
 				shake_camera(affected, 2, 1)
 
 	owner.visible_message("<span class='xenowarning'>[owner] sends out a huge blast of psychic energy!</span>", \
