@@ -138,9 +138,8 @@
 	slowdown = 0.2
 
 /obj/item/weapon/shield/riot/marine/mob_can_equip(mob/M, slot, warning = TRUE)
-	if(slot == SLOT_BACK && CHECK_BITFIELD(flags_item, NODROP)) //If we're equipping the shield to the back, remove NODROP so it doesn't get stuck there
-		to_chat(M, "<span class='notice'>We must first loosen [src]'s straps before we can place it on our back!</span>")
-		return FALSE
+	if(slot != SLOT_L_HAND && slot != SLOT_R_HAND && CHECK_BITFIELD(flags_item, NODROP)) //Let the player know why they can't move the shield to non-hand slots
+		to_chat(M, "<span class='notice'>We must first loosen [src]'s straps!</span>")
 
 	return ..()
 
