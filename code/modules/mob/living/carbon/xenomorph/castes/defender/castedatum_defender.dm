@@ -154,4 +154,4 @@
 	// *** Defender Abilities *** //
 	crest_defense_armor = 30
 	crest_defense_slowdown = 0.8
-	fortify_armor = 50
+	fortify_armor = 55
