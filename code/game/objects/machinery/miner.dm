@@ -73,7 +73,7 @@
 	to_chat(user, "<span class='info'>You begin installing the [upgrade] on the miner.</span>")
 	if(!do_after(user, 15 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 		return FALSE
-	if(!plastee.use(MINER_REQUIRED_PLASTEEL_SHEETS))
+	if(!upgrade.use())
 		return FALSE
 	var/choice = upgrade.uptype
 	switch(choice)
