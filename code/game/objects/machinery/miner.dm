@@ -89,6 +89,7 @@
 			required_ticks = 35
 
 	miner_upgrade_type = choice
+	qdel(upgrade)
 	user.visible_message("<span class='notice'>[user] attaches the [choice] to the [src]!</span>")
 	playsound(loc,'sound/items/screwdriver.ogg', 25, TRUE)
 	update_icon()
