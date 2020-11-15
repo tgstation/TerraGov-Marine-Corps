@@ -542,6 +542,7 @@
 	return ..()
 
 /datum/reagent/toxin/xeno_hemodile/proc/hemodile_human_damage_taken(mob/living/L, damage)
+	SIGNAL_HANDLER
 	L.adjustStaminaLoss(damage*0.2)
 
 /datum/reagent/toxin/xeno_hemodile/on_mob_delete(mob/living/L, metabolism)

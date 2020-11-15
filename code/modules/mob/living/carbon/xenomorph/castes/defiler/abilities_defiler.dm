@@ -178,6 +178,7 @@
 	action_icon_state = "select_reagent0"
 	mechanics_text = "Selects which reagent to inject. Hemodile slows by 25%, increased to 50% with neurotoxin present, and deals 20% of dmage received as stamina damage. Transvitox after ~4s converts brute/burn damage to toxin based on 40% of damage received up to 45 toxin on target."
 	use_state_flags = XACT_USE_BUSY
+	var/list_position
 
 /datum/action/xeno_action/select_reagent/update_button_icon()
 	var/mob/living/carbon/xenomorph/X = owner
@@ -189,11 +190,11 @@
 /datum/action/xeno_action/select_reagent/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
 	var/list/available_reagents = X.xeno_caste.available_reagents_define
-	var/i = available_reagents.Find(X.selected_reagent)
-	if(length(available_reagents) == i)
-		X.selected_reagent = available_reagents[1]
+	if(list_position < length(available_reagents))
+		list_position++
 	else
-		X.selected_reagent = available_reagents[i+1]
+		list_position = 1
+	X.selected_reagent = available_reagents[list_position]
 	var/atom/A = X.selected_reagent
 	to_chat(X, "<span class='notice'>We will now slash with <b>[initial(A.name)]</b>.</span>")
 	update_button_icon()
@@ -225,7 +226,7 @@
 /datum/action/xeno_action/activable/reagent_slash/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
 	succeed_activate()
-	slash_action(A, X.selected_reagent, channel_time = DEFILER_REAGENT_SLASH_DELAY, count = DEFILER_REAGENT_SLASH_COUNT, transfer_amount = DEFILER_REAGENT_SLASH_U_AMOUNT)
+	slash_action(A, X.selected_reagent, DEFILER_REAGENT_SLASH_DELAY, DEFILER_REAGENT_SLASH_U_AMOUNT, DEFILER_REAGENT_SLASH_COUNT)
 	add_cooldown()
 
 /datum/action/xeno_action/activable/reagent_slash/proc/slash_action(mob/living/carbon/C, toxin = /datum/reagent/toxin/xeno_neurotoxin, channel_time = 1 SECONDS, transfer_amount = 4, count = 3)
