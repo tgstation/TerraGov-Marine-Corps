@@ -50,7 +50,7 @@
 /obj/machinery/miner/update_icon()
 	switch(miner_status)
 		if(MINER_RUNNING)
-			if((istype(mineral_produced, /obj/item/compactorebox/platinum)) && (istype(miner_upgrade_type, MINER_COMPACTOR)))
+			if((mineral_produced == /obj/item/compactorebox/platinum) && (miner_upgrade_type == MINER_COMPACTOR))
 				icon_state = "mining_drill_active_platinum_[miner_upgrade_type]"
 			else
 				icon_state = "mining_drill_active_[miner_upgrade_type]"
