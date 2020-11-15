@@ -137,12 +137,6 @@
 	force = 20
 	slowdown = 0.2
 
-/obj/item/weapon/shield/riot/marine/mob_can_equip(mob/M, slot, warning = TRUE)
-	if(slot != SLOT_L_HAND && slot != SLOT_R_HAND && CHECK_BITFIELD(flags_item, NODROP)) //Let the player know why they can't move the shield to non-hand slots
-		to_chat(M, "<span class='notice'>We must first loosen [src]'s straps!</span>")
-
-	return ..()
-
 /obj/item/weapon/shield/riot/marine/AltClick(mob/user)
 	if(!can_interact(user))
 		return ..()
