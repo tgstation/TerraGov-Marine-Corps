@@ -137,11 +137,12 @@
 	force = 20
 	slowdown = 0.2
 
-/obj/item/weapon/shield/riot/marine/equipped(mob/user, slot)
-	. = ..()
+/obj/item/weapon/shield/riot/marine/mob_can_equip(mob/M, slot, warning = TRUE)
 	if(slot == SLOT_BACK && CHECK_BITFIELD(flags_item, NODROP)) //If we're equipping the shield to the back, remove NODROP so it doesn't get stuck there
-		TOGGLE_BITFIELD(flags_item, NODROP)
-		to_chat(user, "<span class='notice'>You loosen the strap of [src] as you place it onto your back.</span>")
+		to_chat(M, "<span class='notice'>We must first loosen [src]'s straps before we can place it on our back!</span>")
+		return FALSE
+
+	return ..()
 
 /obj/item/weapon/shield/riot/marine/AltClick(mob/user)
 	if(!can_interact(user))

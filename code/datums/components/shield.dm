@@ -173,10 +173,10 @@
 	if(affected.IsSleeping() || affected.IsUnconscious() || affected.IsAdminSleeping() || affected.IsParalyzed()) //We don't do jack if we're literally KOed/sleeping/paralyzed.
 		return FALSE
 
-	if(affected.IsStun() || affected.IsKnockdown() ) //Halve shield cover if we're paralyzed or stunned
+	if(affected.IsStun() || affected.IsKnockdown()) //Halve shield cover if we're paralyzed or stunned
 		status_cover_modifier *= 0.5
 
-	if(iscarbon(affected) )
+	if(iscarbon(affected))
 		var/mob/living/carbon/C = affected
 		if(C.stagger) //Lesser penalty to shield cover for being staggered.
 			status_cover_modifier *= 0.75
