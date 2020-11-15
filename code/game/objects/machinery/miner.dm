@@ -190,7 +190,7 @@
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return FALSE
 	playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE)
-	user.visible_message("<spFan class='notice'>[user] starts repairing [src]'s tubing and plating.</span>",
+	user.visible_message("<span class='notice'>[user] starts repairing [src]'s tubing and plating.</span>",
 	"<span class='notice'>You start repairing [src]'s tubing and plating.</span>")
 	if(!do_after(user, 150, TRUE, src, BUSY_ICON_BUILD))
 		return FALSE
