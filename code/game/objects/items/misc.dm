@@ -119,7 +119,7 @@
 
 /obj/item/compactorebox
 	name = "compressed ore box"
-	desc = "A heavy and preety solid box, filled to the brim with ore, you probably shouldn't see it"
+	desc = "A heavy and preety solid box, filled to the brim with ore"
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "phoronbox_compact"
 	item_state = "phoronbox_compact"
@@ -140,7 +140,7 @@
 
 /obj/item/compactorebox/phoron
 	name = "compressed phoron box"
-	desc = "A heavy and preety solid box , filled to the brim with compressed phoron crystals"
+	desc = "A heavy and very solid box , filled to the brim with compressed phoron crystals"
 
 /obj/item/compactorebox/platinum
 	name = "compressed platinum box"

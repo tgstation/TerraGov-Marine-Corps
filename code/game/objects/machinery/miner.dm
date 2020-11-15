@@ -50,7 +50,7 @@
 /obj/machinery/miner/update_icon()
 	switch(miner_status)
 		if(MINER_RUNNING)
-			if((mineral_produced == /obj/item/compactorebox/platinum)&&(miner_upgrade_type == MINER_COMPACTOR))
+			if((istype(mineral_produced, /obj/item/compactorebox/platinum)) && (istype(miner_upgrade_type, MINER_COMPACTOR)))
 				icon_state = "mining_drill_active_platinum_[miner_upgrade_type]"
 			else
 				icon_state = "mining_drill_active_[miner_upgrade_type]"
@@ -63,6 +63,7 @@
 
 /obj/machinery/miner/proc/attempt_upgrade(obj/item/minerupgrade/upgrade, mob/user, params)
 	if(miner_upgrade_type)
+		to_chat(user, "<span class='info'>The [src]'s module sockets are already occupied by the [miner_upgrade_type].</span>")
 		return FALSE
 	if(user.skills.getRating("construction")<SKILL_CONSTRUCTION_ADVANCED)
 		to_chat(user, "<span class='info'>You can't figure out how to install the complex module.</span>")
@@ -71,41 +72,37 @@
 	to_chat(user, "<span class='info'>You begin installing the [upgrade] on the miner.</span>")
 	if(!do_after(user, 15 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 		return FALSE
-	if(!upgrade.use())
-		return FALSE
-	var/choice = upgrade.uptype
-	switch(choice)
+	switch(upgrade.uptype)
 		if(MINER_RESISTANT)
 			max_miner_integrity = 300
 			miner_integrity = 300
 		if(MINER_COMPACTOR)
-			if(mineral_produced == /obj/structure/ore_box/platinum)
+			if(istype(/obj/structure/ore_box/platinum, mineral_produced))
 				mineral_produced = /obj/item/compactorebox/platinum
 			else
 				mineral_produced = /obj/item/compactorebox/phoron
 		if(MINER_OVERCLOCKED)
 			required_ticks = 35
-
-	miner_upgrade_type = choice
+	miner_upgrade_type = upgrade.uptype
+	user.visible_message("<span class='notice'>[user] attaches the [miner_upgrade_type] to the [src]!</span>")
 	qdel(upgrade)
-	user.visible_message("<span class='notice'>[user] attaches the [choice] to the [src]!</span>")
 	playsound(loc,'sound/items/screwdriver.ogg', 25, TRUE)
 	update_icon()
 
 /obj/machinery/miner/attackby(obj/item/I,mob/user,params)
 	. = ..()
 
-	if(istype(I,/obj/item/minerupgrade))
+	if(istype(I, /obj/item/minerupgrade))
 		var/obj/item/minerupgrade/upgrade = I
 		if(!(miner_status == MINER_RUNNING))
 			to_chat(user, "<span class='info'>[src]'s module sockets seem bolted down.</span>")
 			return FALSE
-		src.attempt_upgrade(upgrade,user)
+		attempt_upgrade(upgrade,user)
 
 /obj/machinery/miner/welder_act(mob/living/user, obj/item/I)
 	. = ..()
 	var/obj/item/tool/weldingtool/weldingtool = I
-	if((miner_status == MINER_RUNNING)&&miner_upgrade_type)
+	if((miner_status == MINER_RUNNING) && miner_upgrade_type)
 		if(!weldingtool.remove_fuel(2,user))
 			to_chat(user, "<span class='info'>You need more welding fuel to complete this task!</span>")
 			return FALSE
@@ -114,20 +111,19 @@
 		if(!do_after(user, 30 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 			return FALSE
 		user.visible_message("<span class='notice'>[user] dismantles the [miner_upgrade_type] from the miner</span>")
+		var/obj/item/upgrade
 		switch(miner_upgrade_type)
 			if(MINER_RESISTANT)
-				new /obj/item/minerupgrade/reinforcement
-				max_miner_integrity = 100
-				miner_integrity = 100
+				upgrade = new /obj/item/minerupgrade/reinforcement
+				max_miner_integrity = initial(max_miner_integrity)
+				miner_integrity = initial(miner_integrity)
 			if(MINER_OVERCLOCKED)
-				new /obj/item/minerupgrade/overclock
-				required_ticks = 70
+				upgrade = new /obj/item/minerupgrade/overclock
+				required_ticks = initial(required_ticks)
 			if(MINER_COMPACTOR)
-				new /obj/item/minerupgrade/compactor
-				if(istype(mineral_produced, /obj/item/compactorebox/phoron))
-					mineral_produced = /obj/structure/ore_box/phoron
-				else
-					mineral_produced = /obj/structure/ore_box/platinum
+				upgrade = new /obj/item/minerupgrade/compactor
+				mineral_produced = initial(mineral_produced)
+		upgrade.forceMove(user.loc)
 		miner_upgrade_type = null
 		update_icon()
 	if(miner_status != MINER_DESTROYED)
