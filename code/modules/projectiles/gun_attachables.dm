@@ -1311,7 +1311,8 @@ Defined in conflicts.dm of the #defines folder.
 	slot = "under"
 	fire_sound = 'sound/weapons/guns/fire/flamethrower3.ogg'
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_RELOADABLE|ATTACH_WEAPON
-	attachment_firing_delay = 35
+	attachment_firing_delay = 25
+	COOLDOWN_DECLARE(last_fired)
 
 
 /obj/item/attachable/attached_gun/flamer/unremovable
@@ -1394,7 +1395,7 @@ Defined in conflicts.dm of the #defines folder.
 	if(get_dist(user,target) > max_range+3)
 		to_chat(user, "<span class='warning'>Too far to fire the attachment!</span>")
 		return
-	if(current_rounds)
+	if(current_rounds && COOLDOWN_CHECK(src, last_fired))
 		unleash_flame(target, user)
 
 
@@ -1404,11 +1405,17 @@ Defined in conflicts.dm of the #defines folder.
 	var/distance = 0
 	var/turf/prev_T
 	playsound(user, 'sound/weapons/guns/fire/flamethrower2.ogg', 50, 1)
+	var/fire_delay = attachment_firing_delay
+	if(!user.skills.getRating("firearms")) //no training in any firearms
+		fire_delay += 0.3 SECONDS //untrained humans fire more slowly.
+	COOLDOWN_START(src, last_fired, fire_delay)
 	for(var/turf/T in turfs)
 		if(T == user.loc)
 			prev_T = T
 			continue
 		if(!current_rounds)
+			break
+		if(T.density || isspaceturf(T))
 			break
 		if(distance >= max_range)
 			break
