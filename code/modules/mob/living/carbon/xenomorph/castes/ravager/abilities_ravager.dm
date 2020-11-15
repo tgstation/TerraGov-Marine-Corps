@@ -6,8 +6,8 @@
 	action_icon_state = "charge"
 	mechanics_text = "Charge up to 4 tiles and viciously attack your target."
 	ability_name = "charge"
-	cooldown_timer = 10 SECONDS //Balanced by the inability to use either ability more than twice in a row without needing a lengthy plasma charge
-	plasma_cost = 300
+	cooldown_timer = 20 SECONDS
+	plasma_cost = 600 //Can't ignore pain/Charge and ravage in the same timeframe, but you can combo one of them.
 	keybind_flags = XACT_KEYBIND_USE_ABILITY | XACT_IGNORE_SELECTED_ABILITY
 	keybind_signal = COMSIG_XENOABILITY_RAVAGER_CHARGE
 
@@ -85,7 +85,7 @@
 	action_icon_state = "ravage"
 	mechanics_text = "Attacks and knockbacks enemies in the direction your facing."
 	ability_name = "ravage"
-	plasma_cost = 250
+	plasma_cost = 200
 	cooldown_timer = 6 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY | XACT_IGNORE_SELECTED_ABILITY
 	keybind_signal = COMSIG_XENOABILITY_RAVAGE
@@ -118,7 +118,7 @@
 			victims++
 			step_away(H, X, sweep_range, 2)
 			shake_camera(H, 2, 1)
-			H.Paralyze(2 SECONDS)
+			H.Paralyze(1 SECONDS)
 
 	succeed_activate()
 	add_cooldown()
@@ -145,8 +145,8 @@
 	action_icon_state = "ignore_pain"
 	mechanics_text = "For the next few moments you will not go into crit, but you still die."
 	ability_name = "ignore pain"
-	plasma_cost = 50
-	cooldown_timer = 2 MINUTES
+	plasma_cost = 175
+	cooldown_timer = 1 MINUTES
 	keybind_flags = XACT_KEYBIND_USE_ABILITY | XACT_IGNORE_SELECTED_ABILITY
 	keybind_signal = COMSIG_XENOABILITY_IGNORE_PAIN
 
