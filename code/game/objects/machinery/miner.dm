@@ -96,8 +96,8 @@
 /obj/machinery/miner/attackby(obj/item/I,mob/user,params)
 	. = ..()
 
-	if(istype(I,/obj/item/minerupgrade)
-		var/obj/item/minerupgrader/upgrade = I
+	if(istype(I,/obj/item/minerupgrade))
+		var/obj/item/minerupgrade/upgrade = I
 		if(!(miner_status == MINER_RUNNING))
 			to_chat(user, "<span class='info'>[src]'s module sockets seem bolted down.</span>")
 			return FALSE
@@ -115,10 +115,15 @@
 		if(!do_after(user, 30 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 			return FALSE
 		user.visible_message("<span class='notice'>[user] dismantles the [miner_upgrade_type] from the miner</span>")
-		var/obj/item/stack/sheet/plasteel/stack = /obj/item/stack/sheet/plasteel
-		stack = new /obj/item/stack/sheet/plasteel
-		stack.amount = MINER_REQUIRED_PLASTEEL_SHEETS - 5
-		stack.loc = user.loc
+		var/obj/item/minerupgrade/upgrade
+		switch(miner_upgrade_type)
+			if(MINER_RESISTANT)
+				upgrade = /obj/item/minerupgrade/reinforcement
+			if(MINER_OVERCLOCKED)
+				upgrade = /obj/item/minerupgrade/overclock
+			if(MINER_COMPACTOR)
+				upgrade = /obj/item/minerupgrade/compactor
+		upgrade.loc = user.loc
 		miner_upgrade_type = ""
 		max_miner_integrity = 100
 		miner_integrity = 100

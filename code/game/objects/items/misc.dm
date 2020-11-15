@@ -10,7 +10,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	attack_verb = list("called", "rang")
 	hitsound = 'sound/weapons/ring.ogg'
-	
+
 
 /obj/item/clock
 	name = "digital clock"
@@ -26,7 +26,7 @@
 /obj/item/clock/examine(mob/user, distance, infix, suffix)
 	. = ..()
 	to_chat(user, "The [src] reads: [GLOB.current_date_string] - [stationTimestamp()]")
-	
+
 
 /obj/item/bananapeel
 	name = "banana peel"
@@ -153,27 +153,28 @@
 /obj/item/minerupgrade
 	name = "Miner upgrade"
 	desc = "Subtype item, should not exist."
-	icon = 'icons/obj/mining.dmi'
+	icon = 'icons/obj/mining_drill.dmi'
 	icon_state = "mining_drill_reinforceddisplay"
 	w_class = WEIGHT_CLASS_NORMAL
+	materials = list(/datum/material/metal = 75000) // 18 Sheets , because thats all a autolathe can fit
 	var/uptype /// Used to determine what type of upgrade it is for use in miner.dm
 
 /obj/item/minerupgrade/reinforcement
 	name = "Reinforced components box"
 	desc = "A very neatly folded box of reinforced components , meant to replace weak components used in normal mining wells."
 	icon_state = "mining_drill_reinforceddisplay"
-	uptype = MINER_RESISTANT
+	uptype = "reinforced components"
 
 /obj/item/minerupgrade/overclock
 	name =  "High-efficiency drill"
 	desc = "A box with a few pumps and a big drill , meant to replace the standard drill used in normal mining wells for faster extraction."
 	icon_state = "mining_drill_overclockeddisplay"
-	uptype = MINER_OVERCLOCKED
+	uptype = "high-efficiency drill"
 
 /obj/item/minerupgrade/compactor
 	name = "Crystalizer module"
 	desc = "A bulky module meant to replace the normal crystalizer in mining wells,used to compress boxes for easy carrying"
 	icon_state = "mining_drill_compactordisplay"
-	uptype = MINER_COMPACTOR
+	uptype = "upgraded crystalizer module"
 
 
