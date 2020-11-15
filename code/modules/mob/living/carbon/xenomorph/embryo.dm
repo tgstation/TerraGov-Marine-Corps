@@ -79,7 +79,7 @@
 		counter += 1.5 //Free burst time in ~15 min.
 
 	if(affected_mob.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_growthtoxin))
-		counter += 1 //Accelerates larval growth somewhat. You don't want this stuff in your body.
+		counter += 2.5 //Accelerates larval growth somewhat. You don't want this stuff in your body.
 
 	if(affected_mob.reagents.get_reagent_amount(/datum/reagent/consumable/larvajelly))
 		counter += 10 //Accelerates larval growth massively. Voluntarily drinking larval jelly while infected is straight-up suicide. Larva hits Stage 5 in exactly ONE minute.
