@@ -160,7 +160,7 @@
 	var/uptype /// Used to determine what type of upgrade it is for use in miner.dm
 
 /obj/item/minerupgrade/reinforcement
-	name = "Reinforced components box"
+	name = "Reinforced componentSs box"
 	desc = "A very neatly folded box of reinforced components , meant to replace weak components used in normal mining wells."
 	icon_state = "mining_drill_reinforceddisplay"
 	uptype = "reinforced components"

@@ -118,11 +118,11 @@
 		var/obj/item/minerupgrade/upgrade
 		switch(miner_upgrade_type)
 			if(MINER_RESISTANT)
-				upgrade = /obj/item/minerupgrade/reinforcement
+				upgrade = new /obj/item/minerupgrade/reinforcement
 			if(MINER_OVERCLOCKED)
-				upgrade = /obj/item/minerupgrade/overclock
+				upgrade = new /obj/item/minerupgrade/overclock
 			if(MINER_COMPACTOR)
-				upgrade = /obj/item/minerupgrade/compactor
+				upgrade = new /obj/item/minerupgrade/compactor
 		upgrade.loc = user.loc
 		miner_upgrade_type = ""
 		max_miner_integrity = 100
