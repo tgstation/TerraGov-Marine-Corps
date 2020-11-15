@@ -1,0 +1,4 @@
+author: "TiviPlus"
+delete-after: True
+changes: 
+  - balance: "Selfdestruct can only be triggered by marines (looking at you ERT rushing Selfdestruct)"

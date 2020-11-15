@@ -16,6 +16,7 @@
 	var/reliability = 100	//Used by SOME devices to determine how reliable they are.
 	var/crit_fail = 0
 
+	///throwforce needs to be at least 1 else it causes runtimes with shields
 	var/throwforce = 1
 
 	var/obj_flags = NONE
@@ -65,6 +66,12 @@
 			GLOB.all_req_one_access[txt_access] = req_one_access
 		else
 			req_one_access = GLOB.all_req_one_access[txt_access]
+
+/obj/Destroy()
+	hard_armor = null
+	soft_armor = null
+	QDEL_NULL(current_acid)
+	return ..()
 
 
 /obj/proc/setAnchored(anchorvalue)

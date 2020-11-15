@@ -135,8 +135,6 @@
 	var/obj/docking_port/stationary/hijack_request
 
 	var/list/equipments = list()
-	var/list/installed_equipment = list()
-	var/list/selected_equipment = list()
 
 	var/hijack_state = HIJACK_STATE_NORMAL
 
@@ -198,20 +196,11 @@
 	if(force)
 		SSshuttle.dropships -= src
 
-/obj/docking_port/mobile/marine_dropship/on_ignition()
-	playsound(return_center_turf(), 'sound/effects/engine_startup.ogg', 60, 0)
-
-/obj/docking_port/mobile/marine_dropship/on_prearrival()
-	playsound(return_center_turf(), 'sound/effects/engine_landing.ogg', 60, 0)
-	if(destination)
-		playsound(destination.return_center_turf(), 'sound/effects/engine_landing.ogg', 60, 0)
-
-
 /obj/docking_port/mobile/marine_dropship/initiate_docking(obj/docking_port/stationary/new_dock, movement_direction, force=FALSE)
 	if(crashing)
 		force = TRUE
 
-	. = ..()
+	return ..()
 
 /obj/docking_port/mobile/marine_dropship/one
 	id = "alamo"
@@ -245,6 +234,7 @@
 			addtimer(CALLBACK(src, .proc/request_to, S), 15 SECONDS)
 
 /obj/docking_port/mobile/marine_dropship/proc/start_hijack_timer(datum/source, new_mode)
+	SIGNAL_HANDLER
 	if(new_mode != SHUTTLE_RECHARGING)
 		return
 	UnregisterSignal(src, COMSIG_SHUTTLE_SETMODE)
@@ -449,7 +439,6 @@
 
 	var/datum/browser/popup = new(X, "computer", M ? M.name : "shuttle", 300, 200)
 	popup.set_content("<center>[dat]</center>")
-	popup.set_title_image(X.browse_rsc_icon(src.icon, src.icon_state))
 	popup.open()
 
 
@@ -534,14 +523,14 @@
 		.["lockdown"] = 1
 
 	var/list/options = valid_destinations()
-	var/list/valid_destionations = list()
+	var/list/valid_destinations = list()
 	for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
 		if(!options.Find(S.id))
 			continue
 		if(!shuttle.check_dock(S, silent=TRUE))
 			continue
-		valid_destionations += list(list("name" = S.name, "id" = S.id))
-	.["destinations"] = valid_destionations
+		valid_destinations += list(list("name" = S.name, "id" = S.id))
+	.["destinations"] = valid_destinations
 
 /obj/machinery/computer/shuttle/marine_dropship/ui_act(action, params)
 	if(..())
@@ -994,7 +983,6 @@
 
 	var/datum/browser/popup = new(user, "computer", M ? M.name : "shuttle", 300, 200)
 	popup.set_content("<center>[dat]</center>")
-	popup.set_title_image(usr.browse_rsc_icon(src.icon, src.icon_state))
 	popup.open()
 
 
@@ -1037,7 +1025,6 @@
 
 	var/datum/browser/popup = new(user, "computer", M ? M.name : "shuttle", 300, 200)
 	popup.set_content("<center>[dat]</center>")
-	popup.set_title_image(usr.browse_rsc_icon(src.icon, src.icon_state))
 	popup.open()
 
 

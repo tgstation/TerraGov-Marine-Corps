@@ -82,7 +82,7 @@
 	setXenoCasteSpeed(xeno_caste.speed)
 	soft_armor = getArmor(arglist(xeno_caste.soft_armor))
 	hard_armor = getArmor(arglist(xeno_caste.hard_armor))
-
+	warding_aura = 0 //Resets aura for reapplying armor
 
 /mob/living/carbon/xenomorph/set_armor_datum()
 	return //Handled in set_datum()
@@ -205,8 +205,8 @@
 	remove_from_hive()
 
 	vis_contents -= wound_overlay
-	. = ..()
 	QDEL_NULL(wound_overlay)
+	return ..()
 
 
 /mob/living/carbon/xenomorph/slip(slip_source_name, stun_level, weaken_level, run_only, override_noslip, slide_steps)
@@ -219,12 +219,16 @@
 	if(L.buckled)
 		return FALSE //to stop xeno from pulling marines on roller beds.
 	if(ishuman(L))
+		if(!chestburst)
+			do_attack_animation(L, ATTACK_EFFECT_GRAB)
+			if(!do_mob(src, L , XENO_PULL_CHARGE_TIME, BUSY_ICON_HOSTILE))
+				return FALSE
 		pull_speed += XENO_DEADHUMAN_DRAG_SLOWDOWN
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_GRAB)
 	return ..()
 
 /mob/living/carbon/xenomorph/stop_pulling()
-	if(pulling && ishuman(pulling))
+	if(ishuman(pulling))
 		pull_speed -= XENO_DEADHUMAN_DRAG_SLOWDOWN
 	return ..()
 

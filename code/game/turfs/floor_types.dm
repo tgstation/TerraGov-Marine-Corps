@@ -225,6 +225,16 @@
 /turf/open/floor/mainship_hull/dir
 	icon_state = "outerhull_dir"
 
+/turf/open/floor/mainship_hull/gray
+	icon = 'icons/turf/mainship.dmi'
+	icon_state = "outerhull_gray"
+	name = "hull"
+	hull_floor = TRUE
+
+/turf/open/floor/mainship_hull/gray/dir
+	icon_state = "outerhull_gray_dir"
+
+
 
 //***********
 

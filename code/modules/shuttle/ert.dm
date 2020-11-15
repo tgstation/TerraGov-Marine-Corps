@@ -42,7 +42,7 @@
 	var/obj/docking_port/stationary/S = pick(get_destinations())
 	if(!S)
 		return FALSE
-	SSshuttle.moveShuttle(id, S.id, 1)
+	SSshuttle.moveShuttle(id, S.id, TRUE)
 	return TRUE
 
 /obj/docking_port/mobile/ert/proc/open_shutters()
@@ -118,7 +118,6 @@
 
 	var/datum/browser/popup = new(user, "computer", M ? M.name : "shuttle", 300, 200)
 	popup.set_content("<center>[dat]</center>")
-	popup.set_title_image(usr.browse_rsc_icon(src.icon, src.icon_state))
 	popup.open()
 
 /obj/machinery/computer/shuttle/ert/Topic(href, href_list)
@@ -127,6 +126,7 @@
 		return
 
 	if(href_list["depart"])
+		log_game("[key_name(usr)] has departed an ERT shuttle")
 		var/obj/docking_port/mobile/ert/M = SSshuttle.getShuttle(shuttleId)
 		M.on_ignition()
 		M.departing = TRUE

@@ -13,11 +13,16 @@
 	sprite_sheet_id = 1
 	flags_atom = CONDUCT
 	flags_item = TWOHANDED
+	light_system = MOVABLE_LIGHT
+	light_range = 0
+	light_on = FALSE
+	light_color = COLOR_WHITE
 
 	var/atom/movable/vis_obj/effect/muzzle_flash/muzzle_flash
 	var/muzzleflash_iconstate
 	var/muzzle_flash_lum = 3 //muzzle flash brightness
-
+	///State for a fire animation if the gun has any
+	var/fire_animation = null
 	var/fire_sound 		= 'sound/weapons/guns/fire/gunshot.ogg'
 	var/dry_fire_sound	= 'sound/weapons/guns/fire/empty.ogg'
 	var/unload_sound 	= 'sound/weapons/flipblade.ogg'
@@ -107,6 +112,9 @@
 /obj/item/weapon/gun/Initialize(mapload, spawn_empty) //You can pass on spawn_empty to make the sure the gun has no bullets or mag or anything when created.
 	. = ..()					//This only affects guns you can get from vendors for now. Special guns spawn with their own things regardless.
 	base_gun_icon = icon_state
+
+	verbs -= /obj/item/verb/verb_pickup
+
 	if(current_mag)
 		if(spawn_empty && !(flags_gun_features & GUN_INTERNAL_MAG)) //Internal mags will still spawn, but they won't be filled.
 			current_mag = null
@@ -626,6 +634,10 @@ and you're good to go.
 		//vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
 		projectile_to_fire.fire_at(target, user, src, projectile_to_fire.ammo.max_range, projectile_to_fire.ammo.shell_speed, firing_angle)
 		//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+		if(fire_animation) //Fires gun firing animation if it has any. ex: rotating barrel
+			flick("[fire_animation]", src)
+
 		last_fired = world.time
 
 		//This is where we load the next bullet in the chamber. We check for attachments too, since we don't want to load anything if an attachment is active.
@@ -664,8 +676,6 @@ and you're good to go.
 			return TRUE
 		DISABLE_BITFIELD(flags_gun_features, GUN_BURST_FIRING)
 		//Point blanking simulates firing the bullet proper but without actually firing it.
-		if(active_attachable && !CHECK_BITFIELD(active_attachable.flags_attach_features, ATTACH_PROJECTILE))
-			active_attachable.activate_attachment(null, TRUE)//No way.
 		var/obj/projectile/projectile_to_fire = load_into_chamber(user)
 		in_chamber = null //Projectiles live and die fast. It's better to null the reference early so the GC can handle it immediately.
 		if(!projectile_to_fire) //We actually have a projectile, let's move on. We're going to simulate the fire cycle.
@@ -964,9 +974,11 @@ and you're good to go.
 	if(!muzzle_flash || muzzle_flash.applied)
 		return
 	var/prev_light = light_range
-	if(light_range < muzzle_flash_lum)
-		set_light(muzzle_flash_lum)
-		addtimer(CALLBACK(src, /atom.proc/set_light, prev_light), 1 SECONDS)
+	if(!light_on && (light_range <= muzzle_flash_lum))
+		set_light_range(muzzle_flash_lum)
+		set_light_color(COLOR_VERY_SOFT_YELLOW)
+		set_light_on(TRUE)
+		addtimer(CALLBACK(src, .proc/reset_light_range, prev_light), 1 SECONDS)
 
 	//Offset the pixels.
 	switch(angle)
@@ -1042,6 +1054,11 @@ and you're good to go.
 
 	addtimer(CALLBACK(src, .proc/remove_muzzle_flash, flash_loc, muzzle_flash), 0.2 SECONDS)
 
+/obj/item/weapon/gun/proc/reset_light_range(lightrange)
+	set_light_range(lightrange)
+	set_light_color(initial(light_color))
+	if(lightrange <= 0)
+		set_light_on(FALSE)
 
 /obj/item/weapon/gun/proc/remove_muzzle_flash(atom/movable/flash_loc, atom/movable/vis_obj/effect/muzzle_flash/muzzle_flash)
 	if(!QDELETED(flash_loc))
@@ -1081,6 +1098,7 @@ and you're good to go.
 
 
 /obj/item/weapon/gun/proc/do_fire_attachment(datum/source, atom/target, mob/user)
+	SIGNAL_HANDLER
 	if(!able_to_fire(user))
 		return
 	if(gun_on_cooldown(user))

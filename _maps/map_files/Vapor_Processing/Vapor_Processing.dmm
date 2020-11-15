@@ -97,7 +97,6 @@
 "as" = (
 /obj/docking_port/stationary/marine_dropship/lz2,
 /obj/docking_port/stationary/crashmode,
-/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/plating,
 /area/shuttle/drop2/lz2)
 "at" = (
@@ -585,7 +584,6 @@
 "cb" = (
 /obj/docking_port/stationary/marine_dropship/lz1,
 /obj/docking_port/stationary/crashmode,
-/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "cc" = (
@@ -5503,7 +5501,6 @@
 /area/space)
 "FJ" = (
 /obj/docking_port/stationary/crashmode,
-/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/grass,
 /area/lv624/ground/compound/se)
 "Gn" = (

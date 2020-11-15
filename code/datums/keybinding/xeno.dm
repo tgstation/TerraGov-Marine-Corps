@@ -2,6 +2,11 @@
 	category = CATEGORY_XENO
 	weight = WEIGHT_MOB
 
+/datum/keybinding/xeno/headbite
+	name = "headbite"
+	full_name = "Headbite"
+	description = "Permanently kill a target."
+	keybind_signal = COMSIG_XENOABILITY_HEADBITE
 
 /datum/keybinding/xeno/regurgitate
 	name = "regurgitate"
@@ -27,6 +32,12 @@
 	full_name = "Secrete Resin"
 	description = "Builds whatever you’ve selected with (choose resin structure) on your tile."
 	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN
+
+/datum/keybinding/xeno/secrete_resin_silo
+	name = "secrete_resin_silo"
+	full_name = "Secrete Resin Silo"
+	description = "Builds a resin silo. Requires a number of dead bodies on a nest."
+	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN_SILO
 
 /datum/keybinding/xeno/emit_recovery
 	name = "emit_recovery"
@@ -243,6 +254,18 @@
 	full_name = "Hivelord: Build Tunnel"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_BUILD_TUNNEL
+
+/datum/keybinding/xeno/place_jelly_pod
+	name = "place_jelly_pod"
+	full_name = "Hivelord: Place Jelly Pod"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_PLACE_JELLY_POD
+
+/datum/keybinding/xeno/create_jelly
+	name = "create_jelly"
+	full_name = "Hivelord: Create Jelly"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_CREATE_JELLY
 
 /datum/keybinding/xeno/toggle_stealth
 	name = "toggle_stealth"

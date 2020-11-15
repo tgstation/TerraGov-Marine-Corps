@@ -184,3 +184,47 @@
 	name = "Confused"
 	desc = "You're dazed and confused."
 	icon_state = "asleep"
+
+/datum/status_effect/plasmadrain
+	id = "plasmadrain"
+
+/datum/status_effect/plasmadrain/on_creation(mob/living/new_owner, set_duration)
+	if(isxeno(new_owner))
+		owner = new_owner
+		duration = set_duration
+		return ..()
+	else
+		CRASH("something applied plasmadrain on a nonxeno, dont do that")
+
+/datum/status_effect/plasmadrain/tick()
+	var/mob/living/carbon/xenomorph/xenoowner = owner
+	if(xenoowner.plasma_stored >= 0)
+		var/remove_plasma_amount = xenoowner.xeno_caste.plasma_max / 17
+		xenoowner.plasma_stored -= remove_plasma_amount
+		if(xenoowner.plasma_stored <= 0)
+			xenoowner.plasma_stored = 0
+
+/datum/status_effect/noplasmaregen
+	id = "noplasmaregen"
+	tick_interval = 2 SECONDS
+
+/datum/status_effect/noplasmaregen/on_creation(mob/living/new_owner, set_duration)
+	if(isxeno(new_owner))
+		owner = new_owner
+		duration = set_duration
+		return ..()
+	else
+		CRASH("something applied noplasmaregen on a nonxeno, dont do that")
+
+/datum/status_effect/noplasmaregen/on_apply()
+	. = ..()
+	if(!.)
+		return
+	ADD_TRAIT(owner, TRAIT_NOPLASMAREGEN, TRAIT_STATUS_EFFECT(id))
+
+/datum/status_effect/noplasmaregen/on_remove()
+	REMOVE_TRAIT(owner, TRAIT_NOPLASMAREGEN, TRAIT_STATUS_EFFECT(id))
+	return ..()
+
+/datum/status_effect/noplasmaregen/tick()
+	to_chat(owner, "<span class='warning'>You feel too weak to summon new plasma...</span>")

@@ -276,7 +276,7 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/suppressor
 	name = "suppressor"
-	desc = "A small tube with exhaust ports to expel noise and gas.\nDoes not completely silence a weapon, but does make it much quieter and a little more accurate and stable at the cost of slightly reduced damage and bullet speed."
+	desc = "A small tube with exhaust ports to expel noise and gas.\nDoes not completely silence a weapon, but does make it much quieter and a little more accurate and stable at the cost of bullet speed."
 	icon_state = "suppressor"
 	slot = "muzzle"
 	silence_mod = 1
@@ -284,18 +284,11 @@ Defined in conflicts.dm of the #defines folder.
 	attach_icon = "suppressor_a"
 	attach_shell_speed_mod = -1
 	accuracy_mod = 0.1
-	damage_mod = -0.05
 	recoil_mod = -2
 	scatter_mod = -5
 	recoil_unwielded_mod = -3
 	scatter_unwielded_mod = -5
 	damage_falloff_mod = 0.1
-
-
-/obj/item/attachable/suppressor/Initialize()
-	. = ..()
-	attach_icon = pick("suppressor_a","suppressor2_a")
-
 
 /obj/item/attachable/suppressor/unremovable
 	flags_attach_features = NONE
@@ -364,6 +357,10 @@ Defined in conflicts.dm of the #defines folder.
 	accuracy_unwielded_mod = -0.1
 	size_mod = 1
 
+/obj/item/attachable/bayonetknife/Initialize()
+	. = ..()
+	AddElement(/datum/element/scalping)
+
 /obj/item/attachable/extended_barrel
 	name = "extended barrel"
 	desc = "A lengthened barrel allows for lessened scatter, greater accuracy and muzzle velocity due to increased stabilization and shockwave exposure."
@@ -383,9 +380,9 @@ Defined in conflicts.dm of the #defines folder.
 	slot = "muzzle"
 	icon_state = "hbarrel"
 	attach_icon = "hbarrel_a"
-	accuracy_mod = -0.45
-	damage_mod = 0.2
-	scatter_mod = 10
+	accuracy_mod = -0.6
+	damage_mod = 0.1
+	scatter_mod = 25
 	accuracy_unwielded_mod = -0.3
 
 
@@ -434,6 +431,17 @@ Defined in conflicts.dm of the #defines folder.
 	flags_attach_features = NONE
 	accuracy_mod = 0.15
 	scatter_mod = -15
+
+/obj/item/attachable/autosniperbarrel
+	name = "auto sniper barrel"
+	icon_state = "t81barrel"
+	desc = "A heavy barrel. CANNOT BE REMOVED."
+	slot = "under"
+	flags_attach_features = NONE
+	pixel_shift_x = 7
+	pixel_shift_y = 14
+	accuracy_mod = 0
+	scatter_mod = -5
 
 /obj/item/attachable/smartbarrel
 	name = "smartgun barrel"
@@ -559,7 +567,7 @@ Defined in conflicts.dm of the #defines folder.
 	desc = "A simple flashlight used for mounting on a firearm. \nHas no drawbacks, but isn't particuraly useful outside of providing a light source."
 	icon_state = "flashlight"
 	attach_icon = "flashlight_a"
-	light_mod = 8
+	light_mod = 6
 	slot = "rail"
 	materials = list(/datum/material/metal = 100, /datum/material/glass = 20)
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION
@@ -576,11 +584,15 @@ Defined in conflicts.dm of the #defines folder.
 	if(master_gun.flags_gun_features & GUN_FLASHLIGHT_ON)
 		icon_state = "flashlight"
 		attach_icon = "flashlight_a"
-		master_gun.set_light(0)
+		master_gun.set_light_range(0)
+		master_gun.set_light_power(0)
+		master_gun.set_light_on(FALSE)
 	else
 		icon_state = "flashlight-on"
 		attach_icon = "flashlight_a-on"
-		master_gun.set_light(light_mod)
+		master_gun.set_light_range(light_mod)
+		master_gun.set_light_power(3)
+		master_gun.set_light_on(TRUE)
 
 	master_gun.flags_gun_features ^= GUN_FLASHLIGHT_ON
 
@@ -649,10 +661,17 @@ Defined in conflicts.dm of the #defines folder.
 	var/has_nightvision = FALSE
 	var/active_nightvision = FALSE
 
+
+/obj/item/attachable/scope/marine
+	name = "T-47 rail scope"
+	desc = "A marine standard mounted zoom sight scope. Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
+	icon_state = "marinescope"
+	attach_icon = "marinescope_a"
+
 /obj/item/attachable/scope/nightvision
 	name = "T-46 Night vision scope"
 	icon_state = "nvscope"
-	attach_icon = "slavicscope"
+	attach_icon = "nvscope_a"
 	desc = "A rail-mounted night vision scope developed by Roh-Easy industries for the TGMC. Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
 	has_nightvision = TRUE
 
@@ -839,10 +858,10 @@ Defined in conflicts.dm of the #defines folder.
 
 
 /obj/item/attachable/stock/rifle
-	name = "\improper M41A1 skeleton stock"
-	desc = "A rare stock distributed in small numbers to TGMC forces. Compatible with the M41A1, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl."
+	name = "\improper M412 solid stock"
+	desc = "A common stock used by the M412 pulse rifle series, used for long rifles. This stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl."
 	slot = "stock"
-	wield_delay_mod = 0.6 SECONDS
+	wield_delay_mod = 0.2 SECONDS
 	melee_mod = 5
 	size_mod = 1
 	icon_state = "riflestock"
@@ -854,28 +873,24 @@ Defined in conflicts.dm of the #defines folder.
 	scatter_mod = -10
 	movement_acc_penalty_mod = 0.1
 
+/obj/item/attachable/stock/rifle/irremoveable
+	name = "\improper M412 solid stock"
+	wield_delay_mod = 0 SECONDS
+	pixel_shift_x = 32
+	pixel_shift_y = 13
+	flags_attach_features = NONE
+	accuracy_mod = 0
+	recoil_mod = 0
+	melee_mod = 0
+	scatter_mod = 0
+	movement_acc_penalty_mod = 0
+
+
 /obj/item/attachable/stock/rifle/marksman
 	name = "\improper T-45 marksman stock"
 	icon_state = "m4markstock"
 	attach_icon = "m4markstock"
 	flags_attach_features = NONE
-
-
-/obj/item/attachable/stock/smg
-	name = "M39 submachinegun stock"
-	desc = "A rare stock distributed in small numbers to TGMC forces. Compatible with the M39, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl."
-	slot = "stock"
-	wield_delay_mod = 0.4 SECONDS
-	melee_mod = 5
-	size_mod = 1
-	icon_state = "smgstock"
-	attach_icon = "smgstock_a"
-	pixel_shift_x = 39
-	pixel_shift_y = 11
-	accuracy_mod = 0.15
-	recoil_mod = -3
-	scatter_mod = -20
-	movement_acc_penalty_mod = 0.1
 
 /obj/item/attachable/stock/sx16
 	name = "SX-16 Stock"
@@ -1296,7 +1311,8 @@ Defined in conflicts.dm of the #defines folder.
 	slot = "under"
 	fire_sound = 'sound/weapons/guns/fire/flamethrower3.ogg'
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_RELOADABLE|ATTACH_WEAPON
-	attachment_firing_delay = 35
+	attachment_firing_delay = 25
+	COOLDOWN_DECLARE(last_fired)
 
 
 /obj/item/attachable/attached_gun/flamer/unremovable
@@ -1379,7 +1395,7 @@ Defined in conflicts.dm of the #defines folder.
 	if(get_dist(user,target) > max_range+3)
 		to_chat(user, "<span class='warning'>Too far to fire the attachment!</span>")
 		return
-	if(current_rounds)
+	if(current_rounds && COOLDOWN_CHECK(src, last_fired))
 		unleash_flame(target, user)
 
 
@@ -1389,11 +1405,17 @@ Defined in conflicts.dm of the #defines folder.
 	var/distance = 0
 	var/turf/prev_T
 	playsound(user, 'sound/weapons/guns/fire/flamethrower2.ogg', 50, 1)
+	var/fire_delay = attachment_firing_delay
+	if(!user.skills.getRating("firearms")) //no training in any firearms
+		fire_delay += 0.3 SECONDS //untrained humans fire more slowly.
+	COOLDOWN_START(src, last_fired, fire_delay)
 	for(var/turf/T in turfs)
 		if(T == user.loc)
 			prev_T = T
 			continue
 		if(!current_rounds)
+			break
+		if(T.density || isspaceturf(T))
 			break
 		if(distance >= max_range)
 			break
@@ -1606,6 +1628,7 @@ Defined in conflicts.dm of the #defines folder.
 
 
 /obj/item/attachable/bipod/proc/retract_bipod(datum/source)
+	SIGNAL_HANDLER_DOES_SLEEP
 	if(!ismob(source))
 		return
 	activate_attachment(source, TRUE)

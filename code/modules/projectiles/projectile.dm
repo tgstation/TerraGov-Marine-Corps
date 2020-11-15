@@ -33,6 +33,11 @@
 	invisibility = INVISIBILITY_MAXIMUM // We want this thing to be invisible when it drops on a turf because it will be on the user's turf. We then want to make it visible as it travels.
 	layer = FLY_LAYER
 	animate_movement = NO_STEPS
+	light_system = MOVABLE_LIGHT
+	light_range = 2
+	light_power = 2
+	light_color = COLOR_VERY_SOFT_YELLOW
+	light_on = FALSE
 
 	var/hitsound = null
 	var/datum/ammo/ammo //The ammo data which holds most of the actual info.
@@ -272,6 +277,9 @@
 		qdel(src)
 		return
 
+	set_light_color(ammo.bullet_color)
+	set_light_on(TRUE)
+
 	START_PROCESSING(SSprojectiles, src) //If no hits on the first moves, enter the processing queue for next.
 
 
@@ -287,6 +295,8 @@
 		qdel(src)
 		return PROCESS_KILL
 
+	if(ammo.flags_ammo_behavior & AMMO_CHAINING)
+		zap_beam(src, 4, damage)
 
 /obj/projectile/proc/required_moves_calc()
 	var/elapsed_time_deciseconds = world.time - last_projectile_move

@@ -176,12 +176,16 @@
 	return picked
 
 
-/proc/popleft(list/L)
-	if(!length(L))
-		return
+//Returns the top(last) element from the list and removes it from the list (typical stack function)
+/proc/pop(list/L)
+	if(L.len)
+		. = L[L.len]
+		L.len--
 
-	. = L[1]
-	L.Cut(1, 2)
+/proc/popleft(list/L)
+	if(L.len)
+		. = L[1]
+		L.Cut(1,2)
 
 
 //Returns the next element in parameter list after first appearance of parameter element. If it is the last element of the list or not present in list, returns first element.

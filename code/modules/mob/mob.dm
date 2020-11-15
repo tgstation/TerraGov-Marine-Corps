@@ -380,6 +380,8 @@
 		put_in_hands(W)
 		return TRUE
 	else
+		if(CHECK_BITFIELD(I.flags_inventory, NOQUICKEQUIP))
+			return FALSE
 		temporarilyRemoveItemFromInventory(I)
 		put_in_hands(I)
 		return TRUE
@@ -408,10 +410,9 @@
 /client/verb/changes()
 	set name = "Changelog"
 	set category = "OOC"
-
-	var/datum/asset/changelog = get_asset_datum(/datum/asset/simple/changelog)
+	var/datum/asset/simple/namespaced/changelog = get_asset_datum(/datum/asset/simple/namespaced/changelog)
 	changelog.send(src)
-	src << browse('html/changelog.html', "window=changes;size=675x650")
+	src << browse(changelog.get_htmlloader("changelog.html"), "window=changes;size=675x650")
 	if(prefs.lastchangelog != GLOB.changelog_hash)
 		prefs.lastchangelog = GLOB.changelog_hash
 		prefs.save_preferences()
@@ -509,8 +510,8 @@
 	if(!suppress_message)
 		playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, 7)
 
-	if(hud_used?.pull_icon)
-		hud_used.pull_icon.icon_state = "pull"
+
+	hud_used?.pull_icon?.icon_state = "pull"
 
 	if(ismob(AM))
 		var/mob/pulled_mob = AM

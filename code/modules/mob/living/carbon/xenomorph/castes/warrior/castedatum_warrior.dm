@@ -38,16 +38,18 @@
 	soft_armor = list("melee" = 30, "bullet" = 40, "laser" = 40, "energy" = 30, "bomb" = XENO_BOMB_RESIST_2, "bio" = 36, "rad" = 36, "fire" = 40, "acid" = 36)
 
 	// *** Warrior Abilities *** //
-	agility_speed_increase = 0
+	agility_speed_increase = -0.6
+	agility_speed_armor = -30
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
+		/datum/action/xeno_action/activable/headbite,
 		/datum/action/xeno_action/toggle_agility,
 		/datum/action/xeno_action/activable/fling,
 		/datum/action/xeno_action/activable/lunge,
-		/datum/action/xeno_action/activable/punch
-		)
+		/datum/action/xeno_action/activable/punch,
+	)
 
 /datum/xeno_caste/warrior/young
 	upgrade_name = "Young"
@@ -80,6 +82,8 @@
 	soft_armor = list("melee" = 34, "bullet" = 45, "laser" = 45, "energy" = 34, "bomb" = XENO_BOMB_RESIST_2, "bio" = 36, "rad" = 36, "fire" = 45, "acid" = 36)
 
 	// *** Warrior Abilities *** //
+	agility_speed_increase = -0.6
+	agility_speed_armor = -30
 
 /datum/xeno_caste/warrior/elder
 	upgrade_name = "Elder"
@@ -110,7 +114,8 @@
 	soft_armor = list("melee" = 38, "bullet" = 50, "laser" = 50, "energy" = 38, "bomb" = XENO_BOMB_RESIST_2, "bio" = 40, "rad" = 40, "fire" = 50, "acid" = 40)
 
 	// *** Warrior Abilities *** //
-	agility_speed_increase = 0
+	agility_speed_increase = -0.6
+	agility_speed_armor = -30
 
 /datum/xeno_caste/warrior/ancient
 	upgrade_name = "Ancient"
@@ -141,4 +146,5 @@
 	soft_armor = list("melee" = 42, "bullet" = 55, "laser" = 55, "energy" = 42, "bomb" = XENO_BOMB_RESIST_2, "bio" = 50, "rad" = 50, "fire" = 55, "acid" = 50)
 
 	// *** Warrior Abilities *** //
-	agility_speed_increase = 0
+	agility_speed_increase = -0.6
+	agility_speed_armor = -30

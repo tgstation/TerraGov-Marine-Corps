@@ -114,6 +114,7 @@
 
 
 /mob/living/carbon/xenomorph/proc/devour_grabbed()
+	SIGNAL_HANDLER_DOES_SLEEP
 	var/mob/living/carbon/prey = pulling
 	if(!istype(prey) || isxeno(prey) || issynth(prey))
 		to_chat(src, "<span class='warning'>That wouldn't taste very good.</span>")
@@ -121,27 +122,24 @@
 	if(prey.buckled)
 		to_chat(src, "<span class='warning'>[prey] is buckled to something.</span>")
 		return NONE
-	if(prey.stat == DEAD)
-		to_chat(src, "<span class='warning'>Ew, [prey] is already starting to rot.</span>")
-		return NONE
 	if(LAZYLEN(stomach_contents)) //Only one thing in the stomach at a time, please
-		to_chat(src, "<span class='warning'>You already have something in your belly, there's no way that will fit.</span>")
+		to_chat(src, "<span class='warning'>We already have something in our stomach, there's no way that will fit.</span>")
 		return NONE
 	for(var/obj/effect/forcefield/fog in range(1, src))
-		to_chat(src, "<span class='warning'>You are too close to the fog.</span>")
+		to_chat(src, "<span class='warning'>We are too close to the fog.</span>")
 		return NONE
 
 	visible_message("<span class='danger'>[src] starts to devour [prey]!</span>", \
-	"<span class='danger'>You start to devour [prey]!</span>", null, 5)
+	"<span class='danger'>We start to devour [prey]!</span>", null, 5)
 
 	//extra_checks = CALLBACK(user, /mob/proc/break_do_after_checks, null, null, user.zone_selected)
 
-	if(!do_after(src, 5 SECONDS, FALSE, prey, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .proc/can_devour_grabbed, prey)))
-		to_chat(src, "<span class='warning'>You stop devouring \the [prey]. \He probably tasted gross anyways.</span>")
+	if(!do_after(src, 10 SECONDS, FALSE, prey, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .proc/can_devour_grabbed, prey)))
+		to_chat(src, "<span class='warning'>We stop devouring \the [prey]. \He probably tasted gross anyways.</span>")
 		return NONE
 
 	visible_message("<span class='warning'>[src] devours [prey]!</span>", \
-	"<span class='warning'>You devour [prey]!</span>", null, 5)
+	"<span class='warning'>We devour [prey]!</span>", null, 5)
 
 	var/DT = prey.client ? 50 SECONDS + rand(0, 20 SECONDS) : 3 MINUTES // 50-70 seconds if there's a client, three minutes otherwise
 	devour_timer = world.time + DT
@@ -166,7 +164,7 @@
 		return FALSE
 	if(pulling != prey)
 		return FALSE
-	if(prey.buckled || prey.stat == DEAD)
+	if(prey.buckled)
 		return FALSE
 	if(LAZYLEN(stomach_contents))
 		return FALSE
@@ -174,6 +172,7 @@
 
 
 /mob/living/carbon/proc/on_devour_by_xeno()
+	SIGNAL_HANDLER
 	RegisterSignal(src, COMSIG_MOVABLE_RELEASED_FROM_STOMACH, .proc/on_release_from_stomach)
 
 
@@ -181,12 +180,13 @@
 	if(istype(wear_ear, /obj/item/radio/headset/mainship/marine))
 		var/obj/item/radio/headset/mainship/marine/marine_headset = wear_ear
 		if(marine_headset.camera.status)
-			marine_headset.camera.status = FALSE //Turn camera off.
+			marine_headset.camera.toggle_cam(null, FALSE) //Turn camera off.
 			to_chat(src, "<span class='danger'>Your headset camera flickers off as you are devoured; you'll need to reactivate it by rebooting your headset HUD!<span>")
 	return ..()
 
 
 /mob/living/carbon/proc/on_release_from_stomach(mob/living/carbon/prey, mob/living/predator)
+	SIGNAL_HANDLER
 	prey.SetParalyzed(20)
 	prey.adjust_blindness(-1)
 	UnregisterSignal(src, COMSIG_MOVABLE_RELEASED_FROM_STOMACH)

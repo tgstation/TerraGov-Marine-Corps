@@ -131,7 +131,7 @@
 	desc = "Ave, Imperator, morituri te salutant."
 	icon_state = "gladiator"
 	item_state = "gladiator"
-	flags_inventory = COVEREYES|BLOCKSHARPOBJ
+	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEMASK|HIDEEARS|HIDEEYES|HIDEALLHAIR
 	siemens_coefficient = 1
 
@@ -183,8 +183,8 @@
 
 
 
-//===========================//MARINES HELMETS\\=================================\\
-//=======================================================================\\
+/*===========================MARINES HELMETS=================================
+=======================================================================*/
 
 
 /obj/item/clothing/head/helmet/marine
@@ -193,7 +193,7 @@
 	icon = 'icons/obj/clothing/cm_hats.dmi'
 	sprite_sheet_id = 1
 	icon_state = "helmet"
-	soft_armor = list("melee" = 50, "bullet" = 60, "laser" = 30, "energy" = 20, "bomb" = 20, "bio" = 50, "rad" = 0, "fire" = 50, "acid" = 50)
+	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
 	max_integrity = 5
 	var/helmet_overlays[]
 	flags_inventory = BLOCKSHARPOBJ
@@ -223,9 +223,11 @@
 	max_w_class = 1
 	bypass_w_limit = list(
 		/obj/item/clothing/glasses,
-		/obj/item/reagent_containers/food/drinks/flask)
+		/obj/item/reagent_containers/food/drinks/flask,
+	)
 	cant_hold = list(
-		/obj/item/stack/)
+		/obj/item/stack,
+	)
 	max_storage_space = 2
 
 /obj/item/clothing/head/helmet/marine/Initialize()
@@ -308,7 +310,7 @@
 /obj/item/clothing/head/helmet/marine/leader
 	name = "\improper M11 pattern leader helmet"
 	desc = "A slightly fancier helmet for marine leaders. This one has cushioning to project your fragile brain."
-	soft_armor = list("melee" = 75, "bullet" = 65, "laser" = 40, "energy" = 40, "bomb" = 35, "bio" = 40, "rad" = 10, "fire" = 40, "acid" = 40)
+	soft_armor = list("melee" = 75, "bullet" = 65, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT|ITEM_ICE_PROTECTION)
 
 
@@ -367,14 +369,19 @@
 
 /obj/item/clothing/head/helmet/marine/pilot
 	name = "\improper M30 tactical helmet"
-	desc = "The M30 tactical helmet has an left eyepiece filter used to filter tactical data. It is required to fly the Alamo and Normandy dropships manually and in safety."
-	icon_state = "helmetp"
+	desc = "The M30 tactical helmet has an left eyepiece filter used to filter tactical data. It is used by pilots in the TGN. This one is in gunmetal blue."
+	icon_state = "helmetp2"
 	soft_armor = list("melee" = 65, "bullet" = 65, "laser" = 35, "energy" = 45, "bomb" = 30, "bio" = 45, "rad" = 15, "fire" = 45, "acid" = 45)
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS|HIDETOPHAIR
 	flags_marine_helmet = NONE
-	flags_item_map_variant = (ITEM_ICE_VARIANT)
+	flags_item_map_variant = null
+
+obj/item/clothing/head/helmet/marine/pilot/green
+	name = "\improper M30 tactical helmet"
+	desc = "The M30 tactical helmet has an left eyepiece filter used to filter tactical data. It is used by pilots in the TGN. This one is in green."
+	icon_state = "helmetp"
 
 
 /obj/item/clothing/head/helmet/marine/tanker
@@ -389,17 +396,17 @@
 	flags_marine_helmet = NONE
 	flags_item_map_variant = (ITEM_ICE_VARIANT)
 
-//=============================//PMCS\\==================================\\
-//=======================================================================\\
+/*=============================PMCS==================================
+=======================================================================*/
 
 /obj/item/clothing/head/helmet/marine/veteran
 	flags_item = SYNTH_RESTRICTED
 
 /obj/item/clothing/head/helmet/marine/veteran/PMC
-	name = "\improper PMC tactical cap"
-	desc = "A protective cap made from flexible kevlar. Standard issue for most security forms in the place of a helmet."
-	icon_state = "pmc_hat"
-	soft_armor = list("melee" = 55, "bullet" = 55, "laser" = 55, "energy" = 22, "bomb" = 12, "bio" = 40, "rad" = 5, "fire" = 22, "acid" = 50)
+	name = "\improper PMC tactical helmet"
+	desc = "A protective helmet made from flexible aramid materials. Standard issue protection for a lot of security firms."
+	icon_state = "pmc_helmet"
+	soft_armor = list("melee" = 55, "bullet" = 55, "laser" = 55, "energy" = 50, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = NONE
@@ -409,24 +416,24 @@
 	name = "\improper PMC beret"
 	desc = "The pinacle of fashion for any aspiring mercenary leader. Designed to protect the head from light impacts."
 	icon_state = "officer_hat"
-	soft_armor = list("melee" = 60, "bullet" = 60, "laser" = 60, "energy" = 22, "bomb" = 12, "bio" = 45, "rad" = 5, "fire" = 22, "acid" = 55)
+	soft_armor = list("melee" = 60, "bullet" = 60, "laser" = 60, "energy" = 50, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 55)
 
 /obj/item/clothing/head/helmet/marine/veteran/PMC/sniper
 	name = "\improper PMC sniper helmet"
 	desc = "A helmet worn by PMC Marksmen"
 	icon_state = "pmc_sniper_hat"
 	flags_armor_protection = HEAD|FACE|EYES
-	soft_armor = list("melee" = 55, "bullet" = 65, "laser" = 45, "energy" = 55, "bomb" = 60, "bio" = 45, "rad" = 10, "fire" = 55, "acid" = 55)
+	soft_armor = list("melee" = 55, "bullet" = 65, "laser" = 50, "energy" = 55, "bomb" = 60, "bio" = 50, "rad" = 50, "fire" = 55, "acid" = 55)
 	flags_inventory = COVEREYES|COVERMOUTH|BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS|HIDEEYES|HIDEFACE|HIDEMASK|HIDEALLHAIR
 	flags_marine_helmet = HELMET_DAMAGE_OVERLAY
 
 /obj/item/clothing/head/helmet/marine/veteran/PMC/gunner
 	name = "\improper PMC gunner helmet"
-	desc = "A modification of the standard Armat Systems M3 armor."
-	icon_state = "heavy_helmet"
+	desc = "A modification of the standard helmet used by a lot of security firms, has a visor for added protection."
+	icon_state = "pmc_heavyhelmet"
 	flags_armor_protection = HEAD|FACE|EYES
-	soft_armor = list("melee" = 65, "bullet" = 75, "laser" = 75, "energy" = 60, "bomb" = 70, "bio" = 50, "rad" = 10, "fire" = 60, "acid" = 60)
+	soft_armor = list("melee" = 65, "bullet" = 75, "laser" = 75, "energy" = 60, "bomb" = 70, "bio" = 50, "rad" = 50, "fire" = 60, "acid" = 60)
 	flags_inventory = COVEREYES|COVERMOUTH|BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS|HIDEEYES|HIDEFACE|HIDEMASK|HIDEALLHAIR
 	flags_marine_helmet = HELMET_DAMAGE_OVERLAY
@@ -443,10 +450,10 @@
 	anti_hug = 50
 	resistance_flags = UNACIDABLE
 
-//==========================//DISTRESS\\=================================\\
-//=======================================================================\\
+/*==========================DISTRESS=================================
+=======================================================================*/
 
-//=========================//Imperium\\==================================\\
+/*=========================Imperium==================================*/
 
 /obj/item/clothing/head/helmet/marine/imperial
 	name = "\improper Imperial Guard flak helmet"
@@ -454,13 +461,13 @@
 	icon_state = "guardhelm"
 	item_state = "guardhelm"
 	flags_item = SYNTH_RESTRICTED
-	soft_armor = list("melee" = 85, "bullet" = 75, "laser" = 70, "energy" = 70, "bomb" = 60, "bio" = 0, "rad" = 0, "fire" = 25, "acid" = 25)
+	soft_armor = list("melee" = 85, "bullet" = 75, "laser" = 70, "energy" = 70, "bomb" = 60, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
 
 /obj/item/clothing/head/helmet/marine/imperial/sergeant
 	name = "\improper Imperial Guard sergeant helmet"
 	desc = "A helmet that goes with the sergeant armour, unlike the flak variant, this one will actually protect you."
 	icon_state = "guardhelm"
-	soft_armor = list("melee" = 85, "bullet" = 85, "laser" = 85, "energy" = 85, "bomb" = 85, "bio" = 25, "rad" = 25, "fire" = 80, "acid" = 80)
+	soft_armor = list("melee" = 85, "bullet" = 85, "laser" = 85, "energy" = 85, "bomb" = 85, "bio" = 50, "rad" = 50, "fire" = 80, "acid" = 80)
 	pockets = /obj/item/storage/internal/imperialhelmet
 
 /obj/item/storage/internal/imperialhelmet
@@ -477,7 +484,7 @@
 	name = "\improper salvaged Space Marine helmet"
 	desc = "A helmet that goes with the Space Marine power armour, this one has been salvaged from the battlefield."
 	//icon_state
-	soft_armor = list("melee" = 75, "bullet" = 60, "laser" = 55, "energy" = 40, "bomb" = 45, "bio" = 15, "rad" = 15, "fire" = 40, "acid" = 40)
+	soft_armor = list("melee" = 75, "bullet" = 60, "laser" = 55, "energy" = 50, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
 	pockets = /obj/item/storage/internal/imperialhelmet
 
 /obj/item/clothing/head/helmet/marine/imperial/power/astartes
@@ -568,8 +575,8 @@
 	desc = "A cowl worn to conceal the face of a marksman in the jungle."
 	icon_state = "duragm"
 
-//===========================//HELGHAST - MERCENARY\\================================\\
-//=====================================================================\\
+/*===========================HELGHAST - MERCENARY================================
+=====================================================================*/
 
 /obj/item/clothing/head/helmet/marine/veteran/mercenary
 	name = "\improper K12 ceramic helmet"
@@ -603,7 +610,7 @@
 	desc = "A helmet with origns of heavily modified head protection used back in the mining colonies. Protection from threats is bad but it's better than nothing."
 	icon_state = "som_helmet"
 	item_state = "som_helmet"
-	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 22, "bomb" = 12, "bio" = 50, "rad" = 5, "fire" = 22, "acid" = 45)
+	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = NONE

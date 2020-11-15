@@ -58,8 +58,14 @@
 	. = ..()
 	H.moth_wings = pick(GLOB.moth_wings_list - "Burnt Off")
 
+/mob/living/carbon/human/species/vatgrown
+	race = "Vat-Grown"
+
 /mob/living/carbon/human/species/sectoid
 	race = "Sectoid"
 
 /mob/living/carbon/human/species/vatborn
 	race = "Vatborn"
+
+/mob/living/carbon/human/species/skeleton
+	race = "Skeleton"

@@ -136,7 +136,8 @@
 	storage_slots = 18
 	can_hold = list(
 		/obj/item/clothing/mask/cigarette,
-		/obj/item/tool/lighter)
+		/obj/item/tool/lighter,
+	)
 	icon_type = "cigarette"
 
 /obj/item/storage/fancy/cigarettes/Initialize(mapload, ...)

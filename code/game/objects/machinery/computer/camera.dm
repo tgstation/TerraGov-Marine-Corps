@@ -3,7 +3,7 @@
 	desc = "Used to access the various cameras on the station."
 	icon_state = "cameras"
 	circuit = /obj/item/circuitboard/computer/security
-	light_color = LIGHT_COLOR_RED
+	light_color = COLOR_RED
 	ui_x = 870
 	ui_y = 708
 

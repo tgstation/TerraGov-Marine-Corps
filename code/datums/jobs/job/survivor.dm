@@ -1,5 +1,6 @@
 /datum/job/survivor
 	title = "Generic Survivor"
+	supervisors = "anyone who might rescue you"
 	access = list(ACCESS_CIVILIAN_PUBLIC, ACCESS_CIVILIAN_RESEARCH, ACCESS_CIVILIAN_ENGINEERING, ACCESS_CIVILIAN_LOGISTICS)
 	minimal_access = list(ACCESS_CIVILIAN_PUBLIC, ACCESS_CIVILIAN_RESEARCH, ACCESS_CIVILIAN_ENGINEERING, ACCESS_CIVILIAN_LOGISTICS)
 	display_order = JOB_DISPLAY_ORDER_SURVIVOR
@@ -28,19 +29,37 @@
 	C.equip_to_slot_or_del(new /obj/item/clothing/glasses/welding(C), SLOT_GLASSES)
 	C.equip_to_slot_or_del(new /obj/item/storage/pouch/tools/full(C), SLOT_R_STORE)
 	C.equip_to_slot_or_del(new /obj/item/storage/pouch/survival/full(C), SLOT_L_STORE)
+	C.equip_to_slot_or_del(new /obj/item/weapon/combat_knife(C), SLOT_IN_BACKPACK)
+	C.equip_to_slot_or_del(new /obj/item/clothing/head/hardhat/rugged(C), SLOT_HEAD)
 
-	to_chat(M, "<h2>You are a survivor!</h2>")
 	switch(SSmapping.configs[GROUND_MAP].map_name)
 		if(MAP_PRISON_STATION)
-			to_chat(M, "<span class='notice'>You are a survivor of the attack on Fiorina Orbital Penitentiary. You worked or lived on the prison station, and managed to avoid the alien attacks.. until now.</span>")
+			to_chat(M, "<span class='notice'>You are a survivor of the attack on Fiorina Orbital Penitentiary. You worked or lived on the prison station, and managed to avoid the alien attacks... until now.</span>")
 		if(MAP_ICE_COLONY)
-			to_chat(M, "<span class='notice'>You are a survivor of the attack on the ice habitat. You worked or lived on the colony, and managed to avoid the alien attacks.. until now.</span>")
+			to_chat(M, "<span class='notice'>You are a survivor of the attack on the ice habitat. You worked or lived on the colony, and managed to avoid the alien attacks... until now.</span>")
 		if(MAP_BIG_RED)
-			to_chat(M, "<span class='notice'>You are a survivor of the attack on the colony. You worked or lived in the archaeology colony, and managed to avoid the alien attacks...until now.</span>")
+			to_chat(M, "<span class='notice'>You are a survivor of the attack on the colony. You worked or lived in the archaeology colony, and managed to avoid the alien attacks... until now.</span>")
 		if(MAP_LV_624)
 			to_chat(M, "<span class='notice'>You are a survivor of the attack on the colony. You suspected something was wrong and tried to warn others, but it was too late...</span>")
+		if(MAP_ICY_CAVES)
+			to_chat(M, "<span class='notice'>You are a survivor of the attack on the icy cave system. You worked or lived on the site, and managed to avoid the alien attacks... until now.</span>")
+		if(MAP_LAVA_OUTPOST)
+			to_chat(M, "<span class='notice'>You are a survivor of the attack on the outpost. You suspected something was wrong and tried to warn your fellow workers, but it was too late...</span>")
+		if(MAP_RESEARCH_OUTPOST)
+			to_chat(M, "<span class='notice'>You are a survivor of the attack on the outpost. But you question yourself: are you truely safe now?</span>")
+		if(MAP_MAGMOOR_DIGSITE)
+			to_chat(M, "<span class='notice'>You are a survivor of the attack on the Magmoor Digsite IV. You worked or lived on the digsite, and managed to avoid the alien attacks... until now.</span>")
 		else
 			to_chat(M, "<span class='notice'>Through a miracle you managed to survive the attack. But are you truly safe now?</span>")
+
+/datum/job/survivor/radio_help_message(mob/M)
+	. = ..()
+	to_chat(M, {"In whatever case you have been through, you are here to survive and get yourself rescued.
+You appreciate the support of TerraGov and Nanotrasen should you be rescued.
+You are not hostile to TGMC, nor you should oppose or disrupt their objective, unless an admin says otherwise.
+If you find any other survivors in the area, cooperate with them to increase your chances of survival.
+Depending on the job you've undertook, you may have additional skills to help others when needed.
+Good luck, but do not expect to survive."})
 
 
 //Assistant

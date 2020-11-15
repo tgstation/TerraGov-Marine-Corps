@@ -3,10 +3,6 @@
 	set background = 1
 	..()
 
-	if(stat != DEAD)
-		//Mutations and radiation
-		handle_mutations_and_radiation()
-
 	//Handle temperature/pressure differences between body and environment
 	handle_environment()
 
@@ -18,40 +14,6 @@
 
 /mob/living/brain/set_blurriness()
 	return
-
-/mob/living/brain/proc/handle_mutations_and_radiation()
-
-	if (radiation)
-		if (radiation > 100)
-			radiation = 100
-			if(!container)//If it's not in an MMI
-				to_chat(src, "<span class='warning'>You feel weak.</span>")
-			else//Fluff-wise, since the brain can't detect anything itself, the MMI handles thing like that
-				to_chat(src, "<span class='warning'>STATUS: CRITICAL AMOUNTS OF RADIATION DETECTED.</span>")
-
-		switch(radiation)
-			if(1 to 49)
-				radiation--
-				if(prob(25))
-					adjustToxLoss(1)
-					updatehealth()
-
-			if(50 to 74)
-				radiation -= 2
-				adjustToxLoss(1)
-				if(prob(5))
-					radiation -= 5
-					if(!container)
-						to_chat(src, "<span class='warning'>You feel weak.</span>")
-					else
-						to_chat(src, "<span class='warning'>STATUS: DANGEROUS LEVELS OF RADIATION DETECTED.</span>")
-				updatehealth()
-
-			if(75 to 100)
-				radiation -= 3
-				adjustToxLoss(3)
-				updatehealth()
-
 
 /mob/living/brain/proc/handle_environment()
 	if(!loc)

@@ -251,7 +251,6 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 	fire_stacks = 0
 
 	// shut down ongoing problems
-	radiation = 0
 	bodytemperature = get_standard_bodytemperature()
 	disabilities = 0
 
@@ -333,6 +332,7 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 	reagents.clear_reagents() //and clear all reagents in them
 	undefibbable = FALSE
 	chestburst = 0
+	headbitten = FALSE
 	update_body()
 	update_hair()
 	return ..()

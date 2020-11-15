@@ -269,7 +269,7 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "aN" = (
-/obj/machinery/vending/marine/cargo_guns,
+/obj/machinery/autolathe,
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "aO" = (

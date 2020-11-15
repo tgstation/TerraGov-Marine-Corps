@@ -85,7 +85,6 @@
 
 /turf/closed/brock/Initialize(mapload)
 	. = ..()
-	icon_state = setDir(pick(NORTH,SOUTH,EAST,WEST))
 	for(var/direction in GLOB.cardinals)
 		var/turf/turf_to_check = get_step(src, direction)
 		if(istype(turf_to_check, /turf/open))
@@ -335,6 +334,9 @@
 /turf/closed/shuttle/wall3/diagonal
 	icon_state = "diagonalWall3"
 
+/turf/closed/shuttle/wall4/diagonal
+	icon_state = "diag_gray"
+
 /turf/closed/shuttle/wall3/diagonal/white
 	icon_state = "diagonalWall3white"
 
@@ -374,6 +376,7 @@
 
 /turf/closed/shuttle/dropship2/transparent
 	opacity = FALSE
+
 
 /turf/closed/shuttle/escapepod
 	name = "wall"

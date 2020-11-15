@@ -27,7 +27,10 @@
 	evolution_threshold = 180
 	upgrade_threshold = 120
 
-	evolves_to = list(/mob/living/carbon/xenomorph/boiler, /mob/living/carbon/xenomorph/praetorian)
+	evolves_to = list(
+		/mob/living/carbon/xenomorph/boiler,
+		/mob/living/carbon/xenomorph/praetorian,
+	)
 	deevolves_to = /mob/living/carbon/xenomorph/sentinel
 
 	// *** Flags *** //
@@ -40,16 +43,17 @@
 	spit_delay = 1.3 SECONDS
 	spit_types = list(/datum/ammo/xeno/acid/medium) //Gotta give them their own version of heavy acid; kludgy but necessary as 100 plasma is way too costly.
 
-	acid_delay = 30 SECONDS //30 second delay on acid spray.
+
 
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
+		/datum/action/xeno_action/activable/headbite,
 		/datum/action/xeno_action/activable/corrosive_acid,
 		/datum/action/xeno_action/activable/xeno_spit,
 		/datum/action/xeno_action/activable/spray_acid/line,
-		)
+	)
 
 /datum/xeno_caste/spitter/young
 	upgrade_name = "Young"
@@ -84,7 +88,7 @@
 	// *** Ranged Attack *** //
 	spit_delay = 1.2 SECONDS
 
-	acid_delay = 30 SECONDS //30 second delay on acid spray.
+
 
 /datum/xeno_caste/spitter/elder
 	upgrade_name = "Elder"
@@ -117,12 +121,12 @@
 	// *** Ranged Attack *** //
 	spit_delay = 1.1 SECONDS
 
-	acid_delay = 30 SECONDS //30 second delay on acid spray.
+
 
 /datum/xeno_caste/spitter/ancient
 	upgrade_name = "Ancient"
 	caste_desc = "A ranged destruction machine."
-	ancient_message = "We are a master of ranged stuns and damage. Let's go fourth and generate salt."
+	ancient_message = "We are a master of ranged stuns and damage. Go forth and conquer."
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
@@ -150,5 +154,5 @@
 	// *** Ranged Attack *** //
 	spit_delay = 1 SECONDS
 
-	acid_delay = 30 SECONDS //30 second delay on acid spray.
+
 

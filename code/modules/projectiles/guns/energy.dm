@@ -134,6 +134,24 @@
 	scatter_unwielded = 80 //Heavy and unwieldy
 	damage_falloff_mult = 0.5
 
+/obj/item/weapon/gun/energy/lasgun/tesla
+	name = "\improper Energy Rifle"
+	desc = "A wieldy rifle that fires balls of elecricity that shock all those near them. Handle only with insulated clothing. Reloaded with power cells."
+	icon_state = "m43"
+	item_state = "m43"
+	fire_sound = 'sound/weapons/guns/fire/tesla.ogg'
+	ammo = /datum/ammo/energy/tesla
+	cell_type = /obj/item/cell/lasgun/tesla
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_ENERGY|GUN_AMMO_COUNTER
+	aim_slowdown = 0.75
+	wield_delay = 1 SECONDS
+	gun_skill_category = GUN_SKILL_RIFLES
+
+	charge_cost = 500
+	fire_delay = 4 SECONDS
+	accuracy_mult = 1.5
+	accuracy_mult_unwielded = 0.6
+	damage_falloff_mult = 0.5
 
 //-------------------------------------------------------
 //M43 Sunfury Lasgun MK1
@@ -151,26 +169,27 @@
 	cell_type = /obj/item/cell/lasgun/M43
 	charge_cost = ENERGY_STANDARD_AMMO_COST
 	attachable_allowed = list(
-						/obj/item/attachable/bayonet,
-						/obj/item/attachable/bayonetknife,
-						/obj/item/attachable/reddot,
-						/obj/item/attachable/verticalgrip,
-						/obj/item/attachable/angledgrip,
-						/obj/item/attachable/lasersight,
-						/obj/item/attachable/gyro,
-						/obj/item/attachable/flashlight,
-						/obj/item/attachable/bipod,
-						/obj/item/attachable/magnetic_harness,
-						/obj/item/attachable/attached_gun/grenade,
-						/obj/item/attachable/scope,
-						/obj/item/attachable/attached_gun/flamer,
-						/obj/item/attachable/attached_gun/shotgun,
-						/obj/item/attachable/scope/mini,
-						/obj/item/attachable/focuslens,
-						/obj/item/attachable/widelens,
-						/obj/item/attachable/heatlens,
-						/obj/item/attachable/efflens,
-						/obj/item/attachable/pulselens)
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/bipod,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/attached_gun/grenade,
+		/obj/item/attachable/scope,
+		/obj/item/attachable/attached_gun/flamer,
+		/obj/item/attachable/attached_gun/shotgun,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/focuslens,
+		/obj/item/attachable/widelens,
+		/obj/item/attachable/heatlens,
+		/obj/item/attachable/efflens,
+		/obj/item/attachable/pulselens,
+	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
 	starting_attachment_types = list(/obj/item/attachable/attached_gun/grenade, /obj/item/attachable/stock/lasgun)
@@ -426,21 +445,23 @@
 	cell_type = /obj/item/cell/lasgun/lasrifle
 	charge_cost = 20
 	attachable_allowed = list(
-						/obj/item/attachable/bayonet,
-						/obj/item/attachable/bayonetknife,
-						/obj/item/attachable/reddot,
-						/obj/item/attachable/verticalgrip,
-						/obj/item/attachable/angledgrip,
-						/obj/item/attachable/lasersight,
-						/obj/item/attachable/gyro,
-						/obj/item/attachable/flashlight,
-						/obj/item/attachable/bipod,
-						/obj/item/attachable/magnetic_harness,
-						/obj/item/attachable/attached_gun/grenade,
-						/obj/item/attachable/scope,
-						/obj/item/attachable/attached_gun/flamer,
-						/obj/item/attachable/attached_gun/shotgun,
-						/obj/item/attachable/scope/mini)
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/bipod,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/attached_gun/grenade,
+		/obj/item/attachable/scope,
+		/obj/item/attachable/scope/marine,
+		/obj/item/attachable/attached_gun/flamer,
+		/obj/item/attachable/attached_gun/shotgun,
+		/obj/item/attachable/scope/mini,
+	)
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 34, "muzzle_y" = 14,"rail_x" = 18, "rail_y" = 18, "under_x" = 23, "under_y" = 10, "stock_x" = 22, "stock_y" = 12)
 
@@ -450,11 +471,12 @@
 	fire_delay = 3
 	var/mode_index = 1
 	var/static/list/datum/lasrifle/base/mode_list = list(
-						/datum/lasrifle/base/standard,
-						/datum/lasrifle/base/auto,
-						/datum/lasrifle/base/overcharge,
-						/datum/lasrifle/base/heat,
-						/datum/lasrifle/base/spread)
+		/datum/lasrifle/base/standard,
+		/datum/lasrifle/base/disabler,
+		/datum/lasrifle/base/overcharge,
+		/datum/lasrifle/base/heat,
+		/datum/lasrifle/base/spread,
+	)
 
 /datum/lasrifle/base
 	var/charge_cost = 0
@@ -468,17 +490,18 @@
 /datum/lasrifle/base/standard
 	charge_cost = 20
 	ammo = /datum/ammo/energy/lasgun/M43
-	fire_delay = 3
-	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
-	message_to_user = "You set the Lasrifle's charge mode to standard fire."
-	icon_state = "tx73"
-
-/datum/lasrifle/base/auto
-	charge_cost = 20
-	ammo = /datum/ammo/energy/lasgun/M43
 	fire_delay = 2
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
-	message_to_user = "You set the Lasrifle's charge mode to automatic fire."
+	message_to_user = "You set the Lasrifle's charge mode to standard fire."
+	fire_mode = GUN_FIREMODE_AUTOMATIC
+	icon_state = "tx73"
+
+/datum/lasrifle/base/disabler
+	charge_cost = 80
+	ammo = /datum/ammo/energy/lasgun/M43/disabler
+	fire_delay = 10
+	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
+	message_to_user = "You set the Lasrifle's charge mode to disabler fire."
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	icon_state = "tx73_auto"
 

@@ -97,9 +97,9 @@ They're all essentially identical when it comes to getting the job done.
 	if(!source.current_rounds)
 		to_chat(user, "<span class='warning'>\The [source] is empty.</span>")
 		return
-	
+
 	//using handfuls; and filling internal mags has no delay.
-	if(!istype(source, /obj/item/ammo_magazine/handful) && !istype(src, /obj/item/ammo_magazine/internal) ) 
+	if(!istype(source, /obj/item/ammo_magazine/handful) && !istype(src, /obj/item/ammo_magazine/internal) )
 		to_chat(user, "<span class='notice'>You start refilling [src] with [source].</span>")
 		if(!do_after(user, 1.5 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 			return
@@ -109,14 +109,14 @@ They're all essentially identical when it comes to getting the job done.
 	var/S = clamp(min(transfer_amount, max_rounds - current_rounds), 0, source.current_rounds)
 	source.current_rounds -= S
 	current_rounds += S
-	
+
 	if(source.current_rounds <= 0 && istype(source, /obj/item/ammo_magazine/handful)) //We want to delete it if it's a handful.
 		if(user)
 			user.temporarilyRemoveItemFromInventory(source)
 		qdel(source) //Dangerous. Can mean future procs break if they reference the source. Have to account for this.
-	else 
+	else
 		source.update_icon()
-	
+
 	update_icon(S)
 	return S // We return the number transferred if it was successful.
 
@@ -152,7 +152,7 @@ They're all essentially identical when it comes to getting the job done.
 /obj/item/ammo_magazine/flamer_fire_act()
 	if(!current_rounds)
 		return
-	explosion(loc, 0, 0, 1, 2, throw_range = FALSE) //blow it up.
+	explosion(loc, 0, 0, 1, 2, throw_range = FALSE, small_animation = TRUE) //blow it up.
 	qdel(src)
 
 //Magazines that actually cannot be removed from the firearm. Functionally the same as the regular thing, but they do have three extra vars.
@@ -323,8 +323,8 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	flags_equip_slot = ITEM_SLOT_BACK
 	var/base_icon_state = "big_ammo_box"
 	var/default_ammo = /datum/ammo/bullet/rifle
-	var/bullet_amount = 600
-	var/max_bullet_amount = 600
+	var/bullet_amount = 800
+	var/max_bullet_amount = 800
 	var/caliber = "10x24mm caseless"
 
 /obj/item/big_ammo_box/update_icon()
@@ -391,7 +391,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 /obj/item/big_ammo_box/flamer_fire_act()
 	if(!bullet_amount)
 		return
-	explosion(loc, 0, 0, 1, 2, throw_range = FALSE) //blow it up.
+	explosion(loc, 0, 0, 1, 2, throw_range = FALSE, small_animation = TRUE) //blow it up.
 	qdel(src)
 
 
@@ -402,8 +402,8 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	w_class = WEIGHT_CLASS_HUGE
 	icon = 'icons/obj/items/ammo.dmi'
 	icon_state = "ammobox"
-	var/magazine_amount = 30
-	var/max_magazine_amount = 30
+	var/magazine_amount = 40
+	var/max_magazine_amount = 40
 	var/max_magazine_rounds = 32
 	var/ammo_type = /datum/ammo/bullet/rifle
 	var/magazine_type = /obj/item/ammo_magazine/rifle/standard_carbine
@@ -604,28 +604,36 @@ Turn() or Shift() as there is virtually no overhead. ~N
 /obj/item/big_ammo_box/smg
 	name = "big ammo box (10x20mm)"
 	caliber = "10x20mm"
-	icon_state = "big_ammo_box_m39"
-	base_icon_state = "big_ammo_box_m39"
+	icon_state = "big_ammo_box_m25"
+	base_icon_state = "big_ammo_box_m25"
 	default_ammo = /datum/ammo/bullet/smg
 
 
 /obj/item/ammobox/ap
-	name = "M41A1 AP Ammo Box"
+	name = "M412 AP Ammo Box"
 	icon_state = "ammoboxap"
 	ammo_type = /datum/ammo/bullet/rifle/ap
 	magazine_type = /obj/item/ammo_magazine/rifle/ap
 
 /obj/item/ammobox/ext
-	name = "M41A1 Extended Ammo Box"
+	name = "M412 Extended Ammo Box"
 	icon_state = "ammoboxext"
 	ammo_type = /datum/ammo/bullet/rifle
 	magazine_type = /obj/item/ammo_magazine/rifle/extended
 
 /obj/item/ammobox/standard_smg
 	name = "T-90 SMG Ammo Box"
-	icon_state = "ammoboxm39"
+	desc = "A box filled with smg ammo and a loader for T-90 magazines"
+	icon_state = "ammoboxm25"
 	ammo_type = /datum/ammo/bullet/smg
 	magazine_type = /obj/item/ammo_magazine/smg/standard_smg
+
+/obj/item/ammobox/standard_machinepistol
+	name = "T-19 SMG Ammo Box"
+	desc = "A box filled with smg ammo and a loader for T-19 magazines"
+	icon_state = "ammoboxm25"
+	ammo_type = /datum/ammo/bullet/smg
+	magazine_type = /obj/item/ammo_magazine/smg/standard_machinepistol
 
 /obj/item/ammobox/standard_pistol
 	name = "TP-14 Pistol Ammo Box"
@@ -647,21 +655,21 @@ Turn() or Shift() as there is virtually no overhead. ~N
 
 /obj/item/ammobox/standard_lmg
 	name = "T-42 LMG Ammo Box"
-	icon_state = "ammoboxm39ext"
+	icon_state = "ammoboxm25ext"
 	ammo_type = /datum/ammo/bullet/rifle
 	magazine_type = /obj/item/ammo_magazine/standard_lmg
 
-/obj/item/ammobox/m39ap
-	name = "M39 AP Ammo Box"
-	icon_state = "ammoboxm39ap"
+/obj/item/ammobox/m25ap
+	name = "M25 AP Ammo Box"
+	icon_state = "ammoboxm25ap"
 	ammo_type = /datum/ammo/bullet/smg/ap
-	magazine_type = /obj/item/ammo_magazine/smg/m39/ap
+	magazine_type = /obj/item/ammo_magazine/smg/m25/ap
 
-/obj/item/ammobox/m39ext
-	name = "M39 Extended Ammo Box"
-	icon_state = "ammoboxm39ext"
+/obj/item/ammobox/m25ext
+	name = "M25 Extended Ammo Box"
+	icon_state = "ammoboxm25ext"
 	ammo_type = /datum/ammo/bullet/smg
-	magazine_type = /obj/item/ammo_magazine/smg/m39/extended
+	magazine_type = /obj/item/ammo_magazine/smg/m25/extended
 
 
 /obj/item/shotgunbox/buckshot

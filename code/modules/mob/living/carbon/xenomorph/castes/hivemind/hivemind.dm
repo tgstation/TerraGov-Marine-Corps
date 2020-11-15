@@ -20,7 +20,6 @@
 	tier = XENO_TIER_ZERO
 	upgrade = XENO_UPGRADE_ZERO
 
-	mouse_opacity = MOUSE_OPACITY_OPAQUE
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	see_invisible = SEE_INVISIBLE_LIVING
 	invisibility = INVISIBILITY_MAXIMUM
@@ -34,27 +33,57 @@
 	var/obj/effect/alien/hivemindcore/core
 
 /mob/living/carbon/xenomorph/hivemind/Initialize(mapload)
-    . = ..()
-    core = new(loc)
-    core.parent = src
+	. = ..()
+	core = new(loc)
+	core.parent = src
+	RegisterSignal(src, COMSIG_LIVING_WEEDS_ADJACENT_REMOVED, .proc/check_weeds_and_move)
+	RegisterSignal(src, COMSIG_XENOMORPH_CORE_RETURN, .proc/return_to_core)
+
+/mob/living/carbon/xenomorph/hivemind/Destroy()
+	if(!QDELETED(core))
+		QDEL_NULL(core)
+	else
+		core = null
+	return ..()
+
+/obj/flamer_fire/CanPass(atom/movable/mover, turf/target)
+	if(isxenohivemind(mover))
+		return FALSE
+	return ..()
+
+/mob/living/carbon/xenomorph/hivemind/flamer_fire_act()
+	forceMove(get_turf(core))
+	to_chat(src, "<span class='xenonotice'>We were on top of fire, we got moved to our core.")
+
+/mob/living/carbon/xenomorph/hivemind/proc/check_weeds(turf/T)
+	SHOULD_BE_PURE(TRUE)
+	. = TRUE
+	if(locate(/obj/flamer_fire) in T)
+		return FALSE
+	for(var/obj/effect/alien/weeds/W in range(1, T ? T : get_turf(src)))
+		if(QDESTROYING(W))
+			continue
+		return
+	return FALSE
+
+/mob/living/carbon/xenomorph/hivemind/proc/check_weeds_and_move(turf/T)
+	if(check_weeds(T))
+		return TRUE
+	return_to_core()
+	to_chat(src, "<span class='xenonotice'>We had no weeds nearby, we got moved to our core.")
+	return FALSE
+
+/mob/living/carbon/xenomorph/hivemind/proc/return_to_core()
+	forceMove(get_turf(core))
 
 /mob/living/carbon/xenomorph/hivemind/Move(NewLoc, Dir = 0)
-	var/obj/effect/alien/weeds/W = locate() in range("3x3", NewLoc)
-	if(!W)
-		var/obj/effect/alien/weeds/nearby = locate() in range("3x3", loc)
-		if(!nearby)
-			// If we run out of weeds just teleport to some random weeds.
-			forceMove(get_turf(core))
+	if(!check_weeds(NewLoc))
 		return FALSE
 
+	// FIXME: Port canpass refactor from tg
 	// Don't allow them over the timed_late doors
 	var/obj/machinery/door/poddoor/timed_late/door = locate() in NewLoc
 	if(door && !door.CanPass(src, NewLoc))
-		return FALSE
-
-	// Hiveminds are scared of fire.
-	var/obj/flamer_fire/fire_obj = locate() in range("3x3", NewLoc)
-	if(istype(fire_obj))
 		return FALSE
 
 	forceMove(NewLoc)
@@ -71,11 +100,10 @@
 		var/mob/living/carbon/xenomorph/xeno = locate(href_list["hivemind_jump"])
 		if(!istype(xeno))
 			return
-		var/obj/effect/alien/weeds/nearby_weed = locate() in range("3x3", get_turf(xeno))
-		if(!istype(nearby_weed))
+		if(!check_weeds(get_turf(xeno)))
 			to_chat(src, "<span class='warning'>They are not near any weeds we can jump to.</span>")
 			return
-		forceMove(get_turf(nearby_weed))
+		forceMove(get_turf(xeno))
 
 /// Hivemind just doesn't have any icons to update, disabled for now
 /mob/living/carbon/xenomorph/hivemind/update_icons()
@@ -141,7 +169,10 @@
 	to_chat(parent, "<span class='xenohighdanger'>Your core has been destroyed!</span>")
 	xeno_message("<span class='xenoannounce'>A sudden tremor ripples through the hive... \the [parent] has been slain!</span>", 2, parent.hivenumber)
 	parent.ghostize()
-	QDEL_NULL(parent)
+	if(!QDELETED(parent))
+		QDEL_NULL(parent)
+	else
+		parent = null
 	return ..()
 
 //hivemind cores

@@ -22,7 +22,7 @@
 
 /obj/item/binoculars/tactical
 	name = "tactical binoculars"
-	desc = "A pair of binoculars, with a laser targeting function. Ctrl+Click to target something."
+	desc = "A pair of binoculars, with a laser targeting function. Alt+Click to toggle mode. Ctrl+Click when using to target something."
 	var/laser_cooldown = 0
 	var/cooldown_duration = 200 //20 seconds
 	var/obj/effect/overlay/temp/laser_target/laser
@@ -112,35 +112,34 @@
 	else
 		overlays += "binoculars_laser"
 
-/obj/item/binoculars/tactical/verb/toggle_mode()
+/obj/item/binoculars/tactical/AltClick(mob/user)
+	. = ..()
+	toggle_mode(user)
+
+/obj/item/binoculars/tactical/verb/toggle_mode(mob/user)
 	set category = "Object"
 	set name = "Toggle Laser Mode"
-	var/mob/living/user
-	if(isliving(loc))
+	if(!user && isliving(loc))
 		user = loc
-	else
+	if(zoom)
 		return
-
 	if(!changable)
 		to_chat(user, "These binoculars only have one mode.")
 		return
-
-	if(!zoom)
-		mode += 1
-		if(mode > MODE_ORBITAL)
-			mode = MODE_CAS
-		switch(mode)
-			if(MODE_CAS)
-				to_chat(user, "<span class='notice'>You switch [src] to CAS marking mode.</span>")
-			if(MODE_RANGE_FINDER)
-				to_chat(user, "<span class='notice'>You switch [src] to range finder mode.</span>")
-			if(MODE_RAILGUN)
-				to_chat(user, "<span class='notice'>You switch [src] to railgun targeting mode.</span>")
-			if(MODE_ORBITAL)
-				to_chat(user, "<span class='notice'>You switch [src] to orbital bombardment targeting mode.</span>")
-
-		update_icon()
-		playsound(user, 'sound/items/binoculars.ogg', 15, 1)
+	mode += 1
+	if(mode > MODE_ORBITAL)
+		mode = MODE_CAS
+	switch(mode)
+		if(MODE_CAS)
+			to_chat(user, "<span class='notice'>You switch [src] to CAS marking mode.</span>")
+		if(MODE_RANGE_FINDER)
+			to_chat(user, "<span class='notice'>You switch [src] to range finder mode.</span>")
+		if(MODE_RAILGUN)
+			to_chat(user, "<span class='notice'>You switch [src] to railgun targeting mode.</span>")
+		if(MODE_ORBITAL)
+			to_chat(user, "<span class='notice'>You switch [src] to orbital bombardment targeting mode.</span>")
+	update_icon()
+	playsound(user, 'sound/items/binoculars.ogg', 15, 1)
 
 /obj/item/binoculars/tactical/proc/acquire_target(atom/A, mob/living/carbon/human/user)
 	set waitfor = 0
@@ -155,6 +154,10 @@
 
 	if(user.client.eye != src)
 		to_chat(user, "<span class='warning'>You can't focus properly through \the [src] while looking through something else.</span>")
+		return
+
+	if(!can_see(user, A, 25))
+		to_chat(user, "<span class='warning'>You can't see anything there.</span>")
 		return
 
 	if(!user.mind)

@@ -24,11 +24,11 @@
 	storage_slots = 4
 	max_storage_space = 16
 	bypass_w_limit = list(
-					/obj/item/turret_top,
-					/obj/item/turret_tripod,
-					/obj/item/cell,
-					/obj/item/ammo_magazine/sentry,
-					)
+		/obj/item/turret_top,
+		/obj/item/turret_tripod,
+		/obj/item/cell,
+		/obj/item/ammo_magazine/sentry,
+	)
 
 /obj/item/storage/box/sentry/Initialize()
 	. = ..()
@@ -234,8 +234,8 @@
 	var/max_burst = 6
 	var/min_burst = 2
 	var/atom/target = null
-	obj_integrity = 300
-	max_integrity = 300
+	obj_integrity = 150
+	max_integrity = 150
 	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 100, "rad" = 0, "fire" = 80, "acid" = 50)
 	machine_stat = 0 //Used just like mob.stat
 	var/datum/effect_system/spark_spread/spark_system //The spark system, used for generating... sparks?
@@ -1014,7 +1014,7 @@
 		if(path.len)
 			var/blocked = FALSE
 			for(T in path)
-				if(T.opacity || T.density && T.throwpass == FALSE)
+				if(IS_OPAQUE_TURF(T) || T.density && T.throwpass == FALSE)
 					blocked = TRUE
 					break //LoF Broken; stop checking; we can't proceed further.
 
@@ -1182,13 +1182,13 @@
 	burst_size = 3
 	min_burst = 2
 	max_burst = 5
-	obj_integrity = 200
-	max_integrity = 200
+	obj_integrity = 100
+	max_integrity = 100
 	rounds = 500
 	rounds_max = 500
 	knockdown_threshold = 100 //lighter, not as well secured.
 	work_time = 10 //significantly faster than the big sentry
-	ammo = /datum/ammo/bullet/turret/mini //Similar to M39 AP rounds.
+	ammo = /datum/ammo/bullet/turret/mini //Similar to M25 AP rounds.
 	magazine_type = /obj/item/ammo_magazine/minisentry
 
 /obj/item/storage/box/sentry/Initialize(mapload, ...)

@@ -5,7 +5,7 @@
 	icon_state = "req_tablet_off"
 	req_access = list(ACCESS_NT_CORPORATE)
 	flags_equip_slot = ITEM_SLOT_POCKET
-	w_class = WEIGHT_CLASS_NORMAL
+	w_class = WEIGHT_CLASS_SMALL
 
 	var/ui_x = 870
 	var/ui_y = 708

@@ -38,7 +38,20 @@
 
 	var/datum/component/orbiter/orbiting
 
+	///Lazylist to keep track on the sources of illumination.
+	var/list/affected_dynamic_lights
+	///Highest-intensity light affecting us, which determines our visibility.
+	var/affecting_dynamic_lumi = 0
+
 //===========================================================================
+/atom/movable/Initialize(mapload, ...)
+	. = ..()
+	if(opacity)
+		AddElement(/datum/element/light_blocking)
+	if(light_system == MOVABLE_LIGHT)
+		AddComponent(/datum/component/overlay_lighting)
+
+
 /atom/movable/Destroy()
 	QDEL_NULL(proximity_monitor)
 	QDEL_NULL(language_holder)
@@ -876,6 +889,8 @@
 
 
 /atom/movable/proc/resisted_against(datum/source) //COMSIG_LIVING_DO_RESIST
+	SIGNAL_HANDLER_DOES_SLEEP
+
 	var/mob/resisting_mob = source
 	if(resisting_mob.restrained(RESTRAINED_XENO_NEST))
 		return FALSE

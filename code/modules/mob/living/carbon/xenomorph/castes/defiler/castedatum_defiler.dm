@@ -40,13 +40,14 @@
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
+		/datum/action/xeno_action/activable/headbite,
 		/datum/action/xeno_action/plant_weeds,
 		/datum/action/xeno_action/activable/larval_growth_sting/defiler,
 		/datum/action/xeno_action/activable/neurotox_sting,
 		/datum/action/xeno_action/activable/inject_egg_neurogas,
 		/datum/action/xeno_action/activable/emit_neurogas,
-		/datum/action/xeno_action/toggle_pheromones
-		)
+		/datum/action/xeno_action/toggle_pheromones,
+	)
 
 	// *** Pheromones *** //
 	aura_strength = 1.7 //Defilers aura begins at 1.7 and ends at 2.6. It's .1 better than a carrier at ancient.
