@@ -470,8 +470,6 @@
 
 	X.face_atom(M) //Face towards the target so we don't look silly
 
-	var/name = M.name
-
 	to_chat(X, "<span class='xenodanger'>We prepare to psychically mark [M.name] as our quarry.</span>")
 
 	if(!do_after(X, HUNTER_MARK_WINDUP, TRUE, target, BUSY_ICON_HOSTILE)) //Slight wind up
@@ -484,7 +482,7 @@
 	X.hunter_mark_target = M //Set our target
 	RegisterSignal(X.hunter_mark_target, COMSIG_PARENT_PREQDELETED, .proc/unset_target) //For var clean up
 
-	to_chat(X, "<span class='xenodanger'>We psychically mark [name] as our quarry.</span>")
+	to_chat(X, "<span class='xenodanger'>We psychically mark [M.name] as our quarry.</span>")
 	X.playsound_local(X, 'sound/effects/ghost.ogg', 25, 0, 1)
 
 	succeed_activate()

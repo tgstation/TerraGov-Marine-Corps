@@ -450,12 +450,16 @@
 	var/acid_damage = 2 * toxpwr * REM //2 * 1.5 * 0.5 = 1.5
 	L.take_limb_damage(acid_damage, acid_damage) //REM being 0.5, so 3 damage per tick (1.5 brute + 1.5 burn + 0.75 toxin) * 2 = 6.75 damage / sec
 	L.reagent_pain_modifier -= PAIN_REDUCTION_HEAVY //Internal acid is pretty painful
-	if(ishuman(L))
-		var/mob/living/carbon/human/H = L
-		if(prob(meltprob * 0.5)) //Internal acid is pretty painful
-			if(!H.species || !CHECK_BITFIELD(H.species.species_flags, NO_PAIN))
-				H.emote("scream")
-				to_chat(pick("<span class='highdanger'>Your blood feels like it's on fire!</span>","<span class='highdanger'>It feels like your flesh is burning from the inside out!</span>"))
+	if(!ishuman(L))
+		return ..()
+
+	var/mob/living/carbon/human/H = L
+	if(!prob(meltprob * 0.5))
+		return ..()
+
+	if(!H.species || !CHECK_BITFIELD(H.species.species_flags, NO_PAIN)) //Internal acid is pretty painful
+		H.emote("scream")
+		to_chat(pick("<span class='highdanger'>Your insides feel molten!</span>","<span class='highdanger'>Your blood feels like it's on fire!</span>","<span class='highdanger'>It feels like your flesh is burning from the inside out!</span>"))
 
 	return ..()
 
