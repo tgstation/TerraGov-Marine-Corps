@@ -214,8 +214,7 @@
 	R.visible_message("<span class='warning'>[R.name] begins to move erratically!</span>", \
 	"<span class='xenodanger'>We move erratically, making us impossible to hit with projectiles; the next [RUNNER_EVASION_STACKS] projectiles that would hit us will now miss.</span>")
 
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, R, "<span class='highdanger'>We begin to slow as we tire.</span>"), RUNNER_EVASION_DURATION * 0.7)
-	addtimer(CALLBACK(R, /mob/.proc/playsound_local, R, 'sound/voice/hiss4.ogg', 50), RUNNER_EVASION_DURATION * 0.7)
+	addtimer(CALLBACK(src, .proc/evasion_warning), RUNNER_EVASION_DURATION * 0.7) //Warn the runner when the duration is about to expire.
 	addtimer(CALLBACK(src, .proc/evasion_deactivate), RUNNER_EVASION_DURATION)
 
 	R.evasion_stacks = RUNNER_EVASION_STACKS
@@ -228,9 +227,6 @@
 
 
 /datum/action/xeno_action/evasion/proc/evasion_deactivate()
-
-	if(!owner) //Sanity, as this is a deferred proc
-		return
 
 	var/mob/living/carbon/xenomorph/runner/R = owner
 	if(R.evasion_stacks) //If our evasion stacks are already depleted, don't tell us again.
@@ -245,6 +241,11 @@
 	to_chat(owner, "<span class='xenonotice'>We are able to take evasive action again.</span>")
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
+
+/datum/action/xeno_action/evasion/proc/evasion_warning()
+
+	to_chat(owner,"<span class='highdanger'>We begin to slow down as we tire. We can only keep this up for [RUNNER_EVASION_DURATION * 0.7 * 0.1] more seconds!</span>")
+	owner.playsound_local(owner, 'sound/voice/hiss4.ogg', 50, 0, 1)
 
 
 /mob/living/carbon/xenomorph/runner/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
