@@ -1,0 +1,5 @@
+author: "Wayland-Smithy"
+delete-after: True
+changes: 
+  - bugfix: "Fixed miniflamer flames going through solid walls."
+  - balance: "Greatly increased the independent cooldown between miniflamer uses."
