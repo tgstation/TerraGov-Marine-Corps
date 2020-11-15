@@ -484,7 +484,7 @@
 	var/fire_delay = 0
 	var/fire_sound = null
 	var/message_to_user = ""
-	var/fire_mode = GUN_FIREMODE_AUTOMATIC
+	var/fire_mode = GUN_FIREMODE_SEMIAUTO
 	var/icon_state = "tx73"
 
 /datum/lasrifle/base/standard
@@ -497,7 +497,7 @@
 	icon_state = "tx73"
 
 /datum/lasrifle/base/disabler
-	charge_cost = 40
+	charge_cost = 80
 	ammo = /datum/ammo/energy/lasgun/M43/disabler
 	fire_delay = 10
 	fire_sound = 'sound/weapons/guns/fire/disabler.ogg'
@@ -511,7 +511,6 @@
 	fire_delay = 10
 	fire_sound = 'sound/weapons/guns/fire/plasma_precision_3.ogg'
 	message_to_user = "You set the Lasrifle's charge mode to overcharge."
-	fire_mode = GUN_FIREMODE_SEMIAUTO
 	icon_state = "tx73_overcharge"
 
 /datum/lasrifle/base/heat
@@ -520,7 +519,6 @@
 	fire_delay = 15
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
 	message_to_user = "You set the Lasrifle's charge mode to wave heat."
-	fire_mode = GUN_FIREMODE_SEMIAUTO
 	icon_state = "tx73_heat"
 
 /datum/lasrifle/base/spread
@@ -529,7 +527,6 @@
 	fire_delay = 8
 	fire_sound = 'sound/weapons/guns/fire/laser_rifle_2.ogg'
 	message_to_user = "You set the Lasrifle's charge mode to spread."
-	fire_mode = GUN_FIREMODE_SEMIAUTO
 	icon_state = "tx73_spread"
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/unique_action(mob/user)
@@ -551,7 +548,7 @@
 	fire_delay = initial(mode_list[mode_index].fire_delay)
 	fire_sound = initial(mode_list[mode_index].fire_sound)
 
-	if(initial(mode_list[mode_index].fire_mode) != GUN_FIREMODE_AUTOMATIC)
+	if(initial(mode_list[mode_index].fire_mode) != GUN_FIREMODE_SEMIAUTO)
 		SEND_SIGNAL(src, COMSIG_GUN_FIREMODE_TOGGLE, initial(mode_list[mode_index].fire_mode), user.client)
 	else
 		SEND_SIGNAL(src, COMSIG_GUN_FIREMODE_TOGGLE, GUN_FIREMODE_SEMIAUTO, user.client)
