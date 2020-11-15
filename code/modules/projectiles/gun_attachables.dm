@@ -689,9 +689,9 @@
 	///how many tiles to increase the users view box
 	var/zoom_viewsize = 12
 	scoped_accuracy_mod = SCOPE_RAIL
-	///BOOLEAN as to whether a scope can apply nightvision
+	///boolean as to whether a scope can apply nightvision
 	var/has_nightvision = FALSE
-	///BOOLEAN as to whether the attachment is currently giving nightvision
+	///boolean as to whether the attachment is currently giving nightvision
 	var/active_nightvision = FALSE
 
 
