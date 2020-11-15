@@ -578,7 +578,13 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/armor_module/attachable/better_shoulder_lamp/mark1 = list(CAT_ARMMOD, "Mark 1 Baldur light armor module", 0,"black"),
 	)
 
-
+/obj/machinery/marine_selector/clothes/smartgun/Initialize()
+	. = ..()
+	new /obj/effect/decal/cleanable/cobweb(loc)
+	for(var/d in GLOB.alldirs)
+		var/turf/T = get_step(src, d)
+		if(!T.density)
+			new /obj/effect/decal/cleanable/cobweb(T)
 
 /obj/machinery/marine_selector/clothes/smartgun/alpha
 	squad_tag = "Alpha"
@@ -1054,6 +1060,14 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/attachable/stock/t35stock = list(CAT_ATT, "T-35 stock", 0, "black"),
 		/obj/item/attachable/stock/t19stock = list(CAT_ATT, "T-19 machine pistol stock", 0, "black"),
 	)
+
+/obj/machinery/marine_selector/gear/smartgun/Initialize()
+	. = ..()
+	new /obj/effect/decal/cleanable/cobweb(loc)
+	for(var/d in GLOB.alldirs)
+		var/turf/T = get_step(src, d)
+		if(!T.density)
+			new /obj/effect/decal/cleanable/cobweb(T)
 
 
 //todo: move this to some sort of kit controller/datum
