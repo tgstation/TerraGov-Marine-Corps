@@ -96,9 +96,6 @@
 
 	var/gun_skill_category = GUN_SKILL_RIFLES //Using rifles because they are the most common, and need a skill that at default the value is 0
 
-	var/gun_can_aim = FALSE
-	var/is_aiming = FALSE
-
 	var/base_gun_icon //the default gun icon_state. change to reskin the gun
 
 	var/hud_enabled = TRUE //If the Ammo HUD is enabled for this gun or not.
@@ -135,9 +132,14 @@
 	setup_firemodes()
 	AddComponent(/datum/component/automatic_fire, fire_delay, burst_delay, burst_amount, gun_firemode, loc) //This should go after handle_starting_attachment() and setup_firemodes() to get the proper values set.
 
-	setup_aim_mode()
-
 	muzzle_flash = new(src, muzzleflash_iconstate)
+
+	if(CHECK_BITFIELD(flags_gun_features, GUN_CAN_AIM)) //setting up aim mode
+		var/datum/action/new_action = new /datum/action/item_action/aim_mode(src)
+		if(isliving(loc))
+			var/mob/living/living_user = loc
+			if(src == living_user.l_hand || src == living_user.r_hand)
+				new_action.give_action(living_user)
 
 //Hotfix for attachment offsets being set AFTER the core New() proc. Causes a small graphical artifact when spawning, hopefully works even with lag
 /obj/item/weapon/gun/proc/handle_starting_attachment()
@@ -263,7 +265,7 @@
 	if(A)
 		A.remove_hud(user)
 
-	if(is_aiming)
+	if(CHECK_BITFIELD(flags_gun_features, GUN_HAS_IFF))
 		toggle_aim_mode(user)
 
 	return TRUE
@@ -509,11 +511,6 @@ and you're good to go.
 		stack_trace("null ammo while create_bullet(). User: [usr]")
 		chambered = GLOB.ammo_list[/datum/ammo/bullet] //Slap on a default bullet if somehow ammo wasn't passed.
 
-	if(!CHECK_BITFIELD(flags_gun_features, GUN_HAS_IFF))
-		ammo.iff_signal = 0
-	else
-		ammo.iff_signal = iff_signal
-
 	var/obj/projectile/P = new /obj/projectile(src)
 	P.generate_bullet(chambered)
 	return P
@@ -638,7 +635,6 @@ and you're good to go.
 			play_fire_sound(user)
 			muzzle_flash(firing_angle, user)
 			simulate_recoil(recoil_comp, user)
-
 
 		//This is where the projectile leaves the barrel and deals with projectile code only.
 		//vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
@@ -869,7 +865,8 @@ and you're good to go.
 	projectile_to_fire.damage *= damage_mult
 	projectile_to_fire.damage_falloff *= damage_falloff_mult
 	projectile_to_fire.projectile_speed += shell_speed_mod
-
+	if(CHECK_BITFIELD(flags_gun_features, GUN_HAS_IFF))
+		projectile_to_fire.has_iff = iff_signal
 
 /obj/item/weapon/gun/proc/setup_bullet_accuracy(obj/projectile/projectile_to_fire, mob/user, bullets_fired = 1, dual_wield = FALSE)
 	var/gun_accuracy_mult = accuracy_mult_unwielded

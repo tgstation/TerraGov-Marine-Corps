@@ -65,6 +65,8 @@
 
 	var/scatter = 0 //Chance of scattering, also maximum amount scattered. High variance.
 
+	var/has_iff = null
+
 	var/distance_travelled = 0
 
 	/// How maany times this projectile has bounced off something
@@ -719,7 +721,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 
 /mob/living/carbon/human/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
-	if(get_target_lock(proj.ammo.iff_signal))
+	if((proj.ammo.flags_ammo_behavior & AMMO_SKIPS_HUMANS && get_target_lock(proj.ammo.iff_signal)) || get_target_lock(proj.has_iff))
 		return FALSE
 	if(mobility_aura)
 		. -= mobility_aura * 5
