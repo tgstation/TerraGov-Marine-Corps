@@ -96,14 +96,14 @@
 
 	var/gun_skill_category = GUN_SKILL_RIFLES //Using rifles because they are the most common, and need a skill that at default the value is 0
 
+	var/gun_can_aim = FALSE
+	var/is_aiming = FALSE
+
 	var/base_gun_icon //the default gun icon_state. change to reskin the gun
 
 	var/hud_enabled = TRUE //If the Ammo HUD is enabled for this gun or not.
 
 	var/general_codex_key = "guns"
-
-	var/gun_can_aim = FALSE //determines whether aim mode is available
-
 //----------------------------------------------------------
 				//				    \\
 				// NECESSARY PROCS  \\
@@ -136,8 +136,8 @@
 	AddComponent(/datum/component/automatic_fire, fire_delay, burst_delay, burst_amount, gun_firemode, loc) //This should go after handle_starting_attachment() and setup_firemodes() to get the proper values set.
 
 	setup_aim_mode()
-	muzzle_flash = new(src, muzzleflash_iconstate)
 
+	muzzle_flash = new(src, muzzleflash_iconstate)
 
 //Hotfix for attachment offsets being set AFTER the core New() proc. Causes a small graphical artifact when spawning, hopefully works even with lag
 /obj/item/weapon/gun/proc/handle_starting_attachment()
@@ -172,7 +172,6 @@
 
 /obj/item/weapon/gun/equipped(mob/user, slot)
 	unwield(user)
-
 	return ..()
 
 /obj/item/weapon/gun/update_icon(mob/user)
@@ -263,6 +262,9 @@
 	var/obj/screen/ammo/A = user.hud_used?.ammo
 	if(A)
 		A.remove_hud(user)
+
+	if(is_aiming)
+		toggle_aim_mode(user)
 
 	return TRUE
 

@@ -186,7 +186,7 @@ should be alright.
 		to_chat(user, "<span class='warning'>[src] snaps into place on [I].</span>")
 		user.update_inv_s_store()
 		return
-	
+
 	user.equip_to_slot_if_possible(src, SLOT_BACK, warning = FALSE)
 	if(user.back == src)
 		to_chat(user, "<span class='warning'>[src] snaps into place on your back.</span>")
@@ -862,23 +862,22 @@ should be alright.
 			add_firemode(GUN_FIREMODE_AUTOBURST, user)
 
 /obj/item/weapon/gun/proc/toggle_aim_mode(mob/user)
-	message_admins("IFF [flags_gun_features]")
-	message_admins("fire delay [fire_delay]")
 	if(CHECK_BITFIELD(flags_gun_features, GUN_HAS_IFF))
 		DISABLE_BITFIELD(flags_gun_features, GUN_HAS_IFF)
 		user.remove_movespeed_modifier(MOVESPEED_ID_AIM_MODE_SLOWDOWN)
 		modify_fire_delay(-fire_delay/2)
-		to_chat(user, "<span class='notice'>You relax.</b>.</span>")
+		is_aiming = FALSE
 		return
 
-	if(!CHECK_BITFIELD(flags_gun_features, WIELDED))
-		wield(user)
+	else if(!CHECK_BITFIELD(flags_item, WIELDED))
+		to_chat(user, "<span class='notice'>You need to hold up your gun before aiming.</b>.</span>")
 
-	if(do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_BAR))
+	else if(do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_BAR))
 		modify_fire_delay(fire_delay)
 		to_chat(user, "<span class='notice'>You slow your breathing and line up your aim.</b>.</span>")
 		ENABLE_BITFIELD(flags_gun_features, GUN_HAS_IFF)
 		user.add_movespeed_modifier(MOVESPEED_ID_AIM_MODE_SLOWDOWN, TRUE, 0, NONE, TRUE, 6)
+		is_aiming = TRUE
 
 	else
 		to_chat(user, "<span class='notice'>Your concentration is interrupted.</b>.</span>")

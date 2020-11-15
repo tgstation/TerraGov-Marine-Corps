@@ -84,15 +84,16 @@
 	action_firemode = holder_gun.gun_firemode
 
 /datum/action/item_action/aim_mode
-	var/obj/item/weapon/gun/holder_gun
 
 /datum/action/item_action/aim_mode/New()
 	. = ..()
-	name = "Aiming stance"
-	holder_item = holder_gun
+	name = "Take Aim"
 	button.name = name
+
+/datum/action/item_action/aim_mode/update_button_icon()
 	button.overlays.Cut()
-	update_button_icon()
+	button.overlays += image('icons/mob/actions.dmi', null, "sniper_zoom", ABOVE_HUD_LAYER)
+
 
 /datum/action/item_action/aim_mode/action_activate()
 	if(target)
