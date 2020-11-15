@@ -28,7 +28,7 @@
 	plasma_gain = 2
 
 	// *** Health *** //
-	max_health = 150
+	max_health = 175
 
 	// *** Evolution *** //
 	evolution_threshold = 80
@@ -48,7 +48,7 @@
 
 	// *** Ranged Attack *** //
 	charge_type = CHARGE_TYPE_SMALL
-	pounce_delay = 6.0 SECONDS
+	pounce_delay = 13 SECONDS
 
 	// *** Abilities *** ///
 	actions = list(
@@ -84,7 +84,7 @@
 	plasma_gain = 3
 
 	// *** Health *** //
-	max_health = 175
+	max_health = 200
 
 	// *** Evolution *** //
 	upgrade_threshold = 120
@@ -93,7 +93,7 @@
 	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = XENO_BOMB_RESIST_0, "bio" = 3, "rad" = 3, "fire" = 10, "acid" = 3)
 
 	// *** Ranged Attack *** //
-	pounce_delay = 6.0 SECONDS
+	pounce_delay = 13 SECONDS
 
 /datum/xeno_caste/runner/elder
 	upgrade_name = "Elder"
@@ -117,7 +117,7 @@
 	plasma_gain = 3
 
 	// *** Health *** //
-	max_health = 200
+	max_health = 225
 
 	// *** Evolution *** //
 	upgrade_threshold = 240
@@ -126,7 +126,7 @@
 	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = XENO_BOMB_RESIST_0, "bio" = 5, "rad" = 5, "fire" = 15, "acid" = 5)
 
 	// *** Ranged Attack *** //
-	pounce_delay = 6.0 SECONDS
+	pounce_delay = 13 SECONDS
 
 /datum/xeno_caste/runner/ancient
 	upgrade_name = "Ancient"
@@ -151,7 +151,7 @@
 	plasma_gain = 3
 
 	// *** Health *** //
-	max_health = 225
+	max_health = 240
 
 	// *** Evolution *** //
 	upgrade_threshold = 240
@@ -160,5 +160,5 @@
 	soft_armor = list("melee" = 19, "bullet" = 19, "laser" = 19, "energy" = 19, "bomb" = XENO_BOMB_RESIST_0, "bio" = 7, "rad" = 7, "fire" = 19, "acid" = 7)
 
 	// *** Ranged Attack *** //
-	pounce_delay = 6.0 SECONDS
+	pounce_delay = 13 SECONDS
 
