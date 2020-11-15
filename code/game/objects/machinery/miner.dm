@@ -3,8 +3,6 @@
 #define MINER_MEDIUM_DAMAGE	2
 #define MINER_DESTROYED	3
 
-#define MINER_REQUIRED_PLASTEEL_SHEETS 20
-
 #define MINER_RESISTANT	"reinforced components"
 #define MINER_COMPACTOR	"upgraded crystalizer module"
 #define MINER_OVERCLOCKED "high-efficiency drill"
