@@ -61,7 +61,7 @@
 		if(MINER_DESTROYED)
 			icon_state = "mining_drill_error_[miner_upgrade_type]"
 
-/obj/machinery/miner/proc/attempt_upgrade(obj/item/minerupgrade/upgrade,mob/user,params)
+/obj/machinery/miner/proc/attempt_upgrade(obj/item/minerupgrade/upgrade, mob/user, params)
 	if(miner_upgrade_type)
 		return FALSE
 	if(user.skills.getRating("construction")<SKILL_CONSTRUCTION_ADVANCED)
