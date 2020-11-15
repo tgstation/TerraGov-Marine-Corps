@@ -626,9 +626,9 @@ TUNNEL
 
 /obj/structure/tunnel/Destroy()
 	if(!QDELETED(creator))
-		to_chat(creator, "<span class='xenoannounce'>You sense your [sanitize(name)] at [tunnel_desc] has been destroyed!</span>") //Alert creator
+		to_chat(creator, "<span class='xenoannounce'>You sense your [name] at [tunnel_desc] has been destroyed!</span>") //Alert creator
 
-	xeno_message("<span class='xenoannounce'>Hive tunnel [sanitize(name)] at [tunnel_desc] has been destroyed!</span>", 2, creator.hivenumber) //Also alert hive because tunnels matter.
+	xeno_message("<span class='xenoannounce'>Hive tunnel [name] at [tunnel_desc] has been destroyed!</span>", 2, creator.hivenumber) //Also alert hive because tunnels matter.
 
 	GLOB.xeno_tunnels -= src
 	if(creator)
