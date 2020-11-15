@@ -77,7 +77,7 @@
 			max_miner_integrity = 300
 			miner_integrity = 300
 		if(MINER_COMPACTOR)
-			if(istype(/obj/structure/ore_box/platinum, mineral_produced))
+			if(mineral_produced == /obj/structure/ore_box/platinum)
 				mineral_produced = /obj/item/compactorebox/platinum
 			else
 				mineral_produced = /obj/item/compactorebox/phoron
