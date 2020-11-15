@@ -298,7 +298,7 @@
 	max_shells = 20 //codex
 	muzzleflash_iconstate = "muzzle_flash_medium"
 	caliber = "10x28mm caseless" //codex
-	fire_sound = 'sound/weapons/guns/fire/m4ra.ogg'
+	fire_sound = 'sound/weapons/guns/fire/t64.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m4ra_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m4ra_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/m4ra_cocked.ogg'
@@ -474,7 +474,7 @@
 	throw_range = 10
 	force = 5.0
 	wield_delay = 0.6 SECONDS
-	fire_sound = 'sound/weapons/guns/fire/m92_attachable.ogg'
+	fire_sound = 'sound/weapons/guns/fire/grenadelauncher.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/m92_cocked.ogg'
 	var/list/grenades = list()
 	var/max_grenades = 6
@@ -616,7 +616,7 @@
 	throw_range = 10
 	force = 5.0
 	wield_delay = 1 SECONDS
-	fire_sound = 'sound/weapons/guns/fire/m92_attachable.ogg'
+	fire_sound = 'sound/weapons/guns/fire/grenadelauncher.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/m92_cocked.ogg'
 	aim_slowdown = 1.2
 	general_codex_key = "explosive weapons"
@@ -652,7 +652,7 @@
 	throw_range = 10
 	force = 5.0
 	wield_delay = 0.2 SECONDS
-	fire_sound = 'sound/weapons/armbomb.ogg'
+	fire_sound = 'sound/weapons/guns/fire/underbarrel_grenadelauncher.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/m92_cocked.ogg'
 	aim_slowdown = 1
 	gun_skill_category = GUN_SKILL_FIREARMS

@@ -635,7 +635,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	desc = "A peculiarly designed pump shotgun, featuring a massive magazine well, a compact bullpup design and military attachment compatablity. This pump shotgun is issued for counter-terrorist units and unlicensed private military contractors."
 	icon_state = "ksg"
 	item_state = "ksg"
-	fire_sound = 'sound/weapons/guns/fire/shotgun_small.ogg'
+	fire_sound = 'sound/weapons/guns/fire/shotgun_light.ogg'
 	reload_sound = 'sound/weapons/guns/interact/shotgun_ksg_insert.ogg'
 	pump_sound = 'sound/weapons/guns/interact/shotgun_ksg_pump.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump/CMB
@@ -736,10 +736,10 @@ can cause issues with ammo types getting mixed up during the burst.
 	desc = "A .44 magnum lever action rifle with side loading port. It has a low fire rate, but it packs quite a punch in hunting."
 	icon_state = "mares_leg"
 	item_state = "mares_leg" //With thanks to D4n0w4r https://youtu.be/PV4uWGGb4xM
-	fire_sound = 'sound/weapons/guns/fire/revolver.ogg'//I like how this one sounds.
+	fire_sound = 'sound/weapons/guns/fire/leveraction.ogg'//I like how this one sounds.
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	reload_sound = 'sound/weapons/guns/interact/mosin_reload.ogg'
-	caliber = ".44 magnum" //codex
+	caliber = ".44 Magnum" //codex
 	load_method = SINGLE_CASING //codex
 	max_shells = 10 //codex
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump/lever
