@@ -17,7 +17,7 @@
 	jobtype = /datum/job/clf/standard
 
 	id = /obj/item/card/id/silver
-	belt = /obj/item/storage/large_holster/katana/full
+	belt = /obj/item/storage/belt/knifepouch
 	ears = /obj/item/radio/headset/distress/dutch
 	w_uniform = /obj/item/clothing/under/colonist
 	shoes = /obj/item/clothing/shoes/black
