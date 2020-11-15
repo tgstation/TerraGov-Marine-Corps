@@ -20,9 +20,6 @@
 	if(!.)
 		return FALSE
 
-	if(QDELETED(A))
-		return FALSE
-
 	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/carbon/xenomorph/target = A
 
@@ -47,7 +44,7 @@
 
 
 	X.face_atom(target) //Face the target so we don't look like an ass
-	to_chat(X, "<span class='xenowarning'>We being to salvage the biomass of [target]...</span>")
+	to_chat(X, "<span class='xenowarning'>We begin to salvage the biomass of [target]...</span>")
 	playsound(X, pick('sound/voice/alien_drool1.ogg','sound/voice/alien_drool2.ogg'), 25)
 
 	if(!do_after(X, DRONE_SALVAGE_BIOMASS_WINDUP, TRUE, target, BUSY_ICON_FRIENDLY)) //Wind up
@@ -66,15 +63,14 @@
 	var/evo_amount = target.evolution_stored * DRONE_SALVAGE_BIOMASS_SALVAGE_RATIO
 
 	//Take all the plas-mar
-	target.use_plasma(plasma_amount)
 	X.gain_plasma(plasma_amount)
 
 	//Distribute the upgrade and evo points the target had to the hive:
 	var/list/list_of_upgrade_xenos = list()
 	var/list/list_of_evolve_xenos = list()
 
-	var/list/prohibited_upgrades = list(XENO_UPGRADE_THREE, XENO_UPGRADE_INVALID)
-	var/list/prohibited_tiers = list(XENO_TIER_ZERO, XENO_TIER_THREE, XENO_TIER_FOUR)
+	var/list/prohibited_upgrades = DRONE_SALVAGE_UPGRADE_FILTER_LIST
+	var/list/prohibited_tiers = DRONE_SALVAGE_EVOLUTION_FILTER_LIST
 
 	for(var/mob/living/carbon/xenomorph/filter in X.hive.get_all_xenos())
 		if(!prohibited_upgrades.Find(filter.upgrade)) //Only Xenos who can use the salvage get it; filter them
@@ -82,11 +78,8 @@
 		if(!prohibited_tiers.Find(filter.tier))
 			list_of_evolve_xenos += filter
 
-	var/number_of_upgrade_xenos = length(list_of_upgrade_xenos)
-	var/number_of_evolve_xenos = length(list_of_evolve_xenos)
-
-	upgrade_amount /= max(1, number_of_upgrade_xenos) //get the amount distributed to each xeno; protect against dividing by 0
-	evo_amount /= max(1, number_of_evolve_xenos)
+	upgrade_amount /= max(1, length(list_of_upgrade_xenos) ) //get the amount distributed to each xeno; protect against dividing by 0
+	evo_amount /= max(1, length(list_of_evolve_xenos) )
 
 	for(var/mob/living/carbon/xenomorph/beneficiary in list_of_upgrade_xenos) //Distribute the upgrade salvage to those who can use it
 		beneficiary.upgrade_stored += upgrade_amount
@@ -95,7 +88,7 @@
 		beneficiary.evolution_stored += evo_amount
 
 	playsound(target, 'sound/effects/alien_egg_burst.ogg', 25)
-	X.hive.xeno_message("[target]'s remains were salvaged by [X], recovering [upgrade_amount] upgrade points for [number_of_upgrade_xenos] sisters and [evo_amount] evolution points for [number_of_evolve_xenos] sisters.") //Notify hive and give credit to the good boy drone
+	X.hive.xeno_message("[target]'s remains were salvaged by [X], recovering [upgrade_amount] upgrade points for [length(list_of_upgrade_xenos)] sisters and [evo_amount] evolution points for [length(list_of_evolve_xenos) ] sisters.") //Notify hive and give credit to the good boy drone
 	X.visible_message("<span class='xenowarning'>\ [X] gruesomely absorbs and devours the remains of [target]!</span>", \
 	"<span class='xenowarning'>We messily devour the remains of [target], absorbing [plasma_amount] plasma and distributing our deceased sister's essence throughout the hive. We now have [X.plasma_stored]/[X.xeno_caste.plasma_max] plasma stored.</span>") //Narrative description.
 
