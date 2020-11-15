@@ -114,23 +114,21 @@
 		if(!do_after(user, 30 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 			return FALSE
 		user.visible_message("<span class='notice'>[user] dismantles the [miner_upgrade_type] from the miner</span>")
-		var/obj/item/minerupgrade/upgrade
 		switch(miner_upgrade_type)
 			if(MINER_RESISTANT)
-				upgrade = new /obj/item/minerupgrade/reinforcement
+				new /obj/item/minerupgrade/reinforcement
+				max_miner_integrity = 100
+				miner_integrity = 100
 			if(MINER_OVERCLOCKED)
-				upgrade = new /obj/item/minerupgrade/overclock
+				new /obj/item/minerupgrade/overclock
+				required_ticks = 70
 			if(MINER_COMPACTOR)
-				upgrade = new /obj/item/minerupgrade/compactor
-		upgrade.loc = user.loc
-		miner_upgrade_type = ""
-		max_miner_integrity = 100
-		miner_integrity = 100
-		if(mineral_produced == /obj/item/compactorebox/phoron)
-			mineral_produced = /obj/structure/ore_box/phoron
-		else
-			mineral_produced = /obj/structure/ore_box/platinum
-		required_ticks = 70
+				new /obj/item/minerupgrade/compactor
+				if(istype(mineral_produced, /obj/item/compactorebox/phoron))
+					mineral_produced = /obj/structure/ore_box/phoron
+				else
+					mineral_produced = /obj/structure/ore_box/platinum
+		miner_upgrade_type = null
 		update_icon()
 	if(miner_status != MINER_DESTROYED)
 		return
