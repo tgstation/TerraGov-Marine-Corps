@@ -17,12 +17,13 @@
 	jobtype = /datum/job/clf/standard
 
 	id = /obj/item/card/id/silver
-	belt = /obj/item/storage/belt/knifepouch
+	belt = /obj/item/storage/large_holster/katana/full
 	ears = /obj/item/radio/headset/distress/dutch
 	w_uniform = /obj/item/clothing/under/colonist
 	shoes = /obj/item/clothing/shoes/black
 	wear_suit = /obj/item/clothing/suit/storage/militia
 	gloves = /obj/item/clothing/gloves/black
+	head = /obj/item/clothing/head/strawhat
 	suit_store = /obj/item/weapon/gun/smg/uzi
 	r_store = /obj/item/storage/pouch/general
 	l_store = /obj/item/storage/pill_bottle/zoom
