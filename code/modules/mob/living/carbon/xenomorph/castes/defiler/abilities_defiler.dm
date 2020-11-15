@@ -208,7 +208,7 @@
 /datum/action/xeno_action/activable/reagent_slash
 	name = "Reagent Slash"
 	action_icon_state = "reagent_slash"
-	mechanics_text = "Deals damage 4 times and injects 3u of selected reagent per slash. Can move while slashing."
+	mechanics_text = "Deals damage 4 times over 3.6s and injects 3u of selected reagent per slash. Can move while slashing."
 	ability_name = "reagent slash"
 	cooldown_timer = 6 SECONDS
 	plasma_cost = 100
