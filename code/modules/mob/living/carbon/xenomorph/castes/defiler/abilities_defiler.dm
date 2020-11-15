@@ -47,13 +47,13 @@
 // *********** Neurogas
 // ***************************************
 /datum/action/xeno_action/activable/emit_neurogas
-	name = "Emit Neurogas"
+	name = "Emit Noxious Gas"
 	action_icon_state = "emit_neurogas"
-	mechanics_text = "Channel for 3 seconds to emit a cloud of noxious smoke that follows the Defiler. You must remain stationary while channeling; moving will cancel the ability but will still cost plasma."
+	mechanics_text = "Channel for 3 seconds to emit a cloud of noxious smoke, based on selected reagent, that follows the Defiler. You must remain stationary while channeling; moving will cancel the ability but will still cost plasma."
 	ability_name = "emit neurogas"
 	plasma_cost = 200
 	cooldown_timer = 40 SECONDS
-	keybind_flags = XACT_KEYBIND_USE_ABILITY
+	keybind_flags = XACT_KEYBIND_USE_ABILITY|XACT_IGNORE_SELECTED_ABILITY
 	keybind_signal = COMSIG_XENOABILITY_EMIT_NEUROGAS
 
 /datum/action/xeno_action/activable/emit_neurogas/on_cooldown_finish()
@@ -179,6 +179,7 @@
 	action_icon_state = "select_reagent0"
 	mechanics_text = "Selects which reagent to inject. Hemodile slows by 25%, increased to 50% with neurotoxin present, and deals 20% of dmage received as stamina damage. Transvitox after ~4s converts brute/burn damage to toxin based on 40% of damage received up to 45 toxin on target."
 	use_state_flags = XACT_USE_BUSY
+	keybind_signal = COMSIG_XENOABILITY_SELECT_REAGENT
 	var/list_position
 
 /datum/action/xeno_action/select_reagent/update_button_icon()
@@ -206,10 +207,12 @@
 // ***************************************
 /datum/action/xeno_action/activable/reagent_slash
 	name = "Reagent Slash"
+	action_icon_state = "reagent_slash"
 	mechanics_text = "Deals damage 4 times and injects 3u of selected reagent per slash. Can move while slashing."
 	ability_name = "reagent slash"
 	cooldown_timer = 6 SECONDS
 	plasma_cost = 100
+	keybind_signal = COMSIG_XENOABILITY_REAGENT_SLASH
 	target_flags = XABB_MOB_TARGET
 
 /datum/action/xeno_action/activable/reagent_slash/can_use_ability(atom/A, silent = FALSE, override_flags)

@@ -21,7 +21,7 @@
 		else if(stat || !client)
 			msg += "<span class='xenowarning'>It doesn't seem responsive.</span>\n"
 		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox))
-			msg += "Transvitox: 50% brute/burn injuries received are converted to toxin\n"
+			msg += "Transvitox: 40% brute/burn injuries received are converted to toxin\n"
 		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile))
 			msg += "Hemodile: 20% stamina damage received, when damaged, and slowed by 25% (inject neurotoxin for 50% slow)\n"
 		msg += "*---------*</span>"
