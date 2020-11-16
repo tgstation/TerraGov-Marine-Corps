@@ -671,9 +671,18 @@ and you're good to go.
 		. = ..()
 		if(!.)
 			return
+
+		if(iscarbon(user)) //Check to see if we're staggered; if so, no point blank auto-accuracy
+			var/mob/living/carbon/C = user
+			if(C.stagger)
+				user.visible_message("<span class='danger'>[user] tries to fire [src] point blank at [M], but is disoriented!</span>")
+				Fire(M, user)
+				return TRUE
+
 		if(!active_attachable && gun_firemode == GUN_FIREMODE_BURSTFIRE && burst_amount > 1)
 			Fire(M, user)
 			return TRUE
+
 		DISABLE_BITFIELD(flags_gun_features, GUN_BURST_FIRING)
 		//Point blanking simulates firing the bullet proper but without actually firing it.
 		var/obj/projectile/projectile_to_fire = load_into_chamber(user)

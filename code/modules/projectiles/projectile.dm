@@ -663,13 +663,16 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			var/mob/living/carbon/human/shooter_human = shooter_living
 			BULLET_DEBUG("Traumatic shock (-[round(min(30, shooter_human.traumatic_shock * 0.2))]).")
 			. -= round(min(30, shooter_human.traumatic_shock * 0.2)) //Chance to hit declines with pain, being reduced by 0.2% per point of pain.
-			if(shooter_human.stagger)
-				BULLET_DEBUG("Stagged (-30).")
-				. -= 30 //Being staggered fucks your aim.
 			if(shooter_human.marksman_aura) //Accuracy bonus from active focus order: flat bonus + bonus per tile traveled
 				BULLET_DEBUG("marksman_aura (+[shooter_human.marksman_aura * 3] + [proj.distance_travelled * shooter_human.marksman_aura * 0.35]).")
 				. += shooter_human.marksman_aura * 3
 				. += proj.distance_travelled * shooter_human.marksman_aura * 0.35
+
+		if(iscarbon(proj.firer))
+			var/mob/living/carbon/human/shooter_carbon = shooter_living
+			if(shooter_carbon.stagger)
+				BULLET_DEBUG("Staggered (Accuracy reduced by the higher of 30 or 75% of total accuracy).")
+				. -= max(30, STAGGER_ACCURACY_PENALTY * .) //Being staggered fucks your aim badly; higher of -30 to accuracy, or 75% of your accuracy, whichever is higher
 
 	BULLET_DEBUG("Hit zone penalty (-[GLOB.base_miss_chance[proj.def_zone]]) ([proj.def_zone])")
 	. -= GLOB.base_miss_chance[proj.def_zone] //Reduce accuracy based on spot.
