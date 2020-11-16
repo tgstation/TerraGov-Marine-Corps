@@ -56,7 +56,7 @@
 	mechanics_text = "When activated on self after 20s of not taking damage drains 10 blood and restores 40% health/plasma over 5s. When activated on another xenomorph - restores 30% of their health after 2s. When activated on a dead human you grab them and heal by draining their blood"
 	ability_name = "rejuvenate"
 	cooldown_timer = 2 SECONDS
-	plasma_cost = 0
+	plasma_cost = 50
 	use_state_flags = XACT_TARGET_SELF
 	COOLDOWN_DECLARE(rejuvenate_self_cooldown)
 
@@ -134,7 +134,7 @@
 	mechanics_text = ""
 	ability_name = "carnage"
 	cooldown_timer = 40 SECONDS
-	plasma_cost = 0
+	plasma_cost = 100
 
 /datum/action/xeno_action/activable/carnage/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
