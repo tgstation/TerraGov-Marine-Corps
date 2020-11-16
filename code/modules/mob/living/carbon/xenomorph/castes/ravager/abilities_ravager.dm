@@ -31,7 +31,6 @@
 	X.emote("roar")
 	X.visible_message(A, "<span class='danger'>The [X] grabs [A]!</span>")
 	X.start_pulling(A)
-	A.setGrabState(GRAB_NECK)
 	A.drop_all_held_items()
 	if(!do_after(X, 1 SECONDS, TRUE, A, BUSY_ICON_HOSTILE, ignore_turf_checks = FALSE))
 		A.drop_all_held_items()
@@ -103,12 +102,7 @@
 		X.blood_bank -= 10
 		to_chat(X, "<span class='notice'>Blood bank: [X.blood_bank]%</span>")
 		to_chat(X, "<span class='notice'>We tap into our reserves for nourishment.</span>")
-		for(var/i in 1 to 5)
-			X.adjustBruteLoss(-X.maxHealth*0.1)
-			X.adjustFireLoss(-X.maxHealth*0.1)
-			target.gain_plasma(X.xeno_caste.plasma_max*0.1)
-			new /obj/effect/temp_visual/telekinesis(get_turf(X))
-			do_after(X, 1 SECONDS, FALSE, null, , ignore_turf_checks = TRUE)
+		target.apply_status_effect(/datum/status_effect/xeno_rejuvenate, 5 SECONDS)
 		COOLDOWN_START(src, rejuvenate_self_cooldown, 20 SECONDS)
 	else if(ishuman(A))
 		var/mob/living/carbon/human/target = A
@@ -122,7 +116,7 @@
 		if(!do_mob(X, A, 1 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 			return
 		if(!X.line_of_sight(target) || get_dist(X, target) > 2)
-			to_chat(X, "<span class='notice'>Beyond our reach, we must be close and our way clear.</span>")
+			to_chat(X, "<span class='notice'>Beyond our reach...</span>")
 			return
 		target.adjustBruteLoss(-X.maxHealth*0.3)
 		target.adjustFireLoss(-X.maxHealth*0.3)
@@ -134,33 +128,57 @@
 // ***************************************
 // *********** Carnage
 // ***************************************
-/datum/action/xeno_action/carnage
+/datum/action/xeno_action/activable/carnage
 	name = "Carnage"
 	action_icon_state = "Carnage"
 	mechanics_text = ""
 	ability_name = "carnage"
 	cooldown_timer = 40 SECONDS
 	plasma_cost = 0
-	COOLDOWN_DECLARE(carnage_duration)
 
-/datum/action/xeno_action/carnage/action_activate()
-	COOLDOWN_START(src, carnage_duration, 20 SECONDS)
-	RegisterSignal(owner, COMSIG_XENOMORPH_ATTACK_LIVING, .proc/carnage_slash)
+/datum/action/xeno_action/activable/carnage/can_use_ability(atom/A, silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return FALSE
+
+/datum/action/xeno_action/activable/carnage/use_ability()
+	var/mob/living/carbon/xenomorph/ravager/X = owner
+	X.apply_status_effect(/datum/status_effect/xeno_carnage, 20 SECONDS)
 	succeed_activate()
 	add_cooldown()
 
-/datum/action/xeno_action/carnage/proc/carnage_slash(datum/source, mob/living/target, damage)
-	SIGNAL_HANDLER
+// ***************************************
+// *********** Feast
+// ***************************************
+
+/datum/action/xeno_action/activable/feast
+	name = "Feast"
+	action_icon_state = "Feast"
+	mechanics_text = ""
+	ability_name = "feast"
+	cooldown_timer = 180 SECONDS
+	plasma_cost = 0
+
+/datum/action/xeno_action/activable/feast/can_use_ability(atom/target, silent = FALSE, override_flags)
+	. = ..()
+	var/mob/living/carbon/xenomorph/X = owner
+	if(!.)
+		return FALSE
+	if(X.blood_bank < 100 && !X.has_status_effect(STATUS_EFFECT_XENO_FEAST))
+		to_chat(X, "<span class='notice'>We need [100 - X.blood_bank]% more blood to feast.</span>")
+		return FALSE
+	return TRUE
+
+/datum/action/xeno_action/activable/feast/use_ability()
 	var/mob/living/carbon/xenomorph/ravager/X = owner
-	if(COOLDOWN_CHECK(src, carnage_duration))
-		UnregisterSignal(owner, COMSIG_XENOMORPH_ATTACK_LIVING, .proc/carnage_slash)
+	if(!X.has_status_effect(STATUS_EFFECT_XENO_FEAST))
+		X.visible_message(X, "<span class='notice'>The [X.name] overflows with vitality!</span>")
+		X.apply_status_effect(/datum/status_effect/xeno_feast, 2000 SECONDS)
 		return
-	X.blood_bank += 5
-	to_chat(X, "<span class='notice'>Blood bank: [X.blood_bank]%</span>")
-	for(var/mob/living/carbon/xenomorph/H in range(4, owner))
-		H.emote("roar")
-		H.adjustBruteLoss(-damage*0.4)
-		H.adjustFireLoss(-damage*0.4)
+	else
+		X.remove_status_effect(STATUS_EFFECT_XENO_FEAST)
+	succeed_activate()
+	add_cooldown()
 
 // ***************************************
 // *********** Charge
