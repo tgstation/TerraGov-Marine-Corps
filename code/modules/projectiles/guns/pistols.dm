@@ -287,7 +287,7 @@
 	item_state = "pk9"
 	caliber = ".22 LR" //codex
 	max_shells = 12 //codex
-	fire_sound = 'sound/weapons/guns/fire/c99.ogg'
+	fire_sound = 'sound/weapons/guns/fire/pistol_holdout.ogg' // Never heard in-game sadly.
 	unload_sound = 'sound/weapons/guns/interact/c99_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/c99_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/c99_cocked.ogg'
