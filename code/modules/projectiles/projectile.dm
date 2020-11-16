@@ -669,7 +669,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				. += proj.distance_travelled * shooter_human.marksman_aura * 0.35
 
 		if(iscarbon(proj.firer))
-			var/mob/living/carbon/human/shooter_carbon = shooter_living
+			var/mob/living/carbon/shooter_carbon = shooter_living
 			if(shooter_carbon.stagger)
 				BULLET_DEBUG("Staggered (Accuracy reduced by the higher of 30 or 75% of total accuracy).")
 				. -= max(30, STAGGER_ACCURACY_PENALTY * .) //Being staggered fucks your aim badly; higher of -30 to accuracy, or 75% of your accuracy, whichever is higher
