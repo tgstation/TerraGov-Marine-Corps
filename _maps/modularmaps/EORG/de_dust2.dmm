@@ -1,4 +1,7 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/turf/closed/wall/desert/invincible,
+/area/deathmatch)
 "aL" = (
 /obj/structure/cargo_container/green,
 /turf/open/floor/plating/ground/dirt,
@@ -469,26 +472,22 @@ ez
 ez
 ez
 ez
-YD
-YD
+aa
+aa
 ez
 ez
 ez
-YD
-YD
-YD
+aa
+aa
+aa
 ez
 ez
 ez
-YD
-YD
-YD
-YD
-YD
-ez
-ez
-ez
-ez
+aa
+aa
+aa
+aa
+aa
 ez
 ez
 ez
@@ -500,10 +499,14 @@ ez
 ez
 ez
 ez
-YD
-YD
-YD
-YD
+ez
+ez
+ez
+ez
+aa
+aa
+aa
+aa
 ez
 "}
 (2,1,1) = {"
@@ -648,7 +651,7 @@ hO
 hO
 hO
 YD
-YD
+aa
 "}
 (5,1,1) = {"
 ez
@@ -696,7 +699,7 @@ hO
 Ii
 hO
 xg
-YD
+aa
 "}
 (6,1,1) = {"
 ez
@@ -744,7 +747,7 @@ hO
 hO
 hO
 xg
-YD
+aa
 "}
 (7,1,1) = {"
 ez
@@ -792,7 +795,7 @@ zg
 zg
 px
 Ng
-YD
+aa
 "}
 (8,1,1) = {"
 ez
@@ -840,7 +843,7 @@ hO
 hO
 hO
 hO
-YD
+aa
 "}
 (9,1,1) = {"
 ez
@@ -888,7 +891,7 @@ hO
 eX
 hO
 hO
-YD
+aa
 "}
 (10,1,1) = {"
 ez
@@ -936,7 +939,7 @@ hO
 ZW
 hO
 hO
-YD
+aa
 "}
 (11,1,1) = {"
 ez
@@ -984,7 +987,7 @@ hO
 hO
 hO
 hO
-YD
+aa
 "}
 (12,1,1) = {"
 ez
@@ -1032,7 +1035,7 @@ Ii
 hO
 hO
 YD
-YD
+aa
 "}
 (13,1,1) = {"
 ez
@@ -1080,7 +1083,7 @@ hO
 hO
 hO
 YD
-YD
+aa
 "}
 (14,1,1) = {"
 ez
@@ -1128,7 +1131,7 @@ hO
 hO
 hO
 hO
-YD
+aa
 "}
 (15,1,1) = {"
 ez
@@ -1176,7 +1179,7 @@ xg
 hO
 hO
 hO
-YD
+aa
 "}
 (16,1,1) = {"
 ez
@@ -1224,7 +1227,7 @@ YD
 Jg
 Uq
 yY
-YD
+aa
 "}
 (17,1,1) = {"
 ez
@@ -1272,7 +1275,7 @@ YD
 Jg
 Uq
 Uq
-YD
+aa
 "}
 (18,1,1) = {"
 ez
@@ -1320,7 +1323,7 @@ YD
 Uq
 Uq
 Uq
-YD
+aa
 "}
 (19,1,1) = {"
 ez
@@ -1368,7 +1371,7 @@ YD
 Jg
 Uq
 Uq
-YD
+aa
 "}
 (20,1,1) = {"
 ez
@@ -1416,7 +1419,7 @@ YD
 Jg
 Uq
 yY
-YD
+aa
 "}
 (21,1,1) = {"
 ez
@@ -1464,7 +1467,7 @@ Hh
 hO
 hO
 hO
-YD
+aa
 "}
 (22,1,1) = {"
 ez
@@ -1512,7 +1515,7 @@ Hh
 hO
 Ii
 hO
-YD
+aa
 "}
 (23,1,1) = {"
 ez
@@ -1560,7 +1563,7 @@ Hh
 hO
 DV
 hO
-YD
+aa
 "}
 (24,1,1) = {"
 ez
@@ -1608,7 +1611,7 @@ Hh
 hO
 hO
 hO
-YD
+aa
 "}
 (25,1,1) = {"
 ez
@@ -1656,7 +1659,7 @@ Hh
 hO
 hO
 YD
-YD
+aa
 "}
 (26,1,1) = {"
 ez
@@ -1704,7 +1707,7 @@ wG
 hO
 hO
 YD
-YD
+aa
 "}
 (27,1,1) = {"
 ez
@@ -1752,7 +1755,7 @@ hO
 ZW
 hO
 YD
-YD
+aa
 "}
 (28,1,1) = {"
 ez
@@ -1800,7 +1803,7 @@ eX
 hO
 hO
 YD
-YD
+aa
 "}
 (29,1,1) = {"
 ez
@@ -1848,7 +1851,7 @@ hO
 hO
 hO
 YD
-YD
+aa
 "}
 (30,1,1) = {"
 ez
@@ -1896,7 +1899,7 @@ hO
 hO
 hO
 YD
-YD
+aa
 "}
 (31,1,1) = {"
 ez
@@ -1944,7 +1947,7 @@ YD
 YD
 YD
 YD
-YD
+aa
 "}
 (32,1,1) = {"
 ez
@@ -2630,13 +2633,13 @@ ez
 ez
 ez
 ez
-YD
-YD
-YD
-YD
-YD
-YD
-YD
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 ez
 ez
 ez
@@ -2644,14 +2647,14 @@ ez
 ez
 ez
 ez
-YD
-YD
-YD
-YD
-YD
-YD
-YD
-YD
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 ez
 ez
 ez
