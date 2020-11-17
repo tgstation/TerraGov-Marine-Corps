@@ -408,6 +408,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/boiler, location, null, delmob)
 			if("crusher")
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/crusher, location, null, delmob)
+			if("curator")
+				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/curator, location, null, delmob)
 			if("defiler")
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/Defiler, location, null, delmob)
 			if("shrike")

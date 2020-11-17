@@ -79,6 +79,10 @@
 	cost = 50
 	export_obj = /mob/living/carbon/xenomorph/crusher
 
+/datum/supply_export/xemomorph/curator
+	cost = 50
+	export_obj = /mob/living/carbon/xenomorph/curator
+
 /datum/supply_export/xemomorph/ravager
 	cost = 50
 	export_obj = /mob/living/carbon/xenomorph/ravager

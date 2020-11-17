@@ -9,10 +9,10 @@
 /datum/status_effect/xeno_rejuvenate/tick()
 	var/mob/living/carbon/xenomorph/X = owner
 	new /obj/effect/temp_visual/telekinesis(get_turf(owner))
-	to_chat(owner, "<span class='notice'>We feel our wounds close up.</span>")
+	to_chat(owner, "<span class='notice'>We feel our wounds close up and plasma reserves refilling.</span>")
 	X.adjustBruteLoss(-X.maxHealth*0.1)
 	X.adjustFireLoss(-X.maxHealth*0.1)
-	X.gain_plasma(X.xeno_caste.plasma_max)
+	X.gain_plasma(X.xeno_caste.plasma_max*0.25)
 
 /datum/status_effect/xeno_carnage
 	id = "xeno_carnage"
@@ -20,27 +20,33 @@
 /datum/status_effect/xeno_carnage/on_creation(mob/living/new_owner, set_duration)
 	owner = new_owner
 	duration = set_duration
+	to_chat(owner, "<span class='notice'>We give into our thirst!</span>")
 	RegisterSignal(owner, COMSIG_XENOMORPH_ATTACK_LIVING, .proc/carnage_slash)
 	return ..()
 
 /datum/status_effect/xeno_carnage/on_remove()
 	. = ..()
+	to_chat(owner, "<span class='notice'>Our bloodlust subsides...</span>")
 	UnregisterSignal(owner, COMSIG_XENOMORPH_ATTACK_LIVING, .proc/carnage_slash)
 
 /datum/status_effect/xeno_carnage/proc/carnage_slash(datum/source, mob/living/target, damage)
 	SIGNAL_HANDLER
-	var/mob/living/carbon/xenomorph/ravager/X = owner
-	if(X.blood_bank < 100)
-		X.blood_bank += 5
+	var/mob/living/carbon/xenomorph/X = owner
+	X.blood_bank += min(5, 100 - X.blood_bank)
 	to_chat(X, "<span class='notice'>Blood bank: [X.blood_bank]%</span>")
-	X.emote("roar")
+	if(prob(20))
+		X.emote("roar")
 	X.adjustBruteLoss(-damage)
 	X.adjustFireLoss(-damage)
 	if(X.has_status_effect(STATUS_EFFECT_XENO_FEAST))
 		for(var/mob/living/carbon/xenomorph/H in range(4, owner))
-			H.emote("roar")
-			H.adjustBruteLoss(-damage*0.4)
-			H.adjustFireLoss(-damage*0.4)
+			if(H != X)
+				H.adjustBruteLoss(-damage*0.7)
+				H.adjustFireLoss(-damage*0.7)
+				if(prob(50))
+					H.emote("roar")
+				to_chat(H, "<span class='notice'>You feel your wounds being restored by [X]'s pheromones.</span>")
+
 /datum/status_effect/xeno_feast
 	id = "xeno_feast"
 

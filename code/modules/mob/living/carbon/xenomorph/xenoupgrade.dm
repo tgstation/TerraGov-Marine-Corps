@@ -208,6 +208,15 @@
 /mob/living/carbon/xenomorph/crusher/ancient
 	upgrade = XENO_UPGRADE_THREE
 
+/mob/living/carbon/xenomorph/curator/mature
+	upgrade = XENO_UPGRADE_ONE
+
+/mob/living/carbon/xenomorph/curator/elder
+	upgrade = XENO_UPGRADE_TWO
+
+/mob/living/carbon/xenomorph/curator/ancient
+	upgrade = XENO_UPGRADE_THREE
+
 /mob/living/carbon/xenomorph/boiler/mature
 	upgrade = XENO_UPGRADE_ONE
 
