@@ -134,13 +134,6 @@
 
 	muzzle_flash = new(src, muzzleflash_iconstate)
 
-	if(CHECK_BITFIELD(flags_gun_features, GUN_CAN_AIM)) //setting up aim mode
-		var/datum/action/new_action = new /datum/action/item_action/aim_mode(src)
-		if(isliving(loc))
-			var/mob/living/living_user = loc
-			if(src == living_user.l_hand || src == living_user.r_hand)
-				new_action.give_action(living_user)
-
 //Hotfix for attachment offsets being set AFTER the core New() proc. Causes a small graphical artifact when spawning, hopefully works even with lag
 /obj/item/weapon/gun/proc/handle_starting_attachment()
 	if(starting_attachment_types && starting_attachment_types.len)
