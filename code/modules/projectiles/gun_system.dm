@@ -58,7 +58,8 @@
 	var/fire_delay = 6							//For regular shots, how long to wait before firing again.
 	var/shell_speed_mod	= 0						//Modifies the speed of projectiles fired.
 	var/iff_signal = ACCESS_IFF_MARINE
-	var/aim_iff_signal = null						//Used to skip aim mode if check for each shot
+	var/aim_iff_signal = null					//Used to skip aim mode if check for each shot at apply_gun_modifiers()
+	var/aim_fire_delay_buffer = 0				//Used so that modifying a gun's fire delay after activating aim mode doesn't permanently mess with a gun's stats
 
 	//Burst fire.
 	var/burst_amount 	= 1						//How many shots can the weapon shoot in burst? Anything less than 2 and you cannot toggle burst.
@@ -259,7 +260,7 @@
 	if(A)
 		A.remove_hud(user)
 
-	if(CHECK_BITFIELD(flags_gun_features, GUN_HAS_IFF))
+	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_AIMING))
 		toggle_aim_mode(user)
 
 	return TRUE
