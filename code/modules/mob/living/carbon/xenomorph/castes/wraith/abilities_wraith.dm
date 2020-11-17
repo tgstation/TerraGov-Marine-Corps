@@ -220,18 +220,29 @@
 		to_chat(owner, "<span class='xenowarning'>We cannot blink here!</span>")
 		return FALSE
 
-	var/distance = get_dist(owner, T)
-	if(distance > WRAITH_BLINK_RANGE) //Needs to be in range.
-		to_chat(owner, "<span class='xenowarning'>Our destination is too far away! It must be [distance - WRAITH_BLINK_RANGE] tiles closer!</span>")
-		return FALSE
-
 	if(!owner.line_of_sight(T) || A.opacity) //Needs to be in line of sight.
 		to_chat(owner, "<span class='xenowarning'>We can't blink without line of sight to our destination!</span>")
 		return FALSE
 
+
+
 /datum/action/xeno_action/activable/blink/use_ability(atom/A)
-	var/mob/living/carbon/xenomorph/wraith/TI = owner
+
 	var/turf/T = get_turf(A)
+	var/distance = get_dist(owner, T)
+	if(distance > WRAITH_BLINK_RANGE) //If it's out of range, try to go as far as possible
+		var/list/turf/turfs = getline(owner, T)
+		for(var/turf/T2 in turfs)
+			if(get_dist(owner, T2) == WRAITH_BLINK_RANGE) //Find the turf at the max distance we can go and break
+				T = T2
+				break
+			else
+				continue
+
+	if(!can_use_ability(T)) //Since we updated the turf, check it again.
+		fail_activate()
+
+	var/mob/living/carbon/xenomorph/wraith/TI = owner
 	var/mob/pulled
 
 	if(ismob(TI.pulling)) //bring the target we're pulling with us, but at the cost of sharply increasing the next cooldown
@@ -268,7 +279,7 @@
 
 	var/mob/living/carbon/xenomorph/source = owner
 
-	playsound(teleporter, 'sound/effects/bamf.ogg', 25, 1) //Sound at the location we are arriving at
+	playsound(teleporter, 'sound/effects/EMPulse.ogg', 25, 1) //Sound at the location we are arriving at
 	new /obj/effect/temp_visual/blink_portal(get_turf(teleporter))
 
 	for(var/turf/affected_tile in range(1,teleporter.loc))
