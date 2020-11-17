@@ -233,6 +233,7 @@
 			qdel(src) //blown apart
 
 /obj/structure/closet/bodybag/proc/acidspray_act()
+	SIGNAL_HANDLER
 	if(!opened && bodybag_occupant)
 		var/obj/effect/xenomorph/spray/S = locate() in range(0, src) //get the acid Hans
 		if(!S) //Sanity
@@ -419,8 +420,6 @@
 	closet_stun_delay = 0.5 SECONDS //Short delay to prevent ambushes from being too degenerate.
 	var/serial_number //Randomized serial number used to stop point macros and such.
 
-/obj/structure/closet/bodybag/tarp/Initialize(mapload, foldedbag)
-	. = ..()
 
 
 /obj/structure/closet/bodybag/tarp/close()
@@ -478,4 +477,3 @@
 	icon_closed = "snowtarp_closed"
 	icon_opened = "snowtarp_open"
 	foldedbag_path = /obj/item/bodybag/tarp/snow
-
