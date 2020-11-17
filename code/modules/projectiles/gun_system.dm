@@ -58,6 +58,7 @@
 	var/fire_delay = 6							//For regular shots, how long to wait before firing again.
 	var/shell_speed_mod	= 0						//Modifies the speed of projectiles fired.
 	var/iff_signal = ACCESS_IFF_MARINE
+	var/aim_iff_signal = null						//Used to skip aim mode if check for each shot
 
 	//Burst fire.
 	var/burst_amount 	= 1						//How many shots can the weapon shoot in burst? Anything less than 2 and you cannot toggle burst.
@@ -858,8 +859,7 @@ and you're good to go.
 	projectile_to_fire.damage *= damage_mult
 	projectile_to_fire.damage_falloff *= damage_falloff_mult
 	projectile_to_fire.projectile_speed += shell_speed_mod
-	if(CHECK_BITFIELD(flags_gun_features, GUN_HAS_IFF))
-		projectile_to_fire.has_iff = iff_signal
+	projectile_to_fire.has_iff = aim_iff_signal
 
 /obj/item/weapon/gun/proc/setup_bullet_accuracy(obj/projectile/projectile_to_fire, mob/user, bullets_fired = 1, dual_wield = FALSE)
 	var/gun_accuracy_mult = accuracy_mult_unwielded
