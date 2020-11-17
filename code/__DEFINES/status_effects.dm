@@ -17,7 +17,7 @@
 
 #define STATUS_EFFECT_GUN_SKILL_SCATTER_BUFF /datum/status_effect/stacking/gun_skill/scatter/buff // Increases the scatter of the mob
 
-//for curator abilities
+//for gourger abilities
 
 #define STATUS_EFFECT_XENO_REJUVENATE /datum/status_effect/xeno_rejuvenate
 

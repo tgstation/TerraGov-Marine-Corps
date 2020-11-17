@@ -263,7 +263,7 @@
 	// Warrior vars
 	var/agility = 0		// 0 - upright, 1 - all fours
 
-	// *** Curator vars *** //
+	// *** Gourger vars *** //
 	var/blood_bank = 0
 
 	// Defender vars

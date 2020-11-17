@@ -28,7 +28,7 @@
 	evolution_threshold = 180
 	upgrade_threshold = 120
 
-	evolves_to = list(/mob/living/carbon/xenomorph/crusher, /mob/living/carbon/xenomorph/curator)
+	evolves_to = list(/mob/living/carbon/xenomorph/crusher, /mob/living/carbon/xenomorph/gourger)
 	deevolves_to = /mob/living/carbon/xenomorph/defender
 
 	// *** Flags *** //

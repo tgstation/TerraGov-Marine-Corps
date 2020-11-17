@@ -1,9 +1,9 @@
-/mob/living/carbon/xenomorph/curator
-	caste_base_type = /mob/living/carbon/xenomorph/curator
-	name = "Curator"
+/mob/living/carbon/xenomorph/gourger
+	caste_base_type = /mob/living/carbon/xenomorph/gourger
+	name = "Gourger"
 	desc = "A large, powerfully muscled xeno with seemingly more vitality than others."
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
-	icon_state = "Curator Walking"
+	icon_state = "Gourger Walking"
 	health = 600
 	maxHealth = 600
 	plasma_stored = 100
