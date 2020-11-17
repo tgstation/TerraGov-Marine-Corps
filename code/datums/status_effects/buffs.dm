@@ -34,8 +34,6 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	X.blood_bank += min(5, 100 - X.blood_bank)
 	to_chat(X, "<span class='notice'>Blood bank: [X.blood_bank]%</span>")
-	if(prob(10))
-		X.emote("roar")
 	X.adjustBruteLoss(-damage)
 	X.adjustFireLoss(-damage)
 	if(X.has_status_effect(STATUS_EFFECT_XENO_FEAST))
@@ -43,8 +41,6 @@
 			if(H != X)
 				H.adjustBruteLoss(-damage*0.7)
 				H.adjustFireLoss(-damage*0.7)
-				if(prob(5))
-					H.emote("roar")
 				to_chat(H, "<span class='notice'>You feel your wounds being restored by [X]'s pheromones.</span>")
 
 /datum/status_effect/xeno_feast
