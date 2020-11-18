@@ -214,7 +214,7 @@
 	R.visible_message("<span class='warning'>[R.name] begins to move erratically!</span>", \
 	"<span class='xenodanger'>We move erratically, making us impossible to hit with projectiles; the next [RUNNER_EVASION_STACKS] projectiles that would hit us will now miss.</span>")
 
-	addtimer(CALLBACK(src, .proc/evasion_warning), RUNNER_EVASION_DURATION * 0.3) //Warn the runner when the duration is about to expire.
+	addtimer(CALLBACK(src, .proc/evasion_warning), RUNNER_EVASION_DURATION * 0.7) //Warn the runner when the duration is about to expire.
 	addtimer(CALLBACK(src, .proc/evasion_deactivate), RUNNER_EVASION_DURATION)
 
 	R.evasion_stacks = RUNNER_EVASION_STACKS
@@ -244,7 +244,7 @@
 
 /datum/action/xeno_action/evasion/proc/evasion_warning()
 
-	to_chat(owner,"<span class='highdanger'>We begin to slow down as we tire. We can only keep this up for [RUNNER_EVASION_DURATION * 0.7 * 0.1] more seconds!</span>")
+	to_chat(owner,"<span class='highdanger'>We begin to slow down as we tire. We can only keep this up for [RUNNER_EVASION_DURATION * 0.3 * 0.1] more seconds!</span>")
 	owner.playsound_local(owner, 'sound/voice/hiss4.ogg', 50, 0, 1)
 
 
