@@ -13,8 +13,15 @@
 	. = ..()
 	if(!istype(parent, /obj/machinery/power/port_gen))
 		return COMPONENT_INCOMPATIBLE
+
+	if(!isnull(active))
+		src.active = active
+	if(!isnull(size))
+		src.size = size
+
 	find_machines_in_range()
 	RegisterSignal(SSdcs, COMSIG_GLOB_MACHINERY_ANCHORED_CHANGE, .proc/glob_anchor_changed)
+
 	if(active)
 		activate()
 
