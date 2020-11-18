@@ -181,13 +181,15 @@
 		if(2) visible_message("<span class='xenowarning'>\The [acid_t] is struggling to withstand the acid!</span>")
 		if(0 to 1) visible_message("<span class='xenowarning'>\The [acid_t] begins to crumble under the acid!</span>")
 
-/obj/effect/alien/warp_beacon
-	name = "warp beacon"
+/obj/effect/xenomorph/warp_shadow
+	name = "warp shadow"
 	desc = "A strange rift in space and time. You probably shouldn't touch this."
-	icon = 'icons/obj/objects.dmi'
-	icon_state = "anom"
+	icon = 'icons/Xeno/2x2_Xenos.dmi'
+	icon_state = "Wraith Walking"
+	color = COLOR_BLACK
+	alpha = 128 //Translucent
 	density = FALSE
 	opacity = FALSE
 	anchored = TRUE
 
-/obj/effect/alien/warp_beacon/Initialize()
+/obj/effect/alien/warp_shadow/Initialize()

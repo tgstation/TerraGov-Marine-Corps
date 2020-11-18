@@ -460,16 +460,16 @@
 	keybind_signal = COMSIG_XENOABILITY_HEALING_INFUSION
 
 /*
-/datum/keybinding/xeno/place_warp_beacon
-	name = "place_warp_beacon"
-	full_name = "Wraith: Place Warp Beacon"
+/datum/keybinding/xeno/place_warp_shadow
+	name = "place_warp_shadow"
+	full_name = "Wraith: Place Warp Shadow"
 	description = "Create a rift in space/time that you can swap locations with using the Hyperposition ability."
 	keybind_signal = COMSIG_XENOABILITY_PLACE_WARP_BEACON
 
 /datum/keybinding/xeno/hyperposition
 	name = "hyperposition"
 	full_name = "Wraith: Hyperposition"
-	description = "Swap locations with your warp beacon after a delay that scales with your distance from it."
+	description = "Swap locations with your warp shadow after a delay that scales with your distance from it."
 	keybind_signal = COMSIG_XENOABILITY_HYPERPOSITION
 
 /datum/keybinding/xeno/phase_shift

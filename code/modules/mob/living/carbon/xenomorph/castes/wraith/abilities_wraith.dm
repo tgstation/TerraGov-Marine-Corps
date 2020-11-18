@@ -1,15 +1,15 @@
 // ***************************************
-// *********** Place Warp Beacon
+// *********** Place Warp Shadow
 // ***************************************
-/datum/action/xeno_action/place_warp_beacon
-	name = "Place Warp Beacon"
-	action_icon_state = "warp_beacon"
+/datum/action/xeno_action/place_warp_shadow
+	name = "Place Warp Shadow"
+	action_icon_state = "warp_shadow"
 	mechanics_text = "Binds our psychic essence to a spot of our choosing. We can use Hyperposition to swap locations with this essence."
 	plasma_cost = 150
 	cooldown_timer = 60 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_PLACE_WARP_BEACON
 
-/datum/action/xeno_action/place_warp_beacon/action_activate()
+/datum/action/xeno_action/place_warp_shadow/action_activate()
 	var/mob/living/carbon/xenomorph/wraith/TI = owner
 
 	TI.visible_message("<span class='xenowarning'>The air starts to violently roil and shimmer around [TI]!</span>", \
@@ -23,10 +23,13 @@
 	var/turf/T = get_turf(TI)
 	TI.visible_message("<span class='xenonotice'>\A shimmering point suddenly coalesces from the warped space around [T].</span>", \
 	"<span class='xenodanger'>We complete our work, binding our essence to this point.</span>", null, 5) //Fluff
-	var/obj/effect/alien/warp_beacon/WB = new(T) //Create the new beacon.
+	var/obj/effect/xenomorph/warp_shadow/WB = new(T) //Create the new beacon.
 	playsound(T, 'sound/weapons/emitter.ogg', 25, 1)
-	QDEL_NULL(TI.warp_beacon) //Delete the old beacon
-	TI.warp_beacon = WB //Set our warp beacon
+	QDEL_NULL(TI.warp_shadow) //Delete the old beacon
+	TI.warp_shadow = WB //Set our warp shadow
+	WB.dir = TI.dir //Have it imitate our facing
+	WB.pixel_x = TI.pixel_x //Inherit pixel offsets
+	teleport_debuff_aoe(WB) //SFX
 
 	succeed_activate()
 	add_cooldown()
@@ -38,7 +41,7 @@
 /datum/action/xeno_action/hyperposition
 	name = "Hyperposition"
 	action_icon_state = "hyperposition"
-	mechanics_text = "We teleport back to our warp beacon after a delay. The delay scales with the distance teleported."
+	mechanics_text = "We teleport back to our warp shadow after a delay. The delay scales with the distance teleported."
 	plasma_cost = 25
 	cooldown_timer = 5 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_HYPERPOSITION
@@ -47,29 +50,29 @@
 /datum/action/xeno_action/hyperposition/action_activate()
 
 	var/mob/living/carbon/xenomorph/wraith/TI = owner
-	var/obj/effect/alien/warp_beacon/WB = TI.warp_beacon
+	var/obj/effect/xenomorph/warp_shadow/WB = TI.warp_shadow
 
 	if(!WB)
-		to_chat(TI, "<span class='xenodanger'>We have no warp beacon to teleport to!</span>")
+		to_chat(TI, "<span class='xenodanger'>We have no warp shadow to teleport to!</span>")
 		return fail_activate()
 
 	var/area/A = get_area(WB)
 
 	TI.do_jitter_animation(2000) //Animation
 
-	var/distance = get_dist(TI, TI.warp_beacon) //Get the distance so we can calculate the wind up
+	var/distance = get_dist(TI, TI.warp_shadow) //Get the distance so we can calculate the wind up
 	var/hyperposition_windup = clamp(WRAITH_HYPERPOSITION_MIN_WINDUP, distance * 0.5 SECONDS - 5 SECONDS, WRAITH_HYPERPOSITION_MAX_WINDUP)
 
 	TI.visible_message("<span class='warning'>The air starts to violently roil and shimmer around [TI]!</span>", \
-	"<span class='xenodanger'>We begin to teleport to our warp beacon located at [A] (X: [WB.x], Y: [WB.y]). We estimate this will take [hyperposition_windup * 0.1] seconds.</span>")
+	"<span class='xenodanger'>We begin to teleport to our warp shadow located at [A] (X: [WB.x], Y: [WB.y]). We estimate this will take [hyperposition_windup * 0.1] seconds.</span>")
 
 	if(!do_after(TI, hyperposition_windup, TRUE, TI, BUSY_ICON_FRIENDLY)) //Channel time/wind up
 		TI.visible_message("<span class='xenowarning'>The space around [TI] abruptly stops shifting and wavering.</span>", \
-		"<span class='xenodanger'>We abort teleporting back to our warp beacon.</span>")
+		"<span class='xenodanger'>We abort teleporting back to our warp shadow.</span>")
 		return fail_activate()
 
 
-	hyperposition_warp() //We swap positions with our warp beacon
+	hyperposition_warp() //We swap positions with our warp shadow
 
 	succeed_activate()
 	GLOB.round_statistics.wraith_hyperpositions++
@@ -77,10 +80,10 @@
 
 	add_cooldown()
 
-/datum/action/xeno_action/hyperposition/proc/hyperposition_warp() //This handles the location swap between the Wraith and the Warp Beacon
+/datum/action/xeno_action/hyperposition/proc/hyperposition_warp() //This handles the location swap between the Wraith and the Warp Shadow
 
 	var/mob/living/carbon/xenomorph/wraith/TI = owner
-	var/obj/effect/alien/warp_beacon/WB = TI.warp_beacon
+	var/obj/effect/xenomorph/warp_shadow/WB = TI.warp_shadow
 	var/beacon_turf = get_turf(WB)
 	var/wraith_turf = get_turf(TI)
 
@@ -88,14 +91,16 @@
 		return FALSE
 
 	if(!WB)
-		to_chat(TI, "<span class='xenodanger'>We have no warp beacon to teleport to!</span>")
+		to_chat(TI, "<span class='xenodanger'>We have no warp shadow to teleport to!</span>")
 		return FALSE
 
 	if(!beacon_turf || !wraith_turf)
-		to_chat(TI, "<span class='xenodanger'>Our warp beacon is currently beyond our power to influence!</span>")
+		to_chat(TI, "<span class='xenodanger'>Our warp shadow is currently beyond our power to influence!</span>")
 		return FALSE
 
 	WB.forceMove(wraith_turf) //Move the beacon to where we are leaving
+	WB.dir = TI.dir //Have it imitate our facing
+	WB.pixel_x = TI.pixel_x //Inherit pixel offsets
 	teleport_debuff_aoe(TI) //Apply tele debuff
 
 	TI.forceMove(beacon_turf) //Move to where the beacon was
@@ -103,7 +108,7 @@
 
 	var/area/A = get_area(WB)
 	TI.visible_message("<span class='warning'>\ [TI] suddenly vanishes in a vortex of warped space!</span>", \
-	"<span class='xenonotice'>We teleport, swapping positions with our warp beacon. Our warp beacon has moved to [A] (X: [WB.x], Y: [WB.y]).</span>", null, 5) //Let user know the new location
+	"<span class='xenodanger'>We teleport, swapping positions with our warp shadow. Our warp shadow has moved to [A] (X: [WB.x], Y: [WB.y]).</span>", null, 5) //Let user know the new location
 
 
 // ***************************************
@@ -257,7 +262,7 @@
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "wraith_blinks") //Statistics
 
 
-/datum/action/xeno_action/activable/blink/proc/blink_warp(mob/living/carbon/xenomorph/wraith/TI, turf/T, mob/pulled = null) //This handles the location swap between the Wraith and the Warp Beacon
+/datum/action/xeno_action/activable/blink/proc/blink_warp(mob/living/carbon/xenomorph/wraith/TI, turf/T, mob/pulled = null) //This handles the location swap between the Wraith and the Warp Shadow
 
 	TI.face_atom(T) //Face the target so we don't look like an ass
 
@@ -272,15 +277,18 @@
 	teleport_debuff_aoe(TI) //Debuff when we reappear
 
 
-/datum/action/xeno_action/proc/teleport_debuff_aoe(atom/movable/teleporter) //Called by many of the Wraith' teleportation effects
+/datum/action/xeno_action/proc/teleport_debuff_aoe(atom/movable/teleporter, silent = FALSE, no_visuals = FALSE) //Called by many of the Wraith' teleportation effects
 
 	if(!teleporter) //Sanity
 		return
 
 	var/mob/living/carbon/xenomorph/source = owner
 
-	playsound(teleporter, 'sound/effects/EMPulse.ogg', 25, 1) //Sound at the location we are arriving at
-	new /obj/effect/temp_visual/blink_portal(get_turf(teleporter))
+	if(!silent) //Sound effects
+		playsound(teleporter, 'sound/effects/EMPulse.ogg', 25, 1) //Sound at the location we are arriving at
+
+	if(!no_visuals) //Visuals
+		new /obj/effect/temp_visual/blink_portal(get_turf(teleporter))
 
 	for(var/turf/affected_tile in range(1,teleporter.loc))
 		affected_tile.Shake(4, 4, 1 SECONDS) //SFX
@@ -346,7 +354,7 @@
 
 	TI.face_atom(A) //Face the target so we don't look like an ass
 
-	teleport_debuff_aoe(banishment_target) //Debuff when we reappear
+	teleport_debuff_aoe(banishment_target) //Debuff when we disappear
 	banishment_target.moveToNullspace() //Banish the target to Brazil; yes he's going there
 	new /obj/effect/temp_visual/banishment_portal(banished_turf)
 
@@ -433,7 +441,7 @@
 
 	if(!B.banishment_target)
 		to_chat(TI,"<span class='xenodanger'>We have no targets banished!</span>")
-		return fail_activate()
+		fail_activate()
 
 	B.banish_deactivate() //manual deactivate
 	succeed_activate()
