@@ -330,6 +330,16 @@
 	keybind_signal = COMSIG_XENOABILITY_BANISH
 	var/turf/banished_turf = null //The turf the target was banished on
 	var/atom/movable/banishment_target = null //Target we've banished
+	var/obj/effect/temp_visual/banishment_portal/portal = null //SFX indicating the banished target's position
+
+/datum/action/xeno_action/activable/banish/give_action(mob/living/L)
+	. = ..()
+	RegisterSignal(L, COMSIG_XENOMORPH_WRAITH_RECALL, .proc/banish_deactivate)
+
+/datum/action/xeno_action/activable/banish/remove_action(mob/living/L)
+	UnregisterSignal(L, COMSIG_XENOMORPH_WRAITH_RECALL)
+	return ..()
+
 
 /datum/action/xeno_action/activable/banish/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -356,7 +366,7 @@
 
 	teleport_debuff_aoe(banishment_target) //Debuff when we disappear
 	banishment_target.moveToNullspace() //Banish the target to Brazil; yes he's going there
-	new /obj/effect/temp_visual/banishment_portal(banished_turf)
+	portal = new /obj/effect/temp_visual/banishment_portal(banished_turf)
 
 	var/duration = WRAITH_BANISH_BASE_DURATION //Set the duration
 
@@ -397,7 +407,7 @@
 
 
 /datum/action/xeno_action/activable/banish/proc/banish_deactivate()
-
+	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/wraith/TI = owner
 
 	if(!TI) //Sanity
@@ -418,8 +428,14 @@
 
 	to_chat(TI, "<span class='xenodanger'>Our target [banishment_target.name] has returned to reality.</span>") //Always alert the Wraith
 
+	if(portal)
+		QDEL_NULL(portal) //Eliminate the Brazil portal if we need to
+
 	banishment_target = null //Clear vars
 	banished_turf = null
+	portal = null
+
+	return COMPONENT_BANISH_TARGETS_EXIST //For the recall sub-ability
 
 // ***************************************
 // *********** Recall
@@ -435,15 +451,10 @@
 
 /datum/action/xeno_action/recall/action_activate()
 
-	var/mob/living/carbon/xenomorph/wraith/TI = owner
+	if(!(SEND_SIGNAL(owner, COMSIG_XENOMORPH_WRAITH_RECALL) & COMPONENT_BANISH_TARGETS_EXIST))
+		to_chat(owner,"<span class='xenodanger'>We have no targets banished!</span>")
+		return fail_activate()
 
-	var/datum/action/xeno_action/activable/banish/B = locate(/datum/action/xeno_action/activable/banish) in TI.xeno_abilities
-
-	if(!B.banishment_target)
-		to_chat(TI,"<span class='xenodanger'>We have no targets banished!</span>")
-		fail_activate()
-
-	B.banish_deactivate() //manual deactivate
 	succeed_activate()
 	add_cooldown()
 

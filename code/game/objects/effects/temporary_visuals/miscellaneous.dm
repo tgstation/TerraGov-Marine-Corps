@@ -144,10 +144,12 @@
 	name = "blink portal"
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "anom"
+	layer = ABOVE_LYING_MOB_LAYER
 	duration = 0.5 SECONDS
 
 /obj/effect/temp_visual/banishment_portal
 	name = "banishment portal"
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "bhole3"
-	duration = 3 SECONDS
+	layer = ABOVE_LYING_MOB_LAYER
+	duration = WRAITH_BANISH_BASE_DURATION
