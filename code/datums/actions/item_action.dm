@@ -83,6 +83,7 @@
 	button.vis_contents += current_action_vis_obj
 	action_firemode = holder_gun.gun_firemode
 
+
 /datum/action/item_action/aim_mode
 	var/aim_mode_name = "Take Aim"
 
@@ -90,7 +91,6 @@
 	button.overlays.Cut()
 	button.name = aim_mode_name
 	button.overlays += image('icons/mob/actions.dmi', null, "sniper_zoom", ABOVE_HUD_LAYER)
-
 
 /datum/action/item_action/aim_mode/action_activate()
 	var/obj/item/weapon/gun/I = target
