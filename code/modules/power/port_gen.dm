@@ -28,9 +28,6 @@
 /obj/machinery/power/port_gen/should_have_node()
 	return anchored
 
-///obj/machinery/power/port_gen/should_have_node()
-//	return anchored
-
 /obj/machinery/power/port_gen/connect_to_network()
 	if(!anchored)
 		return FALSE
@@ -305,3 +302,9 @@
 /obj/machinery/power/port_gen/pacman/mobile_power/Initialize()
 	. = ..()
 	AddComponent(/datum/component/mobile_power, active, 10)
+
+/obj/machinery/power/port_gen/pacman/mobile_power/connect_to_network()
+	return FALSE // Don't connect this to networks to stop it doubling up
+
+/obj/machinery/power/port_gen/pacman/mobile_power/should_have_node()
+	return FALSE // Works by magic
