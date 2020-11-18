@@ -49,6 +49,7 @@
 	return
 
 /obj/machinery/power/port_gen/proc/TogglePower()
+	SEND_SIGNAL(src, COMSIG_PORTGEN_POWER_TOGGLE, !active)
 	if(active)
 		active = FALSE
 		update_icon()
@@ -70,6 +71,7 @@
 		if(powernet)
 			add_avail(power_gen * power_output)
 		UseFuel()
+		SEND_SIGNAL(src, COMSIG_PORTGEN_PROCESS)
 	else
 		handleInactive()
 
@@ -296,3 +298,10 @@
 
 /obj/machinery/power/port_gen/pacman/mrs/overheat()
 	explosion(loc, 4, small_animation = TRUE)
+
+/obj/machinery/power/port_gen/pacman/mobile_power
+	name = "\improper A.D.V.P.A.C.M.A.N.-type portable generator"
+
+/obj/machinery/power/port_gen/pacman/mobile_power/Initialize()
+	. = ..()
+	AddComponent(/datum/component/mobile_power, active, 10)

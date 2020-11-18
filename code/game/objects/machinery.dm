@@ -66,6 +66,11 @@
 	M.icon_state = "box_1"
 
 
+/obj/machinery/setAnchored(anchorvalue)
+	. = ..()
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MACHINERY_ANCHORED_CHANGE, src, anchorvalue)
+
+
 //called on machinery construction (i.e from frame to machinery) but not on initialization
 /obj/machinery/proc/on_construction()
 	return
