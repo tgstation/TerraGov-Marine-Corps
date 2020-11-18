@@ -1449,3 +1449,8 @@ Imports
 	name = "Highpower Automag Ammo"
 	contains = list(/obj/item/ammo_magazine/pistol/highpower)
 	cost = 3
+
+/datum/supply_packs/imports/strawhat
+	name = "Straw hat"
+	contains = list(/obj/item/clothing/head/strawhat)
+	cost = 1

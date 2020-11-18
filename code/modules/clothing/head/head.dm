@@ -318,3 +318,11 @@
 	icon_state = "commissar_cap"
 	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = 15, "bio" = 10, "rad" = 0, "fire" = 20, "acid" = 20)
 	flags_armor_features = ARMOR_NO_DECAP
+
+/obj/item/clothing/head/strawhat
+	name = "\improper straw hat"
+	desc = "A hat lined with durathread on the outside, has the usual iconic look of a straw hat. A common hat across the bubble."
+	sprite_sheet_id = 1
+	icon = 'icons/obj/clothing/cm_hats.dmi'
+	icon_state = "straw_hat"
+	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = 15, "bio" = 10, "rad" = 0, "fire" = 20, "acid" = 20)
