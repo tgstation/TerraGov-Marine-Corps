@@ -1573,6 +1573,7 @@ Defined in conflicts.dm of the #defines folder.
 	var/deployment_scatter_mod = -20
 	var/deployment_burst_scatter_mod = -3
 
+
 /obj/item/attachable/bipod/activate_attachment(mob/living/user, turn_off)
 	if(bipod_deployed)
 		bipod_deployed = FALSE
