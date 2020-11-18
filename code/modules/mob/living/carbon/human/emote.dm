@@ -395,8 +395,8 @@
 	. = ..()
 	if(!.)
 		return
-	var/image/scream = image('icons/mob/talk.dmi', user, icon_state = "warcry")
-	user.add_emote_overlay(scream)
+	var/image/warcry = image('icons/mob/talk.dmi', user, icon_state = "warcry")
+	user.add_emote_overlay(warcry)
 
 /datum/emote/living/carbon/human/hug
 	key = "hug"
