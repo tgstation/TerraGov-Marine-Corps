@@ -39,9 +39,13 @@
 		return FALSE
 	if(!isturf(user.loc))
 		return FALSE
-	var/turf/placement_loc = user.loc
-	if(placement_loc.density)
+
+	var/turf/open/placement_loc = user.loc
+
+	if(placement_loc.density || !placement_loc.allow_construction) //We shouldn't be building here.
+		to_chat(user, "<span class='warning'>We can't build here!</span>")
 		return FALSE
+
 	for(var/obj/thing in user.loc)
 		if(!thing.density) //not dense, move on
 			continue
