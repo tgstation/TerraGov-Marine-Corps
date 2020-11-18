@@ -6605,6 +6605,7 @@
 /area/sulaco/marine)
 "aIf" = (
 /obj/machinery/light,
+/obj/machinery/vending/armor_supply,
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "aIg" = (
@@ -14617,6 +14618,10 @@
 	dir = 4
 	},
 /area/sulaco/marine/alpha)
+"qaI" = (
+/obj/machinery/vending/armor_supply,
+/turf/open/floor/prison,
+/area/sulaco/marine)
 "qcz" = (
 /obj/machinery/power/apc/mainship{
 	dir = 4
@@ -34503,7 +34508,7 @@ aIz
 mDu
 mDu
 cfA
-aBk
+qaI
 aBk
 aGk
 aBk
@@ -35021,7 +35026,7 @@ aDL
 aFa
 aGf
 aBk
-aBk
+qaI
 aJS
 aJS
 aJV
@@ -38359,7 +38364,7 @@ axy
 aoR
 awY
 aDO
-aBk
+qaI
 aGk
 aBk
 aIg
@@ -39133,7 +39138,7 @@ mjU
 drG
 fGx
 aBk
-aBk
+qaI
 aKb
 aKb
 aKK
