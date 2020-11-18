@@ -85,7 +85,7 @@
 
 
 /datum/action/item_action/aim_mode
-	var/aim_mode_name = "Take Aim"
+	var/aim_mode_name = "Take Aim" // It is set as a new var because in New() the name gets overriden to "Use [target]"
 
 /datum/action/item_action/aim_mode/update_button_icon()
 	button.overlays.Cut()
