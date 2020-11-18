@@ -212,9 +212,9 @@
 
 	R.do_jitter_animation(2000)
 	R.visible_message("<span class='warning'>[R.name] begins to move erratically!</span>", \
-	"<span class='xenodanger'>We move erratically, making us impossible to hit with projectiles; the next [RUNNER_EVASION_STACKS] projectiles that would hit us will now miss.</span>")
+	"<span class='xenodanger'>We move erratically, making us impossible to hit with projectiles; the next [RUNNER_EVASION_STACKS] projectile damage that would hit us will now miss.</span>")
 
-	addtimer(CALLBACK(src, .proc/evasion_warning), RUNNER_EVASION_DURATION * 0.7) //Warn the runner when the duration is about to expire.
+	addtimer(CALLBACK(src, .proc/evasion_warning), RUNNER_EVASION_DURATION * RUNNER_EVASION_DURATION_WARNING) //Warn the runner when the duration is about to expire.
 	addtimer(CALLBACK(src, .proc/evasion_deactivate), RUNNER_EVASION_DURATION)
 
 	R.evasion_stacks = RUNNER_EVASION_STACKS
@@ -238,13 +238,13 @@
 
 
 /datum/action/xeno_action/evasion/on_cooldown_finish()
-	to_chat(owner, "<span class='xenonotice'>We are able to take evasive action again.</span>")
+	to_chat(owner, "<span class='xenodanger'>We are able to take evasive action again.</span>")
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
 
 /datum/action/xeno_action/evasion/proc/evasion_warning()
 
-	to_chat(owner,"<span class='highdanger'>We begin to slow down as we tire. We can only keep this up for [RUNNER_EVASION_DURATION * 0.3 * 0.1] more seconds!</span>")
+	to_chat(owner,"<span class='highdanger'>We begin to slow down as we tire. We can only keep this up for [RUNNER_EVASION_DURATION * (1-RUNNER_EVASION_DURATION_WARNING) * 0.1] more seconds!</span>")
 	owner.playsound_local(owner, 'sound/voice/hiss4.ogg', 50, 0, 1)
 
 
@@ -253,15 +253,17 @@
 	if(evasion_stacks && (last_move_intent > (world.time - RUNNER_EVASION_RUN_DELAY) ) ) //Gotta keep moving to benefit from evasion!
 
 		do_jitter_animation(2000) //Dodgy animation!
-		visible_message("<span class='warning'>[name] effortlessly dodge the [proj.name]!</span>", \
-		"<span class='xenodanger'>We effortlessly dodge the [proj.name]!</span>")
 
 		if(issamexenohive(proj.firer)) //We automatically dodge allied projectiles at no cost
 			return FALSE
 
-		evasion_stacks--
-		if(evasion_stacks <= RUNNER_EVASION_DANGER_THRESHOLD)
-			to_chat(src, "<span class='highdanger'>We [evasion_stacks > 0 ? "can dodge only [evasion_stacks] more projectiles!" : "can't dodge any more projectiles!"] </span>")
+		evasion_stacks -= (proj.damage)
+
+		visible_message("<span class='warning'>[name] effortlessly dodge the [proj.name]!</span>", \
+		"<span class='xenodanger'>We effortlessly dodge the [proj.name]![evasion_stacks > 0 ? " We can dodge [evasion_stacks] more projectile damage." : ""]</span>")
+
+		if(evasion_stacks <= RUNNER_EVASION_DANGER_RATIO * RUNNER_EVASION_STACKS)
+			to_chat(src, "<span class='highdanger'>We [evasion_stacks > 0 ? "can dodge only [evasion_stacks] more projectile damage!" : "can't dodge any more projectile damage!"] </span>")
 			if(!evasion_stacks) //Audio warning
 				playsound_local(src, 'sound/voice/hiss5.ogg', 50)
 
