@@ -88,7 +88,7 @@
 	X.face_atom(victim) //Face towards the target so we don't look silly
 	X.visible_message("<span class='xenowarning'>\The [X] begins opening its mouth and extending a second jaw towards \the [victim].</span>", \
 	"<span class='danger'>We prepare our inner jaw for a finishing blow on \the [victim]!</span>", null, 20)
-	if(!do_after(X, 10 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(X, /mob/living/proc/break_do_after_checks, list/checked_health, null, null)))
+	if(!do_after(X, 10 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(X, /mob.proc/break_do_after_checks, list("health" = X.health))))
 		X.visible_message("<span class='xenowarning'>\The [X] retracts its inner jaw.</span>", \
 		"<span class='danger'>We retract our inner jaw.</span>", null, 20)
 		return FALSE
