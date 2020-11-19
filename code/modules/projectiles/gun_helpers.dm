@@ -863,7 +863,7 @@ should be alright.
 
 /obj/item/weapon/gun/proc/toggle_aim_mode(mob/living/carbon/human/user)
 	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_AIMING))
-		gun_iff_signal = list()
+		gun_iff_signal = null
 		DISABLE_BITFIELD(flags_gun_features, GUN_IS_AIMING)
 		user.remove_movespeed_modifier(MOVESPEED_ID_AIM_MODE_SLOWDOWN)
 		modify_fire_delay(-aim_fire_delay_buffer)
@@ -875,20 +875,19 @@ should be alright.
 	else if(!user.wear_id)
 		to_chat(user, "<span class='notice'>You don't have distinguished allies you want to avoid shooting.</b></span>")
 		return
-	else
-		to_chat(user, "<span class='notice'>You steady your breathing...</b></span>")
 
-	if(do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_BAR))
-		aim_fire_delay_buffer = fire_delay
-		modify_fire_delay(aim_fire_delay_buffer)
-		ENABLE_BITFIELD(flags_gun_features, GUN_IS_AIMING)
-		user.add_movespeed_modifier(MOVESPEED_ID_AIM_MODE_SLOWDOWN, TRUE, 0, NONE, TRUE, 6)
-		var/obj/item/card/id/C = user.wear_id
-		gun_iff_signal = C.access
-		to_chat(user, "<span class='notice'>You line up your aim.</b></span>")
+	to_chat(user, "<span class='notice'>You steady your breathing...</b></span>")
 
-	else
+	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_BAR))
 		to_chat(user, "<span class='warning'>Your concentration is interrupted!</b></span>")
+		return
+	aim_fire_delay_buffer = fire_delay
+	modify_fire_delay(aim_fire_delay_buffer)
+	ENABLE_BITFIELD(flags_gun_features, GUN_IS_AIMING)
+	user.add_movespeed_modifier(MOVESPEED_ID_AIM_MODE_SLOWDOWN, TRUE, 0, NONE, TRUE, 6)
+	var/obj/item/card/id/C = user.wear_id
+	gun_iff_signal = C.access
+	to_chat(user, "<span class='notice'>You line up your aim.</b></span>")
 
 //----------------------------------------------------------
 				//				   	   \\

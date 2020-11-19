@@ -66,7 +66,7 @@
 	var/scatter = 0 //Chance of scattering, also maximum amount scattered. High variance.
 
 	/// Used to transfer iff_signal from gun to projectile when aim mode is used
-	var/list/has_iff = list()
+	var/list/projectile_iff = list()
 
 	var/distance_travelled = 0
 
@@ -577,7 +577,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		return TRUE
 	if(!throwpass)
 		return TRUE
-	if(proj.ammo.flags_ammo_behavior & AMMO_SNIPER || proj.has_iff || proj.ammo.flags_ammo_behavior & AMMO_ROCKET) //sniper, rockets and IFF rounds bypass cover
+	if(proj.ammo.flags_ammo_behavior & AMMO_SNIPER || proj.projectile_iff || proj.ammo.flags_ammo_behavior & AMMO_ROCKET) //sniper, rockets and IFF rounds bypass cover
 		return FALSE
 	if(proj.distance_travelled <= proj.ammo.barricade_clear_distance)
 		return FALSE
@@ -722,7 +722,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 
 /mob/living/carbon/human/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
-	if(get_target_lock(proj.has_iff))
+	if(get_target_lock(proj.projectile_iff))
 		return FALSE
 	if(mobility_aura)
 		. -= mobility_aura * 5

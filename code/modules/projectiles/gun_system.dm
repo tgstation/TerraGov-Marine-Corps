@@ -57,7 +57,7 @@
 	var/movement_acc_penalty_mult = 5				//Multiplier. Increased and decreased through attachments. Multiplies the accuracy/scatter penalty of the projectile when firing onehanded while moving.
 	var/fire_delay = 6							//For regular shots, how long to wait before firing again.
 	var/shell_speed_mod	= 0						//Modifies the speed of projectiles fired.
-	var/list/gun_iff_signal = list()
+	var/list/gun_iff_signal = null
 	var/aim_fire_delay_buffer = 0				//Used so that modifying a gun's fire delay after activating aim mode doesn't permanently mess with a gun's stats
 
 	//Burst fire.
@@ -102,6 +102,10 @@
 	var/hud_enabled = TRUE //If the Ammo HUD is enabled for this gun or not.
 
 	var/general_codex_key = "guns"
+
+
+
+
 //----------------------------------------------------------
 				//				    \\
 				// NECESSARY PROCS  \\
@@ -134,6 +138,7 @@
 	AddComponent(/datum/component/automatic_fire, fire_delay, burst_delay, burst_amount, gun_firemode, loc) //This should go after handle_starting_attachment() and setup_firemodes() to get the proper values set.
 
 	muzzle_flash = new(src, muzzleflash_iconstate)
+
 
 //Hotfix for attachment offsets being set AFTER the core New() proc. Causes a small graphical artifact when spawning, hopefully works even with lag
 /obj/item/weapon/gun/proc/handle_starting_attachment()
@@ -625,10 +630,12 @@ and you're good to go.
 			flags_gun_features &= ~GUN_BURST_FIRING
 			return
 
+
 		if(!QDELETED(user))
 			play_fire_sound(user)
 			muzzle_flash(firing_angle, user)
 			simulate_recoil(recoil_comp, user)
+
 
 		//This is where the projectile leaves the barrel and deals with projectile code only.
 		//vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
@@ -859,7 +866,7 @@ and you're good to go.
 	projectile_to_fire.damage *= damage_mult
 	projectile_to_fire.damage_falloff *= damage_falloff_mult
 	projectile_to_fire.projectile_speed += shell_speed_mod
-	projectile_to_fire.has_iff = gun_iff_signal
+	projectile_to_fire.projectile_iff = gun_iff_signal
 
 /obj/item/weapon/gun/proc/setup_bullet_accuracy(obj/projectile/projectile_to_fire, mob/user, bullets_fired = 1, dual_wield = FALSE)
 	var/gun_accuracy_mult = accuracy_mult_unwielded

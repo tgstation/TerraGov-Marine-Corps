@@ -19,6 +19,7 @@
 	recoil_unwielded = 4
 	damage_falloff_mult = 0.5
 
+
 /obj/item/weapon/gun/rifle/unique_action(mob/user)
 	return cock(user)
 

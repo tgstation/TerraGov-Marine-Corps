@@ -399,7 +399,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	if(!istype(C)) return
 	for(var/access_tag in unique_access)
 		if(access_tag in C.access)
-			return 1
+			return TRUE
 
 /mob/living/carbon/human/screech_act(mob/living/carbon/xenomorph/queen/Q, screech_range = WORLD_VIEW, within_sight = TRUE)
 	var/dist_pct = get_dist(src, Q) / screech_range
