@@ -1,9 +1,9 @@
-/datum/xeno_caste/gourger
-	caste_name = "Gourger"
-	display_name = "Gourger"
+/datum/xeno_caste/gorger
+	caste_name = "Gorger"
+	display_name = "Gorger"
 	upgrade_name = ""
 	caste_desc = "A frightening looking, bulky xeno that drips with a familiar red fluid."
-	caste_type_path = /mob/living/carbon/xenomorph/gourger
+	caste_type_path = /mob/living/carbon/xenomorph/gorger
 
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_BASETYPE
@@ -43,12 +43,12 @@
 		/datum/action/xeno_action/activable/feast
 	)
 
-/datum/xeno_caste/gourger/young
+/datum/xeno_caste/gorger/young
 	upgrade_name = "Young"
 
 	upgrade = XENO_UPGRADE_ZERO
 
-/datum/xeno_caste/gourger/mature
+/datum/xeno_caste/gorger/mature
 	upgrade_name = "Mature"
 	caste_desc = "A frightening looking, bulky xeno that drips with a familiar red fluid. It looks a little more dangerous."
 
@@ -73,7 +73,7 @@
 	// *** Defense *** //
 	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = XENO_BOMB_RESIST_0, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
 
-/datum/xeno_caste/gourger/elder
+/datum/xeno_caste/gorger/elder
 	upgrade_name = "Elder"
 	caste_desc = "A frightening looking, bulky xeno that drips with a familiar red fluid. It looks pretty strong."
 
@@ -101,7 +101,7 @@
 	// *** Defense *** //
 	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = XENO_BOMB_RESIST_0, "bio" = 15, "rad" = 15, "fire" = 15, "acid" = 15)
 
-/datum/xeno_caste/gourger/ancient
+/datum/xeno_caste/gorger/ancient
 	upgrade_name = "Ancient"
 	caste_desc = "Being within mere eyeshot of this hulking, dripping monstrosity fills you with a deep, unshakeable sense of unease."
 	ancient_message = "We are eternal. We will persevere where others will dry and wither."
