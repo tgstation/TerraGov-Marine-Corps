@@ -146,7 +146,7 @@
 
 
 //Send a message to all xenos.
-/proc/xeno_message(message = null, size = 3, hivenumber = XENO_HIVE_NORMAL)
+/proc/xeno_message(message = null, size = 3, hivenumber = XENO_HIVE_NORMAL, sound = null)
 	if(!message)
 		return
 
@@ -154,7 +154,7 @@
 		CRASH("xeno_message called with invalid hivenumber")
 
 	var/datum/hive_status/HS = GLOB.hive_datums[hivenumber]
-	HS.xeno_message(message, size)
+	HS.xeno_message(message, size, FALSE, sound)
 
 /mob/living/carbon/xenomorph/proc/upgrade_possible()
 	return (upgrade != XENO_UPGRADE_INVALID && upgrade != XENO_UPGRADE_THREE)

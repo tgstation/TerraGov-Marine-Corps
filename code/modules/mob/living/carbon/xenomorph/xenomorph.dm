@@ -64,6 +64,18 @@
 	ADD_TRAIT(src, TRAIT_FLASHBANGIMMUNE, TRAIT_XENO)
 	hive.update_tier_limits()
 
+	//For triggering hive alerts when we take damage.
+	RegisterSignal(src, COMSIG_XENOMORPH_TAKING_DAMAGE, .proc/damage_taken)
+
+/mob/living/carbon/xenomorph/proc/damage_taken()
+	SIGNAL_HANDLER
+
+	var/health_percent = round((health / maxHealth) * 100) //Calculate the health %
+	if(health_percent < XENO_HEALTH_ALERT_TRIGGER_PERCENT & ( last_xeno_health_alert < (world.time - XENO_HEALTH_ALERT_COOLDOWN) ) ) //If our health is less than the alert % threshold, and our alerts aren't on cooldown, alert the hive.
+		var/location_description = "[get_area(src)] (X: [src.x], Y: [src.y])"
+		xeno_message("<span class='xenoannounce'>Our sister [src.name] is badly hurt with ([health]/[maxHealth]) health remaining at [location_description]!</span>", 2, src.hivenumber, 'sound/voice/alien_help2.ogg')
+		last_xeno_health_alert = world.time //set our time stamp
+
 /mob/living/carbon/xenomorph/proc/set_datum()
 	if(!caste_base_type)
 		CRASH("xeno spawned without a caste_base_type set")
@@ -208,6 +220,8 @@
 
 	vis_contents -= wound_overlay
 	QDEL_NULL(wound_overlay)
+
+	UnregisterSignal(COMSIG_XENOMORPH_TAKING_DAMAGE)
 	return ..()
 
 

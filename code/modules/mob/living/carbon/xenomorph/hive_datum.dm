@@ -488,13 +488,17 @@ The force parameter is for messages that should ignore a dead queen
 to_chat will check for valid clients itself already so no need to double check for clients
 
 */
-/datum/hive_status/proc/xeno_message(message = null, size = 3, force = FALSE)
+/datum/hive_status/proc/xeno_message(message = null, size = 3, force = FALSE, sound = null)
 	if(!force && !can_xeno_message())
 		return
 	for(var/i in get_all_xenos())
 		var/mob/living/carbon/xenomorph/X = i
 		if(X.stat) // dead/crit cant hear
 			continue
+
+		if(sound) //Play sound if applicable
+			X.playsound_local(X, sound, 25, 0, 1)
+
 		to_chat(X, "<span class='xenodanger'><font size=[size]> [message]</font></span>")
 
 // This is to simplify the process of talking in hivemind, this will invoke the receive proc of all xenos in this hive

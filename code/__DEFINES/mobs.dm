@@ -426,6 +426,9 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define XENO_NEURO_AMOUNT_RECURRING			10
 #define XENO_NEURO_CHANNEL_TIME				1.5 SECONDS
 
+#define XENO_HEALTH_ALERT_TRIGGER_PERCENT	50 //If a xeno is damaged while its maximum hit points are less than this percent, we send out an alert to the hive
+#define XENO_HEALTH_ALERT_COOLDOWN			30 SECONDS //The cooldown on these xeno damage alerts
+
 #define CANNOT_HOLD_EGGS 0
 #define CAN_HOLD_TWO_HANDS 1
 #define CAN_HOLD_ONE_HAND 2
