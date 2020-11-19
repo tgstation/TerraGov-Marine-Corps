@@ -1,21 +1,22 @@
 
-/**Gun attachable items code. Lets you add various effects to firearms.
-  *Some attachables are hardcoded in the projectile firing system, like grenade launchers, flamethrowers.
-  *
-  *When you are adding new guns into the attachment list, or even old guns, make sure that said guns
-  *properly accept overlays. You can find the proper offsets in the individual gun dms, so make sure
-  *you set them right. It's a pain to go back to find which guns are set incorrectly.
-  *To summarize: rail attachments should go on top of the rail. For rifles, this usually means the middle of the gun.
-  *For handguns, this is usually toward the back of the gun. SMGs usually follow rifles.
-  *Muzzle attachments should connect to the barrel, not sit under or above it. The only exception is the bayonet.
-  *Underrail attachments should just fit snugly, that's about it. Stocks are pretty obvious.
-  *
-  *All attachment offsets are now in a list, including stocks. Guns that don't take attachments can keep the list null.
-  *~N
-  *
-  *Anything that isn't used as the gun fires should be a flat number, never a percentange. It screws with the calculations,
-  *and can mean that the order you attach something/detach something will matter in the final number. It's also completely
-  *inaccurate. Don't worry if force is ever negative, it won't runtime.
+/** Gun attachable items code. Lets you add various effects to firearms.
+
+Some attachables are hardcoded in the projectile firing system, like grenade launchers, flamethrowers.
+
+When you are adding new guns into the attachment list, or even old guns, make sure that said guns
+properly accept overlays. You can find the proper offsets in the individual gun dms, so make sure
+you set them right. It's a pain to go back to find which guns are set incorrectly.
+To summarize: rail attachments should go on top of the rail. For rifles, this usually means the middle of the gun.
+For handguns, this is usually toward the back of the gun. SMGs usually follow rifles.
+Muzzle attachments should connect to the barrel, not sit under or above it. The only exception is the bayonet.
+Underrail attachments should just fit snugly, that's about it. Stocks are pretty obvious.
+
+All attachment offsets are now in a list, including stocks. Guns that don't take attachments can keep the list null.
+~N
+
+Anything that isn't used as the gun fires should be a flat number, never a percentange. It screws with the calculations,
+and can mean that the order you attach something/detach something will matter in the final number. It's also completely
+inaccurate. Don't worry if force is ever negative, it won't runtime.
   */
 
 /obj/item/attachable
