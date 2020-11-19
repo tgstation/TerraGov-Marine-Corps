@@ -392,7 +392,7 @@ Contains most of the procs that are called when a mob is attacked by something
 //This looks for a "marine", ie. non-civilian ID on a person. Used with the m56 Smartgun code.
 //Does not actually check for station jobs or access yet, cuz I'm mad lazy.
 //Updated and renamed a bit. Will probably updated properly once we have a new ID system in place, as this is just a workaround ~N.
-/mob/living/carbon/human/proc/get_target_lock(var/list/unique_access)
+/mob/living/carbon/human/proc/get_target_lock(list/unique_access)
 	//Streamlined for faster processing. Needs a unique access, otherwise it will just hit everything.
 	var/obj/item/card/id/C = wear_id
 	if(!istype(C)) C = get_active_held_item()
