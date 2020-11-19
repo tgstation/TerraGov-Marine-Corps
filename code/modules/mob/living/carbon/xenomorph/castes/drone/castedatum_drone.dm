@@ -56,7 +56,7 @@
 		/datum/action/xeno_action/plant_weeds,
 		/datum/action/xeno_action/choose_resin,
 		/datum/action/xeno_action/activable/secrete_resin,
-		/datum/action/xeno_action/activable/psychic_cure/drone,
+		/datum/action/xeno_action/activable/psychic_cure/acidic_salve,
 		/datum/action/xeno_action/activable/transfer_plasma/drone,
 		/datum/action/xeno_action/activable/salvage_plasma,
 		/datum/action/xeno_action/activable/corrosive_acid/drone,
