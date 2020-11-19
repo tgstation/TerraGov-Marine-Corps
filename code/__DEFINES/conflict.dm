@@ -45,14 +45,13 @@
 #define AMMO_ROCKET				(1<<4)
 #define AMMO_SNIPER				(1<<5)
 #define AMMO_INCENDIARY			(1<<6)
-#define AMMO_SKIPS_HUMANS		(1<<7)
-#define AMMO_SKIPS_ALIENS 		(1<<8)
-#define AMMO_IS_SILENCED 		(1<<9) //Unused right now.
-#define AMMO_IGNORE_ARMOR		(1<<10)
-#define AMMO_IGNORE_RESIST		(1<<11) //Unused.
-#define AMMO_BALLISTIC			(1<<12)
-#define AMMO_SUNDERING			(1<<13)
-#define AMMO_CHAINING			(1<<14)
+#define AMMO_SKIPS_ALIENS 		(1<<7)
+#define AMMO_IS_SILENCED 		(1<<8) //Unused right now.
+#define AMMO_IGNORE_ARMOR		(1<<9)
+#define AMMO_IGNORE_RESIST		(1<<10) //Unused.
+#define AMMO_BALLISTIC			(1<<11)
+#define AMMO_SUNDERING			(1<<12)
+#define AMMO_CHAINING			(1<<13)
 
 //Gun defines for gun related thing. More in the projectile folder.
 //flags_gun_features

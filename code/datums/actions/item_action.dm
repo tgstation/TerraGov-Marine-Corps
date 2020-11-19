@@ -85,7 +85,6 @@
 
 /datum/action/item_action/aim_mode/update_button_icon()
 	button.overlays.Cut()
-	button.name = "Take Aim"
 	button.overlays += image('icons/mob/actions.dmi', null, "sniper_zoom", ABOVE_HUD_LAYER)
 
 /datum/action/item_action/aim_mode/action_activate()
