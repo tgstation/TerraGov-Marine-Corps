@@ -221,7 +221,7 @@
 	vis_contents -= wound_overlay
 	QDEL_NULL(wound_overlay)
 
-	UnregisterSignal(COMSIG_XENOMORPH_TAKING_DAMAGE)
+	UnregisterSignal(src, COMSIG_XENOMORPH_TAKING_DAMAGE)
 	return ..()
 
 
