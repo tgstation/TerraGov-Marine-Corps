@@ -179,7 +179,7 @@
 	"<span class='xenowarning'>We effortlessly fling [H] to the side!</span>")
 	playsound(H,'sound/weapons/alien_claw_block.ogg', 75, 1)
 	succeed_activate()
-	H.apply_effects(1,2) 	// Stun
+	H.apply_effects(1,1) 	// Stun
 	shake_camera(H, 2, 1)
 
 	var/facing = get_dir(X, H)
