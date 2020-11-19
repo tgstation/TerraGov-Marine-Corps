@@ -1,0 +1,4 @@
+author: "Hathkar"
+delete-after: True
+changes: 
+  - tweak: "Resin Silos generate less xeno job points per corpse"
