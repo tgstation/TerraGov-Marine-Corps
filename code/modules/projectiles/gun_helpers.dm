@@ -869,14 +869,13 @@ should be alright.
 		modify_fire_delay(-aim_fire_delay_buffer)
 		to_chat(user, "<span class='notice'>You seize aiming.</b></span>")
 		return
-	else if(!CHECK_BITFIELD(flags_item, WIELDED))
+	if(!CHECK_BITFIELD(flags_item, WIELDED))
 		to_chat(user, "<span class='notice'>You need to wield your gun before aiming.</b></span>")
 		return
-	else if(!user.wear_id)
+	if(!user.wear_id)
 		to_chat(user, "<span class='notice'>You don't have distinguished allies you want to avoid shooting.</b></span>")
 		return
-	else
-		to_chat(user, "<span class='notice'>You steady your breathing...</b></span>")
+	to_chat(user, "<span class='notice'>You steady your breathing...</b></span>")
 
 	if(do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_BAR))
 		aim_fire_delay_buffer = fire_delay
