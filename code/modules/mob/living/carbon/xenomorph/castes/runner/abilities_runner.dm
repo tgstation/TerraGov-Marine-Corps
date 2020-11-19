@@ -252,7 +252,7 @@
 
 	if(evasion_stacks && (last_move_intent > (world.time - RUNNER_EVASION_RUN_DELAY) ) ) //Gotta keep moving to benefit from evasion!
 
-		do_jitter_animation(2000) //Dodgy animation!
+		do_jitter_animation(4000) //Dodgy animation!
 
 		if(issamexenohive(proj.firer)) //We automatically dodge allied projectiles at no cost
 			return FALSE
@@ -261,6 +261,17 @@
 
 		visible_message("<span class='warning'>[name] effortlessly dodge the [proj.name]!</span>", \
 		"<span class='xenodanger'>We effortlessly dodge the [proj.name]![evasion_stacks > 0 ? " We can dodge [evasion_stacks] more projectile damage." : ""]</span>")
+
+		var/turf/T = get_turf(src) //after image SFX
+		playsound(T, pick('sound/effects/throw.ogg','sound/effects/alien_tail_swipe1.ogg', 'sound/effects/alien_tail_swipe2.ogg'), 25, 1) //sound effects
+		var/i = 0
+		var/obj/effect/temp_visual/xenomorph/runner_afterimage/A
+		while(i < rand(2,4)) //random number of after images
+			A = new(T) //Create the after image.
+			A.pixel_x = pick(rand(src.pixel_x * 3, src.pixel_x * 1.5), rand(0, src.pixel_x * -1)) //Variation on the X position
+			A.pixel_y = pick(rand(src.pixel_y * 3, src.pixel_y * 1.5), rand(0, src.pixel_y * -1)) //Variation on the Y position
+			A.dir = src.dir //match the direction of the runner
+			i++
 
 		if(evasion_stacks <= RUNNER_EVASION_DANGER_RATIO * RUNNER_EVASION_STACKS)
 			to_chat(src, "<span class='highdanger'>We [evasion_stacks > 0 ? "can dodge only [evasion_stacks] more projectile damage!" : "can't dodge any more projectile damage!"] </span>")
