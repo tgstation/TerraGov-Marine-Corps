@@ -155,7 +155,8 @@
 	icon_state = "mining_drill_reinforceddisplay"
 	w_class = WEIGHT_CLASS_NORMAL
 	materials = list(/datum/material/metal = 75000) // 18 Sheets , because thats all a autolathe can fit
-	var/uptype /// Used to determine what type of upgrade it is for use in miner.dm
+	/// Used to determine the type of upgrade the miner is going to receive. Has to be a string which is defined in miner.dm or it won't work.
+	var/uptype
 
 /obj/item/minerupgrade/reinforcement
 	name = "Reinforced componentSs box"
