@@ -70,8 +70,8 @@
 /mob/living/carbon/xenomorph/proc/damage_taken()
 	SIGNAL_HANDLER
 
-	var/health_percent = round((health / maxHealth) * 100) //Calculate the health %
-	if(health_percent < XENO_HEALTH_ALERT_TRIGGER_PERCENT & ( last_xeno_health_alert < (world.time - XENO_HEALTH_ALERT_COOLDOWN) ) ) //If our health is less than the alert % threshold, and our alerts aren't on cooldown, alert the hive.
+	//If health is less than either the alert threshold, or the alert trigger percent, whichever is greater, and we're not on alert cooldown, trigger the hive alert
+	if((health < max(XENO_HEALTH_ALERT_TRIGGER_THRESHOLD, maxHealth * XENO_HEALTH_ALERT_TRIGGER_PERCENT)) & ( last_xeno_health_alert < (world.time - XENO_HEALTH_ALERT_COOLDOWN) ) )
 		var/location_description = "[get_area(src)] (X: [src.x], Y: [src.y])"
 		xeno_message("<span class='xenoannounce'>Our sister [src.name] is badly hurt with ([health]/[maxHealth]) health remaining at [location_description]!</span>", 2, src.hivenumber, 'sound/voice/alien_help2.ogg')
 		last_xeno_health_alert = world.time //set our time stamp
