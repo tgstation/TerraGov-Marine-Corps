@@ -143,7 +143,7 @@
 		playsound(loc, 'sound/effects/blobattack.ogg', 25)
 
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	xeno_job.add_job_points(3.3)
+	xeno_job.add_job_points(1.75) //4 corpses per burrowed; 7 points per larva
 
 	log_combat(victim, user, "was consumed by a resin silo")
 	log_game("[key_name(victim)] was consumed by a resin silo at [AREACOORD(victim.loc)].")
