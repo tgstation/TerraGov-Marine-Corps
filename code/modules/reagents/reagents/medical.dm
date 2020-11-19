@@ -448,7 +448,7 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	scannable = TRUE
 
-/datum/reagent/medicine/hyroalin/on_mob_life(mob/living/L)
+/datum/reagent/medicine/hyronalin/on_mob_life(mob/living/L)
 	L.adjustToxLoss(-3*REM)
 	if(prob(50))
 		L.take_limb_damage(2*REM, 0)

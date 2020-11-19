@@ -45,13 +45,14 @@
 
 	// *** Boiler Abilities *** //
 	max_ammo = 4
-	bomb_strength = 1 //Multiplier to the effectiveness of the boiler glob.
-	acid_delay = 9 SECONDS
+	bomb_strength = 1
+
 	bomb_delay = 30 SECONDS
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
+		/datum/action/xeno_action/activable/headbite,
 		/datum/action/xeno_action/place_acidwell,
 		/datum/action/xeno_action/activable/corrosive_acid/strong,
 		/datum/action/xeno_action/create_boiler_bomb,
@@ -96,7 +97,7 @@
 	// *** Boiler Abilities *** //
 	max_ammo = 5
 	bomb_strength = 1.1
-	acid_delay = 9 SECONDS
+
 	bomb_delay = 30 SECONDS
 
 /datum/xeno_caste/boiler/elder
@@ -132,7 +133,7 @@
 	// *** Boiler Abilities *** //
 	max_ammo = 6
 	bomb_strength = 1.2
-	acid_delay = 9 SECONDS
+
 	bomb_delay = 30 SECONDS
 
 /datum/xeno_caste/boiler/ancient
@@ -166,5 +167,5 @@
 	// *** Boiler Abilities *** //
 	max_ammo = 7
 	bomb_strength = 1.3
-	acid_delay = 9 SECONDS
+
 	bomb_delay = 25 SECONDS

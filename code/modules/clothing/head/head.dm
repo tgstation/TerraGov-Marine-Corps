@@ -41,17 +41,26 @@
 	sprite_sheet_id = 1
 	icon_state = "beret"
 	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 10, "bio" = 5, "rad" = 0, "fire" = 5, "acid" = 5)
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
+	flags_item_map_variant = NONE
 
 /obj/item/clothing/head/tgmcberet/tan
 	icon_state = "berettan"
+	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
 
 /obj/item/clothing/head/tgmcberet/red
 	icon_state = "beretred"
 	flags_item_map_variant = NONE
 
+/obj/item/clothing/head/tgmcberet/red2
+	icon_state = "beretred2"
+	flags_item_map_variant = NONE
+
 /obj/item/clothing/head/tgmcberet/green
 	icon_state = "beretgreen"
+	flags_item_map_variant = NONE
+
+/obj/item/clothing/head/tgmcberet/snow
+	icon_state = "beretsnow"
 	flags_item_map_variant = NONE
 
 /obj/item/clothing/head/tgmcberet/wo
@@ -309,3 +318,11 @@
 	icon_state = "commissar_cap"
 	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = 15, "bio" = 10, "rad" = 0, "fire" = 20, "acid" = 20)
 	flags_armor_features = ARMOR_NO_DECAP
+
+/obj/item/clothing/head/strawhat
+	name = "\improper straw hat"
+	desc = "A hat lined with durathread on the outside, has the usual iconic look of a straw hat. A common hat across the bubble."
+	sprite_sheet_id = 1
+	icon = 'icons/obj/clothing/cm_hats.dmi'
+	icon_state = "straw_hat"
+	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = 15, "bio" = 10, "rad" = 0, "fire" = 20, "acid" = 20)

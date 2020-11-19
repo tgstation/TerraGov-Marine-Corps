@@ -1,0 +1,4 @@
+author: "Hathkar"
+delete-after: True
+changes: 
+  - rscdel: "Removed Command Headsets from Lockers. No more greytiding."

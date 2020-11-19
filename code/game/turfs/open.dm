@@ -273,7 +273,7 @@
 	name = "lava"
 	icon_state = "full"
 	light_range = 2
-	light_power = 0.75
+	light_power = 1.4
 	light_color = LIGHT_COLOR_LAVA
 
 /turf/open/lavaland/lava/is_weedable()
@@ -397,8 +397,8 @@
 /turf/open/lavaland/catwalk
 	name = "catwalk"
 	icon_state = "lavacatwalk"
-	light_range = 4
-	light_power = 0.75
+	light_range = 1.4
+	light_power = 2
 	light_color = LIGHT_COLOR_LAVA
 	shoefootstep = FOOTSTEP_CATWALK
 	barefootstep = FOOTSTEP_CATWALK

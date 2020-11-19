@@ -67,7 +67,7 @@
 /datum/action/xeno_action/activable/lunge/proc/lunge(mob/living/owner, atom/A)
 	SIGNAL_HANDLER
 	if(can_use_ability(A, FALSE, XACT_IGNORE_SELECTED_ABILITY))
-		use_ability(A)
+		INVOKE_ASYNC(src, .proc/use_ability, A)
 		return COMSIG_WARRIOR_USED_LUNGE
 
 /datum/action/xeno_action/activable/lunge/give_action(mob/living/L)
@@ -179,7 +179,7 @@
 	"<span class='xenowarning'>We effortlessly fling [H] to the side!</span>")
 	playsound(H,'sound/weapons/alien_claw_block.ogg', 75, 1)
 	succeed_activate()
-	H.apply_effects(1,2) 	// Stun
+	H.apply_effects(1,1) 	// Stun
 	shake_camera(H, 2, 1)
 
 	var/facing = get_dir(X, H)

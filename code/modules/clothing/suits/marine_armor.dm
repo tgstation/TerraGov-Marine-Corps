@@ -111,9 +111,9 @@
 
 /obj/item/clothing/suit/storage/marine/harness
 	name = "\improper M3 pattern marine harness"
-	desc = "A standard Marine M3 Pattern Harness. No encumbrance and almost no protection."
+	desc = "A standard Marine M3 Pattern Harness. No encumbrance and no protection."
 	icon_state = "10"
-	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
+	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 	slowdown = 0
 	flags_atom = NONE
 
