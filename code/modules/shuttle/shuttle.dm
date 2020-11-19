@@ -12,11 +12,12 @@
 	resistance_flags = RESIST_ALL
 	anchored = TRUE
 
-	/** 
+	/**
 	  * The identifier of the port or ship.
 	  * This will be used in numerous other places like the console,
 	  * stationary ports and whatnot to tell them your ship's mobile
-	  */ port can be used in these places, or the docking port is compatible, etc.
+	  * port can be used in these places, or the docking port is compatible, etc.
+	  */
 	var/id
 	///Possible destinations
 	var/port_destinations
