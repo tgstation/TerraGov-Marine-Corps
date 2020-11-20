@@ -1,6 +1,6 @@
 
 //-------------------------------------------------------
-//TP-14
+//M4A3 PISTOL
 
 /obj/item/ammo_magazine/pistol/standard_pistol
 	name = "\improper TP-14 magazine (9mm)"
