@@ -124,6 +124,8 @@
 #define COMSIG_ATOM_INITIALIZED_ON "atom_initialized_on"		//called from atom/Initialize() of target: (atom/target)
 #define COMSIG_ATOM_ORBIT_BEGIN "atom_orbit_begin"				//called when an atom starts orbiting another atom: (atom)
 #define COMSIG_ATOM_ORBIT_STOP "atom_orbit_stop"				//called when an atom stops orbiting another atom: (atom)
+#define COMSIG_ATOM_ACIDSPRAY_ACT "atom_acidspray_act"			//from base of atom/acidspray_act():
+
 
 ///from base of atom/set_opacity(): (new_opacity)
 #define COMSIG_ATOM_SET_OPACITY "atom_set_opacity"
@@ -138,6 +140,7 @@
 #define COMSIG_ATOM_SET_LIGHT_ON "atom_set_light_on"
 ///Called right before the atom changes the value of light_flags to a different one, from base atom/set_light_flags(): (new_value)
 #define COMSIG_ATOM_SET_LIGHT_FLAGS "atom_set_light_flags"
+
 
 // /atom/movable signals
 #define COMSIG_MOVABLE_PRE_MOVE "movable_pre_move"					//from base of atom/movable/Moved(): (/atom)
