@@ -426,6 +426,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/machinery/vending/armor_supply,
 /turf/open/floor/mainship,
 /area/shuttle/canterbury)
 "bo" = (

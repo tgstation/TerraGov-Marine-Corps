@@ -376,7 +376,17 @@
 	else
 		return pick('sound/voice/human_male_laugh_1.ogg', 'sound/voice/human_male_laugh_2.ogg')
 
+/datum/emote/living/carbon/human/warcry
+	key = "warcry"
+	key_third_person = "warcries"
+	message = "shouts an inspiring cry!"
+	emote_type = EMOTE_AUDIBLE
 
+/datum/emote/living/carbon/human/warcry/get_sound(mob/living/user)
+	if(user.gender == FEMALE)
+		return pick('sound/voice/human_female_warcry_1.ogg', 'sound/voice/human_female_warcry_2.ogg', 'sound/voice/human_female_warcry_3.ogg', 'sound/voice/human_female_warcry_4.ogg', 'sound/voice/human_female_warcry_5.ogg', 'sound/voice/human_female_warcry_6.ogg', 'sound/voice/human_female_warcry_7.ogg', 'sound/voice/human_female_warcry_8.ogg')
+	else
+		return pick('sound/voice/human_male_warcry_1.ogg', 'sound/voice/human_male_warcry_2.ogg', 'sound/voice/human_male_warcry_3.ogg', 'sound/voice/human_male_warcry_4.ogg', 'sound/voice/human_male_warcry_5.ogg', 'sound/voice/human_male_warcry_6.ogg', 'sound/voice/human_male_warcry_7.ogg', 'sound/voice/human_male_warcry_8.ogg', 'sound/voice/human_male_warcry_9.ogg', 'sound/voice/human_male_warcry_10.ogg', 'sound/voice/human_male_warcry_11.ogg', 'sound/voice/human_male_warcry_12.ogg', 'sound/voice/human_male_warcry_13.ogg', 'sound/voice/human_male_warcry_14.ogg', 'sound/voice/human_male_warcry_15.ogg', 'sound/voice/human_male_warcry_16.ogg', 'sound/voice/human_male_warcry_17.ogg', 'sound/voice/human_male_warcry_18.ogg', 'sound/voice/human_male_warcry_19.ogg', 'sound/voice/human_male_warcry_20.ogg', 'sound/voice/human_male_warcry_21.ogg', 'sound/voice/human_male_warcry_22.ogg')
 /datum/emote/living/carbon/human/hug
 	key = "hug"
 	key_third_person = "hugs"

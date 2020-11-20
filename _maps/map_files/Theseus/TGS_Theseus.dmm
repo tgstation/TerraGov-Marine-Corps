@@ -38091,6 +38091,10 @@
 	dir = 1
 	},
 /area/mainship/living/briefing)
+"vqs" = (
+/obj/machinery/vending/armor_supply,
+/turf/open/floor/mainship,
+/area/mainship/squads/req)
 "vsq" = (
 /obj/structure/closet/emcloset,
 /turf/open/floor/mainship/cargo,
@@ -78127,7 +78131,7 @@ art
 bre
 bre
 buE
-wKa
+vqs
 rkW
 bwf
 bAG

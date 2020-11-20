@@ -149,6 +149,9 @@
 	icon_state = "chigusa0"
 	walltype = "chigusa"
 
+/turf/closed/wall/desert/invincible
+	resistance_flags = RESIST_ALL
+
 /turf/closed/wall/desert/handle_icon_junction(junction)
 	if (!walltype)
 		return
