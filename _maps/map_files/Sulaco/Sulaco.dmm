@@ -6613,6 +6613,7 @@
 /area/sulaco/marine)
 "aIf" = (
 /obj/machinery/light,
+/obj/machinery/vending/armor_supply,
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "aIg" = (
@@ -9882,6 +9883,10 @@
 "bhV" = (
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
+"bij" = (
+/obj/machinery/vending/armor_supply,
+/turf/open/floor/prison,
+/area/sulaco/marine)
 "bjL" = (
 /obj/machinery/door_control{
 	id = "eastblast";
@@ -35290,7 +35295,7 @@ cfA
 aDI
 aEX
 aGc
-aBk
+bij
 aIg
 aIJ
 aGH
@@ -36062,7 +36067,7 @@ aDL
 aFa
 aGf
 aBk
-aBk
+bij
 aJS
 aJS
 aJV
@@ -40174,7 +40179,7 @@ mjU
 drG
 fGx
 aBk
-aBk
+bij
 aKb
 aKb
 aKK
