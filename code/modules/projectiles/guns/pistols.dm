@@ -80,7 +80,7 @@
 	fire_sound = 'sound/weapons/guns/fire/pistol_service.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol
 
-	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
+	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 22,"rail_x" = 19, "rail_y" = 21, "under_x" = 21, "under_y" = 15, "stock_x" = 21, "stock_y" = 17)
 
 	fire_delay = 0.2 SECONDS
 	accuracy_mult = 1.15
@@ -133,7 +133,7 @@
 	reload_sound = 'sound/weapons/guns/interact/colt_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/colt_cocked.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/m1911
-	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
+	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 21,"rail_x" = 17, "rail_y" = 22, "under_x" = 21, "under_y" = 15, "stock_x" = 21, "stock_y" = 17)
 
 	fire_delay = 0.2 SECONDS
 	accuracy_mult = 1.05
@@ -451,7 +451,7 @@
 	)
 
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
-	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 20,"rail_x" = 11, "rail_y" = 22, "under_x" = 21, "under_y" = 16, "stock_x" = 18, "stock_y" = 11)
+	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 22,"rail_x" = 19, "rail_y" = 23, "under_x" = 21, "under_y" = 16, "stock_x" = 11, "stock_y" = 10)
 
 	fire_delay = 0.25 SECONDS
 	burst_amount = 3
