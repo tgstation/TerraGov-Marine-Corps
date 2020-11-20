@@ -4,7 +4,6 @@
 *		Cakehat
 *		Ushanka
 *		Pumpkin head
-*		Kitty ears
 *
 */
 
