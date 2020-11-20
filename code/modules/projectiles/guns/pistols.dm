@@ -216,8 +216,8 @@
 /obj/item/weapon/gun/pistol/b92fs/M9
 	name = "\improper M9 Custom pistol"
 	desc = "A 20th century military firearm customized for special forces use, fires tranq darts to take down enemies nonlethally. It does not seem to accept any other attachments."
-	icon_state = "m9"
-	item_state = "m9"
+	icon_state = "b92fs"
+	item_state = "b92fs"
 	caliber = "9x19mm tranquilizer" //codex
 	max_shells = 12 //codex
 	current_mag =/obj/item/ammo_magazine/pistol/b92fstranq
