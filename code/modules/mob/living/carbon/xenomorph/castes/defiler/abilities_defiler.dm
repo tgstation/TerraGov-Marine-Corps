@@ -47,13 +47,13 @@
 // *********** Neurogas
 // ***************************************
 /datum/action/xeno_action/activable/emit_neurogas
-	name = "Emit Neurogas"
+	name = "Emit Noxious Gas"
 	action_icon_state = "emit_neurogas"
-	mechanics_text = "Channel for 3 seconds to emit a cloud of noxious smoke that follows the Defiler. You must remain stationary while channeling; moving will cancel the ability but will still cost plasma."
+	mechanics_text = "Channel for 3 seconds to emit a cloud of noxious smoke, based on selected reagent, that follows the Defiler. You must remain stationary while channeling; moving will cancel the ability but will still cost plasma."
 	ability_name = "emit neurogas"
 	plasma_cost = 200
 	cooldown_timer = 40 SECONDS
-	keybind_flags = XACT_KEYBIND_USE_ABILITY
+	keybind_flags = XACT_KEYBIND_USE_ABILITY|XACT_IGNORE_SELECTED_ABILITY
 	keybind_signal = COMSIG_XENOABILITY_EMIT_NEUROGAS
 
 /datum/action/xeno_action/activable/emit_neurogas/on_cooldown_finish()
@@ -97,6 +97,16 @@
 /datum/action/xeno_action/activable/emit_neurogas/proc/dispense_gas(count = 3)
 	var/mob/living/carbon/xenomorph/Defiler/X = owner
 	set waitfor = FALSE
+	var/smoke_range = 2
+	var/datum/effect_system/smoke_spread/xeno/neuro/N = new(X)
+	N.strength = 1
+	if(X.selected_reagent == /datum/reagent/toxin/xeno_hemodile)
+		N.smoke_type = /obj/effect/particle_effect/smoke/xeno/hemodile
+		smoke_range = 3
+	else if(X.selected_reagent == /datum/reagent/toxin/xeno_transvitox)
+		N.smoke_type = /obj/effect/particle_effect/smoke/xeno/transvitox
+		N.strength = -0.75
+		smoke_range = 4
 	while(count)
 		if(X.stagger) //If we got staggered, return
 			to_chat(X, "<span class='xenowarning'>We try to emit neurogas but are staggered!</span>")
@@ -106,11 +116,10 @@
 			return
 		var/turf/T = get_turf(X)
 		playsound(T, 'sound/effects/smoke.ogg', 25)
-		var/datum/effect_system/smoke_spread/xeno/neuro/N = new(X)
 		if(count > 1)
-			N.set_up(2, T)
+			N.set_up(smoke_range, T)
 		else //last emission is larger
-			N.set_up(3, T)
+			N.set_up(round(smoke_range*1.3), T)
 		N.start()
 		T.visible_message("<span class='danger'>Noxious smoke billows from the hulking xenomorph!</span>")
 		count = max(0,count - 1)
@@ -155,9 +164,90 @@
 
 	succeed_activate()
 	add_cooldown()
-	
+
 	new /obj/effect/alien/egg/gas(A.loc)
 	qdel(alien_egg)
 
 	GLOB.round_statistics.defiler_inject_egg_neurogas++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "defiler_inject_egg_neurogas")
+
+// ***************************************
+// *********** Reagent selection
+// ***************************************
+/datum/action/xeno_action/select_reagent
+	name = "Select Reagent"
+	action_icon_state = "select_reagent0"
+	mechanics_text = "Selects which reagent to inject. Hemodile slows by 25%, increased to 50% with neurotoxin present, and deals 20% of dmage received as stamina damage. Transvitox after ~4s converts brute/burn damage to toxin based on 40% of damage received up to 45 toxin on target."
+	use_state_flags = XACT_USE_BUSY
+	keybind_signal = COMSIG_XENOABILITY_SELECT_REAGENT
+	var/list_position
+
+/datum/action/xeno_action/select_reagent/update_button_icon()
+	var/mob/living/carbon/xenomorph/X = owner
+	var/atom/A = X.selected_reagent
+	button.overlays.Cut()
+	button.overlays += image('icons/mob/actions.dmi', button, initial(A.name))
+	return ..()
+
+/datum/action/xeno_action/select_reagent/action_activate()
+	var/mob/living/carbon/xenomorph/X = owner
+	var/list/available_reagents = X.xeno_caste.available_reagents_define
+	if(list_position < length(available_reagents))
+		list_position++
+	else
+		list_position = 1
+	X.selected_reagent = available_reagents[list_position]
+	var/atom/A = X.selected_reagent
+	to_chat(X, "<span class='notice'>We will now slash with <b>[initial(A.name)]</b>.</span>")
+	update_button_icon()
+	return succeed_activate()
+
+// ***************************************
+// *********** Reagent slash
+// ***************************************
+/datum/action/xeno_action/activable/reagent_slash
+	name = "Reagent Slash"
+	action_icon_state = "reagent_slash"
+	mechanics_text = "Deals damage 4 times over 3.6s and injects 3u of selected reagent per slash. Can move while slashing."
+	ability_name = "reagent slash"
+	cooldown_timer = 6 SECONDS
+	plasma_cost = 100
+	keybind_signal = COMSIG_XENOABILITY_REAGENT_SLASH
+	target_flags = XABB_MOB_TARGET
+
+/datum/action/xeno_action/activable/reagent_slash/can_use_ability(atom/A, silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return
+	if(get_dist(owner, A) > 1)
+		to_chat(owner, "<span class='warning'>We need to be next to our prey.</span>")
+		return FALSE
+	if(!A.can_sting())
+		to_chat(owner, "<span class='warning'>Our slash won't affect this target!</span>")
+		return FALSE
+	return TRUE
+
+/datum/action/xeno_action/activable/reagent_slash/use_ability(atom/A)
+	var/mob/living/carbon/xenomorph/X = owner
+	succeed_activate()
+	slash_action(A, X.selected_reagent, DEFILER_REAGENT_SLASH_DELAY, DEFILER_REAGENT_SLASH_U_AMOUNT, DEFILER_REAGENT_SLASH_COUNT)
+	add_cooldown()
+
+/datum/action/xeno_action/activable/reagent_slash/proc/slash_action(mob/living/carbon/C, toxin = /datum/reagent/toxin/xeno_neurotoxin, channel_time = 1 SECONDS, transfer_amount = 4, count = 3)
+	var/mob/living/carbon/xenomorph/X = owner
+	var/datum/limb/affecting = X.zone_selected
+	var/i = 1
+	do
+		if(get_dist(X, C) > 1)
+			to_chat(X, "<span class='warning'>We need to be closer to [C].</span>")
+			return
+		if(X.stagger)
+			return
+		X.face_atom(C)
+		C.reagents.add_reagent(toxin, transfer_amount)
+		playsound(C, "alien_claw_flesh", 25, TRUE)
+		playsound(C, 'sound/effects/spray3.ogg', 15, TRUE)
+		C.attack_alien_harm(X, dam_bonus = -17, set_location = affecting, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null) //dam_bonus influences slash amount using attack damage as a base, it's low because you can slash while the effect is going on
+		X.visible_message(C, "<span class='danger'>The [X] swipes at [C]!</span>")
+		X.do_attack_animation(C)
+	while(i++ < count && do_after(X, channel_time, TRUE, null, BUSY_ICON_HOSTILE, ignore_turf_checks = TRUE))
