@@ -732,7 +732,7 @@ TUNNEL
 	. = ..()
 	update_icon()
 
-/obj/effect/alien/resin/acidwell/Destroy()
+/obj/effect/alien/resin/acidwell/obj_destruction(damage_flag)
 	if(!QDELETED(creator) && creator.stat == CONSCIOUS && creator.z == z)
 		var/area/A = get_area(src)
 		if(A)
@@ -752,6 +752,7 @@ TUNNEL
 	A.start()
 	creator = null
 	return ..()
+
 
 /obj/effect/alien/resin/acidwell/examine(mob/user)
 	..()
