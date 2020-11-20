@@ -10,9 +10,6 @@
 #define PAIN_REDUCTION_VERY_HEAVY	-80 //tramadol
 #define PAIN_REDUCTION_FULL			-200 //oxycodone, neuraline
 
-//Stagger accuracy reduction
-#define STAGGER_ACCURACY_PENALTY	0.75 //Removes this % of accuracy after mods
-
 
 //Nutrition
 

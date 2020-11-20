@@ -668,12 +668,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				. += shooter_human.marksman_aura * 3
 				. += proj.distance_travelled * shooter_human.marksman_aura * 0.35
 
-		if(iscarbon(proj.firer))
-			var/mob/living/carbon/shooter_carbon = shooter_living
-			if(shooter_carbon.stagger)
-				BULLET_DEBUG("Staggered (Accuracy reduced by the higher of 30 or 75% of total accuracy).")
-				. -= max(30, STAGGER_ACCURACY_PENALTY * .) //Being staggered fucks your aim badly; higher of -30 to accuracy, or 75% of your accuracy, whichever is higher
-
 	BULLET_DEBUG("Hit zone penalty (-[GLOB.base_miss_chance[proj.def_zone]]) ([proj.def_zone])")
 	. -= GLOB.base_miss_chance[proj.def_zone] //Reduce accuracy based on spot.
 
@@ -794,6 +788,11 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				living_hard_armor = max(0, living_hard_armor - (living_hard_armor * penetration * 0.01)) //AP reduces a % of hard armor.
 			if(living_soft_armor)
 				living_soft_armor = max(0, living_soft_armor - penetration) //Flat removal.
+
+		var/mob/living/carbon/shooter_carbon = proj.firer
+		if(iscarbon(shooter_carbon))
+			if(shooter_carbon.stagger)
+				damage *= STAGGER_DAMAGE_MULTIPLIER //Since we hate RNG, stagger reduces damage by a % instead of reducing accuracy; consider it a 'glancing' hit due to being disoriented.
 
 		if(!living_hard_armor && !living_soft_armor) //Armor fully penetrated.
 			feedback_flags |= BULLET_FEEDBACK_PEN
