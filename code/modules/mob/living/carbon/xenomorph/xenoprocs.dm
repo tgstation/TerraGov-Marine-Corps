@@ -20,8 +20,10 @@
 		if(!X.client)
 			xenoinfo += " <i>(SSD)</i>"
 
+		xenoinfo += " <b><font color=red>Health: ([X.health]/[X.maxHealth])</font></b>"
+
 		var/area/A = get_area(X)
-		xenoinfo += " <b><font color=green>([A ? A.name : null])</b></td></tr>"
+		xenoinfo += " <b><font color=green>([A ? A.name : null], X: [X.x], Y: [X.y])</b></td></tr>"
 
 	return xenoinfo
 
@@ -89,7 +91,7 @@
 	dat += "<table cellspacing=4>"
 	dat += xenoinfo
 	dat += "</table>"
-	var/datum/browser/popup = new(user, "roundstatus", "<div align='center'>Hive Status</div>", 600, 600)
+	var/datum/browser/popup = new(user, "roundstatus", "<div align='center'>Hive Status</div>", 650, 650)
 	popup.set_content(dat)
 	popup.open(FALSE)
 
