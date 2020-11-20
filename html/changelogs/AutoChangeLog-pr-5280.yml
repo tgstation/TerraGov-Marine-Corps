@@ -1,0 +1,4 @@
+author: "Surrealaser"
+delete-after: True
+changes: 
+  - bugfix: "Acid wells no longer spawn acid gas when destroyed on a closed turf or on a no-build tile such as a dropship."
