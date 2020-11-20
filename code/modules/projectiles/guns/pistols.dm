@@ -46,7 +46,7 @@
 		return in_chamber ? (current_mag.current_rounds + 1) : current_mag.current_rounds
 
 //-------------------------------------------------------
-//TP-14 PISTOL
+//M4A3 PISTOL
 
 /obj/item/weapon/gun/pistol/standard_pistol
 	name = "\improper TP-14 pistol"
