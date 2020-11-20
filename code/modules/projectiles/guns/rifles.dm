@@ -278,7 +278,7 @@
 	icon_state = "m412"
 	item_state = "m412"
 	muzzleflash_iconstate = "muzzle_flash_medium"
-	fire_sound = "gun_pulse"
+	fire_sound = "sound/weapons/guns/fire/m412.ogg"
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
@@ -371,7 +371,7 @@
 	desc = "An older design of the pulse rifle made by Pulse Industries. A rather unknown weapon of its time. It invented the use of electronic firing in the modern era though. Uses 10x24mm caseless ammunition."
 	icon_state = "m41a"
 	item_state = "m41a"
-	fire_sound = "gun_pulse"
+	fire_sound = "sound/weapons/guns/fire/m412.ogg"
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
@@ -888,7 +888,9 @@
 	scatter = -20
 	scatter_unwielded = 80
 
-
+/obj/item/weapon/gun/rifle/standard_smartmachinegun/pmc
+	name = "\improper R-25 smart machine gun"
+	desc = "The R-25 is a rather common IFF-capable medium machine gun. It's known for its ability to lay down heavy fire support very well. It is generally used when someone wants to hold a position or provide fire support. Requires special training and it cannot turn off IFF. It uses 10x26mm ammunition."
 
 //-------------------------------------------------------
 //Sectoid Rifle

@@ -21,30 +21,19 @@
 /datum/action/xeno_action/activable/transfer_plasma/drone
 	plasma_transfer_amount = PLASMA_TRANSFER_AMOUNT * 2
 
-/datum/action/xeno_action/activable/psychic_cure/drone
+// ***************************************
+// *********** Acidic salve
+// ***************************************
+/datum/action/xeno_action/activable/psychic_cure/acidic_salve
 	name = "Acidic Salve"
 	action_icon_state = "heal_xeno"
 	mechanics_text = "Slowly heal an ally with goop. Apply repeatedly for best results."
 	cooldown_timer = 5 SECONDS
 	plasma_cost = 150
 	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_CURE
+	heal_range = DRONE_HEAL_RANGE
 
-
-/datum/action/xeno_action/activable/psychic_cure/drone/check_distance(atom/target, silent)
-	var/dist = get_dist(owner, target)
-	switch(dist)
-		if(-1)
-			if(!silent && target == owner)
-				to_chat(owner, "<span class='warning'>We cannot cure ourselves.</span>")
-			return FALSE
-		if(2 to INFINITY) //Only adjacent.
-			if(!silent)
-				to_chat(owner, "<span class='warning'>Our sister needs to be next to us.</span>")
-			return FALSE
-	return TRUE
-
-
-/datum/action/xeno_action/activable/psychic_cure/drone/use_ability(atom/target)
+/datum/action/xeno_action/activable/psychic_cure/acidic_salve/use_ability(atom/target)
 	if(owner.action_busy)
 		return FALSE
 

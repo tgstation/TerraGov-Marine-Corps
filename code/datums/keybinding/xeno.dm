@@ -2,6 +2,11 @@
 	category = CATEGORY_XENO
 	weight = WEIGHT_MOB
 
+/datum/keybinding/xeno/headbite
+	name = "headbite"
+	full_name = "Headbite"
+	description = "Permanently kill a target."
+	keybind_signal = COMSIG_XENOABILITY_HEADBITE
 
 /datum/keybinding/xeno/regurgitate
 	name = "regurgitate"
