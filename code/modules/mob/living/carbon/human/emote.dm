@@ -382,11 +382,22 @@
 	message = "shouts an inspiring cry!"
 	emote_type = EMOTE_AUDIBLE
 
-/datum/emote/living/carbon/human/warcry/get_sound(mob/living/user)
-	if(user.gender == FEMALE)
-		return pick('sound/voice/human_female_warcry_1.ogg', 'sound/voice/human_female_warcry_2.ogg', 'sound/voice/human_female_warcry_3.ogg', 'sound/voice/human_female_warcry_4.ogg', 'sound/voice/human_female_warcry_5.ogg')
-	else
-		return pick('sound/voice/human_male_warcry_1.ogg', 'sound/voice/human_male_warcry_2.ogg', 'sound/voice/human_male_warcry_3.ogg', 'sound/voice/human_male_warcry_4.ogg', 'sound/voice/human_male_warcry_5.ogg', 'sound/voice/human_male_warcry_6.ogg', 'sound/voice/human_male_warcry_7.ogg', 'sound/voice/human_male_warcry_8.ogg', 'sound/voice/human_male_warcry_9.ogg')
+/datum/emote/living/carbon/human/warcry/get_sound(mob/living/carbon/human/user)
+	if(!user.species)
+		return
+	if(user.species.warcries[user.gender])
+		return user.species.warcries[user.gender]
+	if(user.species.warcries[NEUTER])
+		return user.species.warcries[NEUTER]
+
+
+/datum/emote/living/carbon/human/warcry/run_emote(mob/user, params, type_override, intentional = FALSE, prefix)
+	. = ..()
+	if(!.)
+		return
+	var/image/warcry = image('icons/mob/talk.dmi', user, icon_state = "warcry")
+	user.add_emote_overlay(warcry)
+
 /datum/emote/living/carbon/human/hug
 	key = "hug"
 	key_third_person = "hugs"
