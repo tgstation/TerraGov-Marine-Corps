@@ -732,6 +732,11 @@ TUNNEL
 	. = ..()
 	update_icon()
 
+/obj/effect/alien/resin/acidwell/Destroy()
+	creator = null
+	return ..()
+
+
 /obj/effect/alien/resin/acidwell/obj_destruction(damage_flag)
 	if(!QDELETED(creator) && creator.stat == CONSCIOUS && creator.z == z)
 		var/area/A = get_area(src)
@@ -740,17 +745,14 @@ TUNNEL
 
 	var/turf/open/T = get_turf(src)
 	if(!istype(T)) //We don't spawn gas on a closed turf.
-		creator = null
-		return  ..()
+		return
 
 	if(!T.allow_construction) //We don't spawn gas on the dropship and other no-build tiles we shouldn't be on.
-		creator = null
-		return  ..()
+		return
 
 	var/datum/effect_system/smoke_spread/xeno/acid/A = new(T)
 	A.set_up(clamp(charges,0,2),src)
 	A.start()
-	creator = null
 	return ..()
 
 
