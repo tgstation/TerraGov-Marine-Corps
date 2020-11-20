@@ -493,7 +493,7 @@
 /obj/structure/safe{
 	spawnkey = 0
 	},
-/obj/item/clothing/head/collectable/kitty,
+/obj/item/clothing/head/collectable/tophat,
 /turf/open/floor/wood,
 /area/desert/interior/command)
 "cc" = (
