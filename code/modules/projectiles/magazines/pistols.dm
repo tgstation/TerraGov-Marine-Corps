@@ -53,7 +53,7 @@
 	name = "\improper M1911 magazine (.45)"
 	default_ammo = /datum/ammo/bullet/pistol/heavy
 	caliber = ".45 ACP"
-	icon_state = ".45"
+	icon_state = "1911"
 	max_rounds = 10
 	gun_type = /obj/item/weapon/gun/pistol/m1911
 
