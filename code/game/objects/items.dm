@@ -346,8 +346,8 @@
 		return FALSE
 
 	if(CHECK_BITFIELD(flags_item, NODROP) && slot != SLOT_L_HAND && slot != SLOT_R_HAND) //No drops can only be equipped to a hand slot
-		if(istype(src, /obj/item/weapon/shield/riot))
-			to_chat(M, "<span class='notice'>We must first loosen [src]'s straps!</span>")
+		if(slot == SLOT_L_HAND || slot == SLOT_R_HAND)
+			to_chat(M, "<span class='notice'>[src] is stuck to our hand!</span>")
 		return FALSE
 
 	if(ishuman(M))
