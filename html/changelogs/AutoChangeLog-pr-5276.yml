@@ -1,0 +1,6 @@
+author: "XSlayer300"
+delete-after: True
+changes: 
+  - rscadd: "Gave an icon when emoting a *warcry, ala CM"
+  - rscadd: "Added an unique warcry to the skeletons, the spooky bois are coming!"
+  - tweak: "Allowed species-specific *warcry, like *scream or *pain."
