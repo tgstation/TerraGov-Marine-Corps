@@ -3,7 +3,7 @@
 #define DROPPOD_LANDED 3
 ///Marine steel rain style drop pods, very cool!
 /obj/structure/droppod
-	name = "TGMC Zeus Orbital drop pod"
+	name = "TGMC Zeus orbital drop pod"
 	desc = "A menacing metal hunk of steel that is used by the TGMC for quick tactical redeployment."
 	icon = 'icons/obj/structures/droppod.dmi'
 	icon_state = "singlepod_open"
