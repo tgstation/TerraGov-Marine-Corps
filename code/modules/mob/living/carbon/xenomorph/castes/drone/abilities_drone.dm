@@ -21,11 +21,11 @@
 		return FALSE
 
 	var/mob/living/carbon/xenomorph/X = owner
-	var/mob/living/carbon/xenomorph/target = A
-
-	if(!isxeno(target))
+	if(!isxeno(A))
 		to_chat(X, "<span class='xenowarning'>We can only salvage the biomass of deceased xenomorphs!</span>")
 		return FALSE
+
+	var/mob/living/carbon/xenomorph/target = A
 
 	if(target.stat != DEAD)
 		to_chat(X, "<span class='xenowarning'>We can't salvage the biomass of living sisters!</span>")
