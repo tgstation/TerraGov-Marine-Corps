@@ -1087,7 +1087,7 @@
 	new /obj/item/ammo_magazine/minigun(src)
 	new /obj/item/ammo_magazine/minigun(src)
 	new /obj/item/attachable/flashlight(src)
-	new /obj/item/storage/pouch/pistol/m4a3(src)
+	new /obj/item/storage/pouch/pistol/rt3(src)
 	new /obj/item/clothing/tie/storage/brown_vest(src)
 	new /obj/item/ammo_magazine/pistol(src)
 	new /obj/item/ammo_magazine/pistol(src)

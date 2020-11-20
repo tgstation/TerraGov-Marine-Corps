@@ -68,13 +68,13 @@
 	scatter_unwielded = 10
 
 //-------------------------------------------------------
-//M4A3 PISTOL
+//RT-3 pistol
 
-/obj/item/weapon/gun/pistol/m4a3
-	name = "\improper M4A3 service pistol"
-	desc = "An M4A3 Colt Service Pistol, it was standard issue sidearm of the TerraGov Marine Corps, until the sidearm role was replaced by Terran Armories's TP-14 pistol."
-	icon_state = "m4a3"
-	item_state = "m4a3"
+/obj/item/weapon/gun/pistol/rt3
+	name = "\improper RT-3 target pistol"
+	desc = "An RT-3 target pistol, a common sight throughout the bubble. Fires 9mm in magazines."
+	icon_state = "rt3"
+	item_state = "rt3"
 	caliber = "9x19mm Parabellum" //codex
 	max_shells = 14 //codex
 	fire_sound = 'sound/weapons/guns/fire/pistol_service.ogg'
@@ -84,18 +84,7 @@
 
 	fire_delay = 0.2 SECONDS
 	accuracy_mult = 1.15
-	scatter = 15
-
-
-/obj/item/weapon/gun/pistol/m4a3/custom
-	name = "\improper M4A3 custom pistol"
-	desc = "An M4A3 Colt Service Pistol. This one has an ivory-colored grip and has a slide carefully polished yearly by a team of orphan children. Looks like it belongs to a low-ranking officer."
-	icon_state = "m4a3c"
-	item_state = "m4a3c"
-
-	fire_delay = 0.15 SECONDS
-	accuracy_mult = 1.15
-	damage_mult = 1.1
+	scatter = 10
 
 //-------------------------------------------------------
 // TP-23 service pistol
@@ -433,11 +422,11 @@
 	scatter = 10
 
 //-------------------------------------------------------
-//VP70 //Not actually the VP70, but it's more or less the same thing. VP70 was the standard sidearm in Aliens though.
+//VP70
 
 /obj/item/weapon/gun/pistol/vp70
 	name = "\improper 88 Mod 4 combat pistol"
-	desc = "A powerful sidearm issued mainly to Nanotrasen private contractors, but issued to TGMC in very small numbers, based on the original VP70 more than a century ago. Fires 9mm armor piercing rounds and is capable of 3-round burst or automatic fire."
+	desc = "An uncommon automatic handgun used for self defense, based on the original VP70 more than a century ago. Fires 9mm armor piercing rounds and is capable of 3-round burst or automatic fire."
 	icon_state = "88m4"
 	item_state = "88m4"
 	caliber = "9x19mm Parabellum" //codex
