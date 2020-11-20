@@ -6644,7 +6644,7 @@
 "wY" = (
 /obj/structure/table/mainship,
 /obj/item/weapon/gun/smg/standard_smg,
-/obj/item/weapon/gun/pistol/m4a3,
+/obj/item/weapon/gun/pistol/rt3,
 /obj/item/ammo_magazine/pistol,
 /obj/item/ammo_magazine/pistol,
 /obj/item/ammo_magazine/smg/standard_smg,
