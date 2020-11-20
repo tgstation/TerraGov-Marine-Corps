@@ -181,6 +181,7 @@
 	item_state = "b92fs"
 	caliber = "9x19mm Parabellum" //codex
 	max_shells = 15 //codex
+	fire_sound = 'sound/weapons/guns/fire/beretta.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/beretta_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/beretta_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/beretta_reload.ogg'
@@ -516,6 +517,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	item_state = "auto9"
 	caliber = "9x19mm Parabellum" //codex
 	max_shells = 50 //codex
+	fire_sound = 'sound/weapons/guns/fire/beretta.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/auto9
 	force = 15
 	attachable_allowed = list()
