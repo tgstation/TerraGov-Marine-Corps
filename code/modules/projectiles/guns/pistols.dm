@@ -80,7 +80,7 @@
 	fire_sound = 'sound/weapons/guns/fire/pistol_service.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol
 
-	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 22,"rail_x" = 19, "rail_y" = 21, "under_x" = 21, "under_y" = 15, "stock_x" = 21, "stock_y" = 17)
+	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 19,"rail_x" = 19, "rail_y" = 21, "under_x" = 21, "under_y" = 15, "stock_x" = 21, "stock_y" = 17)
 
 	fire_delay = 0.2 SECONDS
 	accuracy_mult = 1.15
