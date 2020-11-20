@@ -191,5 +191,3 @@
 	density = FALSE
 	opacity = FALSE
 	anchored = TRUE
-
-/obj/effect/alien/warp_shadow/Initialize()

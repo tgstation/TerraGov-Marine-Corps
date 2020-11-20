@@ -71,6 +71,14 @@
 	else if(istype(mover, /obj/projectile))
 		return prob(90)
 
+	if(incorporeal_movement_check(mover)) //Incorporeal things move through most solid obstacles
+		return TRUE
+
+	if(istype(mover, /obj/projectile))
+		return prob(90)
+
+	return !density
+
 /obj/structure/grille/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(.)

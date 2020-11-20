@@ -18,20 +18,17 @@
 
 /mob/living/carbon/xenomorph/wraith/Move(NewLoc, Dir = 0)
 
-	if(status_flags & INCORPOREAL)
+	if(status_flags & INCORPOREAL) //If we're incorporeal, only several things can outright prevent our movement.
 
 		if(!check_passable(NewLoc) )
 			return FALSE
 
-		face_atom(NewLoc) //Face the loc so we don't look like an ass.
-		forceMove(NewLoc)
-		return TRUE
-
 	..()
 
 /mob/living/carbon/xenomorph/wraith/proc/check_passable(turf/T)
-	SHOULD_BE_PURE(TRUE)
-	. = TRUE
+	if(isspaceturf(T)) //We can't move through space
+		return FALSE
+
 	if(locate(WRAITH_PHASE_SHIFT_BLOCKERS) in T) //Cannot go through plasma gas or fire
 		return FALSE
 

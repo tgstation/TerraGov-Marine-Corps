@@ -22,6 +22,10 @@
 	. = ..()
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
 		return 1
+
+	if(incorporeal_movement_check(mover)) //Incorporeal things move through most solid obstacles
+		return TRUE
+
 	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
 	if(S && S.climbable && !(S.flags_atom & ON_BORDER) && climbable && isliving(mover)) //Climbable non-border objects allow you to universally climb over others
 		return 1

@@ -86,8 +86,4 @@
 	if(isliving(AM))
 		to_chat(AM, "<span class='danger'>The cold vacuum instantly freezes you, maybe this was a bad idea?</span>")
 		var/mob/living/spaceman = AM
-
-		if(spaceman.status_flags & GODMODE) //Invulnerable mobs shouldn't care/take damage
-			return
-
 		spaceman.adjustFireLoss(600) //Death. Space shouldn't be entered.

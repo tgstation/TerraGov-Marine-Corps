@@ -588,7 +588,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define WRAITH_BANISH_RANGE					3
 
 #define WRAITH_TELEPORT_DEBUFF_STACKS			1 //Stagger and slow stacks applied to adjacent living hostiles before/after a teleport
-#define WRAITH_TELEPORT_DEBUFF_MSG			"<span class='warning'>You feel nauseous as the world warps around you!</span>"
 
 //misc
 

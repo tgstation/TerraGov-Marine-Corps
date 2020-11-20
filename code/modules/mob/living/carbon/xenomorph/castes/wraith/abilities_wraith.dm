@@ -23,12 +23,13 @@
 	var/turf/T = get_turf(TI)
 	TI.visible_message("<span class='xenonotice'>\A shimmering point suddenly coalesces from the warped space around [T].</span>", \
 	"<span class='xenodanger'>We complete our work, binding our essence to this point.</span>", null, 5) //Fluff
-	var/obj/effect/xenomorph/warp_shadow/WB = new(T) //Create the new beacon.
+	var/obj/effect/xenomorph/warp_shadow/WB = new(T) //Create the new warp shadow.
 	playsound(T, 'sound/weapons/emitter.ogg', 25, 1)
-	QDEL_NULL(TI.warp_shadow) //Delete the old beacon
-	TI.warp_shadow = WB //Set our warp shadow
-	WB.dir = TI.dir //Have it imitate our facing
+	QDEL_NULL(TI.warp_shadow) //Delete the old warp shadow
+	TI.warp_shadow = WB //Set our new warp shadow
+	WB.setDir(TI.dir) //Have it imitate our facing
 	WB.pixel_x = TI.pixel_x //Inherit pixel offsets
+	WB.pixel_y = TI.pixel_y //Inherit pixel offsets
 	teleport_debuff_aoe(WB) //SFX
 
 	succeed_activate()
@@ -47,14 +48,30 @@
 	keybind_signal = COMSIG_XENOABILITY_HYPERPOSITION
 
 
-/datum/action/xeno_action/hyperposition/action_activate()
+/datum/action/xeno_action/hyperposition/proc/can_use_ability()
 
 	var/mob/living/carbon/xenomorph/wraith/TI = owner
 	var/obj/effect/xenomorph/warp_shadow/WB = TI.warp_shadow
+	var/beacon_turf = get_turf(WB)
+	var/wraith_turf = get_turf(TI)
 
 	if(!WB)
 		to_chat(TI, "<span class='xenodanger'>We have no warp shadow to teleport to!</span>")
+		return FALSE
+
+	if(!beacon_turf || !wraith_turf)
+		to_chat(TI, "<span class='xenodanger'>Our warp shadow is currently beyond our power to influence!</span>")
+		return FALSE
+
+	return TRUE
+
+/datum/action/xeno_action/hyperposition/action_activate()
+
+	if(!can_use_ability())
 		return fail_activate()
+
+	var/mob/living/carbon/xenomorph/wraith/TI = owner
+	var/obj/effect/xenomorph/warp_shadow/WB = TI.warp_shadow
 
 	var/area/A = get_area(WB)
 
@@ -71,8 +88,8 @@
 		"<span class='xenodanger'>We abort teleporting back to our warp shadow.</span>")
 		return fail_activate()
 
-
-	hyperposition_warp() //We swap positions with our warp shadow
+	if(!hyperposition_swap_location()) //We swap positions with our warp shadow
+		return fail_activate()
 
 	succeed_activate()
 	GLOB.round_statistics.wraith_hyperpositions++
@@ -80,23 +97,15 @@
 
 	add_cooldown()
 
-/datum/action/xeno_action/hyperposition/proc/hyperposition_warp() //This handles the location swap between the Wraith and the Warp Shadow
+/datum/action/xeno_action/hyperposition/proc/hyperposition_swap_location() //This handles the location swap between the Wraith and the Warp Shadow
+
+	if(!can_use_ability()) //Check if we can actually position swap again due to the wind up delay.
+		return FALSE
 
 	var/mob/living/carbon/xenomorph/wraith/TI = owner
 	var/obj/effect/xenomorph/warp_shadow/WB = TI.warp_shadow
 	var/beacon_turf = get_turf(WB)
 	var/wraith_turf = get_turf(TI)
-
-	if(!TI) //Sanity
-		return FALSE
-
-	if(!WB)
-		to_chat(TI, "<span class='xenodanger'>We have no warp shadow to teleport to!</span>")
-		return FALSE
-
-	if(!beacon_turf || !wraith_turf)
-		to_chat(TI, "<span class='xenodanger'>Our warp shadow is currently beyond our power to influence!</span>")
-		return FALSE
 
 	WB.forceMove(wraith_turf) //Move the beacon to where we are leaving
 	WB.dir = TI.dir //Have it imitate our facing
@@ -110,6 +119,7 @@
 	TI.visible_message("<span class='warning'>\ [TI] suddenly vanishes in a vortex of warped space!</span>", \
 	"<span class='xenodanger'>We teleport, swapping positions with our warp shadow. Our warp shadow has moved to [A] (X: [WB.x], Y: [WB.y]).</span>", null, 5) //Let user know the new location
 
+	return TRUE
 
 // ***************************************
 // *********** Phase Shift
@@ -160,9 +170,6 @@
 
 	var/mob/living/carbon/xenomorph/wraith/TI = owner
 
-	if(!TI) //Sanity
-		return
-
 	TI.status_flags = initial(TI.status_flags) //Become merely mortal again
 	TI.resistance_flags = initial(TI.resistance_flags)
 	TI.density = initial(TI.density)
@@ -192,9 +199,6 @@
 	starting_turf = null
 
 /datum/action/xeno_action/evasion/on_cooldown_finish()
-
-	if(!owner) //Sanity
-		return
 
 	to_chat(owner, "<span class='xenonotice'>We are able to fade from reality again.</span>")
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
@@ -234,8 +238,7 @@
 /datum/action/xeno_action/activable/blink/use_ability(atom/A)
 
 	var/turf/T = get_turf(A)
-	var/distance = get_dist(owner, T)
-	if(distance > WRAITH_BLINK_RANGE) //If it's out of range, try to go as far as possible
+	if(get_dist(owner, T) > WRAITH_BLINK_RANGE) //If it's out of range, try to go as far as possible
 		var/list/turf/turfs = getline(owner, T)
 		for(var/turf/T2 in turfs)
 			if(get_dist(owner, T2) == WRAITH_BLINK_RANGE) //Find the turf at the max distance we can go and break
@@ -247,13 +250,7 @@
 	if(!can_use_ability(T)) //Since we updated the turf, check it again.
 		fail_activate()
 
-	var/mob/living/carbon/xenomorph/wraith/TI = owner
-	var/mob/pulled
-
-	if(ismob(TI.pulling)) //bring the target we're pulling with us, but at the cost of sharply increasing the next cooldown
-		pulled = TI.pulling
-
-	blink_warp(TI, T, pulled)
+	blink_warp(owner, T, owner.pulling) //If we're pulling, bring the target we're pulling with us, but at the cost of sharply increasing the next cooldown
 
 	succeed_activate()
 	add_cooldown()
@@ -277,10 +274,8 @@
 	teleport_debuff_aoe(TI) //Debuff when we reappear
 
 
-/datum/action/xeno_action/proc/teleport_debuff_aoe(atom/movable/teleporter, silent = FALSE, no_visuals = FALSE) //Called by many of the Wraith' teleportation effects
-
-	if(!teleporter) //Sanity
-		return
+//Called by many of the Wraith's teleportation effects
+/datum/action/xeno_action/proc/teleport_debuff_aoe(atom/movable/teleporter, silent = FALSE, no_visuals = FALSE)
 
 	var/mob/living/carbon/xenomorph/source = owner
 
@@ -305,11 +300,9 @@
 			target.adjust_stagger(WRAITH_TELEPORT_DEBUFF_STACKS)
 			target.add_slowdown(WRAITH_TELEPORT_DEBUFF_STACKS)
 			target.adjust_drugginess(WRAITH_TELEPORT_DEBUFF_STACKS) //minor visual distortion
-			to_chat(target, WRAITH_TELEPORT_DEBUFF_MSG)
+			to_chat(target, "<span class='warning'>You feel nauseous as the world warps around you!</span>")
 
 /datum/action/xeno_action/evasion/on_cooldown_finish()
-	if(!owner) //Sanity
-		return
 
 	if(cooldown_timer > initial(cooldown_timer) ) //Reset the cooldown if increased from dragging someone.
 		to_chat(owner, "<span class='xenonotice'>We are able to take blink again.</span>")

@@ -28,6 +28,10 @@
 	. = ..()
 	if(climbable && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
 		return TRUE
+
+	if(incorporeal_movement_check(mover)) //Incorporeal things move through most solid obstacles
+		return TRUE
+
 	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
 	if(S?.climbable)
 		return TRUE
