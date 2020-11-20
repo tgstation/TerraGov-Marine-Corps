@@ -19,6 +19,7 @@
 	var/list/list/xenos_by_zlevel
 	var/tier3_xeno_limit
 	var/tier2_xeno_limit
+	var/list/xenos_health_alert_filter //Xenos that will not get health alert notifications.
 
 // ***************************************
 // *********** Init
@@ -31,6 +32,7 @@
 	xenos_by_upgrade = list()
 	dead_xenos = list()
 	xenos_by_zlevel = list()
+	xenos_health_alert_filter = list()
 
 	for(var/t in subtypesof(/mob/living/carbon/xenomorph))
 		var/mob/living/carbon/xenomorph/X = t
@@ -488,11 +490,20 @@ The force parameter is for messages that should ignore a dead queen
 to_chat will check for valid clients itself already so no need to double check for clients
 
 */
-/datum/hive_status/proc/xeno_message(message = null, size = 3, force = FALSE, sound = null)
+/datum/hive_status/proc/xeno_message(message = null, size = 3, force = FALSE, sound = null, filter_list = null)
 	if(!force && !can_xeno_message())
 		return
-	for(var/i in get_all_xenos())
-		var/mob/living/carbon/xenomorph/X = i
+
+	var/mob/living/carbon/xenomorph/X
+	var/list/final_list = get_all_xenos()
+
+	if(filter_list) //Filter out Xenos in the filter list
+		for(var/i in filter_list)
+			X = i
+			final_list -= i
+
+	for(var/i in final_list)
+		X = i
 		if(X.stat) // dead/crit cant hear
 			continue
 

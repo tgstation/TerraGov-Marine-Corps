@@ -1,3 +1,22 @@
+/mob/living/carbon/xenomorph/verb/xeno_health_alerts()
+	set name = "Toggle Xeno Health Alerts"
+	set desc = "Toggles alerts when a low HP xeno is injured."
+	set category = "Alien"
+
+	toggle_xeno_health_alerts(src)
+
+/proc/toggle_xeno_health_alerts(mob/living/carbon/xenomorph/user)
+
+	var/list/health_alert_filter_list = user.hive.xenos_health_alert_filter
+
+	if(!health_alert_filter_list.Find(user)) //Add them to the list if they're not already there.
+		health_alert_filter_list += user
+		to_chat(user, "<span class='xenodanger'>You will no longer receive hive alerts about badly wounded xenos.</span>")
+	else
+		health_alert_filter_list -= user
+		to_chat(user, "<span class='xenodanger'>You will now receive hive alerts about badly wounded xenos.</span>")
+
+
 /mob/living/carbon/xenomorph/verb/hive_status()
 	set name = "Hive Status"
 	set desc = "Check the status of your current hive."
@@ -63,7 +82,7 @@
 		xenoinfo += " <b><font color=[hp_color]>Health: ([X.health]/[X.maxHealth])</font></b>"
 
 		var/area/A = get_area(X)
-		xenoinfo += " <b><font color=green>([A ? A.name : null], X: [X.x], Y: [X.y])</b></td></tr>"
+		xenoinfo += " <b><font color=green>([A ? A.name : null])</b></td></tr>"
 
 	return xenoinfo
 
@@ -146,7 +165,7 @@
 
 
 //Send a message to all xenos.
-/proc/xeno_message(message = null, size = 3, hivenumber = XENO_HIVE_NORMAL, sound = null)
+/proc/xeno_message(message = null, size = 3, hivenumber = XENO_HIVE_NORMAL, sound = null, filter_list = null)
 	if(!message)
 		return
 
@@ -154,7 +173,7 @@
 		CRASH("xeno_message called with invalid hivenumber")
 
 	var/datum/hive_status/HS = GLOB.hive_datums[hivenumber]
-	HS.xeno_message(message, size, FALSE, sound)
+	HS.xeno_message(message, size, FALSE, sound, filter_list)
 
 /mob/living/carbon/xenomorph/proc/upgrade_possible()
 	return (upgrade != XENO_UPGRADE_INVALID && upgrade != XENO_UPGRADE_THREE)
