@@ -391,7 +391,7 @@
 	},
 /area/sulaco/medbay)
 "acs" = (
-/obj/machinery/sleep_console,
+/obj/machinery/body_scanconsole,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
@@ -602,7 +602,9 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor/prison/sterilewhite,
+/turf/open/floor/prison/whitegreen/corner{
+	dir = 1
+	},
 /area/sulaco/medbay/west)
 "adK" = (
 /obj/machinery/door/airlock/mainship/medical{
@@ -1009,6 +1011,15 @@
 /obj/machinery/vending/tool,
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_main_hall)
+"agy" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/machinery/landinglight/ds1/delaytwo{
+	dir = 1
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "agz" = (
 /obj/machinery/door/airlock/mainship/medical/glass/CMO{
 	dir = 1
@@ -1575,9 +1586,7 @@
 /obj/structure/table/mainship,
 /obj/item/clipboard,
 /obj/item/tool/stamp/cmo,
-/obj/machinery/camera/autoname{
-	dir = 1
-	},
+/obj/machinery/camera/autoname,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
@@ -1625,10 +1634,6 @@
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cryosleep)
-"ajY" = (
-/obj/machinery/vending/nanomed,
-/turf/closed/wall/mainship/gray,
-/area/sulaco/showers)
 "aka" = (
 /obj/structure/closet/secure_closet/req_officer,
 /turf/open/floor/prison,
@@ -1720,9 +1725,6 @@
 	},
 /obj/item/tool/pen,
 /obj/item/folder/blue,
-/obj/machinery/alarm{
-	dir = 4
-	},
 /obj/item/tool/crowbar,
 /obj/item/tool/stamp/hop{
 	name = "logistics rubber stamp"
@@ -1919,6 +1921,7 @@
 /obj/structure/bed,
 /obj/item/bedsheet/captain,
 /obj/item/storage/backpack/satchel/norm,
+/obj/machinery/alarm,
 /turf/open/floor/wood,
 /area/sulaco/bridge/office)
 "alI" = (
@@ -2220,9 +2223,6 @@
 "anI" = (
 /obj/machinery/camera/autoname{
 	dir = 4
-	},
-/obj/structure/sign/goldenplaque{
-	pixel_x = -32
 	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
@@ -2537,9 +2537,6 @@
 /turf/open/floor/prison/red/full,
 /area/sulaco/bridge)
 "apn" = (
-/obj/machinery/vending/nanomed{
-	dir = 4
-	},
 /obj/structure/closet/secure_closet/guncabinet/mp_armory,
 /turf/open/floor/prison/red{
 	dir = 9
@@ -2649,6 +2646,9 @@
 /area/sulaco/hallway/central_hall2)
 "apJ" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
+/obj/effect/decal/cleanable/cobweb{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/sulaco/maintenance/north_solar_maint)
 "apN" = (
@@ -2861,6 +2861,7 @@
 /turf/open/floor/prison/red/full,
 /area/sulaco/bridge)
 "aqL" = (
+/obj/machinery/vending/nanomed,
 /turf/open/floor/prison/red{
 	dir = 9
 	},
@@ -3360,10 +3361,10 @@
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cafeteria)
 "asP" = (
-/obj/machinery/camera/autoname,
 /obj/item/storage/pouch/medical,
 /obj/structure/rack,
 /obj/item/storage/firstaid/adv,
+/obj/machinery/camera/autoname,
 /turf/open/floor/prison/red/full,
 /area/sulaco/bridge)
 "asQ" = (
@@ -3611,15 +3612,15 @@
 	},
 /area/sulaco/hallway/central_hall)
 "atP" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
 /obj/machinery/power/apc/mainship{
 	dir = 4
 	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/obj/machinery/light/small{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/sulaco/bridge/quarters)
 "atR" = (
@@ -3857,6 +3858,9 @@
 "auI" = (
 /obj/machinery/light/small,
 /obj/structure/sign/electricshock,
+/obj/effect/decal/cleanable/cobweb{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/sulaco/engineering/smes)
 "auJ" = (
@@ -5330,8 +5334,7 @@
 "aBN" = (
 /obj/structure/table/woodentable,
 /obj/item/flashlight/lamp,
-/obj/structure/paper_bin,
-/obj/item/tool/pen,
+/obj/item/weapon/chainofcommand,
 /turf/open/floor/wood,
 /area/sulaco/cap_office)
 "aBO" = (
@@ -5414,13 +5417,13 @@
 	},
 /area/sulaco/engineering)
 "aCf" = (
-/obj/machinery/camera/autoname{
-	dir = 1
-	},
 /obj/structure/rack,
 /obj/item/clothing/suit/armor/bulletproof,
 /obj/item/clothing/suit/armor/bulletproof,
 /obj/item/clothing/suit/armor/bulletproof,
+/obj/machinery/camera/autoname{
+	dir = 4
+	},
 /turf/open/floor/prison/red/full{
 	dir = 1
 	},
@@ -6787,6 +6790,7 @@
 /obj/item/tool/pen,
 /obj/item/folder/blue,
 /obj/item/megaphone,
+/obj/item/tool/pen,
 /turf/open/floor/wood,
 /area/sulaco/cap_office)
 "aJl" = (
@@ -7151,6 +7155,9 @@
 "aKT" = (
 /obj/machinery/computer/orbital_cannon_console,
 /obj/structure/bed/chair/ob_chair,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
 /turf/open/floor/prison,
 /area/mainship/shipboard/weapon_room)
 "aKU" = (
@@ -7279,6 +7286,9 @@
 /area/sulaco/marine/alpha)
 "aLx" = (
 /obj/structure/prop/mainship/cannon_cable_connector,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
 /turf/open/floor/prison,
 /area/mainship/shipboard/weapon_room)
 "aLA" = (
@@ -7495,10 +7505,6 @@
 "aMF" = (
 /turf/closed/wall/mainship/gray/outer,
 /area/sulaco/marine/bravo)
-"aMI" = (
-/obj/docking_port/stationary/marine_dropship/minidropship,
-/turf/open/floor/plating,
-/area/sulaco/hangar)
 "aMK" = (
 /obj/machinery/dropship_part_fabricator,
 /turf/open/floor/prison,
@@ -7787,9 +7793,7 @@
 	},
 /area/mainship/shipboard/weapon_room)
 "aOW" = (
-/obj/structure/sign/science{
-	pixel_y = 30
-	},
+/obj/structure/sign/science,
 /turf/open/floor/prison/whitegreen,
 /area/sulaco/research)
 "aOX" = (
@@ -7878,9 +7882,8 @@
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
 "aPK" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 6
-	},
+/obj/machinery/landinglight/ds2,
+/obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
 "aPL" = (
@@ -7920,9 +7923,14 @@
 /turf/closed/wall/mainship/gray/outer,
 /area/sulaco/hallway/lower_main_hall)
 "aPU" = (
-/obj/structure/rack,
 /obj/effect/decal/cleanable/cobweb2,
-/turf/open/floor/prison/bright_clean,
+/obj/structure/rack,
+/obj/item/reagent_containers/jerrycan,
+/obj/item/reagent_containers/jerrycan,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/turf/open/floor/prison,
 /area/sulaco/hangar)
 "aPW" = (
 /turf/closed/wall/mainship/outer,
@@ -7935,12 +7943,6 @@
 /area/sulaco/hangar)
 "aQa" = (
 /obj/effect/decal/warning_stripes/thin,
-/turf/open/floor/prison/bright_clean,
-/area/sulaco/hangar)
-"aQf" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 10
-	},
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
 "aQg" = (
@@ -8012,8 +8014,11 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/structure/rack,
-/turf/open/floor/prison/bright_clean,
+/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/turf/open/floor/prison,
 /area/sulaco/hangar)
 "aQy" = (
 /turf/open/floor/cult,
@@ -8035,14 +8040,14 @@
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
 "aQI" = (
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
-	dir = 10
-	},
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
-	dir = 10
-	},
 /obj/machinery/light{
 	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
+	dir = 4
 	},
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
@@ -8148,6 +8153,9 @@
 /area/sulaco/hangar/one)
 "aRk" = (
 /obj/structure/largecrate/random,
+/obj/effect/decal/cleanable/cobweb{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint2)
 "aRl" = (
@@ -8222,6 +8230,9 @@
 /obj/item/storage/box/monkeycubes,
 /obj/item/tool/extinguisher,
 /obj/machinery/door_display/research_cell/cell/cell1,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
+	},
 /turf/open/floor/prison/whitegreen/full,
 /area/sulaco/research)
 "aRI" = (
@@ -8366,15 +8377,6 @@
 /obj/machinery/vending/nanomed,
 /turf/open/floor/prison/whitegreen/full,
 /area/sulaco/research)
-"aSr" = (
-/obj/machinery/camera/autoname{
-	dir = 1
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/turf/open/floor/prison/bright_clean,
-/area/sulaco/hangar)
 "aSs" = (
 /obj/machinery/alarm{
 	dir = 4
@@ -8392,11 +8394,9 @@
 /area/sulaco/hangar)
 "aSv" = (
 /obj/structure/bed/roller,
-/turf/open/floor/prison/bright_clean,
-/area/sulaco/hangar)
-"aSw" = (
-/obj/machinery/light,
-/obj/structure/closet/emcloset,
+/obj/structure/closet/walllocker/emerglocker{
+	dir = 4
+	},
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
 "aSx" = (
@@ -8462,20 +8462,6 @@
 	},
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
-"aSW" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/structure/closet/walllocker/emerglocker{
-	dir = 4
-	},
-/turf/open/floor/prison/bright_clean,
-/area/sulaco/hangar)
-"aSZ" = (
-/obj/structure/flora/ausbushes/fullgrass,
-/obj/structure/cable,
-/turf/open/floor/grass,
-/area/mainship/living/starboard_garden)
 "aTa" = (
 /obj/machinery/chem_dispenser,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
@@ -9141,9 +9127,7 @@
 /area/mainship/command/self_destruct)
 "aXS" = (
 /obj/effect/decal/warning_stripes/thin,
-/obj/machinery/light{
-	dir = 1
-	},
+/obj/machinery/landinglight/ds2,
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
 "aXT" = (
@@ -9185,13 +9169,14 @@
 /area/sulaco/hangar)
 "aYw" = (
 /obj/effect/decal/warning_stripes/thin,
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 4
+	},
 /obj/structure/cable,
+/obj/machinery/landinglight/ds1/delaythree,
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
 "aYA" = (
@@ -9350,17 +9335,6 @@
 /obj/machinery/telecomms/processor/preset_four,
 /turf/open/floor/mainship/tcomms,
 /area/sulaco/telecomms)
-"aZS" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 8
-	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1{
-	dir = 8
-	},
-/turf/open/floor/prison/bright_clean,
-/area/sulaco/hangar)
 "aZU" = (
 /obj/machinery/camera/autoname,
 /turf/open/floor/prison/whitegreen{
@@ -9393,15 +9367,17 @@
 "baf" = (
 /turf/open/floor/wood,
 /area/sulaco/liaison)
-"bah" = (
+"baj" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/turf/open/floor/prison/bright_clean,
-/area/sulaco/hangar)
+/turf/open/floor/prison/arrow/clean{
+	dir = 8
+	},
+/area/sulaco/hangar/droppod)
 "bal" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -9572,22 +9548,15 @@
 /turf/open/floor/mainship/tcomms,
 /area/sulaco/telecomms)
 "bbu" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
 "bbv" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
-	dir = 9
+	dir = 4
 	},
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
@@ -9902,6 +9871,11 @@
 /obj/item/flashlight/lamp,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters)
+"bfC" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/closet/crate,
+/turf/open/floor/prison/plate,
+/area/sulaco/cargo)
 "bgd" = (
 /turf/open/floor/prison/red/full,
 /area/sulaco/hangar/one)
@@ -9920,6 +9894,10 @@
 "bhV" = (
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
+"bij" = (
+/obj/machinery/vending/armor_supply,
+/turf/open/floor/prison,
+/area/sulaco/marine)
 "bjL" = (
 /obj/machinery/door_control{
 	id = "eastblast";
@@ -9944,16 +9922,33 @@
 	},
 /turf/open/floor/cult,
 /area/sulaco/morgue)
+"bkc" = (
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
+/obj/structure/cable,
+/obj/machinery/door/poddoor/mainship/droppod{
+	dir = 2
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar/droppod)
 "bkk" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison,
 /area/sulaco/cargo)
+"bks" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/turf/open/floor/prison/plate,
+/area/shuttle/distress/arrive_2)
 "bkX" = (
 /obj/structure/closet/crate/construction,
 /turf/open/floor/prison/plate,
 /area/sulaco/cargo)
 "blt" = (
 /obj/structure/cable,
+/obj/structure/closet/crate/medical,
 /turf/open/floor/prison/plate,
 /area/sulaco/cargo)
 "bmI" = (
@@ -9978,9 +9973,38 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_main_hall)
+"bsC" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/obj/machinery/landinglight/ds1/delaythree{
+	dir = 4
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
+"bvu" = (
+/obj/machinery/computer/droppod_control,
+/obj/structure/table/mainship,
+/turf/open/floor/mainship/sterile/plain,
+/area/sulaco/hangar/droppod)
 "bvZ" = (
 /turf/closed/wall/mainship/gray/outer,
 /area/sulaco/liaison)
+"byI" = (
+/obj/structure/cable,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
+	},
+/turf/open/floor/prison/arrow/clean{
+	dir = 4
+	},
+/area/sulaco/hangar/droppod)
 "bCk" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold4w/cyan/hidden/layer1,
@@ -9989,6 +10013,19 @@
 	dir = 4
 	},
 /area/sulaco/engineering)
+"bEP" = (
+/obj/structure/cable,
+/obj/structure/closet/crate/weapon,
+/turf/open/floor/prison/plate,
+/area/sulaco/cargo)
+"bER" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
+	},
+/turf/open/floor/prison/whitegreen{
+	dir = 9
+	},
+/area/sulaco/research)
 "bFa" = (
 /turf/closed/wall/mainship/gray/outer,
 /area/sulaco/hangar)
@@ -10077,12 +10114,27 @@
 	},
 /turf/open/space/basic,
 /area/space)
+"bPx" = (
+/obj/structure/window/framed/mainship/gray/toughened,
+/turf/open/floor/plating/platebotc,
+/area/sulaco/hangar)
 "bPM" = (
 /turf/open/floor/prison/plate,
 /area/sulaco/cargo)
 "bSz" = (
 /obj/docking_port/stationary/marine_dropship/crash_target,
 /turf/closed/wall/mainship/gray,
+/area/sulaco/hangar)
+"bTI" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/prison/plate,
+/area/shuttle/distress/arrive_2)
+"bUI" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
+	},
+/obj/item/tool/warning_cone,
+/turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
 "bVz" = (
 /obj/machinery/light{
@@ -10093,29 +10145,12 @@
 	dir = 1
 	},
 /area/sulaco/hallway/central_hall)
-"bVM" = (
-/obj/structure/sign/securearea{
-	pixel_x = 32
-	},
-/turf/open/floor/prison/bright_clean,
-/area/sulaco/hangar)
 "bWf" = (
-/obj/machinery/camera/autoname,
-/turf/open/floor/prison/bright_clean,
-/area/sulaco/hangar)
+/turf/closed/wall/mainship/gray/outer,
+/area/sulaco/hangar/droppod)
 "bWL" = (
 /turf/open/floor/prison,
 /area/sulaco/engineering)
-"bWV" = (
-/obj/machinery/door/airlock/mainship/maint{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/sulaco/hangar)
-"bXR" = (
-/obj/structure/sign/directions/evac,
-/turf/closed/wall/mainship/gray,
-/area/sulaco/engineering/storage)
 "bYw" = (
 /obj/item/radio/intercom/general,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
@@ -10125,6 +10160,15 @@
 	dir = 4
 	},
 /area/sulaco/hallway/central_hall3)
+"cbg" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/machinery/landinglight/ds1/delaythree{
+	dir = 4
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "cdy" = (
 /turf/open/floor/prison,
 /area/sulaco/hangar)
@@ -10169,6 +10213,34 @@
 	dir = 8
 	},
 /area/sulaco/research)
+"cpN" = (
+/obj/structure/ship_ammo/heavygun,
+/turf/open/floor/prison,
+/area/sulaco/hangar)
+"crv" = (
+/obj/machinery/camera/autoname/mainship{
+	dir = 1
+	},
+/obj/item/radio/intercom/general,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/prison/arrow/clean{
+	dir = 4
+	},
+/area/sulaco/hangar/droppod)
+"csq" = (
+/obj/machinery/landinglight/ds2/delaythree{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "csB" = (
 /obj/machinery/door/poddoor/railing{
 	dir = 8;
@@ -10255,6 +10327,16 @@
 /obj/machinery/computer3/server,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
+"cFG" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/obj/machinery/landinglight/ds1/delaytwo{
+	dir = 4
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "cFX" = (
 /obj/machinery/camera/autoname{
 	dir = 4
@@ -10325,6 +10407,18 @@
 	dir = 10
 	},
 /area/sulaco/engineering/atmos)
+"cPc" = (
+/turf/closed/wall/mainship/gray/outer,
+/area/shuttle/distress/arrive_2)
+"cPQ" = (
+/obj/machinery/landinglight/ds2/delaytwo{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "cQa" = (
 /obj/machinery/computer3/server,
 /turf/open/floor/mainship/ai,
@@ -10368,6 +10462,20 @@
 	dir = 8
 	},
 /area/sulaco/briefing)
+"cWj" = (
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/plating,
+/area/sulaco/maintenance/north_solar_maint)
+"cWr" = (
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/prison/plate,
+/area/shuttle/distress/arrive_2)
 "cWX" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
@@ -10427,6 +10535,17 @@
 	dir = 5
 	},
 /area/mainship/shipboard/weapon_room)
+"djX" = (
+/obj/machinery/light,
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar/droppod)
 "dka" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 4
@@ -10505,10 +10624,19 @@
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_main_hall)
-"dwB" = (
-/obj/structure/ship_ammo/minirocket,
-/turf/open/floor/prison,
-/area/sulaco/maintenance/lower_maint)
+"dvi" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 6
+	},
+/obj/structure/cable,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar/droppod)
 "dyO" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
 /turf/open/floor/prison/sterilewhite,
@@ -10562,12 +10690,35 @@
 	dir = 5
 	},
 /area/sulaco/research)
+"dFt" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/machinery/landinglight/ds2/delayone{
+	dir = 4
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "dFM" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/cargo)
+"dJs" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/obj/machinery/landinglight/ds1/delaytwo{
+	dir = 4
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "dJG" = (
 /obj/structure/largecrate/random,
 /obj/effect/decal/cleanable/cobweb{
@@ -10575,6 +10726,12 @@
 	},
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint)
+"dLr" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	dir = 8
+	},
+/turf/open/floor/prison/plate,
+/area/shuttle/distress/arrive_2)
 "dLt" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic/garden,
 /obj/structure/cable,
@@ -10584,7 +10741,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/structure/dropship_equipment/weapon/minirocket_pod,
+/obj/structure/dropship_equipment/sentry_holder,
 /turf/open/floor/prison,
 /area/sulaco/hangar)
 "dOi" = (
@@ -10643,10 +10800,6 @@
 	dir = 4
 	},
 /area/sulaco/medbay)
-"dSL" = (
-/obj/structure/dropship_equipment/sentry_holder,
-/turf/open/floor/prison,
-/area/sulaco/hangar)
 "dVV" = (
 /obj/machinery/light/small,
 /turf/open/floor/prison/arrow/clean{
@@ -10666,10 +10819,6 @@
 	dir = 8
 	},
 /area/sulaco/medbay/surgery_two)
-"dXQ" = (
-/obj/structure/sign/prop3,
-/turf/closed/wall/mainship/gray/outer,
-/area/sulaco/hallway/central_hall3)
 "dZI" = (
 /obj/structure/table/mainship,
 /obj/item/folder/yellow,
@@ -10696,6 +10845,17 @@
 	dir = 1
 	},
 /area/sulaco/cargo)
+"ebp" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/turf/open/floor/prison/plate,
+/area/shuttle/distress/arrive_2)
+"ebD" = (
+/obj/machinery/landinglight/ds2/delaythree,
+/obj/effect/decal/warning_stripes/thin,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "eck" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
@@ -10706,6 +10866,11 @@
 	},
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/hallway/central_hall3)
+"edg" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/closet/crate/ammo,
+/turf/open/floor/prison,
+/area/sulaco/cargo)
 "edm" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1,
@@ -10716,6 +10881,20 @@
 /obj/machinery/camera/autoname,
 /turf/open/floor/mainship/ai,
 /area/sulaco/command/ai)
+"ehA" = (
+/obj/structure/rack,
+/obj/item/tool/crowbar/red,
+/obj/item/tool/crowbar/red,
+/obj/item/tool/crowbar/red,
+/obj/item/tool/crowbar/red,
+/obj/item/tool/crowbar/red,
+/obj/item/weapon/claymore/mercsword/machete,
+/obj/item/weapon/claymore/mercsword/machete,
+/obj/item/weapon/claymore/mercsword/machete,
+/obj/item/weapon/claymore/mercsword/machete,
+/obj/item/weapon/claymore/mercsword/machete,
+/turf/open/floor/mainship/sterile/plain,
+/area/sulaco/hangar/droppod)
 "ehB" = (
 /obj/machinery/optable,
 /obj/item/tank/anesthetic,
@@ -10812,6 +10991,7 @@
 "ezP" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/hallway/central_hall3)
 "eAf" = (
@@ -10831,6 +11011,13 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /turf/open/floor/prison,
 /area/sulaco/hallway/central_hall2)
+"eBK" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/prison/plate,
+/area/shuttle/distress/arrive_2)
 "eCX" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
 /turf/open/floor/prison,
@@ -10876,6 +11063,11 @@
 	},
 /turf/open/floor/prison/bright_clean,
 /area/mainship/command/self_destruct)
+"eKg" = (
+/obj/structure/mopbucket,
+/obj/item/tool/mop,
+/turf/open/floor/plating,
+/area/sulaco/maintenance/north_solar_maint)
 "eKm" = (
 /obj/machinery/atmospherics/pipe/simple/general/hidden{
 	dir = 4
@@ -10923,10 +11115,49 @@
 	},
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay)
+"eNh" = (
+/obj/effect/attach_point/weapon/dropship2{
+	dir = 4;
+	icon_state = "equip_base_r_wing"
+	},
+/turf/open/floor/plating,
+/area/sulaco/hangar)
+"eNX" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/turf/open/floor/prison/arrow/clean{
+	dir = 4
+	},
+/area/sulaco/hangar/droppod)
 "eOE" = (
 /obj/machinery/computer/supplycomp,
 /turf/open/floor/prison/plate,
 /area/sulaco/cargo)
+"eON" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/machinery/landinglight/ds2/delayone{
+	dir = 4
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
+"eOP" = (
+/obj/effect/decal/cleanable/cobweb{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/sulaco/maintenance/north_solar_maint)
 "ePm" = (
 /obj/effect/landmark/start/latejoin,
 /obj/effect/decal/warning_stripes/thick{
@@ -11054,12 +11285,24 @@
 /area/mainship/shipboard/weapon_room)
 "fpa" = (
 /obj/structure/sign/nosmoking_2,
+/obj/docking_port/stationary/marine_dropship/crash_target,
 /turf/closed/wall/mainship/gray,
 /area/sulaco/engineering)
 "fpC" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
 /turf/open/floor/plating/mainship,
 /area/sulaco/engineering/engine)
+"fqg" = (
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/machinery/landinglight/ds1/delaythree{
+	dir = 8
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "fqu" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
@@ -11201,6 +11444,18 @@
 /obj/machinery/status_display,
 /turf/closed/wall/mainship/gray,
 /area/sulaco/showers)
+"fMR" = (
+/obj/machinery/landinglight/ds2{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "fNG" = (
 /obj/machinery/light/small,
 /turf/open/floor/prison/red,
@@ -11217,11 +11472,12 @@
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/prison,
 /area/sulaco/engineering/storage)
-"fSi" = (
-/obj/structure/ship_ammo/heavygun,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/prison,
-/area/sulaco/maintenance/lower_maint)
+"fRB" = (
+/obj/effect/decal/cleanable/cobweb{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/sulaco/bridge/office)
 "fVN" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
@@ -11252,6 +11508,9 @@
 /area/sulaco/hangar/one)
 "gcq" = (
 /obj/structure/prop/mainship/cannon_cables,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
 /turf/open/floor/prison/red/corner{
 	dir = 1
 	},
@@ -11339,20 +11598,37 @@
 	},
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
-"gnu" = (
+"gmJ" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/obj/effect/decal/cleanable/dirt,
+/obj/machinery/landinglight/ds2{
+	dir = 4
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
 "gnG" = (
 /obj/structure/closet/emcloset,
 /turf/open/floor/prison,
 /area/sulaco/hallway/central_hall2)
+"goL" = (
+/obj/machinery/door/poddoor/open/bridge,
+/obj/machinery/door/airlock/mainship/command/cic{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 4
+	},
+/obj/structure/sign/goldenplaque,
+/turf/open/floor/prison/red,
+/area/sulaco/bridge)
 "gqU" = (
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1{
 	dir = 1
@@ -11401,6 +11677,20 @@
 	dir = 8
 	},
 /area/sulaco/medbay/west)
+"gyp" = (
+/obj/effect/decal/warning_stripes/thin,
+/obj/machinery/landinglight/ds2/delaythree,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
+"gAc" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/machinery/landinglight/ds2{
+	dir = 8
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "gAL" = (
 /obj/machinery/door/airlock/mainship/generic,
 /turf/open/floor/prison/sterilewhite,
@@ -11436,20 +11726,16 @@
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/mainship/living/pilotbunks)
-"gFo" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
-	dir = 5
-	},
-/obj/structure/cable,
-/turf/open/floor/prison/bright_clean,
-/area/sulaco/hangar)
 "gHU" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
+"gJn" = (
+/obj/effect/decal/cleanable/cobweb{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/sulaco/maintenance/north_solar_maint)
 "gJP" = (
 /obj/structure/table/mainship,
 /obj/item/reagent_containers/spray/cleaner{
@@ -11479,6 +11765,13 @@
 /obj/item/toy/deck/kotahi,
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cafeteria)
+"gLa" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
+/turf/open/floor/prison/plate,
+/area/shuttle/distress/arrive_2)
 "gNS" = (
 /obj/machinery/status_display,
 /turf/closed/wall/mainship/gray/outer,
@@ -11562,9 +11855,13 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /turf/open/floor/prison,
 /area/mainship/shipboard/weapon_room)
+"gYP" = (
+/obj/structure/dropship_equipment/mg_holder,
+/turf/open/floor/prison,
+/area/sulaco/maintenance/lower_maint)
 "gZO" = (
 /obj/effect/decal/warning_stripes/thin,
-/obj/machinery/camera/autoname,
+/obj/machinery/landinglight/ds2/delayone,
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
 "hbf" = (
@@ -11596,6 +11893,18 @@
 	dir = 4
 	},
 /area/space)
+"hgI" = (
+/obj/effect/decal/warning_stripes/thin,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 4
+	},
+/obj/machinery/landinglight/ds1/delayone,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "hhb" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/red,
@@ -11767,6 +12076,17 @@
 /obj/structure/cable,
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cryosleep)
+"hPF" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/obj/structure/cable,
+/obj/machinery/landinglight/ds1/delaythree{
+	dir = 8
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "hQa" = (
 /obj/effect/decal/cleanable/cobweb,
 /obj/machinery/computer3/server/rack,
@@ -11884,15 +12204,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
-"iea" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 4
-	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/turf/open/floor/prison/bright_clean,
-/area/sulaco/hangar)
 "iev" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
@@ -11942,6 +12253,13 @@
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/sulaco/hallway/central_hall3)
+"ilD" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/blood/oil,
+/turf/open/floor/prison,
+/area/sulaco/hangar)
 "imd" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
@@ -12021,6 +12339,18 @@
 	dir = 4
 	},
 /area/sulaco/engineering/atmos)
+"ixq" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/obj/machinery/landinglight/ds1/delayone{
+	dir = 4
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "ixV" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 1
@@ -12237,7 +12567,6 @@
 	dir = 6
 	},
 /obj/structure/cable,
-/obj/structure/dropship_equipment/medevac_system,
 /turf/open/floor/prison,
 /area/sulaco/maintenance/lower_maint)
 "jaQ" = (
@@ -12294,6 +12623,19 @@
 	},
 /turf/open/floor/plating,
 /area/sulaco/hub/bottom)
+"jid" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/cobweb{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/sulaco/maintenance/lower_maint2)
+"jik" = (
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
+/obj/structure/cable,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "jnn" = (
 /obj/structure/window/framed/mainship/gray/toughened,
 /obj/machinery/door/poddoor/telecomms,
@@ -12332,12 +12674,28 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/hallway/central_hall3)
+"jzD" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/machinery/landinglight/ds2/delaytwo{
+	dir = 8
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "jAp" = (
 /obj/machinery/camera/autoname{
 	dir = 8
 	},
 /turf/open/floor/mainship/ai,
 /area/sulaco/command/ai)
+"jBj" = (
+/obj/structure/largecrate/random,
+/obj/effect/decal/cleanable/cobweb{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/sulaco/maintenance/north_solar_maint)
 "jCy" = (
 /obj/effect/decal/siding{
 	dir = 8
@@ -12420,6 +12778,10 @@
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_main_hall)
+"jQS" = (
+/obj/machinery/camera/autoname,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "jRa" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -12443,6 +12805,19 @@
 	dir = 1
 	},
 /area/sulaco/cargo)
+"jVb" = (
+/obj/machinery/door/airlock/mainship/maint{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/shuttle/distress/arrive_2)
 "jVe" = (
 /obj/machinery/atmospherics/pipe/manifold/yellow/hidden{
 	dir = 1
@@ -12453,6 +12828,22 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/hallway/central_hall3)
+"jVN" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/ship_ammo/minirocket,
+/turf/open/floor/prison,
+/area/sulaco/hangar)
+"jWd" = (
+/obj/machinery/landinglight/ds2/delayone{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "jXo" = (
 /turf/closed/wall/mainship/gray/outer,
 /area/sulaco/briefing)
@@ -12468,6 +12859,16 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison,
 /area/sulaco/maintenance/lower_maint)
+"kbs" = (
+/obj/effect/decal/cleanable/cobweb{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/sulaco/maintenance/lower_maint2)
+"kbH" = (
+/obj/structure/closet/crate/weapon,
+/turf/open/floor/prison,
+/area/sulaco/cargo)
 "kcn" = (
 /obj/machinery/computer3/server/rack,
 /obj/machinery/light/small{
@@ -12475,6 +12876,13 @@
 	},
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
+"kfN" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
+	},
+/obj/item/tool/warning_cone,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "kik" = (
 /obj/effect/landmark/start/job/squadmarine,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
@@ -12503,13 +12911,6 @@
 	},
 /turf/open/floor/grass,
 /area/mainship/living/starboard_garden)
-"kkA" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/prison/bright_clean,
-/area/sulaco/hangar)
 "kme" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 1
@@ -12528,14 +12929,38 @@
 	dir = 1
 	},
 /area/sulaco/hallway/lower_main_hall)
+"knu" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/turf/open/floor/prison,
+/area/sulaco/hallway/central_hall3)
 "koN" = (
 /obj/structure/window/framed/mainship/gray/toughened/hull,
 /turf/open/floor/plating/platebotc,
 /area/sulaco/hallway/central_hall3)
+"koP" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/obj/structure/cable,
+/obj/machinery/landinglight/ds1/delayone{
+	dir = 8
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "kqp" = (
 /obj/machinery/vending/tool,
 /turf/open/floor/prison,
 /area/sulaco/marine/bravo)
+"kqQ" = (
+/obj/effect/decal/cleanable/cobweb{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/sulaco/maintenance/lower_maint2)
 "krk" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
@@ -12544,6 +12969,19 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor/prison,
 /area/sulaco/cargo/office)
+"ksU" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/machinery/landinglight/ds1{
+	dir = 8
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
+"kut" = (
+/obj/structure/ship_ammo/minirocket,
+/turf/open/floor/prison,
+/area/sulaco/hangar)
 "kvB" = (
 /obj/structure/safe,
 /obj/item/reagent_containers/food/drinks/flask/detflask{
@@ -12563,7 +13001,9 @@
 /area/sulaco/liaison/quarters)
 "kxt" = (
 /obj/machinery/sleep_console,
-/obj/machinery/camera/autoname,
+/obj/machinery/camera/autoname{
+	dir = 1
+	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
@@ -12574,6 +13014,12 @@
 	},
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint)
+"kyP" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/prison/plate,
+/area/shuttle/distress/arrive_2)
 "kzV" = (
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
@@ -12646,12 +13092,19 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_main_hall)
+"kKR" = (
+/turf/open/floor/plating/mainship,
+/area/shuttle/distress/arrive_2)
 "kLb" = (
 /obj/structure/bed/chair/office/light,
 /obj/effect/landmark/start/job/chiefshipengineer,
 /obj/structure/cable,
 /turf/open/floor/prison/darkyellow,
 /area/sulaco/engineering/ce)
+"kLh" = (
+/obj/structure/closet/crate/internals,
+/turf/open/floor/prison/plate,
+/area/sulaco/cargo)
 "kLk" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
@@ -12712,6 +13165,18 @@
 	},
 /turf/open/floor/grass,
 /area/mainship/living/starboard_garden)
+"kSG" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/machinery/landinglight/ds2/delayone{
+	dir = 4
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "kTk" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
@@ -12741,6 +13206,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/sulaco/engineering/storage)
+"kXj" = (
+/obj/machinery/camera/autoname{
+	dir = 1
+	},
+/turf/open/floor/prison,
+/area/sulaco/hallway/lower_main_hall)
 "kXs" = (
 /obj/machinery/autolathe,
 /turf/open/floor/prison,
@@ -12817,6 +13288,9 @@
 	dir = 8
 	},
 /area/sulaco/hangar/one)
+"lgl" = (
+/turf/closed/wall/mainship/gray,
+/area/shuttle/distress/arrive_2)
 "ljR" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -12836,11 +13310,26 @@
 	},
 /turf/open/floor/prison/darkyellow/corner,
 /area/sulaco/engineering)
+"llt" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/prison/whitegreen{
+	dir = 5
+	},
+/area/sulaco/research)
 "llL" = (
 /obj/machinery/door/airlock/mainship/command/CPToffice,
 /obj/machinery/door/poddoor/open/bridge,
 /turf/open/floor/plating,
 /area/sulaco/cap_office)
+"llY" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/plating,
+/area/sulaco/maintenance/north_solar_maint)
 "lmE" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison,
@@ -12906,6 +13395,25 @@
 	},
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/surgery_two)
+"lsz" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/landinglight/ds2/delayone{
+	dir = 8
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
+"lsJ" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
+	},
+/obj/item/tool/warning_cone,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "lsO" = (
 /obj/structure/closet/secure_closet/military_police,
 /obj/item/weapon/gun/energy/taser,
@@ -12941,6 +13449,11 @@
 /obj/machinery/vending/uniform_supply,
 /turf/open/floor/prison,
 /area/sulaco/cargo)
+"lvp" = (
+/obj/structure/ship_ammo/rocket/banshee,
+/obj/effect/decal/warning_stripes/thin,
+/turf/open/floor/prison,
+/area/sulaco/hangar)
 "lvN" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
@@ -12967,6 +13480,15 @@
 /obj/machinery/power/apc/mainship,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters)
+"lzI" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/machinery/landinglight/ds1/delayone{
+	dir = 8
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "lzT" = (
 /obj/machinery/door/airlock/mainship/engineering{
 	dir = 2
@@ -12996,6 +13518,14 @@
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cryosleep)
+"lDT" = (
+/obj/effect/decal/warning_stripes/thin,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/vehicle/powerloader,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "lEa" = (
 /obj/effect/decal/warning_stripes/thin,
 /obj/structure/prop/mainship/mission_planning_system{
@@ -13085,6 +13615,15 @@
 /obj/machinery/portable_atmospherics/canister/empty,
 /turf/open/floor/prison/yellow,
 /area/sulaco/engineering/atmos)
+"lQB" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/machinery/landinglight/ds1/delaythree{
+	dir = 1
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "lRd" = (
 /obj/machinery/camera/autoname,
 /turf/open/floor/prison,
@@ -13118,6 +13657,18 @@
 	dir = 1
 	},
 /area/sulaco/research)
+"lYE" = (
+/obj/machinery/vending/nanomed,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/turf/open/floor/prison/arrow/clean{
+	dir = 8
+	},
+/area/sulaco/hangar/droppod)
 "lZd" = (
 /obj/machinery/door/poddoor/railing{
 	dir = 1;
@@ -13148,6 +13699,16 @@
 	dir = 4
 	},
 /area/space)
+"mbw" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
+	},
+/obj/item/tool/warning_cone,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "mbB" = (
 /obj/machinery/atmospherics/components/unary/cryo_cell,
 /turf/open/floor/prison/whitegreen/corner{
@@ -13232,6 +13793,10 @@
 	dir = 8
 	},
 /area/sulaco/hangar/one)
+"mmf" = (
+/obj/structure/reagent_dispensers/watertank,
+/turf/open/floor/plating,
+/area/sulaco/maintenance/north_solar_maint)
 "mno" = (
 /obj/structure/prop/mainship/name_stencil{
 	icon_state = "TGMC3"
@@ -13259,11 +13824,6 @@
 	dir = 4
 	},
 /area/sulaco/cargo)
-"mub" = (
-/obj/effect/decal/cleanable/blood/oil,
-/obj/item/reagent_containers/jerrycan,
-/turf/open/floor/prison,
-/area/sulaco/hangar)
 "mvt" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plating,
@@ -13292,6 +13852,18 @@
 	dir = 8
 	},
 /area/sulaco/medbay/surgery_two)
+"mAV" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/machinery/landinglight/ds2/delaythree{
+	dir = 4
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "mAW" = (
 /obj/machinery/door/airlock/mainship/medical/or/or2,
 /obj/machinery/holosign/surgery{
@@ -13357,6 +13929,19 @@
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/sulaco/maintenance/lower_maint)
+"mDm" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 5
+	},
+/obj/structure/cable,
+/obj/machinery/landinglight/ds1/delaytwo{
+	dir = 8
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "mDs" = (
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 1
@@ -13382,6 +13967,12 @@
 	},
 /turf/open/floor/prison,
 /area/mainship/shipboard/weapon_room)
+"mHO" = (
+/obj/effect/decal/cleanable/cobweb{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/sulaco/maintenance/lower_maint2)
 "mIx" = (
 /obj/machinery/alarm{
 	dir = 1
@@ -13425,6 +14016,24 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/plate,
 /area/shuttle/distress/arrive_1)
+"mQk" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
+/obj/structure/cable,
+/turf/open/floor/prison,
+/area/sulaco/hallway/lower_main_hall)
+"mQw" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/prison,
+/area/mainship/shipboard/weapon_room)
 "mRl" = (
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/prison,
@@ -13441,6 +14050,11 @@
 /obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint2)
+"mRR" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/dropship_equipment/electronics/spotlights,
+/turf/open/floor/prison,
+/area/sulaco/hangar)
 "mRS" = (
 /obj/effect/landmark/start/job/squadmarine,
 /obj/structure/cable,
@@ -13456,10 +14070,16 @@
 /obj/machinery/door/airlock/mainship/generic,
 /turf/open/floor/prison/red,
 /area/sulaco/cafeteria)
-"mSW" = (
-/obj/structure/sign/prop2,
-/turf/closed/wall/mainship/gray/outer,
-/area/sulaco/hallway/central_hall3)
+"mTZ" = (
+/obj/structure/ship_ammo/rocket/widowmaker,
+/turf/open/floor/prison,
+/area/sulaco/hangar)
+"mUa" = (
+/obj/effect/decal/cleanable/cobweb{
+	dir = 4
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "mVd" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 9
@@ -13493,6 +14113,18 @@
 	dir = 1
 	},
 /area/sulaco/cargo)
+"mZO" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 6
+	},
+/turf/open/floor/prison/plate,
+/area/shuttle/distress/arrive_2)
 "nan" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -13550,6 +14182,26 @@
 /obj/docking_port/stationary/marine_dropship/crash_target,
 /turf/closed/wall/mainship/gray,
 /area/sulaco/bridge/quarters)
+"nmW" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/obj/structure/cable,
+/obj/machinery/landinglight/ds1{
+	dir = 8
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
+"npi" = (
+/obj/structure/dropship_equipment/weapon/minirocket_pod,
+/turf/open/floor/prison,
+/area/sulaco/hangar)
+"nqJ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/ship_ammo/minirocket,
+/turf/open/floor/prison,
+/area/sulaco/hangar)
 "nrN" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1{
@@ -13688,6 +14340,21 @@
 	dir = 1
 	},
 /area/sulaco/hallway/lower_main_hall)
+"nOM" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/ship_ammo/heavygun,
+/turf/open/floor/prison,
+/area/sulaco/hangar)
+"nOO" = (
+/obj/structure/largecrate/random,
+/obj/item/tool/crowbar,
+/obj/effect/decal/cleanable/cobweb{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/sulaco/maintenance/north_solar_maint)
 "nOS" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
@@ -13743,6 +14410,15 @@
 "nTV" = (
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/surgery_one)
+"nUZ" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/machinery/landinglight/ds2/delayone{
+	dir = 8
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "nVU" = (
 /obj/machinery/light/small,
 /obj/machinery/portable_atmospherics/pump,
@@ -13772,15 +14448,6 @@
 	},
 /turf/open/floor/prison,
 /area/mainship/living/pilotbunks)
-"nZk" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 8
-	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
-/turf/open/floor/prison/bright_clean,
-/area/sulaco/hangar)
 "nZF" = (
 /obj/structure/cable,
 /turf/closed/wall/mainship/gray/outer,
@@ -13791,6 +14458,18 @@
 	dir = 1
 	},
 /area/sulaco/medbay/surgery_two)
+"oaU" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/cobweb{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/sulaco/engineering/storage)
 "obs" = (
 /obj/structure/shuttle/engine/heater{
 	dir = 4
@@ -13803,6 +14482,11 @@
 /obj/structure/window/framed/mainship/gray,
 /turf/open/floor/plating/platebotc,
 /area/sulaco/cargo)
+"odD" = (
+/obj/structure/ship_ammo/rocket/keeper,
+/obj/effect/decal/warning_stripes/thin,
+/turf/open/floor/prison,
+/area/sulaco/hangar)
 "ofF" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
@@ -13820,6 +14504,18 @@
 	},
 /turf/open/floor/prison/whitegreen,
 /area/sulaco/research)
+"oiu" = (
+/obj/effect/decal/warning_stripes/thin,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 4
+	},
+/obj/machinery/landinglight/ds1/delaytwo,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "oiA" = (
 /obj/effect/landmark/start/job/synthetic,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
@@ -13909,6 +14605,34 @@
 /obj/structure/cable,
 /turf/open/floor/prison/plate,
 /area/sulaco/cargo)
+"oqn" = (
+/obj/structure/ship_ammo/rocket/widowmaker,
+/obj/effect/decal/warning_stripes/thin,
+/turf/open/floor/prison,
+/area/sulaco/hangar)
+"oqN" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/obj/machinery/landinglight/ds1/delaythree{
+	dir = 8
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
+"orB" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/prison/arrow/clean{
+	dir = 4
+	},
+/area/sulaco/hangar/droppod)
 "orU" = (
 /obj/structure/prop/mainship/name_stencil{
 	icon_state = "TGMC4"
@@ -13929,6 +14653,25 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor/prison,
 /area/sulaco/cargo)
+"ovl" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
+	dir = 4
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar/droppod)
+"owe" = (
+/obj/effect/decal/cleanable/cobweb{
+	dir = 8
+	},
+/obj/structure/janitorialcart,
+/turf/open/floor/plating,
+/area/sulaco/maintenance/north_solar_maint)
 "oxk" = (
 /obj/machinery/power/apc/mainship,
 /obj/structure/cable,
@@ -13986,15 +14729,15 @@
 	dir = 9
 	},
 /area/sulaco/engineering/atmos)
-"oBM" = (
+"oBX" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/manifold/yellow/hidden{
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/landinglight/ds1/delaythree{
 	dir = 4
 	},
 /turf/open/floor/prison/bright_clean,
@@ -14005,12 +14748,33 @@
 	},
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
+"oEw" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 4
+	},
+/obj/machinery/vending/nanomed,
+/turf/open/floor/freezer,
+/area/sulaco/showers)
 "oGg" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/prison/bright_clean,
 /area/mainship/command/self_destruct)
+"oGA" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar/droppod)
 "oGK" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
@@ -14064,10 +14828,16 @@
 /obj/structure/window/framed/mainship/gray/toughened/hull,
 /turf/open/floor/plating/platebotc,
 /area/sulaco/liaison/quarters)
-"oLd" = (
+"oKG" = (
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 4
+	},
 /obj/structure/cable,
-/turf/open/floor/prison,
-/area/sulaco/hallway/lower_main_hall)
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar/droppod)
 "oLM" = (
 /obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/plating,
@@ -14195,6 +14965,13 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_main_hall)
+"oWg" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/cobweb{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/sulaco/maintenance/lower_maint)
 "oXn" = (
 /obj/structure/bed/chair,
 /obj/machinery/light,
@@ -14207,6 +14984,9 @@
 /area/sulaco/medbay)
 "oXE" = (
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/cobweb{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/sulaco/cap_office)
 "oYo" = (
@@ -14271,6 +15051,18 @@
 	dir = 1
 	},
 /area/sulaco/hallway/lower_main_hall)
+"pht" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/obj/machinery/landinglight/ds1/delaytwo{
+	dir = 8
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "phy" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -14340,6 +15132,32 @@
 	},
 /turf/open/floor/prison/plate,
 /area/sulaco/cargo)
+"ppo" = (
+/obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/yellow/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/prison,
+/area/sulaco/hallway/central_hall3)
+"ppF" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/manifold/yellow/hidden{
+	dir = 8
+	},
+/obj/machinery/landinglight/ds1/delayone{
+	dir = 8
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "ppW" = (
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1{
 	dir = 4
@@ -14412,7 +15230,7 @@
 /turf/closed/wall/mainship/gray,
 /area/sulaco/medbay/surgery_one)
 "pAt" = (
-/obj/structure/ship_ammo/heavygun,
+/obj/structure/dropship_equipment/medevac_system,
 /turf/open/floor/prison,
 /area/sulaco/maintenance/lower_maint)
 "pBf" = (
@@ -14430,13 +15248,6 @@
 /obj/machinery/door/poddoor/open/bridge,
 /turf/open/floor/plating/platebotc,
 /area/sulaco/cap_office)
-"pCP" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/prison/bright_clean,
-/area/sulaco/hangar)
 "pDf" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 10
@@ -14475,6 +15286,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 4
+	},
+/obj/effect/decal/cleanable/cobweb{
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/sulaco/hub/top)
@@ -14533,13 +15347,6 @@
 	dir = 1
 	},
 /area/sulaco/medbay/west)
-"pOF" = (
-/obj/structure/window/framed/mainship/gray/toughened,
-/obj/structure/sign/directions/engineering{
-	dir = 4
-	},
-/turf/open/floor/plating/platebotc,
-/area/sulaco/engineering/storage)
 "pPS" = (
 /obj/machinery/optable,
 /obj/item/tank/anesthetic,
@@ -14547,6 +15354,12 @@
 	dir = 4
 	},
 /area/sulaco/medbay/surgery_one)
+"pQf" = (
+/obj/effect/decal/cleanable/cobweb{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/sulaco/maintenance/north_solar_maint)
 "pQL" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison,
@@ -14566,6 +15379,10 @@
 "pWh" = (
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/surgery_two)
+"pWC" = (
+/obj/structure/ship_ammo/rocket/banshee,
+/turf/open/floor/prison,
+/area/sulaco/hangar)
 "pWS" = (
 /turf/open/floor/prison,
 /area/sulaco/maintenance/lower_maint)
@@ -14616,10 +15433,6 @@
 	dir = 4
 	},
 /area/sulaco/marine/alpha)
-"qaI" = (
-/obj/machinery/vending/armor_supply,
-/turf/open/floor/prison,
-/area/sulaco/marine)
 "qcz" = (
 /obj/machinery/power/apc/mainship{
 	dir = 4
@@ -14630,6 +15443,12 @@
 	},
 /turf/open/floor/grass,
 /area/mainship/living/starboard_garden)
+"qcT" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 8
+	},
+/turf/open/floor/prison/plate,
+/area/shuttle/distress/arrive_2)
 "qdr" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold4w/cyan/hidden/layer1,
@@ -14663,6 +15482,18 @@
 	dir = 1
 	},
 /area/space)
+"qkp" = (
+/obj/docking_port/stationary/ert/target{
+	id = "starboard_target";
+	name = "Starboard"
+	},
+/turf/open/floor/plating/mainship,
+/area/shuttle/distress/arrive_2)
+"qku" = (
+/obj/structure/dropship_equipment/weapon/rocket_pod,
+/obj/effect/decal/warning_stripes/thin,
+/turf/open/floor/prison,
+/area/sulaco/hangar)
 "qlj" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
@@ -14679,6 +15510,12 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/surgery_two)
+"qnI" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar/droppod)
 "qod" = (
 /obj/machinery/door/poddoor/railing{
 	dir = 2;
@@ -14729,6 +15566,9 @@
 /obj/machinery/atmospherics/pipe/manifold/yellow/hidden{
 	dir = 1
 	},
+/obj/effect/decal/cleanable/cobweb{
+	dir = 4
+	},
 /turf/open/floor/prison/plate,
 /area/sulaco/maintenance/south_solar_maint)
 "qtU" = (
@@ -14778,6 +15618,12 @@
 "qDO" = (
 /turf/open/floor/mainship_hull/gray/dir,
 /area/space)
+"qHe" = (
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
+/obj/structure/cable,
+/turf/open/floor/mainship/stripesquare,
+/area/sulaco/hangar/droppod)
 "qIA" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 1
@@ -14803,6 +15649,10 @@
 /obj/machinery/recharge_station,
 /turf/open/floor/prison,
 /area/sulaco/engineering/engine)
+"qKm" = (
+/obj/docking_port/stationary/marine_dropship/cas,
+/turf/open/floor/plating,
+/area/sulaco/hangar)
 "qMM" = (
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1{
 	dir = 1
@@ -14823,6 +15673,10 @@
 /obj/structure/window/framed/mainship/gray/toughened/hull,
 /turf/open/floor/plating/platebotc,
 /area/sulaco/engineering/engine)
+"qND" = (
+/obj/structure/closet/crate/ammo,
+/turf/open/floor/prison/plate,
+/area/sulaco/cargo)
 "qNF" = (
 /obj/structure/cable,
 /obj/structure/bed,
@@ -14868,6 +15722,18 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/maintenance/lower_maint)
+"qUq" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/machinery/landinglight/ds2/delaytwo{
+	dir = 4
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "qWi" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
@@ -14899,6 +15765,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/plate,
 /area/sulaco/cargo)
+"raA" = (
+/obj/item/reagent_containers/glass/bucket/janibucket,
+/turf/open/floor/plating,
+/area/sulaco/maintenance/north_solar_maint)
 "rbr" = (
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 1
@@ -14915,17 +15785,6 @@
 	},
 /turf/open/floor/wood,
 /area/sulaco/liaison)
-"rcb" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/prison/bright_clean,
-/area/sulaco/hangar)
 "rcl" = (
 /obj/structure/closet/crate/weapon,
 /turf/open/floor/prison/plate,
@@ -14986,12 +15845,9 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /turf/open/floor/freezer,
 /area/sulaco/showers)
-"rgD" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/obj/structure/cable,
+"rhV" = (
+/obj/effect/decal/warning_stripes/thin,
+/obj/machinery/landinglight/ds2/delaytwo,
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
 "riP" = (
@@ -15038,6 +15894,15 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/cargo)
+"rnR" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
+	dir = 6
+	},
+/turf/open/floor/prison/plate,
+/area/shuttle/distress/arrive_2)
 "ron" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
@@ -15058,6 +15923,10 @@
 	dir = 4
 	},
 /area/sulaco/marine/delta)
+"rpN" = (
+/obj/effect/decal/warning_stripes/thin,
+/turf/open/floor/prison,
+/area/sulaco/hangar)
 "rrR" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 9
@@ -15080,12 +15949,9 @@
 "rts" = (
 /obj/effect/decal/warning_stripes/thin,
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
-	dir = 4
-	},
+/obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1,
+/obj/machinery/atmospherics/pipe/manifold/yellow/hidden,
+/obj/machinery/landinglight/ds1/delaytwo,
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
 "rtA" = (
@@ -15100,6 +15966,16 @@
 	dir = 1
 	},
 /area/sulaco/medbay/west)
+"rus" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/obj/machinery/landinglight/ds1{
+	dir = 4
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "rvh" = (
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1{
 	dir = 1
@@ -15171,6 +16047,18 @@
 	dir = 1
 	},
 /area/sulaco/cargo)
+"rFM" = (
+/obj/structure/droppod,
+/obj/structure/dropprop,
+/turf/open/floor/prison/cleanmarked,
+/area/sulaco/hangar/droppod)
+"rGn" = (
+/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/turf/open/floor/prison,
+/area/sulaco/hangar)
 "rGP" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
@@ -15205,6 +16093,18 @@
 	dir = 1
 	},
 /area/mainship/shipboard/weapon_room)
+"rJo" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/obj/machinery/landinglight/ds1{
+	dir = 4
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "rJr" = (
 /turf/open/floor/mainship/terragov/west{
 	dir = 8
@@ -15327,6 +16227,30 @@
 	dir = 8
 	},
 /area/sulaco/marine/delta)
+"scr" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/machinery/landinglight/ds2/delaytwo{
+	dir = 4
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
+"scy" = (
+/obj/structure/cable,
+/obj/machinery/power/apc/mainship{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/prison/arrow/clean{
+	dir = 4
+	},
+/area/sulaco/hangar/droppod)
 "scG" = (
 /obj/structure/cable,
 /turf/open/floor/mainship_hull/gray/dir{
@@ -15343,12 +16267,34 @@
 	},
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
+"scY" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/obj/machinery/landinglight/ds1/delaythree{
+	dir = 4
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "sdn" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cafeteria)
+"sfi" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 9
+	},
+/obj/machinery/landinglight/ds1/delaythree{
+	dir = 4
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "sfw" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -15367,6 +16313,10 @@
 	dir = 8
 	},
 /area/sulaco/research)
+"sgS" = (
+/obj/structure/dropship_equipment/electronics/spotlights,
+/turf/open/floor/prison,
+/area/sulaco/hangar)
 "shi" = (
 /obj/structure/window/framed/mainship/gray/toughened,
 /turf/open/floor/plating/platebotc,
@@ -15398,6 +16348,15 @@
 	},
 /turf/open/floor/prison,
 /area/mainship/shipboard/weapon_room)
+"sjS" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/machinery/landinglight/ds1/delayone{
+	dir = 1
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "sjY" = (
 /obj/structure/bed/chair,
 /obj/structure/cable,
@@ -15492,19 +16451,6 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/engineering/atmos)
-"swe" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 8
-	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/manifold/yellow/hidden{
-	dir = 8
-	},
-/turf/open/floor/prison/bright_clean,
-/area/sulaco/hangar)
 "swp" = (
 /obj/structure/supply_drop/alpha,
 /turf/open/floor/prison/plate,
@@ -15556,22 +16502,45 @@
 	icon_state = "floor8"
 	},
 /area/mainship/command/self_destruct)
+"sBH" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/plating,
+/area/sulaco/maintenance/lower_maint2)
 "sBO" = (
 /turf/open/floor/plating,
 /area/sulaco/bridge/office)
-"sCF" = (
+"sBW" = (
 /obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/landinglight/ds1/delayone{
+	dir = 1
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
+"sCF" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
-	dir = 9
-	},
-/obj/machinery/atmospherics/pipe/manifold/yellow/hidden{
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
 	},
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
+"sCO" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/cobweb{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/sulaco/maintenance/lower_maint2)
 "sFS" = (
 /obj/effect/landmark/start/job/medicalofficer,
 /obj/structure/cable,
@@ -15637,6 +16606,14 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/darkyellow,
 /area/sulaco/engineering/engine)
+"sLp" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/turf/open/floor/prison/arrow/clean{
+	dir = 8
+	},
+/area/sulaco/hangar/droppod)
 "sLY" = (
 /obj/structure/window/framed/mainship/gray/toughened/hull,
 /turf/open/floor/plating/platebotc,
@@ -15645,13 +16622,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/sulaco/hallway/lower_main_hall)
-"sMD" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/turf/open/floor/prison/bright_clean,
-/area/sulaco/hangar)
 "sML" = (
 /obj/structure/prop/mainship/mission_planning_system{
 	desc = "This gathers all information about the Self-Destruct and pools it into one repository.";
@@ -15694,8 +16664,18 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 4
 	},
+/obj/structure/closet/crate,
 /turf/open/floor/prison/plate,
 /area/sulaco/cargo)
+"sPA" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 5
+	},
+/turf/open/floor/prison/plate,
+/area/shuttle/distress/arrive_2)
 "sPO" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
@@ -15706,10 +16686,6 @@
 	dir = 1
 	},
 /area/sulaco/medbay/storage2)
-"sQs" = (
-/obj/docking_port/stationary/marine_dropship/crash_target,
-/turf/closed/wall/mainship/gray,
-/area/sulaco/engineering)
 "sQE" = (
 /turf/open/floor/grass,
 /area/mainship/living/starboard_garden)
@@ -15727,6 +16703,18 @@
 /obj/structure/closet/secure_closet/medical2,
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/surgery_two)
+"sWN" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/landinglight/ds2/delaythree{
+	dir = 8
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "sWO" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 4
@@ -15752,6 +16740,25 @@
 	dir = 1
 	},
 /area/sulaco/medbay/surgery_two)
+"sXL" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
+/obj/machinery/landinglight/ds1{
+	dir = 8
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
+"sYa" = (
+/obj/effect/attach_point/weapon/dropship2{
+	dir = 8;
+	icon_state = "equip_base_l_wing"
+	},
+/turf/open/floor/plating,
+/area/sulaco/hangar)
 "sZz" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1{
@@ -15789,6 +16796,12 @@
 "tbJ" = (
 /turf/closed/wall/mainship/gray,
 /area/sulaco/bridge)
+"tcy" = (
+/obj/machinery/door/poddoor/mainship/droppod{
+	dir = 2
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar/droppod)
 "tcD" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 6
@@ -15799,6 +16812,19 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/engineering/engine)
+"tdl" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/landinglight/ds1/delaytwo{
+	dir = 4
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "tgQ" = (
 /turf/open/floor/prison/whitegreen/full,
 /area/sulaco/research)
@@ -15828,13 +16854,30 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
 /turf/open/floor/prison,
 /area/sulaco/maintenance/lower_maint)
+"tld" = (
+/obj/structure/dropship_equipment/electronics/targeting_system,
+/turf/open/floor/prison,
+/area/sulaco/hangar)
+"tnu" = (
+/obj/machinery/power/apc/mainship{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/prison/plate,
+/area/shuttle/distress/arrive_2)
 "tny" = (
 /obj/machinery/light,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison,
 /area/sulaco/briefing)
+"tnz" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/structure/largecrate/random,
+/turf/open/floor/plating,
+/area/sulaco/maintenance/north_solar_maint)
 "tpA" = (
-/obj/structure/dropship_equipment/electronics/targeting_system,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -15846,6 +16889,20 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/engineering/storage)
+"tsz" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1{
+	dir = 8
+	},
+/obj/machinery/landinglight/ds1/delaythree{
+	dir = 8
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "ttp" = (
 /obj/structure/window/framed/mainship/gray/toughened/hull,
 /obj/machinery/door/poddoor/open/bridge,
@@ -15857,6 +16914,17 @@
 	},
 /turf/open/floor/plating,
 /area/sulaco/briefing)
+"tur" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
+	},
+/turf/open/floor/prison/arrow/clean{
+	dir = 8
+	},
+/area/sulaco/hangar/droppod)
 "tus" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
@@ -15908,13 +16976,6 @@
 /obj/structure/cable,
 /turf/open/space,
 /area/space)
-"tzw" = (
-/obj/structure/bed/stool{
-	pixel_y = 8
-	},
-/obj/structure/cable,
-/turf/open/floor/grass,
-/area/mainship/living/starboard_garden)
 "tzU" = (
 /obj/machinery/door/airlock/hatch/engineering{
 	name = "EVA"
@@ -15941,6 +17002,10 @@
 	dir = 4
 	},
 /area/sulaco/engineering)
+"tGO" = (
+/obj/machinery/door_control/mainship/droppod,
+/turf/closed/wall/mainship/gray,
+/area/sulaco/hangar/droppod)
 "tIY" = (
 /obj/structure/reagent_dispensers/fueltank,
 /obj/effect/decal/cleanable/cobweb{
@@ -16074,6 +17139,7 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/dropship_equipment/sentry_holder,
 /turf/open/floor/prison,
 /area/sulaco/hangar)
 "udV" = (
@@ -16099,6 +17165,14 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/sulaco/engineering/engine)
+"uhG" = (
+/obj/effect/decal/warning_stripes/thin,
+/obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1,
+/obj/machinery/atmospherics/pipe/manifold/yellow/hidden,
+/obj/structure/cable,
+/obj/machinery/landinglight/ds1/delayone,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "uig" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 4
@@ -16116,6 +17190,9 @@
 	},
 /turf/open/floor/grass,
 /area/mainship/living/starboard_garden)
+"ukL" = (
+/turf/open/floor/prison/plate,
+/area/shuttle/distress/arrive_2)
 "ulO" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4
@@ -16269,14 +17346,6 @@
 /obj/machinery/power/apc/mainship,
 /turf/open/floor/prison,
 /area/sulaco/maintenance/lower_maint)
-"uMC" = (
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/obj/effect/decal/warning_stripes/thin{
-	dir = 8
-	},
-/obj/structure/cable,
-/turf/open/floor/prison/bright_clean,
-/area/sulaco/hangar)
 "uMT" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4
@@ -16349,6 +17418,15 @@
 /obj/machinery/status_display,
 /turf/closed/wall/mainship/gray,
 /area/sulaco/cafeteria)
+"uVR" = (
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
+	dir = 10
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "uWo" = (
 /obj/structure/cable,
 /turf/closed/wall/mainship/gray,
@@ -16357,6 +17435,11 @@
 /obj/structure/sign/greencross/star,
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_main_hall)
+"uXj" = (
+/obj/machinery/camera/autoname,
+/obj/structure/ship_ammo/rocket/widowmaker,
+/turf/open/floor/prison,
+/area/sulaco/hangar)
 "uXn" = (
 /obj/machinery/light/small,
 /turf/open/floor/plating,
@@ -16380,6 +17463,7 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/hallway/central_hall3)
 "vai" = (
@@ -16399,10 +17483,31 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/sulaco/engineering/smes)
+"vdn" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/closet/crate/freezer/rations,
+/turf/open/floor/prison/plate,
+/area/sulaco/cargo)
 "vdJ" = (
 /obj/structure/sign/securearea/firingrange,
 /turf/open/floor/prison/red,
 /area/sulaco/hangar/one)
+"vfa" = (
+/obj/effect/decal/cleanable/cobweb{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/sulaco/maintenance/south_solar_maint)
+"vfb" = (
+/obj/structure/rack,
+/obj/item/reagent_containers/jerrycan,
+/obj/item/reagent_containers/jerrycan,
+/turf/open/floor/prison,
+/area/sulaco/hangar)
+"vfc" = (
+/obj/structure/ship_ammo/rocket/keeper,
+/turf/open/floor/prison,
+/area/sulaco/hangar)
 "vgl" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
@@ -16417,6 +17522,17 @@
 /obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint2)
+"vhM" = (
+/obj/machinery/light,
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 4;
+	on = 1
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar/droppod)
 "viB" = (
 /obj/structure/rack,
 /obj/structure/ob_ammo/warhead/plasmaloss,
@@ -16499,12 +17615,30 @@
 /obj/item/clothing/suit/replica,
 /turf/open/floor/prison,
 /area/sulaco/hangar/one)
+"vwo" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
+	},
+/turf/open/floor/prison,
+/area/mainship/shipboard/weapon_room)
 "vxX" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /obj/effect/decal/warning_stripes/thick,
 /obj/structure/cable,
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cryosleep)
+"vxZ" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/prison/red{
+	dir = 8
+	},
+/area/mainship/shipboard/weapon_room)
 "vyQ" = (
 /turf/open/floor/mainship_hull/gray/dir{
 	dir = 10
@@ -16550,6 +17684,19 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint2)
+"vIJ" = (
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar/droppod)
 "vMB" = (
 /obj/machinery/vending/tool,
 /turf/open/floor/prison,
@@ -16569,6 +17716,26 @@
 	},
 /turf/closed/wall/mainship/gray,
 /area/sulaco/hallway/central_hall2)
+"vRe" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/machinery/landinglight/ds1/delaythree{
+	dir = 8
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
+"vRn" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/obj/structure/cable,
+/obj/machinery/landinglight/ds1/delaytwo{
+	dir = 8
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "vRR" = (
 /obj/structure/closet/crate,
 /obj/item/target/alien,
@@ -16625,10 +17792,6 @@
 	},
 /turf/open/floor/mainship/tcomms,
 /area/sulaco/telecomms)
-"vXo" = (
-/obj/item/reagent_containers/jerrycan,
-/turf/open/floor/prison,
-/area/sulaco/hangar)
 "vXS" = (
 /obj/machinery/alarm{
 	dir = 1
@@ -16654,6 +17817,15 @@
 /obj/structure/closet/firecloset,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/south_solar_maint)
+"wbU" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/machinery/landinglight/ds1{
+	dir = 1
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "wco" = (
 /obj/structure/table/mainship,
 /obj/item/tool/warning_cone,
@@ -16710,6 +17882,9 @@
 	dir = 8
 	},
 /area/sulaco/medbay/surgery_one)
+"wjr" = (
+/turf/open/floor/mainship/stripesquare,
+/area/sulaco/hangar/droppod)
 "wjX" = (
 /turf/open/floor/prison/red{
 	dir = 4
@@ -16790,6 +17965,16 @@
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/sulaco/maintenance/lower_maint)
+"wxy" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/obj/machinery/landinglight/ds1/delayone{
+	dir = 4
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "wxY" = (
 /obj/effect/landmark/start/job/pilotofficer,
 /obj/structure/bed,
@@ -16946,6 +18131,15 @@
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cryosleep)
+"wLv" = (
+/obj/machinery/landinglight/ds2{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "wMn" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 5
@@ -17017,6 +18211,18 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/maintenance/lower_maint)
+"wVa" = (
+/obj/effect/decal/warning_stripes/thin,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 4
+	},
+/obj/machinery/landinglight/ds1,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "wVV" = (
 /turf/open/floor/prison,
 /area/mainship/living/starboard_garden)
@@ -17029,6 +18235,18 @@
 	dir = 4
 	},
 /area/sulaco/engineering)
+"wXL" = (
+/obj/effect/decal/warning_stripes/thin,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 4
+	},
+/obj/machinery/landinglight/ds1/delaythree,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "wYN" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 8
@@ -17047,6 +18265,9 @@
 /obj/structure/window/framed/mainship/gray/toughened,
 /turf/open/floor/plating/platebotc,
 /area/sulaco/engineering)
+"xca" = (
+/turf/closed/wall/mainship/gray,
+/area/sulaco/hangar/droppod)
 "xgp" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 4
@@ -17103,6 +18324,44 @@
 /obj/structure/window/framed/mainship/gray/toughened,
 /turf/open/floor/plating/platebotc,
 /area/sulaco/research)
+"xjA" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/manifold/yellow/hidden{
+	dir = 4
+	},
+/obj/machinery/landinglight/ds1{
+	dir = 4
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
+"xjP" = (
+/obj/machinery/camera/autoname{
+	dir = 8
+	},
+/turf/open/floor/prison/plate,
+/area/shuttle/distress/arrive_2)
+"xlG" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/yellow/hidden{
+	dir = 4
+	},
+/obj/machinery/landinglight/ds1{
+	dir = 4
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "xnw" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -17120,6 +18379,18 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /turf/open/floor/mainship/ai,
 /area/sulaco/command/ai)
+"xrh" = (
+/obj/effect/decal/warning_stripes/thin,
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/landinglight/ds1/delaytwo,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "xrp" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/plate,
@@ -17140,11 +18411,8 @@
 /obj/structure/cable,
 /turf/closed/wall/mainship/outer,
 /area/space)
-"xyV" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1,
-/obj/machinery/atmospherics/pipe/manifold/yellow/hidden,
+"xyQ" = (
+/obj/structure/sign/pods,
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
 "xzt" = (
@@ -17209,6 +18477,11 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_main_hall)
+"xKB" = (
+/obj/machinery/landinglight/ds2/delayone,
+/obj/effect/decal/warning_stripes/thin,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "xKR" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 4
@@ -17223,6 +18496,11 @@
 /obj/machinery/suit_storage_unit/standard_unit,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/south_solar_maint)
+"xNZ" = (
+/obj/machinery/landinglight/ds2/delaytwo,
+/obj/effect/decal/warning_stripes/thin,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "xOO" = (
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
@@ -17244,6 +18522,9 @@
 /obj/structure/ladder{
 	height = 2;
 	id = "hub3"
+	},
+/obj/effect/decal/cleanable/cobweb{
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/sulaco/hub/top)
@@ -17274,6 +18555,12 @@
 /obj/machinery/vending/lasgun,
 /turf/open/floor/prison/plate,
 /area/sulaco/cargo)
+"yda" = (
+/obj/structure/sign/directions/engineering{
+	dir = 4
+	},
+/turf/closed/wall/mainship/gray,
+/area/sulaco/engineering/storage)
 "ydA" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
 /turf/open/floor/mainship/tcomms,
@@ -17305,6 +18592,15 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor/prison/arrow/clean,
 /area/sulaco/cafeteria)
+"yiF" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/machinery/landinglight/ds2/delaythree{
+	dir = 8
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "yiP" = (
 /obj/structure/table/mainship,
 /obj/item/book/manual/medical_diagnostics_manual,
@@ -17319,6 +18615,18 @@
 "yiZ" = (
 /turf/closed/wall/mainship/gray,
 /area/mainship/command/self_destruct)
+"yjC" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/obj/machinery/landinglight/ds1/delayone{
+	dir = 8
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "yjH" = (
 /obj/structure/table/mainship,
 /obj/structure/paper_bin{
@@ -32186,7 +33494,7 @@ aIz
 nwU
 aGD
 aJz
-aGD
+vxZ
 aGD
 aOT
 aGD
@@ -32442,8 +33750,8 @@ mDu
 aIz
 cwp
 aHz
-qSH
-qSH
+mQw
+vwo
 aHz
 aOY
 aHz
@@ -33210,7 +34518,7 @@ aQw
 aQw
 aQw
 aQw
-aQw
+kqQ
 aQh
 aDm
 iCj
@@ -33966,7 +35274,7 @@ nzi
 mDu
 mDu
 aPg
-tXW
+jid
 aQh
 qlk
 uNh
@@ -34252,7 +35560,7 @@ cfA
 aDI
 aEX
 aGc
-aBk
+bij
 aIg
 aIJ
 aGH
@@ -34506,7 +35814,7 @@ aIz
 mDu
 mDu
 cfA
-qaI
+aBk
 aBk
 aGk
 aBk
@@ -35024,7 +36332,7 @@ aDL
 aFa
 aGf
 aBk
-qaI
+bij
 aJS
 aJS
 aJV
@@ -35780,7 +37088,7 @@ wLp
 abT
 aml
 aQh
-aQw
+mHO
 aQw
 aQw
 dzL
@@ -38344,9 +39652,9 @@ adZ
 aea
 inB
 ads
-ajY
 ads
-gXd
+ads
+oEw
 aea
 amr
 uVA
@@ -38362,7 +39670,7 @@ axy
 aoR
 awY
 aDO
-qaI
+aBk
 aGk
 aBk
 aIg
@@ -38492,7 +39800,7 @@ aaa
 aaa
 nzi
 pLJ
-sBO
+fRB
 sBO
 tbJ
 apm
@@ -39136,7 +40444,7 @@ mjU
 drG
 fGx
 aBk
-qaI
+bij
 aKb
 aKb
 aKK
@@ -39877,7 +41185,7 @@ nzi
 mDu
 rzl
 eKx
-eKx
+bfC
 aeR
 aeR
 aal
@@ -40134,15 +41442,15 @@ nzi
 mDu
 bOh
 bPM
-eKx
+bfC
 sPp
-bPM
-bPM
-eKx
-bPM
-bPM
+aeR
+kLh
+vdn
+qND
+bkX
 blt
-blt
+bEP
 ahT
 pXe
 ptg
@@ -40298,7 +41606,7 @@ pLJ
 aoq
 alO
 ghk
-auu
+goL
 tbJ
 aok
 tbJ
@@ -41321,7 +42629,7 @@ aYZ
 aYZ
 aYZ
 nan
-aaW
+pQf
 aaw
 apD
 ara
@@ -41569,7 +42877,7 @@ aaa
 nzi
 mDu
 aYZ
-aaW
+cWj
 aaW
 aaW
 aaW
@@ -41946,10 +43254,10 @@ pnM
 ajb
 eul
 amB
-bkk
+edg
 anJ
 sId
-amB
+kbH
 amB
 amB
 aWG
@@ -42089,7 +43397,7 @@ aDZ
 aEg
 aEJ
 aFv
-ieK
+bER
 aZV
 hoF
 aRh
@@ -42346,7 +43654,7 @@ aEa
 aEh
 aEK
 aRV
-aRI
+llt
 lWx
 aRL
 aRh
@@ -44778,7 +46086,7 @@ erP
 erP
 erP
 erP
-erP
+euA
 aWG
 gqU
 uLr
@@ -44911,7 +46219,7 @@ nzi
 mDu
 aYZ
 aaW
-aaW
+gJn
 aRh
 aSo
 aSa
@@ -45017,7 +46325,7 @@ nzi
 mDu
 mDu
 aPg
-phy
+sCO
 aQw
 aQw
 aQw
@@ -45028,14 +46336,14 @@ aQw
 aQw
 aQw
 aQw
-aQw
+kqQ
 erP
 slc
 kjm
 xWz
 qcz
-alZ
-euA
+uiN
+osv
 aWG
 xKR
 uXi
@@ -45286,14 +46594,14 @@ aPg
 aPg
 aPg
 aQw
-erP
-kSh
+oBg
+sQE
 kML
 hQN
 xve
-uiN
-erP
-bsi
+alZ
+dLt
+mQk
 leD
 aWG
 ahz
@@ -45542,14 +46850,14 @@ mDu
 mDu
 mDu
 aPg
-aQw
+phy
 erP
 kSh
 kML
 kML
 xve
-uiN
-osv
+sQE
+wVV
 aWG
 xKR
 aWG
@@ -45790,22 +47098,22 @@ yht
 gsz
 pHm
 mDu
-mDu
-mDu
-mDu
-mDu
-mDu
-mDu
-mDu
-mDu
+aPg
+aPg
+aPg
+aPg
+aPg
+aPg
+aPg
+aPg
 aPg
 aQw
 erP
 xBs
-kML
+xve
 dOR
 cSg
-tzw
+sQE
 osv
 aWG
 xKR
@@ -46047,24 +47355,24 @@ qjZ
 uwH
 qhv
 mDu
-mDu
-mDu
-mDu
-mDu
-mDu
-mDu
-mDu
-mDu
 aPg
+sBH
 aQw
+aQw
+aQw
+aQw
+aQw
+aQw
+aQw
+kbs
 erP
-kSh
-kML
-dOR
-kML
-aSZ
-dLt
-oLd
+oUA
+jJe
+eMd
+xBs
+asv
+osv
+aWG
 xKR
 aWG
 ahz
@@ -46201,9 +47509,9 @@ aaW
 aaW
 aaW
 aaW
-aaW
+gJn
 aaw
-aaV
+llY
 anh
 aor
 apH
@@ -46304,23 +47612,23 @@ sIy
 hcB
 cJZ
 mDu
-mDu
-mDu
-mDu
-mDu
-mDu
-mDu
-mDu
-mDu
 aPg
-phy
-oBg
-sQE
-xve
-hQN
-xve
-sQE
-wVV
+fuZ
+aQh
+aQh
+aQh
+aQh
+aQh
+aQh
+aQh
+aQh
+erP
+erP
+erP
+erP
+erP
+erP
+erP
 aWG
 jPq
 aVv
@@ -46485,7 +47793,7 @@ azq
 bbd
 oYE
 azq
-aCg
+vfa
 aCg
 aCg
 fqv
@@ -46557,27 +47865,27 @@ aaa
 aaa
 nzi
 mDu
-mDu
-mDu
-mDu
-mDu
-aPg
-aPg
-aPg
-aPg
-aPg
-aPg
-aPg
-aPg
-aPg
-aQw
-erP
-sQE
-kML
-kML
-kML
-sQE
-osv
+bFa
+bFa
+bFa
+bFa
+bFa
+aQa
+cdy
+aMP
+cpN
+cpN
+nOM
+cpN
+lDT
+kut
+nqJ
+kut
+jVN
+cdy
+npi
+aSl
+aPY
 aWG
 xKR
 bIb
@@ -46812,32 +48120,32 @@ aaa
 aaa
 aaa
 aaa
-tZr
-vDU
+nzi
 mDu
-mDu
-mDu
-mDu
-aPg
-phy
-aQw
-aQw
-aQw
-aQw
-aQw
-aQw
-aQw
-aQw
-erP
-oUA
-jJe
-eMd
-xBs
-asv
-osv
+bFa
+pWC
+lvp
+bUI
+dFt
+qUq
+mAV
+gmJ
+kSG
+scr
+mAV
+gmJ
+eON
+scr
+mAV
+gmJ
+kSG
+mbw
+aRE
+aQL
+aPY
 aWG
 xKR
-aWG
+kXj
 abH
 abH
 abH
@@ -46972,7 +48280,7 @@ vDU
 mDu
 mDu
 aYZ
-aaW
+eOP
 anZ
 aaW
 ank
@@ -47069,29 +48377,29 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
 nzi
 mDu
-bFa
-bFa
-bFa
-bWV
-aPY
-aPY
-aPY
-aPY
-aPY
-aPY
-aPY
-aPY
-aPY
-aPY
-aPY
-aPY
-aPY
-aPY
-aPY
+aSN
+cdy
+rpN
+xNZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+sYa
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+fMR
+aPF
+aPF
+bPx
 aWG
 xKR
 aWG
@@ -47326,29 +48634,29 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
 nzi
 mDu
-bFa
-gHU
+aSN
+pWC
+lvp
+xKB
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+jWd
 aPF
 aPF
-aPF
-aPF
-aQr
-aPF
-aPF
-aPF
-gHU
-aPF
-aQr
-aPF
-aPF
-aPF
-gHU
-aSu
-aPY
+bPx
 aWG
 vmi
 aWG
@@ -47583,27 +48891,27 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
 nzi
 mDu
-bFa
+aSN
+cdy
+rpN
 aPK
-aRx
-aRx
-aRx
-aRx
-pCP
-aRx
-aRx
-aRx
-aRx
-aRx
-aRx
-aRx
-aRx
-aRx
-aSk
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+cPQ
+aPF
 aPF
 aGy
 aWG
@@ -47840,12 +49148,12 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
 nzi
 mDu
 bFa
-aQa
+mTZ
+oqn
+ebD
 aPZ
 aPZ
 aPZ
@@ -47859,8 +49167,8 @@ aPZ
 aPZ
 aPZ
 aPZ
-aPZ
-aSl
+csq
+aPF
 aPF
 aVZ
 aWG
@@ -48097,12 +49405,12 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
 nzi
 mDu
-bFa
-aQa
+aSN
+cdy
+rpN
+xNZ
 aPZ
 aPZ
 aPZ
@@ -48116,10 +49424,10 @@ aPZ
 aPZ
 aPZ
 aPZ
-aPZ
-aSl
+wLv
 aPF
-aPY
+aPF
+bPx
 aWG
 xKR
 aWG
@@ -48354,17 +49662,18 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
 nzi
 mDu
-bFa
+aSN
+uXj
+rpN
 gZO
 aPZ
 aPZ
 aPZ
 aPZ
 aPZ
+qKm
 aPZ
 aPZ
 aPZ
@@ -48372,10 +49681,9 @@ aPZ
 aPZ
 aPZ
 aPZ
-aPZ
-aPZ
-aSl
-aSv
+jWd
+aPF
+aPF
 aJR
 iAq
 aSU
@@ -48611,11 +49919,11 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
 nzi
 mDu
-bFa
+aSN
+ilD
+rpN
 aXS
 aPZ
 aPZ
@@ -48626,13 +49934,13 @@ aPZ
 aPZ
 aPZ
 aPZ
-aMI
 aPZ
 aPZ
 aPZ
 aPZ
-aSl
-aSw
+cPQ
+aPF
+gQS
 bSz
 aTA
 aXA
@@ -48868,12 +50176,12 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
 nzi
 mDu
 bFa
-aQa
+vfc
+odD
+gyp
 aPZ
 aPZ
 aPZ
@@ -48887,8 +50195,8 @@ aPZ
 aPZ
 aPZ
 aPZ
-aPZ
-aSr
+csq
+tha
 aPY
 aPY
 aWQ
@@ -49033,7 +50341,7 @@ aYZ
 amI
 aaW
 aeM
-aeM
+jBj
 ank
 asH
 atV
@@ -49125,12 +50433,12 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
 nzi
 mDu
-bFa
-aQa
+aSN
+cdy
+rpN
+rhV
 aPZ
 aPZ
 aPZ
@@ -49144,8 +50452,8 @@ aPZ
 aPZ
 aPZ
 aPZ
-aPZ
-aSl
+wLv
+aPF
 aJR
 aWa
 aTi
@@ -49382,12 +50690,12 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
 nzi
 mDu
-bFa
-aQa
+aSN
+vfc
+rpN
+gZO
 aPZ
 aPZ
 aPZ
@@ -49401,8 +50709,8 @@ aPZ
 aPZ
 aPZ
 aPZ
-aPZ
-aSl
+jWd
+aPF
 aJR
 aWb
 aTi
@@ -49639,27 +50947,27 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
 nzi
 mDu
-bFa
-aQf
-aRE
-aRE
-aRE
-aRE
-aRE
-aRE
-aRE
-aRE
-aRE
-aRE
-aRE
-aRE
-aRE
-aRE
-aQL
+aSN
+cdy
+rpN
+aXS
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+eNh
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+cPQ
+aPF
 aGy
 aSB
 aTi
@@ -49896,26 +51204,26 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
 nzi
 mDu
 bFa
-bFa
-bFa
-bFa
-aPY
-aPF
-gHU
-aPF
-aPY
-aRd
-aRd
-aOd
-aPq
-aPA
-aRd
-aPF
+cdy
+qku
+kfN
+lsz
+gAc
+yiF
+jzD
+nUZ
+gAc
+sWN
+jzD
+nUZ
+gAc
+yiF
+jzD
+nUZ
+lsJ
 gHU
 aVZ
 aWd
@@ -50153,25 +51461,25 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
 nzi
 mDu
-mDu
-mDu
-mDu
+bFa
+bFa
+bFa
+bFa
+bFa
 bFa
 bFa
 aPU
 aQx
-aYA
+rGn
 aPY
-aRa
-aNL
-aOe
-aSz
-aPo
-aIT
+aRd
+aRd
+aOd
+aPq
+aPA
+aRd
 aPF
 aPF
 aJR
@@ -50410,11 +51718,11 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-tZr
-vDU
-vDU
+nzi
+mDu
+mDu
+mDu
+mDu
 mDu
 mDu
 mDu
@@ -50423,12 +51731,12 @@ bFa
 aPY
 aPY
 aPY
-aRb
-aRu
-aRO
-nxz
-aTj
-aRd
+aRa
+aNL
+aOe
+aSz
+aPo
+aIT
 aQC
 cYh
 aPY
@@ -50667,12 +51975,12 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-tZr
+nzi
+mDu
+mDu
+mDu
+mDu
+mDu
 mDu
 mDu
 mDu
@@ -50680,12 +51988,12 @@ bFa
 aQg
 tWu
 aPY
-baH
-aRv
-aRP
-aSz
-aTk
-aIT
+aRb
+aRu
+aRO
+nxz
+aTj
+aRd
 aPF
 aPF
 aSi
@@ -50697,7 +52005,7 @@ aPF
 idd
 aSV
 aSv
-aSW
+aQr
 aTc
 gHU
 aPF
@@ -50924,25 +52232,25 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-tZr
+nzi
+mDu
+mDu
+mDu
+mDu
+mDu
+mDu
 mDu
 mDu
 bFa
 aPY
 aQu
 aPY
-aRd
+baH
+aRv
+aRP
+aSz
+aTk
 aIT
-aPp
-aPq
-aPA
-aRd
 aPF
 aPF
 aRT
@@ -51181,52 +52489,52 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 nzi
+mDu
+mDu
+mDu
+mDu
+mDu
+mDu
+mDu
 mDu
 bFa
 bFa
 aQv
 aPY
-fEL
-iea
-oBM
-iea
-gnu
-gnu
-iea
-iea
-bbu
-iea
-sCF
-sMD
-sMD
-sMD
-sMD
-sMD
-sMD
-sMD
-sMD
-sMD
-bbv
-aRx
-aSk
+aRd
+aIT
+aPp
+aPq
+aPA
+aRd
 aPF
-gQS
+aPF
+bbu
+aPF
+sCF
+aPF
+aPF
+aPF
+aPF
+aPF
+aPF
+aPF
+aPF
+aPF
+bbv
+aPF
+aPF
+aPF
+aPF
 bFa
 mDu
 qDO
 aaa
 aaa
-aDS
-aDS
-aDS
+aaa
+aaa
+aaa
 aDS
 aDS
 aaa
@@ -51342,7 +52650,7 @@ aaa
 nzi
 mDu
 aYZ
-aaW
+eOP
 pMU
 akW
 anr
@@ -51438,50 +52746,50 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 nzi
 mDu
-mDu
+bWf
+bWf
+bWf
+bWf
+bWf
+bWf
+bWf
+bWf
 bFa
 aQI
-vVE
-xyV
-aPZ
-aPZ
-aPZ
-aPZ
-aPZ
-aPZ
-aPZ
-aPZ
-aPZ
-aPZ
-aPZ
-aPZ
-aPZ
-aPZ
-aPZ
-aPZ
-aPZ
-aPZ
-aPZ
-aPZ
-aPZ
-aSl
 aPF
+fEL
+rJo
+xlG
+ixq
+tdl
+oBX
+rJo
+ixq
+dJs
+bsC
+xjA
+wxy
+cFG
+scY
+rus
+wxy
+cFG
+scY
+rus
+wxy
+sfi
+cbg
+aSk
 aPF
-aSN
+gQS
+bFa
 mDu
-mDu
-wRO
-wRO
-vyQ
+qDO
+aaa
+aaa
+aDS
 aDS
 aDS
 aDS
@@ -51695,19 +53003,19 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-tZr
+nzi
 mDu
-mDu
-aSN
+bWf
+rFM
+rFM
+rFM
+rFM
+rFM
+rFM
+xca
 aPF
-aPF
+uVR
+vVE
 rts
 aPZ
 aPZ
@@ -51730,16 +53038,16 @@ aPZ
 aPZ
 aPZ
 aPZ
-aSl
+wbU
 aPF
 aPF
 aSN
 mDu
 mDu
-mDu
-mDu
-mDu
+wRO
+wRO
 vyQ
+aDS
 aDS
 aDS
 aDS
@@ -51952,20 +53260,20 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 nzi
 mDu
-aSN
+bWf
+baj
+baj
+baj
+baj
+tur
+sLp
+xca
+aRR
 gHU
 aPF
-rts
+hgI
 aPZ
 aPZ
 aPZ
@@ -51987,16 +53295,16 @@ aPZ
 aPZ
 aPZ
 aPZ
-aSl
+sjS
 aPF
 aPF
-bFa
-bFa
-bFa
-bFa
+aSN
 mDu
 mDu
-qDO
+mDu
+mDu
+mDu
+vyQ
 aDS
 aDS
 aDS
@@ -52209,20 +53517,20 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 nzi
 mDu
-aSN
+bWf
+rFM
+rFM
+rFM
+rFM
+qnI
+ehA
+xca
 aPF
 aPF
-rts
+aPF
+wVa
 aPZ
 aPZ
 aPZ
@@ -52244,14 +53552,14 @@ aPZ
 aPZ
 aPZ
 aPZ
-aSl
+agy
 gHU
-gHU
-aPY
-aYA
-okJ
+aPF
 bFa
 bFa
+bFa
+bFa
+mDu
 mDu
 qDO
 aDS
@@ -52466,20 +53774,20 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 nzi
 mDu
-bFa
 bWf
+rFM
+rFM
+rFM
+rFM
+vhM
+tGO
+xca
+tGO
+jQS
 aPF
-rts
+wXL
 aPZ
 aPZ
 aPZ
@@ -52501,17 +53809,17 @@ aPZ
 aPZ
 aPZ
 aPZ
-aSl
+lQB
 aPF
-aYD
-aPY
 gHU
-aYD
 aPY
+aYA
+okJ
 bFa
-vDU
-wFA
-aah
+bFa
+mDu
+qDO
+aDS
 aDS
 aDS
 aaa
@@ -52627,7 +53935,7 @@ aaa
 nzi
 mDu
 aYZ
-aaW
+cWj
 aaW
 akW
 anr
@@ -52723,20 +54031,20 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 nzi
 mDu
-bFa
+bWf
+lYE
+baj
+baj
+baj
+ovl
+wjr
+tcy
+wjr
 aPF
 gHU
-rts
+oiu
 aPZ
 aPZ
 aPZ
@@ -52747,7 +54055,6 @@ aPZ
 aPZ
 aPZ
 aPZ
-aMT
 aPZ
 aPZ
 aPZ
@@ -52758,16 +54065,17 @@ aPZ
 aPZ
 aPZ
 aPZ
-kkA
+aPZ
+wbU
 aPF
-aPF
-bap
-aPF
-aPF
-aPF
-bap
-aUt
-aah
+aYD
+aPY
+gHU
+aYD
+aPY
+bFa
+vDU
+wFA
 aah
 aDS
 aDS
@@ -52980,51 +54288,51 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 nzi
 mDu
-aSN
+bWf
+rFM
+rFM
+rFM
+rFM
+dvi
+qHe
+bkc
+qHe
+jik
+jik
+uhG
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aMT
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+sBW
 aPF
 aPF
-rts
-aPZ
-aPZ
-aPZ
-aPZ
-aPZ
-aPZ
-aPZ
-aPZ
-aPZ
-aPZ
-aPZ
-aPZ
-aPZ
-aPZ
-aPZ
-aPZ
-aPZ
-aPZ
-aPZ
-aPZ
-aPZ
-aSl
+bap
 aPF
-tha
-aPY
 aPF
-gHU
-aPY
-bFa
-wRO
-vyQ
+aPF
+bap
+aUt
+aah
 aah
 aDS
 aDS
@@ -53237,20 +54545,20 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 nzi
 mDu
-aSN
+bWf
+rFM
+rFM
+rFM
+rFM
+oKG
+wjr
+tcy
+wjr
 aPF
 aPF
-rcb
+wVa
 aPZ
 aPZ
 aPZ
@@ -53272,17 +54580,17 @@ aPZ
 aPZ
 aPZ
 aPZ
-aSl
+agy
+aPF
+tha
+aPY
 aPF
 gHU
 aPY
-ryR
-aYA
 bFa
-bFa
-mDu
-qDO
-aDS
+wRO
+vyQ
+aah
 aDS
 aDS
 aaa
@@ -53494,17 +54802,17 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 nzi
 mDu
-aSN
+bWf
+crv
+orB
+orB
+orB
+vIJ
+wjr
+tcy
+wjr
 aPF
 aPF
 aYw
@@ -53529,14 +54837,14 @@ aPZ
 aPZ
 aPZ
 aPZ
-aSl
+lQB
 aPF
-aPF
+gHU
+aPY
+ryR
+aYA
 bFa
 bFa
-bFa
-bFa
-mDu
 mDu
 qDO
 aDS
@@ -53656,7 +54964,7 @@ aaW
 aaW
 aaW
 aaW
-aaW
+pQf
 akW
 anr
 anr
@@ -53751,51 +55059,51 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 nzi
 mDu
+bWf
+rFM
+rFM
+rFM
+rFM
+djX
+xca
+xca
+xca
+xyQ
+aPF
+xrh
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+wbU
+aPF
+aPF
 bFa
-aPF
-aPF
-rts
-aPZ
-aPZ
-aPZ
-aPZ
-aPZ
-aPZ
-aPZ
-aPZ
-aPZ
-aPZ
-aPZ
-aPZ
-aPZ
-aPZ
-aPZ
-aPZ
-aPZ
-aPZ
-aPZ
-aPZ
-aPZ
-aSl
-aPF
-aPF
-aSN
+bFa
+bFa
+bFa
 mDu
 mDu
-mDu
-mDu
-mDu
-wFA
+qDO
 aDS
 aDS
 aDS
@@ -53936,21 +55244,21 @@ mDu
 mDu
 mDu
 mDu
-qDO
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+mDu
+wRO
+wRO
+wRO
+wRO
+wRO
+wRO
+wRO
+wRO
+wRO
+wRO
+wRO
+wRO
+wRO
+vyQ
 aaa
 aaa
 aaa
@@ -54008,20 +55316,20 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 nzi
 mDu
-bFa
+bWf
+rFM
+rFM
+rFM
+rFM
+oGA
+bvu
+xca
 aPF
 aPF
-rts
+aPF
+hgI
 aPZ
 aPZ
 aPZ
@@ -54043,16 +55351,16 @@ aPZ
 aPZ
 aPZ
 aPZ
-aSl
+sjS
 aPF
 aPF
 aSN
 mDu
 mDu
-vDU
-vDU
+mDu
+mDu
+mDu
 wFA
-aDS
 aDS
 aDS
 aDS
@@ -54163,9 +55471,9 @@ aaa
 nzi
 mDu
 aYZ
+cWj
 aaW
-aaW
-aaW
+pQf
 aQi
 aRl
 aRJ
@@ -54188,26 +55496,26 @@ gfY
 bvZ
 pxY
 pxY
-pxY
-pxY
+oKk
+oKk
 pxY
 pxY
 mDu
+mDu
+mDu
+mDu
+mDu
+mDu
+mDu
+mDu
+mDu
+mDu
+mDu
+mDu
+mDu
+mDu
+mDu
 qDO
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 aaa
 aaa
 aaa
@@ -54265,50 +55573,50 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 nzi
 mDu
-bFa
+bWf
+eNX
+eNX
+eNX
+eNX
+byI
+scy
+xca
 aRR
 aPF
-aYB
-aZS
-bah
-bah
-nZk
-bah
-bah
-swe
-rgD
-uMC
-rgD
-rgD
-rgD
-rgD
-rgD
-rgD
-rgD
-rgD
-gFo
-aRE
-aRE
-aRE
-aQL
+aPF
+wVa
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+agy
 gHU
-gQS
-bFa
+aPF
+aSN
 mDu
-qDO
-aaa
-aaa
-aDS
+mDu
+vDU
+vDU
+wFA
 aDS
 aDS
 aDS
@@ -54448,23 +55756,23 @@ bdY
 bHC
 bev
 beG
-pxY
+cPc
+cPc
+cPc
+cPc
+cPc
+cPc
+cPc
+cPc
+cPc
+cPc
+cPc
+cPc
+cPc
+cPc
+cPc
 mDu
 qDO
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 aaa
 aaa
 aaa
@@ -54522,44 +55830,44 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 nzi
 mDu
-bFa
+bWf
+rFM
+rFM
+rFM
+rFM
+rFM
+rFM
+xca
 aPF
 aPF
 aPF
-pfc
+aYB
+tsz
+pht
+yjC
+sXL
+oqN
+pht
+ppF
+nmW
+fqg
+vRn
+koP
+nmW
+hPF
+vRn
+koP
+nmW
+hPF
+mDm
+lzI
+ksU
+vRe
+aQL
 aPF
-aPF
-aPF
-gHU
-aPF
-scV
-aPF
-aPF
-aPF
-aPF
-aPF
-aPF
-aPF
-gHU
-aPF
-aPF
-rto
-aPF
-aPF
-aPF
-aPF
-aPF
-aPF
+gQS
 bFa
 mDu
 qDO
@@ -54705,23 +56013,23 @@ bdZ
 bea
 bdM
 ezr
-pxY
+lgl
+kKR
+kKR
+kKR
+kKR
+kKR
+kKR
+kKR
+kKR
+kKR
+kKR
+kKR
+kKR
+kKR
+cPc
 mDu
 qDO
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 aaa
 aaa
 aaa
@@ -54779,38 +56087,38 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 nzi
 mDu
+bWf
+bWf
+bWf
+bWf
+bWf
+bWf
+bWf
+bWf
 bFa
+mUa
+aPF
+aPF
+pfc
 aPF
 aPF
 aPF
 gHU
-bVM
-sKM
-aRQ
-aSu
 aPF
 scV
-gHU
-gHU
+aPF
+aPF
+aPF
+aPF
 aPF
 aPF
 aPF
 gHU
 aPF
 aPF
-aPF
-aPF
-bbh
+rto
 aPF
 aPF
 aPF
@@ -54962,23 +56270,23 @@ bea
 bea
 bew
 beH
-oKk
+lgl
+kKR
+kKR
+kKR
+kKR
+kKR
+kKR
+kKR
+kKR
+kKR
+kKR
+kKR
+kKR
+kKR
+cPc
 mDu
 qDO
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 aaa
 aaa
 aaa
@@ -55036,15 +56344,15 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 nzi
+mDu
+mDu
+mDu
+mDu
+mDu
+mDu
+mDu
+mDu
 mDu
 bFa
 bFa
@@ -55219,23 +56527,23 @@ bdM
 bdM
 aUg
 beI
-oKk
+lgl
+kKR
+kKR
+kKR
+kKR
+kKR
+kKR
+kKR
+kKR
+kKR
+kKR
+kKR
+kKR
+kKR
+cPc
 mDu
 qDO
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 aaa
 aaa
 aaa
@@ -55293,15 +56601,15 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-nzi
+tZr
+vDU
+vDU
+vDU
+vDU
+vDU
+vDU
+vDU
+mDu
 mDu
 mDu
 mDu
@@ -55314,7 +56622,7 @@ bFa
 aTq
 cdy
 aUL
-mub
+aTs
 aPY
 aPY
 aPY
@@ -55476,23 +56784,23 @@ tPQ
 sXd
 bex
 beJ
-oKk
+lgl
+qkp
+kKR
+kKR
+kKR
+kKR
+kKR
+kKR
+kKR
+kKR
+kKR
+kKR
+kKR
+kKR
+cPc
 mDu
 qDO
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 aaa
 aaa
 aaa
@@ -55572,7 +56880,7 @@ aMK
 cdy
 aUL
 aaO
-aMP
+vfb
 aPY
 aUu
 aXe
@@ -55733,23 +57041,23 @@ rGP
 aTQ
 bdM
 beK
-pxY
+lgl
+kKR
+kKR
+kKR
+kKR
+kKR
+kKR
+kKR
+kKR
+kKR
+kKR
+kKR
+kKR
+kKR
+cPc
 mDu
 qDO
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 aaa
 aaa
 aaa
@@ -55828,8 +57136,8 @@ bFa
 cdy
 nNP
 aUp
-dSL
-dSL
+cdy
+vfb
 aPY
 jaQ
 aWh
@@ -55990,23 +57298,23 @@ bdM
 kvB
 aWU
 beL
-pxY
+lgl
+kKR
+kKR
+kKR
+kKR
+kKR
+kKR
+kKR
+kKR
+kKR
+kKR
+kKR
+kKR
+kKR
+cPc
 mDu
 qDO
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 aaa
 aaa
 aaa
@@ -56085,7 +57393,7 @@ bFa
 aQp
 cdy
 aUL
-vXo
+cdy
 aMR
 aPY
 jaQ
@@ -56247,23 +57555,23 @@ pxY
 pxY
 pxY
 pxY
-pxY
+cPc
+kKR
+kKR
+kKR
+kKR
+kKR
+kKR
+kKR
+kKR
+kKR
+kKR
+kKR
+kKR
+kKR
+cPc
 mDu
 qDO
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 aaa
 aaa
 aaa
@@ -56339,11 +57647,11 @@ emV
 mDu
 mDu
 bFa
-aQp
+tld
 aTs
 aUL
-vXo
-vXo
+cdy
+aMR
 aPY
 jaQ
 aWh
@@ -56476,13 +57784,13 @@ aaa
 nzi
 mDu
 aYZ
+eOP
 aaW
 aaW
 aaW
 aaW
-aaW
-aaW
-aaW
+raA
+nOO
 xpm
 szr
 bhr
@@ -56504,23 +57812,23 @@ mDu
 mDu
 mDu
 mDu
+cPc
+ebp
+ebp
+rnR
+gLa
+gLa
+gLa
+mZO
+bks
+sPA
+ebp
+ebp
+ebp
+ebp
+cPc
 mDu
 mDu
-mDu
-wRO
-wRO
-wRO
-wRO
-wRO
-wRO
-wRO
-wRO
-wRO
-wRO
-wRO
-wRO
-wRO
-wRO
 wRO
 vyQ
 aaa
@@ -56734,7 +58042,7 @@ nzi
 mDu
 aYZ
 aYZ
-aaW
+aeM
 aaW
 aaW
 aaW
@@ -56761,21 +58069,21 @@ aEO
 aEO
 aEO
 mDu
-mDu
-mDu
-mDu
-mDu
-mDu
-mDu
-mDu
-mDu
-mDu
-mDu
-mDu
-mDu
-mDu
-mDu
-mDu
+cPc
+ukL
+eBK
+dLr
+ukL
+xjP
+tnu
+cWr
+bTI
+qcT
+ukL
+kyP
+ukL
+ukL
+cPc
 mDu
 mDu
 mDu
@@ -56992,9 +58300,9 @@ mDu
 mDu
 aYZ
 aYZ
-aaV
+tnz
 aaW
-aaW
+aaw
 aaW
 aaW
 iVo
@@ -57018,21 +58326,21 @@ lMX
 aHe
 aEO
 aEO
-aEO
-aEO
-aEO
-dXQ
-aEO
-aEO
-aEO
-aEO
-aEO
-aEO
-aEO
-mSW
-aEO
-aEO
-aEO
+cPc
+lgl
+lgl
+lgl
+lgl
+lgl
+lgl
+jVb
+lgl
+lgl
+lgl
+lgl
+lgl
+lgl
+cPc
 aEO
 aEO
 mDu
@@ -57253,7 +58561,7 @@ aYZ
 aaW
 aaW
 aaW
-aaW
+mmf
 xpm
 esl
 nWT
@@ -57278,12 +58586,12 @@ avU
 lMX
 avU
 avU
-lMX
+knu
 mbL
 aIb
 aIb
+gRM
 aIb
-avU
 avU
 avU
 avU
@@ -57291,7 +58599,7 @@ avU
 avU
 lMX
 avU
-aHc
+aEO
 mDu
 qDO
 aaa
@@ -57370,8 +58678,8 @@ gKw
 aaO
 cdy
 aUL
-cdy
-aaO
+sgS
+mRR
 aPY
 aWh
 aWh
@@ -57509,8 +58817,8 @@ mDu
 aYZ
 aaW
 aaW
-aaW
-aaW
+eKg
+owe
 xpm
 qNF
 fGh
@@ -57539,7 +58847,7 @@ lMX
 lMX
 lMX
 avU
-avU
+gRM
 avU
 aIn
 aHc
@@ -57628,9 +58936,9 @@ ubQ
 dLR
 aUL
 tpA
-aMR
+tld
 aPY
-fVO
+oWg
 aWh
 aWh
 aZw
@@ -57777,7 +59085,7 @@ xpm
 mYf
 eck
 axN
-azf
+yda
 azf
 azf
 azf
@@ -57792,12 +59100,12 @@ avU
 avU
 avU
 lMX
-avU
 aIb
 aIb
 aIb
 aIb
-avU
+gRM
+aIb
 avU
 avU
 avU
@@ -57882,9 +59190,9 @@ mDu
 mDu
 bFa
 bFa
-aPY
+cAO
 aUS
-aPY
+cAO
 aPY
 aPY
 aUu
@@ -58039,7 +59347,7 @@ aAq
 aAu
 aBM
 azf
-enF
+oaU
 azf
 avU
 avU
@@ -58048,12 +59356,12 @@ qIK
 ezP
 uYW
 ezP
-nHJ
-nHJ
+ilp
+ilp
 ezP
 ezP
 ezP
-nHJ
+ppo
 nHJ
 cVe
 nHJ
@@ -58306,12 +59614,12 @@ avU
 avU
 avU
 avU
-avU
 aIb
 aIb
 aIb
 aIb
 avU
+aIb
 avU
 avU
 lMX
@@ -58396,7 +59704,7 @@ tZr
 mDu
 mDu
 aTM
-pWS
+gYP
 mCT
 aZu
 aUu
@@ -58548,7 +59856,7 @@ aYM
 mYf
 gRM
 axO
-pOF
+azg
 aAu
 azb
 aCT
@@ -58910,7 +60218,7 @@ aaa
 nzi
 mDu
 aTM
-fSi
+jYO
 wTC
 aZu
 aUu
@@ -59167,9 +60475,9 @@ aaa
 nzi
 mDu
 faO
-pAt
+pWS
 wTC
-dwB
+pWS
 aUu
 aUu
 aUu
@@ -59426,7 +60734,7 @@ mDu
 faO
 tkV
 gRI
-dwB
+pWS
 aUu
 aUu
 jaQ
@@ -60346,9 +61654,9 @@ aZN
 aYM
 mYf
 eck
-axO
+axN
 azf
-bXR
+azf
 azf
 azf
 azf
@@ -60590,7 +61898,7 @@ mDu
 mDu
 mDu
 aYZ
-aaV
+llY
 aaW
 aYS
 bdA
@@ -61357,12 +62665,12 @@ aaa
 nzi
 mDu
 aYZ
+cWj
 aaW
 aaW
 aaW
 aaW
-aaW
-aaW
+pQf
 aYS
 bdC
 lve
@@ -62128,7 +63436,7 @@ aaa
 nzi
 mDu
 aYZ
-aaW
+eOP
 eVy
 kLb
 yjH
@@ -62913,7 +64221,7 @@ csJ
 iSb
 iSb
 iSb
-sQs
+iSb
 iSb
 awd
 ayd

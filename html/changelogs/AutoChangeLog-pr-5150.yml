@@ -1,0 +1,7 @@
+author: "Surrealaser"
+delete-after: True
+changes: 
+  - tweak: "Xenos no longer auto-open camo tarps by moving over them."
+  - tweak: "Acid spray and gas, bullets (including spits) and phosphorous gas now all force camo tarp occupants out and affect them. Projectiles must specifically target the tarp."
+  - tweak: "Camo tarps now stun their former occupant for 0.5 upon leaving."
+  - refactor: "Minor refactors of camo tarps."

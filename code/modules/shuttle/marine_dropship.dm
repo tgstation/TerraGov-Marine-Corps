@@ -619,6 +619,7 @@
 	crashing_dropship.callTime = 2 MINUTES
 	crashing_dropship.crashing = TRUE
 	crashing_dropship.unlock_all()
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_DROPSHIP_HIJACKED)
 	priority_announce("Unscheduled dropship departure detected from operational area. Hijack likely. Shutting down autopilot.", "Dropship Alert", sound = 'sound/AI/hijack.ogg')
 	to_chat(user, "<span class='danger'>A loud alarm erupts from [src]! The fleshy hosts must know that you can access it!</span>")
 	user.hive.on_shuttle_hijack(crashing_dropship)

@@ -1,0 +1,4 @@
+author: "Pariah919"
+delete-after: True
+changes: 
+  - bugfix: "fixed marines not having armor vendor in bigbury and sulaco"

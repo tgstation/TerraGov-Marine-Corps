@@ -115,6 +115,9 @@
 	///The 'types' of pheremones a xenomorph caste can emit.
 	var/aura_allowed = list("frenzy", "warding", "recovery") //"Evolving" removed for the time being
 
+	// *** Defiler Abilities *** //
+	var/list/available_reagents_define = list() //reagents available for select reagent
+
 	// *** Warrior Abilities *** //
 	///speed increase afforded to the warrior caste when in 'agiility' mode. negative number means faster movement.
 	var/agility_speed_increase = 0 // this opens up possibilities for balancing
@@ -235,6 +238,7 @@
 	var/list/datum/action/xeno_abilities = list()
 	var/datum/action/xeno_action/activable/selected_ability
 	var/selected_resin = /obj/structure/bed/nest //which resin structure to build when we secrete resin
+	var/selected_reagent = /datum/reagent/toxin/xeno_hemodile //which reagent to slash with using reagent slash
 
 	//Naming variables
 	var/nicknumber = 0 //The number/name after the xeno type. Saved right here so it transfers between castes.

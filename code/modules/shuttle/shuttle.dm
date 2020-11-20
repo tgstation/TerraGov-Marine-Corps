@@ -102,7 +102,7 @@
 	var/list/L = return_coords()
 	return (L[3]-L[1]) * (L[4]-L[2])
 
-//returns turfs within our projected rectangle in no particular order
+///returns turfs within our projected rectangle in no particular order
 /obj/docking_port/proc/return_turfs()
 	var/list/L = return_coords()
 	var/turf/T0 = locate(L[1],L[2],z)

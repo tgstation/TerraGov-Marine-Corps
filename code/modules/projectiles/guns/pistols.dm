@@ -80,7 +80,6 @@
 	fire_sound = 'sound/weapons/guns/fire/pistol_service.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol
 
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
 
 	fire_delay = 0.2 SECONDS
@@ -93,8 +92,6 @@
 	desc = "An M4A3 Colt Service Pistol. This one has an ivory-colored grip and has a slide carefully polished yearly by a team of orphan children. Looks like it belongs to a low-ranking officer."
 	icon_state = "m4a3c"
 	item_state = "m4a3c"
-
-	flags_item_map_variant = NONE
 
 	fire_delay = 0.15 SECONDS
 	accuracy_mult = 1.15
@@ -219,8 +216,8 @@
 /obj/item/weapon/gun/pistol/b92fs/M9
 	name = "\improper M9 Custom pistol"
 	desc = "A 20th century military firearm customized for special forces use, fires tranq darts to take down enemies nonlethally. It does not seem to accept any other attachments."
-	icon_state = "m9"
-	item_state = "m9"
+	icon_state = "b92fs"
+	item_state = "b92fs"
 	caliber = "9x19mm tranquilizer" //codex
 	max_shells = 12 //codex
 	current_mag =/obj/item/ammo_magazine/pistol/b92fstranq
