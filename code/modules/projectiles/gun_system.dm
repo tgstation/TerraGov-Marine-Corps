@@ -171,6 +171,7 @@
 
 /obj/item/weapon/gun/equipped(mob/user, slot)
 	unwield(user)
+
 	return ..()
 
 /obj/item/weapon/gun/update_icon(mob/user)
@@ -628,7 +629,6 @@ and you're good to go.
 			flags_gun_features &= ~GUN_BURST_FIRING
 			return
 
-
 		if(!QDELETED(user))
 			play_fire_sound(user)
 			muzzle_flash(firing_angle, user)
@@ -865,6 +865,7 @@ and you're good to go.
 	projectile_to_fire.damage_falloff *= damage_falloff_mult
 	projectile_to_fire.projectile_speed += shell_speed_mod
 	projectile_to_fire.projectile_iff = gun_iff_signal
+
 
 /obj/item/weapon/gun/proc/setup_bullet_accuracy(obj/projectile/projectile_to_fire, mob/user, bullets_fired = 1, dual_wield = FALSE)
 	var/gun_accuracy_mult = accuracy_mult_unwielded
