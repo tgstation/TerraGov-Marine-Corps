@@ -3078,9 +3078,9 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/item/weapon/gun/pistol/m4a3,
-/obj/item/weapon/gun/pistol/m4a3,
-/obj/item/weapon/gun/pistol/m4a3,
+/obj/item/weapon/gun/pistol/rt3,
+/obj/item/weapon/gun/pistol/rt3,
+/obj/item/weapon/gun/pistol/rt3,
 /turf/open/floor/plating/platebot,
 /area/lavaland/security/nuke)
 "Jb" = (
