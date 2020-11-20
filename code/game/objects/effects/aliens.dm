@@ -89,7 +89,6 @@
 /obj/effect/xenomorph/spray/process()
 	var/turf/T = loc
 	if(!istype(T))
-		STOP_PROCESSING(SSobj, src)
 		qdel(src)
 		return
 
@@ -108,39 +107,41 @@
 	var/ticks = 0
 	var/acid_strength = 1 //100% speed, normal
 	var/acid_damage = 125 //acid damage on pick up, subject to armor
+	var/strength_t
 
 //Sentinel weakest acid
 /obj/effect/xenomorph/acid/weak
 	name = "weak acid"
-	acid_strength = 2.5 //250% normal speed
+	acid_strength = 0.4 //250% normal speed
 	acid_damage = 75
 	icon_state = "acid_weak"
 
 //Superacid
 /obj/effect/xenomorph/acid/strong
 	name = "strong acid"
-	acid_strength = 0.4 //20% normal speed
+	acid_strength = 2.5 //20% normal speed
 	acid_damage = 175
 	icon_state = "acid_strong"
 
 /obj/effect/xenomorph/acid/Initialize(mapload, target)
 	. = ..()
 	acid_t = target
-	var/strength_t = isturf(acid_t) ? 8:4 // Turf take twice as long to take down.
-	tick(strength_t)
+	strength_t = isturf(acid_t) ? 8:4 // Turf take twice as long to take down.
+	START_PROCESSING(SSprocessing, src)
 
 /obj/effect/xenomorph/acid/Destroy()
+	STOP_PROCESSING(SSprocessing, src)
 	acid_t = null
 	. = ..()
 
-/obj/effect/xenomorph/acid/proc/tick(strength_t)
-	set waitfor = 0
+/obj/effect/xenomorph/acid/process(delta_time)
 	if(!acid_t || !acid_t.loc)
 		qdel(src)
 		return
 	if(loc != acid_t.loc && !isturf(acid_t))
 		loc = acid_t.loc
-	if(++ticks >= strength_t)
+	ticks += (delta_time*0.1) * (rand(2,3)*0.1) * (acid_strength)
+	if(ticks >= strength_t)
 		visible_message("<span class='xenodanger'>[acid_t] collapses under its own weight into a puddle of goop and undigested debris!</span>")
 		playsound(src, "acid_hit", 25)
 
@@ -173,6 +174,3 @@
 		if(4) visible_message("<span class='xenowarning'>\The [acid_t]\s structure is being melted by the acid!</span>")
 		if(2) visible_message("<span class='xenowarning'>\The [acid_t] is struggling to withstand the acid!</span>")
 		if(0 to 1) visible_message("<span class='xenowarning'>\The [acid_t] begins to crumble under the acid!</span>")
-
-	sleep(rand(200,300) * (acid_strength))
-	.()
