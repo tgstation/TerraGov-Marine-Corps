@@ -1,0 +1,9 @@
+author: "Slotbot"
+delete-after: True
+changes: 
+  - rscadd: "Added reagent slash and select reagent abilities"
+  - rscadd: "Added hemodile and transvitox toxins"
+  - rscadd: "Added hud indicators over marines showing said toxins for xenos"
+  - rscadd: "Added smoke versions of new reagents, emitted by having the reagent selected and activating neurogas"
+  - rscdel: "Removed neutoroxin sting from Defiler"
+  - imageadd: "added reagent hud icons"
