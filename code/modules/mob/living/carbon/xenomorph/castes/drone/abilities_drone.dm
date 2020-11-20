@@ -58,12 +58,11 @@
 
 	succeed_activate()
 
-	var/plasma_amount = target.plasma_stored //We take all the target's plasma; they won't need it where they're going/are
 	var/upgrade_amount = target.upgrade_stored * DRONE_SALVAGE_BIOMASS_SALVAGE_RATIO //We only recover a small portion of the target's upgrade and evo points.
 	var/evo_amount = target.evolution_stored * DRONE_SALVAGE_BIOMASS_SALVAGE_RATIO
 
 	//Take all the plas-mar
-	X.gain_plasma(plasma_amount)
+	X.gain_plasma(target.plasma_stored)
 
 	//Distribute the upgrade and evo points the target had to the hive:
 	var/list/list_of_upgrade_xenos = list()
@@ -75,21 +74,20 @@
 		if(!(filter.upgrade in DRONE_SALVAGE_EVOLUTION_FILTER_LIST))
 			list_of_evolve_xenos += filter
 
-	upgrade_amount /= max(1, length(list_of_upgrade_xenos) ) //get the amount distributed to each xeno; protect against dividing by 0
-	evo_amount /= max(1, length(list_of_evolve_xenos) )
-
 	if(length(list_of_upgrade_xenos))
+		upgrade_amount /= length(list_of_upgrade_xenos) //get the amount distributed to each xeno; protect against dividing by 0
 		for(var/mob/living/carbon/xenomorph/beneficiary in list_of_upgrade_xenos) //Distribute the upgrade salvage to those who can use it
 			beneficiary.upgrade_stored += upgrade_amount
 
 	if(length(list_of_evolve_xenos))
+		evo_amount /= length(list_of_evolve_xenos)
 		for(var/mob/living/carbon/xenomorph/beneficiary in list_of_evolve_xenos) //Distribute the evolve salvage to those who can use it
 			beneficiary.evolution_stored += evo_amount
 
 	playsound(target, 'sound/effects/alien_egg_burst.ogg', 25)
 	X.hive.xeno_message("[target]'s remains were salvaged by [X], recovering [upgrade_amount] upgrade points for [length(list_of_upgrade_xenos)] sisters and [evo_amount] evolution points for [length(list_of_evolve_xenos) ] sisters.") //Notify hive and give credit to the good boy drone
 	X.visible_message("<span class='xenowarning'>\ [X] gruesomely absorbs and devours the remains of [target]!</span>", \
-	"<span class='xenowarning'>We messily devour the remains of [target], absorbing [plasma_amount] plasma and distributing our deceased sister's essence throughout the hive. We now have [X.plasma_stored]/[X.xeno_caste.plasma_max] plasma stored.</span>") //Narrative description.
+	"<span class='xenowarning'>We messily devour the remains of [target], absorbing [target.plasma_stored] plasma and distributing our deceased sister's essence throughout the hive. We now have [X.plasma_stored]/[X.xeno_caste.plasma_max] plasma stored.</span>") //Narrative description.
 
 	target.gib() //Destroy the corpse
 
