@@ -106,8 +106,15 @@
 	///amount of time between pounce ability uses
 	var/pounce_delay = 4 SECONDS
 
+	// *** Acid spray *** //
 	///Number of tiles of the acid spray cone extends outward to. Not recommended to go beyond 4.
 	var/acid_spray_range = 0
+	///The damage acid spray causes on hit.
+	var/acid_spray_damage_on_hit = 0
+	///The damage acid spray causes over time.
+	var/acid_spray_damage = 0
+	///The damage acid spray causes to structure.
+	var/acid_spray_structure_damage = 0
 
 	// *** Pheromones *** //
 	///The strength of our aura. Zero means we can't emit one
@@ -147,6 +154,12 @@
 	var/fortify_armor = 0
 	///amount of slowdown to apply when the crest defense is active. trading defense for speed. Positive numbers makes it slower.
 	var/crest_defense_slowdown = 0
+
+	// *** Crusher Abilities *** //
+	///The damage the stomp causes, counts armor
+	var/stomp_damage = 0
+	///How many tiles the Crest toss ability throws the victim.
+	var/crest_toss_distance = 0
 
 	// *** Queen Abilities *** //
 	///Amount of leaders allowed

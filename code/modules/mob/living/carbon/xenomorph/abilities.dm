@@ -771,7 +771,9 @@
 /datum/action/xeno_action/activable/spray_acid/proc/acid_splat_turf(turf/T)
 	. = locate(/obj/effect/xenomorph/spray) in T
 	if(!.)
-		. = new /obj/effect/xenomorph/spray(T)
+		var/mob/living/carbon/xenomorph/X = owner
+
+		. = new /obj/effect/xenomorph/spray(T, X.xeno_caste.acid_spray_damage)
 
 		for(var/i in T)
 			var/atom/A = i

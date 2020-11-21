@@ -45,11 +45,13 @@
 	flags_pass = PASSTABLE|PASSMOB|PASSGRILLE
 	var/slow_amt = 0.8
 	var/duration = 10 SECONDS
+	var/acid_damage = 14
 
-/obj/effect/xenomorph/spray/Initialize(mapload, duration = 10 SECONDS) //Self-deletes
+/obj/effect/xenomorph/spray/Initialize(mapload, duration = 10 SECONDS, damage = 14) //Self-deletes
 	. = ..()
 	START_PROCESSING(SSprocessing, src)
 	QDEL_IN(src, duration + rand(0, 2 SECONDS))
+	acid_damage = damage
 
 /obj/effect/xenomorph/spray/Destroy()
 	STOP_PROCESSING(SSprocessing, src)
@@ -59,15 +61,15 @@
 	. = ..()
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
-		H.acid_spray_crossed(slow_amt)
+		H.acid_spray_crossed(acid_damage, slow_amt)
 
-/mob/living/carbon/human/proc/acid_spray_crossed(slow_amt)
+/mob/living/carbon/human/proc/acid_spray_crossed(acid_damage, slow_amt)
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ACID))
 		return
 
 	TIMER_COOLDOWN_START(src, COOLDOWN_ACID, 1 SECONDS)
 	if(HAS_TRAIT(src, TRAIT_FLOORED))
-		take_overall_damage(0, rand(12, 14), run_armor_check(BODY_ZONE_CHEST, "acid"))
+		take_overall_damage_armored(acid_damage, BURN, "acid")
 		UPDATEHEALTH(src)
 		to_chat(src, "<span class='danger'>You are scalded by the burning acid!</span>")
 		return
@@ -77,12 +79,12 @@
 	next_move_slowdown += slow_amt
 	var/datum/limb/affecting = get_limb(BODY_ZONE_PRECISE_L_FOOT)
 	var/armor_block = run_armor_check(affecting, "acid")
-	if(istype(affecting) && affecting.take_damage_limb(0, rand(14, 18), FALSE, FALSE, armor_block, TRUE))
+	if(istype(affecting) && affecting.take_damage_limb(0, acid_damage/2, FALSE, FALSE, armor_block, TRUE))
 		UPDATEHEALTH(src)
 		UpdateDamageIcon()
 	affecting = get_limb(BODY_ZONE_PRECISE_R_FOOT)
 	armor_block = run_armor_check(affecting, "acid")
-	if(istype(affecting) && affecting.take_damage_limb(0, rand(14, 18), FALSE, FALSE, armor_block, TRUE))
+	if(istype(affecting) && affecting.take_damage_limb(0, acid_damage/2, FALSE, FALSE, armor_block, TRUE))
 		UPDATEHEALTH(src)
 		UpdateDamageIcon()
 
