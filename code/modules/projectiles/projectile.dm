@@ -789,8 +789,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			if(living_soft_armor)
 				living_soft_armor = max(0, living_soft_armor - penetration) //Flat removal.
 
-		var/mob/living/carbon/shooter_carbon = proj.firer
-		if(iscarbon(shooter_carbon))
+		if(iscarbon(proj.firer))
+			var/mob/living/carbon/shooter_carbon = proj.firer
 			if(shooter_carbon.stagger)
 				damage *= STAGGER_DAMAGE_MULTIPLIER //Since we hate RNG, stagger reduces damage by a % instead of reducing accuracy; consider it a 'glancing' hit due to being disoriented.
 
