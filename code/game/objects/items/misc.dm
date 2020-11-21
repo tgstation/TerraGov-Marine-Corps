@@ -140,11 +140,11 @@
 
 /obj/item/compactorebox/phoron
 	name = "compressed phoron box"
-	desc = "A heavy and pretty solid box , filled to the brim with compressed phoron crystals"
+	desc = "A heavy and pretty solid box, filled to the brim with compressed phoron crystals."
 
 /obj/item/compactorebox/platinum
 	name = "compressed platinum box"
-	desc = "A Very heavy and solid box , filled with pure titanium"
+	desc = "A Very heavy and solid box, filled with pure titanium."
 	icon_state = "platinumbox_compact"
 	item_state = "platinumbox_comact"
 

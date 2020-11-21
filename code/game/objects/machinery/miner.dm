@@ -203,7 +203,7 @@
 	if(!ishuman(user))
 		return
 	if(!miner_upgrade_type)
-		to_chat(user, "<span class='info'>[src]'s module sockets seem empty, a upgrade could be installed.</span>")
+		to_chat(user, "<span class='info'>[src]'s module sockets seem empty, an upgrade could be installed.</span>")
 	else
 		to_chat(user, "<span class='info'>[src]'s module sockets are occupied by the [miner_upgrade_type].</span>")
 
