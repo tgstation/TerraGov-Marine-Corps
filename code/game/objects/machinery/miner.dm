@@ -115,8 +115,12 @@
 		switch(miner_upgrade_type)
 			if(MINER_RESISTANT)
 				upgrade = new /obj/item/minerupgrade/reinforcement
+				if(miner_integrity < max_miner_integrity)
+					miner_integrity = round(miner_integrity/3)
+					set_miner_status()
+				else
+					miner_integrity = initial(miner_integrity)
 				max_miner_integrity = initial(max_miner_integrity)
-				miner_integrity = initial(miner_integrity)
 			if(MINER_OVERCLOCKED)
 				upgrade = new /obj/item/minerupgrade/overclock
 				required_ticks = initial(required_ticks)
