@@ -44,7 +44,7 @@
 // The actual gun itself.
 /obj/item/standard_hmg
 	name = "\improper TL-102 mounted heavy smartgun"
-	desc = "The TL-102 heavy machinegun, it's too heavy to be carried to be operated without the tripod. IFF capable. No extra work required, just deploy it."
+	desc = "The TL-102 heavy machinegun, it's too heavy to be carried or to be operated without the tripod. IFF capable. No extra work required, just deploy it."
 	max_integrity = 300
 	w_class = WEIGHT_CLASS_HUGE
 	flags_equip_slot = ITEM_SLOT_BACK
