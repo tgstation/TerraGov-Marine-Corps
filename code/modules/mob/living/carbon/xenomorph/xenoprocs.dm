@@ -1,20 +1,15 @@
-/mob/living/carbon/xenomorph/verb/xeno_health_alerts()
+/client/verb/xeno_health_alerts()
 	set name = "Toggle Xeno Health Alerts"
 	set desc = "Toggles alerts when a low HP xeno is injured."
 	set category = "Alien"
 
-	toggle_xeno_health_alerts(src)
+	prefs.toggles_alerts ^= ALERTS_XENO_HEALTH
+	prefs.save_preferences()
 
-/proc/toggle_xeno_health_alerts(mob/living/carbon/xenomorph/user)
-
-	var/list/health_alert_filter_list = user.hive.xenos_health_alert_filter
-
-	if(!health_alert_filter_list.Find(user)) //Add them to the list if they're not already there.
-		health_alert_filter_list += user
-		to_chat(user, "<span class='xenodanger'>You will no longer receive hive alerts about badly wounded xenos.</span>")
+	if(prefs.toggles_alerts & ALERTS_XENO_HEALTH)
+		to_chat(src, "<span class='xenodanger'>You will no longer receive hive alerts about badly wounded xenos.</span>")
 	else
-		health_alert_filter_list -= user
-		to_chat(user, "<span class='xenodanger'>You will now receive hive alerts about badly wounded xenos.</span>")
+		to_chat(src, "<span class='xenodanger'>You will now receive hive alerts about badly wounded xenos.</span>")
 
 
 /mob/living/carbon/xenomorph/verb/hive_status()
@@ -165,7 +160,7 @@
 
 
 //Send a message to all xenos.
-/proc/xeno_message(message = null, size = 3, hivenumber = XENO_HIVE_NORMAL, force = FALSE, sound = null, atom/target = null, filter_list = null)
+/proc/xeno_message(message = null, size = 3, hivenumber = XENO_HIVE_NORMAL, force = FALSE, sound = null, atom/target = null, apply_preferences = FALSE, filter_list = null)
 	if(!message)
 		return
 
@@ -173,7 +168,7 @@
 		CRASH("xeno_message called with invalid hivenumber")
 
 	var/datum/hive_status/HS = GLOB.hive_datums[hivenumber]
-	HS.xeno_message(message, size, force, sound, target, filter_list)
+	HS.xeno_message(message, size, force, sound, target, apply_preferences, filter_list)
 
 /mob/living/carbon/xenomorph/proc/upgrade_possible()
 	return (upgrade != XENO_UPGRADE_INVALID && upgrade != XENO_UPGRADE_THREE)

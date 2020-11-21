@@ -73,7 +73,7 @@
 	//If health is less than either the alert threshold, or the alert trigger percent, whichever is greater, and we're not on alert cooldown, trigger the hive alert
 	if((health < max(XENO_HEALTH_ALERT_TRIGGER_THRESHOLD, maxHealth * XENO_HEALTH_ALERT_TRIGGER_PERCENT)) & ( last_xeno_health_alert < (world.time - XENO_HEALTH_ALERT_COOLDOWN) ) )
 		var/location_description = "[get_area(src)] (X: [src.x], Y: [src.y])"
-		xeno_message("<span class='xenoannounce'>Our sister [src.name] is badly hurt with ([health]/[maxHealth]) health remaining at [location_description]!</span>", 2, src.hivenumber, FALSE, 'sound/voice/alien_help2.ogg', src, src.hive.xenos_health_alert_filter)
+		xeno_message("<span class='xenoannounce'>Our sister [src.name] is badly hurt with ([health]/[maxHealth]) health remaining at [location_description]!</span>", 2, src.hivenumber, FALSE, 'sound/voice/alien_help2.ogg', src, TRUE)
 		last_xeno_health_alert = world.time //set our time stamp
 
 /mob/living/carbon/xenomorph/proc/set_datum()

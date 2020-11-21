@@ -19,7 +19,8 @@
 	var/list/list/xenos_by_zlevel
 	var/tier3_xeno_limit
 	var/tier2_xeno_limit
-	var/list/xenos_health_alert_filter //Xenos that will not get health alert notifications.
+	///Xenos that will not get health alert notifications.
+	var/list/xenos_hivemessage_filter
 
 // ***************************************
 // *********** Init
@@ -32,7 +33,7 @@
 	xenos_by_upgrade = list()
 	dead_xenos = list()
 	xenos_by_zlevel = list()
-	xenos_health_alert_filter = list()
+	xenos_hivemessage_filter = list()
 
 	for(var/t in subtypesof(/mob/living/carbon/xenomorph))
 		var/mob/living/carbon/xenomorph/X = t
@@ -491,8 +492,8 @@ to_chat will check for valid clients itself already so no need to double check f
 
 */
 
-///Used for Hive Message alerts; currently health alerts for xenos at low health.
-/datum/hive_status/proc/xeno_message(message = null, size = 3, force = FALSE, sound = null, atom/target = null, filter_list = null)
+///Used for Hive Message alerts
+/datum/hive_status/proc/xeno_message(message = null, size = 3, force = FALSE, sound = null, atom/target = null, apply_preferences = FALSE, filter_list = null)
 	if(!force && !can_xeno_message())
 		return
 
@@ -500,13 +501,18 @@ to_chat will check for valid clients itself already so no need to double check f
 	var/list/final_list = get_all_xenos()
 
 	if(filter_list) //Filter out Xenos in the filter list
-		for(var/i in filter_list)
-			X = i
-			final_list -= i
+		for(X in filter_list)
+			final_list -= X
 
-	for(var/i in final_list)
-		X = i
+	for(X in final_list)
+
 		if(X.stat) // dead/crit cant hear
+			continue
+
+		if(!X.client) // If no client, there's no point; also runtime prevention
+			continue
+
+		if(apply_preferences && X.client.prefs.toggles_alerts & ALERTS_XENO_HEALTH) //If xeno alert preferences matter and we have them turned off, skip
 			continue
 
 		if(sound) //Play sound if applicable

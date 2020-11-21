@@ -133,3 +133,9 @@
 	"End of Round Deathmatch" = BE_DEATHMATCH,\
 	"Prefer Squad over Role" = BE_SQUAD_STRICT\
 	)
+
+///Whether the client wants to be alerted to injured and badly hurt xenos.
+#define ALERTS_XENO_HEALTH	(1<<0)
+
+#define TOGGLES_ALERTS_DEFAULT (ALERTS_XENO_HEALTH)
+

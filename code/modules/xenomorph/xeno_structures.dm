@@ -90,7 +90,7 @@
 		if(60 to 80)
 			to_chat(user, "<span class='warning'>It's slightly damaged, but still seems healthy.</span>")
 		if(80 to 100)
-			to_chat(user, "<span class='info'>It appears in good shape, pulsating healthiy.</span>")
+			to_chat(user, "<span class='info'>It appears in good shape, pulsating healthily.</span>")
 
 
 /obj/structure/resin/silo/take_damage(damage_amount, damage_type, damage_flag, sound_effect, attack_dir, armour_penetration)
