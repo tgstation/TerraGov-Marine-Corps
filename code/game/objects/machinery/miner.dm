@@ -106,7 +106,7 @@
 		if(!weldingtool.remove_fuel(2,user))
 			to_chat(user, "<span class='info'>You need more welding fuel to complete this task!</span>")
 			return FALSE
-		to_chat(user, "<span class='info'>You begin uninstalling the [miner_upgrade_type] from the miner.</span>")
+		to_chat(user, "<span class='info'>You begin uninstalling the [miner_upgrade_type] from the miner!</span>")
 		user.visible_message("<span class='notice'>[user] begins dismantling the [miner_upgrade_type] from the miner.</span>")
 		if(!do_after(user, 30 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 			return FALSE
