@@ -11,7 +11,7 @@
 	wound_type = "hunter" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 23
+	melee_damage = 22
 	attack_delay = 7
 
 	// *** Tackle *** //
@@ -49,9 +49,12 @@
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
 		/datum/action/xeno_action/activable/headbite,
-		/datum/action/xeno_action/activable/haunt,
+		/datum/action/xeno_action/activable/impair_senses,
 		/datum/action/xeno_action/activable/pounce/hunter,
 		/datum/action/xeno_action/stealth,
+		/datum/action/xeno_action/activable/sneak_stinger,
+		/datum/action/xeno_action/activable/hunter_mark,
+		/datum/action/xeno_action/psychic_trace,
 	)
 
 /datum/xeno_caste/hunter/young
@@ -92,7 +95,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 26
+	melee_damage = 23
 
 	// *** Tackle *** //
 	tackle_damage = 32
@@ -123,7 +126,7 @@
 	ancient_message = "We are the epitome of the hunter. Few can stand against us in open combat."
 
 	// *** Melee Attacks *** //
-	melee_damage = 26
+	melee_damage = 24
 
 	// *** Tackle *** //
 	tackle_damage = 32

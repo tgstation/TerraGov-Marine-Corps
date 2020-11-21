@@ -286,9 +286,9 @@
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_STEALTH
 
 /datum/keybinding/xeno/haunt
-	name = "haunt"
-	full_name = "Hunter: Haunt"
-	description = "Haunt the target, causing minor hallucinations"
+	name = "impair senses"
+	full_name = "Hunter: Impair Senses"
+	description = "Impair's the target's senses, deafening them and impeding their vision."
 	keybind_signal = COMSIG_XENOABILITY_HAUNT
 
 /datum/keybinding/xeno/psychic_whisper
@@ -465,3 +465,22 @@
 	description = "Imbues a target xeno with healing energy, restoring extra Sunder and Health once every 2 seconds up to 5 times whenever it regenerates normally. 60 second duration."
 	keybind_signal = COMSIG_XENOABILITY_HEALING_INFUSION
 
+
+
+/*
+/datum/keybinding/xeno/stealth_stinger
+	name = "stealth_stinger"
+	full_name = "Hunter: Stealth Stinger"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_STEALTH_STINGER
+/datum/keybinding/xeno/hunter_mark
+	name = "hunter_mark"
+	full_name = "Hunter: Stealth Stinger"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_HUNTER_MARK
+/datum/keybinding/xeno/psychic_trace
+	name = "psychic_trace"
+	full_name = "Hunter: Psychic Trace"
+	description = ""
+	keybind_signal = HUNTER_PSYCHIC_TRACE_COOLDOWN
+*/

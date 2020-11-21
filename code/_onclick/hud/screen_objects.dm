@@ -795,3 +795,37 @@
 		icon_state = "SL_locator"
 		transform = 0 //Reset and 0 out
 		transform = turn(transform, Get_Angle(tracker, target))
+
+/obj/screen/hunter_tracker
+	name = "hunter tracker"
+	icon = 'icons/Marine/marine-items.dmi'
+	icon_state = "SL_locator"
+	alpha = 128 //translucent
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	screen_loc = ui_sl_dir
+	var/mob/living/carbon/xenomorph/hunter/hunter
+	var/mob/living/target
+
+/obj/screen/hunter_tracker/proc/add_hud()
+	if(!hunter?.client)
+		return
+
+	hunter.client.screen += src
+
+/obj/screen/hunter_tracker/Initialize() //Self-deletes
+	. = ..()
+	START_PROCESSING(SSprocessing, src)
+	QDEL_IN(src, HUNTER_PSYCHIC_TRACE_COOLDOWN)
+
+/obj/screen/hunter_tracker/Destroy()
+	STOP_PROCESSING(SSprocessing, src)
+	return ..()
+
+/obj/screen/hunter_tracker/process() //We ping the target, revealing its direction with an arrow
+
+	if(target.z != hunter.z || get_dist(hunter, target) < 1 || hunter == target)
+		icon_state = ""
+	else
+		icon_state = "SL_locator"
+		transform = 0 //Reset and 0 out
+		transform = turn(transform, Get_Angle(hunter, target))

@@ -304,6 +304,9 @@
 	///Defines how much projectile damage evasion can still absorb
 	var/evasion_stacks = 0
 
+	// *** Hunter vars ***
+	var/mob/living/hunter_mark_target = null //Target of the Hunter's Hunter's Mark ability; referenced by the Psychic Trace ability.
+
 	// *** Ravager vars *** //
 	var/ignore_pain = FALSE // when true the rav will not go into crit or take crit damage.
 	var/ignore_pain_state = 0 // how far "dead" the rav has got while ignoring pain.
