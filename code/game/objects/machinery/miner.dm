@@ -106,11 +106,11 @@
 		if(!weldingtool.remove_fuel(2,user))
 			to_chat(user, "<span class='info'>You need more welding fuel to complete this task!</span>")
 			return FALSE
-		to_chat(user, "<span class='info'>You begin uninstalling the [miner_upgrade_type] from the miner</span>")
-		user.visible_message("<span class='notice'>[user] begins dismantling the [miner_upgrade_type] from the miner</span>")
+		to_chat(user, "<span class='info'>You begin uninstalling the [miner_upgrade_type] from the miner.</span>")
+		user.visible_message("<span class='notice'>[user] begins dismantling the [miner_upgrade_type] from the miner.</span>")
 		if(!do_after(user, 30 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 			return FALSE
-		user.visible_message("<span class='notice'>[user] dismantles the [miner_upgrade_type] from the miner</span>")
+		user.visible_message("<span class='notice'>[user] dismantles the [miner_upgrade_type] from the miner!</span>")
 		var/obj/item/upgrade
 		switch(miner_upgrade_type)
 			if(MINER_RESISTANT)
@@ -203,9 +203,9 @@
 	if(!ishuman(user))
 		return
 	if(!miner_upgrade_type)
-		to_chat(user, "<span class='info'>[src]'s module sockets seem empty , a upgrade could be installed.</span>")
+		to_chat(user, "<span class='info'>[src]'s module sockets seem empty, a upgrade could be installed.</span>")
 	else
-		to_chat(user, "<span class='info'>[src]'s module sockets to be occupied by the [miner_upgrade_type] .</span>")
+		to_chat(user, "<span class='info'>[src]'s module sockets to be occupied by the [miner_upgrade_type].</span>")
 
 	switch(miner_status)
 		if(MINER_DESTROYED)

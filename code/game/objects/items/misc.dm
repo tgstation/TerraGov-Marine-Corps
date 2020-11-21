@@ -149,7 +149,7 @@
 	item_state = "platinumbox_comact"
 
 /obj/item/minerupgrade
-	name = "Miner upgrade"
+	name = "miner upgrade"
 	desc = "Subtype item, should not exist."
 	icon = 'icons/obj/mining_drill.dmi'
 	icon_state = "mining_drill_reinforceddisplay"
@@ -159,20 +159,20 @@
 	var/uptype
 
 /obj/item/minerupgrade/reinforcement
-	name = "Reinforced componentSs box"
-	desc = "A very neatly folded box of reinforced components , meant to replace weak components used in normal mining wells."
+	name = "reinforced components box"
+	desc = "A very folded box of reinforced components, meant to replace weak components used in normal mining wells."
 	icon_state = "mining_drill_reinforceddisplay"
 	uptype = "reinforced components"
 
 /obj/item/minerupgrade/overclock
-	name =  "High-efficiency drill"
+	name =  "high-efficiency drill"
 	desc = "A box with a few pumps and a big drill , meant to replace the standard drill used in normal mining wells for faster extraction."
 	icon_state = "mining_drill_overclockeddisplay"
 	uptype = "high-efficiency drill"
 
 /obj/item/minerupgrade/compactor
-	name = "Crystalizer module"
-	desc = "A bulky module meant to replace the normal crystalizer in mining wells,used to compress boxes for easy carrying"
+	name = "crystalizer module"
+	desc = "A bulky module meant to replace the normal crystalizer in mining wells, used to compress boxes for easy carrying."
 	icon_state = "mining_drill_compactordisplay"
 	uptype = "upgraded crystalizer module"
 
