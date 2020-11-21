@@ -203,9 +203,9 @@
 
 /obj/item/explosive/grenade/drainbomb
 	name = "\improper M40-T smoke grenade"
-	desc = "The M40-T is a small, but powerful Tanglefoot grenade, designed to remove plasma with minimal side effects. Based off the same platform as the M40 HEDP. It is set to detonate in 2 seconds."
+	desc = "The M40-T is a small, but powerful Tanglefoot grenade, designed to remove plasma with minimal side effects. Based off the same platform as the M40 HEDP. It is set to detonate in 6 seconds."
 	icon_state = "grenade_smoke"
-	det_time = 20
+	det_time = 60
 	item_state = "grenade_smoke"
 	hud_state = "grenade_smoke"
 	underslug_launchable = TRUE
