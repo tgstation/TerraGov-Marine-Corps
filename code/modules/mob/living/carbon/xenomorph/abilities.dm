@@ -62,6 +62,14 @@
 		return FALSE
 	if(!X.Adjacent(victim)) //checks if owner next to target
 		return FALSE
+	if(X.on_fire)
+		if(!silent)
+			to_chat(X, "<span class='warning'>We're too busy being on fire to do this!</span>")
+		return FALSE
+	if(victim.stat != DEAD)
+		if(!silent)
+			to_chat(X, "<span class='warning'>This creature is struggling too much for us to aim precisely.</span>")
+		return FALSE
 	if(victim.headbitten)
 		if(!silent)
 			to_chat(X, "<span class='warning'>This creature has already been headbitten.</span>")
@@ -81,12 +89,11 @@
 	X.face_atom(victim) //Face towards the target so we don't look silly
 	X.visible_message("<span class='xenowarning'>\The [X] begins opening its mouth and extending a second jaw towards \the [victim].</span>", \
 	"<span class='danger'>We prepare our inner jaw for a finishing blow on \the [victim]!</span>", null, 20)
-	if(!do_after(X, 10 SECONDS, FALSE, victim, BUSY_ICON_DANGER))
+	if(!do_after(X, 10 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(X, /mob.proc/break_do_after_checks, list("health" = X.health))))
 		X.visible_message("<span class='xenowarning'>\The [X] retracts its inner jaw.</span>", \
 		"<span class='danger'>We retract our inner jaw.</span>", null, 20)
 		return FALSE
 	succeed_activate() //dew it
-
 
 /datum/action/xeno_action/activable/headbite/use_ability(mob/M)
 	var/mob/living/carbon/xenomorph/X = owner
@@ -114,7 +121,6 @@
 
 	GLOB.round_statistics.xeno_headbites++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "xeno_headbites")
-
 
 // ***************************************
 // *********** Drone-y abilities
