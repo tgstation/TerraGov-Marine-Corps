@@ -27,6 +27,7 @@
 	playsound(T, 'sound/weapons/emitter.ogg', 25, 1)
 	QDEL_NULL(TI.warp_shadow) //Delete the old warp shadow
 	TI.warp_shadow = WB //Set our new warp shadow
+	RegisterSignal(TI.warp_shadow, COMSIG_PARENT_PREQDELETED, .proc/unset_target) //For var clean up
 	WB.setDir(TI.dir) //Have it imitate our facing
 	WB.pixel_x = TI.pixel_x //Inherit pixel offsets
 	WB.pixel_y = TI.pixel_y //Inherit pixel offsets
@@ -34,6 +35,11 @@
 
 	succeed_activate()
 	add_cooldown()
+
+/datum/action/xeno_action/place_warp_shadow/proc/unset_target()
+	var/mob/living/carbon/xenomorph/X = owner
+	UnregisterSignal(X.warp_shadow, COMSIG_PARENT_PREQDELETED)
+	X.warp_shadow = null
 
 
 // ***************************************
