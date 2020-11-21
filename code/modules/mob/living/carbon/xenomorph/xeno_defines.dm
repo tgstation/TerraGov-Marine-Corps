@@ -294,6 +294,7 @@
 	//Runner vars
 	var/savage = FALSE
 	var/savage_used = FALSE
+	///Defines how much projectile damage evasion can still absorb
 	var/evasion_stacks = 0
 
 	// *** Ravager vars *** //
