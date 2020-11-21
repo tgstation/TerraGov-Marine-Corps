@@ -1,0 +1,6 @@
+author: "Hathkar"
+delete-after: True
+changes: 
+  - balance: "Headbite is only usable on the dead"
+  - balance: "Headbite can't be used while on fire"
+  - balance: "Headbite will cancel if damage is taken"
