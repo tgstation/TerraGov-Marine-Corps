@@ -73,7 +73,9 @@
 	if(!ishuman(usr))
 		return
 	var/turf/open/target = get_step(user.loc,user.dir)
-	if(!target)
+
+	if(!istype(target))
+		to_chat(user, "<span class='warning'>We can't build here!</span>")
 		return
 
 	if(check_blocked_turf(target)) //check if blocked
