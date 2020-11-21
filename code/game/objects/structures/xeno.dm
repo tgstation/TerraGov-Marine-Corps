@@ -623,6 +623,7 @@ TUNNEL
 	. = ..()
 	GLOB.xeno_tunnels += src
 	prepare_huds()
+	hud_set_xeno_tunnel()
 
 /obj/structure/tunnel/Destroy()
 	if(!QDELETED(creator))
@@ -718,9 +719,13 @@ TUNNEL
 	else
 		to_chat(M, "<span class='warning'>Our crawling was interrupted!</span>")
 
-/obj/structure/tunnel/proc/hud_set_xeno_tunnel() //called by the Dig Tunnel ability after creation; make this handy overlay exclusively visible to xenos of the same hive.
+//Makes sure the tunnel is visible to other xenos even through obscuration.
+/obj/structure/tunnel/proc/hud_set_xeno_tunnel()
 	var/image/holder = hud_list[XENO_TUNNEL_HUD]
+	if(!holder)
+		return
 	holder.icon_state = "traitorhud"
+	hud_list[XENO_TUNNEL_HUD] = holder
 
 //Resin Water Well
 /obj/effect/alien/resin/acidwell

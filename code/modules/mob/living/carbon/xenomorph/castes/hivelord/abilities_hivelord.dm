@@ -177,8 +177,6 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 
 	add_cooldown()
 
-	newt.hud_set_xeno_tunnel()
-
 	to_chat(X, "<span class='xenonotice'>We now have <b>[LAZYLEN(X.tunnels)] of [HIVELORD_TUNNEL_SET_LIMIT]</b> tunnels.</span>")
 
 	var/msg = stripped_input(X, "Give your tunnel a descriptive name:", "Tunnel Name")

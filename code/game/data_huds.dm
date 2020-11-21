@@ -338,6 +338,7 @@
 //active reagent hud that apppears only for xenos
 /datum/atom_hud/xeno_reagents
 	hud_icons = list(XENO_REAGENT_HUD)
+
 //hud component for revealing tunnels to xenos
 /datum/atom_hud/xeno_tunnels
 	hud_icons = list(XENO_TUNNEL_HUD)
