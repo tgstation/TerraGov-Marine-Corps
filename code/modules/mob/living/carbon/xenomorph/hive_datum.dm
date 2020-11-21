@@ -490,7 +490,9 @@ The force parameter is for messages that should ignore a dead queen
 to_chat will check for valid clients itself already so no need to double check for clients
 
 */
-/datum/hive_status/proc/xeno_message(message = null, size = 3, force = FALSE, sound = null, filter_list = null)
+
+///Used for Hive Message alerts; currently health alerts for xenos at low health.
+/datum/hive_status/proc/xeno_message(message = null, size = 3, force = FALSE, sound = null, atom/target = null, filter_list = null)
 	if(!force && !can_xeno_message())
 		return
 
@@ -510,7 +512,15 @@ to_chat will check for valid clients itself already so no need to double check f
 		if(sound) //Play sound if applicable
 			X.playsound_local(X, sound, 25, 0, 1)
 
+		if(target) //Apply tracker arrow to point to the subject of the message if applicable
+			var/obj/screen/xeno_tracker_arrow/arrow = new /obj/screen/xeno_tracker_arrow //Prepare the tracker object and set its parameters
+			arrow.tracker = X
+			arrow.target = target
+			arrow.add_hud(X)
+			arrow.process() //Ping immediately after parameters have been set
+
 		to_chat(X, "<span class='xenodanger'><font size=[size]> [message]</font></span>")
+
 
 // This is to simplify the process of talking in hivemind, this will invoke the receive proc of all xenos in this hive
 /datum/hive_status/proc/hive_mind_message(mob/living/carbon/xenomorph/sender, message)

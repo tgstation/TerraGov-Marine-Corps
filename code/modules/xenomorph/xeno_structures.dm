@@ -35,6 +35,7 @@
 	var/turf/center_turf
 	var/datum/hive_status/associated_hive
 	var/silo_area
+	var/last_damage_alert
 
 
 /obj/structure/resin/silo/Initialize()
@@ -65,12 +66,14 @@
 	GLOB.xeno_resin_silos -= src
 	if(associated_hive)
 		UnregisterSignal(associated_hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK))
-		associated_hive.xeno_message("<span class='xenoannounce'>A resin silo has been destroyed at [silo_area]!</span>", 2, TRUE)
+		//Since resin silos are more important now, we need a better notification.
+		associated_hive.xeno_message("<span class='xenoannounce'>A resin silo has been destroyed at [silo_area] (X: [src.x], Y: [src.y])!</span>", 2, TRUE, FALSE, 'sound/voice/alien_help2.ogg', src)
 		associated_hive = null
 	for(var/i in contents)
 		var/atom/movable/AM = i
 		AM.forceMove(get_step(center_turf, pick(CARDINAL_ALL_DIRS)))
 	playsound(loc,'sound/effects/alien_egg_burst.ogg', 75)
+	STOP_PROCESSING(SSobj, src)
 	return ..()
 
 
@@ -88,6 +91,31 @@
 			to_chat(user, "<span class='warning'>It's slightly damaged, but still seems healthy.</span>")
 		if(80 to 100)
 			to_chat(user, "<span class='info'>It appears in good shape, pulsating healthiy.</span>")
+
+
+/obj/structure/resin/silo/take_damage(damage_amount, damage_type, damage_flag, sound_effect, attack_dir, armour_penetration)
+	. = ..()
+
+	//We took damage, so it's time to start regenerating if we're not already processing
+	if(!CHECK_BITFIELD(datum_flags, DF_ISPROCESSING))
+		START_PROCESSING(SSobj, src)
+
+	if(last_damage_alert > (world.time - XENO_HEALTH_ALERT_COOLDOWN) ) //If we aren't on cooldown, send the alert
+		return
+
+	associated_hive.xeno_message("<span class='xenoannounce'>Our [src.name] at [silo_area] (X: [src.x], Y: [src.y]) is under attack! It has [obj_integrity]/[max_integrity] Health remaining.</span>", 2, FALSE, 'sound/voice/alien_help2.ogg', src)
+
+	last_damage_alert = world.time //Set our alert timestamp now
+
+
+/obj/structure/resin/silo/process()
+	//Regenerate if we're at less than max integrity
+	if(obj_integrity < max_integrity)
+		obj_integrity = min(obj_integrity + 10, max_integrity)
+		return
+
+	//If we're at max integrity, stop regenerating and processing.
+	STOP_PROCESSING(SSobj, src)
 
 
 /obj/structure/resin/silo/proc/is_burrowed_larva_host(datum/source, list/mothers, list/silos)
