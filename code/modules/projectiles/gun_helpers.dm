@@ -867,7 +867,7 @@ should be alright.
 		DISABLE_BITFIELD(flags_gun_features, GUN_IS_AIMING)
 		user.remove_movespeed_modifier(MOVESPEED_ID_AIM_MODE_SLOWDOWN)
 		modify_fire_delay(-aim_fire_delay_buffer)
-		to_chat(user, "<span class='notice'>You seize aiming.</b></span>")
+		to_chat(user, "<span class='notice'>You cease aiming.</b></span>")
 		return
 	if(!CHECK_BITFIELD(flags_item, WIELDED))
 		to_chat(user, "<span class='notice'>You need to wield your gun before aiming.</b></span>")

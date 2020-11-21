@@ -65,7 +65,7 @@
 
 	var/scatter = 0 //Chance of scattering, also maximum amount scattered. High variance.
 
-	/// Used to transfer iff_signal from gun to projectile when aim mode is used
+	/// Used to transfer iff_signal from source to projectile.
 	var/list/projectile_iff = null
 
 	var/distance_travelled = 0

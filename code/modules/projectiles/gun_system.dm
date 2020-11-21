@@ -57,8 +57,10 @@
 	var/movement_acc_penalty_mult = 5				//Multiplier. Increased and decreased through attachments. Multiplies the accuracy/scatter penalty of the projectile when firing onehanded while moving.
 	var/fire_delay = 6							//For regular shots, how long to wait before firing again.
 	var/shell_speed_mod	= 0						//Modifies the speed of projectiles fired.
+	/// Determines which humans the gun's shot will pass through based on the victim's ID access list.
 	var/list/gun_iff_signal = null
-	var/aim_fire_delay_buffer = 0				//Used so that modifying a gun's fire delay after activating aim mode doesn't permanently mess with a gun's stats
+	///Used so that modifying a gun's fire delay after activating aim mode doesn't permanently mess with a gun's stats
+	var/aim_fire_delay_buffer = 0
 
 	//Burst fire.
 	var/burst_amount 	= 1						//How many shots can the weapon shoot in burst? Anything less than 2 and you cannot toggle burst.
