@@ -17,6 +17,7 @@
 	desc = "Used to designate a precise transit location for the Tadpole."
 	icon_state = "maptable"
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LEADER)
 	shuttleId = "minidropship"
 	lock_override = CAMERA_LOCK_GROUND
 	shuttlePortId = "minidropship_custom"

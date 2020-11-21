@@ -58,6 +58,11 @@
 		return
 	return ..()
 
+/obj/machinery/computer/camera_advanced/shuttle_docker/interact(mob/user)
+	if(!allowed(user))
+		return
+	..()
+
 /obj/machinery/computer/camera_advanced/shuttle_docker/give_actions(mob/living/user)
 	if(jumpto_ports.len)
 		jump_action = new /datum/action/innate/camera_jump/shuttle_docker
