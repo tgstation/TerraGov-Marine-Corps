@@ -616,7 +616,7 @@
 	throw_range = 10
 	force = 5.0
 	wield_delay = 1 SECONDS
-	fire_sound = 'sound/weapons/guns/fire/grenadelauncher.ogg'
+	fire_sound = 'sound/weapons/guns/fire/underbarrel_grenadelauncher.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/m92_cocked.ogg'
 	aim_slowdown = 1.2
 	general_codex_key = "explosive weapons"
@@ -652,7 +652,7 @@
 	throw_range = 10
 	force = 5.0
 	wield_delay = 0.2 SECONDS
-	fire_sound = 'sound/weapons/guns/fire/underbarrel_grenadelauncher.ogg'
+	fire_sound = 'sound/weapons/guns/fire/grenadelauncher.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/m92_cocked.ogg'
 	aim_slowdown = 1
 	gun_skill_category = GUN_SKILL_FIREARMS

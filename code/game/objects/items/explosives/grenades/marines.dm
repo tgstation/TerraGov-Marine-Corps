@@ -2,7 +2,7 @@
 ///***GRENADES***///
 /obj/item/explosive/grenade/frag
 	name = "\improper M40 HEDP grenade"
-	desc = "A small, but deceptively strong fragmentation grenade that has been phasing out the M15 Fragmentation Grenades. Capable of being loaded in the M92 Launcher, or thrown by hand."
+	desc = "A small, but deceptively strong high explosive grenade that has been phasing out the M15 fragmentation grenades. Capable of being loaded in the any grenade launcher, or thrown by hand."
 	icon_state = "grenade"
 	det_time = 40
 	item_state = "grenade"
@@ -19,7 +19,7 @@
 
 /obj/item/explosive/grenade/frag/training
 	name = "M07 training grenade"
-	desc = "A harmless reusable version of the M40 HEDP, used for training. Capable of being loaded in the M92 Launcher, or thrown by hand."
+	desc = "A harmless reusable version of the M40 HEDP, used for training. Capable of being loaded in the any grenade launcher, or thrown by hand."
 	icon_state = "training_grenade"
 	item_state = "grenade"
 	hud_state = "grenade_dummy"
@@ -44,6 +44,7 @@
 	desc = "A fragmentation grenade produced for private security firms. It explodes 3 seconds after the pin has been pulled."
 	icon_state = "grenade_pmc"
 	item_state = "grenade_ex"
+	arm_sound = 'sound/weapons/armbombpin.ogg'
 	hud_state = "grenade_frag"
 	underslug_launchable = FALSE
 
@@ -54,9 +55,10 @@
 
 /obj/item/explosive/grenade/frag/m15
 	name = "\improper M15 fragmentation grenade"
-	desc = "An outdated TGMC Fragmentation Grenade. With decades of service in the TGMC, the old M15 Fragmentation Grenade is slowly being replaced with the slightly safer M40 HEDP. It is set to detonate in 4 seconds."
+	desc = "An outdated TGMC fragmentation grenade. With decades of service in the TGMC, the old M15 Fragmentation Grenade is slowly being replaced with the slightly safer M40 HEDP. It is set to detonate in 4 seconds."
 	icon_state = "grenade_ex"
 	item_state = "grenade_ex"
+	arm_sound = 'sound/weapons/armbombpin.ogg'
 	hud_state = "grenade_frag"
 	underslug_launchable = FALSE
 
@@ -70,6 +72,7 @@
 	desc = "A fragmentation grenade produced in the colonies, most commonly using old designs and schematics. It explodes 3 seconds after the pin has been pulled."
 	icon_state = "grenade_stick"
 	item_state = "grenade_stick"
+	arm_sound = 'sound/weapons/armbombpin.ogg'
 	hud_state = "greande_frag"
 	force = 10
 	w_class = WEIGHT_CLASS_SMALL
@@ -85,9 +88,10 @@
 
 /obj/item/explosive/grenade/frag/upp
 	name = "\improper Type 5 shrapnel grenade"
-	desc = "A fragmentation grenade found within the ranks of the UPP. Designed to explode into shrapnel and rupture the bodies of opponents. It explodes 3 seconds after the pin has been pulled."
+	desc = "A fragmentation grenade found within the ranks of the USL. Designed to explode into shrapnel and rupture the bodies of opponents. It explodes 3 seconds after the pin has been pulled."
 	icon_state = "grenade_upp"
 	item_state = "grenade_upp"
+	arm_sound = 'sound/weapons/armbombpin.ogg'
 	hud_state = "greande_frag"
 	throw_speed = 2
 	throw_range = 6
@@ -99,6 +103,7 @@
 
 
 /obj/item/explosive/grenade/frag/sectoid
+	name = "alien bomb"
 	desc = "An odd, squishy, organ-like grenade. It will explode 3 seconds after squeezing it."
 	icon_state = "alien_grenade"
 	item_state = "grenade_ex"
@@ -121,7 +126,7 @@
 
 /obj/item/explosive/grenade/incendiary/prime()
 	flame_radius(2, get_turf(src))
-	playsound(loc, 'sound/weapons/guns/fire/flamethrower2.ogg', 35, TRUE, 4)
+	playsound(loc, 'sound/effects/incendiary_explode.ogg', 35, TRUE, 4)
 	qdel(src)
 
 
@@ -154,7 +159,7 @@
 /obj/item/explosive/grenade/incendiary/molotov/prime()
 	playsound(loc, 'sound/effects/hit_on_shattered_glass.ogg', 35, TRUE, 4)
 	flame_radius(2, get_turf(src))
-	playsound(loc, 'sound/weapons/guns/fire/flamethrower2.ogg', 30, TRUE, 4)
+	playsound(loc, 'sound/effects/incendiary_explode.ogg', 30, TRUE, 4)
 	qdel(src)
 
 
@@ -246,9 +251,10 @@
 
 /obj/item/explosive/grenade/phosphorus/upp
 	name = "\improper Type 8 WP grenade"
-	desc = "A deadly gas grenade found within the ranks of the UPP. Designed to spill white phosporus on the target. It explodes 2 seconds after the pin has been pulled."
+	desc = "A deadly gas grenade found within the ranks of the USL. Designed to spill white phosphorus on the target. It explodes 2 seconds after the pin has been pulled."
 	icon_state = "grenade_upp_wp"
 	item_state = "grenade_upp_wp"
+	arm_sound = 'sound/weapons/armbombpin.ogg'
 
 /obj/item/explosive/grenade/impact
 	name = "\improper M40 IMDP grenade"
@@ -277,7 +283,7 @@
 
 /obj/item/explosive/grenade/flare
 	name = "\improper M40 FLDP grenade"
-	desc = "A TGMC standard issue flare utilizing the standard DP canister chassis. Capable of being loaded in the M92 Launcher, or thrown by hand."
+	desc = "A TGMC standard issue flare utilizing the standard DP canister chassis. Capable of being loaded in any grenade launcher, or thrown by hand."
 	icon_state = "flare_grenade"
 	det_time = 0
 	throwforce = 1
@@ -396,7 +402,7 @@
 
 /obj/item/explosive/grenade/flare/cas
 	name = "\improper M50 CFDP signal flare"
-	desc = "A TGMC signal flare utilizing the standard DP canister chassis. Capable of being loaded in the M92 Launcher, or thrown by hand. when activated, provides a target for CAS pilots."
+	desc = "A TGMC signal flare utilizing the standard DP canister chassis. Capable of being loaded in any grenade launcher, or thrown by hand. When activated, provides a target for CAS pilots."
 	icon_state = "cas_flare_grenade"
 	hud_state = "grenade_frag"
 	lower_fuel_limit = 25
