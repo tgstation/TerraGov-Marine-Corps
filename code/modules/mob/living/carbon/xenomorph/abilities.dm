@@ -63,7 +63,8 @@
 	if(!X.Adjacent(victim)) //checks if owner next to target
 		return FALSE
 	if(X.on_fire)
-		to_chat(X, "<span class='warning'>We're too busy being on fire to do this!</span>")
+		if(!silent)
+			to_chat(X, "<span class='warning'>We're too busy being on fire to do this!</span>")
 		return FALSE
 	if(victim.stat != DEAD)
 		if(!silent)
