@@ -249,7 +249,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	accuracy_mult_unwielded = 0.5 //you need to wield this gun for any kind of accuracy
 	scatter = 20
 	scatter_unwielded = 40
-	damage_mult = 0.75  //normalizing gun for vendors; damage reduced by 25% to compensate for faster fire rate; still higher DPS than M37.
+	damage_mult = 0.75  //normalizing gun for vendors; damage reduced by 25% to compensate for faster fire rate; still higher DPS than T-32.
 	recoil = 2
 	recoil_unwielded = 4
 
@@ -473,11 +473,11 @@ can cause issues with ammo types getting mixed up during the burst.
 //Shotguns in this category will need to be pumped each shot.
 
 /obj/item/weapon/gun/shotgun/pump
-	name = "\improper M37A2 pump shotgun"
-	desc = "An Armat Battlefield Systems classic design, the M37A2 combines close-range firepower with long term reliability. Requires a pump, which is a Unique Action."
+	name = "\improper T-32 pump shotgun"
+	desc = "A Terran Armories design, using the outdated Armat Battlefield Systems frame, the T-32 combines close-range firepower with long term reliability."
 	flags_equip_slot = ITEM_SLOT_BACK
-	icon_state = "m37"
-	item_state = "m37"
+	icon_state = "t32"
+	item_state = "t32"
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump
 	fire_sound = 'sound/weapons/guns/fire/shotgun.ogg'
 	max_shells = 9
