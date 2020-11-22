@@ -10,7 +10,8 @@
 	dheight = 0
 	width = 7
 	height = 9
-	callTime = 20 SECONDS // faster than the alamo by 18 seconds
+	callTime = 15 SECONDS
+	rechargeTime = 3 MINUTES
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship
 	name = "Tadpole navigation computer"
