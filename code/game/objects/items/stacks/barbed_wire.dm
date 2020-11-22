@@ -73,11 +73,12 @@
 	if(!ishuman(usr))
 		return
 
-	if(!isopenturf(get_step(user.loc,user.dir)))
+	var/turf/mystery_turf = get_step(user.loc,user.dir)
+	if(!isopenturf(mystery_turf))
 		to_chat(user, "<span class='warning'>We can't build here!</span>")
 		return
 
-	var/turf/open/target = get_step(user.loc,user.dir)
+	var/turf/open/target = mystery_turf
 
 	if(check_blocked_turf(target)) //check if blocked
 		to_chat(user, "<span class='warning'>There is insufficient room to deploy [src]!</span>")

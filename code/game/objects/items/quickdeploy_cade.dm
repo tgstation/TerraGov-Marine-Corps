@@ -38,11 +38,12 @@
 	if(!.)
 		return FALSE
 
-	if(!isopenturf(user.loc))
+	var/turf/mystery_turf = user.loc
+	if(!isopenturf(mystery_turf))
 		to_chat(user, "<span class='warning'>We can't build here!</span>")
 		return FALSE
 
-	var/turf/open/placement_loc = user.loc
+	var/turf/open/placement_loc = mystery_turf
 	if(placement_loc.density || !placement_loc.allow_construction) //We shouldn't be building here.
 		to_chat(user, "<span class='warning'>We can't build here!</span>")
 		return FALSE

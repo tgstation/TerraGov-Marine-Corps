@@ -661,11 +661,12 @@
 
 		if(BARRICADE_METAL_LOOSE) //Anchor bolts loosened step. Apply crowbar to unseat the panel and take apart the whole thing. Apply wrench to resecure anchor bolts
 
-			if(!isopenturf(get_turf(src)))
+			var/turf/mystery_turf = get_turf(src)
+			if(!isopenturf(mystery_turf))
 				to_chat(user, "<span class='warning'>We can't anchor the barricade here!</span>")
 				return TRUE
 
-			var/turf/open/T = get_turf(src)
+			var/turf/open/T = mystery_turf
 			if(T.allow_construction) //We shouldn't be able to anchor in areas we're not supposed to build; loophole closed.
 				to_chat(user, "<span class='warning'>We can't anchor the barricade here!</span>")
 				return TRUE
@@ -955,11 +956,12 @@
 		if(BARRICADE_PLASTEEL_LOOSE) //Anchor bolts loosened step. Apply crowbar to unseat the panel and take apart the whole thing. Apply wrench to rescure anchor bolts
 			if(iswrench(I))
 
-				if(!isopenturf(get_turf(src)))
+				var/turf/mystery_turf = get_turf(src)
+				if(!isopenturf(mystery_turf))
 					to_chat(user, "<span class='warning'>We can't anchor the barricade here!</span>")
 					return
 
-				var/turf/open/T = get_turf(src)
+				var/turf/open/T = mystery_turf
 				if(T.allow_construction) //We shouldn't be able to anchor in areas we're not supposed to build; loophole closed.
 					to_chat(user, "<span class='warning'>We can't anchor the barricade here!</span>")
 					return
