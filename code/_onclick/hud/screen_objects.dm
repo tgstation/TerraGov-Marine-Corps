@@ -806,6 +806,11 @@
 	var/mob/living/carbon/xenomorph/hunter/hunter
 	var/mob/living/target
 
+/obj/screen/hunter_tracker/Destroy() //Null out the vars
+	hunter = null
+	target = null
+	return ..()
+
 /obj/screen/hunter_tracker/proc/add_hud()
 	if(!hunter?.client)
 		return

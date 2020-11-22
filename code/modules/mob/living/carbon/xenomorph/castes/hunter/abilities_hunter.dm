@@ -230,9 +230,9 @@
 		flavour = "vicious"
 		staggerslow_stacks *= HUNTER_SNEAK_ATTACK_RUNNING_MULTIPLIER //Penalize staggerslow
 		paralyze_time *= HUNTER_SNEAK_ATTACK_RUNNING_MULTIPLIER
+
 	else
 		pain_mod += (HUNTER_SNEAK_ATTACK_DISARM_MULTIPLIER * tackle_pain)
-
 		flavour = "deadly"
 
 	owner.visible_message("<span class='danger'>\The [owner] strikes [target] with [flavour] precision!</span>", \
@@ -289,28 +289,33 @@
 	if(!.)
 		return FALSE
 
-	var/mob/living/victim = A
 	var/mob/living/carbon/xenomorph/impairer = owner //Type cast this for on_fire
 
-	if(!istype(victim))
-		to_chat(impairer, "<span class='xenodanger'>We can't impair this target!</span>")
+	if(!isliving(A))
+		if(!silent)
+			to_chat(impairer, "<span class='xenodanger'>We can't impair this target!</span>")
 		return
 
+	var/mob/living/victim = A
+
 	if(victim.stat == DEAD)
-		to_chat(impairer, "<span class='xenodanger'>We can't impair the dead!</span>")
+		if(!silent)
+			to_chat(impairer, "<span class='xenodanger'>We can't impair the dead!</span>")
 		return
 
 	if(impairer.on_fire)
-		to_chat(impairer, "<span class='xenodanger'>We're too busy being on fire to impair them!</span>")
+		if(!silent)
+			to_chat(impairer, "<span class='xenodanger'>We're too busy being on fire to impair them!</span>")
 		return FALSE
 
 	var/distance = get_dist(impairer, victim)
-	if(distance > 5)
-		to_chat(impairer, "<span class='xenodanger'>They are too far for us to reach their minds! We must be [distance - 5] tiles closer!</spam>")
+	if(distance > HUNTER_IMPAIR_SENSES_RANGE)
+		to_chat(impairer, "<span class='xenodanger'>They are too far for us to reach their minds! We must be [distance - HUNTER_IMPAIR_SENSES_RANGE] tiles closer!</spam>")
 		return FALSE
 
 	if(!impairer.line_of_sight(victim)) //Need line of sight.
-		to_chat(impairer, "<span class='xenowarning'>We require line of sight to impair them!</span>")
+		if(!silent)
+			to_chat(impairer, "<span class='xenowarning'>We require line of sight to impair them!</span>")
 		return FALSE
 
 	return TRUE
@@ -320,7 +325,7 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/victim = A
 
-	to_chat(X, "<span class='xenodanger'>We reach out into mind of [victim.name], impairing their senses...</span>") //Notify privately
+	to_chat(X, "<span class='xenodanger'>We reach out into mind of [victim], impairing their senses...</span>") //Notify privately
 	to_chat(victim, "<span class='danger'>Your mind convulses at the touch of something ominous as the world seems to dim, going completely silent!</span>") //Notify privately
 	X.playsound_local(X, 'sound/effects/ghost.ogg', 25, 0, 1) //Spooky psychic noises.
 	victim.playsound_local(victim, 'sound/effects/ghost.ogg', 25, 0, 1) //Spooky psychic noises.
@@ -349,37 +354,45 @@
 /datum/action/xeno_action/activable/sneak_stinger/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
-		return FALSE
-
-	if(QDELETED(A))
-		return FALSE
+		return
 
 	var/mob/living/carbon/xenomorph/hunter/X = owner
-	var/mob/living/carbon/human/C = A
+	var/mob/living/sting_target = A
+
+	if(isliving(sting_target))
+		return FALSE
 
 	if(!A?.can_sting())
-		to_chat(X, "<span class='xenowarning'>We cannot sting this target!</span>")
+		if(!silent)
+			to_chat(X, "<span class='xenowarning'>We cannot sting this target!</span>")
 		return FALSE
 
 	if(X.on_fire)
-		to_chat(X, "<span class='xenowarning'>We're too busy being on fire to sting them!</span>")
+		if(!silent)
+			to_chat(X, "<span class='xenowarning'>We're too busy being on fire to sting them!</span>")
 		return FALSE
 
 	if(X.m_intent == MOVE_INTENT_RUN && ( X.last_move_intent > (world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY) ) )//We can't sprint up to the target and use this.
-		to_chat(X, "<span class='xenowarning'>We must be stalking or stationary to properly sting the target!</span>")
+		if(!silent)
+			to_chat(X, "<span class='xenowarning'>We must be stalking or stationary to properly sting the target!</span>")
 		return FALSE
 
-	if(!X.Adjacent(C))
-		to_chat(X, "<span class='xenowarning'>We must be adjacent to the target.</span>")
+	if(!X.Adjacent(sting_target))
+		if(!silent)
+			to_chat(X, "<span class='xenowarning'>We must be adjacent to the target.</span>")
 		return FALSE
 
-	if(isnestedhost(C)) //no bully
-		to_chat(X, "<span class='xenowarning'>We refrain from unnecessarily bullying the host.</span>")
+	if(sting_target.stat == DEAD)
+		if(!silent)
+			to_chat(X, "<span class='xenowarning'>We care not for the deceased!</span>")
 		return FALSE
 
-	if(C.stat == DEAD)
-		to_chat(X, "<span class='xenowarning'>We care not for the deceased!</span>")
-		return FALSE
+	if(ishuman(sting_target))
+		var/mob/living/carbon/human/human_target = A
+
+		if(isnestedhost(human_target)) //no bully
+			to_chat(X, "<span class='xenowarning'>We refrain from unnecessarily bullying the host.</span>")
+			return FALSE
 
 	var/datum/action/xeno_action/stealth/S = locate() in X.xeno_abilities //Gotta reference the datum for whether we're stealthed/able to sneak attack
 
@@ -447,17 +460,15 @@
 	if(!.)
 		return FALSE
 
-	if(QDELETED(A))
-		return FALSE
-
 	var/mob/living/carbon/xenomorph/hunter/X = owner
-	var/mob/living/C = A
 
-	if(!isliving(C))
+	if(!isliving(A))
 		to_chat(X, "<span class='xenowarning'>We cannot psychically mark this target!</span>")
 		return FALSE
 
-	if(C == X)
+	var/mob/living/mark_target = A
+
+	if(mark_target == X)
 		to_chat(X, "<span class='xenowarning'>Why would we target ourselves?</span>")
 		return FALSE
 
@@ -465,7 +476,7 @@
 		to_chat(X, "<span class='xenowarning'>We're too busy being on fire to mark them!</span>")
 		return FALSE
 
-	if(!X.line_of_sight(C)) //Need line of sight.
+	if(!X.line_of_sight(mark_target)) //Need line of sight.
 		to_chat(X, "<span class='xenowarning'>We require line of sight to mark them!</span>")
 		return FALSE
 
@@ -482,10 +493,6 @@
 /datum/action/xeno_action/activable/hunter_mark/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/M = A
-
-	if(!isliving(M)) //Sanity
-		to_chat(X, "<span class='xenodanger'>We cannot mark this target!</span>")
-		fail_activate()
 
 	X.face_atom(M) //Face towards the target so we don't look silly
 
@@ -529,35 +536,30 @@
 /datum/action/xeno_action/psychic_trace/action_activate()
 
 	var/mob/living/carbon/xenomorph/hunter/X = owner
-	var/mob/living/M = X.hunter_mark_target
+	var/mob/living/mark_target = X.hunter_mark_target
 
 	if(X.on_fire)
 		to_chat(X, "<span class='xenowarning'>We're too busy being on fire to trace!</span>")
 		return fail_activate()
 
-	if(!M)
+	if(!mark_target)
 		to_chat(X, "<span class='xenowarning'>We have no target we can trace!</span>")
 		return fail_activate()
 
-	if(M.z != X.z)
+	if(mark_target.z != X.z)
 		to_chat(X, "<span class='xenowarning'>Our target is too far away, and is beyond our senses!</span>")
 		return fail_activate()
 
-	var/name = M.name
-	var/area = "[get_area(M)] (X: [M.x], Y: [M.y])"
-	var/distance = get_dist(X, M)
-	var/condition = calculate_mark_health()
-
-	to_chat(X, "<span class='xenodanger'>We sense our quarry <b>[name]</b> is currently located in <b>[area]</b> and is <b>[distance]</b> tiles away. It is <b>[condition]</b> and <b>[M.status_flags & XENO_HOST ? "impregnated" : "barren"]</b>.</span>")
+	to_chat(X, "<span class='xenodanger'>We sense our quarry <b>[mark_target]</b> is currently located in <b>[get_area(mark_target)] (X: [mark_target.x], Y: [mark_target.y])</b> and is <b>[get_dist(X, mark_target)]</b> tiles away. It is <b>[calculate_mark_health()]</b> and <b>[mark_target.status_flags & XENO_HOST ? "impregnated" : "barren"]</b>.</span>")
 	X.playsound_local(X, 'sound/effects/ghost2.ogg', 10, 0, 1)
 
 
-	var/obj/screen/hunter_tracker/T = new /obj/screen/hunter_tracker //Prepare the tracker object and set its parameters
-	T.hunter = X
-	T.target = M
-	T.add_hud(X)
-	T.color = X.hive.color
-	T.process() //Ping immediately after parameters have been set
+	var/obj/screen/hunter_tracker/tracker = new /obj/screen/hunter_tracker //Prepare the tracker object and set its parameters
+	tracker.hunter = X
+	tracker.target = mark_target
+	tracker.add_hud(X)
+	tracker.color = X.hive.color
+	tracker.process() //Ping immediately after parameters have been set
 
 	add_cooldown()
 
@@ -565,11 +567,11 @@
 
 /datum/action/xeno_action/psychic_trace/proc/calculate_mark_health() //Where we calculate the approximate health of our trace target
 	var/mob/living/carbon/xenomorph/X = owner
-	var/mob/living/target = X.hunter_mark_target
 
-	if(!isliving(target)) //Sanity
+	if(!isliving(X.hunter_mark_target)) //Sanity
 		return "indeterminant"
 
+	var/mob/living/target = X.hunter_mark_target
 	if(target.stat == DEAD)
 		return "deceased"
 

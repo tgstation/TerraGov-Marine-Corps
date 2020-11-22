@@ -305,7 +305,8 @@
 	var/evasion_stacks = 0
 
 	// *** Hunter vars ***
-	var/mob/living/hunter_mark_target = null //Target of the Hunter's Hunter's Mark ability; referenced by the Psychic Trace ability.
+	///Target of the Hunter's Hunter's Mark ability; referenced by the Psychic Trace ability.
+	var/mob/living/hunter_mark_target
 
 	// *** Ravager vars *** //
 	var/ignore_pain = FALSE // when true the rav will not go into crit or take crit damage.
