@@ -200,7 +200,7 @@
 // ***************************************
 /datum/action/xeno_action/evasion
 	name = "Evasion"
-	action_icon_state = "unburrow"
+	action_icon_state = "evasion"
 	mechanics_text = "Take evasive action, forcing non-friendly projectiles that would hit you to miss so long as you keep moving."
 	plasma_cost = 20
 	cooldown_timer = 30 SECONDS
@@ -210,7 +210,7 @@
 /datum/action/xeno_action/evasion/action_activate()
 	var/mob/living/carbon/xenomorph/runner/R = owner
 
-	R.do_jitter_animation(2000)
+	R.do_jitter_animation(4000)
 	R.visible_message("<span class='warning'>[R.name] begins to move erratically!</span>", \
 	"<span class='xenodanger'>We move erratically, making us impossible to hit with projectiles; the next [RUNNER_EVASION_STACKS] projectile damage that would hit us will now miss.</span>")
 
@@ -243,6 +243,10 @@
 	return ..()
 
 /datum/action/xeno_action/evasion/proc/evasion_warning()
+	var/mob/living/carbon/xenomorph/runner/R = owner
+
+	if(!R.evasion_stacks) //Check to see if we actually have any evasion stacks remaining.
+		return
 
 	to_chat(owner,"<span class='highdanger'>We begin to slow down as we tire. We can only keep this up for [RUNNER_EVASION_DURATION * (1-RUNNER_EVASION_DURATION_WARNING) * 0.1] more seconds!</span>")
 	owner.playsound_local(owner, 'sound/voice/hiss4.ogg', 50, 0, 1)
@@ -266,17 +270,19 @@
 		playsound(T, pick('sound/effects/throw.ogg','sound/effects/alien_tail_swipe1.ogg', 'sound/effects/alien_tail_swipe2.ogg'), 25, 1) //sound effects
 		var/i = 0
 		var/obj/effect/temp_visual/xenomorph/runner_afterimage/A
-		while(i < rand(2,4)) //random number of after images
+		while(i < 2) //number after images
 			A = new(T) //Create the after image.
 			A.pixel_x = pick(rand(src.pixel_x * 3, src.pixel_x * 1.5), rand(0, src.pixel_x * -1)) //Variation on the X position
 			A.pixel_y = pick(rand(src.pixel_y * 3, src.pixel_y * 1.5), rand(0, src.pixel_y * -1)) //Variation on the Y position
 			A.dir = src.dir //match the direction of the runner
 			i++
 
-		if(evasion_stacks <= RUNNER_EVASION_DANGER_RATIO * RUNNER_EVASION_STACKS)
-			to_chat(src, "<span class='highdanger'>We [evasion_stacks > 0 ? "can dodge only [evasion_stacks] more projectile damage!" : "can't dodge any more projectile damage!"] </span>")
-			if(!evasion_stacks) //Audio warning
-				playsound_local(src, 'sound/voice/hiss5.ogg', 50)
+		if(evasion_stacks > RUNNER_EVASION_DANGER_RATIO * RUNNER_EVASION_STACKS) //We have more evasion stacks than needed to trigger alerts.
+			return FALSE
+
+		to_chat(src, "<span class='highdanger'>We [evasion_stacks > 0 ? "can dodge only [evasion_stacks] more projectile damage!" : "can't dodge any more projectile damage!"] </span>")
+		if(!evasion_stacks) //Audio warning
+			playsound_local(src, 'sound/voice/hiss5.ogg', 50)
 
 		return FALSE
 
