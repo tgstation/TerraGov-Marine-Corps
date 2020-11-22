@@ -1,0 +1,6 @@
+author: "Surrealaser"
+delete-after: True
+changes: 
+  - bugfix: "Barricades can no longer be anchored on the dropship or other no construction turfs."
+  - bugfix: "Quickcades and Barbed Wire can no longer be built on the dropship and other no construction turfs."
+  - bugfix: "Razorfoam will not produce barbed wire on no construction turfs."
