@@ -30,6 +30,17 @@ To throw a grenade, Activate (Default: Z) the grenade while in the active hand. 
 Quickly store items to the container (bags, satchels, belts, pouches) by pressing the Quick Equip (Default: E) key while holding an item and you are looking at a container.
 Press Quick Equip (Default: E) while you are not holding an item to the active hand to draw the weapon from whatever preferred slot (Default: Suit Storage, can be customized at the Preferences tab) you selected, otherwise you will pull out any item from a container.
 When captured by the xenomorphs, infected and you think you are not going to make it out alive, use a pocket pistol on yourself to prevent the chestburster from popping out. A dead marine is better than a popped marine.
+Getting hit by a xeno's claws can cause injury, or even death.
+Getting hit by bullets can cause injury, or even death.
+Getting hit by explosions can cause injury, or even death.
+Getting set on fire can cause injury, or even death.
+Stepping on acid can cause injury, or even death.
+Getting infected by a facehugger can cause injury, or even death.
+US Marine Colonel Jeff Cooper's first rule of gun safety is that guns are always loaded.
+Cooper's second rule of gun safety is to never point the gun at something you are not willing to destroy.
+Cooper's third rule of gun safety is to keep your finger off the trigger until your sights are on the target.
+Cooper's fourth rule of gun safety is to know your target, and what is beyond it.
+In the face of regret, understand that there was no other way that events could have played out. All you can do is learn from the experience, and move on.
 Stasis bags do not pause xenomorph infection entirely, they only slow progress by a lot.
 In the Crash gamemode, cooperate as a marine! Work as a squad to capture the disks and to detonate the nuclear bomb.
 In the Crash gamemode, remember that your objective is to secure all three disks, put the disk into the nuclear device and head home while the bomb is active. Xenos will keep on respawning until all of the marines are dead.
