@@ -382,7 +382,6 @@
 
 /obj/item/bodybag/tarp/Initialize(mapload, unfoldedbag)
 	. = ..()
-	sleep(1)
 	if(!serial_number)
 		serial_number = "SN-[rand(1000,100000)]" //Set the serial number
 		name = "\improper [serial_number] [name]"
