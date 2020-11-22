@@ -555,9 +555,7 @@
 
 
 	var/obj/screen/hunter_tracker/tracker = new /obj/screen/hunter_tracker //Prepare the tracker object and set its parameters
-	tracker.hunter = X
-	tracker.target = mark_target
-	tracker.add_hud(X)
+	tracker.add_hud(X, mark_target) //set the tracker parameters
 
 	add_cooldown()
 

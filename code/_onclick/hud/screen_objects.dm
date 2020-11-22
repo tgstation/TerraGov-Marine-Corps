@@ -811,10 +811,12 @@
 	target = null
 	return ..()
 
-/obj/screen/hunter_tracker/proc/add_hud()
-	if(!hunter?.client)
+/obj/screen/hunter_tracker/proc/add_hud(mob/living/carbon/xenomorph/hunter/hunter_input, mob/living/target_input)
+	if(!hunter_input?.client)
 		return
 
+	hunter = hunter_input
+	target = target_input
 	color = hunter.hive.color
 	hunter.client.screen += src
 	process() //Ping immediately after parameters have been set
