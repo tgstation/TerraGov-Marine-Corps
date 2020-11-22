@@ -1,0 +1,5 @@
+author: "Surrealaser"
+delete-after: True
+changes: 
+  - bugfix: "Chairs, stools and most non-nest beds no longer block xeno buildables."
+  - tweak: "Integrity of most non-marine buildables/barricades significantly reduced."
