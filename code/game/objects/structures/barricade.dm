@@ -661,6 +661,10 @@
 
 		if(BARRICADE_METAL_LOOSE) //Anchor bolts loosened step. Apply crowbar to unseat the panel and take apart the whole thing. Apply wrench to resecure anchor bolts
 
+			if(!isopenturf(get_turf(src)))
+				to_chat(user, "<span class='warning'>We can't anchor the barricade here!</span>")
+				return TRUE
+
 			var/turf/open/T = get_turf(src)
 			if(T.allow_construction) //We shouldn't be able to anchor in areas we're not supposed to build; loophole closed.
 				to_chat(user, "<span class='warning'>We can't anchor the barricade here!</span>")
@@ -951,10 +955,14 @@
 		if(BARRICADE_PLASTEEL_LOOSE) //Anchor bolts loosened step. Apply crowbar to unseat the panel and take apart the whole thing. Apply wrench to rescure anchor bolts
 			if(iswrench(I))
 
+				if(!isopenturf(get_turf(src)))
+					to_chat(user, "<span class='warning'>We can't anchor the barricade here!</span>")
+					return
+
 				var/turf/open/T = get_turf(src)
 				if(T.allow_construction) //We shouldn't be able to anchor in areas we're not supposed to build; loophole closed.
 					to_chat(user, "<span class='warning'>We can't anchor the barricade here!</span>")
-					return TRUE
+					return
 
 				if(user.skills.getRating("engineer") < SKILL_ENGINEER_PLASTEEL)
 					user.visible_message("<span class='notice'>[user] fumbles around figuring out how to assemble [src].</span>",

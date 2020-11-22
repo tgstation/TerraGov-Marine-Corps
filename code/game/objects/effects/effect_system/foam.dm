@@ -38,6 +38,9 @@
 		sleep(30)
 
 		if(metal == RAZOR_FOAM)
+			if(!isopenturf(get_turf(loc)))
+				return FALSE
+
 			var/turf/open/T = get_turf(loc)
 			if(T.allow_construction) //No loopholes.
 				new /obj/structure/razorwire/foam(loc)
