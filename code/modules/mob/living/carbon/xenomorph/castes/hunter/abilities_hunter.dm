@@ -558,8 +558,6 @@
 	tracker.hunter = X
 	tracker.target = mark_target
 	tracker.add_hud(X)
-	tracker.color = X.hive.color
-	tracker.process() //Ping immediately after parameters have been set
 
 	add_cooldown()
 

@@ -815,7 +815,9 @@
 	if(!hunter?.client)
 		return
 
+	color = hunter.hive.color
 	hunter.client.screen += src
+	process() //Ping immediately after parameters have been set
 
 /obj/screen/hunter_tracker/Initialize() //Self-deletes
 	. = ..()
