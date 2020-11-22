@@ -44,12 +44,7 @@
 #define DATA_HUD_ORDER					11
 #define DATA_HUD_AI_DETECT				12
 #define DATA_HUD_MEDICAL_PAIN			13
-#define DATA_HUD_XENO_STATUS			8
-#define DATA_HUD_SQUAD					9
-#define DATA_HUD_ORDER					10
-#define DATA_HUD_AI_DETECT				11
-#define DATA_HUD_MEDICAL_PAIN			12
-#define DATA_HUD_XENO_TUNNELS			13
+#define DATA_HUD_XENO_TUNNELS			14
 
 
 // Notification action types
