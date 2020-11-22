@@ -135,23 +135,9 @@
 		return
 	shield_affect_user(user)
 
-	var/obj/item/parent_item = parent //Apply in-hand slowdowns.
-	if(!ishuman(user) || !parent_item)
-		return
-	var/mob/living/carbon/human/human_user = user
-	if(parent_item.slowdown)
-		human_user.add_movespeed_modifier(parent.type, TRUE, 0, NONE, TRUE, parent_item.slowdown)
-
 /datum/component/shield/proc/shield_dropped(datum/source, mob/user)
 	SIGNAL_HANDLER
 	shield_detatch_from_user()
-
-	var/obj/item/parent_item = parent //Apply in-hand slowdowns.
-	if(!ishuman(user) || !parent_item)
-		return
-	var/mob/living/carbon/human/human_user = user
-	if(parent_item.slowdown)
-		human_user.remove_movespeed_modifier(parent.type)
 
 /datum/component/shield/proc/shield_affect_user(mob/living/user)
 	if(affected)
