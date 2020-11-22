@@ -136,7 +136,7 @@
 	shield_affect_user(user)
 
 	var/obj/item/parent_item = parent //Apply in-hand slowdowns.
-	if(!ishuman(user) || !parent_item)
+	if(!ishuman(user))
 		return
 	var/mob/living/carbon/human/human_user = user
 	if(parent_item.slowdown)
@@ -147,7 +147,7 @@
 	shield_detatch_from_user()
 
 	var/obj/item/parent_item = parent //Apply in-hand slowdowns.
-	if(!ishuman(user) || !parent_item)
+	if(!ishuman(user))
 		return
 	var/mob/living/carbon/human/human_user = user
 	if(parent_item.slowdown)
