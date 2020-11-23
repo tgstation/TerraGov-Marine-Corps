@@ -71,9 +71,27 @@
 /mob/living/carbon/xenomorph/proc/damage_taken()
 	SIGNAL_HANDLER
 
-	if(stat != DEAD && (health < max(XENO_HEALTH_ALERT_TRIGGER_THRESHOLD, maxHealth * XENO_HEALTH_ALERT_TRIGGER_PERCENT)))
-		xeno_message("<span class='xenoannounce'>Our sister [name] is badly hurt with ([health]/[maxHealth]) health remaining at [get_area(src)] (X: [x], Y: [y])!</span>", 2, hivenumber, FALSE, 'sound/voice/alien_help2.ogg', src, TRUE)
-		TIMER_COOLDOWN_START(src, COOLDOWN_XENO_HEALTH_ALERT, XENO_HEALTH_ALERT_COOLDOWN) //set the cooldown.
+	if(!COOLDOWN_CHECK(src, xeno_health_alert_cooldown))
+		return
+
+	if(stat == DEAD || (health > max(XENO_HEALTH_ALERT_TRIGGER_THRESHOLD, maxHealth * XENO_HEALTH_ALERT_TRIGGER_PERCENT)))
+		return
+
+	var/list/filter_list = list()
+	for(var/i in hive.get_all_xenos())
+
+		var/mob/living/carbon/xenomorph/X = i
+		if(!X.client) //Don't bother if they don't have a client; also runtime filters
+			continue
+
+		if(X == src) //We don't need an alert about ourself.
+			filter_list += X //Add the xeno to the filter list
+
+		if(X.client.prefs.toggles_chat & CHAT_ALERTS_XENO_HEALTH) //Build the filter list
+			filter_list += X //Add the xeno to the filter list
+
+	xeno_message("<span class='xenoannounce'>Our sister [name] is badly hurt with ([health]/[maxHealth]) health remaining at [get_area(src)] (X: [x], Y: [y])!</span>", 2, hivenumber, FALSE, 'sound/voice/alien_help2.ogg', src, TRUE, filter_list)
+	COOLDOWN_START(src, xeno_health_alert_cooldown, XENO_HEALTH_ALERT_COOLDOWN) //set the cooldown.
 
 /mob/living/carbon/xenomorph/proc/set_datum()
 	if(!caste_base_type)

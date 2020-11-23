@@ -507,9 +507,6 @@ to_chat will check for valid clients itself already so no need to double check f
 		if(!X.client) // If no client, there's no point; also runtime prevention
 			continue
 
-		if(apply_preferences && X.client.prefs.toggles_chat & CHAT_ALERTS_XENO_HEALTH) //If xeno alert preferences matter and we have them turned off, skip
-			continue
-
 		if(sound) //Play sound if applicable
 			X.playsound_local(X, sound, 25, 0, 1)
 

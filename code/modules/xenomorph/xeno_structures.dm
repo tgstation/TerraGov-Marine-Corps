@@ -35,6 +35,7 @@
 	var/turf/center_turf
 	var/datum/hive_status/associated_hive
 	var/silo_area
+	COOLDOWN_DECLARE(silo_alert_cooldown)
 
 /obj/structure/resin/silo/Initialize()
 	. = ..()
@@ -101,8 +102,11 @@
 	silo_damage_alert()
 
 /obj/structure/resin/silo/proc/silo_damage_alert()
+	if(!COOLDOWN_CHECK(src, silo_alert_cooldown))
+		return
+
 	associated_hive.xeno_message("<span class='xenoannounce'>Our [name] at [silo_area] (X: [x], Y: [y]) is under attack! It has [obj_integrity]/[max_integrity] Health remaining.</span>", 2, FALSE, 'sound/voice/alien_help2.ogg', src)
-	TIMER_COOLDOWN_START(src, COOLDOWN_XENO_HEALTH_ALERT, XENO_HEALTH_ALERT_COOLDOWN) //set the cooldown.
+	COOLDOWN_START(src, silo_alert_cooldown, XENO_HEALTH_ALERT_COOLDOWN) //set the cooldown.
 
 
 /obj/structure/resin/silo/process()
