@@ -3,22 +3,39 @@
 	desc = "Used to designate a precise transit location for a spacecraft."
 	jump_action = null
 
+	/// Action of rotating the shuttle around its center
 	var/datum/action/innate/shuttledocker_rotate/rotate_action = new
+	/// Action of placing the shuttle custom landing zone
 	var/datum/action/innate/shuttledocker_place/place_action = new
+	/// The id of the shuttle linked to this console
 	var/shuttleId = ""
+	/// The id of the custom docking port placed by this console
 	var/shuttlePortId = ""
+	/// The name of the custom docking port placed by this console
 	var/shuttlePortName = "Custom Location"
-	var/list/jumpto_ports = list() //hashset of ports to jump to and ignore for collision purposes
-	var/obj/docking_port/stationary/my_port //the custom docking port placed by this console
-	var/obj/docking_port/mobile/shuttle_port //the mobile docking port of the connected shuttle
-	var/list/locked_traits = list(ZTRAIT_RESERVED, ZTRAIT_CENTCOM) //traits forbided for custom docking
+	/// Hashset of ports to jump to and ignore for collision purposes
+	var/list/jumpto_ports = list()
+	/// The custom docking port placed by this console
+	var/obj/docking_port/stationary/my_port
+	/// The mobile docking port of the connected shuttle
+	var/obj/docking_port/mobile/shuttle_port
+	/// Traits forbided for custom docking
+	var/list/locked_traits = list(ZTRAIT_RESERVED, ZTRAIT_CENTCOM)
+	/// Dimensions of the viewport when using this console
 	var/view_range = 0
+	/// Horizontal offset from the console of the origin tile when using it
 	var/x_offset = 0
+	/// Vertical offset from the console of the origin tile when using it
 	var/y_offset = 0
+	/// Turfs that can be landed on
 	var/list/whitelist_turfs = list(/turf/open/ground, /turf/open/floor)
+	/// Are we able to see hidden ports when using the console
 	var/see_hidden = FALSE
+	/// Delay of the place_action
 	var/designate_time = 0
+	/// Turf that was selected for landing
 	var/turf/designating_target_loc
+	/// The console is unusable when jammed
 	var/jammed = FALSE
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/Initialize(mapload)
@@ -127,6 +144,7 @@
 	user.client.images -= to_remove
 	user.client.change_view(WORLD_VIEW)
 
+/// Handles the creation of the custom landing spot
 /obj/machinery/computer/camera_advanced/shuttle_docker/proc/placeLandingSpot()
 	if(designating_target_loc || !current_user)
 		return
@@ -153,7 +171,7 @@
 				to_chat(current_user, "<span class='warning'>Unknown object detected in landing zone. Please designate another location.</span>")
 		return
 
-	/// Create one use port that deleted after fly off, to not lose information that is needed to properly fly off.
+	///  Create one use port that deleted after fly off, to not lose information that is needed to properly fly off.
 	if(my_port?.get_docked())
 		my_port.unregister()
 		my_port.delete_after = TRUE
@@ -194,11 +212,13 @@
 		to_chat(current_user, "<span class='notice'>Transit location designated.</span>")
 	return TRUE
 
+/// Checks if we are able to designate the target location
 /obj/machinery/computer/camera_advanced/shuttle_docker/proc/canDesignateTarget()
 	if(!designating_target_loc || !current_user || (eyeobj.loc != designating_target_loc) || (machine_stat & (NOPOWER|BROKEN)) )
 		return FALSE
 	return TRUE
 
+/// Handles the rotation of the shuttle
 /obj/machinery/computer/camera_advanced/shuttle_docker/proc/rotateLandingSpot()
 	var/mob/camera/aiEye/remote/shuttle_docker/the_eye = eyeobj
 	var/list/image_cache = the_eye.placement_images
@@ -215,6 +235,7 @@
 	y_offset = -Tmp
 	checkLandingSpot()
 
+/// Checks if the currently hovered area is a valid landing spot
 /obj/machinery/computer/camera_advanced/shuttle_docker/proc/checkLandingSpot()
 	var/mob/camera/aiEye/remote/shuttle_docker/the_eye = eyeobj
 	var/turf/eyeturf = get_turf(the_eye)
@@ -243,10 +264,12 @@
 				I.icon_state = "red"
 				. = SHUTTLE_DOCKER_BLOCKED
 
+/// Checks if the turf is valid for landing
 /obj/machinery/computer/camera_advanced/shuttle_docker/proc/checkLandingTurf(turf/T, list/overlappers)
 	// Too close to the map edge is never allowed
 	if(!T || T.x <= 10 || T.y <= 10 || T.x >= world.maxx - 10 || T.y >= world.maxy - 10)
 		return SHUTTLE_DOCKER_BLOCKED
+	var/area/turf_area = get_area(T)
 	// If it's one of our shuttle areas assume it's ok to be there
 	if(shuttle_port.shuttle_areas[T.loc])
 		return SHUTTLE_DOCKER_LANDING_CLEAR
@@ -278,11 +301,6 @@
 				. = SHUTTLE_DOCKER_LANDING_CLEAR
 			else
 				return SHUTTLE_DOCKER_BLOCKED
-
-/obj/machinery/computer/camera_advanced/shuttle_docker/proc/update_hidden_docking_ports(list/remove_images, list/add_images)
-	if(!see_hidden && current_user?.client)
-		current_user.client.images -= remove_images
-		current_user.client.images += add_images
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock)
 	if(port)
