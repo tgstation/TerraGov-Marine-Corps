@@ -488,7 +488,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	visible_message("<span class='boldnotice'>Orbital bombardment request accepted. Orbital cannons are now calibrating.</span>")
 	send_to_squads("Initializing fire coordinates...")
 	if(selected_target)
-		playsound(selected_target.loc,'sound/effects/OB_warning_announce.ogg', 75, 0, 0)  //recorded on Planetside 2, unsure about license
+		playsound(selected_target.loc,'sound/effects/OB_warning_announce.ogg', 100, falloff = 4)  //recorded on Planetside 2, unsure about license
 	addtimer(CALLBACK(src, .proc/send_to_squads, "Transmitting beacon feed..."), 1.5 SECONDS)
 	addtimer(CALLBACK(src, .proc/send_to_squads, "Calibrating trajectory window..."), 3 SECONDS)
 	addtimer(CALLBACK(src, .proc/do_fire_bombard, T, usr), 3.1 SECONDS)
