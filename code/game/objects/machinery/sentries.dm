@@ -1330,7 +1330,7 @@
 // riot sentry
 
 /obj/machinery/marine_turret/mini/riot
-	name = "\improper UA-590 Riot Defense Sentry"
+	name = "\improper UA-590 riot defense sentry"
 	desc = "A deployable, automated turret with AI targeting capabilities. This is a lightweight portable model meant for rapid deployment and riot defense. Armed with a semi automatic riot cannon and a 50-round drum magazine."
 	icon = 'icons/Marine/miniturret.dmi'
 	icon_state = "minisentry_on"
@@ -1350,7 +1350,7 @@
 	magazine_type = /obj/item/ammo_magazine/minisentry/riot
 
 /obj/item/marine_turret/mini/riot
-	name = "\improper UA-590 Riot Defense Sentry (Folded)"
+	name = "\improper UA-590 riot defense sentry (folded)"
 	desc = "A deployable, automated turret with AI targeting capabilities. This is a lightweight portable model meant for rapid deployment and riot defense. Armed with a semi automatic riot cannon and a 50-round drum magazine."
 	icon = 'icons/Marine/miniturret.dmi'
 	icon_state = "minisentry_packed"
