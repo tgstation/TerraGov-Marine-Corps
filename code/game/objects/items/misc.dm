@@ -144,7 +144,7 @@
 
 /obj/item/compactorebox/platinum
 	name = "compressed platinum box"
-	desc = "A Very heavy and solid box, filled with pure titanium."
+	desc = "A very heavy and solid box, filled with pure titanium."
 	icon_state = "platinumbox_compact"
 	item_state = "platinumbox_comact"
 
@@ -175,5 +175,4 @@
 	desc = "A bulky module meant to replace the normal crystalizer in mining wells, used to compress boxes for easy carrying."
 	icon_state = "mining_drill_compactordisplay"
 	uptype = "upgraded crystalizer module"
-
 
