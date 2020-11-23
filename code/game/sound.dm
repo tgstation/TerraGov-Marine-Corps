@@ -160,12 +160,15 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 		if(O.client)
 			SEND_SOUND(O, soundin)
 
-///Play a sound for all cliented xenos by hive on a zlevel
+///Play a sound for all cliented xenos and ghosts by hive on a zlevel
 /proc/playsound_z_xenos(z, soundin, _volume, hive_type = XENO_HIVE_NORMAL)
 	soundin = sound(get_sfx(soundin), channel = open_sound_channel(), volume = _volume)
 	for(var/mob/living/carbon/xenomorph/X as() in GLOB.hive_datums[hive_type].xenos_by_zlevel["[z]"])
 		if(X.client)
 			SEND_SOUND(X, soundin)
+	for(var/mob/dead/observer/O as() in GLOB.observers_by_zlevel["[z]"])
+		if(O.client)
+			SEND_SOUND(O, soundin)
 
 // The pick() proc has a built-in chance that can be added to any option by adding ,X; to the end of an option, where X is the % chance it will play.
 /proc/get_sfx(S)
