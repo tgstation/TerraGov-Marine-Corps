@@ -1,4 +1,0 @@
-author: "Surrealaser"
-delete-after: True
-changes: 
-  - rscadd: "Hive Status now displays the current and maximum hit points and exact coordinates of each hive member, as well as max number of T2s and T3s the hive can support."

@@ -1,7 +1,0 @@
-author: "Surrealaser"
-delete-after: True
-changes: 
-  - tweak: "Shields now reduce incoming damage by hard armor before applying soft armor reduction."
-  - tweak: "Shield cover ratings are now modified by statuses; KO/Sleep/Paralysis disables shield benefits entirely as they should. Stun/Knockdown reduces cover by 50%. Stagger reduces cover by 25%."
-  - tweak: "Shields regain their 5 hard armor vs melee in light of these changes."
-  - bugfix: "Fixed Shields sticking to the back due to NODROP. You can no longer equip NODROP items to non-hand locations."
