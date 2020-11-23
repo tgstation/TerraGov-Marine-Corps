@@ -308,9 +308,15 @@
 	xeno_leader_list += X
 	X.queen_chosen_lead = TRUE
 
+	if(!isxenoshrike(X) && !isxenoqueen(X)) //These innately have the Rally Hive ability
+		X.xeno_caste.actions += /datum/action/xeno_action/activable/rally_hive
+
 /datum/hive_status/proc/remove_leader(mob/living/carbon/xenomorph/X)
 	xeno_leader_list -= X
 	X.queen_chosen_lead = FALSE
+
+	if(!isxenoshrike(X) && !isxenoqueen(X)) //These innately have the Rally Hive ability
+		X.xeno_caste.actions -= /datum/action/xeno_action/activable/rally_hive
 
 /datum/hive_status/proc/update_leader_pheromones() // helper function to easily trigger an update of leader pheromones
 	for(var/i in xeno_leader_list)
