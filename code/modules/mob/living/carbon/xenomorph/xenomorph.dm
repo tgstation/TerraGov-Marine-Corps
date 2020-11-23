@@ -67,13 +67,12 @@
 	//For triggering hive alerts when we take damage.
 	RegisterSignal(src, COMSIG_XENOMORPH_TAKING_DAMAGE, .proc/damage_taken)
 
+///If we're alive and health is less than either the alert threshold, or the alert trigger percent, whichever is greater, and we're not on alert cooldown, trigger the hive alert
 /mob/living/carbon/xenomorph/proc/damage_taken()
 	SIGNAL_HANDLER
 
-	//If we're alive and health is less than either the alert threshold, or the alert trigger percent, whichever is greater, and we're not on alert cooldown, trigger the hive alert
 	if(stat != DEAD && (health < max(XENO_HEALTH_ALERT_TRIGGER_THRESHOLD, maxHealth * XENO_HEALTH_ALERT_TRIGGER_PERCENT)))
-		var/location_description = "[get_area(src)] (X: [x], Y: [y])"
-		xeno_message("<span class='xenoannounce'>Our sister [name] is badly hurt with ([health]/[maxHealth]) health remaining at [location_description]!</span>", 2, hivenumber, FALSE, 'sound/voice/alien_help2.ogg', src, TRUE)
+		xeno_message("<span class='xenoannounce'>Our sister [name] is badly hurt with ([health]/[maxHealth]) health remaining at [get_area(src)] (X: [x], Y: [y])!</span>", 2, hivenumber, FALSE, 'sound/voice/alien_help2.ogg', src, TRUE)
 		TIMER_COOLDOWN_START(src, COOLDOWN_XENO_HEALTH_ALERT, XENO_HEALTH_ALERT_COOLDOWN) //set the cooldown.
 
 /mob/living/carbon/xenomorph/proc/set_datum()
