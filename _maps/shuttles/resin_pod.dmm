@@ -1,9 +1,11 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/template_noop,
+/turf/closed/wall/resin/regenerating/thick,
 /area/shuttle/ert/resinpod)
 "i" = (
 /obj/effect/alien/weeds/node/strong,
+/obj/effect/landmark/distress,
+/obj/effect/landmark/distress,
 /obj/effect/landmark/distress,
 /obj/effect/landmark/distress,
 /obj/effect/landmark/distress,
@@ -15,54 +17,42 @@
 /turf/open/shuttle/blackfloor,
 /area/shuttle/ert/resinpod)
 "y" = (
-/obj/effect/landmark/distress,
+/obj/structure/mineral_door/resin/thick,
+/obj/docking_port/mobile/ert,
 /obj/effect/alien/weeds,
-/obj/effect/landmark/distress,
-/obj/effect/landmark/distress,
 /turf/open/shuttle/blackfloor,
 /area/shuttle/ert/resinpod)
 "S" = (
-/obj/docking_port/mobile/ert,
-/obj/structure/mineral_door/resin/thick,
+/obj/effect/landmark/distress,
 /obj/effect/alien/weeds,
+/obj/effect/landmark/distress,
+/obj/effect/landmark/distress,
+/obj/effect/landmark/distress,
+/obj/effect/landmark/distress,
 /turf/open/shuttle/blackfloor,
-/area/shuttle/ert/resinpod)
-"W" = (
-/turf/closed/wall/resin/thick,
 /area/shuttle/ert/resinpod)
 
 (1,1,1) = {"
 a
-W
 j
-W
+j
 a
 "}
 (2,1,1) = {"
-W
 y
-y
-y
-W
+S
+S
+j
 "}
 (3,1,1) = {"
-S
-y
+j
 i
-y
+S
 j
 "}
 (4,1,1) = {"
-W
-y
-y
-y
-W
-"}
-(5,1,1) = {"
 a
-W
 j
-W
+j
 a
 "}
