@@ -392,7 +392,7 @@
 	force = 23 //Slightly more heftier than the M43, but without the stock.
 	icon_state = "m19c4"
 	item_state = "m19c4"
-	fire_sound = 'sound/weapons/guns/fire/pred_plasmacaster_fire.ogg'
+	fire_sound = 'sound/weapons/guns/fire/pulseenergy.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/vp70_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m4ra_reload.ogg'
@@ -491,7 +491,7 @@
 	charge_cost = 20
 	ammo = /datum/ammo/energy/lasgun/M43
 	fire_delay = 2
-	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
+	fire_sound = 'sound/weapons/guns/fire/laser.ogg'
 	message_to_user = "You set the Lasrifle's charge mode to standard fire."
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	icon_state = "tx73"
@@ -500,7 +500,7 @@
 	charge_cost = 80
 	ammo = /datum/ammo/energy/lasgun/M43/disabler
 	fire_delay = 10
-	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
+	fire_sound = 'sound/weapons/guns/fire/disabler.ogg'
 	message_to_user = "You set the Lasrifle's charge mode to disabler fire."
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	icon_state = "tx73_auto"
@@ -517,7 +517,7 @@
 	charge_cost = 80
 	ammo = /datum/ammo/energy/lasgun/M43/heat
 	fire_delay = 15
-	fire_sound = 'sound/weapons/guns/fire/laser.ogg'
+	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
 	message_to_user = "You set the Lasrifle's charge mode to wave heat."
 	icon_state = "tx73_heat"
 
