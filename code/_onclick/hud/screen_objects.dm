@@ -766,11 +766,15 @@
 	var/mob/living/carbon/xenomorph/tracker
 	var/mob/living/target
 
-/obj/screen/xeno_tracker_arrow/proc/add_hud()
-	if(!tracker?.client)
+/obj/screen/xeno_tracker_arrow/proc/add_hud(mob/living/carbon/xenomorph/tracker_input, atom/target_input)
+	if(!tracker_input?.client)
 		return
 
+	tracker = tracker_input
+	target = target_input
+	color = tracker.hive.color
 	tracker.client.screen += src
+	process() //Ping immediately after parameters have been set
 
 /obj/screen/xeno_tracker_arrow/Initialize() //Self-deletes
 	. = ..()

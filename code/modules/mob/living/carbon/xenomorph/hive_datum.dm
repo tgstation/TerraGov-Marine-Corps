@@ -496,7 +496,7 @@ to_chat will check for valid clients itself already so no need to double check f
 */
 
 ///Used for Hive Message alerts
-/datum/hive_status/proc/xeno_message(message = null, size = 3, force = FALSE, sound = null, atom/target = null, apply_preferences = FALSE, filter_list = null)
+/datum/hive_status/proc/xeno_message(message = null, size = 3, force = FALSE, atom/target = null, sound = null, apply_preferences = FALSE, filter_list = null)
 	if(!force && !can_xeno_message())
 		return
 
@@ -514,14 +514,11 @@ to_chat will check for valid clients itself already so no need to double check f
 			continue
 
 		if(sound) //Play sound if applicable
-			X.playsound_local(X, sound, 25, 0, 1)
+			X.playsound_local(X, sound, max(size * 20, 60), 0, 1)
 
 		if(target) //Apply tracker arrow to point to the subject of the message if applicable
 			var/obj/screen/xeno_tracker_arrow/arrow = new /obj/screen/xeno_tracker_arrow //Prepare the tracker object and set its parameters
-			arrow.tracker = X
-			arrow.target = target
-			arrow.add_hud(X)
-			arrow.process() //Ping immediately after parameters have been set
+			arrow.add_hud(X, target)
 
 		to_chat(X, "<span class='xenodanger'><font size=[size]> [message]</font></span>")
 

@@ -90,7 +90,7 @@
 		if(X.client.prefs.toggles_chat & CHAT_ALERTS_XENO_HEALTH) //Build the filter list
 			filter_list += X //Add the xeno to the filter list
 
-	xeno_message("<span class='xenoannounce'>Our sister [name] is badly hurt with ([health]/[maxHealth]) health remaining at [get_area(src)] (X: [x], Y: [y])!</span>", 2, hivenumber, FALSE, 'sound/voice/alien_help2.ogg', src, TRUE, filter_list)
+	xeno_message("<span class='xenoannounce'>Our sister [name] is badly hurt with ([health]/[maxHealth]) health remaining at [get_area(src)] (X: [x], Y: [y])!</span>", 2, hivenumber, FALSE, src, 'sound/voice/alien_help2.ogg', TRUE, filter_list)
 	COOLDOWN_START(src, xeno_health_alert_cooldown, XENO_HEALTH_ALERT_COOLDOWN) //set the cooldown.
 
 /mob/living/carbon/xenomorph/proc/set_datum()

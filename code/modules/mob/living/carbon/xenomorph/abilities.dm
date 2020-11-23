@@ -1194,7 +1194,9 @@
 
 	var/mob/living/carbon/xenomorph/X = owner
 
-	xeno_message("<span class='xenoannounce'>Our leader [X] is rallying the hive to [get_area(A)] (X: [A.x], Y: [A.y])!</span>", 3, X.hivenumber, FALSE, 'sound/voice/alien_distantroar_3.ogg', src)
+	X.face_atom(A) //Face towards the target so we don't look silly
+
+	xeno_message("<span class='xenoannounce'>Our leader [X] is rallying the hive to [get_area(A)] (X: [A.x], Y: [A.y])!</span>", 3, X.hivenumber, FALSE, get_turf(A), 'sound/voice/alien_distantroar_3.ogg')
 
 	succeed_activate()
 	add_cooldown()
