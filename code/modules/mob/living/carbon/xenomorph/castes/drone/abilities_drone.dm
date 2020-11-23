@@ -71,7 +71,7 @@
 	for(var/mob/living/carbon/xenomorph/filter in X.hive.get_all_xenos())
 		if(!(filter.upgrade in DRONE_SALVAGE_UPGRADE_FILTER_LIST)) //Only Xenos who can use the salvage get it; filter them
 			list_of_upgrade_xenos += filter
-		if(!(filter.upgrade in DRONE_SALVAGE_EVOLUTION_FILTER_LIST))
+		if(!(filter.tier in DRONE_SALVAGE_EVOLUTION_FILTER_LIST) && (filter.evolution_stored < filter.xeno_caste.evolution_threshold))
 			list_of_evolve_xenos += filter
 
 	if(length(list_of_upgrade_xenos))
@@ -82,7 +82,7 @@
 	if(length(list_of_evolve_xenos))
 		evo_amount /= length(list_of_evolve_xenos)
 		for(var/mob/living/carbon/xenomorph/beneficiary in list_of_evolve_xenos) //Distribute the evolve salvage to those who can use it
-			beneficiary.evolution_stored += evo_amount
+			beneficiary.evolution_stored = min(beneficiary.xeno_caste.evolution_threshold, beneficiary.evolution_stored + evo_amount) //Prevents janky overflow
 
 	playsound(target, 'sound/effects/alien_egg_burst.ogg', 25)
 	X.hive.xeno_message("[target]'s remains were salvaged by [X], recovering [upgrade_amount] upgrade points for [length(list_of_upgrade_xenos)] sisters and [evo_amount] evolution points for [length(list_of_evolve_xenos) ] sisters.") //Notify hive and give credit to the good boy drone
