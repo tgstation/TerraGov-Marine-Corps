@@ -261,7 +261,7 @@
 		if(issamexenohive(proj.firer)) //We automatically dodge allied projectiles at no cost
 			return FALSE
 
-		evasion_stacks -= (proj.damage)
+		evasion_stacks = max(0, evasion_stacks - proj.damage)
 
 		visible_message("<span class='warning'>[name] effortlessly dodge the [proj.name]!</span>", \
 		"<span class='xenodanger'>We effortlessly dodge the [proj.name]![evasion_stacks > 0 ? " We can dodge [evasion_stacks] more projectile damage." : ""]</span>")
