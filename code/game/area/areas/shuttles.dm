@@ -50,6 +50,9 @@
 /area/shuttle/ert/ufo
 	name = "Small UFO"
 
+/area/shuttle/ert/resinpod
+	name = "Resin Drop Pod"
+
 /area/shuttle/transit
 	name = "Hyperspace"
 	desc = "Weeeeee"

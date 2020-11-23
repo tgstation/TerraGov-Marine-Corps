@@ -1,0 +1,68 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/shuttle/ert/resinpod)
+"i" = (
+/obj/effect/alien/weeds/node/strong,
+/obj/effect/landmark/distress,
+/obj/effect/landmark/distress,
+/obj/effect/landmark/distress,
+/turf/open/shuttle/blackfloor,
+/area/shuttle/ert/resinpod)
+"j" = (
+/obj/structure/mineral_door/resin/thick,
+/obj/effect/alien/weeds,
+/turf/open/shuttle/blackfloor,
+/area/shuttle/ert/resinpod)
+"y" = (
+/obj/effect/landmark/distress,
+/obj/effect/alien/weeds,
+/obj/effect/landmark/distress,
+/obj/effect/landmark/distress,
+/turf/open/shuttle/blackfloor,
+/area/shuttle/ert/resinpod)
+"S" = (
+/obj/docking_port/mobile/ert,
+/obj/structure/mineral_door/resin/thick,
+/obj/effect/alien/weeds,
+/turf/open/shuttle/blackfloor,
+/area/shuttle/ert/resinpod)
+"W" = (
+/turf/closed/wall/resin/thick,
+/area/shuttle/ert/resinpod)
+
+(1,1,1) = {"
+a
+W
+j
+W
+a
+"}
+(2,1,1) = {"
+W
+y
+y
+y
+W
+"}
+(3,1,1) = {"
+S
+y
+i
+y
+j
+"}
+(4,1,1) = {"
+W
+y
+y
+y
+W
+"}
+(5,1,1) = {"
+a
+W
+j
+W
+a
+"}
