@@ -3,10 +3,10 @@
 	set desc = "Toggles alerts when a low HP xeno is injured."
 	set category = "Alien"
 
-	prefs.toggles_alerts ^= ALERTS_XENO_HEALTH
+	prefs.toggles_chat ^= CHAT_ALERTS_XENO_HEALTH
 	prefs.save_preferences()
 
-	if(prefs.toggles_alerts & ALERTS_XENO_HEALTH)
+	if(prefs.toggles_chat & CHAT_ALERTS_XENO_HEALTH)
 		to_chat(src, "<span class='xenodanger'>You will no longer receive hive alerts about badly wounded xenos.</span>")
 	else
 		to_chat(src, "<span class='xenodanger'>You will now receive hive alerts about badly wounded xenos.</span>")

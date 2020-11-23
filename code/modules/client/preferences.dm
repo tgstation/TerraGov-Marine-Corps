@@ -28,7 +28,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/toggles_chat = TOGGLES_CHAT_DEFAULT
 	var/toggles_sound = TOGGLES_SOUND_DEFAULT
 	var/toggles_gameplay = TOGGLES_GAMEPLAY_DEFAULT
-	var/toggles_alerts = TOGGLES_ALERTS_DEFAULT
 
 	var/ghost_hud = TOGGLES_GHOSTHUD_DEFAULT
 	var/ghost_vision = TRUE

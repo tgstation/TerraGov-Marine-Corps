@@ -35,8 +35,6 @@
 	var/turf/center_turf
 	var/datum/hive_status/associated_hive
 	var/silo_area
-	var/last_damage_alert
-
 
 /obj/structure/resin/silo/Initialize()
 	. = ..()
@@ -73,7 +71,7 @@
 		var/atom/movable/AM = i
 		AM.forceMove(get_step(center_turf, pick(CARDINAL_ALL_DIRS)))
 	playsound(loc,'sound/effects/alien_egg_burst.ogg', 75)
-	STOP_PROCESSING(SSobj, src)
+	STOP_PROCESSING(SSslowprocess, src)
 	return ..()
 
 
@@ -98,25 +96,24 @@
 
 	//We took damage, so it's time to start regenerating if we're not already processing
 	if(!CHECK_BITFIELD(datum_flags, DF_ISPROCESSING))
-		START_PROCESSING(SSobj, src)
+		START_PROCESSING(SSslowprocess, src)
 
-	if(last_damage_alert > (world.time - XENO_HEALTH_ALERT_COOLDOWN) ) //If we aren't on cooldown, send the alert
-		return
+	silo_damage_alert()
 
-	associated_hive.xeno_message("<span class='xenoannounce'>Our [src.name] at [silo_area] (X: [src.x], Y: [src.y]) is under attack! It has [obj_integrity]/[max_integrity] Health remaining.</span>", 2, FALSE, 'sound/voice/alien_help2.ogg', src)
-
-	last_damage_alert = world.time //Set our alert timestamp now
+/obj/structure/resin/silo/proc/silo_damage_alert()
+	associated_hive.xeno_message("<span class='xenoannounce'>Our [name] at [silo_area] (X: [x], Y: [y]) is under attack! It has [obj_integrity]/[max_integrity] Health remaining.</span>", 2, FALSE, 'sound/voice/alien_help2.ogg', src)
+	TIMER_COOLDOWN_START(src, COOLDOWN_XENO_HEALTH_ALERT, XENO_HEALTH_ALERT_COOLDOWN) //set the cooldown.
 
 
 /obj/structure/resin/silo/process()
 	//Regenerate if we're at less than max integrity
 	if(obj_integrity < max_integrity)
-		obj_integrity = min(obj_integrity + 10, max_integrity)
+		obj_integrity = min(obj_integrity + 25, max_integrity) //Regen 5 HP per sec
 		return
 
 	//If we're at max integrity, stop regenerating and processing.
-	STOP_PROCESSING(SSobj, src)
-
+	STOP_PROCESSING(SSslowprocess, src)
+	return PROCESS_KILL
 
 /obj/structure/resin/silo/proc/is_burrowed_larva_host(datum/source, list/mothers, list/silos)
 	SIGNAL_HANDLER

@@ -266,9 +266,6 @@
 	//It should add them properly on New() and should reset/readd them on evolves
 	var/list/inherent_verbs = list()
 
-	///Hive alert time stamp; triggers when a xeno takes damage while at less than 50% of maximum health.
-	var/last_xeno_health_alert = null
-
 	//Lord forgive me for this horror, but Life code is awful
 	//These are tally vars, yep. Because resetting the aura value directly leads to fuckups
 	var/frenzy_new = 0
