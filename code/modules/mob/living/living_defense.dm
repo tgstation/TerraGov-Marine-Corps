@@ -24,7 +24,6 @@
 
 	Arguments
 		stun_amount {int} applied as Stun and Paralyze
-		agony_amount {int} dealt as HALLOSS damage to the def_zone
 		def_zone {enum} which body part to target
 */
 /mob/living/proc/stun_effect_act(stun_amount, agony_amount, def_zone)
@@ -40,7 +39,6 @@
 		apply_effect(EYE_BLUR, stun_amount)
 
 	if(agony_amount)
-		apply_damage(agony_amount, HALLOSS, def_zone)
 		apply_effect(STUTTER, agony_amount/10)
 		apply_effect(EYE_BLUR, agony_amount/10)
 

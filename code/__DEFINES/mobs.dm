@@ -93,7 +93,6 @@
 #define CLONE		"clone"
 #define CUT 		"cut"
 #define BRUISE		"bruise"
-#define HALLOSS		"halloss"
 #define STAMINA		"stamina"
 //=================================================
 
@@ -367,13 +366,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 #define HUMAN_MAX_PALENESS	30 //this is added to human skin tone to get value of pale_max variable
 
-
-// halloss defines
-
-#define BASE_HALLOSS_RECOVERY_RATE -4
-#define WALK_HALLOSS_RECOVERY_RATE -12
-#define DOWNED_HALLOSS_RECOVERY_RATE -16
-#define REST_HALLOSS_RECOVERY_RATE -32
 
 // Human Overlay Indexes
 #define HEADBITE_LAYER			30

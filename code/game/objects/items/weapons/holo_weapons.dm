@@ -2,7 +2,7 @@
 //holographic weapons used by the holodeck.
 
 /obj/item/weapon/holo
-	damtype = HALLOSS
+	damtype = STAMINA
 
 /obj/item/weapon/holo/esword
 	desc = "May the force be within you. Sorta."
