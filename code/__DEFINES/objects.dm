@@ -230,6 +230,7 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 #define HAS_SENSORS 1
 #define LOCKED_SENSORS 2
 
-////Drop pods\\\
+//Drop pods
+
 ///This number + standard alamo launch time is when droppods are allowed to launch
 #define DROPPOD_DEPLOY_DELAY 10 MINUTES
