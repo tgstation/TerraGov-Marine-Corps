@@ -155,7 +155,6 @@
 
 ///what happens when the obj's integrity reaches zero.
 /obj/proc/obj_destruction(damage_flag)
-	SHOULD_CALL_PARENT(TRUE)
 	if(destroy_sound)
 		playsound(loc, destroy_sound, 35, 1)
 	deconstruct(FALSE)
