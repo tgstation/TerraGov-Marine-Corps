@@ -53,6 +53,78 @@
 		-->
 		<div class="commit sansserif">
 
+			<h2 class="date">23 November 2020</h2>
+			<h3 class="author">Pariah919 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscdel">Removed bad warcry screams</li>
+			</ul>
+			<h3 class="author">Surrealaser updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Hive Status now displays the current and maximum hit points and exact coordinates of each hive member, as well as max number of T2s and T3s the hive can support.</li>
+				<li class="tweak">The Stagger debuff now halves all projectile damage.</li>
+				<li class="bugfix">Chairs, stools and most non-nest beds no longer block xeno buildables.</li>
+				<li class="tweak">Integrity of most non-marine buildables/barricades significantly reduced.</li>
+				<li class="tweak">Shields now reduce incoming damage by hard armor before applying soft armor reduction.</li>
+				<li class="tweak">Shield cover ratings are now modified by statuses; KO/Sleep/Paralysis disables shield benefits entirely as they should. Stun/Knockdown reduces cover by 50%. Stagger reduces cover by 25%.</li>
+				<li class="tweak">Shields regain their 5 hard armor vs melee in light of these changes.</li>
+				<li class="bugfix">Fixed Shields sticking to the back due to NODROP. You can no longer equip NODROP items to non-hand locations.</li>
+				<li class="bugfix">Barricades can no longer be anchored on the dropship or other no construction turfs.</li>
+				<li class="bugfix">Quickcades and Barbed Wire can no longer be built on the dropship and other no construction turfs.</li>
+				<li class="bugfix">Razorfoam will not produce barbed wire on no construction turfs.</li>
+			</ul>
+
+			<h2 class="date">21 November 2020</h2>
+			<h3 class="author">Dolth updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="tweak">tweaked T71 attachies list.</li>
+			</ul>
+			<h3 class="author">Hathkar updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">Headbite is only usable on the dead</li>
+				<li class="balance">Headbite can't be used while on fire</li>
+				<li class="balance">Headbite will cancel if damage is taken</li>
+			</ul>
+			<h3 class="author">Hughgent updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Funny characters shouldn't crash the server anymore.</li>
+			</ul>
+			<h3 class="author">Pariah919 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">gives sentinel the ability to spit light acid</li>
+				<li class="bugfix">fixed marines not having armor vendor in bigbury and sulaco</li>
+			</ul>
+			<h3 class="author">SplinterGP updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="code_imp">makes a new proc that applies damage to all limbs evenly and uses the limb armor.</li>
+				<li class="code_imp">Acid spray damage scales according to caste_datum and not with an aging macro.</li>
+				<li class="code_imp">crusher stomp damage scales according to caste_datum and not with an aging macro.</li>
+				<li class="balance">acid spray now always causes the same damage according to your xeno, instead of random damage.</li>
+				<li class="balance">razorwire now always causes same damage instead of random damage.</li>
+				<li class="balance">crusher stomp now causes increased damage with aging, instead of random damage.</li>
+				<li class="balance">crest toss now always throws the marine on the same amount, instead of random distance.</li>
+				<li class="balance">crest toss now don't has a random offset on where will throw, it always throws on a straight path.</li>
+				<li class="balance">crest toss random damage variation removed.</li>
+				<li class="balance">now objects armor works on crusher charge.</li>
+				<li class="balance">acid sprays causes half damage on each feet instead of full damage on both feets, which caused double damage.</li>
+				<li class="bugfix">crusher and bull charge now correctly gets damage reduced by armor.</li>
+				<li class="bugfix">stomp now applies damage evenly on mob limbs correctly, with proper armor reduction.</li>
+			</ul>
+			<h3 class="author">Surrealaser updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="tweak">Xenos no longer auto-open camo tarps by moving over them.</li>
+				<li class="tweak">Acid spray and gas, bullets (including spits) and phosphorous gas now all force camo tarp occupants out and affect them. Projectiles must specifically target the tarp.</li>
+				<li class="tweak">Camo tarps now stun their former occupant for 0.5 upon leaving.</li>
+				<li class="refactor">Minor refactors of camo tarps.</li>
+			</ul>
+			<h3 class="author">TiviPlus updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Fixes a surgery callback</li>
+			</ul>
+			<h3 class="author">Tiviplus, Mapping by Hathkar updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Zeus orbital Droppods</li>
+			</ul>
+
 			<h2 class="date">20 November 2020</h2>
 			<h3 class="author">Hathkar updated:</h3>
 			<ul class="changes bgimages16">
@@ -958,45 +1030,6 @@
 			<h3 class="author">TiviPlus updated:</h3>
 			<ul class="changes bgimages16">
 				<li class="refactor">Updated asset cache, expect speed</li>
-			</ul>
-
-			<h2 class="date">21 September 2020</h2>
-			<h3 class="author">TiviPlus updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="bugfix">fixed linter error</li>
-			</ul>
-
-			<h2 class="date">20 September 2020</h2>
-			<h3 class="author">BurgerBB updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="balance">Taking damage as a Xenomorph disables PASSIVE regeneration for 10 seconds. When the 10 seconds are up, you regenerate your health at 0% strength, but it increases by 5% every second, up to 100%.</li>
-				<li class="balance">A regeneration aura changes this behavior by disabling the 10 second cooldown, and regenerating your health by  0% strength, but it increases by 7.5% every second, up to 100%.</li>
-			</ul>
-
-			<h2 class="date">19 September 2020</h2>
-			<h3 class="author">Chaznoodles updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="tweak">Doubles the number of quikdeploys per Requisitions purchase.</li>
-			</ul>
-			<h3 class="author">Hathkar updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="rscadd">The Sulaco now has a memorial above the briefing room.</li>
-				<li class="rscadd">Added a tip explaining how to use dogtags on memorials.</li>
-				<li class="rscdel">Removed an outdated tip on ammo types.</li>
-			</ul>
-			<h3 class="author">Pariah919 updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="balance">bc nerfed suppressor buffed. BC gives halve the damage buff and gives you -75% accuracy and 30 scatter. Suppressor no longer has any damage malus</li>
-				<li class="balance">sawn off no longer has a damage multiplier</li>
-			</ul>
-			<h3 class="author">Wayland-Smithy updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="bugfix">Xenos can no longer evolve to the wrong castes after regressing.</li>
-			</ul>
-			<h3 class="author">psykzz updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="rscadd">marine cloning, gives marines a way to respawn every 15mins that isn't tied to the typical respawn mechanic.</li>
-				<li class="balance">captain got a buff in skills.</li>
 			</ul>
 		</div>
 

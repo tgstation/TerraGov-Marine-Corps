@@ -671,9 +671,11 @@ and you're good to go.
 		. = ..()
 		if(!.)
 			return
+
 		if(!active_attachable && gun_firemode == GUN_FIREMODE_BURSTFIRE && burst_amount > 1)
 			Fire(M, user)
 			return TRUE
+
 		DISABLE_BITFIELD(flags_gun_features, GUN_BURST_FIRING)
 		//Point blanking simulates firing the bullet proper but without actually firing it.
 		var/obj/projectile/projectile_to_fire = load_into_chamber(user)

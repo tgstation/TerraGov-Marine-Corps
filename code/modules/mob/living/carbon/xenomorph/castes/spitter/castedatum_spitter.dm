@@ -43,6 +43,9 @@
 	spit_delay = 1.3 SECONDS
 	spit_types = list(/datum/ammo/xeno/acid/medium) //Gotta give them their own version of heavy acid; kludgy but necessary as 100 plasma is way too costly.
 
+	acid_spray_damage_on_hit = 35
+	acid_spray_damage = 16
+	acid_spray_structure_damage = 45
 
 
 	// *** Abilities *** //
@@ -153,6 +156,5 @@
 
 	// *** Ranged Attack *** //
 	spit_delay = 1 SECONDS
-
 
 
