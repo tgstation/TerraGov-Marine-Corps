@@ -473,11 +473,11 @@ can cause issues with ammo types getting mixed up during the burst.
 //Shotguns in this category will need to be pumped each shot.
 
 /obj/item/weapon/gun/shotgun/pump
-	name = "\improper T-32 pump shotgun"
-	desc = "A Terran Armories design, using the outdated Armat Battlefield Systems frame, the T-32 combines close-range firepower with long term reliability."
+	name = "\improper V10 pump shotgun"
+	desc = "A classic design, using the outdated shotgun frame. The V10 combines close-range firepower with long term reliability.\n<b>Requires a pump, which is the Unique Action key.</b>"
 	flags_equip_slot = ITEM_SLOT_BACK
-	icon_state = "t32"
-	item_state = "t32"
+	icon_state = "v10"
+	item_state = "v10"
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump
 	fire_sound = 'sound/weapons/guns/fire/shotgun.ogg'
 	max_shells = 9
@@ -830,7 +830,7 @@ can cause issues with ammo types getting mixed up during the burst.
 //T-35 Pump shotgun
 /obj/item/weapon/gun/shotgun/pump/t35
 	name = "\improper T-35 pump shotgun"
-	desc = "The Terran Armories T-35 is the shotgun used by the TerraGov Marine Corps. It's used as a close quarters tool when someone wants something more suited for close range than most people, or as an odd sidearm on your back for emergencies. Uses 12 gauge shells."
+	desc = "The Terran Armories T-35 is the shotgun used by the TerraGov Marine Corps. It's used as a close quarters tool when someone wants something more suited for close range than most people, or as an odd sidearm on your back for emergencies. Uses 12 gauge shells.\n<b>Requires a pump, which is the Unique Action key.</b>"
 	flags_equip_slot = ITEM_SLOT_BACK
 	icon_state = "t35"
 	item_state = "t35"
