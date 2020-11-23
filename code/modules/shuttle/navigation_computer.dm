@@ -171,7 +171,7 @@
 				to_chat(current_user, "<span class='warning'>Unknown object detected in landing zone. Please designate another location.</span>")
 		return
 
-	///  Create one use port that deleted after fly off, to not lose information that is needed to properly fly off.
+	/// Create one use port that deleted after fly off, to not lose information that is needed to properly fly off.
 	if(my_port?.get_docked())
 		my_port.unregister()
 		my_port.delete_after = TRUE
