@@ -981,6 +981,15 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 10
 	sundering = 2
 
+/datum/ammo/bullet/turret/riot
+	name = "riot dart"
+	damage = 10
+	penetration = 100
+	sundering = 1
+
+/datum/ammo/bullet/turret/riot/on_hit_mob(mob/M,obj/projectile/P)
+	staggerstun(M, P, weaken = 1, stagger = 1, knockback = 2, slowdown = 1, max_range = 9)
+
 
 /datum/ammo/bullet/machinegun //Adding this for the MG Nests (~Art)
 	name = "machinegun bullet"

@@ -1325,6 +1325,106 @@
 	new /obj/item/tool/screwdriver(src) //screw the gun onto the post.
 	new /obj/item/ammo_magazine/minisentry(src)
 
+
+
+// riot sentry
+
+/obj/machinery/marine_turret/mini/riot
+	name = "\improper UA-590 Riot Defense Sentry"
+	desc = "A deployable, automated turret with AI targeting capabilities. This is a lightweight portable model meant for rapid deployment and riot defense. Armed with a semi automatic riot cannon and a 50-round drum magazine."
+	icon = 'icons/Marine/miniturret.dmi'
+	icon_state = "minisentry_on"
+	cell = /obj/item/cell/high
+	anchored = FALSE
+	turret_flags = TURRET_HAS_CAMERA|TURRET_SAFETY
+	obj_integrity = 100
+	max_integrity = 100
+	burst_size = 1
+	min_burst = 1
+	max_burst = 1
+	rounds = 50
+	rounds_max = 50
+	knockdown_threshold = 100 //lighter, not as well secured.
+	work_time = 10 //significantly faster than the big sentry
+	ammo = /datum/ammo/bullet/turret/riot
+	magazine_type = /obj/item/ammo_magazine/minisentry/riot
+
+/obj/item/marine_turret/mini/riot
+	name = "\improper UA-590 Riot Defense Sentry (Folded)"
+	desc = "A deployable, automated turret with AI targeting capabilities. This is a lightweight portable model meant for rapid deployment and riot defense. Armed with a semi automatic riot cannon and a 50-round drum magazine."
+	icon = 'icons/Marine/miniturret.dmi'
+	icon_state = "minisentry_packed"
+	item_state = "minisentry_packed"
+	w_class = WEIGHT_CLASS_BULKY
+	max_integrity = 200 //We keep track of this when folding up the sentry.
+	rounds = 50
+	cell_charge = 10000
+	flags_equip_slot = ITEM_SLOT_BACK
+
+/obj/item/marine_turret/mini/riot/attack_self(mob/user) //click the sentry to deploy it.
+	if(!ishuman(usr))
+		return
+	var/turf/target = get_step(user.loc,user.dir)
+	if(!target)
+		return
+
+	if(check_blocked_turf(target)) //check if blocked
+		to_chat(user, "<span class='warning'>There is insufficient room to deploy [src]!</span>")
+		return
+	if(do_after(user, 30, TRUE, src, BUSY_ICON_BUILD))
+		var/obj/machinery/marine_turret/mini/riot/M = new /obj/machinery/marine_turret/mini/riot(target)
+		M.setDir(user.dir)
+		user.visible_message("<span class='notice'>[user] deploys [M].</span>",
+		"<span class='notice'>You deploy [M]. The [M]'s securing bolts automatically anchor it to the ground.</span>")
+		playsound(target, 'sound/weapons/mine_armed.ogg', 25)
+		M.obj_integrity = obj_integrity
+		M.anchored = TRUE
+		M.rounds = rounds
+		M.cell.charge = cell_charge
+		M.activate_turret()
+		qdel(src)
+
+/obj/machinery/marine_turret/mini/riot/MouseDrop(over_object, src_location, over_location) //Drag the tripod onto you to fold it.
+	if(!ishuman(usr))
+		return
+	var/mob/living/carbon/human/user = usr //this is us
+	if(!over_object == user || !in_range(src, user))
+		return
+
+	if(anchored)
+		to_chat(user, "<span class='warning'>The [src] disengages its anchor bolts as you initiate the retrieval process.</span>")
+		anchored = FALSE
+		update_icon()
+
+	if(CHECK_BITFIELD(turret_flags, TURRET_ON))
+		to_chat(user, "<span class='warning'>You depower [src] to facilitate its retrieval.</span>")
+		DISABLE_BITFIELD(turret_flags, TURRET_ON)
+		update_icon()
+
+	user.visible_message("<span class='notice'>[user] begins to fold up and retrieve [src].</span>",
+	"<span class='notice'>You begin to fold up and retrieve [src].</span>")
+	if(!do_after(user, work_time * 3, TRUE, src, BUSY_ICON_BUILD) || CHECK_BITFIELD(turret_flags, TURRET_ON) || anchored)
+		return
+	to_chat(user, "<span class='notice'>You fold up and retrieve [src].</span>")
+	var/obj/item/marine_turret/mini/riot/P = new(loc)
+	user.put_in_hands(P)
+	P.obj_integrity = obj_integrity
+	P.rounds = rounds
+	P.cell_charge = cell.charge
+	qdel(src)
+
+/obj/item/ammo_magazine/minisentry/riot
+	name = "M30 box magazine (10x20mm Caseless)"
+	desc = "A box of 50 riot dart caseless rounds for the UA-590 Point Defense Sentry. Just feed it into the sentry gun's ammo port when its ammo is depleted."
+	w_class = WEIGHT_CLASS_NORMAL
+	icon_state = "ua580"
+	flags_magazine = NONE //can't be refilled or emptied by hand
+	caliber = "10x50mm"
+	max_rounds = 50
+	default_ammo = /datum/ammo/bullet/turret/riot
+	gun_type = null
+
+
 /obj/machinery/marine_turret/proc/activate_turret()
 	if(!anchored)
 		return FALSE
