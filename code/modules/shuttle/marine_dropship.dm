@@ -616,7 +616,7 @@
 
 /obj/machinery/computer/shuttle/marine_dropship/proc/do_hijack(obj/docking_port/mobile/marine_dropship/crashing_dropship, obj/docking_port/stationary/marine_dropship/crash_target/crash_target, mob/living/carbon/xenomorph/user)
 	crashing_dropship.set_hijack_state(HIJACK_STATE_CRASHING)
-	crashing_dropship.callTime = 2 MINUTES
+	crashing_dropship.callTime = 120 * (GLOB.current_orbit/3) SECONDS
 	crashing_dropship.crashing = TRUE
 	crashing_dropship.unlock_all()
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_DROPSHIP_HIJACKED)

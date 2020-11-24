@@ -745,9 +745,6 @@ to_chat will check for valid clients itself already so no need to double check f
 /mob/living/carbon/xenomorph/larva/Corrupted
 	hivenumber = XENO_HIVE_CORRUPTED
 
-/mob/living/carbon/xenomorph/panther/Corrupted
-	hivenumber = XENO_HIVE_CORRUPTED
-
 /mob/living/carbon/xenomorph/praetorian/Corrupted
 	hivenumber = XENO_HIVE_CORRUPTED
 
@@ -814,9 +811,6 @@ to_chat will check for valid clients itself already so no need to double check f
 /mob/living/carbon/xenomorph/larva/Alpha
 	hivenumber = XENO_HIVE_ALPHA
 
-/mob/living/carbon/xenomorph/panther/Alpha
-	hivenumber = XENO_HIVE_ALPHA
-
 /mob/living/carbon/xenomorph/praetorian/Alpha
 	hivenumber = XENO_HIVE_ALPHA
 
@@ -880,9 +874,6 @@ to_chat will check for valid clients itself already so no need to double check f
 /mob/living/carbon/xenomorph/larva/Beta
 	hivenumber = XENO_HIVE_BETA
 
-/mob/living/carbon/xenomorph/panther/Beta
-	hivenumber = XENO_HIVE_BETA
-
 /mob/living/carbon/xenomorph/praetorian/Beta
 	hivenumber = XENO_HIVE_BETA
 
@@ -944,9 +935,6 @@ to_chat will check for valid clients itself already so no need to double check f
 	hivenumber = XENO_HIVE_ZETA
 
 /mob/living/carbon/xenomorph/larva/Zeta
-	hivenumber = XENO_HIVE_ZETA
-
-/mob/living/carbon/xenomorph/panther/Zeta
 	hivenumber = XENO_HIVE_ZETA
 
 /mob/living/carbon/xenomorph/praetorian/Zeta
