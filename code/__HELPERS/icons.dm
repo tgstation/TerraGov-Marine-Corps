@@ -1094,7 +1094,7 @@ GLOBAL_LIST_EMPTY(transformation_animation_objects)
   * transform_overlay - Appearance/atom/image of effect that moves along the animation - should be horizonatally centered
   * reset_after - If FALSE, filters won't be reset and helper vis_objects will not be removed after animation duration expires. Cleanup must be handled by the caller!
   */
-/atom/proc/transformation_animation(result_appearance, time = 3 SECONDS, transform_overlay, reset_after=TRUE)
+/atom/movable/proc/transformation_animation(result_appearance, time = 3 SECONDS, transform_overlay, reset_after=TRUE)
 	var/list/transformation_objects = GLOB.transformation_animation_objects[src] || list()
 	//Disappearing part
 	var/top_part_filter = filter(type="alpha",icon=icon('icons/effects/alphacolors.dmi',"white"),y=0)
