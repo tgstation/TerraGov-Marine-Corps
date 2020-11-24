@@ -21,7 +21,7 @@
 		to_chat(owner, "<span class='warning'>Somehow we feel sated for now...</span>")
 		return FALSE
 	if(get_dist(owner, A) > 1)
-		to_chat(owner, "<span class='warning'>It is outside of our reach! We need to be</span>")
+		to_chat(owner, "<span class='warning'>It is outside of our reach! We need to be closer!</span>")
 		return FALSE
 	return TRUE
 
