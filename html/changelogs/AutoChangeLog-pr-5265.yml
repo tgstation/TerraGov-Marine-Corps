@@ -1,0 +1,4 @@
+author: "TiviPlus"
+delete-after: True
+changes: 
+  - tweak: "Removes warriors default ctrlclick override, this can still be enabled using keybinds in the preferemces menu"
