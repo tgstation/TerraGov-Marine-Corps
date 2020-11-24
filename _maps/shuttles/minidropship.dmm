@@ -42,12 +42,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
-"n" = (
-/obj/effect/attach_point/weapon/minidropship{
-	dir = 8
-	},
-/turf/closed/wall/mainship/outer,
-/area/shuttle/minidropship)
 "o" = (
 /turf/closed/wall/mainship/outer,
 /area/shuttle/minidropship)
@@ -71,12 +65,6 @@
 	},
 /obj/machinery/door/poddoor/shutters/transit,
 /turf/open/floor/mainship/mono,
-/area/shuttle/minidropship)
-"t" = (
-/obj/effect/attach_point/weapon/minidropship{
-	dir = 4
-	},
-/turf/closed/wall/mainship/outer,
 /area/shuttle/minidropship)
 "z" = (
 /obj/machinery/computer/dropship_weapons/minidropship,
@@ -157,7 +145,7 @@ o
 r
 f
 f
-n
+o
 o
 a
 "}
@@ -223,7 +211,7 @@ o
 a
 f
 f
-t
+o
 o
 a
 "}
