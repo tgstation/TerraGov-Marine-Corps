@@ -61,7 +61,7 @@
 	var/list/gun_iff_signal = null
 	///Determines how fire delay is changed when aim mode is active
 	var/aim_fire_delay = 0
-	///Determines character slowdfown from aim mode. Default is 66%
+	///Determines character slowdown from aim mode. Default is 66%
 	var/aim_movement_speed = 6
 
 	//Burst fire.
