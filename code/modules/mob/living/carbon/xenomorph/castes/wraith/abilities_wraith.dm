@@ -305,7 +305,7 @@
 			shake_camera(target, 2, 1)
 			target.adjust_stagger(WRAITH_TELEPORT_DEBUFF_STACKS)
 			target.add_slowdown(WRAITH_TELEPORT_DEBUFF_STACKS)
-			target.adjust_drugginess(WRAITH_TELEPORT_DEBUFF_STACKS) //minor visual distortion
+			target.blur_eyes(WRAITH_TELEPORT_DEBUFF_STACKS) //minor visual distortion
 			to_chat(target, "<span class='warning'>You feel nauseous as the world warps around you!</span>")
 
 /datum/action/xeno_action/evasion/on_cooldown_finish()
