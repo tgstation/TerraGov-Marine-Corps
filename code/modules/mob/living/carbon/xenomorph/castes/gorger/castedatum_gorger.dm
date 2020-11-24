@@ -2,7 +2,7 @@
 	caste_name = "Gorger"
 	display_name = "Gorger"
 	upgrade_name = ""
-	caste_desc = "A frightening looking, bulky xeno that drips with a familiar red fluid."
+	caste_desc = "A frightening looking, bulky alien creature that drips with a familiar red fluid."
 	caste_type_path = /mob/living/carbon/xenomorph/gorger
 
 	tier = XENO_TIER_THREE
