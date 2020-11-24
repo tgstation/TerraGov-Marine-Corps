@@ -1,4 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes: 
-  - code_imp: "Should not sleep initialize and destroy and should call parent initialize"
