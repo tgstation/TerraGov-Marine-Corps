@@ -75,7 +75,7 @@
 
 /datum/xeno_caste/gorger/elder
 	upgrade_name = "Elder"
-	caste_desc = "A frightening looking, bulky xeno that drips with a familiar red fluid. It looks pretty strong."
+	caste_desc = "A frightening looking, bulky alien creature that drips with a familiar red fluid. It looks pretty strong."
 
 	upgrade = XENO_UPGRADE_TWO
 
