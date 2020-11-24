@@ -862,11 +862,13 @@ should be alright.
 			add_firemode(GUN_FIREMODE_AUTOBURST, user)
 
 /obj/item/weapon/gun/proc/toggle_aim_mode(mob/living/carbon/human/user)
+	var/image/aim_hud = hud_list[AIM_MODE_HUD]
 	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_AIMING))
+		aim_hud.icon_state =  ""
 		gun_iff_signal = null
 		DISABLE_BITFIELD(flags_gun_features, GUN_IS_AIMING)
 		user.remove_movespeed_modifier(MOVESPEED_ID_AIM_MODE_SLOWDOWN)
-		modify_fire_delay(-aim_fire_delay_buffer)
+		modify_fire_delay(-aim_fire_delay)
 		to_chat(user, "<span class='notice'>You cease aiming.</b></span>")
 		return
 	if(!CHECK_BITFIELD(flags_item, WIELDED))
@@ -880,8 +882,8 @@ should be alright.
 	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_BAR))
 		to_chat(user, "<span class='warning'>Your concentration is interrupted!</b></span>")
 		return
-	aim_fire_delay_buffer = fire_delay
-	modify_fire_delay(aim_fire_delay_buffer)
+	aim_hud.icon_state =  "aim_mode"
+	modify_fire_delay(aim_fire_delay)
 	ENABLE_BITFIELD(flags_gun_features, GUN_IS_AIMING)
 	user.add_movespeed_modifier(MOVESPEED_ID_AIM_MODE_SLOWDOWN, TRUE, 0, NONE, TRUE, 6)
 	var/obj/item/card/id/C = user.wear_id

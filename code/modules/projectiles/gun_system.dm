@@ -59,8 +59,8 @@
 	var/shell_speed_mod	= 0						//Modifies the speed of projectiles fired.
 	/// Determines which humans the gun's shot will pass through based on the victim's ID access list.
 	var/list/gun_iff_signal = null
-	///Used so that modifying a gun's fire delay after activating aim mode doesn't permanently mess with a gun's stats
-	var/aim_fire_delay_buffer = 0
+	///Determines how fire delay is changed when aim mode is active
+	var/aim_fire_delay = 0
 
 	//Burst fire.
 	var/burst_amount 	= 1						//How many shots can the weapon shoot in burst? Anything less than 2 and you cannot toggle burst.

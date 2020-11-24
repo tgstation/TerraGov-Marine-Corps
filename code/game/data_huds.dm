@@ -66,6 +66,8 @@
 /datum/atom_hud/medical
 	hud_icons = list(HEALTH_HUD, STATUS_HUD)
 
+/datum/atom_hud/aim_mode
+	hud_icons = list(AIM_MODE_HUD)
 
 //med hud used by silicons, only shows humans with a uniform with sensor mode activated.
 /datum/atom_hud/medical/basic
@@ -321,7 +323,6 @@
 //infection status that appears on humans and monkeys, viewed by xenos only.
 /datum/atom_hud/xeno_infection
 	hud_icons = list(XENO_EMBRYO_HUD)
-
 
 //Xeno status hud, for xenos
 /datum/atom_hud/xeno
