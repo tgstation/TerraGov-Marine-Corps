@@ -884,7 +884,7 @@ should be alright.
 	user.aim_hud_set_status(TRUE)
 	modify_fire_delay(aim_fire_delay)
 	ENABLE_BITFIELD(flags_gun_features, GUN_IS_AIMING)
-	user.add_movespeed_modifier(MOVESPEED_ID_AIM_MODE_SLOWDOWN, TRUE, 0, NONE, TRUE, 6)
+	user.add_movespeed_modifier(MOVESPEED_ID_AIM_MODE_SLOWDOWN, TRUE, 0, NONE, TRUE, aim_movement_speed)
 	var/obj/item/card/id/C = user.wear_id
 	gun_iff_signal = C.access
 	to_chat(user, "<span class='notice'>You line up your aim.</b></span>")

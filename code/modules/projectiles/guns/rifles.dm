@@ -83,6 +83,7 @@
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 16,"rail_x" = 10, "rail_y" = 19, "under_x" = 18, "under_y" = 13, "stock_x" = 0, "stock_y" = 13)
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.1 SECONDS
+	aim_movement_speed = 2
 
 	fire_delay = 0.2 SECONDS
 	burst_delay = 0.1 SECONDS
@@ -145,6 +146,7 @@
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 17,"rail_x" = 4, "rail_y" = 23, "under_x" = 20, "under_y" = 11, "stock_x" = 0, "stock_y" = 13)
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.1 SECONDS
+	aim_movement_speed = 2
 
 	fire_delay = 0.2 SECONDS
 	burst_delay = 0.15 SECONDS
@@ -210,6 +212,7 @@
 	attachable_offset = list("muzzle_x" = 48, "muzzle_y" = 21,"rail_x" = 21, "rail_y" = 24, "under_x" = 31, "under_y" = 15, "stock_x" = 14, "stock_y" = 10)
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.2 SECONDS
+	aim_movement_speed = 3
 
 	fire_delay = 0.8 SECONDS
 	accuracy_mult = 1.25
@@ -269,6 +272,7 @@
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 17, "rail_y" = 18, "under_x" = 25, "under_y" = 12, "stock_x" = 14, "stock_y" = 10)
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.2 SECONDS
+	aim_movement_speed = 3
 
 	fire_delay = 0.35 SECONDS
 	damage_mult = 0.5 //uses the marksman bullet, like the DMR.
@@ -450,6 +454,7 @@
 	starting_attachment_types = list(/obj/item/attachable/stock/ak47)
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.15 SECONDS
+	aim_movement_speed = 2
 
 	accuracy_mult = 1
 	burst_amount = 1
@@ -521,6 +526,7 @@
 	starting_attachment_types = list(/obj/item/attachable/stock/m16, /obj/item/attachable/m16sight)
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.2 SECONDS
+	aim_movement_speed = 4
 
 	fire_delay = 0.2 SECONDS
 	burst_delay = 0.15 SECONDS
@@ -571,6 +577,7 @@
 	attachable_offset = list("muzzle_x" = 38, "muzzle_y" = 17,"rail_x" = 22, "rail_y" = 24, "under_x" = 28, "under_y" = 12, "stock_x" = 19, "stock_y" = 13)
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.15 SECONDS
+	aim_movement_speed = 2
 
 	fire_delay = 0.15 SECONDS
 	burst_delay = 0.15 SECONDS
@@ -625,6 +632,7 @@
 	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 17,"rail_x" = 4, "rail_y" = 20, "under_x" = 16, "under_y" = 13, "stock_x" = 0, "stock_y" = 13)
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.18 SECONDS
+	aim_movement_speed = 5
 
 	fire_delay = 0.18 SECONDS
 	burst_amount = 1
@@ -676,6 +684,7 @@
 	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 21,"rail_x" = 8, "rail_y" = 23, "under_x" = 25, "under_y" = 14, "stock_x" = 11, "stock_y" = 14)
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.165 SECONDS
+	aim_movement_speed = 5
 
 	fire_delay = 0.165 SECONDS
 	damage_falloff_mult = 0.25
@@ -726,6 +735,7 @@
 	starting_attachment_types = list(/obj/item/attachable/stock/rifle/irremoveable)
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.3 SECONDS
+	aim_movement_speed = 5
 
 	fire_delay = 0.3 SECONDS
 	burst_amount = 5
@@ -966,6 +976,7 @@
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 15, "stock_x" = 22, "stock_y" = 12)
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.01 SECONDS
+	aim_movement_speed = 1
 
 	fire_delay = 0.5 SECONDS
 	burst_amount = 3
