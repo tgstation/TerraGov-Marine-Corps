@@ -1,4 +1,4 @@
-#define WARHEAD_FLY_TIME 50
+#define WARHEAD_FLY_TIME 5 SECONDS
 #define WARHEAD_FALLING_SOUND_RANGE 15
 
 /obj/structure/orbital_cannon
@@ -161,6 +161,14 @@
 
 	update_icon()
 
+/// Handles the playing of the Orbital Bombardment incoming sound, usually a spiraling whistle noise but can be overridden.
+/obj/structure/orbital_cannon/proc/ob_pre_impact_sound(target, var/ob_sound = 'sound/effects/OB_incoming.ogg')
+	flick("OBC_firing",src)
+	playsound(loc, 'sound/effects/obfire.ogg', 100, FALSE, 20, 4)
+	for(var/i in hearers(WARHEAD_FALLING_SOUND_RANGE,target))
+		var/mob/M = i
+		M.playsound_local(target, ob_sound, falloff = 2)
+
 /obj/structure/orbital_cannon/proc/fire_ob_cannon(turf/T, mob/user)
 	set waitfor = 0
 
@@ -170,12 +178,9 @@
 	if(!chambered_tray || !loaded_tray || !tray || !tray.warhead)
 		return
 
-	flick("OBC_firing",src)
+
 
 	ob_cannon_busy = TRUE
-
-	playsound(loc, 'sound/weapons/guns/fire/tank_smokelauncher.ogg', 70, 1)
-	playsound(loc, 'sound/weapons/guns/fire/pred_plasma_shot.ogg', 70, 1)
 
 	var/inaccurate_fuel = 0
 
@@ -190,13 +195,14 @@
 			inaccurate_fuel = abs(GLOB.marine_main_ship?.ob_type_fuel_requirements[4] - tray.fuel_amt)
 
 	var/turf/target = locate(T.x + inaccurate_fuel * pick(-1,1),T.y + inaccurate_fuel * pick(-1,1),T.z)
-	for(var/i in hearers(WARHEAD_FALLING_SOUND_RANGE,target))
-		var/mob/M = i
-		M.playsound_local(target, 'sound/effects/OB_incoming.ogg', falloff = 2)
+
+	playsound(target, 'sound/effects/OB_warning_announce.ogg', 100, FALSE, 20, 4) //the ground
+	playsound_z(loc.z, 'sound/effects/OB_warning_announce.ogg', 100) //the ship
 
 	notify_ghosts("<b>[user]</b> has just fired \the <b>[src]</b> !", source = T, action = NOTIFY_JUMP)
 
-	addtimer(CALLBACK(src, /obj/structure/orbital_cannon.proc/impact_callback, target, inaccurate_fuel), WARHEAD_FLY_TIME * (GLOB.current_orbit/3))
+	addtimer(CALLBACK(src, /obj/structure/orbital_cannon/proc/ob_pre_impact_sound, target), 5 SECONDS + (WARHEAD_FLY_TIME * (GLOB.current_orbit/3)))
+	addtimer(CALLBACK(src, /obj/structure/orbital_cannon.proc/impact_callback, target, inaccurate_fuel), 10 SECONDS + (WARHEAD_FLY_TIME * (GLOB.current_orbit/3)))
 
 /obj/structure/orbital_cannon/proc/impact_callback(target,inaccurate_fuel)
 	tray.warhead.warhead_impact(target, inaccurate_fuel)

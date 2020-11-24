@@ -487,8 +487,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 		message_admins("[ADMIN_TPMONTY(usr)] fired an orbital bombardment for squad [current_squad] in [ADMIN_VERBOSEJMP(T)].")
 	visible_message("<span class='boldnotice'>Orbital bombardment request accepted. Orbital cannons are now calibrating.</span>")
 	send_to_squads("Initializing fire coordinates...")
-	if(selected_target)
-		playsound(selected_target.loc,'sound/effects/alert.ogg', 50, 1, 20)  //Placeholder
+
 	addtimer(CALLBACK(src, .proc/send_to_squads, "Transmitting beacon feed..."), 1.5 SECONDS)
 	addtimer(CALLBACK(src, .proc/send_to_squads, "Calibrating trajectory window..."), 3 SECONDS)
 	addtimer(CALLBACK(src, .proc/do_fire_bombard, T, usr), 4.1 SECONDS)
