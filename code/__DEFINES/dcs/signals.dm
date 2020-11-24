@@ -18,6 +18,9 @@
 #define COMSIG_GLOB_NUKE_EXPLODED "!nuke_exploded"
 #define COMSIG_GLOB_NUKE_DIFFUSED "!nuke_diffused"
 
+/// from /obj/machinery/setAnchored(): (machine, anchoredstate)
+#define COMSIG_GLOB_MACHINERY_ANCHORED_CHANGE "!machinery_anchored_change"
+
 /// called after an explosion happened : (epicenter, devastation_range, heavy_impact_range, light_impact_range, took, orig_dev_range, orig_heavy_range, orig_light_range)
 #define COMSIG_GLOB_EXPLOSION "!explosion"
 
@@ -28,6 +31,8 @@
 
 /// Sent when a marine dropship enters transit level
 #define COMSIG_GLOB_DROPSHIP_TRANSIT "!dropship_transit"
+///Sent when xenos launch a hijacked dropship
+#define COMSIG_GLOB_DROPSHIP_HIJACKED "!dropship_hijacked"
 
 //////////////////////////////////////////////////////////////////
 
@@ -122,6 +127,8 @@
 #define COMSIG_ATOM_INITIALIZED_ON "atom_initialized_on"		//called from atom/Initialize() of target: (atom/target)
 #define COMSIG_ATOM_ORBIT_BEGIN "atom_orbit_begin"				//called when an atom starts orbiting another atom: (atom)
 #define COMSIG_ATOM_ORBIT_STOP "atom_orbit_stop"				//called when an atom stops orbiting another atom: (atom)
+#define COMSIG_ATOM_ACIDSPRAY_ACT "atom_acidspray_act"			//from base of atom/acidspray_act():
+
 
 ///from base of atom/set_opacity(): (new_opacity)
 #define COMSIG_ATOM_SET_OPACITY "atom_set_opacity"
@@ -136,6 +143,7 @@
 #define COMSIG_ATOM_SET_LIGHT_ON "atom_set_light_on"
 ///Called right before the atom changes the value of light_flags to a different one, from base atom/set_light_flags(): (new_value)
 #define COMSIG_ATOM_SET_LIGHT_FLAGS "atom_set_light_flags"
+
 
 // /atom/movable signals
 #define COMSIG_MOVABLE_PRE_MOVE "movable_pre_move"					//from base of atom/movable/Moved(): (/atom)
@@ -180,6 +188,14 @@
 #define COMSIG_OBJ_HIDE	"obj_hide"
 #define COMSIG_OBJ_ATTACK_ALIEN "obj_attack_alien"				//from obj/attack_alien(): (/mob/living/carbon/xenomorph)
 	#define COMPONENT_NO_ATTACK_ALIEN (1<<0)
+
+#define COMSIG_MACHINERY_POWERED "machinery_powered"			/// from /obj/machinery/proc/powered: ()
+	#define COMPONENT_POWERED (1<<0)
+#define COMSIG_MACHINERY_USE_POWER "machinery_use_power"		/// from /obj/machinery/proc/use_power: (amount, chan, list/power_sources)
+	#define COMPONENT_POWER_USED (1<<0)
+
+#define COMSIG_PORTGEN_POWER_TOGGLE "portgen_power_toggle"		/// from /obj/machinery/power/port_gen/proc/TogglePower: ()
+#define COMSIG_PORTGEN_PROCESS "portgen_process"				/// from /obj/machinery/power/port_gen/process: ()
 
 // /obj/item signals
 #define COMSIG_ITEM_ATTACK "item_attack"						//from base of obj/item/attack(): (/mob/living/target, /mob/living/user)
@@ -285,6 +301,7 @@
 	#define COMPONENT_NO_STUN (1<<0)			//For all of them
 
 #define COMSIG_LIVING_ADD_VENTCRAWL "living_add_ventcrawl"
+#define COMSIG_LIVING_WEEDS_ADJACENT_REMOVED "living_weeds_adjacent_removed"	///from obj/effect/alien/weeds/Destroy()
 
 //mob/living/carbon signals
 #define COMSIG_CARBON_DEVOURED_BY_XENO "carbon_devoured_by_xeno"
@@ -312,8 +329,6 @@
 #define COMSIG_WARRIOR_USED_GRAB "warrior_used_grab"
 #define COMSIG_WARRIOR_NECKGRAB "warrior_neckgrab"
 	#define COMSIG_WARRIOR_CANT_NECKGRAB 1
-#define COMSIG_WARRIOR_CTRL_CLICK_ATOM "warrior_ctrl_click_atom"
-	#define COMSIG_WARRIOR_USED_LUNGE 1
 
 #define COMSIG_XENOMORPH_PLASMA_REGEN "xenomorph_plasma_regen"
 
@@ -359,6 +374,8 @@
 #define COMSIG_XENOMORPH_EVOLVED "xenomorph_evolved"
 #define COMSIG_XENOMORPH_DEEVOLVED "xenomorph_deevolved"
 #define COMSIG_XENOMORPH_WATCHXENO "xenomorph_watchxeno"
+
+#define COMSIG_XENOMORPH_CORE_RETURN "xenomorph_core_return"
 
 #define COMSIG_XENO_OBJ_THROW_HIT "xeno_obj_throw_hit"				///from [/mob/living/carbon/xenomorph/throw_impact]: (obj/target, speed)
 #define COMSIG_XENO_NONE_THROW_HIT "xeno_none_throw_hit"			///from [/mob/living/carbon/xenomorph/throw_impact]: ()
@@ -468,6 +485,8 @@
 #define COMSIG_XENOABILITY_REGENERATE_SKIN "xenoability_regenerate_skin"
 
 #define COMSIG_XENOABILITY_EMIT_NEUROGAS "xenoability_emit_neurogas"
+#define COMSIG_XENOABILITY_SELECT_REAGENT "xenoability_select_reagent"
+#define COMSIG_XENOABILITY_REAGENT_SLASH "xenoability_reagent_slash"
 
 #define COMSIG_XENOABILITY_SALVAGE_PLASMA "xenoability_salvage_plasma"
 

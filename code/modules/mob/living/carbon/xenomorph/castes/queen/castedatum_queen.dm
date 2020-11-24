@@ -64,6 +64,7 @@
 		/datum/action/xeno_action/psychic_whisper,
 		/datum/action/xeno_action/shift_spits,
 		/datum/action/xeno_action/activable/xeno_spit,
+		/datum/action/xeno_action/activable/psychic_cure/acidic_salve/hivelord,
 		/datum/action/xeno_action/toggle_pheromones,
 		/datum/action/xeno_action/toggle_queen_zoom,
 		/datum/action/xeno_action/watch_xeno,

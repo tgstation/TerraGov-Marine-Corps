@@ -68,6 +68,7 @@
 
 
 /turf/Initialize(mapload)
+	SHOULD_CALL_PARENT(FALSE) // anti laggies
 	if(flags_atom & INITIALIZED)
 		stack_trace("Warning: [src]([type]) initialized multiple times!")
 	ENABLE_BITFIELD(flags_atom, INITIALIZED)
@@ -547,7 +548,7 @@
 				if(P.chair_state != DROPSHIP_CHAIR_BROKEN)
 					has_obstacle = TRUE
 					break
-			else
+			else if(istype(O, /obj/structure/bed/nest)) //We don't care about other beds/chairs/whatever the fuck.
 				has_obstacle = TRUE
 				break
 		if(istype(O, /obj/effect/alien/hivemindcore))

@@ -97,3 +97,17 @@
 	modular_id = "broperations"
 	template_width = 29
 	template_height = 25
+
+/datum/map_template/modular/end_of_round/original
+	name = "Original EORG"
+	mappath = "_maps/modularmaps/EORG/original.dmm"
+	modular_id = "EORG"
+	template_width = 46
+	template_height = 46
+
+/datum/map_template/modular/end_of_round/de_dust2
+	name = "de dust 2"
+	mappath = "_maps/modularmaps/EORG/de_dust2.dmm"
+	modular_id = "EORG"
+	template_width = 46
+	template_height = 46

@@ -28,7 +28,6 @@
 	evolves_to = list(
 		/mob/living/carbon/xenomorph/drone,
 		/mob/living/carbon/xenomorph/runner,
-		/mob/living/carbon/xenomorph/panther,
 		/mob/living/carbon/xenomorph/sentinel,
 		/mob/living/carbon/xenomorph/defender,
 	)

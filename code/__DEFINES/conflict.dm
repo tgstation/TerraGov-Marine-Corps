@@ -118,6 +118,9 @@
 #define ENERGY_OVERCHARGE_AMMO_COST		80
 #define ENERGY_OVERCHARGE_FIRE_DELAY		10
 
+//Define stagger damage multipliers
+#define STAGGER_DAMAGE_MULTIPLIER		0.5 //-50% damage dealt by the staggered target after all other mods.
+
 //Define smoke effects
 #define SMOKE_COUGH			(1<<0)
 #define SMOKE_GASP			(1<<1)
@@ -131,8 +134,9 @@
 #define SMOKE_XENO			(1<<9)
 #define SMOKE_XENO_ACID		(1<<10)
 #define SMOKE_XENO_NEURO	(1<<11)
-#define SMOKE_CHEM			(1<<12)
-
+#define SMOKE_XENO_HEMODILE (1<<12)
+#define SMOKE_XENO_TRANSVITOX (1<<13)
+#define SMOKE_CHEM			(1<<14)
 
 //Incapacitated
 #define INCAPACITATED_IGNORE_RESTRAINED (1<<0)

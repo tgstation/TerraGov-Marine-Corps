@@ -301,7 +301,7 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 		addtimer(CALLBACK(src, .proc/remove_fog), FOG_DELAY_INTERVAL + SSticker.round_start_time + rand(-5 MINUTES, 5 MINUTES))
 
 	if(flags_round_type & MODE_LZ_SHUTTERS)
-		addtimer(CALLBACK(GLOBAL_PROC, .proc/send_global_signal, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE), SSticker.round_start_time + 40 MINUTES)
+		addtimer(CALLBACK(GLOBAL_PROC, .proc/send_global_signal, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE), SSticker.round_start_time + 30 MINUTES)
 			//Called late because there used to be shutters opened earlier. To re-add them just copy the logic.
 
 	if(flags_round_type & MODE_XENO_SPAWN_PROTECT)
@@ -434,8 +434,6 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 		dat += "[GLOB.round_statistics.sentinel_neurotoxin_stings] number of times Sentinels stung."
 	if(GLOB.round_statistics.drone_salvage_plasma)
 		dat += "[GLOB.round_statistics.drone_salvage_plasma] number of times Drones salvaged corpses."
-	if(GLOB.round_statistics.panther_neurotoxin_stings)
-		dat += "[GLOB.round_statistics.panther_neurotoxin_stings] number of times Panthers stung."
 	if(GLOB.round_statistics.defiler_defiler_stings)
 		dat += "[GLOB.round_statistics.defiler_defiler_stings] number of times Defilers stung."
 	if(GLOB.round_statistics.defiler_neurogas_uses)

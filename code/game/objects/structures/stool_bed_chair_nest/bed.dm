@@ -16,7 +16,7 @@
 	buckle_lying = 90
 	throwpass = TRUE
 	resistance_flags = XENO_DAMAGEABLE
-	max_integrity = 100
+	max_integrity = 40
 	resistance_flags = XENO_DAMAGEABLE
 	hit_sound = 'sound/effects/metalhit.ogg'
 	var/buildstacktype = /obj/item/stack/sheet/metal
