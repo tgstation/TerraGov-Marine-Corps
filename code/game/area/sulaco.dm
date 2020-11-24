@@ -231,6 +231,10 @@
 	name = "Sulaco Atmospherics"
 	icon_state = "blue-red2"
 
+/area/sulaco/hangar/droppod
+	name = "Sulaco Drop pod bay"
+	icon_state = "storage"
+
 /area/sulaco/command/eva
 	name = "Sulaco EVA Storage"
 	icon_state = "storage"

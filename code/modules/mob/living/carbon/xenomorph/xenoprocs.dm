@@ -20,8 +20,10 @@
 		if(!X.client)
 			xenoinfo += " <i>(SSD)</i>"
 
+		xenoinfo += " <b><font color=red>Health: ([X.health]/[X.maxHealth])</font></b>"
+
 		var/area/A = get_area(X)
-		xenoinfo += " <b><font color=green>([A ? A.name : null])</b></td></tr>"
+		xenoinfo += " <b><font color=green>([A ? A.name : null], X: [X.x], Y: [X.y])</b></td></tr>"
 
 	return xenoinfo
 
@@ -76,10 +78,12 @@
 	xenoinfo += xeno_status_output(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/larva], can_overwatch, TRUE, user)
 
 	var/hivemind_text = length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/hivemind]) > 0 ? "Active" : "Inactive"
+	var/xeno_tier_three_cap = CEILING(max(length(hive.xenos_by_tier[XENO_TIER_THREE]),(length(hive.xenos_by_tier[XENO_TIER_ZERO])+length(hive.xenos_by_tier[XENO_TIER_ONE])+length(hive.xenos_by_tier[XENO_TIER_TWO]))/3),1)
+	var/xeno_tier_two_cap = max(length(hive.xenos_by_tier[XENO_TIER_TWO]),length(hive.xenos_by_tier[XENO_TIER_ZERO])+length(hive.xenos_by_tier[XENO_TIER_ONE])-length(hive.xenos_by_tier[XENO_TIER_THREE]))
 
 	dat += "<b>Total Living Sisters: [hive.get_total_xeno_number()]</b><BR>"
-	dat += "<b>Tier 3: [length(hive.xenos_by_tier[XENO_TIER_THREE])] Sisters</b>[tier3counts]<BR>"
-	dat += "<b>Tier 2: [length(hive.xenos_by_tier[XENO_TIER_TWO])] Sisters</b>[tier2counts]<BR>"
+	dat += "<b>Tier 3: ([length(hive.xenos_by_tier[XENO_TIER_THREE])]/[xeno_tier_three_cap]) Sisters</b>[tier3counts]<BR>"
+	dat += "<b>Tier 2: ([length(hive.xenos_by_tier[XENO_TIER_TWO])]/[xeno_tier_two_cap]) Sisters</b>[tier2counts]<BR>"
 	dat += "<b>Tier 1: [length(hive.xenos_by_tier[XENO_TIER_ONE])] Sisters</b>[tier1counts]<BR>"
 	dat += "<b>Larvas: [length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/larva])] Sisters<BR>"
 	dat += "<b>Hivemind: [hivemind_text]<BR>"
@@ -89,7 +93,7 @@
 	dat += "<table cellspacing=4>"
 	dat += xenoinfo
 	dat += "</table>"
-	var/datum/browser/popup = new(user, "roundstatus", "<div align='center'>Hive Status</div>", 600, 600)
+	var/datum/browser/popup = new(user, "roundstatus", "<div align='center'>Hive Status</div>", 650, 650)
 	popup.set_content(dat)
 	popup.open(FALSE)
 
@@ -464,7 +468,7 @@
 /obj/structure/acid_spray_act(mob/living/carbon/xenomorph/X)
 	if(!is_type_in_typecache(src, GLOB.acid_spray_hit))
 		return TRUE // normal density flag
-	take_damage(45 + SPRAY_STRUCTURE_UPGRADE_BONUS(X), "acid", "acid")
+	take_damage(X.xeno_caste.acid_spray_structure_damage, "acid", "acid")
 	return TRUE // normal density flag
 
 /obj/structure/razorwire/acid_spray_act(mob/living/carbon/xenomorph/X)
@@ -472,7 +476,7 @@
 	return FALSE // not normal density flag
 
 /obj/vehicle/multitile/root/cm_armored/acid_spray_act(mob/living/carbon/xenomorph/X)
-	take_damage_type(45 + SPRAY_STRUCTURE_UPGRADE_BONUS(X), "acid", src)
+	take_damage_type(X.xeno_caste.acid_spray_structure_damage, "acid", src)
 	healthcheck()
 	return TRUE
 
@@ -489,8 +493,8 @@
 		GLOB.round_statistics.praetorian_spray_direct_hits++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "praetorian_spray_direct_hits")
 
-	var/armor_block = run_armor_check("chest", "acid")
-	var/damage = rand(30,40) + SPRAY_MOB_UPGRADE_BONUS(X)
+	var/armor_block = run_armor_check(BODY_ZONE_CHEST, "acid")
+	var/damage = X.xeno_caste.acid_spray_damage_on_hit
 	apply_acid_spray_damage(damage, armor_block)
 	to_chat(src, "<span class='xenodanger'>\The [X] showers you in corrosive acid!</span>")
 
@@ -499,7 +503,7 @@
 	UPDATEHEALTH(src)
 
 /mob/living/carbon/human/apply_acid_spray_damage(damage, armor_block)
-	take_overall_damage(0, damage, armor_block)
+	take_overall_damage_armored(damage, BURN, "acid")
 	UPDATEHEALTH(src)
 	emote("scream")
 	Paralyze(20)
