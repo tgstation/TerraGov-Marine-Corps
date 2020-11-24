@@ -3,6 +3,7 @@
 
 #ifdef UNIT_TESTS
 #include "component_tests.dm"
+#include "initialize_sanity.dm"
 #include "keybinding_init.dm"
 #include "spawn_humans.dm"
 #include "spawn_xenos.dm"

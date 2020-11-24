@@ -186,7 +186,7 @@ obj/item/alienjar
 
 	if(isliving(A)) // You Shall Not Pass!
 		var/mob/living/M = A
-		if(!M.lying_angle && !ismonkey(M) && !istype(M, /mob/living/simple_animal/mouse) && !istype(M, /mob/living/carbon/xenomorph/larva) && !istype(M, /mob/living/carbon/xenomorph/runner) && !istype(M, /mob/living/carbon/xenomorph/panther))  //If your not laying down, or a small creature, no pass.
+		if(!M.lying_angle && !ismonkey(M) && !istype(M, /mob/living/simple_animal/mouse) && !istype(M, /mob/living/carbon/xenomorph/larva) && !istype(M, /mob/living/carbon/xenomorph/runner))  //If your not laying down, or a small creature, no pass.
 			return 0
 	return ..()
 

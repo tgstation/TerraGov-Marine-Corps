@@ -171,7 +171,7 @@
 	var/status_cover_modifier = 1
 
 	if(affected.IsSleeping() || affected.IsUnconscious() || affected.IsAdminSleeping() || affected.IsParalyzed()) //We don't do jack if we're literally KOed/sleeping/paralyzed.
-		return FALSE
+		return incoming_damage
 
 	if(affected.IsStun() || affected.IsKnockdown()) //Halve shield cover if we're paralyzed or stunned
 		status_cover_modifier *= 0.5

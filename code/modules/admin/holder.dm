@@ -11,8 +11,12 @@
 
 	var/href_token
 
-	var/deadmined
+	///Whether this admin is currently deadminned or not
+	var/deadmined = FALSE
+	///Whether this admin has ghost interaction enabled
 	var/ghost_interact = FALSE
+	///Whether this admin is invisiminning
+	var/invisimined = FALSE
 
 
 /datum/admins/New(datum/admin_rank/R, ckey, protected)

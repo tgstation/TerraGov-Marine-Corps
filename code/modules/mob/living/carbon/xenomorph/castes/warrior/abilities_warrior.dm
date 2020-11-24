@@ -64,23 +64,16 @@
 	if(!can_use_ability(L, FALSE, XACT_IGNORE_DEAD_TARGET))
 		return COMSIG_WARRIOR_CANT_NECKGRAB
 
-/datum/action/xeno_action/activable/lunge/proc/lunge(mob/living/owner, atom/A)
-	SIGNAL_HANDLER
-	if(can_use_ability(A, FALSE, XACT_IGNORE_SELECTED_ABILITY))
-		INVOKE_ASYNC(src, .proc/use_ability, A)
-		return COMSIG_WARRIOR_USED_LUNGE
 
 /datum/action/xeno_action/activable/lunge/give_action(mob/living/L)
 	. = ..()
 	RegisterSignal(owner, COMSIG_WARRIOR_USED_GRAB, .proc/add_cooldown)
 	RegisterSignal(owner, COMSIG_WARRIOR_NECKGRAB, .proc/neck_grab)
-	RegisterSignal(owner, COMSIG_WARRIOR_CTRL_CLICK_ATOM, .proc/lunge)
 
 
 /datum/action/xeno_action/activable/lunge/remove_action(mob/living/L)
 	UnregisterSignal(owner, COMSIG_WARRIOR_USED_GRAB)
 	UnregisterSignal(owner, COMSIG_WARRIOR_NECKGRAB)
-	UnregisterSignal(owner, COMSIG_WARRIOR_CTRL_CLICK_ATOM)
 	return ..()
 
 
@@ -133,10 +126,6 @@
 	add_cooldown()
 	return TRUE
 
-/mob/living/carbon/xenomorph/warrior/CtrlClickOn(atom/A)
-	if(SEND_SIGNAL(src, COMSIG_WARRIOR_CTRL_CLICK_ATOM, A) & COMSIG_WARRIOR_USED_LUNGE)
-		return
-	return ..()
 
 // ***************************************
 // *********** Fling

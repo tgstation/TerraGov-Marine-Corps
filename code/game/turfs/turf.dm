@@ -68,6 +68,7 @@
 
 
 /turf/Initialize(mapload)
+	SHOULD_CALL_PARENT(FALSE) // anti laggies
 	if(flags_atom & INITIALIZED)
 		stack_trace("Warning: [src]([type]) initialized multiple times!")
 	ENABLE_BITFIELD(flags_atom, INITIALIZED)
