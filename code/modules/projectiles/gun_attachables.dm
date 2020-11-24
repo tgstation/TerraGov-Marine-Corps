@@ -838,7 +838,7 @@ Defined in conflicts.dm of the #defines folder.
 
 
 /obj/item/attachable/stock/m16
-	name = "M16 Composite Stock"
+	name = "M16 composite stock"
 	desc = "A composite stock securely fit to the M16 platform. Disassembly required to remove, not recommended."
 	icon_state = "m16stock"
 	wield_delay_mod = 0.5 SECONDS
@@ -848,7 +848,7 @@ Defined in conflicts.dm of the #defines folder.
 
 
 /obj/item/attachable/stock/ak47
-	name = "AK-47 Wooden Stock"
+	name = "AK-47 wooden stock"
 	desc = "A metallic stock with a wooden paint coating, made to fit the AK-47 replica."
 	icon_state = "ak47stock"
 	wield_delay_mod = 0.4 SECONDS
@@ -893,7 +893,7 @@ Defined in conflicts.dm of the #defines folder.
 	flags_attach_features = NONE
 
 /obj/item/attachable/stock/sx16
-	name = "SX-16 Stock"
+	name = "\improper SX-16 stock"
 	desc = "The standard stock for the SX-16. Can be removed to make the gun smaller and easier to wield."
 	icon_state = "sx16stock"
 	wield_delay_mod = 0.4 SECONDS
@@ -904,7 +904,7 @@ Defined in conflicts.dm of the #defines folder.
 	movement_acc_penalty_mod = 0.1
 
 /obj/item/attachable/stock/tx15
-	name = "TX-15 Stock"
+	name = "\improper TX-15 stock"
 	desc = "The standard stock for the TX-15. Cannot be removed."
 	icon_state = "tx15stock"
 	wield_delay_mod = 0 SECONDS
@@ -1107,7 +1107,7 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/stock/t35stock
 	name = "\improper T-35 stock"
-	desc = "A non-standard heavy stock for the T-35 Shotgun. Less quick and more cumbersome than the standard issue stakeout, but reduces recoil and improves accuracy. Allegedly makes a pretty good club in a fight too."
+	desc = "A non-standard heavy stock for the T-35 shotgun. Less quick and more cumbersome than the standard issue stakeout, but reduces recoil and improves accuracy. Allegedly makes a pretty good club in a fight too."
 	slot = "stock"
 	wield_delay_mod = 0.4 SECONDS
 	icon_state = "t35stock"
@@ -1116,7 +1116,7 @@ Defined in conflicts.dm of the #defines folder.
 	scatter_mod = -20
 
 /obj/item/attachable/stock/t39stock
-	name = "\improper T-39 Stock"
+	name = "\improper T-39 stock"
 	desc = "A specialized stock for the T-35."
 	icon_state = "t39stock"
 	wield_delay_mod = 0 SECONDS
@@ -1226,7 +1226,7 @@ Defined in conflicts.dm of the #defines folder.
 	max_rounds = 2
 	max_range = 7
 	slot = "under"
-	fire_sound = 'sound/weapons/guns/fire/m92_attachable.ogg'
+	fire_sound = 'sound/weapons/guns/fire/underbarrel_grenadelauncher.ogg'
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_RELOADABLE|ATTACH_WEAPON
 	var/list/loaded_grenades = list() //list of grenade types loaded in the UGL
 	attachment_firing_delay = 21
@@ -1311,7 +1311,8 @@ Defined in conflicts.dm of the #defines folder.
 	slot = "under"
 	fire_sound = 'sound/weapons/guns/fire/flamethrower3.ogg'
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_RELOADABLE|ATTACH_WEAPON
-	attachment_firing_delay = 35
+	attachment_firing_delay = 25
+	COOLDOWN_DECLARE(last_fired)
 
 
 /obj/item/attachable/attached_gun/flamer/unremovable
@@ -1394,7 +1395,7 @@ Defined in conflicts.dm of the #defines folder.
 	if(get_dist(user,target) > max_range+3)
 		to_chat(user, "<span class='warning'>Too far to fire the attachment!</span>")
 		return
-	if(current_rounds)
+	if(current_rounds && COOLDOWN_CHECK(src, last_fired))
 		unleash_flame(target, user)
 
 
@@ -1404,11 +1405,17 @@ Defined in conflicts.dm of the #defines folder.
 	var/distance = 0
 	var/turf/prev_T
 	playsound(user, 'sound/weapons/guns/fire/flamethrower2.ogg', 50, 1)
+	var/fire_delay = attachment_firing_delay
+	if(!user.skills.getRating("firearms")) //no training in any firearms
+		fire_delay += 0.3 SECONDS //untrained humans fire more slowly.
+	COOLDOWN_START(src, last_fired, fire_delay)
 	for(var/turf/T in turfs)
 		if(T == user.loc)
 			prev_T = T
 			continue
 		if(!current_rounds)
+			break
+		if(T.density || isspaceturf(T))
 			break
 		if(distance >= max_range)
 			break

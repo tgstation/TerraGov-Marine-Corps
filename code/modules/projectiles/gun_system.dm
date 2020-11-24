@@ -26,7 +26,7 @@
 	var/fire_sound 		= 'sound/weapons/guns/fire/gunshot.ogg'
 	var/dry_fire_sound	= 'sound/weapons/guns/fire/empty.ogg'
 	var/unload_sound 	= 'sound/weapons/flipblade.ogg'
-	var/empty_sound 	= 'sound/weapons/guns/misc/smg_empty_alarm.ogg'
+	var/empty_sound 	= 'sound/weapons/guns/misc/empty_alarm.ogg'
 	var/reload_sound 	= null					//We don't want these for guns that don't have them.
 	var/cocked_sound 	= null
 	var/cock_cooldown	= 0						//world.time value, to prevent COCK COCK COCK COCK
@@ -678,9 +678,11 @@ and you're good to go.
 		. = ..()
 		if(!.)
 			return
+
 		if(!active_attachable && gun_firemode == GUN_FIREMODE_BURSTFIRE && burst_amount > 1)
 			Fire(M, user)
 			return TRUE
+
 		DISABLE_BITFIELD(flags_gun_features, GUN_BURST_FIRING)
 		//Point blanking simulates firing the bullet proper but without actually firing it.
 		var/obj/projectile/projectile_to_fire = load_into_chamber(user)

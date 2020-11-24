@@ -2,8 +2,8 @@
 //They are built in stages, and only engineers have access to them.
 
 /obj/item/ammo_magazine/sentry
-	name = "M30 box magazine (10x28mm Caseless)"
-	desc = "A box of 500 10x28mm caseless rounds for the UA 571-C Sentry Gun. Just feed it into the sentry gun's ammo port when its ammo is depleted."
+	name = "\improper M30 box magazine (10x28mm Caseless)"
+	desc = "A box of 500 10x28mm caseless rounds for the UA 571-C sentry gun. Just feed it into the sentry gun's ammo port when its ammo is depleted."
 	w_class = WEIGHT_CLASS_BULKY
 	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "ammo_can"
@@ -217,7 +217,7 @@
 
 /obj/machinery/marine_turret
 	name = "\improper UA 571-C sentry gun"
-	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an M30 Autocannon and a 500-round drum magazine."
+	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with a M30 autocannon and a 500-round drum magazine."
 	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "sentry_base"
 	anchored = TRUE
@@ -234,8 +234,8 @@
 	var/max_burst = 6
 	var/min_burst = 2
 	var/atom/target = null
-	obj_integrity = 300
-	max_integrity = 300
+	obj_integrity = 150
+	max_integrity = 150
 	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 100, "rad" = 0, "fire" = 80, "acid" = 50)
 	machine_stat = 0 //Used just like mob.stat
 	var/datum/effect_system/spark_spread/spark_system //The spark system, used for generating... sparks?
@@ -769,7 +769,7 @@
 		cell.charge = 0
 		sentry_alert(SENTRY_ALERT_BATTERY)
 		visible_message("<span class='warning'>[src] emits a low power warning and immediately shuts down!</span>")
-		playsound(loc, 'sound/weapons/guns/misc/smg_empty_alarm.ogg', 50, 1)
+		playsound(loc, 'sound/weapons/guns/misc/empty_alarm.ogg', 50, 1)
 		set_light(0)
 		update_icon()
 		return FALSE
@@ -943,7 +943,7 @@
 	proj_to_fire.projectile_iff = iff_signal
 
 	//Shoot at the thing
-	playsound(loc, 'sound/weapons/guns/fire/rifle.ogg', 75, TRUE)
+	playsound(loc, 'sound/weapons/guns/fire/smg_heavy.ogg', 75, TRUE)
 
 	proj_to_fire.fire_at(target, src, null, ammo.max_range, ammo.shell_speed)
 	if(target)
@@ -952,7 +952,7 @@
 	rounds--
 	if(rounds == 0)
 		visible_message("<span class='warning'>The [name] beeps steadily and its ammo light blinks red.</span>")
-		playsound(loc, 'sound/weapons/guns/misc/smg_empty_alarm.ogg', 50, FALSE)
+		playsound(loc, 'sound/weapons/guns/misc/empty_alarm.ogg', 50, FALSE)
 		if(CHECK_BITFIELD(turret_flags, TURRET_ALERTS))
 			sentry_alert(SENTRY_ALERT_AMMO)
 
@@ -1173,7 +1173,7 @@
 	radio.talk_into(src, "[notice]", FREQ_COMMON)
 
 /obj/machinery/marine_turret/mini
-	name = "\improper UA-580 Point Defense Sentry"
+	name = "\improper UA-580 point defense sentry"
 	desc = "A deployable, automated turret with AI targeting capabilities. This is a lightweight portable model meant for rapid deployment and point defense. Armed with an light, high velocity machine gun and a 500-round drum magazine."
 	icon = 'icons/Marine/miniturret.dmi'
 	icon_state = "minisentry_on"
@@ -1183,8 +1183,8 @@
 	burst_size = 3
 	min_burst = 2
 	max_burst = 5
-	obj_integrity = 200
-	max_integrity = 200
+	obj_integrity = 100
+	max_integrity = 100
 	rounds = 500
 	rounds_max = 500
 	knockdown_threshold = 100 //lighter, not as well secured.
@@ -1261,7 +1261,7 @@
 
 
 /obj/item/marine_turret/mini
-	name = "\improper UA-580 Point Defense Sentry (Folded)"
+	name = "\improper UA-580 point defense sentry (folded)"
 	desc = "A deployable, automated turret with AI targeting capabilities. This is a lightweight portable model meant for rapid deployment and point defense. Armed with an light, high velocity machine gun and a 500-round drum magazine. It is currently folded up."
 	icon = 'icons/Marine/miniturret.dmi'
 	icon_state = "minisentry_packed"
@@ -1296,8 +1296,8 @@
 		qdel(src)
 
 /obj/item/ammo_magazine/minisentry
-	name = "M30 box magazine (10x20mm Caseless)"
-	desc = "A box of 500 10x20mm caseless rounds for the UA-580 Point Defense Sentry. Just feed it into the sentry gun's ammo port when its ammo is depleted."
+	name = "\improper M30 box magazine (10x20mm Caseless)"
+	desc = "A box of 500 10x20mm caseless rounds for the UA-580 point defense sentry. Just feed it into the sentry gun's ammo port when its ammo is depleted."
 	w_class = WEIGHT_CLASS_NORMAL
 	icon_state = "ua580"
 	flags_magazine = NONE //can't be refilled or emptied by hand

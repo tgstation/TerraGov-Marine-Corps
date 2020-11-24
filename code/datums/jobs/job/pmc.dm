@@ -69,10 +69,10 @@
 	head = /obj/item/clothing/head/helmet/marine/veteran/PMC/gunner
 	mask = /obj/item/clothing/mask/gas/PMC
 	glasses = /obj/item/clothing/glasses/night/m56_goggles
-	suit_store = /obj/item/weapon/gun/smartgun
+	suit_store = /obj/item/weapon/gun/rifle/standard_smartmachinegun/pmc
 	r_store = /obj/item/storage/pouch/general/large
 	l_store = /obj/item/storage/pouch/firstaid/full
-	back = /obj/item/smartgun_powerpack/snow
+	back = /obj/item/storage/backpack/lightpack
 
 
 /datum/outfit/job/pmc/gunner/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -82,6 +82,15 @@
 
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_HEAD)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_HEAD)
+
+	H.equip_to_slot_or_del(new /obj/item/radio, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/attachable/magnetic_harness, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag/PMC, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/sliceable/meatbread, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_smartmachinegun, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_smartmachinegun, SLOT_IN_BACKPACK)
 
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/oxycodone, SLOT_IN_R_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/explosive/mine/pmc, SLOT_IN_R_POUCH)

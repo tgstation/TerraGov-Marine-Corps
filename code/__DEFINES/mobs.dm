@@ -424,9 +424,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define XENO_DEADHUMAN_DRAG_SLOWDOWN 2
 #define XENO_EXPLOSION_RESIST_3_MODIFIER	0.25 //multiplies top level explosive damage by this amount.
 
-#define SPIT_UPGRADE_BONUS(Xenomorph) (( max(0,Xenomorph.upgrade_as_number()) * 0.15 )) //increase damage by 15% per upgrade level; compensates for the loss of insane attack speeds.
-#define SPRAY_STRUCTURE_UPGRADE_BONUS(Xenomorph) (( Xenomorph.upgrade_as_number() * 8 ))
-#define SPRAY_MOB_UPGRADE_BONUS(Xenomorph) (( Xenomorph.upgrade_as_number() * 4 ))
+#define SPIT_UPGRADE_BONUS(Xenomorph) (( max(0,Xenomorph.upgrade_as_number()) * 0.15 )) //increase damage by 15% per upgrade level; compensates for the loss of insane attack speed.
 
 #define PLASMA_TRANSFER_AMOUNT 100
 #define PLASMA_SALVAGE_AMOUNT 400
@@ -504,8 +502,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CRUSHER_CHARGE_RAZORWIRE_MULTI	100
 #define CRUSHER_CHARGE_TANK_MULTI		100
 
-#define CRUSHER_STOMP_UPGRADE_BONUS(Xenomorph) (1 + ( (  Xenomorph.upgrade_as_number() ) * 0.05 ))
-
 //carrier defines
 #define CARRIER_HUGGER_THROW_SPEED 2
 #define CARRIER_HUGGER_THROW_DISTANCE 5
@@ -516,6 +512,9 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define DEFILER_STING_CHANNEL_TIME			1.5 SECONDS
 #define DEFILER_CLAW_AMOUNT					6.5
 #define DEFILER_STING_AMOUNT_RECURRING		10
+#define DEFILER_REAGENT_SLASH_COUNT			4
+#define DEFILER_REAGENT_SLASH_DELAY			1.2 SECONDS
+#define DEFILER_REAGENT_SLASH_U_AMOUNT		3
 
 //Drone defines
 #define DRONE_HEAL_RANGE		1

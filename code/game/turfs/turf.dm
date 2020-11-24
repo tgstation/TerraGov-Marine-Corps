@@ -547,7 +547,7 @@
 				if(P.chair_state != DROPSHIP_CHAIR_BROKEN)
 					has_obstacle = TRUE
 					break
-			else
+			else if(istype(O, /obj/structure/bed/nest)) //We don't care about other beds/chairs/whatever the fuck.
 				has_obstacle = TRUE
 				break
 		if(istype(O, /obj/effect/alien/hivemindcore))

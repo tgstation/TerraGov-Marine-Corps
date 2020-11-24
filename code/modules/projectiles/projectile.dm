@@ -666,9 +666,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			var/mob/living/carbon/human/shooter_human = shooter_living
 			BULLET_DEBUG("Traumatic shock (-[round(min(30, shooter_human.traumatic_shock * 0.2))]).")
 			. -= round(min(30, shooter_human.traumatic_shock * 0.2)) //Chance to hit declines with pain, being reduced by 0.2% per point of pain.
-			if(shooter_human.stagger)
-				BULLET_DEBUG("Stagged (-30).")
-				. -= 30 //Being staggered fucks your aim.
 			if(shooter_human.marksman_aura) //Accuracy bonus from active focus order: flat bonus + bonus per tile traveled
 				BULLET_DEBUG("marksman_aura (+[shooter_human.marksman_aura * 3] + [proj.distance_travelled * shooter_human.marksman_aura * 0.35]).")
 				. += shooter_human.marksman_aura * 3
@@ -794,6 +791,11 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				living_hard_armor = max(0, living_hard_armor - (living_hard_armor * penetration * 0.01)) //AP reduces a % of hard armor.
 			if(living_soft_armor)
 				living_soft_armor = max(0, living_soft_armor - penetration) //Flat removal.
+
+		if(iscarbon(proj.firer))
+			var/mob/living/carbon/shooter_carbon = proj.firer
+			if(shooter_carbon.stagger)
+				damage *= STAGGER_DAMAGE_MULTIPLIER //Since we hate RNG, stagger reduces damage by a % instead of reducing accuracy; consider it a 'glancing' hit due to being disoriented.
 
 		if(!living_hard_armor && !living_soft_armor) //Armor fully penetrated.
 			feedback_flags |= BULLET_FEEDBACK_PEN

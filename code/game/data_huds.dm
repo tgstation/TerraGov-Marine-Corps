@@ -111,7 +111,7 @@
 
 //medical hud used by ghosts
 /datum/atom_hud/medical/observer
-	hud_icons = list(HEALTH_HUD, XENO_EMBRYO_HUD, STATUS_HUD)
+	hud_icons = list(HEALTH_HUD, XENO_EMBRYO_HUD, XENO_REAGENT_HUD, STATUS_HUD)
 
 
 /datum/atom_hud/medical/pain
@@ -211,6 +211,19 @@
 	var/image/status_hud = hud_list[STATUS_HUD] //Status for med-hud.
 	var/image/infection_hud = hud_list[XENO_EMBRYO_HUD] //State of the xeno embryo.
 	var/image/simple_status_hud = hud_list[STATUS_HUD_SIMPLE] //Status for the naked eye.
+	var/image/xeno_reagent = hud_list[XENO_REAGENT_HUD] // Displays active xeno reagents
+
+	if(!reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile) && !reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox))
+		xeno_reagent.icon_state = ""
+
+	else if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile) && !reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox))
+		xeno_reagent.icon_state = "hemodile_icon"
+
+	else if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox) && !reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile))
+		xeno_reagent.icon_state = "transvitox_icon"
+
+	else if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile) && reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox))
+		xeno_reagent.icon_state = "hemodile_transvitox_icon"
 
 	if(species.species_flags & IS_SYNTHETIC)
 		simple_status_hud.icon_state = ""
@@ -323,6 +336,10 @@
 //infection status that appears on humans and monkeys, viewed by xenos only.
 /datum/atom_hud/xeno_infection
 	hud_icons = list(XENO_EMBRYO_HUD)
+
+//active reagent hud that apppears only for xenos
+/datum/atom_hud/xeno_reagents
+	hud_icons = list(XENO_REAGENT_HUD)
 
 //Xeno status hud, for xenos
 /datum/atom_hud/xeno
