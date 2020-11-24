@@ -2,6 +2,10 @@
 	name = "Return to Core"
 	action_icon_state = "lay_hivemind"
 	mechanics_text = "Teleport back to your core."
+
+/datum/action/xeno_action/return_to_core/action_activate()
+	SEND_SIGNAL(owner, COMSIG_XENOMORPH_CORE_RETURN)
+
 // ***************************************
 // *********** Reposition Core
 // ***************************************
@@ -14,9 +18,6 @@
 	cooldown_timer = 600 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	keybind_signal = COMSIG_XENOABILITY_REPOSITION_CORE
-
-/datum/action/xeno_action/return_to_core/action_activate()
-	SEND_SIGNAL(owner, COMSIG_XENOMORPH_CORE_RETURN)
 
 /datum/action/xeno_action/activable/reposition_core/on_cooldown_finish()
 	owner.playsound_local(owner.loc, 'sound/voice/alien_drool1.ogg', 50, TRUE)
@@ -33,14 +34,19 @@
 	var/mob/living/carbon/xenomorph/hivemind/X = owner
 	var/turf/T = get_turf(target)
 
-	if(!istype(X) || !istype(T))
+	if(!istype(T))
+		if(!silent)
+			to_chat(owner, "<span class='xenodanger'>We can't transfer our core here!</span>")
 		return FALSE
 
 	if(!X.Adjacent(T))
-		to_chat(owner, "<span class='xenodanger'>We can only reposition to a space adjacent to us!</span>")
+		if(!silent)
+			to_chat(owner, "<span class='xenodanger'>We can only reposition to a space adjacent to us!</span>")
 		return FALSE
 
 	if(!check_build_location(T, X))
+		if(!silent)
+			to_chat(owner, "<span class='xenodanger'>We can't transfer our core here!</span>")
 		return FALSE
 
 /datum/action/xeno_action/activable/reposition_core/use_ability(atom/A)
@@ -65,6 +71,12 @@
 	core.forceMove(get_turf(T)) //Move the core
 	playsound(core.loc, "alien_resin_build", 50)
 	core.obj_integrity = 1 //Reset the core's health to 1; travelling is hard, exhausting work!
+
+	if(!CHECK_BITFIELD(core.datum_flags, DF_ISPROCESSING)) //Start processing if we haven't already because we just lost a bunch of health
+		START_PROCESSING(SSslowprocess, core)
+
+	X.update_core() //Update the core
+
 	to_chat(X, "<span class='xenodanger'>We succeed in transferring our consciousness to a new neural core!</span>")
 
 	add_cooldown()
@@ -115,7 +127,7 @@
 
 /datum/action/xeno_action/activable/mind_wrack/on_cooldown_finish()
 	owner.playsound_local(owner, 'sound/effects/ghost2.ogg', 25, TRUE)
-	to_chat(owner, "<span class='xenonotice'>We regain the strength to assault the minds of our enemies.</span>")
+	to_chat(owner, "<span class='xenodanger'>We regain the strength to assault the minds of our enemies.</span>")
 	return ..()
 
 /datum/action/xeno_action/activable/mind_wrack/can_use_ability(atom/target, silent = FALSE, override_flags)
@@ -125,31 +137,33 @@
 	if(QDELETED(target))
 		return FALSE
 
-	var/mob/living/L = target
+	var/mob/living/victim = target
 	var/mob/living/carbon/xenomorph/hivemind/X = owner
 
-	var/distance = get_dist(owner, L)
-
 	if(!isliving(target))
-		to_chat(X, "<span class='xenowarning'>Our mind cannot interface with such an entity!</spam>")
+		if(!silent)
+			to_chat(X, "<span class='xenowarning'>Our mind cannot interface with such an entity!</spam>")
 		return FALSE
 
-	if(isxeno(L))
-		var/mob/living/carbon/xenomorph/alien = L
-		if(alien.hivenumber == X.hivenumber)
-			to_chat(X, "<span class='xenonotice'>We would not assail the minds of our sisters!</span>")
+	if(isxeno(victim))
+		var/mob/living/carbon/xenomorph/alien = victim
+		if(X.issamexenohive(alien))
+			if(!silent)
+				to_chat(X, "<span class='xenonotice'>We would not assail the minds of our sisters!</span>")
 			return FALSE
 
-	if(distance > HIVEMIND_MIND_WRACK_MAX_RANGE)
-		to_chat(X, "<span class='xenowarning'>They are too far for us to reach their minds! The target must be [distance - HIVEMIND_MIND_WRACK_MAX_RANGE] tiles closer!</spam>")
+	if(get_dist(owner, victim) > HIVEMIND_MIND_WRACK_MAX_RANGE)
+		if(!silent)
+			to_chat(X, "<span class='xenowarning'>They are too far for us to reach their minds! The target must be [get_dist(owner, victim) - HIVEMIND_MIND_WRACK_MAX_RANGE] tiles closer!</spam>")
 
 	if(!owner.line_of_sight(target, HIVEMIND_MIND_WRACK_MAX_RANGE))
 		if(!silent)
 			to_chat(X, "<span class='xenowarning'>We can't focus our psychic energy properly without a clear line of sight!</span>")
 		return FALSE
 
-	if(!CHECK_BITFIELD(use_state_flags|override_flags, XACT_IGNORE_DEAD_TARGET) && L.stat == DEAD)
-		to_chat(X, "<span class='xenonotice'>Even we cannot touch the minds of the dead...</span>")
+	if(victim.stat == DEAD)
+		if(!silent)
+			to_chat(X, "<span class='xenonotice'>Even we cannot touch the minds of the dead...</span>")
 		return FALSE
 
 
@@ -161,17 +175,17 @@
 	for(var/mob/living/carbon/xenomorph/ally in range(HIVEMIND_MIND_WRACK_POWER_CHORUS_RANGE, X ) ) //For each friendly xeno nearby, effect is more powerful
 		if(istype(ally) && ally.hivenumber == X.hivenumber)
 			++power_level //Increment the power level for each Xeno nearby
+			X.beam(ally,"curse1",'icons/effects/beam.dmi',10, 10,/obj/effect/ebeam,1)
 		if(power_level > HIVEMIND_MIND_WRACK_POWER_MAX_CHORUS)
 			break
 
 	if(get_dist(X, X.core) <= HIVEMIND_MIND_WRACK_POWER_CHORUS_RANGE) //If our core is nearby, the effect is *especially* powerful.
 		power_level += 5
+		X.beam(X.core,"curse1",'icons/effects/beam.dmi',10, 10,/obj/effect/ebeam,1)
 
 	if(power_level < 2) //We need at least one core or xeno other than us.
 		to_chat(owner, "<span class='xenodanger'>We require our core or a sister nearby to relay our psychic energy!</span>")
 		return FALSE
-
-	succeed_activate()
 
 	var/proximity_offset = get_dist(get_turf(victim), get_turf(X.core) ) //Effect is more powerful the closer the target is to the core, and less powerful the further away it is
 	proximity_offset = clamp(-100, (HIVEMIND_MIND_WRACK_POWER_DISTANCE - proximity_offset) * 5, 100)
@@ -179,19 +193,21 @@
 	power_level = clamp(HIVEMIND_MIND_WRACK_POWER_MINIMUM, power_level * HIVEMIND_MIND_WRACK_POWER_MULTIPLIER + proximity_offset, HIVEMIND_MIND_WRACK_POWER_MAXIMUM)
 
 	X.playsound_local(X, 'sound/magic/invoke_general.ogg', 50, TRUE)
+	X.beam(victim,"curse1",'icons/effects/beam.dmi',10, 10,/obj/effect/ebeam,1)
 	victim.playsound_local(victim, pick('sound/effects/ghost2.ogg','sound/effects/ghost.ogg','sound/voice/alien_distantroar_3.ogg','sound/voice/alien_queen_command.ogg','sound/voice/alien_queen_command2.ogg','sound/voice/alien_queen_command3.ogg'), clamp(25, power_level * 0.5, 75), TRUE)
 	to_chat(X, "<span class='danger'>We scour the mind of this unfortunate creature with [calculate_power(power_level, X)] power.</span>")
 	to_chat(victim, "<span class='danger'>Your thoughts are suddenly overwhelmed by an alien presence as unworldly screaming fills your mind. Your brain feels as though it's on fire and your world convulses!</span>")
 	new /obj/effect/temp_visual/telepathy(get_turf(victim))
 	shake_camera(victim, power_level * 0.01 SECONDS, 1)
-	victim.ParalyzeNoChain(0.5 SECONDS)
-	victim.hallucination = clamp(power_level, victim.hallucination + power_level, 200) //I want the hallucination effect to *eventually* go away; capped at 200 stacks.
-	victim.Confused(power_level * 0.025)
+	victim.ParalyzeNoChain(0.0033 SECONDS * power_level)
+	victim.hallucination = min(victim.hallucination + power_level, 200) //I want the hallucination effect to *eventually* go away; capped at 200 stacks.
 	victim.set_drugginess(power_level * 0.025) //visuals
-	victim.adjustStaminaLoss(power_level * 0.5)
+	victim.blur_eyes(power_level * 0.05)
+	victim.adjustStaminaLoss(power_level * 0.75)
 	victim.adjust_stagger(power_level * 0.05)
 	victim.add_slowdown(power_level * 0.05)
 
+	succeed_activate()
 	add_cooldown()
 
 	GLOB.round_statistics.hivemind_mind_wrack_uses++ //Increment the statistics

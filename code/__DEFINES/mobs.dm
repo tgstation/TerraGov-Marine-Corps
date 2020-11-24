@@ -551,7 +551,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define HIVEMIND_MIND_WRACK_POWER_MAX_CHORUS	4 //The maximum number of xenos and cores that can contribute to Hivemind's power, minus 1.
 #define HIVEMIND_MIND_WRACK_POWER_CHORUS_RANGE  5 //How close xenos and cores have to be in tiles to the Hivemind to contribute to Mind Wrack's power
 #define HIVEMIND_MIND_WRACK_MAX_RANGE			5 //How close the target has to be to the Hivemind in tiles to be targeted with Mind Wrack
-#define HIVEMIND_MIND_WRACK_POWER_DISTANCE		26 //The distance at which Mind Wrack starts to gain falloff bonuses/penalties to strength.
+#define HIVEMIND_MIND_WRACK_POWER_DISTANCE		20 //The distance at which Mind Wrack starts to gain falloff bonuses/penalties to strength.
 
 
 

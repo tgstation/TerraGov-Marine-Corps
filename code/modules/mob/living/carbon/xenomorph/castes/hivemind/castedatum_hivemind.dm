@@ -57,7 +57,7 @@
 	)
 
 	// *** Core Durability *** //
-	core_regeneration = 5
+	core_regeneration = 50
 	core_maximum_hitpoints = 600
 
 
@@ -89,13 +89,13 @@
 		/datum/action/xeno_action/psychic_whisper,
 		/datum/action/xeno_action/activable/psychic_cure,
 		/datum/action/xeno_action/toggle_pheromones,
-		/datum/action/xeno_action/activable/mind_wrack,
 		/datum/action/xeno_action/choose_resin,
-		/datum/action/xeno_action/activable/secrete_resin/slow
+		/datum/action/xeno_action/activable/secrete_resin/slow,
+		/datum/action/xeno_action/activable/mind_wrack,
 	)
 
 	// *** Core Durability *** //
-	core_regeneration = 10
+	core_regeneration = 75
 	core_maximum_hitpoints = 800
 
 /datum/xeno_caste/hivemind/elder
@@ -124,13 +124,13 @@
 		/datum/action/xeno_action/psychic_whisper,
 		/datum/action/xeno_action/activable/psychic_cure,
 		/datum/action/xeno_action/toggle_pheromones,
-		/datum/action/xeno_action/activable/mind_wrack,
 		/datum/action/xeno_action/choose_resin,
-		/datum/action/xeno_action/activable/secrete_resin/slow
+		/datum/action/xeno_action/activable/secrete_resin/slow,
+		/datum/action/xeno_action/activable/mind_wrack,
 	)
 
 	// *** Core Durability *** //
-	core_regeneration = 13
+	core_regeneration = 90
 	core_maximum_hitpoints = 900
 
 /datum/xeno_caste/hivemind/ancient
@@ -160,11 +160,11 @@
 		/datum/action/xeno_action/psychic_whisper,
 		/datum/action/xeno_action/activable/psychic_cure,
 		/datum/action/xeno_action/toggle_pheromones,
-		/datum/action/xeno_action/activable/mind_wrack,
 		/datum/action/xeno_action/choose_resin,
-		/datum/action/xeno_action/activable/secrete_resin/slow
+		/datum/action/xeno_action/activable/secrete_resin/slow,
+		/datum/action/xeno_action/activable/mind_wrack,
 	)
 
 	// *** Core Durability *** //
-	core_regeneration = 15
+	core_regeneration = 100
 	core_maximum_hitpoints = 1000
