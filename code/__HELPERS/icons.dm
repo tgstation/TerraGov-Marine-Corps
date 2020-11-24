@@ -1127,8 +1127,8 @@ GLOBAL_LIST_EMPTY(transformation_animation_objects)
 		addtimer(CALLBACK(src,.proc/_reset_transformation_animation,filter_index),time)
 
 /**
- * Resets filters and removes transformation animations helper objects from vis contents.
- */
+  * Resets filters and removes transformation animations helper objects from vis contents.
+  */
 /atom/movable/proc/_reset_transformation_animation(filter_index)
 	var/list/transformation_objects = GLOB.transformation_animation_objects[src]
 	for(var/A in transformation_objects)
