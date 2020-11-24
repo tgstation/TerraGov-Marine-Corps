@@ -66,8 +66,16 @@
 /datum/atom_hud/medical
 	hud_icons = list(HEALTH_HUD, STATUS_HUD)
 
-/datum/atom_hud/aim_mode
+///Shows if a marine is aiming
+/datum/atom_hud/aim_hud
 	hud_icons = list(AIM_MODE_HUD)
+
+/mob/living/carbon/human/proc/aim_hud_set_status(is_aiming = FALSE)
+	var/image/aim_hud = hud_list[AIM_MODE_HUD]
+	if(is_aiming)
+		aim_hud.icon_state = "aim_mode"
+	else
+		aim_hud.icon_state = ""
 
 //med hud used by silicons, only shows humans with a uniform with sensor mode activated.
 /datum/atom_hud/medical/basic
@@ -111,7 +119,7 @@
 
 //medical hud used by ghosts
 /datum/atom_hud/medical/observer
-	hud_icons = list(HEALTH_HUD, XENO_EMBRYO_HUD, XENO_REAGENT_HUD, STATUS_HUD)
+	hud_icons = list(HEALTH_HUD, XENO_EMBRYO_HUD, XENO_REAGENT_HUD, STATUS_HUD, AIM_MODE_HUD)
 
 
 /datum/atom_hud/medical/pain

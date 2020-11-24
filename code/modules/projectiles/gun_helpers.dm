@@ -862,9 +862,8 @@ should be alright.
 			add_firemode(GUN_FIREMODE_AUTOBURST, user)
 
 /obj/item/weapon/gun/proc/toggle_aim_mode(mob/living/carbon/human/user)
-	var/image/aim_hud = hud_list[AIM_MODE_HUD]
 	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_AIMING))
-		aim_hud.icon_state =  ""
+		user.aim_hud_set_status(FALSE)
 		gun_iff_signal = null
 		DISABLE_BITFIELD(flags_gun_features, GUN_IS_AIMING)
 		user.remove_movespeed_modifier(MOVESPEED_ID_AIM_MODE_SLOWDOWN)
@@ -882,7 +881,7 @@ should be alright.
 	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_BAR))
 		to_chat(user, "<span class='warning'>Your concentration is interrupted!</b></span>")
 		return
-	aim_hud.icon_state =  "aim_mode"
+	user.aim_hud_set_status(TRUE)
 	modify_fire_delay(aim_fire_delay)
 	ENABLE_BITFIELD(flags_gun_features, GUN_IS_AIMING)
 	user.add_movespeed_modifier(MOVESPEED_ID_AIM_MODE_SLOWDOWN, TRUE, 0, NONE, TRUE, 6)
