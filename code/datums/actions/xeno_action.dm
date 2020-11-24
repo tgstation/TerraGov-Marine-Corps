@@ -109,9 +109,6 @@
 			to_chat(owner, "<span class='warning'>We don't have enough plasma, we need [plasma_cost - X.plasma_stored] more.</span>")
 		return FALSE
 
-	if(!hivemind_weed_proximity_check()) //Vibe check Hiveminds and send them to Brazil if they fail because no nearby weeds.
-		return FALSE
-
 	return TRUE
 
 /datum/action/xeno_action/fail_activate()
@@ -249,19 +246,6 @@
 	. = can_use_action(silent, override_flags)
 	if(!CHECK_BITFIELD(flags_to_check, XACT_TARGET_SELF) && A == owner)
 		return FALSE
-
-	if(!hivemind_weed_proximity_check()) //Vibe check Hiveminds and send them to Brazil if they fail because no nearby weeds.
-		return FALSE
-
-/datum/action/xeno_action/proc/hivemind_weed_proximity_check()
-	var/mob/living/carbon/xenomorph/hivemind/X = owner
-	if(!isxenohivemind(X)) //Not a hivemind, we don't care
-		return TRUE
-	if(locate(/obj/effect/alien/weeds) in range(1, X.loc))
-		return TRUE
-	X.forceMove(get_turf(X.core))
-	to_chat(src, "<span class='xenonotice'>We lacked weeds to sustain our presence and our consciousness was shunted to our core.</span>")
-	return FALSE
 
 /datum/action/xeno_action/activable/proc/can_activate()
 	return TRUE
