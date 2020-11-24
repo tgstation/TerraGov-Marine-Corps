@@ -145,7 +145,7 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 
 	else if (href_list["escape"])
 		//are you REALLY sure you want to escape?
-		var/choice = alert(usr, "This will end the round. Are you certain you wish to leave any groundside marines behind?", "Escape Velocity", "Cancel", "Yes", "Cancel")
+		var/choice = alert(usr, "This will end the round. Are you certain you wish to leave any groundside marines behind? A poor reason can result in a jobban from any command roll.", "Escape Velocity", "Cancel", "Yes", "Cancel")
 		if(choice != "Yes")
 			return
 		message_admins("[ADMIN_TPMONTY(usr)] Is going to finish the round via the spaceship orbits mechanic")
