@@ -85,7 +85,7 @@
 				return FALSE
 		else
 			if(!X.line_of_sight(target) || get_dist(X, target) > 2)
-				to_chat(X, "<span class='notice'>Beyond our reach, we must be close and our way clear.</span>")
+				to_chat(X, "<span class='notice'>It is beyond our reach, we must be close and our way clear.</span>")
 				return FALSE
 			if(X.blood_bank < 5)
 				to_chat(X, "<span class='notice'>We need [5 - X.blood_bank]u more blood to restore a sister.</span>")
