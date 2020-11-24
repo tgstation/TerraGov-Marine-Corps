@@ -18,16 +18,23 @@
 
 	var/germ_level = GERM_LEVEL_AMBIENT // The higher the germ level, the more germ on the atom.
 
-	var/list/priority_overlays	//overlays that should remain on top and not normally removed when using cut_overlay functions, like c4.
-	var/list/remove_overlays // a very temporary list of overlays to remove
-	var/list/add_overlays // a very temporary list of overlays to add
+	//overlays that should remain on top and not normally removed when using cut_overlay functions, like c4.
+	var/list/priority_overlays
+	///a very temporary list of overlays to remove
+	var/list/remove_overlays
+	///a very temporary list of overlays to add
+	var/list/add_overlays
+
+	///Lazy assoc list for managing filters attached to us
+	var/list/filter_data
 
 	var/list/display_icons // related to do_after/do_mob overlays, I can't get my hopes high.
 
 	var/list/atom_colours	 //used to store the different colors on an atom
 							//its inherent color, the colored paint applied on it, special color effect etc...
 
-	var/list/image/hud_list //This atom's HUD (med/sec, etc) images. Associative list.
+	///This atom's HUD (med/sec, etc) images. Associative list.
+	var/list/image/hud_list
 
 	///How much does this atom block the explosion's shock wave.
 	var/explosion_block = 0
@@ -455,6 +462,41 @@ Proc for attack log creation, because really why not
 		if(SSatoms.InitAtom(src, args))
 			//we were deleted
 			return
+
+///Add filters by priority to an atom
+/atom/proc/add_filter(name,priority,list/params)
+	LAZYINITLIST(filter_data)
+	var/list/p = params.Copy()
+	p["priority"] = priority
+	filter_data[name] = p
+	update_filters()
+
+///Sorts our filters by priority and reapplies them
+/atom/proc/update_filters()
+	filters = null
+	filter_data = sortTim(filter_data, /proc/cmp_filter_data_priority, TRUE)
+	for(var/f in filter_data)
+		var/list/data = filter_data[f]
+		var/list/arguments = data.Copy()
+		arguments -= "priority"
+		filters += filter(arglist(arguments))
+
+/obj/item/update_filters()
+	. = ..()
+	for(var/X in actions)
+		var/datum/action/A = X
+		A.update_button_icon()
+
+///returns a filter in the managed filters list by name
+/atom/proc/get_filter(name)
+	if(filter_data && filter_data[name])
+		return filters[filter_data.Find(name)]
+
+///removes a filter from the atom
+/atom/proc/remove_filter(name)
+	if(filter_data && filter_data[name])
+		filter_data -= name
+		update_filters()
 
 /*
 	Atom Colour Priority System

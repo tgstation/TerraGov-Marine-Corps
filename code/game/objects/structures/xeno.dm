@@ -955,15 +955,14 @@ TUNNEL
 /obj/item/resin_jelly/proc/activate_jelly(mob/living/carbon/xenomorph/user)
 	user.visible_message("<span class='notice'>[user]'s chitin begins to gleam with an unseemly glow...</span>", "<span class='xenonotice'>We feel powerful as we are covered in [src]!</span>")
 	user.emote("roar")
-	var/anger_filter = filter(type = "outline", size = 1, color = COLOR_RED)
-	user.filters += anger_filter
+	user.add_filter("resin_jelly_outline", 2, list("type" = "outline", "size" = 1, "color" = COLOR_RED))
 	user.fire_resist_modifier -= 20
 	forceMove(user)//keep it here till the timer finishes
 	user.temporarilyRemoveItemFromInventory(src)
-	addtimer(CALLBACK(src, .proc/deactivate_jelly, anger_filter, user), immune_time)
+	addtimer(CALLBACK(src, .proc/deactivate_jelly, user), immune_time)
 
-/obj/item/resin_jelly/proc/deactivate_jelly(anger_filter, mob/living/carbon/xenomorph/user)
-	user.filters -= anger_filter
+/obj/item/resin_jelly/proc/deactivate_jelly(mob/living/carbon/xenomorph/user)
+	user.remove_filter("resin_jelly_outline")
 	user.fire_resist_modifier += 20
 	to_chat(user, "<span class='xenonotice'>We feel more vulnerable again.</span>")
 	qdel(src)
