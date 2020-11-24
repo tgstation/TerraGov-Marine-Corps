@@ -66,6 +66,12 @@
 /obj/machinery/door/poddoor/shutters/transit,
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
+"u" = (
+/obj/effect/attach_point/weapon/minidropship{
+	dir = 8
+	},
+/turf/closed/wall/mainship/outer,
+/area/shuttle/minidropship)
 "z" = (
 /obj/machinery/computer/dropship_weapons/minidropship,
 /turf/open/floor/mainship/mono,
@@ -125,6 +131,12 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
+"U" = (
+/obj/effect/attach_point/weapon/minidropship{
+	dir = 4
+	},
+/turf/closed/wall/mainship/outer,
+/area/shuttle/minidropship)
 "X" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 4
@@ -145,7 +157,7 @@ o
 r
 f
 f
-o
+u
 o
 a
 "}
@@ -211,7 +223,7 @@ o
 a
 f
 f
-o
+U
 o
 a
 "}
