@@ -191,7 +191,7 @@
 	icon = 'icons/turf/shuttle.dmi'
 	allow_construction = FALSE
 	shoefootstep = FOOTSTEP_PLATING
-	barefootstep = FOOTSTEP_PLATING
+	barefootstep = FOOTSTEP_HARD
 	mediumxenofootstep = FOOTSTEP_PLATING
 
 
