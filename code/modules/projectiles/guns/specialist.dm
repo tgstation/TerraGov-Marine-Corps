@@ -280,7 +280,7 @@
 	starting_attachment_types = list(/obj/item/attachable/scope/slavic, /obj/item/attachable/slavicbarrel, /obj/item/attachable/stock/slavic)
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.4 SECONDS
-	aim_movement_speed = 2
+	aim_speed_modifier = 2
 
 	fire_delay = 1.2 SECONDS
 	burst_amount = 1
@@ -327,7 +327,7 @@
 	starting_attachment_types = list(/obj/item/attachable/scope/mini/m4ra, /obj/item/attachable/stock/rifle/marksman)
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.3 SECONDS
-	aim_movement_speed = 2
+	aim_speed_modifier = 2
 
 	fire_delay = 0.45 SECONDS
 	burst_amount = 1

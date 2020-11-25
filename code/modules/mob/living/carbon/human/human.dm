@@ -66,8 +66,7 @@
 	var/datum/atom_hud/hud_to_add = GLOB.huds[DATA_HUD_BASIC]
 	hud_to_add.add_hud_to(src)
 
-	hud_to_add = GLOB.huds[DATA_HUD_AIM_MODE]
-	hud_to_add.add_hud_to(src)
+
 
 /mob/living/carbon/human/Destroy()
 	assigned_squad?.remove_from_squad(src)

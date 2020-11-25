@@ -21,8 +21,6 @@
 #define PAIN_HUD					"pain_hud" //displays human pain / preceived health.
 #define ARMOR_SUNDER_HUD			"armor_sunder_hud" //displays how much sunder has been applied.
 #define XENO_REAGENT_HUD            "xeno_reagent_hud" // displays sign based on reagent in human
-#define AIM_MODE_HUD				"aim_mode_hud" //shows when aim mode is active
-
 
 #define ADD_HUD_TO_COOLDOWN 20 //cooldown for being shown the images for any particular data hud
 
@@ -45,7 +43,6 @@
 #define DATA_HUD_ORDER					11
 #define DATA_HUD_AI_DETECT				12
 #define DATA_HUD_MEDICAL_PAIN			13
-#define DATA_HUD_AIM_MODE				14
 
 
 // Notification action types
