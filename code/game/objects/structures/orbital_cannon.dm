@@ -161,8 +161,8 @@
 
 	update_icon()
 
-/// Handles the playing of the Orbital Bombardment incoming sound, usually a spiraling whistle noise but can be overridden.
-/obj/structure/orbital_cannon/proc/ob_pre_impact_sound(target, var/ob_sound = 'sound/effects/OB_incoming.ogg')
+/// Handles the playing of the Orbital Bombardment incoming sound and other visual and auditory effects of the cannon, usually a spiraling whistle noise but can be overridden.
+/obj/structure/orbital_cannon/proc/handle_ob_firing_effects(target, var/ob_sound = 'sound/effects/OB_incoming.ogg')
 	flick("OBC_firing",src)
 	playsound(loc, 'sound/effects/obfire.ogg', 100, FALSE, 20, 4)
 	for(var/i in hearers(WARHEAD_FALLING_SOUND_RANGE,target))
@@ -177,8 +177,6 @@
 
 	if(!chambered_tray || !loaded_tray || !tray || !tray.warhead)
 		return
-
-
 
 	ob_cannon_busy = TRUE
 
@@ -201,7 +199,7 @@
 
 	notify_ghosts("<b>[user]</b> has just fired \the <b>[src]</b> !", source = T, action = NOTIFY_JUMP)
 
-	addtimer(CALLBACK(src, /obj/structure/orbital_cannon/proc/ob_pre_impact_sound, target), 5 SECONDS + (WARHEAD_FLY_TIME * (GLOB.current_orbit/3)))
+	addtimer(CALLBACK(src, /obj/structure/orbital_cannon/proc/handle_ob_firing_effects, target), 5 SECONDS + (WARHEAD_FLY_TIME * (GLOB.current_orbit/3)))
 	addtimer(CALLBACK(src, /obj/structure/orbital_cannon.proc/impact_callback, target, inaccurate_fuel), 10 SECONDS + (WARHEAD_FLY_TIME * (GLOB.current_orbit/3)))
 
 /obj/structure/orbital_cannon/proc/impact_callback(target,inaccurate_fuel)
