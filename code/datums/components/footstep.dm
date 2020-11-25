@@ -93,7 +93,7 @@
 			TRUE,
 			GLOB.shoefootstep[T.shoefootstep][3] + e_range)
 		return
-	playsound(T, pick(GLOB.barefootstep[T.barefootstep][1]),
+	playsound(T, pick(GLOB.barefootstep[T.barefootstep]),
 		GLOB.barefootstep[T.barefootstep][2] * volume,
 		TRUE,
 		GLOB.barefootstep[T.barefootstep][3] + e_range)
