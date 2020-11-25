@@ -727,6 +727,11 @@
 			deconstruct(deconstructed)
 			return TRUE
 		if(BARRICADE_METAL_FIRM)
+
+			if(!barricade_upgrade_type) //Check to see if we actually have upgrades to remove.
+				to_chat(user, "<span class='warning'>This barricade has no upgrades to remove!</span>")
+				return TRUE
+
 			if(user.skills.getRating("construction") < SKILL_CONSTRUCTION_METAL)
 				user.visible_message("<span class='notice'>[user] fumbles around figuring out how to disassemble [src]'s armor plates.</span>",
 				"<span class='notice'>You fumble around figuring out how to disassemble [src]'s armor plates..</span>")
