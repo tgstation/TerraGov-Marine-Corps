@@ -409,11 +409,18 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 #define HIVE_CAN_HIJACK (1<<0)
 
-#define XENO_PULL_CHARGE_TIME 2 SECONDS
-#define XENO_SLOWDOWN_REGEN 0.4
-#define QUEEN_DEATH_TIMER 5 MINUTES
-#define XENO_DEADHUMAN_DRAG_SLOWDOWN 2
+#define XENO_PULL_CHARGE_TIME				2 SECONDS
+#define XENO_SLOWDOWN_REGEN					0.4
+#define QUEEN_DEATH_TIMER					5 MINUTES
+#define XENO_DEADHUMAN_DRAG_SLOWDOWN		2
 #define XENO_EXPLOSION_RESIST_3_MODIFIER	0.25 //multiplies top level explosive damage by this amount.
+#define XENO_DISMANTLE_TIME 				2 SECONDS //How long it takes to dismantle most xeno structures by a xeno
+#define XENO_ACID_WELL_FILL_TIME 			2 SECONDS //How long it takes to add a charge to an acid pool
+#define XENO_ACID_WELL_FILL_COST 			200 //Cost in plasma to apply a charge to an acid pool
+#define XENO_ACID_WELL_MAX_CHARGES 			5 //Maximum number of charges for the acid well
+
+///List of xenos that can repair resin structures
+GLOBAL_LIST_INIT(xenorepaircastes, typecacheof(list(/mob/living/carbon/xenomorph/drone, /mob/living/carbon/xenomorph/hivelord, /mob/living/carbon/xenomorph/shrike, /mob/living/carbon/xenomorph/hivemind, /mob/living/carbon/xenomorph/queen)))
 
 #define SPIT_UPGRADE_BONUS(Xenomorph) (( max(0,Xenomorph.upgrade_as_number()) * 0.15 )) //increase damage by 15% per upgrade level; compensates for the loss of insane attack speed.
 

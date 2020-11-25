@@ -62,3 +62,6 @@ GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 	var/xeno_bump_attacks = 0
 	var/xeno_rally_hive = 0
 	var/hivelord_healing_infusions = 0
+	var/xeno_acid_wells = 0
+	var/hivelord_resin_jelly_pods = 0
+	var/hivelord_tunnels = 0

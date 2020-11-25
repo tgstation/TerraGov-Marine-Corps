@@ -377,7 +377,6 @@
 	action_icon_state = "place_trap"
 	mechanics_text = "Place an acid well that can put out fires."
 	plasma_cost = 500
-	cooldown_timer = 2 MINUTES
 
 /datum/action/xeno_action/place_acidwell/can_use_action(silent = FALSE, override_flags)
 	. = ..()
@@ -408,6 +407,8 @@
 	succeed_activate()
 
 	playsound(T, "alien_resin_build", 25)
-	var/obj/effect/alien/resin/acidwell/AC = new /obj/effect/alien/resin/acidwell(T, owner)
+	var/obj/structure/acidwell/AC = new /obj/structure/acidwell(T, owner)
 	AC.creator = owner
 	to_chat(owner, "<span class='xenonotice'>We place an acid well. It can still be charged more.</span>")
+	GLOB.round_statistics.xeno_acid_wells++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "xeno_acid_wells")

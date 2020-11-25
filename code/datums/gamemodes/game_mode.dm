@@ -451,6 +451,12 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 		dat += "[GLOB.round_statistics.xeno_rally_hive] number of times xeno leaders rallied the hive."
 	if(GLOB.round_statistics.hivelord_healing_infusions)
 		dat += "[GLOB.round_statistics.hivelord_healing_infusions] number of times Hivelords used Healing Infusion."
+	if(GLOB.round_statistics.xeno_acid_wells)
+		dat += "[GLOB.round_statistics.xeno_acid_wells] number of xeno acid wells built."
+	if(GLOB.round_statistics.hivelord_resin_jelly_pods)
+		dat += "[GLOB.round_statistics.hivelord_resin_jelly_pods] number of resin jelly pods Hivelords built."
+	if(GLOB.round_statistics.hivelord_tunnels)
+		dat += "[GLOB.round_statistics.hivelord_tunnels] number of tunnels Hivelords dug."
 
 
 	var/output = jointext(dat, "<br>")

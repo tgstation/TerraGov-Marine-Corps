@@ -87,7 +87,7 @@
 /turf/closed/wall/resin/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	X.visible_message("<span class='xenonotice'>\The [X] starts tearing down \the [src]!</span>", \
 	"<span class='xenonotice'>We start to tear down \the [src].</span>")
-	if(!do_after(X, 4 SECONDS, TRUE, X, BUSY_ICON_GENERIC))
+	if(!do_after(M, XENO_DISMANTLE_TIME, TRUE, M, BUSY_ICON_GENERIC))
 		return
 	if(!istype(src)) // Prevent jumping to other turfs if do_after completes with the wall already gone
 		return

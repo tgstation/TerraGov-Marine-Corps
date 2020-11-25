@@ -197,6 +197,8 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 
 	succeed_activate()
 	playsound(T, 'sound/weapons/pierce.ogg', 25, 1)
+	GLOB.round_statistics.hivelord_tunnels++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "hivelord_tunnels")
 
 
 
@@ -214,7 +216,6 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	action_icon_state = "haunt"
 	mechanics_text = "Place down a dispenser that allows xenos to retrieve fireproof jelly."
 	plasma_cost = 500
-	cooldown_timer = 3 MINUTES
 	keybind_signal = COMSIG_XENOABILITY_PLACE_JELLY_POD
 
 /datum/action/xeno_action/place_jelly_pod/can_use_action(silent = FALSE, override_flags)
@@ -249,6 +250,9 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	playsound(T, "alien_resin_build", 25)
 	var/obj/structure/resin_jelly_pod/pod = new(T)
 	to_chat(owner, "<span class='xenonotice'>We shape some resin into \a [pod].</span>")
+	pod.creator = owner
+	GLOB.round_statistics.hivelord_resin_jelly_pods++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "hivelord_resin_jelly_pods")
 
 /datum/action/xeno_action/create_jelly
 	name = "Create Resin Jelly"
