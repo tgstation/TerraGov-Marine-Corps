@@ -35199,6 +35199,12 @@
 /obj/machinery/holopad,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
+"dUH" = (
+/obj/machinery/roomba,
+/turf/open/floor/mainship{
+	icon_state = "green"
+	},
+/area/mainship/squads/req)
 "dWu" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/terragov/west{
@@ -77877,7 +77883,7 @@ bpl
 brd
 bsQ
 buE
-wKa
+dUH
 bnD
 bnD
 bnD

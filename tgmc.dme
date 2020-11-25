@@ -681,6 +681,7 @@
 #include "code\game\objects\machinery\recharger.dm"
 #include "code\game\objects\machinery\rechargestation.dm"
 #include "code\game\objects\machinery\robot_fabricator.dm"
+#include "code\game\objects\machinery\roomba.dm"
 #include "code\game\objects\machinery\science.dm"
 #include "code\game\objects\machinery\scoreboard.dm"
 #include "code\game\objects\machinery\seed_extractor.dm"
