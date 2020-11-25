@@ -862,7 +862,7 @@ should be alright.
 			add_firemode(GUN_FIREMODE_AUTOBURST, user)
 
 /obj/item/weapon/gun/proc/toggle_aim_mode(mob/living/carbon/human/user)
-	var/aim_mode_visual = image('icons/mob/actions.dmi', null, "aim_mode")
+	var/aim_mode_visual = image('icons/mob/hud.dmi', null, "aim_mode")
 	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_AIMING))
 		user.cut_overlay(aim_mode_visual)
 		DISABLE_BITFIELD(flags_gun_features, GUN_IS_AIMING)
