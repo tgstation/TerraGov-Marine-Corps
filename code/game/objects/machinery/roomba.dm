@@ -1,7 +1,7 @@
 /// A cheap little roomba that runs around and keeps prep clean to decrease maptick and prep always being a fucking mess
 /obj/machinery/roomba
-	name = "nanotransen roomba"
-	desc = "A nanotransen roomba, designed to keep areas clean from dirty marines."
+	name = "nanotrasen roomba"
+	desc = "A nanotrasen roomba, designed to keep areas clean from dirty marines."
 	icon = 'icons/obj/aibots.dmi'
 	icon_state = "roomba"
 	density = FALSE
