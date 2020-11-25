@@ -667,7 +667,7 @@
 				return TRUE
 
 			var/turf/open/T = mystery_turf
-			if(T.allow_construction) //We shouldn't be able to anchor in areas we're not supposed to build; loophole closed.
+			if(!T.allow_construction) //We shouldn't be able to anchor in areas we're not supposed to build; loophole closed.
 				to_chat(user, "<span class='warning'>We can't anchor the barricade here!</span>")
 				return TRUE
 
@@ -962,7 +962,7 @@
 					return
 
 				var/turf/open/T = mystery_turf
-				if(T.allow_construction) //We shouldn't be able to anchor in areas we're not supposed to build; loophole closed.
+				if(!T.allow_construction) //We shouldn't be able to anchor in areas we're not supposed to build; loophole closed.
 					to_chat(user, "<span class='warning'>We can't anchor the barricade here!</span>")
 					return
 
