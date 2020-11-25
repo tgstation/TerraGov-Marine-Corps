@@ -1,0 +1,4 @@
+author: "SplinterGP"
+delete-after: True
+changes: 
+  - bugfix: "fixes if can put stronger acid check."
