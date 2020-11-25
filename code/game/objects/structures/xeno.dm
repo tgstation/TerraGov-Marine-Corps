@@ -903,11 +903,15 @@ TUNNEL
 	else
 		if(!charges)
 			return
-		stepper.apply_damage(charges * 20, BURN, BODY_ZONE_PRECISE_L_FOOT, stepper.run_armor_check(BODY_ZONE_PRECISE_L_FOOT, "acid"))
-		stepper.apply_damage(charges * 20, BURN, BODY_ZONE_PRECISE_R_FOOT, stepper.run_armor_check(BODY_ZONE_PRECISE_R_FOOT, "acid"))
+		stepper.apply_damage(charges * 30, BURN, BODY_ZONE_PRECISE_L_FOOT, stepper.run_armor_check(BODY_ZONE_PRECISE_L_FOOT, "acid"))
+		stepper.apply_damage(charges * 30, BURN, BODY_ZONE_PRECISE_R_FOOT, stepper.run_armor_check(BODY_ZONE_PRECISE_R_FOOT, "acid"))
 		stepper.visible_message("<span class='danger'>[stepper] is immersed in [src]'s acid!</span>", \
 		"<span class='danger'>We are immersed in [src]'s acid!</span>", null, 5)
 		playsound(stepper, "sound/bullets/acid_impact1.ogg", 10 * charges)
+		new /obj/effect/temp_visual/acid_bath(get_turf(stepper))
+		var/datum/effect_system/smoke_spread/xeno/acid/A = new(get_turf(stepper))
+		A.set_up(1,src)
+		A.start()
 		charges = 0
 		update_icon()
 		return

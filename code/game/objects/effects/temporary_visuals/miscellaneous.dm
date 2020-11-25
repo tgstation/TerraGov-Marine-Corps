@@ -133,3 +133,10 @@
 	icon = 'icons/effects/progressicons.dmi'
 	icon_state = "busy_medical"
 	duration = 0.8 SECONDS
+
+///Used for when an unfortunate walks into an acid well
+/obj/effect/temp_visual/acid_bath
+	name = "acid bath"
+	icon = 'icons/obj/items/projectiles.dmi'
+	icon_state = "boiler_gas"
+	duration = 0.8 SECONDS
