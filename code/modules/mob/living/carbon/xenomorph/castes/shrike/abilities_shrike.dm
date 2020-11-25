@@ -119,6 +119,9 @@
 	if(ishuman(victim))
 		victim.apply_effects(1, 0.1) 	// The fling stuns you enough to remove your gun, otherwise the marine effectively isn't stunned for long.
 		shake_camera(victim, 2, 1)
+		victim.adjust_stagger(3) //Applies soft CC; this is on par with the soft CC from a Warrior's punch
+		victim.add_slowdown(3) //Applies soft CC; this is on par with the soft CC from a Warrior's punch
+		victim.blur_eyes(3) //Minor eyeblur to let them know they're subject to debuffs
 
 	var/facing = get_dir(owner, victim)
 	var/fling_distance = (isitem(victim)) ? 4 : 3 //Objects get flung further away.
@@ -189,6 +192,9 @@
 			if(ishuman(affected)) //if they're human, they also should get knocked off their feet from the blast.
 				var/mob/living/carbon/human = affected
 				human.apply_effects(1, 1) 	// Stun
+				human.adjust_stagger(3) //Applies soft CC; this is on par with the soft CC from a Warrior's punch
+				human.add_slowdown(3) //Applies soft CC; this is on par with the soft CC from a Warrior's punch
+				human.blur_eyes(3) //Minor eyeblur to let them know they're subject to debuffs
 				shake_camera(affected, 2, 1)
 
 	owner.visible_message("<span class='xenowarning'>[owner] sends out a huge blast of psychic energy!</span>", \
