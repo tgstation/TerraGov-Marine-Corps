@@ -783,8 +783,8 @@ Defined in conflicts.dm of the #defines folder.
 	pixel_shift_y = 14
 
 /obj/item/attachable/stock/shotgun
-	name = "\improper M37 wooden stock"
-	desc = "A non-standard heavy wooden stock for the M37 Shotgun. Less quick and more cumbersome than the standard issue stakeout, but reduces recoil and improves accuracy. Allegedly makes a pretty good club in a fight too."
+	name = "\improper shotgun stock"
+	desc = "A non-standard heavy wooden stock for the old V10 shotgun. Less quick and more cumbersome than the standard issue stakeout, but reduces recoil and improves accuracy. Allegedly makes a pretty good club in a fight too."
 	slot = "stock"
 	wield_delay_mod = 0.3 SECONDS
 	icon_state = "stock"
