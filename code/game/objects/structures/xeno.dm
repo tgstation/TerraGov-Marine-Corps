@@ -78,6 +78,16 @@
 
 	ignore_weed_destruction = TRUE
 
+/obj/effect/alien/resin/sticky/attack_alien(mob/living/carbon/xenomorph/M)
+
+	if(M.a_intent == INTENT_HARM) //Clear it out on hit; no need to double tap.
+		M.do_attack_animation(src, ATTACK_EFFECT_CLAW) //SFX
+		playsound(src, "alien_resin_break", 25) //SFX
+		deconstruct(TRUE)
+		return
+
+	..()
+
 
 /obj/effect/alien/resin/sticky/Crossed(atom/movable/AM)
 	. = ..()
