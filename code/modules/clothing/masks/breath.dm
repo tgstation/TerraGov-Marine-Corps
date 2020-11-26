@@ -68,7 +68,6 @@
 
 /obj/item/clothing/mask/rebreather/scarf/freelancer
 	desc = "A close-fitting cap that covers the top, back, and sides of the head. Can also be adjusted to cover the lower part of the face so it keeps the user warm in harsh conditions."
-	icon_state = "coif"
 	item_state = "coif_fl"
 
 /obj/item/clothing/mask/bandanna
