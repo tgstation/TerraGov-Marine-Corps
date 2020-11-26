@@ -19,6 +19,7 @@
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/marine
 	ears = /obj/item/radio/headset/distress/dutch
+	mask = /obj/item/clothing/mask/rebreather/scarf/freelancer
 	w_uniform = /obj/item/clothing/under/marine/veteran/freelancer
 	shoes = /obj/item/clothing/shoes/marine
 	wear_suit = /obj/item/clothing/suit/storage/faction/freelancer
@@ -74,6 +75,7 @@
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/combatLifesaver
 	ears = /obj/item/radio/headset/distress/dutch
+	mask = /obj/item/clothing/mask/rebreather/scarf/freelancer
 	w_uniform = /obj/item/clothing/under/marine/veteran/freelancer
 	shoes = /obj/item/clothing/shoes/marine
 	wear_suit = /obj/item/clothing/suit/storage/faction/freelancer
@@ -128,6 +130,7 @@
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/marine
+	mask = /obj/item/clothing/mask/rebreather/scarf/freelancer
 	ears = /obj/item/radio/headset/distress/dutch
 	w_uniform = /obj/item/clothing/under/marine/veteran/freelancer
 	shoes = /obj/item/clothing/shoes/marine
