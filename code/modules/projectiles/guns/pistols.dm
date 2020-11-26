@@ -203,7 +203,7 @@
 	aim_slowdown = 0.2
 
 /obj/item/weapon/gun/pistol/b92fs/M9
-	name = "\improper M9 Custom pistol"
+	name = "\improper M9 custom pistol"
 	desc = "A 20th century military firearm customized for special forces use, fires tranq darts to take down enemies nonlethally. It does not seem to accept any other attachments."
 	icon_state = "b92fs"
 	item_state = "b92fs"
@@ -260,6 +260,8 @@
 	recoil_unwielded = 4
 
 /obj/item/weapon/gun/pistol/heavy/gold
+	name = "\improper Desert Eagle custom pistol"
+	desc = "A magnum chambered in .50AE that comes with a serious kick. This one is in a gold finish, with lots of stylistic engravings."
 	icon_state = "g_deagle"
 	item_state = "g_deagle"
 //-------------------------------------------------------
@@ -272,7 +274,7 @@
 	item_state = "pk9"
 	caliber = ".22 LR" //codex
 	max_shells = 12 //codex
-	fire_sound = 'sound/weapons/guns/fire/c99.ogg'
+	fire_sound = 'sound/weapons/guns/fire/pistol_holdout.ogg' // Never heard in-game sadly.
 	unload_sound = 'sound/weapons/guns/interact/c99_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/c99_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/c99_cocked.ogg'
@@ -501,7 +503,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	item_state = "auto9"
 	caliber = "9x19mm Parabellum" //codex
 	max_shells = 50 //codex
-	fire_sound = 'sound/weapons/guns/fire/auto9.ogg'
+	fire_sound = 'sound/weapons/guns/fire/beretta.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/auto9
 	force = 15
 	attachable_allowed = list()
@@ -539,7 +541,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 
 /obj/item/weapon/gun/pistol/knife
 	name = "\improper M6 'Eclipse Raider' ballistic knife"
-	desc = "The back issue survival knife issued to a fewTerraGov Marine Corps soldiers. There are a surprisingly large amount of attachment points on this... knife."
+	desc = "The back issue survival knife issued to a few TerraGov Marine Corps soldiers. There are a surprisingly large amount of attachment points on this... knife."
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "elite_knife"
 	reload_sound = 'sound/weapons/flipblade.ogg'

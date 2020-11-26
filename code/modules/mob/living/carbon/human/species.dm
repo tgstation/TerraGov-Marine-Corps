@@ -78,6 +78,7 @@
 	var/list/gasps = list()
 	var/list/coughs = list()
 	var/list/burstscreams = list()
+	var/list/warcries = list()
 
 	var/blood_color = "#A10808" //Red.
 	var/flesh_color = "#FFC896" //Pink.
@@ -294,6 +295,7 @@
 	gasps = list(MALE = "male_gasp", FEMALE = "female_gasp")
 	coughs = list(MALE = "male_cough", FEMALE = "female_cough")
 	burstscreams = list(MALE = "male_preburst", FEMALE = "female_preburst")
+	warcries = list(MALE = "male_warcry", FEMALE = "female_warcry")
 	special_death_message = "<big>You have perished.</big><br><small>But it is not the end of you yet... if you still have your body or an unbursted corpse, wait until somebody can resurrect you...</small>"
 
 	//If you wanted to add a species-level ability:
@@ -483,6 +485,7 @@
 	paincries = list("neuter" = 'sound/voice/human_male_pain_3.ogg')
 	goredcries = list("neuter" = 'sound/voice/moth_scream.ogg')
 	burstscreams = list("neuter" = 'sound/voice/moth_scream.ogg')
+	warcries = list("neuter" = 'sound/voice/moth_scream.ogg')
 
 	flesh_color = "#E5CD99"
 
@@ -683,7 +686,8 @@
 	goredcries = list("neuter" = 'sound/voice/skeleton_scream.ogg')
 	burstscreams = list("neuter" = 'sound/voice/moth_scream.ogg')
 	death_message = "collapses in a pile of bones, with a final rattle..."
-	death_sound = 'sound/voice/skeleton_scream.ogg'
+	death_sound = list("neuter" = 'sound/voice/skeleton_scream.ogg')
+	warcries = list("neuter" = 'sound/voice/skeleton_warcry.ogg') // AAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 	namepool = /datum/namepool/skeleton
 
 /datum/species/synthetic
@@ -724,6 +728,7 @@
 	screams = list(MALE = "male_scream", FEMALE = "female_scream")
 	paincries = list(MALE = "male_pain", FEMALE = "female_pain")
 	goredcries = list(MALE = "male_gored", FEMALE = "female_gored")
+	warcries = list(MALE = "male_warcry", FEMALE = "female_warcry")
 	special_death_message = "You have been shut down.<br><small>But it is not the end of you yet... if you still have your body, wait until somebody can resurrect you...</small>"
 
 
@@ -776,6 +781,7 @@
 	screams = list(MALE = "male_scream", FEMALE = "female_scream")
 	paincries = list(MALE = "male_pain", FEMALE = "female_pain")
 	goredcries = list(MALE = "male_gored", FEMALE = "female_gored")
+	warcries = list(MALE = "male_warcry", FEMALE = "female_warcry")
 	special_death_message = "You have been shut down.<br><small>But it is not the end of you yet... if you still have your body, wait until somebody can resurrect you...</small>"
 
 

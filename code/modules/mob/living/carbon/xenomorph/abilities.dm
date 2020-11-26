@@ -62,6 +62,14 @@
 		return FALSE
 	if(!X.Adjacent(victim)) //checks if owner next to target
 		return FALSE
+	if(X.on_fire)
+		if(!silent)
+			to_chat(X, "<span class='warning'>We're too busy being on fire to do this!</span>")
+		return FALSE
+	if(victim.stat != DEAD)
+		if(!silent)
+			to_chat(X, "<span class='warning'>This creature is struggling too much for us to aim precisely.</span>")
+		return FALSE
 	if(victim.headbitten)
 		if(!silent)
 			to_chat(X, "<span class='warning'>This creature has already been headbitten.</span>")
@@ -81,12 +89,11 @@
 	X.face_atom(victim) //Face towards the target so we don't look silly
 	X.visible_message("<span class='xenowarning'>\The [X] begins opening its mouth and extending a second jaw towards \the [victim].</span>", \
 	"<span class='danger'>We prepare our inner jaw for a finishing blow on \the [victim]!</span>", null, 20)
-	if(!do_after(X, 10 SECONDS, FALSE, victim, BUSY_ICON_DANGER))
+	if(!do_after(X, 10 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(X, /mob.proc/break_do_after_checks, list("health" = X.health))))
 		X.visible_message("<span class='xenowarning'>\The [X] retracts its inner jaw.</span>", \
 		"<span class='danger'>We retract our inner jaw.</span>", null, 20)
 		return FALSE
 	succeed_activate() //dew it
-
 
 /datum/action/xeno_action/activable/headbite/use_ability(mob/M)
 	var/mob/living/carbon/xenomorph/X = owner
@@ -114,7 +121,6 @@
 
 	GLOB.round_statistics.xeno_headbites++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "xeno_headbites")
-
 
 // ***************************************
 // *********** Drone-y abilities
@@ -612,7 +618,7 @@
 	if(!current_acid)
 		return FALSE
 
-	if(initial(new_acid.acid_strength) < current_acid.acid_strength)
+	if(initial(new_acid.acid_strength) > current_acid.acid_strength)
 		return FALSE
 	return TRUE
 
@@ -765,7 +771,9 @@
 /datum/action/xeno_action/activable/spray_acid/proc/acid_splat_turf(turf/T)
 	. = locate(/obj/effect/xenomorph/spray) in T
 	if(!.)
-		. = new /obj/effect/xenomorph/spray(T)
+		var/mob/living/carbon/xenomorph/X = owner
+
+		. = new /obj/effect/xenomorph/spray(T, X.xeno_caste.acid_spray_damage)
 
 		for(var/i in T)
 			var/atom/A = i
@@ -902,28 +910,6 @@
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "sentinel_neurotoxin_stings")
 
 	X.recurring_injection(A, /datum/reagent/toxin/xeno_neurotoxin, XENO_NEURO_CHANNEL_TIME, XENO_NEURO_AMOUNT_RECURRING)
-
-
-//Panther Neurotox Sting
-/datum/action/xeno_action/activable/neurotox_sting/panther
-	name = "Panther Neurotoxin Sting"
-	mechanics_text = "A channeled melee attack that injects the target with neurotoxin over a few seconds, temporarily stunning them."
-	ability_name = "panther neurotoxin sting"
-	cooldown_timer = 50 SECONDS
-	plasma_cost = 60
-	keybind_signal = COMSIG_XENOABILITY_NEUROTOX_STING
-
-/datum/action/xeno_action/activable/neurotox_sting/panther/use_ability(atom/A)
-	var/mob/living/carbon/xenomorph/X = owner
-
-	succeed_activate()
-
-	add_cooldown()
-
-	GLOB.round_statistics.panther_neurotoxin_stings++
-	SSblackbox.record_feedback("tally", "round_statistics", 1, "panther_neurotoxin_stings")
-
-	X.recurring_injection(A, /datum/reagent/toxin/xeno_neurotoxin, XENO_NEURO_CHANNEL_TIME, XENO_NEURO_AMOUNT_RECCURING_PANTHER)
 
 
 // ***************************************

@@ -165,6 +165,11 @@
 	id = "ammo2"
 	req_one_access = list(ACCESS_MARINE_BRIG, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_LEADER, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP)
 
+/obj/machinery/door_control/mainship/droppod
+	name = "Droppod bay"
+	id = "droppod"
+	req_one_access = list(ACCESS_MARINE_BRIG, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_LEADER, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP)
+
 /obj/machinery/door_control/mainship/engineering
 	req_access = list(ACCESS_MARINE_ENGINEERING)
 

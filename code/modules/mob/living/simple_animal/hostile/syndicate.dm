@@ -166,7 +166,7 @@
 	rapid = 2
 	icon_state = "syndicate_smg"
 	icon_living = "syndicate_smg"
-	projectilesound = 'sound/weapons/guns/fire/smg.ogg'
+	projectilesound = 'sound/weapons/guns/fire/smg_light.ogg'
 
 
 /mob/living/simple_animal/hostile/syndicate/ranged/smg/pilot

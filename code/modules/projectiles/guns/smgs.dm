@@ -1,5 +1,5 @@
 /obj/item/weapon/gun/smg
-	fire_sound = 'sound/weapons/guns/fire/m39.ogg'
+	fire_sound = 'sound/weapons/guns/fire/smg_light.ogg'
 	unload_sound = 'sound/weapons/guns/interact/smg_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/smg_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/smg_cocked.ogg'
@@ -139,6 +139,9 @@
 	item_state = "m25"
 	caliber = "10x20mm caseless" //codex
 	max_shells = 60 //codex
+	fire_sound = 'sound/weapons/guns/fire/mp5.ogg'
+	unload_sound = 'sound/weapons/guns/interact/mp5_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/mp5_reload.ogg'
 	flags_equip_slot = ITEM_SLOT_BACK
 	current_mag = /obj/item/ammo_magazine/smg/m25
 	type_of_casings = null
@@ -173,6 +176,7 @@
 	desc = "The RivArms MR-25 submachinegun, B2 variant. Has an integrated barrel charger. This reliable weapon fires armor piercing 10x20mm rounds and is used by elite troops."
 	icon_state = "m25b2"
 	item_state = "m25b2"
+	fire_sound = 'sound/weapons/guns/fire/smg_heavy.ogg'
 	current_mag = /obj/item/ammo_magazine/smg/m25/ap
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,

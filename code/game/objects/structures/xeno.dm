@@ -746,6 +746,7 @@ TUNNEL
 	var/datum/effect_system/smoke_spread/xeno/acid/A = new(get_turf(src))
 	A.set_up(clamp(charges,0,2),src)
 	A.start()
+	return ..()
 
 /obj/effect/alien/resin/acidwell/examine(mob/user)
 	..()

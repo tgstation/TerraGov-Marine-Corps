@@ -72,12 +72,20 @@
 /obj/item/stack/razorwire/attack_self(mob/user) //use barbed wire to deploy it
 	if(!ishuman(usr))
 		return
-	var/turf/target = get_step(user.loc,user.dir)
-	if(!target)
+
+	var/turf/mystery_turf = get_step(user.loc,user.dir)
+	if(!isopenturf(mystery_turf))
+		to_chat(user, "<span class='warning'>We can't build here!</span>")
 		return
+
+	var/turf/open/target = mystery_turf
 
 	if(check_blocked_turf(target)) //check if blocked
 		to_chat(user, "<span class='warning'>There is insufficient room to deploy [src]!</span>")
+		return
+
+	if(!target.allow_construction) //We shouldn't be building here.
+		to_chat(user, "<span class='warning'>We can't build here!</span>")
 		return
 
 	user.visible_message("<span class='notice'>[user] starts assembling [src].</span>",
