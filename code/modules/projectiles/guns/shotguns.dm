@@ -189,38 +189,6 @@ can cause issues with ammo types getting mixed up during the burst.
 		return in_chamber ? (current_mag.current_rounds + 1) : current_mag.current_rounds
 
 //-------------------------------------------------------
-//GENERIC MERC SHOTGUN //Not really based on anything.
-
-/obj/item/weapon/gun/shotgun/merc
-	name = "custom built shotgun"
-	desc = "A cobbled-together pile of scrap and alien wood. Point end towards things you want to die. Has a burst fire feature, as if it needed it."
-	flags_equip_slot = ITEM_SLOT_BACK
-	icon_state = "cshotgun"
-	item_state = "cshotgun"
-	max_shells = 5 //codex
-	fire_sound = 'sound/weapons/guns/fire/shotgun_automatic.ogg'
-	current_mag = /obj/item/ammo_magazine/internal/shotgun/merc
-	attachable_allowed = list(/obj/item/attachable/compensator)
-
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_SHOTGUN_CHAMBER|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
-	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 17, "under_y" = 14, "stock_x" = 17, "stock_y" = 14)
-
-	fire_delay = 10
-	burst_amount = 2
-	burst_delay = 0.5 SECONDS
-	accuracy_mult = 0.8
-	accuracy_mult_unwielded = 0.5
-	scatter = 20
-	scatter_unwielded = 40
-	recoil = 2
-	recoil_unwielded = 4
-
-
-/obj/item/weapon/gun/shotgun/merc/examine_ammo_count(mob/user)
-	if(in_chamber)
-		to_chat(user, "It has a chambered round.")
-
-//-------------------------------------------------------
 //TACTICAL SHOTGUN
 
 /obj/item/weapon/gun/shotgun/combat

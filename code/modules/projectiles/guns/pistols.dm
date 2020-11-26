@@ -314,30 +314,6 @@
 	current_mag = /obj/item/ammo_magazine/pistol/c99t
 
 //-------------------------------------------------------
-//KT-42 //Inspired by the .44 Auto Mag pistol
-
-/obj/item/weapon/gun/pistol/kt42
-	name = "\improper KT-42 automag"
-	desc = "The KT-42 Automag is an archaic but reliable design, going back many decades. There have been many versions and variations, but the 42 model is by far the most common. You can't go wrong with this handcannon."
-	icon_state = "kt42"
-	item_state = "kt42"
-	caliber = ".44 magnum" //codex
-	max_shells = 7 //codex
-	fire_sound = 'sound/weapons/guns/fire/kt42.ogg'
-	unload_sound = 'sound/weapons/guns/interact/kt42_unload.ogg'
-	reload_sound = 'sound/weapons/guns/interact/kt42_reload.ogg'
-	cocked_sound = 'sound/weapons/guns/interact/kt42_cocked.ogg'
-	current_mag = /obj/item/ammo_magazine/pistol/automatic
-	attachable_allowed = list()
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
-	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 20,"rail_x" = 8, "rail_y" = 22, "under_x" = 22, "under_y" = 17, "stock_x" = 22, "stock_y" = 17)
-
-	fire_delay = 1 SECONDS
-	recoil = 2
-	recoil_unwielded = 3
-	accuracy_mult = 1.4
-
-//-------------------------------------------------------
 //PIZZACHIMP PROTECTION
 
 /obj/item/weapon/gun/pistol/holdout
