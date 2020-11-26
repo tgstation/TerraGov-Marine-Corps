@@ -628,7 +628,7 @@
 	if(!current_acid)
 		return FALSE
 
-	if(initial(new_acid.acid_strength) < current_acid.acid_strength)
+	if(initial(new_acid.acid_strength) > current_acid.acid_strength)
 		return FALSE
 	return TRUE
 
@@ -680,7 +680,7 @@
 
 	if(istype(A, /obj/vehicle/multitile/root/cm_armored))
 		var/obj/vehicle/multitile/root/cm_armored/R = A
-		R.take_damage_type( (1 / newacid.acid_strength) * 20, "acid", X)
+		R.take_damage_type( (1 * newacid.acid_strength) * 20, "acid", X)
 		X.visible_message("<span class='xenowarning'>\The [X] vomits globs of vile stuff at \the [R]. It sizzles under the bubbling mess of acid!</span>", \
 			"<span class='xenowarning'>We vomit globs of vile stuff at \the [R]. It sizzles under the bubbling mess of acid!</span>", null, 5)
 		playsound(X.loc, "sound/bullets/acid_impact1.ogg", 25)
