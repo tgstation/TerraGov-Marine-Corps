@@ -303,6 +303,10 @@
 	var/ignore_pain = FALSE // when true the rav will not go into crit or take crit damage.
 	var/ignore_pain_state = 0 // how far "dead" the rav has got while ignoring pain.
 
+	// *** Hivelord vars *** //
+	///If the target is subject to the Hivelord's Healing Infusion buff this will be true
+	var/has_healing_infusion
+
 	//Notification spam controls
 	var/recent_notice = 0
 	var/notice_delay = 20 //2 second between notices

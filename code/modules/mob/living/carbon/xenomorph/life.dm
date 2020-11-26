@@ -29,11 +29,8 @@
 		update_evolving()
 		handle_aura_emiter()
 
-	var/sunder_recov = xeno_caste.sunder_recover * -1
-	if(resting)
-		sunder_recov -= 0.5
-	adjust_sunder(sunder_recov)
 	handle_aura_receiver()
+	handle_living_sunder_updates()
 	handle_living_health_updates()
 	handle_living_plasma_updates()
 	update_action_button_icons()
@@ -67,7 +64,7 @@
 	if(health < 0)
 		handle_critical_health_updates()
 		return
-	if(health >= maxHealth || xeno_caste.hardcore || on_fire) //can't regenerate.
+	if((health >= maxHealth) || xeno_caste.hardcore || on_fire) //can't regenerate.
 		updatehealth() //Update health-related stats, like health itself (using brute and fireloss), health HUD and status.
 		return
 	var/turf/T = loc
@@ -84,6 +81,26 @@
 		else
 			heal_wounds(XENO_STANDING_HEAL * ruler_healing_penalty, TRUE) //Major healing nerf if standing.
 	updatehealth()
+
+/mob/living/carbon/xenomorph/proc/handle_living_sunder_updates()
+
+	if(!sunder || on_fire) //No sunder, no problem; or we're on fire and can't regenerate.
+		return
+
+	var/sunder_recov = xeno_caste.sunder_recover * -0.5 //Baseline
+
+	if(resting) //Resting doubles sunder recovery
+		sunder_recov *= 2
+
+	if(locate(/obj/effect/alien/weeds) in get_turf(src)) //Weeds double sunder recovery
+		sunder_recov *= 2
+
+	if(recovery_aura)
+		sunder_recov *= 1 + recovery_aura * 0.1 //10% bonus per rank of recovery aura
+
+	SEND_SIGNAL(src, COMSIG_XENOMORPH_SUNDER_REGEN, src)
+
+	adjust_sunder(sunder_recov)
 
 /mob/living/carbon/xenomorph/proc/handle_critical_health_updates()
 	var/turf/T = loc
@@ -106,6 +123,9 @@
 			regen_power = min(regen_power + xeno_caste.regen_ramp_amount*20,1)
 		amount *= regen_power
 	amount *= multiplier
+
+	SEND_SIGNAL(src, COMSIG_XENOMORPH_HEALTH_REGEN, src)
+
 	adjustBruteLoss(-amount)
 	adjustFireLoss(-amount)
 
