@@ -20,7 +20,14 @@
 		if(!X.client)
 			xenoinfo += " <i>(SSD)</i>"
 
-		xenoinfo += " <b><font color=red>Health: ([X.health]/[X.maxHealth])</font></b>"
+		var/hp_color = "green"
+		switch(X.health/X.maxHealth)
+			if(0.33 to 0.66)
+				hp_color = "orange"
+			if(0 to 0.33)
+				hp_color = "red"
+
+		xenoinfo += " <b><font color=[hp_color]>Health: ([X.health]/[X.maxHealth])</font></b>"
 
 		var/area/A = get_area(X)
 		xenoinfo += " <b><font color=green>([A ? A.name : null], X: [X.x], Y: [X.y])</b></td></tr>"

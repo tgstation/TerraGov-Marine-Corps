@@ -325,7 +325,6 @@
 	icon_off = "secure_closed_pilot"
 
 /obj/structure/closet/secure_closet/pilot_officer/PopulateContents()
-	new /obj/item/attachable/stock/vp70(src)
 	new /obj/item/clothing/head/helmet/marine/pilot(src)
 	new /obj/item/clothing/head/helmet/marine/pilot/green(src)
 	new /obj/item/clothing/under/marine/officer/pilot(src)
