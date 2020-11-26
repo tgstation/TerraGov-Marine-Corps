@@ -295,6 +295,7 @@
 		/obj/item/weapon/gun/rifle/type71,
 		/obj/item/weapon/gun/rifle/type71/carbine,
 		/obj/item/weapon/gun/rifle/standard_autoshotgun,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle,
 		/obj/item/weapon/gun/shotgun/pump,
 		/obj/item/weapon/gun/shotgun/pump/t35,
 		/obj/item/weapon/gun/shotgun/combat/standardmarine,
