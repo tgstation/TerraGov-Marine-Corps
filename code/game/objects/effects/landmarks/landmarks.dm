@@ -320,6 +320,7 @@
 		/obj/item/weapon/gun/rifle/m4ra,
 		/obj/item/weapon/gun/shotgun/pump/bolt,
 		/obj/item/weapon/gun/shotgun/pump/lever/mbx900,
+		/obj/item/weapon/gun/shotgun/pump/cmb,
 		/obj/item/weapon/gun/shotgun/double,
 		/obj/item/weapon/gun/shotgun/double/sawn,
 		/obj/item/weapon/gun/flamer/marinestandard,
