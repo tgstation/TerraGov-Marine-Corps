@@ -931,54 +931,6 @@ Defined in conflicts.dm of the #defines folder.
 	scatter_mod = 0
 	movement_acc_penalty_mod = 0
 
-/obj/item/attachable/stock/vp70
-	name = "88 Mod 4 stock and holster"
-	desc = "A rare holster-stock distributed in small numbers to TGMC forces. Compatible with the 88 Mod 4, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl."
-	slot = "stock"
-	flags_equip_slot = ITEM_SLOT_POCKET
-	w_class = WEIGHT_CLASS_NORMAL
-	wield_delay_mod = 0.4 SECONDS
-	melee_mod = 5
-	size_mod = 1
-	icon_state = "vp70stock" // Thank you to Manezinho
-	attach_icon = "vp70stock_a" // Thank you to Manezinho
-	pixel_shift_x = 39
-	pixel_shift_y = 11
-	accuracy_mod = 0.15
-	recoil_mod = -3
-	scatter_mod = -20
-	movement_acc_penalty_mod = 0.1
-	var/obj/item/storage/internal/pockets = /obj/item/storage/internal/pockets/vp70holster
-
-/obj/item/storage/internal/pockets/vp70holster
-	storage_slots = 1
-	max_w_class = 1
-	bypass_w_limit = list(/obj/item/weapon/gun/pistol/vp70)
-	max_storage_space = 3
-
-/obj/item/attachable/stock/vp70/Initialize()
-	. = ..()
-	pockets = new pockets(src)
-
-/obj/item/attachable/stock/vp70/attack_hand(mob/living/user)
-	if(loc == user && length(pockets.contents))
-		var/obj/item/I = pockets.contents[length(pockets.contents)]
-		return I.attack_hand(user)
-	else if(pockets.handle_attack_hand(user))
-		return ..()
-
-/obj/item/attachable/stock/vp70/MouseDrop(obj/over_object)
-	if(pockets.handle_mousedrop(usr, over_object))
-		return ..(over_object)
-
-/obj/item/attachable/stock/vp70/attackby(obj/item/I, mob/user, params)
-	. = ..()
-	return pockets.attackby(I, user, params)
-
-/obj/item/attachable/stock/vp70/emp_act(severity)
-	pockets.emp_act(severity)
-	return ..()
-
 /obj/item/attachable/stock/revolver
 	name = "\improper M44 magnum sharpshooter stock"
 	desc = "A wooden stock modified for use on a 44-magnum. Increases accuracy and reduces recoil at the expense of handling and agility."
