@@ -323,7 +323,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	if(owner.action_busy)
 		return FALSE
 
-	new /obj/effect/temp_visual/healing(get_turf(target)) //Make it obvious who our target is
+	owner.face_atom(target) //Face the target so we don't look stupid
 
 	if(!do_mob(owner, target, 0.5 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 		return FALSE
@@ -370,8 +370,6 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	if(patient.recovery_aura)
 		amount *= (1 + patient.recovery_aura * 0.1) //Recovery aura multiplier; 10% bonus per full level
 
-	to_chat(owner, "<span class='xenodanger'>Amount: [amount].</span>")
-
 	//Healing pool has been calculated; now to decrement it
 	var/brute_amount = min(patient.bruteloss, amount)
 	if(brute_amount)
@@ -394,8 +392,6 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	if(!patient.has_healing_infusion)
 		healing_infusion_deactivate(patient) //if we somehow lose the buff; maybe there's a purge mechanic later, whatever
 		return
-
-	to_chat(owner, "<span class='xenonotice'>Sunder: [patient.sunder].</span>")
 
 	if(!patient.sunder) //We're at full health with no sunder; no need to proceed
 		return
