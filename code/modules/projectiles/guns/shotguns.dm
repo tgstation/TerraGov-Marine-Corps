@@ -628,41 +628,6 @@ can cause issues with ammo types getting mixed up during the burst.
 	recoil_unwielded = 0
 	pump_delay = 12
 
-//-------------------------------------------------------
-//Based off of the KSG
-/obj/item/weapon/gun/shotgun/pump/ksg
-	name = "\improper Kronos pump shotgun"
-	desc = "A peculiarly designed pump shotgun, featuring a massive magazine well, a compact bullpup design and military attachment compatablity. This pump shotgun is issued for counter-terrorist units and unlicensed private military contractors."
-	icon_state = "ksg"
-	item_state = "ksg"
-	fire_sound = 'sound/weapons/guns/fire/shotgun_light.ogg'
-	reload_sound = 'sound/weapons/guns/interact/shotgun_ksg_insert.ogg'
-	pump_sound = 'sound/weapons/guns/interact/shotgun_ksg_pump.ogg'
-	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump/CMB
-	attachable_allowed = list(
-		/obj/item/attachable/reddot,
-		/obj/item/attachable/verticalgrip,
-		/obj/item/attachable/angledgrip,
-		/obj/item/attachable/gyro,
-		/obj/item/attachable/flashlight,
-		/obj/item/attachable/extended_barrel,
-		/obj/item/attachable/compensator,
-		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/attached_gun/flamer,
-		/obj/item/attachable/attached_gun/shotgun,
-	)
-	flags_item_map_variant = NONE
-	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 18,"rail_x" = 10, "rail_y" = 20, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 17)
-
-	fire_delay = 24
-	accuracy_mult = 1.30
-	accuracy_mult_unwielded = 1
-	scatter = 15
-	scatter_unwielded = 40
-	recoil = 2
-	recoil_unwielded = 4
-	pump_delay = 12
-
 //------------------------------------------------------
 //A hacky bolt action rifle. in here for the "pump" or bolt working action.
 

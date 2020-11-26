@@ -754,7 +754,7 @@
 		/obj/item/attachable/angledgrip,
 		/obj/item/attachable/attached_gun/shotgun,
 	)
-	
+
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	gun_firemode_list = list(GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
 
@@ -792,44 +792,6 @@
 	accuracy_mult = 2
 	accuracy_mult_unwielded = 0.8
 	damage_mult = 1.3
-
-
-//-------------------------------------------------------
-//SX-16 AUTOMATIC SHOTGUN (It acts more like a rifle then a shotgun, so it makes sense to put it here)
-
-/obj/item/weapon/gun/rifle/sx16
-	name = "\improper SX-16 automatic shotgun"
-	desc = "An automatic shotgun with an impressive rate of fire. It uses 16 gauge magazines of either buckshot, slug or flechette. The SX-16 only recently left field testing, and is one of the more recent additions to the TGMC's arsenal, replacing the ZX-76 because of reliability issues. It has been taken over by the TX-15 automatic shotgun in standard-issue TGMC inventory, though."
-	icon_state = "sx16"
-	item_state = "sx16"
-	fire_sound = 'sound/weapons/guns/fire/shotgun.ogg'
-	dry_fire_sound = 'sound/weapons/guns/fire/shotgun_empty.ogg'
-	caliber = "16 gauge" //codex
-	max_shells = 15 //codex
-	current_mag = /obj/item/ammo_magazine/rifle/sx16_buckshot
-	attachable_allowed = list(
-		/obj/item/attachable/bayonet,
-		/obj/item/attachable/bayonetknife,
-		/obj/item/attachable/reddot,
-		/obj/item/attachable/verticalgrip,
-		/obj/item/attachable/angledgrip,
-		/obj/item/attachable/gyro,
-		/obj/item/attachable/flashlight,
-		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/attached_gun/flamer,
-		/obj/item/attachable/attached_gun/shotgun,
-		/obj/item/attachable/stock/sx16,
-		/obj/item/attachable/sx16barrel,
-	)
-
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
-	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
-	starting_attachment_types = list(/obj/item/attachable/stock/sx16, /obj/item/attachable/sx16barrel)
-	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 16,"rail_x" = 18, "rail_y" = 19, "under_x" = 26, "under_y" = 15, "stock_x" = 10, "stock_y" = 14)
-	gun_skill_category = GUN_SKILL_SHOTGUNS
-
-	fire_delay = 0.7 SECONDS
-	burst_amount = 1
 
 //-------------------------------------------------------
 //TX-16 AUTOMATIC SHOTGUN
