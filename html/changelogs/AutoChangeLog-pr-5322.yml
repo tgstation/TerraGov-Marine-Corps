@@ -1,4 +1,0 @@
-author: "Wayland-Smithy"
-delete-after: True
-changes: 
-  - tweak: "Hive Status health text is now only red when below a third of max health."
