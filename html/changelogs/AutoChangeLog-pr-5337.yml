@@ -1,4 +1,0 @@
-author: "Surrealaser"
-delete-after: True
-changes: 
-  - bugfix: "Can no longer crowbar anchored barricades for infinite metal. Thanks to Elsa for bringing it to my attention."

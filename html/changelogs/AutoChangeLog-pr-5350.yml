@@ -1,5 +1,0 @@
-author: "SplinterGP"
-delete-after: True
-changes: 
-  - bugfix: "fixed acid melting things too fast."
-  - bugfix: "fixed acid check for stronger acid on turfs."
