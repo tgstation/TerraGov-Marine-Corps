@@ -67,7 +67,6 @@
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 
 /obj/item/clothing/mask/rebreather/scarf/freelancer
-	name = "heat absorbent coif"
 	desc = "A close-fitting cap that covers the top, back, and sides of the head. Can also be adjusted to cover the lower part of the face so it keeps the user warm in harsh conditions."
 	icon_state = "coif"
 	item_state = "coif_fl"
