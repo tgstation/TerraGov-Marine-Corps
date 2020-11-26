@@ -11,7 +11,6 @@ cp config/maps.txt ci_test/config/maps.txt
 cp config/shipmaps.txt ci_test/config/shipmaps.txt
 
 cd ci_test
-ln -s $HOME/libmariadb/libmariadb.so libmariadb.so
 DreamDaemon tgmc.dmb -close -trusted -verbose -params "log-directory=ci"
 cd ..
 cat ci_test/data/logs/ci/clean_run.lk

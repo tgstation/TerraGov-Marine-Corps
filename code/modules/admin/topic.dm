@@ -445,20 +445,17 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		message_admins("[ADMIN_TPMONTY(usr)] revived [ADMIN_TPMONTY(L)].")
 
 
-
 	else if(href_list["editrightsbrowser"])
 		if(!check_rights(R_PERMISSIONS))
 			return
-		permissions_edit(0)
-
+		edit_admin_permissions(0)
 
 	else if(href_list["editrightsbrowserlog"])
 		if(!check_rights(R_PERMISSIONS))
 			return
-		permissions_edit(1, href_list["editrightstarget"], href_list["editrightsoperation"], href_list["editrightspage"])
+		edit_admin_permissions(1, href_list["editrightstarget"], href_list["editrightsoperation"], href_list["editrightspage"])
 
-
-	else if(href_list["editrightsbrowsermanage"])
+	if(href_list["editrightsbrowsermanage"])
 		if(!check_rights(R_PERMISSIONS))
 			return
 		if(href_list["editrightschange"])
@@ -467,8 +464,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			remove_admin(ckey(href_list["editrightsremove"]), href_list["editrightsremove"], TRUE)
 		else if(href_list["editrightsremoverank"])
 			remove_rank(href_list["editrightsremoverank"])
-		permissions_edit(2)
-
+		edit_admin_permissions(2)
 
 	else if(href_list["editrights"])
 		if(!check_rights(R_PERMISSIONS))
@@ -1583,8 +1579,10 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 	else if(href_list["messageedits"])
 		if(!check_rights(R_BAN))
 			return
-		var/message_id = sanitizeSQL("[href_list["messageedits"]]")
-		var/datum/DBQuery/query_get_message_edits = SSdbcore.NewQuery("SELECT edits FROM [format_table_name("messages")] WHERE id = '[message_id]'")
+		var/datum/db_query/query_get_message_edits = SSdbcore.NewQuery(
+			"SELECT edits FROM [format_table_name("messages")] WHERE id = :message_id",
+			list("message_id" = href_list["messageedits"])
+		)
 		if(!query_get_message_edits.warn_execute())
 			qdel(query_get_message_edits)
 			return
@@ -2257,6 +2255,55 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		GLOB.admin_approvals[approval_id] = href_list["option"]
 		log_admin("[key_name(usr)] answered '[href_list["option"]]' to the admin approval ([approval_id]).")
 		message_admins("[key_name(usr)] answered '[href_list["option"]]' to the admin approval ([approval_id]).")
+
+	else if(href_list["reloadpolls"])
+		GLOB.polls.Cut()
+		GLOB.poll_options.Cut()
+		load_poll_data()
+		poll_list_panel()
+
+	else if(href_list["newpoll"])
+		poll_management_panel()
+
+	else if(href_list["editpoll"])
+		var/datum/poll_question/poll = locate(href_list["editpoll"]) in GLOB.polls
+		poll_management_panel(poll)
+
+	else if(href_list["deletepoll"])
+		var/datum/poll_question/poll = locate(href_list["deletepoll"]) in GLOB.polls
+		poll.delete_poll()
+		poll_list_panel()
+
+	else if(href_list["initializepoll"])
+		poll_parse_href(href_list)
+
+	else if(href_list["submitpoll"])
+		var/datum/poll_question/poll = locate(href_list["submitpoll"]) in GLOB.polls
+		poll_parse_href(href_list, poll)
+
+	else if(href_list["clearpollvotes"])
+		var/datum/poll_question/poll = locate(href_list["clearpollvotes"]) in GLOB.polls
+		poll.cleaR_DBRANKS_votes()
+		poll_management_panel(poll)
+
+	else if(href_list["addpolloption"])
+		var/datum/poll_question/poll = locate(href_list["addpolloption"]) in GLOB.polls
+		poll_option_panel(poll)
+
+	else if(href_list["editpolloption"])
+		var/datum/poll_option/option = locate(href_list["editpolloption"]) in GLOB.poll_options
+		var/datum/poll_question/poll = locate(href_list["parentpoll"]) in GLOB.polls
+		poll_option_panel(poll, option)
+
+	else if(href_list["deletepolloption"])
+		var/datum/poll_option/option = locate(href_list["deletepolloption"]) in GLOB.poll_options
+		var/datum/poll_question/poll = option.delete_option()
+		poll_management_panel(poll)
+
+	else if(href_list["submitoption"])
+		var/datum/poll_option/option = locate(href_list["submitoption"]) in GLOB.poll_options
+		var/datum/poll_question/poll = locate(href_list["submitoptionpoll"]) in GLOB.polls
+		poll_option_parse_href(href_list, poll, option)
 
 	#ifdef REFERENCE_TRACKING
 	else if(href_list["delfail_clearnulls"])
