@@ -48,7 +48,6 @@
 	desc = "A large leather holster allowing the storage of any shotgun. It contains harnesses that allow it to be secured to the back for easy storage."
 	icon_state = "m37_holster"
 	can_hold = list(
-		/obj/item/weapon/gun/shotgun/merc/scout,
 		/obj/item/weapon/gun/shotgun/combat,
 		/obj/item/weapon/gun/shotgun/pump,
 	)

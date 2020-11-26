@@ -443,7 +443,6 @@
 	new /obj/item/weapon/gun/pistol/vp70(src)
 	new /obj/item/ammo_magazine/pistol/vp70(src)
 	new /obj/item/ammo_magazine/pistol/vp70(src)
-	new /obj/item/weapon/gun/shotgun/merc/scout(src)
 	new /obj/item/ammo_magazine/shotgun/incendiary(src)
 	new /obj/item/ammo_magazine/shotgun/incendiary(src)
 	new /obj/item/storage/backpack/marine/satchel/scout_cloak/scout(src)

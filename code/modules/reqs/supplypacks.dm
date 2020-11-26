@@ -1227,16 +1227,6 @@ Imports
 	contains = list(/obj/item/ammo_magazine/rifle/type71)
 	cost = 5
 
-/datum/supply_packs/imports/mp5
-	name = "MP5 SMG"
-	contains = list(/obj/item/weapon/gun/smg/mp5)
-	cost = 15
-
-/datum/supply_packs/imports/mp5/ammo
-	name = "MP5 SMG Ammo"
-	contains = list(/obj/item/ammo_magazine/smg/mp5)
-	cost = 5
-
 /datum/supply_packs/imports/mp7
 	name = "MP7 SMG"
 	contains = list(/obj/item/weapon/gun/smg/mp7)
@@ -1290,11 +1280,6 @@ Imports
 /datum/supply_packs/imports/sawnoff
 	name = "Sawn Off Shotgun"
 	contains = list(/obj/item/weapon/gun/shotgun/double/sawn)
-	cost = 15
-
-/datum/supply_packs/imports/kronos
-	name = "Kronos Shotgun"
-	contains = list(/obj/item/weapon/gun/shotgun/pump/ksg)
 	cost = 15
 
 /datum/supply_packs/imports/leveraction
@@ -1418,16 +1403,6 @@ Imports
 /datum/supply_packs/imports/deagle/ammo
 	name = "Desert Eagle Handgun Ammo"
 	contains = list(/obj/item/ammo_magazine/pistol/heavy)
-	cost = 3
-
-/datum/supply_packs/imports/kt42
-	name = "KT-42 Automag"
-	contains = list(/obj/item/weapon/gun/pistol/kt42)
-	cost = 7
-
-/datum/supply_packs/imports/kt42/ammo
-	name = "KT-42 Automag Ammo"
-	contains = list(/obj/item/ammo_magazine/pistol/automatic)
 	cost = 3
 
 /datum/supply_packs/imports/vp78
