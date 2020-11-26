@@ -1,0 +1,9 @@
+author: "TiviPlus"
+delete-after: True
+changes: 
+  - bugfix: "Midround Stickybans will now be applied correctly"
+  - refactor: "The database now uses Rustg instead of BSQL, meaning the server will crash less"
+  - config: "Added missing config entries to config, as well as an option for players with enough living time to bypass Bunkers"
+  - admin: "Admins will now be alerted to new players connecting"
+  - admin: "Improved database voting system"
+  - server: "Updated SQL schema"
