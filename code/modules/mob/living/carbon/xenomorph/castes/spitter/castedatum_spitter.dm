@@ -30,6 +30,9 @@
 	evolves_to = list(
 		/mob/living/carbon/xenomorph/boiler,
 		/mob/living/carbon/xenomorph/praetorian,
+		/mob/living/carbon/xenomorph/crusher,
+		/mob/living/carbon/xenomorph/ravager,
+		/mob/living/carbon/xenomorph/Defiler,
 	)
 	deevolves_to = /mob/living/carbon/xenomorph/sentinel
 

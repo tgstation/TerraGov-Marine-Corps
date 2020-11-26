@@ -37,6 +37,10 @@
 	evolves_to = list(
 		/mob/living/carbon/xenomorph/hunter,
 		/mob/living/carbon/xenomorph/bull,
+		/mob/living/carbon/xenomorph/spitter,
+		/mob/living/carbon/xenomorph/warrior,
+		/mob/living/carbon/xenomorph/carrier,
+		/mob/living/carbon/xenomorph/hivelord,
 	)
 
 	// *** Flags *** //

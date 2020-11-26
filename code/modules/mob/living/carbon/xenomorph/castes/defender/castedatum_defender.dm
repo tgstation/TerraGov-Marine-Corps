@@ -30,7 +30,15 @@
 	evolution_threshold = 80
 	upgrade_threshold = 60
 
-	evolves_to = list(/mob/living/carbon/xenomorph/warrior)
+	evolves_to = list(
+		/mob/living/carbon/xenomorph/hunter,
+		/mob/living/carbon/xenomorph/bull,
+		/mob/living/carbon/xenomorph/spitter,
+		/mob/living/carbon/xenomorph/warrior,
+		/mob/living/carbon/xenomorph/carrier,
+		/mob/living/carbon/xenomorph/hivelord,
+	)
+
 
 	// *** Flags *** //
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
