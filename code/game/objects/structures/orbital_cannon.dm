@@ -1,4 +1,4 @@
-#define WARHEAD_FLY_TIME 5 SECONDS
+#define WARHEAD_FLY_TIME 1 SECONDS
 #define WARHEAD_FALLING_SOUND_RANGE 15
 
 /obj/structure/orbital_cannon
@@ -199,7 +199,7 @@
 
 	notify_ghosts("<b>[user]</b> has just fired \the <b>[src]</b> !", source = T, action = NOTIFY_JUMP)
 
-	addtimer(CALLBACK(src, /obj/structure/orbital_cannon/proc/handle_ob_firing_effects, target), 5 SECONDS + (WARHEAD_FLY_TIME * (GLOB.current_orbit/3)))
+	addtimer(CALLBACK(src, /obj/structure/orbital_cannon/proc/handle_ob_firing_effects, target), 9.5 SECONDS + (WARHEAD_FLY_TIME * (GLOB.current_orbit/3)))
 	addtimer(CALLBACK(src, /obj/structure/orbital_cannon.proc/impact_callback, target, inaccurate_fuel), 10 SECONDS + (WARHEAD_FLY_TIME * (GLOB.current_orbit/3)))
 
 /obj/structure/orbital_cannon/proc/impact_callback(target,inaccurate_fuel)
