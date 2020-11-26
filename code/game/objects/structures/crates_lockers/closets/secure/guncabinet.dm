@@ -45,7 +45,7 @@
 	new /obj/item/ammo_magazine/flamer_tank(src)
 	new /obj/item/weapon/gun/shotgun/combat(src)
 	new /obj/item/weapon/gun/smg/standard_smg(src)
-	new /obj/item/weapon/gun/pistol/m4a3(src)
+	new /obj/item/weapon/gun/pistol/rt3(src)
 
 	var/list/to_spawn = list(
 		/obj/item/ammo_magazine/shotgun/buckshot = 3,
