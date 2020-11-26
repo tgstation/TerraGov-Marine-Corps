@@ -384,9 +384,9 @@
 		H.unholster(src)
 
 
-/obj/item/clothing/tie/holster/m4a3/Initialize()
+/obj/item/clothing/tie/holster/rt3/Initialize()
 	. = ..()
-	holstered = new /obj/item/weapon/gun/pistol/m4a3(src)
+	holstered = new /obj/item/weapon/gun/pistol/rt3(src)
 
 /obj/item/clothing/tie/holster/armpit
 	name = "shoulder holster"

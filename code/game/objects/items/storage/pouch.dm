@@ -198,9 +198,9 @@
 	. = ..()
 	new /obj/item/weapon/gun/pistol/vp70(src)
 
-/obj/item/storage/pouch/pistol/m4a3/Initialize()
+/obj/item/storage/pouch/pistol/rt3/Initialize()
 	. = ..()
-	new /obj/item/weapon/gun/pistol/m4a3(src)
+	new /obj/item/weapon/gun/pistol/rt3(src)
 
 //// MAGAZINE POUCHES /////
 
