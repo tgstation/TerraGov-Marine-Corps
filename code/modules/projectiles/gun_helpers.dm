@@ -861,6 +861,14 @@ should be alright.
 		if((GUN_FIREMODE_AUTOMATIC in gun_firemode_list) && !(GUN_FIREMODE_AUTOBURST in gun_firemode_list))
 			add_firemode(GUN_FIREMODE_AUTOBURST, user)
 
+/obj/item/weapon/gun/proc/toggle_auto_aim_mode(mob/living/carbon/human/user) //determines whether toggle_aim_mode activates at the end of gun/wield proc
+	if(!CHECK_BITFIELD(flags_gun_features, AUTO_AIM_MODE))
+		to_chat(user, "<span class='notice'>You will immediately aim upon wielding your weapon.</b></span>")
+		ENABLE_BITFIELD(flags_gun_features, AUTO_AIM_MODE)
+	else
+		to_chat(user, "<span class='notice'>You will wield your weapon without aiming with precision.</b></span>")
+		DISABLE_BITFIELD(flags_gun_features, AUTO_AIM_MODE)
+
 /obj/item/weapon/gun/proc/toggle_aim_mode(mob/living/carbon/human/user)
 	var/aim_mode_visual = image('icons/mob/hud.dmi', null, "aim_mode")
 	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_AIMING))
@@ -884,7 +892,7 @@ should be alright.
 	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_BAR))
 		to_chat(user, "<span class='warning'>Your concentration is interrupted!</b></span>")
 		return
-	if(!CHECK_BITFIELD(flags_gun_features, WIELDED))
+	if(!CHECK_BITFIELD(flags_item, WIELDED))
 		to_chat(user, "<span class='notice'>You need to wield your gun before aiming.</b></span>")
 		return
 	user.add_overlay(aim_mode_visual)

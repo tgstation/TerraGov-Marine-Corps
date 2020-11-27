@@ -251,6 +251,8 @@
 	A.add_hud(user)
 	A.update_hud(user)
 	do_wield(user, wdelay)
+	if(CHECK_BITFIELD(flags_gun_features, AUTO_AIM_MODE))
+		toggle_aim_mode(user)
 
 
 /obj/item/weapon/gun/unwield(mob/user)

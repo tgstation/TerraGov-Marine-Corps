@@ -89,4 +89,4 @@
 
 /datum/action/item_action/aim_mode/action_activate()
 	var/obj/item/weapon/gun/I = target
-	I.toggle_aim_mode(owner)
+	I.toggle_auto_aim_mode(owner)
