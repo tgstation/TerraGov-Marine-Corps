@@ -58,7 +58,7 @@
 
 /datum/action/xeno_action/activable/emit_neurogas/on_cooldown_finish()
 	playsound(owner.loc, 'sound/effects/xeno_newlarva.ogg', 50, 0)
-	to_chat(owner, "<span class='xenodanger'>We feel our dorsal vents bristle with neurotoxic gas. We can use Emit Neurogas again.</span>")
+	to_chat(owner, "<span class='xenodanger'>We feel our dorsal vents bristle with heated gas. We can use Emit Noxious Gas again.</span>")
 	return ..()
 
 /datum/action/xeno_action/activable/emit_neurogas/use_ability(atom/A)
@@ -66,7 +66,7 @@
 
 	//give them fair warning
 	X.visible_message("<span class='danger'>Tufts of smoke begin to billow from [X]!</span>", \
-	"<span class='xenodanger'>Our dorsal vents widen, preparing to emit neurogas. We must keep still!</span>")
+	"<span class='xenodanger'>Our dorsal vents widen, preparing to emit toxic smoke. We must keep still!</span>")
 
 	X.emitting_gas = TRUE //We gain bump movement immunity while we're emitting gas.
 	succeed_activate()
@@ -74,7 +74,7 @@
 
 	if(!do_after(X, DEFILER_GAS_CHANNEL_TIME, TRUE, null, BUSY_ICON_HOSTILE))
 		if(!QDELETED(src))
-			to_chat(X, "<span class='xenodanger'>We abort emitting neurogas, our expended plasma resulting in nothing.</span>")
+			to_chat(X, "<span class='xenodanger'>We abort emitting fumes, our expended plasma resulting in nothing.</span>")
 			X.emitting_gas = FALSE
 			X.icon_state = "Defiler Running"
 			return fail_activate()
@@ -84,14 +84,14 @@
 	add_cooldown()
 
 	if(X.stagger) //If we got staggered, return
-		to_chat(X, "<span class='xenowarning'>We try to emit neurogas but are staggered!</span>")
+		to_chat(X, "<span class='xenowarning'>We try to emit toxins but are staggered!</span>")
 		return fail_activate()
 
 	GLOB.round_statistics.defiler_neurogas_uses++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "defiler_neurogas_uses")
 
 	X.visible_message("<span class='xenodanger'>[X] emits a noxious gas!</span>", \
-	"<span class='xenodanger'>We emit neurogas!</span>")
+	"<span class='xenodanger'>We emit noxious gas!</span>")
 	dispense_gas()
 
 /datum/action/xeno_action/activable/emit_neurogas/proc/dispense_gas(count = 3)
@@ -109,10 +109,10 @@
 		smoke_range = 4
 	while(count)
 		if(X.stagger) //If we got staggered, return
-			to_chat(X, "<span class='xenowarning'>We try to emit neurogas but are staggered!</span>")
+			to_chat(X, "<span class='xenowarning'>We try to emit toxins but are staggered!</span>")
 			return
 		if(X.IsStun() || X.IsParalyzed())
-			to_chat(X, "<span class='xenowarning'>We try to emit neurogas but are disabled!</span>")
+			to_chat(X, "<span class='xenowarning'>We try to emit toxins but are disabled!</span>")
 			return
 		var/turf/T = get_turf(X)
 		playsound(T, 'sound/effects/smoke.ogg', 25)
@@ -177,7 +177,10 @@
 /datum/action/xeno_action/select_reagent
 	name = "Select Reagent"
 	action_icon_state = "select_reagent0"
-	mechanics_text = "Selects which reagent to inject. Hemodile slows by 25%, increased to 50% with neurotoxin present, and deals 20% of dmage received as stamina damage. Transvitox after ~4s converts brute/burn damage to toxin based on 40% of damage received up to 45 toxin on target."
+	mechanics_text = "Selects which reagent to use for reagent slash and noxious gas. Hemodile slows by 25%, increased to 50% with \
+			 neurotoxin present, and deals 20% of damage received as stamina damage. Transvitox, after ~4s of being \
+			 metabolized, converts brute/burn damage to toxin based on 40% of damage received up to 45 toxin on target, upon reaching which causes a stun. \
+			 Neurotoxin deals increasing stamina damage the longer it remains in the victim's system and prevents stamina regeneration."
 	use_state_flags = XACT_USE_BUSY
 	keybind_signal = COMSIG_XENOABILITY_SELECT_REAGENT
 	var/list_position
