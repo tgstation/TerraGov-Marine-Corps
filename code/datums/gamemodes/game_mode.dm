@@ -578,10 +578,10 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 		qdel(query_get_new_polls)
 		return
 	if(query_get_new_polls.NextRow())
-		return "<p><b><a href='byond://?src=[rs];showpoll=1'>Show Player Polls</A> (NEW!)</b></p>"
+		. += "<p><b><a href='byond://?src=[rs];showpoll=1'>Show Player Polls</A> (NEW!)</b></p>"
 	else
-		return "<p><a href='byond://?src=[rs];showpoll=1'>Show Player Polls</A></p>"
-
+		. += "<p><a href='byond://?src=[rs];showpoll=1'>Show Player Polls</A></p>"
+	qdel(query_get_new_polls)
 
 /datum/game_mode/proc/CanLateSpawn(mob/new_player/NP, datum/job/job)
 	if(!isnewplayer(NP))
