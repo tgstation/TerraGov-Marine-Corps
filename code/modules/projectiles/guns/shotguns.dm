@@ -189,38 +189,6 @@ can cause issues with ammo types getting mixed up during the burst.
 		return in_chamber ? (current_mag.current_rounds + 1) : current_mag.current_rounds
 
 //-------------------------------------------------------
-//GENERIC MERC SHOTGUN //Not really based on anything.
-
-/obj/item/weapon/gun/shotgun/merc
-	name = "custom built shotgun"
-	desc = "A cobbled-together pile of scrap and alien wood. Point end towards things you want to die. Has a burst fire feature, as if it needed it."
-	flags_equip_slot = ITEM_SLOT_BACK
-	icon_state = "cshotgun"
-	item_state = "cshotgun"
-	max_shells = 5 //codex
-	fire_sound = 'sound/weapons/guns/fire/shotgun_automatic.ogg'
-	current_mag = /obj/item/ammo_magazine/internal/shotgun/merc
-	attachable_allowed = list(/obj/item/attachable/compensator)
-
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_SHOTGUN_CHAMBER|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
-	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 17, "under_y" = 14, "stock_x" = 17, "stock_y" = 14)
-
-	fire_delay = 10
-	burst_amount = 2
-	burst_delay = 0.5 SECONDS
-	accuracy_mult = 0.8
-	accuracy_mult_unwielded = 0.5
-	scatter = 20
-	scatter_unwielded = 40
-	recoil = 2
-	recoil_unwielded = 4
-
-
-/obj/item/weapon/gun/shotgun/merc/examine_ammo_count(mob/user)
-	if(in_chamber)
-		to_chat(user, "It has a chambered round.")
-
-//-------------------------------------------------------
 //TACTICAL SHOTGUN
 
 /obj/item/weapon/gun/shotgun/combat
@@ -626,41 +594,6 @@ can cause issues with ammo types getting mixed up during the burst.
 	scatter_unwielded = 35
 	recoil = 0 // It has a stock. It's on the sprite.
 	recoil_unwielded = 0
-	pump_delay = 12
-
-//-------------------------------------------------------
-//Based off of the KSG
-/obj/item/weapon/gun/shotgun/pump/ksg
-	name = "\improper Kronos pump shotgun"
-	desc = "A peculiarly designed pump shotgun, featuring a massive magazine well, a compact bullpup design and military attachment compatablity. This pump shotgun is issued for counter-terrorist units and unlicensed private military contractors."
-	icon_state = "ksg"
-	item_state = "ksg"
-	fire_sound = 'sound/weapons/guns/fire/shotgun_light.ogg'
-	reload_sound = 'sound/weapons/guns/interact/shotgun_ksg_insert.ogg'
-	pump_sound = 'sound/weapons/guns/interact/shotgun_ksg_pump.ogg'
-	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump/CMB
-	attachable_allowed = list(
-		/obj/item/attachable/reddot,
-		/obj/item/attachable/verticalgrip,
-		/obj/item/attachable/angledgrip,
-		/obj/item/attachable/gyro,
-		/obj/item/attachable/flashlight,
-		/obj/item/attachable/extended_barrel,
-		/obj/item/attachable/compensator,
-		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/attached_gun/flamer,
-		/obj/item/attachable/attached_gun/shotgun,
-	)
-	flags_item_map_variant = NONE
-	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 18,"rail_x" = 10, "rail_y" = 20, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 17)
-
-	fire_delay = 24
-	accuracy_mult = 1.30
-	accuracy_mult_unwielded = 1
-	scatter = 15
-	scatter_unwielded = 40
-	recoil = 2
-	recoil_unwielded = 4
 	pump_delay = 12
 
 //------------------------------------------------------

@@ -1030,44 +1030,6 @@
 	scatter = -100
 
 //-------------------------------------------------------
-//SCOUT SHOTGUN
-
-/obj/item/weapon/gun/shotgun/merc/scout
-	name = "\improper ZX-76 assault shotgun"
-	desc = "The MIC ZX-76 Assault Shotgun, a double barreled semi-automatic combat shotgun with a twin shot mode, has a 9 round internal magazine. Currently retired by the main TGMC forces for the addition of the SX-16 and later the MBX-900, it is now only used in special operations and smaller divisions across Terra."
-	icon_state = "zx-76"
-	item_state = "zx-76"
-	max_shells = 10 //codex
-	caliber = "12 gauge shotgun shells" //codex
-	load_method = SINGLE_CASING //codex
-	fire_sound = 'sound/weapons/guns/fire/shotgun_light.ogg'
-	current_mag = /obj/item/ammo_magazine/internal/shotgun/scout
-	gun_skill_category = GUN_SKILL_SHOTGUNS
-	aim_slowdown = 0.75
-	attachable_allowed = list(
-		/obj/item/attachable/bayonet,
-		/obj/item/attachable/reddot,
-		/obj/item/attachable/verticalgrip,
-		/obj/item/attachable/angledgrip,
-		/obj/item/attachable/gyro,
-		/obj/item/attachable/flashlight,
-		/obj/item/attachable/extended_barrel,
-		/obj/item/attachable/compensator,
-		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/lasersight,
-		/obj/item/attachable/attached_gun/flamer,
-		/obj/item/attachable/attached_gun/shotgun,
-		/obj/item/attachable/attached_gun/grenade,
-	)
-	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 8, "rail_y" = 18, "under_x" = 24, "under_y" = 12, "stock_x" = 13, "stock_y" = 15)
-	starting_attachment_types = list(/obj/item/attachable/stock/scout)
-
-	fire_delay = 2 SECONDS
-	burst_delay = 0.01 SECONDS //basically instantaneous two shots
-	burst_accuracy_mult = 0.7
-	accuracy_mult = 1
-
-//-------------------------------------------------------
 //This gun is very powerful, but also has a kick.
 
 /obj/item/weapon/gun/minigun
