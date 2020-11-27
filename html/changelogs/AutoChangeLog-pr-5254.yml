@@ -1,0 +1,4 @@
+author: "Pariah919"
+delete-after: True
+changes: 
+  - balance: "runner pounce delay made 13 rather than 6, and runner hp buffed up to capping at 240."

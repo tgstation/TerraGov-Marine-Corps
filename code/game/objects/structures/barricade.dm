@@ -519,9 +519,9 @@
 		if(CADE_TYPE_BOMB)
 			soft_armor = soft_armor.modifyRating(bomb = 50)
 		if(CADE_TYPE_MELEE)
-			soft_armor = soft_armor.modifyRating(melee = 50, bullet = 30)
+			soft_armor = soft_armor.modifyRating(melee = 30, bullet = 30)
 		if(CADE_TYPE_ACID)
-			soft_armor = soft_armor.modifyRating(bio = 0, acid = 30)
+			soft_armor = soft_armor.modifyRating(bio = 0, acid = 20)
 
 	barricade_upgrade_type = choice
 
@@ -792,7 +792,7 @@
 	name = "plasteel barricade"
 	desc = "A very sturdy barricade made out of plasteel panels, the pinnacle of strongpoints. Use a blowtorch to repair. Can be flipped down to create a path."
 	icon_state = "plasteel_closed_0"
-	max_integrity = 600
+	max_integrity = 500
 	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 80, "acid" = 40)
 	coverage = 128
 	crusher_resistant = TRUE
