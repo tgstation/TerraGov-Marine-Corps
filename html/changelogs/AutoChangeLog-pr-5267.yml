@@ -1,5 +1,0 @@
-author: "Pariah919"
-delete-after: True
-changes: 
-  - tweak: "renamed the ballistic armor upgrade for cades to reinforced"
-  - balance: "nerfed plasteel cade hp by 100, nerfed reinforced armor upgrade for metal cades to 30 melee, nerfed acid by 10 to 20"
