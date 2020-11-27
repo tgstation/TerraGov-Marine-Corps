@@ -42,7 +42,7 @@
 	icon_state = "Runner Walking"
 	layer = MOB_LAYER
 	alpha = 64 //Translucent
-	duration = 0.3 SECONDS
+	duration = 0.5 SECONDS
 	density = FALSE
 	opacity = FALSE
 	anchored = FALSE
