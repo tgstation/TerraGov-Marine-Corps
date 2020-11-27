@@ -1,0 +1,11 @@
+author: "Hathkar"
+delete-after: True
+changes: 
+  - rscdel: "Capture gameplay is gone, dead, kaput."
+  - rscdel: "Disarm intent as xenomorph does slashes instead of throttling/tackling"
+  - rscdel: "Being nested no longer speeds up embryo growth"
+  - tweak: "Resisting out of a nest takes 2.5 seconds instead of 60"
+  - tweak: "Hunter's sneak attacks stun on harm intent to make up for the versatility of stamina damage, stun time reduced from 1.5 seconds to 1"
+  - tweak: "Larva chestburst takes 15 minutes up from 10"
+  - tweak: "Larval accelerant speed on embryo reduced by 50%"
+  - tweak: "Larval accelerant no longer heals the target"
