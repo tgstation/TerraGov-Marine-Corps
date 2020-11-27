@@ -61,7 +61,7 @@
 	popup.open(FALSE)
 
 /mob/new_player/proc/playerpolls()
-	var/list/output = list()
+	var/output
 	if (SSdbcore.Connect())
 		var/isadmin = FALSE
 		if(client?.holder)
