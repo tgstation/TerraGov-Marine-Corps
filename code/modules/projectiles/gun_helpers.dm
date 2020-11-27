@@ -862,6 +862,11 @@ should be alright.
 			add_firemode(GUN_FIREMODE_AUTOBURST, user)
 
 /obj/item/weapon/gun/proc/toggle_auto_aim_mode(mob/living/carbon/human/user) //determines whether toggle_aim_mode activates at the end of gun/wield proc
+
+	if(CHECK_BITFIELD(flags_item, WIELDED)) //if gun is wielded the toggles aim mode directly instead
+		toggle_aim_mode(user)
+		return
+
 	if(!CHECK_BITFIELD(flags_gun_features, AUTO_AIM_MODE))
 		to_chat(user, "<span class='notice'>You will immediately aim upon wielding your weapon.</b></span>")
 		ENABLE_BITFIELD(flags_gun_features, AUTO_AIM_MODE)
