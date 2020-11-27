@@ -640,9 +640,12 @@
 		return TRUE
 	return FALSE
 
-/mob/living/carbon/human/can_sting()
-	if(species?.species_flags & IS_SYNTHETIC)
-		return FALSE
+/mob/living/can_sting()
+	if(ishuman(src))
+		var/mob/living/carbon/human/target = src
+		if(target.species?.species_flags & IS_SYNTHETIC)
+			return FALSE
+
 	if(stat != DEAD)
 		return TRUE
 	return FALSE

@@ -479,11 +479,8 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define HANDLE_SNEAK_ATTACK_CHECK				3
 #define HUNTER_SNEAK_SLASH_ARMOR_PEN			0.5 //1 - this value = the actual penetration
 #define HUNTER_SNEAK_ATTACK_RUN_DELAY			2 SECONDS
-#define HUNTER_SNEAKATTACK_MAX_MULTIPLIER		2.0
-#define HUNTER_SNEAKATTACK_WALK_INCREASE		1
-#define HUNTER_SNEAKATTACK_MULTI_RECOVER_DELAY	10
 #define HUNTER_SNEAK_ATTACK_RUNNING_MULTIPLIER	0.5 //Penalty multiplier for using sneak attack while running
-#define HUNTER_SNEAK_ATTACK_DISARM_MULTIPLIER	1.5 //Multiplier for disarm full sneak attack tackle damage
+#define HUNTER_SNEAK_ATTACK_DISARM_MULTIPLIER	1 //Multiplier for disarm full sneak attack tackle damage
 #define HUNTER_SNEAK_ATTACK_STAGGERSLOW_STACKS	4 //Stacks of stagger and slow applied to the target
 #define HUNTER_SNEAK_ATTACK_PARALYZE_TIME		1.5 SECONDS //Stacks of stagger and slow applied to the target
 #define HUNTER_IMPAIR_SENSES_STACKS				5 //Imposes this many eyeblur stacks.

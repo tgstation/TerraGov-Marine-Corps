@@ -496,6 +496,7 @@
 		if(46 to INFINITY)
 			L.adjustStaminaLoss(15*effect_str)
 			L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_HEAVY
+	L.adjust_blurriness(1.3) //Eye blur gets worse the longer it remains in the system
 	L.adjust_drugginess(1.1)
 	L.stuttering = max(L.stuttering, 1)
 	return ..()

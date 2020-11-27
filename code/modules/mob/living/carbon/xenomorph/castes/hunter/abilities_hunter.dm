@@ -19,7 +19,7 @@
 	RegisterSignal(L, COMSIG_XENOMORPH_POUNCE, .proc/sneak_attack_pounce)
 	RegisterSignal(L, COMSIG_XENO_LIVING_THROW_HIT, .proc/mob_hit)
 	RegisterSignal(L, COMSIG_XENOMORPH_ATTACK_LIVING, .proc/sneak_attack_slash)
-	RegisterSignal(L, COMSIG_XENOMORPH_DISARM_HUMAN, .proc/sneak_attack_disarm)
+	//RegisterSignal(L, COMSIG_XENOMORPH_DISARM_HUMAN, .proc/sneak_attack_disarm)
 	RegisterSignal(L, COMSIG_XENOMORPH_ZONE_SELECT, .proc/sneak_attack_zone)
 	RegisterSignal(L, COMSIG_XENOMORPH_PLASMA_REGEN, .proc/plasma_regen)
 
@@ -50,7 +50,7 @@
 		COMSIG_XENOMORPH_POUNCE,
 		COMSIG_XENO_LIVING_THROW_HIT,
 		COMSIG_XENOMORPH_ATTACK_LIVING,
-		COMSIG_XENOMORPH_DISARM_HUMAN,
+		//COMSIG_XENOMORPH_DISARM_HUMAN,
 		COMSIG_XENOMORPH_GRAB,
 		COMSIG_XENOMORPH_ATTACK_BARRICADE,
 		COMSIG_XENOMORPH_ATTACK_CLOSET,
@@ -123,7 +123,7 @@
 	if(!silent)
 		to_chat(owner, "<span class='xenodanger'>We emerge from the shadows.</span>")
 	if(change_move_intent) //By default we swap to running after sneak attack for quick get-aways
-		owner.m_intent = MOVE_INTENT_RUN
+		owner.toggle_move_intent(MOVE_INTENT_RUN)
 
 	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED) //This should be handled on the ability datum or a component.
 	stealth = FALSE
@@ -196,12 +196,14 @@
 	if(!stealth || !can_sneak_attack)
 		return
 
+	var/paralyze_time = HUNTER_SNEAK_ATTACK_PARALYZE_TIME
 	var/staggerslow_stacks = HUNTER_SNEAK_ATTACK_STAGGERSLOW_STACKS
 	var/flavour
 
 	if(owner.m_intent == MOVE_INTENT_RUN && ( owner.last_move_intent > (world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY) ) ) //We penalize running with a compromised sneak attack, unless they've been stationary; walking is fine.
 		flavour = "vicious"
 		staggerslow_stacks *= HUNTER_SNEAK_ATTACK_RUNNING_MULTIPLIER //half as much stagger slow if we're running and not stationary
+		paralyze_time *= HUNTER_SNEAK_ATTACK_RUNNING_MULTIPLIER
 		armor_mod += (1 - (1 - HUNTER_SNEAK_SLASH_ARMOR_PEN) * HUNTER_SNEAK_ATTACK_RUNNING_MULTIPLIER) //We halve the penetration.
 	else
 		armor_mod += HUNTER_SNEAK_SLASH_ARMOR_PEN
@@ -209,30 +211,31 @@
 
 	owner.visible_message("<span class='danger'>\The [owner] strikes [target] with [flavour] precision!</span>", \
 	"<span class='danger'>We strike [target] with [flavour] precision!</span>")
-	target.ParalyzeNoChain(1 SECONDS)
+	target.ParalyzeNoChain(paralyze_time)
 	target.adjust_stagger(staggerslow_stacks)
 	target.add_slowdown(staggerslow_stacks)
-
+	target.adjust_blurriness(staggerslow_stacks)
 	cancel_stealth()
 	return COMPONENT_BYPASS_SHIELDS
 
+/* ///Commenting this out for now due to our removal of disarm intent tackles
 /datum/action/xeno_action/stealth/proc/sneak_attack_disarm(datum/source, mob/living/target, damage, list/damage_mod, list/armor_mod)
 	SIGNAL_HANDLER
 	if(!stealth || !can_sneak_attack)
 		return
 
-	var/staggerslow_stacks = HUNTER_SNEAK_ATTACK_STAGGERSLOW_STACKS
-	var/paralyze_time = HUNTER_SNEAK_ATTACK_PARALYZE_TIME
+	var/staggerslow_stacks = HUNTER_SNEAK_ATTACK_STAGGERSLOW_STACKS * 1.5
+	var/paralyze_time = HUNTER_SNEAK_ATTACK_PARALYZE_TIME * 1.5
 	var/flavour
 
 	if(owner.m_intent == MOVE_INTENT_RUN && ( owner.last_move_intent > (world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY) ) )  //We penalize running with a compromised sneak attack, unless they've been stationary; walking is fine.
-		pain_mod += (HUNTER_SNEAK_ATTACK_DISARM_MULTIPLIER * HUNTER_SNEAK_ATTACK_RUNNING_MULTIPLIER * tackle_pain)
 		flavour = "vicious"
 		staggerslow_stacks *= HUNTER_SNEAK_ATTACK_RUNNING_MULTIPLIER //Penalize staggerslow
 		paralyze_time *= HUNTER_SNEAK_ATTACK_RUNNING_MULTIPLIER
+		armor_mod += (1 - (1 - HUNTER_SNEAK_SLASH_ARMOR_PEN) * HUNTER_SNEAK_ATTACK_RUNNING_MULTIPLIER) //We halve the penetration.
 
 	else
-		pain_mod += (HUNTER_SNEAK_ATTACK_DISARM_MULTIPLIER * tackle_pain)
+		armor_mod += HUNTER_SNEAK_SLASH_ARMOR_PEN
 		flavour = "deadly"
 
 	owner.visible_message("<span class='danger'>\The [owner] strikes [target] with [flavour] precision!</span>", \
@@ -243,7 +246,7 @@
 
 	cancel_stealth()
 	return COMPONENT_BYPASS_SHIELDS
-
+*/
 
 /datum/action/xeno_action/stealth/proc/damage_taken(mob/living/carbon/xenomorph/X, damage_taken)
 	SIGNAL_HANDLER
@@ -325,13 +328,15 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/victim = A
 
+	X.face_atom(victim)
+
 	to_chat(X, "<span class='xenodanger'>We reach out into mind of [victim], impairing their senses...</span>") //Notify privately
-	to_chat(victim, "<span class='danger'>Your mind convulses at the touch of something ominous as the world seems to dim, going completely silent!</span>") //Notify privately
+	to_chat(victim, "<span class='danger'>Your mind convulses at the touch of something ominous as the world seems to dim, and everything falls silent!</span>") //Notify privately
 	X.playsound_local(X, 'sound/effects/ghost.ogg', 25, 0, 1) //Spooky psychic noises.
 	victim.playsound_local(victim, 'sound/effects/ghost.ogg', 25, 0, 1) //Spooky psychic noises.
 	victim.blind_eyes(HUNTER_IMPAIR_SENSES_STACKS * 0.25) //Blind for a very short duration
 	victim.adjust_stagger(HUNTER_IMPAIR_SENSES_STACKS) //Stagger for a short duration
-	victim.blur_eyes(HUNTER_IMPAIR_SENSES_STACKS) //Blur for a short duration
+	victim.adjust_blurriness(HUNTER_IMPAIR_SENSES_STACKS) //Blur for a short duration
 	victim.adjust_ear_damage(deaf = HUNTER_IMPAIR_SENSES_STACKS) //Temp deafen for a short duration
 
 	succeed_activate()
@@ -341,7 +346,7 @@
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "hunter_impede_senses") //Statistics
 
 // ***************************************
-// *********** Sneak Stinger
+// *********** Stealth Stinger
 // ***************************************
 /datum/action/xeno_action/activable/sneak_stinger
 	name = "Stealth Stinger"
@@ -357,10 +362,13 @@
 		return
 
 	var/mob/living/carbon/xenomorph/hunter/X = owner
-	var/mob/living/sting_target = A
 
-	if(isliving(sting_target))
+	if(!isliving(A))
+		if(!silent)
+			to_chat(X, "<span class='xenowarning'>We cannot sting this target!</span>")
 		return FALSE
+
+	var/mob/living/sting_target = A
 
 	if(!A?.can_sting())
 		if(!silent)
@@ -372,14 +380,14 @@
 			to_chat(X, "<span class='xenowarning'>We're too busy being on fire to sting them!</span>")
 		return FALSE
 
-	if(X.m_intent == MOVE_INTENT_RUN && ( X.last_move_intent > (world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY) ) )//We can't sprint up to the target and use this.
-		if(!silent)
-			to_chat(X, "<span class='xenowarning'>We must be stalking or stationary to properly sting the target!</span>")
-		return FALSE
-
 	if(!X.Adjacent(sting_target))
 		if(!silent)
 			to_chat(X, "<span class='xenowarning'>We must be adjacent to the target.</span>")
+		return FALSE
+
+	if(X.m_intent == MOVE_INTENT_RUN && ( X.last_move_intent > (world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY) ) )//We can't sprint up to the target and use this.
+		if(!silent)
+			to_chat(X, "<span class='xenowarning'>We must be stalking or stationary to properly sting the target!</span>")
 		return FALSE
 
 	if(sting_target.stat == DEAD)
@@ -416,26 +424,30 @@
 
 /datum/action/xeno_action/activable/sneak_stinger/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
-	var/mob/living/carbon/C = A
+	var/mob/living/victim = A
 
-	X.face_atom(C)
+	X.face_atom(victim)
 
 	to_chat(X, "<span class='xenodanger'>We prepare to sting our quarry...</span>")
 
 	if(!do_after(X, HUNTER_STINGER_WINDUP, TRUE, target, BUSY_ICON_HOSTILE)) //Slight wind up
+		to_chat(X, "<span class='xenodanger'>We aborting stinging [victim].</span>")
 		return fail_activate()
 
-	C.attack_alien(X) //We auto-sneak attack as part of this ability.
+	victim.attack_alien(X) //We auto-sneak attack as part of this ability.
 	var/datum/reagent/toxin = /datum/reagent/toxin/acid/xeno_acid
 	var/transfer_amount = HUNTER_SNEAK_ATTACK_INJECT_AMOUNT
-	if(X.a_intent != INTENT_HARM) //Inject neurotoxin instead of acid while on disarm intent
+	if(X.a_intent != INTENT_HARM) //Inject neurotoxin instead of acid while on non-harm intent and double the dose
 		toxin = /datum/reagent/toxin/xeno_neurotoxin
+		transfer_amount *= 2
+		if(X.a_intent == INTENT_HELP) //So we do *something* visual
+			X.do_attack_animation(victim)
 
-	C.reagents.add_reagent(toxin, transfer_amount)
-	to_chat(C, "<span class='danger'>You feel a tiny prick.</span>") //Fluff
+	victim.reagents.add_reagent(toxin, transfer_amount)
+	to_chat(victim, "<span class='danger'>You feel a tiny prick.</span>") //Fluff
 	to_chat(X, "<span class='xenowarning'>Our stinger silently injects our victim!</span>")
-	X.playsound_local(C, 'sound/effects/spray3.ogg', 5, 0, 1)
-	C.playsound_local(C, 'sound/effects/spray3.ogg', 5, 0, 1)
+	X.playsound_local(victim, 'sound/effects/spray3.ogg', 5, 0, 1)
+	victim.playsound_local(victim, 'sound/effects/spray3.ogg', 5, 0, 1)
 
 	succeed_activate()
 
