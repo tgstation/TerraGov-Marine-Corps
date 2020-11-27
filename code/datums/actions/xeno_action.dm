@@ -138,10 +138,11 @@
 
 /datum/action/xeno_action/proc/add_cooldown()
 	SIGNAL_HANDLER
-	if(cooldown_id) // stop doubling up
+	var/cooldown_length = get_cooldown()
+	if(cooldown_id || !cooldown_length) // stop doubling up or waiting on zero
 		return
 	last_use = world.time
-	cooldown_id = addtimer(CALLBACK(src, .proc/on_cooldown_finish), get_cooldown(), TIMER_STOPPABLE)
+	cooldown_id = addtimer(CALLBACK(src, .proc/on_cooldown_finish), cooldown_length, TIMER_STOPPABLE)
 	button.overlays += cooldown_image
 	update_button_icon()
 
