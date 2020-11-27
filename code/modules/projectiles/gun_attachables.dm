@@ -675,6 +675,12 @@ Defined in conflicts.dm of the #defines folder.
 	desc = "A rail-mounted night vision scope developed by Roh-Easy industries for the TGMC. Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
 	has_nightvision = TRUE
 
+/obj/item/attachable/scope/mosin
+	name = "Mosin nagant rail scope"
+	icon_state = "mosinscope"
+	attach_icon = "mosinscope"
+	desc = "A Mosin specific mounted zoom sight scope. Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
+
 /obj/item/attachable/scope/unremovable
 	flags_attach_features = ATTACH_ACTIVATION
 
@@ -782,6 +788,15 @@ Defined in conflicts.dm of the #defines folder.
 	pixel_shift_x = 30
 	pixel_shift_y = 14
 
+/obj/item/attachable/stock/irremoveable
+	wield_delay_mod = 0 SECONDS
+	flags_attach_features = NONE
+	accuracy_mod = 0
+	recoil_mod = 0
+	melee_mod = 0
+	scatter_mod = 0
+	movement_acc_penalty_mod = 0
+
 /obj/item/attachable/stock/shotgun
 	name = "\improper shotgun stock"
 	desc = "A non-standard heavy wooden stock for the old V10 shotgun. Less quick and more cumbersome than the standard issue stakeout, but reduces recoil and improves accuracy. Allegedly makes a pretty good club in a fight too."
@@ -836,6 +851,15 @@ Defined in conflicts.dm of the #defines folder.
 	scatter_mod = -20
 	movement_acc_penalty_mod = 0.1
 
+/obj/item/attachable/stock/irremoveable/ppsh
+	name = "PPSh-17b submachinegun wooden stock"
+	desc = "A long wooden stock for a PPSh-17b submachinegun"
+	icon_state = "ppshstock"
+
+/obj/item/attachable/stock/irremoveable/pal12
+	name = "Paladin-12 pump shotgun stock"
+	desc = "A standard light stock for the Paladin-12 shotgun."
+	icon_state = "pal12stock"
 
 /obj/item/attachable/stock/m16
 	name = "M16 composite stock"
@@ -845,7 +869,6 @@ Defined in conflicts.dm of the #defines folder.
 	pixel_shift_x = 32
 	pixel_shift_y = 13
 	flags_attach_features = NONE
-
 
 /obj/item/attachable/stock/ak47
 	name = "AK-47 wooden stock"
@@ -873,18 +896,10 @@ Defined in conflicts.dm of the #defines folder.
 	scatter_mod = -10
 	movement_acc_penalty_mod = 0.1
 
-/obj/item/attachable/stock/rifle/irremoveable
+/obj/item/attachable/stock/irremoveable/rifle
 	name = "\improper M412 solid stock"
-	wield_delay_mod = 0 SECONDS
 	pixel_shift_x = 32
 	pixel_shift_y = 13
-	flags_attach_features = NONE
-	accuracy_mod = 0
-	recoil_mod = 0
-	melee_mod = 0
-	scatter_mod = 0
-	movement_acc_penalty_mod = 0
-
 
 /obj/item/attachable/stock/rifle/marksman
 	name = "\improper T-45 marksman stock"

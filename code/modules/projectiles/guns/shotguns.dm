@@ -558,8 +558,8 @@ can cause issues with ammo types getting mixed up during the burst.
 
 	pump_notice(user)
 	if(pump_animation)
-		flick("[pump_animation]", src)
-	playsound(user, pump_sound, 25, 1)
+		do_pump_animation()
+	play_pump_sound(user)
 	recent_pump = world.time
 	if(in_chamber) //Lock only if we have ammo loaded.
 		pump_lock = TRUE
@@ -575,6 +575,12 @@ can cause issues with ammo types getting mixed up during the burst.
 
 /obj/item/weapon/gun/shotgun/pump/proc/pump_notice(mob/user)
 	to_chat(user, "<span class='notice'><b>You pump [src].</b></span>")
+
+/obj/item/weapon/gun/shotgun/pump/proc/do_pump_animation()
+	flick("[pump_animation]", src)
+
+/obj/item/weapon/gun/shotgun/pump/proc/play_pump_sound(mob/user)
+	playsound(user, pump_sound, 25, 1)
 
 /obj/item/weapon/gun/shotgun/pump/reload_into_chamber(mob/user)
 	if(active_attachable && active_attachable.flags_attach_features & ATTACH_PROJECTILE)
@@ -601,6 +607,7 @@ can cause issues with ammo types getting mixed up during the burst.
 /obj/item/weapon/gun/shotgun/pump/cmb
 	name = "\improper Paladin-12 pump shotgun"
 	desc = "A nine-round pump action shotgun. A sporterized version of a classic shotgun used for hunting, home defence and police work, modified and used by Nanotrasen security."
+	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "pal12"
 	item_state = "pal12"
 	fire_sound = 'sound/weapons/guns/fire/shotgun_cmb.ogg'
@@ -616,7 +623,10 @@ can cause issues with ammo types getting mixed up during the burst.
 		/obj/item/attachable/magnetic_harness,
 	)
 	flags_item_map_variant = NONE
-	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 16,"rail_x" = 14, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 17)
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 16,"rail_x" = 14, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 13)
+	starting_attachment_types = list(
+		/obj/item/attachable/stock/irremoveable/pal12
+	)
 
 	fire_delay = 15
 	damage_mult = 0.75
@@ -669,9 +679,10 @@ can cause issues with ammo types getting mixed up during the burst.
 /obj/item/weapon/gun/shotgun/pump/bolt
 	name = "\improper Mosin Nagant rifle"
 	desc = "A mosin nagant rifle, even just looking at it you can feel the cosmoline already. Commonly known by its slang, \"Moist Nugget\", by downbrained colonists and outlaws."
+	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "mosin"
 	item_state = "mosin" //thank you Alterist
-	pump_animation = "mosin_pump"
+	pump_animation = "mosin_bolt"
 	fire_sound = 'sound/weapons/guns/fire/mosin.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	reload_sound = 'sound/weapons/guns/interact/mosin_reload.ogg'
@@ -687,23 +698,23 @@ can cause issues with ammo types getting mixed up during the burst.
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/bayonetknife,
 		/obj/item/attachable/scope,
+		/obj/item/attachable/scope/mosin,
 		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/bayonet,
 	)
 	flags_item_map_variant = NONE
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER
-	attachable_offset = list("muzzle_x" = 50, "muzzle_y" = 21,"rail_x" = 8, "rail_y" = 21, "under_x" = 37, "under_y" = 16, "stock_x" = 20, "stock_y" = 14)
+	attachable_offset = list("muzzle_x" = 50, "muzzle_y" = 21,"rail_x" = 8, "rail_y" = 21, "under_x" = 37, "under_y" = 16, "stock_x" = 19, "stock_y" = 13)
 	starting_attachment_types = list(
-		/obj/item/attachable/scope,
-		/obj/item/attachable/mosinbarrel,
+		/obj/item/attachable/scope/mosin,
 		/obj/item/attachable/stock/mosin,
 	)
 
 	fire_delay = 17.5
-	accuracy_mult = 1.4
+	accuracy_mult = 1.45
 	accuracy_mult_unwielded = 0.7
-	scatter = -10
+	scatter = -25
 	scatter_unwielded = 40
 	recoil = 0
 	recoil_unwielded = 4
@@ -718,6 +729,21 @@ can cause issues with ammo types getting mixed up during the burst.
 	playsound(user,'sound/weapons/throwtap.ogg', 25, 1)
 	to_chat(user,"<span class='warning'><b>[src] bolt has already been worked, locking the bolt; fire or unload a round to unlock it.</b></span>")
 	recent_notice = world.time
+
+/obj/item/weapon/gun/shotgun/pump/bolt/do_pump_animation()
+	var/initial_icon_state = initial(icon_state)
+	if(!current_mag.current_rounds && !in_chamber)
+		if(icon_state == "[initial_icon_state]_e")
+			flick("[pump_animation]_e", src)
+		else
+			flick("[pump_animation]_o", src)
+			icon_state = "[initial_icon_state]_e"
+	else
+		if(icon_state == "[initial_icon_state]_e")
+			flick("[pump_animation]_c", src)
+			icon_state = initial(icon_state)
+		else
+			flick("[pump_animation]", src)
 
 /obj/item/weapon/gun/shotgun/pump/bolt/pump_notice(mob/user)
 	to_chat(user, "<span class='notice'><b>You work [src] bolt.</b></span>")
