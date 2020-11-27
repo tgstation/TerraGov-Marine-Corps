@@ -1,4 +1,0 @@
-author: "Hughgent"
-delete-after: True
-changes: 
-  - bugfix: "scopes now actually apply their accuracy modifier when zoomed in."
