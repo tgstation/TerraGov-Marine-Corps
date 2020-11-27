@@ -879,6 +879,8 @@ should be alright.
 		return
 	to_chat(user, "<span class='notice'>You steady your breathing...</b></span>")
 
+	if(user.action_busy)
+		return
 	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_BAR))
 		to_chat(user, "<span class='warning'>Your concentration is interrupted!</b></span>")
 		return
