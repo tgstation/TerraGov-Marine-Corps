@@ -1492,6 +1492,8 @@
 #include "code\modules\shuttle\ert_big.dm"
 #include "code\modules\shuttle\escape_pod.dm"
 #include "code\modules\shuttle\marine_dropship.dm"
+#include "code\modules\shuttle\mini_dropship.dm"
+#include "code\modules\shuttle\navigation_computer.dm"
 #include "code\modules\shuttle\on_move.dm"
 #include "code\modules\shuttle\ripple.dm"
 #include "code\modules\shuttle\shuttle.dm"
