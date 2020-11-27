@@ -279,7 +279,7 @@
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 13, "rail_y" = 19, "under_x" = 24, "under_y" = 13, "stock_x" = 20, "stock_y" = 14)
 	starting_attachment_types = list(/obj/item/attachable/scope/slavic, /obj/item/attachable/slavicbarrel, /obj/item/attachable/stock/slavic)
 	actions_types = list(/datum/action/item_action/aim_mode)
-	aim_fire_delay = 0.4 SECONDS
+	aim_fire_delay = 0.2 SECONDS
 	aim_speed_modifier = 2
 
 	fire_delay = 1.2 SECONDS
@@ -326,7 +326,7 @@
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
 	starting_attachment_types = list(/obj/item/attachable/scope/mini/m4ra, /obj/item/attachable/stock/rifle/marksman)
 	actions_types = list(/datum/action/item_action/aim_mode)
-	aim_fire_delay = 0.3 SECONDS
+	aim_fire_delay = 0.2 SECONDS
 	aim_speed_modifier = 2
 
 	fire_delay = 0.45 SECONDS

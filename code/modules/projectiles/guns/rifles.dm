@@ -211,7 +211,7 @@
 	starting_attachment_types = list(/obj/item/attachable/scope/mini/dmr)
 	attachable_offset = list("muzzle_x" = 48, "muzzle_y" = 21,"rail_x" = 21, "rail_y" = 24, "under_x" = 31, "under_y" = 15, "stock_x" = 14, "stock_y" = 10)
 	actions_types = list(/datum/action/item_action/aim_mode)
-	aim_fire_delay = 0.8 SECONDS
+	aim_fire_delay = 0.2 SECONDS
 	aim_speed_modifier = 3
 
 	fire_delay = 0.8 SECONDS
@@ -674,6 +674,9 @@
 	starting_attachment_types = list(/obj/item/attachable/stock/t60stock)
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
 	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 21,"rail_x" = 8, "rail_y" = 23, "under_x" = 25, "under_y" = 14, "stock_x" = 11, "stock_y" = 14)
+	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_fire_delay = 0.25 SECONDS
+	aim_speed_modifier = 4
 
 	fire_delay = 0.165 SECONDS
 	damage_falloff_mult = 0.25
@@ -1012,7 +1015,7 @@
 		/obj/item/attachable/stock/tl127stock,
 	)
 	actions_types = list(/datum/action/item_action/aim_mode)
-	aim_fire_delay = 0.75 SECONDS
+	aim_fire_delay = 0.1 SECONDS
 
 	burst_amount = 0
 	fire_delay = 1.35 SECONDS
