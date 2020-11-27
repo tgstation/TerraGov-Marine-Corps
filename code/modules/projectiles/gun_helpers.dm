@@ -884,6 +884,9 @@ should be alright.
 	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_BAR))
 		to_chat(user, "<span class='warning'>Your concentration is interrupted!</b></span>")
 		return
+	if(!CHECK_BITFIELD(flags_gun_features, WIELDED))
+		to_chat(user, "<span class='notice'>You need to wield your gun before aiming.</b></span>")
+		return
 	user.add_overlay(aim_mode_visual)
 	ENABLE_BITFIELD(flags_gun_features, GUN_IS_AIMING)
 	user.add_movespeed_modifier(MOVESPEED_ID_AIM_MODE_SLOWDOWN, TRUE, 0, NONE, TRUE, aim_speed_modifier)
