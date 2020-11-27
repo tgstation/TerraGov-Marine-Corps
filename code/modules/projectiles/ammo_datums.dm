@@ -1228,10 +1228,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "overcharged laser bolt"
 	icon_state = "heavylaser"
 	hud_state = "laser_sniper"
-	damage = 42
+	damage = 65
 	max_range = 40
-	penetration = 20
-	sundering = 10
+	penetration = 50
+	sundering = 15
 
 /datum/ammo/energy/lasgun/M43/heat
 	name = "microwave heat bolt"
