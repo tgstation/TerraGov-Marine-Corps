@@ -69,6 +69,7 @@
 		return
 	if(health >= maxHealth || xeno_caste.hardcore || on_fire) //can't regenerate.
 		updatehealth() //Update health-related stats, like health itself (using brute and fireloss), health HUD and status.
+		xeno_blood += min(0.25, 100 - xeno_blood)
 		return
 	var/turf/T = loc
 	if(!T || !istype(T))
@@ -93,7 +94,7 @@
 		adjustBruteLoss(XENO_CRIT_DAMAGE - (warding_aura * 0.5)) //Warding can heavily lower the impact of bleedout. Halved at 5.
 
 /mob/living/carbon/xenomorph/proc/heal_wounds(multiplier = XENO_RESTING_HEAL, scaling = FALSE)
-	var/amount = 1 + (maxHealth * 0.03) // 1 damage + 2% max health, with scaling power.
+	var/amount = 1 + (maxHealth * 0.03) // 1 damage + 3% max health, with scaling power.
 	if(recovery_aura)
 		amount += recovery_aura * maxHealth * 0.008 // +0.8% max health per recovery level, up to +4%
 	if(scaling)
@@ -106,6 +107,13 @@
 			regen_power = min(regen_power + xeno_caste.regen_ramp_amount*20,1)
 		amount *= regen_power
 	amount *= multiplier
+
+	if(xeno_blood >= 80)
+		amount *= 1.25
+	else if(xeno_blood < 50)
+		amount *= 0.70
+	xeno_blood -= (0.5 + 0.12*recovery_aura)*multiplier
+
 	adjustBruteLoss(-amount)
 	adjustFireLoss(-amount)
 

@@ -237,6 +237,9 @@
 	var/warding_aura = 0
 	var/recovery_aura = 0
 
+	///Determines how fast xenos heal
+	var/xeno_blood = 100
+
 	var/regen_power = 0 //Resets to -xeno_caste.regen_delay when you take damage.
 	//Negative values act as a delay while values greater than 0 act as a multiplier.
 	//Will increase by 10 every decisecond if under 0. Increases by xeno_caste.regen_ramp_amount every decisecond.
