@@ -194,7 +194,7 @@
 
 	var/turf/target = locate(T.x + inaccurate_fuel * pick(-1,1),T.y + inaccurate_fuel * pick(-1,1),T.z)
 
-	playsound_z_humans(2, 'sound/effects/OB_warning_announce.ogg', 100) //for marines on ground
+	playsound_z_humans(target.z, 'sound/effects/OB_warning_announce.ogg', 100) //for marines on ground
 	playsound(target, 'sound/effects/OB_warning_announce_novoiceover.ogg', 100, FALSE, 20, 4) //VOX-less version for xenomorphs and anyone nearby on ground. can probably be polished to only play to xenos instead
 	playsound_z(z, 'sound/effects/OB_warning_announce.ogg', 100) //for the ship
 
