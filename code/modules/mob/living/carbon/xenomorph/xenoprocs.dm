@@ -85,8 +85,8 @@
 	xenoinfo += xeno_status_output(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/larva], can_overwatch, TRUE, user)
 
 	var/hivemind_text = length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/hivemind]) > 0 ? "Active" : "Inactive"
-	var/xeno_tier_three_cap = CEILING(max(length(hive.xenos_by_tier[XENO_TIER_THREE]),(length(hive.xenos_by_tier[XENO_TIER_ZERO])+length(hive.xenos_by_tier[XENO_TIER_ONE])+length(hive.xenos_by_tier[XENO_TIER_TWO]))/3),1)
-	var/xeno_tier_two_cap = max(length(hive.xenos_by_tier[XENO_TIER_TWO]),length(hive.xenos_by_tier[XENO_TIER_ZERO])+length(hive.xenos_by_tier[XENO_TIER_ONE])-length(hive.xenos_by_tier[XENO_TIER_THREE]))
+	var/xeno_tier_three_cap = max(length(hive.xenos_by_tier[XENO_TIER_THREE]),CEILING((length(hive.xenos_by_tier[XENO_TIER_ZERO])+length(hive.xenos_by_tier[XENO_TIER_ONE])+length(hive.xenos_by_tier[XENO_TIER_TWO]))/3+1,1))
+	var/xeno_tier_two_cap = max(length(hive.xenos_by_tier[XENO_TIER_TWO]),1 + length(hive.xenos_by_tier[XENO_TIER_ZERO]) + length(hive.xenos_by_tier[XENO_TIER_ONE]) - length(hive.xenos_by_tier[XENO_TIER_THREE]))
 
 	dat += "<b>Total Living Sisters: [hive.get_total_xeno_number()]</b><BR>"
 	dat += "<b>Tier 3: ([length(hive.xenos_by_tier[XENO_TIER_THREE])]/[xeno_tier_three_cap]) Sisters</b>[tier3counts]<BR>"
