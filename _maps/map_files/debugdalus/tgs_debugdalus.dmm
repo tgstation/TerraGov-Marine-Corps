@@ -2408,6 +2408,10 @@
 /obj/structure/window/framed/mainship,
 /turf/open/floor/plating,
 /area/mainship/command/telecomms)
+"aPt" = (
+/obj/docking_port/stationary/marine_dropship/cas,
+/turf/open/floor/plating,
+/area/mainship/hallways/hangar)
 "bgb" = (
 /turf/closed/wall/mainship,
 /area/mainship/hallways/hangar)
@@ -2516,6 +2520,11 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/squads/req)
+"moi" = (
+/obj/structure/cable,
+/obj/machinery/vending/armor_supply,
+/turf/open/floor/mainship,
+/area/mainship/hallways/hangar)
 "qko" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
@@ -4842,7 +4851,7 @@ ade
 ade
 abP
 aaC
-amH
+moi
 bOu
 bOu
 afq
@@ -4974,7 +4983,7 @@ bOu
 bOu
 bOu
 bOu
-bOu
+aPt
 bOu
 bOu
 bOu

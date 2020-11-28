@@ -60,6 +60,7 @@
 
 //Job/role helpers
 #define ismarinefaction(H) (H.faction == "TerraGov")
+#define isterragovjob(J) (istype(J, /datum/job/terragov))
 #define ismedicaljob(J) (istype(J, /datum/job/terragov/medical))
 #define isengineeringjob(J) (istype(J, /datum/job/terragov/engineering))
 #define ismarinejob(J) (istype(J, /datum/job/terragov/squad))
@@ -102,7 +103,6 @@
 #define isxenodefiler(A) (istype(A, /mob/living/carbon/xenomorph/Defiler))
 #define isxenobull(A) (istype(A, /mob/living/carbon/xenomorph/bull))
 #define isxenohivemind(A) (istype(A, /mob/living/carbon/xenomorph/hivemind))
-#define isxenopanther(A) (istype(A, /mob/living/carbon/xenomorph/panther))
 
 //Silicon mobs
 #define issilicon(A) (istype(A, /mob/living/silicon))

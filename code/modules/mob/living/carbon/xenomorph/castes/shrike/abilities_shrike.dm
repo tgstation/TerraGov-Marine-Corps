@@ -85,6 +85,8 @@
 		return FALSE
 	if(ishuman(target))
 		var/mob/living/carbon/human/victim = target
+		if(isnestedhost(victim))
+			return FALSE
 		if(!CHECK_BITFIELD(use_state_flags|override_flags, XACT_IGNORE_DEAD_TARGET) && victim.stat == DEAD)
 			return FALSE
 
@@ -115,7 +117,7 @@
 	succeed_activate()
 	add_cooldown()
 	if(ishuman(victim))
-		victim.apply_effects(1, 2) 	// Stun
+		victim.apply_effects(1, 0.1) 	// The fling stuns you enough to remove your gun, otherwise the marine effectively isn't stunned for long.
 		shake_camera(victim, 2, 1)
 
 	var/facing = get_dir(owner, victim)
@@ -186,7 +188,7 @@
 			affected.throw_at(throwlocation, 6, 1, owner, TRUE)
 			if(ishuman(affected)) //if they're human, they also should get knocked off their feet from the blast.
 				var/mob/living/carbon/human = affected
-				human.apply_effects(1, 2) 	// Stun
+				human.apply_effects(1, 1) 	// Stun
 				shake_camera(affected, 2, 1)
 
 	owner.visible_message("<span class='xenowarning'>[owner] sends out a huge blast of psychic energy!</span>", \
@@ -298,6 +300,7 @@
 	cooldown_timer = 1 MINUTES
 	plasma_cost = 200
 	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_CURE
+	var/heal_range = SHRIKE_HEAL_RANGE
 
 
 /datum/action/xeno_action/activable/psychic_cure/on_cooldown_finish()
@@ -324,19 +327,12 @@
 
 /datum/action/xeno_action/activable/psychic_cure/proc/check_distance(atom/target, silent)
 	var/dist = get_dist(owner, target)
-	switch(dist)
-		if(-1)
-			if(!silent && target == owner)
-				to_chat(owner, "<span class='warning'>We cannot cure ourselves.</span>")
-			return FALSE
-		if(0 to 3)
-			if(!owner.line_of_sight(target))
-				to_chat(owner, "<span class='warning'>We can't focus properly without a clear line of sight!</span>")
-				return FALSE
-		if(4 to INFINITY)
-			if(!silent)
-				to_chat(owner, "<span class='warning'>Too far, our mind power does not reach it...</span>")
-			return FALSE
+	if(dist > heal_range)
+		to_chat(owner, "<span class='warning'>Too far for our reach... We need to be [dist - heal_range] steps closer!</span>")
+		return FALSE
+	else if(!owner.line_of_sight(target))
+		to_chat(owner, "<span class='warning'>We can't focus properly without a clear line of sight!</span>")
+		return FALSE
 	return TRUE
 
 

@@ -51,19 +51,6 @@
 	gun_type = /obj/item/weapon/gun/smg/standard_smg
 
 //-------------------------------------------------------
-//M5, a classic SMG used in a lot of action movies.
-
-/obj/item/ammo_magazine/smg/mp5
-	name = "\improper MP5 magazine (9mm)"
-	desc = "A 9mm magazine for the MP5."
-	default_ammo = /datum/ammo/bullet/smg
-	caliber = "9x21mm IMI"
-	icon_state = "mp5"
-	gun_type = /obj/item/weapon/gun/smg/mp5
-	max_rounds = 30 //Also comes in 10 and 40.
-
-
-//-------------------------------------------------------
 //MP27, based on the MP27, based on the M7.
 
 /obj/item/ammo_magazine/smg/mp7
@@ -123,15 +110,3 @@
 	icon_state = "uzi_ext"
 	max_rounds = 50
 	bonus_overlay = "uzi_ex"
-
-//-------------------------------------------------------
-//FP9000 //Based on the FN P90
-
-/obj/item/ammo_magazine/smg/p90
-	name = "\improper FN FP9000 magazine (5.7x28mm)"
-	desc = "A magazine for the FN FP9000 SMG."
-	default_ammo = /datum/ammo/bullet/smg/ap
-	caliber = "5.7x28mm"
-	icon_state = "FP9000"
-	max_rounds = 50
-	gun_type = /obj/item/weapon/gun/smg/p90

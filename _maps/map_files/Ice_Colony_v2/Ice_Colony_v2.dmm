@@ -18304,7 +18304,7 @@
 	},
 /area/ice_colony/underground/requesition/lobby)
 "bjF" = (
-/obj/item/weapon/gun/smg/mp5,
+/obj/item/weapon/gun/smg/m25,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves/open)
 "bjG" = (

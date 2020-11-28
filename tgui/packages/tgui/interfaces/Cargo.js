@@ -428,7 +428,6 @@ const ShoppingCart = (props, context) => {
           content={readOnly?"Submit Request":"Purchase Cart"}
           disabled={
             (readOnly && !reason)
-            || shopping_list_cost>currentpoints
             || !shopping_list_items
           }
           onClick={() => act((readOnly ? 'submitrequest' : 'buycart'), {
@@ -530,7 +529,6 @@ const Category = (props, context) => {
                 </Box>
                 <CategoryButton
                   icon="forward"
-                  disabled={cost > spare_points}
                   id={entry}
                   mode="addone" />
                 <CategoryButton

@@ -57,29 +57,23 @@
 	plasma_cost = 25
 	cooldown_timer = 20 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_LUNGE
+	target_flags = XABB_MOB_TARGET
 
 /datum/action/xeno_action/activable/lunge/proc/neck_grab(mob/living/owner, mob/living/L)
 	SIGNAL_HANDLER
 	if(!can_use_ability(L, FALSE, XACT_IGNORE_DEAD_TARGET))
 		return COMSIG_WARRIOR_CANT_NECKGRAB
 
-/datum/action/xeno_action/activable/lunge/proc/lunge(mob/living/owner, atom/A)
-	SIGNAL_HANDLER
-	if(can_use_ability(A, FALSE, XACT_IGNORE_SELECTED_ABILITY))
-		use_ability(A)
-		return COMSIG_WARRIOR_USED_LUNGE
 
 /datum/action/xeno_action/activable/lunge/give_action(mob/living/L)
 	. = ..()
 	RegisterSignal(owner, COMSIG_WARRIOR_USED_GRAB, .proc/add_cooldown)
 	RegisterSignal(owner, COMSIG_WARRIOR_NECKGRAB, .proc/neck_grab)
-	RegisterSignal(owner, COMSIG_WARRIOR_CTRL_CLICK_ATOM, .proc/lunge)
 
 
 /datum/action/xeno_action/activable/lunge/remove_action(mob/living/L)
 	UnregisterSignal(owner, COMSIG_WARRIOR_USED_GRAB)
 	UnregisterSignal(owner, COMSIG_WARRIOR_NECKGRAB)
-	UnregisterSignal(owner, COMSIG_WARRIOR_CTRL_CLICK_ATOM)
 	return ..()
 
 
@@ -132,10 +126,6 @@
 	add_cooldown()
 	return TRUE
 
-/mob/living/carbon/xenomorph/warrior/CtrlClickOn(atom/A)
-	if(SEND_SIGNAL(src, COMSIG_WARRIOR_CTRL_CLICK_ATOM, A) & COMSIG_WARRIOR_USED_LUNGE)
-		return
-	return ..()
 
 // ***************************************
 // *********** Fling
@@ -148,6 +138,7 @@
 	plasma_cost = 18
 	cooldown_timer = 20 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_FLING
+	target_flags = XABB_MOB_TARGET
 
 /datum/action/xeno_action/activable/fling/on_cooldown_finish()
 	to_chat(owner, "<span class='notice'>We gather enough strength to fling something again.</span>")
@@ -177,7 +168,7 @@
 	"<span class='xenowarning'>We effortlessly fling [H] to the side!</span>")
 	playsound(H,'sound/weapons/alien_claw_block.ogg', 75, 1)
 	succeed_activate()
-	H.apply_effects(1,2) 	// Stun
+	H.apply_effects(1,1) 	// Stun
 	shake_camera(H, 2, 1)
 
 	var/facing = get_dir(X, H)
@@ -218,6 +209,7 @@
 	plasma_cost = 12
 	cooldown_timer = 10 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_PUNCH
+	target_flags = XABB_MOB_TARGET
 
 /datum/action/xeno_action/activable/punch/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner
