@@ -4,6 +4,9 @@
 
 #define MAX_SUPPLY_DROPS 4
 
+#define SPOTLIGHT_COOLDOWN_DURATION 10 MINUTES
+#define SPOTLIGHT_DURATION 2 MINUTES
+
 #define HIDE_NONE 0
 #define HIDE_ON_GROUND 1
 #define HIDE_ON_SHIP 2
@@ -53,6 +56,24 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 /obj/machinery/computer/camera_advanced/overwatch/attackby(obj/item/I, mob/user, params)
 	return
 
+/obj/machinery/computer/camera_advanced/overwatch/give_actions(mob/living/user)
+	. = ..()
+	RegisterSignal(user, COMSIG_MOB_CLICKON, .proc/attempt_spotlight)
+
+/obj/machinery/computer/camera_advanced/overwatch/remove_eye_control(mob/living/user)
+	. = ..()
+	UnregisterSignal(user, COMSIG_MOB_CLICKON)
+
+/obj/machinery/computer/camera_advanced/overwatch/proc/attempt_spotlight(datum/source, atom/A, params)
+	SIGNAL_HANDLER
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ORBITAL_SPOTLIGHT))
+		to_chat(user, "<span class='warning'>Orbital spotlight cooling, please wait.</span>")
+		return
+	TIMER_COOLDOWN_START(src, COOLDOWN_ORBITAL_SPOTLIGHT, SPOTLIGHT_COOLDOWN_DURATION)
+	var/turf/target = get_turf(A)
+	target.set_light(5, 2)
+	addtimer(CALLBACK(target, /atom.proc/set_light, 0, 0), SPOTLIGHT_DURATION)
+	to_chat(user, "<span class='warning'>Orbital spotlight activated.</span>")
 
 /obj/machinery/computer/camera_advanced/overwatch/CreateEye()
 	. = ..()
