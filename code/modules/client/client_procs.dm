@@ -766,8 +766,7 @@
 	apply_clickcatcher()
 	mob.reload_fullscreens()
 	if(prefs.auto_fit_viewport)
-		addtimer(CALLBACK(src, .verb/fit_viewport, 1 SECONDS)) //Delayed to avoid wingets from Login calls.
-
+		INVOKE_NEXT_TICK(src, .verb/fit_viewport, 1 SECONDS) //Delayed to avoid wingets from Login calls.
 
 /client/proc/generate_clickcatcher()
 	if(void)
