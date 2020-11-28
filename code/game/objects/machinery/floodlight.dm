@@ -136,6 +136,131 @@
 /obj/machinery/floodlight/landing/attackby()
 	return
 
+/obj/machinery/floodlightcombat
+	name = "Armoured floodlight"
+	icon = 'icons/obj/machines/floodlight.dmi'
+	icon_state = "flood00"
+	anchored = TRUE
+	density = TRUE
+	/// Determines how much light does the floodlight make , every light tube adds 4 tiles distance.
+	var/Brightness = 0
+	var/On = 0
+	resistance_flags = UNACIDABLE
+	idle_power_usage = 50
+	active_power_usage = 2500
+	wrenchable = TRUE
+
+/obj/machinery/floodlightcombat/wrench_act(mob/living/user, obj/item/I)
+	. = ..()
+	to_chat(user , "You begin wrenching [src]'s bolts'")
+	if(!do_after(user, 2 SECONDS, TRUE, src))
+		return FALSE
+	if(anchored)
+		anchored = 0
+	else
+		anchored = 1
+	set_light(0)
+	On = 0
+
+
+/obj/machinery/floodlightcombat/proc/tip_over()
+	var/matrix/A = matrix()
+	density = FALSE
+	A.Turn(90)
+	transform = A
+	var/obj/item/light_bulb/tube/T = /obj/item/light_bulb/tube
+	for(T in src.contents)
+		T.status = 2
+	CalculateBrightness()
+
+/obj/machinery/floodlightcombat/Initialize()
+	. = ..()
+	start_processing()
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/machinery/floodlightcombat/LateInitialize()
+	. = ..()
+	power_change()
+
+/obj/machinery/floodlightcombat/process()
+	if(On)
+		use_power(active_power_usage, EQUIP)
+	else
+		use_power(idle_power_usage, EQUIP)
+
+/obj/machinery/floodlightcombat/attack_alien(mob/living/carbon/xenomorph/M)
+	if(M.a_intent == INTENT_HARM)
+		var/obj/item/light_bulb/T = /obj/item/light_bulb/tube
+		var/list/lights = src.contents
+		if(lights.len == 0)
+			to_chat(M, "There are no lights to slash!")
+			return FALSE
+		to_chat(M, "You slash one of the lights!")
+		for(T in lights)
+			if(T.status > 0)
+				return FALSE
+			T.status = 2
+			CalculateBrightness()
+			break
+	if(M.a_intent == INTENT_DISARM)
+		to_chat(M, "You begin tipping the [src]")
+		if(!(src.density))
+			to_chat(M, "The [src] is already tipped over!")
+			return FALSE
+		if(!do_after(M, 5 SECONDS, FALSE, src))
+			return FALSE
+		tip_over()
+
+/obj/machinery/floodlightcombat/attackby(obj/item/I, mob/user, params)
+	var/list/lights = src.contents
+	if(!(ishuman(user)))
+		return FALSE
+	if(istype(I, /obj/item/light_bulb/tube))
+		if(lights.len > 3)
+			to_chat(user, "all the light sockets are occupied!")
+			return FALSE
+		to_chat(user, "you insert the [I] into the [src]")
+		user.drop_held_item()
+		I.forceMove(src)
+		CalculateBrightness()
+	if(istype(I, /obj/item/lightreplacer))
+		if(lights.len > 3)
+			to_chat(user, "all the light sockets are occupied!")
+			return FALSE
+		var/obj/item/lightreplacer/A = I
+		if(A.CanUse())
+			A.Use(user)
+		var/obj/E = new /obj/item/light_bulb/tube
+		E.forceMove(src)
+		CalculateBrightness()
+
+/obj/machinery/floodlightcombat/proc/CalculateBrightness()
+	var/list/M = src.contents
+	var/obj/item/light_bulb/tube/T = /obj/item/light_bulb/tube
+	Brightness = 0
+	for(T in M)
+		if(T.status == 0)
+			Brightness += 4
+
+/obj/machinery/floodlightcombat/attack_hand(mob/living/user)
+	var/list/obj/item/light_bulb/tube/T = src.contents
+	if(!ishuman(user))
+		return FALSE
+	if(user.a_intent == INTENT_GRAB)
+		if(On)
+			to_chat (user, "You burn the tip of your finger as you try to take off the light tube!")
+			return FALSE
+		if(T.len > 0)
+			to_chat(user, "You take out one of the lights")
+			var/obj/item/item = pick(src.contents)
+			item.forceMove(user.loc)
+		else
+			to_chat(user, "There are no lights to pull out")
+			return FALSE
+		CalculateBrightness()
+		return TRUE
+	set_light(Brightness)
+	On = 1
 
 /obj/machinery/floodlight/outpost
 	name = "Outpost Light"
