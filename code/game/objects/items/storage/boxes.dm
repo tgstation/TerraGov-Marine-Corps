@@ -167,6 +167,13 @@
 	spawn_type = /obj/item/card/id
 	spawn_number = 7
 
+/obj/item/storage/box/ids/dogtag
+	name = "box of spare Dogtags"
+	desc = "Has so many empty Dogtags."
+	icon_state = "id"
+	spawn_type = /obj/item/card/id/dogtag
+	spawn_number = 7
+
 /obj/item/storage/box/handcuffs
 	name = "box of handcuffs"
 	desc = "A box full of handcuffs."
@@ -270,7 +277,8 @@
 	icon_state = "lightmixed"
 	can_hold = list(
 		/obj/item/light_bulb/tube/large,
-		/obj/item/light_bulb/bulb)
+		/obj/item/light_bulb/bulb,
+	)
 
 /obj/item/storage/box/lights/mixed/Initialize(mapload, ...)
 	. = ..()
@@ -306,7 +314,7 @@
 
 /obj/item/storage/box/m94
 	name = "\improper M40 FLDP flare pack"
-	desc = "A packet of five M40 FLDP Flares. Carried by TGMC soldiers to light dark areas that cannot be reached with the usual TNR Shoulder Lamp. Can be launched from an underslung grenade launcher."
+	desc = "A packet of seven M40 FLDP Flares. Carried by TGMC soldiers to light dark areas that cannot be reached with the usual TNR Shoulder Lamp. Can be launched from an underslung grenade launcher."
 	icon_state = "m40"
 	w_class = WEIGHT_CLASS_NORMAL
 	max_storage_space = 14
@@ -317,6 +325,11 @@
 	icon_state = initial(icon_state)
 	if(!length(contents))
 		icon_state += "_e"
+
+/obj/item/storage/box/m94/cas
+	name = "\improper M50 CFDP signal pack"
+	desc = "A packet of seven M40 CFPD signal Flares. Used to mark locations for fire support. Can be launched from an underslung grenade launcher."
+	spawn_type = /obj/item/explosive/grenade/flare/cas
 
 
 /obj/item/storage/box/nade_box
@@ -376,6 +389,12 @@
 	spawn_number = 15
 	spawn_type = /obj/item/explosive/grenade/phosphorus
 
+/obj/item/storage/box/nade_box/plasma_drain_gas
+	name = "\improper M40-T gas grenade box"
+	desc = "A secure box holding 25 M40-T gas grenades. 100% safe to use around masked marines."
+	icon_state = "marinebox"
+	spawn_type = /obj/item/explosive/grenade/drainbomb
+
 //ITEMS-----------------------------------//
 /obj/item/storage/box/lightstick
 	name = "box of lightsticks"
@@ -432,3 +451,63 @@
 	if(!isopened)
 		isopened = 1
 		icon_state = "mealpackopened"
+
+//Fillable Ammo Box
+/obj/item/storage/box/ammo
+	name = "\improper Ammo Box"
+	desc = "A large ammo box that can be filled with almost any magazine type. Compact and deployable for moving ammo to the front lines."
+	icon_state = "ammobox"
+	max_w_class = 4
+	storage_slots = 30
+	max_storage_space = 60	//SMG and pistol sized (tiny and small) mags can fit all 30 slots, normal (LMG and AR) fit 20
+	can_hold = list(
+		/obj/item/ammo_magazine/pistol,
+		/obj/item/ammo_magazine/smg,
+		/obj/item/ammo_magazine/rifle,
+		/obj/item/ammo_magazine/magnum,
+		/obj/item/ammo_magazine/revolver,
+		/obj/item/ammo_magazine/acp,
+		/obj/item/ammo_magazine/standard_lmg,
+		/obj/item/ammo_magazine/standard_smartmachinegun,
+		/obj/item/ammo_magazine/m412l1_hpr,
+		/obj/item/ammo_magazine/shotgun,
+		/obj/item/ammo_magazine/sniper,
+	)
+
+	var/deployed = FALSE
+
+/obj/item/storage/box/ammo/update_icon()
+	if(!deployed)
+		icon_state = "[initial(icon_state)]"
+	else if(!(length(contents)))
+		icon_state = "[initial(icon_state)]_empty"
+	else if(deployed)
+		icon_state = "[initial(icon_state)]_deployed"
+
+/obj/item/storage/box/ammo/attack_self(mob/user)
+	deployed = TRUE
+	update_icon()
+	user.dropItemToGround(src)
+
+/obj/item/storage/box/ammo/attack_hand(mob/living/user)
+	if(loc == user)
+		return ..()
+
+	if(!deployed)
+		user.put_in_hands(src)
+		return
+
+	else if(deployed)
+		open(user)
+
+/obj/item/storage/box/ammo/MouseDrop(atom/over_object)
+	if(!deployed)
+		return
+
+	if(!ishuman(over_object))
+		return
+
+	var/mob/living/carbon/human/H = over_object
+	if(H == usr && !H.incapacitated() && Adjacent(H) && H.put_in_hands(src))
+		deployed = FALSE
+		update_icon()

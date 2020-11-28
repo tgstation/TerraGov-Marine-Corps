@@ -78,6 +78,7 @@
 	var/list/gasps = list()
 	var/list/coughs = list()
 	var/list/burstscreams = list()
+	var/list/warcries = list()
 
 	var/blood_color = "#A10808" //Red.
 	var/flesh_color = "#FFC896" //Pink.
@@ -107,6 +108,7 @@
 	var/see_in_dark
 
 	var/datum/namepool/namepool = /datum/namepool
+	var/special_death_message = "You have perished." // Special death message that gets overwritten if possible.
 
 /datum/species/New()
 	if(hud_type)
@@ -137,19 +139,21 @@
 	H.limbs += LL
 	var/datum/limb/r_leg/RL = new(G, H)
 	H.limbs += RL
-	H.limbs +=  new/datum/limb/l_hand(LA, H)
-	H.limbs +=  new/datum/limb/r_hand(RA, H)
-	H.limbs +=  new/datum/limb/l_foot(LL, H)
-	H.limbs +=  new/datum/limb/r_foot(RL, H)
+	H.limbs +=  new/datum/limb/hand/l_hand(LA, H)
+	H.limbs +=  new/datum/limb/hand/r_hand(RA, H)
+	H.limbs +=  new/datum/limb/foot/l_foot(LL, H)
+	H.limbs +=  new/datum/limb/foot/r_foot(RL, H)
 
 	for(var/organ in has_organ)
 		var/organ_type = has_organ[organ]
 		H.internal_organs_by_name[organ] = new organ_type(H)
 
 	if(species_flags & IS_SYNTHETIC)
-		for(var/datum/limb/E in H.limbs)
-			if(E.limb_status & LIMB_DESTROYED) continue
-			E.limb_status |= LIMB_ROBOT
+		for(var/datum/limb/l in H.limbs)
+			var/datum/limb/robotic_limb = l
+			if(robotic_limb.limb_status & LIMB_DESTROYED)
+				continue
+			robotic_limb.add_limb_flags(LIMB_ROBOT)
 		for(var/datum/internal_organ/I in H.internal_organs)
 			I.mechanize()
 
@@ -181,6 +185,18 @@
 			. += " " + pick(SSstrings.get_list_from_file("names/last_name"))
 
 /datum/species/synthetic/prefs_name(datum/preferences/prefs)
+	. = prefs.synthetic_name
+	if(!. || . == "Undefined") //In case they don't have a name set.
+		switch(prefs.gender)
+			if(MALE)
+				. = "David"
+			if(FEMALE)
+				. = "Anna"
+			else
+				. = "Jeri"
+		to_chat(prefs.parent, "<span class='warning'>You forgot to set your synthetic name in your preferences. Please do so next time.</span>")
+
+/datum/species/early_synthetic/prefs_name(datum/preferences/prefs)
 	. = prefs.synthetic_name
 	if(!. || . == "Undefined") //In case they don't have a name set.
 		switch(prefs.gender)
@@ -279,9 +295,17 @@
 	gasps = list(MALE = "male_gasp", FEMALE = "female_gasp")
 	coughs = list(MALE = "male_cough", FEMALE = "female_cough")
 	burstscreams = list(MALE = "male_preburst", FEMALE = "female_preburst")
+	warcries = list(MALE = "male_warcry", FEMALE = "female_warcry")
+	special_death_message = "<big>You have perished.</big><br><small>But it is not the end of you yet... if you still have your body or an unbursted corpse, wait until somebody can resurrect you...</small>"
 
 	//If you wanted to add a species-level ability:
 	/*abilities = list(/client/proc/test_ability)*/
+
+/datum/species/human/vatborn
+	name = "Vatborn"
+	name_plural = "Vatborns"
+
+	namepool = /datum/namepool/vatborn
 
 //Slightly tougher humans.
 /datum/species/human/hero
@@ -298,6 +322,45 @@
 	heat_level_2 = 480
 	heat_level_3 = 1100
 
+/datum/species/human/vatgrown
+	name = "Vat-Grown Human"
+	name_plural = "Vat-Grown Humans"
+	species_flags = HAS_SKIN_TONE
+	brute_mod = 1.05
+	burn_mod = 1.05
+	slowdown = 1.05
+
+/datum/species/human/vatgrown/random_name(gender)
+	. = "CS-[gender == FEMALE ? "F": "M"]-[rand(111,999)]"
+
+/datum/species/human/vatgrown/handle_post_spawn(mob/living/carbon/human/H)
+	. = ..()
+	H.h_style = "Bald"
+	H.skills = getSkillsType(/datum/skills/vatgrown)
+
+/datum/species/human/vatgrown/early
+	name = "Early Vat-Grown Human"
+	name_plural = "Early Vat-Grown Humans"
+	brute_mod = 1.3
+	burn_mod = 1.3
+	slowdown = 1.3
+
+	var/timerid
+
+/datum/species/human/vatgrown/early/handle_post_spawn(mob/living/carbon/human/H)
+	. = ..()
+	H.skills = getSkillsType(/datum/skills/vatgrown/early)
+	timerid = addtimer(CALLBACK(src, .proc/handle_age, H), 15 MINUTES, TIMER_STOPPABLE)
+
+/datum/species/human/vatgrown/early/post_species_loss(mob/living/carbon/human/H)
+	. = ..()
+	// Ensure we don't update the species again
+	if(timerid)
+		deltimer(timerid)
+		timerid = null
+
+/datum/species/human/vatgrown/early/proc/handle_age(mob/living/carbon/human/H)
+	H.set_species("Vat-Grown Human")
 
 //Various horrors that spawn in and haunt the living.
 /datum/species/human/spook
@@ -326,15 +389,16 @@
 	cold_level_2 = 50
 	cold_level_3 = 20
 
-	//To show them we mean business.
-	handle_unique_behavior(var/mob/living/carbon/human/H)
-		if(prob(25)) animation_horror_flick(H)
+//To show them we mean business.
+/datum/species/human/spook/handle_unique_behavior(mob/living/carbon/human/H)
+	if(prob(25))
+		animation_horror_flick(H)
 
-		//Organ damage will likely still take them down eventually.
-		H.adjustBruteLoss(-3)
-		H.adjustFireLoss(-3)
-		H.adjustOxyLoss(-15)
-		H.adjustToxLoss(-15)
+	//Organ damage will likely still take them down eventually.
+	H.adjustBruteLoss(-3)
+	H.adjustFireLoss(-3)
+	H.adjustOxyLoss(-15)
+	H.adjustToxLoss(-15)
 
 /datum/species/unathi
 	name = "Unathi"
@@ -421,6 +485,7 @@
 	paincries = list("neuter" = 'sound/voice/human_male_pain_3.ogg')
 	goredcries = list("neuter" = 'sound/voice/moth_scream.ogg')
 	burstscreams = list("neuter" = 'sound/voice/moth_scream.ogg')
+	warcries = list("neuter" = 'sound/voice/moth_scream.ogg')
 
 	flesh_color = "#E5CD99"
 
@@ -461,6 +526,30 @@
 /datum/species/moth/post_species_loss(mob/living/carbon/human/H)
 	H.remove_overlay(MOTH_WINGS_LAYER)
 	H.remove_underlay(MOTH_WINGS_BEHIND_LAYER)
+
+/datum/species/sectoid
+	name = "Sectoid"
+	name_plural = "Sectoids"
+	icobase = 'icons/mob/human_races/r_sectoid.dmi'
+	deform = 'icons/mob/human_races/r_sectoid.dmi'
+	default_language_holder = /datum/language_holder/sectoid
+	eyes = "blank_eyes"
+	speech_verb_override = "transmits"
+	show_paygrade = TRUE
+	count_human = TRUE
+
+	species_flags = HAS_NO_HAIR|NO_BREATHE|NO_POISON|NO_PAIN|USES_ALIEN_WEAPONS|NO_DAMAGE_OVERLAY
+
+	paincries = list("neuter" = 'sound/voice/sectoid_death.ogg')
+	death_sound = 'sound/voice/sectoid_death.ogg'
+
+	blood_color = "#00FF00"
+	flesh_color = "#C0C0C0"
+
+	reagent_tag = IS_SECTOID
+
+	namepool = /datum/namepool/sectoid
+	special_death_message = "You have perished."
 
 /datum/species/vox
 	name = "Vox"
@@ -578,6 +667,28 @@
 		"heart" =    /datum/internal_organ/heart,
 		"brain" =    /datum/internal_organ/brain,
 		)
+	special_death_message = "You have shut down."
+
+/datum/species/skeleton
+	name = "Skeleton"
+	name_plural = "skeletons"
+	icobase = 'icons/mob/human_races/r_skeleton.dmi'
+	deform = 'icons/mob/human_races/r_skeleton.dmi'
+	unarmed_type = /datum/unarmed_attack/punch
+	speech_verb_override = "rattles"
+	show_paygrade = TRUE
+	count_human = TRUE
+
+	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_CHEM_METABOLIZATION|DETACHABLE_HEAD // Where we're going, we don't NEED underwear.
+
+	screams = list("neuter" = 'sound/voice/skeleton_scream.ogg') // RATTLE ME BONES
+	paincries = list("neuter" = 'sound/voice/skeleton_scream.ogg')
+	goredcries = list("neuter" = 'sound/voice/skeleton_scream.ogg')
+	burstscreams = list("neuter" = 'sound/voice/moth_scream.ogg')
+	death_message = "collapses in a pile of bones, with a final rattle..."
+	death_sound = list("neuter" = 'sound/voice/skeleton_scream.ogg')
+	warcries = list("neuter" = 'sound/voice/skeleton_warcry.ogg') // AAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+	namepool = /datum/namepool/skeleton
 
 /datum/species/synthetic
 	name = "Synthetic"
@@ -587,10 +698,10 @@
 	unarmed_type = /datum/unarmed_attack/punch
 	rarity_value = 2
 
-	total_health = 150 //more health than regular humans
+	total_health = 125 //more health than regular humans
 
-	brute_mod = 0.75
-	burn_mod = 0.90 //Synthetics should not be instantly melted by acid compared to humans - This is a test to hopefully fix very glaring issues involving synthetics taking 2.6 trillion damage when so much as touching acid
+	brute_mod = 0.70
+	burn_mod = 0.70 //Synthetics should not be instantly melted by acid compared to humans - This is a test to hopefully fix very glaring issues involving synthetics taking 2.6 trillion damage when so much as touching acid
 
 	cold_level_1 = -1
 	cold_level_2 = -1
@@ -602,7 +713,7 @@
 
 	body_temperature = 350
 
-	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|IS_SYNTHETIC|NO_CHEM_METABOLIZATION|NO_STAMINA|DETACHABLE_HEAD
+	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|IS_SYNTHETIC|NO_CHEM_METABOLIZATION|NO_STAMINA|DETACHABLE_HEAD|HAS_UNDERWEAR
 
 	blood_color = "#EEEEEE"
 
@@ -617,6 +728,8 @@
 	screams = list(MALE = "male_scream", FEMALE = "female_scream")
 	paincries = list(MALE = "male_pain", FEMALE = "female_pain")
 	goredcries = list(MALE = "male_gored", FEMALE = "female_gored")
+	warcries = list(MALE = "male_warcry", FEMALE = "female_warcry")
+	special_death_message = "You have been shut down.<br><small>But it is not the end of you yet... if you still have your body, wait until somebody can resurrect you...</small>"
 
 
 /datum/species/synthetic/handle_post_spawn(mob/living/carbon/human/H)
@@ -631,7 +744,7 @@
 	return ..()
 
 
-/datum/species/early_synthetic
+/datum/species/early_synthetic //cosmetic differences only
 	name = "Early Synthetic"
 	name_plural = "Early Synthetics"
 	icobase = 'icons/mob/human_races/r_synthetic.dmi'
@@ -639,11 +752,9 @@
 	default_language_holder = /datum/language_holder/synthetic
 	unarmed_type = /datum/unarmed_attack/punch
 	rarity_value = 1.5
-	slowdown = 1.3 //Slower than later synths
-	total_health = 200 //But more durable
-	insulated = 1
-	brute_mod = 0.60 //but more durable
-	burn_mod = 0.90 //previous comment
+	total_health = 125
+	brute_mod = 0.70
+	burn_mod = 0.70
 
 	cold_level_1 = -1
 	cold_level_2 = -1
@@ -655,7 +766,7 @@
 
 	body_temperature = 350
 
-	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|IS_SYNTHETIC|NO_CHEM_METABOLIZATION|NO_STAMINA|DETACHABLE_HEAD
+	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|IS_SYNTHETIC|NO_CHEM_METABOLIZATION|NO_STAMINA|DETACHABLE_HEAD|HAS_UNDERWEAR
 
 	blood_color = "#EEEEEE"
 	hair_color = "#000000"
@@ -664,12 +775,14 @@
 		"brain" =    /datum/internal_organ/brain/prosthetic,
 		)
 
-	lighting_alpha = LIGHTING_PLANE_ALPHA_NV_TRAIT
-	see_in_dark = 6
+	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+	see_in_dark = 8
 
 	screams = list(MALE = "male_scream", FEMALE = "female_scream")
 	paincries = list(MALE = "male_pain", FEMALE = "female_pain")
 	goredcries = list(MALE = "male_gored", FEMALE = "female_gored")
+	warcries = list(MALE = "male_warcry", FEMALE = "female_warcry")
+	special_death_message = "You have been shut down.<br><small>But it is not the end of you yet... if you still have your body, wait until somebody can resurrect you...</small>"
 
 
 /datum/species/early_synthetic/handle_post_spawn(mob/living/carbon/human/H)
@@ -824,7 +937,6 @@
 		equip_slots |= SLOT_IN_S_HOLSTER
 		equip_slots |= SLOT_IN_SUIT
 	if(SLOT_SHOES in equip_slots)
-		equip_slots |= SLOT_LEGCUFFED
 		equip_slots |= SLOT_IN_BOOT
 	if(SLOT_W_UNIFORM in equip_slots)
 		equip_slots |= SLOT_IN_STORAGE

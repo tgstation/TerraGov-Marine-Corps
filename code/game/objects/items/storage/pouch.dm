@@ -47,14 +47,16 @@
 	draw_mode = 0
 
 /obj/item/storage/pouch/general/large
-	name = "large general pouch"
-	storage_slots = 3
+	name = "general pouch"
+	storage_slots = null
+	max_storage_space = 6
 	icon_state = "large_drop"
 	draw_mode = 0
 
-/obj/item/storage/pouch/general/large/command
-	fill_type = /obj/item/binoculars/tactical
-	fill_number = 1
+/obj/item/storage/pouch/general/large/command/Initialize()
+	. = ..()
+	new /obj/item/binoculars/tactical(src)
+	new /obj/item/megaphone(src)
 
 
 /obj/item/storage/pouch/general/som
@@ -70,7 +72,8 @@
 	can_hold = list(
 		/obj/item/weapon/combat_knife,
 		/obj/item/weapon/throwing_knife,
-		/obj/item/attachable/bayonet)
+		/obj/item/attachable/bayonet,
+	)
 	icon_state = "bayonet"
 	storage_slots = 3
 	draw_mode = 1
@@ -95,7 +98,8 @@
 		/obj/item/stack/medical/bruise_pack,
 		/obj/item/stack/sheet/metal,
 		/obj/item/stack/sheet/plasteel,
-		/obj/item/tool/weldingtool)
+		/obj/item/tool/weldingtool,
+	)
 
 /obj/item/storage/pouch/survival/full/Initialize()
 	. = ..()
@@ -111,36 +115,37 @@
 
 /obj/item/storage/pouch/firstaid
 	name = "first-aid pouch"
-	desc = "It can contain autoinjectors, ointments, and bandages."
+	desc = "Standard marine first-aid pouch. It can contain autoinjectors, ointments, and bandages."
 	icon_state = "firstaid"
 	storage_slots = 5
 	can_hold = list(
 		/obj/item/stack/medical/ointment,
 		/obj/item/reagent_containers/hypospray/autoinjector,
 		/obj/item/stack/medical/bruise_pack,
-		/obj/item/stack/medical/splint)
+		/obj/item/storage/pill_bottle/packet/tricordrazine,
+		/obj/item/stack/medical/splint,
+	)
 
 /obj/item/storage/pouch/firstaid/full
-	desc = "Contains a painkiller autoinjector, first-aid autoinjector, splints, some ointment, and some bandages."
+	desc = "Standard marine first-aid pouch. Contains a painkiller autoinjector, a soothing pill packet, splints, some ointment, and some bandages."
 
 /obj/item/storage/pouch/firstaid/full/Initialize()
 	. = ..()
 	new /obj/item/stack/medical/ointment (src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/tramadol (src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine (src)
+	new /obj/item/storage/pill_bottle/packet/tricordrazine (src)
 	new /obj/item/stack/medical/bruise_pack (src)
 	new /obj/item/stack/medical/splint (src)
 
 
 /obj/item/storage/pouch/firstaid/injectors
-	name = "first-aid pouch"
-	desc = "It can contain autoinjectors."
-	icon_state = "firstaid"
-	storage_slots = 5
+	name = "combat injector pouch"
+	desc = "Standard marine first-aid combat injector pouch. Specialized to store only autoinjectors."
+	icon_state = "firstaid_injector"
 	can_hold = list(/obj/item/reagent_containers/hypospray/autoinjector)
 
 /obj/item/storage/pouch/firstaid/injectors/full
-	desc = "Contains 3 combat autoinjectors, an oxycodone injector, and a stimulant injector."
+	desc = "Standard marine first-aid combat injector pouch. Specialized to store only autoinjectors. Contains 3 combat autoinjectors, an oxycodone injector, and a stimulant injector."
 
 /obj/item/storage/pouch/firstaid/injectors/full/Initialize()
 	. = ..()
@@ -160,7 +165,9 @@
 		/obj/item/stack/medical/ointment,
 		/obj/item/reagent_containers/hypospray/autoinjector,
 		/obj/item/stack/medical/bruise_pack,
-		/obj/item/stack/medical/splint)
+		/obj/item/storage/pill_bottle/packet/tricordrazine,
+		/obj/item/stack/medical/splint,
+	)
 
 
 /obj/item/storage/pouch/firstaid/som/full
@@ -183,10 +190,17 @@
 	max_w_class = 3
 	can_hold = list(
 		/obj/item/weapon/gun/pistol,
-		/obj/item/weapon/gun/revolver)
+		/obj/item/weapon/gun/revolver,
+	)
 	draw_mode = 1
 
+/obj/item/storage/pouch/pistol/vp70/Initialize()
+	. = ..()
+	new /obj/item/weapon/gun/pistol/vp70(src)
 
+/obj/item/storage/pouch/pistol/rt3/Initialize()
+	. = ..()
+	new /obj/item/weapon/gun/pistol/rt3(src)
 
 //// MAGAZINE POUCHES /////
 
@@ -204,14 +218,26 @@
 		/obj/item/ammo_magazine/revolver,
 		/obj/item/ammo_magazine/sniper,
 		/obj/item/ammo_magazine/handful,
-		/obj/item/cell/lasgun)
+		/obj/item/cell/lasgun,
+	)
+
+/obj/item/storage/pouch/magazine/smgfull
+	fill_type = /obj/item/ammo_magazine/smg/standard_machinepistol
+	fill_number = 2
 
 /obj/item/storage/pouch/magazine/large
-	name = "large magazine pouch"
+	name = "magazine pouch"
+	desc = "This pouch can contain three ammo magazines."
 	icon_state = "large_ammo_mag"
 	storage_slots = 3
 
+/obj/item/storage/pouch/magazine/large/m4rafull
+	fill_type = /obj/item/ammo_magazine/rifle/m4ra
+	fill_number = 3
 
+/obj/item/storage/pouch/magazine/large/t19full
+	fill_type = /obj/item/ammo_magazine/smg/standard_smg
+	fill_number = 3
 
 /obj/item/storage/pouch/magazine/pistol
 	name = "pistol magazine pouch"
@@ -222,10 +248,13 @@
 
 	can_hold = list(
 		/obj/item/ammo_magazine/pistol,
-		/obj/item/ammo_magazine/revolver)
+		/obj/item/ammo_magazine/revolver,
+		/obj/item/ammo_magazine/smg/standard_machinepistol,
+	)
 
 /obj/item/storage/pouch/magazine/pistol/large
-	name = "large pistol magazine pouch"
+	name = "pistol magazine pouch"
+	desc = "This pouch can contain six pistol and revolver ammo magazines."
 	storage_slots = 6
 	icon_state = "large_pistol_mag"
 
@@ -261,12 +290,12 @@
 	fill_type = /obj/item/ammo_magazine/smg/skorpion
 	fill_number = 2
 
-/obj/item/storage/pouch/magazine/large/pmc_m39
-	fill_type = /obj/item/ammo_magazine/smg/m39/ap
+/obj/item/storage/pouch/magazine/large/pmc_m25
+	fill_type = /obj/item/ammo_magazine/smg/m25/ap
 	fill_number = 3
 
-/obj/item/storage/pouch/magazine/large/pmc_p90
-	fill_type = /obj/item/ammo_magazine/smg/p90
+/obj/item/storage/pouch/magazine/large/pmc_famas
+	fill_type = /obj/item/ammo_magazine/rifle/famas
 	fill_number = 3
 
 /obj/item/storage/pouch/magazine/large/pmc_lmg
@@ -297,14 +326,42 @@
 		/obj/item/storage/box/explosive_mines,
 		/obj/item/ammo_magazine/rocket,
 		/obj/item/detpack,
-		/obj/item/assembly/signaler)
+		/obj/item/assembly/signaler,
+	)
 
 /obj/item/storage/pouch/explosive/full
 	fill_type = /obj/item/explosive/grenade/frag
 	fill_number = 4
 
+/obj/item/storage/pouch/explosive/detpack/Initialize()
+	. = ..()
+	new /obj/item/detpack(src)
+	new /obj/item/detpack(src)
+	new /obj/item/detpack(src)
+	new /obj/item/assembly/signaler(src)
+
+/obj/item/storage/pouch/explosive/razorburn/Initialize()
+	. = ..()
+	new /obj/item/explosive/grenade/chem_grenade/razorburn_smol(src)
+	new /obj/item/explosive/grenade/chem_grenade/razorburn_smol(src)
+	new /obj/item/explosive/grenade/chem_grenade/razorburn_smol(src)
+	new /obj/item/explosive/grenade/chem_grenade/razorburn_large(src)
+
 /obj/item/storage/pouch/explosive/upp
-	fill_type = /obj/item/explosive/plastique
+	fill_type = /obj/item/explosive/grenade/frag/upp
+	fill_number = 4
+
+/obj/item/storage/pouch/grenade
+	name = "Grenade pouch"
+	desc = "It can contain grenades."
+	icon_state = "explosive"
+	storage_slots = 6
+	can_hold = list(
+		/obj/item/explosive/grenade,
+	)
+
+/obj/item/storage/pouch/grenade/slightlyfull
+	fill_type = /obj/item/explosive/grenade/frag
 	fill_number = 4
 
 /obj/item/storage/pouch/medical
@@ -322,13 +379,21 @@
 		/obj/item/storage/pill_bottle,
 		/obj/item/stack/medical,
 		/obj/item/flashlight/pen,
-		/obj/item/reagent_containers/hypospray)
+		/obj/item/storage/pill_bottle/packet,
+		/obj/item/reagent_containers/hypospray,
+	)
 
 /obj/item/storage/pouch/medical/full/Initialize()
 	. = ..()
 	new /obj/item/stack/medical/advanced/bruise_pack(src)
 	new /obj/item/stack/medical/advanced/ointment(src)
 	new /obj/item/stack/medical/splint(src)
+
+/obj/item/storage/pouch/medical/equippedcorpsman/Initialize()
+	. = ..()
+	new /obj/item/storage/pill_bottle/bicaridine(src)
+	new /obj/item/storage/pill_bottle/kelotane(src)
+	new /obj/item/healthanalyzer(src)
 
 /obj/item/storage/pouch/autoinjector
 	name = "auto-injector pouch"
@@ -337,7 +402,8 @@
 	storage_slots = 7
 	max_storage_space = 14
 	can_hold = list(
-		/obj/item/reagent_containers/hypospray/autoinjector)
+		/obj/item/reagent_containers/hypospray/autoinjector,
+	)
 
 /obj/item/storage/pouch/autoinjector/full/Initialize()
 	. = ..()
@@ -356,7 +422,8 @@
 	storage_slots = 7
 	max_storage_space = 14
 	can_hold = list(
-		/obj/item/reagent_containers/hypospray/autoinjector)
+		/obj/item/reagent_containers/hypospray/autoinjector,
+	)
 
 /obj/item/storage/pouch/autoinjector/advanced/full/Initialize()
 	. = ..()
@@ -365,8 +432,8 @@
 	new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced (src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine (src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/hyperzine(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus(src)
 
 
 
@@ -378,21 +445,47 @@
 	max_storage_space = 10
 	can_hold = list(/obj/item/reagent_containers/syringe)
 
+// It really fits here more, but essentially a medkit in your pouch
 
 /obj/item/storage/pouch/medkit
 	name = "medkit pouch"
+	desc = "A standard use medkit pouch that can contain all kinds of stuff."
+	icon_state = "medkit"
 	w_class = WEIGHT_CLASS_BULKY //does not fit in backpack
 	max_w_class = 4
-	draw_mode = 1
-	icon_state = "medkit"
-	desc = "It's specifically made to hold a medkit."
-	can_hold = list(/obj/item/storage/firstaid)
-	bypass_w_limit = list(/obj/item/storage/firstaid)
+	storage_slots = 7
+	can_hold = list(
+		/obj/item/healthanalyzer,
+		/obj/item/reagent_containers/dropper,
+		/obj/item/reagent_containers/pill,
+		/obj/item/reagent_containers/glass/bottle,
+		/obj/item/reagent_containers/syringe,
+		/obj/item/storage/pill_bottle,
+		/obj/item/stack/medical,
+		/obj/item/flashlight/pen,
+		/obj/item/storage/pill_bottle/packet,
+		/obj/item/reagent_containers/hypospray,
+	)
 
+/obj/item/storage/pouch/medkit/full/Initialize()
+	. = ..()
+	new /obj/item/healthanalyzer(src)
+	new /obj/item/stack/medical/bruise_pack(src)
+	new /obj/item/stack/medical/ointment(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/tramadol(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/storage/syringe_case/regular(src)
 
-/obj/item/storage/pouch/medkit/full
-	fill_type = /obj/item/storage/firstaid/regular
-	fill_number = 1
+/obj/item/storage/pouch/medkit/equippedcorpsman/Initialize()
+	. = ..()
+	new /obj/item/healthanalyzer(src)
+	new /obj/item/stack/medical/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/advanced/ointment(src)
+	new /obj/item/storage/pill_bottle/bicaridine(src)
+	new /obj/item/storage/pill_bottle/kelotane(src)
+	new /obj/item/storage/pill_bottle/tramadol(src)
+	new /obj/item/stack/medical/splint(src)
 
 /obj/item/storage/pouch/document
 	name = "document pouch"
@@ -401,7 +494,8 @@
 	storage_slots = 7
 	can_hold = list(
 		/obj/item/paper,
-		/obj/item/clipboard)
+		/obj/item/clipboard,
+	)
 
 
 /obj/item/storage/pouch/flare
@@ -413,7 +507,8 @@
 	icon_state = "flare"
 	can_hold = list(
 		/obj/item/flashlight/flare,
-		/obj/item/explosive/grenade/flare)
+		/obj/item/explosive/grenade/flare,
+	)
 
 
 /obj/item/storage/pouch/flare/attackby(obj/item/I, mob/user, params)
@@ -472,15 +567,14 @@
 		/obj/item/flashlight,
 		/obj/item/whistle,
 		/obj/item/binoculars,
-		/obj/item/map/current_map,
-		/obj/item/squad_beacon)
+		/obj/item/squad_beacon,
+	)
 
 /obj/item/storage/pouch/field_pouch/full/Initialize()
 	. = ..()
 	new /obj/item/motiondetector (src)
 	new /obj/item/whistle (src)
 	new /obj/item/radio (src)
-	new /obj/item/map/current_map (src)
 	new /obj/item/binoculars/tactical (src)
 
 
@@ -491,7 +585,8 @@
 	storage_slots = 6
 	can_hold = list(
 		/obj/item/circuitboard,
-		/obj/item/cell)
+		/obj/item/cell,
+	)
 
 /obj/item/storage/pouch/electronics/full/Initialize()
 	. = ..()
@@ -512,13 +607,20 @@
 		/obj/item/stack/rods,
 		/obj/item/stack/cable_coil,
 		/obj/item/tool/shovel/etool,
-		/obj/item/stack/sandbags_empty)
+		/obj/item/stack/sandbags_empty,
+	)
 
 /obj/item/storage/pouch/construction/full/Initialize()
 	. = ..()
 	new /obj/item/stack/sandbags_empty/half (src)
 	new /obj/item/stack/barbed_wire/small_stack (src)
 	new /obj/item/tool/shovel/etool (src)
+
+/obj/item/storage/pouch/construction/equippedengineer/Initialize()
+	. = ..()
+	new /obj/item/stack/sandbags_empty/half (src)
+	new /obj/item/stack/sheet/metal/large_stack (src)
+	new /obj/item/stack/sheet/plasteel/medium_stack (src)
 
 /obj/item/storage/pouch/tools
 	name = "tools pouch"
@@ -535,7 +637,8 @@
 		/obj/item/multitool,
 		/obj/item/tool/wrench,
 		/obj/item/stack/cable_coil,
-		/obj/item/tool/extinguisher/mini)
+		/obj/item/tool/extinguisher/mini,
+	)
 
 /obj/item/storage/pouch/tools/full/Initialize()
 	. = ..()
@@ -555,30 +658,30 @@
 
 
 /obj/item/storage/pouch/shotgun/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/ammo_magazine/shotgun))
-		var/obj/item/ammo_magazine/shotgun/M = I
+	if(istype(I, /obj/item/ammo_magazine))
+		var/obj/item/ammo_magazine/M = I
 
-		if(!M.current_rounds)
-			to_chat(user, "<span class='warning'>[M] is empty.</span>")
-			return
+		if(M.flags_magazine & AMMUNITION_REFILLABLE)
+			if(!M.current_rounds)
+				to_chat(user, "<span class='warning'>[M] is empty.</span>")
+				return
 
-		if(length(contents) >= storage_slots)
-			to_chat(user, "<span class='warning'>[src] is full.</span>")
-			return
+			if(length(contents) >= storage_slots)
+				to_chat(user, "<span class='warning'>[src] is full.</span>")
+				return
 
-		to_chat(user, "<span class='notice'>You start refilling [src] with [M].</span>")
 
-		if(!do_after(user, 15, TRUE, src, BUSY_ICON_GENERIC))
-			return
+			to_chat(user, "<span class='notice'>You start refilling [src] with [M].</span>")
+			if(!do_after(user, 1.5 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+				return
 
-		for(var/x in 1 to (storage_slots - length(contents)))
-			if(!handle_item_insertion(M.create_handful(), 1, user))
-				break
+			for(var/x in 1 to (storage_slots - length(contents)))
+				var/cont = handle_item_insertion(M.create_handful(), 1, user)
+				if(!cont)
+					break
 
-		playsound(user.loc, "rustle", 15, 1, 6)
-		to_chat(user, "<span class='notice'>You refill [src] with [M].</span>")
+			playsound(user.loc, "rustle", 15, TRUE, 6)
+			to_chat(user, "<span class='notice'>You refill [src] with [M].</span>")
+			return TRUE
 
-		return TRUE
-
-	else
-		return ..()
+	return ..()

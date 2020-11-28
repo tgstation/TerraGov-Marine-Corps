@@ -19,7 +19,7 @@
 	if(X.action_busy || !do_after(X, 5, TRUE, target, BUSY_ICON_DANGER))
 		return
 
-	if(!can_use_ability(A, TRUE))
+	if(!can_use_ability(A, TRUE, override_flags = XACT_IGNORE_SELECTED_ABILITY))
 		return fail_activate()
 
 	succeed_activate()
@@ -57,6 +57,8 @@
 
 		var/blocked = FALSE
 		for(var/obj/O in T)
+			if(is_type_in_typecache(O, GLOB.acid_spray_hit) && O.acid_spray_act(owner))
+				return // returned true if normal density applies
 			if(O.density && !O.throwpass && !(O.flags_atom & ON_BORDER))
 				blocked = TRUE
 				break

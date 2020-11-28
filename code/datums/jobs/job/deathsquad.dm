@@ -2,7 +2,7 @@
 	access = ALL_ANTAGONIST_ACCESS
 	minimal_access = ALL_ANTAGONIST_ACCESS
 	skills_type = /datum/skills/SL/pmc
-	faction = "Deathsquad"
+	faction = FACTION_DEATHSQUAD
 
 
 //Deathsquad Standard
@@ -17,7 +17,7 @@
 	jobtype = /datum/job/deathsquad/standard
 
 	id = /obj/item/card/id/silver
-	belt = /obj/item/storage/belt/gun/mateba/admiral
+	belt = /obj/item/storage/belt/gun/mateba/notmarine
 	ears = /obj/item/radio/headset/distress/commando
 	w_uniform = /obj/item/clothing/under/marine/veteran/PMC/commando
 	shoes = /obj/item/clothing/shoes/veteran/PMC/commando
@@ -26,7 +26,7 @@
 	head = /obj/item/clothing/head/helmet/marine/veteran/PMC/commando
 	mask = /obj/item/clothing/mask/gas/PMC
 	glasses = /obj/item/clothing/glasses/m42_goggles
-	suit_store = /obj/item/weapon/gun/rifle/m41a1/elite
+	suit_store = /obj/item/weapon/gun/rifle/m412/elite
 	r_store = /obj/item/storage/pouch/magazine/large/pmc_rifle
 	l_store = /obj/item/storage/pouch/firstaid/full
 	back = /obj/item/storage/backpack/commando
@@ -59,7 +59,7 @@
 	jobtype = /datum/job/deathsquad/standard/energy
 
 	id = /obj/item/card/id/silver
-	belt = /obj/item/storage/belt/gun/mateba/admiral
+	belt = /obj/item/storage/belt/gun/mateba/notmarine
 	ears = /obj/item/radio/headset/distress/commando
 	w_uniform = /obj/item/clothing/under/marine/veteran/PMC/commando
 	shoes = /obj/item/clothing/shoes/veteran/PMC/commando
@@ -108,7 +108,7 @@
 	jobtype = /datum/job/deathsquad/leader
 
 	id = /obj/item/card/id/silver
-	belt = /obj/item/storage/belt/gun/mateba/admiral
+	belt = /obj/item/storage/belt/gun/mateba/notmarine
 	ears = /obj/item/radio/headset/distress/commando
 	w_uniform = /obj/item/clothing/under/marine/veteran/PMC/commando
 	shoes = /obj/item/clothing/shoes/veteran/PMC/commando

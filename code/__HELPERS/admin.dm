@@ -12,11 +12,11 @@ params
 	user_message = a message to show to the user
 	rank_required = bitflag of admin ranks to limit the admin that can reply to this message
 	ignore_afk = should we ignore afk admins
-	admin_sound = sound played to each admin	
+	admin_sound = sound played to each admin
 
 */
 /proc/admin_approval(admin_message = "", list/options = list("approve" = TRUE, "deny" = FALSE), default_option = "approve", delay = 60 SECONDS, client/user, user_message = "", rank_required = R_ADMIN, ignore_afk = FALSE, sound/admin_sound)
-	. = options[default_option] 
+	. = options[default_option]
 
 	if(!admin_message)
 		stack_trace("admin_approval called without an admin_message")

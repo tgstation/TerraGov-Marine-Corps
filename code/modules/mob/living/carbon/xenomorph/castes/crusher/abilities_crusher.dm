@@ -28,11 +28,12 @@
 		if(isxeno(M) || M.stat == DEAD || isnestedhost(M))
 			continue
 		var/distance = get_dist(M, X)
-		var/damage = (rand(CRUSHER_STOMP_LOWER_DMG, CRUSHER_STOMP_UPPER_DMG) * CRUSHER_STOMP_UPGRADE_BONUS(X)) / max(1,distance + 1)
+		var/damage = X.xeno_caste.stomp_damage/max(1, distance + 1)
 		if(distance == 0) //If we're on top of our victim, give him the full impact
 			GLOB.round_statistics.crusher_stomp_victims++
 			SSblackbox.record_feedback("tally", "round_statistics", 1, "crusher_stomp_victims")
-			M.take_overall_damage(damage, 0, M.run_armor_check("chest", "melee"))
+			M.take_overall_damage_armored(damage, BRUTE, "melee", FALSE, FALSE)
+			M.Paralyze(20)
 			to_chat(M, "<span class='highdanger'>You are stomped on by [X]!</span>")
 			shake_camera(M, 3, 3)
 		else
@@ -46,6 +47,17 @@
 		M.apply_damage(damage, STAMINA) //Armour ignoring Stamina
 		UPDATEHEALTH(M)
 
+/datum/action/xeno_action/activable/stomp/ai_should_start_consider()
+	return TRUE
+
+/datum/action/xeno_action/activable/stomp/ai_should_use(target)
+	if(!iscarbon(target))
+		return ..()
+	if(get_dist(target, owner) > 1)
+		return ..()
+	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
+		return ..()
+	return TRUE
 
 // ***************************************
 // *********** Cresttoss
@@ -85,11 +97,11 @@
 	X.face_atom(L) //Face towards the target so we don't look silly
 
 	var/facing = get_dir(X, L)
-	var/toss_distance = rand(3,5)
+	var/toss_distance = X.xeno_caste.crest_toss_distance
 	var/turf/T = X.loc
 	var/turf/temp = X.loc
 	if(X.a_intent == INTENT_HARM) //If we use the ability on hurt intent, we throw them in front; otherwise we throw them behind.
-		for (var/x in 1 to toss_distance)
+		for(var/x in 1 to toss_distance)
 			temp = get_step(T, facing)
 			if (!temp)
 				break
@@ -98,7 +110,7 @@
 		facing = get_dir(L, X)
 		if(!X.check_blocked_turf(get_step(T, facing) ) ) //Make sure we can actually go to the target turf
 			L.loc = get_step(T, facing) //Move the target behind us before flinging
-			for (var/x = 0, x < toss_distance, x++)
+			for(var/x = 0, x < toss_distance, x++)
 				temp = get_step(T, facing)
 				if (!temp)
 					break
@@ -107,12 +119,13 @@
 			to_chat(X, "<span class='xenowarning'>We try to fling [L] behind us, but there's no room!</span>")
 			return fail_activate()
 
-	//The target location deviates up to 1 tile in any direction
-	var/scatter_x = rand(-1,1)
+	//The target location deviates up to 1 tile in any direction //No.
+	/*var/scatter_x = rand(-1,1)
 	var/scatter_y = rand(-1,1)
 	var/turf/new_target = locate(T.x + round(scatter_x),T.y + round(scatter_y),T.z) //Locate an adjacent turf.
 	if(new_target)
 		T = new_target//Looks like we found a turf.
+	*/
 
 	X.icon_state = "Crusher Charging"  //Momentarily lower the crest for visual effect
 
@@ -126,7 +139,8 @@
 	//Handle the damage
 	if(!X.issamexenohive(L)) //Friendly xenos don't take damage.
 		var/damage = toss_distance * 5
-		L.take_overall_damage(rand(damage * 0.75,damage * 1.25), 0, L.run_armor_check("chest", "melee"))
+
+		L.take_overall_damage_armored(damage, BRUTE, "melee")
 		L.apply_damage(damage, STAMINA) //...But decent armour ignoring Stamina
 		UPDATEHEALTH(L)
 		shake_camera(L, 2, 2)
@@ -134,3 +148,15 @@
 
 	add_cooldown()
 	addtimer(CALLBACK(X, /mob/.proc/update_icons), 3)
+
+/datum/action/xeno_action/activable/cresttoss/ai_should_start_consider()
+	return TRUE
+
+/datum/action/xeno_action/activable/cresttoss/ai_should_use(target)
+	if(!iscarbon(target))
+		return ..()
+	if(get_dist(target, owner) > 1)
+		return ..()
+	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
+		return ..()
+	return TRUE

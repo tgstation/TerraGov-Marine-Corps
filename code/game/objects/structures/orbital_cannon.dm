@@ -17,7 +17,6 @@
 	var/chambered_tray = FALSE
 	var/loaded_tray = FALSE
 	var/ob_cannon_busy = FALSE
-	var/last_orbital_firing = 0 //stores the last time it was fired to check when we can fire again
 
 /obj/structure/orbital_cannon/Initialize()
 	. = ..()
@@ -26,13 +25,13 @@
 
 	if(!GLOB.marine_main_ship.ob_type_fuel_requirements)
 		GLOB.marine_main_ship.ob_type_fuel_requirements = list()
-		var/list/L = list(4,5,6)
+		var/list/L = list(3,4,5,6)
 		var/amt
-		for(var/i=1 to 3)
+		for(var/i in 1 to 4)
 			amt = pick_n_take(L)
 			GLOB.marine_main_ship?.ob_type_fuel_requirements += amt
 
-	var/turf/T = locate(x+1,y+2,z)
+	var/turf/T = locate(x+1,y+1,z)
 	var/obj/structure/orbital_tray/O = new(T)
 	tray = O
 	tray.linked_ob = src
@@ -113,7 +112,7 @@
 
 	ob_cannon_busy = FALSE
 
-	var/turf/T = locate(x+1,y+2,z)
+	var/turf/T = locate(x+1,y+1,z)
 
 	tray.forceMove(T)
 	loaded_tray = FALSE
@@ -148,13 +147,6 @@
 			to_chat(user, "<span class='warning'>No solid fuel in the tray, cancelling chambering operation.</span>")
 		return
 
-	if(last_orbital_firing) //fired at least once
-		var/cooldown_left = (last_orbital_firing + 5000) - world.time
-		if(cooldown_left > 0)
-			if(user)
-				to_chat(user, "<span class='warning'>[src]'s barrel is still too hot, let it cool down for [round(cooldown_left/10)] more seconds.</span>")
-			return
-
 	flick("OBC_chambering",src)
 
 	playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
@@ -182,8 +174,6 @@
 
 	ob_cannon_busy = TRUE
 
-	last_orbital_firing = world.time
-
 	playsound(loc, 'sound/weapons/guns/fire/tank_smokelauncher.ogg', 70, 1)
 	playsound(loc, 'sound/weapons/guns/fire/pred_plasma_shot.ogg', 70, 1)
 
@@ -196,6 +186,8 @@
 			inaccurate_fuel = abs(GLOB.marine_main_ship?.ob_type_fuel_requirements[2] - tray.fuel_amt)
 		if("cluster")
 			inaccurate_fuel = abs(GLOB.marine_main_ship?.ob_type_fuel_requirements[3] - tray.fuel_amt)
+		if("plasma")
+			inaccurate_fuel = abs(GLOB.marine_main_ship?.ob_type_fuel_requirements[4] - tray.fuel_amt)
 
 	var/turf/target = locate(T.x + inaccurate_fuel * pick(-1,1),T.y + inaccurate_fuel * pick(-1,1),T.z)
 	for(var/i in hearers(WARHEAD_FALLING_SOUND_RANGE,target))
@@ -204,7 +196,7 @@
 
 	notify_ghosts("<b>[user]</b> has just fired \the <b>[src]</b> !", source = T, action = NOTIFY_JUMP)
 
-	addtimer(CALLBACK(src, /obj/structure/orbital_cannon.proc/impact_callback, target, inaccurate_fuel), WARHEAD_FLY_TIME)
+	addtimer(CALLBACK(src, /obj/structure/orbital_cannon.proc/impact_callback, target, inaccurate_fuel), WARHEAD_FLY_TIME * (GLOB.current_orbit/3))
 
 /obj/structure/orbital_cannon/proc/impact_callback(target,inaccurate_fuel)
 	tray.warhead.warhead_impact(target, inaccurate_fuel)
@@ -326,6 +318,8 @@
 	throwpass = TRUE
 	climbable = TRUE
 	icon = 'icons/Marine/mainship_props.dmi'
+	resistance_flags = XENO_DAMAGEABLE
+	coverage = 100
 	var/is_solid_fuel = 0
 
 /obj/structure/ob_ammo/attackby(obj/item/I, mob/user, params)
@@ -352,6 +346,11 @@
 	to_chat(user, "Moving this will require some sort of lifter.")
 
 
+/obj/structure/ob_ammo/obj_destruction(damage_flag)
+	explosion(loc, light_impact_range = 2, flash_range = 3, flame_range = 2, small_animation = TRUE)
+	return ..()
+
+
 /obj/structure/ob_ammo/warhead
 	name = "theoretical orbital ammo"
 	var/warhead_kind
@@ -366,7 +365,7 @@
 	icon_state = "ob_warhead_1"
 
 /obj/structure/ob_ammo/warhead/explosive/warhead_impact(turf/target, inaccuracy_amt = 0)
-	explosion(target, 4 - inaccuracy_amt, 6 - inaccuracy_amt, 9 - inaccuracy_amt, 11 - inaccuracy_amt, 1, 0)
+	explosion(target, 6 - inaccuracy_amt, 10 - inaccuracy_amt, 15 - inaccuracy_amt, 11 - inaccuracy_amt)
 
 
 
@@ -378,7 +377,7 @@
 
 /obj/structure/ob_ammo/warhead/incendiary/warhead_impact(turf/target, inaccuracy_amt = 0)
 	var/range_num = max(15 - inaccuracy_amt, 12)
-	flame_radius(range_num, target)
+	flame_radius(range_num, target,	burn_intensity = 36, burn_duration = 40, colour = "blue")
 
 
 /obj/structure/ob_ammo/warhead/cluster
@@ -396,13 +395,24 @@
 	var/total_amt = max(25 - inaccuracy_amt, 20)
 	for(var/i = 1 to total_amt)
 		var/turf/U = pick_n_take(turf_list)
-		explosion(U, 1, 3, 5, 6, 1, 0) //rocket barrage
+		explosion(U, 1, 4, 6, 6, throw_range = 0, adminlog = FALSE, small_animation = TRUE) //rocket barrage
 		sleep(1)
+
+/obj/structure/ob_ammo/warhead/plasmaloss
+	name = "\improper Plasma draining orbital warhead"
+	warhead_kind = "plasma"
+	icon_state = "ob_warhead_4"
+	var/datum/effect_system/smoke_spread/plasmaloss/smoke
+
+/obj/structure/ob_ammo/warhead/plasmaloss/warhead_impact(turf/target, inaccuracy_amt = 0)
+	smoke = new(src)
+	smoke.set_up(25, target, 3 SECONDS)//Vape nation
+	smoke.start()
 
 /obj/structure/ob_ammo/ob_fuel
 	name = "solid fuel"
 	icon_state = "ob_fuel"
-	is_solid_fuel = 1
+	is_solid_fuel = TRUE
 
 /obj/structure/ob_ammo/ob_fuel/Initialize()
 	. = ..()
@@ -432,6 +442,9 @@
 	if(.)
 		return
 
+	if(!allowed(user))
+		return
+
 	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use the console.</span>",
 		"<span class='notice'>You fumble around figuring out how to use the console.</span>")
@@ -450,6 +463,7 @@
 			dat += "- HE Orbital Warhead: <b>[GLOB.marine_main_ship.ob_type_fuel_requirements[1]] Solid Fuel blocks.</b><BR>"
 			dat += "- Incendiary Orbital Warhead: <b>[GLOB.marine_main_ship.ob_type_fuel_requirements[2]] Solid Fuel blocks.</b><BR>"
 			dat += "- Cluster Orbital Warhead: <b>[GLOB.marine_main_ship?.ob_type_fuel_requirements[3]] Solid Fuel blocks.</b><BR>"
+			dat += "- Plasma drain Orbital Warhead: <b>[GLOB.marine_main_ship?.ob_type_fuel_requirements[4]] Solid Fuel blocks.</b><BR>"
 
 			dat += "<BR><BR><A href='?src=\ref[src];back=1'><font size=3>Back</font></A><BR>"
 		else

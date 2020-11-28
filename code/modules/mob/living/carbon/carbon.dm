@@ -10,6 +10,15 @@
 	if(isxeno(loc))
 		var/mob/living/carbon/xenomorph/devourer = loc
 		devourer.do_regurgitate(src)
+	QDEL_NULL(back)
+	QDEL_NULL(internal)
+	QDEL_NULL(handcuffed)
+	. = ..()
+	species = null
+
+/mob/living/carbon/on_death()
+	if(species)
+		to_chat(src,"<b><span class='deadsay'><p style='font-size:1.5em'>[species.special_death_message]</p></span></b>")
 	return ..()
 
 /mob/living/carbon/Move(NewLoc, direct)
@@ -28,13 +37,6 @@
 	if(!chestburst && (status_flags & XENO_HOST) && isxenolarva(user))
 		var/mob/living/carbon/xenomorph/larva/L = user
 		L.initiate_burst(src)
-
-
-/mob/living/carbon/gib()
-	if(legcuffed)
-		dropItemToGround(legcuffed)
-
-	return ..()
 
 
 /mob/living/carbon/attack_paw(mob/living/carbon/monkey/user)
@@ -57,12 +59,11 @@
 			"<span class='danger'>You feel a powerful shock course through your body!</span>", \
 			"<span class='warning'> You hear a heavy electrical crack.</span>" \
 		)
-		if(isxeno(src) && mob_size == MOB_SIZE_BIG)
-			Stun(20)//Sadly, something has to stop them from bumping them 10 times in a second
-			Paralyze(20)
+		if(isxeno(src))
+			if(mob_size != MOB_SIZE_BIG)
+				Paralyze(4 SECONDS)
 		else
-			Stun(20 SECONDS)//This should work for now, more is really silly and makes you lay there forever
-			Paralyze(20 SECONDS)
+			Paralyze(8 SECONDS)
 	else
 		src.visible_message(
 			"<span class='warning'> [src] was mildly shocked by the [source].</span>", \
@@ -117,10 +118,10 @@
 	if(stat == DEAD) //Corpses don't puke
 		return
 
-	if(cooldowns[COOLDOWN_PUKE])
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_PUKE))
 		return
 
-	cooldowns[COOLDOWN_PUKE] = TRUE
+	TIMER_COOLDOWN_START(src, COOLDOWN_PUKE, 40 SECONDS) //5 seconds before the actual action plus 35 before the next one.
 	to_chat(src, "<spawn class='warning'>You feel like you are about to throw up!")
 	addtimer(CALLBACK(src, .proc/do_vomit), 5 SECONDS)
 
@@ -128,7 +129,7 @@
 /mob/living/carbon/proc/do_vomit()
 	Stun(10 SECONDS)
 	visible_message("<spawn class='warning'>[src] throws up!","<spawn class='warning'>You throw up!", null, 5)
-	playsound(loc, 'sound/effects/splat.ogg', 25, 1, 7)
+	playsound(loc, 'sound/effects/splat.ogg', 25, TRUE, 7)
 
 	var/turf/location = loc
 	if (istype(location, /turf))
@@ -136,7 +137,6 @@
 
 	adjust_nutrition(-40)
 	adjustToxLoss(-3)
-	addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_PUKE, FALSE), 35 SECONDS) //wait 35 seconds before next volley
 
 
 /mob/living/carbon/proc/help_shake_act(mob/living/carbon/shaker)
@@ -150,7 +150,7 @@
 		to_chat(shaker, "<span class='highdanger'>This player has been admin slept, do not interfere with them.</span>")
 		return
 
-	if(lying || IsSleeping())
+	if(lying_angle || IsSleeping())
 		if(client)
 			AdjustSleeping(-10 SECONDS)
 		if(!IsSleeping())
@@ -253,7 +253,7 @@
 
 		if(!lastarea)
 			lastarea = get_area(src.loc)
-		if(isspaceturf(loc) || !lastarea.has_gravity)
+		if(isspaceturf(loc))
 			inertia_dir = get_dir(target, src)
 			step(src, inertia_dir)
 
@@ -322,19 +322,20 @@
 	set waitfor = 0
 	if(buckled) return FALSE //can't slip while buckled
 	if(run_only && (m_intent != MOVE_INTENT_RUN)) return FALSE
-	if(lying) return FALSE //can't slip if already lying down.
+	if(lying_angle)
+		return FALSE //can't slip if already lying down.
 	stop_pulling()
 	to_chat(src, "<span class='warning'>You slipped on \the [slip_source_name? slip_source_name : "floor"]!</span>")
 	playsound(src.loc, 'sound/misc/slip.ogg', 25, 1)
 	Stun(stun_level)
 	Paralyze(weaken_level)
 	. = TRUE
-	if(slide_steps && lying)//lying check to make sure we downed the mob
+	if(slide_steps && lying_angle)//lying check to make sure we downed the mob
 		var/slide_dir = dir
 		for(var/i=1, i<=slide_steps, i++)
 			step(src, slide_dir)
 			sleep(2)
-			if(!lying)
+			if(!lying_angle)
 				break
 
 
@@ -459,6 +460,8 @@
 	if(!.)
 		return
 	if(client)
+		return
+	if (SSticker.current_state != GAME_STATE_PLAYING)
 		return
 
 	var/mob/picked = get_alien_candidate()

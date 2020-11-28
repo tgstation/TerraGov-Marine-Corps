@@ -6,24 +6,12 @@
 	tick_interval = 0
 	status_type = STATUS_EFFECT_REPLACE
 	alert_type = null
-	var/needs_update_stat = FALSE
 
-/datum/status_effect/incapacitating/on_creation(mob/living/new_owner, set_duration, updating_canmove)
+/datum/status_effect/incapacitating/on_creation(mob/living/new_owner, set_duration)
 	if(isnum(set_duration))
 		duration = set_duration
-	. = ..()
-	if(.)
-		if(updating_canmove)
-			//owner.update_mobility() pending mobility state port
-			owner.update_canmove()
-			if(needs_update_stat || issilicon(owner))
-				owner.update_stat()
+	return ..()
 
-/datum/status_effect/incapacitating/on_remove()
-	//owner.update_mobility() pending mobility state port
-	owner.update_canmove()
-	if(needs_update_stat || issilicon(owner)) //silicons need stat updates in addition to normal canmove updates
-		owner.update_stat()
 
 //STUN
 /datum/status_effect/incapacitating/stun
@@ -34,18 +22,40 @@
 	if(!.)
 		return
 	ADD_TRAIT(owner, TRAIT_INCAPACITATED, TRAIT_STATUS_EFFECT(id))
+	ADD_TRAIT(owner, TRAIT_IMMOBILE, TRAIT_STATUS_EFFECT(id))
 
 /datum/status_effect/incapacitating/stun/on_remove()
 	REMOVE_TRAIT(owner, TRAIT_INCAPACITATED, TRAIT_STATUS_EFFECT(id))
+	REMOVE_TRAIT(owner, TRAIT_IMMOBILE, TRAIT_STATUS_EFFECT(id))
 	return ..()
 
 //KNOCKDOWN
 /datum/status_effect/incapacitating/knockdown
 	id = "knockdown"
 
+/datum/status_effect/incapacitating/knockdown/on_apply()
+	. = ..()
+	if(!.)
+		return
+	ADD_TRAIT(owner, TRAIT_FLOORED, TRAIT_STATUS_EFFECT(id))
+
+/datum/status_effect/incapacitating/knockdown/on_remove()
+	REMOVE_TRAIT(owner, TRAIT_FLOORED, TRAIT_STATUS_EFFECT(id))
+	return ..()
+
 //IMMOBILIZED
 /datum/status_effect/incapacitating/immobilized
 	id = "immobilized"
+
+/datum/status_effect/incapacitating/immobilized/on_apply()
+	. = ..()
+	if(!.)
+		return
+	ADD_TRAIT(owner, TRAIT_IMMOBILE, TRAIT_STATUS_EFFECT(id))
+
+/datum/status_effect/incapacitating/immobilized/on_remove()
+	REMOVE_TRAIT(owner, TRAIT_IMMOBILE, TRAIT_STATUS_EFFECT(id))
+	return ..()
 
 //PARALYZED
 /datum/status_effect/incapacitating/paralyzed
@@ -56,15 +66,18 @@
 	if(!.)
 		return
 	ADD_TRAIT(owner, TRAIT_INCAPACITATED, TRAIT_STATUS_EFFECT(id))
+	ADD_TRAIT(owner, TRAIT_IMMOBILE, TRAIT_STATUS_EFFECT(id))
+	ADD_TRAIT(owner, TRAIT_FLOORED, TRAIT_STATUS_EFFECT(id))
 
 /datum/status_effect/incapacitating/paralyzed/on_remove()
 	REMOVE_TRAIT(owner, TRAIT_INCAPACITATED, TRAIT_STATUS_EFFECT(id))
+	REMOVE_TRAIT(owner, TRAIT_IMMOBILE, TRAIT_STATUS_EFFECT(id))
+	REMOVE_TRAIT(owner, TRAIT_FLOORED, TRAIT_STATUS_EFFECT(id))
 	return ..()
 
 //UNCONSCIOUS
 /datum/status_effect/incapacitating/unconscious
 	id = "unconscious"
-	needs_update_stat = TRUE
 
 /datum/status_effect/incapacitating/unconscious/on_apply()
 	. = ..()
@@ -84,11 +97,10 @@
 /datum/status_effect/incapacitating/sleeping
 	id = "sleeping"
 	alert_type = /obj/screen/alert/status_effect/asleep
-	needs_update_stat = TRUE
 	var/mob/living/carbon/carbon_owner
 	var/mob/living/carbon/human/human_owner
 
-/datum/status_effect/incapacitating/sleeping/on_creation(mob/living/new_owner, updating_canmove)
+/datum/status_effect/incapacitating/sleeping/on_creation(mob/living/new_owner)
 	. = ..()
 	if(.)
 		if(iscarbon(owner)) //to avoid repeated istypes
@@ -146,7 +158,6 @@
 /datum/status_effect/incapacitating/adminsleep
 	id = "adminsleep"
 	alert_type = /obj/screen/alert/status_effect/adminsleep
-	needs_update_stat = TRUE
 	duration = -1
 
 /datum/status_effect/incapacitating/adminsleep/on_apply()
@@ -173,3 +184,47 @@
 	name = "Confused"
 	desc = "You're dazed and confused."
 	icon_state = "asleep"
+
+/datum/status_effect/plasmadrain
+	id = "plasmadrain"
+
+/datum/status_effect/plasmadrain/on_creation(mob/living/new_owner, set_duration)
+	if(isxeno(new_owner))
+		owner = new_owner
+		duration = set_duration
+		return ..()
+	else
+		CRASH("something applied plasmadrain on a nonxeno, dont do that")
+
+/datum/status_effect/plasmadrain/tick()
+	var/mob/living/carbon/xenomorph/xenoowner = owner
+	if(xenoowner.plasma_stored >= 0)
+		var/remove_plasma_amount = xenoowner.xeno_caste.plasma_max / 17
+		xenoowner.plasma_stored -= remove_plasma_amount
+		if(xenoowner.plasma_stored <= 0)
+			xenoowner.plasma_stored = 0
+
+/datum/status_effect/noplasmaregen
+	id = "noplasmaregen"
+	tick_interval = 2 SECONDS
+
+/datum/status_effect/noplasmaregen/on_creation(mob/living/new_owner, set_duration)
+	if(isxeno(new_owner))
+		owner = new_owner
+		duration = set_duration
+		return ..()
+	else
+		CRASH("something applied noplasmaregen on a nonxeno, dont do that")
+
+/datum/status_effect/noplasmaregen/on_apply()
+	. = ..()
+	if(!.)
+		return
+	ADD_TRAIT(owner, TRAIT_NOPLASMAREGEN, TRAIT_STATUS_EFFECT(id))
+
+/datum/status_effect/noplasmaregen/on_remove()
+	REMOVE_TRAIT(owner, TRAIT_NOPLASMAREGEN, TRAIT_STATUS_EFFECT(id))
+	return ..()
+
+/datum/status_effect/noplasmaregen/tick()
+	to_chat(owner, "<span class='warning'>You feel too weak to summon new plasma...</span>")

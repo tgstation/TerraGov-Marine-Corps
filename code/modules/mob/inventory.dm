@@ -1,66 +1,122 @@
 //These procs handle putting s tuff in your hand. It's probably best to use these rather than setting l_hand = ...etc
 //as they handle all relevant stuff like adding it to the player's screen and updating their overlays.
 
-//Returns the thing in our active hand
+/**
+	returns the thing in our currently active hand
+*/
 /mob/proc/get_active_held_item()
+	if(status_flags & INCORPOREAL) // INCORPOREAL things don't have hands
+		return
 	if(hand)
 		return l_hand
 	return r_hand
 
-//Returns the thing in our inactive hand
+/**
+	returns the thing in our currently inactive hand
+*/
 /mob/proc/get_inactive_held_item()
+	if(status_flags & INCORPOREAL) // INCORPOREAL things don't have hands
+		return
 	if(hand)
 		return r_hand
 	return l_hand
 
-//Puts the item into your l_hand if possible and calls all necessary triggers/updates. returns 1 on success.
+/**
+	Puts the item into your l_hand if possible and calls all necessary triggers/updates.
+
+	Arguments
+	* obj/item/W is the item you are trying to equip
+
+	Returns TRUE on success.
+*/
 /mob/proc/put_in_l_hand(obj/item/W)
-	if(lying)
+	if(status_flags & INCORPOREAL) // INCORPOREAL things don't have hands
+		return FALSE
+	if(lying_angle)
 		return FALSE
 	if(!istype(W))
 		return FALSE
 	if(!l_hand)
 		W.forceMove(src)
 		l_hand = W
+		W.equipped(src,SLOT_L_HAND)
 		W.layer = ABOVE_HUD_LAYER
 		W.plane = ABOVE_HUD_PLANE
-		W.equipped(src,SLOT_L_HAND)
 		update_inv_l_hand()
+		W.pixel_x = initial(W.pixel_x)
+		W.pixel_y = initial(W.pixel_y)
 		return TRUE
 	return FALSE
 
-//Puts the item into your r_hand if possible and calls all necessary triggers/updates. returns 1 on success.
+/**
+	Puts the item into your r_hand if possible and calls all necessary triggers/updates.
+
+	Arguments
+	* obj/item/W is the item you are trying to equip
+
+	Returns TRUE on success.
+*/
 /mob/proc/put_in_r_hand(obj/item/W)
-	if(lying)
+	if(status_flags & INCORPOREAL) // INCORPOREAL things don't have hands
+		return FALSE
+	if(lying_angle)
 		return FALSE
 	if(!istype(W))
 		return FALSE
 	if(!r_hand)
 		W.forceMove(src)
 		r_hand = W
+		W.equipped(src,SLOT_R_HAND)
 		W.layer = ABOVE_HUD_LAYER
 		W.plane = ABOVE_HUD_PLANE
-		W.equipped(src,SLOT_R_HAND)
 		update_inv_r_hand()
+		W.pixel_x = initial(W.pixel_x)
+		W.pixel_y = initial(W.pixel_y)
 		return TRUE
 	return FALSE
 
-//Puts the item into our active hand if possible. returns 1 on success.
+/**
+	Puts the item into our active hand if possible.
+
+	Arguments
+	* obj/item/W is the item you are trying to equip
+
+	Returns TRUE on success.
+*/
 /mob/proc/put_in_active_hand(obj/item/W)
+	if(status_flags & INCORPOREAL) // INCORPOREAL things don't have hands
+		return FALSE
 	if(hand)
 		return put_in_l_hand(W)
 	return put_in_r_hand(W)
 
-//Puts the item into our inactive hand if possible. returns 1 on success.
+/**
+	Puts the item into our inactive hand if possible.
+
+	Arguments
+	* obj/item/W is the item you are trying to equip
+	Returns TRUE on success.
+*/
 /mob/proc/put_in_inactive_hand(obj/item/W)
+	if(status_flags & INCORPOREAL) // INCORPOREAL things don't have hands
+		return FALSE
 	if(hand)
 		return put_in_r_hand(W)
 	return put_in_l_hand(W)
 
-//Puts the item our active hand if possible. Failing that it tries our inactive hand. Returns 1 on success.
-//If both fail it drops it on the floor and returns 0.
-//This is probably the main one you need to know :)
+/**
+	Puts the item our active hand if possible. Failing that it tries our inactive hand.
+	If both hands fail the item falls to the floor.
+
+	Arguments
+	* obj/item/W is the item you are trying to equip
+	* del_on_fail if true will delete the item instead of dropping it to the floor
+
+	Returns TURE if it was able to put the thing into one of our hands.
+*/
 /mob/proc/put_in_hands(obj/item/W, del_on_fail = FALSE)
+	if(status_flags & INCORPOREAL) // INCORPOREAL things don't have hands
+		return FALSE
 	if(!W)
 		return FALSE
 	if(put_in_active_hand(W))
@@ -76,49 +132,101 @@
 	W.dropped(src)
 	return FALSE
 
+/**
+	Helper proc used by the drop_item verb and on screen button.
 
-/mob/proc/drop_item_v()		//this is dumb.
+	Returns TURE if it was successful.
+*/
+/mob/proc/drop_item_v()
+	if(status_flags & INCORPOREAL) // INCORPOREAL things don't have hands
+		return FALSE
 	if(stat == CONSCIOUS && isturf(loc))
 		return drop_held_item()
 	return FALSE
 
 
-//Drops the item in our left hand
+/**
+	Drops the item in our left hand.
+
+	Returns TURE if it was successful.
+*/
 /mob/proc/drop_l_hand()
+	if(status_flags & INCORPOREAL) // INCORPOREAL things don't have hands
+		return FALSE
 	if(l_hand)
 		return dropItemToGround(l_hand)
 	return FALSE
 
-//Drops the item in our right hand
+/**
+	Drops the item in our right hand.
+
+	Returns TURE if it was successful.
+*/
 /mob/proc/drop_r_hand()
+	if(status_flags & INCORPOREAL) // INCORPOREAL things don't have hands
+		return FALSE
 	if(r_hand)
 		return dropItemToGround(r_hand)
 	return FALSE
 
-//Drops the item in our active hand.
+/**
+	Drops the item in our active hand.
+
+	Returns TURE if it was successful.
+*/
 /mob/proc/drop_held_item()
+	if(status_flags & INCORPOREAL) // INCORPOREAL things don't have hands
+		return FALSE
 	if(hand)
 		return drop_l_hand()
 	return drop_r_hand()
 
-//Drops the items in our hands.
+/**
+	Drops the items in our hands.
+
+	Returns TURE if it was successful.
+*/
 /mob/proc/drop_all_held_items()
+	if(status_flags & INCORPOREAL)
+		return
 	drop_r_hand()
 	drop_l_hand()
 
-//drop the inventory item on a specific location
-/mob/proc/transferItemToLoc(obj/item/I, atom/newloc, nomoveupdate, force)
-	return UnEquip(I, newloc, nomoveupdate, force)
+/**
+  * Used to drop an item (if it exists) to the ground.
+  * * Will return TRUE is successfully dropped.
+  * * Will return FALSE if the item can not be dropped due to TRAIT_NODROP via doUnEquip().
+  * * Will return null if there is no item.
+  * If the item can be dropped, it will be forceMove()'d to the ground and the turf's Entered() will be called.
+*/
+/mob/proc/dropItemToGround(obj/item/I, force = FALSE)
+	. = UnEquip(I, force, drop_location())
+	if(.)
+		I.pixel_x = initial(I.pixel_x) + rand(-6,6)
+		I.pixel_y = initial(I.pixel_y) + rand(-6,6)
 
-//drop the inventory item on the ground
-/mob/proc/dropItemToGround(obj/item/I, nomoveupdate, force)
-	return UnEquip(I, loc, nomoveupdate, force)
+/**
+  * For when the item will be immediately placed in a loc other than the ground.
+*/
+/mob/proc/transferItemToLoc(obj/item/I, atom/newloc, force = FALSE)
+	return UnEquip(I, force, newloc)
 
-//Never use this proc directly. nomoveupdate is used when we don't want the item to react to
-// its new loc (e.g.triggering mousetraps)
-/mob/proc/UnEquip(obj/item/I, atom/newloc, nomoveupdate, force)
+/**
+  *Removes an item on a mob's inventory.
+  * * It does not change the item's loc, just unequips it from the mob.
+  * * Used just before you want to delete the item, or moving it afterwards.
+*/
+/mob/proc/temporarilyRemoveItemFromInventory(obj/item/I, force = FALSE)
+	return UnEquip(I, force)
+
+/**
+  * DO NOT CALL THIS PROC
+  * * Use one of the above 3 helper procs.
+  * * You may override it, but do not modify the args.
+*/
+/mob/proc/UnEquip(obj/item/I, force, atom/newloc)
 	if(!I)
-		return TRUE
+		return
 
 	if((I.flags_item & NODROP) && !force)
 		return FALSE //UnEquip() only fails if item has NODROP
@@ -130,10 +238,7 @@
 	I.layer = initial(I.layer)
 	I.plane = initial(I.plane)
 	if(newloc)
-		if(!nomoveupdate)
-			I.forceMove(newloc)
-		else
-			I.loc = newloc
+		I.forceMove(newloc)
 	I.dropped(src)
 
 	return TRUE
@@ -142,19 +247,15 @@
 /mob/proc/doUnEquip(obj/item/I)
 	if(I == r_hand)
 		r_hand = null
+		I.unequipped(src, SLOT_R_HAND)
 		update_inv_r_hand()
 		return ITEM_UNEQUIP_DROPPED
 	else if (I == l_hand)
 		l_hand = null
+		I.unequipped(src, SLOT_L_HAND)
 		update_inv_l_hand()
 		return ITEM_UNEQUIP_DROPPED
 	return ITEM_UNEQUIP_FAIL
-
-
-//Remove an item on a mob's inventory.  It does not change the item's loc, just unequips it from the mob.
-//Used just before you want to delete the item, or moving it afterwards.
-/mob/proc/temporarilyRemoveItemFromInventory(obj/item/I, force)
-	return UnEquip(I, force = force)
 
 
 //Outdated but still in use apparently. This should at least be a human proc.
@@ -213,109 +314,12 @@
 
 //proc to get the item in the active hand.
 /mob/proc/get_held_item()
+	if(status_flags & INCORPOREAL)
+		return
 	if (hand)
 		return l_hand
 	else
 		return r_hand
-
-
-/mob/living/carbon/human/proc/equip_if_possible(obj/item/W, slot, del_on_fail = 1) // since byond doesn't seem to have pointers, this seems like the best way to do this :/
-	//warning: icky code
-	var/equipped = ITEM_NOT_EQUIPPED
-	switch(slot)
-		if(SLOT_BACK)
-			if(!src.back)
-				src.back = W
-				equipped = ITEM_EQUIPPED_WORN
-		if(SLOT_WEAR_MASK)
-			if(!src.wear_mask)
-				src.wear_mask = W
-				equipped = ITEM_EQUIPPED_WORN
-		if(SLOT_HANDCUFFED)
-			if(!src.handcuffed)
-				update_handcuffed(W)
-				equipped = ITEM_EQUIPPED_WORN
-		if(SLOT_L_HAND)
-			if(!src.l_hand)
-				src.l_hand = W
-				equipped = ITEM_EQUIPPED_CARRIED
-		if(SLOT_R_HAND)
-			if(!src.r_hand)
-				src.r_hand = W
-				equipped = ITEM_EQUIPPED_CARRIED
-		if(SLOT_BELT)
-			if(!src.belt && src.w_uniform)
-				src.belt = W
-				equipped = ITEM_EQUIPPED_WORN
-		if(SLOT_WEAR_ID)
-			if(!src.wear_id /* && src.w_uniform */)
-				src.wear_id = W
-				equipped = ITEM_EQUIPPED_WORN
-		if(SLOT_EARS)
-			if(!wear_ear)
-				wear_ear = W
-				equipped = ITEM_EQUIPPED_WORN
-		if(SLOT_GLASSES)
-			if(!src.glasses)
-				src.glasses = W
-				equipped = ITEM_EQUIPPED_WORN
-		if(SLOT_GLOVES)
-			if(!src.gloves)
-				src.gloves = W
-				equipped = ITEM_EQUIPPED_WORN
-		if(SLOT_HEAD)
-			if(!src.head)
-				src.head = W
-				equipped = ITEM_EQUIPPED_WORN
-		if(SLOT_SHOES)
-			if(!src.shoes)
-				src.shoes = W
-				equipped = ITEM_EQUIPPED_WORN
-		if(SLOT_WEAR_SUIT)
-			if(!src.wear_suit)
-				src.wear_suit = W
-				equipped = ITEM_EQUIPPED_WORN
-		if(SLOT_W_UNIFORM)
-			if(!src.w_uniform)
-				src.w_uniform = W
-				equipped = ITEM_EQUIPPED_WORN
-		if(SLOT_L_STORE)
-			if(!src.l_store && src.w_uniform)
-				src.l_store = W
-				equipped = ITEM_EQUIPPED_WORN
-		if(SLOT_R_STORE)
-			if(!src.r_store && src.w_uniform)
-				src.r_store = W
-				equipped = ITEM_EQUIPPED_WORN
-		if(SLOT_S_STORE)
-			if(!src.s_store && src.wear_suit)
-				src.s_store = W
-				equipped = ITEM_EQUIPPED_WORN
-		if(SLOT_IN_BACKPACK)
-			if (src.back && istype(src.back, /obj/item/storage/backpack))
-				var/obj/item/storage/backpack/B = src.back
-				if(B.contents.len < B.storage_slots && W.w_class <= B.max_w_class)
-					W.loc = B
-					equipped = ITEM_EQUIPPED_CARRIED
-
-	if(equipped)
-		if(equipped == ITEM_EQUIPPED_WORN)
-			if(W.flags_armor_protection)
-				add_limb_armor(W)
-			if(W.slowdown)
-				add_movespeed_modifier(W.type, TRUE, 0, NONE, TRUE, W.slowdown)
-			if(isclothing(W))
-				var/obj/item/clothing/equipped_clothing = W
-				if(equipped_clothing.accuracy_mod)
-					adjust_mob_accuracy(equipped_clothing.accuracy_mod)
-		W.layer = ABOVE_HUD_LAYER
-		W.plane = ABOVE_HUD_PLANE
-		if(src.back && W.loc != src.back)
-			W.loc = src
-	else
-		if (del_on_fail)
-			qdel(W)
-	return equipped
 
 
 //Checks if we're holding a tool that has given quality

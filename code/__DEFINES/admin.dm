@@ -70,7 +70,7 @@
 #define AHELP_CLOSED 2
 #define AHELP_RESOLVED 3
 
-#define ROUNDSTART_LOGOUT_REPORT_TIME	6000 //Amount of time (in deciseconds) after the rounds starts, that the player disconnect report is issued.
+#define ROUNDSTART_LOGOUT_REPORT_TIME	10 MINUTES //Amount of time (in deciseconds) after the rounds starts, that the player disconnect report is issued.
 
 #define SPAM_TRIGGER_TIME_PERIOD 10 SECONDS //The time period for checking spammy messages
 #define SPAM_TRIGGER_WEIGHT_FORMULA(message) length(message) / 200
@@ -85,7 +85,7 @@
 #define MAX_COMMANDS_PER_KEY 5
 ///Max amount of keypress messages per second over two seconds before client is autokicked
 #define MAX_KEYPRESS_AUTOKICK 50
-///Length of held key rolling buffer
+///Length of held key buffer
 #define HELD_KEY_BUFFER_LENGTH 15
 ///Maximum keys allowed per keybind
 #define MAX_KEYS_PER_KEYBIND 3
@@ -120,3 +120,9 @@
 #define APICKER_TURF	"Turf"
 #define APICKER_COORDS	"Coords"
 #define APICKER_PLAYER	"Cliented Mob"
+
+#define ADMIN_SPAWN_CAP 100
+
+// LOG BROWSE TYPES
+#define BROWSE_ROOT_ALL_LOGS 1
+#define BROWSE_ROOT_CURRENT_LOGS 2

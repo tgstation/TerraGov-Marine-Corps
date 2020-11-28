@@ -6,11 +6,25 @@
 	density = TRUE
 	anchored = TRUE
 
+/obj/structure/showcase/two
+	icon_state = "showcase_2"
+
+/obj/structure/showcase/three
+	icon_state = "showcase_3"
+
+/obj/structure/showcase/four
+	icon_state = "showcase_4"
+	desc = "A stand with the empty shell of a mech bolted to it."
+
+/obj/structure/showcase/five
+	icon_state = "showcase_5"
+	desc = "A stand with the empty shell of a mech bolted to it."
+
 /obj/structure/showcase/ex_act(severity)
 	switch(severity)
-		if(1)
+		if(EXPLODE_DEVASTATE)
 			qdel(src)
-		if(2)
+		if(EXPLODE_HEAVY)
 			if(prob(50))
 				qdel(src)
 
@@ -34,6 +48,7 @@
 	icon_state = "mopbucket"
 	density = TRUE
 	anchored = FALSE
+	resistance_flags = XENO_DAMAGEABLE
 	var/amount_per_transfer_from_this = 5 //Shit I dunno, adding this so syringes stop runtime erroring. --NeoFite
 
 /obj/structure/mopbucket/Initialize()
@@ -100,23 +115,24 @@ obj/structure/xenoautopsy/tank
 	icon_state = "tank_empty"
 	desc = "It is empty."
 
+obj/structure/xenoautopsy/tank/escaped
+	name = "broken cryo tank"
+	icon_state = "tank_escaped"
+	desc = "Something broke it..."
+
 obj/structure/xenoautopsy/tank/broken
-	name = "cryo tank"
 	icon_state = "tank_broken"
 	desc = "Something broke it..."
 
 obj/structure/xenoautopsy/tank/alien
-	name = "cryo tank"
 	icon_state = "tank_alien"
 	desc = "There is something big inside..."
 
 obj/structure/xenoautopsy/tank/hugger
-	name = "cryo tank"
 	icon_state = "tank_hugger"
 	desc = "There is something spider-like inside..."
 
 obj/structure/xenoautopsy/tank/larva
-	name = "cryo tank"
 	icon_state = "tank_larva"
 	desc = "There is something worm-like inside..."
 
@@ -155,6 +171,7 @@ obj/item/alienjar
 	density = FALSE
 	anchored = TRUE
 	layer = MOB_LAYER
+	resistance_flags = XENO_DAMAGEABLE
 
 /obj/structure/plasticflaps/CanPass(atom/A, turf/T)
 	if(istype(A) && CHECK_BITFIELD(A.flags_pass, PASSGLASS))
@@ -169,7 +186,7 @@ obj/item/alienjar
 
 	if(isliving(A)) // You Shall Not Pass!
 		var/mob/living/M = A
-		if(!M.lying && !ismonkey(M) && !istype(M, /mob/living/simple_animal/mouse))  //If your not laying down, or a small creature, no pass.
+		if(!M.lying_angle && !ismonkey(M) && !istype(M, /mob/living/simple_animal/mouse) && !istype(M, /mob/living/carbon/xenomorph/larva) && !istype(M, /mob/living/carbon/xenomorph/runner))  //If your not laying down, or a small creature, no pass.
 			return 0
 	return ..()
 
@@ -187,3 +204,8 @@ obj/item/alienjar
 /obj/structure/plasticflaps/mining //A specific type for mining that doesn't allow airflow because of them damn crates
 	name = "\improper Airtight plastic flaps"
 	desc = "Heavy duty, airtight, plastic flaps."
+
+/obj/structure/plasticflaps/sturdy //Anti-unga flaps
+	desc = "Plastic flaps for transporting supplies."
+	obj_flags = null
+	resistance_flags = XENO_DAMAGEABLE

@@ -29,3 +29,26 @@
 	H.throw_at(get_turf(target_turf), RAV_CHARGEDISTANCE, RAV_CHARGESPEED, H)
 	H.Paralyze(2 SECONDS)
 	return
+
+// ***************************************
+// *********** Ability related
+// ***************************************
+/mob/living/carbon/xenomorph/ravager/get_crit_threshold()
+	. = ..()
+	if(!ignore_pain)
+		return
+	if(ignore_pain_state == 0 && health < .)
+		emote("roar")
+		to_chat(src, "<span class='xenohighdanger' style='color: red;'>Our body becomes weak, we won't be able to withstand this much longer.</span>")
+		ignore_pain_state++
+	return -INFINITY
+
+/mob/living/carbon/xenomorph/ravager/get_death_threshold()
+	. = ..()
+	if(!ignore_pain)
+		return
+	if(ignore_pain_state == 1 && health < .)
+		emote("roar")
+		to_chat(src, "<span class='xenohighdanger' style='color: red;'>We've taken too much damage and surpassed our limits, we now look forward to the sweet embrace of death.</span>")
+		ignore_pain_state++
+	return . * 3

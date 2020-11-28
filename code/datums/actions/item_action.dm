@@ -24,7 +24,7 @@
 		I.ui_action_click(owner, src, holder_item)
 
 /datum/action/item_action/can_use_action()
-	if(QDELETED(owner) || owner.incapacitated() || owner.lying)
+	if(QDELETED(owner) || owner.incapacitated() || owner.lying_angle)
 		return FALSE
 	return TRUE
 

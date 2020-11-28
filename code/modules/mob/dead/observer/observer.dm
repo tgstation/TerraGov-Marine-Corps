@@ -23,6 +23,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 	initial_language_holder = /datum/language_holder/universal
 	var/atom/movable/following = null
+	var/datum/orbit_menu/orbit_menu
 	var/mob/observetarget = null	//The target mob that the ghost is observing. Used as a reference in logout()
 
 
@@ -96,6 +97,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	animate(src, pixel_y = 2, time = 10, loop = -1)
 
 	grant_all_languages()
+	RegisterSignal(src, COMSIG_MOVABLE_Z_CHANGED, .proc/observer_z_changed)
+	LAZYADD(GLOB.observers_by_zlevel["[z]"], src)
 
 	return ..()
 
@@ -109,8 +112,17 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 	updateallghostimages()
 
+	QDEL_NULL(orbit_menu)
+
+	LAZYREMOVE(GLOB.observers_by_zlevel["[z]"], src)
+	UnregisterSignal(src, COMSIG_MOVABLE_Z_CHANGED)
+
 	return ..()
 
+/mob/dead/observer/proc/observer_z_changed(datum/source, old_z, new_z)
+	SIGNAL_HANDLER
+	LAZYREMOVE(GLOB.observers_by_zlevel["[old_z]"], src)
+	LAZYADD(GLOB.observers_by_zlevel["[new_z]"], src)
 
 /mob/dead/observer/update_icon(new_form)
 	if(client) //We update our preferences in case they changed right before update_icon was called.
@@ -452,8 +464,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			names.Add(name)
 			namecounts[name] = 1
 
-		if(X.client?.prefs?.xeno_name && X.client.prefs.xeno_name != "Undefined")
-			name += " - [X.client.prefs.xeno_name]"
 
 		if((X.client && X.client?.is_afk()) || (!X.client && (X.key || X.ckey)))
 			if(isaghost(X))
@@ -576,34 +586,9 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	set category = "Ghost"
 	set name = "Follow"
 
-	var/list/mobs = list()
-	var/list/names = list()
-	var/list/namecounts = list()
-
-	for(var/x in sortNames(GLOB.mob_list - GLOB.dead_mob_list - GLOB.alive_xeno_list))
-		var/mob/M = x
-		if(isobserver(M) || isnewplayer(M) || ishumanbasic(M) || !M.name)
-			continue
-		var/name = M.name
-		if(name in names)
-			namecounts[name]++
-			name = "[name] ([namecounts[name]])"
-		else
-			names.Add(name)
-			namecounts[name] = 1
-
-		mobs[name] = M
-
-	if(!length(mobs))
-		to_chat(usr, "<span class='warning'>There are no mobs at the moment.</span>")
-		return
-
-	var/selected = input("Please select a Mob:", "Follow Mob") as null|anything in mobs
-	if(!selected)
-		return
-
-	var/mob/target = mobs[selected]
-	ManualFollow(target)
+	if(!orbit_menu)
+		orbit_menu = new(src)
+	orbit_menu.ui_interact(src)
 
 
 /mob/dead/observer/verb/offered_mobs()
@@ -912,3 +897,13 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 /mob/dead/observer/can_interact_with(datum/D)
 	return (D == src || IsAdminGhost(src))
+
+//this is called when a ghost is drag clicked to something.
+/mob/dead/observer/MouseDrop(atom/over)
+	if(!usr || !over)
+		return
+	if (isobserver(usr) && usr.client.holder && (isliving(over) || iscameramob(over)) )
+		if (usr.client.holder.cmd_ghost_drag(src,over))
+			return
+
+	return ..()

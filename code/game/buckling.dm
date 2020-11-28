@@ -52,7 +52,8 @@
 	buckling_mob.buckled = src
 	buckling_mob.setDir(dir)
 	LAZYADD(buckled_mobs, buckling_mob)
-	buckling_mob.update_canmove()
+	if(buckle_lying != -1)
+		ADD_TRAIT(buckling_mob, TRAIT_FLOORED, BUCKLE_TRAIT)
 	buckling_mob.throw_alert("buckled", /obj/screen/alert/restrained/buckled)
 	post_buckle_mob(buckling_mob, silent)
 
@@ -76,7 +77,8 @@
 	buckled_mob.glide_modifier_flags &= ~GLIDE_MOD_BUCKLED
 	buckled_mob.reset_glide_size()
 	buckled_mob.anchored = initial(buckled_mob.anchored)
-	buckled_mob.update_canmove()
+	if(buckle_lying != -1)
+		REMOVE_TRAIT(buckled_mob, TRAIT_FLOORED, BUCKLE_TRAIT)
 	buckled_mob.clear_alert("buckled")
 	LAZYREMOVE(buckled_mobs, buckled_mob)
 

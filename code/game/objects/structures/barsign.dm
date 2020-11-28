@@ -53,6 +53,14 @@
 	"thesyndicat",
 	"error"))
 
+/obj/structure/sign/double/barsign/carp
+	name = "The Drunk Carp"
+	desc = "The Drunk Carp, Bar and Grill"
+	icon_state = "thedrunkcarp"
+
+/obj/structure/sign/double/barsign/carp/Initialize()
+	. = ..()
+	ChangeSign("thedrunkcarp")
 
 /obj/structure/sign/double/barsign/proc/ChangeSign(Text)
 		src.icon_state = "[Text]"

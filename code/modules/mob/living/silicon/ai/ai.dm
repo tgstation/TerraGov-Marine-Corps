@@ -4,6 +4,7 @@
 	icon = 'icons/mob/AI.dmi'
 	icon_state = "ai"
 	anchored = TRUE
+	move_resist = MOVE_FORCE_OVERPOWERING
 	density = TRUE
 	canmove = FALSE
 	status_flags = CANSTUN|CANKNOCKOUT
@@ -179,6 +180,12 @@
 /mob/living/silicon/ai/proc/camera_visibility(mob/camera/aiEye/moved_eye)
 	GLOB.cameranet.visibility(moved_eye, client, all_eyes, USE_STATIC_OPAQUE)
 
+
+/mob/living/silicon/ai/proc/can_see(atom/A)
+	if(!isturf(loc))
+		return
+	//get_turf_pixel() is because APCs in maint aren't actually in view of the inner camera
+	return (GLOB.cameranet && GLOB.cameranet.checkTurfVis(get_turf_pixel(A)))
 
 /mob/living/silicon/ai/proc/relay_speech(message, atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, list/spans, message_mode)
 	raw_message = lang_treat(speaker, message_language, raw_message, spans, message_mode)

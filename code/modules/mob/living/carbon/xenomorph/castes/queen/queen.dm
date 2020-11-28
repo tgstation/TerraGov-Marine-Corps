@@ -27,8 +27,8 @@
 		/mob/living/carbon/xenomorph/proc/claw_toggle,
 		/mob/living/carbon/xenomorph/queen/proc/set_orders,
 		/mob/living/carbon/xenomorph/queen/proc/hive_Message,
-		/mob/living/carbon/xenomorph/proc/calldown_dropship
-		)
+		/mob/living/carbon/xenomorph/proc/calldown_dropship,
+	)
 
 // ***************************************
 // *********** Init
@@ -81,13 +81,13 @@
 /mob/living/carbon/xenomorph/queen/generate_name()
 	switch(upgrade)
 		if(XENO_UPGRADE_ZERO)
-			name = "[hive.prefix]Queen"			 //Young
+			name = "[hive.prefix]Queen ([nicknumber])"			 //Young
 		if(XENO_UPGRADE_ONE)
-			name = "[hive.prefix]Elder Queen"	 //Mature
+			name = "[hive.prefix]Elder Queen ([nicknumber])"	 //Mature
 		if(XENO_UPGRADE_TWO)
-			name = "[hive.prefix]Elder Empress"	 //Elder
+			name = "[hive.prefix]Elder Empress ([nicknumber])"	 //Elder
 		if(XENO_UPGRADE_THREE)
-			name = "[hive.prefix]Ancient Empress" //Ancient
+			name = "[hive.prefix]Ancient Empress ([nicknumber])" //Ancient
 
 	real_name = name
 	if(mind)
@@ -116,9 +116,6 @@
 // ***************************************
 // *********** Death
 // ***************************************
-/mob/living/carbon/xenomorph/queen/gib()
-	death(1) //we need the body to show the queen's name at round end.
-
 /mob/living/carbon/xenomorph/queen/death_cry()
 	playsound(loc, 'sound/voice/alien_queen_died.ogg', 75, 0)
 

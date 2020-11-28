@@ -4,7 +4,7 @@
 	icon = 'icons/obj/items/gun.dmi'
 	icon_state = ""
 	item_state = "gun"
-	materials = list(/datum/material/metal = 5000)
+	materials = list(/datum/material/metal = 100)
 	w_class 	= 3
 	throwforce 	= 5
 	throw_speed = 4
@@ -13,15 +13,20 @@
 	sprite_sheet_id = 1
 	flags_atom = CONDUCT
 	flags_item = TWOHANDED
+	light_system = MOVABLE_LIGHT
+	light_range = 0
+	light_on = FALSE
+	light_color = COLOR_WHITE
 
 	var/atom/movable/vis_obj/effect/muzzle_flash/muzzle_flash
 	var/muzzleflash_iconstate
 	var/muzzle_flash_lum = 3 //muzzle flash brightness
-
+	///State for a fire animation if the gun has any
+	var/fire_animation = null
 	var/fire_sound 		= 'sound/weapons/guns/fire/gunshot.ogg'
 	var/dry_fire_sound	= 'sound/weapons/guns/fire/empty.ogg'
 	var/unload_sound 	= 'sound/weapons/flipblade.ogg'
-	var/empty_sound 	= 'sound/weapons/guns/misc/smg_empty_alarm.ogg'
+	var/empty_sound 	= 'sound/weapons/guns/misc/empty_alarm.ogg'
 	var/reload_sound 	= null					//We don't want these for guns that don't have them.
 	var/cocked_sound 	= null
 	var/cock_cooldown	= 0						//world.time value, to prevent COCK COCK COCK COCK
@@ -107,6 +112,9 @@
 /obj/item/weapon/gun/Initialize(mapload, spawn_empty) //You can pass on spawn_empty to make the sure the gun has no bullets or mag or anything when created.
 	. = ..()					//This only affects guns you can get from vendors for now. Special guns spawn with their own things regardless.
 	base_gun_icon = icon_state
+
+	verbs -= /obj/item/verb/verb_pickup
+
 	if(current_mag)
 		if(spawn_empty && !(flags_gun_features & GUN_INTERNAL_MAG)) //Internal mags will still spawn, but they won't be filled.
 			current_mag = null
@@ -123,7 +131,7 @@
 	handle_starting_attachment()
 
 	setup_firemodes()
-	AddComponent(/datum/component/automatic_fire, fire_delay, burst_delay, burst_amount, gun_firemode, loc) //This should go after handle_starting_attachment() and setup_firemodes() to get the proper values set.
+	AddComponent(/datum/component/automatic_fire, fire_delay, burst_delay, burst_amount, gun_firemode, loc, CALLBACK(src, .proc/autofire_bypass_check), CALLBACK(src, .proc/do_autofire), CALLBACK(src, .proc/on_autofire_stop)) //This should go after handle_starting_attachment() and setup_firemodes() to get the proper values set.
 
 	muzzle_flash = new(src, muzzleflash_iconstate)
 
@@ -626,6 +634,10 @@ and you're good to go.
 		//vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
 		projectile_to_fire.fire_at(target, user, src, projectile_to_fire.ammo.max_range, projectile_to_fire.ammo.shell_speed, firing_angle)
 		//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+		if(fire_animation) //Fires gun firing animation if it has any. ex: rotating barrel
+			flick("[fire_animation]", src)
+
 		last_fired = world.time
 
 		//This is where we load the next bullet in the chamber. We check for attachments too, since we don't want to load anything if an attachment is active.
@@ -659,13 +671,13 @@ and you're good to go.
 		. = ..()
 		if(!.)
 			return
+
 		if(!active_attachable && gun_firemode == GUN_FIREMODE_BURSTFIRE && burst_amount > 1)
 			Fire(M, user)
 			return TRUE
+
 		DISABLE_BITFIELD(flags_gun_features, GUN_BURST_FIRING)
 		//Point blanking simulates firing the bullet proper but without actually firing it.
-		if(active_attachable && !CHECK_BITFIELD(active_attachable.flags_attach_features, ATTACH_PROJECTILE))
-			active_attachable.activate_attachment(null, TRUE)//No way.
 		var/obj/projectile/projectile_to_fire = load_into_chamber(user)
 		in_chamber = null //Projectiles live and die fast. It's better to null the reference early so the GC can handle it immediately.
 		if(!projectile_to_fire) //We actually have a projectile, let's move on. We're going to simulate the fire cycle.
@@ -684,6 +696,7 @@ and you're good to go.
 			for(var/i = 1 to projectile_to_fire.ammo.bonus_projectiles_amount)
 				BP = new /obj/projectile(M.loc)
 				BP.generate_bullet(GLOB.ammo_list[projectile_to_fire.ammo.bonus_projectiles_type])
+				BP.damage *= damage_mult
 				BP.setDir(get_dir(user, M))
 				BP.distance_travelled = get_dist(user, M)
 				BP.ammo.on_hit_mob(M, BP)
@@ -808,7 +821,7 @@ and you're good to go.
 				if(GUN_SKILL_HEAVY_WEAPONS)
 					if(fire_delay > 1 SECONDS) //long delay to fire
 						added_delay = max(fire_delay - 3 * user.skills.getRating(gun_skill_category), 6)
-				if(GUN_SKILL_SMARTGUN, GUN_SKILL_SPEC)
+				if(GUN_SKILL_SMARTGUN)
 					if(user.skills.getRating(gun_skill_category) < 0)
 						added_delay -= 2 * user.skills.getRating(gun_skill_category)
 
@@ -816,7 +829,7 @@ and you're good to go.
 		extra_delay = 0 //Since we are ready to fire again, zero it up.
 		return FALSE
 
-	if(world.time % 3)
+	if(world.time % 3 && user.client && !user.client.prefs.mute_self_combat_messages)
 		to_chat(user, "<span class='warning'>[src] is not ready to fire again!</span>")
 	return TRUE
 
@@ -876,7 +889,7 @@ and you're good to go.
 			gun_scatter += 10*rand(3,5)
 
 	if(user)
-	// Apply any skill-based bonuses to accuracy
+		// Apply any skill-based bonuses to accuracy
 		var/skill_accuracy = 0
 		if(!user.skills.getRating("firearms")) //no training in any firearms
 			skill_accuracy = -1
@@ -894,6 +907,20 @@ and you're good to go.
 				projectile_to_fire.def_zone = user.zone_selected
 				if(carbon_user.stagger)
 					gun_scatter += 30
+
+			// Status effect changes
+			if(living_user.has_status_effect(STATUS_EFFECT_GUN_SKILL_ACCURACY_BUFF))
+				var/datum/status_effect/stacking/gun_skill/buff = living_user.has_status_effect(STATUS_EFFECT_GUN_SKILL_ACCURACY_BUFF)
+				gun_accuracy_mod += buff.stacks
+			if(living_user.has_status_effect(STATUS_EFFECT_GUN_SKILL_ACCURACY_DEBUFF))
+				var/datum/status_effect/stacking/gun_skill/debuff = living_user.has_status_effect(STATUS_EFFECT_GUN_SKILL_ACCURACY_DEBUFF)
+				gun_accuracy_mod -= debuff.stacks
+			if(living_user.has_status_effect(STATUS_EFFECT_GUN_SKILL_SCATTER_BUFF))
+				var/datum/status_effect/stacking/gun_skill/buff = living_user.has_status_effect(STATUS_EFFECT_GUN_SKILL_SCATTER_BUFF)
+				gun_scatter -= buff.stacks
+			if(living_user.has_status_effect(STATUS_EFFECT_GUN_SKILL_SCATTER_DEBUFF))
+				var/datum/status_effect/stacking/gun_skill/debuff = living_user.has_status_effect(STATUS_EFFECT_GUN_SKILL_SCATTER_DEBUFF)
+				gun_scatter += debuff.stacks
 
 	projectile_to_fire.accuracy = round((projectile_to_fire.accuracy * gun_accuracy_mult) + gun_accuracy_mod) // Apply gun accuracy multiplier to projectile accuracy
 	projectile_to_fire.scatter += gun_scatter					//Add gun scatter value to projectile's scatter value
@@ -949,9 +976,11 @@ and you're good to go.
 	if(!muzzle_flash || muzzle_flash.applied)
 		return
 	var/prev_light = light_range
-	if(light_range < muzzle_flash_lum)
-		set_light(muzzle_flash_lum)
-		addtimer(CALLBACK(src, /atom.proc/set_light, prev_light), 1 SECONDS)
+	if(!light_on && (light_range <= muzzle_flash_lum))
+		set_light_range(muzzle_flash_lum)
+		set_light_color(COLOR_VERY_SOFT_YELLOW)
+		set_light_on(TRUE)
+		addtimer(CALLBACK(src, .proc/reset_light_range, prev_light), 1 SECONDS)
 
 	//Offset the pixels.
 	switch(angle)
@@ -1027,6 +1056,11 @@ and you're good to go.
 
 	addtimer(CALLBACK(src, .proc/remove_muzzle_flash, flash_loc, muzzle_flash), 0.2 SECONDS)
 
+/obj/item/weapon/gun/proc/reset_light_range(lightrange)
+	set_light_range(lightrange)
+	set_light_color(initial(light_color))
+	if(lightrange <= 0)
+		set_light_on(FALSE)
 
 /obj/item/weapon/gun/proc/remove_muzzle_flash(atom/movable/flash_loc, atom/movable/vis_obj/effect/muzzle_flash/muzzle_flash)
 	if(!QDELETED(flash_loc))
@@ -1066,6 +1100,7 @@ and you're good to go.
 
 
 /obj/item/weapon/gun/proc/do_fire_attachment(datum/source, atom/target, mob/user)
+	SIGNAL_HANDLER
 	if(!able_to_fire(user))
 		return
 	if(gun_on_cooldown(user))

@@ -45,6 +45,7 @@
 
 
 /atom/proc/attackby(obj/item/I, mob/user, params)
+	SIGNAL_HANDLER_DOES_SLEEP
 	add_fingerprint(user, "attackby", I)
 	if(SEND_SIGNAL(src, COMSIG_PARENT_ATTACKBY, I, user, params) & COMPONENT_NO_AFTERATTACK)
 		return TRUE
@@ -62,7 +63,6 @@
 	if(obj_flags & CAN_BE_HIT)
 		return I.attack_obj(src, user)
 
-
 /obj/item/proc/attack_obj(obj/O, mob/living/user)
 	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_OBJ, O, user) & COMPONENT_NO_ATTACK_OBJ)
 		return
@@ -79,7 +79,7 @@
 
 /obj/attacked_by(obj/item/I, mob/living/user, def_zone)
 	user.visible_message("<span class='warning'>[user] hits [src] with [I]!</span>",
-		"<span class='warning'>You hit [src] with [I]!</span>")
+		"<span class='warning'>You hit [src] with [I]!</span>", visible_message_flags = COMBAT_MESSAGE)
 	log_combat(user, src, "attacked", I)
 	var/power = I.force + round(I.force * 0.3 * user.skills.getRating("melee_weapons")) //30% bonus per melee level
 	take_damage(power, I.damtype, "melee")
@@ -105,14 +105,23 @@
 
 	switch(I.damtype)
 		if(BRUTE)
-			apply_damage(power, BRUTE, user.zone_selected, get_living_armor("melee", user.zone_selected))
+			apply_damage(power, BRUTE, user.zone_selected, get_soft_armor("melee", user.zone_selected))
 		if(BURN)
-			if(apply_damage(power, BURN, user.zone_selected, get_living_armor("fire", user.zone_selected)))
+			if(apply_damage(power, BURN, user.zone_selected, get_soft_armor("fire", user.zone_selected)))
 				attack_message_local = "[attack_message_local] It burns!"
 
 	visible_message("<span class='danger'>[attack_message]</span>",
 		"<span class='userdanger'>[attack_message_local]</span>", null, COMBAT_MESSAGE_RANGE)
+
 	UPDATEHEALTH(src)
+
+	log_combat(user, src, "attacked", I, "(INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(I.damtype)]) (RAW DMG: [power])")
+	if(power && !user.mind?.bypass_ff && !mind?.bypass_ff && user.faction == faction)
+		var/turf/T = get_turf(src)
+		user.ff_check(power, src)
+		log_ffattack("[key_name(user)] attacked [key_name(src)] with \the [I] in [AREACOORD(T)] (RAW DMG: [power]).")
+		msg_admin_ff("[ADMIN_TPMONTY(user)] attacked [ADMIN_TPMONTY(src)] with \the [I] in [ADMIN_VERBOSEJMP(T)] (RAW DMG: [power]).")
+
 	return TRUE
 
 
@@ -147,7 +156,7 @@
 	if(!force)
 		return FALSE
 
-	if(!prob(user.melee_accuracy))
+	if(M != user && !prob(user.melee_accuracy)) // Attacking yourself can't miss
 		user.do_attack_animation(M)
 		playsound(loc, 'sound/weapons/punchmiss.ogg', 25, TRUE)
 		if(user in viewers(COMBAT_MESSAGE_RANGE, M))
@@ -157,10 +166,24 @@
 			M.visible_message("<span class='avoidharm'>\The [src] misses [M]!</span>",
 				"<span class='avoidharm'>\The [src] narrowly misses you!</span>", null, COMBAT_MESSAGE_RANGE)
 		log_combat(user, M, "attacked", src, "(missed) (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(damtype)])")
+		if(force && !user.mind?.bypass_ff && !M.mind?.bypass_ff && user.faction == M.faction)
+			var/turf/T = get_turf(M)
+			log_ffattack("[key_name(user)] missed [key_name(M)] with \the [src] in [AREACOORD(T)].")
+			msg_admin_ff("[ADMIN_TPMONTY(user)] missed [ADMIN_TPMONTY(M)] with \the [src] in [ADMIN_VERBOSEJMP(T)].")
 		return FALSE
-
-	log_combat(user, M, "attacked", src, "(INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(damtype)])")
 
 	. = M.attacked_by(src, user)
 	if(. && hitsound)
 		playsound(loc, hitsound, 25, TRUE)
+
+/turf/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(.)
+		return TRUE
+
+	return I.attack_turf(src, user)
+
+/obj/item/proc/attack_turf(turf/T, mob/living/user)
+	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_TURF, T, user) & COMPONENT_NO_ATTACK_TURF)
+		return FALSE
+	return FALSE

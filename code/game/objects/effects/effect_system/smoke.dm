@@ -19,6 +19,7 @@
 	var/bio_protection = 1 // how unefficient its effects are against protected target from 0 to 1.
 	var/datum/effect_system/smoke_spread/cloud // for associated chemical smokes.
 	var/fraction = 0.2
+	var/smoke_can_spread_through = FALSE
 
 	//Remove this bit to use the old smoke
 	icon = 'icons/effects/96x96.dmi'
@@ -145,9 +146,9 @@
 
 //proc to check if smoke can expand to another turf
 /obj/effect/particle_effect/smoke/proc/check_airblock(turf/T)
-	var/obj/effect/particle_effect/smoke/foundsmoke = locate() in T //Don't spread smoke where there's already smoke!
-	if(foundsmoke)
-		return TRUE
+	for(var/obj/effect/particle_effect/smoke/foundsmoke in T)
+		if(istype(foundsmoke, src) || !foundsmoke?.smoke_can_spread_through) //Don't spread smoke through itself or, unless specified, through other smokes.
+			return TRUE
 	for(var/atom/movable/M in T)
 		if(!M.CanPass(src, T))
 			return TRUE
@@ -207,7 +208,7 @@
 /////////////////////////////////////////////
 
 /obj/effect/particle_effect/smoke/tactical
-	alpha = 145
+	alpha = 110
 	opacity = FALSE
 	smoke_traits = SMOKE_CAMO
 
@@ -227,6 +228,16 @@
 	opacity = FALSE
 	color = "#DBCBB9"
 	smoke_traits = SMOKE_GASP|SMOKE_BLISTERING|SMOKE_OXYLOSS|SMOKE_PLASMALOSS|SMOKE_FOUL
+
+///////////////////////////////////////////
+// Plasma draining smoke
+//////////////////////////////////////////
+
+/obj/effect/particle_effect/smoke/plasmaloss
+	alpha = 90
+	opacity = FALSE
+	color = "#791697"
+	smoke_traits = SMOKE_PLASMALOSS
 
 //////////////////////////////////////
 // FLASHBANG SMOKE
@@ -252,7 +263,7 @@
 
 //Xeno acid smoke.
 /obj/effect/particle_effect/smoke/xeno/burn
-	lifetime = 9
+	lifetime = 6
 	color = "#86B028" //Mostly green?
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_ACID|SMOKE_GASP|SMOKE_COUGH
 
@@ -260,6 +271,20 @@
 /obj/effect/particle_effect/smoke/xeno/neuro
 	color = "#ffbf58" //Mustard orange?
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_NEURO|SMOKE_GASP|SMOKE_COUGH
+
+/obj/effect/particle_effect/smoke/xeno/hemodile
+	alpha = 40
+	opacity = FALSE
+	smoke_can_spread_through = TRUE
+	color = "#0287A1"
+	smoke_traits = SMOKE_XENO|SMOKE_XENO_HEMODILE|SMOKE_GASP
+
+/obj/effect/particle_effect/smoke/xeno/transvitox
+	alpha = 60
+	opacity = FALSE
+	smoke_can_spread_through = TRUE
+	color = "#C0FF94"
+	smoke_traits = SMOKE_XENO|SMOKE_XENO_TRANSVITOX|SMOKE_COUGH
 
 /////////////////////////////////////////////
 // Smoke spreads
@@ -276,6 +301,9 @@ datum/effect_system/smoke_spread/tactical
 
 /datum/effect_system/smoke_spread/phosphorus
 	smoke_type = /obj/effect/particle_effect/smoke/phosphorus
+
+/datum/effect_system/smoke_spread/plasmaloss
+	smoke_type = /obj/effect/particle_effect/smoke/plasmaloss
 
 /datum/effect_system/smoke_spread/xeno
 	smoke_type = /obj/effect/particle_effect/smoke/xeno

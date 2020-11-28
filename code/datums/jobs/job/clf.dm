@@ -2,7 +2,7 @@
 	access = ALL_ANTAGONIST_ACCESS
 	minimal_access = ALL_ANTAGONIST_ACCESS
 	skills_type = /datum/skills/crafty
-	faction = "Colonial Liberation Force"
+	faction = FACTION_CLF
 
 
 //CLF Standard
@@ -23,6 +23,7 @@
 	shoes = /obj/item/clothing/shoes/black
 	wear_suit = /obj/item/clothing/suit/storage/militia
 	gloves = /obj/item/clothing/gloves/black
+	head = /obj/item/clothing/head/strawhat
 	suit_store = /obj/item/weapon/gun/smg/uzi
 	r_store = /obj/item/storage/pouch/general
 	l_store = /obj/item/storage/pill_bottle/zoom

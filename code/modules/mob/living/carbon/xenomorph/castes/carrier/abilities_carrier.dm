@@ -4,7 +4,7 @@
 /datum/action/xeno_action/activable/throw_hugger
 	name = "Use/Throw Facehugger"
 	action_icon_state = "throw_hugger"
-	mechanics_text = "Click once to bring a facehugger into your hand. Click again to ready that facehugger for throwing at a target or tile."
+	mechanics_text = "Click on a non tile and non mob to bring a facehugger into your hand. Click at a target or tile to throw a facehugger."
 	ability_name = "throw facehugger"
 	keybind_signal = COMSIG_XENOABILITY_THROW_HUGGER
 	cooldown_timer = 3 SECONDS
@@ -41,8 +41,13 @@
 			return fail_activate()
 		F = pick_n_take(X.huggers)
 		X.put_in_active_hand(F)
-		F.GoActive(TRUE)
-		to_chat(X, "<span class='xenonotice'>We grab one of the facehugger in our storage. Now sheltering: [X.huggers.len] / [X.xeno_caste.huggers_max].</span>")
+		to_chat(X, "<span class='xenonotice'>We grab one of the facehuggers in our storage. Now sheltering: [X.huggers.len] / [X.xeno_caste.huggers_max].</span>")
+		if(istype(A, /turf/open) || istype(A, /mob/living/) || istype(A, /obj/effect/alien/weeds) || istype(A, /obj/effect/alien/resin))
+			X.dropItemToGround(F)
+			playsound(X, 'sound/effects/throw.ogg', 30, 1)
+			F.throw_at(A, CARRIER_HUGGER_THROW_DISTANCE, CARRIER_HUGGER_THROW_SPEED)
+			X.visible_message("<span class='xenowarning'>\The [X] throws something towards \the [A]!</span>", \
+			"<span class='xenowarning'>We throw a facehugger towards \the [A]!</span>")
 		add_cooldown()
 		return succeed_activate()
 
@@ -52,22 +57,25 @@
 
 	if(!cooldown_id)
 		X.dropItemToGround(F)
-		playsound(X, 'sound/effects/throw.ogg', 30, 1)
+		F.go_active(TRUE)
+		playsound(X, 'sound/effects/throw.ogg', 30, TRUE)
 		F.throw_at(A, CARRIER_HUGGER_THROW_DISTANCE, CARRIER_HUGGER_THROW_SPEED)
 		X.visible_message("<span class='xenowarning'>\The [X] throws something towards \the [A]!</span>", \
 		"<span class='xenowarning'>We throw a facehugger towards \the [A]!</span>")
+		add_cooldown()
+		return succeed_activate()
 
 /mob/living/carbon/xenomorph/carrier/proc/store_hugger(obj/item/clothing/mask/facehugger/F, message = TRUE, forced = FALSE)
 	if(huggers.len < xeno_caste.huggers_max)
-		if(F.stat == CONSCIOUS || forced)
-			transferItemToLoc(F, src)
-			if(!F.stasis)
-				F.GoIdle(TRUE)
-			huggers.Add(F)
-			if(message)
-				to_chat(src, "<span class='notice'>We store the facehugger and carry it for safekeeping. Now sheltering: [huggers.len] / [xeno_caste.huggers_max].</span>")
-		else if(message)
-			to_chat(src, "<span class='warning'>This [F.name] looks too unhealthy.</span>")
+		if(F.stat == DEAD && !forced)
+			to_chat(src, "<span class='notice'>This young one has already expired, we cannot shelter it.</span>")
+			return
+		transferItemToLoc(F, src)
+		if(!F.stasis)
+			F.go_idle(TRUE)
+		huggers.Add(F)
+		if(message)
+			to_chat(src, "<span class='notice'>We store the facehugger and carry it for safekeeping. Now sheltering: [huggers.len] / [xeno_caste.huggers_max].</span>")
 	else if(message)
 		to_chat(src, "<span class='warning'>We can't carry more facehuggers on ourselves.</span>")
 

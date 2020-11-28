@@ -93,14 +93,17 @@
 
 		//Bleeding out
 		var/blood_max = 0
-		for(var/datum/limb/temp in limbs)
+		for(var/l in limbs)
+			var/datum/limb/temp = l
 			if(!(temp.limb_status & LIMB_BLEEDING) || temp.limb_status & LIMB_ROBOT)
 				continue
-			for(var/datum/wound/W in temp.wounds)
-				if(W.bleeding())
-					blood_max += (W.damage / 40)
 			if(temp.limb_status & LIMB_DESTROYED && !(temp.limb_status & LIMB_AMPUTATED))
 				blood_max += 5 //Yer missing a fucking limb.
+				continue
+			for(var/w in temp.wounds)
+				var/datum/wound/W = w
+				if(W.bleeding())
+					blood_max += (W.damage / 60)
 			if (temp.surgery_open_stage)
 				blood_max += 0.6  //Yer stomach is cut open
 
@@ -188,6 +191,23 @@
 		container.reagents.remove_reagent(R.type, amount)
 
 
+/mob/living/carbon/monkey/inject_blood(obj/item/reagent_containers/container, amount)
+	. = ..()
+
+	// A way to assign a blood type to a monkey for clone research
+	if(blood_type)
+		return
+
+	for(var/r in container.reagents.reagent_list)
+		var/datum/reagent/R = r
+		// If its blood, lets check its compatible or not and cause some toxins.
+		if(istype(R, /datum/reagent/blood))
+			if(!R.data || !R.data["blood_type"])
+				stack_trace("reagant blood didn't have a blood_type")
+			blood_type = R.data["blood_type"]
+			break
+
+
 //Transfers blood from container to human, respecting blood types compatability.
 /mob/living/carbon/human/inject_blood(obj/item/reagent_containers/container, amount)
 	var/b_id = get_blood_id()
@@ -252,6 +272,14 @@
 	blood_data["blood_colour"] = get_blood_color()
 
 	return blood_data
+
+// Add blood type to carbons that may have one
+/mob/living/carbon/get_blood_data()
+	. = ..()
+
+	if(blood_type)
+		.["blood_type"] = blood_type
+
 
 //returns the color of the mob's blood
 /mob/living/proc/get_blood_color()

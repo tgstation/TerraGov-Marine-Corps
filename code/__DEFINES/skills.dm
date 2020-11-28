@@ -91,10 +91,6 @@
 #define SKILL_SURGERY_MASTER		5 //to be implemented, perhaps instant surgery
 //higher levels means faster surgery.
 
-
-
-
-
 //police skill, hidden
 #define SKILL_POLICE_DEFAULT 	0
 #define SKILL_POLICE_FLASH 		1 //flash use (CE, CMO, any officer starting with a flash)
@@ -115,10 +111,10 @@
 //hidden
 //proficiency with powerloader, changes powerloader speed.
 #define SKILL_POWERLOADER_DEFAULT	0
-#define SKILL_POWERLOADER_DABBLING	1 //Pilot
-#define SKILL_POWERLOADER_TRAINED	2 //Req
-#define SKILL_POWERLOADER_PRO		3 //ST
-#define SKILL_POWERLOADER_MASTER	4 //CE
+#define SKILL_POWERLOADER_DABBLING	1 //Combat Engineer
+#define SKILL_POWERLOADER_TRAINED	2 //Captain, FC
+#define SKILL_POWERLOADER_PRO		3 //Pilot
+#define SKILL_POWERLOADER_MASTER	4 //CE, RO, ST
 
 
 //leadership skill
@@ -153,8 +149,6 @@
 #define GUN_SKILL_RIFLES		"rifles"
 #define GUN_SKILL_HEAVY_WEAPONS	"heavy_weapons"
 #define GUN_SKILL_SMARTGUN		"smartgun"
-#define GUN_SKILL_SPEC			"spec_weapons"
-
 
 //multitile vehicle skills
 #define SKILL_LARGE_VEHICLE_DEFAULT 0

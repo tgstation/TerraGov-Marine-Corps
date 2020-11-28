@@ -14,17 +14,17 @@
 
 
 //-------------------------------------------------------
-//M4A3 PISTOL
+//RT-3 PISTOL
 
 /obj/item/ammo_magazine/pistol
-	name = "\improper M4A3 magazine (9mm)"
+	name = "\improper RT-3 magazine (9mm)"
 	desc = "A pistol magazine."
 	caliber = "9x19mm Parabellum"
 	icon_state = "m4a3"
 	max_rounds = 14
 	w_class = WEIGHT_CLASS_SMALL
 	default_ammo = /datum/ammo/bullet/pistol
-	gun_type = /obj/item/weapon/gun/pistol/m4a3
+	gun_type = /obj/item/weapon/gun/pistol/rt3
 
 /obj/item/ammo_magazine/pistol/hp
 	name = "\improper M4A3 hollowpoint magazine (9mm)"
@@ -45,8 +45,6 @@
 	name = "\improper M4A3 extended magazine (9mm)"
 	max_rounds = 24
 	icon_state = "m4a3_ext"
-	bonus_overlay = "m4a3_ex"
-
 
 //-------------------------------------------------------
 //M1911
@@ -55,17 +53,30 @@
 	name = "\improper M1911 magazine (.45)"
 	default_ammo = /datum/ammo/bullet/pistol/heavy
 	caliber = ".45 ACP"
-	icon_state = ".45"
+	icon_state = "1911"
 	max_rounds = 10
 	gun_type = /obj/item/weapon/gun/pistol/m1911
 
 /obj/item/ammo_magazine/acp
-	name = "Box of .45 ACP"
+	name = "box of .45 ACP"
 	icon_state = "box45" //With thanks to Eris
 	default_ammo = /datum/ammo/bullet/pistol/heavy
 	caliber = ".45 ACP"
 	current_rounds = 50
 	max_rounds = 50
+
+
+//-------------------------------------------------------
+//TP-23
+
+/obj/item/ammo_magazine/pistol/standard_heavypistol
+	name = "\improper TP-23 magazine (.45)"
+	default_ammo = /datum/ammo/bullet/pistol/heavy
+	caliber = ".45 ACP"
+	icon_state = ".45"
+	max_rounds = 11
+	gun_type = /obj/item/weapon/gun/pistol/standard_heavypistol
+
 
 //-------------------------------------------------------
 //Beretta 92FS, the gun McClane carries around in Die Hard. Very similar to the service pistol, all around.
@@ -112,7 +123,7 @@
 //MAUSER MERC PISTOL //Inspired by the Makarov.
 
 /obj/item/ammo_magazine/pistol/c99t
-	name = "\improper PK-9 magazine (.22 tranq)"
+	name = "\improper PK-9 tranq magazine (.22)"
 	default_ammo = /datum/ammo/bullet/pistol/tranq
 	caliber = ".22 LR"
 	icon_state = "pk-9_tranq"
@@ -120,25 +131,12 @@
 	gun_type = /obj/item/weapon/gun/pistol/c99
 
 /obj/item/ammo_magazine/pistol/c99
-	name = "\improper PK-9 magazine (.22 hollowpoint)"
+	name = "\improper PK-9 hollowpoint magazine (.22)"
 	default_ammo = /datum/ammo/bullet/pistol/hollow
 	caliber = ".22 LR"
 	icon_state = "pk-9"
 	max_rounds = 12
 	gun_type = /obj/item/weapon/gun/pistol/c99
-
-
-//-------------------------------------------------------
-//KT-42 //Inspired by the .44 Auto Mag pistol
-
-/obj/item/ammo_magazine/pistol/automatic
-	name = "\improper KT-42 magazine (.44)"
-	default_ammo = /datum/ammo/bullet/pistol/heavy
-	caliber = ".44 magnum"
-	icon_state = "kt42"
-	max_rounds = 7
-	gun_type = /obj/item/weapon/gun/pistol/kt42
-
 
 //-------------------------------------------------------
 //PIZZACHIMP PROTECTION
@@ -152,6 +150,19 @@
 	max_rounds = 5
 	w_class = WEIGHT_CLASS_TINY
 	gun_type = /obj/item/weapon/gun/pistol/holdout
+
+//-------------------------------------------------------
+//TP-17.
+
+/obj/item/ammo_magazine/pistol/standard_pocketpistol
+	name = "\improper TP-17 pocket pistol AP magazine (.380)"
+	desc = "A surprisingly small magazine used by the TP-17 pistol holding .380 ACP bullets."
+	default_ammo = /datum/ammo/bullet/pistol/tiny/ap
+	caliber = ".380 ACP"
+	icon_state = "tp17"
+	max_rounds = 8
+	w_class = WEIGHT_CLASS_TINY
+	gun_type = /obj/item/weapon/gun/pistol/standard_pocketpistol
 
 
 //-------------------------------------------------------

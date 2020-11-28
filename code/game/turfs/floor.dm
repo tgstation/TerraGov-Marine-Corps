@@ -30,7 +30,7 @@ GLOBAL_LIST_INIT(icons_to_ignore_at_floor_init, list("damaged1", "damaged2", "da
 											"damaged5", "panelscorched", "floorscorched1", "floorscorched2", "platingdmg1", "platingdmg2",
 											"platingdmg3", "plating", "light_on", "light_on_flicker1", "light_on_flicker2",
 											"light_on_clicker3", "light_on_clicker4", "light_on_clicker5", "light_broken",
-											"light_on_broken", "light_off", "wall_thermite", "grass1", "grass2", "grass3", "grass4",
+											"light_on_broken", "light_off", "grass1", "grass2", "grass3", "grass4",
 											"asteroid", "asteroid_dug",
 											"asteroid0", "asteroid1", "asteroid2", "asteroid3", "asteroid4",
 											"asteroid5", "asteroid6", "asteroid7", "asteroid8", "asteroid9",
@@ -52,18 +52,20 @@ GLOBAL_LIST_INIT(wood_icons, list("wood", "wood-broken"))
 
 /turf/open/floor/ex_act(severity)
 	if(hull_floor)
-		return
+		return ..()
 	switch(severity)
-		if(1)
+		if(EXPLODE_DEVASTATE)
 			break_tile_to_plating()
-		if(2)
+		if(EXPLODE_HEAVY)
 			if(prob(80))
 				break_tile_to_plating()
 			else
 				break_tile()
-		if(3)
+		if(EXPLODE_LIGHT)
 			if(prob(50))
 				break_tile()
+	return ..()
+
 
 /turf/open/floor/fire_act(exposed_temperature, exposed_volume)
 	if(hull_floor)
@@ -238,13 +240,14 @@ GLOBAL_LIST_INIT(wood_icons, list("wood", "wood-broken"))
 		icon_state = "platingdmg[pick(1, 2, 3)]"
 		broken = 1
 	else if(is_wood_floor())
-		icon_state = "wood-broken"
+		icon_state = "wood-broken[pick(1,2,3,4,5,6,7)]"
 		broken = 1
 	else if(is_carpet_floor())
 		icon_state = "carpet-broken"
 		broken = 1
 	else if(is_grass_floor())
-		icon_state = "sand[pick("1", "2", "3")]"
+		icon = 'icons/turf/ground_map.dmi'
+		icon_state = "sand"
 		broken = 1
 
 /turf/open/floor/proc/burn_tile()
@@ -261,7 +264,7 @@ GLOBAL_LIST_INIT(wood_icons, list("wood", "wood-broken"))
 		icon_state = "panelscorched"
 		burnt = 1
 	else if(is_wood_floor())
-		icon_state = "wood-broken"
+		icon_state = "wood-broken1"
 		burnt = 1
 	else if(is_carpet_floor())
 		icon_state = "carpet-broken"

@@ -115,23 +115,19 @@
 
 /obj/structure/closet/crate/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(EXPLODE_DEVASTATE)
 			for(var/obj/O in src.contents)
 				qdel(O)
 			qdel(src)
-			return
-		if(2.0)
+		if(EXPLODE_HEAVY)
 			for(var/obj/O in src.contents)
 				if(prob(50))
 					qdel(O)
 			qdel(src)
-			return
-		if(3.0)
+		if(EXPLODE_LIGHT)
 			if (prob(50))
 				qdel(src)
-			return
-		else
-	return
+
 
 /obj/structure/closet/crate/alpha
 	name = "alpha squad crate"

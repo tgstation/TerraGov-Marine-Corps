@@ -14,7 +14,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset
 	name = "radio headset"
-	desc = "An updated, modular intercom that fits over the head. Takes encryption keys"
+	desc = "An updated, modular intercom that fits over the head. Takes encryption keys."
 	icon_state = "headset"
 	item_state = "headset"
 	materials = list(/datum/material/metal = 75)
@@ -155,6 +155,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	icon_state = "cargo_headset"
 	item_state = "headset"
 	frequency = FREQ_COMMON
+	flags_atom = CONDUCT | PREVENT_CONTENTS_EXPLOSION
 	var/obj/machinery/camera/camera
 	var/datum/atom_hud/squadhud = null
 	var/mob/living/carbon/human/wearer = null
@@ -178,19 +179,22 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		enable_squadhud()
 	if(camera)
 		camera.c_tag = user.name
+		if(user.assigned_squad)
+			camera.network |= lowertext(user.assigned_squad.name)
 	return ..()
 
 
 /obj/item/radio/headset/mainship/dropped(mob/living/carbon/human/user)
 	if(istype(user) && headset_hud_on)
-		if(user.wear_ear == src) //dropped() is called before the inventory reference is update.
-			disable_squadhud()
-			squadhud.remove_hud_from(user)
-			user.hud_used.SL_locator.alpha = 0
-			wearer = null
-			squadhud = null
+		disable_squadhud()
+		squadhud.remove_hud_from(user)
+		user.hud_used.SL_locator.alpha = 0
+		wearer = null
+		squadhud = null
 	if(camera)
 		camera.c_tag = "Unknown"
+		if(user.assigned_squad)
+			camera.network -= lowertext(user.assigned_squad.name)
 	return ..()
 
 
@@ -212,6 +216,8 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/mainship/proc/enable_squadhud()
 	squadhud.add_hud_to(wearer)
 	headset_hud_on = TRUE
+	if(!camera.status)
+		camera.toggle_cam(null, FALSE)
 	if(wearer.mind && wearer.assigned_squad && !sl_direction)
 		enable_sl_direction()
 	to_chat(wearer, "<span class='notice'>You toggle the Squad HUD on.</span>")
@@ -221,6 +227,8 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/mainship/proc/disable_squadhud()
 	squadhud.remove_hud_from(wearer)
 	headset_hud_on = FALSE
+	if(camera.status)
+		camera.toggle_cam(null, FALSE)
 	if(sl_direction)
 		disable_sl_direction()
 	to_chat(wearer, "<span class='notice'>You toggle the Squad HUD off.</span>")
@@ -399,6 +407,10 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	icon_state = "headset_marine_alpha"
 	frequency = FREQ_ALPHA //default frequency is alpha squad channel, not FREQ_COMMON
 
+/obj/item/radio/headset/mainship/marine/alpha/LateInitialize(mapload)
+	. = ..()
+	camera.network += list("alpha")
+
 
 /obj/item/radio/headset/mainship/marine/alpha/lead
 	name = "marine alpha leader radio headset"
@@ -423,6 +435,10 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	icon_state = "headset_marine_bravo"
 	frequency = FREQ_BRAVO
 
+/obj/item/radio/headset/mainship/marine/bravo/LateInitialize(mapload)
+	. = ..()
+	camera.network += list("bravo")
+
 
 /obj/item/radio/headset/mainship/marine/bravo/lead
 	name = "marine bravo leader radio headset"
@@ -441,11 +457,14 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	keyslot2 = /obj/item/encryptionkey/med
 
 
-
 /obj/item/radio/headset/mainship/marine/charlie
 	name = "marine charlie radio headset"
 	icon_state = "headset_marine_charlie"
 	frequency = FREQ_CHARLIE
+
+/obj/item/radio/headset/mainship/marine/charlie/LateInitialize(mapload)
+	. = ..()
+	camera.network += list("charlie")
 
 
 /obj/item/radio/headset/mainship/marine/charlie/lead
@@ -471,6 +490,10 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	icon_state = "headset_marine_delta"
 	frequency = FREQ_DELTA
 
+/obj/item/radio/headset/mainship/marine/delta/LateInitialize(mapload)
+	. = ..()
+	camera.network += list("delta")
+
 
 /obj/item/radio/headset/mainship/marine/delta/lead
 	name = "marine delta leader radio headset"
@@ -488,41 +511,61 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	name = "marine delta corpsman radio headset"
 	keyslot2 = /obj/item/encryptionkey/med
 
+/obj/item/radio/headset/mainship/marine/generic
+	name = "marine generic radio headset"
+	icon_state = "headset_marine_generic"
 
 //Distress headsets.
 /obj/item/radio/headset/distress
 	name = "operative headset"
+	freerange = TRUE
 	frequency = FREQ_COMMON
 
 
 /obj/item/radio/headset/distress/dutch
-	name = "Dutch's Dozen headset"
+	name = "colonist headset"
 	keyslot = /obj/item/encryptionkey/dutch
+	frequency = FREQ_COLONIST
 
 
 /obj/item/radio/headset/distress/PMC
-	name = "PMC headset"
+	name = "contractor headset"
 	keyslot = /obj/item/encryptionkey/PMC
 	keyslot2 = /obj/item/encryptionkey/mcom
+	frequency = FREQ_PMC
 
 
-/obj/item/radio/headset/distress/wolves
-	name = "Steel Wolves headset"
-	frequency = FREQ_CIV_GENERAL
-	keyslot = /obj/item/encryptionkey/wolves
+/obj/item/radio/headset/distress/usl
+	name = "non-standard headset"
+	keyslot = /obj/item/encryptionkey/usl
+	frequency = FREQ_USL
 
 
 /obj/item/radio/headset/distress/commando
-	name = "Commando headset"
+	name = "commando headset"
 	keyslot = /obj/item/encryptionkey/commando
 	keyslot2 = /obj/item/encryptionkey/mcom
+	frequency = FREQ_DEATHSQUAD
 
 
 /obj/item/radio/headset/distress/imperial
-	name = "Imperial headset"
+	name = "imperial headset"
 	keyslot = /obj/item/encryptionkey/imperial
+	frequency = FREQ_IMPERIAL
 
 
 /obj/item/radio/headset/distress/som
-	name = "\improper Sons of Mars headset"
+	name = "miners' headset"
 	keyslot = /obj/item/encryptionkey/som
+	frequency = FREQ_SOM
+
+
+/obj/item/radio/headset/distress/sectoid
+	name = "alien headset"
+	keyslot = /obj/item/encryptionkey/sectoid
+	frequency = FREQ_SECTOID
+
+
+/obj/item/radio/headset/distress/echo
+	name = "\improper Echo Task Force headset"
+	keyslot = /obj/item/encryptionkey/echo

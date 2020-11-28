@@ -5,10 +5,14 @@ GLOBAL_VAR_INIT(CHARGELEVEL, 0.0005) // Cap for how fast cells charge, as a perc
 
 GLOBAL_VAR_INIT(TAB, "&nbsp;&nbsp;&nbsp;&nbsp;")
 
-GLOBAL_LIST_INIT(duplicate_forbidden_vars, list("tag", "datum_components", "area", "type", "loc", "locs", "vars",\
-	"parent", "parent_type", "verbs", "ckey", "key", "power_supply", "reagents", "stat", "x", "y", "z", "contents", \
-	"group", "atmos_adjacent_turfs", "comp_lookup", "boxes", "click_border_start","storage_start", "storage_continue",\
-	"storage_end", "closer", "stored_start", "stored_continue", "stored_end", "click_border_end", "opened"))
+GLOBAL_LIST_INIT(duplicate_forbidden_vars, list(
+	"tag", "datum_components", "area", "type", "loc", "locs", "vars", "parent", "parent_type", "verbs", "ckey", "key",\
+	"power_supply", "reagents", "stat", "x", "y", "z", "contents", "group", "atmos_adjacent_turfs", "comp_lookup",\
+	"actions", "actions_by_path", "overlays", "overlays_standing", "hud_list",\
+	"appearance", "managed_overlays", "managed_vis_overlays", "computer_id", "ip_address",\
+	"boxes", "click_border_start","storage_start", "storage_continue", "storage_end", "closer", "stored_start",\
+	"stored_continue", "stored_end", "click_border_end", "opened"
+))
 
 GLOBAL_VAR_INIT(current_date_string, "[num2text(rand(1,31))] [pick("January","February","March","April","May","June","July","August","September","October","November","December")], [GAME_YEAR]")
 
@@ -17,3 +21,13 @@ GLOBAL_VAR_INIT(num_financial_terminals, 1)
 GLOBAL_VAR_INIT(next_account_number, 0)
 GLOBAL_LIST_EMPTY(all_money_accounts)
 GLOBAL_VAR_INIT(station_account, null)
+
+GLOBAL_VAR_INIT(internal_tick_usage, 0.2 * world.tick_lag)
+
+///All currently running polls held as datums
+GLOBAL_LIST_EMPTY(polls)
+GLOBAL_PROTECT(polls)
+
+///All poll option datums of running polls
+GLOBAL_LIST_EMPTY(poll_options)
+GLOBAL_PROTECT(poll_options)

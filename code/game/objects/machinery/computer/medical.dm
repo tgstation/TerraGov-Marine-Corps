@@ -3,7 +3,7 @@
 	desc = "This can be used to check medical records."
 	icon_state = "medcomp"
 	req_one_access = list(ACCESS_MARINE_MEDBAY, ACCESS_NT_CORPORATE)
-	circuit = "/obj/item/circuitboard/computer/med_data"
+	circuit = /obj/item/circuitboard/computer/med_data
 	var/obj/item/card/id/scan = null
 	var/authenticated = null
 	var/rank = null
@@ -19,7 +19,8 @@
 	set name = "Eject ID Card"
 	set src in oview(1)
 
-	if(!usr || usr.stat || usr.lying)	return
+	if(!usr || usr.stat || usr.lying_angle)
+		return
 
 	if(scan)
 		to_chat(usr, "You remove \the [scan] from \the [src].")

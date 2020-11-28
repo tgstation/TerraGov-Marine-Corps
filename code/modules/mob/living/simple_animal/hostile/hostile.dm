@@ -1,5 +1,5 @@
 /mob/living/simple_animal/hostile
-	faction = "Hostile"
+	faction = FACTION_HOSTILE
 	stop_automated_movement_when_pulled = 0
 	obj_damage = 40
 	wall_smash = TRUE
@@ -339,9 +339,9 @@
 	LoseAggro()
 
 
-/mob/living/simple_animal/hostile/death(gibbed)
+/mob/living/simple_animal/hostile/on_death()
 	LoseTarget()
-	return ..(gibbed)
+	return ..()
 
 
 /mob/living/simple_animal/hostile/proc/summon_backup(distance, exact_faction_match)

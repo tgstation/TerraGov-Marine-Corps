@@ -22,17 +22,12 @@
 
 /obj/machinery/sleep_console/ex_act(severity)
 	switch(severity)
-		if(1.0)
-			//SN src = null
+		if(EXPLODE_DEVASTATE)
 			qdel(src)
-			return
-		if(2.0)
+		if(EXPLODE_HEAVY)
 			if (prob(50))
-				//SN src = null
 				qdel(src)
-				return
-		else
-	return
+
 
 /obj/machinery/sleep_console/Initialize()
 	. = ..()
@@ -174,6 +169,14 @@
 	beaker = new /obj/item/reagent_containers/glass/beaker/large()
 	if(orient == "RIGHT")
 		icon_state = "sleeper_0-r"
+	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, .proc/shuttle_crush)
+
+/obj/machinery/sleeper/proc/shuttle_crush()
+	SIGNAL_HANDLER
+	if(occupant)
+		var/mob/living/carbon/human/H = occupant
+		go_out()
+		H.gib()
 
 /obj/machinery/sleeper/Destroy()
 	//clean up; end stasis; remove from processing
@@ -314,12 +317,12 @@
 	if(filtering)
 		toggle_filter()
 	switch(severity)
-		if(1)
+		if(EXPLODE_DEVASTATE)
 			qdel(src)
-		if(2)
+		if(EXPLODE_HEAVY)
 			if(prob(50))
 				qdel(src)
-		if(3)
+		if(EXPLODE_LIGHT)
 			if(prob(25))
 				qdel(src)
 

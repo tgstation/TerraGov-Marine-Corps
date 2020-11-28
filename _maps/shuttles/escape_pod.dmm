@@ -30,9 +30,7 @@
 /turf/open/shuttle/escapepod,
 /area/shuttle/escape_pod)
 "g" = (
-/turf/open/shuttle/escapepod{
-	icon_state = "floor0"
-	},
+/turf/open/shuttle/escapepod/zero,
 /area/shuttle/escape_pod)
 "h" = (
 /turf/closed/shuttle/escapepod{
@@ -45,9 +43,7 @@
 	},
 /area/shuttle/escape_pod)
 "j" = (
-/turf/open/shuttle/escapepod{
-	icon_state = "floor1"
-	},
+/turf/open/shuttle/escapepod/plain,
 /area/shuttle/escape_pod)
 "k" = (
 /obj/docking_port/mobile/escape_pod,

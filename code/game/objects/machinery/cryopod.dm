@@ -16,10 +16,6 @@
 	cryotypes = list(CRYO_MED)
 	category = CRYO_MED
 
-/obj/machinery/computer/cryopod/brig
-	cryotypes = list(CRYO_SEC)
-	category = CRYO_SEC
-
 /obj/machinery/computer/cryopod/eng
 	cryotypes = list(CRYO_ENGI)
 	category = CRYO_ENGI
@@ -190,6 +186,14 @@
 	. = ..()
 	radio = new(src)
 	update_icon()
+	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, .proc/shuttle_crush)
+
+/obj/machinery/cryopod/proc/shuttle_crush()
+	SIGNAL_HANDLER
+	if(occupant)
+		var/mob/living/L = occupant
+		go_out()
+		L.gib()
 
 /obj/machinery/cryopod/Destroy()
 	QDEL_NULL(radio)
@@ -206,9 +210,7 @@
 	//Handle job slot/tater cleanup.
 	if(job in SSjob.active_joinable_occupations)
 		job.free_job_positions(1)
-		if(ispolicejob(job))
-			dept_console = CRYO_SEC
-		else if(ismedicaljob(job))
+		if(ismedicaljob(job))
 			dept_console = CRYO_MED
 		else if(isengineeringjob(job))
 			dept_console = CRYO_ENGI
@@ -305,13 +307,6 @@
 		var/obj/item/TIE = hastie
 		remove_accessory()
 		items = TIE.store_in_cryo(items)
-	return ..()
-
-/obj/item/clothing/shoes/marine/store_in_cryo(list/items, nullspace_it = TRUE)
-	if(knife)
-		items = knife.store_in_cryo(items)
-		knife = null
-		update_icon()
 	return ..()
 
 /obj/item/clothing/tie/storage/store_in_cryo(list/items, nullspace_it = TRUE)
@@ -447,6 +442,7 @@
 
 
 /obj/machinery/cryopod/proc/on_user_afk_change(datum/source, new_status, afk_timer)
+	SIGNAL_HANDLER
 	if(new_status != MOB_DISCONNECTED)
 		return
 	UnregisterSignal(source, list(COMSIG_CARBON_SETAFKSTATUS, COMSIG_MOB_DEATH))
@@ -458,6 +454,7 @@
 
 
 /obj/machinery/cryopod/proc/go_out()
+	SIGNAL_HANDLER
 	if(QDELETED(occupant))
 		return
 

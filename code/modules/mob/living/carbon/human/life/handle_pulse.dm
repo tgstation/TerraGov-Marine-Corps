@@ -7,7 +7,7 @@
 
 	. = PULSE_NORM
 
-	if(status_flags & FAKEDEATH)
+	if(HAS_TRAIT(src, TRAIT_FAKEDEATH))
 		. = PULSE_NONE		//pretend that we're dead. unlike actual death, can be inflienced by meds
 
 	else if(round(blood_volume) <= BLOOD_VOLUME_BAD) //How much blood do we have

@@ -23,10 +23,15 @@
 	var/vehicle_flags = NONE
 
 	var/obj/item/cell/cell
+	///How much power it uses per cell
 	var/charge_use = 5	//set this to adjust the amount of power the vehicle uses per move
 
-	var/demolish_on_ram = FALSE //Do we crash into walls and destroy them?
-	var/lastsound = 0 //Last time we played an engine noise
+	///Bool for whether we crash into walls and destroy them
+	var/demolish_on_ram = FALSE
+	///How much damage we deal when ramming things
+	var/ram_damage = 100
+	///Last time we played an engine noise
+	var/lastsound = 0
 
 //-------------------------------------------
 // Standard procs
@@ -107,11 +112,11 @@
 
 /obj/vehicle/ex_act(severity)
 	switch(severity)
-		if(1)
+		if(EXPLODE_DEVASTATE)
 			deconstruct(FALSE)
-		if(2)
+		if(EXPLODE_HEAVY)
 			take_damage(rand(5, 10) * fire_dam_coeff)
-		if(3)
+		if(EXPLODE_LIGHT)
 			if(prob(50))
 				take_damage(rand(1, 5) * fire_dam_coeff)
 				take_damage(rand(1, 5) * brute_dam_coeff)
@@ -156,7 +161,7 @@
 	if(cell)
 		cell.forceMove(loc)
 		cell.update_icon()
-		cell = null
+		set_cell(null)
 
 	for(var/m in buckled_mobs)
 		var/mob/living/passenger = m
@@ -184,6 +189,22 @@
 		turn_on()
 		return
 
+
+///Wrapper to guarantee powercells are properly nulled and avoid hard deletes.
+/obj/vehicle/proc/set_cell(obj/item/cell/new_cell)
+	if(cell)
+		UnregisterSignal(cell, COMSIG_PARENT_QDELETING)
+	cell = new_cell
+	if(cell)
+		RegisterSignal(cell, COMSIG_PARENT_QDELETING, .proc/on_cell_deletion)
+
+
+///Called by the deletion of the referenced powercell.
+/obj/vehicle/proc/on_cell_deletion(obj/item/cell/source, force)
+	SIGNAL_HANDLER
+	set_cell(null)
+
+
 /obj/vehicle/proc/insert_cell(obj/item/cell/C, mob/living/carbon/human/H)
 	if(cell)
 		return
@@ -191,7 +212,7 @@
 		return
 
 	H.transferItemToLoc(C, src)
-	cell = C
+	set_cell(C)
 	powercheck()
 	to_chat(usr, "<span class='notice'>You install [C] in [src].</span>")
 
@@ -202,7 +223,7 @@
 	to_chat(usr, "<span class='notice'>You remove [cell] from [src].</span>")
 	cell.forceMove(get_turf(H))
 	H.put_in_hands(cell)
-	cell = null
+	set_cell(null)
 	powercheck()
 
 /obj/vehicle/proc/RunOver(mob/living/carbon/human/H)

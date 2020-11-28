@@ -1,14 +1,6 @@
-#if DM_VERSION < 513
-#define islist(L) (istype(L, /list))
-#endif
-
 #define in_range(source, user) (get_dist(source, user) <= 1 && (get_step(source, 0)?:z) == (get_step(user, 0)?:z))
 
-#if DM_VERSION < 513
-#define ismovableatom(A) (istype(A, /atom/movable))
-#else
 #define ismovableatom(A) ismovable(A)
-#endif
 
 #define isatom(A) (isloc(A))
 
@@ -19,7 +11,15 @@
 
 #define isopenturf(A) (istype(A, /turf/open))
 
+#define isopengroundturf(A) (istype(A, /turf/open/ground/jungle) || istype(A, /turf/open/ground/grass))
+
 #define isspaceturf(A) (istype(A, /turf/open/space))
+
+#define islava(A) (istype(A, /turf/open/lavaland/lava))
+
+#define isbasalt(A) (istype(A, /turf/open/lavaland/basalt))
+
+#define islavacatwalk(A) (istype(A, /turf/open/lavaland/catwalk))
 
 #define isfloorturf(A) (istype(A, /turf/open/floor))
 
@@ -55,11 +55,12 @@
 #define issynth(H) (is_species(H, /datum/species/synthetic) || is_species(H, /datum/species/early_synthetic))
 #define isspeciessynthetic(H) (H.species.species_flags & IS_SYNTHETIC)
 #define ismoth(H) (is_species(H, /datum/species/moth))
+#define issectoid(H) (is_species(H, /datum/species/sectoid))
 #define ishumanbasic(H) (is_species(H, /datum/species/human))
 
 //Job/role helpers
 #define ismarinefaction(H) (H.faction == "TerraGov")
-#define ispolicejob(J) (istype(J, /datum/job/terragov/police))
+#define isterragovjob(J) (istype(J, /datum/job/terragov))
 #define ismedicaljob(J) (istype(J, /datum/job/terragov/medical))
 #define isengineeringjob(J) (istype(J, /datum/job/terragov/engineering))
 #define ismarinejob(J) (istype(J, /datum/job/terragov/squad))
@@ -140,6 +141,8 @@
 
 #define isnewplayer(A) (istype(A, /mob/new_player))
 
+#define iscameramob(A) (istype(A, /mob/camera))
+
 //Objects
 #define isobj(A) istype(A, /obj) //override the byond proc because it returns true on children of /atom/movable that aren't objs
 
@@ -152,6 +155,8 @@
 #define issuit(A) (istype(A, /obj/item/clothing/suit))
 
 #define isgun(A) (istype(A, /obj/item/weapon/gun))
+
+#define isarmoredvehicle(A) (istype(A, /obj/vehicle/armored))
 
 #define istankweapon(A) (istype(A, /obj/item/tank_weapon))
 

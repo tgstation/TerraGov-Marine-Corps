@@ -133,7 +133,9 @@
 
 	ammo = null
 
-	. = ..()
+	mymob = null
+
+	return ..()
 
 
 /mob/proc/create_mob_hud()

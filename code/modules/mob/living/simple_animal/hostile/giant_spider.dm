@@ -37,7 +37,7 @@
 	health = 200
 	obj_damage = 60
 	melee_damage = 20
-	faction = "Spider"
+	faction = FACTION_SPIDER
 	var/busy = SPIDER_IDLE
 	flags_pass = PASSTABLE
 	move_to_delay = 6

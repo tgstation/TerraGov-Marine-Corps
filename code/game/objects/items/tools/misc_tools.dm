@@ -3,6 +3,7 @@
 	icon = 'icons/obj/items/paper.dmi'
 	icon_state = "labeler0"
 	item_state = "flight"
+	w_class = WEIGHT_CLASS_SMALL
 
 	var/label = null
 	var/labels_left = 50
@@ -75,7 +76,6 @@
 	icon_state = "pen"
 	item_state = "pen"
 	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_EARS
-	throwforce = 0
 	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 7
 	throw_range = 15
@@ -161,14 +161,13 @@
 	icon = 'icons/obj/items/paper.dmi'
 	icon_state = "stamp-qm"
 	item_state = "stamp"
-	throwforce = 0
 	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 7
 	throw_range = 15
 	attack_verb = list("stamped")
 
 /obj/item/tool/stamp/qm
-	name = "Quartermaster's Stamp"	
+	name = "Quartermaster's Stamp"
 
 /obj/item/tool/stamp/captain
 	name = "captain's rubber stamp"

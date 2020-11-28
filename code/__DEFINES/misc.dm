@@ -1,5 +1,9 @@
 //for all defines that doesn't fit in any other file.
 
+//Fullscreen overlay resolution in tiles.
+#define FULLSCREEN_OVERLAY_RESOLUTION_X 15
+#define FULLSCREEN_OVERLAY_RESOLUTION_Y 15
+
 //Run the world with this parameter to enable a single run though of the game setup and tear down process with unit tests in between
 #define TEST_RUN_PARAMETER "test-run"
 //Force the log directory to be something specific in the data/logs folder
@@ -90,6 +94,16 @@ GLOBAL_VAR_INIT(global_unique_id, 1)
 
 #define GHOST_DEFAULT_FORM 		"ghost"
 
+// Deadchat types
+#define DEADCHAT_ANNOUNCEMENT "announcement"
+#define DEADCHAT_ARRIVALRATTLE "arrivalrattle"
+#define DEADCHAT_DEATHRATTLE "deathrattle"
+#define DEADCHAT_REGULAR "regular-deadchat"
+
+
+//for obj explosion block calculation
+#define EXPLOSION_BLOCK_PROC -1
+
 
 //Luma coefficients suggested for HDTVs. If you change these, make sure they add up to 1.
 #define LUMA_R 0.213
@@ -107,3 +121,6 @@ GLOBAL_VAR_INIT(global_unique_id, 1)
 #define FOURSPACES "&nbsp;&nbsp;&nbsp;&nbsp;"
 
 #define RIDING_OFFSET_ALL "ALL"
+
+// The alpha we give to stuff under tiles, if they want it
+#define ALPHA_UNDERTILE 128

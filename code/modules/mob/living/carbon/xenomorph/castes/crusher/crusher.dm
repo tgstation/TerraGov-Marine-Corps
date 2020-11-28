@@ -21,10 +21,10 @@
 
 /mob/living/carbon/xenomorph/crusher/ex_act(severity)
 
-	flash_eyes()
+	flash_act()
 
-	if(severity == 1)
-		adjustBruteLoss(rand(200, 300), TRUE)
+	if(severity == EXPLODE_DEVASTATE)
+		adjustBruteLoss(rand(200, 300))
 		UPDATEHEALTH(src)
 
 
@@ -35,7 +35,7 @@
 	return FALSE
 
 
-/mob/living/carbon/xenomorph/crusher/handle_special_wound_states()
+/mob/living/carbon/xenomorph/crusher/handle_special_wound_states(severity)
 	. = ..()
 	if(is_charging >= CHARGE_ON)
-		return image("icon"='icons/Xeno/wound_overlays.dmi', "icon_state"="crusher_wounded_charging", "layer"=-X_WOUND_LAYER)
+		return "crusher_wounded_charging_[severity]"

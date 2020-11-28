@@ -46,7 +46,8 @@
 	item_state = "hgpirate"
 	flags_inv_hide = HIDEJUMPSUIT
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS
-	armor = list("melee" = 60, "bullet" = 90, "laser" = 60, "energy" = 20, "bomb" = 25, "bio" = 10, "rad" = 10, "fire" = 20, "acid" = 20)
+	flags_item = SYNTH_RESTRICTED
+	soft_armor = list("melee" = 60, "bullet" = 90, "laser" = 60, "energy" = 20, "bomb" = 25, "bio" = 10, "rad" = 10, "fire" = 20, "acid" = 20)
 
 
 /obj/item/clothing/suit/cyborg_suit
@@ -193,6 +194,7 @@
 
 
 /obj/item/clothing/suit/straight_jacket/proc/on_removal(datum/source, mob/living/user)
+	SIGNAL_HANDLER
 	DISABLE_BITFIELD(user.restrained_flags, RESTRAINED_STRAIGHTJACKET)
 	UnregisterSignal(src, COMSIG_ITEM_DROPPED)
 
@@ -363,6 +365,13 @@
 	flags_cold_protection = CHEST|ARMS
 	min_cold_protection_temperature = T0C
 	siemens_coefficient = 0.7
+	allowed = list (
+		/obj/item/flashlight,
+		/obj/item/binoculars,
+		/obj/item/weapon/combat_knife,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/storage/large_holster/machete
+	)
 
 /obj/item/clothing/suit/replica
 	name = "replica armor"
@@ -372,3 +381,11 @@
 	icon_state = "rebel_armor"
 	item_state = "rebel_armor"
 	flags_armor_protection = CHEST|GROIN|LEGS
+
+/obj/item/clothing/suit/techpriest
+	name = "Techpriest Robes"
+	desc = "Praise the omnissiah!"
+	icon_state = "tp_bodyrobes"
+	item_state = "tp_bodyrobes"
+	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
+

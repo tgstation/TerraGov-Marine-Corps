@@ -81,7 +81,8 @@
 	tiles_with = list(
 		/turf/closed/wall,
 		/obj/structure/window/framed/mainship,
-		/obj/machinery/door/airlock)
+		/obj/machinery/door/airlock,
+	)
 
 /obj/machinery/door/airlock/multi_tile/mainship/generic
 	name = "\improper Airlock"
@@ -106,6 +107,10 @@
 
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor/medbay
 	name = "\improper Medical Bay"
+	req_access = list(ACCESS_MARINE_MEDBAY)
+
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor/medbay/free_access
+	req_access = null
 
 /obj/machinery/door/airlock/multi_tile/mainship/research
 	name = "\improper Research Airlock"
@@ -119,7 +124,14 @@
 	icon = 'icons/obj/doors/mainship/2x1comdoor.dmi'
 	opacity = FALSE
 	glass = TRUE
-	req_access_txt = "19"
+	req_access = list(ACCESS_MARINE_BRIDGE)
+
+/obj/machinery/door/airlock/multi_tile/mainship/comdoor/free_access
+	req_access = null
+
+/obj/machinery/door/airlock/multi_tile/mainship/comdoor/cargopads
+	name = "\improper Cargo Pads"
+	req_access = list(ACCESS_NT_CORPORATE)
 
 /obj/machinery/door/airlock/multi_tile/mainship/secdoor
 	name = "\improper Security Airlock"

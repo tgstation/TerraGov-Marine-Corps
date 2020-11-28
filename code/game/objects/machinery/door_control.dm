@@ -165,31 +165,42 @@
 	id = "ammo2"
 	req_one_access = list(ACCESS_MARINE_BRIG, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_LEADER, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP)
 
+/obj/machinery/door_control/mainship/droppod
+	name = "Droppod bay"
+	id = "droppod"
+	req_one_access = list(ACCESS_MARINE_BRIG, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_LEADER, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP)
+
+/obj/machinery/door_control/mainship/engineering
+	req_access = list(ACCESS_MARINE_ENGINEERING)
+
+/obj/machinery/door_control/mainship/medbay
+	req_access = list(ACCESS_MARINE_MEDBAY)
+
 /obj/machinery/door_control/mainship/fuel
 	name = "Solid Fuel Storage"
-	id = "solid_fuel"	
+	id = "solid_fuel"
 
 /obj/machinery/door_control/mainship/hangar
-	name = "Hangar Shutters"	
+	name = "Hangar Shutters"
 	id = "hangar_shutters"
 
 /obj/machinery/door_control/mainship/research
 	name = "Medical Research Wing"
 	id = "researchdoorext"
-	req_access = list(ACCESS_MARINE_CMO)
+	req_access = list(ACCESS_MARINE_RESEARCH)
 
 /obj/machinery/door_control/mainship/research/lockdown
 	name = "Research Lockdown"
-	id = "researchlockdownext"	
+	id = "researchlockdownext"
 
 /obj/machinery/door_control/mainship/brigarmory
-	name = "Brig Armory"	
+	name = "Brig Armory"
 	id = "brig_armory"
 	req_access = list(ACCESS_MARINE_BRIG)
 
 /obj/machinery/door_control/mainship/checkpoint
 	name = "Checkpoint Shutters"
-	req_one_access = list(ACCESS_MARINE_BRIDGE, ACCESS_MARINE_BRIG, ACCESS_MARINE_LEADER, ACCESS_MARINE_LOGISTICS)
+	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_BRIG, ACCESS_MARINE_LEADER, ACCESS_MARINE_BRIDGE)
 
 /obj/machinery/door_control/mainship/checkpoint/north
 	id = "northcheckpoint"
@@ -200,35 +211,53 @@
 /obj/machinery/door_control/mainship/cic
 	name = "CIC Lockdown"
 	id = "cic_lockdown"
-	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CAPTAIN)	
+	req_one_access = list(ACCESS_MARINE_BRIDGE)
 
 /obj/machinery/door_control/mainship/cic/armory
-	name = "Armory Lockdown"	
+	name = "Armory Lockdown"
 	id = "cic_armory"
 
 /obj/machinery/door_control/mainship/cic/hangar
 	name = "Hangar Lockdown"
-	id = "hangar_lockdown"	
+	id = "hangar_lockdown"
 
 /obj/machinery/door_control/mainship/tcomms
 	name = "Telecommunications Entrance"
 	id = "tcomms"
-	req_one_access = list(ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_BRIDGE)	
+	req_one_access = list(ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_BRIDGE)
 
 /obj/machinery/door_control/mainship/corporate
 	name = "Privacy Shutters"
 	id = "cl_shutters"
-	req_access = list(ACCESS_NT_CORPORATE)	
+	req_access = list(ACCESS_NT_CORPORATE)
 
-/obj/machinery/door_control/mainship/req	
+/obj/machinery/door_control/mainship/req
 	name = "RO Line Shutters"
 	id = "ROlobby"
-	req_one_access = list(ACCESS_MARINE_CARGO, ACCESS_MARINE_CAPTAIN)
+	req_one_access = list(ACCESS_MARINE_CARGO, ACCESS_MARINE_LOGISTICS)
 
-/obj/machinery/door_control/mainship/req/ro1	
+/obj/machinery/door_control/mainship/req/ro1
 	name = "RO Line 1 Shutters"
 	id = "ROlobby1"
 
-/obj/machinery/door_control/mainship/req/ro2	
+/obj/machinery/door_control/mainship/req/ro2
 	name = "RO Line 2 Shutters"
 	id = "ROlobby2"
+
+/obj/machinery/door_control/directional
+	name = "autodirection door control"
+
+/obj/machinery/door_control/directional/Initialize(mapload)
+	. = ..()
+	switch(dir)
+		if(NORTH)
+			pixel_y = -28
+		if(SOUTH)
+			pixel_y = 28
+		if(EAST)
+			pixel_x = -28
+		if(WEST)
+			pixel_x = 28
+
+/obj/machinery/door_control/directional/unmeltable
+	resistance_flags = RESIST_ALL

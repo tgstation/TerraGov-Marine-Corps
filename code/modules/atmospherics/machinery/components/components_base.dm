@@ -58,7 +58,7 @@
 // Pipenet stuff; housekeeping
 
 /obj/machinery/atmospherics/components/nullifyNode(i)
-	if(nodes[i])
+	if(parents[i])
 		nullifyPipenet(parents[i])
 	..()
 

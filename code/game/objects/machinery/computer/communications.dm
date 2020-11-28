@@ -18,7 +18,7 @@
 	desc = "This can be used for various important functions."
 	icon_state = "comm"
 	req_access = list(ACCESS_MARINE_BRIDGE)
-	circuit = "/obj/item/circuitboard/computer/communications"
+	circuit = /obj/item/circuitboard/computer/communications
 	var/prints_intercept = TRUE
 	var/authenticated = 0
 	var/list/messagetitle = list()
@@ -36,6 +36,13 @@
 	var/status_display_freq = "1435"
 	var/stat_msg1
 	var/stat_msg2
+
+/obj/machinery/computer/communications/bee
+	machine_stat = BROKEN
+
+/obj/machinery/computer/communications/bee/Initialize()
+	. = ..()
+	update_icon()
 
 
 /obj/machinery/computer/communications/Topic(href, href_list)
@@ -99,6 +106,8 @@
 					return FALSE
 
 				priority_announce(input, type = ANNOUNCEMENT_COMMAND)
+				message_admins("[ADMIN_TPMONTY(usr)] has just sent a command announcement")
+				log_game("[key_name(usr)] has just sent a command announcement.")
 				cooldown_message = world.time
 
 		if("award")
@@ -171,6 +180,11 @@
 
 		if("distress")
 			if(state == STATE_DISTRESS)
+				if(!CONFIG_GET(flag/distress_ert_allowed))
+					log_admin_private("[key_name(usr)] may have attempted a href exploit on a [src]. [AREACOORD(usr)].")
+					message_admins("[ADMIN_TPMONTY(usr)] may be attempting a href exploit on a [src]. [ADMIN_VERBOSEJMP(usr)].")
+					return FALSE
+
 				if(world.time < DISTRESS_TIME_LOCK)
 					to_chat(usr, "<span class='warning'>The distress beacon cannot be launched this early in the operation. Please wait another [round((DISTRESS_TIME_LOCK-world.time)/600)] minutes before trying again.</span>")
 					return FALSE
@@ -208,7 +222,7 @@
 
 				var/admin_response = admin_approval("<span color='prefix'>DISTRESS:</span> [ADMIN_TPMONTY(usr)] has called a Distress Beacon. Humans: [AllMarines], Xenos: [AllXenos].",
 					options = valid_calls, default_option = "random",
-					user_message = "<span class='boldnotice'>A distress beacon will launch in 60 seconds unless High Command responds otherwise.</span>", 
+					user_message = "<span class='boldnotice'>A distress beacon will launch in 60 seconds unless High Command responds otherwise.</span>",
 					user = usr, admin_sound = sound('sound/effects/sos-morse-code.ogg', channel = CHANNEL_ADMIN))
 				just_called = FALSE
 				cooldown_request = world.time
@@ -337,7 +351,8 @@
 					dat += "<BR>\[ <A HREF='?src=\ref[src];operation=announce'>Make an announcement</A> \]"
 					dat += length(GLOB.admins) > 0 ? "<BR>\[ <A HREF='?src=\ref[src];operation=messageTGMC'>Send a message to TGMC</A> \]" : "<BR>\[ TGMC communication offline \]"
 					dat += "<BR>\[ <A HREF='?src=\ref[src];operation=award'>Award a medal</A> \]"
-					dat += "<BR>\[ <A HREF='?src=\ref[src];operation=distress'>Send Distress Beacon</A> \]"
+					if(CONFIG_GET(flag/distress_ert_allowed)) // We only add the UI if the flag is allowed
+						dat += "<BR>\[ <A HREF='?src=\ref[src];operation=distress'>Send Distress Beacon</A> \]"
 					switch(SSevacuation.evac_status)
 						if(EVACUATION_STATUS_STANDING_BY) dat += "<BR>\[ <A HREF='?src=\ref[src];operation=evacuation_start'>Initiate emergency evacuation</A> \]"
 						if(EVACUATION_STATUS_INITIATING) dat += "<BR>\[ <A HREF='?src=\ref[src];operation=evacuation_cancel'>Cancel emergency evacuation</A> \]"
@@ -352,7 +367,8 @@
 			dat += "Are you sure you want to cancel the evacuation of the [SSmapping.configs[SHIP_MAP].map_name]? \[ <A HREF='?src=\ref[src];operation=evacuation_cancel'>Confirm</A>\]"
 
 		if(STATE_DISTRESS)
-			dat += "Are you sure you want to trigger a distress signal? The signal can be picked up by anyone listening, friendly or not. \[ <A HREF='?src=\ref[src];operation=distress'>Confirm</A>\]"
+			if(CONFIG_GET(flag/distress_ert_allowed))
+				dat += "Are you sure you want to trigger a distress signal? The signal can be picked up by anyone listening, friendly or not. \[ <A HREF='?src=\ref[src];operation=distress'>Confirm</A>\]"
 
 		if(STATE_MESSAGELIST)
 			dat += "Messages:"

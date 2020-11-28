@@ -29,6 +29,9 @@
 		if(ammo.flags_ammo_behavior & AMMO_EXPLOSIVE)
 			entry.mechanics_text += "Secondary effect: explosion.<br>"
 
+		if(ammo.flags_ammo_behavior & AMMO_CHAINING)
+			entry.mechanics_text += "Secondary effect: hits nearby targets in-flight.<br>"
+
 		if(ammo.penetration)
 			entry.mechanics_text += "Armor penetration: [ammo.penetration]<br>"
 
@@ -48,5 +51,8 @@
 
 		if(ammo.scatter)
 			entry.mechanics_text += "Burst mode scatter chance: [ammo.scatter > 0 ? "+[ammo.scatter]" : "[ammo.scatter]"]%<br>"
+
+		if(ammo.sundering)
+			entry.mechanics_text += "Sundering amount: [ammo.sundering]"
 
 		SScodex.entries_by_string[entry.display_name] = entry

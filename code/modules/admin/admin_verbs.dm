@@ -47,6 +47,8 @@
 		M.remove_from_all_mob_huds()
 		M.name = null
 
+	M.client.holder.invisimined = !M.client.holder.invisimined
+
 	log_admin("[key_name(M)] has [(M.invisibility == INVISIBILITY_MAXIMUM) ? "enabled" : "disabled"] invisimin.")
 	message_admins("[ADMIN_TPMONTY(M)] has [(M.invisibility == INVISIBILITY_MAXIMUM) ? "enabled" : "disabled"] invisimin.")
 
@@ -231,45 +233,6 @@
 				L.SetAdminSleep(remove = TRUE)
 			log_admin("[key_name(usr)] has unslept everyone in view.")
 			message_admins("[ADMIN_TPMONTY(usr)] has unslept everyone in view.")
-
-
-/datum/admins/proc/direct_control(mob/living/L in GLOB.mob_living_list)
-	set category = "Admin"
-	set name = "Take Over"
-	set desc = "Rohesie's verb."
-
-	if(!check_rights(R_ADMIN))
-		return
-
-	if(isnewplayer(usr))
-		return
-
-	var/replaced = FALSE
-	if(L.key)
-		if(isobserver(usr) && usr.client.key == copytext(L.key, 2))
-			var/mob/dead/observer/ghost = usr
-			ghost.can_reenter_corpse = TRUE
-			ghost.reenter_corpse()
-			return
-		else if(alert("This mob is being controlled by [L.key], they will be made a ghost. Are you sure?", "Take Over", "Yes", "No") != "Yes")
-			return
-		else if(!istype(L))
-			to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
-			return
-
-		L.ghostize()
-		replaced = TRUE
-
-	var/log = "[key_name(usr)]"
-	var/log2 = "[key_name(L)]"
-	var/message = "[key_name_admin(usr)]"
-	var/message2 = ADMIN_TPMONTY(L)
-
-	L.take_over(usr, TRUE)
-
-	log_admin("[log] took over [log2][replaced ? " replacing the previous owner" : ""].")
-	message_admins("[message] took over [message2][replaced ? " replacing the previous owner" : ""].")
-
 
 /datum/admins/proc/logs_server()
 	set category = "Admin"
@@ -906,7 +869,7 @@
 
 	//clean the message if it's not sent by a high-rank admin
 	if(!check_rights(R_SERVER|R_DEBUG, FALSE) || external)//no sending html to the poor bots
-		msg = trim(sanitize(msg), MAX_MESSAGE_LEN)
+		msg = sanitize(copytext_char(msg, 1, MAX_MESSAGE_LEN))
 		if(!msg)
 			return
 
@@ -918,7 +881,7 @@
 		to_chat(src, "<span class='notice'>PM to-<b>Staff</b>: <span class='linkify'>[rawmsg]</span></font>")
 		var/datum/admin_help/AH = admin_ticket_log(src, "<font color='#ff8c8c'>Reply PM from-<b>[key_name(src, TRUE, TRUE)] to <i>External</i>: [keywordparsedmsg]</font>")
 		externalreplyamount--
-		send2tgs("[AH ? "#[AH.id] " : ""]Reply: [ckey]", sanitizediscord(rawmsg))
+		send2adminchat("[AH ? "#[AH.id] " : ""]Reply: [ckey]", sanitizediscord(rawmsg))
 	else
 		if(check_other_rights(recipient, R_ADMINTICKET, FALSE) || is_mentor(recipient))
 			if(check_rights(R_ADMINTICKET, FALSE) || is_mentor(src)) //Both are staff
@@ -1128,7 +1091,7 @@
 		return
 
 	for(var/i in GLOB.tank_list)
-		var/obj/vehicle/tank/CA = i
+		var/obj/vehicle/armored/CA = i
 		CA.remove_all_players()
 
 		log_admin("[key_name(usr)] forcibly removed all players from [CA].")
@@ -1142,7 +1105,7 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/datum/browser/browser = new(usr, "jobmanagement", "Manage Free Slots", 600)
+	var/datum/browser/browser = new(usr, "jobmanagement", "Manage Free Slots", 700)
 	var/list/dat = list()
 	var/count = 0
 
@@ -1155,6 +1118,8 @@
 			dat += "<A href='?src=[REF(usr.client.holder)];[HrefToken()];overridejobsstart=false'>Do Not Override Game Mode Settings</A> (game mode settings deal with job scaling and roundstart-only jobs cleanup, which will require manual editing if used while overriden)"
 		else
 			dat += "<A href='?src=[REF(usr.client.holder)];[HrefToken()];overridejobsstart=true'>Override Game Mode Settings</A> (if not selected, changes will be erased at roundstart)"
+		dat += "<br /><hr />" // Add a clear new line
+	dat += "<A href='?src=[REF(usr.client.holder)];[HrefToken()];clearalljobslots=1'>Remove all job slots</A><br />"
 	for(var/j in SSjob.joinable_occupations)
 		var/datum/job/job = j
 		count++
@@ -1170,11 +1135,12 @@
 			dat += "<A href='?src=[REF(usr.client.holder)];[HrefToken()];freejobslot=[job.title]'>Free</A> | "
 			dat += "<A href='?src=[REF(usr.client.holder)];[HrefToken()];addjobslot=[job.title]'>Add</A> | "
 			dat += "<A href='?src=[REF(usr.client.holder)];[HrefToken()];removejobslot=[job.title]'>Remove</A> | "
+			dat += "<A href='?src=[REF(usr.client.holder)];[HrefToken()];clearjobslots=[job.title]'>Remove all</A> | "
 			dat += "<A href='?src=[REF(usr.client.holder)];[HrefToken()];unlimitjobslot=[job.title]'>Unlimit</A></td>"
 		else
 			dat += "<A href='?src=[REF(usr.client.holder)];[HrefToken()];limitjobslot=[job.title]'>Limit</A></td>"
 
-	browser.height = min(100 + count * 20, 650)
+	browser.height = min(100 + count * 25, 700)
 	browser.set_content(dat.Join())
 	browser.open()
 
@@ -1219,3 +1185,43 @@
 	if(!check_rights(R_SPAWN))
 		return
 	togglebuildmode(mob)
+
+//returns TRUE to let the dragdrop code know we are trapping this event
+//returns FALSE if we don't plan to trap the event
+/datum/admins/proc/cmd_ghost_drag(mob/dead/observer/frommob, mob/tomob)
+
+	//this is the exact two check rights checks required to edit a ckey with vv.
+	if (!check_rights(R_VAREDIT,0) || !check_rights(R_SPAWN|R_DEBUG,0))
+		return FALSE
+
+	if (!frommob.ckey)
+		return FALSE
+
+	var/question = ""
+	if (tomob.ckey)
+		question = "This mob already has a user ([tomob.key]) in control of it! "
+	question += "Are you sure you want to place [frommob.name]([frommob.key]) in control of [tomob.name]?"
+
+	var/ask = alert(question, "Place ghost in control of mob?", "Yes", "No")
+	if (ask != "Yes")
+		return TRUE
+
+	if (!frommob || !tomob) //make sure the mobs don't go away while we waited for a response
+		return TRUE
+
+	// Disassociates observer mind from the body mind
+	if(tomob.client)
+		tomob.ghostize(FALSE)
+	else
+		for(var/mob/dead/observer/ghost in GLOB.dead_mob_list)
+			if(tomob.mind == ghost.mind)
+				ghost.mind = null
+
+	message_admins("<span class='adminnotice'>[key_name_admin(usr)] has put [frommob.key] in control of [tomob.name].</span>")
+	log_admin("[key_name(usr)] stuffed [frommob.key] into [tomob.name].")
+	SSblackbox.record_feedback("tally", "admin_verb", 1, "Ghost Drag Control")
+
+	tomob.ckey = frommob.ckey
+	qdel(frommob)
+
+	return TRUE

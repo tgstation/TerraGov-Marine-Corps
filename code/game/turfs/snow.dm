@@ -8,6 +8,9 @@
 	icon = 'icons/turf/snow2.dmi'
 	icon_state = "snow_0"
 	hull_floor = TRUE
+	shoefootstep = FOOTSTEP_SNOW
+	barefootstep = FOOTSTEP_SNOW
+	mediumxenofootstep = FOOTSTEP_SNOW
 
 // Melting snow
 /turf/open/floor/plating/ground/snow/fire_act(exposed_temperature, exposed_volume)
@@ -139,18 +142,19 @@
 //Explosion act
 /turf/open/floor/plating/ground/snow/ex_act(severity)
 	switch(severity)
-		if(1)
+		if(EXPLODE_DEVASTATE)
 			if(slayer)
 				slayer = 0
 				update_icon(1, 0)
-		if(2)
-			if(prob(60) && slayer)
+		if(EXPLODE_HEAVY)
+			if(slayer && prob(60))
 				slayer = max(slayer - 2, 0)
 				update_icon(1, 0)
-		if(3)
-			if(prob(20) && slayer)
+		if(EXPLODE_LIGHT)
+			if(slayer && prob(20))
 				slayer -= 1
 				update_icon(1, 0)
+	return ..()
 
 //SNOW LAYERS-----------------------------------//
 /turf/open/floor/plating/ground/snow/layer0

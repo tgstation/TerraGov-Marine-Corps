@@ -147,7 +147,7 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 #define RAZORWIRE_BASE_DAMAGE		40
 #define RAZORWIRE_ENTANGLE_DELAY	5 SECONDS
 #define RAZORWIRE_SOAK				5
-#define RAZORWIRE_MAX_HEALTH		200
+#define RAZORWIRE_MAX_HEALTH		100
 #define RAZORWIRE_SLOWDOWN			10
 #define RAZORWIRE_MIN_DAMAGE_MULT_LOW	0.4 //attacking
 #define RAZORWIRE_MAX_DAMAGE_MULT_LOW	0.6
@@ -229,3 +229,8 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 #define NO_SENSORS 0
 #define HAS_SENSORS 1
 #define LOCKED_SENSORS 2
+
+//Drop pods
+
+///This number + standard alamo launch time is when droppods are allowed to launch
+#define DROPPOD_DEPLOY_DELAY 10 MINUTES

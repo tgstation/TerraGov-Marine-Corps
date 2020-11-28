@@ -31,15 +31,22 @@
 
 
 ///returns the damage value of the attack after processing the obj's various armor protections
-/obj/proc/run_obj_armor(damage_amount, damage_type, damage_flag = 0, attack_dir, armour_penetration = 0)
+/obj/proc/run_obj_armor(damage_amount, damage_type, damage_flag = "", attack_dir, armour_penetration = 0)
 	if(!damage_type)
 		return 0
-	var/armor_protection = 0
 	if(damage_flag)
-		armor_protection = armor.getRating(damage_flag)
-	if(armor_protection)		//Only apply weak-against-armor/hollowpoint effects if there actually IS armor.
-		armor_protection = CLAMP(armor_protection - armour_penetration, min(armor_protection, 0), 100)
-	return round(damage_amount * (100 - armor_protection) * 0.01, DAMAGE_PRECISION)
+		var/obj_hard_armor = hard_armor.getRating(damage_flag)
+		var/obj_soft_armor = soft_armor.getRating(damage_flag)
+		if(armour_penetration)
+			if(obj_hard_armor)
+				obj_hard_armor = max(0, obj_hard_armor - (obj_hard_armor * armour_penetration * 0.01)) //AP reduces a % of hard armor.
+			if(obj_soft_armor)
+				obj_soft_armor = max(0, obj_soft_armor - armour_penetration) //Flat removal.
+		if(obj_hard_armor)
+			damage_amount = max(0, damage_amount - obj_hard_armor)
+		if(obj_soft_armor)
+			damage_amount = max(0, damage_amount - (damage_amount * obj_soft_armor * 0.01))
+	return round(damage_amount, DAMAGE_PRECISION)
 
 
 ///the sound played when the obj is damaged.
@@ -58,27 +65,24 @@
 			playsound(loc, 'sound/items/welder.ogg', 50, 1)
 
 
-/obj/ex_act(severity, target)
+/obj/ex_act(severity)
 	if(resistance_flags & INDESTRUCTIBLE)
 		return
 	. = ..() //contents explosion
 	if(QDELETED(src))
 		return
-	if(target == src)
-		take_damage(INFINITY, BRUTE, "bomb", 0)
-		return
 	switch(severity)
-		if(1)
+		if(EXPLODE_DEVASTATE)
 			take_damage(INFINITY, BRUTE, "bomb", 0)
-		if(2)
+		if(EXPLODE_HEAVY)
 			take_damage(rand(100, 250), BRUTE, "bomb", 0)
-		if(3)
+		if(EXPLODE_LIGHT)
 			take_damage(rand(10, 90), BRUTE, "bomb", 0)
 
 
 /obj/hitby(atom/movable/AM)
 	. = ..()
-	visible_message("<span class='warning'>[src] was hit by [AM].</span>")
+	visible_message("<span class='warning'>[src] was hit by [AM].</span>", visible_message_flags = COMBAT_MESSAGE)
 	var/tforce = 0
 	if(ismob(AM))
 		tforce = 40
@@ -93,7 +97,7 @@
 		return
 	. = ..()
 	playsound(loc, P.hitsound, 50, 1)
-	visible_message("<span class='warning'>\the [src] is damaged by \the [P]!</span>")
+	visible_message("<span class='warning'>\the [src] is damaged by \the [P]!</span>", visible_message_flags = COMBAT_MESSAGE)
 	bullet_ping(P)
 	take_damage(P.damage, P.ammo.damage_type, P.ammo.armor_type, 0, turn(P.dir, 180), P.ammo.penetration)
 
@@ -119,6 +123,9 @@
 
 
 /obj/attack_alien(mob/living/carbon/xenomorph/X)
+	// SHOULD_CALL_PARENT(TRUE) // TODO: fix this
+	if(SEND_SIGNAL(src, COMSIG_OBJ_ATTACK_ALIEN, X) & COMPONENT_NO_ATTACK_ALIEN)
+		return
 	if(!(resistance_flags & XENO_DAMAGEABLE))
 		to_chat(X, "<span class='warning'>We stare at \the [src] cluelessly.</span>")
 		return
@@ -172,3 +179,7 @@
 		obj_break(damage_type)
 		return TRUE
 	return FALSE
+
+///returns how much the object blocks an explosion. Used by subtypes.
+/obj/proc/GetExplosionBlock(explosion_dir)
+	CRASH("Unimplemented GetExplosionBlock()")

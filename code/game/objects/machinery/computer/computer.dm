@@ -35,10 +35,10 @@
 	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
 		return FALSE
 	switch(severity)
-		if(1.0)
+		if(EXPLODE_DEVASTATE)
 			qdel(src)
 			return
-		if(2.0)
+		if(EXPLODE_HEAVY)
 			if (prob(25))
 				qdel(src)
 				return
@@ -46,13 +46,12 @@
 				for(var/x in verbs)
 					verbs -= x
 				set_broken()
-		if(3.0)
+		if(EXPLODE_LIGHT)
 			if (prob(25))
 				for(var/x in verbs)
 					verbs -= x
 				set_broken()
-		else
-	return
+
 
 /obj/machinery/computer/bullet_act(obj/projectile/Proj)
 	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))

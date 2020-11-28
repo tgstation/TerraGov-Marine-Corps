@@ -179,11 +179,6 @@
 	while(found)
 
 
-//Splits the text of a file at seperator and returns them in a list.
-/proc/file2list(filename, seperator = "\n")
-	return text2list(return_file_text(filename),seperator)
-
-
 //Turns a direction into text
 /proc/num2dir(direction)
 	switch(direction)
@@ -279,6 +274,17 @@
 		return WEST
 	return NORTH|WEST
 
+/proc/angle2dir_cardinal(degree)
+	degree = SIMPLIFY_DEGREES(degree)
+	switch(round(degree, 0.1))
+		if(315.5 to 360, 0 to 45.5)
+			return NORTH
+		if(45.6 to 135.5)
+			return EAST
+		if(135.6 to 225.5)
+			return SOUTH
+		if(225.6 to 315.5)
+			return WEST
 
 //returns the north-zero clockwise angle in degrees, given a direction
 /proc/dir2angle(D)
@@ -372,7 +378,7 @@
 
 //Splits the text of a file at seperator and returns them in a list.
 //returns an empty list if the file doesn't exist
-/world/proc/file2list(filename, seperator = "\n", trim = TRUE)
+/proc/file2list(filename, seperator = "\n", trim = TRUE)
 	if(trim)
 		return splittext(trim(file2text(filename)),seperator)
 	return splittext(file2text(filename),seperator)
@@ -406,10 +412,10 @@
 	if(last_slash == 1)
 		switch(child)
 			if(/datum)
-				return
-			if(/obj || /mob)
+				return null
+			if(/obj, /mob)
 				return /atom/movable
-			if(/area || /turf)
+			if(/area, /turf)
 				return /atom
 			else
 				return /datum
@@ -461,3 +467,8 @@
 				r += (1 << i)
 
 	return r
+
+/// Return html to load a url.
+/// for use inside of browse() calls to html assets that might be loaded on a cdn.
+/proc/url2htmlloader(url)
+	return {"<html><head><meta http-equiv="refresh" content="0;URL='[url]'"/></head><body onLoad="parent.location='[url]'"></body></html>"}

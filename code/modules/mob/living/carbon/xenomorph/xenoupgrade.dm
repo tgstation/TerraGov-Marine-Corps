@@ -12,6 +12,7 @@
 	var/selected_ability_type = selected_ability?.type
 	remove_abilities()
 	add_abilities()
+	SEND_SIGNAL(src, COMSIG_XENOMORPH_ABILITY_ON_UPGRADE)
 	if(selected_ability_type)
 		for(var/datum/action/xeno_action/activable/activable_ability in actions)
 			if(selected_ability_type != activable_ability.type)
@@ -65,6 +66,19 @@
 
 /mob/living/carbon/xenomorph/drone/elder
 	upgrade = XENO_UPGRADE_TWO
+
+// ERT Versions:
+/mob/living/carbon/xenomorph/drone/elder/Corrupted
+	hivenumber = XENO_HIVE_CORRUPTED
+
+/mob/living/carbon/xenomorph/drone/elder/Alpha
+	hivenumber = XENO_HIVE_ALPHA
+
+/mob/living/carbon/xenomorph/drone/elder/Beta
+	hivenumber = XENO_HIVE_BETA
+
+/mob/living/carbon/xenomorph/drone/elder/Zeta
+	hivenumber = XENO_HIVE_ZETA
 
 /mob/living/carbon/xenomorph/drone/ancient
 	upgrade = XENO_UPGRADE_THREE
@@ -126,6 +140,19 @@
 /mob/living/carbon/xenomorph/spitter/mature
 	upgrade = XENO_UPGRADE_ONE
 
+// ERT Versions:
+/mob/living/carbon/xenomorph/spitter/mature/Corrupted
+	hivenumber = XENO_HIVE_CORRUPTED
+
+/mob/living/carbon/xenomorph/spitter/mature/Alpha
+	hivenumber = XENO_HIVE_ALPHA
+
+/mob/living/carbon/xenomorph/spitter/mature/Beta
+	hivenumber = XENO_HIVE_BETA
+
+/mob/living/carbon/xenomorph/spitter/mature/Zeta
+	hivenumber = XENO_HIVE_ZETA
+
 /mob/living/carbon/xenomorph/spitter/elder
 	upgrade = XENO_UPGRADE_TWO
 
@@ -134,6 +161,19 @@
 
 /mob/living/carbon/xenomorph/hunter/mature
 	upgrade = XENO_UPGRADE_ONE
+
+// ERT Versions:
+/mob/living/carbon/xenomorph/hunter/mature/Corrupted
+	hivenumber = XENO_HIVE_CORRUPTED
+
+/mob/living/carbon/xenomorph/hunter/mature/Alpha
+	hivenumber = XENO_HIVE_ALPHA
+
+/mob/living/carbon/xenomorph/hunter/mature/Beta
+	hivenumber = XENO_HIVE_BETA
+
+/mob/living/carbon/xenomorph/hunter/mature/Zeta
+	hivenumber = XENO_HIVE_ZETA
 
 /mob/living/carbon/xenomorph/hunter/elder
 	upgrade = XENO_UPGRADE_TWO

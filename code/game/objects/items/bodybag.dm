@@ -14,7 +14,6 @@
 	. = ..()
 	unfoldedbag_instance = unfoldedbag
 
-
 /obj/item/bodybag/Destroy()
 	if(QDELETED(unfoldedbag_instance))
 		unfoldedbag_instance = null
@@ -62,16 +61,17 @@
 	storage_capacity = 3 //Just room enough for that stripped armor, gun and whatnot.
 	anchored = FALSE
 	drag_delay = 2 //slightly easier than to drag the body directly.
+	obj_flags = CAN_BE_HIT | PROJ_IGNORE_DENSITY
 	var/foldedbag_path = /obj/item/bodybag
 	var/obj/item/bodybag/foldedbag_instance = null
 	var/obj/structure/bed/roller/roller_buckled //the roller bed this bodybag is attached to.
-	var/mob/living/carbon/human/bodybag_occupant
+	var/mob/living/bodybag_occupant
 
 
 /obj/structure/closet/bodybag/Initialize(mapload, foldedbag)
 	. = ..()
 	foldedbag_instance = foldedbag
-
+	RegisterSignal(src, COMSIG_ATOM_ACIDSPRAY_ACT, .proc/acidspray_act)
 
 /obj/structure/closet/bodybag/Destroy()
 	open()
@@ -81,6 +81,8 @@
 		if(!isnull(foldedbag_instance.loc))
 			stack_trace("[src] destroyed while the [foldedbag_instance] foldedbag_instance was neither destroyed nor in nullspace. This shouldn't happen.")
 		QDEL_NULL(foldedbag_instance)
+
+	UnregisterSignal(src, COMSIG_ATOM_ACIDSPRAY_ACT, .proc/acidspray_act)
 	return ..()
 
 
@@ -156,18 +158,17 @@
 
 /obj/structure/closet/bodybag/MouseDrop(over_object, src_location, over_location)
 	. = ..()
-	if(over_object == usr && Adjacent(usr) && !roller_buckled)
-		if(!ishuman(usr))
-			return
-		if(opened)
-			return FALSE
-		if(length(contents))
-			return FALSE
-		visible_message("<span class='notice'>[usr] folds up [name].</span>")
-		if(QDELETED(foldedbag_instance))
-			foldedbag_instance = new foldedbag_path(loc, src)
-		usr.put_in_hands(foldedbag_instance)
-		moveToNullspace()
+	if(over_object != usr || !Adjacent(usr) || roller_buckled)
+		return
+	if(!ishuman(usr))
+		return
+	if(length(contents))
+		return FALSE
+	visible_message("<span class='notice'>[usr] folds up [name].</span>")
+	if(QDELETED(foldedbag_instance))
+		foldedbag_instance = new foldedbag_path(loc, src)
+	usr.put_in_hands(foldedbag_instance)
+	moveToNullspace()
 
 
 /obj/structure/closet/bodybag/Move(NewLoc, direct)
@@ -204,6 +205,56 @@
 	xeno.visible_message("<span class='danger'>\The [xeno] slashes \the [src] open!</span>", \
 		"<span class='danger'>We slash \the [src] open!</span>", null, 5)
 	return TRUE
+
+/obj/structure/closet/bodybag/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
+	. = ..()
+	if(src != proj.original_target) //You miss unless you click directly on the bodybag
+		return FALSE
+
+	if(!opened && bodybag_occupant)
+		bodybag_occupant.bullet_act(proj) //tarp isn't bullet proof; concealment, not cover; pass it on to the occupant.
+		to_chat(bodybag_occupant, "<span class='danger'>You jolt out of [sanitize(src.name)] upon being hit!</span>")
+		open()
+
+/obj/structure/closet/bodybag/flamer_fire_act()
+	if(!opened && bodybag_occupant)
+		to_chat(bodybag_occupant, "<span class='danger'>The intense heat forces you out of [sanitize(src.name)]!</span>")
+		open()
+		bodybag_occupant.flamer_fire_act()
+
+/obj/structure/closet/bodybag/ex_act(severity)
+	if(!opened && bodybag_occupant)
+		to_chat(bodybag_occupant, "<span class='danger'>The shockwave blows [sanitize(src.name)] open!</span>")
+		open()
+		bodybag_occupant.ex_act(severity)
+	switch(severity)
+		if(EXPLODE_DEVASTATE)
+			visible_message("<span class='danger'>\The shockwave blows [sanitize(src.name)] apart!</span>")
+			qdel(src) //blown apart
+
+/obj/structure/closet/bodybag/proc/acidspray_act()
+	SIGNAL_HANDLER
+	if(!opened && bodybag_occupant)
+		var/obj/effect/xenomorph/spray/S = locate() in range(0, src) //get the acid Hans
+		if(!S) //Sanity
+			return
+
+		if(ishuman(bodybag_occupant))
+			var/mob/living/carbon/human/H = bodybag_occupant
+			INVOKE_ASYNC(H, /mob/living/carbon/human.proc/acid_spray_crossed, S.slow_amt) //tarp isn't acid proof; pass it on to the occupant
+
+		to_chat(bodybag_occupant, "<span class='danger'>The sizzling acid forces us out of [sanitize(src.name)]!</span>")
+		open() //Get out
+
+/obj/structure/closet/bodybag/effect_smoke(obj/effect/particle_effect/smoke/S)
+	. = ..()
+	if(!.)
+		return
+
+	if((S.smoke_traits & SMOKE_XENO_ACID|SMOKE_BLISTERING) && !opened && bodybag_occupant)
+		bodybag_occupant.effect_smoke(S) //tarp *definitely* isn't acid/phosphorous smoke proof, lol.
+		to_chat(bodybag_occupant, "<span class='danger'>The scathing smoke forces us out of [sanitize(src.name)]!</span>")
+		open() //Get out
 
 
 /obj/item/storage/box/bodybags
@@ -267,7 +318,8 @@
 		RegisterSignal(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PARENT_PREQDELETED), .proc/on_bodybag_occupant_death)
 
 
-/obj/structure/closet/bodybag/cryobag/proc/on_bodybag_occupant_death(datum/source, gibbed)
+/obj/structure/closet/bodybag/cryobag/proc/on_bodybag_occupant_death(mob/source, gibbing)
+	SIGNAL_HANDLER
 	if(!QDELETED(bodybag_occupant))
 		visible_message("<span class='notice'>\The [src] rejects the corpse.</span>")
 	open()
@@ -315,3 +367,112 @@
 	icon = 'icons/obj/cryobag.dmi'
 	icon_state = "bodybag_used"
 	desc = "It's been ripped open. You will need to find a machine capable of recycling it."
+
+
+//MARINE SNIPER TARPS
+
+/obj/item/bodybag/tarp
+	name = "\improper V1 thermal-dampening tarp (folded)"
+	desc = "A tarp carried by TGMC Snipers. When laying underneath the tarp, the sniper is almost indistinguishable from the landscape if utilized correctly. The tarp contains a thermal-dampening weave to hide the wearer's heat signatures, optical camoflauge, and smell dampening."
+	icon = 'icons/obj/bodybag.dmi'
+	icon_state = "jungletarp_folded"
+	w_class = WEIGHT_CLASS_NORMAL
+	unfoldedbag_path = /obj/structure/closet/bodybag/tarp
+	var/serial_number //Randomized serial number used to stop point macros and such.
+
+/obj/item/bodybag/tarp/Initialize(mapload, unfoldedbag)
+	. = ..()
+	if(!serial_number)
+		serial_number = "SN-[rand(1000,100000)]" //Set the serial number
+		name = "\improper [serial_number] [name]"
+
+/obj/item/bodybag/tarp/deploy_bodybag(mob/user, atom/location)
+	. = ..()
+	var/obj/structure/closet/bodybag/tarp/unfolded_tarp = unfoldedbag_instance
+	if(!unfolded_tarp.serial_number)
+		unfolded_tarp.serial_number = serial_number //Set the serial number
+		unfolded_tarp.name = "\improper [serial_number] [unfolded_tarp.name]" //Set the name with the serial number
+
+
+/obj/item/bodybag/tarp/unique_action(mob/user)
+	deploy_bodybag(user, get_turf(user))
+	unfoldedbag_instance.close()
+
+
+/obj/item/bodybag/tarp/snow
+	icon = 'icons/obj/bodybag.dmi'
+	icon_state = "snowtarp_folded"
+	unfoldedbag_path = /obj/structure/closet/bodybag/tarp/snow
+
+
+/obj/structure/closet/bodybag/tarp
+	name = "\improper V1 thermal-dampening tarp"
+	bag_name = "V1 thermal-dampening tarp"
+	desc = "An active camo tarp carried by TGMC Snipers. When laying underneath the tarp, the sniper is almost indistinguishable from the landscape if utilized correctly. The tarp contains a thermal-dampening weave to hide the wearer's heat signatures, optical camouflage, and smell dampening."
+	icon = 'icons/obj/bodybag.dmi'
+	icon_state = "jungletarp_closed"
+	icon_closed = "jungletarp_closed"
+	icon_opened = "jungletarp_open"
+	open_sound = 'sound/effects/vegetation_walk_1.ogg'
+	close_sound = 'sound/effects/vegetation_walk_2.ogg'
+	foldedbag_path = /obj/item/bodybag/tarp
+	closet_stun_delay = 0.5 SECONDS //Short delay to prevent ambushes from being too degenerate.
+	var/serial_number //Randomized serial number used to stop point macros and such.
+
+
+
+/obj/structure/closet/bodybag/tarp/close()
+	. = ..()
+	if(!opened && bodybag_occupant)
+		anchored = TRUE
+		playsound(loc,'sound/effects/cloak_scout_on.ogg', 15, 1) //stealth mode engaged!
+		animate(src, alpha = 13, time = 3 SECONDS) //Fade out gradually.
+
+
+/obj/structure/closet/bodybag/tarp/open()
+	anchored = FALSE
+	if(alpha != initial(alpha))
+		playsound(loc,'sound/effects/cloak_scout_off.ogg', 15, 1)
+		alpha = initial(alpha) //stealth mode disengaged
+		animate(src) //Cancel the fade out if still ongoing.
+	if(bodybag_occupant)
+		UnregisterSignal(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PARENT_PREQDELETED))
+	return ..()
+
+
+/obj/structure/closet/bodybag/tarp/closet_special_handling(mob/living/mob_to_stuff) // overriding this
+	if(!ishuman(mob_to_stuff))
+		return FALSE //Humans only.
+	if(mob_to_stuff.stat == DEAD) //Only the dead for bodybags.
+		return FALSE
+	return TRUE
+
+
+/obj/structure/closet/bodybag/tarp/close()
+	. = ..()
+	if(bodybag_occupant)
+		RegisterSignal(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PARENT_PREQDELETED), .proc/on_bodybag_occupant_death)
+
+
+/obj/structure/closet/bodybag/tarp/proc/on_bodybag_occupant_death(mob/source, gibbing)
+	SIGNAL_HANDLER
+	open()
+
+
+/obj/structure/closet/bodybag/tarp/update_name()
+	return //Shouldn't be revealing who's inside.
+
+
+/obj/structure/closet/bodybag/tarp/MouseDrop(over_object, src_location, over_location)
+	. = ..()
+	var/obj/item/bodybag/tarp/folded_tarp = foldedbag_instance
+	if(!folded_tarp.serial_number)
+		folded_tarp.serial_number = serial_number //Set the serial number
+		folded_tarp.name = "\improper [serial_number] [folded_tarp.name]" //Set the name with the serial number
+
+
+/obj/structure/closet/bodybag/tarp/snow
+	icon_state = "snowtarp_closed"
+	icon_closed = "snowtarp_closed"
+	icon_opened = "snowtarp_open"
+	foldedbag_path = /obj/item/bodybag/tarp/snow

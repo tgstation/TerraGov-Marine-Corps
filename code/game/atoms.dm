@@ -1,6 +1,7 @@
 /atom
 	layer = TURF_LAYER
 	plane = GAME_PLANE
+	appearance_flags = TILE_BOUND
 	var/level = 2
 
 	var/flags_atom = NONE
@@ -12,6 +13,8 @@
 
 	var/flags_pass = NONE
 	var/throwpass = FALSE
+
+	var/resistance_flags = NONE
 
 	var/germ_level = GERM_LEVEL_AMBIENT // The higher the germ level, the more germ on the atom.
 
@@ -26,12 +29,42 @@
 
 	var/list/image/hud_list //This atom's HUD (med/sec, etc) images. Associative list.
 
+	///How much does this atom block the explosion's shock wave.
+	var/explosion_block = 0
+
 	var/list/managed_overlays //overlays managed by update_overlays() to prevent removing overlays that weren't added by the same proc
 
 	var/datum/component/orbiter/orbiters
 	var/datum/proximity_monitor/proximity_monitor
 
 	var/datum/wires/wires = null
+
+	//light stuff
+
+	///Light systems, both shouldn't be active at the same time.
+	var/light_system = STATIC_LIGHT
+	///Range of the light in tiles. Zero means no light.
+	var/light_range = 0
+	///Intensity of the light. The stronger, the less shadows you will see on the lit area.
+	var/light_power = 1
+	///Hexadecimal RGB string representing the colour of the light. White by default.
+	var/light_color = COLOR_WHITE
+	///Boolean variable for toggleable lights. Has no effect without the proper light_system, light_range and light_power values.
+	var/light_on = TRUE
+	///Our light source. Don't fuck with this directly unless you have a good reason!
+	var/tmp/datum/light_source/light
+	///Any light sources that are "inside" of us, for example, if src here was a mob that's carrying a flashlight, that flashlight's light source would be part of this list.
+	var/tmp/list/light_sources
+
+	// popup chat messages
+
+	/// Last name used to calculate a color for the chatmessage overlays
+	var/chat_color_name
+	/// Last color calculated for the the chatmessage overlays
+	var/chat_color
+	/// A luminescence-shifted value of the last color calculated for chatmessage overlays
+	var/chat_color_darkened
+
 
 /*
 We actually care what this returns, since it can return different directives.
@@ -90,6 +123,7 @@ directive is properly returned.
 	return
 
 /atom/proc/Bumped(atom/movable/AM)
+	SEND_SIGNAL(src, COMSIG_ATOM_BUMPED, AM)
 	return
 
 /atom/proc/CanPass(atom/movable/mover, turf/target)
@@ -99,11 +133,11 @@ directive is properly returned.
 	//Outputs: Boolean if can pass.
 	if(density)
 		if( (flags_atom & ON_BORDER) && !(get_dir(loc, target) & dir) )
-			return 1
+			return TRUE
 		else
-			return 0
+			return FALSE
 	else
-		return 1
+		return TRUE
 
 
 /atom/proc/CheckExit(atom/movable/mover, turf/target)
@@ -184,7 +218,7 @@ directive is properly returned.
 
 
 /atom/proc/examine(mob/user)
-	SHOULD_CALL_PARENT(1)
+	SHOULD_CALL_PARENT(TRUE)
 	if(!istype(src, /obj/item))
 		to_chat(user, "[icon2html(src, user)] That's \a [src].")
 
@@ -282,16 +316,17 @@ directive is properly returned.
 /atom/proc/relaymove()
 	return
 
-/atom/proc/ex_act(severity, target)
-	contents_explosion(severity, target)
-	SEND_SIGNAL(src, COMSIG_ATOM_EX_ACT, severity, target)
+/atom/proc/ex_act(severity, epicenter_dist, impact_range)
+	if(!(flags_atom & PREVENT_CONTENTS_EXPLOSION))
+		contents_explosion(severity, epicenter_dist, impact_range)
+	SEND_SIGNAL(src, COMSIG_ATOM_EX_ACT, severity, epicenter_dist, impact_range)
 
 /atom/proc/fire_act()
 	return
 
 /atom/proc/hitby(atom/movable/AM)
 	if(density)
-		AM.throwing = FALSE
+		AM.set_throwing(FALSE)
 	return
 
 
@@ -303,7 +338,7 @@ directive is properly returned.
 	return FALSE
 
 
-/atom/proc/contents_explosion(severity, target)
+/atom/proc/contents_explosion(severity)
 	return //For handling the effects of explosions on contents that would not normally be effected
 
 
@@ -381,6 +416,9 @@ Proc for attack log creation, because really why not
 */
 
 /proc/log_combat(atom/user, atom/target, what_done, atom/object, addition)
+	if ((user && SEND_SIGNAL(user, COMSIG_COMBAT_LOG)) | (target && SEND_SIGNAL(target, COMSIG_COMBAT_LOG)) & DONT_LOG)
+		return
+
 	var/ssource = key_name(user)
 	var/starget = key_name(target)
 
@@ -400,7 +438,7 @@ Proc for attack log creation, because really why not
 	user.log_message(message, LOG_ATTACK, color = "#f46666")
 
 	if(target && user != target)
-		var/reverse_message = "has been [what_done] by [ssource][postfix]"
+		var/reverse_message = "has been [what_done] by [ssource][postfix] in [AREACOORD(user)]"
 		target.log_message(reverse_message, LOG_ATTACK, color = "#eabd7e", log_globally = FALSE)
 
 
@@ -475,29 +513,54 @@ Proc for attack log creation, because really why not
 			color = C
 			return
 
-//Called after New if the map is being loaded. mapload = TRUE
-//Called from base of New if the map is not being loaded. mapload = FALSE
-//This base must be called or derivatives must set initialized to TRUE
-//must not sleep
-//Other parameters are passed from New (excluding loc), this does not happen if mapload is TRUE
-//Must return an Initialize hint. Defined in __DEFINES/subsystems.dm
-
-//Note: the following functions don't call the base for optimization and must copypasta:
-// /turf/Initialize
-// /turf/open/space/Initialize
-
+/**
+  * The primary method that objects are setup in SS13 with
+  *
+  * we don't use New as we have better control over when this is called and we can choose
+  * to delay calls or hook other logic in and so forth
+  *
+  * During roundstart map parsing, atoms are queued for intialization in the base atom/New(),
+  * After the map has loaded, then Initalize is called on all atoms one by one. NB: this
+  * is also true for loading map templates as well, so they don't Initalize until all objects
+  * in the map file are parsed and present in the world
+  *
+  * If you're creating an object at any point after SSInit has run then this proc will be
+  * immediately be called from New.
+  *
+  * mapload: This parameter is true if the atom being loaded is either being intialized during
+  * the Atom subsystem intialization, or if the atom is being loaded from the map template.
+  * If the item is being created at runtime any time after the Atom subsystem is intialized then
+  * it's false.
+  *
+  * You must always call the parent of this proc, otherwise failures will occur as the item
+  * will not be seen as initalized (this can lead to all sorts of strange behaviour, like
+  * the item being completely unclickable)
+  *
+  * You must not sleep in this proc, or any subprocs
+  *
+  * Any parameters from new are passed through (excluding loc), naturally if you're loading from a map
+  * there are no other arguments
+  *
+  * Must return an [initialization hint][INITIALIZE_HINT_NORMAL] or a runtime will occur.
+  *
+  * Note: the following functions don't call the base for optimization and must copypasta handling:
+  * * [/turf/Initialize]
+  * * [/turf/open/space/Initialize]
+  */
 /atom/proc/Initialize(mapload, ...)
+	SHOULD_CALL_PARENT(TRUE)
+	SHOULD_NOT_SLEEP(TRUE)
 	if(flags_atom & INITIALIZED)
 		stack_trace("Warning: [src]([type]) initialized multiple times!")
 	flags_atom |= INITIALIZED
 
-	if(light_power && light_range)
+	if(light_system == STATIC_LIGHT && light_power && light_range)
 		update_light()
 	if(loc)
 		SEND_SIGNAL(loc, COMSIG_ATOM_INITIALIZED_ON, src) //required since spawning something doesn't call Move hence it doesn't call Entered.
 		if(isturf(loc) && opacity)
 			var/turf/T = loc
-			T.has_opaque_atom = TRUE // No need to recalculate it in this case, it's guaranteed to be on afterwards anyways.
+			T.directional_opacity = ALL_CARDINALS // No need to recalculate it in this case, it's guaranteed to be on afterwards anyways.
 
 	return INITIALIZE_HINT_NORMAL
 
@@ -591,6 +654,7 @@ Proc for attack log creation, because really why not
 	to_chat(user, "<span class='warning'>Cannot extract [src].</span>")
 	return TRUE
 
+///This proc is called on atoms when they are loaded into a shuttle
 /atom/proc/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)
 	return
 

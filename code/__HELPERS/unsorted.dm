@@ -22,7 +22,9 @@
 #undef DELTA_CALC
 
 #define UNTIL(X) while(!(X)) stoplag()
-#define SIGN(x) (x < 0 ? -1  : 1)
+
+/// Gets the sign of x, returns -1 if negative, 0 if 0, 1 if positive
+#define SIGN(x) ( ((x) > 0) - ((x) < 0) )
 
 //datum may be null, but it does need to be a typed var
 #define NAMEOF(datum, X) (#X || ##datum.##X)
@@ -141,7 +143,6 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 	else if(. >= 360)
 		. -= 360
 
-
 /proc/angle_to_dir(angle)
 	switch(angle)
 		if(338 to 360, 0 to 22)
@@ -205,6 +206,11 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 	for(var/obj/structure/mineral_door/D in loc)
 		if(D.density)
 			return TRUE
+	for(var/obj/structure/barricade/B in loc)
+		if(!B.density)
+			continue
+		if(B.dir == direction)
+			return TRUE
 	return FALSE
 
 
@@ -233,9 +239,9 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 /proc/sanitize_frequency(frequency, free = FALSE)
 	. = round(frequency)
 	if(free)
-		. = CLAMP(frequency, MIN_FREE_FREQ, MAX_FREE_FREQ)
+		. = clamp(frequency, MIN_FREE_FREQ, MAX_FREE_FREQ)
 	else
-		. = CLAMP(frequency, MIN_FREQ, MAX_FREQ)
+		. = clamp(frequency, MIN_FREQ, MAX_FREQ)
 	if(!(. % 2)) // Ensure the last digit is an odd number
 		. += 1
 
@@ -294,6 +300,116 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 		if(areas)
 			. |= T.loc
 
+//similar function to range(), but with no limitations on the distance; will search spiralling outwards from the center
+/proc/spiral_range(dist=0, center=usr, orange=0)
+	var/list/L = list()
+	var/turf/t_center = get_turf(center)
+	if(!t_center)
+		return list()
+
+	if(!orange)
+		L += t_center
+		L += t_center.contents
+
+	if(!dist)
+		return L
+
+
+	var/turf/T
+	var/y
+	var/x
+	var/c_dist = 1
+
+
+	while( c_dist <= dist )
+		y = t_center.y + c_dist
+		x = t_center.x - c_dist + 1
+		for(x in x to t_center.x+c_dist)
+			T = locate(x,y,t_center.z)
+			if(T)
+				L += T
+				L += T.contents
+
+		y = t_center.y + c_dist - 1
+		x = t_center.x + c_dist
+		for(y in t_center.y-c_dist to y)
+			T = locate(x,y,t_center.z)
+			if(T)
+				L += T
+				L += T.contents
+
+		y = t_center.y - c_dist
+		x = t_center.x + c_dist - 1
+		for(x in t_center.x-c_dist to x)
+			T = locate(x,y,t_center.z)
+			if(T)
+				L += T
+				L += T.contents
+
+		y = t_center.y - c_dist + 1
+		x = t_center.x - c_dist
+		for(y in y to t_center.y+c_dist)
+			T = locate(x,y,t_center.z)
+			if(T)
+				L += T
+				L += T.contents
+		c_dist++
+
+	return L
+
+//similar function to RANGE_TURFS(), but will search spiralling outwards from the center (like the above, but only turfs)
+/proc/spiral_range_turfs(dist=0, center=usr, orange=0, list/outlist = list(), tick_checked)
+	outlist.Cut()
+	if(!dist)
+		outlist += center
+		return outlist
+
+	var/turf/t_center = get_turf(center)
+	if(!t_center)
+		return outlist
+
+	var/list/L = outlist
+	var/turf/T
+	var/y
+	var/x
+	var/c_dist = 1
+
+	if(!orange)
+		L += t_center
+
+	while( c_dist <= dist )
+		y = t_center.y + c_dist
+		x = t_center.x - c_dist + 1
+		for(x in x to t_center.x+c_dist)
+			T = locate(x,y,t_center.z)
+			if(T)
+				L += T
+
+		y = t_center.y + c_dist - 1
+		x = t_center.x + c_dist
+		for(y in t_center.y-c_dist to y)
+			T = locate(x,y,t_center.z)
+			if(T)
+				L += T
+
+		y = t_center.y - c_dist
+		x = t_center.x + c_dist - 1
+		for(x in t_center.x-c_dist to x)
+			T = locate(x,y,t_center.z)
+			if(T)
+				L += T
+
+		y = t_center.y - c_dist + 1
+		x = t_center.x - c_dist
+		for(y in y to t_center.y+c_dist)
+			T = locate(x,y,t_center.z)
+			if(T)
+				L += T
+		c_dist++
+		if(tick_checked)
+			CHECK_TICK
+
+	return L
 
 // returns the turf located at the map edge in the specified direction relative to A
 // used for mass driver
@@ -326,11 +442,11 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 	var/y = A.y
 	if(direction & NORTH)
 		y = min(world.maxy, y + range)
-	if(direction & SOUTH)
+	else if(direction & SOUTH)
 		y = max(1, y - range)
 	if(direction & EAST)
 		x = min(world.maxx, x + range)
-	if(direction & WEST)
+	else if(direction & WEST)
 		x = max(1, x - range)
 
 	return locate(x, y, A.z)
@@ -347,11 +463,6 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 //Makes sure MIDDLE is between LOW and HIGH. If not, it adjusts it. Returns the adjusted value.
 /proc/between(low, middle, high)
 	return max(min(middle, high), low)
-
-#if DM_VERSION < 513
-/proc/arctan(x)
-	return arcsin(x / sqrt(1 + x * x))
-#endif
 
 //returns random gauss number
 /proc/GaussRand(sigma)
@@ -419,12 +530,8 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 		return FALSE
 	current = get_step_towards(source, target_turf)
 	while((current != target_turf))
-		if(current.opacity)
+		if(IS_OPAQUE_TURF(current))
 			return FALSE
-		for(var/thing in current)
-			var/atom/A = thing
-			if(A.opacity)
-				return FALSE
 		current = get_step_towards(current, target_turf)
 	return TRUE
 
@@ -628,8 +735,8 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 	O.contents.Cut()
 
 	for(var/V in original.vars - GLOB.duplicate_forbidden_vars)
-		if(istype(original.vars[V], /datum)) // this would reference the original's object, that will break when it is used or deleted.
-			continue
+		if(istype(original.vars[V], /datum) || ismob(original.vars[V]))
+			continue // this would reference the original's object, that will break when it is used or deleted.
 		else if(islist(original.vars[V]))
 			var/list/L = original.vars[V]
 			O.vars[V] = L.Copy()
@@ -646,6 +753,11 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 		if(ismachinery(O))
 			var/obj/machinery/M = O
 			M.power_change()
+
+	if(ismob(O)) //Overlays are carried over despite disallowing them, if a fix is found remove this.
+		var/mob/M = O
+		M.cut_overlays()
+		M.regenerate_icons()
 
 	return O
 
@@ -879,8 +991,8 @@ GLOBAL_LIST_INIT(common_tools, typecacheof(list(
 	tX = splittext(tX[1], ":")
 	tX = tX[1]
 	var/list/actual_view = getviewsize(C ? C.view : WORLD_VIEW)
-	tX = CLAMP(origin.x + text2num(tX) - round(actual_view[1] / 2) - 1, 1, world.maxx)
-	tY = CLAMP(origin.y + text2num(tY) - round(actual_view[2] / 2) - 1, 1, world.maxy)
+	tX = clamp(origin.x + text2num(tX) - round(actual_view[1] * 0.5) + (round(C?.pixel_x / 32)) - 1, 1, world.maxx)
+	tY = clamp(origin.y + text2num(tY) - round(actual_view[2] * 0.5) + (round(C?.pixel_y / 32)) - 1, 1, world.maxy)
 	return locate(tX, tY, tZ)
 
 
@@ -1222,7 +1334,7 @@ will handle it, but:
 		used_key_list[input_key] = 1
 	return input_key
 
-//Returns a list of all items of interest with their name
+///Returns a list of all items of interest with their name
 /proc/getpois(mobs_only=FALSE,skip_mindless=FALSE)
 	var/list/mobs = sortmobs()
 	var/list/namecounts = list()
@@ -1230,8 +1342,9 @@ will handle it, but:
 	for(var/mob/M in mobs)
 		if(skip_mindless && (!M.mind && !M.ckey))
 			continue
-		if(M.client && M.client.holder && M.client.holder.fakekey) //stealthmins
-			continue
+		if(M.client?.holder)
+			if(M.client.holder.fakekey || M.client.holder.invisimined) //stealthmins
+				continue
 		var/name = avoid_assoc_duplicate_keys(M.name, namecounts)
 
 		if(M.real_name && M.real_name != M.name)
@@ -1245,7 +1358,7 @@ will handle it, but:
 
 	return pois
 
-//Returns the left and right dir of the input dir, used for AI stutter step while attacking
+///Returns the left and right dir of the input dir, used for AI stutter step while attacking
 /proc/LeftAndRightOfDir(direction, diagonal_check = FALSE)
 	if(diagonal_check)
 		if(ISDIAGONALDIR(direction))
@@ -1255,3 +1368,30 @@ will handle it, but:
 /proc/CallAsync(datum/source, proctype, list/arguments)
 	set waitfor = FALSE
 	return call(source, proctype)(arglist(arguments))
+
+#define TURF_FROM_COORDS_LIST(List) (locate(List[1], List[2], List[3]))
+
+
+///Takes: Area type as text string or as typepath OR an instance of the area. Returns: A list of all areas of that type in the world.
+/proc/get_areas(areatype, subtypes=TRUE)
+	if(istext(areatype))
+		areatype = text2path(areatype)
+	else if(isarea(areatype))
+		var/area/areatemp = areatype
+		areatype = areatemp.type
+	else if(!ispath(areatype))
+		return null
+
+	var/list/areas = list()
+	if(subtypes)
+		var/list/cache = typecacheof(areatype)
+		for(var/V in GLOB.sorted_areas)
+			var/area/A = V
+			if(cache[A.type])
+				areas += V
+	else
+		for(var/V in GLOB.sorted_areas)
+			var/area/A = V
+			if(A.type == areatype)
+				areas += V
+	return areas

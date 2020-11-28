@@ -5,12 +5,12 @@
 
 /obj/structure/flora/ex_act(severity)
 	switch(severity)
-		if(1)
+		if(EXPLODE_DEVASTATE)
 			qdel(src)
-		if(2)
+		if(EXPLODE_HEAVY)
 			if(prob(70))
 				qdel(src)
-		if(3)
+		if(EXPLODE_LIGHT)
 			if(prob(50))
 				qdel(src)
 
@@ -20,6 +20,7 @@
 
 /obj/structure/flora/fire_act()
 	take_damage(25, BURN, "fire")
+
 
 //TREES
 
@@ -42,11 +43,11 @@
 
 /obj/structure/flora/tree/ex_act(severity)
 	switch(severity)
-		if(1)
+		if(EXPLODE_DEVASTATE)
 			take_damage(500)
-		if(2)
+		if(EXPLODE_HEAVY)
 			take_damage(rand(140, 300))
-		if(3)
+		if(EXPLODE_LIGHT)
 			take_damage(rand(50, 100))
 	START_PROCESSING(SSobj, src)
 
@@ -69,7 +70,7 @@
 
 	user.visible_message("<span class='notice'>[user] begins to cut down [src] with [I].</span>","<span class='notice'>You begin to cut down [src] with [I].</span>", "You hear the sound of sawing.")
 	var/cut_force = min(1, I.force)
-	var/cutting_time = CLAMP(10, 20, 100 / cut_force) SECONDS
+	var/cutting_time = clamp(10, 20, 100 / cut_force) SECONDS
 	if(!do_after(user, cutting_time , TRUE, src, BUSY_ICON_BUILD))
 		return
 
@@ -226,6 +227,12 @@
 
 /obj/structure/flora/pottedplant/ten
 	icon_state = "plant-10"
+
+/obj/structure/flora/pottedplant/twentyone
+	icon_state = "plant-21"
+
+/obj/structure/flora/pottedplant/twentytwo
+	icon_state = "plant-22"
 
 //newbushes
 
@@ -460,3 +467,45 @@
 	desc = "A thick mat of dense grass."
 	icon_state = "grasscarpet"
 	layer = BELOW_MOB_LAYER
+
+//ROCKS
+/obj/structure/flora/rock
+	name = "volcanic rock"
+	desc = "A volcanic rock. Pioneers used to ride these babies for miles."
+	icon = 'icons/obj/flora/rocks2.dmi'
+	density = TRUE
+	max_integrity = 250
+	layer = ABOVE_FLY_LAYER
+	coverage = 100
+	icon_state = "basalt"
+
+/obj/structure/flora/rock/alt
+	name = "volcanic rock"
+	icon_state = "basalt1"
+
+/obj/structure/flora/rock/alt2
+	name = "volcanic rock"
+	icon_state = "basalt2"
+
+/obj/structure/flora/rock/alt3
+	name = "volcanic rock"
+	icon_state = "basalt3"
+
+/obj/structure/flora/rock/pile
+	name = "rock pile"
+	desc = "pile of volcanic rocks."
+	density = FALSE
+	icon_state = "lavarocks"
+
+/obj/structure/flora/rock/pile/alt
+	name = "rock pile"
+	icon_state = "lavarocks1"
+
+/obj/structure/flora/rock/pile/alt2
+	name = "rock pile"
+	icon_state = "lavarocks2"
+
+/obj/structure/flora/rock/pile/alt3
+	name = "fossils"
+	desc = "A pile of ancient fossils. There are some oddly shaped skulls in here..."
+	icon_state = "lavarocks3"

@@ -11,7 +11,7 @@ def generate_raw_file(path):
 
 def parse_file(path):
     normalized = {}
-    with open(path) as fh:
+    with open(path, encoding='utf8') as fh:
         data = json.loads(fh.read())
         data_to_process = [data]
         while(data_to_process):

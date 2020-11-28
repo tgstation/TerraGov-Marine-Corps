@@ -7,9 +7,6 @@
 	width = 7
 	height = 13
 
-/obj/docking_port/stationary/ert/loading
-	id = "distress_loading"
-
 /obj/docking_port/stationary/ert/target
 	id = "distress_target"
 
@@ -27,6 +24,8 @@
 	prearrivalTime = 10 SECONDS
 	callTime = 1 MINUTES
 
+	shuttle_flags = GAMEMODE_IMMUNE
+
 /obj/docking_port/mobile/ert/proc/get_destinations()
 	var/list/docks = list()
 	for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
@@ -43,7 +42,7 @@
 	var/obj/docking_port/stationary/S = pick(get_destinations())
 	if(!S)
 		return FALSE
-	SSshuttle.moveShuttle(id, S.id, 1)
+	SSshuttle.moveShuttle(id, S.id, TRUE)
 	return TRUE
 
 /obj/docking_port/mobile/ert/proc/open_shutters()
@@ -111,7 +110,7 @@
 		CRASH("ert shuttle computer used with non-ert shuttle")
 	var/dat = "Status: [M ? M.getStatusText() : "*Missing*"]<br><br>"
 	if(M?.mode == SHUTTLE_IDLE)
-		if(is_centcom_level(M.z))
+		if(is_reserved_level(M.z))
 			for(var/obj/docking_port/stationary/S in M.get_destinations())
 				dat += "<A href='?src=[REF(src)];move=[S.id]'>Send to [S.name]</A><br>"
 		else
@@ -119,7 +118,6 @@
 
 	var/datum/browser/popup = new(user, "computer", M ? M.name : "shuttle", 300, 200)
 	popup.set_content("<center>[dat]</center>")
-	popup.set_title_image(usr.browse_rsc_icon(src.icon, src.icon_state))
 	popup.open()
 
 /obj/machinery/computer/shuttle/ert/Topic(href, href_list)
@@ -128,6 +126,7 @@
 		return
 
 	if(href_list["depart"])
+		log_game("[key_name(usr)] has departed an ERT shuttle")
 		var/obj/docking_port/mobile/ert/M = SSshuttle.getShuttle(shuttleId)
 		M.on_ignition()
 		M.departing = TRUE

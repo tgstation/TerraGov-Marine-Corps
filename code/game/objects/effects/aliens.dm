@@ -45,57 +45,60 @@
 	flags_pass = PASSTABLE|PASSMOB|PASSGRILLE
 	var/slow_amt = 0.8
 	var/duration = 10 SECONDS
+	var/acid_damage = 14
 
-/obj/effect/xenomorph/spray/Initialize(mapload, duration = 10 SECONDS) //Self-deletes
+/obj/effect/xenomorph/spray/Initialize(mapload, duration = 10 SECONDS, damage = 14) //Self-deletes
 	. = ..()
 	START_PROCESSING(SSprocessing, src)
 	QDEL_IN(src, duration + rand(0, 2 SECONDS))
+	acid_damage = damage
 
 /obj/effect/xenomorph/spray/Destroy()
 	STOP_PROCESSING(SSprocessing, src)
 	return ..()
 
-/obj/effect/xenomorph/spray/Crossed(AM as mob|obj)
-	..()
+/obj/effect/xenomorph/spray/Crossed(atom/movable/AM)
+	. = ..()
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
-		var/armor_block
-		if(H.cooldowns[COOLDOWN_ACID])
-			return
-		H.cooldowns[COOLDOWN_ACID] = addtimer(VARSET_LIST_CALLBACK(H.cooldowns, COOLDOWN_ACID, null), 1 SECONDS)
-		if(!H.lying)
-			to_chat(H, "<span class='danger'>Your feet scald and burn! Argh!</span>")
-			if(!(H.species.species_flags & NO_PAIN))
-				H.emote("pain")
-			H.next_move_slowdown += slow_amt
-			var/datum/limb/affecting = H.get_limb("l_foot")
-			armor_block = H.run_armor_check(affecting, "acid")
-			if(istype(affecting) && affecting.take_damage_limb(0, rand(14, 18), FALSE, FALSE, armor_block, TRUE))
-				UPDATEHEALTH(H)
-				H.UpdateDamageIcon()
-			affecting = H.get_limb("r_foot")
-			armor_block = H.run_armor_check(affecting, "acid")
-			if(istype(affecting) && affecting.take_damage_limb(0, rand(14, 18), FALSE, FALSE, armor_block, TRUE))
-				UPDATEHEALTH(H)
-				H.UpdateDamageIcon()
-		else
-			armor_block = H.run_armor_check("chest", "acid")
-			H.take_overall_damage(0, rand(12, 14), armor_block)
-			UPDATEHEALTH(H)
-			to_chat(H, "<span class='danger'>You are scalded by the burning acid!</span>")
+		H.acid_spray_crossed(acid_damage, slow_amt)
 
+/mob/living/carbon/human/proc/acid_spray_crossed(acid_damage, slow_amt)
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ACID))
+		return
+
+	TIMER_COOLDOWN_START(src, COOLDOWN_ACID, 1 SECONDS)
+	if(HAS_TRAIT(src, TRAIT_FLOORED))
+		take_overall_damage_armored(acid_damage, BURN, "acid")
+		UPDATEHEALTH(src)
+		to_chat(src, "<span class='danger'>You are scalded by the burning acid!</span>")
+		return
+	to_chat(src, "<span class='danger'>Your feet scald and burn! Argh!</span>")
+	if(!(species.species_flags & NO_PAIN))
+		emote("pain")
+	next_move_slowdown += slow_amt
+	var/datum/limb/affecting = get_limb(BODY_ZONE_PRECISE_L_FOOT)
+	var/armor_block = run_armor_check(affecting, "acid")
+	if(istype(affecting) && affecting.take_damage_limb(0, acid_damage/2, FALSE, FALSE, armor_block, TRUE))
+		UPDATEHEALTH(src)
+		UpdateDamageIcon()
+	affecting = get_limb(BODY_ZONE_PRECISE_R_FOOT)
+	armor_block = run_armor_check(affecting, "acid")
+	if(istype(affecting) && affecting.take_damage_limb(0, acid_damage/2, FALSE, FALSE, armor_block, TRUE))
+		UPDATEHEALTH(src)
+		UpdateDamageIcon()
 
 /obj/effect/xenomorph/spray/process()
 	var/turf/T = loc
 	if(!istype(T))
-		STOP_PROCESSING(SSobj, src)
 		qdel(src)
 		return
 
-	for(var/mob/living/carbon/M in loc)
-		if(isxeno(M))
-			continue
-		Crossed(M)
+	for(var/mob/living/carbon/human/H in loc)
+		H.acid_spray_crossed(slow_amt)
+
+	for(var/atom/A in loc) //Infrastructure for other interactions
+		SEND_SIGNAL(A, COMSIG_ATOM_ACIDSPRAY_ACT, src)
 
 //Medium-strength acid
 /obj/effect/xenomorph/acid
@@ -109,39 +112,41 @@
 	var/ticks = 0
 	var/acid_strength = 1 //100% speed, normal
 	var/acid_damage = 125 //acid damage on pick up, subject to armor
+	var/strength_t
 
 //Sentinel weakest acid
 /obj/effect/xenomorph/acid/weak
 	name = "weak acid"
-	acid_strength = 2.5 //250% normal speed
+	acid_strength = 0.4 //250% normal speed
 	acid_damage = 75
 	icon_state = "acid_weak"
 
 //Superacid
 /obj/effect/xenomorph/acid/strong
 	name = "strong acid"
-	acid_strength = 0.4 //20% normal speed
+	acid_strength = 2.5 //20% normal speed
 	acid_damage = 175
 	icon_state = "acid_strong"
 
 /obj/effect/xenomorph/acid/Initialize(mapload, target)
 	. = ..()
 	acid_t = target
-	var/strength_t = isturf(acid_t) ? 8:4 // Turf take twice as long to take down.
-	tick(strength_t)
+	strength_t = isturf(acid_t) ? 8:4 // Turf take twice as long to take down.
+	START_PROCESSING(SSprocessing, src)
 
 /obj/effect/xenomorph/acid/Destroy()
+	STOP_PROCESSING(SSprocessing, src)
 	acid_t = null
 	. = ..()
 
-/obj/effect/xenomorph/acid/proc/tick(strength_t)
-	set waitfor = 0
+/obj/effect/xenomorph/acid/process(delta_time)
 	if(!acid_t || !acid_t.loc)
 		qdel(src)
 		return
 	if(loc != acid_t.loc && !isturf(acid_t))
 		loc = acid_t.loc
-	if(++ticks >= strength_t)
+	ticks += ((delta_time*0.1) * (rand(2,3)*0.1) * (acid_strength)) * 0.1
+	if(ticks >= strength_t)
 		visible_message("<span class='xenodanger'>[acid_t] collapses under its own weight into a puddle of goop and undigested debris!</span>")
 		playsound(src, "acid_hit", 25)
 
@@ -174,6 +179,3 @@
 		if(4) visible_message("<span class='xenowarning'>\The [acid_t]\s structure is being melted by the acid!</span>")
 		if(2) visible_message("<span class='xenowarning'>\The [acid_t] is struggling to withstand the acid!</span>")
 		if(0 to 1) visible_message("<span class='xenowarning'>\The [acid_t] begins to crumble under the acid!</span>")
-
-	sleep(rand(200,300) * (acid_strength))
-	.()

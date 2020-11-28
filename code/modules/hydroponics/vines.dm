@@ -157,7 +157,7 @@
 			if(length(seed.chems) && ishuman(victim))
 				to_chat(victim, "<span class='danger'>You feel something seeping into your skin!</span>")
 				for(var/rid in seed.chems)
-					var/injecting = CLAMP(seed.potency * 0.2, 1, 5)
+					var/injecting = clamp(seed.potency * 0.2, 1, 5)
 					victim.reagents.add_reagent(rid, injecting)
 
 
@@ -206,18 +206,15 @@
 // Explosion damage.
 /obj/effect/plantsegment/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(EXPLODE_DEVASTATE)
 			die()
-			return
-		if(2.0)
+		if(EXPLODE_HEAVY)
 			if (prob(90))
 				die()
-				return
-		if(3.0)
+		if(EXPLODE_LIGHT)
 			if (prob(50))
 				die()
-				return
-	return
+
 
 // Hotspots kill vines.
 /obj/effect/plantsegment/fire_act(null, temp, volume)

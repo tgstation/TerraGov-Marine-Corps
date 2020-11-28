@@ -153,7 +153,8 @@
 		return
 	if(!user)
 		return
-
+	if(!istype(user))
+		return
 	if(anchored)
 		to_chat(user, "[src] is anchored to the ground.")
 		return
@@ -162,7 +163,7 @@
 		var/obj/item/storage/S = loc
 		S.remove_from_storage(src, user.loc)
 
-	throwing = FALSE
+	set_throwing(FALSE)
 
 	if(loc == user && !user.temporarilyRemoveItemFromInventory(src))
 		return
@@ -223,10 +224,6 @@
 	if(user?.client && zoom) //Dropped when disconnected, whoops
 		zoom(user, 11, 12)
 
-	for(var/X in actions)
-		var/datum/action/A = X
-		A.remove_action(user)
-
 	SEND_SIGNAL(src, COMSIG_ITEM_DROPPED, user)
 
 	if(flags_item & DELONDROP)
@@ -284,20 +281,58 @@
 /obj/item/proc/equipped(mob/user, slot)
 	SHOULD_CALL_PARENT(TRUE) // no exceptions
 	SEND_SIGNAL(src, COMSIG_ITEM_EQUIPPED, user, slot)
-	if(flags_equip_slot & slotdefine2slotbit(slot)) // flags_equip_slot is a bitfield
+
+	var/equipped_to_slot = flags_equip_slot & slotdefine2slotbit(slot)
+	if(equipped_to_slot) // flags_equip_slot is a bitfield
 		SEND_SIGNAL(src, COMSIG_ITEM_EQUIPPED_TO_SLOT, user)
 	else
 		SEND_SIGNAL(src, COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, user, slot)
+
 	for(var/X in actions)
 		var/datum/action/A = X
 		if(item_action_slot_check(user, slot)) //some items only give their actions buttons when in a specific slot.
 			A.give_action(user)
+
+	if(!equipped_to_slot)
+		return
+
+	if(ishuman(user))
+		var/mob/living/carbon/human/human_user = user
+		if(flags_armor_protection)
+			human_user.add_limb_armor(src)
+		if(slowdown)
+			human_user.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, slowdown)
+
+
+///Called when an item is removed from an equipment slot. The loc should still be in the unequipper.
+/obj/item/proc/unequipped(mob/unequipper, slot)
+	SHOULD_CALL_PARENT(TRUE)
+	SEND_SIGNAL(src, COMSIG_ITEM_UNEQUIPPED, unequipper, slot)
+
+	var/equipped_from_slot = flags_equip_slot & slotdefine2slotbit(slot)
+
+	for(var/X in actions)
+		var/datum/action/A = X
+		A.remove_action(unequipper)
+
+	if(!equipped_from_slot)
+		return
+
+	if(ishuman(unequipper))
+		var/mob/living/carbon/human/human_unequipper = unequipper
+		if(flags_armor_protection)
+			human_unequipper.remove_limb_armor(src)
+		if(slowdown)
+			human_unequipper.remove_movespeed_modifier(type)
 
 
 //sometimes we only want to grant the item's action if it's equipped in a specific slot.
 /obj/item/proc/item_action_slot_check(mob/user, slot)
 	return TRUE
 
+// Anything unique the item can do, like pumping a shotgun, spin or whatever.
+/obj/item/proc/unique_action(mob/user)
+	return FALSE
 
 // The mob M is attempting to equip this item into the slot passed through as 'slot'. Return 1 if it can do this and 0 if it can't.
 // If you are making custom procs but would like to retain partial or complete functionality of this one, include a 'return ..()' to where you want this to happen.
@@ -310,6 +345,11 @@
 	if(!M)
 		return FALSE
 
+	if(CHECK_BITFIELD(flags_item, NODROP) && slot != SLOT_L_HAND && slot != SLOT_R_HAND) //No drops can only be equipped to a hand slot
+		if(slot == SLOT_L_HAND || slot == SLOT_R_HAND)
+			to_chat(M, "<span class='notice'>[src] is stuck to our hand!</span>")
+		return FALSE
+
 	if(ishuman(M))
 		//START HUMAN
 		var/mob/living/carbon/human/H = M
@@ -318,6 +358,10 @@
 			mob_equip = H.species.hud.equip_slots
 
 		if(H.species && !(slot in mob_equip))
+			return FALSE
+
+		if(issynth(H) && CHECK_BITFIELD(flags_item, SYNTH_RESTRICTED) && !CONFIG_GET(flag/allow_synthetic_gun_use))
+			to_chat(H, "<span class='warning'>Your programming prevents you from wearing this.</span>")
 			return FALSE
 
 		switch(slot)
@@ -442,24 +486,11 @@
 				if(!istype(src, /obj/item/restraints/handcuffs))
 					return FALSE
 				return TRUE
-			if(SLOT_LEGCUFFED)
-				if(H.legcuffed)
-					return FALSE
-				if(!istype(src, /obj/item/restraints/legcuffs))
-					return FALSE
-				return TRUE
 			if(SLOT_ACCESSORY)
 				if(!istype(src, /obj/item/clothing/tie))
 					return FALSE
 				var/obj/item/clothing/under/U = H.w_uniform
 				if(!U || U.hastie)
-					return FALSE
-				return TRUE
-			if(SLOT_IN_BOOT)
-				if(!istype(src, /obj/item/weapon/combat_knife) && !istype(src, /obj/item/weapon/throwing_knife))
-					return FALSE
-				var/obj/item/clothing/shoes/marine/B = H.shoes
-				if(!B || !istype(B) || B.knife)
 					return FALSE
 				return TRUE
 			if(SLOT_IN_BACKPACK)
@@ -606,7 +637,6 @@
 //The default action is attack_self().
 //Checks before we get to here are: mob is alive, mob is not restrained, paralyzed, asleep, resting, laying, item is on the mob.
 /obj/item/proc/ui_action_click(mob/user, datum/action/item_action/action)
-	toggle_item_state(user)
 	attack_self(user)
 
 /obj/item/proc/toggle_item_state(mob/user)
@@ -650,7 +680,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		to_chat(user, "<span class='warning'>Your vision is too obscured for you to look through \the [zoom_device].</span>")
 		return
 
-	if(!zoom && user.get_active_held_item() != src)
+	if((!zoom && user.get_active_held_item() != src) && (!(flags_item & DOES_NOT_NEED_HANDS)))
 		to_chat(user, "<span class='warning'>You need to hold \the [zoom_device] to look through it.</span>")
 		return
 
@@ -658,22 +688,21 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		user.visible_message("<span class='notice'>[user] looks up from [zoom_device].</span>",
 		"<span class='notice'>You look up from [zoom_device].</span>")
 		zoom = FALSE
-		user.cooldowns[COOLDOWN_ZOOM] = addtimer(VARSET_LIST_CALLBACK(user.cooldowns, COOLDOWN_ZOOM, null), 2 SECONDS)
-		if(user.client.click_intercept)
-			user.client.click_intercept = null
+		TIMER_COOLDOWN_START(user, COOLDOWN_ZOOM, 2 SECONDS)
 
 		if(user.interactee == src)
 			user.unset_interaction()
 
 		if(user.client)
+			user.client.click_intercept = null
 			user.client.change_view(WORLD_VIEW)
 			user.client.pixel_x = 0
 			user.client.pixel_y = 0
 
 	else //Otherwise we want to zoom in.
-		if(user.cooldowns[COOLDOWN_ZOOM]) //If we are spamming the zoom, cut it out
+		if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_ZOOM)) //If we are spamming the zoom, cut it out
 			return
-		user.cooldowns[COOLDOWN_ZOOM] = addtimer(VARSET_LIST_CALLBACK(user.cooldowns, COOLDOWN_ZOOM, null), 2 SECONDS)
+		TIMER_COOLDOWN_START(user, COOLDOWN_ZOOM, 2 SECONDS)
 
 		if(user.client)
 			user.client.change_view(VIEW_NUM_TO_STRING(viewsize))
@@ -845,7 +874,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 				sleep(2)
 			qdel(W)
 
-	if(isspaceturf(user.loc) || user.lastarea.has_gravity == 0)
+	if(isspaceturf(user.loc))
 		user.inertia_dir = get_dir(target, user)
 		step(user, user.inertia_dir)
 

@@ -20,23 +20,26 @@
 	name = "\improper SWAT shoes"
 	desc = "When you want to turn up the heat."
 	icon_state = "swat"
-	armor = list("melee" = 80, "bullet" = 60, "laser" = 50, "energy" = 25, "bomb" = 50, "bio" = 10, "rad" = 0, "fire" = 25, "acid" = 25)
+	soft_armor = list("melee" = 80, "bullet" = 60, "laser" = 50, "energy" = 25, "bomb" = 50, "bio" = 10, "rad" = 0, "fire" = 25, "acid" = 25)
 	flags_inventory = NOSLIPPING
+	flags_item = SYNTH_RESTRICTED
 	siemens_coefficient = 0.6
 
 /obj/item/clothing/shoes/ruggedboot
 	name = "Rugged Boots"
 	desc = "A pair of boots used by workers in dangerous environments."
 	icon_state = "swat"
-	armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 25, "bomb" = 20, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 20)
+	soft_armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 25, "bomb" = 20, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 20)
 	flags_inventory = NOSLIPPING
+	flags_item = SYNTH_RESTRICTED
 	siemens_coefficient = 0.6
 
 /obj/item/clothing/shoes/combat //Basically SWAT shoes combined with galoshes.
 	name = "combat boots"
 	desc = "When you REALLY want to turn up the heat"
 	icon_state = "swat"
-	armor = list("melee" = 80, "bullet" = 60, "laser" = 50, "energy" = 25, "bomb" = 50, "bio" = 10, "rad" = 0, "fire" = 25, "acid" = 25)
+	flags_item = SYNTH_RESTRICTED
+	soft_armor = list("melee" = 80, "bullet" = 60, "laser" = 50, "energy" = 25, "bomb" = 50, "bio" = 10, "rad" = 0, "fire" = 25, "acid" = 25)
 	flags_inventory = NOSLIPPING
 	siemens_coefficient = 0.6
 
@@ -51,7 +54,7 @@
 	icon_state = "s-ninja"
 	permeability_coefficient = 0.01
 	flags_inventory = NOSLIPPING
-	armor = list("melee" = 60, "bullet" = 50, "laser" = 30, "energy" = 15, "bomb" = 30, "bio" = 30, "rad" = 30, "fire" = 15, "acid" = 15)
+	soft_armor = list("melee" = 60, "bullet" = 50, "laser" = 30, "energy" = 15, "bomb" = 30, "bio" = 30, "rad" = 30, "fire" = 15, "acid" = 15)
 	siemens_coefficient = 0.2
 
 	flags_cold_protection = FEET
@@ -83,7 +86,7 @@
 	desc = "The prankster's standard-issue clowning shoes. Damn they're huge!"
 	name = "clown shoes"
 	icon_state = "clown"
-	item_state = "clown_shoes"
+	item_state = "clown"
 	slowdown = SHOES_SLOWDOWN + 1
 
 
@@ -152,4 +155,12 @@
 	flags_heat_protection = FEET
 	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
+
+/obj/item/clothing/shoes/techpriest
+	name = "Techpriest boots"
+	desc = "Praise the machine spirit!"
+	icon_state = "tp_boots"
+	item_state = "tp_boots"
+	flags_inventory = NOSLIPPING
+
 

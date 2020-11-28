@@ -29,14 +29,6 @@
 	icon_state = "TC"
 	job = /datum/job/terragov/command/tank_crew
 
-/obj/effect/landmark/start/job/crash/masteratarms
-	icon_state = "MAA"
-	job = /datum/job/terragov/police/officer
-
-/obj/effect/landmark/start/job/crash/commandmasteratarms
-	icon_state = "CMAA"
-	job = /datum/job/terragov/police/chief
-
 /obj/effect/landmark/start/job/crash/chiefshipengineer
 	icon_state = "CSE"
 	job = /datum/job/terragov/engineering/chief

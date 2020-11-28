@@ -4,6 +4,12 @@
 #define DEBUG_XENO_DEFENSE	0
 #define DEBUG_CREST_DEFENSE	0
 
+#if DEBUG_HIT_CHANCE
+#define BULLET_DEBUG(msg) to_chat(world, "<span class='debuginfo'>[msg]</span>")
+#else
+#define BULLET_DEBUG(msg)
+#endif
+
 #define BULLET_FEEDBACK_PEN (1<<0)
 #define BULLET_FEEDBACK_SOAK (1<<1)
 #define BULLET_FEEDBACK_FIRE (1<<2)
@@ -19,13 +25,19 @@
 	icon = 'icons/obj/items/projectiles.dmi'
 	icon_state = "bullet"
 	density = FALSE
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 	anchored = TRUE //You will not have me, space wind!
+	move_resist = INFINITY
 	flags_atom = NOINTERACT //No real need for this, but whatever. Maybe this flag will do something useful in the future.
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	invisibility = INVISIBILITY_MAXIMUM // We want this thing to be invisible when it drops on a turf because it will be on the user's turf. We then want to make it visible as it travels.
 	layer = FLY_LAYER
 	animate_movement = NO_STEPS
+	light_system = MOVABLE_LIGHT
+	light_range = 2
+	light_power = 2
+	light_color = COLOR_VERY_SOFT_YELLOW
+	light_on = FALSE
 
 	var/hitsound = null
 	var/datum/ammo/ammo //The ammo data which holds most of the actual info.
@@ -55,6 +67,12 @@
 
 	var/distance_travelled = 0
 
+	/// How maany times this projectile has bounced off something
+	var/ricochet_count = 0
+
+	/// The maximum number of times this can bounce
+	var/ricochet_limit = 0
+
 	var/projectile_speed = 1 //Tiles travelled per full tick.
 	var/armor_type = null
 
@@ -82,12 +100,12 @@
 
 /obj/projectile/Crossed(atom/movable/AM) //A mob moving on a tile with a projectile is hit by it.
 	. = ..()
-	if(AM in permutated) //If we've already handled this atom, don't do it again.
+	if(permutated[AM]) //If we've already handled this atom, don't do it again.
 		return
 	if(AM.projectile_hit(src))
 		AM.do_projectile_hit(src)
 		return
-	permutated += AM //Don't want to hit them again.
+	permutated[AM] = TRUE //Don't want to hit them again.
 
 
 /obj/projectile/effect_smoke(obj/effect/particle_effect/smoke/S)
@@ -127,12 +145,12 @@
 		proj_max_range = range
 	if(shooter)
 		firer = shooter
-		permutated += firer //Don't hit the shooter
+		permutated[firer] = TRUE //Don't hit the shooter
 	if(source)
 		shot_from = source
-	permutated += src //Don't try to hit self.
+	permutated[src] = TRUE
 	if(!isturf(loc))
-		forceMove(get_turf(src))
+		forceMove(get_turf(source)) //If the bulllets not in a turf move it to the shooters turf
 	starting_turf = loc
 
 	if(target)
@@ -259,6 +277,9 @@
 		qdel(src)
 		return
 
+	set_light_color(ammo.bullet_color)
+	set_light_on(TRUE)
+
 	START_PROCESSING(SSprojectiles, src) //If no hits on the first moves, enter the processing queue for next.
 
 
@@ -274,6 +295,8 @@
 		qdel(src)
 		return PROCESS_KILL
 
+	if(ammo.flags_ammo_behavior & AMMO_CHAINING)
+		zap_beam(src, 4, damage)
 
 /obj/projectile/proc/required_moves_calc()
 	var/elapsed_time_deciseconds = world.time - last_projectile_move
@@ -499,9 +522,9 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				return TRUE
 
 	for(var/i in turf_to_scan)
-		if(i in permutated) //If we've already handled this atom, don't do it again.
+		if(permutated[i]) //If we've already handled this atom, don't do it again.
 			continue
-		permutated += i //Don't want to hit them again, no matter what the outcome.
+		permutated[i] = TRUE //Don't want to hit them again, no matter what the outcome.
 
 		var/atom/movable/thing_to_hit = i
 
@@ -539,11 +562,13 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 /obj/do_projectile_hit(obj/projectile/proj)
 	proj.ammo.on_hit_obj(src, proj)
+	if(QDELETED(src)) //on_hit_obj could delete the object
+		return
 	bullet_act(proj)
 
 
 /obj/structure/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
-	if(!density) //structure is passable
+	if(!density && !(obj_flags & PROJ_IGNORE_DENSITY)) //structure is passable
 		return FALSE
 	if(src == proj.original_target) //clicking on the structure itself hits the structure
 		return TRUE
@@ -599,49 +624,54 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 
 /mob/living/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
-	if(lying && src != proj.original_target)
+	if(status_flags & INCORPOREAL)
+		return FALSE
+	if(lying_angle && src != proj.original_target)
 		return FALSE
 	if((proj.ammo.flags_ammo_behavior & AMMO_XENO) && (isnestedhost(src) || stat == DEAD))
 		return FALSE
 	. += proj.accuracy //We want a temporary variable so accuracy doesn't change every time the bullet misses.
-	#if DEBUG_HIT_CHANCE
-	to_chat(world, "<span class='debuginfo'>Base accuracy is <b>[P.accuracy]; scatter:[P.scatter]; distance:[P.distance_travelled]</b></span>")
-	#endif
-
+	BULLET_DEBUG("Base accuracy is <b>[.]; scatter:[proj.scatter]; distance:[proj.distance_travelled]</b>")
 	if(proj.distance_travelled <= proj.ammo.accurate_range) //If bullet stays within max accurate range + random variance.
 		if(proj.distance_travelled <= proj.ammo.point_blank_range) //If bullet within point blank range, big accuracy buff.
+			BULLET_DEBUG("Point blank range (+25)")
 			. += 25
 		else if((proj.ammo.flags_ammo_behavior & AMMO_SNIPER) && proj.distance_travelled <= proj.ammo.accurate_range_min) //Snipers have accuracy falloff at closer range before point blank
+			BULLET_DEBUG("Sniper ammo, too close (-[(proj.ammo.accurate_range_min - proj.distance_travelled) * 5])")
 			. -= (proj.ammo.accurate_range_min - proj.distance_travelled) * 5
 	else
+		BULLET_DEBUG("Too far (+[(proj.ammo.flags_ammo_behavior & AMMO_SNIPER) ? (proj.distance_travelled * 3) : (proj.distance_travelled * 5)])")
 		. -= (proj.ammo.flags_ammo_behavior & AMMO_SNIPER) ? (proj.distance_travelled * 3) : (proj.distance_travelled * 5) //Snipers have a smaller falloff constant due to longer max range
 
-	#if DEBUG_HIT_CHANCE
-	to_chat(world, "<span class='debuginfo'>Final accuracy is <b>[.]</b></span>")
-	#endif
-
 	. = max(5, .) //default hit chance is at least 5%.
-	if(lying && stat != CONSCIOUS)
+	if(lying_angle && stat != CONSCIOUS)
 		. += 15 //Bonus hit against unconscious people.
 
+	var/obj/item/shot_source = proj.shot_from
 	if(isliving(proj.firer))
 		var/mob/living/shooter_living = proj.firer
-		if(!can_see(shooter_living, src, WORLD_VIEW_NUM))
+		if(!can_see(shooter_living, src, WORLD_VIEW_NUM) && (!istype(shot_source) || !shot_source.zoom))
+			BULLET_DEBUG("Can't see target (-15).")
 			. -= 15 //Can't see the target (Opaque thing between shooter and target)
 		if(shooter_living.last_move_intent < world.time - 2 SECONDS) //We get a nice accuracy bonus for standing still.
+			BULLET_DEBUG("Stationary (+15).")
 			. += 15
 		else if(shooter_living.m_intent == MOVE_INTENT_WALK) //We get a decent accuracy bonus for walking
+			BULLET_DEBUG("walk intent bonus (+10).")
 			. += 10
 		if(ishuman(proj.firer))
 			var/mob/living/carbon/human/shooter_human = shooter_living
-			. -= round(max(30,(shooter_human.traumatic_shock) * 0.2)) //Chance to hit declines with pain, being reduced by 0.2% per point of pain.
-			if(shooter_human.stagger)
-				. -= 30 //Being staggered fucks your aim.
+			BULLET_DEBUG("Traumatic shock (-[round(min(30, shooter_human.traumatic_shock * 0.2))]).")
+			. -= round(min(30, shooter_human.traumatic_shock * 0.2)) //Chance to hit declines with pain, being reduced by 0.2% per point of pain.
 			if(shooter_human.marksman_aura) //Accuracy bonus from active focus order: flat bonus + bonus per tile traveled
+				BULLET_DEBUG("marksman_aura (+[shooter_human.marksman_aura * 3] + [proj.distance_travelled * shooter_human.marksman_aura * 0.35]).")
 				. += shooter_human.marksman_aura * 3
 				. += proj.distance_travelled * shooter_human.marksman_aura * 0.35
 
+	BULLET_DEBUG("Hit zone penalty (-[GLOB.base_miss_chance[proj.def_zone]]) ([proj.def_zone])")
 	. -= GLOB.base_miss_chance[proj.def_zone] //Reduce accuracy based on spot.
+
+	BULLET_DEBUG("Final accuracy is <b>[.]</b>")
 
 	if(. <= 0) //If by now the sum is zero or negative, we won't be hitting at all.
 		return FALSE
@@ -658,7 +688,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			proj.def_zone = new_def_zone
 			return TRUE
 
-	if(!lying) //Narrow miss!
+	if(!lying_angle) //Narrow miss!
 		animatation_displace_reset(src)
 		if(proj.ammo.sound_miss)
 			playsound_local(get_turf(src), proj.ammo.sound_miss, 75, 1)
@@ -679,6 +709,10 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 /mob/living/do_projectile_hit(obj/projectile/proj)
 	proj.ammo.on_hit_mob(src, proj)
 	bullet_act(proj)
+/mob/living/carbon/do_projectile_hit(obj/projectile/proj)
+	. = ..()
+	if(!(species?.species_flags & NO_BLOOD) && proj.ammo.flags_ammo_behavior & AMMO_BALLISTIC)
+		new /obj/effect/temp_visual/dir_setting/bloodsplatter(loc, proj.dir, get_blood_color())
 
 
 /mob/living/carbon/human/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
@@ -741,35 +775,46 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	var/feedback_flags = NONE
 
-	var/living_armor = (proj.ammo.flags_ammo_behavior & AMMO_IGNORE_ARMOR) ? 0 : get_living_armor(proj.armor_type, proj.def_zone, proj.dir)
-	if(living_armor)
+	var/living_hard_armor = (proj.ammo.flags_ammo_behavior & AMMO_IGNORE_ARMOR) ? 0 : get_hard_armor(proj.armor_type, proj.def_zone, proj.dir)
+	var/living_soft_armor = (proj.ammo.flags_ammo_behavior & AMMO_IGNORE_ARMOR) ? 0 : get_soft_armor(proj.armor_type, proj.def_zone, proj.dir)
+	if(living_hard_armor || living_soft_armor)
 		var/penetration = proj.ammo.penetration
 		if(penetration > 0)
 			if(proj.shot_from && src == proj.shot_from.sniper_target(src))
 				damage *= SNIPER_LASER_DAMAGE_MULTIPLIER
 				penetration *= SNIPER_LASER_ARMOR_MULTIPLIER
 				add_slowdown(SNIPER_LASER_SLOWDOWN_STACKS)
-			living_armor -= penetration
-		switch(living_armor)
-			if(-INFINITY to 0) //Armor fully penetrated.
-				feedback_flags |= BULLET_FEEDBACK_PEN
-			if(100 to INFINITY) //Damage invulnerability.
-				damage = 0
+			if(living_hard_armor)
+				living_hard_armor = max(0, living_hard_armor - (living_hard_armor * penetration * 0.01)) //AP reduces a % of hard armor.
+			if(living_soft_armor)
+				living_soft_armor = max(0, living_soft_armor - penetration) //Flat removal.
+
+		if(iscarbon(proj.firer))
+			var/mob/living/carbon/shooter_carbon = proj.firer
+			if(shooter_carbon.stagger)
+				damage *= STAGGER_DAMAGE_MULTIPLIER //Since we hate RNG, stagger reduces damage by a % instead of reducing accuracy; consider it a 'glancing' hit due to being disoriented.
+
+		if(!living_hard_armor && !living_soft_armor) //Armor fully penetrated.
+			feedback_flags |= BULLET_FEEDBACK_PEN
+		else
+			if(living_hard_armor)
+				damage = max(0, damage - living_hard_armor) //Damage soak.
+			if(!damage) //Damage fully negated by hard armor.
 				bullet_soak_effect(proj)
 				feedback_flags |= BULLET_FEEDBACK_IMMUNE
-			else
-				damage = max(0, damage - (living_armor * 0.1)) //Hard armor, damage soak. 10% of the armor's value.
-				if(!damage) //Damage fully soaked.
-					bullet_soak_effect(proj)
-					feedback_flags |= BULLET_FEEDBACK_SOAK
-				else
-					living_armor *= 0.9 //Remove the 10% that was used to soak damage.
-					damage -= damage * living_armor * 0.01 //Soft armor/padding, damage reduction.
+			else if(living_soft_armor >= 100) //Damage fully negated by soft armor.
+				damage = 0
+				bullet_soak_effect(proj)
+				feedback_flags |= BULLET_FEEDBACK_SOAK
+			else if(living_soft_armor) //Soft armor/padding, damage reduction.
+				damage = max(0, damage - (damage * living_soft_armor * 0.01))
 
 	if(proj.ammo.flags_ammo_behavior & AMMO_INCENDIARY)
-		living_armor = get_living_armor("fire", proj.def_zone) //This value could potentially be negative, indicating fire weakness.
-		if(living_armor < 100) //If armor is 100 or over the mob is fireproof.
-			adjust_fire_stacks(CEILING(10 - (10 * (living_armor / 100)), 1)) //We could add an ammo fire strength in time, as a variable.
+		//We are checking the total distributed mob's armor now, not just the limb.
+		//Fire hard armor represents flammability and how much fuel sticks to the armor.
+		living_hard_armor = hard_armor.getRating("fire")
+		if(living_hard_armor < 100) //If armor is 100% then the mob is fireproof.
+			adjust_fire_stacks(CEILING(10 - (living_hard_armor * 0.1), 1)) //We could add an ammo fire strength in time, as a variable.
 			IgniteMob()
 			feedback_flags |= (BULLET_FEEDBACK_FIRE|BULLET_FEEDBACK_SCREAM)
 
@@ -782,13 +827,12 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			feedback_flags |= (BULLET_FEEDBACK_SHRAPNEL|BULLET_FEEDBACK_SCREAM)
 		else if(prob(damage * 0.25))
 			feedback_flags |= BULLET_FEEDBACK_SCREAM
-		bullet_message(proj, feedback_flags)
+		bullet_message(proj, feedback_flags, damage)
 		proj.play_damage_effect(src)
 		if(apply_damage(damage, proj.ammo.damage_type, proj.def_zone)) //This could potentially delete the source.
 			UPDATEHEALTH(src)
 		if(shrapnel_roll)
-			var/obj/item/shard/shrapnel/shrap = new(get_turf(src), "[proj] shrapnel", " It looks like it was fired from [proj.shot_from ? proj.shot_from : "something unknown"].")
-			shrap.embed_into(src, proj.def_zone, TRUE)
+			embed_projectile_shrapnel(proj)
 	else
 		bullet_message(proj, feedback_flags)
 
@@ -819,16 +863,39 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "total_bullet_hits_on_xenos")
 
 
-/mob/living/proc/get_living_armor(armor_type, proj_def_zone, proj_dir)
-	return 0
+/mob/living/proc/embed_projectile_shrapnel(obj/projectile/proj)
+	var/obj/item/shard/shrapnel/shrap = new(get_turf(src), "[proj] shrapnel", " It looks like it was fired from [proj.shot_from ? proj.shot_from : "something unknown"].")
+	if(!shrap.embed_into(src, proj.def_zone, TRUE))
+		qdel(shrap)
 
 
-/mob/living/carbon/human/get_living_armor(armor_type, proj_def_zone, proj_dir)
-	return getarmor_organ(get_limb(check_zone(proj_def_zone)), armor_type) //Should always have a type; this defaults to bullet if nothing else.
+/mob/living/carbon/human/embed_projectile_shrapnel(obj/projectile/proj)
+	var/datum/limb/affected_limb = get_limb(check_zone(proj.def_zone))
+	if(affected_limb.limb_status & LIMB_DESTROYED)
+		return
+	return ..()
 
 
-/mob/living/carbon/xenomorph/get_living_armor(armor_type, proj_def_zone, proj_dir)
-	. = (armor.getRating(armor_type) + armor_bonus + armor_pheromone_bonus) * get_sunder()
+/mob/living/proc/get_soft_armor(armor_type, proj_def_zone, proj_dir)
+	return soft_armor.getRating(armor_type)
+
+/mob/living/carbon/human/get_soft_armor(armor_type, proj_def_zone, proj_dir)
+	var/datum/limb/affected_limb = get_limb(check_zone(proj_def_zone))
+	return affected_limb.soft_armor.getRating(armor_type)
+
+/mob/living/carbon/xenomorph/get_soft_armor(armor_type, proj_def_zone, proj_dir)
+	return ..() * get_sunder()
+
+
+/mob/living/proc/get_hard_armor(armor_type, proj_def_zone, proj_dir)
+	return hard_armor.getRating(armor_type)
+
+/mob/living/carbon/human/get_hard_armor(armor_type, proj_def_zone, proj_dir)
+	var/datum/limb/affected_limb = get_limb(check_zone(proj_def_zone))
+	return affected_limb.hard_armor.getRating(armor_type)
+
+/mob/living/carbon/xenomorph/get_hard_armor(armor_type, proj_def_zone, proj_dir)
+	return ..() * get_sunder()
 
 
 /mob/living/proc/bullet_soak_effect(obj/projectile/proj)
@@ -855,7 +922,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	var/list/livings_list = list() //Let's built a list of mobs on the bullet turf and grab one.
 	for(var/mob/living/L in src)
-		if(L in proj.permutated)
+		if(proj.permutated[L])
 			continue
 		livings_list += L
 
@@ -879,8 +946,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	switch(proj.ammo.damage_type)
 		if(BRUTE, BURN)
-			damage = max(0, proj.damage - round(proj.distance_travelled * proj.damage_falloff)) //Bullet damage falloff.
-			damage -= round(damage * armor.getRating(proj.armor_type) * 0.01, 1) //Wall armor soak.
+			damage = max(0, proj.damage - round(proj.distance_travelled * proj.damage_falloff) - hard_armor.getRating(proj.armor_type)) //Bullet damage falloff and hard armor.
+			damage -= round(damage * soft_armor.getRating(proj.armor_type) * 0.01, 1) //Wall armor soak.
 		else
 			return FALSE
 
@@ -891,7 +958,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		current_bulletholes++
 
 	if(prob(30))
-		proj.visible_message("<span class='warning'>[src] is damaged by [proj]!</span>")
+		visible_message("<span class='warning'>[src] is damaged by [proj]!</span>", visible_message_flags = COMBAT_MESSAGE)
 	take_damage(damage)
 	return TRUE
 
@@ -927,7 +994,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 #define BULLET_MESSAGE_HUMAN_SHOOTER 1
 #define BULLET_MESSAGE_OTHER_SHOOTER 2
 
-/mob/living/proc/bullet_message(obj/projectile/proj, feedback_flags)
+/mob/living/proc/bullet_message(obj/projectile/proj, feedback_flags, damage)
 	if(!proj.firer)
 		log_message("SOMETHING?? shot [key_name(src)] with a [proj]", LOG_ATTACK)
 		return BULLET_MESSAGE_NO_SHOOTER
@@ -938,9 +1005,9 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	return BULLET_MESSAGE_OTHER_SHOOTER
 
 
-/mob/living/carbon/human/bullet_message(obj/projectile/proj, feedback_flags)
+/mob/living/carbon/human/bullet_message(obj/projectile/proj, feedback_flags, damage)
 	. = ..()
-	var/list/onlooker_feedback = list("[src] is hit by the [proj] in the [parse_zone(proj.def_zone)]!")
+	var/list/onlooker_feedback = list("[src] is hit by \the [proj] in the [parse_zone(proj.def_zone)]!")
 
 	var/list/victim_feedback = list()
 	if(proj.ammo.flags_ammo_behavior & AMMO_IS_SILENCED)
@@ -963,7 +1030,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		onlooker_feedback += "[p_they(TRUE)] burst into flames!"
 
 	visible_message("<span class='danger'>[onlooker_feedback.Join(" ")]</span>",
-	"<span class='highdanger'>[victim_feedback.Join(" ")]</span>", null, 4)
+	"<span class='highdanger'>[victim_feedback.Join(" ")]</span>", null, 4, visible_message_flags = COMBAT_MESSAGE)
 
 	if(feedback_flags & BULLET_FEEDBACK_SCREAM && stat == CONSCIOUS && !(species.species_flags & NO_PAIN))
 		emote("scream")
@@ -973,40 +1040,41 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	var/mob/living/carbon/human/firingMob = proj.firer
 	if(!firingMob.mind?.bypass_ff && !mind?.bypass_ff && firingMob.faction == faction)
 		var/turf/T = get_turf(firingMob)
+		firingMob.ff_check(damage, src)
 		log_ffattack("[key_name(firingMob)] shot [key_name(src)] with [proj] in [AREACOORD(T)].")
 		msg_admin_ff("[ADMIN_TPMONTY(firingMob)] shot [ADMIN_TPMONTY(src)] with [proj] in [ADMIN_VERBOSEJMP(T)].")
 		GLOB.round_statistics.total_bullet_hits_on_marines++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "total_bullet_hits_on_marines")
 
 
-/mob/living/carbon/xenomorph/bullet_message(obj/projectile/proj, feedback_flags)
+/mob/living/carbon/xenomorph/bullet_message(obj/projectile/proj, feedback_flags, damage)
 	. = ..()
-	var/onlooker_feedback = "[src] is hit by the [proj] in the [parse_zone(proj.def_zone)]!"
+	var/list/onlooker_feedback = list("[src] is hit by \the [proj] in the [parse_zone(proj.def_zone)]!")
 
-	var/victim_feedback
+	var/list/victim_feedback
 	if(proj.ammo.flags_ammo_behavior & AMMO_IS_SILENCED)
-		victim_feedback = "We've been shot in the [parse_zone(proj.def_zone)] by [proj]!"
+		victim_feedback = list("We've been shot in the [parse_zone(proj.def_zone)] by [proj]!")
 	else
-		victim_feedback = "We are hit by the [proj] in the [parse_zone(proj.def_zone)]!"
+		victim_feedback = list("We are hit by the [proj] in the [parse_zone(proj.def_zone)]!")
 
 	if(feedback_flags & BULLET_FEEDBACK_IMMUNE)
-		victim_feedback += " Our exoskeleton deflects it!"
-		onlooker_feedback += " [p_their(TRUE)] thick exoskeleton deflects it!"
+		victim_feedback += "Our exoskeleton deflects it!"
+		onlooker_feedback += "[p_their(TRUE)] thick exoskeleton deflects it!"
 	else if(feedback_flags & BULLET_FEEDBACK_SOAK)
-		victim_feedback += " Our exoskeleton absorbs it!"
-		onlooker_feedback += " [p_their(TRUE)] thick exoskeleton absorbs it!"
+		victim_feedback += "Our exoskeleton absorbs it!"
+		onlooker_feedback += "[p_their(TRUE)] thick exoskeleton absorbs it!"
 	else if(feedback_flags & BULLET_FEEDBACK_PEN)
-		victim_feedback += " Our exoskeleton was penetrated!"
+		victim_feedback += "Our exoskeleton was penetrated!"
 
 	if(feedback_flags & BULLET_FEEDBACK_FIRE)
-		victim_feedback += " We burst into flames!! Auuugh! Resist to put out the flames!"
+		victim_feedback += "We burst into flames!! Auuugh! Resist to put out the flames!"
 		onlooker_feedback += "[p_they(TRUE)] burst into flames!"
 
 	if(feedback_flags & BULLET_FEEDBACK_SCREAM && stat == CONSCIOUS)
 		emote(prob(70) ? "hiss" : "roar")
 
-	visible_message("<span class='danger'>[onlooker_feedback]</span>",
-	"<span class='xenodanger'>[victim_feedback]", null, 4)
+	visible_message("<span class='danger'>[onlooker_feedback.Join(" ")]</span>",
+	"<span class='xenodanger'>[victim_feedback.Join(" ")]", null, 4, visible_message_flags = COMBAT_MESSAGE)
 
 // Sundering procs
 /mob/living/proc/adjust_sunder(adjustment)

@@ -18,9 +18,9 @@
 
 /datum/surgery_step/head/peel
 	allowed_tools = list(
-	/obj/item/tool/surgery/retractor = 100,           \
-	/obj/item/tool/crowbar = 75,              \
-	/obj/item/tool/kitchen/utensil/fork = 50, \
+		/obj/item/tool/surgery/retractor = 100,
+		/obj/item/tool/crowbar = 75,
+		/obj/item/tool/kitchen/utensil/fork = 50,
 	)
 
 	min_duration = 30
@@ -49,9 +49,9 @@
 
 /datum/surgery_step/head/shape
 	allowed_tools = list(
-	/obj/item/tool/surgery/FixOVein = 100,         \
-	/obj/item/stack/cable_coil = 75,         \
-	/obj/item/assembly/mousetrap = 10
+		/obj/item/tool/surgery/FixOVein = 100,
+		/obj/item/stack/cable_coil = 75,
+		/obj/item/assembly/mousetrap = 10,
 	)
 
 	min_duration = 60
@@ -78,9 +78,9 @@
 
 /datum/surgery_step/head/suture
 	allowed_tools = list(
-	/obj/item/tool/surgery/hemostat = 100, \
-	/obj/item/stack/cable_coil = 60, \
-	/obj/item/tool/surgery/FixOVein = 80
+		/obj/item/tool/surgery/hemostat = 100,
+		/obj/item/stack/cable_coil = 60,
+		/obj/item/tool/surgery/FixOVein = 80,
 	)
 
 	min_duration = 60
@@ -107,10 +107,10 @@
 
 /datum/surgery_step/head/prepare
 	allowed_tools = list(
-	/obj/item/tool/surgery/cautery = 100,			\
-	/obj/item/clothing/mask/cigarette = 75,	\
-	/obj/item/tool/lighter = 50,    \
-	/obj/item/tool/weldingtool = 25
+		/obj/item/tool/surgery/cautery = 100,
+		/obj/item/clothing/mask/cigarette = 75,
+		/obj/item/tool/lighter = 50,
+		/obj/item/tool/weldingtool = 25,
 	)
 
 	min_duration = 60
@@ -126,7 +126,7 @@
 	user.visible_message("<span class='notice'>[user] has finished adjusting the area around [target]'s neck with \the [tool].</span>",	\
 	"<span class='notice'>You have finished adjusting the area around [target]'s neck with \the [tool].</span>")
 	affected.limb_replacement_stage = 0
-	affected.limb_status |= LIMB_AMPUTATED
+	affected.add_limb_flags(LIMB_AMPUTATED)
 	affected.setAmputatedTree()
 
 /datum/surgery_step/head/prepare/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)

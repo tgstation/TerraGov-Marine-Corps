@@ -12,7 +12,7 @@ They're all essentially identical when it comes to getting the job done.
 	var/bonus_overlay = null //Sprite pointer in ammo.dmi to an overlay to add to the gun, for extended mags, box mags, and so on
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
-	materials = list(/datum/material/metal = 1000)
+	materials = list(/datum/material/metal = 100)
 	throwforce = 2
 	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 2
@@ -69,14 +69,11 @@ They're all essentially identical when it comes to getting the job done.
 	. = ..()
 
 	if(istype(I, /obj/item/ammo_magazine))
-		var/obj/item/ammo_magazine/MG = I
-		if(!(MG.flags_magazine & AMMUNITION_HANDFUL)) //got a handful of bullets
-			return
 
 		if(!(flags_magazine & AMMUNITION_REFILLABLE)) //and a refillable magazine
 			return
 
-		var/obj/item/ammo_magazine/handful/H = I
+		var/obj/item/ammo_magazine/H = I
 		if(src != user.get_inactive_held_item()) //It has to be held.
 			to_chat(user, "Try holding [src] before you attempt to restock it.")
 			return
@@ -86,7 +83,6 @@ They're all essentially identical when it comes to getting the job done.
 			return
 
 		transfer_ammo(H, user, H.current_rounds) // This takes care of the rest.
-
 
 //Generic proc to transfer ammo between ammo mags. Can work for anything, mags, handfuls, etc.
 /obj/item/ammo_magazine/proc/transfer_ammo(obj/item/ammo_magazine/source, mob/user, transfer_amount = 1)
@@ -98,14 +94,29 @@ They're all essentially identical when it comes to getting the job done.
 		to_chat(user, "The rounds don't match up. Better not mix them up.")
 		return
 
-	var/S = min(transfer_amount, max_rounds - current_rounds)
+	if(!source.current_rounds)
+		to_chat(user, "<span class='warning'>\The [source] is empty.</span>")
+		return
+
+	//using handfuls; and filling internal mags has no delay.
+	if(!istype(source, /obj/item/ammo_magazine/handful) && !istype(src, /obj/item/ammo_magazine/internal) )
+		to_chat(user, "<span class='notice'>You start refilling [src] with [source].</span>")
+		if(!do_after(user, 1.5 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+			return
+
+	to_chat(user, "<span class='notice'>You refill [src] with [source].</span>")
+
+	var/S = clamp(min(transfer_amount, max_rounds - current_rounds), 0, source.current_rounds)
 	source.current_rounds -= S
 	current_rounds += S
+
 	if(source.current_rounds <= 0 && istype(source, /obj/item/ammo_magazine/handful)) //We want to delete it if it's a handful.
 		if(user)
 			user.temporarilyRemoveItemFromInventory(source)
 		qdel(source) //Dangerous. Can mean future procs break if they reference the source. Have to account for this.
-	else source.update_icon()
+	else
+		source.update_icon()
+
 	update_icon(S)
 	return S // We return the number transferred if it was successful.
 
@@ -139,10 +150,9 @@ They're all essentially identical when it comes to getting the job done.
 
 //~Art interjecting here for explosion when using flamer procs.
 /obj/item/ammo_magazine/flamer_fire_act()
-	switch(current_rounds)
-		if(0) return
-		if(1 to 100) explosion(loc,  -1, -1, 0, 2) //blow it up.
-		else explosion(loc,  -1, -1, 1, 2) //blow it up HARDER
+	if(!current_rounds)
+		return
+	explosion(loc, 0, 0, 1, 2, throw_range = FALSE, small_animation = TRUE) //blow it up.
 	qdel(src)
 
 //Magazines that actually cannot be removed from the firearm. Functionally the same as the regular thing, but they do have three extra vars.
@@ -225,6 +235,15 @@ If it is the same and the other stack isn't full, transfer an amount (default 1)
 	gun_type = new_gun_type
 	update_icon()
 
+// A pre-set version of the buckshot shells for the sake of pre-set marine jobs. Sorry Terra.
+// BUT IT HAS TO BE DONE.
+/obj/item/ammo_magazine/handful/buckshot
+	name = "handful of shotgun buckshot shells (12g)"
+	icon_state = "shotgun buckshot shell"
+	current_rounds = 5
+	default_ammo = /datum/ammo/bullet/shotgun/buckshot
+	caliber = "12g"
+
 //----------------------------------------------------------------//
 
 
@@ -304,8 +323,8 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	flags_equip_slot = ITEM_SLOT_BACK
 	var/base_icon_state = "big_ammo_box"
 	var/default_ammo = /datum/ammo/bullet/rifle
-	var/bullet_amount = 600
-	var/max_bullet_amount = 600
+	var/bullet_amount = 800
+	var/max_bullet_amount = 800
 	var/caliber = "10x24mm caseless"
 
 /obj/item/big_ammo_box/update_icon()
@@ -370,24 +389,22 @@ Turn() or Shift() as there is virtually no overhead. ~N
 
 //explosion when using flamer procs.
 /obj/item/big_ammo_box/flamer_fire_act()
-	switch(bullet_amount)
-		if(0) return
-		if(1 to 100) explosion(loc,  0, 0, 1, 2) //blow it up.
-		else explosion(loc,  0, 0, 2, 3) //blow it up HARDER
+	if(!bullet_amount)
+		return
+	explosion(loc, 0, 0, 1, 2, throw_range = FALSE, small_animation = TRUE) //blow it up.
 	qdel(src)
-
 
 
 //Deployable ammo box-Unnused until they have proper sprites for the guns
 /obj/item/ammobox
-	name = "Carbine Ammo Box"
+	name = "T-18 Carbine Ammo Box"
 	desc = "A large, deployable ammo box."
 	w_class = WEIGHT_CLASS_HUGE
 	icon = 'icons/obj/items/ammo.dmi'
 	icon_state = "ammobox"
-	var/magazine_amount = 10
-	var/max_magazine_amount = 10
-	var/max_magazine_rounds = 24
+	var/magazine_amount = 40
+	var/max_magazine_amount = 40
+	var/max_magazine_rounds = 32
 	var/ammo_type = /datum/ammo/bullet/rifle
 	var/magazine_type = /obj/item/ammo_magazine/rifle/standard_carbine
 	var/deployed = FALSE
@@ -425,7 +442,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	if(MG.default_ammo != ammo_type)
 		to_chat(user, "<span class='warning'>That's not the right kind of ammo.</span>")
 		return
-		
+
 	if(MG.type != magazine_type)
 		to_chat(user,"<span class='warning'>That's not the right kind of magazine.</span>")
 		return
@@ -488,8 +505,8 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	icon = 'icons/obj/items/ammo.dmi'
 	icon_state = "ammoboxslug"
 	w_class = WEIGHT_CLASS_HUGE
-	var/current_rounds = 100
-	var/max_rounds = 100
+	var/current_rounds = 200
+	var/max_rounds = 200
 	var/ammo_type = /datum/ammo/bullet/shotgun/slug
 	var/deployed = FALSE
 	var/caliber = "12g"
@@ -587,40 +604,72 @@ Turn() or Shift() as there is virtually no overhead. ~N
 /obj/item/big_ammo_box/smg
 	name = "big ammo box (10x20mm)"
 	caliber = "10x20mm"
-	icon_state = "big_ammo_box_m39"
-	base_icon_state = "big_ammo_box_m39"
+	icon_state = "big_ammo_box_m25"
+	base_icon_state = "big_ammo_box_m25"
 	default_ammo = /datum/ammo/bullet/smg
 
 
 /obj/item/ammobox/ap
-	name = "M41A1 AP Ammo Box"
+	name = "M412 AP Ammo Box"
 	icon_state = "ammoboxap"
 	ammo_type = /datum/ammo/bullet/rifle/ap
 	magazine_type = /obj/item/ammo_magazine/rifle/ap
 
 /obj/item/ammobox/ext
-	name = "M41A1 Extended Ammo Box"
+	name = "M412 Extended Ammo Box"
 	icon_state = "ammoboxext"
 	ammo_type = /datum/ammo/bullet/rifle
 	magazine_type = /obj/item/ammo_magazine/rifle/extended
 
 /obj/item/ammobox/standard_smg
-	name = "T-19 Ammo Box"
-	icon_state = "ammoboxm39"
+	name = "T-90 SMG Ammo Box"
+	desc = "A box filled with smg ammo and a loader for T-90 magazines"
+	icon_state = "ammoboxm25"
 	ammo_type = /datum/ammo/bullet/smg
 	magazine_type = /obj/item/ammo_magazine/smg/standard_smg
 
-/obj/item/ammobox/m39ap
-	name = "M39 AP Ammo Box"
-	icon_state = "ammoboxm39ap"
-	ammo_type = /datum/ammo/bullet/smg/ap
-	magazine_type = /obj/item/ammo_magazine/smg/m39/ap
-
-/obj/item/ammobox/m39ext
-	name = "M39 Extended Ammo Box"
-	icon_state = "ammoboxm39ext"
+/obj/item/ammobox/standard_machinepistol
+	name = "T-19 SMG Ammo Box"
+	desc = "A box filled with smg ammo and a loader for T-19 magazines"
+	icon_state = "ammoboxm25"
 	ammo_type = /datum/ammo/bullet/smg
-	magazine_type = /obj/item/ammo_magazine/smg/m39/extended
+	magazine_type = /obj/item/ammo_magazine/smg/standard_machinepistol
+
+/obj/item/ammobox/standard_pistol
+	name = "TP-14 Pistol Ammo Box"
+	icon_state = "ammoboxm4a3"
+	ammo_type = /datum/ammo/bullet/pistol
+	magazine_type = /obj/item/ammo_magazine/pistol/standard_pistol
+
+/obj/item/ammobox/standard_rifle
+	name = "T-12 AR Ammo Box"
+	icon_state = "ammoboxext"
+	ammo_type = /datum/ammo/bullet/rifle
+	magazine_type = /obj/item/ammo_magazine/rifle/standard_assaultrifle
+
+/obj/item/ammobox/standard_dmr
+	name = "T-64 DMR Ammo Box"
+	icon_state = "ammoboxap"
+	ammo_type = /datum/ammo/bullet/rifle/standard_dmr
+	magazine_type = /obj/item/ammo_magazine/rifle/standard_dmr
+
+/obj/item/ammobox/standard_lmg
+	name = "T-42 LMG Ammo Box"
+	icon_state = "ammoboxm25ext"
+	ammo_type = /datum/ammo/bullet/rifle
+	magazine_type = /obj/item/ammo_magazine/standard_lmg
+
+/obj/item/ammobox/m25ap
+	name = "M25 AP Ammo Box"
+	icon_state = "ammoboxm25ap"
+	ammo_type = /datum/ammo/bullet/smg/ap
+	magazine_type = /obj/item/ammo_magazine/smg/m25/ap
+
+/obj/item/ammobox/m25ext
+	name = "M25 Extended Ammo Box"
+	icon_state = "ammoboxm25ext"
+	ammo_type = /datum/ammo/bullet/smg
+	magazine_type = /obj/item/ammo_magazine/smg/m25/extended
 
 
 /obj/item/shotgunbox/buckshot

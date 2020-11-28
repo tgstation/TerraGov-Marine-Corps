@@ -3,6 +3,8 @@
 	desc = "All slimy and yucky."
 	icon = 'icons/Xeno/1x1_Xenos.dmi'
 	icon_state = "Larva Dead"
+	var/grinder_datum = /datum/reagent/consumable/larvajelly //good ol cookin
+	var/grinder_amount = 5
 	var/mob/living/affected_mob
 	var/stage = 0 //The stage of the bursts, with worsening effects.
 	var/counter = 0 //How developed the embryo is, if it ages up highly enough it has a chance to burst.
@@ -13,16 +15,15 @@
 
 /obj/item/alien_embryo/Initialize()
 	. = ..()
-	if(isliving(loc))
-		affected_mob = loc
-		affected_mob.status_flags |= XENO_HOST
-		log_combat(affected_mob, null, "been infected with an embryo")
-		START_PROCESSING(SSobj, src)
-		if(iscarbon(affected_mob))
-			var/mob/living/carbon/C = affected_mob
-			C.med_hud_set_status()
-	else
-		qdel(src)
+	if(!isliving(loc))
+		return
+	affected_mob = loc
+	affected_mob.status_flags |= XENO_HOST
+	log_combat(affected_mob, null, "been infected with an embryo")
+	START_PROCESSING(SSobj, src)
+	if(iscarbon(affected_mob))
+		var/mob/living/carbon/C = affected_mob
+		C.med_hud_set_status()
 
 
 /obj/item/alien_embryo/Destroy()
@@ -74,13 +75,18 @@
 
 /obj/item/alien_embryo/proc/process_growth()
 
-	if(CHECK_BITFIELD(affected_mob.restrained_flags, RESTRAINED_XENO_NEST)) //Hosts who are nested in resin nests provide an ideal setting, larva grows faster.
-		counter += 1 + max(0, (0.03 * affected_mob.health)) //Up to +300% faster, depending on the health of the host.
-	else if(stage <= 4)
-		counter += 2 //Free burst time in ~10 min.
+	if(stage <= 4)
+		counter += 1.5 //Free burst time in ~15 min.
 
 	if(affected_mob.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_growthtoxin))
-		counter += 2 //Accelerates larval growth somewhat. You don't want this stuff in your body. Larva hits Stage 5 in exactly 5 minutes (lower if healthy and nested), assuming the victim has growth toxin for the full duration.
+		counter += 2.5 //Accelerates larval growth somewhat. You don't want this stuff in your body.
+
+	if(affected_mob.reagents.get_reagent_amount(/datum/reagent/consumable/larvajelly))
+		counter += 10 //Accelerates larval growth massively. Voluntarily drinking larval jelly while infected is straight-up suicide. Larva hits Stage 5 in exactly ONE minute.
+
+	if(affected_mob.reagents.get_reagent_amount(/datum/reagent/medicine/larvaway))
+		counter -= 1 //Halves larval growth progress, for some tradeoffs. Larval toxin purges this
+
 
 	if(stage < 5 && counter >= 120)
 		counter = 0
@@ -184,8 +190,8 @@
 
 	victim.update_burst()
 
-	if(istype(victim.loc, /obj/vehicle/tank))
-		var/obj/vehicle/tank/vehicle = victim.loc
+	if(istype(victim.loc, /obj/vehicle/armored))
+		var/obj/vehicle/armored/vehicle = victim.loc
 		vehicle.exit_tank(src)
 	else
 		forceMove(get_turf(victim)) //moved to the turf directly so we don't get stuck inside a cryopod or another mob container.
@@ -205,7 +211,6 @@
 			H.internal_organs_by_name -= i
 			H.internal_organs -= O
 
-	victim.death() // Certain species were still surviving bursting, DEFINITELY kill them this time.
 	victim.chestburst = 2
 	victim.update_burst()
 	log_combat(src, null, "chestbursted as a larva.")
@@ -213,6 +218,9 @@
 
 	if((locate(/obj/structure/bed/nest) in loc) && hive.living_xeno_queen?.z == loc.z)
 		burrow()
+
+	victim.death()
+
 
 /mob/living/proc/emote_burstscream()
 	return

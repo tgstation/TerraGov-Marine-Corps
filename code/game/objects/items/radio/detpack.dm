@@ -162,7 +162,7 @@
 
 	else if(href_list["code"])
 		code += text2num(href_list["code"])
-		code = CLAMP(round(code), 1, 100)
+		code = clamp(round(code), 1, 100)
 
 	else if(href_list["det_mode"])
 		det_mode = !det_mode
@@ -174,7 +174,7 @@
 
 	else if(href_list["timer"])
 		timer += text2num(href_list["timer"])
-		timer = CLAMP(round(timer), DETPACK_TIMER_MIN, DETPACK_TIMER_MAX)
+		timer = clamp(round(timer), DETPACK_TIMER_MIN, DETPACK_TIMER_MAX)
 
 	updateUsrDialog()
 
@@ -232,14 +232,8 @@
 		return FALSE
 	if(istype(target, /obj/item) || istype(target, /mob))
 		return FALSE
-	if(isobj(target))
-		var/obj/O = target
-		if(CHECK_BITFIELD(O.resistance_flags, INDESTRUCTIBLE))
-			return FALSE
-	if(iswallturf(target))
-		var/turf/closed/wall/W = target
-		if(W.hull)
-			return FALSE
+	if(target.resistance_flags & INDESTRUCTIBLE)
+		return FALSE
 	if(istype(target, /obj/structure/window))
 		var/obj/structure/window/W = target
 		if(!W.damageable)
@@ -334,9 +328,9 @@
 	playsound(src.loc, 'sound/weapons/ring.ogg', 200, FALSE)
 	boom = TRUE
 	if(det_mode == TRUE) //If we're on demolition mode, big boom.
-		explosion(get_turf(plant_target), 2, 4, 5, 6)
+		explosion(plant_target, 3, 5, 6, 6)
 	else //if we're not, focused boom.
-		explosion(get_turf(plant_target), 1, 1, 2, 3)
+		explosion(plant_target, 2, 2, 3, 3, throw_range = FALSE)
 	if(plant_target)
 		if(isobj(plant_target))
 			plant_target = null

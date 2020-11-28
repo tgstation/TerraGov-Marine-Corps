@@ -84,7 +84,7 @@
 
 /mob/living/simple_animal/updatehealth()
 	. = ..()
-	health = CLAMP(health, 0, maxHealth)
+	health = clamp(health, 0, maxHealth)
 
 
 /mob/living/simple_animal/update_stat()
@@ -130,22 +130,25 @@
 	return
 
 
-/mob/living/simple_animal/death(gibbed)
-	. = ..()
-	if(!gibbed)
-		if(deathmessage || !del_on_death)
-			emote("deathgasp")
-	if(del_on_death)
-		. = ..()
-		//Prevent infinite loops if the mob Destroy() is overridden in such
-		//a manner as to cause a call to death() again
-		del_on_death = FALSE
-		qdel(src)
-	else
-		health = 0
-		icon_state = icon_dead
-		density = FALSE
+/mob/living/simple_animal/death(gibbing, deathmessage, silent)
+	if(stat == DEAD)
 		return ..()
+	if(!silent && !gibbing && !del_on_death && !deathmessage && src.deathmessage)
+		emote("deathgasp")
+		silent = TRUE //No need to for the parent to deathmessage again.
+	return ..()
+
+
+/mob/living/simple_animal/on_death()
+	health = 0
+	icon_state = icon_dead
+	density = FALSE
+	to_chat(src,"<b><span class='deadsay'><p style='font-size:1.5em'><big>You have perished.</big></p></span></b>")
+
+	. = ..()
+
+	if(del_on_death && !QDELETED(src))
+		qdel(src)
 
 
 /mob/living/simple_animal/gib_animation()
@@ -240,16 +243,17 @@
 
 
 /mob/living/simple_animal/ex_act(severity)
-	flash_eyes()
+	flash_act()
 
 	switch(severity)
-		if(1)
-			adjustBruteLoss(500)
+		if(EXPLODE_DEVASTATE)
 			gib()
-		if(2)
+		if(EXPLODE_HEAVY)
 			adjustBruteLoss(60)
-		if(3)
+			UPDATEHEALTH(src)
+		if(EXPLODE_LIGHT)
 			adjustBruteLoss(30)
+			UPDATEHEALTH(src)
 
 
 /mob/living/simple_animal/get_idcard(hand_first)
@@ -379,7 +383,7 @@
 /mob/living/simple_animal/proc/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
 	if(!forced && (status_flags & GODMODE))
 		return FALSE
-	bruteloss = round(CLAMP(bruteloss + amount, 0, maxHealth), 0.1)
+	bruteloss = round(clamp(bruteloss + amount, 0, maxHealth), 0.1)
 	if(updating_health)
 		updatehealth()
 	return amount

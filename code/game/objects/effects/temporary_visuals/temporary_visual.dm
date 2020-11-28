@@ -1,9 +1,10 @@
+/// Temporary visual effects
 /obj/effect/temp_visual
 	icon_state = "nothing"
 	anchored = TRUE
 	layer = ABOVE_MOB_LAYER
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	var/duration = 10
+	var/duration = 1 SECONDS
 	var/randomdir = TRUE
 	var/timerid
 

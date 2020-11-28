@@ -17,7 +17,6 @@
 
 /obj/item/toy
 	icon = 'icons/obj/items/toy.dmi'
-	throwforce = 0
 	throw_speed = 4
 	throw_range = 20
 	force = 0
@@ -94,7 +93,6 @@
 /obj/item/toy/syndicateballoon
 	name = "syndicate balloon"
 	desc = "There is a tag on the back that reads \"FUK NT!11!\"."
-	throwforce = 0
 	throw_speed = 4
 	throw_range = 20
 	force = 0
@@ -164,7 +162,8 @@
 		playsound(src, 'sound/effects/snap.ogg', 25, 1)
 		qdel(src)
 
-/obj/item/toy/snappop/Crossed(H as mob|obj)
+/obj/item/toy/snappop/Crossed(atom/movable/H)
+	. = ..()
 	if((ishuman(H))) //i guess carp and shit shouldn't set them off
 		var/mob/living/carbon/M = H
 		if(M.m_intent == MOVE_INTENT_RUN)
@@ -396,7 +395,6 @@
 	anchored = FALSE
 	w_class = WEIGHT_CLASS_SMALL
 	force = 0.0
-	throwforce = 0.0
 	throw_speed = 1
 	throw_range = 20
 

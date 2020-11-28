@@ -89,7 +89,7 @@
 			if(check_other_rights(C, R_ADMIN, FALSE))
 				if(!check_rights(R_ADMIN, FALSE) && C.holder.fakekey)
 					continue
-				msg += "\t[C] - [C.holder.rank]"
+				msg += "\t <a href='?_src_=holder;[HrefToken()];playerpanel=[REF(C.mob)]'>[C]</a> - [C.holder.rank]"
 
 				if(C.holder.fakekey)
 					msg += " as ([C.holder.fakekey])"

@@ -1,7 +1,8 @@
 
-//Gun attachable items code. Lets you add various effects to firearms.
-//Some attachables are hardcoded in the projectile firing system, like grenade launchers, flamethrowers.
-/*
+/** Gun attachable items code. Lets you add various effects to firearms.
+
+Some attachables are hardcoded in the projectile firing system, like grenade launchers, flamethrowers.
+
 When you are adding new guns into the attachment list, or even old guns, make sure that said guns
 properly accept overlays. You can find the proper offsets in the individual gun dms, so make sure
 you set them right. It's a pain to go back to find which guns are set incorrectly.
@@ -13,14 +14,10 @@ Underrail attachments should just fit snugly, that's about it. Stocks are pretty
 All attachment offsets are now in a list, including stocks. Guns that don't take attachments can keep the list null.
 ~N
 
-Defined in conflicts.dm of the #defines folder.
-#define ATTACH_REMOVABLE	1
-#define ATTACH_ACTIVATION	2
-#define ATTACH_PROJECTILE	4
-#define ATTACH_RELOADABLE	8
-#define ATTACH_WEAPON		16
-#define ATTACH_UTILITY		32
-*/
+Anything that isn't used as the gun fires should be a flat number, never a percentange. It screws with the calculations,
+and can mean that the order you attach something/detach something will matter in the final number. It's also completely
+inaccurate. Don't worry if force is ever negative, it won't runtime.
+  */
 
 /obj/item/attachable
 	name = "attachable item"
@@ -28,66 +25,100 @@ Defined in conflicts.dm of the #defines folder.
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = null
 	item_state = null
-	var/attach_icon //the sprite to show when the attachment is attached when we want it different from the icon_state.
-	var/pixel_shift_x = 16 //Determines the amount of pixels to move the icon state for the overlay.
-	var/pixel_shift_y = 16 //Uses the bottom left corner of the item.
+	///the sprite to show when the attachment is attached when we want it different from the icon_state.
+	var/attach_icon
+	///Determines the amount of pixels to move the icon state for the overlay. in the x direction
+	var/pixel_shift_x = 16
+	///Determines the amount of pixels to move the icon state for the overlay. in the y direction
+	var/pixel_shift_y = 16
 
 	flags_atom = CONDUCT
-	materials = list(/datum/material/metal = 1000)
+	materials = list(/datum/material/metal = 100)
 	w_class = WEIGHT_CLASS_SMALL
 	force = 1.0
-	var/slot = null //"muzzle", "rail", "under", "stock"
+	///"muzzle", "rail", "under", "stock" the particular 'slot' the attachment can attach to. must always be a singular slot.
+	var/slot = null
 
-	/*
-	Anything that isn't used as the gun fires should be a flat number, never a percentange. It screws with the calculations,
-	and can mean that the order you attach something/detach something will matter in the final number. It's also completely
-	inaccurate. Don't worry if force is ever negative, it won't runtime.
-	*/
-	//These bonuses are applied only as the gun fires a projectile.
+	///Modifier to firing accuracy, works off a multiplier.
+	var/accuracy_mod 	= 0
+	///Modifier to firing accuracy but for when scoped in, works off a multiplier.
+	var/scoped_accuracy_mod = 0
+	///Modifier to firing accuracy but for when onehanded.
+	var/accuracy_unwielded_mod = 0
+	///Modifer to the damage mult, works off a multiplier.
+	var/damage_mod 		= 0
+	///Modifier to damage falloff, works off a multiplier.
+	var/damage_falloff_mod = 0
+	///Flat number that adjusts the amount of mêlée force the weapon this is attached to has.
+	var/melee_mod 		= 0
+	///Increases or decreases scatter chance.
+	var/scatter_mod 	= 0
+	///Increases or decreases scatter chance but for onehanded firing.
+	var/scatter_unwielded_mod = 0
+	///If positive, adds recoil, if negative, lowers it. Recoil can't go below 0.
+	var/recoil_mod 		= 0
+	///If positive, adds recoil, if negative, lowers it. but for onehanded firing. Recoil can't go below 0.
+	var/recoil_unwielded_mod = 0
+	///Modifier to scatter from wielded burst fire, works off a multiplier.
+	var/burst_scatter_mod = 0
+	///Adds silenced to weapon. changing its fire sound, muzzle flash, and volume. TRUE or FALSE
+	var/silence_mod 	= FALSE
+	///Adds an x-brightness flashlight to the weapon, which can be toggled on and off.
+	var/light_mod 		= 0
+	///Changes firing delay. Cannot go below 0.
+	var/delay_mod 		= 0
+	///Changes burst firing delay. Cannot go below 0.
+	var/burst_delay_mod = 0
+	///Changes amount of shots in a burst
+	var/burst_mod 		= 0
+	///Increases the weight class.
+	var/size_mod 		= 0
+	///Changes the slowdown amount when wielding a weapon by this value.
+	var/aim_speed_mod	= 0
+	///How long ADS takes (time before firing)
+	var/wield_delay_mod	= 0
+	///Changes the speed of projectiles fired
+	var/attach_shell_speed_mod = 0
+	///Modifies accuracy/scatter penalty when firing onehanded while moving.
+	var/movement_acc_penalty_mod = 0
+	///How long in deciseconds it takes to attach a weapon with level 1 firearms training. Default is 30 seconds.
+	var/attach_delay = 30
+	///How long in deciseconds it takes to detach a weapon with level 1 firearms training. Default is 30 seconds.
+	var/detach_delay = 30
+	///how long in deciseconds this adds to your base fire delay.
+	var/fire_delay_mod = 0
 
-	//These are flat bonuses applied and are passive, though they may be applied at different points.
-	var/accuracy_mod 	= 0 //Modifier to firing accuracy, works off a multiplier.
-	var/accuracy_unwielded_mod = 0 //same as above but for onehanded.
-	var/damage_mod 		= 0 //Modifer to the damage mult, works off a multiplier.
-	var/damage_falloff_mod = 0 //Modifier to damage falloff, works off a multiplier.
-	var/melee_mod 		= 0 //Changing to a flat number so this actually doesn't screw up the calculations.
-	var/scatter_mod 	= 0 //Increases or decreases scatter chance.
-	var/scatter_unwielded_mod = 0 //same as above but for onehanded firing.
-	var/recoil_mod 		= 0 //If positive, adds recoil, if negative, lowers it. Recoil can't go below 0.
-	var/recoil_unwielded_mod = 0 //same as above but for onehanded firing.
-	var/burst_scatter_mod = 0 //Modifier to scatter from wielded burst fire, works off a multiplier.
-	var/silence_mod 	= 0 //Adds silenced to weapon
-	var/light_mod 		= 0 //Adds an x-brightness flashlight to the weapon, which can be toggled on and off.
-	var/delay_mod 		= 0 //Changes firing delay. Cannot go below 0.
-	var/burst_delay_mod = 0 //Changes burst firing delay. Cannot go below 0.
-	var/burst_mod 		= 0 //Changes burst rate. 1 == 0.
-	var/size_mod 		= 0 //Increases the weight class.
-	var/aim_speed_mod	= 0 //Changes the aiming speed slowdown of the wearer by this value.
-	var/wield_delay_mod	= 0 //How long ADS takes (time before firing)
-	var/attach_shell_speed_mod = 0 //Changes the speed of projectiles fired
-	var/movement_acc_penalty_mod = 0 //Modifies accuracy/scatter penalty when firing onehanded while moving.
-	var/attach_delay = 30 //How long in deciseconds it takes to attach a weapon with level 1 firearms training. Default is 30 seconds.
-	var/detach_delay = 30 //How long in deciseconds it takes to detach a weapon with level 1 firearms training. Default is 30 seconds.
-	var/fire_delay_mod = 0 //how long in deciseconds this adds to your base fire delay.
+	///the delay between shots, for attachments that fire stuff
+	var/attachment_firing_delay = 0
 
-	var/attachment_firing_delay = 0 //the delay between shots, for attachments that fires stuff
-
+	///The specific sound played when activating this attachment.
 	var/activation_sound = 'sound/machines/click.ogg'
 
+	///various yes no flags associated with attachments. See defines for these: [ATTACH_REMOVABLE]
 	var/flags_attach_features = ATTACH_REMOVABLE
 
-	var/bipod_deployed = FALSE //only used by bipod
-	var/current_rounds 	= 0 //How much it has.
-	var/max_rounds 		= 0 //How much ammo it can store
+	///only used by bipod, denotes whether the bipod is currently deployed
+	var/bipod_deployed = FALSE
+	///How much ammo it currently has.
+	var/current_rounds 	= 0
+	///How much ammo it can store
+	var/max_rounds 		= 0
+	///Determines # of tiles distance the attachable can fire, if it's not a projectile.
 	var/max_range		= 0
 
+	///what ability to give the user when attached to a weapon they are holding.
 	var/attachment_action_type
-	var/scope_zoom_mod = FALSE //codex
+	///used for the codex to denote if a weapon has the ability to zoom in or not.
+	var/scope_zoom_mod = FALSE
 
-	var/ammo_mod = null			//what ammo the gun could also fire, different lasers usually.
-	var/charge_mod = 0		//how much charge difference it now costs to shoot. negative means more shots per mag.
-	var/gun_firemode_list_mod = null //what firemodes this attachment allows/adds.
+	///what ammo the gun could also fire, different lasers usually.
+	var/ammo_mod = null
+	///how much charge difference it now costs to shoot. negative means more shots per mag.
+	var/charge_mod = 0
+	///what firemodes this attachment allows/adds.
+	var/gun_firemode_list_mod = null
 
+	///what gun this attachment is currently attached to, if any.
 	var/obj/item/weapon/gun/master_gun
 
 
@@ -275,26 +306,19 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/suppressor
 	name = "suppressor"
-	desc = "A small tube with exhaust ports to expel noise and gas.\nDoes not completely silence a weapon, but does make it much quieter and a little more accurate and stable at the cost of slightly reduced damage and bullet speed."
+	desc = "A small tube with exhaust ports to expel noise and gas.\nDoes not completely silence a weapon, but does make it much quieter and a little more accurate and stable at the cost of bullet speed."
 	icon_state = "suppressor"
 	slot = "muzzle"
-	silence_mod = 1
+	silence_mod = TRUE
 	pixel_shift_y = 16
 	attach_icon = "suppressor_a"
 	attach_shell_speed_mod = -1
 	accuracy_mod = 0.1
-	damage_mod = -0.05
 	recoil_mod = -2
 	scatter_mod = -5
 	recoil_unwielded_mod = -3
 	scatter_unwielded_mod = -5
 	damage_falloff_mod = 0.1
-
-
-/obj/item/attachable/suppressor/Initialize()
-	. = ..()
-	attach_icon = pick("suppressor_a","suppressor2_a")
-
 
 /obj/item/attachable/suppressor/unremovable
 	flags_attach_features = NONE
@@ -341,6 +365,32 @@ Defined in conflicts.dm of the #defines folder.
 			F.forceMove(loc)
 		qdel(src) //Delete da old bayonet
 
+/obj/item/attachable/bayonetknife
+	name = "M-22 bayonet"
+	desc = "A sharp knife that is the standard issue combat knife of the TerraGov Marine Corps can be attached to a variety of weapons at will or used as a standard knife."
+	icon_state = "bayonetknife"
+	item_state = "combat_knife"
+	attach_icon = "bayonetknife_a"
+	force = 25
+	throwforce = 20
+	throw_speed = 3
+	throw_range = 6
+	attack_speed = 7
+	attach_delay = 10 //Bayonets attach/detach quickly.
+	detach_delay = 10
+	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	melee_mod = 25
+	slot = "muzzle"
+	pixel_shift_x = 14 //Below the muzzle.
+	pixel_shift_y = 18
+	accuracy_mod = -0.05
+	accuracy_unwielded_mod = -0.1
+	size_mod = 1
+
+/obj/item/attachable/bayonetknife/Initialize()
+	. = ..()
+	AddElement(/datum/element/scalping)
+
 /obj/item/attachable/extended_barrel
 	name = "extended barrel"
 	desc = "A lengthened barrel allows for lessened scatter, greater accuracy and muzzle velocity due to increased stabilization and shockwave exposure."
@@ -360,10 +410,9 @@ Defined in conflicts.dm of the #defines folder.
 	slot = "muzzle"
 	icon_state = "hbarrel"
 	attach_icon = "hbarrel_a"
-	accuracy_mod = -0.30
-	damage_mod = 0.30
-	delay_mod = 3
-	scatter_mod = 5
+	accuracy_mod = -0.6
+	damage_mod = 0.1
+	scatter_mod = 25
 	accuracy_unwielded_mod = -0.3
 
 
@@ -412,6 +461,17 @@ Defined in conflicts.dm of the #defines folder.
 	flags_attach_features = NONE
 	accuracy_mod = 0.15
 	scatter_mod = -15
+
+/obj/item/attachable/autosniperbarrel
+	name = "auto sniper barrel"
+	icon_state = "t81barrel"
+	desc = "A heavy barrel. CANNOT BE REMOVED."
+	slot = "under"
+	flags_attach_features = NONE
+	pixel_shift_x = 7
+	pixel_shift_y = 14
+	accuracy_mod = 0
+	scatter_mod = -5
 
 /obj/item/attachable/smartbarrel
 	name = "smartgun barrel"
@@ -502,6 +562,13 @@ Defined in conflicts.dm of the #defines folder.
 	icon_state = "t12barrel"
 	flags_attach_features = NONE
 
+/obj/item/attachable/t29barrel
+	name = "T-29 barrel"
+	icon_state = "t29barrel"
+	desc = "A heavy barrel. CANNOT BE REMOVED."
+	slot = "muzzle"
+	flags_attach_features = NONE
+
 ///////////// Rail attachments ////////////////////////
 
 /obj/item/attachable/reddot
@@ -530,7 +597,7 @@ Defined in conflicts.dm of the #defines folder.
 	desc = "A simple flashlight used for mounting on a firearm. \nHas no drawbacks, but isn't particuraly useful outside of providing a light source."
 	icon_state = "flashlight"
 	attach_icon = "flashlight_a"
-	light_mod = 8
+	light_mod = 6
 	slot = "rail"
 	materials = list(/datum/material/metal = 100, /datum/material/glass = 20)
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION
@@ -547,11 +614,15 @@ Defined in conflicts.dm of the #defines folder.
 	if(master_gun.flags_gun_features & GUN_FLASHLIGHT_ON)
 		icon_state = "flashlight"
 		attach_icon = "flashlight_a"
-		master_gun.set_light(0)
+		master_gun.set_light_range(0)
+		master_gun.set_light_power(0)
+		master_gun.set_light_on(FALSE)
 	else
 		icon_state = "flashlight-on"
 		attach_icon = "flashlight_a-on"
-		master_gun.set_light(light_mod)
+		master_gun.set_light_range(light_mod)
+		master_gun.set_light_power(3)
+		master_gun.set_light_on(TRUE)
 
 	master_gun.flags_gun_features ^= GUN_FLASHLIGHT_ON
 
@@ -612,21 +683,52 @@ Defined in conflicts.dm of the #defines folder.
 	accuracy_mod = 0.1
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION
 	attachment_action_type = /datum/action/item_action/toggle
-	scope_zoom_mod = TRUE
+	scope_zoom_mod = TRUE // codex
 	accuracy_unwielded_mod = -0.05
+	///how many tiles to shift the users viewpoint
 	var/zoom_offset = 11
+	///how many tiles to increase the users view box
 	var/zoom_viewsize = 12
-	var/zoom_accuracy = SCOPE_RAIL
+	scoped_accuracy_mod = SCOPE_RAIL
+	///boolean as to whether a scope can apply nightvision
+	var/has_nightvision = FALSE
+	///boolean as to whether the attachment is currently giving nightvision
+	var/active_nightvision = FALSE
 
+
+/obj/item/attachable/scope/marine
+	name = "T-47 rail scope"
+	desc = "A marine standard mounted zoom sight scope. Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
+	icon_state = "marinescope"
+	attach_icon = "marinescope_a"
+
+/obj/item/attachable/scope/nightvision
+	name = "T-46 Night vision scope"
+	icon_state = "nvscope"
+	attach_icon = "nvscope_a"
+	desc = "A rail-mounted night vision scope developed by Roh-Easy industries for the TGMC. Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
+	has_nightvision = TRUE
 
 /obj/item/attachable/scope/unremovable
 	flags_attach_features = ATTACH_ACTIVATION
 
+/obj/item/attachable/scope/unremovable/tl127
+	name = "T-45 rail scope"
+	aim_speed_mod = 0
+	wield_delay_mod = 0
+	attach_icon = "none"
+	desc = "A rail mounted zoom sight scope specialized for the T-127 sniper rifle. Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
+	flags_attach_features = ATTACH_ACTIVATION
 
 /obj/item/attachable/scope/activate_attachment(mob/living/carbon/user, turn_off)
 	if(turn_off)
 		if(master_gun.zoom)
 			master_gun.zoom(user, zoom_offset, zoom_viewsize)
+		if(has_nightvision)
+			user.update_sight()
+			user.reset_perspective(user)
+			active_nightvision = FALSE
+			UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
 		return TRUE
 
 	if(!master_gun.zoom && !(master_gun.flags_item & WIELDED))
@@ -635,8 +737,25 @@ Defined in conflicts.dm of the #defines folder.
 		return FALSE
 	else
 		master_gun.zoom(user, zoom_offset, zoom_viewsize)
+		if(has_nightvision)
+			if(active_nightvision)
+				user.update_sight()
+				user.reset_perspective(user)
+				active_nightvision = FALSE
+				UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
+			else
+				update_remote_sight(user)
+				user.reset_perspective(src)
+				active_nightvision = TRUE
+				RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/activate_attachment)
 	return TRUE
 
+/obj/item/attachable/scope/update_remote_sight(mob/living/user)
+	. = ..()
+	user.see_in_dark = 32
+	user.lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
+	user.sync_lighting_plane_alpha()
+	return TRUE
 
 /obj/item/attachable/scope/mini
 	name = "mini rail scope"
@@ -650,21 +769,22 @@ Defined in conflicts.dm of the #defines folder.
 	aim_speed_mod = 0.04 SECONDS
 	zoom_offset = 5
 	zoom_viewsize = 7
-	zoom_accuracy = SCOPE_RAIL_MINI
+	scoped_accuracy_mod = SCOPE_RAIL_MINI
 	scope_zoom_mod = TRUE
+	has_nightvision = FALSE
 
 /obj/item/attachable/scope/mini/m4ra
-	name = "M4RA rail scope"
+	name = "T-45 rail scope"
 	aim_speed_mod = 0
 	attach_icon = "none"
-	desc = "A rail mounted zoom sight scope specialized for the M4RA Battle Rifle . Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
+	desc = "A rail mounted zoom sight scope specialized for the T-45 Battle Rifle . Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
 	flags_attach_features = ATTACH_ACTIVATION
 
 /obj/item/attachable/scope/m42a
 	name = "m42a rail scope"
 	attach_icon = "none"
 	desc = "A rail mounted zoom sight scope specialized for the M42A Sniper Rifle . Allows zoom by activating the attachment. Can activate its targeting laser while zoomed to take aim for increased damage and penetration. Use F12 if your HUD doesn't come back."
-	zoom_accuracy = SCOPE_RAIL_SNIPER
+	scoped_accuracy_mod = SCOPE_RAIL_SNIPER
 	flags_attach_features = ATTACH_ACTIVATION
 
 /obj/item/attachable/scope/slavic
@@ -675,6 +795,12 @@ Defined in conflicts.dm of the #defines folder.
 	icon_state = "pmcscope"
 	attach_icon = "pmcscope"
 	flags_attach_features = ATTACH_ACTIVATION
+
+/obj/item/attachable/scope/mini/dmr
+	name = "T-37 mini rail scope"
+	icon_state = "t37"
+	attach_icon = "t37_a"
+
 
 //////////// Stock attachments ////////////////////////////
 
@@ -691,8 +817,8 @@ Defined in conflicts.dm of the #defines folder.
 	pixel_shift_y = 14
 
 /obj/item/attachable/stock/shotgun
-	name = "\improper M37 wooden stock"
-	desc = "A non-standard heavy wooden stock for the M37 Shotgun. Less quick and more cumbersome than the standard issue stakeout, but reduces recoil and improves accuracy. Allegedly makes a pretty good club in a fight too."
+	name = "\improper shotgun stock"
+	desc = "A non-standard heavy wooden stock for the old V10 shotgun. Less quick and more cumbersome than the standard issue stakeout, but reduces recoil and improves accuracy. Allegedly makes a pretty good club in a fight too."
 	slot = "stock"
 	wield_delay_mod = 0.3 SECONDS
 	icon_state = "stock"
@@ -746,7 +872,7 @@ Defined in conflicts.dm of the #defines folder.
 
 
 /obj/item/attachable/stock/m16
-	name = "M16 Composite Stock"
+	name = "M16 composite stock"
 	desc = "A composite stock securely fit to the M16 platform. Disassembly required to remove, not recommended."
 	icon_state = "m16stock"
 	wield_delay_mod = 0.5 SECONDS
@@ -756,7 +882,7 @@ Defined in conflicts.dm of the #defines folder.
 
 
 /obj/item/attachable/stock/ak47
-	name = "AK-47 Wooden Stock"
+	name = "AK-47 wooden stock"
 	desc = "A metallic stock with a wooden paint coating, made to fit the AK-47 replica."
 	icon_state = "ak47stock"
 	wield_delay_mod = 0.4 SECONDS
@@ -766,10 +892,10 @@ Defined in conflicts.dm of the #defines folder.
 
 
 /obj/item/attachable/stock/rifle
-	name = "\improper M41A1 skeleton stock"
-	desc = "A rare stock distributed in small numbers to TGMC forces. Compatible with the M41A1, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl."
+	name = "\improper M412 solid stock"
+	desc = "A common stock used by the M412 pulse rifle series, used for long rifles. This stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl."
 	slot = "stock"
-	wield_delay_mod = 0.6 SECONDS
+	wield_delay_mod = 0.2 SECONDS
 	melee_mod = 5
 	size_mod = 1
 	icon_state = "riflestock"
@@ -781,31 +907,27 @@ Defined in conflicts.dm of the #defines folder.
 	scatter_mod = -10
 	movement_acc_penalty_mod = 0.1
 
+/obj/item/attachable/stock/rifle/irremoveable
+	name = "\improper M412 solid stock"
+	wield_delay_mod = 0 SECONDS
+	pixel_shift_x = 32
+	pixel_shift_y = 13
+	flags_attach_features = NONE
+	accuracy_mod = 0
+	recoil_mod = 0
+	melee_mod = 0
+	scatter_mod = 0
+	movement_acc_penalty_mod = 0
+
+
 /obj/item/attachable/stock/rifle/marksman
-	name = "\improper M4RA marksman stock"
+	name = "\improper T-45 marksman stock"
 	icon_state = "m4markstock"
 	attach_icon = "m4markstock"
 	flags_attach_features = NONE
 
-
-/obj/item/attachable/stock/smg
-	name = "M39 submachinegun stock"
-	desc = "A rare stock distributed in small numbers to TGMC forces. Compatible with the M39, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl."
-	slot = "stock"
-	wield_delay_mod = 0.4 SECONDS
-	melee_mod = 5
-	size_mod = 1
-	icon_state = "smgstock"
-	attach_icon = "smgstock_a"
-	pixel_shift_x = 39
-	pixel_shift_y = 11
-	accuracy_mod = 0.15
-	recoil_mod = -3
-	scatter_mod = -20
-	movement_acc_penalty_mod = 0.1
-
 /obj/item/attachable/stock/sx16
-	name = "SX-16 Stock"
+	name = "\improper SX-16 stock"
 	desc = "The standard stock for the SX-16. Can be removed to make the gun smaller and easier to wield."
 	icon_state = "sx16stock"
 	wield_delay_mod = 0.4 SECONDS
@@ -816,7 +938,7 @@ Defined in conflicts.dm of the #defines folder.
 	movement_acc_penalty_mod = 0.1
 
 /obj/item/attachable/stock/tx15
-	name = "TX-15 Stock"
+	name = "\improper TX-15 stock"
 	desc = "The standard stock for the TX-15. Cannot be removed."
 	icon_state = "tx15stock"
 	wield_delay_mod = 0 SECONDS
@@ -829,53 +951,19 @@ Defined in conflicts.dm of the #defines folder.
 	scatter_mod = 0
 	movement_acc_penalty_mod = 0
 
-/obj/item/attachable/stock/vp70
-	name = "88 Mod 4 stock and holster"
-	desc = "A rare holster-stock distributed in small numbers to TGMC forces. Compatible with the 88 Mod 4, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl."
-	slot = "stock"
-	flags_equip_slot = ITEM_SLOT_POCKET
-	w_class = WEIGHT_CLASS_NORMAL
-	wield_delay_mod = 0.4 SECONDS
-	melee_mod = 5
-	size_mod = 1
-	icon_state = "vp70stock" // Thank you to Manezinho
-	attach_icon = "vp70stock_a" // Thank you to Manezinho
-	pixel_shift_x = 39
-	pixel_shift_y = 11
-	accuracy_mod = 0.15
-	recoil_mod = -3
-	scatter_mod = -20
-	movement_acc_penalty_mod = 0.1
-	var/obj/item/storage/internal/pockets = /obj/item/storage/internal/pockets/vp70holster
-
-/obj/item/storage/internal/pockets/vp70holster
-	storage_slots = 1
-	max_w_class = 1
-	bypass_w_limit = list(/obj/item/weapon/gun/pistol/vp70)
-	max_storage_space = 3
-
-/obj/item/attachable/stock/vp70/Initialize()
-	. = ..()
-	pockets = new pockets(src)
-
-/obj/item/attachable/stock/vp70/attack_hand(mob/living/user)
-	if(loc == user && length(pockets.contents))
-		var/obj/item/I = pockets.contents[length(pockets.contents)]
-		return I.attack_hand(user)
-	else if(pockets.handle_attack_hand(user))
-		return ..()
-
-/obj/item/attachable/stock/vp70/MouseDrop(obj/over_object)
-	if(pockets.handle_mousedrop(usr, over_object))
-		return ..(over_object)
-
-/obj/item/attachable/stock/vp70/attackby(obj/item/I, mob/user, params)
-	. = ..()
-	return pockets.attackby(I, user, params)
-
-/obj/item/attachable/stock/vp70/emp_act(severity)
-	pockets.emp_act(severity)
-	return ..()
+/obj/item/attachable/stock/t29stock
+	name = "T-29 stock"
+	desc = "A standard machinegun stock."
+	icon_state = "t29stock"
+	wield_delay_mod = 0 SECONDS
+	pixel_shift_x = 32
+	pixel_shift_y = 13
+	flags_attach_features = NONE
+	accuracy_mod = 0
+	recoil_mod = 0
+	melee_mod = 0
+	scatter_mod = 0
+	movement_acc_penalty_mod = 0
 
 /obj/item/attachable/stock/revolver
 	name = "\improper M44 magnum sharpshooter stock"
@@ -918,10 +1006,10 @@ Defined in conflicts.dm of the #defines folder.
 	pixel_shift_y = 10
 	flags_attach_features = NONE
 
-/obj/item/attachable/stock/dmr
-	name = "T-64 Stock"
-	desc = "A standard DMR Stock."
-	icon_state = "dmrstock"
+/obj/item/attachable/stock/br
+	name = "\improper T-64 stock"
+	desc = "A specialized stock for the T-64."
+	icon_state = "brstock"
 	wield_delay_mod = 0 SECONDS
 	pixel_shift_x = 32
 	pixel_shift_y = 13
@@ -933,8 +1021,8 @@ Defined in conflicts.dm of the #defines folder.
 	movement_acc_penalty_mod = 0
 
 /obj/item/attachable/stock/t18stock
-	name = "T-18 Stock"
-	desc = "A standard Carbine Stock."
+	name = "\improper T-18 stock"
+	desc = "A specialized stock for the T-18."
 	icon_state = "t18stock"
 	wield_delay_mod = 0 SECONDS
 	pixel_shift_x = 32
@@ -946,9 +1034,23 @@ Defined in conflicts.dm of the #defines folder.
 	scatter_mod = 0
 	movement_acc_penalty_mod = 0
 
+/obj/item/attachable/stock/tl127stock
+	name = "\improper TL-127 stock"
+	desc = "A irremovable TL-127 sniper rifle stock."
+	icon_state = "tl127stock"
+	wield_delay_mod = 0 SECONDS
+	pixel_shift_x = 32
+	pixel_shift_y = 13
+	flags_attach_features = NONE
+	accuracy_mod = 0
+	recoil_mod = 0
+	melee_mod = 0
+	scatter_mod = 0
+	movement_acc_penalty_mod = 0
+
 /obj/item/attachable/stock/t12stock
-	name = "T-12 Stock"
-	desc = "A standard Assault Rifle Stock."
+	name = "\improper T-12 stock"
+	desc = "A specialized stock for the T-12."
 	icon_state = "t12stock"
 	wield_delay_mod = 0 SECONDS
 	pixel_shift_x = 32
@@ -961,8 +1063,8 @@ Defined in conflicts.dm of the #defines folder.
 	movement_acc_penalty_mod = 0
 
 /obj/item/attachable/stock/t42stock
-	name = "T-42 Stock"
-	desc = "A standard Light Machine Gun Stock."
+	name = "\improper T-42 stock"
+	desc = "A specialized stock for the T-42."
 	icon_state = "t42stock"
 	wield_delay_mod = 0 SECONDS
 	pixel_shift_x = 32
@@ -975,10 +1077,10 @@ Defined in conflicts.dm of the #defines folder.
 	movement_acc_penalty_mod = 0
 
 /obj/item/attachable/stock/t19stock
-	name = "T-19 Submachine Gun stock"
-	desc = "A rare stock distributed in small numbers to TGMC forces. Compatible with the T-19, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl."
+	name = "\improper T-19 machinepistol stock"
+	desc = "A submachinegun stock distributed in small numbers to TGMC forces. Compatible with the T-19, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl."
 	slot = "stock"
-	wield_delay_mod = 0.3 SECONDS
+	wield_delay_mod = 0.1 SECONDS
 	melee_mod = 5
 	size_mod = 1
 	icon_state = "t19stock"
@@ -987,10 +1089,11 @@ Defined in conflicts.dm of the #defines folder.
 	accuracy_mod = 0.1
 	recoil_mod = -2
 	scatter_mod = -10
+	scatter_unwielded_mod = -10
 
 /obj/item/attachable/stock/t35stock
 	name = "\improper T-35 stock"
-	desc = "A non-standard heavy stock for the T-35 Shotgun. Less quick and more cumbersome than the standard issue stakeout, but reduces recoil and improves accuracy. Allegedly makes a pretty good club in a fight too."
+	desc = "A non-standard heavy stock for the T-35 shotgun. Less quick and more cumbersome than the standard issue stakeout, but reduces recoil and improves accuracy. Allegedly makes a pretty good club in a fight too."
 	slot = "stock"
 	wield_delay_mod = 0.4 SECONDS
 	icon_state = "t35stock"
@@ -998,16 +1101,75 @@ Defined in conflicts.dm of the #defines folder.
 	recoil_mod = -3
 	scatter_mod = -20
 
+/obj/item/attachable/stock/t39stock
+	name = "\improper T-39 stock"
+	desc = "A specialized stock for the T-35."
+	icon_state = "t39stock"
+	wield_delay_mod = 0 SECONDS
+	pixel_shift_x = 32
+	pixel_shift_y = 13
+	flags_attach_features = NONE
+	accuracy_mod = 0
+	recoil_mod = 0
+	melee_mod = 0
+	scatter_mod = 0
+	movement_acc_penalty_mod = 0
+
+/obj/item/attachable/stock/t60stock
+	name = "T-60 stock"
+	desc = "A irremovable T-60 general purpose machinegun stock."
+	icon_state = "t60stock"
+	wield_delay_mod = 0 SECONDS
+	pixel_shift_x = 32
+	pixel_shift_y = 13
+	flags_attach_features = NONE
+	accuracy_mod = 0
+	recoil_mod = 0
+	melee_mod = 0
+	scatter_mod = 0
+	movement_acc_penalty_mod = 0
+
+/obj/item/attachable/stock/t70stock
+	name = "\improper T-70 stock"
+	desc = "A irremovable T-70 grenade launcher stock."
+	icon_state = "t70stock"
+	wield_delay_mod = 0 SECONDS
+	pixel_shift_x = 32
+	pixel_shift_y = 13
+	flags_attach_features = NONE
+	accuracy_mod = 0
+	recoil_mod = 0
+	melee_mod = 0
+	scatter_mod = 0
+	movement_acc_penalty_mod = 0
+
+/obj/item/attachable/stock/t84stock
+	name = "\improper TL-84 stock"
+	desc = "A irremovable TL-84 flamer stock."
+	icon_state = "tl84stock"
+	wield_delay_mod = 0 SECONDS
+	pixel_shift_x = 32
+	pixel_shift_y = 13
+	flags_attach_features = NONE
+	accuracy_mod = 0
+	recoil_mod = 0
+	melee_mod = 0
+	scatter_mod = 0
+	movement_acc_penalty_mod = 0
+
+
 ////////////// Underbarrel Attachments ////////////////////////////////////
 
 
 /obj/item/attachable/attached_gun
 	attachment_action_type = /datum/action/item_action/toggle
 	//Some attachments may be fired. So here are the variables related to that.
-	var/datum/ammo/ammo = null //If it has a default bullet-like ammo.
-	max_range 		= 0 //Determines # of tiles distance the attachable can fire, if it's not a projectile.
+	///the ammo datum that an attachment gun fires, If it has a default bullet-like ammo
+	var/datum/ammo/ammo = null
+	///the type of casing an attachment gun leaves behind, if any.
 	var/type_of_casings = null
-	var/fire_sound = null //Sound to play when firing it alternately
+	///Sound to play when firing the attachment gun.
+	var/fire_sound = null
 
 
 /obj/item/attachable/attached_gun/Initialize() //Let's make sure if something needs an ammo type, it spawns with one.
@@ -1052,9 +1214,10 @@ Defined in conflicts.dm of the #defines folder.
 	max_rounds = 2
 	max_range = 7
 	slot = "under"
-	fire_sound = 'sound/weapons/guns/fire/m92_attachable.ogg'
+	fire_sound = 'sound/weapons/guns/fire/underbarrel_grenadelauncher.ogg'
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_RELOADABLE|ATTACH_WEAPON
-	var/list/loaded_grenades = list() //list of grenade types loaded in the UGL
+	///list of grenade types loaded in the UGL
+	var/list/loaded_grenades = list()
 	attachment_firing_delay = 21
 
 /obj/item/attachable/attached_gun/grenade/unremovable
@@ -1137,7 +1300,8 @@ Defined in conflicts.dm of the #defines folder.
 	slot = "under"
 	fire_sound = 'sound/weapons/guns/fire/flamethrower3.ogg'
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_RELOADABLE|ATTACH_WEAPON
-	attachment_firing_delay = 35
+	attachment_firing_delay = 25
+	COOLDOWN_DECLARE(last_fired)
 
 
 /obj/item/attachable/attached_gun/flamer/unremovable
@@ -1220,7 +1384,7 @@ Defined in conflicts.dm of the #defines folder.
 	if(get_dist(user,target) > max_range+3)
 		to_chat(user, "<span class='warning'>Too far to fire the attachment!</span>")
 		return
-	if(current_rounds)
+	if(current_rounds && COOLDOWN_CHECK(src, last_fired))
 		unleash_flame(target, user)
 
 
@@ -1230,11 +1394,17 @@ Defined in conflicts.dm of the #defines folder.
 	var/distance = 0
 	var/turf/prev_T
 	playsound(user, 'sound/weapons/guns/fire/flamethrower2.ogg', 50, 1)
+	var/fire_delay = attachment_firing_delay
+	if(!user.skills.getRating("firearms")) //no training in any firearms
+		fire_delay += 0.3 SECONDS //untrained humans fire more slowly.
+	COOLDOWN_START(src, last_fired, fire_delay)
 	for(var/turf/T in turfs)
 		if(T == user.loc)
 			prev_T = T
 			continue
 		if(!current_rounds)
+			break
+		if(T.density || isspaceturf(T))
 			break
 		if(distance >= max_range)
 			break
@@ -1264,19 +1434,20 @@ Defined in conflicts.dm of the #defines folder.
 			var/mob/living/carbon/xenomorph/X = M
 			if(X.xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 				continue
-			fire_mod = CLAMP(X.xeno_caste.fire_resist + X.fire_resist_modifier, 0, 1)
+			fire_mod = clamp(X.xeno_caste.fire_resist + X.fire_resist_modifier, 0, 1)
 		else if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 
 			if(user)
 				if(!user.mind?.bypass_ff && !H.mind?.bypass_ff && user.faction == H.faction)
-					log_combat(user, H, "shot", src)
-					log_ffattack("[key_name(usr)] shot [key_name(H)] with [name] in [AREACOORD(T)].")
-					msg_admin_ff("[ADMIN_TPMONTY(usr)] shot [ADMIN_TPMONTY(H)] with [name] in [ADMIN_VERBOSEJMP(T)].")
+					log_combat(user, H, "flamed", src)
+					user.ff_check(30, H) // avg between 20/40 dmg
+					log_ffattack("[key_name(usr)] flamed [key_name(H)] with [name] in [AREACOORD(T)].")
+					msg_admin_ff("[ADMIN_TPMONTY(usr)] flamed [ADMIN_TPMONTY(H)] with [name] in [ADMIN_VERBOSEJMP(T)].")
 				else
-					log_combat(user, H, "shot", src)
+					log_combat(user, H, "flamed", src)
 
-			if(istype(H.wear_suit, /obj/item/clothing/suit/fire) || istype(H.wear_suit,/obj/item/clothing/suit/space/rig/atmos))
+			if(H.hard_armor.getRating("fire") >= 100)
 				continue
 
 		M.adjust_fire_stacks(rand(3,5))
@@ -1392,10 +1563,15 @@ Defined in conflicts.dm of the #defines folder.
 	melee_mod = -10
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION
 	attachment_action_type = /datum/action/item_action/toggle
+	///person holding the gun that this is attached to
 	var/mob/living/master_user
+	///bonus to accuracy when the bipod is deployed
 	var/deployment_accuracy_mod = 0.30
+	///bonus to recoil when the bipod is deployed
 	var/deployment_recoil_mod = -2
+	///bonus to scatter applied when the bipod is deployed
 	var/deployment_scatter_mod = -20
+	///bonus to burst scatter applied when the bipod is deployed
 	var/deployment_burst_scatter_mod = -3
 
 
@@ -1403,6 +1579,7 @@ Defined in conflicts.dm of the #defines folder.
 	if(bipod_deployed)
 		bipod_deployed = FALSE
 		to_chat(user, "<span class='notice'>You retract [src].</span>")
+		master_gun.aim_slowdown -= 1
 		master_gun.wield_delay -= 0.4 SECONDS
 		master_gun.accuracy_mult -= deployment_accuracy_mod
 		master_gun.recoil -= deployment_recoil_mod
@@ -1445,6 +1622,7 @@ Defined in conflicts.dm of the #defines folder.
 
 
 /obj/item/attachable/bipod/proc/retract_bipod(datum/source)
+	SIGNAL_HANDLER_DOES_SLEEP
 	if(!ismob(source))
 		return
 	activate_attachment(source, TRUE)
@@ -1486,15 +1664,13 @@ Defined in conflicts.dm of the #defines folder.
 
 
 /obj/item/attachable/hydro_cannon
-	name = "M240T Hydro Cannon"
-	desc = "An integrated component of the M240T incinerator unit, the hydro cannon fires high pressure sprays of water; mainly to extinguish any wayward allies or unintended collateral damage."
-	icon_state = "hydrocannon"
+	name = "TL-84 Hydro Cannon"
+	desc = "An integrated component of the TL-84 flamethrower, the hydro cannon fires high pressure sprays of water; mainly to extinguish any wayward allies or unintended collateral damage."
+	icon_state = ""
 	attach_icon = ""
 	slot = "under"
-	flags_attach_features = ATTACH_ACTIVATION|ATTACH_UTILITY
+	flags_attach_features = ATTACH_ACTIVATION|ATTACH_UTILITY|GUN_ALLOW_SYNTHETIC
 	attachment_action_type = /datum/action/item_action/toggle
-	var/max_water = 200
-	var/last_use
 
 /obj/item/attachable/hydro_cannon/activate_attachment(mob/living/user, turn_off)
 	if(master_gun.active_attachable == src)
@@ -1519,6 +1695,6 @@ Defined in conflicts.dm of the #defines folder.
 	if(istype(rail,/obj/item/attachable/scope))
 		var/obj/item/attachable/scope/S = rail
 		if(zoom)
-			S.accuracy_mod = S.zoom_accuracy
+			accuracy_mult += S.scoped_accuracy_mod
 		else
-			S.accuracy_mod = 0
+			accuracy_mult -= S.scoped_accuracy_mod

@@ -1,5 +1,6 @@
 #define DISTRESS_MARINE_DEPLOYMENT 0
 #define DISTRESS_DROPSHIP_CRASHED 1
+#define DISTRESS_MARINE_RETREAT 2
 
 /datum/game_mode/infestation/distress
 	name = "Distress Signal"
@@ -14,10 +15,8 @@
 		/datum/job/terragov/command/fieldcommander = 1,
 		/datum/job/terragov/command/staffofficer = 4,
 		/datum/job/terragov/command/pilot = 2,
-		/datum/job/terragov/police/chief = 1,
-		/datum/job/terragov/police/officer = 5,
 		/datum/job/terragov/engineering/chief = 1,
-		/datum/job/terragov/engineering/tech = 1,
+		/datum/job/terragov/engineering/tech = 2,
 		/datum/job/terragov/requisitions/officer = 1,
 		/datum/job/terragov/medical/professor = 1,
 		/datum/job/terragov/medical/medicalofficer = 6,
@@ -28,7 +27,6 @@
 		/datum/job/terragov/squad/engineer = 8,
 		/datum/job/terragov/squad/corpsman = 8,
 		/datum/job/terragov/squad/smartgunner = 1,
-		/datum/job/terragov/squad/specialist = 1,
 		/datum/job/terragov/squad/leader = 1,
 		/datum/job/terragov/squad/standard = -1,
 		/datum/job/survivor/rambo = 1,
@@ -76,6 +74,7 @@
 	scale_gear()
 	for(var/i in GLOB.xeno_resin_silo_turfs)
 		new /obj/structure/resin/silo(i)
+
 	addtimer(CALLBACK(src, .proc/announce_bioscans, FALSE, 1), rand(30 SECONDS, 1 MINUTES)) //First scan shows no location but more precise numbers.
 
 /datum/game_mode/infestation/distress/proc/map_announce()
@@ -113,27 +112,33 @@
 	var/num_xenos = living_player_list[2]
 
 	if(SSevacuation.dest_status == NUKE_EXPLOSION_FINISHED)
-		message_admins("Round finished: [MODE_GENERIC_DRAW_NUKE]")
+		message_admins("Round finished: [MODE_GENERIC_DRAW_NUKE]") //ship blows, no one wins
 		round_finished = MODE_GENERIC_DRAW_NUKE
 		return TRUE
+	
+	if(round_stage == DISTRESS_MARINE_RETREAT)
+		message_admins("Round finished: [MODE_INFESTATION_DRAW_RETREAT]")
+		round_finished = MODE_INFESTATION_DRAW_RETREAT
+		return TRUE
+
 	if(!num_humans)
 		if(!num_xenos)
-			message_admins("Round finished: [MODE_INFESTATION_DRAW_DEATH]")
+			message_admins("Round finished: [MODE_INFESTATION_DRAW_DEATH]") //everyone died at the same time, no one wins
 			round_finished = MODE_INFESTATION_DRAW_DEATH
 			return TRUE
 		if(round_stage == DISTRESS_DROPSHIP_CRASHED)
-			message_admins("Round finished: [MODE_INFESTATION_X_MAJOR]")
+			message_admins("Round finished: [MODE_INFESTATION_X_MAJOR]") //xenos wiped our marines, xeno major victory
 			round_finished = MODE_INFESTATION_X_MAJOR
 			return TRUE
-		message_admins("Round finished: [MODE_INFESTATION_X_MINOR]")
-		round_finished = MODE_INFESTATION_X_MINOR
+		message_admins("Round finished: [MODE_INFESTATION_X_MAJOR]") //xenos wiped out ALL the marines without hijacking, xeno major victory
+		round_finished = MODE_INFESTATION_X_MAJOR
 		return TRUE
 	if(!num_xenos)
 		if(round_stage == DISTRESS_DROPSHIP_CRASHED)
-			message_admins("Round finished: [MODE_INFESTATION_M_MINOR]")
-			round_finished = MODE_INFESTATION_M_MINOR
+			message_admins("Round finished: [MODE_INFESTATION_X_MINOR]") //xenos hijacked the shuttle and won groundside but died on the ship, minor victory
+			round_finished = MODE_INFESTATION_X_MINOR
 			return TRUE
-		message_admins("Round finished: [MODE_INFESTATION_M_MAJOR]")
+		message_admins("Round finished: [MODE_INFESTATION_M_MAJOR]") //marines win big or go home
 		round_finished = MODE_INFESTATION_M_MAJOR
 		return TRUE
 	return FALSE
@@ -223,215 +228,6 @@
 			marine_pop_size++
 
 	var/scale = max(marine_pop_size / MARINE_GEAR_SCALING, 1) //This gives a decimal value representing a scaling multiplier. Cannot go below 1
-
-	//Set up attachment vendor contents related to Marine count
-	for(var/X in GLOB.attachment_vendors)
-		var/obj/machinery/vending/attachments/A = X
-
-		//Forcefully reset the product list
-		A.product_records = list()
-
-		A.products = list(
-					/obj/item/attachable/suppressor = round(scale * 14),
-					/obj/item/attachable/bayonet = round(scale * 14),
-					/obj/item/attachable/compensator = round(scale * 10),
-					/obj/item/attachable/extended_barrel = round(scale * 10),
-					/obj/item/attachable/heavy_barrel = round(scale * 4),
-					/obj/item/attachable/widelens = round(scale * 4),
-					/obj/item/attachable/heatlens = round(scale * 4),
-					/obj/item/attachable/focuslens = round(scale * 4),
-					/obj/item/attachable/efflens = round(scale * 4),
-					/obj/item/attachable/pulselens = round(scale * 4),
-
-					/obj/item/attachable/scope = round(scale * 4),
-					/obj/item/attachable/scope/mini = round(scale * 4),
-					/obj/item/attachable/flashlight = round(scale * 14),
-					/obj/item/attachable/reddot = round(scale * 14),
-					/obj/item/attachable/magnetic_harness = round(scale * 10),
-					/obj/item/attachable/quickfire = round(scale * 3),
-
-					/obj/item/attachable/verticalgrip = round(scale * 14),
-					/obj/item/attachable/angledgrip = round(scale * 14),
-					/obj/item/attachable/lasersight = round(scale * 14),
-					/obj/item/attachable/gyro = round(scale * 4),
-					/obj/item/attachable/bipod = round(scale * 8),
-					/obj/item/attachable/burstfire_assembly = round(scale * 4),
-
-					/obj/item/attachable/stock/t35stock = round(scale * 4),
-					/obj/item/attachable/stock/revolver = round(scale * 4),
-					/obj/item/attachable/stock/smg = round(scale * 4) ,
-					/obj/item/attachable/stock/tactical = round(scale * 3),
-
-					/obj/item/attachable/attached_gun/grenade = round(scale * 10),
-					/obj/item/attachable/attached_gun/shotgun = round(scale * 4),
-					/obj/item/attachable/attached_gun/flamer = round(scale * 4)
-					)
-
-		//Rebuild the vendor's inventory to make our changes apply
-		A.build_inventory(A.products)
-
-	for(var/X in GLOB.cargo_ammo_vendors)
-		var/obj/machinery/vending/marine/cargo_ammo/CA = X
-
-		//Forcefully reset the product list
-		CA.product_records = list()
-
-		CA.products = list(
-						/obj/item/ammo_magazine/pistol/standard_pistol = round(scale * 20),
-						/obj/item/ammo_magazine/rifle/standard_dmr/incendiary = round(scale * 15),
-						/obj/item/ammo_magazine/pistol/m1911 = round(scale * 10),
-						/obj/item/ammo_magazine/revolver/standard_revolver = round(scale * 20),
-						/obj/item/ammobox/standard_smg = round(scale * 3),
-						/obj/item/ammo_magazine/smg/standard_smg = round(scale * 15),
-						/obj/item/ammobox = round(scale * 3),
-						/obj/item/ammo_magazine/rifle/standard_carbine = round(scale * 15),
-						/obj/item/ammo_magazine/rifle/standard_assaultrifle = round(scale * 15),
-						/obj/item/ammo_magazine/rifle/standard_dmr = round(scale *15),
-						/obj/item/ammo_magazine/standard_lmg = round(scale * 15),
-						/obj/item/cell/lasgun/M43 = round(scale * 30),
-						/obj/item/cell/lasgun/M43/highcap = round(scale * 5),
-						/obj/item/shotgunbox = round(scale * 3),
-						/obj/item/ammo_magazine/shotgun = round(scale * 10),
-						/obj/item/shotgunbox/buckshot = round(scale * 3),
-						/obj/item/ammo_magazine/shotgun/buckshot = round(scale * 10),
-						/obj/item/shotgunbox/flechette = round(scale * 3),
-						/obj/item/ammo_magazine/shotgun/flechette = round(scale * 15),
-						/obj/item/ammo_magazine/rifle/tx15_flechette = round(scale * 10),
-						/obj/item/ammo_magazine/rifle/tx15_slug = round(scale * 10),
-						/obj/item/smartgun_powerpack = round(scale * 2)
-						)
-
-		CA.contraband = list(
-						/obj/item/ammo_magazine/flamer_tank = round(scale * 5),
-						/obj/item/ammo_magazine/pistol/vp70 = round(scale * 10),
-						/obj/item/ammo_magazine/smg/ppsh/ = round(scale * 20),
-						/obj/item/ammo_magazine/smg/ppsh/extended = round(scale * 5),
-						/obj/item/ammo_magazine/rifle/bolt = round(scale * 10),
-						)
-
-		CA.build_inventory(CA.products)
-
-
-	for(var/X in GLOB.cargo_guns_vendors)
-		var/obj/machinery/vending/marine/cargo_guns/CG = X
-
-		//Forcefully reset the product list
-		CG.product_records = list()
-
-		CG.products = list(
-						/obj/item/storage/backpack/marine/standard = round(scale * 15),
-						/obj/item/storage/backpack/marine/satchel = round(scale * 15),
-						/obj/item/storage/large_holster/machete/full = round(scale * 10),
-						/obj/item/storage/belt/marine = round(scale * 15),
-						/obj/item/storage/belt/shotgun = round(scale * 10),
-						/obj/item/storage/belt/grenade = round(scale * 5),
-						/obj/item/storage/belt/gun/pistol/standard_pistol = round(scale * 10),
-						/obj/item/storage/belt/gun/revolver/standard_revolver = round(scale * 5),
-						/obj/item/storage/large_holster/t19 = round(scale * 5),
-						/obj/item/clothing/tie/storage/webbing = round(scale * 5),
-						/obj/item/clothing/tie/storage/brown_vest = round(scale * 5),
-						/obj/item/clothing/tie/storage/white_vest/medic = round(scale * 5),
-						/obj/item/clothing/tie/holster = round(scale * 5),
-						/obj/item/storage/pouch/general/medium = round(scale * 5),
-						/obj/item/storage/pouch/general/large = round(scale * 2),
-						/obj/item/storage/pouch/construction = round(scale * 5),
-						/obj/item/storage/pouch/tools = round(scale * 5),
-						/obj/item/storage/pouch/explosive = round(scale * 5),
-						/obj/item/storage/pouch/syringe = round(scale * 5),
-						/obj/item/storage/pouch/medical = round(scale * 5),
-						/obj/item/storage/pouch/medkit = round(scale * 5),
-						/obj/item/storage/pouch/magazine = round(scale * 5),
-						/obj/item/storage/pouch/magazine/large = round(scale * 2),
-						/obj/item/storage/pouch/flare/full = round(scale * 5),
-						/obj/item/storage/pouch/firstaid/full = round(scale * 5),
-						/obj/item/storage/pouch/pistol = round(scale * 10),
-						/obj/item/storage/pouch/magazine/pistol = round(scale * 10),
-						/obj/item/storage/pouch/magazine/pistol/large = round(scale * 5),
-						/obj/item/storage/pouch/shotgun = round(scale * 10),
-						/obj/item/weapon/gun/pistol/standard_pistol = round(scale * 20),
-						/obj/item/weapon/gun/pistol/m1911 = round(scale * 5),
-						/obj/item/weapon/gun/revolver/standard_revolver = round(scale * 10),
-						/obj/item/weapon/gun/smg/standard_smg = round(scale * 15),
-						/obj/item/weapon/gun/rifle/standard_carbine = round(scale * 20),
-						/obj/item/weapon/gun/rifle/standard_assaultrifle = round(scale * 20),
-						/obj/item/weapon/gun/rifle/standard_lmg = round(scale * 15),
-						/obj/item/weapon/gun/rifle/standard_dmr = round(scale *15),
-						/obj/item/weapon/gun/shotgun/pump/t35 = round(scale * 10),
-						/obj/item/weapon/gun/rifle/standard_autoshotgun = round(scale * 10),
-						/obj/item/weapon/gun/energy/lasgun/M43 = round(scale * 10),
-						/obj/item/explosive/mine = round(scale * 2),
-						/obj/item/explosive/grenade/frag/m15 = round(scale * 2),
-						/obj/item/explosive/grenade/incendiary = round(scale * 4),
-						/obj/item/explosive/grenade/smokebomb = round(scale * 5),
-						/obj/item/explosive/grenade/cloakbomb = round(scale * 4),
-						/obj/item/storage/box/nade_box = round(scale * 2),
-						/obj/item/storage/box/m94 = round(scale * 30),
-						/obj/item/flashlight/combat = round(scale * 5),
-						/obj/item/clothing/mask/gas = round(scale * 10)
-						)
-
-		CG.contraband = list(
-						/obj/item/storage/box/nade_box/HIDP = round(scale * 1),
-						/obj/item/storage/box/nade_box/M15 = round(scale * 1),
-						/obj/item/weapon/gun/flamer = round(scale * 2),
-						/obj/item/weapon/gun/pistol/vp70 = round(scale * 2),
-						/obj/item/weapon/gun/smg/ppsh = round(scale * 2),
-						/obj/item/weapon/gun/shotgun/double = round(scale * 2),
-						/obj/item/weapon/gun/shotgun/pump/ksg = round(scale * 2),
-						/obj/item/weapon/gun/shotgun/pump/bolt = round(scale * 2)
-						)
-
-		CG.build_inventory(CG.products)
-
-
-
-	for(var/obj/machinery/vending/marine/M in GLOB.marine_vendors)
-
-		//Forcefully reset the product list
-		M.product_records = list()
-
-		M.products = list(
-						/obj/item/weapon/gun/pistol/standard_pistol = round(scale * 30),
-						/obj/item/weapon/gun/revolver/standard_revolver = round(scale * 25),
-						/obj/item/weapon/gun/smg/standard_smg = round(scale * 30),
-						/obj/item/weapon/gun/rifle/standard_lmg = round(scale * 25),
-						/obj/item/weapon/gun/rifle/standard_carbine = round(scale * 30),
-						/obj/item/weapon/gun/rifle/standard_assaultrifle = round(scale * 30),
-						/obj/item/weapon/gun/rifle/standard_dmr = round(scale * 15),
-						/obj/item/weapon/gun/shotgun/pump/t35 = round(scale * 15),
-						/obj/item/weapon/gun/rifle/standard_autoshotgun = round(scale * 15),
-						/obj/item/weapon/gun/energy/lasgun/M43 = round(scale * 15),
-
-						/obj/item/ammo_magazine/pistol/standard_pistol = round(scale * 30),
-						/obj/item/ammo_magazine/revolver/standard_revolver = round(scale * 20),
-						/obj/item/ammo_magazine/smg/standard_smg = round(scale * 30),
-						/obj/item/ammo_magazine/rifle/standard_carbine = round(scale * 25),
-						/obj/item/ammo_magazine/rifle/standard_assaultrifle = round(scale * 25),
-						/obj/item/ammo_magazine/rifle/standard_dmr = round(scale * 25),
-						/obj/item/ammo_magazine/standard_lmg = round(scale * 30),
-						/obj/item/ammo_magazine/shotgun = round(scale * 10),
-						/obj/item/ammo_magazine/shotgun/buckshot = round(scale * 10),
-						/obj/item/ammo_magazine/shotgun/flechette = round(scale * 10),
-						/obj/item/ammo_magazine/rifle/tx15_flechette = round(scale * 10),
-						/obj/item/ammo_magazine/rifle/tx15_slug = round(scale * 10),
-						/obj/item/cell/lasgun/M43 = round(scale * 25),
-
-						/obj/item/weapon/combat_knife = round(scale * 30),
-						/obj/item/weapon/throwing_knife = round(scale * 10),
-						/obj/item/storage/box/m94 = round(scale * 10),
-
-						/obj/item/attachable/flashlight = round(scale * 25),
-						/obj/item/attachable/bayonet = round(scale * 25)
-						)
-
-		M.contraband =   list(/obj/item/ammo_magazine/revolver/marksman = round(scale * 2),
-							/obj/item/ammo_magazine/pistol/ap = round(scale * 2),
-							)
-
-		//Rebuild the vendor's inventory to make our changes apply
-		M.build_inventory(M.products)
-		M.build_inventory(M.contraband, TRUE)
-
 
 	//Scale the amount of cargo points through a direct multiplier
 	SSpoints.scale_supply_points(scale)

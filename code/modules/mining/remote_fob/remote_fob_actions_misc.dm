@@ -26,6 +26,9 @@
 	if(build_area.density)
 		to_chat(owner, "<span class='warning'>No space to build anything here.")
 		return FALSE
+	if(fobdrone.action_busy)
+		to_chat(owner, "<span class='warning'>You are already building something.")
+		return FALSE
 
 	return TRUE
 
@@ -35,7 +38,7 @@
 /datum/action/innate/remote_fob/metal_cade
 	name = "Place Metal Barricade"
 	action_icon_state = "metal_cade"
-	
+
 
 /datum/action/innate/remote_fob/metal_cade/Activate()
 	. = ..()
@@ -58,7 +61,7 @@
 			continue
 		to_chat(owner, "<span class='warning'>No space here for a barricade.</span>")
 		return
-	if(!do_after(fobdrone, 3 SECONDS, FALSE, buildplace, BUSY_ICON_BUILD))
+	if(!do_after(fobdrone, 1.5 SECONDS, FALSE, buildplace, BUSY_ICON_BUILD))
 		return
 	console.metal_remaining -= 4
 	cade = new /obj/structure/barricade/metal(buildplace)
@@ -99,7 +102,7 @@
 			continue
 		to_chat(owner, "<span class='warning'>No space here for a barricade.</span>")
 		return
-	if(!do_after(fobdrone, 3 SECONDS, FALSE, buildplace, BUSY_ICON_BUILD))
+	if(!do_after(fobdrone, 1.5 SECONDS, FALSE, buildplace, BUSY_ICON_BUILD))
 		return
 	console.plasteel_remaining -= 5
 	cade = new /obj/structure/barricade/plasteel(buildplace)
@@ -107,7 +110,6 @@
 	cade.closed = FALSE
 	cade.density = TRUE
 	cade.update_icon()
-	cade.update_overlay()
 	if(console.do_wiring)
 		if(console.metal_remaining <= 1)
 			to_chat(owner, "<span class='warning'>Not enough material for razor-wiring.</span>")
@@ -117,7 +119,7 @@
 		cade.wire()
 		to_chat(owner, "<span class='notice'>Barricade placed with wiring. [console.plasteel_remaining] plasteel sheets, [console.metal_remaining] metal sheets remaining.remaining.</span>")
 		return
-	to_chat(owner, "<span class='notice'>Barricade placed. [console.plasteel_remaining] plasteel sheets remaining.</span>")		
+	to_chat(owner, "<span class='notice'>Barricade placed. [console.plasteel_remaining] plasteel sheets remaining.</span>")
 
 /datum/action/innate/remote_fob/toggle_wiring
 	name = "Toggle Razorwire"
@@ -151,7 +153,7 @@
 			else
 				to_chat(owner, "<span class='warning'>No space here for a sentry.</span>")
 				return
-	if(!do_after(fobdrone, 6 SECONDS, FALSE, buildplace, BUSY_ICON_BUILD))
+	if(!do_after(fobdrone, 3 SECONDS, FALSE, buildplace, BUSY_ICON_BUILD))
 		return
 	console.sentry_remaining -= 1
 	turret = new /obj/machinery/marine_turret(buildplace)

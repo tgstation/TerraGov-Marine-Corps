@@ -12,13 +12,14 @@
 	ghostize()
 	clear_fullscreens()
 	if(mind)
-		stack_trace("Found a reference to an undeleted mind in mob/Destroy()")
+		stack_trace("Found a reference to an undeleted mind in mob/Destroy(). Mind name: [mind.name]. Mind mob: [mind.current]")
 		mind = null
 	if(hud_used)
 		QDEL_NULL(hud_used)
 	for(var/a in actions)
 		var/datum/action/action_to_remove = a
 		action_to_remove.remove_action(src)
+	set_focus(null)
 	return ..()
 
 /mob/Initialize()
@@ -43,7 +44,7 @@
 	if(statpanel("Status"))
 		if(GLOB.round_id)
 			stat("Round ID:", GLOB.round_id)
-		stat("Operation Time:", worldtime2text())
+		stat("Operation Time:", stationTimestamp("hh:mm"))
 		stat("Current Map:", length(SSmapping.configs) ? SSmapping.configs[GROUND_MAP].map_name : "Loading...")
 		stat("Current Ship:", length(SSmapping.configs) ? SSmapping.configs[SHIP_MAP].map_name : "Loading...")
 
@@ -155,7 +156,7 @@
 // vision_distance (optional) define how many tiles away the message can be seen.
 // ignored_mob (optional) doesn't show any message to a given mob if TRUE.
 
-/atom/proc/visible_message(message, self_message, blind_message, vision_distance, ignored_mob)
+/atom/proc/visible_message(message, self_message, blind_message, vision_distance, ignored_mob, visible_message_flags = NONE, emote_prefix)
 	var/turf/T = get_turf(src)
 	if(!T)
 		return
@@ -164,9 +165,14 @@
 	if(vision_distance)
 		range = vision_distance
 
+	var/raw_msg = message
+	if(visible_message_flags & EMOTE_MESSAGE)
+		message = "[emote_prefix]<b>[src]</b> [message]"
+
 	for(var/mob/M in get_hearers_in_view(range, src))
 		if(!M.client)
 			continue
+
 		if(M == ignored_mob)
 			continue
 
@@ -175,13 +181,40 @@
 		if(M == src && self_message) //the src always see the main message or self message
 			msg = self_message
 
-		else if(M.see_invisible < invisibility || (T != loc && T != src)) //if src is invisible to us or is inside something (and isn't a turf),
-			if(!blind_message) // then people see blind message if there is one, otherwise nothing.
+			if(visible_message_flags & COMBAT_MESSAGE && M.client.prefs.mute_self_combat_messages)
 				continue
 
-			msg = blind_message
+		else
+			if(M.see_invisible < invisibility || (T != loc && T != src)) //if src is invisible to us or is inside something (and isn't a turf),
+				if(!blind_message) // then people see blind message if there is one, otherwise nothing.
+					continue
+
+				msg = blind_message
+
+			if(visible_message_flags & COMBAT_MESSAGE && M.client.prefs.mute_others_combat_messages)
+				continue
+
+		if(visible_message_flags & EMOTE_MESSAGE && rc_vc_msg_prefs_check(M, visible_message_flags) && !is_blind(M))
+			M.create_chat_message(src, raw_message = raw_msg, runechat_flags = visible_message_flags)
 
 		M.show_message(msg, EMOTE_VISIBLE, blind_message, EMOTE_AUDIBLE)
+
+
+///Returns the client runechat visible messages preference according to the message type.
+/atom/proc/rc_vc_msg_prefs_check(mob/target, visible_message_flags = NONE)
+	if(!target.client?.prefs.chat_on_map || !target.client.prefs.see_chat_non_mob)
+		return FALSE
+	if(visible_message_flags & EMOTE_MESSAGE && !target.client.prefs.see_rc_emotes)
+		return FALSE
+	return TRUE
+
+/mob/rc_vc_msg_prefs_check(mob/target, message, visible_message_flags = NONE)
+	if(!target.client?.prefs.chat_on_map)
+		return FALSE
+	if(visible_message_flags & EMOTE_MESSAGE && !target.client.prefs.see_rc_emotes)
+		return FALSE
+	return TRUE
+
 
 
 // Show a message to all mobs in earshot of this one
@@ -191,15 +224,19 @@
 // deaf_message (optional) is what deaf people will see.
 // hearing_distance (optional) is the range, how many tiles away the message can be heard.
 
-/mob/audible_message(message, deaf_message, hearing_distance, self_message)
+/mob/audible_message(message, deaf_message, hearing_distance, self_message, audible_message_flags = NONE, emote_prefix)
 	var/range = 7
+	var/raw_msg = message
 	if(hearing_distance)
 		range = hearing_distance
-
+	if(audible_message_flags & EMOTE_MESSAGE)
+		message = "[emote_prefix]<b>[src]</b> [message]"
 	for(var/mob/M in get_hearers_in_view(range, src))
 		var/msg = message
 		if(self_message && M == src)
 			msg = self_message
+		if(audible_message_flags & EMOTE_MESSAGE && rc_vc_msg_prefs_check(M, audible_message_flags) && !isdeaf(M))
+			M.create_chat_message(src, raw_message = raw_msg, runechat_flags = audible_message_flags)
 		M.show_message(msg, EMOTE_AUDIBLE, deaf_message, EMOTE_VISIBLE)
 
 
@@ -208,12 +245,16 @@
 // message is the message output to anyone who can hear.
 // deaf_message (optional) is what deaf people will see.
 // hearing_distance (optional) is the range, how many tiles away the message can be heard.
-/atom/proc/audible_message(message, deaf_message, hearing_distance)
+/atom/proc/audible_message(message, deaf_message, hearing_distance, self_message, audible_message_flags = NONE, emote_prefix)
 	var/range = 7
+	var/raw_msg = message
 	if(hearing_distance)
 		range = hearing_distance
-
+	if(audible_message_flags & EMOTE_MESSAGE)
+		message = "[emote_prefix]<b>[src]</b> [message]"
 	for(var/mob/M in get_hearers_in_view(range, src))
+		if(audible_message_flags & EMOTE_MESSAGE && rc_vc_msg_prefs_check(M, audible_message_flags))
+			M.create_chat_message(src, raw_message = raw_msg, runechat_flags = audible_message_flags)
 		M.show_message(message, EMOTE_AUDIBLE, deaf_message, EMOTE_VISIBLE)
 
 
@@ -272,7 +313,7 @@
 /mob/proc/equip_to_slot(obj/item/W as obj, slot)
 	return
 
-//This is just a commonly used configuration for the equip_to_slot_if_possible() proc, used to equip people when the rounds starts and when events happen and such.
+///This is just a commonly used configuration for the equip_to_slot_if_possible() proc, used to equip people when the rounds starts and when events happen and such.
 /mob/proc/equip_to_slot_or_del(obj/item/W, slot, permanent = FALSE)
 	return equip_to_slot_if_possible(W, slot, TRUE, TRUE, FALSE, FALSE, permanent)
 
@@ -304,14 +345,6 @@
 		var/obj/item/W = B.current_gun
 		B.remove_from_storage(W)
 		put_in_hands(W)
-		return TRUE
-	else if(istype(I, /obj/item/clothing/shoes/marine))
-		var/obj/item/clothing/shoes/marine/S = I
-		if(!S.knife)
-			return FALSE
-		put_in_hands(S.knife)
-		S.knife = null
-		S.update_icon()
 		return TRUE
 	else if(istype(I, /obj/item/clothing/under))
 		var/obj/item/clothing/under/U = I
@@ -347,7 +380,9 @@
 		put_in_hands(W)
 		return TRUE
 	else
-		UnEquip(I)
+		if(CHECK_BITFIELD(I.flags_inventory, NOQUICKEQUIP))
+			return FALSE
+		temporarilyRemoveItemFromInventory(I)
 		put_in_hands(I)
 		return TRUE
 
@@ -375,10 +410,9 @@
 /client/verb/changes()
 	set name = "Changelog"
 	set category = "OOC"
-
-	var/datum/asset/changelog = get_asset_datum(/datum/asset/simple/changelog)
+	var/datum/asset/simple/namespaced/changelog = get_asset_datum(/datum/asset/simple/namespaced/changelog)
 	changelog.send(src)
-	src << browse('html/changelog.html', "window=changes;size=675x650")
+	src << browse(changelog.get_htmlloader("changelog.html"), "window=changes;size=675x650")
 	if(prefs.lastchangelog != GLOB.changelog_hash)
 		prefs.lastchangelog = GLOB.changelog_hash
 		prefs.save_preferences()
@@ -411,9 +445,13 @@
 	. = ..()
 	if(.)
 		return
-	if(dropping != user && ismob(dropping) && !isxeno(user) && !isxeno(dropping))
-		var/mob/dragged = dropping
-		dragged.show_inv(user)
+	if(!ismob(dropping) || isxeno(user) || isxeno(dropping))
+		return
+	// If not dragged onto myself or dragging my own sprite onto myself
+	if(user != src || dropping == user)
+		return
+	var/mob/dragged = dropping
+	dragged.show_inv(user)
 
 /mob/living/carbon/xenomorph/MouseDrop_T(atom/dropping, atom/user)
 	return
@@ -457,7 +495,7 @@
 		if(buckle.anchored)
 			return
 		return start_pulling(buckle)
-	
+
 	AM.set_glide_size(glide_size)
 
 	pulling = AM
@@ -472,8 +510,8 @@
 	if(!suppress_message)
 		playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, 7)
 
-	if(hud_used?.pull_icon)
-		hud_used.pull_icon.icon_state = "pull"
+
+	hud_used?.pull_icon?.icon_state = "pull"
 
 	if(ismob(AM))
 		var/mob/pulled_mob = AM
@@ -485,7 +523,7 @@
 
 		if(pulled_mob.mob_size > MOB_SIZE_HUMAN || !(pulled_mob.status_flags & CANPUSH))
 			grab_item.icon_state = "!reinforce"
-		
+
 		set_pull_offsets(pulled_mob)
 
 	update_pull_movespeed()
@@ -552,10 +590,6 @@
 	if(restrained())
 		return FALSE
 	return TRUE
-
-//Updates canmove, lying and icons. Could perhaps do with a rename but I can't think of anything to describe it.
-/mob/proc/update_canmove()
-	return
 
 
 /mob/proc/facedir(ndir)
@@ -844,14 +878,24 @@
 /// Updates the grab state of the mob and updates movespeed
 /mob/setGrabState(newstate)
 	. = ..()
+	if(isnull(.))
+		return
 	if(grab_state == GRAB_PASSIVE)
 		remove_movespeed_modifier(MOVESPEED_ID_MOB_GRAB_STATE)
+	else if(. == GRAB_PASSIVE)
+		add_movespeed_modifier(MOVESPEED_ID_MOB_GRAB_STATE, TRUE, 100, NONE, TRUE, grab_state * 3)
+
+/mob/set_throwing(new_throwing)
+	. = ..()
+	if(isnull(.))
 		return
-	add_movespeed_modifier(MOVESPEED_ID_MOB_GRAB_STATE, TRUE, 100, NONE, TRUE, grab_state * 3)
+	if(throwing)
+		ADD_TRAIT(src, TRAIT_IMMOBILE, THROW_TRAIT)
+	else
+		REMOVE_TRAIT(src, TRAIT_IMMOBILE, THROW_TRAIT)
 
 /mob/proc/set_stat(new_stat)
 	if(new_stat == stat)
 		return
 	. = stat //old stat
 	stat = new_stat
-	update_canmove()

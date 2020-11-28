@@ -89,10 +89,9 @@
 			sql += ", "
 		sql += "commit_hash = '[GLOB.revdata.originmastercommit]'"
 	if(sql)
-		var/datum/DBQuery/query_round_game_mode = SSdbcore.NewQuery("UPDATE [format_table_name("round")] SET [sql] WHERE id = [GLOB.round_id]")
+		var/datum/db_query/query_round_game_mode = SSdbcore.NewQuery("UPDATE [format_table_name("round")] SET [sql] WHERE id = :roundid", list("roundid" = GLOB.round_id))
 		query_round_game_mode.Execute()
 		qdel(query_round_game_mode)
-
 
 /datum/game_mode/proc/new_player_topic(mob/new_player/NP, href, list/href_list)
 	return FALSE
@@ -198,81 +197,50 @@
 
 
 /datum/game_mode/proc/spawn_map_items()
-	var/turf/T
-	switch(SSmapping.configs[GROUND_MAP].map_name) // doing the switch first makes this a tiny bit quicker which for round setup is more important than pretty code
-		if(MAP_LV_624)
-			while(GLOB.map_items.len)
-				T = GLOB.map_items[GLOB.map_items.len]
-				GLOB.map_items.len--
-				new /obj/item/map/lazarus_landing_map(T)
+	return
 
-		if(MAP_ICE_COLONY)
-			while(GLOB.map_items.len)
-				T = GLOB.map_items[GLOB.map_items.len]
-				GLOB.map_items.len--
-				new /obj/item/map/ice_colony_map(T)
+GLOBAL_LIST_INIT(bioscan_locations, list(
+	ZTRAIT_MARINE_MAIN_SHIP,
+	ZTRAIT_GROUND,
+	ZTRAIT_RESERVED,
+))
 
-		if(MAP_BIG_RED)
-			while(GLOB.map_items.len)
-				T = GLOB.map_items[GLOB.map_items.len]
-				GLOB.map_items.len--
-				new /obj/item/map/big_red_map(T)
+// make sure you don't turn 0 into a false positive
+#define BIOSCAN_DELTA(count, delta) count ? max(0, count + rand(-delta, delta)) : 0
 
-		if(MAP_PRISON_STATION)
-			while(GLOB.map_items.len)
-				T = GLOB.map_items[GLOB.map_items.len]
-				GLOB.map_items.len--
-				new /obj/item/map/FOP_map(T)
-
+#define BIOSCAN_LOCATION(show_locations, location) (show_locations && location ? ", including one in [hostLocationP]":"")
 
 /datum/game_mode/proc/announce_bioscans(show_locations = TRUE, delta = 2, announce_humans = TRUE, announce_xenos = TRUE, send_fax = TRUE)
-	var/list/xenoLocationsP = list()
-	var/list/xenoLocationsS = list()
-	var/list/hostLocationsP = list()
-	var/list/hostLocationsS = list()
-	var/numHostsPlanet	= 0
-	var/numHostsShip	= 0
-	var/numXenosPlanet	= 0
-	var/numXenosShip	= 0
-	var/numLarvaPlanet  = 0
-	var/numLarvaShip    = 0
+	var/list/list/counts = list()
+	var/list/list/area/locations = list()
 
-	for(var/i in GLOB.alive_xeno_list)
-		var/mob/living/carbon/xenomorph/X = i
-		var/area/A = get_area(X)
-		if(is_ground_level(A?.z))
-			if(isxenolarva(X))
-				numLarvaPlanet++
-			numXenosPlanet++
-			xenoLocationsP += A
-		else if(is_mainship_level(A?.z))
-			if(isxenolarva(X))
-				numLarvaShip++
-			numXenosShip++
-			xenoLocationsS += A
+	for(var/trait in GLOB.bioscan_locations)
+		counts[trait] = list(FACTION_TERRAGOV = 0, FACTION_XENO = 0)
+		locations[trait] = list(FACTION_TERRAGOV = 0, FACTION_XENO = 0)
+		for(var/i in SSmapping.levels_by_trait(trait))
+			counts[trait][FACTION_XENO] += length(GLOB.hive_datums[XENO_HIVE_NORMAL].xenos_by_zlevel["[i]"])
+			counts[trait][FACTION_TERRAGOV] += length(GLOB.humans_by_zlevel["[i]"])
+			if(length(GLOB.hive_datums[XENO_HIVE_NORMAL].xenos_by_zlevel["[i]"]))
+				locations[trait][FACTION_XENO] = get_area(pick(GLOB.hive_datums[XENO_HIVE_NORMAL].xenos_by_zlevel["[i]"]))
+			if(length(GLOB.humans_by_zlevel["[i]"]))
+				locations[trait][FACTION_TERRAGOV] = get_area(pick(GLOB.humans_by_zlevel["[i]"]))
 
-	for(var/i in GLOB.alive_human_list)
-		var/mob/living/carbon/human/H = i
-		var/area/A = get_area(H)
-		if(is_ground_level(A?.z))
-			numHostsPlanet++
-			hostLocationsP += A
-		else if(is_mainship_level(A?.z))
-			numHostsShip++
-			hostLocationsS += A
-
+	var/numHostsPlanet	= counts[ZTRAIT_GROUND][FACTION_TERRAGOV]
+	var/numHostsShip	= counts[ZTRAIT_MARINE_MAIN_SHIP][FACTION_TERRAGOV]
+	var/numHostsTransit	= counts[ZTRAIT_RESERVED][FACTION_TERRAGOV]
+	var/numXenosPlanet	= counts[ZTRAIT_GROUND][FACTION_XENO]
+	var/numXenosShip	= counts[ZTRAIT_MARINE_MAIN_SHIP][FACTION_XENO]
+	var/numXenosTransit	= counts[ZTRAIT_RESERVED][FACTION_XENO]
+	var/hostLocationP	= locations[ZTRAIT_GROUND][FACTION_TERRAGOV]
+	var/hostLocationS	= locations[ZTRAIT_MARINE_MAIN_SHIP][FACTION_TERRAGOV]
+	var/xenoLocationP	= locations[ZTRAIT_GROUND][FACTION_XENO]
+	var/xenoLocationS	= locations[ZTRAIT_MARINE_MAIN_SHIP][FACTION_XENO]
 
 	//Adjust the randomness there so everyone gets the same thing
-	var/numHostsShipr = max(0, numHostsShip + rand(-delta, delta))
-	var/numXenosPlanetr = max(0, numXenosPlanet + rand(-delta, delta))
-	var/hostLocationP
-	var/hostLocationS
-
-	if(length(hostLocationsP))
-		hostLocationP = pick(hostLocationsP)
-
-	if(length(hostLocationsS))
-		hostLocationS = pick(hostLocationsS)
+	var/numHostsShipr = BIOSCAN_DELTA(numHostsShip, delta)
+	var/numXenosPlanetr = BIOSCAN_DELTA(numXenosPlanet, delta)
+	var/numHostsTransitr = BIOSCAN_DELTA(numHostsTransit, delta)
+	var/numXenosTransitr = BIOSCAN_DELTA(numXenosTransit, delta)
 
 	var/sound/S = sound(get_sfx("queen"), channel = CHANNEL_ANNOUNCEMENTS, volume = 50)
 	if(announce_xenos)
@@ -280,21 +248,12 @@
 			var/mob/M = i
 			SEND_SOUND(M, S)
 			to_chat(M, "<span class='xenoannounce'>The Queen Mother reaches into your mind from worlds away.</span>")
-			to_chat(M, "<span class='xenoannounce'>To my children and their Queen. I sense [numHostsShipr ? "approximately [numHostsShipr]":"no"] host[numHostsShipr > 1 ? "s":""] in the metal hive[show_locations && hostLocationS ? ", including one in [hostLocationS]":""] and [numHostsPlanet ? "[numHostsPlanet]":"none"] scattered elsewhere[show_locations && hostLocationP ? ", including one in [hostLocationP]":""].</span>")
-
-	var/xenoLocationP
-	var/xenoLocationS
-
-	if(length(xenoLocationsP))
-		xenoLocationP = pick(xenoLocationsP)
-
-	if(length(xenoLocationsS))
-		xenoLocationS = pick(xenoLocationsS)
+			to_chat(M, "<span class='xenoannounce'>To my children and their Queen. I sense [numHostsShipr ? "approximately [numHostsShipr]":"no"] host[numHostsShipr > 1 ? "s":""] in the metal hive[BIOSCAN_LOCATION(show_locations, hostLocationS)], [numHostsPlanet || "none"] scattered elsewhere[BIOSCAN_LOCATION(show_locations, hostLocationP)] and [numHostsTransitr ? "approximately [numHostsTransitr]":"no"] host[numHostsTransitr > 1 ? "s":""] on the metal bird in transit.</span>")
 
 	var/name = "[MAIN_AI_SYSTEM] Bioscan Status"
 	var/input = {"Bioscan complete.
 
-Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signature[numXenosShip > 1 ? "s":""] present on the ship[show_locations && xenoLocationS ? " including one in [xenoLocationS]" : ""] and [numXenosPlanetr ? "approximately [numXenosPlanetr]":"no"] signature[numXenosPlanetr > 1 ? "s":""] located elsewhere[show_locations && xenoLocationP ? ", including one in [xenoLocationP]":""]."}
+Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip > 1 ? "s":""] present on the ship[BIOSCAN_LOCATION(show_locations, xenoLocationS)], [numXenosPlanetr ? "approximately [numXenosPlanetr]":"no"] signature[numXenosPlanetr > 1 ? "s":""] located elsewhere[BIOSCAN_LOCATION(show_locations, xenoLocationP)] and [numXenosTransit || "no"] unknown lifeform signature[numXenosTransit > 1 ? "s":""] in transit."}
 
 	if(announce_humans)
 		priority_announce(input, name, sound = 'sound/AI/bioscan.ogg')
@@ -303,37 +262,31 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 		var/fax_message = generate_templated_fax("Combat Information Center", "[MAIN_AI_SYSTEM] Bioscan Status", "", input, "", MAIN_AI_SYSTEM)
 		send_fax(null, null, "Combat Information Center", "[MAIN_AI_SYSTEM] Bioscan Status", fax_message, FALSE)
 
-	log_game("Bioscan. Humans: [numHostsPlanet] on the planet[hostLocationP ? " Location:[hostLocationP]":""] and [numHostsShip] on the ship.[hostLocationS ? " Location: [hostLocationS].":""] Xenos: [numXenosPlanetr] on the planet and [numXenosShip] on the ship[xenoLocationP ? " Location:[xenoLocationP]":""].")
+	log_game("Bioscan. Humans: [numHostsPlanet] on the planet[hostLocationP ? " Location:[hostLocationP]":""] and [numHostsShip] on the ship.[hostLocationS ? " Location: [hostLocationS].":""] Xenos: [numXenosPlanetr] on the planet and [numXenosShip] on the ship[xenoLocationP ? " Location:[xenoLocationP]":""] and [numXenosTransit] in transit.")
 
 	for(var/i in GLOB.observer_list)
 		var/mob/M = i
 		to_chat(M, "<h2 class='alert'>Detailed Information</h2>")
-		to_chat(M, {"<span class='alert'>[numXenosPlanet] xeno\s on the planet, including [numLarvaPlanet] larva.
-[numXenosShip] xeno\s on the ship, including [numLarvaShip] larva.
+		to_chat(M, {"<span class='alert'>[numXenosPlanet] xeno\s on the planet.
+[numXenosShip] xeno\s on the ship.
 [numHostsPlanet] human\s on the planet.
-[numHostsShip] human\s on the ship.</span>"})
+[numHostsShip] human\s on the ship.
+[numHostsTransit] human\s in transit.
+[numXenosTransit] xeno\s in transit.</span>"})
 
-	message_admins("Bioscan - Humans: [numHostsPlanet] on the planet[hostLocationP ? ". Location:[hostLocationP]":""]. [numHostsShipr] on the ship.[hostLocationS ? " Location: [hostLocationS].":""]")
-	message_admins("Bioscan - Xenos: [numXenosPlanetr] on the planet[numXenosPlanetr > 0 && xenoLocationP ? ". Location:[xenoLocationP]":""]. [numXenosShip] on the ship.[xenoLocationS ? " Location: [xenoLocationS].":""]")
+	message_admins("Bioscan - Humans: [numHostsPlanet] on the planet[hostLocationP ? ". Location:[hostLocationP]":""]. [numHostsShipr] on the ship.[hostLocationS ? " Location: [hostLocationS].":""]. [numHostsTransitr] in transit.")
+	message_admins("Bioscan - Xenos: [numXenosPlanetr] on the planet[numXenosPlanetr > 0 && xenoLocationP ? ". Location:[xenoLocationP]":""]. [numXenosShip] on the ship.[xenoLocationS ? " Location: [xenoLocationS].":""] [numXenosTransitr] in transit.")
 
+#undef BIOSCAN_DELTA
+#undef BIOSCAN_LOCATION
 
 /datum/game_mode/proc/setup_xeno_tunnels()
 	var/i = 0
 	while(length(GLOB.xeno_tunnel_landmarks) && i++ < MAX_TUNNELS_PER_MAP)
-		var/obj/structure/tunnel/ONE
-		var/obj/effect/landmark/xeno_tunnel/L
-		var/turf/T
-		L = pick(GLOB.xeno_tunnel_landmarks)
-		GLOB.xeno_tunnel_landmarks -= L
-		T = L.loc
-		ONE = new(T)
-		ONE.id = "hole[i]"
-		for(var/x in GLOB.xeno_tunnels)
-			var/obj/structure/tunnel/TWO = x
-			if(ONE.id != TWO.id || ONE == TWO || ONE.other || TWO.other)
-				continue
-			ONE.other = TWO
-			TWO.other = ONE
+		var/obj/effect/landmark/xeno_tunnel/tunnelmarker = pick(GLOB.xeno_tunnel_landmarks)
+		GLOB.xeno_tunnel_landmarks -= tunnelmarker
+		var/turf/T = tunnelmarker.loc
+		new /obj/structure/tunnel(T)
 
 
 /datum/game_mode/proc/setup_blockers()
@@ -348,7 +301,7 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 		addtimer(CALLBACK(src, .proc/remove_fog), FOG_DELAY_INTERVAL + SSticker.round_start_time + rand(-5 MINUTES, 5 MINUTES))
 
 	if(flags_round_type & MODE_LZ_SHUTTERS)
-		addtimer(CALLBACK(GLOBAL_PROC, .proc/send_global_signal, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE), SSticker.round_start_time + 40 MINUTES)
+		addtimer(CALLBACK(GLOBAL_PROC, .proc/send_global_signal, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE), SSticker.round_start_time + 30 MINUTES)
 			//Called late because there used to be shutters opened earlier. To re-add them just copy the logic.
 
 	if(flags_round_type & MODE_XENO_SPAWN_PROTECT)
@@ -360,7 +313,12 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 			stoplag()
 
 
+/datum/game_mode/proc/grant_eord_respawn(datum/dcs, mob/source)
+	SIGNAL_HANDLER
+	source.verbs += /mob/proc/eord_respawn
+
 /datum/game_mode/proc/end_of_round_deathmatch()
+	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_LOGIN, .proc/grant_eord_respawn) // New mobs can now respawn into EORD
 	var/list/spawns = GLOB.deathmatch.Copy()
 
 	CONFIG_SET(flag/allow_synthetic_gun_use, TRUE)
@@ -480,6 +438,13 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 		dat += "[GLOB.round_statistics.defiler_defiler_stings] number of times Defilers stung."
 	if(GLOB.round_statistics.defiler_neurogas_uses)
 		dat += "[GLOB.round_statistics.defiler_neurogas_uses] number of times Defilers vented neurogas."
+	if(GLOB.round_statistics.xeno_unarmed_attacks && GLOB.round_statistics.xeno_bump_attacks)
+		dat += "[GLOB.round_statistics.xeno_bump_attacks] bump attacks, which made up [(GLOB.round_statistics.xeno_bump_attacks / GLOB.round_statistics.xeno_unarmed_attacks) * 100]% of all attacks ([GLOB.round_statistics.xeno_unarmed_attacks])."
+	if(GLOB.round_statistics.xeno_headbites)
+		dat += "[GLOB.round_statistics.xeno_headbites] number of times victims headbitten."
+	if(GLOB.round_statistics.xeno_silo_corpses)
+		dat += "[GLOB.round_statistics.xeno_silo_corpses] number of corpses fed to resin silos."
+
 	var/output = jointext(dat, "<br>")
 	for(var/mob/player in GLOB.player_list)
 		if(player?.client?.prefs?.toggles_chat & CHAT_STATISTICS)
@@ -490,25 +455,36 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 	var/num_humans = 0
 	var/num_xenos = 0
 
-	for(var/i in GLOB.alive_human_list)
-		var/mob/living/carbon/human/H = i
-		if(count_flags & COUNT_IGNORE_HUMAN_SSD && !H.client)
-			continue
-		if(H.status_flags & XENO_HOST)
-			continue
-		if(!(H.z in z_levels) || isspaceturf(H.loc))
-			continue
-		num_humans++
+	for(var/z in z_levels)
+		for(var/i in GLOB.humans_by_zlevel["[z]"])
+			var/mob/living/carbon/human/H = i
+			if(!istype(H)) // Small fix?
+				continue
+			if(count_flags & COUNT_IGNORE_HUMAN_SSD && !H.client)
+				continue
+			if(H.status_flags & XENO_HOST)
+				continue
+			if(isspaceturf(H.loc))
+				continue
+			num_humans++
 
-	for(var/i in GLOB.alive_xeno_list)
-		var/mob/living/carbon/xenomorph/X = i
-		if(count_flags & COUNT_IGNORE_XENO_SSD && !X.client)
-			continue
-		if(count_flags & COUNT_IGNORE_XENO_SPECIAL_AREA && is_xeno_in_forbidden_zone(X))
-			continue
-		if((!(X.z in z_levels) && !X.is_ventcrawling) || isspaceturf(X.loc))
-			continue
-		num_xenos++
+	for(var/z in z_levels)
+		for(var/i in GLOB.hive_datums[XENO_HIVE_NORMAL].xenos_by_zlevel["[z]"])
+			var/mob/living/carbon/xenomorph/X = i
+			if(!istype(X)) // Small fix?
+				continue
+			if(count_flags & COUNT_IGNORE_XENO_SSD && !X.client)
+				continue
+			if(count_flags & COUNT_IGNORE_XENO_SPECIAL_AREA && is_xeno_in_forbidden_zone(X))
+				continue
+			if(isspaceturf(X.loc))
+				continue
+
+			// Never count hivemind
+			if(isxenohivemind(X))
+				continue
+
+			num_xenos++
 
 	return list(num_humans, num_xenos)
 
@@ -581,18 +557,31 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 		return "" // append nothing
 
 	var/isadmin = check_rights(R_ADMIN, FALSE)
-	var/newpoll = FALSE
-	var/datum/DBQuery/query_get_new_polls = SSdbcore.NewQuery("SELECT id FROM [format_table_name("poll_question")] WHERE [(isadmin ? "" : "adminonly = false AND")] Now() BETWEEN starttime AND endtime AND id NOT IN (SELECT pollid FROM [format_table_name("poll_vote")] WHERE ckey = \"[sanitizeSQL(NP.ckey)]\") AND id NOT IN (SELECT pollid FROM [format_table_name("poll_textreply")] WHERE ckey = \"[sanitizeSQL(NP.ckey)]\")")
-	if(query_get_new_polls.Execute())
-		if(query_get_new_polls.NextRow())
-			newpoll = TRUE
-	qdel(query_get_new_polls)
-
-	if(newpoll)
-		return "<p><b><a href='byond://?src=[REF(NP)];showpoll=1'>Show Player Polls</A> (NEW!)</b></p>"
+	var/datum/db_query/query_get_new_polls = SSdbcore.NewQuery({"
+		SELECT id FROM [format_table_name("poll_question")]
+		WHERE (adminonly = 0 OR :isadmin = 1)
+		AND Now() BETWEEN starttime AND endtime
+		AND deleted = 0
+		AND id NOT IN (
+			SELECT pollid FROM [format_table_name("poll_vote")]
+			WHERE ckey = :ckey
+			AND deleted = 0
+		)
+		AND id NOT IN (
+			SELECT pollid FROM [format_table_name("poll_textreply")]
+			WHERE ckey = :ckey
+			AND deleted = 0
+		)
+	"}, list("isadmin" = isadmin, "ckey" = NP.ckey))
+	var/rs = REF(src)
+	if(!query_get_new_polls.Execute())
+		qdel(query_get_new_polls)
+		return
+	if(query_get_new_polls.NextRow())
+		. += "<p><b><a href='byond://?src=[rs];showpoll=1'>Show Player Polls</A> (NEW!)</b></p>"
 	else
-		return "<p><a href='byond://?src=[REF(NP)];showpoll=1'>Show Player Polls</A></p>"
-
+		. += "<p><a href='byond://?src=[rs];showpoll=1'>Show Player Polls</A></p>"
+	qdel(query_get_new_polls)
 
 /datum/game_mode/proc/CanLateSpawn(mob/new_player/NP, datum/job/job)
 	if(!isnewplayer(NP))
@@ -619,15 +608,17 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 	return TRUE
 
 
-/datum/game_mode/proc/LateSpawn(mob/new_player/player, datum/job/job)
+/datum/game_mode/proc/LateSpawn(mob/new_player/player)
 	player.close_spawn_windows()
 	player.spawning = TRUE
 	player.create_character()
 	SSjob.spawn_character(player, TRUE)
 	player.mind.transfer_to(player.new_character)
+	var/datum/job/job = player.assigned_role
 	job.on_late_spawn(player.new_character)
+	var/area/A = get_area(player.new_character)
+	deadchat_broadcast("<span class='game'> has woken at <span class='name'>[A?.name]</span>.</span>", "<span class='game'><span class='name'>[player.new_character.real_name]</span> ([job.title])</span>", follow_target = player.new_character, message_type = DEADCHAT_ARRIVALRATTLE)
 	qdel(player)
-
 
 /datum/game_mode/proc/attempt_to_join_as_larva(mob/xeno_candidate)
 	to_chat(xeno_candidate, "<span class='warning'>This is unavailable in this gamemode.</span>")
@@ -638,11 +629,16 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 	to_chat(xeno_candidate, "<span class='warning'>This is unavailable in this gamemode.</span>")
 	return FALSE
 
-/datum/game_mode/proc/transfer_xeno(mob/xeno_candidate, mob/living/carbon/xenomorph/X)
-	message_admins("[key_name(xeno_candidate)] has joined as [ADMIN_TPMONTY(X)].")
+/datum/game_mode/proc/transfer_xeno(mob/xeno_candidate, mob/living/carbon/xenomorph/X, silent = FALSE)
+	if(QDELETED(X))
+		stack_trace("[xeno_candidate] was put into a qdeleted mob [X]")
+		return
+	if(!silent)
+		message_admins("[key_name(xeno_candidate)] has joined as [ADMIN_TPMONTY(X)].")
 	xeno_candidate.mind.transfer_to(X, TRUE)
 	if(X.is_ventcrawling)  //If we are in a vent, fetch a fresh vent map
 		X.add_ventcrawl(X.loc)
+		X.get_up()
 
 
 /datum/game_mode/proc/attempt_to_join_as_xeno(mob/xeno_candidate, instant_join = FALSE)

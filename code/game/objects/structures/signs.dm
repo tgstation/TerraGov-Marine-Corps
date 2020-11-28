@@ -20,17 +20,13 @@
 
 /obj/structure/sign/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(EXPLODE_DEVASTATE)
 			qdel(src)
-			return
-		if(2.0)
+		if(EXPLODE_HEAVY)
 			qdel(src)
-			return
-		if(3.0)
+		if(EXPLODE_LIGHT)
 			qdel(src)
-			return
-		else
-	return
+
 
 /obj/structure/sign/attackby(obj/item/I, mob/user, params)	//deconstruction
 	. = ..()
@@ -95,6 +91,7 @@
 /obj/structure/sign/securearea/firingrange
 	name = "\improper FIRING RANGE"
 	desc = "A warning sign which reads 'LIVE AMMUNITION RANGE'."
+	icon_state = "firingrange"
 
 /obj/structure/sign/biohazard
 	name = "\improper BIOHAZARD"
@@ -105,6 +102,21 @@
 	name = "\improper HIGH VOLTAGE"
 	desc = "A warning sign which reads 'HIGH VOLTAGE'."
 	icon_state = "shock"
+
+/obj/structure/sign/cold
+	name = "\improper LOW TEMPERATURE"
+	desc = "A warning sign which reads 'LOW TEMPERATURE'."
+	icon_state = "cold"
+
+/obj/structure/sign/heat
+	name = "\improper HIGH TEMPERATURE"
+	desc = "A warning sign which reads 'HIGH TEMPERATURE'."
+	icon_state = "heat"
+
+/obj/structure/sign/gas
+	name = "\improper GAS WARNING"
+	desc = "A warning sign which reads 'GAS MASKS REQUIRED'."
+	icon_state = "gasmask"
 
 /obj/structure/sign/examroom
 	name = "\improper EXAM"
@@ -151,6 +163,9 @@
 	desc = "The Intergalactic symbol of Medical institutions. You'll probably get help here."
 	icon_state = "greencross"
 
+/obj/structure/sign/greencross/star
+	icon_state = "lifestar"
+
 /obj/structure/sign/goldenplaque
 	name = "The Most Robust Men Award for Robustness"
 	desc = "To be Robust is not an action or a way of life, but a mental state. Only those with the force of Will strong enough to act during a crisis, saving friend from foe, are truly Robust. Stay Robust my friends."
@@ -158,7 +173,7 @@
 
 /obj/structure/sign/kiddieplaque
 	name = "AI developers plaque"
-	desc = "Next to the extremely long list of names and job titles, there is a drawing of a little child. The child appears to be retarded. Beneath the image, someone has scratched the word \"PACKETS\""
+	desc = "Next to the extremely long list of names and job titles, there is a drawing of a little child. The child appears to be disabled. Beneath the image, someone has scratched the word \"PACKETS\""
 	icon_state = "kiddieplaque"
 
 /obj/structure/sign/atmosplaque
@@ -176,10 +191,21 @@
 /obj/structure/sign/double/maltesefalcon/right
 	icon_state = "maltesefalcon-right"
 
-/obj/structure/sign/science			//These 3 have multiple types, just var-edit the icon_state to whatever one you want on the map
+/obj/structure/sign/science
 	name = "\improper SCIENCE!"
 	desc = "A warning sign which reads 'SCIENCE!'."
 	icon_state = "science1"
+
+/obj/structure/sign/science/two
+	icon_state = "science2"
+
+/obj/structure/sign/xenobio
+	name = "\improper SCIENCE!"
+	desc = "A warning sign which reads 'SCIENCE!'."
+	icon_state = "xenobio4"
+
+/obj/structure/sign/xenobio/two
+	icon_state = "xenobio"
 
 /obj/structure/sign/chemistry
 	name = "\improper CHEMISTRY"
@@ -189,10 +215,82 @@
 /obj/structure/sign/chemistry2
 	icon_state = "chemistry2"
 
+/obj/structure/sign/pharmacy
+	name = "\improper PHARMACY"
+	desc = "A guidance sign which reads 'PHARMACY'."
+	icon_state = "pharmacy"
+
 /obj/structure/sign/botany
 	name = "\improper HYDROPONICS"
-	desc = "A warning sign which reads 'HYDROPONICS'."
+	desc = "A guidance sign which reads 'HYDROPONICS'."
 	icon_state = "hydro1"
+
+/obj/structure/sign/holy
+	name = "\improper Chapel sign"
+	desc = "A sign labelling a religious area."
+	icon_state = "holy"
+
+/obj/structure/sign/custodian
+	name = "\improper Janitor sign"
+	desc = "A sign labelling an area where the janitor works."
+	icon_state = "custodian"
+
+/obj/structure/sign/mait
+	name = "\improper Maintenance Tunnel sign"
+	desc = "A sign labelling an area where the departments are linked together."
+	icon_state = "mait1"
+
+/obj/structure/sign/mait/alt
+	name = "\improper Maintenance Tunnel sign"
+	desc = "A sign labelling an area where the departments are linked together."
+	icon_state = "mait2"
+
+/obj/structure/sign/botany
+	name = "\improper BODY DISPOSAL"
+	desc = "A guidance sign which reads 'BODY DISPOSAL'."
+	icon_state = "bodysposal"
+
+/obj/structure/sign/doors
+	name = "\improper DOORS"
+	desc = "A guidance sign which reads 'DOORS'."
+	icon_state = "doors"
+
+/obj/structure/sign/engie
+	name = "\improper ENGINEERING"
+	desc = "A guidance sign which reads 'ENGINEERING'."
+	icon_state = "engine"
+
+/obj/structure/sign/evac
+	name = "\improper EVACUATION"
+	desc = "A guidance sign which reads 'EVACUATION'."
+	icon_state = "evac"
+
+/obj/structure/sign/hydro
+	name = "\improper HYDROPNICS"
+	desc = "A guidance sign which reads 'HYDROPNICS'."
+	icon_state = "hydro1"
+
+/obj/structure/sign/hydro/two
+	icon_state = "hydro2"
+
+/obj/structure/sign/hydro/three
+	icon_state = "hydro3"
+
+/obj/structure/sign/restroom
+	name = "\improper RESTROOM"
+	desc = "A guidance sign which reads 'RESTROOM'."
+	icon_state = "restroom"
+
+/obj/structure/sign/security
+	name = "\improper SECURITY"
+	desc = "A guidance sign which reads 'SECURITY'."
+	icon_state = "security"
+
+/obj/structure/sign/testchamber
+	name = "\improper TEST CHAMBER"
+	desc = "A guidance sign which reads 'TEST CHAMBER'."
+	icon_state = "testchamber"
+
 
 /obj/structure/sign/directions/science
 	name = "\improper Science department"
@@ -214,10 +312,26 @@
 	desc = "A direction sign, pointing out which way the Medical Bay is."
 	icon_state = "direction_med"
 
+/obj/structure/sign/directions/supply
+	name = "cargo sign"
+	desc = "A direction sign, pointing out which way the Cargo Bay is."
+	icon_state = "direction_supply"
+
 /obj/structure/sign/directions/evac
 	name = "\improper Escape Arm"
 	desc = "A direction sign, pointing out which way the escape shuttle dock is."
 	icon_state = "direction_evac"
+
+/obj/structure/sign/directions/command
+	name = "command department sign"
+	desc = "A direction sign, pointing out which way the Command department is."
+	icon_state = "direction_bridge"
+
+/obj/structure/sign/directions/mining
+	name = "mining department sign"
+	desc = "A direction sign, pointing out which way the Mining department is."
+	icon_state = "direction_mining"
+
 
 /obj/structure/sign/safety/
 	name = "sign"

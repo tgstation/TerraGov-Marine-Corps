@@ -14,11 +14,6 @@
 	. = ..()
 	var/list/traits = list()
 
-	var/list/entries = SScodex.retrieve_entries_for_string(general_codex_key)
-	var/datum/codex_entry/general_entry = LAZYACCESS(entries, 1)
-	if(general_entry && general_entry.mechanics_text)
-		traits += general_entry.mechanics_text
-
 	if(flags_gun_features & GUN_WIELDED_FIRING_ONLY)
 		traits += "This can only be fired with a two-handed grip."
 	else
@@ -96,6 +91,12 @@
 	if(burst_amount > 1)
 		traits += "Shots fired on burst mode: [burst_amount]"
 		traits += "Time between burst-fire: [(min((burst_delay * 2), (fire_delay * 3))) / 10] seconds"
+
+	traits += "<br>"
+	var/list/entries = SScodex.retrieve_entries_for_string(general_codex_key)
+	var/datum/codex_entry/general_entry = LAZYACCESS(entries, 1)
+	if(general_entry && general_entry.mechanics_text)
+		traits += general_entry.mechanics_text
 
 	. += jointext(traits, "<br>")
 
@@ -292,4 +293,4 @@
 	It's generally used inside it's belt holster or slung on your back as a secondary firearm for use in situations where you have a \
 	larger gun and would prefer a more CQC able weapon. It also has a rather large magazine capacity due to the small caliber size and caseless ammunition. <br><br>\
 	The MD-65 was adopted as a program to allow specialized units like medics and engineers to carry a smaller firearm to maximize \
-	weight and storage capacity. However it slowly spread in popularity to light infantry and scout units. It was named T-19 upon adoption."
+	weight and storage capacity. However it slowly spread in popularity to light infantry and scout units. It was named T-90 upon adoption."

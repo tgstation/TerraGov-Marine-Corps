@@ -26,7 +26,9 @@
 /datum/world_topic/proc/TryRun(list/input)
 	input -= "key"
 	. = Run(input)
-	if(islist(.))
+	if (input["format"] == "json")
+		. = json_encode(.)
+	else if(islist(.))
 		. = list2params(.)
 
 
@@ -52,6 +54,7 @@
 	.["players"] = length(GLOB.clients)
 	.["revision"] = GLOB.revdata.commit
 	.["revision_date"] = GLOB.revdata.date
+	.["hub"] = GLOB.hub_visibility
 
 	var/list/adm = get_admin_counts()
 	var/list/presentmins = adm["present"]
@@ -59,7 +62,7 @@
 	.["admins"] = length(presentmins) + length(afkmins)
 	.["gamestate"] = SSticker.current_state
 
-	.["map_name"] = length(SSmapping.configs) ? SSmapping.configs[GROUND_MAP].map_name : "Loading..."
+	.["map_name"] = length(SSmapping.configs) ? "[SSmapping.configs[GROUND_MAP].map_name] ([SSmapping.configs[SHIP_MAP].map_name])" : "Loading..."
 
 	.["security_level"] = GLOB.marine_main_ship?.get_security_level()
 	.["round_duration"] = SSticker ? round((world.time - SSticker.round_start_time) / 10) : 0

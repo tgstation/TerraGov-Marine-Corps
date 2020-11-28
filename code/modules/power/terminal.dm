@@ -21,9 +21,8 @@
 
 /obj/machinery/power/terminal/Initialize()
 	. = ..()
-	var/turf/T = get_turf(src)
-	if(level == 1)
-		hide(T.intact_tile)
+
+	AddElement(/datum/element/undertile, TRAIT_T_RAY_VISIBLE, use_alpha = TRUE)
 
 /obj/machinery/power/terminal/Destroy()
 	if(master)
@@ -31,14 +30,8 @@
 		master = null
 	return ..()
 
-/obj/machinery/power/terminal/hide(i)
-	if(i)
-		invisibility = INVISIBILITY_MAXIMUM
-		icon_state = "term-f"
-	else
-		invisibility = 0
-		icon_state = "term"
-
+/obj/machinery/power/terminal/should_have_node()
+	return TRUE
 
 /obj/machinery/power/proc/can_terminal_dismantle()
 	. = FALSE

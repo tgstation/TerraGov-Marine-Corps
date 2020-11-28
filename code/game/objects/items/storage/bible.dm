@@ -8,6 +8,11 @@
 	var/mob/affecting = null
 	var/deity_name = "Christ"
 
+/obj/item/storage/bible/koran
+	name = "koran"
+	icon_state = "koran"
+	deity_name = "Allah"
+
 /obj/item/storage/bible/booze
 	name = "bible"
 	desc = "To be applied to the head repeatedly."

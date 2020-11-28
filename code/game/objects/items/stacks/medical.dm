@@ -141,6 +141,15 @@
 	heal_burn = 7
 
 
+/obj/item/stack/medical/bruise_pack/sectoid
+	name = "\improper healing resin pack"
+	singular_name = "healing resin pack"
+	desc = "A strange tool filled with a sticky, alien resin. It seems it is meant for covering wounds."
+	icon = 'icons/obj/items/surgery_tools.dmi'
+	icon_state = "predator_fixovein"
+	heal_brute = 20
+	heal_burn = 20
+
 
 /obj/item/stack/medical/advanced
 	dir = NORTH

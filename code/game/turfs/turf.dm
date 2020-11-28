@@ -38,11 +38,37 @@
 	// This shouldn't be modified directly, use the helper procs.
 	var/list/baseturfs = /turf/baseturf_bottom
 	var/obj/effect/xenomorph/acid/current_acid = null //If it has acid spewed on it
+
+	luminosity = 1
+
 	var/changing_turf = FALSE
 
-	var/datum/armor/armor
+	/// %-reduction-based armor.
+	var/datum/armor/soft_armor
+	/// Flat-damage-reduction-based armor.
+	var/datum/armor/hard_armor
+
+	var/dynamic_lighting = TRUE
+
+
+	var/tmp/lighting_corners_initialised = FALSE
+
+	///Lumcount added by sources other than lighting datum objects, such as the overlay lighting component.
+	var/dynamic_lumcount = 0
+	///List of light sources affecting this turf.
+	var/tmp/list/datum/light_source/affecting_lights
+	///Our lighting object.
+	var/tmp/atom/movable/lighting_object/lighting_object
+	var/tmp/list/datum/lighting_corner/corners
+
+	///Which directions does this turf block the vision of, taking into account both the turf's opacity and the movable opacity_sources.
+	var/directional_opacity = NONE
+	///Lazylist of movable atoms providing opacity sources.
+	var/list/atom/movable/opacity_sources
+
 
 /turf/Initialize(mapload)
+	SHOULD_CALL_PARENT(FALSE) // anti laggies
 	if(flags_atom & INITIALIZED)
 		stack_trace("Warning: [src]([type]) initialized multiple times!")
 	ENABLE_BITFIELD(flags_atom, INITIALIZED)
@@ -67,20 +93,27 @@
 		update_light()
 
 	if(opacity)
-		has_opaque_atom = TRUE
+		directional_opacity = ALL_CARDINALS
 
-	if(islist(armor))
-		armor = getArmor(arglist(armor))
-	else if (!armor)
-		armor = getArmor()
-	else if (!istype(armor, /datum/armor))
-		stack_trace("Invalid type [armor.type] found in .armor during /turf Initialize()")
+	if(islist(soft_armor))
+		soft_armor = getArmor(arglist(soft_armor))
+	else if (!soft_armor)
+		soft_armor = getArmor()
+	else if (!istype(soft_armor, /datum/armor))
+		stack_trace("Invalid type [soft_armor.type] found in .soft_armor during /turf Initialize()")
+
+	if(islist(hard_armor))
+		hard_armor = getArmor(arglist(hard_armor))
+	else if (!hard_armor)
+		hard_armor = getArmor()
+	else if (!istype(hard_armor, /datum/armor))
+		stack_trace("Invalid type [hard_armor.type] found in .hard_armor during /turf Initialize()")
 
 	return INITIALIZE_HINT_NORMAL
 
 
 /turf/Destroy(force)
-	. = QDEL_HINT_IWILLGC
+
 	if(!changing_turf)
 		stack_trace("Incorrect turf deletion")
 	changing_turf = FALSE
@@ -92,14 +125,13 @@
 			qdel(A)
 		for(var/I in B.vars)
 			B.vars[I] = null
-		return
+		return QDEL_HINT_IWILLGC
 	visibilityChanged()
 	DISABLE_BITFIELD(flags_atom, INITIALIZED)
+	soft_armor = null
+	hard_armor = null
 	..()
-
-/turf/ex_act(severity)
-	return 0
-
+	return QDEL_HINT_IWILLGC
 
 /turf/Enter(atom/movable/mover, atom/oldloc)
 	// Do not call ..()
@@ -205,8 +237,8 @@
 
 /turf/proc/levelupdate()
 	for(var/obj/O in src)
-		if(O.level == 1)
-			O.hide(intact_tile)
+		if(O.flags_atom & INITIALIZED)
+			SEND_SIGNAL(O, COMSIG_OBJ_HIDE, intact_tile)
 
 
 // Creates a new turf
@@ -227,16 +259,16 @@
 			// no warning though because this can happen naturaly as a result of it being built on top of
 			path = /turf/open/space
 
-	if(!GLOB.use_preloader && path == type && !(flags & CHANGETURF_FORCEOP)) // Don't no-op if the map loader requires it to be reconstructed
+	if(!GLOB.use_preloader && path == type && !(flags & CHANGETURF_FORCEOP) && (baseturfs == new_baseturfs)) // Don't no-op if the map loader requires it to be reconstructed
 		return src
 	if(flags & CHANGETURF_SKIP)
 		return new path(src)
 
-	var/old_opacity = opacity
 	var/old_dynamic_lighting = dynamic_lighting
 	var/old_affecting_lights = affecting_lights
 	var/old_lighting_object = lighting_object
 	var/old_corners = corners
+	var/old_directional_opacity = directional_opacity
 
 	var/list/old_baseturfs = baseturfs
 
@@ -258,17 +290,15 @@
 	else
 		W.baseturfs = old_baseturfs
 
-
 	if(!(flags & CHANGETURF_DEFER_CHANGE))
 		W.AfterChange(flags)
 
 	if(SSlighting.initialized)
-		recalc_atom_opacity()
 		lighting_object = old_lighting_object
 		affecting_lights = old_affecting_lights
 		corners = old_corners
-		if(old_opacity != opacity || dynamic_lighting != old_dynamic_lighting)
-			reconsider_lights()
+		directional_opacity = old_directional_opacity
+		recalculate_directional_opacity()
 
 		if(dynamic_lighting != old_dynamic_lighting)
 			if (IS_DYNAMIC_LIGHTING(src))
@@ -371,22 +401,26 @@
 /turf/proc/can_lay_cable()
 	return can_have_cabling() & !intact_tile
 
-//Enable cable laying on turf click instead of pixel hunting the cable
-/turf/attackby(obj/item/I, mob/living/user, params)
-	. = ..()
-	if(.)
+/turf/attackby(obj/item/C, mob/user, params)
+	if(..())
 		return TRUE
-
-	user.changeNext_move(I.attack_speed)
-
-	if(can_lay_cable() && istype(I, /obj/item/stack/cable_coil))
-		var/obj/item/stack/cable_coil/coil = I
-		for(var/obj/structure/cable/C in src)
-			if(C.d1 == CABLE_NODE || C.d2 == CABLE_NODE)
-				C.attackby(I, user, params)
+	if(can_lay_cable() && istype(C, /obj/item/stack/cable_coil))
+		var/obj/item/stack/cable_coil/coil = C
+		coil.place_turf(src, user)
+		return TRUE
+	else if(can_have_cabling() && istype(C, /obj/item/stack/pipe_cleaner_coil))
+		var/obj/item/stack/pipe_cleaner_coil/coil = C
+		for(var/obj/structure/pipe_cleaner/LC in src)
+			if(!LC.d1 || !LC.d2)
+				LC.attackby(C, user)
 				return
 		coil.place_turf(src, user)
 		return TRUE
+
+	//else if(istype(C, /obj/item/rcl))
+	//	handleRCL(C, user)
+
+	return FALSE
 
 //for xeno corrosive acid, 0 for unmeltable, 1 for regular, 2 for strong walls that require strong acid and more time.
 /turf/proc/can_be_dissolved()
@@ -462,17 +496,10 @@
 
 //////////////////////////////////////////////////////////
 
-
-
-GLOBAL_LIST_INIT(unweedable_areas, typecacheof(list(
-	/area/shuttle/drop1/lz1,
-	/area/shuttle/drop2/lz2,
-	/area/sulaco/hangar)))
-
 //Check if you can plant weeds on that turf.
 //Does NOT return a message, just a 0 or 1.
 /turf/proc/is_weedable()
-	return !density && !is_type_in_typecache((get_area(src)), GLOB.unweedable_areas)
+	return !density
 
 /turf/open/space/is_weedable()
 	return FALSE
@@ -492,15 +519,6 @@ GLOBAL_LIST_INIT(unweedable_areas, typecacheof(list(
 /turf/open/floor/plating/ground/snow/is_weedable()
 	return !slayer && ..()
 
-
-/turf/open/floor/plating/plating_catwalk/is_weedable() //covered catwalks are unweedable
-	. = ..()
-	if(covered)
-		return FALSE
-
-
-/turf/closed/wall/is_weedable()
-	return !is_type_in_typecache((get_area(src)), GLOB.unweedable_areas) //so we can spawn weeds on the walls
 
 
 /turf/proc/check_alien_construction(mob/living/builder, silent = FALSE, planned_building)
@@ -530,7 +548,7 @@ GLOBAL_LIST_INIT(unweedable_areas, typecacheof(list(
 				if(P.chair_state != DROPSHIP_CHAIR_BROKEN)
 					has_obstacle = TRUE
 					break
-			else
+			else if(istype(O, /obj/structure/bed/nest)) //We don't care about other beds/chairs/whatever the fuck.
 				has_obstacle = TRUE
 				break
 		if(istype(O, /obj/effect/alien/hivemindcore))
@@ -686,9 +704,9 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	if(depth)
 		var/list/target_baseturfs
 		if(length(copytarget.baseturfs))
-			// with default inputs this would be Copy(CLAMP(2, -INFINITY, baseturfs.len))
+			// with default inputs this would be Copy(clamp(2, -INFINITY, baseturfs.len))
 			// Don't forget a lower index is lower in the baseturfs stack, the bottom is baseturfs[1]
-			target_baseturfs = copytarget.baseturfs.Copy(CLAMP(1 + ignore_bottom, 1 + copytarget.baseturfs.len - depth, copytarget.baseturfs.len))
+			target_baseturfs = copytarget.baseturfs.Copy(clamp(1 + ignore_bottom, 1 + copytarget.baseturfs.len - depth, copytarget.baseturfs.len))
 		else if(!ignore_bottom)
 			target_baseturfs = list(copytarget.baseturfs)
 		if(target_baseturfs)
@@ -847,11 +865,30 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	return TRUE
 
 
-/turf/contents_explosion(severity, target)
-	for(var/i in contents)
-		var/atom/A = i
-		if(!QDELETED(A) && A.level >= severity)
-			A.ex_act(severity, target)
+/turf/contents_explosion(severity)
+	for(var/thing in contents)
+		var/atom/movable/thing_in_turf = thing
+		if(thing_in_turf.resistance_flags & INDESTRUCTIBLE)
+			continue
+		switch(severity)
+			if(EXPLODE_DEVASTATE)
+				SSexplosions.highMovAtom[thing_in_turf] += list(src)
+				if(thing_in_turf.flags_atom & PREVENT_CONTENTS_EXPLOSION)
+					continue
+				for(var/a in thing_in_turf.contents)
+					SSexplosions.highMovAtom[a] += list(src)
+			if(EXPLODE_HEAVY)
+				SSexplosions.medMovAtom[thing_in_turf] += list(src)
+				if(thing_in_turf.flags_atom & PREVENT_CONTENTS_EXPLOSION)
+					continue
+				for(var/a in thing_in_turf.contents)
+					SSexplosions.medMovAtom[a] += list(src)
+			if(EXPLODE_LIGHT)
+				SSexplosions.lowMovAtom[thing_in_turf] += list(src)
+				if(thing_in_turf.flags_atom & PREVENT_CONTENTS_EXPLOSION)
+					continue
+				for(var/a in thing_in_turf.contents)
+					SSexplosions.lowMovAtom[a] += list(src)
 
 
 /turf/vv_edit_var(var_name, new_value)

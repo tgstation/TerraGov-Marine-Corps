@@ -1,6 +1,5 @@
 /obj/structure/closet/secure_closet/guncabinet
 	name = "gun cabinet"
-	req_access_txt = "0"
 	icon = 'icons/obj/structures/misc.dmi'
 	icon_state = "base"
 	icon_off ="base"
@@ -46,7 +45,7 @@
 	new /obj/item/ammo_magazine/flamer_tank(src)
 	new /obj/item/weapon/gun/shotgun/combat(src)
 	new /obj/item/weapon/gun/smg/standard_smg(src)
-	new /obj/item/weapon/gun/pistol/m4a3(src)
+	new /obj/item/weapon/gun/pistol/rt3(src)
 
 	var/list/to_spawn = list(
 		/obj/item/ammo_magazine/shotgun/buckshot = 3,
@@ -59,12 +58,12 @@
 
 
 /obj/structure/closet/secure_closet/guncabinet/nt_lab/PopulateContents()
-	new /obj/item/weapon/gun/smg/m39/elite(src)
+	new /obj/item/weapon/gun/smg/m25/elite(src)
 
 
 /obj/structure/closet/secure_closet/guncabinet/pmc_m39/PopulateContents()
-	new /obj/item/storage/pouch/magazine/large/pmc_m39(src)
-	new /obj/item/weapon/gun/smg/standard_smg(src)
+	new /obj/item/storage/pouch/magazine/large/pmc_m25(src)
+	new /obj/item/weapon/gun/smg/m25/elite(src)
 
 
 /obj/structure/closet/secure_closet/guncabinet/lmg/PopulateContents()

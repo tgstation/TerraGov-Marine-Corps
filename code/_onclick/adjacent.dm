@@ -164,6 +164,17 @@
 		return FALSE
 	return T.Adjacent(neighbor, target = neighbor, mover = src)
 
+/obj/vehicle/armored/multitile/Adjacent(atom/neighbor)
+	if(isxeno(neighbor))//Xenos stand next to it and slash
+		for(var/obj/vehicle/hitbox/H in linked_hitboxes)
+			for(var/X in H.locs)
+				var/turf/T = X
+				if(T.Adjacent(neighbor, target = neighbor, mover = src))
+					return TRUE
+	else
+		if(get_door_location(neighbor))
+			return TRUE
+	return FALSE
 
 /*
 	This checks if you there is uninterrupted airspace between that turf and this one.

@@ -9,8 +9,6 @@
 		/datum/job/terragov/command/fieldcommander = 1,
 		/datum/job/terragov/command/staffofficer = 4,
 		/datum/job/terragov/command/pilot = 2,
-		/datum/job/terragov/police/chief = 1,
-		/datum/job/terragov/police/officer = 5,
 		/datum/job/terragov/engineering/chief = 1,
 		/datum/job/terragov/engineering/tech = 1,
 		/datum/job/terragov/requisitions/officer = 1,
@@ -23,7 +21,6 @@
 		/datum/job/terragov/squad/engineer = 8,
 		/datum/job/terragov/squad/corpsman = 8,
 		/datum/job/terragov/squad/smartgunner = 4,
-		/datum/job/terragov/squad/specialist = 4,
 		/datum/job/terragov/squad/leader = 4,
 		/datum/job/terragov/squad/standard = -1
 	)

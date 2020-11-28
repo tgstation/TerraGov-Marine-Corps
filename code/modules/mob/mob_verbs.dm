@@ -83,6 +83,32 @@
 	M.key = key
 
 
+/// This is only available to mobs once they join EORD.
+/mob/proc/eord_respawn()
+	set name = "EORD Respawn"
+	set category = "OOC"
+
+	if(isliving(usr))
+		var/mob/living/liver = usr
+		if(liver.health >= liver.health_threshold_crit)
+			to_chat(src, "You can only use this when you're dead or crit.")
+			return
+
+	var/spawn_location = pick(GLOB.deathmatch)
+	var/mob/living/L = new /mob/living/carbon/human(spawn_location)
+	mind.transfer_to(L, TRUE)
+	L.mind.bypass_ff = TRUE
+	L.revive()
+
+	var/mob/living/carbon/human/H = L
+	var/job = pick(/datum/job/clf/leader, /datum/job/freelancer/leader, /datum/job/upp/leader, /datum/job/som/leader, /datum/job/pmc/leader, /datum/job/freelancer/standard, /datum/job/som/standard, /datum/job/clf/standard)
+	var/datum/job/J = SSjob.GetJobType(job)
+	H.apply_assigned_role_to_spawn(J)
+	H.regenerate_icons()
+
+	to_chat(L, "<br><br><h1><span class='danger'>Fight for your life (again), try not to die this time!</span></h1><br><br>")
+
+
 /mob/verb/cancel_camera()
 	set name = "Cancel Camera View"
 	set category = "Object"
@@ -95,21 +121,25 @@
 
 
 /mob/verb/eastface()
+	SIGNAL_HANDLER
 	set hidden = 1
 	return facedir(EAST)
 
 
 /mob/verb/westface()
+	SIGNAL_HANDLER
 	set hidden = 1
 	return facedir(WEST)
 
 
 /mob/verb/northface()
+	SIGNAL_HANDLER
 	set hidden = 1
 	return facedir(NORTH)
 
 
 /mob/verb/southface()
+	SIGNAL_HANDLER
 	set hidden = 1
 	return facedir(SOUTH)
 

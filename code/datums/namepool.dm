@@ -35,3 +35,24 @@ GLOBAL_LIST_EMPTY_TYPED(namepool, /datum/namepool)
 	firstname_male_pool = "names/moth_first"
 	firstname_female_pool = "names/moth_first"
 	lastname_pool = "names/moth_last"
+
+/datum/namepool/sectoid/get_random_name()
+	return "Sectoid [rand(1,9)]X[ascii2text(rand(65, 87))]" //65 to 87 is (uppercase) A to W
+
+/datum/namepool/vatborn/get_random_name(gender = MALE)
+	firstname_male_pool = "names/first_male"
+	firstname_female_pool = "names/first_female"
+
+	if(gender == MALE)
+		. = pick(SSstrings.get_list_from_file(firstname_male_pool))
+	else
+		. = pick(SSstrings.get_list_from_file(firstname_female_pool))
+	if(prob(25))
+		. = "[ascii2text(rand(65, 90))]" //65 to 87 is (uppercase) A to Z
+
+	. += "-[rand(1,999)]"
+
+/datum/namepool/skeleton
+	firstname_male_pool = "names/skeleton"
+	firstname_female_pool = "names/skeleton"
+	lastname_pool = "names/skeleton"

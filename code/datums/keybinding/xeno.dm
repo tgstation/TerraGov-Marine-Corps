@@ -2,6 +2,11 @@
 	category = CATEGORY_XENO
 	weight = WEIGHT_MOB
 
+/datum/keybinding/xeno/headbite
+	name = "headbite"
+	full_name = "Headbite"
+	description = "Permanently kill a target."
+	keybind_signal = COMSIG_XENOABILITY_HEADBITE
 
 /datum/keybinding/xeno/regurgitate
 	name = "regurgitate"
@@ -27,6 +32,12 @@
 	full_name = "Secrete Resin"
 	description = "Builds whatever you’ve selected with (choose resin structure) on your tile."
 	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN
+
+/datum/keybinding/xeno/secrete_resin_silo
+	name = "secrete_resin_silo"
+	full_name = "Secrete Resin Silo"
+	description = "Builds a resin silo. Requires a number of dead bodies on a nest."
+	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN_SILO
 
 /datum/keybinding/xeno/emit_recovery
 	name = "emit_recovery"
@@ -214,11 +225,29 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_FORTIFY
 
+/datum/keybinding/xeno/regenerate_skin
+	name = "regenerate_skin"
+	full_name = "Defender: Regenerate Skin"
+	description = "Regenerate your skin, restoring some health and removing all armor sunder."
+	keybind_signal = COMSIG_XENOABILITY_REGENERATE_SKIN
+
 /datum/keybinding/xeno/emit_neurogas
 	name = "emit_neurogas"
 	full_name = "Defiler: Emit Neurogas"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_EMIT_NEUROGAS
+
+/datum/keybinding/xeno/select_reagent
+	name = "select_reagent"
+	full_name = "Defiler: Select Reagent"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_SELECT_REAGENT
+
+/datum/keybinding/xeno/reagent_slash
+	name = "reagent_slash"
+	full_name = "Defiler: Reagent Slash"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_REAGENT_SLASH
 
 /datum/keybinding/xeno/salvage_plasma
 	name = "salvage_plasma"
@@ -238,11 +267,29 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_BUILD_TUNNEL
 
+/datum/keybinding/xeno/place_jelly_pod
+	name = "place_jelly_pod"
+	full_name = "Hivelord: Place Jelly Pod"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_PLACE_JELLY_POD
+
+/datum/keybinding/xeno/create_jelly
+	name = "create_jelly"
+	full_name = "Hivelord: Create Jelly"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_CREATE_JELLY
+
 /datum/keybinding/xeno/toggle_stealth
 	name = "toggle_stealth"
 	full_name = "Hunter: Toggle Stealth"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_STEALTH
+
+/datum/keybinding/xeno/haunt
+	name = "haunt"
+	full_name = "Hunter: Haunt"
+	description = "Haunt the target, causing minor hallucinations"
+	keybind_signal = COMSIG_XENOABILITY_HAUNT
 
 /datum/keybinding/xeno/psychic_whisper
 	name = "psychic_whisper"
@@ -340,6 +387,12 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_RAVAGER_CHARGE
 
+/datum/keybinding/xeno/ravager_ignore_pain
+	name = "ravager_ignore_pain"
+	full_name = "Ravager: Ignore Pain"
+	description = "While active, you will not go into crit and can take increased damage before dying. You will still die when the effect ends."
+	keybind_signal = COMSIG_XENOABILITY_IGNORE_PAIN
+
 /datum/keybinding/xeno/ravage
 	name = "ravage"
 	full_name = "Ravager: Ravage"
@@ -381,3 +434,9 @@
 	full_name = "Psychic Choke (Unused)"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_CHOKE
+
+/datum/keybinding/xeno/inject_egg_neurogas
+	name = "inject_egg_neurogas"
+	full_name = "Inject Egg (Neurogas)"
+	description = "Inject an egg with neurogas, killing the little one inside"
+	keybind_signal = COMSIG_XENOABILITY_INJECT_EGG_NEUROGAS

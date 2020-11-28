@@ -59,10 +59,20 @@
 	return TRUE
 
 
+/**
+Apply status effect to mob
 
+Arguments
+	effect {int} how much of an effect to apply
+	effecttype {enum} which affect to apply
+	blocked {int} an amount of the effect that is blocked
+	updating_health {boolean} if we should update health [/mob/living/updatehealth]
+*/
 /mob/living/proc/apply_effect(effect = 0, effecttype = STUN, blocked = 0, updating_health = FALSE)
+	if(status_flags & GODMODE)
+		return FALSE
 	if(!effect || (blocked >= 2))
-		return 0
+		return FALSE
 	switch(effecttype)
 		if(STUN)
 			Stun(effect/(blocked+1) * 20) // TODO: replace these * 20 with proper amounts in apply_effect() calls
@@ -72,9 +82,6 @@
 			Unconscious(effect/(blocked+1) * 20)
 		if(AGONY)
 			adjustHalLoss(effect/(blocked+1))
-		if(IRRADIATE)
-			var/rad_protection = getarmor(null, "rad") * 0.01
-			radiation += max((1-rad_protection)*effect/(blocked+1),0)//Rads auto check armor
 		if(STUTTER)
 			if(status_flags & CANSTUN) // stun is usually associated with stutter
 				stuttering = max(stuttering,(effect/(blocked+1)))
@@ -87,7 +94,7 @@
 	return TRUE
 
 
-/mob/living/proc/apply_effects(stun = 0, weaken = 0, paralyze = 0, irradiate = 0, stutter = 0, eyeblur = 0, drowsy = 0, agony = 0, blocked = 0, updating_health = FALSE)
+/mob/living/proc/apply_effects(stun = 0, weaken = 0, paralyze = 0, stutter = 0, eyeblur = 0, drowsy = 0, agony = 0, blocked = 0, updating_health = FALSE)
 	if(blocked >= 2)
 		return FALSE
 	if(stun)
@@ -96,8 +103,6 @@
 		apply_effect(weaken, WEAKEN, blocked)
 	if(paralyze)
 		apply_effect(paralyze, PARALYZE, blocked)
-	if(irradiate)
-		apply_effect(irradiate, IRRADIATE, blocked)
 	if(stutter)
 		apply_effect(stutter, STUTTER, blocked)
 	if(eyeblur)

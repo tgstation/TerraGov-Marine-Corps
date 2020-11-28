@@ -9,7 +9,7 @@
 	throwforce = 15.0
 	throw_speed = 5
 	throw_range = 20
-	materials = list(/datum/material/metal = 1875)
+	materials = list(/datum/material/metal = 1000)
 	max_amount = 60
 	attack_verb = list("hit", "bludgeoned", "whacked")
 
@@ -57,10 +57,9 @@
 
 	if (locate(/obj/structure/grille, usr.loc))
 		for(var/obj/structure/grille/G in usr.loc)
-			if (G.destroyed)
+			if (G.obj_integrity <= G.integrity_failure)
 				G.repair_damage(10)
 				G.density = TRUE
-				G.destroyed = FALSE
 				G.icon_state = "grille"
 				use(1)
 			else

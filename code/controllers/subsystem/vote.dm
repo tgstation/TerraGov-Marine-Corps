@@ -185,7 +185,14 @@ SUBSYSTEM_DEF(vote)
 					var/datum/map_config/VM = config.maplist[GROUND_MAP][i]
 					if(!VM.voteweight)
 						continue
+					if(VM.config_max_users || VM.config_min_users)
+						var/players = length(GLOB.clients)
+						if(VM.config_max_users && players > VM.config_max_users)
+							continue
+						if(VM.config_min_users && players < VM.config_min_users)
+							continue
 					maps += i
+
 				choices.Add(maps)
 				if(length(choices) < 2)
 					return FALSE
@@ -195,6 +202,12 @@ SUBSYSTEM_DEF(vote)
 					var/datum/map_config/VM = config.maplist[SHIP_MAP][i]
 					if(!VM.voteweight)
 						continue
+					if(VM.config_max_users || VM.config_min_users)
+						var/players = length(GLOB.clients)
+						if(players > VM.config_max_users)
+							continue
+						if(players < VM.config_min_users)
+							continue
 					maps += i
 				choices.Add(maps)
 				if(length(choices) < 2)
@@ -354,6 +367,8 @@ SUBSYSTEM_DEF(vote)
 	RegisterSignal(SSdcs, COMSIG_GLOB_REMOVE_VOTE_BUTTON, .proc/remove_vote_action)
 
 /datum/action/innate/vote/proc/remove_vote_action(datum/source)
+	SIGNAL_HANDLER
+
 	if(remove_from_client())
 		remove_action(owner)
 	qdel(src)

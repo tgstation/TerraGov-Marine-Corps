@@ -1,34 +1,36 @@
 
 /mob/living/carbon/xenomorph/proc/death_cry()
-	playsound(loc, prob(50) == 1 ? 'sound/voice/alien_death.ogg' : 'sound/voice/alien_death2.ogg', 25, 1)
+	playsound(loc, prob(50) == TRUE ? 'sound/voice/alien_death.ogg' : 'sound/voice/alien_death2.ogg', 25, 1)
 
-/mob/living/carbon/xenomorph/death(gibbed)
-	if(LAZYLEN(stomach_contents))
-		empty_gut()
-		visible_message("<span class='danger'>Something bursts out of [src]!</span>")
 
-	var/msg = "lets out a waning guttural screech, green blood bubbling from its maw."
-	. = ..(gibbed,msg)
-	if(!.) return //If they're already dead, it will return.
+/mob/living/carbon/xenomorph/death(gibbing, deathmessage = "lets out a waning guttural screech, green blood bubbling from its maw.", silent)
+	if(stat == DEAD)
+		return ..()
+	return ..() //Just a different standard deathmessage
 
+
+/mob/living/carbon/xenomorph/on_death()
 	GLOB.alive_xeno_list -= src
 	GLOB.dead_xeno_list += src
 	hive?.on_xeno_death(src)
+
+	if(LAZYLEN(stomach_contents))
+		empty_gut()
+		visible_message("<span class='danger'>Something bursts out of [src]!</span>")
 
 	if(is_zoomed)
 		zoom_out()
 
 	set_light(0)
 
-	if(!gibbed)
-		if(hud_used)
-			if(hud_used.healths)
-				hud_used.healths.icon_state = "health_dead"
-			if(hud_used.staminas)
-				hud_used.staminas.icon_state = "staminaloss200"
-			if(hud_used.alien_plasma_display)
-				hud_used.alien_plasma_display.icon_state = "power_display_empty"
-		update_icons()
+	if(hud_used)
+		if(hud_used.healths)
+			hud_used.healths.icon_state = "health_dead"
+		if(hud_used.staminas)
+			hud_used.staminas.icon_state = "staminaloss200"
+		if(hud_used.alien_plasma_display)
+			hud_used.alien_plasma_display.icon_state = "power_display_empty"
+	update_icons()
 
 	death_cry()
 
@@ -36,12 +38,17 @@
 
 	hud_set_queen_overwatch() //updates the overwatch hud to remove the upgrade chevrons, gold star, etc
 
+	GLOB.round_statistics.total_xeno_deaths++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_xeno_deaths")
+
 	var/isAI = GetComponent(/datum/component/ai_controller)
 	if (isAI)
 		gib()
 
-	GLOB.round_statistics.total_xeno_deaths++
-	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_xeno_deaths")
+	to_chat(src,"<b><span class='deadsay'><p style='font-size:1.5em'><big>We have perished.</big><br><small>But it is not the end of us yet... wait until a newborn can rise in this world...</small></p></span></b>")
+
+	return ..()
+
 
 /mob/living/carbon/xenomorph/proc/xeno_death_alert()
 	if(is_centcom_level(z))
@@ -61,7 +68,7 @@
 
 	check_blood_splash(35, BURN, 65, 2) //Some testing numbers. 35 burn, 65 chance.
 
-	..(1)
+	return ..()
 
 /mob/living/carbon/xenomorph/gib_animation()
 	new /obj/effect/overlay/temp/gib_animation/xeno(loc, src, xeno_caste.gib_flick, icon)

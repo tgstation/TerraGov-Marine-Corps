@@ -20,7 +20,7 @@
 			"<span class='notice'>We start focusing your sight to look off into the distance.</span>", null, 5)
 		if(!do_after(X, 1 SECONDS, FALSE, null, BUSY_ICON_GENERIC) || X.is_zoomed)
 			return
-		X.zoom_in()
+		X.zoom_in(11)
 		..()
 
 // ***************************************
@@ -68,8 +68,8 @@
 /datum/action/xeno_action/create_boiler_bomb/action_activate()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
 
-	if(X.selected_ability) //bombarding or something else.
-		to_chat(X, "<span class='notice'>We can not prepare globules as we are now. We must clear our mind of abilities!</span>")
+	if(X.is_zoomed)
+		to_chat(X, "<span class='notice'>We can not prepare globules as we are now. We must stop concentrating into the distance!</span>")
 		return
 
 	var/current_ammo = X.corrosive_ammo + X.neuro_ammo
@@ -84,7 +84,7 @@
 	else
 		X.neuro_ammo++
 		to_chat(X, "<span class='notice'>We prepare a neurotoxic gas globule.</span>")
-	X.set_light(current_ammo)
+	X.update_boiler_glow()
 	update_button_icon()
 
 /datum/action/xeno_action/create_boiler_bomb/update_button_icon()
@@ -103,6 +103,7 @@
 	mechanics_text = "Launch a glob of neurotoxin or acid. Must remain stationary for a few seconds to use."
 	ability_name = "bombard"
 	keybind_signal = COMSIG_XENOABILITY_BOMBARD
+	target_flags = XABB_TURF_TARGET
 
 /datum/action/xeno_action/activable/bombard/get_cooldown()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
@@ -146,6 +147,7 @@
 
 
 /datum/action/xeno_action/activable/bombard/proc/on_ranged_attack(mob/living/carbon/xenomorph/X, atom/A, params)
+	SIGNAL_HANDLER_DOES_SLEEP
 	if(can_use_ability(A))
 		use_ability(A)
 
@@ -232,7 +234,7 @@
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "boiler_neuro_smokes")
 		X.neuro_ammo--
 
-	X.set_light(X.corrosive_ammo + X.neuro_ammo)
+	X.update_boiler_glow()
 	update_button_icon()
 	add_cooldown()
 	X.reset_bombard_pointer()

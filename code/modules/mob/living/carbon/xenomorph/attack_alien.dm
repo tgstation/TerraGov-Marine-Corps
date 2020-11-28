@@ -45,79 +45,6 @@
 		return
 	Paralyze(16 SECONDS)
 
-/mob/living/carbon/human/attack_alien_disarm(mob/living/carbon/xenomorph/X, dam_bonus)
-	var/tackle_pain = X.xeno_caste.tackle_damage
-	if(!tackle_pain)
-		return FALSE
-	if(isnestedhost(src)) //No more memeing nested and infected hosts
-		to_chat(X, "<span class='xenodanger'>We reconsider our mean-spirited bullying of the pregnant, secured host.</span>")
-		return FALSE
-	if(!prob(X.melee_accuracy))
-		X.do_attack_animation(src)
-		playsound(loc, 'sound/weapons/slashmiss.ogg', 25, TRUE)
-		X.visible_message("<span class='danger'>\The [X] shoves at [src], narroly missing!</span>",
-		"<span class='danger'>Our tackle against [src] narroly misses!</span>")
-		return FALSE
-	tackle_pain = check_shields(COMBAT_MELEE_ATTACK, tackle_pain, "melee")
-	if(!tackle_pain)
-		X.do_attack_animation(src)
-		X.visible_message("<span class='danger'>\The [X]'s tackle is blocked by [src]'s shield!</span>", \
-		"<span class='danger'>Our tackle is blocked by [src]'s shield!</span>", null, 5)
-		return FALSE
-	X.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
-
-	if(!IsParalyzed() && !no_stun && (traumatic_shock > 100))
-		Paralyze(20)
-		X.visible_message("<span class='danger'>\The [X] slams [src] to the ground!</span>", \
-		"<span class='danger'>We slam [src] to the ground!</span>", null, 5)
-
-	var/armor_block = run_armor_check("chest", "melee")
-
-	playsound(loc, 'sound/weapons/alien_knockdown.ogg', 25, TRUE)
-
-	if(protection_aura)
-		tackle_pain = tackle_pain * (1 - (0.10 + 0.05 * protection_aura))  //Stamina damage decreased by 10% + 5% per rank of protection aura
-	if(X.stealth_router(HANDLE_STEALTH_CHECK))
-		if(X.stealth_router(HANDLE_SNEAK_ATTACK_CHECK))
-			#ifdef DEBUG_ATTACK_ALIEN
-			to_chat(world, "DEBUG_ALIEN_ATTACK SNEAK ATTACK: target: [src] last_move_intent: [X.last_move_intent] world.time minus run delay: [world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY]")
-			#endif
-			var/staggerslow_stacks = 2
-			if(m_intent == MOVE_INTENT_RUN && ( X.last_move_intent > (world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY) ) ) //Allows us to slash while running... but only if we've been stationary for awhile
-				tackle_pain *= 1.75 //Half the multiplier if running.
-				X.visible_message("<span class='danger'>\The [X] strikes [src] with vicious precision!</span>", \
-				"<span class='danger'>We strike [src] with vicious precision!</span>")
-			else
-				tackle_pain *= 3.5 //Massive damage on the sneak attack... hope you have armour.
-				staggerslow_stacks *= 2
-				X.visible_message("<span class='danger'>\The [X] strikes [src] with deadly precision!</span>", \
-				"<span class='danger'>We strike [src] with deadly precision!</span>")
-			ParalyzeNoChain(1.5 SECONDS) //...And we knock
-			adjust_stagger(staggerslow_stacks)
-			add_slowdown(staggerslow_stacks)
-
-	var/list/pain_mod = list()
-
-	SEND_SIGNAL(X, COMSIG_XENOMORPH_DISARM_HUMAN, src, tackle_pain, pain_mod)
-
-	for(var/i in pain_mod)
-		tackle_pain += i
-
-	if(dam_bonus)
-		tackle_pain += dam_bonus
-
-	apply_damage(tackle_pain, STAMINA, "chest", armor_block)
-	updateshock()
-	UPDATEHEALTH(src)
-	var/throttle_message = "<span class='danger'>\The [X] throttles [src]!</span>"
-	var/throttle_message2 = "<span class='danger'>We throttle [src]!</span>"
-	if(tackle_pain > 40)
-		throttle_message = "<span class='danger'>\The [X] badly throttles [src]!</span>"
-		throttle_message2 = "<span class='danger'>We badly throttle [src]!</span>"
-	X.visible_message("[throttle_message]", \
-	"[throttle_message2]", null, 5)
-	return TRUE
-
 /mob/living/proc/can_xeno_slash(mob/living/carbon/xenomorph/X)
 	if(CHECK_BITFIELD(X.xeno_caste.caste_flags, CASTE_IS_INTELLIGENT)) // intelligent ignore restrictions
 		return TRUE
@@ -157,7 +84,7 @@
 	var/datum/limb/affecting
 	if(set_location)
 		affecting = get_limb(set_location)
-	else if(X.stealth_router(HANDLE_STEALTH_CHECK) && X.stealth_router(HANDLE_SNEAK_ATTACK_CHECK)) //We always get the limb we're aiming for if we're sneak attacking
+	else if(SEND_SIGNAL(X, COMSIG_XENOMORPH_ZONE_SELECT) & COMSIG_ACCURATE_ZONE)
 		affecting = get_limb(X.zone_selected)
 	else
 		affecting = get_limb(ran_zone(X.zone_selected, 70))
@@ -181,7 +108,30 @@
 	if(!damage)
 		return FALSE
 
-	damage = check_shields(COMBAT_MELEE_ATTACK, damage, "melee")
+	var/datum/limb/affecting = get_xeno_slash_zone(X, set_location, random_location, no_head)
+	var/armor_block = 0
+
+	var/list/damage_mod = list()
+	var/list/armor_mod = list()
+
+	var/signal_return = SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_LIVING, src, damage, damage_mod, armor_mod)
+
+	// if we don't get any non-stacking bonuses dont apply dam_bonus
+	if(!(signal_return & COMSIG_XENOMORPH_BONUS_APPLIED ))
+		damage_mod += dam_bonus
+
+	if(!(signal_return & COMPONENT_BYPASS_ARMOR))
+		armor_block = run_armor_check(affecting, "melee")
+
+	for(var/i in damage_mod)
+		damage += i
+
+	for(var/i in armor_mod)
+		armor_block *= i
+
+	if(!(signal_return & COMPONENT_BYPASS_SHIELDS))
+		damage = check_shields(COMBAT_MELEE_ATTACK, damage, "melee")
+
 	if(!damage)
 		X.visible_message("<span class='danger'>\The [X]'s slash is blocked by [src]'s shield!</span>",
 			"<span class='danger'>Our slash is blocked by [src]'s shield!</span>", null, COMBAT_MESSAGE_RANGE)
@@ -212,42 +162,23 @@
 	else //Normal xenomorph friendship with benefits
 		log_combat(X, src, log)
 
-	var/datum/limb/affecting = get_xeno_slash_zone(X, set_location, random_location, no_head)
-	var/armor_block = run_armor_check(affecting, "melee")
-
-	if(X.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
-		if(X.stealth_router(HANDLE_SNEAK_ATTACK_CHECK)) //Pouncing prevents us from making a sneak attack for 4 seconds
-			#ifdef DEBUG_ATTACK_ALIEN
-			to_chat(world, "DEBUG_ALIEN_ATTACK SNEAK ATTACK: target: [src] last_move_intent: [M.last_move_intent] world.time minus run delay: [world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY]")
-			#endif
-			var/staggerslow_stacks = 2
-			if(m_intent == MOVE_INTENT_RUN && ( X.last_move_intent > (world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY) ) ) //Allows us to slash while running... but only if we've been stationary for awhile
-			//...And we knock them out
-				X.visible_message("<span class='danger'>\The [X] strikes [src] with vicious precision!</span>", \
-				"<span class='danger'>We strike [src] with vicious precision!</span>")
-			else
-				armor_block *= HUNTER_SNEAK_SLASH_ARMOR_PEN //20% armor penetration
-				staggerslow_stacks *= 2
-				X.visible_message("<span class='danger'>\The [X] strikes [src] with deadly precision!</span>", \
-				"<span class='danger'>We strike [src] with deadly precision!</span>")
-			adjust_stagger(staggerslow_stacks)
-			add_slowdown(staggerslow_stacks)
-
-	var/list/damage_mod = list()
-
-	// if we don't get any non-stacking bonuses dont apply dam_bonus
-	if(!( SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_LIVING, src, damage, damage_mod) & COMSIG_XENOMORPH_BONUS_APPLIED ))
-		damage_mod += dam_bonus
-
-	for(var/i in damage_mod)
-		damage += i
-
 	apply_damage(damage, BRUTE, affecting, armor_block, TRUE, TRUE) //This should slicey dicey
 	UPDATEHEALTH(src)
 
-
 	return TRUE
 
+/mob/living/silicon/attack_alien_disarm(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
+	if(stat == DEAD) //A bit of visual flavor for attacking Cyborgs. Sparks!
+		return FALSE
+	. = ..()
+	if(!.)
+		return
+	var/datum/effect_system/spark_spread/spark_system
+	spark_system = new /datum/effect_system/spark_spread()
+	spark_system.set_up(5, 0, src)
+	spark_system.attach(src)
+	spark_system.start(src)
+	playsound(loc, "alien_claw_metal", 25, TRUE)
 
 /mob/living/silicon/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
 	if(stat == DEAD) //A bit of visual flavor for attacking Cyborgs. Sparks!
@@ -273,7 +204,16 @@
 
 /mob/living/carbon/human/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
 	if(stat == DEAD)
-		if(length(light_sources))
+		if(istype(wear_ear, /obj/item/radio/headset/mainship))
+			var/obj/item/radio/headset/mainship/cam_headset = wear_ear
+			if(cam_headset.camera.status)
+				cam_headset.camera.toggle_cam(null, FALSE)
+				playsound(loc, "alien_claw_metal", 25, 1)
+				X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
+				to_chat(X, "<span class='warning'>We disable the creatures hivemind sight apparatus.</span>")
+				return FALSE
+
+		if(length(light_sources) || locate(/obj/effect/overlay/light_visible) in vis_contents)
 			playsound(loc, "alien_claw_metal", 25, 1)
 			X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 			disable_lights(sparks = TRUE)
@@ -310,11 +250,8 @@
 		if(INTENT_GRAB)
 			return attack_alien_grab(X)
 
-		if(INTENT_HARM)
+		if(INTENT_HARM, INTENT_DISARM)
 			return attack_alien_harm(X, dam_bonus, set_location, random_location, no_head, no_crit, force_intent)
-
-		if(INTENT_DISARM)
-			return attack_alien_disarm(X, dam_bonus)
 	return FALSE
 
 /mob/living/attack_larva(mob/living/carbon/xenomorph/larva/M)

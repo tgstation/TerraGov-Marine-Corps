@@ -1,4 +1,4 @@
-#define NEST_RESIST_TIME 1 MINUTES
+#define NEST_RESIST_TIME 2.5 SECONDS
 #define NEST_UNBUCKLED_COOLDOWN 5 SECONDS
 
 //Alium nests. Essentially beds with an unbuckle delay that only aliums can buckle mobs to.
@@ -50,24 +50,24 @@
 		return FALSE
 	if(ishuman(buckling_mob))
 		var/mob/living/carbon/human/H = buckling_mob
-		if(H.cooldowns[COOLDOWN_NEST])
+		if(TIMER_COOLDOWN_CHECK(H, COOLDOWN_NEST))
 			to_chat(user, "<span class='warning'>[H] was recently unbuckled. Wait a bit.</span>")
 			return FALSE
-		if(!H.lying)
+		if(!H.lying_angle)
 			to_chat(user, "<span class='warning'>[H] is resisting, ground [H.p_them()].</span>")
 			return FALSE
 
 	user.visible_message("<span class='warning'>[user] pins [buckling_mob] into [src], preparing the securing resin.</span>",
 	"<span class='warning'>[user] pins [buckling_mob] into [src], preparing the securing resin.</span>")
-	
-	if(!do_mob(user, buckling_mob, 1.5 SECONDS, BUSY_ICON_HOSTILE))
+
+	if(!do_mob(user, buckling_mob, 1 SECONDS, BUSY_ICON_HOSTILE))
 		return FALSE
 	if(QDELETED(src))
 		return FALSE
 	if(LAZYLEN(buckled_mobs))
 		to_chat(user, "<span class='warning'>There's already someone in [src].</span>")
 		return FALSE
-	if(ishuman(buckling_mob) && !buckling_mob.lying) //Improperly stunned Marines won't be nested
+	if(ishuman(buckling_mob) && !buckling_mob.lying_angle) //Improperly stunned Marines won't be nested
 		to_chat(user, "<span class='warning'>[buckling_mob] is resisting, ground [buckling_mob.p_them()].</span>")
 		return FALSE
 
@@ -88,7 +88,7 @@
 			"<span class='notice'>\The [user] pulls you free from \the [src].</span>",
 			"<span class='notice'>You hear squelching.</span>")
 		playsound(loc, "alien_resin_move", 50)
-		user.cooldowns[COOLDOWN_NEST] = addtimer(VARSET_LIST_CALLBACK(user.cooldowns, COOLDOWN_NEST, null), NEST_UNBUCKLED_COOLDOWN)
+		TIMER_COOLDOWN_START(user, COOLDOWN_NEST, NEST_UNBUCKLED_COOLDOWN)
 		silent = TRUE
 		return ..()
 

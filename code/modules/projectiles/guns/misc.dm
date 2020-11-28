@@ -97,7 +97,6 @@
 	force = 4.0
 	var/list/syringes = new/list()
 	var/max_syringes = 1
-	materials = list(/datum/material/metal = 2000)
 
 /obj/item/weapon/gun/syringe/examine_ammo_count(mob/user)
 	if(user == loc)

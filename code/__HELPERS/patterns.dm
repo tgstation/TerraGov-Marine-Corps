@@ -59,7 +59,7 @@
 		if("circle")
 			directions = GLOB.cardinals
 
-	var/list/results = list()
+	var/list/results = list(center_turf)
 	var/list/turfs_to_check = list()
 	turfs_to_check += center_turf
 	for(var/i = radius; i > 0; i--)

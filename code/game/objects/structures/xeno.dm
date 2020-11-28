@@ -27,7 +27,7 @@
 
 /obj/effect/alien/Crossed(atom/movable/O)
 	. = ..()
-	if(!QDELETED(src) && istype(O, /obj/vehicle/tank))
+	if(!QDELETED(src) && isarmoredvehicle(O))
 		O.Bump(src)
 
 /obj/effect/alien/flamer_fire_act()
@@ -35,11 +35,11 @@
 
 /obj/effect/alien/ex_act(severity)
 	switch(severity)
-		if(1)
+		if(EXPLODE_DEVASTATE)
 			take_damage(500)
-		if(2)
+		if(EXPLODE_HEAVY)
 			take_damage((rand(140, 300)))
-		if(3)
+		if(EXPLODE_LIGHT)
 			take_damage((rand(50, 100)))
 
 /obj/effect/alien/effect_smoke(obj/effect/particle_effect/smoke/S)
@@ -86,7 +86,7 @@
 
 	var/mob/living/carbon/human/H = AM
 
-	if(H.lying)
+	if(H.lying_angle)
 		return
 
 	H.next_move_slowdown += slow_amt
@@ -133,7 +133,7 @@
 /obj/effect/alien/resin/trap/flamer_fire_act()
 	if(hugger)
 		hugger.forceMove(loc)
-		hugger.Die()
+		hugger.kill_hugger()
 		hugger = null
 		icon_state = "trap0"
 	..()
@@ -141,7 +141,7 @@
 /obj/effect/alien/resin/trap/fire_act()
 	if(hugger)
 		hugger.forceMove(loc)
-		hugger.Die()
+		hugger.kill_hugger()
 		hugger = null
 		icon_state = "trap0"
 	..()
@@ -177,7 +177,7 @@
 			else
 				icon_state = "trap0"
 				M.put_in_active_hand(hugger)
-				hugger.GoActive(TRUE)
+				hugger.go_active(TRUE)
 				hugger = null
 				to_chat(M, "<span class='xenonotice'>We remove the facehugger from [src].</span>")
 		return
@@ -197,13 +197,14 @@
 			return
 
 		user.transferItemToLoc(FH, src)
-		FH.GoIdle(TRUE)
+		FH.go_idle(TRUE)
 		hugger = FH
 		icon_state = "trap1"
 		to_chat(user, "<span class='xenonotice'>You place a facehugger in [src].</span>")
 
 
 /obj/effect/alien/resin/trap/Crossed(atom/A)
+	. = ..()
 	if(iscarbon(A))
 		HasProximity(A)
 
@@ -222,7 +223,7 @@
 	hardness = 1.5
 	layer = RESIN_STRUCTURE_LAYER
 	max_integrity = 80
-	var/close_delay = 100
+	var/close_delay = 60 SECONDS
 
 	tiles_with = list(/turf/closed, /obj/structure/mineral_door/resin)
 
@@ -289,7 +290,7 @@
 	isSwitchingStates = TRUE
 	playsound(loc, "alien_resin_move", 25)
 	flick("[mineralType]opening",src)
-	sleep(10)
+	sleep(0.7 SECONDS)
 	density = FALSE
 	opacity = FALSE
 	state = 1
@@ -332,15 +333,13 @@
 
 /obj/structure/mineral_door/resin/Destroy()
 	relativewall_neighbours()
-	var/turf/U = loc
-	spawn(0)
-		var/turf/T
-		for(var/i in GLOB.cardinals)
-			T = get_step(U, i)
-			if(!istype(T))
-				continue
-			for(var/obj/structure/mineral_door/resin/R in T)
-				R.check_resin_support()
+	var/turf/T
+	for(var/i in GLOB.cardinals)
+		T = get_step(loc, i)
+		if(!istype(T))
+			continue
+		for(var/obj/structure/mineral_door/resin/R in T)
+			INVOKE_NEXT_TICK(R, .proc/check_resin_support)
 	return ..()
 
 
@@ -382,9 +381,15 @@
 	max_integrity = 80
 	var/obj/item/clothing/mask/facehugger/hugger = null
 	var/hugger_type = /obj/item/clothing/mask/facehugger/stasis
+	var/trigger_size = 1
 	var/list/egg_triggers = list()
 	var/status = EGG_GROWING
 	var/hivenumber = XENO_HIVE_NORMAL
+
+/obj/effect/alien/egg/prop //just useful as a map prop
+	icon_state = "Egg Opened"
+	status = EGG_BURST
+	trigger_size = 0
 
 /obj/effect/alien/egg/Initialize()
 	. = ..()
@@ -392,7 +397,7 @@
 		hugger = new hugger_type(src)
 		hugger.hivenumber = hivenumber
 		if(!hugger.stasis)
-			hugger.GoIdle(TRUE)
+			hugger.go_idle(TRUE)
 	addtimer(CALLBACK(src, .proc/Grow), rand(EGG_MIN_GROWTH_TIME, EGG_MAX_GROWTH_TIME))
 
 /obj/effect/alien/egg/Destroy()
@@ -413,12 +418,9 @@
 
 /obj/effect/alien/egg/proc/deploy_egg_triggers()
 	QDEL_LIST(egg_triggers)
-	for(var/i in 1 to 8)
-		var/x_coords = list(-1,-1,-1,0,0,1,1,1)
-		var/y_coords = list(1,0,-1,1,-1,1,0,-1)
-		var/turf/target_turf = locate(x+x_coords[i],y+y_coords[i], z)
-		if(target_turf)
-			egg_triggers += new /obj/effect/egg_trigger(target_turf, src)
+	var/list/turf/target_locations = filled_turfs(src, trigger_size, "circle", FALSE)
+	for(var/turf/trigger_location in target_locations)
+		egg_triggers += new /obj/effect/egg_trigger(trigger_location, src)
 
 /obj/effect/alien/egg/ex_act(severity)
 	Burst(TRUE)//any explosion destroys the egg.
@@ -468,7 +470,7 @@
 	if(status != EGG_DESTROYED && hugger)
 		status = EGG_BURST
 		hugger.forceMove(loc)
-		hugger.fast_activate(TRUE)
+		hugger.go_active(TRUE)
 		hugger = null
 
 /obj/effect/alien/egg/proc/update_status(new_stat)
@@ -499,6 +501,9 @@
 /obj/effect/alien/egg/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
+	if(hugger_type == null)
+		return // This egg doesn't take huggers
+
 	if(istype(I, /obj/item/clothing/mask/facehugger))
 		var/obj/item/clothing/mask/facehugger/F = I
 		if(F.stat == DEAD)
@@ -515,7 +520,7 @@
 
 		visible_message("<span class='xenowarning'>[user] slides [F] back into [src].</span>","<span class='xenonotice'>You place the child back in to [src].</span>")
 		user.transferItemToLoc(F, src)
-		F.GoIdle(TRUE)
+		F.go_idle(TRUE)
 		hugger = F
 		update_status(EGG_GROWN)
 		deploy_egg_triggers()
@@ -555,6 +560,7 @@
 
 
 /obj/effect/egg_trigger/Crossed(atom/A)
+	. = ..()
 	if(!linked_egg) //something went very wrong
 		qdel(src)
 	else if(get_dist(src, linked_egg) != 1 || !isturf(linked_egg.loc)) //something went wrong
@@ -565,7 +571,29 @@
 
 
 
+/obj/effect/alien/egg/gas
+	hugger_type = null
+	trigger_size = 2
 
+/obj/effect/alien/egg/gas/Burst(kill)
+	var/spread = EGG_GAS_DEFAULT_SPREAD
+	if(kill) // Kill is more violent
+		spread = EGG_GAS_KILL_SPREAD
+
+	QDEL_LIST(egg_triggers)
+	update_status(EGG_DESTROYED)
+	flick("Egg Exploding", src)
+	playsound(loc, "sound/effects/alien_egg_burst.ogg", 30)
+
+	var/datum/effect_system/smoke_spread/xeno/neuro/NS = new(src)
+	NS.set_up(spread, get_turf(src))
+	NS.start()
+
+/obj/effect/alien/egg/gas/HasProximity(atom/movable/AM)
+	if(issamexenohive(AM))
+		return FALSE
+	Burst(FALSE)
+	return TRUE
 /*
 TUNNEL
 */
@@ -587,10 +615,8 @@ TUNNEL
 
 	max_integrity = 140
 	var/mob/living/carbon/xenomorph/hivelord/creator = null
-	var/obj/structure/tunnel/other = null
-	var/id = null //For mapping
 
-/obj/structure/tunnel/Initialize()
+/obj/structure/tunnel/Initialize(mapload)
 	. = ..()
 	GLOB.xeno_tunnels += src
 
@@ -599,38 +625,26 @@ TUNNEL
 	GLOB.xeno_tunnels -= src
 	if(creator)
 		creator.tunnels -= src
-	if(other)
-		other.other = null
-		qdel(other)
 	return ..()
 
 /obj/structure/tunnel/examine(mob/user)
-	..()
+	. = ..()
 	if(!isxeno(user) && !isobserver(user))
 		return
-
-	if(!other)
-		to_chat(user, "<span class='warning'>It does not seem to lead anywhere.</span>")
-	else
-		var/area/A = get_area(other)
-		to_chat(user, "<span class='info'>It seems to lead to <b>[A.name]</b>.</span>")
-		if(tunnel_desc)
-			to_chat(user, "<span class='info'>The Hivelord scent reads: \'[tunnel_desc]\'</span>")
+	if(tunnel_desc)
+		to_chat(user, "<span class='info'>The Hivelord scent reads: \'[tunnel_desc]\'</span>")
 
 /obj/structure/tunnel/deconstruct(disassembled = TRUE)
 	visible_message("<span class='danger'>[src] suddenly collapses!</span>")
-	if(isturf(other?.loc))
-		visible_message("<span class='danger'>[other] suddenly collapses!</span>")
-		QDEL_NULL(other)
 	return ..()
 
 /obj/structure/tunnel/ex_act(severity)
 	switch(severity)
-		if(1)
+		if(EXPLODE_DEVASTATE)
 			take_damage(210)
-		if(2)
+		if(EXPLODE_HEAVY)
 			take_damage(140)
-		if(3)
+		if(EXPLODE_LIGHT)
 			take_damage(70)
 
 /obj/structure/tunnel/attackby(obj/item/I, mob/user, params)
@@ -639,7 +653,7 @@ TUNNEL
 	attack_alien(user)
 
 /obj/structure/tunnel/attack_alien(mob/living/carbon/xenomorph/M)
-	if(!istype(M) || M.stat || M.lying)
+	if(!istype(M) || M.stat || M.lying_angle)
 		return
 
 	if(M.a_intent == INTENT_HARM && M == creator)
@@ -661,35 +675,295 @@ TUNNEL
 		to_chat(M, "<span class='xenowarning'>We can't climb through a tunnel while immobile.</span>")
 		return FALSE
 
-	if(!other || !isturf(other.loc))
-		to_chat(M, "<span class='warning'>\The [src] doesn't seem to lead anywhere.</span>")
-		return
-
 	if(LAZYLEN(M.stomach_contents))
 		to_chat(M, "<span class='warning'>We must spit out the host inside of us first.</span>")
 		return
 
-	var/distance = get_dist( get_turf(src), get_turf(other) )
-	var/tunnel_time = CLAMP(distance, HIVELORD_TUNNEL_MIN_TRAVEL_TIME, HIVELORD_TUNNEL_SMALL_MAX_TRAVEL_TIME)
-	var/area/A = get_area(other)
+	var/obj/structure/tunnel/targettunnel = input(M, "Choose a tunnel to crawl to", "Tunnel") as null|anything in GLOB.xeno_tunnels
+	if(!targettunnel)
+		return
+	if(targettunnel.z != z)
+		to_chat(M, "<span class='warning'>That tunnel isn't connected to this one!</span>")
+		return
+	var/distance = get_dist(get_turf(src), get_turf(targettunnel))
+	var/tunnel_time = clamp(distance, HIVELORD_TUNNEL_MIN_TRAVEL_TIME, HIVELORD_TUNNEL_SMALL_MAX_TRAVEL_TIME)
 
 	if(M.mob_size == MOB_SIZE_BIG) //Big xenos take longer
-		tunnel_time = CLAMP(distance * 1.5, HIVELORD_TUNNEL_MIN_TRAVEL_TIME, HIVELORD_TUNNEL_LARGE_MAX_TRAVEL_TIME)
+		tunnel_time = clamp(distance * 1.5, HIVELORD_TUNNEL_MIN_TRAVEL_TIME, HIVELORD_TUNNEL_LARGE_MAX_TRAVEL_TIME)
 		M.visible_message("<span class='xenonotice'>[M] begins heaving their huge bulk down into \the [src].</span>", \
-		"<span class='xenonotice'>We begin heaving our monstrous bulk into \the [src] to <b>[A.name] (X: [A.x], Y: [A.y])</b>.</span>")
+		"<span class='xenonotice'>We begin heaving our monstrous bulk into \the [src] to <b>[targettunnel.tunnel_desc]</b>.</span>")
 	else
 		M.visible_message("<span class='xenonotice'>\The [M] begins crawling down into \the [src].</span>", \
-		"<span class='xenonotice'>We begin crawling down into \the [src] to <b>[A.name] (X: [A.x], Y: [A.y])</b>.</span>")
+		"<span class='xenonotice'>We begin crawling down into \the [src] to <b>[targettunnel.tunnel_desc]</b>.</span>")
 
 	if(isxenolarva(M)) //Larva can zip through near-instantly, they are wormlike after all
 		tunnel_time = 5
 
 	if(do_after(M, tunnel_time, FALSE, src, BUSY_ICON_GENERIC))
-		if(other && isturf(other.loc)) //Make sure the end tunnel is still there
-			M.forceMove(other.loc)
+		if(targettunnel && isturf(targettunnel.loc)) //Make sure the end tunnel is still there
+			M.forceMove(targettunnel.loc)
 			M.visible_message("<span class='xenonotice'>\The [M] pops out of \the [src].</span>", \
 			"<span class='xenonotice'>We pop out through the other side!</span>")
 		else
 			to_chat(M, "<span class='warning'>\The [src] ended unexpectedly, so we return back up.</span>")
 	else
 		to_chat(M, "<span class='warning'>Our crawling was interrupted!</span>")
+
+//Resin Water Well
+/obj/effect/alien/resin/acidwell
+	name = "acid well"
+	desc = "An acid well. It stores acid to put out fires."
+	icon = 'icons/Xeno/acid_pool.dmi'
+	icon_state = "fullwell"
+	density = FALSE
+	opacity = FALSE
+	anchored = TRUE
+	max_integrity = 5
+	layer = RESIN_STRUCTURE_LAYER
+
+	hit_sound = "alien_resin_move"
+	destroy_sound = "alien_resin_move"
+
+	var/charges = 1
+	var/ccharging = FALSE
+	var/mob/living/carbon/xenomorph/creator = null
+
+/obj/effect/alien/resin/acidwell/Initialize()
+	. = ..()
+	update_icon()
+
+/obj/effect/alien/resin/acidwell/Destroy()
+	creator = null
+	return ..()
+
+
+/obj/effect/alien/resin/acidwell/obj_destruction(damage_flag)
+	if(!QDELETED(creator) && creator.stat == CONSCIOUS && creator.z == z)
+		var/area/A = get_area(src)
+		if(A)
+			to_chat(creator, "<span class='xenoannounce'>You sense your acid well at [A.name] has been destroyed!</span>")
+
+	var/datum/effect_system/smoke_spread/xeno/acid/A = new(get_turf(src))
+	A.set_up(clamp(charges,0,2),src)
+	A.start()
+	return ..()
+
+/obj/effect/alien/resin/acidwell/examine(mob/user)
+	..()
+	if(!isxeno(user) && !isobserver(user))
+		return
+	to_chat(user, "<span class='xenoannounce'>This is an acid well made by [creator].</span>")
+
+/obj/effect/alien/resin/acidwell/deconstruct(disassembled = TRUE)
+	visible_message("<span class='danger'>[src] suddenly collapses!</span>")
+	return ..()
+
+/obj/effect/alien/resin/acidwell/update_icon()
+	..()
+	icon_state = "well[charges]"
+	set_light(charges , charges / 2, LIGHT_COLOR_GREEN)
+
+/obj/effect/alien/resin/acidwell/ex_act(severity)
+	switch(severity)
+		if(EXPLODE_DEVASTATE)
+			take_damage(210)
+		if(EXPLODE_HEAVY)
+			take_damage(140)
+		if(EXPLODE_LIGHT)
+			take_damage(70)
+
+/obj/effect/alien/resin/acidwell/attackby(obj/item/I, mob/user, params)
+	if(!isxeno(user))
+		return ..()
+	attack_alien(user)
+
+/obj/effect/alien/resin/acidwell/attack_alien(mob/living/carbon/xenomorph/M)
+	if(M.a_intent != INTENT_HARM)
+		if(charges >= 5)
+			to_chat(M, "<span class='xenoannounce'>[src] is already full!</span>")
+			return
+		if(ccharging)
+			to_chat(M, "<span class='xenoannounce'>[src] is already being filled!</span>")
+			return
+		ccharging = TRUE
+		if(!do_after(M, 10 SECONDS, FALSE, src, BUSY_ICON_BUILD))
+			ccharging = FALSE
+			return
+		if(M.plasma_stored < 200)
+			ccharging = FALSE
+			return
+		M.plasma_stored -= 200
+		charges++
+		ccharging = FALSE
+		update_icon()
+		to_chat(M,"<span class='xenonotice'>We fill up by one [src].</span>")
+	else
+		to_chat(M, "<span class='xenowarning'>We begin removing [src]...</span>")
+		if(do_after(M, 5 SECONDS, FALSE, src, BUSY_ICON_BUILD))
+			deconstruct(FALSE)
+		return
+
+/obj/effect/alien/resin/acidwell/Crossed(atom/A)
+	. = ..()
+	if(iscarbon(A))
+		HasProximity(A)
+
+/obj/effect/alien/resin/acidwell/HasProximity(atom/movable/AM)
+	if(!iscarbon(AM))
+		return
+	var/mob/living/carbon/C = AM
+	if(C.stat == DEAD)
+		return
+	if(!charges)
+		return
+	if(isxeno(C))
+		if(!(C.on_fire))
+			return
+		C.ExtinguishMob()
+		charges--
+		update_icon()
+		return
+	else
+		if(!charges)
+			return
+		C.adjustToxLoss(charges * 15)
+		charges = 0
+		update_icon()
+		return
+
+/obj/structure/resin_jelly_pod
+	name = "Resin jelly pod"
+	desc = "A large resin pod. Inside is a thick, viscous fluid that looks like it doesnt burn easily."
+	icon = 'icons/Xeno/resinpod.dmi'
+	icon_state = "resinpod"
+	density = FALSE
+	opacity = FALSE
+	anchored = TRUE
+	max_integrity = 250
+	layer = RESIN_STRUCTURE_LAYER
+	pixel_x = -16
+	pixel_y = -16
+
+	hit_sound = "alien_resin_move"
+	destroy_sound = "alien_resin_move"
+	///How many actual jellies the pod has stored
+	var/chargesleft = 0
+	///Max amount of jellies the pod can hold
+	var/maxcharges = 10
+	///Every 5 times this number seconds we will create a jelly
+	var/recharge_rate = 10
+	///Countdown to the next time we generate a jelly
+	var/nextjelly = 0
+
+/obj/structure/resin_jelly_pod/Initialize()
+	. = ..()
+	add_overlay(image(icon, "resinpod_inside", layer + 0.01, dir))
+	START_PROCESSING(SSslowprocess, src)
+
+/obj/structure/resin_jelly_pod/Destroy()
+	STOP_PROCESSING(SSslowprocess, src)
+	return ..()
+
+/obj/effect/alien/resin/resin_jelly_pod/ex_act(severity)
+	switch(severity)
+		if(EXPLODE_DEVASTATE)
+			take_damage(210)
+		if(EXPLODE_HEAVY)
+			take_damage(140)
+		if(EXPLODE_LIGHT)
+			take_damage(70)
+
+/obj/structure/resin_jelly_pod/examine(mob/user, distance, infix, suffix)
+	. = ..()
+	if(isxeno(user))
+		to_chat(user, "It has [chargesleft] jelly globules remaining[datum_flags & DF_ISPROCESSING ? ", and will create a new jelly in [(recharge_rate-nextjelly)*5] seconds": " and seems latent"].")
+
+/obj/structure/resin_jelly_pod/process()
+	if(nextjelly <= recharge_rate)
+		nextjelly++
+		return
+	nextjelly = 0
+	chargesleft++
+	if(chargesleft >= maxcharges)
+		return PROCESS_KILL
+
+/obj/structure/resin_jelly_pod/attack_alien(mob/living/carbon/xenomorph/X)
+	if(X.a_intent == INTENT_HARM && isxenohivelord(X))
+		to_chat(X, "<span class='xenowarning'>We begin tearing at the [src]...</span>")
+		if(do_after(X, HIVELORD_TUNNEL_DISMANTLE_TIME, FALSE, src, BUSY_ICON_BUILD))
+			deconstruct(FALSE)
+		return
+
+	if(!chargesleft)
+		to_chat(X, "<span class='xenonotice'>We reach into \the [src], but only find dregs of resin. We should wait some more.</span>")
+		return
+	to_chat(X, "<span class='xenonotice'>We retrieve a resin jelly from \the [src].</span>")
+	new /obj/item/resin_jelly(loc)
+	chargesleft--
+	if(!(datum_flags & DF_ISPROCESSING) && (chargesleft < maxcharges))
+		START_PROCESSING(SSslowprocess, src)
+
+/obj/item/resin_jelly
+	name = "resin jelly"
+	desc = "A foul, viscous resin jelly that doesnt seem to burn easily."
+	icon = 'icons/unused/Marine_Research.dmi'
+	icon_state = "biomass"
+	soft_armor = list("fire" = 200)
+	var/immune_time = 15 SECONDS
+
+/obj/item/resin_jelly/attack_alien(mob/living/carbon/xenomorph/X)
+	if(X.xeno_caste.caste_flags & CASTE_CAN_HOLD_JELLY)
+		return attack_hand(X)
+	if(X.action_busy)
+		return
+	X.visible_message("<span class='notice'>[X] starts to cover themselves in a foul substance...</span>", "<span class='xenonotice'>We begin to cover ourselves in a foul substance...</span>")
+	if(!do_after(X, 2 SECONDS, TRUE, X, BUSY_ICON_MEDICAL))
+		return
+	if(X.fire_resist_modifier <= -20)
+		return
+	activate_jelly(X)
+
+/obj/item/resin_jelly/attack_self(mob/living/carbon/xenomorph/user)
+	if(!isxeno(user))
+		return
+	if(user.action_busy)
+		return
+	user.visible_message("<span class='notice'>[user] starts to cover themselves in a foul substance...</span>", "<span class='xenonotice'>We begin to cover ourselves in a foul substance...</span>")
+	if(!do_after(user, 2 SECONDS, TRUE, user, BUSY_ICON_MEDICAL))
+		return
+	if(user.fire_resist_modifier <= -20)
+		return
+	activate_jelly(user)
+
+/obj/item/resin_jelly/attack(mob/living/carbon/xenomorph/M, mob/living/user)
+	if(!isxeno(user))
+		return TRUE
+	if(!isxeno(M))
+		to_chat(user, "<span class='xenonotice'>We cannot apply the [src] to this creature.</span>")
+		return FALSE
+	if(user.action_busy)
+		return FALSE
+	if(!do_after(user, 1 SECONDS, TRUE, M, BUSY_ICON_MEDICAL))
+		return FALSE
+	if(M.fire_resist_modifier <= -20)
+		return FALSE
+	user.visible_message("<span class='notice'>[user] smears a viscous substance on [M].</span>","<span class='xenonotice'>We carefully smear [src] onto [user].</span>")
+	activate_jelly(M)
+	user.temporarilyRemoveItemFromInventory(src)
+	return FALSE
+
+/obj/item/resin_jelly/proc/activate_jelly(mob/living/carbon/xenomorph/user)
+	user.visible_message("<span class='notice'>[user]'s chitin begins to gleam with an unseemly glow...</span>", "<span class='xenonotice'>We feel powerful as we are covered in [src]!</span>")
+	user.emote("roar")
+	var/anger_filter = filter(type = "outline", size = 1, color = COLOR_RED)
+	user.filters += anger_filter
+	user.fire_resist_modifier -= 20
+	forceMove(user)//keep it here till the timer finishes
+	user.temporarilyRemoveItemFromInventory(src)
+	addtimer(CALLBACK(src, .proc/deactivate_jelly, anger_filter, user), immune_time)
+
+/obj/item/resin_jelly/proc/deactivate_jelly(anger_filter, mob/living/carbon/xenomorph/user)
+	user.filters -= anger_filter
+	user.fire_resist_modifier += 20
+	to_chat(user, "<span class='xenonotice'>We feel more vulnerable again.</span>")
+	qdel(src)

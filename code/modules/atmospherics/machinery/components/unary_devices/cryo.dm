@@ -6,7 +6,7 @@
 	icon_state = "cell-off"
 	density = TRUE
 	max_integrity = 350
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 100, "bomb" = 0, "bio" = 100, "rad" = 100, "fire" = 30, "acid" = 30)
+	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 100, "bomb" = 0, "bio" = 100, "rad" = 100, "fire" = 30, "acid" = 30)
 	layer = ABOVE_WINDOW_LAYER
 	pipe_flags = PIPING_ONE_PER_TURF|PIPING_DEFAULT_LAYER_ONLY
 
@@ -51,32 +51,33 @@
 
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/proc/process_occupant()
-	if(occupant)
-		if(occupant.stat == DEAD)
-			return
-		if(occupant.health > (occupant.maxHealth - 2) && autoeject) //release the patient automatically when at, or near full health
-			go_out(TRUE)
-			return
-		occupant.bodytemperature = 100 //Temp fix for broken atmos
-		occupant.set_stat(UNCONSCIOUS)
-		if(occupant.bodytemperature < T0C)
-			occupant.Paralyze(20 SECONDS)
-			if(occupant.getOxyLoss())
-				occupant.adjustOxyLoss(-1)
+	if(!occupant)
+		return
+	if(occupant.stat == DEAD)
+		return
+	if(occupant.health > (occupant.maxHealth - 2) && autoeject) //release the patient automatically when at, or near full health
+		go_out(TRUE)
+		return
+	occupant.bodytemperature = 100 //Temp fix for broken atmos
+	occupant.set_stat(UNCONSCIOUS)
+	if(occupant.bodytemperature < T0C)
+		occupant.Paralyze(20 SECONDS)
+		if(occupant.getOxyLoss())
+			occupant.adjustOxyLoss(-1)
 
-			//severe damage should heal waaay slower without proper chemicals
-			if(occupant.bodytemperature < 225)
-				if (occupant.getToxLoss())
-					occupant.adjustToxLoss(max(-1, -20/occupant.getToxLoss()))
-				var/heal_brute = occupant.getBruteLoss() ? min(1, 20/occupant.getBruteLoss()) : 0
-				var/heal_fire = occupant.getFireLoss() ? min(1, 20/occupant.getFireLoss()) : 0
-				occupant.heal_limb_damage(heal_brute, heal_fire, updating_health = TRUE)
-		var/has_cryo = occupant.reagents.get_reagent_amount(/datum/reagent/medicine/cryoxadone) >= 1
-		var/has_clonexa = occupant.reagents.get_reagent_amount(/datum/reagent/medicine/clonexadone) >= 1
-		var/has_cryo_medicine = has_cryo || has_clonexa
-		if(beaker && !has_cryo_medicine)
-			beaker.reagents.trans_to(occupant, 1, 10)
-			beaker.reagents.reaction(occupant)
+		//severe damage should heal waaay slower without proper chemicals
+		if(occupant.bodytemperature < 225)
+			if (occupant.getToxLoss())
+				occupant.adjustToxLoss(max(-1, -20/occupant.getToxLoss()))
+			var/heal_brute = occupant.getBruteLoss() ? min(1, 20/occupant.getBruteLoss()) : 0
+			var/heal_fire = occupant.getFireLoss() ? min(1, 20/occupant.getFireLoss()) : 0
+			occupant.heal_limb_damage(heal_brute, heal_fire, updating_health = TRUE)
+	var/has_cryo = occupant.reagents.get_reagent_amount(/datum/reagent/medicine/cryoxadone) >= 1
+	var/has_clonexa = occupant.reagents.get_reagent_amount(/datum/reagent/medicine/clonexadone) >= 1
+	var/has_cryo_medicine = has_cryo || has_clonexa
+	if(beaker && !has_cryo_medicine)
+		beaker.reagents.trans_to(occupant, 1, 10)
+		beaker.reagents.reaction(occupant)
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/on_construction()
 	..(dir, dir)
@@ -102,10 +103,10 @@
 	QDEL_NULL(beaker)
 	return ..()
 
-/obj/machinery/atmospherics/components/unary/cryo_cell/contents_explosion(severity, target)
+/obj/machinery/atmospherics/components/unary/cryo_cell/contents_explosion(severity)
 	. = ..()
 	if(beaker)
-		beaker.ex_act(severity, target)
+		beaker.ex_act(severity)
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/handle_atom_del(atom/A)
 	. = ..()
@@ -189,7 +190,7 @@
 			idle_ticks_until_shutdown = 60 //reset idle ticks
 
 	updateUsrDialog()
-	return 1
+	return TRUE
 
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/relaymove(mob/user)
@@ -314,7 +315,7 @@
 	occupant = M
 //	M.metabslow = 1
 	update_icon()
-	return 1
+	return TRUE
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/Topic(href, href_list)
 	. = ..()
@@ -350,7 +351,7 @@
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 
 	if(!ui)
-		ui = new(user, src, ui_key, "cryo", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, ui_key, "Cryo", name, ui_x, ui_y, master_ui, state)
 		ui.open()
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/ui_data(mob/user)
@@ -405,10 +406,12 @@
 	switch(action)
 		if("power")
 			if(on)
-				on = FALSE
+				turn_off()
 			else
-				on = TRUE
-			update_icon()
+				turn_on()
+			. = TRUE
+		if("eject")
+			go_out()
 			. = TRUE
 		if("autoeject")
 			autoeject = !autoeject

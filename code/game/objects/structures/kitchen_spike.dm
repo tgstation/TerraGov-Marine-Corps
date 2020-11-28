@@ -26,8 +26,7 @@
 				meat = 5
 				meattype = 1
 				visible_message("<span class='warning'> [user] has forced [M] onto the spike, killing [M.p_them()] instantly!</span>")
-				M.death()
-				qdel(M)
+				M.death(TRUE)
 				G.grabbed_thing = null
 				qdel(G)
 

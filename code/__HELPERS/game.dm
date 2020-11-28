@@ -20,17 +20,26 @@
 			continue
 		. += T
 
-
-// Like view but bypasses luminosity check
-/proc/hear(range, atom/source)
-
-	var/lum = source.luminosity
-	source.luminosity = 6
-
-	var/list/heard = view(range, source)
-	source.luminosity = lum
-
-	return heard
+/**
+  * Get a bounding box of a list of atoms.
+  *
+  * Arguments:
+  * - atoms - List of atoms. Can accept output of view() and range() procs.
+  *
+  * Returns: list(x1, y1, x2, y2)
+  */
+/proc/get_bbox_of_atoms(list/atoms)
+	var/list/list_x = list()
+	var/list/list_y = list()
+	for(var/_a in atoms)
+		var/atom/a = _a
+		list_x += a.x
+		list_y += a.y
+	return list(
+		min(list_x),
+		min(list_y),
+		max(list_x),
+		max(list_y))
 
 
 /proc/trange(rad = 0, turf/centre = null) //alternative to range (ONLY processes turfs and thus less intensive)
@@ -56,7 +65,7 @@
 		if(!speaker)
 			continue
 
-		for(var/turf/T in hear(R.canhear_range,speaker))
+		for(var/turf/T in get_hear(R.canhear_range,speaker))
 			speaker_coverage[T] = T
 
 
@@ -70,12 +79,6 @@
 				if(speaker_coverage[ear] || (isobserver(M) && M.client?.prefs?.toggles_chat & CHAT_GHOSTRADIO))
 					. |= M		// Since we're already looping through mobs, why bother using |= ? This only slows things down.
 	return .
-
-
-/proc/get_mob_by_key(key)
-	for(var/mob/M in GLOB.mob_list)
-		if(M.ckey == lowertext(key))
-			return M
 
 
 // Same as above but for alien candidates.
@@ -114,18 +117,6 @@
 			picked = O
 
 	return picked
-
-
-/proc/GetRedPart(const/hexa)
-	return hex2num(copytext(hexa, 2, 4))
-
-
-/proc/GetGreenPart(const/hexa)
-	return hex2num(copytext(hexa, 4, 6))
-
-
-/proc/GetBluePart(const/hexa)
-	return hex2num(copytext(hexa, 6, 8))
 
 
 /proc/convert_k2c(temp)
@@ -171,3 +162,29 @@
 	source.luminosity = lum
 
 	return heard
+
+/proc/get_active_player_count(alive_check = FALSE, afk_check = FALSE, faction_check = FALSE, faction = FACTION_NEUTRAL)
+	// Get active players who are playing in the round
+	var/active_players = 0
+	for(var/i = 1; i <= GLOB.player_list.len; i++)
+		var/mob/M = GLOB.player_list[i]
+		if(!(M && M.client))
+			continue
+		if(alive_check && M.stat)
+			continue
+		else if(afk_check && M.client.is_afk())
+			continue
+		else if(faction_check)
+			if(!isliving(M))
+				continue
+			var/mob/living/living = M
+			if(faction != living.faction)
+				continue
+		else if(isnewplayer(M)) // exclude people in the lobby
+			continue
+		else if(isobserver(M)) // Ghosts are fine if they were playing once (didn't start as observers)
+			var/mob/dead/observer/O = M
+			if(O.started_as_observer) // Exclude people who started as observers
+				continue
+		active_players++
+	return active_players

@@ -52,6 +52,7 @@
 #define AMMO_IGNORE_RESIST		(1<<11) //Unused.
 #define AMMO_BALLISTIC			(1<<12)
 #define AMMO_SUNDERING			(1<<13)
+#define AMMO_CHAINING			(1<<14)
 
 //Gun defines for gun related thing. More in the projectile folder.
 //flags_gun_features
@@ -106,19 +107,19 @@
 #define DETPACK_TIMER_MIN			5
 #define DETPACK_TIMER_MAX			300
 
-//Define flamer
-#define M240T_WATER_AMOUNT 			reagents.get_reagent_amount(/datum/reagent/water)
-
 //Define sniper laser multipliers
 
 #define SNIPER_LASER_DAMAGE_MULTIPLIER	1.5 //+50% damage vs the aimed target
 #define SNIPER_LASER_ARMOR_MULTIPLIER	1.5 //+50% penetration vs the aimed target
 #define SNIPER_LASER_SLOWDOWN_STACKS	3
 
-//Define lasgun
-#define M43_STANDARD_AMMO_COST			20
-#define M43_OVERCHARGE_AMMO_COST		80
-#define M43_OVERCHARGE_FIRE_DELAY		10
+//Define lasrifle
+#define ENERGY_STANDARD_AMMO_COST			20
+#define ENERGY_OVERCHARGE_AMMO_COST		80
+#define ENERGY_OVERCHARGE_FIRE_DELAY		10
+
+//Define stagger damage multipliers
+#define STAGGER_DAMAGE_MULTIPLIER		0.5 //-50% damage dealt by the staggered target after all other mods.
 
 //Define smoke effects
 #define SMOKE_COUGH			(1<<0)
@@ -133,8 +134,9 @@
 #define SMOKE_XENO			(1<<9)
 #define SMOKE_XENO_ACID		(1<<10)
 #define SMOKE_XENO_NEURO	(1<<11)
-#define SMOKE_CHEM			(1<<12)
-
+#define SMOKE_XENO_HEMODILE (1<<12)
+#define SMOKE_XENO_TRANSVITOX (1<<13)
+#define SMOKE_CHEM			(1<<14)
 
 //Incapacitated
 #define INCAPACITATED_IGNORE_RESTRAINED (1<<0)
@@ -171,6 +173,9 @@
 #define EGG_MIN_GROWTH_TIME 10 SECONDS //time it takes for the egg to mature once planted
 #define EGG_MAX_GROWTH_TIME 15 SECONDS
 
+#define EGG_GAS_DEFAULT_SPREAD 3
+#define EGG_GAS_KILL_SPREAD 4
+
 
 //We will round to this value in damage calculations.
 #define DAMAGE_PRECISION 0.1
@@ -196,7 +201,6 @@
 #define X_L_HAND_LAYER			5
 #define X_R_HAND_LAYER			4
 #define X_TARGETED_LAYER		3
-#define X_LEGCUFF_LAYER			2
 #define X_FIRE_LAYER			1
 #define X_TOTAL_LAYERS			9
 /////////////////////////////////

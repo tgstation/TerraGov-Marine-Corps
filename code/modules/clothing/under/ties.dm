@@ -78,7 +78,7 @@
 				var/sound = "pulse"
 				var/sound_strength
 
-				if(M.stat == DEAD || (M.status_flags&FAKEDEATH))
+				if(M.stat == DEAD || HAS_TRAIT(M, TRAIT_FAKEDEATH))
 					sound_strength = "cannot hear"
 					sound = "anything"
 				else
@@ -359,9 +359,10 @@
 
 //For the holster hotkey
 /mob/living/carbon/human/proc/do_holster()
+	SIGNAL_HANDLER
 	. = COMSIG_KB_ACTIVATED //The return value must be a flag compatible with the signals triggering this.
 
-	if(incapacitated() || lying)
+	if(incapacitated() || lying_angle)
 		return
 
 	if(!istype(w_uniform, /obj/item/clothing/under))
@@ -383,9 +384,9 @@
 		H.unholster(src)
 
 
-/obj/item/clothing/tie/holster/m4a3/Initialize()
+/obj/item/clothing/tie/holster/rt3/Initialize()
 	. = ..()
-	holstered = new /obj/item/weapon/gun/pistol/m4a3(src)
+	holstered = new /obj/item/weapon/gun/pistol/rt3(src)
 
 /obj/item/clothing/tie/holster/armpit
 	name = "shoulder holster"
@@ -500,12 +501,14 @@
 		/obj/item/ammo_magazine/rifle,
 		/obj/item/ammo_magazine/smg,
 		/obj/item/ammo_magazine/sniper,
-		/obj/item/cell/lasgun)
+		/obj/item/cell/lasgun,
+	)
 	cant_hold = list(
 		/obj/item/stack/razorwire,
 		/obj/item/stack/sheet,
 		/obj/item/stack/sandbags,
-		/obj/item/stack/snow)
+		/obj/item/stack/snow,
+	)
 
 /obj/item/clothing/tie/storage/black_vest
 	name = "black webbing vest"
@@ -518,8 +521,10 @@
 	cant_hold = list(
 		/obj/item/stack/razorwire,
 		/obj/item/stack/sheet,
+		/obj/item/ammo_magazine/smg/standard_smg,
 		/obj/item/stack/sandbags,
-		/obj/item/stack/snow)
+		/obj/item/stack/snow,
+	)
 
 /obj/item/clothing/tie/storage/brown_vest
 	name = "brown webbing vest"
@@ -540,13 +545,15 @@
 	hold = /obj/item/storage/internal/tie/white_vest
 
 /obj/item/storage/internal/tie/white_vest
-	storage_slots = 8
+	storage_slots = 12
+	max_storage_space = 24
+	max_w_class = WEIGHT_CLASS_BULKY
+
 	can_hold = list(
 		/obj/item/tool/surgery,
-		/obj/item/stack/medical/advanced,
-		/obj/item/clothing/mask/surgical,
-		/obj/item/clothing/gloves/latex,
-		/obj/item/stack/nanopaste)
+		/obj/item/stack/medical/advanced/bruise_pack,
+		/obj/item/stack/nanopaste,
+	)
 
 /obj/item/clothing/tie/storage/white_vest/medic
 	name = "corpsman webbing"
@@ -556,18 +563,19 @@
 /obj/item/storage/internal/tie/white_vest/medic
 	storage_slots = 6 //one more than the brown webbing but you lose out on being able to hold non-medic stuff
 	can_hold = list(
-	/obj/item/stack/medical,
-	/obj/item/healthanalyzer,
-	/obj/item/reagent_containers/dropper,
-	/obj/item/reagent_containers/glass/beaker,
-	/obj/item/reagent_containers/glass/bottle,
-	/obj/item/reagent_containers/pill,
-	/obj/item/reagent_containers/syringe,
-	/obj/item/storage/pill_bottle,
-	/obj/item/reagent_containers/hypospray,
-	/obj/item/bodybag,
-	/obj/item/roller,
-	/obj/item/clothing/glasses/hud/health)
+		/obj/item/stack/medical,
+		/obj/item/healthanalyzer,
+		/obj/item/reagent_containers/dropper,
+		/obj/item/reagent_containers/glass/beaker,
+		/obj/item/reagent_containers/glass/bottle,
+		/obj/item/reagent_containers/pill,
+		/obj/item/reagent_containers/syringe,
+		/obj/item/storage/pill_bottle,
+		/obj/item/reagent_containers/hypospray,
+		/obj/item/bodybag,
+		/obj/item/roller,
+		/obj/item/clothing/glasses/hud/health,
+	)
 
 /obj/item/clothing/tie/storage/knifeharness
 	name = "decorated harness"
@@ -583,7 +591,8 @@
 		/obj/item/tool/kitchen/utensil/knife,
 		/obj/item/tool/kitchen/utensil/pknife,
 		/obj/item/tool/kitchen/knife,
-		/obj/item/tool/kitchen/knife/ritual)
+		/obj/item/tool/kitchen/knife/ritual,
+	)
 
 /obj/item/clothing/tie/storage/knifeharness/Initialize()
 	. = ..()

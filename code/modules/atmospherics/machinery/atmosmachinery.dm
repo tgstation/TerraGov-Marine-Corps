@@ -12,7 +12,7 @@
 
 /obj/machinery/atmospherics
 	anchored = TRUE
-	//move_resist = INFINITY				//Moving a connected machine without actually doing the normal (dis)connection things will probably cause a LOT of issues.
+	move_resist = INFINITY				//Moving a connected machine without actually doing the normal (dis)connection things will probably cause a LOT of issues.
 	idle_power_usage = 0
 	active_power_usage = 0
 	power_channel = ENVIRON
@@ -51,8 +51,6 @@
 	if(pipe_flags & PIPING_CARDINAL_AUTONORMALIZE)
 		normalize_cardinal_directions()
 	nodes = new(device_type)
-	if (!armor)
-		armor = list("melee" = 25, "bullet" = 10, "laser" = 10, "energy" = 100, "bomb" = 0, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 70)
 	if(process)
 		SSair.atmos_machinery += src
 	SetInitDirections()
@@ -248,9 +246,9 @@
 
 
 /obj/machinery/atmospherics/proc/climb_out(mob/living/user, turf/T)
-	if(user.cooldowns[COOLDOWN_VENTCRAWL])
+	if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_VENTCRAWL))
 		return FALSE
-	user.cooldowns[COOLDOWN_VENTCRAWL] = addtimer(VARSET_LIST_CALLBACK(user.cooldowns, COOLDOWN_VENTCRAWL, null), 2 SECONDS)
+	TIMER_COOLDOWN_START(user, COOLDOWN_VENTCRAWL, 2 SECONDS)
 	if(!isxenohunter(user) ) //Hunters silently enter/exit/move through vents.
 		visible_message("<span class='warning'>You hear something squeezing through the ducts.</span>")
 	to_chat(user, "<span class='notice'>You begin to climb out of [src]</span>")
@@ -260,7 +258,7 @@
 	user.forceMove(T)
 	user.visible_message("<span class='warning'>[user] climbs out of [src].</span>", \
 	"<span class='notice'>You climb out of [src].</span>")
-	if(!isxenohunter(user) )
+	if(!isxenohunter(user))
 		playsound(src, get_sfx("alien_ventpass"), 35, TRUE)
 
 
@@ -275,14 +273,21 @@
 			if(is_type_in_typecache(target_move, GLOB.ventcrawl_machinery))
 				climb_out(user, target_move.loc)
 			else
+
+				// Check for impassable types
+				var/obj/effect/forcefield/fog/impassable = locate() in get_turf(target_move)
+				if(impassable)
+					return
+
 				var/list/pipenetdiff = returnPipenets() ^ target_move.returnPipenets()
 				if(length(pipenetdiff))
 					user.update_pipe_vision(target_move)
 				user.forceMove(target_move)
 				user.client.eye = target_move  //Byond only updates the eye every tick, This smooths out the movement
-				if(!user.cooldowns[COOLDOWN_VENTSOUND])
-					user.cooldowns[COOLDOWN_VENTSOUND] = addtimer(VARSET_LIST_CALLBACK(user.cooldowns, COOLDOWN_VENTSOUND, null), 3 SECONDS)
-					playsound(src, pick('sound/effects/alien_ventcrawl1.ogg','sound/effects/alien_ventcrawl2.ogg'), 50, TRUE, -3)
+				if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_VENTSOUND))
+					return
+				TIMER_COOLDOWN_START(user, COOLDOWN_VENTSOUND, 3 SECONDS)
+				playsound(src, pick('sound/effects/alien_ventcrawl1.ogg','sound/effects/alien_ventcrawl2.ogg'), 50, TRUE, -3)
 	else if((direction & initialize_directions) || is_type_in_typecache(src, GLOB.ventcrawl_machinery) && can_crawl_through()) //if we move in a way the pipe can connect, but doesn't - or we're in a vent
 		climb_out(user, src.loc)
 
@@ -294,6 +299,9 @@
 
 /obj/machinery/atmospherics/proc/returnPipenets()
 	return list()
+
+/obj/machinery/atmospherics/update_remote_sight(mob/user)
+	user.sight |= (SEE_TURFS|BLIND)
 
 //Used for certain children of obj/machinery/atmospherics to not show pipe vision when mob is inside it.
 /obj/machinery/atmospherics/proc/can_see_pipes()

@@ -1,9 +1,12 @@
 /turf/open/floor/plating
 	name = "plating"
+	icon = 'icons/turf/floors.dmi'
 	icon_state = "plating"
 	floor_tile = null
 	intact_tile = FALSE
-
+	shoefootstep = FOOTSTEP_PLATING
+	barefootstep = FOOTSTEP_HARD
+	mediumxenofootstep = FOOTSTEP_PLATING
 
 /turf/open/floor/plating/mainship
 	icon = 'icons/turf/mainship.dmi'
@@ -36,6 +39,9 @@
 	name = "catwalk"
 	desc = "Cats really don't like these things."
 	var/covered = TRUE
+	shoefootstep = FOOTSTEP_CATWALK
+	barefootstep = FOOTSTEP_CATWALK
+	mediumxenofootstep = FOOTSTEP_CATWALK
 
 
 /turf/open/floor/plating/plating_catwalk/Initialize()
@@ -90,12 +96,16 @@
 	icon_state = "catwalk0"
 	name = "catwalk"
 	desc = "Cats really don't like these things."
-	layer = ATMOS_PIPE_LAYER
-
+	shoefootstep = FOOTSTEP_CATWALK
+	barefootstep = FOOTSTEP_CATWALK
+	mediumxenofootstep = FOOTSTEP_CATWALK
+	layer = CATWALK_LAYER
 
 /turf/open/floor/plating/warning
 	icon_state = "warnplate"
 
+/turf/open/floor/plating/warning/grime
+	icon_state = "floorgrimecaution"
 
 /turf/open/floor/plating/platebot
 	icon_state = "platebot"
@@ -108,6 +118,8 @@
 /turf/open/floor/plating/asteroidwarning // used around lv's lz2
 	icon_state = "asteroidwarning"
 
+/turf/open/floor/plating/asteroidwarning/down
+	dir = SOUTH
 
 /turf/open/floor/plating/asteroidfloor
 	icon_state = "asteroidfloor"

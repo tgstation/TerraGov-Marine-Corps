@@ -2,6 +2,7 @@
 	name = "flashbang"
 	icon_state = "flashbang2"
 	item_state = "flashbang"
+	arm_sound = 'sound/weapons/armbombpin.ogg'
 	var/banglet = 0
 
 
@@ -15,13 +16,13 @@
 /obj/item/explosive/grenade/flashbang/prime()
 	..()
 	var/turf/T = get_turf(src)
-	for(var/obj/structure/closet/L in hear(7, T))
+	for(var/obj/structure/closet/L in get_hear(7, T))
 		if(locate(/mob/living/carbon/, L))
 			for(var/mob/living/carbon/M in L)
 				bang(get_turf(src), M)
 
 
-	for(var/mob/living/carbon/M in hear(7, T))
+	for(var/mob/living/carbon/M in get_hear(7, T))
 		if(!HAS_TRAIT(M, TRAIT_FLASHBANGIMMUNE))
 			bang(T, M)
 
@@ -51,7 +52,7 @@
 				ear_safety += 2
 
 //Flashing everyone
-	if(M.flash_eyes())
+	if(M.flash_act())
 		M.Stun(40)
 		M.Paralyze(20 SECONDS)
 

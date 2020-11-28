@@ -46,7 +46,7 @@
 #define CARBON_BREATH_DELAY 2 // The interval in life ticks between breathe()
 
 #define CARBON_MAX_OXYLOSS 3 //Defines how much oxyloss humans can get per breath tick. A tile with no air at all (such as space) applies this value, otherwise it's a percentage of it.
-#define CARBON_CRIT_MAX_OXYLOSS (round(SSmobs.wait/30, 0.1)) //The amount of damage you'll get when in critical condition.
+#define CARBON_CRIT_MAX_OXYLOSS (round(SSmobs.wait/5, 0.1)) //The amount of damage you'll get when in critical condition.
 #define CARBON_RECOVERY_OXYLOSS -5 //the amount of oxyloss recovery per successful breath tick.
 
 #define CARBON_KO_OXYLOSS 50
@@ -82,7 +82,7 @@
 #define UNCONSCIOUS	1
 #define DEAD		2
 
-#define check_tod(H) ((!H.undefibbable && world.time <= H.timeofdeath + CONFIG_GET(number/revive_grace_period)))
+#define check_tod(H) ((!H.undefibbable && world.time <= H.timeofdeath + CONFIG_GET(number/revive_grace_period) + H.revive_grace_time))
 
 //Damage things
 //Way to waste perfectly good damagetype names (BRUTE) on this... If you were really worried about case sensitivity, you could have just used lowertext(damagetype) in the proc...
@@ -100,7 +100,6 @@
 #define STUN		"stun"
 #define WEAKEN		"weaken"
 #define PARALYZE	"paralize"
-#define IRRADIATE	"irradiate"
 #define AGONY		"agony" // Added in PAIN!
 #define STUTTER		"stutter"
 #define EYE_BLUR	"eye_blur"
@@ -122,7 +121,7 @@
 #define CANKNOCKOUT		(1<<2)
 #define CANPUSH			(1<<3)
 #define GODMODE			(1<<4)
-#define FAKEDEATH		(1<<5)	//Replaces stuff like changeling.changeling_fakedeath
+#define FAKEDEATH		(1<<5)	//Unused
 #define DISFIGURED		(1<<6)	//I'll probably move this elsewhere if I ever get wround to writing a bitflag mob-damage system
 #define XENO_HOST		(1<<7)	//Tracks whether we're gonna be a baby alien's mummy.
 #define TK_USER			(1<<8)
@@ -191,6 +190,8 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 /////////////////MOVE DEFINES//////////////////////
 #define MOVE_INTENT_WALK        0
 #define MOVE_INTENT_RUN         1
+#define XENO_HUMAN_PUSHED_DELAY 5
+
 ///////////////////INTERNAL ORGANS DEFINES///////////////////
 
 #define ORGAN_ASSISTED	1
@@ -311,6 +312,8 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define IS_SYNTHETIC 			(1<<14)
 #define NO_STAMINA 				(1<<15)
 #define DETACHABLE_HEAD			(1<<16)
+#define USES_ALIEN_WEAPONS		(1<<17)
+#define NO_DAMAGE_OVERLAY		(1<<18)
 //=================================================
 
 //Some on_mob_life() procs check for alien races.
@@ -322,6 +325,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define IS_UNATHI (1<<5)
 #define IS_HORROR (1<<6)
 #define IS_MOTH (1<<7)
+#define IS_SECTOID (1<<8)
 //=================================================
 
 //AFK status
@@ -372,6 +376,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define REST_HALLOSS_RECOVERY_RATE -32
 
 // Human Overlay Indexes
+#define HEADBITE_LAYER			30
 #define LASER_LAYER				29 //For sniper targeting laser
 #define MOTH_WINGS_LAYER		28
 #define MUTANTRACE_LAYER		27
@@ -394,7 +399,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define HEAD_LAYER				10
 #define COLLAR_LAYER			9
 #define HANDCUFF_LAYER			8
-#define LEGCUFF_LAYER			7
 #define L_HAND_LAYER			6
 #define R_HAND_LAYER			5
 #define BURST_LAYER				4 //Chestburst overlay
@@ -402,7 +406,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define TARGETED_LAYER			2 //for target sprites when held at gun point, and holo cards.
 #define FIRE_LAYER				1 //If you're on fire
 
-#define TOTAL_LAYERS			29
+#define TOTAL_LAYERS			30
 
 #define MOTH_WINGS_BEHIND_LAYER	1
 
@@ -414,27 +418,21 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 #define HIVE_CAN_HIJACK (1<<0)
 
+#define XENO_PULL_CHARGE_TIME 2 SECONDS
 #define XENO_SLOWDOWN_REGEN 0.4
 #define QUEEN_DEATH_TIMER 5 MINUTES
-#define DEFENDER_CRESTDEFENSE_ARMOR 30
-#define DEFENDER_CRESTDEFENSE_SLOWDOWN 0.8
-#define DEFENDER_FORTIFY_ARMOR 60
-#define WARRIOR_AGILITY_ARMOR 30
 #define XENO_DEADHUMAN_DRAG_SLOWDOWN 2
 #define XENO_EXPLOSION_RESIST_3_MODIFIER	0.25 //multiplies top level explosive damage by this amount.
 
-#define SPIT_UPGRADE_BONUS(Xenomorph) (( max(0,Xenomorph.upgrade_as_number()) * 0.15 )) //increase damage by 15% per upgrade level; compensates for the loss of insane attack speeds.
-#define SPRAY_STRUCTURE_UPGRADE_BONUS(Xenomorph) (( Xenomorph.upgrade_as_number() * 8 ))
-#define SPRAY_MOB_UPGRADE_BONUS(Xenomorph) (( Xenomorph.upgrade_as_number() * 4 ))
+#define SPIT_UPGRADE_BONUS(Xenomorph) (( max(0,Xenomorph.upgrade_as_number()) * 0.15 )) //increase damage by 15% per upgrade level; compensates for the loss of insane attack speed.
 
-#define PLASMA_TRANSFER_AMOUNT 50
-#define PLASMA_SALVAGE_AMOUNT 40
-#define PLASMA_SALVAGE_MULTIPLIER 0.5 // I'd not reccomend setting this higher than one.
+#define PLASMA_TRANSFER_AMOUNT 100
+#define PLASMA_SALVAGE_AMOUNT 400
 
 #define XENO_LARVAL_AMOUNT_RECURRING		10
 #define XENO_LARVAL_CHANNEL_TIME			1.5 SECONDS
 
-#define XENO_NEURO_AMOUNT_RECURRING			15
+#define XENO_NEURO_AMOUNT_RECURRING			10
 #define XENO_NEURO_CHANNEL_TIME				1.5 SECONDS
 
 #define CANNOT_HOLD_EGGS 0
@@ -453,9 +451,10 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CASTE_CAN_BE_LEADER			(1<<9)
 #define CASTE_HIDE_IN_STATUS		(1<<10)
 #define CASTE_QUICK_HEAL_STANDING 	(1<<11) // Xenomorphs heal standing same if they were resting.
-#define CASTE_CAN_HEAL_WIHOUT_QUEEN	(1<<12) // Xenomorphs can heal even without a queen on the same z level
+#define CASTE_CAN_HEAL_WITHOUT_QUEEN (1<<12) // Xenomorphs can heal even without a queen on the same z level
 #define CASTE_INNATE_PLASMA_REGEN 	(1<<13) // Xenos get full plasma regardless if they are on weeds or not
 #define CASTE_ACID_BLOOD (1<<13) //The acid blood effect which damages humans near xenos that take damage
+#define CASTE_CAN_HOLD_JELLY (1<<14)//whether we can hold fireproof jelly in our hands
 
 //Charge-Crush
 #define CHARGE_OFF			0
@@ -468,7 +467,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CHARGE_TYPE_MEDIUM			2
 #define CHARGE_TYPE_LARGE			3
 #define CHARGE_TYPE_MASSIVE			4
-
 
 //Hunter Defines
 #define HUNTER_STEALTH_COOLDOWN					50 //5 seconds
@@ -496,27 +494,35 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define RAV_CHARGE_TYPE					3
 
 //crusher defines
-#define CRUSHER_STOMP_LOWER_DMG			80
-#define CRUSHER_STOMP_UPPER_DMG			100
+#define CRUSHER_STOMP_LOWER_DMG			40
+#define CRUSHER_STOMP_UPPER_DMG			60
 #define CRUSHER_CHARGE_BARRICADE_MULTI	60
 #define CRUSHER_CHARGE_RAZORWIRE_MULTI	100
 #define CRUSHER_CHARGE_TANK_MULTI		100
-
-#define CRUSHER_STOMP_UPGRADE_BONUS(Xenomorph) (1 + ( (  Xenomorph.upgrade_as_number() ) * 0.05 ))
 
 //carrier defines
 #define CARRIER_HUGGER_THROW_SPEED 2
 #define CARRIER_HUGGER_THROW_DISTANCE 5
 
 //Defiler defines
-#define DEFILER_GAS_CHANNEL_TIME			2 SECONDS
+#define DEFILER_GAS_CHANNEL_TIME			0.5 SECONDS
 #define DEFILER_GAS_DELAY					1 SECONDS
 #define DEFILER_STING_CHANNEL_TIME			1.5 SECONDS
 #define DEFILER_CLAW_AMOUNT					6.5
 #define DEFILER_STING_AMOUNT_RECURRING		10
+#define DEFILER_REAGENT_SLASH_COUNT			4
+#define DEFILER_REAGENT_SLASH_DELAY			1.2 SECONDS
+#define DEFILER_REAGENT_SLASH_U_AMOUNT		3
+
+//Drone defines
+#define DRONE_HEAL_RANGE		1
 
 //Boiler defines
-#define BOILER_LUMINOSITY					0
+#define BOILER_LUMINOSITY_BASE						0
+#define BOILER_LUMINOSITY_BASE_COLOR				LIGHT_COLOR_GREEN
+#define BOILER_LUMINOSITY_AMMO						1 //don't set this to 0. How much each 'piece' of ammo in reserve glows by.
+#define BOILER_LUMINOSITY_AMMO_NEUROTOXIN_COLOR		LIGHT_COLOR_YELLOW
+#define BOILER_LUMINOSITY_AMMO_CORROSIVE_COLOR		LIGHT_COLOR_GREEN
 
 //Hivelord defines
 
@@ -525,12 +531,14 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define HIVELORD_TUNNEL_SMALL_MAX_TRAVEL_TIME	4 SECONDS
 #define HIVELORD_TUNNEL_LARGE_MAX_TRAVEL_TIME	6 SECONDS
 #define HIVELORD_TUNNEL_DIG_TIME				10 SECONDS
-#define HIVELORD_TUNNEL_SET_LIMIT				4
+#define HIVELORD_TUNNEL_SET_LIMIT				8
+#define HIVELORD_HEAL_RANGE						2
 
 //Shrike defines
 
 #define SHRIKE_FLAG_PAIN_HUD_ON		(1<<0)
 #define SHRIKE_CURE_HEAL_MULTIPLIER	10
+#define SHRIKE_HEAL_RANGE 			3
 
 //misc
 
@@ -565,16 +573,16 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define BODY_ZONE_PRECISE_L_FOOT	"l_foot"
 #define BODY_ZONE_PRECISE_R_FOOT	"r_foot"
 
-GLOBAL_LIST_INIT(human_body_parts, list(BODY_ZONE_HEAD, 
-										BODY_ZONE_CHEST, 
-										BODY_ZONE_PRECISE_GROIN, 
+GLOBAL_LIST_INIT(human_body_parts, list(BODY_ZONE_HEAD,
+										BODY_ZONE_CHEST,
+										BODY_ZONE_PRECISE_GROIN,
 										BODY_ZONE_L_ARM,
-										BODY_ZONE_PRECISE_L_HAND, 
-										BODY_ZONE_R_ARM, 
-										BODY_ZONE_PRECISE_R_HAND, 
-										BODY_ZONE_L_LEG, 
-										BODY_ZONE_PRECISE_L_FOOT, 
-										BODY_ZONE_R_LEG, 
+										BODY_ZONE_PRECISE_L_HAND,
+										BODY_ZONE_R_ARM,
+										BODY_ZONE_PRECISE_R_HAND,
+										BODY_ZONE_L_LEG,
+										BODY_ZONE_PRECISE_L_FOOT,
+										BODY_ZONE_R_LEG,
 										BODY_ZONE_PRECISE_R_FOOT
 										))
 
@@ -587,25 +595,6 @@ GLOBAL_LIST_INIT(human_body_parts, list(BODY_ZONE_HEAD,
 //Stamina
 #define STAMINA_STATE_IDLE 0
 #define STAMINA_STATE_ACTIVE 1
-
-//Cooldowns
-#define COOLDOWN_CHEW 		"chew"
-#define COOLDOWN_PUKE 		"puke"
-#define COOLDOWN_POINT 		"point"
-#define COOLDOWN_EMOTE		"emote"
-#define COOLDOWN_VENTCRAWL	"ventcrawl"
-#define COOLDOWN_BUCKLE		"buckle"
-#define COOLDOWN_RESIST		"resist"
-#define COOLDOWN_ORDER		"order"
-#define COOLDOWN_DISPOSAL	"disposal"
-#define COOLDOWN_ACID		"acid"
-#define COOLDOWN_GUT		"gut"
-#define COOLDOWN_ZOOM		"zoom"
-#define COOLDOWN_BUMP		"bump"
-#define COOLDOWN_ENTANGLE	"entangle"
-#define COOLDOWN_NEST		"nest"
-#define COOLDOWN_TASTE		"taste"
-#define COOLDOWN_VENTSOUND	"vendsound"
 
 #define UPDATEHEALTH(MOB) (addtimer(CALLBACK(MOB, /mob/living.proc/updatehealth), 1, TIMER_UNIQUE))
 

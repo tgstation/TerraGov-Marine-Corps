@@ -15,42 +15,18 @@
 
 
 /obj/proc/check_access(obj/item/card/id/ID)
-	//These generations have been moved out of /obj/New() because they were slowing down the creation of objects that never even used the access system.
-	var/i
-	if(!req_access)
-		req_access = list()
-		if(req_access_txt)
-			var/list/req_access_str = text2list(req_access_txt, ";")
-			var/n
-			for(i in req_access_str)
-				n = text2num(i)
-				if(!n)
-					continue
-				req_access += n
-
-	if(!req_one_access)
-		req_one_access = list()
-		if(req_one_access_txt)
-			var/list/req_one_access_str = text2list(req_one_access_txt, ";")
-			var/n
-			for(i in req_one_access_str)
-				n = text2num(i)
-				if(!n)
-					continue
-				req_one_access += n
-
-	if(!length(req_access) && !length(req_one_access))
+	if(!LAZYLEN(req_access) && !LAZYLEN(req_one_access))
 		return TRUE
 
 	if(!istype(ID))
 		return FALSE
 
-	for(i in req_access)
+	for(var/i in req_access)
 		if(!(i in ID.access))
 			return FALSE
 
-	if(length(req_one_access))
-		for(i in req_one_access)
+	if(LAZYLEN(req_one_access))
+		for(var/i in req_one_access)
 			if(!(i in ID.access))
 				continue
 			return TRUE
@@ -79,15 +55,15 @@
 		if(0)
 			return ALL_ACCESS
 		if(1)
-			return list(ACCESS_MARINE_WO, ACCESS_MARINE_BRIG)//security
+			return list(ACCESS_MARINE_CAPTAIN, ACCESS_MARINE_COMMANDER, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_PILOT, ACCESS_MARINE_TANK, ACCESS_MARINE_BRIDGE)//command
 		if(2)
-			return list(ACCESS_MARINE_CMO, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY)//medbay
+			return list(ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_REMOTEBUILD)//engineering and maintenance
 		if(3)
-			return list(ACCESS_MARINE_RESEARCH)//research
+			return list(ACCESS_MARINE_CMO, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_RESEARCH)//medbay
 		if(4)
-			return list(ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING)//engineering and maintenance
+			return list(ACCESS_MARINE_RO, ACCESS_MARINE_CARGO)//req
 		if(5)
-			return list(ACCESS_MARINE_CAPTAIN, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_CARGO)//command
+			return list(ACCESS_MARINE_WO, ACCESS_MARINE_ARMORY, ACCESS_MARINE_BRIG)//security
 		if(6)
 			return list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_ENGPREP, ACCESS_MARINE_SMARTPREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_SPECPREP)//spess mahreens
 		if(7)
@@ -101,19 +77,19 @@
 		if(0)
 			return "All"
 		if(1)
-			return "[SSmapping.configs[SHIP_MAP].map_name] Security"//security
-		if(2)
-			return "[SSmapping.configs[SHIP_MAP].map_name] Medbay"//medbay
-		if(3)
-			return "[SSmapping.configs[SHIP_MAP].map_name] Research"//research
-		if(4)
-			return "[SSmapping.configs[SHIP_MAP].map_name] Engineering"//engineering and maintenance
-		if(5)
 			return "[SSmapping.configs[SHIP_MAP].map_name] Command"//command
+		if(2)
+			return "[SSmapping.configs[SHIP_MAP].map_name] Engineering"//engineering
+		if(3)
+			return "[SSmapping.configs[SHIP_MAP].map_name] Medical"//medbay
+		if(4)
+			return "[SSmapping.configs[SHIP_MAP].map_name] Requisitions"//requisitions
+		if(5)
+			return "[SSmapping.configs[SHIP_MAP].map_name] Security"//security
 		if(6)
-			return "Marines"//marine prep
+			return "[SSmapping.configs[SHIP_MAP].map_name] Marine"//marine prep
 		if(7)
-			return "Squads"//squads
+			return "Squad Access"//squads
 		if(8)
 			return "Civilian"//Civilian
 
@@ -124,22 +100,30 @@
 			return "WO's Office"
 		if(ACCESS_MARINE_BRIG)
 			return "Brig"
+		if(ACCESS_MARINE_ARMORY)
+			return "Armory"
 		if(ACCESS_MARINE_CMO)
 			return "CMO's Office"
 		if(ACCESS_MARINE_MEDBAY)
-			return "[SSmapping.configs[SHIP_MAP].map_name] Medbay"
+			return "Medbay"
+		if(ACCESS_MARINE_CHEMISTRY)
+			return "Chemistry"
 		if(ACCESS_MARINE_RESEARCH)
-			return "[SSmapping.configs[SHIP_MAP].map_name] Research"
+			return "Research"
 		if(ACCESS_MARINE_CE)
 			return "CE's Office"
 		if(ACCESS_MARINE_ENGINEERING)
-			return "[SSmapping.configs[SHIP_MAP].map_name] Engineering"
+			return "Engineering"
+		if(ACCESS_MARINE_REMOTEBUILD)
+			return "FOB Construction Drone"
 		if(ACCESS_MARINE_CAPTAIN)
 			return "Captain's Quarters"
+		if(ACCESS_MARINE_COMMANDER)
+			return "Field Commander's Quarters"
 		if(ACCESS_MARINE_LOGISTICS)
-			return "[SSmapping.configs[SHIP_MAP].map_name] Logistics"
+			return "Logistics"
 		if(ACCESS_MARINE_BRIDGE)
-			return "[SSmapping.configs[SHIP_MAP].map_name] Bridge"
+			return "Bridge"
 		if(ACCESS_MARINE_PREP)
 			return "Marine Prep"
 		if(ACCESS_MARINE_ENGPREP)
@@ -160,6 +144,8 @@
 			return "Charlie Squad"
 		if(ACCESS_MARINE_DELTA)
 			return "Delta Squad"
+		if(ACCESS_MARINE_RO)
+			return "RO's Office"
 		if(ACCESS_MARINE_CARGO)
 			return "Requisitions"
 		if(ACCESS_MARINE_DROPSHIP)
@@ -177,7 +163,7 @@
 		if(ACCESS_CIVILIAN_PUBLIC)
 			return "Civilian"
 		if(ACCESS_IFF_MARINE)
-			return "[SSmapping.configs[SHIP_MAP].map_name] Identification"
+			return "Crew Identification"
 
 /proc/get_centcom_access_desc(A)
 	switch(A)
@@ -238,13 +224,15 @@
 		if("PMCDSL")
 			. = size ? "APTL " : "Assets Protection Team Leader"
 		if("NT")
-			. = size ? (gender == "female" ? "Ms. " : "Mr. ") : "Junior Executive"
+			. = size ? (gender == FEMALE ? "Ms. " : "Mr. ") : "Junior Executive"
 		if("E1")
 			. = size ? "PVT " : "Private"
 		if("E2")
 			. = size ? "PFC " : "Private First Class"
 		if("E3")
 			. = size ? "LCPL " : "Lance Corporal"
+		if("E3E")
+			. = size ? "SCPL " : "Section Corporal" //Anachronistic if we're going by common US ranks, above E3 but below E4.
 		if("E4")
 			. = size ? "CPL " : "Corporal"
 		if("E5")
@@ -287,40 +275,46 @@
 			. = size ? "WO " : "Warrant Officer"
 		if("CWO")
 			. = size ? "CWO " : "Chief Warrant Officer"
-		if("PO")
-			. = size ? "PO " : "Petty Officer"
+		if("PO3")
+			. = size ? "PO3 " : "Petty Officer Third Class"
+		if("PO2")
+			. = size ? "PO2 " : "Petty Officer Second Class"
+		if("PO1")
+			. = size ? "PO1 " : "Petty Officer First Class"
 		if("CPO")
 			. = size ? "CPO " : "Chief Petty Officer"
 		if("MO4")
 			. = size ? "MAJ " : "Major"
+		if("MO5")
+			. = size ? "LtCol " : "Lieutenant Colonel"
 		if("UPP1")
-			. = size ? "UPVT " : "UPP Private"
+			. = size ? "UGNR " : "USL Gunner"
 		if("UPP2")
-			. = size ? "UPFC " : "UPP Private First Class"
+			. = size ? "USUR " : "USL Surgeon"
 		if("UPP3")
-			. = size ? "UCPL " : "UPP Corporal"
+			. = size ? "UPOM " : "USL Powder Monkey"
 		if("UPP4")
-			. = size ? "ULCPL " : "UPP Lance Corporal"
+			. = size ? "UCPT " : "USL Captain"
 		if("UPP5")
-			. = size ? "USGT " : "UPP Sergeant"
+			. = size ? "UQM " : "USL Quartermaster"
 		if("UPP6")
-			. = size ? "USSGT " : "UPP Staff Sergeant"
+			. = size ? "USSGT " : "USL Staff Sergeant"
 		if("UPP7")
-			. = size ? "UENS " : "UPP Ensign"
+			. = size ? "UENS " : "USL Ensign"
 		if("UPP8")
-			. = size ? "ULT " : "UPP Lieutenant"
+			. = size ? "ULT " : "USL Lieutenant"
 		if("UPP9")
-			. = size ? "ULCDR " : "UPP Lieutenant Commander"
+			. = size ? "ULCDR " : "USL Lieutenant Commander"
 		if("UPP10")
-			. = size ? "UCDR " : "UPP Commander"
+			. = size ? "UCDR " : "USL Commander"
 		if("UPP11")
-			. = size ? "UADM " : "UPP Admiral"
+			. = size ? "UADM " : "USL Admiral"
 		if("UPPC1")
-			. = size ? "UPPC " : "UPP Commando Standard"
+			. = size ? "UEPM " : "USL Elite Powder Monkey"
 		if("UPPC2")
-			. = size ? "UPPC " : "UPP Commando Medic"
+			. = size ? "UESUR " : "USL Elite Surgeon"
 		if("UPPC3")
-			. = size ? "UPPC " : "UPP Commando Leader"
+			. = size ? "UECPT " : "USL Elite Captain"
 		if("FRE1")
 			. = size ? "FRE " : "Freelancer Standard"
 		if("FRE2")
@@ -347,5 +341,7 @@
 			. = size ? "MERC " : "MERC Miner"
 		if("MRC3")
 			. = size ? "MERC " : "MERC Engineer"
+		if("VM")
+			. = size ? "VAT " : "VatGrown Marine"
 		else
 			. = paygrade + " " //custom paygrade

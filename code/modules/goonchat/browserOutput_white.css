@@ -310,6 +310,8 @@ h1.alert, h2.alert		{color: #000000;}
 .hivemind				{color: purple;}
 .xenoqueen				{font-size: 1.4em;}
 .xenoshrike				{font-size: 1.2em;}
+.xenohivemind			{font-size: 1.2em;}
+.xenoleader				{font-size: 1.2em;}
 
 .alien					{color: #543354;}
 .newscaster				{color: #800000;}
@@ -370,3 +372,12 @@ h1.alert, h2.alert		{color: #000000;}
 /* HELPER CLASSES */
 .text-normal {font-weight: normal; font-style: normal;}
 .hidden {display: none; visibility: hidden;}
+
+
+.hidelink {
+	text-decoration: none;
+	color: inherit;
+}
+.hidelink:hover {
+	text-decoration: underline;
+}

@@ -14,7 +14,7 @@
 		return
 	if(!check_plasma(50))
 		return
-	if(cooldowns[COOLDOWN_ORDER])
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ORDER))
 		return
 	plasma_stored -= 50
 	var/txt = stripped_input(src, "Set the hive's orders to what? Leave blank to clear it.", "Hive Orders")
@@ -25,7 +25,7 @@
 	else
 		hive.hive_orders = ""
 
-	cooldowns[COOLDOWN_ORDER] = addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_ORDER, null), 15 SECONDS)
+	TIMER_COOLDOWN_START(src, COOLDOWN_ORDER, 15 SECONDS)
 
 // ***************************************
 // *********** Hive message
@@ -129,12 +129,12 @@
 	if(istype(X.r_hand, /obj/item/clothing/mask/facehugger))
 		var/obj/item/clothing/mask/facehugger/FH = X.r_hand
 		if(FH.stat != DEAD)
-			FH.Die()
+			FH.kill_hugger()
 
 	if(istype(X.l_hand, /obj/item/clothing/mask/facehugger))
 		var/obj/item/clothing/mask/facehugger/FH = X.l_hand
 		if(FH.stat != DEAD)
-			FH.Die()
+			FH.kill_hugger()
 
 	succeed_activate()
 	add_cooldown()
@@ -156,6 +156,18 @@
 			continue
 		L.screech_act(X, WORLD_VIEW_NUM, L in nearby_living)
 
+/datum/action/xeno_action/activable/screech/ai_should_start_consider()
+	return TRUE
+
+/datum/action/xeno_action/activable/screech/ai_should_use(target)
+	if(!iscarbon(target))
+		return ..()
+	if(get_dist(target, owner) > 4)
+		return ..()
+	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
+		return ..()
+	return TRUE
+
 // ***************************************
 // *********** Gut
 // ***************************************
@@ -170,7 +182,7 @@
 	if(!.)
 		return FALSE
 	var/mob/living/carbon/xenomorph/queen/X = owner
-	if(X.cooldowns[COOLDOWN_GUT])
+	if(TIMER_COOLDOWN_CHECK(X, COOLDOWN_GUT))
 		return FALSE
 	if(!iscarbon(A))
 		return FALSE
@@ -203,7 +215,7 @@
 
 	succeed_activate()
 
-	X.cooldowns[COOLDOWN_GUT] = addtimer(VARSET_LIST_CALLBACK(X.cooldowns, COOLDOWN_GUT, null), 5 SECONDS)
+	TIMER_COOLDOWN_START(X, COOLDOWN_GUT, 5 SECONDS)
 
 	X.visible_message("<span class='xenowarning'>\The [X] begins slowly lifting \the [victim] into the air.</span>", \
 	"<span class='xenowarning'>We begin focusing our anger as we slowly lift \the [victim] into the air.</span>")
@@ -296,24 +308,30 @@
 
 
 /datum/action/xeno_action/watch_xeno/proc/on_list_xeno_selection(datum/source, mob/living/carbon/xenomorph/selected_xeno)
+	SIGNAL_HANDLER_DOES_SLEEP
 	select_xeno(selected_xeno)
 
 /datum/action/xeno_action/watch_xeno/proc/on_xeno_evolution(datum/source, mob/living/carbon/xenomorph/new_xeno)
+	SIGNAL_HANDLER
 	start_overwatch(new_xeno)
 
 /datum/action/xeno_action/watch_xeno/proc/on_xeno_death(datum/source, mob/living/carbon/xenomorph/dead_xeno)
+	SIGNAL_HANDLER
 	if(overwatch_active)
 		stop_overwatch()
 
-/datum/action/xeno_action/watch_xeno/proc/on_owner_death(datum/source, gibbed)
+/datum/action/xeno_action/watch_xeno/proc/on_owner_death(mob/source, gibbing)
+	SIGNAL_HANDLER
 	if(overwatch_active)
 		stop_overwatch()
 
 /datum/action/xeno_action/watch_xeno/proc/on_movement(datum/source, atom/oldloc, direction, Forced)
+	SIGNAL_HANDLER
 	if(overwatch_active)
 		stop_overwatch()
 
 /datum/action/xeno_action/watch_xeno/proc/on_ctrl_middle_click(datum/source, atom/A)
+	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/queen/watcher = owner
 	if(!watcher.check_state())
 		return
@@ -489,6 +507,7 @@
 	add_cooldown()
 	patient.adjustBruteLoss(-100)
 	patient.adjustFireLoss(-100)
+	patient.adjust_sunder(-10)
 	succeed_activate()
 	to_chat(owner, "<span class='xenonotice'>We channel our plasma to heal [target]'s wounds.</span>")
 	to_chat(patient, "<span class='xenonotice'>We feel our wounds heal. Bless the Queen!</span>")

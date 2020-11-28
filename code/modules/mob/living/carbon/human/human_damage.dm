@@ -1,6 +1,5 @@
 //Updates the mob's health from limbs and mob damage variables
 /mob/living/carbon/human/updatehealth()
-
 	if(status_flags & GODMODE)
 		health = species.total_health
 		set_stat(CONSCIOUS)
@@ -23,7 +22,7 @@
 	med_hud_set_status()
 
 	var/health_deficiency = max((maxHealth - health), staminaloss)
-	
+
 	if(health_deficiency >= 40)
 		add_movespeed_modifier(MOVESPEED_ID_DAMAGE_SLOWDOWN, TRUE, 0, NONE, TRUE, health_deficiency / 25)
 	else
@@ -39,7 +38,7 @@
 		var/datum/internal_organ/brain/sponge = internal_organs_by_name["brain"]
 		if(sponge)
 			sponge.take_damage(amount, silent)
-			sponge.damage = CLAMP(sponge.damage, 0, maxHealth*2)
+			sponge.damage = clamp(sponge.damage, 0, maxHealth*2)
 			brainloss = sponge.damage
 		else
 			brainloss = 200
@@ -54,7 +53,7 @@
 	if(species?.has_organ["brain"])
 		var/datum/internal_organ/brain/sponge = internal_organs_by_name["brain"]
 		if(sponge)
-			sponge.damage = CLAMP(amount, 0, maxHealth*2)
+			sponge.damage = clamp(amount, 0, maxHealth*2)
 			brainloss = sponge.damage
 		else
 			brainloss = 200
@@ -351,7 +350,7 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 	var/list/datum/limb/parts = get_damageable_limbs()
 	var/update = 0
 	while(parts.len && (brute>0 || burn>0) )
-		var/datum/limb/picked = pick(parts)
+		var/datum/limb/picked = pick_n_take(parts)
 
 		var/brute_was = picked.brute_dam
 		var/burn_was = picked.burn_dam
@@ -360,13 +359,20 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 		brute	-= (picked.brute_dam - brute_was)
 		burn	-= (picked.burn_dam - burn_was)
 
-		parts -= picked
-
 	if(updating_health)
 		updatehealth()
 	if(update)
 		UpdateDamageIcon()
 
+/mob/living/carbon/human/take_overall_damage_armored(damage, damagetype, armortype, sharp = FALSE, edge = FALSE, updating_health = FALSE)
+	if(status_flags & GODMODE)
+		return //we don't wanna kill gods...or do we ?
+
+	var/list/datum/limb/parts = get_damageable_limbs()
+	damage = damage / length(parts) //damage all limbs equally.
+	while(parts.len)
+		var/datum/limb/picked = pick_n_take(parts)
+		apply_damage(damage, damagetype, picked, run_armor_check(picked, armortype), sharp, edge, updating_health)
 
 ////////////////////////////////////////////
 
@@ -375,7 +381,7 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 /*
 This function restores all limbs.
 */
-/mob/living/carbon/human/restore_all_organs()
+/mob/living/carbon/human/restore_all_organs(updating_health = FALSE)
 	for(var/datum/limb/E in limbs)
 		E.rejuvenate()
 
@@ -386,6 +392,8 @@ This function restores all limbs.
 			var/datum/internal_organ/IO = new internal_organ_type(src)
 			internal_organs_by_name[organ_slot] = IO
 
+	if(updating_health)
+		updatehealth()
 
 
 /mob/living/carbon/human/proc/HealDamage(zone, brute, burn)

@@ -1,69 +1,87 @@
 // ICY CAVES AREAS
+/area/icy_caves
+	outside = FALSE
 
-/area/icy_caves/caves/OOB //You shouldnt be able to get here, if you are here its an issue and @isy
-	name ="\improper Out Of Bounds"
+/area/icy_caves/caves/
+	name ="Caves"
 	icon_state = "away4"
-	ceiling = CEILING_DEEP_UNDERGROUND
+	ceiling = CEILING_UNDERGROUND
 
 /area/icy_caves/caves/northern
-	name ="\improper Northern Caves"
+	name ="Northern Caves"
 	icon_state = "cave"
 	ceiling = CEILING_DEEP_UNDERGROUND
 
 /area/icy_caves/caves/crashed_ship
-	name ="\improper Crashed Ship"
+	name ="Crashed Ship"
 	icon_state = "red"
 	ceiling = CEILING_DEEP_UNDERGROUND
 
 /area/icy_caves/caves/south
-	name ="\improper Southern Caves"
+	name ="Southern Caves"
 	icon_state = "cave"
-	ceiling = CEILING_UNDERGROUND
 
 /area/icy_caves/caves/east
-	name ="\improper Eastern Caves"
+	name ="Eastern Caves"
 	icon_state = "cave"
-	ceiling = CEILING_UNDERGROUND
 
 /area/icy_caves/caves/west
-	name ="\improper Western Caves"
+	name ="Western Caves"
 	icon_state = "cave"
-	ceiling = CEILING_UNDERGROUND
 
-/area/icy_caves/outpost/dorms
-	name ="\improper Dormitories"
+/area/icy_caves/outpost/
+	name ="Outpost"
 	icon_state = "Sleep"
 	ceiling = CEILING_METAL
 
+/area/icy_caves/outpost/dorms
+	name ="Dormitories"
+	icon_state = "Sleep"
+
 /area/icy_caves/outpost/engineering
-	name ="\improper Engineering"
+	name ="Engineering"
 	icon_state = "engine_smes"
-	ceiling = CEILING_METAL
 
 /area/icy_caves/outpost/garage
-	name ="\improper Garage"
+	name ="Garage"
 	icon_state = "garage"
-	ceiling = CEILING_METAL
 
 /area/icy_caves/outpost/medbay
 	name = "\improper Medbay"
 	icon_state = "medbay"
-	ceiling = CEILING_METAL
 
 /area/icy_caves/outpost/refinery
 	name = "\improper Refinery"
 	icon_state = "purple"
-	ceiling = CEILING_METAL
 
 /area/icy_caves/outpost/security
 	name = "\improper Security"
 	icon_state = "security"
-	ceiling = CEILING_METAL
 
 /area/icy_caves/outpost/research
 	name = "\improper Research Post"
 	icon_state = "blue"
-	ceiling = CEILING_METAL
+
+/area/icy_caves/outpost/recreation
+	name = "\improper Recreation"
+	icon_state = "cafeteria"
+	ceiling = CEILING_GLASS
+
+/area/icy_caves/outpost/mining/west
+	name = "\improper Mining West"
+	icon_state = "blue"
+
+/area/icy_caves/outpost/mining/east
+	name = "\improper Mining East"
+	icon_state = "blue"
+
+/area/icy_caves/outpost/kitchen
+	name = "\improper Kitchen"
+	icon_state = "red"
+
+/area/icy_caves/outpost/office
+	name = "\improper Offices"
+	icon_state = "yellow"
 
 /area/icy_caves/outpost/LZ1
 	name = "\improper Landing Zone One"
@@ -79,4 +97,4 @@
 	name = "\improper Colony Grounds"
 	icon_state = "blue"
 	ceiling = CEILING_NONE
-
+	outside = TRUE

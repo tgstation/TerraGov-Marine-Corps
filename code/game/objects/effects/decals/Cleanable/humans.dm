@@ -27,7 +27,7 @@
 		for(var/obj/effect/decal/cleanable/blood/B in loc)
 			if(B == src)
 				continue
-			qdel(B)
+			return INITIALIZE_HINT_QDEL
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/effect/decal/cleanable/blood/LateInitialize()
@@ -48,13 +48,14 @@
 	color = basecolor
 
 /obj/effect/decal/cleanable/blood/Crossed(mob/living/carbon/human/perp)
+	. = ..()
 	if (!istype(perp))
 		return
 	if(amount < 1)
 		return
 
-	var/datum/limb/l_foot = perp.get_limb("l_foot")
-	var/datum/limb/r_foot = perp.get_limb("r_foot")
+	var/datum/limb/foot/l_foot = perp.get_limb("l_foot")
+	var/datum/limb/foot/r_foot = perp.get_limb("r_foot")
 	var/hasfeet = 1
 	if((!l_foot || l_foot.limb_status & LIMB_DESTROYED) && (!r_foot || r_foot.limb_status & LIMB_DESTROYED))
 		hasfeet = 0

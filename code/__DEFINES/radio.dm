@@ -44,10 +44,12 @@
 
 #define RADIO_CHANNEL_COLONIST "Colonist"
 #define RADIO_CHANNEL_PMC "NT PMC"
-#define RADIO_CHANNEL_UPP "UPP"
+#define RADIO_CHANNEL_USL "USL"
 #define RADIO_CHANNEL_DEATHSQUAD "Deathsquad"
 #define RADIO_CHANNEL_IMPERIAL "Imperial"
 #define RADIO_CHANNEL_SOM "Sons of Mars"
+#define RADIO_CHANNEL_SECTOID "Alien"
+#define RADIO_CHANNEL_ECHO "Echo"
 #define RADIO_CHANNEL_DS1 "Alamo"
 #define RADIO_CHANNEL_DS2 "Normandy"
 
@@ -55,13 +57,16 @@
 #define MIN_FREE_FREQ 1201 // -------------------------------------------------
 // Frequencies are always odd numbers and range from 1201 to 1599.
 
-#define FREQ_PMC		1332
+#define MIN_ERT_FREQ	1331
+#define FREQ_PMC		1331
 #define FREQ_COLONIST	1335
-#define FREQ_UPP		1337
+#define FREQ_USL		1337
 #define FREQ_DEATHSQUAD	1339
 #define FREQ_IMPERIAL	1341
 #define FREQ_SOM		1343
-#define FREQ_AI			1345
+#define FREQ_SECTOID	1347
+#define FREQ_ECHO		1349
+#define MAX_ERT_FREQ	1349
 
 #define FREQ_COMMAND 		1353
 #define FREQ_MEDICAL		1355
@@ -74,6 +79,7 @@
 #define FREQ_CHARLIE	1365
 #define FREQ_DELTA		1367
 
+#define FREQ_AI			1383
 #define FREQ_STATUS_DISPLAYS 1435
 
 #define MIN_FREQ 1441 // ------------------------------------------------------

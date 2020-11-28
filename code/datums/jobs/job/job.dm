@@ -5,11 +5,11 @@ GLOBAL_LIST_INIT(exp_jobsmap, list(
 	EXP_TYPE_MEDICAL = list("titles" = GLOB.jobs_medical),
 	EXP_TYPE_MARINES = list("titles" = GLOB.jobs_marines),
 	EXP_TYPE_REQUISITIONS = list("titles" = GLOB.jobs_requisitions),
-	EXP_TYPE_POLICE = list("titles" = GLOB.jobs_police)
 ))
 
 GLOBAL_LIST_INIT(exp_specialmap, list(
 	EXP_TYPE_LIVING = list(),
+	EXP_TYPE_SPECIAL = list(ROLE_XENOMORPH, ROLE_XENO_QUEEN),
 	EXP_TYPE_GHOST = list(),
 	EXP_TYPE_ADMIN = list()
 ))
@@ -27,7 +27,7 @@ GLOBAL_PROTECT(exp_specialmap)
 
 	var/department_head = list()
 
-	var/faction = "None"
+	var/faction = FACTION_NEUTRAL
 
 	var/total_positions = 0
 	var/current_positions = 0
@@ -51,7 +51,7 @@ GLOBAL_PROTECT(exp_specialmap)
 
 	var/display_order = JOB_DISPLAY_ORDER_DEFAULT
 	var/job_flags = NONE
-	
+
 	var/list/jobworth = list() //Associative list of indexes increased when someone joins as this job.
 
 /datum/job/New()
@@ -66,10 +66,22 @@ GLOBAL_PROTECT(exp_specialmap)
 	if(!ishuman(L))
 		return
 
-	var/mob/living/carbon/human/H = L
-	var/obj/item/card/id/C = H.wear_id
-	if(istype(C) && H.mind?.initial_account)
-		C.associated_account_number = H.mind.initial_account.account_number
+	if(job_flags & JOB_FLAG_PROVIDES_BANK_ACCOUNT)
+		var/datum/money_account/bank_account = create_account(L.real_name, rand(50, 500) * 10)
+		var/list/remembered_info = list()
+		remembered_info += "<b>Your account number is:</b> #[bank_account.account_number]"
+		remembered_info += "<b>Your account pin is:</b> [bank_account.remote_access_pin]"
+		remembered_info += "<b>Your account funds are:</b> $[bank_account.money]"
+		if(length(bank_account.transaction_log))
+			var/datum/transaction/transaction_datum = bank_account.transaction_log[1]
+			remembered_info += "<b>Your account was created:</b> [transaction_datum.time], [transaction_datum.date] at [transaction_datum.source_terminal]"
+		M.mind.store_memory(remembered_info.Join("<br>"))
+		M.mind.initial_account = bank_account
+
+		var/mob/living/carbon/human/H = L
+		var/obj/item/card/id/C = H.wear_id
+		if(istype(C))
+			C.associated_account_number = bank_account.account_number
 
 
 /datum/job/proc/announce(mob/living/announced_mob)
@@ -131,8 +143,8 @@ GLOBAL_PROTECT(exp_specialmap)
 /datum/job/proc/radio_help_message(mob/M)
 	to_chat(M, {"
 <span class='role_body'>|______________________|</span>
-<span class='role_header'>You are a: [title]!</span>
-<span class='role_body'>As a [title] you answer to [supervisors]. Special circumstances may change this.</span>
+<span class='role_header'>You are \an [title]!</span>
+<span class='role_body'>As \an <b>[title]</b> you answer to [supervisors]. Special circumstances may change this.</span>
 <span class='role_body'>|______________________|</span>
 "})
 	if(!(job_flags & JOB_FLAG_NOHEADSET))
@@ -166,8 +178,7 @@ GLOBAL_PROTECT(exp_specialmap)
 		C.rank = J.title
 		C.paygrade = J.paygrade
 		C.update_label()
-
-		if(H.mind?.initial_account)
+		if(H.mind?.initial_account) // In most cases they won't have a mind at this point.
 			C.associated_account_number = H.mind.initial_account.account_number
 
 	H.update_action_buttons()
@@ -201,7 +212,7 @@ GLOBAL_PROTECT(exp_specialmap)
 	if(total_positions >= max_positions)
 		return
 	if(job_points >= job_points_needed )
-		job_points -= job_points_needed 
+		job_points -= job_points_needed
 		add_job_positions(1)
 
 /datum/job/proc/add_job_positions(amount)
@@ -264,10 +275,10 @@ GLOBAL_PROTECT(exp_specialmap)
 		job.outfit.handle_id(src)
 		job.outfit.equip(src)
 
-	if(job.job_flags & JOB_FLAG_ALLOWS_PREFS_GEAR)
+	if((job.job_flags & JOB_FLAG_ALLOWS_PREFS_GEAR) && player)
 		equip_preference_gear(player)
 
-	if(!src.assigned_squad)
+	if(!src.assigned_squad && assigned_squad)
 		job.equip_spawning_squad(src, assigned_squad, player)
 
 
@@ -286,17 +297,7 @@ GLOBAL_PROTECT(exp_specialmap)
 		if(!ishuman(late_spawner))
 			CRASH("on_late_spawn called for job with JOB_FLAG_ADDTOMANIFEST on non-human late_spawner: [late_spawner]")
 		GLOB.datacore.manifest_inject(late_spawner)
-	if(job_flags & JOB_FLAG_PROVIDES_BANK_ACCOUNT)
-		var/datum/money_account/bank_account = create_account(late_spawner.real_name, rand(50, 500) * 10)
-		var/list/remembered_info = list()
-		remembered_info += "<b>Your account number is:</b> #[bank_account.account_number]"
-		remembered_info += "<b>Your account pin is:</b> [bank_account.remote_access_pin]"
-		remembered_info += "<b>Your account funds are:</b> $[bank_account.money]"
-		if(length(bank_account.transaction_log))
-			var/datum/transaction/transaction_datum = bank_account.transaction_log[1]
-			remembered_info += "<b>Your account was created:</b> [transaction_datum.time], [transaction_datum.date] at [transaction_datum.source_terminal]"
-		late_spawner.mind.store_memory(remembered_info.Join("<br>"))
-		late_spawner.mind.initial_account = bank_account
+
 
 /datum/job/proc/return_spawn_type(datum/preferences/prefs)
 	return /mob/living/carbon/human

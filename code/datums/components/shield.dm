@@ -2,15 +2,19 @@
 	var/mob/living/affected
 	var/datum/callback/intercept_damage_cb
 	var/datum/callback/transfer_damage_cb
-	var/datum/armor/armor
-	var/datum/armor/cover //Percentage damage it intercepts.
+	/// %-reduction-based armor.
+	var/datum/armor/soft_armor
+	/// Flat-damage-reduction-based armor.
+	var/datum/armor/hard_armor
+	/// Percentage damage The shield intercepts.
+	var/datum/armor/cover
 	var/shield_flags = NONE
 	var/slot_flags = SLOT_L_HAND|SLOT_R_HAND
 	var/layer = 50
 	var/active = TRUE
 
 
-/datum/component/shield/Initialize(shield_flags, shield_armor, shield_cover = list("melee" = 80, "bullet" = 100, "laser" = 100, "energy" = 100, "bomb" = 80, "bio" = 30, "rad" = 0, "fire" = 80, "acid" = 80))
+/datum/component/shield/Initialize(shield_flags, shield_soft_armor, shield_hard_armor, shield_cover = list("melee" = 80, "bullet" = 100, "laser" = 100, "energy" = 100, "bomb" = 80, "bio" = 30, "rad" = 0, "fire" = 80, "acid" = 80))
 	. = ..()
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
@@ -23,20 +27,27 @@
 		RegisterSignal(parent, COMSIG_ITEM_DROPPED, .proc/shield_dropped)
 		if(ismob(parent_item.loc))
 			shield_init(parent_item.loc)
-	
+
 	setup_callbacks(shield_flags)
 
-	if(!isnull(shield_armor))
-		armor = shield_armor
-	if(islist(shield_armor))
-		armor = getArmor(arglist(shield_armor))
+	if(!isnull(shield_soft_armor))
+		soft_armor = shield_soft_armor
+	if(islist(shield_soft_armor))
+		soft_armor = getArmor(arglist(shield_soft_armor))
 	else
-		armor = parent_item.armor
+		soft_armor = parent_item.soft_armor
 
-	if(islist(cover))
-		cover = getArmor(arglist(cover))
-	else if(istype(armor, /datum/armor))
-		cover = armor
+	if(!isnull(shield_hard_armor))
+		hard_armor = shield_hard_armor
+	if(islist(shield_hard_armor))
+		hard_armor = getArmor(arglist(shield_hard_armor))
+	else
+		hard_armor = parent_item.hard_armor
+
+	if(islist(shield_cover))
+		cover = getArmor(arglist(shield_cover))
+	else if(istype(shield_cover, /datum/armor))
+		cover = shield_cover
 	else
 		cover = getArmor()
 		stack_trace("Invalid type found in cover during /datum/component/shield Initialize()")
@@ -44,7 +55,8 @@
 
 /datum/component/shield/Destroy()
 	shield_detatch_from_user()
-	armor = null
+	soft_armor = null
+	hard_armor = null
 	cover = null
 	QDEL_NULL(intercept_damage_cb)
 	if(transfer_damage_cb)
@@ -71,8 +83,6 @@
 		var/mob/living/carbon/holder_carbon = holder_mob
 		if(parent == holder_carbon.handcuffed)
 			slot = SLOT_HANDCUFFED
-		else if(parent == holder_carbon.legcuffed)
-			slot = SLOT_LEGCUFFED
 		else if(parent == holder_carbon.back)
 			slot = SLOT_BACK
 		else if(ishuman(holder_mob))
@@ -104,6 +114,7 @@
 	shield_equipped(parent, holder_mob, slot)
 
 /datum/component/shield/proc/toggle_shield/(datum/source, new_state)
+	SIGNAL_HANDLER
 	if(active == new_state)
 		return
 	active = new_state
@@ -118,12 +129,14 @@
 	UnregisterSignal(parent, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED))
 
 /datum/component/shield/proc/shield_equipped(datum/source, mob/living/user, slot)
+	SIGNAL_HANDLER
 	if(!(slot_flags & slot))
 		shield_detatch_from_user()
 		return
 	shield_affect_user(user)
 
 /datum/component/shield/proc/shield_dropped(datum/source, mob/user)
+	SIGNAL_HANDLER
 	shield_detatch_from_user()
 
 /datum/component/shield/proc/shield_affect_user(mob/living/user)
@@ -148,24 +161,40 @@
 	affected = null
 
 /datum/component/shield/proc/on_attack_cb_shields_call(datum/source, list/affecting_shields, dam_type)
+	SIGNAL_HANDLER
 	if(cover.getRating(dam_type) <= 0)
 		return
 	affecting_shields[intercept_damage_cb] = layer
 
 /datum/component/shield/proc/item_intercept_attack(attack_type, incoming_damage, damage_type, silent)
 	var/obj/item/parent_item = parent
+	var/status_cover_modifier = 1
+
+	if(affected.IsSleeping() || affected.IsUnconscious() || affected.IsAdminSleeping() || affected.IsParalyzed()) //We don't do jack if we're literally KOed/sleeping/paralyzed.
+		return incoming_damage
+
+	if(affected.IsStun() || affected.IsKnockdown()) //Halve shield cover if we're paralyzed or stunned
+		status_cover_modifier *= 0.5
+
+	if(iscarbon(affected))
+		var/mob/living/carbon/C = affected
+		if(C.stagger) //Lesser penalty to shield cover for being staggered.
+			status_cover_modifier *= 0.75
+
 	switch(attack_type)
 		if(COMBAT_TOUCH_ATTACK)
-			if(!prob(cover.getRating(damage_type)))
+			if(!prob(cover.getRating(damage_type) * status_cover_modifier))
 				return FALSE //Bypassed the shield.
-			incoming_damage *= (100 - armor.getRating(damage_type)) * 0.01
+			incoming_damage = max(0, incoming_damage - hard_armor.getRating(damage_type))
+			incoming_damage *= (100 - soft_armor.getRating(damage_type)) * 0.01
 			return prob(50 - round(incoming_damage / 3))
 		if(COMBAT_MELEE_ATTACK, COMBAT_PROJ_ATTACK)
-			var/absorbing_damage = incoming_damage * cover.getRating(damage_type) * 0.01
+			var/absorbing_damage = max(0, incoming_damage - hard_armor.getRating(damage_type) * status_cover_modifier) //We apply hard armor *first* _not_ *after* soft armor
 			if(!absorbing_damage)
 				return incoming_damage //We are transparent to this kind of damage.
 			. = incoming_damage - absorbing_damage
-			absorbing_damage *= (100 - armor.getRating(damage_type)) * 0.01
+			absorbing_damage = incoming_damage * cover.getRating(damage_type) * 0.01 * status_cover_modifier  //Determine cover ratio
+			absorbing_damage *= (100 - soft_armor.getRating(damage_type)) * 0.01 //Now apply soft armor
 			if(absorbing_damage <= 0)
 				if(!silent)
 					to_chat(affected, "<span class='avoidharm'>\The [parent_item.name] [. ? "softens" : "soaks"] the damage!</span>")
@@ -178,7 +207,8 @@
 		if(COMBAT_TOUCH_ATTACK)
 			if(!prob(cover.getRating(damage_type)))
 				return FALSE //Bypassed the shield.
-			incoming_damage *= (100 - armor.getRating(damage_type)) * 0.01
+			incoming_damage = max(0, incoming_damage - hard_armor.getRating(damage_type))
+			incoming_damage *= (100 - soft_armor.getRating(damage_type)) * 0.01
 			return prob(50 - round(incoming_damage / 3))
 		if(COMBAT_MELEE_ATTACK, COMBAT_PROJ_ATTACK)
 			if(prob(cover.getRating(damage_type)))
@@ -211,7 +241,7 @@
 	var/next_recharge = 0 //world.time based
 	var/shield_overlay = "shield-blue"
 
-/datum/component/shield/overhealth/Initialize(shield_flags, shield_armor, shield_cover)
+/datum/component/shield/overhealth/Initialize(shield_flags, shield_soft_armor, shield_hard_armor, shield_cover)
 	if(!issuit(parent))
 		return COMPONENT_INCOMPATIBLE
 	return ..()
@@ -237,7 +267,8 @@
 			if(!absorbing_damage)
 				return incoming_damage //We are transparent to this kind of damage.
 			. = incoming_damage - absorbing_damage
-			absorbing_damage *= (100 - armor.getRating(damage_type)) * 0.01
+			absorbing_damage = max(0, absorbing_damage - hard_armor.getRating(damage_type))
+			absorbing_damage *= (100 - soft_armor.getRating(damage_type)) * 0.01
 			return wrap_up_attack(absorbing_damage, ., silent)
 
 

@@ -2,6 +2,9 @@
 	icon = 'icons/effects/warning_stripes.dmi'
 	layer = TURF_LAYER
 
+/obj/effect/decal/warning_stripes/nscenter
+	icon_state = "NS-center"
+
 /obj/effect/decal/warning_stripes/Initialize()
 	. = ..()
 

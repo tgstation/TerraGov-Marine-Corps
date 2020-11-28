@@ -20,20 +20,23 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	if(!check_rights(R_DEBUG))
 		return
 
+	/// Holds a reference to the client incase something happens to them
+	var/client/starting_client = usr.client
+
 	var/procname = input("Proc name, eg: attack_hand", "Proc:", null) as text|null
 	if(!procname)
 		return
 
 	if(!hascall(A, procname))
-		to_chat(usr, "<font color='red'>Error: callproc_datum(): type [A.type] has no proc named [procname].</font>")
+		to_chat(starting_client, "<font color='red'>Error: callproc_datum(): type [A.type] has no proc named [procname].</font>")
 		return
 
-	var/list/lst = usr.client.holder.get_callproc_args()
+	var/list/lst = starting_client.holder.get_callproc_args()
 	if(!lst)
 		return
 
 	if(!A || !IsValidSrc(A))
-		to_chat(usr, "<span class='warning'>Error: callproc_datum(): owner of proc no longer exists.</span>")
+		to_chat(starting_client, "<span class='warning'>Error: callproc_datum(): owner of proc no longer exists.</span>")
 		return
 
 	log_admin("[key_name(usr)] called [A]'s [procname]() with [length(lst) ? "the arguments [list2params(lst)]" : "no arguments"].")
@@ -41,7 +44,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	admin_ticket_log(A, "[key_name_admin(usr)] called [A]'s [procname]() with [length(lst) ? "the arguments [list2params(lst)]" : "no arguments"].")
 
 	var/returnval = WrapAdminProcCall(A, procname, lst) // Pass the lst as an argument list to the proc
-	. = usr.client.holder.get_callproc_returnval(returnval, procname)
+	. = starting_client.holder.get_callproc_returnval(returnval, procname)
 	if(.)
 		to_chat(usr, .)
 
@@ -298,41 +301,32 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 
 /datum/admins/proc/spawn_atom(object as text)
 	set category = "Debug"
+	set desc = "(atom path) Spawn an atom"
 	set name = "Spawn"
-	set desc = "Spawn an atom."
 
-	if(!check_rights(R_SPAWN))
+	if(!check_rights(R_SPAWN) || !object)
 		return
 
-	if(!object)
+	var/list/preparsed = splittext(object,":")
+	var/path = preparsed[1]
+	var/amount = 1
+	if(preparsed.len > 1)
+		amount = clamp(text2num(preparsed[2]),1,ADMIN_SPAWN_CAP)
+
+	var/chosen = pick_closest_path(path)
+	if(!chosen)
 		return
-
-	var/list/types = typesof(/atom)
-	var/list/matches = new()
-
-	for(var/path in types)
-		if(findtext("[path]", object))
-			matches += path
-
-	if(!length(matches))
-		return
-
-	var/chosen
-	if(length(matches) == 1)
-		chosen = matches[1]
-	else
-		chosen = input("Select an atom type", "Spawn Atom", matches[1]) as null|anything in matches
-		if(!chosen)
-			return
+	var/turf/T = get_turf(usr)
 
 	if(ispath(chosen, /turf))
-		var/turf/T = get_turf(usr.loc)
 		T.ChangeTurf(chosen)
 	else
-		new chosen(usr.loc)
+		for(var/i in 1 to amount)
+			var/atom/A = new chosen(T)
+			A.flags_atom |= ADMIN_SPAWNED
 
-	log_admin("[key_name(usr)] spawned [chosen] at [AREACOORD(usr.loc)].")
-	message_admins("[ADMIN_TPMONTY(usr)] spawned [chosen] at [ADMIN_VERBOSEJMP(usr.loc)].")
+	log_admin("[key_name(usr)] spawned [amount] x [chosen] at [AREACOORD(usr)]")
+	SSblackbox.record_feedback("tally", "admin_verb", 1, "Spawn Atom") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
 /datum/admins/proc/delete_atom(atom/A as obj|mob|turf in world)
@@ -473,3 +467,201 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 
 		log_admin("[key_name(H)] became a spatial agent.")
 		message_admins("[ADMIN_TPMONTY(H)] became a spatial agent.")
+
+
+/datum/admins/proc/check_bomb_impacts()
+	set name = "Check Bomb Impact"
+	set category = "Debug"
+
+	if(!check_rights(R_DEBUG))
+		return
+
+	var/devastation_range = 0
+	var/heavy_impact_range = 0
+	var/light_impact_range = 0
+	var/choice = input("Bomb Size?") in list("Small Bomb", "Medium Bomb", "Big Bomb", "Maxcap", "Custom Bomb", "Check Range")
+	switch(choice)
+		if("Small Bomb")
+			devastation_range = 1
+			heavy_impact_range = 2
+			light_impact_range = 3
+		if("Medium Bomb")
+			devastation_range = 2
+			heavy_impact_range = 3
+			light_impact_range = 4
+		if("Big Bomb")
+			devastation_range = 3
+			heavy_impact_range = 5
+			light_impact_range = 7
+		if("Maxcap")
+			devastation_range = GLOB.MAX_EX_DEVESTATION_RANGE
+			heavy_impact_range = GLOB.MAX_EX_HEAVY_RANGE
+			light_impact_range = GLOB.MAX_EX_LIGHT_RANGE
+		if("Custom Bomb")
+			devastation_range = input("Devastation range (Tiles):") as num
+			heavy_impact_range = input("Heavy impact range (Tiles):") as num
+			light_impact_range = input("Light impact range (Tiles):") as num
+		else
+			return
+
+	var/turf/epicenter = get_turf(usr)
+	if(!epicenter)
+		return
+
+	var/max_range = max(devastation_range, heavy_impact_range, light_impact_range)
+
+	var/list/turfs_in_range = block(
+		locate(
+			max(epicenter.x - max_range, 1),
+			max(epicenter.y - max_range, 1),
+			epicenter.z
+			),
+		locate(
+			min(epicenter.x + max_range, world.maxx),
+			min(epicenter.y + max_range, world.maxy),
+			epicenter.z
+			)
+		)
+
+	var/current_exp_block = epicenter.density ? epicenter.explosion_block : 0
+	for(var/obj/blocking_object in epicenter)
+		if(!blocking_object.density)
+			continue
+			current_exp_block += ( (blocking_object.explosion_block == EXPLOSION_BLOCK_PROC) ? blocking_object.GetExplosionBlock(0) : blocking_object.explosion_block ) //0 is the result of get_dir between two atoms on the same tile.
+
+	var/list/turfs_by_dist = list()
+	turfs_by_dist[epicenter] = current_exp_block
+	turfs_in_range[epicenter] = current_exp_block
+
+	if(devastation_range > 0)
+		epicenter.color = "blue"
+		epicenter.maptext = "D (E) ([current_exp_block])"
+	else if(heavy_impact_range > 0)
+		epicenter.color = "red"
+		epicenter.maptext = "H (E) ([current_exp_block])"
+	else if(light_impact_range > 0)
+		epicenter.color = "yellow"
+		epicenter.maptext = "L  (E) ([current_exp_block])"
+	else
+		return
+	var/list/wipe_colours = list(epicenter)
+
+	for(var/t in turfs_in_range)
+		if(!isnull(turfs_by_dist[t])) //Already processed.
+			continue
+
+		var/turf/affected_turf = t
+		var/dist = turfs_in_range[epicenter]
+		var/turf/expansion_wave_loc = epicenter
+
+		do
+			var/expansion_dir = get_dir(expansion_wave_loc, affected_turf)
+			if(ISDIAGONALDIR(expansion_dir)) //If diagonal we'll try to choose the easy path, even if it might be longer. Damn, we're lazy.
+				var/turf/step_NS = get_step(expansion_wave_loc, expansion_dir & (NORTH|SOUTH))
+				if(!turfs_in_range[step_NS])
+					current_exp_block = step_NS.density ? step_NS.explosion_block : 0
+					for(var/obj/blocking_object in step_NS)
+						if(!blocking_object.density)
+							continue
+						current_exp_block += ( (blocking_object.explosion_block == EXPLOSION_BLOCK_PROC) ? blocking_object.GetExplosionBlock(get_dir(epicenter, expansion_wave_loc)) : blocking_object.explosion_block )
+					turfs_in_range[step_NS] = current_exp_block
+
+				var/turf/step_EW = get_step(expansion_wave_loc, expansion_dir & (EAST|WEST))
+				if(!turfs_in_range[step_EW])
+					current_exp_block = step_EW.density ? step_EW.explosion_block : 0
+					for(var/obj/blocking_object in step_EW)
+						if(!blocking_object.density)
+							continue
+						current_exp_block += ( (blocking_object.explosion_block == EXPLOSION_BLOCK_PROC) ? blocking_object.GetExplosionBlock(get_dir(epicenter, expansion_wave_loc)) : blocking_object.explosion_block )
+					turfs_in_range[step_EW] = current_exp_block
+
+				if(turfs_in_range[step_NS] < turfs_in_range[step_EW])
+					expansion_wave_loc = step_NS
+				else if(turfs_in_range[step_NS] > turfs_in_range[step_EW])
+					expansion_wave_loc = step_EW
+				else if(abs(expansion_wave_loc.x - affected_turf.x) < abs(expansion_wave_loc.y - affected_turf.y)) //Both directions offer the same resistance. Lets check if the direction pends towards either cardinal.
+					expansion_wave_loc = step_NS
+				else //Either perfect diagonal, in which case it doesn't matter, or leaning towards the X axis.
+					expansion_wave_loc = step_EW
+			else
+				expansion_wave_loc = get_step(expansion_wave_loc, expansion_dir)
+
+			dist++
+
+			if(isnull(turfs_in_range[expansion_wave_loc]))
+				current_exp_block = expansion_wave_loc.density ? expansion_wave_loc.explosion_block : 0
+				for(var/obj/blocking_object in expansion_wave_loc)
+					if(!blocking_object.density)
+						continue
+					current_exp_block += ( (blocking_object.explosion_block == EXPLOSION_BLOCK_PROC) ? blocking_object.GetExplosionBlock(get_dir(epicenter, expansion_wave_loc)) : blocking_object.explosion_block )
+				turfs_in_range[expansion_wave_loc] = current_exp_block
+
+			if(isnull(turfs_by_dist[expansion_wave_loc]))
+				wipe_colours += expansion_wave_loc
+				turfs_by_dist[expansion_wave_loc] = dist
+				if(devastation_range > dist)
+					expansion_wave_loc.color = "blue"
+					expansion_wave_loc.maptext = "D ([dist])"
+				else if(heavy_impact_range > dist)
+					expansion_wave_loc.color = "red"
+					expansion_wave_loc.maptext = "H ([dist])"
+				else if(light_impact_range > dist)
+					expansion_wave_loc.color = "yellow"
+					expansion_wave_loc.maptext = "L ([dist])"
+				else
+					expansion_wave_loc.color = "green"
+					expansion_wave_loc.maptext = "N ([dist])"
+					break //Explosion ran out of gas, no use continuing.
+			else if(turfs_by_dist[expansion_wave_loc] > dist)
+				expansion_wave_loc.color = "purple"
+				expansion_wave_loc.maptext = "D (Diff: [dist] vs [turfs_by_dist[expansion_wave_loc]])"
+				turfs_by_dist[expansion_wave_loc] = dist
+
+			dist += turfs_in_range[expansion_wave_loc]
+
+			if(dist >= max_range)
+				break //Explosion ran out of gas, no use continuing.
+
+		while(expansion_wave_loc != affected_turf)
+
+		if(isnull(turfs_by_dist[affected_turf]))
+			wipe_colours += affected_turf
+			turfs_by_dist[affected_turf] = 9999
+			affected_turf.maptext = "N (null)"
+
+	addtimer(CALLBACK(GLOBAL_PROC, .proc/wipe_color_and_text, wipe_colours), 10 SECONDS)
+
+/datum/admins/proc/wipe_color_and_text(list/atom/wiping)
+	for(var/i in wiping)
+		var/atom/atom_to_clean = i
+		atom_to_clean.color = null
+		atom_to_clean.maptext = ""
+
+/client/proc/cmd_display_del_log()
+	set category = "Debug"
+	set name = "Display del() Log"
+	set desc = "Display del's log of everything that's passed through it."
+
+	var/list/dellog = list("<B>List of things that have gone through qdel this round</B><BR><BR><ol>")
+	sortTim(SSgarbage.items, cmp=/proc/cmp_qdel_item_time, associative = TRUE)
+	for(var/path in SSgarbage.items)
+		var/datum/qdel_item/I = SSgarbage.items[path]
+		dellog += "<li><u>[path]</u><ul>"
+		if (I.failures)
+			dellog += "<li>Failures: [I.failures]</li>"
+		dellog += "<li>qdel() Count: [I.qdels]</li>"
+		dellog += "<li>Destroy() Cost: [I.destroy_time]ms</li>"
+		if (I.hard_deletes)
+			dellog += "<li>Total Hard Deletes [I.hard_deletes]</li>"
+			dellog += "<li>Time Spent Hard Deleting: [I.hard_delete_time]ms</li>"
+		if (I.slept_destroy)
+			dellog += "<li>Sleeps: [I.slept_destroy]</li>"
+		if (I.no_respect_force)
+			dellog += "<li>Ignored force: [I.no_respect_force]</li>"
+		if (I.no_hint)
+			dellog += "<li>No hint: [I.no_hint]</li>"
+		dellog += "</ul></li>"
+
+	dellog += "</ol>"
+
+	usr << browse(dellog.Join(), "window=dellog")

@@ -22,16 +22,17 @@
 
 /obj/item/binoculars/tactical
 	name = "tactical binoculars"
-	desc = "A pair of binoculars, with a laser targeting function. Ctrl+Click to target something."
+	desc = "A pair of binoculars, with a laser targeting function. Alt+Click to toggle mode. Ctrl+Click when using to target something."
 	var/laser_cooldown = 0
 	var/cooldown_duration = 200 //20 seconds
 	var/obj/effect/overlay/temp/laser_target/laser
-	var/obj/effect/overlay/temp/laser_coordinate/coord
 	var/target_acquisition_delay = 100 //10 seconds
 	var/mode = 0 //Able to be switched between modes, 0 for cas laser, 1 for finding coordinates, 2 for directing railgun, 3 for orbital bombardment.
 	var/changable = TRUE //If set to FALSE, you can't toggle the mode between CAS and coordinate finding
 	var/ob_fired = FALSE // If the user has fired the OB
-	var/turf/current_turf // The target turf
+	var/turf/current_turf // The target turf, used for OBs
+	///Last stored turf targetted by rangefinders
+	var/turf/targetturf
 
 /obj/item/binoculars/tactical/Initialize()
 	. = ..()
@@ -48,18 +49,16 @@
 			to_chat(usr, "<span class='notice'>They are currently set to railgun targeting mode.</span>")
 		if(MODE_ORBITAL)
 			to_chat(usr, "<span class='notice'>They are currently set to orbital bombardment mode.</span>")
-	
+
 /obj/item/binoculars/tactical/Destroy()
 	if(laser)
 		QDEL_NULL(laser)
-	if(coord)
-		QDEL_NULL(coord)
 	. = ..()
 
 
 /obj/item/binoculars/tactical/InterceptClickOn(mob/user, params, atom/object)
 	var/list/pa = params2list(params)
-	if(pa.Find("ctrl") && !pa.Find("shift"))	
+	if(pa.Find("ctrl") && !pa.Find("shift"))
 		acquire_target(object, user)
 		return TRUE
 
@@ -104,8 +103,6 @@
 		return
 	if(laser)
 		QDEL_NULL(laser)
-	if(coord)
-		QDEL_NULL(coord)
 
 
 /obj/item/binoculars/tactical/update_icon()
@@ -115,45 +112,52 @@
 	else
 		overlays += "binoculars_laser"
 
-/obj/item/binoculars/tactical/verb/toggle_mode()
+/obj/item/binoculars/tactical/AltClick(mob/user)
+	. = ..()
+	toggle_mode(user)
+
+/obj/item/binoculars/tactical/verb/toggle_mode(mob/user)
 	set category = "Object"
 	set name = "Toggle Laser Mode"
-	var/mob/living/user
-	if(isliving(loc))
+	if(!user && isliving(loc))
 		user = loc
-	else
+	if(zoom)
 		return
-
 	if(!changable)
 		to_chat(user, "These binoculars only have one mode.")
 		return
-
-	if(!zoom)
-		mode += 1
-		if(mode > MODE_ORBITAL)
-			mode = MODE_CAS
-		switch(mode)
-			if(MODE_CAS)
-				to_chat(user, "<span class='notice'>You switch [src] to CAS marking mode.</span>")
-			if(MODE_RANGE_FINDER)
-				to_chat(user, "<span class='notice'>You switch [src] to range finder mode.</span>")
-			if(MODE_RAILGUN)
-				to_chat(user, "<span class='notice'>You switch [src] to railgun targeting mode.</span>")
-			if(MODE_ORBITAL)
-				to_chat(user, "<span class='notice'>You switch [src] to orbital bombardment targeting mode.</span>")
-		
-		update_icon()
-		playsound(user, 'sound/items/binoculars.ogg', 15, 1)
+	mode += 1
+	if(mode > MODE_ORBITAL)
+		mode = MODE_CAS
+	switch(mode)
+		if(MODE_CAS)
+			to_chat(user, "<span class='notice'>You switch [src] to CAS marking mode.</span>")
+		if(MODE_RANGE_FINDER)
+			to_chat(user, "<span class='notice'>You switch [src] to range finder mode.</span>")
+		if(MODE_RAILGUN)
+			to_chat(user, "<span class='notice'>You switch [src] to railgun targeting mode.</span>")
+		if(MODE_ORBITAL)
+			to_chat(user, "<span class='notice'>You switch [src] to orbital bombardment targeting mode.</span>")
+	update_icon()
+	playsound(user, 'sound/items/binoculars.ogg', 15, 1)
 
 /obj/item/binoculars/tactical/proc/acquire_target(atom/A, mob/living/carbon/human/user)
 	set waitfor = 0
 
-	if(laser || coord)
+	if(laser)
 		to_chat(user, "<span class='warning'>You're already targeting something.</span>")
 		return
 
 	if(world.time < laser_cooldown)
 		to_chat(user, "<span class='warning'>[src]'s laser battery is recharging.</span>")
+		return
+
+	if(user.client.eye != src)
+		to_chat(user, "<span class='warning'>You can't focus properly through \the [src] while looking through something else.</span>")
+		return
+
+	if(!can_see(user, A, 25))
+		to_chat(user, "<span class='warning'>You can't see anything there.</span>")
 		return
 
 	if(!user.mind)
@@ -178,15 +182,18 @@
 				is_outside = TRUE
 			if(CEILING_GLASS)
 				is_outside = TRUE
+			if(CEILING_METAL)
+				is_outside = TRUE
 	if(!is_outside)
-		to_chat(user, "<span class='warning'>INVALID TARGET: target must be visible from high altitude.</span>")
+		to_chat(user, "<span class='warning'>DEPTH WARNING: Target too deep for ordnance.</span>")
 		return
 	if(user.action_busy)
 		return
 	playsound(src, 'sound/effects/nightvision.ogg', 35)
-	to_chat(user, "<span class='notice'>INITIATING LASER TARGETING. Stand still.</span>")
-	if(!do_after(user, max(1.5 SECONDS, target_acquisition_delay - (2.5 SECONDS * user.skills.getRating("leadership"))), TRUE, TU, BUSY_ICON_GENERIC) || world.time < laser_cooldown || laser)
-		return
+	if(mode != MODE_RANGE_FINDER)
+		to_chat(user, "<span class='notice'>INITIATING LASER TARGETING. Stand still.</span>")
+		if(!do_after(user, max(1.5 SECONDS, target_acquisition_delay - (2.5 SECONDS * user.skills.getRating("leadership"))), TRUE, TU, BUSY_ICON_GENERIC) || world.time < laser_cooldown || laser)
+			return
 	switch(mode)
 		if(MODE_CAS)
 			to_chat(user, "<span class='notice'>TARGET ACQUIRED. LASER TARGETING IS ONLINE. DON'T MOVE.</span>")
@@ -198,14 +205,9 @@
 					QDEL_NULL(laser)
 					break
 		if(MODE_RANGE_FINDER)
-			var/obj/effect/overlay/temp/laser_coordinate/LT = new (TU, laz_name, S)
-			coord = LT
-			to_chat(user, "<span class='notice'>SIMPLIFIED COORDINATES OF TARGET. LONGITUDE [coord.x]. LATITUDE [coord.y].</span>")
+			targetturf = TU
+			to_chat(user, "<span class='notice'>COORDINATES: LONGITUDE [targetturf.x]. LATITUDE [targetturf.y].</span>")
 			playsound(src, 'sound/effects/binoctarget.ogg', 35)
-			while(coord)
-				if(!do_after(user, 5 SECONDS, TRUE, coord, BUSY_ICON_GENERIC))
-					QDEL_NULL(coord)
-					break
 		if(MODE_RAILGUN)
 			to_chat(user, "<span class='notice'>ACQUIRING TARGET. RAILGUN TRIANGULATING. DON'T MOVE.</span>")
 			if((GLOB.marine_main_ship?.rail_gun?.last_firing + 120 SECONDS) > world.time)
@@ -224,9 +226,7 @@
 						break
 		if(MODE_ORBITAL)
 			to_chat(user, "<span class='notice'>ACQUIRING TARGET. ORBITAL CANNON TRIANGULATING. DON'T MOVE.</span>")
-			if((GLOB.marine_main_ship?.orbital_cannon?.last_orbital_firing + 500 SECONDS) > world.time)
-				to_chat(user, "[icon2html(src, user)] <span class='warning'>Orbital bombardment not yet available!</span>")
-			else if(!targ_area)
+			if(!targ_area)
 				to_chat(user, "[icon2html(src, user)] <span class='warning'>No target detected!</span>")
 			else
 				var/obj/effect/overlay/temp/laser_target/OB = new (TU, laz_name, S)

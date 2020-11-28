@@ -22,7 +22,7 @@
 /obj/machinery/conveyor/centcom_auto
 	id = "round_end_belt"
 
-	// create a conveyor
+
 /obj/machinery/conveyor/Initialize(mapload, newdir, on)
 	. = ..()
 	if(newdir)
@@ -61,9 +61,10 @@
 		movedir = forwards
 	else
 		movedir = backwards
-	update()
+	update_icon()
 
-/obj/machinery/conveyor/proc/update()
+/obj/machinery/conveyor/update_icon()
+	. = ..()
 	if(machine_stat & BROKEN)
 		icon_state = "conveyor-broken"
 		operating = 0
@@ -143,7 +144,7 @@
 // also propagate inoperability to any connected conveyor with the same ID
 /obj/machinery/conveyor/proc/broken()
 	machine_stat |= BROKEN
-	update()
+	update_icon()
 
 	var/obj/machinery/conveyor/C = locate() in get_step(src, dir)
 	if(C)
@@ -163,7 +164,7 @@
 	operable = op
 	if(operable) start_processing()
 
-	update()
+	update_icon()
 	var/obj/machinery/conveyor/C = locate() in get_step(src, stepdir)
 	if(C)
 		C.set_operable(stepdir, id, op)
@@ -176,11 +177,9 @@
 
 /obj/machinery/conveyor/power_change()
 	..()
-	update()
+	update_icon()
 
-// the conveyor control switch
-//
-//
+///////// the conveyor control switch
 
 /obj/machinery/conveyor_switch
 
@@ -202,7 +201,7 @@
 /obj/machinery/conveyor_switch/Initialize()
 	. = ..()
 
-	update()
+	update_icon()
 	start_processing()
 
 	return INITIALIZE_HINT_LATELOAD
@@ -216,7 +215,7 @@
 
 // update the icon depending on the position
 
-/obj/machinery/conveyor_switch/proc/update()
+/obj/machinery/conveyor_switch/update_icon()
 	if(position<0)
 		icon_state = "switch-rev"
 	else if(position>0)
@@ -242,6 +241,8 @@
 	. = ..()
 	if(.)
 		return
+	if(!ishuman(user))//Ghost switches are bad mkay
+		return
 	if(!allowed(user))
 		to_chat(user, "<span class='warning'>Access denied.</span>")
 		return
@@ -258,13 +259,13 @@
 		position = 0
 
 	operated = 1
-	update()
+	update_icon()
 
 	// find any switches with same id as this one, and set their positions to match us
 	for(var/obj/machinery/conveyor_switch/S in GLOB.machines)
 		if(S.id == src.id)
 			S.position = position
-			S.update()
+			S.update_icon()
 
 /obj/machinery/conveyor_switch/oneway
 	var/convdir = 1 //Set to 1 or -1 depending on which way you want the convayor to go. (In other words keep at 1 and set the proper dir on the belts.)
@@ -281,10 +282,10 @@
 		position = 0
 
 	operated = TRUE
-	update()
+	update_icon()
 
 	// find any switches with same id as this one, and set their positions to match us
 	for(var/obj/machinery/conveyor_switch/S in GLOB.machines)
 		if(S.id == src.id)
 			S.position = position
-			S.update()
+			S.update_icon()

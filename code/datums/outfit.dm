@@ -179,3 +179,33 @@
 			implants += imptype
 	accessory = text2path(outfit_data["accessory"])
 	return TRUE
+
+/datum/outfit/proc/from_mob(mob/living/base)
+	. = TRUE
+	if(!isliving(base))
+		return FALSE
+
+	name = "Outfit: [base]"
+	r_hand = base.r_hand
+	l_hand = base.l_hand
+
+	if(!iscarbon(base))
+		return
+	var/mob/living/carbon/carbon_mob = base
+	back = carbon_mob.back?.type
+	mask = carbon_mob.s_active?.type
+
+	if(!ishuman(base))
+		return
+	var/mob/living/carbon/human/human_mob = base
+	w_uniform = human_mob.w_uniform?.type
+	wear_suit = human_mob.wear_suit?.type
+	belt = human_mob.belt?.type
+	gloves = human_mob.gloves?.type
+	shoes = human_mob.shoes?.type
+	head = human_mob.head?.type
+	ears = human_mob.wear_ear?.type
+	glasses = human_mob.glasses?.type
+	id = human_mob.wear_id?.type
+	l_store = human_mob.l_store?.type
+	r_store = human_mob.r_store?.type

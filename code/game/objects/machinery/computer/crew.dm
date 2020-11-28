@@ -9,8 +9,8 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 250
 	active_power_usage = 500
-//	circuit = "/obj/item/circuitboard/computer/crew"
-	interaction_flags = INTERACT_MACHINE_NANO
+//	circuit = /obj/item/circuitboard/computer/crew
+	interaction_flags = INTERACT_MACHINE_TGUI
 	var/list/tracked = list()
 	var/list/crewmembers_planetside = list()
 	var/list/crewmembers_on_ship = list()
@@ -37,7 +37,7 @@
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 
 	if(!ui)
-		ui = new(user, src, ui_key, "crew", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, ui_key, "Crew", name, ui_x, ui_y, master_ui, state)
 		ui.open()
 
 /obj/machinery/computer/crew/ui_data(mob/user)
@@ -100,6 +100,8 @@
 		if(DISPLAY_IN_TRANSIT)
 			data["zlevel"] = 2
 			data["crewmembers"] = sortListUsingKey(crewmembers_in_transit, cmp_proc, sortkey)
+
+	data["zlevel"] = displayed_z_level
 
 	return data
 

@@ -6,7 +6,6 @@
 	icon_state = "coin"
 	flags_atom = CONDUCT
 	force = 0.0
-	throwforce = 0.0
 	w_class = WEIGHT_CLASS_TINY
 	var/string_attached
 	var/sides = 2
@@ -74,7 +73,7 @@
 
 		var/obj/item/stack/cable_coil/CC = new(user.loc)
 		CC.amount = 1
-		CC.updateicon()
+		CC.update_icon()
 		overlays = list()
 		string_attached = FALSE
 		to_chat(user, "<span class='notice'>You detach the string from the coin.</span>")

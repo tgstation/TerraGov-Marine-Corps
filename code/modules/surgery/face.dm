@@ -20,9 +20,9 @@
 
 /datum/surgery_step/face/cut_face
 	allowed_tools = list(
-	/obj/item/tool/surgery/scalpel = 100,		\
-	/obj/item/tool/kitchen/knife = 75,	\
-	/obj/item/shard = 50, 		\
+		/obj/item/tool/surgery/scalpel = 100,
+		/obj/item/tool/kitchen/knife = 75,
+		/obj/item/shard = 50,
 	)
 
 	min_duration = FACIAL_CUT_MIN_DURATION
@@ -50,9 +50,9 @@
 
 /datum/surgery_step/face/mend_vocal
 	allowed_tools = list(
-	/obj/item/tool/surgery/hemostat = 100,         \
-	/obj/item/stack/cable_coil = 75,         \
-	/obj/item/assembly/mousetrap = 10 //I don't know. Don't ask me. But I'm leaving it because hilarity.
+		/obj/item/tool/surgery/hemostat = 100,
+		/obj/item/stack/cable_coil = 75,
+		/obj/item/assembly/mousetrap = 10,
 	)
 
 	min_duration = FACIAL_MEND_MIN_DURATION
@@ -78,9 +78,9 @@
 
 /datum/surgery_step/face/fix_face
 	allowed_tools = list(
-	/obj/item/tool/surgery/retractor = 100,          \
-	/obj/item/tool/crowbar = 55,             \
-	/obj/item/tool/kitchen/utensil/fork = 75
+		/obj/item/tool/surgery/retractor = 100,
+		/obj/item/tool/crowbar = 55,
+		/obj/item/tool/kitchen/utensil/fork = 75,
 	)
 
 	min_duration = FACIAL_FIX_MIN_DURATION
@@ -105,10 +105,10 @@
 
 /datum/surgery_step/face/cauterize
 	allowed_tools = list(
-	/obj/item/tool/surgery/cautery = 100,			\
-	/obj/item/clothing/mask/cigarette = 75,	\
-	/obj/item/tool/lighter = 50,    \
-	/obj/item/tool/weldingtool = 25
+		/obj/item/tool/surgery/cautery = 100,
+		/obj/item/clothing/mask/cigarette = 75,
+		/obj/item/tool/lighter = 50,
+		/obj/item/tool/weldingtool = 25,
 	)
 
 	min_duration = FACIAL_CAUTERISE_MIN_DURATION
@@ -124,7 +124,7 @@
 /datum/surgery_step/face/cauterize/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/head/affected)
 	user.visible_message("<span class='notice'>[user] cauterizes the incision on [target]'s face and neck with \the [tool].</span>", \
 	"<span class='notice'>You cauterize the incision on [target]'s face and neck with \the [tool].</span>")
-	affected.limb_status &= ~LIMB_BLEEDING
+	affected.remove_limb_flags(LIMB_BLEEDING)
 	affected.disfigured = 0
 	affected.owner.name = affected.owner.get_visible_name()
 	affected.face_surgery_stage = 0

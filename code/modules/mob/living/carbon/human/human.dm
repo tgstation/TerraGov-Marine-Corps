@@ -14,6 +14,8 @@
 
 	GLOB.human_mob_list += src
 	GLOB.alive_human_list += src
+	LAZYADD(GLOB.humans_by_zlevel["[z]"], src)
+	RegisterSignal(src, COMSIG_MOVABLE_Z_CHANGED, .proc/human_z_changed)
 	GLOB.round_statistics.total_humans_created++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_humans_created")
 
@@ -35,8 +37,13 @@
 	RegisterSignal(src, list(COMSIG_KB_QUICKEQUIP, COMSIG_CLICK_QUICKEQUIP), .proc/do_quick_equip)
 	RegisterSignal(src, COMSIG_KB_HOLSTER, .proc/do_holster)
 	RegisterSignal(src, COMSIG_KB_UNIQUEACTION, .proc/do_unique_action)
+	RegisterSignal(src, COMSIG_GRAB_SELF_ATTACK, .proc/fireman_carry_grabbed) // Fireman carry
 	AddComponent(/datum/component/footstep, FOOTSTEP_MOB_HUMAN)
 
+/mob/living/carbon/human/proc/human_z_changed(datum/source, old_z, new_z)
+	SIGNAL_HANDLER
+	LAZYREMOVE(GLOB.humans_by_zlevel["[old_z]"], src)
+	LAZYADD(GLOB.humans_by_zlevel["[new_z]"], src)
 
 /mob/living/carbon/human/vv_get_dropdown()
 	. = ..()
@@ -66,6 +73,7 @@
 	remove_from_all_mob_huds()
 	GLOB.human_mob_list -= src
 	GLOB.alive_human_list -= src
+	LAZYREMOVE(GLOB.humans_by_zlevel["[z]"], src)
 	GLOB.dead_human_list -= src
 	return ..()
 
@@ -96,87 +104,50 @@
 			stat(null, "You are affected by a FOCUS order.")
 
 /mob/living/carbon/human/ex_act(severity)
-	flash_eyes()
+	if(status_flags & GODMODE)
+		return
 
-	var/b_loss = null
-	var/f_loss = null
-	var/armor = max(0, 1 - (getarmor(null, "bomb") * 0.01))
+	var/b_loss = 0
+	var/f_loss = 0
+	var/armor = getarmor(null, "bomb") * 0.01
+
 	switch(severity)
-		if(1)
-			b_loss += rand(160, 200) * armor	//Probably instant death
-			f_loss += rand(160, 200) * armor	//Probably instant death
-
-			var/atom/target = get_edge_target_turf(src, get_dir(src, get_step_away(src, src)))
-			throw_at(target, 200, 4)
+		if(EXPLODE_DEVASTATE)
+			b_loss += rand(160, 200)
+			f_loss += rand(160, 200)
 
 			if(!istype(wear_ear, /obj/item/clothing/ears/earmuffs))
-				adjust_ear_damage(60 * armor, 240 * armor)
+				adjust_ear_damage(60 - (60 * armor), 240 - (240 * armor))
 
-			adjust_stagger(12 * armor)
-			add_slowdown(round(12 * armor,0.1))
-			Unconscious(160 * armor) //This should kill you outright, so if you're somehow alive I don't feel too bad if you get KOed
+			adjust_stagger(12 - (12 * armor))
+			add_slowdown((120 - round(120 * armor, 1)) * 0.01)
 
-		if(2)
-			b_loss += (rand(80, 100) * armor)	//Ouchie time. Armor makes it survivable
-			f_loss += (rand(80, 100) * armor)	//Ouchie time. Armor makes it survivable
-
-			if(!istype(wear_ear, /obj/item/clothing/ears/earmuffs))
-				adjust_ear_damage(30 * armor, 120 * armor)
-
-			adjust_stagger(6 * armor)
-			add_slowdown(round(6 * armor,0.1))
-			Paralyze(80 * armor)
-
-		if(3)
-			b_loss += (rand(40, 50) * armor)
-			f_loss += (rand(40, 50) * armor)
+		if(EXPLODE_HEAVY)
+			b_loss += rand(80, 100)
+			f_loss += rand(80, 100)
 
 			if(!istype(wear_ear, /obj/item/clothing/ears/earmuffs))
-				adjust_ear_damage(10 * armor, 30 * armor)
+				adjust_ear_damage(30 - (30 * armor), 120 - (120 * armor))
 
-			adjust_stagger(3 * armor)
-			add_slowdown(round(3 * armor,0.1))
-			Paralyze(40 * armor)
+			adjust_stagger(6 - (6 * armor))
+			add_slowdown((60 - round(60 * armor, 1)) * 0.1)
 
-	var/update = 0
+		if(EXPLODE_LIGHT)
+			b_loss += rand(40, 50)
+			f_loss += rand(40, 50)
+
+			if(!istype(wear_ear, /obj/item/clothing/ears/earmuffs))
+				adjust_ear_damage(10 - (10 * armor), 30 - (30 * armor))
+
+			adjust_stagger(3 - (3 * armor))
+			add_slowdown((30 - round(30 * armor, 1)) * 0.1)
+
 	#ifdef DEBUG_HUMAN_ARMOR
-	to_chat(src, "DEBUG EX_ACT: armor: [armor], b_loss: [b_loss], f_loss: [f_loss]")
+	to_chat(world, "DEBUG EX_ACT: armor: [armor * 100], b_loss: [b_loss], f_loss: [f_loss]")
 	#endif
-	//Focus half the blast on one organ
-	var/datum/limb/take_blast = pick(limbs)
-	update |= take_blast.take_damage_limb(b_loss * 0.5, f_loss * 0.5)
 
-	//Distribute the remaining half all limbs equally
-	b_loss *= 0.5
-	f_loss *= 0.5
-
-	for(var/datum/limb/temp in limbs)
-		switch(temp.name)
-			if("head")
-				update |= temp.take_damage_limb(b_loss * 0.2, f_loss * 0.2)
-			if("chest")
-				update |= temp.take_damage_limb(b_loss * 0.4, f_loss * 0.4)
-			if("l_arm")
-				update |= temp.take_damage_limb(b_loss * 0.05, f_loss * 0.05)
-			if("r_arm")
-				update |= temp.take_damage_limb(b_loss * 0.05, f_loss * 0.05)
-			if("l_leg")
-				update |= temp.take_damage_limb(b_loss * 0.05, f_loss * 0.05)
-			if("r_leg")
-				update |= temp.take_damage_limb(b_loss * 0.05, f_loss * 0.05)
-			if("r_foot")
-				update |= temp.take_damage_limb(b_loss * 0.05, f_loss * 0.05)
-			if("l_foot")
-				update |= temp.take_damage_limb(b_loss * 0.05, f_loss * 0.05)
-			if("r_arm")
-				update |= temp.take_damage_limb(b_loss * 0.05, f_loss * 0.05)
-			if("l_arm")
-				update |= temp.take_damage_limb(b_loss * 0.05, f_loss * 0.05)
-	if(update)
-		UpdateDamageIcon()
-		UPDATEHEALTH(src)
-	return TRUE
-
+	take_overall_damage(b_loss, f_loss, armor * 100)
+	UPDATEHEALTH(src)
 
 /mob/living/carbon/human/attack_animal(mob/living/M as mob)
 	if(M.melee_damage == 0)
@@ -217,7 +188,6 @@
 	<BR><B>Suit Storage:</B> <A href='?src=[REF(src)];item=[SLOT_S_STORE]'>[(s_store ? s_store : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(s_store, /obj/item/tank) && !internal) ? " <A href='?src=[REF(src)];internal=1'>Set Internal</A>" : "")]
 	<BR>
 	[handcuffed ? "<BR><A href='?src=[REF(src)];item=[SLOT_HANDCUFFED]'>Handcuffed</A>" : ""]
-	[legcuffed ? "<BR><A href='?src=[REF(src)];item=[SLOT_LEGCUFFED]'>Legcuffed</A>" : ""]
 	[suit?.hastie ? "<BR><A href='?src=[REF(src)];tie=1'>Remove Accessory</A>" : ""]
 	[internal ? "<BR><A href='?src=[REF(src)];internal=1'>Remove Internal</A>" : ""]
 	<BR><A href='?src=[REF(src)];splints=1'>Remove Splints</A>
@@ -233,6 +203,7 @@
 // called when something steps onto a human
 // this handles mulebots and vehicles
 /mob/living/carbon/human/Crossed(atom/movable/AM)
+	. = ..()
 	if(istype(AM, /obj/machinery/bot/mulebot))
 		var/obj/machinery/bot/mulebot/MB = AM
 		MB.RunOver(src)
@@ -467,7 +438,7 @@
 					for(var/organ in list("l_leg","r_leg","l_arm","r_arm","r_hand","l_hand","r_foot","l_foot","chest","head","groin"))
 						var/datum/limb/o = get_limb(organ)
 						if (o && o.limb_status & LIMB_SPLINTED)
-							o.limb_status &= ~LIMB_SPLINTED
+							o.remove_limb_flags(LIMB_SPLINTED)
 							limbcount++
 					if(limbcount)
 						new /obj/item/stack/medical/splint(loc, limbcount)
@@ -788,15 +759,16 @@
 	return ..()
 
 
-/mob/living/carbon/human/mouse_buckle_handling(atom/movable/dropping, mob/living/user)
-	. = ..()
-	if(!isliving(.))
-		return
-	if(pulling == . && grab_state >= GRAB_AGGRESSIVE && stat == CONSCIOUS && user != . && can_be_firemanned(.))
+/mob/living/carbon/human/proc/fireman_carry_grabbed()
+	SIGNAL_HANDLER_DOES_SLEEP
+	var/mob/living/grabbed = pulling
+	if(!istype(grabbed))
+		return NONE
+	if(/*grab_state >= GRAB_AGGRESSIVE &&*/ stat == CONSCIOUS && can_be_firemanned(grabbed))
 		//If you dragged them to you and you're aggressively grabbing try to fireman carry them
-		fireman_carry(.)
-		return TRUE
-	return FALSE
+		fireman_carry(grabbed)
+		return COMSIG_GRAB_SUCCESSFUL_SELF_ATTACK
+	return NONE
 
 //src is the user that will be carrying, target is the mob to be carried
 /mob/living/carbon/human/proc/can_be_firemanned(mob/living/carbon/target)
@@ -808,7 +780,8 @@
 		return
 	visible_message("<span class='notice'>[src] starts lifting [target] onto [p_their()] back...</span>",
 	"<span class='notice'>You start to lift [target] onto your back...</span>")
-	if(!do_mob(src, target, 5 SECONDS, target_display = BUSY_ICON_HOSTILE))
+	var/delay = 1 SECONDS + LERP(0 SECONDS, 4 SECONDS, skills.getPercent("medical", SKILL_MEDICAL_MASTER))
+	if(!do_mob(src, target, delay, target_display = BUSY_ICON_HOSTILE))
 		visible_message("<span class='warning'>[src] fails to fireman carry [target]!</span>")
 		return
 	//Second check to make sure they're still valid to be carried
@@ -934,9 +907,10 @@
 /mob/living/carbon/human/species
 	var/race = null
 
-/mob/living/carbon/human/species/Initialize()
-	. = ..()
-	set_species(race)
+/mob/living/carbon/human/species/set_species(new_species, default_colour)
+	if(!new_species)
+		new_species = race
+	return ..()
 
 /mob/living/carbon/human/proc/set_species(new_species, default_colour)
 
@@ -1020,8 +994,8 @@
 	var/light_off = 0
 	var/goes_out = 0
 	if(armor)
-		if(istype(wear_suit, /obj/item/clothing/suit/storage))
-			var/obj/item/clothing/suit/storage/S = wear_suit
+		if(istype(wear_suit, /obj/item/clothing/suit))
+			var/obj/item/clothing/suit/S = wear_suit
 			S.turn_off_light(src)
 			light_off++
 	if(guns)
@@ -1033,7 +1007,7 @@
 			light_off++
 	if(flares)
 		for(var/obj/item/flashlight/flare/F in contents)
-			if(F.on)
+			if(F.light_on)
 				goes_out++
 			F.turn_off(src)
 		for(var/obj/item/explosive/grenade/flare/FL in contents)
@@ -1080,67 +1054,68 @@
 
 /mob/living/carbon/human/proc/randomize_appearance()
 	gender = pick(MALE, FEMALE)
-	name = GLOB.namepool[/datum/namepool].get_random_name(gender)
+	name = species.random_name(gender)
 	real_name = name
 
-	switch(pick(15;"black", 15;"grey", 15;"brown", 15;"lightbrown", 10;"white", 15;"blonde", 15;"red"))
-		if("black")
-			r_hair = 10
-			g_hair = 10
-			b_hair = 10
-			r_facial = 10
-			g_facial = 10
-			b_facial = 10
-		if("grey")
-			r_hair = 50
-			g_hair = 50
-			b_hair = 50
-			r_facial = 50
-			g_facial = 50
-			b_facial = 50
-		if("brown")
-			r_hair = 70
-			g_hair = 35
-			b_hair = 0
-			r_facial = 70
-			g_facial = 35
-			b_facial = 0
-		if("lightbrown")
-			r_hair = 100
-			g_hair = 50
-			b_hair = 0
-			r_facial = 100
-			g_facial = 50
-			b_facial = 0
-		if("white")
-			r_hair = 235
-			g_hair = 235
-			b_hair = 235
-			r_facial = 235
-			g_facial = 235
-			b_facial = 235
-		if("blonde")
-			r_hair = 240
-			g_hair = 240
-			b_hair = 0
-			r_facial = 240
-			g_facial = 240
-			b_facial = 0
-		if("red")
-			r_hair = 128
-			g_hair = 0
-			b_hair = 0
-			r_facial = 128
-			g_facial = 0
-			b_facial = 0
+	if(!(species.species_flags & HAS_NO_HAIR))
+		switch(pick(15;"black", 15;"grey", 15;"brown", 15;"lightbrown", 10;"white", 15;"blonde", 15;"red"))
+			if("black")
+				r_hair = 10
+				g_hair = 10
+				b_hair = 10
+				r_facial = 10
+				g_facial = 10
+				b_facial = 10
+			if("grey")
+				r_hair = 50
+				g_hair = 50
+				b_hair = 50
+				r_facial = 50
+				g_facial = 50
+				b_facial = 50
+			if("brown")
+				r_hair = 70
+				g_hair = 35
+				b_hair = 0
+				r_facial = 70
+				g_facial = 35
+				b_facial = 0
+			if("lightbrown")
+				r_hair = 100
+				g_hair = 50
+				b_hair = 0
+				r_facial = 100
+				g_facial = 50
+				b_facial = 0
+			if("white")
+				r_hair = 235
+				g_hair = 235
+				b_hair = 235
+				r_facial = 235
+				g_facial = 235
+				b_facial = 235
+			if("blonde")
+				r_hair = 240
+				g_hair = 240
+				b_hair = 0
+				r_facial = 240
+				g_facial = 240
+				b_facial = 0
+			if("red")
+				r_hair = 128
+				g_hair = 0
+				b_hair = 0
+				r_facial = 128
+				g_facial = 0
+				b_facial = 0
 
-	h_style = random_hair_style(gender)
+		h_style = random_hair_style(gender)
 
-	switch(pick("none", "some"))
-		if("none")
-			f_style = "Shaved"
-		if("some")
-			f_style = random_facial_hair_style(gender)
+		switch(pick("none", "some"))
+			if("none")
+				f_style = "Shaved"
+			if("some")
+				f_style = random_facial_hair_style(gender)
 
 	switch(pick(15;"black", 15;"green", 15;"brown", 15;"blue", 15;"lightblue", 5;"red"))
 		if("black")

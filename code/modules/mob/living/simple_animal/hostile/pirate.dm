@@ -20,7 +20,7 @@
 	a_intent = INTENT_HARM
 	speak_emote = list("yarrs")
 	del_on_death = TRUE
-	faction = "Pirate"
+	faction = FACTION_PIRATE
 
 
 /mob/living/simple_animal/hostile/pirate/melee

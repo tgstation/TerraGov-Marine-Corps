@@ -36,7 +36,7 @@
 
 		E.process()
 
-		if(!lying && world.time - last_move_time < 15 && m_intent != MOVE_INTENT_WALK || pulledby)
+		if(!lying_angle && world.time - last_move_time < 15 && m_intent != MOVE_INTENT_WALK || pulledby)
 			if(E.is_broken() && E.internal_organs && prob(15))
 				var/datum/internal_organ/I = pick(E.internal_organs)
 				custom_pain("You feel broken bones moving in your [E.display_name]!", 1)
@@ -49,12 +49,12 @@
 					continue
 				W.germ_level += 1
 
-		if(E.name in list("l_leg", "l_foot", "r_leg", "r_foot") && !lying)
+		if(E.name in list("l_leg", "l_foot", "r_leg", "r_foot") && !lying_angle)
 			if(!E.is_usable() || E.is_malfunctioning() || ( E.is_broken() && !(E.limb_status & LIMB_SPLINTED) && !(E.limb_status & LIMB_STABILIZED) ) )
 				leg_tally--			//let it fail even if just foot&leg
 
 	//standing is poor
-	if(leg_tally <= 0 && !IsUnconscious() && !lying && prob(5))
+	if(leg_tally <= 0 && !IsUnconscious() && !lying_angle && prob(5))
 		if(!(species.species_flags & NO_PAIN))
 			emote("pain")
 		emote("collapse")

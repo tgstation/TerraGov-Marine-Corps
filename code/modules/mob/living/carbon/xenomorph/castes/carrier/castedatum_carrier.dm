@@ -11,10 +11,10 @@
 	wound_type = "carrier" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 23
+	melee_damage = 17
 
 	// *** Tackle *** //
-	tackle_damage = 30
+	tackle_damage = 21
 
 	// *** Speed *** //
 	speed = 0
@@ -24,11 +24,11 @@
 	plasma_gain = 20
 
 	// *** Health *** //
-	max_health = 200
+	max_health = 250
 
 	// *** Evolution *** //
 	evolution_threshold = 180
-	upgrade_threshold = 100
+	upgrade_threshold = 120
 
 	deevolves_to = /mob/living/carbon/xenomorph/drone
 
@@ -39,27 +39,28 @@
 	can_hold_eggs = CAN_HOLD_ONE_HAND
 
 	// *** Defense *** //
-	armor = list("melee" = 5, "bullet" = 0, "laser" = 0, "energy" = 5, "bomb" = XENO_BOMB_RESIST_0, "bio" = 5, "rad" = 5, "fire" = 0, "acid" = 5)
+	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = XENO_BOMB_RESIST_0, "bio" = 5, "rad" = 5, "fire" = 15, "acid" = 5)
 
 	// *** Pheromones *** //
 	aura_strength = 1.5
 	aura_allowed = list("frenzy", "warding", "recovery")
 
 	// *** Carrier Abilities *** //
-	huggers_max = 8
+	huggers_max = 4
 	hugger_delay = 2.5 SECONDS
 	eggs_max = 3
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
+		/datum/action/xeno_action/activable/headbite,
 		/datum/action/xeno_action/plant_weeds,
 		/datum/action/xeno_action/activable/throw_hugger,
 		/datum/action/xeno_action/activable/retrieve_egg,
 		/datum/action/xeno_action/place_trap,
 		/datum/action/xeno_action/spawn_hugger,
-		/datum/action/xeno_action/toggle_pheromones
-		)
+		/datum/action/xeno_action/toggle_pheromones,
+	)
 
 /datum/xeno_caste/carrier/young
 	upgrade_name = "Young"
@@ -72,11 +73,8 @@
 
 	upgrade = XENO_UPGRADE_ONE
 
-	// *** Melee Attacks *** //
-	melee_damage = 27
-
 	// *** Tackle *** //
-	tackle_damage = 35
+	tackle_damage = 21
 
 	// *** Speed *** //
 	speed = -0.1
@@ -86,20 +84,20 @@
 	plasma_gain = 25
 
 	// *** Health *** //
-	max_health = 220
+	max_health = 275
 
 	// *** Evolution *** //
-	upgrade_threshold = 200
+	upgrade_threshold = 240
 
 	// *** Defense *** //
-	armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = XENO_BOMB_RESIST_0, "bio" = 5, "rad" = 5, "fire" = 0, "acid" = 5)
+	soft_armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = XENO_BOMB_RESIST_0, "bio" = 5, "rad" = 5, "fire" = 20, "acid" = 5)
 
 	// *** Pheromones *** //
 	aura_strength = 2
 
 	// *** Carrier Abilities *** //
-	huggers_max = 9
-	hugger_delay = 2.0 SECONDS
+	huggers_max = 5
+	hugger_delay = 2.5 SECONDS
 	eggs_max = 4
 
 /datum/xeno_caste/carrier/elder
@@ -109,10 +107,10 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 30
+	melee_damage = 20
 
 	// *** Tackle *** //
-	tackle_damage = 40
+	tackle_damage = 25
 
 	// *** Speed *** //
 	speed = -0.2
@@ -122,20 +120,20 @@
 	plasma_gain = 30
 
 	// *** Health *** //
-	max_health = 230
+	max_health = 300
 
 	// *** Evolution *** //
-	upgrade_threshold = 400
+	upgrade_threshold = 480
 
 	// *** Defense *** //
-	armor = list("melee" = 7, "bullet" = 7, "laser" = 7, "energy" = 7, "bomb" = XENO_BOMB_RESIST_0, "bio" = 7, "rad" = 7, "fire" = 0, "acid" = 7)
+	soft_armor = list("melee" = 25, "bullet" = 25, "laser" = 25, "energy" = 25, "bomb" = XENO_BOMB_RESIST_0, "bio" = 7, "rad" = 7, "fire" = 25, "acid" = 7)
 
 	// *** Pheromones *** //
 	aura_strength = 2.3
 
 	// *** Carrier Abilities *** //
-	huggers_max = 10
-	hugger_delay = 1.5 SECONDS
+	huggers_max = 6
+	hugger_delay = 2 SECONDS
 	eggs_max = 5
 
 /datum/xeno_caste/carrier/ancient
@@ -145,10 +143,10 @@
 	ancient_message = "We are the master of huggers. We shall throw them like baseballs at the marines!"
 
 	// *** Melee Attacks *** //
-	melee_damage = 35
+	melee_damage = 20
 
 	// *** Tackle *** //
-	tackle_damage = 45
+	tackle_damage = 25
 
 	// *** Speed *** //
 	speed = -0.3
@@ -158,19 +156,19 @@
 	plasma_gain = 38
 
 	// *** Health *** //
-	max_health = 240
+	max_health = 325
 
 	// *** Evolution *** //
-	upgrade_threshold = 400
+	upgrade_threshold = 480
 
 	// *** Defense *** //
-	armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = XENO_BOMB_RESIST_0, "bio" = 10, "rad" = 10, "fire" = 0, "acid" = 10)
+	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = XENO_BOMB_RESIST_0, "bio" = 10, "rad" = 10, "fire" = 30, "acid" = 10)
 
 	// *** Pheromones *** //
 	aura_strength = 2.5
 
 	// *** Carrier Abilities *** //
-	huggers_max = 11
-	hugger_delay = 1.0 SECONDS
+	huggers_max = 7
+	hugger_delay = 1.5 SECONDS
 	eggs_max = 6
 

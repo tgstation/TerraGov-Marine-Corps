@@ -47,7 +47,7 @@
 	var/turf/current_tu = get_turf(parent)
 	if(!current_tu)
 		return
-	var/turf/lowleft_tu = locate(CLAMP(current_tu.x + x_offset, 0, world.maxx), CLAMP(current_tu.y + y_offset, 0, world.maxy), current_tu.z)
+	var/turf/lowleft_tu = locate(clamp(current_tu.x + x_offset, 0, world.maxx), clamp(current_tu.y + y_offset, 0, world.maxy), current_tu.z)
 	var/turf/upright_tu = locate(min(lowleft_tu.x + x_size, world.maxx), min(lowleft_tu.y + y_size, world.maxy), current_tu.z)
 	registered_turfs = block(lowleft_tu, upright_tu) //small problems with z level edges but nothing gamebreaking.
 	//register the signals
@@ -72,15 +72,18 @@
 	registered_turfs.Cut()
 
 /datum/component/largetransparency/proc/OnMove()
+	SIGNAL_HANDLER
 	amounthidden = 0
 	restoreAlpha()
 	UnregisterFromTurfs()
 	RegisterWithTurfs()
 
 /datum/component/largetransparency/proc/OnTurfChange()
-	addtimer(CALLBACK(src, .proc/OnMove), 0, TIMER_UNIQUE|TIMER_OVERRIDE) //*pain
+	SIGNAL_HANDLER
+	addtimer(CALLBACK(src, .proc/OnMove), 1, TIMER_UNIQUE|TIMER_OVERRIDE) //*pain
 
 /datum/component/largetransparency/proc/objectEnter(datum/source, atom/enterer)
+	SIGNAL_HANDLER
 	if(!(enterer.flags_atom & CRITICAL_ATOM))
 		return
 	if(!amounthidden)
@@ -88,6 +91,7 @@
 	amounthidden++
 
 /datum/component/largetransparency/proc/objectLeave(datum/source, atom/leaver)
+	SIGNAL_HANDLER
 	if(!(leaver.flags_atom & CRITICAL_ATOM))
 		return
 	amounthidden = max(0, amounthidden - 1)

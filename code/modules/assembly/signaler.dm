@@ -88,7 +88,7 @@ Code:
 			if(!can_interact(usr))
 				return
 			new_code = round(new_code)
-			new_code = CLAMP(new_code, 1, 100)
+			new_code = clamp(new_code, 1, 100)
 			code = new_code
 
 	if(href_list["send"])

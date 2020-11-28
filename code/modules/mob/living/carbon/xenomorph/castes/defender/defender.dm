@@ -26,12 +26,12 @@
 		return TRUE
 	return FALSE
 
-/mob/living/carbon/xenomorph/defender/handle_special_wound_states()
+/mob/living/carbon/xenomorph/defender/handle_special_wound_states(severity)
 	. = ..()
 	if(fortify)
-		return image("icon"='icons/Xeno/wound_overlays.dmi', "icon_state"="defender_wounded_fortify", "layer"=-X_WOUND_LAYER)
+		return "defender_wounded_fortify"
 	if(crest_defense)
-		return image("icon"='icons/Xeno/wound_overlays.dmi', "icon_state"="defender_wounded_crest", "layer"=-X_WOUND_LAYER)
+		return "defender_wounded_crest_[severity]"
 
 // ***************************************
 // *********** Life overrides
@@ -41,7 +41,8 @@
 	if(isnull(.))
 		return
 	if(. == CONSCIOUS && fortify) //No longer conscious.
-		set_fortify(FALSE) //Fortify prevents dragging due to the anchor component.
+		var/datum/action/xeno_action/fortify/FT = actions_by_path[/datum/action/xeno_action/fortify]
+		FT.set_fortify(FALSE) //Fortify prevents dragging due to the anchor component.
 
 
 // ***************************************

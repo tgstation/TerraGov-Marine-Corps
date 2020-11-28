@@ -1,10 +1,10 @@
- /**
+/**
   * tgui states
   *
   * Base state and helpers for states. Just does some sanity checks, implement a state for in-depth checks.
- **/
+  */
 
- /**
+/**
   * public
   *
   * Checks the UI state for a mob.
@@ -13,7 +13,7 @@
   * required state datum/ui_state The state to check.
   *
   * return UI_state The state of the UI.
- **/
+  */
 /datum/proc/ui_status(mob/user, datum/ui_state/state)
 	var/src_object = ui_host(user)
 	. = UI_CLOSE
@@ -34,7 +34,7 @@
 	var/result = state.can_use_topic(src_object, user)
 	. = max(., result)
 
- /**
+/**
   * private
   *
   * Checks if a user can use src_object's UI, and returns the state.
@@ -44,17 +44,17 @@
   * required user mob The mob who opened/is using the UI.
   *
   * return UI_state The state of the UI.
- **/
+  */
 /datum/ui_state/proc/can_use_topic(src_object, mob/user)
 	return UI_CLOSE // Don't allow interaction by default.
 
- /**
+/**
   * public
   *
   * Standard interaction/sanity checks. Different mob types may have overrides.
   *
   * return UI_state The state of the UI.
- **/
+  */
 /mob/proc/shared_ui_interaction(src_object)
 	if(!client) // Close UIs if mindless.
 		return UI_CLOSE
@@ -75,11 +75,11 @@
   * required user mob The mob who opened/is using the UI.
   *
   * return UI_state The state of the UI.
- **/
+  */
 /atom/proc/contents_ui_distance(src_object, mob/living/user)
 	return user.shared_living_ui_distance(src_object) // Just call this mob's check.
 
- /**
+/**
   * public
   *
   * Distance versus interaction check.
@@ -87,9 +87,9 @@
   * required src_object atom/movable The object which owns the UI.
   *
   * return UI_state The state of the UI.
- **/
-/mob/living/proc/shared_living_ui_distance(atom/movable/src_object)
-	if(!(src_object in view(src))) // If the object is obscured, close it.
+  */
+/mob/living/proc/shared_living_ui_distance(atom/movable/src_object, viewcheck = TRUE)
+	if(viewcheck && !(src_object in view(src))) // If the object is obscured, close it.
 		return UI_CLOSE
 
 	var/dist = get_dist(src_object, src)

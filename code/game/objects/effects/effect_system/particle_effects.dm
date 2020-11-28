@@ -40,7 +40,7 @@
 		S.fire_act()
 
 /obj/effect/particle_effect/fire/Crossed(mob/living/L)
-	..()
+	. = ..()
 	if(isliving(L))
 		L.fire_act()
 

@@ -1,8 +1,12 @@
 /atom/movable
 	layer = OBJ_LAYER
+	glide_size = 8
+	appearance_flags = TILE_BOUND|PIXEL_SCALE
 	var/last_move = null
 	var/last_move_time = 0
 	var/anchored = FALSE
+	///How much the atom resists being thrown or moved.
+	var/move_resist = MOVE_RESIST_DEFAULT
 	var/drag_delay = 3 //delay (in deciseconds) added to mob's move_delay when pulling it.
 	var/throwing = FALSE
 	var/thrower = null
@@ -13,9 +17,7 @@
 	var/atom/movable/pulling
 	var/moving_diagonally = 0 //to know whether we're in the middle of a diagonal move,
 	var/atom/movable/moving_from_pull		//attempt to resume grab after moving instead of before.
-	glide_size = 8
 	var/glide_modifier_flags = NONE
-	appearance_flags = TILE_BOUND|PIXEL_SCALE
 
 	var/initial_language_holder = /datum/language_holder
 	var/datum/language_holder/language_holder
@@ -32,11 +34,24 @@
 	var/list/mob/living/buckled_mobs // mobs buckled to this mob
 	var/buckle_flags = NONE
 	var/max_buckled_mobs = 1
-	var/buckle_lying = -1 //bed-like behaviour, forces mob.lying = buckle_lying if != -1
+	var/buckle_lying = -1 //bed-like behaviour, forces mob.lying_angle = buckle_lying if != -1
 
 	var/datum/component/orbiter/orbiting
 
+	///Lazylist to keep track on the sources of illumination.
+	var/list/affected_dynamic_lights
+	///Highest-intensity light affecting us, which determines our visibility.
+	var/affecting_dynamic_lumi = 0
+
 //===========================================================================
+/atom/movable/Initialize(mapload, ...)
+	. = ..()
+	if(opacity)
+		AddElement(/datum/element/light_blocking)
+	if(light_system == MOVABLE_LIGHT)
+		AddComponent(/datum/component/overlay_lighting)
+
+
 /atom/movable/Destroy()
 	QDEL_NULL(proximity_monitor)
 	QDEL_NULL(language_holder)
@@ -46,6 +61,9 @@
 
 	if(throw_source)
 		throw_source = null
+
+	if(thrower)
+		thrower = null
 
 	. = ..()
 
@@ -77,7 +95,8 @@
 
 	if(!direct)
 		direct = get_dir(src, newloc)
-	setDir(direct)
+	if(!(flags_atom & DIRLOCK))
+		setDir(direct)
 
 	if(!loc.Exit(src, newloc))
 		return
@@ -178,7 +197,7 @@
 						moving_diagonally = SECOND_DIAG_STEP
 						. = step(src, SOUTH)
 			if(moving_diagonally == SECOND_DIAG_STEP)
-				if(!.)
+				if(!. && !(flags_atom & DIRLOCK))
 					setDir(first_step_dir)
 			moving_diagonally = 0
 			return
@@ -207,7 +226,8 @@
 
 	last_move = direct
 	last_move_time = world.time
-	setDir(direct)
+	if(!(flags_atom & DIRLOCK))
+		setDir(direct)
 	if(. && LAZYLEN(buckled_mobs) && !handle_buckled_mob_movement(loc, direct)) //movement failed due to buckled mob(s)
 		return FALSE
 
@@ -235,8 +255,11 @@
 
 
 //oldloc = old location on atom, inserted when forceMove is called and ONLY when forceMove is called!
-/atom/movable/Crossed(atom/movable/AM, oldloc)
-	SEND_SIGNAL(src, COMSIG_MOVABLE_CROSSED, AM)
+/atom/movable/Crossed(atom/movable/mover, oldloc)
+	SHOULD_CALL_PARENT(TRUE)
+	. = ..()
+	SEND_SIGNAL(src, COMSIG_MOVABLE_CROSSED_BY, mover, oldloc)
+	SEND_SIGNAL(mover, COMSIG_MOVABLE_CROSSED, src, oldloc)
 
 
 /atom/movable/Uncross(atom/movable/AM, atom/newloc)
@@ -253,6 +276,8 @@
 
 /atom/movable/proc/Moved(atom/oldloc, direction, Forced = FALSE)
 	SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, oldloc, direction, Forced)
+	if(pulledby)
+		SEND_SIGNAL(src, COMSIG_MOVABLE_PULL_MOVED, oldloc, direction, Forced)
 	for(var/thing in light_sources) // Cycle through the light sources on this atom and tell them to update.
 		var/datum/light_source/L = thing
 		L.source_atom.update_light()
@@ -333,7 +358,7 @@
 		O.hitby(src, speed)
 
 	else if(isturf(hit_atom))
-		throwing = FALSE
+		set_throwing(FALSE)
 		var/turf/T = hit_atom
 		if(T.density)
 			spawn(2)
@@ -355,7 +380,7 @@
 			continue
 		if(isliving(A))
 			var/mob/living/L = A
-			if(L.lying)
+			if(!L.density || L.throwpass)
 				continue
 			throw_impact(A, speed)
 		if(isobj(A) && A.density && !(A.flags_atom & ON_BORDER) && (!A.throwpass || iscarbon(src)))
@@ -373,7 +398,7 @@
 	if(spin)
 		animation_spin(5, 1)
 
-	throwing = TRUE
+	set_throwing(TRUE)
 	src.thrower = thrower
 	throw_source = get_turf(src)	//store the origin turf
 
@@ -393,10 +418,9 @@
 		dy = SOUTH
 	var/dist_travelled = 0
 	var/dist_since_sleep = 0
-	var/area/a = get_area(loc)
 	if(dist_x > dist_y)
 		var/error = dist_x/2 - dist_y
-		while(!gc_destroyed && target &&((((x < target.x && dx == EAST) || (x > target.x && dx == WEST)) && dist_travelled < range) || (a && a.has_gravity == 0)  || isspaceturf(loc)) && throwing && istype(loc, /turf))
+		while(!gc_destroyed && target &&((((x < target.x && dx == EAST) || (x > target.x && dx == WEST)) && dist_travelled < range) || isspaceturf(loc)) && throwing && istype(loc, /turf))
 			// only stop when we've gone the whole distance (or max throw range) and are on a non-space tile, or hit something, or hit the end of the map, or someone picks it up
 			if(error < 0)
 				var/atom/step = get_step(src, dy)
@@ -422,10 +446,9 @@
 				if(dist_since_sleep >= speed)
 					dist_since_sleep = 0
 					sleep(1)
-			a = get_area(loc)
 	else
 		var/error = dist_y/2 - dist_x
-		while(!gc_destroyed && target &&((((y < target.y && dy == NORTH) || (y > target.y && dy == SOUTH)) && dist_travelled < range) || a && a.has_gravity == 0 || isspaceturf(loc)) && throwing && istype(loc, /turf))
+		while(!gc_destroyed && target &&((((y < target.y && dy == NORTH) || (y > target.y && dy == SOUTH)) && dist_travelled < range) || isspaceturf(loc)) && throwing && istype(loc, /turf))
 			// only stop when we've gone the whole distance (or max throw range) and are on a non-space tile, or hit something, or hit the end of the map, or someone picks it up
 			if(error < 0)
 				var/atom/step = get_step(src, dx)
@@ -452,13 +475,11 @@
 					dist_since_sleep = 0
 					sleep(1)
 
-			a = get_area(loc)
-
 	//done throwing, either because it hit something or it finished moving
 	if(isobj(src) && throwing)
 		throw_impact(get_turf(src), speed)
 	if(loc)
-		throwing = FALSE
+		set_throwing(FALSE)
 		thrower = null
 		throw_source = null
 
@@ -718,7 +739,7 @@
 			M.set_glide_size(glide_size)
 		log_combat(src, M, "grabbed", addition = "passive grab")
 		if(!suppress_message)
-			visible_message("<span class='warning'>[src] has grabbed [M] passively!</span>")		
+			visible_message("<span class='warning'>[src] has grabbed [M] passively!</span>")
 	else
 		pulling.set_glide_size(glide_size)
 	return TRUE
@@ -734,7 +755,6 @@
 	pulling.glide_modifier_flags &= ~GLIDE_MOD_PULLED
 	if(ismob(pulling))
 		var/mob/pulled_mob = pulling
-		pulled_mob.update_canmove() //Mob gets up if it was lyng down in a chokehold.
 		if(pulled_mob.buckled)
 			pulled_mob.buckled.reset_glide_size()
 		else
@@ -869,6 +889,8 @@
 
 
 /atom/movable/proc/resisted_against(datum/source) //COMSIG_LIVING_DO_RESIST
+	SIGNAL_HANDLER_DOES_SLEEP
+
 	var/mob/resisting_mob = source
 	if(resisting_mob.restrained(RESTRAINED_XENO_NEST))
 		return FALSE
@@ -876,4 +898,14 @@
 
 
 /atom/movable/proc/setGrabState(newstate)
+	if(newstate == grab_state)
+		return
+	. = grab_state
 	grab_state = newstate
+
+
+/atom/movable/proc/set_throwing(new_throwing)
+	if(new_throwing == throwing)
+		return
+	. = throwing
+	throwing = new_throwing

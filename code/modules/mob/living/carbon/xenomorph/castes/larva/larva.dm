@@ -2,7 +2,7 @@
 	caste_base_type = /mob/living/carbon/xenomorph/larva
 	speak_emote = list("hisses")
 	icon_state = "Bloody Larva"
-	
+
 	a_intent = INTENT_HELP //Forces help intent for all interactions.
 
 	amount_grown = 0
@@ -16,8 +16,8 @@
 	gib_chance = 25
 	hud_type = /datum/hud/larva
 	inherent_verbs = list(
-		/mob/living/carbon/xenomorph/proc/vent_crawl
-		)
+		/mob/living/carbon/xenomorph/proc/vent_crawl,
+	)
 
 	var/base_icon_state = "Larva"
 
@@ -28,7 +28,7 @@
 	return
 
 /mob/living/carbon/xenomorph/larva/start_pulling(atom/movable/AM, suppress_message = FALSE)
-	return
+	return FALSE
 
 /mob/living/carbon/xenomorph/larva/pull_response(mob/puller)
 	return TRUE
@@ -86,10 +86,10 @@
 
 	if(stat == DEAD)
 		icon_state = "[bloody][base_icon_state] Dead"
-	else if(handcuffed || legcuffed)
+	else if(handcuffed)
 		icon_state = "[bloody][base_icon_state] Cuff"
 
-	else if(lying)
+	else if(lying_angle)
 		if((resting || IsSleeping()) && (!IsParalyzed() && !IsUnconscious() && health > 0))
 			icon_state = "[bloody][base_icon_state] Sleeping"
 		else
@@ -100,7 +100,7 @@
 // ***************************************
 // *********** Death
 // ***************************************
-/mob/living/carbon/xenomorph/larva/death(gibbed, deathmessage)
-	log_game("[key_name(src)] died as a Larva at [AREACOORD(src.loc)].")
+/mob/living/carbon/xenomorph/larva/on_death()
+	log_game("[key_name(src)] died as a Larva at [AREACOORD(src)].")
 	message_admins("[ADMIN_TPMONTY(src)] died as a Larva.")
 	return ..()

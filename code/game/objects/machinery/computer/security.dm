@@ -3,7 +3,7 @@
 	desc = "Used to view and edit personnel's security records"
 	icon_state = "security"
 	req_one_access = list(ACCESS_MARINE_BRIG, ACCESS_NT_CORPORATE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_LOGISTICS)
-	circuit = "/obj/item/circuitboard/computer/secure_data"
+	circuit = /obj/item/circuitboard/computer/secure_data
 	var/obj/item/card/id/scan = null
 	var/authenticated = null
 	var/rank = null
@@ -25,7 +25,8 @@
 	set name = "Eject ID Card"
 	set src in oview(1)
 
-	if(!usr || usr.stat || usr.lying)	return
+	if(!usr || usr.stat || usr.lying_angle)
+		return
 
 	if(scan)
 		to_chat(usr, "You remove \the [scan] from \the [src].")

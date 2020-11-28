@@ -77,9 +77,6 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 	armorsl.color = color
 	GLOB.armormarkings[type] = armor
 	GLOB.armormarkings_sl[type] = armorsl
-	var/image/gloves = image('icons/mob/hands.dmi',icon_state = "std-gloves")
-	gloves.color = color
-	GLOB.glovemarkings[type] = gloves
 	var/image/helmet = image('icons/mob/head_1.dmi',icon_state = "std-helmet")
 	var/image/helmetsl = image('icons/mob/head_1.dmi',icon_state = "sql-helmet")
 	helmet.color = color
@@ -210,7 +207,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 
 	//Handle aSL skill level and radio
 	if(!ismarineleaderjob(squad_leader.job))
-		squad_leader.skills.setRating(leadership = SKILL_LEAD_NOVICE)
+		squad_leader.skills = squad_leader.skills.setRating(leadership = SKILL_LEAD_NOVICE)
 		if(squad_leader.mind)
 			var/datum/job/J = squad_leader.job
 			squad_leader.comm_title = J.comm_title
@@ -241,7 +238,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 
 	//Handle aSL skill level and radio
 	if(!ismarineleaderjob(squad_leader.job))
-		squad_leader.skills.setRating(leadership = SKILL_LEAD_TRAINED)
+		squad_leader.skills = squad_leader.skills.setRating(leadership = SKILL_LEAD_TRAINED)
 		squad_leader.comm_title = "aSL"
 		var/obj/item/card/id/ID = squad_leader.get_idcard()
 		if(istype(ID))

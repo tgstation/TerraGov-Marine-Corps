@@ -16,7 +16,7 @@
 		forceMove(get_turf(A))
 
 
-/mob/dead/observer/ClickOn(atom/A, params)
+/mob/dead/observer/ClickOn(atom/A, location, params)
 	if(check_click_intercept(params, A))
 		return
 

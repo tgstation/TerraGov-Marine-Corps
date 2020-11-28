@@ -132,7 +132,9 @@
 
 /datum/keybinding/mob/say
 	name = "say"
-	full_name = "Say (Other than S)"
+	full_name = "Say"
+	hotkey_keys = list("T")
+	classic_keys = list("T")
 	description = ""
 	keybind_signal = COMSIG_KB_MOB_SAY_DOWN
 
@@ -146,7 +148,9 @@
 
 /datum/keybinding/mob/me
 	name = "me"
-	full_name = "Me (Other than M)"
+	full_name = "Me"
+	hotkey_keys = list("M")
+	classic_keys = list("M")
 	description = ""
 	keybind_signal = COMSIG_KB_MOB_ME_DOWN
 
@@ -217,6 +221,7 @@
 
 
 /datum/keybinding/mob/examine/proc/examinate(datum/source, atom/A, params)
+	SIGNAL_HANDLER
 	var/mob/user = source
 	if(!user.client || !(user.client.eye == user || user.client.eye == user.loc))
 		UnregisterSignal(user, list(COMSIG_MOB_CLICKON, COMSIG_OBSERVER_CLICKON))

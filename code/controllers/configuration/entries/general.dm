@@ -29,17 +29,12 @@ Basics, the most important.
 
 /datum/config_entry/string/dburl
 
-/datum/config_entry/string/shipurl
+/// URL for the CentCom Galactic Ban DB API
+/datum/config_entry/string/centcom_ban_db
 
-/datum/config_entry/string/lv624url
-
-/datum/config_entry/string/icecolonyurl
-
-/datum/config_entry/string/bigredurl
-
-/datum/config_entry/string/prisonstationurl
-
-/datum/config_entry/string/whiskeyoutposturl
+/// Host of the webmap
+/datum/config_entry/string/webmap_host
+	config_entry_value = "https://affectedarc07.co.uk/tgmc.php?m="
 
 /datum/config_entry/string/python_path
 
@@ -187,7 +182,7 @@ Administrative related.
 	min_val = 0
 
 /datum/config_entry/number/glide_size_mod
-	config_entry_value = 0
+	config_entry_value = 80
 /*
 Voting
 */
@@ -198,6 +193,9 @@ Voting
 /datum/config_entry/flag/default_no_vote
 
 /datum/config_entry/flag/no_dead_vote
+
+/datum/config_entry/number/rounds_until_hard_restart
+	config_entry_value = -1 // -1 is disabled by default, 0 is every round, x is after so many rounds
 
 /datum/config_entry/number/vote_delay	// Minimum time between voting sessions. (deciseconds, 10 minute default)
 	config_entry_value = 6000
@@ -347,6 +345,8 @@ The default value assumes youtube-dl is in your system PATH
 
 /datum/config_entry/string/panic_server_name
 
+///living time in minutes that a player needs to pass the panic bunker
+/datum/config_entry/number/panic_bunker_living
 
 /datum/config_entry/string/panic_server_name/ValidateAndSet(str_val)
 	return str_val != "\[Put the name here\]" && ..()
@@ -362,6 +362,7 @@ The default value assumes youtube-dl is in your system PATH
 /datum/config_entry/string/panic_bunker_message
 	config_entry_value = "Sorry but the server is currently not accepting connections from never before seen players."
 
+/datum/config_entry/flag/check_randomizer
 
 /datum/config_entry/string/default_view
 	config_entry_value = "15x15"
@@ -376,3 +377,11 @@ This maintains a list of ip addresses that are able to bypass topic filtering.
 	key_mode = KEY_MODE_TEXT
 	value_mode = VALUE_MODE_FLAG
 	protection = CONFIG_ENTRY_LOCKED
+
+/datum/config_entry/number/ff_damage_threshold
+	min_val = 0
+	config_entry_value = 250
+
+/datum/config_entry/number/ff_damage_reset
+	min_val = 0
+	config_entry_value = 30 SECONDS

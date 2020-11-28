@@ -8,48 +8,55 @@
 	upgrade = XENO_UPGRADE_BASETYPE
 
 	// *** Melee Attacks *** //
-	melee_damage = 23
+	melee_damage = 17
 
 	// *** Tackle *** //
-	tackle_damage = 30
+	tackle_damage = 21
 
 	// *** Speed *** //
-	speed = -0.5
+	speed = -0.3
 
 	// *** Plasma *** //
 	plasma_max = 650
 	plasma_gain = 21
 
 	// *** Health *** //
-	max_health = 180
+	max_health = 250
 
 	// *** Evolution *** //
 	evolution_threshold = 180
-	upgrade_threshold = 100
+	upgrade_threshold = 120
 
-	evolves_to = list(/mob/living/carbon/xenomorph/boiler, /mob/living/carbon/xenomorph/praetorian)
+	evolves_to = list(
+		/mob/living/carbon/xenomorph/boiler,
+		/mob/living/carbon/xenomorph/praetorian,
+	)
 	deevolves_to = /mob/living/carbon/xenomorph/sentinel
 
 	// *** Flags *** //
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 
 	// *** Defense *** //
-	armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = XENO_BOMB_RESIST_0, "bio" = 10, "rad" = 10, "fire" = 5, "acid" = 10)
+	soft_armor = list("melee" = 10, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = XENO_BOMB_RESIST_0, "bio" = 10, "rad" = 10, "fire" = 20, "acid" = 10)
 
 	// *** Ranged Attack *** //
-	spit_delay = 1.5 SECONDS
+	spit_delay = 1.3 SECONDS
 	spit_types = list(/datum/ammo/xeno/acid/medium) //Gotta give them their own version of heavy acid; kludgy but necessary as 100 plasma is way too costly.
 
-	acid_delay = 30 SECONDS //30 second delay on acid spray.
+	acid_spray_damage_on_hit = 35
+	acid_spray_damage = 16
+	acid_spray_structure_damage = 45
+
 
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
+		/datum/action/xeno_action/activable/headbite,
 		/datum/action/xeno_action/activable/corrosive_acid,
 		/datum/action/xeno_action/activable/xeno_spit,
 		/datum/action/xeno_action/activable/spray_acid/line,
-		)
+	)
 
 /datum/xeno_caste/spitter/young
 	upgrade_name = "Young"
@@ -62,32 +69,29 @@
 
 	upgrade = XENO_UPGRADE_ONE
 
-	// *** Melee Attacks *** //
-	melee_damage = 27
-
 	// *** Tackle *** //
-	tackle_damage = 35
+	tackle_damage = 21
 
 	// *** Speed *** //
-	speed = -0.6
+	speed = -0.4
 
 	// *** Plasma *** //
 	plasma_max = 800
 	plasma_gain = 25
 
 	// *** Health *** //
-	max_health = 200
+	max_health = 270
 
 	// *** Evolution *** //
-	upgrade_threshold = 200
+	upgrade_threshold = 240
 
 	// *** Defense *** //
-	armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = XENO_BOMB_RESIST_0, "bio" = 15, "rad" = 15, "fire" = 7, "acid" = 15)
+	soft_armor = list("melee" = 15, "bullet" = 25, "laser" = 25, "energy" = 25, "bomb" = XENO_BOMB_RESIST_0, "bio" = 15, "rad" = 15, "fire" = 25, "acid" = 15)
 
 	// *** Ranged Attack *** //
-	spit_delay = 1.5 SECONDS
+	spit_delay = 1.2 SECONDS
 
-	acid_delay = 30 SECONDS //30 second delay on acid spray.
+
 
 /datum/xeno_caste/spitter/elder
 	upgrade_name = "Elder"
@@ -96,62 +100,61 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 30
+	melee_damage = 20
 
 	// *** Tackle *** //
-	tackle_damage = 40
+	tackle_damage = 25
 
 	// *** Speed *** //
-	speed = -0.7
+	speed = -0.5
 
 	// *** Plasma *** //
 	plasma_max = 875
 	plasma_gain = 28
 
 	// *** Health *** //
-	max_health = 240
+	max_health = 290
 
 	// *** Evolution *** //
-	upgrade_threshold = 400
+	upgrade_threshold = 480
 
 	// *** Defense *** //
-	armor = list("melee" = 18, "bullet" = 18, "laser" = 18, "energy" = 18, "bomb" = XENO_BOMB_RESIST_0, "bio" = 18, "rad" = 18, "fire" = 10, "acid" = 18)
+	soft_armor = list("melee" = 20, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = XENO_BOMB_RESIST_0, "bio" = 18, "rad" = 18, "fire" = 30, "acid" = 18)
 
 	// *** Ranged Attack *** //
-	spit_delay = 1.5 SECONDS
+	spit_delay = 1.1 SECONDS
 
-	acid_delay = 30 SECONDS //30 second delay on acid spray.
+
 
 /datum/xeno_caste/spitter/ancient
 	upgrade_name = "Ancient"
 	caste_desc = "A ranged destruction machine."
-	ancient_message = "We are a master of ranged stuns and damage. Let's go fourth and generate salt."
+	ancient_message = "We are a master of ranged stuns and damage. Go forth and conquer."
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
-	melee_damage = 32
+	melee_damage = 20
 
 	// *** Tackle *** //
-	tackle_damage = 40
+	tackle_damage = 25
 
 	// *** Speed *** //
-	speed = -0.8
+	speed = -0.6
 
 	// *** Plasma *** //
 	plasma_max = 925
 	plasma_gain = 30
 
 	// *** Health *** //
-	max_health = 250
+	max_health = 310
 
 	// *** Evolution *** //
-	upgrade_threshold = 400
+	upgrade_threshold = 480
 
 	// *** Defense *** //
-	armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = XENO_BOMB_RESIST_0, "bio" = 20, "rad" = 20, "fire" = 15, "acid" = 20)
+	soft_armor = list("melee" = 25, "bullet" = 35, "laser" = 35, "energy" = 35, "bomb" = XENO_BOMB_RESIST_0, "bio" = 20, "rad" = 20, "fire" = 35, "acid" = 20)
 
 	// *** Ranged Attack *** //
-	spit_delay = 1.5 SECONDS
+	spit_delay = 1 SECONDS
 
-	acid_delay = 30 SECONDS //30 second delay on acid spray.
 

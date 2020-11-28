@@ -4,7 +4,7 @@
 //Just about ALL the procs are tied to the parent, not to the children
 //This is so they can be easily transferred between them without copypasta
 
-/mob/living/carbon/xenomorph/Initialize(mapload, can_spawn_in_centcomm)
+/mob/living/carbon/xenomorph/Initialize(mapload)
 	setup_verbs()
 	. = ..()
 
@@ -30,8 +30,11 @@
 	GLOB.round_statistics.total_xenos_created++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_xenos_created")
 
-	if(!can_spawn_in_centcomm && is_centcom_level(z) && hivenumber == XENO_HIVE_NORMAL)
+	if(is_centcom_level(z) && hivenumber == XENO_HIVE_NORMAL)
 		hivenumber = XENO_HIVE_ADMEME //so admins can safely spawn xenos in Thunderdome for tests.
+
+	wound_overlay = new(null, src)
+	vis_contents += wound_overlay
 
 	set_initial_hivenumber()
 
@@ -77,12 +80,17 @@
 	maxHealth = xeno_caste.max_health
 	health = maxHealth
 	setXenoCasteSpeed(xeno_caste.speed)
-	armor = getArmor(arglist(xeno_caste.armor))
+	soft_armor = getArmor(arglist(xeno_caste.soft_armor))
+	hard_armor = getArmor(arglist(xeno_caste.hard_armor))
+	warding_aura = 0 //Resets aura for reapplying armor
+
+/mob/living/carbon/xenomorph/set_armor_datum()
+	return //Handled in set_datum()
 
 
 /mob/living/carbon/xenomorph/proc/generate_nicknumber()
 	//We don't have a nicknumber yet, assign one to stick with us
-	if(!nicknumber)
+	if(!nicknumber || nicknumber == "Undefined")
 		var/tempnumber = rand(1, 999)
 		var/list/xenolist = hive.get_all_xenos(FALSE)
 		while(tempnumber in xenolist)
@@ -196,8 +204,9 @@
 
 	remove_from_hive()
 
-	. = ..()
-
+	vis_contents -= wound_overlay
+	QDEL_NULL(wound_overlay)
+	return ..()
 
 
 /mob/living/carbon/xenomorph/slip(slip_source_name, stun_level, weaken_level, run_only, override_noslip, slide_steps)
@@ -210,12 +219,16 @@
 	if(L.buckled)
 		return FALSE //to stop xeno from pulling marines on roller beds.
 	if(ishuman(L))
+		if(!chestburst)
+			do_attack_animation(L, ATTACK_EFFECT_GRAB)
+			if(!do_mob(src, L , XENO_PULL_CHARGE_TIME, BUSY_ICON_HOSTILE))
+				return FALSE
 		pull_speed += XENO_DEADHUMAN_DRAG_SLOWDOWN
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_GRAB)
 	return ..()
 
 /mob/living/carbon/xenomorph/stop_pulling()
-	if(pulling && ishuman(pulling))
+	if(ishuman(pulling))
 		pull_speed -= XENO_DEADHUMAN_DRAG_SLOWDOWN
 	return ..()
 
@@ -252,15 +265,17 @@
 	hud_to_add = GLOB.huds[DATA_HUD_BASIC]
 	hud_to_add.add_hud_to(src)
 
+	hud_to_add = GLOB.huds[DATA_HUD_XENO_REAGENTS]
+	hud_to_add.add_hud_to(src)
 
 
 /mob/living/carbon/xenomorph/point_to_atom(atom/A, turf/T)
 	//xeno leader get a bit arrow and less cooldown
 	if(queen_chosen_lead || isxenoqueen(src))
-		cooldowns[COOLDOWN_POINT] = addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_POINT, null), 1 SECONDS)
+		TIMER_COOLDOWN_START(src, COOLDOWN_POINT, 1 SECONDS)
 		new /obj/effect/overlay/temp/point/big(T)
 	else
-		cooldowns[COOLDOWN_POINT] = addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_POINT, null), 5 SECONDS)
+		TIMER_COOLDOWN_START(src, COOLDOWN_POINT, 5 SECONDS)
 		new /obj/effect/overlay/temp/point(T)
 	visible_message("<b>[src]</b> points to [A]")
 	return 1

@@ -157,18 +157,18 @@
 /obj/item/card/id/syndicate/attack_self(mob/user as mob)
 	if(!src.registered_name)
 		//Stop giving the players unsanitized unputs! You are giving ways for players to intentionally crash clients! -Nodrak
-		var t = reject_bad_name(input(user, "What name would you like to put on this card?", "Agent card name", ishuman(user) ? user.real_name : user.name))
-		if(!t) //Same as mob/new_player/prefrences.dm
+		var/newname = reject_bad_name(input(user, "What name would you like to put on this card?", "Agent card name", ishuman(user) ? user.real_name : user.name))
+		if(!newname) //Same as mob/new_player/prefrences.dm
 			alert("Invalid name.")
 			return
-		src.registered_name = t
+		src.registered_name = newname
 
-		var u = stripped_input(user, "What occupation would you like to put on this card?\nNote: This will not grant any access levels other than Maintenance.", "Agent card job assignment", "Agent")
-		if(!u)
+		var/newjob = stripped_input(user, "What occupation would you like to put on this card?\nNote: This will not grant any access levels other than Maintenance.", "Agent card job assignment", "Agent")
+		if(!newjob)
 			alert("Invalid assignment.")
 			src.registered_name = ""
 			return
-		src.assignment = u
+		src.assignment = newjob
 		src.name = "[src.registered_name]'s ID Card ([src.assignment])"
 		to_chat(user, "<span class='notice'>You successfully forge the ID card.</span>")
 		registered_user = user
@@ -178,17 +178,17 @@
 
 		switch(alert("Would you like to display the ID, or retitle it?","Choose.","Rename","Show"))
 			if("Rename")
-				var t = stripped_input(user, "What name would you like to put on this card?", "Agent card name", ishuman(user) ? user.real_name : user.name, max_length = 26)
-				if(!t || t == "Unknown" || t == "floor" || t == "wall" || t == "r-wall") //Same as mob/new_player/prefrences.dm
+				var/newname = stripped_input(user, "What name would you like to put on this card?", "Agent card name", ishuman(user) ? user.real_name : user.name, max_length = 26)
+				if(!newname || newname == "Unknown" || newname == "floor" || newname == "wall" || newname == "r-wall") //Same as mob/new_player/prefrences.dm
 					alert("Invalid name.")
 					return
-				src.registered_name = t
+				src.registered_name = newname
 
-				var u = stripped_input(user, "What occupation would you like to put on this card?\nNote: This will not grant any access levels other than Maintenance.", "Agent card job assignment", "Assistant")
-				if(!u)
+				var/newjob = stripped_input(user, "What occupation would you like to put on this card?\nNote: This will not grant any access levels other than Maintenance.", "Agent card job assignment", "Assistant")
+				if(!newjob)
 					alert("Invalid assignment.")
 					return
-				src.assignment = u
+				src.assignment = newjob
 				src.name = "[src.registered_name]'s ID Card ([src.assignment])"
 				to_chat(user, "<span class='notice'>You successfully forge the ID card.</span>")
 				return

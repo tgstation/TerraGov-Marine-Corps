@@ -11,8 +11,12 @@
 
 	var/href_token
 
-	var/deadmined
+	///Whether this admin is currently deadminned or not
+	var/deadmined = FALSE
+	///Whether this admin has ghost interaction enabled
 	var/ghost_interact = FALSE
+	///Whether this admin is invisiminning
+	var/invisimined = FALSE
 
 
 /datum/admins/New(datum/admin_rank/R, ckey, protected)
@@ -271,7 +275,6 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/datum/admins/proc/toggle_sleep,
 	/datum/admins/proc/toggle_sleep_panel,
 	/datum/admins/proc/toggle_sleep_area,
-	/datum/admins/proc/direct_control,
 	/datum/admins/proc/logs_server,
 	/datum/admins/proc/logs_current,
 	/datum/admins/proc/logs_folder,
@@ -351,7 +354,13 @@ GLOBAL_PROTECT(admin_verbs_asay)
 	/datum/admins/proc/map_template_upload,
 	/datum/admins/proc/reestablish_db_connection,
 	/datum/admins/proc/view_runtimes,
-	/datum/admins/proc/spatial_agent
+	/datum/admins/proc/spatial_agent,
+#ifdef REFERENCE_TRACKING
+	/datum/admins/proc/view_refs,
+	/datum/admins/proc/view_del_failures,
+#endif
+	/datum/admins/proc/check_bomb_impacts,
+	/client/proc/toggle_cdn
 	)
 GLOBAL_LIST_INIT(admin_verbs_debug, world.AVdebug())
 GLOBAL_PROTECT(admin_verbs_debug)
@@ -382,6 +391,7 @@ GLOBAL_PROTECT(admin_verbs_varedit)
 	/datum/admins/proc/force_distress,
 	/datum/admins/proc/object_sound,
 	/datum/admins/proc/drop_bomb,
+	/datum/admins/proc/drop_dynex_bomb,
 	/datum/admins/proc/change_security_level,
 	/datum/admins/proc/edit_appearance,
 	/datum/admins/proc/outfit_manager,
@@ -396,7 +406,11 @@ GLOBAL_PROTECT(admin_verbs_varedit)
 	/datum/admins/proc/play_cinematic,
 	/datum/admins/proc/set_tip,
 	/datum/admins/proc/ghost_interact,
-	/client/proc/toggle_buildmode
+	/client/proc/toggle_buildmode,
+	/client/proc/force_event,
+	/client/proc/toggle_events,
+	/client/proc/run_weather,
+	/client/proc/cmd_display_del_log,
 	)
 GLOBAL_LIST_INIT(admin_verbs_fun, world.AVfun())
 GLOBAL_PROTECT(admin_verbs_fun)
@@ -423,15 +437,16 @@ GLOBAL_PROTECT(admin_verbs_fun)
 	/datum/admins/proc/change_ground_map,
 	/datum/admins/proc/change_ship_map,
 	/datum/admins/proc/panic_bunker,
-	/datum/admins/proc/mode_check
+	/datum/admins/proc/mode_check,
+	/client/proc/toggle_cdn
 	)
 GLOBAL_LIST_INIT(admin_verbs_server, world.AVserver())
 GLOBAL_PROTECT(admin_verbs_server)
 
 /world/proc/AVpermissions()
 	return list(
-	/datum/admins/proc/permissions_panel,
-	/datum/admins/proc/create_poll
+	/client/proc/edit_admin_permissions,
+	/client/proc/poll_panel,
 	)
 GLOBAL_LIST_INIT(admin_verbs_permissions, world.AVpermissions())
 GLOBAL_PROTECT(admin_verbs_permissions)

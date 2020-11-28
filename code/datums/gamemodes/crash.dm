@@ -15,7 +15,6 @@
 		/datum/job/terragov/squad/engineer = 8,
 		/datum/job/terragov/squad/corpsman = 8,
 		/datum/job/terragov/squad/smartgunner = 1,
-		/datum/job/terragov/squad/specialist = 1,
 		/datum/job/terragov/squad/leader = 1,
 		/datum/job/terragov/medical/professor = 1,
 		/datum/job/terragov/silicon/synthetic = 1,
@@ -51,12 +50,14 @@
 	. = ..()
 
 	// Spawn the ship
+	if(TGS_CLIENT_COUNT >= 25)
+		shuttle_id = "tgs_bigbury"
 	if(!SSmapping.shuttle_templates[shuttle_id])
+		message_admins("Gamemode: couldn't find a valid shuttle template for [shuttle_id]")
 		CRASH("Shuttle [shuttle_id] wasn't found and can't be loaded")
 
 	var/datum/map_template/shuttle/ST = SSmapping.shuttle_templates[shuttle_id]
-	var/obj/docking_port/stationary/L = SSshuttle.getDock("canterbury_loadingdock")
-	shuttle = SSshuttle.action_load(ST, L)
+	shuttle = SSshuttle.load_template_to_transit(ST)
 
 	// Redefine the relevant spawnpoints after spawning the ship.
 	for(var/job_type in shuttle.spawns_by_job)
@@ -104,7 +105,6 @@
 		else // Handles Shrike etc
 			var/mob/living/carbon/xenomorph/X = i
 			X.upgrade_stored = X.xeno_caste.upgrade_threshold
-
 
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH)
 	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_EXPLODED, .proc/on_nuclear_explosion)
@@ -287,6 +287,7 @@
 	return TRUE
 
 /datum/game_mode/infestation/crash/proc/on_nuclear_diffuse(obj/machinery/nuclearbomb/bomb, mob/living/carbon/xenomorph/X)
+	SIGNAL_HANDLER
 	var/list/living_player_list = count_humans_and_xenos(count_flags = COUNT_IGNORE_HUMAN_SSD)
 	var/num_humans = living_player_list[1]
 	if(!num_humans) // no humans left on planet to try and restart it.
@@ -295,10 +296,12 @@
 	priority_announce("WARNING. WARNING. Planetary Nuke deactivated. WARNING. WARNING. Self destruct failed. WARNING. WARNING.", "Priority Alert")
 
 /datum/game_mode/infestation/crash/proc/on_nuclear_explosion(datum/source, z_level)
+	SIGNAL_HANDLER
 	planet_nuked = CRASH_NUKE_INPROGRESS
 	INVOKE_ASYNC(src, .proc/play_cinematic, z_level)
 
 /datum/game_mode/infestation/crash/proc/on_nuke_started(obj/machinery/nuclearbomb/nuke)
+	SIGNAL_HANDLER
 	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	var/area_name = get_area_name(nuke)
 	HS.xeno_message("An overwhelming wave of dread ripples throughout the hive... A nuke has been activated[area_name ? " in [area_name]":""]!")
@@ -315,12 +318,12 @@
 			continue
 		shake_camera(M, 110, 4)
 
-	var/datum/cinematic/nuke_selfdestruct/C = /datum/cinematic/nuke_selfdestruct
+	var/datum/cinematic/crash_nuke/C = /datum/cinematic/crash_nuke
 	var/nuketime = initial(C.runtime) + initial(C.cleanup_time)
 	addtimer(VARSET_CALLBACK(src, planet_nuked, CRASH_NUKE_COMPLETED), nuketime)
 	addtimer(CALLBACK(src, .proc/do_nuke_z_level, z_level), nuketime * 0.5)
 
-	Cinematic(CINEMATIC_SELFDESTRUCT, world)
+	Cinematic(CINEMATIC_CRASH_NUKE, world)
 
 
 /datum/game_mode/infestation/crash/proc/do_nuke_z_level(z_level)
@@ -336,9 +339,10 @@
 
 
 /datum/game_mode/infestation/crash/proc/on_xeno_evolve(datum/source, mob/living/carbon/xenomorph/new_xeno)
+	SIGNAL_HANDLER
 	switch(new_xeno.tier)
 		if(XENO_TIER_ONE)
-			new_xeno.upgrade_xeno(XENO_UPGRADE_ONE)
+			new_xeno.upgrade_xeno(XENO_UPGRADE_TWO)
 		if(XENO_TIER_TWO)
 			new_xeno.upgrade_xeno(XENO_UPGRADE_ONE)
 

@@ -7,7 +7,7 @@
 	flags_heat_protection = CHEST|GROIN|LEGS|ARMS
 	permeability_coefficient = 0.90
 	flags_equip_slot = ITEM_SLOT_ICLOTHING
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 	w_class = WEIGHT_CLASS_NORMAL
 	var/has_sensor = 1//For the crew computer 2 = unable to change mode
 	var/sensor_mode = 3
@@ -85,7 +85,7 @@
 		if ((flags_item & NODROP) || loc != usr)
 			return
 
-		if (!usr.incapacitated() && !(usr.buckled && usr.lying))
+		if (!usr.incapacitated() && !(usr.buckled && usr.lying_angle))
 			if(over_object)
 				switch(over_object.name)
 					if("r_hand")

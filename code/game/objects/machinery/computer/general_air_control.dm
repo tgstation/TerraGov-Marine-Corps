@@ -8,6 +8,18 @@
 	circuit = /obj/item/circuitboard/computer/air_management
 
 
+/obj/machinery/computer/general_air_control/Initialize()
+	. = ..()
+	set_frequency(frequency)
+
+
+/obj/machinery/computer/general_air_control/Destroy()
+	if(radio_connection)
+		SSradio.remove_object(src, frequency)
+		radio_connection = null
+	return ..()
+
+
 /obj/machinery/computer/general_air_control/interact(mob/user)
 	. = ..()
 	if(.)
@@ -69,10 +81,6 @@
 	SSradio.remove_object(src, frequency)
 	frequency = new_frequency
 	radio_connection = SSradio.add_object(src, frequency, RADIO_ATMOSIA)
-
-/obj/machinery/computer/general_air_control/Initialize()
-	. = ..()
-	set_frequency(frequency)
 
 
 /obj/machinery/computer/general_air_control/large_tank_control

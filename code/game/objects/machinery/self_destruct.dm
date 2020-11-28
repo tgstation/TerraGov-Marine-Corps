@@ -4,8 +4,10 @@
 	density = FALSE
 	anchored = TRUE
 	resistance_flags = RESIST_ALL
-	interaction_flags = INTERACT_MACHINE_NANO
+	interaction_flags = INTERACT_MACHINE_TGUI
 	var/active_state = SELF_DESTRUCT_MACHINE_INACTIVE
+	///Whether only marines can activate this. left here in case of admins feeling nice or events
+	var/marine_only_activate = TRUE
 	ui_x = 470
 	ui_y = 290
 
@@ -16,7 +18,6 @@
 
 /obj/machinery/self_destruct/Destroy()
 	GLOB.machines -= src
-	operator = null
 	return ..()
 
 
@@ -36,6 +37,15 @@
 	return ..()
 
 
+/obj/machinery/self_destruct/console/can_interact(mob/living/carbon/user)
+	. = ..()
+	if(!.)
+		return
+	if(marine_only_activate && !isterragovjob(user?.job))
+		to_chat(user, "<span class='warning'>The [src] beeps, \"Marine retinal scan failed!\".</span>")
+		return FALSE
+	return TRUE
+
 /obj/machinery/self_destruct/console/toggle(lock)
 	playsound(src, 'sound/machines/hydraulics_1.ogg', 25, 1)
 	return ..()
@@ -46,7 +56,7 @@
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 
 	if(!ui)
-		ui = new(user, src, ui_key, "selfdestruct", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, ui_key, "SelfDestruct", name, ui_x, ui_y, master_ui, state)
 		ui.open()
 
 /obj/machinery/self_destruct/console/ui_data(mob/user)

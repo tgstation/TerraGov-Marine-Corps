@@ -33,7 +33,8 @@
 	var/emergency = FALSE
 
 	tiles_with = list(
-		/turf/closed/wall)
+		/turf/closed/wall,
+	)
 
 /obj/machinery/door/airlock/bumpopen(mob/living/user) //Airlocks now zap you when you 'bump' them open when they're electrified. --NeoFite
 	if(issilicon(user))
@@ -222,21 +223,23 @@
 		return FALSE
 
 	playsound(loc, 'sound/effects/metal_creaking.ogg', 25, 1)
-	M.visible_message("<span class='warning'>\The [M] digs into \the [src] and begins to pry it open.</span>", \
-	"<span class='warning'>We dig into \the [src] and begin to pry it open.</span>", null, 5)
 
-	if(do_after(M, 40, FALSE, src, BUSY_ICON_HOSTILE) && !M.lying)
-		if(locked)
-			to_chat(M, "<span class='warning'>\The [src] is bolted down tight.</span>")
+	if(hasPower())
+		M.visible_message("<span class='warning'>\The [M] digs into \the [src] and begins to pry it open.</span>", \
+		"<span class='warning'>We dig into \the [src] and begin to pry it open.</span>", null, 5)
+		if(!do_after(M, 4 SECONDS, FALSE, src, BUSY_ICON_HOSTILE) && !M.lying_angle)
 			return FALSE
-		if(welded)
-			to_chat(M, "<span class='warning'>\The [src] is welded shut.</span>")
-			return FALSE
-		if(density) //Make sure it's still closed
-			spawn(0)
-				open(1)
-				M.visible_message("<span class='danger'>\The [M] pries \the [src] open.</span>", \
-				"<span class='danger'>We pry \the [src] open.</span>", null, 5)
+	if(locked)
+		to_chat(M, "<span class='warning'>\The [src] is bolted down tight.</span>")
+		return FALSE
+	if(welded)
+		to_chat(M, "<span class='warning'>\The [src] is welded shut.</span>")
+		return FALSE
+
+	if(density) //Make sure it's still closed
+		open(1)
+		M.visible_message("<span class='danger'>\The [M] pries \the [src] open.</span>", \
+			"<span class='danger'>We pry \the [src] open.</span>", null, 5)
 
 /obj/machinery/door/airlock/attack_larva(mob/living/carbon/xenomorph/larva/M)
 	for(var/atom/movable/AM in get_turf(src))

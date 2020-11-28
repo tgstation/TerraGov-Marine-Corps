@@ -18,6 +18,7 @@
 	begin_orbit(orbiter, radius, clockwise, rotation_speed, rotation_segments, pre_rotation)
 
 /datum/component/orbiter/RegisterWithParent()
+	RegisterSignal(parent, COMSIG_MOVABLE_UPDATE_GLIDE_SIZE, .proc/orbiter_glide_size_update)
 	var/atom/target = parent
 
 	target.orbiters = src
@@ -25,6 +26,7 @@
 		tracker = new(target, CALLBACK(src, .proc/move_react))
 
 /datum/component/orbiter/UnregisterFromParent()
+	UnregisterSignal(parent, COMSIG_MOVABLE_UPDATE_GLIDE_SIZE)
 	var/atom/target = parent
 	target.orbiters = null
 	QDEL_NULL(tracker)
@@ -48,6 +50,8 @@
 	if(!isatom(parent) || isarea(parent) || !get_turf(parent))
 		return COMPONENT_INCOMPATIBLE
 	move_react(parent)
+	var/atom/movable/movable_parent = parent
+	orbiter_glide_size_update(src, movable_parent.glide_size)
 
 /datum/component/orbiter/proc/begin_orbit(atom/movable/orbiter, radius, clockwise, rotation_speed, rotation_segments, pre_rotation)
 	if(orbiter.orbiting)
@@ -59,7 +63,9 @@
 	orbiter.orbiting = src
 	RegisterSignal(orbiter, COMSIG_MOVABLE_MOVED, .proc/orbiter_move_react)
 	SEND_SIGNAL(parent, COMSIG_ATOM_ORBIT_BEGIN, orbiter)
+
 	var/matrix/initial_transform = matrix(orbiter.transform)
+	orbiters[orbiter] = initial_transform
 
 	// Head first!
 	if(pre_rotation)
@@ -76,9 +82,9 @@
 
 	orbiter.SpinAnimation(rotation_speed, -1, clockwise, rotation_segments, parallel = FALSE)
 
-	//we stack the orbits up client side, so we can assign this back to normal server side without it breaking the orbit
-	orbiter.transform = initial_transform
 	orbiter.forceMove(get_turf(parent))
+	var/atom/movable/movable_parent = parent
+	orbiter.glide_size = movable_parent.glide_size
 	to_chat(orbiter, "<span class='notice'>Now orbiting [parent].</span>")
 
 /datum/component/orbiter/proc/end_orbit(atom/movable/orbiter, refreshing=FALSE)
@@ -87,9 +93,12 @@
 	UnregisterSignal(orbiter, COMSIG_MOVABLE_MOVED)
 	SEND_SIGNAL(parent, COMSIG_ATOM_ORBIT_STOP, orbiter)
 	orbiter.SpinAnimation(0, 0)
+	if(istype(orbiters[orbiter],/matrix)) //This is ugly.
+		orbiter.transform = orbiters[orbiter]
 	orbiters -= orbiter
 	orbiter.stop_orbit(src)
 	orbiter.orbiting = null
+	orbiter.glide_size = 8 //Reset to the default for atom/movable as ours was matched to the orbit target
 	if(!refreshing && !length(orbiters) && !QDELING(src))
 		qdel(src)
 
@@ -116,9 +125,16 @@
 
 
 /datum/component/orbiter/proc/orbiter_move_react(atom/movable/orbiter, atom/oldloc, direction)
+	SIGNAL_HANDLER
 	if(orbiter.loc == get_turf(parent))
 		return
 	end_orbit(orbiter)
+
+/datum/component/orbiter/proc/orbiter_glide_size_update(datum/source, new_size)
+	SIGNAL_HANDLER
+	for(var/orbiter in orbiters)
+		var/atom/movable/movable_orbiter = orbiter
+		movable_orbiter.glide_size = new_size
 
 /////////////////////
 

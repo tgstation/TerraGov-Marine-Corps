@@ -10,7 +10,7 @@
 	var/sparks = "securecratesparks"
 	locked = TRUE
 	max_integrity = 500
-	armor = list("melee" = 30, "bullet" = 50, "laser" = 50, "energy" = 100, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 80)
+	soft_armor = list("melee" = 30, "bullet" = 50, "laser" = 50, "energy" = 100, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 80)
 
 
 /obj/structure/closet/crate/secure/Initialize(mapload, ...)

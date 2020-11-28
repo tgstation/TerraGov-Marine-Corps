@@ -77,6 +77,60 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		var/mob/M = locate(href_list["playerpanel"])
 		show_player_panel(M)
 
+	else if(href_list["centcomlookup"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		if(!CONFIG_GET(string/centcom_ban_db))
+			to_chat(usr, "<span class='warning'>Centcom Galactic Ban DB is disabled!</span>")
+			return
+
+		var/ckey = href_list["centcomlookup"]
+
+		// Make the request
+		var/datum/http_request/request = new()
+		request.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/centcom_ban_db)]/[ckey]", "", "")
+		request.begin_async()
+		UNTIL(request.is_complete() || !usr)
+		if (!usr)
+			return
+		var/datum/http_response/response = request.into_response()
+
+		var/list/bans
+
+		var/list/dat = list("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'><body>")
+
+		if(response.errored)
+			dat += "<br>Failed to connect to CentCom."
+		else if(response.status_code != 200)
+			dat += "<br>Failed to connect to CentCom. Status code: [response.status_code]"
+		else
+			if(response.body == "[]")
+				dat += "<center><b>0 bans detected for [ckey]</b></center>"
+			else
+				bans = json_decode(response["body"])
+				dat += "<center><b>[bans.len] ban\s detected for [ckey]</b></center>"
+				for(var/list/ban in bans)
+					dat += "<b>Server: </b> [sanitize(ban["sourceName"])]<br>"
+					dat += "<b>RP Level: </b> [sanitize(ban["sourceRoleplayLevel"])]<br>"
+					dat += "<b>Type: </b> [sanitize(ban["type"])]<br>"
+					dat += "<b>Banned By: </b> [sanitize(ban["bannedBy"])]<br>"
+					dat += "<b>Reason: </b> [sanitize(ban["reason"])]<br>"
+					dat += "<b>Datetime: </b> [sanitize(ban["bannedOn"])]<br>"
+					var/expiration = ban["expires"]
+					dat += "<b>Expires: </b> [expiration ? "[sanitize(expiration)]" : "Permanent"]<br>"
+					if(ban["type"] == "job")
+						dat += "<b>Jobs: </b> "
+						var/list/jobs = ban["jobs"]
+						dat += sanitize(jobs.Join(", "))
+						dat += "<br>"
+					dat += "<hr>"
+
+		dat += "<br></body>"
+		var/datum/browser/popup = new(usr, "centcomlookup-[ckey]", "<div align='center'>Central Command Galactic Ban Database</div>", 700, 600)
+		popup.set_content(dat.Join())
+		popup.open(0)
+
 
 	else if(href_list["subtlemessage"])
 		var/mob/M = locate(href_list["subtlemessage"])
@@ -188,29 +242,56 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			if("gethumans")
 				log_admin("[key_name(usr)] mass-teleported all humans.")
 				message_admins("[ADMIN_TPMONTY(usr)] mass-teleported all humans.")
+				to_chat(GLOB.alive_human_list, "<span class='highdanger'>[key_name_admin(usr, FALSE)] mass-teleported all humans.</span>")
 				for(var/i in GLOB.alive_human_list)
 					var/mob/M = i
 					M.forceMove(T)
 			if("getxenos")
 				log_admin("[key_name(usr)] mass-teleported all Xenos.")
 				message_admins("[ADMIN_TPMONTY(usr)] mass-teleported all Xenos.")
+				to_chat(GLOB.alive_xeno_list, "<span class='highdanger'>[key_name_admin(usr, FALSE)] mass-teleported all xenos.</span>")
 				for(var/i in GLOB.alive_xeno_list)
 					var/mob/M = i
 					M.forceMove(T)
 			if("getall")
 				log_admin("[key_name(usr)] mass-teleported everyone.")
 				message_admins("[ADMIN_TPMONTY(usr)] mass-teleported everyone.")
+				to_chat(GLOB.mob_living_list, "<span class='highdanger'>[key_name_admin(usr, FALSE)] mass-teleported everyone.</span>")
 				for(var/i in GLOB.mob_living_list)
 					var/mob/M = i
 					M.forceMove(T)
 			if("rejuvall")
 				log_admin("[key_name(usr)] mass-rejuvenated cliented mobs.")
 				message_admins("[ADMIN_TPMONTY(usr)] mass-rejuvenated cliented mobs.")
+				to_chat(GLOB.mob_living_list, "<span class='highdanger'>[key_name_admin(usr, FALSE)] mass-rejuvenated everyone.</span>")
 				for(var/i in GLOB.mob_living_list)
 					var/mob/living/L = i
 					if(!L.client)
 						continue
 					L.revive()
+	else if(href_list["force_event"])
+		if(!check_rights(R_FUN))
+			return
+		var/datum/round_event_control/E = locate(href_list["force_event"]) in SSevents.control
+		if(E)
+			return
+		E.admin_setup(usr)
+		var/datum/round_event/event = E.run_event()
+		if(event.announce_when>0)
+			event.processing = FALSE
+			var/prompt = alert(usr, "Would you like to alert the crew?", "Alert", "Yes", "No", "Cancel")
+			switch(prompt)
+				if("Yes")
+					event.announce_chance = 100
+				if("Cancel")
+					event.kill()
+					return
+				if("No")
+					event.announce_chance = 0
+			event.processing = TRUE
+		message_admins("[key_name_admin(usr)] has triggered an event. ([E.name])")
+		log_admin("[key_name(usr)] has triggered an event. ([E.name])")
+		return
 
 
 	else if(href_list["kick"])
@@ -364,20 +445,17 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		message_admins("[ADMIN_TPMONTY(usr)] revived [ADMIN_TPMONTY(L)].")
 
 
-
 	else if(href_list["editrightsbrowser"])
 		if(!check_rights(R_PERMISSIONS))
 			return
-		permissions_edit(0)
-
+		edit_admin_permissions(0)
 
 	else if(href_list["editrightsbrowserlog"])
 		if(!check_rights(R_PERMISSIONS))
 			return
-		permissions_edit(1, href_list["editrightstarget"], href_list["editrightsoperation"], href_list["editrightspage"])
+		edit_admin_permissions(1, href_list["editrightstarget"], href_list["editrightsoperation"], href_list["editrightspage"])
 
-
-	else if(href_list["editrightsbrowsermanage"])
+	if(href_list["editrightsbrowsermanage"])
 		if(!check_rights(R_PERMISSIONS))
 			return
 		if(href_list["editrightschange"])
@@ -386,8 +464,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			remove_admin(ckey(href_list["editrightsremove"]), href_list["editrightsremove"], TRUE)
 		else if(href_list["editrightsremoverank"])
 			remove_rank(href_list["editrightsremoverank"])
-		permissions_edit(2)
-
+		edit_admin_permissions(2)
 
 	else if(href_list["editrights"])
 		if(!check_rights(R_PERMISSIONS))
@@ -459,6 +536,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			return
 
 		to_chat(H, "<span class='boldnotice'>Please stand by for a message from TGMC:<br/>[input]</span>")
+		var/sound/S = sound('sound/effects/sos-morse-code.ogg', channel = CHANNEL_ADMIN)
+		SEND_SOUND(H, S)
 
 		log_admin("[key_name(usr)] replied to [ADMIN_TPMONTY(H)]'s TGMC message with: [input].")
 		message_admins("[ADMIN_TPMONTY(usr)] replied to [ADMIN_TPMONTY(H)]'s' TGMC message with: [input]")
@@ -725,6 +804,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			return
 
 		var/mob/sender
+		var/subject = "No subject"
 		if(href_list["faxreply"])
 			var/ref = locate(href_list["faxreply"])
 			if(!ref)
@@ -741,8 +821,9 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				message_staff("[key_name_admin(usr)] marked and started replying to a fax from [key_name_admin(F.sender)].")
 
 			sender = F.sender
+			subject = "re: [F.title]"
 
-		var/dep = input("Who do you want to message?", "Fax Message") as null|anything in list(CORPORATE_LIAISON, "Combat Information Center", COMMAND_MASTER_AT_ARMS, "Brig", "Research", "Warden")
+		var/dep = input("Who do you want to message?", "Fax Message") as null|anything in list(CORPORATE_LIAISON, "Combat Information Center", "Brig", "Research", "Warden")
 		if(!dep)
 			return
 
@@ -750,7 +831,9 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		if(!department)
 			return
 
-		var/subject = input("Enter the subject line", "Fax Message", "") as text|null
+		var/custom_subject = input("Enter the subject line", "Fax Message", subject) as text|null
+		if(custom_subject != "")
+			subject = custom_subject
 		var/type = input("Do you want to use the pencode, template or type a raw message?", "Fax Message") as null|anything in list("Pencode", "Template", "Raw")
 		if(!type)
 			return
@@ -990,7 +1073,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			return
 
 		var/list/offset = splittext(href_list["offset"],",")
-		var/number = CLAMP(text2num(href_list["object_count"]), 1, 100)
+		var/number = clamp(text2num(href_list["object_count"]), 1, 100)
 		var/X = length(offset) > 0 ? text2num(offset[1]) : 0
 		var/Y = length(offset) > 1 ? text2num(offset[2]) : 0
 		var/Z = length(offset) > 2 ? text2num(offset[3]) : 0
@@ -1496,8 +1579,10 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 	else if(href_list["messageedits"])
 		if(!check_rights(R_BAN))
 			return
-		var/message_id = sanitizeSQL("[href_list["messageedits"]]")
-		var/datum/DBQuery/query_get_message_edits = SSdbcore.NewQuery("SELECT edits FROM [format_table_name("messages")] WHERE id = '[message_id]'")
+		var/datum/db_query/query_get_message_edits = SSdbcore.NewQuery(
+			"SELECT edits FROM [format_table_name("messages")] WHERE id = :message_id",
+			list("message_id" = href_list["messageedits"])
+		)
 		if(!query_get_message_edits.warn_execute())
 			qdel(query_get_message_edits)
 			return
@@ -1649,6 +1734,40 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 		log_admin("[key_name(src)] has removed a [slot] job slot.")
 		message_admins("[ADMIN_TPMONTY(usr)] has removed a [slot] job slot.")
+
+
+	else if(href_list["clearjobslots"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/slot = href_list["clearjobslots"]
+
+		var/datum/job/job = SSjob.name_occupations[slot]
+		if(!(job.job_flags & (JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE)))
+			to_chat(usr, "<span class='warning'>Job is not joinable.</span>")
+			return
+		job.set_job_positions(0)
+
+		usr.client.holder.job_slots()
+
+		log_admin("[key_name(src)] has cleared the [slot] job.")
+		message_admins("[ADMIN_TPMONTY(usr)] has cleared the [slot] job.")
+
+
+	else if(href_list["clearalljobslots"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		for(var/slot in SSjob.name_occupations)
+			var/datum/job/job = SSjob.name_occupations[slot]
+			if(!(job.job_flags & (JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE)))
+				continue
+			job.set_job_positions(0)
+
+		usr.client.holder.job_slots()
+
+		log_admin("[key_name(src)] has cleared all job slots.")
+		message_admins("[ADMIN_TPMONTY(usr)] has cleared all job slots.")
 
 
 	else if(href_list["unlimitjobslot"])
@@ -2099,7 +2218,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			if("nicknumber")
 				previous = X.nicknumber
 
-				change = input("Select a nicknumber.", "Xeno Panel", previous) as null|num
+				change = input("Select a nicknumber.", "Xeno Panel", previous)
 				if(!change || change == previous)
 					return
 
@@ -2136,3 +2255,59 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		GLOB.admin_approvals[approval_id] = href_list["option"]
 		log_admin("[key_name(usr)] answered '[href_list["option"]]' to the admin approval ([approval_id]).")
 		message_admins("[key_name(usr)] answered '[href_list["option"]]' to the admin approval ([approval_id]).")
+
+	else if(href_list["reloadpolls"])
+		GLOB.polls.Cut()
+		GLOB.poll_options.Cut()
+		load_poll_data()
+		poll_list_panel()
+
+	else if(href_list["newpoll"])
+		poll_management_panel()
+
+	else if(href_list["editpoll"])
+		var/datum/poll_question/poll = locate(href_list["editpoll"]) in GLOB.polls
+		poll_management_panel(poll)
+
+	else if(href_list["deletepoll"])
+		var/datum/poll_question/poll = locate(href_list["deletepoll"]) in GLOB.polls
+		poll.delete_poll()
+		poll_list_panel()
+
+	else if(href_list["initializepoll"])
+		poll_parse_href(href_list)
+
+	else if(href_list["submitpoll"])
+		var/datum/poll_question/poll = locate(href_list["submitpoll"]) in GLOB.polls
+		poll_parse_href(href_list, poll)
+
+	else if(href_list["clearpollvotes"])
+		var/datum/poll_question/poll = locate(href_list["clearpollvotes"]) in GLOB.polls
+		poll.cleaR_DBRANKS_votes()
+		poll_management_panel(poll)
+
+	else if(href_list["addpolloption"])
+		var/datum/poll_question/poll = locate(href_list["addpolloption"]) in GLOB.polls
+		poll_option_panel(poll)
+
+	else if(href_list["editpolloption"])
+		var/datum/poll_option/option = locate(href_list["editpolloption"]) in GLOB.poll_options
+		var/datum/poll_question/poll = locate(href_list["parentpoll"]) in GLOB.polls
+		poll_option_panel(poll, option)
+
+	else if(href_list["deletepolloption"])
+		var/datum/poll_option/option = locate(href_list["deletepolloption"]) in GLOB.poll_options
+		var/datum/poll_question/poll = option.delete_option()
+		poll_management_panel(poll)
+
+	else if(href_list["submitoption"])
+		var/datum/poll_option/option = locate(href_list["submitoption"]) in GLOB.poll_options
+		var/datum/poll_question/poll = locate(href_list["submitoptionpoll"]) in GLOB.polls
+		poll_option_parse_href(href_list, poll, option)
+
+	#ifdef REFERENCE_TRACKING
+	else if(href_list["delfail_clearnulls"])
+		listclearnulls(GLOB.deletion_failures)
+		view_del_failures()
+		return
+	#endif

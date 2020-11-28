@@ -12,7 +12,7 @@
 	density = TRUE
 	anchored = TRUE
 	use_power = NO_POWER_USE
-	interaction_flags = INTERACT_MACHINE_NANO
+	interaction_flags = INTERACT_MACHINE_TGUI
 	var/capacity = 5e5		//Maximum amount of power it can hold
 	var/charge = 1e5		//Current amount of power it holds
 
@@ -63,6 +63,9 @@
 		disconnect_terminal()
 	. = ..()
 
+/obj/machinery/power/smes/should_have_node()
+	return TRUE
+
 /obj/machinery/power/smes/update_icon()
 	overlays.Cut()
 	if(machine_stat & BROKEN)
@@ -86,7 +89,7 @@
 
 
 /obj/machinery/power/smes/proc/chargedisplay()
-	return CLAMP(round(5.5*charge/capacity),0,5)
+	return clamp(round(5.5*charge/capacity),0,5)
 
 
 /obj/machinery/power/smes/process()
@@ -254,28 +257,26 @@
 										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "smes", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, ui_key, "Smes", name, ui_x, ui_y, master_ui, state)
 		ui.open()
 
 /obj/machinery/power/smes/ui_data()
 	var/list/data = list(
-		"capacityPercent" = round(100*charge/capacity, 0.1),
 		"capacity" = capacity,
+		"capacityPercent" = round(100*charge/capacity, 0.1),
 		"charge" = charge,
-
 		"inputAttempt" = input_attempt,
 		"inputting" = inputting,
 		"inputLevel" = input_level,
 		"inputLevel_text" = DisplayPower(input_level),
 		"inputLevelMax" = input_level_max,
-		"inputAvailable" = DisplayPower(input_available),
-
+		"inputAvailable" = input_available,
 		"outputAttempt" = output_attempt,
 		"outputting" = outputting,
 		"outputLevel" = output_level,
 		"outputLevel_text" = DisplayPower(output_level),
 		"outputLevelMax" = output_level_max,
-		"outputUsed" = DisplayPower(output_used)
+		"outputUsed" = output_used,
 	)
 	return data
 
@@ -311,7 +312,7 @@
 				target = text2num(target)
 				. = TRUE
 			if(.)
-				input_level = CLAMP(target, 0, input_level_max)
+				input_level = clamp(target, 0, input_level_max)
 		if("output")
 			var/target = params["target"]
 			var/adjust = text2num(params["adjust"])
@@ -332,7 +333,7 @@
 				target = text2num(target)
 				. = TRUE
 			if(.)
-				output_level = CLAMP(target, 0, output_level_max)
+				output_level = clamp(target, 0, output_level_max)
 
 /obj/machinery/power/smes/Topic(href, href_list)
 	. = ..()
@@ -355,7 +356,7 @@
 				input_level = input_level_max
 			if("set")
 				input_level = input(usr, "Enter new input level (0-[input_level_max])", "SMES Input Power Control", input_level) as num
-		input_level = CLAMP(input_level,0,input_level_max)
+		input_level = clamp(input_level,0,input_level_max)
 
 	else if( href_list["output"] )
 		switch( href_list["output"] )
@@ -365,7 +366,7 @@
 				output_level = output_level_max
 			if("set")
 				output_level = input(usr, "Enter new output level (0-[output_level_max])", "SMES Output Power Control", output_level) as num
-		output_level = CLAMP(output_level,0,output_level_max)
+		output_level = clamp(output_level,0,output_level_max)
 
 
 /obj/machinery/power/smes/proc/ion_act()
@@ -376,7 +377,7 @@
 			var/datum/effect_system/smoke_spread/smoke = new(src)
 			smoke.set_up(1, loc)
 			smoke.start()
-			explosion(src.loc, -1, 0, 1, 3, 1, 0)
+			explosion(loc, light_impact_range = 2, flash_range = 3)
 			qdel(src)
 			return
 		if(prob(15)) //Power drain

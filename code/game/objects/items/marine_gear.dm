@@ -9,112 +9,6 @@
 	force = 10 //This is otherwise no different from a normal flashlight minus the flavour.
 	throwforce = 12 //"combat" flashlight
 
-//MARINE SNIPER TARPS
-
-/obj/item/bodybag/tarp
-	name = "\improper V1 thermal-dampening tarp (folded)"
-	desc = "A tarp carried by TGMC Snipers. When laying underneath the tarp, the sniper is almost indistinguishable from the landscape if utilized correctly. The tarp contains a thermal-dampening weave to hide the wearer's heat signatures, optical camoflauge, and smell dampening."
-	icon = 'icons/obj/bodybag.dmi'
-	icon_state = "jungletarp_folded"
-	w_class = WEIGHT_CLASS_NORMAL
-	unfoldedbag_path = /obj/structure/closet/bodybag/tarp
-
-
-/obj/item/bodybag/tarp/snow
-	icon = 'icons/obj/bodybag.dmi'
-	icon_state = "snowtarp_folded"
-	unfoldedbag_path = /obj/structure/closet/bodybag/tarp/snow
-
-
-/obj/structure/closet/bodybag/tarp
-	name = "\improper V1 thermal-dampening tarp"
-	bag_name = "V1 thermal-dampening tarp"
-	desc = "An active camo tarp carried by TGMC Snipers. When laying underneath the tarp, the sniper is almost indistinguishable from the landscape if utilized correctly. The tarp contains a thermal-dampening weave to hide the wearer's heat signatures, optical camouflage, and smell dampening."
-	icon = 'icons/obj/bodybag.dmi'
-	icon_state = "jungletarp_closed"
-	icon_closed = "jungletarp_closed"
-	icon_opened = "jungletarp_open"
-	open_sound = 'sound/effects/vegetation_walk_1.ogg'
-	close_sound = 'sound/effects/vegetation_walk_2.ogg'
-	foldedbag_path = /obj/item/bodybag/tarp
-	closet_stun_delay = 0
-
-
-/obj/structure/closet/bodybag/tarp/close()
-	. = ..()
-	if(!opened && bodybag_occupant)
-		anchored = TRUE
-		playsound(loc,'sound/effects/cloak_scout_on.ogg', 15, 1) //stealth mode engaged!
-		animate(src, alpha = 13, time = 4 SECONDS) //Fade out gradually.
-
-
-/obj/structure/closet/bodybag/tarp/open()
-	anchored = FALSE
-	if(alpha != initial(alpha))
-		playsound(loc,'sound/effects/cloak_scout_off.ogg', 15, 1)
-		alpha = initial(alpha) //stealth mode disengaged
-		animate(src) //Cancel the fade out if still ongoing.
-	if(bodybag_occupant)
-		UnregisterSignal(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PARENT_PREQDELETED))
-	return ..()
-
-
-/obj/structure/closet/bodybag/tarp/closet_special_handling(mob/living/mob_to_stuff) // overriding this
-	if(!ishuman(mob_to_stuff))
-		return FALSE //Humans only.
-	if(mob_to_stuff.stat == DEAD) //Only the dead for bodybags.
-		return FALSE
-	return TRUE
-
-
-/obj/structure/closet/bodybag/tarp/close()
-	. = ..()
-	if(bodybag_occupant)
-		RegisterSignal(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PARENT_PREQDELETED), .proc/on_bodybag_occupant_death)
-
-
-/obj/structure/closet/bodybag/tarp/proc/on_bodybag_occupant_death(datum/source, gibbed)
-	open()
-
-
-/obj/structure/closet/bodybag/tarp/update_name()
-	return //Shouldn't be revealing who's inside.
-
-
-/obj/structure/closet/bodybag/tarp/fire_act(exposed_temperature, exposed_volume)
-	var/mob/M = locate() in src //need to be occupied
-	if(exposed_temperature > 300 && !opened && M)
-		to_chat(M, "<span class='danger'>The intense heat forces you out of [src]!</span>")
-		open()
-
-/obj/structure/closet/bodybag/tarp/flamer_fire_act()
-	var/mob/M = locate() in src //need to be occupied
-	if(!opened && M)
-		to_chat(M, "<span class='danger'>The intense heat forces you out of [src]!</span>")
-		open()
-
-/obj/structure/closet/bodybag/tarp/ex_act(severity)
-	var/mob/M = locate() in src //need to be occupied
-	if(!opened && M)
-		to_chat(M, "<span class='danger'>The shockwave blows [src] open!</span>")
-		open()
-	switch(severity)
-		if(1)
-			visible_message("<span class='danger'>\The shockwave blows [src] apart!</span>")
-			qdel(src) //blown apart
-
-/obj/structure/closet/bodybag/tarp/bullet_act(obj/projectile/Proj)
-	var/mob/M = locate() in src //need to be occupied
-	if(!opened && M)
-		M.bullet_act(Proj) //tarp isn't bullet proof; concealment, not cover; pass it on to the occupant.
-
-
-/obj/structure/closet/bodybag/tarp/snow
-	icon_state = "snowtarp_closed"
-	icon_closed = "snowtarp_closed"
-	icon_opened = "snowtarp_open"
-	foldedbag_path = /obj/item/bodybag/tarp/snow
-
 
 /obj/item/coin/marine
 	name = "marine premium token"
@@ -318,6 +212,8 @@
 	flags_equip_slot = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_BULKY
 	time_to_equip = 2 SECONDS
+	time_to_unequip = 1 SECONDS
+	flags_inventory = NOQUICKEQUIP
 
 /obj/item/belt_harness/marine
 	name = "\improper M45 pattern belt harness"

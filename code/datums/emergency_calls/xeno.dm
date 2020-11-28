@@ -6,9 +6,9 @@
 
 
 /datum/emergency_call/xenomorphs/print_backstory(mob/living/carbon/xenomorph/X)
-	to_chat(X, "<B>You are Xenomorph from a distant hive.</b>")
-	to_chat(X, "<B>You've been cruising in space for years until a new Queen reached out to you and took over the control of your shuttle.</b>")
-	to_chat(X, "<B>Help the new Queen take over this sector. For the new Hive!</b>")
+	to_chat(X, "<B>We are a Xenomorph from a distant hive.</b>")
+	to_chat(X, "<B>We've been cruising in space for years until a new leader reached out to us and took over the control of our shuttle.</b>") // It may be a shrike or a queen.
+	to_chat(X, "<B>Help our leader take over this sector. For the new Hive!</b>")
 
 
 /datum/emergency_call/xenomorphs/spawn_items()
@@ -26,25 +26,25 @@
 	var/turf/spawn_loc = .
 
 	if(!leader)
-		. = new /mob/living/carbon/xenomorph/ravager(spawn_loc, TRUE) //TRUE for the can_spawn_in_centcomm, so they don't get sent to a different hive.
+		. = new /mob/living/carbon/xenomorph/ravager(spawn_loc)
 		leader = .
 		M.transfer_to(., TRUE)
 		print_backstory(.)
 		return
 
 	if(prob(35))
-		. = new /mob/living/carbon/xenomorph/drone/elder(spawn_loc, TRUE)
+		. = new /mob/living/carbon/xenomorph/drone/elder(spawn_loc)
 		M.transfer_to(., TRUE)
 		print_backstory(.)
 		return
 
 	if(prob(35))
-		. = new /mob/living/carbon/xenomorph/spitter/mature(spawn_loc, TRUE)
+		. = new /mob/living/carbon/xenomorph/spitter/mature(spawn_loc)
 		M.transfer_to(., TRUE)
 		print_backstory(.)
 		return
 
-	. = new /mob/living/carbon/xenomorph/hunter/mature(spawn_loc, TRUE)
+	. = new /mob/living/carbon/xenomorph/hunter/mature(spawn_loc)
 	M.transfer_to(., TRUE)
 	print_backstory(.)
 

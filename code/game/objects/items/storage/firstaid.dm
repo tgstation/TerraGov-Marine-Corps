@@ -16,7 +16,8 @@
 	throw_range = 8
 	cant_hold = list(
 		/obj/item/ammo_magazine,
-		/obj/item/explosive/grenade)
+		/obj/item/explosive/grenade,
+	)
 	var/empty = FALSE //whether the kit starts empty
 	var/icon_full //icon state to use when kit is full
 	var/possible_icons_full
@@ -57,7 +58,7 @@
 	new /obj/item/storage/pill_bottle/tramadol(src)
 	new /obj/item/stack/medical/advanced/ointment(src)
 	new /obj/item/stack/medical/advanced/ointment(src)
-	new /obj/item/stack/medical/advanced/ointment(src)
+	new /obj/item/storage/pill_bottle/packet/leporazine(src)
 	new /obj/item/storage/syringe_case/burn(src)
 
 
@@ -146,7 +147,7 @@
 
 /obj/item/storage/syringe_case
 	name = "syringe case"
-	desc = "It's an medical case for storing syringes and bottles."
+	desc = "It's a medical case for storing syringes and bottles."
 	icon_state = "syringe_case"
 	throw_speed = 2
 	throw_range = 8
@@ -157,71 +158,99 @@
 		/obj/item/reagent_containers/glass/bottle,
 		/obj/item/paper,
 		/obj/item/reagent_containers/syringe,
-		/obj/item/reagent_containers/hypospray/autoinjector)
+		/obj/item/reagent_containers/hypospray/autoinjector,
+	)
 
 /obj/item/storage/syringe_case/regular
+	name = "basic syringe case"
+	desc = "It's a medical case for storing syringes and bottles. This one contains basic meds."
 
-/obj/item/storage/syringe_case/regular/Initialize(mapload, ...)
+/obj/item/storage/syringe_case/regular/PopulateContents()
 	. = ..()
 	new /obj/item/reagent_containers/syringe(src)
 	new /obj/item/reagent_containers/glass/bottle/inaprovaline(src)
 	new /obj/item/reagent_containers/glass/bottle/tricordrazine(src)
 
 /obj/item/storage/syringe_case/burn
+	name = "burn syringe case"
+	desc = "It's a medical case for storing syringes and bottles. This one contains meds designed to treat burns."
 
-/obj/item/storage/syringe_case/burn/Initialize(mapload, ...)
+/obj/item/storage/syringe_case/burn/PopulateContents()
 	. = ..()
 	new /obj/item/reagent_containers/syringe(src)
 	new /obj/item/reagent_containers/glass/bottle/kelotane(src)
 	new /obj/item/reagent_containers/glass/bottle/oxycodone(src)
 
 /obj/item/storage/syringe_case/tox
+	name = "toxins syringe case"
+	desc = "It's a medical case for storing syringes and bottles. This one contains meds designed to treat toxins."
 
-/obj/item/storage/syringe_case/tox/Initialize(mapload, ...)
+/obj/item/storage/syringe_case/tox/PopulateContents()
 	. = ..()
 	new /obj/item/reagent_containers/syringe(src)
 	new /obj/item/reagent_containers/glass/bottle/dylovene(src)
 	new /obj/item/reagent_containers/glass/bottle/hypervene(src)
 
 /obj/item/storage/syringe_case/oxy
+	name = "oxyloss syringe case"
+	desc = "It's a medical case for storing syringes and bottles. This one contains meds designed to treat oxygen deprivation."
 
-/obj/item/storage/syringe_case/oxy/Initialize(mapload, ...)
+/obj/item/storage/syringe_case/oxy/PopulateContents()
 	. = ..()
 	new /obj/item/reagent_containers/syringe(src)
 	new /obj/item/reagent_containers/glass/bottle/inaprovaline(src)
 	new /obj/item/reagent_containers/glass/bottle/dexalin(src)
 
 /obj/item/storage/syringe_case/meralyne
+	name = "syringe case (meralyne)"
+	desc = "It's a medical case for storing syringes and bottles. This one contains Meralyne."
 
-/obj/item/storage/syringe_case/meralyne/Initialize(mapload, ...)
+/obj/item/storage/syringe_case/meralyne/PopulateContents()
 	. = ..()
 	new /obj/item/reagent_containers/syringe(src)
 	new /obj/item/reagent_containers/glass/bottle/meralyne(src)
 	new /obj/item/reagent_containers/glass/bottle/meralyne(src)
 
 /obj/item/storage/syringe_case/dermaline
+	name = "syringe case (dermaline)"
+	desc = "It's a medical case for storing syringes and bottles. This one contains Dermaline."
 
-/obj/item/storage/syringe_case/dermaline/Initialize(mapload, ...)
+/obj/item/storage/syringe_case/dermaline/PopulateContents()
 	. = ..()
 	new /obj/item/reagent_containers/syringe(src)
 	new /obj/item/reagent_containers/glass/bottle/dermaline(src)
 	new /obj/item/reagent_containers/glass/bottle/dermaline(src)
 
 /obj/item/storage/syringe_case/meraderm
+	name = "syringe case (meraderm)"
+	desc = "It's a medical case for storing syringes and bottles. This one contains Meraderm."
 
-/obj/item/storage/syringe_case/meraderm/Initialize(mapload, ...)
+/obj/item/storage/syringe_case/meraderm/PopulateContents()
 	. = ..()
 	new /obj/item/reagent_containers/syringe(src)
 	new /obj/item/reagent_containers/glass/bottle/meraderm(src)
 	new /obj/item/reagent_containers/glass/bottle/meraderm(src)
 
 /obj/item/storage/syringe_case/ironsugar
+	name = "syringe case (ironsugar)"
+	desc = "It's a medical case for storing syringes and bottles. This one contains Ironsugar."
 
-/obj/item/storage/syringe_case/ironsugar/Initialize(mapload, ...)
+/obj/item/storage/syringe_case/ironsugar/PopulateContents()
 	. = ..()
 	new /obj/item/reagent_containers/syringe(src)
 	new /obj/item/reagent_containers/glass/bottle/ironsugar(src)
 	new /obj/item/reagent_containers/glass/bottle/ironsugar(src)
+
+/obj/item/storage/syringe_case/combat
+	name = "syringe case (combat)"
+	desc = "It's a medical case for storing syringes and bottles. This one contains combat autoinjectors."
+
+/obj/item/storage/syringe_case/combat/PopulateContents()
+	. = ..()
+	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
+
 
 /*
 * Pill Bottles
@@ -238,7 +267,8 @@
 	can_hold = list(
 		/obj/item/reagent_containers/pill,
 		/obj/item/toy/dice,
-		/obj/item/paper)
+		/obj/item/paper,
+	)
 	allow_quick_gather = 1
 	use_to_pickup = 1
 	storage_slots = null
@@ -297,6 +327,12 @@
 	desc = "Contains pills that numb pain. Take two for a stronger effect at the cost of a toxic effect."
 	icon_state = "pill_canister5"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/tramadol
+
+/obj/item/storage/pill_bottle/paracetamol
+	name = "paracetamol pill bottle"
+	desc = "Contains pills that mildly numb pain. Take two for a slightly stronger effect."
+	icon_state = "pill_canister5"
+	pill_type_to_fill = /obj/item/reagent_containers/pill/paracetamol
 
 /obj/item/storage/pill_bottle/spaceacillin
 	name = "spaceacillin pill bottle"

@@ -1,6 +1,15 @@
-
-
 /obj/item/circuitboard/computer
+
+
+/obj/item/circuitboard/computer/card
+	name = "ID Console (Computer Board)"
+	icon_state = "command"
+	build_path = /obj/machinery/computer/marine_card
+
+
+/obj/item/circuitboard/computer/card/centcom
+	name = "CentCom ID Console (Computer Board)"
+	build_path = /obj/item/circuitboard/computer/card/centcom
 
 
 //TODO: Move these into computer/camera.dm
@@ -32,7 +41,7 @@
 
 /obj/item/circuitboard/computer/cryopodcontrol
 	name = "Circuit board (Cryogenic Oversight Console)"
-	build_path = "/obj/machinery/computer/cryopod"
+	build_path = /obj/machinery/computer/cryopod
 
 /obj/item/circuitboard/computer/med_data
 	name = "Circuit board (Medical Records)"
@@ -46,13 +55,13 @@
 	name = "Circuit board (Communications)"
 	build_path = /obj/machinery/computer/communications
 
-/obj/item/circuitboard/computer/card
+/obj/item/circuitboard/computer/marine_card
 	name = "Circuit board (ID Computer)"
-	build_path = /obj/machinery/computer/card
+	build_path = /obj/machinery/computer/marine_card
 
-/obj/item/circuitboard/computer/card/centcom
+/obj/item/circuitboard/computer/marine_card/centcom
 	name = "Circuit board (CentCom ID Computer)"
-	build_path = /obj/machinery/computer/card/centcom
+	build_path = /obj/machinery/computer/marine_card/centcom
 
 /obj/item/circuitboard/computer/teleporter
 	name = "Circuit board (Teleporter)"

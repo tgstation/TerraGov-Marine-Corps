@@ -81,7 +81,7 @@
 			H.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
 			playsound(loc, attack.attack_sound, 25, TRUE)
 			visible_message("<span class='danger'>[H] [pick(attack.attack_verb)]ed [src]!</span>", null, null, 5)
-			apply_damage(melee_damage + attack.damage, BRUTE, "chest", armor.getRating("melee") + armor_bonus + armor_pheromone_bonus)
+			apply_damage(melee_damage + attack.damage, BRUTE, "chest", soft_armor.getRating("melee"))
 			UPDATEHEALTH(src)
 
 
@@ -122,7 +122,7 @@
 					"<span class='warning'>We grab \the [src]!</span>", null, 5)
 					playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 
-			if(INTENT_HARM)//Can't slash other xenos for now. SORRY  // You can now! --spookydonut
+			if(INTENT_HARM, INTENT_DISARM)//Can't slash other xenos for now. SORRY  // You can now! --spookydonut
 				if(issamexenohive(M))
 					M.do_attack_animation(src)
 					M.visible_message("<span class='warning'>\The [M] nibbles \the [src].</span>", \
@@ -149,10 +149,4 @@
 					playsound(loc, "alien_claw_flesh", 25, 1)
 					apply_damage(damage, BRUTE)
 					UPDATEHEALTH(src)
-
-			if(INTENT_DISARM)
-				M.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
-				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1)
-				M.visible_message("<span class='warning'>\The [M] shoves \the [src]!</span>", \
-				"<span class='warning'>We shove \the [src]!</span>", null, 5)
 		return 1

@@ -64,7 +64,7 @@
 		if(user.client)
 			user.client.images += bar
 			client = user.client
-	progress = CLAMP(progress, 0, goal)
+	progress = clamp(progress, 0, goal)
 	last_progress = progress
 	bar.update_icon(progress, goal)
 	if (!shown)

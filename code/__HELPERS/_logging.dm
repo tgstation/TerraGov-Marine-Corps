@@ -6,13 +6,20 @@
 #define SEND_TEXT(target, text) DIRECT_OUTPUT(target, text)
 #define WRITE_FILE(file, text) DIRECT_OUTPUT(file, text)
 #define READ_FILE(file, text) DIRECT_INPUT(file, text)
-#define WRITE_LOG(log, text) rustg_log_write(log, text)
-
+//This is an external call, "true" and "false" are how rust parses out booleans
+#define WRITE_LOG(log, text) rustg_log_write(log, text, "true")
+#define WRITE_LOG_NO_FORMAT(log, text) rustg_log_write(log, text, "false")
 
 //print a warning message to world.log
-#define WARNING(MSG) warning("[MSG] in [__FILE__] at line [__LINE__] src: [src] usr: [usr].")
+#define WARNING(MSG) warning("[MSG] in [__FILE__] at line [__LINE__] src: [UNLINT(src)] usr: [usr].")
 /proc/warning(msg)
 	msg = "## WARNING: [msg]"
+	log_world(msg)
+
+//not an error or a warning, but worth to mention on the world log, just in case.
+#define NOTICE(MSG) notice(MSG)
+/proc/notice(msg)
+	msg = "## NOTICE: [msg]"
 	log_world(msg)
 
 #ifdef UNIT_TESTS
@@ -72,6 +79,9 @@
 	if(CONFIG_GET(flag/log_access))
 		WRITE_LOG(GLOB.world_game_log, "ACCESS: [text]")
 
+
+/proc/log_asset(text)
+	WRITE_LOG(GLOB.world_asset_log, "ASSET: [text]")
 
 /proc/log_attack(text)
 	LAZYADD(GLOB.attack_log, "\[[stationTimestamp()]\] ATTACK: [text]")
@@ -174,6 +184,9 @@
 	SEND_TEXT(world.log, text)
 
 
+/proc/log_debug(text)
+	WRITE_LOG(GLOB.world_debug_log, "DEBUG: [text]")
+
 /* Log to the logfile only. */
 /proc/log_runtime(text)
 	WRITE_LOG(GLOB.world_runtime_log, text)
@@ -188,8 +201,8 @@
 /proc/log_paper(text)
 	WRITE_LOG(GLOB.world_paper_log, "PAPER: [text]")
 
-/* ui logging */ 
- 
+/* ui logging */
+
 /proc/log_tgui(text)
 	WRITE_LOG(GLOB.tgui_log, text)
 

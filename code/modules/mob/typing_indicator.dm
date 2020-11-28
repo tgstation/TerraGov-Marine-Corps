@@ -1,5 +1,5 @@
 /mob/proc/add_typing_indicator(emoting)
-	if(stat != CONSCIOUS || !client.prefs.show_typing)
+	if(stat != CONSCIOUS || !client.prefs.show_typing || (status_flags & INCORPOREAL))
 		return
 
 	if(typing_indicator)

@@ -41,7 +41,7 @@
 /obj/item/storage/MouseDrop(obj/over_object as obj)
 	if(ishuman(usr) || ismonkey(usr)) //so monkeys can take off their backpacks -- Urist
 
-		if(usr.lying)
+		if(usr.lying_angle)
 			return
 
 		if(istype(usr.loc, /obj/vehicle)) // stops inventory actions in a mech/tank
@@ -698,10 +698,10 @@
 		show_to(M)
 
 
-/obj/item/storage/contents_explosion(severity, target)
+/obj/item/storage/contents_explosion(severity)
 	for(var/i in contents)
 		var/atom/A = i
-		A.ex_act(severity, target)
+		A.ex_act(severity)
 
 
 /obj/item/storage/AltClick(mob/user)

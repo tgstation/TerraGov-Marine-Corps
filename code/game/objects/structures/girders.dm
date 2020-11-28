@@ -142,7 +142,11 @@
 			qdel(src)
 			return TRUE
 		if(GIRDER_NORMAL)
+			var/turf/T = get_turf(src)
 			if(anchored)
+				return FALSE
+			if(!isfloorturf(T) && !isbasalt(T) && !islavacatwalk(T) && !isopengroundturf(T))
+				to_chat(usr, "<span class='warning'>The girder must be secured on the floor!</span>")
 				return FALSE
 			playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 			to_chat(user, "<span class='notice'>Now securing the girder</span>")
@@ -156,7 +160,6 @@
 			update_icon()
 			return TRUE
 	return FALSE
-
 
 /obj/structure/girder/crowbar_act(mob/living/user, obj/item/I)
 	if(user.action_busy)
@@ -251,7 +254,7 @@
 			if(!do_after(user, 4 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 				return TRUE
 			to_chat(user, "<span class='notice'>You finished cutting the metal plate!</span>")
-			new /obj/item/stack/sheet/metal(loc)
+			deconstruct()
 			return TRUE
 		if(GIRDER_BUILDING1_WELDED)
 			var/old_girder_state = girder_state
@@ -340,11 +343,11 @@
 
 /obj/structure/girder/ex_act(severity)
 	switch(severity)
-		if(1)
+		if(EXPLODE_DEVASTATE)
 			deconstruct(FALSE)
-		if(2)
+		if(EXPLODE_HEAVY)
 			take_damage(200)
-		if(3)
+		if(EXPLODE_LIGHT)
 			take_damage(25)
 
 

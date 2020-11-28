@@ -16,7 +16,7 @@
 
 /obj/vehicle/powerloader/Initialize()
 	. = ..()
-	cell = new /obj/item/cell/apc(src)
+	set_cell(new /obj/item/cell/apc(src))
 	for(var/i in 1 to 2)
 		var/obj/item/powerloader_clamp/PC = new(src)
 		PC.linked_powerloader = src
@@ -31,7 +31,7 @@
 			usr.put_in_hands(cell)
 			playsound(src,'sound/machines/click.ogg', 25, 1)
 			to_chat(usr, "You take out the [cell] out of the [src].")
-			cell = null
+			set_cell(null)
 		else
 			to_chat(usr, "There is no cell in the [src].")
 
@@ -228,13 +228,13 @@
 		playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
 		update_icon()
 
-	else if(istype(target, /obj/structure/closet/crate))
-		var/obj/structure/closet/crate/C = target
+	else if(istype(target, /obj/structure/closet))
+		var/obj/structure/closet/C = target
 		if(C.mob_size_counter)
-			to_chat(user, "<span class='warning'>Can't grab [loaded], it has a creature inside!</span>")
+			to_chat(user, "<span class='warning'>There is a creature inside!</span>")
 			return
 		if(C.anchored)
-			to_chat(user, "<span class='warning'>Can't grab [loaded].</span>")
+			to_chat(user, "<span class='warning'>It is bolted to the ground!</span>")
 			return
 		if(!linked_powerloader)
 			CRASH("[src] called afterattack on [C] without a linked_powerloader")
@@ -248,7 +248,7 @@
 	else if(istype(target, /obj/structure/largecrate))
 		var/obj/structure/largecrate/LC = target
 		if(LC.anchored)
-			to_chat(user, "<span class='warning'>Can't grab [loaded].</span>")
+			to_chat(user, "<span class='warning'>It is bolted to the ground!</span>")
 			return
 		LC.forceMove(linked_powerloader)
 		loaded = LC
@@ -257,6 +257,42 @@
 		user.visible_message("<span class='notice'>[user] grabs [loaded] with [src].</span>",
 		"<span class='notice'>You grab [loaded] with [src].</span>")
 
+	else if(istype(target, /obj/machinery/vending))
+		var/obj/machinery/vending/V = target
+		if(V.anchored)
+			to_chat(user, "<span class='warning'>It is bolted to the ground!</span>")
+			return
+		V.forceMove(linked_powerloader)
+		loaded = V
+		playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
+		update_icon()
+		user.visible_message("<span class='notice'>[user] grabs [loaded] with [src].</span>",
+		"<span class='notice'>You grab [loaded] with [src].</span>")
+
+	else if(istype(target, /obj/structure/reagent_dispensers))
+		var/obj/structure/reagent_dispensers/RD = target
+		if(RD.anchored)
+			to_chat(user, "<span class='warning'>You can't lift this!</span>")
+			return
+		RD.forceMove(linked_powerloader)
+		loaded = RD
+		playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
+		update_icon()
+		user.visible_message("<span class='notice'>[user] grabs [loaded] with [src].</span>",
+		"<span class='notice'>You grab [loaded] with [src].</span>")
+
+	else if(istype(target, /obj/structure/ore_box))
+		var/obj/structure/ore_box/OB = target
+		OB.forceMove(linked_powerloader)
+		loaded = OB
+		playsound(src, 'sound/machines/hydraulics_2.ogg', 40, TRUE)
+		update_icon()
+		user.visible_message("<span class='notice'>[user] grabs [loaded] with [src].</span>",
+		"<span class='notice'>You grab [loaded] with [src].</span>")
+
+	else if(istype(target, /obj))
+		to_chat(user, "<span class='warning'>The powerloader is not capable of carrying this!</span>")
+		return
 
 /obj/item/powerloader_clamp/update_icon()
 	if(loaded)

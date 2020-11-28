@@ -2,7 +2,7 @@
 	access = ALL_MARINE_ACCESS
 	minimal_access = ALL_MARINE_ACCESS
 	skills_type = /datum/skills/mercenary
-	faction = "Unknown Mercenary Group"
+	faction = FACTION_UNKN_MERCS
 
 
 //Mercenary Heavy

@@ -8,7 +8,13 @@ GLOBAL_VAR(restart_counter)
 //This happens after the Master subsystem new(s) (it's a global datum)
 //So subsystems globals exist, but are not initialised
 /world/New()
+	var/extools = world.GetConfig("env", "EXTOOLS_DLL") || "./byond-extools.dll"
+	if(fexists(extools))
+		call(extools, "maptick_initialize")()
 	enable_debugger()
+#ifdef REFERENCE_TRACKING
+	enable_reference_tracking()
+#endif
 
 	log_world("World loaded at [time_stamp()]!")
 
@@ -22,8 +28,6 @@ GLOBAL_VAR(restart_counter)
 
 	load_admins()
 
-	SetupExternalRSC()
-
 	populate_seed_list()
 	populate_gear_list()
 	make_datum_references_lists()
@@ -33,6 +37,7 @@ GLOBAL_VAR(restart_counter)
 	SSdbcore.CheckSchemaVersion()
 	SSdbcore.SetRoundID()
 	SetupLogs()
+	load_poll_data()
 
 	LoadVerbs(/datum/verbs/menu)
 	if(CONFIG_GET(flag/usewhitelist))
@@ -58,8 +63,9 @@ GLOBAL_VAR(restart_counter)
 
 	world.tick_lag = CONFIG_GET(number/ticklag)
 
-	if(TEST_RUN_PARAMETER in params)
-		HandleTestRun()
+	#ifdef UNIT_TESTS
+	HandleTestRun()
+	#endif
 
 	return ..()
 
@@ -74,7 +80,7 @@ GLOBAL_VAR(restart_counter)
 #else
 	cb = VARSET_CALLBACK(SSticker, force_ending, TRUE)
 #endif
-	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, /proc/addtimer, cb, 10 SECONDS))
+	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, /proc/_addtimer, cb, 10 SECONDS))
 
 /world/proc/SetupLogs()
 	var/override_dir = params[OVERRIDE_LOG_DIRECTORY_PARAMETER]
@@ -91,6 +97,7 @@ GLOBAL_VAR(restart_counter)
 		GLOB.log_directory = "data/logs/[override_dir]"
 
 	GLOB.world_game_log = "[GLOB.log_directory]/game.log"
+	GLOB.world_asset_log = "[GLOB.log_directory]/asset.log"
 	GLOB.world_attack_log = "[GLOB.log_directory]/attack.log"
 	GLOB.world_manifest_log = "[GLOB.log_directory]/manifest.log"
 	GLOB.world_href_log = "[GLOB.log_directory]/hrefs.log"
@@ -98,8 +105,13 @@ GLOBAL_VAR(restart_counter)
 	GLOB.world_telecomms_log = "[GLOB.log_directory]/telecomms.log"
 	GLOB.world_qdel_log = "[GLOB.log_directory]/qdel.log"
 	GLOB.world_runtime_log = "[GLOB.log_directory]/runtime.log"
+	GLOB.world_debug_log = "[GLOB.log_directory]/debug.log"
 	GLOB.world_paper_log = "[GLOB.log_directory]/paper.log"
 
+#ifdef UNIT_TESTS
+	GLOB.test_log = "[GLOB.log_directory]/tests.log"
+	start_log(GLOB.test_log)
+#endif
 	start_log(GLOB.world_game_log)
 	start_log(GLOB.world_attack_log)
 	start_log(GLOB.world_manifest_log)
@@ -108,6 +120,7 @@ GLOBAL_VAR(restart_counter)
 	start_log(GLOB.world_telecomms_log)
 	start_log(GLOB.world_qdel_log)
 	start_log(GLOB.world_runtime_log)
+	start_log(GLOB.world_debug_log)
 	start_log(GLOB.world_paper_log)
 
 	GLOB.changelog_hash = md5('html/changelog.html') //for telling if the changelog has changed recently
@@ -124,6 +137,8 @@ GLOBAL_VAR(restart_counter)
 	log_runtime(GLOB.revdata.get_log_message())
 
 /world/Topic(T, addr, master, key)
+	TGS_TOPIC	//redirect to server tools if necessary
+
 	var/static/list/bannedsourceaddrs = list()
 
 	var/static/list/lasttimeaddr = list()
@@ -149,10 +164,6 @@ GLOBAL_VAR(restart_counter)
 				return
 
 		lasttimeaddr[addr] = world.time + 2 SECONDS
-
-
-	TGS_TOPIC	//redirect to server tools if necessary
-
 
 	var/list/input = params2list(T)
 	var/datum/world_topic/handler
@@ -193,7 +204,8 @@ GLOBAL_VAR(restart_counter)
 
 /world/Reboot(ping)
 	if(ping)
-		send2update(CONFIG_GET(string/restart_message))
+		// TODO: Replace the second arguments of send2chat with custom config tags. See __HELPERS/chat.dm
+		send2chat(CONFIG_GET(string/restart_message), "")
 		var/list/msg = list()
 
 		if(GLOB.round_id)
@@ -224,14 +236,36 @@ GLOBAL_VAR(restart_counter)
 			msg += "Players: [length(GLOB.clients)]"
 
 		if(length(msg))
-			send2update(msg.Join(" | "))
+			send2chat(msg.Join(" | "), "")
 
 	Master.Shutdown()
 	TgsReboot()
 
-	if(TEST_RUN_PARAMETER in params)
-		FinishTestRun()
-		return
+	#ifdef UNIT_TESTS
+	FinishTestRun()
+	return
+	#endif
+
+	if(TgsAvailable())
+		var/do_hard_reboot
+		// check the hard reboot counter
+		var/ruhr = CONFIG_GET(number/rounds_until_hard_restart)
+		switch(ruhr)
+			if(-1)
+				do_hard_reboot = FALSE
+			if(0)
+				do_hard_reboot = TRUE
+			else
+				if(GLOB.restart_counter >= ruhr)
+					do_hard_reboot = TRUE
+				else
+					text2file("[++GLOB.restart_counter]", RESTART_COUNTER_PATH)
+					do_hard_reboot = FALSE
+
+		if(do_hard_reboot)
+			log_world("World rebooted at [time_stamp()]")
+			shutdown_logging() // Past this point, no logging procs can be used, at risk of data loss.
+			TgsEndProcess()
 
 	var/linkylink = CONFIG_GET(string/server)
 	if(linkylink)
@@ -256,48 +290,41 @@ GLOBAL_VAR(restart_counter)
 
 
 /world/proc/update_status()
-	//Note: Hub content is limited to 254 characters, including HTML/CSS. Image width is limited to 450 pixels.
-	var/s = ""
-	var/shipname = length(SSmapping?.configs) && SSmapping.configs[SHIP_MAP] ? SSmapping.configs[SHIP_MAP].map_name : null
+	var/server_name = CONFIG_GET(string/server_name)
+	if(!server_name || Master?.current_runlevel == RUNLEVEL_INIT)
+		// If you didn't see a server name, or the master controller
+		// is stilling initing, we don't update the hub.
+		return
 
-	if(CONFIG_GET(string/server_name))
-		if(CONFIG_GET(string/discordurl))
-			s += "<a href=\"[CONFIG_GET(string/discordurl)]\"><b>[CONFIG_GET(string/server_name)] &#8212; [shipname]</a></b>"
-		else
-			s += "<b>[CONFIG_GET(string/server_name)] &#8212; [shipname]</b>"
-		var/map_name = length(SSmapping.configs) ? SSmapping.configs[GROUND_MAP].map_name : null
-		if(Master?.current_runlevel && GLOB.master_mode)
-			switch(map_name)
-				if("Ice Colony")
-					s += "<br>Map: <a href='[CONFIG_GET(string/icecolonyurl)]'><b>[map_name]</a></b>"
-				if("LV624")
-					s += "<br>Map: <a href='[CONFIG_GET(string/lv624url)]'><b>[map_name]</a></b>"
-				if("Big Red")
-					s += "<br>Map: <a href='[CONFIG_GET(string/bigredurl)]'><b>[map_name]</a></b>"
-				if("Prison Station")
-					s += "<br>Map: <a href='[CONFIG_GET(string/prisonstationurl)]'><b>[map_name]</a></b>"
-				if("Whiskey Outpost")
-					s += "<br>Map: <a href='[CONFIG_GET(string/whiskeyoutposturl)]'><b>[map_name]</a></b>"
-				else
-					s += "<br>Map: <b>[map_name ? map_name : "Loading..."]</b>"
-			s += "<br>Mode: <b>[SSticker.mode ? SSticker.mode.name : "Lobby"]</b>"
-			s += "<br>Round time: <b>[duration2text()]</b>"
-		else
-			s += "<br>Map: <b>[map_name ? map_name : "Loading..."]</b>"
+	// Start generating the hub status
+	// Note: Hub content is limited to 254 characters, including HTML/CSS. Image width is limited to 450 pixels.
+	// Current outputt should look like
+	/*
+	Something — Lost in space...	|	TerraGov Marine Corps — Sulaco
+	Map: Loading...					|	Map: Icy Caves
+	Mode: Lobby						|	Mode: Crash
+	Round time: 0:0					|	Round time: 4:54
+	*/
+	var/discord_url = CONFIG_GET(string/discordurl)
+	var/webmap_host = CONFIG_GET(string/webmap_host)
+	var/shipname = length(SSmapping?.configs) && SSmapping.configs[SHIP_MAP] ? SSmapping.configs[SHIP_MAP].map_name : "Lost in space..."
+	var/map_name = length(SSmapping.configs) && SSmapping.configs[GROUND_MAP] ? SSmapping.configs[GROUND_MAP].map_name : "Loading..."
+	var/ground_map_file = length(SSmapping.configs) && SSmapping.configs[GROUND_MAP] ? SSmapping.configs[GROUND_MAP].map_file : ""
 
-		status = s
+	var/new_status = ""
+	new_status += "<b><a href='[discord_url ? discord_url : "#"]'>[server_name] &#8212; [shipname]</a></b>"
+	new_status += "<br>Map: <a href='[webmap_host][ground_map_file]'><b>[map_name]</a></b>"
+	new_status += "<br>Mode: <b>[SSticker.mode ? SSticker.mode.name : "Lobby"]</b>"
+	new_status += "<br>Round time: <b>[gameTimestamp("hh:mm")]</b>"
+
+	// Finally set the new status
+	status = new_status
 
 
 /world/proc/incrementMaxZ()
 	maxz++
 	SSmobs.MaxZChanged()
 	SSidlenpcpool.MaxZChanged()
-
-
-/world/proc/SetupExternalRSC()
-	if(!CONFIG_GET(string/resource_url))
-		return
-	GLOB.external_rsc_url = CONFIG_GET(string/resource_url)
 
 
 /world/proc/update_hub_visibility(new_visibility)

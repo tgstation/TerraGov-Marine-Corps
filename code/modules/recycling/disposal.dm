@@ -13,6 +13,8 @@
 	icon_state = "disposal"
 	anchored = TRUE
 	density = TRUE
+	active_power_usage = 3500 //The pneumatic pump power. 3 HP ~ 2200W
+	idle_power_usage = 100
 	var/mode = 1 //Item mode 0=off 1=charging 2=charged
 	var/flush = 0 //True if flush handle is pulled
 	var/obj/structure/disposalpipe/trunk/trunk = null //The attached pipe trunk
@@ -20,8 +22,6 @@
 	var/flush_every_ticks = 30 //Every 30 ticks it will look whether it is ready to flush
 	var/flush_count = 0 //This var adds 1 once per tick. When it reaches flush_every_ticks it resets and tries to flush.
 	var/last_sound = 0
-	active_power_usage = 3500 //The pneumatic pump power. 3 HP ~ 2200W
-	idle_power_usage = 100
 	var/disposal_pressure = 0
 
 //Create a new disposal, find the attached trunk (if present) and init gas resvr.
@@ -36,6 +36,18 @@
 
 	update()
 	start_processing()
+
+
+/obj/machinery/disposal/Destroy()
+	if(length(contents))
+		eject()
+	if(trunk)
+		if(trunk.linked == src)
+			trunk.linked = null
+			trunk.update()
+		trunk = null
+	return ..()
+
 
 //Attack by item places it in to disposal
 /obj/machinery/disposal/attackby(obj/item/I, mob/user, params)
@@ -125,14 +137,14 @@
 	// Check the target, are they valid, small enough, and not tied down
 	if(!istype(target) || target.anchored || target.buckled || target.mob_size >= MOB_SIZE_BIG)
 		return
-	if(target != user && (isanimal(user) || user.restrained())) 
+	if(target != user && (isanimal(user) || user.restrained()))
 		return //Animals cannot put mobs other than themselves into disposal
 
 	if(target == user)
 		visible_message("<span class='notice'>[user] starts climbing into the disposal.</span>")
 	else
 		visible_message("<span class ='warning'>[user] starts stuffing [target] into the disposal.</span>")
-		
+
 	if(!do_after(user, 4 SECONDS, FALSE, target, BUSY_ICON_HOSTILE))
 		return
 
@@ -167,11 +179,10 @@
 		user.client.eye = user.client.mob
 		user.client.perspective = MOB_PERSPECTIVE
 	user.forceMove(loc)
-	user.update_canmove() //Force the delay to go in action immediately
 	if(isliving(user))
 		var/mob/living/L = user
 		L.Stun(40)
-	if(!user.lying)
+	if(!user.lying_angle)
 		user.visible_message("<span class='warning'>[user] suddenly climbs out of [src]!",
 		"<span class='warning'>You climb out of [src] and get your bearings!")
 		update()
@@ -252,8 +263,7 @@
 		AM.pipe_eject(0)
 		if(isliving(AM))
 			var/mob/M = AM
-			M.update_canmove() //Force the delay to go in action immediately
-			if(!M.lying)
+			if(!M.lying_angle)
 				M.visible_message("<span class='warning'>[M] is suddenly pushed out of [src]!",
 				"<span class='warning'>You get pushed out of [src] and get your bearings!")
 			if(isliving(M))
@@ -264,21 +274,14 @@
 //Pipe affected by explosion
 /obj/machinery/disposal/ex_act(severity)
 	switch(severity)
-		if(1)
+		if(EXPLODE_DEVASTATE)
 			qdel(src)
-			return
-		if(2)
+		if(EXPLODE_HEAVY)
 			if(prob(60))
 				qdel(src)
-			return
-		if(3)
+		if(EXPLODE_LIGHT)
 			if(prob(25))
 				qdel(src)
-
-/obj/machinery/disposal/Destroy()
-	if(contents.len)
-		eject()
-	. = ..()
 
 //Update the icon & overlays to reflect mode & status
 /obj/machinery/disposal/proc/update()
@@ -523,19 +526,19 @@
 
 
 //Called when player tries to move while in a pipe
-/obj/structure/disposalholder/relaymove(mob/user as mob)
+/obj/structure/disposalholder/relaymove(mob/user)
 
 	if(!isliving(user))
 		return
 
-	var/mob/living/U = user
+	var/mob/living/living_user = user
 
-	if(U.stat || U.cooldowns[COOLDOWN_DISPOSAL])
+	if(living_user.stat || TIMER_COOLDOWN_CHECK(living_user, COOLDOWN_DISPOSAL))
 		return
 
-	U.cooldowns[COOLDOWN_DISPOSAL] = addtimer(VARSET_LIST_CALLBACK(U.cooldowns, COOLDOWN_DISPOSAL, null), 10 SECONDS)
+	TIMER_COOLDOWN_START(living_user, COOLDOWN_DISPOSAL, 10 SECONDS)
 
-	playsound(src.loc, 'sound/effects/clang.ogg', 25, 0)
+	playsound(loc, 'sound/effects/clang.ogg', 25)
 
 
 //Disposal pipes
@@ -675,11 +678,11 @@
 //Pipe affected by explosion
 /obj/structure/disposalpipe/ex_act(severity)
 	switch(severity)
-		if(1)
+		if(EXPLODE_DEVASTATE)
 			qdel(src)
-		if(2)
+		if(EXPLODE_HEAVY)
 			take_damage(rand(5, 15))
-		if(3)
+		if(EXPLODE_LIGHT)
 			take_damage(rand(0, 15))
 
 //Attack by item. Weldingtool: unfasten and convert to obj/disposalconstruct
@@ -937,6 +940,9 @@
 
 /obj/structure/disposalpipe/junction/flipped
 	icon_state = "pipe-j2"
+
+/obj/structure/disposalpipe/junction/yjunc
+	icon_state = "pipe-y"
 
 //Next direction to move, if coming in from secondary dirs, then next is primary dir, if coming in from primary dir, then next is equal chance of other dirs
 /obj/structure/disposalpipe/junction/nextdir(fromdir)
@@ -1221,6 +1227,13 @@
 /obj/structure/disposalpipe/broken/Initialize()
 	. = ..()
 	update()
+
+//Water Pipe, just for decor
+/obj/structure/disposalpipe/water_pipe
+	icon_state = "water_pipe"
+	dpdir = 0 //Makes this not a real pipe
+	desc = "A inlet or outlet for fluids."
+
 
 //Called when welded, for broken pipe, remove and turn into scrap
 /obj/structure/disposalpipe/broken/welded()

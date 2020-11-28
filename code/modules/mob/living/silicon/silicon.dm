@@ -71,7 +71,7 @@
 	return
 
 
-/mob/living/silicon/contents_explosion(severity, target)
+/mob/living/silicon/contents_explosion(severity)
 	return
 
 
@@ -83,7 +83,7 @@
 		if(2)
 			Stun(rand(2 SECONDS, 10 SECONDS))
 			take_limb_damage(10)
-	flash_eyes(1, TRUE, type = /obj/screen/fullscreen/flash/noise)
+	flash_act(1, TRUE, type = /obj/screen/fullscreen/flash/noise)
 
 	to_chat(src, "<span class='danger'>*BZZZT*</span>")
 	to_chat(src, "<span class='warning'>Warning: Electromagnetic pulse detected.</span>")
@@ -161,27 +161,27 @@
 
 
 /mob/living/silicon/ex_act(severity)
-	flash_eyes()
+	flash_act()
 
 	switch(severity)
-		if(1)
+		if(EXPLODE_DEVASTATE)
 			if(stat == DEAD)
 				return
 			adjustBruteLoss(100)
 			adjustFireLoss(100)
 			if(!anchored)
 				gib()
-		if(2)
+		if(EXPLODE_HEAVY)
 			if(stat == DEAD)
 				return
 			adjustBruteLoss(60)
 			adjustFireLoss(60)
-		if(3)
+		if(EXPLODE_LIGHT)
 			if(stat == DEAD)
 				return
 			adjustBruteLoss(30)
 
-	updatehealth()
+	UPDATEHEALTH(src)
 
 
 /mob/living/silicon/emp_act(severity)
@@ -196,7 +196,7 @@
 			adjustBruteLoss(10)
 
 	to_chat(src, "<span class='danger'>*BZZZT*</span>")
-	flash_eyes()
+	flash_act()
 
 
 /mob/living/silicon/update_transform()

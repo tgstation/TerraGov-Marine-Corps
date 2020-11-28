@@ -21,7 +21,7 @@ GLOBAL_LIST_EMPTY(human_mob_list)			//all /mob/living/carbon/human including syn
 GLOBAL_LIST_EMPTY(alive_human_list)			//as above except stat != DEAD
 GLOBAL_LIST_EMPTY(dead_human_list)
 GLOBAL_LIST_EMPTY(cryoed_mob_list)			//Used for logging people entering cryosleep
-GLOBAL_LIST_EMPTY(dead_mob_list)			//all dead mobs, including clientless. Excludes /mob/dead/new_player
+GLOBAL_LIST_EMPTY(dead_mob_list)			//all dead mobs, including clientless. Excludes /mob/new_player
 GLOBAL_LIST_EMPTY(joined_player_list)		//all clients that have joined the game at round-start or as a latejoin.
 GLOBAL_LIST_EMPTY(silicon_mobs)				//all silicon mobs
 GLOBAL_LIST_EMPTY(mob_living_list)				//all instances of /mob/living and subtypes
@@ -32,6 +32,8 @@ GLOBAL_LIST_EMPTY(ai_list)
 GLOBAL_LIST_INIT(simple_animals, list(list(),list(),list(),list())) // One for each AI_* status define
 GLOBAL_LIST_EMPTY(living_cameras)
 GLOBAL_LIST_EMPTY(aiEyes)
+GLOBAL_LIST_EMPTY(humans_by_zlevel)			//z level /list/list of alive humans
+GLOBAL_LIST_EMPTY(observers_by_zlevel)
 
 GLOBAL_LIST_EMPTY(mob_config_movespeed_type_lookup)
 
@@ -47,7 +49,7 @@ GLOBAL_LIST_INIT(xeno_types_tier_one, list(/mob/living/carbon/xenomorph/runner, 
 GLOBAL_LIST_INIT(xeno_types_tier_two, list(/mob/living/carbon/xenomorph/hunter, /mob/living/carbon/xenomorph/warrior, /mob/living/carbon/xenomorph/spitter, /mob/living/carbon/xenomorph/hivelord, /mob/living/carbon/xenomorph/carrier, /mob/living/carbon/xenomorph/bull))
 GLOBAL_LIST_INIT(xeno_types_tier_three, list(/mob/living/carbon/xenomorph/ravager, /mob/living/carbon/xenomorph/praetorian, /mob/living/carbon/xenomorph/boiler, /mob/living/carbon/xenomorph/Defiler, /mob/living/carbon/xenomorph/crusher, /mob/living/carbon/xenomorph/shrike))
 
-GLOBAL_LIST_EMPTY(hive_datums) // init by makeDatumRefLists()
+GLOBAL_LIST_EMPTY_TYPED(hive_datums, /datum/hive_status) // init by makeDatumRefLists()
 
 /proc/update_config_movespeed_type_lookup(update_mobs = TRUE)
 	var/list/mob_types = list()

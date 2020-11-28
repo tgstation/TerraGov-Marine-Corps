@@ -4,7 +4,6 @@
 /obj/item/weapon/gun/revolver
 	flags_equip_slot = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_NORMAL
-	materials = list(/datum/material/metal = 2000)
 	fire_sound = 'sound/weapons/guns/fire/44mag.ogg'
 	reload_sound = 'sound/weapons/guns/interact/revolver_cocked.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/revolver_spun.ogg'
@@ -210,6 +209,31 @@
 	sleep(3)
 	if(loc && user) playsound(user, thud_sound, 25, 1)
 
+/obj/item/weapon/gun/revolver/verb/revolvertrick()
+	set category = "Weapons"
+	set name = "Do a revolver trick"
+	set desc = "Show off to all your friends!"
+
+
+	var/obj/item/weapon/gun/revolver/G = get_active_firearm(usr)
+
+	if(!G)
+		return
+
+	if(!istype(G))
+		return
+
+	src = G
+
+	if(usr.action_busy)
+		return
+
+	if(zoom)
+		to_chat(usr, "<span class='warning'>You cannot conceviably do that while looking down \the [src]'s scope!</span>")
+		return
+
+	revolver_trick(usr)
+
 /obj/item/weapon/gun/revolver/proc/revolver_throw_catch(mob/living/carbon/human/user)
 	set waitfor = 0
 	user.visible_message("[user] deftly flicks [src] and tosses it into the air!","<span class='notice'> You flick and toss [src] into the air!</span>")
@@ -221,7 +245,7 @@
 
 	invisibility = 100
 	for(var/mob/M in viewers(user))
-		to_chat(M, trick)
+		SEND_IMAGE(M, trick)
 	sleep(5)
 	trick.loc = null
 	if(loc && user)
@@ -250,7 +274,7 @@
 
 	var/obj/item/weapon/gun/revolver/double = user.get_inactive_held_item()
 	if(prob(chance))
-		switch(rand(1,8))
+		switch(rand(1,7))
 			if(1)
 				revolver_basic_spin(user, -1)
 			if(2)
@@ -260,15 +284,12 @@
 			if(4)
 				revolver_basic_spin(user, 1)
 			if(5)
-				//???????????
-			if(6)
 				var/arguments[] = istype(double) ? list(user, 1, double) : list(user, -1)
 				revolver_basic_spin(arglist(arguments))
-
-			if(7)
+			if(6)
 				var/arguments[] = istype(double) ? list(user, -1, double) : list(user, 1)
 				revolver_basic_spin(arglist(arguments))
-			if(8)
+			if(7)
 				if(istype(double))
 					spawn(0)
 						double.revolver_throw_catch(user)
@@ -300,7 +321,7 @@
 
 /obj/item/weapon/gun/revolver/standard_revolver
 	name = "\improper TP-44 combat revolver"
-	desc = "The TP-44, Produced by Terran Armories. A sturdy and hard hitting firearm that loads .44 Magnum rounds. Holds 7 rounds in the cylinder. Due to the nature of the weapon, it’s rate of fire doesn’t quite match the output of other guns, but does hit much harder."
+	desc = "The TP-44 standard combat revolver, produced by Terran Armories. A sturdy and hard hitting firearm that loads .44 Magnum rounds. Holds 7 rounds in the cylinder. Due to the nature of the weapon, its rate of fire doesn’t quite match the output of other guns, but does hit much harder."
 	icon_state = "tp44"
 	item_state = "tp44"
 	caliber = ".44 Magnum" //codex
@@ -308,14 +329,15 @@
 	current_mag = /obj/item/ammo_magazine/internal/revolver/standard_revolver
 	force = 8
 	attachable_allowed = list(
-						/obj/item/attachable/bayonet,
-						/obj/item/attachable/reddot,
-						/obj/item/attachable/flashlight,
-						/obj/item/attachable/heavy_barrel,
-						/obj/item/attachable/quickfire,
-						/obj/item/attachable/extended_barrel,
-						/obj/item/attachable/compensator,
-						/obj/item/attachable/lasersight)
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/lasersight,
+	)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 13, "rail_y" = 23, "under_x" = 22, "under_y" = 14, "stock_x" = 22, "stock_y" = 19)
 	fire_delay = 0.3
 	accuracy_mult_unwielded = 0.85
@@ -326,30 +348,31 @@
 	recoil_unwielded = 1
 
 //-------------------------------------------------------
-//M44 MAGNUM REVOLVER //Not actually cannon, but close enough.
+//M-44, based off the SAA.
 
 /obj/item/weapon/gun/revolver/m44
-	name = "\improper M44 combat revolver"
-	desc = "A bulky revolver, occasionally carried by assault troops and officers in the Marine Corps, as well civilian law enforcement. Uses .44 Magnum rounds."
+	name = "\improper M-44 SAA revolver"
+	desc = "A uncommon revolver occasionally carried by civilian law enforcement that's very clearly based off a modernized Single Action Army. Uses .44 Magnum rounds."
 	icon_state = "m44"
 	item_state = "m44"
 	caliber = ".44 Magnum" //codex
-	max_shells = 7 //codex
+	max_shells = 6 //codex
 	current_mag = /obj/item/ammo_magazine/internal/revolver/m44
 	force = 8
 	attachable_allowed = list(
-						/obj/item/attachable/bayonet,
-						/obj/item/attachable/reddot,
-						/obj/item/attachable/flashlight,
-						/obj/item/attachable/heavy_barrel,
-						/obj/item/attachable/quickfire,
-						/obj/item/attachable/extended_barrel,
-						/obj/item/attachable/compensator,
-						/obj/item/attachable/stock/revolver,
-						/obj/item/attachable/scope,
-						/obj/item/attachable/lasersight,
-						/obj/item/attachable/scope/mini)
-	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 21,"rail_x" = 17, "rail_y" = 23, "under_x" = 22, "under_y" = 17, "stock_x" = 22, "stock_y" = 19)
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/quickfire,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/stock/revolver,
+		/obj/item/attachable/scope,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/scope/mini,
+	)
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 22,"rail_x" = 17, "rail_y" = 22, "under_x" = 22, "under_y" = 17, "stock_x" = 22, "stock_y" = 19)
 
 //-------------------------------------------------------
 //RUSSIAN REVOLVER //Based on the 7.62mm Russian revolvers.
@@ -365,10 +388,11 @@
 	current_mag = /obj/item/ammo_magazine/internal/revolver/upp
 	force = 8
 	attachable_allowed = list(
-						/obj/item/attachable/suppressor,
-						/obj/item/attachable/flashlight,
-						/obj/item/attachable/compensator,
-						/obj/item/attachable/extended_barrel)
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/extended_barrel,
+	)
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 21,"rail_x" = 14, "rail_y" = 23, "under_x" = 24, "under_y" = 19, "stock_x" = 24, "stock_y" = 19)
 
 	damage_mult = 1.05
@@ -390,13 +414,14 @@
 	current_mag = /obj/item/ammo_magazine/internal/revolver/small
 	force = 6
 	attachable_allowed = list(
-						/obj/item/attachable/reddot,
-						/obj/item/attachable/flashlight,
-						/obj/item/attachable/extended_barrel,
-						/obj/item/attachable/compensator,
-						/obj/item/attachable/scope,
-						/obj/item/attachable/lasersight,
-						/obj/item/attachable/scope/mini)
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/scope,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/scope/mini,
+	)
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 19,"rail_x" = 12, "rail_y" = 21, "under_x" = 20, "under_y" = 15, "stock_x" = 20, "stock_y" = 15)
 
 	scatter_unwielded = 20
@@ -407,13 +432,14 @@
 	return revolver_trick(user)
 
 //-------------------------------------------------------
-//BURST REVOLVER //Mateba is pretty well known. The cylinder folds up instead of to the side.
+//Mateba is pretty well known. The cylinder folds up instead of to the side. This has a non-marine version and a marine version.
 
 /obj/item/weapon/gun/revolver/mateba
-	name = "\improper Mateba autorevolver"
-	desc = "The Mateba is a powerful, fast-firing revolver that uses its own recoil to rotate the cylinders. It uses heavy .454 rounds."
+	name = "\improper TL-24 autorevolver"
+	desc = "The TL-24 is the rather rare autorevolver used by the TGMC issued in rather small numbers to backline personnel and officers it uses recoil to spin the cylinder. Uses heavy .454 rounds."
 	icon_state = "mateba"
 	item_state = "mateba"
+	fire_animation = "mateba_fire"
 	muzzleflash_iconstate = "muzzle_flash"
 	caliber = ".454 Casull" //codex
 	max_shells = 6 //codex
@@ -421,54 +447,54 @@
 	current_mag = /obj/item/ammo_magazine/internal/revolver/mateba
 	force = 15
 	attachable_allowed = list(
-						/obj/item/attachable/reddot,
-						/obj/item/attachable/flashlight,
-						/obj/item/attachable/heavy_barrel,
-						/obj/item/attachable/quickfire,
-						/obj/item/attachable/compensator)
-	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 21, "under_x" = 22, "under_y" = 15, "stock_x" = 22, "stock_y" = 15)
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/compensator,
+	)
+	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 18,"rail_x" = 16, "rail_y" = 21, "under_x" = 22, "under_y" = 15, "stock_x" = 22, "stock_y" = 15)
 
-	fire_delay = 0.7 SECONDS
-	burst_amount = 2
-	burst_delay = 0.4 SECONDS
+	fire_delay = 0.2 SECONDS
+	recoil = 0
+	accuracy_mult = 1.1
+	scatter = 10
 	accuracy_mult_unwielded = 0.6
 	scatter_unwielded = 20
-	damage_mult = 1.05
 
+/obj/item/weapon/gun/revolver/mateba/notmarine
+	name = "\improper Mateba autorevolver"
+	desc = "The Mateba is a powerful, fast-firing revolver that uses its own recoil to rotate the cylinders. Uses .454 rounds."
 
-
-/obj/item/weapon/gun/revolver/mateba/admiral
-	name = "\improper Mateba autorevolver custom"
-	desc = "The Mateba is a powerful, fast-firing revolver that uses its own recoil to rotate the cylinders. This version is snubnosed, engraved with gold, tinted black, and highly customized for a high-ranking admiral. It uses heavy .454 rounds."
-	icon_state = "a_mateba"
-	item_state = "a_mateba"
 
 /obj/item/weapon/gun/revolver/mateba/captain
-	name = "\improper Mateba autorevolver special"
-	desc = "The Mateba is a powerful, fast-firing revolver that uses its own recoil to rotate the cylinders. It uses heavy .454 rounds. This version is a limited edition produced for the TGMC, and issued in extremely small amounts."
-	icon_state = "c_mateba"
-	item_state = "c_mateba"
+	name = "\improper TL-24 autorevolver special"
+	desc = "The Mateba is a powerful, fast-firing revolver that uses its own recoil to rotate the cylinders. This one appears to have had more love and care put into it. Uses .454 rounds."
+	icon_state = "mateba"
+	item_state = "mateba"
 
 //-------------------------------------------------------
 //MARSHALS REVOLVER
 
 /obj/item/weapon/gun/revolver/cmb
 	name = "\improper CMB autorevolver"
-	desc = "An automatic revolver chambered in .357 magnum. Commonly issued to Colonial Marshals. It has a burst mode. Currently in trial with other revolvers across Terra and other colonies."
+	desc = "An automatic revolver chambered in .357 magnum. Commonly issued to Nanotrasen security. It has a burst mode. Currently in trial with other revolvers across Terra and other colonies."
 	icon_state = "cmb"
 	item_state = "cmb"
 	caliber = ".357 Magnum" //codex
 	max_shells = 6 //codex
-	fire_sound = 'sound/weapons/guns/fire/revolver_small.ogg'
+	fire_sound = 'sound/weapons/guns/fire/revolver_light.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/revolver/cmb
 	force = 12
 	attachable_allowed = list(
-						/obj/item/attachable/reddot,
-						/obj/item/attachable/flashlight,
-						/obj/item/attachable/extended_barrel,
-						/obj/item/attachable/heavy_barrel,
-						/obj/item/attachable/quickfire,
-						/obj/item/attachable/compensator)
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/quickfire,
+		/obj/item/attachable/compensator,
+	)
 	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 22,"rail_x" = 11, "rail_y" = 25, "under_x" = 20, "under_y" = 18, "stock_x" = 20, "stock_y" = 18)
 
 	fire_delay = 1.2 SECONDS

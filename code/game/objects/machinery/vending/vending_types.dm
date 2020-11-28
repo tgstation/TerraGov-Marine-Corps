@@ -66,10 +66,12 @@
 	icon_state = "coffee"
 	icon_vend = "coffee-vend"
 	vend_delay = 34
-	products = list(/obj/item/reagent_containers/food/drinks/coffee = 20,
-					/obj/item/reagent_containers/food/drinks/coffee/cafe_latte = 20,
-					/obj/item/reagent_containers/food/drinks/tea = 25,
-					/obj/item/reagent_containers/food/drinks/h_chocolate = 25)
+	products = list(
+		/obj/item/reagent_containers/food/drinks/coffee = 20,
+		/obj/item/reagent_containers/food/drinks/coffee/cafe_latte = 20,
+		/obj/item/reagent_containers/food/drinks/tea = 25,
+		/obj/item/reagent_containers/food/drinks/h_chocolate = 25,
+	)
 	contraband = list(/obj/item/reagent_containers/food/drinks/ice = 10)
 	prices = list()
 
@@ -82,14 +84,17 @@
 	product_slogans = "Kepler Crisps! Try a snack that's out of this world!;Eat an EAT!;Eat a Nanotrasen brand packaged hamburger.;Eat a Nanotrasen brand packaged hot dog.;Eat a Nanotrasen brand packaged burrito.;"
 	product_ads = "Kepler Crisps! Try a snack that's out of this world!;Eat an EAT!"
 	icon_state = "snack"
-	products = list(/obj/item/reagent_containers/food/snacks/packaged_burger = 12,
-					/obj/item/reagent_containers/food/snacks/packaged_burrito = 12,
-					/obj/item/reagent_containers/food/snacks/packaged_hdogs =12,
-					/obj/item/reagent_containers/food/snacks/kepler_crisps = 12,
-					/obj/item/reagent_containers/food/snacks/enrg_bar = 12,
-					/obj/item/reagent_containers/food/snacks/wrapped/booniebars = 6,
-					/obj/item/reagent_containers/food/snacks/wrapped/chunk = 6,
-					/obj/item/reagent_containers/food/snacks/wrapped/barcardine = 6)
+	products = list(
+		/obj/item/reagent_containers/food/snacks/packaged_burger = 12,
+		/obj/item/reagent_containers/food/snacks/packaged_burrito = 12,
+		/obj/item/reagent_containers/food/snacks/packaged_hdogs =12,
+		/obj/item/reagent_containers/food/snacks/kepler_crisps = 12,
+		/obj/item/reagent_containers/food/snacks/enrg_bar = 12,
+		/obj/item/reagent_containers/food/snacks/wrapped/booniebars = 6,
+		/obj/item/reagent_containers/food/snacks/wrapped/chunk = 6,
+		/obj/item/reagent_containers/food/snacks/wrapped/barcardine = 6,
+		/obj/item/reagent_containers/food/snacks/lollipop = 12,
+	)
 
 	prices = list()
 
@@ -101,99 +106,124 @@
 	icon_state = "Cola_Machine"
 	product_slogans = "Souto Soda: Have a Souto and be taken away to a tropical paradise!;Souto Classic. You can't beat that tangerine goodness!;Souto Cherry. The sweet flavor of a cool winter morning!;Souto Lime. For that sweet and sour flavor that you know and love!;Souto Grape. There's nothing better than a grape soda.;Nanotrasen Fruit Beer. Nothing came from that lawsuit!;Nanotrasen Spring Water. It came from a spring!"
 	product_ads = "Souto Classic. You can't beat that tangerine goodness!;Souto Cherry. The sweet flavor of a cool winter morning!;Souto Lime. For that sweet and sour flavor that you know and love!;Souto Grape. There's nothing better than a grape soda.;Nanotrasen Fruit Beer. Nothing came from that lawsuit!;Nanotrasen Spring Water. It came from a spring!"
-	products = list(/obj/item/reagent_containers/food/drinks/cans/souto = 10,
-					/obj/item/reagent_containers/food/drinks/cans/souto/diet = 10,
-					/obj/item/reagent_containers/food/drinks/cans/souto/cherry = 10,
-					/obj/item/reagent_containers/food/drinks/cans/souto/cherry/diet = 10,
-					/obj/item/reagent_containers/food/drinks/cans/souto/lime = 10,
-					/obj/item/reagent_containers/food/drinks/cans/souto/lime/diet = 10,
-					/obj/item/reagent_containers/food/drinks/cans/souto/grape = 10,
-					/obj/item/reagent_containers/food/drinks/cans/souto/grape/diet = 10,
-					/obj/item/reagent_containers/food/drinks/cans/waterbottle = 10,
-					/obj/item/reagent_containers/food/drinks/cans/cola = 10)
+	products = list(
+		/obj/item/reagent_containers/food/drinks/cans/souto = 10,
+		/obj/item/reagent_containers/food/drinks/cans/souto/diet = 10,
+		/obj/item/reagent_containers/food/drinks/cans/souto/cherry = 10,
+		/obj/item/reagent_containers/food/drinks/cans/souto/cherry/diet = 10,
+		/obj/item/reagent_containers/food/drinks/cans/souto/lime = 10,
+		/obj/item/reagent_containers/food/drinks/cans/souto/lime/diet = 10,
+		/obj/item/reagent_containers/food/drinks/cans/souto/grape = 10,
+		/obj/item/reagent_containers/food/drinks/cans/souto/grape/diet = 10,
+		/obj/item/reagent_containers/food/drinks/cans/waterbottle = 10,
+		/obj/item/reagent_containers/food/drinks/cans/cola = 10,
+	)
 
-	prices = list(/obj/item/reagent_containers/food/drinks/cans/souto = 5,
-					/obj/item/reagent_containers/food/drinks/cans/souto/diet = 5,
-					/obj/item/reagent_containers/food/drinks/cans/souto/cherry = 5,
-					/obj/item/reagent_containers/food/drinks/cans/souto/cherry/diet = 5,
-					/obj/item/reagent_containers/food/drinks/cans/souto/lime = 5,
-					/obj/item/reagent_containers/food/drinks/cans/souto/lime/diet = 5,
-					/obj/item/reagent_containers/food/drinks/cans/souto/grape = 5,
-					/obj/item/reagent_containers/food/drinks/cans/souto/grape/diet = 5,
-					/obj/item/reagent_containers/food/drinks/cans/waterbottle = 2,
-					/obj/item/reagent_containers/food/drinks/cans/cola = 10)
+	prices = list(
+		/obj/item/reagent_containers/food/drinks/cans/souto = 5,
+		/obj/item/reagent_containers/food/drinks/cans/souto/diet = 5,
+		/obj/item/reagent_containers/food/drinks/cans/souto/cherry = 5,
+		/obj/item/reagent_containers/food/drinks/cans/souto/cherry/diet = 5,
+		/obj/item/reagent_containers/food/drinks/cans/souto/lime = 5,
+		/obj/item/reagent_containers/food/drinks/cans/souto/lime/diet = 5,
+		/obj/item/reagent_containers/food/drinks/cans/souto/grape = 5,
+		/obj/item/reagent_containers/food/drinks/cans/souto/grape/diet = 5,
+		/obj/item/reagent_containers/food/drinks/cans/waterbottle = 2,
+		/obj/item/reagent_containers/food/drinks/cans/cola = 10,
+	)
 	idle_power_usage = 200
 
 /obj/machinery/vending/cigarette
 	name = "cigarette machine" //OCD had to be uppercase to look nice with the new formating
-	desc = "If you want to get cancer, might as well do it in style!"
-	product_slogans = "L.S./M.F.T.! Lucky Strikes Means Fine Tobacco.;For a classic style that lights up every time, there's always Zippo!;The FDA would like to remind you that tobacco products cause cancer and increased fatigue.;Real men smoke Lucky Strikes!;Serving the US Armed Forces for over two-hundred years!;Life's short, smoke a Lucky!;L.S./M.F.T.!;Lucky Strike is first again!;You just can't beat a Lucky Strike!;The preferred cigarette of Carlos Hathcock!;First again with tobacco-men!"
-	product_ads = "Real men smoke Lucky Strikes!;Serving the US Armed Forces for over two-hundred years!;Life's short, smoke a Lucky!;L.S./M.F.T.!;Lucky Strike is first again!;You just can't beat a Lucky Strike!;The preferred cigarette of Carlos Hathcock!;First again with tobacco-men!"
+	desc = "A specialized vending machine designed to contribute to your slow and uncomfortable death."
+	product_slogans = "There's no better time to start smokin'.;\
+		Smoke now, and win the adoration of your peers.;\
+		They beat cancer centuries ago, so smoke away.;\
+		If you're not smoking, you must be joking."
+	product_ads = "Probably not bad for you!;\
+		Don't believe the scientists!;\
+		It's good for you!;\
+		Don't quit, buy more!;\
+		Smoke!;\
+		Nicotine heaven.;\
+		Best cigarettes since 2150.;\
+		Don't be so hard on yourself, kid. Smoke a Lucky Star!;\
+		Professionals. Better cigarettes for better people. Yes, better people."
 	vend_delay = 14
 	icon_state = "cigs"
-	products = list(/obj/item/storage/fancy/cigarettes/lucky_strikes = 50,
-					/obj/item/storage/box/matches = 15,
-					/obj/item/tool/lighter/random = 25,
-					/obj/item/tool/lighter/zippo = 10)
+	products = list(
+		/obj/item/storage/fancy/cigarettes/luckystars = 50,
+		/obj/item/storage/box/matches = 15,
+		/obj/item/tool/lighter/random = 25,
+		/obj/item/tool/lighter/zippo = 10,
+	)
 
 	contraband = list(/obj/item/clothing/mask/cigarette/cigar/havana = 5)
 
 	premium = list(/obj/item/storage/fancy/cigar = 25)
-	prices = list(/obj/item/storage/fancy/cigarettes/lucky_strikes = 15,
-					/obj/item/storage/box/matches = 1,
-					/obj/item/tool/lighter/random = 2,
-					/obj/item/tool/lighter/zippo = 20,
-					/obj/item/clothing/mask/cigarette/cigar/havana = 50)
+	prices = list(
+		/obj/item/storage/fancy/cigarettes/luckystars = 15,
+		/obj/item/storage/box/matches = 1,
+		/obj/item/tool/lighter/random = 2,
+		/obj/item/tool/lighter/zippo = 20,
+		/obj/item/clothing/mask/cigarette/cigar/havana = 50,
+	)
 
 /obj/machinery/vending/cigarette/colony
 	product_slogans = "Koorlander Gold, for the refined palate.;Lady Fingers, for the dainty smoker.;Lady Fingers, treat your palete with pink!;The big blue K means a cool fresh day!;For the taste that cools your mood, look for the big blue K!;Refined smokers go for Gold!;Lady Fingers are preferred by women who appreciate a cool smoke.;Lady Fingers are the number one cigarette this side of Gateway!;The tobacco connoisseur prefers Koorlander Gold.;For the cool, filtered feel, Lady Finger Cigarettes provide the smoothest draw of any cigarette on the market.;For the man who knows his place is at the top, Koorlander Gold shows the world that you're the best and no-one can say otherwise.;The Colonial Administration Bureau would like to remind you that smoking kills."
 	product_ads = "For the taste that cools your mood, look for the big blue K!;Refined smokers go for Gold!;Lady Fingers are preferred by women who appreciate a cool smoke.;Lady Fingers are the number one cigarette this side of Gateway!;The tobacco connoisseur prefers Koorlander Gold.;For the cool, filtered feel, Lady Finger Cigarettes provide the smoothest draw of any cigarette on the market.;For the man who knows his place is at the top, Koorlander Gold shows the world that you're the best and no-one can say otherwise.;The Colonial Administration Bureau would like to remind you that smoking kills."
-	products = list(/obj/item/storage/fancy/cigarettes/kpack = 15,
-					/obj/item/storage/fancy/cigarettes/lady_finger = 15,
-					/obj/item/storage/box/matches = 10,
-					/obj/item/tool/lighter/random = 20)
-	prices = list(/obj/item/storage/fancy/cigarettes/kpack = 15,
-					/obj/item/storage/fancy/cigarettes/lady_finger = 15,
-					/obj/item/storage/box/matches = 1,
-					/obj/item/tool/lighter/random = 2)
+	products = list(
+		/obj/item/storage/fancy/cigarettes/kpack = 15,
+		/obj/item/storage/fancy/cigarettes/lady_finger = 15,
+		/obj/item/storage/box/matches = 10,
+		/obj/item/tool/lighter/random = 20,
+	)
+	prices = list(
+		/obj/item/storage/fancy/cigarettes/kpack = 15,
+		/obj/item/storage/fancy/cigarettes/lady_finger = 15,
+		/obj/item/storage/box/matches = 1,
+		/obj/item/tool/lighter/random = 2,
+	)
 
 /obj/machinery/vending/medical
 	name = "NanotrasenMed Plus"
-	desc = "Medical Pharmaceutical dispenser.  Provided by Nanotrasen Pharmaceuticals Division(TM)"
+	desc = "Medical Pharmaceutical dispenser.  Provided by Nanotrasen Pharmaceuticals Division(TM)."
 	icon_state = "med"
 	icon_deny = "med-deny"
 	//product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;Natural chemicals!;This stuff saves lives.;Don't you want some?;Ping!"
 	req_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY) //only doctors and researchers can access these
-	products = list(/obj/item/healthanalyzer = 5,
-					/obj/item/clothing/glasses/hud/health = 2,
-					/obj/item/storage/belt/medical = 2,
-					/obj/item/defibrillator = 2,
-					/obj/item/reagent_containers/hypospray/autoinjector/quickclot = 5,
-					/obj/item/reagent_containers/hypospray/autoinjector/dexalinplus = 5,
-					/obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin =3,
-					/obj/item/reagent_containers/hypospray/autoinjector/inaprovaline = 5,
-					/obj/item/reagent_containers/hypospray/autoinjector/hypervene = 5,
-					/obj/item/reagent_containers/hypospray/advanced/tricordrazine = 2,
-					/obj/item/reagent_containers/syringe = 20,
-					/obj/item/reagent_containers/glass/bottle/dylovene = 4,
-					/obj/item/reagent_containers/glass/bottle/bicaridine = 4,
-					/obj/item/reagent_containers/glass/bottle/inaprovaline = 4,
-					/obj/item/reagent_containers/glass/bottle/sleeptoxin = 2,
-					/obj/item/reagent_containers/glass/bottle/spaceacillin = 4,
-					/obj/item/reagent_containers/glass/bottle/peridaxon = 2,
-					/obj/item/reagent_containers/glass/bottle/kelotane = 4,
-					/obj/item/reagent_containers/glass/bottle/dexalin = 4,
-					/obj/item/reagent_containers/glass/bottle/tramadol = 4,
-					/obj/item/reagent_containers/glass/bottle/oxycodone = 4,
-					/obj/item/reagent_containers/glass/bottle/polyhexanide = 2,
-					/obj/item/reagent_containers/glass/bottle/neurotoxin = 1,
-					/obj/item/storage/pill_bottle/peridaxon = 2,
-					/obj/item/stack/medical/advanced/bruise_pack = 5,
-					/obj/item/stack/medical/advanced/ointment = 5,
-					/obj/item/stack/medical/ointment = 10,
-					/obj/item/stack/medical/bruise_pack = 10,
-					/obj/item/stack/medical/splint = 5,
-					)
+	products = list(
+		/obj/item/healthanalyzer = 5,
+		/obj/item/clothing/glasses/hud/health = 2,
+		/obj/item/storage/belt/medical = 2,
+		/obj/item/defibrillator = 2,
+		/obj/item/reagent_containers/hypospray/autoinjector/quickclot = 5,
+		/obj/item/reagent_containers/hypospray/autoinjector/dexalinplus = 5,
+		/obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin =3,
+		/obj/item/reagent_containers/hypospray/autoinjector/inaprovaline = 5,
+		/obj/item/reagent_containers/hypospray/autoinjector/hypervene = 5,
+		/obj/item/reagent_containers/hypospray/advanced/tricordrazine = 2,
+		/obj/item/reagent_containers/syringe = 20,
+		/obj/item/reagent_containers/glass/bottle/dylovene = 4,
+		/obj/item/reagent_containers/glass/bottle/bicaridine = 4,
+		/obj/item/reagent_containers/glass/bottle/inaprovaline = 4,
+		/obj/item/reagent_containers/glass/bottle/sleeptoxin = 2,
+		/obj/item/reagent_containers/glass/bottle/spaceacillin = 4,
+		/obj/item/reagent_containers/glass/bottle/peridaxon = 2,
+		/obj/item/reagent_containers/glass/bottle/kelotane = 4,
+		/obj/item/reagent_containers/glass/bottle/dexalin = 4,
+		/obj/item/reagent_containers/glass/bottle/tramadol = 4,
+		/obj/item/reagent_containers/glass/bottle/oxycodone = 4,
+		/obj/item/reagent_containers/glass/bottle/polyhexanide = 2,
+		/obj/item/reagent_containers/glass/bottle/neurotoxin = 1,
+		/obj/item/reagent_containers/glass/bottle/xeno_growthtoxin = 1,
+		/obj/item/storage/pill_bottle/peridaxon = 2,
+		/obj/item/stack/medical/advanced/bruise_pack = 5,
+		/obj/item/stack/medical/advanced/ointment = 5,
+		/obj/item/stack/medical/ointment = 10,
+		/obj/item/stack/medical/bruise_pack = 10,
+		/obj/item/stack/medical/splint = 5,
+	)
 
 	contraband = list(/obj/item/reagent_containers/glass/bottle/toxin = 1)
 
@@ -216,16 +246,20 @@
 	icon_deny = "wallmed-deny"
 	density = FALSE
 	wrenchable = FALSE
-	products = list(/obj/item/reagent_containers/hypospray/autoinjector/tricordrazine = 1,
-					/obj/item/reagent_containers/hypospray/autoinjector/tramadol = 1,
-					/obj/item/reagent_containers/hypospray/autoinjector/hypervene = 1,
-					/obj/item/stack/medical/bruise_pack = 2,
-					/obj/item/stack/medical/ointment = 2,
-					/obj/item/healthanalyzer = 1,
-					/obj/item/stack/medical/splint = 1)
-	contraband = list(/obj/item/reagent_containers/hypospray/autoinjector/combat = 0,
-						/obj/item/reagent_containers/hypospray/autoinjector/hyperzine/expired = 0,
-						/obj/item/reagent_containers/hypospray/autoinjector/synaptizine_expired = 0)
+	products = list(
+		/obj/item/reagent_containers/hypospray/autoinjector/tricordrazine = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/tramadol = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/hypervene = 1,
+		/obj/item/stack/medical/bruise_pack = 2,
+		/obj/item/stack/medical/ointment = 2,
+		/obj/item/healthanalyzer = 1,
+		/obj/item/stack/medical/splint = 1,
+	)
+	contraband = list(
+		/obj/item/reagent_containers/hypospray/autoinjector/combat = 0,
+		/obj/item/reagent_containers/hypospray/autoinjector/hyperzine/expired = 0,
+		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine_expired = 0,
+	)
 
 
 /obj/machinery/vending/nanomed/Initialize(mapload, ...)
@@ -247,16 +281,21 @@
 	product_ads = "Crack capitalist skulls!;Beat some heads in!;Don't forget - harm is good!;Your weapons are right here.;Handcuffs!;Freeze, scumbag!;Don't tase me bro!;Tase them, bro.;Why not have a donut?"
 	icon_state = "sec"
 	icon_deny = "sec-deny"
-	req_access_txt = "3"
-	products = list(/obj/item/restraints/handcuffs = 8,
-					/obj/item/restraints/handcuffs/zip = 10,
-					/obj/item/explosive/grenade/flashbang = 4,
-					/obj/item/flash = 5,
-					/obj/item/reagent_containers/food/snacks/donut/normal = 12,
-					/obj/item/storage/box/evidence = 6,
-					/obj/item/clothing/glasses/sunglasses/sechud = 3,
-					/obj/item/radio/headset = 6)
-	contraband = list(/obj/item/clothing/glasses/sunglasses = 2,/obj/item/storage/donut_box = 2)
+	req_access = list(ACCESS_MARINE_BRIG)
+	products = list(
+		/obj/item/restraints/handcuffs = 8,
+		/obj/item/restraints/handcuffs/zip = 10,
+		/obj/item/explosive/grenade/flashbang = 4,
+		/obj/item/flash = 5,
+		/obj/item/reagent_containers/food/snacks/donut/normal = 12,
+		/obj/item/storage/box/evidence = 6,
+		/obj/item/clothing/glasses/sunglasses/sechud = 3,
+		/obj/item/radio/headset = 6,
+	)
+	contraband = list(
+		/obj/item/clothing/glasses/sunglasses = 2,
+		/obj/item/storage/donut_box = 2,
+	)
 
 /obj/machinery/vending/hydronutrients
 	name = "NutriMax"
@@ -320,8 +359,7 @@
 	desc = "Tools for tools."
 	icon_state = "tool"
 	icon_deny = "tool-deny"
-	//req_access_txt = "12" //Maintenance access
-	products = list(/obj/item/stack/cable_coil/random = 10,/obj/item/tool/crowbar = 5,/obj/item/tool/weldingtool = 3,/obj/item/tool/wirecutters = 5,
+	products = list(/obj/item/stack/cable_coil = 10,/obj/item/tool/crowbar = 5,/obj/item/tool/weldingtool = 3,/obj/item/tool/wirecutters = 5,
 					/obj/item/tool/wrench = 5,/obj/item/analyzer = 5,/obj/item/t_scanner = 5,/obj/item/tool/screwdriver = 5)
 	contraband = list(/obj/item/tool/weldingtool/hugetank = 2,/obj/item/clothing/gloves/fyellow = 2)
 	premium = list(/obj/item/clothing/gloves/yellow = 1)
@@ -331,7 +369,7 @@
 	desc = "Spare electronics vending. What? Did you expect some witty description?"
 	icon_state = "engivend"
 	icon_deny = "engivend-deny"
-	req_access_txt = "7" //Engineering Equipment access
+	req_access = list(ACCESS_MARINE_ENGINEERING)
 	products = list(/obj/item/clothing/glasses/meson = 2,/obj/item/multitool = 4,/obj/item/circuitboard/airlock = 10,/obj/item/circuitboard/apc = 10,/obj/item/circuitboard/airalarm = 10, /obj/item/circuitboard/general = 20, /obj/item/cell/high = 10)
 	contraband = list(/obj/item/cell/potato = 3)
 	premium = list(/obj/item/storage/belt/utility = 3)
@@ -342,7 +380,7 @@
 	desc = "A large storage machine containing various tools and devices for general repair."
 	icon_state = "engi"
 	icon_deny = "engi-deny"
-	req_access_txt = "7"
+	req_access = list(ACCESS_MARINE_ENGINEERING)
 	products = list(/obj/item/clothing/head/hardhat = 4,/obj/item/storage/belt/utility = 4,/obj/item/clothing/glasses/meson = 4,/obj/item/clothing/gloves/yellow = 4,
 					/obj/item/tool/screwdriver = 12,/obj/item/tool/crowbar = 12,/obj/item/tool/wirecutters = 12,/obj/item/multitool = 12,/obj/item/tool/wrench = 12,
 					/obj/item/t_scanner = 12, /obj/item/cell = 8, /obj/item/tool/weldingtool = 8,/obj/item/clothing/head/welding = 8,
@@ -355,7 +393,7 @@
 	desc = "All the tools you need to create your own robot army."
 	icon_state = "robotics"
 	icon_deny = "robotics-deny"
-	req_access_txt = "14"
+	req_access = list(ACCESS_MARINE_RESEARCH)
 	products = list(/obj/item/clothing/suit/storage/labcoat = 4,/obj/item/clothing/under/rank/roboticist = 4,/obj/item/stack/cable_coil = 4,/obj/item/flash = 4,
 					/obj/item/cell/high = 12, /obj/item/assembly/prox_sensor = 3,/obj/item/assembly/signaler = 3,/obj/item/healthanalyzer = 3,
 					/obj/item/tool/surgery/scalpel = 2,/obj/item/tool/surgery/circular_saw = 2,/obj/item/tank/anesthetic = 2,/obj/item/clothing/mask/breath/medical = 5,

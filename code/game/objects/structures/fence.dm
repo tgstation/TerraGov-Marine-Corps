@@ -15,11 +15,11 @@
 
 /obj/structure/fence/ex_act(severity)
 	switch(severity)
-		if(1)
+		if(EXPLODE_DEVASTATE)
 			deconstruct(FALSE)
-		if(2)
+		if(EXPLODE_HEAVY)
 			deconstruct(FALSE)
-		if(3)
+		if(EXPLODE_LIGHT)
 			take_damage(rand(25, 55))
 
 
