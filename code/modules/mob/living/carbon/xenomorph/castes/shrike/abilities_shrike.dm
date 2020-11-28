@@ -353,7 +353,13 @@
 	playsound(target,'sound/effects/magic.ogg', 75, 1)
 	new /obj/effect/temp_visual/telekinesis(get_turf(target))
 	var/mob/living/carbon/xenomorph/patient = target
-	patient.heal_wounds(SHRIKE_CURE_HEAL_MULTIPLIER)
+
+	var/heal_amount = 1 + (patient.maxHealth * 0.03)
+	heal_amount += 0.008*patient.maxHealth*patient.recovery_aura
+	heal_amount *= SHRIKE_CURE_HEAL_MULTIPLIER
+	patient.adjustBruteLoss(-heal_amount)
+	patient.adjustFireLoss(-heal_amount)
+
 	if(patient.health > 0) //If they are not in crit after the heal, let's remove evil debuffs.
 		patient.SetUnconscious(0)
 		patient.SetStun(0)

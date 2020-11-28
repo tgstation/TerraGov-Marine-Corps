@@ -110,9 +110,9 @@
 
 	if(xeno_blood >= 80)
 		amount *= 1.25
-	else if(xeno_blood < 50)
+	else if(xeno_blood <= 50)
 		amount *= 0.70
-	xeno_blood -= (0.5 + 0.12*recovery_aura)*multiplier
+	xeno_blood -= min((0.5 + 0.12*recovery_aura)*multiplier, 100 - xeno_blood)
 
 	adjustBruteLoss(-amount)
 	adjustFireLoss(-amount)
