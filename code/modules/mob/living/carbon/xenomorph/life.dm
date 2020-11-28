@@ -73,6 +73,9 @@
 	if(!T || !istype(T))
 		return
 
+	if(!xeno_blood)
+		return
+
 	var/ruler_healing_penalty = 0.5
 	if(hive?.living_xeno_ruler?.loc?.z == T.z || xeno_caste.caste_flags & CASTE_CAN_HEAL_WITHOUT_QUEEN) //if the living queen's z-level is the same as ours.
 		ruler_healing_penalty = 1
@@ -110,7 +113,7 @@
 		amount *= 1.25
 	else if(xeno_blood <= 50)
 		amount *= 0.70
-	xeno_blood -= min((0.5 + 0.12*recovery_aura)*multiplier, 100 - xeno_blood)
+	xeno_blood -= (0.5 + 0.12*recovery_aura)*multiplier
 
 	adjustBruteLoss(-amount)
 	adjustFireLoss(-amount)

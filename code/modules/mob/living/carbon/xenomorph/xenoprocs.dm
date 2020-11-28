@@ -141,6 +141,16 @@
 
 	stat("Acid Blood:", "[round(xeno_blood)]%")
 
+	switch(xeno_blood)
+		if(80 to INFINITY)
+			stat("Blood-based regeneration:", "+25%")
+		if(51 to 79)
+			stat("Blood-based regeneration", "+0%")
+		if(1 to 50)
+			stat("Blood-based regeneration:", "-30%")
+		if(-1 to 0)
+			stat("Blood-based regeneration", "-100%")
+
 	if(xeno_caste.plasma_max > 0)
 		stat("Plasma:", "[plasma_stored]/[xeno_caste.plasma_max]")
 
