@@ -46,7 +46,8 @@
 		/datum/action/xeno_action/activable/headbite,
 		/datum/action/xeno_action/activable/charge,
 		/datum/action/xeno_action/activable/ravage,
-		/datum/action/xeno_action/activable/ignore_pain,
+		/datum/action/xeno_action/activable/endure,
+		/datum/action/xeno_action/activable/rage,
 	)
 
 /datum/xeno_caste/ravager/young

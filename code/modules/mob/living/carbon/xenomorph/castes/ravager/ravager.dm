@@ -26,7 +26,7 @@
 	H.attack_alien(src,  xeno_caste.melee_damage * 0.25, FALSE, TRUE, FALSE, TRUE, INTENT_HARM) //Location is always random, cannot crit, harm only
 	var/target_turf = get_step_away(src, H, rand(1, 3)) //This is where we blast our target
 	target_turf =  get_step_rand(target_turf) //Scatter
-	H.throw_at(get_turf(target_turf), RAV_CHARGEDISTANCE, RAV_CHARGESPEED, H)
+	H.throw_at(get_turf(target_turf), RAVAGER_CHARGEDISTANCE, RAVAGER_CHARGESPEED, H)
 	H.Paralyze(2 SECONDS)
 	return
 
@@ -35,20 +35,20 @@
 // ***************************************
 /mob/living/carbon/xenomorph/ravager/get_crit_threshold()
 	. = ..()
-	if(!ignore_pain)
+	if(!endure)
 		return
-	if(ignore_pain_state == 0 && health < .)
+	if(endure_state == 0 && health < .)
 		emote("roar")
 		to_chat(src, "<span class='xenohighdanger' style='color: red;'>Our body becomes weak, we won't be able to withstand this much longer.</span>")
-		ignore_pain_state++
+		endure_state++
 	return -INFINITY
 
 /mob/living/carbon/xenomorph/ravager/get_death_threshold()
 	. = ..()
-	if(!ignore_pain)
+	if(!endure)
 		return
-	if(ignore_pain_state == 1 && health < .)
+	if(endure_state == 1 && health < .)
 		emote("roar")
 		to_chat(src, "<span class='xenohighdanger' style='color: red;'>We've taken too much damage and surpassed our limits, we now look forward to the sweet embrace of death.</span>")
-		ignore_pain_state++
+		endure++
 	return . * 3

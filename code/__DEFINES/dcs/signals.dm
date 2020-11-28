@@ -525,6 +525,7 @@
 #define COMSIG_XENOABILITY_RAVAGE "xenoability_ravage"
 #define COMSIG_XENOABILITY_SECOND_WIND "xenoability_second_wind"
 #define COMSIG_XENOABILITY_IGNORE_PAIN "xenoability_ignore_pain"
+#define COMSIG_XENOABILITY_RAGE "xenoability_rage"
 
 #define COMSIG_XENOABILITY_TOGGLE_SAVAGE "xenoability_toggle_savage"
 #define COMSIG_XENOABILITY_POUNCE "xenoability_pounce"
