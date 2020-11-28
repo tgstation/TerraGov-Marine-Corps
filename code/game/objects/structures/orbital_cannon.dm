@@ -196,7 +196,7 @@
 
 	notify_ghosts("<b>[user]</b> has just fired \the <b>[src]</b> !", source = T, action = NOTIFY_JUMP)
 
-	addtimer(CALLBACK(src, /obj/structure/orbital_cannon.proc/impact_callback, target, inaccurate_fuel), WARHEAD_FLY_TIME)
+	addtimer(CALLBACK(src, /obj/structure/orbital_cannon.proc/impact_callback, target, inaccurate_fuel), WARHEAD_FLY_TIME * (GLOB.current_orbit/3))
 
 /obj/structure/orbital_cannon/proc/impact_callback(target,inaccurate_fuel)
 	tray.warhead.warhead_impact(target, inaccurate_fuel)

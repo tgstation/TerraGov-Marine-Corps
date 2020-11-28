@@ -376,6 +376,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define REST_HALLOSS_RECOVERY_RATE -32
 
 // Human Overlay Indexes
+#define HEADBITE_LAYER			30
 #define LASER_LAYER				29 //For sniper targeting laser
 #define MOTH_WINGS_LAYER		28
 #define MUTANTRACE_LAYER		27
@@ -405,7 +406,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define TARGETED_LAYER			2 //for target sprites when held at gun point, and holo cards.
 #define FIRE_LAYER				1 //If you're on fire
 
-#define TOTAL_LAYERS			29
+#define TOTAL_LAYERS			30
 
 #define MOTH_WINGS_BEHIND_LAYER	1
 
@@ -417,14 +418,13 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 #define HIVE_CAN_HIJACK (1<<0)
 
+#define XENO_PULL_CHARGE_TIME 2 SECONDS
 #define XENO_SLOWDOWN_REGEN 0.4
 #define QUEEN_DEATH_TIMER 5 MINUTES
 #define XENO_DEADHUMAN_DRAG_SLOWDOWN 2
 #define XENO_EXPLOSION_RESIST_3_MODIFIER	0.25 //multiplies top level explosive damage by this amount.
 
-#define SPIT_UPGRADE_BONUS(Xenomorph) (( max(0,Xenomorph.upgrade_as_number()) * 0.15 )) //increase damage by 15% per upgrade level; compensates for the loss of insane attack speeds.
-#define SPRAY_STRUCTURE_UPGRADE_BONUS(Xenomorph) (( Xenomorph.upgrade_as_number() * 8 ))
-#define SPRAY_MOB_UPGRADE_BONUS(Xenomorph) (( Xenomorph.upgrade_as_number() * 4 ))
+#define SPIT_UPGRADE_BONUS(Xenomorph) (( max(0,Xenomorph.upgrade_as_number()) * 0.15 )) //increase damage by 15% per upgrade level; compensates for the loss of insane attack speed.
 
 #define PLASMA_TRANSFER_AMOUNT 100
 #define PLASMA_SALVAGE_AMOUNT 400
@@ -434,7 +434,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 #define XENO_NEURO_AMOUNT_RECURRING			10
 #define XENO_NEURO_CHANNEL_TIME				1.5 SECONDS
-#define XENO_NEURO_AMOUNT_RECCURING_PANTHER 3
 
 #define CANNOT_HOLD_EGGS 0
 #define CAN_HOLD_TWO_HANDS 1
@@ -466,9 +465,8 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 // Xeno charge types
 #define CHARGE_TYPE_SMALL			1
 #define CHARGE_TYPE_MEDIUM			2
-#define CHARGE_TYPE_PANTHER			3
-#define CHARGE_TYPE_LARGE			4
-#define CHARGE_TYPE_MASSIVE			5
+#define CHARGE_TYPE_LARGE			3
+#define CHARGE_TYPE_MASSIVE			4
 
 //Hunter Defines
 #define HUNTER_STEALTH_COOLDOWN					50 //5 seconds
@@ -502,8 +500,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CRUSHER_CHARGE_RAZORWIRE_MULTI	100
 #define CRUSHER_CHARGE_TANK_MULTI		100
 
-#define CRUSHER_STOMP_UPGRADE_BONUS(Xenomorph) (1 + ( (  Xenomorph.upgrade_as_number() ) * 0.05 ))
-
 //carrier defines
 #define CARRIER_HUGGER_THROW_SPEED 2
 #define CARRIER_HUGGER_THROW_DISTANCE 5
@@ -514,6 +510,12 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define DEFILER_STING_CHANNEL_TIME			1.5 SECONDS
 #define DEFILER_CLAW_AMOUNT					6.5
 #define DEFILER_STING_AMOUNT_RECURRING		10
+#define DEFILER_REAGENT_SLASH_COUNT			4
+#define DEFILER_REAGENT_SLASH_DELAY			1.2 SECONDS
+#define DEFILER_REAGENT_SLASH_U_AMOUNT		3
+
+//Drone defines
+#define DRONE_HEAL_RANGE		1
 
 //Boiler defines
 #define BOILER_LUMINOSITY_BASE						0
@@ -530,11 +532,13 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define HIVELORD_TUNNEL_LARGE_MAX_TRAVEL_TIME	6 SECONDS
 #define HIVELORD_TUNNEL_DIG_TIME				10 SECONDS
 #define HIVELORD_TUNNEL_SET_LIMIT				8
+#define HIVELORD_HEAL_RANGE						2
 
 //Shrike defines
 
 #define SHRIKE_FLAG_PAIN_HUD_ON		(1<<0)
 #define SHRIKE_CURE_HEAL_MULTIPLIER	10
+#define SHRIKE_HEAL_RANGE 			3
 
 //misc
 

@@ -958,9 +958,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accurate_range = 10
 	accuracy_var_low = 3
 	accuracy_var_high = 3
-	damage = 40
+	damage = 20
 	penetration = 10
-	sundering = 2
+	sundering = 3 //small damage big sunder
 	damage_falloff = 0.5 //forgot to add this
 
 /datum/ammo/bullet/turret/dumb
@@ -969,7 +969,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/bullet/turret/gauss
 	name = "heavy gauss turret slug"
-	damage = 30
+	damage = 25
 	penetration = 30
 	accurate_range = 3
 	sundering = 0
@@ -977,9 +977,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/bullet/turret/mini
 	name = "small caliber autocannon bullet"
-	damage = 35
+	damage = 15
 	penetration = 10
-	sundering = 0
+	sundering = 2
 
 
 /datum/ammo/bullet/machinegun //Adding this for the MG Nests (~Art)
@@ -1269,6 +1269,17 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 35
 	damage_falloff = 10
 	penetration = 0
+
+/datum/ammo/energy/lasgun/M43/disabler
+	name = "disabler bolt"
+	hud_state = "laser_disabler"
+	damage = 45
+	penetration = 0
+	damage_type = STAMINA
+	bullet_color = COLOR_BLUE
+
+/datum/ammo/energy/lasgun/M43/disabler/on_hit_mob(mob/M,obj/projectile/P)
+	staggerstun(M, P, stagger = 0.5, slowdown = 0.75)
 
 /datum/ammo/energy/lasgun/pulsebolt
 	name = "pulse bolt"

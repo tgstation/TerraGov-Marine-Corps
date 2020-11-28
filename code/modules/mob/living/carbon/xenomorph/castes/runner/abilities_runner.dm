@@ -119,7 +119,7 @@
 	if(X.savage) //If Runner Savage is toggled on, attempt to use it.
 		if(!X.savage_used)
 			if(X.plasma_stored >= 10)
-				X.Savage(M)
+				INVOKE_ASYNC(X, /mob/living/carbon/xenomorph/.proc/Savage, M)
 			else
 				to_chat(X, "<span class='xenodanger'>We attempt to savage our victim, but we need [10-X.plasma_stored] more plasma.</span>")
 		else

@@ -31,7 +31,12 @@ jobs:
           bash tools/ci/build_tgui.sh
           bash tools/ci/check_grep.sh
           python3 tools/mapmerge2/dmi.py --test
-          ~/dreamchecker
+          ~/dreamchecker > ${GITHUB_WORKSPACE}/output-annotations.txt 2>&1
+      - name: Annotate Lints
+        uses: yogstation13/DreamAnnotate@v1
+        if: always()
+        with:
+          outputFile: output-annotations.txt
   compile_all_maps:
     runs-on: ubuntu-latest
     steps:
@@ -71,10 +76,6 @@ jobs:
           mysql -u root -proot tg_ci < SQL/tgmc-schema.sql
           mysql -u root -proot -e 'CREATE DATABASE tg_ci_prefixed;'
           mysql -u root -proot tg_ci_prefixed < SQL/tgmc-schema.sql
-          sudo dpkg --add-architecture i386
-          sudo apt update
-          sudo apt install libstdc++6:i386 gcc-multilib g++-7 g++-7-multilib libmariadb-client-lgpl-dev:i386 libmariadbd-dev
-          tools/ci/build_bsql.sh
       - name: Install rust-g
         run: |
           sudo dpkg --add-architecture i386

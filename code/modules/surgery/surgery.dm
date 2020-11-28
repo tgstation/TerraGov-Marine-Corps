@@ -168,7 +168,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 				var/step_duration = max(0.5 SECONDS, rand(S.min_duration, S.max_duration) - 1 SECONDS * user.skills.getRating("surgery"))
 
 				//Multiply tool success rate with multipler
-				if(do_mob(user, M, step_duration, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL, extra_checks = CALLBACK(user, /mob/proc/break_do_after_checks, null, null, user.zone_selected)) && prob(S.tool_quality(tool) * CLAMP01(multipler)))
+				if(do_mob(user, M, step_duration, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL, extra_checks = CALLBACK(user, /mob.proc/break_do_after_checks, null, null, user.zone_selected)) && prob(S.tool_quality(tool) * CLAMP01(multipler)))
 					if(S.can_use(user, M, user.zone_selected, tool, affected, TRUE)) //to check nothing changed during the do_mob
 						S.end_step(user, M, user.zone_selected, tool, affected) //Finish successfully
 

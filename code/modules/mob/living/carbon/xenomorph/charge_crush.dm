@@ -29,6 +29,7 @@
 	var/max_steps_buildup = 14
 	var/crush_living_damage = 20
 	var/next_special_attack = 0 //Little var to keep track on special attack timers.
+	var/plasma_use_multiplier = 1
 
 
 /datum/action/xeno_action/ready_charge/give_action(mob/living/L)
@@ -189,7 +190,7 @@
 		charger.add_movespeed_modifier(MOVESPEED_ID_XENO_CHARGE, TRUE, 100, NONE, TRUE, -CHARGE_SPEED(src))
 
 	if(valid_steps_taken > steps_for_charge)
-		charger.plasma_stored -= round(CHARGE_SPEED(src)) //Eats up plasma the faster you go.
+		charger.plasma_stored -= round(CHARGE_SPEED(src) * plasma_use_multiplier) //Eats up plasma the faster you go. //now uses a multiplier
 
 		switch(charge_type)
 			if(CHARGE_CRUSH) //Xeno Crusher
@@ -207,7 +208,7 @@
 						continue
 					charger.visible_message("<span class='danger'>[charger] runs [victim] over!</span>",
 						"<span class='danger'>We run [victim] over!</span>", null, 5)
-					victim.take_overall_damage(CHARGE_SPEED(src) * 10, blocked = victim.run_armor_check("chest", "melee"))
+					victim.take_overall_damage_armored(CHARGE_SPEED(src) * 10, BRUTE, "melee")
 					animation_flash_color(victim)
 			if(CHARGE_BULL, CHARGE_BULL_HEADBUTT, CHARGE_BULL_GORE) //Xeno Bull
 				if(MODULUS(valid_steps_taken, 4) == 0)
@@ -267,7 +268,6 @@
 
 	if(isliving(crushed))
 		var/mob/living/crushed_living = crushed
-
 		playsound(crushed_living.loc, crush_sound, 25, 1)
 		if(crushed_living.buckled)
 			crushed_living.buckled.unbuckle_mob(crushed_living)
@@ -275,7 +275,7 @@
 
 		if(precrush > 0)
 			log_combat(charger, crushed_living, "xeno charged")
-			crushed_living.apply_damage(precrush, BRUTE, "chest", updating_health = TRUE) //There is a chance to do enough damage here to gib certain mobs. Better update immediately.
+			crushed_living.apply_damage(precrush, BRUTE, BODY_ZONE_CHEST, crushed_living.run_armor_check(BODY_ZONE_CHEST, "melee"), updating_health = TRUE) //There is a chance to do enough damage here to gib certain mobs. Better update immediately.
 			if(QDELETED(crushed_living))
 				charger.visible_message("<span class='danger'>[charger] anihilates [preserved_name]!</span>",
 				"<span class='xenodanger'>We anihilate [preserved_name]!</span>")
@@ -287,7 +287,7 @@
 		var/obj/crushed_obj = crushed
 		playsound(crushed_obj.loc, "punch", 25, 1)
 		var/crushed_behavior = crushed_obj.crushed_special_behavior()
-		crushed_obj.take_damage(precrush)
+		crushed_obj.take_damage(precrush, BRUTE, "melee")
 		if(QDELETED(crushed_obj))
 			charger.visible_message("<span class='danger'>[charger] crushes [preserved_name]!</span>",
 			"<span class='xenodanger'>We crush [preserved_name]!</span>")
@@ -318,9 +318,10 @@
 /datum/action/xeno_action/ready_charge/bull_charge
 	charge_type = CHARGE_BULL
 	speed_per_step = 0.1
-	steps_for_charge = 5
+	steps_for_charge = 6
 	max_steps_buildup = 10
-	crush_living_damage = 30
+	crush_living_damage = 15
+	plasma_use_multiplier = 1.8
 
 
 /datum/action/xeno_action/ready_charge/bull_charge/give_action(mob/living/L)
@@ -548,7 +549,7 @@
 		if(CHARGE_BULL_GORE)
 			if(world.time > charge_datum.next_special_attack)
 				charge_datum.next_special_attack = world.time + 2 SECONDS
-				attack_alien(charger,  0, "chest", FALSE, FALSE, FALSE, INTENT_HARM) //Free gore attack.
+				INVOKE_ASYNC(src, /atom/.proc/attack_alien, charger,  0, BODY_ZONE_CHEST, FALSE, FALSE, FALSE, INTENT_HARM) //Free gore attack.
 				emote_gored()
 				var/turf/destination = get_step(loc, charger.dir)
 				if(destination)

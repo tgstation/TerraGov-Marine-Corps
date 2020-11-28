@@ -1298,8 +1298,8 @@
 /area/lavaland/cave/east)
 "oN" = (
 /obj/structure/rack,
-/obj/item/weapon/gun/smg/mp5,
-/obj/item/weapon/gun/smg/mp5,
+/obj/item/weapon/gun/smg/m25,
+/obj/item/weapon/gun/smg/m25,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -2345,12 +2345,12 @@
 /area/shuttle/drop1/lz1)
 "AN" = (
 /obj/structure/rack,
-/obj/item/weapon/gun/smg/mp5,
-/obj/item/weapon/gun/smg/mp5,
-/obj/item/ammo_magazine/smg/mp5,
-/obj/item/ammo_magazine/smg/mp5,
-/obj/item/ammo_magazine/smg/mp5,
-/obj/item/ammo_magazine/smg/mp5,
+/obj/item/weapon/gun/smg/m25,
+/obj/item/weapon/gun/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
@@ -3078,9 +3078,9 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/item/weapon/gun/pistol/m4a3,
-/obj/item/weapon/gun/pistol/m4a3,
-/obj/item/weapon/gun/pistol/m4a3,
+/obj/item/weapon/gun/pistol/rt3,
+/obj/item/weapon/gun/pistol/rt3,
+/obj/item/weapon/gun/pistol/rt3,
 /turf/open/floor/plating/platebot,
 /area/lavaland/security/nuke)
 "Jb" = (
@@ -3352,12 +3352,12 @@
 /area/shuttle/drop1/lz1)
 "LS" = (
 /obj/structure/rack,
-/obj/item/ammo_magazine/smg/mp5,
-/obj/item/ammo_magazine/smg/mp5,
-/obj/item/ammo_magazine/smg/mp5,
-/obj/item/ammo_magazine/smg/mp5,
-/obj/item/ammo_magazine/smg/mp5,
-/obj/item/ammo_magazine/smg/mp5,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
 /turf/open/floor/plating/platebot,
 /area/lavaland/security/nuke)
 "LW" = (

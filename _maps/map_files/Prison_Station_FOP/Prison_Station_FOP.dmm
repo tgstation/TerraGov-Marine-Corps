@@ -495,12 +495,6 @@
 	},
 /turf/open/floor/plating,
 /area/prison/cellblock/maxsec/north)
-"adT" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/turf/closed/wall/r_wall/prison,
-/area/prison/cellblock/maxsec/north)
 "adU" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4;
@@ -39050,7 +39044,7 @@
 /turf/open/floor/carpet,
 /area/prison/pirate)
 "crR" = (
-/obj/item/weapon/gun/shotgun/merc,
+/obj/item/weapon/gun/shotgun/pump/cmb,
 /turf/open/floor/carpet,
 /area/prison/pirate)
 "crS" = (
@@ -44093,10 +44087,6 @@
 "xAI" = (
 /turf/closed/wall/r_wall/prison,
 /area/prison/research/secret/biolab)
-"xGi" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/asteroid,
-/area/prison/residential/central)
 "xHS" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -54880,7 +54870,7 @@ bhC
 bkL
 bhC
 bhC
-xGi
+bhC
 bhC
 aVP
 bRB
@@ -73039,7 +73029,7 @@ acK
 acO
 adc
 acO
-adT
+add
 adW
 aem
 add
