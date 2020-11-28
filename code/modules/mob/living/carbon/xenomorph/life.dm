@@ -29,10 +29,8 @@
 		update_evolving()
 		handle_aura_emiter()
 
-	var/sunder_recov = xeno_caste.sunder_recover * -1
 	if(resting)
-		sunder_recov -= 0.5
-	adjust_sunder(sunder_recov)
+		adjust_sunder(-xeno_caste.sunder_recover)
 	handle_aura_receiver()
 	handle_living_health_updates()
 	handle_living_plasma_updates()

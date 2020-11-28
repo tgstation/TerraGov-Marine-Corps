@@ -91,7 +91,7 @@
 
 	// *** Sunder *** //
 	///How much sunder is recovered per tick
-	var/sunder_recover = 0.5
+	var/sunder_recover = 1.5
 	///What is the max amount of sunder that can be applied to a xeno (100 = 100%)
 	var/sunder_max = 100
 
