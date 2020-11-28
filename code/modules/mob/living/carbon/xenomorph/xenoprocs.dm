@@ -139,7 +139,7 @@
 	else //Upgrade process finished or impossible
 		stat("Upgrade Progress:", "(FINISHED)")
 
-	stat("Acid Blood:", "[round(xeno_blood)]%")
+	stat("Acid Blood:", "[round(xeno_blood, 0.01)]%")
 
 	switch(xeno_blood)
 		if(80 to INFINITY)

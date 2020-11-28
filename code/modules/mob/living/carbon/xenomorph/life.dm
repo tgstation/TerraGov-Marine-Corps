@@ -109,11 +109,13 @@
 		amount *= regen_power
 	amount *= multiplier
 
+	var/xeno_blood_drain_rate = (0.5 + 0.12*recovery_aura)*multiplier
 	if(xeno_blood >= 80)
 		amount *= 1.25
 	else if(xeno_blood <= 50)
-		amount *= 0.70
-	xeno_blood -= (0.5 + 0.12*recovery_aura)*multiplier
+		amount *= 0.7
+		xeno_blood_drain_rate *= 0.7
+	xeno_blood -= xeno_blood_drain_rate
 
 	adjustBruteLoss(-amount)
 	adjustFireLoss(-amount)
