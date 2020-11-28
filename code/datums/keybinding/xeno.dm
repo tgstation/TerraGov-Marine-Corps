@@ -393,6 +393,14 @@
 	description = "While active, you will not go into crit and can take increased damage before dying. You will still die when the effect ends."
 	keybind_signal = COMSIG_XENOABILITY_IGNORE_PAIN
 
+/*
+/datum/keybinding/xeno/ravager_rage
+	name = "ravager_rage"
+	full_name = "Ravager: Rage"
+	description = "While active, you will recover plasma and gain a bonus to speed, armor and melee damage in proportion to the percentage of your missing health."
+	keybind_signal = COMSIG_XENOABILITY_RAGE
+*/
+
 /datum/keybinding/xeno/ravage
 	name = "ravage"
 	full_name = "Ravager: Ravage"
