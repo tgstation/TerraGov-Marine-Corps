@@ -29,10 +29,9 @@
 	if(!template)
 		stack_trace("Mapping error: room loaded with no template")
 		message_admins("Warning, modular mapping error, please report this to coders and get it fixed ASAP")
-		qdel(src)
-		return
-	template.load(get_turf(src), centered = template.keepcentered)
-	qdel(src)
+		return INITIALIZE_HINT_QDEL
+	INVOKE_ASYNC(template, /datum/map_template.proc/load, get_turf(src), template.keepcentered)
+	return INITIALIZE_HINT_QDEL
 
 /*********Types********/
 
@@ -42,6 +41,7 @@
 	spawner_width = 9
 	spawner_height = 11
 
+/************LV 624**********/
 /obj/effect/spawner/modularmap/lv624/hydroroad
 	mapid = "hydroroad"
 	spawner_height = 20
@@ -57,3 +57,9 @@
 	mapid = "broperations"
 	spawner_width = 29
 	spawner_height = 25
+
+/************EORG**********/
+/obj/effect/spawner/modularmap/admin/eorg
+	mapid = "EORG"
+	spawner_height = 46
+	spawner_width = 46

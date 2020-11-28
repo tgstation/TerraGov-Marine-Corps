@@ -679,7 +679,7 @@ to_chat will check for valid clients itself already so no need to double check f
 		boarder.gib()
 		left_behind++
 	if(left_behind)
-		xeno_message("[left_behind > 1 ? "[left_behind] sisters" : "One sister"] perished due to being too slow to board the bird. The freeing of their psychic link allows us to call borrowed, at least.")
+		xeno_message("[left_behind > 1 ? "[left_behind] sisters" : "One sister"] perished due to being too slow to board the bird. The freeing of their psychic link allows us to call burrowed, at least.")
 		var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 		xeno_job.add_job_positions(left_behind)
 		if(difference > 0)
@@ -743,9 +743,6 @@ to_chat will check for valid clients itself already so no need to double check f
 	hivenumber = XENO_HIVE_CORRUPTED
 
 /mob/living/carbon/xenomorph/larva/Corrupted
-	hivenumber = XENO_HIVE_CORRUPTED
-
-/mob/living/carbon/xenomorph/panther/Corrupted
 	hivenumber = XENO_HIVE_CORRUPTED
 
 /mob/living/carbon/xenomorph/praetorian/Corrupted
@@ -814,9 +811,6 @@ to_chat will check for valid clients itself already so no need to double check f
 /mob/living/carbon/xenomorph/larva/Alpha
 	hivenumber = XENO_HIVE_ALPHA
 
-/mob/living/carbon/xenomorph/panther/Alpha
-	hivenumber = XENO_HIVE_ALPHA
-
 /mob/living/carbon/xenomorph/praetorian/Alpha
 	hivenumber = XENO_HIVE_ALPHA
 
@@ -880,9 +874,6 @@ to_chat will check for valid clients itself already so no need to double check f
 /mob/living/carbon/xenomorph/larva/Beta
 	hivenumber = XENO_HIVE_BETA
 
-/mob/living/carbon/xenomorph/panther/Beta
-	hivenumber = XENO_HIVE_BETA
-
 /mob/living/carbon/xenomorph/praetorian/Beta
 	hivenumber = XENO_HIVE_BETA
 
@@ -944,9 +935,6 @@ to_chat will check for valid clients itself already so no need to double check f
 	hivenumber = XENO_HIVE_ZETA
 
 /mob/living/carbon/xenomorph/larva/Zeta
-	hivenumber = XENO_HIVE_ZETA
-
-/mob/living/carbon/xenomorph/panther/Zeta
 	hivenumber = XENO_HIVE_ZETA
 
 /mob/living/carbon/xenomorph/praetorian/Zeta

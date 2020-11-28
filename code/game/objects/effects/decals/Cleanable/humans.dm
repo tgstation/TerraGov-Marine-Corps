@@ -27,7 +27,7 @@
 		for(var/obj/effect/decal/cleanable/blood/B in loc)
 			if(B == src)
 				continue
-			qdel(B)
+			return INITIALIZE_HINT_QDEL
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/effect/decal/cleanable/blood/LateInitialize()

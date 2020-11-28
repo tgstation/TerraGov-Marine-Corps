@@ -219,12 +219,16 @@
 	if(L.buckled)
 		return FALSE //to stop xeno from pulling marines on roller beds.
 	if(ishuman(L))
+		if(!chestburst)
+			do_attack_animation(L, ATTACK_EFFECT_GRAB)
+			if(!do_mob(src, L , XENO_PULL_CHARGE_TIME, BUSY_ICON_HOSTILE))
+				return FALSE
 		pull_speed += XENO_DEADHUMAN_DRAG_SLOWDOWN
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_GRAB)
 	return ..()
 
 /mob/living/carbon/xenomorph/stop_pulling()
-	if(pulling && ishuman(pulling))
+	if(ishuman(pulling))
 		pull_speed -= XENO_DEADHUMAN_DRAG_SLOWDOWN
 	return ..()
 
@@ -261,6 +265,8 @@
 	hud_to_add = GLOB.huds[DATA_HUD_BASIC]
 	hud_to_add.add_hud_to(src)
 
+	hud_to_add = GLOB.huds[DATA_HUD_XENO_REAGENTS]
+	hud_to_add.add_hud_to(src)
 
 
 /mob/living/carbon/xenomorph/point_to_atom(atom/A, turf/T)

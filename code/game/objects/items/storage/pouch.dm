@@ -198,9 +198,9 @@
 	. = ..()
 	new /obj/item/weapon/gun/pistol/vp70(src)
 
-/obj/item/storage/pouch/pistol/m4a3/Initialize()
+/obj/item/storage/pouch/pistol/rt3/Initialize()
 	. = ..()
-	new /obj/item/weapon/gun/pistol/m4a3(src)
+	new /obj/item/weapon/gun/pistol/rt3(src)
 
 //// MAGAZINE POUCHES /////
 
@@ -294,8 +294,8 @@
 	fill_type = /obj/item/ammo_magazine/smg/m25/ap
 	fill_number = 3
 
-/obj/item/storage/pouch/magazine/large/pmc_p90
-	fill_type = /obj/item/ammo_magazine/smg/p90
+/obj/item/storage/pouch/magazine/large/pmc_famas
+	fill_type = /obj/item/ammo_magazine/rifle/famas
 	fill_number = 3
 
 /obj/item/storage/pouch/magazine/large/pmc_lmg

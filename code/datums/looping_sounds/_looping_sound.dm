@@ -87,7 +87,7 @@
 		. = pickweight(.)
 
 /datum/looping_sound/proc/on_start()
-	var/start_wait = 0
+	var/start_wait = 1
 	if(start_sound)
 		play(start_sound)
 		start_wait = start_length

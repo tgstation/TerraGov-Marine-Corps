@@ -28,9 +28,6 @@
 /obj/machinery/power/port_gen/should_have_node()
 	return anchored
 
-///obj/machinery/power/port_gen/should_have_node()
-//	return anchored
-
 /obj/machinery/power/port_gen/connect_to_network()
 	if(!anchored)
 		return FALSE
@@ -49,6 +46,7 @@
 	return
 
 /obj/machinery/power/port_gen/proc/TogglePower()
+	SEND_SIGNAL(src, COMSIG_PORTGEN_POWER_TOGGLE, !active)
 	if(active)
 		active = FALSE
 		update_icon()
@@ -70,6 +68,7 @@
 		if(powernet)
 			add_avail(power_gen * power_output)
 		UseFuel()
+		SEND_SIGNAL(src, COMSIG_PORTGEN_PROCESS)
 	else
 		handleInactive()
 
@@ -296,3 +295,16 @@
 
 /obj/machinery/power/port_gen/pacman/mrs/overheat()
 	explosion(loc, 4, small_animation = TRUE)
+
+/obj/machinery/power/port_gen/pacman/mobile_power
+	name = "\improper A.D.V.P.A.C.M.A.N.-type portable generator"
+
+/obj/machinery/power/port_gen/pacman/mobile_power/Initialize()
+	. = ..()
+	AddComponent(/datum/component/mobile_power, active, 10)
+
+/obj/machinery/power/port_gen/pacman/mobile_power/connect_to_network()
+	return FALSE // Don't connect this to networks to stop it doubling up
+
+/obj/machinery/power/port_gen/pacman/mobile_power/should_have_node()
+	return FALSE // Works by magic

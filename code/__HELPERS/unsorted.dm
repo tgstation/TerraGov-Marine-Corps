@@ -1342,8 +1342,9 @@ will handle it, but:
 	for(var/mob/M in mobs)
 		if(skip_mindless && (!M.mind && !M.ckey))
 			continue
-		if(M.client && M.client.holder && M.client.holder.fakekey) //stealthmins
-			continue
+		if(M.client?.holder)
+			if(M.client.holder.fakekey || M.client.holder.invisimined) //stealthmins
+				continue
 		var/name = avoid_assoc_duplicate_keys(M.name, namecounts)
 
 		if(M.real_name && M.real_name != M.name)

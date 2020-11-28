@@ -2,6 +2,7 @@
 	name = "flashbang"
 	icon_state = "flashbang2"
 	item_state = "flashbang"
+	arm_sound = 'sound/weapons/armbombpin.ogg'
 	var/banglet = 0
 
 

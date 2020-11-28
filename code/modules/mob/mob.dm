@@ -313,7 +313,7 @@
 /mob/proc/equip_to_slot(obj/item/W as obj, slot)
 	return
 
-//This is just a commonly used configuration for the equip_to_slot_if_possible() proc, used to equip people when the rounds starts and when events happen and such.
+///This is just a commonly used configuration for the equip_to_slot_if_possible() proc, used to equip people when the rounds starts and when events happen and such.
 /mob/proc/equip_to_slot_or_del(obj/item/W, slot, permanent = FALSE)
 	return equip_to_slot_if_possible(W, slot, TRUE, TRUE, FALSE, FALSE, permanent)
 
@@ -510,8 +510,8 @@
 	if(!suppress_message)
 		playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, 7)
 
-	if(hud_used?.pull_icon)
-		hud_used.pull_icon.icon_state = "pull"
+
+	hud_used?.pull_icon?.icon_state = "pull"
 
 	if(ismob(AM))
 		var/mob/pulled_mob = AM
