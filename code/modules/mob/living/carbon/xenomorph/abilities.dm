@@ -1187,16 +1187,6 @@
 	if(isxenohivemind(owner))
 		cooldown_timer = 30 SECONDS
 
-
-/datum/action/xeno_action/activable/rally_hive/can_use_ability(atom/A, silent, override_flags)
-	. = ..()
-
-	if(!(A))
-		if(!silent)
-			to_chat(owner, "<span class='warning'>We can't rally there!</span>")
-		return FALSE
-
-
 /datum/action/xeno_action/activable/rally_hive/use_ability(atom/A)
 
 	var/mob/living/carbon/xenomorph/X = owner

@@ -497,6 +497,7 @@ to_chat will check for valid clients itself already so no need to double check f
 
 ///Used for Hive Message alerts
 /datum/hive_status/proc/xeno_message(message = null, size = 3, force = FALSE, atom/target = null, sound = null, apply_preferences = FALSE, filter_list = null)
+
 	if(!force && !can_xeno_message())
 		return
 
@@ -521,7 +522,6 @@ to_chat will check for valid clients itself already so no need to double check f
 			arrow.add_hud(X, target)
 
 		to_chat(X, "<span class='xenodanger'><font size=[size]> [message]</font></span>")
-
 
 // This is to simplify the process of talking in hivemind, this will invoke the receive proc of all xenos in this hive
 /datum/hive_status/proc/hive_mind_message(mob/living/carbon/xenomorph/sender, message)

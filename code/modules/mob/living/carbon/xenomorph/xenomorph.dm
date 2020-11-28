@@ -64,12 +64,8 @@
 	ADD_TRAIT(src, TRAIT_FLASHBANGIMMUNE, TRAIT_XENO)
 	hive.update_tier_limits()
 
-	//For triggering hive alerts when we take damage.
-	RegisterSignal(src, COMSIG_XENOMORPH_TAKING_DAMAGE, .proc/damage_taken)
-
 ///If we're alive and health is less than either the alert threshold, or the alert trigger percent, whichever is greater, and we're not on alert cooldown, trigger the hive alert
-/mob/living/carbon/xenomorph/proc/damage_taken()
-	SIGNAL_HANDLER
+/mob/living/carbon/xenomorph/proc/xeno_damage_taken_alert_check()
 
 	if(!COOLDOWN_CHECK(src, xeno_health_alert_cooldown))
 		return
@@ -87,7 +83,7 @@
 		if(X == src) //We don't need an alert about ourself.
 			filter_list += X //Add the xeno to the filter list
 
-		if(X.client.prefs.toggles_chat & CHAT_ALERTS_XENO_HEALTH) //Build the filter list
+		if(!(X.client.prefs.mute_xeno_health_alert_messages)) //Build the filter list; people who opted not to receive health alert messages
 			filter_list += X //Add the xeno to the filter list
 
 	xeno_message("<span class='xenoannounce'>Our sister [name] is badly hurt with ([health]/[maxHealth]) health remaining at [get_area(src)] (X: [x], Y: [y])!</span>", 2, hivenumber, FALSE, src, 'sound/voice/alien_help2.ogg', TRUE, filter_list)
@@ -238,7 +234,6 @@
 	vis_contents -= wound_overlay
 	QDEL_NULL(wound_overlay)
 
-	UnregisterSignal(src, COMSIG_XENOMORPH_TAKING_DAMAGE)
 	return ..()
 
 

@@ -1,17 +1,3 @@
-/client/verb/xeno_health_alerts()
-	set name = "Toggle Xeno Health Alerts"
-	set desc = "Toggles alerts when a low HP xeno is injured."
-	set category = "Alien"
-
-	prefs.toggles_chat ^= CHAT_ALERTS_XENO_HEALTH
-	prefs.save_preferences()
-
-	if(prefs.toggles_chat & CHAT_ALERTS_XENO_HEALTH)
-		to_chat(src, "<span class='xenodanger'>You will no longer receive hive alerts about badly wounded xenos.</span>")
-	else
-		to_chat(src, "<span class='xenodanger'>You will now receive hive alerts about badly wounded xenos.</span>")
-
-
 /mob/living/carbon/xenomorph/verb/hive_status()
 	set name = "Hive Status"
 	set desc = "Check the status of your current hive."
