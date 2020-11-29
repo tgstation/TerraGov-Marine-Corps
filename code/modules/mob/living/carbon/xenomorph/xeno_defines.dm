@@ -303,8 +303,10 @@
 	var/evasion_stacks = 0
 
 	// *** Ravager vars *** //
-	var/endure = FALSE // when true the rav will not go into crit or take crit damage.
-	var/endure_state = 0 // how far "dead" the rav has got while ignoring pain.
+	/// when true the rav will not go into crit or take crit damage.
+	var/endure = FALSE
+	/// how far "dead" the rav has got while ignoring pain.
+	var/endure_state = 0
 
 	//Notification spam controls
 	var/recent_notice = 0
