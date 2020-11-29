@@ -181,8 +181,8 @@ obj/item/alienjar
 	if(istype(A, /obj/structure/bed) && LAZYLEN(B.buckled_mobs))//if it's a bed/chair and someone is buckled, it will not pass
 		return FALSE
 
-	if(istype(A, /obj/vehicle))	//no vehicles
-		return 0
+	if(isvehicle(A))	//no vehicles
+		return FALSE
 
 	if(isliving(A)) // You Shall Not Pass!
 		var/mob/living/M = A

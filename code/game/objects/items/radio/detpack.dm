@@ -334,7 +334,7 @@
 	if(plant_target)
 		if(isobj(plant_target))
 			plant_target = null
-			if(!istype(plant_target, /obj/vehicle))
+			if(!isvehicle(plant_target))
 				qdel(plant_target)
 	qdel(src)
 

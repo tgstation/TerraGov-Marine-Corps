@@ -6,7 +6,7 @@
 	if(next_move > world.time)
 		return
 
-	if(istype(loc, /obj/vehicle))
+	if(isvehicle(loc))
 		return
 
 	if(hand)

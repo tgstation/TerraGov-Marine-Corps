@@ -190,7 +190,7 @@
 
 	victim.update_burst()
 
-	if(istype(victim.loc, /obj/vehicle/armored))
+	if(isarmoredvehicle(victim.loc))
 		var/obj/vehicle/armored/vehicle = victim.loc
 		vehicle.exit_tank(src)
 	else

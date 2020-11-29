@@ -156,6 +156,8 @@
 
 #define isgun(A) (istype(A, /obj/item/weapon/gun))
 
+#define isvehicle(A) (istype(A, /obj/vehicle))
+
 #define isarmoredvehicle(A) (istype(A, /obj/vehicle/armored))
 
 #define istankweapon(A) (istype(A, /obj/item/tank_weapon))

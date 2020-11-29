@@ -208,7 +208,7 @@
 		var/obj/machinery/bot/mulebot/MB = AM
 		MB.RunOver(src)
 
-	if(istype(AM, /obj/vehicle))
+	if(isvehicle(AM)) //SHITCODE WARNING PLEASE FIX USING SIGNALS
 		var/obj/vehicle/V = AM
 		V.RunOver(src)
 

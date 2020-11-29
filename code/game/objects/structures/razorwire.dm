@@ -209,7 +209,7 @@
 		return TRUE
 	if(mover.throwing && istype(mover,/obj/item))
 		return TRUE
-	if(istype(mover, /obj/vehicle))
+	if(isvehicle(mover))
 		var/obj/vehicle/veh =  mover
 		if(!veh.demolish_on_ram)
 			return ..()

@@ -53,7 +53,7 @@
 /obj/vehicle/train/MouseDrop_T(atom/movable/C, mob/user as mob)
 	if(user.buckled || user.stat || user.restrained() || !Adjacent(user) || !user.Adjacent(C) || !istype(C) || (user == C && !user.canmove))
 		return
-	if(istype(C,/obj/vehicle/train))
+	if(isvehicle(C))
 		latch(C, user)
 	else
 		..()

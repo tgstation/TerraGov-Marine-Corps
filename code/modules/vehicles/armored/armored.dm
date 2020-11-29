@@ -378,7 +378,7 @@ This handles stuff like getting in, pulling people out of the tank, all that stu
 		var/time = 10 SECONDS - (2 SECONDS * user.skills.getRating("large_vehicle"))
 		if(!do_after(user, time, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(src, /datum.proc/Adjacent, user)))
 			return
-		enter(user.pulling, POSITION_PASSENGER)
+		enter_tank(user.pulling, POSITION_PASSENGER)
 
 	// Removing someone from the tank
 	if(user.a_intent == INTENT_GRAB) //Grab the tank to rip people out of it. Use this if someone dies in it.
@@ -429,7 +429,7 @@ This handles stuff like getting in, pulling people out of the tank, all that stu
 	if(!can_enter(user, position)) //OWO can they enter us????	//what the fuck kmc
 		return
 	to_chat(user, "You climb into [src] as a [position]!")
-	enter(user, position)
+	enter_tank(user, position)
 
 /obj/vehicle/armored/proc/can_enter(mob/living/carbon/M, position) //NO BENOS ALLOWED
 	if(!istype(M))
@@ -459,7 +459,7 @@ This handles stuff like getting in, pulling people out of the tank, all that stu
 
 
 ///attempt to enter the vehicle with a mob
-/obj/vehicle/armored/proc/enter(mob/user, position) //By this point, we've checked that the seats are actually empty, so we won't need to do that again HOPEFULLY
+/obj/vehicle/armored/proc/enter_tank(mob/user, position) //By this point, we've checked that the seats are actually empty, so we won't need to do that again HOPEFULLY
 	user.forceMove(src)
 	LAZYADD(operators, user)
 	switch(position)

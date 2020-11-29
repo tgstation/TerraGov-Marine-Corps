@@ -678,7 +678,7 @@
 
 	succeed_activate()
 
-	if(istype(A, /obj/vehicle))
+	if(isvehicle(A))
 		var/obj/vehicle/vehicle = A
 		vehicle.take_damage((1 * newacid.acid_strength) * 20, BURN, "acid", TRUE)
 		X.visible_message("<span class='xenowarning'>\The [X] vomits globs of vile stuff at \the [vehicle]. It sizzles under the bubbling mess of acid!</span>", \
