@@ -156,6 +156,10 @@
 
 #define isgun(A) (istype(A, /obj/item/weapon/gun))
 
+#define isarmoredvehicle(A) (istype(A, /obj/vehicle/armored))
+
+#define istankweapon(A) (istype(A, /obj/item/tank_weapon))
+
 #define isattachmentflashlight(A) (istype(A, /obj/item/attachable/flashlight))
 
 #define iswrench(I) (istype(I, /obj/item/tool/wrench))

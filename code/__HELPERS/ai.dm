@@ -14,7 +14,7 @@
 	. = list()
 	for(var/human in GLOB.humans_by_zlevel["[source.z]"])
 		var/mob/living/carbon/human/nearby_human = human
-		if(get_dist(source, nearby_human) > distance)
+		if(get_dist(source, nearby_human) > distance || !isturf(nearby_human.loc))
 			continue
 		. += nearby_human
 

@@ -482,9 +482,8 @@
 	. = ..()
 	return FALSE // not normal density flag
 
-/obj/vehicle/multitile/root/cm_armored/acid_spray_act(mob/living/carbon/xenomorph/X)
-	take_damage_type(X.xeno_caste.acid_spray_structure_damage, "acid", src)
-	healthcheck()
+/obj/vehicle/acid_spray_act(mob/living/carbon/xenomorph/X)
+	take_damage(X.xeno_caste.acid_spray_structure_damage, "acid", "acid")
 	return TRUE
 
 /mob/living/carbon/acid_spray_act(mob/living/carbon/xenomorph/X)

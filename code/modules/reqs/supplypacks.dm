@@ -4,7 +4,7 @@
 //NOTE: Don't add living things to crates, that's bad, it will break the shuttle.
 //NOTE: Do NOT set the price of any crates below 7 points. Doing so allows infinite points.
 
-GLOBAL_LIST_INIT(all_supply_groups, list("Operations", "Weapons", "Attachments", "Ammo", "Armor", "Clothing", "Medical", "Engineering", "Supplies", "Imports"))
+GLOBAL_LIST_INIT(all_supply_groups, list("Operations", "Weapons", "Attachments", "Ammo", "Armor", "Clothing", "Medical", "Engineering", "Supplies", "Imports", "Vehicles", "Vehicle Modules"))
 
 /datum/supply_packs
 	var/name
@@ -1429,3 +1429,84 @@ Imports
 	name = "Straw hat"
 	contains = list(/obj/item/clothing/head/strawhat)
 	cost = 1
+
+/*******************************************************************************
+Vehicles
+*******************************************************************************/
+
+/datum/supply_packs/vehicles
+	group = "Vehicles"
+	containertype = null
+
+/datum/supply_packs/vehicles/tank //Just tank for now since the other sprites are kinda ugly
+	name = "TAV Rhino armored tank"
+	contains = list(/obj/vehicle/armored/multitile)
+	cost = 750
+
+/*******************************************************************************
+Vehicle ammo and modules
+*******************************************************************************/
+/datum/supply_packs/vehmodules
+	group = "Vehicle Modules"
+	containertype = /obj/structure/closet/crate/secure/ammo
+	access = ACCESS_MARINE_CARGO
+
+/datum/supply_packs/vehmodules/overdrive
+	name = "Overdrive engine module"
+	contains = list(/obj/item/tank_module/overdrive)
+	cost = 25
+
+/datum/supply_packs/vehmodules/passenger
+	name = "Passenger compartment module"
+	contains = list(/obj/item/tank_module/passenger)
+	cost = 25
+
+/datum/supply_packs/vehmodules/ltb
+	name = "LTB cannon primary weapon"
+	contains = list(/obj/item/tank_weapon)
+	cost = 15
+
+/datum/supply_packs/vehmodules/minigun
+	name = "Minigun secondary weapon"
+	contains = list(/obj/item/tank_weapon/secondary_weapon)
+	cost = 15
+
+/datum/supply_packs/vehmodules/smokelauncher
+	name = "Smoke grenade launcher primary weapon"
+	contains = list(/obj/item/tank_weapon/apc_cannon)
+	cost = 10
+
+/datum/supply_packs/vehmodules/ltb_ammo
+	name = "LTB missile rack"
+	contains = list(/obj/item/ammo_magazine/tank/ltb_cannon)
+	cost = 5
+
+/datum/supply_packs/vehmodules/minigun_ammo
+	name = "Secondary minigun ammo case"
+	contains = list(/obj/item/ammo_magazine/tank/ltaap_minigun)
+	cost = 5
+
+/datum/supply_packs/vehmodules/smokelauncher_ammo
+	name = "Smoke grenade pod ammo case"
+	contains = list(/obj/item/ammo_magazine/tank/tank_slauncher)
+	cost = 5
+
+/datum/supply_packs/vehmodules/grenadelauncher_ammo
+	name = "Smoke grenade pod ammo case"
+	contains = list(/obj/item/ammo_magazine/tank/tank_glauncher)
+	cost = 5
+
+/datum/supply_packs/vehmodules/tow_ammo
+	name = "TOW rocket pack"
+	contains = list(/obj/item/ammo_magazine/tank/towlauncher)
+	cost = 5
+
+/datum/supply_packs/vehmodules/flamer_ammo
+	name = "Napalm ammo fuel tank"
+	contains = list(/obj/item/ammo_magazine/tank/flamer)
+	cost = 5
+
+/datum/supply_packs/vehmodules/cupola_ammo
+	name = "Cupola turret ammo case"
+	contains = list(/obj/item/ammo_magazine/tank/m56_cupola)
+	cost = 5

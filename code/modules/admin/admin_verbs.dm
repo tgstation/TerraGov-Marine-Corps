@@ -1090,11 +1090,11 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	for(var/obj/vehicle/multitile/root/cm_armored/CA in GLOB.tank_list)
-		CA.remove_all_players()
+	for(var/obj/vehicle/armored/tank as() in GLOB.tank_list)
+		tank.remove_all_players()
 
-		log_admin("[key_name(usr)] forcibly removed all players from [CA].")
-		message_admins("[ADMIN_TPMONTY(usr)] forcibly removed all players from [CA].")
+		log_admin("[key_name(usr)] forcibly removed all players from [tank].")
+		message_admins("[ADMIN_TPMONTY(usr)] forcibly removed all players from [tank].")
 
 
 /datum/admins/proc/job_slots()

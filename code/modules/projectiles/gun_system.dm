@@ -131,7 +131,7 @@
 	handle_starting_attachment()
 
 	setup_firemodes()
-	AddComponent(/datum/component/automatic_fire, fire_delay, burst_delay, burst_amount, gun_firemode, loc) //This should go after handle_starting_attachment() and setup_firemodes() to get the proper values set.
+	AddComponent(/datum/component/automatic_fire, fire_delay, burst_delay, burst_amount, gun_firemode, loc, CALLBACK(src, .proc/autofire_bypass_check), CALLBACK(src, .proc/do_autofire), CALLBACK(src, .proc/on_autofire_stop)) //This should go after handle_starting_attachment() and setup_firemodes() to get the proper values set.
 
 	muzzle_flash = new(src, muzzleflash_iconstate)
 

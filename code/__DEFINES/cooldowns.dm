@@ -25,6 +25,7 @@
 #define COOLDOWN_CPR		"CPR"
 #define COOLDOWN_IV_PING	"iv_ping"
 #define COOLDOWN_RACK_BOLT	"rack_bolt"
+#define COOLDOWN_TANK_SWIVEL	"tank_swivel"
 
 //// COOLDOWN SYSTEMS
 /*

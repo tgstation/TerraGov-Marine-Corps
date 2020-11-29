@@ -19,6 +19,8 @@ const category_icon = {
   'Supplies': "hamburger",
   'Imports': "boxes",
   'Pending Order': "shopping-cart",
+  'Vehicles': "road",
+  'Vehicle Modules': "wrench",
 };
 
 export const Cargo = (props, context) => {

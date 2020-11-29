@@ -88,7 +88,7 @@
 	user.action_busy--
 
 
-//some additional checks as a callback for for do_afters that want to break on losing health or on the mob taking action
+///some additional checks as a callback for for do_afters that want to break on losing health or on the mob taking action
 /mob/proc/break_do_after_checks(list/checked_health, check_clicks, selected_zone_check)
 	if(check_clicks && next_move > world.time)
 		return FALSE
@@ -97,7 +97,7 @@
 	return TRUE
 
 
-//pass a list in the format list("health" = mob's health var) to check health during this
+///pass a list in the format list("health" = mob's health var) to check health during this
 /mob/living/break_do_after_checks(list/checked_health, check_clicks, selected_zone_check)
 	if(islist(checked_health))
 		if(health < checked_health["health"])

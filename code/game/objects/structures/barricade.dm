@@ -88,9 +88,7 @@
 				return FALSE
 		return TRUE
 
-	if(istype(mover, /obj/vehicle/multitile))
-		visible_message("<span class='danger'>[mover] drives over and destroys [src]!</span>")
-		deconstruct(FALSE)
+	if(isarmoredvehicle(mover))
 		return FALSE
 
 	if((mover.flags_atom & ON_BORDER) && get_dir(loc, target) & dir)

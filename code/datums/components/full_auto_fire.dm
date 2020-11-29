@@ -16,20 +16,30 @@
 	var/shots_to_fire = 0
 	var/component_fire_mode
 	var/mouse_status = AUTOFIRE_MOUSEUP //This seems hacky but there can be two MouseDown() without a MouseUp() in between if the user holds click and uses alt+tab, printscreen or similar.
+	var/datum/callback/do_autofire_callback
+	var/datum/callback/bypass_callback
+	var/datum/callback/autostop_callback
 
 
-/datum/component/automatic_fire/Initialize(autofire_shot_delay, burstfire_shot_delay, shots_to_fire, firemode, parent_loc)
+/datum/component/automatic_fire/Initialize(_autofire_shot_delay, _burstfire_shot_delay, _shots_to_fire, firemode, parent_loc, bypass_cb, do_auto_cb, autostop_cb)
 	. = ..()
-	if(!isgun(parent))
+	if(isgun(parent))
+		RegisterSignal(parent, COMSIG_GUN_FIREMODE_TOGGLE, .proc/wake_up)
+		RegisterSignal(parent, COMSIG_GUN_FIREDELAY_MODIFIED, .proc/modify_firedelay)
+		RegisterSignal(parent, COMSIG_GUN_BURSTDELAY_MODIFIED, .proc/modify_burst_delay)
+		RegisterSignal(parent, COMSIG_GUN_BURSTAMOUNT_MODIFIED, .proc/modify_burst_amount)
+	else if(istankweapon(parent))
+		RegisterSignal(parent, COMSIG_TANK_ENTERED, .proc/wake_up)
+		RegisterSignal(parent, COMSIG_TANK_EXITED, .proc/sleep_up)
+	else
 		return COMPONENT_INCOMPATIBLE
-	RegisterSignal(parent, COMSIG_GUN_FIREMODE_TOGGLE, .proc/wake_up)
-	RegisterSignal(parent, COMSIG_GUN_FIREDELAY_MODIFIED, .proc/modify_firedelay)
-	RegisterSignal(parent, COMSIG_GUN_BURSTDELAY_MODIFIED, .proc/modify_burst_delay)
-	RegisterSignal(parent, COMSIG_GUN_BURSTAMOUNT_MODIFIED, .proc/modify_burst_amount)
 
-	src.autofire_shot_delay = autofire_shot_delay
-	src.burstfire_shot_delay = burstfire_shot_delay
-	src.shots_to_fire = shots_to_fire
+	autofire_shot_delay = _autofire_shot_delay
+	burstfire_shot_delay = _burstfire_shot_delay
+	shots_to_fire = _shots_to_fire
+	do_autofire_callback = do_auto_cb
+	bypass_callback = bypass_cb
+	autostop_callback = autostop_cb
 
 	switch(firemode)
 		if(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
@@ -47,31 +57,31 @@
 
 /datum/component/automatic_fire/proc/wake_up(datum/source, fire_mode, client/usercli)
 	SIGNAL_HANDLER
-	switch(fire_mode)
-		if(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
-			component_fire_mode = fire_mode
-		else
+	if(isgun(parent))
+		if(fire_mode == GUN_FIREMODE_SEMIAUTO || fire_mode == GUN_FIREMODE_BURSTFIRE)
 			if(autofire_stat & (AUTOFIRE_STAT_IDLE|AUTOFIRE_STAT_ALERT|AUTOFIRE_STAT_FIRING))
 				sleep_up()
-			return //No need for autofire on other modes.
-
+			return	//No need for autofire on other modes.
+	component_fire_mode = fire_mode
 	if(autofire_stat & (AUTOFIRE_STAT_IDLE|AUTOFIRE_STAT_ALERT))
 		return //We've updated the firemode. No need for more.
 	if(autofire_stat & AUTOFIRE_STAT_FIRING)
 		stop_autofiring() //Let's stop shooting to avoid issues.
 		return
 
-	autofire_stat = AUTOFIRE_STAT_IDLE
-
-	RegisterSignal(parent, list(COMSIG_PARENT_PREQDELETED), .proc/sleep_up)
-	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, .proc/itemgun_equipped)
-
 	if(usercli)
-		var/obj/item/weapon/gun/shoota = parent
-		if(shoota.loc == usercli.mob)
+		autofire_stat = AUTOFIRE_STAT_IDLE
+		if(isgun(parent))//bonus checks for weapons we need to be holding to fire
+			var/obj/item/weapon/gun/shoota = parent
+			if(shoota.loc != usercli.mob)
+				return
 			var/mob/shooter = usercli.mob
-			if(shooter.l_hand == parent || shooter.r_hand == parent)
-				autofire_on(usercli)
+			if(!(shooter.l_hand == parent || shooter.r_hand == parent))
+				return
+		autofire_on(usercli)
+		RegisterSignal(parent, COMSIG_PARENT_PREQDELETED, .proc/sleep_up)
+	if(isgun(parent))
+		RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, .proc/itemgun_equipped)
 
 
 /datum/component/automatic_fire/proc/sleep_up()
@@ -97,9 +107,9 @@
 	RegisterSignal(clicker, COMSIG_CLIENT_MOUSEDOWN, .proc/on_mouse_down)
 	RegisterSignal(parent, COMSIG_ITEM_DROPPED, .proc/autofire_off)
 	RegisterSignal(shooter, COMSIG_MOB_LOGOUT, .proc/autofire_off)
-	parent.RegisterSignal(src, COMSIG_AUTOFIRE_ONMOUSEDOWN, /obj/item/weapon/gun/.proc/autofire_bypass_check)
-	parent.RegisterSignal(parent, COMSIG_AUTOFIRE_SHOT, /obj/item/weapon/gun/.proc/do_autofire)
 
+	bypass_callback.RegisterSignal(src, COMSIG_AUTOFIRE_ONMOUSEDOWN, /datum/callback.proc/Invoke)
+	do_autofire_callback.RegisterSignal(parent, COMSIG_AUTOFIRE_SHOT, /datum/callback.proc/Invoke)
 
 /datum/component/automatic_fire/proc/autofire_off(datum/source)
 	SIGNAL_HANDLER
@@ -118,8 +128,8 @@
 		UnregisterSignal(shooter, COMSIG_MOB_LOGOUT)
 	UnregisterSignal(parent, COMSIG_ITEM_DROPPED)
 	shooter = null
-	parent.UnregisterSignal(parent, COMSIG_AUTOFIRE_SHOT)
-	parent.UnregisterSignal(src, COMSIG_AUTOFIRE_ONMOUSEDOWN)
+	UnregisterSignal(parent, COMSIG_AUTOFIRE_SHOT)
+	UnregisterSignal(src, COMSIG_AUTOFIRE_ONMOUSEDOWN)
 
 
 /datum/component/automatic_fire/proc/on_mouse_down(client/source, atom/target, turf/location, control, params)
@@ -137,7 +147,7 @@
 
 	if(source.mob.in_throw_mode)
 		return
-	if(!isturf(source.mob.loc)) //No firing inside lockers and stuff.
+	if(!isturf(source.mob.loc) && (!istankweapon(parent))) //No firing inside lockers and stuff.
 		return
 	if(get_dist(source.mob, target) < 2) //Adjacent clicking.
 		return
@@ -196,7 +206,6 @@
 			return
 	if(autofire_stat != AUTOFIRE_STAT_FIRING)
 		return //Things may have changed while on_autofire_start() was being processed, due to do_after's sleep.
-
 	switch(component_fire_mode)
 		if(GUN_FIREMODE_AUTOMATIC)
 			if(!process_shot()) //First shot is processed instantly.
@@ -238,8 +247,7 @@
 		UnregisterSignal(clicker, COMSIG_CLIENT_MOUSEDRAG)
 	if(!QDELETED(shooter))
 		UnregisterSignal(shooter, COMSIG_CARBON_SWAPPED_HANDS)
-	var/obj/item/weapon/gun/shoota = parent
-	shoota.on_autofire_stop(shots_fired)
+	autostop_callback.Invoke(shots_fired)
 	shots_fired = 0
 	target = null
 	target_loc = null

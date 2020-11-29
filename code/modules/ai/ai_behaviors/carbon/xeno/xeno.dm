@@ -32,6 +32,13 @@
 		if(mob_parent.z != atom_turret.z)
 			continue
 		return_result += turret
+	for(var/tank in GLOB.tank_list)
+		var/atom/atom_tank = tank
+		if(!(get_dist(mob_parent, atom_tank) <= 8))
+			continue
+		if(mob_parent.z != atom_tank.z)
+			continue
+		return_result += atom_tank
 	return return_result
 
 /datum/ai_behavior/carbon/xeno/process()
@@ -85,6 +92,9 @@
 		var/obj/machinery/thing = atom_to_walk_to
 		if(!(thing.resistance_flags & XENO_DAMAGEABLE))
 			stack_trace("A xenomorph tried to attack a [atom_to_walk_to.name] that isn't considered XENO_DAMAGABLE according to resistance flags.")
+		thing.attack_alien(xeno)
+	else if(isarmoredvehicle(atom_to_walk_to))
+		var/obj/vehicle/armored/thing = atom_to_walk_to
 		thing.attack_alien(xeno)
 	xeno.changeNext_move(xeno.xeno_caste.attack_delay)
 

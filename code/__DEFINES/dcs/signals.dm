@@ -164,7 +164,7 @@
 #define COMSIG_MOVABLE_Z_CHANGED "movable_ztransit" 			//from base of atom/movable/onTransitZ(): (old_z, new_z)
 #define COMSIG_MOVABLE_CROSS "movable_cross"					//from base of atom/movable/Cross(): (/atom/movable)
 #define COMSIG_MOVABLE_UNCROSS "movable_uncross"				//from base of atom/movable/Uncross(): (/atom/movable)
-	#define COMPONENT_MOVABLE_BLOCK_UNCROSS 1
+	#define COMPONENT_MOVABLE_BLOCK_UNCROSS  (1<<0)
 #define COMSIG_MOVABLE_UNCROSSED "movable_uncrossed"            //from base of atom/movable/Uncrossed(): (/atom/movable)
 #define COMSIG_MOVABLE_RELEASED_FROM_STOMACH "movable_released_from_stomach" //from base of mob/living/carbon/xenomorph/proc/empty_gut(): (prey, predator)
 #define COMSIG_MOVABLE_CLOSET_DUMPED "movable_closet_dumped"
@@ -200,7 +200,7 @@
 // /obj/item signals
 #define COMSIG_ITEM_ATTACK "item_attack"						//from base of obj/item/attack(): (/mob/living/target, /mob/living/user)
 #define COMSIG_ITEM_ATTACK_SELF "item_attack_self"				//from base of obj/item/attack_self(): (/mob)
-	#define COMPONENT_NO_INTERACT 1
+	#define COMPONENT_NO_INTERACT (1<<0)
 #define COMSIG_ITEM_EQUIPPED "item_equip"						//from base of obj/item/equipped(): (/mob/equipper, slot)
 #define COMSIG_ITEM_EQUIPPED_TO_SLOT "item_equip_to_slot"			//from base of obj/item/equipped(): (/mob/equipper)
 #define COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT "item_equip_not_in_slot"	//from base of obj/item/equipped(): (/mob/equipper, slot)
@@ -208,9 +208,9 @@
 #define COMSIG_ITEM_DROPPED "item_drop"							//from base of obj/item/dropped(): (mob/user)
 #define COMSIG_ITEM_AFTERATTACK "item_afterattack"				//from base of obj/item/afterattack(): (atom/target, mob/user, proximity_flag, click_parameters)
 #define COMSIG_ITEM_ATTACK_OBJ "item_attack_obj"				//from base of obj/item/attack_obj(): (/obj, /mob)
-	#define COMPONENT_NO_ATTACK_OBJ 1
+	#define COMPONENT_NO_ATTACK_OBJ (1<<0)
 #define COMSIG_ITEM_ATTACK_TURF "item_attack_turf"				//from base of obj/item/attack_turf(): (/turf, /mob)
-	#define COMPONENT_NO_ATTACK_TURF 1
+	#define COMPONENT_NO_ATTACK_TURF (1<<0)
 #define COMSIG_ITEM_TOGGLE_ACTION "item_toggle_action"			//from base of obj/item/ui_interact(): (/mob/user)
 #define COMSIG_ITEM_TOGGLE_ACTIVE "item_toggle_active"			//from base of /obj/item/toggle_active(): (new_state)
 
@@ -232,13 +232,17 @@
 
 // /obj/item/weapon/gun signals
 #define COMSIG_GUN_FIRE "gun_fire"
-	#define COMPONENT_GUN_FIRED 1
+	#define COMPONENT_GUN_FIRED (1<<0)
 #define COMSIG_GUN_AUTOFIRE "gun_autofire"
 #define COMSIG_GUN_CLICKEMPTY "gun_clickempty"
 #define COMSIG_GUN_FIREMODE_TOGGLE "gun_firemode_toggle"		//from /obj/item/weapon/gun/verb/toggle_firemode()
 #define COMSIG_GUN_FIREDELAY_MODIFIED "gun_firedelay_modified"
 #define COMSIG_GUN_BURSTDELAY_MODIFIED "gun_burstdelay_modified"
 #define COMSIG_GUN_BURSTAMOUNT_MODIFIED "gun_burstamount_modified"
+
+// /obj/item/tank_weapon signals
+#define COMSIG_TANK_ENTERED "tank turret entered"
+#define COMSIG_TANK_EXITED "tank turret exited"
 
 // /obj/item/clothing signals
 #define COMSIG_SHOES_STEP_ACTION "shoes_step_action"			//from base of obj/item/clothing/shoes/proc/step_action(): ()
@@ -328,7 +332,7 @@
 
 #define COMSIG_WARRIOR_USED_GRAB "warrior_used_grab"
 #define COMSIG_WARRIOR_NECKGRAB "warrior_neckgrab"
-	#define COMSIG_WARRIOR_CANT_NECKGRAB 1
+	#define COMSIG_WARRIOR_CANT_NECKGRAB  (1<<0)
 
 #define COMSIG_XENOMORPH_PLASMA_REGEN "xenomorph_plasma_regen"
 

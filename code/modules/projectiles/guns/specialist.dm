@@ -1064,7 +1064,7 @@
 
 
 //This is a minigun not a chaingun.
-obj/item/weapon/gun/minigun/Fire(atom/target, mob/living/user, params, reflex = FALSE, dual_wield)
+/obj/item/weapon/gun/minigun/Fire(atom/target, mob/living/user, params, reflex = FALSE, dual_wield)
 	playsound(get_turf(src), 'sound/weapons/guns/fire/tank_minigun_start.ogg', 30)
 	if(!do_after(user, 0.15 SECONDS, TRUE, src, BUSY_ICON_DANGER, BUSY_ICON_DANGER, ignore_turf_checks = TRUE))
 		return

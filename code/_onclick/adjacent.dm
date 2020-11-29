@@ -164,12 +164,22 @@
 		return FALSE
 	return T.Adjacent(neighbor, target = neighbor, mover = src)
 
+/obj/vehicle/armored/multitile/Adjacent(atom/neighbor)
+	if(isxeno(neighbor))//Xenos stand next to it and slash
+		for(var/obj/vehicle/hitbox/H in linked_hitboxes)
+			for(var/turf/T as() in H.locs)
+				if(T.Adjacent(neighbor, target = neighbor, mover = src))
+					return TRUE
+	else
+		if(get_door_location(neighbor))
+			return TRUE
+	return FALSE
 
-/*
-	This checks if you there is uninterrupted airspace between that turf and this one.
-	This is defined as any dense ON_BORDER object, or any dense object without throwpass.
-	The border_only flag allows you to not objects (for source and destination squares)
-*/
+/**
+  *This checks if you there is uninterrupted airspace between that turf and this one.
+  *	This is defined as any dense ON_BORDER object, or any dense object without throwpass.
+  * The border_only flag allows you to not objects (for source and destination squares)
+  */
 /turf/proc/ClickCross(target_dir, border_only, target_atom = null, atom/movable/mover = null)
 	for(var/obj/O in src)
 		if((mover && O.CanPass(mover,get_step(src, target_dir))) || (!mover && !O.density))

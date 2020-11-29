@@ -22,7 +22,7 @@
 	return TRUE
 
 /obj/item/storage/internal/mob_can_equip()
-	return 0	//make sure this is never picked up
+	return FALSE	//make sure this is never picked up
 
 //Helper procs to cleanly implement internal storages - storage items that provide inventory slots for other items.
 //These procs are completely optional, it is up to the master item to decide when it's storage get's opened by calling open()
@@ -37,24 +37,24 @@
 	if(ishuman(user) || ismonkey(user)) //so monkeys can take off their backpacks -- Urist
 
 		if(user.lying_angle) //Can't use your inventory when lying
-			return
+			return FALSE
 
-		if(istype(user.loc, /obj/vehicle/multitile/root/cm_armored)) //Stops inventory actions in a mech/tank
-			return 0
+		if(istype(user.loc, /obj/vehicle)) //Stops inventory actions in a mech/tank
+			return  FALSE
 
 		if(over_object == user && Adjacent(user)) //This must come before the screen objects only block
 			open(user)
-			return 0
+			return FALSE
 
 		if(master_item.flags_item & NODROP) return
 
 		if(!istype(over_object, /obj/screen))
-			return 1
+			return TRUE
 
 		//Makes sure master_item is equipped before putting it in hand, so that we can't drag it into our hand from miles away.
 		//There's got to be a better way of doing this...
 		if(master_item.loc != user || (master_item.loc && master_item.loc.loc == user))
-			return 0
+			return FALSE
 
 		if(!user.incapacitated())
 			switch(over_object.name)
@@ -66,7 +66,7 @@
 							else
 								user.dropItemToGround(master_item)
 								user.put_in_r_hand(master_item)
-							return 0
+							return FALSE
 					else
 						user.dropItemToGround(master_item)
 						user.put_in_r_hand(master_item)
@@ -78,12 +78,12 @@
 							else
 								user.dropItemToGround(master_item)
 								user.put_in_l_hand(master_item)
-							return 0
+							return FALSE
 					else
 						user.dropItemToGround(master_item)
 						user.put_in_l_hand(master_item)
-			return 0
-	return 0
+			return FALSE
+	return FALSE
 
 //Items that use internal storage have the option of calling this to emulate default storage attack_hand behaviour.
 //Returns 1 if the master item's parent's attack_hand() should be called, 0 otherwise.

@@ -23,7 +23,15 @@
 	var/vehicle_flags = NONE
 
 	var/obj/item/cell/cell
+	///How much power it uses per cell
 	var/charge_use = 5	//set this to adjust the amount of power the vehicle uses per move
+
+	///Bool for whether we crash into walls and destroy them
+	var/demolish_on_ram = FALSE
+	///How much damage we deal when ramming things
+	var/ram_damage = 100
+	///Last time we played an engine noise
+	var/lastsound = 0
 
 //-------------------------------------------
 // Standard procs
@@ -119,10 +127,10 @@
 	new /obj/effect/overlay/temp/emp_sparks (loc)
 	if(on)
 		turn_off()
-	spawn(severity*300)
-		stat &= ~EMPED
-		if(was_on)
-			turn_on()
+	var/timer = severity * 300
+	addtimer(VARSET_CALLBACK(src, stat, (stat & ~EMPED)), timer)
+	if(was_on)
+		addtimer(CALLBACK(src, .proc/turn_on), timer)
 
 //-------------------------------------------
 // Vehicle procs

@@ -944,7 +944,7 @@
 	//Shoot at the thing
 	playsound(loc, 'sound/weapons/guns/fire/smg_heavy.ogg', 75, TRUE)
 
-	proj_to_fire.fire_at(target, src, null, ammo.max_range, ammo.shell_speed)
+	proj_to_fire.fire_at(target, src, src, ammo.max_range, ammo.shell_speed)
 	if(target)
 		var/angle = round(Get_Angle(src, target))
 		muzzle_flash(angle)

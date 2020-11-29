@@ -209,8 +209,11 @@
 		return TRUE
 	if(mover.throwing && istype(mover,/obj/item))
 		return TRUE
-	if(istype(mover, /obj/vehicle/multitile))
-		visible_message("<span class='danger'>[mover] drives over and destroys [src]!</span>")
+	if(istype(mover, /obj/vehicle))
+		var/obj/vehicle/veh =  mover
+		if(!veh.demolish_on_ram)
+			return ..()
+		visible_message("<span class='danger'>[veh] drives over and destroys [src]!</span>")
 		deconstruct(FALSE)
 		return TRUE
 
