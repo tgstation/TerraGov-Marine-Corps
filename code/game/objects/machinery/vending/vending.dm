@@ -186,7 +186,7 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 
 	if(M.a_intent == INTENT_HARM)
 		M.do_attack_animation(src, ATTACK_EFFECT_SMASH)
-		if(prob(M.xeno_caste.melee_damage))
+		if(prob(M.xeno_caste.melee_damage * M.xeno_melee_damage_modifier))
 			playsound(loc, 'sound/effects/metalhit.ogg', 25, 1)
 			M.visible_message("<span class='danger'>\The [M] smashes \the [src] beyond recognition!</span>", \
 			"<span class='danger'>We enter a frenzy and smash \the [src] apart!</span>", null, 5)
