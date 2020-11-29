@@ -1,0 +1,6 @@
+author: "Surrealaser"
+delete-after: True
+changes: 
+  - bugfix: "Camo tarp occupants can no longer be forced out by any smoke type; only Acid and WP smoke types can force occupants out of camo tarps now."
+  - tweak: "Camo tarp serial number generation improved to better thwart autopoint macros."
+  - refactor: "Minor refactoring."
