@@ -67,13 +67,13 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 /obj/machinery/computer/camera_advanced/overwatch/proc/attempt_spotlight(datum/source, atom/A, params)
 	SIGNAL_HANDLER
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ORBITAL_SPOTLIGHT))
-		to_chat(user, "<span class='warning'>Orbital spotlight cooling, please wait.</span>")
+		to_chat(source, "<span class='warning'>Orbital spotlight cooling, please wait.</span>")
 		return
 	TIMER_COOLDOWN_START(src, COOLDOWN_ORBITAL_SPOTLIGHT, SPOTLIGHT_COOLDOWN_DURATION)
 	var/turf/target = get_turf(A)
 	target.set_light(5, 2)
 	addtimer(CALLBACK(target, /atom.proc/set_light, 0, 0), SPOTLIGHT_DURATION)
-	to_chat(user, "<span class='warning'>Orbital spotlight activated.</span>")
+	to_chat(source, "<span class='warning'>Orbital spotlight activated.</span>")
 
 /obj/machinery/computer/camera_advanced/overwatch/CreateEye()
 	. = ..()
