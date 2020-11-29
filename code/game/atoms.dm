@@ -18,7 +18,7 @@
 
 	var/germ_level = GERM_LEVEL_AMBIENT // The higher the germ level, the more germ on the atom.
 
-	//overlays that should remain on top and not normally removed when using cut_overlay functions, like c4.
+	///overlays that should remain on top and not normally removed when using cut_overlay functions, like c4.
 	var/list/priority_overlays
 	///a very temporary list of overlays to remove
 	var/list/remove_overlays
