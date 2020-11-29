@@ -35,7 +35,9 @@
 	var/turf/center_turf
 	var/datum/hive_status/associated_hive
 	var/silo_area
-	COOLDOWN_DECLARE(silo_alert_cooldown)
+	var/list/detector_entities = list()
+	COOLDOWN_DECLARE(silo_damage_alert_cooldown)
+	COOLDOWN_DECLARE(silo_proxy_alert_cooldown)
 
 /obj/structure/resin/silo/Initialize()
 	. = ..()
@@ -60,18 +62,29 @@
 		RegisterSignal(associated_hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK), .proc/is_burrowed_larva_host)
 	silo_area = get_area(src)
 
+	for(var/turf/T in orange(2, src)) //Set up our detector entities
+		var/obj/effect/resin_silo_detector/RSD = new /obj/effect/resin_silo_detector(T)
+		RSD.linked_resin_silo = src
+		detector_entities += RSD
 
 /obj/structure/resin/silo/Destroy()
 	GLOB.xeno_resin_silos -= src
 	if(associated_hive)
 		UnregisterSignal(associated_hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK))
 		//Since resin silos are more important now, we need a better notification.
-		associated_hive.xeno_message("<span class='xenoannounce'>A resin silo has been destroyed at [silo_area] (X: [src.x], Y: [src.y])!</span>", 2, TRUE, FALSE, 'sound/voice/alien_help2.ogg', src)
+		associated_hive.xeno_message("<span class='xenoannounce'>A resin silo has been destroyed at [silo_area] (X: [src.x], Y: [src.y])!</span>", 2, FALSE, src, 'sound/voice/alien_help2.ogg')
 		associated_hive = null
 	for(var/i in contents)
 		var/atom/movable/AM = i
 		AM.forceMove(get_step(center_turf, pick(CARDINAL_ALL_DIRS)))
 	playsound(loc,'sound/effects/alien_egg_burst.ogg', 75)
+
+	for(var/obj/effect/resin_silo_detector/RSD in detector_entities) //Delete our detector entities
+		QDEL_NULL(RSD)
+
+	silo_area = null //Null vars
+	center_turf = null
+	detector_entities = null
 	STOP_PROCESSING(SSslowprocess, src)
 	return ..()
 
@@ -99,14 +112,21 @@
 	if(!CHECK_BITFIELD(datum_flags, DF_ISPROCESSING))
 		START_PROCESSING(SSslowprocess, src)
 
-	silo_damage_alert()
+	resin_silo_damage_alert()
 
-/obj/structure/resin/silo/proc/silo_damage_alert()
-	if(!COOLDOWN_CHECK(src, silo_alert_cooldown))
+/obj/structure/resin/silo/proc/resin_silo_damage_alert()
+	if(!COOLDOWN_CHECK(src, silo_damage_alert_cooldown))
 		return
 
-	associated_hive.xeno_message("<span class='xenoannounce'>Our [name] at [silo_area] (X: [x], Y: [y]) is under attack! It has [obj_integrity]/[max_integrity] Health remaining.</span>", 2, FALSE, 'sound/voice/alien_help2.ogg', src)
-	COOLDOWN_START(src, silo_alert_cooldown, XENO_HEALTH_ALERT_COOLDOWN) //set the cooldown.
+	associated_hive.xeno_message("<span class='xenoannounce'>Our [name] at [silo_area] (X: [x], Y: [y]) is under attack! It has [obj_integrity]/[max_integrity] Health remaining.</span>", 2, FALSE, src, 'sound/voice/alien_help2.ogg')
+	COOLDOWN_START(src, silo_damage_alert_cooldown, XENO_HEALTH_ALERT_COOLDOWN) //set the cooldown.
+
+/obj/structure/resin/silo/proc/resin_silo_proxy_alert(mob/living/hostile)
+	if(!COOLDOWN_CHECK(src, silo_proxy_alert_cooldown))
+		return
+
+	associated_hive.xeno_message("<span class='xenoannounce'>Our [name] has detected a nearby hostile [hostile] at [get_area(hostile)] (X: [hostile.x], Y: [hostile.y]). [name] has [obj_integrity]/[max_integrity] Health remaining.</span>", 2, FALSE, hostile, 'sound/voice/alien_help2.ogg')
+	COOLDOWN_START(src, silo_proxy_alert_cooldown, XENO_HEALTH_ALERT_COOLDOWN) //set the cooldown.
 
 
 /obj/structure/resin/silo/process()
@@ -123,6 +143,40 @@
 	SIGNAL_HANDLER
 	if(associated_hive)
 		silos += src
+
+/// This is an invisible entity used to detect movement adjacent to the resin silo for the purposes of alerting the hive.
+/obj/effect/resin_silo_detector
+	name = "resin silo"
+	anchored = TRUE
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	invisibility = INVISIBILITY_MAXIMUM
+	resistance_flags = RESIST_ALL
+	var/obj/structure/resin/silo/linked_resin_silo
+
+/obj/effect/resin_silo_detector/Destroy()
+	linked_resin_silo = null
+	return ..()
+
+/// When crossed by a living entity the detector triggers the silo proxy alert
+/obj/effect/resin_silo_detector/Crossed(atom/A)
+	. = ..()
+	if(!linked_resin_silo)
+		QDEL_NULL(src)
+		return
+
+	if(!COOLDOWN_CHECK(linked_resin_silo, silo_proxy_alert_cooldown)) //Proxy alert triggered too recently; abort
+		return
+
+	if(!isliving(A))
+		return
+
+	if(isxeno(A))
+		var/mob/living/carbon/xenomorph/X = A
+		if(X.hive == linked_resin_silo.associated_hive) //Trigger proxy alert only for hostile xenos
+			return
+
+	linked_resin_silo.resin_silo_proxy_alert(A)
+
 
 //*******************
 //Corpse recyclinging

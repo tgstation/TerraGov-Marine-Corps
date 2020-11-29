@@ -67,6 +67,29 @@
 
 	return xenoinfo
 
+
+///Relays health and location data about resin silos belonging to the same hive as the input user
+/proc/resin_silo_status_output(mob/living/carbon/xenomorph/user)
+	var/resin_silo_info = ""
+	resin_silo_info += "<BR>" //Resin Silo data
+	resin_silo_info += "<b>List of Resin Silos:</b><BR>"
+	resin_silo_info += "<table cellspacing=4>"
+	for(var/obj/structure/resin/silo/resin_silo in GLOB.xeno_resin_silos)
+		if(resin_silo.associated_hive == user.hive)
+
+			var/hp_color = "green"
+			switch(resin_silo.obj_integrity/resin_silo.max_integrity)
+				if(0.33 to 0.66)
+					hp_color = "orange"
+				if(0 to 0.33)
+					hp_color = "red"
+
+			resin_silo_info += "<b>[resin_silo.name] <font color=[hp_color]>Health: ([resin_silo.obj_integrity]/[resin_silo.max_integrity])</font></b> located at: <b><font color=green>[get_area(resin_silo)] (X: [resin_silo.x], Y: [resin_silo.y])</b></font><BR>"
+
+	resin_silo_info += "</table>"
+	return resin_silo_info
+
+
 /proc/check_hive_status(mob/user)
 	if(!SSticker)
 		return
@@ -140,10 +163,11 @@
 	dat += "<table cellspacing=4>"
 	dat += xenoinfo
 	dat += "</table>"
+	dat += resin_silo_status_output(user)
+
 	var/datum/browser/popup = new(user, "roundstatus", "<div align='center'>Hive Status</div>", 650, 650)
 	popup.set_content(dat)
 	popup.open(FALSE)
-
 
 //Send a message to all xenos.
 /proc/xeno_message(message = null, size = 3, hivenumber = XENO_HIVE_NORMAL, force = FALSE, atom/target = null, sound = null, apply_preferences = FALSE, filter_list = null)
