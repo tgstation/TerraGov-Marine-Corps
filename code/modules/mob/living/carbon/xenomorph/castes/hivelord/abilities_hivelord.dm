@@ -277,15 +277,12 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	plasma_cost = 200
 	keybind_signal = COMSIG_XENOABILITY_HEALING_INFUSION
 	var/heal_range = HIVELORD_HEAL_RANGE
-	var/healing_infusion_aura
 
 
 /datum/action/xeno_action/activable/healing_infusion/can_use_ability(atom/target, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
-		return FALSE
-	if(QDELETED(target))
-		return FALSE
+		return
 
 	if(!isxeno(target))
 		if(!silent)
@@ -341,8 +338,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	var/mob/living/carbon/xenomorph/patient = target
 
 	patient.has_healing_infusion = TRUE
-	healing_infusion_aura = filter(type = "outline", size = 1, color = COLOR_VERY_PALE_LIME_GREEN) //Set our cool aura; also confirmation we have the buff
-	patient.filters += healing_infusion_aura
+	patient.add_filter("hivelord_healing_infusion_outline", 3, list("type" = "outline", "size" = 1, "color" = COLOR_VERY_PALE_LIME_GREEN)) //Set our cool aura; also confirmation we have the buff
 
 	addtimer(CALLBACK(src, .proc/healing_infusion_deactivate, patient), HIVELORD_HEALING_INFUSION_DURATION)
 
@@ -409,13 +405,10 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 
 	UnregisterSignal(patient, list(COMSIG_XENOMORPH_HEALTH_REGEN, COMSIG_XENOMORPH_SUNDER_REGEN)) //unregister the signals; party's over
 
-	patient.filters -= healing_infusion_aura
-	patient.has_healing_infusion = null //We no longer have the healing infusion buff
+	patient.remove_filter("hivelord_healing_infusion_outline") //Remove the aura
 
 	new /obj/effect/temp_visual/telekinesis(get_turf(patient)) //Wearing off SFX
 	new /obj/effect/temp_visual/healing(get_turf(patient)) //Wearing off SFX
 
 	to_chat(patient, "<span class='xenodanger'>We are no longer benefitting from [src].</span>") //Let the target know
 	patient.playsound_local(patient, 'sound/voice/hiss5.ogg', 25)
-
-
