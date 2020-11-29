@@ -512,7 +512,7 @@
 	..()
 	if(P.ammo.flags_ammo_behavior & AMMO_XENO)
 		return FALSE //Xeno spits ignore huggers.
-	if(P.damage && !(P.ammo.damage_type in list(OXY, HALLOSS, STAMINA)))
+	if(P.damage && !(P.ammo.damage_type in list(OXY, STAMINA)))
 		kill_hugger()
 	P.ammo.on_hit_obj(src,P)
 	return TRUE
