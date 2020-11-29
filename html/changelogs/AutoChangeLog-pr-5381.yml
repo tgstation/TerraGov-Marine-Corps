@@ -1,0 +1,4 @@
+author: "SplinterGP"
+delete-after: True
+changes: 
+  - bugfix: "fixes runtime errors caused by 0 lenght timers."
