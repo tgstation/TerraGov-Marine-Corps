@@ -213,23 +213,23 @@
 
 	if(!opened && bodybag_occupant)
 		bodybag_occupant.bullet_act(proj) //tarp isn't bullet proof; concealment, not cover; pass it on to the occupant.
-		to_chat(bodybag_occupant, "<span class='danger'>You jolt out of [sanitize(src.name)] upon being hit!</span>")
+		to_chat(bodybag_occupant, "<span class='danger'>You jolt out of [name] upon being hit!</span>")
 		open()
 
 /obj/structure/closet/bodybag/flamer_fire_act()
 	if(!opened && bodybag_occupant)
-		to_chat(bodybag_occupant, "<span class='danger'>The intense heat forces you out of [sanitize(src.name)]!</span>")
+		to_chat(bodybag_occupant, "<span class='danger'>The intense heat forces you out of [name]!</span>")
 		open()
 		bodybag_occupant.flamer_fire_act()
 
 /obj/structure/closet/bodybag/ex_act(severity)
 	if(!opened && bodybag_occupant)
-		to_chat(bodybag_occupant, "<span class='danger'>The shockwave blows [sanitize(src.name)] open!</span>")
+		to_chat(bodybag_occupant, "<span class='danger'>The shockwave blows [name] open!</span>")
 		open()
 		bodybag_occupant.ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			visible_message("<span class='danger'>\The shockwave blows [sanitize(src.name)] apart!</span>")
+			visible_message("<span class='danger'>\The shockwave blows [name] apart!</span>")
 			qdel(src) //blown apart
 
 /obj/structure/closet/bodybag/proc/acidspray_act()
@@ -243,7 +243,7 @@
 			var/mob/living/carbon/human/H = bodybag_occupant
 			INVOKE_ASYNC(H, /mob/living/carbon/human.proc/acid_spray_crossed, S.slow_amt) //tarp isn't acid proof; pass it on to the occupant
 
-		to_chat(bodybag_occupant, "<span class='danger'>The sizzling acid forces us out of [sanitize(src.name)]!</span>")
+		to_chat(bodybag_occupant, "<span class='danger'>The sizzling acid forces us out of [name]!</span>")
 		open() //Get out
 
 /obj/structure/closet/bodybag/effect_smoke(obj/effect/particle_effect/smoke/S)
@@ -251,9 +251,9 @@
 	if(!.)
 		return
 
-	if((S.smoke_traits & SMOKE_XENO_ACID|SMOKE_BLISTERING) && !opened && bodybag_occupant)
+	if((CHECK_BITFIELD(S.smoke_traits, SMOKE_BLISTERING) || CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_ACID)) && !opened && bodybag_occupant)
 		bodybag_occupant.effect_smoke(S) //tarp *definitely* isn't acid/phosphorous smoke proof, lol.
-		to_chat(bodybag_occupant, "<span class='danger'>The scathing smoke forces us out of [sanitize(src.name)]!</span>")
+		to_chat(bodybag_occupant, "<span class='danger'>The scathing smoke forces us out of [name]!</span>")
 		open() //Get out
 
 
@@ -382,8 +382,9 @@
 
 /obj/item/bodybag/tarp/Initialize(mapload, unfoldedbag)
 	. = ..()
-	if(!serial_number)
-		serial_number = "SN-[rand(1000,100000)]" //Set the serial number
+	if(!serial_number) //Give a random serial number in order to ward off auto-point macros
+		serial_number += pick("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z")
+		serial_number += "[rand(1000,100000)]-SN" //Set the serial number
 		name = "\improper [serial_number] [name]"
 
 /obj/item/bodybag/tarp/deploy_bodybag(mob/user, atom/location)
