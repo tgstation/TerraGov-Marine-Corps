@@ -81,7 +81,7 @@
 	T = temp
 	T = get_step(T, pick(GLOB.cardinals))
 	throw_at(T, 2, 2, veh, 0)
-	visible_message("<span class='danger'>[veh] bumps into [src], pushing [p_them()] away!</span>", "<span class='danger'>[veh] bumps into you!</span>")
+	visible_message("<span class='danger'>[veh] bumps into [src], pushing [p_them()] away!</span>", "<span class='danger'>[veh] bumps into us!</span>")
 
 /mob/living/carbon/Xenomorph/larva/vehicle_collision(obj/vehicle/veh, facing, turf/T, turf/temp)
 	gib() //fuck you
