@@ -15,7 +15,7 @@
 	var/veh_damage = 25
 
 	if(world.time > veh.lastsound + 1 SECONDS)
-		visible_message("<span class='danger'>[veh] crushes \the [src]!</span>")
+		visible_message("<span class='danger'>[veh] crushes the [src]!</span>")
 		playsound(src, 'sound/effects/metal_crash.ogg', 45)
 		veh.lastsound = world.time
 		veh.take_damage(veh_damage)
