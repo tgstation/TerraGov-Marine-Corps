@@ -773,7 +773,7 @@
 	if(!.)
 		var/mob/living/carbon/xenomorph/X = owner
 
-		. = new /obj/effect/xenomorph/spray(T, X.xeno_caste.acid_spray_damage)
+		. = new /obj/effect/xenomorph/spray(T, X.xeno_caste.acid_spray_duration, X.xeno_caste.acid_spray_damage)
 
 		for(var/i in T)
 			var/atom/A = i
