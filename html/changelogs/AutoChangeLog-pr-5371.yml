@@ -1,0 +1,4 @@
+author: "Hughgent"
+delete-after: True
+changes: 
+  - tweak: "Spaceship orbit level now adjusts the rate of passive req point generation, closer is slower."
