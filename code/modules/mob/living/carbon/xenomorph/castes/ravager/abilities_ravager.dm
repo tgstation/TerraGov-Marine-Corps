@@ -42,7 +42,7 @@
 
 /datum/action/xeno_action/activable/charge/on_cooldown_finish()
 	to_chat(owner, "<span class='xenodanger'>Our exoskeleton quivers as we get ready to use Eviscerating Charge again.</span>")
-	playsound(owner, "sound/effects/xeno_newlarva.ogg", 50, 0, 1)
+	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	var/mob/living/carbon/xenomorph/ravager/X = owner
 	X.usedPounce = FALSE
 	return ..()
@@ -95,7 +95,7 @@
 
 /datum/action/xeno_action/activable/ravage/on_cooldown_finish()
 	to_chat(owner, "<span class='xenodanger'>We gather enough strength to Ravage again.</span>")
-	playsound(owner, "sound/effects/xeno_newlarva.ogg", 50, 0, 1)
+	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
 
 /datum/action/xeno_action/activable/ravage/use_ability(atom/A)
@@ -155,11 +155,10 @@
 	cooldown_timer = 40 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY | XACT_IGNORE_SELECTED_ABILITY
 	keybind_signal = COMSIG_XENOABILITY_IGNORE_PAIN
-	var/endure_aura
 
 /datum/action/xeno_action/activable/endure/on_cooldown_finish()
-	to_chat(owner, "<span class='notice'>We feel able to imbue ourselves with plasma to ignore pain once again!</span>")
-	playsound(owner, "sound/effects/xeno_newlarva.ogg", 50, FALSE, 1)
+	to_chat(owner, "<span class='xenodamager'>We feel able to imbue ourselves with plasma to ignore pain once again!</span>")
+	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
 
 /datum/action/xeno_action/activable/endure/use_ability(atom/A)
@@ -172,8 +171,7 @@
 	X.endure = TRUE
 	X.endure_state = 0
 
-	endure_aura = filter(type = "outline", size = 1, color = COLOR_PURPLE) //Set our cool aura; also confirmation we have the buff
-	X.filters += endure_aura
+	X.add_filter("ravager_endure_outline", 2, list("type" = "outline", "size" = 1, "color" = COLOR_PURPLE)) //Set our cool aura; also confirmation we have the buff
 
 	addtimer(CALLBACK(src, .proc/endure_warning), RAVAGER_ENDURE_DURATION * RAVAGER_ENDURE_WARNING) //Warn the runner when the duration is about to expire.
 	addtimer(CALLBACK(src, .proc/endure_deactivate), RAVAGER_ENDURE_DURATION)
@@ -202,7 +200,7 @@
 
 	R.do_jitter_animation(1000)
 	R.endure = FALSE
-	R.filters -= endure_aura
+	R.remove_filter("ravager_endure_outline")
 	to_chat(owner,"<span class='highdanger'>The last of the plasma drains from our body... We can no longer endure beyond our normal limits!</span>")
 	owner.playsound_local(owner, 'sound/voice/hiss4.ogg', 50, 0, 1)
 
@@ -228,15 +226,14 @@
 // ***************************************
 /datum/action/xeno_action/activable/rage
 	name = "Rage"
-	action_icon_state = "Rage"
+	action_icon_state = "rage"
 	mechanics_text = "Use while at 50% health or lower to gain extra slash damage, resistances and speed in proportion to your missing hit points. This bonus is increased and you regain plasma while your HP is negative."
-	ability_name = "rage"
+	ability_name = "Rage"
 	plasma_cost = 0 //We're limited by cooldowns, not plasma
 	cooldown_timer = 120 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY | XACT_IGNORE_SELECTED_ABILITY
 	keybind_signal = COMSIG_XENOABILITY_RAGE
 	var/rage_power
-	var/rage_aura
 
 /datum/action/xeno_action/activable/rage/on_cooldown_finish()
 	to_chat(owner, "<span class='xenodanger'>We are able to enter our rage once again.</span>")
@@ -289,8 +286,7 @@
 		L.adjust_stagger(rage_power_radius * 0.5) //Apply soft CC debuffs
 		L.add_slowdown(rage_power_radius * 0.5)
 
-	rage_aura = filter(type = "outline", size = 1.5, color = COLOR_RED) //Set our cool aura; also confirmation we have the buff
-	X.filters += rage_aura
+	X.add_filter("ravager_rage_outline", 2, list("type" = "outline", "size" = 1.5, "color" = COLOR_RED)) //Set our cool aura; also confirmation we have the buff
 
 	X.plasma_stored += X.xeno_caste.plasma_max * rage_power //Regain a % of our maximum plasma scaling with rage
 
@@ -332,7 +328,7 @@
 
 	R.do_jitter_animation(1000)
 
-	R.filters -= rage_aura
+	R.remove_filter("ravager_rage_outline") //Set our cool aura; also confirmation we have the buff
 	R.visible_message("<span class='warning'>[R] seems to calm down.</span>", \
 	"<span class='highdanger'>Our rage subsides and its power leaves our body.</span>")
 
@@ -344,4 +340,3 @@
 	R.playsound_local(R, 'sound/voice/hiss5.ogg', 50) //Audio cue
 
 	rage_power = null //Clear vars
-	rage_aura = null
