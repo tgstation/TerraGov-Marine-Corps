@@ -565,60 +565,6 @@
 	if(pipe)
 		handle_ventcrawl(pipe)
 
-/mob/living/carbon/xenomorph/proc/xeno_salvage_plasma(atom/A, amount, salvage_delay, max_range)
-	if(!isxeno(A) || !check_state() || A == src)
-		return
-
-	var/mob/living/carbon/xenomorph/target = A
-
-	if(!isturf(loc))
-		to_chat(src, "<span class='warning'>We can't salvage plasma from here!</span>")
-		return
-
-	if(plasma_stored >= xeno_caste.plasma_max)
-		to_chat(src, "<span class='notice'>Our plasma reserves are already at full capacity and can't hold any more.</span>")
-		return
-
-	if(target.stat != DEAD)
-		to_chat(src, "<span class='warning'>We can't steal plasma from living sisters, ask for some to a drone or a hivelord instead!</span>")
-		return
-
-	if(get_dist(src, target) > max_range)
-		to_chat(src, "<span class='warning'>We need to be closer to [target].</span>")
-		return
-
-	if(!(target.plasma_stored))
-		to_chat(src, "<span class='notice'>[target] doesn't have any plasma left to salvage.</span>")
-		return
-
-	to_chat(src, "<span class='notice'>We start salvaging plasma from [target].</span>")
-
-	while(target.plasma_stored && plasma_stored < xeno_caste.plasma_max)
-		if(!do_after(src, salvage_delay, TRUE, null, BUSY_ICON_HOSTILE) || !check_state())
-			break
-
-		if(!isturf(loc))
-			to_chat(src, "<span class='warning'>We can't absorb plasma from here!</span>")
-			break
-
-		if(get_dist(src, target) > max_range)
-			to_chat(src, "<span class='warning'>We need to be closer to [target].</span>")
-			break
-
-		if(stagger)
-			to_chat(src, "<span class='xenowarning'>Our muscles fail to respond as we try to shake up the shock!</span>")
-			break
-
-		if(target.plasma_stored < amount)
-			amount = target.plasma_stored //Just take it all.
-
-		var/absorbed_amount = amount
-		target.use_plasma(amount)
-		gain_plasma(absorbed_amount)
-		to_chat(src, "<span class='xenowarning'>We salvage [absorbed_amount] units of plasma from [target]. We have [plasma_stored]/[xeno_caste.plasma_max] stored now.</span>")
-		playsound(src, "alien_drool", 25)
-
-
 
 /mob/living/carbon/xenomorph/verb/toggle_xeno_mobhud()
 	set name = "Toggle Xeno Status HUD"
