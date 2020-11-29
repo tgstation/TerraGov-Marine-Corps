@@ -171,7 +171,7 @@
 	X.endure = TRUE
 	X.endure_state = 0
 
-	X.add_filter("ravager_endure_outline", 2, list("type" = "outline", "size" = 1, "color" = COLOR_PURPLE)) //Set our cool aura; also confirmation we have the buff
+	X.add_filter("ravager_endure_outline", 4, list("type" = "outline", "size" = 1, "color" = COLOR_PURPLE)) //Set our cool aura; also confirmation we have the buff
 
 	addtimer(CALLBACK(src, .proc/endure_warning), RAVAGER_ENDURE_DURATION * RAVAGER_ENDURE_WARNING) //Warn the runner when the duration is about to expire.
 	addtimer(CALLBACK(src, .proc/endure_deactivate), RAVAGER_ENDURE_DURATION)
@@ -286,7 +286,7 @@
 		L.adjust_stagger(rage_power_radius * 0.5) //Apply soft CC debuffs
 		L.add_slowdown(rage_power_radius * 0.5)
 
-	X.add_filter("ravager_rage_outline", 2, list("type" = "outline", "size" = 1.5, "color" = COLOR_RED)) //Set our cool aura; also confirmation we have the buff
+	X.add_filter("ravager_rage_outline", 5, list("type" = "outline", "size" = 1.5, "color" = COLOR_RED)) //Set our cool aura; also confirmation we have the buff
 
 	X.plasma_stored += X.xeno_caste.plasma_max * rage_power //Regain a % of our maximum plasma scaling with rage
 
