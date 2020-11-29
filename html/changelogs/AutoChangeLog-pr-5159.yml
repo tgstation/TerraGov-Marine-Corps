@@ -1,7 +1,0 @@
-author: "Surrealaser"
-delete-after: True
-changes: 
-  - rscadd: "Tunnel List window that features existing hive tunnels in the Xeno tab."
-  - tweak: "Hivelord Tunnels are now auto-announced to the Hive upon creation and destruction along with their location."
-  - bugfix: "Minor wording fixes in light of network based tunnel mechanics that replaced the old paired tunnels."
-  - refactor: "Minor refactors; provides infrastructure for object based HUD elements."

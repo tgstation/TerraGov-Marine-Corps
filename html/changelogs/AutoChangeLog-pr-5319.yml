@@ -1,5 +1,0 @@
-author: "Surrealaser"
-delete-after: True
-changes: 
-  - bugfix: "Fixes residual effect spawning for heavy acid and sticky acid spit so they work more intuitively (and properly)."
-  - balance: "Sticky Spit now applies 2 stagger stacks to improve its combat support capabilities."
