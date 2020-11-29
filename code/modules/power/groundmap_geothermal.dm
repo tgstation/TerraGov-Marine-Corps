@@ -277,7 +277,7 @@
 
 /obj/machinery/colony_floodlight_switch/proc/toggle_lights(switch_on)
 	for(var/obj/machinery/colony_floodlight/F in floodlist)
-		addtimer(CALLBACK(F, /obj/machinery/colony_floodlight/proc/toggle_light, switch_on), rand(0,50))
+		addtimer(CALLBACK(F, /obj/machinery/colony_floodlight/proc/toggle_light, switch_on), rand(1,50))
 
 /obj/machinery/colony_floodlight_switch/attack_paw(mob/living/carbon/monkey/user)
 	return src.attack_hand(user)

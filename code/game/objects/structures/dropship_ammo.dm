@@ -308,7 +308,7 @@
 	impact.ceiling_debris_check(2)
 
 	explosion(impact, 0, 2, 4, 5, adminlog = FALSE, small_animation = TRUE)//no messaging admin, that'd spam them.
-	var/datum/effect_system/expl_particles/P
+	var/datum/effect_system/expl_particles/P = new 
 	P.set_up(4, 0, impact)
 	P.start()
 	addtimer(CALLBACK(src, .proc/delayed_smoke_spread, impact), 0.5 SECONDS)
