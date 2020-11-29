@@ -5929,12 +5929,10 @@
 /obj/machinery/door_control/mainship/req{
 	id = "qm_warehouse";
 	name = "RO Warehouse Shutters";
-	pixel_y = 25
+	pixel_y = -25
 	},
-/turf/open/floor/mainship/green{
-	dir = 8
-	},
-/area/mainship/squads/req)
+/turf/open/floor/mainship,
+/area/mainship/hallways/starboard_hallway)
 "aru" = (
 /obj/structure/cable,
 /turf/open/floor/mainship{
@@ -21546,13 +21544,17 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/shipboard/brig_cells)
 "blV" = (
-/obj/machinery/door_control/mainship/req{
-	id = "qm_warehouse";
-	name = "RO Warehouse Shutters";
-	pixel_y = -25
+/obj/effect/decal/warning_stripes/thin,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
-/turf/open/floor/mainship,
-/area/mainship/hallways/starboard_hallway)
+/obj/machinery/door/poddoor/shutters{
+	dir = 2;
+	id = "qm_warehouse";
+	name = "Warehouse Shutters"
+	},
+/turf/open/floor/plating/mainship,
+/area/mainship/squads/req)
 "blW" = (
 /turf/open/floor/mainship/cargo/arrow,
 /area/mainship/hallways/starboard_hallway)
@@ -22351,6 +22353,11 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
+/obj/machinery/door_control/mainship/req{
+	id = "qm_warehouse";
+	name = "RO Warehouse Shutters";
+	pixel_y = 25
+	},
 /turf/open/floor/plating/mainship/striped{
 	dir = 4
 	},
@@ -22366,23 +22373,14 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "bpq" = (
-/obj/structure/table/mainship,
-/obj/item/stack/sheet/cardboard{
-	amount = 50
-	},
-/obj/item/stack/sheet/wood/large_stack,
-/obj/item/stack/sheet/glass/reinforced{
-	amount = 50
-	},
-/obj/item/tool/hand_labeler,
 /obj/machinery/vending/nanomed,
-/turf/open/floor/mainship,
-/area/mainship/squads/req)
-"bpr" = (
-/obj/machinery/autolathe,
 /turf/open/floor/mainship/green{
 	dir = 1
 	},
+/area/mainship/squads/req)
+"bpr" = (
+/obj/vehicle/powerloader,
+/turf/open/floor/mech_bay_recharge_floor,
 /area/mainship/squads/req)
 "bps" = (
 /turf/open/floor/mainship{
@@ -22406,6 +22404,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/machinery/autolathe,
 /turf/open/floor/mainship/green{
 	dir = 1
 	},
@@ -36306,6 +36305,21 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/briefing)
+"kjB" = (
+/obj/structure/table/mainship,
+/obj/item/stack/sheet/glass/reinforced{
+	amount = 50
+	},
+/obj/item/stack/sheet/wood/large_stack,
+/obj/item/stack/sheet/cardboard{
+	amount = 50
+	},
+/obj/item/tool/hand_labeler,
+/turf/open/floor/mainship{
+	dir = 4;
+	icon_state = "greencorner"
+	},
+/area/mainship/squads/req)
 "kjP" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
@@ -37476,11 +37490,12 @@
 /turf/open/floor/mainship,
 /area/mainship/living/bridgebunks)
 "rau" = (
-/obj/vehicle/powerloader,
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/mech_bay_recharge_floor,
+/turf/open/floor/mainship/green{
+	dir = 1
+	},
 /area/mainship/squads/req)
 "rbm" = (
 /mob/living/simple_animal/cat/Jones,
@@ -77871,7 +77886,7 @@ blX
 biu
 bjV
 biu
-blX
+art
 bnF
 bpl
 brd
@@ -78128,9 +78143,9 @@ bir
 biu
 bjV
 biu
+blW
 blV
-bnF
-art
+pyl
 bre
 bre
 buE
@@ -79415,7 +79430,7 @@ bjV
 biu
 blX
 bnG
-bpr
+bwf
 bri
 bsT
 gas
@@ -79672,7 +79687,7 @@ bjV
 biu
 xek
 bnG
-bps
+bpr
 brj
 jWN
 gas
@@ -79934,8 +79949,8 @@ brk
 gEh
 lEo
 tEQ
-qhO
-qhO
+gEh
+gEh
 qhO
 haf
 byd
@@ -80186,7 +80201,7 @@ bjV
 biu
 xek
 bnG
-bpu
+kjB
 bGh
 buH
 gas
@@ -80448,8 +80463,8 @@ bGh
 wwS
 auF
 bwf
-byd
-byd
+buH
+buH
 byd
 brn
 byd

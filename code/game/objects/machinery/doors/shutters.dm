@@ -186,6 +186,10 @@
 	name = "\improper RO Line 2"
 	id = "ROlobby2"
 
+/obj/machinery/door/poddoor/shutters/mainship/req/garage
+	name = "\improper RO garage Shutters"
+	id = "ROgarage"
+
 /obj/machinery/door/poddoor/shutters/mainship/containment
 	name = "\improper Containment Cell"
 	id = "containmentcell"

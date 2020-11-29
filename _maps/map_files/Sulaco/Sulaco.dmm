@@ -1429,13 +1429,17 @@
 /turf/open/floor/freezer,
 /area/sulaco/showers)
 "aiS" = (
-/obj/machinery/door/airlock/mainship/marine/requisitions{
-	dir = 1
-	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/turf/open/floor/prison/plate,
+/obj/machinery/door/poddoor/shutters{
+	dir = 2;
+	id = "qm_warehouse";
+	name = "Warehouse Shutters"
+	},
+/turf/open/floor/prison/arrow{
+	dir = 1
+	},
 /area/sulaco/cargo)
 "aiV" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
@@ -8322,6 +8326,9 @@
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
 "aSk" = (
@@ -8444,14 +8451,8 @@
 /obj/machinery/atmospherics/pipe/manifold/yellow/hidden{
 	dir = 4
 	},
-/obj/machinery/power/apc/mainship{
-	dir = 8
-	},
 /obj/structure/cable,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/prison,
+/turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/hallway/lower_main_hall)
 "aSV" = (
 /obj/structure/closet/emcloset,
@@ -8595,14 +8596,9 @@
 /turf/open/floor/wood,
 /area/sulaco/liaison)
 "aTA" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/mainship/generic,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
-	dir = 4
+/obj/machinery/door/firedoor/mainship,
+/obj/machinery/light{
+	dir = 1
 	},
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_main_hall)
@@ -8740,10 +8736,6 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/hangar)
 "aUN" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 2
-	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 4
@@ -8751,6 +8743,7 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
 	},
+/obj/machinery/door/firedoor/mainship,
 /turf/open/floor/prison,
 /area/sulaco/hangar)
 "aUO" = (
@@ -8924,16 +8917,9 @@
 /turf/open/floor/plating,
 /area/sulaco/research)
 "aVU" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/machinery/camera/autoname{
-	dir = 4
-	},
-/obj/structure/table/mainship,
-/obj/machinery/computer/shuttle/shuttle_control/dropship1,
-/turf/open/floor/prison/bright_clean,
-/area/sulaco/hangar)
+/obj/machinery/computer/supplycomp,
+/turf/open/floor/prison/plate,
+/area/sulaco/cargo)
 "aVY" = (
 /turf/closed/wall/mainship/gray,
 /area/sulaco/hallway/lower_main_hall)
@@ -9000,8 +8986,8 @@
 /turf/open/floor/prison,
 /area/sulaco/maintenance/lower_maint)
 "aWx" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/mainship/generic,
+/obj/machinery/door/firedoor/mainship,
+/obj/machinery/light,
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_main_hall)
 "aWG" = (
@@ -9080,12 +9066,15 @@
 /turf/open/floor/plating/platebot,
 /area/sulaco/telecomms)
 "aXq" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 2
+/obj/machinery/door/poddoor/shutters{
+	dir = 2;
+	id = "qm_warehouse";
+	name = "Warehouse Shutters"
 	},
-/turf/open/floor/prison,
-/area/sulaco/hangar)
+/turf/open/floor/prison/arrow{
+	dir = 1
+	},
+/area/sulaco/cargo)
 "aXu" = (
 /obj/machinery/door/airlock/mainship/secure/tcomms{
 	dir = 1
@@ -9107,18 +9096,24 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/hallway/lower_main_hall)
 "aXA" = (
-/obj/structure/window/framed/mainship/gray,
-/turf/open/floor/plating/platebotc,
-/area/sulaco/hallway/lower_main_hall)
-"aXE" = (
-/obj/machinery/light{
-	dir = 8
+/obj/machinery/door/firedoor/mainship,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
+	dir = 4
 	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 1
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 4
 	},
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_main_hall)
+"aXE" = (
+/obj/structure/table/mainship,
+/obj/machinery/computer/shuttle/shuttle_control/dropship1,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "aXN" = (
 /obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/prison/bright_clean,
@@ -9179,6 +9174,7 @@
 /area/sulaco/hangar)
 "aYA" = (
 /obj/structure/rack,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
 "aYB" = (
@@ -9195,9 +9191,9 @@
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
 "aYD" = (
-/obj/structure/sign/vacuum,
-/turf/open/floor/prison/bright_clean,
-/area/sulaco/hangar)
+/obj/machinery/camera/autoname,
+/turf/open/floor/prison,
+/area/sulaco/hallway/lower_main_hall)
 "aYE" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
@@ -9393,11 +9389,19 @@
 /turf/open/floor/plating,
 /area/mainship/command/self_destruct)
 "bap" = (
-/obj/machinery/door/poddoor/mainship/umbilical/south{
-	dir = 2
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
+	dir = 4
 	},
-/turf/open/floor/prison/bright_clean,
-/area/sulaco/hangar)
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/mainship,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/prison,
+/area/sulaco/hallway/lower_main_hall)
 "bas" = (
 /obj/machinery/camera/autoname{
 	dir = 8
@@ -10613,13 +10617,7 @@
 /turf/open/floor/prison/plate,
 /area/shuttle/distress/arrive_1)
 "dtf" = (
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
-	dir = 10
-	},
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
-	dir = 10
-	},
-/obj/structure/cable,
+/obj/machinery/door/firedoor/mainship,
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_main_hall)
 "dvi" = (
@@ -11040,6 +11038,7 @@
 /obj/machinery/camera/autoname{
 	dir = 1
 	},
+/obj/vehicle/powerloader,
 /turf/open/floor/prison/plate,
 /area/sulaco/cargo)
 "eEH" = (
@@ -11132,9 +11131,9 @@
 	},
 /area/sulaco/hangar/droppod)
 "eOE" = (
-/obj/machinery/computer/supplycomp,
-/turf/open/floor/prison/plate,
-/area/sulaco/cargo)
+/obj/machinery/door/firedoor/mainship,
+/turf/open/floor/prison,
+/area/sulaco/hangar)
 "eON" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -11370,6 +11369,12 @@
 /obj/item/assembly/infra,
 /turf/open/floor/prison,
 /area/sulaco/maintenance/lower_maint)
+"fDc" = (
+/obj/machinery/door/poddoor/mainship/umbilical/south{
+	dir = 2
+	},
+/turf/open/floor/prison/bright_clean,
+/area/space)
 "fDl" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 4
@@ -12209,6 +12214,9 @@
 "idd" = (
 /obj/structure/bed/roller,
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
 "iev" = (
@@ -13097,15 +13105,8 @@
 /turf/open/space/basic,
 /area/space)
 "kKG" = (
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
-	dir = 5
-	},
-/obj/structure/cable,
-/obj/machinery/light{
-	dir = 8
+/obj/machinery/power/apc/mainship{
+	dir = 1
 	},
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_main_hall)
@@ -14121,14 +14122,10 @@
 	},
 /area/sulaco/research)
 "mZj" = (
-/obj/machinery/door/poddoor/shutters{
-	dir = 2;
-	id = "qm_warehouse";
-	name = "Warehouse Shutters"
-	},
-/turf/open/floor/prison/arrow{
+/obj/machinery/door/airlock/mainship/marine/requisitions{
 	dir = 1
 	},
+/turf/open/floor/prison/plate,
 /area/sulaco/cargo)
 "mZO" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -14567,9 +14564,6 @@
 /turf/open/floor/prison,
 /area/sulaco/maintenance/south_solar_maint)
 "okJ" = (
-/obj/machinery/light{
-	dir = 8
-	},
 /obj/structure/rack,
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
@@ -15294,9 +15288,9 @@
 /turf/open/floor/plating,
 /area/sulaco/maintenance/north_solar_maint)
 "pGN" = (
-/obj/vehicle/powerloader,
-/turf/open/floor/prison/plate,
-/area/sulaco/cargo)
+/obj/structure/sign/vacuum,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "pHg" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 9
@@ -16014,10 +16008,9 @@
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
 "ryR" = (
-/obj/structure/rack,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/prison/bright_clean,
-/area/sulaco/hangar)
+/obj/structure/window/framed/mainship/gray/toughened/hull,
+/turf/open/floor/plating/platebotc,
+/area/space)
 "rzi" = (
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold/yellow/hidden,
@@ -16960,21 +16953,11 @@
 	},
 /area/sulaco/marine/charlie)
 "tvS" = (
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
-	dir = 9
+/obj/machinery/door/poddoor/mainship/umbilical/south{
+	dir = 2
 	},
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
-	dir = 9
-	},
-/obj/structure/cable,
-/obj/machinery/camera/autoname{
-	dir = 8
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/prison,
-/area/sulaco/hallway/lower_main_hall)
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "txF" = (
 /obj/machinery/status_display/ai,
 /turf/closed/wall/mainship/gray,
@@ -17718,6 +17701,13 @@
 	},
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar/droppod)
+"vMu" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/rack,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "vMB" = (
 /obj/machinery/vending/tool,
 /turf/open/floor/prison,
@@ -43020,7 +43010,7 @@ abV
 hSX
 fCm
 kVY
-bPM
+aVU
 eul
 amB
 amd
@@ -43791,8 +43781,8 @@ fCm
 fCm
 fCm
 bPM
-eOE
-eul
+bPM
+aXq
 amB
 amB
 uig
@@ -44048,8 +44038,8 @@ agR
 ahg
 bPM
 eKx
-pGN
-eul
+bPM
+aXq
 hKB
 mte
 qWi
@@ -44314,7 +44304,7 @@ alx
 lvm
 szj
 lpY
-aWG
+aYD
 xKR
 bIb
 abD
@@ -45085,8 +45075,8 @@ alx
 amB
 jSM
 ocn
-iAq
-tvS
+aWG
+aTi
 aWG
 amz
 hto
@@ -45599,8 +45589,8 @@ mdt
 amB
 jSM
 ocn
-dtf
-kKG
+aWG
+aTi
 uXi
 abH
 kMl
@@ -49456,7 +49446,7 @@ aPF
 bPx
 aWG
 xKR
-aWG
+kKG
 abK
 sBl
 baN
@@ -49968,8 +49958,8 @@ cPQ
 aPF
 gQS
 bSz
-aTA
-aXA
+bap
+dtf
 aWx
 abK
 ajT
@@ -50226,7 +50216,7 @@ tha
 aPY
 aPY
 aWQ
-aXE
+aVv
 aWG
 abK
 abK
@@ -51269,9 +51259,9 @@ aPQ
 mDu
 mDu
 wRO
+wRO
+wRO
 vyQ
-aaa
-aaa
 aaa
 aaa
 aaa
@@ -51527,8 +51517,8 @@ mDu
 mDu
 mDu
 mDu
-vyQ
-aaa
+mDu
+qDO
 aaa
 aaa
 aaa
@@ -51766,11 +51756,11 @@ aIT
 aQC
 cYh
 aPY
-aVZ
+aPY
 aUN
-cAO
-aVZ
-aXq
+eOE
+eOE
+aPY
 aPY
 aPY
 aPY
@@ -51782,10 +51772,10 @@ aPY
 bFa
 bFa
 bFa
+sGG
 mDu
 mDu
 qDO
-aaa
 aaa
 aaa
 aaa
@@ -52020,12 +52010,12 @@ aRO
 nxz
 aTj
 aRd
-aPF
+aXE
 aPF
 aSi
 aPF
 scV
-aVU
+rXl
 aPF
 aPF
 idd
@@ -52035,14 +52025,14 @@ aQr
 aTc
 gHU
 aPF
-aSu
+aPF
 rXl
 aPF
+aPF
 bFa
-bFa
+sGG
 mDu
 qDO
-aaa
 aaa
 aaa
 aaa
@@ -52296,12 +52286,12 @@ aPF
 aPF
 gHU
 aPF
-bFa
+aSu
+sGG
 mDu
 qDO
 aaa
 aaa
-aDS
 aDS
 aDS
 aDS
@@ -52553,7 +52543,8 @@ aPF
 aPF
 aPF
 aPF
-bFa
+aPF
+sGG
 mDu
 qDO
 aaa
@@ -52561,7 +52552,6 @@ aaa
 aaa
 aaa
 aaa
-aDS
 aDS
 aaa
 aaa
@@ -52809,13 +52799,13 @@ sfi
 cbg
 aSk
 aPF
+aPF
 gQS
-bFa
+sGG
 mDu
 qDO
 aaa
 aaa
-aDS
 aDS
 aDS
 aDS
@@ -53066,14 +53056,14 @@ aPZ
 aPZ
 wbU
 aPF
+gHU
 aPF
-aSN
+ryR
 mDu
 mDu
 wRO
 wRO
 vyQ
-aDS
 aDS
 aDS
 aDS
@@ -53324,14 +53314,14 @@ aPZ
 sjS
 aPF
 aPF
-aSN
+aPF
+ryR
 mDu
 mDu
 mDu
 mDu
 mDu
 vyQ
-aDS
 aDS
 aDS
 aaa
@@ -53581,14 +53571,14 @@ aPZ
 agy
 gHU
 aPF
+aPF
 bFa
 bFa
 bFa
-bFa
+sGG
 mDu
 mDu
 qDO
-aDS
 aDS
 aDS
 aaa
@@ -53837,15 +53827,15 @@ aPZ
 aPZ
 lQB
 aPF
-gHU
+aPF
+aPF
 aPY
-aYA
 okJ
+vMu
 bFa
-bFa
+sGG
 mDu
 qDO
-aDS
 aDS
 aDS
 aaa
@@ -54094,16 +54084,16 @@ aPZ
 aPZ
 wbU
 aPF
-aYD
+aPF
+pGN
 aPY
 gHU
-aYD
+pGN
 aPY
-bFa
+sGG
 vDU
 wFA
 aah
-aDS
 aDS
 aaa
 aaa
@@ -54352,15 +54342,15 @@ aPZ
 sBW
 aPF
 aPF
-bap
+aPF
+tvS
 aPF
 aPF
 aPF
-bap
+fDc
 aUt
 aah
 aah
-aDS
 aDS
 aaa
 aaa
@@ -54608,16 +54598,16 @@ aPZ
 aPZ
 agy
 aPF
+aPF
 tha
 aPY
 aPF
 gHU
 aPY
-bFa
+sGG
 wRO
 vyQ
 aah
-aDS
 aDS
 aaa
 aaa
@@ -54865,15 +54855,15 @@ aPZ
 aPZ
 lQB
 aPF
+aPF
 gHU
 aPY
-ryR
 aYA
+okJ
 bFa
-bFa
+sGG
 mDu
 qDO
-aDS
 aDS
 aDS
 aaa
@@ -55123,14 +55113,14 @@ aPZ
 wbU
 aPF
 aPF
+aPF
 bFa
 bFa
 bFa
-bFa
+sGG
 mDu
 mDu
 qDO
-aDS
 aDS
 aDS
 aaa
@@ -55380,14 +55370,14 @@ aPZ
 sjS
 aPF
 aPF
-aSN
+aPF
+ryR
 mDu
 mDu
 mDu
 mDu
 mDu
 wFA
-aDS
 aDS
 aDS
 aaa
@@ -55637,13 +55627,13 @@ aPZ
 agy
 gHU
 aPF
-aSN
+aPF
+ryR
 mDu
 mDu
 vDU
 vDU
 wFA
-aDS
 aDS
 aDS
 aDS
@@ -55893,13 +55883,13 @@ ksU
 vRe
 aQL
 aPF
+aPF
 gQS
-bFa
+sGG
 mDu
 qDO
 aaa
 aaa
-aDS
 aDS
 aDS
 aDS
@@ -56150,13 +56140,13 @@ aPF
 aPF
 aPF
 aPF
+aPF
 bFa
-bFa
+sGG
 mDu
 mDu
-wRO
 vyQ
-aDS
+aaa
 aDS
 aDS
 aDS
@@ -56407,8 +56397,8 @@ gHU
 aPF
 aPF
 aPF
-bFa
-mDu
+aPF
+sGG
 mDu
 mDu
 mDu

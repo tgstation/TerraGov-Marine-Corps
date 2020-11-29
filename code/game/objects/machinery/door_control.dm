@@ -244,6 +244,10 @@
 	name = "RO Line 2 Shutters"
 	id = "ROlobby2"
 
+/obj/machinery/door_control/mainship/req/garage
+	name = "RO garage Shutters"
+	id = "ROgarage"
+
 /obj/machinery/door_control/directional
 	name = "autodirection door control"
 

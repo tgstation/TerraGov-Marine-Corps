@@ -54,9 +54,16 @@
 	},
 /area/mainship/hallways/hangar/droppod)
 "aj" = (
-/obj/structure/ship_ammo/rocket/banshee,
-/turf/open/floor/mainship/sterile/plain,
-/area/mainship/hallways/hangar)
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/disposalpipe/segment{
+	dir = 1
+	},
+/obj/machinery/door_control/mainship/req/garage{
+	pixel_x = -22;
+	pixel_y = 3
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/squads/req)
 "ak" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -144,9 +151,10 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "aC" = (
-/obj/structure/ship_ammo/minirocket,
-/turf/open/floor/mainship/sterile/plain,
-/area/mainship/hallways/hangar)
+/turf/open/floor/mainship/cargo/arrow{
+	dir = 8
+	},
+/area/mainship/hallways/aft_hallway)
 "aD" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 1
@@ -163,9 +171,12 @@
 	},
 /area/mainship/hallways/hangar)
 "aG" = (
-/obj/structure/ship_ammo/rocket/banshee,
-/turf/open/floor/mainship/sterile/plain,
-/area/mainship/hallways/hangar)
+/obj/machinery/door/firedoor/mainship{
+	dir = 8
+	},
+/obj/machinery/door/poddoor/shutters/mainship/req/garage,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "aH" = (
 /obj/structure/cable,
 /obj/machinery/light/small,
@@ -861,9 +872,12 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "cA" = (
-/obj/structure/ship_ammo/rocket/banshee,
-/turf/open/floor/mainship/sterile/plain,
-/area/mainship/hallways/hangar)
+/obj/structure/cable,
+/obj/machinery/alarm{
+	dir = 4
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/squads/req)
 "cB" = (
 /turf/closed/wall/mainship/outer,
 /area/mainship/hallways/port_umbilical)
@@ -4307,7 +4321,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship/cargo/arrow{
+	dir = 8
+	},
 /area/mainship/hallways/aft_hallway)
 "oI" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -6657,7 +6673,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/port_atmos)
 "wM" = (
-/obj/machinery/door/airlock/mainship/marine/requisitions,
 /obj/machinery/door/firedoor/mainship{
 	dir = 8
 	},
@@ -6667,6 +6682,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/machinery/door/poddoor/shutters/mainship/req/garage,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "wN" = (
@@ -8519,12 +8535,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/starboard_hallway)
-"CH" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/squads/req)
 "CJ" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
@@ -9683,10 +9693,6 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/cargo,
-/area/mainship/hallways/hangar)
-"Gh" = (
-/obj/structure/ship_ammo/minirocket,
-/turf/open/floor/mainship/sterile/plain,
 /area/mainship/hallways/hangar)
 "Gi" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -12664,8 +12670,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
 "OY" = (
-/obj/machinery/camera/autoname/mainship{
-	dir = 4
+/obj/machinery/light{
+	dir = 8
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/squads/req)
@@ -12804,7 +12810,7 @@
 /turf/open/floor/plating/mainship,
 /area/mainship/shipboard/firing_range)
 "Pw" = (
-/obj/machinery/firealarm{
+/obj/machinery/camera/autoname/mainship{
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -13485,7 +13491,7 @@
 /area/mainship/hallways/stern_hallway)
 "Sv" = (
 /obj/structure/cable,
-/obj/machinery/alarm{
+/obj/machinery/power/apc/mainship{
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -13931,10 +13937,10 @@
 /turf/open/floor/mainship/red/full,
 /area/mainship/shipboard/firing_range)
 "UA" = (
-/obj/machinery/power/apc/mainship{
+/obj/structure/cable,
+/obj/machinery/firealarm{
 	dir = 4
 	},
-/obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "UB" = (
@@ -45229,10 +45235,10 @@ gd
 AB
 gd
 gd
-gd
 FB
+aC
 oH
-gd
+aC
 PB
 TH
 Ya
@@ -45487,9 +45493,9 @@ qG
 qG
 qG
 qG
-qG
+aG
 wM
-qG
+aG
 qG
 qG
 qG
@@ -45743,15 +45749,15 @@ TO
 fW
 pn
 og
-ok
+aj
 ok
 CC
-CH
+ol
 OY
 Pw
 UA
 Sv
-JN
+cA
 pq
 qG
 gL
