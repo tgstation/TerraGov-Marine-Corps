@@ -157,7 +157,7 @@
 	keybind_signal = COMSIG_XENOABILITY_IGNORE_PAIN
 
 /datum/action/xeno_action/activable/endure/on_cooldown_finish()
-	to_chat(owner, "<span class='xenodamager'>We feel able to imbue ourselves with plasma to ignore pain once again!</span>")
+	to_chat(owner, "<span class='xenodanger'>We feel able to imbue ourselves with plasma to ignore pain once again!</span>")
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
 
@@ -258,7 +258,7 @@
 	rage_power = (1-(X.health/X.maxHealth)) * 0.5 //Calculate the power of our rage; scales with difference between current and max HP
 
 	if(X.health < 0) //Double dip on the negative HP; gain + 0.005 rage power per point of negative HP
-		rage_power += X.health * -0.01 * 0.5
+		rage_power += X.health * -0.005
 
 	rage_power = min(1, rage_power) //Cap rage power so that we don't get way too insane.
 
@@ -328,7 +328,7 @@
 
 	R.do_jitter_animation(1000)
 
-	R.remove_filter("ravager_rage_outline") //Set our cool aura; also confirmation we have the buff
+	R.remove_filter("ravager_rage_outline")
 	R.visible_message("<span class='warning'>[R] seems to calm down.</span>", \
 	"<span class='highdanger'>Our rage subsides and its power leaves our body.</span>")
 
