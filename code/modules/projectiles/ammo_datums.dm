@@ -1432,6 +1432,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		var/mob/living/carbon/C = M
 		if(C.issamexenohive(P.firer))
 			return
+		C.adjust_stagger(2) //stagger briefly; useful for support
 		C.add_slowdown(3) //slow em down
 
 
@@ -1439,11 +1440,19 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/turf/T = get_turf(O)
 	if(!T)
 		T = get_turf(P)
+
+	if(O.density && !(O.flags_atom & ON_BORDER))
+		T = get_turf(get_step(T, turn(P.dir, 180))) //If the object is dense and not a border object like barricades, we instead drop in the location just prior to the target
+
 	drop_resin(T)
 
 /datum/ammo/xeno/sticky/on_hit_turf(turf/T,obj/projectile/P)
 	if(!T)
 		T = get_turf(P)
+
+	if(isclosedturf(T))
+		T = get_turf(get_step(T, turn(P.dir, 180))) //If the turf is closed, we instead drop in the location just prior to the turf
+
 	drop_resin(T)
 
 /datum/ammo/xeno/sticky/do_at_max_range(obj/projectile/P)
@@ -1496,12 +1505,20 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/turf/T = get_turf(O)
 	if(!T)
 		T = get_turf(P)
+
+	if(O.density && !(O.flags_atom & ON_BORDER))
+		T = get_turf(get_step(T, turn(P.dir, 180))) //If the object is dense and not a border object like barricades, we instead drop in the location just prior to the target
+
 	drop_nade(T)
 
 
 /datum/ammo/xeno/acid/heavy/on_hit_turf(turf/T,obj/projectile/P)
 	if(!T)
 		T = get_turf(P)
+
+	if(isclosedturf(T))
+		T = get_turf(get_step(T, turn(P.dir, 180))) //If the turf is closed, we instead drop in the location just prior to the turf
+
 	drop_nade(T)
 
 /datum/ammo/xeno/acid/heavy/do_at_max_range(obj/projectile/P)
