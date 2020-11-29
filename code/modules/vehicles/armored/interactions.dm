@@ -73,7 +73,7 @@
 	if(istype(I, /obj/item/tank_module))
 		var/obj/item/tank_module/M = I
 		if(utility_module)
-			to_chat(user, "There's already a Utility Module attached, remove it with a crowbar first!")
+			to_chat(user, "There's already a utility module attached, remove it with a crowbar first!")
 			return TRUE
 		utility_module = M
 		to_chat(user, "You attach [M] to the tank.")
