@@ -552,7 +552,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 		handle_player_entrance(M) //will call the get out of tank proc on its own
 		return
 
-	var/damage = M.xeno_caste.melee_damage + dam_bonus
+	var/damage = M.xeno_caste.melee_damage * M.xeno_melee_damage_modifier + dam_bonus
 
 	//Somehow we will deal no damage on this attack
 	if(!damage)

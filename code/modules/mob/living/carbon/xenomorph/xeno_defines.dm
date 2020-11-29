@@ -272,6 +272,9 @@
 	var/warding_new = 0
 	var/recovery_new = 0
 
+	///Multiplicative melee damage modifier; referenced by attack_alien.dm, most notably attack_alien_harm
+	var/xeno_melee_damage_modifier = 1
+
 	var/xeno_mobhud = FALSE //whether the xeno mobhud is activated or not.
 
 	var/queen_chosen_lead //whether the xeno has been selected by the queen as a leader.
