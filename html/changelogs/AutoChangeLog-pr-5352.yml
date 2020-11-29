@@ -1,0 +1,5 @@
+author: "Slotbot"
+delete-after: True
+changes: 
+  - rscadd: "neurotoxin in select reagent description"
+  - tweak: "gas prompts wording"
