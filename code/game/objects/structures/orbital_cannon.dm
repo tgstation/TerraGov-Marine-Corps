@@ -195,7 +195,7 @@
 	var/turf/target = locate(T.x + inaccurate_fuel * pick(-1,1),T.y + inaccurate_fuel * pick(-1,1),T.z)
 
 	playsound_z_humans(target.z, 'sound/effects/OB_warning_announce.ogg', 100) //for marines on ground
-	playsound_z_xenos(target.z, 'sound/effects/OB_warning_announce_novoiceover.ogg', 100) //VOX-less version for xenomorphs
+	playsound(target, 'sound/effects/OB_warning_announce_novoiceover.ogg', 100, FALSE, 30, 10) //VOX-less version for xenomorphs
 	playsound_z(z, 'sound/effects/OB_warning_announce.ogg', 100) //for the ship
 
 	notify_ghosts("<b>[user]</b> has just fired \the <b>[src]</b> !", source = T, action = NOTIFY_JUMP)
