@@ -249,7 +249,7 @@
 		if(T.status == 0)
 			Brightness += 4
 
-/obj/machinery/floodlightcombat/SwitchLight()
+/obj/machinery/floodlightcombat/proc/SwitchLight()
 	if(!(src.anchored))
 		visible_message("the floodlight flashes a warning led.It is not bolted to the ground.")
 		return FALSE
