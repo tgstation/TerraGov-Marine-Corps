@@ -1,0 +1,5 @@
+author: "Pariah919"
+delete-after: True
+changes: 
+  - balance: "tyr mark 1 now has 0.4 slow rather than 0.3"
+  - bugfix: "fixed mimir mark one giving you 100+ bio resist"
