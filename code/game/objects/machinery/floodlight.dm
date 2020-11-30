@@ -189,27 +189,33 @@
 		use_power(idle_power_usage, EQUIP)
 
 /obj/machinery/floodlightcombat/attack_alien(mob/living/carbon/xenomorph/M)
-	if(M.a_intent == INTENT_HARM)
-		var/obj/item/light_bulb/T = /obj/item/light_bulb/tube
-		var/list/lights = src.contents
-		if(lights.len == 0)
-			to_chat(M, "There are no lights to slash!")
-			return FALSE
-		to_chat(M, "You slash one of the lights!")
-		for(T in lights)
-			if(T.status > 0)
-				return FALSE
-			T.status = 2
-			CalculateBrightness()
-			break
 	if(M.a_intent == INTENT_DISARM)
 		to_chat(M, "You begin tipping the [src]")
 		if(!(src.density))
 			to_chat(M, "The [src] is already tipped over!")
 			return FALSE
-		if(!do_after(M, 5 SECONDS, FALSE, src))
+		var/fliptime = 10 SECONDS
+		if(M.mob_size == MOB_SIZE_BIG)
+			fliptime = 5 SECONDS
+		if(isxenocrusher(M))
+			fliptime = 3 SECONDS
+		if(!do_after(M, fliptime, FALSE, src))
 			return FALSE
+		visible_message("[M] Flips the [src] , shaterring all the lights!")
 		tip_over()
+		return TRUE
+	var/obj/item/light_bulb/T = /obj/item/light_bulb/tube
+	var/list/lights = src.contents
+	if(lights.len == 0)
+		to_chat(M, "There are no lights to slash!")
+		return FALSE
+	to_chat(M, "You slash one of the lights!")
+	for(T in lights)
+		if(T.status > 0)
+			return FALSE
+		T.status = 2
+		CalculateBrightness()
+		break
 
 /obj/machinery/floodlightcombat/attackby(obj/item/I, mob/user, params)
 	var/list/lights = src.contents
@@ -220,6 +226,7 @@
 			to_chat(user, "all the light sockets are occupied!")
 			return FALSE
 		to_chat(user, "you insert the [I] into the [src]")
+		visible_message("[user] inserts the [I] into the [src]")
 		user.drop_held_item()
 		I.forceMove(src)
 		CalculateBrightness()
@@ -242,6 +249,17 @@
 		if(T.status == 0)
 			Brightness += 4
 
+/obj/machinery/floodlightcombat/SwitchLight()
+	if(!(src.anchored))
+		visible_message("the floodlight flashes a warning led.It is not bolted to the ground.")
+		return FALSE
+	if(On)
+		On = 0
+		set_light(0)
+	else
+		On = 1
+		set_light(Brightness)
+
 /obj/machinery/floodlightcombat/attack_hand(mob/living/user)
 	var/list/obj/item/light_bulb/tube/T = src.contents
 	if(!ishuman(user))
@@ -252,6 +270,7 @@
 			return FALSE
 		if(T.len > 0)
 			to_chat(user, "You take out one of the lights")
+			visible_message("[user] takes out one of the lights tubes!")
 			var/obj/item/item = pick(src.contents)
 			item.forceMove(user.loc)
 		else
@@ -259,8 +278,7 @@
 			return FALSE
 		CalculateBrightness()
 		return TRUE
-	set_light(Brightness)
-	On = 1
+	SwitchLight()
 
 /obj/machinery/floodlight/outpost
 	name = "Outpost Light"
