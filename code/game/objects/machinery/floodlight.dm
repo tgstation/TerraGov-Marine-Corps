@@ -203,6 +203,7 @@
 			return FALSE
 		visible_message("[M] Flips the [src] , shaterring all the lights!")
 		tip_over()
+		update_icon()
 		return TRUE
 	var/obj/item/light_bulb/T = /obj/item/light_bulb/tube
 	var/list/lights = src.contents
@@ -215,6 +216,7 @@
 			return FALSE
 		T.status = 2
 		CalculateBrightness()
+		update_icon()
 		break
 
 /obj/machinery/floodlightcombat/attackby(obj/item/I, mob/user, params)
@@ -241,6 +243,7 @@
 		E.forceMove(src)
 		CalculateBrightness()
 
+
 /obj/machinery/floodlightcombat/proc/CalculateBrightness()
 	var/list/M = src.contents
 	var/obj/item/light_bulb/tube/T = /obj/item/light_bulb/tube
@@ -248,6 +251,22 @@
 	for(T in M)
 		if(T.status == 0)
 			Brightness += 4
+
+/obj/machinery/floodlightcombat/update_icon()
+	. = ..()
+	var/L = Brightness/4
+	var/list/E = src.contents
+	if(E.len = L)
+		if(!On || !L)
+			icon_state = "floodlightcombat_off"
+		else
+			icon_state = "floodlightcombat_undamaged_[L]"
+		return
+	if(!On)
+		icon_state = "floodlight_damaged_off_[L]"
+	else
+		icon_state = "floodlight_damaged_[L]"
+
 
 /obj/machinery/floodlightcombat/proc/SwitchLight()
 	if(!(src.anchored))
@@ -259,6 +278,7 @@
 	else
 		On = 1
 		set_light(Brightness)
+	update_icon()
 
 /obj/machinery/floodlightcombat/attack_hand(mob/living/user)
 	var/list/obj/item/light_bulb/tube/T = src.contents
