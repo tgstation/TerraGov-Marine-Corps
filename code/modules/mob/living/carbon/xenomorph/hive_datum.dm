@@ -587,7 +587,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	if(length(possible_silos) > 1)
 		chosen_silo = input("Available Egg Silos") as null|anything in possible_silos
 		xeno_candidate.forceMove(chosen_silo)
-		var/double_check = input(xeno_candidate, "Spawn here?", "Spawn location", "Yes") as text|null
+		var/double_check = input(xeno_candidate, "Spawn here?", "Spawn location") as null|anything in list("Yes","No")
 		if(double_check != "Yes")
 			attempt_to_spawn_larva_in_silo(xeno_candidate, possible_silos)
 	else
