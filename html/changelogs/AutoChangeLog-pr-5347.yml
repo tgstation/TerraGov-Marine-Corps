@@ -1,0 +1,6 @@
+author: "Pariah919"
+delete-after: True
+changes: 
+  - rscadd: "Added new freelancer sprites."
+  - rscdel: "Removed freelancer sprites, git will remember them. Nobody else will."
+  - bugfix: "Freelancers no longer use the upp belt. They use the normal medical belt."
