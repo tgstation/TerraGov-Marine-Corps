@@ -389,11 +389,11 @@ Contains most of the procs that are called when a mob is attacked by something
 		update_inv_w_uniform()
 
 
-//This looks for a "marine", ie. non-civilian ID on a person. Used with the gun, claymore, sentry and possibly other IFF code.
-//Does not actually check for station jobs or access yet, cuz I'm mad lazy.
-//Updated and renamed a bit. Will probably updated properly once we have a new ID system in place, as this is just a workaround ~N.
+/**
+This looks for a an ID on a person. Used with the gun, claymore, sentry and possibly other IFF code.
+Does not actually check for station jobs.
+  */
 /mob/living/carbon/human/proc/get_target_lock(list/unique_access)
-	//Streamlined for faster processing. Needs a unique access, otherwise it will just hit everything.
 	var/obj/item/card/id/C = wear_id
 	if(!istype(C)) C = get_active_held_item()
 	if(!istype(C)) return
