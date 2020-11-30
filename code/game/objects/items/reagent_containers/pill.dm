@@ -178,7 +178,7 @@
 	pill_id = 14
 
 /obj/item/reagent_containers/pill/russianRed
-	pill_desc = "A Russian Red pill. A very dangerous radiation-countering substance."
+	pill_desc = "A Russian Red pill. A last-resort revival drug."
 	list_reagents = list(/datum/reagent/medicine/russianred = 10)
 	pill_id = 15
 
@@ -213,7 +213,7 @@
 	pill_id = 9
 
 /obj/item/reagent_containers/pill/leporazine
-	pill_desc = "A hypervene pill. A purge medication used to treat overdoses and rapidly remove toxins. Causes pain and vomiting."
+	pill_desc = "A leporazine pill. Helps handle extreme body temperatures rapidly."
 	list_reagents = list(/datum/reagent/medicine/leporazine = 10)
 	pill_id = 21
 
