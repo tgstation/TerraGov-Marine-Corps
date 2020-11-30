@@ -47,7 +47,7 @@
 		if(ignore_leads && X.queen_chosen_lead)
 			continue
 		if(can_overwatch)
-			xenoinfo += "<tr><td>[leadprefix]<a href=?src=\ref[user];watch_xeno_number=[X.nicknumber]>[X.name]</a> "
+			xenoinfo += "<tr><td>[leadprefix]<a href=?src=\ref[user];watch_xeno_name=[X.nicknumber]>[X.name]</a> "
 		else
 			xenoinfo += "<tr><td>[leadprefix][X.name] "
 		if(!X.client)
