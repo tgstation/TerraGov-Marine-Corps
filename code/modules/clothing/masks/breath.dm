@@ -66,6 +66,9 @@
 	flags_cold_protection = HEAD
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 
+/obj/item/clothing/mask/rebreather/scarf/freelancer
+	item_state = "coif_fl"
+
 /obj/item/clothing/mask/bandanna
 	name = "tan bandanna"
 	desc = "A colored, resilient, and insulating cloth to cover your face from the elements. This one is Desert Tan"
