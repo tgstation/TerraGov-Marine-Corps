@@ -189,11 +189,11 @@
 			incoming_damage *= (100 - soft_armor.getRating(damage_type)) * 0.01
 			return prob(50 - round(incoming_damage / 3))
 		if(COMBAT_MELEE_ATTACK, COMBAT_PROJ_ATTACK)
-			var/absorbing_damage = max(0, incoming_damage - hard_armor.getRating(damage_type) * status_cover_modifier) //We apply hard armor *first* _not_ *after* soft armor
+			var/absorbing_damage = incoming_damage * cover.getRating(damage_type) * 0.01 * status_cover_modifier  //Determine cover ratio; this is the % of damage we actually intercept.
+			absorbing_damage = max(0, absorbing_damage - hard_armor.getRating(damage_type)) //We apply hard armor *first* _not_ *after* soft armor
 			if(!absorbing_damage)
 				return incoming_damage //We are transparent to this kind of damage.
 			. = incoming_damage - absorbing_damage
-			absorbing_damage = incoming_damage * cover.getRating(damage_type) * 0.01 * status_cover_modifier  //Determine cover ratio
 			absorbing_damage *= (100 - soft_armor.getRating(damage_type)) * 0.01 //Now apply soft armor
 			if(absorbing_damage <= 0)
 				if(!silent)
