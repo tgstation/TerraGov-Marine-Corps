@@ -29,11 +29,19 @@
 
 	dat += "<b>List of Hive Tunnels:</b><BR>"
 
-	for(var/obj/structure/tunnel/T in GLOB.xeno_tunnels)
+	for(var/obj/structure/xeno/tunnel/T in GLOB.xeno_tunnels)
 		if(T.creator.hive == hive)
-			dat += "<b>[T.name]</b> located at: <b><font color=green>([T.tunnel_desc])</b></font><BR>"
 
-	var/datum/browser/popup = new(user, "roundstatus", "<div align='center'>Tunnel List</div>", 600, 600)
+			var/hp_color = "green"
+			switch(T.obj_integrity/T.max_integrity)
+				if(0.33 to 0.66)
+					hp_color = "orange"
+				if(0 to 0.33)
+					hp_color = "red"
+
+			dat += "<b>[T.name] <font color=[hp_color]>Health: ([T.obj_integrity]/[T.max_integrity])</font></b> located at: <b><font color=green>([T.tunnel_desc])</b></font><BR>"
+
+	var/datum/browser/popup = new(user, "xeno_tunnel_status", "<div align='center'>Tunnel List</div>", 600, 600)
 	popup.set_content(dat)
 	popup.open(FALSE)
 

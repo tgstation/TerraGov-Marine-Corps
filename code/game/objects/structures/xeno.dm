@@ -671,7 +671,6 @@ TUNNEL
 
 	hud_possible = list(XENO_TACTICAL_HUD)
 
-
 ///Tunnels aren't flammable
 /obj/structure/xeno/tunnel/flamer_fire_act()
 	return
@@ -687,13 +686,10 @@ TUNNEL
 		xeno_tac_hud.add_to_hud(src)
 	hud_set_xeno_tunnel()
 
-/obj/structure/tunnel/Destroy()
+/obj/structure/xeno/tunnel/Destroy()
 	var/drop_loc = get_turf(src)
 	for(var/atom/movable/thing as() in contents) //Empty the tunnel of contents
 		thing.forceMove(drop_loc)
-
-	if(!QDELETED(creator))
-		to_chat(creator, "<span class='xenoannounce'>You sense your [name] at [tunnel_desc] has been destroyed!</span>") //Alert creator
 
 	xeno_message("<span class='xenoannounce'>Hive tunnel [name] at [tunnel_desc] has been destroyed!</span>", 2, creator.hivenumber) //Also alert hive because tunnels matter.
 
