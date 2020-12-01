@@ -781,7 +781,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		var/penetration = proj.ammo.penetration
 
 		if(proj.ammo.flags_ammo_behavior & AMMO_SUNDERING && !isxeno(src)) //Versus non-xenos, Sunder counts as extra penetration; concussive force that transmits through armor
-			penetration += proj.ammo.sundering
+			penetration += (proj.ammo.sundering * 2) //Multiply by 2 or it is pretty much irrelevant for the vast, vast majority of projectiles
 
 		if(penetration > 0)
 			if(proj.shot_from && src == proj.shot_from.sniper_target(src))
