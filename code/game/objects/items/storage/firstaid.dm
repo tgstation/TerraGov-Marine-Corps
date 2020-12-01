@@ -319,7 +319,7 @@
 
 /obj/item/storage/pill_bottle/inaprovaline
 	name = "inaprovaline pill bottle"
-	desc = "Contains pills that prevent wounds from getting worse on their own.
+	desc = "Contains pills that prevent wounds from getting worse on their own."
 	icon_state = "pill_canister3"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/inaprovaline
 
@@ -373,13 +373,13 @@
 
 /obj/item/storage/pill_bottle/russianRed
 	name = "\improper Russian Red pill bottle"
-	desc = Contains pills that heal all damage rapidly at the cost of small amounts of unhealable damage.
+	desc = Contains pills that heal all damage rapidly at the cost of small amounts of unhealable damage."
 	icon_state = "pill_canister1"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/russianRed
 
 /obj/item/storage/pill_bottle/quickclot
 	name = "quick-clot pill bottle"
-	desc = Contains pills that suppress IB while waiting for a full treatment.
+	desc = Contains pills that suppress IB while waiting for a full treatment."
 	icon_state = "pill_canister8"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/quickclot
 
