@@ -779,6 +779,10 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	var/living_soft_armor = (proj.ammo.flags_ammo_behavior & AMMO_IGNORE_ARMOR) ? 0 : get_soft_armor(proj.armor_type, proj.def_zone, proj.dir)
 	if(living_hard_armor || living_soft_armor)
 		var/penetration = proj.ammo.penetration
+
+		if(proj.ammo.flags_ammo_behavior & AMMO_SUNDERING && !isxeno(src)) //Versus non-xenos, Sunder counts as extra penetration; concussive force that transmits through armor
+			penetration += proj.ammo.sundering
+
 		if(penetration > 0)
 			if(proj.shot_from && src == proj.shot_from.sniper_target(src))
 				damage *= SNIPER_LASER_DAMAGE_MULTIPLIER
