@@ -264,10 +264,23 @@
 
 	var/rage_power_radius = CEILING(rage_power * 6, 1) //Define radius of the SFX
 
-	X.emote("roar") //Hear us roar
 	X.visible_message("<span class='danger'>\The [X] becomes frenzied, bellowing with a shuddering roar!</span>", \
 	"<span class='highdanger'>We bellow as our fury overtakes us! RIP AND TEAR!</span>")
 	X.do_jitter_animation(1000)
+
+
+	//Roar SFX; volume scales with rage
+	playsound(X.loc, 'sound/voice/alien_roar2.ogg', clamp(100 * rage_power, 25, 80), 0)
+
+	var/bonus_duration
+	if(rage_power > 0.5) //If we're super pissed it's time to get crazy
+		bonus_duration = 1 SECONDS //Compensation for the obscuring visual effect
+		var/obj/screen/plane_master/floor/OT = locate(/obj/screen/plane_master/floor) in X.client.screen
+		OT.add_filter("rage_outcry", 2, list("type" = "radial_blur", "size" = 0.15))
+		addtimer(CALLBACK(OT, /atom.proc/remove_filter, "rage_outcry"), bonus_duration)
+		var/obj/screen/plane_master/game_world/GW = locate(/obj/screen/plane_master/game_world) in X.client.screen
+		GW.add_filter("rage_outcry", 2, list("type" = "radial_blur", "size" = 0.15))
+		addtimer(CALLBACK(GW, /atom.proc/remove_filter, "rage_outcry"), bonus_duration)
 
 	for(var/turf/affected_tile in range(rage_power_radius,get_turf(X)))
 		affected_tile.Shake(4, 4, 1 SECONDS) //SFX
@@ -301,8 +314,8 @@
 
 	X.add_movespeed_modifier(MOVESPEED_ID_RAVAGER_RAGE, TRUE, 0, NONE, TRUE, X.xeno_caste.speed * 0.5 * rage_power) //Set rage speed bonus
 
-	addtimer(CALLBACK(src, .proc/rage_warning), RAVAGER_RAGE_DURATION * RAVAGER_RAGE_WARNING) //Warn the ravager when rage is about to expire.
-	addtimer(CALLBACK(src, .proc/rage_deactivate), RAVAGER_RAGE_DURATION)
+	addtimer(CALLBACK(src, .proc/rage_warning, bonus_duration), (RAVAGER_RAGE_DURATION + bonus_duration) * RAVAGER_RAGE_WARNING) //Warn the ravager when rage is about to expire.
+	addtimer(CALLBACK(src, .proc/rage_deactivate), (RAVAGER_RAGE_DURATION + bonus_duration) )
 
 	succeed_activate()
 	add_cooldown()
@@ -311,12 +324,12 @@
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "ravager_rages")
 
 
-/datum/action/xeno_action/activable/rage/proc/rage_warning()
+/datum/action/xeno_action/activable/rage/proc/rage_warning(bonus_duration = 0)
 
 	if(!rage_power) //Check to see if we actually have rage
 		return
 
-	to_chat(owner,"<span class='highdanger'>Our rage begins to subside... [ability_name] will only last for only [RAVAGER_RAGE_DURATION * (1-RAVAGER_RAGE_WARNING) * 0.1] more seconds!</span>")
+	to_chat(owner,"<span class='highdanger'>Our rage begins to subside... [ability_name] will only last for only [(RAVAGER_RAGE_DURATION + bonus_duration) * (1-RAVAGER_RAGE_WARNING) * 0.1] more seconds!</span>")
 	owner.playsound_local(owner, 'sound/voice/hiss4.ogg', 50, 0, 1)
 
 
