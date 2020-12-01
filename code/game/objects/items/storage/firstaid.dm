@@ -72,7 +72,7 @@
 	new /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/tramadol(src)
 	new /obj/item/stack/medical/splint(src)
-	new /obj/item/storage/syringe_case/regular(src)
+	new /obj/item/storage/pill_bottle/packet/russianRed(src)
 
 
 /obj/item/storage/firstaid/toxin
@@ -86,7 +86,7 @@
 	new /obj/item/healthanalyzer(src)
 	new /obj/item/storage/pill_bottle/dylovene(src)
 	new /obj/item/storage/pill_bottle/peridaxon(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/hypervene(src)
+	new /obj/item/storage/pill_bottle/packet/ryetalyn(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/hypervene(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/hypervene(src)
 	new /obj/item/storage/syringe_case/tox(src)
@@ -319,6 +319,7 @@
 
 /obj/item/storage/pill_bottle/inaprovaline
 	name = "inaprovaline pill bottle"
+	desc = "Contains pills that prevent wounds from getting worse on their own.
 	icon_state = "pill_canister3"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/inaprovaline
 
@@ -336,6 +337,7 @@
 
 /obj/item/storage/pill_bottle/spaceacillin
 	name = "spaceacillin pill bottle"
+	desc = "Contains pills that handle low-level viral and bacterial infections. Effect increases with dosage."
 	icon_state = "pill_canister4"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/spaceacillin
 
@@ -347,6 +349,7 @@
 
 /obj/item/storage/pill_bottle/dexalin
 	name = "dexalin pill bottle"
+	desc = "Contains pills that heal oxygen damage. They can suppress bloodloss symptoms as well."
 	icon_state = "pill_canister12"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/dexalin
 
@@ -364,16 +367,19 @@
 
 /obj/item/storage/pill_bottle/peridaxon
 	name = "peridaxon pill bottle"
+	desc = "Contains pills that suppress organ damage while waiting for a full treatment."
 	icon_state = "pill_canister10"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/peridaxon
 
 /obj/item/storage/pill_bottle/russianRed
 	name = "\improper Russian Red pill bottle"
+	desc = Contains pills that heal all damage rapidly at the cost of small amounts of unhealable damage.
 	icon_state = "pill_canister1"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/russianRed
 
 /obj/item/storage/pill_bottle/quickclot
 	name = "quick-clot pill bottle"
+	desc = Contains pills that suppress IB while waiting for a full treatment.
 	icon_state = "pill_canister8"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/quickclot
 
@@ -385,6 +391,7 @@
 
 /obj/item/storage/pill_bottle/tricordrazine
 	name = "tricordrazine pill bottle"
+	desc = "Contains pills commonly used by untrained Squad Marines to avoid seeing their Squad Medic."
 	icon_state = "pill_canister9"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/tricordrazine
 
