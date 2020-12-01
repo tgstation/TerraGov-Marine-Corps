@@ -559,7 +559,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	shell_speed = 3
 	max_range = 15
-	damage = 80
+	damage = 90
 	penetration = 10
 	sundering = 15
 
