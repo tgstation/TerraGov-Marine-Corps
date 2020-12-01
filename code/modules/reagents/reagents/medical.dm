@@ -191,6 +191,8 @@
 	description = "Kelotane is a drug used to treat burns."
 	color = "#D8C58C"
 	scannable = TRUE
+	purge_list = list(/datum/reagent/medicine/ryetalyn)
+	purge_rate = 1
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 
@@ -289,6 +291,8 @@
 	description = "Tricordrazine is a highly potent stimulant, originally derived from cordrazine. Can be used to treat a wide range of injuries."
 	color = "#B865CC"
 	scannable = TRUE
+	purge_list = list(/datum/reagent/medicine/ryetalyn)
+	purge_rate = 1
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	taste_description = "grossness"
@@ -487,7 +491,7 @@
 	description = "An emergency generic treatment with extreme side effects."
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	custom_metabolism = REAGENTS_METABOLISM * 5
-	overdose_threshold = REAGENTS_OVERDOSE/3
+	overdose_threshold = REAGENTS_OVERDOSE/2
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/3
 	scannable = TRUE
 
@@ -605,6 +609,8 @@
 	name = "Bicaridine"
 	description = "Bicaridine is an analgesic medication and can be used to treat blunt trauma."
 	color = "#E8756C"
+	purge_list = list(/datum/reagent/medicine/ryetalyn)
+	purge_rate = 1
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	scannable = TRUE
