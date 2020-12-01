@@ -182,6 +182,11 @@
 	list_reagents = list(/datum/reagent/medicine/russianred = 10)
 	pill_id = 15
 
+/obj/item/reagent_containers/pill/ryetalyn
+	pill_desc = "A Ryetalyn pill. A long-duration shield against toxic chemicals."
+	list_reagents = list(/datum/reagent/medicine/ryetalyn = 15)
+	pill_id = 14
+
 /obj/item/reagent_containers/pill/peridaxon
 	pill_desc = "A peridaxon pill. Heals internal organ damage."
 	list_reagents = list(/datum/reagent/medicine/peridaxon = 10)
