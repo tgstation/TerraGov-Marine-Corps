@@ -545,6 +545,79 @@
 	. = ..()
 	update_icon()
 
+
+/obj/item/clothing/mask/facehugger/neuro
+	name = "neuro hugger"
+	desc = "This strange creature has a single prominent sharp proboscis."
+	sterile = TRUE
+	color = COLOR_PURPLE
+
+/obj/item/clothing/mask/facehugger/neuro/attack(mob/M, mob/user)
+	if(!check_target(M))
+		return
+
+	var/mob/living/victim = M
+	victim.apply_damage(100, STAMINA) //Armor ignoring stamina damage
+	victim.reagents.add_reagent(/datum/reagent/toxin/xeno_neurotoxin, 20)
+	playsound(victim, 'sound/effects/spray3.ogg', 25, 1)
+	victim.visible_message("<span class='danger'>[src] penetrates [victim] with its sharp probscius before falling down!</span>","<span class='danger'>[src] penetrates you with a sharp probscius before falling down!</span>")
+
+
+/obj/item/clothing/mask/facehugger/acid
+	name = "acid hugger"
+	desc = "This repulsive looking thing is bloated with throbbing putrescent green sacks."
+	sterile = TRUE
+	color = COLOR_GREEN
+
+/obj/item/clothing/mask/facehugger/acid/attack(mob/M, mob/user)
+	if(!check_target(M))
+		return
+
+	acid_facehugger_explosion()
+	melt_away()
+
+/obj/item/clothing/mask/facehugger/acid/proc/acid_facehugger_explosion()
+
+	visible_message("<span class='danger'>[src] explodes into a smoking splatter of acid!</span>")
+
+	for(var/turf/acid_tile in range(1, loc))
+		if(!locate(/obj/effect/xenomorph/spray) in acid_tile)
+			new /obj/effect/xenomorph/spray(acid_tile, 10 SECONDS, 16)
+
+	var/datum/effect_system/smoke_spread/xeno/acid/A = new(get_turf(src)) //Spawn acid smoke
+	A.set_up(2,src)
+	A.start()
+
+/obj/item/clothing/mask/facehugger/slash
+	name = "clawed hugger"
+	desc = "This nasty little creature is a nightmarish scrabble of sharp, long claws."
+	sterile = TRUE
+	color = COLOR_RED
+
+/obj/item/clothing/mask/facehugger/slash/attack(mob/M)
+	if(!check_target(M))
+		return
+
+	var/mob/living/victim = M
+	var/affecting = ran_zone(null, 0)
+	if(!affecting) //Still nothing??
+		affecting = "chest" //Gotta have a torso?!
+
+	var/armor_block = victim.run_armor_check(affecting, "melee")
+	victim.apply_damage(CARRIER_SLASH_HUGGER_DAMAGE, BRUTE, affecting, armor_block) //Crap base damage after armour...
+	victim.visible_message("<span class='danger'>[src] frantically claws at [victim] before falling down!</span>","<span class='danger'>[src] frantically claws at you before falling down!</span>")
+
+///See if our target is valid
+/obj/item/clothing/mask/facehugger/proc/check_target(mob/M, mob/user)
+	if(stat != CONSCIOUS)
+		return FALSE
+	if(!isliving(M))
+		return FALSE
+	if(isxeno(M))
+		var/mob/living/carbon/xenomorph/X = M
+		if(hivenumber == X.hive) //No friendly fire
+			return FALSE
+
 #undef FACEHUGGER_DEATH
 #undef JUMP_COOLDOWN
 #undef ACTIVATE_TIME

@@ -215,3 +215,37 @@
 	succeed_activate()
 	add_cooldown()
 
+
+
+// Choose Hugger Type
+/datum/action/xeno_action/choose_hugger_type
+	name = "Choose Hugger Type"
+	action_icon_state = "neuro_hugger"
+	mechanics_text = "Selects which hugger type you will build with the Spawn Hugger ability."
+	keybind_signal = COMSIG_XENOABILITY_CHOOSE_RESIN
+	var/list/hugger_type_list = list(
+		/obj/item/clothing/mask/facehugger,
+		/obj/item/clothing/mask/facehugger/neuro,
+		/obj/item/clothing/mask/facehugger/acid,
+		/obj/item/clothing/mask/facehugger/slash,
+		)
+
+/datum/action/xeno_action/choose_hugger_type/update_button_icon()
+	var/mob/living/carbon/xenomorph/X = owner
+	var/atom/A = X.selected_hugger_type
+	button.overlays.Cut()
+	button.overlays += image('icons/mob/actions.dmi', button, initial(A.name))
+	return ..()
+
+/datum/action/xeno_action/choose_hugger_type/action_activate()
+	var/mob/living/carbon/xenomorph/X = owner
+	var/i = hugger_type_list.Find(X.selected_hugger_type)
+	if(length(hugger_type_list) == i)
+		X.selected_resin = hugger_type_list[1]
+	else
+		X.selected_resin = hugger_type_list[i+1]
+
+	var/atom/A = X.selected_hugger_type
+	to_chat(X, "<span class='notice'>We will now spawn <b>[initial(A.name)]\s</b> when using the Spawn Hugger ability.</span>")
+	update_button_icon()
+	return succeed_activate()
