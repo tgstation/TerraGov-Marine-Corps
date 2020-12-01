@@ -237,7 +237,7 @@
 	var/warding_aura = 0
 	var/recovery_aura = 0
 
-	///Xeno blood acts as a resource to fuel xeno's ability to regenerate
+	///Xeno blood acts as a resource to fuel xeno's ability to regenerate.
 	var/xeno_blood_current = 700
 	var/xeno_blood_max = 700
 	///Xeno blood drain every 2 seconds when passively healing, scaling up and down with passive healing modifiers. By default 0.34% of xeno_blood_max or 10 blood per 100% max health healed
