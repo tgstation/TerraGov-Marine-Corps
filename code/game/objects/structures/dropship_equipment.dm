@@ -807,7 +807,7 @@
 	equip_category = DROPSHIP_CREW_WEAPON
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "table2-idle"
-	point_cost = 25
+	point_cost = 100
 	var/obj/machinery/optable/deployed_table
 
 /obj/structure/dropship_equipment/operatingtable/Initialize()
