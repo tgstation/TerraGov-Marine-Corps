@@ -92,7 +92,7 @@
 		traits += "Shots fired on burst mode: [burst_amount]"
 		traits += "Time between burst-fire: [(min((burst_delay * 2), (fire_delay * 3))) / 10] seconds"
 	if(/datum/action/item_action/aim_mode in actions_types)
-		traits += "Can be aimed with for increased precision."
+		traits += "Can be aimed with to avoid shooting allies."
 		traits += "Time between aimed shots: [(fire_delay + aim_fire_delay) / 10] seconds"
 
 	traits += "<br>"
