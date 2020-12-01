@@ -379,7 +379,7 @@
 
 /obj/item/storage/pill_bottle/quickclot
 	name = "quick-clot pill bottle"
-	desc = Contains pills that suppress IB while waiting for a full treatment."
+	desc = "Contains pills that suppress IB while waiting for a full treatment."
 	icon_state = "pill_canister8"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/quickclot
 
