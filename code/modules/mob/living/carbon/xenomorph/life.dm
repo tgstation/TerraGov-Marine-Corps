@@ -67,13 +67,13 @@
 		return
 	if(health >= maxHealth || xeno_caste.hardcore || on_fire) //can't regenerate.
 		updatehealth() //Update health-related stats, like health itself (using brute and fireloss), health HUD and status.
-		xeno_blood += min(0.25, 100 - xeno_blood)
+		xeno_blood_current += min(xeno_blood_regen_rate, xeno_blood_max - xeno_blood_current)
 		return
 	var/turf/T = loc
 	if(!T || !istype(T))
 		return
 
-	if(!xeno_blood)
+	if(!xeno_blood_current)
 		return
 
 	var/ruler_healing_penalty = 0.5
@@ -109,13 +109,13 @@
 		amount *= regen_power
 	amount *= multiplier
 
-	var/xeno_blood_drain_rate = (0.5 + 0.12*recovery_aura)*multiplier
-	if(xeno_blood >= 80)
+	var/xeno_blood_drain_rate = (xeno_blood_drain_rate_base + xeno_blood_drain_rate_base*recovery_aura*0.24)*multiplier
+	if(round((xeno_blood_current/xeno_blood_max)*100) >= 80)
 		amount *= 1.25
-	else if(xeno_blood <= 50)
+	else if(round((xeno_blood_current/xeno_blood_max)*100) <= 50)
 		amount *= 0.7
 		xeno_blood_drain_rate *= 0.7
-	xeno_blood -= xeno_blood_drain_rate
+	xeno_blood_current -= xeno_blood_drain_rate
 
 	adjustBruteLoss(-amount)
 	adjustFireLoss(-amount)
