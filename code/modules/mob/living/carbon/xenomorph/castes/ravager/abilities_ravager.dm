@@ -184,19 +184,12 @@
 
 
 /datum/action/xeno_action/activable/endure/proc/endure_warning()
-	var/mob/living/carbon/xenomorph/ravager/R = owner
-
-	if(!R.endure) //Check to see if we actually have the buff
-		return
 
 	to_chat(owner,"<span class='highdanger'>We feel the plasma draining from our veins... [ability_name] will last for only [RAVAGER_ENDURE_DURATION * (1-RAVAGER_ENDURE_WARNING) * 0.1] more seconds!</span>")
 	owner.playsound_local(owner, 'sound/voice/hiss4.ogg', 50, 0, 1)
 
 /datum/action/xeno_action/activable/endure/proc/endure_deactivate()
 	var/mob/living/carbon/xenomorph/ravager/R = owner
-
-	if(!R.endure) //Check to see if we actually have the buff
-		return
 
 	R.do_jitter_animation(1000)
 	R.endure = FALSE
@@ -243,6 +236,9 @@
 /datum/action/xeno_action/activable/rage/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 
+	if(!.)
+		return
+
 	var/mob/living/carbon/xenomorph/ravager/rager = owner
 
 	var/rage_health_threshold = rager.maxHealth * 0.5 //Need to be at 50% of max hp or lower to rage
@@ -275,15 +271,15 @@
 	var/bonus_duration
 	if(rage_power > 0.5) //If we're super pissed it's time to get crazy
 		bonus_duration = 1 SECONDS //Compensation for the obscuring visual effect
-		var/obj/screen/plane_master/floor/OT = locate(/obj/screen/plane_master/floor) in X.client.screen
-		OT.add_filter("rage_outcry", 2, list("type" = "radial_blur", "size" = 0.15))
+		var/obj/screen/plane_master/floor/OT = X.hud_used.plane_masters["[FLOOR_PLANE]"]
+		OT.add_filter("rage_outcry", 2, list("type" = "motion_blur", "size" = 0.12))
 		addtimer(CALLBACK(OT, /atom.proc/remove_filter, "rage_outcry"), bonus_duration)
 		var/obj/screen/plane_master/game_world/GW = locate(/obj/screen/plane_master/game_world) in X.client.screen
-		GW.add_filter("rage_outcry", 2, list("type" = "radial_blur", "size" = 0.15))
+		GW.add_filter("rage_outcry", 2, list("type" = "motion_blur", "size" = 0.12))
 		addtimer(CALLBACK(GW, /atom.proc/remove_filter, "rage_outcry"), bonus_duration)
 
-	for(var/turf/affected_tile in range(rage_power_radius,get_turf(X)))
-		affected_tile.Shake(4, 4, 1 SECONDS) //SFX
+	for(var/turf/affected_tiles as() in RANGE_TURFS(rage_power_radius, X.loc))
+		affected_tiles.Shake(4, 4, 1 SECONDS) //SFX
 
 	for(var/mob/living/L in hearers(rage_power_radius, X)) //Roar that applies cool SFX and some soft CC
 		shake_camera(L, 1 SECONDS, 1)
@@ -326,9 +322,6 @@
 
 /datum/action/xeno_action/activable/rage/proc/rage_warning(bonus_duration = 0)
 
-	if(!rage_power) //Check to see if we actually have rage
-		return
-
 	to_chat(owner,"<span class='highdanger'>Our rage begins to subside... [ability_name] will only last for only [(RAVAGER_RAGE_DURATION + bonus_duration) * (1-RAVAGER_RAGE_WARNING) * 0.1] more seconds!</span>")
 	owner.playsound_local(owner, 'sound/voice/hiss4.ogg', 50, 0, 1)
 
@@ -336,8 +329,6 @@
 /datum/action/xeno_action/activable/rage/proc/rage_deactivate()
 
 	var/mob/living/carbon/xenomorph/ravager/R = owner
-	if(!rage_power) //For safety
-		return
 
 	R.do_jitter_animation(1000)
 
@@ -351,5 +342,3 @@
 	R.remove_movespeed_modifier(MOVESPEED_ID_RAVAGER_RAGE) //Reset speed
 
 	R.playsound_local(R, 'sound/voice/hiss5.ogg', 50) //Audio cue
-
-	rage_power = null //Clear vars
