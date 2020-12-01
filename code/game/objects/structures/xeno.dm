@@ -606,12 +606,53 @@
 		return FALSE
 	Burst(FALSE)
 	return TRUE
+
+
+///General structure/xeno procs
+/obj/structure/xeno/flamer_fire_act()
+	take_damage(50, BURN, "fire")
+
+/obj/structure/xeno/fire_act()
+	take_damage(10, BURN, "fire")
+
+///Proc called for repairable xeno structures
+/obj/structure/xeno/proc/repair_xeno_structure(mob/living/carbon/xenomorph/M)
+
+	if(M.a_intent != INTENT_HELP) //We must be on help intent to repair
+		return FALSE
+
+	if(obj_integrity >= max_integrity) //If the structure is at max health (or higher somehow), no need to continue
+		return FALSE
+
+	if(!is_type_in_typecache(M, GLOB.xenorepaircastes)) //Check to see if we can actually repair
+		return FALSE
+
+	if(M.plasma_stored < 1) //You need to have at least 1 plasma to repair the structure
+		to_chat(M, "<span class='xenodanger'>We need plasma to repair [src]!</span>")
+		return FALSE
+
+	var/repair_cost = min(M.plasma_stored,max_integrity - obj_integrity) //Calculate repair cost, taking the lower of its damage or our current plasma. We heal damage with plasma on a 1 : 1 ratio.
+
+	to_chat(M, "<span class='xenodanger'>We begin to repair [src] with our plasma. We expect to repair [repair_cost] damage at an equal cost to our plasma...</span>")
+	if(!do_after(M, XENO_ACID_WELL_FILL_TIME, FALSE, src, BUSY_ICON_BUILD))
+		to_chat(M, "<span class='xenodanger'>We abort repairing [src]!</span>")
+		return FALSE
+
+	repair_cost = min(M.plasma_stored,max_integrity - obj_integrity) //We heal damage with plasma on a 1 : 1 ratio. Double check our repair cost after the fact in case it somehow changed (e.g. plasma gas)
+
+	M.plasma_stored -= repair_cost //Deduct plasma cost
+	obj_integrity = min(max_integrity, obj_integrity + repair_cost) //Set the new health with overflow protection
+	to_chat(M, "<span class='xenonotice'>We repair [src], restoring <b>[repair_cost]</b> health. It is now at <b>[obj_integrity]/[max_integrity]</b> Health.</span>") //Feedback
+
+	return TRUE
+
+
 /*
 TUNNEL
 */
 
 
-/obj/structure/tunnel
+/obj/structure/xeno/tunnel
 	name = "tunnel"
 	desc = "A tunnel entrance. Looks like it was dug by some kind of clawed beast."
 	icon = 'icons/Xeno/effects.dmi'
@@ -631,7 +672,14 @@ TUNNEL
 	hud_possible = list(XENO_TACTICAL_HUD)
 
 
-/obj/structure/tunnel/Initialize(mapload)
+///Tunnels aren't flammable
+/obj/structure/xeno/tunnel/flamer_fire_act()
+	return
+
+/obj/structure/xeno/tunnel/fire_act()
+	return
+
+/obj/structure/xeno/tunnel/Initialize(mapload)
 	. = ..()
 	GLOB.xeno_tunnels += src
 	prepare_huds()
@@ -655,18 +703,18 @@ TUNNEL
 
 	return ..()
 
-/obj/structure/tunnel/examine(mob/user)
+/obj/structure/xeno/tunnel/examine(mob/user)
 	. = ..()
 	if(!isxeno(user) && !isobserver(user))
 		return
 	if(tunnel_desc)
 		to_chat(user, "<span class='info'>The Hivelord scent reads: \'[tunnel_desc]\'</span>")
 
-/obj/structure/tunnel/deconstruct(disassembled = TRUE)
+/obj/structure/xeno/tunnel/deconstruct(disassembled = TRUE)
 	visible_message("<span class='danger'>[src] suddenly collapses!</span>")
 	return ..()
 
-/obj/structure/tunnel/ex_act(severity)
+/obj/structure/xeno/tunnel/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
 			take_damage(210)
@@ -675,7 +723,7 @@ TUNNEL
 		if(EXPLODE_LIGHT)
 			take_damage(70)
 
-/obj/structure/tunnel/attackby(obj/item/I, mob/user, params)
+/obj/structure/xeno/tunnel/attackby(obj/item/I, mob/user, params)
 	if(!isxeno(user))
 		return ..()
 	attack_alien(user)
@@ -773,7 +821,7 @@ TUNNEL
 	hud_list[XENO_TACTICAL_HUD] = holder
 
 //Resin Water Well
-/obj/structure/acidwell
+/obj/structure/xeno/acidwell
 	name = "acid well"
 	desc = "An acid well. It stores acid to put out fires."
 	icon = 'icons/Xeno/acid_pool.dmi'
@@ -791,11 +839,11 @@ TUNNEL
 	var/ccharging = FALSE
 	var/mob/living/carbon/xenomorph/creator = null
 
-/obj/structure/acidwell/Initialize()
+/obj/structure/xeno/acidwell/Initialize()
 	. = ..()
 	update_icon()
 
-/obj/structure/acidwell/Destroy()
+/obj/structure/xeno/acidwell/Destroy()
 	creator = null
 	return ..()
 
@@ -805,6 +853,7 @@ TUNNEL
 	qdel(src)
 
 /obj/effect/alien/resin/acidwell/obj_destruction(damage_amount, damage_type, damage_flag)
+/obj/structure/xeno/acidwell/obj_destruction(damage_flag)
 	if(!QDELETED(creator) && creator.stat == CONSCIOUS && creator.z == z)
 		var/area/A = get_area(src)
 		if(A)
@@ -816,7 +865,7 @@ TUNNEL
 		A.start()
 	return ..()
 
-/obj/structure/acidwell/examine(mob/user)
+/obj/structure/xeno/acidwell/examine(mob/user)
 	..()
 	if(!isxeno(user) && !isobserver(user))
 		return
@@ -824,12 +873,12 @@ TUNNEL
 	It has [obj_integrity]/[max_integrity] Health and currently has <b>[charges]/[XENO_ACID_WELL_MAX_CHARGES]<b> charges.</span>")
 
 
-/obj/structure/acidwell/update_icon()
+/obj/structure/xeno/acidwell/update_icon()
 	..()
 	icon_state = "well[charges]"
 	set_light(charges , charges / 2, LIGHT_COLOR_GREEN)
 
-/obj/structure/acidwell/ex_act(severity)
+/obj/structure/xeno/acidwell/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
 			take_damage(max_integrity)
@@ -838,12 +887,12 @@ TUNNEL
 		if(EXPLODE_LIGHT)
 			take_damage(70)
 
-/obj/structure/acidwell/attackby(obj/item/I, mob/user, params)
+/obj/structure/xeno/acidwell/attackby(obj/item/I, mob/user, params)
 	if(!isxeno(user))
 		return ..()
 	attack_alien(user)
 
-/obj/structure/acidwell/attack_alien(mob/living/carbon/xenomorph/M)
+/obj/structure/xeno/acidwell/attack_alien(mob/living/carbon/xenomorph/M)
 	if(M.a_intent == INTENT_HARM)
 		dismantle_xeno_structure(M)
 		return
@@ -880,12 +929,12 @@ TUNNEL
 	to_chat(M,"<span class='xenonotice'>We add acid to [src]. It is currently has [charges] / [XENO_ACID_WELL_MAX_CHARGES] charges.</span>")
 
 
-/obj/structure/acidwell/Crossed(atom/A)
+/obj/structure/xeno/acidwell/Crossed(atom/A)
 	. = ..()
 	if(iscarbon(A))
 		HasProximity(A)
 
-/obj/structure/acidwell/HasProximity(atom/movable/AM)
+/obj/structure/xeno/acidwell/HasProximity(atom/movable/AM)
 	if(!isliving(AM))
 		return
 	var/mob/living/stepper = AM
@@ -900,27 +949,21 @@ TUNNEL
 		charges--
 		update_icon()
 		return
-	else
-		if(!charges)
-			return
-		stepper.apply_damage(charges * 30, BURN, BODY_ZONE_PRECISE_L_FOOT, stepper.run_armor_check(BODY_ZONE_PRECISE_L_FOOT, "acid"))
-		stepper.apply_damage(charges * 30, BURN, BODY_ZONE_PRECISE_R_FOOT, stepper.run_armor_check(BODY_ZONE_PRECISE_R_FOOT, "acid"))
-		stepper.visible_message("<span class='danger'>[stepper] is immersed in [src]'s acid!</span>", \
-		"<span class='danger'>We are immersed in [src]'s acid!</span>", null, 5)
-		playsound(stepper, "sound/bullets/acid_impact1.ogg", 10 * charges)
-		new /obj/effect/temp_visual/acid_bath(get_turf(stepper))
-		var/datum/effect_system/smoke_spread/xeno/acid/A = new(get_turf(stepper))
-		A.set_up(1,src)
-		A.start()
-		charges = 0
-		update_icon()
-		return
 
-/obj/structure/acidwell/flamer_fire_act()
-	take_damage(50, BURN, "fire")
+	stepper.apply_damage(charges * 30, BURN, BODY_ZONE_PRECISE_L_FOOT, stepper.run_armor_check(BODY_ZONE_PRECISE_L_FOOT, "acid"))
+	stepper.apply_damage(charges * 30, BURN, BODY_ZONE_PRECISE_R_FOOT, stepper.run_armor_check(BODY_ZONE_PRECISE_R_FOOT, "acid"))
+	stepper.visible_message("<span class='danger'>[stepper] is immersed in [src]'s acid!</span>", \
+	"<span class='danger'>We are immersed in [src]'s acid!</span>", null, 5)
+	playsound(stepper, "sound/bullets/acid_impact1.ogg", 10 * charges)
+	new /obj/effect/temp_visual/acid_bath(get_turf(stepper))
+	var/datum/effect_system/smoke_spread/xeno/acid/A = new(get_turf(stepper))
+	A.set_up(1,src)
+	A.start()
+	charges = 0
+	update_icon()
+	return
 
-
-/obj/structure/resin_jelly_pod
+/obj/structure/xeno/resin_jelly_pod
 	name = "Resin jelly pod"
 	desc = "A large resin pod. Inside is a thick, viscous fluid that looks like it doesnt burn easily."
 	icon = 'icons/Xeno/resinpod.dmi'
@@ -943,20 +986,20 @@ TUNNEL
 	var/recharge_rate = 10
 	///Countdown to the next time we generate a jelly
 	var/nextjelly = 0
-	var/mob/living/carbon/xenomorph/creator
+	var/mob/living/carbon/xenomorph/creator = null
 
-/obj/structure/resin_jelly_pod/Initialize()
+/obj/structure/xeno/resin_jelly_pod/Initialize()
 	. = ..()
 	add_overlay(image(icon, "resinpod_inside", layer + 0.01, dir))
 	START_PROCESSING(SSslowprocess, src)
 
-/obj/structure/resin_jelly_pod/Destroy()
+/obj/structure/xeno/resin_jelly_pod/Destroy()
 	STOP_PROCESSING(SSslowprocess, src)
 	creator = null
 	return ..()
 
 ///Alert the creator when his
-/obj/structure/resin_jelly_pod/obj_destruction(damage_flag)
+/obj/structure/xeno/resin_jelly_pod/obj_destruction(damage_flag)
 	if(!QDELETED(creator) && creator.stat == CONSCIOUS && creator.z == z)
 		var/area/A = get_area(src)
 		if(A)
@@ -964,7 +1007,7 @@ TUNNEL
 
 	return ..()
 
-/obj/structure/resin_jelly_pod/resin_jelly_pod/ex_act(severity)
+/obj/structure/xeno/resin_jelly_pod/resin_jelly_pod/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
 			take_damage(max_integrity)
@@ -973,14 +1016,14 @@ TUNNEL
 		if(EXPLODE_LIGHT)
 			take_damage(70)
 
-/obj/structure/resin_jelly_pod/examine(mob/user, distance, infix, suffix)
+/obj/structure/xeno/resin_jelly_pod/examine(mob/user, distance, infix, suffix)
 	. = ..()
 	if(!isxeno(user) && !isobserver(user))
 		return
 	to_chat(user, "<span class='xenonotice'>This is a [src] made by [creator]. It has <b>[chargesleft]</b> jelly globules remaining[datum_flags & DF_ISPROCESSING ? ", and will create a new jelly in [(recharge_rate-nextjelly)*5] seconds": " and seems latent"]. \
 			It has <b>[obj_integrity]/[max_integrity]</b> Health.")
 
-/obj/structure/resin_jelly_pod/process()
+/obj/structure/xeno/resin_jelly_pod/process()
 	if(nextjelly <= recharge_rate)
 		nextjelly++
 		return
@@ -1004,9 +1047,6 @@ TUNNEL
 	chargesleft--
 	if(!(datum_flags & DF_ISPROCESSING) && (chargesleft < maxcharges))
 		START_PROCESSING(SSslowprocess, src)
-
-/obj/structure/resin_jelly_pod/flamer_fire_act()
-	take_damage(50, BURN, "fire")
 
 /obj/item/resin_jelly
 	name = "resin jelly"
@@ -1071,38 +1111,6 @@ TUNNEL
 	user.fire_resist_modifier += 20
 	to_chat(user, "<span class='xenonotice'>We feel more vulnerable again.</span>")
 	qdel(src)
-
-
-///Proc called for repairable xeno structures
-/obj/proc/repair_xeno_structure(mob/living/carbon/xenomorph/M)
-
-	if(M.a_intent != INTENT_HELP) //We must be on help intent to repair
-		return FALSE
-
-	if(obj_integrity >= max_integrity) //If the structure is at max health (or higher somehow), no need to continue
-		return FALSE
-
-	if(!is_type_in_typecache(M, GLOB.xenorepaircastes)) //Check to see if we can actually repair
-		return FALSE
-
-	if(M.plasma_stored < 1) //You need to have at least 1 plasma to repair the structure
-		to_chat(M, "<span class='xenodanger'>We need plasma to repair [src]!</span>")
-		return FALSE
-
-	var/repair_cost = min(M.plasma_stored,max_integrity - obj_integrity) //Calculate repair cost, taking the lower of its damage or our current plasma. We heal damage with plasma on a 1 : 1 ratio.
-
-	to_chat(M, "<span class='xenodanger'>We begin to repair [src] with our plasma. We expect to repair [repair_cost] damage at an equal cost to our plasma...</span>")
-	if(!do_after(M, XENO_ACID_WELL_FILL_TIME, FALSE, src, BUSY_ICON_BUILD))
-		to_chat(M, "<span class='xenodanger'>We abort repairing [src]!</span>")
-		return FALSE
-
-	repair_cost = min(M.plasma_stored,max_integrity - obj_integrity) //We heal damage with plasma on a 1 : 1 ratio. Double check our repair cost after the fact in case it somehow changed (e.g. plasma gas)
-
-	M.plasma_stored -= repair_cost //Deduct plasma cost
-	obj_integrity = min(max_integrity, obj_integrity + repair_cost) //Set the new health with overflow protection
-	to_chat(M, "<span class='xenonotice'>We repair [src], restoring <b>[repair_cost]</b> health. It is now at <b>[obj_integrity]/[max_integrity]</b> Health.</span>") //Feedback
-
-	return TRUE
 
 ///Standardized proc for dismantling xeno structures; usually called when a xeno uses harm intent on xeno structure
 /obj/proc/dismantle_xeno_structure(mob/living/carbon/xenomorph/M, dismantle_time = XENO_DISMANTLE_TIME, custom_message_a, custom_message_b)

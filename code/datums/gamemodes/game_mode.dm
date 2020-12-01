@@ -286,7 +286,7 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 		var/obj/effect/landmark/xeno_tunnel/tunnelmarker = pick(GLOB.xeno_tunnel_landmarks)
 		GLOB.xeno_tunnel_landmarks -= tunnelmarker
 		var/turf/T = tunnelmarker.loc
-		new /obj/structure/tunnel(T)
+		new /obj/structure/xeno/tunnel(T)
 
 
 /datum/game_mode/proc/setup_blockers()
