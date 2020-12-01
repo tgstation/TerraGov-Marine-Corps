@@ -1181,12 +1181,6 @@
 	keybind_signal = COMSIG_XENOABILITY_RALLY_HIVE
 	cooldown_timer = 60 SECONDS
 
-///Halve the cooldown for Hiveminds as their relative omnipresence means they can actually make use of this lower cooldown.
-/datum/action/xeno_action/activable/rally_hive/New()
-	. = ..()
-	if(isxenohivemind(owner))
-		cooldown_timer = 30 SECONDS
-
 /datum/action/xeno_action/activable/rally_hive/use_ability(atom/A)
 
 	var/mob/living/carbon/xenomorph/X = owner
@@ -1212,3 +1206,6 @@
 /mob/living/carbon/xenomorph/proc/remove_abilities()
 	for(var/action_datum in xeno_abilities)
 		qdel(action_datum)
+
+/datum/action/xeno_action/activable/rally_hive/hivemind //Halve the cooldown for Hiveminds as their relative omnipresence means they can actually make use of this lower cooldown.
+	cooldown_timer = 30 SECONDS

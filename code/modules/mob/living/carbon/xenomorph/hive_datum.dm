@@ -506,7 +506,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	if(filter_list) //Filter out Xenos in the filter list if applicable
 		final_list -= filter_list
 
-	for(var/mob/living/carbon/xenomorph/X in final_list)
+	for(var/mob/living/carbon/xenomorph/X as() in final_list)
 
 		if(X.stat) // dead/crit cant hear
 			continue
