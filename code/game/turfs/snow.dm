@@ -37,7 +37,7 @@
 
 		M.visible_message("<span class='notice'>\The [M] clears out \the [src].</span>", \
 		"<span class='notice'>We clear out \the [src].</span>", null, 5)
-		slayer -= 1
+		slayer = 0
 		update_icon(1, 0)
 
 	//PLACING/REMOVING/BUILDING
