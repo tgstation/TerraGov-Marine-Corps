@@ -706,3 +706,54 @@
 	SSblackbox.record_feedback("tally", "round_statistics", -1, "total_xenos_created")
 	qdel(T)
 	X.use_plasma(600)
+
+/datum/action/xeno_action/activable/corrupt_generator
+	name = "Corrupt generator"
+	action_icon_state = "xeno_deevolve"
+	mechanics_text = "Corrupt a generator to begin increasing the psycic energy of the hive."
+	plasma_cost = 200
+	keybind_signal = COMSIG_XENOABILITY_DEEVOLVE //TIVI MARK
+
+/datum/action/xeno_action/activable/corrupt_generator/can_use_ability(atom/A, silent, override_flags)
+	. = ..()
+	if(!.)
+		return
+	if(!istype(A, /obj/machinery/power/geothermal))
+		return FALSE
+
+/datum/action/xeno_action/activable/corrupt_generator/use_ability(atom/A)
+	var/obj/machinery/power/geothermal/gen = A
+	if(!do_after(owner, 10 SECONDS, TRUE, gen, BUSY_ICON_HOSTILE))
+		return fail_activate()
+	var/mob/living/carbon/xenomorph/X = owner
+	gen.corrupted = X.hivenumber
+	gen.update_icon()
+	gen.start_processing()
+
+/datum/action/xeno_action/summon_king
+	name = "Summon a Xeno King"
+	action_icon_state = "xeno_deevolve"
+	mechanics_text = "Deploy a pod to summon a xeno king."
+	plasma_cost = 0 //hive points cost
+	keybind_signal = COMSIG_XENOABILITY_DEEVOLVE //TIVI MARK
+
+/datum/action/xeno_action/summon_king/can_use_action(silent, override_flags)
+	. = ..()
+	if(!.)
+		return
+	var/mob/living/carbon/xenomorph/X = owner
+	if(SSpoints.xeno_points_by_hive["[X.hivenumber]"] <= REQUIRED_POINTS_FOR_KING_SUMMON)
+		if(!silent)
+			to_chat(owner, "<span class='warning'>Our hive does not have enough psychic energy to summon a King, we need [REQUIRED_POINTS_FOR_KING_SUMMON-SSpoints.xeno_points_by_hive["[X.hivenumber]"]] more.</span>")
+		return FALSE
+
+/datum/action/xeno_action/summon_king/action_activate()
+	var/mob/living/carbon/xenomorph/X = owner
+	to_chat(X, "<span class='xenonotice'>We begin constructing a psychic echo chamber for the queen mother...</span>")
+	if(!do_after(X, 15 SECONDS, FALSE, X, BUSY_ICON_HOSTILE))
+		return fail_activate()
+
+	log_game("[key_name(X)] has created a pod in [AREACOORD(X)]")
+	xeno_message("<B>[X] has created a king pod at [get_area(X)]. Defend it until the Queen Mother summons a king!</B>",3,X.hivenumber)
+	priority_announce("WARNING: Psychic anomaly detected at [get_area(X)] assault of the area reccomended.", "TGMC Intel Division")
+	new /obj/structure/resin/king_pod(X.loc, X.hivenumber)

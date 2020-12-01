@@ -29,7 +29,7 @@
 	return ..()
 
 /mob/living/carbon/xenomorph/hunter/apply_alpha_channel(image/I)
-	I.alpha = src.alpha
+	I.alpha = alpha
 	return I
 
 /mob/living/carbon/xenomorph/hunter/gib_animation()
