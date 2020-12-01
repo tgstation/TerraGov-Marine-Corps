@@ -133,24 +133,36 @@
 	var/sweep_range = 1
 	var/list/L = orange(sweep_range, X)		// Not actually the fruit
 
-	for (var/mob/living/carbon/human/H in L)
-		step_away(H, src, sweep_range, 2)
-		if(H.stat != DEAD && !isnestedhost(H) ) //No bully
+	for (var/mob/living/victim in L)
+		step_away(victim, src, sweep_range, 2)
+		if(victim.stat != DEAD)
+			if(ishuman(victim))
+				var/mob/living/carbon/human/H = victim
+				if(isnestedhost(H)) //No bully
+					continue
+			if(isxeno(victim))
+				var/mob/living/carbon/xenomorph/xeno_target = victim
+				if(X.issamexenohive(xeno_target)) //Don't target xenos from the same hive.
+					continue
 			var/damage = X.xeno_caste.melee_damage
-			var/affecting = H.get_limb(ran_zone(null, 0))
+			var/affecting = ran_zone(null, 0)
 			if(!affecting) //Still nothing??
-				affecting = H.get_limb("chest") //Gotta have a torso?!
-			var/armor_block = H.run_armor_check(affecting, "melee")
-			H.apply_damage(damage, BRUTE, affecting, armor_block) //Crap base damage after armour...
-			H.apply_damage(damage, STAMINA) //...But some sweet armour ignoring Stamina
-			UPDATEHEALTH(H)
-			H.Paralyze(5) //trip and go
+				affecting = "chest" //Gotta have a torso?!
+			var/armor_block = victim.run_armor_check(affecting, "melee")
+			victim.apply_damage(damage, BRUTE, affecting, armor_block) //Crap base damage after armour...
+			victim.apply_damage(damage, STAMINA) //...But some sweet armour ignoring Stamina... not that it does much now that it can't be comboed with tackles
+			UPDATEHEALTH(victim)
+			victim.Paralyze(5) //trip and go
+			victim.adjust_stagger(2) //Some soft CC to compensate for the depreciation of Stamina damage and loss of hard CC
+			victim.add_slowdown(3)
+			victim.adjust_blurriness(3) //Visual effects; a small amount of eye blurriness
+
 		GLOB.round_statistics.defender_tail_sweep_hits++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_tail_sweep_hits")
-		shake_camera(H, 2, 1)
+		shake_camera(victim, 2, 1)
 
-		to_chat(H, "<span class='xenowarning'>We are struck by \the [X]'s tail sweep!</span>")
-		playsound(H,'sound/weapons/alien_claw_block.ogg', 50, 1)
+		to_chat(victim, "<span class='xenowarning'>We are struck by \the [X]'s tail sweep!</span>")
+		playsound(victim,'sound/weapons/alien_claw_block.ogg', 50, 1)
 
 	succeed_activate()
 	if(X.crest_defense)

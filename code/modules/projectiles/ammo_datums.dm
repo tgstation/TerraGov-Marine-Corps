@@ -85,14 +85,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/impact_message = ""
 	if(isxeno(victim))
 		var/mob/living/carbon/xenomorph/xeno_victim = victim
-		if(xeno_victim.fortify) //If we're fortified we don't give a shit about staggerstun.
+		if(xeno_victim.fortify || xeno_victim.crest_defense) //If we're fortified or benefitting from Crest Defense we don't give a shit about staggerstun.
 			impact_message += "<span class='xenodanger'>Your fortified stance braces you against the impact.</span>"
 			return
-		if(xeno_victim.crest_defense) //Crest defense halves all effects, and protects us from the stun.
-			impact_message += "<span class='xenodanger'>Your crest protects you against some of the impact.</span>"
-			slowdown *= 0.5
-			stagger *= 0.5
-			stun = 0
+
 	if(shake)
 		shake_camera(victim, shake+2, shake+3)
 		if(isxeno(victim))
