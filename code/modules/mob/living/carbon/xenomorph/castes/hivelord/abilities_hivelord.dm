@@ -362,7 +362,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 
 	new /obj/effect/temp_visual/healing(get_turf(patient)) //Cool SFX
 
-	var/amount = 10 + patient.maxHealth * 0.05 //Base amount 5 HP plus 5% of max
+	var/amount = 10 + patient.maxHealth * 0.05 //Base amount 10 HP plus 5% of max
 	if(patient.recovery_aura)
 		amount *= (1 + patient.recovery_aura * 0.1) //Recovery aura multiplier; 10% bonus per full level
 
@@ -389,9 +389,6 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 		healing_infusion_deactivate(patient) //if we somehow lose the buff; maybe there's a purge mechanic later, whatever
 		return
 
-	if(!patient.sunder) //We're at full health with no sunder; no need to proceed
-		return
-
 	new /obj/effect/temp_visual/telekinesis(get_turf(patient)) //Visual confirmation
 
 	patient.adjust_sunder(-3 * (1 + patient.recovery_aura * 0.1)) //-1 + a 10% bonus per rank of our recovery aura
@@ -399,9 +396,6 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 
 ///Called when the duration of healing infusion lapses
 /datum/action/xeno_action/activable/healing_infusion/proc/healing_infusion_deactivate(mob/living/carbon/xenomorph/patient)
-
-	if(!patient) //No runtimes allowed
-		return
 
 	UnregisterSignal(patient, list(COMSIG_XENOMORPH_HEALTH_REGEN, COMSIG_XENOMORPH_SUNDER_REGEN)) //unregister the signals; party's over
 

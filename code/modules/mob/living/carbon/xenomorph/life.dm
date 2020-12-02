@@ -98,7 +98,7 @@
 	if(recovery_aura)
 		sunder_recov *= 1 + recovery_aura * 0.1 //10% bonus per rank of recovery aura
 
-	SEND_SIGNAL(src, COMSIG_XENOMORPH_SUNDER_REGEN, src)
+	SEND_SIGNAL(src, COMSIG_XENOMORPH_SUNDER_REGEN)
 
 	adjust_sunder(sunder_recov)
 
@@ -124,7 +124,7 @@
 		amount *= regen_power
 	amount *= multiplier
 
-	SEND_SIGNAL(src, COMSIG_XENOMORPH_HEALTH_REGEN, src)
+	SEND_SIGNAL(src, COMSIG_XENOMORPH_HEALTH_REGEN)
 
 	adjustBruteLoss(-amount)
 	adjustFireLoss(-amount)
