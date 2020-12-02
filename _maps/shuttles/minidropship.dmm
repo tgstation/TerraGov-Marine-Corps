@@ -43,7 +43,7 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "o" = (
-/turf/closed/wall/mainship/,
+/turf/closed/wall/mainship/reinforced,
 /area/shuttle/minidropship)
 "q" = (
 /obj/machinery/door/poddoor/mainship/open{
@@ -77,7 +77,7 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "A" = (
-/obj/structure/window/framed/mainship,
+/obj/structure/window/framed/mainship/toughened,
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "E" = (
