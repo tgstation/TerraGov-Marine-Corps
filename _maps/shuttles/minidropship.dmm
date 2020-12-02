@@ -77,7 +77,7 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "A" = (
-/obj/structure/window/framed/mainship/hull,
+/obj/structure/window/framed/mainship,
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "E" = (
