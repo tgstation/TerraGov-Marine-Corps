@@ -316,7 +316,7 @@
 	var/ignore_pain_state = 0 // how far "dead" the rav has got while ignoring pain.
 
 	// *** Carrier vars *** //
-	var/selected_hugger_type = /obj/item/clothing/mask/facehugger/neuro
+	var/selected_hugger_type = /obj/item/clothing/mask/facehugger
 
 	//Notification spam controls
 	var/recent_notice = 0
