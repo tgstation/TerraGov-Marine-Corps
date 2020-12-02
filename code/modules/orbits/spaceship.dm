@@ -248,7 +248,7 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 
 /obj/machinery/computer/navigation/proc/retreat()
 
-	if(GLOB.current_orbit != 5)
+	if(GLOB.current_orbit != ESCAPE_VELOCITY)
 		message_admins("This is the moment when the space ship orbit would have done the retreat, but an admin has adjusted the GLOB.current_orbit variable to prevent this.")
 		return
 
