@@ -1,0 +1,4 @@
+author: "Surrealaser"
+delete-after: True
+changes: 
+  - tweak: "Snow clear time for Xenos reduced from 2.5 seconds to 0.5 seconds, and all snow stacks are cleared."
