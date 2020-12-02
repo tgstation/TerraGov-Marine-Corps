@@ -127,6 +127,7 @@
 	dat += "<b>Tier 1: [length(hive.xenos_by_tier[XENO_TIER_ONE])] Sisters</b>[tier1counts]<BR>"
 	dat += "<b>Larvas: [length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/larva])] Sisters<BR>"
 	dat += "<b>Hivemind: [hivemind_text]<BR>"
+	dat += "<b>Kings: [length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/king])]<BR>"
 	if(hive.hivenumber == XENO_HIVE_NORMAL)
 		var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 		dat += "<b>Burrowed Larva: [xeno_job.total_positions - xeno_job.current_positions] Sisters<BR>"
