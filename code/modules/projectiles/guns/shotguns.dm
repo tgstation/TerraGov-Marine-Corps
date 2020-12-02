@@ -591,7 +591,7 @@ can cause issues with ammo types getting mixed up during the burst.
 		/obj/item/attachable/magnetic_harness,
 	)
 	flags_item_map_variant = NONE
-	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 16,"rail_x" = 14, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 13)
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 16,"rail_x" = 14, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 21, "stock_y" = 14)
 	starting_attachment_types = list(
 		/obj/item/attachable/stock/irremoveable/pal12
 	)
@@ -638,7 +638,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	)
 	flags_item_map_variant = NONE
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER
-	attachable_offset = list("muzzle_x" = 50, "muzzle_y" = 21,"rail_x" = 8, "rail_y" = 21, "under_x" = 37, "under_y" = 16, "stock_x" = 19, "stock_y" = 13)
+	attachable_offset = list("muzzle_x" = 50, "muzzle_y" = 21,"rail_x" = 11, "rail_y" = 21, "under_x" = 37, "under_y" = 16, "stock_x" = 18, "stock_y" = 13)
 	starting_attachment_types = list(
 		/obj/item/attachable/scope/mosin,
 		/obj/item/attachable/stock/mosin,
@@ -662,21 +662,6 @@ can cause issues with ammo types getting mixed up during the burst.
 	playsound(user,'sound/weapons/throwtap.ogg', 25, 1)
 	to_chat(user,"<span class='warning'><b>[src] bolt has already been worked, locking the bolt; fire or unload a round to unlock it.</b></span>")
 	recent_notice = world.time
-
-/obj/item/weapon/gun/shotgun/pump/bolt/do_pump_animation()
-	var/initial_icon_state = initial(icon_state)
-	if(!current_mag.current_rounds && !in_chamber)
-		if(icon_state == "[initial_icon_state]_e")
-			flick("[pump_animation]_e", src)
-		else
-			flick("[pump_animation]_o", src)
-			icon_state = "[initial_icon_state]_e"
-	else
-		if(icon_state == "[initial_icon_state]_e")
-			flick("[pump_animation]_c", src)
-			icon_state = initial(icon_state)
-		else
-			flick("[pump_animation]", src)
 
 /obj/item/weapon/gun/shotgun/pump/bolt/pump_notice(mob/user)
 	to_chat(user, "<span class='notice'><b>You work [src] bolt.</b></span>")

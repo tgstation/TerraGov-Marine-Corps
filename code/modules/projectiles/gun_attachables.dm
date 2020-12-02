@@ -889,6 +889,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	name = "PPSh-17b submachinegun wooden stock"
 	desc = "A long wooden stock for a PPSh-17b submachinegun"
 	icon_state = "ppshstock"
+	pixel_shift_x = 32
+	pixel_shift_y = 13
 
 /obj/item/attachable/stock/irremoveable/pal12
 	name = "Paladin-12 pump shotgun stock"
