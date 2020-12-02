@@ -560,8 +560,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	shell_speed = 3
 	max_range = 15
 	damage = 80
-	penetration = 40
-	sundering = 7
+	penetration = 30
+	sundering = 10
 
 /datum/ammo/bullet/shotgun/slug/on_hit_mob(mob/M,obj/projectile/P)
 	staggerstun(M, P, weaken = 1, stagger = 2, knockback = 1)
@@ -642,14 +642,14 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "shotgun_buckshot"
 	flags_ammo_behavior = AMMO_BALLISTIC
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/spread
-	bonus_projectiles_amount = 5
-	bonus_projectiles_scatter = 10
+	bonus_projectiles_amount = 3
+	bonus_projectiles_scatter = 5
 	accuracy_var_low = 9
 	accuracy_var_high = 9
 	accurate_range = 3
 	max_range = 10
-	damage = 40
-	damage_falloff = 4
+	damage = 50
+	damage_falloff = 2
 	penetration = 0
 
 
@@ -664,8 +664,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_high = 9
 	accurate_range = 3
 	max_range = 10
-	damage = 40
-	damage_falloff = 4
+	damage = 50
+	damage_falloff = 2
 	penetration = 0
 
 //buckshot variant only used by the masterkey shotgun attachment.
