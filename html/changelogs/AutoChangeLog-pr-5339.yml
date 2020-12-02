@@ -1,0 +1,5 @@
+author: "Surrealaser"
+delete-after: True
+changes: 
+  - tweak: "Xenos now auto-remove sticky resin when clicking it on Harm intent."
+  - tweak: "Sticky Resin build cost down from 75 to 25, and build time has been halved."
