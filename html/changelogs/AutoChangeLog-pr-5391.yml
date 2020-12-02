@@ -1,0 +1,4 @@
+author: "Hughgent"
+delete-after: True
+changes: 
+  - rscadd: "Larva can see the silo they want to spawn at before they actually spawn."
