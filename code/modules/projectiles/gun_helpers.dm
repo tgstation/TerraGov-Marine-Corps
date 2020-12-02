@@ -863,7 +863,7 @@ should be alright.
 
 /obj/item/weapon/gun/proc/toggle_auto_aim_mode(mob/living/carbon/human/user) //determines whether toggle_aim_mode activates at the end of gun/wield proc
 
-	if(CHECK_BITFIELD(flags_item, WIELDED)) //if gun is wielded the toggles aim mode directly instead
+	if(CHECK_BITFIELD(flags_item, WIELDED)) //if gun is wielded it toggles aim mode directly instead
 		toggle_aim_mode(user)
 		return
 
