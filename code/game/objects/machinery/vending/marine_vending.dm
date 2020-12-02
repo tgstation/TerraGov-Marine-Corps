@@ -97,6 +97,10 @@
 		/obj/item/ammo_magazine/shotgun/mbx900 = 2,
 		/obj/item/bodybag/tarp = 2,
 		/obj/item/explosive/plastique = 2,
+		/obj/item/radio/headset/mainship/marine/alpha = 20,
+		/obj/item/radio/headset/mainship/marine/bravo = 20,
+		/obj/item/radio/headset/mainship/marine/charlie = 20,
+		/obj/item/radio/headset/mainship/marine/delta = 20,
 	)
 
 /obj/machinery/vending/marine/cargo_guns
@@ -709,11 +713,17 @@
 		/obj/item/clothing/head/slouch = 40,
 		/obj/item/clothing/glasses/mgoggles = 10,
 		/obj/item/clothing/glasses/mgoggles/prescription = 10,
+		/obj/item/radio/headset/mainship/marine/generic = 20,
 		/obj/item/clothing/mask/rebreather/scarf = 10,
 		/obj/item/clothing/mask/bandanna/skull = 10,
 		/obj/item/clothing/mask/bandanna/green = 10,
 		/obj/item/clothing/mask/bandanna/white = 10,
 		/obj/item/clothing/mask/bandanna/black = 10,
+		/obj/item/clothing/mask/bandanna = 10,
+		/obj/item/clothing/mask/bandanna/alpha = 10,
+		/obj/item/clothing/mask/bandanna/bravo = 10,
+		/obj/item/clothing/mask/bandanna/charlie = 10,
+		/obj/item/clothing/mask/bandanna/delta = 10,
 		/obj/item/clothing/mask/rebreather = 10,
 		/obj/item/clothing/mask/breath = 10,
 		/obj/item/clothing/mask/gas = 10,
