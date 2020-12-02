@@ -417,11 +417,6 @@ AMMO
 	contains = list(/obj/item/shotgunbox/buckshot)
 	cost = 20
 
-/datum/supply_packs/ammo/boxflechette
-	name = "Flechette Ammo Box"
-	contains = list(/obj/item/shotgunbox/flechette)
-	cost = 20
-
 /datum/supply_packs/ammo/boxcarbine
 	name = "T-18 Carbine Ammo Box"
 	contains = list(/obj/item/ammobox)
