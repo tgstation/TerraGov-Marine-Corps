@@ -288,20 +288,21 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 		if(!silent)
 			to_chat(owner, "<span class='warning'>We can only target fellow sisters with [src]!</span>")
 		return FALSE
-
-	if(!check_distance(target, silent))
-		return FALSE
-
 	var/mob/living/carbon/xenomorph/patient = target
-	if(patient.has_healing_infusion)
-		if(!silent)
-			to_chat(owner, "<span class='warning'>[patient] is already benefitting from our [src]!</span>")
-		return FALSE
 
 	if(!CHECK_BITFIELD(use_state_flags|override_flags, XACT_IGNORE_DEAD_TARGET) && patient.stat == DEAD)
 		if(!silent)
 			to_chat(owner, "<span class='warning'>It's too late. This sister won't be coming back.</span>")
 		return FALSE
+
+	if(!check_distance(target, silent))
+		return FALSE
+
+	if(patient.get_filter("hivelord_healing_infusion_outline"))
+		if(!silent)
+			to_chat(owner, "<span class='warning'>[patient] is already benefitting from our [src]!</span>")
+		return FALSE
+
 
 /datum/action/xeno_action/activable/healing_infusion/proc/check_distance(atom/target, silent)
 	var/dist = get_dist(owner, target)
@@ -337,7 +338,6 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 
 	var/mob/living/carbon/xenomorph/patient = target
 
-	patient.has_healing_infusion = TRUE
 	patient.add_filter("hivelord_healing_infusion_outline", 3, list("type" = "outline", "size" = 1, "color" = COLOR_VERY_PALE_LIME_GREEN)) //Set our cool aura; also confirmation we have the buff
 
 	addtimer(CALLBACK(src, .proc/healing_infusion_deactivate, patient), HIVELORD_HEALING_INFUSION_DURATION)
@@ -356,7 +356,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 /datum/action/xeno_action/activable/healing_infusion/proc/healing_infusion_regeneration(datum/source, mob/living/carbon/xenomorph/patient, healing_infusion_filter)
 	SIGNAL_HANDLER
 
-	if(!patient.has_healing_infusion)
+	if(!patient.get_filter("hivelord_healing_infusion_outline"))
 		healing_infusion_deactivate(patient) //if we somehow lose the buff; maybe there's a purge mechanic later, whatever
 		return
 
@@ -385,7 +385,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 /datum/action/xeno_action/activable/healing_infusion/proc/healing_infusion_sunder_regeneration(datum/source, mob/living/carbon/xenomorph/patient)
 	SIGNAL_HANDLER
 
-	if(!patient.has_healing_infusion)
+	if(!patient.get_filter("hivelord_healing_infusion_outline"))
 		healing_infusion_deactivate(patient) //if we somehow lose the buff; maybe there's a purge mechanic later, whatever
 		return
 
