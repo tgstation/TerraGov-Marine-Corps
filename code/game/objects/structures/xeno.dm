@@ -86,7 +86,7 @@
 		deconstruct(TRUE)
 		return
 
-	..()
+	return ..()
 
 
 /obj/effect/alien/resin/sticky/Crossed(atom/movable/AM)
