@@ -201,7 +201,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	var/list/hit_report = list("(RAW DMG: [damage])")
 
 	var/bloody = 0
-	if((I.damtype == BRUTE || I.damtype == HALLOSS) && prob(damage * 2 + 25))
+	if((I.damtype == BRUTE || I.damtype == STAMINA) && prob(damage * 2 + 25))
 		if(!(affecting.limb_status & LIMB_ROBOT))
 			I.add_mob_blood(src)	//Make the weapon bloody, not the person.
 			if(prob(33))

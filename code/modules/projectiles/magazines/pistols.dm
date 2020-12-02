@@ -138,19 +138,6 @@
 	max_rounds = 12
 	gun_type = /obj/item/weapon/gun/pistol/c99
 
-
-//-------------------------------------------------------
-//KT-42 //Inspired by the .44 Auto Mag pistol
-
-/obj/item/ammo_magazine/pistol/automatic
-	name = "\improper KT-42 magazine (.44)"
-	default_ammo = /datum/ammo/bullet/pistol/heavy
-	caliber = ".44 magnum"
-	icon_state = "kt42"
-	max_rounds = 7
-	gun_type = /obj/item/weapon/gun/pistol/kt42
-
-
 //-------------------------------------------------------
 //PIZZACHIMP PROTECTION
 

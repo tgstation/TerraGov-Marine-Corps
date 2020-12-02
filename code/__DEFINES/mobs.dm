@@ -93,7 +93,6 @@
 #define CLONE		"clone"
 #define CUT 		"cut"
 #define BRUISE		"bruise"
-#define HALLOSS		"halloss"
 #define STAMINA		"stamina"
 //=================================================
 
@@ -368,13 +367,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define HUMAN_MAX_PALENESS	30 //this is added to human skin tone to get value of pale_max variable
 
 
-// halloss defines
-
-#define BASE_HALLOSS_RECOVERY_RATE -4
-#define WALK_HALLOSS_RECOVERY_RATE -12
-#define DOWNED_HALLOSS_RECOVERY_RATE -16
-#define REST_HALLOSS_RECOVERY_RATE -32
-
 // Human Overlay Indexes
 #define HEADBITE_LAYER			30
 #define LASER_LAYER				29 //For sniper targeting laser
@@ -427,7 +419,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define SPIT_UPGRADE_BONUS(Xenomorph) (( max(0,Xenomorph.upgrade_as_number()) * 0.15 )) //increase damage by 15% per upgrade level; compensates for the loss of insane attack speed.
 
 #define PLASMA_TRANSFER_AMOUNT 100
-#define PLASMA_SALVAGE_AMOUNT 400
 
 #define XENO_LARVAL_AMOUNT_RECURRING		10
 #define XENO_LARVAL_CHANNEL_TIME			1.5 SECONDS
@@ -539,6 +530,15 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define SHRIKE_FLAG_PAIN_HUD_ON		(1<<0)
 #define SHRIKE_CURE_HEAL_MULTIPLIER	10
 #define SHRIKE_HEAL_RANGE 			3
+
+//Drone defines
+
+#define DRONE_SALVAGE_BIOMASS_WINDUP		5 SECONDS //Delay before the target is salvaged
+#define DRONE_SALVAGE_BIOMASS_RANGE			1
+#define DRONE_SALVAGE_BIOMASS_SALVAGE_RATIO	0.2 //Percentile of stored upgrade and evolution salvaged from the target
+#define DRONE_SALVAGE_COOLDOWN				60 SECONDS //Can only salvage one corpse per 60 seconds; try not to die *too* quickly.
+#define DRONE_SALVAGE_UPGRADE_FILTER_LIST	list(XENO_UPGRADE_THREE, XENO_UPGRADE_INVALID)
+#define DRONE_SALVAGE_EVOLUTION_FILTER_LIST	list(XENO_TIER_ZERO, XENO_TIER_THREE, XENO_TIER_FOUR)
 
 //misc
 

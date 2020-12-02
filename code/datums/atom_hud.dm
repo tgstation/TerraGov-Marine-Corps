@@ -16,7 +16,8 @@ GLOBAL_LIST_INIT(huds, list(
 	DATA_HUD_SQUAD = new /datum/atom_hud/squad,
 	DATA_HUD_ORDER = new /datum/atom_hud/order,
 	DATA_HUD_AI_DETECT = new /datum/atom_hud/ai_detector,
-	DATA_HUD_MEDICAL_PAIN = new /datum/atom_hud/medical/pain
+	DATA_HUD_MEDICAL_PAIN = new /datum/atom_hud/medical/pain,
+	DATA_HUD_XENO_TUNNELS = new /datum/atom_hud/xeno_tunnels,
 	))
 
 
@@ -131,7 +132,7 @@ GLOBAL_LIST_INIT(huds, list(
 				hud.add_to_single_hud(src, A)
 
 
-/mob/dead/new_player/reload_huds()
+/mob/new_player/reload_huds()
 	return
 
 
@@ -139,5 +140,5 @@ GLOBAL_LIST_INIT(huds, list(
 	client.screen += client.void
 
 
-/mob/dead/new_player/add_click_catcher()
+/mob/new_player/add_click_catcher()
 	return

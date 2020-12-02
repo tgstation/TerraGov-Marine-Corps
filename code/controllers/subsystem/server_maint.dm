@@ -61,6 +61,14 @@ SUBSYSTEM_DEF(server_maint)
 					log_world("Found a null in GLOB.hive_datums(XENO_HIVE_NORMAL).xenos_by_zlevel!")
 				cleanup_ticker++
 			if(30)
+				var/found = FALSE
+				for(var/level in GLOB.observers_by_zlevel)
+					if(listclearnulls(GLOB.observers_by_zlevel["[level]"]))
+						found = TRUE
+				if(found)
+					log_world("Found a null in observers_by_zlevel!")
+				cleanup_ticker++
+			if(35)
 				cleanup_ticker = 0
 			else
 				cleanup_ticker++

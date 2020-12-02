@@ -30,8 +30,6 @@
 			adjustOxyLoss(damage)
 		if(CLONE)
 			adjustCloneLoss(damage)
-		if(HALLOSS)
-			adjustHalLoss(damage)
 		if(STAMINA)
 			adjustStaminaLoss(damage)
 	if(updating_health)
@@ -39,7 +37,7 @@
 	return damage
 
 
-/mob/living/proc/apply_damages(brute = 0, burn = 0, tox = 0, oxy = 0, clone = 0, halloss = 0, def_zone = null, blocked = 0, updating_health = FALSE)
+/mob/living/proc/apply_damages(brute = 0, burn = 0, tox = 0, oxy = 0, clone = 0, def_zone = null, blocked = 0, updating_health = FALSE)
 	if(blocked >= 100) //Complete negation/100% reduction
 		return FALSE
 	if(brute)
@@ -52,8 +50,6 @@
 		apply_damage(oxy, OXY, def_zone, blocked)
 	if(clone)
 		apply_damage(clone, CLONE, def_zone, blocked)
-	if(halloss)
-		apply_damage(halloss, HALLOSS, def_zone, blocked)
 	if(updating_health)
 		updatehealth()
 	return TRUE
@@ -81,7 +77,7 @@ Arguments
 		if(PARALYZE)
 			Unconscious(effect/(blocked+1) * 20)
 		if(AGONY)
-			adjustHalLoss(effect/(blocked+1))
+			adjustStaminaLoss(effect/(blocked+1))
 		if(STUTTER)
 			if(status_flags & CANSTUN) // stun is usually associated with stutter
 				stuttering = max(stuttering,(effect/(blocked+1)))
