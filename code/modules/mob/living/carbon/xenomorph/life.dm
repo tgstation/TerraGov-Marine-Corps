@@ -92,7 +92,7 @@
 	if(resting) //Resting doubles sunder recovery
 		sunder_recov *= 2
 
-	if(locate(/obj/effect/alien/weeds) in get_turf(src)) //Weeds double sunder recovery
+	if(locate(/obj/effect/alien/weeds) in loc) //Weeds double sunder recovery
 		sunder_recov *= 2
 
 	if(recovery_aura)
