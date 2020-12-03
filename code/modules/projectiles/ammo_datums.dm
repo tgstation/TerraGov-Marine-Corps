@@ -367,7 +367,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 
 /datum/ammo/bullet/revolver/ricochet
-	bonus_projectiles_type = /datum/ammo/bullet/revolver/small
+	hud_state = "revolver_small"
+	bonus_projectiles_type = /datum/ammo/bullet/revolver
 
 /datum/ammo/bullet/revolver/ricochet/one
 	bonus_projectiles_type = /datum/ammo/bullet/revolver/ricochet
@@ -380,6 +381,23 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/bullet/revolver/ricochet/four
 	bonus_projectiles_type = /datum/ammo/bullet/revolver/ricochet/three
+
+/datum/ammo/bullet/revolver/ricochet/small
+	name = "small revolver bullet"
+	damage = 30
+	bonus_projectiles_type = /datum/ammo/bullet/revolver/small
+
+/datum/ammo/bullet/revolver/ricochet/small/one
+	bonus_projectiles_type = /datum/ammo/bullet/revolver/ricochet/small
+
+/datum/ammo/bullet/revolver/ricochet/small/two
+	bonus_projectiles_type = /datum/ammo/bullet/revolver/ricochet/small/one
+
+/datum/ammo/bullet/revolver/ricochet/small/three
+	bonus_projectiles_type = /datum/ammo/bullet/revolver/ricochet/small/two
+
+/datum/ammo/bullet/revolver/ricochet/small/four
+	bonus_projectiles_type = /datum/ammo/bullet/revolver/ricochet/small/three
 
 /datum/ammo/bullet/revolver/ricochet/on_hit_turf(turf/T, obj/projectile/proj)
 	. = ..()

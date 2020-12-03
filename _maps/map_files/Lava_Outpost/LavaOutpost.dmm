@@ -309,10 +309,8 @@
 /area/lavaland/cave/north)
 "df" = (
 /obj/structure/rack,
-/obj/item/ammo_magazine/revolver/cmb,
-/obj/item/weapon/gun/revolver/cmb,
-/obj/item/ammo_magazine/revolver/cmb,
-/obj/item/weapon/gun/revolver/cmb,
+/obj/item/ammo_magazine/revolver/ricochet,
+/obj/item/weapon/gun/revolver/m44,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},

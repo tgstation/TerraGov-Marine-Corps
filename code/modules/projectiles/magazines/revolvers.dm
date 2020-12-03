@@ -24,14 +24,16 @@
 	caliber = ".44"
 	icon_state = "h_m44"
 
+/obj/item/ammo_magazine/revolver/ricochet
+	name = "\improper M-44 gunfighter speed loader (.44)"
+	desc = "A .44 magnum revolver speed loader, these rounds can ricochet to surfaces."
+	default_ammo = /datum/ammo/bullet/revolver/ricochet
+	icon_state = "m44g"
+
 /obj/item/ammo_magazine/revolver/standard_revolver
 	name = "\improper TP-44 magnum speed loader (.44)"
-	desc = "A revolver speed loader."
 	default_ammo = /datum/ammo/bullet/revolver
-	flags_equip_slot = NONE
-	caliber = ".44"
 	icon_state = "tp44"
-	w_class = WEIGHT_CLASS_SMALL
 	max_rounds = 7
 	gun_type = /obj/item/weapon/gun/revolver/standard_revolver
 
@@ -45,7 +47,7 @@
 
 /obj/item/ammo_magazine/revolver/small
 	name = "\improper S&W speed loader (.357)"
-	default_ammo = /datum/ammo/bullet/revolver/small
+	default_ammo = /datum/ammo/bullet/revolver/ricochet/small/four
 	caliber = ".357"
 	icon_state = "sw357"
 	max_rounds = 6
@@ -101,6 +103,7 @@
 //M44 MAGNUM REVOLVER //
 
 /obj/item/ammo_magazine/internal/revolver/m44
+	default_ammo = /datum/ammo/bullet/revolver/ricochet/four
 	caliber = ".44"
 	max_rounds = 6
 	gun_type = /obj/item/weapon/gun/revolver/m44
@@ -118,7 +121,7 @@
 //357 REVOLVER //
 
 /obj/item/ammo_magazine/internal/revolver/small
-	default_ammo = /datum/ammo/bullet/revolver/ricochet/four
+	default_ammo = /datum/ammo/bullet/revolver/ricochet/small/four
 	caliber = ".357"
 	gun_type = /obj/item/weapon/gun/revolver/small
 

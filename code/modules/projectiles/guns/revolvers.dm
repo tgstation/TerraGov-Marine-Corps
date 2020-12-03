@@ -317,7 +317,7 @@
 	return current_mag ? current_mag.current_rounds : 0
 
 //-------------------------------------------------------
-//TP-44 COMBAT REVOLVER
+//TP-44 COMBAT REVOLVER, not based off on anything.
 
 /obj/item/weapon/gun/revolver/standard_revolver
 	name = "\improper TP-44 combat revolver"
@@ -352,11 +352,12 @@
 
 /obj/item/weapon/gun/revolver/m44
 	name = "\improper M-44 SAA revolver"
-	desc = "A uncommon revolver occasionally carried by civilian law enforcement that's very clearly based off a modernized Single Action Army. Uses .44 Magnum rounds."
+	desc = "A uncommon revolver occasionally carried by civilian law enforcement that's very clearly based off a modernized Single Action Army. It is initially chambered in .44 Magnum rounds that can ricochet to surfaces."
 	icon_state = "m44"
 	item_state = "m44"
 	caliber = ".44 Magnum" //codex
 	max_shells = 6 //codex
+	fire_sound = 'sound/weapons/guns/fire/SAA.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/revolver/m44
 	force = 8
 	attachable_allowed = list(
@@ -375,7 +376,7 @@
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 22,"rail_x" = 17, "rail_y" = 22, "under_x" = 22, "under_y" = 17, "stock_x" = 22, "stock_y" = 19)
 
 //-------------------------------------------------------
-//RUSSIAN REVOLVER //Based on the 7.62mm Russian revolvers.
+//RUSSIAN REVOLVER, based on the 7.62mm Russian revolvers.
 
 /obj/item/weapon/gun/revolver/upp
 	name = "\improper N-Y 7.62mm revolver"
@@ -401,7 +402,7 @@
 
 
 //-------------------------------------------------------
-//357 REVOLVER //Based on the generic S&W 357.
+//357 REVOLVER. Based on the generic S&W 357.
 
 /obj/item/weapon/gun/revolver/small
 	name = "\improper S&W .357 revolver"
@@ -475,7 +476,7 @@
 	item_state = "mateba"
 
 //-------------------------------------------------------
-//MARSHALS REVOLVER
+//MARSHALS REVOLVER, leftover from CM.
 
 /obj/item/weapon/gun/revolver/cmb
 	name = "\improper CMB autorevolver"

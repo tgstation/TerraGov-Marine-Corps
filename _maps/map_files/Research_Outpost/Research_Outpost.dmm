@@ -1550,7 +1550,7 @@
 /area/outpost/hallway/south_east)
 "iz" = (
 /obj/structure/rack,
-/obj/item/weapon/gun/revolver/cmb,
+/obj/item/weapon/gun/revolver/m44,
 /turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
@@ -4772,7 +4772,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/item/ammo_magazine/revolver/cmb,
+/obj/item/ammo_magazine/revolver/ricochet,
 /turf/open/floor/tile/dark/red2{
 	dir = 5
 	},
@@ -5118,7 +5118,7 @@
 /area/outpost/medbay)
 "Cm" = (
 /obj/structure/rack,
-/obj/item/ammo_magazine/revolver/cmb,
+/obj/item/ammo_magazine/revolver/ricochet,
 /turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
@@ -7581,10 +7581,10 @@
 /area/outpost/cargo)
 "Pl" = (
 /obj/structure/rack,
-/obj/item/weapon/gun/revolver/cmb,
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/item/weapon/gun/revolver/m44,
 /turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
