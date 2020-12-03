@@ -227,9 +227,10 @@
 	//keybind_signal = COMSIG_XENOABILITY_CHOOSE_RESIN
 	var/list/hugger_type_list = list(
 		/obj/item/clothing/mask/facehugger,
+		/obj/item/clothing/mask/facehugger/slash,
 		/obj/item/clothing/mask/facehugger/neuro,
 		/obj/item/clothing/mask/facehugger/acid,
-		/obj/item/clothing/mask/facehugger/slash,
+		/obj/item/clothing/mask/facehugger/resin,
 		)
 
 /datum/action/xeno_action/choose_hugger_type/update_button_icon()

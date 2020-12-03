@@ -577,7 +577,7 @@
 	name = "neuro hugger"
 	desc = "This strange creature has a single prominent sharp proboscis."
 	sterile = TRUE
-	color = COLOR_PURPLE
+	color = COLOR_DARK_ORANGE
 	combat_hugger = TRUE
 	activity_modifier = 0.5
 
@@ -587,10 +587,11 @@
 
 	var/mob/living/victim = M
 	do_attack_animation(M)
-	victim.apply_damage(100, STAMINA) //Armor ignoring stamina damage
+	var/armor_block = victim.run_armor_check("chest", "bio")
+	victim.apply_damage(200, STAMINA, "chest", armor_block)
 	victim.reagents.add_reagent(/datum/reagent/toxin/xeno_neurotoxin, 20)
 	playsound(victim, 'sound/effects/spray3.ogg', 25, 1)
-	victim.visible_message("<span class='danger'>[src] penetrates [victim] with its sharp probscius before falling down!</span>","<span class='danger'>[src] penetrates you with a sharp probscius before falling down!</span>")
+	victim.visible_message("<span class='danger'>[src] penetrates [victim] with its sharp probscius!</span>","<span class='danger'>[src] penetrates you with a sharp probscius before falling down!</span>")
 	go_idle() //We're a bit slow on the recovery
 	return TRUE
 
@@ -614,7 +615,7 @@
 	visible_message("<span class='danger'>[src] explodes into a smoking splatter of acid!</span>")
 
 	for(var/turf/acid_tile in range(1, loc))
-		if(!locate(/obj/effect/xenomorph/spray) in acid_tile)
+		if(!locate(/obj/effect/xenomorph/spray) in acid_tile.contents)
 			new /obj/effect/xenomorph/spray(acid_tile, 10 SECONDS, 16)
 
 	var/datum/effect_system/smoke_spread/xeno/acid/A = new(get_turf(src)) //Spawn acid smoke
@@ -624,7 +625,46 @@
 
 /obj/item/clothing/mask/facehugger/acid/kill_hugger()
 	. = ..()
-	new /obj/effect/xenomorph/spray(get_turf(src), 10 SECONDS, 16) //Make a splatter on death
+	new /obj/effect/xenomorph/spray(loc, 10 SECONDS, 16) //Make a splatter on death
+	melt_away()
+
+
+/obj/item/clothing/mask/facehugger/resin
+	name = "resin hugger"
+	desc = "This truly bizzare creature drips with purple, viscous resin."
+	sterile = TRUE
+	color = COLOR_STRONG_VIOLET
+	combat_hugger = TRUE
+	activity_modifier = 0.5
+
+/obj/item/clothing/mask/facehugger/resin/Attach(mob/M, mob/user)
+	if(!combat_hugger_check_target(M))
+		return FALSE
+
+	resin_facehugger_explosion()
+	return TRUE
+
+/obj/item/clothing/mask/facehugger/resin/proc/resin_facehugger_explosion()
+
+	visible_message("<span class='danger'>[src] explodes into a mess of viscous resin!</span>")
+
+	for(var/turf/sticky_tile in range(1, loc))
+		if(!locate(/obj/effect/xenomorph/spray) in sticky_tile.contents)
+			new /obj/effect/alien/resin/sticky/thin(sticky_tile)
+
+	for(var/mob/living/target in range(1, loc))
+		if(isxeno(target)) //Xenos aren't affected by sticky resin
+			continue
+
+		target.adjust_stagger(3)
+		target.add_slowdown(10)
+		target.apply_damage(20, STAMINA) //Small amount of armor ignoring stamina damage
+
+	melt_away()
+
+/obj/item/clothing/mask/facehugger/resin/kill_hugger()
+	. = ..()
+	new /obj/effect/alien/resin/sticky(loc) //Make a splatter on death
 	melt_away()
 
 /obj/item/clothing/mask/facehugger/slash
@@ -647,7 +687,7 @@
 		affecting = "chest" //Gotta have a torso?!
 	var/armor_block = victim.run_armor_check(affecting, "melee")
 	victim.apply_damage(CARRIER_SLASH_HUGGER_DAMAGE, BRUTE, affecting, armor_block) //Crap base damage after armour...
-	victim.visible_message("<span class='danger'>[src] frantically claws at [victim] before falling down!</span>","<span class='danger'>[src] frantically claws at you before falling down!</span>")
+	victim.visible_message("<span class='danger'>[src] frantically claws at [victim]!</span>","<span class='danger'>[src] frantically claws at you!</span>")
 	go_active() //Slashy boys recover *very* fast.
 	return TRUE
 
