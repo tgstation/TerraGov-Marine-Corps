@@ -89,6 +89,8 @@
 #define BUCKLE_TRAIT "buckle"
 #define THROW_TRAIT "throw"
 #define FORTIFY_TRAIT "fortify" //Defender fortify ability.
+#define RAGE_TRAIT "rage" //Ravager Rage ability.
+#define ENDURE_TRAIT "trait" //Ravager Endure ability.
 
 //mob traits
 #define TRAIT_KNOCKEDOUT		"knockedout" //Forces the user to stay unconscious.
@@ -103,6 +105,8 @@
 #define TRAIT_FAKEDEATH			"fakedeath" //Makes the owner appear as dead to most forms of medical examination
 #define TRAIT_LEGLESS			"legless" //Has lost all the appendages needed to stay standing up.
 #define TRAIT_NOPLASMAREGEN		"noplasmaregen"//xeno plasma wont recharge
+#define TRAIT_STAGGERIMMUNE		"stagger_immunity" //Immunity to stagger
+#define TRAIT_SLOWDOWNIMMUNE	"slowdown_immunity" //Immunity to slowdown
 
 // item traits
 #define TRAIT_T_RAY_VISIBLE		"t-ray-visible" // Visible on t-ray scanners if the atom/var/level == 1
