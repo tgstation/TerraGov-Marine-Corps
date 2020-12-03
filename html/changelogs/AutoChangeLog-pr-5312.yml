@@ -1,8 +1,0 @@
-author: "MalricB, Slayer, Hughgent"
-delete-after: True
-changes: 
-  - soundadd: "added OB_warning_announce.ogg"
-  - soundadd: "added OB_firing.ogg"
-  - soundadd: "added OB_warning_announce_novoiceover.ogg"
-  - code_imp: "removed alert.ogg from overwatch.dm, replaced with OB_warning_announce.ogg"
-  - balance: "sped up OB by one whole second"
