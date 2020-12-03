@@ -44,7 +44,9 @@
 	var/mob/living/L = AM
 
 	if(isxeno(L))
-		return ..()
+		var/mob/living/carbon/xenomorph/X = L
+		if(issamexenohive(X)) //No neckgrabbing of allies.
+			return ..()
 
 	if(lunge && ..(L, suppress_message))
 		return neck_grab(L)
@@ -58,6 +60,11 @@
 		neck_grab(L)
 
 	SEND_SIGNAL(src, COMSIG_WARRIOR_USED_GRAB)
+
+
+/mob/living/carbon/xenomorph/warrior/throw_impact(atom/hit_atom, speed)
+	..()
+	remove_filter("warrior_lunge") //No perma blur please
 
 
 /mob/living/carbon/xenomorph/warrior/proc/neck_grab(mob/living/L)

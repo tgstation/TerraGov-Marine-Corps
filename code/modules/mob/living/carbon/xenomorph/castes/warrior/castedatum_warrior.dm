@@ -46,8 +46,9 @@
 		/datum/action/xeno_action/regurgitate,
 		/datum/action/xeno_action/activable/headbite,
 		/datum/action/xeno_action/toggle_agility,
-		/datum/action/xeno_action/activable/fling,
 		/datum/action/xeno_action/activable/lunge,
+		/datum/action/xeno_action/activable/fling,
+		/datum/action/xeno_action/activable/toss,
 		/datum/action/xeno_action/activable/punch,
 	)
 
