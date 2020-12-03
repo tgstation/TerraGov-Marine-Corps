@@ -159,7 +159,7 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 		if(choice != "Yes")
 			return
 		message_admins("[ADMIN_TPMONTY(usr)] Is going to finish the round via the spaceship orbits mechanic. set GLOB.current_orbit to 4 to prevent this.")
-		priority_announce("The coward hosts are attempting to flee!", "Prey is escaping!", ANNOUNCEMENT_REGULAR, 'sound/voice/alien_drool1.ogg', receivers = GLOB.alive_xeno_list + GLOB.observer_list)
+		priority_announce("The tall hosts are attempting to flee!", "Prey is escaping!", ANNOUNCEMENT_REGULAR, 'sound/voice/alien_drool1.ogg', receivers = GLOB.alive_xeno_list + GLOB.observer_list)
 		do_orbit_checks("escape")
 		TIMER_COOLDOWN_START(src, COOLDOWN_ORBIT_CHANGE, 1 MINUTES)
 		//end the round, xeno minor.
