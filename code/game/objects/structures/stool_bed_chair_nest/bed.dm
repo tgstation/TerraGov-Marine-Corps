@@ -56,6 +56,10 @@ obj/structure/bed/Destroy()
 		density = FALSE
 	update_icon()
 
+	if(isliving(buckled_mob)) //Properly update whether we're lying or not
+		var/mob/living/unbuckled_target = buckled_mob
+		if(HAS_TRAIT(unbuckled_target, TRAIT_FLOORED))
+			unbuckled_target.set_lying_angle(pick(90, 270))
 
 //Unsafe proc
 /obj/structure/bed/proc/buckle_bodybag(obj/structure/closet/bodybag/B, mob/user)
