@@ -210,7 +210,7 @@
 /datum/action/xeno_action/evasion/action_activate()
 	var/mob/living/carbon/xenomorph/runner/R = owner
 
-	R.do_jitter_animation(4000)
+	R.do_jitter_animation(1000)
 	R.visible_message("<span class='warning'>[R.name] begins to move erratically!</span>", \
 	"<span class='xenodanger'>We move erratically, making us impossible to hit with projectiles; the next [RUNNER_EVASION_STACKS] projectile damage that would hit us will now miss.</span>")
 
@@ -258,8 +258,6 @@
 	if(!evasion_stacks || (last_move_intent < (world.time - RUNNER_EVASION_RUN_DELAY) ) ) //Gotta keep moving to benefit from evasion!
 		return ..()
 
-	do_jitter_animation(4000) //Dodgy animation!
-
 	if(issamexenohive(proj.firer)) //We automatically dodge allied projectiles at no cost
 		return FALSE
 
@@ -270,6 +268,11 @@
 
 	var/turf/T = get_turf(src) //after image SFX
 	playsound(T, pick('sound/effects/throw.ogg','sound/effects/alien_tail_swipe1.ogg', 'sound/effects/alien_tail_swipe2.ogg'), 25, 1) //sound effects
+
+	add_filter("runner_evasion", 2, list("type" = "blur", 5)) //Cool SFX
+	addtimer(CALLBACK(src, /atom.proc/remove_filter, "runner_evasion"), 0.5 SECONDS)
+	do_jitter_animation(1000) //Dodgy animation!
+
 	var/i = 0
 	var/obj/effect/temp_visual/xenomorph/runner_afterimage/A
 	while(i < 2) //number after images
