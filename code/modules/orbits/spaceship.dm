@@ -50,7 +50,7 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 /obj/machinery/computer/navigation/Initialize() //need anything special?
 	. = ..()
 	desc = "The navigation console for the [SSmapping.configs[SHIP_MAP].map_name]."
-	addtimer(VARSET_CALLBACK(src, changing_orbit, FALSE), 1 HOURS) //people running away far too quickly it seems
+	addtimer(VARSET_CALLBACK(src, changing_orbit, FALSE), 30 MINUTES) //people running away far too quickly it seems
 
 /obj/machinery/computer/navigation/proc/reset(wire)
 	switch(wire)
