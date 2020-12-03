@@ -172,6 +172,23 @@
 	handle_stagger()
 	handle_disabilities()
 
+
+/mob/living/carbon/proc/handle_stagger()
+	if(stagger)
+		adjust_stagger(-1)
+	return stagger
+
+/mob/living/carbon/adjust_stagger(amount)
+	if(stagger > 0 && HAS_TRAIT(src, TRAIT_STAGGERIMMUNE))
+		return stagger
+	stagger = max(stagger + amount,0)
+	return stagger
+
+/mob/living/carbon/proc/handle_slowdown()
+	if(slowdown)
+		adjust_slowdown(-STANDARD_SLOWDOWN_REGEN)
+	return slowdown
+
 /mob/living/carbon/proc/breathe()
 	if(!need_breathe())
 		return
