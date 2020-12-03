@@ -12,8 +12,8 @@
 	///List of weights for scoring stuff happening here; ultilizes "identifiers" to differentiate different kinds of AI types looking at the same node.
 
 	var/list/weights = list(
-							IDENTIFIER_XENO = list(NODE_LAST_VISITED = 0)
-							)
+				IDENTIFIER_XENO = list(NODE_LAST_VISITED = 0)
+				)
 
 /obj/effect/ai_node/Initialize()
 	. = ..()
@@ -59,7 +59,7 @@
   * Parameter call example
   * GetBestAdjNode(list(NODE_LAST_VISITED = -1), IDENTIFIER_XENO)
   * Returns an adjacent node that was last visited; when a AI visits a node, it will set NODE_LAST_VISITED to world.time
-*/
+  */
 /obj/effect/ai_node/proc/get_best_adj_node(list/weight_modifiers, identifier)
 	//No weight modifiers, return a adjacent random node
 	if(!length(weight_modifiers) || !identifier)
