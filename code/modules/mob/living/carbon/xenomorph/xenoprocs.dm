@@ -139,9 +139,9 @@
 	else //Upgrade process finished or impossible
 		stat("Upgrade Progress:", "(FINISHED)")
 
-	stat("Acid Blood:", "[round((xeno_blood_current/xeno_blood_max)*100, 0.01)]%")
+	stat("Acid Blood:", "[PERCENT(xeno_blood_current/xeno_blood_max)]%")
 
-	switch(round((xeno_blood_current/xeno_blood_max)*100))
+	switch(PERCENT(xeno_blood_current/xeno_blood_max))
 		if(80 to INFINITY)
 			stat("Blood-based regeneration:", "+25%")
 		if(51 to 79)
