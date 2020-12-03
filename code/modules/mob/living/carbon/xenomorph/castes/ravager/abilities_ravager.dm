@@ -7,7 +7,7 @@
 	mechanics_text = "Charge up to 4 tiles and viciously attack your target."
 	ability_name = "charge"
 	cooldown_timer = 20 SECONDS
-	plasma_cost = 600 //Can't ignore pain/Charge and ravage in the same timeframe, but you can combo one of them.
+	plasma_cost = 450 //Can't ignore pain/Charge and ravage in the same timeframe, but you can combo one of them.
 	keybind_flags = XACT_KEYBIND_USE_ABILITY | XACT_IGNORE_SELECTED_ABILITY
 	keybind_signal = COMSIG_XENOABILITY_RAVAGER_CHARGE
 
@@ -151,8 +151,8 @@
 	action_icon_state = "ignore_pain"
 	mechanics_text = "For the next few moments you will not go into crit, but you still die."
 	ability_name = "Endure"
-	plasma_cost = 175
-	cooldown_timer = 40 SECONDS
+	plasma_cost = 200
+	cooldown_timer = 60 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY | XACT_IGNORE_SELECTED_ABILITY
 	keybind_signal = COMSIG_XENOABILITY_IGNORE_PAIN
 
