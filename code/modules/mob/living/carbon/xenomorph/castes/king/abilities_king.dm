@@ -28,7 +28,7 @@
 	X.whispering = TRUE
 	X.update_icon()
 	playsound(X.loc, 'sound/voice/king_xeno_whispers.ogg', 125, 0)
-	X.visible_message("<span class='xenohighdanger'>\The [X] opens it's jaw and silently screeches!</span>")
+	X.visible_message("<span class='xenohighdanger'>\The [X] opens its jaw and silently screeches!</span>")
 	GLOB.round_statistics.queen_screech++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "queen_screech")
 
@@ -74,7 +74,7 @@
 	keybind_signal = COMSIG_XENOABILITY_SCREECH //tivi mark
 
 /datum/action/xeno_action/activable/area_crush/on_cooldown_finish()
-	to_chat(owner, "<span class='warning'>Our psychic aura restores itself. We are ready to whisper again.</span>")
+	to_chat(owner, "<span class='warning'>Our psychic aura restores itself. We are ready to area crush again.</span>")
 	return ..()
 
 /datum/action/xeno_action/activable/area_crush/use_ability(atom/A)
@@ -125,7 +125,7 @@
 /datum/action/xeno_action/psychic_summon/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
 
-	log_attack("[key_name(owner)] has begun summoning hive in [AREACOORD(owner)]")
+	log_game("[key_name(owner)] has begun summoning hive in [AREACOORD(owner)]")
 	xeno_message("King: \The [owner] has begun a psychic summon in <b>[get_area(owner)]</b>!", 3, X.hivenumber)
 	var/list/allxenos = X.hive.get_all_xenos()
 	for(var/mob/living/carbon/xenomorph/sister as() in allxenos)
@@ -139,7 +139,7 @@
 	for(var/mob/living/carbon/xenomorph/sister as() in allxenos)
 		sister.remove_filter("summonoutline")
 		sister.forceMove(get_turf(X))
-	log_attack("[key_name(owner)] has summoned hive ([length(allxenos)] Xenos) in [AREACOORD(owner)]")
+	log_game("[key_name(owner)] has summoned hive ([length(allxenos)] Xenos) in [AREACOORD(owner)]")
 	X.emote("roar")
 
 	add_cooldown()
