@@ -7,6 +7,7 @@
 #define SKIM_ATMOSPHERE 	1
 
 #define REQUIRED_POWER_AMOUNT 250000
+#define AUTO_LOGOUT_TIME 1 MINUTES
 
 #define AUTHORIZED 		1
 #define AUTHORIZED_PLUS	2
@@ -121,7 +122,7 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 		if(isAI(usr))
 			authenticated = AUTHORIZED_PLUS
 			updateUsrDialog()
-			addtimer(VARSET_CALLBACK(src, authenticated, FALSE), 1 MINUTES) //autologout
+			addtimer(VARSET_CALLBACK(src, authenticated, FALSE), AUTO_LOGOUT_TIME) //autologout
 			return
 		var/mob/living/carbon/human/C = usr
 		var/obj/item/card/id/I = C.get_active_held_item()
@@ -130,7 +131,7 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 				authenticated = AUTHORIZED
 			if(ACCESS_MARINE_BRIDGE in I.access)
 				authenticated = AUTHORIZED_PLUS
-			addtimer(VARSET_CALLBACK(src, authenticated, FALSE), 1 MINUTES) //autologout
+			addtimer(VARSET_CALLBACK(src, authenticated, FALSE), AUTO_LOGOUT_TIME) //autologout
 		else
 			I = C.wear_id
 			if(istype(I))
@@ -138,7 +139,7 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 					authenticated = AUTHORIZED
 				if(ACCESS_MARINE_BRIDGE in I.access)
 					authenticated = AUTHORIZED_PLUS
-				addtimer(VARSET_CALLBACK(src, authenticated, FALSE), 1 MINUTES) //autologout
+				addtimer(VARSET_CALLBACK(src, authenticated, FALSE), AUTO_LOGOUT_TIME) //autologout
 	if(href_list["logout"])
 		authenticated = FALSE
 
