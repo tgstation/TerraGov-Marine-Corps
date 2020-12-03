@@ -276,12 +276,12 @@
 	var/bonus_duration
 	if(rage_power > 0.5) //If we're super pissed it's time to get crazy
 		bonus_duration = 1 SECONDS //Compensation for the obscuring visual effect
-		var/obj/screen/plane_master/floor/OT = X.hud_used.plane_masters["[FLOOR_PLANE]"]
-		OT.add_filter("rage_outcry", 2, list("type" = "motion_blur", "size" = 0.12))
+		var/obj/screen/plane_master/floor/OT = locate(/obj/screen/plane_master/floor) in X.client.screen
+		OT.add_filter("rage_outcry", 2, list("type" = "radial_blur", "size" = 0.12))
 		addtimer(CALLBACK(OT, /atom.proc/remove_filter, "rage_outcry"), bonus_duration)
 		var/obj/screen/plane_master/game_world/GW = locate(/obj/screen/plane_master/game_world) in X.client.screen
-		GW.add_filter("rage_outcry", 2, list("type" = "motion_blur", "size" = 0.12))
-		addtimer(CALLBACK(GW, /atom.proc/remove_filter, "rage_outcry"), bonus_duration)
+		GW.add_filter("rage_outcry2", 2, list("type" = "radial_blur", "size" = 0.12))
+		addtimer(CALLBACK(GW, /atom.proc/remove_filter, "rage_outcry2"), bonus_duration)
 
 	for(var/turf/affected_tiles as() in RANGE_TURFS(rage_power_radius, X.loc))
 		affected_tiles.Shake(4, 4, 1 SECONDS) //SFX
