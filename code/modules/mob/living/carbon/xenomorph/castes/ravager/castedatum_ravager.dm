@@ -19,7 +19,7 @@
 	speed = -0.7
 
 	// *** Plasma *** //
-	plasma_max = 400
+	plasma_max = 600
 	plasma_gain = 20
 
 	// *** Health *** //
@@ -67,7 +67,7 @@
 	speed = -0.8
 
 	// *** Plasma *** //
-	plasma_max = 500 //Enables using either both abilities at once or one after another
+	plasma_max = 700 //Enables using either both abilities at once or one after another
 	plasma_gain = 30
 
 	// *** Health *** //
@@ -95,7 +95,7 @@
 	speed = -0.9
 
 	// *** Plasma *** //
-	plasma_max = 550
+	plasma_max = 750
 	plasma_gain = 35
 
 	// *** Health *** //
@@ -123,7 +123,7 @@
 	speed = -1
 
 	// *** Plasma *** //
-	plasma_max = 600
+	plasma_max = 800
 	plasma_gain = 40
 
 	// *** Health *** //

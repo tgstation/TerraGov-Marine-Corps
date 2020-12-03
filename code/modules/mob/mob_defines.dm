@@ -57,7 +57,6 @@
 	//HUD and overlays
 	var/hud_type = /datum/hud
 	var/datum/hud/hud_used
-	var/list/hud_possible //HUD images that this mob can provide.
 	var/list/progressbars //for stacking do_after bars
 	var/list/progbar_towers //for stacking the total pixel height of the aboves.
 	var/list/fullscreens = list()

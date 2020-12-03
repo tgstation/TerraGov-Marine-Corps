@@ -237,10 +237,22 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_EMIT_NEUROGAS
 
+/datum/keybinding/xeno/select_reagent
+	name = "select_reagent"
+	full_name = "Defiler: Select Reagent"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_SELECT_REAGENT
+
+/datum/keybinding/xeno/reagent_slash
+	name = "reagent_slash"
+	full_name = "Defiler: Reagent Slash"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_REAGENT_SLASH
+
 /datum/keybinding/xeno/salvage_plasma
 	name = "salvage_plasma"
-	full_name = "Drone: Salvage Plasma"
-	description = ""
+	full_name = "Drone: Salvage Biomass"
+	description = "Salvage plasma, upgrade and evolution points from the corpse of another xenomorph, gibbing it."
 	keybind_signal = COMSIG_XENOABILITY_SALVAGE_PLASMA
 
 /datum/keybinding/xeno/resin_walker

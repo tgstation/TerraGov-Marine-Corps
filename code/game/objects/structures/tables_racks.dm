@@ -21,7 +21,7 @@
 	var/reinforced = FALSE
 	var/flipped = FALSE
 	var/flip_cooldown = 0 //If flip cooldown exists, don't allow flipping or putting back. This carries a WORLD.TIME value
-	max_integrity = 100
+	max_integrity = 40
 
 /obj/structure/table/deconstruct(disassembled)
 	if(disassembled)
@@ -474,7 +474,7 @@
 	parts = /obj/item/frame/table/wood
 	table_prefix = "wood"
 	hit_sound = 'sound/effects/woodhit.ogg'
-	max_integrity = 50
+	max_integrity = 20
 /*
 * Gambling tables
 */
@@ -486,7 +486,7 @@
 	parts = /obj/item/frame/table/gambling
 	table_prefix = "gamble"
 	hit_sound = 'sound/effects/woodhit.ogg'
-	max_integrity = 50
+	max_integrity = 20
 /*
 * Reinforced tables
 */
@@ -494,7 +494,7 @@
 	name = "reinforced table"
 	desc = "A square metal surface resting on four legs. This one has side panels, making it useful as a desk, but impossible to flip."
 	icon_state = "reinftable"
-	max_integrity = 200
+	max_integrity = 100
 	reinforced = TRUE
 	table_prefix = "reinf"
 	parts = /obj/item/frame/table/reinforced
@@ -576,7 +576,7 @@
 	anchored = TRUE
 	throwpass = TRUE	//You can throw objects over this, despite it's density.
 	climbable = TRUE
-	max_integrity = 150
+	max_integrity = 40
 	resistance_flags = XENO_DAMAGEABLE
 	var/parts = /obj/item/frame/rack
 

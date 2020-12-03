@@ -733,7 +733,7 @@
 	L.remove_movespeed_modifier(type)
 	var/amount = current_cycle * 2
 	L.adjustOxyLoss(amount)
-	L.adjustHalLoss(amount * 1.5)
+	L.adjustStaminaLoss(amount * 1.5)
 	if(L.stat == DEAD)
 		var/death_message = "<span class='danger'>Your body is unable to bear the strain. The last thing you feel, aside from crippling exhaustion, is an explosive pain in your chest as you drop dead. It's a sad thing your adventures have ended here!</span>"
 		if(iscarbon(L))
@@ -809,7 +809,7 @@
 		L.AdjustParalyzed(-20)
 		L.AdjustStun(-20)
 		L.AdjustUnconscious(-20)
-	L.adjustHalLoss(-4*REM)
+	L.adjustStaminaLoss(-4*REM)
 	if(prob(2))
 		L.emote(pick("twitch","blink_r","shiver"))
 	return ..()
@@ -819,7 +819,7 @@
 		to_chat(L, "<span class='notice'>[pick("You could use another hit.", "More of that would be nice.", "Another dose would help.", "One more dose wouldn't hurt", "Why not take one more?")]</span>")
 	if(prob(5))
 		L.emote(pick("twitch","blink_r","shiver"))
-		L.adjustHalLoss(20)
+		L.adjustStaminaLoss(20)
 	if(prob(20))
 		L.hallucination += 10
 
@@ -828,7 +828,7 @@
 		to_chat(L, "<span class='warning'>[pick("It's just not the same without it.", "You could use another hit.", "You should take another.", "Just one more.", "Looks like you need another one.")]</span>")
 	if(prob(5))
 		L.emote("me", EMOTE_VISIBLE, pick("winces slightly.", "grimaces."))
-		L.adjustHalLoss(35)
+		L.adjustStaminaLoss(35)
 		L.Stun(20)
 	if(prob(20))
 		L.hallucination += 15
@@ -840,7 +840,6 @@
 		to_chat(L, "<span class='warning'>[pick("You need more.", "It's hard to go on like this.", "You want more. You need more.", "Just take another hit. Now.", "One more.")]</span>")
 	if(prob(5))
 		L.emote("me", EMOTE_VISIBLE, pick("winces.", "grimaces.", "groans!"))
-		L.adjustHalLoss(50)
 		L.Stun(30)
 	if(prob(20))
 		L.hallucination += 20
@@ -854,7 +853,6 @@
 		to_chat(L, "<span class='danger'>[pick("You need another dose, now. NOW.", "You can't stand it. You have to go back. You have to go back.", "You need more. YOU NEED MORE.", "MORE", "TAKE MORE.")]</span>")
 	if(prob(5))
 		L.emote("me", EMOTE_VISIBLE, pick("groans painfully!", "contorts with pain!"))
-		L.adjustHalLoss(65)
 		L.Stun(80)
 		L.do_jitter_animation(200)
 	if(prob(20))

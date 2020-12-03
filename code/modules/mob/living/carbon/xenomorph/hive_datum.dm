@@ -586,6 +586,10 @@ to_chat will check for valid clients itself already so no need to double check f
 	var/obj/structure/resin/silo/chosen_silo
 	if(length(possible_silos) > 1)
 		chosen_silo = input("Available Egg Silos") as null|anything in possible_silos
+		xeno_candidate.forceMove(chosen_silo)
+		var/double_check = input(xeno_candidate, "Spawn here?", "Spawn location") as null|anything in list("Yes","No")
+		if(double_check != "Yes")
+			attempt_to_spawn_larva_in_silo(xeno_candidate, possible_silos)
 	else
 		chosen_silo = possible_silos[1]
 
@@ -745,9 +749,6 @@ to_chat will check for valid clients itself already so no need to double check f
 /mob/living/carbon/xenomorph/larva/Corrupted
 	hivenumber = XENO_HIVE_CORRUPTED
 
-/mob/living/carbon/xenomorph/panther/Corrupted
-	hivenumber = XENO_HIVE_CORRUPTED
-
 /mob/living/carbon/xenomorph/praetorian/Corrupted
 	hivenumber = XENO_HIVE_CORRUPTED
 
@@ -814,9 +815,6 @@ to_chat will check for valid clients itself already so no need to double check f
 /mob/living/carbon/xenomorph/larva/Alpha
 	hivenumber = XENO_HIVE_ALPHA
 
-/mob/living/carbon/xenomorph/panther/Alpha
-	hivenumber = XENO_HIVE_ALPHA
-
 /mob/living/carbon/xenomorph/praetorian/Alpha
 	hivenumber = XENO_HIVE_ALPHA
 
@@ -880,9 +878,6 @@ to_chat will check for valid clients itself already so no need to double check f
 /mob/living/carbon/xenomorph/larva/Beta
 	hivenumber = XENO_HIVE_BETA
 
-/mob/living/carbon/xenomorph/panther/Beta
-	hivenumber = XENO_HIVE_BETA
-
 /mob/living/carbon/xenomorph/praetorian/Beta
 	hivenumber = XENO_HIVE_BETA
 
@@ -944,9 +939,6 @@ to_chat will check for valid clients itself already so no need to double check f
 	hivenumber = XENO_HIVE_ZETA
 
 /mob/living/carbon/xenomorph/larva/Zeta
-	hivenumber = XENO_HIVE_ZETA
-
-/mob/living/carbon/xenomorph/panther/Zeta
 	hivenumber = XENO_HIVE_ZETA
 
 /mob/living/carbon/xenomorph/praetorian/Zeta

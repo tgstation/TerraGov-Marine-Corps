@@ -482,7 +482,7 @@
 /obj/structure/table/reinforced/flipped{
 	dir = 8
 	},
-/obj/item/weapon/gun/smg/mp5,
+/obj/item/weapon/gun/smg/m25,
 /turf/open/floor/plating,
 /area/lv624/ground/tfort)
 "ace" = (
@@ -2145,7 +2145,7 @@
 /area/lv624/ground/tfort)
 "ais" = (
 /obj/effect/decal/remains/human,
-/obj/item/weapon/gun/smg/mp5,
+/obj/item/weapon/gun/smg/m25,
 /turf/open/floor/plating,
 /area/lv624/ground/tfort)
 "ait" = (
@@ -2190,7 +2190,7 @@
 	dir = 8
 	},
 /obj/item/explosive/grenade/frag,
-/obj/item/ammo_magazine/smg/mp5,
+/obj/item/ammo_magazine/smg/m25,
 /turf/open/floor/plating,
 /area/lv624/ground/tfort)
 "aiD" = (
@@ -2203,16 +2203,16 @@
 /turf/open/floor/plating,
 /area/lv624/ground/tfort)
 "aiF" = (
-/obj/item/ammo_magazine/smg/mp5,
-/obj/item/ammo_magazine/smg/mp5,
-/obj/item/ammo_magazine/smg/mp5,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
 /turf/open/floor/plating,
 /area/lv624/ground/tfort)
 "aiG" = (
 /obj/structure/table/reinforced/flipped{
 	dir = 4
 	},
-/obj/item/ammo_magazine/smg/mp5,
+/obj/item/ammo_magazine/smg/m25,
 /turf/open/floor/plating,
 /area/lv624/ground/tfort)
 "aiH" = (
@@ -2389,7 +2389,7 @@
 	},
 /obj/item/ammo_magazine/pistol,
 /obj/item/ammo_casing,
-/obj/item/ammo_magazine/smg/mp5,
+/obj/item/ammo_magazine/smg/m25,
 /turf/open/floor/plating,
 /area/lv624/ground/tfort)
 "ajq" = (
@@ -2507,7 +2507,7 @@
 /area/lv624/ground/tfort)
 "ajO" = (
 /obj/item/ammo_casing,
-/obj/item/weapon/gun/pistol/m4a3,
+/obj/item/weapon/gun/pistol/rt3,
 /turf/open/floor/plating,
 /area/lv624/ground/tfort)
 "ajP" = (
@@ -12126,12 +12126,12 @@
 /area/lv624/lazarus/security)
 "bev" = (
 /obj/structure/rack,
-/obj/item/weapon/gun/smg/mp5,
-/obj/item/weapon/gun/smg/mp5,
-/obj/item/ammo_magazine/smg/mp5,
-/obj/item/ammo_magazine/smg/mp5,
-/obj/item/ammo_magazine/smg/mp5,
-/obj/item/ammo_magazine/smg/mp5,
+/obj/item/weapon/gun/smg/m25,
+/obj/item/weapon/gun/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/security)
 "bew" = (
@@ -13483,9 +13483,9 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/item/weapon/gun/pistol/m4a3,
-/obj/item/weapon/gun/pistol/m4a3,
-/obj/item/weapon/gun/pistol/m4a3,
+/obj/item/weapon/gun/pistol/rt3,
+/obj/item/weapon/gun/pistol/rt3,
+/obj/item/weapon/gun/pistol/rt3,
 /turf/open/floor/plating/platebot,
 /area/lv624/lazarus/secure_storage)
 "blG" = (
@@ -14277,7 +14277,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
 "boL" = (
-/obj/item/weapon/gun/pistol/m4a3,
+/obj/item/weapon/gun/pistol/rt3,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
 "boM" = (
@@ -14385,8 +14385,8 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/item/weapon/gun/smg/mp5,
-/obj/item/weapon/gun/smg/mp5,
+/obj/item/weapon/gun/smg/m25,
+/obj/item/weapon/gun/smg/m25,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -14394,12 +14394,12 @@
 /area/lv624/lazarus/secure_storage)
 "bpk" = (
 /obj/structure/rack,
-/obj/item/ammo_magazine/smg/mp5,
-/obj/item/ammo_magazine/smg/mp5,
-/obj/item/ammo_magazine/smg/mp5,
-/obj/item/ammo_magazine/smg/mp5,
-/obj/item/ammo_magazine/smg/mp5,
-/obj/item/ammo_magazine/smg/mp5,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
 /turf/open/floor/plating/platebot,
 /area/lv624/lazarus/secure_storage)
 "bpq" = (
