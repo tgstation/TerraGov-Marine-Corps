@@ -88,11 +88,21 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		if(xeno_victim.fortify) //If we're fortified we don't give a shit about staggerstun.
 			impact_message += "<span class='xenodanger'>Your fortified stance braces you against the impact.</span>"
 			return
+
+		if(xeno_victim.endure) //Endure allows us to ignore staggerstun.
+			impact_message += "<span class='xenodanger'>You endure the impact from [proj], shrugging off its effects.</span>"
+			return
+
+		if(xeno_victim.get_filter("ravager_rage_outline")) //Too angry to be affected; shut it down.
+			impact_message += "<span class='danger'>We're too angry to be staggered by the impact from [proj]!</span>"
+			return
+
 		if(xeno_victim.crest_defense) //Crest defense halves all effects, and protects us from the stun.
 			impact_message += "<span class='xenodanger'>Your crest protects you against some of the impact.</span>"
 			slowdown *= 0.5
 			stagger *= 0.5
 			stun = 0
+
 	if(shake)
 		shake_camera(victim, shake+2, shake+3)
 		if(isxeno(victim))

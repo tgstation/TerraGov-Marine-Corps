@@ -174,6 +174,8 @@
 	return stagger
 
 /mob/living/carbon/adjust_stagger(amount)
+	if(stagger > 0 && HAS_TRAIT(src, TRAIT_STAGGERIMMUNE))
+		return stagger
 	stagger = max(stagger + amount,0)
 	return stagger
 

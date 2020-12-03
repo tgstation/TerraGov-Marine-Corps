@@ -8,11 +8,15 @@
 	losebreath = max(amount, 0)
 
 /mob/living/carbon/proc/set_stagger(amount)
+	if(amount > 0 && HAS_TRAIT(src, TRAIT_STAGGERIMMUNE)) //We're immune to stagger
+		return
 	stagger = max(amount, 0)
 
 
 /mob/living/carbon/proc/set_slowdown(amount)
 	if(slowdown == amount)
+		return
+	if(amount > 0 && HAS_TRAIT(src, TRAIT_SLOWDOWNIMMUNE)) //We're immune to slowdown
 		return
 	slowdown = amount
 	if(slowdown)
@@ -22,6 +26,8 @@
 
 /mob/living/carbon/proc/adjust_slowdown(amount)
 	if(amount > 0)
+		if(HAS_TRAIT(src, TRAIT_SLOWDOWNIMMUNE)) //We're immune to slowdown
+			return slowdown
 		set_slowdown(max(slowdown, amount)) //Slowdown overlaps rather than stacking.
 	else
 		set_slowdown(max(slowdown + amount, 0))
@@ -32,6 +38,8 @@
 
 /mob/living/carbon/xenomorph/add_slowdown(amount)
 	if(is_charging >= CHARGE_ON) //If we're charging we're immune to slowdown.
+		return
+	if(HAS_TRAIT(src, TRAIT_SLOWDOWNIMMUNE)) //We're immune to slowdown
 		return
 	adjust_slowdown(amount * XENO_SLOWDOWN_REGEN)
 

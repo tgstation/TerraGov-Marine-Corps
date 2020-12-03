@@ -176,6 +176,8 @@
 	addtimer(CALLBACK(src, .proc/endure_warning), RAVAGER_ENDURE_DURATION * RAVAGER_ENDURE_WARNING) //Warn the runner when the duration is about to expire.
 	addtimer(CALLBACK(src, .proc/endure_deactivate), RAVAGER_ENDURE_DURATION)
 
+	ADD_TRAIT(X, TRAIT_STAGGERIMMUNE, ENDURE_TRAIT) //Can now endure impacts/damages that would make lesser xenos flinch
+
 	succeed_activate()
 	add_cooldown()
 
@@ -194,6 +196,9 @@
 	R.do_jitter_animation(1000)
 	R.endure = FALSE
 	R.remove_filter("ravager_endure_outline")
+
+	REMOVE_TRAIT(R, TRAIT_STAGGERIMMUNE, ENDURE_TRAIT)
+
 	to_chat(owner,"<span class='highdanger'>The last of the plasma drains from our body... We can no longer endure beyond our normal limits!</span>")
 	owner.playsound_local(owner, 'sound/voice/hiss4.ogg', 50, 0, 1)
 
@@ -310,6 +315,11 @@
 
 	X.add_movespeed_modifier(MOVESPEED_ID_RAVAGER_RAGE, TRUE, 0, NONE, TRUE, X.xeno_caste.speed * 0.5 * rage_power) //Set rage speed bonus
 
+	//Too angry to be stunned/slowed/staggered/knocked down
+	ADD_TRAIT(X, TRAIT_STUNIMMUNE, RAGE_TRAIT)
+	ADD_TRAIT(X, TRAIT_SLOWDOWNIMMUNE, RAGE_TRAIT)
+	ADD_TRAIT(X, TRAIT_STAGGERIMMUNE, RAGE_TRAIT)
+
 	addtimer(CALLBACK(src, .proc/rage_warning, bonus_duration), (RAVAGER_RAGE_DURATION + bonus_duration) * RAVAGER_RAGE_WARNING) //Warn the ravager when rage is about to expire.
 	addtimer(CALLBACK(src, .proc/rage_deactivate), (RAVAGER_RAGE_DURATION + bonus_duration) )
 
@@ -340,5 +350,9 @@
 	R.soft_armor = R.soft_armor.setRating(bomb = XENO_BOMB_RESIST_1) //Reset blast resistance
 	R.xeno_melee_damage_modifier -= rage_power //Reset rage melee damage bonus
 	R.remove_movespeed_modifier(MOVESPEED_ID_RAVAGER_RAGE) //Reset speed
+
+	REMOVE_TRAIT(R, TRAIT_STUNIMMUNE, RAGE_TRAIT)
+	REMOVE_TRAIT(R, TRAIT_SLOWDOWNIMMUNE, RAGE_TRAIT)
+	REMOVE_TRAIT(R, TRAIT_STAGGERIMMUNE, RAGE_TRAIT)
 
 	R.playsound_local(R, 'sound/voice/hiss5.ogg', 50) //Audio cue
