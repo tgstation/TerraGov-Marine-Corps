@@ -354,9 +354,7 @@
 	new /obj/effect/temp_visual/telekinesis(get_turf(target))
 	var/mob/living/carbon/xenomorph/patient = target
 
-	var/heal_amount = 1 + (patient.maxHealth * 0.03)
-	heal_amount += 0.008*patient.maxHealth*patient.recovery_aura
-	heal_amount *= SHRIKE_CURE_HEAL_MULTIPLIER
+	var/heal_amount = (1 + patient.maxHealth * 0.03 + patient.maxHealth* 0.008 * patient.recovery_aura) * SHRIKE_CURE_HEAL_MULTIPLIER
 	patient.adjustBruteLoss(-heal_amount)
 	patient.adjustFireLoss(-heal_amount)
 
