@@ -9,10 +9,10 @@
   */
 /atom/proc/vehicle_collision(obj/vehicle/veh, facing, turf/T, turf/temp)
 	if(!veh.demolish_on_ram)
-		return NONE // 0 Damage
+		return 0
 
-	var/damage = veh.ram_damage // Each vehicle gets its own damage
-	var/veh_damage = 25
+	var/damage = veh.ram_damage // Each vehicle gets its own damage, you can modify it with snowplows and such ideally
+	var/veh_damage = 10
 
 	if(world.time > veh.lastsound + 1 SECONDS)
 		visible_message("<span class='danger'>[veh] crushes the [src]!</span>")
@@ -23,34 +23,34 @@
 
 /obj/structure/vehicle_collision(obj/vehicle/veh, facing, turf/T, turf/temp)
 	. = ..()
-	var/damage = . //If it has a snowplow, add extra damage
-	take_damage(damage)
+	take_damage(.)
+
+/obj/structure/barricade/plasteel/vehicle_collision(obj/vehicle/veh, facing, turf/T, turf/temp)
+	. = ..()
+	toggle_open(FALSE)
 
 /obj/vehicle/vehicle_collision(obj/vehicle/veh, facing, turf/T, turf/temp)	//MONSTER TRUCKS
 	. = ..()
-	var/damage = .
-	take_damage(damage)
+	take_damage(.)
 
 /obj/machinery/vehicle_collision(obj/vehicle/veh, facing, turf/T, turf/temp)
 	. = ..()
-	var/damage = .
-	take_damage(damage)
+	take_damage(.)
 
-/turf/closed/vehicle_collision(obj/vehicle/veh, facing, turf/T, turf/temp)
+/turf/closed/wall/vehicle_collision(obj/vehicle/veh, facing, turf/T, turf/temp)
 	. = ..()
-	if(prob(15))
-		ex_act(3)
+	take_damage(. += rand(200, 225))
 
 /mob/living/vehicle_collision(obj/vehicle/veh, facing, turf/T, turf/temp, mob/pilot) //If theyre alive, yeet them
 	if(stat == DEAD)	//Cant make horizontal spacemen more horizontal
-		return NONE
+		return 0
 	if(lying_angle)
-		return NONE
+		return 0
 	if(!veh.demolish_on_ram)
-		return NONE
+		return 0
 	log_attack("[key_name(pilot)] drove over [key_name(src)] with [veh]")
-	if(src in get_turf(veh)) // trodden over.
-		KnockdownNoChain(1)	//We got squished
+	KnockdownNoChain(1)
+	if(src in veh.loc) // trodden over.
 		var/target_dir = turn(veh.dir, 180)
 		temp = get_step(veh.loc, target_dir)
 		T = temp
@@ -58,8 +58,7 @@
 		T = get_step(T, target_dir)
 		face_atom(T)
 		throw_at(T, 3, 2, veh, 1)
-		apply_damage(rand(20, 30), BRUTE)
-		return
+		return apply_damage(rand(20, 30), BRUTE)
 
 	temp = get_step(T, facing)
 	T = temp
@@ -68,10 +67,8 @@
 		throw_at(T, 3, 2, veh, 0)
 	else
 		throw_at(T, 3, 2, veh, 1)
-	if(!IsKnockdown())
-		Knockdown(1 SECONDS)
-	apply_damage(rand(40, 55), BRUTE)
 	visible_message("<span class='danger'>[veh] bumps into [src], throwing [p_them()] away!</span>", "<span class='danger'>[veh] violently bumps into you!</span>")
+	return apply_damage(rand(40, 55), BRUTE)
 
 /mob/living/carbon/xenomorph/vehicle_collision(obj/vehicle/veh, facing, turf/T, turf/temp)
 	. = ..()
@@ -87,7 +84,7 @@
 	gib() //fuck you
 
 /obj/effect/alien/vehicle_collision(obj/vehicle/veh, facing, turf/T, turf/temp)
-	take_damage(40)
+	take_damage(veh.ram_damage/2)
 
 /obj/effect/alien/weeds/vehicle_collision(obj/vehicle/veh, facing, turf/T, turf/temp)
 	return

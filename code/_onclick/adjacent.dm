@@ -166,15 +166,11 @@
 
 /obj/vehicle/armored/multitile/Adjacent(atom/neighbor)
 	if(isxeno(neighbor))//Xenos stand next to it and slash
-		for(var/obj/vehicle/hitbox/H in linked_hitboxes)
-			for(var/turf/T as() in H.locs)
-				if(T.Adjacent(neighbor, target = neighbor, mover = src))
-					return TRUE
-	else
-		if(get_door_location(neighbor))
-			return TRUE
-	return FALSE
-
+		for(var/turf/T as() in linked_hitbox.locs)
+			if(T.Adjacent(neighbor, target = neighbor, mover = src))
+				return TRUE
+		return FALSE
+	return get_door_location(neighbor)
 /**
   *This checks if you there is uninterrupted airspace between that turf and this one.
   *	This is defined as any dense ON_BORDER object, or any dense object without throwpass.
