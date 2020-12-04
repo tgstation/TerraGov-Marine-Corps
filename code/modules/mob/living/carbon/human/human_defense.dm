@@ -390,8 +390,8 @@ Contains most of the procs that are called when a mob is attacked by something
 
 
 /**
-This looks for a an ID on a person and checkes if an access tag from their ID matches the provided access tag. Used with the gun, claymore, sentry and possibly other IFF code.
-Does not actually check for station jobs.
+  * This looks for a an ID on a person and checkes if an access tag from their ID matches the provided access tag. Used with the gun, claymore, sentry and possibly other IFF code.
+  * Does not actually check for station jobs.
   */
 /mob/living/carbon/human/proc/get_target_lock(list/unique_access)
 	var/obj/item/card/id/C = wear_id
