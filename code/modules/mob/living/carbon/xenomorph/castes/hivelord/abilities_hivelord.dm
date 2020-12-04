@@ -1,3 +1,11 @@
+//Some debug variables. Toggle them to 1 in order to see the related debug messages. Helpful when testing out formulas.
+#define DEBUG_HIVELORD_ABILITIES	0
+#if DEBUG_HIVELORD_ABILITIES
+#define HIVELORD_ABILITIES_DEBUG(msg) to_chat(world, "<span class='debuginfo'>[msg]</span>")
+#else
+#define HIVELORD_ABILITIES_DEBUG(msg)
+#endif
+
 // ***************************************
 // *********** Resin building
 // ***************************************
@@ -271,8 +279,8 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 // ***************************************
 /datum/action/xeno_action/activable/healing_infusion
 	name = "Healing Infusion"
-	action_icon_state = "heal_xeno"
-	mechanics_text = "Psychically infuses a friendly xeno with regenerative energies, greatly improving its natural healing."
+	action_icon_state = "healing_infusion"
+	mechanics_text = "Psychically infuses a friendly xeno with regenerative energies, greatly improving its natural healing. Doesn't work if the target can't naturally heal."
 	cooldown_timer = 5 SECONDS
 	plasma_cost = 200
 	keybind_signal = COMSIG_XENOABILITY_HEALING_INFUSION
@@ -348,40 +356,44 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	GLOB.round_statistics.hivelord_healing_infusions++ //Statistics
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "hivelord_healing_infusions")
 
-	RegisterSignal(patient, COMSIG_XENOMORPH_HEALTH_REGEN, .proc/healing_infusion_regeneration, patient) //Register so we apply the effect whenever the target heals
-	RegisterSignal(patient, COMSIG_XENOMORPH_SUNDER_REGEN, .proc/healing_infusion_sunder_regeneration, patient) //Register so we apply the effect whenever the target heals
+	RegisterSignal(patient, COMSIG_XENOMORPH_HEALTH_REGEN, .proc/healing_infusion_regeneration) //Register so we apply the effect whenever the target heals
+	RegisterSignal(patient, COMSIG_XENOMORPH_SUNDER_REGEN, .proc/healing_infusion_sunder_regeneration) //Register so we apply the effect whenever the target heals
 
 
 ///Called when the target xeno regains HP via heal_wounds in life.dm
-/datum/action/xeno_action/activable/healing_infusion/proc/healing_infusion_regeneration(datum/source, mob/living/carbon/xenomorph/patient, healing_infusion_filter)
+/datum/action/xeno_action/activable/healing_infusion/proc/healing_infusion_regeneration(datum/source, mob/living/carbon/xenomorph/patient)
 	SIGNAL_HANDLER
 
 	if(!patient.get_filter("hivelord_healing_infusion_outline"))
 		healing_infusion_deactivate(patient) //if we somehow lose the buff; maybe there's a purge mechanic later, whatever
 		return
 
+	HIVELORD_ABILITIES_DEBUG("healing_infusion_regeneration triggered successfully. Patient: [patient]")
+
 	new /obj/effect/temp_visual/healing(get_turf(patient)) //Cool SFX
 
-	var/amount = 10 + patient.maxHealth * 0.05 //Base amount 10 HP plus 5% of max
+	var/total_heal_amount = 10 + patient.maxHealth * 0.05 //Base amount 10 HP plus 5% of max
 	if(patient.recovery_aura)
-		amount *= (1 + patient.recovery_aura * 0.1) //Recovery aura multiplier; 10% bonus per full level
+		total_heal_amount *= (1 + patient.recovery_aura * 0.1) //Recovery aura multiplier; 10% bonus per full level
 
+	HIVELORD_ABILITIES_DEBUG("Healing pool from Healing Infusion Pre-Brute, Pre-Burn: [total_heal_amount]")
 	//Healing pool has been calculated; now to decrement it
-	var/brute_amount = min(patient.bruteloss, amount)
+	var/brute_amount = min(patient.bruteloss, total_heal_amount)
 	if(brute_amount)
-		patient.adjustBruteLoss(-brute_amount)
-		amount = max(0, amount - brute_amount) //Decrement from our heal pool the amount of brute healed
+		patient.adjustBruteLoss(-brute_amount, updating_health = TRUE)
+		total_heal_amount = max(0, total_heal_amount - brute_amount) //Decrement from our heal pool the amount of brute healed
 
-	if(!amount) //no healing left, no need to continue
+	HIVELORD_ABILITIES_DEBUG("Healing pool from Healing Infusion Post-Brute, Pre-Burn: [total_heal_amount]")
+	if(!total_heal_amount) //no healing left, no need to continue
 		return
 
-	var/burn_amount = min(patient.fireloss, amount)
+	var/burn_amount = min(patient.fireloss, total_heal_amount)
 	if(burn_amount)
-		patient.adjustFireLoss(-amount, updating_health = TRUE)
-		amount = max(0, amount - burn_amount) //Decrement from our heal pool the amount of burn healed
+		patient.adjustFireLoss(-burn_amount, updating_health = TRUE)
 
+	HIVELORD_ABILITIES_DEBUG("Healing pool from Healing Infusion Post-Brute, Post-Burn: [max(0, total_heal_amount - burn_amount)]")
 
-///Called when the target xeno regains HP via heal_wounds in life.dm
+///Called when the target xeno regains Sunder via heal_wounds in life.dm
 /datum/action/xeno_action/activable/healing_infusion/proc/healing_infusion_sunder_regeneration(datum/source, mob/living/carbon/xenomorph/patient)
 	SIGNAL_HANDLER
 
@@ -389,9 +401,12 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 		healing_infusion_deactivate(patient) //if we somehow lose the buff; maybe there's a purge mechanic later, whatever
 		return
 
+	HIVELORD_ABILITIES_DEBUG("healing_infusion_sunder_regeneration triggered successfully. Patient: [patient]")
+
 	new /obj/effect/temp_visual/telekinesis(get_turf(patient)) //Visual confirmation
 
-	patient.adjust_sunder(-3 * (1 + patient.recovery_aura * 0.1)) //-1 + a 10% bonus per rank of our recovery aura
+	patient.adjust_sunder(-3 * (1 + patient.recovery_aura * 0.1)) //10% bonus per rank of our recovery aura
+	HIVELORD_ABILITIES_DEBUG("Sunder reduction from Healing Infusion: [patient.adjust_sunder(-3 * (1 + patient.recovery_aura * 0.1))]")
 
 
 ///Called when the duration of healing infusion lapses
@@ -406,3 +421,6 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 
 	to_chat(patient, "<span class='xenodanger'>We are no longer benefitting from [src].</span>") //Let the target know
 	patient.playsound_local(patient, 'sound/voice/hiss5.ogg', 25)
+
+#undef DEBUG_HIVELORD_ABILITIES
+#undef HIVELORD_ABILITIES_DEBUG
