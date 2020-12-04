@@ -1,0 +1,5 @@
+author: "Wayland-Smithy"
+delete-after: True
+changes: 
+  - bugfix: "Fixed Crest Toss bypassing CanPass checks like for Xeno Silo fog."
+  - bugfix: "Fixed Crest Toss failing from \"there's no room\" when there is."
