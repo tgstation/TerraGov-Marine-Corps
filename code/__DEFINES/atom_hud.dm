@@ -6,10 +6,6 @@
 #define STATUS_HUD_SIMPLE			"status_hud_simple" // basic statuses: dead, asleep, knocked out, sluggish, etc.
 #define STATUS_HUD					"status_hud" // medical hud, shows simple status plus defib stages.
 #define WANTED_HUD					"wanted_hud" // wanted, released, parroled, security status
-#define IMPLOYAL_HUD				"loyalty_implant_hud" // loyality implant
-#define IMPCHEM_HUD					"chemical_implant_hud" // chemical implant
-#define IMPTRACK_HUD				"tracking_implant_hud" // tracking implant
-#define SPECIALROLE_HUD				"antag_hud" // AntagHUD image
 #define XENO_EMBRYO_HUD				"xeno_embryo_hud" // xeno larval stage.
 #define HEALTH_HUD_XENO				"xeno_health_hud" //health HUD for xenos
 #define SQUAD_HUD					"squad_hud" //squad hud showing who's leader, corpsman, etc for each squad.
@@ -17,7 +13,6 @@
 #define PHEROMONE_HUD				"xeno_pheromone_hud" //indicates which pheromone is active on a xeno.
 #define QUEEN_OVERWATCH_HUD			"xeno_overwatch_hud" //indicates which xeno the queen is overwatching.
 #define ORDER_HUD					"human_order_hud" //shows what orders are applied to marines
-#define AI_DETECT_HUD				"ai_detect_hud" //hud for displaying the AI eye's location
 #define PAIN_HUD					"pain_hud" //displays human pain / preceived health.
 #define ARMOR_SUNDER_HUD			"armor_sunder_hud" //displays how much sunder has been applied.
 #define XENO_REAGENT_HUD			"xeno_reagent_hud" // displays sign based on reagent in human

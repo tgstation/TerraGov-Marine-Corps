@@ -429,7 +429,7 @@
 
 
 /datum/atom_hud/security
-	hud_icons = list(IMPTRACK_HUD, IMPLOYAL_HUD, IMPCHEM_HUD, WANTED_HUD)
+	hud_icons = list(WANTED_HUD)
 
 
 /mob/living/carbon/human/proc/sec_hud_set_security_status()
@@ -518,14 +518,3 @@
 
 	hud_list[ORDER_HUD] = holder
 
-
-/datum/atom_hud/ai_detector
-	hud_icons = list(AI_DETECT_HUD)
-
-
-/datum/atom_hud/ai_detector/add_hud_to(mob/M)
-	. = ..()
-	if(M && (length(hudusers) == 1))
-		for(var/V in GLOB.aiEyes)
-			var/mob/camera/aiEye/E = V
-			E.update_ai_detect_hud()
