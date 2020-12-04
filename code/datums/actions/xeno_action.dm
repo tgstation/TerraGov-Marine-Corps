@@ -205,7 +205,6 @@
 	on_activation()
 
 /datum/action/xeno_action/activable/action_activate()
-
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.selected_ability == src)
 		to_chat(X, "You will no longer use [ability_name] with [X.middle_mouse_toggle ? "middle-click" :"shift-click"].")

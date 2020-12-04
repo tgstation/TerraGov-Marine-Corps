@@ -167,7 +167,7 @@
 
 /obj/effect/alien/hivemindcore/examine(mob/user)
 	. = ..()
-	if(!isxeno(user) && isobserver(user))
+	if(!isxeno(user) && !isobserver(user))
 		return
 	to_chat(user, "<span class='xenowarning'>This [name] belongs to [parent.name].\n It has [obj_integrity] of [max_integrity] health remaining.</br></span>")
 
@@ -180,7 +180,6 @@
 		return
 
 	//If we're at max integrity, stop regenerating and processing.
-	STOP_PROCESSING(SSslowprocess, src)
 	return PROCESS_KILL
 
 
@@ -256,7 +255,7 @@
 	var/list/buffer_list = list() //Buffer list for randomization
 	var/list/details = list() //The actual final list for the announcement
 
-	for(var/area/core_areas in world) //Build the list of areas on the core's Z.
+	for(var/area/core_areas in SSmapping.areas_in_z["[z]"]) //Build the list of areas on the core's Z.
 		if(core_areas.z != the_core.z) //Must be on the same Z
 			continue
 		decoy_area_list += core_areas //Add to the list of potential decoys
@@ -273,9 +272,8 @@
 		++decoys
 
 	var/buffer_list_pick
-	while(length(buffer_list) > 0) //Now populate our randomized order list for the announcement
-		buffer_list_pick = pick(buffer_list) //Get random entry in the list
-		buffer_list -= buffer_list_pick //Remove that random entry from the buffer
+	while(length(buffer_list)) //Now populate our randomized order list for the announcement
+		buffer_list_pick = pick_n_take(buffer_list) //Get and remove random entry in the list
 		if(buffer_list.len > 0) //Add that random entry to the final list of areas
 			details += ("[buffer_list_pick], ")
 		else
@@ -284,7 +282,7 @@
 	if(is_centcom_level(core))
 		return FALSE
 
-	var/hivemind_message = "<span class='alert'>[name] has moved its core to [real_area.name]!</span>" //Alert our fellow benos
+	var/hivemind_message = "<span class='alert'>[name] has moved its core to [real_area.name] (X: [core.x], Y: [core.y])!</span>" //Alert our fellow benos
 	notify_ghosts(hivemind_message, source = src, action = NOTIFY_ORBIT)
 	INVOKE_ASYNC(hive, /datum/hive_status/proc/do_hive_message, hivemind_message, src)
 

@@ -28,26 +28,32 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	if(QDELETED(target))
-		return FALSE
 
-	var/mob/living/carbon/xenomorph/hivemind/X = owner
 	var/turf/T = get_turf(target)
 
-	if(!istype(T))
-		if(!silent)
-			to_chat(owner, "<span class='xenodanger'>We can't transfer our core here!</span>")
-		return FALSE
-
-	if(!X.Adjacent(T))
+	if(!owner.Adjacent(T))
 		if(!silent)
 			to_chat(owner, "<span class='xenodanger'>We can only reposition to a space adjacent to us!</span>")
 		return FALSE
 
-	if(!check_build_location(T, X))
-		if(!silent)
-			to_chat(owner, "<span class='xenodanger'>We can't transfer our core here!</span>")
+	var/mob/living/carbon/xenomorph/hivemind/bigbrain = owner
+	if(T.z != bigbrain.core.z)
+		to_chat(owner, "<span class='xenodanger'>We cannot transfer our core here.</span>")
 		return FALSE
+
+	if(T.density) //Check to see if there's room
+		to_chat(owner, "<span class='xenodanger'>We require adequate room to transfer our core.</span>")
+		return FALSE
+
+	if(!locate(/obj/effect/alien/weeds) in T) //Make sure we actually have weeds at our destination.
+		to_chat(owner, "<span class='xenodanger'>There are no weeds for us to transfer our consciousness to!</span>")
+		return FALSE
+
+	for(var/obj/structure/O in T.contents)
+		if(O.density && !CHECK_BITFIELD(O.flags_atom, ON_BORDER))
+			to_chat(owner, "<span class='xenodanger'>An object is occupying this space!</span>")
+			return FALSE
+
 
 /datum/action/xeno_action/activable/reposition_core/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/hivemind/X = owner
@@ -61,9 +67,8 @@
 
 	succeed_activate()
 	if(!do_after(X, delay, TRUE, null, BUSY_ICON_BUILD))
-		if(!QDELETED(src))
-			to_chat(X, "<span class='xenodanger'>We abort transferring our consciousness, expending our precious plasma for naught.</span>")
-			return fail_activate()
+		to_chat(X, "<span class='xenodanger'>We abort transferring our consciousness, expending our precious plasma for naught.</span>")
+		return fail_activate()
 
 	if(!can_use_ability(T, FALSE, XACT_IGNORE_PLASMA))
 		return fail_activate()
@@ -85,32 +90,6 @@
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "hivemind_reposition_core_uses")
 
 	X.hivemind_core_alert() //Alert the hive and marines
-
-/datum/action/xeno_action/activable/reposition_core/proc/check_build_location(turf/T, mob/living/carbon/xenomorph/hivemind/X)
-
-	if(!X || !T) //Sanity
-		return FALSE
-
-	if(T.z != X.core.z)
-		to_chat(X, "<span class='xenodanger'>We cannot transfer our core here.</span>")
-		return FALSE
-
-	if(T.density) //Check to see if there's room
-		to_chat(X, "<span class='xenodanger'>We require adequate room to transfer our core.</span>")
-		return FALSE
-
-	if(!locate(/obj/effect/alien/weeds) in T) //Make sure we actually have weeds at our destination.
-		to_chat(X, "<span class='xenodanger'>[T.name] [T.x] [T.y]</span>")
-		to_chat(X, "<span class='xenodanger'>There are no weeds for us to transfer our consciousness to!</span>")
-		return FALSE
-
-	for(var/obj/structure/O in T.contents)
-		if(O.density && !CHECK_BITFIELD(O.flags_atom, ON_BORDER))
-			to_chat(X, "<span class='xenodanger'>An object is occupying this space!</span>")
-			return FALSE
-
-	return TRUE
-
 
 
 // ***************************************
@@ -134,16 +113,15 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	if(QDELETED(target))
-		return FALSE
 
-	var/mob/living/victim = target
 	var/mob/living/carbon/xenomorph/hivemind/X = owner
 
 	if(!isliving(target))
 		if(!silent)
 			to_chat(X, "<span class='xenowarning'>Our mind cannot interface with such an entity!</spam>")
 		return FALSE
+
+	var/mob/living/victim = target
 
 	if(isxeno(victim))
 		var/mob/living/carbon/xenomorph/alien = victim
@@ -215,8 +193,6 @@
 
 
 /datum/action/xeno_action/activable/mind_wrack/proc/calculate_power(power_level, mob/living/carbon/xenomorph/hivemind/X)
-	if(isnull(X))
-		return
 	switch(power_level)
 		if(0 to HIVEMIND_MIND_WRACK_POWER_MINIMUM)
 			return "<b>minimum</b>"
