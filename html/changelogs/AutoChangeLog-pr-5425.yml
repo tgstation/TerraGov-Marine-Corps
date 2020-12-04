@@ -1,0 +1,4 @@
+author: "SplinterGP"
+delete-after: True
+changes: 
+  - bugfix: "fixes a runtime caused by non damage projectiles not sending the proj() to airburst() by shield."
