@@ -213,6 +213,8 @@
 	GLOB.round_statistics.hivemind_mind_wrack_uses++ //Increment the statistics
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "hivemind_reposition_wrack_uses")
 
+	var/datum/action/xeno_action/activable/psychic_cure/hivemind/psychic_cure_cooldown = locate(/datum/action/xeno_action/activable/psychic_cure/hivemind) in X.xeno_abilities //Shared cooldown with Psychic Cooldown
+	psychic_cure_cooldown.add_cooldown()
 
 /datum/action/xeno_action/activable/mind_wrack/proc/calculate_power(power_level, mob/living/carbon/xenomorph/hivemind/X)
 	if(isnull(X))
@@ -228,3 +230,14 @@
 			return "<b>high</b>"
 		if(HIVEMIND_MIND_WRACK_POWER_MAXIMUM to INFINITY)
 			return "<b>MAXIMUM</b>"
+
+// ***************************************
+// *********** Psychic Cure, Hivemind
+// ***************************************
+/datum/action/xeno_action/activable/psychic_cure/hivemind
+
+/datum/action/xeno_action/activable/psychic_cure/hivemind/use_ability(atom/A)
+	. = ..()
+	var/mob/living/carbon/xenomorph/hivemind/bigbrain = owner
+	var/datum/action/xeno_action/activable/mind_wrack/mind_wrack_cooldown = locate(/datum/action/xeno_action/activable/mind_wrack) in bigbrain.xeno_abilities //Shared cooldown with Mind Wrack
+	mind_wrack_cooldown.add_cooldown()
