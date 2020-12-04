@@ -36,8 +36,10 @@
 	. = ..()
 	core = new(loc)
 	core.parent = src
+	update_core()
 	RegisterSignal(src, COMSIG_LIVING_WEEDS_ADJACENT_REMOVED, .proc/check_weeds_and_move)
 	RegisterSignal(src, COMSIG_XENOMORPH_CORE_RETURN, .proc/return_to_core)
+	hivemind_core_alert() //Alert the hive and marines
 
 /mob/living/carbon/xenomorph/hivemind/Destroy()
 	if(!QDELETED(core))
@@ -157,10 +159,30 @@
 	icon = 'icons/Xeno/weeds.dmi'
 	icon_state = "weed_hivemind4"
 	var/mob/living/carbon/xenomorph/hivemind/parent
+	var/core_regeneration = 50 //Regenerates this amount once every 5 seconds.
 
 /obj/effect/alien/hivemindcore/Initialize(mapload)
 	. = ..()
 	set_light(7, 5, LIGHT_COLOR_PURPLE)
+
+/obj/effect/alien/hivemindcore/examine(mob/user)
+	. = ..()
+	if(!isxeno(user) && isobserver(user))
+		return
+	to_chat(user, "<span class='xenowarning'>This [name] belongs to [parent.name].\n It has [obj_integrity] of [max_integrity] health remaining.</br></span>")
+
+
+///Core regenerates when it is at less than maximum hit points
+/obj/effect/alien/hivemindcore/process()
+	//Regenerate if we're at less than max integrity
+	if(obj_integrity < max_integrity)
+		obj_integrity = min(max_integrity, obj_integrity + parent.xeno_caste.core_regeneration) //Core regenerates.
+		return
+
+	//If we're at max integrity, stop regenerating and processing.
+	STOP_PROCESSING(SSslowprocess, src)
+	return PROCESS_KILL
+
 
 /obj/effect/alien/hivemindcore/Destroy()
 	if(isnull(parent))
@@ -168,6 +190,7 @@
 	parent.playsound_local(parent, get_sfx("alien_help"), 30, TRUE)
 	to_chat(parent, "<span class='xenohighdanger'>Your core has been destroyed!</span>")
 	xeno_message("<span class='xenoannounce'>A sudden tremor ripples through the hive... \the [parent] has been slain!</span>", 2, parent.hivenumber)
+	STOP_PROCESSING(SSslowprocess, src)
 	parent.ghostize()
 	if(!QDELETED(parent))
 		QDEL_NULL(parent)
@@ -191,11 +214,80 @@
 	. = ..()
 	if(isnull(parent))
 		return
+
+	if(!CHECK_BITFIELD(datum_flags, DF_ISPROCESSING))
+		START_PROCESSING(SSslowprocess, src)
+
 	var/health_percent = round((max_integrity / obj_integrity) * 100)
 	switch(health_percent)
 		if(-INFINITY to 25)
-			to_chat(parent, "<span class='xenohighdanger'>Your core is under attack, and dangerous low on health!</span>")
+			to_chat(parent, "<span class='xenohighdanger'>Your core is under attack, and is dangerously low on health!</span>")
 		if(26 to 75)
-			to_chat(parent, "<span class='xenodanger'>Your core is under attack, and low on health!</span>")
+			to_chat(parent, "<span class='xenodanger'>Your core is under attack, and is low on health!</span>")
 		if(76 to INFINITY)
 			to_chat(parent, "<span class='xenodanger'>Your core is under attack!</span>")
+
+
+/mob/living/carbon/xenomorph/hivemind/upgrade_xeno(newlevel) //where we also upgrade the max health of our core and restore it to maximum health
+	. = ..()
+	to_chat(src, "<span class='xenonotice'>Our core strengthens, and becomes more resilient!</span>")
+	update_core()
+	core.obj_integrity = core.max_integrity
+
+
+///Update the core as a failsafe in the event that upgrade xeno didn't trigger, such as in the case of admin spawning, etc.
+/mob/living/carbon/xenomorph/hivemind/proc/update_core()
+
+	core.max_integrity = xeno_caste.core_maximum_hitpoints
+	core.core_regeneration = xeno_caste.core_regeneration
+
+	if(!CHECK_BITFIELD(core.datum_flags, DF_ISPROCESSING)) //Process and begin regenerating just in case our new max integrity is greater than our existing integrity upon updating
+		START_PROCESSING(SSslowprocess, src)
+
+/mob/living/carbon/xenomorph/hivemind/proc/hivemind_core_alert()
+
+	var/obj/effect/alien/hivemindcore/the_core = core
+
+	if(!the_core) //Sanity check
+		return FALSE
+
+	var/list/decoy_area_list = list()
+	var/area/real_area = get_area(the_core) //Set our real area
+	var/list/buffer_list = list() //Buffer list for randomization
+	var/list/details = list() //The actual final list for the announcement
+
+	for(var/area/core_areas in world) //Build the list of areas on the core's Z.
+		if(core_areas.z != the_core.z) //Must be on the same Z
+			continue
+		decoy_area_list += core_areas //Add to the list of potential decoys
+
+	decoy_area_list -= real_area //Remove the real area from our decoy list.
+	buffer_list += sanitize(real_area.name) //Add the real location to our buffer list
+
+	var/decoys
+	var/area/decoy_area
+	while(decoys < HIVEMIND_REPOSITION_CORE_DECOY_NUMBER) //Populate our list of areas
+		decoy_area = pick(decoy_area_list) //Pick random area for our  decoy.
+		decoy_area_list -= decoy_area //Remove it from our list of possible decoy options
+		buffer_list += sanitize(decoy_area.name)
+		++decoys
+
+	var/buffer_list_pick
+	while(length(buffer_list) > 0) //Now populate our randomized order list for the announcement
+		buffer_list_pick = pick(buffer_list) //Get random entry in the list
+		buffer_list -= buffer_list_pick //Remove that random entry from the buffer
+		if(buffer_list.len > 0) //Add that random entry to the final list of areas
+			details += ("[buffer_list_pick], ")
+		else
+			details += ("[buffer_list_pick].")
+
+	if(is_centcom_level(core))
+		return FALSE
+
+	var/hivemind_message = "<span class='alert'>[name] has moved its core to [real_area.name] (X: [core.x], Y: [core.y])!</span>" //Alert our fellow benos
+	notify_ghosts(hivemind_message, source = src, action = NOTIFY_ORBIT)
+	xeno_message(hivemind_message, 3, hivenumber)
+
+	priority_announce("<b>Attention:</b> Anomalous energy readings detected in the following areas: <b>[details.Join(" ")]</b> Further investigation advised.", "Priority Alert", sound = 'sound/AI/commandreport.ogg') //Alert marines with hints
+
+	return TRUE

@@ -79,3 +79,8 @@
 	icon = 'icons/effects/heavyimpact.dmi'
 	icon_state = "heavyimpact"
 	duration = 13
+
+/obj/effect/temp_visual/telepathy
+	name = "telepathic force"
+	icon_state = "spooky"
+	duration = 0.5 SECONDS

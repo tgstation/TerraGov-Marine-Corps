@@ -538,6 +538,10 @@
 #define COMSIG_XENOABILITY_PUNCH "xenoability_punch"
 #define COMSIG_XENOABILITY_GRAPPLE_TOSS "xenoability_grapple_toss"
 
+#define COMSIG_XENOABILITY_REPOSITION_CORE "xenoability_reposition_core"
+#define COMSIG_XENOABILITY_MIND_WRACK "xenoability_mind_wrack"
+
+
 // human signals for keybindings
 #define COMSIG_KB_QUICKEQUIP "keybinding_quickequip"
 #define COMSIG_KB_HOLSTER "keybinding_holster"

@@ -43,16 +43,24 @@
 	spit_types = list()
 
 	// *** Pheromones *** //
-	aura_strength = 2.5 //hivemind's aura is not extremely strong, but better than Drones.
+	aura_strength = 2 //hivemind's aura is not extremely strong, but better than Drones.
 	aura_allowed = list("frenzy", "warding", "recovery")
 
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/xeno_action/return_to_core,
+		/datum/action/xeno_action/activable/reposition_core,
 		/datum/action/xeno_action/plant_weeds/slow,
 		/datum/action/xeno_action/psychic_whisper,
 		/datum/action/xeno_action/activable/rally_hive/hivemind,
+		/datum/action/xeno_action/activable/psychic_cure,
+		/datum/action/xeno_action/toggle_pheromones
 	)
+
+	// *** Core Durability *** //
+	core_regeneration = 50
+	core_maximum_hitpoints = 600
+
 
 /datum/xeno_caste/hivemind/young
 	upgrade_name = "Young"
@@ -64,28 +72,40 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Plasma *** //
-	plasma_max = 200 //  75 is the cost of plant_weed
+	plasma_max = 250 //  75 is the cost of plant_weed
 	plasma_gain = 45 // This is 3 weed every 10 secs.
 
 	// *** Evolution *** //
 	upgrade_threshold = 500
 
+	// *** Pheromones *** //
+	aura_strength = 3
+	aura_allowed = list("frenzy", "warding", "recovery")
+
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/xeno_action/return_to_core,
+		/datum/action/xeno_action/activable/reposition_core,
 		/datum/action/xeno_action/plant_weeds/slow,
 		/datum/action/xeno_action/psychic_whisper,
 		/datum/action/xeno_action/activable/psychic_cure,
 		/datum/action/xeno_action/activable/rally_hive/hivemind,
+		/datum/action/xeno_action/toggle_pheromones,
+		/datum/action/xeno_action/choose_resin,
+		/datum/action/xeno_action/activable/secrete_resin/slow,
+		/datum/action/xeno_action/activable/mind_wrack,
 	)
 
+	// *** Core Durability *** //
+	core_regeneration = 75
+	core_maximum_hitpoints = 800
 
 /datum/xeno_caste/hivemind/elder
 	upgrade_name = "Elder"
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Plasma *** //
-	plasma_max = 250
+	plasma_max = 300
 	plasma_gain = 60 // This is 4 weed every 10 secs.
 
 	// *** Health *** //
@@ -94,15 +114,27 @@
 	// *** Evolution *** //
 	upgrade_threshold = 700
 
+	// *** Pheromones *** //
+	aura_strength = 3.3
+	aura_allowed = list("frenzy", "warding", "recovery")
+
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/xeno_action/return_to_core,
+		/datum/action/xeno_action/activable/reposition_core,
 		/datum/action/xeno_action/plant_weeds/slow,
 		/datum/action/xeno_action/psychic_whisper,
 		/datum/action/xeno_action/activable/psychic_cure,
 		/datum/action/xeno_action/toggle_pheromones,
 		/datum/action/xeno_action/activable/rally_hive/hivemind,
+		/datum/action/xeno_action/choose_resin,
+		/datum/action/xeno_action/activable/secrete_resin/slow,
+		/datum/action/xeno_action/activable/mind_wrack,
 	)
+
+	// *** Core Durability *** //
+	core_regeneration = 90
+	core_maximum_hitpoints = 900
 
 /datum/xeno_caste/hivemind/ancient
 	upgrade_name = "Ancient"
@@ -110,7 +142,7 @@
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Plasma *** //
-	plasma_max = 300
+	plasma_max = 350
 	plasma_gain = 75 // This is 5 weed every 10 secs.
 
 	// *** Health *** //
@@ -119,14 +151,24 @@
 	// *** Evolution *** //
 	upgrade_threshold = 1000
 
+	// *** Pheromones *** //
+	aura_strength = 3.5
+	aura_allowed = list("frenzy", "warding", "recovery")
+
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/xeno_action/return_to_core,
+		/datum/action/xeno_action/activable/reposition_core,
 		/datum/action/xeno_action/plant_weeds/slow,
 		/datum/action/xeno_action/psychic_whisper,
 		/datum/action/xeno_action/activable/psychic_cure,
-		/datum/action/xeno_action/choose_resin,
 		/datum/action/xeno_action/toggle_pheromones,
+		/datum/action/xeno_action/choose_resin,
 		/datum/action/xeno_action/activable/secrete_resin/slow,
 		/datum/action/xeno_action/activable/rally_hive/hivemind,
+		/datum/action/xeno_action/activable/mind_wrack,
 	)
+
+	// *** Core Durability *** //
+	core_regeneration = 100
+	core_maximum_hitpoints = 1000

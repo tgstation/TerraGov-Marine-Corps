@@ -63,3 +63,5 @@ GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 	var/xeno_headbites = 0
 	var/xeno_silo_corpses = 0
 	var/xeno_rally_hive = 0
+	var/hivemind_reposition_core_uses = 0
+	var/hivemind_mind_wrack_uses = 0
