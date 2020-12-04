@@ -254,18 +254,31 @@
 
 /obj/machinery/floodlightcombat/update_icon()
 	. = ..()
-	var/L = Brightness/4
-	var/list/E = src.contents
-	if(E.len = L)
-		if(!On || !L)
-			icon_state = "floodlightcombat_off"
-		else
-			icon_state = "floodlightcombat_undamaged_[L]"
-		return
-	if(!On)
-		icon_state = "floodlight_damaged_off_[L]"
-	else
-		icon_state = "floodlight_damaged_[L]"
+	var/A
+	var/B
+	var/list/Contents = src.contents
+	var/obj/item/light_bulb/tube/T = /obj/item/light_bulb/tube
+	var/WorkingLights
+	var/BrokenLights
+	cut_overlays()
+	for(T in Contents)
+		if(T.status == 0)
+			WorkingLights++
+		if(T.status == 2)
+			BrokenLights++
+	while(WorkingLights)
+		A += 5
+		B += 10
+		var/icon/lightoverlay = image('icons/obj/machines/floodlight.dmi', src, "floodlightcombat_workinglight", -1, NORTH, A, B)
+		overlays += lightoverlay
+		WorkingLights--
+	while(BrokenLights)
+		A += 5
+		B += 10
+		var/icon/lightoverlay2 = image('icons/obj/machines/floodlight.dmi', src, "floodlightcombat_workinglight", -2, SOUTH, A, B)
+		overlays += lightoverlay2
+		BrokenLights--
+
 
 
 /obj/machinery/floodlightcombat/proc/SwitchLight()
