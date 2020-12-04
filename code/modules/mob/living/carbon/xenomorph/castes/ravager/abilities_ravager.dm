@@ -299,6 +299,7 @@
 
 		L.adjust_stagger(rage_power_radius * 0.5) //Apply soft CC debuffs
 		L.add_slowdown(rage_power_radius * 0.5)
+		to_chat(L, "<span class='xenohighdanger'>The [X]'s terrible roar penetrates your senses, leaving you staggered.</span>")
 
 	X.add_filter("ravager_rage_outline", 5, list("type" = "outline", "size" = 1.5, "color" = COLOR_RED)) //Set our cool aura; also confirmation we have the buff
 
