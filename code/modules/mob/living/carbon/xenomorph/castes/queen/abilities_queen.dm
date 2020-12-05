@@ -116,7 +116,7 @@
 	plasma_cost = 250
 	cooldown_timer = 100 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
-	keybind_signal = COMSIG_XENOABILITY_SCREECH
+	keybind_signal = COMSIG_XENOABILITY_CORRUPT_GENERATOR
 
 /datum/action/xeno_action/activable/screech/on_cooldown_finish()
 	to_chat(owner, "<span class='warning'>We feel our throat muscles vibrate. We are ready to screech again.</span>")
@@ -709,10 +709,10 @@
 
 /datum/action/xeno_action/activable/corrupt_generator
 	name = "Corrupt generator"
-	action_icon_state = "xeno_deevolve"
+	action_icon_state = "tunnel"
 	mechanics_text = "Corrupt a generator to begin increasing the psycic energy of the hive."
 	plasma_cost = 200
-	keybind_signal = COMSIG_XENOABILITY_DEEVOLVE //TIVI MARK
+	keybind_signal = COMSIG_XENOABILITY_CORRUPT_GENERATOR
 
 /datum/action/xeno_action/activable/corrupt_generator/can_use_ability(atom/A, silent, override_flags)
 	. = ..()
@@ -732,10 +732,10 @@
 
 /datum/action/xeno_action/summon_king
 	name = "Summon Xenomorph King"
-	action_icon_state = "xeno_deevolve"
+	action_icon_state = "grow_ovipostor"
 	mechanics_text = "Deploy a pod to summon a xeno king."
 	plasma_cost = 0 //hive points cost
-	keybind_signal = COMSIG_XENOABILITY_DEEVOLVE //TIVI MARK
+	keybind_signal = COMSIG_XENOABILITY_SUMMON_KING_POD
 
 /datum/action/xeno_action/summon_king/can_use_action(silent, override_flags)
 	. = ..()

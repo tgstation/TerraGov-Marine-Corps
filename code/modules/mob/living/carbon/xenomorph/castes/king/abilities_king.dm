@@ -1,12 +1,12 @@
 /datum/action/xeno_action/activable/whisper
 	name = "Whisper"
-	action_icon_state = "screech"
+	action_icon_state = "emit_neurogas2"
 	mechanics_text = "A large area attack that distorts marine vision and accuracy in a radius."
 	ability_name = "whisper"
 	plasma_cost = 250
 	cooldown_timer = 180 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
-	keybind_signal = COMSIG_XENOABILITY_SCREECH //tivi mark
+	keybind_signal = COMSIG_XENOABILITY_WHISPER
 
 /datum/action/xeno_action/activable/whisper/on_cooldown_finish()
 	to_chat(owner, "<span class='warning'>Our mind floods with the whispers of our slain sisters. We are ready to whisper again.</span>")
@@ -16,7 +16,7 @@
 	. = ..()
 	if(!.)
 		return
-	if(!length(GLOB.humans_by_zlevel[owner.z]))
+	if(!length(GLOB.humans_by_zlevel["[owner.z]"]))
 		return FALSE
 
 /datum/action/xeno_action/activable/whisper/use_ability(atom/A)
@@ -29,10 +29,8 @@
 	X.update_icon()
 	playsound(X.loc, 'sound/voice/king_xeno_whispers.ogg', 125, 0)
 	X.visible_message("<span class='xenohighdanger'>\The [X] opens its jaw and silently screeches!</span>")
-	GLOB.round_statistics.queen_screech++
-	SSblackbox.record_feedback("tally", "round_statistics", 1, "queen_screech")
 
-	for(var/mob/living/carbon/human/victim as() in GLOB.humans_by_zlevel[X.z])
+	for(var/mob/living/carbon/human/victim as() in GLOB.humans_by_zlevel["[X.z]"])
 		if(get_dist(victim, X) > WORLD_VIEW_NUM+1)
 			continue
 
@@ -65,13 +63,12 @@
 
 /datum/action/xeno_action/activable/area_crush
 	name = "Gravity Crush"
-	action_icon_state = "screech"
+	action_icon_state = "fortify"
 	mechanics_text = "Increases the localized gravity in an area and crushes things."
 	ability_name = "Gravity crush"
 	plasma_cost = 100
 	cooldown_timer = 30 SECONDS
-	keybind_flags = XACT_KEYBIND_USE_ABILITY//mark
-	keybind_signal = COMSIG_XENOABILITY_SCREECH //tivi mark
+	keybind_signal = COMSIG_XENOABILITY_GRAVITY_CRUSH
 
 /datum/action/xeno_action/activable/area_crush/on_cooldown_finish()
 	to_chat(owner, "<span class='warning'>Our psychic aura restores itself. We are ready to area crush again.</span>")
@@ -102,13 +99,13 @@
 
 /datum/action/xeno_action/psychic_summon
 	name = "Psychic Summon"
-	action_icon_state = "screech"
+	action_icon_state = "stomp"
 	mechanics_text = "Summons all xenos in a hive to the caller's location, uses all plasma to activate."
 	ability_name = "Psychic summon"
 	plasma_cost = 1100 //uses all an elder kings plasma
 	cooldown_timer = 10 MINUTES
-	keybind_flags = XACT_KEYBIND_USE_ABILITY//mark
-	keybind_signal = COMSIG_XENOABILITY_SCREECH //tivi mark
+	keybind_flags = XACT_KEYBIND_USE_ABILITY
+	keybind_signal = COMSIG_XENOABILITY_HIVE_SUMMON
 
 /datum/action/xeno_action/activable/psychic_summon/on_cooldown_finish()
 	to_chat(owner, "<span class='warning'>The hives power swells. We may summon our sisters again.</span>")

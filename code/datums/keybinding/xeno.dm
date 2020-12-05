@@ -380,7 +380,19 @@
 	full_name = "Queen: Larva Growth"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_QUEEN_LARVAL_GROWTH
+/*
+/datum/keybinding/xeno/summon_king_pod
+	name = "corrupt_generator"
+	full_name = "Corrupt Generator"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_CORRUPT_GENERATOR
 
+/datum/keybinding/xeno/summon_king_pod
+	name = "summon_king_pod"
+	full_name = "Queen: Summon King Pod"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_SUMMON_KING_POD
+*/
 /datum/keybinding/xeno/ravager_charge
 	name = "ravager_charge"
 	full_name = "Ravager: Eviscerating Charge"
@@ -440,3 +452,22 @@
 	full_name = "Inject Egg (Neurogas)"
 	description = "Inject an egg with neurogas, killing the little one inside"
 	keybind_signal = COMSIG_XENOABILITY_INJECT_EGG_NEUROGAS
+/*
+/datum/keybinding/xeno/whisper
+	name = "whisper"
+	full_name = "Whisper"
+	description = "Release the souls of dead sisters and disrupt nearby tallhosts"
+	keybind_signal = COMSIG_XENOABILITY_WHISPER
+
+/datum/keybinding/xeno/gravity_crush
+	name = "gravity_crush"
+	full_name = "King: Gravity Crush"
+	description = "Rapidly increase the gravity in an area, damaging everything inside"
+	keybind_signal = COMSIG_XENOABILITY_GRAVITY_CRUSH
+
+/datum/keybinding/xeno/hive_summon
+	name = "hive_summon"
+	full_name = "King: Summon Hive"
+	description = "Summon the entire hive to your location"
+	keybind_signal = COMSIG_XENOABILITY_HIVE_SUMMON
+*/

@@ -328,7 +328,7 @@
 
 #define COMSIG_WARRIOR_USED_GRAB "warrior_used_grab"
 #define COMSIG_WARRIOR_NECKGRAB "warrior_neckgrab"
-	#define COMSIG_WARRIOR_CANT_NECKGRAB 1
+	#define COMSIG_WARRIOR_CANT_NECKGRAB (1<<0)
 
 #define COMSIG_XENOMORPH_PLASMA_REGEN "xenomorph_plasma_regen"
 
@@ -507,6 +507,8 @@
 #define COMSIG_XENOABILITY_QUEEN_GIVE_ORDER "xenoability_queen_give_order"
 #define COMSIG_XENOABILITY_DEEVOLVE "xenoability_deevolve"
 #define COMSIG_XENOABILITY_QUEEN_LARVAL_GROWTH "xenoability_queen_larval_growth"
+#define COMSIG_XENOABILITY_SUMMON_KING_POD "xenoability_summon_king_pod"
+#define COMSIG_XENOABILITY_CORRUPT_GENERATOR "xenoability_corrupt_generator"
 
 #define COMSIG_XENOABILITY_LAY_HIVEMIND "xenoability_lay_hivemind"
 #define COMSIG_XENOABILITY_LAY_EGG "xenoability_lay_egg"
@@ -529,6 +531,10 @@
 #define COMSIG_XENOABILITY_LUNGE "xenoability_lunge"
 #define COMSIG_XENOABILITY_FLING "xenoability_fling"
 #define COMSIG_XENOABILITY_PUNCH "xenoability_punch"
+
+#define COMSIG_XENOABILITY_WHISPER "xenoability_whisper"
+#define COMSIG_XENOABILITY_GRAVITY_CRUSH "xenoability_gravity_crush"
+#define COMSIG_XENOABILITY_HIVE_SUMMON "xenoability_hive_summon"
 
 // human signals for keybindings
 #define COMSIG_KB_QUICKEQUIP "keybinding_quickequip"
