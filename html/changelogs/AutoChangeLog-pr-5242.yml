@@ -1,0 +1,5 @@
+author: "Walarks"
+delete-after: True
+changes: 
+  - rscadd: "added Aim Mode to some rifles"
+  - refactor: "refactored IFF code"
