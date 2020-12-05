@@ -125,6 +125,14 @@
 	keybind_signal = COMSIG_XENOABILITY_MIND_WRACK
 	cooldown_timer = 60 SECONDS
 
+/datum/action/xeno_action/activable/mind_wrack/give_action(mob/living/L)
+	. = ..()
+	RegisterSignal(owner, COMSIG_XENOABILITY_USED_PSYCHIC_CURE_HIVEMIND, .proc/add_cooldown) //Shared cooldown with Psychic Cure, Hivemind
+
+/datum/action/xeno_action/activable/mind_wrack/remove_action(mob/living/L)
+	UnregisterSignal(owner, COMSIG_XENOABILITY_USED_PSYCHIC_CURE_HIVEMIND)
+	return ..()
+
 /datum/action/xeno_action/activable/mind_wrack/on_cooldown_finish()
 	owner.playsound_local(owner, 'sound/effects/ghost2.ogg', 25, TRUE)
 	to_chat(owner, "<span class='xenodanger'>We regain the strength to assault the minds of our enemies.</span>")
@@ -235,6 +243,14 @@
 // *********** Psychic Cure, Hivemind
 // ***************************************
 /datum/action/xeno_action/activable/psychic_cure/hivemind
+
+/datum/action/xeno_action/activable/psychic_cure/hivemind/give_action(mob/living/L)
+	. = ..()
+	RegisterSignal(owner, COMSIG_XENOABILITY_USED_MIND_WRACK, .proc/add_cooldown) //Shared cooldown with Mind Wrack
+
+/datum/action/xeno_action/activable/psychic_cure/hivemind/remove_action(mob/living/L)
+	UnregisterSignal(owner, COMSIG_XENOABILITY_USED_MIND_WRACK)
+	return ..()
 
 /datum/action/xeno_action/activable/psychic_cure/hivemind/use_ability(atom/A)
 	. = ..()

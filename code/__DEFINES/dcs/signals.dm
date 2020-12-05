@@ -541,6 +541,8 @@
 #define COMSIG_XENOABILITY_REPOSITION_CORE "xenoability_reposition_core"
 #define COMSIG_XENOABILITY_MIND_WRACK "xenoability_mind_wrack"
 
+#define COMSIG_XENOABILITY_USED_MIND_WRACK "xenoability_used_mind_wrack"
+#define COMSIG_XENOABILITY_USED_PSYCHIC_CURE_HIVEMIND "xenoability_hivemind_used_psychic_cure"
 
 // human signals for keybindings
 #define COMSIG_KB_QUICKEQUIP "keybinding_quickequip"
