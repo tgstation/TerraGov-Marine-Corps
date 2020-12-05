@@ -1,0 +1,4 @@
+author: "Wayland-Smithy"
+delete-after: True
+changes: 
+  - tweak: "Hivemind Collapse will now only occur faster if there is a living Drone or Larva when initiated."
