@@ -76,7 +76,17 @@
 		counter += 1.5 //Free burst time in ~15 min.
 
 	if(affected_mob.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_growthtoxin))
-		counter += 2.5 //Accelerates larval growth somewhat. You don't want this stuff in your body.
+		var/larval_growth_increment = 2.5 //Accelerates larval growth. You don't want this stuff in your body. Growth is *extremely* rapid with all 4 Defiler chems in the body.
+
+		//Other Defiler reagents compound and synergize multiplicatively with larval growth; they all metabolize very quickly however.
+		if(affected_mob.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile))
+			larval_growth_increment *= 2
+		if(affected_mob.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox))
+			larval_growth_increment *= 2
+		if(affected_mob.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
+			larval_growth_increment *= 2
+
+		counter += larval_growth_increment
 
 	if(affected_mob.reagents.get_reagent_amount(/datum/reagent/consumable/larvajelly))
 		counter += 10 //Accelerates larval growth massively. Voluntarily drinking larval jelly while infected is straight-up suicide. Larva hits Stage 5 in exactly ONE minute.

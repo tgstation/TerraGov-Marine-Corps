@@ -452,6 +452,14 @@
 
 /datum/reagent/toxin/xeno_neurotoxin/on_mob_life(mob/living/L, metabolism)
 	var/power
+	var/pain_multiplier = 1 //Increased by Defiler combo chems
+
+	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile)) //Each other Defiler toxin increases the multiplier by 2x; 2x if we have 1 combo chem, 4x if we have 2
+		pain_multiplier *= 2
+
+	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox))
+		pain_multiplier *= 2
+
 	switch(current_cycle)
 		if(1 to 20)
 			power = (2*effect_str) //While stamina loss is going, stamina regen apparently doesn't happen, so I can keep this smaller.
@@ -494,7 +502,7 @@
 	description = "A metabolic accelerant that dramatically increases the rate of larval growth in a host."
 	reagent_state = LIQUID
 	color = "#CF3600" // rgb: 207, 54, 0
-	purge_list = list(/datum/reagent/toxin/xeno_neurotoxin, /datum/reagent/medicine)
+	purge_list = list(/datum/reagent/medicine)
 	purge_rate = 3
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
@@ -528,10 +536,19 @@
 /datum/reagent/toxin/xeno_hemodile/on_mob_life(mob/living/L, metabolism)
 	if(prob(25))
 		to_chat(L, "<span class='warning'>You feel your legs tense up.</span>")
-	if(!L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
-		L.add_movespeed_modifier(MOVESPEED_ID_XENO_HEMODILE, TRUE, 0, NONE, TRUE, 1)
-	else
-		L.add_movespeed_modifier(MOVESPEED_ID_XENO_HEMODILE, TRUE, 0, NONE, TRUE, 3)
+
+	var/slowdown_multiplier = 1
+
+	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox)) //Each other Defiler toxin increases the multiplier by 2x; 2x if we have 1 combo chem, 4x if we have 2
+		slowdown_multiplier *= 2
+
+	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
+		slowdown_multiplier *= 2
+
+	L.add_movespeed_modifier(MOVESPEED_ID_XENO_HEMODILE, TRUE, 0, NONE, TRUE, 1 * slowdown_multiplier)
+
+	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox)) //Combo effect
+		L.adjust_stagger(1)
 	return ..()
 
 /datum/reagent/toxin/xeno_hemodile/proc/hemodile_human_damage_taken(mob/living/L, damage)
@@ -561,7 +578,15 @@
 
 /datum/reagent/toxin/xeno_transvitox/proc/transvitox_human_damage_taken(mob/living/L, damage)
 	SIGNAL_HANDLER
-	var/dam = min(damage*0.4, 45 - L.getToxLoss()) // hard caps damage conversion to not exceed 45 tox
+	var/tox_cap_multiplier = 1
+
+	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile)) //Each other Defiler toxin increases the multiplier by 50%
+		tox_cap_multiplier *= 1.5
+
+	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
+		tox_cap_multiplier *= 1.5
+
+	var/dam = min(damage*0.4, 45 * tox_cap_multiplier - L.getToxLoss()) // hard caps damage conversion to not exceed 45 tox * tox_cap_multiplier
 	if((L.getBruteLoss() + L.getFireLoss()) < dam)
 		return
 	L.adjustToxLoss(dam)

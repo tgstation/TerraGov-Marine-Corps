@@ -1,46 +1,78 @@
 
 // ***************************************
-// *********** Sting
+// *********** Defile
 // ***************************************
-/datum/action/xeno_action/activable/larval_growth_sting/defiler
+/datum/action/xeno_action/activable/defile
 	name = "Defile"
 	action_icon_state = "defiler_sting"
-	mechanics_text = "Channel to inject an adjacent target with larval growth serum. At the end of the channel your target will be infected."
+	mechanics_text = "Injects an adjacent target with larval accelerant and a larva after a short wind up. All Defiler rapidly increase larval growth while the target has larval accelerant."
 	ability_name = "defiler sting"
 	plasma_cost = 150
-	cooldown_timer = 20 SECONDS
+	cooldown_timer = 60 SECONDS
+	keybind_signal = COMSIG_XENOABILITY_DEFILE
 
-/datum/action/xeno_action/activable/larval_growth_sting/defiler/on_cooldown_finish()
-	playsound(owner.loc, 'sound/voice/alien_drool1.ogg', 50, 1)
-	to_chat(owner, "<span class='xenodanger'>You feel your toxin glands refill, another young one ready for implantation. You can use Defile again.</span>")
+/datum/action/xeno_action/activable/defile/on_cooldown_finish()
+	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
+	to_chat(owner, "<span class='xenodanger'>You feel your toxin glands refill and another young one ready for implantation. You can use Defile again.</span>")
 	return ..()
 
-/datum/action/xeno_action/activable/larval_growth_sting/defiler/use_ability(atom/A)
+/datum/action/xeno_action/activable/defile/can_use_ability(atom/A, silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if(!iscarbon(A))
+		if(!silent)
+			to_chat(owner, "<span class='xenodanger'>Our sting won't affect this target!</span>")
+		return FALSE
+
+	var/mob/living/carbon/victim = A
+
+	if(!A?.can_sting())
+		if(!silent)
+			to_chat(owner, "<span class='xenodanger'>Our sting won't affect this target!</span>")
+		return FALSE
+
+	if(locate(/obj/item/alien_embryo) in victim) // already got one, stops doubling up
+		if(!silent)
+			to_chat(owner, "<span class='xenodanger'>We've already infected this target!</span>")
+		return FALSE
+
+	if(!owner.Adjacent(A))
+		var/mob/living/carbon/xenomorph/X = owner
+		if(!silent && world.time > (X.recent_notice + X.notice_delay))
+			to_chat(X, "<span class='warning'>We can't reach this target!</span>")
+			X.recent_notice = world.time //anti-notice spam
+		return FALSE
+
+
+/datum/action/xeno_action/activable/defile/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/Defiler/X = owner
 	var/mob/living/carbon/C = A
-	if(locate(/obj/item/alien_embryo) in C) // already got one, stops doubling up
-		return ..()
+	X.face_atom(C)
+	X.do_attack_animation(C)
 	if(!do_after(X, DEFILER_STING_CHANNEL_TIME, TRUE, C, BUSY_ICON_HOSTILE))
 		return fail_activate()
 	if(!can_use_ability(A))
 		return fail_activate()
 	add_cooldown()
-	X.face_atom(C)
-	X.do_attack_animation(C)
 	playsound(C, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)
 	var/obj/item/alien_embryo/embryo = new(C)
 	embryo.hivenumber = X.hivenumber
 	GLOB.round_statistics.now_pregnant++
+	C.reagents.add_reagent(/datum/reagent/toxin/xeno_growthtoxin, REAGENTS_OVERDOSE, no_overdose = TRUE) //Inject the maximum possible larval growth without ODing
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "now_pregnant")
 	to_chat(X, "<span class='xenodanger'>Our stinger successfully implants a larva into the host.</span>")
 	to_chat(C, "<span class='danger'>You feel horrible pain as something large is forcefully implanted in your thorax.</span>")
+	C.adjust_stagger(3)
+	C.add_slowdown(3)
+	C.adjust_blurriness(3) //Cosmetic eye blur SFX
 	C.apply_damage(100, STAMINA)
 	C.apply_damage(10, BRUTE, "chest", updating_health = TRUE)
 	C.emote("scream")
 	GLOB.round_statistics.defiler_defiler_stings++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "defiler_defiler_stings")
 	succeed_activate()
-	return ..()
 
 // ***************************************
 // *********** Neurogas
@@ -56,7 +88,7 @@
 	keybind_signal = COMSIG_XENOABILITY_EMIT_NEUROGAS
 
 /datum/action/xeno_action/activable/emit_neurogas/on_cooldown_finish()
-	playsound(owner.loc, 'sound/effects/xeno_newlarva.ogg', 50, 0)
+	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	to_chat(owner, "<span class='xenodanger'>We feel our dorsal vents bristle with heated gas. We can use Emit Noxious Gas again.</span>")
 	return ..()
 
@@ -139,7 +171,7 @@
 	keybind_signal = COMSIG_XENOABILITY_INJECT_EGG_NEUROGAS
 
 /datum/action/xeno_action/activable/inject_egg_neurogas/on_cooldown_finish()
-	playsound(owner.loc, 'sound/effects/xeno_newlarva.ogg', 50, 0)
+	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	to_chat(owner, "<span class='xenodanger'>We feel our dorsal vents bristle with neurotoxic gas. We can use Emit Neurogas again.</span>")
 	return ..()
 
@@ -176,7 +208,7 @@
 /datum/action/xeno_action/select_reagent
 	name = "Select Reagent"
 	action_icon_state = "select_reagent0"
-	mechanics_text = "Selects which reagent to use for reagent slash and noxious gas. Hemodile slows by 25%, increased to 50% with neurotoxin present, and deals 20% of damage received as stamina damage. Transvitox converts brute/burn damage to toxin based on 40% of damage received up to 45 toxin on target, upon reaching which causes a stun. Neurotoxin deals increasing stamina damage the longer it remains in the victim's system and prevents stamina regeneration."
+	mechanics_text = "Selects which reagent to use for reagent slash and noxious gas. Hemodile slows by 25%, doubled for each other Defiler chem in the target's blood, and deals 20% of damage received as stamina damage. Transvitox converts brute/burn damage to toxin based on 40% of damage received up to 45 toxin on target, upon reaching which causes a stun. Neurotoxin deals increasing stamina damage the longer it remains in the victim's system and prevents stamina regeneration."
 	use_state_flags = XACT_USE_BUSY
 	keybind_signal = COMSIG_XENOABILITY_SELECT_REAGENT
 	var/list_position
