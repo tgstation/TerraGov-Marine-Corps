@@ -82,7 +82,7 @@
 
 /obj/item/clothing/glasses/hud/medgoggles/prescription
 	name = "prescription marine ballistic goggles"
-	desc = "Standard issue TGMC goggles. With internal HealthMate HUD projector. Contains prescription lenses in case you weren't sure if they were lame or not."
+	desc = "Standard issue TGMC goggles. With internal HealthMate HUD projector. Contains prescription lenses."
 	icon_state = "medgoggles"
 	item_state = "medgoggles"
 	prescription = TRUE
