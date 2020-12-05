@@ -1,0 +1,5 @@
+author: "Surrealaser"
+delete-after: True
+changes: 
+  - balance: "Tadpole side entrances/exits expanded."
+  - balance: "All of the Tadpole interior is now no-build; entrance and hardpoint tiles are still buildable."
