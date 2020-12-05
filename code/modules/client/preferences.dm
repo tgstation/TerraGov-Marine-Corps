@@ -110,6 +110,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	// Hud tooltip
 	var/tooltips = TRUE
 
+	///Whether we want to prevent usage of less extreme visual effects
+	var/safe_visuals = FALSE
+
 	///Whether to mute goonchat combat messages when we are the source, such as when we are shot.
 	var/mute_self_combat_messages = FALSE
 	///Whether to mute goonchat combat messages from others, such as when they are shot.
@@ -340,6 +343,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	dat += "<b>Tooltips:</b> <a href='?_src_=prefs;preference=tooltips'>[(tooltips) ? "Shown" : "Hidden"]</a><br>"
 	dat += "<b>FPS:</b> <a href='?_src_=prefs;preference=clientfps'>[clientfps]</a><br>"
 	dat += "<b>Fit Viewport:</b> <a href='?_src_=prefs;preference=auto_fit_viewport'>[auto_fit_viewport ? "Auto" : "Manual"]</a><br>"
+	dat += "<b>Safe visuals mode:</b> <a href='?_src_=prefs;preference=safe_visuals'>[safe_visuals ? "Enabled" : "Disabled"]</a><br>"
 
 	dat += "<h2>Chat Message Settings:</h2>"
 	dat += "<b>Mute self combat messages:</b> <a href='?_src_=prefs;preference=mute_self_combat_messages'>[mute_self_combat_messages ? "Enabled" : "Disabled"]</a><br>"
@@ -958,6 +962,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			auto_fit_viewport = !auto_fit_viewport
 			if(auto_fit_viewport && parent)
 				parent.fit_viewport()
+		if("safe_visuals")
+			safe_visuals = !safe_visuals
 
 		if("focus_chat")
 			focus_chat = !focus_chat

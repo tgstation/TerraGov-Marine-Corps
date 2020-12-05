@@ -33,17 +33,22 @@
 	for(var/mob/living/carbon/human/victim as() in GLOB.humans_by_zlevel["[X.z]"])
 		if(get_dist(victim, X) > WORLD_VIEW_NUM+1)
 			continue
-
+		if(!victim.hud_used)
+			continue
 		//Single out and apply filters on thier plane masters for the spooky blurry vision effect
 		var/obj/screen/plane_master/floor/OT = victim.hud_used.plane_masters["[FLOOR_PLANE]"]
-		OT.add_filter("whisper", 2, list("type" = "radial_blur", "size" = 0.07))
-		animate(OT.get_filter("whisper"), size = 0.12, time = 5, loop = -1)
-		addtimer(CALLBACK(OT, /atom.proc/remove_filter, "whisper"), KING_WHISPER_DURATION)
 		var/obj/screen/plane_master/game_world/GW = victim.hud_used.plane_masters["[GAME_PLANE]"]
-		GW.add_filter("whisper", 2, list("type" = "radial_blur", "size" = 0.07))
-		animate(GW.get_filter("whisper"), size = 0.12, time = 5, loop = -1)
+		addtimer(CALLBACK(OT, /atom.proc/remove_filter, "whisper"), KING_WHISPER_DURATION)
+		if(victim.client?.prefs.safe_visuals) //Some players feel sick with the effect so allow them to get gaussian blur instead
+			OT.add_filter("whisper", 2, GAUSSIAN_BLUR(1.2))
+			GW.add_filter("whisper", 2, GAUSSIAN_BLUR(1.2))
+		else
+			GW.add_filter("whisper", 2, list("type" = "radial_blur", "size" = 0.07))
+			animate(GW.get_filter("whisper"), size = 0.12, time = 5, loop = -1)
+			OT.add_filter("whisper", 2, list("type" = "radial_blur", "size" = 0.07))
+			animate(OT.get_filter("whisper"), size = 0.12, time = 5, loop = -1)
 		addtimer(CALLBACK(GW, /atom.proc/remove_filter, "whisper"), KING_WHISPER_DURATION)
-		victim.set_stagger(KING_WHISPER_DURATION / 2 SECONDS)// 2 seconds is sslife wait
+		victim.set_stagger(KING_WHISPER_DURATION / 4 SECONDS)
 		to_chat(victim, "<span class='xenohighdanger'>Your vision contracts as a thousand dead xenomorphs assail your mind.</span>")
 	addtimer(VARSET_CALLBACK(X, whispering, FALSE), KING_WHISPER_DURATION)
 	addtimer(CALLBACK(X, /atom.proc/update_icon), KING_WHISPER_DURATION)
@@ -69,20 +74,34 @@
 	plasma_cost = 100
 	cooldown_timer = 30 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_GRAVITY_CRUSH
+	var/king_crush_dist = 5
 
 /datum/action/xeno_action/activable/area_crush/on_cooldown_finish()
 	to_chat(owner, "<span class='warning'>Our psychic aura restores itself. We are ready to area crush again.</span>")
 	return ..()
 
+/datum/action/xeno_action/activable/area_crush/can_use_ability(atom/A, silent, override_flags)
+	. = ..()
+	if(!.)
+		return
+	if(!owner.line_of_sight(A, king_crush_dist))
+		if(!silent)
+			to_chat(owner, "<span class='warning'>We must get closer to crush, our mind cannot reach this far.</span>")
+		return FALSE
+
 /datum/action/xeno_action/activable/area_crush/use_ability(atom/A)
-	if(!do_after(owner, 0.5 SECONDS, FALSE, owner, BUSY_ICON_DANGER))
+	var/list/turfs = RANGE_TURFS(2, A)
+	for(var/turf/targetted as() in turfs)
+		targetted.add_filter("crushblur",1,list("type"="radial_blur", "size" = 0.3))
+	if(!do_after(owner, 1 SECONDS, FALSE, owner, BUSY_ICON_DANGER))
+		for(var/turf/targetted as() in turfs)
+			targetted.remove_filter("crushblur")
 		return fail_activate()
 	succeed_activate()
 	add_cooldown()
 	A.visible_message("<span class='warning'> [A] collapses inward as it's gravity suddenly increases!</span>")
 	playsound(A, 'sound/effects/bomb_fall.ogg', 75, FALSE)
-	for(var/turf/targetted as() in RANGE_TURFS(2, A))
-		targetted.add_filter("crushblur",1,list("type"="radial_blur", "size" = 0.3))
+	for(var/turf/targetted as() in turfs)
 		for(var/atom/movable/item as() in targetted.contents)
 			item.ex_act(EXPLODE_HEAVY)	//crushing without damaging the nearby area
 		addtimer(CALLBACK(targetted, /atom.proc/remove_filter, "crushblur"), 1 SECONDS)

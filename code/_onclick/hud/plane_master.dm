@@ -49,7 +49,7 @@
 /obj/screen/plane_master/floor/backdrop(mob/living/mymob)
 	filters = list()
 	if(istype(mymob) && mymob.eye_blurry)
-		filters += GAUSSIAN_BLUR(clamp(mymob.eye_blurry*0.1,0.6,3))
+		add_filter("gaussian_blur", 2, GAUSSIAN_BLUR(clamp(mymob.eye_blurry*0.1,0.6,3)))
 
 ///Contains most things in the game world
 /obj/screen/plane_master/game_world
@@ -62,7 +62,7 @@
 	filters = list()
 	filters += AMBIENT_OCCLUSION
 	if(istype(mymob) && mymob.eye_blurry)
-		filters += GAUSSIAN_BLUR(clamp(mymob.eye_blurry*0.1,0.6,3))
+		add_filter("gaussian_blur", 2, GAUSSIAN_BLUR(clamp(mymob.eye_blurry*0.1,0.6,3)))
 
 
 ///Contains all lighting objects

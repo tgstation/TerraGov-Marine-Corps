@@ -21,7 +21,7 @@
 	///Hive it should be powering and whether it should be generating hive psycic points instead of power on process()
 	var/corrupted = 0
 	///how many points this generator will make per tick
-	var/corrupt_point_amout = 1
+	var/corrupt_point_amout = 0.1
 
 /obj/machinery/power/geothermal/should_have_node()
 	return TRUE
@@ -261,7 +261,7 @@
 /obj/machinery/power/geothermal/bigred //used on big red
 	name = "\improper Reactor Turbine"
 	power_generation_max = 1e+6
-	corrupt_point_amout = 10
+	corrupt_point_amout = 1
 
 #undef GEOTHERMAL_NO_DAMAGE
 #undef GEOTHERMAL_LIGHT_DAMAGE
