@@ -1,0 +1,4 @@
+author: "Wayland-Smithy"
+delete-after: True
+changes: 
+  - code_imp: "The Weather datum has gained a \"repeatable\" field for optionally preventing back to back random selection."
