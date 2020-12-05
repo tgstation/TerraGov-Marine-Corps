@@ -284,7 +284,15 @@
 		TryToSwitchState(X)
 		return TRUE
 
-	dismantle_xeno_structure(M)
+	M.visible_message("<span class='xenonotice'>\The [M] starts tearing down \the [src]!</span>", \
+	"<span class='xenonotice'>We start to tear down \the [src].</span>")
+	if(!do_after(M, XENO_DISMANTLE_TIME, TRUE, M, BUSY_ICON_GENERIC))
+		return
+	M.do_attack_animation(src, ATTACK_EFFECT_CLAW)
+	M.visible_message("<span class='xenonotice'>\The [M] tears down \the [src]!</span>", \
+	"<span class='xenonotice'>We tear down \the [src].</span>")
+	playsound(src, "alien_resin_break", 25)
+	deconstruct(TRUE)
 
 /obj/structure/mineral_door/resin/flamer_fire_act()
 	take_damage(50, BURN, "fire")
@@ -607,8 +615,6 @@
 	Burst(FALSE)
 	return TRUE
 
-
-///General structure/xeno procs
 /obj/structure/xeno/flamer_fire_act()
 	take_damage(50, BURN, "fire")
 
@@ -671,7 +677,6 @@ TUNNEL
 
 	hud_possible = list(XENO_TACTICAL_HUD)
 
-///Tunnels aren't flammable
 /obj/structure/xeno/tunnel/flamer_fire_act()
 	return
 
@@ -706,10 +711,6 @@ TUNNEL
 	if(tunnel_desc)
 		to_chat(user, "<span class='info'>The Hivelord scent reads: \'[tunnel_desc]\'</span>")
 
-/obj/structure/xeno/tunnel/deconstruct(disassembled = TRUE)
-	visible_message("<span class='danger'>[src] suddenly collapses!</span>")
-	return ..()
-
 /obj/structure/xeno/tunnel/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
@@ -729,7 +730,7 @@ TUNNEL
 		return
 
 	if(M.a_intent == INTENT_HARM && M == creator)
-		dismantle_xeno_structure(M, HIVELORD_TUNNEL_DISMANTLE_TIME, "<span class='xenoannounce'>We begin filling in our tunnel...</span>", "<span class='xenoannounce'>We fill in our tunnel.</span>")
+		deconstruct(TRUE, M, HIVELORD_TUNNEL_DISMANTLE_TIME, "<span class='xenoannounce'>We begin filling in our tunnel...</span>", "<span class='xenoannounce'>We fill in our tunnel.</span>")
 		return
 
 	//Check for repairs
@@ -890,7 +891,7 @@ TUNNEL
 
 /obj/structure/xeno/acidwell/attack_alien(mob/living/carbon/xenomorph/M)
 	if(M.a_intent == INTENT_HARM)
-		dismantle_xeno_structure(M)
+		deconstruct(TRUE, M)
 		return
 
 	repair_xeno_structure(M) //Repair if possible
@@ -1030,7 +1031,7 @@ TUNNEL
 
 /obj/structure/resin_jelly_pod/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(X.a_intent == INTENT_HARM && isxenohivelord(X))
-		dismantle_xeno_structure(X)
+		deconstruct(TRUE, X)
 		return
 
 	repair_xeno_structure(X) //Repair if possible
@@ -1109,25 +1110,29 @@ TUNNEL
 	qdel(src)
 
 ///Standardized proc for dismantling xeno structures; usually called when a xeno uses harm intent on xeno structure
-/obj/proc/dismantle_xeno_structure(mob/living/carbon/xenomorph/M, dismantle_time = XENO_DISMANTLE_TIME, custom_message_a, custom_message_b)
-
-	if(!custom_message_a)
-		M.visible_message("<span class='warning'>\The [M] digs into \the [src] and begins ripping it down.</span>", \
-		"<span class='xenoannounce'>We dig into \the [src] and begin ripping it down.</span>", null, 5)
-	else
-		to_chat(M, "[custom_message_a]")
-
-	if(!do_after(M, XENO_DISMANTLE_TIME, FALSE, src, BUSY_ICON_HOSTILE))
+/obj/structure/xeno/deconstruct(disassembled = TRUE, mob/living/carbon/xenomorph/M, dismantle_time = XENO_DISMANTLE_TIME, custom_message_a, custom_message_b)
+	if(flags_atom & NODECONSTRUCT)
 		return
 
-	M.do_attack_animation(src, ATTACK_EFFECT_CLAW) //SFX
-	playsound(src, "alien_resin_break", 25) //SFX
+	if(disassembled && M) //If we have a xeno defined and are actually disassembling the structure
 
-	if(!custom_message_b)
-		M.do_attack_animation(src, ATTACK_EFFECT_CLAW)
-		M.visible_message("<span class='danger'>[M] rips down \the [src]!</span>", \
-		"<span class='xenoannounce'>We rip down \the [src]!</span>", null, 5)
-	else
-		to_chat(M, "[custom_message_b]")
+		if(!custom_message_a)
+			M.visible_message("<span class='warning'>\The [M] digs into \the [src] and begins ripping it down.</span>", \
+			"<span class='xenoannounce'>We dig into \the [src] and begin ripping it down.</span>", null, 5)
+		else
+			to_chat(M, "[custom_message_a]")
 
-	deconstruct(TRUE)
+		if(!do_after(M, XENO_DISMANTLE_TIME, FALSE, src, BUSY_ICON_HOSTILE))
+			return
+
+		M.do_attack_animation(src, ATTACK_EFFECT_CLAW) //SFX
+		playsound(src, "alien_resin_break", 25) //SFX
+
+		if(!custom_message_b)
+			M.do_attack_animation(src, ATTACK_EFFECT_CLAW)
+			M.visible_message("<span class='danger'>[M] rips down \the [src]!</span>", \
+			"<span class='xenoannounce'>We rip down \the [src]!</span>", null, 5)
+		else
+			to_chat(M, "[custom_message_b]")
+
+	return ..()
