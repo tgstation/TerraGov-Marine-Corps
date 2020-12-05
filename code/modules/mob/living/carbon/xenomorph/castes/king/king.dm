@@ -87,4 +87,4 @@
 	desc += " This one has already been used."
 	var/myarea = get_area(src)
 	priority_announce("Warning: Psychic anomaly signature in [myarea] has spiked and begun to move.", "TGMC Intel Division")
-	xeno_message("<span class='xenoannounce'>[occupied] has awakened at [myarea]. Praise the queen mother!</span>", 3 ,ownerhive)
+	xeno_message("<span class='xenoannounce'>[occupied] has awakened at [myarea]. Praise the Queen Mother!</span>", 3 ,ownerhive)
