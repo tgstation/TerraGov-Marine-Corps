@@ -486,7 +486,7 @@
 /datum/reagent/arithrazine/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damages(2*REM, 2*REM, 4*REM)
 
-/datum/reagent/medicine/russianred
+/datum/reagent/medicine/russian_red
 	name = "Russian Red"
 	description = "An emergency generic treatment with extreme side effects."
 	color = "#C8A5DC" // rgb: 200, 165, 220
@@ -1109,5 +1109,4 @@
 	reagent_state = LIQUID
 	color = "#66801e"
 	taste_description = "piss"
-
 

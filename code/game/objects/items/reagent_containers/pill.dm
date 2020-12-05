@@ -177,7 +177,7 @@
 	list_reagents = list(/datum/reagent/medicine/synaptizine = 3, /datum/reagent/medicine/hyperzine = 5, /datum/reagent/consumable/nutriment = 3)
 	pill_id = 14
 
-/obj/item/reagent_containers/pill/russianRed
+/obj/item/reagent_containers/pill/russian_red
 	pill_desc = "A Russian Red pill. A last-resort revival drug."
 	list_reagents = list(/datum/reagent/medicine/russianred = 10)
 	pill_id = 15
