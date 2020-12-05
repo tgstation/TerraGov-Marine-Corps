@@ -249,7 +249,7 @@
 // ***************************************
 /datum/action/xeno_action/activable/impair_senses
 	name = "Impair Senses"
-	action_icon_state = "impair senses"
+	action_icon_state = "impair_senses"
 	mechanics_text = "Impairs the target's senses, causing temporary deafness and impeding vision."
 	ability_name = "impair senses"
 	plasma_cost = 75
