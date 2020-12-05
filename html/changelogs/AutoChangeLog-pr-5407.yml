@@ -1,0 +1,4 @@
+author: "StiffRobot"
+delete-after: True
+changes: 
+  - bugfix: "Fixed the flak vest being unable to hold standard issue holster rigs"
