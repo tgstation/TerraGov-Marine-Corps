@@ -64,24 +64,6 @@
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
 
-/datum/action/xeno_action/activable/lunge/proc/neck_grab(mob/living/owner, mob/living/L)
-	SIGNAL_HANDLER
-	if(!can_use_ability(L, FALSE, XACT_IGNORE_DEAD_TARGET))
-		return COMSIG_WARRIOR_CANT_NECKGRAB
-
-
-/datum/action/xeno_action/activable/lunge/give_action(mob/living/L)
-	. = ..()
-	RegisterSignal(owner, COMSIG_WARRIOR_USED_GRAB, .proc/add_cooldown)
-	RegisterSignal(owner, COMSIG_WARRIOR_NECKGRAB, .proc/neck_grab)
-
-
-/datum/action/xeno_action/activable/lunge/remove_action(mob/living/L)
-	UnregisterSignal(owner, COMSIG_WARRIOR_USED_GRAB)
-	UnregisterSignal(owner, COMSIG_WARRIOR_NECKGRAB)
-	return ..()
-
-
 /datum/action/xeno_action/activable/lunge/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
@@ -123,8 +105,8 @@
 
 	X.throw_at(get_step_towards(A, X), 6, 2, X)
 
-	if(distance - 1 > 0) //No zero timers
-		addtimer(CALLBACK(src, .proc/lunge_grab, X, A), min(0.1 SECONDS * max(0.01, distance - 1), 1 SECONDS)) //Minor delay so we're guaranteed to grab
+	if(distance > 1) //No zero timers
+		addtimer(CALLBACK(src, .proc/lunge_grab, X, A), min(0.05 SECONDS * max(0.01, distance - 1), 1 SECONDS)) //Minor delay so we're guaranteed to grab
 	else
 		lunge_grab(X,A)
 
@@ -133,11 +115,13 @@
 	return TRUE
 
 /datum/action/xeno_action/activable/lunge/proc/lunge_grab(mob/living/carbon/xenomorph/X, atom/A)
-	if (X.Adjacent(A))
-		X.swap_hand()
-		X.start_pulling(A, TRUE)
-		X.swap_hand()
-		X.remove_filter("warrior_lunge")
+	if (!X.Adjacent(A))
+		return
+
+	X.swap_hand()
+	X.start_pulling(A, TRUE)
+	X.swap_hand()
+	X.remove_filter("warrior_lunge")
 
 // ***************************************
 // *********** Fling
@@ -151,6 +135,14 @@
 	cooldown_timer = 20 SECONDS //Shared cooldown with Grapple Toss
 	keybind_signal = COMSIG_XENOABILITY_FLING
 	target_flags = XABB_MOB_TARGET
+
+/datum/action/xeno_action/activable/fling/give_action(mob/living/L)
+	. = ..()
+	RegisterSignal(owner, COMSIG_WARRIOR_USED_GRAPPLE_TOSS, .proc/add_cooldown) //Shared cooldown with Grapple Toss
+
+/datum/action/xeno_action/activable/lunge/remove_action(mob/living/L)
+	UnregisterSignal(owner, COMSIG_WARRIOR_USED_GRAPPLE_TOSS)
+	return ..()
 
 /datum/action/xeno_action/activable/fling/on_cooldown_finish()
 	to_chat(owner, "<span class='xenodanger'>We gather enough strength to fling something again.</span>")
@@ -175,7 +167,6 @@
 	var/mob/living/victim = A
 	var/facing = get_dir(X, victim)
 	var/fling_distance = 4
-	var/stun_duration = 0.5 SECONDS
 
 	X.face_atom(victim) //Face towards the victim
 
@@ -189,14 +180,6 @@
 	if(victim.mob_size >= MOB_SIZE_BIG) //Penalize fling distance for big creatures
 		fling_distance = FLOOR(fling_distance * 0.5, 1)
 
-	if(isxeno(victim))
-		var/mob/living/carbon/xenomorph/x_victim
-		if(X.issamexenohive(x_victim)) //We don't fuck up friendlies
-			stun_duration = 0
-
-	victim.ParalyzeNoChain(stun_duration)
-	shake_camera(victim, 2, 1)
-
 	var/turf/T = X.loc
 	var/turf/temp = X.loc
 
@@ -208,11 +191,20 @@
 	X.do_attack_animation(victim, ATTACK_EFFECT_DISARM2)
 	victim.throw_at(T, fling_distance, 1, X, 1)
 
+	shake_camera(victim, 2, 1)
+
 	succeed_activate()
 	add_cooldown()
 
-	var/datum/action/xeno_action/activable/toss/throw_cooldown = locate(/datum/action/xeno_action/activable/toss) in X.xeno_abilities //Shared cooldown with Throw
-	throw_cooldown.add_cooldown()
+	SEND_SIGNAL(owner, COMSIG_WARRIOR_USED_FLING)  //Shared cooldown with Grapple Toss
+
+	if(isxeno(victim))
+		var/mob/living/carbon/xenomorph/x_victim
+		if(X.issamexenohive(x_victim)) //We don't fuck up friendlies
+			return
+
+	victim.ParalyzeNoChain(0.5 SECONDS)
+
 
 /datum/action/xeno_action/activable/fling/ai_should_start_consider()
 	return TRUE
@@ -239,6 +231,15 @@
 	keybind_signal = COMSIG_XENOABILITY_GRAPPLE_TOSS
 	target_flags = XABB_TURF_TARGET
 
+
+/datum/action/xeno_action/activable/fling/give_action(mob/living/L)
+	. = ..()
+	RegisterSignal(owner, COMSIG_WARRIOR_USED_FLING, .proc/add_cooldown) //Shared cooldown with Fling
+
+/datum/action/xeno_action/activable/lunge/remove_action(mob/living/L)
+	UnregisterSignal(owner, COMSIG_WARRIOR_USED_FLING)
+	return ..()
+
 /datum/action/xeno_action/activable/toss/on_cooldown_finish()
 	to_chat(owner, "<span class='xenodanger'>We gather enough strength to toss something again.</span>")
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
@@ -247,16 +248,11 @@
 /datum/action/xeno_action/activable/toss/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
-		return FALSE
+		return
 
 	if(!owner.pulling) //If we're not grappling something, we should be flinging something living and adjacent
 		if(!silent)
 			to_chat(owner, "<span class='xenodanger'>We have nothing to toss!</span>")
-		return FALSE
-
-	if(!A)
-		if(!silent)
-			to_chat(owner, "<span class='xenodanger'>We can't toss [owner.pulling] there!</span>")
 		return FALSE
 
 /datum/action/xeno_action/activable/toss/use_ability(atom/A)
@@ -311,8 +307,7 @@
 	succeed_activate()
 	add_cooldown()
 
-	var/datum/action/xeno_action/activable/fling/fling_cooldown = locate(/datum/action/xeno_action/activable/fling) in X.xeno_abilities //Shared cooldown with Fling
-	fling_cooldown.add_cooldown()
+	SEND_SIGNAL(owner, COMSIG_WARRIOR_USED_FLING) //Shared cooldown with Fling
 
 // ***************************************
 // *********** Punch
@@ -367,22 +362,10 @@
 	succeed_activate()
 	add_cooldown()
 
-
 /mob/living/proc/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone)
-	apply_damage(damage, BRUTE, target_zone, run_armor_check(target_zone))
-	UPDATEHEALTH(src)
-
-/mob/living/carbon/human/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone)
-	var/datum/limb/L = get_limb(target_zone)
-
-	if (!L || (L.limb_status & LIMB_DESTROYED))
-		to_chat(X, "<span class='xenodanger'>We can't punch that which doesn't exist!</span>")
-		return FALSE
-
 	var/stagger_stacks = 3
 	var/slowdown_stacks = 3
 	var/punch_description = "powerful"
-	var/S = pick('sound/weapons/punch1.ogg','sound/weapons/punch2.ogg','sound/weapons/punch3.ogg','sound/weapons/punch4.ogg')
 
 	if(pulledby == X) //If we're being grappled by the Warrior punching us, it's gonna do extra damage and debuffs; combolicious
 		damage *= 2
@@ -391,18 +374,29 @@
 		ParalyzeNoChain(0.5 SECONDS)
 		punch_description = "devastating"
 
-	playsound(src, S, 50, 1)
+	if(iscarbon(src))
+		var/mob/living/carbon/carbon_victim = src
+		var/datum/limb/L = carbon_victim.get_limb(target_zone)
+
+		if (!L || (L.limb_status & LIMB_DESTROYED))
+			to_chat(X, "<span class='xenodanger'>We can't punch that which doesn't exist!</span>")
+			return FALSE
+
+		if(L.limb_status & LIMB_SPLINTED) //If they have it splinted, the splint won't hold.
+			L.remove_limb_flags(LIMB_SPLINTED)
+			to_chat(src, "<span class='danger'>The splint on your [L.display_name] comes apart!</span>")
+
+		L.take_damage_limb(damage, 0, FALSE, FALSE, run_armor_check(target_zone))
+
+	else
+		apply_damage(damage, BRUTE, target_zone, run_armor_check(target_zone))
+
+	playsound(src, pick('sound/weapons/punch1.ogg','sound/weapons/punch2.ogg','sound/weapons/punch3.ogg','sound/weapons/punch4.ogg'), 50, 1)
 	X.face_atom(src) //Face the target so you don't look like an idiot
 	X.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
 
-	X.visible_message("<span class='xenowarning'>\The [X] hits [src] in the [L.display_name] with a [punch_description] punch!</span>", \
-		"<span class='xenowarning'>We hit [src] in the [L.display_name] with a [punch_description] punch!</span>", visible_message_flags = COMBAT_MESSAGE)
-
-	if(L.limb_status & LIMB_SPLINTED) //If they have it splinted, the splint won't hold.
-		L.remove_limb_flags(LIMB_SPLINTED)
-		to_chat(src, "<span class='danger'>The splint on your [L.display_name] comes apart!</span>")
-
-	L.take_damage_limb(damage, 0, FALSE, FALSE, run_armor_check(target_zone))
+	X.visible_message("<span class='xenodanger'>\The [X] hits [src] in the [target_zone] with a [punch_description] punch!</span>", \
+		"<span class='xenodanger'>We hit [src] in the [target_zone] with a [punch_description] punch!</span>", visible_message_flags = COMBAT_MESSAGE)
 
 	adjust_stagger(stagger_stacks)
 	add_slowdown(slowdown_stacks)
@@ -414,7 +408,7 @@
 	X.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
 
 	var/facing = get_dir(X, src)
-	if(src.loc == X.loc) //If they're sharing our location we still want to punch them away
+	if(loc == X.loc) //If they're sharing our location we still want to punch them away
 		facing = X.dir
 
 	var/turf/T = X.loc
