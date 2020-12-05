@@ -1,4 +1,0 @@
-author: "Walarks"
-delete-after: True
-changes: 
-  - balance: "removes 4s lock on transvitox's effect being able to be triggered"

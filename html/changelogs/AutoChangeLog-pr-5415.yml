@@ -1,7 +1,0 @@
-author: "Hughgent"
-delete-after: True
-changes: 
-  - tweak: "Spaceship retreat can now be prevented by admins"
-  - tweak: "Spaceship navigation console now automatically logs out after 1 minute"
-  - tweak: "Spaceship orbit cannot be changed before the 30 minute mark."
-  - rscadd: "Xenos now get notified via announcement when marines start the retreat timer."
