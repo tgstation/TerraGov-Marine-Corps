@@ -82,6 +82,7 @@
 			heal_wounds(XENO_STANDING_HEAL * ruler_healing_penalty, TRUE) //Major healing nerf if standing.
 	updatehealth()
 
+///Handles sunder modification/recovery during life.dm for xenos
 /mob/living/carbon/xenomorph/proc/handle_living_sunder_updates()
 
 	if(!sunder || on_fire) //No sunder, no problem; or we're on fire and can't regenerate.
