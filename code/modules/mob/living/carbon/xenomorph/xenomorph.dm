@@ -63,7 +63,6 @@
 	ADD_TRAIT(src, TRAIT_BATONIMMUNE, TRAIT_XENO)
 	ADD_TRAIT(src, TRAIT_FLASHBANGIMMUNE, TRAIT_XENO)
 
-
 /mob/living/carbon/xenomorph/proc/set_datum()
 	if(!caste_base_type)
 		CRASH("xeno spawned without a caste_base_type set")
@@ -202,6 +201,7 @@
 	GLOB.xeno_mob_list -= src
 	GLOB.dead_xeno_list -= src
 
+	hive.update_tier_limits() //Update our tier limits.
 	remove_from_hive()
 
 	vis_contents -= wound_overlay

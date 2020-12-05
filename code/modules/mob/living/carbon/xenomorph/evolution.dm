@@ -349,5 +349,7 @@
 	qdel(src)
 	INVOKE_ASYNC(new_xeno, /mob/living.proc/do_jitter_animation, 1000)
 
+	hive.update_tier_limits()
+
 #undef TO_XENO_TIER_2_FORMULA
 #undef TO_XENO_TIER_3_FORMULA
