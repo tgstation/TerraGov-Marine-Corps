@@ -19,6 +19,9 @@
 /mob/living/carbon/xenomorph/queen/hivemind_start()
 	return "<span class='game say hivemind xenoqueen'>Hivemind, <span class='name'>[name]</span>"
 
+/mob/living/carbon/xenomorph/king/hivemind_start()
+	return "<span class='game say hivemind xenoking'>Hivemind, <span class='name'>[name]</span>"
+
 /mob/living/carbon/xenomorph/shrike/hivemind_start()
 	return "<span class='game say hivemind xenoshrike'>Hivemind, <span class='name'>[name]</span>"
 

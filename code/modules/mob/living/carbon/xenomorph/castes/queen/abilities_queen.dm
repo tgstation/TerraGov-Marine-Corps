@@ -755,5 +755,5 @@
 
 	log_game("[key_name(X)] has created a pod in [AREACOORD(X)]")
 	xeno_message("<B>[X] has created a king pod at [get_area(X)]. Defend it until the Queen Mother summons a king!</B>",3,X.hivenumber)
-	priority_announce("WARNING: Psychic anomaly detected at [get_area(X)] assault of the area reccomended.", "TGMC Intel Division")
+	priority_announce("WARNING: Psychic anomaly detected at [get_area(X)]. Assault of the area reccomended.", "TGMC Intel Division")
 	new /obj/structure/resin/king_pod(X.loc, X.hivenumber)
