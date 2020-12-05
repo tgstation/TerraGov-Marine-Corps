@@ -227,7 +227,7 @@
 	use_power = 0
 	req_one_access = list(ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_ENGPREP, ACCESS_MARINE_LEADER)
 	var/turret_flags = TURRET_HAS_CAMERA|TURRET_SAFETY
-	var/iff_signal = ACCESS_IFF_MARINE
+	var/list/iff_signal = list(ACCESS_IFF_MARINE)
 	var/rounds = 500
 	var/rounds_max = 500
 	var/burst_size = 5
@@ -940,6 +940,7 @@
 	proj_to_fire.original_target = target
 	proj_to_fire.setDir(dir)
 	proj_to_fire.def_zone = pick("chest", "chest", "chest", "head")
+	proj_to_fire.projectile_iff = iff_signal
 
 	//Shoot at the thing
 	playsound(loc, 'sound/weapons/guns/fire/smg_heavy.ogg', 75, TRUE)
@@ -1052,7 +1053,7 @@
 /obj/machinery/marine_turret/premade/dumb
 	name = "\improper Modified UA 571-C sentry gun"
 	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an M30 Autocannon and a 500-round drum magazine. This one's IFF system has been disabled, and it will open fire on any targets within range."
-	iff_signal = 0
+	iff_signal = null
 	ammo = /datum/ammo/bullet/turret/dumb
 	magazine_type = /obj/item/ammo_magazine/sentry/premade/dumb
 	rounds_max = 500

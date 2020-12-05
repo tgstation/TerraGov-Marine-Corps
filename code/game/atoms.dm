@@ -71,7 +71,8 @@
 	var/chat_color
 	/// A luminescence-shifted value of the last color calculated for chatmessage overlays
 	var/chat_color_darkened
-
+	///HUD images that this mob can provide.
+	var/list/hud_possible
 
 /*
 We actually care what this returns, since it can return different directives.
@@ -790,3 +791,10 @@ Proc for attack log creation, because really why not
 // For special click interactions (take first item out of container, quick-climb, etc.)
 /atom/proc/specialclick(mob/living/carbon/user)
 	return
+
+
+//Consolidating HUD infrastructure
+/atom/proc/prepare_huds()
+	hud_list = new
+	for(var/hud in hud_possible) //Providing huds.
+		hud_list[hud] = image('icons/mob/hud.dmi', src, "")

@@ -234,7 +234,12 @@
 	if(!scaling_wait)
 		return
 	var/mob/living/carbon/xenomorph/X = owner
-	return base_wait + scaling_wait - max(0, (scaling_wait * X.health / X.maxHealth))
+
+	var/sticky_resin_modifier = 1
+	if(X.selected_resin == /obj/effect/alien/resin/sticky) //Sticky resin builds twice as fast
+		sticky_resin_modifier = 0.5
+
+	return (base_wait + scaling_wait - max(0, (scaling_wait * X.health / X.maxHealth))) * sticky_resin_modifier
 
 /datum/action/xeno_action/activable/secrete_resin/proc/build_resin(turf/T)
 	var/mob/living/carbon/xenomorph/X = owner
@@ -324,9 +329,14 @@
 	else
 		new_resin = new X.selected_resin(T)
 
+	if(X.selected_resin == /obj/effect/alien/resin/sticky) //Sticky resin is discounted because let's face it, it's nowhere near as good as a wall or door
+		plasma_cost = 25
+
 	if(new_resin)
 		add_cooldown()
 		succeed_activate()
+
+	plasma_cost = initial(plasma_cost) //Reset the plasma cost
 
 // Slower version of the secret resin
 /datum/action/xeno_action/activable/secrete_resin/slow
@@ -772,7 +782,7 @@
 	if(!.)
 		var/mob/living/carbon/xenomorph/X = owner
 
-		. = new /obj/effect/xenomorph/spray(T, X.xeno_caste.acid_spray_damage)
+		. = new /obj/effect/xenomorph/spray(T, X.xeno_caste.acid_spray_duration, X.xeno_caste.acid_spray_damage)
 
 		for(var/i in T)
 			var/atom/A = i

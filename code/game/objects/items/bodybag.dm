@@ -383,9 +383,7 @@
 /obj/item/bodybag/tarp/Initialize(mapload, unfoldedbag)
 	. = ..()
 	if(!serial_number) //Give a random serial number in order to ward off auto-point macros
-		serial_number += pick("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z")
-		serial_number += "[rand(1000,100000)]-SN" //Set the serial number
-		name = "\improper [serial_number] [name]"
+		name = "\improper [uppertext(pick(GLOB.alphabet))][rand(1000,100000)]-SN [name]"
 
 /obj/item/bodybag/tarp/deploy_bodybag(mob/user, atom/location)
 	. = ..()

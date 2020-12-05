@@ -46,10 +46,12 @@
 	// *** Boiler Abilities *** //
 	max_ammo = 4
 	bomb_strength = 1 //Multiplier to the effectiveness of the boiler glob.
+	bomb_delay = 30 SECONDS
+	
+	acid_spray_duration = 10 SECONDS
 	acid_spray_damage = 16
 	acid_spray_damage_on_hit = 35
 	acid_spray_structure_damage = 45
-	bomb_delay = 30 SECONDS
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,

@@ -7,6 +7,7 @@
 #define SKIM_ATMOSPHERE 	1
 
 #define REQUIRED_POWER_AMOUNT 250000
+#define AUTO_LOGOUT_TIME 1 MINUTES
 
 #define AUTHORIZED 		1
 #define AUTHORIZED_PLUS	2
@@ -20,9 +21,14 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 	density = TRUE
 	anchored = TRUE
 	idle_power_usage = 10
-	var/changing_orbit = FALSE
+	req_access = list(ACCESS_MARINE_BRIDGE)
+	///boolean the spaceship it currently in the process of changing orbits
+	var/changing_orbit = TRUE
+	///boolean there is an authorized person logged into this console. TRUE = logged in authorized person
 	var/authenticated = FALSE
+	///boolean this machine is cut off from power and is sparking uncontrollably FALSE = everything fine
 	var/shorted = FALSE
+	///boolean this machine can be interacted with by the AI player. FELSE = can interact
 	var/aidisabled = FALSE
 
 //-------------------------------------------
@@ -44,6 +50,7 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 /obj/machinery/computer/navigation/Initialize() //need anything special?
 	. = ..()
 	desc = "The navigation console for the [SSmapping.configs[SHIP_MAP].map_name]."
+	addtimer(VARSET_CALLBACK(src, changing_orbit, FALSE), 30 MINUTES) //people running away far too quickly it seems
 
 /obj/machinery/computer/navigation/proc/reset(wire)
 	switch(wire)
@@ -115,6 +122,7 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 		if(isAI(usr))
 			authenticated = AUTHORIZED_PLUS
 			updateUsrDialog()
+			addtimer(VARSET_CALLBACK(src, authenticated, FALSE), AUTO_LOGOUT_TIME) //autologout
 			return
 		var/mob/living/carbon/human/C = usr
 		var/obj/item/card/id/I = C.get_active_held_item()
@@ -123,6 +131,7 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 				authenticated = AUTHORIZED
 			if(ACCESS_MARINE_BRIDGE in I.access)
 				authenticated = AUTHORIZED_PLUS
+			addtimer(VARSET_CALLBACK(src, authenticated, FALSE), AUTO_LOGOUT_TIME) //autologout
 		else
 			I = C.wear_id
 			if(istype(I))
@@ -130,6 +139,7 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 					authenticated = AUTHORIZED
 				if(ACCESS_MARINE_BRIDGE in I.access)
 					authenticated = AUTHORIZED_PLUS
+				addtimer(VARSET_CALLBACK(src, authenticated, FALSE), AUTO_LOGOUT_TIME) //autologout
 	if(href_list["logout"])
 		authenticated = FALSE
 
@@ -148,7 +158,8 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 		var/choice = alert(usr, "This will end the round. Are you certain you wish to leave any groundside marines behind?", "Escape Velocity", "Cancel", "Yes", "Cancel")
 		if(choice != "Yes")
 			return
-		message_admins("[ADMIN_TPMONTY(usr)] Is going to finish the round via the spaceship orbits mechanic")
+		message_admins("[ADMIN_TPMONTY(usr)] Is going to finish the round via the spaceship orbits mechanic. set GLOB.current_orbit to 4 to prevent this.")
+		priority_announce("The tall hosts are attempting to flee!", "Prey is escaping!", ANNOUNCEMENT_REGULAR, 'sound/voice/alien_drool1.ogg', receivers = GLOB.alive_xeno_list + GLOB.observer_list)
 		do_orbit_checks("escape")
 		TIMER_COOLDOWN_START(src, COOLDOWN_ORBIT_CHANGE, 1 MINUTES)
 		//end the round, xeno minor.
@@ -237,6 +248,10 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 		CHECK_TICK
 
 /obj/machinery/computer/navigation/proc/retreat()
+
+	if(GLOB.current_orbit != ESCAPE_VELOCITY)
+		message_admins("This is the moment when the space ship orbit would have done the retreat, but an admin has adjusted the GLOB.current_orbit variable to prevent this.")
+		return
 
 	if(isdistress(SSticker.mode))
 		var/datum/game_mode/infestation/distress/distress_mode = SSticker.mode

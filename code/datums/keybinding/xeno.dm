@@ -251,8 +251,8 @@
 
 /datum/keybinding/xeno/salvage_plasma
 	name = "salvage_plasma"
-	full_name = "Drone: Salvage Plasma"
-	description = ""
+	full_name = "Drone: Salvage Biomass"
+	description = "Salvage plasma, upgrade and evolution points from the corpse of another xenomorph, gibbing it."
 	keybind_signal = COMSIG_XENOABILITY_SALVAGE_PLASMA
 
 /datum/keybinding/xeno/resin_walker
@@ -404,6 +404,14 @@
 	full_name = "Runner: Toggle Savage"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_SAVAGE
+
+/*
+/datum/keybinding/xeno/evasion
+	name = "evasion"
+	full_name = "Evasion"
+	description = "Take evasive action, forcing non-friendly projectiles that would hit you to miss so long as you keep moving."
+	keybind_signal = COMSIG_XENOABILITY_EVASION
+*/
 
 /datum/keybinding/xeno/toggle_agility
 	name = "toggle_agility"

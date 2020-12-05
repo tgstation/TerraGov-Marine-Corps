@@ -62,7 +62,7 @@
 
 /mob/living/carbon/xenomorph/queen/receive_hivemind_message(mob/living/carbon/xenomorph/X, message)
 	if(X != src)
-		show_message("(<a href='byond://?src=[REF(src)];watch_xeno_number=[X.nicknumber]'>F</a>) [X.hivemind_start()] <span class='message'>hisses, '[message]'</span>[X.hivemind_end()]", 2)
+		show_message("(<a href='byond://?src=[REF(src)];watch_xeno_name=[X.nicknumber]'>F</a>) [X.hivemind_start()] <span class='message'>hisses, '[message]'</span>[X.hivemind_end()]", 2)
 	else
 		return ..()
 

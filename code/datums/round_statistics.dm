@@ -46,6 +46,7 @@ GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 	var/defender_crest_raises = 0 //manual disabling of the crest
 	var/defender_fortifiy_toggles = 0
 	var/runner_savage_attacks = 0
+	var/runner_evasions = 0
 	var/weeds_planted = 0
 	var/weeds_destroyed = 0
 	var/grenades_thrown = 0
@@ -56,7 +57,7 @@ GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 	var/defiler_neurogas_uses = 0
 	var/defiler_inject_egg_neurogas = 0
 	var/larval_growth_stings = 0
-	var/drone_salvage_plasma = 0
+	var/drone_salvage_biomass = 0
 	var/xeno_unarmed_attacks = 0
 	var/xeno_bump_attacks = 0
 	var/xeno_headbites = 0
