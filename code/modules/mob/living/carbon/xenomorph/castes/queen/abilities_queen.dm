@@ -752,6 +752,7 @@
 	to_chat(X, "<span class='xenonotice'>We begin constructing a psychic echo chamber for the Queen Mother...</span>")
 	if(!do_after(X, 15 SECONDS, FALSE, X, BUSY_ICON_HOSTILE))
 		return fail_activate()
+	SSpoints.xeno_points_by_hive["[X.hivenumber]"] -= REQUIRED_POINTS_FOR_KING_SUMMON
 
 	log_game("[key_name(X)] has created a pod in [AREACOORD(X)]")
 	xeno_message("<B>[X] has created a king pod at [get_area(X)]. Defend it until the Queen Mother summons a king!</B>",3,X.hivenumber)
