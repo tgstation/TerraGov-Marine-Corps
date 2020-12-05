@@ -88,3 +88,8 @@
 	var/myarea = get_area(src)
 	priority_announce("Warning: Psychic anomaly signature in [myarea] has spiked and begun to move.", "TGMC Intel Division")
 	xeno_message("<span class='xenoannounce'>[occupied] has awakened at [myarea]. Praise the Queen Mother!</span>", 3 ,ownerhive)
+
+/obj/structure/resin/king_pod/obj_destruction(damage_flag)
+	xeno_message("<B>The [src] has been destroyed at [get_area(src)]!</B>",3,X.hivenumber)
+	priority_announce("Psychic anomaly neutralized in [get_area(src)].", "TGMC Intel Division")
+	return ..()
