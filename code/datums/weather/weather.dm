@@ -68,6 +68,8 @@
 
 	/// Weight amongst other eligible weather. If zero, will never happen randomly.
 	var/probability = 0
+	/// If this weather can happen multiple times in a row.
+	var/repeatable = TRUE
 	/// The z-level trait to affect when run randomly or when not overridden.
 	var/target_trait = ZTRAIT_STATION
 
