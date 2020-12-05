@@ -641,6 +641,9 @@
 	return FALSE
 
 /mob/living/can_sting()
+	if(isxeno(src)) //Xenos don't process reagents
+		return FALSE
+
 	if(ishuman(src))
 		var/mob/living/carbon/human/target = src
 		if(target.species?.species_flags & IS_SYNTHETIC)

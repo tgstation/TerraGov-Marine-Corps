@@ -217,36 +217,6 @@
 	cancel_stealth()
 	return COMPONENT_BYPASS_SHIELDS
 
-/* ///Commenting this out for now due to our removal of disarm intent tackles
-/datum/action/xeno_action/stealth/proc/sneak_attack_disarm(datum/source, mob/living/target, damage, list/damage_mod, list/armor_mod)
-	SIGNAL_HANDLER
-	if(!stealth || !can_sneak_attack)
-		return
-
-	var/staggerslow_stacks = HUNTER_SNEAK_ATTACK_STAGGERSLOW_STACKS * 1.5
-	var/paralyze_time = HUNTER_SNEAK_ATTACK_PARALYZE_TIME * 1.5
-	var/flavour
-
-	if(owner.m_intent == MOVE_INTENT_RUN && ( owner.last_move_intent > (world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY) ) )  //We penalize running with a compromised sneak attack, unless they've been stationary; walking is fine.
-		flavour = "vicious"
-		staggerslow_stacks *= HUNTER_SNEAK_ATTACK_RUNNING_MULTIPLIER //Penalize staggerslow
-		paralyze_time *= HUNTER_SNEAK_ATTACK_RUNNING_MULTIPLIER
-		armor_mod += (1 - (1 - HUNTER_SNEAK_SLASH_ARMOR_PEN) * HUNTER_SNEAK_ATTACK_RUNNING_MULTIPLIER) //We halve the penetration.
-
-	else
-		armor_mod += HUNTER_SNEAK_SLASH_ARMOR_PEN
-		flavour = "deadly"
-
-	owner.visible_message("<span class='danger'>\The [owner] strikes [target] with [flavour] precision!</span>", \
-	"<span class='danger'>We strike [target] with [flavour] precision!</span>")
-	target.ParalyzeNoChain(paralyze_time)
-	target.adjust_stagger(staggerslow_stacks)
-	target.add_slowdown(staggerslow_stacks)
-
-	cancel_stealth()
-	return COMPONENT_BYPASS_SHIELDS
-*/
-
 /datum/action/xeno_action/stealth/proc/damage_taken(mob/living/carbon/xenomorph/X, damage_taken)
 	SIGNAL_HANDLER
 	if(damage_taken > 15)
