@@ -49,8 +49,8 @@
 
 ///resin pod that creates the king xeno after a delay
 /obj/structure/resin/king_pod
-	name = "Psychic echo chamber"
-	desc = "A resin monolith used to channel the Queen Mothers energy to summon elder xenos to a battlefield."
+	name = "psychic echo chamber"
+	desc = "A resin monolith used to channel the Queen Mother's energy to summon elder xenomorphs to the battlefield."
 	icon = 'icons/Xeno/king_pod.dmi'
 	icon_state = "king_pod"
 	density = FALSE

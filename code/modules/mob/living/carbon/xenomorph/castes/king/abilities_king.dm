@@ -103,7 +103,7 @@
 /datum/action/xeno_action/psychic_summon
 	name = "Psychic Summon"
 	action_icon_state = "screech"
-	mechanics_text = "Summons all xenos in a hive to the callers location."
+	mechanics_text = "Summons all xenos in a hive to the caller's location, uses all plasma to activate."
 	ability_name = "Psychic summon"
 	plasma_cost = 1100 //uses all an elder kings plasma
 	cooldown_timer = 10 MINUTES

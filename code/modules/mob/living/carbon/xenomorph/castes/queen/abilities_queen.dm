@@ -731,7 +731,7 @@
 	gen.start_processing()
 
 /datum/action/xeno_action/summon_king
-	name = "Summon a Xeno King"
+	name = "Summon Xenomorph King"
 	action_icon_state = "xeno_deevolve"
 	mechanics_text = "Deploy a pod to summon a xeno king."
 	plasma_cost = 0 //hive points cost
@@ -749,7 +749,7 @@
 
 /datum/action/xeno_action/summon_king/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
-	to_chat(X, "<span class='xenonotice'>We begin constructing a psychic echo chamber for the queen mother...</span>")
+	to_chat(X, "<span class='xenonotice'>We begin constructing a psychic echo chamber for the Queen Mother...</span>")
 	if(!do_after(X, 15 SECONDS, FALSE, X, BUSY_ICON_HOSTILE))
 		return fail_activate()
 
