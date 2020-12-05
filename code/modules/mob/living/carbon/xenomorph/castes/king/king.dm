@@ -82,6 +82,7 @@
 
 ///When the king mob is offered and then accepted this proc ejects the king and does announcements
 /obj/structure/resin/king_pod/proc/on_king_occupied(mob/occupied)
+	SIGNAL_HANDLER
 	UnregisterSignal(occupied, COMSIG_MOB_LOGIN)
 	occupied.forceMove(loc)
 	desc += " This one has already been used."
@@ -90,6 +91,6 @@
 	xeno_message("<span class='xenoannounce'>[occupied] has awakened at [myarea]. Praise the Queen Mother!</span>", 3 ,ownerhive)
 
 /obj/structure/resin/king_pod/obj_destruction(damage_flag)
-	xeno_message("<B>The [src] has been destroyed at [get_area(src)]!</B>",3,X.hivenumber)
+	xeno_message("<B>The [src] has been destroyed at [get_area(src)]!</B>",3,ownerhive)
 	priority_announce("Psychic anomaly neutralized in [get_area(src)].", "TGMC Intel Division")
 	return ..()
