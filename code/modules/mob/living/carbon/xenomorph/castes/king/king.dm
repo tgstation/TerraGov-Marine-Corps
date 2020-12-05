@@ -84,7 +84,7 @@
 /obj/structure/resin/king_pod/proc/on_king_occupied(mob/occupied)
 	SIGNAL_HANDLER
 	UnregisterSignal(occupied, COMSIG_MOB_LOGIN)
-	occupied.forceMove(loc)
+	occupied.forceMove(get_turf(src))
 	desc += " This one has already been used."
 	var/myarea = get_area(src)
 	priority_announce("Warning: Psychic anomaly signature in [myarea] has spiked and begun to move.", "TGMC Intel Division")
