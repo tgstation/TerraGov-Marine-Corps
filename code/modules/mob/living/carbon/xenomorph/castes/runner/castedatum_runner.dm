@@ -57,6 +57,7 @@
 		/datum/action/xeno_action/xenohide,
 		/datum/action/xeno_action/activable/pounce,
 		/datum/action/xeno_action/toggle_savage,
+		/datum/action/xeno_action/evasion,
 	)
 
 /datum/xeno_caste/runner/young
