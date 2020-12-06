@@ -1,4 +1,4 @@
-#define NEST_RESIST_TIME 1 MINUTES
+#define NEST_RESIST_TIME 2.5 SECONDS
 #define NEST_UNBUCKLED_COOLDOWN 5 SECONDS
 
 //Alium nests. Essentially beds with an unbuckle delay that only aliums can buckle mobs to.
@@ -60,7 +60,7 @@
 	user.visible_message("<span class='warning'>[user] pins [buckling_mob] into [src], preparing the securing resin.</span>",
 	"<span class='warning'>[user] pins [buckling_mob] into [src], preparing the securing resin.</span>")
 
-	if(!do_mob(user, buckling_mob, 1.5 SECONDS, BUSY_ICON_HOSTILE))
+	if(!do_mob(user, buckling_mob, 1 SECONDS, BUSY_ICON_HOSTILE))
 		return FALSE
 	if(QDELETED(src))
 		return FALSE

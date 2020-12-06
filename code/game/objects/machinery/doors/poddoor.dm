@@ -178,6 +178,10 @@
 	name = "\improper Ammunition Storage"
 	id = "ammo2"
 
+/obj/machinery/door/poddoor/mainship/droppod
+	name = "\improper Drop pod Bay"
+	id = "droppod"
+
 /obj/machinery/door/poddoor/mainship/open/cic
 	name = "\improper Combat Information Center Blast Door"
 	id = "cic_lockdown"

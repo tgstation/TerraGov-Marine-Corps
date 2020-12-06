@@ -39,7 +39,11 @@
 	spit_delay = 1.3 SECONDS
 	spit_types = list(/datum/ammo/xeno/toxin/heavy, /datum/ammo/xeno/acid/heavy)
 
+	acid_spray_duration = 10 SECONDS
 	acid_spray_range = 4
+	acid_spray_damage = 16
+	acid_spray_damage_on_hit = 35
+	acid_spray_structure_damage = 45
 
 	// *** Pheromones *** //
 	aura_strength = 3 //Praetorian's aura starts strong. They are the Queen's right hand. Climbs by 1 to 4.5
@@ -90,6 +94,9 @@
 	// *** Ranged Attack *** //
 	spit_delay = 1.2 SECONDS
 	spit_types = list(/datum/ammo/xeno/toxin/heavy/upgrade1, /datum/ammo/xeno/acid/heavy)
+	
+	acid_spray_damage_on_hit = 39
+	acid_spray_structure_damage = 53
 
 	// *** Pheromones *** //
 	aura_strength = 3.5
@@ -124,6 +131,9 @@
 	// *** Ranged Attack *** //
 	spit_delay = 1.1 SECONDS
 	spit_types = list(/datum/ammo/xeno/toxin/heavy/upgrade2, /datum/ammo/xeno/acid/heavy)
+	
+	acid_spray_damage_on_hit = 43
+	acid_spray_structure_damage = 61
 
 	// *** Pheromones *** //
 	aura_strength = 4
@@ -156,6 +166,9 @@
 	// *** Ranged Attack *** //
 	spit_delay = 1 SECONDS
 	spit_types = list(/datum/ammo/xeno/toxin/heavy/upgrade3, /datum/ammo/xeno/acid/heavy)
+
+	acid_spray_damage_on_hit = 47
+	acid_spray_structure_damage = 69
 
 	// *** Pheromones *** //
 	aura_strength = 4.5

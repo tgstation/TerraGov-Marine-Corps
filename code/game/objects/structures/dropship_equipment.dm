@@ -86,6 +86,10 @@
 	icon = 'icons/Marine/casship.dmi'
 	icon_state = "15"
 
+/obj/effect/attach_point/weapon/minidropship
+	ship_tag = "minidropship"
+	icon_state = "equip_base"
+
 /obj/effect/attach_point/crew_weapon
 	name = "rear attach point"
 	base_category = DROPSHIP_CREW_WEAPON
@@ -96,6 +100,8 @@
 /obj/effect/attach_point/crew_weapon/dropship2
 	ship_tag = "normandy"
 
+/obj/effect/attach_point/crew_weapon/minidropship
+	ship_tag = "minidropship"
 
 /obj/effect/attach_point/electronics
 	name = "electronic system attach point"
@@ -362,6 +368,8 @@
 /obj/structure/dropship_equipment/sentry_holder/proc/deploy_sentry()
 	if(!deployed_turret)
 		return
+	setDir(ship_base.dir)
+	deployed_turret.setDir(dir)
 	playsound(loc, 'sound/machines/hydraulics_1.ogg', 40, 1)
 	deployment_cooldown = world.time + 50
 	ENABLE_BITFIELD(deployed_turret.turret_flags, TURRET_ON)
@@ -682,7 +690,7 @@
 	name = "\improper GAU-21 30mm cannon"
 	desc = "A dismounted GAU-21 'Rattler' 30mm rotary cannon. It seems to be missing its feed links and has exposed connection wires. Capable of firing 5200 rounds a minute, feared by many for its power. Earned the nickname 'Rattler' from the vibrations it would cause on dropships in its inital production run."
 	icon_state = "30mm_cannon"
-	firing_sound = 'sound/effects/cannon30.ogg'
+	firing_sound = 'sound/weapons/gunship_chaingun.ogg'
 	point_cost = 400
 	dropship_equipment_flags = USES_AMMO|IS_WEAPON|IS_INTERACTABLE
 
@@ -707,7 +715,7 @@
 	name = "rocket pod"
 	icon_state = "rocket_pod"
 	desc = "A rocket pod weapon system capable of launching a single laser-guided rocket. Moving this will require some sort of lifter."
-	firing_sound = 'sound/weapons/guns/fire/flare_explode.ogg'
+	firing_sound = 'sound/weapons/gunship_rocket.ogg'
 	firing_delay = 5
 	point_cost = 600
 
@@ -730,7 +738,7 @@
 	icon_state = "minirocket_pod"
 	desc = "A mini rocket pod capable of launching six laser-guided mini rockets. Moving this will require some sort of lifter."
 	icon = 'icons/Marine/mainship_props64.dmi'
-	firing_sound = 'sound/weapons/guns/fire/flare_explode.ogg'
+	firing_sound = 'sound/weapons/gunship_rocketpod.ogg'
 	firing_delay = 10 //1 seconds
 	point_cost = 600
 
@@ -753,7 +761,7 @@
 	icon_state = "laser_beam"
 	desc = "State of the art technology recently acquired by the TGMC, it fires a battery-fed pulsed laser beam at near lightspeed setting on fire everything it touches. Moving this will require some sort of lifter."
 	icon = 'icons/Marine/mainship_props64.dmi'
-	firing_sound = 'sound/effects/phasein.ogg'
+	firing_sound = 'sound/weapons/gunship_laser.ogg'
 	firing_delay = 50 //5 seconds
 	point_cost = 500
 	dropship_equipment_flags = USES_AMMO|IS_WEAPON|IS_INTERACTABLE
@@ -774,7 +782,7 @@
 	icon_state = "launch_bay"
 	desc = "A launch bay to drop special ordnance. Fits inside the dropship's crew weapon emplacement. Moving this will require some sort of lifter."
 	icon = 'icons/Marine/mainship_props.dmi'
-	firing_sound = 'sound/weapons/guns/fire/flare_explode.ogg'
+	firing_sound = 'sound/weapons/guns/fire/gunshot.ogg'
 	firing_delay = 10 //1 seconds
 	equip_category = DROPSHIP_CREW_WEAPON //fits inside the central spot of the dropship
 	point_cost = 0
@@ -799,7 +807,7 @@
 	equip_category = DROPSHIP_CREW_WEAPON
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "table2-idle"
-	point_cost = 300
+	point_cost = 100
 	var/obj/machinery/optable/deployed_table
 
 /obj/structure/dropship_equipment/operatingtable/Initialize()

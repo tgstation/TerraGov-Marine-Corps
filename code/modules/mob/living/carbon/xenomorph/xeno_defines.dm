@@ -106,14 +106,26 @@
 	///amount of time between pounce ability uses
 	var/pounce_delay = 4 SECONDS
 
+	// *** Acid spray *** //
 	///Number of tiles of the acid spray cone extends outward to. Not recommended to go beyond 4.
 	var/acid_spray_range = 0
+	///How long the acid spray stays on floor before it deletes itself, should be higher than 0 to avoid runtimes with timers.
+	var/acid_spray_duration = 1
+	///The damage acid spray causes on hit.
+	var/acid_spray_damage_on_hit = 0
+	///The damage acid spray causes over time.
+	var/acid_spray_damage = 0
+	///The damage acid spray causes to structure.
+	var/acid_spray_structure_damage = 0
 
 	// *** Pheromones *** //
 	///The strength of our aura. Zero means we can't emit one
 	var/aura_strength = 0
 	///The 'types' of pheremones a xenomorph caste can emit.
 	var/aura_allowed = list("frenzy", "warding", "recovery") //"Evolving" removed for the time being
+
+	// *** Defiler Abilities *** //
+	var/list/available_reagents_define = list() //reagents available for select reagent
 
 	// *** Warrior Abilities *** //
 	///speed increase afforded to the warrior caste when in 'agiility' mode. negative number means faster movement.
@@ -145,6 +157,12 @@
 	///amount of slowdown to apply when the crest defense is active. trading defense for speed. Positive numbers makes it slower.
 	var/crest_defense_slowdown = 0
 
+	// *** Crusher Abilities *** //
+	///The damage the stomp causes, counts armor
+	var/stomp_damage = 0
+	///How many tiles the Crest toss ability throws the victim.
+	var/crest_toss_distance = 0
+
 	// *** Queen Abilities *** //
 	///Amount of leaders allowed
 	var/queen_leader_limit = 0
@@ -171,6 +189,7 @@
 	see_in_dark = 8
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	sight = SEE_SELF|SEE_OBJS|SEE_TURFS|SEE_MOBS
+	appearance_flags = TILE_BOUND|PIXEL_SCALE|KEEP_TOGETHER
 	see_infrared = TRUE
 	hud_type = /datum/hud/alien
 	hud_possible = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD, ARMOR_SUNDER_HUD)
@@ -235,6 +254,7 @@
 	var/list/datum/action/xeno_abilities = list()
 	var/datum/action/xeno_action/activable/selected_ability
 	var/selected_resin = /obj/structure/bed/nest //which resin structure to build when we secrete resin
+	var/selected_reagent = /datum/reagent/toxin/xeno_hemodile //which reagent to slash with using reagent slash
 
 	//Naming variables
 	var/nicknumber = 0 //The number/name after the xeno type. Saved right here so it transfers between castes.
@@ -274,6 +294,8 @@
 	//Runner vars
 	var/savage = FALSE
 	var/savage_used = FALSE
+	///Defines how much projectile damage evasion can still absorb
+	var/evasion_stacks = 0
 
 	// *** Ravager vars *** //
 	var/ignore_pain = FALSE // when true the rav will not go into crit or take crit damage.

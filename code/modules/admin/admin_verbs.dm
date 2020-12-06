@@ -47,6 +47,8 @@
 		M.remove_from_all_mob_huds()
 		M.name = null
 
+	M.client.holder.invisimined = !M.client.holder.invisimined
+
 	log_admin("[key_name(M)] has [(M.invisibility == INVISIBILITY_MAXIMUM) ? "enabled" : "disabled"] invisimin.")
 	message_admins("[ADMIN_TPMONTY(M)] has [(M.invisibility == INVISIBILITY_MAXIMUM) ? "enabled" : "disabled"] invisimin.")
 

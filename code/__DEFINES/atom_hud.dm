@@ -20,6 +20,8 @@
 #define AI_DETECT_HUD				"ai_detect_hud" //hud for displaying the AI eye's location
 #define PAIN_HUD					"pain_hud" //displays human pain / preceived health.
 #define ARMOR_SUNDER_HUD			"armor_sunder_hud" //displays how much sunder has been applied.
+#define XENO_REAGENT_HUD			"xeno_reagent_hud" // displays sign based on reagent in human
+#define XENO_TUNNEL_HUD				"xeno_tunnel_hud" // displays xeno tunnels
 
 #define ADD_HUD_TO_COOLDOWN 20 //cooldown for being shown the images for any particular data hud
 
@@ -36,11 +38,13 @@
 #define DATA_HUD_MEDICAL_ADVANCED_SYNTH	5
 #define DATA_HUD_MEDICAL_OBSERVER		6
 #define DATA_HUD_XENO_INFECTION			7
-#define DATA_HUD_XENO_STATUS			8
-#define DATA_HUD_SQUAD					9
-#define DATA_HUD_ORDER					10
-#define DATA_HUD_AI_DETECT				11
-#define DATA_HUD_MEDICAL_PAIN			12
+#define DATA_HUD_XENO_REAGENTS  		8
+#define DATA_HUD_XENO_STATUS			9
+#define DATA_HUD_SQUAD					10
+#define DATA_HUD_ORDER					11
+#define DATA_HUD_AI_DETECT				12
+#define DATA_HUD_MEDICAL_PAIN			13
+#define DATA_HUD_XENO_TUNNELS			14
 
 
 // Notification action types

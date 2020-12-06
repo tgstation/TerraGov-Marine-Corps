@@ -191,7 +191,7 @@
 	icon = 'icons/turf/shuttle.dmi'
 	allow_construction = FALSE
 	shoefootstep = FOOTSTEP_PLATING
-	barefootstep = FOOTSTEP_PLATING
+	barefootstep = FOOTSTEP_HARD
 	mediumxenofootstep = FOOTSTEP_PLATING
 
 
@@ -220,6 +220,10 @@
 
 /turf/open/shuttle/dropship/eight
 	icon_state = "rasputin8"
+
+/turf/open/shuttle/dropship/grating
+	icon = 'icons/turf/elevator.dmi'
+	icon_state = "floor_grating"
 
 //not really plating, just the look
 /turf/open/shuttle/plating

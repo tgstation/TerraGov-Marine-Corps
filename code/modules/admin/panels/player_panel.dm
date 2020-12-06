@@ -454,7 +454,6 @@
 		<a href='?src=[ref];transform=larva;mob=[REF(M)]'>Larva</a>
 		<br> Alien Tier 1:
 		<a href='?src=[ref];transform=runner;mob=[REF(M)]'>Runner</a> |
-		<a href='?src=[ref];transform=panther;mob=[REF(M)]'>Panther</a> |
 		<a href='?src=[ref];transform=drone;mob=[REF(M)]'>Drone</a> |
 		<a href='?src=[ref];transform=sentinel;mob=[REF(M)]'>Sentinel</a> |
 		<a href='?src=[ref];transform=defender;mob=[REF(M)]'>Defender</a>
