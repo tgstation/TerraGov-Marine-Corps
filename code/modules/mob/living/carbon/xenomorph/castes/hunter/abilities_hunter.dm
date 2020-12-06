@@ -148,7 +148,7 @@
 		owner.alpha = HUNTER_STEALTH_RUN_ALPHA * stealth_alpha_multiplier
 		return
 	//Stationary stealth
-	else if(owner.last_move_intent < world.time - HUNTER_STEALTH_STEALTH_DELAY) //If we're standing still for 4 seconds we become almost completely invisible
+	else if(owner.last_move_time < world.time - HUNTER_STEALTH_STEALTH_DELAY) //If we're standing still for 4 seconds we become almost completely invisible
 		owner.alpha = HUNTER_STEALTH_STILL_ALPHA * stealth_alpha_multiplier
 	//Walking stealth
 	else if(owner.m_intent == MOVE_INTENT_WALK)
@@ -199,7 +199,7 @@
 	var/paralyze_time = HUNTER_SNEAK_ATTACK_PARALYZE_TIME
 	var/staggerslow_stacks = HUNTER_SNEAK_ATTACK_STAGGERSLOW_STACKS
 	var/flavour
-	if(owner.m_intent == MOVE_INTENT_RUN && ( owner.last_move_intent > (world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY) ) ) //We penalize running with a compromised sneak attack, unless they've been stationary; walking is fine.
+	if(owner.m_intent == MOVE_INTENT_RUN && ( owner.last_move_time > (world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY) ) ) //We penalize running with a compromised sneak attack, unless they've been stationary; walking is fine.
 		flavour = "vicious"
 		staggerslow_stacks *= HUNTER_SNEAK_ATTACK_RUNNING_MULTIPLIER //half as much stagger slow if we're running and not stationary
 		paralyze_time *= HUNTER_SNEAK_ATTACK_RUNNING_MULTIPLIER
@@ -226,7 +226,7 @@
 	SIGNAL_HANDLER
 	handle_stealth()
 
-	if(stealth && owner.last_move_intent > world.time - 20) //Stealth halves the rate of plasma recovery on weeds, and eliminates it entirely while moving
+	if(stealth && owner.last_move_time > world.time - 20) //Stealth halves the rate of plasma recovery on weeds, and eliminates it entirely while moving
 		plasma_mod += 0.0
 	else
 		plasma_mod += 0.5
@@ -354,7 +354,7 @@
 			to_chat(X, "<span class='xenowarning'>We must be adjacent to the target.</span>")
 		return FALSE
 
-	if(X.m_intent == MOVE_INTENT_RUN && ( X.last_move_intent > (world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY) ) )//We can't sprint up to the target and use this.
+	if(X.m_intent == MOVE_INTENT_RUN && ( X.last_move_time > (world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY) ) )//We can't sprint up to the target and use this.
 		if(!silent)
 			to_chat(X, "<span class='xenowarning'>We must be stalking or stationary to properly sting the target!</span>")
 		return FALSE
