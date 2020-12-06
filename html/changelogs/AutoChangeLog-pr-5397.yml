@@ -1,0 +1,5 @@
+author: "Surrealaser"
+delete-after: True
+changes: 
+  - bugfix: "Fixes the shield damage absorption calculation."
+  - tweak: "'Paralyze' status effect (i.e. proning) only halves the shield's cover value instead of negating it completely."
