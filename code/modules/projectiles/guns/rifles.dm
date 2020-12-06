@@ -725,7 +725,6 @@
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 8, "rail_y" = 21, "under_x" = 22, "under_y" = 15, "stock_x" = 9, "stock_y" = 15)
 	starting_attachment_types = list(/obj/item/attachable/stock/irremoveable/rifle)
-	starting_attachment_types = list(/obj/item/attachable/stock/rifle/irremoveable)
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.15 SECONDS
 	aim_speed_modifier = 2
