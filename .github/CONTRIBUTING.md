@@ -457,19 +457,19 @@ var/myvariable
 Multi line comments
 ```DM
 /**
-  * This is a proc with arguments
-  *
-  * it does things
-  * Arguments:
-  * * bar: this argument does things
-  */
+ * This is a proc with arguments
+ *
+ * it does things
+ * Arguments:
+ * * bar: this argument does things
+ */
 /proc/foo(bar)
 ```
 File comments
 ```DM
 /*!
-  * This file has things in it
-  */
+ * This file has things in it
+ */
 ```
 
 ## Pull Request Process
