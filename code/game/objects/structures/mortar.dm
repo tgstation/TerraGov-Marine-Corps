@@ -28,7 +28,7 @@
 	. = ..()
 	if(.)
 		return
-	
+
 	if(busy)
 		to_chat(user, "<span class='warning'>Someone else is currently using [src].</span>")
 		return
@@ -112,9 +112,9 @@
 		offset_y = rand(-offset_y_max, offset_y_max)
 
 /**
-  * this proc is used because pointers suck and references would break the saving of coordinates.
-  *
-  */
+ * this proc is used because pointers suck and references would break the saving of coordinates.
+ *
+ */
 /obj/structure/mortar/proc/get_new_list(str)
 	var/list/target_data = list()
 	switch(str)
@@ -129,9 +129,9 @@
 	return target_data
 
 /**
-  * checks if we are entering in the exact same coordinates, 
-  * and does not save them again.
-  */
+ * checks if we are entering in the exact same coordinates,
+ * and does not save them again.
+ */
 /obj/structure/mortar/proc/check_bombard_spam()
 	var/list/temp = get_new_list("coords")
 	for(var/i in temp)
@@ -171,7 +171,7 @@
 		var/turf/selfown = locate((coords["targ_x"] + coords["dial_x"]), (coords["targ_y"] + coords["dial_y"]), z)
 		if(get_dist(loc, selfown) < 7)
 			to_chat(usr, "<span class='warning'>You cannot target this coordinate, it is too close to your mortar.</span>")
-			return		
+			return
 
 		var/turf/T = locate(coords["targ_x"] + coords["dial_x"] + offset_x, coords["targ_y"]  + coords["dial_x"] + offset_y, z)
 		if(!isturf(T))

@@ -426,10 +426,10 @@
 
 
 /**
-  * Handle the result of a click drag onto this mob
-  *
-  * For mobs this just shows the inventory
-  */
+ * Handle the result of a click drag onto this mob
+ *
+ * For mobs this just shows the inventory
+ */
 /mob/MouseDrop_T(atom/dropping, atom/user)
 	. = ..()
 	if(.)
@@ -525,12 +525,12 @@
 	return TRUE
 
 /**
-  * Buckle to another mob
-  *
-  * You can buckle on mobs if you're next to them since most are dense
-  *
-  * Turns you to face the other mob too
-  */
+ * Buckle to another mob
+ *
+ * You can buckle on mobs if you're next to them since most are dense
+ *
+ * Turns you to face the other mob too
+ */
 /mob/buckle_mob(mob/living/buckling_mob, force = FALSE, check_loc = TRUE, lying_buckle = FALSE, hands_needed = 0, target_hands_needed = 0, silent)
 	if(buckling_mob.buckled)
 		return FALSE
