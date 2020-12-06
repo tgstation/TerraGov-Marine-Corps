@@ -191,3 +191,7 @@
 	density = FALSE
 	opacity = FALSE
 	anchored = TRUE
+
+/obj/effect/xenomorph/warp_shadow/Initialize(mapload, target)
+	. = ..()
+		add_filter("wraith_warp_shadow", 4, list("type" = "blur", 5)) //Cool filter appear

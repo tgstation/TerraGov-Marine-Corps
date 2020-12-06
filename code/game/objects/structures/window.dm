@@ -79,6 +79,8 @@
 /obj/structure/window/CheckExit(atom/movable/mover, turf/target)
 	if(CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
 		return TRUE
+	if(incorporeal_movement_check(mover)) //Incorporeal things move through most solid obstacles
+		return TRUE
 	if(is_full_window()) //Can always leave from a full window.
 		return TRUE
 	if(get_dir(loc, target) == dir)

@@ -574,11 +574,12 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define WRAITH_PLACE_WARP_BEACON_WINDUP		3 SECONDS
 
 #define WRAITH_HYPERPOSITION_MIN_WINDUP		0.5 SECONDS
-#define WRAITH_HYPERPOSITION_MAX_WINDUP		10 SECONDS
+#define WRAITH_HYPERPOSITION_MAX_WINDUP		5 SECONDS
 
 #define WRAITH_PHASE_SHIFT_BLOCKERS			list(/obj/flamer_fire, /obj/effect/particle_effect/smoke/plasmaloss)
 #define WRAITH_PHASE_SHIFT_WINDUP			1 SECONDS
 #define WRAITH_PHASE_SHIFT_DURATION			5 SECONDS
+#define WRAITH_PHASE_SHIFT_DURATION_WARNING	0.7
 #define WRAITH_PHASE_SHIFT_ALPHA			128 //50% transparency
 
 #define WRAITH_BLINK_DRAG_MULTIPLIER		20 //The amount we multiply the cooldown by when we teleport while dragging a target

@@ -121,6 +121,9 @@
 	TI.forceMove(beacon_turf) //Move to where the beacon was
 	teleport_debuff_aoe(TI) //Apply tele debuff
 
+	TI.add_filter("wraith_hyperposition_warp_filter", 3, list("type" = "blur", 5)) //Cool filter appear
+	addtimer(CALLBACK(TI, /atom.proc/remove_filter, "wraith_hyperposition_warp_filter"), 1 SECONDS) //1 sec blur duration
+
 	var/area/A = get_area(WB)
 	TI.visible_message("<span class='warning'>\ [TI] suddenly vanishes in a vortex of warped space!</span>", \
 	"<span class='xenodanger'>We teleport, swapping positions with our warp shadow. Our warp shadow has moved to [A] (X: [WB.x], Y: [WB.y]).</span>", null, 5) //Let user know the new location
@@ -153,9 +156,9 @@
 		"<span class='xenodanger'>We abort our desynchronization.</span>")
 		return fail_activate()
 
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, TI, "<span class='highdanger'>We begin to move back into phase with reality...</span>"), WRAITH_PHASE_SHIFT_DURATION * 0.7) //Warn them when Phase Shift is about to end
-	addtimer(CALLBACK(TI, /mob/.proc/playsound_local, TI, 'sound/voice/hiss4.ogg', 50), WRAITH_PHASE_SHIFT_DURATION * 0.7)
+	addtimer(CALLBACK(src, .proc/phase_shift_warning), WRAITH_PHASE_SHIFT_DURATION * WRAITH_PHASE_SHIFT_DURATION_WARNING) //Warn them when Phase Shift is about to end
 	addtimer(CALLBACK(src, .proc/phase_shift_deactivate), WRAITH_PHASE_SHIFT_DURATION)
+	TI.add_filter("wraith_phase_shift", 4, list("type" = "blur", 5)) //Cool filter appear
 
 	TI.status_flags = GODMODE | INCORPOREAL //Become temporarily invulnerable and incorporeal
 	TI.resistance_flags = RESIST_ALL
@@ -171,6 +174,17 @@
 	succeed_activate()
 	add_cooldown()
 
+/datum/action/xeno_action/phase_shift/proc/phase_shift_warning()
+	var/mob/living/carbon/xenomorph/wraith/TI = owner
+
+	TI.do_jitter_animation(2000) //Animation
+	owner.remove_filter("wraith_phase_shift")
+	owner.add_filter("wraith_phase_shift", 4, list("type" = "blur", 3)) //Downgrade the blur
+	owner.alpha = WRAITH_PHASE_SHIFT_ALPHA * 1.5 //Become less translucent
+
+	to_chat(owner,"<span class='highdanger'>We begin to move back into phase with reality... We can only remain out of phase for [WRAITH_PHASE_SHIFT_DURATION * (1-WRAITH_PHASE_SHIFT_DURATION_WARNING) * 0.1] more seconds!</span>")
+	owner.playsound_local(owner, 'sound/voice/hiss4.ogg', 50, 0, 1)
+
 
 /datum/action/xeno_action/phase_shift/proc/phase_shift_deactivate()
 
@@ -181,6 +195,7 @@
 	TI.density = initial(TI.density)
 	TI.throwpass = initial(TI.throwpass)
 	TI.alpha = initial(TI.alpha) //Become opaque
+	TI.remove_filter("wraith_phase_shift") //Cool filter begone
 
 	playsound(owner, "sound/effects/escape_pod_launch.ogg", 25, 0, 1)
 
@@ -188,8 +203,8 @@
 
 	if(isclosedturf(current_turf) || isspaceturf(current_turf)) //So we rematerialized in a solid wall/space for some reason; Darwin award winner folks.
 		to_chat(TI, "<span class='highdanger'>As we idiotically rematerialize in an obviously unsafe position, we revert to where we slipped out of reality through sheer instinct, albeit at great cost.</span>")
-		TI.adjustFireLoss(TI.maxHealth * 0.5, TRUE) //Lose half of our maximum health
-		TI.apply_status_effect(STATUS_EFFECT_STUN, 10 SECONDS) //That oughta teach them.
+		TI.adjustFireLoss((TI.health * 0.5), TRUE) //Lose half of our health
+		TI.ParalyzeNoChain(10 SECONDS) //That oughta teach them.
 		TI.forceMove(starting_turf)
 		teleport_debuff_aoe(TI) //Debuff when we reappear
 		starting_turf = null
@@ -197,8 +212,7 @@
 
 	var/distance = get_dist(current_turf, starting_turf)
 	var/phase_shift_stun_time = clamp(0.5 SECONDS, distance * 0.1 SECONDS, 3 SECONDS) //Recovery time
-	TI.apply_status_effect(STATUS_EFFECT_STUN, phase_shift_stun_time * 2)
-
+	TI.ParalyzeNoChain(phase_shift_stun_time * 2)
 	TI.visible_message("<span class='warning'>[TI.name] form wavers and becomes opaque.</span>", \
 	"<span class='highdanger'>We phase back into reality, our mind reeling from the experience. We estimate we will take [phase_shift_stun_time * 0.1] seconds to recover!</span>")
 
@@ -235,10 +249,14 @@
 		to_chat(owner, "<span class='xenowarning'>We cannot blink here!</span>")
 		return FALSE
 
-	if(!owner.line_of_sight(T) || A.opacity) //Needs to be in line of sight.
+	if(!owner.line_of_sight(T)) //Needs to be in line of sight.
 		to_chat(owner, "<span class='xenowarning'>We can't blink without line of sight to our destination!</span>")
 		return FALSE
 
+	for(var/atom/movable/check_atom in T)
+		if(check_atom.opacity)
+			to_chat(owner, "<span class='xenowarning'>We can't blink without line of sight to our destination!</span>")
+			return FALSE
 
 
 /datum/action/xeno_action/activable/blink/use_ability(atom/A)
@@ -268,6 +286,8 @@
 /datum/action/xeno_action/activable/blink/proc/blink_warp(mob/living/carbon/xenomorph/wraith/TI, turf/T, mob/pulled = null) //This handles the location swap between the Wraith and the Warp Shadow
 
 	TI.face_atom(T) //Face the target so we don't look like an ass
+	TI.add_filter("wraith_blink_warp_filter", 3, list("type" = "blur", 5)) //Cool filter appear
+	addtimer(CALLBACK(TI, /atom.proc/remove_filter, "wraith_blink_warp_filter"), 1 SECONDS) //1 sec blur duration
 
 	teleport_debuff_aoe(TI) //Debuff when we vanish
 
@@ -276,6 +296,8 @@
 	if(pulled) //bring the pulled target with us if applicable
 		cooldown_timer *= WRAITH_BLINK_DRAG_MULTIPLIER
 		to_chat(TI, "<span class='xenodanger'>We bring [pulled.name] with us. We won't be ready to blink again for [cooldown_timer * 0.1] seconds due to the strain of doing so.</span>")
+		pulled.add_filter("wraith_blink_warp_filter", 3, list("type" = "blur", 5)) //Cool filter appear
+		addtimer(CALLBACK(pulled, /atom.proc/remove_filter, "wraith_blink_warp_filter"), 1 SECONDS) //1 sec blur duration
 
 	teleport_debuff_aoe(TI) //Debuff when we reappear
 
@@ -291,8 +313,11 @@
 	if(!no_visuals) //Visuals
 		new /obj/effect/temp_visual/blink_portal(get_turf(teleporter))
 
+
 	for(var/turf/affected_tile in range(1,teleporter.loc))
-		affected_tile.Shake(4, 4, 1 SECONDS) //SFX
+		affected_tile.Shake(4, 4, 1 SECONDS) //Cool SFX
+		affected_tile.add_filter("wraith_blink_distortion",1,list("type"="radial_blur", "size" = 0.5))
+		addtimer(CALLBACK(affected_tile, /atom.proc/remove_filter, "wraith_blink_distortion"), 1 SECONDS)
 		for(var/mob/living/target in affected_tile)
 			target.Shake(4, 4, 1 SECONDS) //SFX
 			if(target.stat == DEAD)
@@ -305,13 +330,13 @@
 			shake_camera(target, 2, 1)
 			target.adjust_stagger(WRAITH_TELEPORT_DEBUFF_STACKS)
 			target.add_slowdown(WRAITH_TELEPORT_DEBUFF_STACKS)
-			target.blur_eyes(WRAITH_TELEPORT_DEBUFF_STACKS) //minor visual distortion
+			target.adjust_blurriness(WRAITH_TELEPORT_DEBUFF_STACKS) //minor visual distortion
 			to_chat(target, "<span class='warning'>You feel nauseous as the world warps around you!</span>")
 
 /datum/action/xeno_action/evasion/on_cooldown_finish()
 
 	if(cooldown_timer > initial(cooldown_timer) ) //Reset the cooldown if increased from dragging someone.
-		to_chat(owner, "<span class='xenonotice'>We are able to take blink again.</span>")
+		to_chat(owner, "<span class='xenodanger'>We are able to blink again.</span>")
 		owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 		cooldown_timer = initial(cooldown_timer)
 	return ..()
@@ -417,15 +442,18 @@
 
 	banishment_target.forceMove(banished_turf)
 	teleport_debuff_aoe(banishment_target) //Debuff/distortion when we reappear
+	banishment_target.add_filter("wraith_banishment_filter", 3, list("type" = "blur", 5)) //Cool filter appear
+	addtimer(CALLBACK(banishment_target, /atom.proc/remove_filter, "wraith_banishment_filter"), 1 SECONDS) //1 sec blur duration
+
 
 	banishment_target.visible_message("<span class='warning'>[banishment_target.name] abruptly reappears!</span>", \
 	"<span class='warning'>You suddenly reappear back in what you believe to be reality. It takes you a moment to regain your bearings.</span>")
 
 	if(isliving(banishment_target))
 		var/mob/living/L = banishment_target
-		L.Stun(1 SECONDS) //Short stun upon returning to reality
+		L.Stun(1 SECONDS) //Short stun upon snap back to reality
 
-	to_chat(TI, "<span class='xenodanger'>Our target [banishment_target.name] has returned to reality.</span>") //Always alert the Wraith
+	to_chat(TI, "<span class='xenodanger'>Our target [banishment_target.name] has returned to reality at [get_area(banishment_target)]</span>") //Always alert the Wraith
 
 	if(portal)
 		QDEL_NULL(portal) //Eliminate the Brazil portal if we need to
