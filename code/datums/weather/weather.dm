@@ -1,11 +1,11 @@
 /**
-  * Causes weather to occur on a z level in certain area types
-  *
-  * The effects of weather occur across an entire z-level. For instance, lavaland has periodic ash storms that scorch most unprotected creatures.
-  * Weather always occurs on different z levels at different times, regardless of weather type.
-  * Can have custom durations, targets, and can automatically protect indoor areas.
-  *
-  */
+ * Causes weather to occur on a z level in certain area types
+ *
+ * The effects of weather occur across an entire z-level. For instance, lavaland has periodic ash storms that scorch most unprotected creatures.
+ * Weather always occurs on different z levels at different times, regardless of weather type.
+ * Can have custom durations, targets, and can automatically protect indoor areas.
+ *
+ */
 
 /datum/weather
 	/// name of weather
@@ -83,12 +83,12 @@
 	impacted_z_levels = z_levels
 
 /**
-  * Telegraphs the beginning of the weather on the impacted z levels
-  *
-  * Sends sounds and details to mobs in the area
-  * Calculates duration and hit areas, and makes a callback for the actual weather to start
-  *
-  */
+ * Telegraphs the beginning of the weather on the impacted z levels
+ *
+ * Sends sounds and details to mobs in the area
+ * Calculates duration and hit areas, and makes a callback for the actual weather to start
+ *
+ */
 /datum/weather/proc/telegraph()
 	if(stage == STARTUP_STAGE)
 		return
@@ -115,12 +115,12 @@
 	addtimer(CALLBACK(src, .proc/start), telegraph_duration)
 
 /**
-  * Starts the actual weather and effects from it
-  *
-  * Updates area overlays and sends sounds and messages to mobs to notify them
-  * Begins dealing effects from weather to mobs in the area
-  *
-  */
+ * Starts the actual weather and effects from it
+ *
+ * Updates area overlays and sends sounds and messages to mobs to notify them
+ * Begins dealing effects from weather to mobs in the area
+ *
+ */
 /datum/weather/proc/start()
 	if(stage >= MAIN_STAGE)
 		return
@@ -135,12 +135,12 @@
 	addtimer(CALLBACK(src, .proc/wind_down), weather_duration)
 
 /**
-  * Weather enters the winding down phase, stops effects
-  *
-  * Updates areas to be in the winding down phase
-  * Sends sounds and messages to mobs to notify them
-  *
-  */
+ * Weather enters the winding down phase, stops effects
+ *
+ * Updates areas to be in the winding down phase
+ * Sends sounds and messages to mobs to notify them
+ *
+ */
 /datum/weather/proc/wind_down()
 	if(stage >= WIND_DOWN_STAGE)
 		return
@@ -155,12 +155,12 @@
 	addtimer(CALLBACK(src, .proc/end), end_duration)
 
 /**
-  * Fully ends the weather
-  *
-  * Effects no longer occur and area overlays are removed
-  * Removes weather from processing completely
-  *
-  */
+ * Fully ends the weather
+ *
+ * Effects no longer occur and area overlays are removed
+ * Removes weather from processing completely
+ *
+ */
 /datum/weather/proc/end()
 	if(stage == END_STAGE)
 		return TRUE
@@ -169,9 +169,9 @@
 	update_areas()
 
 /**
-  * Returns TRUE if the living mob can be affected by the weather
-  *
-  */
+ * Returns TRUE if the living mob can be affected by the weather
+ *
+ */
 /datum/weather/proc/can_weather_act(mob/living/L)
 	if(!isturf(L.loc))
 		return FALSE
@@ -183,16 +183,16 @@
 	return TRUE
 
 /**
-  * Affects the mob with whatever the weather does
-  *
-  */
+ * Affects the mob with whatever the weather does
+ *
+ */
 /datum/weather/proc/weather_act(mob/living/L)
 	return
 
 /**
-  * Updates the overlays on impacted areas
-  *
-  */
+ * Updates the overlays on impacted areas
+ *
+ */
 /datum/weather/proc/update_areas()
 	for(var/V in impacted_areas)
 		var/area/N = V
