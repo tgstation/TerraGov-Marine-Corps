@@ -688,6 +688,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		user.visible_message("<span class='notice'>[user] looks up from [zoom_device].</span>",
 		"<span class='notice'>You look up from [zoom_device].</span>")
 		zoom = FALSE
+		UnregisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_CARBON_SWAPPED_HANDS))
 		TIMER_COOLDOWN_START(user, COOLDOWN_ZOOM, 2 SECONDS)
 
 		if(user.interactee == src)
@@ -727,6 +728,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		user.visible_message("<span class='notice'>[user] peers through \the [zoom_device].</span>",
 		"<span class='notice'>You peer through \the [zoom_device].</span>")
 		zoom = TRUE
+		RegisterSignal(user, list(COMSIG_MOVABLE_MOVED,COMSIG_CARBON_SWAPPED_HANDS), .proc/zoom)
 		if(user.interactee)
 			user.unset_interaction()
 		else if(!istype(src, /obj/item/attachable/scope))
