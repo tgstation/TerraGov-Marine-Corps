@@ -1,0 +1,5 @@
+author: "SplinterGP"
+delete-after: True
+changes: 
+  - bugfix: "fixes a bug where scopes would give negative accuracy to guns."
+  - code_imp: "optimizes zoom code to reduce lag."
