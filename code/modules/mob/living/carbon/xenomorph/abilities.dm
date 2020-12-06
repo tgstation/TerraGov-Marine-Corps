@@ -1005,7 +1005,7 @@
 	ability_name = "secrete resin"
 	plasma_cost = 150
 	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN_SILO
-	cooldown_timer = 120 SECONDS
+	cooldown_timer = 60 SECONDS
 
 	/// How long does it take to build
 	var/build_time = 10 SECONDS
@@ -1017,12 +1017,6 @@
 	. = ..()
 	if(!.)
 		return FALSE
-
-	if(length(GLOB.xeno_resin_silos) > 5)
-		if(!silent)
-			to_chat(owner, "<span class='warning'>The Hive can't support another silo.</span>")
-		return FALSE
-
 
 	if(!in_range(owner, A))
 		if(!silent)
