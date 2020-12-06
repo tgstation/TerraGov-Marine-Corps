@@ -35,9 +35,6 @@
 /obj/machinery/vending/nanomed{
 	dir = 8
 	},
-/obj/machinery/light{
-	dir = 4
-	},
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/minidropship)
 "o" = (
@@ -70,13 +67,37 @@
 	},
 /turf/closed/wall/mainship/outer,
 /area/shuttle/minidropship)
+"y" = (
+/obj/machinery/light,
+/obj/machinery/door_control{
+	id = "minidropship_podlock";
+	name = "outer door-control";
+	pixel_y = -32
+	},
+/turf/open/shuttle/blackfloor,
+/area/shuttle/minidropship)
 "z" = (
 /obj/machinery/computer/dropship_weapons/minidropship,
 /turf/open/shuttle/blackfloor,
 /area/shuttle/minidropship)
 "A" = (
-/obj/structure/window/framed/mainship/hull,
+/obj/machinery/door/poddoor/mainship/open{
+	id = "minidropship_podlock"
+	},
+/obj/machinery/door/poddoor/shutters/transit{
+	dir = 2
+	},
+/obj/structure/window/framed/mainship/tadpole,
 /turf/open/floor/mainship/mono,
+/area/shuttle/minidropship)
+"E" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/shuttle/dropship/floor,
 /area/shuttle/minidropship)
 "F" = (
 /obj/docking_port/mobile/marine_dropship/minidropship,
@@ -98,6 +119,14 @@
 	name = "\improper Command Cockpit"
 	},
 /turf/open/shuttle/dropship/floor,
+/area/shuttle/minidropship)
+"P" = (
+/obj/machinery/door/poddoor/mainship/open{
+	id = "minidropship_podlock"
+	},
+/obj/machinery/door/poddoor/shutters/transit,
+/obj/structure/window/framed/mainship/tadpole,
+/turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "S" = (
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship,
@@ -127,13 +156,19 @@
 /obj/machinery/vending/nanomed{
 	dir = 4
 	},
-/obj/machinery/light{
-	dir = 8
-	},
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/minidropship)
 "Y" = (
 /turf/open/shuttle/dropship/grating,
+/area/shuttle/minidropship)
+"Z" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/shuttle/dropship/floor,
 /area/shuttle/minidropship)
 
 (1,1,1) = {"
@@ -149,7 +184,7 @@ a
 "}
 (2,1,1) = {"
 o
-A
+P
 o
 o
 s
@@ -161,12 +196,12 @@ o
 (3,1,1) = {"
 A
 S
-i
+y
 o
 h
 h
 X
-h
+E
 q
 "}
 (4,1,1) = {"
@@ -188,12 +223,12 @@ o
 T
 g
 l
-g
+Z
 q
 "}
 (6,1,1) = {"
 o
-A
+P
 o
 o
 s
