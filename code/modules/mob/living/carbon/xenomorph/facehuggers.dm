@@ -8,13 +8,13 @@
 #define IMPREGNATION_TIME 12 SECONDS
 
 /**
-  *Facehuggers
-  *
-  *They work by being activated using timers to trigger leap_at_nearest_target()
-  *Going inactive and active is handeled by go_active() and go_idle()
-  *Lifetime is handled by a timer on check_lifecycle()
-  *For the love of god do not use process() and rng for this kind of shit it makes it unreliable and buggy as fuck
-  */
+ *Facehuggers
+ *
+ *They work by being activated using timers to trigger leap_at_nearest_target()
+ *Going inactive and active is handeled by go_active() and go_idle()
+ *Lifetime is handled by a timer on check_lifecycle()
+ *For the love of god do not use process() and rng for this kind of shit it makes it unreliable and buggy as fuck
+ */
 /obj/item/clothing/mask/facehugger
 	name = "alien"
 	desc = "It has some sort of a tube at the end of its tail."

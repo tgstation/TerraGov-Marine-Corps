@@ -21,13 +21,13 @@
 		. += T
 
 /**
-  * Get a bounding box of a list of atoms.
-  *
-  * Arguments:
-  * - atoms - List of atoms. Can accept output of view() and range() procs.
-  *
-  * Returns: list(x1, y1, x2, y2)
-  */
+ * Get a bounding box of a list of atoms.
+ *
+ * Arguments:
+ * - atoms - List of atoms. Can accept output of view() and range() procs.
+ *
+ * Returns: list(x1, y1, x2, y2)
+ */
 /proc/get_bbox_of_atoms(list/atoms)
 	var/list/list_x = list()
 	var/list/list_y = list()
