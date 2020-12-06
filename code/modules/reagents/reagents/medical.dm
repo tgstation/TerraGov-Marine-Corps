@@ -41,9 +41,13 @@
 
 /datum/reagent/medicine/ryetalyn
 	name = "Ryetalyn"
-	description = "Ryetalyn can cure all genetic abnomalities via a catalytic process."
+	description = "Ryetalyn is a long-duration shield against toxic chemicals."
 	reagent_state = SOLID
 	color = "#C8A5DC" // rgb: 200, 165, 220
+	scannable = TRUE
+	custom_metabolism = REAGENTS_METABOLISM * 0.125
+	purge_list = list(/datum/reagent/toxin)
+	purge_rate = 5
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 
@@ -187,6 +191,8 @@
 	description = "Kelotane is a drug used to treat burns."
 	color = "#D8C58C"
 	scannable = TRUE
+	purge_list = list(/datum/reagent/medicine/ryetalyn)
+	purge_rate = 1
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 
@@ -285,6 +291,8 @@
 	description = "Tricordrazine is a highly potent stimulant, originally derived from cordrazine. Can be used to treat a wide range of injuries."
 	color = "#B865CC"
 	scannable = TRUE
+	purge_list = list(/datum/reagent/medicine/ryetalyn)
+	purge_rate = 1
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	taste_description = "grossness"
@@ -443,15 +451,13 @@
 	name = "Hyronalin"
 	description = "Hyronalin is a medicinal drug used to counter the effect of toxin poisoning."
 	color = "#C8A5DC" // rgb: 200, 165, 220
-	custom_metabolism = REAGENTS_METABOLISM * 0.25
+	custom_metabolism = REAGENTS_METABOLISM
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	scannable = TRUE
 
 /datum/reagent/medicine/hyronalin/on_mob_life(mob/living/L)
-	L.adjustToxLoss(-3*REM)
-	if(prob(50))
-		L.take_limb_damage(2*REM, 0)
+	L.adjustToxLoss(-2*REM)
 	return ..()
 
 /datum/reagent/medicine/hyronalin/overdose_process(mob/living/L, metabolism)
@@ -462,16 +468,16 @@
 
 /datum/reagent/medicine/arithrazine
 	name = "Arithrazine"
-	description = "Arithrazine is an unstable emergency medication used for the most extreme cases of toxin poisoning."
+	description = "Arithrazine is an unstable medication used for minor cases of toxin poisoning."
 	color = "#C8A5DC" // rgb: 200, 165, 220
-	custom_metabolism = REAGENTS_METABOLISM * 0.25
+	custom_metabolism = REAGENTS_METABOLISM
 	overdose_threshold = REAGENTS_OVERDOSE/2
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/2
 
 /datum/reagent/medicine/arithrazine/on_mob_life(mob/living/L)
-	L.adjustToxLoss(-4*REM)
-	if(prob(50))
-		L.take_limb_damage(3*REM, 0)
+	L.adjustToxLoss(-1*REM)
+	if(prob(15))
+		L.take_limb_damage(2*REM, 0)
 	return ..()
 
 /datum/reagent/medicine/arithrazine/overdose_process(mob/living/L, metabolism)
@@ -480,22 +486,19 @@
 /datum/reagent/arithrazine/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damages(2*REM, 2*REM, 4*REM)
 
-/datum/reagent/medicine/russianred
+/datum/reagent/medicine/russian_red
 	name = "Russian Red"
-	description = "An emergency toxin treatment, however it has extreme side effects."
+	description = "An emergency generic treatment with extreme side effects."
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	custom_metabolism = REAGENTS_METABOLISM * 5
-	overdose_threshold = REAGENTS_OVERDOSE/3
+	overdose_threshold = REAGENTS_OVERDOSE/2
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/3
 	scannable = TRUE
 
 /datum/reagent/medicine/russianred/on_mob_life(mob/living/L, metabolism)
-	if(iscarbon(L))
-		var/mob/living/carbon/C = L
-		C.drunkenness = max(C.drunkenness - 2)
+	L.heal_limb_damage(10*REM, 10*REM)
 	L.adjustToxLoss(-5*REM)
-	if(prob(75))
-		L.take_limb_damage(6*REM, 0)
+	L.adjustCloneLoss(4*REM)
 	return ..()
 
 /datum/reagent/medicine/russianred/overdose_process(mob/living/L, metabolism)
@@ -606,6 +609,8 @@
 	name = "Bicaridine"
 	description = "Bicaridine is an analgesic medication and can be used to treat blunt trauma."
 	color = "#E8756C"
+	purge_list = list(/datum/reagent/medicine/ryetalyn)
+	purge_rate = 1
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	scannable = TRUE
@@ -1104,5 +1109,4 @@
 	reagent_state = LIQUID
 	color = "#66801e"
 	taste_description = "piss"
-
 

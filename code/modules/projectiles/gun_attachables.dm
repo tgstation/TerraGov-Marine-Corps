@@ -17,7 +17,7 @@ All attachment offsets are now in a list, including stocks. Guns that don't take
 Anything that isn't used as the gun fires should be a flat number, never a percentange. It screws with the calculations,
 and can mean that the order you attach something/detach something will matter in the final number. It's also completely
 inaccurate. Don't worry if force is ever negative, it won't runtime.
-  */
+ */
 
 /obj/item/attachable
 	name = "attachable item"
