@@ -93,10 +93,10 @@
 			break
 
 /**
-  * Manually clears any held keys, in case due to lag or other undefined behavior a key gets stuck.
-  *
-  * Hardcoded to the ESC key.
-  */
+ * Manually clears any held keys, in case due to lag or other undefined behavior a key gets stuck.
+ *
+ * Hardcoded to the ESC key.
+ */
 /client/verb/reset_held_keys()
 	set name = "Reset Held Keys"
 	set hidden = TRUE

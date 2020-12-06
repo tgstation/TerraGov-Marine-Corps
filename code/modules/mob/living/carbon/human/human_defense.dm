@@ -389,17 +389,17 @@ Contains most of the procs that are called when a mob is attacked by something
 		update_inv_w_uniform()
 
 
-//This looks for a "marine", ie. non-civilian ID on a person. Used with the m56 Smartgun code.
-//Does not actually check for station jobs or access yet, cuz I'm mad lazy.
-//Updated and renamed a bit. Will probably updated properly once we have a new ID system in place, as this is just a workaround ~N.
-/mob/living/carbon/human/proc/get_target_lock(unique_access)
-	//Streamlined for faster processing. Needs a unique access, otherwise it will just hit everything.
+/**
+ * This looks for a an ID on a person and checkes if an access tag from their ID matches the provided access tag. Used with the gun, claymore, sentry and possibly other IFF code.
+ * Does not actually check for station jobs.
+ */
+/mob/living/carbon/human/proc/get_target_lock(list/unique_access)
 	var/obj/item/card/id/C = wear_id
 	if(!istype(C)) C = get_active_held_item()
 	if(!istype(C)) return
-	if(!(unique_access in C.access)) return
-	return 1
-
+	for(var/access_tag in unique_access)
+		if(access_tag in C.access)
+			return TRUE
 
 /mob/living/carbon/human/screech_act(mob/living/carbon/xenomorph/queen/Q, screech_range = WORLD_VIEW, within_sight = TRUE)
 	var/dist_pct = get_dist(src, Q) / screech_range
