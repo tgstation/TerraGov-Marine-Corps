@@ -1,5 +1,0 @@
-author: "Wayland-Smithy"
-delete-after: True
-changes: 
-  - rscdel: "Removed the arbitrary limit on resin silos."
-  - balance: "Silo construction cooldown reduced from 120 to 60 seconds."
