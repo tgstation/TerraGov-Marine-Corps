@@ -20,3 +20,5 @@ Sprites added in commit d407e97e26ee5e6bb1daf945a8eb3bd9a6b11976 are CC-BY-NC 3.
 All sounds added/remixed in the PR https://github.com/tgstation/TerraGov-Marine-Corps/pull/5261 are licensed under CC-BY-NC-SA 3.0
 
 The TGS DMAPI API is licensed as a subproject under the MIT license.
+
+Cat bongo
