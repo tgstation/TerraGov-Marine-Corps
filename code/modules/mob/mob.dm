@@ -284,9 +284,7 @@
 		equip_to_slot(W, slot, redraw_mob) //This proc should not ever fail.
 		if(permanent)
 			W.flags_item |= NODROP
-			//This will unzoom and unwield items -without- triggering lights.
-		if(W.zoom)
-			W.zoom(src)
+			//This will unwield items -without- triggering lights.
 		if(CHECK_BITFIELD(W.flags_item, TWOHANDED))
 			W.unwield(src)
 		return TRUE
@@ -294,9 +292,7 @@
 		equip_to_slot(W, slot, redraw_mob) //This proc should not ever fail.
 		if(permanent)
 			W.flags_item |= NODROP
-		//This will unzoom and unwield items -without- triggering lights.
-		if(W.zoom)
-			W.zoom(src)
+		//This will unwield items -without- triggering lights.
 		if(CHECK_BITFIELD(W.flags_item, TWOHANDED))
 			W.unwield(src)
 		return TRUE
