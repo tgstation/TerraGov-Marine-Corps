@@ -120,9 +120,9 @@
 	created = max(created, other.created)	//take the newer created time
 
 /**
-  *checks if wound is considered open for external infections
-  *untreated cuts (and bleeding bruises) and burns are possibly infectable, chance higher if wound is bigger
-  */
+ *checks if wound is considered open for external infections
+ *untreated cuts (and bleeding bruises) and burns are possibly infectable, chance higher if wound is bigger
+ */
 /datum/wound/proc/infection_check()
 	if(damage < 10)	//small cuts, tiny bruises, and moderate burns shouldn't be infectable.
 		return NONE
@@ -146,10 +146,10 @@
 	return 0
 
 /**
-  *heal the given amount of damage, and if the given amount of damage was more
-  *than what needed to be healed, return how much heal was left
-  *set @heals_internal to also heal internal organ damage
-  */
+ *heal the given amount of damage, and if the given amount of damage was more
+ *than what needed to be healed, return how much heal was left
+ *set @heals_internal to also heal internal organ damage
+ */
 /datum/wound/proc/heal_wound_damage(heal_amount, heals_internal = FALSE)
 	// If the wound is internal, and we don't heal internal wounds just pass through.
 	if(internal && !heals_internal)

@@ -1,5 +1,0 @@
-author: "SplinterGP"
-delete-after: True
-changes: 
-  - tweak: "makes silos at dropship not break on hijacking dropship"
-  - bugfix: "fixes a bug when xenos launching to shipside with hijacked dropship would not give xenos burrowed to the xeno/marine ratio if xenos had less than half marine numbers."

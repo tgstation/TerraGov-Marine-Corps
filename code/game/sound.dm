@@ -1,13 +1,13 @@
 /**Proc used to play a sound.
-  * Arguments:
-  * * source: what played the sound.
-  * * soundin: the .ogg to use.
-  * * vol: the initial volume of the sound, 0 is no sound at all, 75 is loud queen screech.
-  * * vary: to make the frequency var of the sound vary (mostly unused).
-  * * sound_range: the maximum theoretical range (in tiles) of the sound, by default is equal to the volume.
-  * * falloff: how the sound's volume decreases with distance, low is fast decrease and high is slow decrease. \
+ * Arguments:
+ * * source: what played the sound.
+ * * soundin: the .ogg to use.
+ * * vol: the initial volume of the sound, 0 is no sound at all, 75 is loud queen screech.
+ * * vary: to make the frequency var of the sound vary (mostly unused).
+ * * sound_range: the maximum theoretical range (in tiles) of the sound, by default is equal to the volume.
+ * * falloff: how the sound's volume decreases with distance, low is fast decrease and high is slow decrease. \
 A good representation is: 'byond applies a volume reduction to the sound every X tiles', where X is falloff.
-  */
+ */
 /proc/playsound(atom/source, soundin, vol, vary, sound_range, falloff, is_global, frequency, channel = 0)
 	var/turf/turf_source = get_turf(source)
 
