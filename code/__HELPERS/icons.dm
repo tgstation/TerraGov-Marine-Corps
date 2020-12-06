@@ -1087,13 +1087,13 @@ ColorTone(rgb, tone)
 
 GLOBAL_LIST_EMPTY(transformation_animation_objects)
 /**
-  * Creates animation that turns current icon into result appearance from top down.
-  *
-  * result_appearance - End result appearance/atom/image
-  * time - Animation duration
-  * transform_overlay - Appearance/atom/image of effect that moves along the animation - should be horizonatally centered
-  * reset_after - If FALSE, filters won't be reset and helper vis_objects will not be removed after animation duration expires. Cleanup must be handled by the caller!
-  */
+ * Creates animation that turns current icon into result appearance from top down.
+ *
+ * result_appearance - End result appearance/atom/image
+ * time - Animation duration
+ * transform_overlay - Appearance/atom/image of effect that moves along the animation - should be horizonatally centered
+ * reset_after - If FALSE, filters won't be reset and helper vis_objects will not be removed after animation duration expires. Cleanup must be handled by the caller!
+ */
 /atom/movable/proc/transformation_animation(result_appearance, time = 3 SECONDS, transform_overlay, reset_after=TRUE)
 	var/list/transformation_objects = GLOB.transformation_animation_objects[src] || list()
 	//Disappearing part
@@ -1127,8 +1127,8 @@ GLOBAL_LIST_EMPTY(transformation_animation_objects)
 		addtimer(CALLBACK(src,.proc/_reset_transformation_animation,filter_index),time)
 
 /**
-  * Resets filters and removes transformation animations helper objects from vis contents.
-  */
+ * Resets filters and removes transformation animations helper objects from vis contents.
+ */
 /atom/movable/proc/_reset_transformation_animation(filter_index)
 	var/list/transformation_objects = GLOB.transformation_animation_objects[src]
 	for(var/A in transformation_objects)
