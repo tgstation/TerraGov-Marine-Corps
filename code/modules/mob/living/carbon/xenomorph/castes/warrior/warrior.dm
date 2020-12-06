@@ -60,7 +60,6 @@
 /mob/living/carbon/xenomorph/warrior/throw_impact(atom/hit_atom, speed)
 	..()
 	remove_filter("warrior_lunge") //No perma blur please
-	return ..()
 
 
 /mob/living/carbon/xenomorph/warrior/proc/neck_grab(mob/living/L)
