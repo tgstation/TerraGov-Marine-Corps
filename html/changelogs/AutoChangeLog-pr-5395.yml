@@ -1,0 +1,5 @@
+author: "jroinc"
+delete-after: True
+changes: 
+  - balance: "Rebalanced toxheal chems"
+  - spellcheck: "Fixed a bad copy/paste on a pill description"
