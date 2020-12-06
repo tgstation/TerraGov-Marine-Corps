@@ -17,13 +17,13 @@ Stepping directly on the mine will also blow it up
 	flags_atom = CONDUCT
 
 	/// IFF signal - used to determine friendly units
-	var/iff_signal = ACCESS_IFF_MARINE 
+	var/list/iff_signal = list(ACCESS_IFF_MARINE)
 	/// If the mine has been triggered
-	var/triggered = FALSE 
+	var/triggered = FALSE
 	/// State of the mine. Will the mine explode or not
-	var/armed = FALSE 
+	var/armed = FALSE
 	/// Tripwire holds reference to the tripwire obj that is used to trigger an explosion
-	var/obj/effect/mine_tripwire/tripwire 
+	var/obj/effect/mine_tripwire/tripwire
 
 /obj/item/explosive/mine/Destroy()
 	QDEL_NULL(tripwire)
@@ -44,7 +44,7 @@ Stepping directly on the mine will also blow it up
 	. = ..()
 	INVOKE_ASYNC(src, .proc/trigger_explosion)
 
-/// Flamer fire will cause mines to trigger their explosion 
+/// Flamer fire will cause mines to trigger their explosion
 /obj/item/explosive/mine/flamer_fire_act()
 	. = ..()
 	INVOKE_ASYNC(src, .proc/trigger_explosion)
@@ -181,4 +181,4 @@ Stepping directly on the mine will also blow it up
 	name = "\improper M20P Claymore anti-personnel mine"
 	desc = "The M20P Claymore is a directional proximity triggered anti-personnel mine designed by Armat Systems for use by the TerraGov Marine Corps. It has been modified for use by the NT PMC forces."
 	icon_state = "m20p"
-	iff_signal = ACCESS_IFF_PMC
+	iff_signal = list(ACCESS_IFF_PMC)
