@@ -255,7 +255,7 @@
 ///This is where the dodgy magic happens
 /mob/living/carbon/xenomorph/runner/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
 
-	if(!evasion_stacks || (last_move_intent < (world.time - RUNNER_EVASION_RUN_DELAY) ) ) //Gotta keep moving to benefit from evasion!
+	if(!evasion_stacks || (last_move_time  < (world.time - RUNNER_EVASION_RUN_DELAY) ) ) //Gotta keep moving to benefit from evasion!
 		return ..()
 
 	if(issamexenohive(proj.firer)) //We automatically dodge allied projectiles at no cost
