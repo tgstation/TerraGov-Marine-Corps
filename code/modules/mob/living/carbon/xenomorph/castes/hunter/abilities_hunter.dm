@@ -19,9 +19,9 @@
 	RegisterSignal(L, COMSIG_XENOMORPH_POUNCE, .proc/sneak_attack_pounce)
 	RegisterSignal(L, COMSIG_XENO_LIVING_THROW_HIT, .proc/mob_hit)
 	RegisterSignal(L, COMSIG_XENOMORPH_ATTACK_LIVING, .proc/sneak_attack_slash)
-	//RegisterSignal(L, COMSIG_XENOMORPH_DISARM_HUMAN, .proc/sneak_attack_disarm)
 	RegisterSignal(L, COMSIG_XENOMORPH_ZONE_SELECT, .proc/sneak_attack_zone)
 	RegisterSignal(L, COMSIG_XENOMORPH_PLASMA_REGEN, .proc/plasma_regen)
+	RegisterSignal(L, COMSIG_HUNTER_SNEAK_ATTACK_CHECK, .proc/sneak_attack_zone)
 
 	// TODO: attack_alien() overrides are a mess and need a lot of work to make them require parentcalling
 	RegisterSignal(L, list(
@@ -50,7 +50,6 @@
 		COMSIG_XENOMORPH_POUNCE,
 		COMSIG_XENO_LIVING_THROW_HIT,
 		COMSIG_XENOMORPH_ATTACK_LIVING,
-		//COMSIG_XENOMORPH_DISARM_HUMAN,
 		COMSIG_XENOMORPH_GRAB,
 		COMSIG_XENOMORPH_ATTACK_BARRICADE,
 		COMSIG_XENOMORPH_ATTACK_CLOSET,
@@ -69,6 +68,7 @@
 		SIGNAL_ADDTRAIT(TRAIT_KNOCKEDOUT),
 		SIGNAL_ADDTRAIT(TRAIT_FLOORED),
 		COMSIG_XENOMORPH_ZONE_SELECT,
+		COMSIG_HUNTER_SNEAK_ATTACK_CHECK,
 		COMSIG_XENOMORPH_PLASMA_REGEN))
 	return ..()
 
@@ -259,7 +259,7 @@
 /datum/action/xeno_action/activable/impair_senses/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
-		return FALSE
+		return
 
 	var/mob/living/carbon/xenomorph/impairer = owner //Type cast this for on_fire
 
@@ -273,7 +273,7 @@
 	if(victim.stat == DEAD)
 		if(!silent)
 			to_chat(impairer, "<span class='xenodanger'>We can't impair the dead!</span>")
-		return
+		return FALSE
 
 	if(impairer.on_fire)
 		if(!silent)
@@ -326,6 +326,7 @@
 	cooldown_timer = 30 SECONDS
 
 /datum/action/xeno_action/activable/sneak_stinger/can_use_ability(atom/A, silent = FALSE, override_flags)
+	SIGNAL_HANDLER
 	. = ..()
 	if(!.)
 		return
@@ -371,13 +372,7 @@
 			to_chat(X, "<span class='xenowarning'>We refrain from unnecessarily bullying the host.</span>")
 			return FALSE
 
-	var/datum/action/xeno_action/stealth/S = locate() in X.xeno_abilities //Gotta reference the datum for whether we're stealthed/able to sneak attack
-
-	if(!S) //Sanity; should not be possible.
-		stack_trace("We somehow don't have the stealth ability as a Hunter.")
-		return FALSE
-
-	if(!S.stealth || !S.can_sneak_attack)
+	if(!SEND_SIGNAL(X, COMSIG_HUNTER_SNEAK_ATTACK_CHECK) & COMSIG_ACCURATE_ZONE)
 		to_chat(X, "<span class='xenowarning'>We must be able to sneak attack the target to properly sting it!</span>")
 		return FALSE
 
@@ -439,7 +434,7 @@
 /datum/action/xeno_action/activable/hunter_mark/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
-		return FALSE
+		return
 
 	var/mob/living/carbon/xenomorph/hunter/X = owner
 
@@ -514,22 +509,31 @@
 	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_TRACE
 	cooldown_timer = HUNTER_PSYCHIC_TRACE_COOLDOWN
 
-/datum/action/xeno_action/psychic_trace/action_activate()
-
+/datum/action/xeno_action/psychic_trace/can_use_action(silent = FALSE, override_flags)
+	. = ..()
 	var/mob/living/carbon/xenomorph/hunter/X = owner
 	var/mob/living/mark_target = X.hunter_mark_target
 
 	if(X.on_fire)
-		to_chat(X, "<span class='xenowarning'>We're too busy being on fire to trace!</span>")
-		return fail_activate()
+		if(!silent)
+			to_chat(X, "<span class='xenowarning'>We're too busy being on fire to trace!</span>")
+		return FALSE
 
 	if(!mark_target)
-		to_chat(X, "<span class='xenowarning'>We have no target we can trace!</span>")
-		return fail_activate()
+		if(!silent)
+			to_chat(X, "<span class='xenowarning'>We have no target we can trace!</span>")
+		return FALSE
 
 	if(mark_target.z != X.z)
-		to_chat(X, "<span class='xenowarning'>Our target is too far away, and is beyond our senses!</span>")
-		return fail_activate()
+		if(!silent)
+			to_chat(X, "<span class='xenowarning'>Our target is too far away, and is beyond our senses!</span>")
+		return FALSE
+
+
+/datum/action/xeno_action/psychic_trace/action_activate()
+
+	var/mob/living/carbon/xenomorph/hunter/X = owner
+	var/mob/living/mark_target = X.hunter_mark_target
 
 	to_chat(X, "<span class='xenodanger'>We sense our quarry <b>[mark_target]</b> is currently located in <b>[get_area(mark_target)] (X: [mark_target.x], Y: [mark_target.y])</b> and is <b>[get_dist(X, mark_target)]</b> tiles away. It is <b>[calculate_mark_health()]</b> and <b>[mark_target.status_flags & XENO_HOST ? "impregnated" : "barren"]</b>.</span>")
 	X.playsound_local(X, 'sound/effects/ghost2.ogg', 10, 0, 1)

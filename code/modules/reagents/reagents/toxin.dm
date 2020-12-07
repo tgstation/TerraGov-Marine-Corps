@@ -451,7 +451,7 @@
 	L.take_limb_damage(acid_damage, acid_damage) //REM being 0.5, so 3 damage per tick (1.5 brute + 1.5 burn + 0.75 toxin) * 2 = 6.75 damage / sec
 	L.reagent_pain_modifier -= PAIN_REDUCTION_HEAVY //Internal acid is pretty painful
 
-	if(!prob(80)) //Keep the spam down
+	if(prob(75)) //Keep the spam down
 		return ..()
 
 	L.emote("scream")
