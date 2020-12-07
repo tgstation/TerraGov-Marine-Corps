@@ -127,6 +127,8 @@
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_tail_sweeps")
 	X.visible_message("<span class='xenowarning'>\The [X] sweeps its tail in a wide circle!</span>", \
 	"<span class='xenowarning'>We sweep our tail in a wide circle!</span>")
+	X.add_filter("defender_tail_sweep", 2, list("type" = "blur", 3)) //Cool SFX
+	addtimer(CALLBACK(X, /atom.proc/remove_filter, "defender_tail_sweep"), 0.5 SECONDS)
 
 	X.spin(4, 1)
 
@@ -197,6 +199,7 @@
 /datum/action/xeno_action/activable/forward_charge/proc/charge_complete()
 	SIGNAL_HANDLER
 	UnregisterSignal(owner, list(COMSIG_XENO_OBJ_THROW_HIT, COMSIG_XENO_LIVING_THROW_HIT, COMSIG_XENO_NONE_THROW_HIT))
+	owner.remove_filter("defender_forward_charge")
 
 /datum/action/xeno_action/activable/forward_charge/proc/mob_hit(datum/source, mob/M)
 	SIGNAL_HANDLER
@@ -242,6 +245,9 @@
 	"<span class='danger'>We charge towards \the [A]!</span>" )
 	X.emote("roar")
 	succeed_activate()
+
+	X.add_filter("defender_forward_charge", 2, list("type" = "blur", 3)) //Cool SFX
+	addtimer(CALLBACK(X, /atom.proc/remove_filter, "defender_forward_charge"), 0.05 SECONDS * get_dist(X, A))
 
 	X.throw_at(A, 4, 70, X)
 
