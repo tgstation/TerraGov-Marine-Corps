@@ -1,4 +1,4 @@
-//Some debug variables. Toggle them to 1 in order to see the related debug messages. Helpful when testing out formulas.
+//Some debug variables. Toggle Debug Hivelord Abilities to 1 in order to see the related debug messages. Helpful when testing out formulas.
 #define DEBUG_HIVELORD_ABILITIES	0
 #if DEBUG_HIVELORD_ABILITIES
 #define HIVELORD_ABILITIES_DEBUG(msg) to_chat(world, "<span class='debuginfo'>[msg]</span>")
@@ -419,6 +419,9 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	UnregisterSignal(patient, list(COMSIG_XENOMORPH_HEALTH_REGEN, COMSIG_XENOMORPH_SUNDER_REGEN)) //unregister the signals; party's over
 
 	patient.remove_filter("hivelord_healing_infusion_outline") //Remove the aura
+
+	health_ticks_remaining = 0 //Null vars
+	sunder_ticks_remaining = 0
 
 	new /obj/effect/temp_visual/telekinesis(get_turf(patient)) //Wearing off SFX
 	new /obj/effect/temp_visual/healing(get_turf(patient)) //Wearing off SFX
