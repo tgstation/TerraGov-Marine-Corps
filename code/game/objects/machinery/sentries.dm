@@ -470,7 +470,7 @@
 				visible_message("<span class='notice'>The [name] buzzes in a monotone voice: 'Default systems initiated'.</span>'")
 				target = null
 				ENABLE_BITFIELD(turret_flags, TURRET_ON)
-				set_light(7)
+				set_light(SENTRY_LIGHT_POWER)
 				if(!camera && CHECK_BITFIELD(turret_flags, TURRET_HAS_CAMERA))
 					camera = new /obj/machinery/camera(src)
 					camera.network = list("military")
@@ -481,6 +481,7 @@
 				user.visible_message("<span class='notice'>[user] deactivates [src].</span>",
 				"<span class='notice'>You deactivate [src].</span>")
 				visible_message("<span class='notice'>The [name] powers down and goes silent.</span>")
+				set_light(0)
 				update_icon()
 			. = TRUE
 
@@ -626,6 +627,7 @@
 			return
 
 		if(!cell)
+			to_chat(user, "<span class='warning'>There's no power cell to remove!</span>")
 			return
 
 		if(CHECK_BITFIELD(turret_flags, TURRET_ON))
@@ -642,6 +644,7 @@
 		user.visible_message("<span class='notice'>[user] removes [src]'s [cell.name].</span>",
 		"<span class='notice'>You remove [src]'s [cell.name].</span>")
 		playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
+		cell.forceMove(user.loc)
 		user.put_in_hands(cell)
 		cell = null
 		update_icon()
@@ -958,13 +961,14 @@
 
 	return TRUE
 
-//Mostly taken from gun code.
 /obj/machinery/marine_turret/proc/muzzle_flash(angle)
 	if(isnull(angle)) return
 
-	set_light(muzzle_flash_lum)
-	spawn(10)
-		set_light(0)
+	var/prev_light = light_power
+	if(light_power <= muzzle_flash_lum)
+		set_light_range(muzzle_flash_lum)
+		set_light_color(COLOR_VERY_SOFT_YELLOW)
+		addtimer(CALLBACK(src, .proc/reset_light_range, prev_light), 1 SECONDS)
 
 	if(prob(65))
 		var/layer = MOB_LAYER - 0.1
@@ -975,6 +979,12 @@
 		rotate.Turn(angle)
 		I.transform = rotate
 		flick_overlay_view(I, src, 3)
+
+/obj/machinery/marine_turret/proc/reset_light_range(lightrange)
+	set_light_range(initial(light_power))
+	set_light_color(initial(light_color))
+	if(CHECK_BITFIELD(turret_flags, TURRET_ON))
+		set_light(SENTRY_LIGHT_POWER)
 
 /obj/machinery/marine_turret/proc/get_target()
 	var/list/targets = list()
@@ -1081,13 +1091,14 @@
 		visible_message("[src] buzzes in a monotone: 'Default systems initiated.'")
 		target = null
 		ENABLE_BITFIELD(turret_flags, TURRET_ON)
-		set_light(7)
+		set_light(SENTRY_LIGHT_POWER)
 		update_icon()
 	else
 		DISABLE_BITFIELD(turret_flags, TURRET_ON)
 		user.visible_message("<span class='notice'>[user] deactivates [src].</span>",
 		"<span class='notice'>You deactivate [src].</span>")
 		visible_message("<span class='notice'>The [name] powers down and goes silent.</span>")
+		set_light(0)
 		update_icon()
 
 /obj/machinery/marine_turret/premade/dumb/hostile
@@ -1222,7 +1233,11 @@
 	user.put_in_hands(P)
 	P.obj_integrity = obj_integrity
 	P.rounds = rounds
-	P.cell_charge = cell.charge
+	if(cell)
+		P.cell = cell
+		P.cell.charge = cell.charge
+	else
+		P.cell = null
 	qdel(src)
 
 /obj/machinery/marine_turret/mini/update_icon()
@@ -1269,8 +1284,12 @@
 	w_class = WEIGHT_CLASS_BULKY
 	max_integrity = 200 //We keep track of this when folding up the sentry.
 	var/rounds = 500
-	var/cell_charge = 10000
+	var/obj/item/cell/cell = null
 	flags_equip_slot = ITEM_SLOT_BACK
+
+/obj/item/marine_turret/mini/Initialize()
+	. = ..()
+	cell = new /obj/item/cell/high(src)
 
 /obj/item/marine_turret/mini/attack_self(mob/user) //click the sentry to deploy it.
 	if(!ishuman(usr))
@@ -1291,7 +1310,11 @@
 		M.obj_integrity = obj_integrity
 		M.anchored = TRUE
 		M.rounds = rounds
-		M.cell.charge = cell_charge
+		if(cell) //Inherit the power cell of the source item if any
+			M.cell = cell
+			M.cell.charge = cell.charge
+		else
+			M.cell = null
 		M.activate_turret()
 		qdel(src)
 
@@ -1329,9 +1352,13 @@
 /obj/machinery/marine_turret/proc/activate_turret()
 	if(!anchored)
 		return FALSE
+	if(!cell)
+		return FALSE
+	if(!cell.charge)
+		return FALSE
 	target = null
 	ENABLE_BITFIELD(turret_flags, TURRET_ON)
-	set_light(7)
+	set_light(SENTRY_LIGHT_POWER)
 	if(!camera && CHECK_BITFIELD(turret_flags, TURRET_HAS_CAMERA))
 		camera = new /obj/machinery/camera(src)
 		camera.network = list("military")
