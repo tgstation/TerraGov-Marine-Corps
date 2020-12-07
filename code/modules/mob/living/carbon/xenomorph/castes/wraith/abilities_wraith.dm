@@ -10,36 +10,36 @@
 	keybind_signal = COMSIG_XENOABILITY_PLACE_WARP_BEACON
 
 /datum/action/xeno_action/place_warp_shadow/action_activate()
-	var/mob/living/carbon/xenomorph/wraith/TI = owner
+	var/mob/living/carbon/xenomorph/wraith/ghost = owner
 
-	TI.visible_message("<span class='xenowarning'>The air starts to violently roil and shimmer around [TI]!</span>", \
+	ghost.visible_message("<span class='xenowarning'>The air starts to violently roil and shimmer around [ghost]!</span>", \
 	"<span class='xenodanger'>We begin to imprint our essence upon reality, causing the air about us to roil and shimmer...</span>") //Fluff
 
-	if(!do_after(TI, WRAITH_PLACE_WARP_BEACON_WINDUP, TRUE, TI, BUSY_ICON_BUILD)) //Channel time/wind up
-		TI.visible_message("<span class='xenowarning'>The space around [TI] abruptly stops shifting and wavering.</span>", \
+	if(!do_after(ghost, WRAITH_PLACE_WARP_BEACON_WINDUP, TRUE, ghost, BUSY_ICON_BUILD)) //Channel time/wind up
+		ghost.visible_message("<span class='xenowarning'>The space around [ghost] abruptly stops shifting and wavering.</span>", \
 		"<span class='xenodanger'>We cease binding our essence to this place...</span>")
 		return fail_activate()
 
-	var/turf/T = get_turf(TI)
-	TI.visible_message("<span class='xenonotice'>\A shimmering point suddenly coalesces from the warped space around [T].</span>", \
+	var/turf/T = get_turf(ghost)
+	ghost.visible_message("<span class='xenonotice'>\A shimmering point suddenly coalesces from the warped space around [T].</span>", \
 	"<span class='xenodanger'>We complete our work, binding our essence to this point.</span>", null, 5) //Fluff
-	var/obj/effect/xenomorph/warp_shadow/WB = new(T) //Create the new warp shadow.
+	var/obj/effect/xenomorph/warp_shadow/shadow = new(T) //Create the new warp shadow.
 	playsound(T, 'sound/weapons/emitter.ogg', 25, 1)
-	QDEL_NULL(TI.warp_shadow) //Delete the old warp shadow
-	TI.warp_shadow = WB //Set our new warp shadow
-	RegisterSignal(TI.warp_shadow, COMSIG_PARENT_PREQDELETED, .proc/unset_target) //For var clean up
-	WB.setDir(TI.dir) //Have it imitate our facing
-	WB.pixel_x = TI.pixel_x //Inherit pixel offsets
-	WB.pixel_y = TI.pixel_y //Inherit pixel offsets
-	teleport_debuff_aoe(WB) //SFX
+	QDEL_NULL(ghost.warp_shadow) //Delete the old warp shadow
+	ghost.warp_shadow = shadow //Set our new warp shadow
+	RegisterSignal(ghost.warp_shadow, COMSIG_PARENT_PREQDELETED, .proc/unset_target) //For var clean up
+	shadow.setDir(ghost.dir) //Have it imitate our facing
+	shadow.pixel_x = ghost.pixel_x //Inherit pixel offsets
+	shadow.pixel_y = ghost.pixel_y //Inherit pixel offsets
+	teleport_debuff_aoe(shadow) //SFX
 
 	succeed_activate()
 	add_cooldown()
 
 /datum/action/xeno_action/place_warp_shadow/proc/unset_target()
-	var/mob/living/carbon/xenomorph/X = owner
-	UnregisterSignal(X.warp_shadow, COMSIG_PARENT_PREQDELETED)
-	X.warp_shadow = null
+	var/mob/living/carbon/xenomorph/ghost = owner
+	UnregisterSignal(ghost.warp_shadow, COMSIG_PARENT_PREQDELETED)
+	ghost.warp_shadow = null
 
 
 // ***************************************
@@ -56,17 +56,11 @@
 
 /datum/action/xeno_action/hyperposition/proc/can_use_ability()
 
-	var/mob/living/carbon/xenomorph/wraith/TI = owner
-	var/obj/effect/xenomorph/warp_shadow/WB = TI.warp_shadow
-	var/beacon_turf = get_turf(WB)
-	var/wraith_turf = get_turf(TI)
+	var/mob/living/carbon/xenomorph/wraith/ghost = owner
+	var/obj/effect/xenomorph/warp_shadow/shadow = ghost.warp_shadow
 
-	if(!WB)
-		to_chat(TI, "<span class='xenodanger'>We have no warp shadow to teleport to!</span>")
-		return FALSE
-
-	if(!beacon_turf || !wraith_turf)
-		to_chat(TI, "<span class='xenodanger'>Our warp shadow is currently beyond our power to influence!</span>")
+	if(!shadow)
+		to_chat(ghost, "<span class='xenodanger'>We have no warp shadow to teleport to!</span>")
 		return FALSE
 
 	return TRUE
@@ -76,21 +70,21 @@
 	if(!can_use_ability())
 		return fail_activate()
 
-	var/mob/living/carbon/xenomorph/wraith/TI = owner
-	var/obj/effect/xenomorph/warp_shadow/WB = TI.warp_shadow
+	var/mob/living/carbon/xenomorph/wraith/ghost = owner
+	var/obj/effect/xenomorph/warp_shadow/shadow = ghost.warp_shadow
 
-	var/area/A = get_area(WB)
+	var/area/A = get_area(shadow)
 
-	TI.do_jitter_animation(2000) //Animation
+	ghost.do_jitter_animation(2000) //Animation
 
-	var/distance = get_dist(TI, TI.warp_shadow) //Get the distance so we can calculate the wind up
+	var/distance = get_dist(ghost, shadow) //Get the distance so we can calculate the wind up
 	var/hyperposition_windup = clamp(WRAITH_HYPERPOSITION_MIN_WINDUP, distance * 0.5 SECONDS - 5 SECONDS, WRAITH_HYPERPOSITION_MAX_WINDUP)
 
-	TI.visible_message("<span class='warning'>The air starts to violently roil and shimmer around [TI]!</span>", \
-	"<span class='xenodanger'>We begin to teleport to our warp shadow located at [A] (X: [WB.x], Y: [WB.y]). We estimate this will take [hyperposition_windup * 0.1] seconds.</span>")
+	ghost.visible_message("<span class='warning'>The air starts to violently roil and shimmer around [ghost]!</span>", \
+	"<span class='xenodanger'>We begin to teleport to our warp shadow located at [A] (X: [shadow.x], Y: [shadow.y]). We estimate this will take [hyperposition_windup * 0.1] seconds.</span>")
 
-	if(!do_after(TI, hyperposition_windup, TRUE, TI, BUSY_ICON_FRIENDLY)) //Channel time/wind up
-		TI.visible_message("<span class='xenowarning'>The space around [TI] abruptly stops shifting and wavering.</span>", \
+	if(!do_after(ghost, hyperposition_windup, TRUE, ghost, BUSY_ICON_FRIENDLY)) //Channel time/wind up
+		ghost.visible_message("<span class='xenowarning'>The space around [ghost] abruptly stops shifting and wavering.</span>", \
 		"<span class='xenodanger'>We abort teleporting back to our warp shadow.</span>")
 		return fail_activate()
 
@@ -108,25 +102,23 @@
 	if(!can_use_ability()) //Check if we can actually position swap again due to the wind up delay.
 		return FALSE
 
-	var/mob/living/carbon/xenomorph/wraith/TI = owner
-	var/obj/effect/xenomorph/warp_shadow/WB = TI.warp_shadow
-	var/beacon_turf = get_turf(WB)
-	var/wraith_turf = get_turf(TI)
+	var/mob/living/carbon/xenomorph/wraith/ghost = owner
+	var/obj/effect/xenomorph/warp_shadow/shadow = ghost.warp_shadow
+	var/beacon_turf = get_turf(shadow)
 
-	WB.forceMove(wraith_turf) //Move the beacon to where we are leaving
-	WB.dir = TI.dir //Have it imitate our facing
-	WB.pixel_x = TI.pixel_x //Inherit pixel offsets
-	teleport_debuff_aoe(TI) //Apply tele debuff
+	shadow.forceMove(get_turf(ghost)) //Move the beacon to where we are leaving
+	shadow.dir = ghost.dir //Have it imitate our facing
+	shadow.pixel_x = ghost.pixel_x //Inherit pixel offsets
+	teleport_debuff_aoe(ghost) //Apply tele debuff
 
-	TI.forceMove(beacon_turf) //Move to where the beacon was
-	teleport_debuff_aoe(TI) //Apply tele debuff
+	ghost.forceMove(beacon_turf) //Move to where the beacon was
+	teleport_debuff_aoe(ghost) //Apply tele debuff
 
-	TI.add_filter("wraith_hyperposition_warp_filter", 3, list("type" = "blur", 5)) //Cool filter appear
-	addtimer(CALLBACK(TI, /atom.proc/remove_filter, "wraith_hyperposition_warp_filter"), 1 SECONDS) //1 sec blur duration
+	ghost.add_filter("wraith_hyperposition_warp_filter", 3, list("type" = "blur", 5)) //Cool filter appear
+	addtimer(CALLBACK(ghost, /atom.proc/remove_filter, "wraith_hyperposition_warp_filter"), 1 SECONDS) //1 sec blur duration
 
-	var/area/A = get_area(WB)
-	TI.visible_message("<span class='warning'>\ [TI] suddenly vanishes in a vortex of warped space!</span>", \
-	"<span class='xenodanger'>We teleport, swapping positions with our warp shadow. Our warp shadow has moved to [A] (X: [WB.x], Y: [WB.y]).</span>", null, 5) //Let user know the new location
+	ghost.visible_message("<span class='warning'>\ [ghost] suddenly vanishes in a vortex of warped space!</span>", \
+	"<span class='xenodanger'>We teleport, swapping positions with our warp shadow. Our warp shadow has moved to [get_area(shadow)] (X: [shadow.x], Y: [shadow.y]).</span>", null, 5) //Let user know the new location
 
 	return TRUE
 
@@ -144,29 +136,29 @@
 
 
 /datum/action/xeno_action/phase_shift/action_activate()
-	var/mob/living/carbon/xenomorph/wraith/TI = owner
+	var/mob/living/carbon/xenomorph/wraith/ghost = owner
 
-	TI.visible_message("<span class='warning'>[TI.name] is becoming faint and translucent!</span>", \
+	ghost.visible_message("<span class='warning'>[ghost.name] is becoming faint and translucent!</span>", \
 	"<span class='xenodanger'>We begin to move out of phase with reality....</span>") //Fluff
 
-	TI.do_jitter_animation(2000) //Animation
+	ghost.do_jitter_animation(2000) //Animation
 
-	if(!do_after(TI, WRAITH_PHASE_SHIFT_WINDUP, TRUE, TI, BUSY_ICON_FRIENDLY)) //Channel time/wind up
-		TI.visible_message("<span class='xenowarning'>[TI]'s form abruptly consolidates, returning to normalcy.</span>", \
+	if(!do_after(ghost, WRAITH_PHASE_SHIFT_WINDUP, TRUE, ghost, BUSY_ICON_FRIENDLY)) //Channel time/wind up
+		ghost.visible_message("<span class='xenowarning'>[ghost]'s form abruptly consolidates, returning to normalcy.</span>", \
 		"<span class='xenodanger'>We abort our desynchronization.</span>")
 		return fail_activate()
 
 	addtimer(CALLBACK(src, .proc/phase_shift_warning), WRAITH_PHASE_SHIFT_DURATION * WRAITH_PHASE_SHIFT_DURATION_WARNING) //Warn them when Phase Shift is about to end
 	addtimer(CALLBACK(src, .proc/phase_shift_deactivate), WRAITH_PHASE_SHIFT_DURATION)
-	TI.add_filter("wraith_phase_shift", 4, list("type" = "blur", 5)) //Cool filter appear
+	ghost.add_filter("wraith_phase_shift", 4, list("type" = "blur", 5)) //Cool filter appear
 
-	TI.status_flags = GODMODE | INCORPOREAL //Become temporarily invulnerable and incorporeal
-	TI.resistance_flags = RESIST_ALL
-	TI.density = FALSE
-	TI.throwpass = TRUE
-	TI.alpha = WRAITH_PHASE_SHIFT_ALPHA //Become translucent
+	ghost.status_flags = GODMODE | INCORPOREAL //Become temporarily invulnerable and incorporeal
+	ghost.resistance_flags = RESIST_ALL
+	ghost.density = FALSE
+	ghost.throwpass = TRUE
+	ghost.alpha = WRAITH_PHASE_SHIFT_ALPHA //Become translucent
 
-	starting_turf = get_turf(TI) //Get our starting turf so we can calculate the stun duration later.
+	starting_turf = get_turf(ghost) //Get our starting turf so we can calculate the stun duration later.
 
 	GLOB.round_statistics.wraith_phase_shifts++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "wraith_phase_shifts") //Statistics
@@ -175,9 +167,7 @@
 	add_cooldown()
 
 /datum/action/xeno_action/phase_shift/proc/phase_shift_warning()
-	var/mob/living/carbon/xenomorph/wraith/TI = owner
 
-	TI.do_jitter_animation(2000) //Animation
 	owner.remove_filter("wraith_phase_shift")
 	owner.add_filter("wraith_phase_shift", 4, list("type" = "blur", 3)) //Downgrade the blur
 	owner.alpha = WRAITH_PHASE_SHIFT_ALPHA * 1.5 //Become less translucent
@@ -188,32 +178,32 @@
 
 /datum/action/xeno_action/phase_shift/proc/phase_shift_deactivate()
 
-	var/mob/living/carbon/xenomorph/wraith/TI = owner
+	var/mob/living/carbon/xenomorph/wraith/ghost = owner
 
-	TI.status_flags = initial(TI.status_flags) //Become merely mortal again
-	TI.resistance_flags = initial(TI.resistance_flags)
-	TI.density = initial(TI.density)
-	TI.throwpass = initial(TI.throwpass)
-	TI.alpha = initial(TI.alpha) //Become opaque
-	TI.remove_filter("wraith_phase_shift") //Cool filter begone
+	ghost.status_flags = initial(ghost.status_flags) //Become merely mortal again
+	ghost.resistance_flags = initial(ghost.resistance_flags)
+	ghost.density = initial(ghost.density)
+	ghost.throwpass = initial(ghost.throwpass)
+	ghost.alpha = initial(ghost.alpha) //Become opaque
+	ghost.remove_filter("wraith_phase_shift") //Cool filter begone
 
 	playsound(owner, "sound/effects/escape_pod_launch.ogg", 25, 0, 1)
 
-	var/current_turf = get_turf(TI)
+	var/current_turf = get_turf(ghost)
 
 	if(isclosedturf(current_turf) || isspaceturf(current_turf)) //So we rematerialized in a solid wall/space for some reason; Darwin award winner folks.
-		to_chat(TI, "<span class='highdanger'>As we idiotically rematerialize in an obviously unsafe position, we revert to where we slipped out of reality through sheer instinct, albeit at great cost.</span>")
-		TI.adjustFireLoss((TI.health * 0.5), TRUE) //Lose half of our health
-		TI.ParalyzeNoChain(10 SECONDS) //That oughta teach them.
-		TI.forceMove(starting_turf)
-		teleport_debuff_aoe(TI) //Debuff when we reappear
+		to_chat(ghost, "<span class='highdanger'>As we idiotically rematerialize in an obviously unsafe position, we revert to where we slipped out of reality through sheer instinct, albeit at great cost.</span>")
+		ghost.adjustFireLoss((ghost.health * 0.5), TRUE) //Lose half of our health
+		ghost.ParalyzeNoChain(10 SECONDS) //That oughta teach them.
+		ghost.forceMove(starting_turf)
+		teleport_debuff_aoe(ghost) //Debuff when we reappear
 		starting_turf = null
 		return
 
 	var/distance = get_dist(current_turf, starting_turf)
 	var/phase_shift_stun_time = clamp(0.5 SECONDS, distance * 0.1 SECONDS, 3 SECONDS) //Recovery time
-	TI.ParalyzeNoChain(phase_shift_stun_time * 2)
-	TI.visible_message("<span class='warning'>[TI.name] form wavers and becomes opaque.</span>", \
+	ghost.ParalyzeNoChain(phase_shift_stun_time * 2)
+	ghost.visible_message("<span class='warning'>[ghost] form wavers and becomes opaque.</span>", \
 	"<span class='highdanger'>We phase back into reality, our mind reeling from the experience. We estimate we will take [phase_shift_stun_time * 0.1] seconds to recover!</span>")
 
 	starting_turf = null
@@ -240,10 +230,6 @@
 /datum/action/xeno_action/activable/blink/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	var/turf/T = get_turf(A)
-
-	if(!T)
-		to_chat(owner, "<span class='xenowarning'>Even we cannot go there!</span>")
-		return FALSE
 
 	if(isclosedturf(T) || isspaceturf(T))
 		to_chat(owner, "<span class='xenowarning'>We cannot blink here!</span>")
@@ -283,23 +269,23 @@
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "wraith_blinks") //Statistics
 
 
-/datum/action/xeno_action/activable/blink/proc/blink_warp(mob/living/carbon/xenomorph/wraith/TI, turf/T, mob/pulled = null) //This handles the location swap between the Wraith and the Warp Shadow
+/datum/action/xeno_action/activable/blink/proc/blink_warp(mob/living/carbon/xenomorph/wraith/ghost, turf/T, mob/pulled = null) //This handles the location swap between the Wraith and the Warp Shadow
 
-	TI.face_atom(T) //Face the target so we don't look like an ass
-	TI.add_filter("wraith_blink_warp_filter", 3, list("type" = "blur", 5)) //Cool filter appear
-	addtimer(CALLBACK(TI, /atom.proc/remove_filter, "wraith_blink_warp_filter"), 1 SECONDS) //1 sec blur duration
+	ghost.face_atom(T) //Face the target so we don't look like an ass
+	ghost.add_filter("wraith_blink_warp_filter", 3, list("type" = "blur", 5)) //Cool filter appear
+	addtimer(CALLBACK(ghost, /atom.proc/remove_filter, "wraith_blink_warp_filter"), 1 SECONDS) //1 sec blur duration
 
-	teleport_debuff_aoe(TI) //Debuff when we vanish
+	teleport_debuff_aoe(ghost) //Debuff when we vanish
 
-	TI.forceMove(T) //Teleport to our target turf
+	ghost.forceMove(T) //Teleport to our target turf
 
 	if(pulled) //bring the pulled target with us if applicable
 		cooldown_timer *= WRAITH_BLINK_DRAG_MULTIPLIER
-		to_chat(TI, "<span class='xenodanger'>We bring [pulled.name] with us. We won't be ready to blink again for [cooldown_timer * 0.1] seconds due to the strain of doing so.</span>")
+		to_chat(ghost, "<span class='xenodanger'>We bring [pulled.name] with us. We won't be ready to blink again for [cooldown_timer * 0.1] seconds due to the strain of doing so.</span>")
 		pulled.add_filter("wraith_blink_warp_filter", 3, list("type" = "blur", 5)) //Cool filter appear
 		addtimer(CALLBACK(pulled, /atom.proc/remove_filter, "wraith_blink_warp_filter"), 1 SECONDS) //1 sec blur duration
 
-	teleport_debuff_aoe(TI) //Debuff when we reappear
+	teleport_debuff_aoe(ghost) //Debuff when we reappear
 
 
 //Called by many of the Wraith's teleportation effects
@@ -368,7 +354,7 @@
 /datum/action/xeno_action/activable/banish/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 
-	if(!ismovable(A) || A.resistance_flags == RESIST_ALL) //Cannot banish non-movables/things that are supposed to be invul
+	if(!ismovable(A) || A.resistance_flags & RESIST_ALL) //Cannot banish non-movables/things that are supposed to be invul
 		to_chat(owner, "<span class='xenowarning'>We cannot banish this!</span>")
 		return FALSE
 
@@ -382,21 +368,26 @@
 		return FALSE
 
 /datum/action/xeno_action/activable/banish/use_ability(atom/movable/A)
-	var/mob/living/carbon/xenomorph/wraith/TI = owner
+	var/mob/living/carbon/xenomorph/wraith/ghost = owner
 	banished_turf = get_turf(A) //Set the banishment turf.
 	banishment_target = A //Set the banishment target
 
-	TI.face_atom(A) //Face the target so we don't look like an ass
+	ghost.face_atom(A) //Face the target so we don't look like an ass
 
 	teleport_debuff_aoe(banishment_target) //Debuff when we disappear
-	banishment_target.moveToNullspace() //Banish the target to Brazil; yes he's going there
 	portal = new /obj/effect/temp_visual/banishment_portal(banished_turf)
+	banishment_target.forceMove(portal) //Banish the target to Brazil; yes he's going there
+	banishment_target.resistance_flags = RESIST_ALL
+	if(isliving(A))
+		var/mob/living/stasis_target = banishment_target
+		stasis_target.status_flags = GODMODE //Become temporarily invulnerable
+		stasis_target.SetStasis()
 
 	var/duration = WRAITH_BANISH_BASE_DURATION //Set the duration
 
 	if(isxeno(banishment_target) ) //We halve the max duration for living non-allies
 		var/mob/living/carbon/xenomorph/X = banishment_target
-		if(X.hive != TI.hive) //Enemy hive
+		if(X.hive != ghost.hive) //Enemy hive
 			duration *= 0.5
 
 	else if(isliving(banishment_target) ) //We halve the max duration for living non-allies
@@ -406,7 +397,7 @@
 	"<span class='highdanger'>The world around you reels, reality seeming to twist and tear until you find yourself trapped in a forsaken void beyond space and time.</span>")
 	playsound(banished_turf, 'sound/weapons/emitter2.ogg', 50, 1) //this isn't quiet
 
-	to_chat(TI,"<span class='xenodanger'>We have banished [banishment_target.name] to nullspace for [duration * 0.1] seconds.</span>")
+	to_chat(ghost,"<span class='xenodanger'>We have banished [banishment_target.name] to nullspace for [duration * 0.1] seconds.</span>")
 
 	addtimer(CALLBACK(src, .proc/banish_warning), duration * 0.7) //Warn when Banish is about to end
 	addtimer(CALLBACK(src, .proc/banish_deactivate), duration)
@@ -418,24 +409,18 @@
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "wraith_banishes") //Statistics
 
 /datum/action/xeno_action/activable/banish/proc/banish_warning()
-	var/mob/living/carbon/xenomorph/wraith/TI = owner
-
-	if(!TI) //Sanity
-		return
+	var/mob/living/carbon/xenomorph/wraith/ghost = owner
 
 	if(!banished_turf || !banishment_target)
 		return
 
-	to_chat(TI,"<span class='highdanger'>Our banishment target [banishment_target.name] is about to return!</span>")
+	to_chat(ghost,"<span class='highdanger'>Our banishment target [banishment_target.name] is about to return!</span>")
 	owner.playsound_local(owner, 'sound/voice/hiss4.ogg', 50, 0, 1)
 
 
 /datum/action/xeno_action/activable/banish/proc/banish_deactivate()
 	SIGNAL_HANDLER
-	var/mob/living/carbon/xenomorph/wraith/TI = owner
-
-	if(!TI) //Sanity
-		return
+	var/mob/living/carbon/xenomorph/wraith/ghost = owner
 
 	if(!banished_turf || !banishment_target)
 		return
@@ -445,6 +430,12 @@
 	banishment_target.add_filter("wraith_banishment_filter", 3, list("type" = "blur", 5)) //Cool filter appear
 	addtimer(CALLBACK(banishment_target, /atom.proc/remove_filter, "wraith_banishment_filter"), 1 SECONDS) //1 sec blur duration
 
+	banishment_target.resistance_flags = initial(banishment_target.resistance_flags)
+	if(isliving(banishment_target))
+		var/mob/living/stasis_target = banishment_target
+		stasis_target.status_flags = initial(stasis_target.status_flags) //Remove stasis and temp invulerability
+		if(stasis_target.IsStasis())
+			stasis_target.SetStasis(remove = TRUE)
 
 	banishment_target.visible_message("<span class='warning'>[banishment_target.name] abruptly reappears!</span>", \
 	"<span class='warning'>You suddenly reappear back in what you believe to be reality. It takes you a moment to regain your bearings.</span>")
@@ -453,7 +444,7 @@
 		var/mob/living/L = banishment_target
 		L.Stun(1 SECONDS) //Short stun upon snap back to reality
 
-	to_chat(TI, "<span class='xenodanger'>Our target [banishment_target.name] has returned to reality at [get_area(banishment_target)]</span>") //Always alert the Wraith
+	to_chat(ghost, "<span class='xenodanger'>Our target [banishment_target.name] has returned to reality at [get_area(banishment_target)]</span>") //Always alert the Wraith
 
 	if(portal)
 		QDEL_NULL(portal) //Eliminate the Brazil portal if we need to
@@ -462,7 +453,7 @@
 	banished_turf = null
 	portal = null
 
-	return COMPONENT_BANISH_TARGETS_EXIST //For the recall sub-ability
+	return TRUE //For the recall sub-ability
 
 // ***************************************
 // *********** Recall

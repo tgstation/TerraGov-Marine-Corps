@@ -175,6 +175,29 @@
 	desc = "You've been slept by an Admin."
 	icon_state = "asleep"
 
+//STASIS
+/datum/status_effect/incapacitating/stasis
+	id = "stasis"
+	alert_type = /obj/screen/alert/status_effect/stasis
+	duration = -1
+
+/datum/status_effect/incapacitating/stasis/on_apply()
+	. = ..()
+	if(!.)
+		return
+	ADD_TRAIT(owner, TRAIT_KNOCKEDOUT, TRAIT_STATUS_EFFECT(id))
+	ADD_TRAIT(owner, TRAIT_STASIS, TRAIT_STATUS_EFFECT(id))
+
+/datum/status_effect/incapacitating/stasis/on_remove()
+	REMOVE_TRAIT(owner, TRAIT_KNOCKEDOUT, TRAIT_STATUS_EFFECT(id))
+	REMOVE_TRAIT(owner, TRAIT_STASIS, TRAIT_STATUS_EFFECT(id))
+	return ..()
+
+/obj/screen/alert/status_effect/stasis
+	name = "Stasis"
+	desc = "You're in stasis."
+	icon_state = "asleep"
+
 //CONFUSED
 /datum/status_effect/confused
 	id = "confused"
