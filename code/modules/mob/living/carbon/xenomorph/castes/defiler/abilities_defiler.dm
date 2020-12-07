@@ -19,7 +19,7 @@
 /datum/action/xeno_action/activable/defile/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
-		return FALSE
+		return
 
 	if(!iscarbon(A))
 		if(!silent)
