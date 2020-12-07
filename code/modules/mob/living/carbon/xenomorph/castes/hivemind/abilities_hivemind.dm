@@ -208,15 +208,17 @@
 	victim.adjust_stagger(power_level * 0.05)
 	victim.add_slowdown(power_level * 0.05)
 
-	var/obj/screen/plane_master/floor/OT = victim.hud_used.plane_masters["[FLOOR_PLANE]"]
-	var/obj/screen/plane_master/game_world/GW = victim.hud_used.plane_masters["[GAME_PLANE]"]
+	if(!victim.hud_used)
 
-	addtimer(CALLBACK(OT, /atom.proc/remove_filter, "mindwrack_disorientation"), 1 SECONDS)
-	GW.add_filter("mindwrack_disorientation", 2, list("type" = "radial_blur", "size" = 0.07))
-	animate(GW.get_filter("mindwrack_disorientation"), size = 0.12, time = 5, loop = -1)
-	OT.add_filter("mindwrack_disorientation", 2, list("type" = "radial_blur", "size" = 0.07))
-	animate(OT.get_filter("mindwrack_disorientation"), size = 0.12, time = 5, loop = -1)
-	addtimer(CALLBACK(GW, /atom.proc/remove_filter, "mindwrack_disorientation"), 1 SECONDS)
+		var/obj/screen/plane_master/floor/OT = victim.hud_used.plane_masters["[FLOOR_PLANE]"]
+		var/obj/screen/plane_master/game_world/GW = victim.hud_used.plane_masters["[GAME_PLANE]"]
+
+		addtimer(CALLBACK(OT, /atom.proc/remove_filter, "mindwrack_disorientation"), 1 SECONDS)
+		GW.add_filter("mindwrack_disorientation", 2, list("type" = "radial_blur", "size" = 0.07))
+		animate(GW.get_filter("mindwrack_disorientation"), size = 0.12, time = 5, loop = -1)
+		OT.add_filter("mindwrack_disorientation", 2, list("type" = "radial_blur", "size" = 0.07))
+		animate(OT.get_filter("mindwrack_disorientation"), size = 0.12, time = 5, loop = -1)
+		addtimer(CALLBACK(GW, /atom.proc/remove_filter, "mindwrack_disorientation"), 1 SECONDS)
 
 
 	succeed_activate()
