@@ -638,7 +638,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	)
 	flags_item_map_variant = NONE
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER
-	attachable_offset = list("muzzle_x" = 50, "muzzle_y" = 21,"rail_x" = 11, "rail_y" = 21, "under_x" = 37, "under_y" = 16, "stock_x" = 18, "stock_y" = 13)
+	attachable_offset = list("muzzle_x" = 50, "muzzle_y" = 21,"rail_x" = 10, "rail_y" = 21, "under_x" = 37, "under_y" = 16, "stock_x" = 18, "stock_y" = 13)
 	starting_attachment_types = list(
 		/obj/item/attachable/scope/mosin,
 		/obj/item/attachable/stock/mosin,
