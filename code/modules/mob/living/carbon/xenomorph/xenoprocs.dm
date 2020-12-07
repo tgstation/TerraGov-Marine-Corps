@@ -652,5 +652,3 @@
 	if(.)
 		return
 	return (sunder * -0.01) + 1
-
-up
