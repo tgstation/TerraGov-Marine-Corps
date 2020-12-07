@@ -1,5 +1,5 @@
 //Some debug variables. Uncomment DEBUG_HIVELORD_ABILITIES in order to see the related debug messages. Helpful when testing out formulas.
-//define DEBUG_HIVELORD_ABILITIES "ae"
+//#define DEBUG_HIVELORD_ABILITIES "ae"
 #ifdef DEBUG_HIVELORD_ABILITIES
 #define HIVELORD_ABILITIES_DEBUG(msg) to_chat(world, "<span class='danger'>[msg]</span>")
 #else
