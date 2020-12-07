@@ -263,7 +263,7 @@
 
 	evasion_stacks = max(0, evasion_stacks - proj.damage)
 
-	visible_message("<span class='warning'>[name] effortlessly dodge the [proj.name]!</span>", \
+	visible_message("<span class='warning'>[name] effortlessly dodges the [proj.name]!</span>", \
 	"<span class='xenodanger'>We effortlessly dodge the [proj.name]![evasion_stacks > 0 ? " We can dodge [evasion_stacks] more projectile damage." : ""]</span>")
 
 	var/turf/T = get_turf(src) //after image SFX
