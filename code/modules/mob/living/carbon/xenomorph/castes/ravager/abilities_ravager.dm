@@ -275,13 +275,20 @@
 
 	var/bonus_duration
 	if(rage_power > 0.5) //If we're super pissed it's time to get crazy
-		bonus_duration = 1 SECONDS //Compensation for the obscuring visual effect
-		var/obj/screen/plane_master/floor/OT = locate(/obj/screen/plane_master/floor) in X.client.screen
-		OT.add_filter("rage_outcry", 2, list("type" = "radial_blur", "size" = 0.12))
-		addtimer(CALLBACK(OT, /atom.proc/remove_filter, "rage_outcry"), bonus_duration)
-		var/obj/screen/plane_master/game_world/GW = locate(/obj/screen/plane_master/game_world) in X.client.screen
-		GW.add_filter("rage_outcry2", 2, list("type" = "radial_blur", "size" = 0.12))
-		addtimer(CALLBACK(GW, /atom.proc/remove_filter, "rage_outcry2"), bonus_duration)
+		for(var/mob/living/witness in hearers(rage_power_radius, X)) //Roar that applies cool SFX and some soft CC
+
+			if(!witness.hud_used)
+				continue
+
+			var/obj/screen/plane_master/floor/OT = witness.hud_used.plane_masters["[FLOOR_PLANE]"]
+			var/obj/screen/plane_master/game_world/GW = witness.hud_used.plane_masters["[GAME_PLANE]"]
+
+			addtimer(CALLBACK(OT, /atom.proc/remove_filter, "rage_outcry"), 1 SECONDS)
+			GW.add_filter("rage_outcry", 2, list("type" = "radial_blur", "size" = 0.07))
+			animate(GW.get_filter("rage_outcry"), size = 0.12, time = 5, loop = -1)
+			OT.add_filter("rage_outcry", 2, list("type" = "radial_blur", "size" = 0.07))
+			animate(OT.get_filter("rage_outcry"), size = 0.12, time = 5, loop = -1)
+			addtimer(CALLBACK(GW, /atom.proc/remove_filter, "rage_outcry"), 1 SECONDS)
 
 	for(var/turf/affected_tiles as() in RANGE_TURFS(rage_power_radius, X.loc))
 		affected_tiles.Shake(4, 4, 1 SECONDS) //SFX
@@ -292,6 +299,7 @@
 
 		if(L.stat == DEAD) //We don't care about the dead
 			continue
+
 		if(isxeno(L))
 			var/mob/living/carbon/xenomorph/friendly_check = L
 			if(friendly_check.issamexenohive(X)) //No friendly fire
