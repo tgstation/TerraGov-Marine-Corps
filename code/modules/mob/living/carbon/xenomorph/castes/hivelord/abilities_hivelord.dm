@@ -1,7 +1,7 @@
-//Some debug variables. Toggle Debug Hivelord Abilities to 1 in order to see the related debug messages. Helpful when testing out formulas.
-#define DEBUG_HIVELORD_ABILITIES	0
-#if DEBUG_HIVELORD_ABILITIES
-#define HIVELORD_ABILITIES_DEBUG(msg) to_chat(world, "<span class='debuginfo'>[msg]</span>")
+//Some debug variables. Uncomment DEBUG_HIVELORD_ABILITIES in order to see the related debug messages. Helpful when testing out formulas.
+//define DEBUG_HIVELORD_ABILITIES "ae"
+#ifdef DEBUG_HIVELORD_ABILITIES
+#define HIVELORD_ABILITIES_DEBUG(msg) to_chat(world, "<span class='danger'>[msg]</span>")
 #else
 #define HIVELORD_ABILITIES_DEBUG(msg)
 #endif
