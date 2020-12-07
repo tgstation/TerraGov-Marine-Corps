@@ -61,9 +61,8 @@
 
 	succeed_activate()
 	if(!do_after(X, delay, TRUE, null, BUSY_ICON_BUILD))
-		if(!QDELETED(src))
-			to_chat(X, "<span class='xenodanger'>We abort transferring our consciousness, expending our precious plasma for naught.</span>")
-			return fail_activate()
+		to_chat(X, "<span class='xenodanger'>We abort transferring our consciousness, expending our precious plasma for naught.</span>")
+		return fail_activate()
 
 	if(!can_use_ability(T, FALSE, XACT_IGNORE_PLASMA))
 		return fail_activate()
@@ -88,9 +87,6 @@
 
 /datum/action/xeno_action/activable/reposition_core/proc/check_build_location(turf/T, mob/living/carbon/xenomorph/hivemind/X)
 
-	if(!X || !T) //Sanity
-		return FALSE
-
 	if(T.z != X.core.z)
 		to_chat(X, "<span class='xenodanger'>We cannot transfer our core here.</span>")
 		return FALSE
@@ -100,7 +96,6 @@
 		return FALSE
 
 	if(!locate(/obj/effect/alien/weeds) in T) //Make sure we actually have weeds at our destination.
-		to_chat(X, "<span class='xenodanger'>[T.name] [T.x] [T.y]</span>")
 		to_chat(X, "<span class='xenodanger'>There are no weeds for us to transfer our consciousness to!</span>")
 		return FALSE
 
@@ -141,9 +136,7 @@
 /datum/action/xeno_action/activable/mind_wrack/can_use_ability(atom/target, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
-		return FALSE
-	if(QDELETED(target))
-		return FALSE
+		return
 
 	var/mob/living/victim = target
 	var/mob/living/carbon/xenomorph/hivemind/X = owner
@@ -214,6 +207,17 @@
 	victim.adjustStaminaLoss(power_level * 0.75)
 	victim.adjust_stagger(power_level * 0.05)
 	victim.add_slowdown(power_level * 0.05)
+
+	var/obj/screen/plane_master/floor/OT = victim.hud_used.plane_masters["[FLOOR_PLANE]"]
+	var/obj/screen/plane_master/game_world/GW = victim.hud_used.plane_masters["[GAME_PLANE]"]
+
+	addtimer(CALLBACK(OT, /atom.proc/remove_filter, "mindwrack_disorientation"), 1 SECONDS)
+	GW.add_filter("mindwrack_disorientation", 2, list("type" = "radial_blur", "size" = 0.07))
+	animate(GW.get_filter("mindwrack_disorientation"), size = 0.12, time = 5, loop = -1)
+	OT.add_filter("mindwrack_disorientation", 2, list("type" = "radial_blur", "size" = 0.07))
+	animate(OT.get_filter("mindwrack_disorientation"), size = 0.12, time = 5, loop = -1)
+	addtimer(CALLBACK(GW, /atom.proc/remove_filter, "mindwrack_disorientation"), 1 SECONDS)
+
 
 	succeed_activate()
 	add_cooldown()
