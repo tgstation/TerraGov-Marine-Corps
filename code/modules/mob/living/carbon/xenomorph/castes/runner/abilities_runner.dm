@@ -255,7 +255,7 @@
 ///This is where the dodgy magic happens
 /mob/living/carbon/xenomorph/runner/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
 
-	if(!evasion_stacks || (last_move_intent < (world.time - RUNNER_EVASION_RUN_DELAY) ) ) //Gotta keep moving to benefit from evasion!
+	if(!evasion_stacks || (last_move_time  < (world.time - RUNNER_EVASION_RUN_DELAY) ) ) //Gotta keep moving to benefit from evasion!
 		return ..()
 
 	if(issamexenohive(proj.firer)) //We automatically dodge allied projectiles at no cost
@@ -263,7 +263,7 @@
 
 	evasion_stacks = max(0, evasion_stacks - proj.damage)
 
-	visible_message("<span class='warning'>[name] effortlessly dodge the [proj.name]!</span>", \
+	visible_message("<span class='warning'>[name] effortlessly dodges the [proj.name]!</span>", \
 	"<span class='xenodanger'>We effortlessly dodge the [proj.name]![evasion_stacks > 0 ? " We can dodge [evasion_stacks] more projectile damage." : ""]</span>")
 
 	var/turf/T = get_turf(src) //after image SFX
