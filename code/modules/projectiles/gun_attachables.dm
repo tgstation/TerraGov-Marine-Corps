@@ -780,10 +780,10 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	desc = "A rail mounted zoom sight scope specialized for the T-45 Battle Rifle . Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
 	flags_attach_features = ATTACH_ACTIVATION
 
-/obj/item/attachable/scope/m42a
-	name = "m42a rail scope"
+/obj/item/attachable/scope/antimat
+	name = "rail scope"
 	attach_icon = "none"
-	desc = "A rail mounted zoom sight scope specialized for the M42A Sniper Rifle . Allows zoom by activating the attachment. Can activate its targeting laser while zoomed to take aim for increased damage and penetration. Use F12 if your HUD doesn't come back."
+	desc = "A rail mounted zoom sight scope specialized for the T-26 Anti Material Rifle . Allows zoom by activating the attachment. Can activate its targeting laser while zoomed to take aim for increased damage and penetration. Use F12 if your HUD doesn't come back."
 	scoped_accuracy_mod = SCOPE_RAIL_SNIPER
 	flags_attach_features = ATTACH_ACTIVATION
 

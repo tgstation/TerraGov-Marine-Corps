@@ -349,10 +349,10 @@
 
 /obj/item/storage/belt/marine/m42a/Initialize()
 	. = ..()
-	new /obj/item/ammo_magazine/sniper/flak(src)
-	new /obj/item/ammo_magazine/sniper/flak(src)
-	new /obj/item/ammo_magazine/sniper/incendiary(src)
-	new /obj/item/ammo_magazine/sniper/incendiary(src)
+	new /obj/item/ammo_magazine/sniper(src)
+	new /obj/item/ammo_magazine/sniper(src)
+	new /obj/item/ammo_magazine/sniper(src)
+	new /obj/item/ammo_magazine/sniper(src)
 	new /obj/item/ammo_magazine/sniper(src)
 
 /obj/item/storage/belt/marine/m4ra/Initialize()

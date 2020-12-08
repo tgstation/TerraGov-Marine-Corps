@@ -666,6 +666,18 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_falloff = 4
 	penetration = 0
 
+/datum/ammo/bullet/shotgun/tracker
+	name = "shotgun tracker round"
+	icon_state = "shotgun_slug"
+	hud_state = "shotgun_flechette"
+	shell_speed = 4
+	max_range = 30
+	damage = 5
+	penetration = 100
+
+/datum/ammo/bullet/shotgun/mbx900_tracker/on_hit_mob(mob/living/victim, obj/projectile/proj)
+	victim.AddComponent(/datum/component/dripping, DRIP_ON_TIME, 40 SECONDS, 2 SECONDS)
+
 //buckshot variant only used by the masterkey shotgun attachment.
 /datum/ammo/bullet/shotgun/buckshot/masterkey
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/spread/masterkey
@@ -856,6 +868,25 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/sniper/flak/on_hit_mob(mob/victim, obj/projectile/proj)
 	airburst(victim, proj)
 
+/datum/ammo/bullet/sniper/stagger
+	name = "stagger sniper bullet"
+	hud_state = "sniper"
+	hud_state_empty = "sniper_empty"
+	damage_falloff = 0
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SNIPER|AMMO_SUNDERING
+	accurate_range_min = 5
+	shell_speed = 4
+	accurate_range = 30
+	max_range = 40
+	scatter = -20
+	damage = 30
+	penetration = 30
+	sundering = 5
+
+/datum/ammo/bullet/sniper/stagger/on_hit_mob(mob/M,obj/projectile/P)
+	staggerstun(M, P, weaken = 0.3, stagger = 1, knockback = 2)
+
+
 /datum/ammo/bullet/sniper/svd
 	name = "crude sniper bullet"
 	hud_state = "sniper_crude"
@@ -990,6 +1021,19 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 15
 	shrapnel_chance = 25
 	sundering = 2.5
+
+/datum/ammo/bullet/railgun
+	name = "railgun round"
+	hud_state = "minigun"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
+	shell_speed = 5
+	max_range = 10
+	damage = 50
+	penetration = 30
+	sundering = 50 //oof ouch
+
+/datum/ammo/bullet/shotgun/slug/on_hit_mob(mob/M,obj/projectile/P)
+	staggerstun(M, P, weaken = 1, stagger = 2, knockback = 4)
 
 /*
 //================================================

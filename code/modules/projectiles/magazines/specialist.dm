@@ -3,26 +3,26 @@
 //Keyword rifles. They are subtype of rifles, but still contained here as a specialist weapon.
 
 /obj/item/ammo_magazine/sniper
-	name = "\improper M42A marksman magazine (10x28mm)"
+	name = "\improper AMR marksman magazine (10x30mm)"
 	desc = "A magazine of sniper rifle ammo."
-	caliber = "10x28mm"
+	caliber = "10x30mm"
 	icon_state = "m42a"
 	w_class = WEIGHT_CLASS_NORMAL
-	max_rounds = 15
+	max_rounds = 5
 	default_ammo = /datum/ammo/bullet/sniper
-	gun_type = /obj/item/weapon/gun/rifle/sniper/M42A
+	gun_type = /obj/item/weapon/gun/rifle/sniper/antimaterial
 	reload_delay = 3
 
-
-/obj/item/ammo_magazine/sniper/incendiary
-	name = "\improper M42A incendiary magazine (10x28mm)"
-	default_ammo = /datum/ammo/bullet/sniper/incendiary
-	icon_state = "m42a_inc"
-
-/obj/item/ammo_magazine/sniper/flak
-	name = "\improper M42A flak magazine (10x28mm)"
-	default_ammo = /datum/ammo/bullet/sniper/flak
-	icon_state = "m42a_flak"
+/obj/item/ammo_magazine/sniper/stagger
+	name = "\improper AMR stagger magazine (10x30mm)"
+	desc = "A magazine of flat tipped sniper ammo made to stagger targets for longer."
+	caliber = "10x30mm"
+	icon_state = "m42a"
+	w_class = WEIGHT_CLASS_NORMAL
+	max_rounds = 5
+	default_ammo = /datum/ammo/bullet/sniper/stagger
+	gun_type = /obj/item/weapon/gun/rifle/sniper/antimaterial
+	reload_delay = 3
 
 
 //M42C magazine
@@ -252,4 +252,18 @@ obj/item/ammo_magazine/rifle/m4ra/smart
 	reload_delay = 50 //Hard to reload.
 	w_class = WEIGHT_CLASS_NORMAL
 	gun_type = /obj/item/weapon/gun/minigun
+
+//-------------------------------------------------------
+//Railgun
+
+/obj/item/ammo_magazine/railgun
+	name = "Railgun canister (Rail)"
+	desc = "A canister holding a projectile to be used inside a railgun."
+	caliber = "Rail"
+	icon_state = "rail"
+	default_ammo = /datum/ammo/bullet/railgun
+	max_rounds = 1
+	reload_delay = 20 //Hard to reload.
+	w_class = WEIGHT_CLASS_NORMAL
+	gun_type = /obj/item/weapon/gun/rifle/railgun
 
