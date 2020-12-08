@@ -110,18 +110,26 @@
 	var/list/L = orange(sweep_range, X) // Not actually the fruit
 	var/victims = 0
 	var/target_facing
-	for(var/mob/living/carbon/human/H in L)
-		if(victims >= 3) //Max 3 victims
+	for(var/atom/movable/target in L)
+		if(victims >= 3) //Max 3 living victims
 			break
-		target_facing = get_dir(X, H)
+		if(!isstructure(target) && !ismachinery(target) && !ismob(target))
+			continue
+		target_facing = get_dir(X, target)
 		if(target_facing != X.dir && target_facing != turn(X.dir,45) && target_facing != turn(X.dir,-45) ) //Have to be actually facing the target
 			continue
-		if(H.stat != DEAD && !isnestedhost(H)) //No bully
-			H.attack_alien_harm(X, X.xeno_caste.melee_damage * 0.25, FALSE, TRUE, FALSE, TRUE)
-			victims++
-			step_away(H, X, sweep_range, 2)
-			shake_camera(H, 2, 1)
-			H.Paralyze(1 SECONDS)
+		target.attack_alien(X, X.xeno_caste.melee_damage * 0.25, FALSE, TRUE, FALSE, TRUE, INTENT_HARM)
+		if(isliving(target))
+			if(isxeno(target))
+				var/mob/living/carbon/xenomorph/xeno_target = target
+				if(xeno_target.issamexenohive(X)) //No friendly fire
+					continue
+			var/mob/living/living_target = target
+			if(living_target.stat != DEAD)
+				victims++
+				step_away(target, X, sweep_range, 2)
+				shake_camera(target, 2, 1)
+				living_target.Paralyze(1 SECONDS)
 
 	succeed_activate()
 	add_cooldown()
