@@ -1,10 +1,7 @@
-//Some debug variables. Uncomment DEBUG_HIVELORD_ABILITIES in order to see the related debug messages. Helpful when testing out formulas.
-//#define DEBUG_HIVELORD_ABILITIES "ae"
-#ifdef DEBUG_HIVELORD_ABILITIES
-#define HIVELORD_ABILITIES_DEBUG(msg) to_chat(world, "<span class='danger'>[msg]</span>")
-#else
-#define HIVELORD_ABILITIES_DEBUG(msg)
-#endif
+//Some debug variables. Uncomment in order to see the related debug messages. Helpful when testing out formulas.
+//#ifdef TESTING
+//#define DEBUG_HIVELORD_ABILITIES
+//#endif
 
 // ***************************************
 // *********** Resin building
@@ -371,7 +368,9 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 
 	health_ticks_remaining-- //Decrement health ticks
 
-	HIVELORD_ABILITIES_DEBUG("healing_infusion_regeneration triggered successfully. Patient: [patient], Health Stacks: [health_ticks_remaining]")
+	#ifdef DEBUG_HIVELORD_ABILITIES
+		to_chat(world, "<span class='danger'>HIVELORD_ABILITIES_DEBUG: healing_infusion_regeneration triggered successfully. Patient: [patient], Health Stacks: [health_ticks_remaining]</span>")
+	#endif
 
 	new /obj/effect/temp_visual/healing(get_turf(patient)) //Cool SFX
 
@@ -379,14 +378,19 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	if(patient.recovery_aura)
 		total_heal_amount *= (1 + patient.recovery_aura * 0.1) //Recovery aura multiplier; 10% bonus per full level
 
-	HIVELORD_ABILITIES_DEBUG("Healing pool from Healing Infusion Pre-Brute, Pre-Burn: [total_heal_amount]")
+	#ifdef DEBUG_HIVELORD_ABILITIES
+	to_chat(world, "<span class='danger'>HIVELORD_ABILITIES_DEBUG: Healing pool from Healing Infusion Pre-Brute, Pre-Burn: [total_heal_amount]</span>")
+	#endif
+
 	//Healing pool has been calculated; now to decrement it
 	var/brute_amount = min(patient.bruteloss, total_heal_amount)
 	if(brute_amount)
 		patient.adjustBruteLoss(-brute_amount, updating_health = TRUE)
 		total_heal_amount = max(0, total_heal_amount - brute_amount) //Decrement from our heal pool the amount of brute healed
 
-	HIVELORD_ABILITIES_DEBUG("Healing pool from Healing Infusion Post-Brute, Pre-Burn: [total_heal_amount]")
+	#ifdef DEBUG_HIVELORD_ABILITIES
+	to_chat(world, "<span class='danger'>HIVELORD_ABILITIES_DEBUG:Healing pool from Healing Infusion Post-Brute, Pre-Burn: [total_heal_amount]</span>")
+	#endif
 	if(!total_heal_amount) //no healing left, no need to continue
 		return
 
@@ -394,7 +398,9 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	if(burn_amount)
 		patient.adjustFireLoss(-burn_amount, updating_health = TRUE)
 
-	HIVELORD_ABILITIES_DEBUG("Healing pool from Healing Infusion Post-Brute, Post-Burn: [max(0, total_heal_amount - burn_amount)]")
+	#ifdef DEBUG_HIVELORD_ABILITIES
+	to_chat(world, "<span class='danger'>HIVELORD_ABILITIES_DEBUG: [msg]</span>")
+	#endif
 
 ///Called when the target xeno regains Sunder via heal_wounds in life.dm
 /datum/action/xeno_action/activable/healing_infusion/proc/healing_infusion_sunder_regeneration(datum/source, mob/living/carbon/xenomorph/patient)
@@ -406,12 +412,16 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 
 	sunder_ticks_remaining-- //Decrement sunder ticks
 
-	HIVELORD_ABILITIES_DEBUG("healing_infusion_sunder_regeneration triggered successfully. Patient: [patient], Sunder Stacks: [sunder_ticks_remaining]")
+	#ifdef DEBUG_HIVELORD_ABILITIES
+	HIVELORD_ABILITIES_DEBUG("HIVELORD_ABILITIES_DEBUG: healing_infusion_sunder_regeneration triggered successfully. Patient: [patient], Sunder Stacks: [sunder_ticks_remaining]")
+	#endif
 
 	new /obj/effect/temp_visual/telekinesis(get_turf(patient)) //Visual confirmation
 
 	patient.adjust_sunder(-3 * (1 + patient.recovery_aura * 0.1)) //10% bonus per rank of our recovery aura
-	HIVELORD_ABILITIES_DEBUG("Sunder reduction from Healing Infusion: [-3 * (1 + patient.recovery_aura * 0.1)]")
+	#ifdef DEBUG_HIVELORD_ABILITIES
+	HIVELORD_ABILITIES_DEBUG("HIVELORD_ABILITIES_DEBUG: Sunder reduction from Healing Infusion: [-3 * (1 + patient.recovery_aura * 0.1)]")
+	#endif
 
 ///Called when the duration of healing infusion lapses
 /datum/action/xeno_action/activable/healing_infusion/proc/healing_infusion_deactivate(mob/living/carbon/xenomorph/patient)
@@ -428,6 +438,3 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 
 	to_chat(patient, "<span class='xenodanger'>We are no longer benefitting from [src].</span>") //Let the target know
 	patient.playsound_local(patient, 'sound/voice/hiss5.ogg', 25)
-
-#undef DEBUG_HIVELORD_ABILITIES
-#undef HIVELORD_ABILITIES_DEBUG
