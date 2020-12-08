@@ -74,7 +74,7 @@
 	resin_silo_info += "<BR>" //Resin Silo data
 	resin_silo_info += "<b>List of Resin Silos:</b><BR>"
 	resin_silo_info += "<table cellspacing=4>"
-	for(var/obj/structure/resin/silo/resin_silo in GLOB.xeno_resin_silos)
+	for(var/obj/structure/resin/silo/resin_silo as() in GLOB.xeno_resin_silos)
 		if(resin_silo.associated_hive == user.hive)
 
 			var/hp_color = "green"
