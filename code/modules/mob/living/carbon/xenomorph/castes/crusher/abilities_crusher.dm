@@ -139,7 +139,7 @@
 
 	succeed_activate()
 
-	L.throw_at(T, toss_distance, 1, X, 1)
+	L.throw_at(T, toss_distance, 1, X, TRUE)
 
 	//Handle the damage
 	if(!X.issamexenohive(L)) //Friendly xenos don't take damage.
