@@ -342,7 +342,7 @@
 	#define COMSIG_ACCURATE_ZONE (1<<0)
 
 #define COMSIG_HUNTER_SNEAK_ATTACK_CHECK "hunter_sneak_attack_check"
-	#define COMSIG_ACCURATE_ZONE (1<<0)
+	#define COMSIG_HUNTER_SNEAK_ATTACK (1<<0)
 
 #define COMSIG_XENOMORPH_POUNCE "xenomorph_pounce"
 

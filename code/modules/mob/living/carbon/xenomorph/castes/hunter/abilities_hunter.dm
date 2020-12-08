@@ -21,7 +21,7 @@
 	RegisterSignal(L, COMSIG_XENOMORPH_ATTACK_LIVING, .proc/sneak_attack_slash)
 	RegisterSignal(L, COMSIG_XENOMORPH_ZONE_SELECT, .proc/sneak_attack_zone)
 	RegisterSignal(L, COMSIG_XENOMORPH_PLASMA_REGEN, .proc/plasma_regen)
-	RegisterSignal(L, COMSIG_HUNTER_SNEAK_ATTACK_CHECK, .proc/sneak_attack_zone)
+	RegisterSignal(L, COMSIG_HUNTER_SNEAK_ATTACK_CHECK, .proc/sneak_attack_check)
 
 	// TODO: attack_alien() overrides are a mess and need a lot of work to make them require parentcalling
 	RegisterSignal(L, list(
@@ -237,6 +237,13 @@
 		return
 	return COMSIG_ACCURATE_ZONE
 
+/datum/action/xeno_action/stealth/proc/sneak_attack_check()
+	SIGNAL_HANDLER
+	if(!stealth || !can_sneak_attack)
+		return
+	return COMSIG_HUNTER_SNEAK_ATTACK
+
+
 // ***************************************
 // *********** Pounce/sneak attack
 // ***************************************
@@ -372,7 +379,7 @@
 			to_chat(X, "<span class='xenowarning'>We refrain from unnecessarily bullying the host.</span>")
 			return FALSE
 
-	if(!SEND_SIGNAL(X, COMSIG_HUNTER_SNEAK_ATTACK_CHECK) & COMSIG_ACCURATE_ZONE)
+	if(!SEND_SIGNAL(X, COMSIG_HUNTER_SNEAK_ATTACK_CHECK) & COMSIG_HUNTER_SNEAK_ATTACK)
 		to_chat(X, "<span class='xenowarning'>We must be able to sneak attack the target to properly sting it!</span>")
 		return FALSE
 
