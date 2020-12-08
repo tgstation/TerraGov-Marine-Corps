@@ -328,6 +328,8 @@
 		if(0.5 to INFINITY)
 			X.soft_armor = X.soft_armor.setRating(bomb = XENO_BOMB_RESIST_3)
 
+	X.adjust_sunder(-50 * rage_power) //Restore up to 50 sunder; this armor bonus means literally nothing if we're literally shredded to shit.
+
 	X.xeno_melee_damage_modifier += rage_power  //Set rage melee damage bonus
 
 	X.add_movespeed_modifier(MOVESPEED_ID_RAVAGER_RAGE, TRUE, 0, NONE, TRUE, X.xeno_caste.speed * 0.5 * rage_power) //Set rage speed bonus
