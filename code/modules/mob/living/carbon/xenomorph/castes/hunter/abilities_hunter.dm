@@ -97,7 +97,7 @@
 	return TRUE
 
 /datum/action/xeno_action/stealth/on_cooldown_finish()
-	to_chat(owner, "<span class='xenodanger'><b>We're ready to use Stealth again.</b></span>")
+	to_chat(owner, "<span class='xenowarning'><b>We're ready to use Stealth again.</b></span>")
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
 
@@ -333,7 +333,6 @@
 	cooldown_timer = 30 SECONDS
 
 /datum/action/xeno_action/activable/sneak_stinger/can_use_ability(atom/A, silent = FALSE, override_flags)
-	SIGNAL_HANDLER
 	. = ..()
 	if(!.)
 		return
@@ -387,9 +386,8 @@
 
 
 /datum/action/xeno_action/activable/sneak_stinger/on_cooldown_finish()
-	var/mob/living/carbon/xenomorph/X = owner
-	to_chat(X, "<span class='xenowarning'><b>Our toxin glands refill, allowing us to sting our victims.</b></span>")
-	X.playsound_local(X, 'sound/voice/alien_drool1.ogg', 25, 0, 1)
+	to_chat(owner, "<span class='xenowarning'><b>Our toxin glands refill, allowing us to sting our victims.</b></span>")
+	owner.playsound_local(owner, 'sound/voice/alien_drool1.ogg', 25, 0, 1)
 	return ..()
 
 
@@ -406,17 +404,18 @@
 		return fail_activate()
 
 	victim.attack_alien(X) //We auto-sneak attack as part of this ability.
-	var/datum/reagent/toxin = /datum/reagent/toxin/acid/xeno_acid
+	var/datum/reagent/inject_toxin = new /datum/reagent/toxin/acid/xeno_acid()
 	var/transfer_amount = HUNTER_SNEAK_ATTACK_INJECT_AMOUNT
 	if(X.a_intent != INTENT_HARM) //Inject neurotoxin instead of acid while on non-harm intent and double the dose
-		toxin = /datum/reagent/toxin/xeno_neurotoxin
+		inject_toxin = /datum/reagent/toxin/xeno_neurotoxin
 		transfer_amount *= 2
 		if(X.a_intent == INTENT_HELP) //So we do *something* visual
 			X.do_attack_animation(victim)
 
-	victim.reagents.add_reagent(toxin, transfer_amount)
+	var/atom/reagent_name = inject_toxin
+	victim.reagents.add_reagent(inject_toxin, transfer_amount)
 	to_chat(victim, "<span class='danger'>You feel a tiny prick.</span>") //Fluff
-	to_chat(X, "<span class='xenowarning'>Our stinger silently injects our victim!</span>")
+	to_chat(X, "<span class='xenowarning'>Our stinger silently injects our victim with [initial(reagent_name.name)]!</span>")
 	X.playsound_local(victim, 'sound/effects/spray3.ogg', 5, 0, 1)
 	victim.playsound_local(victim, 'sound/effects/spray3.ogg', 5, 0, 1)
 
@@ -467,9 +466,8 @@
 
 
 /datum/action/xeno_action/activable/hunter_mark/on_cooldown_finish()
-	var/mob/living/carbon/xenomorph/X = owner
-	to_chat(X, "<span class='xenowarning'><b>We are able to impose our psychic mark again.</b></span>")
-	X.playsound_local(X, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
+	to_chat(owner, "<span class='xenowarning'><b>We are able to impose our psychic mark again.</b></span>")
+	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
 
 
