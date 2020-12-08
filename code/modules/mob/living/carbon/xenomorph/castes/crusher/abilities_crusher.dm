@@ -117,7 +117,7 @@
 				to_chat(X, "<span class='xenowarning'>We try to fling [L] behind us, but there's no room!</span>")
 				return fail_activate()
 
-		L.loc = throw_origin //Move the victim behind us before flinging
+		L.forceMove(throw_origin) //Move the victim behind us before flinging
 		for(var/x = 0, x < toss_distance, x++)
 			temp = get_step(T, facing)
 			if (!temp)
@@ -139,7 +139,7 @@
 
 	succeed_activate()
 
-	L.throw_at(T, toss_distance, 1, X)
+	L.throw_at(T, toss_distance, 1, X, 1)
 
 	//Handle the damage
 	if(!X.issamexenohive(L)) //Friendly xenos don't take damage.
