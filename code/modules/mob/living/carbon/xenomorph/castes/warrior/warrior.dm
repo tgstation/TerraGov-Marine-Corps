@@ -58,7 +58,7 @@
 
 
 /mob/living/carbon/xenomorph/warrior/throw_impact(atom/hit_atom, speed)
-	..()
+	. = ..()
 	remove_filter("warrior_lunge") //No perma blur please
 
 
