@@ -1,6 +1,0 @@
-author: "Surrealaser"
-delete-after: True
-changes: 
-  - bugfix: "Fixed minisentry duplication bug."
-  - bugfix: "Fixed lighting bugs for sentries."
-  - refactor: "Minor sentry refactors and removal/revision of old code."
