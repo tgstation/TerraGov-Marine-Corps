@@ -206,6 +206,27 @@
 	cooldown_timer = 30 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_EVASION
 
+/datum/action/xeno_action/evasion/give_action(mob/living/L)
+	. = ..()
+	RegisterSignal(L, list(COMSIG_LIVING_STATUS_STUN,
+		COMSIG_LIVING_STATUS_KNOCKDOWN,
+		COMSIG_LIVING_STATUS_PARALYZE,
+		COMSIG_LIVING_STATUS_IMMOBILIZE,
+		COMSIG_LIVING_STATUS_UNCONSCIOUS,
+		COMSIG_LIVING_STATUS_SLEEP,
+		COMSIG_LIVING_STATUS_STAGGER), .proc/evasion_debuff_check)
+
+/datum/action/xeno_action/stealth/remove_action(mob/living/L)
+	UnregisterSignal(L, list(
+		COMSIG_LIVING_STATUS_STUN,
+		COMSIG_LIVING_STATUS_KNOCKDOWN,
+		COMSIG_LIVING_STATUS_PARALYZE,
+		COMSIG_LIVING_STATUS_IMMOBILIZE,
+		COMSIG_LIVING_STATUS_UNCONSCIOUS,
+		COMSIG_LIVING_STATUS_SLEEP,
+		COMSIG_LIVING_STATUS_STAGGER))
+	return ..()
+
 
 /datum/action/xeno_action/evasion/action_activate()
 	var/mob/living/carbon/xenomorph/runner/R = owner
@@ -225,9 +246,16 @@
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "runner_evasions") //Statistics
 	add_cooldown()
 
+/datum/action/xeno_action/evasion/proc/evasion_debuff_check(amount)
+	SIGNAL_HANDLER
+	var/mob/living/carbon/xenomorph/runner/R = owner
+	if(!amount || !R.evasion_stacks) //We actually have to gain debuff stacks/duration
+		return
+	to_chat(owner, "<span class='highdanger'>Our movements have been interrupted!</span>")
+	evasion_deactivate()
+
 
 /datum/action/xeno_action/evasion/proc/evasion_deactivate()
-
 	var/mob/living/carbon/xenomorph/runner/R = owner
 	if(R.evasion_stacks) //If our evasion stacks are already depleted, don't tell us again.
 		R.evasion_stacks = 0
