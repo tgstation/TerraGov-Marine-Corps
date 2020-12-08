@@ -139,7 +139,7 @@
 /obj/machinery/floodlightcombat
 	name = "Armoured floodlight"
 	icon = 'icons/obj/machines/floodlight.dmi'
-	icon_state = "flood00"
+	icon_state = "floodlightcombat_off"
 	anchored = TRUE
 	density = TRUE
 	/// Determines how much light does the floodlight make , every light tube adds 4 tiles distance.
@@ -188,6 +188,16 @@
 	else
 		use_power(idle_power_usage, EQUIP)
 
+/obj/machinery/floodlightcombat/proc/break_a_light()
+	var/obj/item/light_bulb/tube/T = pick(contents)
+	if(T.status == 0)
+		T.status = 2
+		return TRUE
+	if(Brightness == 0)
+		return FALSE
+	break_a_light()
+
+
 /obj/machinery/floodlightcombat/attack_alien(mob/living/carbon/xenomorph/M)
 	if(M.a_intent == INTENT_DISARM)
 		to_chat(M, "You begin tipping the [src]")
@@ -205,19 +215,14 @@
 		tip_over()
 		update_icon()
 		return TRUE
-	var/obj/item/light_bulb/T = /obj/item/light_bulb/tube
-	var/list/lights = src.contents
-	if(lights.len == 0)
+	if(contents.len == 0)
 		to_chat(M, "There are no lights to slash!")
 		return FALSE
-	to_chat(M, "You slash one of the lights!")
-	for(T in lights)
-		if(T.status > 0)
-			return FALSE
-		T.status = 2
+	else
+		to_chat(M, "You slash one of the lights!")
+		break_a_light()
 		CalculateBrightness()
 		update_icon()
-		break
 
 /obj/machinery/floodlightcombat/attackby(obj/item/I, mob/user, params)
 	var/list/lights = src.contents
@@ -232,6 +237,7 @@
 		user.drop_held_item()
 		I.forceMove(src)
 		CalculateBrightness()
+		update_icon()
 	if(istype(I, /obj/item/lightreplacer))
 		if(lights.len > 3)
 			to_chat(user, "all the light sockets are occupied!")
@@ -242,42 +248,42 @@
 		var/obj/E = new /obj/item/light_bulb/tube
 		E.forceMove(src)
 		CalculateBrightness()
+		update_icon()
 
 
 /obj/machinery/floodlightcombat/proc/CalculateBrightness()
-	var/list/M = src.contents
-	var/obj/item/light_bulb/tube/T = /obj/item/light_bulb/tube
 	Brightness = 0
-	for(T in M)
+	for(var/obj/item/light_bulb/tube/T as() in src.contents)
 		if(T.status == 0)
 			Brightness += 4
 
-/obj/machinery/floodlightcombat/update_icon()
+/obj/machinery/floodlightcombat/update_overlays()
 	. = ..()
-	var/A
-	var/B
-	var/list/Contents = src.contents
-	var/obj/item/light_bulb/tube/T = /obj/item/light_bulb/tube
-	var/WorkingLights
-	var/BrokenLights
-	cut_overlays()
-	for(T in Contents)
-		if(T.status == 0)
-			WorkingLights++
-		if(T.status == 2)
-			BrokenLights++
-	while(WorkingLights)
-		A += 5
-		B += 10
-		var/icon/lightoverlay = image('icons/obj/machines/floodlight.dmi', src, "floodlightcombat_workinglight", -1, NORTH, A, B)
-		overlays += lightoverlay
-		WorkingLights--
-	while(BrokenLights)
-		A += 5
-		B += 10
-		var/icon/lightoverlay2 = image('icons/obj/machines/floodlight.dmi', src, "floodlightcombat_workinglight", -2, SOUTH, A, B)
-		overlays += lightoverlay2
-		BrokenLights--
+	var/offsetX
+	var/offsetY
+	var/target_slot = 0
+	var/list/lights = src.contents
+	for(var/obj/item/light_bulb/tube/target as() in lights)
+		switch(target_slot)
+			if(1)
+				offsetX = 1
+				offsetY = 10
+			if(2)
+				offsetX = 10
+				offsetY = 5
+			if(3)
+				offsetX = 20
+				offsetY = -10
+			else
+				offsetX = 25
+				offsetY = 25
+		floodlight_[target.status ? "working" : "broken"]
+		if(target.status > 0)
+			. += image('icons/obj/machines/floodlight.dmi', src, "floodlightcombat_workinglight", ABOVE_OBJ_LAYER, NORTH, offsetX, offsetY)
+		else
+			. += image('icons/obj/machines/floodlight.dmi', src, "floodlightcombat_brokenlight", ABOVE_OBJ_LAYER, NORTH, offsetX, offsetY)
+		target_slot++
+
 
 
 
