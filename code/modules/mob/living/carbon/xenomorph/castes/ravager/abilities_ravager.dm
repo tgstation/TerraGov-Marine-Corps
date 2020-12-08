@@ -106,30 +106,27 @@
 	"<span class='xenowarning'>We thrash about in a murderous frenzy!</span>")
 
 	X.face_atom(A)
-	var/sweep_range = 1
-	var/list/L = orange(sweep_range, X) // Not actually the fruit
-	var/victims = 0
-	var/target_facing
-	for(var/atom/movable/target in L)
-		if(victims >= 3) //Max 3 living victims
-			break
-		if(!isstructure(target) && !ismachinery(target) && !ismob(target))
-			continue
-		target_facing = get_dir(X, target)
-		if(target_facing != X.dir && target_facing != turn(X.dir,45) && target_facing != turn(X.dir,-45) ) //Have to be actually facing the target
-			continue
-		target.attack_alien(X, X.xeno_caste.melee_damage * 0.25, FALSE, TRUE, FALSE, TRUE, INTENT_HARM)
-		if(isliving(target))
-			if(isxeno(target))
-				var/mob/living/carbon/xenomorph/xeno_target = target
-				if(xeno_target.issamexenohive(X)) //No friendly fire
-					continue
-			var/mob/living/living_target = target
-			if(living_target.stat != DEAD)
-				victims++
-				step_away(target, X, sweep_range, 2)
-				shake_camera(target, 2, 1)
-				living_target.Paralyze(1 SECONDS)
+	var/turf/current_turf = get_turf(X)
+	var/facing = X.dir
+	var/list/turf/turfs = list()
+	turfs += get_step(current_turf, facing) //Only get the turfs we need
+	turfs += get_step(current_turf, turn(facing,45))
+	turfs += get_step(current_turf, turn(facing,-45))
+	for(var/turf/target_turf in turfs)
+		for(var/atom/movable/target in target_turf)
+			if(!isstructure(target) && !ismachinery(target) && !ismob(target))
+				continue
+			target.attack_alien(X, X.xeno_caste.melee_damage * 0.25, FALSE, TRUE, FALSE, TRUE, INTENT_HARM)
+			if(isliving(target))
+				if(isxeno(target))
+					var/mob/living/carbon/xenomorph/xeno_target = target
+					if(xeno_target.issamexenohive(X)) //No friendly fire
+						continue
+				var/mob/living/living_target = target
+				if(living_target.stat != DEAD)
+					step_away(target, X, 1, 2)
+					shake_camera(target, 2, 1)
+					living_target.Paralyze(1 SECONDS)
 
 	succeed_activate()
 	add_cooldown()
