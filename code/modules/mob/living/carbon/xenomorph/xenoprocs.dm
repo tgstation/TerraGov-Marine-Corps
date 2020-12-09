@@ -120,9 +120,12 @@
 	var/hivemind_text = length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/hivemind]) > 0 ? "Active" : "Inactive"
 	var/mob/living/carbon/xenomorph/queen/hive_queen = hive.living_xeno_queen
 
-	var/queen_text = "[hive_queen ? "[hive_queen]": "None"]"
-	if(!hive_queen.client)
-		queen_text += " <i>(SSD)</i>"
+	var/queen_text = "None" //Define the Queen
+	if(hive_queen)
+		queen_text = "[hive_queen]"
+
+		if(!hive_queen.client)
+			queen_text += " <i>(SSD)</i>"
 
 	var/xeno_tier_three_cap = hive.tier3_xeno_limit
 	var/xeno_tier_two_cap = hive.tier2_xeno_limit

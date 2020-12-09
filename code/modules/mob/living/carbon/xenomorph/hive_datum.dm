@@ -167,6 +167,7 @@
 		LAZYADD(ssd_xenos, X)
 
 	xenos_by_typepath[X.caste_base_type] += X
+	update_tier_limits() //Update our tier limits.
 
 	return TRUE
 
@@ -210,6 +211,7 @@
 		CRASH("add_to_hive_by_hivenumber called with invalid hivenumber")
 	var/datum/hive_status/HS = GLOB.hive_datums[hivenumber]
 	add_to_hive(HS, force)
+	hive.update_tier_limits() //Update our tier limits.
 
 // This is a special proc called only when a xeno is first created to set their hive and name properly
 /mob/living/carbon/xenomorph/proc/set_initial_hivenumber()
@@ -255,6 +257,7 @@
 	UnregisterSignal(X, COMSIG_MOVABLE_Z_CHANGED)
 
 	remove_leader(X)
+	update_tier_limits() //Update our tier limits.
 
 	return TRUE
 
@@ -272,6 +275,7 @@
 
 	hive = null
 	hivenumber = XENO_HIVE_NONE // failsafe value
+	hive.update_tier_limits() //Update our tier limits.
 
 /mob/living/carbon/xenomorph/queen/remove_from_hive() // override to ensure proper queen/hive behaviour
 	var/datum/hive_status/hive_removed_from = hive
@@ -1080,5 +1084,5 @@ to_chat will check for valid clients itself already so no need to double check f
 			return
 
 /datum/hive_status/proc/update_tier_limits()
-	tier3_xeno_limit = max(length(xenos_by_tier[XENO_TIER_THREE]),FLOOR((length(xenos_by_tier[XENO_TIER_ZERO])+length(xenos_by_tier[XENO_TIER_ONE])+length(xenos_by_tier[XENO_TIER_TWO]))/3,1))
-	tier2_xeno_limit = max(length(xenos_by_tier[XENO_TIER_TWO]),length(xenos_by_tier[XENO_TIER_ZERO]) + length(xenos_by_tier[XENO_TIER_ONE]) - length(xenos_by_tier[XENO_TIER_THREE]))
+	tier3_xeno_limit = max(length(xenos_by_tier[XENO_TIER_THREE]),FLOOR((length(xenos_by_tier[XENO_TIER_ZERO])+length(xenos_by_tier[XENO_TIER_ONE])+length(xenos_by_tier[XENO_TIER_TWO]))/3+1,1))
+	tier2_xeno_limit = max(length(xenos_by_tier[XENO_TIER_TWO]),length(xenos_by_tier[XENO_TIER_ZERO]) + length(xenos_by_tier[XENO_TIER_ONE])+1 - length(xenos_by_tier[XENO_TIER_THREE]))
