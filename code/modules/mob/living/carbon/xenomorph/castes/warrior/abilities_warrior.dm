@@ -115,13 +115,13 @@
 	return TRUE
 
 /datum/action/xeno_action/activable/lunge/proc/lunge_grab(mob/living/carbon/xenomorph/X, atom/A)
+	X.remove_filter("warrior_lunge")
 	if (!X.Adjacent(A))
 		return
 
 	X.swap_hand()
-	X.start_pulling(A, TRUE)
+	X.start_pulling(A, lunge = TRUE)
 	X.swap_hand()
-	X.remove_filter("warrior_lunge")
 
 // ***************************************
 // *********** Fling

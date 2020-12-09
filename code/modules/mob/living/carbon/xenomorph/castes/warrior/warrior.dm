@@ -37,7 +37,7 @@
 		UnregisterSignal(L, COMSIG_LIVING_DO_RESIST)
 	..()
 
-/mob/living/carbon/xenomorph/warrior/start_pulling(atom/movable/AM, lunge, suppress_message = TRUE)
+/mob/living/carbon/xenomorph/warrior/start_pulling(atom/movable/AM, suppress_message = TRUE, lunge = FALSE)
 	if(!check_state() || agility || !isliving(AM))
 		return FALSE
 
@@ -52,15 +52,6 @@
 		return neck_grab(L)
 
 	. = ..(L, suppress_message)
-
-	if(.) //successful pull
-		neck_grab(L)
-
-
-/mob/living/carbon/xenomorph/warrior/throw_impact(atom/hit_atom, speed)
-	. = ..()
-	remove_filter("warrior_lunge") //No perma blur please
-
 
 /mob/living/carbon/xenomorph/warrior/proc/neck_grab(mob/living/L)
 	use_plasma(10)
