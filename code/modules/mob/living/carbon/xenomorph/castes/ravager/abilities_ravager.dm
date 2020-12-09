@@ -157,7 +157,7 @@
 	mechanics_text = "For the next few moments you will not go into crit, but you still die."
 	ability_name = "Endure"
 	plasma_cost = 200
-	cooldown_timer = 60 SECONDS
+	cooldown_timer = RAVAGER_ENDURE_DURATION
 	keybind_flags = XACT_KEYBIND_USE_ABILITY | XACT_IGNORE_SELECTED_ABILITY
 	keybind_signal = COMSIG_XENOABILITY_IGNORE_PAIN
 
