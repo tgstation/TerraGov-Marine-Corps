@@ -1,0 +1,4 @@
+author: "Wayland-Smithy"
+delete-after: True
+changes: 
+  - rscadd: "Added the Salvage Biomass ability to Hivelord."
