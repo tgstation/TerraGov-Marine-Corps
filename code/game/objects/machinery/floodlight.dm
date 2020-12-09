@@ -144,6 +144,7 @@
 	density = TRUE
 	/// Determines how much light does the floodlight make , every light tube adds 4 tiles distance.
 	var/Brightness = 0
+	/// Turned ON or OFF? Used for the overlays and power usage.
 	var/On = 0
 	resistance_flags = UNACIDABLE
 	idle_power_usage = 50
@@ -162,16 +163,22 @@
 	set_light(0)
 	On = 0
 
-
+/// Visually shows that the floodlight has been tipped and breaks all the lights in it.
 /obj/machinery/floodlightcombat/proc/tip_over()
 	var/matrix/A = matrix()
 	density = FALSE
 	A.Turn(90)
 	transform = A
-	var/obj/item/light_bulb/tube/T = /obj/item/light_bulb/tube
-	for(T in src.contents)
+	for(var/obj/item/light_bulb/tube/T in contents)
 		T.status = 2
 	calculate_brightness()
+
+/// Untip the floodlight
+/obj/machinery/floodlightcombat/proc/flip_back()
+	icon_state = initial(icon_state)
+	density = TRUE
+	var/matrix/A = matrix()
+	transform = A
 
 /obj/machinery/floodlightcombat/Initialize()
 	. = ..()
@@ -188,6 +195,7 @@
 	else
 		use_power(idle_power_usage, EQUIP)
 
+/// Loops between the light tubes until it finds a light to break.
 /obj/machinery/floodlightcombat/proc/break_a_light()
 	var/obj/item/light_bulb/tube/T = pick(contents)
 	if(T.status == 0)
@@ -197,11 +205,10 @@
 		return FALSE
 	break_a_light()
 
-
 /obj/machinery/floodlightcombat/attack_alien(mob/living/carbon/xenomorph/M)
 	if(M.a_intent == INTENT_DISARM)
 		to_chat(M, "You begin tipping the [src]")
-		if(!(src.density))
+		if(!density))
 			to_chat(M, "The [src] is already tipped over!")
 			return FALSE
 		var/fliptime = 10 SECONDS
@@ -225,7 +232,6 @@
 		update_icon()
 
 /obj/machinery/floodlightcombat/attackby(obj/item/I, mob/user, params)
-	var/list/lights = src.contents
 	if(!(ishuman(user)))
 		return FALSE
 	if(istype(I, /obj/item/light_bulb/tube))
@@ -250,20 +256,21 @@
 		calculate_brightness()
 		update_icon()
 
-
+/// Checks each light if its working and then adds it to the total brightness amount.
 /obj/machinery/floodlightcombat/proc/calculate_brightness()
 	Brightness = 0
-	for(var/obj/item/light_bulb/tube/T as() in src.contents)
+	for(var/obj/item/light_bulb/tube/T in src.contents)
 		if(T.status == 0)
 			Brightness += 4
 
+/// Updates each light
 /obj/machinery/floodlightcombat/update_overlays()
 	. = ..()
 	var/offsetX
 	var/offsetY
+	/// Used to define which slot is targeted on the sprite and then adjust the overlay.
 	var/target_slot = 1
-	var/list/lights = src.contents
-	for(var/obj/item/light_bulb/tube/target in lights)
+	for(var/obj/item/light_bulb/tube/target in contents)
 		switch(target_slot)
 			if(1)
 				offsetX = 0
@@ -280,9 +287,7 @@
 		. += image('icons/obj/machines/floodlight.dmi', src, "floodlightcombat_[target.status ? "brokenlight" : "workinglight"]", ABOVE_OBJ_LAYER, NORTH, offsetX, offsetY)
 		target_slot++
 
-
-
-
+/// Called whenever someone tries to turn the floodlight on/off
 /obj/machinery/floodlightcombat/proc/switch_light()
 	if(!(src.anchored))
 		visible_message("the floodlight flashes a warning led.It is not bolted to the ground.")
@@ -296,10 +301,11 @@
 	update_icon()
 
 /obj/machinery/floodlightcombat/attack_hand(mob/living/user)
-	var/list/obj/item/light_bulb/tube/T = src.contents
 	if(!ishuman(user))
 		return FALSE
 	if(user.a_intent == INTENT_GRAB)
+		if(!density)
+			flip_back()
 		if(On)
 			to_chat (user, "You burn the tip of your finger as you try to take off the light tube!")
 			return FALSE
@@ -308,6 +314,7 @@
 			visible_message("[user] takes out one of the lights tubes!")
 			var/obj/item/item = pick(src.contents)
 			item.forceMove(user.loc)
+			update_icon()
 		else
 			to_chat(user, "There are no lights to pull out")
 			return FALSE
