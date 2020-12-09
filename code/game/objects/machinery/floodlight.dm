@@ -208,7 +208,7 @@
 /obj/machinery/floodlightcombat/attack_alien(mob/living/carbon/xenomorph/M)
 	if(M.a_intent == INTENT_DISARM)
 		to_chat(M, "You begin tipping the [src]")
-		if(!density))
+		if(!density)
 			to_chat(M, "The [src] is already tipped over!")
 			return FALSE
 		var/fliptime = 10 SECONDS
@@ -232,6 +232,7 @@
 		update_icon()
 
 /obj/machinery/floodlightcombat/attackby(obj/item/I, mob/user, params)
+	var/list/lights = src.contents
 	if(!(ishuman(user)))
 		return FALSE
 	if(istype(I, /obj/item/light_bulb/tube))
@@ -304,12 +305,13 @@
 	if(!ishuman(user))
 		return FALSE
 	if(user.a_intent == INTENT_GRAB)
+		var/list/lights = src.contents
 		if(!density)
 			flip_back()
 		if(On)
 			to_chat (user, "You burn the tip of your finger as you try to take off the light tube!")
 			return FALSE
-		if(T.len > 0)
+		if(lights.len > 0)
 			to_chat(user, "You take out one of the lights")
 			visible_message("[user] takes out one of the lights tubes!")
 			var/obj/item/item = pick(src.contents)
