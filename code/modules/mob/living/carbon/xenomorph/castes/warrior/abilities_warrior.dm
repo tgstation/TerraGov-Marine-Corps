@@ -93,7 +93,7 @@
 	return ..()
 
 /datum/action/xeno_action/activable/lunge/use_ability(atom/A)
-	var/mob/living/carbon/xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/warrior/X = owner
 
 	GLOB.round_statistics.warrior_lunges++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "warrior_lunges")
@@ -114,7 +114,7 @@
 	add_cooldown()
 	return TRUE
 
-/datum/action/xeno_action/activable/lunge/proc/lunge_grab(mob/living/carbon/xenomorph/X, atom/A)
+/datum/action/xeno_action/activable/lunge/proc/lunge_grab(mob/living/carbon/xenomorph/warrior/X, atom/A)
 	X.remove_filter("warrior_lunge")
 	if (!X.Adjacent(A))
 		return
