@@ -266,18 +266,18 @@
 	for(var/obj/item/light_bulb/tube/target in lights)
 		switch(target_slot)
 			if(1)
-				offsetX = 1
-				offsetY = 10
+				offsetX = 0
+				offsetY = 0
 			if(2)
-				offsetX = 10
-				offsetY = 5
+				offsetX = 6
+				offsetY = 0
 			if(3)
-				offsetX = 20
-				offsetY = -10
+				offsetX = 0
+				offsetY = 5
 			if(4)
-				offsetX = 25
-				offsetY = 10
-		. += image('icons/obj/machines/floodlight.dmi', src, "floodlight_[target.status ? "working" : "broken"]", ABOVE_OBJ_LAYER, NORTH, offsetX, offsetY)
+				offsetX = 6
+				offsetY = 5
+		. += image('icons/obj/machines/floodlight.dmi', src, "floodlightcombat_[target.status ? "brokenlight" : "workinglight"]", ABOVE_OBJ_LAYER, NORTH, offsetX, offsetY)
 		target_slot++
 
 
