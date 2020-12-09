@@ -94,7 +94,7 @@
 
 
 /mob/living/carbon/xenomorph/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE)
-	if(status_flags & (GODMODE))
+	if(status_flags & (GODMODE) || stat == DEAD)  //Dead benos take no further damage.
 		return
 	var/hit_percent = (100 - blocked) * 0.01
 
@@ -163,24 +163,30 @@
 
 
 /mob/living/carbon/xenomorph/adjustBruteLoss(amount, updating_health = FALSE)
+	if(stat == DEAD)  //Dead benos take no further damage.
+		return
+
 	var/list/amount_mod = list()
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_BRUTE_DAMAGE, amount, amount_mod)
 	for(var/i in amount_mod)
 		amount -= i
 
-	bruteloss = clamp(bruteloss + amount, 0, maxHealth - xeno_caste.crit_health)
+	bruteloss = max(bruteloss + amount, 0)
 
 	if(updating_health)
 		updatehealth()
 
 
 /mob/living/carbon/xenomorph/adjustFireLoss(amount, updating_health = FALSE)
+	if(stat == DEAD) //Dead benos take no further damage.
+		return
+
 	var/list/amount_mod = list()
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_BURN_DAMAGE, amount, amount_mod)
 	for(var/i in amount_mod)
 		amount -= i
 
-	fireloss = clamp(fireloss + amount, 0, maxHealth - xeno_caste.crit_health)
+	fireloss = max(fireloss + amount, 0)
 
 	if(updating_health)
 		updatehealth()
