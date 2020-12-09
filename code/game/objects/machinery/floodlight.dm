@@ -191,9 +191,9 @@
 
 /obj/machinery/floodlightcombat/process()
 	if(On)
-		use_power(active_power_usage, EQUIP)
+		use_power(active_power_usage, LIGHT)
 	else
-		use_power(idle_power_usage, EQUIP)
+		use_power(idle_power_usage, LIGHT)
 
 /// Loops between the light tubes until it finds a light to break.
 /obj/machinery/floodlightcombat/proc/break_a_light()
@@ -206,6 +206,7 @@
 	break_a_light()
 
 /obj/machinery/floodlightcombat/attack_alien(mob/living/carbon/xenomorph/M)
+	var/list/lights = src.contents
 	if(M.a_intent == INTENT_DISARM)
 		to_chat(M, "You begin tipping the [src]")
 		if(!density)
@@ -222,12 +223,11 @@
 		tip_over()
 		update_icon()
 		return TRUE
-	if(contents.len == 0)
+	if(!break_a_light())
 		to_chat(M, "There are no lights to slash!")
 		return FALSE
 	else
 		to_chat(M, "You slash one of the lights!")
-		break_a_light()
 		calculate_brightness()
 		update_icon()
 
@@ -290,7 +290,7 @@
 
 /// Called whenever someone tries to turn the floodlight on/off
 /obj/machinery/floodlightcombat/proc/switch_light()
-	if(!(src.anchored))
+	if(!anchored)
 		visible_message("the floodlight flashes a warning led.It is not bolted to the ground.")
 		return FALSE
 	if(On)
@@ -307,7 +307,10 @@
 	if(user.a_intent == INTENT_GRAB)
 		var/list/lights = src.contents
 		if(!density)
-			flip_back()
+			to_chat(user, "You begin flipping back the floodlight")
+			if(do_after(user , 60 SECONDS, TRUE, src))
+				flip_back()
+				to_chat(user, "You flip back the floodlight!")
 		if(On)
 			to_chat (user, "You burn the tip of your finger as you try to take off the light tube!")
 			return FALSE
