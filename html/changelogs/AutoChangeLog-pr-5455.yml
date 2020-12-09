@@ -1,0 +1,4 @@
+author: "Hughgent"
+delete-after: True
+changes: 
+  - bugfix: "Autoburst firemode now properly applying burst accuracy penalty."
