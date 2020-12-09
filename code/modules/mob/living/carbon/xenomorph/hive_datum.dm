@@ -273,9 +273,10 @@
 
 	SSdirection.stop_tracking(hive.hivenumber, src)
 
+	var/datum/hive_status/reference_hive = hive
 	hive = null
 	hivenumber = XENO_HIVE_NONE // failsafe value
-	hive.update_tier_limits() //Update our tier limits.
+	reference_hive.update_tier_limits() //Update our tier limits.
 
 /mob/living/carbon/xenomorph/queen/remove_from_hive() // override to ensure proper queen/hive behaviour
 	var/datum/hive_status/hive_removed_from = hive
