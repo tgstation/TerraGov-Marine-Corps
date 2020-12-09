@@ -216,6 +216,8 @@
 		COMSIG_LIVING_STATUS_SLEEP,
 		COMSIG_LIVING_STATUS_STAGGER), .proc/evasion_debuff_check)
 
+	RegisterSignal(L, COMSIG_XENOMORPH_FIRE_BURNING, .proc/evasion_fire_check)
+
 /datum/action/xeno_action/stealth/remove_action(mob/living/L)
 	UnregisterSignal(L, list(
 		COMSIG_LIVING_STATUS_STUN,
@@ -225,6 +227,8 @@
 		COMSIG_LIVING_STATUS_UNCONSCIOUS,
 		COMSIG_LIVING_STATUS_SLEEP,
 		COMSIG_LIVING_STATUS_STAGGER))
+
+	UnregisterSignal(L, COMSIG_XENOMORPH_FIRE_BURNING)
 	return ..()
 
 
@@ -246,10 +250,20 @@
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "runner_evasions") //Statistics
 	add_cooldown()
 
+/datum/action/xeno_action/evasion/proc/evasion_fire_check()
+	SIGNAL_HANDLER
+	var/mob/living/carbon/xenomorph/runner/R = owner
+	if(R.evasion_stacks)
+		R.evasion_stacks = max(0, R.evasion_stacks - (R.fire_stacks + 3) * 4) //We lose evasion stacks equal to four times the burn damage
+		to_chat(R, "<span class='danger'>Burning compromises our ability to dodge! We [R.evasion_stacks > 0 ? "can evade only [R.evasion_stacks] more projectile damage!" : "can't evade any more projectile damage!"] </span>")
+		if(!R.evasion_stacks) //If all of our evasion stacks have burnt away, cancel out
+			evasion_deactivate()
+
+
 /datum/action/xeno_action/evasion/proc/evasion_debuff_check(amount)
 	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/runner/R = owner
-	if(!amount || !R.evasion_stacks) //We actually have to gain debuff stacks/duration
+	if(!amount || !R.evasion_stacks) //We actually have to gain debuff stacks/duration and have stacks to lose
 		return
 	to_chat(owner, "<span class='highdanger'>Our movements have been interrupted!</span>")
 	evasion_deactivate()

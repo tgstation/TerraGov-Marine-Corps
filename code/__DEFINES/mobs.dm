@@ -547,6 +547,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define RUNNER_EVASION_DURATION_WARNING		0.7 //After what % of Evasion's time elapsed do we warn the user
 #define RUNNER_EVASION_RUN_DELAY			0.5 SECONDS //If the time since the Runner last moved is equal to or greater than this, its Evasion ends.
 #define RUNNER_EVASION_DANGER_RATIO			0.5 //If we have this % of auto-dodge damage remaining or less, warn the user.
+#define RUNNER_BURN_DEPLETION_MODIFIER		4 //We lose Evasion stacks per life tick equal to damage from burning times this amount
 
 //misc
 

@@ -609,6 +609,7 @@
 
 ////////////////////////////// STAGGER ////////////////////////////////////
 
+///Returns number of stagger stacks if any
 /mob/living/proc/IsStaggered() //If we're staggered
 	return stagger
 
@@ -617,6 +618,7 @@
 		adjust_stagger(-1)
 	return stagger
 
+///Where the magic happens. Actually applies stagger stacks.
 /mob/living/proc/adjust_stagger(amount, ignore_canstun = FALSE)
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_STUN, amount, ignore_canstun) & COMPONENT_NO_STUN) //Stun immunity also provides immunity to its lesser cousin stagger
 		return
@@ -630,9 +632,11 @@
 
 ////////////////////////////// SLOW ////////////////////////////////////
 
+///Returns number of slowdown stacks if any
 /mob/living/proc/IsSlowed() //If we're slowed
 	return slowdown
 
+///Where the magic happens. Actually applies slow stacks.
 /mob/living/proc/set_slowdown(amount)
 	if(slowdown == amount)
 		return
