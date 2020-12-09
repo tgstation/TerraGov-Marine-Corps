@@ -171,7 +171,7 @@
 	var/obj/item/light_bulb/tube/T = /obj/item/light_bulb/tube
 	for(T in src.contents)
 		T.status = 2
-	CalculateBrightness()
+	calculate_brightness()
 
 /obj/machinery/floodlightcombat/Initialize()
 	. = ..()
@@ -221,7 +221,7 @@
 	else
 		to_chat(M, "You slash one of the lights!")
 		break_a_light()
-		CalculateBrightness()
+		calculate_brightness()
 		update_icon()
 
 /obj/machinery/floodlightcombat/attackby(obj/item/I, mob/user, params)
@@ -236,7 +236,7 @@
 		visible_message("[user] inserts the [I] into the [src]")
 		user.drop_held_item()
 		I.forceMove(src)
-		CalculateBrightness()
+		calculate_brightness()
 		update_icon()
 	if(istype(I, /obj/item/lightreplacer))
 		if(lights.len > 3)
@@ -247,11 +247,11 @@
 			A.Use(user)
 		var/obj/E = new /obj/item/light_bulb/tube
 		E.forceMove(src)
-		CalculateBrightness()
+		calculate_brightness()
 		update_icon()
 
 
-/obj/machinery/floodlightcombat/proc/CalculateBrightness()
+/obj/machinery/floodlightcombat/proc/calculate_brightness()
 	Brightness = 0
 	for(var/obj/item/light_bulb/tube/T as() in src.contents)
 		if(T.status == 0)
@@ -261,9 +261,9 @@
 	. = ..()
 	var/offsetX
 	var/offsetY
-	var/target_slot = 0
+	var/target_slot = 1
 	var/list/lights = src.contents
-	for(var/obj/item/light_bulb/tube/target as() in lights)
+	for(var/obj/item/light_bulb/tube/target in lights)
 		switch(target_slot)
 			if(1)
 				offsetX = 1
@@ -274,20 +274,16 @@
 			if(3)
 				offsetX = 20
 				offsetY = -10
-			else
+			if(4)
 				offsetX = 25
-				offsetY = 25
-		floodlight_[target.status ? "working" : "broken"]
-		if(target.status > 0)
-			. += image('icons/obj/machines/floodlight.dmi', src, "floodlightcombat_workinglight", ABOVE_OBJ_LAYER, NORTH, offsetX, offsetY)
-		else
-			. += image('icons/obj/machines/floodlight.dmi', src, "floodlightcombat_brokenlight", ABOVE_OBJ_LAYER, NORTH, offsetX, offsetY)
+				offsetY = 10
+		. += image('icons/obj/machines/floodlight.dmi', src, "floodlight_[target.status ? "working" : "broken"]", ABOVE_OBJ_LAYER, NORTH, offsetX, offsetY)
 		target_slot++
 
 
 
 
-/obj/machinery/floodlightcombat/proc/SwitchLight()
+/obj/machinery/floodlightcombat/proc/switch_light()
 	if(!(src.anchored))
 		visible_message("the floodlight flashes a warning led.It is not bolted to the ground.")
 		return FALSE
@@ -315,9 +311,9 @@
 		else
 			to_chat(user, "There are no lights to pull out")
 			return FALSE
-		CalculateBrightness()
+		calculate_brightness()
 		return TRUE
-	SwitchLight()
+	switch_light()
 
 /obj/machinery/floodlight/outpost
 	name = "Outpost Light"
