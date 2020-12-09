@@ -86,14 +86,15 @@
 
 //Hot hot Aliens on Aliens action.
 //Actually just used for eating people.
-/mob/living/carbon/xenomorph/attack_alien(mob/living/carbon/xenomorph/M)
+/mob/living/carbon/xenomorph/attack_alien(mob/living/carbon/xenomorph/M, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
 	if(src != M)
 		if(isxenolarva(M)) //Larvas can't eat people
 			M.visible_message("<span class='danger'>[M] nudges its head against \the [src].</span>", \
 			"<span class='danger'>We nudge our head against \the [src].</span>")
 			return 0
 
-		switch(M.a_intent)
+		var/intent = force_intent ? force_intent : M.a_intent //force intent actually matters
+		switch(intent)
 			if(INTENT_HELP)
 
 				if(on_fire)
@@ -127,7 +128,7 @@
 				else
 					// copypasted from attack_alien.dm
 					//From this point, we are certain a full attack will go out. Calculate damage and modifiers
-					var/damage = M.xeno_caste.melee_damage * M.xeno_melee_damage_modifier
+					var/damage = M.xeno_caste.melee_damage * M.xeno_melee_damage_modifier + dam_bonus
 
 					//Somehow we will deal no damage on this attack
 					if(!damage)
