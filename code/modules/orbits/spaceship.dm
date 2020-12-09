@@ -162,7 +162,7 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 		priority_announce("The tall hosts are attempting to flee!", "Prey is escaping!", ANNOUNCEMENT_REGULAR, 'sound/voice/alien_drool1.ogg', receivers = GLOB.alive_xeno_list + GLOB.observer_list)
 		do_orbit_checks("escape")
 		TIMER_COOLDOWN_START(src, COOLDOWN_ORBIT_CHANGE, 1 MINUTES)
-		//end the round, xeno minor.
+		//end the round, draw
 
 	updateUsrDialog()
 

@@ -5,7 +5,7 @@
 	flags_round_type = MODE_INFESTATION|MODE_XENO_SPAWN_PROTECT
 	flags_landmarks = MODE_LANDMARK_SPAWN_XENO_TUNNELS|MODE_LANDMARK_SPAWN_MAP_ITEM
 
-	round_end_states = list(MODE_CRASH_X_MAJOR, MODE_CRASH_M_MAJOR, MODE_CRASH_X_MINOR, MODE_CRASH_M_MINOR, MODE_CRASH_DRAW_DEATH)
+	round_end_states = list(MODE_CRASH_X_MAJOR, MODE_CRASH_M_MAJOR, MODE_CRASH_DRAW_DEATH)
 	deploy_time_lock = 45 MINUTES
 
 	squads_max_number = 1
@@ -161,9 +161,9 @@
 	var/victory_options = ((planet_nuked == CRASH_NUKE_NONE && marines_evac == CRASH_EVAC_NONE) && (num_humans == 0 && num_xenos == 0)) << 0
 	// XENO Major (All marines killed)
 	victory_options |= (planet_nuked == CRASH_NUKE_NONE && num_humans == 0 && num_xenos > 0) << 1
-	// XENO Minor (Marines evac'd for over 5 mins without a nuke)
+	// Draw, (Marines evac'd for over 5 mins without a nuke)
 	victory_options |= (planet_nuked == CRASH_NUKE_NONE && (marines_evac == CRASH_EVAC_COMPLETED || (!length(GLOB.active_nuke_list) && marines_evac != CRASH_EVAC_NONE)))	<< 2
-	// Marine minor (Planet nuked, no one evac'd)
+	// Draw, (Planet nuked, no one evac'd)
 	victory_options |= (planet_nuked == CRASH_NUKE_COMPLETED && marines_evac == CRASH_EVAC_NONE) << 3
 	// Marine Major (Planet nuked, marines evac, or they wiped the xenos out)
 	victory_options |= ((planet_nuked == CRASH_NUKE_COMPLETED && marines_evac != CRASH_EVAC_NONE) || (planet_nuked == CRASH_NUKE_NONE && num_xenos == 0)) << 4
@@ -175,12 +175,6 @@
 		if(CRASH_XENO_MAJOR)
 			message_admins("Round finished: [MODE_CRASH_X_MAJOR]")
 			round_finished = MODE_CRASH_X_MAJOR
-		if(CRASH_XENO_MINOR)
-			message_admins("Round finished: [MODE_CRASH_X_MINOR]")
-			round_finished = MODE_CRASH_X_MINOR
-		if(CRASH_MARINE_MINOR)
-			message_admins("Round finished: [MODE_CRASH_M_MINOR]")
-			round_finished = MODE_CRASH_M_MINOR
 		if(CRASH_MARINE_MAJOR)
 			message_admins("Round finished: [MODE_CRASH_M_MAJOR]")
 			round_finished = MODE_CRASH_M_MAJOR
@@ -206,12 +200,6 @@
 		if(MODE_CRASH_M_MAJOR)
 			xeno_track = pick('sound/theme/sad_loss1.ogg','sound/theme/sad_loss2.ogg')
 			human_track = pick('sound/theme/winning_triumph1.ogg','sound/theme/winning_triumph2.ogg')
-		if(MODE_CRASH_X_MINOR)
-			xeno_track = pick('sound/theme/neutral_hopeful1.ogg','sound/theme/neutral_hopeful2.ogg')
-			human_track = pick('sound/theme/neutral_melancholy1.ogg','sound/theme/neutral_melancholy2.ogg')
-		if(MODE_CRASH_M_MINOR)
-			xeno_track = pick('sound/theme/neutral_melancholy1.ogg','sound/theme/neutral_melancholy2.ogg')
-			human_track = pick('sound/theme/neutral_hopeful1.ogg','sound/theme/neutral_hopeful2.ogg')
 		if(MODE_CRASH_DRAW_DEATH)
 			xeno_track = pick('sound/theme/nuclear_detonation1.ogg','sound/theme/nuclear_detonation2.ogg')
 			human_track = pick('sound/theme/nuclear_detonation1.ogg','sound/theme/nuclear_detonation2.ogg')
