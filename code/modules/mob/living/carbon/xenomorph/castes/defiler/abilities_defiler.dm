@@ -33,9 +33,9 @@
 			to_chat(owner, "<span class='xenodanger'>Our sting won't affect this target!</span>")
 		return FALSE
 
-	if(locate(/obj/item/alien_embryo) in victim) // already got one, stops doubling up
+	if(CHECK_BITFIELD(victim.status_flags, XENO_HOST)) // already got one, stops doubling up
 		if(!silent)
-			to_chat(owner, "<span class='xenodanger'>We've already infected this target!</span>")
+			to_chat(owner, "<span class='xenodanger'>This target already has a young one!</span>")
 		return FALSE
 
 	if(!owner.Adjacent(A))

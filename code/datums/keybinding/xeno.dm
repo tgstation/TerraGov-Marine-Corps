@@ -250,7 +250,7 @@
 	keybind_signal = COMSIG_XENOABILITY_REAGENT_SLASH
 
 /*
-/datum/keybinding/xeno/emit_neurogas
+/datum/keybinding/xeno/defile
 	name = "defile"
 	full_name = "Defiler: Defile"
 	description = "Injects a larva and large amounts of larval accelerant after a short wind up."
