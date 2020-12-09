@@ -54,8 +54,6 @@
 	. = ..(L, suppress_message)
 
 /mob/living/carbon/xenomorph/warrior/proc/neck_grab(mob/living/L)
-	use_plasma(10)
-
 	GLOB.round_statistics.warrior_grabs++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "warrior_grabs")
 	setGrabState(GRAB_NECK)
