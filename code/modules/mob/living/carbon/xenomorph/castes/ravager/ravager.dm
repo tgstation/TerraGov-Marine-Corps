@@ -20,14 +20,20 @@
 /mob/living/carbon/xenomorph/ravager/Bump(atom/A)
 	if(!throwing || !usedPounce || !throw_source || !thrower) //Must currently be charging to knock aside and slice marines in it's path
 		return ..() //It's not pouncing; do regular Bump() IE body block but not throw_impact() because ravager isn't being thrown
-	if(!ishuman(A)) //Must also be a human; regular Bump() will default to throw_impact() which means ravager will plow through tables but get stopped by cades and walls
+	if(!isliving(A)) //Must also be living; regular Bump() will default to throw_impact() which means ravager will plow through tables but get stopped by cades and walls
 		return ..()
-	var/mob/living/carbon/human/H = A
-	H.attack_alien(src,  xeno_caste.melee_damage * 0.25, FALSE, TRUE, FALSE, TRUE, INTENT_HARM) //Location is always random, cannot crit, harm only
-	var/target_turf = get_step_away(src, H, rand(1, 3)) //This is where we blast our target
+	var/mob/living/living_target = A
+	if(isxeno(living_target))
+		var/mob/living/carbon/xenomorph/xeno_target = A
+		if(xeno_target.issamexenohive(src)) //No friendly fire
+			return ..()
+
+	living_target.attack_alien(src,  xeno_caste.melee_damage * 0.25, FALSE, TRUE, FALSE, TRUE, INTENT_HARM) //Location is always random, cannot crit, harm only
+	var/target_turf = get_step_away(src, living_target, 2) //This is where we blast our target
 	target_turf =  get_step_rand(target_turf) //Scatter
-	H.throw_at(get_turf(target_turf), RAVAGER_CHARGEDISTANCE, RAVAGER_CHARGESPEED, H)
-	H.Paralyze(2 SECONDS)
+	living_target.throw_at(get_turf(target_turf), RAVAGER_CHARGEDISTANCE, RAVAGER_CHARGESPEED, living_target)
+	living_target.Paralyze(2 SECONDS)
+	shake_camera(living_target, 2, 1)
 
 
 // ***************************************

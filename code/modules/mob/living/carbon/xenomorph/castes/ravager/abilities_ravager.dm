@@ -14,6 +14,7 @@
 /datum/action/xeno_action/activable/charge/proc/charge_complete()
 	SIGNAL_HANDLER
 	UnregisterSignal(owner, list(COMSIG_XENO_OBJ_THROW_HIT, COMSIG_XENO_NONE_THROW_HIT, COMSIG_XENO_LIVING_THROW_HIT))
+	owner.remove_filter("ravager_charge", 2, list("type" = "blur", 3))
 
 /datum/action/xeno_action/activable/charge/proc/obj_hit(datum/source, obj/target, speed)
 	SIGNAL_HANDLER
@@ -29,8 +30,13 @@
 
 /datum/action/xeno_action/activable/charge/proc/mob_hit(datum/source, mob/M)
 	SIGNAL_HANDLER
-	if(M.stat || isxeno(M))
+	if(M.stat)
 		return
+	if(isxeno(M))
+		var/mob/living/carbon/xenomorph/ravager/X = owner
+		var/mob/living/carbon/xenomorph/xeno_target = M
+		if(xeno_target.issamexenohive(X)) //No friendly fire
+			return
 	return COMPONENT_KEEP_THROWING //Ravagers plow straight through humans; we only stop on hitting a dense turf
 
 /datum/action/xeno_action/activable/charge/can_use_ability(atom/A, silent = FALSE, override_flags)
@@ -59,6 +65,9 @@
 	X.emote("roar") //heheh
 	X.usedPounce = TRUE //This has to come before throw_at, which checks impact. So we don't do end-charge specials when thrown
 	succeed_activate()
+
+	X.add_filter("ravager_charge", 2, list("type" = "blur", 3))
+	addtimer(CALLBACK(X, /atom.proc/remove_filter, "ravager_charge"), 0.5 SECONDS) //Failsafe blur removal
 
 	X.throw_at(A, RAVAGER_CHARGEDISTANCE, RAVAGER_CHARGESPEED, X)
 
