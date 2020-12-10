@@ -152,4 +152,4 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "bhole3"
 	layer = ABOVE_LYING_MOB_LAYER
-	duration = WRAITH_BANISH_BASE_DURATION
+	duration = WRAITH_BANISH_BASE_DURATION+1 //So we don't delete our contents early
