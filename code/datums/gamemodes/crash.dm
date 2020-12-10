@@ -161,12 +161,12 @@
 	var/victory_options = ((planet_nuked == CRASH_NUKE_NONE && marines_evac == CRASH_EVAC_NONE) && (num_humans == 0 && num_xenos == 0)) << 0
 	// XENO Major (All marines killed)
 	victory_options |= (planet_nuked == CRASH_NUKE_NONE && num_humans == 0 && num_xenos > 0) << 1
-	// Draw, (Marines evac'd for over 5 mins without a nuke)
-	victory_options |= (planet_nuked == CRASH_NUKE_NONE && (marines_evac == CRASH_EVAC_COMPLETED || (!length(GLOB.active_nuke_list) && marines_evac != CRASH_EVAC_NONE)))	<< 2
+	// Xeno Major, (Marines evac'd for over 5 mins without a nuke)
+	victory_options |= (planet_nuked == CRASH_NUKE_NONE && (marines_evac == CRASH_EVAC_COMPLETED || (!length(GLOB.active_nuke_list) && marines_evac != CRASH_EVAC_NONE)))	<< 1
 	// Draw, (Planet nuked, no one evac'd)
-	victory_options |= (planet_nuked == CRASH_NUKE_COMPLETED && marines_evac == CRASH_EVAC_NONE) << 3
+	victory_options |= (planet_nuked == CRASH_NUKE_COMPLETED && marines_evac == CRASH_EVAC_NONE) << 0
 	// Marine Major (Planet nuked, marines evac, or they wiped the xenos out)
-	victory_options |= ((planet_nuked == CRASH_NUKE_COMPLETED && marines_evac != CRASH_EVAC_NONE) || (planet_nuked == CRASH_NUKE_NONE && num_xenos == 0)) << 4
+	victory_options |= ((planet_nuked == CRASH_NUKE_COMPLETED && marines_evac != CRASH_EVAC_NONE) || (planet_nuked == CRASH_NUKE_NONE && num_xenos == 0)) << 2
 
 	switch(victory_options)
 		if(CRASH_DRAW)
