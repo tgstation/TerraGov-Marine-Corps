@@ -167,6 +167,10 @@
 	///Amount of leaders allowed
 	var/queen_leader_limit = 0
 
+	// *** Runner Abilities *** //
+	///Number of Evasion stacks gained per maturity level
+	var/maturity_evasion_stacks = 0
+
 	///the 'abilities' available to a caste.
 	var/list/actions
 

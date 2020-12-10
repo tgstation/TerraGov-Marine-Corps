@@ -237,12 +237,12 @@
 
 	R.do_jitter_animation(1000)
 	R.visible_message("<span class='warning'>[R.name] begins to move erratically!</span>", \
-	"<span class='xenodanger'>We move erratically, making us impossible to hit with projectiles; the next [RUNNER_EVASION_STACKS] projectile damage that would hit us will now miss.</span>")
+	"<span class='xenodanger'>We move erratically, making us impossible to hit with projectiles; the next [R.xeno_caste.maturity_evasion_stacks] projectile damage that would hit us will now miss.</span>")
 
-	addtimer(CALLBACK(src, .proc/evasion_warning), RUNNER_EVASION_DURATION * RUNNER_EVASION_DURATION_WARNING) //Warn the runner when the duration is about to expire.
+	addtimer(CALLBACK(src, .proc/evasion_warning), RUNNER_EVASION_DURATION - RUNNER_EVASION_DURATION_WARNING) //Warn the runner when the duration is about to expire.
 	addtimer(CALLBACK(src, .proc/evasion_deactivate), RUNNER_EVASION_DURATION)
 
-	R.evasion_stacks = RUNNER_EVASION_STACKS
+	R.evasion_stacks = R.xeno_caste.maturity_evasion_stacks
 
 	succeed_activate()
 
@@ -290,7 +290,7 @@
 	if(!R.evasion_stacks) //Check to see if we actually have any evasion stacks remaining.
 		return
 
-	to_chat(owner,"<span class='highdanger'>We begin to slow down as we tire. We can only keep this up for [RUNNER_EVASION_DURATION * (1-RUNNER_EVASION_DURATION_WARNING) * 0.1] more seconds!</span>")
+	to_chat(owner,"<span class='highdanger'>We begin to slow down as we tire. We can only keep this up for [RUNNER_EVASION_DURATION_WARNING * 0.1] more seconds!</span>")
 	owner.playsound_local(owner, 'sound/voice/hiss4.ogg', 50, 0, 1)
 
 
@@ -324,7 +324,7 @@
 		A.dir = src.dir //match the direction of the runner
 		i++
 
-	if(evasion_stacks > RUNNER_EVASION_DANGER_RATIO * RUNNER_EVASION_STACKS) //We have more evasion stacks than needed to trigger alerts.
+	if(evasion_stacks > RUNNER_EVASION_DANGER_RATIO * xeno_caste.maturity_evasion_stacks) //We have more evasion stacks than needed to trigger alerts.
 		return FALSE
 
 	to_chat(src, "<span class='highdanger'>We [evasion_stacks > 0 ? "can dodge only [evasion_stacks] more projectile damage!" : "can't dodge any more projectile damage!"] </span>")
