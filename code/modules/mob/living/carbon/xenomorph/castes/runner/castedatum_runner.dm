@@ -35,7 +35,7 @@
 	upgrade_threshold = 60
 
 	// *** Runner Abilities *** //
-	maturity_evasion_stacks = 150 //Defines the number of evasion stacks the runner gets when using evasion.
+	maturity_evasion_stacks = 175 //Defines the number of evasion stacks the runner gets when using evasion.
 
 	evolves_to = list(
 		/mob/living/carbon/xenomorph/hunter,
@@ -93,7 +93,7 @@
 	upgrade_threshold = 120
 
 	// *** Runner Abilities *** //
-	maturity_evasion_stacks = 175
+	maturity_evasion_stacks = 200
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = XENO_BOMB_RESIST_0, "bio" = 3, "rad" = 3, "fire" = 10, "acid" = 3)
@@ -129,7 +129,7 @@
 	upgrade_threshold = 240
 
 	// *** Runner Abilities *** //
-	maturity_evasion_stacks = 200
+	maturity_evasion_stacks = 225
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = XENO_BOMB_RESIST_0, "bio" = 5, "rad" = 5, "fire" = 15, "acid" = 5)
@@ -166,7 +166,7 @@
 	upgrade_threshold = 240
 
 	// *** Runner Abilities *** //
-	maturity_evasion_stacks = 225
+	maturity_evasion_stacks = 240
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 19, "bullet" = 19, "laser" = 19, "energy" = 19, "bomb" = XENO_BOMB_RESIST_0, "bio" = 7, "rad" = 7, "fire" = 19, "acid" = 7)
