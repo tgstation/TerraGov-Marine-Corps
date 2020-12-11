@@ -51,7 +51,8 @@
 	return ..()
 
 
-/obj/structure/inflatable/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
+/obj/structure/inflatable/CanAllowThrough(atom/movable/mover, turf/target, height = 0, air_group = 0)
+	. = ..()
 	return 0
 
 
@@ -126,7 +127,8 @@
 	icon_state = "wall_popped"
 
 
-/obj/structure/inflatable/popped/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
+/obj/structure/inflatable/popped/CanAllowThrough(atom/movable/mover, turf/target, height = 0, air_group = 0)
+	. = ..()
 	return 1
 
 
@@ -162,7 +164,8 @@
 		return
 	return TryToSwitchState(user)
 
-/obj/structure/inflatable/door/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
+/obj/structure/inflatable/door/CanAllowThrough(atom/movable/mover, turf/target, height = 0, air_group = 0)
+	. = ..()
 	if(air_group)
 		return state
 	if(istype(mover, /obj/effect/beam))

@@ -41,7 +41,8 @@
 	else
 		return 1
 
-/obj/structure/platform/CanPass(atom/movable/mover, turf/target)
+/obj/structure/platform/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(mover && mover.throwing)
 		return 1
 

@@ -46,7 +46,8 @@
 		core = null
 	return ..()
 
-/obj/flamer_fire/CanPass(atom/movable/mover, turf/target)
+/obj/flamer_fire/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(isxenohivemind(mover))
 		return FALSE
 	return ..()

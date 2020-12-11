@@ -64,7 +64,8 @@
 						"<span class='warning'>You kick [src].</span>", \
 						"You hear twisting metal.")
 
-/obj/structure/grille/CanPass(atom/movable/mover, turf/target)
+/obj/structure/grille/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGRILLE))
 		return TRUE
 	else

@@ -173,7 +173,8 @@ obj/item/alienjar
 	layer = MOB_LAYER
 	resistance_flags = XENO_DAMAGEABLE
 
-/obj/structure/plasticflaps/CanPass(atom/A, turf/T)
+/obj/structure/plasticflaps/CanAllowThrough(atom/A, turf/T)
+	. = ..()
 	if(istype(A) && CHECK_BITFIELD(A.flags_pass, PASSGLASS))
 		return prob(60)
 

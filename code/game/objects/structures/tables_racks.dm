@@ -204,7 +204,8 @@
 		setDir(SOUTH)
 
 
-/obj/structure/table/CanPass(atom/movable/mover, turf/target)
+/obj/structure/table/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
 		return TRUE
 	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
@@ -580,7 +581,8 @@
 	resistance_flags = XENO_DAMAGEABLE
 	var/parts = /obj/item/frame/rack
 
-/obj/structure/rack/CanPass(atom/movable/mover, turf/target)
+/obj/structure/rack/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(!density) //Because broken racks
 		return TRUE
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))

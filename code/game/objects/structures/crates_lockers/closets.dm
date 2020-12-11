@@ -73,7 +73,8 @@
 	opened = TRUE
 
 
-/obj/structure/closet/CanPass(atom/movable/mover, turf/target)
+/obj/structure/closet/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(wall_mounted)
 		return TRUE
 	else

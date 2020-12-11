@@ -206,7 +206,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		client.prefs.process_link(src, href_list)
 
 
-/mob/dead/CanPass(atom/movable/mover, turf/target)
+/mob/dead/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	return TRUE
 
 

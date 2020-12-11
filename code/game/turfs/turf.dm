@@ -634,7 +634,8 @@
 
 
 
-/turf/CanPass(atom/movable/mover, turf/target)
+/turf/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(!target) return 0
 
 	if(istype(mover)) // turf/Enter(...) will perform more advanced checks

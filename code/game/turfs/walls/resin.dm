@@ -124,7 +124,8 @@
 	playsound(src, "alien_resin_break", 25)
 
 
-/turf/closed/wall/resin/CanPass(atom/movable/mover, turf/target)
+/turf/closed/wall/resin/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
 		return !opacity
 	return !density

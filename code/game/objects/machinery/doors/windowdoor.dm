@@ -82,7 +82,8 @@
 		do_animate("deny")
 
 
-/obj/machinery/door/window/CanPass(atom/movable/mover, turf/target)
+/obj/machinery/door/window/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
 		return TRUE
 	if(get_dir(loc, target) == dir) //Make sure looking at appropriate border

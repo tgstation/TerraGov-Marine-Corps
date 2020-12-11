@@ -136,7 +136,8 @@
 	return ..()
 
 
-/obj/CanPass(atom/movable/mover, turf/target)
+/obj/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(mover in buckled_mobs) //can't collide with the thing you're buckled to
 		return TRUE
 	return..()
