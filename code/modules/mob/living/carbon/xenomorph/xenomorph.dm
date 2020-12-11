@@ -221,7 +221,7 @@
 	if(ishuman(L))
 		if(!chestburst)
 			do_attack_animation(L, ATTACK_EFFECT_GRAB)
-			if(L.stat == DEAD) //Grab delay vs the dead
+			if(L.stat == DEAD && !L.headbitten) //Grab delay vs the non-headbitten dead
 				if(!do_mob(src, L , XENO_PULL_CHARGE_TIME, BUSY_ICON_HOSTILE))
 					return FALSE
 		pull_speed += XENO_DEADHUMAN_DRAG_SLOWDOWN
