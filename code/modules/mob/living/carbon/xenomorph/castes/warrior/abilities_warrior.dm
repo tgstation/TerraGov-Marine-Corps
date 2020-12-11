@@ -199,7 +199,7 @@
 	SEND_SIGNAL(owner, COMSIG_WARRIOR_USED_FLING)  //Shared cooldown with Grapple Toss
 
 	if(isxeno(victim))
-		var/mob/living/carbon/xenomorph/x_victim
+		var/mob/living/carbon/xenomorph/x_victim = victim
 		if(X.issamexenohive(x_victim)) //We don't fuck up friendlies
 			return
 
@@ -280,7 +280,7 @@
 			fling_distance = FLOOR(fling_distance * 0.5, 1)
 
 		if(isxeno(victim))
-			var/mob/living/carbon/xenomorph/x_victim
+			var/mob/living/carbon/xenomorph/x_victim = victim
 			if(X.issamexenohive(x_victim)) //We don't fuck up friendlies
 				stagger_slow_stacks = 0
 				stun_duration = 0
