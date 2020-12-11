@@ -13,8 +13,8 @@
 	GLOB.alive_xeno_list -= src
 	GLOB.dead_xeno_list += src
 
-	hive.update_tier_limits() //Update our tier limits.
 	hive?.on_xeno_death(src)
+	hive.update_tier_limits() //Update our tier limits.
 
 	if(LAZYLEN(stomach_contents))
 		empty_gut()
