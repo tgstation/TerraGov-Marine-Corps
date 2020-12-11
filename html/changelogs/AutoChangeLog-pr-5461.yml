@@ -1,0 +1,4 @@
+author: "SplinterGP"
+delete-after: True
+changes: 
+  - code_imp: "makes acid use SSslowprocess instead of SSprocessing, saving performance."
