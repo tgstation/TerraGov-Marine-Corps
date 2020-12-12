@@ -143,7 +143,7 @@
 	anchored = TRUE
 	density = TRUE
 	/// Determines how much light does the floodlight make , every light tube adds 4 tiles distance.
-	var/Brightness = 0
+	var/brightness = 0
 	/// Turned ON or OFF? Used for the overlays and power usage.
 	var/On = 0
 	resistance_flags = UNACIDABLE
@@ -153,12 +153,15 @@
 
 /obj/machinery/floodlightcombat/wrench_act(mob/living/user, obj/item/I)
 	. = ..()
-	to_chat(user , "You begin wrenching [src]'s bolts'")
+	to_chat(user , "You begin wrenching [src]'s bolts")
+	playsound( loc, 'sound/items/ratchet.ogg', 60, FALSE)
 	if(!do_after(user, 2 SECONDS, TRUE, src))
 		return FALSE
 	if(anchored)
+		to_chat(user , "You unwrench [src]'s bolts")
 		anchored = 0
 	else
+		to_chat(user , "You wrench down [src]'s bolts")
 		anchored = 1
 	set_light(0)
 	On = 0
@@ -200,13 +203,11 @@
 	var/obj/item/light_bulb/tube/T = pick(contents)
 	if(T.status == 0)
 		T.status = 2
+		calculate_brightness()
 		return TRUE
-	if(Brightness == 0)
-		return FALSE
 	break_a_light()
 
 /obj/machinery/floodlightcombat/attack_alien(mob/living/carbon/xenomorph/M)
-	var/list/lights = src.contents
 	if(M.a_intent == INTENT_DISARM)
 		to_chat(M, "You begin tipping the [src]")
 		if(!density)
@@ -223,12 +224,13 @@
 		tip_over()
 		update_icon()
 		return TRUE
-	if(!break_a_light())
+	if(brightness == 0)
 		to_chat(M, "There are no lights to slash!")
 		return FALSE
 	else
+		playsound( loc, 'sound/weapons/alien_claw_metal1.ogg', 60, FALSE)
+		break_a_light()
 		to_chat(M, "You slash one of the lights!")
-		calculate_brightness()
 		update_icon()
 
 /obj/machinery/floodlightcombat/attackby(obj/item/I, mob/user, params)
@@ -259,10 +261,10 @@
 
 /// Checks each light if its working and then adds it to the total brightness amount.
 /obj/machinery/floodlightcombat/proc/calculate_brightness()
-	Brightness = 0
-	for(var/obj/item/light_bulb/tube/T in src.contents)
+	brightness = 0
+	for(var/obj/item/light_bulb/tube/T in contents)
 		if(T.status == 0)
-			Brightness += 4
+			brightness += 4
 
 /// Updates each light
 /obj/machinery/floodlightcombat/update_overlays()
@@ -298,7 +300,7 @@
 		set_light(0)
 	else
 		On = 1
-		set_light(Brightness)
+		set_light(brightness)
 	update_icon()
 
 /obj/machinery/floodlightcombat/attack_hand(mob/living/user)
@@ -317,8 +319,11 @@
 		if(lights.len > 0)
 			to_chat(user, "You take out one of the lights")
 			visible_message("[user] takes out one of the lights tubes!")
+			playsound('sound/effects/screwdriver.ogg')
 			var/obj/item/item = pick(src.contents)
+			item.update()
 			item.forceMove(user.loc)
+			user.put_in_hands(item)
 			update_icon()
 		else
 			to_chat(user, "There are no lights to pull out")
