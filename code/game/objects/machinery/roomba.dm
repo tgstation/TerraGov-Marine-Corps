@@ -8,6 +8,8 @@
 	anchored = FALSE
 	///Keeps track of how many items have been sucked for fluff
 	var/counter = 0
+	///The mine we have attache to this roomba
+	var/obj/item/explosive/mine/claymore //Claymore roomb
 
 /obj/machinery/roomba/Initialize(mapload)
 	. = ..()
@@ -34,13 +36,14 @@
 	var/list/dirs = CARDINAL_DIRS - REVERSE_DIR(dir)
 	var/turf/selection
 	var/newdir
-	while(!newdir)
+	for(var/i=1 to length(dirs))
 		newdir = pick_n_take(dirs)
 		selection = get_step(src, newdir)
-		if(selection.density)
-			newdir = null
-		if(!length(dirs))
-			return //roomba stuck help
+		if(!selection.density)
+			break
+		newdir = null
+	if(!newdir)
+		return
 	Move(get_step(src,newdir), newdir)
 
 
@@ -54,8 +57,35 @@
 	SIGNAL_HANDLER
 	for(var/obj/item/sucker in loc)
 		sucker.store_in_cryo()
+		GLOB.cryoed_item_list[CRYO_REQ] += sucker
 		counter++
 
 /obj/machinery/roomba/attack_hand(mob/living/user)
 	. = ..()
 	visible_message("<span class='notice'>[user] lovingly pats the [src].</span>", "<span class='notice'>You lovingly pat the [src].</span>")
+
+/obj/machinery/roomba/attackby(obj/item/I, mob/living/user, def_zone)
+	if(!istype(I, /obj/item/explosive/mine) || claymore)
+		return
+	visible_message("[user] begins to try to attach [I] to [src]...")
+	stop_processing()
+	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_HOSTILE))
+		start_processing()
+		return
+	start_processing()
+	visible_message("[user] slams [I]'s prongs through [src]!")
+	log_game("[user] has armed [src] with a claymore at [AREACOORD(src)]")
+	user.temporarilyRemoveItemFromInventory(I)
+	I.forceMove(src)
+	add_overlay(image(I.icon, initial(I.icon_state) + "_roomba"))
+	claymore = I
+	claymore.armed = TRUE
+	RegisterSignal(src, COMSIG_MOVABLE_CROSSED_BY, .proc/attempt_mine_explode)
+
+/obj/machinery/roomba/proc/attempt_mine_explode(datum/source, atom/movable/crosser, oldloc)
+	SIGNAL_HANDLER
+	if(!claymore.trip_mine(crosser))
+		return
+	claymore = null
+	UnregisterSignal(src, COMSIG_MOVABLE_CROSSED_BY)
+	cut_overlays()

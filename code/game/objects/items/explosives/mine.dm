@@ -109,18 +109,18 @@ Stepping directly on the mine will also blow it up
 	var/mob/living/L = A
 	if(L.lying_angle) ///so dragged corpses don't trigger mines.
 		return
-	Bumped(A)
+	trip_mine(A)
 
-/obj/item/explosive/mine/Bumped(mob/living/L)
+/obj/item/explosive/mine/proc/trip_mine(mob/living/L)
 	. = ..()
 	if(!armed || triggered)
-		return
+		return FALSE
 	if((L.status_flags & INCORPOREAL))
-		return
+		return FALSE
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
 		if(H.get_target_lock(iff_signal))
-			return
+			return FALSE
 
 	L.visible_message("<span class='danger'>[icon2html(src, viewers(L))] \The [src] clicks as [L] moves in front of it.</span>", \
 	"<span class='danger'>[icon2html(src, viewers(L))] \The [src] clicks as you move in front of it.</span>", \
@@ -128,6 +128,7 @@ Stepping directly on the mine will also blow it up
 
 	playsound(loc, 'sound/weapons/mine_tripped.ogg', 25, 1)
 	INVOKE_ASYNC(src, .proc/trigger_explosion)
+	return TRUE
 
 /// Alien attacks trigger the explosive to instantly detonate
 /obj/item/explosive/mine/attack_alien(mob/living/carbon/xenomorph/M)
@@ -174,7 +175,7 @@ Stepping directly on the mine will also blow it up
 		return
 
 	if(linked_mine && isliving(A))
-		linked_mine.Bumped(A)
+		linked_mine.trip_mine(A)
 
 /// PMC specific mine, with IFF for PMC units
 /obj/item/explosive/mine/pmc
