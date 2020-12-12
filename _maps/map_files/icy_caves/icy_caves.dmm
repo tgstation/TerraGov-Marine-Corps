@@ -2623,12 +2623,12 @@
 /area/icy_caves/outpost/outside)
 "pF" = (
 /obj/structure/rack,
-/obj/item/weapon/gun/smg/mp5,
-/obj/item/weapon/gun/smg/mp5,
-/obj/item/ammo_magazine/smg/mp5,
-/obj/item/ammo_magazine/smg/mp5,
-/obj/item/ammo_magazine/smg/mp5,
-/obj/item/ammo_magazine/smg/mp5,
+/obj/item/weapon/gun/smg/m25,
+/obj/item/weapon/gun/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/security)
 "pO" = (
@@ -3976,8 +3976,8 @@
 /area/icy_caves/caves/northern)
 "yj" = (
 /obj/structure/closet/crate/secure/weapon,
-/obj/item/weapon/gun/smg/mp5,
-/obj/item/weapon/gun/smg/mp5,
+/obj/item/weapon/gun/smg/m25,
+/obj/item/weapon/gun/smg/m25,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/garage)
 "yl" = (
@@ -4246,12 +4246,12 @@
 /area/icy_caves/outpost/kitchen)
 "Ar" = (
 /obj/structure/closet/crate/secure/ammo,
-/obj/item/ammo_magazine/smg/mp5,
-/obj/item/ammo_magazine/smg/mp5,
-/obj/item/ammo_magazine/smg/mp5,
-/obj/item/ammo_magazine/smg/mp5,
-/obj/item/ammo_magazine/smg/mp5,
-/obj/item/ammo_magazine/smg/mp5,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/garage)
 "As" = (
@@ -5905,7 +5905,7 @@
 /turf/closed/ice/thin/corner,
 /area/icy_caves/outpost/LZ1)
 "Nt" = (
-/obj/item/ammo_magazine/smg/mp5,
+/obj/item/ammo_magazine/smg/m25,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/refinery)
 "Nv" = (
@@ -6036,7 +6036,7 @@
 /area/icy_caves/outpost/dorms)
 "Ov" = (
 /obj/item/ammo_casing,
-/obj/item/ammo_magazine/smg/mp5,
+/obj/item/ammo_magazine/smg/m25,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/refinery)
 "Ow" = (
@@ -6174,7 +6174,7 @@
 /area/icy_caves/outpost/dorms)
 "PQ" = (
 /obj/item/ammo_casing,
-/obj/item/weapon/gun/smg/mp5,
+/obj/item/weapon/gun/smg/m25,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/refinery)
 "PU" = (

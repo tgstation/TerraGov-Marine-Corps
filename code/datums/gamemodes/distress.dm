@@ -117,8 +117,8 @@
 		return TRUE
 	
 	if(round_stage == DISTRESS_MARINE_RETREAT)
-		message_admins("Round finished: [MODE_INFESTATION_DRAW_RETREAT]")
-		round_finished = MODE_INFESTATION_DRAW_RETREAT
+		message_admins("Round finished: [MODE_INFESTATION_X_MINOR]")
+		round_finished = MODE_INFESTATION_X_MINOR
 		return TRUE
 
 	if(!num_humans)

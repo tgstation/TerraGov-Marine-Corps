@@ -111,7 +111,7 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 #define SENTRY_ALERT_BATTERY			5
 #define SENTRY_ALERT_DELAY				20 SECONDS
 #define SENTRY_DAMAGE_ALERT_DELAY		5 SECONDS
-
+#define SENTRY_LIGHT_POWER				7
 
 //Scout cloak defines
 #define SCOUT_CLOAK_ENERGY	100

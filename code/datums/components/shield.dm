@@ -135,9 +135,23 @@
 		return
 	shield_affect_user(user)
 
+	var/obj/item/parent_item = parent //Apply in-hand slowdowns.
+	if(!ishuman(user))
+		return
+	var/mob/living/carbon/human/human_user = user
+	if(parent_item.slowdown)
+		human_user.add_movespeed_modifier(parent.type, TRUE, 0, NONE, TRUE, parent_item.slowdown)
+
 /datum/component/shield/proc/shield_dropped(datum/source, mob/user)
 	SIGNAL_HANDLER
 	shield_detatch_from_user()
+
+	var/obj/item/parent_item = parent //Apply in-hand slowdowns.
+	if(!ishuman(user))
+		return
+	var/mob/living/carbon/human/human_user = user
+	if(parent_item.slowdown)
+		human_user.remove_movespeed_modifier(parent.type)
 
 /datum/component/shield/proc/shield_affect_user(mob/living/user)
 	if(affected)
@@ -170,10 +184,10 @@
 	var/obj/item/parent_item = parent
 	var/status_cover_modifier = 1
 
-	if(affected.IsSleeping() || affected.IsUnconscious() || affected.IsAdminSleeping() || affected.IsParalyzed()) //We don't do jack if we're literally KOed/sleeping/paralyzed.
-		return FALSE
+	if(affected.IsSleeping() || affected.IsUnconscious() || affected.IsAdminSleeping()) //We don't do jack if we're literally KOed/sleeping/paralyzed.
+		return incoming_damage
 
-	if(affected.IsStun() || affected.IsKnockdown()) //Halve shield cover if we're paralyzed or stunned
+	if(affected.IsStun() || affected.IsKnockdown() || affected.IsParalyzed()) //Halve shield cover if we're paralyzed or stunned
 		status_cover_modifier *= 0.5
 
 	if(iscarbon(affected))
@@ -189,11 +203,11 @@
 			incoming_damage *= (100 - soft_armor.getRating(damage_type)) * 0.01
 			return prob(50 - round(incoming_damage / 3))
 		if(COMBAT_MELEE_ATTACK, COMBAT_PROJ_ATTACK)
-			var/absorbing_damage = max(0, incoming_damage - hard_armor.getRating(damage_type) * status_cover_modifier) //We apply hard armor *first* _not_ *after* soft armor
+			var/absorbing_damage = incoming_damage * cover.getRating(damage_type) * 0.01 * status_cover_modifier  //Determine cover ratio; this is the % of damage we actually intercept.
+			absorbing_damage = max(0, absorbing_damage - hard_armor.getRating(damage_type)) //We apply hard armor *first* _not_ *after* soft armor
 			if(!absorbing_damage)
 				return incoming_damage //We are transparent to this kind of damage.
 			. = incoming_damage - absorbing_damage
-			absorbing_damage = incoming_damage * cover.getRating(damage_type) * 0.01 * status_cover_modifier  //Determine cover ratio
 			absorbing_damage *= (100 - soft_armor.getRating(damage_type)) * 0.01 //Now apply soft armor
 			if(absorbing_damage <= 0)
 				if(!silent)

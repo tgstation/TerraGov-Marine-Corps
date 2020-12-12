@@ -129,9 +129,6 @@
 /mob/living/proc/setMaxHealth(newMaxHealth)
 	maxHealth = newMaxHealth
 
-mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
-	return
-
 /mob/living/proc/Losebreath(amount, forced = FALSE)
 	return
 
@@ -298,7 +295,6 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 
 /mob/living/carbon/revive()
 	set_nutrition(400)
-	setHalLoss(0)
 	setTraumatic_Shock(0)
 	setShock_Stage(0)
 	drunkenness = 0

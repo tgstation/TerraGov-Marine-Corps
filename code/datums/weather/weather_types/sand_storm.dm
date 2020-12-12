@@ -18,6 +18,7 @@
 	target_trait = ZTRAIT_SANDSTORM
 
 	probability = 40
+	repeatable = FALSE
 
 /datum/weather/ash_storm/sand/weather_act(mob/living/L)
 	if(L.stat == DEAD)
@@ -43,3 +44,4 @@
 	aesthetic = TRUE
 
 	probability = 60
+	repeatable = TRUE

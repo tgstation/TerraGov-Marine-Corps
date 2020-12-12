@@ -35,6 +35,9 @@
 /area/shuttle/cas
 	name = "Condor Jet"
 
+/area/shuttle/minidropship
+	name = "Tadpole Drop Shuttle"
+
 /area/shuttle/ert
 	name = "Emergency Response Team"
 

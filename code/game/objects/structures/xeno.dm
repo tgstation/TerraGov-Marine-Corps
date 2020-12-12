@@ -78,6 +78,16 @@
 
 	ignore_weed_destruction = TRUE
 
+/obj/effect/alien/resin/sticky/attack_alien(mob/living/carbon/xenomorph/M)
+
+	if(M.a_intent == INTENT_HARM) //Clear it out on hit; no need to double tap.
+		M.do_attack_animation(src, ATTACK_EFFECT_CLAW) //SFX
+		playsound(src, "alien_resin_break", 25) //SFX
+		deconstruct(TRUE)
+		return
+
+	return ..()
+
 
 /obj/effect/alien/resin/sticky/Crossed(atom/movable/AM)
 	. = ..()
@@ -616,15 +626,25 @@ TUNNEL
 	max_integrity = 140
 	var/mob/living/carbon/xenomorph/hivelord/creator = null
 
+	hud_possible = list(XENO_TUNNEL_HUD)
+
+
 /obj/structure/tunnel/Initialize(mapload)
 	. = ..()
 	GLOB.xeno_tunnels += src
-
+	prepare_huds()
+	hud_set_xeno_tunnel()
 
 /obj/structure/tunnel/Destroy()
+	if(!QDELETED(creator))
+		to_chat(creator, "<span class='xenoannounce'>You sense your [name] at [tunnel_desc] has been destroyed!</span>") //Alert creator
+
+	xeno_message("<span class='xenoannounce'>Hive tunnel [name] at [tunnel_desc] has been destroyed!</span>", 2, creator.hivenumber) //Also alert hive because tunnels matter.
+
 	GLOB.xeno_tunnels -= src
 	if(creator)
 		creator.tunnels -= src
+
 	return ..()
 
 /obj/structure/tunnel/examine(mob/user)
@@ -708,6 +728,14 @@ TUNNEL
 			to_chat(M, "<span class='warning'>\The [src] ended unexpectedly, so we return back up.</span>")
 	else
 		to_chat(M, "<span class='warning'>Our crawling was interrupted!</span>")
+
+//Makes sure the tunnel is visible to other xenos even through obscuration.
+/obj/structure/tunnel/proc/hud_set_xeno_tunnel()
+	var/image/holder = hud_list[XENO_TUNNEL_HUD]
+	if(!holder)
+		return
+	holder.icon_state = "traitorhud"
+	hud_list[XENO_TUNNEL_HUD] = holder
 
 //Resin Water Well
 /obj/effect/alien/resin/acidwell
@@ -955,15 +983,14 @@ TUNNEL
 /obj/item/resin_jelly/proc/activate_jelly(mob/living/carbon/xenomorph/user)
 	user.visible_message("<span class='notice'>[user]'s chitin begins to gleam with an unseemly glow...</span>", "<span class='xenonotice'>We feel powerful as we are covered in [src]!</span>")
 	user.emote("roar")
-	var/anger_filter = filter(type = "outline", size = 1, color = COLOR_RED)
-	user.filters += anger_filter
+	user.add_filter("resin_jelly_outline", 2, list("type" = "outline", "size" = 1, "color" = COLOR_RED))
 	user.fire_resist_modifier -= 20
 	forceMove(user)//keep it here till the timer finishes
 	user.temporarilyRemoveItemFromInventory(src)
-	addtimer(CALLBACK(src, .proc/deactivate_jelly, anger_filter, user), immune_time)
+	addtimer(CALLBACK(src, .proc/deactivate_jelly, user), immune_time)
 
-/obj/item/resin_jelly/proc/deactivate_jelly(anger_filter, mob/living/carbon/xenomorph/user)
-	user.filters -= anger_filter
+/obj/item/resin_jelly/proc/deactivate_jelly(mob/living/carbon/xenomorph/user)
+	user.remove_filter("resin_jelly_outline")
 	user.fire_resist_modifier += 20
 	to_chat(user, "<span class='xenonotice'>We feel more vulnerable again.</span>")
 	qdel(src)
