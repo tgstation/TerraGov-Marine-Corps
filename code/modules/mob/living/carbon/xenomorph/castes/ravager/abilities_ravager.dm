@@ -289,6 +289,13 @@
 
 	var/bonus_duration
 	if(rage_power > 0.5) //If we're super pissed it's time to get crazy
+		var/datum/action/xeno_action/charge = X.actions_by_path[/datum/action/xeno_action/activable/charge]
+		var/datum/action/xeno_action/ravage = X.actions_by_path[/datum/action/xeno_action/activable/ravage]
+		if(charge)
+			charge.clear_cooldown() //Reset charge cooldown
+		if(ravage)
+			ravage.clear_cooldown() //Reset ravage cooldown
+
 		for(var/mob/living/witness in hearers(rage_power_radius, X)) //Roar that applies cool SFX and some soft CC
 
 			if(!witness.hud_used)
