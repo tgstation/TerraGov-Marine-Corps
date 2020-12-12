@@ -145,7 +145,9 @@
 	/// Determines how much light does the floodlight make , every light tube adds 4 tiles distance.
 	var/brightness = 0
 	/// Turned ON or OFF? Used for the overlays and power usage.
-	var/On = 0
+	var/on = 0
+	/// Used to show if the object is tipped
+	var/tipped
 	resistance_flags = UNACIDABLE
 	idle_power_usage = 50
 	active_power_usage = 2500
@@ -153,34 +155,37 @@
 
 /obj/machinery/floodlightcombat/wrench_act(mob/living/user, obj/item/I)
 	. = ..()
-	to_chat(user , "You begin wrenching [src]'s bolts")
+	to_chat(user , "<span class='notice'>You begin wrenching [src]'s bolts")
 	playsound( loc, 'sound/items/ratchet.ogg', 60, FALSE)
 	if(!do_after(user, 2 SECONDS, TRUE, src))
 		return FALSE
 	if(anchored)
-		to_chat(user , "You unwrench [src]'s bolts")
+		to_chat(user , "<span class='notice'>You unwrench [src]'s bolts")
 		anchored = 0
 	else
-		to_chat(user , "You wrench down [src]'s bolts")
+		to_chat(user , "<span class='notice'>You wrench down [src]'s bolts")
 		anchored = 1
 	set_light(0)
-	On = 0
+	on = 0
 
 /// Visually shows that the floodlight has been tipped and breaks all the lights in it.
 /obj/machinery/floodlightcombat/proc/tip_over()
 	var/matrix/A = matrix()
 	density = FALSE
-	A.Turn(90)
-	transform = A
 	for(var/obj/item/light_bulb/tube/T in contents)
 		T.status = 2
 	calculate_brightness()
+	update_icon()
+	A.Turn(90)
+	transform = A
+	tipped = 1
 
 /// Untip the floodlight
 /obj/machinery/floodlightcombat/proc/flip_back()
 	icon_state = initial(icon_state)
 	density = TRUE
 	var/matrix/A = matrix()
+	tipped = 0
 	transform = A
 
 /obj/machinery/floodlightcombat/Initialize()
@@ -193,10 +198,7 @@
 	power_change()
 
 /obj/machinery/floodlightcombat/process()
-	if(On)
-		use_power(active_power_usage, LIGHT)
-	else
-		use_power(idle_power_usage, LIGHT)
+	use_power(on ? active_power_usage : idle_power_usage, LIGHT)
 
 /// Loops between the light tubes until it finds a light to break.
 /obj/machinery/floodlightcombat/proc/break_a_light()
@@ -209,9 +211,9 @@
 
 /obj/machinery/floodlightcombat/attack_alien(mob/living/carbon/xenomorph/M)
 	if(M.a_intent == INTENT_DISARM)
-		to_chat(M, "You begin tipping the [src]")
+		to_chat(M, "<span class='xenodanger'>You begin tipping the [src]")
 		if(!density)
-			to_chat(M, "The [src] is already tipped over!")
+			to_chat(M, "<span class='xenonotice'>The [src] is already tipped over!")
 			return FALSE
 		var/fliptime = 10 SECONDS
 		if(M.mob_size == MOB_SIZE_BIG)
@@ -220,17 +222,18 @@
 			fliptime = 3 SECONDS
 		if(!do_after(M, fliptime, FALSE, src))
 			return FALSE
-		visible_message("[M] Flips the [src] , shaterring all the lights!")
+		visible_message("<span class='danger'>[M] Flips the [src] , shaterring all the lights!")
+		playsound( loc, 'sound/effects/glasshit.ogg', 60 , FALSE)
 		tip_over()
 		update_icon()
 		return TRUE
 	if(brightness == 0)
-		to_chat(M, "There are no lights to slash!")
+		to_chat(M, "<span class='xenonotice'>There are no lights to slash!")
 		return FALSE
 	else
 		playsound( loc, 'sound/weapons/alien_claw_metal1.ogg', 60, FALSE)
 		break_a_light()
-		to_chat(M, "You slash one of the lights!")
+		to_chat(M, "<span class='xenonotice'>You slash one of the lights!")
 		update_icon()
 
 /obj/machinery/floodlightcombat/attackby(obj/item/I, mob/user, params)
@@ -239,9 +242,9 @@
 		return FALSE
 	if(istype(I, /obj/item/light_bulb/tube))
 		if(lights.len > 3)
-			to_chat(user, "all the light sockets are occupied!")
+			to_chat(user, "<span class='notice'>All the light sockets are occupied!")
 			return FALSE
-		to_chat(user, "you insert the [I] into the [src]")
+		to_chat(user, "You insert the [I] into the [src]")
 		visible_message("[user] inserts the [I] into the [src]")
 		user.drop_held_item()
 		I.forceMove(src)
@@ -249,7 +252,7 @@
 		update_icon()
 	if(istype(I, /obj/item/lightreplacer))
 		if(lights.len > 3)
-			to_chat(user, "all the light sockets are occupied!")
+			to_chat(user, "<span class='notice'>All the light sockets are occupied!")
 			return FALSE
 		var/obj/item/lightreplacer/A = I
 		if(A.CanUse())
@@ -292,37 +295,39 @@
 
 /// Called whenever someone tries to turn the floodlight on/off
 /obj/machinery/floodlightcombat/proc/switch_light()
-	if(!anchored)
-		visible_message("the floodlight flashes a warning led.It is not bolted to the ground.")
+	if(!anchored || tipped)
+		visible_message("<span class='danger'>The floodlight flashes a warning led.It is not bolted to the ground.")
 		return FALSE
-	if(On)
-		On = 0
+	if(on)
+		on = 0
 		set_light(0)
 	else
-		On = 1
+		on = 1
 		set_light(brightness)
 	update_icon()
+	playsound( loc, 'sound/machines/terminal_button04.ogg', 60 , FALSE)
 
 /obj/machinery/floodlightcombat/attack_hand(mob/living/user)
 	if(!ishuman(user))
 		return FALSE
 	if(user.a_intent == INTENT_GRAB)
-		var/list/lights = src.contents
+		var/list/lights = contents
 		if(!density)
 			to_chat(user, "You begin flipping back the floodlight")
 			if(do_after(user , 60 SECONDS, TRUE, src))
 				flip_back()
 				to_chat(user, "You flip back the floodlight!")
-		if(On)
-			to_chat (user, "You burn the tip of your finger as you try to take off the light tube!")
+				return TRUE
+		if(on)
+			to_chat (user, "<span class='danger'>You burn the tip of your finger as you try to take off the light tube!")
 			return FALSE
 		if(lights.len > 0)
 			to_chat(user, "You take out one of the lights")
 			visible_message("[user] takes out one of the lights tubes!")
-			playsound('sound/effects/screwdriver.ogg')
-			var/obj/item/item = pick(src.contents)
-			item.update()
+			playsound( loc,'sound/items/screwdriver.ogg', 60 , FALSE)
+			var/obj/item/light_bulb/item = pick(lights)
 			item.forceMove(user.loc)
+			item.update()
 			user.put_in_hands(item)
 			update_icon()
 		else
