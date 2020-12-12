@@ -79,7 +79,7 @@
 	max_ammo_count = 200
 	transferable_ammo = TRUE
 	ammo_used_per_firing = 20
-	point_cost = 150
+	point_cost = 50
 	var/bullet_spread_range = 4 //how far from the real impact turf can bullets land
 
 	examine(mob/user)
@@ -126,7 +126,7 @@
 	max_ammo_count = 400
 	ammo_used_per_firing = 40
 	bullet_spread_range = 5
-	point_cost = 300
+	point_cost = 150
 
 
 
@@ -147,7 +147,7 @@
 	ammo_used_per_firing = 10
 	max_inaccuracy = 1
 	warning_sound = 'sound/effects/nightvision.ogg'
-	point_cost = 300
+	point_cost = 150
 
 
 /obj/structure/ship_ammo/laser_battery/examine(mob/user)
@@ -219,7 +219,7 @@
 	icon_state = "single"
 	travelling_time = 30 //not powerful, but reaches target fast
 	ammo_id = ""
-	point_cost = 300
+	point_cost = 150
 
 /obj/structure/ship_ammo/rocket/widowmaker/detonate_on(turf/impact)
 	impact.ceiling_debris_check(3)
@@ -231,7 +231,7 @@
 	desc = "The AGM-227 missile is a mainstay of the overhauled dropship fleet against any mobile or armored ground targets. It's earned the nickname of 'Banshee' from the sudden wail that it emitts right before hitting a target. Useful to clear out large areas."
 	icon_state = "banshee"
 	ammo_id = "b"
-	point_cost = 300
+	point_cost = 175
 
 /obj/structure/ship_ammo/rocket/banshee/detonate_on(turf/impact)
 	impact.ceiling_debris_check(3)
@@ -258,7 +258,7 @@
 	ammo_id = "f"
 	travelling_time = 70 //slower but deadly accurate, even if laser guidance is stopped mid-travel.
 	max_inaccuracy = 1
-	point_cost = 450
+	point_cost = 300
 
 /obj/structure/ship_ammo/rocket/fatty/detonate_on(turf/impact)
 	impact.ceiling_debris_check(2)
@@ -280,7 +280,7 @@
 	desc = "The XN-99 'Napalm' is an incendiary rocket used to turn specific targeted areas into giant balls of fire for a long time."
 	icon_state = "napalm"
 	ammo_id = "n"
-	point_cost = 500
+	point_cost = 350
 
 /obj/structure/ship_ammo/rocket/napalm/detonate_on(turf/impact)
 	impact.ceiling_debris_check(3)
@@ -302,13 +302,13 @@
 	ammo_name = "minirocket"
 	travelling_time = 80 //faster than 30mm cannon, slower than real rockets
 	transferable_ammo = TRUE
-	point_cost = 300
+	point_cost = 100
 
 /obj/structure/ship_ammo/minirocket/detonate_on(turf/impact)
 	impact.ceiling_debris_check(2)
 
 	explosion(impact, 0, 2, 4, 5, adminlog = FALSE, small_animation = TRUE)//no messaging admin, that'd spam them.
-	var/datum/effect_system/expl_particles/P
+	var/datum/effect_system/expl_particles/P = new 
 	P.set_up(4, 0, impact)
 	P.start()
 	addtimer(CALLBACK(src, .proc/delayed_smoke_spread, impact), 0.5 SECONDS)
@@ -333,7 +333,7 @@
 	name = "incendiary mini rocket stack"
 	desc = "A pack of laser guided incendiary mini rockets."
 	icon_state = "minirocket_inc"
-	point_cost = 500
+	point_cost = 200
 
 /obj/structure/ship_ammo/detonate_on(turf/impact)
 	. = ..()
@@ -343,7 +343,7 @@
 	name = "illumination rocket-launched flare stack"
 	desc = "A pack of laser guided mini rockets, each loaded with a payload of white-star illuminant and a parachute, while extremely ineffective at damaging the enemy, it is very effective at lighting the battlefield so marines can damage the enemy."
 	icon_state = "minirocket_ilm"
-	point_cost = 350 // Not as expensive as actual weaponry but still a hefty sum so we don't have this spammed everywhere
+	point_cost = 25 // Not a real rocket, so its cheap
 
 /obj/structure/ship_ammo/minirocket/illumination/detonate_on(turf/impact)
 	impact.ceiling_debris_check(2)

@@ -109,6 +109,8 @@
 	// *** Acid spray *** //
 	///Number of tiles of the acid spray cone extends outward to. Not recommended to go beyond 4.
 	var/acid_spray_range = 0
+	///How long the acid spray stays on floor before it deletes itself, should be higher than 0 to avoid runtimes with timers.
+	var/acid_spray_duration = 1
 	///The damage acid spray causes on hit.
 	var/acid_spray_damage_on_hit = 0
 	///The damage acid spray causes over time.
@@ -292,6 +294,8 @@
 	//Runner vars
 	var/savage = FALSE
 	var/savage_used = FALSE
+	///Defines how much projectile damage evasion can still absorb
+	var/evasion_stacks = 0
 
 	// *** Ravager vars *** //
 	var/ignore_pain = FALSE // when true the rav will not go into crit or take crit damage.

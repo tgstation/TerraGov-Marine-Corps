@@ -276,7 +276,7 @@
 	adjust_stagger(3)
 	add_slowdown(3)
 
-	apply_damage(damage, STAMINA) //Armor penetrating halloss also applies.
+	apply_damage(damage, STAMINA) //Armor penetrating stamina also applies.
 	UPDATEHEALTH(src)
 
 /datum/action/xeno_action/activable/punch/ai_should_start_consider()

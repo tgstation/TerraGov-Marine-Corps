@@ -38,11 +38,11 @@
 	my_atom = null
 
 /**
-  * Used in attack logs for reagents in pills and such
-  *
-  * Arguments:
-  * * external_list - list of reagent types = amounts
-  */
+ * Used in attack logs for reagents in pills and such
+ *
+ * Arguments:
+ * * external_list - list of reagent types = amounts
+ */
 /datum/reagents/proc/log_list(external_list)
 	if((external_list && !length(external_list)) || !length(reagent_list))
 		return "no reagents"
@@ -146,20 +146,20 @@
 	return master
 
 /**
-  * Transfer some stuff from this holder to a target object
-  *
-  * Arguments:
-  * * obj/target - Target to attempt transfer to
-  * * amount - amount of reagent volume to transfer
-  * * multiplier - multiplies amount of each reagent by this number
-  * * preserve_data - if preserve_data=0, the reagents data will be lost. Usefull if you use data for some strange stuff and don't want it to be transferred.
-  * * no_react - passed through to [/datum/reagents/proc/add_reagent]
-  * * mob/transfered_by - used for logging
-  * * remove_blacklisted - skips transferring of reagents with can_synth = FALSE
-  * * method - passed through to [/datum/reagents/proc/react_single] and [/datum/reagent/proc/on_transfer]
-  * * show_message - passed through to [/datum/reagents/proc/react_single]
-  * * round_robin - if round_robin=TRUE, so transfer 5 from 15 water, 15 sugar and 15 plasma becomes 10, 15, 15 instead of 13.3333, 13.3333 13.3333. Good if you hate floating point errors
-  */
+ * Transfer some stuff from this holder to a target object
+ *
+ * Arguments:
+ * * obj/target - Target to attempt transfer to
+ * * amount - amount of reagent volume to transfer
+ * * multiplier - multiplies amount of each reagent by this number
+ * * preserve_data - if preserve_data=0, the reagents data will be lost. Usefull if you use data for some strange stuff and don't want it to be transferred.
+ * * no_react - passed through to [/datum/reagents/proc/add_reagent]
+ * * mob/transfered_by - used for logging
+ * * remove_blacklisted - skips transferring of reagents with can_synth = FALSE
+ * * method - passed through to [/datum/reagents/proc/react_single] and [/datum/reagent/proc/on_transfer]
+ * * show_message - passed through to [/datum/reagents/proc/react_single]
+ * * round_robin - if round_robin=TRUE, so transfer 5 from 15 water, 15 sugar and 15 plasma becomes 10, 15, 15 instead of 13.3333, 13.3333 13.3333. Good if you hate floating point errors
+ */
 /datum/reagents/proc/trans_to(obj/target, amount = 1, multiplier=1, preserve_data=1, no_react = 0)//if preserve_data=0, the reagents data will be lost. Usefull if you use data for some strange stuff and don't want it to be transferred.
 	var/list/cached_reagents = reagent_list
 	if (!target || !total_volume)
@@ -255,13 +255,13 @@
 	return amount
 
 /**
-  * Triggers metabolizing the reagents in this holder
-  *
-  * Arguments:
-  * * mob/living/carbon/C - The mob to metabolize in, if null it uses [/datum/reagents/var/my_atom]
-  * * can_overdose - Allows overdosing
-  * * liverless - Stops reagents that aren't set as [/datum/reagent/var/self_consuming] from metabolizing
-  */
+ * Triggers metabolizing the reagents in this holder
+ *
+ * Arguments:
+ * * mob/living/carbon/C - The mob to metabolize in, if null it uses [/datum/reagents/var/my_atom]
+ * * can_overdose - Allows overdosing
+ * * liverless - Stops reagents that aren't set as [/datum/reagent/var/self_consuming] from metabolizing
+ */
 /datum/reagents/proc/metabolize(mob/living/L, can_overdose = FALSE , liverless = FALSE) //last two vars do nothing for the time being.
 	var/list/cached_reagents = reagent_list
 	var/list/cached_addictions = addiction_list

@@ -32,7 +32,6 @@
 	///Optimization for dynamic explosion block values, for things whose explosion block is dependent on certain conditions.
 	var/real_explosion_block
 
-
 /obj/Initialize()
 	. = ..()
 	if(islist(soft_armor))

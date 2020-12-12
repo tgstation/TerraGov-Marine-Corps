@@ -353,6 +353,9 @@
 	// All good, turn it on.
 	user.visible_message("<span class='notice'>[user] activates the flare.</span>", "<span class='notice'>You depress the ignition button, activating it!</span>")
 	turn_on(user)
+	if(iscarbon(user))
+		var/mob/living/carbon/C = usr
+		C.toggle_throw_mode()
 
 /obj/item/explosive/grenade/flare/activate(mob/user)
 	if(!active)
