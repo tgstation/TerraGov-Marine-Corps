@@ -129,6 +129,12 @@
 	. = ..()
 	if(builder)
 		linked_carrier = builder
+	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, .proc/shuttle_crush)
+
+/obj/effect/alien/resin/trap/proc/shuttle_crush() //No more trapping shuttles with huggies
+	SIGNAL_HANDLER
+	if(hugger)
+		QDEL_NULL(hugger)
 
 /obj/effect/alien/resin/trap/examine(mob/user)
 	. = ..()
@@ -771,9 +777,10 @@ TUNNEL
 		if(A)
 			to_chat(creator, "<span class='xenoannounce'>You sense your acid well at [A.name] has been destroyed!</span>")
 
-	var/datum/effect_system/smoke_spread/xeno/acid/A = new(get_turf(src))
-	A.set_up(clamp(charges,0,2),src)
-	A.start()
+	if(damage_flag) //Spawn the gas only if we actually get destroyed by damage
+		var/datum/effect_system/smoke_spread/xeno/acid/A = new(get_turf(src))
+		A.set_up(clamp(charges,0,2),src)
+		A.start()
 	return ..()
 
 /obj/effect/alien/resin/acidwell/examine(mob/user)
