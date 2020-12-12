@@ -7,7 +7,6 @@
 	icon_state = "ai_camera"
 	icon = 'icons/mob/cameramob.dmi'
 	invisibility = INVISIBILITY_MAXIMUM
-	hud_possible = list(AI_DETECT_HUD = HUD_LIST_LIST)
 	var/list/visibleCameraChunks = list()
 	var/mob/living/silicon/ai/ai = null
 	var/relay_speech = TRUE
@@ -20,43 +19,7 @@
 /mob/camera/aiEye/Initialize()
 	. = ..()
 	GLOB.aiEyes += src
-	update_ai_detect_hud()
 	setLoc(loc, TRUE)
-
-
-/mob/camera/aiEye/proc/update_ai_detect_hud()
-	var/datum/atom_hud/ai_detector/hud = GLOB.huds[DATA_HUD_AI_DETECT]
-	var/list/old_images = hud_list[AI_DETECT_HUD]
-	if(!ai_detector_visible)
-		hud.remove_from_hud(src)
-		if(islist(old_images))
-			QDEL_LIST(old_images)
-		return
-
-	if(!length(hud.hudusers))
-		//no one is watching, do not bother updating anything
-		return
-
-	hud.remove_from_hud(src)
-
-	var/static/list/vis_contents_objects = list()
-	var/obj/effect/overlay/ai_detect_hud/hud_obj = vis_contents_objects[ai_detector_color]
-	if(!hud_obj)
-		hud_obj = new /obj/effect/overlay/ai_detect_hud()
-		hud_obj.color = ai_detector_color
-		vis_contents_objects[ai_detector_color] = hud_obj
-
-	var/list/new_images = list()
-	var/list/turfs = get_visible_turfs()
-	for(var/T in turfs)
-		var/image/I = (length(old_images) > length(new_images) ? old_images[length(new_images) + 1] : image(null, T))
-		I.loc = T
-		I.vis_contents += hud_obj
-		new_images += I
-	for(var/i in (length(new_images) + 1) to length(old_images))
-		qdel(old_images[i])
-	hud_list[AI_DETECT_HUD] = new_images
-	hud.add_to_hud(src)
 
 
 /mob/camera/aiEye/proc/get_visible_turfs()
@@ -88,7 +51,6 @@
 		ai.camera_visibility(src)
 	if(ai.client && !ai.multicam_on)
 		ai.client.eye = src
-	update_ai_detect_hud()
 	//Holopad
 	if(istype(ai.current, /obj/machinery/holopad))
 		var/obj/machinery/holopad/H = ai.current
@@ -115,9 +77,6 @@
 		var/datum/camerachunk/c = V
 		c.remove(src)
 	GLOB.aiEyes -= src
-	if(ai_detector_visible)
-		var/datum/atom_hud/ai_detector/hud = GLOB.huds[DATA_HUD_AI_DETECT]
-		hud.remove_from_hud(src)
 	return ..()
 
 
@@ -197,16 +156,6 @@
 	. = ..()
 	if(relay_speech && speaker && ai && !radio_freq && speaker != ai && near_camera(speaker))
 		ai.relay_speech(message, speaker, message_language, raw_message, radio_freq, spans, message_mode)
-
-
-/obj/effect/overlay/ai_detect_hud
-	name = ""
-	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	icon = 'icons/effects/alphacolors.dmi'
-	icon_state = ""
-	alpha = 100
-	layer = ABOVE_ALL_MOB_LAYER
-	plane = GAME_PLANE
 
 /mob/camera/aiEye/proc/register_facedir_signals(mob/user)
 	RegisterSignal(user, COMSIG_KB_MOB_FACENORTH_DOWN, .verb/northface)

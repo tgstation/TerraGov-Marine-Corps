@@ -688,7 +688,7 @@ to_chat will check for valid clients itself already so no need to double check f
 		xeno_job.add_job_positions(left_behind)
 	if(difference < 0)
 		if(xeno_job.total_positions < (-difference + xeno_job.current_positions))
-			xeno_job.set_job_positions(-difference)
+			xeno_job.set_job_positions(-difference + xeno_job.current_positions)
 	for(var/obj/structure/resin/silo/silo as() in GLOB.xeno_resin_silos)
 		if(isalamoarea(get_area(silo)))
 			continue

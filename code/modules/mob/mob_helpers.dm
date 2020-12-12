@@ -128,13 +128,13 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 
 
 /**
-  * Convert random parts of a passed in message to stars
-  *
-  * * phrase - the string to convert
-  * * probability - probability any character gets changed
-  *
-  * This proc is dangerously laggy, avoid it or die
-  */
+ * Convert random parts of a passed in message to stars
+ *
+ * * phrase - the string to convert
+ * * probability - probability any character gets changed
+ *
+ * This proc is dangerously laggy, avoid it or die
+ */
 /proc/stars(phrase, probability = 25)
 	if(probability <= 0)
 		return phrase
@@ -151,8 +151,8 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 	return sanitize(.)
 
 /**
-  * Makes you speak like you're drunk
-  */
+ * Makes you speak like you're drunk
+ */
 /proc/slur(phrase)
 	phrase = html_decode(phrase)
 	var/leng = length(phrase)
@@ -254,10 +254,10 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 
 
 /**
-  * Turn text into complete gibberish!
-  *
-  * text is the inputted message, replace_characters will cause original letters to be replaced and chance are the odds that a character gets modified.
-  */
+ * Turn text into complete gibberish!
+ *
+ * text is the inputted message, replace_characters will cause original letters to be replaced and chance are the odds that a character gets modified.
+ */
 /proc/Gibberish(text, replace_characters = FALSE, chance = 50)
 	text = html_decode(text)
 	. = ""
@@ -493,11 +493,11 @@ mob/proc/get_standard_bodytemperature()
 		notify_ghost(O, message, ghost_sound, enter_link, enter_text, source, alert_overlay, action, flashwindow, ignore_mapload, ignore_key, header, notify_volume, extra_large)
 
 /**
-  * Get the list of keywords for policy config
-  *
-  * This gets the type, mind assigned roles and antag datums as a list, these are later used
-  * to send the user relevant headadmin policy config
-  */
+ * Get the list of keywords for policy config
+ *
+ * This gets the type, mind assigned roles and antag datums as a list, these are later used
+ * to send the user relevant headadmin policy config
+ */
 /mob/proc/get_policy_keywords()
 	. = list("[type]")
 
