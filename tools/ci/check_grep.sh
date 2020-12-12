@@ -56,12 +56,12 @@ if grep -nP '^/*var/' code/**/*.dm; then
     st=1
 fi;
 echo "Checking for 0 length timers"
-if grep -nP 'addtimer\(.+?, ?0\)($| |/)'code/**/*,dm; then
+if grep -nP 'addtimer\(.+?, ?0\)($| |/)' code/**/*,dm; then
 	echo "Default timer type with no length detected. Please add the correct flags or use the async macro call"
 	st=1
 fi;
 echo "Checking for space indentation"
-if grep -nP '(^ {2}[^* ])|(^ [^ ])|(^   +)' code/**/*.dm; then
+if grep -nP '(^ {2})|(^ [^ * ])|(^    +)' code/**/*.dm; then
     echo "space indentation detected"
     st=1
 fi;

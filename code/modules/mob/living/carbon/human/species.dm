@@ -983,8 +983,6 @@
 				damage *= burn_mod
 			if(organ.take_damage_limb(0, damage, sharp, edge))
 				victim.UpdateDamageIcon()
-		if(HALLOSS)
-			if(species_flags & NO_PAIN)
 				return
 			switch(damage)
 				if(-INFINITY to 0)
@@ -995,7 +993,6 @@
 				if(50 to INFINITY)
 					if(prob(60))
 						victim.emote("pain")
-			victim.adjustHalLoss(damage)
 		if(TOX)
 			victim.adjustToxLoss(damage)
 		if(OXY)

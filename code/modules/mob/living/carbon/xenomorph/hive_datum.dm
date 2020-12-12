@@ -521,9 +521,9 @@ to_chat will check for valid clients itself already so no need to double check f
 	if(D.orphan_hive_timer)
 		return
 
-	var/timer_length = 2.5 MINUTES
+	var/timer_length = 5 MINUTES
 	if(length(xenos_by_typepath[/mob/living/carbon/xenomorph/larva]) || length(xenos_by_typepath[/mob/living/carbon/xenomorph/drone]))
-		timer_length = 5 MINUTES
+		timer_length = 2.5 MINUTES
 
 	D.orphan_hive_timer = addtimer(CALLBACK(D, /datum/game_mode.proc/orphan_hivemind_collapse), timer_length, TIMER_STOPPABLE)
 
@@ -586,6 +586,10 @@ to_chat will check for valid clients itself already so no need to double check f
 	var/obj/structure/resin/silo/chosen_silo
 	if(length(possible_silos) > 1)
 		chosen_silo = input("Available Egg Silos") as null|anything in possible_silos
+		xeno_candidate.forceMove(chosen_silo)
+		var/double_check = input(xeno_candidate, "Spawn here?", "Spawn location") as null|anything in list("Yes","No")
+		if(double_check != "Yes")
+			attempt_to_spawn_larva_in_silo(xeno_candidate, possible_silos)
 	else
 		chosen_silo = possible_silos[1]
 
@@ -678,14 +682,19 @@ to_chat will check for valid clients itself already so no need to double check f
 			continue
 		boarder.gib()
 		left_behind++
+	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	if(left_behind)
 		xeno_message("[left_behind > 1 ? "[left_behind] sisters" : "One sister"] perished due to being too slow to board the bird. The freeing of their psychic link allows us to call burrowed, at least.")
-		var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 		xeno_job.add_job_positions(left_behind)
-		if(difference > 0)
-			xeno_job.add_job_positions(difference)
-	for(var/i in GLOB.xeno_resin_silos)
-		qdel(i)
+	if(difference < 0)
+		if(xeno_job.total_positions < (-difference + xeno_job.current_positions))
+			xeno_job.set_job_positions(-difference + xeno_job.current_positions)
+	for(var/obj/structure/resin/silo/silo as() in GLOB.xeno_resin_silos)
+		if(isalamoarea(get_area(silo)))
+			continue
+		if(!is_ground_level(silo.z))
+			continue
+		qdel(silo)
 
 
 // ***************************************

@@ -45,7 +45,7 @@
 	icon_state = "t18"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle
-	max_rounds = 32
+	max_rounds = 36
 	gun_type = /obj/item/weapon/gun/rifle/standard_carbine
 
 //-------------------------------------------------------

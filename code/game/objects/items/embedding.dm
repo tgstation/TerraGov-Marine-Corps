@@ -116,7 +116,7 @@
 
 
 /datum/limb/proc/process_embedded(obj/item/embedded)
-	if(limb_status & (LIMB_SPLINTED|LIMB_STABILIZED) || (owner.m_intent == MOVE_INTENT_WALK && !owner.pulledby))
+	if(limb_status & (LIMB_SPLINTED|LIMB_STABILIZED))
 		return
 	if(!prob(embedded.embedding.embed_process_chance))
 		return

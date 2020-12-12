@@ -221,6 +221,10 @@
 /turf/open/shuttle/dropship/eight
 	icon_state = "rasputin8"
 
+/turf/open/shuttle/dropship/grating
+	icon = 'icons/turf/elevator.dmi'
+	icon_state = "floor_grating"
+
 //not really plating, just the look
 /turf/open/shuttle/plating
 	name = "plating"
