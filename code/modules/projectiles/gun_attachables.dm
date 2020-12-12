@@ -722,33 +722,33 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/scope/activate_attachment(mob/living/carbon/user, turn_off)
 	if(turn_off)
-		if(master_gun.zoom)
-			master_gun.zoom(user, zoom_offset, zoom_viewsize)
-		if(has_nightvision)
-			user.update_sight()
-			user.reset_perspective(user)
-			active_nightvision = FALSE
-			UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
+		zoom(user, zoom_offset, zoom_viewsize)
 		return TRUE
 
 	if(!master_gun.zoom && !(master_gun.flags_item & WIELDED))
 		if(user)
 			to_chat(user, "<span class='warning'>You must hold [master_gun] with two hands to use [src].</span>")
 		return FALSE
-	else
-		master_gun.zoom(user, zoom_offset, zoom_viewsize)
-		if(has_nightvision)
-			if(active_nightvision)
-				user.update_sight()
-				user.reset_perspective(user)
-				active_nightvision = FALSE
-				UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
-			else
-				update_remote_sight(user)
-				user.reset_perspective(src)
-				active_nightvision = TRUE
-				RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/activate_attachment)
+	zoom(user, zoom_offset, zoom_viewsize)
 	return TRUE
+
+/obj/item/attachable/scope/onzoom(mob/living/user)
+	RegisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_CARBON_SWAPPED_HANDS), .proc/activate_attachment)
+	RegisterSignal(master_gun, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED, .proc/activate_attachment))
+	master_gun.accuracy_mult += scoped_accuracy_mod
+	if(has_nightvision)
+		update_remote_sight(user)
+		user.reset_perspective(src)
+		active_nightvision = TRUE
+
+/obj/item/attachable/scope/onunzoom(mob/living/user)
+	UnregisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_CARBON_SWAPPED_HANDS), .proc/activate_attachment)
+	UnregisterSignal(master_gun, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED), .proc/activate_attachment)
+	master_gun.accuracy_mult -= scoped_accuracy_mod
+	if(has_nightvision)
+		user.update_sight()
+		user.reset_perspective(user)
+		active_nightvision = FALSE
 
 /obj/item/attachable/scope/update_remote_sight(mob/living/user)
 	. = ..()
@@ -1688,13 +1688,3 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		var/datum/action/A = X
 		A.update_button_icon()
 	return TRUE
-
-
-/obj/item/weapon/gun/zoom(mob/living/user, tileoffset = 11, viewsize = 12) //this is so the accuracy modifiers for the scopes apply correctly
-	. = ..()
-	if(istype(rail,/obj/item/attachable/scope))
-		var/obj/item/attachable/scope/S = rail
-		if(zoom)
-			accuracy_mult += S.scoped_accuracy_mod
-		else
-			accuracy_mult -= S.scoped_accuracy_mod

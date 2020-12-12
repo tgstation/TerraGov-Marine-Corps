@@ -46,6 +46,7 @@
 			return FALSE
 
 	toggle_wielded(user, TRUE)
+	SEND_SIGNAL(src, COMSIG_ITEM_WIELD, user)
 	name = "[name] (Wielded)"
 	update_item_state(user)
 	place_offhand(user, name)
@@ -55,8 +56,9 @@
 /obj/item/proc/unwield(mob/user)
 	if(!CHECK_MULTIPLE_BITFIELDS(flags_item, TWOHANDED|WIELDED))
 		return FALSE
-
+	
 	toggle_wielded(user, FALSE)
+	SEND_SIGNAL(src, COMSIG_ITEM_UNWIELD, user)
 	name = initial(name)
 	update_item_state(user)
 	remove_offhand(user)

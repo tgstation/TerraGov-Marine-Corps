@@ -151,7 +151,6 @@ GLOBAL_DATUM(ai_camera_room_landmark, /obj/effect/landmark/ai_multicam_room)
 	else
 		GLOB.cameranet.visibility(src)
 	update_camera_telegraphing()
-	update_ai_detect_hud()
 
 
 /mob/camera/aiEye/pic_in_pic/get_visible_turfs()
