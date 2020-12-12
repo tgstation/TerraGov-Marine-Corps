@@ -375,18 +375,48 @@
 /atom/proc/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone)
 	return
 
-/obj/machinery/power/apc/punch_act(mob/living/carbon/xenomorph/M)
-	beenhit += 4 //Break it open instantly
-	ENABLE_BITFIELD(machine_stat, PANEL_OPEN)
-	. = ..()
-
-/obj/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone) //Smash machines/structures
-	attack_alien(X, damage * 4, BRUTE, "", FALSE) //Deals 4 times regular damage to machines/structures
+/obj/machinery/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone) //Break open the machine
+	X.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
+	X.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
+	attack_generic(X, damage * 4, BRUTE, "", FALSE) //Deals 4 times regular damage to machines
 	X.visible_message("<span class='xenodanger'>\The [X] smashes [src] with a devastating punch!</span>", \
 		"<span class='xenodanger'>We smash [src] with a devastating punch!</span>", visible_message_flags = COMBAT_MESSAGE)
 	playsound(src, pick('sound/effects/bang.ogg','sound/effects/metal_crash.ogg','sound/effects/meteorimpact.ogg'), 50, 1)
+	Shake(4, 4, 2 SECONDS)
+
+	if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
+		ENABLE_BITFIELD(machine_stat, PANEL_OPEN)
+
+	if(wires) //If it has wires, break em
+		var/allcut = wires.is_all_cut()
+		if(!allcut) //Considered prohibiting this vs airlocks, but tbh, I can see clever warriors using this to keep airlocks bolted open or closed as is most advantageous
+			wires.cut_all()
+			visible_message("<span class='danger'>\The [src]'s wires snap apart in a rain of sparks!</span>", null, null, 5)
+
+	update_icon()
+
+/obj/machinery/light/punch_act(mob/living/carbon/xenomorph/X)
+	. = ..()
+	attack_alien(X) //Smash it
+
+/obj/machinery/power/apc/punch_act(mob/living/carbon/xenomorph/X)
+	. = ..()
+	beenhit += 4 //Break it open instantly
+
+/obj/machinery/vending/punch_act(mob/living/carbon/xenomorph/X)
+	. = ..()
+	if(tipped_level < 2) //Knock it down if it isn't
+		X.visible_message("<span class='danger'>\The [X] knocks \the [src] down!</span>", \
+		"<span class='danger'>You knock \the [src] down!</span>", null, 5)
+		tip_over()
+
+/obj/structure/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone) //Smash structures
 	X.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
 	X.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
+	attack_alien(X, damage * 4, BRUTE, "", FALSE) //Deals 4 times regular damage to structures
+	X.visible_message("<span class='xenodanger'>\The [X] smashes [src] with a devastating punch!</span>", \
+		"<span class='xenodanger'>We smash [src] with a devastating punch!</span>", visible_message_flags = COMBAT_MESSAGE)
+	playsound(src, pick('sound/effects/bang.ogg','sound/effects/metal_crash.ogg','sound/effects/meteorimpact.ogg'), 50, 1)
 	Shake(4, 4, 2 SECONDS)
 
 /mob/living/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone)
@@ -421,6 +451,7 @@
 	playsound(src, pick('sound/weapons/punch1.ogg','sound/weapons/punch2.ogg','sound/weapons/punch3.ogg','sound/weapons/punch4.ogg'), 50, 1)
 	X.face_atom(src) //Face the target so you don't look like an idiot
 	X.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
+	X.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
 
 	X.visible_message("<span class='xenodanger'>\The [X] hits [src] in the [target_zone] with a [punch_description] punch!</span>", \
 		"<span class='xenodanger'>We hit [src] in the [target_zone] with a [punch_description] punch!</span>", visible_message_flags = COMBAT_MESSAGE)
@@ -433,7 +464,6 @@
 	shake_camera(src, 2, 1)
 	Shake(4, 4, 2 SECONDS)
 
-	X.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
 
 	var/facing = get_dir(X, src)
 	if(loc == X.loc) //If they're sharing our location we still want to punch them away
