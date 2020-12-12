@@ -31,7 +31,7 @@
 	X.visible_message("<span class='xenohighdanger'>\The [X] opens its jaw and silently screeches!</span>")
 
 	for(var/mob/living/carbon/human/victim as() in GLOB.humans_by_zlevel["[X.z]"])
-		if(get_dist(victim, X) > WORLD_VIEW_NUM+1)
+		if(get_dist(victim, X) > WORLD_VIEW_NUM)
 			continue
 		if(!victim.hud_used)
 			continue
@@ -103,6 +103,8 @@
 	playsound(A, 'sound/effects/bomb_fall.ogg', 75, FALSE)
 	for(var/turf/targetted as() in turfs)
 		for(var/atom/movable/item as() in targetted.contents)
+			if(ismob(item))
+				continue
 			item.ex_act(EXPLODE_HEAVY)	//crushing without damaging the nearby area
 		addtimer(CALLBACK(targetted, /atom.proc/remove_filter, "crushblur"), 1 SECONDS)
 

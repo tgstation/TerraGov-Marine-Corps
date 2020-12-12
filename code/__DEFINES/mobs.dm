@@ -549,9 +549,9 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 //King defines
 
-#define KING_WHISPER_DURATION 23 SECONDS //The sound plays for 23 seconds but this can be changed for balance if you need
-#define REQUIRED_POINTS_FOR_KING_SUMMON 3000
-#define KING_SUMMON_TIMER_DURATION 5 MINUTES
+#define KING_WHISPER_DURATION 10 SECONDS //The sound plays for 23 seconds
+#define REQUIRED_POINTS_FOR_KING_SUMMON 3500 //This is high at the time of writing because its the only thing points can be spent on. If thats changed nerf this and remove this comment
+#define KING_SUMMON_TIMER_DURATION 10 MINUTES
 
 //misc
 
