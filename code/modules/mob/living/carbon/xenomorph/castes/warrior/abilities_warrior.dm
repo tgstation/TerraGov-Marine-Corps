@@ -331,41 +331,68 @@
 /datum/action/xeno_action/activable/punch/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
+		return
+
+	if(!isliving(A) && !isstructure(A) && !ismachinery(A))
+		if(!silent)
+			to_chat(owner, "<span class='xenodanger'>We can't punch this target!</span>")
 		return FALSE
-	if(!isliving(A))
-		return FALSE
+
+	if(isliving(A))
+		var/mob/living/L = A
+		if(L.stat == DEAD)
+			if(!silent)
+				to_chat(owner, "<span class='xenodanger'>We don't care about the dead!</span>")
+			return FALSE
+
 	if(!owner.Adjacent(A))
+		if(!silent)
+			to_chat(owner, "<span class='xenodanger'>Our target must be adjacent!</span>")
 		return FALSE
-	var/mob/living/L = A
-	if(L.stat == DEAD || isnestedhost(L)) //Can't bully the dead/nested hosts.
-		return FALSE
+
 
 /datum/action/xeno_action/activable/punch/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
-	var/mob/living/M = A
-	if(X.issamexenohive(M))
-		X.changeNext_move(CLICK_CD_MELEE) // Add a delaay in to avoid spam
-		return M.attack_alien(X) //harmless nibbling.
 
-	GLOB.round_statistics.warrior_punches++
-	SSblackbox.record_feedback("tally", "round_statistics", 1, "warrior_punches")
-
+	if(isxeno(A))
+		var/mob/living/carbon/xenomorph/xeno_target = A
+		if(X.issamexenohive(xeno_target))
+			X.changeNext_move(CLICK_CD_MELEE) // Add a delaay in to avoid spam
+			return X.attack_alien(xeno_target) //harmless nibbling.
 
 	var/target_zone = check_zone(X.zone_selected)
 	if(!target_zone)
 		target_zone = "chest"
-	var/damage = X.xeno_caste.melee_damage
 
-	M.punch_act(X, damage, target_zone)
+	A.punch_act(X, X.xeno_caste.melee_damage, target_zone)
 
+	GLOB.round_statistics.warrior_punches++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "warrior_punches")
 
 	succeed_activate()
 	add_cooldown()
 
-/mob/living/proc/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone)
+/atom/proc/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone)
+	return
+
+/obj/machinery/power/apc/punch_act(mob/living/carbon/xenomorph/M)
+	beenhit += 4 //Break it open instantly
+	ENABLE_BITFIELD(machine_stat, PANEL_OPEN)
+	. = ..()
+
+/obj/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone) //Smash machines/structures
+	attack_alien(X, damage * 4, BRUTE, "", FALSE) //Deals 4 times regular damage to machines/structures
+	X.visible_message("<span class='xenodanger'>\The [X] smashes [src] with a devastating punch!</span>", \
+		"<span class='xenodanger'>We smash [src] with a devastating punch!</span>", visible_message_flags = COMBAT_MESSAGE)
+	playsound(src, pick('sound/effects/bang.ogg','sound/effects/metal_crash.ogg','sound/effects/meteorimpact.ogg'), 50, 1)
+	X.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
+	X.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
+	Shake(4, 4, 2 SECONDS)
+
+/mob/living/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone)
+	var/punch_description = "powerful"
 	var/stagger_stacks = 3
 	var/slowdown_stacks = 3
-	var/punch_description = "powerful"
 
 	if(pulledby == X) //If we're being grappled by the Warrior punching us, it's gonna do extra damage and debuffs; combolicious
 		damage *= 2
@@ -374,7 +401,7 @@
 		ParalyzeNoChain(0.5 SECONDS)
 		punch_description = "devastating"
 
-	if(iscarbon(src))
+	if(iscarbon(src) && !isxeno(src)) //Xenos don't have limbs really
 		var/mob/living/carbon/carbon_victim = src
 		var/datum/limb/L = carbon_victim.get_limb(target_zone)
 
@@ -404,6 +431,7 @@
 
 	apply_damage(damage, STAMINA) //Armor penetrating stamina also applies.
 	shake_camera(src, 2, 1)
+	Shake(4, 4, 2 SECONDS)
 
 	X.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
 
