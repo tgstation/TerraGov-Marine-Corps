@@ -305,6 +305,9 @@
 	GLOB.marine_turrets += src
 
 /obj/machinery/marine_turret/proc/turn_off() //We turn the turret off
+	if(!CHECK_BITFIELD(turret_flags, TURRET_ON)) //We're already off
+		return
+	visible_message("<span class='notice'>The [name] powers down and goes silent.</span>")
 	DISABLE_BITFIELD(turret_flags, TURRET_ON)
 	target = null
 	alert_list = list()
@@ -488,7 +491,6 @@
 			else
 				user.visible_message("<span class='notice'>[user] deactivates [src].</span>",
 				"<span class='notice'>You deactivate [src].</span>")
-				visible_message("<span class='notice'>The [name] powers down and goes silent.</span>")
 				turn_off()
 				update_icon()
 			. = TRUE
@@ -785,7 +787,6 @@
 				sleep(2)
 			turn_off()
 	take_damage(25)
-	update_icon()
 	return
 
 /obj/machinery/marine_turret/ex_act(severity)
@@ -1087,9 +1088,7 @@
 	else
 		user.visible_message("<span class='notice'>[user] deactivates [src].</span>",
 		"<span class='notice'>You deactivate [src].</span>")
-		visible_message("<span class='notice'>The [name] powers down and goes silent.</span>")
 		turn_off()
-		update_icon()
 
 /obj/machinery/marine_turret/premade/dumb/hostile
 	name = "malfunctioning UA 571-C sentry gun"
