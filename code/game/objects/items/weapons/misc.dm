@@ -95,7 +95,7 @@
 		playsound(loc, 'sound/weapons/punch1.ogg', 50, TRUE)
 		M.visible_message("<span class='danger'>[user]'s powerfist lets out a dull thunk as they punch [M.name]!</span>", \
 			"<span class='userdanger'>[user] punches you!</span>")
-		return
+		return ..()
 	M.apply_damage(force * setting, BRUTE)
 	M.visible_message("<span class='danger'>[user]'s powerfist shudders as they punch [M.name], flinging them away!</span>", \
 		"<span class='userdanger'>You [user]'s punch flings you backwards!</span>")
