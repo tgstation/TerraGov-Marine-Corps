@@ -178,7 +178,7 @@
 		else
 			return FALSE
 	else
-		. = ..()
+		return ..()
 
 
 /obj/structure/closet/bodybag/forceMove(atom/destination)
