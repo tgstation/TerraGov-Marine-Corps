@@ -54,7 +54,7 @@
 	mouse_opacity = 0
 
 /obj/effect/particle_effect/water/Move(turf/newloc)
-	if (life < 1)
+	if (--life < 1)
 		qdel(src)
 	if(newloc.density)
 		return FALSE
