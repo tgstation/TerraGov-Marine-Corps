@@ -478,6 +478,8 @@
 	new /obj/effect/temp_visual/transfer_plasma(get_turf(target)) //Cool SFX that confirms our source and our target
 	playsound(X, "alien_drool", 25)
 
+	X.face_atom(target) //Face our target so we don't look silly
+
 	if(!do_after(X, transfer_delay, TRUE, null, BUSY_ICON_FRIENDLY))
 		return fail_activate()
 
