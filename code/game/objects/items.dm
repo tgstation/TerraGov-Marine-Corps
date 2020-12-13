@@ -4,89 +4,60 @@
 	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
 	materials = list(/datum/material/metal = 50)
 
-	///this saves our blood splatter overlay, which will be processed not to go over the edges of the sprite
-	var/image/blood_overlay = null
+	var/image/blood_overlay = null //this saves our blood splatter overlay, which will be processed not to go over the edges of the sprite
 
-	/**
-	 * use if you don't want to use icon_state for onmob inhand/belt/back/ear/suitstorage/glove sprite.
-	 * e.g. most headsets have different icon_state but they all use the same sprite when shown on the mob's ears.
-	 * also useful for items with many icon_state values when you don't want to make an inhand sprite for each value.
-	 */
-	var/item_state = null
-	///How much damage this item deals when you hit someone with it
+	var/item_state = null //if you don't want to use icon_state for onmob inhand/belt/back/ear/suitstorage/glove sprite.
+						//e.g. most headsets have different icon_state but they all use the same sprite when shown on the mob's ears.
+						//also useful for items with many icon_state values when you don't want to make an inhand sprite for each value.
 	var/force = 0
-	///Damage type this item deals when you hit someone with i
 	var/damtype = BRUTE
 	var/attack_speed = 11
-	///Used in attackby() to say how something was attacked "[x] has been [z.attack_verb] by [y] with [z]"
-	var/list/attack_verb
+	var/list/attack_verb //Used in attackby() to say how something was attacked "[x] has been [z.attack_verb] by [y] with [z]"
 
-	///severity of this items cutting value
-	var/sharp = IS_NOT_SHARP_ITEM
-	///Largly deprecated variable that causes SOME situations to deal more damage, remove me
-	var/edge = FALSE
-	///whether this item can be used to pry things open.
-	var/pry_capable = FALSE
-	///whether this item is a source of heat, and how hot it is (in Kelvin).
-	var/heat = 0
+	var/sharp = FALSE		// whether this item cuts
+	var/edge = FALSE		// whether this item is more likely to dismember
+	var/pry_capable = FALSE //whether this item can be used to pry things open.
+	var/heat = 0 //whether this item is a source of heat, and how hot it is (in Kelvin).
 
-	///Sound file this item plays when you hit someone with it
 	var/hitsound = null
-	///The weight class define of this obj, how big it is in inventory
 	var/w_class = WEIGHT_CLASS_NORMAL
-	///flags for item stuff that isn't clothing/equipping specific.
-	var/flags_item = NONE
-	///flags for determining on which slots an item can fit.
-	var/flags_equip_slot = NONE
+	var/flags_item = NONE	//flags for item stuff that isn't clothing/equipping specific.
+	var/flags_equip_slot = NONE		//This is used to determine on which slots an item can fit.
 
 	//Since any item can now be a piece of clothing, this has to be put here so all items share it.
-	///This flag is used for various clothing/equipment item stuff
-	var/flags_inventory = NONE
-	///This flag is used to determine when items in someone's inventory cover others. IE helmets making it so you can't see glasses, etc.
-	var/flags_inv_hide = NONE
+	var/flags_inventory = NONE //This flag is used for various clothing/equipment item stuff
+	var/flags_inv_hide = NONE //This flag is used to determine when items in someone's inventory cover others. IE helmets making it so you can't see glasses, etc.
 	flags_pass = PASSTABLE
 
-	///Used in signaller code to tell objs to activate. REWORK ME TO USE SIGNALS
-	var/obj/item/master
+	var/obj/item/master = null
 
 	var/flags_armor_protection = NONE //see setup.dm for appropriate bit flags
-	///flags which determine which body parts are protected from heat. Use the HEAD, CHEST, GROIN, etc. flags. See setup.dm
-	var/flags_heat_protection = NONE
-	///flags which determine which body parts are protected from cold. Use the HEAD, CHEST, GROIN, etc. flags. See setup.dm
-	var/flags_cold_protection = NONE
+	var/flags_heat_protection = NONE //flags which determine which body parts are protected from heat. Use the HEAD, CHEST, GROIN, etc. flags. See setup.dm
+	var/flags_cold_protection = NONE //flags which determine which body parts are protected from cold. Use the HEAD, CHEST, GROIN, etc. flags. See setup.dm
 
-	///Set this variable to determine up to which temperature (IN KELVIN) the item protects against heat damage. Keep at null to disable protection. Only protects areas set by flags_heat_protection flags
-	var/max_heat_protection_temperature
-	///Set this variable to determine down to which temperature (IN KELVIN) the item protects against cold damage. 0 is NOT an acceptable number due to if(varname) tests!! Keep at null to disable protection. Only protects areas set by flags_cold_protection flags
-	var/min_cold_protection_temperature
+	var/max_heat_protection_temperature //Set this variable to determine up to which temperature (IN KELVIN) the item protects against heat damage. Keep at null to disable protection. Only protects areas set by flags_heat_protection flags
+	var/min_cold_protection_temperature //Set this variable to determine down to which temperature (IN KELVIN) the item protects against cold damage. 0 is NOT an acceptable number due to if(varname) tests!! Keep at null to disable protection. Only protects areas set by flags_cold_protection flags
 
-	///lazylist of /datum/action instances that this item has.
-	var/list/actions
-	///lazylist of paths of action datums to give to the item on New().
-	var/list/actions_types
+	var/list/actions = list() //list of /datum/action's that this item has.
+	var/list/actions_types = list() //list of paths of action datums to give to the item on New().
 
 	var/gas_transfer_coefficient = 1 // for leaking gas from turf to mask and vice-versa (for masks right now, but at some point, i'd like to include space helmets)
 	var/permeability_coefficient = 1 // for chemicals/diseases
 	var/siemens_coefficient = 1 // for electrical admittance/conductance (electrocution checks and shit)
-	///How much a piece of clothing is slowing you down. Negative values speeds you up TODO consider moving to clothing level
-	var/slowdown = 0
-	///restraints code, how long it takes you to resist out of this item
+	var/slowdown = 0 // How much clothing is slowing you down. Negative values speeds you up
 	var/breakouttime = 0
 
-	///Whitelist of items you're allowed to put into this item/ it's suit slot, if null allows all
-	var/list/allowed
-	///bool for if this item is actively being used to zoom. For scoped guns and binoculars.
-	var/zoom = FALSE
+	var/list/allowed = null //suit storage stuff.
+	var/zoomdevicename = null //name used for message when binoculars/scope is used
+	var/zoom = FALSE //TRUE if item is actively being used to zoom. For scoped guns and binoculars.
 
 	var/datum/embedding_behavior/embedding
 	var/mob/living/embedded_into
 
-	///How many byond ticks it takes to equip this item
-	var/time_to_equip = 0
-	///How many byond ticks it takes to unequip this item
-	var/time_to_unequip = 0
+	var/time_to_equip = 0 // set to ticks it takes to equip a worn suit.
+	var/time_to_unequip = 0 // set to ticks it takes to unequip a worn suit.
 
-	///How close we must be to use this item on something
+
 	var/reach = 1
 
 	/* Species-specific sprites, concept stolen from Paradise//vg/.
@@ -100,17 +71,13 @@
 	var/icon_override = null  //Used to override hardcoded ON-MOB clothing dmis in human clothing proc (i.e. not the icon_state sprites).
 	var/sprite_sheet_id = 0 //Select which sprite sheet ID to use due to the sprite limit per .dmi. 0 is default, 1 is the new one.
 
-	///Flags relating to variants based on the map type such as jungle or snow
 	var/flags_item_map_variant = NONE
 
 	//TOOL RELATED VARS
-	///defines for how this item should act as a tool, such as wrench or welding
-	var/tool_behaviour
-	///Modifier for the efficiency of tool speed
+	var/tool_behaviour = FALSE
 	var/toolspeed = 1
-	///sound that plays when this item/tool is used
 	var/usesound = null
-	///whether this item is on or off
+
 	var/active = FALSE
 
 
@@ -149,12 +116,13 @@
 	item_state = "[initial(icon_state)][flags_item & WIELDED ? "_w" : ""]"
 
 
-/**
- * Called when a mob suicides with this item
- * Return a damage flag to have the mob take 200 of this damage
- * Arguments:
- * * user: the mob suiciding with this item
- */
+//user: The mob that is suiciding
+//damagetype: The type of damage the item will inflict on the user
+//BRUTELOSS = 1
+//FIRELOSS = 2
+//TOXLOSS = 4
+//OXYLOSS = 8
+//Output a creative message and then return the damagetype done
 /obj/item/proc/suicide_act(mob/user)
 	return
 
@@ -246,16 +214,12 @@
 	else if(S.can_be_inserted(src))
 		S.handle_item_insertion(src, FALSE, user)
 
-///Handles talking into an item such as a radio and returns effects that should stem from it
 /obj/item/proc/talk_into(mob/M, input, channel, spans, datum/language/language)
 	return ITALICS | REDUCE_RANGE
 
-/**
- * called whenever an item is removed from a slot, container, or anything else.
- * the call happens after the item's potential loc change.
- * arguments:
- * user: the person dropping the item
- */
+
+// apparently called whenever an item is removed from a slot, container, or anything else.
+//the call happens after the item's potential loc change.
 /obj/item/proc/dropped(mob/user)
 	SEND_SIGNAL(src, COMSIG_ITEM_DROPPED, user)
 
@@ -292,19 +256,19 @@
 	return
 
 
-///called when this item is removed from a storage item, which is passed on as S. The loc variable is already set to the new destination before this is called.
+// called when this item is removed from a storage item, which is passed on as S. The loc variable is already set to the new destination before this is called.
 /obj/item/proc/on_exit_storage(obj/item/storage/S as obj)
 	return
 
 
-///called when this item is added into a storage item, which is passed on as S. The loc variable is already set to the storage item.
+// called when this item is added into a storage item, which is passed on as S. The loc variable is already set to the storage item.
 /obj/item/proc/on_enter_storage(obj/item/storage/S as obj)
 	return
 
 
-///called when "found" in pockets and storage items. Returns true if the search should end.
+// called when "found" in pockets and storage items. Returns 1 if the search should end.
 /obj/item/proc/on_found(mob/finder as mob)
-	return FALSE
+	return
 
 // called after an item is placed in an equipment slot
 // user is mob that equipped it
@@ -359,11 +323,11 @@
 			human_unequipper.remove_movespeed_modifier(type)
 
 
-///sometimes we only want to grant the item's action if it's equipped in a specific slot, this proc returns false if it is not
+//sometimes we only want to grant the item's action if it's equipped in a specific slot.
 /obj/item/proc/item_action_slot_check(mob/user, slot)
 	return TRUE
 
-/// Anything unique the item can do, like pumping a shotgun, spin or whatever.
+// Anything unique the item can do, like pumping a shotgun, spin or whatever.
 /obj/item/proc/unique_action(mob/user)
 	return FALSE
 
@@ -665,12 +629,10 @@
 
 	usr.UnarmedAttack(src)
 
-/**
- * This proc is executed when someone clicks the on-screen UI button.
- * To make the UI button show, set the 'icon_action_button' to the icon_state of the image of the button in actions.dmi
- * The default action is attack_self().
- * Checks before we get to here are: mob is alive, mob is not restrained, paralyzed, asleep, resting, laying, item is on the mob.
- */
+
+//This proc is executed when someone clicks the on-screen UI button. To make the UI button show, set the 'icon_action_button' to the icon_state of the image of the button in actions.dmi
+//The default action is attack_self().
+//Checks before we get to here are: mob is alive, mob is not restrained, paralyzed, asleep, resting, laying, item is on the mob.
 /obj/item/proc/ui_action_click(mob/user, datum/action/item_action/action)
 	attack_self(user)
 
@@ -687,20 +649,20 @@
 	if(I && !(I.flags_item & ITEM_ABSTRACT))
 		visible_message("[src] holds up [I]. <a HREF=?src=[REF(usr)];lookitem=[REF(I)]>Take a closer look.</a>")
 
-/**
- * For zooming with scope or binoculars.
- * Arguments:
- * * user: mob reference for who is zooming in
- * * tileoffset: integer by how much the view should be offset
- * * viewsize: radius of new screen when were zoomed, for comparison 7 is standard
- */
-/obj/item/proc/zoom(mob/living/user, tileoffset = 11, viewsize = 12)
+/*
+For zooming with scope or binoculars. This is called from
+modules/mob/mob_movement.dm if you move you will be zoomed out
+modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
+*/
+
+/obj/item/proc/zoom(mob/living/user, tileoffset = 11, viewsize = 12) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view
 	if(!user)
 		return
+	var/zoom_device = zoomdevicename ? "\improper [zoomdevicename] of [src]" : "\improper [src]"
 
 	for(var/obj/item/I in user.contents)
 		if(I.zoom && I != src)
-			to_chat(user, "<span class='warning'>You are already looking through \the [src].</span>")
+			to_chat(user, "<span class='warning'>You are already looking through \the [zoom_device].</span>")
 			return //Return in the interest of not unzooming the other item. Check first in the interest of not fucking with the other clauses
 
 	if(is_blind(user))
@@ -708,16 +670,16 @@
 		return
 
 	if(!user.dextrous)
-		to_chat(user, "<span class='warning'>You do not have the dexterity to use \the [src].</span>")
+		to_chat(user, "<span class='warning'>You do not have the dexterity to use \the [zoom_device].</span>")
 		return
 
 	if(!zoom && user.tinttotal >= TINT_5)
-		to_chat(user, "<span class='warning'>Your vision is too obscured for you to look through \the [src].</span>")
+		to_chat(user, "<span class='warning'>Your vision is too obscured for you to look through \the [zoom_device].</span>")
 		return
 
 	if(zoom) //If we are zoomed out, reset that parameter.
-		user.visible_message("<span class='notice'>[user] looks up from [src].</span>",
-		"<span class='notice'>You look up from [src].</span>")
+		user.visible_message("<span class='notice'>[user] looks up from [zoom_device].</span>",
+		"<span class='notice'>You look up from [zoom_device].</span>")
 		zoom = FALSE
 		onunzoom(user)
 		TIMER_COOLDOWN_START(user, COOLDOWN_ZOOM, 2 SECONDS)
@@ -730,40 +692,40 @@
 			user.client.change_view(WORLD_VIEW)
 			user.client.pixel_x = 0
 			user.client.pixel_y = 0
+		return
 
-	else //Otherwise we want to zoom in.
-		if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_ZOOM)) //If we are spamming the zoom, cut it out
-			return
-		TIMER_COOLDOWN_START(user, COOLDOWN_ZOOM, 2 SECONDS)
+	if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_ZOOM)) //If we are spamming the zoom, cut it out
+		return
+	TIMER_COOLDOWN_START(user, COOLDOWN_ZOOM, 2 SECONDS)
 
-		if(user.client)
-			user.client.change_view(VIEW_NUM_TO_STRING(viewsize))
+	if(user.client)
+		user.client.change_view(VIEW_NUM_TO_STRING(viewsize))
 
-			var/tilesize = 32
-			var/viewoffset = tilesize * tileoffset
+		var/tilesize = 32
+		var/viewoffset = tilesize * tileoffset
 
-			switch(user.dir)
-				if(NORTH)
-					user.client.pixel_x = 0
-					user.client.pixel_y = viewoffset
-				if(SOUTH)
-					user.client.pixel_x = 0
-					user.client.pixel_y = -viewoffset
-				if(EAST)
-					user.client.pixel_x = viewoffset
-					user.client.pixel_y = 0
-				if(WEST)
-					user.client.pixel_x = -viewoffset
-					user.client.pixel_y = 0
+		switch(user.dir)
+			if(NORTH)
+				user.client.pixel_x = 0
+				user.client.pixel_y = viewoffset
+			if(SOUTH)
+				user.client.pixel_x = 0
+				user.client.pixel_y = -viewoffset
+			if(EAST)
+				user.client.pixel_x = viewoffset
+				user.client.pixel_y = 0
+			if(WEST)
+				user.client.pixel_x = -viewoffset
+				user.client.pixel_y = 0
 
-		user.visible_message("<span class='notice'>[user] peers through \the [src].</span>",
-		"<span class='notice'>You peer through \the [src].</span>")
-		zoom = TRUE
-		onzoom(user)
-		if(user.interactee)
-			user.unset_interaction()
-		else if(!istype(src, /obj/item/attachable/scope))
-			user.set_interaction(src)
+	user.visible_message("<span class='notice'>[user] peers through \the [zoom_device].</span>",
+	"<span class='notice'>You peer through \the [zoom_device].</span>")
+	zoom = TRUE
+	onzoom(user)
+	if(user.interactee)
+		user.unset_interaction()
+	else if(!istype(src, /obj/item/attachable/scope))
+		user.set_interaction(src)
 
 /obj/item/proc/onzoom(mob/living/user)
 	RegisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_CARBON_SWAPPED_HANDS), .proc/zoom)
@@ -813,7 +775,7 @@
 /obj/item/attack_alien(mob/living/carbon/xenomorph/X)
 	return FALSE
 
-///Updates the button icons for all the actions we have
+
 /obj/item/proc/update_action_button_icons()
 	for(var/X in actions)
 		var/datum/action/A = X
@@ -919,17 +881,9 @@
 		user.inertia_dir = get_dir(target, user)
 		step(user, user.inertia_dir)
 
-/**
- * Called when a mob tries to use the item as a tool.
- * Handles most default checks.
- * Arguments:
- * * target: whatever we are targetting with this tool
- * * user: whoevers wielding the tool
- * * delay: How long it will take to use this tool, modified by toolspeed
- * * amount: amount of resource to use per operation
- * * volume: volume of the use sound
- * * extra_checks: extra callback for bonus checks to perform during the doafter
- */
+
+// Called when a mob tries to use the item as a tool.
+// Handles most checks.
 /obj/item/proc/use_tool(atom/target, mob/living/user, delay, amount = 0, volume = 0, datum/callback/extra_checks)
 	// No delay means there is no start message, and no reason to call tool_start_check before use_tool.
 	// Run the start check here so we wouldn't have to call it manually.
@@ -966,27 +920,25 @@
 
 	return TRUE
 
-/**
- * Called before use_tool if there is a delay, or by use_tool if there isn't.
- * Only ever used by welding tools and stacks, so it's not added on any other use_tool checks.
- */
+
+// Called before use_tool if there is a delay, or by use_tool if there isn't.
+// Only ever used by welding tools and stacks, so it's not added on any other use_tool checks.
 /obj/item/proc/tool_start_check(mob/living/user, amount = 0)
 	return tool_use_check(user, amount)
 
 
-/// A check called by tool_start_check once, and by use_tool on every tick of delay.
+// A check called by tool_start_check once, and by use_tool on every tick of delay.
 /obj/item/proc/tool_use_check(mob/living/user, amount)
 	return !amount
 
-/**
- * Generic use proc. Depending on the item, it uses up fuel, charges, sheets, etc.
- * Returns TRUE on success, FALSE on failure.
- */
+
+// Generic use proc. Depending on the item, it uses up fuel, charges, sheets, etc.
+// Returns TRUE on success, FALSE on failure.
 /obj/item/proc/use(used)
 	return !used
 
 
-/// Plays item's usesound, if any.
+// Plays item's usesound, if any.
 /obj/item/proc/play_tool_sound(atom/target, volume)
 	if(!target || !usesound || !volume)
 		return
