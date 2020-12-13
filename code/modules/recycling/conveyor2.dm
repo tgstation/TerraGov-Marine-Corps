@@ -34,10 +34,6 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 		stack_trace("[src] at [AREACOORD(src)] spawned without using a diagonal dir. Please replace with a normal version.")
 
 
-/obj/machinery/conveyor/auto/Initialize(mapload, newdir)
-	operating = TRUE
-	return ..()
-
 /obj/machinery/conveyor/auto/update()
 	. = ..()
 	if(.)
@@ -51,8 +47,13 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 		setDir(newdir)
 	if(newid)
 		id = newid
-	update_move_direction()
 	LAZYADD(GLOB.conveyors_by_id[id], src)
+	update_move_direction()
+	update_icon()
+
+/obj/machinery/conveyor/auto/Initialize(mapload, newdir)
+	operating = TRUE
+	return ..()
 
 /obj/machinery/conveyor/Destroy()
 	LAZYREMOVE(GLOB.conveyors_by_id[id], src)
@@ -159,34 +160,37 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 			step(movable_thing, movedir)
 	conveying = FALSE
 
-// attack with item, place item on conveyor
-/obj/machinery/conveyor/attackby(obj/item/I, mob/user, params)
-	if(I.tool_behaviour == TOOL_CROWBAR)
-		user.visible_message("<span class='notice'>[user] struggles to pry up \the [src] with \the [I].</span>", \
-		"<span class='notice'>You struggle to pry up \the [src] with \the [I].</span>")
-		if(I.use_tool(src, user, 40, volume=40))
-			if(!(machine_stat & BROKEN))
-				new /obj/item/stack/conveyor(loc, 1, TRUE, id)
-			to_chat(user, "<span class='notice'>You remove the conveyor belt.</span>")
-			qdel(src)
-
-	else if(I.tool_behaviour == TOOL_WRENCH)
+/obj/machinery/conveyor/crowbar_act(mob/living/user, obj/item/I)
+	user.visible_message("<span class='notice'>[user] struggles to pry up \the [src] with \the [I].</span>", \
+	"<span class='notice'>You struggle to pry up \the [src] with \the [I].</span>")
+	if(I.use_tool(src, user, 40, volume=40))
 		if(!(machine_stat & BROKEN))
-			I.play_tool_sound(src)
-			setDir(turn(dir,-45))
-			update_move_direction()
-			to_chat(user, "<span class='notice'>You rotate [src].</span>")
+			new /obj/item/stack/conveyor(loc, 1, TRUE, id)
+		to_chat(user, "<span class='notice'>You remove [src].</span>")
+		qdel(src)
+	return TRUE
 
-	else if(I.tool_behaviour == TOOL_SCREWDRIVER)
-		if(!(machine_stat & BROKEN))
-			verted = verted * -1
-			update_move_direction()
-			to_chat(user, "<span class='notice'>You reverse [src]'s direction.</span>")
+/obj/machinery/conveyor/wrench_act(mob/living/user, obj/item/I)
+	if(machine_stat & BROKEN)
+		return TRUE
+	I.play_tool_sound(src)
+	setDir(turn(dir,-45))
+	update_move_direction()
+	to_chat(user, "<span class='notice'>You rotate [src].</span>")
+	return TRUE
 
-	else if(user.a_intent != INTENT_HARM)
+/obj/machinery/conveyor/screwdriver_act(mob/living/user, obj/item/I)
+	if(machine_stat & BROKEN)
+		return TRUE
+	verted = verted * -1
+	update_move_direction()
+	to_chat(user, "<span class='notice'>You reverse [src]'s direction.</span>")
+	return TRUE
+
+/obj/machinery/conveyor/attackby(obj/item/I, mob/living/user, def_zone)
+	. = ..()
+	if(!.)
 		user.transferItemToLoc(I, drop_location())
-	else
-		return ..()
 
 // attack with hand, move pulled object onto conveyor
 /obj/machinery/conveyor/attack_hand(mob/user)
@@ -316,19 +320,18 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 
 /// Called when a user clicks on this switch with an open hand.
 /obj/machinery/conveyor_switch/interact(mob/user)
-	add_fingerprint(user)
+	add_fingerprint(user, "interact")
 	update_position()
 	update_icon()
 	update_linked_conveyors()
 	update_linked_switches()
 
 
-/obj/machinery/conveyor_switch/attackby(obj/item/I, mob/user, params)
-	if(I.tool_behaviour == TOOL_CROWBAR)
-		var/obj/item/conveyor_switch_construct/C = new/obj/item/conveyor_switch_construct(src.loc)
-		C.id = id
-		to_chat(user, "<span class='notice'>You detach the conveyor switch.</span>")
-		qdel(src)
+/obj/machinery/conveyor_switch/crowbar_act(mob/living/user, obj/item/I)
+	var/obj/item/conveyor_switch_construct/C = new/obj/item/conveyor_switch_construct(src.loc)
+	C.id = id
+	to_chat(user, "<span class='notice'>You detach the conveyor switch.</span>")
+	qdel(src)
 
 
 /obj/machinery/conveyor_switch/oneway
