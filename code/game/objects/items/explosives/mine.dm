@@ -112,7 +112,6 @@ Stepping directly on the mine will also blow it up
 	trip_mine(A)
 
 /obj/item/explosive/mine/proc/trip_mine(mob/living/L)
-	. = ..()
 	if(!armed || triggered)
 		return FALSE
 	if((L.status_flags & INCORPOREAL))
