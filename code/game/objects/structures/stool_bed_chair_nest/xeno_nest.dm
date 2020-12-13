@@ -132,7 +132,6 @@
 	DISABLE_BITFIELD(buckled_mob.restrained_flags, RESTRAINED_XENO_NEST)
 
 
-/obj/structure/bed/nest/update_icon()
 /obj/structure/bed/nest/update_overlays()
 	. = ..()
 	if(LAZYLEN(buckled_mobs))
