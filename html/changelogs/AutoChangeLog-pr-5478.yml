@@ -1,0 +1,6 @@
+author: "SplinterGP"
+delete-after: True
+changes: 
+  - bugfix: "fixes fire not lighting xenos on fire."
+  - bugfix: "fixes acid globs stored on boiler not glowing."
+  - code_imp: "makes xenos use newlights."
