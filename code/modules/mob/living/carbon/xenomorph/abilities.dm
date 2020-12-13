@@ -465,29 +465,40 @@
 			to_chat(owner, "<span class='warning'>We need to be closer to [target].</span>")
 		return FALSE
 
+	if(target.plasma_stored >= target.xeno_caste.plasma_max) //We can't select targets that won't benefit
+		to_chat(owner, "<span class='xenowarning'>[target] already has full plasma.</span>")
+		return FALSE
+
 /datum/action/xeno_action/activable/transfer_plasma/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/carbon/xenomorph/target = A
 
 	to_chat(X, "<span class='notice'>We start focusing our plasma towards [target].</span>")
+	new /obj/effect/temp_visual/transfer_plasma(get_turf(X)) //Cool SFX that confirms our source and our target
+	new /obj/effect/temp_visual/transfer_plasma(get_turf(target)) //Cool SFX that confirms our source and our target
+	playsound(X, "alien_drool", 25)
+
 	if(!do_after(X, transfer_delay, TRUE, null, BUSY_ICON_FRIENDLY))
 		return fail_activate()
 
 	if(!can_use_ability(A))
 		return fail_activate()
 
+	target.beam(X,"drain_life",'icons/effects/beam.dmi',10, 10,/obj/effect/ebeam,1) //visual SFX
+	target.add_filter("transfer_plasma_outline", 3, list("type" = "outline", "size" = 1, "color" = COLOR_STRONG_MAGENTA))
+	addtimer(CALLBACK(target, /atom.proc/remove_filter, "transfer_plasma_outline"), 1 SECONDS) //Failsafe blur removal
+
 	var/amount = plasma_transfer_amount
 	if(X.plasma_stored < plasma_transfer_amount)
 		amount = X.plasma_stored //Just use all of it
 
-	if(target.plasma_stored >= target.xeno_caste.plasma_max)
-		to_chat(X, "<span class='xenowarning'>[target] already has full plasma.</span>")
-		return
+	else //Otherwise transfer as much as the target can use
+		amount = clamp(target.xeno_caste.plasma_max - target.plasma_stored, 0, plasma_transfer_amount)
 
 	X.use_plasma(amount)
 	target.gain_plasma(amount)
-	to_chat(target, "<span class='xenowarning'>[X] has transfered [amount] units of plasma to us. We now have [target.plasma_stored]/[target.xeno_caste.plasma_max].</span>")
-	to_chat(X, "<span class='xenowarning'>We have transferred [amount] units of plasma to [target]. We now have [X.plasma_stored]/[X.xeno_caste.plasma_max].</span>")
+	to_chat(target, "<span class='xenodanger'>[X] has transfered [amount] units of plasma to us. We now have [target.plasma_stored]/[target.xeno_caste.plasma_max].</span>")
+	to_chat(X, "<span class='xenodanger'>We have transferred [amount] units of plasma to [target]. We now have [X.plasma_stored]/[X.xeno_caste.plasma_max].</span>")
 	playsound(X, "alien_drool", 25)
 
 //Xeno Larval Growth Sting
