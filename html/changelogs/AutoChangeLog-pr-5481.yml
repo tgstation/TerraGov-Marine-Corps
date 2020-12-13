@@ -1,0 +1,4 @@
+author: "SplinterGP"
+delete-after: True
+changes: 
+  - bugfix: "fixes bug and runtime error on scopes not unzooming on some occasions(quickstoring, dropping, etc)."
