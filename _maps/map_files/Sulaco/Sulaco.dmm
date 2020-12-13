@@ -288,45 +288,6 @@
 "abV" = (
 /turf/open/floor/mainship/empty,
 /area/sulaco/cargo)
-<<<<<<< HEAD
-"abW" = (
-/obj/machinery/power/apc/mainship,
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/sulaco/disposal)
-"abX" = (
-/obj/item/stool,
-/obj/machinery/door_control/mainship/engineering{
-	id = "Disposal Exit";
-	name = "Disposal Vent Control";
-	pixel_y = 36
-	},
-/obj/machinery/camera/autoname,
-/obj/machinery/driver_button{
-	id = "garbage";
-	name = "Garbage Launcher";
-	pixel_y = 24
-	},
-/turf/open/floor/plating,
-/area/sulaco/disposal)
-"abY" = (
-/obj/machinery/conveyor_switch/oneway{
-	id = "garbage";
-	name = "disposal coveyor"
-	},
-/turf/open/floor/plating,
-/area/sulaco/disposal)
-"abZ" = (
-/obj/machinery/portable_atmospherics/canister/oxygen,
-/turf/open/floor/plating,
-/area/sulaco/disposal)
-"aca" = (
-/obj/machinery/portable_atmospherics/canister/oxygen,
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/plating,
-/area/sulaco/disposal)
-=======
->>>>>>> master
 "acb" = (
 /turf/closed/wall/mainship/gray,
 /area/sulaco/medbay/surgery_one)
