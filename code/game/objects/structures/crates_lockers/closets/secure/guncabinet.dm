@@ -16,7 +16,7 @@
 	..()
 	update_icon()
 
-/obj/structure/closet/secure_closet/guncabinet/update_icon()
+/obj/structure/closet/secure_closet/guncabinet/update_overlays()
 	. = ..()
 	if(opened)
 		. += image(icon,"door_open")
