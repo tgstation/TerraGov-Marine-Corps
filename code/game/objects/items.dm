@@ -727,13 +727,18 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		else if(!istype(src, /obj/item/attachable/scope))
 			user.set_interaction(src)
 
+		
+/obj/item/proc/zoom_item_turnoff(datum/source, mob/living/carbon/user)
+	SIGNAL_HANDLER
+	zoom(user)
+
 /obj/item/proc/onzoom(mob/living/user)
 	RegisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_CARBON_SWAPPED_HANDS), .proc/zoom)
-	RegisterSignal(src, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED), .proc/zoom)
+	RegisterSignal(src, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED), .proc/zoom_item_turnoff)
 
 /obj/item/proc/onunzoom(mob/living/user)
 	UnregisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_CARBON_SWAPPED_HANDS))
-	UnregisterSignal(src, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED, .proc/zoom))
+	UnregisterSignal(src, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED))
 
 
 /obj/item/proc/eyecheck(mob/user)

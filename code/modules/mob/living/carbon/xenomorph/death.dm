@@ -21,7 +21,7 @@
 	if(is_zoomed)
 		zoom_out()
 
-	set_light(0)
+	set_light_on(FALSE)
 
 	if(hud_used)
 		if(hud_used.healths)
