@@ -453,8 +453,10 @@
 	X.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
 	X.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
 
-	X.visible_message("<span class='xenodanger'>\The [X] hits [src] in the [target_zone] with a [punch_description] punch!</span>", \
-		"<span class='xenodanger'>We hit [src] in the [target_zone] with a [punch_description] punch!</span>", visible_message_flags = COMBAT_MESSAGE)
+	var/target_location_feedback = get_living_limb_descriptive_name(target_zone)
+
+	X.visible_message("<span class='xenodanger'>\The [X] hits [src] in the [target_location_feedback] with a [punch_description] punch!</span>", \
+		"<span class='xenodanger'>We hit [src] in the [target_location_feedback] with a [punch_description] punch!</span>", visible_message_flags = COMBAT_MESSAGE)
 
 	adjust_stagger(stagger_stacks)
 	add_slowdown(slowdown_stacks)

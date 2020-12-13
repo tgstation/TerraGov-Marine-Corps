@@ -95,3 +95,29 @@
 #undef FF_VICTIM_LIST
 #undef FF_DAMAGE_OUTGOING
 #undef FF_DAMAGE_INCOMING
+
+///Gives us a more natural sounding limb name for descriptions and such
+/mob/living/proc/get_living_limb_descriptive_name(target_zone)
+	if(!target_zone)
+		return
+
+	var/target_location_feedback = target_zone
+	switch(target_location_feedback)
+		if("r_leg")
+			target_location_feedback = "right leg"
+		if("l_leg")
+			target_location_feedback = "left leg"
+		if("r_foot")
+			target_location_feedback = "right foot"
+		if("l_foot")
+			target_location_feedback = "left foot"
+		if("r_arm")
+			target_location_feedback = "right arm"
+		if("l_arm")
+			target_location_feedback = "left arm"
+		if("r_hand")
+			target_location_feedback = "right hand"
+		if("l_hand")
+			target_location_feedback = "left hand"
+
+	return target_location_feedback
