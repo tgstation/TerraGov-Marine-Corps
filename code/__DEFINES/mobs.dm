@@ -563,6 +563,8 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 #define HYPERVENE_REMOVAL_AMOUNT	8
 
+#define GAS_INHALE_REAGENT_TRANSFER_AMOUNT	7
+
 // Squad ID defines moved from game\jobs\job\squad.dm
 #define NO_SQUAD 0
 #define ALPHA_SQUAD 1

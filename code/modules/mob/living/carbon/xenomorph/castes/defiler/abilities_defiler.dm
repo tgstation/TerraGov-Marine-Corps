@@ -104,7 +104,7 @@
 		smoke_range = 3
 	else if(X.selected_reagent == /datum/reagent/toxin/xeno_transvitox)
 		N.smoke_type = /obj/effect/particle_effect/smoke/xeno/transvitox
-		N.strength = -0.75
+		N.strength = 0.75
 		smoke_range = 4
 	while(count)
 		if(X.stagger) //If we got staggered, return
