@@ -200,11 +200,6 @@ WEAPONS
 	contains = list(/obj/item/weapon/gun/rifle/m4ra)
 	cost = 80
 
-/datum/supply_packs/weapons/specscoutmbx
-	name = "Scout Specialist kit (MBR-900)"
-	contains = list(/obj/item/weapon/gun/shotgun/pump/lever/mbx900)
-	cost = 80
-
 /datum/supply_packs/weapons/specdemo
 	name = "Demolitionist Specialist kit"
 	contains = list(/obj/item/weapon/gun/launcher/rocket/sadar)
@@ -496,21 +491,6 @@ AMMO
 	name = "T-81 IFF sniper magazine"
 	contains = list(/obj/item/ammo_magazine/rifle/autosniper)
 	cost = 3
-
-/datum/supply_packs/ammo/mbx900
-	name = "MBX-900 Sabot Shells"
-	contains = list(/obj/item/ammo_magazine/shotgun/mbx900)
-	cost = 5
-
-/datum/supply_packs/ammo/mbx900/buckshot
-	name = "MBX-900 Buckshot Shells"
-	contains = list(/obj/item/ammo_magazine/shotgun/mbx900/buckshot)
-	cost = 5
-
-/datum/supply_packs/ammo/mbx900/tracker
-	name = "MBX-900 Tracker Shells"
-	contains = list(/obj/item/ammo_magazine/shotgun/mbx900/tracking)
-	cost = 5
 
 /datum/supply_packs/ammo/rpg_regular
 	name = "T-152 RPG HE rocket"
@@ -1186,6 +1166,26 @@ Imports
 /datum/supply_packs/imports
 	group = "Imports"
 	containertype = /obj/structure/closet/crate/weapon
+
+/datum/supply_packs/imports/specscoutmbx
+	name = "MBX-900 Lever Action Shotgun"
+	contains = list(/obj/item/weapon/gun/shotgun/pump/lever/mbx900)
+	cost = 15
+
+/datum/supply_packs/imports/mbx900
+	name = "MBX-900 Sabot Shells"
+	contains = list(/obj/item/ammo_magazine/shotgun/mbx900)
+	cost = 5
+
+/datum/supply_packs/imports/mbx900/buckshot
+	name = "MBX-900 Buckshot Shells"
+	contains = list(/obj/item/ammo_magazine/shotgun/mbx900/buckshot)
+	cost = 5
+
+/datum/supply_packs/imports/mbx900/tracker
+	name = "MBX-900 Tracker Shells"
+	contains = list(/obj/item/ammo_magazine/shotgun/mbx900/tracking)
+	cost = 5
 
 /datum/supply_packs/imports/m41a
 	name = "M41A Pulse Rifle"
