@@ -522,16 +522,13 @@
 
 /datum/reagent/toxin/xeno_hemodile //slows by 25% and 50% based on base movement speed of marine with shoes on and deals an additional 20% of damage received as stamina damage
 	name = "Hemodile"
-	description = "A stamina draining toxin. Causes increased stamina loss and slower movement."
+	description = "Impedes motor functions and muscle response, causing slower movement."
 	reagent_state = LIQUID
 	color = "#602CFF"
 	custom_metabolism = 0.4
 	overdose_threshold = 10000
 	scannable = TRUE
 	toxpwr = 0
-
-/datum/reagent/toxin/xeno_hemodile/on_mob_add(mob/living/L, metabolism, affecting)
-	RegisterSignal(L, COMSIG_HUMAN_DAMAGE_TAKEN, .proc/hemodile_human_damage_taken)
 
 /datum/reagent/toxin/xeno_hemodile/on_mob_life(mob/living/L, metabolism)
 	if(prob(25))
@@ -545,22 +542,18 @@
 	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
 		slowdown_multiplier *= 2
 
-	L.add_movespeed_modifier(MOVESPEED_ID_XENO_HEMODILE, TRUE, 0, NONE, TRUE, 1 * slowdown_multiplier)
+	L.add_movespeed_modifier(MOVESPEED_ID_XENO_HEMODILE, TRUE, 0, NONE, TRUE, 1.25 * slowdown_multiplier)
 
 	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox)) //Combo effect
 		L.adjust_stagger(1)
 	return ..()
-
-/datum/reagent/toxin/xeno_hemodile/proc/hemodile_human_damage_taken(mob/living/L, damage)
-	SIGNAL_HANDLER
-	L.adjustStaminaLoss(damage*0.2)
 
 /datum/reagent/toxin/xeno_hemodile/on_mob_delete(mob/living/L, metabolism)
 	L.remove_movespeed_modifier(MOVESPEED_ID_XENO_HEMODILE)
 
 /datum/reagent/toxin/xeno_transvitox //when damage is received, converts brute/burn equal to 50% of damage received to tox damage
 	name = "Transvitox"
-	description = "Heals brute and burn wounds, while producing toxins."
+	description = "Heals brute and burn wounds, converting damage to toxins and causing fatigue."
 	reagent_state = LIQUID
 	color = "#94FF00"
 	custom_metabolism = 0.4
@@ -573,18 +566,21 @@
 
 /datum/reagent/toxin/xeno_transvitox/on_mob_life(mob/living/L, metabolism)
 	if(prob(25))
-		to_chat(L, "<span class='warning'>You notice being strangely revitalised.</span>")
+		to_chat(L, "<span class='warning'>You notice your wounds crusting over with disgusting green ichor.</span>")
 	return ..()
 
 /datum/reagent/toxin/xeno_transvitox/proc/transvitox_human_damage_taken(mob/living/L, damage)
 	SIGNAL_HANDLER
+
 	var/tox_cap_multiplier = 1
 
 	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile)) //Each other Defiler toxin increases the multiplier by 50%
-		tox_cap_multiplier *= 1.5
+		tox_cap_multiplier *= 2
 
 	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
-		tox_cap_multiplier *= 1.5
+		tox_cap_multiplier *= 2
+
+	L.adjustStaminaLoss(damage*0.15*tox_cap_multiplier)
 
 	var/dam = min(damage*0.4, 45 * tox_cap_multiplier - L.getToxLoss()) // hard caps damage conversion to not exceed 45 tox * tox_cap_multiplier
 	if((L.getBruteLoss() + L.getFireLoss()) < dam)

@@ -40,9 +40,8 @@
 
 	if(!owner.Adjacent(A))
 		var/mob/living/carbon/xenomorph/X = owner
-		if(!silent && world.time > (X.recent_notice + X.notice_delay))
+		if(!silent)
 			to_chat(X, "<span class='warning'>We can't reach this target!</span>")
-			X.recent_notice = world.time //anti-notice spam
 		return FALSE
 
 
