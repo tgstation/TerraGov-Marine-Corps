@@ -67,13 +67,13 @@
 /obj/machinery/roomba/attackby(obj/item/I, mob/living/user, def_zone)
 	if(!istype(I, /obj/item/explosive/mine) || claymore)
 		return
-	visible_message("[user] begins to try to attach [I] to [src]...")
+	visible_message("<span class='warning'>[user] begins to try to attach [I] to [src]...</span>")
 	stop_processing()
 	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_HOSTILE))
 		start_processing()
 		return
 	start_processing()
-	visible_message("[user] slams [I]'s prongs through [src]!")
+	visible_message("<span class='warning'>[user] slams [I]'s prongs through [src]!</span>")
 	log_game("[user] has armed [src] with a claymore at [AREACOORD(src)]")
 	user.temporarilyRemoveItemFromInventory(I)
 	I.forceMove(src)
