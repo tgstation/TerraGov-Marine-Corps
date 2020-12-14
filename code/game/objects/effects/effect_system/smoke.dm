@@ -272,6 +272,12 @@
 	color = "#ffbf58" //Mustard orange?
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_NEURO|SMOKE_GASP|SMOKE_COUGH
 
+//Xeno neurotox smoke.
+/obj/effect/particle_effect/smoke/xeno/neuro/light
+	alpha = 60
+	opacity = FALSE
+	smoke_can_spread_through = TRUE
+
 /obj/effect/particle_effect/smoke/xeno/hemodile
 	alpha = 40
 	opacity = FALSE
@@ -320,6 +326,9 @@ datum/effect_system/smoke_spread/tactical
 
 /datum/effect_system/smoke_spread/xeno/neuro
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/neuro
+
+/datum/effect_system/smoke_spread/xeno/neuro/light
+	smoke_type = /obj/effect/particle_effect/smoke/xeno/neuro/light
 
 /////////////////////////////////////////////
 // Chem smoke
