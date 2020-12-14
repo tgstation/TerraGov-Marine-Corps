@@ -32071,13 +32071,6 @@
 	},
 /turf/open/floor/wood,
 /area/prison/library)
-"bVV" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/obj/machinery/power/port_gen/pacman/super,
-/turf/open/floor/plating,
-/area/prison/engineering)
 "bVW" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -32085,19 +32078,20 @@
 /turf/open/floor/plating,
 /area/prison/engineering)
 "bVX" = (
+/obj/structure/cable,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/structure/cable,
 /turf/open/floor/plating,
 /area/prison/engineering)
 "bVY" = (
-/obj/structure/rack,
-/obj/effect/spawner/random/tool,
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
+/obj/structure/cable,
+/obj/machinery/power/geothermal{
+	desc = "A thermoelectric generator fueled by searing hot uranium!";
+	fail_rate = 5;
+	name = "thermoelectric generator"
 	},
-/turf/open/floor/plating,
+/turf/open/floor/prison,
 /area/prison/engineering)
 "bVZ" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -32489,6 +32483,9 @@
 /area/prison/cellblock/protective)
 "bXw" = (
 /obj/machinery/power/port_gen/pacman/super,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/prison/engineering)
 "bXx" = (
@@ -32502,6 +32499,11 @@
 "bXz" = (
 /obj/machinery/light/small{
 	dir = 4
+	},
+/obj/structure/rack,
+/obj/effect/spawner/random/tool,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/prison/engineering)
@@ -32916,8 +32918,7 @@
 /turf/open/floor/prison/plate,
 /area/prison/cellblock/protective)
 "bYP" = (
-/obj/effect/spawner/random/toolbox,
-/obj/structure/table/reinforced,
+/obj/machinery/power/port_gen/pacman/super,
 /turf/open/floor/prison,
 /area/prison/engineering)
 "bYQ" = (
@@ -33787,6 +33788,7 @@
 /obj/structure/table/reinforced,
 /obj/item/folder,
 /obj/item/assembly/signaler,
+/obj/effect/spawner/random/toolbox,
 /turf/open/floor/prison,
 /area/prison/engineering)
 "cbJ" = (
@@ -88053,7 +88055,7 @@ bQe
 bQe
 bQe
 bQe
-bVV
+bVY
 bXw
 bYP
 cat
@@ -88310,8 +88312,8 @@ bQf
 bRA
 bRA
 bRA
+bRA
 bVW
-bXx
 bYQ
 cau
 cbJ
@@ -88567,8 +88569,8 @@ bHo
 cuT
 cuT
 cuT
+cuT
 bVX
-bUF
 bYR
 bOZ
 bXx

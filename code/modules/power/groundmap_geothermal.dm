@@ -15,13 +15,23 @@
 	var/power_generation_max = 100000 //Full capacity
 	var/buildstate = GEOTHERMAL_HEAVY_DAMAGE //What state of building it are we on, 0-3, 1 is "broken", the default
 	var/is_on = FALSE  //Is this damn thing on or what?
-	var/fail_rate = 0 //% chance of failure each fail_tick check
+	///% chance of failure each fail_tick check
+	var/fail_rate = 0
 	var/fail_check_ticks = 100 //Check for failure every this many ticks
 	var/cur_tick = 0 //Tick updater
 	///Hive it should be powering and whether it should be generating hive psycic points instead of power on process()
 	var/corrupted = 0
 	///how many points this generator will make per tick
 	var/corrupt_point_amout = 0.1
+	///whether we wil allow these to be corrupted
+	var/is_corruptible = TRUE
+
+/obj/machinery/power/geothermal/examine(mob/user, distance, infix, suffix)
+	. = ..()
+	if(corrupted)
+		to_chat(user, "It is covered in writhing tendrils [!isxeno(user) ? "that could be cut away with a welder" : ""].")
+	if(!isxeno(user) && !is_corruptible)
+		to_chat(user, "It is reinforced, making us not able to corrupt it.")
 
 /obj/machinery/power/geothermal/should_have_node()
 	return TRUE
@@ -263,6 +273,10 @@
 	power_generation_max = 1e+6
 	corrupt_point_amout = 1
 
+/obj/machinery/power/geothermal/reinforced
+	name = "\improper Reinforced Reactor Turbine"
+	is_corruptible = FALSE
+
 #undef GEOTHERMAL_NO_DAMAGE
 #undef GEOTHERMAL_LIGHT_DAMAGE
 #undef GEOTHERMAL_MEDIUM_DAMAGE
@@ -461,25 +475,26 @@
 		return FALSE
 
 /obj/machinery/colony_floodlight/examine(mob/user)
-	..()
-	if(ishuman(user))
-		if(damaged)
-			to_chat(user, "<span class='warning'>It is damaged.</span>")
-			if(user.skills.getRating("engineer") >= SKILL_ENGINEER_ENGI)
-				if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
-					to_chat(user, "<span class='info'>You must first open its maintenance hatch.</span>")
-				else
-					switch(repair_state)
-						if(FLOODLIGHT_REPAIR_WELD)
-							to_chat(user, "<span class='info'>You must weld the damage to it.</span>")
-						if(FLOODLIGHT_REPAIR_WIRECUTTER)
-							to_chat(user, "<span class='info'>You must mend its damaged cables.</span>")
-						else
-							to_chat(user, "<span class='info'>You must screw its maintenance hatch closed.</span>")
-		else if(!is_lit)
-			to_chat(user, "<span class='info'>It doesn't seem powered.</span>")
-		if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
-			to_chat(user, "<span class='notice'>The maintenance hatch is open.</span>")
+	. = ..()
+	if(!ishuman(user))
+		return
+	if(damaged)
+		to_chat(user, "<span class='warning'>It is damaged.</span>")
+		if(user.skills.getRating("engineer") >= SKILL_ENGINEER_ENGI)
+			if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
+				to_chat(user, "<span class='info'>You must first open its maintenance hatch.</span>")
+			else
+				switch(repair_state)
+					if(FLOODLIGHT_REPAIR_WELD)
+						to_chat(user, "<span class='info'>You must weld the damage to it.</span>")
+					if(FLOODLIGHT_REPAIR_WIRECUTTER)
+						to_chat(user, "<span class='info'>You must mend its damaged cables.</span>")
+					else
+						to_chat(user, "<span class='info'>You must screw its maintenance hatch closed.</span>")
+	else if(!is_lit)
+		to_chat(user, "<span class='info'>It doesn't seem powered.</span>")
+	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
+		to_chat(user, "<span class='notice'>The maintenance hatch is open.</span>")
 
 /obj/machinery/colony_floodlight/proc/toggle_light(switch_on)
 	if(!fswitch) //no master, should never happen

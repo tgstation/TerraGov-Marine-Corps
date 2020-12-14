@@ -723,6 +723,9 @@
 
 /datum/action/xeno_action/activable/corrupt_generator/use_ability(atom/A)
 	var/obj/machinery/power/geothermal/gen = A
+	if(!gen.is_corruptible)
+		to_chat(owner, "<span class='warning'>[A] is reinforced and cannot be corrupted!</span>")
+		return fail_activate()
 	if(!do_after(owner, 10 SECONDS, TRUE, gen, BUSY_ICON_HOSTILE))
 		return fail_activate()
 	var/mob/living/carbon/xenomorph/X = owner

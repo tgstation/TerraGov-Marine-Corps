@@ -13253,14 +13253,11 @@
 /turf/closed/wall,
 /area/lv624/lazarus/engineering)
 "bkB" = (
-/obj/machinery/colony_floodlight_switch{
-	pixel_y = 30
-	},
 /obj/effect/decal/warning_stripes{
 	pixel_y = 30
 	},
 /obj/structure/cable,
-/turf/open/floor/plating,
+/turf/closed/wall,
 /area/lv624/lazarus/engineering)
 "bkD" = (
 /obj/machinery/power/smes/buildable/empty{
@@ -13379,11 +13376,8 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
 "blk" = (
-/obj/machinery/door/airlock/mainship/engineering/free_access{
-	name = "\improper Engineering Dome"
-	},
-/obj/structure/cable,
-/turf/open/floor/tile/dark,
+/obj/machinery/power/monitor,
+/turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
 "bln" = (
 /obj/structure/cable,
@@ -13551,11 +13545,8 @@
 	},
 /area/lv624/lazarus/engineering)
 "blT" = (
-/obj/machinery/power/monitor{
-	name = "Main Power Grid Monitoring"
-	},
 /obj/structure/cable,
-/turf/open/floor/plating,
+/turf/closed/wall,
 /area/lv624/lazarus/engineering)
 "blU" = (
 /obj/item/clothing/head/hardhat/orange,
@@ -13889,11 +13880,11 @@
 	},
 /area/lv624/lazarus/engineering)
 "bnn" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 8
+/obj/structure/cable,
+/obj/machinery/door/airlock/mainship/engineering/free_access{
+	name = "\improper Engineering Dome"
 	},
 /obj/structure/cable,
-/obj/machinery/power/monitor,
 /turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
 "bno" = (
@@ -14554,7 +14545,7 @@
 /area/lv624/ground/jungle2)
 "bqj" = (
 /obj/structure/cable,
-/obj/machinery/power/geothermal,
+/obj/machinery/power/geothermal/reinforced,
 /turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
 "bqm" = (
@@ -14673,7 +14664,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/machinery/power/geothermal,
+/obj/machinery/power/geothermal/reinforced,
 /turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
 "bqS" = (
@@ -15055,7 +15046,9 @@
 	},
 /area/lv624/ground/jungle7)
 "bKi" = (
-/obj/machinery/computer/nuke_disk_generator/blue,
+/obj/machinery/colony_floodlight_switch{
+	pixel_y = 30
+	},
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
 "bNK" = (
@@ -15882,6 +15875,13 @@
 	dir = 4
 	},
 /area/shuttle/drop2/lz2)
+"jOE" = (
+/obj/structure/cable,
+/obj/machinery/power/monitor{
+	name = "Main Power Grid Monitoring"
+	},
+/turf/open/floor/plating,
+/area/lv624/lazarus/engineering)
 "jTU" = (
 /turf/open/floor/marking/warning/corner{
 	dir = 8
@@ -15943,6 +15943,10 @@
 /obj/structure/jungle/vines,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle1)
+"kDa" = (
+/obj/machinery/power/geothermal,
+/turf/open/floor/plating,
+/area/lv624/lazarus/engineering)
 "kFx" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/wall/resin,
@@ -16631,6 +16635,11 @@
 	},
 /turf/open/floor/tile/bar,
 /area/lv624/lazarus/canteen)
+"sgS" = (
+/obj/structure/cable,
+/obj/machinery/computer/nuke_disk_generator/blue,
+/turf/open/floor/plating,
+/area/lv624/lazarus/engineering)
 "six" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/dirt,
@@ -33176,11 +33185,11 @@ gMl
 aHT
 aOs
 hAH
-bkA
 blk
-bkA
-bkA
-bnn
+blj
+kDa
+kDa
+bnQ
 bnQ
 boI
 bkA
@@ -33356,7 +33365,7 @@ aYv
 aOs
 hAH
 bkB
-blj
+bnn
 blT
 bkA
 bno
@@ -33715,7 +33724,7 @@ aEy
 hAH
 bkD
 bln
-blj
+sgS
 bkA
 bnq
 boH
@@ -34073,7 +34082,7 @@ biZ
 hAH
 bkD
 bln
-blj
+jOE
 bkA
 bno
 bnV

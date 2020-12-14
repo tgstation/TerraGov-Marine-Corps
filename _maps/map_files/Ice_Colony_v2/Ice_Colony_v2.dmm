@@ -963,7 +963,8 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/structure/reagent_dispensers/fueltank,
+/obj/structure/table,
+/obj/effect/spawner/random/tool,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 5
 	},
@@ -17919,8 +17920,8 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/requesition)
 "bij" = (
-/obj/machinery/power/geothermal,
 /obj/structure/cable,
+/obj/machinery/power/geothermal/reinforced,
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/underground/hangar)
 "bik" = (
@@ -21507,14 +21508,14 @@
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/hallway/north_west)
 "buE" = (
-/obj/machinery/power/geothermal,
 /obj/structure/cable,
+/obj/machinery/power/geothermal/reinforced,
 /turf/open/floor/plating,
 /area/ice_colony/underground/engineering/substation)
 "buF" = (
-/obj/machinery/power/geothermal,
 /obj/structure/cable,
 /obj/machinery/light/small,
+/obj/machinery/power/geothermal/reinforced,
 /turf/open/floor/plating,
 /area/ice_colony/underground/engineering/substation)
 "buG" = (
@@ -30920,11 +30921,11 @@
 	},
 /area/ice_colony/underground/security/hallway)
 "bYO" = (
-/obj/machinery/power/geothermal,
 /obj/structure/cable,
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/machinery/power/geothermal/reinforced,
 /turf/open/floor/plating,
 /area/ice_colony/underground/engineering/substation)
 "bYP" = (
@@ -32182,6 +32183,11 @@
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/south/excavation)
+"gOM" = (
+/obj/structure/cable,
+/obj/structure/reagent_dispensers/fueltank,
+/turf/open/floor/plating/platebot,
+/area/ice_colony/surface/engineering/generator)
 "gWG" = (
 /obj/effect/landmark/monkey_spawn,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
@@ -71842,7 +71848,7 @@ acz
 acz
 acz
 aeh
-adC
+gOM
 aej
 aeO
 adC
@@ -72099,7 +72105,7 @@ adj
 adj
 adj
 aeh
-adC
+gOM
 aej
 aeP
 aej

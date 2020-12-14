@@ -11678,6 +11678,12 @@
 	dir = 8
 	},
 /area/magmoor/medical/lobby)
+"iRl" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable,
+/obj/machinery/power/geothermal/reinforced,
+/turf/open/floor/plating,
+/area/magmoor/engi/power)
 "iRB" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
@@ -50301,7 +50307,7 @@ xhC
 qfk
 tdn
 tdn
-vfy
+iRl
 nMn
 vfy
 oJM
@@ -52631,7 +52637,7 @@ mNI
 qfk
 tdn
 tdn
-vfy
+iRl
 nMn
 vfy
 oof

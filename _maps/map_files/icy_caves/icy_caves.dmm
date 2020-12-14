@@ -2461,9 +2461,6 @@
 	dir = 1
 	},
 /area/icy_caves/caves/northern)
-"ol" = (
-/turf/open/floor/tile/dark/yellow2,
-/area/icy_caves/outpost/engineering)
 "on" = (
 /turf/closed/wall/r_wall,
 /area/icy_caves/outpost/LZ2)
@@ -3346,8 +3343,8 @@
 	},
 /area/icy_caves/outpost/outside)
 "tB" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 10
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 8
 	},
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
@@ -3629,12 +3626,6 @@
 /obj/structure/curtain/medical,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/medbay)
-"vm" = (
-/obj/structure/reagent_dispensers/fueltank,
-/turf/open/floor/tile/dark/yellow2{
-	dir = 10
-	},
-/area/icy_caves/outpost/engineering)
 "vo" = (
 /obj/machinery/light{
 	dir = 1
@@ -3660,10 +3651,7 @@
 /turf/open/floor/tile/dark/green2,
 /area/icy_caves/outpost/medbay)
 "vx" = (
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 1
-	},
-/obj/structure/cable,
+/obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/tile/dark/yellow2,
 /area/icy_caves/outpost/engineering)
 "vz" = (
@@ -4008,7 +3996,8 @@
 	},
 /area/icy_caves/outpost/LZ2)
 "yC" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/structure/cable,
+/obj/machinery/power/geothermal,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/engineering)
 "yE" = (
@@ -4488,6 +4477,7 @@
 /turf/open/floor/plating,
 /area/icy_caves/outpost/engineering)
 "BS" = (
+/obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 8
 	},
@@ -21271,8 +21261,8 @@ aB
 sh
 BS
 tm
-vm
 yx
+yC
 AS
 Ha
 Ha
@@ -21427,8 +21417,8 @@ rH
 si
 sv
 tm
-ol
-yC
+vx
+Bs
 Bs
 aW
 Bs
@@ -21738,8 +21728,8 @@ ro
 rM
 sj
 si
-si
-aE
+mp
+yx
 yx
 BI
 aW
@@ -21894,7 +21884,7 @@ ro
 rO
 si
 si
-si
+mp
 mp
 yE
 sv
@@ -22050,7 +22040,7 @@ ro
 rS
 si
 si
-si
+mp
 aE
 yx
 BR
