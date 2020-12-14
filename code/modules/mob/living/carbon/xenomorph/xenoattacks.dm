@@ -93,8 +93,7 @@
 			"<span class='danger'>We nudge our head against \the [src].</span>")
 			return 0
 
-		var/intent = force_intent ? force_intent : M.a_intent //force intent actually matters
-		switch(intent)
+		switch(force_intent ? force_intent : M.a_intent) //force intent actually matters
 			if(INTENT_HELP)
 
 				if(on_fire)
