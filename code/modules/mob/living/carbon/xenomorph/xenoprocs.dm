@@ -127,12 +127,9 @@
 		if(!hive_queen.client)
 			queen_text += " <i>(SSD)</i>"
 
-	var/xeno_tier_three_cap = hive.tier3_xeno_limit
-	var/xeno_tier_two_cap = hive.tier2_xeno_limit
-
 	dat += "<b>Total Living Sisters: [hive.get_total_xeno_number()]</b><BR>"
-	dat += "<b>Tier 3: ([length(hive.xenos_by_tier[XENO_TIER_THREE])]/[xeno_tier_three_cap]) Sisters</b>[tier3counts]<BR>"
-	dat += "<b>Tier 2: ([length(hive.xenos_by_tier[XENO_TIER_TWO])]/[xeno_tier_two_cap]) Sisters</b>[tier2counts]<BR>"
+	dat += "<b>Tier 3: ([length(hive.xenos_by_tier[XENO_TIER_THREE])]/[hive.tier3_xeno_limit]) Sisters</b>[tier3counts]<BR>"
+	dat += "<b>Tier 2: ([length(hive.xenos_by_tier[XENO_TIER_TWO])]/[hive.tier2_xeno_limit]) Sisters</b>[tier2counts]<BR>"
 	dat += "<b>Tier 1: [length(hive.xenos_by_tier[XENO_TIER_ONE])] Sisters</b>[tier1counts]<BR>"
 	dat += "<b>Larvas: [length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/larva])] Sisters<BR>"
 	dat += "<b>Queen: [queen_text]<BR>"
