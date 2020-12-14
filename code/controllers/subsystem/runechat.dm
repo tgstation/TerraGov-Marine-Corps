@@ -6,15 +6,15 @@
 #define BUCKET_LIMIT (world.time + TICKS2DS(min(BUCKET_LEN - (SSrunechat.practical_offset - DS2TICKS(world.time - SSrunechat.head_offset)) - 1, BUCKET_LEN - 1)))
 
 /**
-  * # Runechat Subsystem
-  *
-  * Maintains a timer-like system to handle destruction of runechat messages. Much of this code is modeled
-  * after or adapted from the timer subsystem.
-  *
-  * Note that this has the same structure for storing and queueing messages as the timer subsystem does
-  * for handling timers: the bucket_list is a list of chatmessage datums, each of which are the head
-  * of a circularly linked list. Any given index in bucket_list could be null, representing an empty bucket.
-  */
+ * # Runechat Subsystem
+ *
+ * Maintains a timer-like system to handle destruction of runechat messages. Much of this code is modeled
+ * after or adapted from the timer subsystem.
+ *
+ * Note that this has the same structure for storing and queueing messages as the timer subsystem does
+ * for handling timers: the bucket_list is a list of chatmessage datums, each of which are the head
+ * of a circularly linked list. Any given index in bucket_list could be null, representing an empty bucket.
+ */
 SUBSYSTEM_DEF(runechat)
 	name = "Runechat"
 	flags = SS_TICKER | SS_NO_INIT
@@ -119,14 +119,14 @@ SUBSYSTEM_DEF(runechat)
 	second_queue |= SSrunechat.second_queue
 
 /**
-  * Enters the runechat subsystem with this chatmessage, inserting it into the end-of-life queue
-  *
-  * This will also account for a chatmessage already being registered, and in which case
-  * the position will be updated to remove it from the previous location if necessary
-  *
-  * Arguments:
-  * * new_sched_destruction Optional, when provided is used to update an existing message with the new specified time
-  */
+ * Enters the runechat subsystem with this chatmessage, inserting it into the end-of-life queue
+ *
+ * This will also account for a chatmessage already being registered, and in which case
+ * the position will be updated to remove it from the previous location if necessary
+ *
+ * Arguments:
+ * * new_sched_destruction Optional, when provided is used to update an existing message with the new specified time
+ */
 /datum/chatmessage/proc/enter_subsystem(new_sched_destruction = 0)
 	// Get local references from subsystem as they are faster to access than the datum references
 	var/list/bucket_list = SSrunechat.bucket_list
@@ -157,7 +157,7 @@ SUBSYSTEM_DEF(runechat)
 
 	// Handle insertion into the secondary queue if the required time is outside our tracked amounts
 	if (scheduled_destruction >= BUCKET_LIMIT)
-		BINARY_INSERT(src, SSrunechat.second_queue, datum/chatmessage, src, scheduled_destruction, COMPARE_KEY)
+		BINARY_INSERT(src, SSrunechat.second_queue, /datum/chatmessage, src, scheduled_destruction, COMPARE_KEY)
 		return
 
 	// Get bucket position and a local reference to the datum var, it's faster to access this way
@@ -182,8 +182,8 @@ SUBSYSTEM_DEF(runechat)
 
 
 /**
-  * Removes this chatmessage datum from the runechat subsystem
-  */
+ * Removes this chatmessage datum from the runechat subsystem
+ */
 /datum/chatmessage/proc/leave_subsystem()
 	// Attempt to find the bucket that contains this chat message
 	var/bucket_pos = BUCKET_POS(scheduled_destruction)

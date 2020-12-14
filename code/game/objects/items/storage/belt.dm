@@ -616,8 +616,8 @@
 	return TRUE
 
 /obj/item/storage/belt/gun/m4a3
-	name = "\improper M276 pattern M4A3 holster rig"
-	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version has a holster assembly that allows one to carry the M4A3 comfortably secure. It also contains side pouches that can store 9mm or .45 magazines."
+	name = "\improper M4A3 holster rig"
+	desc = "The M4A3 is a common holster belt. It consists of a modular belt with various clips. This version has a holster assembly that allows one to carry a handgun. It also contains side pouches that can store 9mm or .45 magazines."
 	can_hold = list(
 		/obj/item/weapon/gun/pistol,
 		/obj/item/ammo_magazine/pistol,
@@ -625,7 +625,7 @@
 
 /obj/item/storage/belt/gun/m4a3/full/Initialize()
 	. = ..()
-	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/m4a3(src)
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/rt3(src)
 	new /obj/item/ammo_magazine/pistol/ap(src)
 	new /obj/item/ammo_magazine/pistol/hp(src)
 	new /obj/item/ammo_magazine/pistol/extended(src)
@@ -636,7 +636,7 @@
 
 /obj/item/storage/belt/gun/m4a3/officer/Initialize()
 	. = ..()
-	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/m4a3/custom(src)
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/rt3(src)
 	new /obj/item/ammo_magazine/pistol/hp(src)
 	new /obj/item/ammo_magazine/pistol/hp(src)
 	new /obj/item/ammo_magazine/pistol/ap(src)
@@ -805,3 +805,25 @@
 	new /obj/item/ammo_magazine/pistol/c99(src)
 	new /obj/item/ammo_magazine/pistol/c99(src)
 	new_gun.on_enter_storage(src)
+
+/obj/item/storage/belt/gun/ts34
+	name = "\improper M276 pattern TS-34 shotgun holster rig"
+	desc = "A purpose built belt-holster assembly that holds a TS-34 shotgun and one shell box or 2 handfuls."
+	icon_state = "ts34_holster"
+	item_state = "ts34_holster"
+	max_w_class = 4 //So it can hold the shotgun.
+	w_class = WEIGHT_CLASS_BULKY
+	storage_slots = 3
+	max_storage_space = 8
+	can_hold = list(
+		/obj/item/weapon/gun/shotgun/double/marine,
+		/obj/item/ammo_magazine/shotgun,
+		/obj/item/ammo_magazine/handful,
+	)
+
+/obj/item/storage/belt/gun/ts34/full/Initialize()
+	. = ..()
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/shotgun/double/marine(src)
+	new /obj/item/ammo_magazine/shotgun(src)
+	new_gun.on_enter_storage(src)
+

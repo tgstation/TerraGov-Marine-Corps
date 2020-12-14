@@ -77,7 +77,6 @@
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "soap"
 	w_class = WEIGHT_CLASS_TINY
-	throwforce = 0
 	throw_speed = 4
 	throw_range = 20
 

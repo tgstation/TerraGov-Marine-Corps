@@ -89,7 +89,7 @@
 			sql += ", "
 		sql += "commit_hash = '[GLOB.revdata.originmastercommit]'"
 	if(sql)
-		var/datum/DBQuery/query_round_game_mode = SSdbcore.NewQuery("UPDATE [format_table_name("round")] SET [sql] WHERE id = [GLOB.round_id]")
+		var/datum/db_query/query_round_game_mode = SSdbcore.NewQuery("UPDATE [format_table_name("round")] SET [sql] WHERE id = :roundid", list("roundid" = GLOB.round_id))
 		query_round_game_mode.Execute()
 		qdel(query_round_game_mode)
 
@@ -301,7 +301,7 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 		addtimer(CALLBACK(src, .proc/remove_fog), FOG_DELAY_INTERVAL + SSticker.round_start_time + rand(-5 MINUTES, 5 MINUTES))
 
 	if(flags_round_type & MODE_LZ_SHUTTERS)
-		addtimer(CALLBACK(GLOBAL_PROC, .proc/send_global_signal, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE), SSticker.round_start_time + 40 MINUTES)
+		addtimer(CALLBACK(GLOBAL_PROC, .proc/send_global_signal, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE), SSticker.round_start_time + 30 MINUTES)
 			//Called late because there used to be shutters opened earlier. To re-add them just copy the logic.
 
 	if(flags_round_type & MODE_XENO_SPAWN_PROTECT)
@@ -432,16 +432,18 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 		dat += "[GLOB.round_statistics.carrier_traps] hidey holes for huggers were made."
 	if(GLOB.round_statistics.sentinel_neurotoxin_stings)
 		dat += "[GLOB.round_statistics.sentinel_neurotoxin_stings] number of times Sentinels stung."
-	if(GLOB.round_statistics.drone_salvage_plasma)
-		dat += "[GLOB.round_statistics.drone_salvage_plasma] number of times Drones salvaged corpses."
-	if(GLOB.round_statistics.panther_neurotoxin_stings)
-		dat += "[GLOB.round_statistics.panther_neurotoxin_stings] number of times Panthers stung."
+	if(GLOB.round_statistics.drone_salvage_biomass)
+		dat += "[GLOB.round_statistics.drone_salvage_biomass] number of times Drones salvaged biomass from corpses."
 	if(GLOB.round_statistics.defiler_defiler_stings)
 		dat += "[GLOB.round_statistics.defiler_defiler_stings] number of times Defilers stung."
 	if(GLOB.round_statistics.defiler_neurogas_uses)
 		dat += "[GLOB.round_statistics.defiler_neurogas_uses] number of times Defilers vented neurogas."
 	if(GLOB.round_statistics.xeno_unarmed_attacks && GLOB.round_statistics.xeno_bump_attacks)
 		dat += "[GLOB.round_statistics.xeno_bump_attacks] bump attacks, which made up [(GLOB.round_statistics.xeno_bump_attacks / GLOB.round_statistics.xeno_unarmed_attacks) * 100]% of all attacks ([GLOB.round_statistics.xeno_unarmed_attacks])."
+	if(GLOB.round_statistics.xeno_headbites)
+		dat += "[GLOB.round_statistics.xeno_headbites] number of times victims headbitten."
+	if(GLOB.round_statistics.xeno_silo_corpses)
+		dat += "[GLOB.round_statistics.xeno_silo_corpses] number of corpses fed to resin silos."
 
 	var/output = jointext(dat, "<br>")
 	for(var/mob/player in GLOB.player_list)
@@ -555,18 +557,31 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 		return "" // append nothing
 
 	var/isadmin = check_rights(R_ADMIN, FALSE)
-	var/newpoll = FALSE
-	var/datum/DBQuery/query_get_new_polls = SSdbcore.NewQuery("SELECT id FROM [format_table_name("poll_question")] WHERE [(isadmin ? "" : "adminonly = false AND")] Now() BETWEEN starttime AND endtime AND id NOT IN (SELECT pollid FROM [format_table_name("poll_vote")] WHERE ckey = \"[sanitizeSQL(NP.ckey)]\") AND id NOT IN (SELECT pollid FROM [format_table_name("poll_textreply")] WHERE ckey = \"[sanitizeSQL(NP.ckey)]\")")
-	if(query_get_new_polls.Execute())
-		if(query_get_new_polls.NextRow())
-			newpoll = TRUE
-	qdel(query_get_new_polls)
-
-	if(newpoll)
-		return "<p><b><a href='byond://?src=[REF(NP)];showpoll=1'>Show Player Polls</A> (NEW!)</b></p>"
+	var/datum/db_query/query_get_new_polls = SSdbcore.NewQuery({"
+		SELECT id FROM [format_table_name("poll_question")]
+		WHERE (adminonly = 0 OR :isadmin = 1)
+		AND Now() BETWEEN starttime AND endtime
+		AND deleted = 0
+		AND id NOT IN (
+			SELECT pollid FROM [format_table_name("poll_vote")]
+			WHERE ckey = :ckey
+			AND deleted = 0
+		)
+		AND id NOT IN (
+			SELECT pollid FROM [format_table_name("poll_textreply")]
+			WHERE ckey = :ckey
+			AND deleted = 0
+		)
+	"}, list("isadmin" = isadmin, "ckey" = NP.ckey))
+	var/rs = REF(src)
+	if(!query_get_new_polls.Execute())
+		qdel(query_get_new_polls)
+		return
+	if(query_get_new_polls.NextRow())
+		. += "<p><b><a href='byond://?src=[rs];showpoll=1'>Show Player Polls</A> (NEW!)</b></p>"
 	else
-		return "<p><a href='byond://?src=[REF(NP)];showpoll=1'>Show Player Polls</A></p>"
-
+		. += "<p><a href='byond://?src=[rs];showpoll=1'>Show Player Polls</A></p>"
+	qdel(query_get_new_polls)
 
 /datum/game_mode/proc/CanLateSpawn(mob/new_player/NP, datum/job/job)
 	if(!isnewplayer(NP))

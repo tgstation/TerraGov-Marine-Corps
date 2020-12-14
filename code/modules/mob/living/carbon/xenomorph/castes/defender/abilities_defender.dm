@@ -10,6 +10,7 @@
 	use_state_flags = XACT_USE_CRESTED
 	cooldown_timer = 6 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_HEADBUTT
+	target_flags = XABB_MOB_TARGET
 
 /datum/action/xeno_action/activable/headbutt/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -143,7 +144,7 @@
 			H.apply_damage(damage, BRUTE, affecting, armor_block) //Crap base damage after armour...
 			H.apply_damage(damage, STAMINA) //...But some sweet armour ignoring Stamina
 			UPDATEHEALTH(H)
-			H.Paralyze(20)
+			H.Paralyze(5) //trip and go
 		GLOB.round_statistics.defender_tail_sweep_hits++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_tail_sweep_hits")
 		shake_camera(H, 2, 1)
@@ -176,7 +177,7 @@
 	action_icon_state = "charge"
 	mechanics_text = "Charge up to 4 tiles and knockdown any targets in our way."
 	ability_name = "charge"
-	cooldown_timer = 15 SECONDS
+	cooldown_timer = 10 SECONDS
 	plasma_cost = 80
 	use_state_flags = XACT_USE_CRESTED
 	keybind_signal = COMSIG_XENOABILITY_FORWARD_CHARGE

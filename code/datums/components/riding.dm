@@ -189,7 +189,7 @@
 		to_chat(user, "<span class='warning'>You'll need the keys in one of your hands to [drive_verb] [AM].</span>")
 
 /datum/component/riding/proc/Unbuckle(atom/movable/buckled_thing)
-	addtimer(CALLBACK(parent, /atom/movable/.proc/unbuckle_mob, buckled_thing), 0, TIMER_UNIQUE)
+	INVOKE_ASYNC(parent, /atom/movable/.proc/unbuckle_mob, buckled_thing)
 
 ///////Yes, I said humans. No, this won't end well...//////////
 /datum/component/riding/human

@@ -17,7 +17,7 @@
 	tackle_damage = 21
 
 	// *** Speed *** //
-	speed = -0.2
+	speed = -0.3
 
 	// *** Plasma *** //
 	plasma_max = 150
@@ -49,6 +49,7 @@
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
+		/datum/action/xeno_action/activable/headbite,
 		/datum/action/xeno_action/toggle_crest_defense,
 		/datum/action/xeno_action/fortify,
 		/datum/action/xeno_action/activable/forward_charge,
@@ -70,7 +71,7 @@
 	tackle_damage = 21
 
 	// *** Speed *** //
-	speed = -0.3
+	speed = -0.4
 
 	// *** Plasma *** //
 	plasma_max = 175
@@ -102,7 +103,7 @@
 	tackle_damage = 26
 
 	// *** Speed *** //
-	speed = -0.4
+	speed = -0.5
 
 	// *** Plasma *** //
 	plasma_max = 190
@@ -135,7 +136,7 @@
 	tackle_damage = 26
 
 	// *** Speed *** //
-	speed = -0.5
+	speed = -0.6
 
 	// *** Plasma *** //
 	plasma_max = 200
@@ -153,4 +154,4 @@
 	// *** Defender Abilities *** //
 	crest_defense_armor = 30
 	crest_defense_slowdown = 0.8
-	fortify_armor = 50
+	fortify_armor = 55

@@ -11,19 +11,50 @@
 
 	resistance_flags = RESIST_ALL
 	anchored = TRUE
-//
+
+	/**
+	  * The identifier of the port or ship.
+	  * This will be used in numerous other places like the console,
+	  * stationary ports and whatnot to tell them your ship's mobile
+	  * port can be used in these places, or the docking port is compatible, etc.
+	  */
 	var/id
-	// this should point -away- from the dockingport door, ie towards the ship
+	///Possible destinations
+	var/port_destinations
+	///this should point -away- from the dockingport door, ie towards the ship
 	dir = NORTH
-	var/width = 0	//size of covered area, perpendicular to dir
-	var/height = 0	//size of covered area, parallel to dir
-	var/dwidth = 0	//position relative to covered area, perpendicular to dir
-	var/dheight = 0	//position relative to covered area, parallel to dir
-
+	///size of covered area, perpendicular to dir
+	var/width = 0
+	///size of covered area, parallel to dir
+	var/height = 0
+	///position relative to covered area, perpendicular to dir
+	var/dwidth = 0
+	///position relative to covered area, parallel to dir
+	var/dheight = 0
 	var/area_type
-	var/hidden = FALSE //are we invisible to shuttle navigation computers?
+	///are we invisible to shuttle navigation computers?
+	var/hidden = FALSE
+	///Delete this port after ship fly off.
+	var/delete_after = FALSE
+	///are we registered in SSshuttles?
+	var/registered = FALSE
 
-	//these objects are indestructible
+///register to SSshuttles
+/obj/docking_port/proc/register()
+	if(registered)
+		WARNING("docking_port registered multiple times")
+		unregister()
+	registered = TRUE
+	return
+
+///unregister from SSshuttles
+/obj/docking_port/proc/unregister()
+	if(!registered)
+		WARNING("docking_port unregistered multiple times")
+	registered = FALSE
+	return
+
+//these objects are indestructible
 /obj/docking_port/Destroy(force)
 	// unless you assert that you know what you're doing. Horrible things
 	// may result.
@@ -71,7 +102,7 @@
 	var/list/L = return_coords()
 	return (L[3]-L[1]) * (L[4]-L[2])
 
-//returns turfs within our projected rectangle in no particular order
+///returns turfs within our projected rectangle in no particular order
 /obj/docking_port/proc/return_turfs()
 	var/list/L = return_coords()
 	var/turf/T0 = locate(L[1],L[2],z)
@@ -168,22 +199,42 @@
 /obj/docking_port/stationary
 	name = "dock"
 
-	area_type = SHUTTLE_DEFAULT_UNDERLYING_AREA
-
 	var/last_dock_time
 
 	var/datum/map_template/shuttle/roundstart_template
 	var/json_key
 
+/obj/docking_port/stationary/register(replace = FALSE)
+	. = ..()
+	if(!id)
+		id = "dock"
+	else
+		port_destinations = id
+
+	if(!name)
+		name = "dock"
+
+	var/counter = SSshuttle.assoc_stationary[id]
+	if(!replace || !counter)
+		if(counter)
+			counter++
+			SSshuttle.assoc_stationary[id] = counter
+			id = "[id]_[counter]"
+			name = "[name] [counter]"
+		else
+			SSshuttle.assoc_stationary[id] = 1
+
+	if(!port_destinations)
+		port_destinations = id
+
+	SSshuttle.stationary += src
+
 /obj/docking_port/stationary/Initialize(mapload)
 	. = ..()
-	SSshuttle.stationary += src
-	if(!id)
-		id = "[SSshuttle.stationary.len]"
-	if(name == "dock")
-		name = "dock[SSshuttle.stationary.len]"
-	var/area/A = get_area(src)
-	area_type = A.type
+	register()
+	if(!area_type)
+		var/area/place = get_area(src)
+		area_type = place?.type // We might be created in nullspace
 
 //	if(mapload)
 //		for(var/turf/T in return_turfs())
@@ -193,10 +244,21 @@
 	highlight("#f00")
 	#endif
 
+/obj/docking_port/stationary/unregister()
+	. = ..()
+	SSshuttle.stationary -= src
+
 /obj/docking_port/stationary/Destroy(force)
 	if(force)
-		SSshuttle.stationary -= src
+		unregister()
 	. = ..()
+
+/obj/docking_port/stationary/Moved(atom/oldloc, dir, forced)
+	. = ..()
+	if(area_type) // We already have one
+		return
+	var/area/newarea = get_area(src)
+	area_type = newarea?.type
 
 /obj/docking_port/stationary/proc/load_roundstart()
 	if(json_key)
@@ -295,7 +357,8 @@
 
 	var/shuttle_flags = NONE
 
-/obj/docking_port/mobile/proc/register()
+/obj/docking_port/mobile/register()
+	. = ..()
 	SSshuttle.mobile += src
 
 /obj/docking_port/mobile/Destroy(force)
@@ -306,7 +369,7 @@
 		QDEL_NULL(assigned_transit)		//don't need it where we're goin'!
 		shuttle_areas = null
 		remove_ripples()
-	. = ..()
+	return ..()
 
 /obj/docking_port/mobile/Initialize(mapload)
 	. = ..()
@@ -442,7 +505,8 @@
 	return
 
 /obj/docking_port/mobile/proc/on_prearrival()
-	playsound(destination.return_center_turf(), landing_sound, 60, 0)
+	if(destination)
+		playsound(destination.return_center_turf(), landing_sound, 60, 0)
 	playsound(return_center_turf(), landing_sound, 60, 0)
 	return
 
@@ -477,6 +541,8 @@
 	if(S1)
 		if(initiate_docking(S1) != DOCKING_SUCCESS)
 			WARNING("shuttle \"[id]\" could not enter transit space. Docked at [S0 ? S0.id : "null"]. Transit dock [S1 ? S1.id : "null"].")
+		if(S0.delete_after)
+			qdel(S0, TRUE)
 		else
 			previous = S0
 			return TRUE

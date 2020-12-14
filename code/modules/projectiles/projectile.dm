@@ -65,6 +65,9 @@
 
 	var/scatter = 0 //Chance of scattering, also maximum amount scattered. High variance.
 
+	/// Used to transfer iff_signal from source to projectile.
+	var/list/projectile_iff = null
+
 	var/distance_travelled = 0
 
 	/// How maany times this projectile has bounced off something
@@ -574,7 +577,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		return TRUE
 	if(!throwpass)
 		return TRUE
-	if(proj.ammo.flags_ammo_behavior & AMMO_SNIPER || proj.ammo.flags_ammo_behavior & AMMO_SKIPS_HUMANS || proj.ammo.flags_ammo_behavior & AMMO_ROCKET) //sniper, rockets and IFF rounds bypass cover
+	if(proj.ammo.flags_ammo_behavior & AMMO_SNIPER || proj.projectile_iff || proj.ammo.flags_ammo_behavior & AMMO_ROCKET) //sniper, rockets and IFF rounds bypass cover
 		return FALSE
 	if(proj.distance_travelled <= proj.ammo.barricade_clear_distance)
 		return FALSE
@@ -663,9 +666,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			var/mob/living/carbon/human/shooter_human = shooter_living
 			BULLET_DEBUG("Traumatic shock (-[round(min(30, shooter_human.traumatic_shock * 0.2))]).")
 			. -= round(min(30, shooter_human.traumatic_shock * 0.2)) //Chance to hit declines with pain, being reduced by 0.2% per point of pain.
-			if(shooter_human.stagger)
-				BULLET_DEBUG("Stagged (-30).")
-				. -= 30 //Being staggered fucks your aim.
 			if(shooter_human.marksman_aura) //Accuracy bonus from active focus order: flat bonus + bonus per tile traveled
 				BULLET_DEBUG("marksman_aura (+[shooter_human.marksman_aura * 3] + [proj.distance_travelled * shooter_human.marksman_aura * 0.35]).")
 				. += shooter_human.marksman_aura * 3
@@ -719,7 +719,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 
 /mob/living/carbon/human/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
-	if(proj.ammo.flags_ammo_behavior & AMMO_SKIPS_HUMANS && get_target_lock(proj.ammo.iff_signal))
+	if(get_target_lock(proj.projectile_iff))
 		return FALSE
 	if(mobility_aura)
 		. -= mobility_aura * 5
@@ -767,7 +767,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	damage = check_shields(COMBAT_PROJ_ATTACK, damage, proj.ammo.armor_type)
 	if(!damage)
-		proj.ammo.on_shield_block(src)
+		proj.ammo.on_shield_block(src, proj)
 		bullet_ping(proj)
 		return
 
@@ -791,6 +791,11 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				living_hard_armor = max(0, living_hard_armor - (living_hard_armor * penetration * 0.01)) //AP reduces a % of hard armor.
 			if(living_soft_armor)
 				living_soft_armor = max(0, living_soft_armor - penetration) //Flat removal.
+
+		if(iscarbon(proj.firer))
+			var/mob/living/carbon/shooter_carbon = proj.firer
+			if(shooter_carbon.stagger)
+				damage *= STAGGER_DAMAGE_MULTIPLIER //Since we hate RNG, stagger reduces damage by a % instead of reducing accuracy; consider it a 'glancing' hit due to being disoriented.
 
 		if(!living_hard_armor && !living_soft_armor) //Armor fully penetrated.
 			feedback_flags |= BULLET_FEEDBACK_PEN

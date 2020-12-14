@@ -2,8 +2,8 @@
 //They are built in stages, and only engineers have access to them.
 
 /obj/item/ammo_magazine/sentry
-	name = "M30 box magazine (10x28mm Caseless)"
-	desc = "A box of 500 10x28mm caseless rounds for the UA 571-C Sentry Gun. Just feed it into the sentry gun's ammo port when its ammo is depleted."
+	name = "\improper M30 box magazine (10x28mm Caseless)"
+	desc = "A box of 500 10x28mm caseless rounds for the UA 571-C sentry gun. Just feed it into the sentry gun's ammo port when its ammo is depleted."
 	w_class = WEIGHT_CLASS_BULKY
 	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "ammo_can"
@@ -217,7 +217,7 @@
 
 /obj/machinery/marine_turret
 	name = "\improper UA 571-C sentry gun"
-	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an M30 Autocannon and a 500-round drum magazine."
+	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with a M30 autocannon and a 500-round drum magazine."
 	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "sentry_base"
 	anchored = TRUE
@@ -227,15 +227,15 @@
 	use_power = 0
 	req_one_access = list(ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_ENGPREP, ACCESS_MARINE_LEADER)
 	var/turret_flags = TURRET_HAS_CAMERA|TURRET_SAFETY
-	var/iff_signal = ACCESS_IFF_MARINE
+	var/list/iff_signal = list(ACCESS_IFF_MARINE)
 	var/rounds = 500
 	var/rounds_max = 500
 	var/burst_size = 5
 	var/max_burst = 6
 	var/min_burst = 2
 	var/atom/target = null
-	obj_integrity = 300
-	max_integrity = 300
+	obj_integrity = 150
+	max_integrity = 150
 	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 100, "rad" = 0, "fire" = 80, "acid" = 50)
 	machine_stat = 0 //Used just like mob.stat
 	var/datum/effect_system/spark_spread/spark_system //The spark system, used for generating... sparks?
@@ -470,7 +470,7 @@
 				visible_message("<span class='notice'>The [name] buzzes in a monotone voice: 'Default systems initiated'.</span>'")
 				target = null
 				ENABLE_BITFIELD(turret_flags, TURRET_ON)
-				set_light(7)
+				set_light(SENTRY_LIGHT_POWER)
 				if(!camera && CHECK_BITFIELD(turret_flags, TURRET_HAS_CAMERA))
 					camera = new /obj/machinery/camera(src)
 					camera.network = list("military")
@@ -481,6 +481,7 @@
 				user.visible_message("<span class='notice'>[user] deactivates [src].</span>",
 				"<span class='notice'>You deactivate [src].</span>")
 				visible_message("<span class='notice'>The [name] powers down and goes silent.</span>")
+				set_light(0)
 				update_icon()
 			. = TRUE
 
@@ -626,6 +627,7 @@
 			return
 
 		if(!cell)
+			to_chat(user, "<span class='warning'>There's no power cell to remove!</span>")
 			return
 
 		if(CHECK_BITFIELD(turret_flags, TURRET_ON))
@@ -642,6 +644,7 @@
 		user.visible_message("<span class='notice'>[user] removes [src]'s [cell.name].</span>",
 		"<span class='notice'>You remove [src]'s [cell.name].</span>")
 		playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
+		cell.forceMove(user.loc)
 		user.put_in_hands(cell)
 		cell = null
 		update_icon()
@@ -769,7 +772,7 @@
 		cell.charge = 0
 		sentry_alert(SENTRY_ALERT_BATTERY)
 		visible_message("<span class='warning'>[src] emits a low power warning and immediately shuts down!</span>")
-		playsound(loc, 'sound/weapons/guns/misc/smg_empty_alarm.ogg', 50, 1)
+		playsound(loc, 'sound/weapons/guns/misc/empty_alarm.ogg', 50, 1)
 		set_light(0)
 		update_icon()
 		return FALSE
@@ -940,9 +943,10 @@
 	proj_to_fire.original_target = target
 	proj_to_fire.setDir(dir)
 	proj_to_fire.def_zone = pick("chest", "chest", "chest", "head")
+	proj_to_fire.projectile_iff = iff_signal
 
 	//Shoot at the thing
-	playsound(loc, 'sound/weapons/guns/fire/rifle.ogg', 75, TRUE)
+	playsound(loc, 'sound/weapons/guns/fire/smg_heavy.ogg', 75, TRUE)
 
 	proj_to_fire.fire_at(target, src, null, ammo.max_range, ammo.shell_speed)
 	if(target)
@@ -951,19 +955,20 @@
 	rounds--
 	if(rounds == 0)
 		visible_message("<span class='warning'>The [name] beeps steadily and its ammo light blinks red.</span>")
-		playsound(loc, 'sound/weapons/guns/misc/smg_empty_alarm.ogg', 50, FALSE)
+		playsound(loc, 'sound/weapons/guns/misc/empty_alarm.ogg', 50, FALSE)
 		if(CHECK_BITFIELD(turret_flags, TURRET_ALERTS))
 			sentry_alert(SENTRY_ALERT_AMMO)
 
 	return TRUE
 
-//Mostly taken from gun code.
 /obj/machinery/marine_turret/proc/muzzle_flash(angle)
 	if(isnull(angle)) return
 
-	set_light(muzzle_flash_lum)
-	spawn(10)
-		set_light(0)
+	var/prev_light = light_power
+	if(light_power <= muzzle_flash_lum)
+		set_light_range(muzzle_flash_lum)
+		set_light_color(COLOR_VERY_SOFT_YELLOW)
+		addtimer(CALLBACK(src, .proc/reset_light_range, prev_light), 1 SECONDS)
 
 	if(prob(65))
 		var/layer = MOB_LAYER - 0.1
@@ -974,6 +979,12 @@
 		rotate.Turn(angle)
 		I.transform = rotate
 		flick_overlay_view(I, src, 3)
+
+/obj/machinery/marine_turret/proc/reset_light_range(lightrange)
+	set_light_range(initial(light_power))
+	set_light_color(initial(light_color))
+	if(CHECK_BITFIELD(turret_flags, TURRET_ON))
+		set_light(SENTRY_LIGHT_POWER)
 
 /obj/machinery/marine_turret/proc/get_target()
 	var/list/targets = list()
@@ -1052,7 +1063,7 @@
 /obj/machinery/marine_turret/premade/dumb
 	name = "\improper Modified UA 571-C sentry gun"
 	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an M30 Autocannon and a 500-round drum magazine. This one's IFF system has been disabled, and it will open fire on any targets within range."
-	iff_signal = 0
+	iff_signal = null
 	ammo = /datum/ammo/bullet/turret/dumb
 	magazine_type = /obj/item/ammo_magazine/sentry/premade/dumb
 	rounds_max = 500
@@ -1080,13 +1091,14 @@
 		visible_message("[src] buzzes in a monotone: 'Default systems initiated.'")
 		target = null
 		ENABLE_BITFIELD(turret_flags, TURRET_ON)
-		set_light(7)
+		set_light(SENTRY_LIGHT_POWER)
 		update_icon()
 	else
 		DISABLE_BITFIELD(turret_flags, TURRET_ON)
 		user.visible_message("<span class='notice'>[user] deactivates [src].</span>",
 		"<span class='notice'>You deactivate [src].</span>")
 		visible_message("<span class='notice'>The [name] powers down and goes silent.</span>")
+		set_light(0)
 		update_icon()
 
 /obj/machinery/marine_turret/premade/dumb/hostile
@@ -1172,7 +1184,7 @@
 	radio.talk_into(src, "[notice]", FREQ_COMMON)
 
 /obj/machinery/marine_turret/mini
-	name = "\improper UA-580 Point Defense Sentry"
+	name = "\improper UA-580 point defense sentry"
 	desc = "A deployable, automated turret with AI targeting capabilities. This is a lightweight portable model meant for rapid deployment and point defense. Armed with an light, high velocity machine gun and a 500-round drum magazine."
 	icon = 'icons/Marine/miniturret.dmi'
 	icon_state = "minisentry_on"
@@ -1182,8 +1194,8 @@
 	burst_size = 3
 	min_burst = 2
 	max_burst = 5
-	obj_integrity = 200
-	max_integrity = 200
+	obj_integrity = 100
+	max_integrity = 100
 	rounds = 500
 	rounds_max = 500
 	knockdown_threshold = 100 //lighter, not as well secured.
@@ -1221,7 +1233,11 @@
 	user.put_in_hands(P)
 	P.obj_integrity = obj_integrity
 	P.rounds = rounds
-	P.cell_charge = cell.charge
+	if(cell)
+		P.cell = cell
+		P.cell.charge = cell.charge
+	else
+		P.cell = null
 	qdel(src)
 
 /obj/machinery/marine_turret/mini/update_icon()
@@ -1260,7 +1276,7 @@
 
 
 /obj/item/marine_turret/mini
-	name = "\improper UA-580 Point Defense Sentry (Folded)"
+	name = "\improper UA-580 point defense sentry (folded)"
 	desc = "A deployable, automated turret with AI targeting capabilities. This is a lightweight portable model meant for rapid deployment and point defense. Armed with an light, high velocity machine gun and a 500-round drum magazine. It is currently folded up."
 	icon = 'icons/Marine/miniturret.dmi'
 	icon_state = "minisentry_packed"
@@ -1268,8 +1284,12 @@
 	w_class = WEIGHT_CLASS_BULKY
 	max_integrity = 200 //We keep track of this when folding up the sentry.
 	var/rounds = 500
-	var/cell_charge = 10000
+	var/obj/item/cell/cell = null
 	flags_equip_slot = ITEM_SLOT_BACK
+
+/obj/item/marine_turret/mini/Initialize()
+	. = ..()
+	cell = new /obj/item/cell/high(src)
 
 /obj/item/marine_turret/mini/attack_self(mob/user) //click the sentry to deploy it.
 	if(!ishuman(usr))
@@ -1290,13 +1310,17 @@
 		M.obj_integrity = obj_integrity
 		M.anchored = TRUE
 		M.rounds = rounds
-		M.cell.charge = cell_charge
+		if(cell) //Inherit the power cell of the source item if any
+			M.cell = cell
+			M.cell.charge = cell.charge
+		else
+			M.cell = null
 		M.activate_turret()
 		qdel(src)
 
 /obj/item/ammo_magazine/minisentry
-	name = "M30 box magazine (10x20mm Caseless)"
-	desc = "A box of 500 10x20mm caseless rounds for the UA-580 Point Defense Sentry. Just feed it into the sentry gun's ammo port when its ammo is depleted."
+	name = "\improper M30 box magazine (10x20mm Caseless)"
+	desc = "A box of 500 10x20mm caseless rounds for the UA-580 point defense sentry. Just feed it into the sentry gun's ammo port when its ammo is depleted."
 	w_class = WEIGHT_CLASS_NORMAL
 	icon_state = "ua580"
 	flags_magazine = NONE //can't be refilled or emptied by hand
@@ -1328,9 +1352,13 @@
 /obj/machinery/marine_turret/proc/activate_turret()
 	if(!anchored)
 		return FALSE
+	if(!cell)
+		return FALSE
+	if(!cell.charge)
+		return FALSE
 	target = null
 	ENABLE_BITFIELD(turret_flags, TURRET_ON)
-	set_light(7)
+	set_light(SENTRY_LIGHT_POWER)
 	if(!camera && CHECK_BITFIELD(turret_flags, TURRET_HAS_CAMERA))
 		camera = new /obj/machinery/camera(src)
 		camera.network = list("military")

@@ -66,3 +66,8 @@
 	icon_state = "hardhat0_dblue"
 	hardhat_color = "dblue"
 
+/obj/item/clothing/head/hardhat/rugged
+	name = "rugged hard hat"
+	desc = "A piece of headgear used in dangerous working conditions to protect the head. Comes with a built-in flashlight. Looks rather robust."
+	soft_armor = list("melee" = 50, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = 50, "bio" = 40, "rad" = 0, "fire" = 50, "acid" = 50)
+

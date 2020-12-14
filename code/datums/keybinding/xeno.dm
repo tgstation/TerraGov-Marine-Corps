@@ -2,6 +2,11 @@
 	category = CATEGORY_XENO
 	weight = WEIGHT_MOB
 
+/datum/keybinding/xeno/headbite
+	name = "headbite"
+	full_name = "Headbite"
+	description = "Permanently kill a target."
+	keybind_signal = COMSIG_XENOABILITY_HEADBITE
 
 /datum/keybinding/xeno/regurgitate
 	name = "regurgitate"
@@ -27,6 +32,12 @@
 	full_name = "Secrete Resin"
 	description = "Builds whatever you’ve selected with (choose resin structure) on your tile."
 	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN
+
+/datum/keybinding/xeno/secrete_resin_silo
+	name = "secrete_resin_silo"
+	full_name = "Secrete Resin Silo"
+	description = "Builds a resin silo. Requires a number of dead bodies on a nest."
+	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN_SILO
 
 /datum/keybinding/xeno/emit_recovery
 	name = "emit_recovery"
@@ -226,10 +237,22 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_EMIT_NEUROGAS
 
+/datum/keybinding/xeno/select_reagent
+	name = "select_reagent"
+	full_name = "Defiler: Select Reagent"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_SELECT_REAGENT
+
+/datum/keybinding/xeno/reagent_slash
+	name = "reagent_slash"
+	full_name = "Defiler: Reagent Slash"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_REAGENT_SLASH
+
 /datum/keybinding/xeno/salvage_plasma
 	name = "salvage_plasma"
-	full_name = "Drone: Salvage Plasma"
-	description = ""
+	full_name = "Drone: Salvage Biomass"
+	description = "Salvage plasma, upgrade and evolution points from the corpse of another xenomorph, gibbing it."
 	keybind_signal = COMSIG_XENOABILITY_SALVAGE_PLASMA
 
 /datum/keybinding/xeno/resin_walker
@@ -381,6 +404,12 @@
 	full_name = "Runner: Toggle Savage"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_SAVAGE
+
+/datum/keybinding/xeno/evasion
+	name = "evasion"
+	full_name = "Evasion"
+	description = "Take evasive action, forcing non-friendly projectiles that would hit you to miss so long as you keep moving."
+	keybind_signal = COMSIG_XENOABILITY_EVASION
 
 /datum/keybinding/xeno/toggle_agility
 	name = "toggle_agility"

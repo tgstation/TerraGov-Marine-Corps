@@ -216,11 +216,6 @@
 		var/brute_treated = org.is_bandaged()
 		var/burn_treated = org.is_salved()
 
-		if(halloss > 0)
-			status = "tingling"
-			if(brutedamage > 0 || burndamage > 0)
-				status += " and "
-
 		switch(brutedamage)
 			if(1 to 20)
 				status += "bruised"

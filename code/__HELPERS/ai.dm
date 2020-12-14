@@ -9,7 +9,7 @@
 	//Null value returned means no node in that direction
 	return startnode.GetNodeInDirInAdj(get_dir(startnode, destination))
 
-//Returns a list of humans via get_dist and same z level method, very cheap compared to range()
+///Returns a list of humans via get_dist and same z level method, very cheap compared to range()
 /proc/cheap_get_humans_near(atom/movable/source, distance)
 	. = list()
 	for(var/human in GLOB.humans_by_zlevel["[source.z]"])
@@ -17,9 +17,8 @@
 		if(get_dist(source, nearby_human) > distance)
 			continue
 		. += nearby_human
-	return .
 
-//Ditto above but xenomorphs
+//Returns a list of xenos via get_dist and same z level method, very cheap compared to range()
 /proc/cheap_get_xenos_near(atom/movable/source, distance)
 	. = list()
 	for(var/xeno in GLOB.alive_xeno_list)

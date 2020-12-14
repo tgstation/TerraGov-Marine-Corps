@@ -1015,7 +1015,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 
 /datum/limb/proc/is_usable()
-	return !(limb_status & (LIMB_DESTROYED|LIMB_MUTATED|LIMB_NECROTIZED))
+	return !(limb_status & (LIMB_DESTROYED|LIMB_NECROTIZED))
 
 /datum/limb/proc/is_broken()
 	return ((limb_status & LIMB_BROKEN) && !(limb_status & LIMB_SPLINTED) && !(limb_status & LIMB_STABILIZED))

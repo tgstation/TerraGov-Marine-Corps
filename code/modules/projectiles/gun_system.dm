@@ -26,7 +26,7 @@
 	var/fire_sound 		= 'sound/weapons/guns/fire/gunshot.ogg'
 	var/dry_fire_sound	= 'sound/weapons/guns/fire/empty.ogg'
 	var/unload_sound 	= 'sound/weapons/flipblade.ogg'
-	var/empty_sound 	= 'sound/weapons/guns/misc/smg_empty_alarm.ogg'
+	var/empty_sound 	= 'sound/weapons/guns/misc/empty_alarm.ogg'
 	var/reload_sound 	= null					//We don't want these for guns that don't have them.
 	var/cocked_sound 	= null
 	var/cock_cooldown	= 0						//world.time value, to prevent COCK COCK COCK COCK
@@ -57,6 +57,12 @@
 	var/movement_acc_penalty_mult = 5				//Multiplier. Increased and decreased through attachments. Multiplies the accuracy/scatter penalty of the projectile when firing onehanded while moving.
 	var/fire_delay = 6							//For regular shots, how long to wait before firing again.
 	var/shell_speed_mod	= 0						//Modifies the speed of projectiles fired.
+	/// Determines which humans the gun's shot will pass through based on the victim's ID access list.
+	var/list/gun_iff_signal = null
+	///Determines how fire delay is changed when aim mode is active
+	var/aim_fire_delay = 0
+	///Determines character slowdown from aim mode. Default is 66%
+	var/aim_speed_modifier = 6
 
 	//Burst fire.
 	var/burst_amount 	= 1						//How many shots can the weapon shoot in burst? Anything less than 2 and you cannot toggle burst.
@@ -112,6 +118,9 @@
 /obj/item/weapon/gun/Initialize(mapload, spawn_empty) //You can pass on spawn_empty to make the sure the gun has no bullets or mag or anything when created.
 	. = ..()					//This only affects guns you can get from vendors for now. Special guns spawn with their own things regardless.
 	base_gun_icon = icon_state
+
+	verbs -= /obj/item/verb/verb_pickup
+
 	if(current_mag)
 		if(spawn_empty && !(flags_gun_features & GUN_INTERNAL_MAG)) //Internal mags will still spawn, but they won't be filled.
 			current_mag = null
@@ -242,6 +251,8 @@
 	A.add_hud(user)
 	A.update_hud(user)
 	do_wield(user, wdelay)
+	if(CHECK_BITFIELD(flags_gun_features, AUTO_AIM_MODE))
+		toggle_aim_mode(user)
 
 
 /obj/item/weapon/gun/unwield(mob/user)
@@ -249,14 +260,14 @@
 	if(!.)
 		return FALSE
 
-	if(zoom)
-		zoom(user)
-
 	user.remove_movespeed_modifier(MOVESPEED_ID_AIM_SLOWDOWN)
 
 	var/obj/screen/ammo/A = user.hud_used?.ammo
 	if(A)
 		A.remove_hud(user)
+
+	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_AIMING))
+		toggle_aim_mode(user)
 
 	return TRUE
 
@@ -668,9 +679,11 @@ and you're good to go.
 		. = ..()
 		if(!.)
 			return
+
 		if(!active_attachable && gun_firemode == GUN_FIREMODE_BURSTFIRE && burst_amount > 1)
 			Fire(M, user)
 			return TRUE
+
 		DISABLE_BITFIELD(flags_gun_features, GUN_BURST_FIRING)
 		//Point blanking simulates firing the bullet proper but without actually firing it.
 		var/obj/projectile/projectile_to_fire = load_into_chamber(user)
@@ -751,9 +764,6 @@ and you're good to go.
 		return
 
 	switch(projectile_to_fire.ammo.damage_type)
-		if(HALLOSS)
-			to_chat(user, "<span class = 'notice'>Ow...</span>")
-			user.apply_effect(110, AGONY)
 		if(STAMINA)
 			to_chat(user, "<span class = 'notice'>Ow...</span>")
 			user.apply_damage(200, STAMINA)
@@ -856,6 +866,7 @@ and you're good to go.
 	projectile_to_fire.damage *= damage_mult
 	projectile_to_fire.damage_falloff *= damage_falloff_mult
 	projectile_to_fire.projectile_speed += shell_speed_mod
+	projectile_to_fire.projectile_iff = gun_iff_signal
 
 
 /obj/item/weapon/gun/proc/setup_bullet_accuracy(obj/projectile/projectile_to_fire, mob/user, bullets_fired = 1, dual_wield = FALSE)
@@ -872,7 +883,7 @@ and you're good to go.
 		gun_accuracy_mult = max(0.1, gun_accuracy_mult - max(0,movement_acc_penalty_mult * 0.15))
 		gun_scatter += max(0, movement_acc_penalty_mult * 5)
 
-	if(gun_firemode == GUN_FIREMODE_BURSTFIRE && burst_amount > 1)
+	if(gun_firemode == GUN_FIREMODE_BURSTFIRE || gun_firemode == GUN_FIREMODE_AUTOBURST && burst_amount > 1)
 		gun_accuracy_mult = max(0.1, gun_accuracy_mult * burst_accuracy_mult)
 
 	if(dual_wield) //akimbo firing gives terrible accuracy

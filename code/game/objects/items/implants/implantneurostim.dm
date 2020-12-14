@@ -54,7 +54,7 @@
 		C.flash_act(1, TRUE)
 		C.AdjustStun(20 SECONDS)
 		C.Paralyze(20 SECONDS)
-		C.apply_damage(100, HALLOSS, part)
+		C.apply_damage(100, STAMINA, part)
 		C.apply_damage(5, BURN, part)
 		UPDATEHEALTH(C)
 

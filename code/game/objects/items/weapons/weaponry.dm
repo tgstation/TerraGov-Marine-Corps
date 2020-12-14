@@ -6,7 +6,6 @@
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "toyhammer"
 	flags_equip_slot = ITEM_SLOT_BELT
-	throwforce = 0
 	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 7
 	throw_range = 15

@@ -1,0 +1,215 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/structure/shuttle/engine/propulsion/burst/right,
+/turf/open/floor/podhatch/floor,
+/area/shuttle/minidropship)
+"c" = (
+/obj/effect/attach_point/crew_weapon/minidropship{
+	dir = 2
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/minidropship)
+"f" = (
+/turf/template_noop,
+/area/template_noop)
+"g" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/minidropship)
+"h" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/minidropship)
+"i" = (
+/obj/machinery/light,
+/turf/open/shuttle/blackfloor,
+/area/shuttle/minidropship)
+"l" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/obj/machinery/vending/nanomed{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/minidropship)
+"o" = (
+/turf/closed/wall/mainship/outer,
+/area/shuttle/minidropship)
+"q" = (
+/obj/machinery/door/poddoor/mainship/open{
+	dir = 2;
+	id = "minidropship_podlock"
+	},
+/obj/machinery/door/poddoor/shutters/transit{
+	dir = 2
+	},
+/turf/open/floor/mainship/mono,
+/area/shuttle/minidropship)
+"r" = (
+/obj/structure/shuttle/engine/propulsion/burst/left,
+/turf/open/floor/podhatch/floor,
+/area/shuttle/minidropship)
+"s" = (
+/obj/machinery/door/poddoor/mainship/open{
+	id = "minidropship_podlock"
+	},
+/obj/machinery/door/poddoor/shutters/transit,
+/turf/open/floor/mainship/mono,
+/area/shuttle/minidropship)
+"u" = (
+/obj/effect/attach_point/weapon/minidropship{
+	dir = 8
+	},
+/turf/closed/wall/mainship/outer,
+/area/shuttle/minidropship)
+"z" = (
+/obj/machinery/computer/dropship_weapons/minidropship,
+/turf/open/shuttle/blackfloor,
+/area/shuttle/minidropship)
+"A" = (
+/obj/structure/window/framed/mainship/hull,
+/turf/open/floor/mainship/mono,
+/area/shuttle/minidropship)
+"F" = (
+/obj/docking_port/mobile/marine_dropship/minidropship,
+/turf/open/shuttle/dropship/grating,
+/area/shuttle/minidropship)
+"L" = (
+/obj/machinery/computer/shuttle/minidropship,
+/turf/open/shuttle/blackfloor,
+/area/shuttle/minidropship)
+"N" = (
+/obj/structure/bed/chair/dropship/pilot{
+	dir = 1
+	},
+/turf/open/shuttle/blackfloor,
+/area/shuttle/minidropship)
+"O" = (
+/obj/machinery/door/airlock/mainship/command/canterbury{
+	dir = 1;
+	name = "\improper Command Cockpit"
+	},
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/minidropship)
+"S" = (
+/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship,
+/turf/open/shuttle/blackfloor,
+/area/shuttle/minidropship)
+"T" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/obj/machinery/door_control{
+	id = "minidropship_podlock";
+	name = "outer door-control";
+	pixel_y = 32
+	},
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/minidropship)
+"U" = (
+/obj/effect/attach_point/weapon/minidropship{
+	dir = 4
+	},
+/turf/closed/wall/mainship/outer,
+/area/shuttle/minidropship)
+"X" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/obj/machinery/vending/nanomed{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/minidropship)
+"Y" = (
+/turf/open/shuttle/dropship/grating,
+/area/shuttle/minidropship)
+
+(1,1,1) = {"
+f
+f
+o
+r
+f
+f
+u
+o
+a
+"}
+(2,1,1) = {"
+o
+A
+o
+o
+s
+s
+o
+o
+o
+"}
+(3,1,1) = {"
+A
+S
+i
+o
+h
+h
+X
+h
+q
+"}
+(4,1,1) = {"
+A
+L
+N
+O
+F
+Y
+c
+Y
+q
+"}
+(5,1,1) = {"
+A
+z
+i
+o
+T
+g
+l
+g
+q
+"}
+(6,1,1) = {"
+o
+A
+o
+o
+s
+s
+o
+o
+o
+"}
+(7,1,1) = {"
+f
+f
+o
+a
+f
+f
+U
+o
+a
+"}
