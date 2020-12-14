@@ -117,14 +117,9 @@
 	X.face_atom(A)
 	var/turf/current_turf = get_turf(X)
 	var/facing = X.dir
-	var/list/turf/turfs = list()
-	turfs += get_step(current_turf, facing) //Only get the turfs we need
-	turfs += get_step(current_turf, turn(facing,45))
-	turfs += get_step(current_turf, turn(facing,-45))
+	var/list/turf/turfs = list(get_step(current_turf, facing), get_step(current_turf, turn(facing,45)), get_step(current_turf, turn(facing,-45)) ) //Only get the turfs we need
 	for(var/turf/target_turf in turfs)
 		for(var/atom/movable/target in target_turf)
-			if(!isstructure(target) && !ismachinery(target) && !ismob(target))
-				continue
 			target.attack_alien(X, X.xeno_caste.melee_damage * 0.25, FALSE, TRUE, FALSE, TRUE, INTENT_HARM)
 			if(isliving(target))
 				if(isxeno(target))
@@ -198,7 +193,7 @@
 	GLOB.round_statistics.ravager_endures++ //Statistics
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "ravager_endures")
 
-
+///Warns the player when Endure is about to end
 /datum/action/xeno_action/activable/endure/proc/endure_warning()
 
 	to_chat(owner,"<span class='highdanger'>We feel the plasma draining from our veins... [ability_name] will last for only [RAVAGER_ENDURE_DURATION * (1-RAVAGER_ENDURE_WARNING) * 0.1] more seconds!</span>")
@@ -245,6 +240,7 @@
 	cooldown_timer = 120 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY | XACT_IGNORE_SELECTED_ABILITY
 	keybind_signal = COMSIG_XENOABILITY_RAGE
+	///Determines the power of Rage's many effects. Power scales inversely with the Ravager's HP; min 0.25 at 50% of Max HP, max 1 while in negative HP. 0.5 and above triggers especial effects.
 	var/rage_power
 
 /datum/action/xeno_action/activable/rage/on_cooldown_finish()
@@ -367,7 +363,7 @@
 	to_chat(owner,"<span class='highdanger'>Our rage begins to subside... [ability_name] will only last for only [(RAVAGER_RAGE_DURATION + bonus_duration) * (1-RAVAGER_RAGE_WARNING) * 0.1] more seconds!</span>")
 	owner.playsound_local(owner, 'sound/voice/hiss4.ogg', 50, 0, 1)
 
-
+///Called when we want to end the Rage effect
 /datum/action/xeno_action/activable/rage/proc/rage_deactivate()
 
 	var/mob/living/carbon/xenomorph/ravager/R = owner
