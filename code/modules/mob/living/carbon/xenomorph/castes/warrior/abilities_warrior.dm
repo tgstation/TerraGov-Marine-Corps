@@ -364,7 +364,8 @@
 	if(!target_zone)
 		target_zone = "chest"
 
-	A.punch_act(X, X.xeno_caste.melee_damage, target_zone)
+	if(!A.punch_act(X, X.xeno_caste.melee_damage, target_zone))
+		return fail_activate()
 
 	GLOB.round_statistics.warrior_punches++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "warrior_punches")
@@ -436,7 +437,7 @@
 		var/datum/limb/L = carbon_victim.get_limb(target_zone)
 
 		if (!L || (L.limb_status & LIMB_DESTROYED))
-			to_chat(X, "<span class='xenodanger'>We can't punch that which doesn't exist!</span>")
+			to_chat(X, "<span class='xenodanger'>Our target is missing that limb!</span>")
 			return FALSE
 
 		if(L.limb_status & LIMB_SPLINTED) //If they have it splinted, the splint won't hold.

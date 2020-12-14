@@ -103,21 +103,21 @@
 
 	var/target_location_feedback = target_zone
 	switch(target_location_feedback)
-		if("r_leg")
+		if(BODY_ZONE_R_LEG)
 			target_location_feedback = "right leg"
-		if("l_leg")
+		if(BODY_ZONE_L_LEG)
 			target_location_feedback = "left leg"
-		if("r_foot")
+		if(BODY_ZONE_PRECISE_R_FOOT)
 			target_location_feedback = "right foot"
-		if("l_foot")
+		if(BODY_ZONE_PRECISE_L_FOOT)
 			target_location_feedback = "left foot"
-		if("r_arm")
+		if(BODY_ZONE_R_ARM)
 			target_location_feedback = "right arm"
-		if("l_arm")
+		if(BODY_ZONE_L_ARM)
 			target_location_feedback = "left arm"
-		if("r_hand")
+		if(BODY_ZONE_PRECISE_R_HAND)
 			target_location_feedback = "right hand"
-		if("l_hand")
+		if(BODY_ZONE_PRECISE_L_HAND)
 			target_location_feedback = "left hand"
 
 	return target_location_feedback
