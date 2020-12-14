@@ -94,7 +94,6 @@
 		/obj/item/ammo_magazine/rifle/m4ra = 3,
 		/obj/item/ammo_magazine/rocket/sadar = 3,
 		/obj/item/ammo_magazine/minigun = 2,
-		/obj/item/ammo_magazine/shotgun/mbx900 = 2,
 		/obj/item/bodybag/tarp = 2,
 		/obj/item/explosive/plastique = 2,
 		/obj/item/radio/headset/mainship/marine/alpha = 20,
@@ -141,6 +140,7 @@
 		/obj/item/storage/box/m94 = 30,
 		/obj/item/storage/box/recoilless_system = 1,
 		/obj/item/weapon/shield/riot/marine = 3,
+		/obj/item/weapon/gun/shotgun/pump/lever/mbx900 = 1,
 	)
 
 	premium = list()
@@ -197,6 +197,8 @@
 		/obj/item/ammo_magazine/smg/ppsh/ = 30,
 		/obj/item/ammo_magazine/smg/ppsh/extended = 10,
 		/obj/item/ammo_magazine/rifle/bolt = 7,
+		/obj/item/ammo_magazine/shotgun/mbx900 = 10,
+		/obj/item/ammo_magazine/shotgun/mbx900/buckshot = 10,
 	)
 	premium = list()
 
