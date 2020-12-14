@@ -208,27 +208,10 @@
 
 /datum/action/xeno_action/evasion/give_action(mob/living/L)
 	. = ..()
-	RegisterSignal(L, list(COMSIG_LIVING_STATUS_STUN,
-		COMSIG_LIVING_STATUS_KNOCKDOWN,
-		COMSIG_LIVING_STATUS_PARALYZE,
-		COMSIG_LIVING_STATUS_IMMOBILIZE,
-		COMSIG_LIVING_STATUS_UNCONSCIOUS,
-		COMSIG_LIVING_STATUS_SLEEP,
-		COMSIG_LIVING_STATUS_STAGGER), .proc/evasion_debuff_check)
 
-	RegisterSignal(L, COMSIG_XENOMORPH_FIRE_BURNING, .proc/evasion_fire_check)
 
 /datum/action/xeno_action/stealth/remove_action(mob/living/L)
-	UnregisterSignal(L, list(
-		COMSIG_LIVING_STATUS_STUN,
-		COMSIG_LIVING_STATUS_KNOCKDOWN,
-		COMSIG_LIVING_STATUS_PARALYZE,
-		COMSIG_LIVING_STATUS_IMMOBILIZE,
-		COMSIG_LIVING_STATUS_UNCONSCIOUS,
-		COMSIG_LIVING_STATUS_SLEEP,
-		COMSIG_LIVING_STATUS_STAGGER))
 
-	UnregisterSignal(L, COMSIG_XENOMORPH_FIRE_BURNING)
 	return ..()
 
 
@@ -244,20 +227,48 @@
 
 	R.evasion_stacks = R.xeno_caste.maturity_evasion_stacks
 
+	RegisterSignal(R, list(COMSIG_LIVING_STATUS_STUN,
+		COMSIG_LIVING_STATUS_KNOCKDOWN,
+		COMSIG_LIVING_STATUS_PARALYZE,
+		COMSIG_LIVING_STATUS_IMMOBILIZE,
+		COMSIG_LIVING_STATUS_UNCONSCIOUS,
+		COMSIG_LIVING_STATUS_SLEEP,
+		COMSIG_LIVING_STATUS_STAGGER), .proc/evasion_debuff_check)
+
+	RegisterSignal(R, COMSIG_XENOMORPH_FIRE_BURNING, .proc/evasion_burn_check) //Register status effects and fire which impact evasion.
+	RegisterSignal(R, COMSIG_ATOM_FLAMER_HIT, .proc/evasion_flamer_hit) //Register status effects and fire which impact evasion.
+
 	succeed_activate()
 
 	GLOB.round_statistics.runner_evasions++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "runner_evasions") //Statistics
 	add_cooldown()
 
-/datum/action/xeno_action/evasion/proc/evasion_fire_check()
+///Called when the owner is hit by a flamethrower projectile; reduces evasion stacks proportionate to damage
+/datum/action/xeno_action/evasion/proc/evasion_flamer_hit(datum/source, mob/M, obj/projectile/P)
 	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/runner/R = owner
-	if(R.evasion_stacks)
-		R.evasion_stacks = max(0, R.evasion_stacks - (R.fire_stacks + 3) * 4) //We lose evasion stacks equal to four times the burn damage
-		to_chat(R, "<span class='danger'>Burning compromises our ability to dodge! We [R.evasion_stacks > 0 ? "can evade only [R.evasion_stacks] more projectile damage!" : "can't evade any more projectile damage!"] </span>")
-		if(!R.evasion_stacks) //If all of our evasion stacks have burnt away, cancel out
-			evasion_deactivate()
+	if(!R.evasion_stacks) //This shouldn't be possible, but just in case.
+		evasion_deactivate()
+		return
+
+	R.evasion_stacks = max(0, R.evasion_stacks - P.damage) //We lose evasion stacks equal to the burn damage
+	to_chat(R, "<span class='danger'>The searing fire compromises our ability to dodge! We [R.evasion_stacks > 0 ? "can evade only [R.evasion_stacks] more projectile damage!" : "can't evade any more projectile damage!"] </span>")
+	if(!R.evasion_stacks) //If all of our evasion stacks have burnt away, cancel out
+		evasion_deactivate()
+
+///Called when the owner is burning; reduces evasion stacks proportionate to fire stacks
+/datum/action/xeno_action/evasion/proc/evasion_burn_check()
+	SIGNAL_HANDLER
+	var/mob/living/carbon/xenomorph/runner/R = owner
+	if(!R.evasion_stacks) //This shouldn't be possible, but just in case.
+		evasion_deactivate()
+		return
+
+	R.evasion_stacks = max(0, R.evasion_stacks - (R.fire_stacks + 3) * 4) //We lose evasion stacks equal to four times the burn damage
+	to_chat(R, "<span class='danger'>Burning compromises our ability to dodge! We [R.evasion_stacks > 0 ? "can evade only [R.evasion_stacks] more projectile damage!" : "can't evade any more projectile damage!"] </span>")
+	if(!R.evasion_stacks) //If all of our evasion stacks have burnt away, cancel out
+		evasion_deactivate()
 
 
 /datum/action/xeno_action/evasion/proc/evasion_debuff_check(amount)
@@ -270,12 +281,27 @@
 
 
 /datum/action/xeno_action/evasion/proc/evasion_deactivate()
-	var/mob/living/carbon/xenomorph/runner/R = owner
-	if(R.evasion_stacks) //If our evasion stacks are already depleted, don't tell us again.
-		R.evasion_stacks = 0
-		R.visible_message("<span class='warning'>[R.name] stops moving erratically.</span>", \
-		"<span class='highdanger'>We stop moving erratically; projectiles will hit us normally again!</span>")
 
+	var/mob/living/carbon/xenomorph/runner/R = owner
+
+	UnregisterSignal(R, list(
+		COMSIG_LIVING_STATUS_STUN,
+		COMSIG_LIVING_STATUS_KNOCKDOWN,
+		COMSIG_LIVING_STATUS_PARALYZE,
+		COMSIG_LIVING_STATUS_IMMOBILIZE,
+		COMSIG_LIVING_STATUS_UNCONSCIOUS,
+		COMSIG_LIVING_STATUS_SLEEP,
+		COMSIG_LIVING_STATUS_STAGGER))
+
+	UnregisterSignal(R, COMSIG_XENOMORPH_FIRE_BURNING) //Always unregister
+	UnregisterSignal(R, COMSIG_ATOM_FLAMER_HIT) //Register status effects and fire which impact evasion.
+
+	if(!R.evasion_stacks) //If our evasion stacks are already depleted, don't tell us again.
+		return
+
+	R.evasion_stacks = 0
+	R.visible_message("<span class='warning'>[R.name] stops moving erratically.</span>", \
+	"<span class='highdanger'>We stop moving erratically; projectiles will hit us normally again!</span>")
 	R.playsound_local(R, 'sound/voice/hiss5.ogg', 50)
 
 
@@ -328,7 +354,9 @@
 		return FALSE
 
 	to_chat(src, "<span class='highdanger'>We [evasion_stacks > 0 ? "can dodge only [evasion_stacks] more projectile damage!" : "can't dodge any more projectile damage!"] </span>")
-	if(!evasion_stacks) //Audio warning
+	if(!evasion_stacks) //Audio warning, and signal removal
+		var/datum/action/xeno_action/evasion/evasion_action = actions_by_path[/datum/action/xeno_action/evasion]
+		evasion_action.evasion_deactivate()
 		playsound_local(src, 'sound/voice/hiss5.ogg', 50)
 
 	return FALSE

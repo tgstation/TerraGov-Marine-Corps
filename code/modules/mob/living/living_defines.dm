@@ -121,5 +121,7 @@
 	var/list/friendly_fire = list()
 
 	///Stagger and slow vars; Stagger penalizes projectile damage for non-Xenos and disables ability use for Xenos. Slowdown is obvious.
-	var/slowdown = 0 //Temporary penalty on movement. Regenerates each tick.
-	var/stagger = 0 //Temporary inability to use special actions; hurts projectile damage. Regenerates each tick.
+	///Temporary penalty on movement. Regenerates each tick.
+	var/slowdown = 0
+	///Temporary inability to use special actions; hurts projectile damage. Regenerates each tick.
+	var/stagger = 0

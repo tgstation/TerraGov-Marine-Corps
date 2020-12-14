@@ -1618,12 +1618,15 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/fire_delay = 20
 
 /datum/ammo/flamethrower/on_hit_mob(mob/M,obj/projectile/P)
+	SEND_SIGNAL(M, COMSIG_ATOM_FLAMER_HIT, M, P)
 	drop_flame(get_turf(P))
 
 /datum/ammo/flamethrower/on_hit_obj(obj/O,obj/projectile/P)
+	SEND_SIGNAL(O, COMSIG_ATOM_FLAMER_HIT, O, P)
 	drop_flame(get_turf(P))
 
 /datum/ammo/flamethrower/on_hit_turf(turf/T,obj/projectile/P)
+	SEND_SIGNAL(T, COMSIG_ATOM_FLAMER_HIT, T, P)
 	drop_flame(get_turf(P))
 
 /datum/ammo/flamethrower/do_at_max_range(obj/projectile/P)
