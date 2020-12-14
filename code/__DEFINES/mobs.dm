@@ -419,9 +419,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define XENO_ACID_WELL_FILL_COST 			200 //Cost in plasma to apply a charge to an acid pool
 #define XENO_ACID_WELL_MAX_CHARGES 			5 //Maximum number of charges for the acid well
 
-///List of xenos that can repair resin structures
-GLOBAL_LIST_INIT(xenorepaircastes, typecacheof(list(/mob/living/carbon/xenomorph/drone, /mob/living/carbon/xenomorph/hivelord, /mob/living/carbon/xenomorph/shrike, /mob/living/carbon/xenomorph/hivemind, /mob/living/carbon/xenomorph/queen)))
-
 #define SPIT_UPGRADE_BONUS(Xenomorph) (( max(0,Xenomorph.upgrade_as_number()) * 0.15 )) //increase damage by 15% per upgrade level; compensates for the loss of insane attack speed.
 
 #define PLASMA_TRANSFER_AMOUNT 100
@@ -460,6 +457,7 @@ GLOBAL_LIST_INIT(xenorepaircastes, typecacheof(list(/mob/living/carbon/xenomorph
 #define CASTE_ACID_BLOOD (1<<13) //The acid blood effect which damages humans near xenos that take damage
 #define CASTE_CAN_HOLD_JELLY (1<<14)//whether we can hold fireproof jelly in our hands
 #define CASTE_IS_STRONG (1<<15)//can tear open acided walls without being big
+#define CASTE_IS_BUILDER (1<<15) //whether we are classified as a builder caste and can repair xeno structures
 
 //Charge-Crush
 #define CHARGE_OFF			0

@@ -630,7 +630,7 @@
 	if(obj_integrity >= max_integrity) //If the structure is at max health (or higher somehow), no need to continue
 		return FALSE
 
-	if(!is_type_in_typecache(M, GLOB.xenorepaircastes)) //Check to see if we can actually repair
+	if(!CHECK_BITFIELD(M.xeno_caste.caste_flags, CASTE_IS_BUILDER)) //Check to see if we can actually repair
 		return FALSE
 
 	if(M.plasma_stored < 1) //You need to have at least 1 plasma to repair the structure
@@ -995,7 +995,7 @@ TUNNEL
 	creator = null
 	return ..()
 
-///Alert the creator when his
+///Alert the creator when his jelly pod is destroyed
 /obj/structure/xeno/resin_jelly_pod/obj_destruction(damage_flag)
 	if(!QDELETED(creator) && creator.stat == CONSCIOUS && creator.z == z)
 		var/area/A = get_area(src)
