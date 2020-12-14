@@ -149,8 +149,9 @@
 		return
 	var/fire_light = min(fire_stacks,5)
 	if(fire_light > fire_luminosity) // light up xenos if new light source thats bigger hits them
-		set_light_range(fire_light) //update range
-		set_light_color(LIGHT_COLOR_LAVA)
+		if(fire_light < light_range)
+			set_light_range(fire_light) //update range
+		set_light_color(BlendRGB(light_color, LIGHT_COLOR_LAVA))
 		fire_luminosity = fire_light
 		set_light_on(TRUE) //And activate it
 	var/obj/item/clothing/mask/facehugger/F = get_active_held_item()

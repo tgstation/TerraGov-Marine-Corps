@@ -221,9 +221,6 @@
 // apparently called whenever an item is removed from a slot, container, or anything else.
 //the call happens after the item's potential loc change.
 /obj/item/proc/dropped(mob/user)
-	if(user?.client && zoom) //Dropped when disconnected, whoops
-		zoom(user, 11, 12)
-
 	SEND_SIGNAL(src, COMSIG_ITEM_DROPPED, user)
 
 	if(flags_item & DELONDROP)
@@ -680,14 +677,11 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		to_chat(user, "<span class='warning'>Your vision is too obscured for you to look through \the [zoom_device].</span>")
 		return
 
-	if((!zoom && user.get_active_held_item() != src) && (!(flags_item & DOES_NOT_NEED_HANDS)))
-		to_chat(user, "<span class='warning'>You need to hold \the [zoom_device] to look through it.</span>")
-		return
-
 	if(zoom) //If we are zoomed out, reset that parameter.
 		user.visible_message("<span class='notice'>[user] looks up from [zoom_device].</span>",
 		"<span class='notice'>You look up from [zoom_device].</span>")
 		zoom = FALSE
+		onunzoom(user)
 		TIMER_COOLDOWN_START(user, COOLDOWN_ZOOM, 2 SECONDS)
 
 		if(user.interactee == src)
@@ -727,10 +721,24 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		user.visible_message("<span class='notice'>[user] peers through \the [zoom_device].</span>",
 		"<span class='notice'>You peer through \the [zoom_device].</span>")
 		zoom = TRUE
+		onzoom(user)
 		if(user.interactee)
 			user.unset_interaction()
 		else if(!istype(src, /obj/item/attachable/scope))
 			user.set_interaction(src)
+
+		
+/obj/item/proc/zoom_item_turnoff(datum/source, mob/living/carbon/user)
+	SIGNAL_HANDLER
+	zoom(user)
+
+/obj/item/proc/onzoom(mob/living/user)
+	RegisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_CARBON_SWAPPED_HANDS), .proc/zoom)
+	RegisterSignal(src, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED), .proc/zoom_item_turnoff)
+
+/obj/item/proc/onunzoom(mob/living/user)
+	UnregisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_CARBON_SWAPPED_HANDS))
+	UnregisterSignal(src, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED))
 
 
 /obj/item/proc/eyecheck(mob/user)
