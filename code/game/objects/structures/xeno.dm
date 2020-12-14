@@ -133,8 +133,7 @@
 
 /obj/effect/alien/resin/trap/proc/shuttle_crush() //No more trapping shuttles with huggies
 	SIGNAL_HANDLER
-	if(hugger)
-		QDEL_NULL(hugger)
+	QDEL_NULL(hugger)
 
 /obj/effect/alien/resin/trap/examine(mob/user)
 	. = ..()
