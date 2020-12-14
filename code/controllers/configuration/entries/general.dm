@@ -207,6 +207,11 @@ Voting
 	integer = FALSE
 	min_val = 0
 
+/datum/config_entry/number/maximum_clients_for_gamemode_vote
+	config_entry_value = 40
+	integer = TRUE
+	min_val = 0
+
 /*
 Master controller and performance related.
 */
