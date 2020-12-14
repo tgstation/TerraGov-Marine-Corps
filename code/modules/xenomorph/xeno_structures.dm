@@ -51,7 +51,7 @@
 	if(!istype(center_turf))
 		center_turf = loc
 
-	var/list/silo_detection_area = RANGE_TURFS(2, src)
+	silo_detection_area = RANGE_TURFS(2, src)
 	for(var/i in silo_detection_area)
 		RegisterSignal(i, COMSIG_ATOM_ENTERED, .proc/resin_silo_proxy_alert)
 
@@ -72,7 +72,7 @@
 	if(associated_hive)
 		UnregisterSignal(associated_hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK))
 		//Since resin silos are more important now, we need a better notification.
-		associated_hive.xeno_message("<span class='xenoannounce'>A resin silo has been destroyed at [silo_area] (X: [src.x], Y: [src.y])!</span>", 2, FALSE, src, 'sound/voice/alien_help2.ogg')
+		associated_hive.xeno_message("<span class='xenoannounce'>A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!</span>", 2, FALSE, src, 'sound/voice/alien_help2.ogg')
 		associated_hive = null
 	for(var/i in contents)
 		var/atom/movable/AM = i
@@ -80,10 +80,10 @@
 	playsound(loc,'sound/effects/alien_egg_burst.ogg', 75)
 
 	for(var/turf/detector_turf as() in silo_detection_area) //Delete our detector entities
-		detector_turf.UnregisterSignal(detector_turf, list(COMSIG_ATOM_ENTERED))
-	QDEL_LIST(silo_detection_area)
+		UnregisterSignal(detector_turf, list(COMSIG_ATOM_ENTERED))
 
-	silo_area = null //Null vars
+	silo_detection_area = null //Null vars
+	silo_area = null
 	center_turf = null
 	STOP_PROCESSING(SSslowprocess, src)
 	return ..()
@@ -118,9 +118,10 @@
 	if(!COOLDOWN_CHECK(src, silo_damage_alert_cooldown))
 		return
 
-	associated_hive.xeno_message("<span class='xenoannounce'>Our [name] at [silo_area] (X: [x], Y: [y]) is under attack! It has [obj_integrity]/[max_integrity] Health remaining.</span>", 2, FALSE, src, 'sound/voice/alien_help2.ogg')
+	associated_hive.xeno_message("<span class='xenoannounce'>Our [name] at [AREACOORD_NO_Z(src)] is under attack! It has [obj_integrity]/[max_integrity] Health remaining.</span>", 2, FALSE, src, 'sound/voice/alien_help2.ogg')
 	COOLDOWN_START(src, silo_damage_alert_cooldown, XENO_HEALTH_ALERT_COOLDOWN) //set the cooldown.
 
+///Alerts the Hive when hostiles get too close to their resin silo
 /obj/structure/resin/silo/proc/resin_silo_proxy_alert(datum/source, atom/hostile)
 	SIGNAL_HANDLER
 
@@ -149,7 +150,6 @@
 		return
 
 	//If we're at max integrity, stop regenerating and processing.
-	STOP_PROCESSING(SSslowprocess, src)
 	return PROCESS_KILL
 
 /obj/structure/resin/silo/proc/is_burrowed_larva_host(datum/source, list/mothers, list/silos)

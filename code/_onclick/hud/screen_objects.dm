@@ -763,7 +763,9 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	color = COLOR_RED
 	screen_loc = ui_sl_dir
+	///The xenomorph for which the arrow appears
 	var/mob/living/carbon/xenomorph/tracker
+	///The target which the arrow points to
 	var/mob/living/target
 
 /obj/screen/xeno_tracker_arrow/proc/add_hud(mob/living/carbon/xenomorph/tracker_input, atom/target_input)

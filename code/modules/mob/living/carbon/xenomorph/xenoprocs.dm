@@ -70,10 +70,7 @@
 
 ///Relays health and location data about resin silos belonging to the same hive as the input user
 /proc/resin_silo_status_output(mob/living/carbon/xenomorph/user)
-	var/resin_silo_info = ""
-	resin_silo_info += "<BR>" //Resin Silo data
-	resin_silo_info += "<b>List of Resin Silos:</b><BR>"
-	resin_silo_info += "<table cellspacing=4>"
+	var/resin_silo_info = "<BR><b>List of Resin Silos:</b><BR><table cellspacing=4>" //Resin silo data
 	for(var/obj/structure/resin/silo/resin_silo as() in GLOB.xeno_resin_silos)
 		if(resin_silo.associated_hive == user.hive)
 
@@ -169,7 +166,7 @@
 	popup.set_content(dat)
 	popup.open(FALSE)
 
-//Send a message to all xenos.
+///Send a message to all xenos. Force forces the message whether or not the hivemind is intact. Target is an atom that is pointed out to the hive. Filter list is a list of xenos we don't message.
 /proc/xeno_message(message = null, size = 3, hivenumber = XENO_HIVE_NORMAL, force = FALSE, atom/target = null, sound = null, apply_preferences = FALSE, filter_list = null)
 	if(!message)
 		return
