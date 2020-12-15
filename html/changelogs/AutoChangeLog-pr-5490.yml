@@ -1,7 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes: 
-  - code_imp: "removed depracated vars on items"
-  - code_imp: "documented items"
-  - code_imp: "more misc cleanup"
-  - refactor: "refactored item actions into a lazylist"

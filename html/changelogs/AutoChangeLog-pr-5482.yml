@@ -1,5 +1,0 @@
-author: "Surrealaser"
-delete-after: True
-changes: 
-  - bugfix: "Acid Wells no longer discharge gas when destroyed by shuttle crushing."
-  - bugfix: "Hugger Traps no longer discharge huggers when destroyed by shuttle crushing."
