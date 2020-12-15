@@ -20,6 +20,7 @@
 	var/amount = 30
 	var/recharge_amount = 10
 	var/recharge_counter = 0
+	var/possible_transfer_amounts = list(1,5,10,15,20,30,60)
 
 	var/working_state = "dispenser_working"
 
@@ -57,8 +58,6 @@
 	)
 
 	var/list/recording_recipe
-
-	var/list/saved_recipes = list()
 
 /obj/machinery/chem_dispenser/Initialize()
 	. = ..()
@@ -133,6 +132,7 @@
 	data["energy"] = cell.charge ? cell.charge * powerefficiency : "0" //To prevent NaN in the UI.
 	data["maxEnergy"] = cell.maxcharge * powerefficiency
 	data["isBeakerLoaded"] = beaker ? 1 : 0
+	data["beakerTransferAmounts"] = possible_transfer_amounts
 
 	var/beakerContents[0]
 	var/beakerCurrentVolume = 0
@@ -145,11 +145,10 @@
 	if (beaker)
 		data["beakerCurrentVolume"] = beakerCurrentVolume
 		data["beakerMaxVolume"] = beaker.volume
-		data["beakerTransferAmounts"] = beaker.possible_transfer_amounts
+
 	else
 		data["beakerCurrentVolume"] = null
 		data["beakerMaxVolume"] = null
-		data["beakerTransferAmounts"] = null
 
 	var/list/chemicals = list()
 	for(var/re in dispensable_reagents)
@@ -158,7 +157,7 @@
 			var/chemname = temp.name
 			chemicals.Add(list(list("title" = chemname, "id" = ckey(temp.name))))
 	data["chemicals"] = chemicals
-	data["recipes"] = saved_recipes
+	data["recipes"] = user.client.prefs.chem_macros
 
 	data["recordingRecipe"] = recording_recipe
 	return data
@@ -171,7 +170,7 @@
 			if(!is_operational() || QDELETED(beaker))
 				return
 			var/target = text2num(params["target"])
-			if(target in beaker.possible_transfer_amounts)
+			if(target in possible_transfer_amounts)
 				amount = target
 				work_animation()
 				. = TRUE
@@ -199,7 +198,7 @@
 			if(!is_operational() || recording_recipe)
 				return
 			var/amount = text2num(params["amount"])
-			if(beaker && (amount in beaker.possible_transfer_amounts))
+			if(beaker && (amount in possible_transfer_amounts))
 				beaker.reagents.remove_all(amount)
 				work_animation()
 				. = TRUE
@@ -209,13 +208,14 @@
 		if("dispense_recipe")
 			if(!is_operational() || QDELETED(cell))
 				return
-			var/list/chemicals_to_dispense = saved_recipes[params["recipe"]]
+			var/list/chemicals_to_dispense = usr.client.prefs.chem_macros[params["recipe"]]
 			if(!LAZYLEN(chemicals_to_dispense))
 				return
 			for(var/key in chemicals_to_dispense)
 				var/reagent = GLOB.name2reagent[key]
 				var/dispense_amount = chemicals_to_dispense[key]
 				if(!dispensable_reagents.Find(reagent))
+					to_chat(usr, "<span class='danger'>[src] cannot find <b>[key]</b>!</span>")
 					return
 				if(!recording_recipe)
 					if(!beaker)
@@ -237,7 +237,7 @@
 				return
 			var/yesno = alert("Clear all recipes?",, "Yes","No")
 			if(yesno == "Yes")
-				saved_recipes = list()
+				usr.client.prefs.chem_macros = list()
 			. = TRUE
 		if("record_recipe")
 			if(!is_operational())
@@ -248,7 +248,10 @@
 			if(!is_operational())
 				return
 			var/name = stripped_input(usr, "Name", "What do you want to name this recipe?", "Recipe", MAX_NAME_LEN)
-			if(saved_recipes[name] && alert("\"[name]\" already exists, do you want to overwrite it?",, "Yes", "No") == "No")
+			if(usr.client.prefs.chem_macros[name] && alert("\"[name]\" already exists, do you want to overwrite it?",, "Yes", "No") == "No")
+				return
+			else if(length(usr.client.prefs.chem_macros) >= 10)
+				to_chat(usr, "<span class='danger'>You can remember <b>up to 10</b> recipes!</span>")
 				return
 			if(name && recording_recipe)
 				for(var/reagent in recording_recipe)
@@ -258,7 +261,7 @@
 						to_chat(usr, "<span class='danger'>[src] cannot find <b>[reagent]</b>!</span>")
 						playsound(src, 'sound/machines/buzz-two.ogg', 50, TRUE)
 						return
-				saved_recipes[name] = recording_recipe
+				usr.client.prefs.chem_macros[name] = recording_recipe
 				recording_recipe = null
 				. = TRUE
 		if("cancel_recording")
