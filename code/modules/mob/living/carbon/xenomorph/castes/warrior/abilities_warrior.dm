@@ -333,6 +333,11 @@
 	if(!.)
 		return
 
+	if(A.resistance_flags == RESIST_ALL || A.resistance_flags == INDESTRUCTIBLE) //no bolting down indestructible airlocks
+		if(!silent)
+			to_chat(owner, "<span class='xenodanger'>We cannot damage this target!</span>")
+		return FALSE
+
 	if(!isliving(A) && !isstructure(A) && !ismachinery(A))
 		if(!silent)
 			to_chat(owner, "<span class='xenodanger'>We can't punch this target!</span>")
