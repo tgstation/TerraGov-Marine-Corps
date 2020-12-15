@@ -1380,14 +1380,13 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 20
 	stagger_stacks = 1
 	slowdown_stacks = 1
-	smoke_strength = 1
+	smoke_strength = 0.65
 	smoke_range = 0
 	reagent_transfer_amount = 5
 
 /datum/ammo/xeno/toxin/proc/set_reagents()
 	spit_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = reagent_transfer_amount)
-	message_admins("Neuro Amount = [spit_reagents[1]]")
-	message_admins("Reagent Transfer Amount = [reagent_transfer_amount]")
+
 
 /datum/ammo/xeno/toxin/on_hit_mob(mob/living/carbon/C, obj/projectile/P)
 	drop_neuro_smoke(get_turf(C))
@@ -1403,10 +1402,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 	set_reagents()
 	var/armor_block = 1 - C.run_armor_check(null, armor_type) //Check the target's armor mod
-	message_admins("Armor Block = [armor_block]")
 	for(var/r_id in spit_reagents) //modify by armor
 		spit_reagents[r_id] *= armor_block
-		message_admins("Spit Reagents = [spit_reagents[r_id]]")
 
 	C.reagents.add_reagent_list(spit_reagents) //transfer reagents
 
@@ -1447,15 +1444,15 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	smoke_system.start()
 
 /datum/ammo/xeno/toxin/upgrade1
-	smoke_strength = 1.05
+	smoke_strength = 0.7
 	reagent_transfer_amount = 6
 
 /datum/ammo/xeno/toxin/upgrade2
-	smoke_strength = 1.1
+	smoke_strength = 0.75
 	reagent_transfer_amount = 7
 
 /datum/ammo/xeno/toxin/upgrade3
-	smoke_strength = 1.15
+	smoke_strength = 0.8
 	reagent_transfer_amount = 8
 
 
@@ -1463,19 +1460,19 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "neurotoxic spatter"
 	added_spit_delay = 10
 	spit_cost = 75
-	smoke_strength = 1.05
+	smoke_strength = 0.75
 	reagent_transfer_amount = 6
 
 /datum/ammo/xeno/toxin/medium/upgrade1
-	smoke_strength = 1.1
+	smoke_strength = 0.8
 	reagent_transfer_amount = 7
 
 /datum/ammo/xeno/toxin/medium/upgrade2
-	smoke_strength = 1.15
+	smoke_strength = 0.85
 	reagent_transfer_amount = 8
 
 /datum/ammo/xeno/toxin/medium/upgrade3
-	smoke_strength = 1.2
+	smoke_strength = 0.9
 	reagent_transfer_amount = 9
 
 
@@ -1484,19 +1481,19 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	added_spit_delay = 15
 	spit_cost = 100
 	smoke_range = 1
-	smoke_strength = 1.1
+	smoke_strength = 0.85
 	reagent_transfer_amount = 7
 
 /datum/ammo/xeno/toxin/heavy/upgrade1
-	smoke_strength = 1.15
+	smoke_strength = 0.9
 	reagent_transfer_amount = 8
 
 /datum/ammo/xeno/toxin/heavy/upgrade2
-	smoke_strength = 1.2
+	smoke_strength = 0.95
 	reagent_transfer_amount = 9
 
 /datum/ammo/xeno/toxin/heavy/upgrade3
-	smoke_strength = 1.25
+	smoke_strength = 1
 	reagent_transfer_amount = 10
 
 
