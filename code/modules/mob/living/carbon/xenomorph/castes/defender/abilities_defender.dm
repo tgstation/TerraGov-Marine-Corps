@@ -69,7 +69,7 @@
 	damage *= (1 + distance * 0.25) //More distance = more momentum = stronger Headbutt.
 	var/affecting = H.get_limb(ran_zone(null, 0))
 	if(!affecting) //Still nothing??
-		affecting = H.get_limb("chest") //Gotta have a torso?!
+		affecting = H.get_limb(BODY_ZONE_CHEST) //Gotta have a torso?!
 	var/armor_block = H.run_armor_check(affecting, "melee")
 	H.apply_damage(damage, BRUTE, affecting, armor_block) //We deal crap brute damage after armor...
 	H.apply_damage(damage, STAMINA) //...But some sweet armour ignoring Stamina
@@ -149,7 +149,7 @@
 			var/damage = X.xeno_caste.melee_damage
 			var/affecting = ran_zone(null, 0)
 			if(!affecting) //Still nothing??
-				affecting = "chest" //Gotta have a torso?!
+				affecting = BODY_ZONE_CHEST //Gotta have a torso?!
 			var/armor_block = victim.run_armor_check(affecting, "melee")
 			victim.apply_damage(damage, BRUTE, affecting, armor_block) //Crap base damage after armour...
 			victim.apply_damage(damage, STAMINA) //...But some sweet armour ignoring Stamina... not that it does much now that it can't be comboed with tackles
