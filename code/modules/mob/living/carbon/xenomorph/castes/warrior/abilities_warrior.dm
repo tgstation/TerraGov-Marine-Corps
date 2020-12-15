@@ -395,6 +395,7 @@
 			visible_message("<span class='danger'>\The [src]'s wires snap apart in a rain of sparks!</span>", null, null, 5)
 
 	update_icon()
+	return TRUE
 
 /obj/machinery/light/punch_act(mob/living/carbon/xenomorph/X)
 	. = ..()
@@ -419,6 +420,7 @@
 		"<span class='xenodanger'>We smash [src] with a devastating punch!</span>", visible_message_flags = COMBAT_MESSAGE)
 	playsound(src, pick('sound/effects/bang.ogg','sound/effects/metal_crash.ogg','sound/effects/meteorimpact.ogg'), 50, 1)
 	Shake(4, 4, 2 SECONDS)
+	return TRUE
 
 /mob/living/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone)
 	var/punch_description = "powerful"
