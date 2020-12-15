@@ -793,7 +793,7 @@ TUNNEL
 	return ..()
 
 /obj/effect/alien/resin/acidwell/update_icon()
-	..()
+	. = ..()
 	icon_state = "well[charges]"
 	set_light(charges , charges / 2, LIGHT_COLOR_GREEN)
 
