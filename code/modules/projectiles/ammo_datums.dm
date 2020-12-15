@@ -1360,7 +1360,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_high = 3
 	bullet_color = COLOR_LIME
 	var/datum/effect_system/smoke_spread/xeno/smoke_system
-	var/list/spit_reagents = new/list()
+	var/list/datum/reagent/spit_reagents = new/list()
 	var/reagent_transfer_amount
 	var/stagger_stacks
 	var/slowdown_stacks
@@ -1373,7 +1373,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	spit_cost = 50
 	added_spit_delay = 5
 	damage_type = STAMINA
-	accurate_range = 7
+	accurate_range = 5
 	max_range = 10
 	accuracy_var_low = 3
 	accuracy_var_high = 3
@@ -1386,7 +1386,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/xeno/toxin/proc/set_reagents()
 	spit_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = reagent_transfer_amount)
-
 
 /datum/ammo/xeno/toxin/on_hit_mob(mob/living/carbon/C, obj/projectile/P)
 	drop_neuro_smoke(get_turf(C))
@@ -1401,9 +1400,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	C.add_slowdown(slowdown_stacks) //slow em down
 
 	set_reagents()
-	var/armor_block = 1 - C.run_armor_check(null, armor_type) //Check the target's armor mod
-	for(var/r_id in spit_reagents) //modify by armor
-		spit_reagents[r_id] *= armor_block
+	var/armor_block = (1 - C.run_armor_check(BODY_ZONE_CHEST, armor_type) * 0.01) //Check the target's armor mod; default to chest
+	for(var/reagent_id in spit_reagents) //modify by armor
+		spit_reagents[reagent_id] *= armor_block
 
 	C.reagents.add_reagent_list(spit_reagents) //transfer reagents
 
@@ -1480,7 +1479,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "neurotoxic splash"
 	added_spit_delay = 15
 	spit_cost = 100
-	smoke_range = 1
 	smoke_strength = 0.65
 	reagent_transfer_amount = 6.5
 
