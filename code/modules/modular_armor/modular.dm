@@ -315,7 +315,7 @@
 	flags_armor_features = ARMOR_NO_DECAP
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS
-	allowed = list()
+	allowed = null
 	flags_equip_slot = ITEM_SLOT_HEAD
 	w_class = WEIGHT_CLASS_NORMAL
 
