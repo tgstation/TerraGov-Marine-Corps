@@ -499,7 +499,7 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 	qdel(animation)
 
 
-///Returns the src and all recursive contents.
+///Returns the src and all recursive contents as a list.
 /atom/proc/GetAllContents()
 	. = list(src)
 	var/i = 0
@@ -507,7 +507,7 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 		var/atom/A = .[++i]
 		. += A.contents
 
-///identical to getallcontents but typechecks atoms instead
+///identical to getallcontents but returns a list of atoms of the type passed in the argument.
 /atom/proc/get_all_contents_type(type)
 	var/list/processing_list = list(src)
 	. = list()
