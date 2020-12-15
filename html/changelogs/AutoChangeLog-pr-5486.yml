@@ -1,5 +1,0 @@
-author: "Surrealaser"
-delete-after: True
-changes: 
-  - tweak: "Transfer Plasma no longer transfers for plasma than its target needs."
-  - tweak: "Transfer Plasma has cool SFX now."
