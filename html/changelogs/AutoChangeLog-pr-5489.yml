@@ -1,0 +1,4 @@
+author: "TiviPlus"
+delete-after: True
+changes: 
+  - code_imp: "Cleaned up Move() and Signal defines slightly"
