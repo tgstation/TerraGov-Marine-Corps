@@ -505,7 +505,10 @@
 		UPDATEHEALTH(src)
 	to_chat(src, "<span class='danger'>You are burned!</span>")
 
-
+/obj/flamer_fire/effect_smoke(obj/effect/particle_effect/smoke/S)
+	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_EXTINGUISH)) //Fire suppressing smoke
+		firelevel -= 20 //Water level extinguish
+		updateicon()
 
 /mob/living/carbon/human/flamer_fire_crossed(burnlevel, firelevel, fire_mod = 1)
 	if(hard_armor.getRating("fire") >= 100)

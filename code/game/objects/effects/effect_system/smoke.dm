@@ -270,13 +270,14 @@
 //Xeno neurotox smoke.
 /obj/effect/particle_effect/smoke/xeno/neuro
 	color = "#ffbf58" //Mustard orange?
-	smoke_traits = SMOKE_XENO|SMOKE_XENO_NEURO|SMOKE_GASP|SMOKE_COUGH
+	smoke_traits = SMOKE_XENO|SMOKE_XENO_NEURO|SMOKE_GASP|SMOKE_COUGH|SMOKE_EXTINGUISH
 
 //Xeno neurotox smoke.
 /obj/effect/particle_effect/smoke/xeno/neuro/light
 	alpha = 60
 	opacity = FALSE
 	smoke_can_spread_through = TRUE
+	smoke_traits = SMOKE_XENO|SMOKE_XENO_NEURO|SMOKE_GASP|SMOKE_COUGH //Light neuro smoke doesn't extinguish
 
 /obj/effect/particle_effect/smoke/xeno/hemodile
 	alpha = 40
