@@ -1351,7 +1351,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 20
 	stagger_stacks = 1
 	slowdown_stacks = 1
-	smoke_strength = 0.65
+	smoke_strength = 0.5
 	smoke_range = 0
 	reagent_transfer_amount = 5
 
@@ -1415,36 +1415,36 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	smoke_system.start()
 
 /datum/ammo/xeno/toxin/upgrade1
-	smoke_strength = 0.7
-	reagent_transfer_amount = 6
+	smoke_strength = 0.55
+	reagent_transfer_amount = 5.5
 
 /datum/ammo/xeno/toxin/upgrade2
-	smoke_strength = 0.75
-	reagent_transfer_amount = 7
+	smoke_strength = 0.6
+	reagent_transfer_amount = 6
 
 /datum/ammo/xeno/toxin/upgrade3
-	smoke_strength = 0.8
-	reagent_transfer_amount = 8
+	smoke_strength = 0.65
+	reagent_transfer_amount = 6.5
 
 
 /datum/ammo/xeno/toxin/medium //Queen
 	name = "neurotoxic spatter"
 	added_spit_delay = 10
 	spit_cost = 75
-	smoke_strength = 0.75
+	smoke_strength = 0.6
 	reagent_transfer_amount = 6
 
 /datum/ammo/xeno/toxin/medium/upgrade1
-	smoke_strength = 0.8
-	reagent_transfer_amount = 7
+	smoke_strength = 0.65
+	reagent_transfer_amount = 6.5
 
 /datum/ammo/xeno/toxin/medium/upgrade2
-	smoke_strength = 0.85
-	reagent_transfer_amount = 8
+	smoke_strength = 0.7
+	reagent_transfer_amount = 7
 
 /datum/ammo/xeno/toxin/medium/upgrade3
-	smoke_strength = 0.9
-	reagent_transfer_amount = 9
+	smoke_strength = 0.75
+	reagent_transfer_amount = 7.5
 
 
 /datum/ammo/xeno/toxin/heavy //Praetorian
@@ -1452,20 +1452,20 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	added_spit_delay = 15
 	spit_cost = 100
 	smoke_range = 1
-	smoke_strength = 0.85
-	reagent_transfer_amount = 7
+	smoke_strength = 0.65
+	reagent_transfer_amount = 6.5
 
 /datum/ammo/xeno/toxin/heavy/upgrade1
-	smoke_strength = 0.9
-	reagent_transfer_amount = 8
+	smoke_strength = 0.7
+	reagent_transfer_amount = 7
 
 /datum/ammo/xeno/toxin/heavy/upgrade2
-	smoke_strength = 0.95
-	reagent_transfer_amount = 9
+	smoke_strength = 0.75
+	reagent_transfer_amount = 7.5
 
 /datum/ammo/xeno/toxin/heavy/upgrade3
-	smoke_strength = 1
-	reagent_transfer_amount = 10
+	smoke_strength = 0.8
+	reagent_transfer_amount = 8
 
 
 /datum/ammo/xeno/sticky

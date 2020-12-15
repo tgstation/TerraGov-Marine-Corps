@@ -469,12 +469,14 @@
 			L.adjustStaminaLoss(4*REM) //While stamina loss is going, stamina regen apparently doesn't happen, so I can keep this smaller.
 			L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
 		if(21 to 45)
+			L.adjust_drugginess(1.1) //Move this to stage 2 and 3 so it's not so obnoxious
 			L.adjustStaminaLoss(12*REM)
 			L.reagent_pain_modifier -= PAIN_REDUCTION_HEAVY
 		if(46 to INFINITY)
+			L.adjust_drugginess(1.1)
 			L.adjustStaminaLoss(30*REM)
 			L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_HEAVY
-	L.adjust_drugginess(1.1)
+	L.adjust_blurriness(1.3)
 	L.stuttering = max(L.stuttering, 1)
 	return ..()
 
