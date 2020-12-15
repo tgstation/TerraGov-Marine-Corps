@@ -499,7 +499,26 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 	qdel(animation)
 
 
-/atom/proc/GetAllContents(T)
+///Returns the src and all recursive contents.
+/atom/proc/GetAllContents()
+	. = list(src)
+	var/i = 0
+	while(i < length(.))
+		var/atom/A = .[++i]
+		. += A.contents
+
+///identical to getallcontents but typechecks atoms instead
+/atom/proc/get_all_contents_type(type)
+	var/list/processing_list = list(src)
+	. = list()
+	while(length(processing_list))
+		var/atom/A = processing_list[1]
+		processing_list.Cut(1, 2)
+		processing_list += A.contents
+		if(istype(A, type))
+			. += A
+
+/atom/proc/GetAllContentsold(T)
 	var/list/processing_list = list(src)
 	var/list/assembled = list()
 	if(T)
@@ -1234,14 +1253,14 @@ GLOBAL_LIST_INIT(wallitems, typecacheof(list(
 	if(!length(ignore_typecache))
 		return GetAllContents()
 	var/list/processing = list(src)
-	var/list/assembled = list()
+	. = list()
 	while(processing.len)
 		var/atom/A = processing[1]
 		processing.Cut(1,2)
-		if(!ignore_typecache[A.type])
-			processing += A.contents
-			assembled += A
-	return assembled
+		if(ignore_typecache[A.type])
+			continue
+		processing += A.contents
+		. += A
 
 /atom/proc/Shake(pixelshiftx = 15, pixelshifty = 15, duration = 25 SECONDS) //Does a "shaking" effect on a sprite, code is from tgstation
 	var/initialpixelx = pixel_x
