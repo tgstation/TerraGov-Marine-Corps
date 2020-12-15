@@ -145,7 +145,6 @@
 	if (beaker)
 		data["beakerCurrentVolume"] = beakerCurrentVolume
 		data["beakerMaxVolume"] = beaker.volume
-
 	else
 		data["beakerCurrentVolume"] = null
 		data["beakerMaxVolume"] = null
