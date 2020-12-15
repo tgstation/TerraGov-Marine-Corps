@@ -183,13 +183,14 @@ obj/item/alienjar
 		return FALSE
 
 	if(istype(A, /obj/vehicle))	//no vehicles
-		return 0
+		return FALSE
 
 	if(isliving(A)) // You Shall Not Pass!
 		var/mob/living/M = A
 		if(!M.lying_angle && !ismonkey(M) && !istype(M, /mob/living/simple_animal/mouse) && !istype(M, /mob/living/carbon/xenomorph/larva) && !istype(M, /mob/living/carbon/xenomorph/runner))  //If your not laying down, or a small creature, no pass.
-			return 0
-	return ..()
+			return FALSE
+
+	return TRUE
 
 /obj/structure/plasticflaps/ex_act(severity)
 	switch(severity)

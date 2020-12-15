@@ -223,7 +223,8 @@
 		visible_message("<span class='danger'>[mover] slams into [src] and breaks it!</span>")
 		INVOKE_ASYNC(src, .proc/fold_down, TRUE)
 		return FALSE
-	return ..()
+
+	return TRUE
 
 /obj/structure/bed/chair/dropship/passenger/Initialize()
 	. = ..()

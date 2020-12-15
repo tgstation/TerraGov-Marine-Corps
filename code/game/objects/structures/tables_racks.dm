@@ -212,11 +212,8 @@
 	if(S?.climbable && !(S.flags_atom & ON_BORDER) && climbable && isliving(mover)) //Climbable non-border objects allow you to universally climb over others
 		return TRUE
 	if(flipped)
-		if(get_dir(loc, target) & dir)
-			return !density
-		else
+		if(!get_dir(loc, target) & dir)
 			return TRUE
-	return !density
 
 
 /obj/structure/table/CheckExit(atom/movable/mover, turf/target)

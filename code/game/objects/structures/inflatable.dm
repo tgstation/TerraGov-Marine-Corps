@@ -50,12 +50,6 @@
 		deflate(!disassembled)
 	return ..()
 
-
-/obj/structure/inflatable/CanAllowThrough(atom/movable/mover, turf/target, height = 0, air_group = 0)
-	. = ..()
-	return 0
-
-
 /obj/structure/inflatable/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
@@ -127,11 +121,6 @@
 	icon_state = "wall_popped"
 
 
-/obj/structure/inflatable/popped/CanAllowThrough(atom/movable/mover, turf/target, height = 0, air_group = 0)
-	. = ..()
-	return 1
-
-
 /obj/structure/inflatable/popped/door
 	name = "popped inflatable door"
 	desc = "This used to be an inflatable door, now it's just a mess of plastic."
@@ -170,7 +159,6 @@
 		return state
 	if(istype(mover, /obj/effect/beam))
 		return !opacity
-	return !density
 
 /obj/structure/inflatable/door/proc/TryToSwitchState(atom/user)
 	if(isSwitchingStates)
