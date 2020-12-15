@@ -140,7 +140,7 @@
 	. = ..()
 	RegisterSignal(owner, COMSIG_WARRIOR_USED_GRAPPLE_TOSS, .proc/add_cooldown) //Shared cooldown with Grapple Toss
 
-/datum/action/xeno_action/activable/lunge/remove_action(mob/living/L)
+/datum/action/xeno_action/activable/fling/remove_action(mob/living/L)
 	UnregisterSignal(owner, COMSIG_WARRIOR_USED_GRAPPLE_TOSS)
 	return ..()
 
@@ -232,11 +232,11 @@
 	target_flags = XABB_TURF_TARGET
 
 
-/datum/action/xeno_action/activable/fling/give_action(mob/living/L)
+/datum/action/xeno_action/activable/toss/give_action(mob/living/L)
 	. = ..()
 	RegisterSignal(owner, COMSIG_WARRIOR_USED_FLING, .proc/add_cooldown) //Shared cooldown with Fling
 
-/datum/action/xeno_action/activable/lunge/remove_action(mob/living/L)
+/datum/action/xeno_action/activable/toss/remove_action(mob/living/L)
 	UnregisterSignal(owner, COMSIG_WARRIOR_USED_FLING)
 	return ..()
 
@@ -307,7 +307,7 @@
 	succeed_activate()
 	add_cooldown()
 
-	SEND_SIGNAL(owner, COMSIG_WARRIOR_USED_FLING) //Shared cooldown with Fling
+	SEND_SIGNAL(owner, COMSIG_WARRIOR_USED_GRAPPLE_TOSS) //Shared cooldown with Fling
 
 // ***************************************
 // *********** Punch
