@@ -240,7 +240,7 @@
 	machine_stat = 0 //Used just like mob.stat
 	var/datum/effect_system/spark_spread/spark_system //The spark system, used for generating... sparks?
 	var/obj/item/cell/cell
-	var/initial_cell = /obj/item/cell/high
+	var/initial_cell_type = /obj/item/cell/high
 	var/obj/machinery/camera/camera
 	var/fire_delay = 3
 	var/burst_delay = 5
@@ -292,8 +292,8 @@
 	spark_system = new /datum/effect_system/spark_spread
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
-	if(initial_cell)
-		cell = new initial_cell(src)
+	if(initial_cell_type)
+		cell = new initial_cell_type(src)
 	if(CHECK_BITFIELD(turret_flags, TURRET_HAS_CAMERA))
 		camera = new (src)
 		camera.network = list("military")
@@ -492,7 +492,6 @@
 				user.visible_message("<span class='notice'>[user] deactivates [src].</span>",
 				"<span class='notice'>You deactivate [src].</span>")
 				turn_off()
-				update_icon()
 			. = TRUE
 
 		if("toggle_alert")
@@ -1046,7 +1045,7 @@
 	turret_flags = TURRET_HAS_CAMERA|TURRET_ON|TURRET_BURSTFIRE|TURRET_IMMOBILE|TURRET_SAFETY
 	rounds_max = 50000
 	icon_state = "sentry_base"
-	initial_cell = /obj/item/cell/super
+	initial_cell_type = /obj/item/cell/super
 
 /obj/machinery/marine_turret/premade/Initialize()
 	. = ..()
@@ -1190,7 +1189,7 @@
 	work_time = 10 //significantly faster than the big sentry
 	ammo = /datum/ammo/bullet/turret/mini //Similar to M25 AP rounds.
 	magazine_type = /obj/item/ammo_magazine/minisentry
-	initial_cell = null
+	initial_cell_type = null
 
 /obj/item/storage/box/sentry/Initialize(mapload, ...)
 	. = ..()
@@ -1211,7 +1210,6 @@
 	if(CHECK_BITFIELD(turret_flags, TURRET_ON))
 		to_chat(user, "<span class='warning'>You depower [src] to facilitate its retrieval.</span>")
 		turn_off()
-		update_icon()
 
 	user.visible_message("<span class='notice'>[user] begins to fold up and retrieve [src].</span>",
 	"<span class='notice'>You begin to fold up and retrieve [src].</span>")
