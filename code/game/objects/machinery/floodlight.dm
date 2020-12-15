@@ -170,14 +170,13 @@
 
 /// Visually shows that the floodlight has been tipped and breaks all the lights in it.
 /obj/machinery/floodlightcombat/proc/tip_over()
-	var/matrix/A = matrix()
-	density = FALSE
 	for(var/obj/item/light_bulb/tube/T in contents)
 		T.status = 2
-	calculate_brightness()
 	update_icon()
-	A.Turn(90)
-	transform = A
+	var/matrix/Icon5 = matrix()
+	Icon5.Turn(90)
+	transform = Icon5
+	density = FALSE
 	tipped = 1
 
 /// Untip the floodlight
@@ -185,8 +184,8 @@
 	icon_state = initial(icon_state)
 	density = TRUE
 	var/matrix/A = matrix()
-	tipped = 0
 	transform = A
+	tipped = 0
 
 /obj/machinery/floodlightcombat/Initialize()
 	. = ..()
@@ -277,6 +276,8 @@
 	/// Used to define which slot is targeted on the sprite and then adjust the overlay.
 	var/target_slot = 1
 	for(var/obj/item/light_bulb/tube/target in contents)
+		var/image/B = null
+		var/matrix/A = matrix()
 		switch(target_slot)
 			if(1)
 				offsetX = 0
@@ -290,7 +291,10 @@
 			if(4)
 				offsetX = 6
 				offsetY = 5
-		. += image('icons/obj/machines/floodlight.dmi', src, "floodlightcombat_[target.status ? "brokenlight" : "workinglight"]", ABOVE_OBJ_LAYER, NORTH, offsetX, offsetY)
+		B = image('icons/obj/machines/floodlight.dmi', src, "floodlightcombat_[target.status ? "brokenlight" : "workinglight"]", ABOVE_OBJ_LAYER, NORTH, 0, 0)
+		A.Translate(offsetX, offsetY)
+		B.transform = A
+		. += B
 		target_slot++
 
 /// Called whenever someone tries to turn the floodlight on/off
