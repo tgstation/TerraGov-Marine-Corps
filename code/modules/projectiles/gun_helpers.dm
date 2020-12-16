@@ -649,7 +649,7 @@ should be alright.
 		if(1) //No need to toggle anything if there's a single firemode.
 			return
 		if(2)
-			actions_types += /datum/action/item_action/firemode
+			LAZYADD(actions_types, /datum/action/item_action/firemode)
 			var/datum/action/new_action = new /datum/action/item_action/firemode(src)
 			if(user)
 				var/mob/living/living_user = user
@@ -664,7 +664,7 @@ should be alright.
 		if(0, 1)
 			CRASH("remove_firemode called with gun_firemode_list length [length(gun_firemode_list)].")
 		if(2)
-			actions_types -= /datum/action/item_action/firemode
+			LAZYREMOVE(actions_types, /datum/action/item_action/firemode)
 			var/datum/action/old_action = locate(/datum/action/item_action/firemode) in actions
 			if(user)
 				var/mob/living/living_user = user
