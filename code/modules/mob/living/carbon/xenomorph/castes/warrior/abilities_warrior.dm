@@ -315,7 +315,7 @@
 /datum/action/xeno_action/activable/punch
 	name = "Punch"
 	action_icon_state = "punch"
-	mechanics_text = "Strike a target up to 1 tile away, inflicting stamina damage, stagger and slowdown. Deals extra damage, stagger and slowdown to grappled targets."
+	mechanics_text = "Strike a target up to 1 tile away, inflicting stamina damage, stagger and slowdown. Deals double damage, stagger and slowdown to grappled targets. Deals quadruple damage to structures and machinery."
 	ability_name = "punch"
 	plasma_cost = 12
 	cooldown_timer = 10 SECONDS
