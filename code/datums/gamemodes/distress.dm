@@ -115,7 +115,7 @@
 		message_admins("Round finished: [MODE_GENERIC_DRAW_NUKE]") //ship blows, no one wins
 		round_finished = MODE_GENERIC_DRAW_NUKE
 		return TRUE
-	
+
 	if(round_stage == DISTRESS_MARINE_RETREAT)
 		message_admins("Round finished: [MODE_INFESTATION_X_MINOR]")
 		round_finished = MODE_INFESTATION_X_MINOR
@@ -258,7 +258,7 @@
 		output += "<a href='byond://?src=[REF(NP)];lobby_choice=manifest'>View the Crew Manifest</A><br>"
 		output += "<p><a href='byond://?src=[REF(NP)];lobby_choice=late_join'>Join the Game!</A></p>"
 
-	output += append_player_votes_link(NP)
+	output += NP.playerpolls()
 
 	output += "</div>"
 

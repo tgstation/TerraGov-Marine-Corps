@@ -287,6 +287,7 @@
 	if(old_xeno)
 		stop_overwatch(FALSE)
 	watcher.observed_xeno = target
+	target.hud_set_queen_overwatch()
 	watcher.reset_perspective()
 	RegisterSignal(target, COMSIG_HIVE_XENO_DEATH, .proc/on_xeno_death)
 	RegisterSignal(target, list(COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED), .proc/on_xeno_evolution)

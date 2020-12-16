@@ -229,7 +229,7 @@
 
 /obj/structure/window/Move()
 	var/ini_dir = dir
-	..()
+	. = ..()
 	setDir(ini_dir)
 
 //This proc is used to update the icons of nearby windows.

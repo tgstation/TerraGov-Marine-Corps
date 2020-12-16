@@ -1,3 +1,6 @@
+
+//MAKE ME A OFFICE CHAIR SUBTYPE!!
+
 /obj/structure/bed/chair/wheelchair
 	name = "wheelchair"
 	desc = "You sit in this. Either by will or force."
@@ -90,7 +93,7 @@
 
 
 /obj/structure/bed/chair/wheelchair/Bump(atom/A)
-	..()
+	. = ..()
 	if(!LAZYLEN(buckled_mobs))
 		return
 
