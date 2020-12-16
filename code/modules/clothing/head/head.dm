@@ -265,11 +265,11 @@
 	icon_state = "upp_beret"
 
 /obj/item/clothing/head/frelancer
-	name = "\improper armored Freelancer cap"
-	desc = "A sturdy freelancer's cap. More protective than it seems."
+	name = "\improper armored Freelancer helmet"
+	desc = "A sturdy freelancer's helmet."
 	icon = 'icons/obj/clothing/cm_hats.dmi'
 	sprite_sheet_id = 1
-	icon_state = "freelancer_cap"
+	icon_state = "freelancer_helmet"
 	siemens_coefficient = 2.0
 	flags_armor_protection = HEAD
 	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 55, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 55, "acid" = 55)

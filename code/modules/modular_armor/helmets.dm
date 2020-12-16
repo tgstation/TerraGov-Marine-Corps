@@ -83,10 +83,8 @@
 
 /obj/item/helmet_module/binoculars/toggle_module(mob/living/user, obj/item/clothing/head/modular/parent)
 	if(!active && !zoom)
-		RegisterSignal(user, list(COMSIG_MOVABLE_MOVED,COMSIG_MOB_MOUSEDOWN), .proc/toggle_module)//No shooting while zoomed
 		zoom(user, 11, 12)
 	else
-		UnregisterSignal(user,list(COMSIG_MOVABLE_MOVED,COMSIG_MOB_MOUSEDOWN))
 		if(zoom)
 			zoom(user)
 
@@ -95,6 +93,17 @@
 	item_state = "binocular_head_[active ? "" : "in"]active"
 	parent.update_overlays()
 	user.update_inv_head()
+
+/obj/item/helmet_module/binoculars/zoom_item_turnoff(datum/source, mob/living/user)
+	toggle_module(user)
+
+/obj/item/helmet_module/binoculars/onzoom(mob/living/user)
+	RegisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_MOB_MOUSEDOWN), .proc/toggle_module)//No shooting while zoomed
+	RegisterSignal(src, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED), .proc/zoom_item_turnoff)
+
+/obj/item/helmet_module/binoculars/onunzoom(mob/living/user)
+	UnregisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_MOB_MOUSEDOWN))	
+	UnregisterSignal(src, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED))
 
 /obj/item/helmet_module/antenna
 	name = "Antenna helmet module"

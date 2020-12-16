@@ -202,44 +202,6 @@
 
 
 //-------------------------------------------------------
-//M5, a classic SMG used in a lot of action movies.
-
-/obj/item/weapon/gun/smg/mp5
-	name = "\improper MP5 submachinegun"
-	desc = "A German design, this was one of the most widely used submachine guns in the world. It's still possible to find this firearm in the hands of collectors or gun fanatics."
-	icon_state = "mp5"
-	item_state = "mp5"
-	caliber = "9x19mm Parabellum" //codex
-	max_shells = 30 //codex
-	fire_sound = 'sound/weapons/guns/fire/mp5.ogg'
-	unload_sound = 'sound/weapons/guns/interact/mp5_unload.ogg'
-	reload_sound = 'sound/weapons/guns/interact/mp5_reload.ogg'
-	current_mag = /obj/item/ammo_magazine/smg/mp5
-	attachable_allowed = list(
-		/obj/item/attachable/suppressor,
-		/obj/item/attachable/reddot,
-		/obj/item/attachable/flashlight,
-		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/scope,
-		/obj/item/attachable/scope/mini,
-	)
-
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
-	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 19,"rail_x" = 12, "rail_y" = 21, "under_x" = 28, "under_y" = 17, "stock_x" = 28, "stock_y" = 17)
-
-	fire_delay = 0.2 SECONDS
-	burst_delay = 0.2 SECONDS
-	burst_amount = 4
-	accuracy_mult = 1.25
-	accuracy_mult_unwielded = 1.05
-	scatter = 15
-	scatter_unwielded = 40
-	damage_mult = 1.30
-	aim_slowdown = 0.35
-	wield_delay = 0.5 SECONDS
-
-
-//-------------------------------------------------------
 //MP27, based on the grease gun
 
 /obj/item/weapon/gun/smg/mp7

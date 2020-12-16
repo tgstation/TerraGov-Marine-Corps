@@ -39044,7 +39044,7 @@
 /turf/open/floor/carpet,
 /area/prison/pirate)
 "crR" = (
-/obj/item/weapon/gun/shotgun/merc,
+/obj/item/weapon/gun/shotgun/pump/cmb,
 /turf/open/floor/carpet,
 /area/prison/pirate)
 "crS" = (

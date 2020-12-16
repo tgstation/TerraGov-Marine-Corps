@@ -34,7 +34,7 @@ SUBSYSTEM_DEF(weeds_decay)
 
 		if(prob(decay_chance))
 			W.parent_node = null // So it wont try to regrow
-			addtimer(CALLBACK(GLOBAL_PROC, .proc/qdel, W), rand(0, 7 SECONDS))
+			addtimer(CALLBACK(GLOBAL_PROC, .proc/qdel, W), rand(1, 7 SECONDS))
 			decaying -= T
 
 /datum/controller/subsystem/weeds_decay/proc/decay_weeds(list/obj/effect/alien/weeds/node_turfs)

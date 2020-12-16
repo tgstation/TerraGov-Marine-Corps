@@ -109,6 +109,8 @@
 	// *** Acid spray *** //
 	///Number of tiles of the acid spray cone extends outward to. Not recommended to go beyond 4.
 	var/acid_spray_range = 0
+	///How long the acid spray stays on floor before it deletes itself, should be higher than 0 to avoid runtimes with timers.
+	var/acid_spray_duration = 1
 	///The damage acid spray causes on hit.
 	var/acid_spray_damage_on_hit = 0
 	///The damage acid spray causes over time.
@@ -187,6 +189,7 @@
 	see_in_dark = 8
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	sight = SEE_SELF|SEE_OBJS|SEE_TURFS|SEE_MOBS
+	appearance_flags = TILE_BOUND|PIXEL_SCALE|KEEP_TOGETHER
 	see_infrared = TRUE
 	hud_type = /datum/hud/alien
 	hud_possible = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD, ARMOR_SUNDER_HUD)
@@ -194,6 +197,8 @@
 	faction = FACTION_XENO
 	initial_language_holder = /datum/language_holder/xeno
 	gib_chance = 5
+	light_system = MOVABLE_LIGHT
+	light_on = FALSE
 
 	var/hivenumber = XENO_HIVE_NORMAL
 
@@ -291,6 +296,8 @@
 	//Runner vars
 	var/savage = FALSE
 	var/savage_used = FALSE
+	///Defines how much projectile damage evasion can still absorb
+	var/evasion_stacks = 0
 
 	// *** Ravager vars *** //
 	var/ignore_pain = FALSE // when true the rav will not go into crit or take crit damage.

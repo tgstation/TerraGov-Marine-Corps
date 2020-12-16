@@ -86,6 +86,10 @@
 	icon = 'icons/Marine/casship.dmi'
 	icon_state = "15"
 
+/obj/effect/attach_point/weapon/minidropship
+	ship_tag = "minidropship"
+	icon_state = "equip_base"
+
 /obj/effect/attach_point/crew_weapon
 	name = "rear attach point"
 	base_category = DROPSHIP_CREW_WEAPON
@@ -96,6 +100,8 @@
 /obj/effect/attach_point/crew_weapon/dropship2
 	ship_tag = "normandy"
 
+/obj/effect/attach_point/crew_weapon/minidropship
+	ship_tag = "minidropship"
 
 /obj/effect/attach_point/electronics
 	name = "electronic system attach point"
@@ -362,6 +368,8 @@
 /obj/structure/dropship_equipment/sentry_holder/proc/deploy_sentry()
 	if(!deployed_turret)
 		return
+	setDir(ship_base.dir)
+	deployed_turret.setDir(dir)
 	playsound(loc, 'sound/machines/hydraulics_1.ogg', 40, 1)
 	deployment_cooldown = world.time + 50
 	ENABLE_BITFIELD(deployed_turret.turret_flags, TURRET_ON)
@@ -799,7 +807,7 @@
 	equip_category = DROPSHIP_CREW_WEAPON
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "table2-idle"
-	point_cost = 300
+	point_cost = 100
 	var/obj/machinery/optable/deployed_table
 
 /obj/structure/dropship_equipment/operatingtable/Initialize()

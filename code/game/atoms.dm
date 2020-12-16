@@ -18,16 +18,23 @@
 
 	var/germ_level = GERM_LEVEL_AMBIENT // The higher the germ level, the more germ on the atom.
 
-	var/list/priority_overlays	//overlays that should remain on top and not normally removed when using cut_overlay functions, like c4.
-	var/list/remove_overlays // a very temporary list of overlays to remove
-	var/list/add_overlays // a very temporary list of overlays to add
+	///overlays that should remain on top and not normally removed when using cut_overlay functions, like c4.
+	var/list/priority_overlays
+	///a very temporary list of overlays to remove
+	var/list/remove_overlays
+	///a very temporary list of overlays to add
+	var/list/add_overlays
+
+	///Lazy assoc list for managing filters attached to us
+	var/list/filter_data
 
 	var/list/display_icons // related to do_after/do_mob overlays, I can't get my hopes high.
 
 	var/list/atom_colours	 //used to store the different colors on an atom
 							//its inherent color, the colored paint applied on it, special color effect etc...
 
-	var/list/image/hud_list //This atom's HUD (med/sec, etc) images. Associative list.
+	///This atom's HUD (med/sec, etc) images. Associative list.
+	var/list/image/hud_list
 
 	///How much does this atom block the explosion's shock wave.
 	var/explosion_block = 0
@@ -64,7 +71,8 @@
 	var/chat_color
 	/// A luminescence-shifted value of the last color calculated for chatmessage overlays
 	var/chat_color_darkened
-
+	///HUD images that this mob can provide.
+	var/list/hud_possible
 
 /*
 We actually care what this returns, since it can return different directives.
@@ -456,6 +464,41 @@ Proc for attack log creation, because really why not
 			//we were deleted
 			return
 
+///Add filters by priority to an atom
+/atom/proc/add_filter(name,priority,list/params)
+	LAZYINITLIST(filter_data)
+	var/list/p = params.Copy()
+	p["priority"] = priority
+	filter_data[name] = p
+	update_filters()
+
+///Sorts our filters by priority and reapplies them
+/atom/proc/update_filters()
+	filters = null
+	filter_data = sortTim(filter_data, /proc/cmp_filter_data_priority, TRUE)
+	for(var/f in filter_data)
+		var/list/data = filter_data[f]
+		var/list/arguments = data.Copy()
+		arguments -= "priority"
+		filters += filter(arglist(arguments))
+
+/obj/item/update_filters()
+	. = ..()
+	for(var/X in actions)
+		var/datum/action/A = X
+		A.update_button_icon()
+
+///returns a filter in the managed filters list by name
+/atom/proc/get_filter(name)
+	if(filter_data && filter_data[name])
+		return filters[filter_data.Find(name)]
+
+///removes a filter from the atom
+/atom/proc/remove_filter(name)
+	if(filter_data && filter_data[name])
+		filter_data -= name
+		update_filters()
+
 /*
 	Atom Colour Priority System
 	A System that gives finer control over which atom colour to colour the atom with.
@@ -514,40 +557,42 @@ Proc for attack log creation, because really why not
 			return
 
 /**
-  * The primary method that objects are setup in SS13 with
-  *
-  * we don't use New as we have better control over when this is called and we can choose
-  * to delay calls or hook other logic in and so forth
-  *
-  * During roundstart map parsing, atoms are queued for intialization in the base atom/New(),
-  * After the map has loaded, then Initalize is called on all atoms one by one. NB: this
-  * is also true for loading map templates as well, so they don't Initalize until all objects
-  * in the map file are parsed and present in the world
-  *
-  * If you're creating an object at any point after SSInit has run then this proc will be
-  * immediately be called from New.
-  *
-  * mapload: This parameter is true if the atom being loaded is either being intialized during
-  * the Atom subsystem intialization, or if the atom is being loaded from the map template.
-  * If the item is being created at runtime any time after the Atom subsystem is intialized then
-  * it's false.
-  *
-  * You must always call the parent of this proc, otherwise failures will occur as the item
-  * will not be seen as initalized (this can lead to all sorts of strange behaviour, like
-  * the item being completely unclickable)
-  *
-  * You must not sleep in this proc, or any subprocs
-  *
-  * Any parameters from new are passed through (excluding loc), naturally if you're loading from a map
-  * there are no other arguments
-  *
-  * Must return an [initialization hint][INITIALIZE_HINT_NORMAL] or a runtime will occur.
-  *
-  * Note: the following functions don't call the base for optimization and must copypasta handling:
-  * * [/turf/Initialize]
-  * * [/turf/open/space/Initialize]
-  */
+ * The primary method that objects are setup in SS13 with
+ *
+ * we don't use New as we have better control over when this is called and we can choose
+ * to delay calls or hook other logic in and so forth
+ *
+ * During roundstart map parsing, atoms are queued for intialization in the base atom/New(),
+ * After the map has loaded, then Initalize is called on all atoms one by one. NB: this
+ * is also true for loading map templates as well, so they don't Initalize until all objects
+ * in the map file are parsed and present in the world
+ *
+ * If you're creating an object at any point after SSInit has run then this proc will be
+ * immediately be called from New.
+ *
+ * mapload: This parameter is true if the atom being loaded is either being intialized during
+ * the Atom subsystem intialization, or if the atom is being loaded from the map template.
+ * If the item is being created at runtime any time after the Atom subsystem is intialized then
+ * it's false.
+ *
+ * You must always call the parent of this proc, otherwise failures will occur as the item
+ * will not be seen as initalized (this can lead to all sorts of strange behaviour, like
+ * the item being completely unclickable)
+ *
+ * You must not sleep in this proc, or any subprocs
+ *
+ * Any parameters from new are passed through (excluding loc), naturally if you're loading from a map
+ * there are no other arguments
+ *
+ * Must return an [initialization hint][INITIALIZE_HINT_NORMAL] or a runtime will occur.
+ *
+ * Note: the following functions don't call the base for optimization and must copypasta handling:
+ * * [/turf/Initialize]
+ * * [/turf/open/space/Initialize]
+ */
 /atom/proc/Initialize(mapload, ...)
+	SHOULD_CALL_PARENT(TRUE)
+	SHOULD_NOT_SLEEP(TRUE)
 	if(flags_atom & INITIALIZED)
 		stack_trace("Warning: [src]([type]) initialized multiple times!")
 	flags_atom |= INITIALIZED
@@ -746,3 +791,10 @@ Proc for attack log creation, because really why not
 // For special click interactions (take first item out of container, quick-climb, etc.)
 /atom/proc/specialclick(mob/living/carbon/user)
 	return
+
+
+//Consolidating HUD infrastructure
+/atom/proc/prepare_huds()
+	hud_list = new
+	for(var/hud in hud_possible) //Providing huds.
+		hud_list[hud] = image('icons/mob/hud.dmi', src, "")

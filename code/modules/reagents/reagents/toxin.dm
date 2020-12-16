@@ -501,13 +501,6 @@
 	scannable = TRUE
 
 /datum/reagent/toxin/xeno_growthtoxin/on_mob_life(mob/living/L)
-	var/target_temp = L.get_standard_bodytemperature()
-	if(L.getBruteLoss() || L.getFireLoss())
-		L.heal_limb_damage(REM, REM)
-	if(L.getToxLoss())
-		L.adjustToxLoss(-REM)
-	if(L.bodytemperature > target_temp)
-		L.adjust_bodytemperature(-20 * TEMPERATURE_DAMAGE_COEFFICIENT, target_temp)
 	L.reagent_pain_modifier += PAIN_REDUCTION_VERY_HEAVY
 	L.jitter(1) //So unga know to get treated
 	return ..()
@@ -569,7 +562,7 @@
 /datum/reagent/toxin/xeno_transvitox/proc/transvitox_human_damage_taken(mob/living/L, damage)
 	SIGNAL_HANDLER
 	var/dam = min(damage*0.4, 45 - L.getToxLoss()) // hard caps damage conversion to not exceed 45 tox
-	if(((L.getBruteLoss() + L.getFireLoss()) < dam) && current_cycle <= 2)
+	if((L.getBruteLoss() + L.getFireLoss()) < dam)
 		return
 	L.adjustToxLoss(dam)
 	var/healed_brute = min(dam, L.getBruteLoss())

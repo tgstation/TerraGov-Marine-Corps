@@ -236,7 +236,6 @@
 		forceMove(T)
 	else
 		moveToNullspace()
-	update_ai_detect_hud()
 	if(use_static != USE_STATIC_NONE)
 		GLOB.cameranet.visibility(src, GetViewerClient(), null, use_static)
 	if(visible_icon && eye_user.client)

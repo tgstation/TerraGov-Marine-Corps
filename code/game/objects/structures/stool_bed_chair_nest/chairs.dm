@@ -26,6 +26,10 @@
 
 /obj/structure/bed/chair/post_buckle_mob(mob/buckling_mob)
 	. = ..()
+	if(isliving(buckling_mob)) //Properly update whether we're lying or not; no more people lying on chairs; ridiculous
+		var/mob/living/buckled_target = buckling_mob
+		buckled_target.set_lying_angle(0)
+
 	handle_layer()
 
 /obj/structure/bed/chair/post_unbuckle_mob(mob/buckled_mob)
@@ -158,33 +162,34 @@
 	drag_delay = 1 //Pulling something on wheels is easy
 
 /obj/structure/bed/chair/office/Bump(atom/A)
-	..()
+	. = ..()
 	if(!LAZYLEN(buckled_mobs))
 		return
 
-	if(propelled)
-		var/mob/living/occupant = buckled_mobs[1]
-		unbuckle_mob(occupant)
+	if(!propelled)
+		return
+	var/mob/living/occupant = buckled_mobs[1]
+	unbuckle_mob(occupant)
 
-		var/def_zone = ran_zone()
-		var/blocked = occupant.run_armor_check(def_zone, "melee")
-		occupant.throw_at(A, 3, propelled)
-		occupant.apply_effect(6, STUN, blocked)
-		occupant.apply_effect(6, WEAKEN, blocked)
-		occupant.apply_effect(6, STUTTER, blocked)
-		occupant.apply_damage(10, BRUTE, def_zone, blocked)
-		UPDATEHEALTH(occupant)
-		playsound(src.loc, 'sound/weapons/punch1.ogg', 25, 1)
-		if(isliving(A))
-			var/mob/living/victim = A
-			def_zone = ran_zone()
-			blocked = victim.run_armor_check(def_zone, "melee")
-			victim.apply_effect(6, STUN, blocked)
-			victim.apply_effect(6, WEAKEN, blocked)
-			victim.apply_effect(6, STUTTER, blocked)
-			victim.apply_damage(10, BRUTE, def_zone, blocked)
-			UPDATEHEALTH(victim)
-		occupant.visible_message("<span class='danger'>[occupant] crashed into \the [A]!</span>")
+	var/def_zone = ran_zone()
+	var/blocked = occupant.run_armor_check(def_zone, "melee")
+	occupant.throw_at(A, 3, propelled)
+	occupant.apply_effect(6, STUN, blocked)
+	occupant.apply_effect(6, WEAKEN, blocked)
+	occupant.apply_effect(6, STUTTER, blocked)
+	occupant.apply_damage(10, BRUTE, def_zone, blocked)
+	UPDATEHEALTH(occupant)
+	playsound(src.loc, 'sound/weapons/punch1.ogg', 25, 1)
+	if(isliving(A))
+		var/mob/living/victim = A
+		def_zone = ran_zone()
+		blocked = victim.run_armor_check(def_zone, "melee")
+		victim.apply_effect(6, STUN, blocked)
+		victim.apply_effect(6, WEAKEN, blocked)
+		victim.apply_effect(6, STUTTER, blocked)
+		victim.apply_damage(10, BRUTE, def_zone, blocked)
+		UPDATEHEALTH(victim)
+	occupant.visible_message("<span class='danger'>[occupant] crashed into \the [A]!</span>")
 
 /obj/structure/bed/chair/office/light
 	icon_state = "officechair_white"

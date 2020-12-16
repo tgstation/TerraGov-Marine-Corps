@@ -57,6 +57,12 @@
 	var/movement_acc_penalty_mult = 5				//Multiplier. Increased and decreased through attachments. Multiplies the accuracy/scatter penalty of the projectile when firing onehanded while moving.
 	var/fire_delay = 6							//For regular shots, how long to wait before firing again.
 	var/shell_speed_mod	= 0						//Modifies the speed of projectiles fired.
+	/// Determines which humans the gun's shot will pass through based on the victim's ID access list.
+	var/list/gun_iff_signal = null
+	///Determines how fire delay is changed when aim mode is active
+	var/aim_fire_delay = 0
+	///Determines character slowdown from aim mode. Default is 66%
+	var/aim_speed_modifier = 6
 
 	//Burst fire.
 	var/burst_amount 	= 1						//How many shots can the weapon shoot in burst? Anything less than 2 and you cannot toggle burst.
@@ -245,6 +251,8 @@
 	A.add_hud(user)
 	A.update_hud(user)
 	do_wield(user, wdelay)
+	if(CHECK_BITFIELD(flags_gun_features, AUTO_AIM_MODE))
+		toggle_aim_mode(user)
 
 
 /obj/item/weapon/gun/unwield(mob/user)
@@ -252,14 +260,14 @@
 	if(!.)
 		return FALSE
 
-	if(zoom)
-		zoom(user)
-
 	user.remove_movespeed_modifier(MOVESPEED_ID_AIM_SLOWDOWN)
 
 	var/obj/screen/ammo/A = user.hud_used?.ammo
 	if(A)
 		A.remove_hud(user)
+
+	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_AIMING))
+		toggle_aim_mode(user)
 
 	return TRUE
 
@@ -756,9 +764,6 @@ and you're good to go.
 		return
 
 	switch(projectile_to_fire.ammo.damage_type)
-		if(HALLOSS)
-			to_chat(user, "<span class = 'notice'>Ow...</span>")
-			user.apply_effect(110, AGONY)
 		if(STAMINA)
 			to_chat(user, "<span class = 'notice'>Ow...</span>")
 			user.apply_damage(200, STAMINA)
@@ -861,6 +866,7 @@ and you're good to go.
 	projectile_to_fire.damage *= damage_mult
 	projectile_to_fire.damage_falloff *= damage_falloff_mult
 	projectile_to_fire.projectile_speed += shell_speed_mod
+	projectile_to_fire.projectile_iff = gun_iff_signal
 
 
 /obj/item/weapon/gun/proc/setup_bullet_accuracy(obj/projectile/projectile_to_fire, mob/user, bullets_fired = 1, dual_wield = FALSE)
@@ -877,7 +883,7 @@ and you're good to go.
 		gun_accuracy_mult = max(0.1, gun_accuracy_mult - max(0,movement_acc_penalty_mult * 0.15))
 		gun_scatter += max(0, movement_acc_penalty_mult * 5)
 
-	if(gun_firemode == GUN_FIREMODE_BURSTFIRE && burst_amount > 1)
+	if(gun_firemode == GUN_FIREMODE_BURSTFIRE || gun_firemode == GUN_FIREMODE_AUTOBURST && burst_amount > 1)
 		gun_accuracy_mult = max(0.1, gun_accuracy_mult * burst_accuracy_mult)
 
 	if(dual_wield) //akimbo firing gives terrible accuracy
