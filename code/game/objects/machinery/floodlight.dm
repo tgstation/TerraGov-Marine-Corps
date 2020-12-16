@@ -146,9 +146,12 @@
 	var/brightness = 0
 	/// Turned ON or OFF? Used for the overlays and power usage.
 	var/on = 0
+	/// Filled with plasma to the brim in order to simulate a OB when turned on ?
+	var/rigged = 0
 	/// Used to show if the object is tipped
 	var/tipped
 	resistance_flags = UNACIDABLE
+	appearance_flags = KEEP_TOGETHER
 	idle_power_usage = 50
 	active_power_usage = 2500
 	wrenchable = TRUE
@@ -173,9 +176,10 @@
 	for(var/obj/item/light_bulb/tube/T in contents)
 		T.status = 2
 	update_icon()
-	var/matrix/Icon5 = matrix()
-	Icon5.Turn(90)
-	transform = Icon5
+	calculate_brightness()
+	var/matrix/A = matrix()
+	A.Turn(90)
+	transform = A
 	density = FALSE
 	tipped = 1
 
@@ -243,6 +247,9 @@
 		if(lights.len > 3)
 			to_chat(user, "<span class='notice'>All the light sockets are occupied!")
 			return FALSE
+		var/obj/item/light_bulb/tube/Check = I
+		if(Check.rigged)
+			admin_log("[usr] has inserted a explosive light-tube in the [src] at [src.loc]")
 		to_chat(user, "You insert the [I] into the [src]")
 		visible_message("[user] inserts the [I] into the [src]")
 		user.drop_held_item()
@@ -264,9 +271,14 @@
 /// Checks each light if its working and then adds it to the total brightness amount.
 /obj/machinery/floodlightcombat/proc/calculate_brightness()
 	brightness = 0
+	rigged = 0
 	for(var/obj/item/light_bulb/tube/T in contents)
 		if(T.status == 0)
 			brightness += 4
+			return TRUE
+		if(T.rigged == 1)
+			rigged += 1
+			return TRUE
 
 /// Updates each light
 /obj/machinery/floodlightcombat/update_overlays()
@@ -276,8 +288,6 @@
 	/// Used to define which slot is targeted on the sprite and then adjust the overlay.
 	var/target_slot = 1
 	for(var/obj/item/light_bulb/tube/target in contents)
-		var/image/B = null
-		var/matrix/A = matrix()
 		switch(target_slot)
 			if(1)
 				offsetX = 0
@@ -291,14 +301,13 @@
 			if(4)
 				offsetX = 6
 				offsetY = 5
-		B = image('icons/obj/machines/floodlight.dmi', src, "floodlightcombat_[target.status ? "brokenlight" : "workinglight"]", ABOVE_OBJ_LAYER, NORTH, 0, 0)
-		A.Translate(offsetX, offsetY)
-		B.transform = A
-		. += B
+		. += image('icons/obj/machines/floodlight.dmi', src, "floodlightcombat_[target.status ? "brokenlight" : "workinglight"]", layer, NORTH, offsetX, offsetY)
 		target_slot++
 
 /// Called whenever someone tries to turn the floodlight on/off
 /obj/machinery/floodlightcombat/proc/switch_light()
+	if(rigged)
+		explosion(loc, rigged, rigged/2, rigged*3, 0, 1, 3, "A rigged floodlight has just exploded at [loc] by [usr] turning it on.")
 	if(!anchored || tipped)
 		visible_message("<span class='danger'>The floodlight flashes a warning led.It is not bolted to the ground.")
 		return FALSE
