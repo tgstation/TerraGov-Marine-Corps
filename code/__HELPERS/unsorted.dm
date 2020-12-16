@@ -967,8 +967,6 @@ GLOBAL_LIST_INIT(common_tools, typecacheof(list(
 		return FALSE
 	if(I.sharp)
 		return TRUE
-	if(I.edge)
-		return TRUE
 	return FALSE
 
 
