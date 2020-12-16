@@ -1,20 +1,23 @@
 
 /datum/action/item_action
 	name = "Use item"
-	var/obj/item/holder_item //the item that has this action in its list of actions. Is not necessarily the target
-							//e.g. gun attachment action: target = attachment, holder = gun.
+	/**
+	 *the item that has this action in its list of actions. Is not necessarily the target
+	 * e.g. gun attachment action: target = attachment, holder = gun.
+	 */
+	var/obj/item/holder_item
 
 /datum/action/item_action/New(Target, obj/item/holder)
 	. = ..()
 	if(!holder)
 		holder = target
 	holder_item = holder
-	holder_item.actions += src
+	LAZYADD(holder_item.actions, src)
 	name = "Use [target]"
 	button.name = name
 
 /datum/action/item_action/Destroy()
-	holder_item.actions -= src
+	LAZYREMOVE(holder_item.actions, src)
 	holder_item = null
 	return ..()
 
