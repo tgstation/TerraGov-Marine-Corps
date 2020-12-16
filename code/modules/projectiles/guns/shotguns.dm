@@ -593,7 +593,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	flags_item_map_variant = NONE
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 16,"rail_x" = 14, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 21, "stock_y" = 14)
 	starting_attachment_types = list(
-		/obj/item/attachable/stock/irremoveable/pal12
+		/obj/item/attachable/stock/irremoveable/pal12,
 	)
 
 	fire_delay = 15
