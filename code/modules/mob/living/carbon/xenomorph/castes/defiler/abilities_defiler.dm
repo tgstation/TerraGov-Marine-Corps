@@ -99,7 +99,6 @@
 	"<span class='xenodanger'>Our dorsal vents widen, preparing to emit toxic smoke. We must keep still!</span>")
 
 	X.emitting_gas = TRUE //We gain bump movement immunity while we're emitting gas.
-	succeed_activate()
 	X.icon_state = "Defiler Power Up"
 
 	if(!do_after(X, DEFILER_GAS_CHANNEL_TIME, TRUE, null, BUSY_ICON_HOSTILE))
@@ -107,15 +106,13 @@
 			to_chat(X, "<span class='xenodanger'>We abort emitting fumes, our expended plasma resulting in nothing.</span>")
 			X.emitting_gas = FALSE
 			X.icon_state = "Defiler Running"
+			X.use_plasma(plasma_cost)
 			return fail_activate()
 	X.emitting_gas = FALSE
 	X.icon_state = "Defiler Running"
 
 	add_cooldown()
-
-	if(X.stagger) //If we got staggered, return
-		to_chat(X, "<span class='xenowarning'>We try to emit toxins but are staggered!</span>")
-		return fail_activate()
+	succeed_activate()
 
 	GLOB.round_statistics.defiler_neurogas_uses++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "defiler_neurogas_uses")
@@ -132,10 +129,9 @@
 	N.strength = 1
 	if(X.selected_reagent == /datum/reagent/toxin/xeno_hemodile)
 		N.smoke_type = /obj/effect/particle_effect/smoke/xeno/hemodile
-		smoke_range = 3
+		smoke_range = 4
 	else if(X.selected_reagent == /datum/reagent/toxin/xeno_transvitox)
 		N.smoke_type = /obj/effect/particle_effect/smoke/xeno/transvitox
-		N.strength = 0.75
 		smoke_range = 4
 	while(count)
 		if(X.stagger) //If we got staggered, return
