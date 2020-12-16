@@ -438,7 +438,7 @@
 		user.disable_lights(sparks = TRUE, silent = TRUE)
 		var/stamina_dmg = user.maxHealth * 2 + user.max_stamina_buffer
 		user.apply_damage(stamina_dmg, STAMINA) // complete winds the target
-		user.Unconscious(1 SECONDS) //THIS MIGHT NEED TWEAKS // still might! // tweaked it
+		user.Unconscious(2 SECONDS) //THIS MIGHT NEED TWEAKS // still might! // tweaked it
 	addtimer(VARSET_CALLBACK(src, flags_item, flags_item|NODROP), IMPREGNATION_TIME) // becomes stuck after min-impreg time
 	attached = TRUE
 	go_idle(FALSE, TRUE)
@@ -587,8 +587,8 @@
 
 	var/mob/living/victim = M
 	do_attack_animation(M)
-	var/armor_block = victim.run_armor_check("chest", "bio")
-	victim.apply_damage(200, STAMINA, "chest", armor_block)
+	var/armor_block = victim.run_armor_check(BODY_ZONE_CHEST, "bio")
+	victim.apply_damage(150, STAMINA, BODY_ZONE_CHEST, armor_block)
 	victim.reagents.add_reagent(/datum/reagent/toxin/xeno_neurotoxin, 20)
 	playsound(victim, 'sound/effects/spray3.ogg', 25, 1)
 	victim.visible_message("<span class='danger'>[src] penetrates [victim] with its sharp probscius!</span>","<span class='danger'>[src] penetrates you with a sharp probscius before falling down!</span>")
@@ -597,7 +597,7 @@
 
 /obj/item/clothing/mask/facehugger/acid
 	name = "acid hugger"
-	desc = "This repulsive looking thing is bloated with throbbing, putrescent green sacks."
+	desc = "This repulsive looking thing is bloated with throbbing, putrescent green sacks of flesh."
 	sterile = TRUE
 	color = COLOR_GREEN
 	combat_hugger = TRUE
@@ -607,14 +607,9 @@
 	if(!combat_hugger_check_target(M))
 		return FALSE
 
-	acid_facehugger_explosion()
-	return TRUE
-
-/obj/item/clothing/mask/facehugger/acid/proc/acid_facehugger_explosion()
-
 	visible_message("<span class='danger'>[src] explodes into a smoking splatter of acid!</span>")
 
-	for(var/turf/acid_tile in range(1, loc))
+	for(var/turf/acid_tile in RANGE_TURFS(1, loc))
 		if(!locate(/obj/effect/xenomorph/spray) in acid_tile.contents)
 			new /obj/effect/xenomorph/spray(acid_tile, 10 SECONDS, 16)
 
@@ -622,6 +617,9 @@
 	A.set_up(1,src)
 	A.start()
 	melt_away()
+
+	return TRUE
+
 
 /obj/item/clothing/mask/facehugger/acid/kill_hugger()
 	. = ..()
@@ -631,7 +629,7 @@
 
 /obj/item/clothing/mask/facehugger/resin
 	name = "resin hugger"
-	desc = "This truly bizzare creature drips with purple, viscous resin."
+	desc = "This truly bizzare, bloated creature drips with purple, viscous resin."
 	sterile = TRUE
 	color = COLOR_STRONG_VIOLET
 	combat_hugger = TRUE
@@ -641,14 +639,9 @@
 	if(!combat_hugger_check_target(M))
 		return FALSE
 
-	resin_facehugger_explosion()
-	return TRUE
-
-/obj/item/clothing/mask/facehugger/resin/proc/resin_facehugger_explosion()
-
 	visible_message("<span class='danger'>[src] explodes into a mess of viscous resin!</span>")
 
-	for(var/turf/sticky_tile in range(1, loc))
+	for(var/turf/sticky_tile in RANGE_TURFS(1, loc))
 		if(!locate(/obj/effect/xenomorph/spray) in sticky_tile.contents)
 			new /obj/effect/alien/resin/sticky/thin(sticky_tile)
 
@@ -662,14 +655,27 @@
 
 	melt_away()
 
+	return TRUE
+
+
 /obj/item/clothing/mask/facehugger/resin/kill_hugger()
 	. = ..()
-	new /obj/effect/alien/resin/sticky(loc) //Make a splatter on death
+
+	var/sticky_resin_present = FALSE
+	var/turf/T = get_turf(src)
+	for(var/obj/O in T.contents) //No doubling up on sticky resin
+		if(is_type_in_typecache(O, GLOB.no_sticky_resin))
+			sticky_resin_present = TRUE
+			break
+
+	if(!sticky_resin_present)
+		new /obj/effect/alien/resin/sticky(loc) //Make a splatter on death
+
 	melt_away()
 
 /obj/item/clothing/mask/facehugger/slash
 	name = "clawed hugger"
-	desc = "This nasty little creature is a nightmarish scrabble of sharp, long claws."
+	desc = "This nasty little creature is a nightmarish scrabble of muscle and sharp, long claws."
 	sterile = TRUE
 	color = COLOR_RED
 	combat_hugger = TRUE
@@ -684,7 +690,7 @@
 	playsound(loc, "alien_claw_flesh", 25, 1)
 	var/affecting = ran_zone(null, 0)
 	if(!affecting) //Still nothing??
-		affecting = "chest" //Gotta have a torso?!
+		affecting = BODY_ZONE_CHEST //Gotta have a torso?!
 	var/armor_block = victim.run_armor_check(affecting, "melee")
 	victim.apply_damage(CARRIER_SLASH_HUGGER_DAMAGE, BRUTE, affecting, armor_block) //Crap base damage after armour...
 	victim.visible_message("<span class='danger'>[src] frantically claws at [victim]!</span>","<span class='danger'>[src] frantically claws at you!</span>")

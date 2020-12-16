@@ -7,6 +7,7 @@
 	health = 200
 	maxHealth = 200
 	plasma_stored = 50
+	///Number of huggers the carrier is currently carrying
 	var/huggers = 0
 	var/eggs_cur = 0
 	tier = XENO_TIER_TWO
@@ -21,17 +22,17 @@
 // *********** Death
 // ***************************************
 /mob/living/carbon/xenomorph/carrier/on_death()
-	if(huggers)
-		visible_message("<span class='xenowarning'>A chittering mass of tiny aliens is trying to escape [src]!</span>")
-		while(huggers > FLOOR(huggers * 0.5,1)) //Half our huggers will avenge us!
+	if(!huggers)
+		return ..()
 
-			var/obj/item/clothing/mask/facehugger/F = new selected_hugger_type(get_turf(src))
-			step_away(F,src,1)
-			addtimer(CALLBACK(F, /obj/item/clothing/mask/facehugger.proc/go_active, TRUE), 2 SECONDS * F.activity_modifier)
+	visible_message("<span class='xenowarning'>A chittering mass of tiny aliens is trying to escape [src]!</span>")
+	while(huggers > FLOOR(huggers * 0.5,1)) //Half our huggers will avenge us!
 
-			huggers--
+		var/obj/item/clothing/mask/facehugger/F = new selected_hugger_type(get_turf(src))
+		step_away(F,src,1)
+		addtimer(CALLBACK(F, /obj/item/clothing/mask/facehugger.proc/go_active, TRUE), 2 SECONDS * F.activity_modifier)
 
-		huggers = null
+		huggers--
 
 	return ..()
 

@@ -225,7 +225,7 @@
 	action_icon_state = "facehugger"
 	mechanics_text = "Selects which hugger type you will build with the Spawn Hugger ability."
 	//keybind_signal = COMSIG_XENOABILITY_CHOOSE_RESIN
-	var/list/hugger_type_list = list(
+	var/static/list/hugger_type_list = list(
 		/obj/item/clothing/mask/facehugger,
 		/obj/item/clothing/mask/facehugger/slash,
 		/obj/item/clothing/mask/facehugger/neuro,
