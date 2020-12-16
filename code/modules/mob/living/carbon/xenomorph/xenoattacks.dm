@@ -114,10 +114,7 @@
 			if(INTENT_GRAB)
 				if(M == src || anchored)
 					return 0
-
-				if(Adjacent(M)) //Logic!
-					M.start_pulling(src)
-
+				if(M.start_pulling(src))
 					M.visible_message("<span class='warning'>[M] grabs \the [src]!</span>", \
 					"<span class='warning'>We grab \the [src]!</span>", null, 5)
 					playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
