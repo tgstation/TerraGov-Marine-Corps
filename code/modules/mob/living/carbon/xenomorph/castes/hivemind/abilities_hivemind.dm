@@ -12,7 +12,7 @@
 /datum/action/xeno_action/activable/reposition_core
 	name = "Reposition Core"
 	action_icon_state = "emit_neurogas"
-	mechanics_text = "Reposition your core to a target location on weeds. The further away the location is the longer this will take up to a maximum of 60 seconds. 3 minute cooldown."
+	mechanics_text = "Reposition your core to a target location on weeds. The further away the location is the longer this will take up to a maximum of 60 seconds. 10 minute cooldown."
 	ability_name = "reposition core"
 	plasma_cost = 150
 	cooldown_timer = 600 SECONDS
@@ -44,7 +44,7 @@
 			to_chat(owner, "<span class='xenodanger'>We can only reposition to a space adjacent to us!</span>")
 		return FALSE
 
-	if(!check_build_location(T, X))
+	if(!check_build_location(T, X, silent))
 		if(!silent)
 			to_chat(owner, "<span class='xenodanger'>We can't transfer our core here!</span>")
 		return FALSE
@@ -85,23 +85,27 @@
 
 	X.hivemind_core_alert() //Alert the hive and marines
 
-/datum/action/xeno_action/activable/reposition_core/proc/check_build_location(turf/T, mob/living/carbon/xenomorph/hivemind/X)
+/datum/action/xeno_action/activable/reposition_core/proc/check_build_location(turf/T, mob/living/carbon/xenomorph/hivemind/X, silent = FALSE)
 
 	if(T.z != X.core.z)
-		to_chat(X, "<span class='xenodanger'>We cannot transfer our core here.</span>")
+		if(!silent)
+			to_chat(X, "<span class='xenodanger'>We cannot transfer our core here.</span>")
 		return FALSE
 
 	if(T.density) //Check to see if there's room
-		to_chat(X, "<span class='xenodanger'>We require adequate room to transfer our core.</span>")
+		if(!silent)
+			to_chat(X, "<span class='xenodanger'>We require adequate room to transfer our core.</span>")
 		return FALSE
 
 	if(!locate(/obj/effect/alien/weeds) in T) //Make sure we actually have weeds at our destination.
-		to_chat(X, "<span class='xenodanger'>There are no weeds for us to transfer our consciousness to!</span>")
+		if(!silent)
+			to_chat(X, "<span class='xenodanger'>There are no weeds for us to transfer our consciousness to!</span>")
 		return FALSE
 
 	for(var/obj/structure/O in T.contents)
 		if(O.density && !CHECK_BITFIELD(O.flags_atom, ON_BORDER))
-			to_chat(X, "<span class='xenodanger'>An object is occupying this space!</span>")
+			if(!silent)
+				to_chat(X, "<span class='xenodanger'>An object is occupying this space!</span>")
 			return FALSE
 
 	return TRUE
@@ -138,13 +142,14 @@
 	if(!.)
 		return
 
-	var/mob/living/victim = target
 	var/mob/living/carbon/xenomorph/hivemind/X = owner
 
 	if(!isliving(target))
 		if(!silent)
 			to_chat(X, "<span class='xenowarning'>Our mind cannot interface with such an entity!</spam>")
 		return FALSE
+
+	var/mob/living/victim = target
 
 	if(isxeno(victim))
 		var/mob/living/carbon/xenomorph/alien = victim

@@ -170,7 +170,9 @@
 
 	// *** Hivemind Abilities *** //
 
+	///amount of health the Hivemind core regenerates on each of its regeneration ticks
 	var/core_regeneration = 25
+	///the maximum amount of health the Hivemind core has
 	var/core_maximum_hitpoints = 600
 
 

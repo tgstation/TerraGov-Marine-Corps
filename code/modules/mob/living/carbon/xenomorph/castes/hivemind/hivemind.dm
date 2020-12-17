@@ -246,18 +246,19 @@
 
 /mob/living/carbon/xenomorph/hivemind/proc/hivemind_core_alert()
 
-	var/obj/effect/alien/hivemindcore/the_core = core
+	if(!core) //Sanity check
+		return FALSE
 
-	if(!the_core) //Sanity check
+	if(is_centcom_level(core))
 		return FALSE
 
 	var/list/decoy_area_list = list()
-	var/area/real_area = get_area(the_core) //Set our real area
+	var/area/real_area = get_area(core) //Set our real area
 	var/list/buffer_list = list() //Buffer list for randomization
 	var/list/details = list() //The actual final list for the announcement
 
 	for(var/area/core_areas in world) //Build the list of areas on the core's Z.
-		if(core_areas.z != the_core.z) //Must be on the same Z
+		if(core_areas.z != core.z) //Must be on the same Z
 			continue
 		decoy_area_list += core_areas //Add to the list of potential decoys
 
@@ -280,9 +281,6 @@
 			details += ("[buffer_list_pick], ")
 		else
 			details += ("[buffer_list_pick].")
-
-	if(is_centcom_level(core))
-		return FALSE
 
 	var/hivemind_message = "<span class='alert'>[name] has moved its core to [real_area.name] (X: [core.x], Y: [core.y])!</span>" //Alert our fellow benos
 	notify_ghosts(hivemind_message, source = src, action = NOTIFY_ORBIT)
