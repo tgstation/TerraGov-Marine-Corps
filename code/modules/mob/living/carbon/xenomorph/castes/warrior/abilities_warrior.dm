@@ -261,15 +261,13 @@
 	var/fling_distance = 5
 	var/stagger_slow_stacks = 3
 	var/stun_duration = 1 SECONDS
-
+	var/big_mob_message
 
 	X.face_atom(A)
 
 	GLOB.round_statistics.warrior_flings++ //I'm going to consider this a fling for the purpose of statistics
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "warrior_flings")
 
-	X.visible_message("<span class='xenowarning'>\The [X] throws [target] away!</span>", \
-	"<span class='xenowarning'>We throw [target] away!</span>")
 	playsound(target,'sound/weapons/alien_claw_block.ogg', 75, 1)
 
 	if(isliving(target))
@@ -277,6 +275,7 @@
 
 		if(victim.mob_size >= MOB_SIZE_BIG) //Penalize fling distance for big creatures
 			fling_distance = FLOOR(fling_distance * 0.5, 1)
+			big_mob_message = ", struggling mightily to heft its bulk"
 
 		if(isxeno(victim))
 			var/mob/living/carbon/xenomorph/x_victim = victim
@@ -293,6 +292,9 @@
 	target.forceMove(get_turf(X)) //First force them into our space so we can toss them behind us without problems
 	X.do_attack_animation(target, ATTACK_EFFECT_DISARM2)
 	target.throw_at(get_turf(A), fling_distance, 1, X, 1)
+
+	X.visible_message("<span class='xenowarning'>\The [X] throws [target] away[big_mob_message]!</span>", \
+	"<span class='xenowarning'>We throw [target] away[big_mob_message]!</span>")
 
 	succeed_activate()
 	add_cooldown()
