@@ -29,7 +29,7 @@
 
 	dat += "<b>List of Hive Tunnels:</b><BR>"
 
-	for(var/obj/structure/xeno/tunnel/T in GLOB.xeno_tunnels)
+	for(var/obj/structure/xeno/tunnel/T as() in GLOB.xeno_tunnels)
 		if(T.creator.hive == hive)
 
 			var/hp_color = "green"

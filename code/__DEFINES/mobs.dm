@@ -457,7 +457,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CASTE_ACID_BLOOD (1<<13) //The acid blood effect which damages humans near xenos that take damage
 #define CASTE_CAN_HOLD_JELLY (1<<14)//whether we can hold fireproof jelly in our hands
 #define CASTE_IS_STRONG (1<<15)//can tear open acided walls without being big
-#define CASTE_IS_BUILDER (1<<15) //whether we are classified as a builder caste and can repair xeno structures
+#define CASTE_IS_BUILDER (1<<16) //whether we are classified as a builder caste and can repair xeno structures
 
 //Charge-Crush
 #define CHARGE_OFF			0
