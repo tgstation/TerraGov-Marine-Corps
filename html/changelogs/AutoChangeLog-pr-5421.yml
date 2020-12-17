@@ -1,9 +1,0 @@
-author: "Surrealaser"
-delete-after: True
-changes: 
-  - rscadd: "Warrior gains the Grapple Toss ability. Cooldown is shared with Lunge (and vice versa)."
-  - rscadd: "Lunge, Grapple Toss, Punch and Fling can all target xenos now (enemy and allied)."
-  - tweak: "Punch deals double damage and debuffs to targets the Warrior is grappling."
-  - tweak: "Punch can now target structures/machinery, dealing 4x base melee damage to them."
-  - refactor: "Refactored a bunch of Warrior code."
-  - bugfix: "Warrior's Lunge now bypasses grab delays as it should."
