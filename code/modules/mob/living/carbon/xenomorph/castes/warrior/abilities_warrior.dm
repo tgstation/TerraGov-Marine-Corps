@@ -258,7 +258,6 @@
 /datum/action/xeno_action/activable/toss/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
 	var/atom/movable/target = owner.pulling
-	var/facing = get_dir(X, A)
 	var/fling_distance = 5
 	var/stagger_slow_stacks = 3
 	var/stun_duration = 1 SECONDS
@@ -291,18 +290,9 @@
 		victim.ParalyzeNoChain(stun_duration)
 		shake_camera(victim, 2, 1)
 
-	var/turf/T = X.loc
-	var/turf/temp = X.loc
-
-	for (var/x in 1 to fling_distance)
-		temp = get_step(T, facing)
-		if(locate(X) in temp) //Allows us to fluidly toss the target behind us
-			target.forceMove(temp)
-		if (!temp)
-			break
-		T = temp
+	target.forceMove(get_turf(X)) //First force them into our space so we can toss them behind us without problems
 	X.do_attack_animation(target, ATTACK_EFFECT_DISARM2)
-	target.throw_at(T, fling_distance, 1, X, 1)
+	target.throw_at(get_turf(A), fling_distance, 1, X, 1)
 
 	succeed_activate()
 	add_cooldown()
