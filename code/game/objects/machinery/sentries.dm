@@ -1324,8 +1324,7 @@
 	new /obj/item/tool/wrench(src) //wrench to hold it down into the ground
 	new /obj/item/tool/screwdriver(src) //screw the gun onto the post.
 	new /obj/item/ammo_magazine/minisentry(src)
-	var/obj/item/cell/new_cell = new /obj/item/cell/high(src) //give it the cell here
-	new_cell.forceMove(sentry)
+	var/obj/item/cell/new_cell = new /obj/item/cell/high(sentry) //give it the cell here
 	sentry.cell = new_cell
 
 /obj/machinery/marine_turret/proc/activate_turret()
