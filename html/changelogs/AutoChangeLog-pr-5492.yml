@@ -1,0 +1,6 @@
+author: "TiviPlus"
+delete-after: True
+changes: 
+  - bugfix: "fixed a likely cause for sticky plasteel overlays"
+  - code_imp: "Cleaned up various overlay code"
+  - refactor: "Turret icon updates will be much faster"
