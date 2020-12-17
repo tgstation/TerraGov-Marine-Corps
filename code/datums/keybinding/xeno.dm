@@ -428,7 +428,13 @@
 	full_name = "Warrior: Fling"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_FLING
-
+/*
+/datum/keybinding/xeno/grapple_toss
+	name = "grapple_toss"
+	full_name = "Warrior: Grapple Toss"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_GRAPPLE_TOSS
+*/
 /datum/keybinding/xeno/punch
 	name = "punch"
 	full_name = "Warrior: Punch"

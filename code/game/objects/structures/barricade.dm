@@ -108,13 +108,13 @@
 /obj/structure/barricade/attack_animal(mob/user as mob)
 	return attack_alien(user)
 
-/obj/structure/barricade/attack_alien(mob/living/carbon/xenomorph/M)
+/obj/structure/barricade/attack_alien/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0)
 	if(is_wired)
-		M.visible_message("<span class='danger'>The barbed wire slices into [M]!</span>",
+		X.visible_message("<span class='danger'>The barbed wire slices into [X]!</span>",
 		"<span class='danger'>The barbed wire slices into us!</span>", null, 5)
-		M.apply_damage(10)
-		UPDATEHEALTH(M)
-	SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_BARRICADE)
+		X.apply_damage(10)
+		UPDATEHEALTH(X)
+	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_BARRICADE)
 	return ..()
 
 /obj/structure/barricade/attackby(obj/item/I, mob/user, params)
