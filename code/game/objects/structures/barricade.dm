@@ -20,8 +20,6 @@
 	///Whether a crusher can ram through it.
 	var/crusher_resistant = TRUE
 	var/base_acid_damage = 2
-	///How much force an item needs to even damage it at all.
-	var/barricade_resistance = 5
 	///Whether things can be thrown over
 	var/allow_thrown_objs = TRUE
 	var/barricade_type = "barricade" //"metal", "plasteel", etc.
@@ -425,7 +423,6 @@
 	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 80, "acid" = 40)
 	coverage = 128
 	crusher_resistant = TRUE
-	barricade_resistance = 10
 	stack_type = /obj/item/stack/sheet/metal
 	stack_amount = 4
 	destroyed_stack_amount = 2
@@ -754,9 +751,9 @@
 				if(CADE_TYPE_BOMB)
 					soft_armor = soft_armor.modifyRating(bomb = -50)
 				if(CADE_TYPE_MELEE)
-					soft_armor = soft_armor.modifyRating(melee = -50, bullet = -30)
+					soft_armor = soft_armor.modifyRating(melee = -30, bullet = -30)
 				if(CADE_TYPE_ACID)
-					soft_armor = soft_armor.modifyRating(bio = 0, acid = -30)
+					soft_armor = soft_armor.modifyRating(bio = 0, acid = -20)
 
 			new /obj/item/stack/sheet/metal(loc, CADE_UPGRADE_REQUIRED_SHEETS)
 			barricade_upgrade_type = null
@@ -796,7 +793,6 @@
 	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 80, "acid" = 40)
 	coverage = 128
 	crusher_resistant = TRUE
-	barricade_resistance = 20
 	stack_type = /obj/item/stack/sheet/plasteel
 	stack_amount = 5
 	destroyed_stack_amount = 2
@@ -1073,7 +1069,6 @@
 	name = "sandbag barricade"
 	desc = "A bunch of bags filled with sand, stacked into a small wall. Surprisingly sturdy, albeit labour intensive to set up. Trusted to do the job since 1914."
 	icon_state = "sandbag_0"
-	barricade_resistance = 15
 	max_integrity = 400
 	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 80, "acid" = 40)
 	coverage = 128
