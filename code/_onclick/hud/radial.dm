@@ -28,6 +28,8 @@ GLOBAL_LIST_EMPTY(radial_menus)
 		closeToolTip(usr)
 
 /obj/screen/radial/slice/Click(location, control, params)
+	if(!parent) //Orphaned somehow
+		return
 	if(usr.client == parent.current_user)
 		if(next_page)
 			parent.next_page()
