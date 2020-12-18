@@ -17,8 +17,6 @@
 	var/stack_amount = 5
 	///to specify a non-zero amount of stack to drop when destroyed
 	var/destroyed_stack_amount = 0
-	///Whether a crusher can ram through it.
-	var/crusher_resistant = TRUE
 	var/base_acid_damage = 2
 	///Whether things can be thrown over
 	var/allow_thrown_objs = TRUE
@@ -339,7 +337,6 @@
 	max_integrity = 150
 	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 15, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 10)
 	climbable = FALSE
-	crusher_resistant = TRUE
 	stack_type = /obj/item/stack/rods
 	destroyed_stack_amount = 3
 	hit_sound = "sound/effects/metalhit.ogg"
@@ -422,7 +419,6 @@
 	max_integrity = 200
 	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 80, "acid" = 40)
 	coverage = 128
-	crusher_resistant = TRUE
 	stack_type = /obj/item/stack/sheet/metal
 	stack_amount = 4
 	destroyed_stack_amount = 2
@@ -792,7 +788,6 @@
 	max_integrity = 500
 	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 80, "acid" = 40)
 	coverage = 128
-	crusher_resistant = TRUE
 	stack_type = /obj/item/stack/sheet/plasteel
 	stack_amount = 5
 	destroyed_stack_amount = 2
