@@ -224,8 +224,6 @@
 		INVOKE_ASYNC(src, .proc/fold_down, TRUE)
 		return FALSE
 
-	return TRUE
-
 /obj/structure/bed/chair/dropship/passenger/Initialize()
 	. = ..()
 	chairbar = image("icons/obj/objects.dmi", "shuttle_bars")

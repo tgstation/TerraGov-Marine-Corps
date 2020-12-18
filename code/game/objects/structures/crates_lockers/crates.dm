@@ -27,8 +27,6 @@
 		return 1
 	if(opened) //Open crate, you can cross over it
 		return 1
-	else
-		return 0
 
 /obj/structure/closet/crate/open()
 	if(opened)

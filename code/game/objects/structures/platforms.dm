@@ -53,7 +53,6 @@
 	if(!(flags_atom & ON_BORDER) || get_dir(loc, target) == dir)
 		return FALSE
 
-	return TRUE
 
 obj/structure/platform_decoration
 	name = "platform"

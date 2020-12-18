@@ -636,7 +636,8 @@
 
 /turf/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
-	if(!target) return FALSE
+	if(!target)
+		return FALSE
 
 GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	/turf/open/space,

@@ -119,7 +119,6 @@ obj/structure/bed/Destroy()
 	. = ..()
 	if(mover == buckled_bodybag)
 		return TRUE
-	return ..()
 
 /obj/structure/bed/MouseDrop_T(atom/dropping, mob/user)
 	if(accepts_bodybag && !buckled_bodybag && !LAZYLEN(buckled_mobs) && istype(dropping,/obj/structure/closet/bodybag) && ishuman(user))
@@ -197,7 +196,6 @@ obj/structure/bed/Destroy()
 	. = ..()
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
 		return TRUE
-	. = ..()
 
 /obj/structure/bed/alien
 	icon_state = "abed"

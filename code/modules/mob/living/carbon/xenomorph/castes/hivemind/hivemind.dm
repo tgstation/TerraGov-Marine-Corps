@@ -50,7 +50,6 @@
 	. = ..()
 	if(isxenohivemind(mover))
 		return FALSE
-	return ..()
 
 /mob/living/carbon/xenomorph/hivemind/flamer_fire_act()
 	forceMove(get_turf(core))

@@ -190,8 +190,6 @@ obj/item/alienjar
 		if(!M.lying_angle && !ismonkey(M) && !istype(M, /mob/living/simple_animal/mouse) && !istype(M, /mob/living/carbon/xenomorph/larva) && !istype(M, /mob/living/carbon/xenomorph/runner))  //If your not laying down, or a small creature, no pass.
 			return FALSE
 
-	return TRUE
-
 /obj/structure/plasticflaps/ex_act(severity)
 	switch(severity)
 		if (1)

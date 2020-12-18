@@ -31,7 +31,6 @@
 	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
 	if(S?.climbable)
 		return TRUE
-	return FALSE
 
 /obj/structure/window_frame/CheckExit(atom/movable/O as mob|obj, target as turf)
 	return TRUE

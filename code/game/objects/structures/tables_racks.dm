@@ -580,15 +580,11 @@
 
 /obj/structure/rack/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
-	if(!density) //Because broken racks
-		return TRUE
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
 		return TRUE
 	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
 	if(S?.climbable && !(S.flags_atom & ON_BORDER) && climbable && isliving(mover)) //Climbable non-border  objects allow you to universally climb over others
 		return TRUE
-	else
-		return FALSE
 
 /obj/structure/rack/MouseDrop_T(obj/item/I, mob/user)
 	if (!istype(I) || user.get_active_held_item() != I)

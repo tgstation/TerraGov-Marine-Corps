@@ -77,8 +77,6 @@
 	. = ..()
 	if(wall_mounted)
 		return TRUE
-	else
-		return !density
 
 /obj/structure/closet/proc/can_open(mob/living/user)
 	if(welded || locked)
