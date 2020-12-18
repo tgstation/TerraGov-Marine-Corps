@@ -822,6 +822,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/clothing/under/rank/medical/purple = list(CAT_STD, "Medical scrubs (purple)", 0, "black"),
 		/obj/item/clothing/under/marine/officer/engi = list(CAT_STD, "Engineering uniform", 0, "black"),
 		/obj/item/clothing/under/marine/officer/logistics = list(CAT_STD, "Officer uniform", 0, "black"),
+		/obj/item/clothing/under/blackskirt = list(CAT_STD, "Skirt", 0, "black"),
 		/obj/item/clothing/under/whites = list(CAT_STD, "TGMC dress uniform", 0, "black"),
 		/obj/item/clothing/under/marine/officer/pilot = list(CAT_STD, "Pilot bodysuit", 0, "black"),
 		/obj/item/clothing/under/marine/mp = list(CAT_STD, "Military police uniform", 0, "black"),
