@@ -86,7 +86,7 @@
 	if(slot_legs)
 		var/image/legs = image(slot_legs.icon, ITEM_STATE_IF_SET(slot_legs))
 		standing.overlays += legs
-	if(LAZYLEN(installed_modules))
+	if(installed_modules)
 		for(var/mod in installed_modules)
 			var/obj/item/armor_module/module = mod
 			standing.overlays += image(module.icon, ITEM_STATE_IF_SET(module))
