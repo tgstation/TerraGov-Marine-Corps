@@ -16,19 +16,18 @@
 	..()
 	update_icon()
 
-/obj/structure/closet/secure_closet/guncabinet/update_icon()
-	overlays.Cut()
+/obj/structure/closet/secure_closet/guncabinet/update_overlays()
+	. = ..()
 	if(opened)
-		overlays += icon(icon,"door_open")
+		. += image(icon,"door_open")
+		return
+	. += image(icon,"door")
+	if(broken)
+		. += image(icon,"broken")
+	else if (locked)
+		. += image(icon,"locked")
 	else
-		overlays += icon(src.icon,"door")
-
-		if(broken)
-			overlays += icon(src.icon,"broken")
-		else if (locked)
-			overlays += icon(src.icon,"locked")
-		else
-			overlays += icon(src.icon,"open")
+		. += image(icon,"open")
 
 
 /obj/structure/closet/secure_closet/guncabinet/canterbury

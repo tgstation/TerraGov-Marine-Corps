@@ -108,13 +108,13 @@
 /obj/structure/barricade/attack_animal(mob/user as mob)
 	return attack_alien(user)
 
-/obj/structure/barricade/attack_alien(mob/living/carbon/xenomorph/M)
+/obj/structure/barricade/attack_alien/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0)
 	if(is_wired)
-		M.visible_message("<span class='danger'>The barbed wire slices into [M]!</span>",
+		X.visible_message("<span class='danger'>The barbed wire slices into [X]!</span>",
 		"<span class='danger'>The barbed wire slices into us!</span>", null, 5)
-		M.apply_damage(10)
-		UPDATEHEALTH(M)
-	SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_BARRICADE)
+		X.apply_damage(10)
+		UPDATEHEALTH(X)
+	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_BARRICADE)
 	return ..()
 
 /obj/structure/barricade/attackby(obj/item/I, mob/user, params)
@@ -239,9 +239,9 @@
 	. = ..()
 	if(is_wired)
 		if(!closed)
-			. += image('icons/Marine/barricades.dmi', icon_state = "[src.barricade_type]_wire")
+			. += image('icons/Marine/barricades.dmi', icon_state = "[barricade_type]_wire")
 		else
-			. += image('icons/Marine/barricades.dmi', icon_state = "[src.barricade_type]_closed_wire")
+			. += image('icons/Marine/barricades.dmi', icon_state = "[barricade_type]_closed_wire")
 
 
 /obj/structure/barricade/effect_smoke(obj/effect/particle_effect/smoke/S)
@@ -1018,8 +1018,6 @@
 	. = ..()
 	if(.)
 		return
-	if(isxeno(user))
-		return
 
 	toggle_open(null, user)
 
@@ -1049,8 +1047,8 @@
 		return
 	for(var/direction in GLOB.cardinals)
 		for(var/obj/structure/barricade/plasteel/cade in get_step(src, direction))
-			if(((dir & (NORTH|SOUTH) && get_dir(src, cade) & (EAST|WEST)) || (dir & (EAST|WEST) && get_dir(src, cade) & (NORTH|SOUTH))) && dir == cade.dir && cade.linked && cade.closed == src.closed)
-				overlays += image('icons/Marine/barricades.dmi', icon_state = "[src.barricade_type]_[closed ? "closed" : "open"]_connection_[get_dir(src, cade)]")
+			if(((dir & (NORTH|SOUTH) && get_dir(src, cade) & (EAST|WEST)) || (dir & (EAST|WEST) && get_dir(src, cade) & (NORTH|SOUTH))) && dir == cade.dir && cade.linked && cade.closed == closed)
+				. += image('icons/Marine/barricades.dmi', icon_state = "[barricade_type]_[closed ? "closed" : "open"]_connection_[get_dir(src, cade)]")
 
 /obj/structure/barricade/plasteel/ex_act(severity)
 	switch(severity)
