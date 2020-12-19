@@ -15,6 +15,7 @@
 	icon = 'icons/mob/modular/modular_armor.dmi'
 	icon_state = "underarmor_icon"
 	item_state = "underarmor"
+	item_icons = list(slot_wear_suit_str = 'icons/mob/modular/modular_armor.dmi')
 	flags_atom = CONDUCT
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 	flags_item = SYNTH_RESTRICTED
@@ -74,6 +75,24 @@
 	QDEL_NULL(storage)
 	return ..()
 
+/obj/item/clothing/suit/modular/apply_custom(image/standing)
+	if(slot_chest)
+		var/image/chest = image(slot_chest.icon, ITEM_STATE_IF_SET(slot_chest))
+		standing.overlays += chest
+	if(slot_arms)
+		var/image/arms = image(slot_arms.icon, ITEM_STATE_IF_SET(slot_arms))
+		standing.overlays += arms
+	if(slot_legs)
+		var/image/legs = image(slot_legs.icon, ITEM_STATE_IF_SET(slot_legs))
+		standing.overlays += legs
+	if(LAZYLEN(installed_modules))
+		for(var/mod in installed_modules)
+			var/obj/item/armor_module/module = mod
+			standing.overlays += image(module.icon, ITEM_STATE_IF_SET(module))
+	if(installed_storage)
+		standing.overlays += image(installed_storage.icon, ITEM_STATE_IF_SET(installed_storage))
+	
+	
 /obj/item/clothing/suit/modular/mob_can_equip(mob/user, slot, warning)
 	if(slot == SLOT_WEAR_SUIT && ishuman(user))
 		var/mob/living/carbon/human/H = user
@@ -309,8 +328,9 @@
 /obj/item/clothing/head/modular
 	name = "Jaeger Pattern Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points."
-	icon = 'icons/mob/modular/modular_armor.dmi'
+	icon = 'icons/mob/modular/modular_helmet_icon.dmi'
 	icon_state = "medium_helmet"
+	item_icons = list(slot_head_str = 'icons/mob/modular/modular_helmet.dmi')
 	flags_armor_protection = HEAD
 	flags_armor_features = ARMOR_NO_DECAP
 	flags_inventory = BLOCKSHARPOBJ
@@ -328,13 +348,6 @@
 
 	/// How long it takes to attach or detach to this item
 	var/equip_delay = 3 SECONDS
-
-
-/obj/item/clothing/head/modular/Initialize()
-	. = ..()
-	// Removes the _icon from the end of the icon_state
-	icon_state = "[initial(icon_state)]_icon"
-	item_state = initial(icon_state)
 
 
 /obj/item/clothing/head/modular/attackby(obj/item/I, mob/user, params)
@@ -358,8 +371,7 @@
 	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 		return TRUE
 
-	icon_state = "[initial(icon_state)]_[new_color]_icon"
-	item_state = "[initial(icon_state)]_[new_color]"
+	icon_state = "[initial(icon_state)]_[new_color]"
 
 	return TRUE
 
@@ -367,7 +379,6 @@
 /obj/item/clothing/head/modular/Destroy()
 	QDEL_NULL(installed_module)
 	return ..()
-
 
 /obj/item/clothing/head/modular/item_action_slot_check(mob/user, slot)
 	if(!ishuman(user))
@@ -421,6 +432,11 @@
 	. = ..()
 	if(installed_module)
 		. += image(installed_module.icon, installed_module.item_state)
+
+/obj/item/clothing/head/modular/apply_custom(image/standing)
+	if(installed_module)
+		var/image/moduleimg = image(installed_module.icon, ITEM_STATE_IF_SET(installed_module))
+		standing.overlays += moduleimg
 
 
 /obj/item/clothing/head/modular/get_mechanics_info()

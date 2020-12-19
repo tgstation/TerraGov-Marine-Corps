@@ -10,7 +10,9 @@
 	throw_speed = 4
 	throw_range = 5
 	force 		= 5
-	sprite_sheet_id = 1
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi')
 	flags_atom = CONDUCT
 	flags_item = TWOHANDED
 	light_system = MOVABLE_LIGHT

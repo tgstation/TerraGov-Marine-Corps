@@ -7,6 +7,7 @@
 	/// Bitflags used to determine the state of the armor (light on, overlay used, or reinfornced), currently support flags are in [equipment.dm:100]
 	var/flags_armor_features = NONE
 
+
 	/// used for headgear, masks, and glasses, to see how much they protect eyes from bright lights.
 	var/eye_protection = 0
 
@@ -39,6 +40,38 @@
 //Updates the icons of the mob wearing the clothing item, if any.
 /obj/item/clothing/proc/update_clothing_icon()
 	return
+
+/obj/item/clothing/apply_accessories(image/standing)
+	if(istype(src, /obj/item/clothing/under))
+		var/obj/item/clothing/under/W = src
+		if(W.hastie)
+			var/tie_state = W.hastie.item_state
+			if(!tie_state) tie_state = W.hastie.icon_state
+			standing.overlays += image("icon" = 'icons/mob/ties.dmi', "icon_state" = "[tie_state]")
+	/*if(LAZYLEN(accessories))
+		for(var/obj/item/clothing/accessory/A in accessories)
+			standing.add_overlay(A.get_mob_overlay())*/
+
+/obj/item/clothing/under/get_worn_icon_state(slot_name)
+	var/state2use = ..()
+	if(rolled_sleeves)
+		state2use += "_d"
+	return state2use
+
+/obj/item/clothing/apply_blood(image/standing)
+	if(blood_overlay && blood_sprite_state)
+		var/mob/living/carbon/human/H = loc
+		var/image/bloodsies	= image(icon = 'icons/effects/blood.dmi', icon_state = blood_sprite_state)
+		bloodsies.color	= H.blood_color
+		standing.add_overlay(bloodsies)
+
+/obj/item/clothing/suit/apply_blood(image/standing)
+	if(blood_overlay && blood_sprite_state)
+		var/mob/living/carbon/human/H = loc
+		blood_sprite_state = "[blood_overlay_type]blood"
+		var/image/bloodsies	= image(icon = 'icons/effects/blood.dmi', icon_state = blood_sprite_state)
+		bloodsies.color = H.blood_color
+		standing.add_overlay(bloodsies)
 
 
 ///////////////////////////////////////////////////////////////////////
@@ -137,6 +170,7 @@
 	var/obj/item/cell/cell = 0
 	var/clipped = 0
 	var/transfer_prints = TRUE
+	blood_sprite_state = "bloodyhands"
 	flags_armor_protection = HANDS
 	flags_equip_slot = ITEM_SLOT_GLOVES
 	attack_verb = list("challenged")
@@ -188,6 +222,7 @@
 	flags_equip_slot = ITEM_SLOT_MASK
 	flags_armor_protection = FACE|EYES
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/masks.dmi')
+	blood_sprite_state = "maskblood"
 	var/anti_hug = 0
 	var/toggleable = FALSE
 	active = TRUE
@@ -219,6 +254,7 @@
 	flags_equip_slot = ITEM_SLOT_FEET
 	permeability_coefficient = 0.50
 	slowdown = SHOES_SLOWDOWN
+	blood_sprite_state = "shoeblood"
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/shoes.dmi')
 
 

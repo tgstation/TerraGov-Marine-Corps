@@ -5,6 +5,8 @@
 	materials = list(/datum/material/metal = 50)
 
 	var/image/blood_overlay = null //this saves our blood splatter overlay, which will be processed not to go over the edges of the sprite
+	var/blood_sprite_state //The iconstate that the items use for blood
+
 
 	var/item_state = null //if you don't want to use icon_state for onmob inhand/belt/back/ear/suitstorage/glove sprite.
 						//e.g. most headsets have different icon_state but they all use the same sprite when shown on the mob's ears.
@@ -60,6 +62,10 @@
 
 	var/reach = 1
 
+	
+	
+	
+	
 	/* Species-specific sprites, concept stolen from Paradise//vg/.
 	ex:
 	sprite_sheets = list(
@@ -67,9 +73,24 @@
 		)
 	If index term exists and icon_override is not set, this sprite sheet will be used.
 	*/
+
+
+
 	var/list/sprite_sheets = null
+
+	//** These specify item/icon overrides for _slots_
+
+	var/list/item_state_slots = list() //overrides the default item_state for particular slots.
+
+	// Used to specify the icon file to be used when the item is worn. If not set the default icon for that slot will be used.
+	// If icon_override or sprite_sheets are set they will take precendence over this, assuming they apply to the slot in question.
+	// Only slot_l_hand/slot_r_hand are implemented at the moment. Others to be implemented as needed.
+	var/list/item_icons = list()
+
+	var/icon/default_worn_icon	//Default on-mob icon
+	var/worn_layer				//Default on-mob layer
+
 	var/icon_override = null  //Used to override hardcoded ON-MOB clothing dmis in human clothing proc (i.e. not the icon_state sprites).
-	var/sprite_sheet_id = 0 //Select which sprite sheet ID to use due to the sprite limit per .dmi. 0 is default, 1 is the new one.
 
 	var/flags_item_map_variant = NONE
 
@@ -77,6 +98,8 @@
 	var/tool_behaviour = FALSE
 	var/toolspeed = 1
 	var/usesound = null
+
+	var/addblends
 
 	var/active = FALSE
 
@@ -983,3 +1006,119 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	else
 		active = !active
 	SEND_SIGNAL(src, COMSIG_ITEM_TOGGLE_ACTIVE, active)
+
+//Worn icon generation for on-mob sprites
+/obj/item/proc/make_worn_icon(body_type, slot_name, inhands, default_icon, default_layer) 
+	//Get the required information about the base icon
+	var/icon/icon2use = get_worn_icon_file(body_type = body_type, slot_name = slot_name, default_icon = default_icon, inhands = inhands)
+	var/state2use = get_worn_icon_state(slot_name = slot_name, inhands)
+	var/layer2use = get_worn_layer(default_layer = default_layer)
+
+	//Snowflakey inhand icons in a specific slot
+	if(inhands && icon2use == icon_override)
+		switch(slot_name)
+			if(slot_r_hand_str)
+				state2use += "_r"
+			if(slot_l_hand_str)
+				state2use += "_l"
+
+	// testing("[src] (\ref[src]) - Slot: [slot_name], Inhands: [inhands], Worn Icon:[icon2use], Worn State:[state2use], Worn Layer:[layer2use]")
+
+	//Generate the base onmob icon
+	var/icon/standing_icon = icon(icon = icon2use, icon_state = state2use)
+
+	/*if(!inhands)
+		
+		apply_addblends(icon2use,standing_icon)		//Some items have ICON_ADD blend shaders
+	*/
+	var/image/standing = image(standing_icon)
+	standing.alpha = alpha
+	standing.color = color
+	standing.layer = layer2use
+
+	//Apply any special features
+	if(!inhands)
+		apply_custom(standing)		//image overrideable proc to customize the thing
+		apply_blood(standing)			//Some items show blood when bloodied
+		apply_accessories(standing)		//Some items sport accessories like webbing
+
+	//Return our icon
+	return standing
+
+/obj/item/proc/get_worn_icon_file(body_type,slot_name,default_icon,inhands)
+
+	//1: icon_override var
+	if(icon_override)
+		return icon_override
+
+	//2: species-specific sprite sheets.
+	if(LAZYLEN(sprite_sheets))
+		var/sheet = sprite_sheets[body_type]
+		if(sheet && !inhands)
+			return sheet
+
+	//3: slot-specific sprite sheets
+	if(LAZYLEN(item_icons))
+		var/sheet = item_icons[slot_name]
+		if(sheet)
+			return sheet
+
+	//4: item's default icon
+	if(default_worn_icon)
+		return default_worn_icon
+
+	//5: provided default_icon
+	if(default_icon)
+		return default_icon
+
+	//6: give up
+	return
+
+
+//Returns the state that should be used for the worn icon
+/obj/item/proc/get_worn_icon_state(slot_name, inhands)
+
+	//1: slot-specific sprite sheets
+	if(LAZYLEN(item_state_slots))
+		var/state = item_state_slots[slot_name]
+		if(state)
+			return state
+
+	//2: item_state variable // NOT REALLY BECAUSE BAYCODE ITEM_STATE IS COMPLETELY CURSED.
+	if(inhands)
+		if(item_state)
+			return item_state
+
+	//3: icon_state variable
+	if(icon_state)
+		return icon_state
+
+//Returns the layer that should be used for the worn icon (as a FLOAT_LAYER layer, so negative)
+/obj/item/proc/get_worn_layer(default_layer = 0)
+
+	//1: worn_layer variable
+	if(!isnull(worn_layer)) //Can be zero, so...
+		return -worn_layer
+
+	//2: your default
+	return -default_layer
+
+//Apply the addblend blends onto the icon
+/obj/item/proc/apply_addblends(source_icon, icon/standing_icon)
+
+	//If we have addblends, blend them onto the provided icon
+	if(addblends && standing_icon && source_icon)
+		var/addblend_icon = icon("icon" = source_icon, "icon_state" = addblends)
+		standing_icon.Blend(addblend_icon, ICON_ADD)
+
+//STUB
+/obj/item/proc/apply_custom(image/standing)
+	return standing
+
+//STUB
+/obj/item/proc/apply_blood(image/standing)
+	return standing
+
+//STUB
+/obj/item/proc/apply_accessories(image/standing)
+	return standing

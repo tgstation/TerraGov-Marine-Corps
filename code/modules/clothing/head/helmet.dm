@@ -191,7 +191,10 @@
 	name = "\improper M10 pattern marine helmet"
 	desc = "A standard M10 Pattern Helmet. It reads on the label, 'The difference between an open-casket and closed-casket funeral. Wear on head for best results.'."
 	icon = 'icons/obj/clothing/cm_hats.dmi'
-	sprite_sheet_id = 1
+	item_icons = list(
+		slot_head_str = 'icons/mob/head_1.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
 	icon_state = "helmet"
 	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
 	max_integrity = 5
@@ -531,7 +534,10 @@ obj/item/clothing/head/helmet/marine/pilot/green
 	name = "\improper UM4 helmet"
 	desc = "A skirted helmet designed for use with the UM/UH system."
 	icon = 'icons/obj/clothing/cm_hats.dmi'
-	sprite_sheet_id = 1
+	item_icons = list(
+		slot_head_str = 'icons/mob/head_1.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
 	icon_state = "upp_helmet1"
 	flags_item = SYNTH_RESTRICTED
 	soft_armor = list("melee" = 70, "bullet" = 55, "laser" = 40, "energy" = 35, "bomb" = 35, "bio" = 5, "rad" = 5, "fire" = 35, "acid" = 35)
@@ -540,7 +546,10 @@ obj/item/clothing/head/helmet/marine/pilot/green
 /obj/item/clothing/head/helmet/UPP/heavy
 	name = "\improper UH7 helmet"
 	icon = 'icons/obj/clothing/cm_hats.dmi'
-	sprite_sheet_id = 1
+	item_icons = list(
+		slot_head_str = 'icons/mob/head_1.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
 	icon_state = "upp_helmet_heavy"
 	soft_armor = list("melee" = 90, "bullet" = 85, "laser" = 60, "energy" = 65, "bomb" = 85, "bio" = 5, "rad" = 5, "fire" = 65, "acid" = 65)
 	resistance_flags = UNACIDABLE
@@ -554,7 +563,10 @@ obj/item/clothing/head/helmet/marine/pilot/green
 	name = "specialist head-rag"
 	desc = "A hat worn by heavy-weapons operators to block sweat."
 	icon = 'icons/obj/clothing/cm_hats.dmi'
-	sprite_sheet_id = 1
+	item_icons = list(
+		slot_head_str = 'icons/mob/head_1.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
 	icon_state = "spec"
 	soft_armor = list("melee" = 35, "bullet" = 35, "laser" = 35, "energy" = 15, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 15, "acid" = 15)
 	flags_inventory = BLOCKSHARPOBJ
@@ -564,7 +576,10 @@ obj/item/clothing/head/helmet/marine/pilot/green
 	name = "durag"
 	desc = "Good for keeping sweat out of your eyes"
 	icon = 'icons/obj/clothing/cm_hats.dmi'
-	sprite_sheet_id = 1
+	item_icons = list(
+		slot_head_str = 'icons/mob/head_1.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
 	icon_state = "durag"
 	soft_armor = list("melee" = 35, "bullet" = 35, "laser" = 35, "energy" = 15, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 15, "acid" = 15)
 	flags_inventory = BLOCKSHARPOBJ
