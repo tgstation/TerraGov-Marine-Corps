@@ -1,0 +1,4 @@
+author: "Surrealaser"
+delete-after: True
+changes: 
+  - bugfix: "Fixes a bug where removing melee/acid upgrades from a barricade removed more soft armor than the upgrade provided."
