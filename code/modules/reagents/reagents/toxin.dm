@@ -544,8 +544,6 @@
 
 	L.add_movespeed_modifier(MOVESPEED_ID_XENO_HEMODILE, TRUE, 0, NONE, TRUE, 1.25 * slowdown_multiplier)
 
-	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox)) //Combo effect
-		L.adjust_stagger(1)
 	return ..()
 
 /datum/reagent/toxin/xeno_hemodile/on_mob_delete(mob/living/L, metabolism)
@@ -553,7 +551,7 @@
 
 /datum/reagent/toxin/xeno_transvitox //when damage is received, converts brute/burn equal to 50% of damage received to tox damage
 	name = "Transvitox"
-	description = "Heals brute and burn wounds, converting damage to toxins and causing fatigue."
+	description = "Converts burn damage to toxin damage, and causes damage received to inflict toxins in proportion to brute damage."
 	reagent_state = LIQUID
 	color = "#94FF00"
 	custom_metabolism = 0.4
@@ -574,20 +572,19 @@
 
 	var/tox_cap_multiplier = 1
 
-	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile)) //Each other Defiler toxin increases the multiplier by 50%
+	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile)) //Each other Defiler toxin doubles the multiplier
 		tox_cap_multiplier *= 2
 
 	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
 		tox_cap_multiplier *= 2
 
-	L.adjustStaminaLoss(damage*0.15*tox_cap_multiplier)
+	L.adjustToxLoss(min(L.getBruteLoss() * 0.15 * tox_cap_multiplier, damage * 0.15 * tox_cap_multiplier))  //Deal bonus damage equal to a % of the lesser of the damage taken or the target's brute damage.
 
-	var/dam = min(damage*0.4, 45 * tox_cap_multiplier - L.getToxLoss()) // hard caps damage conversion to not exceed 45 tox * tox_cap_multiplier
-	if((L.getBruteLoss() + L.getFireLoss()) < dam)
+	if(!L.getFireLoss()) //If we have no burn damage, cancel out
 		return
+
+	var/dam = min(damage * 0.25 * tox_cap_multiplier, 45 * tox_cap_multiplier - L.getToxLoss()) // hard caps damage conversion to not exceed 45 tox * tox_cap_multiplier
+	if((L.getFireLoss()) < dam) //If burn damage is less than damage to be converted, have the conversion value be equal to the burn damage
+		dam = L.getFireLoss()
+	L.heal_limb_damage(dam) //Heal damage equal to toxin damage dealt; heal before applying toxin damage so we don't flash kill the target
 	L.adjustToxLoss(dam)
-	var/healed_brute = min(dam, L.getBruteLoss())
-	L.heal_limb_damage(healed_brute)
-	if(!L.getFireLoss())
-		return
-	L.heal_limb_damage(0, dam - healed_brute)
