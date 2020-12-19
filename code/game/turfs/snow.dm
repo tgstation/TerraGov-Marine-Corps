@@ -156,6 +156,23 @@
 				update_icon(1, 0)
 	return ..()
 
+//Fire act; fire now melts snow as it should; fire beats ice
+/turf/open/floor/plating/ground/snow/flamer_fire_act(burnlevel, firelevel)
+
+	if(!slayer) //Don't bother if there's no snow to melt
+		return
+
+	if(!burnlevel) //Don't bother if there's no burn stacks
+		return
+
+	switch(burnlevel)
+		if(1 to 10)
+			slayer--
+		if(11 to 24)
+			slayer = max(0, slayer - 2)
+		if(25 to INFINITY)
+			slayer = 0
+
 //SNOW LAYERS-----------------------------------//
 /turf/open/floor/plating/ground/snow/layer0
 	icon_state = "snow_0"
