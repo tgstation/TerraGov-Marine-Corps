@@ -37,12 +37,14 @@
 		var/armor_change = X.xeno_caste.agility_speed_armor
 		X.soft_armor = X.soft_armor.modifyAllRatings(armor_change)
 		last_agility_bonus = armor_change
+		owner.toggle_move_intent(MOVE_INTENT_RUN) //By default we swap to running when activating agility
 	else
 		to_chat(X, "<span class='xenowarning'>We raise ourselves to stand on two feet, hard scales setting back into place.</span>")
 		X.remove_movespeed_modifier(MOVESPEED_ID_WARRIOR_AGILITY)
 		X.soft_armor = X.soft_armor.modifyAllRatings(-last_agility_bonus)
 		last_agility_bonus = 0
 	X.update_icons()
+
 	add_cooldown()
 	return succeed_activate()
 
