@@ -518,28 +518,8 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 		if(istype(A, type))
 			. += A
 
-/atom/proc/GetAllContentsold(T)
-	var/list/processing_list = list(src)
-	var/list/assembled = list()
-	if(T)
-		while(length(processing_list))
-			var/atom/A = processing_list[1]
-			processing_list.Cut(1, 2)
-			//Byond does not allow things to be in multiple contents, or double parent-child hierarchies, so only += is needed
-			//This is also why we don't need to check against assembled as we go along
-			processing_list += A.contents
-			if(istype(A, T))
-				assembled += A
-	else
-		while(length(processing_list))
-			var/atom/A = processing_list[1]
-			processing_list.Cut(1, 2)
-			processing_list += A.contents
-			assembled += A
-	return assembled
 
-
-//Step-towards method of determining whether one atom can see another. Similar to viewers()
+///Step-towards method of determining whether one atom can see another. Similar to viewers()
 /proc/can_see(atom/source, atom/target, length = 5) // I couldnt be arsed to do actual raycasting :I This is horribly inaccurate.
 	var/turf/current = get_turf(source)
 	var/turf/target_turf = get_turf(target)
