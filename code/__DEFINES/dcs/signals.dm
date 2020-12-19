@@ -547,6 +547,13 @@
 #define COMSIG_STATE_MAINTAINED_DISTANCE "action_state_maintained_dist_with_target"
 #define COMSIG_OBSTRUCTED_MOVE "unable_to_step_towards_thing" //Tried to step in a direction and there was a obstruction
 
+// /datum/song signals
+
+///sent to the instrument when a song starts playing
+#define COMSIG_SONG_START 	"song_start"
+///sent to the instrument when a song stops playing
+#define COMSIG_SONG_END		"song_end"
+
 /*******Non-Signal Component Related Defines*******/
 
 
