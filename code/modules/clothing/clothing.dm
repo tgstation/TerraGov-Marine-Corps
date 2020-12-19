@@ -41,15 +41,14 @@
 /obj/item/clothing/proc/update_clothing_icon()
 	return
 
-/obj/item/clothing/apply_accessories(image/standing)
-	if(istype(src, /obj/item/clothing/under))
-		var/obj/item/clothing/under/W = src
-		if(W.hastie)
-			var/tie_state = W.hastie.item_state
-			if(!tie_state) tie_state = W.hastie.icon_state
-			standing.overlays += image("icon" = 'icons/mob/ties.dmi', "icon_state" = "[tie_state]")
-	/*if(LAZYLEN(accessories))
-		for(var/obj/item/clothing/accessory/A in accessories)
+/obj/item/clothing/under/apply_accessories(image/standing)
+	var/obj/item/clothing/under/W = src
+	if(W.hastie)
+		var/tie_state = W.hastie.item_state
+		if(!tie_state) tie_state = W.hastie.icon_state
+		standing.overlays += image("icon" = 'icons/mob/ties.dmi', "icon_state" = "[tie_state]")
+	/*if(LAZYLEN(accessories)) //In case we ever add actual accessories instead of just "ties".
+		for(var/obj/item/clothing/accessory/A in accessories) //put this in clothing, not on under, for all type of accessories.
 			standing.add_overlay(A.get_mob_overlay())*/
 
 /obj/item/clothing/under/get_worn_icon_state(slot_name)
@@ -72,7 +71,6 @@
 		var/image/bloodsies	= image(icon = 'icons/effects/blood.dmi', icon_state = blood_sprite_state)
 		bloodsies.color = H.blood_color
 		standing.add_overlay(bloodsies)
-
 
 ///////////////////////////////////////////////////////////////////////
 // Ears: headsets, earmuffs and tiny objects

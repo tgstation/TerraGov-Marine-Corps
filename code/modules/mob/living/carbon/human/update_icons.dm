@@ -395,19 +395,6 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 	if(wear_suit && (wear_suit.flags_inv_hide & HIDEJUMPSUIT))
 		return
 
-	/*if(U.rolled_sleeves)
-		used_state += "_d"*/
-
-	/*if(U.blood_overlay)
-		var/image/bloodsies	= image("icon" = 'icons/effects/blood.dmi', "icon_state" = "uniformblood")
-		bloodsies.color		= U.blood_color
-		standing.overlays	+= bloodsies
-
-	if(U.hastie)
-		var/tie_state = U.hastie.item_state
-		if(!tie_state) tie_state = U.hastie.icon_state
-		standing.overlays	+= image("icon" = 'icons/mob/ties.dmi', "icon_state" = "[tie_state]")*/
-
 	overlays_standing[UNIFORM_LAYER] = w_uniform.make_worn_icon(body_type = species.name, slot_name = slot_w_uniform_str, default_icon = 'icons/mob/uniform_0.dmi', default_layer = UNIFORM_LAYER)
 
 	apply_overlay(UNIFORM_LAYER)
@@ -428,17 +415,12 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 	apply_overlay(ID_LAYER)
 
 
-
 /mob/living/carbon/human/update_inv_gloves()
 	remove_overlay(GLOVES_LAYER)
 	if(gloves)
 		if(client && hud_used && hud_used.hud_shown && hud_used.inventory_shown)
 			gloves.screen_loc = ui_gloves
 			client.screen += gloves
-		/*if(gloves.blood_overlay)
-			var/image/bloodsies	= image("icon" = 'icons/effects/blood.dmi', "icon_state" = "bloodyhands")
-			bloodsies.color = gloves.blood_color
-			standing.overlays	+= bloodsies*/
 		overlays_standing[GLOVES_LAYER]	= gloves.make_worn_icon(body_type = species.name, slot_name = slot_gloves_str, default_icon = 'icons/mob/hands.dmi', default_layer = GLOVES_LAYER)
 		apply_overlay(GLOVES_LAYER)
 		return
@@ -534,13 +516,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 		head.screen_loc = ui_head
 		client.screen += head
 
-	/*if(head.icon_override)
-		standing = image("icon" = head.icon_override, "icon_state" = "[head.icon_state]", "layer" =-HEAD_LAYER)
-	else if(head.sprite_sheets && head.sprite_sheets[species.name])
-		standing = image("icon" = head.sprite_sheets[species.name], "icon_state" = "[head.icon_state]", "layer" =-HEAD_LAYER)
-	else
-		standing = image("icon" = head.sprite_sheet_id?'icons/mob/head_1.dmi':'icons/mob/head_0.dmi', "icon_state" = "[head.icon_state]", "layer" =-HEAD_LAYER)
-
+	/* //This was probably some CM armor stripes or something, should be moved to apply_custom() if kept.
 	if(istype(head,/obj/item/clothing/head/helmet/marine))
 		var/obj/item/clothing/head/helmet/marine/marine_helmet = head
 		if(marine_helmet.flags_marine_helmet & HELMET_SQUAD_OVERLAY)
@@ -554,20 +530,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 			I = marine_helmet.helmet_overlays[i]
 			if(I)
 				I = image('icons/mob/helmet_garb.dmi',src,I.icon_state)
-				standing.overlays += I
-
-	if(istype(head, /obj/item/clothing/head/modular))
-		var/obj/item/clothing/head/modular/helmet = head
-		var/t_icon = helmet.item_state ? helmet.item_state : helmet.icon_state
-		standing = image("icon" = helmet.icon, "icon_state" = t_icon)
-		if(helmet.installed_module)
-			var/image/moduleimg = image(helmet.installed_module.icon, ITEM_STATE_IF_SET(helmet.installed_module))
-			standing.overlays += moduleimg
-
-	if(head.blood_overlay)
-		var/image/bloodsies = image("icon" = 'icons/effects/blood.dmi', "icon_state" = "helmetblood")
-		bloodsies.color = head.blood_color
-		standing.overlays += bloodsies*/
+				standing.overlays += I*/
 	
 	overlays_standing[HEAD_LAYER] = head.make_worn_icon(body_type = species.name, slot_name = slot_head_str, default_icon = 'icons/mob/head_0.dmi', default_layer = HEAD_LAYER)
 
@@ -599,14 +562,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 		wear_suit.screen_loc = ui_oclothing
 		client.screen += wear_suit
 
-	/*var/image/standing
-	if(wear_suit.icon_override)
-		standing = image("icon" = wear_suit.icon_override, "icon_state" = "[wear_suit.icon_state]", "layer" =-SUIT_LAYER)
-	else if(wear_suit.sprite_sheets && wear_suit.sprite_sheets[species.name])
-		standing = image("icon" = wear_suit.sprite_sheets[species.name], "icon_state" = "[wear_suit.icon_state]", "layer" =-SUIT_LAYER)
-	else
-		standing = image("icon" = wear_suit.sprite_sheet_id?'icons/mob/suit_1.dmi':'icons/mob/suit_0.dmi', "icon_state" = "[wear_suit.icon_state]", "layer" =-SUIT_LAYER)
-
+	/*  //Same thing as inv_head(), should be moved to apply_custom if kept.
 	if(istype(wear_suit, /obj/item/clothing/suit/storage/marine))
 		var/obj/item/clothing/suit/storage/marine/marine_armor = wear_suit
 		if(marine_armor.flags_armor_features & ARMOR_SQUAD_OVERLAY)
@@ -639,34 +595,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 				if(I)
 					I = image('icons/mob/suit_1.dmi',src,I.icon_state)
 					standing.overlays += I
-
-	if(istype(wear_suit, /obj/item/clothing/suit/modular))
-		var/obj/item/clothing/suit/modular/mod_armor = wear_suit
-		standing = image(mod_armor.icon, "icon_state" = ITEM_STATE_IF_SET(mod_armor), "layer" =-SUIT_LAYER)
-
-		// Handle attachments and modules
-		if(mod_armor.slot_chest)
-			var/image/chest = image(mod_armor.slot_chest.icon, ITEM_STATE_IF_SET(mod_armor.slot_chest))
-			standing.overlays += chest
-		if(mod_armor.slot_arms)
-			var/image/arms = image(mod_armor.slot_arms.icon, ITEM_STATE_IF_SET(mod_armor.slot_arms))
-			standing.overlays += arms
-		if(mod_armor.slot_legs)
-			var/image/legs = image(mod_armor.slot_legs.icon, ITEM_STATE_IF_SET(mod_armor.slot_legs))
-			standing.overlays += legs
-		if(LAZYLEN(mod_armor.installed_modules))
-			for(var/mod in mod_armor.installed_modules)
-				var/obj/item/armor_module/module = mod
-				standing.overlays += image(module.icon, ITEM_STATE_IF_SET(module))
-		if(mod_armor.installed_storage)
-			standing.overlays += image(mod_armor.installed_storage.icon, ITEM_STATE_IF_SET(mod_armor.installed_storage))
-
-
-	if(wear_suit.blood_overlay)
-		var/obj/item/clothing/suit/S = wear_suit
-		var/image/bloodsies = image("icon" = 'icons/effects/blood.dmi', "icon_state" = "[S.blood_overlay_type]blood")
-		bloodsies.color = wear_suit.blood_color
-		standing.overlays += bloodsies*/
+			*/
 
 	overlays_standing[SUIT_LAYER] = wear_suit.make_worn_icon(body_type = species.name, slot_name = slot_wear_suit_str, default_icon = 'icons/mob/suit_0.dmi', default_layer = SUIT_LAYER)
 
@@ -694,11 +623,6 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 	if(client && hud_used && hud_used.hud_shown && hud_used.inventory_shown)
 		wear_mask.screen_loc = ui_mask
 		client.screen += wear_mask
-
-	/*if(!istype(wear_mask, /obj/item/clothing/mask/cigarette) && wear_mask.blood_overlay)
-		var/image/bloodsies = image("icon" = 'icons/effects/blood.dmi', "icon_state" = "maskblood")
-		bloodsies.color = wear_mask.blood_color
-		standing.overlays	+= bloodsies*/
 	
 	overlays_standing[FACEMASK_LAYER] = wear_mask.make_worn_icon(body_type = species.name, slot_name = slot_wear_mask_str, default_icon = 'icons/mob/mask.dmi', default_layer = FACEMASK_LAYER)
 
