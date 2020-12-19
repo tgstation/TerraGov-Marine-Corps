@@ -93,8 +93,6 @@
 	var/toolspeed = 1
 	var/usesound = null
 
-	var/addblends
-
 	var/active = FALSE
 
 
