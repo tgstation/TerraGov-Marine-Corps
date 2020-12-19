@@ -86,12 +86,6 @@
 		return ..()
 	return TRUE
 
-/datum/action/xeno_action/activable/lunge/on_cooldown_finish()
-	var/mob/living/carbon/xenomorph/X = owner
-	to_chat(X, "<span class='xenodanger'>We are ready to lunge again.</span>")
-	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
-	return ..()
-
 /datum/action/xeno_action/activable/lunge/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/warrior/X = owner
 
