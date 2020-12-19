@@ -51,9 +51,9 @@
 		for(var/obj/item/clothing/accessory/A in accessories) //put this in clothing, not on under, for all type of accessories.
 			standing.add_overlay(A.get_mob_overlay())*/
 
-/obj/item/clothing/under/get_worn_icon_state(slot_name)
+/obj/item/clothing/under/get_worn_icon_state(slot_name, inhands)
 	var/state2use = ..()
-	if(rolled_sleeves)
+	if(rolled_sleeves && !inhands)
 		state2use += "_d"
 	return state2use
 
