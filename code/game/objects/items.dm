@@ -79,10 +79,12 @@
 	var/list/item_state_slots = list()
 	/// Used to specify the icon file to be used when the item is worn in a certain slot. icon_override or sprite_sheets are set they will take precendence over this, assuming they apply to the slot in question.
 	var/list/item_icons = list()
-	///icon equiavelent but for on-mob icon.
+	///icon equivalent but for on-mob icon.
 	var/icon/default_worn_icon
 	///specific layer for on-mob icon.
 	var/worn_layer
+	///tells if the item shall use item_state for non-inhands, needed due to some items using item_state only for inhands and not worn.
+	var/item_state_worn = FALSE
 
 	var/icon_override = null  //Used to override hardcoded ON-MOB clothing dmis in human clothing proc (i.e. not the icon_state sprites).
 
@@ -1041,13 +1043,13 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		return icon_override
 
 	//2: species-specific sprite sheets.
-	if(LAZYLEN(sprite_sheets))
+	if(sprite_sheets)
 		var/sheet = sprite_sheets[body_type]
 		if(sheet && !inhands)
 			return sheet
 
 	//3: slot-specific sprite sheets
-	if(LAZYLEN(item_icons))
+	if(item_icons)
 		var/sheet = item_icons[slot_name]
 		if(sheet)
 			return sheet
@@ -1068,13 +1070,13 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 /obj/item/proc/get_worn_icon_state(slot_name, inhands)
 
 	//1: slot-specific sprite sheets
-	if(LAZYLEN(item_state_slots))
+	if(item_state_slots)
 		var/state = item_state_slots[slot_name]
 		if(state)
 			return state
 
 	//2: item_state variable //NOT REALLY BECAUSE BAYCODE ITEM_STATE IS COMPLETELY CURSED, only for inhands.
-	if(inhands)
+	if(inhands || item_state_worn)
 		if(item_state)
 			return item_state
 
