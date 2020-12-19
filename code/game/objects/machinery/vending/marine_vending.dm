@@ -785,7 +785,7 @@
 					/obj/item/clothing/shoes/white = 50,
 					/obj/item/clothing/gloves/white = 50,
 
-	contraband =   list(/obj/item/clothing/under/marine/skirt = 10)
+	contraband =   list(/obj/item/clothing/under/marine/skirt = 11)
 
 					)
 
