@@ -1042,15 +1042,15 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 	//2: species-specific sprite sheets.
 	if(LAZYLEN(sprite_sheets))
-		var/sheet = sprite_sheets[body_type]
-		if(sheet && !inhands)
-			return sheet
+		. = sprite_sheets[body_type]
+		if(. && !inhands)
+			return
 
 	//3: slot-specific sprite sheets
 	if(LAZYLEN(item_icons))
-		var/sheet = item_icons[slot_name]
-		if(sheet)
-			return sheet
+		. = item_icons[slot_name]
+		if(.)
+			return
 
 	//4: item's default icon
 	if(default_worn_icon)
@@ -1060,8 +1060,9 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	if(default_icon)
 		return default_icon
 
-	//6: give up
-	return
+	//6: give error
+	CRASH("[src] dind't manage to find a icon file for worn onmob icon.")
+
 
 
 ///Returns the state that should be used for the on-mob icon
@@ -1069,9 +1070,9 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 	//1: slot-specific sprite sheets
 	if(LAZYLEN(item_state_slots))
-		var/state = item_state_slots[slot_name]
-		if(state)
-			return state
+		. = item_state_slots[slot_name]
+		if(.)
+			return
 
 	//2: item_state variable //NOT REALLY BECAUSE BAYCODE ITEM_STATE IS COMPLETELY CURSED, only for inhands.
 	if(inhands || item_state_worn)

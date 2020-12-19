@@ -48,10 +48,10 @@
 		standing.overlays += image(icon = 'icons/mob/ties.dmi', icon_state = "[tie_state]")
 
 /obj/item/clothing/under/get_worn_icon_state(slot_name, inhands)
-	var/state2use = ..()
+	. = ..()
 	if(rolled_sleeves && !inhands)
-		state2use += "_d"
-	return state2use
+		. += "_d"
+	return
 
 /obj/item/clothing/apply_blood(image/standing)
 	if(blood_overlay && blood_sprite_state)
