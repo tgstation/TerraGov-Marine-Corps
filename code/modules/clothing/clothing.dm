@@ -42,14 +42,10 @@
 	return
 
 /obj/item/clothing/under/apply_accessories(image/standing)
-	var/obj/item/clothing/under/W = src
-	if(W.hastie)
-		var/tie_state = W.hastie.item_state
-		if(!tie_state) tie_state = W.hastie.icon_state
-		standing.overlays += image("icon" = 'icons/mob/ties.dmi', "icon_state" = "[tie_state]")
-	/*if(LAZYLEN(accessories)) //In case we ever add actual accessories instead of just "ties".
-		for(var/obj/item/clothing/accessory/A in accessories) //put this in clothing, not on under, for all type of accessories.
-			standing.add_overlay(A.get_mob_overlay())*/
+	if(hastie)
+		var/tie_state = hastie.item_state
+		if(!tie_state) tie_state = hastie.icon_state
+		standing.overlays += image(icon = 'icons/mob/ties.dmi', icon_state = "[tie_state]")
 
 /obj/item/clothing/under/get_worn_icon_state(slot_name, inhands)
 	var/state2use = ..()
@@ -59,17 +55,15 @@
 
 /obj/item/clothing/apply_blood(image/standing)
 	if(blood_overlay && blood_sprite_state)
-		var/mob/living/carbon/human/H = loc
 		var/image/bloodsies	= image(icon = 'icons/effects/blood.dmi', icon_state = blood_sprite_state)
-		bloodsies.color	= H.blood_color
+		bloodsies.color	= blood_color
 		standing.add_overlay(bloodsies)
 
 /obj/item/clothing/suit/apply_blood(image/standing)
 	if(blood_overlay && blood_sprite_state)
-		var/mob/living/carbon/human/H = loc
 		blood_sprite_state = "[blood_overlay_type]blood"
 		var/image/bloodsies	= image(icon = 'icons/effects/blood.dmi', icon_state = blood_sprite_state)
-		bloodsies.color = H.blood_color
+		bloodsies.color = blood_color
 		standing.add_overlay(bloodsies)
 
 ///////////////////////////////////////////////////////////////////////

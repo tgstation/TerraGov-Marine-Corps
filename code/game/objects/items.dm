@@ -5,7 +5,8 @@
 	materials = list(/datum/material/metal = 50)
 
 	var/image/blood_overlay = null //this saves our blood splatter overlay, which will be processed not to go over the edges of the sprite
-	var/blood_sprite_state //The iconstate that the items use for blood
+	///The iconstate that the items use for blood on blood.dmi when drawn on the mob.
+	var/blood_sprite_state 
 
 
 	var/item_state = null //if you don't want to use icon_state for onmob inhand/belt/back/ear/suitstorage/glove sprite.
@@ -76,9 +77,9 @@
 	//** These specify item/icon overrides for _slots_
 
 	///overrides the default item_state for particular slots.
-	var/list/item_state_slots = list()
+	var/list/item_state_slots = null
 	/// Used to specify the icon file to be used when the item is worn in a certain slot. icon_override or sprite_sheets are set they will take precendence over this, assuming they apply to the slot in question.
-	var/list/item_icons = list()
+	var/list/item_icons = null
 	///icon equivalent but for on-mob icon.
 	var/icon/default_worn_icon
 	///specific layer for on-mob icon.
@@ -1018,10 +1019,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 	//testing("[src] (\ref[src]) - Slot: [slot_name], Inhands: [inhands], Worn Icon:[icon2use], Worn State:[state2use], Worn Layer:[layer2use]")
 
-	//Generate the base onmob icon
-	var/icon/standing_icon = icon(icon = icon2use, icon_state = state2use)
-
-	var/image/standing = image(standing_icon)
+	var/image/standing = image(icon2use, icon_state = state2use)
 	standing.alpha = alpha
 	standing.color = color
 	standing.layer = layer2use
@@ -1043,13 +1041,13 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		return icon_override
 
 	//2: species-specific sprite sheets.
-	if(sprite_sheets)
+	if(LAZYLEN(sprite_sheets))
 		var/sheet = sprite_sheets[body_type]
 		if(sheet && !inhands)
 			return sheet
 
 	//3: slot-specific sprite sheets
-	if(item_icons)
+	if(LAZYLEN(item_icons))
 		var/sheet = item_icons[slot_name]
 		if(sheet)
 			return sheet
@@ -1070,7 +1068,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 /obj/item/proc/get_worn_icon_state(slot_name, inhands)
 
 	//1: slot-specific sprite sheets
-	if(item_state_slots)
+	if(LAZYLEN(item_state_slots))
 		var/state = item_state_slots[slot_name]
 		if(state)
 			return state
@@ -1084,24 +1082,18 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	if(icon_state)
 		return icon_state
 
-///Returns the layer that should be used for the worn icon (as a FLOAT_LAYER layer, so negative)
+///Returns the layer that should be used for the worn icon (as a FLOAT_LAYER layer, so negative).
 /obj/item/proc/get_worn_layer(default_layer = 0)
+	return worn_layer ? -worn_layer : -default_layer
 
-	//1: worn_layer variable
-	if(!isnull(worn_layer)) //Can be zero, so...
-		return -worn_layer
-
-	//2: your default
-	return -default_layer
-
-//STUB
+///applies any custom thing to the sprite, caled by make_worn_icon().
 /obj/item/proc/apply_custom(image/standing)
 	return standing
 
-//STUB
+///applies blood on the item, called by make_worn_icon().
 /obj/item/proc/apply_blood(image/standing)
 	return standing
 
-//STUB
+///applies any accessory the item may have, called by make_worn_icon().
 /obj/item/proc/apply_accessories(image/standing)
 	return standing

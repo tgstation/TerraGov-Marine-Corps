@@ -471,7 +471,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 	if((head && (head.flags_inv_hide & HIDEEARS)) || (wear_mask && (wear_mask.flags_inv_hide & HIDEEARS)))
 		return
 
-	overlays_standing[EARS_LAYER] = wear_ear.make_worn_icon(body_type = species.name, slot_name = slot_r_ear_str, default_icon = 'icons/mob/ears.dmi', default_layer = EARS_LAYER)
+	overlays_standing[EARS_LAYER] = wear_ear.make_worn_icon(body_type = species.name, slot_name = slot_ear_str, default_icon = 'icons/mob/ears.dmi', default_layer = EARS_LAYER)
 	apply_overlay(EARS_LAYER)
 
 /mob/living/carbon/human/update_inv_shoes()
@@ -485,11 +485,10 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 	
 	if(shoes)
 		overlays_standing[SHOES_LAYER] = shoes.make_worn_icon(body_type = species.name, slot_name = slot_shoes_str, default_icon = 'icons/mob/feet.dmi', default_layer = SHOES_LAYER)
-	else
-		if(feet_blood_color)
-			var/image/bloodsies = image("icon" = 'icons/effects/blood.dmi', "icon_state" = "shoeblood")
-			bloodsies.color = feet_blood_color
-			overlays_standing[SHOES_LAYER] = bloodsies
+	else if(feet_blood_color)
+		var/image/bloodsies = image("icon" = 'icons/effects/blood.dmi', "icon_state" = "shoeblood")
+		bloodsies.color = feet_blood_color
+		overlays_standing[SHOES_LAYER] = bloodsies
 
 	apply_overlay(SHOES_LAYER)
 
@@ -515,22 +514,6 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 	if(client && hud_used && hud_used.hud_shown && hud_used.inventory_shown)
 		head.screen_loc = ui_head
 		client.screen += head
-
-	/* //This was probably some CM armor stripes or something, should be moved to apply_custom() if kept.
-	if(istype(head,/obj/item/clothing/head/helmet/marine))
-		var/obj/item/clothing/head/helmet/marine/marine_helmet = head
-		if(marine_helmet.flags_marine_helmet & HELMET_SQUAD_OVERLAY)
-			if(assigned_squad)
-				var/datum/squad/S = assigned_squad
-				var/leader = S.squad_leader == src
-				if(GLOB.helmetmarkings[S.type]) // just assume if it exists for both
-					standing.overlays += leader? GLOB.helmetmarkings_sl[S.type] : GLOB.helmetmarkings[S.type]
-		var/image/I
-		for(var/i in marine_helmet.helmet_overlays)
-			I = marine_helmet.helmet_overlays[i]
-			if(I)
-				I = image('icons/mob/helmet_garb.dmi',src,I.icon_state)
-				standing.overlays += I*/
 	
 	overlays_standing[HEAD_LAYER] = head.make_worn_icon(body_type = species.name, slot_name = slot_head_str, default_icon = 'icons/mob/head_0.dmi', default_layer = HEAD_LAYER)
 
@@ -561,41 +544,6 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 	if(client && hud_used && hud_used.hud_shown && hud_used.inventory_shown)
 		wear_suit.screen_loc = ui_oclothing
 		client.screen += wear_suit
-
-	/*  //Same thing as inv_head(), should be moved to apply_custom if kept.
-	if(istype(wear_suit, /obj/item/clothing/suit/storage/marine))
-		var/obj/item/clothing/suit/storage/marine/marine_armor = wear_suit
-		if(marine_armor.flags_armor_features & ARMOR_SQUAD_OVERLAY)
-			if(assigned_squad)
-				var/datum/squad/S = assigned_squad
-				var/leader = S.squad_leader == src
-				if(GLOB.armormarkings[S.type])
-					standing.overlays += leader? GLOB.armormarkings_sl[S.type] : GLOB.armormarkings[S.type]
-			if(length(marine_armor.armor_overlays))
-				var/image/I
-				for(var/i in marine_armor.armor_overlays)
-					I = marine_armor.armor_overlays[i]
-					if(I)
-						I = image('icons/mob/suit_1.dmi',src,I.icon_state)
-						standing.overlays += I
-
-	if(istype(wear_suit, /obj/item/clothing/suit/storage/marine))
-		var/obj/item/clothing/suit/storage/marine/marine_armor = wear_suit
-		if(marine_armor.flags_armor_features & ARMOR_SQUAD_OVERLAY)
-			if(assigned_squad)
-				var/datum/squad/S = assigned_squad
-				var/leader = S.squad_leader == src
-				if(GLOB.armormarkings[S.type])
-					standing.overlays += leader? GLOB.armormarkings_sl[S.type] : GLOB.armormarkings[S.type]
-
-		if(length(marine_armor.armor_overlays))
-			var/image/I
-			for(var/i in marine_armor.armor_overlays)
-				I = marine_armor.armor_overlays[i]
-				if(I)
-					I = image('icons/mob/suit_1.dmi',src,I.icon_state)
-					standing.overlays += I
-			*/
 
 	overlays_standing[SUIT_LAYER] = wear_suit.make_worn_icon(body_type = species.name, slot_name = slot_wear_suit_str, default_icon = 'icons/mob/suit_0.dmi', default_layer = SUIT_LAYER)
 

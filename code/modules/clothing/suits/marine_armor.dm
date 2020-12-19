@@ -70,6 +70,15 @@
 		armor_overlays["lamp"] = null
 	user?.update_inv_wear_suit()
 
+/obj/item/clothing/suit/storage/marine/apply_custom(image/standing)
+	if(length(armor_overlays))
+		var/image/I
+		for(var/i in armor_overlays)
+			I = armor_overlays[i]
+			if(I)
+				I = image('icons/mob/suit_1.dmi',src,I.icon_state)
+				standing.overlays += I
+
 
 /obj/item/clothing/suit/storage/marine/Destroy()
 	if(pockets)
