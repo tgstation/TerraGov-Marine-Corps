@@ -601,7 +601,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 
 	apply_overlay(SUIT_LAYER)
 
-/mob/living/carbon/human/update_inv_pockets() //Todo: Give pockets a layer and shit to draw.
+/mob/living/carbon/human/update_inv_pockets()
 	if(l_store)
 		if(client && hud_used && hud_used.hud_shown)
 			l_store.screen_loc = ui_storage1

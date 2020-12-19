@@ -55,7 +55,6 @@
 			r_hand.screen_loc = ui_rhand
 		
 		overlays_standing[M_R_HAND_LAYER] = r_hand.make_worn_icon(body_type = species.name, inhands = TRUE, slot_name = slot_r_hand_str, default_icon = 'icons/mob/items_righthand_0.dmi', default_layer = M_R_HAND_LAYER)
-		//= image("icon" = r_hand.sprite_sheet_id?'icons/mob/items_righthand_1.dmi':'icons/mob/items_righthand_0.dmi', "icon_state" = t_state, "layer" =-M_R_HAND_LAYER)
 		apply_overlay(M_R_HAND_LAYER)
 
 
@@ -67,7 +66,6 @@
 			l_hand.screen_loc = ui_lhand
 		
 		overlays_standing[M_L_HAND_LAYER] = l_hand.make_worn_icon(body_type = species.name, inhands = TRUE, slot_name = slot_l_hand_str, default_icon = 'icons/mob/items_lefthand_0.dmi', default_layer = M_L_HAND_LAYER)
-		//overlays_standing[M_L_HAND_LAYER]	= image("icon" = l_hand.sprite_sheet_id?'icons/mob/items_lefthand_1.dmi':'icons/mob/items_lefthand_0.dmi', "icon_state" = t_state, "layer" =-M_L_HAND_LAYER)
 		remove_overlay(M_L_HAND_LAYER)
 
 

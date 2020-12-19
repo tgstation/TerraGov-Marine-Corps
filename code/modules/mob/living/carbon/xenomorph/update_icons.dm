@@ -61,7 +61,6 @@
 			client.screen += r_hand
 		
 		overlays_standing[X_R_HAND_LAYER] = r_hand.make_worn_icon(body_type = species.name, inhands = TRUE, slot_name = slot_r_hand_str, default_icon = 'icons/mob/items_righthand_0.dmi', default_layer = X_R_HAND_LAYER)
-		//overlays_standing[X_R_HAND_LAYER]	= image("icon" = r_hand.sprite_sheet_id?'icons/mob/items_righthand_0.dmi':'icons/mob/items_righthand_0.dmi', "icon_state" = t_state, "layer" =-X_R_HAND_LAYER)
 		apply_overlay(X_R_HAND_LAYER)
 
 /mob/living/carbon/xenomorph/update_inv_l_hand()
@@ -72,7 +71,6 @@
 			client.screen += l_hand
 		
 		overlays_standing[X_L_HAND_LAYER] = l_hand.make_worn_icon(body_type = species.name, inhands = TRUE, slot_name = slot_l_hand_str, default_icon = 'icons/mob/items_lefthand_0.dmi', default_layer = X_L_HAND_LAYER)
-		//overlays_standing[X_L_HAND_LAYER]	= image("icon" = spritesheet_used, "icon_state" = t_state, "layer" =-X_L_HAND_LAYER)
 		apply_overlay(X_L_HAND_LAYER)
 
 /mob/living/carbon/xenomorph/proc/create_shriekwave()
