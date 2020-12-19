@@ -63,9 +63,6 @@
 	var/reach = 1
 
 	
-	
-	
-	
 	/* Species-specific sprites, concept stolen from Paradise//vg/.
 	ex:
 	sprite_sheets = list(
@@ -74,21 +71,18 @@
 	If index term exists and icon_override is not set, this sprite sheet will be used.
 	*/
 
-
-
 	var/list/sprite_sheets = null
 
 	//** These specify item/icon overrides for _slots_
 
-	var/list/item_state_slots = list() //overrides the default item_state for particular slots.
-
-	// Used to specify the icon file to be used when the item is worn. If not set the default icon for that slot will be used.
-	// If icon_override or sprite_sheets are set they will take precendence over this, assuming they apply to the slot in question.
-	// Only slot_l_hand/slot_r_hand are implemented at the moment. Others to be implemented as needed.
+	///overrides the default item_state for particular slots.
+	var/list/item_state_slots = list()
+	/// Used to specify the icon file to be used when the item is worn in a certain slot. icon_override or sprite_sheets are set they will take precendence over this, assuming they apply to the slot in question.
 	var/list/item_icons = list()
-
-	var/icon/default_worn_icon	//Default on-mob icon
-	var/worn_layer				//Default on-mob layer
+	///icon equiavelent but for on-mob icon.
+	var/icon/default_worn_icon
+	///specific layer for on-mob icon.
+	var/worn_layer
 
 	var/icon_override = null  //Used to override hardcoded ON-MOB clothing dmis in human clothing proc (i.e. not the icon_state sprites).
 
@@ -1007,7 +1001,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		active = !active
 	SEND_SIGNAL(src, COMSIG_ITEM_TOGGLE_ACTIVE, active)
 
-//Worn icon generation for on-mob sprites
+///Generates worn icon for sprites on-mob.
 /obj/item/proc/make_worn_icon(body_type, slot_name, inhands, default_icon, default_layer) 
 	//Get the required information about the base icon
 	var/icon/icon2use = get_worn_icon_file(body_type = body_type, slot_name = slot_name, default_icon = default_icon, inhands = inhands)
@@ -1022,15 +1016,11 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 			if(slot_l_hand_str)
 				state2use += "_l"
 
-	// testing("[src] (\ref[src]) - Slot: [slot_name], Inhands: [inhands], Worn Icon:[icon2use], Worn State:[state2use], Worn Layer:[layer2use]")
+	//testing("[src] (\ref[src]) - Slot: [slot_name], Inhands: [inhands], Worn Icon:[icon2use], Worn State:[state2use], Worn Layer:[layer2use]")
 
 	//Generate the base onmob icon
 	var/icon/standing_icon = icon(icon = icon2use, icon_state = state2use)
 
-	/*if(!inhands)
-		
-		apply_addblends(icon2use,standing_icon)		//Some items have ICON_ADD blend shaders
-	*/
 	var/image/standing = image(standing_icon)
 	standing.alpha = alpha
 	standing.color = color
@@ -1038,13 +1028,14 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 	//Apply any special features
 	if(!inhands)
-		apply_custom(standing)		//image overrideable proc to customize the thing
-		apply_blood(standing)			//Some items show blood when bloodied
-		apply_accessories(standing)		//Some items sport accessories like webbing
+		apply_custom(standing)		//image overrideable proc to customize the onmob icon.
+		apply_blood(standing)			//Some items show blood when bloodied.
+		apply_accessories(standing)		//Some items sport accessories like webbings or ties.
 
 	//Return our icon
 	return standing
 
+///gets what icon dmi file shall be used for the on-mob sprite
 /obj/item/proc/get_worn_icon_file(body_type,slot_name,default_icon,inhands)
 
 	//1: icon_override var
@@ -1075,7 +1066,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	return
 
 
-//Returns the state that should be used for the worn icon
+///Returns the state that should be used for the on-mob icon
 /obj/item/proc/get_worn_icon_state(slot_name, inhands)
 
 	//1: slot-specific sprite sheets
@@ -1084,7 +1075,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		if(state)
 			return state
 
-	//2: item_state variable // NOT REALLY BECAUSE BAYCODE ITEM_STATE IS COMPLETELY CURSED.
+	//2: item_state variable //NOT REALLY BECAUSE BAYCODE ITEM_STATE IS COMPLETELY CURSED, only for inhands.
 	if(inhands)
 		if(item_state)
 			return item_state
@@ -1093,7 +1084,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	if(icon_state)
 		return icon_state
 
-//Returns the layer that should be used for the worn icon (as a FLOAT_LAYER layer, so negative)
+///Returns the layer that should be used for the worn icon (as a FLOAT_LAYER layer, so negative)
 /obj/item/proc/get_worn_layer(default_layer = 0)
 
 	//1: worn_layer variable
@@ -1102,14 +1093,6 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 	//2: your default
 	return -default_layer
-
-//Apply the addblend blends onto the icon
-/obj/item/proc/apply_addblends(source_icon, icon/standing_icon)
-
-	//If we have addblends, blend them onto the provided icon
-	if(addblends && standing_icon && source_icon)
-		var/addblend_icon = icon("icon" = source_icon, "icon_state" = addblends)
-		standing_icon.Blend(addblend_icon, ICON_ADD)
 
 //STUB
 /obj/item/proc/apply_custom(image/standing)
