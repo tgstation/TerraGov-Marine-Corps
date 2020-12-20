@@ -287,9 +287,8 @@
 	var/image/I
 	for(var/i in helmet_overlays)
 		I = helmet_overlays[i]
-		if(I)
-			I = image('icons/mob/helmet_garb.dmi',src,I.icon_state)
-			standing.overlays += I
+		I = image('icons/mob/helmet_garb.dmi',src,I.icon_state)
+		standing.overlays += I
 
 
 /obj/item/clothing/head/helmet/marine/proc/add_hugger_damage() //This is called in XenoFacehuggers.dm to first add the overlay and set the var.

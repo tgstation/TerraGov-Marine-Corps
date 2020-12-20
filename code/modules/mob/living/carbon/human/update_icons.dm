@@ -278,7 +278,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 		stand_icon.Blend(eyes, ICON_OVERLAY)
 
 		//Mouth	(lipstick!)
-		if(lip_style && (species && species.species_flags & HAS_LIPS))	//skeletons are allowed to wear lipstick no matter what you think, agouri.
+		if(lip_style && (species?.species_flags & HAS_LIPS))	//skeletons are allowed to wear lipstick no matter what you think, agouri.
 			stand_icon.Blend(new/icon('icons/mob/human_face.dmi', "camo_[lip_style]_s"), ICON_OVERLAY)
 
 
@@ -318,7 +318,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 	//base icons
 	var/icon/face_standing	= new /icon('icons/mob/human_face.dmi',"bald_s")
 
-	if(f_style && !(wear_suit && (wear_suit.flags_inv_hide & HIDELOWHAIR)) && !(wear_mask && (wear_mask.flags_inv_hide & HIDELOWHAIR)))
+	if(f_style && !((wear_suit?.flags_inv_hide & HIDELOWHAIR) && !(wear_mask?.flags_inv_hide & HIDELOWHAIR))
 		var/datum/sprite_accessory/facial_hair_style = GLOB.facial_hair_styles_list[f_style]
 		if(facial_hair_style && facial_hair_style.species_allowed && (species.name in facial_hair_style.species_allowed))
 			var/icon/facial_s = new/icon("icon" = facial_hair_style.icon, "icon_state" = "[facial_hair_style.icon_state]_s")
@@ -392,7 +392,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 		w_uniform.screen_loc = ui_iclothing
 		client.screen += w_uniform
 
-	if(wear_suit && (wear_suit.flags_inv_hide & HIDEJUMPSUIT))
+	if(wear_suit?.flags_inv_hide & HIDEJUMPSUIT)
 		return
 
 	overlays_standing[UNIFORM_LAYER] = w_uniform.make_worn_icon(body_type = species.name, slot_name = slot_w_uniform_str, default_icon = 'icons/mob/uniform_0.dmi', default_layer = UNIFORM_LAYER)

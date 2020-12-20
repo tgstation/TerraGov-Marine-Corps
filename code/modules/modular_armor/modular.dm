@@ -78,18 +78,13 @@
 
 /obj/item/clothing/suit/modular/apply_custom(image/standing)
 	if(slot_chest)
-		var/image/chest = image(slot_chest.icon, ITEM_STATE_IF_SET(slot_chest))
-		standing.overlays += chest
+		standing.overlays += image(slot_chest.icon, ITEM_STATE_IF_SET(slot_chest))
 	if(slot_arms)
-		var/image/arms = image(slot_arms.icon, ITEM_STATE_IF_SET(slot_arms))
-		standing.overlays += arms
+		standing.overlays += image(slot_arms.icon, ITEM_STATE_IF_SET(slot_arms))
 	if(slot_legs)
-		var/image/legs = image(slot_legs.icon, ITEM_STATE_IF_SET(slot_legs))
-		standing.overlays += legs
-	if(installed_modules)
-		for(var/mod in installed_modules)
-			var/obj/item/armor_module/module = mod
-			standing.overlays += image(module.icon, ITEM_STATE_IF_SET(module))
+		standing.overlays += image(slot_legs.icon, ITEM_STATE_IF_SET(slot_legs))
+	for(var/obj/item/armor_module/mod in installed_modules)
+		standing.overlays += image(mod.icon, ITEM_STATE_IF_SET(mod))
 	if(installed_storage)
 		standing.overlays += image(installed_storage.icon, ITEM_STATE_IF_SET(installed_storage))
 	
