@@ -65,7 +65,7 @@
 			playsound(loc, 'sound/items/welder.ogg', 50, 1)
 
 
-/obj/ex_act(severity, input_stagger_override = 0, input_slowdown_override = 0)
+/obj/ex_act(severity)
 	if(resistance_flags & INDESTRUCTIBLE)
 		return
 	. = ..() //contents explosion

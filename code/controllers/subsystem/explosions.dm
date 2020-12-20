@@ -382,7 +382,7 @@ This way we'll be able to draw the explosion's expansion path without having to 
 			if(QDELETED(object_to_explode))
 				continue
 			for(var/explosion_source in high_mov_atom[object_to_explode])
-				object_to_explode.ex_act(EXPLODE_DEVASTATE, input_stagger_override = stagger_override, input_slowdown_override = slowdown_override)
+				object_to_explode.ex_act(EXPLODE_DEVASTATE)
 				if(QDELETED(object_to_explode))
 					break
 		cost_highMovAtom = MC_AVERAGE(cost_highMovAtom, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))
@@ -395,7 +395,7 @@ This way we'll be able to draw the explosion's expansion path without having to 
 			if(QDELETED(object_to_explode))
 				continue
 			for(var/explosion_source in med_mov_atom[object_to_explode])
-				object_to_explode.ex_act(EXPLODE_HEAVY, input_stagger_override = stagger_override, input_slowdown_override = slowdown_override)
+				object_to_explode.ex_act(EXPLODE_HEAVY)
 				if(QDELETED(object_to_explode))
 					break
 		cost_medMovAtom = MC_AVERAGE(cost_medMovAtom, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))
@@ -408,7 +408,7 @@ This way we'll be able to draw the explosion's expansion path without having to 
 			if(QDELETED(object_to_explode))
 				continue
 			for(var/explosion_source in low_mov_atom[object_to_explode])
-				object_to_explode.ex_act(EXPLODE_LIGHT, input_stagger_override = stagger_override, input_slowdown_override = slowdown_override)
+				object_to_explode.ex_act(EXPLODE_LIGHT)
 				if(QDELETED(object_to_explode))
 					break
 		cost_lowMovAtom = MC_AVERAGE(cost_lowMovAtom, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))
