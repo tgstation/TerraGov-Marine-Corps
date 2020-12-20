@@ -166,7 +166,7 @@
 		anchored = FALSE
 	else
 		to_chat(user , "<span class='notice'>You wrench down [src]'s bolts")
-		anchored = 1
+		anchored = TRUE
 	set_light(0)
 	on = 0
 
