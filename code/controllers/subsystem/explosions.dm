@@ -34,6 +34,9 @@ SUBSYSTEM_DEF(explosions)
 
 	var/currentpart = SSEXPLOSIONS_TURFS
 
+	///Override values for stagger and slowdown; replaces standard stagger and slowdown stacks applied by ex_act with these values, or nothing if negative
+	var/stagger_override = 0
+	var/slowdown_override = 0
 
 /datum/controller/subsystem/explosions/stat_entry(msg)
 	msg += "C:{"
@@ -70,12 +73,12 @@ SUBSYSTEM_DEF(explosions)
 #define SSEX_OBJ "obj"
 
 
-/proc/dyn_explosion(turf/epicenter, power, flash_range, adminlog = TRUE, ignorecap = TRUE, flame_range = 0, silent = FALSE, smoke = TRUE, animate = FALSE)
+/proc/dyn_explosion(turf/epicenter, power, flash_range, adminlog = TRUE, ignorecap = TRUE, flame_range = 0, silent = FALSE, smoke = TRUE, animate = FALSE, input_stagger_override = 0, input_slowdown_override = 0)
 	if(!power)
 		return
 	var/range = 0
 	range = round((2 * power)**GLOB.DYN_EX_SCALE)
-	explosion(epicenter, round(range * 0.25), round(range * 0.5), round(range), flash_range*range, adminlog, ignorecap, flame_range*range, silent, smoke, animate)
+	explosion(epicenter, round(range * 0.25), round(range * 0.5), round(range), flash_range*range, adminlog, ignorecap, flame_range*range, silent, smoke, animate, input_stagger_override, input_slowdown_override)
 
 // Using default dyn_ex scale:
 // 100 explosion power is a (5, 10, 20) explosion.
@@ -86,10 +89,10 @@ SUBSYSTEM_DEF(explosions)
 // 5 explosion power is a (0, 1, 3) explosion.
 // 1 explosion power is a (0, 0, 1) explosion.
 
-/proc/explosion(atom/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, flame_range = 0, throw_range, adminlog = TRUE, silent = FALSE, smoke = FALSE, small_animation = FALSE)
-	return SSexplosions.explode(epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, flame_range, throw_range, adminlog, silent, smoke, small_animation)
+/proc/explosion(atom/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, flame_range = 0, throw_range, adminlog = TRUE, silent = FALSE, smoke = FALSE, small_animation = FALSE, input_stagger_override = 0, input_slowdown_override = 0)
+	return SSexplosions.explode(epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, flame_range, throw_range, adminlog, silent, smoke, small_animation, input_stagger_override, input_slowdown_override)
 
-/datum/controller/subsystem/explosions/proc/explode(atom/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, flame_range, throw_range, adminlog, silent, smoke, small_animation)
+/datum/controller/subsystem/explosions/proc/explode(atom/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, flame_range, throw_range, adminlog, silent, smoke, small_animation, input_stagger_override, input_slowdown_override)
 	epicenter = get_turf(epicenter)
 	if(!epicenter)
 		return
@@ -296,7 +299,10 @@ This way we'll be able to draw the explosion's expansion path without having to 
 			throwTurf[t] += list(epicenter)
 			throwTurf[t][epicenter] =  list(max_range - dist, get_dir(epicenter, t))
 
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_EXPLOSION, epicenter, devastation_range, heavy_impact_range, light_impact_range, (REALTIMEOFDAY - started_at) * 0.1)
+	stagger_override = input_stagger_override //Set the stagger and slowdown parameters
+	slowdown_override = input_slowdown_override
+
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_EXPLOSION, epicenter, devastation_range, heavy_impact_range, light_impact_range, (REALTIMEOFDAY - started_at) * 0.1, stagger_override, slowdown_override)
 
 /datum/controller/subsystem/explosions/proc/wipe_turf(turf/T)
 	highTurf -= T
@@ -322,7 +328,7 @@ This way we'll be able to draw the explosion's expansion path without having to 
 			if(QDELETED(turf_to_explode))
 				continue
 			for(var/explosion_source in low_turf[turf_to_explode])
-				turf_to_explode.ex_act(EXPLODE_LIGHT)
+				turf_to_explode.ex_act(EXPLODE_LIGHT, input_stagger_override = stagger_override, input_slowdown_override = slowdown_override)
 				if(QDELETED(turf_to_explode))
 					break
 		cost_lowTurf = MC_AVERAGE(cost_lowTurf, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))
@@ -335,7 +341,7 @@ This way we'll be able to draw the explosion's expansion path without having to 
 			if(QDELETED(turf_to_explode))
 				continue
 			for(var/explosion_source in med_turf[turf_to_explode])
-				turf_to_explode.ex_act(EXPLODE_HEAVY)
+				turf_to_explode.ex_act(EXPLODE_HEAVY, input_stagger_override = stagger_override, input_slowdown_override = slowdown_override)
 				if(QDELETED(turf_to_explode))
 					break
 		cost_medTurf = MC_AVERAGE(cost_medTurf, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))
@@ -348,7 +354,7 @@ This way we'll be able to draw the explosion's expansion path without having to 
 			if(QDELETED(turf_to_explode))
 				continue
 			for(var/explosion_source in high_turf[turf_to_explode])
-				turf_to_explode.ex_act(EXPLODE_DEVASTATE)
+				turf_to_explode.ex_act(EXPLODE_DEVASTATE, input_stagger_override = stagger_override, input_slowdown_override = slowdown_override)
 				if(QDELETED(turf_to_explode))
 					break
 		cost_highTurf = MC_AVERAGE(cost_highTurf, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))
@@ -376,7 +382,7 @@ This way we'll be able to draw the explosion's expansion path without having to 
 			if(QDELETED(object_to_explode))
 				continue
 			for(var/explosion_source in high_mov_atom[object_to_explode])
-				object_to_explode.ex_act(EXPLODE_DEVASTATE)
+				object_to_explode.ex_act(EXPLODE_DEVASTATE, input_stagger_override = stagger_override, input_slowdown_override = slowdown_override)
 				if(QDELETED(object_to_explode))
 					break
 		cost_highMovAtom = MC_AVERAGE(cost_highMovAtom, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))
@@ -389,7 +395,7 @@ This way we'll be able to draw the explosion's expansion path without having to 
 			if(QDELETED(object_to_explode))
 				continue
 			for(var/explosion_source in med_mov_atom[object_to_explode])
-				object_to_explode.ex_act(EXPLODE_HEAVY)
+				object_to_explode.ex_act(EXPLODE_HEAVY, input_stagger_override = stagger_override, input_slowdown_override = slowdown_override)
 				if(QDELETED(object_to_explode))
 					break
 		cost_medMovAtom = MC_AVERAGE(cost_medMovAtom, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))
@@ -402,7 +408,7 @@ This way we'll be able to draw the explosion's expansion path without having to 
 			if(QDELETED(object_to_explode))
 				continue
 			for(var/explosion_source in low_mov_atom[object_to_explode])
-				object_to_explode.ex_act(EXPLODE_LIGHT)
+				object_to_explode.ex_act(EXPLODE_LIGHT, input_stagger_override = stagger_override, input_slowdown_override = slowdown_override)
 				if(QDELETED(object_to_explode))
 					break
 		cost_lowMovAtom = MC_AVERAGE(cost_lowMovAtom, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))

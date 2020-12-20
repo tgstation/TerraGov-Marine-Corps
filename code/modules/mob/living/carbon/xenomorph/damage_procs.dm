@@ -3,7 +3,7 @@
 		return
 	return ..()
 
-/mob/living/carbon/xenomorph/ex_act(severity)
+/mob/living/carbon/xenomorph/ex_act(severity, input_stagger_override = 0, input_slowdown_override = 0)
 	if(status_flags & GODMODE)
 		return
 
@@ -14,28 +14,31 @@
 	var/bomb_armor = soft_armor.getRating("bomb")
 	var/b_loss = 0
 	var/f_loss = 0
+	var/stagger_stacks
+	var/slowdown_stacks
+
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
 			switch(bomb_armor)
 				if(XENO_BOMB_RESIST_4 to INFINITY)
-					add_slowdown(2)
+					slowdown_stacks = 2
 					return
 				if(XENO_BOMB_RESIST_3 to XENO_BOMB_RESIST_4)
 					b_loss = rand(70, 80)
 					f_loss = rand(70, 80)
-					add_slowdown(3)
+					slowdown_stacks = 3
 					adjust_sunder(80)
 				if(XENO_BOMB_RESIST_2 to XENO_BOMB_RESIST_3)
 					b_loss = rand(75, 85)
 					f_loss = rand(75, 85)
-					adjust_stagger(4)
-					add_slowdown(4)
+					stagger_stacks = 4
+					slowdown_stacks = 4
 					adjust_sunder(90)
 				if(XENO_BOMB_RESIST_1 to XENO_BOMB_RESIST_2)
 					b_loss = rand(80, 90)
 					f_loss = rand(80, 90)
-					adjust_stagger(5)
-					add_slowdown(5)
+					stagger_stacks = 5
+					slowdown_stacks = 5
 					adjust_sunder(100)
 				else //Lower than XENO_BOMB_RESIST_1
 					return gib()
@@ -47,25 +50,25 @@
 				if(XENO_BOMB_RESIST_3 to XENO_BOMB_RESIST_4)
 					b_loss = rand(50, 60)
 					f_loss = rand(50, 60)
-					add_slowdown(2)
+					slowdown_stacks = 2
 					adjust_sunder(35)
 				if(XENO_BOMB_RESIST_2 to XENO_BOMB_RESIST_3)
 					b_loss = rand(55, 55)
 					f_loss = rand(55, 55)
-					adjust_stagger(1)
-					add_slowdown(3)
+					stagger_stacks = 1
+					slowdown_stacks = 3
 					adjust_sunder(40)
 				if(XENO_BOMB_RESIST_1 to XENO_BOMB_RESIST_2)
 					b_loss = rand(60, 70)
 					f_loss = rand(60, 70)
-					adjust_stagger(4)
-					add_slowdown(4)
+					stagger_stacks = 4
+					slowdown_stacks = 4
 					adjust_sunder(45)
 				else //Lower than XENO_BOMB_RESIST_1
 					b_loss = rand(65, 75)
 					f_loss = rand(65, 75)
-					adjust_stagger(5)
-					add_slowdown(5)
+					stagger_stacks = 5
+					slowdown_stacks = 5
 					adjust_sunder(50)
 		if(EXPLODE_LIGHT)
 			switch(bomb_armor)
@@ -77,18 +80,26 @@
 				if(XENO_BOMB_RESIST_2 to XENO_BOMB_RESIST_3)
 					b_loss = rand(35, 45)
 					f_loss = rand(35, 45)
-					add_slowdown(1)
+					slowdown_stacks = 1
 				if(XENO_BOMB_RESIST_1 to XENO_BOMB_RESIST_2)
 					b_loss = rand(40, 50)
 					f_loss = rand(40, 50)
-					adjust_stagger(2)
-					add_slowdown(2)
+					stagger_stacks = 2
+					slowdown_stacks = 2
 				else //Lower than XENO_BOMB_RESIST_1
 					b_loss = rand(45, 55)
 					f_loss = rand(45, 55)
-					adjust_stagger(4)
-					add_slowdown(4)
+					stagger_stacks = 4
+					slowdown_stacks = 4
 
+	if(input_stagger_override)
+		stagger_stacks = max(0, input_stagger_override)
+
+	if(input_slowdown_override)
+		slowdown_stacks = max(0, input_slowdown_override)
+
+	adjust_stagger(stagger_stacks)
+	add_slowdown(slowdown_stacks)
 	apply_damage(b_loss, BRUTE)
 	apply_damage(f_loss, BURN)
 	UPDATEHEALTH(src)

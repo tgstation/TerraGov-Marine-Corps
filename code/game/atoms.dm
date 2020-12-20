@@ -324,10 +324,10 @@ directive is properly returned.
 /atom/proc/relaymove()
 	return
 
-/atom/proc/ex_act(severity, epicenter_dist, impact_range)
+/atom/proc/ex_act(severity, epicenter_dist, impact_range, input_stagger_override = 0, input_stagger_override = 0)
 	if(!(flags_atom & PREVENT_CONTENTS_EXPLOSION))
-		contents_explosion(severity, epicenter_dist, impact_range)
-	SEND_SIGNAL(src, COMSIG_ATOM_EX_ACT, severity, epicenter_dist, impact_range)
+		contents_explosion(severity, epicenter_dist, impact_range, input_stagger_override, input_stagger_override)
+	SEND_SIGNAL(src, COMSIG_ATOM_EX_ACT, severity, epicenter_dist, impact_range, input_stagger_override, input_stagger_override)
 
 /atom/proc/fire_act()
 	return
