@@ -74,8 +74,9 @@
 	var/image/I
 	for(var/i in armor_overlays)
 		I = armor_overlays[i]
-		I = image('icons/mob/suit_1.dmi',src,I.icon_state)
-		standing.overlays += I
+		if(I)
+			I = image('icons/mob/suit_1.dmi',src,I.icon_state)
+			standing.overlays += I
 
 
 /obj/item/clothing/suit/storage/marine/Destroy()
