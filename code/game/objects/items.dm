@@ -1007,7 +1007,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	//Get the required information about the base icon
 	var/icon/icon2use = get_worn_icon_file(body_type = body_type, slot_name = slot_name, default_icon = default_icon, inhands = inhands)
 	var/state2use = get_worn_icon_state(slot_name = slot_name, inhands = inhands)
-	var/layer2use = get_worn_layer(default_layer = default_layer)
+	var/layer2use = worn_layer ? -worn_layer : -default_layer
 
 	//Snowflakey inhand icons in a specific slot
 	if(inhands && icon2use == icon_override)
@@ -1061,8 +1061,6 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	//6: give error
 	CRASH("[src] dind't manage to find a icon file for worn onmob icon.")
 
-
-
 ///Returns the state that should be used for the on-mob icon
 /obj/item/proc/get_worn_icon_state(slot_name, inhands)
 
@@ -1079,10 +1077,6 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	//3: icon_state variable
 	if(icon_state)
 		return icon_state
-
-///Returns the layer that should be used for the worn icon (as a FLOAT_LAYER layer, so negative).
-/obj/item/proc/get_worn_layer(default_layer = 0)
-	return worn_layer ? -worn_layer : -default_layer
 
 ///applies any custom thing to the sprite, caled by make_worn_icon().
 /obj/item/proc/apply_custom(image/standing)
