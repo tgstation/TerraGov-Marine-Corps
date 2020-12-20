@@ -163,7 +163,7 @@
 		return FALSE
 	if(anchored)
 		to_chat(user , "<span class='notice'>You unwrench [src]'s bolts")
-		anchored = 0
+		anchored = FALSE
 	else
 		to_chat(user , "<span class='notice'>You wrench down [src]'s bolts")
 		anchored = 1
