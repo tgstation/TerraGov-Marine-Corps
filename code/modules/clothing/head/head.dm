@@ -76,6 +76,7 @@
 	icon_state = "beretfc"
 	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 10, "bio" = 5, "rad" = 0, "fire" = 50, "acid" = 50)
 	flags_item_map_variant = NONE
+	flags_armor_features = ARMOR_NO_DECAP
 
 
 /obj/item/clothing/head/tgmccap
