@@ -101,15 +101,18 @@
 		"<span class='userdanger'>[user]'s punch flings you backwards!</span>")
 	playsound(loc, 'sound/weapons/energy_blast.ogg', 50, TRUE)
 	playsound(loc, 'sound/weapons/genhit2.ogg', 50, TRUE)
-	var/throw_range_max = 6
+	var/throw_range = 1 + setting
 	if(M == user) // Self throws go almost nowhere, also ouch
-		throw_range_max = 2
-	if(M.mob_size >= MOB_SIZE_BIG) // Hitting big xenos causes equal opposite forces
-		throw_range_max = 3
+		throw_range = 1
+
+	if(M.mob_size >= MOB_SIZE_BIG) // Hitting big xenos causes the user to be thrown instead
+		M.apply_damage(force * setting, BRUTE) // Also double ouchies
 		var/atom/self_throw_target = get_edge_target_turf(user, get_dir(M, user))
-		user.throw_at(self_throw_target, throw_range_max * (setting / 3), 0.5 + (setting / 2))
-	var/atom/throw_target = get_edge_target_turf(M, get_dir(src, get_step_away(M, src)))
-	M.throw_at(throw_target, throw_range_max * (setting / 3), 0.5 + (setting / 2))
+		user.throw_at(self_throw_target, throw_range, 0.5 + (setting / 2))
+	else
+		var/atom/throw_target = get_edge_target_turf(M, get_dir(src, get_step_away(M, src)))
+		M.throw_at(throw_target, throw_range, 0.5 + (setting / 2))
+
 	cell.charge -= powerused
 	return ..()
 
