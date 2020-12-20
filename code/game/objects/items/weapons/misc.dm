@@ -88,7 +88,7 @@
 	if(!cell)
 		to_chat(user, "<span class='warning'>\The [src] can't operate without a source of power!</span>")
 		return
-	var/powerused = 500 * setting * setting
+	var/powerused = 370 * setting * setting
 	if(powerused > cell.charge)
 		to_chat(user, "<span class='warning'>\The [src]'s cell doesn't have enough power!</span>")
 		M.apply_damage((force/5), BRUTE)
@@ -97,8 +97,8 @@
 			"<span class='userdanger'>[user] punches you!</span>")
 		return
 	M.apply_damage(force * setting, BRUTE) // Extra damage on top of hitting with obj force
-	M.visible_message("<span class='danger'>[user]'s powerfist shudders as they punch [M.name], flinging them away!</span>", \
-		"<span class='userdanger'>[user]'s punch flings you backwards!</span>")
+	M.visible_message("<span class='danger'>[user]'s powerfist shudders as they punch [M.name], flinging [(M.mob_size >= MOB_SIZE_BIG) ? "themself" : "them"] away!</span>", \
+		"<span class='userdanger'>[user]'s punch flings [(M.mob_size >= MOB_SIZE_BIG) ? "them" : "you"] backwards!</span>")
 	playsound(loc, 'sound/weapons/energy_blast.ogg', 50, TRUE)
 	playsound(loc, 'sound/weapons/genhit2.ogg', 50, TRUE)
 	var/throw_range = 1 + setting
@@ -107,6 +107,7 @@
 
 	if(M.mob_size >= MOB_SIZE_BIG) // Hitting big xenos causes the user to be thrown instead
 		M.apply_damage(force * setting, BRUTE) // Also double ouchies
+		to_chat(user, "<span class='userdanger'>[M.name] is so massive the impact force hits twice as hard!</span>")
 		var/atom/self_throw_target = get_edge_target_turf(user, get_dir(M, user))
 		user.throw_at(self_throw_target, throw_range, 0.5 + (setting / 2))
 	else
