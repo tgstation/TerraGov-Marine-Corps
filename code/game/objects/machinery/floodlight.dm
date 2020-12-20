@@ -205,6 +205,7 @@
 		if(on)
 			on = 0
 			set_light(0)
+			update_icon()
 		return FALSE
 	use_power(on ? active_power_usage : idle_power_usage, LIGHT)
 

@@ -1142,7 +1142,7 @@ ENGINEERING
 	cost = 3
 
 /datum/supply_packs/engineering/floodlight
-	name = "Combat Grade Flodlight"
+	name = "Combat Grade Floodlight"
 	contains = list(/obj/machinery/floodlightcombat)
 	cost = 5
 
