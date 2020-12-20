@@ -237,6 +237,7 @@
 			var/yesno = alert("Clear all recipes?",, "Yes","No")
 			if(yesno == "Yes")
 				usr.client.prefs.chem_macros = list()
+				usr.client.prefs.save_preferences()
 			. = TRUE
 		if("record_recipe")
 			if(!is_operational())
@@ -261,6 +262,7 @@
 						playsound(src, 'sound/machines/buzz-two.ogg', 50, TRUE)
 						return
 				usr.client.prefs.chem_macros[name] = recording_recipe
+				usr.client.prefs.save_preferences()
 				recording_recipe = null
 				. = TRUE
 		if("cancel_recording")
