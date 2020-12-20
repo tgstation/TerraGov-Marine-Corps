@@ -140,7 +140,7 @@
 	name = "Armoured floodlight"
 	icon = 'icons/obj/machines/floodlight.dmi'
 	icon_state = "floodlightcombat_off"
-	anchored = TRUE
+	anchored = FALSE
 	density = TRUE
 	/// Determines how much light does the floodlight make , every light tube adds 4 tiles distance.
 	var/brightness = 0
@@ -167,7 +167,7 @@
 	else
 		to_chat(user , "<span class='notice'>You wrench down [src]'s bolts")
 		anchored = 1
-	set_light(0, 0, 0)
+	set_light(0)
 	on = 0
 
 /// Visually shows that the floodlight has been tipped and breaks all the lights in it.
@@ -181,6 +181,7 @@
 	transform = A
 	density = FALSE
 	tipped = 1
+	on = 0
 
 /// Untip the floodlight
 /obj/machinery/floodlightcombat/proc/flip_back()
@@ -200,9 +201,12 @@
 	power_change()
 
 /obj/machinery/floodlightcombat/process()
-	if(!use_power(on ? active_power_usage : idle_power_usage, LIGHT))
-		on = 0
-		set_light(0, 0, 0)
+	if(!powered(LIGHT))
+		if(on)
+			on = 0
+			set_light(0)
+		return FALSE
+	use_power(on ? active_power_usage : idle_power_usage, LIGHT)
 
 /// Loops between the light tubes until it finds a light to break.
 /obj/machinery/floodlightcombat/proc/break_a_light()
@@ -236,8 +240,9 @@
 		return FALSE
 	else
 		playsound( loc, 'sound/weapons/alien_claw_metal1.ogg', 60, FALSE)
-		break_a_light()
 		to_chat(M, "<span class='xenonotice'>You slash one of the lights!")
+		break_a_light()
+		set_light(brightness)
 		update_icon()
 
 /obj/machinery/floodlightcombat/attackby(obj/item/I, mob/user, params)
@@ -245,6 +250,9 @@
 	if(!(ishuman(user)))
 		return FALSE
 	if(istype(I, /obj/item/light_bulb/tube))
+		if(on)
+			to_chat(user, "<span class='notice'>The [src]'s safety systems won't let you open the light hatch! You should turn it off first.")
+			return FALSE
 		if(lights.len > 3)
 			to_chat(user, "<span class='notice'>All the light sockets are occupied!")
 			return FALSE
@@ -252,9 +260,10 @@
 		visible_message("[user] inserts the [I] into the [src]")
 		user.drop_held_item()
 		I.forceMove(src)
-		calculate_brightness()
-		update_icon()
 	if(istype(I, /obj/item/lightreplacer))
+		if(on)
+			to_chat(user, "<span class='notice'>The [I] cannot dispense lights into functioning machinery!")
+			return FALSE
 		if(lights.len > 3)
 			to_chat(user, "<span class='notice'>All the light sockets are occupied!")
 			return FALSE
@@ -265,8 +274,8 @@
 			return FALSE
 		var/obj/E = new /obj/item/light_bulb/tube
 		E.forceMove(src)
-		calculate_brightness()
-		update_icon()
+	calculate_brightness()
+	update_icon()
 
 /// Checks each light if its working and then adds it to the total brightness amount.
 /obj/machinery/floodlightcombat/proc/calculate_brightness()
@@ -282,8 +291,8 @@
 	var/offsetY
 	/// Used to define which slot is targeted on the sprite and then adjust the overlay.
 	var/target_slot = 1
-	if(on && brightness>0)
-		. += image('icons/obj/machines/floodlight.dmi', src, "floodlightcombat_lighting_glow", layer, NORTH, 0, 5)
+	if(on && brightness > 0)
+		. += image('icons/obj/machines/floodlight.dmi', src, "floodlightcombat_lighting_glow", layer + 0.01, NORTH, 0, 5)
 	for(var/obj/item/light_bulb/tube/target in contents)
 		switch(target_slot)
 			if(1)
@@ -303,15 +312,18 @@
 
 /// Called whenever someone tries to turn the floodlight on/off
 /obj/machinery/floodlightcombat/proc/switch_light()
+	if(machine_stat & (NOPOWER|BROKEN))
+		visible_message("<span class='notice'>You flip the switch , but nothing happens , perhaps its not powered?.")
+		return FALSE
 	if(!anchored || tipped)
 		visible_message("<span class='danger'>The floodlight flashes a warning led.It is not bolted to the ground.")
 		return FALSE
 	if(on)
 		on = 0
-		set_light(0, 0, 0)
+		set_light(0)
 	else
 		on = 1
-		set_light(brightness, 1, 0)
+		set_light(brightness)
 	update_icon()
 	playsound( loc, 'sound/machines/switch.ogg', 60 , FALSE)
 
