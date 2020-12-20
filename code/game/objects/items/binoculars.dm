@@ -105,12 +105,12 @@
 		QDEL_NULL(laser)
 
 
-/obj/item/binoculars/tactical/update_icon()
-	..()
+/obj/item/binoculars/tactical/update_overlays()
+	. = ..()
 	if(mode)
-		overlays += "binoculars_range"
+		. += "binoculars_range"
 	else
-		overlays += "binoculars_laser"
+		. += "binoculars_laser"
 
 /obj/item/binoculars/tactical/AltClick(mob/user)
 	. = ..()

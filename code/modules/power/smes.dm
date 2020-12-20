@@ -66,26 +66,22 @@
 /obj/machinery/power/smes/should_have_node()
 	return TRUE
 
-/obj/machinery/power/smes/update_icon()
-	overlays.Cut()
-	if(machine_stat & BROKEN)
+/obj/machinery/power/smes/update_overlays()
+	. = ..()
+
+	if(CHECK_BITFIELD(machine_stat, (PANEL_OPEN|BROKEN)))
 		return
 
-	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
-
-		return
-
-	overlays += image('icons/obj/power.dmi', "smes_op[outputting]")
+	. += image('icons/obj/power.dmi', "smes_op[outputting]")
 
 	if(inputting)
-		overlays += image('icons/obj/power.dmi', "smes_oc1")
+		. += image('icons/obj/power.dmi', "smes_oc1")
 	else if (input_attempt)
-		overlays += image('icons/obj/power.dmi', "smes_oc0")
+		. += image('icons/obj/power.dmi', "smes_oc0")
 
 	var/clevel = chargedisplay()
 	if(clevel>0)
-		overlays += image('icons/obj/power.dmi', "smes_og[clevel]")
-	return
+		. += image('icons/obj/power.dmi', "smes_og[clevel]")
 
 
 /obj/machinery/power/smes/proc/chargedisplay()

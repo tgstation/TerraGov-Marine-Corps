@@ -217,14 +217,17 @@
 /mob/living/carbon/xenomorph/start_pulling(atom/movable/AM, suppress_message = TRUE)
 	if(!isliving(AM))
 		return FALSE
+	if(!Adjacent(AM)) //Logic!
+		return FALSE
 	var/mob/living/L = AM
 	if(L.buckled)
 		return FALSE //to stop xeno from pulling marines on roller beds.
 	if(ishuman(L))
 		if(!chestburst)
 			do_attack_animation(L, ATTACK_EFFECT_GRAB)
-			if(!do_mob(src, L , XENO_PULL_CHARGE_TIME, BUSY_ICON_HOSTILE))
-				return FALSE
+			if(L.stat == DEAD && !L.headbitten) //Grab delay vs the non-headbitten dead
+				if(!do_mob(src, L , XENO_PULL_CHARGE_TIME, BUSY_ICON_HOSTILE))
+					return FALSE
 		pull_speed += XENO_DEADHUMAN_DRAG_SLOWDOWN
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_GRAB)
 	return ..()

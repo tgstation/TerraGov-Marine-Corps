@@ -166,8 +166,8 @@ obj/structure/bed/Destroy()
 					new buildstacktype (loc, buildstackamount)
 				qdel(src)
 
-/obj/structure/bed/attack_alien(mob/living/carbon/xenomorph/M)
-	SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_BED)
+/obj/structure/bed/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0)
+	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_BED)
 	return ..()
 
 /obj/structure/bed/attackby(obj/item/I, mob/user, params)

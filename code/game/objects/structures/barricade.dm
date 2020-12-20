@@ -17,11 +17,7 @@
 	var/stack_amount = 5
 	///to specify a non-zero amount of stack to drop when destroyed
 	var/destroyed_stack_amount = 0
-	///Whether a crusher can ram through it.
-	var/crusher_resistant = TRUE
 	var/base_acid_damage = 2
-	///How much force an item needs to even damage it at all.
-	var/barricade_resistance = 5
 	///Whether things can be thrown over
 	var/allow_thrown_objs = TRUE
 	var/barricade_type = "barricade" //"metal", "plasteel", etc.
@@ -108,13 +104,13 @@
 /obj/structure/barricade/attack_animal(mob/user as mob)
 	return attack_alien(user)
 
-/obj/structure/barricade/attack_alien(mob/living/carbon/xenomorph/M)
+/obj/structure/barricade/attack_alien/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0)
 	if(is_wired)
-		M.visible_message("<span class='danger'>The barbed wire slices into [M]!</span>",
+		X.visible_message("<span class='danger'>The barbed wire slices into [X]!</span>",
 		"<span class='danger'>The barbed wire slices into us!</span>", null, 5)
-		M.apply_damage(10)
-		UPDATEHEALTH(M)
-	SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_BARRICADE)
+		X.apply_damage(10)
+		UPDATEHEALTH(X)
+	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_BARRICADE)
 	return ..()
 
 /obj/structure/barricade/attackby(obj/item/I, mob/user, params)
@@ -239,9 +235,9 @@
 	. = ..()
 	if(is_wired)
 		if(!closed)
-			. += image('icons/Marine/barricades.dmi', icon_state = "[src.barricade_type]_wire")
+			. += image('icons/Marine/barricades.dmi', icon_state = "[barricade_type]_wire")
 		else
-			. += image('icons/Marine/barricades.dmi', icon_state = "[src.barricade_type]_closed_wire")
+			. += image('icons/Marine/barricades.dmi', icon_state = "[barricade_type]_closed_wire")
 
 
 /obj/structure/barricade/effect_smoke(obj/effect/particle_effect/smoke/S)
@@ -341,7 +337,6 @@
 	max_integrity = 150
 	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 15, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 10)
 	climbable = FALSE
-	crusher_resistant = TRUE
 	stack_type = /obj/item/stack/rods
 	destroyed_stack_amount = 3
 	hit_sound = "sound/effects/metalhit.ogg"
@@ -424,8 +419,6 @@
 	max_integrity = 200
 	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 80, "acid" = 40)
 	coverage = 128
-	crusher_resistant = TRUE
-	barricade_resistance = 10
 	stack_type = /obj/item/stack/sheet/metal
 	stack_amount = 4
 	destroyed_stack_amount = 2
@@ -754,9 +747,9 @@
 				if(CADE_TYPE_BOMB)
 					soft_armor = soft_armor.modifyRating(bomb = -50)
 				if(CADE_TYPE_MELEE)
-					soft_armor = soft_armor.modifyRating(melee = -50, bullet = -30)
+					soft_armor = soft_armor.modifyRating(melee = -30, bullet = -30)
 				if(CADE_TYPE_ACID)
-					soft_armor = soft_armor.modifyRating(bio = 0, acid = -30)
+					soft_armor = soft_armor.modifyRating(bio = 0, acid = -20)
 
 			new /obj/item/stack/sheet/metal(loc, CADE_UPGRADE_REQUIRED_SHEETS)
 			barricade_upgrade_type = null
@@ -795,8 +788,6 @@
 	max_integrity = 500
 	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 80, "acid" = 40)
 	coverage = 128
-	crusher_resistant = TRUE
-	barricade_resistance = 20
 	stack_type = /obj/item/stack/sheet/plasteel
 	stack_amount = 5
 	destroyed_stack_amount = 2
@@ -1018,8 +1009,6 @@
 	. = ..()
 	if(.)
 		return
-	if(isxeno(user))
-		return
 
 	toggle_open(null, user)
 
@@ -1049,8 +1038,8 @@
 		return
 	for(var/direction in GLOB.cardinals)
 		for(var/obj/structure/barricade/plasteel/cade in get_step(src, direction))
-			if(((dir & (NORTH|SOUTH) && get_dir(src, cade) & (EAST|WEST)) || (dir & (EAST|WEST) && get_dir(src, cade) & (NORTH|SOUTH))) && dir == cade.dir && cade.linked && cade.closed == src.closed)
-				overlays += image('icons/Marine/barricades.dmi', icon_state = "[src.barricade_type]_[closed ? "closed" : "open"]_connection_[get_dir(src, cade)]")
+			if(((dir & (NORTH|SOUTH) && get_dir(src, cade) & (EAST|WEST)) || (dir & (EAST|WEST) && get_dir(src, cade) & (NORTH|SOUTH))) && dir == cade.dir && cade.linked && cade.closed == closed)
+				. += image('icons/Marine/barricades.dmi', icon_state = "[barricade_type]_[closed ? "closed" : "open"]_connection_[get_dir(src, cade)]")
 
 /obj/structure/barricade/plasteel/ex_act(severity)
 	switch(severity)
@@ -1075,7 +1064,6 @@
 	name = "sandbag barricade"
 	desc = "A bunch of bags filled with sand, stacked into a small wall. Surprisingly sturdy, albeit labour intensive to set up. Trusted to do the job since 1914."
 	icon_state = "sandbag_0"
-	barricade_resistance = 15
 	max_integrity = 400
 	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 80, "acid" = 40)
 	coverage = 128

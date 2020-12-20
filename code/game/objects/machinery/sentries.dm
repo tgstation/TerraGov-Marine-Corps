@@ -688,55 +688,45 @@
 		qdel(I)
 
 
-/obj/machinery/marine_turret/update_icon()
-	var/image/battery_green = image('icons/Marine/sentry.dmi', src, "sentry_batt_green")
-	var/image/battery_yellow = image('icons/Marine/sentry.dmi', src, "sentry_batt_yellow")
-	var/image/battery_orange = image('icons/Marine/sentry.dmi', src, "sentry_batt_orange")
-	var/image/battery_red = image('icons/Marine/sentry.dmi', src, "sentry_batt_red")
-	var/image/battery_black = image('icons/Marine/sentry.dmi', src, "sentry_batt_black")
-	var/image/active = image('icons/Marine/sentry.dmi', src, "sentry_active")
-	var/image/ammo_full = image('icons/Marine/sentry.dmi', src, "sentry_ammo")
-	var/image/ammo_empty = image('icons/Marine/sentry.dmi', src, "sentry_ammo_empty")
-
-	overlays.Cut()
+/obj/machinery/marine_turret/update_icon_state()
 	if(machine_stat && obj_integrity > 0) //Knocked over
 		DISABLE_BITFIELD(turret_flags, TURRET_ON)
 		density = FALSE
 		icon_state = "sentry_fallen"
 		stop_processing()
 		return
-	else
-		density = initial(density)
-		icon_state = "sentry_base"
+	density = initial(density)
+	icon_state = "sentry_base"
 
+
+/obj/machinery/marine_turret/update_overlays()
+	. = ..()
 	if(rounds)
-		overlays += ammo_full
+		. += image('icons/Marine/sentry.dmi', src, "sentry_ammo")
 	else
-		overlays += ammo_empty
+		. += image('icons/Marine/sentry.dmi', src, "sentry_ammo_empty")
 
 	if(!cell || cell.charge <= 0)
-		DISABLE_BITFIELD(turret_flags, TURRET_ON)
+		DISABLE_BITFIELD(turret_flags, TURRET_ON) //todo remove all these dumb actual changes in the icon procs
 		stop_processing()
-		overlays += battery_black
+		. += image('icons/Marine/sentry.dmi', src, "sentry_batt_black")
 		return
 
 	switch(CEILING(((cell.charge / max(cell.maxcharge, 1)) * 100), 25))
 		if(100)
-			overlays += battery_green
+			. += image('icons/Marine/sentry.dmi', src, "sentry_batt_green")
 		if(75)
-			overlays += battery_yellow
+			. += image('icons/Marine/sentry.dmi', src, "sentry_batt_yellow")
 		if(50)
-			overlays += battery_orange
+			. += image('icons/Marine/sentry.dmi', src, "sentry_batt_orange")
 		if(25)
-			overlays += battery_red
+			. += image('icons/Marine/sentry.dmi', src, "sentry_batt_red")
 
 	if(CHECK_BITFIELD(turret_flags, TURRET_ON))
 		start_processing()
-		overlays += active
-
+		. += image('icons/Marine/sentry.dmi', src, "sentry_active")
 	else
 		stop_processing()
-
 
 /obj/machinery/marine_turret/deconstruct(disassembled = TRUE)
 	if(!disassembled)

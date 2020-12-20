@@ -53,6 +53,53 @@
 		-->
 		<div class="commit sansserif">
 
+			<h2 class="date">19 December 2020</h2>
+			<h3 class="author">Surrealaser updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Fixes a bug where removing melee/acid upgrades from a barricade removed more soft armor than the upgrade provided.</li>
+			</ul>
+			<h3 class="author">TiviPlus updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="code_imp">Optimized getallcontents and splits it into 2 procs</li>
+			</ul>
+
+			<h2 class="date">18 December 2020</h2>
+			<h3 class="author">SplinterGP updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">fixes xeno grabbing starting even when not adjacent when grabbing via ctrl click.</li>
+			</ul>
+
+			<h2 class="date">17 December 2020</h2>
+			<h3 class="author">SplinterGP updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">fixes bug where muting deadchat locally won't properly hide deadchat messages.</li>
+			</ul>
+			<h3 class="author">Surrealaser updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Fixes displayed T3 Hive Status.</li>
+				<li class="refactor">Adds T2 and T3 limit vars for Hive datums.</li>
+				<li class="rscadd">Warrior gains the Grapple Toss ability. Cooldown is shared with Lunge (and vice versa).</li>
+				<li class="rscadd">Lunge, Grapple Toss, Punch and Fling can all target xenos now (enemy and allied).</li>
+				<li class="tweak">Punch deals double damage and debuffs to targets the Warrior is grappling.</li>
+				<li class="tweak">Punch can now target structures/machinery, dealing 4x base melee damage to them.</li>
+				<li class="refactor">Refactored a bunch of Warrior code.</li>
+				<li class="bugfix">Warrior's Lunge now bypasses grab delays as it should.</li>
+			</ul>
+			<h3 class="author">TiviPlus updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Fix server votes probably</li>
+				<li class="rscadd">Powerfist</li>
+				<li class="imageadd">sprite by Daytona</li>
+				<li class="bugfix">fixed a likely cause for sticky plasteel overlays</li>
+				<li class="code_imp">Cleaned up various overlay code</li>
+				<li class="refactor">Turret icon updates will be much faster</li>
+			</ul>
+			<h3 class="author">Wayland-Smithy updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Fixed Queen overwatch from hive status and chat not working on numbers or names with spaces.</li>
+				<li class="bugfix">Fixed Xeno HUD for the observed not updating when starting overwatch.</li>
+			</ul>
+
 			<h2 class="date">15 December 2020</h2>
 			<h3 class="author">MLGTASTICa updated:</h3>
 			<ul class="changes bgimages16">
@@ -1034,81 +1081,6 @@
 			<ul class="changes bgimages16">
 				<li class="rscadd">Added QC+, Larvaway, Tanglefoot grenades, Razorburn gas.</li>
 				<li class="balance">Tanglefoot gas is now see-through.  Mortar shells edited.</li>
-			</ul>
-
-			<h2 class="date">18 October 2020</h2>
-			<h3 class="author">Hathkar updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="bugfix">Self destruct cinematic should now show the ship blowing up</li>
-			</ul>
-			<h3 class="author">MacBlaze1 updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="rscdel">Removed the ability to repair razorwire with a welder</li>
-				<li class="balance">crushers at full charge now deal 94.5 damage to razorwire, instead of 105. The razorwire still has 100 health.</li>
-				<li class="balance">you can now attack razorwire even when it is electrified.</li>
-				<li class="balance">you take a bit more damage from sharp parts of the razorwire when attacking, now you take 24 to 32 damage instead of 16 to 24 damage.</li>
-				<li class="balance">one spit from a spitter or praetorian or 2 mature boiler acid globs are enough to allow a crusher to charge through it</li>
-				<li class="balance">big xenos do not get stunned when attacking electrified razorwire, other xenos now get stunned for only 4 seconds, down from 8.</li>
-			</ul>
-			<h3 class="author">Pariah919 updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="rscadd">Added new MR-25 sprites to replace the m39 1:1. Added the ability to order it in req</li>
-				<li class="rscdel">Removed old M39 sprites, git will remember them. Nobody else will. SMG stock is entirely pointless now, its being sent to the shadowrealm.</li>
-				<li class="tweak">changed a bit of lore surrounding the m39s replacement.</li>
-			</ul>
-			<h3 class="author">SplinterGP updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="bugfix">fixed error on tactical gas mask</li>
-			</ul>
-			<h3 class="author">Tennessee116 updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="bugfix">Fixed issue where mobs can crawl through acid holes at any distance</li>
-			</ul>
-
-			<h2 class="date">16 October 2020</h2>
-			<h3 class="author">Blase, SplinterGP updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="balance">there is a 5 tick cooldown on pushing humans for xenos, preventing runners from carrying people away at lightspeed</li>
-			</ul>
-			<h3 class="author">Chaznoodles updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="spellcheck">We no longer use the fifth dimension to store our cold-weather gear.</li>
-				<li class="rscadd">The skeletons are here! Rattle me bones!</li>
-				<li class="tweak">We appear to be running low on miniguns, so have increased their cost accordingly.</li>
-				<li class="spellcheck">Xenos descriptions are now more accurate. The Captain's cloak is now opulent.</li>
-			</ul>
-			<h3 class="author">Hathkar updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="rscadd">PoS now has medical lockers for doctors in medbay</li>
-				<li class="bugfix">PoS pipenet now provides air to more rooms, and had missing pipes fixed</li>
-				<li class="imageadd">OB/Railgun sprite empty space removed</li>
-			</ul>
-			<h3 class="author">Pariah919 updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="rscadd">Added new M412 series of rifles.</li>
-				<li class="rscdel">Removed old Pulse rifles fix:Some indentation issues that the HPR had</li>
-				<li class="balance">M412 has 5% more damage than the AR, M412L1 (the HPR) has slightly better fire delay. M412 families stat is in general consistent with the normal AR family.</li>
-			</ul>
-			<h3 class="author">XSlayer300 updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="spellcheck">Fixed a few typos relating to pain and xeno acid.</li>
-			</ul>
-
-			<h2 class="date">15 October 2020</h2>
-			<h3 class="author">Chaznoodles updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="tweak">The Captain goes down with their ship. Gentlemen, it's been an honour playing with you tonight.</li>
-				<li class="bugfix">Clown shoes now appear when worn, honk!</li>
-				<li class="bugfix">PMC smartgunners are no longer sent from Nanostrasen, so we can no longer avoid paying them.</li>
-			</ul>
-			<h3 class="author">Nixon, Pariah919 updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="rscadd">Added new slouch hats</li>
-			</ul>
-			<h3 class="author">SplinterGP updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="balance">reduces mining wells ore crates generation time from 5 minutes to 2 minutes.</li>
-				<li class="rscadd">Adds the glass mask back ingame</li>
 			</ul>
 		</div>
 
