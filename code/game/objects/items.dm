@@ -76,10 +76,10 @@
 
 	//** These specify item/icon overrides for _slots_
 
-	///overrides the default item_state for particular slots.
-	var/list/item_state_slots = null
-	/// Used to specify the icon file to be used when the item is worn in a certain slot. icon_override or sprite_sheets are set they will take precendence over this, assuming they apply to the slot in question.
-	var/list/item_icons = null
+	///>Lazylist< that overrides the default item_state for particular slots.
+	var/list/item_state_slots
+	///>LazyList< Used to specify the icon file to be used when the item is worn in a certain slot. icon_override or sprite_sheets are set they will take precendence over this, assuming they apply to the slot in question.
+	var/list/item_icons
 	///icon equivalent but for on-mob icon.
 	var/icon/default_worn_icon
 	///specific layer for on-mob icon.
@@ -1041,16 +1041,14 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		return icon_override
 
 	//2: species-specific sprite sheets.
-	if(LAZYLEN(sprite_sheets))
-		. = sprite_sheets[body_type]
-		if(. && !inhands)
-			return
+	. = LAZYACCESS(sprite_sheets, body_type)
+	if(. && !inhands)
+		return
 
 	//3: slot-specific sprite sheets
-	if(LAZYLEN(item_icons))
-		. = item_icons[slot_name]
-		if(.)
-			return
+	. = LAZYACCESS(item_icons, slot_name)
+	if(.)
+		return
 
 	//4: item's default icon
 	if(default_worn_icon)
@@ -1069,12 +1067,11 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 /obj/item/proc/get_worn_icon_state(slot_name, inhands)
 
 	//1: slot-specific sprite sheets
-	if(LAZYLEN(item_state_slots))
-		. = item_state_slots[slot_name]
-		if(.)
-			return
+	. = LAZYACCESS(item_state_slots, slot_name)
+	if(.)
+		return
 
-	//2: item_state variable //NOT REALLY BECAUSE BAYCODE ITEM_STATE IS COMPLETELY CURSED, only for inhands.
+	//2: item_state variable, some items use it for worn sprite, others for inhands.
 	if(inhands || item_state_worn)
 		if(item_state)
 			return item_state
