@@ -880,9 +880,9 @@ TUNNEL
 		if(EXPLODE_DEVASTATE)
 			take_damage(max_integrity)
 		if(EXPLODE_HEAVY)
-			take_damage(140)
+			take_damage(200)
 		if(EXPLODE_LIGHT)
-			take_damage(70)
+			take_damage(100)
 
 /obj/structure/xeno/acidwell/attackby(obj/item/I, mob/user, params)
 	if(!isxeno(user))
