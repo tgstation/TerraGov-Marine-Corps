@@ -308,7 +308,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 		return
 
 	var/datum/limb/head/head_organ = get_limb("head")
-	if( !head_organ || (head_organ?.limb_status & LIMB_DESTROYED) )
+	if( !head_organ || (head_organ.limb_status & LIMB_DESTROYED) )
 		return
 
 	//masks and helmets can obscure our hair.

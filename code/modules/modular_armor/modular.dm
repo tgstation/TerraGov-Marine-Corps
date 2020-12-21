@@ -83,7 +83,7 @@
 		standing.overlays += image(slot_arms.icon, ITEM_STATE_IF_SET(slot_arms))
 	if(slot_legs)
 		standing.overlays += image(slot_legs.icon, ITEM_STATE_IF_SET(slot_legs))
-	for(var/obj/item/armor_module/mod in installed_modules)
+	for(var/obj/item/mod in installed_modules)
 		standing.overlays += image(mod.icon, ITEM_STATE_IF_SET(mod))
 	if(installed_storage)
 		standing.overlays += image(installed_storage.icon, ITEM_STATE_IF_SET(installed_storage))
@@ -431,8 +431,7 @@
 
 /obj/item/clothing/head/modular/apply_custom(image/standing)
 	if(installed_module)
-		var/image/moduleimg = image(installed_module.icon, ITEM_STATE_IF_SET(installed_module))
-		standing.overlays += moduleimg
+		standing.overlays += image(installed_module.icon, ITEM_STATE_IF_SET(installed_module))
 
 
 /obj/item/clothing/head/modular/get_mechanics_info()
