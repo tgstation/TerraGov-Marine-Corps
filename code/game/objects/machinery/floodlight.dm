@@ -167,7 +167,7 @@
 	else
 		to_chat(user , "<span class='notice'>You wrench down [src]'s bolts")
 		anchored = TRUE
-	set_light(0)
+	set_light(0, 5, "#C5E3E132")
 	on = 0
 
 /// Visually shows that the floodlight has been tipped and breaks all the lights in it.
@@ -204,7 +204,7 @@
 	if(!powered(LIGHT))
 		if(on)
 			on = 0
-			set_light(0)
+			set_light(0, 5, "#C5E3E132")
 			update_icon()
 		return FALSE
 	use_power(on ? active_power_usage : idle_power_usage, LIGHT)
@@ -322,7 +322,7 @@
 		return FALSE
 	if(on)
 		on = 0
-		set_light(0)
+		set_light(0, 5, "#C5E3E132")
 	else
 		on = 1
 		set_light(brightness, 5, "#C5E3E132")
