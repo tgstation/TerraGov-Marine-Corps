@@ -203,7 +203,7 @@
 	action_icon_state = "evasion"
 	mechanics_text = "Take evasive action, forcing non-friendly projectiles that would hit you to miss for a short duration so long as you keep moving."
 	plasma_cost = 10
-	cooldown_timer = 6 SECONDS
+	cooldown_timer = 8 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_EVASION
 	var/evade_active = FALSE
 
@@ -212,15 +212,13 @@
 
 	if(evade_active) //Can't evade while we're already evading.
 		if(!silent)
-			to_chat(owner, "<span class='xenowarning'>We're already taking evasive action!</span>")
+			to_chat(owner, "<span class='xenodanger'>We're already taking evasive action!</span>")
 		return FALSE
 
 /datum/action/xeno_action/evasion/action_activate()
 	var/mob/living/carbon/xenomorph/runner/R = owner
 
-	R.do_jitter_animation(1000)
-	R.visible_message("<span class='warning'>[R.name] begins to move erratically!</span>", \
-	"<span class='xenodanger'>We move erratically, making us impossible to hit with projectiles for the next [RUNNER_EVASION_DURATION * 0.1] seconds.</span>")
+	to_chat(R, "<span class='highdanger'>We take evasive action, making us impossible to hit with projectiles for the next [RUNNER_EVASION_DURATION * 0.1] seconds.</span>")
 
 	addtimer(CALLBACK(src, .proc/evasion_deactivate), RUNNER_EVASION_DURATION)
 
