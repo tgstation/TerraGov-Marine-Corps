@@ -243,8 +243,9 @@
 		playsound( loc, 'sound/weapons/alien_claw_metal1.ogg', 60, FALSE)
 		to_chat(M, "<span class='xenonotice'>You slash one of the lights!")
 		break_a_light()
-		set_light(brightness)
+		set_light(brightness, 5, "#C5E3E132")
 		update_icon()
+
 
 /obj/machinery/floodlightcombat/attackby(obj/item/I, mob/user, params)
 	var/list/lights = contents // has to be a static list..
@@ -324,7 +325,7 @@
 		set_light(0)
 	else
 		on = 1
-		set_light(brightness)
+		set_light(brightness, 5, "#C5E3E132")
 	update_icon()
 	playsound( loc, 'sound/machines/switch.ogg', 60 , FALSE)
 
