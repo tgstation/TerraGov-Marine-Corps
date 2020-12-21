@@ -1,0 +1,4 @@
+author: "Surrealaser"
+delete-after: True
+changes: 
+  - bugfix: "Fixes minor bug with barbed barricades not dealing damage to alien attackers."
