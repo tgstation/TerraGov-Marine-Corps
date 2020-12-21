@@ -542,11 +542,10 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define DRONE_SALVAGE_EVOLUTION_FILTER_LIST	list(XENO_TIER_ZERO, XENO_TIER_THREE, XENO_TIER_FOUR)
 
 //Runner defines
-#define RUNNER_EVASION_DURATION				6 SECONDS //How long Evasion lasts.
-#define RUNNER_EVASION_DURATION_WARNING		2 SECONDS //We warn the user when this amount of duration remains
-#define RUNNER_EVASION_RUN_DELAY			0.5 SECONDS //If the time since the Runner last moved is equal to or greater than this, its Evasion ends.
-#define RUNNER_EVASION_DANGER_RATIO			0.5 //If we have this % of auto-dodge damage remaining or less, warn the user.
-#define RUNNER_BURN_DEPLETION_MODIFIER		4 //We lose Evasion stacks per life tick equal to damage from burning times this amount
+#define RUNNER_EVASION_DURATION						2 SECONDS //How long Evasion lasts.
+#define RUNNER_EVASION_RUN_DELAY					0.5 SECONDS //If the time since the Runner last moved is equal to or greater than this, its Evasion ends.
+#define RUNNER_EVASION_BURN_DEPLETION_MODIFIER		4 //We lose Evasion stacks per life tick equal to damage from burning times this amount
+#define RUNNER_EVASION_COOLDOWN_REFRESH_THRESHOLD	120 //If we dodge this much damage while evading, refresh the cooldown of Evasion.
 
 //misc
 
