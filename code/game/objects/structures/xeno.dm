@@ -1004,14 +1004,14 @@ TUNNEL
 
 	return ..()
 
-/obj/structure/xeno/resin_jelly_pod/resin_jelly_pod/ex_act(severity)
+/obj/structure/xeno/resin_jelly_pod/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
 			take_damage(max_integrity)
 		if(EXPLODE_HEAVY)
-			take_damage(140)
+			take_damage(200)
 		if(EXPLODE_LIGHT)
-			take_damage(70)
+			take_damage(100)
 
 /obj/structure/xeno/resin_jelly_pod/examine(mob/user, distance, infix, suffix)
 	. = ..()
