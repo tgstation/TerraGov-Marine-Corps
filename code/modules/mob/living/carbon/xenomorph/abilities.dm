@@ -29,7 +29,7 @@
 /datum/action/xeno_action/plant_weeds/action_activate()
 	var/turf/T = get_turf(owner)
 
-	if(!T.check_alien_construction(owner, FALSE))
+	if(!T.check_alien_construction(owner, FALSE, /obj/effect/alien/weeds/node))
 		return fail_activate()
 
 	if(locate(/obj/effect/alien/resin/trap) in T)

@@ -158,6 +158,7 @@
 			to_chat(owner, "<span class='warning'>We can only shape on weeds. We must find some resin before we start building!</span>")
 		return FALSE
 
+	if(!T.check_alien_construction(owner, silent, /obj/effect/alien/resin/trap))
 	if(!T.check_alien_construction(owner, silent) || !T.check_disallow_alien_fortification(owner, silent))
 		return FALSE
 
@@ -176,7 +177,7 @@
 	GLOB.round_statistics.carrier_traps++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "carrier_traps")
 	new /obj/effect/alien/resin/trap(T, owner)
-	to_chat(owner, "<span class='xenonotice'>We place a hugger trap on the weeds, it still needs a facehugger.</span>")
+	to_chat(owner, "<span class='xenonotice'>We place a hugger trap on the weeds; it still needs a facehugger.</span>")
 
 // ***************************************
 // *********** Spawn hugger

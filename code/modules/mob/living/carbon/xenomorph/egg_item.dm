@@ -55,7 +55,7 @@
 	qdel(src)
 
 /obj/item/xeno_egg/proc/plant_egg(mob/living/carbon/xenomorph/user, turf/T)
-	if(!T.check_alien_construction(user))
+	if(!T.check_alien_construction(user, FALSE, /obj/effect/alien/egg))
 		return
 	if(!user.check_plasma(30))
 		return

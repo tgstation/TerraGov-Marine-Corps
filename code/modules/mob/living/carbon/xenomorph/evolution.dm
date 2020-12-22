@@ -210,7 +210,7 @@
 
 		var/turf/T = get_turf(src)
 
-		if(!T.check_alien_construction(src))
+		if(!T.check_alien_construction(src, FALSE, /obj/effect/alien/hivemindcore))
 			return
 
 

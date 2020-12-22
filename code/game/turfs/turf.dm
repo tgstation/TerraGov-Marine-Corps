@@ -539,17 +539,23 @@
 /turf/proc/check_alien_construction(mob/living/builder, silent = FALSE, planned_building)
 	var/has_obstacle
 	for(var/obj/O in contents)
-		if(istype(O, /obj/item/clothing/mask/facehugger))
-			if(!silent)
-				to_chat(builder, "<span class='warning'>There is a little one here already. Best move it.</span>")
-			return FALSE
+		if(istype(O, /obj/item/clothing/mask/facehugger) && planned_building.density) //If it's not dense, we don't care
+			var/obj/item/clothing/mask/facehugger/hugger_check
+			if(hugger_check.stat != DEAD) //We don't care about dead huggers.
+				if(!silent)
+					to_chat(builder, "<span class='warning'>There is a little one here already. Best move it.</span>")
+				return FALSE
 		if(istype(O, /obj/effect/alien/egg))
 			if(!silent)
-				to_chat(builder, "<span class='warning'>There's already an egg.</span>")
+				to_chat(builder, "<span class='warning'>There's already an egg here.</span>")
 			return FALSE
 		if(istype(O, /obj/effect/alien/resin/trap))
 			if(!silent)
-				to_chat(builder, "<span class='warning'>There is already a trap here!</span>")
+				to_chat(builder, "<span class='warning'>There's already a trap here!</span>")
+			return FALSE
+		if(istype(O, /obj/structure/xeno))
+			if(!silent)
+				to_chat(builder, "<span class='warning'>There's already a resin structure here!</span>")
 			return FALSE
 		if(istype(O, /obj/structure/mineral_door) || istype(O, /obj/effect/alien/resin))
 			has_obstacle = TRUE
