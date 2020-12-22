@@ -692,48 +692,53 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 			user.client.change_view(WORLD_VIEW)
 			user.client.pixel_x = 0
 			user.client.pixel_y = 0
+		return
 
-	else //Otherwise we want to zoom in.
-		if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_ZOOM)) //If we are spamming the zoom, cut it out
-			return
-		TIMER_COOLDOWN_START(user, COOLDOWN_ZOOM, 2 SECONDS)
+	if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_ZOOM)) //If we are spamming the zoom, cut it out
+		return
+	TIMER_COOLDOWN_START(user, COOLDOWN_ZOOM, 2 SECONDS)
 
-		if(user.client)
-			user.client.change_view(VIEW_NUM_TO_STRING(viewsize))
+	if(user.client)
+		user.client.change_view(VIEW_NUM_TO_STRING(viewsize))
 
-			var/tilesize = 32
-			var/viewoffset = tilesize * tileoffset
+		var/tilesize = 32
+		var/viewoffset = tilesize * tileoffset
 
-			switch(user.dir)
-				if(NORTH)
-					user.client.pixel_x = 0
-					user.client.pixel_y = viewoffset
-				if(SOUTH)
-					user.client.pixel_x = 0
-					user.client.pixel_y = -viewoffset
-				if(EAST)
-					user.client.pixel_x = viewoffset
-					user.client.pixel_y = 0
-				if(WEST)
-					user.client.pixel_x = -viewoffset
-					user.client.pixel_y = 0
+		switch(user.dir)
+			if(NORTH)
+				user.client.pixel_x = 0
+				user.client.pixel_y = viewoffset
+			if(SOUTH)
+				user.client.pixel_x = 0
+				user.client.pixel_y = -viewoffset
+			if(EAST)
+				user.client.pixel_x = viewoffset
+				user.client.pixel_y = 0
+			if(WEST)
+				user.client.pixel_x = -viewoffset
+				user.client.pixel_y = 0
 
-		user.visible_message("<span class='notice'>[user] peers through \the [zoom_device].</span>",
-		"<span class='notice'>You peer through \the [zoom_device].</span>")
-		zoom = TRUE
-		onzoom(user)
-		if(user.interactee)
-			user.unset_interaction()
-		else if(!istype(src, /obj/item/attachable/scope))
-			user.set_interaction(src)
+	user.visible_message("<span class='notice'>[user] peers through \the [zoom_device].</span>",
+	"<span class='notice'>You peer through \the [zoom_device].</span>")
+	zoom = TRUE
+	onzoom(user)
+	if(user.interactee)
+		user.unset_interaction()
+	else if(!istype(src, /obj/item/attachable/scope))
+		user.set_interaction(src)
+
+		
+/obj/item/proc/zoom_item_turnoff(datum/source, mob/living/carbon/user)
+	SIGNAL_HANDLER
+	zoom(user)
 
 /obj/item/proc/onzoom(mob/living/user)
 	RegisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_CARBON_SWAPPED_HANDS), .proc/zoom)
-	RegisterSignal(src, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED), .proc/zoom)
+	RegisterSignal(src, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED), .proc/zoom_item_turnoff)
 
 /obj/item/proc/onunzoom(mob/living/user)
 	UnregisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_CARBON_SWAPPED_HANDS))
-	UnregisterSignal(src, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED, .proc/zoom))
+	UnregisterSignal(src, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED))
 
 
 /obj/item/proc/eyecheck(mob/user)

@@ -107,8 +107,12 @@
 		var/xeno_name = href_list["watch_xeno_name"]
 		for(var/Y in hive.get_watchable_xenos())
 			var/mob/living/carbon/xenomorph/X = Y
-			if(X.nicknumber != xeno_name)
-				continue
+			if(isnum(X.nicknumber))
+				if(num2text(X.nicknumber) != xeno_name)
+					continue
+			else
+				if(X.nicknumber != xeno_name)
+					continue
 			SEND_SIGNAL(src, COMSIG_XENOMORPH_WATCHXENO, X)
 			break
 

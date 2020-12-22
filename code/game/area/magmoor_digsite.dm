@@ -112,7 +112,7 @@
 /area/magmoor/medical
 	name = "Medical Clinic"
 	icon_state = "lava_med"
-	ceiling = CEILING_UNDERGROUND_METAL
+	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 
 /area/magmoor/medical/chemistry
 	name = "Medical Clinic Chemistry"
@@ -156,7 +156,7 @@
 /area/magmoor/engi/
 	name = "Engineering"
 	icon_state = "lava_engie"
-	ceiling = CEILING_UNDERGROUND_METAL
+	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 	ambience = list('sound/ambience/ambisin1.ogg', 'sound/ambience/ambisin2.ogg', 'sound/ambience/ambisin3.ogg', 'sound/ambience/ambisin4.ogg')
 
 /area/magmoor/engi/atmos
@@ -253,7 +253,7 @@
 /area/magmoor/research
 	name = "Research & Archaeology"
 	icon_state = "lava_research"
-	ceiling = CEILING_UNDERGROUND_METAL
+	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 	ambience = list('sound/ambience/ambitech.ogg', 'sound/ambience/ambitech2.ogg')
 
 /area/magmoor/research/containment
@@ -358,7 +358,7 @@
 /area/magmoor/mining/
 	name = "Mining Equipment & Break Room"
 	icon_state = "lava_mining"
-	ceiling = CEILING_UNDERGROUND_METAL
+	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 
 /area/magmoor/mining/garage
 	name = "Mining Garage & Storage"

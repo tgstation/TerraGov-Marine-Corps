@@ -312,11 +312,13 @@
 /obj/machinery/power/apc/proc/queue_icon_update()
 	updating_icon = TRUE
 
-/obj/machinery/power/apc/attack_alien(mob/living/carbon/xenomorph/M)
-	M.do_attack_animation(src, ATTACK_EFFECT_CLAW)
-	M.visible_message("<span class='danger'>[M] slashes \the [src]!</span>", \
-	"<span class='danger'>We slash \the [src]!</span>", null, 5)
-	playsound(loc, "alien_claw_metal", 25, 1)
+/obj/machinery/power/apc/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0)
+	if(effects)
+		X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
+		X.visible_message("<span class='danger'>[X] slashes \the [src]!</span>", \
+		"<span class='danger'>We slash \the [src]!</span>", null, 5)
+		playsound(loc, "alien_claw_metal", 25, 1)
+
 	var/allcut = wires.is_all_cut()
 
 	if(beenhit >= pick(3, 4) && !CHECK_BITFIELD(machine_stat, PANEL_OPEN))

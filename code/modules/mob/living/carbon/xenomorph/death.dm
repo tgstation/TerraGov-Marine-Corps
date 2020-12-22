@@ -12,7 +12,9 @@
 /mob/living/carbon/xenomorph/on_death()
 	GLOB.alive_xeno_list -= src
 	GLOB.dead_xeno_list += src
+
 	hive?.on_xeno_death(src)
+	hive.update_tier_limits() //Update our tier limits.
 
 	if(LAZYLEN(stomach_contents))
 		empty_gut()
@@ -21,7 +23,7 @@
 	if(is_zoomed)
 		zoom_out()
 
-	set_light(0)
+	set_light_on(FALSE)
 
 	if(hud_used)
 		if(hud_used.healths)

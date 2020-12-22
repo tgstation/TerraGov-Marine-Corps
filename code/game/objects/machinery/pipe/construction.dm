@@ -107,7 +107,7 @@ Buildable meters
 
 /obj/item/pipe/Move()
 	var/old_dir = dir
-	..()
+	. = ..()
 	setDir(old_dir) //pipes changing direction when moved is just annoying and buggy
 
 // Convert dir of fitting into dir of built component

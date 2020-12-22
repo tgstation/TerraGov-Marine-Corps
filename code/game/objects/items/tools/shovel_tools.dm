@@ -24,22 +24,24 @@
 	var/dirt_amt_per_dig = 5
 
 
-/obj/item/tool/shovel/update_icon()
+/obj/item/tool/shovel/update_overlays()
+	. = ..()
+	if(!dirt_amt)
+		return
 	var/image/I = image(icon,src,dirt_overlay)
 	switch(dirt_type) // We can actually shape the color for what enviroment we dig up our dirt in.
-		if(DIRT_TYPE_GROUND) I.color = "#512A09"
-		if(DIRT_TYPE_MARS) I.color = "#FF5500"
-		if(DIRT_TYPE_SNOW) I.color = "#EBEBEB"
-	overlays -= I
-	if(dirt_amt)
-		overlays += I
-	else
-		qdel(I)
+		if(DIRT_TYPE_GROUND)
+			I.color = "#512A09"
+		if(DIRT_TYPE_MARS)
+			I.color = "#FF5500"
+		if(DIRT_TYPE_SNOW)
+			I.color = "#EBEBEB"
+	. += I
 
 
 
 /obj/item/tool/shovel/examine(mob/user)
-	..()
+	. = ..()
 	if(dirt_amt)
 		var/dirt_name = dirt_type == DIRT_TYPE_SNOW ? "snow" : "dirt"
 		to_chat(user, "It holds [dirt_amt] layer\s of [dirt_name].")
