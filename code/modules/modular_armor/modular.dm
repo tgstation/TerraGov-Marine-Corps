@@ -83,8 +83,9 @@
 		standing.overlays += image(slot_arms.icon, ITEM_STATE_IF_SET(slot_arms))
 	if(slot_legs)
 		standing.overlays += image(slot_legs.icon, ITEM_STATE_IF_SET(slot_legs))
-	for(var/obj/item/mod in installed_modules)
-		standing.overlays += image(mod.icon, ITEM_STATE_IF_SET(mod))
+	for(var/mod in installed_modules)
+		var/obj/item/armor_module/module = mod
+		standing.overlays += image(module.icon, ITEM_STATE_IF_SET(module))
 	if(installed_storage)
 		standing.overlays += image(installed_storage.icon, ITEM_STATE_IF_SET(installed_storage))
 	
