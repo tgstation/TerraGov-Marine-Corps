@@ -1350,7 +1350,7 @@ Imports
 	contains = list(/obj/item/weapon/gun/rifle/famas)
 	cost = 15
 
-/datum/supply_packs/imports/m16/ammo
+/datum/supply_packs/imports/famas/ammo
 	name = "FAMAS Assault Rifle Ammo"
 	contains = list(/obj/item/ammo_magazine/rifle/famas)
 	cost = 5
