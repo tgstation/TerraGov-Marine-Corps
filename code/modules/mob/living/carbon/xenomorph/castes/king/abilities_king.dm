@@ -137,7 +137,7 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	if(length(X.hive.get_all_xenos()) <= 1)
 		if(!silent)
-			to_chat(owner, "<span class='notice'>We have no hive to call.</span>")
+			to_chat(owner, "<span class='notice'>We have no hive to call. We are alone on our throne of nothing.</span>")
 		return FALSE
 
 /datum/action/xeno_action/psychic_summon/action_activate()
