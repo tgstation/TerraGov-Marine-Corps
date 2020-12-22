@@ -8948,7 +8948,7 @@
 /area/lv624/lazarus/quartstorage)
 "aOP" = (
 /obj/structure/rack,
-/obj/item/clothing/under/blackskirt,
+/obj/item/clothing/under/color/black,
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage)
 "aOQ" = (
@@ -9882,7 +9882,7 @@
 /area/lv624/lazarus/main_hall)
 "aTd" = (
 /obj/structure/closet,
-/obj/item/clothing/under/blackskirt,
+/obj/item/clothing/under/color/black,
 /obj/item/stack/medical/advanced/ointment,
 /obj/structure/window/reinforced{
 	dir = 4
