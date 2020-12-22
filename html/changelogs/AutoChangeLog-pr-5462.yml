@@ -1,5 +1,0 @@
-author: "Surrealaser"
-delete-after: True
-changes: 
-  - bugfix: "Minisentry power cells no longer disappear when crowbarred out after packing up and redeploying."
-  - code_imp: "Sentry deactivation code refactored."
