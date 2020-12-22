@@ -1120,7 +1120,7 @@ ENGINEERING
 
 /datum/supply_packs/engineering/watertank
 	name = "Water Tank"
-	contains = list(/obj/structure/reagent_dispensers)
+	contains = list(/obj/structure/reagent_dispensers/watertank)
 	cost = 5
 	containertype = null
 
