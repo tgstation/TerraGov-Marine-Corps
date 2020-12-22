@@ -5212,7 +5212,7 @@
 /area/ice_colony/surface/hydroponics/lobby)
 "ato" = (
 /obj/structure/closet/cabinet,
-/obj/item/clothing/under/schoolgirl,
+/obj/item/clothing/under/color/black,
 /turf/open/floor/wood,
 /area/ice_colony/surface/dorms)
 "atp" = (
