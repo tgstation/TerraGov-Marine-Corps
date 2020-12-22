@@ -89,6 +89,8 @@
 	"<span class='xenonotice'>We start to tear down \the [src].</span>")
 	if(!do_after(M, 4 SECONDS, TRUE, M, BUSY_ICON_GENERIC))
 		return
+	if(!istype(src)) // Prevent jumping to other turfs if do_after completes with the wall already gone
+		return
 	M.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 	M.visible_message("<span class='xenonotice'>\The [M] tears down \the [src]!</span>", \
 	"<span class='xenonotice'>We tear down \the [src].</span>")
