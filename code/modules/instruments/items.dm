@@ -125,10 +125,6 @@
 	icon_state = "trombone"
 	allowed_instrument_ids = list("crtrombone", "crbrass", "trombone")
 
-/obj/item/instrument/trombone/spectral/attack(mob/living/carbon/C, mob/user)
-	playsound (src, 'sound/runtime/instruments/trombone/Cn4.mid', 100,1,-1)
-	return ..()
-
 /obj/item/instrument/recorder
 	name = "recorder"
 	desc = "Just like in school, playing ability and all."
