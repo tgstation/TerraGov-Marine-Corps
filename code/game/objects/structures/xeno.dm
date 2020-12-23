@@ -629,18 +629,19 @@
 /obj/structure/xeno/fire_act()
 	take_damage(10, BURN, "fire")
 
-/obj/structure/xeno/Destroy()
+/obj/structure/xeno/obj_destruction(damage_flag)
+
 	if(!destruction_alert)  //Whether or not we alert the hive on destruction; true by default. We are a hivemind after all.
 		return ..()
 
 	var/datum/hive_status/HS = GLOB.hive_datums[hivenumber]
-	if(!COOLDOWN_CHECK(HS, structure_destruction_alert_cooldown) && !override_cooldown) //We're on cooldown and we have no override
+	if(!COOLDOWN_CHECK(HS, xeno_structure_destruction_alert_cooldown) && !override_cooldown) //We're on cooldown and we have no override
 		return ..()
 
-	HS.xeno_message("<span class='xenoannounce'>[name] at [AREACOORD_NO_Z(src)] has been destroyed!</span>", 2) //Alert the hive!
+	HS.xeno_message("<span class='xenoannounce'>Our [name] at [AREACOORD_NO_Z(src)] has been destroyed!</span>", 2) //Alert the hive!
 
 	if(!override_cooldown) //Overriding structures don't begin our cooldown
-		COOLDOWN_START(HS, structure_destruction_alert_cooldown, XENO_STRUCTURE_DESTRUCTION_ALERT_COOLDOWN) //set the cooldown for the hive
+		COOLDOWN_START(HS, xeno_structure_destruction_alert_cooldown, XENO_STRUCTURE_DESTRUCTION_ALERT_COOLDOWN) //set the cooldown for the hive
 
 	return ..()
 
