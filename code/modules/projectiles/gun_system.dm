@@ -809,6 +809,9 @@ and you're good to go.
 	if((flags_gun_features & GUN_WIELDED_FIRING_ONLY) && !(flags_item & WIELDED)) //If we're not holding the weapon with both hands when we should.
 		to_chat(user, "<span class='warning'>You need a more secure grip to fire this weapon!")
 		return FALSE
+	if(user.action_busy)
+		to_chat(user, "<span class='warning'>You are doing something else currently.")
+		return FALSE
 	if((flags_gun_features & GUN_POLICE) && !police_allowed_check(user))
 		return FALSE
 	return TRUE
