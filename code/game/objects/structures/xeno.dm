@@ -849,7 +849,7 @@ TUNNEL
 	density = FALSE
 	opacity = FALSE
 	anchored = TRUE
-	max_integrity = 200
+	max_integrity = 120
 	layer = RESIN_STRUCTURE_LAYER
 
 	hit_sound = "alien_resin_move"
@@ -963,9 +963,9 @@ TUNNEL
 		update_icon()
 		return
 
-	stepper.next_move_slowdown += charges * 2 //Acid spray has slow down so this should to; scales with charges, Min 2 slowdown, Max 10
-	stepper.apply_damage(charges * 30, BURN, BODY_ZONE_PRECISE_L_FOOT, stepper.run_armor_check(BODY_ZONE_PRECISE_L_FOOT, "acid"))
-	stepper.apply_damage(charges * 30, BURN, BODY_ZONE_PRECISE_R_FOOT, stepper.run_armor_check(BODY_ZONE_PRECISE_R_FOOT, "acid"))
+	stepper.next_move_slowdown += charges * 2 //Acid spray has slow down so this should too; scales with charges, Min 2 slowdown, Max 10
+	stepper.apply_damage(charges * 10, BURN, BODY_ZONE_PRECISE_L_FOOT, stepper.run_armor_check(BODY_ZONE_PRECISE_L_FOOT, "acid") * 0.66) //33% armor pen
+	stepper.apply_damage(charges * 10, BURN, BODY_ZONE_PRECISE_R_FOOT, stepper.run_armor_check(BODY_ZONE_PRECISE_R_FOOT, "acid") * 0.66) //33% armor pen
 	stepper.visible_message("<span class='danger'>[stepper] is immersed in [src]'s acid!</span>", \
 	"<span class='danger'>We are immersed in [src]'s acid!</span>", null, 5)
 	playsound(stepper, "sound/bullets/acid_impact1.ogg", 10 * charges)
