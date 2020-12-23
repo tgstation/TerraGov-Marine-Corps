@@ -144,11 +144,11 @@
 	if(overlays)
 		overlays.Cut()
 	if (broken)
-		overlays += image(icon, "securespark")
+		. += image(icon, "securespark")
 	else if (fabricating)
-		overlays += image(icon, "secureb")
+		. += image(icon, "secureb")
 	else
-		overlays += image(icon, "secure0")
+		. += image(icon, "secure0")
 
 
 /obj/item/portable_vendor/process()

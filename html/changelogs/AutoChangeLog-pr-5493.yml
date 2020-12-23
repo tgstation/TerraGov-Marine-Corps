@@ -1,5 +1,0 @@
-author: "Wayland-Smithy"
-delete-after: True
-changes: 
-  - bugfix: "Fixed Queen overwatch from hive status and chat not working on numbers or names with spaces."
-  - bugfix: "Fixed Xeno HUD for the observed not updating when starting overwatch."

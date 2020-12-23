@@ -1,4 +1,0 @@
-author: "SplinterGP"
-delete-after: True
-changes: 
-  - bugfix: "fixes bug where muting deadchat locally won't properly hide deadchat messages."

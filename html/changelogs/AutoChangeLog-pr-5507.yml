@@ -1,0 +1,4 @@
+author: "Hughgent"
+delete-after: True
+changes: 
+  - tweak: "Stamina damage projectiles no longer count as FF."

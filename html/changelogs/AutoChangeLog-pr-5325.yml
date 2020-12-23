@@ -1,0 +1,4 @@
+author: "TiviPlus"
+delete-after: True
+changes: 
+  - balance: "Areas with FOB shutters can no longer be weeded with closed shutters"
