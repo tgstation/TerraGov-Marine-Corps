@@ -5,6 +5,11 @@
 	max_integrity = 100
 	icon = 'icons/obj/musician.dmi'
 	interaction_flags = INTERACT_OBJ_UI
+	item_state_worn = TRUE
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/instruments_lefthand.dmi',
+		slot_r_hand_str = 'icons/mob/instruments_righthand.dmi',
+		)
 	/// Our song datum.
 	var/datum/song/handheld/song
 	/// Our allowed list of instrument ids. This is nulled on initialize.
@@ -151,8 +156,8 @@
 	RegisterSignal(M, COMSIG_MOB_SAY, .proc/handle_speech)
 
 /obj/item/instrument/harmonica/dropped(mob/M)
-	. = ..()
 	UnregisterSignal(M, COMSIG_MOB_SAY)
+	return ..()
 
 /obj/item/instrument/bikehorn
 	name = "gilded bike horn"
