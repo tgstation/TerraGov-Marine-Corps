@@ -10,7 +10,8 @@
 		"36"='sound/runtime/instruments/synthesis_samples/guitar/crisis_steel/c2.ogg',
 		"48"='sound/runtime/instruments/synthesis_samples/guitar/crisis_steel/c3.ogg',
 		"60"='sound/runtime/instruments/synthesis_samples/guitar/crisis_steel/c4.ogg',
-		"72"='sound/runtime/instruments/synthesis_samples/guitar/crisis_steel/c5.ogg')
+		"72"='sound/runtime/instruments/synthesis_samples/guitar/crisis_steel/c5.ogg',
+	)
 
 /datum/instrument/guitar/nylon_crisis
 	name = "Crisis Nylon String Guitar"
@@ -19,7 +20,8 @@
 		"36"='sound/runtime/instruments/synthesis_samples/guitar/crisis_nylon/c2.ogg',
 		"48"='sound/runtime/instruments/synthesis_samples/guitar/crisis_nylon/c3.ogg',
 		"60"='sound/runtime/instruments/synthesis_samples/guitar/crisis_nylon/c4.ogg',
-		"72"='sound/runtime/instruments/synthesis_samples/guitar/crisis_nylon/c5.ogg')
+		"72"='sound/runtime/instruments/synthesis_samples/guitar/crisis_nylon/c5.ogg',¨
+	)
 
 /datum/instrument/guitar/clean_crisis
 	name = "Crisis Clean Guitar"
@@ -28,7 +30,8 @@
 		"36"='sound/runtime/instruments/synthesis_samples/guitar/crisis_clean/c2.ogg',
 		"48"='sound/runtime/instruments/synthesis_samples/guitar/crisis_clean/c3.ogg',
 		"60"='sound/runtime/instruments/synthesis_samples/guitar/crisis_clean/c4.ogg',
-		"72"='sound/runtime/instruments/synthesis_samples/guitar/crisis_clean/c5.ogg')
+		"72"='sound/runtime/instruments/synthesis_samples/guitar/crisis_clean/c5.ogg',
+	)
 
 /datum/instrument/guitar/muted_crisis
 	name = "Crisis Muted Guitar"
@@ -37,4 +40,5 @@
 		"36"='sound/runtime/instruments/synthesis_samples/guitar/crisis_muted/c2.ogg',
 		"48"='sound/runtime/instruments/synthesis_samples/guitar/crisis_muted/c3.ogg',
 		"60"='sound/runtime/instruments/synthesis_samples/guitar/crisis_muted/c4.ogg',
-		"72"='sound/runtime/instruments/synthesis_samples/guitar/crisis_muted/c5.ogg')
+		"72"='sound/runtime/instruments/synthesis_samples/guitar/crisis_muted/c5.ogg',
+	)
