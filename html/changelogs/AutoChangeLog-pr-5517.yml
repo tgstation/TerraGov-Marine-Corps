@@ -1,0 +1,6 @@
+author: "SplinterGP"
+delete-after: True
+changes: 
+  - refactor: "refactors icon getting for worn items on update_inv()."
+  - code_imp: "adds vars for specific icon files and icon states on specific slots."
+  - code_imp: "adds LAZYACCESSASSOCS macro to code."
