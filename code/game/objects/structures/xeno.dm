@@ -662,6 +662,7 @@
 
 	var/repair_cost = min(M.plasma_stored,max_integrity - obj_integrity) //Calculate repair cost, taking the lower of its damage or our current plasma. We heal damage with plasma on a 1 : 1 ratio.
 
+	new /obj/effect/temp_visual/healing(get_turf(src)) //SFX
 	to_chat(M, "<span class='xenodanger'>We begin to repair [src] with our plasma. We expect to repair [repair_cost] damage at an equal cost to our plasma...</span>")
 	if(!do_after(M, XENO_ACID_WELL_FILL_TIME, FALSE, src, BUSY_ICON_BUILD))
 		to_chat(M, "<span class='xenodanger'>We abort repairing [src]!</span>")
@@ -672,6 +673,7 @@
 	M.plasma_stored -= repair_cost //Deduct plasma cost
 	obj_integrity = min(max_integrity, obj_integrity + repair_cost) //Set the new health with overflow protection
 	to_chat(M, "<span class='xenonotice'>We repair [src], restoring <b>[repair_cost]</b> health. It is now at <b>[obj_integrity]/[max_integrity]</b> Health.</span>") //Feedback
+	new /obj/effect/temp_visual/healing(get_turf(src)) //SFX
 
 	return TRUE
 
