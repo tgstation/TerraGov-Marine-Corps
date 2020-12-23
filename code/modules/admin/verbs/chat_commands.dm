@@ -128,3 +128,16 @@
 		SSassets.transport.dont_mutate_filenames = TRUE
 		message_admins("[key_name_admin(usr)] disabled the CDN asset transport")
 		log_admin("[key_name(usr)] disabled the CDN asset transport")
+
+/datum/tgs_chat_command/lagcheck
+	name = "lagcheck"
+	help_text = "Checks current time dilation on the server"
+	var/last_tgs_check = 0
+
+
+/datum/tgs_chat_command/lagcheck/Run(datum/tgs_chat_user/sender, params)
+	var/rtod = REALTIMEOFDAY
+	if(rtod - last_tgs_check < TGS_STATUS_THROTTLE)
+		return
+	last_tgs_check = rtod
+	return "Time Dilation: [round(SStime_track.time_dilation_current,1)]% AVG:([round(SStime_track.time_dilation_avg_fast,1)]%, [round(SStime_track.time_dilation_avg,1)]%, [round(SStime_track.time_dilation_avg_slow,1)]%)"
