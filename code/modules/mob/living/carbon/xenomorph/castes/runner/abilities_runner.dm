@@ -205,7 +205,12 @@
 	plasma_cost = 10
 	cooldown_timer = 8 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_EVASION
+	///Whether evasion is currently active
 	var/evade_active = FALSE
+	///Number of successful cooldown clears in a row
+	var/evasion_streak = 0
+	///Whether we clear the streaks; if we scored a streak, we set this to false. Set back to true upon cooldown completion.
+	var/clear_streaks = TRUE
 
 /datum/action/xeno_action/evasion/can_use_action(silent = FALSE, override_flags)
 	. = ..()
@@ -298,6 +303,12 @@
 /datum/action/xeno_action/evasion/on_cooldown_finish()
 	to_chat(owner, "<span class='xenodanger'>We are able to take evasive action again.</span>")
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
+
+	if(clear_streaks) //Clear streaks if we haven't earned a streak
+		evasion_streak = 0
+	else //Otherwise prime us to clear streaks on the next cooldown finish
+		clear_streaks = TRUE
+
 	return ..()
 
 
@@ -317,8 +328,9 @@
 	if(!(proj.ammo.flags_ammo_behavior & AMMO_SENTRY)) //We ignore projectiles from automated sources/sentries for the purpose of contributions towards our cooldown refresh
 		evasion_stacks += proj.damage //Add to evasion stacks for the purposes of determining whether or not our cooldown refreshes
 
+	var/evasion_stack_target = RUNNER_EVASION_COOLDOWN_REFRESH_THRESHOLD * (1 + evasion_action.evasion_streak * 0.5)
 	visible_message("<span class='warning'>[name] effortlessly dodges the [proj.name]!</span>", \
-	"<span class='xenodanger'>We effortlessly dodge the [proj.name]![(RUNNER_EVASION_COOLDOWN_REFRESH_THRESHOLD - evasion_stacks) > 0 ? " We must dodge [RUNNER_EVASION_COOLDOWN_REFRESH_THRESHOLD - evasion_stacks] more projectile damage before Evasion's cooldown refreshes." : ""]</span>")
+	"<span class='xenodanger'>We effortlessly dodge the [proj.name]![(evasion_stack_target - evasion_stacks) > 0 ? " We must dodge [evasion_stack_target - evasion_stacks] more projectile damage before Evasion's cooldown refreshes." : ""]</span>")
 
 	var/turf/T = get_turf(src) //after image SFX
 	playsound(T, pick('sound/effects/throw.ogg','sound/effects/alien_tail_swipe1.ogg', 'sound/effects/alien_tail_swipe2.ogg'), 25, 1) //sound effects
@@ -336,8 +348,12 @@
 		A.dir = src.dir //match the direction of the runner
 		i++
 
-	if(evasion_stacks >= RUNNER_EVASION_COOLDOWN_REFRESH_THRESHOLD && evasion_action.cooldown_remaining()) //We have more evasion stacks than needed to refresh our cooldown, while being on cooldown.
+	if(evasion_stacks >= evasion_stack_target && evasion_action.cooldown_remaining()) //We have more evasion stacks than needed to refresh our cooldown, while being on cooldown.
 		to_chat(src, "<span class='highdanger'>Our success spurs us to continue our evasive maneuvers!</span>")
+		evasion_action.clear_streaks = FALSE //We just scored a streak so we're not clearing our streaks on cooldown finish
+		evasion_action.evasion_streak++ //Increment our streak count
 		evasion_action.clear_cooldown() //Clear our cooldown
+		if(evasion_action.evasion_streak > 3) //Easter egg shoutout
+			to_chat(src, "<span class='xenodanger'>Damn we're good.</span>")
 
 	return FALSE
