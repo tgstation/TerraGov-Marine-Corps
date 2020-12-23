@@ -886,7 +886,7 @@ TUNNEL
 	..()
 	if(!isxeno(user) && !isobserver(user))
 		return
-	to_chat(user, "<span class='xenonotice'>This [src] has [obj_integrity]/[max_integrity] Health and currently has <b>[charges]/[XENO_ACID_WELL_MAX_CHARGES]<b> charges.</span>")
+	to_chat(user, "<span class='xenonotice'>[src] has <b>[obj_integrity]/[max_integrity]</b> Health and currently has <b>[charges]/[XENO_ACID_WELL_MAX_CHARGES]<b> charges.</span>")
 
 
 /obj/structure/xeno/acidwell/update_icon()
@@ -902,11 +902,6 @@ TUNNEL
 			take_damage(200)
 		if(EXPLODE_LIGHT)
 			take_damage(100)
-
-/obj/structure/xeno/acidwell/attackby(obj/item/I, mob/user, params)
-	if(!isxeno(user))
-		return ..()
-	attack_alien(user)
 
 /obj/structure/xeno/acidwell/attack_alien(mob/living/carbon/xenomorph/M)
 	if(M.a_intent == INTENT_HARM)
