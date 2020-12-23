@@ -436,6 +436,8 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define XENO_RALLYING_POINTER_DURATION		15 SECONDS //How long the rally hive pointer lasts
 #define XENO_SILO_DAMAGE_POINTER_DURATION	10 SECONDS //How long the alert directional pointer lasts when silos are damaged
 
+#define XENO_STRUCTURE_DESTRUCTION_ALERT_COOLDOWN	5 SECONDS //Low cooldown, mainly intended to avoid chat being flooded when an explosive annihilates a bunch of structures simultaneously.
+
 #define CANNOT_HOLD_EGGS 0
 #define CAN_HOLD_TWO_HANDS 1
 #define CAN_HOLD_ONE_HAND 2

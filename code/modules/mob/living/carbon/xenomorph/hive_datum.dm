@@ -19,6 +19,8 @@
 	var/list/list/xenos_by_zlevel
 	var/tier3_xeno_limit
 	var/tier2_xeno_limit
+	///Hive wide cooldown on alert messages when xeno structures belonging to the hive are destroyed
+	COOLDOWN_DECLARE(structure_destruction_alert_cooldown)
 
 // ***************************************
 // *********** Init

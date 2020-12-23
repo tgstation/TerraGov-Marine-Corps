@@ -539,7 +539,7 @@
 /turf/proc/check_alien_construction(mob/living/builder, silent = FALSE, planned_building)
 	var/has_obstacle
 	for(var/obj/O in contents)
-		if(istype(O, /obj/item/clothing/mask/facehugger) && planned_building.density) //If it's not dense, we don't care
+		if(istype(O, /obj/item/clothing/mask/facehugger))
 			var/obj/item/clothing/mask/facehugger/hugger_check
 			if(hugger_check.stat != DEAD) //We don't care about dead huggers.
 				if(!silent)

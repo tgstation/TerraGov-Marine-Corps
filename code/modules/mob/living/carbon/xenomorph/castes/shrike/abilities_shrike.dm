@@ -402,7 +402,9 @@
 
 	playsound(T, "alien_resin_build", 25)
 	var/obj/structure/xeno/acidwell/AC = new /obj/structure/xeno/acidwell(T, owner)
-	AC.creator = owner
+	var/mob/living/carbon/xenomorph/X = owner
+	AC.hivenumber = X.hivenumber //Set our structure's hive
+
 	to_chat(owner, "<span class='xenonotice'>We place an acid well. It can still be charged more.</span>")
 	GLOB.round_statistics.xeno_acid_wells++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "xeno_acid_wells")

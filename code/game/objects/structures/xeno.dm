@@ -615,11 +615,34 @@
 	Burst(FALSE)
 	return TRUE
 
+/obj/structure/xeno
+	///Our hive ID; self-explanatory; we default to the standard hive; modified when built
+	var/hivenumber = XENO_HIVE_NORMAL
+	///Whether the structure alerts the hive when destroyed; we default to true
+	var/destruction_alert = TRUE
+	///Whether we override the normal hivewide cooldown on alerts for hive structures being destroyed; TRUE for tunnels and other VIP buildings, otherwise FALSE
+	var/override_cooldown = FALSE
+
 /obj/structure/xeno/flamer_fire_act()
 	take_damage(50, BURN, "fire")
 
 /obj/structure/xeno/fire_act()
 	take_damage(10, BURN, "fire")
+
+/obj/structure/xeno/Destroy()
+	if(!destruction_alert)  //Whether or not we alert the hive on destruction; true by default. We are a hivemind after all.
+		return ..()
+
+	var/datum/hive_status/HS = GLOB.hive_datums[hivenumber]
+	if(!COOLDOWN_CHECK(HS, structure_destruction_alert_cooldown) && !override_cooldown) //We're on cooldown and we have no override
+		return ..()
+
+	HS.xeno_message("<span class='xenoannounce'>[name] at [AREACOORD_NO_Z(src)] has been destroyed!</span>", 2) //Alert the hive!
+
+	if(!override_cooldown) //Overriding structures don't begin our cooldown
+		COOLDOWN_START(HS, structure_destruction_alert_cooldown, XENO_STRUCTURE_DESTRUCTION_ALERT_COOLDOWN) //set the cooldown for the hive
+
+	return ..()
 
 ///Proc called for repairable xeno structures
 /obj/structure/xeno/proc/repair_xeno_structure(mob/living/carbon/xenomorph/M)
@@ -695,8 +718,6 @@ TUNNEL
 	var/drop_loc = get_turf(src)
 	for(var/atom/movable/thing as() in contents) //Empty the tunnel of contents
 		thing.forceMove(drop_loc)
-
-	xeno_message("<span class='xenoannounce'>Hive tunnel [name] at [tunnel_desc] has been destroyed!</span>", 2, creator.hivenumber) //Also alert hive because tunnels matter.
 
 	GLOB.xeno_tunnels -= src
 	if(creator)
@@ -834,7 +855,6 @@ TUNNEL
 
 	var/charges = 1
 	var/ccharging = FALSE
-	var/mob/living/carbon/xenomorph/creator = null
 
 /obj/structure/xeno/acidwell/Initialize()
 	. = ..()
@@ -866,8 +886,7 @@ TUNNEL
 	..()
 	if(!isxeno(user) && !isobserver(user))
 		return
-	to_chat(user, "<span class='xenonotice'>This is an [src] made by [creator]. \
-	It has [obj_integrity]/[max_integrity] Health and currently has <b>[charges]/[XENO_ACID_WELL_MAX_CHARGES]<b> charges.</span>")
+	to_chat(user, "<span class='xenonotice'>This [src] has [obj_integrity]/[max_integrity] Health and currently has <b>[charges]/[XENO_ACID_WELL_MAX_CHARGES]<b> charges.</span>")
 
 
 /obj/structure/xeno/acidwell/update_icon()
@@ -958,7 +977,6 @@ TUNNEL
 	A.start()
 	charges = 0
 	update_icon()
-	return
 
 /obj/structure/xeno/resin_jelly_pod
 	name = "Resin jelly pod"
@@ -983,7 +1001,6 @@ TUNNEL
 	var/recharge_rate = 10
 	///Countdown to the next time we generate a jelly
 	var/nextjelly = 0
-	var/mob/living/carbon/xenomorph/creator = null
 
 /obj/structure/xeno/resin_jelly_pod/Initialize()
 	. = ..()
@@ -992,16 +1009,6 @@ TUNNEL
 
 /obj/structure/xeno/resin_jelly_pod/Destroy()
 	STOP_PROCESSING(SSslowprocess, src)
-	creator = null
-	return ..()
-
-///Alert the creator when his jelly pod is destroyed
-/obj/structure/xeno/resin_jelly_pod/obj_destruction(damage_flag)
-	if(!QDELETED(creator) && creator.stat == CONSCIOUS && creator.z == z)
-		var/area/A = get_area(src)
-		if(A)
-			to_chat(creator, "<span class='xenoannounce'>You sense your [src] at [A.name] (X: [x], Y: [y]) has been destroyed!</span>")
-
 	return ..()
 
 /obj/structure/xeno/resin_jelly_pod/ex_act(severity)
@@ -1017,7 +1024,7 @@ TUNNEL
 	. = ..()
 	if(!isxeno(user) && !isobserver(user))
 		return
-	to_chat(user, "<span class='xenonotice'>This is a [src] made by [creator]. It has <b>[chargesleft]</b> jelly globules remaining[datum_flags & DF_ISPROCESSING ? ", and will create a new jelly in [(recharge_rate-nextjelly)*5] seconds": " and seems latent"]. \
+	to_chat(user, "<span class='xenonotice'>This [src] has <b>[chargesleft]</b> jelly globules remaining[datum_flags & DF_ISPROCESSING ? ", and will create a new jelly in [(recharge_rate-nextjelly)*5] seconds": " and seems latent"]. \
 			It has <b>[obj_integrity]/[max_integrity]</b> Health.")
 
 /obj/structure/xeno/resin_jelly_pod/process()
@@ -1114,25 +1121,24 @@ TUNNEL
 	if(flags_atom & NODECONSTRUCT)
 		return
 
-	if(disassembled && M) //If we have a xeno defined and are actually disassembling the structure
+	if(!disassembled || !M) //If we have a xeno defined and are actually disassembling the structure
+		return ..()
 
-		if(!custom_message_a)
-			M.visible_message("<span class='warning'>\The [M] digs into \the [src] and begins ripping it down.</span>", \
-			"<span class='xenoannounce'>We dig into \the [src] and begin ripping it down.</span>", null, 5)
-		else
-			to_chat(M, "[custom_message_a]")
+	if(!custom_message_a)
+		M.visible_message("<span class='warning'>\The [M] digs into \the [src] and begins ripping it down.</span>", \
+		"<span class='xenoannounce'>We dig into \the [src] and begin ripping it down.</span>", null, 5)
+	else
+		to_chat(M, "[custom_message_a]")
 
-		if(!do_after(M, XENO_DISMANTLE_TIME, FALSE, src, BUSY_ICON_HOSTILE))
-			return
+	if(!do_after(M, XENO_DISMANTLE_TIME, FALSE, src, BUSY_ICON_HOSTILE))
+		return
 
-		M.do_attack_animation(src, ATTACK_EFFECT_CLAW) //SFX
-		playsound(src, "alien_resin_break", 25) //SFX
+	M.do_attack_animation(src, ATTACK_EFFECT_CLAW) //SFX
+	playsound(src, "alien_resin_break", 25) //SFX
 
-		if(!custom_message_b)
-			M.do_attack_animation(src, ATTACK_EFFECT_CLAW)
-			M.visible_message("<span class='danger'>[M] rips down \the [src]!</span>", \
-			"<span class='xenoannounce'>We rip down \the [src]!</span>", null, 5)
-		else
-			to_chat(M, "[custom_message_b]")
-
-	return ..()
+	if(!custom_message_b)
+		M.do_attack_animation(src, ATTACK_EFFECT_CLAW)
+		M.visible_message("<span class='danger'>[M] rips down \the [src]!</span>", \
+		"<span class='xenoannounce'>We rip down \the [src]!</span>", null, 5)
+	else
+		to_chat(M, "[custom_message_b]")

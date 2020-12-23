@@ -174,7 +174,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	var/obj/structure/xeno/tunnel/newt = new(T)
 	playsound(T, 'sound/weapons/pierce.ogg', 25, 1)
 
-
+	newt.hivenumber = X.hivenumber //Set our structure's hive
 	newt.creator = X
 
 	X.tunnels.Add(newt)
@@ -244,8 +244,11 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 
 	playsound(T, "alien_resin_build", 25)
 	var/obj/structure/xeno/resin_jelly_pod/pod = new(T)
+	var/mob/living/carbon/xenomorph/X = owner
+	pod.hivenumber = X.hivenumber //Set our structure's hive
+
 	to_chat(owner, "<span class='xenonotice'>We shape some resin into \a [pod].</span>")
-	pod.creator = owner
+
 	GLOB.round_statistics.hivelord_resin_jelly_pods++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "hivelord_resin_jelly_pods")
 
