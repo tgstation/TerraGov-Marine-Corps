@@ -44,7 +44,7 @@
 		newdir = null
 	if(!newdir)
 		return
-	Move(get_step(src,newdir), newdir)
+	step_to(src, get_step(src,newdir))
 
 
 /obj/machinery/roomba/Bump(atom/A)
