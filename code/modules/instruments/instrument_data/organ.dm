@@ -10,7 +10,8 @@
 		"36"='sound/runtime/instruments/synthesis_samples/organ/crisis_church/c2.ogg',
 		"48"='sound/runtime/instruments/synthesis_samples/organ/crisis_church/c3.ogg',
 		"60"='sound/runtime/instruments/synthesis_samples/organ/crisis_church/c4.ogg',
-		"72"='sound/runtime/instruments/synthesis_samples/organ/crisis_church/c5.ogg')
+		"72"='sound/runtime/instruments/synthesis_samples/organ/crisis_church/c5.ogg',
+	)
 
 /datum/instrument/organ/crisis_hammond
 	name = "Crisis Hammond Organ"

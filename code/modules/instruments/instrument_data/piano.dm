@@ -13,7 +13,8 @@
 		"72"='sound/runtime/instruments/synthesis_samples/piano/fluid_piano/c5.ogg',
 		"84"='sound/runtime/instruments/synthesis_samples/piano/fluid_piano/c6.ogg',
 		"96"='sound/runtime/instruments/synthesis_samples/piano/fluid_piano/c7.ogg',
-		"108"='sound/runtime/instruments/synthesis_samples/piano/fluid_piano/c8.ogg')
+		"108"='sound/runtime/instruments/synthesis_samples/piano/fluid_piano/c8.ogg',
+	)
 
 /datum/instrument/piano/fluid_harpsichord
 	name = "FluidR3 Harpsichord"
@@ -25,7 +26,8 @@
 		"72"='sound/runtime/instruments/synthesis_samples/piano/fluid_harpsi/c5.ogg',
 		"84"='sound/runtime/instruments/synthesis_samples/piano/fluid_harpsi/c6.ogg',
 		"96"='sound/runtime/instruments/synthesis_samples/piano/fluid_harpsi/c7.ogg',
-		"108"='sound/runtime/instruments/synthesis_samples/piano/fluid_harpsi/c8.ogg')
+		"108"='sound/runtime/instruments/synthesis_samples/piano/fluid_harpsi/c8.ogg',
+	)
 
 /datum/instrument/piano/crisis_harpsichord
 	name = "Crisis Harpsichord"
