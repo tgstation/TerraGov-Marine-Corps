@@ -134,19 +134,20 @@ directive is properly returned.
 	SEND_SIGNAL(src, COMSIG_ATOM_BUMPED, AM)
 	return
 
+///Can the mover object pass this atom, while heading for the target turf
 /atom/proc/CanPass(atom/movable/mover, turf/target)
-	//Purpose: Determines if the object can pass this atom.
-	//Called by: Movement.
-	//Inputs: The moving atom (optional), target turf
-	//Outputs: Boolean if can pass.
-	if(density)
-		if( (flags_atom & ON_BORDER) && !(get_dir(loc, target) & dir) )
-			return TRUE
-		else
-			return FALSE
-	else
+	SHOULD_CALL_PARENT(TRUE)
+	if(mover.status_flags & INCORPOREAL)
 		return TRUE
+	. = CanAllowThrough(mover, target)
+	// This is cheaper than calling the proc every time since most things dont override CanPassThrough
+	if(!mover.generic_canpass)
+		return mover.CanPassThrough(src, target, .)
 
+/// Returns true or false to allow the mover to move through src
+/atom/proc/CanAllowThrough(atom/movable/mover, turf/target)
+	SHOULD_CALL_PARENT(TRUE)
+	return !density
 
 /atom/proc/CheckExit(atom/movable/mover, turf/target)
 	if(!density || !(flags_atom & ON_BORDER) || !(get_dir(mover.loc, target) & dir))

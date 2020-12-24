@@ -99,7 +99,7 @@
 
 
 /turf/closed/wall/attack_alien(mob/living/carbon/xenomorph/user)
-	if(acided_hole && user.mob_size == MOB_SIZE_BIG)
+	if(acided_hole && (user.mob_size == MOB_SIZE_BIG || user.xeno_caste.caste_flags & CASTE_IS_STRONG)) //Strong and/or big xenos can tear open acided walls
 		acided_hole.expand_hole(user)
 	else
 		. = ..()

@@ -62,7 +62,7 @@
 
 	ADD_TRAIT(src, TRAIT_BATONIMMUNE, TRAIT_XENO)
 	ADD_TRAIT(src, TRAIT_FLASHBANGIMMUNE, TRAIT_XENO)
-
+	hive.update_tier_limits()
 
 /mob/living/carbon/xenomorph/proc/set_datum()
 	if(!caste_base_type)
@@ -202,7 +202,9 @@
 	GLOB.xeno_mob_list -= src
 	GLOB.dead_xeno_list -= src
 
+	var/datum/hive_status/hive_placeholder = hive
 	remove_from_hive()
+	hive_placeholder.update_tier_limits() //Update our tier limits.
 
 	vis_contents -= wound_overlay
 	QDEL_NULL(wound_overlay)
@@ -215,14 +217,17 @@
 /mob/living/carbon/xenomorph/start_pulling(atom/movable/AM, suppress_message = TRUE)
 	if(!isliving(AM))
 		return FALSE
+	if(!Adjacent(AM)) //Logic!
+		return FALSE
 	var/mob/living/L = AM
 	if(L.buckled)
 		return FALSE //to stop xeno from pulling marines on roller beds.
 	if(ishuman(L))
 		if(!chestburst)
 			do_attack_animation(L, ATTACK_EFFECT_GRAB)
-			if(!do_mob(src, L , XENO_PULL_CHARGE_TIME, BUSY_ICON_HOSTILE))
-				return FALSE
+			if(L.stat == DEAD && !L.headbitten) //Grab delay vs the non-headbitten dead
+				if(!do_mob(src, L , XENO_PULL_CHARGE_TIME, BUSY_ICON_HOSTILE))
+					return FALSE
 		pull_speed += XENO_DEADHUMAN_DRAG_SLOWDOWN
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_GRAB)
 	return ..()

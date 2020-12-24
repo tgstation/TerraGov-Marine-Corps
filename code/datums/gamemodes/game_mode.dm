@@ -541,7 +541,7 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 		output += "<a href='byond://?src=[REF(NP)];lobby_choice=manifest'>View the Crew Manifest</A><br>"
 		output += "<p><a href='byond://?src=[REF(NP)];lobby_choice=late_join'>Join the Game!</A></p>"
 
-	output += append_player_votes_link(NP)
+	output += NP.playerpolls()
 
 	output += "</div>"
 
@@ -552,36 +552,6 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 
 	return TRUE
 
-/datum/game_mode/proc/append_player_votes_link(mob/new_player/NP)
-	if(QDELETED(NP) || IsGuestKey(NP.key) || !SSdbcore.IsConnected())
-		return "" // append nothing
-
-	var/isadmin = check_rights(R_ADMIN, FALSE)
-	var/datum/db_query/query_get_new_polls = SSdbcore.NewQuery({"
-		SELECT id FROM [format_table_name("poll_question")]
-		WHERE (adminonly = 0 OR :isadmin = 1)
-		AND Now() BETWEEN starttime AND endtime
-		AND deleted = 0
-		AND id NOT IN (
-			SELECT pollid FROM [format_table_name("poll_vote")]
-			WHERE ckey = :ckey
-			AND deleted = 0
-		)
-		AND id NOT IN (
-			SELECT pollid FROM [format_table_name("poll_textreply")]
-			WHERE ckey = :ckey
-			AND deleted = 0
-		)
-	"}, list("isadmin" = isadmin, "ckey" = NP.ckey))
-	var/rs = REF(src)
-	if(!query_get_new_polls.Execute())
-		qdel(query_get_new_polls)
-		return
-	if(query_get_new_polls.NextRow())
-		. += "<p><b><a href='byond://?src=[rs];showpoll=1'>Show Player Polls</A> (NEW!)</b></p>"
-	else
-		. += "<p><a href='byond://?src=[rs];showpoll=1'>Show Player Polls</A></p>"
-	qdel(query_get_new_polls)
 
 /datum/game_mode/proc/CanLateSpawn(mob/new_player/NP, datum/job/job)
 	if(!isnewplayer(NP))

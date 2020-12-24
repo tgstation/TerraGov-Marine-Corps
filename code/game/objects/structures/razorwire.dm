@@ -184,11 +184,11 @@
 	deconstruct(TRUE)
 	return TRUE
 
-/obj/structure/razorwire/attack_alien(mob/living/carbon/xenomorph/M)
-	M.apply_damage(RAZORWIRE_BASE_DAMAGE * 0.7) //About a third as damaging as actually entering
-	UPDATEHEALTH(M)
+/obj/structure/razorwire/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0)
+	X.apply_damage(RAZORWIRE_BASE_DAMAGE * 0.7) //About a third as damaging as actually entering
+	UPDATEHEALTH(X)
 	update_icon()
-	SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_RAZORWIRE)
+	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_RAZORWIRE)
 	return ..()
 
 /obj/structure/razorwire/ex_act(severity)
@@ -204,7 +204,8 @@
 	update_icon()
 
 
-/obj/structure/razorwire/CanPass(atom/movable/mover, turf/target)
+/obj/structure/razorwire/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGRILLE))
 		return TRUE
 	if(mover.throwing && istype(mover,/obj/item))

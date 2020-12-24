@@ -162,33 +162,34 @@
 	drag_delay = 1 //Pulling something on wheels is easy
 
 /obj/structure/bed/chair/office/Bump(atom/A)
-	..()
+	. = ..()
 	if(!LAZYLEN(buckled_mobs))
 		return
 
-	if(propelled)
-		var/mob/living/occupant = buckled_mobs[1]
-		unbuckle_mob(occupant)
+	if(!propelled)
+		return
+	var/mob/living/occupant = buckled_mobs[1]
+	unbuckle_mob(occupant)
 
-		var/def_zone = ran_zone()
-		var/blocked = occupant.run_armor_check(def_zone, "melee")
-		occupant.throw_at(A, 3, propelled)
-		occupant.apply_effect(6, STUN, blocked)
-		occupant.apply_effect(6, WEAKEN, blocked)
-		occupant.apply_effect(6, STUTTER, blocked)
-		occupant.apply_damage(10, BRUTE, def_zone, blocked)
-		UPDATEHEALTH(occupant)
-		playsound(src.loc, 'sound/weapons/punch1.ogg', 25, 1)
-		if(isliving(A))
-			var/mob/living/victim = A
-			def_zone = ran_zone()
-			blocked = victim.run_armor_check(def_zone, "melee")
-			victim.apply_effect(6, STUN, blocked)
-			victim.apply_effect(6, WEAKEN, blocked)
-			victim.apply_effect(6, STUTTER, blocked)
-			victim.apply_damage(10, BRUTE, def_zone, blocked)
-			UPDATEHEALTH(victim)
-		occupant.visible_message("<span class='danger'>[occupant] crashed into \the [A]!</span>")
+	var/def_zone = ran_zone()
+	var/blocked = occupant.run_armor_check(def_zone, "melee")
+	occupant.throw_at(A, 3, propelled)
+	occupant.apply_effect(6, STUN, blocked)
+	occupant.apply_effect(6, WEAKEN, blocked)
+	occupant.apply_effect(6, STUTTER, blocked)
+	occupant.apply_damage(10, BRUTE, def_zone, blocked)
+	UPDATEHEALTH(occupant)
+	playsound(src.loc, 'sound/weapons/punch1.ogg', 25, 1)
+	if(isliving(A))
+		var/mob/living/victim = A
+		def_zone = ran_zone()
+		blocked = victim.run_armor_check(def_zone, "melee")
+		victim.apply_effect(6, STUN, blocked)
+		victim.apply_effect(6, WEAKEN, blocked)
+		victim.apply_effect(6, STUTTER, blocked)
+		victim.apply_damage(10, BRUTE, def_zone, blocked)
+		UPDATEHEALTH(victim)
+	occupant.visible_message("<span class='danger'>[occupant] crashed into \the [A]!</span>")
 
 /obj/structure/bed/chair/office/light
 	icon_state = "officechair_white"
@@ -217,7 +218,7 @@
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	var/is_animating = 0
 
-/obj/structure/bed/chair/dropship/passenger/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
+/obj/structure/bed/chair/dropship/passenger/CanAllowThrough(atom/movable/mover, turf/target, height = 0, air_group = 0)
 	if(chair_state == DROPSHIP_CHAIR_UNFOLDED && isvehicle(mover) && !is_animating)
 		var/obj/vehicle/veh =  mover
 		if(!veh.demolish_on_ram)
@@ -225,7 +226,6 @@
 		visible_message("<span class='danger'>[mover] slams into [src] and breaks it!</span>")
 		INVOKE_ASYNC(src, .proc/fold_down, TRUE)
 		return FALSE
-	return ..()
 
 /obj/structure/bed/chair/dropship/passenger/Initialize()
 	. = ..()
