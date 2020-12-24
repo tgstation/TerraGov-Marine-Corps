@@ -126,11 +126,10 @@
 	playsound(src, "alien_resin_break", 25)
 
 
-/turf/closed/wall/resin/CanPass(atom/movable/mover, turf/target)
+/turf/closed/wall/resin/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
 		return !opacity
-	return !density
-
 
 /turf/closed/wall/resin/dismantle_wall(devastated = 0, explode = 0)
 	ScrapeAway()

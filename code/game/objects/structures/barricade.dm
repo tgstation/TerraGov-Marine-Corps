@@ -71,7 +71,8 @@
 	else
 		return TRUE
 
-/obj/structure/barricade/CanPass(atom/movable/mover, turf/target)
+/obj/structure/barricade/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(closed)
 		return TRUE
 

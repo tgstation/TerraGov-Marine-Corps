@@ -1,0 +1,4 @@
+author: "Surrealaser"
+delete-after: True
+changes: 
+  - refactor: "Refactors CanPass per TG."

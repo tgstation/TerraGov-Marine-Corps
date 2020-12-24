@@ -109,7 +109,8 @@
 	return attack_hand(M)
 
 
-/obj/effect/forcefield/fog/CanPass(atom/movable/mover, turf/target)
+/obj/effect/forcefield/fog/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(isobj(mover))
 		return TRUE
 	if(isxeno(mover))
@@ -126,7 +127,8 @@
 	icon_state = "smoke"
 	density = FALSE
 
-/obj/effect/forcefield/fog/passable_fog/CanPass(atom/movable/mover, turf/target)
+/obj/effect/forcefield/fog/passable_fog/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	return TRUE
 
 /obj/effect/forcefield/fog/passable_fog/Crossed(atom/movable/mover, oldloc)
