@@ -1,4 +1,0 @@
-author: "Chaznoodles"
-delete-after: True
-changes: 
-  - bugfix: "Watertanks, fulton extraction pads and M16 ammo are now properly available from Surplus Req. Please don't put your spare rounds in the water."
