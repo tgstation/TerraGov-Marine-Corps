@@ -82,7 +82,7 @@
 	var/sound/music_played = sound(soundfile)
 	for(var/i in hearing_mobs)
 		var/mob/M = i
-		if(!(M?.client?.prefs?.toggles_sound & SOUND_INSTRUMENTS_OFF))
+		if(M?.client?.prefs?.toggles_sound & SOUND_INSTRUMENTS_OFF)
 			continue
 		M.playsound_local(source, null, volume * using_instrument.volume_multiplier, S = music_played)
 		// Could do environment and echo later but not for now

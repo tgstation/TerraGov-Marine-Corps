@@ -62,7 +62,7 @@
 	last_channel_played = channel_text
 	for(var/i in hearing_mobs)
 		var/mob/M = i
-		if(!(M?.client?.prefs?.toggles_sound & SOUND_INSTRUMENTS_OFF))
+		if(M?.client?.prefs?.toggles_sound & SOUND_INSTRUMENTS_OFF)
 			continue
 		M.playsound_local(get_turf(parent), null, volume, FALSE, K.frequency, null, channel, null, copy)
 		// Could do environment and echo later but not for now
