@@ -495,17 +495,17 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/3
 	scannable = TRUE
 
-/datum/reagent/medicine/russianred/on_mob_life(mob/living/L, metabolism)
+/datum/reagent/medicine/russian_red/on_mob_life(mob/living/L, metabolism)
 	L.heal_limb_damage(10*REM, 10*REM)
 	L.adjustToxLoss(-5*REM)
 	L.adjustCloneLoss(4*REM)
 	return ..()
 
-/datum/reagent/medicine/russianred/overdose_process(mob/living/L, metabolism)
+/datum/reagent/medicine/russian_red/overdose_process(mob/living/L, metabolism)
 	L.apply_damages(2*REM, 0, 0)
 	L.adjustBrainLoss(2*REM, TRUE)
 
-/datum/reagent/medicine/russianred/overdose_crit_process(mob/living/L, metabolism)
+/datum/reagent/medicine/russian_red/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damages(2*REM, 4*REM, 2*REM)
 	L.adjustBrainLoss(2*REM, TRUE)
 
