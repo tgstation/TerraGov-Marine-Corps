@@ -478,7 +478,7 @@ Read the file documentation to understand why this is this way
 	return FALSE
 	/////////////////////////////////
 
-/obj/hitbox/CanPass(atom/movable/mover, turf/target)
+/obj/hitbox/CanAllowThrough(atom/movable/mover, turf/target)
 	if(mover == root)//Bypass your own hitbox
 		return TRUE
 	return ..()
