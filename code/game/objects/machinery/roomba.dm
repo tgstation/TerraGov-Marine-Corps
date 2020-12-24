@@ -49,8 +49,7 @@
 
 /obj/machinery/roomba/Bump(atom/A)
 	. = ..()
-	var/newdir = turn(dir, (pick(90, -90)))
-	Move(get_step(src,newdir), newdir)
+	step_to(src, get_step(src, turn(dir, pick(90, -90))))
 
 ///Called when the roomba moves, sucks in all items held in the tile and sends them to cryo
 /obj/machinery/roomba/proc/suck_items()
