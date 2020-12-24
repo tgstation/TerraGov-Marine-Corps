@@ -178,7 +178,7 @@
 		else
 			return FALSE
 	else
-		. = ..()
+		return ..()
 
 
 /obj/structure/closet/bodybag/forceMove(atom/destination)
@@ -383,7 +383,8 @@
 /obj/item/bodybag/tarp/Initialize(mapload, unfoldedbag)
 	. = ..()
 	if(!serial_number) //Give a random serial number in order to ward off auto-point macros
-		name = "\improper [uppertext(pick(GLOB.alphabet))][rand(1000,100000)]-SN [name]"
+		serial_number = "[uppertext(pick(GLOB.alphabet))][rand(1000,100000)]-SN"
+		name = "\improper [serial_number] [initial(name)]"
 
 /obj/item/bodybag/tarp/deploy_bodybag(mob/user, atom/location)
 	. = ..()
@@ -391,7 +392,6 @@
 	if(!unfolded_tarp.serial_number)
 		unfolded_tarp.serial_number = serial_number //Set the serial number
 		unfolded_tarp.name = "\improper [serial_number] [unfolded_tarp.name]" //Set the name with the serial number
-
 
 /obj/item/bodybag/tarp/unique_action(mob/user)
 	deploy_bodybag(user, get_turf(user))
@@ -417,7 +417,6 @@
 	foldedbag_path = /obj/item/bodybag/tarp
 	closet_stun_delay = 0.5 SECONDS //Short delay to prevent ambushes from being too degenerate.
 	var/serial_number //Randomized serial number used to stop point macros and such.
-
 
 
 /obj/structure/closet/bodybag/tarp/close()
@@ -467,7 +466,7 @@
 	var/obj/item/bodybag/tarp/folded_tarp = foldedbag_instance
 	if(!folded_tarp.serial_number)
 		folded_tarp.serial_number = serial_number //Set the serial number
-		folded_tarp.name = "\improper [serial_number] [folded_tarp.name]" //Set the name with the serial number
+		folded_tarp.name = "\improper [serial_number] [initial(folded_tarp.name)]" //Set the name with the serial number
 
 
 /obj/structure/closet/bodybag/tarp/snow

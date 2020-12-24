@@ -8,6 +8,7 @@
 	desc = "Standard issue marine tactical gloves. It reads: 'knit by Marine Widows Association'."
 	icon_state = "gloves_marine"
 	item_state = "gloves_marine"
+	item_state_worn = TRUE
 	siemens_coefficient = 0.6
 	permeability_coefficient = 0.05
 	flags_cold_protection = HANDS

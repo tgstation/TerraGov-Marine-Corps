@@ -102,20 +102,20 @@
 
 // /atom signals
 #define COMSIG_PARENT_ATTACKBY "atom_attackby"			        //from base of atom/attackby(): (/obj/item, /mob/living)
-	#define COMPONENT_NO_AFTERATTACK 1								//Return this in response if you don't want afterattack to be called
+	#define COMPONENT_NO_AFTERATTACK (1<<0)						//Return this in response if you don't want afterattack to be called
 #define COMSIG_ATOM_CONTENTS_DEL "atom_contents_del"			//from base of atom/handle_atom_del(): (atom/deleted)
 #define COMSIG_ATOM_ENTERED "atom_entered"                      //from base of atom/Entered(): (atom/movable/entering, /atom)
 #define COMSIG_ATOM_EXIT "atom_exit"							//from base of atom/Exit(): (/atom/movable/exiting, /atom/newloc)
-	#define COMPONENT_ATOM_BLOCK_EXIT 1
+	#define COMPONENT_ATOM_BLOCK_EXIT (1<<0)
 #define COMSIG_ATOM_EXITED "atom_exited"						//from base of atom/Exited(): (atom/movable/exiting, atom/newloc)
 #define COMSIG_ATOM_BUMPED "atom_bumped"						///from base of atom/Bumped(): (/atom/movable)
 #define COMSIG_ATOM_DIR_CHANGE "atom_dir_change"				//from base of atom/setDir(): (old_dir, new_dir)
 #define COMSIG_ATOM_CANREACH "atom_can_reach"					//from internal loop in atom/movable/proc/CanReach(): (list/next)
-	#define COMPONENT_BLOCK_REACH 1
+	#define COMPONENT_BLOCK_REACH (1<<0)
 #define COMSIG_ATOM_SCREWDRIVER_ACT "atom_screwdriver_act"		//from base of atom/screwdriver_act(): (mob/living/user, obj/item/I)
 #define COMSIG_ATOM_ATTACK_HAND "atom_attack_hand"				//from base of atom/attack_hand(mob/living/user)
 #define COMSIG_ATOM_ATTACK_GHOST "atom_attack_ghost"			//from base of atom/attack_ghost(): (mob/dead/observer/ghost)
-	#define COMPONENT_NO_ATTACK_HAND 1							//works on all attack_hands.
+	#define COMPONENT_NO_ATTACK_HAND (1<<0)						//works on all attack_hands.
 #define COMSIG_PARENT_EXAMINE "atom_examine"					//from base of atom/examine(): (/mob)
 #define COMSIG_ATOM_UPDATE_ICON "atom_update_icon"				//from base of atom/update_icon(): ()
 	#define COMSIG_ATOM_NO_UPDATE_ICON_STATE	(1<<0)
@@ -164,7 +164,7 @@
 #define COMSIG_MOVABLE_Z_CHANGED "movable_ztransit" 			//from base of atom/movable/onTransitZ(): (old_z, new_z)
 #define COMSIG_MOVABLE_CROSS "movable_cross"					//from base of atom/movable/Cross(): (/atom/movable)
 #define COMSIG_MOVABLE_UNCROSS "movable_uncross"				//from base of atom/movable/Uncross(): (/atom/movable)
-	#define COMPONENT_MOVABLE_BLOCK_UNCROSS 1
+	#define COMPONENT_MOVABLE_BLOCK_UNCROSS (1<<0)
 #define COMSIG_MOVABLE_UNCROSSED "movable_uncrossed"            //from base of atom/movable/Uncrossed(): (/atom/movable)
 #define COMSIG_MOVABLE_RELEASED_FROM_STOMACH "movable_released_from_stomach" //from base of mob/living/carbon/xenomorph/proc/empty_gut(): (prey, predator)
 #define COMSIG_MOVABLE_CLOSET_DUMPED "movable_closet_dumped"
@@ -210,9 +210,9 @@
 #define COMSIG_ITEM_UNWIELD "item_unwield"                      //from base of obj/item/
 #define COMSIG_ITEM_AFTERATTACK "item_afterattack"				//from base of obj/item/afterattack(): (atom/target, mob/user, proximity_flag, click_parameters)
 #define COMSIG_ITEM_ATTACK_OBJ "item_attack_obj"				//from base of obj/item/attack_obj(): (/obj, /mob)
-	#define COMPONENT_NO_ATTACK_OBJ 1
+	#define COMPONENT_NO_ATTACK_OBJ (1<<0)
 #define COMSIG_ITEM_ATTACK_TURF "item_attack_turf"				//from base of obj/item/attack_turf(): (/turf, /mob)
-	#define COMPONENT_NO_ATTACK_TURF 1
+	#define COMPONENT_NO_ATTACK_TURF (1<<0)
 #define COMSIG_ITEM_TOGGLE_ACTION "item_toggle_action"			//from base of obj/item/ui_interact(): (/mob/user)
 #define COMSIG_ITEM_TOGGLE_ACTIVE "item_toggle_active"			//from base of /obj/item/toggle_active(): (new_state)
 
@@ -331,6 +331,8 @@
 #define COMSIG_WARRIOR_USED_GRAB "warrior_used_grab"
 #define COMSIG_WARRIOR_NECKGRAB "warrior_neckgrab"
 	#define COMSIG_WARRIOR_CANT_NECKGRAB (1<<0)
+#define COMSIG_WARRIOR_USED_FLING "warrior_used_fling"
+#define COMSIG_WARRIOR_USED_GRAPPLE_TOSS "warrior_used_grapple_toss"
 
 #define COMSIG_XENOMORPH_PLASMA_REGEN "xenomorph_plasma_regen"
 
@@ -358,7 +360,7 @@
 #define COMSIG_XENOMORPH_ATTACK_M56 "xenomorph_attack_m56"
 #define COMSIG_XENOMORPH_ATTACK_TANK "xenomorph_attack_tank"
 #define COMSIG_XENOMORPH_ATTACK_LIVING "xenomorph_attack_living"
-	#define COMSIG_XENOMORPH_BONUS_APPLIED 1
+	#define COMSIG_XENOMORPH_BONUS_APPLIED (1<<0)
 
 #define COMSIG_XENOMORPH_ATTACK_HUMAN "xenomorph_attack_human"
 #define COMSIG_XENOMORPH_DISARM_HUMAN "xenomorph_disarm_human"
@@ -382,7 +384,7 @@
 #define COMSIG_XENO_OBJ_THROW_HIT "xeno_obj_throw_hit"				///from [/mob/living/carbon/xenomorph/throw_impact]: (obj/target, speed)
 #define COMSIG_XENO_NONE_THROW_HIT "xeno_none_throw_hit"			///from [/mob/living/carbon/xenomorph/throw_impact]: ()
 #define COMSIG_XENO_LIVING_THROW_HIT "xeno_living_throw_hit"		///from [/mob/living/carbon/xenomorph/throw_impact]: (mob/living/target)
-	#define COMPONENT_KEEP_THROWING 1
+	#define COMPONENT_KEEP_THROWING (1<<0)
 
 //human signals
 #define COMSIG_CLICK_QUICKEQUIP "click_quickequip"
@@ -535,6 +537,7 @@
 #define COMSIG_XENOABILITY_LUNGE "xenoability_lunge"
 #define COMSIG_XENOABILITY_FLING "xenoability_fling"
 #define COMSIG_XENOABILITY_PUNCH "xenoability_punch"
+#define COMSIG_XENOABILITY_GRAPPLE_TOSS "xenoability_grapple_toss"
 
 #define COMSIG_XENOABILITY_WHISPER "xenoability_whisper"
 #define COMSIG_XENOABILITY_GRAVITY_CRUSH "xenoability_gravity_crush"
@@ -554,9 +557,6 @@
 #define COMSIG_OBSTRUCTED_MOVE "unable_to_step_towards_thing" //Tried to step in a direction and there was a obstruction
 
 /*******Non-Signal Component Related Defines*******/
-
-//Redirection component init flags
-#define REDIRECT_TRANSFER_WITH_TURF 1
 
 
 // /datum/action signals

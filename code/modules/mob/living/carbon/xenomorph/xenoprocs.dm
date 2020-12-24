@@ -47,7 +47,7 @@
 		if(ignore_leads && X.queen_chosen_lead)
 			continue
 		if(can_overwatch)
-			xenoinfo += "<tr><td>[leadprefix]<a href=?src=\ref[user];watch_xeno_name=[X.nicknumber]>[X.name]</a> "
+			xenoinfo += "<tr><td>[leadprefix]<a href='byond://?src=\ref[user];watch_xeno_name=[X.nicknumber]'>[X.name]</a> "
 		else
 			xenoinfo += "<tr><td>[leadprefix][X.name] "
 		if(!X.client)
@@ -118,15 +118,22 @@
 	xenoinfo += xeno_status_output(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/larva], can_overwatch, TRUE, user)
 
 	var/hivemind_text = length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/hivemind]) > 0 ? "Active" : "Inactive"
-	var/xeno_tier_three_cap = max(length(hive.xenos_by_tier[XENO_TIER_THREE]),CEILING((length(hive.xenos_by_tier[XENO_TIER_ZERO])+length(hive.xenos_by_tier[XENO_TIER_ONE])+length(hive.xenos_by_tier[XENO_TIER_TWO]))/3+1,1))
-	var/xeno_tier_two_cap = max(length(hive.xenos_by_tier[XENO_TIER_TWO]),1 + length(hive.xenos_by_tier[XENO_TIER_ZERO]) + length(hive.xenos_by_tier[XENO_TIER_ONE]) - length(hive.xenos_by_tier[XENO_TIER_THREE]))
+	var/mob/living/carbon/xenomorph/queen/hive_queen = hive.living_xeno_queen
+
+	var/queen_text = "None" //Define the Queen
+	if(hive_queen)
+		queen_text = "[hive_queen]"
+
+		if(!hive_queen.client)
+			queen_text += " <i>(SSD)</i>"
 
 	dat += "<b>Current psychic points: [SSpoints.xeno_points_by_hive["[hive.hivenumber]"]]</b><BR>"
 	dat += "<b>Total Living Sisters: [hive.get_total_xeno_number()]</b><BR>"
-	dat += "<b>Tier 3: ([length(hive.xenos_by_tier[XENO_TIER_THREE])]/[xeno_tier_three_cap]) Sisters</b>[tier3counts]<BR>"
-	dat += "<b>Tier 2: ([length(hive.xenos_by_tier[XENO_TIER_TWO])]/[xeno_tier_two_cap]) Sisters</b>[tier2counts]<BR>"
+	dat += "<b>Tier 3: ([length(hive.xenos_by_tier[XENO_TIER_THREE])]/[hive.tier3_xeno_limit]) Sisters</b>[tier3counts]<BR>"
+	dat += "<b>Tier 2: ([length(hive.xenos_by_tier[XENO_TIER_TWO])]/[hive.tier2_xeno_limit]) Sisters</b>[tier2counts]<BR>"
 	dat += "<b>Tier 1: [length(hive.xenos_by_tier[XENO_TIER_ONE])] Sisters</b>[tier1counts]<BR>"
 	dat += "<b>Larvas: [length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/larva])] Sisters<BR>"
+	dat += "<b>Queen: [queen_text]<BR>"
 	dat += "<b>Hivemind: [hivemind_text]<BR>"
 	dat += "<b>Kings: [length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/king])]<BR>"
 	if(hive.hivenumber == XENO_HIVE_NORMAL)

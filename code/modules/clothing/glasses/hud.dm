@@ -92,7 +92,7 @@
 	item_state = "jensenshades"
 	vision_flags = SEE_MOBS
 	toggleable = 0
-	actions_types = list()
+	actions_types = null
 
 /obj/item/clothing/glasses/hud/xenohud
 	name = "XenoMate HUD"

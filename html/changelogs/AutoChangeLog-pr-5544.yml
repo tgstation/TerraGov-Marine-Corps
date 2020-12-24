@@ -1,0 +1,4 @@
+author: "Walarks"
+delete-after: True
+changes: 
+  - bugfix: "fixes #5542 by adding a busy check at able_to_fire proc"

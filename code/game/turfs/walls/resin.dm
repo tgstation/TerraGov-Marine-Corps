@@ -89,6 +89,8 @@
 	"<span class='xenonotice'>We start to tear down \the [src].</span>")
 	if(!do_after(M, 4 SECONDS, TRUE, M, BUSY_ICON_GENERIC))
 		return
+	if(!istype(src)) // Prevent jumping to other turfs if do_after completes with the wall already gone
+		return
 	M.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 	M.visible_message("<span class='xenonotice'>\The [M] tears down \the [src]!</span>", \
 	"<span class='xenonotice'>We tear down \the [src].</span>")
@@ -124,11 +126,10 @@
 	playsound(src, "alien_resin_break", 25)
 
 
-/turf/closed/wall/resin/CanPass(atom/movable/mover, turf/target)
+/turf/closed/wall/resin/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
 		return !opacity
-	return !density
-
 
 /turf/closed/wall/resin/dismantle_wall(devastated = 0, explode = 0)
 	ScrapeAway()
