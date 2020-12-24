@@ -7,7 +7,7 @@
 
 /** Storage modules */
 /obj/item/armor_module/storage
-	icon = 'icons/mob/modular/modular_armor.dmi'
+	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "mod_is_bag"
 
 	/// Internal storage type

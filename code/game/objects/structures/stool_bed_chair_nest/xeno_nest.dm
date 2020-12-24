@@ -32,7 +32,7 @@
 		M.forceMove(loc)
 
 
-/obj/structure/bed/nest/attack_alien(mob/living/carbon/xenomorph/X)
+/obj/structure/bed/nest/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0)
 	if(X.a_intent != INTENT_HARM)
 		return attack_hand(X)
 	return ..()
@@ -144,8 +144,8 @@
 /obj/structure/bed/nest/fire_act()
 	take_damage(50, BURN, "fire")
 
-/obj/structure/bed/nest/attack_alien(mob/living/carbon/xenomorph/M)
-	SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_NEST)
+/obj/structure/bed/nest/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0)
+	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_NEST)
 	return ..()
 
 

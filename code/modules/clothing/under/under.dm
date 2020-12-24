@@ -20,6 +20,7 @@
 	var/displays_id = 1
 	var/rollable_sleeves = FALSE //can we roll the sleeves on this uniform?
 	var/rolled_sleeves = FALSE //are the sleeves currently rolled?
+	blood_sprite_state = "uniformblood"
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/uniform.dmi')
 
 
