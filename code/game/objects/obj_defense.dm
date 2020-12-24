@@ -2,11 +2,11 @@
 	if(QDELETED(src))
 		CRASH("[src] taking damage after deletion")
 
-	if(damage_type != BRUTE || damage_type != BURN) //special human damage should not break objects (OXY, STAMINA and so on).
-		return
-
 	if(effects)
 		play_attack_sound(damage_amount, damage_type, damage_flag)
+
+	if(damage_type != BRUTE || damage_type != BURN) //special human damage should not break objects (OXY, STAMINA and so on).
+		return
 
 	if((resistance_flags & INDESTRUCTIBLE) || obj_integrity <= 0)
 		return
