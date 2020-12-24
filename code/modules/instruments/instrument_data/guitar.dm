@@ -20,7 +20,7 @@
 		"36"='sound/runtime/instruments/synthesis_samples/guitar/crisis_nylon/c2.ogg',
 		"48"='sound/runtime/instruments/synthesis_samples/guitar/crisis_nylon/c3.ogg',
 		"60"='sound/runtime/instruments/synthesis_samples/guitar/crisis_nylon/c4.ogg',
-		"72"='sound/runtime/instruments/synthesis_samples/guitar/crisis_nylon/c5.ogg',¨
+		"72"='sound/runtime/instruments/synthesis_samples/guitar/crisis_nylon/c5.ogg',
 	)
 
 /datum/instrument/guitar/clean_crisis
