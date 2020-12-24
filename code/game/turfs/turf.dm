@@ -639,11 +639,10 @@
 
 
 
-/turf/CanPass(atom/movable/mover, turf/target)
-	if(!target) return 0
-
-	if(istype(mover)) // turf/Enter(...) will perform more advanced checks
-		return !density
+/turf/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
+	if(!target)
+		return FALSE
 
 GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	/turf/open/space,

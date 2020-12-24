@@ -25,7 +25,8 @@
 				return 0
 	return 1
 
-/obj/machinery/line_nexter/CanPass(atom/movable/mover, turf/target)
+/obj/machinery/line_nexter/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(get_dir(loc, target) == dir)
 		return 0
 	else
