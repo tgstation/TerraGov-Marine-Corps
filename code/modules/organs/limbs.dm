@@ -786,6 +786,12 @@ Note that amputating the affected organ does in fact remove the infection from t
 				organ = new /obj/item/limb/head/synth(owner.loc, owner)
 			else
 				organ = new /obj/item/limb/head(owner.loc, owner)
+				var/datum/internal_organ/O
+				O = owner.internal_organs_by_name["brain"] //This removes (and later garbage collects) the organ. No brain means instant death.
+				owner.internal_organs_by_name -= "brain"
+				owner.internal_organs -= O
+				organ.contents += O //stuff it into the head object. Who knows, someone might care in the future.
+				owner.headbitten = TRUE //if the mob doesn't have a head, they can't be headbitten.
 			owner.dropItemToGround(owner.glasses, force = TRUE)
 			owner.dropItemToGround(owner.head, force = TRUE)
 			owner.dropItemToGround(owner.wear_ear, force = TRUE)
