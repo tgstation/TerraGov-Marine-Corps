@@ -7,6 +7,7 @@
 	/// Bitflags used to determine the state of the armor (light on, overlay used, or reinfornced), currently support flags are in [equipment.dm:100]
 	var/flags_armor_features = NONE
 
+
 	/// used for headgear, masks, and glasses, to see how much they protect eyes from bright lights.
 	var/eye_protection = 0
 
@@ -40,6 +41,31 @@
 /obj/item/clothing/proc/update_clothing_icon()
 	return
 
+/obj/item/clothing/under/apply_accessories(image/standing)
+	if(hastie)
+		var/tie_state = hastie.item_state
+		if(!tie_state) 
+			tie_state = hastie.icon_state
+		standing.overlays += image(icon = 'icons/mob/ties.dmi', icon_state = "[tie_state]")
+
+/obj/item/clothing/under/get_worn_icon_state(slot_name, inhands)
+	. = ..()
+	if(rolled_sleeves && !inhands)
+		. += "_d"
+	return
+
+/obj/item/clothing/apply_blood(image/standing)
+	if(blood_overlay && blood_sprite_state)
+		var/image/bloodsies	= image(icon = 'icons/effects/blood.dmi', icon_state = blood_sprite_state)
+		bloodsies.color	= blood_color
+		standing.add_overlay(bloodsies)
+
+/obj/item/clothing/suit/apply_blood(image/standing)
+	if(blood_overlay && blood_sprite_state)
+		blood_sprite_state = "[blood_overlay_type]blood"
+		var/image/bloodsies	= image(icon = 'icons/effects/blood.dmi', icon_state = blood_sprite_state)
+		bloodsies.color = blood_color
+		standing.add_overlay(bloodsies)
 
 ///////////////////////////////////////////////////////////////////////
 // Ears: headsets, earmuffs and tiny objects
@@ -137,6 +163,7 @@
 	var/obj/item/cell/cell = 0
 	var/clipped = 0
 	var/transfer_prints = TRUE
+	blood_sprite_state = "bloodyhands"
 	flags_armor_protection = HANDS
 	flags_equip_slot = ITEM_SLOT_GLOVES
 	attack_verb = list("challenged")
@@ -188,6 +215,7 @@
 	flags_equip_slot = ITEM_SLOT_MASK
 	flags_armor_protection = FACE|EYES
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/masks.dmi')
+	blood_sprite_state = "maskblood"
 	var/anti_hug = 0
 	var/toggleable = FALSE
 	active = TRUE
@@ -219,6 +247,7 @@
 	flags_equip_slot = ITEM_SLOT_FEET
 	permeability_coefficient = 0.50
 	slowdown = SHOES_SLOWDOWN
+	blood_sprite_state = "shoeblood"
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/shoes.dmi')
 
 

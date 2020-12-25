@@ -1,0 +1,4 @@
+author: "Hughgent"
+delete-after: True
+changes: 
+  - bugfix: "ERT shuttles now have a proper 10 second windup before departing."

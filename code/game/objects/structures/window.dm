@@ -69,12 +69,11 @@
 	return FALSE
 
 
-/obj/structure/window/CanPass(atom/movable/mover, turf/target)
+/obj/structure/window/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
 		return TRUE
-	if(is_full_window() || get_dir(loc, target) == dir)
-		return !density
-	else
+	if(!is_full_window() && !(get_dir(loc, target) == dir))
 		return TRUE
 
 /obj/structure/window/CheckExit(atom/movable/mover, turf/target)

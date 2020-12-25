@@ -230,6 +230,7 @@
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 15, "rail_y" = 19, "under_x" = 20, "under_y" = 15, "stock_x" = 20, "stock_y" = 15)
 	flags_item_map_variant = NONE
 	starting_attachment_types = list(/obj/item/attachable/scope/pmc, /obj/item/attachable/sniperbarrel)
+	gun_iff_signal = list(ACCESS_IFF_PMC)
 
 	fire_delay = 1.5 SECONDS
 	accuracy_mult = 1.50

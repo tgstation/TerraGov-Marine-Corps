@@ -115,10 +115,10 @@ obj/structure/bed/Destroy()
 	forceMove(buckled_bodybag.loc)
 	return FALSE
 
-/obj/structure/bed/roller/CanPass(atom/movable/mover, turf/target)
+/obj/structure/bed/roller/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(mover == buckled_bodybag)
 		return TRUE
-	return ..()
 
 /obj/structure/bed/MouseDrop_T(atom/dropping, mob/user)
 	if(accepts_bodybag && !buckled_bodybag && !LAZYLEN(buckled_mobs) && istype(dropping,/obj/structure/closet/bodybag) && ishuman(user))
@@ -192,10 +192,10 @@ obj/structure/bed/Destroy()
 		return TRUE
 
 
-/obj/structure/bed/CanPass(atom/movable/mover, turf/target)
+/obj/structure/bed/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
 		return TRUE
-	. = ..()
 
 /obj/structure/bed/alien
 	icon_state = "abed"
