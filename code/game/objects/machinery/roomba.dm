@@ -29,8 +29,7 @@
 /obj/machinery/roomba/proc/turn_around(datum/target)
 	SIGNAL_HANDLER
 	visible_message("<span class='warning'>The [src] beeps angrily as it is moved out of it's designated area!</span>")
-	var/reversedir = REVERSE_DIR(dir)
-	Move(get_step(src,reversedir), reversedir)
+	step_to(src, get_step(src,REVERSE_DIR(dir)))
 
 /obj/machinery/roomba/process()
 	var/list/dirs = CARDINAL_DIRS - REVERSE_DIR(dir)
