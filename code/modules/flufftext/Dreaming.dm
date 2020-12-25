@@ -23,9 +23,9 @@ mob/living/carbon/proc/dream()
 			sleep(rand(40,70))
 			if(!IsUnconscious())
 				dreaming = 0
-				return 0
+				return
 		dreaming = 0
-		return 1
+		return
 
 mob/living/carbon/proc/handle_dreams()
 	if(client && !dreaming && prob(5))

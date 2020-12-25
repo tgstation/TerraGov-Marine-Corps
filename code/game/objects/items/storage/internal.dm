@@ -66,7 +66,7 @@
 							else
 								user.dropItemToGround(master_item)
 								user.put_in_r_hand(master_item)
-							return 0
+							return
 					else
 						user.dropItemToGround(master_item)
 						user.put_in_r_hand(master_item)
@@ -78,7 +78,7 @@
 							else
 								user.dropItemToGround(master_item)
 								user.put_in_l_hand(master_item)
-							return 0
+							return
 					else
 						user.dropItemToGround(master_item)
 						user.put_in_l_hand(master_item)
