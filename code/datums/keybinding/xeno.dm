@@ -432,7 +432,7 @@
 /datum/keybinding/xeno/grapple_toss
 	name = "grapple_toss"
 	full_name = "Warrior: Grapple Toss"
-	description = "Throw a target you're grabbing up to 5 tiles away. Inflicts a short stun and stagger and slow stacks. Shared cooldown with Fling."
+	description = "Throw a target you're grabbing up to 6 tiles away. Inflicts a short stun and stagger and slow stacks. Shared cooldown with Fling."
 	keybind_signal = COMSIG_XENOABILITY_GRAPPLE_TOSS
 
 /datum/keybinding/xeno/punch

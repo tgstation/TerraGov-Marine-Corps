@@ -211,10 +211,19 @@
 
 	var/atom/movable/thrown_thing
 	var/obj/item/I = get_active_held_item()
+	var/throw_range_modifier = 1 //Any modifiers we might apply to the throw range
 
 	if(!I || (I.flags_item & NODROP)) return
 
 	var/spin_throw = TRUE
+
+	if(mob_size == MOB_SIZE_BIG) //If we're big, we can throw further
+		throw_range_modifier *= 1.5
+
+	if(isxeno(src)) //If we're strong, we can throw further
+		var/mob/living/carbon/xenomorph/X = src
+		if(X.xeno_caste.caste_flags & CASTE_IS_STRONG)
+			throw_range_modifier *= 1.5
 
 	if (istype(I, /obj/item/grab))
 		var/obj/item/grab/G = I
@@ -225,6 +234,10 @@
 				thrown_thing = M
 				var/turf/start_T = get_turf(loc) //Get the start and target tile for the descriptors
 				var/turf/end_T = get_turf(target)
+
+				if(M.mob_size == MOB_SIZE_BIG) //Halve the throw distance if the target is big
+					throw_range_modifier *= 0.5
+
 				if(start_T && end_T)
 					var/start_T_descriptor = "tile at [start_T.x], [start_T.y], [start_T.z] in area [get_area(start_T)]"
 					var/end_T_descriptor = "tile at [end_T.x], [end_T.y], [end_T.z] in area [get_area(end_T)]"
@@ -255,7 +268,7 @@
 			step(src, inertia_dir)
 
 		playsound(src, 'sound/effects/throw.ogg', 30, 1)
-		thrown_thing.throw_at(target, thrown_thing.throw_range, thrown_thing.throw_speed, src, spin_throw)
+		thrown_thing.throw_at(target, FLOOR(thrown_thing.throw_range * throw_range_modifier, 1), thrown_thing.throw_speed, src, spin_throw)
 
 /mob/living/carbon/fire_act(exposed_temperature, exposed_volume)
 	. = ..()
