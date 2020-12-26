@@ -57,10 +57,7 @@
 		setDir(ndir)
 		..(nloc)
 
-		spawn(20)
-			loc = null
-
-
+		addtimer(VARSET_CALLBACK(src, loc, null), 2 SECONDS)
 
 /obj/effect/rune/attunement
 	luminosity = 5
