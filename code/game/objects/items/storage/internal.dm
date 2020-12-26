@@ -57,33 +57,22 @@
 			return 0
 
 		if(!user.incapacitated())
-			switch(over_object.name)
-				if("r_hand")
-					if(master_item.time_to_unequip)
-						spawn(0)
-							if(!do_after(user, master_item.time_to_unequip, TRUE, master_item, BUSY_ICON_FRIENDLY))
-								to_chat(user, "You stop taking off \the [master_item]")
-							else
-								user.dropItemToGround(master_item)
-								user.put_in_r_hand(master_item)
-							return
-					else
-						user.dropItemToGround(master_item)
-						user.put_in_r_hand(master_item)
-				if("l_hand")
-					if(master_item.time_to_unequip)
-						spawn(0)
-							if(!do_after(user, master_item.time_to_unequip, TRUE, master_item, BUSY_ICON_FRIENDLY))
-								to_chat(user, "You stop taking off \the [master_item]")
-							else
-								user.dropItemToGround(master_item)
-								user.put_in_l_hand(master_item)
-							return
-					else
-						user.dropItemToGround(master_item)
-						user.put_in_l_hand(master_item)
+			INVOKE_ASYNC(src, .proc/unequip_check, user, over_object, over_object.name)
 			return 0
 	return 0
+
+/obj/item/storage/internal/proc/unequip_check(mob/user as mob, obj/over_object as obj, hand)
+	if(master_item.time_to_unequip)
+		if(!do_after(user, master_item.time_to_unequip, TRUE, master_item, BUSY_ICON_FRIENDLY))
+			to_chat(user, "You stop taking off \the [master_item]")
+			return
+	user.dropItemToGround(master_item)
+	switch(hand)
+		if(BODY_ZONE_PRECISE_R_HAND)
+			user.put_in_r_hand(master_item)
+		if(BODY_ZONE_PRECISE_L_HAND)
+			user.put_in_l_hand(master_item)
+
 
 //Items that use internal storage have the option of calling this to emulate default storage attack_hand behaviour.
 //Returns 1 if the master item's parent's attack_hand() should be called, 0 otherwise.
