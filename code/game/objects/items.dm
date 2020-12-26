@@ -6,7 +6,7 @@
 
 	var/image/blood_overlay = null //this saves our blood splatter overlay, which will be processed not to go over the edges of the sprite
 	///The iconstate that the items use for blood on blood.dmi when drawn on the mob.
-	var/blood_sprite_state 
+	var/blood_sprite_state
 
 
 	var/item_state = null //if you don't want to use icon_state for onmob inhand/belt/back/ear/suitstorage/glove sprite.
@@ -63,7 +63,7 @@
 
 	var/reach = 1
 
-	
+
 	/* Species-specific sprites, concept stolen from Paradise//vg/.
 	ex:
 	sprite_sheets = list(
@@ -745,7 +745,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	else if(!istype(src, /obj/item/attachable/scope))
 		user.set_interaction(src)
 
-		
+
 /obj/item/proc/zoom_item_turnoff(datum/source, mob/living/carbon/user)
 	SIGNAL_HANDLER
 	zoom(user)
@@ -818,39 +818,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	var/direction = get_dir(user,target)
 
 	if(user.buckled && isobj(user.buckled) && !user.buckled.anchored )
-		spawn(0)
-			var/obj/structure/bed/chair/C = null
-			if(istype(user.buckled, /obj/structure/bed/chair))
-				C = user.buckled
-			var/obj/B = user.buckled
-			var/movementdirection = turn(direction,180)
-			if(C)
-				C.propelled = 4
-			B.Move(get_step(user,movementdirection), movementdirection)
-			sleep(1)
-			B.Move(get_step(user,movementdirection), movementdirection)
-			if(C)
-				C.propelled = 3
-			sleep(1)
-			B.Move(get_step(user,movementdirection), movementdirection)
-			sleep(1)
-			B.Move(get_step(user,movementdirection), movementdirection)
-			if(C)
-				C.propelled = 2
-			sleep(2)
-			B.Move(get_step(user,movementdirection), movementdirection)
-			if(C)
-				C.propelled = 1
-			sleep(2)
-			B.Move(get_step(user,movementdirection), movementdirection)
-			if(C)
-				C.propelled = 0
-			sleep(3)
-			B.Move(get_step(user,movementdirection), movementdirection)
-			sleep(3)
-			B.Move(get_step(user,movementdirection), movementdirection)
-			sleep(3)
-			B.Move(get_step(user,movementdirection), movementdirection)
+		INVOKE_ASYNC(src, .proc/extinguish_wheeeeee, target, user, direction)
 
 	var/turf/T = get_turf(target)
 	var/turf/T1 = get_step(T,turn(direction, 90))
@@ -859,51 +827,88 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	var/list/the_targets = list(T,T1,T2)
 
 	for(var/a=0, a<7, a++)
-		spawn(0)
-			var/obj/effect/particle_effect/water/W = new /obj/effect/particle_effect/water( get_turf(user) )
-			var/turf/my_target = pick(the_targets)
-			var/datum/reagents/R = new/datum/reagents(5)
-			if(!W)
-				return
-			W.reagents = R
-			R.my_atom = W
-			if(!W || !src)
-				return
-			reagents.trans_to(W,1)
-			for(var/b=0, b<7, b++)
-				step_towards(W,my_target)
-				if(!(W?.reagents))
-					return
-				W.reagents.reaction(get_turf(W))
-				for(var/atom/atm in get_turf(W))
-					if(!W)
-						return
-					if(!W.reagents)
-						break
-					W.reagents.reaction(atm)
-					if(istype(atm, /obj/flamer_fire))
-						var/obj/flamer_fire/FF = atm
-						if(FF.firelevel > 20)
-							FF.firelevel -= 20
-							FF.updateicon()
-						else
-							qdel(atm)
-						continue
-					if(isliving(atm)) //For extinguishing mobs on fire
-						var/mob/living/M = atm
-						M.ExtinguishMob()
-						for(var/obj/item/clothing/mask/cigarette/C in M.contents)
-							if(C.item_state == C.icon_on)
-								C.die()
-				if(W.loc == my_target)
-					break
-				sleep(2)
-			qdel(W)
+		INVOKE_ASYNC(src, .proc/extinguish_splash, target, user, the_targets)
 
 	if(isspaceturf(user.loc))
 		user.inertia_dir = get_dir(target, user)
 		step(user, user.inertia_dir)
 
+///This handles the movement of a mob when they use an extinuisher while sitting in a wheeled chair.
+/obj/item/proc/extinguish_wheeeeee(atom/target, mob/user, direction)
+	var/obj/structure/bed/chair/C = null
+	if(istype(user.buckled, /obj/structure/bed/chair))
+		C = user.buckled
+	var/obj/B = user.buckled
+	var/movementdirection = turn(direction,180)
+	if(C)
+		C.propelled = 4
+	B.Move(get_step(user,movementdirection), movementdirection)
+	sleep(1)
+	B.Move(get_step(user,movementdirection), movementdirection)
+	if(C)
+		C.propelled = 3
+	sleep(1)
+	B.Move(get_step(user,movementdirection), movementdirection)
+	sleep(1)
+	B.Move(get_step(user,movementdirection), movementdirection)
+	if(C)
+		C.propelled = 2
+	sleep(2)
+	B.Move(get_step(user,movementdirection), movementdirection)
+	if(C)
+		C.propelled = 1
+	sleep(2)
+	B.Move(get_step(user,movementdirection), movementdirection)
+	if(C)
+		C.propelled = 0
+	sleep(3)
+	B.Move(get_step(user,movementdirection), movementdirection)
+	sleep(3)
+	B.Move(get_step(user,movementdirection), movementdirection)
+	sleep(3)
+	B.Move(get_step(user,movementdirection), movementdirection)
+
+///This handles the creation of water particle effects as well as their effects of reagents and fire.
+/obj/item/proc/extinguish_splash(atom/target, mob/user, the_targets)
+	var/obj/effect/particle_effect/water/W = new /obj/effect/particle_effect/water( get_turf(user) )
+	var/turf/my_target = pick(the_targets)
+	var/datum/reagents/R = new/datum/reagents(5)
+	if(!W)
+		return
+	W.reagents = R
+	R.my_atom = W
+	if(!W || !src)
+		return
+	reagents.trans_to(W,1)
+	for(var/b=0, b<7, b++)
+		step_towards(W,my_target)
+		if(!(W?.reagents))
+			return
+		W.reagents.reaction(get_turf(W))
+		for(var/atom/atm in get_turf(W))
+			if(!W)
+				return
+			if(!W.reagents)
+				break
+			W.reagents.reaction(atm)
+			if(istype(atm, /obj/flamer_fire))
+				var/obj/flamer_fire/FF = atm
+				if(FF.firelevel > 20)
+					FF.firelevel -= 20
+					FF.updateicon()
+				else
+					qdel(atm)
+				continue
+			if(isliving(atm)) //For extinguishing mobs on fire
+				var/mob/living/M = atm
+				M.ExtinguishMob()
+				for(var/obj/item/clothing/mask/cigarette/C in M.contents)
+					if(C.item_state == C.icon_on)
+						C.die()
+		if(W.loc == my_target)
+			break
+		sleep(2)
+	qdel(W)
 
 // Called when a mob tries to use the item as a tool.
 // Handles most checks.
@@ -1003,7 +1008,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	SEND_SIGNAL(src, COMSIG_ITEM_TOGGLE_ACTIVE, active)
 
 ///Generates worn icon for sprites on-mob.
-/obj/item/proc/make_worn_icon(body_type, slot_name, inhands, default_icon, default_layer) 
+/obj/item/proc/make_worn_icon(body_type, slot_name, inhands, default_icon, default_layer)
 	//Get the required information about the base icon
 	var/icon/icon2use = get_worn_icon_file(body_type = body_type, slot_name = slot_name, default_icon = default_icon, inhands = inhands)
 	var/state2use = get_worn_icon_state(slot_name = slot_name, inhands = inhands)
