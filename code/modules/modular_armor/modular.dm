@@ -342,6 +342,7 @@
 
 	/// Reference to the installed module
 	var/obj/item/helmet_module/installed_module
+	var/xmashat_color
 
 	/// How long it takes to attach or detach to this item
 	var/equip_delay = 3 SECONDS
@@ -364,9 +365,18 @@
 	var/new_color = input(user, "Pick a color", "Pick color", "") in list(
 		"black", "snow", "desert", "gray", "brown", "red", "blue", "yellow", "green", "aqua", "purple", "orange"
 	)
+	var/xmashat = input(user, "Do you want a xmas  hat ?", "Pick Xmas hat color", "") in list("none", "red", "green")
 
 	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 		return TRUE
+	
+	switch(xmashat)
+		if("none")
+			xmashat_color = null
+		if("red")
+			xmashat_color = "xmasred"
+		if("green")
+			xmashat_color = "xmasgreen"
 
 	icon_state = "[initial(icon_state)]_[new_color]"
 
@@ -433,6 +443,8 @@
 /obj/item/clothing/head/modular/apply_custom(image/standing)
 	if(installed_module)
 		standing.overlays += image(installed_module.icon, ITEM_STATE_IF_SET(installed_module))
+	if(xmashat_color)
+		standing.overlays += image('icons/mob/modular/modular_helmet.dmi', icon_state = "[xmashat_color]")
 
 
 /obj/item/clothing/head/modular/get_mechanics_info()
