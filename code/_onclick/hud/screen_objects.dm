@@ -729,10 +729,7 @@
 			F.icon_state = "frame"
 			user.client.screen += F
 			flick("[hud_state_empty]_flash", F)
-			spawn(20)
-				user.client.screen -= F
-				qdel(F)
-				overlays += empty
+			addtimer(CALLBACK(src, .proc/update_hud_async, user, F, empty), 2 SECONDS)
 	else
 		warned = FALSE
 		overlays += image('icons/mob/ammoHUD.dmi', src, "[hud_state]")
@@ -754,3 +751,8 @@
 			overlays += image('icons/mob/ammoHUD.dmi', src, "o9")
 			overlays += image('icons/mob/ammoHUD.dmi', src, "t9")
 			overlays += image('icons/mob/ammoHUD.dmi', src, "h9")
+
+/obj/screen/ammo/proc/update_hud_async(mob/living/user, ammo, empty)
+	user.client.screen -= ammo
+	qdel(ammo)
+	overlays += empty
