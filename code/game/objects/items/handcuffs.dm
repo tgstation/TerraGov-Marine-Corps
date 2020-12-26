@@ -135,7 +135,9 @@
 				to_chat(user, "<span class='warning'>\The [H] needs at least two wrists before you can cuff them together!</span>")
 				return
 
-		spawn(30)
-			if(!C)	return
-			if(p_loc == user.loc && p_loc_m == C.loc)
-				C.update_handcuffed(new /obj/item/restraints/handcuffs(C))
+		addtimer(CALLBACK(src, .proc/make_handcuffed, C, user, p_loc, p_loc_m) 3 SECONDS)
+
+/obj/item/restraints/handcuffs/cyborg/proc/make_handcuffed(mob/living/carbon/C as mob, mob/user as mob, p_loc, p_loc_m)
+	if(!C)	return
+	if(p_loc == user.loc && p_loc_m == C.loc)
+		C.update_handcuffed(new /obj/item/restraints/handcuffs(C))
