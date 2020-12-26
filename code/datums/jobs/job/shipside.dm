@@ -559,6 +559,9 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 	l_store = /obj/item/storage/pouch/autoinjector/advanced/full
 	back = /obj/item/storage/backpack/marine/satchel
 
+/datum/outfit/job/medical/professor/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/tweezers, SLOT_IN_BACKPACK)
 
 //Medical Officer
 /datum/job/terragov/medical/medicalofficer
@@ -602,6 +605,10 @@ You are also an expert when it comes to medication and treatment. If you do not 
 	r_store = /obj/item/storage/pouch/medkit/full
 	l_store = /obj/item/storage/pouch/autoinjector/advanced/full
 	back = /obj/item/storage/backpack/marine/satchel
+
+/datum/outfit/job/medical/medicalofficer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/tweezers, SLOT_IN_BACKPACK)
 
 
 //Researcher

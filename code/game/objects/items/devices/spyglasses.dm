@@ -37,7 +37,7 @@
 /obj/item/clothing/glasses/regular/spy/Destroy()
 	if(linked_bug)
 		linked_bug.linked_glasses = null
-	. = ..()
+	return ..()
 
 
 /obj/item/spy_bug
