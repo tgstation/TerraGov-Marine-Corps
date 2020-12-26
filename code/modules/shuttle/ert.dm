@@ -86,7 +86,7 @@
 
 
 /obj/machinery/computer/shuttle/ert
-	interaction_flags = INTERACT_MACHINE_NOSILICON //No AIs allowed
+	interaction_flags = INTERACT_OBJ_NANO //No AIs allowed
 
 /obj/machinery/computer/shuttle/ert/valid_destinations()
 	var/obj/docking_port/mobile/ert/M = SSshuttle.getShuttle(shuttleId)
@@ -122,6 +122,7 @@
 		return
 
 	if(href_list["depart"])
+		log_game("[key_name(usr)] has departed an ERT shuttle")
 		var/obj/docking_port/mobile/ert/M = SSshuttle.getShuttle(shuttleId)
 
 		if(M.departing)
@@ -131,16 +132,16 @@
 
 		log_game("[key_name(usr)] has departed an ERT shuttle")
 		M.on_ignition()
-		M.setTimer(M.ignitionTime)
 		addtimer(VARSET_CALLBACK(M, departing, TRUE), M.ignitionTime)
 
 	updateUsrDialog()
 
 
-/obj/docking_port/mobile/ert/proc/do_launch()
-	if(!departing)
+/obj/docking_port/mobile/ert/check()
+	if(departing)
+		intoTheSunset()
 		return
-	intoTheSunset()
+	return ..()
 
 
 /obj/machinery/computer/shuttle/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)
