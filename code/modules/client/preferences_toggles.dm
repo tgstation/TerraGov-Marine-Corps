@@ -17,6 +17,18 @@
 
 	to_chat(src, "<span class='notice'>As a ghost, you will now [(prefs.toggles_chat & CHAT_GHOSTEARS) ? "see all speech in the world" : "only see speech from nearby mobs"].</span>")
 
+/client/verb/middle_mousetoggle()
+	set name = "Toggle Middle/Shift Clicking"
+	set desc = "Toggles between using middle mouse click and shift click for selected ability use."
+	set category = "Preferences"
+
+	prefs.middleshift_button = !prefs.middleshift_button
+	if(!prefs.middleshift_button)
+		to_chat(src, "<span class='notice'>The selected special ability will now be activated with shift clicking.</span>")
+	else
+		to_chat(src, "<span class='notice'>The selected special ability will now be activated with middle mouse clicking.</span>")
+	prefs.save_preferences()
+
 
 /client/verb/toggle_ghost_sight()
 	set category = "Preferences"

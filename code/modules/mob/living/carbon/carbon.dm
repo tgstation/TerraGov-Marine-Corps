@@ -472,17 +472,6 @@
 	playsound_local(get_turf(src), 'sound/effects/xeno_newlarva.ogg')
 
 
-/mob/living/carbon/verb/middle_mousetoggle()
-	set name = "Toggle Middle/Shift Clicking"
-	set desc = "Toggles between using middle mouse click and shift click for selected ability use."
-	set category = "IC"
-
-	middle_mouse_toggle = !middle_mouse_toggle
-	if(!middle_mouse_toggle)
-		to_chat(src, "<span class='notice'>The selected special ability will now be activated with shift clicking.</span>")
-	else
-		to_chat(src, "<span class='notice'>The selected special ability will now be activated with middle mouse clicking.</span>")
-
 /mob/living/carbon/set_stat(new_stat)
 	. = ..()
 	if(isnull(.))
