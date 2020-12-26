@@ -217,6 +217,7 @@
 	return FALSE
 
 /mob/living/proc/restore_all_organs()
+	headbitten = FALSE
 	return
 
 

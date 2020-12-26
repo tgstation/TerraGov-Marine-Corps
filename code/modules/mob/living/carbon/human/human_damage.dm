@@ -382,6 +382,7 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 This function restores all limbs.
 */
 /mob/living/carbon/human/restore_all_organs(updating_health = FALSE)
+	. = ..()
 	for(var/datum/limb/E in limbs)
 		E.rejuvenate()
 
