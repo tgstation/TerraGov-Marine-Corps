@@ -46,6 +46,11 @@ OPERATIONS
 	contains = list(/obj/item/fulton_extraction_pack)
 	cost = 5
 
+/datum/supply_packs/operations/fulton_recovery_beacon
+	name = "fulton recovery beacon"
+	contains = list(/obj/structure/fulton_extraction_point)
+	cost = 5
+
 /datum/supply_packs/operations/cas_flares
 	name = "CAS flare pack"
 	contains = list(/obj/item/storage/box/m94/cas)
@@ -1120,7 +1125,7 @@ ENGINEERING
 
 /datum/supply_packs/engineering/watertank
 	name = "Water Tank"
-	contains = list(/obj/structure/reagent_dispensers)
+	contains = list(/obj/structure/reagent_dispensers/watertank)
 	cost = 5
 	containertype = null
 
@@ -1350,7 +1355,7 @@ Imports
 	contains = list(/obj/item/weapon/gun/rifle/famas)
 	cost = 15
 
-/datum/supply_packs/imports/m16/ammo
+/datum/supply_packs/imports/famas/ammo
 	name = "FAMAS Assault Rifle Ammo"
 	contains = list(/obj/item/ammo_magazine/rifle/famas)
 	cost = 5

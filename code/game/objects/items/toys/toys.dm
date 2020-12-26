@@ -524,7 +524,8 @@
 		visible_message("<span class='notice'>[user] dunks [I] into the [src]!</span>")
 
 
-/obj/structure/hoop/CanPass(atom/movable/mover, turf/target)
+/obj/structure/hoop/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(istype(mover,/obj/item) && mover.throwing)
 		var/obj/item/I = mover
 		if(prob(50))
