@@ -364,14 +364,15 @@
 		set_throwing(FALSE)
 		var/turf/T = hit_atom
 		if(T.density)
-			spawn(2)
-				step(src, turn(dir, 180))
+			addtimer(CALLBACK(src, .proc/throw_impact_async), 2)
 			if(isliving(src))
 				var/mob/living/M = src
 				M.turf_collision(T, speed)
 
 	SEND_SIGNAL(src, COMSIG_MOVABLE_IMPACT, hit_atom)
 
+/atom/movable/proc/throw_impact_async()
+	step(src, turn(dir, 180))
 
 //decided whether a movable atom being thrown can pass through the turf it is in.
 /atom/movable/proc/hit_check(speed)
