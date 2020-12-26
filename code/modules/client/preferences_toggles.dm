@@ -19,14 +19,13 @@
 
 /client/verb/middle_mousetoggle()
 	set name = "Toggle Middle/Shift Clicking"
-	set desc = "Toggles between using middle mouse click and shift click for selected ability use."
 	set category = "Preferences"
 
-	prefs.middleshift_button = !prefs.middleshift_button
-	if(!prefs.middleshift_button)
-		to_chat(src, "<span class='notice'>The selected special ability will now be activated with shift clicking.</span>")
-	else
-		to_chat(src, "<span class='notice'>The selected special ability will now be activated with middle mouse clicking.</span>")
+	prefs.toggles_gameplay ^= MIDDLESHIFTCLICKING
+	prefs.save_preferences()
+
+	to_chat(src, "<span class='notice'>The selected special ability will now be activated with [(prefs.toggles_gameplay & MIDDLESHIFTCLICKING) ? "middle button" : "shift"] clicking.</span>")
+
 	prefs.save_preferences()
 
 
