@@ -19,7 +19,7 @@ mob/living/carbon/proc/dream()
 
 	INVOKE_ASYNC(src, .proc/dream_async)
 
-
+///handles the display of dream text to the player.
 mob/living/carbon/proc/dream_async()
 	for(var/i = rand(1,4),i > 0, i--)
 		to_chat(src, "<span class='notice'><i>... [pick(POSSIBLE_DREAM_TOPICS)] ...</i></span>")

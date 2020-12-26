@@ -371,6 +371,7 @@
 
 	SEND_SIGNAL(src, COMSIG_MOVABLE_IMPACT, hit_atom)
 
+///handles a step of a thing hitting a wall like other thing, the bounce back.
 /atom/movable/proc/throw_impact_async()
 	step(src, turn(dir, 180))
 

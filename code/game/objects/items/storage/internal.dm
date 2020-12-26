@@ -61,6 +61,7 @@
 			return 0
 	return 0
 
+///handles the actual movement of an item when it starts to be unequipped.
 /obj/item/storage/internal/proc/unequip_check(mob/user as mob, obj/over_object as obj, hand)
 	if(master_item.time_to_unequip)
 		if(!do_after(user, master_item.time_to_unequip, TRUE, master_item, BUSY_ICON_FRIENDLY))
