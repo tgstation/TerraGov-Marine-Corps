@@ -254,7 +254,7 @@
 /datum/action/xeno_action/activable/toss/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
 	var/atom/movable/target = owner.pulling
-	var/fling_distance = 5
+	var/fling_distance = 6
 	var/stagger_slow_stacks = 3
 	var/stun_duration = 1 SECONDS
 	var/big_mob_message
