@@ -155,11 +155,7 @@ obj/item/limb/New(loc, mob/living/carbon/human/H)
 				log_combat(user, brainmob, "debrained", I, "(INTENT: [uppertext(user.a_intent)])")
 
 				//TODO: ORGAN REMOVAL UPDATE.
-				var/obj/item/organ/brain/B
-				if(contents)
-					B = contents[1] //on droplimb() a brain gets put into the head contents
-				else
-					B = new brain_item_type(loc)
+				var/obj/item/organ/brain/B = new brain_item_type(loc)
 				if(brainmob.stat != DEAD)
 					brainmob.death() //brain mob doesn't survive outside a head
 				B.transfer_identity(brainmob)
