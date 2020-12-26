@@ -17,15 +17,18 @@
 mob/living/carbon/proc/dream()
 	dreaming = 1
 
-	spawn(0)
-		for(var/i = rand(1,4),i > 0, i--)
-			to_chat(src, "<span class='notice'><i>... [pick(POSSIBLE_DREAM_TOPICS)] ...</i></span>")
-			sleep(rand(40,70))
-			if(!IsUnconscious())
-				dreaming = 0
-				return
-		dreaming = 0
-		return
+	INVOKE_ASYNC(src, .proc/dream_async)
+
+
+mob/living/carbon/proc/dream_async()
+	for(var/i = rand(1,4),i > 0, i--)
+		to_chat(src, "<span class='notice'><i>... [pick(POSSIBLE_DREAM_TOPICS)] ...</i></span>")
+		sleep(rand(40,70))
+		if(!IsUnconscious())
+			dreaming = 0
+			return
+	dreaming = 0
+	return
 
 mob/living/carbon/proc/handle_dreams()
 	if(client && !dreaming && prob(5))
