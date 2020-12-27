@@ -42,7 +42,7 @@
 	var/obj/docking_port/stationary/S = pick(get_destinations())
 	if(!S)
 		return FALSE
-	SSshuttle.moveShuttle(id, S.id, 1)
+	SSshuttle.moveShuttle(id, S.id, TRUE)
 	return TRUE
 
 /obj/docking_port/mobile/ert/proc/open_shutters()
@@ -126,10 +126,11 @@
 		return
 
 	if(href_list["depart"])
+		log_game("[key_name(usr)] has departed an ERT shuttle")
 		var/obj/docking_port/mobile/ert/M = SSshuttle.getShuttle(shuttleId)
 		M.on_ignition()
-		M.departing = TRUE
 		M.setTimer(M.ignitionTime)
+		addtimer(VARSET_CALLBACK(M, departing, TRUE), M.ignitionTime)
 
 	updateUsrDialog()
 

@@ -67,7 +67,7 @@
 
 /obj/machinery/autodoc/Destroy()
 	forceeject = TRUE
-	do_eject()
+	INVOKE_ASYNC(src, .proc/do_eject)
 	if(connected)
 		connected.connected = null
 		connected = null
@@ -900,10 +900,6 @@
 	med_scan(H, null, implants, TRUE)
 	start_processing()
 
-/obj/machinery/autodoc/Destroy()
-	forceeject = TRUE
-	do_eject()
-	return ..()
 
 /////////////////////////////////////////////////////////////
 

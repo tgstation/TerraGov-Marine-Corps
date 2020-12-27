@@ -44,7 +44,7 @@
 /area/bigredv2/caves
 	name = "Unknown Area"
 	icon_state = "bluenew"
-	ceiling = CEILING_UNDERGROUND
+	ceiling = CEILING_DEEP_UNDERGROUND
 	outside = FALSE
 	ambience = list('sound/ambience/ambicave.ogg', 'sound/ambience/ambilava1.ogg', 'sound/ambience/ambilava2.ogg', 'sound/ambience/ambilava3.ogg')
 
@@ -88,7 +88,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside
 	name = "Nanotrasen Research Lab"
 	icon_state = "engine"
-	ceiling = CEILING_UNDERGROUND_METAL
+	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 	outside = FALSE
 
 /area/bigredv2/outside/cargo
@@ -206,7 +206,7 @@
 /area/bigredv2/caves/lambda_lab
 	name = "Lambda Lab"
 	icon_state = "party"
-	ceiling = CEILING_UNDERGROUND_METAL
+	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 	outside = FALSE
 
 /area/bigredv2/outside/general_offices

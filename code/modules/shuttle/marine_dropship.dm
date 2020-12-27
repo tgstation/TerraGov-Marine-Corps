@@ -135,8 +135,6 @@
 	var/obj/docking_port/stationary/hijack_request
 
 	var/list/equipments = list()
-	var/list/installed_equipment = list()
-	var/list/selected_equipment = list()
 
 	var/hijack_state = HIJACK_STATE_NORMAL
 
@@ -198,20 +196,11 @@
 	if(force)
 		SSshuttle.dropships -= src
 
-/obj/docking_port/mobile/marine_dropship/on_ignition()
-	playsound(return_center_turf(), 'sound/effects/engine_startup.ogg', 60, 0)
-
-/obj/docking_port/mobile/marine_dropship/on_prearrival()
-	playsound(return_center_turf(), 'sound/effects/engine_landing.ogg', 60, 0)
-	if(destination)
-		playsound(destination.return_center_turf(), 'sound/effects/engine_landing.ogg', 60, 0)
-
-
 /obj/docking_port/mobile/marine_dropship/initiate_docking(obj/docking_port/stationary/new_dock, movement_direction, force=FALSE)
 	if(crashing)
 		force = TRUE
 
-	. = ..()
+	return ..()
 
 /obj/docking_port/mobile/marine_dropship/one
 	id = "alamo"
@@ -534,14 +523,14 @@
 		.["lockdown"] = 1
 
 	var/list/options = valid_destinations()
-	var/list/valid_destionations = list()
+	var/list/valid_destinations = list()
 	for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
 		if(!options.Find(S.id))
 			continue
 		if(!shuttle.check_dock(S, silent=TRUE))
 			continue
-		valid_destionations += list(list("name" = S.name, "id" = S.id))
-	.["destinations"] = valid_destionations
+		valid_destinations += list(list("name" = S.name, "id" = S.id))
+	.["destinations"] = valid_destinations
 
 /obj/machinery/computer/shuttle/marine_dropship/ui_act(action, params)
 	if(..())
@@ -627,9 +616,10 @@
 
 /obj/machinery/computer/shuttle/marine_dropship/proc/do_hijack(obj/docking_port/mobile/marine_dropship/crashing_dropship, obj/docking_port/stationary/marine_dropship/crash_target/crash_target, mob/living/carbon/xenomorph/user)
 	crashing_dropship.set_hijack_state(HIJACK_STATE_CRASHING)
-	crashing_dropship.callTime = 2 MINUTES
+	crashing_dropship.callTime = 120 * (GLOB.current_orbit/3) SECONDS
 	crashing_dropship.crashing = TRUE
 	crashing_dropship.unlock_all()
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_DROPSHIP_HIJACKED)
 	priority_announce("Unscheduled dropship departure detected from operational area. Hijack likely. Shutting down autopilot.", "Dropship Alert", sound = 'sound/AI/hijack.ogg')
 	to_chat(user, "<span class='danger'>A loud alarm erupts from [src]! The fleshy hosts must know that you can access it!</span>")
 	user.hive.on_shuttle_hijack(crashing_dropship)

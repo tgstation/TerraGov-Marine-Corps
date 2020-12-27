@@ -21,6 +21,7 @@
 			O.hide(FALSE)
 
 /turf/open/space/Initialize(mapload, ...)
+	SHOULD_CALL_PARENT(FALSE) //prevent laggies
 	if(flags_atom & INITIALIZED)
 		stack_trace("Warning: [src]([type]) initialized multiple times!")
 	ENABLE_BITFIELD(flags_atom, INITIALIZED)
@@ -32,12 +33,12 @@
 	if(!IS_DYNAMIC_LIGHTING(src) && IS_DYNAMIC_LIGHTING(A))
 		add_overlay(/obj/effect/fullbright)
 
-	if(light_power && light_range)
+	if(light_system == STATIC_LIGHT && light_power && light_range)
 		update_light()
 
 	if(opacity)
-		has_opaque_atom = TRUE
-	
+		directional_opacity = ALL_CARDINALS
+
 	update_icon()
 
 	return INITIALIZE_HINT_NORMAL

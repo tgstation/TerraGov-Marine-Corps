@@ -87,8 +87,6 @@
 			return
 		else
 			wielded_item.unwield(src) //Get rid of it.
-	if(wielded_item && wielded_item.zoom) //Adding this here while we're at it
-		wielded_item.zoom(src)
 	hand = !hand
 	SEND_SIGNAL(src, COMSIG_CARBON_SWAPPED_HANDS)
 	if(hud_used.l_hand_hud_object && hud_used.r_hand_hud_object)
@@ -452,8 +450,8 @@
 	. = ..()
 	if(!.)
 		return
-	log_admin("[key_name(src)] (Job: [job.title]) has been away for 15 minutes.")
-	message_admins("[ADMIN_TPMONTY(src)] (Job: [job.title]) has been away for 15 minutes.")
+	log_admin("[key_name(src)] (Job: [(job) ? job.title : "Unassigned"]) has been away for 15 minutes.")
+	message_admins("[ADMIN_TPMONTY(src)] (Job: [(job) ? job.title : "Unassigned"]) has been away for 15 minutes.")
 
 /mob/living/carbon/xenomorph/on_sdd_grace_period_end()
 	. = ..()

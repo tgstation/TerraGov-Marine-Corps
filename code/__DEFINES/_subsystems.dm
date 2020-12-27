@@ -1,6 +1,6 @@
 //Update this whenever the db schema changes
 //make sure you add an update to the schema_version stable in the db changelog
-#define DB_MAJOR_VERSION 1
+#define DB_MAJOR_VERSION 2
 #define DB_MINOR_VERSION 0
 
 //Timing subsystem
@@ -136,3 +136,12 @@
 #define SSEXPLOSIONS_MOVABLES 1
 #define SSEXPLOSIONS_TURFS 2
 #define SSEXPLOSIONS_THROWS 3
+
+/**
+	Create a new timer and add it to the queue.
+	* Arguments:
+	* * callback the callback to call on timer finish
+	* * wait deciseconds to run the timer for
+	* * flags flags for this timer, see: code\__DEFINES\subsystems.dm
+*/
+#define addtimer(args...) _addtimer(args, file = __FILE__, line = __LINE__)

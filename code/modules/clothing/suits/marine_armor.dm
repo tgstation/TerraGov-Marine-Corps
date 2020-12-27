@@ -7,7 +7,10 @@
 	icon = 'icons/obj/clothing/cm_suits.dmi'
 	icon_state = "3"
 	item_state = "armor"
-	sprite_sheet_id = 1
+	item_icons = list(
+		slot_wear_suit_str = 'icons/mob/suit_1.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi')
 	flags_atom = CONDUCT
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
 	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
@@ -19,14 +22,16 @@
 	siemens_coefficient = 0.7
 	permeability_coefficient = 0.8
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
-	allowed = list(/obj/item/weapon/gun/,
+	allowed = list(
+		/obj/item/weapon/gun,
 		/obj/item/tank/emergency_oxygen,
 		/obj/item/storage/bible,
 		/obj/item/storage/belt/sparepouch,
 		/obj/item/storage/large_holster/machete,
 		/obj/item/weapon/claymore,
 		/obj/item/storage/belt/gun,
-		/obj/item/storage/belt/knifepouch)
+		/obj/item/storage/belt/knifepouch,
+	)
 	var/locate_cooldown = 0 //Cooldown for SL locator
 	var/list/armor_overlays
 	actions_types = list(/datum/action/item_action/toggle)
@@ -43,7 +48,7 @@
 		/obj/item/ammo_magazine/rifle,
 		/obj/item/ammo_magazine/smg,
 		/obj/item/ammo_magazine/sniper,
-		/obj/item/cell/lasgun
+		/obj/item/cell/lasgun,
 	)
 	max_storage_space = 6
 
@@ -64,6 +69,14 @@
 	else
 		armor_overlays["lamp"] = null
 	user?.update_inv_wear_suit()
+
+/obj/item/clothing/suit/storage/marine/apply_custom(image/standing)
+	var/image/I
+	for(var/i in armor_overlays)
+		I = armor_overlays[i]
+		if(I)
+			I = image('icons/mob/suit_1.dmi',src,I.icon_state)
+			standing.overlays += I
 
 
 /obj/item/clothing/suit/storage/marine/Destroy()
@@ -105,13 +118,13 @@
 	icon_state = "2"
 	soft_armor = list("melee" = 45, "bullet" = 55, "laser" = 55, "energy" = 20, "bomb" = 45, "bio" = 30, "rad" = 10, "fire" = 25, "acid" = 35)
 	slowdown = SLOWDOWN_ARMOR_VERY_LIGHT
-	light_strength = 8 //because it's LIGHT armor, get it?
+	light_range = 8 //because it's LIGHT armor, get it?
 
 /obj/item/clothing/suit/storage/marine/harness
 	name = "\improper M3 pattern marine harness"
-	desc = "A standard Marine M3 Pattern Harness. No encumbrance and almost no protection."
+	desc = "A standard Marine M3 Pattern Harness. No encumbrance and no protection."
 	icon_state = "10"
-	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
+	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 	slowdown = 0
 	flags_atom = NONE
 
@@ -163,7 +176,7 @@
 	icon_state = "7"
 	soft_armor = list("melee" = 45, "bullet" = 55, "laser" = 55, "energy" = 40, "bomb" = 40, "bio" = 40, "rad" = 15, "fire" = 40, "acid" = 45)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
-	light_strength = 8
+	light_range = 8
 	pockets = /obj/item/storage/internal/suit/leader
 
 /obj/item/storage/internal/suit/leader
@@ -178,10 +191,11 @@
 	soft_armor = list("melee" = 45, "bullet" = 55, "laser" = 55, "energy" = 20, "bomb" = 25, "bio" = 40, "rad" = 10, "fire" = 20, "acid" = 45)
 	slowdown = 0.4
 	flags_item_map_variant = NONE
-	allowed = list(/obj/item/weapon/gun,
+	allowed = list(
+		/obj/item/weapon/gun,
 		/obj/item/tank/emergency_oxygen,
 		/obj/item/flashlight,
-		/obj/item/ammo_magazine/,
+		/obj/item/ammo_magazine,
 		/obj/item/storage/fancy/cigarettes,
 		/obj/item/tool/lighter,
 		/obj/item/weapon/baton,
@@ -193,7 +207,8 @@
 		/obj/item/storage/belt/sparepouch,
 		/obj/item/hailer,
 		/obj/item/storage/large_holster/machete,
-		/obj/item/storage/belt/gun)
+		/obj/item/storage/belt/gun,
+	)
 
 /obj/item/clothing/suit/storage/marine/MP/WO
 	icon_state = "warrant_officer"
@@ -216,21 +231,22 @@
 	name = "M26 combat harness"
 	desc = "A heavy protective vest designed to be worn with the T26 smart machinegun system. \nIt has specially designed straps and reinforcement to carry the smart machinegun drums inside of it."
 	icon_state = "8"
-	item_state = "armor"
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
 	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
 	flags_heat_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
 	soft_armor = list("melee" = 45, "bullet" = 65, "laser" = 65, "energy" = 35, "bomb" = 35, "bio" = 30, "rad" = 10, "fire" = 35, "acid" = 45)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
-	allowed = list(/obj/item/tank/emergency_oxygen,
-					/obj/item/flashlight,
-					/obj/item/ammo_magazine,
-					/obj/item/explosive/mine,
-					/obj/item/weapon/combat_knife,
-					/obj/item/attachable/bayonetknife,
-					/obj/item/weapon/gun/smartgun,
-					/obj/item/weapon/gun/rifle/standard_smartmachinegun,
-					/obj/item/storage/belt/sparepouch)
+	allowed = list(
+		/obj/item/tank/emergency_oxygen,
+		/obj/item/flashlight,
+		/obj/item/ammo_magazine,
+		/obj/item/explosive/mine,
+		/obj/item/weapon/combat_knife,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/weapon/gun/smartgun,
+		/obj/item/weapon/gun/rifle/standard_smartmachinegun,
+		/obj/item/storage/belt/sparepouch,
+	)
 	pockets = /obj/item/storage/internal/suit/marine/smartgunner
 
 /obj/item/storage/internal/suit/marine/smartgunner
@@ -239,7 +255,7 @@
 		/obj/item/ammo_magazine/standard_smartmachinegun,
 		/obj/item/ammo_magazine/smg,
 		/obj/item/ammo_magazine/sniper,
-		/obj/item/cell/lasgun
+		/obj/item/cell/lasgun,
 	)
 	max_storage_space = 6
 
@@ -253,10 +269,9 @@
 	name = "\improper PAS-11 pattern armored vest"
 	desc = "A somewhat outdated but robust armored vest, still in use despite the rise of exoskeleton armor due to ease of use and manufacturing. Tougher than it looks. Use it to toggle the built-in flashlight."
 	icon_state = "3"
-	item_state = "armor"
 	soft_armor = list("melee" = 40, "bullet" = 60, "laser" = 60, "energy" = 45, "bomb" = 45, "bio" = 45, "rad" = 45, "fire" = 45, "acid" = 50)
 	slowdown = 0.5 //a bit less
-	light_strength = 5 //Same as Jaeger Frame
+	light_range = 6
 
 
 //===========================SPECIALIST================================
@@ -338,14 +353,15 @@
 
 /obj/item/clothing/suit/storage/marine/veteran/PMC
 	name = "\improper M4 pattern PMC armor"
-	desc = "A modification of the standard Armat Systems M3 armor. Designed for high-profile security operators and corporate mercenaries in mind."
+	desc = "A common armor vest that is designed for high-profile security operators and corporate mercenaries in mind."
 	icon_state = "pmc_armor"
 	soft_armor = list("melee" = 45, "bullet" = 60, "laser" = 60, "energy" = 38, "bomb" = 40, "bio" = 15, "rad" = 15, "fire" = 38, "acid" = 45)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
-	allowed = list(/obj/item/weapon/gun,
+	allowed = list(
+		/obj/item/weapon/gun,
 		/obj/item/tank/emergency_oxygen,
 		/obj/item/flashlight,
-		/obj/item/ammo_magazine/,
+		/obj/item/ammo_magazine,
 		/obj/item/weapon/baton,
 		/obj/item/restraints/handcuffs,
 		/obj/item/storage/fancy/cigarettes,
@@ -353,13 +369,14 @@
 		/obj/item/explosive/grenade,
 		/obj/item/storage/bible,
 		/obj/item/weapon/claymore/mercsword/machete,
-		/obj/item/weapon/combat_knife)
+		/obj/item/weapon/combat_knife,
+	)
 	flags_item_map_variant = NONE
 
 
 /obj/item/clothing/suit/storage/marine/veteran/PMC/leader
 	name = "\improper M4 pattern PMC leader armor"
-	desc = "A modification of the standard Armat Systems M3 armor. Designed for high-profile security operators and corporate mercenaries in mind. This particular suit looks like it belongs to a high-ranking officer."
+	desc = "A modification of the M4 body armor, it is designed for high-profile security operators and corporate mercenaries in mind. This particular suit looks like it belongs to a high-ranking officer."
 	icon_state = "officer_armor"
 	soft_armor = list("melee" = 50, "bullet" = 65, "laser" = 65, "energy" = 65, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 45)
 
@@ -373,10 +390,11 @@
 
 /obj/item/clothing/suit/storage/marine/smartgunner/veteran/PMC
 	name = "\improper PMC gunner armor"
-	desc = "A modification of the standard Armat Systems M3 armor. Hooked up with harnesses and straps allowing the user to carry an M56 Smartgun."
-	icon_state = "heavy_armor"
+	desc = "A modification of the standard M4 body armor. Hooked up with harnesses and straps allowing the user to carry a smartgun."
+	icon_state = "pmc_heavyarmor"
 	slowdown = SLOWDOWN_ARMOR_HEAVY
 	soft_armor = list("melee" = 55, "bullet" = 70, "laser" = 70, "energy" = 70, "bomb" = 70, "bio" = 30, "rad" = 20, "fire" = 65, "acid" = 65)
+	flags_item_map_variant = NONE
 
 /obj/item/clothing/suit/storage/marine/veteran/PMC/commando
 	name = "\improper PMC commando armor"
@@ -425,7 +443,7 @@
 	icon_state = "m_guardSLarmor"
 	item_state = "m_guardSLarmor"
 	soft_armor = list("melee" = 85, "bullet" = 85, "laser" = 85, "energy" = 85, "bomb" = 85, "bio" = 25, "rad" = 25, "fire" = 85, "acid" = 85)
-	light_strength = 6 // better light
+	light_range = 6 // better light
 	pockets = /obj/item/storage/internal/suit/imperial
 
 /obj/item/storage/internal/suit/imperial
@@ -452,7 +470,7 @@
 	desc = "A power armour that was once broken, is functional once again. However this version isn't as powerful as the real power armour."
 	//icon_state
 	soft_armor = list("melee" = 75, "bullet" = 60, "laser" = 55, "energy" = 40, "bomb" = 45, "bio" = 15, "rad" = 15, "fire" = 40, "acid" = 40)
-	light_strength = 6
+	light_range = 6
 	pockets = /obj/item/storage/internal/suit/imperial
 
 /obj/item/clothing/suit/storage/marine/imperial/power/astartes
@@ -475,7 +493,10 @@
 
 /obj/item/clothing/suit/storage/faction
 	icon = 'icons/obj/clothing/cm_suits.dmi'
-	sprite_sheet_id = 1
+	item_icons = list(
+		slot_wear_suit_str = 'icons/mob/suit_1.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi')
 	flags_atom = CONDUCT
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
@@ -486,7 +507,8 @@
 	soft_armor = list("melee" = 50, "bullet" = 40, "laser" = 35, "energy" = 20, "bomb" = 25, "bio" = 10, "rad" = 10, "fire" = 20, "acid" = 20)
 	siemens_coefficient = 0.7
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
-	allowed = list(/obj/item/weapon/gun,
+	allowed = list(
+		/obj/item/weapon/gun,
 		/obj/item/tank/emergency_oxygen,
 		/obj/item/flashlight,
 		/obj/item/ammo_magazine,
@@ -495,7 +517,8 @@
 		/obj/item/weapon/combat_knife,
 		/obj/item/attachable/bayonetknife,
 		/obj/item/storage/belt/sparepouch,
-		/obj/item/storage/large_holster/machete)
+		/obj/item/storage/large_holster/machete,
+	)
 	flags_armor_features = ARMOR_LAMP_OVERLAY
 	flags_item = SYNTH_RESTRICTED
 	var/locate_cooldown = 0 //Cooldown for SL locator
@@ -588,14 +611,18 @@
 	desc = "The hauberk of a colonist militia member, created from boiled leather and some modern armored plates. While primitive compared to most modern suits of armor, it gives the wearer almost perfect mobility, which suits the needs of the local colonists. "
 	icon = 'icons/obj/clothing/cm_suits.dmi'
 	icon_state = "rebel_armor"
-	sprite_sheet_id = 1
+	item_icons = list(
+		slot_wear_suit_str = 'icons/mob/suit_1.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi')
 	slowdown = SLOWDOWN_ARMOR_VERY_LIGHT
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 	flags_heat_protection =CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 	flags_item = SYNTH_RESTRICTED
 	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 30, "bomb" = 60, "bio" = 30, "rad" = 30, "fire" = 30, "acid" = 30)
-	allowed = list(/obj/item/weapon/gun,
+	allowed = list(
+		/obj/item/weapon/gun,
 		/obj/item/tank/emergency_oxygen,
 		/obj/item/flashlight,
 		/obj/item/ammo_magazine,
@@ -605,7 +632,8 @@
 		/obj/item/attachable/bayonetknife,
 		/obj/item/storage/belt/sparepouch,
 		/obj/item/storage/large_holster/machete,
-		/obj/item/weapon/baseballbat)
+		/obj/item/weapon/baseballbat,
+	)
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 
 /obj/item/clothing/suit/storage/CMB
@@ -614,11 +642,13 @@
 	icon_state = "CMB_jacket"
 	blood_overlay_type = "coat"
 	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 20, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
-	allowed = list(/obj/item/weapon/gun/,
+	allowed = list(
+		/obj/item/weapon/gun/,
 		/obj/item/tank/emergency_oxygen,
 		/obj/item/storage/belt/sparepouch,
 		/obj/item/storage/large_holster/machete,
-		/obj/item/storage/belt/gun)
+		/obj/item/storage/belt/gun,
+	)
 
 /obj/item/clothing/suit/storage/RO
 	name = "\improper RO jacket"
@@ -637,10 +667,11 @@
 	icon_state = "mercenary_heavy_armor"
 	soft_armor = list("melee" = 75, "bullet" = 62, "laser" = 42, "energy" = 38, "bomb" = 40, "bio" = 15, "rad" = 15, "fire" = 38, "acid" = 38)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
-	allowed = list(/obj/item/weapon/gun,
+	allowed = list(
+		/obj/item/weapon/gun,
 		/obj/item/tank/emergency_oxygen,
 		/obj/item/flashlight,
-		/obj/item/ammo_magazine/,
+		/obj/item/ammo_magazine,
 		/obj/item/weapon/baton,
 		/obj/item/restraints/handcuffs,
 		/obj/item/storage/fancy/cigarettes,
@@ -648,7 +679,8 @@
 		/obj/item/explosive/grenade,
 		/obj/item/storage/bible,
 		/obj/item/weapon/claymore/mercsword/machete,
-		/obj/item/weapon/combat_knife)
+		/obj/item/weapon/combat_knife,
+	)
 
 /obj/item/clothing/suit/storage/marine/veteran/mercenary/miner
 	name = "\improper Y8 armored miner vest"
@@ -656,10 +688,11 @@
 	icon_state = "mercenary_miner_armor"
 	soft_armor = list("melee" = 50, "bullet" = 42, "laser" = 42, "energy" = 38, "bomb" = 25, "bio" = 15, "rad" = 15, "fire" = 38, "acid" = 38)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
-	allowed = list(/obj/item/weapon/gun,
+	allowed = list(
+		/obj/item/weapon/gun,
 		/obj/item/tank/emergency_oxygen,
 		/obj/item/flashlight,
-		/obj/item/ammo_magazine/,
+		/obj/item/ammo_magazine,
 		/obj/item/weapon/baton,
 		/obj/item/restraints/handcuffs,
 		/obj/item/storage/fancy/cigarettes,
@@ -667,7 +700,8 @@
 		/obj/item/explosive/grenade,
 		/obj/item/storage/bible,
 		/obj/item/weapon/claymore/mercsword/machete,
-		/obj/item/weapon/combat_knife)
+		/obj/item/weapon/combat_knife,
+	)
 
 /obj/item/clothing/suit/storage/marine/veteran/mercenary/engineer
 	name = "\improper Z7 armored engineer vest"
@@ -675,10 +709,11 @@
 	icon_state = "mercenary_engineer_armor"
 	soft_armor = list("melee" = 55, "bullet" = 52, "laser" = 42, "energy" = 38, "bomb" = 30, "bio" = 15, "rad" = 15, "fire" = 38, "acid" = 38)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
-	allowed = list(/obj/item/weapon/gun,
+	allowed = list(
+		/obj/item/weapon/gun,
 		/obj/item/tank/emergency_oxygen,
 		/obj/item/flashlight,
-		/obj/item/ammo_magazine/,
+		/obj/item/ammo_magazine,
 		/obj/item/weapon/baton,
 		/obj/item/restraints/handcuffs,
 		/obj/item/storage/fancy/cigarettes,
@@ -686,7 +721,8 @@
 		/obj/item/explosive/grenade,
 		/obj/item/storage/bible,
 		/obj/item/weapon/claymore/mercsword/machete,
-		/obj/item/weapon/combat_knife)
+		/obj/item/weapon/combat_knife,
+	)
 
 
 

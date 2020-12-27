@@ -370,7 +370,8 @@
 		/obj/item/ammo_magazine/minisentry,
 		/obj/item/marine_turret/mini,
 		/obj/item/stack/razorwire,
-		/obj/item/stack/sandbags)
+		/obj/item/stack/sandbags,
+	)
 
 /obj/item/storage/backpack/marine/satchel
 	name = "\improper TGMC satchel"
@@ -379,6 +380,10 @@
 	worn_accessible = TRUE
 	storage_slots = null
 	max_storage_space = 15
+
+/obj/item/storage/backpack/marine/satchel/green
+	name = "\improper TGMC satchel"
+	icon_state = "marinesat_green"
 
 
 /obj/item/storage/backpack/marine/satchel/corpsman
@@ -813,12 +818,10 @@
 /obj/item/storage/backpack/rpg
 	name = "\improper TGMC rocket bag"
 	desc = "This backpack can hold 5 67mm shells or 80mm rockets."
-	icon_state = "som_lightpack"
-	item_state = "som_lightpack"
+	icon_state = "marine_rocket"
+	item_state = "marine_rocket"
 	w_class = WEIGHT_CLASS_HUGE
 	storage_slots = 5 //It can hold 5 rockets.
 	max_storage_space = 21
 	max_w_class = 4
-	can_hold = list(
-		/obj/item/ammo_magazine/rocket
-	)
+	can_hold = list(/obj/item/ammo_magazine/rocket)

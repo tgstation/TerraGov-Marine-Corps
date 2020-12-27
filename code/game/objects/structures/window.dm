@@ -22,6 +22,9 @@
 	var/damageable = TRUE
 	var/deconstructable = TRUE
 
+//I hate this as much as you do
+/obj/structure/window/full
+	dir = 10
 
 /obj/structure/window/Initialize(mapload, start_dir, constructed)
 	..()
@@ -66,12 +69,11 @@
 	return FALSE
 
 
-/obj/structure/window/CanPass(atom/movable/mover, turf/target)
+/obj/structure/window/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
 		return TRUE
-	if(is_full_window() || get_dir(loc, target) == dir)
-		return !density
-	else
+	if(!is_full_window() && !(get_dir(loc, target) == dir))
 		return TRUE
 
 /obj/structure/window/CheckExit(atom/movable/mover, turf/target)
@@ -226,7 +228,7 @@
 
 /obj/structure/window/Move()
 	var/ini_dir = dir
-	..()
+	. = ..()
 	setDir(ini_dir)
 
 //This proc is used to update the icons of nearby windows.
@@ -354,7 +356,8 @@
 		/obj/structure/girder,
 		/obj/structure/window_frame)
 	tiles_with = list(
-		/turf/closed/wall)
+		/turf/closed/wall,
+	)
 
 /obj/structure/window/framed/Initialize()
 	relativewall()

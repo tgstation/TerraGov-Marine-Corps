@@ -93,7 +93,6 @@
 #define CLONE		"clone"
 #define CUT 		"cut"
 #define BRUISE		"bruise"
-#define HALLOSS		"halloss"
 #define STAMINA		"stamina"
 //=================================================
 
@@ -368,14 +367,8 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define HUMAN_MAX_PALENESS	30 //this is added to human skin tone to get value of pale_max variable
 
 
-// halloss defines
-
-#define BASE_HALLOSS_RECOVERY_RATE -4
-#define WALK_HALLOSS_RECOVERY_RATE -12
-#define DOWNED_HALLOSS_RECOVERY_RATE -16
-#define REST_HALLOSS_RECOVERY_RATE -32
-
 // Human Overlay Indexes
+#define HEADBITE_LAYER			30
 #define LASER_LAYER				29 //For sniper targeting laser
 #define MOTH_WINGS_LAYER		28
 #define MUTANTRACE_LAYER		27
@@ -405,7 +398,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define TARGETED_LAYER			2 //for target sprites when held at gun point, and holo cards.
 #define FIRE_LAYER				1 //If you're on fire
 
-#define TOTAL_LAYERS			29
+#define TOTAL_LAYERS			30
 
 #define MOTH_WINGS_BEHIND_LAYER	1
 
@@ -417,24 +410,21 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 #define HIVE_CAN_HIJACK (1<<0)
 
+#define XENO_PULL_CHARGE_TIME 2 SECONDS
 #define XENO_SLOWDOWN_REGEN 0.4
 #define QUEEN_DEATH_TIMER 5 MINUTES
 #define XENO_DEADHUMAN_DRAG_SLOWDOWN 2
 #define XENO_EXPLOSION_RESIST_3_MODIFIER	0.25 //multiplies top level explosive damage by this amount.
 
-#define SPIT_UPGRADE_BONUS(Xenomorph) (( max(0,Xenomorph.upgrade_as_number()) * 0.15 )) //increase damage by 15% per upgrade level; compensates for the loss of insane attack speeds.
-#define SPRAY_STRUCTURE_UPGRADE_BONUS(Xenomorph) (( Xenomorph.upgrade_as_number() * 8 ))
-#define SPRAY_MOB_UPGRADE_BONUS(Xenomorph) (( Xenomorph.upgrade_as_number() * 4 ))
+#define SPIT_UPGRADE_BONUS(Xenomorph) (( max(0,Xenomorph.upgrade_as_number()) * 0.15 )) //increase damage by 15% per upgrade level; compensates for the loss of insane attack speed.
 
 #define PLASMA_TRANSFER_AMOUNT 100
-#define PLASMA_SALVAGE_AMOUNT 400
 
 #define XENO_LARVAL_AMOUNT_RECURRING		10
 #define XENO_LARVAL_CHANNEL_TIME			1.5 SECONDS
 
 #define XENO_NEURO_AMOUNT_RECURRING			10
 #define XENO_NEURO_CHANNEL_TIME				1.5 SECONDS
-#define XENO_NEURO_AMOUNT_RECCURING_PANTHER 3
 
 #define CANNOT_HOLD_EGGS 0
 #define CAN_HOLD_TWO_HANDS 1
@@ -456,6 +446,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CASTE_INNATE_PLASMA_REGEN 	(1<<13) // Xenos get full plasma regardless if they are on weeds or not
 #define CASTE_ACID_BLOOD (1<<13) //The acid blood effect which damages humans near xenos that take damage
 #define CASTE_CAN_HOLD_JELLY (1<<14)//whether we can hold fireproof jelly in our hands
+#define CASTE_IS_STRONG (1<<15)//can tear open acided walls without being big
 
 //Charge-Crush
 #define CHARGE_OFF			0
@@ -466,9 +457,8 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 // Xeno charge types
 #define CHARGE_TYPE_SMALL			1
 #define CHARGE_TYPE_MEDIUM			2
-#define CHARGE_TYPE_PANTHER			3
-#define CHARGE_TYPE_LARGE			4
-#define CHARGE_TYPE_MASSIVE			5
+#define CHARGE_TYPE_LARGE			3
+#define CHARGE_TYPE_MASSIVE			4
 
 //Hunter Defines
 #define HUNTER_STEALTH_COOLDOWN					50 //5 seconds
@@ -502,8 +492,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CRUSHER_CHARGE_RAZORWIRE_MULTI	100
 #define CRUSHER_CHARGE_TANK_MULTI		100
 
-#define CRUSHER_STOMP_UPGRADE_BONUS(Xenomorph) (1 + ( (  Xenomorph.upgrade_as_number() ) * 0.05 ))
-
 //carrier defines
 #define CARRIER_HUGGER_THROW_SPEED 2
 #define CARRIER_HUGGER_THROW_DISTANCE 5
@@ -514,6 +502,12 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define DEFILER_STING_CHANNEL_TIME			1.5 SECONDS
 #define DEFILER_CLAW_AMOUNT					6.5
 #define DEFILER_STING_AMOUNT_RECURRING		10
+#define DEFILER_REAGENT_SLASH_COUNT			4
+#define DEFILER_REAGENT_SLASH_DELAY			1.2 SECONDS
+#define DEFILER_REAGENT_SLASH_U_AMOUNT		3
+
+//Drone defines
+#define DRONE_HEAL_RANGE		1
 
 //Boiler defines
 #define BOILER_LUMINOSITY_BASE						0
@@ -529,12 +523,30 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define HIVELORD_TUNNEL_SMALL_MAX_TRAVEL_TIME	4 SECONDS
 #define HIVELORD_TUNNEL_LARGE_MAX_TRAVEL_TIME	6 SECONDS
 #define HIVELORD_TUNNEL_DIG_TIME				10 SECONDS
-#define HIVELORD_TUNNEL_SET_LIMIT				4
+#define HIVELORD_TUNNEL_SET_LIMIT				8
+#define HIVELORD_HEAL_RANGE						2
 
 //Shrike defines
 
 #define SHRIKE_FLAG_PAIN_HUD_ON		(1<<0)
 #define SHRIKE_CURE_HEAL_MULTIPLIER	10
+#define SHRIKE_HEAL_RANGE 			3
+
+//Drone defines
+
+#define DRONE_SALVAGE_BIOMASS_WINDUP		5 SECONDS //Delay before the target is salvaged
+#define DRONE_SALVAGE_BIOMASS_RANGE			1
+#define DRONE_SALVAGE_BIOMASS_SALVAGE_RATIO	0.2 //Percentile of stored upgrade and evolution salvaged from the target
+#define DRONE_SALVAGE_COOLDOWN				60 SECONDS //Can only salvage one corpse per 60 seconds; try not to die *too* quickly.
+#define DRONE_SALVAGE_UPGRADE_FILTER_LIST	list(XENO_UPGRADE_THREE, XENO_UPGRADE_INVALID)
+#define DRONE_SALVAGE_EVOLUTION_FILTER_LIST	list(XENO_TIER_ZERO, XENO_TIER_THREE, XENO_TIER_FOUR)
+
+//Runner defines
+#define RUNNER_EVASION_STACKS				250 //How much projectile damage we auto-dodge.
+#define RUNNER_EVASION_DURATION				8 SECONDS //How long Evasion lasts.
+#define RUNNER_EVASION_DURATION_WARNING		0.7 //After what % of Evasion's time elapsed do we warn the user
+#define RUNNER_EVASION_RUN_DELAY			0.5 SECONDS //If the time since the Runner last moved is equal to or greater than this, its Evasion ends.
+#define RUNNER_EVASION_DANGER_RATIO			0.5 //If we have this % of auto-dodge damage remaining or less, warn the user.
 
 //misc
 

@@ -14,17 +14,17 @@
 
 
 //-------------------------------------------------------
-//M4A3 PISTOL
+//RT-3 PISTOL
 
 /obj/item/ammo_magazine/pistol
-	name = "\improper M4A3 magazine (9mm)"
+	name = "\improper RT-3 magazine (9mm)"
 	desc = "A pistol magazine."
 	caliber = "9x19mm Parabellum"
 	icon_state = "m4a3"
 	max_rounds = 14
 	w_class = WEIGHT_CLASS_SMALL
 	default_ammo = /datum/ammo/bullet/pistol
-	gun_type = /obj/item/weapon/gun/pistol/m4a3
+	gun_type = /obj/item/weapon/gun/pistol/rt3
 
 /obj/item/ammo_magazine/pistol/hp
 	name = "\improper M4A3 hollowpoint magazine (9mm)"
@@ -45,8 +45,6 @@
 	name = "\improper M4A3 extended magazine (9mm)"
 	max_rounds = 24
 	icon_state = "m4a3_ext"
-	bonus_overlay = "m4a3_ex"
-
 
 //-------------------------------------------------------
 //M1911
@@ -55,7 +53,7 @@
 	name = "\improper M1911 magazine (.45)"
 	default_ammo = /datum/ammo/bullet/pistol/heavy
 	caliber = ".45 ACP"
-	icon_state = ".45"
+	icon_state = "1911"
 	max_rounds = 10
 	gun_type = /obj/item/weapon/gun/pistol/m1911
 
@@ -139,19 +137,6 @@
 	icon_state = "pk-9"
 	max_rounds = 12
 	gun_type = /obj/item/weapon/gun/pistol/c99
-
-
-//-------------------------------------------------------
-//KT-42 //Inspired by the .44 Auto Mag pistol
-
-/obj/item/ammo_magazine/pistol/automatic
-	name = "\improper KT-42 magazine (.44)"
-	default_ammo = /datum/ammo/bullet/pistol/heavy
-	caliber = ".44 magnum"
-	icon_state = "kt42"
-	max_rounds = 7
-	gun_type = /obj/item/weapon/gun/pistol/kt42
-
 
 //-------------------------------------------------------
 //PIZZACHIMP PROTECTION

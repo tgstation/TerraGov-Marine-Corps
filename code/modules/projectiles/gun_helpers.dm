@@ -177,14 +177,20 @@ should be alright.
 
 
 /obj/item/weapon/gun/proc/harness_return(mob/living/carbon/human/user)
-	if(!isturf(loc) || QDELETED(user) || !isnull(user.s_store))
+	if(!isturf(loc) || QDELETED(user) || !isnull(user.s_store) && !isnull(user.back))
 		return
 
-	user.equip_to_slot_if_possible(src, SLOT_S_STORE)
+	user.equip_to_slot_if_possible(src, SLOT_S_STORE, warning = FALSE)
 	if(user.s_store == src)
 		var/obj/item/I = user.wear_suit
 		to_chat(user, "<span class='warning'>[src] snaps into place on [I].</span>")
-	user.update_inv_s_store()
+		user.update_inv_s_store()
+		return
+
+	user.equip_to_slot_if_possible(src, SLOT_BACK, warning = FALSE)
+	if(user.back == src)
+		to_chat(user, "<span class='warning'>[src] snaps into place on your back.</span>")
+	user.update_inv_back()
 
 
 /obj/item/weapon/gun/attack_self(mob/user)
@@ -643,7 +649,7 @@ should be alright.
 		if(1) //No need to toggle anything if there's a single firemode.
 			return
 		if(2)
-			actions_types += /datum/action/item_action/firemode
+			LAZYADD(actions_types, /datum/action/item_action/firemode)
 			var/datum/action/new_action = new /datum/action/item_action/firemode(src)
 			if(user)
 				var/mob/living/living_user = user
@@ -658,7 +664,7 @@ should be alright.
 		if(0, 1)
 			CRASH("remove_firemode called with gun_firemode_list length [length(gun_firemode_list)].")
 		if(2)
-			actions_types -= /datum/action/item_action/firemode
+			LAZYREMOVE(actions_types, /datum/action/item_action/firemode)
 			var/datum/action/old_action = locate(/datum/action/item_action/firemode) in actions
 			if(user)
 				var/mob/living/living_user = user
@@ -855,6 +861,52 @@ should be alright.
 		if((GUN_FIREMODE_AUTOMATIC in gun_firemode_list) && !(GUN_FIREMODE_AUTOBURST in gun_firemode_list))
 			add_firemode(GUN_FIREMODE_AUTOBURST, user)
 
+/obj/item/weapon/gun/proc/toggle_auto_aim_mode(mob/living/carbon/human/user) //determines whether toggle_aim_mode activates at the end of gun/wield proc
+
+	if(CHECK_BITFIELD(flags_item, WIELDED)) //if gun is wielded it toggles aim mode directly instead
+		toggle_aim_mode(user)
+		return
+
+	if(!CHECK_BITFIELD(flags_gun_features, AUTO_AIM_MODE))
+		to_chat(user, "<span class='notice'>You will immediately aim upon wielding your weapon.</b></span>")
+		ENABLE_BITFIELD(flags_gun_features, AUTO_AIM_MODE)
+	else
+		to_chat(user, "<span class='notice'>You will wield your weapon without aiming with precision.</b></span>")
+		DISABLE_BITFIELD(flags_gun_features, AUTO_AIM_MODE)
+
+/obj/item/weapon/gun/proc/toggle_aim_mode(mob/living/carbon/human/user)
+	var/static/image/aim_mode_visual = image('icons/mob/hud.dmi', null, "aim_mode")
+	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_AIMING))
+		user.overlays -= aim_mode_visual
+		DISABLE_BITFIELD(flags_gun_features, GUN_IS_AIMING)
+		user.remove_movespeed_modifier(MOVESPEED_ID_AIM_MODE_SLOWDOWN)
+		gun_iff_signal = null
+		modify_fire_delay(-aim_fire_delay)
+		to_chat(user, "<span class='notice'>You cease aiming.</b></span>")
+		return
+	if(!CHECK_BITFIELD(flags_item, WIELDED))
+		to_chat(user, "<span class='notice'>You need to wield your gun before aiming.</b></span>")
+		return
+	if(!user.wear_id)
+		to_chat(user, "<span class='notice'>You don't have distinguished allies you want to avoid shooting.</b></span>")
+		return
+	to_chat(user, "<span class='notice'>You steady your breathing...</b></span>")
+
+	if(user.action_busy)
+		return
+	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_BAR))
+		to_chat(user, "<span class='warning'>Your concentration is interrupted!</b></span>")
+		return
+	if(!CHECK_BITFIELD(flags_item, WIELDED))
+		to_chat(user, "<span class='notice'>You need to wield your gun before aiming.</b></span>")
+		return
+	user.overlays += aim_mode_visual
+	ENABLE_BITFIELD(flags_gun_features, GUN_IS_AIMING)
+	user.add_movespeed_modifier(MOVESPEED_ID_AIM_MODE_SLOWDOWN, TRUE, 0, NONE, TRUE, aim_speed_modifier)
+	var/obj/item/card/id/C = user.wear_id
+	gun_iff_signal = C.access
+	modify_fire_delay(aim_fire_delay)
+	to_chat(user, "<span class='notice'>You line up your aim.</b></span>")
 
 //----------------------------------------------------------
 				//				   	   \\

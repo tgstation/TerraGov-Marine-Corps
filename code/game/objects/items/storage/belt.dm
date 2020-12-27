@@ -6,6 +6,7 @@
 	icon = 'icons/obj/clothing/belts.dmi'
 	icon_state = "utilitybelt"
 	item_state = "utility"
+	item_state_worn = TRUE
 	flags_equip_slot = ITEM_SLOT_BELT
 	attack_verb = list("whipped", "lashed", "disciplined")
 	w_class = WEIGHT_CLASS_BULKY
@@ -33,8 +34,8 @@
 	item_state = "champion"
 	storage_slots = 1
 	can_hold = list(
-		/obj/item/clothing/mask/luchador
-		)
+		/obj/item/clothing/mask/luchador,
+	)
 
 
 
@@ -61,7 +62,8 @@
 		/obj/item/stack/cable_coil,
 		/obj/item/t_scanner,
 		/obj/item/analyzer,
-		/obj/item/tool/taperoll/engineering)
+		/obj/item/tool/taperoll/engineering,
+	)
 
 
 /obj/item/storage/belt/utility/full/Initialize()
@@ -117,7 +119,8 @@
 		/obj/item/bodybag,
 		/obj/item/defibrillator,
 		/obj/item/storage/pill_bottle/packet,
-		/obj/item/roller)
+		/obj/item/roller,
+	)
 
 /obj/item/storage/belt/medical/Initialize()
 	. = ..()
@@ -130,8 +133,8 @@
 	new /obj/item/storage/pill_bottle/dylovene(src)
 	new /obj/item/storage/pill_bottle/inaprovaline(src)
 	new /obj/item/storage/pill_bottle/dexalin(src)
-	new /obj/item/storage/pill_bottle/peridaxon(src)
-	new /obj/item/storage/pill_bottle/quickclot(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus(src)
 	new /obj/item/storage/pill_bottle/spaceacillin(src)
 	new /obj/item/storage/pill_bottle/hypervene(src)
 	new /obj/item/healthanalyzer(src)
@@ -153,7 +156,7 @@
 		/obj/item/storage/syringe_case,
 		/obj/item/reagent_containers/hypospray/autoinjector,
 		/obj/item/storage/pill_bottle/packet,
-		/obj/item/stack/medical
+		/obj/item/stack/medical,
 	)
 
 /obj/item/storage/belt/combatLifesaver/Initialize()  //The belt, with all it's magic inside!
@@ -196,7 +199,7 @@
 		/obj/item/storage/syringe_case,
 		/obj/item/reagent_containers/hypospray/autoinjector,
 		/obj/item/storage/pill_bottle/packet,
-		/obj/item/stack/medical
+		/obj/item/stack/medical,
 	)
 
 /obj/item/storage/belt/medicLifesaver/Initialize()  //The belt, with all it's magic inside!
@@ -263,8 +266,8 @@
 		/obj/item/flashlight,
 		/obj/item/radio/headset,
 		/obj/item/weapon,
-		/obj/item/tool/taperoll/police
-		)
+		/obj/item/tool/taperoll/police,
+	)
 
 
 
@@ -318,8 +321,8 @@
 		/obj/item/ammo_magazine/handful,
 		/obj/item/explosive/grenade,
 		/obj/item/explosive/mine,
-		/obj/item/reagent_containers/food/snacks
-		)
+		/obj/item/reagent_containers/food/snacks,
+	)
 
 /obj/item/storage/belt/marine/t18/Initialize()
 	. = ..()
@@ -400,8 +403,8 @@
 		/obj/item/ammo_magazine/sniper,
 		/obj/item/ammo_magazine/handful,
 		/obj/item/explosive/grenade,
-		/obj/item/tool/crowbar
-		)
+		/obj/item/tool/crowbar,
+	)
 
 /obj/item/storage/belt/shotgun
 	name = "\improper shotgun shell load rig"
@@ -549,8 +552,8 @@
 	var/drawSound = 'sound/weapons/guns/misc/pistol_draw.ogg'
 	can_hold = list(
 		/obj/item/weapon/gun/pistol,
-		/obj/item/ammo_magazine/pistol
-		)
+		/obj/item/ammo_magazine/pistol,
+	)
 
 /obj/item/storage/belt/gun/Destroy()
 	if(gun_underlay)
@@ -614,16 +617,16 @@
 	return TRUE
 
 /obj/item/storage/belt/gun/m4a3
-	name = "\improper M276 pattern M4A3 holster rig"
-	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version has a holster assembly that allows one to carry the M4A3 comfortably secure. It also contains side pouches that can store 9mm or .45 magazines."
+	name = "\improper M4A3 holster rig"
+	desc = "The M4A3 is a common holster belt. It consists of a modular belt with various clips. This version has a holster assembly that allows one to carry a handgun. It also contains side pouches that can store 9mm or .45 magazines."
 	can_hold = list(
 		/obj/item/weapon/gun/pistol,
-		/obj/item/ammo_magazine/pistol
-		)
+		/obj/item/ammo_magazine/pistol,
+	)
 
 /obj/item/storage/belt/gun/m4a3/full/Initialize()
 	. = ..()
-	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/m4a3(src)
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/rt3(src)
 	new /obj/item/ammo_magazine/pistol/ap(src)
 	new /obj/item/ammo_magazine/pistol/hp(src)
 	new /obj/item/ammo_magazine/pistol/extended(src)
@@ -634,7 +637,7 @@
 
 /obj/item/storage/belt/gun/m4a3/officer/Initialize()
 	. = ..()
-	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/m4a3/custom(src)
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/rt3(src)
 	new /obj/item/ammo_magazine/pistol/hp(src)
 	new /obj/item/ammo_magazine/pistol/hp(src)
 	new /obj/item/ammo_magazine/pistol/ap(src)
@@ -682,8 +685,8 @@
 	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version has a holster assembly that allows one to carry the M4A3 comfortably secure. It also contains side pouches that can store 9mm or .45 magazines."
 	can_hold = list(
 		/obj/item/weapon/gun/pistol,
-		/obj/item/ammo_magazine/pistol
-		)
+		/obj/item/ammo_magazine/pistol,
+	)
 
 /obj/item/storage/belt/gun/pistol/standard_pistol
 	name = "\improper T457 pattern pistol holster rig"
@@ -698,8 +701,8 @@
 	item_state = "tp44_holster"
 	can_hold = list(
 		/obj/item/weapon/gun/revolver,
-		/obj/item/ammo_magazine/revolver
-		)
+		/obj/item/ammo_magazine/revolver,
+	)
 
 /obj/item/storage/belt/gun/m44
 	name = "\improper M276 pattern M44 holster rig"
@@ -708,8 +711,8 @@
 	item_state = "m44_holster"
 	can_hold = list(
 		/obj/item/weapon/gun/revolver,
-		/obj/item/ammo_magazine/revolver
-		)
+		/obj/item/ammo_magazine/revolver,
+	)
 
 /obj/item/storage/belt/gun/m44/full/Initialize()
 	. = ..()
@@ -729,8 +732,8 @@
 	item_state = "mateba_holster"
 	can_hold = list(
 		/obj/item/weapon/gun/revolver/mateba,
-		/obj/item/ammo_magazine/revolver/mateba
-		)
+		/obj/item/ammo_magazine/revolver/mateba,
+	)
 
 /obj/item/storage/belt/gun/mateba/full/Initialize()
 	. = ..()
@@ -779,8 +782,8 @@
 	can_hold = list(
 		/obj/item/weapon/gun/pistol/c99,
 		/obj/item/ammo_magazine/pistol/c99,
-		/obj/item/ammo_magazine/pistol/c99t
-		)
+		/obj/item/ammo_magazine/pistol/c99t,
+	)
 
 /obj/item/storage/belt/gun/korovin/standard/Initialize()
 	. = ..()
@@ -803,3 +806,25 @@
 	new /obj/item/ammo_magazine/pistol/c99(src)
 	new /obj/item/ammo_magazine/pistol/c99(src)
 	new_gun.on_enter_storage(src)
+
+/obj/item/storage/belt/gun/ts34
+	name = "\improper M276 pattern TS-34 shotgun holster rig"
+	desc = "A purpose built belt-holster assembly that holds a TS-34 shotgun and one shell box or 2 handfuls."
+	icon_state = "ts34_holster"
+	item_state = "ts34_holster"
+	max_w_class = 4 //So it can hold the shotgun.
+	w_class = WEIGHT_CLASS_BULKY
+	storage_slots = 3
+	max_storage_space = 8
+	can_hold = list(
+		/obj/item/weapon/gun/shotgun/double/marine,
+		/obj/item/ammo_magazine/shotgun,
+		/obj/item/ammo_magazine/handful,
+	)
+
+/obj/item/storage/belt/gun/ts34/full/Initialize()
+	. = ..()
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/shotgun/double/marine(src)
+	new /obj/item/ammo_magazine/shotgun(src)
+	new_gun.on_enter_storage(src)
+

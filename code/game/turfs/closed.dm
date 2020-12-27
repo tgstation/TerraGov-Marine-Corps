@@ -77,6 +77,9 @@
 	icon = 'icons/turf/desertdam_map.dmi'
 	icon_state = "cavewall1"
 
+/turf/closed/desertdamrockwall/invincible
+	resistance_flags = RESIST_ALL
+
 //lava rock
 /turf/closed/brock
 	name = "basalt rock"
@@ -376,6 +379,7 @@
 
 /turf/closed/shuttle/dropship2/transparent
 	opacity = FALSE
+
 
 /turf/closed/shuttle/escapepod
 	name = "wall"

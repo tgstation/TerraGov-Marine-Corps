@@ -50,7 +50,7 @@
 
 /area/prison/security/monitoring/highsec
 	name = "High-Security Monitoring"
-	ceiling = CEILING_DEEP_UNDERGROUND_METAL
+	ceiling = CEILING_METAL
 
 /area/prison/security/monitoring/maxsec
 	name = "Maximum-Security Monitoring"

@@ -37,16 +37,18 @@
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.3 SECONDS
-	spit_types = list(/datum/ammo/xeno/toxin)
+	spit_types = list(/datum/ammo/xeno/toxin, /datum/ammo/xeno/acid)
 
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
+		/datum/action/xeno_action/activable/headbite,
 		/datum/action/xeno_action/activable/corrosive_acid/drone,
+		/datum/action/xeno_action/shift_spits,
 		/datum/action/xeno_action/activable/xeno_spit,
-		/datum/action/xeno_action/activable/neurotox_sting
-		)
+		/datum/action/xeno_action/activable/neurotox_sting,
+	)
 
 /datum/xeno_caste/sentinel/young
 	upgrade_name = "Young"
@@ -80,7 +82,7 @@
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.3 SECONDS
-	spit_types = list(/datum/ammo/xeno/toxin/upgrade1)
+	spit_types = list(/datum/ammo/xeno/toxin/upgrade1, /datum/ammo/xeno/acid)
 
 /datum/xeno_caste/sentinel/elder
 	upgrade_name = "Elder"
@@ -112,7 +114,7 @@
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.3 SECONDS
-	spit_types = list(/datum/ammo/xeno/toxin/upgrade3)
+	spit_types = list(/datum/ammo/xeno/toxin/upgrade2, /datum/ammo/xeno/acid)
 
 /datum/xeno_caste/sentinel/ancient
 	upgrade_name = "Ancient"
@@ -144,5 +146,5 @@
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.3 SECONDS
-	spit_types = list(/datum/ammo/xeno/toxin/upgrade3)
+	spit_types = list(/datum/ammo/xeno/toxin/upgrade3, /datum/ammo/xeno/acid)
 

@@ -78,7 +78,7 @@
 	var/ff_limit = CONFIG_GET(number/ff_damage_threshold)
 	if(friendly_fire[FF_DAMAGE_OUTGOING] < ff_limit)
 		return
-	send2tgs("FF ALERT", "[key_name(src)] was kicked for excessive friendly fire. [friendly_fire[FF_DAMAGE_OUTGOING]] damage witin [ff_cooldown / 10] seconds")
+	send2adminchat("FF ALERT", "[key_name(src)] was kicked for excessive friendly fire. [friendly_fire[FF_DAMAGE_OUTGOING]] damage witin [ff_cooldown / 10] seconds")
 	create_message("note", ckey(client.key), "SYSTEM", "Autokicked due to excessive friendly fire. [friendly_fire[FF_DAMAGE_OUTGOING]] damage within [ff_cooldown / 10] seconds.", null, null, FALSE, FALSE, null, FALSE, "Minor")
 	ghostize(FALSE) // make them a ghost (so they can't return to the round)
 	qdel(client) // Disconnect the client
@@ -95,3 +95,29 @@
 #undef FF_VICTIM_LIST
 #undef FF_DAMAGE_OUTGOING
 #undef FF_DAMAGE_INCOMING
+
+///Gives us a more natural sounding limb name for descriptions and such
+/mob/living/proc/get_living_limb_descriptive_name(target_zone)
+	if(!target_zone)
+		return
+
+	var/target_location_feedback = target_zone
+	switch(target_location_feedback)
+		if(BODY_ZONE_R_LEG)
+			target_location_feedback = "right leg"
+		if(BODY_ZONE_L_LEG)
+			target_location_feedback = "left leg"
+		if(BODY_ZONE_PRECISE_R_FOOT)
+			target_location_feedback = "right foot"
+		if(BODY_ZONE_PRECISE_L_FOOT)
+			target_location_feedback = "left foot"
+		if(BODY_ZONE_R_ARM)
+			target_location_feedback = "right arm"
+		if(BODY_ZONE_L_ARM)
+			target_location_feedback = "left arm"
+		if(BODY_ZONE_PRECISE_R_HAND)
+			target_location_feedback = "right hand"
+		if(BODY_ZONE_PRECISE_L_HAND)
+			target_location_feedback = "left hand"
+
+	return target_location_feedback

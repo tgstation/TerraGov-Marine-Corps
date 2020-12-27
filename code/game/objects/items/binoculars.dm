@@ -105,12 +105,12 @@
 		QDEL_NULL(laser)
 
 
-/obj/item/binoculars/tactical/update_icon()
-	..()
+/obj/item/binoculars/tactical/update_overlays()
+	. = ..()
 	if(mode)
-		overlays += "binoculars_range"
+		. += "binoculars_range"
 	else
-		overlays += "binoculars_laser"
+		. += "binoculars_laser"
 
 /obj/item/binoculars/tactical/AltClick(mob/user)
 	. = ..()
@@ -154,6 +154,10 @@
 
 	if(user.client.eye != src)
 		to_chat(user, "<span class='warning'>You can't focus properly through \the [src] while looking through something else.</span>")
+		return
+
+	if(!can_see(user, A, 25))
+		to_chat(user, "<span class='warning'>You can't see anything there.</span>")
 		return
 
 	if(!user.mind)

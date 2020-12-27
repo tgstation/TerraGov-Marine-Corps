@@ -21,7 +21,7 @@
 	var/reinforced = FALSE
 	var/flipped = FALSE
 	var/flip_cooldown = 0 //If flip cooldown exists, don't allow flipping or putting back. This carries a WORLD.TIME value
-	max_integrity = 100
+	max_integrity = 40
 
 /obj/structure/table/deconstruct(disassembled)
 	if(disassembled)
@@ -204,7 +204,8 @@
 		setDir(SOUTH)
 
 
-/obj/structure/table/CanPass(atom/movable/mover, turf/target)
+/obj/structure/table/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
 		return TRUE
 	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
@@ -212,10 +213,9 @@
 		return TRUE
 	if(flipped)
 		if(get_dir(loc, target) & dir)
-			return !density
+			return FALSE
 		else
 			return TRUE
-	return !density
 
 
 /obj/structure/table/CheckExit(atom/movable/mover, turf/target)
@@ -247,8 +247,8 @@
 	if(I.loc != loc)
 		step(I, get_dir(I, src))
 
-/obj/structure/table/attack_alien(mob/living/carbon/xenomorph/M)
-	SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_TABLE)
+/obj/structure/table/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0)
+	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_TABLE)
 	return ..()
 
 
@@ -474,7 +474,7 @@
 	parts = /obj/item/frame/table/wood
 	table_prefix = "wood"
 	hit_sound = 'sound/effects/woodhit.ogg'
-	max_integrity = 50
+	max_integrity = 20
 /*
 * Gambling tables
 */
@@ -486,7 +486,7 @@
 	parts = /obj/item/frame/table/gambling
 	table_prefix = "gamble"
 	hit_sound = 'sound/effects/woodhit.ogg'
-	max_integrity = 50
+	max_integrity = 20
 /*
 * Reinforced tables
 */
@@ -494,7 +494,7 @@
 	name = "reinforced table"
 	desc = "A square metal surface resting on four legs. This one has side panels, making it useful as a desk, but impossible to flip."
 	icon_state = "reinftable"
-	max_integrity = 200
+	max_integrity = 100
 	reinforced = TRUE
 	table_prefix = "reinf"
 	parts = /obj/item/frame/table/reinforced
@@ -576,20 +576,17 @@
 	anchored = TRUE
 	throwpass = TRUE	//You can throw objects over this, despite it's density.
 	climbable = TRUE
-	max_integrity = 150
+	max_integrity = 40
 	resistance_flags = XENO_DAMAGEABLE
 	var/parts = /obj/item/frame/rack
 
-/obj/structure/rack/CanPass(atom/movable/mover, turf/target)
-	if(!density) //Because broken racks
-		return TRUE
+/obj/structure/rack/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
 		return TRUE
 	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
 	if(S?.climbable && !(S.flags_atom & ON_BORDER) && climbable && isliving(mover)) //Climbable non-border  objects allow you to universally climb over others
 		return TRUE
-	else
-		return FALSE
 
 /obj/structure/rack/MouseDrop_T(obj/item/I, mob/user)
 	if (!istype(I) || user.get_active_held_item() != I)
@@ -598,8 +595,8 @@
 	if(I.loc != loc)
 		step(I, get_dir(I, src))
 
-/obj/structure/rack/attack_alien(mob/living/carbon/xenomorph/M)
-	SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_RACK)
+/obj/structure/rack/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0)
+	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_RACK)
 	return ..()
 
 /obj/structure/rack/attackby(obj/item/I, mob/user, params)

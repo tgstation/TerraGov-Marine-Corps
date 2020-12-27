@@ -7,8 +7,6 @@
 	health = 200
 	maxHealth = 200
 	plasma_stored = 50
-	drag_delay = 6 //pulling a big dead xeno is hard
-	mob_size = MOB_SIZE_BIG
 	var/list/huggers = list()
 	var/eggs_cur = 0
 	tier = XENO_TIER_TWO
@@ -17,7 +15,7 @@
 	old_x = -16
 	inherent_verbs = list(
 		/mob/living/carbon/xenomorph/proc/vent_crawl,
-		)
+	)
 
 // ***************************************
 // *********** Death

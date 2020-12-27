@@ -48,8 +48,10 @@
 
 	// *** Abilities *** //
 	actions = list(
+		/datum/action/xeno_action/return_to_core,
 		/datum/action/xeno_action/plant_weeds/slow,
-		)
+		/datum/action/xeno_action/psychic_whisper,
+	)
 
 /datum/xeno_caste/hivemind/young
 	upgrade_name = "Young"
@@ -69,9 +71,11 @@
 
 	// *** Abilities *** //
 	actions = list(
+		/datum/action/xeno_action/return_to_core,
 		/datum/action/xeno_action/plant_weeds/slow,
+		/datum/action/xeno_action/psychic_whisper,
 		/datum/action/xeno_action/activable/psychic_cure,
-		)
+	)
 
 
 /datum/xeno_caste/hivemind/elder
@@ -90,12 +94,13 @@
 
 	// *** Abilities *** //
 	actions = list(
+		/datum/action/xeno_action/return_to_core,
 		/datum/action/xeno_action/plant_weeds/slow,
+		/datum/action/xeno_action/psychic_whisper,
 		/datum/action/xeno_action/activable/psychic_cure,
 		/datum/action/xeno_action/choose_resin,
 		/datum/action/xeno_action/toggle_pheromones,
-		/datum/action/xeno_action/activable/secrete_resin/slow,
-		)
+	)
 
 /datum/xeno_caste/hivemind/ancient
 	upgrade_name = "Ancient"
@@ -114,9 +119,11 @@
 
 	// *** Abilities *** //
 	actions = list(
+		/datum/action/xeno_action/return_to_core,
 		/datum/action/xeno_action/plant_weeds/slow,
+		/datum/action/xeno_action/psychic_whisper,
 		/datum/action/xeno_action/activable/psychic_cure,
 		/datum/action/xeno_action/choose_resin,
 		/datum/action/xeno_action/toggle_pheromones,
 		/datum/action/xeno_action/activable/secrete_resin/slow,
-		)
+	)

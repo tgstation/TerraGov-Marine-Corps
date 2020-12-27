@@ -488,10 +488,11 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	visible_message("<span class='boldnotice'>Orbital bombardment request accepted. Orbital cannons are now calibrating.</span>")
 	send_to_squads("Initializing fire coordinates...")
 	if(selected_target)
-		playsound(selected_target.loc,'sound/effects/alert.ogg', 50, 1, 20)  //Placeholder
+		playsound(selected_target.loc,'sound/effects/alert.ogg', 50, 1, 20)  //mostly used to warn xenos as the new ob sounds have a quiet beginning
+
 	addtimer(CALLBACK(src, .proc/send_to_squads, "Transmitting beacon feed..."), 1.5 SECONDS)
 	addtimer(CALLBACK(src, .proc/send_to_squads, "Calibrating trajectory window..."), 3 SECONDS)
-	addtimer(CALLBACK(src, .proc/do_fire_bombard, T, usr), 4.1 SECONDS)
+	addtimer(CALLBACK(src, .proc/do_fire_bombard, T, usr), 3.1 SECONDS)
 
 /obj/machinery/computer/camera_advanced/overwatch/proc/do_fire_bombard(turf/T, user)
 	visible_message("<span class='boldnotice'>Orbital bombardment has fired! Impact imminent!</span>")

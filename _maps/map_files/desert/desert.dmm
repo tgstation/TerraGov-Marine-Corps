@@ -469,9 +469,7 @@
 /area/desert/interior/command/office)
 "bY" = (
 /obj/structure/table/reinforced,
-/obj/item/flashlight/lamp{
-	on = 0
-	},
+/obj/item/flashlight/lamp,
 /turf/open/floor/tile/red/full,
 /area/desert/interior/command/office)
 "bZ" = (
@@ -495,7 +493,7 @@
 /obj/structure/safe{
 	spawnkey = 0
 	},
-/obj/item/clothing/head/collectable/kitty,
+/obj/item/clothing/head/collectable/tophat,
 /turf/open/floor/wood,
 /area/desert/interior/command)
 "cc" = (
@@ -1021,7 +1019,7 @@
 /turf/open/floor/wood,
 /area/desert/hive)
 "dZ" = (
-/obj/item/weapon/gun/shotgun/merc,
+/obj/item/weapon/gun/shotgun/pump/cmb,
 /turf/open/floor/wood,
 /area/desert/hive)
 "ea" = (

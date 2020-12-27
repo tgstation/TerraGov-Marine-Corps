@@ -46,6 +46,11 @@ OPERATIONS
 	contains = list(/obj/item/fulton_extraction_pack)
 	cost = 5
 
+/datum/supply_packs/operations/fulton_recovery_beacon
+	name = "fulton recovery beacon"
+	contains = list(/obj/structure/fulton_extraction_point)
+	cost = 5
+
 /datum/supply_packs/operations/cas_flares
 	name = "CAS flare pack"
 	contains = list(/obj/item/storage/box/m94/cas)
@@ -180,7 +185,7 @@ WEAPONS
 	contains = list(
 		/obj/item/weapon/gun/energy/lasgun/tesla,
 		/obj/item/cell/lasgun/tesla,
-		/obj/item/cell/lasgun/tesla
+		/obj/item/cell/lasgun/tesla,
 	)
 	cost = 60
 
@@ -403,7 +408,7 @@ AMMO
 	contains = list(
 		/obj/item/cell/lasgun/tesla,
 		/obj/item/cell/lasgun/tesla,
-		/obj/item/cell/lasgun/tesla
+		/obj/item/cell/lasgun/tesla,
 	)
 	cost = 30
 
@@ -433,8 +438,13 @@ AMMO
 	cost = 20
 
 /datum/supply_packs/ammo/boxsmg
-	name = "T-19 SMG Ammo Box"
+	name = "T-90 SMG Ammo Box"
 	contains = list(/obj/item/ammobox/standard_smg)
+	cost = 20
+
+/datum/supply_packs/ammo/boxmachpistol
+	name = "T-19 Machine Pistol Ammo Box"
+	contains = list(/obj/item/ammobox/standard_machinepistol)
 	cost = 20
 
 /datum/supply_packs/ammo/boxlmg
@@ -567,10 +577,10 @@ AMMO
 	contains = list(/obj/item/mortal_shell/smoke)
 	cost = 1
 
-/datum/supply_packs/ammo/mortar_ammo_flash
-	name = "M402 mortar flash shell"
-	contains = list(/obj/item/mortal_shell/flash)
-	cost = 1
+/datum/supply_packs/ammo/mortar_ammo_plasmaloss
+	name = "M402 mortar tanglefoot shell"
+	contains = list(/obj/item/mortal_shell/plasmaloss)
+	cost = 2
 
 /datum/supply_packs/ammo/minisentry
 	name = "UA-580 point defense sentry ammo"
@@ -626,9 +636,7 @@ ARMOR
 
 /datum/supply_packs/armor/marine_shield
 	name = "TL-172 Defensive Shield"
-	contains = list(
-		/obj/item/weapon/shield/riot/marine
-	)
+	contains = list(/obj/item/weapon/shield/riot/marine)
 	cost = 10
 
 /datum/supply_packs/armor/b18
@@ -723,13 +731,14 @@ ARMOR
 	cost = 3
 
 /datum/supply_packs/armor/modular/attachments/mixed
-	name = "Jaeger experimental modules"
+	name = "Jaeger experimental mark 2 modules"
 	contains = list(
 		/obj/item/armor_module/attachable/valkyrie_autodoc,
 		/obj/item/armor_module/attachable/fire_proof,
 		/obj/item/armor_module/attachable/tyr_extra_armor,
 		/obj/item/armor_module/attachable/mimir_environment_protection,
 		/obj/item/armor_module/attachable/better_shoulder_lamp,
+		/obj/item/armor_module/attachable/hlin_explosive_armor,
 	)
 	cost = 40
 
@@ -755,7 +764,7 @@ ARMOR
 	cost = 12
 
 /datum/supply_packs/armor/modular/attachments/tyr_extra_armor
-	name = "Jaeger tyr modules"
+	name = "Jaeger tyr mark 2 modules"
 	contains = list(
 		/obj/item/armor_module/attachable/tyr_extra_armor,
 	)
@@ -764,15 +773,13 @@ ARMOR
 /datum/supply_packs/armor/modular/attachments/mimir_environment_protection
 	name = "Jaeger mimir module"
 	contains = list(
-		/obj/item/armor_module/attachable/mimir_environment_protection
+		/obj/item/armor_module/attachable/mimir_environment_protection,
 	)
 	cost = 12
 
 /datum/supply_packs/armor/modular/attachments/mimir_helmet_protection
 	name = "Jaeger helmet mimir module"
-	contains = list(
-		/obj/item/helmet_module/attachable/mimir_environment_protection
-	)
+	contains = list(/obj/item/helmet_module/attachable/mimir_environment_protection)
 	cost = 5
 /datum/supply_packs/armor/modular/attachments/generic_helmet_modules
 	name = "Generic Jaeger helmet modules"
@@ -782,9 +789,13 @@ ARMOR
 		/obj/item/helmet_module/binoculars,
 		/obj/item/helmet_module/binoculars,
 		/obj/item/helmet_module/antenna,
-		/obj/item/helmet_module/antenna
+		/obj/item/helmet_module/antenna,
 	)
 	cost = 5
+/datum/supply_packs/armor/modular/attachments/hlin_bombimmune
+	name = "Jaeger Hlin module"
+	contains = list(/obj/item/armor_module/attachable/hlin_explosive_armor)
+	cost = 12
 
 /*******************************************************************************
 CLOTHING
@@ -1018,6 +1029,12 @@ MEDICAL
 	containertype = /obj/structure/closet/crate/secure/surgery
 	access = ACCESS_MARINE_MEDBAY
 
+/datum/supply_packs/medical/lemolime
+	name = "lemoline"
+	notes = "Contains 1 bottle of lemoline with 10 units."
+	contains = list(/obj/item/reagent_containers/glass/bottle/lemoline)
+	cost = 50
+
 /*******************************************************************************
 ENGINEERING
 *******************************************************************************/
@@ -1108,7 +1125,7 @@ ENGINEERING
 
 /datum/supply_packs/engineering/watertank
 	name = "Water Tank"
-	contains = list(/obj/structure/reagent_dispensers)
+	contains = list(/obj/structure/reagent_dispensers/watertank)
 	cost = 5
 	containertype = null
 
@@ -1215,16 +1232,6 @@ Imports
 	contains = list(/obj/item/ammo_magazine/rifle/type71)
 	cost = 5
 
-/datum/supply_packs/imports/mp5
-	name = "MP5 SMG"
-	contains = list(/obj/item/weapon/gun/smg/mp5)
-	cost = 15
-
-/datum/supply_packs/imports/mp5/ammo
-	name = "MP5 SMG Ammo"
-	contains = list(/obj/item/ammo_magazine/smg/mp5)
-	cost = 5
-
 /datum/supply_packs/imports/mp7
 	name = "MP7 SMG"
 	contains = list(/obj/item/weapon/gun/smg/mp7)
@@ -1257,8 +1264,7 @@ Imports
 
 /datum/supply_packs/imports/uzi
 	name = "GAL-9 SMG"
-	contains = list(
-		/obj/item/weapon/gun/smg/uzi)
+	contains = list(/obj/item/weapon/gun/smg/uzi)
 	cost = 10
 
 /datum/supply_packs/imports/uzi/ammo
@@ -1276,24 +1282,9 @@ Imports
 	contains = list(/obj/item/ammo_magazine/smg/ppsh/extended)
 	cost = 5
 
-/datum/supply_packs/imports/p90
-	name = "FN P9000 SMG"
-	contains = list(/obj/item/weapon/gun/smg/p90)
-	cost = 15
-
-/datum/supply_packs/imports/p90/ammo
-	name = "FN P9000 SMG Ammo"
-	contains = list(/obj/item/ammo_magazine/smg/p90)
-	cost = 5
-
 /datum/supply_packs/imports/sawnoff
 	name = "Sawn Off Shotgun"
 	contains = list(/obj/item/weapon/gun/shotgun/double/sawn)
-	cost = 15
-
-/datum/supply_packs/imports/kronos
-	name = "Kronos Shotgun"
-	contains = list(/obj/item/weapon/gun/shotgun/pump/ksg)
 	cost = 15
 
 /datum/supply_packs/imports/leveraction
@@ -1359,6 +1350,16 @@ Imports
 	contains = list(/obj/item/ammo_magazine/rifle/m16)
 	cost = 5
 
+/datum/supply_packs/imports/famas //bread joke here
+	name = "FAMAS Assault Rifle"
+	contains = list(/obj/item/weapon/gun/rifle/famas)
+	cost = 15
+
+/datum/supply_packs/imports/famas/ammo
+	name = "FAMAS Assault Rifle Ammo"
+	contains = list(/obj/item/ammo_magazine/rifle/famas)
+	cost = 5
+
 /datum/supply_packs/imports/rev357
 	name = "Smith and Wesson 357 Revolver"
 	contains = list(/obj/item/weapon/gun/revolver/small)
@@ -1367,6 +1368,16 @@ Imports
 /datum/supply_packs/imports/rev357/ammo
 	name = "Smith and Wesson 357 Revolver Ammo"
 	contains = list(/obj/item/ammo_magazine/revolver/small)
+	cost = 3
+
+/datum/supply_packs/imports/rev44
+	name = "M-44 SAA Revolver"
+	contains = list(/obj/item/weapon/gun/revolver/m44)
+	cost = 7
+
+/datum/supply_packs/imports/rev357/ammo
+	name = "M-44 SAA Revolver Ammo"
+	contains = list(/obj/item/ammo_magazine/revolver)
 	cost = 3
 
 /datum/supply_packs/imports/beretta92fs
@@ -1399,16 +1410,6 @@ Imports
 	contains = list(/obj/item/ammo_magazine/pistol/heavy)
 	cost = 3
 
-/datum/supply_packs/imports/kt42
-	name = "KT-42 Automag"
-	contains = list(/obj/item/weapon/gun/pistol/kt42)
-	cost = 7
-
-/datum/supply_packs/imports/kt42/ammo
-	name = "KT-42 Automag Ammo"
-	contains = list(/obj/item/ammo_magazine/pistol/automatic)
-	cost = 3
-
 /datum/supply_packs/imports/vp78
 	name = "VP78 Handgun"
 	contains = list(/obj/item/weapon/gun/pistol/vp78)
@@ -1428,3 +1429,8 @@ Imports
 	name = "Highpower Automag Ammo"
 	contains = list(/obj/item/ammo_magazine/pistol/highpower)
 	cost = 3
+
+/datum/supply_packs/imports/strawhat
+	name = "Straw hat"
+	contains = list(/obj/item/clothing/head/strawhat)
+	cost = 1

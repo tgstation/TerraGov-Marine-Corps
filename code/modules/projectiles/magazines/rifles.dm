@@ -45,7 +45,7 @@
 	icon_state = "t18"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle
-	max_rounds = 32
+	max_rounds = 36
 	gun_type = /obj/item/weapon/gun/rifle/standard_carbine
 
 /obj/item/ammo_magazine/rifle/standard_carbine/deescalated
@@ -160,6 +160,17 @@
 	max_rounds = 30 //Also comes in 30 and 100 round Beta-C mag.
 	gun_type = /obj/item/weapon/gun/rifle/m16
 
+//-------------------------------------------------------
+//FAMAS RIFLE
+
+/obj/item/ammo_magazine/rifle/famas
+	name = "\improper FAMAS magazine (5.56x45mm)"
+	desc = "A 5.56x45mm magazine for the FAMAS assault rifle."
+	caliber = "5.56x45mm"
+	icon_state = "famas"
+	default_ammo = /datum/ammo/bullet/rifle
+	max_rounds = 24
+	gun_type = /obj/item/weapon/gun/rifle/famas
 
 //-------------------------------------------------------
 //T-42 Light Machine Gun
@@ -194,14 +205,14 @@
 //M412L1 HEAVY PULSE RIFLE
 
 /obj/item/ammo_magazine/m412l1_hpr
-    name = "\improper M412L1 box magazine (10x24mm)"
-    desc = "A semi-rectangular box of rounds for the M412L1 heavy pulse rifle."
-    icon_state = "m412l1"
-    caliber = "10x24mm caseless"
-    default_ammo = /datum/ammo/bullet/rifle
-    w_class = WEIGHT_CLASS_NORMAL
-    max_rounds = 200
-    gun_type = /obj/item/weapon/gun/rifle/m412l1_hpr
+	name = "\improper M412L1 box magazine (10x24mm)"
+	desc = "A semi-rectangular box of rounds for the M412L1 heavy pulse rifle."
+	icon_state = "m412l1"
+	caliber = "10x24mm caseless"
+	default_ammo = /datum/ammo/bullet/rifle
+	w_class = WEIGHT_CLASS_NORMAL
+	max_rounds = 200
+	gun_type = /obj/item/weapon/gun/rifle/m412l1_hpr
 
 //-------------------------------------------------------
 //UPP TYPE 71 RIFLE
@@ -214,37 +225,6 @@
 	default_ammo = /datum/ammo/bullet/rifle/ak47
 	max_rounds = 40
 	gun_type = /obj/item/weapon/gun/rifle/type71
-
-
-//-------------------------------------------------------
-//SX-16 AUTOMATIC SHOTGUN (makes more sense for it to be a rifle)
-
-/obj/item/ammo_magazine/rifle/sx16_buckshot
-	name = "\improper SX-16 buckshot magazine (16 gauge)"
-	desc = "A magazine of 16 gauge buckshot, for the SX-16."
-	caliber = "16 gauge"
-	icon_state = "sx16_buckshot"
-	default_ammo = /datum/ammo/bullet/shotgun/sx16_buckshot
-	max_rounds = 15
-	gun_type = /obj/item/weapon/gun/rifle/sx16
-
-/obj/item/ammo_magazine/rifle/sx16_flechette
-	name = "\improper SX-16 flechette magazine (16 gauge)"
-	desc = "A magazine of 16 gauge flechette rounds, for the SX-16."
-	caliber = "16 gauge"
-	icon_state = "sx16_flechette"
-	default_ammo = /datum/ammo/bullet/shotgun/sx16_flechette
-	max_rounds = 15
-	gun_type = /obj/item/weapon/gun/rifle/sx16
-
-/obj/item/ammo_magazine/rifle/sx16_slug
-	name = "\improper SX-16 slug magazine (16 gauge)"
-	desc = "A magazine of 16 gauge slugs, for the SX-16."
-	caliber = "16 gauge"
-	icon_state = "sx16_slug"
-	default_ammo = /datum/ammo/bullet/shotgun/sx16_slug
-	max_rounds = 15
-	gun_type = /obj/item/weapon/gun/rifle/sx16
 
 //TX-16 AUTOMATIC SHOTGUN
 
