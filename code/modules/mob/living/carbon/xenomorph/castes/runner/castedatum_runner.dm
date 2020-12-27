@@ -117,7 +117,7 @@
 	plasma_gain = 3
 
 	// *** Health *** //
-	max_health = 225 * 0.6
+	max_health = 240 * 0.6
 
 	// *** Evolution *** //
 	upgrade_threshold = 240

@@ -217,6 +217,9 @@
 	var/amount_grown = 0
 	var/max_grown = 200
 	var/time_of_birth
+	var/damage_taken
+	var/damage_taken_time
+	var/damage_taken_time_initial
 
 	var/list/stomach_contents
 	var/devour_timer = 0
