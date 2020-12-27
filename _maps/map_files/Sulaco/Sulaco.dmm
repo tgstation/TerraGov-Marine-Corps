@@ -1216,10 +1216,10 @@
 	},
 /area/sulaco/medbay/storage2)
 "ahJ" = (
-/obj/structure/table/mainship,
-/obj/item/tool/crowbar,
-/obj/item/flashlight/flare,
 /obj/effect/decal/warning_stripes/thick{
+	dir = 8
+	},
+/obj/machinery/computer/cryopod{
 	dir = 8
 	},
 /turf/open/floor/prison/sterilewhite,
@@ -1456,12 +1456,13 @@
 	},
 /area/sulaco/engineering/atmos)
 "aiX" = (
-/obj/structure/table/mainship,
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/item/camera,
 /obj/effect/decal/warning_stripes/thick{
+	dir = 8
+	},
+/obj/machinery/computer/cryopod{
 	dir = 8
 	},
 /turf/open/floor/prison/sterilewhite,
@@ -1703,6 +1704,7 @@
 /area/sulaco/engineering)
 "akq" = (
 /obj/structure/table/mainship,
+/obj/item/camera,
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cryosleep)
 "akr" = (
