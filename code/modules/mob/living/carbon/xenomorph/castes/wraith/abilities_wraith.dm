@@ -87,7 +87,7 @@
 	ghost.do_jitter_animation(2000) //Animation
 
 	var/distance = get_dist(ghost, shadow) //Get the distance so we can calculate the wind up
-	var/hyperposition_windup = clamp(WRAITH_HYPERPOSITION_MIN_WINDUP, distance * 0.5 SECONDS - 5 SECONDS, WRAITH_HYPERPOSITION_MAX_WINDUP)
+	var/hyperposition_windup = clamp(distance * 0.5 SECONDS - 5 SECONDS, WRAITH_HYPERPOSITION_MIN_WINDUP, WRAITH_HYPERPOSITION_MAX_WINDUP)
 
 	ghost.visible_message("<span class='warning'>The air starts to violently roil and shimmer around [ghost]!</span>", \
 	"<span class='xenodanger'>We begin to teleport to our warp shadow located at [A] (X: [shadow.x], Y: [shadow.y]). We estimate this will take [hyperposition_windup * 0.1] seconds.</span>")
@@ -207,17 +207,17 @@
 	var/current_turf = get_turf(ghost)
 
 	if(isclosedturf(current_turf) || isspaceturf(current_turf)) //So we rematerialized in a solid wall/space for some reason; Darwin award winner folks.
-		to_chat(ghost, "<span class='highdanger'>As we idiotically rematerialize in an obviously unsafe position, we revert to where we slipped out of reality through sheer instinct, albeit at great cost.</span>")
+		to_chat(ghost, "<span class='highdanger'>As we idiotically rematerialize in an obviously unsafe position, we revert to where we slipped out of reality at great cost.</span>")
 		ghost.adjustFireLoss((ghost.health * 0.5), TRUE) //Lose half of our health
-		ghost.ParalyzeNoChain(10 SECONDS) //That oughta teach them.
+		ghost.Paralyze(5 SECONDS) //That oughta teach them.
 		ghost.forceMove(starting_turf)
 		teleport_debuff_aoe(ghost) //Debuff when we reappear
 		starting_turf = null
 		return
 
 	var/distance = get_dist(current_turf, starting_turf)
-	var/phase_shift_stun_time = clamp(0.5 SECONDS, distance * 0.1 SECONDS, 3 SECONDS) //Recovery time
-	ghost.ParalyzeNoChain(phase_shift_stun_time * 2)
+	var/phase_shift_stun_time = clamp(distance * 0.1 SECONDS, 0.5 SECONDS, 3 SECONDS) //Recovery time
+	ghost.ParalyzeNoChain(phase_shift_stun_time)
 	ghost.visible_message("<span class='warning'>[ghost] form wavers and becomes opaque.</span>", \
 	"<span class='highdanger'>We phase back into reality, our mind reeling from the experience. We estimate we will take [phase_shift_stun_time * 0.1] seconds to recover!</span>")
 
@@ -288,7 +288,8 @@
 
 	ghost.face_atom(T) //Face the target so we don't look like an ass
 	ghost.add_filter("wraith_blink_warp_filter", 3, list("type" = "blur", 5)) //Cool filter appear
-	addtimer(CALLBACK(ghost, /atom.proc/remove_filter, "wraith_blink_warp_filter"), 1 SECONDS) //1 sec blur duration
+	addtimer(CALLBACK(ghost, /atom.proc/remove_filter, "wraith_blink_warp_filter"), 0.5 SECONDS) //0.5 sec blur duration
+	addtimer(VARSET_CALLBACK(ghost, alpha, initial(ghost.alpha)), 0.5 SECONDS)
 
 	teleport_debuff_aoe(ghost) //Debuff when we vanish
 
@@ -464,7 +465,7 @@
 
 	return TRUE //For the recall sub-ability
 
-/datum/action/xeno_action/phase_shift/on_cooldown_finish()
+/datum/action/xeno_action/activable/banish/on_cooldown_finish()
 
 	to_chat(owner, "<span class='xenodanger'>We are able to banish again.</span>")
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)

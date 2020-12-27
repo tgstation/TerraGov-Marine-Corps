@@ -15,27 +15,14 @@
 		/mob/living/carbon/xenomorph/proc/vent_crawl,
 	)
 
-
-/mob/living/carbon/xenomorph/wraith/Move(NewLoc, Dir = 0)
-
-	if(status_flags & INCORPOREAL) //If we're incorporeal, only several things can outright prevent our movement.
-
-		if(!check_passable(NewLoc) )
-			return FALSE
-
-	..()
-
-/mob/living/carbon/xenomorph/wraith/proc/check_passable(turf/T)
-	if(isspaceturf(T)) //We can't move through space
+/obj/flamer_fire/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
+	if(isxenohivemind(mover))
+		return FALSE
+	if(isxenowraith(mover) && mover.get_filter("wraith_phase_shift")) //If we're Phase Shifting we cannot pass this
 		return FALSE
 
-	if(locate(WRAITH_PHASE_SHIFT_BLOCKERS) in T) //Cannot go through plasma gas or fire
+/turf/open/space/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
+	if(isxenowraith(mover) && mover.get_filter("wraith_phase_shift")) //If we're Phase Shifting we cannot pass this
 		return FALSE
-
-	for(var/atom/A in T) //Cannot go through dense objects that are indestructible for balance/design reasons, etc
-		if(QDESTROYING(A))
-			continue
-		if(A.resistance_flags == RESIST_ALL && A.density && !(A.flags_atom & ON_BORDER))
-			return FALSE
-
-	return TRUE

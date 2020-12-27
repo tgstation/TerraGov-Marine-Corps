@@ -47,9 +47,9 @@
 		core = null
 	return ..()
 
-/obj/flamer_fire/CanAllowThrough(atom/movable/mover, turf/target)
+/obj/effect/particle_effect/smoke/plasmaloss/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
-	if(isxenohivemind(mover))
+	if(isxenowraith(mover) && mover.status_flags & INCORPOREAL)
 		return FALSE
 
 /mob/living/carbon/xenomorph/hivemind/flamer_fire_act()

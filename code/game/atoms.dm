@@ -137,9 +137,12 @@ directive is properly returned.
 ///Can the mover object pass this atom, while heading for the target turf
 /atom/proc/CanPass(atom/movable/mover, turf/target)
 	SHOULD_CALL_PARENT(TRUE)
-	if(mover.status_flags & INCORPOREAL)
-		return TRUE
 	. = CanAllowThrough(mover, target)
+	if(mover.status_flags & INCORPOREAL)
+		if(mover.CanPassThrough(src, target, .) == FALSE && resistance_flags == RESIST_ALL) //If we can't normally move through it, and it has resist_all, override incorporeal.
+			return FALSE
+
+		return TRUE
 	// This is cheaper than calling the proc every time since most things dont override CanPassThrough
 	if(!mover.generic_canpass)
 		return mover.CanPassThrough(src, target, .)
