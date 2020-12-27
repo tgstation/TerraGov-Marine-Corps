@@ -907,7 +907,7 @@ TUNNEL
 			take_damage(100)
 
 /obj/structure/xeno/acidwell/attack_alien(mob/living/carbon/xenomorph/M)
-	if(M.a_intent == INTENT_HARM)
+	if(M.a_intent == INTENT_HARM && CHECK_BITFIELD(M.xeno_caste.caste_flags, CASTE_IS_BUILDER) ) //If we're a builder caste and we're on harm intent, deconstruct it.
 		deconstruct(TRUE, M)
 		return
 
@@ -1117,6 +1117,7 @@ TUNNEL
 
 ///Standardized proc for dismantling xeno structures; usually called when a xeno uses harm intent on xeno structure
 /obj/structure/xeno/deconstruct(disassembled = TRUE, mob/living/carbon/xenomorph/M, dismantle_time = XENO_DISMANTLE_TIME, custom_message_a, custom_message_b)
+
 	if(flags_atom & NODECONSTRUCT)
 		return
 
@@ -1136,8 +1137,9 @@ TUNNEL
 	playsound(src, "alien_resin_break", 25) //SFX
 
 	if(!custom_message_b)
-		M.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 		M.visible_message("<span class='danger'>[M] rips down \the [src]!</span>", \
 		"<span class='xenoannounce'>We rip down \the [src]!</span>", null, 5)
 	else
 		to_chat(M, "[custom_message_b]")
+
+	return ..()
