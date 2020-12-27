@@ -111,6 +111,7 @@
 #define HIJACK_STATE_NORMAL "hijack_state_normal"
 #define HIJACK_STATE_CALLED_DOWN "hijack_state_called_down"
 #define HIJACK_STATE_CRASHING "hijack_state_crashing"
+#define HIJACK_STATE_UNLOCKED "hijack_state_unlocked"
 
 #define LOCKDOWN_TIME 6 MINUTES
 #define GROUND_LOCKDOWN_TIME 3 MINUTES
@@ -260,8 +261,10 @@
 
 
 /obj/docking_port/mobile/marine_dropship/getStatusText()
-	if(hijack_state != HIJACK_STATE_NORMAL)
-		return "control integrity compromised"
+	if(hijack_state == HIJACK_STATE_CALLED_DOWN)
+		return "Control integrity compromised"
+	else if(hijack_state==HIJACK_STATE_UNLOCKED)
+		return "Remote control compromised"
 	return ..()
 
 
@@ -307,6 +310,8 @@
 		return
 
 	hive?.xeno_message("[src] has summoned down the metal bird to [port], gather to her now!")
+	priority_announce("Unknown entity tampering with dropship control. Shutting down autopilot","Dropship departure from ship")
+
 
 #define ALIVE_HUMANS_FOR_CALLDOWN 0.1
 
@@ -360,13 +365,14 @@
 		if(!is_ground_level(D.z))
 			to_chat(user, "<span class='warning'>The bird has left meanwhile, try again.</span>")
 			return FALSE
-		D.set_hijack_state(HIJACK_STATE_CALLED_DOWN)
+		D.set_hijack_state(HIJACK_STATE_UNLOCKED)
 		D.unlock_all()
 		D.do_start_hijack_timer(GROUND_LOCKDOWN_TIME)
 		to_chat(user, "<span class='warning'>We have overriden the shuttle lockdown!</span>")
 		playsound(user, "alien_roar", 50)
+		priority_announce("Alamo lockdown protocol compromised. Interferences preventing remote control", "Dropship Lock Alert")
 		return FALSE
-	if(D.hijack_state != HIJACK_STATE_NORMAL)
+	if(D.hijack_state == HIJACK_STATE_CALLED_DOWN)
 		to_chat(user, "<span class='warning'>The bird's mind is already tampered with!</span>")
 		return FALSE
 	if(D.mode != SHUTTLE_IDLE && D.mode != SHUTTLE_RECHARGING)
@@ -471,7 +477,7 @@
 	. = list()
 	.["on_flyby"] = shuttle.mode == SHUTTLE_CALL
 	.["dest_select"] = !(shuttle.mode == SHUTTLE_CALL || shuttle.mode == SHUTTLE_IDLE)
-	.["hijack_state"] = shuttle.hijack_state == HIJACK_STATE_NORMAL
+	.["hijack_state"] = shuttle.hijack_state != HIJACK_STATE_CALLED_DOWN
 	.["ship_status"] = shuttle.getStatusText()
 
 	var/locked = 0
@@ -538,7 +544,7 @@
 	var/obj/docking_port/mobile/marine_dropship/M = SSshuttle.getShuttle(shuttleId)
 	if(!M)
 		return
-	if(M.hijack_state != HIJACK_STATE_NORMAL)
+	if(M.hijack_state == HIJACK_STATE_CALLED_DOWN)
 		return
 
 	switch(action)
@@ -562,7 +568,7 @@
 	var/obj/docking_port/mobile/marine_dropship/M = SSshuttle.getShuttle(shuttleId)
 	if(!M)
 		return
-	if(!isxeno(usr) && M.hijack_state != HIJACK_STATE_NORMAL)
+	if(!isxeno(usr) && M.hijack_state == HIJACK_STATE_CALLED_DOWN)
 		to_chat(usr, "<span class='warning'>The shuttle isn't responding to commands.</span>")
 		return
 	. = ..()
@@ -619,7 +625,7 @@
 	crashing_dropship.crashing = TRUE
 	crashing_dropship.unlock_all()
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_DROPSHIP_HIJACKED)
-	priority_announce("Unscheduled dropship departure detected from operational area. Hijack likely. Shutting down autopilot.", "Dropship Alert", sound = 'sound/AI/hijack.ogg')
+	priority_announce("Unscheduled dropship departure detected from operational area. Hijack likely.", "Dropship Alert")
 	to_chat(user, "<span class='danger'>A loud alarm erupts from [src]! The fleshy hosts must know that you can access it!</span>")
 	user.hive.on_shuttle_hijack(crashing_dropship)
 	playsound(src, 'sound/misc/queen_alarm.ogg')
@@ -967,19 +973,20 @@
 		to_chat(user, "<span class='warning'>Access Denied!</span>")
 		return
 	var/list/options = valid_destinations()
-	var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
+	var/obj/docking_port/mobile/marine_dropship/M = SSshuttle.getShuttle(shuttleId)
 	var/dat = "Status: [M ? M.getStatusText() : "*Missing*"]<br><br>"
 	if(M)
-		var/destination_found
-		for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
-			if(!options.Find(S.id))
-				continue
-			if(!M.check_dock(S, silent=TRUE))
-				continue
-			destination_found = TRUE
-			dat += "<A href='?src=[REF(src)];move=[S.id]'>Send to [S.name]</A><br>"
-		if(!destination_found)
-			dat += "<B>Shuttle Locked</B><br>"
+		if (M.hijack_state==HIJACK_STATE_NORMAL)
+			var/destination_found
+			for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
+				if(!options.Find(S.id))
+					continue
+				if(!M.check_dock(S, silent=TRUE))
+					continue
+				destination_found = TRUE
+				dat += "<A href='?src=[REF(src)];move=[S.id]'>Send to [S.name]</A><br>"
+			if(!destination_found)
+				dat += "<B>Shuttle Locked</B><br>"
 
 	var/datum/browser/popup = new(user, "computer", M ? M.name : "shuttle", 300, 200)
 	popup.set_content("<center>[dat]</center>")
