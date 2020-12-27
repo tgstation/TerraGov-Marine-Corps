@@ -23,8 +23,18 @@
 	if(hud_data.icon)
 		ui_style = hud_data.icon
 
+	var/widescreen_layout = FALSE
+	if(owner.client?.prefs?.widescreenpref)
+		widescreen_layout = TRUE
+
 	var/obj/screen/using
 	var/obj/screen/inventory/inv_box
+
+	if(!widescreen_layout)
+		using.screen_loc = UI_BOXLANG
+
+	if(!widescreen_layout)
+		using.screen_loc = UI_BOXAREA
 
 	// Draw the various inventory equipment slots.
 	var/has_hidden_gear
