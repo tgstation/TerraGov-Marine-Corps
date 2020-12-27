@@ -2,7 +2,12 @@
 	Modular armor attachments
 
 	These are utilty attachments that equip into module slots on modular armor
+
 */
+
+/obj/item/armor_module/attachable
+	icon = 'icons/mob/modular/modular_armor_modules.dmi'
+
 /obj/item/armor_module/attachable/can_attach(mob/living/user, obj/item/clothing/suit/modular/parent, silent = FALSE)
 	. = ..()
 	if(!.)

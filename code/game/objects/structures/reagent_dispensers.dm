@@ -44,13 +44,10 @@
 				qdel(src)
 
 
-/obj/structure/reagent_dispensers/CanPass(atom/movable/mover, turf/target)
+/obj/structure/reagent_dispensers/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
-		return 1
-	else
-		return !density
-
-
+		return TRUE
 
 //Dispensers
 /obj/structure/reagent_dispensers/watertank
@@ -173,7 +170,8 @@
 	return ..()
 
 /obj/structure/reagent_dispensers/fueltank/Move()
-	if (..() && modded)
+	. = ..()
+	if (. && modded)
 		leak_fuel(amount_per_transfer_from_this/10.0)
 
 /obj/structure/reagent_dispensers/fueltank/proc/leak_fuel(amount)

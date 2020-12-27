@@ -134,19 +134,20 @@ directive is properly returned.
 	SEND_SIGNAL(src, COMSIG_ATOM_BUMPED, AM)
 	return
 
+///Can the mover object pass this atom, while heading for the target turf
 /atom/proc/CanPass(atom/movable/mover, turf/target)
-	//Purpose: Determines if the object can pass this atom.
-	//Called by: Movement.
-	//Inputs: The moving atom (optional), target turf
-	//Outputs: Boolean if can pass.
-	if(density)
-		if( (flags_atom & ON_BORDER) && !(get_dir(loc, target) & dir) )
-			return TRUE
-		else
-			return FALSE
-	else
+	SHOULD_CALL_PARENT(TRUE)
+	if(mover.status_flags & INCORPOREAL)
 		return TRUE
+	. = CanAllowThrough(mover, target)
+	// This is cheaper than calling the proc every time since most things dont override CanPassThrough
+	if(!mover.generic_canpass)
+		return mover.CanPassThrough(src, target, .)
 
+/// Returns true or false to allow the mover to move through src
+/atom/proc/CanAllowThrough(atom/movable/mover, turf/target)
+	SHOULD_CALL_PARENT(TRUE)
+	return !density
 
 /atom/proc/CheckExit(atom/movable/mover, turf/target)
 	if(!density || !(flags_atom & ON_BORDER) || !(get_dir(mover.loc, target) & dir))
@@ -557,39 +558,39 @@ Proc for attack log creation, because really why not
 			return
 
 /**
-  * The primary method that objects are setup in SS13 with
-  *
-  * we don't use New as we have better control over when this is called and we can choose
-  * to delay calls or hook other logic in and so forth
-  *
-  * During roundstart map parsing, atoms are queued for intialization in the base atom/New(),
-  * After the map has loaded, then Initalize is called on all atoms one by one. NB: this
-  * is also true for loading map templates as well, so they don't Initalize until all objects
-  * in the map file are parsed and present in the world
-  *
-  * If you're creating an object at any point after SSInit has run then this proc will be
-  * immediately be called from New.
-  *
-  * mapload: This parameter is true if the atom being loaded is either being intialized during
-  * the Atom subsystem intialization, or if the atom is being loaded from the map template.
-  * If the item is being created at runtime any time after the Atom subsystem is intialized then
-  * it's false.
-  *
-  * You must always call the parent of this proc, otherwise failures will occur as the item
-  * will not be seen as initalized (this can lead to all sorts of strange behaviour, like
-  * the item being completely unclickable)
-  *
-  * You must not sleep in this proc, or any subprocs
-  *
-  * Any parameters from new are passed through (excluding loc), naturally if you're loading from a map
-  * there are no other arguments
-  *
-  * Must return an [initialization hint][INITIALIZE_HINT_NORMAL] or a runtime will occur.
-  *
-  * Note: the following functions don't call the base for optimization and must copypasta handling:
-  * * [/turf/Initialize]
-  * * [/turf/open/space/Initialize]
-  */
+ * The primary method that objects are setup in SS13 with
+ *
+ * we don't use New as we have better control over when this is called and we can choose
+ * to delay calls or hook other logic in and so forth
+ *
+ * During roundstart map parsing, atoms are queued for intialization in the base atom/New(),
+ * After the map has loaded, then Initalize is called on all atoms one by one. NB: this
+ * is also true for loading map templates as well, so they don't Initalize until all objects
+ * in the map file are parsed and present in the world
+ *
+ * If you're creating an object at any point after SSInit has run then this proc will be
+ * immediately be called from New.
+ *
+ * mapload: This parameter is true if the atom being loaded is either being intialized during
+ * the Atom subsystem intialization, or if the atom is being loaded from the map template.
+ * If the item is being created at runtime any time after the Atom subsystem is intialized then
+ * it's false.
+ *
+ * You must always call the parent of this proc, otherwise failures will occur as the item
+ * will not be seen as initalized (this can lead to all sorts of strange behaviour, like
+ * the item being completely unclickable)
+ *
+ * You must not sleep in this proc, or any subprocs
+ *
+ * Any parameters from new are passed through (excluding loc), naturally if you're loading from a map
+ * there are no other arguments
+ *
+ * Must return an [initialization hint][INITIALIZE_HINT_NORMAL] or a runtime will occur.
+ *
+ * Note: the following functions don't call the base for optimization and must copypasta handling:
+ * * [/turf/Initialize]
+ * * [/turf/open/space/Initialize]
+ */
 /atom/proc/Initialize(mapload, ...)
 	SHOULD_CALL_PARENT(TRUE)
 	SHOULD_NOT_SLEEP(TRUE)

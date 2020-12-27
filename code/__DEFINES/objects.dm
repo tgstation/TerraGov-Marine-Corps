@@ -70,6 +70,7 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 
 
 //sharp item defines
+#define IS_NOT_SHARP_ITEM			0
 #define IS_SHARP_ITEM_SIMPLE 		1 //not easily usable to cut or slice. e.g. shard, wirecutters, spear
 #define IS_SHARP_ITEM_ACCURATE		2 //knife, scalpel
 #define IS_SHARP_ITEM_BIG			3 //fireaxe, hatchet, energy sword
@@ -111,7 +112,7 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 #define SENTRY_ALERT_BATTERY			5
 #define SENTRY_ALERT_DELAY				20 SECONDS
 #define SENTRY_DAMAGE_ALERT_DELAY		5 SECONDS
-
+#define SENTRY_LIGHT_POWER				7
 
 //Scout cloak defines
 #define SCOUT_CLOAK_ENERGY	100

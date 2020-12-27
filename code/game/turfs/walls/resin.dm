@@ -1,8 +1,8 @@
 /**
-  * Resin walls
-  *
-  * Used mostly be xenomorphs
-  */
+ * Resin walls
+ *
+ * Used mostly be xenomorphs
+ */
 /turf/closed/wall/resin
 	name = "resin wall"
 	desc = "Weird slime solidified into a wall."
@@ -89,6 +89,8 @@
 	"<span class='xenonotice'>We start to tear down \the [src].</span>")
 	if(!do_after(M, 4 SECONDS, TRUE, M, BUSY_ICON_GENERIC))
 		return
+	if(!istype(src)) // Prevent jumping to other turfs if do_after completes with the wall already gone
+		return
 	M.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 	M.visible_message("<span class='xenonotice'>\The [M] tears down \the [src]!</span>", \
 	"<span class='xenonotice'>We tear down \the [src].</span>")
@@ -124,11 +126,10 @@
 	playsound(src, "alien_resin_break", 25)
 
 
-/turf/closed/wall/resin/CanPass(atom/movable/mover, turf/target)
+/turf/closed/wall/resin/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
 		return !opacity
-	return !density
-
 
 /turf/closed/wall/resin/dismantle_wall(devastated = 0, explode = 0)
 	ScrapeAway()
@@ -150,8 +151,8 @@
 	return FALSE
 
 /**
-  * Regenerating walls that start with lower health, but grow to a much higher hp over time
-  */
+ * Regenerating walls that start with lower health, but grow to a much higher hp over time
+ */
 /turf/closed/wall/resin/regenerating
 	max_integrity = 100
 
@@ -171,9 +172,9 @@
 	START_PROCESSING(SSslowprocess, src)
 
 /**
-  * Try to start processing on the wall.
-  * Will return early if the wall is already at max upgradable health.
-  */
+ * Try to start processing on the wall.
+ * Will return early if the wall is already at max upgradable health.
+ */
 /turf/closed/wall/resin/regenerating/proc/start_healing()
 	if(wall_integrity == max_upgradable_health)
 		return

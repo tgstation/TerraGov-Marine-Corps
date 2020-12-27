@@ -51,7 +51,10 @@
 	desc = "A flak jacket used by dropship pilots to protect themselves while flying in the cockpit. Excels in protecting the wearer against high-velocity solid projectiles."
 	icon = 'icons/obj/clothing/cm_suits.dmi'
 	icon_state = "pilot"
-	sprite_sheet_id = 1
+	item_icons = list(
+		slot_wear_suit_str = 'icons/mob/suit_1.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi')
 	blood_overlay_type = "armor"
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
 	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
@@ -73,8 +76,7 @@
 		/obj/item/attachable/bayonetknife,
 		/obj/item/storage/belt/sparepouch,
 		/obj/item/storage/large_holster/machete,
-		/obj/item/storage/belt/gun/m4a3,
-		/obj/item/storage/belt/gun/m44,
+		/obj/item/storage/belt/gun,
 	)
 
 /obj/item/clothing/suit/armor/vest/dutch

@@ -42,6 +42,7 @@
 	///Is this area considered inside or outside
 	var/outside = TRUE
 
+	var/flags_area = NONE
 	///Cameras in this area
 	var/list/cameras
 	///Keeps a lit of adjacent firelocks, used for alarms/ZAS

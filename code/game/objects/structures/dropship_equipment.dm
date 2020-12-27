@@ -814,7 +814,10 @@
 	. = ..()
 	if(!deployed_table)
 		deployed_table = new(src)
-		RegisterSignal(deployed_table, COMSIG_PARENT_ATTACKBY, /atom/.proc/attackby)//if something (like a powerloader) clicks on the deployed thing relay it
+		RegisterSignal(deployed_table, COMSIG_PARENT_ATTACKBY, .proc/attackby_wrapper)//if something (like a powerloader) clicks on the deployed thing relay it
+
+/obj/structure/dropship_equipment/operatingtable/proc/attackby_wrapper(datum/source, obj/item/I, mob/user, params)
+	attackby(I, user, params)
 
 /obj/structure/dropship_equipment/operatingtable/examine(mob/user)
 	. = ..()
