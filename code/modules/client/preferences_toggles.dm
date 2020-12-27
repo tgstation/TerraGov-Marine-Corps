@@ -320,3 +320,13 @@ GLOBAL_LIST_INIT(ghost_others_options, list(GHOST_OTHERS_SIMPLE, GHOST_OTHERS_DE
 
 	TOGGLE_BITFIELD(prefs.toggles_deadchat, DISABLE_DEATHRATTLE)
 	to_chat(usr, "<span class='notice'>Death announcements have been [(prefs.toggles_deadchat & DISABLE_DEATHRATTLE) ? "disabled" : "enabled"].</span>")
+
+
+/client/verb/toggle_instrument_sound()
+	set category = "Preferences"
+	set name = "Toggle Instrument Sound"
+
+	usr.client.prefs.toggles_sound ^= SOUND_INSTRUMENTS_OFF
+	usr.client.prefs.save_preferences()
+
+	to_chat(usr, "<span class='notice'>You will [(usr.client.prefs.toggles_sound & SOUND_INSTRUMENTS_OFF) ? "no longer" : "now"] hear instruments.</span>")

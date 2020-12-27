@@ -14148,6 +14148,10 @@
 	},
 /turf/open/floor/wood,
 /area/sulaco/bridge/office)
+"ncj" = (
+/obj/structure/musician/piano,
+/turf/open/floor/plating,
+/area/sulaco/hallway/lower_main_hall)
 "ncn" = (
 /obj/structure/bed/chair,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
@@ -50486,7 +50490,7 @@ baQ
 bcs
 bcT
 aVY
-baT
+ncj
 sMg
 aPQ
 mDu
