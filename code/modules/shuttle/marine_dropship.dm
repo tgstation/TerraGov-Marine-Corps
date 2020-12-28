@@ -441,6 +441,7 @@
 	if(M)
 		dat += "<A href='?src=[REF(src)];hijack=1'>Launch to [SSmapping.configs[SHIP_MAP].map_name]</A><br>"
 		M.unlock_all()
+		M.hijack_state=HIJACK_STATE_CALLED_DOWN
 
 	var/datum/browser/popup = new(X, "computer", M ? M.name : "shuttle", 300, 200)
 	popup.set_content("<center>[dat]</center>")
