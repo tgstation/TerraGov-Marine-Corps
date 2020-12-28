@@ -35,8 +35,6 @@
 	var/turf/center_turf
 	var/datum/hive_status/associated_hive
 	var/silo_area
-	///This is the list of turfs we use to track the area that trips hivemind proximity alarms
-	var/list/silo_detection_area = list()
 	COOLDOWN_DECLARE(silo_damage_alert_cooldown)
 	COOLDOWN_DECLARE(silo_proxy_alert_cooldown)
 
@@ -52,8 +50,7 @@
 	if(!istype(center_turf))
 		center_turf = loc
 
-	silo_detection_area = RANGE_TURFS(2, src)
-	for(var/i in silo_detection_area)
+	for(var/i in RANGE_TURFS(2, src))
 		RegisterSignal(i, COMSIG_ATOM_ENTERED, .proc/resin_silo_proxy_alert)
 
 	return INITIALIZE_HINT_LATELOAD
@@ -80,10 +77,6 @@
 		AM.forceMove(get_step(center_turf, pick(CARDINAL_ALL_DIRS)))
 	playsound(loc,'sound/effects/alien_egg_burst.ogg', 75)
 
-	for(var/turf/detector_turf as() in silo_detection_area) //Delete our detector entities
-		UnregisterSignal(detector_turf, list(COMSIG_ATOM_ENTERED))
-
-	silo_detection_area = null //Null vars
 	silo_area = null
 	center_turf = null
 	STOP_PROCESSING(SSslowprocess, src)
