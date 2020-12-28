@@ -275,10 +275,10 @@
 	return ..()
 
 
-/mob/living/carbon/xenomorph/proc/calldown_dropship()
+/mob/living/carbon/xenomorph/proc/hijack()
 	set category = "Alien"
-	set name = "Call Down Dropship"
-	set desc = "Call down the dropship to the closest LZ"
+	set name = "Hijack"
+	set desc = "Call down the dropship to the closest LZ or unlock the doors"
 
 	if(!SSticker?.mode)
 		to_chat(src, "<span class='warning'>This power doesn't work in this gamemode.</span>")
