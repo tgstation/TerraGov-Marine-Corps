@@ -548,6 +548,9 @@
 
 	reagent_tag = IS_SECTOID
 
+	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+	see_in_dark = 8
+
 	namepool = /datum/namepool/sectoid
 	special_death_message = "You have perished."
 
