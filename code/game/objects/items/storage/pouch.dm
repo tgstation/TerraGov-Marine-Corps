@@ -455,11 +455,10 @@
 
 /obj/item/storage/pouch/hypospray/corps
 	name = "Corps hypospray pouch"
-	desc = It can contain hyposprays and autoinjectors, this one got a terragov corpsmans logo on its back."
+	desc = "It can contain hyposprays and autoinjectors, this one got a terragov corpsmans logo on its back."
 	icon_state = "syringe"
 	storage_slots = 4 //1 extra for corps
 	can_hold = list(/obj/item/reagent_containers/hypospray)
-	)
 
 /obj/item/storage/pouch/hypospray/corps/full/Initialize()   //literally the same stuff as the other pouch but instead of 4 combat AUTO injectors get 1 hypo of the mix
 	. = ..()
