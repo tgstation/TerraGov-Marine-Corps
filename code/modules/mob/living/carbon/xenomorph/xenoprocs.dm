@@ -70,7 +70,7 @@
 
 ///Relays health and location data about resin silos belonging to the same hive as the input user
 /proc/resin_silo_status_output(mob/living/carbon/xenomorph/user)
-	var/resin_silo_info = "<BR><b>List of Resin Silos:</b><BR><table cellspacing=4>" //Resin silo data
+	. += "<BR><b>List of Resin Silos:</b><BR><table cellspacing=4>" //Resin silo data
 	for(var/obj/structure/resin/silo/resin_silo as() in GLOB.xeno_resin_silos)
 		if(resin_silo.associated_hive == user.hive)
 
@@ -81,10 +81,10 @@
 				if(0 to 0.33)
 					hp_color = "red"
 
-			resin_silo_info += "<b>[resin_silo.name] <font color=[hp_color]>Health: ([resin_silo.obj_integrity]/[resin_silo.max_integrity])</font></b> located at: <b><font color=green>[get_area(resin_silo)] (X: [resin_silo.x], Y: [resin_silo.y])</b></font><BR>"
+			. += "<b>[resin_silo.name] <font color=[hp_color]>Health: ([resin_silo.obj_integrity]/[resin_silo.max_integrity])</font></b> located at: <b><font color=green>[get_area(resin_silo)] (X: [resin_silo.x], Y: [resin_silo.y])</b></font><BR>"
 
-	resin_silo_info += "</table>"
-	return resin_silo_info
+	. += "</table>"
+
 
 
 /proc/check_hive_status(mob/user)

@@ -35,6 +35,7 @@
 	var/turf/center_turf
 	var/datum/hive_status/associated_hive
 	var/silo_area
+	///This is the list of turfs we use to track the area that trips hivemind proximity alarms
 	var/list/silo_detection_area = list()
 	COOLDOWN_DECLARE(silo_damage_alert_cooldown)
 	COOLDOWN_DECLARE(silo_proxy_alert_cooldown)
