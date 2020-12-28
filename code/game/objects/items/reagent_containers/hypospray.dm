@@ -267,7 +267,54 @@
 
 /obj/item/reagent_containers/hypospray/advanced/oxycodone
 	list_reagents = list(/datum/reagent/medicine/oxycodone = 60)
+	
+/obj/item/reagent_containers/hypospray/advanced/combat
+	name = "Combat hyspospray"
+	desc = "An hyspospray loaded with several doses of advanced healing and painkilling chemicals. Intended for use in active combat."
+	list_reagents = list(
+		/datum/reagent/medicine/bicardine = 20,
+		/datum/reagent/medicine/kelotane = 20,
+		/datum/reagent/medicine/tramadol = 20
+	)	
+	
+/obj/item/reagent_containers/hypospray/advanced/combat_advanced
+	name = "Advanced combat hyspospray"
+	desc = "An hyspospray loaded with several doses of advanced healing and painkilling chemicals. Intended for use in active combat."
+	list_reagents = list(
+		/datum/reagent/medicine/meralyne = 20,
+		/datum/reagent/medicine/dermaline = 20,
+		/datum/reagent/medicine/oxycodone = 20
+	)
 
+/obj/item/reagent_containers/hypospray/advanced/meraderm
+	name = "A meraderm hyspospray"
+	desc = "An hyspospray loaded with meralyne and dermaline."
+	list_reagents = list(
+		/datum/reagent/medicine/meralyne = 30,
+		/datum/reagent/medicine/dermaline = 30
+	)
+
+/obj/item/reagent_containers/hypospray/advanced/meralyne
+	name = "A meralyne hyspospray"
+	desc = "An hyspospray loaded with meralyne."
+	list_reagents = list(
+		/datum/reagent/medicine/meralyne = 60
+	)
+
+/obj/item/reagent_containers/hypospray/advanced/dermaline
+	name = "A dermaline hyspospray"
+	desc = "An hyspospray loaded with dermaline."
+	list_reagents = list(
+		/datum/reagent/medicine/dermaline = 60
+	)
+	
+/obj/item/reagent_containers/hypospray/advanced/ironsugar
+	name = "A ironsugar hyspospray"
+	desc = "An hyspospray loaded with ironsugar."
+	list_reagents = list(
+		/datum/reagent/iron = 30, 
+		/datum/reagent/consumable/sugar = 30
+	)
 
 /obj/item/reagent_containers/hypospray/advanced/update_icon()
 	. = ..()
