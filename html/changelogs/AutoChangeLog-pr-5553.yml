@@ -1,5 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes: 
-  - rscadd: "New !tgs lagcheck command to check server time dilation"
-  - code_imp: "Moved some code to the correct file"

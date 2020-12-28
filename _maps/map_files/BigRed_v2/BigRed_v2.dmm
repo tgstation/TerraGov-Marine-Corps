@@ -9495,7 +9495,7 @@
 	},
 /area/bigredv2/outside/c)
 "aIq" = (
-/obj/structure/device/piano,
+/obj/structure/musician/piano,
 /turf/open/floor/carpet,
 /area/bigredv2/outside/bar)
 "aIr" = (

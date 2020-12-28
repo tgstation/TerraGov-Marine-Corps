@@ -12936,9 +12936,7 @@
 /turf/closed/ice,
 /area/ice_colony/exterior/surface/clearing/pass)
 "aSa" = (
-/obj/structure/device/piano{
-	icon_state = "pianobroken"
-	},
+/obj/structure/musician/piano,
 /turf/open/floor/wood,
 /area/ice_colony/surface/bar/bar)
 "aSb" = (
