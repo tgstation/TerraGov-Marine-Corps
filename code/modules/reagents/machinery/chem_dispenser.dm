@@ -20,7 +20,11 @@
 	var/amount = 30
 	var/recharge_amount = 10
 	var/recharge_counter = 0
-	var/possible_transfer_amounts = list(1,5,10,15,20,30,60)
+
+	///UI data holder
+	var/data = list()
+	///Reagent amounts that are dispenced
+	var/static/list/possible_transfer_amounts = list(1,5,10,15,20,30,60)
 
 	var/working_state = "dispenser_working"
 
@@ -126,13 +130,14 @@
 		ui = new(user, src, ui_key, "ChemDispenser", name, ui_x, ui_y, master_ui, state)
 		ui.open()
 
+/obj/machinery/chem_dispenser/ui_static_data(mob/user)
+	data["beakerTransferAmounts"] = possible_transfer_amounts
+
 /obj/machinery/chem_dispenser/ui_data(mob/user)
-	var/data = list()
 	data["amount"] = amount
 	data["energy"] = cell.charge ? cell.charge * powerefficiency : "0" //To prevent NaN in the UI.
 	data["maxEnergy"] = cell.maxcharge * powerefficiency
 	data["isBeakerLoaded"] = beaker ? 1 : 0
-	data["beakerTransferAmounts"] = possible_transfer_amounts
 
 	var/beakerContents[0]
 	var/beakerCurrentVolume = 0
