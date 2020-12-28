@@ -7,13 +7,13 @@
 	icon_state = "x6" //Pure white 'X' with black borders
 	anchored = TRUE //No pulling those nodes yo
 	invisibility = INVISIBILITY_OBSERVER //Visible towards ghosts
-	var/list/adjacent_nodes //list of adjacent landmark nodes
+	///list of adjacent landmark nodes
+	var/list/adjacent_nodes
 
 	///List of weights for scoring stuff happening here; ultilizes "identifiers" to differentiate different kinds of AI types looking at the same node.
-
 	var/list/weights = list(
-				IDENTIFIER_XENO = list(NODE_LAST_VISITED = 0)
-				)
+		IDENTIFIER_XENO = list(NODE_LAST_VISITED = 0),
+		)
 
 /obj/effect/ai_node/Initialize()
 	. = ..()
@@ -36,11 +36,10 @@
 	for(var/nodes in adjacent_nodes)
 		var/obj/effect/ai_node/node = nodes
 		node.adjacent_nodes -= src
-	. = ..()
+	return ..()
 
 ///Returns a node that is in the direction of this node; must be in the src's adjacent node list
 /obj/effect/ai_node/proc/get_node_in_dir_in_adj(dir)
-
 	if(!length(adjacent_nodes))
 		return
 
