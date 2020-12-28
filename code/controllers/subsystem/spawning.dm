@@ -90,6 +90,8 @@ SUBSYSTEM_DEF(spawning)
 		spawnerdata[spawner].post_spawn_cb?.Invoke(squad)
 		if(TICK_CHECK)
 			return
+
+/// Holder datum for various data relating to individual spawners
 /datum/spawnerdata
 	var/fire_increment = 0
 	var/required_increment

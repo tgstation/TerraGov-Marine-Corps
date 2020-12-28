@@ -8,6 +8,7 @@
 	var/spawndelay = 4 SECONDS
 	///Max amount of
 	var/maxamount = 5
+	///Whether we want to use the postspawn proc on the mobs created by the Spawner
 	var/use_postspawn = FALSE
 
 
@@ -22,5 +23,6 @@
 	. = ..()
 	SSspawning.registerspawner(src, spawndelay, spawntypes, maxamount, spawnamount, use_postspawn ? CALLBACK(src, .proc/postspawn) : null)
 
+///This proc runs on the created mobs if use_postspawn is enabled, use this to equip humans and such
 /obj/effect/ai_node/spawner/proc/postspawn(list/squad)
 	return
