@@ -444,6 +444,29 @@
 	storage_slots = 5
 	max_storage_space = 10
 	can_hold = list(/obj/item/reagent_containers/syringe)
+	
+/obj/item/storage/pouch/hypospray
+	name = "hypospray pouch"
+	desc = "It can contain hyposprays and autoinjectors."
+	icon_state = "syringe"
+	storage_slots = 3 //2 less than injectors yet more flexible options
+	can_hold = list(/obj/item/reagent_containers/hypospray)
+
+
+/obj/item/storage/pouch/hypospray/corps
+	name = "Corps hypospray pouch"
+	desc = It can contain hyposprays and autoinjectors, this one got a terragov corpsmans logo on its back."
+	icon_state = "syringe"
+	storage_slots = 4 //1 extra for corps
+	can_hold = list(/obj/item/reagent_containers/hypospray)
+	)
+
+/obj/item/storage/pouch/hypospray/corps/full/Initialize()   //literally the same stuff as the other pouch but instead of 4 combat AUTO injectors get 1 hypo of the mix
+	. = ..()
+	new /obj/item/reagent_containers/hypospray/advanced/combat_advanced(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine (src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus(src)
 
 // It really fits here more, but essentially a medkit in your pouch
 
