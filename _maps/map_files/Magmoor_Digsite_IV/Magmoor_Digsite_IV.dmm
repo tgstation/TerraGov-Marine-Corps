@@ -12190,7 +12190,7 @@
 /turf/open/floor/mainship/cargo,
 /area/magmoor/cargo/storage/secure/south)
 "jjS" = (
-/obj/structure/device/broken_piano,
+/obj/structure/musician/piano,
 /turf/open/floor/wood,
 /area/magmoor/civilian/bar)
 "jjW" = (
