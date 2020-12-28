@@ -324,8 +324,6 @@
 	if(lighting_alpha != new_xeno.lighting_alpha)
 		new_xeno.toggle_nightvision(lighting_alpha)
 
-	new_xeno.middle_mouse_toggle = middle_mouse_toggle //Keep our toggle state
-
 	new_xeno.update_spits() //Update spits to new/better ones
 
 	new_xeno.visible_message("<span class='xenodanger'>A [new_xeno.xeno_caste.caste_name] emerges from the husk of \the [src].</span>", \

@@ -1,6 +1,0 @@
-author: "Surrealaser"
-delete-after: True
-changes: 
-  - tweak: "The Warrior Grapple Toss ability can now be keybound."
-  - tweak: "Keybind descriptions added for Warrior abilities."
-  - code_imp: "Minor refactor of Grapple Toss code."

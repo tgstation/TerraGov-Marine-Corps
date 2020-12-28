@@ -15013,6 +15013,17 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/weapon_room)
+"ZQ" = (
+/obj/structure/table/mainship,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/crowbar,
+/obj/item/tool/crowbar,
+/obj/item/tool/screwdriver,
+/obj/item/tool/screwdriver,
+/obj/item/instrument/guitar,
+/turf/open/floor/mainship,
+/area/mainship/squads/general)
 "ZR" = (
 /obj/item/reagent_containers/spray/cleaner,
 /obj/item/reagent_containers/spray/cleaner,
@@ -49356,7 +49367,7 @@ NZ
 Ui
 Wp
 ka
-XQ
+ZQ
 kZ
 qr
 ru
