@@ -1,6 +1,6 @@
 // points per minute
-#define DROPSHIP_POINT_RATE 18
-#define SUPPLY_POINT_RATE 2
+#define DROPSHIP_POINT_RATE 18 * (GLOB.current_orbit/3)
+#define SUPPLY_POINT_RATE 2 * (GLOB.current_orbit/3)
 
 SUBSYSTEM_DEF(points)
 	name = "Points"
@@ -25,7 +25,7 @@ SUBSYSTEM_DEF(points)
 	var/list/requestlist = list()
 	var/list/deniedrequests = list()
 	var/list/approvedrequests = list()
-	
+
 	var/list/request_shopping_cart = list()
 
 /datum/controller/subsystem/points/Recover()
@@ -92,15 +92,15 @@ SUBSYSTEM_DEF(points)
 	O.authorised_by = user.real_name
 	supply_points -= cost
 	shoppinglist["[O.id]"] = O
-	if(GLOB.directory[O.orderer_ckey])
-		to_chat(GLOB.directory[O.orderer_ckey], "<span class='notice'>Your request [O.id] has been approved!</span>")
+	if(GLOB.directory[O.orderer])
+		to_chat(GLOB.directory[O.orderer], "<span class='notice'>Your request [O.id] has been approved!</span>")
 
 /datum/controller/subsystem/points/proc/deny_request(datum/supply_order/O)
 	requestlist -= "[O.id]"
 	deniedrequests["[O.id]"] = O
 	O.authorised_by = "denied"
-	if(GLOB.directory[O.orderer_ckey])
-		to_chat(GLOB.directory[O.orderer_ckey], "<span class='notice'>Your request [O.id] has been denied!</span>")
+	if(GLOB.directory[O.orderer])
+		to_chat(GLOB.directory[O.orderer], "<span class='notice'>Your request [O.id] has been denied!</span>")
 
 /datum/controller/subsystem/points/proc/copy_order(datum/supply_order/O)
 	var/datum/supply_order/NO = new

@@ -37,12 +37,14 @@
 	return ..()
 
 /datum/component/riding/proc/vehicle_mob_unbuckle(datum/source, mob/living/M, force = FALSE)
+	SIGNAL_HANDLER
 	var/atom/movable/AM = parent
 	restore_position(M)
 	if(del_on_unbuckle_all && !LAZYLEN(AM.buckled_mobs))
 		qdel(src)
 
 /datum/component/riding/proc/vehicle_mob_buckle(datum/source, mob/living/buckling_mob, force, check_loc, lying_buckle, hands_needed, target_hands_needed, silent)
+	SIGNAL_HANDLER
 	handle_vehicle_offsets()
 
 /datum/component/riding/proc/handle_vehicle_layer()
@@ -59,6 +61,7 @@
 	directional_vehicle_layers["[dir]"] = layer
 
 /datum/component/riding/proc/vehicle_moved(datum/source)
+	SIGNAL_HANDLER
 	var/atom/movable/AM = parent
 	for(var/i in AM.buckled_mobs)
 		ride_check(i)
@@ -186,7 +189,7 @@
 		to_chat(user, "<span class='warning'>You'll need the keys in one of your hands to [drive_verb] [AM].</span>")
 
 /datum/component/riding/proc/Unbuckle(atom/movable/buckled_thing)
-	addtimer(CALLBACK(parent, /atom/movable/.proc/unbuckle_mob, buckled_thing), 0, TIMER_UNIQUE)
+	INVOKE_ASYNC(parent, /atom/movable/.proc/unbuckle_mob, buckled_thing)
 
 ///////Yes, I said humans. No, this won't end well...//////////
 /datum/component/riding/human
@@ -238,12 +241,14 @@
 
 
 /datum/component/riding/human/proc/on_carrier_unarmed_melee(datum/source, atom/target)
+	SIGNAL_HANDLER
 	var/mob/living/carbon/human/human_carrier = parent
 	if(human_carrier.a_intent != INTENT_DISARM || !(target in human_carrier.buckled_mobs))
 		return
 	force_dismount(target)
 
 /datum/component/riding/human/proc/on_passenger_throw(datum/source, atom/target, range, speed, thrower, spin)
+	SIGNAL_HANDLER
 	force_dismount(source, TRUE)
 
 

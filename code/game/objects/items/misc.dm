@@ -11,7 +11,6 @@
 	attack_verb = list("called", "rang")
 	hitsound = 'sound/weapons/ring.ogg'
 
-
 /obj/item/clock
 	name = "digital clock"
 	desc = "A battery powered clock, able to keep time within about 5 seconds... it was never that accurate."
@@ -27,7 +26,6 @@
 	. = ..()
 	to_chat(user, "The [src] reads: [GLOB.current_date_string] - [stationTimestamp()]")
 
-
 /obj/item/bananapeel
 	name = "banana peel"
 	desc = "A peel from a banana."
@@ -35,7 +33,6 @@
 	icon_state = "banana_peel"
 	item_state = "banana_peel"
 	w_class = WEIGHT_CLASS_TINY
-	throwforce = 0
 	throw_speed = 4
 	throw_range = 20
 
@@ -118,3 +115,63 @@
 	gender = PLURAL
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "ectoplasm"
+
+
+/obj/item/compactorebox
+	name = "compressed ore box"
+	desc = "A heavy and pretty solid box, filled to the brim with ore"
+	icon = 'icons/obj/items/items.dmi'
+	icon_state = "phoronbox_compact"
+	item_state = "phoronbox_compact"
+	max_integrity = 20
+	w_class = WEIGHT_CLASS_HUGE
+	flags_item = TWOHANDED
+	force = 5
+	throw_range = 3
+	throwforce = 15 // Heavy box. heavy damage.
+
+/obj/item/compactorebox/pickup(mob/user)
+	. = ..()
+	wield(user)
+
+/obj/item/compactorebox/dropped(mob/user)
+	. = ..()
+	unwield(user)
+
+/obj/item/compactorebox/phoron
+	name = "compressed phoron box"
+	desc = "A heavy and pretty solid box, filled to the brim with compressed phoron crystals."
+
+/obj/item/compactorebox/platinum
+	name = "compressed platinum box"
+	desc = "A very heavy and solid box, filled with pure titanium."
+	icon_state = "platinumbox_compact"
+	item_state = "platinumbox_comact"
+
+/obj/item/minerupgrade
+	name = "miner upgrade"
+	desc = "Subtype item, should not exist."
+	icon = 'icons/obj/mining_drill.dmi'
+	icon_state = "mining_drill_reinforceddisplay"
+	w_class = WEIGHT_CLASS_NORMAL
+	materials = list(/datum/material/metal = 60000) // 18 Sheets , because thats all a autolathe can fit
+	/// Used to determine the type of upgrade the miner is going to receive. Has to be a string which is defined in miner.dm or it won't work.
+	var/uptype
+
+/obj/item/minerupgrade/reinforcement
+	name = "reinforced components box"
+	desc = "A very folded box of reinforced components, meant to replace weak components used in normal mining wells."
+	icon_state = "mining_drill_reinforceddisplay"
+	uptype = "reinforced components"
+
+/obj/item/minerupgrade/overclock
+	name =  "high-efficiency drill"
+	desc = "A box with a few pumps and a big drill, meant to replace the standard drill used in normal mining wells for faster extraction."
+	icon_state = "mining_drill_overclockeddisplay"
+	uptype = "high-efficiency drill"
+
+/obj/item/minerupgrade/compactor
+	name = "crystalizer module"
+	desc = "A bulky module meant to replace the normal crystalizer in mining wells, used to compress boxes for easy carrying."
+	icon_state = "mining_drill_compactordisplay"
+	uptype = "upgraded crystalizer module"

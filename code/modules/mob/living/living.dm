@@ -97,7 +97,9 @@
 	GLOB.offered_mob_list -= src
 	SSmobs.stop_processing(src)
 	job = null
-	return ..()
+	. = ..()
+	hard_armor = null
+	soft_armor = null
 
 
 //This proc is used for mobs which are affected by pressure to calculate the amount of pressure that actually
@@ -384,6 +386,11 @@
 			return
 
 	if(ismovableatom(A))
+		if(isxeno(src) && ishuman(A))
+			var/mob/living/carbon/human/H = A
+			if(!COOLDOWN_CHECK(H,  xeno_push_delay))
+				return
+			COOLDOWN_START(H, xeno_push_delay, XENO_HUMAN_PUSHED_DELAY)
 		PushAM(A)
 
 
@@ -475,6 +482,8 @@
 		SA.remove_from_hud(src)
 		var/datum/atom_hud/xeno_infection/XI = GLOB.huds[DATA_HUD_XENO_INFECTION]
 		XI.remove_from_hud(src)
+		var/datum/atom_hud/xeno_reagents/RE = GLOB.huds[DATA_HUD_XENO_REAGENTS]
+		RE.remove_from_hud(src)
 
 	smokecloaked = TRUE
 
@@ -490,6 +499,8 @@
 		SA.add_to_hud(src)
 		var/datum/atom_hud/xeno_infection/XI = GLOB.huds[DATA_HUD_XENO_INFECTION]
 		XI.add_to_hud(src)
+		var/datum/atom_hud/xeno_reagents/RE = GLOB.huds[DATA_HUD_XENO_REAGENTS]
+		RE.add_to_hud(src)
 
 	smokecloaked = FALSE
 
@@ -576,9 +587,14 @@ below 100 is not dizzy
 		log_game("[key_name(M)] has taken over [key_name_admin(src)].")
 		message_admins("[key_name_admin(M)] has taken over [ADMIN_TPMONTY(src)].")
 
+	GLOB.offered_mob_list -= src
+
+	if(isxeno(src))
+		SSticker.mode.transfer_xeno(M, src, TRUE)
+		return TRUE
+
 	M.mind.transfer_to(src, TRUE)
 	fully_replace_character_name(M.real_name, real_name)
-	GLOB.offered_mob_list -= src
 	return TRUE
 
 
@@ -744,13 +760,13 @@ below 100 is not dizzy
 	return D.Adjacent(src)
 
 /**
-  * Changes the inclination angle of a mob, used by humans and others to differentiate between standing up and prone positions.
-  *
-  * In BYOND-angles 0 is NORTH, 90 is EAST, 180 is SOUTH and 270 is WEST.
-  * This usually means that 0 is standing up, 90 and 270 are horizontal positions to right and left respectively, and 180 is upside-down.
-  * Mobs that do now follow these conventions due to unusual sprites should require a special handling or redefinition of this proc, due to the density and layer changes.
-  * The return of this proc is the previous value of the modified lying_angle if a change was successful (might include zero), or null if no change was made.
-  */
+ * Changes the inclination angle of a mob, used by humans and others to differentiate between standing up and prone positions.
+ *
+ * In BYOND-angles 0 is NORTH, 90 is EAST, 180 is SOUTH and 270 is WEST.
+ * This usually means that 0 is standing up, 90 and 270 are horizontal positions to right and left respectively, and 180 is upside-down.
+ * Mobs that do now follow these conventions due to unusual sprites should require a special handling or redefinition of this proc, due to the density and layer changes.
+ * The return of this proc is the previous value of the modified lying_angle if a change was successful (might include zero), or null if no change was made.
+ */
 /mob/living/proc/set_lying_angle(new_lying)
 	if(new_lying == lying_angle)
 		return

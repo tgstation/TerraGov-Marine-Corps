@@ -1,5 +1,6 @@
 #define DISTRESS_MARINE_DEPLOYMENT 0
 #define DISTRESS_DROPSHIP_CRASHED 1
+#define DISTRESS_MARINE_RETREAT 2
 
 /datum/game_mode/infestation/distress
 	name = "Distress Signal"
@@ -15,7 +16,7 @@
 		/datum/job/terragov/command/staffofficer = 4,
 		/datum/job/terragov/command/pilot = 2,
 		/datum/job/terragov/engineering/chief = 1,
-		/datum/job/terragov/engineering/tech = 1,
+		/datum/job/terragov/engineering/tech = 2,
 		/datum/job/terragov/requisitions/officer = 1,
 		/datum/job/terragov/medical/professor = 1,
 		/datum/job/terragov/medical/medicalofficer = 6,
@@ -111,27 +112,33 @@
 	var/num_xenos = living_player_list[2]
 
 	if(SSevacuation.dest_status == NUKE_EXPLOSION_FINISHED)
-		message_admins("Round finished: [MODE_GENERIC_DRAW_NUKE]")
+		message_admins("Round finished: [MODE_GENERIC_DRAW_NUKE]") //ship blows, no one wins
 		round_finished = MODE_GENERIC_DRAW_NUKE
 		return TRUE
-	if(!num_humans)
-		if(!num_xenos)
-			message_admins("Round finished: [MODE_INFESTATION_DRAW_DEATH]")
-			round_finished = MODE_INFESTATION_DRAW_DEATH
-			return TRUE
-		if(round_stage == DISTRESS_DROPSHIP_CRASHED)
-			message_admins("Round finished: [MODE_INFESTATION_X_MAJOR]")
-			round_finished = MODE_INFESTATION_X_MAJOR
-			return TRUE
+
+	if(round_stage == DISTRESS_MARINE_RETREAT)
 		message_admins("Round finished: [MODE_INFESTATION_X_MINOR]")
 		round_finished = MODE_INFESTATION_X_MINOR
 		return TRUE
+
+	if(!num_humans)
+		if(!num_xenos)
+			message_admins("Round finished: [MODE_INFESTATION_DRAW_DEATH]") //everyone died at the same time, no one wins
+			round_finished = MODE_INFESTATION_DRAW_DEATH
+			return TRUE
+		if(round_stage == DISTRESS_DROPSHIP_CRASHED)
+			message_admins("Round finished: [MODE_INFESTATION_X_MAJOR]") //xenos wiped our marines, xeno major victory
+			round_finished = MODE_INFESTATION_X_MAJOR
+			return TRUE
+		message_admins("Round finished: [MODE_INFESTATION_X_MAJOR]") //xenos wiped out ALL the marines without hijacking, xeno major victory
+		round_finished = MODE_INFESTATION_X_MAJOR
+		return TRUE
 	if(!num_xenos)
 		if(round_stage == DISTRESS_DROPSHIP_CRASHED)
-			message_admins("Round finished: [MODE_INFESTATION_M_MINOR]")
-			round_finished = MODE_INFESTATION_M_MINOR
+			message_admins("Round finished: [MODE_INFESTATION_X_MINOR]") //xenos hijacked the shuttle and won groundside but died on the ship, minor victory
+			round_finished = MODE_INFESTATION_X_MINOR
 			return TRUE
-		message_admins("Round finished: [MODE_INFESTATION_M_MAJOR]")
+		message_admins("Round finished: [MODE_INFESTATION_M_MAJOR]") //marines win big or go home
 		round_finished = MODE_INFESTATION_M_MAJOR
 		return TRUE
 	return FALSE
@@ -251,7 +258,7 @@
 		output += "<a href='byond://?src=[REF(NP)];lobby_choice=manifest'>View the Crew Manifest</A><br>"
 		output += "<p><a href='byond://?src=[REF(NP)];lobby_choice=late_join'>Join the Game!</A></p>"
 
-	output += append_player_votes_link(NP)
+	output += NP.playerpolls()
 
 	output += "</div>"
 

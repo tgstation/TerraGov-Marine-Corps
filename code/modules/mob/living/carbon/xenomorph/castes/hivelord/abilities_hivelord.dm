@@ -6,7 +6,8 @@
 		/turf/closed/wall/resin/regenerating/thick,
 		/obj/structure/bed/nest,
 		/obj/effect/alien/resin/sticky,
-		/obj/structure/mineral_door/resin/thick)
+		/obj/structure/mineral_door/resin/thick,
+	)
 
 /datum/action/xeno_action/activable/secrete_resin/hivelord
 	plasma_cost = 100
@@ -29,8 +30,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	// 	var/turf/closed/wall/resin/WR = A
 	// 	var/oldname = WR.name
 	// 	if(WR.thicken())
-	// 		owner.visible_message("<span class='xenonotice'>\The [owner] regurgitates a thick substance and thickens [oldname].</span>", \
-	// 		"<span class='xenonotice'>You regurgitate some resin and thicken [oldname].</span>", null, 5)
+	// 		owner.visible_message("<span class='xenonotice'>\The [owner] regurgitates a thick substance and thickens [oldname].</span>","<span class='xenonotice'>You regurgitate some resin and thicken [oldname].</span>", null, 5)
 	// 		playsound(owner.loc, "alien_resin_build", 25)
 	// 		return succeed_activate()
 	// 	to_chat(owner, "<span class='xenowarning'>[WR] can't be made thicker.</span>")
@@ -40,8 +40,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	// 	var/obj/structure/mineral_door/resin/DR = A
 	// 	var/oldname = DR.name
 	// 	if(DR.thicken())
-	// 		owner.visible_message("<span class='xenonotice'>\The [owner] regurgitates a thick substance and thickens [oldname].</span>", \
-	// 			"<span class='xenonotice'>We regurgitate some resin and thicken [oldname].</span>", null, 5)
+	// 		owner.visible_message("<span class='xenonotice'>\The [owner] regurgitates a thick substance and thickens [oldname].</span>", "<span class='xenonotice'>We regurgitate some resin and thicken [oldname].</span>", null, 5)
 	// 		playsound(owner.loc, "alien_resin_build", 25)
 	// 		return succeed_activate()
 	// 	to_chat(owner, "<span class='xenowarning'>[DR] can't be made thicker.</span>")
@@ -100,6 +99,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 
 
 /datum/action/xeno_action/toggle_speed/proc/resinwalk_on_moved(datum/source, atom/oldloc, direction, Forced = FALSE)
+	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/walker = owner
 	if(!isturf(walker.loc) || !walker.check_plasma(10, TRUE))
 		to_chat(owner, "<span class='warning'>We feel dizzy as the world slows down.</span>")
@@ -134,7 +134,8 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 		return FALSE
 	var/turf/T = get_turf(owner)
 	if(locate(/obj/structure/tunnel) in T)
-		to_chat(owner, "<span class='warning'>There already is a tunnel here.</span>")
+		if(!silent)
+			to_chat(owner, "<span class='warning'>There already is a tunnel here.</span>")
 		return
 	if(!T.can_dig_xeno_tunnel())
 		if(!silent)
@@ -163,47 +164,36 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 		return fail_activate()
 
 	var/mob/living/carbon/xenomorph/hivelord/X = owner
-	if(!X.start_dig) //Let's start a new one.
-		X.visible_message("<span class='xenonotice'>\The [X] digs out a tunnel entrance.</span>", \
-		"<span class='xenonotice'>We dig out the first entrance to our tunnel.</span>", null, 5)
-		X.start_dig = new /obj/structure/tunnel(T)
-		X.start_dig.creator = X
-		playsound(T, 'sound/weapons/pierce.ogg', 25, 1)
-		return succeed_activate()
+	X.visible_message("<span class='xenonotice'>\The [X] digs out a tunnel entrance.</span>", \
+	"<span class='xenonotice'>We dig out a tunnel, connecting it to our network.</span>", null, 5)
+	var/obj/structure/tunnel/newt = new(T)
 
-	to_chat(X, "<span class='xenonotice'>We dig our tunnel all the way to the original entrance, connecting both entrances!</span>")
-	var/obj/structure/tunnel/newt = new /obj/structure/tunnel(T)
-	newt.other = X.start_dig
+	playsound(T, 'sound/weapons/pierce.ogg', 25, 1)
+
+
 	newt.creator = X
 
-	if(newt.z != newt.other.z)
-		X.start_dig = newt
-		to_chat(X, "<span class='xenonotice'>The first tunnel of this set has been destroyed as it cannot connect to this tunnel.</span>")
-		newt.other.deconstruct(FALSE)
-		newt.other = null
-		return fail_activate()
-
-	X.start_dig.other = newt //Link the two together
-	X.start_dig = null //Now clear it
-
 	X.tunnels.Add(newt)
-	X.tunnels.Add(newt.other)
 
 	add_cooldown()
 
-	to_chat(X, "<span class='xenonotice'>We dig our tunnel all the way to the original entrance, connecting both entrances! We now have [length(X.tunnels) * 0.5] of [HIVELORD_TUNNEL_SET_LIMIT] tunnel sets.</span>")
+	to_chat(X, "<span class='xenonotice'>We now have <b>[LAZYLEN(X.tunnels)] of [HIVELORD_TUNNEL_SET_LIMIT]</b> tunnels.</span>")
 
-	var/msg = stripped_input(X, "Add a description to the tunnel:", "Tunnel Description")
-	newt.other.tunnel_desc = "[get_area(newt.other)] (X: [newt.other.x], Y: [newt.other.y]) [msg]"
-	newt.tunnel_desc = "[get_area(newt)] (X: [newt.x], Y: [newt.y]) [msg]"
+	var/msg = stripped_input(X, "Give your tunnel a descriptive name:", "Tunnel Name")
+	newt.tunnel_desc = "[get_area(newt)] (X: [newt.x], Y: [newt.y])"
+	newt.name += " [msg]"
 
-	if(length(X.tunnels) * 0.5 > HIVELORD_TUNNEL_SET_LIMIT) //if we exceed the limit, delete the oldest tunnel set.
+	xeno_message("<span class='xenoannounce'>[X.name] has built a new tunnel named [newt.name] at [newt.tunnel_desc]!</span>", 2, X.hivenumber)
+
+	if(LAZYLEN(X.tunnels) > HIVELORD_TUNNEL_SET_LIMIT) //if we exceed the limit, delete the oldest tunnel set.
 		var/obj/structure/tunnel/old_tunnel = X.tunnels[1]
 		old_tunnel.deconstruct(FALSE)
-		to_chat(X, "<span class='xenodanger'>Having exceeding our tunnel set limit, our oldest tunnel set has collapsed.</span>")
+		to_chat(X, "<span class='xenodanger'>Having exceeding our tunnel limit, our oldest tunnel has collapsed.</span>")
 
 	succeed_activate()
 	playsound(T, 'sound/weapons/pierce.ogg', 25, 1)
+
+
 
 // ***************************************
 // *********** plasma transfer
@@ -212,3 +202,70 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	plasma_transfer_amount = PLASMA_TRANSFER_AMOUNT * 4
 	transfer_delay = 0.5 SECONDS
 	max_range = 7
+
+
+/datum/action/xeno_action/place_jelly_pod
+	name = "Place Resin Jelly pod"
+	action_icon_state = "haunt"
+	mechanics_text = "Place down a dispenser that allows xenos to retrieve fireproof jelly."
+	plasma_cost = 500
+	cooldown_timer = 3 MINUTES
+	keybind_signal = COMSIG_XENOABILITY_PLACE_JELLY_POD
+
+/datum/action/xeno_action/place_jelly_pod/can_use_action(silent = FALSE, override_flags)
+	. = ..()
+	var/turf/T = get_turf(owner)
+	if(!T || !T.is_weedable() || T.density)
+		if(!silent)
+			to_chat(owner, "<span class='warning'>We can't do that here.</span>")
+		return FALSE
+
+	if(!(locate(/obj/effect/alien/weeds) in T))
+		if(!silent)
+			to_chat(owner, "<span class='warning'>We can only shape on weeds. We must find some resin before we start building!</span>")
+		return FALSE
+
+	if(!T.check_alien_construction(owner, silent))
+		return FALSE
+
+	if(locate(/obj/effect/alien/weeds/node) in T)
+		if(!silent)
+			to_chat(owner, "<span class='warning'>There is a resin node in the way!</span>")
+		return FALSE
+
+/datum/action/xeno_action/place_jelly_pod/action_activate()
+	var/turf/T = get_turf(owner)
+
+	succeed_activate()
+
+	playsound(T, "alien_resin_build", 25)
+	var/obj/structure/resin_jelly_pod/pod = new(T)
+	to_chat(owner, "<span class='xenonotice'>We shape some resin into \a [pod].</span>")
+
+/datum/action/xeno_action/create_jelly
+	name = "Create Resin Jelly"
+	action_icon_state = "gut"
+	mechanics_text = "Create a fireproof jelly."
+	plasma_cost = 100
+	cooldown_timer = 1 MINUTES
+	keybind_signal = COMSIG_XENOABILITY_CREATE_JELLY
+
+/datum/action/xeno_action/create_jelly/can_use_action(silent = FALSE, override_flags)
+	. = ..()
+	if(owner.l_hand || owner.r_hand)
+		if(!silent)
+			to_chat(owner, "<span class='xenonotice'>We require free hands for this!</span>")
+		return FALSE
+
+/datum/action/xeno_action/create_jelly/action_activate()
+	var/obj/item/resin_jelly/jelly = new(owner.loc)
+	owner.put_in_hands(jelly)
+	to_chat(owner, "<span class='xenonotice'>We create a globule of resin from our ovipostor.</span>")
+	succeed_activate()
+
+// ***************************************
+// *********** Acidic salve
+// ***************************************
+
+/datum/action/xeno_action/activable/psychic_cure/acidic_salve/hivelord
+	heal_range = HIVELORD_HEAL_RANGE

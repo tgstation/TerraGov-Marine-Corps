@@ -719,6 +719,10 @@
 /obj/effect/landmark/start/job/crash/squadmarine,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
+"sR" = (
+/obj/machinery/autolathe,
+/turf/open/floor/mainship/cargo,
+/area/shuttle/canterbury)
 "te" = (
 /obj/structure/rack,
 /obj/machinery/alarm{
@@ -815,6 +819,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/machinery/vending/armor_supply,
 /turf/open/floor/mainship,
 /area/shuttle/canterbury)
 "zb" = (
@@ -850,6 +855,10 @@
 /obj/structure/bed/chair/dropship/passenger,
 /obj/effect/landmark/start/job/crash/squadmarine,
 /turf/open/floor/mainship/mono,
+/area/shuttle/canterbury)
+"DF" = (
+/obj/machinery/vending/armor_supply,
+/turf/open/floor/mainship,
 /area/shuttle/canterbury)
 "DH" = (
 /obj/structure/barricade/plasteel{
@@ -1347,7 +1356,7 @@ uZ
 an
 ac
 uT
-bE
+sR
 ab
 bw
 Ot
@@ -1586,7 +1595,7 @@ ab
 py
 UO
 aO
-bA
+DF
 bA
 bA
 yp

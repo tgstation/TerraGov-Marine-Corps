@@ -107,6 +107,8 @@
 	popup.set_content(dat)
 	popup.open()
 
+/obj/machinery/autolathe/update_icon()
+	icon_state = (CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "autolathe_t": "autolathe")
 
 /obj/machinery/autolathe/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -120,8 +122,8 @@
 
 	if(isscrewdriver(I))
 		TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
-		icon_state = (CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "autolathe_t": "autolathe")
 		to_chat(user, "You [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "open" : "close"] the maintenance hatch of [src].")
+		update_icon()
 		updateUsrDialog()
 		return
 

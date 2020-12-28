@@ -89,7 +89,7 @@
 			sql += ", "
 		sql += "commit_hash = '[GLOB.revdata.originmastercommit]'"
 	if(sql)
-		var/datum/DBQuery/query_round_game_mode = SSdbcore.NewQuery("UPDATE [format_table_name("round")] SET [sql] WHERE id = [GLOB.round_id]")
+		var/datum/db_query/query_round_game_mode = SSdbcore.NewQuery("UPDATE [format_table_name("round")] SET [sql] WHERE id = :roundid", list("roundid" = GLOB.round_id))
 		query_round_game_mode.Execute()
 		qdel(query_round_game_mode)
 
@@ -283,20 +283,10 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 /datum/game_mode/proc/setup_xeno_tunnels()
 	var/i = 0
 	while(length(GLOB.xeno_tunnel_landmarks) && i++ < MAX_TUNNELS_PER_MAP)
-		var/obj/structure/tunnel/ONE
-		var/obj/effect/landmark/xeno_tunnel/L
-		var/turf/T
-		L = pick(GLOB.xeno_tunnel_landmarks)
-		GLOB.xeno_tunnel_landmarks -= L
-		T = L.loc
-		ONE = new(T)
-		ONE.id = "hole[i]"
-		for(var/x in GLOB.xeno_tunnels)
-			var/obj/structure/tunnel/TWO = x
-			if(ONE.id != TWO.id || ONE == TWO || ONE.other || TWO.other)
-				continue
-			ONE.other = TWO
-			TWO.other = ONE
+		var/obj/effect/landmark/xeno_tunnel/tunnelmarker = pick(GLOB.xeno_tunnel_landmarks)
+		GLOB.xeno_tunnel_landmarks -= tunnelmarker
+		var/turf/T = tunnelmarker.loc
+		new /obj/structure/tunnel(T)
 
 
 /datum/game_mode/proc/setup_blockers()
@@ -311,7 +301,7 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 		addtimer(CALLBACK(src, .proc/remove_fog), FOG_DELAY_INTERVAL + SSticker.round_start_time + rand(-5 MINUTES, 5 MINUTES))
 
 	if(flags_round_type & MODE_LZ_SHUTTERS)
-		addtimer(CALLBACK(GLOBAL_PROC, .proc/send_global_signal, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE), SSticker.round_start_time + 40 MINUTES)
+		addtimer(CALLBACK(GLOBAL_PROC, .proc/send_global_signal, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE), SSticker.round_start_time + 30 MINUTES)
 			//Called late because there used to be shutters opened earlier. To re-add them just copy the logic.
 
 	if(flags_round_type & MODE_XENO_SPAWN_PROTECT)
@@ -324,6 +314,7 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 
 
 /datum/game_mode/proc/grant_eord_respawn(datum/dcs, mob/source)
+	SIGNAL_HANDLER
 	source.verbs += /mob/proc/eord_respawn
 
 /datum/game_mode/proc/end_of_round_deathmatch()
@@ -441,16 +432,18 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 		dat += "[GLOB.round_statistics.carrier_traps] hidey holes for huggers were made."
 	if(GLOB.round_statistics.sentinel_neurotoxin_stings)
 		dat += "[GLOB.round_statistics.sentinel_neurotoxin_stings] number of times Sentinels stung."
-	if(GLOB.round_statistics.drone_salvage_plasma)
-		dat += "[GLOB.round_statistics.drone_salvage_plasma] number of times Drones salvaged corpses."
-	if(GLOB.round_statistics.panther_neurotoxin_stings)
-		dat += "[GLOB.round_statistics.panther_neurotoxin_stings] number of times Panthers stung."
+	if(GLOB.round_statistics.drone_salvage_biomass)
+		dat += "[GLOB.round_statistics.drone_salvage_biomass] number of times Drones salvaged biomass from corpses."
 	if(GLOB.round_statistics.defiler_defiler_stings)
 		dat += "[GLOB.round_statistics.defiler_defiler_stings] number of times Defilers stung."
 	if(GLOB.round_statistics.defiler_neurogas_uses)
 		dat += "[GLOB.round_statistics.defiler_neurogas_uses] number of times Defilers vented neurogas."
 	if(GLOB.round_statistics.xeno_unarmed_attacks && GLOB.round_statistics.xeno_bump_attacks)
 		dat += "[GLOB.round_statistics.xeno_bump_attacks] bump attacks, which made up [(GLOB.round_statistics.xeno_bump_attacks / GLOB.round_statistics.xeno_unarmed_attacks) * 100]% of all attacks ([GLOB.round_statistics.xeno_unarmed_attacks])."
+	if(GLOB.round_statistics.xeno_headbites)
+		dat += "[GLOB.round_statistics.xeno_headbites] number of times victims headbitten."
+	if(GLOB.round_statistics.xeno_silo_corpses)
+		dat += "[GLOB.round_statistics.xeno_silo_corpses] number of corpses fed to resin silos."
 
 	var/output = jointext(dat, "<br>")
 	for(var/mob/player in GLOB.player_list)
@@ -548,7 +541,7 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 		output += "<a href='byond://?src=[REF(NP)];lobby_choice=manifest'>View the Crew Manifest</A><br>"
 		output += "<p><a href='byond://?src=[REF(NP)];lobby_choice=late_join'>Join the Game!</A></p>"
 
-	output += append_player_votes_link(NP)
+	output += NP.playerpolls()
 
 	output += "</div>"
 
@@ -558,23 +551,6 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 	popup.open(FALSE)
 
 	return TRUE
-
-/datum/game_mode/proc/append_player_votes_link(mob/new_player/NP)
-	if(QDELETED(NP) || IsGuestKey(NP.key) || !SSdbcore.IsConnected())
-		return "" // append nothing
-
-	var/isadmin = check_rights(R_ADMIN, FALSE)
-	var/newpoll = FALSE
-	var/datum/DBQuery/query_get_new_polls = SSdbcore.NewQuery("SELECT id FROM [format_table_name("poll_question")] WHERE [(isadmin ? "" : "adminonly = false AND")] Now() BETWEEN starttime AND endtime AND id NOT IN (SELECT pollid FROM [format_table_name("poll_vote")] WHERE ckey = \"[sanitizeSQL(NP.ckey)]\") AND id NOT IN (SELECT pollid FROM [format_table_name("poll_textreply")] WHERE ckey = \"[sanitizeSQL(NP.ckey)]\")")
-	if(query_get_new_polls.Execute())
-		if(query_get_new_polls.NextRow())
-			newpoll = TRUE
-	qdel(query_get_new_polls)
-
-	if(newpoll)
-		return "<p><b><a href='byond://?src=[REF(NP)];showpoll=1'>Show Player Polls</A> (NEW!)</b></p>"
-	else
-		return "<p><a href='byond://?src=[REF(NP)];showpoll=1'>Show Player Polls</A></p>"
 
 
 /datum/game_mode/proc/CanLateSpawn(mob/new_player/NP, datum/job/job)
@@ -623,14 +599,16 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 	to_chat(xeno_candidate, "<span class='warning'>This is unavailable in this gamemode.</span>")
 	return FALSE
 
-/datum/game_mode/proc/transfer_xeno(mob/xeno_candidate, mob/living/carbon/xenomorph/X)
+/datum/game_mode/proc/transfer_xeno(mob/xeno_candidate, mob/living/carbon/xenomorph/X, silent = FALSE)
 	if(QDELETED(X))
 		stack_trace("[xeno_candidate] was put into a qdeleted mob [X]")
 		return
-	message_admins("[key_name(xeno_candidate)] has joined as [ADMIN_TPMONTY(X)].")
+	if(!silent)
+		message_admins("[key_name(xeno_candidate)] has joined as [ADMIN_TPMONTY(X)].")
 	xeno_candidate.mind.transfer_to(X, TRUE)
 	if(X.is_ventcrawling)  //If we are in a vent, fetch a fresh vent map
 		X.add_ventcrawl(X.loc)
+		X.get_up()
 
 
 /datum/game_mode/proc/attempt_to_join_as_xeno(mob/xeno_candidate, instant_join = FALSE)

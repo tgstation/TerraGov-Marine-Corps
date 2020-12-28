@@ -51,7 +51,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	var/recycletime = 120
 	var/long_range_cooldown = 2
-	var/iff_signal = ACCESS_IFF_MARINE
+	var/list/iff_signal = list(ACCESS_IFF_MARINE)
 	var/detect_friendlies = TRUE
 	var/detect_revivable = TRUE
 	var/detect_fubar = TRUE
@@ -239,6 +239,7 @@
 
 
 /obj/effect/detector_blip/proc/on_movement(datum/source, atom/oldloc, direction, Forced)
+	SIGNAL_HANDLER
 	var/mob/user = source
 	if(!user.client || user.z != oldloc.z)
 		remove_blip(user)
@@ -273,7 +274,7 @@
 /obj/item/motiondetector/pmc
 	name = "motion detector (PMC)"
 	desc = "A device that detects hostile movement. Hostiles appear as red blips. Friendlies with the correct IFF signature appear as green, and their bodies as blue, unrevivable bodies as dark blue. It has a mode selection interface. This one has been modified for use by the NT PMC forces."
-	iff_signal = ACCESS_IFF_PMC
+	iff_signal = list(ACCESS_IFF_PMC)
 
 
 /obj/item/motiondetector/Topic(href, href_list)

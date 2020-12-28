@@ -1,26 +1,36 @@
 
 
 /obj/item/clothing/mask/gas
-	name = "gas mask"
+	name = "Transparent gas mask"
 	desc = "A face-covering mask that can be connected to an air supply. Filters harmful gases from the air."
 	icon_state = "gas_alt"
+	item_state = "gas_alt"
 	flags_inventory = COVERMOUTH | COVEREYES | ALLOWINTERNALS | BLOCKGASEFFECT | ALLOWREBREATH
 	flags_inv_hide = HIDEEARS|HIDEFACE|HIDELOWHAIR
 	flags_cold_protection = HEAD
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	w_class = WEIGHT_CLASS_SMALL
-	item_state = "gas_alt"
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
 	siemens_coefficient = 0.9
 	var/gas_filter_strength = 1			//For gas mask filters
 	var/list/filtered_gases = list(/datum/reagent/toxin/phoron, "sleeping_agent", "carbon_dioxide")
 
+/obj/item/clothing/mask/gas/tactical
+	name = "Tactical gas mask"
+	icon_state = "gas_alt_tactical"
+
+/obj/item/clothing/mask/gas/tactical/coif
+	name = "Tactical coifed gas mask"
+	desc = "A face-covering coifed mask that can be connected to an air supply. Filters harmful gases from the air."
+	icon_state = "gascoif"
+	flags_inv_hide = HIDEEARS|HIDEFACE|HIDEALLHAIR
+
 /obj/item/clothing/mask/gas/PMC
 	name = "\improper M8 pattern armored balaclava"
 	desc = "An armored balaclava designed to conceal both the identity of the operator and act as an air-filter."
-	item_state = "helmet"
 	icon_state = "pmc_mask"
+	item_state = "helmet"
 	anti_hug = 3
 	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 5, "energy" = 5, "bomb" = 10, "bio" = 1, "rad" = 1, "fire" = 5, "acid" = 5)
 	flags_inventory = COVERMOUTH|ALLOWINTERNALS|BLOCKGASEFFECT|ALLOWREBREATH

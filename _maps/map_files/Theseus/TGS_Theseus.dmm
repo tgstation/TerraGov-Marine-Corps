@@ -6619,12 +6619,12 @@
 /obj/item/ammo_magazine/pistol,
 /obj/item/ammo_magazine/pistol,
 /obj/item/ammo_magazine/pistol,
-/obj/item/weapon/gun/pistol/m4a3,
-/obj/item/weapon/gun/pistol/m4a3,
-/obj/item/weapon/gun/pistol/m4a3,
-/obj/item/weapon/gun/pistol/m4a3,
-/obj/item/weapon/gun/pistol/m4a3,
-/obj/item/weapon/gun/pistol/m4a3,
+/obj/item/weapon/gun/pistol/rt3,
+/obj/item/weapon/gun/pistol/rt3,
+/obj/item/weapon/gun/pistol/rt3,
+/obj/item/weapon/gun/pistol/rt3,
+/obj/item/weapon/gun/pistol/rt3,
+/obj/item/weapon/gun/pistol/rt3,
 /turf/open/floor/mainship/red/full,
 /area/mainship/medical/upper_medical)
 "atu" = (
@@ -6830,12 +6830,12 @@
 /obj/item/ammo_magazine/pistol,
 /obj/item/ammo_magazine/pistol,
 /obj/item/ammo_magazine/pistol,
-/obj/item/weapon/gun/pistol/m4a3,
-/obj/item/weapon/gun/pistol/m4a3,
-/obj/item/weapon/gun/pistol/m4a3,
-/obj/item/weapon/gun/pistol/m4a3,
-/obj/item/weapon/gun/pistol/m4a3,
-/obj/item/weapon/gun/pistol/m4a3,
+/obj/item/weapon/gun/pistol/rt3,
+/obj/item/weapon/gun/pistol/rt3,
+/obj/item/weapon/gun/pistol/rt3,
+/obj/item/weapon/gun/pistol/rt3,
+/obj/item/weapon/gun/pistol/rt3,
+/obj/item/weapon/gun/pistol/rt3,
 /turf/open/floor/mainship/red/full,
 /area/mainship/engineering/upper_engineering)
 "atX" = (
@@ -20014,7 +20014,7 @@
 /obj/item/ammo_magazine/pistol,
 /obj/item/ammo_magazine/pistol,
 /obj/item/ammo_magazine/pistol,
-/obj/item/weapon/gun/pistol/m4a3,
+/obj/item/weapon/gun/pistol/rt3,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/firing_range)
 "bhg" = (
@@ -25004,6 +25004,13 @@
 /obj/item/storage/firstaid/fire,
 /obj/item/storage/firstaid/fire,
 /obj/item/storage/firstaid/fire,
+/obj/item/storage/pill_bottle/packet/paracetamol,
+/obj/item/storage/pill_bottle/packet/paracetamol,
+/obj/item/storage/pill_bottle/packet/paracetamol,
+/obj/item/storage/pill_bottle/packet/paracetamol,
+/obj/item/storage/pill_bottle/packet/paracetamol,
+/obj/item/storage/pill_bottle/packet/paracetamol,
+/obj/item/storage/pill_bottle/packet/paracetamol,
 /turf/open/floor/mainship/sterile/corner{
 	dir = 1
 	},
@@ -26152,7 +26159,6 @@
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "bFh" = (
-/obj/structure/ship_rail_gun,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 6
 	},
@@ -28056,10 +28062,6 @@
 	dir = 6
 	},
 /area/mainship/engineering/lower_engineering)
-"bMZ" = (
-/obj/structure/orbital_cannon,
-/turf/open/floor/mainship/mono,
-/area/mainship/shipboard/weapon_room)
 "bNa" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -31271,6 +31273,7 @@
 /area/mainship/living/cafeteria_port)
 "bYe" = (
 /obj/structure/table/mainship,
+/obj/item/instrument/guitar,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/cafeteria_port)
 "bYf" = (
@@ -34557,6 +34560,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
+/obj/structure/orbital_cannon,
 /turf/open/floor/plating/mainship,
 /area/mainship/shipboard/weapon_room)
 "cjG" = (
@@ -35704,9 +35708,9 @@
 /turf/open/floor/mainship,
 /area/mainship/squads/req)
 "hcq" = (
-/obj/machinery/portable_atmospherics/hydroponics,
-/turf/open/floor/mainship/sterile,
-/area/mainship/medical/medical_science)
+/obj/docking_port/stationary/marine_dropship/cas,
+/turf/open/floor/plating,
+/area/mainship/hallways/hangar)
 "hem" = (
 /obj/structure/cable,
 /obj/machinery/status_display{
@@ -36679,7 +36683,6 @@
 	},
 /area/mainship/hallways/hangar)
 "mKV" = (
-/obj/structure/closet/l3closet/virology,
 /turf/open/floor/mainship{
 	icon_state = "sterile_green_corner"
 	},
@@ -37165,6 +37168,10 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/stairs/rampbottom,
 /area/mainship/squads/req)
+"pBB" = (
+/obj/structure/musician/piano,
+/turf/open/floor/mainship/mono,
+/area/mainship/living/grunt_rnr)
 "pCF" = (
 /obj/machinery/vending/MarineMed/Blood,
 /turf/open/floor/mainship/sterile/side,
@@ -37332,6 +37339,11 @@
 /obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/mainship,
 /area/mainship/shipboard/weapon_room)
+"qpC" = (
+/obj/structure/table/mainship,
+/obj/item/instrument/eguitar,
+/turf/open/floor/mainship/mono,
+/area/mainship/living/cafeteria_starboard)
 "qpM" = (
 /obj/structure/cable,
 /obj/structure/sink{
@@ -37754,6 +37766,9 @@
 /obj/structure/platform{
 	dir = 4
 	},
+/obj/machinery/computer/navigation{
+	dir = 8
+	},
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
 "ttM" = (
@@ -38089,6 +38104,10 @@
 	dir = 1
 	},
 /area/mainship/living/briefing)
+"vqs" = (
+/obj/machinery/vending/armor_supply,
+/turf/open/floor/mainship,
+/area/mainship/squads/req)
 "vsq" = (
 /obj/structure/closet/emcloset,
 /turf/open/floor/mainship/cargo,
@@ -38121,6 +38140,10 @@
 	},
 /turf/open/floor/stairs/rampbottom,
 /area/mainship/living/briefing)
+"vzu" = (
+/obj/structure/ship_rail_gun,
+/turf/open/floor/mainship/tcomms,
+/area/mainship/shipboard/weapon_room)
 "vAb" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/decal/warning_stripes/thin{
@@ -38299,6 +38322,12 @@
 	dir = 1
 	},
 /area/mainship/shipboard/ex_firing_range)
+"wta" = (
+/obj/structure/closet/l3closet/virology,
+/turf/open/floor/mainship/sterile/side{
+	dir = 1
+	},
+/area/mainship/medical/medical_science)
 "wtu" = (
 /obj/machinery/power/monitor,
 /obj/structure/cable,
@@ -45218,7 +45247,7 @@ bmo
 bnY
 bqa
 bqa
-bqa
+vzu
 bFh
 bwS
 mGX
@@ -45232,7 +45261,7 @@ bqa
 bqa
 bqa
 cjF
-bMZ
+byF
 blp
 bOZ
 bjx
@@ -54729,7 +54758,7 @@ bqk
 blA
 blA
 blA
-blA
+hcq
 blA
 blA
 blA
@@ -69658,7 +69687,7 @@ bUc
 bUc
 bUc
 bUc
-bYV
+bSC
 aVs
 aVs
 cbf
@@ -69915,7 +69944,7 @@ bUd
 bVB
 bUf
 bUc
-bSF
+pBB
 aVs
 caC
 aVG
@@ -70282,7 +70311,7 @@ arM
 xOC
 aoz
 xjZ
-anc
+wta
 aoz
 xjQ
 aDA
@@ -78115,7 +78144,7 @@ art
 bre
 bre
 buE
-wKa
+vqs
 rkW
 bwf
 bAG
@@ -86324,7 +86353,7 @@ aYS
 aWV
 bbp
 xnY
-bdB
+qpC
 bbv
 bbv
 bbv

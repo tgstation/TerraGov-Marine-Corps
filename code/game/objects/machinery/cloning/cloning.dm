@@ -33,11 +33,11 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
 
 
 /**
-  *These automatically generate marine bodies based on a timer.
-  *These hold the body until taken by a ghost where they "burst" from the vat.
-  *
-  *The vat then needs to be repaired and refilled with biomass.
-  */
+ *These automatically generate marine bodies based on a timer.
+ *These hold the body until taken by a ghost where they "burst" from the vat.
+ *
+ *The vat then needs to be repaired and refilled with biomass.
+ */
 /obj/machinery/cloning_console/vats
 	name = "Clone Vats Console"
 	icon = 'icons/obj/machines/cryogenics.dmi'
@@ -49,6 +49,20 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
 	resistance_flags = UNACIDABLE | INDESTRUCTIBLE // For now, we should work out how we want xenos to counter this
 
 	var/obj/machinery/cloning/vats/linked_machine
+	var/obj/item/radio/headset/mainship/mcom/radio //God forgive me
+
+/obj/machinery/cloning_console/vats/Initialize()
+	. = ..()
+	radio = new(src)
+	radio.use_command = FALSE
+	radio.command = FALSE
+
+/obj/machinery/cloning_console/vats/Destroy()
+	QDEL_NULL(radio)
+	if(linked_machine)
+		linked_machine.linked_console = null
+		linked_machine = null
+	return ..()
 
 
 /obj/machinery/cloning_console/vats/attack_hand(mob/living/user)
@@ -65,6 +79,7 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
 			visible_message("[icon2html(src, viewers(src))] <span><b>[src]</b> beeps in error, 'connection not available'.</span>")
 			return TRUE
 
+		linked_machine.linked_console = src
 		visible_message("[icon2html(src, viewers(src))] <span><b>[src]</b> beeps as its boots up and connects to \the [linked_machine]</span>")
 		return TRUE
 
@@ -90,6 +105,7 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
 	var/timerid
 	var/mob/living/carbon/human/occupant
 	var/obj/item/reagent_containers/glass/beaker
+	var/obj/machinery/cloning_console/vats/linked_console
 
 	var/biomass_required = 40
 	var/grow_timer = 15 MINUTES
@@ -111,6 +127,8 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
 		eject_user()
 
 	QDEL_NULL(beaker)
+	linked_console?.linked_machine = null
+	linked_console = null
 	return ..()
 
 
@@ -241,6 +259,7 @@ You remember nothing of your past life.
 
 You are weak, best rest up and get your strength before fighting.</span>"})
 	occupant.vomit()
-
+	linked_console.radio.talk_into(src, "<b>New clone: [occupant] has been grown in [src] at: [get_area(src)].</b>", RADIO_CHANNEL_MEDICAL)
+	linked_console.radio.talk_into(src, "<b>New clone: [occupant] has been grown in [src] at: [get_area(src)]. Please move the fresh clone to a squad using the squad distribution console.</b>", RADIO_CHANNEL_COMMAND)
 	occupant = null
 	update_icon()

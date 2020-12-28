@@ -57,7 +57,7 @@ SUBSYSTEM_DEF(weeds)
 
 		var/obj/effect/alien/weeds/node/N = creating[T]
 		// Adds a bit of jitter to the spawning weeds.
-		addtimer(CALLBACK(src, .proc/create_weed, T, N), rand(0, 3 SECONDS))
+		addtimer(CALLBACK(src, .proc/create_weed, T, N), rand(1, 3 SECONDS))
 		pending -= T
 
 
@@ -80,7 +80,7 @@ SUBSYSTEM_DEF(weeds)
 
 /datum/controller/subsystem/weeds/proc/add_weed(obj/effect/alien/weeds/W)
 	if(!W)
-		stack_trace("SSweed.add_turf called with a null obj")
+		stack_trace("SSweed.add_weed called with a null obj")
 		return FALSE
 
 	var/turf/T = get_turf(W)

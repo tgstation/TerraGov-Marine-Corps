@@ -5,6 +5,39 @@
 
 	check_hive_status(src)
 
+/mob/living/carbon/xenomorph/verb/tunnel_list()
+	set name = "Tunnel List"
+	set desc = "See all currently active tunnels."
+	set category = "Alien"
+
+	check_tunnel_list(src)
+
+
+/proc/check_tunnel_list(mob/user) //Creates a handy list of all xeno tunnels
+	var/dat = "<br>"
+
+	var/datum/hive_status/hive
+	if(isxeno(user))
+		var/mob/living/carbon/xenomorph/xeno_user = user
+		if(xeno_user.hive)
+			hive = xeno_user.hive
+	else
+		hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
+
+	if(!hive)
+		CRASH("couldnt find a hive in check_tunnel_list")
+
+	dat += "<b>List of Hive Tunnels:</b><BR>"
+
+	for(var/obj/structure/tunnel/T in GLOB.xeno_tunnels)
+		if(T.creator.hive == hive)
+			dat += "<b>[T.name]</b> located at: <b><font color=green>([T.tunnel_desc])</b></font><BR>"
+
+	var/datum/browser/popup = new(user, "roundstatus", "<div align='center'>Tunnel List</div>", 600, 600)
+	popup.set_content(dat)
+	popup.open(FALSE)
+
+
 
 /proc/xeno_status_output(list/xenolist, can_overwatch = FALSE, ignore_leads = TRUE, user)
 	var/xenoinfo = ""
@@ -14,14 +47,23 @@
 		if(ignore_leads && X.queen_chosen_lead)
 			continue
 		if(can_overwatch)
-			xenoinfo += "<tr><td>[leadprefix]<a href=?src=\ref[user];watch_xeno_number=[X.nicknumber]>[X.name]</a> "
+			xenoinfo += "<tr><td>[leadprefix]<a href='byond://?src=\ref[user];watch_xeno_name=[X.nicknumber]'>[X.name]</a> "
 		else
 			xenoinfo += "<tr><td>[leadprefix][X.name] "
 		if(!X.client)
 			xenoinfo += " <i>(SSD)</i>"
 
+		var/hp_color = "green"
+		switch(X.health/X.maxHealth)
+			if(0.33 to 0.66)
+				hp_color = "orange"
+			if(0 to 0.33)
+				hp_color = "red"
+
+		xenoinfo += " <b><font color=[hp_color]>Health: ([X.health]/[X.maxHealth])</font></b>"
+
 		var/area/A = get_area(X)
-		xenoinfo += " <b><font color=green>([A ? A.name : null])</b></td></tr>"
+		xenoinfo += " <b><font color=green>([A ? A.name : null], X: [X.x], Y: [X.y])</b></td></tr>"
 
 	return xenoinfo
 
@@ -76,12 +118,21 @@
 	xenoinfo += xeno_status_output(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/larva], can_overwatch, TRUE, user)
 
 	var/hivemind_text = length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/hivemind]) > 0 ? "Active" : "Inactive"
+	var/mob/living/carbon/xenomorph/queen/hive_queen = hive.living_xeno_queen
+
+	var/queen_text = "None" //Define the Queen
+	if(hive_queen)
+		queen_text = "[hive_queen]"
+
+		if(!hive_queen.client)
+			queen_text += " <i>(SSD)</i>"
 
 	dat += "<b>Total Living Sisters: [hive.get_total_xeno_number()]</b><BR>"
-	dat += "<b>Tier 3: [length(hive.xenos_by_tier[XENO_TIER_THREE])] Sisters</b>[tier3counts]<BR>"
-	dat += "<b>Tier 2: [length(hive.xenos_by_tier[XENO_TIER_TWO])] Sisters</b>[tier2counts]<BR>"
+	dat += "<b>Tier 3: ([length(hive.xenos_by_tier[XENO_TIER_THREE])]/[hive.tier3_xeno_limit]) Sisters</b>[tier3counts]<BR>"
+	dat += "<b>Tier 2: ([length(hive.xenos_by_tier[XENO_TIER_TWO])]/[hive.tier2_xeno_limit]) Sisters</b>[tier2counts]<BR>"
 	dat += "<b>Tier 1: [length(hive.xenos_by_tier[XENO_TIER_ONE])] Sisters</b>[tier1counts]<BR>"
 	dat += "<b>Larvas: [length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/larva])] Sisters<BR>"
+	dat += "<b>Queen: [queen_text]<BR>"
 	dat += "<b>Hivemind: [hivemind_text]<BR>"
 	if(hive.hivenumber == XENO_HIVE_NORMAL)
 		var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
@@ -89,7 +140,7 @@
 	dat += "<table cellspacing=4>"
 	dat += xenoinfo
 	dat += "</table>"
-	var/datum/browser/popup = new(user, "roundstatus", "<div align='center'>Hive Status</div>", 600, 600)
+	var/datum/browser/popup = new(user, "roundstatus", "<div align='center'>Hive Status</div>", 650, 650)
 	popup.set_content(dat)
 	popup.open(FALSE)
 
@@ -464,7 +515,7 @@
 /obj/structure/acid_spray_act(mob/living/carbon/xenomorph/X)
 	if(!is_type_in_typecache(src, GLOB.acid_spray_hit))
 		return TRUE // normal density flag
-	take_damage(45 + SPRAY_STRUCTURE_UPGRADE_BONUS(X), "acid", "acid")
+	take_damage(X.xeno_caste.acid_spray_structure_damage, "acid", "acid")
 	return TRUE // normal density flag
 
 /obj/structure/razorwire/acid_spray_act(mob/living/carbon/xenomorph/X)
@@ -472,7 +523,7 @@
 	return FALSE // not normal density flag
 
 /obj/vehicle/multitile/root/cm_armored/acid_spray_act(mob/living/carbon/xenomorph/X)
-	take_damage_type(45 + SPRAY_STRUCTURE_UPGRADE_BONUS(X), "acid", src)
+	take_damage_type(X.xeno_caste.acid_spray_structure_damage, "acid", src)
 	healthcheck()
 	return TRUE
 
@@ -489,8 +540,8 @@
 		GLOB.round_statistics.praetorian_spray_direct_hits++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "praetorian_spray_direct_hits")
 
-	var/armor_block = run_armor_check("chest", "acid")
-	var/damage = rand(30,40) + SPRAY_MOB_UPGRADE_BONUS(X)
+	var/armor_block = run_armor_check(BODY_ZONE_CHEST, "acid")
+	var/damage = X.xeno_caste.acid_spray_damage_on_hit
 	apply_acid_spray_damage(damage, armor_block)
 	to_chat(src, "<span class='xenodanger'>\The [X] showers you in corrosive acid!</span>")
 
@@ -499,7 +550,7 @@
 	UPDATEHEALTH(src)
 
 /mob/living/carbon/human/apply_acid_spray_damage(damage, armor_block)
-	take_overall_damage(0, damage, armor_block)
+	take_overall_damage_armored(damage, BURN, "acid")
 	UPDATEHEALTH(src)
 	emote("scream")
 	Paralyze(20)
@@ -520,60 +571,6 @@
 	var/pipe = start_ventcrawl()
 	if(pipe)
 		handle_ventcrawl(pipe)
-
-/mob/living/carbon/xenomorph/proc/xeno_salvage_plasma(atom/A, amount, salvage_delay, max_range)
-	if(!isxeno(A) || !check_state() || A == src)
-		return
-
-	var/mob/living/carbon/xenomorph/target = A
-
-	if(!isturf(loc))
-		to_chat(src, "<span class='warning'>We can't salvage plasma from here!</span>")
-		return
-
-	if(plasma_stored >= xeno_caste.plasma_max)
-		to_chat(src, "<span class='notice'>Our plasma reserves are already at full capacity and can't hold any more.</span>")
-		return
-
-	if(target.stat != DEAD)
-		to_chat(src, "<span class='warning'>We can't steal plasma from living sisters, ask for some to a drone or a hivelord instead!</span>")
-		return
-
-	if(get_dist(src, target) > max_range)
-		to_chat(src, "<span class='warning'>We need to be closer to [target].</span>")
-		return
-
-	if(!(target.plasma_stored))
-		to_chat(src, "<span class='notice'>[target] doesn't have any plasma left to salvage.</span>")
-		return
-
-	to_chat(src, "<span class='notice'>We start salvaging plasma from [target].</span>")
-
-	while(target.plasma_stored && plasma_stored < xeno_caste.plasma_max)
-		if(!do_after(src, salvage_delay, TRUE, null, BUSY_ICON_HOSTILE) || !check_state())
-			break
-
-		if(!isturf(loc))
-			to_chat(src, "<span class='warning'>We can't absorb plasma from here!</span>")
-			break
-
-		if(get_dist(src, target) > max_range)
-			to_chat(src, "<span class='warning'>We need to be closer to [target].</span>")
-			break
-
-		if(stagger)
-			to_chat(src, "<span class='xenowarning'>Our muscles fail to respond as we try to shake up the shock!</span>")
-			break
-
-		if(target.plasma_stored < amount)
-			amount = target.plasma_stored //Just take it all.
-
-		var/absorbed_amount = amount
-		target.use_plasma(amount)
-		gain_plasma(absorbed_amount)
-		to_chat(src, "<span class='xenowarning'>We salvage [absorbed_amount] units of plasma from [target]. We have [plasma_stored]/[xeno_caste.plasma_max] stored now.</span>")
-		playsound(src, "alien_drool", 25)
-
 
 
 /mob/living/carbon/xenomorph/verb/toggle_xeno_mobhud()

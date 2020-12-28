@@ -91,32 +91,32 @@
 
 //Germs
 /datum/limb/proc/handle_antibiotics()
-    var/spaceacillin = owner.reagents.get_reagent_amount(/datum/reagent/medicine/spaceacillin)
-    var/polyhexanide = owner.reagents.get_reagent_amount(/datum/reagent/medicine/polyhexanide)
+	var/spaceacillin = owner.reagents.get_reagent_amount(/datum/reagent/medicine/spaceacillin)
+	var/polyhexanide = owner.reagents.get_reagent_amount(/datum/reagent/medicine/polyhexanide)
 
-    var/spaceacillin_curve = list(0,4,3,2)
-    var/polyhexanide_curve = list(0,1,1,10)
+	var/spaceacillin_curve = list(0,4,3,2)
+	var/polyhexanide_curve = list(0,1,1,10)
 
-    if (!germ_level || (spaceacillin + polyhexanide) < MIN_ANTIBIOTICS)
-        return
+	if (!germ_level || (spaceacillin + polyhexanide) < MIN_ANTIBIOTICS)
+		return
 
-    var/infection_level = 0
-    switch(germ_level)
-        if(-INFINITY to 10)
-            germ_level = 0
-            return // cure instantly
-        if(11 to INFECTION_LEVEL_ONE)
-            infection_level = 1
-        if(INFECTION_LEVEL_ONE - 1 to INFECTION_LEVEL_TWO)
-            infection_level = 2
-        if(INFECTION_LEVEL_TWO - 1 to INFINITY)
-            infection_level = 3
+	var/infection_level = 0
+	switch(germ_level)
+		if(-INFINITY to 10)
+			germ_level = 0
+			return // cure instantly
+		if(11 to INFECTION_LEVEL_ONE)
+			infection_level = 1
+		if(INFECTION_LEVEL_ONE - 1 to INFECTION_LEVEL_TWO)
+			infection_level = 2
+		if(INFECTION_LEVEL_TWO - 1 to INFINITY)
+			infection_level = 3
 
-    if (spaceacillin >= MIN_ANTIBIOTICS)
-        germ_level -= spaceacillin_curve[infection_level]
+	if (spaceacillin >= MIN_ANTIBIOTICS)
+		germ_level -= spaceacillin_curve[infection_level]
 
-    if (polyhexanide >= MIN_ANTIBIOTICS)
-        germ_level -= polyhexanide_curve[infection_level]
+	if (polyhexanide >= MIN_ANTIBIOTICS)
+		germ_level -= polyhexanide_curve[infection_level]
 
 
 
@@ -546,10 +546,13 @@ Note that amputating the affected organ does in fact remove the infection from t
 		if(W.internal && owner.bodytemperature >= 170 && !HAS_TRAIT(owner, TRAIT_STASIS))
 			var/bicardose = owner.reagents.get_reagent_amount(/datum/reagent/medicine/bicaridine)
 			var/inaprovaline = owner.reagents.get_reagent_amount(/datum/reagent/medicine/inaprovaline)
+			var/old_qc = owner.reagents.get_reagent_amount(/datum/reagent/medicine/quickclotplus)
 			if(!(W.can_autoheal() || (bicardose && inaprovaline) || owner.reagents.get_reagent_amount(/datum/reagent/medicine/quickclot)))	//bicaridine and inaprovaline stop internal wounds from growing bigger with time, unless it is so small that it is already healing
 				W.open_wound(0.1 * wound_update_accuracy)
 			if(bicardose >= 30)	//overdose of bicaridine begins healing IB
 				W.damage = max(0, W.damage - 0.2)
+			if(old_qc >= 5)	//overdose of QC+ heals IB extremely fast.
+				W.damage = max(0, W.damage - 5)
 
 			if(W.damage <= 0)
 				wounds -= W // otherwise we are stuck with a 0 damage IB for a while
@@ -1012,7 +1015,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 
 /datum/limb/proc/is_usable()
-	return !(limb_status & (LIMB_DESTROYED|LIMB_MUTATED|LIMB_NECROTIZED))
+	return !(limb_status & (LIMB_DESTROYED|LIMB_NECROTIZED))
 
 /datum/limb/proc/is_broken()
 	return ((limb_status & LIMB_BROKEN) && !(limb_status & LIMB_SPLINTED) && !(limb_status & LIMB_STABILIZED))
@@ -1260,10 +1263,10 @@ Note that amputating the affected organ does in fact remove the infection from t
 		return
 	if(type == "brute")
 		owner.visible_message("<span class='warning'> You hear a sickening cracking sound coming from \the [owner]'s face.</span>",	\
-		"<span class='danger'>Your face becomes unrecognizible mangled mess!</span>",	\
+		"<span class='danger'>Your face becomes an unrecognizible mangled mess!</span>",	\
 		"<span class='warning'> You hear a sickening crack.</span>")
 	else
-		owner.visible_message("<span class='warning'> [owner]'s face melts away, turning into mangled mess!</span>",	\
+		owner.visible_message("<span class='warning'> [owner]'s face melts away, turning into a mangled mess!</span>",	\
 		"<span class='danger'>Your face melts off!</span>",	\
 		"<span class='warning'> You hear a sickening sizzle.</span>")
 	disfigured = 1

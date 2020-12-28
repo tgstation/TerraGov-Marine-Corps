@@ -260,9 +260,7 @@
 			if(H.hard_armor.getRating("fire") >= 100)
 				continue
 
-		var/armor_block = M.run_armor_check(null, "fire")
-		M.apply_damage(rand(burn,(burn*2))* fire_mod, BURN, null, armor_block) // Make it so its the amount of heat or twice it for the initial blast.
-		UPDATEHEALTH(M)
+		M.take_overall_damage_armored(rand(burn,(burn*2))* fire_mod, BURN, "fire", updating_health = TRUE) // Make it so its the amount of heat or twice it for the initial blast.
 		M.adjust_fire_stacks(rand(5,burn*2))
 		M.IgniteMob()
 
@@ -455,6 +453,10 @@
 	icon = 'icons/effects/fire.dmi'
 	icon_state = "red_2"
 	layer = BELOW_OBJ_LAYER
+	light_system = MOVABLE_LIGHT
+	light_on = TRUE
+	light_power = 3
+	light_color = LIGHT_COLOR_LAVA
 	var/firelevel = 12 //Tracks how much "fire" there is. Basically the timer of how long the fire burns
 	var/burnlevel = 10 //Tracks how HOT the fire is. This is basically the heat level of the fire and determines the temperature.
 	var/flame_color = "red"
@@ -474,9 +476,7 @@
 		for(var/mob/living/C in get_turf(src))
 			C.flamer_fire_act(fire_stacks)
 
-			var/armor_block = C.run_armor_check("chest", "fire")
-			if(C.apply_damage(fire_damage, BURN, null, armor_block))
-				UPDATEHEALTH(C)
+			C.take_overall_damage_armored(fire_damage, BURN, "fire", updating_health = TRUE)
 			if(C.IgniteMob())
 				C.visible_message("<span class='danger'>[C] bursts into flames!</span>","[isxeno(C)?"<span class='xenodanger'>":"<span class='highdanger'>"]You burst into flames!</span>")
 
@@ -496,18 +496,14 @@
 /mob/living/proc/flamer_fire_crossed(burnlevel, firelevel, fire_mod = 1)
 	adjust_fire_stacks(burnlevel) //Make it possible to light them on fire later.
 	IgniteMob()
-	var/armor_block = run_armor_check(null, "fire")
-	if(apply_damage(round(burnlevel*0.5)* fire_mod, BURN, null, armor_block))
-		UPDATEHEALTH(src)
+	take_overall_damage_armored(round(burnlevel*0.5)* fire_mod, BURN, "fire", updating_health = TRUE)
 	to_chat(src, "<span class='danger'>You are burned!</span>")
 
 
 
 /mob/living/carbon/human/flamer_fire_crossed(burnlevel, firelevel, fire_mod = 1)
 	if(hard_armor.getRating("fire") >= 100)
-		var/armor_block = run_armor_check(null, "fire")
-		if(apply_damage(round(burnlevel * 0.2) * fire_mod, BURN, null, armor_block))
-			UPDATEHEALTH(src)
+		take_overall_damage_armored(round(burnlevel * 0.2) * fire_mod, BURN, "fire", updating_health = TRUE)
 		return
 	. = ..()
 	if(isxeno(pulledby))
@@ -517,7 +513,7 @@
 /mob/living/carbon/xenomorph/flamer_fire_crossed(burnlevel, firelevel, fire_mod = 1)
 	if(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 		return
-	fire_mod = fire_resist
+	fire_mod = clamp(xeno_caste.fire_resist + fire_resist_modifier, 0, 1)
 	return ..()
 
 
@@ -541,7 +537,7 @@
 		if(25 to INFINITY) //Change the icons and luminosity based on the fire's intensity
 			icon_state = "[flame_color]_3"
 			light_intensity = 6
-	set_light(light_intensity, null, light_color)
+	set_light_range_power_color(light_intensity, light_power, light_color)
 
 /obj/flamer_fire/process()
 	var/turf/T = loc
@@ -572,6 +568,8 @@
 
 // override this proc to give different idling-on-fire effects
 /mob/living/flamer_fire_act(burnlevel, firelevel)
+	if(!burnlevel)
+		return
 	if(hard_armor.getRating("fire") >= 100)
 		to_chat(src, "<span class='warning'>Your suit protects you from most of the flames.</span>")
 		adjustFireLoss(rand(0, burnlevel * 0.25)) //Does small burn damage to a person wearing one of the suits.
@@ -585,6 +583,7 @@
 /mob/living/carbon/xenomorph/flamer_fire_act(burnlevel, firelevel)
 	if(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 		return
+	burnlevel *= clamp(xeno_caste.fire_resist + fire_resist_modifier, 0, 1)
 	. = ..()
 	updatehealth()
 

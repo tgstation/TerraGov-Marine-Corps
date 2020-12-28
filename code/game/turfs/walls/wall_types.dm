@@ -51,8 +51,8 @@
 		/turf/closed/wall/mainship/outer/canterbury,
 		/obj/machinery/door/poddoor/shutters/transit,
 		/obj/machinery/door/airlock/mainship/marine/canterbury,
-		/obj/machinery/door/airlock/mainship/command/canterbury
-		)
+		/obj/machinery/door/airlock/mainship/command/canterbury,
+	)
 
 /turf/closed/wall/mainship/white
 	walltype = "wwall"
@@ -148,6 +148,9 @@
 	icon = 'icons/turf/chigusa.dmi'
 	icon_state = "chigusa0"
 	walltype = "chigusa"
+
+/turf/closed/wall/desert/invincible
+	resistance_flags = RESIST_ALL
 
 /turf/closed/wall/desert/handle_icon_junction(junction)
 	if (!walltype)
@@ -329,32 +332,6 @@
 	icon_state = "uranium0"
 	walltype = "uranium"
 	mineral = "uranium"
-
-/turf/closed/wall/mineral/uranium/proc/radiate()
-	if(!active)
-		if(world.time > last_event+15)
-			active = 1
-			for(var/mob/living/L in range(3,src))
-				L.apply_effect(12, IRRADIATE)
-				UPDATEHEALTH(L)
-			for(var/turf/closed/wall/mineral/uranium/T in range(3,src))
-				T.radiate()
-			last_event = world.time
-			active = null
-			return
-	return
-
-/turf/closed/wall/mineral/uranium/attack_hand(mob/living/user)
-	radiate()
-	return ..()
-
-/turf/closed/wall/mineral/uranium/attackby(obj/item/I, mob/user, params)
-	. = ..()
-	radiate()
-
-/turf/closed/wall/mineral/uranium/Bumped(AM as mob|obj)
-	radiate()
-	..()
 
 /turf/closed/wall/mineral/phoron
 	name = "phoron wall"

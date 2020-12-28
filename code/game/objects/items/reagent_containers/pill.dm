@@ -177,10 +177,15 @@
 	list_reagents = list(/datum/reagent/medicine/synaptizine = 3, /datum/reagent/medicine/hyperzine = 5, /datum/reagent/consumable/nutriment = 3)
 	pill_id = 14
 
-/obj/item/reagent_containers/pill/russianRed
-	pill_desc = "A Russian Red pill. A very dangerous radiation-countering substance."
-	list_reagents = list(/datum/reagent/medicine/russianred = 10)
+/obj/item/reagent_containers/pill/russian_red
+	pill_desc = "A Russian Red pill. A last-resort revival drug."
+	list_reagents = list(/datum/reagent/medicine/russian_red = 10)
 	pill_id = 15
+
+/obj/item/reagent_containers/pill/ryetalyn
+	pill_desc = "A Ryetalyn pill. A long-duration shield against toxic chemicals."
+	list_reagents = list(/datum/reagent/medicine/ryetalyn = 15)
+	pill_id = 14
 
 /obj/item/reagent_containers/pill/peridaxon
 	pill_desc = "A peridaxon pill. Heals internal organ damage."
@@ -211,6 +216,11 @@
 	pill_desc = "A tricordrazine pill. Broad spectrum medication that slowly heals all damage types."
 	list_reagents = list(/datum/reagent/medicine/tricordrazine = 15)
 	pill_id = 9
+
+/obj/item/reagent_containers/pill/leporazine
+	pill_desc = "A leporazine pill. Helps handle extreme body temperatures rapidly."
+	list_reagents = list(/datum/reagent/medicine/leporazine = 10)
+	pill_id = 21
 
 /obj/item/reagent_containers/pill/hypervene
 	pill_desc = "A hypervene pill. A purge medication used to treat overdoses and rapidly remove toxins. Causes pain and vomiting."

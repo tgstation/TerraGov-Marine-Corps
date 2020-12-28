@@ -1,7 +1,7 @@
 //Do not decrease this unles you know what you're doing.
 #define MAX_SAVE_SLOTS 10
 
-#define AGE_MIN 17
+#define AGE_MIN 18
 #define AGE_MAX 85
 
 #define GET_RANDOM_JOB 0
@@ -38,6 +38,7 @@
 #define SOUND_MIDI		(1<<1)
 #define SOUND_AMBIENCE	(1<<2)
 #define SOUND_LOBBY		(1<<3)
+#define SOUND_INSTRUMENTS_OFF (1<<4)
 
 #define TOGGLES_SOUND_DEFAULT (SOUND_ADMINHELP|SOUND_MIDI|SOUND_AMBIENCE|SOUND_LOBBY)
 
@@ -65,8 +66,9 @@
 #define TOGGLES_DEADCHAT_DEFAULT (NONE)
 
 #define RADIAL_MEDICAL (1<<0)
+#define MIDDLESHIFTCLICKING (1<<1)
 
-#define TOGGLES_GAMEPLAY_DEFAULT (RADIAL_MEDICAL)
+#define TOGGLES_GAMEPLAY_DEFAULT (RADIAL_MEDICAL|MIDDLESHIFTCLICKING)
 
 #define CITIZENSHIP_CHOICES list(\
 	"TerraGov",\

@@ -16,8 +16,6 @@
 	new /obj/item/clothing/head/hardhat/white(src)
 	new /obj/item/clothing/head/welding(src)
 	new /obj/item/clothing/gloves/yellow(src)
-	if(is_mainship_level(z))
-		new /obj/item/radio/headset/mainship/mcom(src)
 	new /obj/item/storage/toolbox/mechanical(src)
 	new /obj/item/clothing/suit/storage/hazardvest(src)
 	new /obj/item/clothing/mask/gas(src)
@@ -97,10 +95,7 @@
 
 /obj/structure/closet/secure_closet/engineering_personal/Initialize()
 	. = ..()
-	if (prob(70))
-		new /obj/item/clothing/tie/storage/brown_vest(src)
-	else
-		new /obj/item/clothing/tie/storage/webbing(src)
+	new /obj/item/clothing/tie/storage/brown_vest(src)
 	new /obj/item/storage/toolbox/mechanical(src)
 	if(!is_ground_level(z))
 		new /obj/item/radio/headset/mainship/st(src)
@@ -119,6 +114,8 @@
 	new /obj/item/clothing/gloves/white(src)
 	new /obj/item/clothing/under/whites(src)
 	new /obj/item/clothing/head/white_dress(src)
+	new /obj/item/tool/shovel/etool(src)
+	new /obj/item/clothing/head/helmet/marine/tech(src)
 	if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD])
 		new /obj/item/clothing/suit/storage/snow_suit(src)
 		new /obj/item/clothing/mask/rebreather/scarf(src)
@@ -150,4 +147,3 @@
 	new /obj/item/clothing/suit/storage/hazardvest(src)
 	new /obj/item/clothing/mask/gas(src)
 	new /obj/item/tool/taperoll/engineering(src)
-

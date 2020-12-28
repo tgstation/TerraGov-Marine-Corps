@@ -11,8 +11,12 @@
 
 	var/href_token
 
-	var/deadmined
+	///Whether this admin is currently deadminned or not
+	var/deadmined = FALSE
+	///Whether this admin has ghost interaction enabled
 	var/ghost_interact = FALSE
+	///Whether this admin is invisiminning
+	var/invisimined = FALSE
 
 
 /datum/admins/New(datum/admin_rank/R, ckey, protected)
@@ -405,7 +409,8 @@ GLOBAL_PROTECT(admin_verbs_varedit)
 	/client/proc/toggle_buildmode,
 	/client/proc/force_event,
 	/client/proc/toggle_events,
-	/client/proc/run_weather
+	/client/proc/run_weather,
+	/client/proc/cmd_display_del_log,
 	)
 GLOBAL_LIST_INIT(admin_verbs_fun, world.AVfun())
 GLOBAL_PROTECT(admin_verbs_fun)
@@ -440,8 +445,8 @@ GLOBAL_PROTECT(admin_verbs_server)
 
 /world/proc/AVpermissions()
 	return list(
-	/datum/admins/proc/permissions_panel,
-	/datum/admins/proc/create_poll
+	/client/proc/edit_admin_permissions,
+	/client/proc/poll_panel,
 	)
 GLOBAL_LIST_INIT(admin_verbs_permissions, world.AVpermissions())
 GLOBAL_PROTECT(admin_verbs_permissions)

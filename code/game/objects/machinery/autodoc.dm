@@ -67,7 +67,7 @@
 
 /obj/machinery/autodoc/Destroy()
 	forceeject = TRUE
-	do_eject()
+	INVOKE_ASYNC(src, .proc/do_eject)
 	if(connected)
 		connected.connected = null
 		connected = null
@@ -75,6 +75,7 @@
 
 
 /obj/machinery/autodoc/proc/shuttle_crush()
+	SIGNAL_HANDLER
 	if(occupant)
 		var/mob/living/carbon/human/H = occupant
 		go_out()
@@ -899,10 +900,6 @@
 	med_scan(H, null, implants, TRUE)
 	start_processing()
 
-/obj/machinery/autodoc/Destroy()
-	forceeject = TRUE
-	do_eject()
-	return ..()
 
 /////////////////////////////////////////////////////////////
 
@@ -920,7 +917,7 @@
 
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 40
-	var/obj/item/radio/radio
+	var/obj/item/radio/headset/mainship/doc/radio
 	var/obj/item/reagent_containers/blood/OMinus/blood_pack
 
 

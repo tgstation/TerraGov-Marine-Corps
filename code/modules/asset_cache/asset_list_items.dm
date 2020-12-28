@@ -9,7 +9,7 @@
 /datum/asset/group/tgui
 	children = list(
 		/datum/asset/simple/tgui,
-		/datum/asset/simple/namespaced/fontawesome
+		/datum/asset/simple/namespaced/fontawesome,
 	)
 
 /datum/asset/simple/namespaced/changelog
@@ -35,6 +35,17 @@
 		"changelog.css" = 'html/browser/changelog.css'
 	)
 	parents = list("changelog.html" = 'html/changelog.html')
+
+/datum/asset/simple/irv
+	assets = list(
+		"jquery-ui.custom-core-widgit-mouse-sortable-min.js" = 'html/IRV/jquery-ui.custom-core-widgit-mouse-sortable-min.js',
+	)
+
+/datum/asset/group/irv
+	children = list(
+		/datum/asset/simple/jquery,
+		/datum/asset/simple/irv,
+	)
 
 
 /datum/asset/simple/jquery
@@ -93,7 +104,7 @@
 		/datum/asset/simple/jquery,
 		/datum/asset/simple/namespaced/goonchat,
 		/datum/asset/spritesheet/chat,
-		/datum/asset/simple/namespaced/fontawesome
+		/datum/asset/simple/namespaced/fontawesome,
 	)
 
 /datum/asset/simple/namespaced/common
@@ -109,7 +120,7 @@
 /datum/asset/group/permissions
 	children = list(
 		/datum/asset/simple/permissions,
-		/datum/asset/simple/namespaced/common
+		/datum/asset/simple/namespaced/common,
 	)
 
 /datum/asset/simple/notes

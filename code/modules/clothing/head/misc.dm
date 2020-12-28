@@ -250,3 +250,11 @@
 	desc = "The white dress hat for your dress uniform."
 	icon_state = "white_dress" //with thanks to Baystation12
 	item_state = "white_dress" //with thanks to Baystation12
+
+/obj/item/clothing/head/techpriest
+	name = "Techpriest hood"
+	desc = "Praise the Omnissiah!"
+	icon_state = "tp_hood"
+	item_state = "tp_hood"
+	flags_inv_hide = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEALLHAIR
+	flags_armor_protection = HEAD|FACE|EYES

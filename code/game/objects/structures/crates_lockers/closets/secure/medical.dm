@@ -106,7 +106,6 @@
 	new /obj/item/clothing/suit/storage/labcoat(src)
 	new /obj/item/clothing/mask/surgical(src)
 	new /obj/item/clothing/mask/breath(src)
-	new /obj/item/radio/headset/mainship/mcom(src)
 	new /obj/item/reagent_containers/hypospray/advanced/tricordrazine(src)
 	new /obj/item/flash(src)
 	new /obj/item/storage/pouch/medical(src)

@@ -77,6 +77,9 @@
 	icon = 'icons/turf/desertdam_map.dmi'
 	icon_state = "cavewall1"
 
+/turf/closed/desertdamrockwall/invincible
+	resistance_flags = RESIST_ALL
+
 //lava rock
 /turf/closed/brock
 	name = "basalt rock"
@@ -85,7 +88,6 @@
 
 /turf/closed/brock/Initialize(mapload)
 	. = ..()
-	icon_state = setDir(pick(NORTH,SOUTH,EAST,WEST))
 	for(var/direction in GLOB.cardinals)
 		var/turf/turf_to_check = get_step(src, direction)
 		if(istype(turf_to_check, /turf/open))
@@ -377,6 +379,7 @@
 
 /turf/closed/shuttle/dropship2/transparent
 	opacity = FALSE
+
 
 /turf/closed/shuttle/escapepod
 	name = "wall"

@@ -109,7 +109,8 @@
 	return attack_hand(M)
 
 
-/obj/effect/forcefield/fog/CanPass(atom/movable/mover, turf/target)
+/obj/effect/forcefield/fog/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(isobj(mover))
 		return TRUE
 	if(isxeno(mover))
@@ -126,7 +127,8 @@
 	icon_state = "smoke"
 	density = FALSE
 
-/obj/effect/forcefield/fog/passable_fog/CanPass(atom/movable/mover, turf/target)
+/obj/effect/forcefield/fog/passable_fog/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	return TRUE
 
 /obj/effect/forcefield/fog/passable_fog/Crossed(atom/movable/mover, oldloc)
@@ -168,11 +170,16 @@
 	light_color = "#FFFFFF"
 	light_range = MINIMUM_USEFUL_LIGHT_RANGE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-
+	light_system = MOVABLE_LIGHT
 
 /obj/effect/dummy/lighting_obj/Initialize(mapload, _color, _range, _power, _duration)
 	. = ..()
-	set_light(_range ? _range : light_range, _power ? _power : light_power, _color ? _color : light_color)
+	if(!isnull(_range))
+		set_light_range(_range)
+	if(!isnull(_power))
+		set_light_power(_power)
+	if(!isnull(_color))
+		set_light_color(_color)
 	if(_duration)
 		QDEL_IN(src, _duration)
 

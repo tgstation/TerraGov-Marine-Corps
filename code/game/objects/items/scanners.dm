@@ -112,14 +112,13 @@ REAGENT SCANNER
 		OX = fake_oxy > 50 			? 	"<b>[fake_oxy]</b>" 			: fake_oxy
 		dat += "\n<span class='notice'> Health Analyzer for [M]:\n\tOverall Status: <b>DEAD</b>\n</span>"
 	else
-		dat += "\nHealth Analyzer results for [M]:\n\tOverall Status: [M.stat > 1 ? "<b>DEAD</b>" : "<b>[M.health - M.halloss]% healthy"]</b>\n"
+		dat += "\nHealth Analyzer results for [M]:\n\tOverall Status: [M.stat > 1 ? "<b>DEAD</b>" : "<b>[M.health]% healthy"]</b>\n"
 	dat += "\tType:    <span class='notice'>Oxygen</font>-<font color='green'>Toxin</font>-<font color='#FFA500'>Burns</font>-<font color='red'>Brute</span>\n"
 	dat += "\tDamage: \t<span class='notice'>[OX]</font> - <font color='green'>[TX]</font> - <font color='#FFA500'>[BU]</font> - <font color='red'>[BR]</span>\n"
 	dat += "\tUntreated: {B}=Burns,{T}=Trauma,{F}=Fracture,{I}=Infection\n"
 
 	var/infection_present = 0
 	var/unrevivable = 0
-	var/rad = M.radiation
 	var/overdosed = 0
 
 	// Show specific limb damage
@@ -188,11 +187,6 @@ REAGENT SCANNER
 				dat += "\n"
 
 	// Show red messages - broken bokes, infection, etc
-	if (rad)
-		if(rad > 5)
-			dat += "\t<span class='scanner'> *Dangerous levels of ionizing radiation detected.</span>\n"
-		else
-			dat += "\t<span class='scanner'> *Ionizing radiation detected.</span>\n"
 	if (M.getCloneLoss())
 		dat += "\t<span class='scanner'> *Subject appears to have been imperfectly cloned.</span>\n"
 	if (M.getBrainLoss() >= 100 || !M.has_brain())
@@ -351,17 +345,6 @@ REAGENT SCANNER
 				advice += "<span class='scanner'><b>Low Blood:</b> Administer or recommend consumption of food[iron]</span>\n"
 			if(overdosed && reagents_in_body[/datum/reagent/medicine/hypervene] < 3)
 				advice += "<span class='scanner'><b>Overdose:</b> Administer one dose of hypervene or perform dialysis on patient via sleeper.</span>\n"
-			if(rad > 5)
-				var/arithrazine = ""
-				var/hyronalin = ""
-				//var/hypervene = ""
-				//if(reagents_in_body[/datum/reagent/medicine/hypervene] < 3)
-				//	hypervene = "hypervene"
-				if(reagents_in_body[/datum/reagent/medicine/arithrazine] < 3)
-					arithrazine = "arithrazine"
-				if(reagents_in_body[/datum/reagent/medicine/hyronalin] < 3)
-					hyronalin = "hyronalin"
-				advice += "<span class='scanner'><b>Radiation:</b> Administer one dose of: [arithrazine] | [hyronalin]</span>\n"
 			if(unknown_body)
 				advice += "<span class='scanner'><b>Shrapnel/Embedded Object(s):</b> Seek surgical remedy to remove embedded object(s).</span>\n"
 			//if(infected)
@@ -375,10 +358,7 @@ REAGENT SCANNER
 				advice += "<span class='scanner'><b>Internal Bleeding:</b> [internal_bleed_advice]</span>\n"
 			if(H.getToxLoss() > 10)
 				var/dylovene = ""
-				//var/hypervene = ""
 				var/dylo_recommend = ""
-				//if(reagents_in_body[/datum/reagent/medicine/hypervene] < 3)
-				//	hypervene = "hypervene"
 				if(reagents_in_body[/datum/reagent/medicine/dylovene] < 5)
 					if(synaptizine_amount)
 						dylo_recommend = "Addendum: Dylovene recommended, but conflicting synaptizine present."

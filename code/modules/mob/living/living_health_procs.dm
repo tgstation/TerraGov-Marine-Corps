@@ -129,9 +129,6 @@
 /mob/living/proc/setMaxHealth(newMaxHealth)
 	maxHealth = newMaxHealth
 
-mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
-	return
-
 /mob/living/proc/Losebreath(amount, forced = FALSE)
 	return
 
@@ -211,6 +208,13 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 		updatehealth()
 	return TRUE
 
+/// This proc causes damage evenly on a human mob limbs, accounting individual limb armor, if used on livings will just call take_overall_damage().
+/mob/living/proc/take_overall_damage_armored(damage, damagetype, armortype, sharp = FALSE, edge = FALSE, updating_health = FALSE) //This proc is overrided on humans, otherwise it just applies some damage and checks armor on chest if not human.
+	if(damagetype == BRUTE)
+		return take_overall_damage(damage, 0, run_armor_check(BODY_ZONE_CHEST, armortype), sharp, edge, updating_health)
+	if(damagetype == BURN)
+		return take_overall_damage(0, damage, run_armor_check(BODY_ZONE_CHEST, armortype), sharp, edge, updating_health)
+	return FALSE
 
 /mob/living/proc/restore_all_organs()
 	return
@@ -251,7 +255,6 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 	fire_stacks = 0
 
 	// shut down ongoing problems
-	radiation = 0
 	bodytemperature = get_standard_bodytemperature()
 	disabilities = 0
 
@@ -292,7 +295,6 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 
 /mob/living/carbon/revive()
 	set_nutrition(400)
-	setHalLoss(0)
 	setTraumatic_Shock(0)
 	setShock_Stage(0)
 	drunkenness = 0
@@ -333,6 +335,7 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 	reagents.clear_reagents() //and clear all reagents in them
 	undefibbable = FALSE
 	chestburst = 0
+	headbitten = FALSE
 	update_body()
 	update_hair()
 	return ..()

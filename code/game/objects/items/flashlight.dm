@@ -9,46 +9,45 @@
 	flags_equip_slot = ITEM_SLOT_BELT
 	materials = list(/datum/material/metal = 50, /datum/material/glass = 20)
 	actions_types = list(/datum/action/item_action)
-	var/on = FALSE
-	var/brightness_on = 5 //luminosity when on
+	light_system = MOVABLE_LIGHT
+	light_on = FALSE
+	light_range = 5
+	light_power = 3 //luminosity when on
 	var/raillight_compatible = TRUE //Can this be turned into a rail light ?
 	var/activation_sound = 'sound/items/flashlight.ogg'
 
 /obj/item/flashlight/Initialize()
 	. = ..()
-	if(on)
-		icon_state = "[initial(icon_state)]-on"
-	update_brightness()
+	if(light_on)
+		update_brightness()
 
 
 /obj/item/flashlight/proc/update_brightness(mob/user = null)
 	if(!user && ismob(loc))
 		user = loc
-	if(on)
+	if(!light_on)
 		icon_state = "[initial(icon_state)]-on"
-		set_light(brightness_on)
+		set_light_on(TRUE)
 	else
 		icon_state = initial(icon_state)
-		set_light(0)
+		set_light_on(FALSE)
 
 /obj/item/flashlight/attack_self(mob/user)
 	if(!isturf(user.loc))
 		to_chat(user, "You cannot turn the light on while in [user.loc].")
-		return 0
-	on = !on
+		return FALSE
 	if(activation_sound)
 		playsound(get_turf(src), activation_sound, 15, 1)
 	update_brightness()
 	update_action_button_icons()
-	return 1
+	return TRUE
 
 /obj/item/flashlight/proc/turn_off_light(mob/bearer)
-	if(on)
-		on = FALSE
+	if(light_on)
 		update_brightness(bearer)
 		update_action_button_icons()
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /obj/item/flashlight/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -57,7 +56,7 @@
 		if(!raillight_compatible) //No fancy messages, just no
 			return
 
-		if(on)
+		if(light_on)
 			to_chat(user, "<span class='warning'>Turn off [src] first.</span>")
 			return
 
@@ -72,7 +71,7 @@
 
 
 /obj/item/flashlight/attack(mob/living/M as mob, mob/living/user as mob)
-	if(on && user.zone_selected == "eyes")
+	if(light_on && user.zone_selected == "eyes")
 
 		if((user.getBrainLoss() >= 60) && prob(50))	//too dumb to use flashlight properly
 			return ..()	//just hit them in the head
@@ -109,7 +108,7 @@
 	icon_state = "penlight"
 	item_state = ""
 	flags_atom = CONDUCT
-	brightness_on = 2
+	light_range = 2
 	w_class = WEIGHT_CLASS_TINY
 	raillight_compatible = FALSE
 
@@ -118,7 +117,7 @@
 	desc = "A miniature lamp, that might be used by small robots."
 	icon_state = "penlight"
 	item_state = ""
-	brightness_on = 2
+	light_range = 2
 	w_class = WEIGHT_CLASS_TINY
 	raillight_compatible = FALSE
 
@@ -128,9 +127,9 @@
 	desc = "A desk lamp with an adjustable mount."
 	icon_state = "lamp"
 	item_state = "lamp"
-	brightness_on = 5
+	light_range = 5
 	w_class = WEIGHT_CLASS_BULKY
-	on = TRUE
+	light_on = FALSE
 	raillight_compatible = FALSE
 
 //Menorah!
@@ -139,16 +138,15 @@
 	desc = "For celebrating Chanukah."
 	icon_state = "menorah"
 	item_state = "menorah"
-	brightness_on = 2
+	light_range = 2
 	w_class = WEIGHT_CLASS_BULKY
-	on = TRUE
 
 //Green-shaded desk lamp
 /obj/item/flashlight/lamp/green
 	desc = "A classic green-shaded desk lamp."
 	icon_state = "lampgreen"
 	item_state = "lampgreen"
-	brightness_on = 5
+	light_range = 5
 
 /obj/item/flashlight/lamp/verb/toggle_light()
 	set name = "Toggle light"
@@ -173,9 +171,9 @@
 
 /obj/item/flashlight/flare
 	name = "flare"
-	desc = "A red TGMC issued flare. There are instructions on the side, it reads 'pull cord, make light'."
+	desc = "A NT standard emergency flare. There are instructions on the side, it reads 'pull cord, make light'."
 	w_class = WEIGHT_CLASS_SMALL
-	brightness_on = 5 //As bright as a flashlight, but more disposable. Doesn't burn forever though
+	light_power = 6 //As bright as a flashlight, but more disposable. Doesn't burn forever though
 	icon_state = "flare"
 	item_state = "flare"
 	actions = list()	//just pull it manually, neckbeard.
@@ -190,7 +188,7 @@
 
 /obj/item/flashlight/flare/proc/turn_off()
 	fuel = 0 //Flares are one way; if you turn them off, you're snuffing them out.
-	on = FALSE
+	light_on = TRUE
 	heat = 0
 	force = initial(force)
 	damtype = initial(damtype)
@@ -207,7 +205,7 @@
 	if(!fuel)
 		to_chat(user, "<span class='notice'>It's out of fuel.</span>")
 		return
-	if(on)
+	if(light_on)
 		return
 
 	. = ..()
@@ -218,10 +216,13 @@
 		heat = 1500
 		damtype = "fire"
 		addtimer(CALLBACK(src, .proc/turn_off), fuel)
+		if(iscarbon(user))
+			var/mob/living/carbon/C = usr
+			C.toggle_throw_mode()
 
 /obj/item/flashlight/flare/on/Initialize()
 	. = ..()
-	on = TRUE
+	light_on = TRUE
 	heat = 1500
 	update_brightness()
 	force = on_damage
@@ -236,8 +237,8 @@
 	icon_state = "floor1" //not a slime extract sprite but... something close enough!
 	item_state = "slime"
 	w_class = WEIGHT_CLASS_TINY
-	brightness_on = 6
-	on = TRUE //Bio-luminesence has one setting, on.
+	light_range = 6
+	light_on = TRUE //Bio-luminesence has one setting, on.
 	raillight_compatible = FALSE
 
 
@@ -250,5 +251,5 @@
 	name = "lantern"
 	icon_state = "lantern"
 	desc = "A mining lantern."
-	brightness_on = 6			// luminosity when on
+	light_range = 6			// luminosity when on
 	raillight_compatible = FALSE

@@ -28,7 +28,7 @@ GLOBAL_LIST_EMPTY(radial_menus)
 		closeToolTip(usr)
 
 /obj/screen/radial/slice/Click(location, control, params)
-	if(usr.client == parent.current_user)
+	if(usr.client == parent?.current_user)
 		if(next_page)
 			parent.next_page()
 		else
@@ -49,6 +49,10 @@ GLOBAL_LIST_EMPTY(radial_menus)
 /obj/screen/radial/center/Click(location, control, params)
 	if(usr.client == parent.current_user)
 		parent.finished = TRUE
+
+/obj/screen/radial/Destroy()
+	parent = null
+	return ..()
 
 /datum/radial_menu
 	var/list/choices = list() //List of choice id's
@@ -278,6 +282,9 @@ GLOBAL_LIST_EMPTY(radial_menus)
 	Reset()
 	hide()
 	QDEL_NULL(custom_check_callback)
+	current_user = null
+	QDEL_LIST(elements)
+	QDEL_NULL(close_button)
 	return ..()
 
 /*

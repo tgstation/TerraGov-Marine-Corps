@@ -78,6 +78,7 @@
 	var/list/gasps = list()
 	var/list/coughs = list()
 	var/list/burstscreams = list()
+	var/list/warcries = list()
 
 	var/blood_color = "#A10808" //Red.
 	var/flesh_color = "#FFC896" //Pink.
@@ -294,6 +295,7 @@
 	gasps = list(MALE = "male_gasp", FEMALE = "female_gasp")
 	coughs = list(MALE = "male_cough", FEMALE = "female_cough")
 	burstscreams = list(MALE = "male_preburst", FEMALE = "female_preburst")
+	warcries = list(MALE = "male_warcry", FEMALE = "female_warcry")
 	special_death_message = "<big>You have perished.</big><br><small>But it is not the end of you yet... if you still have your body or an unbursted corpse, wait until somebody can resurrect you...</small>"
 
 	//If you wanted to add a species-level ability:
@@ -483,6 +485,7 @@
 	paincries = list("neuter" = 'sound/voice/human_male_pain_3.ogg')
 	goredcries = list("neuter" = 'sound/voice/moth_scream.ogg')
 	burstscreams = list("neuter" = 'sound/voice/moth_scream.ogg')
+	warcries = list("neuter" = 'sound/voice/moth_scream.ogg')
 
 	flesh_color = "#E5CD99"
 
@@ -666,6 +669,27 @@
 		)
 	special_death_message = "You have shut down."
 
+/datum/species/skeleton
+	name = "Skeleton"
+	name_plural = "skeletons"
+	icobase = 'icons/mob/human_races/r_skeleton.dmi'
+	deform = 'icons/mob/human_races/r_skeleton.dmi'
+	unarmed_type = /datum/unarmed_attack/punch
+	speech_verb_override = "rattles"
+	show_paygrade = TRUE
+	count_human = TRUE
+
+	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_CHEM_METABOLIZATION|DETACHABLE_HEAD // Where we're going, we don't NEED underwear.
+
+	screams = list("neuter" = 'sound/voice/skeleton_scream.ogg') // RATTLE ME BONES
+	paincries = list("neuter" = 'sound/voice/skeleton_scream.ogg')
+	goredcries = list("neuter" = 'sound/voice/skeleton_scream.ogg')
+	burstscreams = list("neuter" = 'sound/voice/moth_scream.ogg')
+	death_message = "collapses in a pile of bones, with a final rattle..."
+	death_sound = list("neuter" = 'sound/voice/skeleton_scream.ogg')
+	warcries = list("neuter" = 'sound/voice/skeleton_warcry.ogg') // AAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+	namepool = /datum/namepool/skeleton
+
 /datum/species/synthetic
 	name = "Synthetic"
 	name_plural = "synthetics"
@@ -704,6 +728,7 @@
 	screams = list(MALE = "male_scream", FEMALE = "female_scream")
 	paincries = list(MALE = "male_pain", FEMALE = "female_pain")
 	goredcries = list(MALE = "male_gored", FEMALE = "female_gored")
+	warcries = list(MALE = "male_warcry", FEMALE = "female_warcry")
 	special_death_message = "You have been shut down.<br><small>But it is not the end of you yet... if you still have your body, wait until somebody can resurrect you...</small>"
 
 
@@ -756,6 +781,7 @@
 	screams = list(MALE = "male_scream", FEMALE = "female_scream")
 	paincries = list(MALE = "male_pain", FEMALE = "female_pain")
 	goredcries = list(MALE = "male_gored", FEMALE = "female_gored")
+	warcries = list(MALE = "male_warcry", FEMALE = "female_warcry")
 	special_death_message = "You have been shut down.<br><small>But it is not the end of you yet... if you still have your body, wait until somebody can resurrect you...</small>"
 
 
@@ -780,16 +806,15 @@
 /datum/species/proc/can_shred(mob/living/carbon/human/H)
 
 	if(H.a_intent != INTENT_HARM)
-		return 0
+		return FALSE
 
 	if(unarmed.is_usable(H))
 		if(unarmed.shredding)
-			return 1
+			return TRUE
 	else if(secondary_unarmed.is_usable(H))
 		if(secondary_unarmed.shredding)
-			return 1
-
-	return 0
+			return TRUE
+	return FALSE
 
 //Species unarmed attacks
 /datum/unarmed_attack
@@ -803,18 +828,17 @@
 
 /datum/unarmed_attack/proc/is_usable(mob/living/carbon/human/user)
 	if(user.restrained())
-		return 0
+		return FALSE
 
 	// Check if they have a functioning hand.
 	var/datum/limb/E = user.get_limb("l_hand")
 	if(E && !(E.limb_status & LIMB_DESTROYED))
-		return 1
+		return TRUE
 
 	E = user.get_limb("r_hand")
 	if(E && !(E.limb_status & LIMB_DESTROYED))
-		return 1
-
-	return 0
+		return TRUE
+	return FALSE
 
 /datum/unarmed_attack/bite
 	attack_verb = list("bite") // 'x has biteed y', needs work.
@@ -826,8 +850,8 @@
 
 /datum/unarmed_attack/bite/is_usable(mob/living/carbon/human/user)
 	if (user.wear_mask && istype(user.wear_mask, /obj/item/clothing/mask/muzzle))
-		return 0
-	return 1
+		return FALSE
+	return TRUE
 
 /datum/unarmed_attack/punch
 	attack_verb = list("punch")
@@ -957,8 +981,6 @@
 				damage *= burn_mod
 			if(organ.take_damage_limb(0, damage, sharp, edge))
 				victim.UpdateDamageIcon()
-		if(HALLOSS)
-			if(species_flags & NO_PAIN)
 				return
 			switch(damage)
 				if(-INFINITY to 0)
@@ -969,7 +991,6 @@
 				if(50 to INFINITY)
 					if(prob(60))
 						victim.emote("pain")
-			victim.adjustHalLoss(damage)
 		if(TOX)
 			victim.adjustToxLoss(damage)
 		if(OXY)
