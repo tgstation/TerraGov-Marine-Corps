@@ -14,7 +14,7 @@
 	var/default_ammo = /obj/item/ammo_magazine/tank/ltb_cannon
 	///Alt ammo we'll also accept alongside the default ammo
 	var/list/accepted_ammo = list(
-		/obj/item/ammo_magazine/tank/tank_glauncher
+		/obj/item/ammo_magazine/tank/tank_glauncher,
 	)
 	///Cooldown between shots
 	var/cooldown = 6 SECONDS
@@ -110,7 +110,7 @@
 	fire_sounds = list('sound/weapons/guns/fire/shotgun_automatic.ogg', 'sound/weapons/guns/fire/shotgun_light.ogg', 'sound/weapons/guns/fire/shotgun_heavy.ogg')
 	default_ammo = /obj/item/ammo_magazine/tank/tank_slauncher
 	accepted_ammo = list(
-		/obj/item/ammo_magazine/tank/tank_glauncher
+		/obj/item/ammo_magazine/tank/tank_glauncher,
 	)
 	cooldown = 0.7 SECONDS //Minimal cooldown
 	range_safety_check = 0
