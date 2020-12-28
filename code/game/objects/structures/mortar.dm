@@ -212,8 +212,8 @@
 		addtimer(CALLBACK(src, .proc/detonate_shell, T, mortar_shell), travel_time + 45)//This should always be 45 ticks!
 
 /obj/structure/mortar/proc/detonate_shell(turf/target, obj/item/mortal_shell/mortar_shell)
-	T.ceiling_debris_check(2)
-	mortar_shell.detonate(T)
+	target.ceiling_debris_check(2)
+	mortar_shell.detonate(target)
 	qdel(mortar_shell)
 	firing = FALSE
 
