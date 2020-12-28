@@ -1,0 +1,5 @@
+author: "Walarks"
+delete-after: True
+changes: 
+  - tweak: "saved chem recipes are persistent"
+  - tweak: "adds 1u as an option when dispensing chems"
