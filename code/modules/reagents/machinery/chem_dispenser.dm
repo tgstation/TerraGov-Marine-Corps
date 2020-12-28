@@ -139,11 +139,11 @@
 	.["maxEnergy"] = cell.maxcharge * powerefficiency
 	.["isBeakerLoaded"] = beaker ? 1 : 0
 
-	var/beakerContents[0]
+	var/list/beakerContents = list()
 	var/beakerCurrentVolume = 0
 	if(beaker && beaker.reagents && beaker.reagents.reagent_list.len)
 		for(var/datum/reagent/R in beaker.reagents.reagent_list)
-			beakerContents.Add(list(list("name" = R.name, "volume" = R.volume))) // list in a list because Byond merges the first list...
+			beakerContents += list(list("name" = R.name, "volume" = R.volume))	 // list in a list because Byond merges the first list...
 			beakerCurrentVolume += R.volume
 	.["beakerContents"] = beakerContents
 
