@@ -21,8 +21,6 @@
 	var/recharge_amount = 10
 	var/recharge_counter = 0
 
-	///UI data holder
-	var/data = list()
 	///Reagent amounts that are dispenced
 	var/static/list/possible_transfer_amounts = list(1,5,10,15,20,30,60)
 
@@ -131,13 +129,15 @@
 		ui.open()
 
 /obj/machinery/chem_dispenser/ui_static_data(mob/user)
-	data["beakerTransferAmounts"] = possible_transfer_amounts
+	. = list()
+	.["beakerTransferAmounts"] = possible_transfer_amounts
 
 /obj/machinery/chem_dispenser/ui_data(mob/user)
-	data["amount"] = amount
-	data["energy"] = cell.charge ? cell.charge * powerefficiency : "0" //To prevent NaN in the UI.
-	data["maxEnergy"] = cell.maxcharge * powerefficiency
-	data["isBeakerLoaded"] = beaker ? 1 : 0
+	. = list()
+	.["amount"] = amount
+	.["energy"] = cell.charge ? cell.charge * powerefficiency : "0" //To prevent NaN in the UI.
+	.["maxEnergy"] = cell.maxcharge * powerefficiency
+	.["isBeakerLoaded"] = beaker ? 1 : 0
 
 	var/beakerContents[0]
 	var/beakerCurrentVolume = 0
@@ -145,14 +145,14 @@
 		for(var/datum/reagent/R in beaker.reagents.reagent_list)
 			beakerContents.Add(list(list("name" = R.name, "volume" = R.volume))) // list in a list because Byond merges the first list...
 			beakerCurrentVolume += R.volume
-	data["beakerContents"] = beakerContents
+	.["beakerContents"] = beakerContents
 
 	if (beaker)
-		data["beakerCurrentVolume"] = beakerCurrentVolume
-		data["beakerMaxVolume"] = beaker.volume
+		.["beakerCurrentVolume"] = beakerCurrentVolume
+		.["beakerMaxVolume"] = beaker.volume
 	else
-		data["beakerCurrentVolume"] = null
-		data["beakerMaxVolume"] = null
+		.["beakerCurrentVolume"] = null
+		.["beakerMaxVolume"] = null
 
 	var/list/chemicals = list()
 	for(var/re in dispensable_reagents)
@@ -160,11 +160,10 @@
 		if(temp)
 			var/chemname = temp.name
 			chemicals.Add(list(list("title" = chemname, "id" = ckey(temp.name))))
-	data["chemicals"] = chemicals
-	data["recipes"] = user.client.prefs.chem_macros
+	.["chemicals"] = chemicals
+	.["recipes"] = user.client.prefs.chem_macros
 
-	data["recordingRecipe"] = recording_recipe
-	return data
+	.["recordingRecipe"] = recording_recipe
 
 /obj/machinery/chem_dispenser/ui_act(action, params)
 	if(..())
