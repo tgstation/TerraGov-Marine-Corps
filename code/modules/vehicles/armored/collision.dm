@@ -1,12 +1,12 @@
 /**
-  *This proc is called when a atom is crashed into by a [armored vehicle][/obj/vehicle/armored]. Damage is then dealt to both the vehicle and atom
-  *
-  * * Arguments:
-  * * veh is the vehicle that is ramming
-  * * facing is the direction the vehicle is facing for when we ram it
-  * * T is the turf where the vehicle is used with-
-  * * temp to check whether a mob is squished
-  */
+ *This proc is called when a atom is crashed into by a [armored vehicle][/obj/vehicle/armored]. Damage is then dealt to both the vehicle and atom
+ *
+ * * Arguments:
+ * * veh is the vehicle that is ramming
+ * * facing is the direction the vehicle is facing for when we ram it
+ * * T is the turf where the vehicle is used with-
+ * * temp to check whether a mob is squished
+ */
 /atom/proc/vehicle_collision(obj/vehicle/veh, facing, turf/T, turf/temp)
 	if(!veh.demolish_on_ram)
 		return 0

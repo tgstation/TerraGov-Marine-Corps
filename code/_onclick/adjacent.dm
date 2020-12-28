@@ -172,10 +172,10 @@
 		return FALSE
 	return get_door_location(neighbor)
 /**
-  *This checks if you there is uninterrupted airspace between that turf and this one.
-  *	This is defined as any dense ON_BORDER object, or any dense object without throwpass.
-  * The border_only flag allows you to not objects (for source and destination squares)
-  */
+ *This checks if you there is uninterrupted airspace between that turf and this one.
+ *	This is defined as any dense ON_BORDER object, or any dense object without throwpass.
+ * The border_only flag allows you to not objects (for source and destination squares)
+ */
 /turf/proc/ClickCross(target_dir, border_only, target_atom = null, atom/movable/mover = null)
 	for(var/obj/O in src)
 		if((mover && O.CanPass(mover,get_step(src, target_dir))) || (!mover && !O.density))

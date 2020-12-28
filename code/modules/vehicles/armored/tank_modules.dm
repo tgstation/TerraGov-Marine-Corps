@@ -1,8 +1,8 @@
 /**
-  *TANK MODULES
-  *
-  * Attached to the tank and provide abilities/ passive upgrades
-  */
+ *TANK MODULES
+ *
+ * Attached to the tank and provide abilities/ passive upgrades
+ */
 /obj/item/tank_module //base
 	name = "Tank Module"
 	desc = "Yell at the admin that spawned this in please."
