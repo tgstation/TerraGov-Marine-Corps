@@ -272,7 +272,7 @@
 	name = "Combat hyspospray"
 	desc = "An hyspospray loaded with several doses of advanced healing and painkilling chemicals. Intended for use in active combat."
 	list_reagents = list(
-		/datum/reagent/medicine/bicardine = 20,
+		/datum/reagent/medicine/bicaridine = 20,
 		/datum/reagent/medicine/kelotane = 20,
 		/datum/reagent/medicine/tramadol = 20,
 	)	
