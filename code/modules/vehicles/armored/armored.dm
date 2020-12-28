@@ -9,58 +9,58 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 
 
 /*! TIVIS GUIDE TO MAKING VEHICLES, OR THE DUMMIES GUIDE TO TANK MAKING
-  *
-  * First get your sprites in, create a new folder for them in the vehicles folder and set the .dmi values correctly
-  * You can add:
-  * * Main Turret
-  * * Secondary turrets
-  * * Underlays
-  * * Map variations
-  * * Damage overlays
-  * * //todo Armor overlays
-  *
-  * You must manually set the offsets for your tank subtypes so that they move correctly, VV them in game to find the perfect values for it
-  * add default weapons and decide whether it should move diagonally or not
-  * add a doorpoint for where you want people to get in from using get_door_location()
-  *
-  * MULTITILE EXTRAS:
-  * Set the hitbox_type to your hitbox, /hitbox is 3x3 and /hitbox/medium is 2x2 so make custom ones as required
-  * you can also layer multiple hitboxes to make ... special shapes, though I really dont recomend that
-  * REMEMBER, USE ONLY BOUNDS DIVISIBLE BY 32 OR GLIDING WILL BREAK
-  *
-  * Set doorpoints for where you want access from, set this in the get_door_location() proc
-  *
-  * Set relaymove like this for new vehicle sizes:
-  *  * First check if we can move in the first place
-  *  * //////
-  *  * calculate enteringturfs or the movement
-  *  * //////
-  *  * Crush/try to move the vehicle
-  *
-  * This part is specifically not split up into procs because holy god FUCK byond proc overhead
-  */
+ *
+ * First get your sprites in, create a new folder for them in the vehicles folder and set the .dmi values correctly
+ * You can add:
+ * * Main Turret
+ * * Secondary turrets
+ * * Underlays
+ * * Map variations
+ * * Damage overlays
+ * * //todo Armor overlays
+ *
+ * You must manually set the offsets for your tank subtypes so that they move correctly, VV them in game to find the perfect values for it
+ * add default weapons and decide whether it should move diagonally or not
+ * add a doorpoint for where you want people to get in from using get_door_location()
+ *
+ * MULTITILE EXTRAS:
+ * Set the hitbox_type to your hitbox, /hitbox is 3x3 and /hitbox/medium is 2x2 so make custom ones as required
+ * you can also layer multiple hitboxes to make ... special shapes, though I really dont recomend that
+ * REMEMBER, USE ONLY BOUNDS DIVISIBLE BY 32 OR GLIDING WILL BREAK
+ *
+ * Set doorpoints for where you want access from, set this in the get_door_location() proc
+ *
+ * Set relaymove like this for new vehicle sizes:
+ *  * First check if we can move in the first place
+ *  * //////
+ *  * calculate enteringturfs or the movement
+ *  * //////
+ *  * Crush/try to move the vehicle
+ *
+ * This part is specifically not split up into procs because holy god FUCK byond proc overhead
+ */
 
 /** Armored vehicles
-  * HOW DOES IT WORK
-  *
-  * Each vehicle can hold at least a gunner and a driver and optionally can carry passengers
-  * Bump will cause damage to things and do the ramming effect
-  * The weapons have a overlay that is updated when the gunner does stuff and will rotate accordingly
-  * The layers set this high because multitile sprites have issues with mobs and so otherwise
-  * Also % damage overlays are calculated on damage so remember to add those
-  *
-  * MULTITILE:
-  * Since we cant make non 1x1 vehicles move normally we instead make a hitbox that is forcemoved onto the location of the tank,
-  * creating a dense area while allowing the tank to move. The Hitbox also acts as a relay for projectiles, all other interactions are handled
-  * by Adjacent().
-  * Doorpoints exist for both multitile and 1x1 and determine the location where the humans are allowed to go in
-  * Both doorpoints and multitile are tracked in a list meaning that you can make non-rectangular vehicles by layering hitboxes
-  * And multiple enterances through which humans can get in
-  * Crushing is calculated on relaymove, where we select a main "centerturf" ahead that we can then calculate the rest of the tiles from,
-  * Although you can alter the exact method to suit your needs
-  *
-  * Theres some wack optimizations happening here too like using ```var == TRUE``` to ensure it doesnt lag the game so tread carefully when refactoring
-  */
+ * HOW DOES IT WORK
+ *
+ * Each vehicle can hold at least a gunner and a driver and optionally can carry passengers
+ * Bump will cause damage to things and do the ramming effect
+ * The weapons have a overlay that is updated when the gunner does stuff and will rotate accordingly
+ * The layers set this high because multitile sprites have issues with mobs and so otherwise
+ * Also % damage overlays are calculated on damage so remember to add those
+ *
+ * MULTITILE:
+ * Since we cant make non 1x1 vehicles move normally we instead make a hitbox that is forcemoved onto the location of the tank,
+ * creating a dense area while allowing the tank to move. The Hitbox also acts as a relay for projectiles, all other interactions are handled
+ * by Adjacent().
+ * Doorpoints exist for both multitile and 1x1 and determine the location where the humans are allowed to go in
+ * Both doorpoints and multitile are tracked in a list meaning that you can make non-rectangular vehicles by layering hitboxes
+ * And multiple enterances through which humans can get in
+ * Crushing is calculated on relaymove, where we select a main "centerturf" ahead that we can then calculate the rest of the tiles from,
+ * Although you can alter the exact method to suit your needs
+ *
+ * Theres some wack optimizations happening here too like using ```var == TRUE``` to ensure it doesnt lag the game so tread carefully when refactoring
+ */
 /obj/vehicle/armored
 	name = "\improper TAV - Shortstreet MK4"	//PEAK PERFORMANCE MINITANK
 	desc = "An adorable chunk of metal with an alarming amount of firepower designed to crush, immolate, destroy and maim anything that Nanotrasen wants it to. This model contains advanced Bluespace technology which allows a TARDIS-like amount of room on the inside."
@@ -268,13 +268,13 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	icon_state = "null" // set on demand
 
 /**
-  * TANK HITBOX
-  * The core of multitile. Acts as a relay for damage and stops people from walking onto the tank sprite
-  * has changed bounds and as thus must always be forcemoved so it doesnt break everything
-  * I would use pixel movement but the maptick caused by it is way too high and a fake tile based movement isnt performant either
-  * Thus we just use this relay
-  * For the sake of not making spagetti these should be square when possible
-  */
+ * TANK HITBOX
+ * The core of multitile. Acts as a relay for damage and stops people from walking onto the tank sprite
+ * has changed bounds and as thus must always be forcemoved so it doesnt break everything
+ * I would use pixel movement but the maptick caused by it is way too high and a fake tile based movement isnt performant either
+ * Thus we just use this relay
+ * For the sake of not making spagetti these should be square when possible
+ */
 /obj/hitbox
 	///The "parent" that this hitbox is attached to and to whom it will relay damage
 	var/obj/vehicle/armored/multitile/root = null
