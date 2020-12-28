@@ -1,5 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes: 
-  - rscadd: "Adds Instruments, can be found on the ship and in clothing vendors"
-  - rscadd: "Instrument disable sound pref is available"

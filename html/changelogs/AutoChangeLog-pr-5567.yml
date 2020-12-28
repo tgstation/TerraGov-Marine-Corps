@@ -1,4 +1,0 @@
-author: "Hughgent"
-delete-after: True
-changes: 
-  - refactor: "flamer fire now uses the better damage proc."

@@ -1,4 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - tweak: "moved the Toggle_Middle/Shift Clicking from IC to GamePref"
