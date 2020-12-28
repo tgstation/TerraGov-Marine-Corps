@@ -9810,15 +9810,6 @@
 	dir = 8
 	},
 /area/sulaco/engineering/atmos)
-"bev" = (
-/obj/structure/bookcase{
-	dir = 4
-	},
-/obj/item/book/manual/evaguide,
-/obj/item/book/manual/supermatter_engine,
-/obj/item/book/manual/ripley_build_and_repair,
-/turf/open/floor/wood,
-/area/sulaco/liaison/quarters)
 "bew" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4
@@ -9837,6 +9828,9 @@
 	},
 /obj/item/book/manual/engineering_hacking,
 /obj/item/book/manual/nuclear,
+/obj/item/book/manual/ripley_build_and_repair,
+/obj/item/book/manual/supermatter_engine,
+/obj/item/book/manual/evaguide,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters)
 "beH" = (
@@ -14154,6 +14148,10 @@
 	},
 /turf/open/floor/wood,
 /area/sulaco/bridge/office)
+"ncj" = (
+/obj/structure/musician/piano,
+/turf/open/floor/plating,
+/area/sulaco/hallway/lower_main_hall)
 "ncn" = (
 /obj/structure/bed/chair,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
@@ -50492,7 +50490,7 @@ baQ
 bcs
 bcT
 aVY
-baT
+ncj
 sMg
 aPQ
 mDu
@@ -55780,7 +55778,7 @@ bdj
 bdI
 bdY
 bHC
-bev
+bdM
 beG
 cPc
 cPc

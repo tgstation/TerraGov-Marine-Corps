@@ -379,7 +379,7 @@
 		/obj/item/storage/pill_bottle/tricordrazine = 3,
 		/obj/item/storage/pill_bottle/imidazoline = 3,
 		/obj/item/storage/pill_bottle/tramadol = 3,
-		/obj/item/storage/pill_bottle/russianRed = 5,
+		/obj/item/storage/pill_bottle/russian_red = 5,
 		/obj/item/storage/pill_bottle/peridaxon = 2,
 		/obj/item/storage/pill_bottle/quickclot = 2,
 		/obj/item/storage/pill_bottle/hypervene = 2,
@@ -765,6 +765,17 @@
 		/obj/item/clothing/head/white_dress = 50,
 		/obj/item/clothing/shoes/white = 50,
 		/obj/item/clothing/gloves/white = 50,
+		/obj/item/instrument/violin = 2,
+		/obj/item/instrument/piano_synth = 2,
+		/obj/item/instrument/banjo = 2,
+		/obj/item/instrument/guitar = 2,
+		/obj/item/instrument/glockenspiel = 2,
+		/obj/item/instrument/accordion = 2,
+		/obj/item/instrument/trumpet = 2,
+		/obj/item/instrument/saxophone = 2,
+		/obj/item/instrument/trombone = 2,
+		/obj/item/instrument/recorder = 2,
+		/obj/item/instrument/harmonica = 2,
 	)
 
 	prices = list()

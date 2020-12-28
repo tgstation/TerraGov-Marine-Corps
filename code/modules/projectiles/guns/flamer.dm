@@ -260,9 +260,7 @@
 			if(H.hard_armor.getRating("fire") >= 100)
 				continue
 
-		var/armor_block = M.run_armor_check(null, "fire")
-		M.apply_damage(rand(burn,(burn*2))* fire_mod, BURN, null, armor_block) // Make it so its the amount of heat or twice it for the initial blast.
-		UPDATEHEALTH(M)
+		M.take_overall_damage_armored(rand(burn,(burn*2))* fire_mod, BURN, "fire", updating_health = TRUE) // Make it so its the amount of heat or twice it for the initial blast.
 		M.adjust_fire_stacks(rand(5,burn*2))
 		M.IgniteMob()
 
@@ -478,9 +476,7 @@
 		for(var/mob/living/C in get_turf(src))
 			C.flamer_fire_act(fire_stacks)
 
-			var/armor_block = C.run_armor_check("chest", "fire")
-			if(C.apply_damage(fire_damage, BURN, null, armor_block))
-				UPDATEHEALTH(C)
+			C.take_overall_damage_armored(fire_damage, BURN, "fire", updating_health = TRUE)
 			if(C.IgniteMob())
 				C.visible_message("<span class='danger'>[C] bursts into flames!</span>","[isxeno(C)?"<span class='xenodanger'>":"<span class='highdanger'>"]You burst into flames!</span>")
 
@@ -500,18 +496,14 @@
 /mob/living/proc/flamer_fire_crossed(burnlevel, firelevel, fire_mod = 1)
 	adjust_fire_stacks(burnlevel) //Make it possible to light them on fire later.
 	IgniteMob()
-	var/armor_block = run_armor_check(null, "fire")
-	if(apply_damage(round(burnlevel*0.5)* fire_mod, BURN, null, armor_block))
-		UPDATEHEALTH(src)
+	take_overall_damage_armored(round(burnlevel*0.5)* fire_mod, BURN, "fire", updating_health = TRUE)
 	to_chat(src, "<span class='danger'>You are burned!</span>")
 
 
 
 /mob/living/carbon/human/flamer_fire_crossed(burnlevel, firelevel, fire_mod = 1)
 	if(hard_armor.getRating("fire") >= 100)
-		var/armor_block = run_armor_check(null, "fire")
-		if(apply_damage(round(burnlevel * 0.2) * fire_mod, BURN, null, armor_block))
-			UPDATEHEALTH(src)
+		take_overall_damage_armored(round(burnlevel * 0.2) * fire_mod, BURN, "fire", updating_health = TRUE)
 		return
 	. = ..()
 	if(isxeno(pulledby))

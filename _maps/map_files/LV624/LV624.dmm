@@ -11891,10 +11891,10 @@
 	},
 /area/lv624/lazarus/main_hall)
 "bcZ" = (
-/obj/structure/device/broken_piano,
 /obj/machinery/light/small{
 	dir = 8
 	},
+/obj/structure/musician/piano/unanchored,
 /turf/open/floor/tile/bar,
 /area/lv624/lazarus/canteen)
 "bda" = (
