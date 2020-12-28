@@ -283,7 +283,7 @@
 	list_reagents = list(
 		/datum/reagent/medicine/meralyne = 20,
 		/datum/reagent/medicine/dermaline = 20,
-		/datum/reagent/medicine/oxycodone = 20
+		/datum/reagent/medicine/oxycodone = 20,
 	)
 
 /obj/item/reagent_containers/hypospray/advanced/meraderm
@@ -291,21 +291,21 @@
 	desc = "An hyspospray loaded with meralyne and dermaline."
 	list_reagents = list(
 		/datum/reagent/medicine/meralyne = 30,
-		/datum/reagent/medicine/dermaline = 30
+		/datum/reagent/medicine/dermaline = 30,
 	)
 
 /obj/item/reagent_containers/hypospray/advanced/meralyne
 	name = "A meralyne hyspospray"
 	desc = "An hyspospray loaded with meralyne."
 	list_reagents = list(
-		/datum/reagent/medicine/meralyne = 60
+		/datum/reagent/medicine/meralyne = 60,
 	)
 
 /obj/item/reagent_containers/hypospray/advanced/dermaline
 	name = "A dermaline hyspospray"
 	desc = "An hyspospray loaded with dermaline."
 	list_reagents = list(
-		/datum/reagent/medicine/dermaline = 60
+		/datum/reagent/medicine/dermaline = 60,
 	)
 	
 /obj/item/reagent_containers/hypospray/advanced/ironsugar
@@ -313,7 +313,7 @@
 	desc = "An hyspospray loaded with ironsugar."
 	list_reagents = list(
 		/datum/reagent/iron = 30, 
-		/datum/reagent/consumable/sugar = 30
+		/datum/reagent/consumable/sugar = 30,
 	)
 
 /obj/item/reagent_containers/hypospray/advanced/update_icon()
