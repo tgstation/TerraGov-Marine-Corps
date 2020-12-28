@@ -487,7 +487,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/storage/belt/medicLifesaver = list(CAT_BEL, "Lifesaver medic belt", 0, "orange"),
 		/obj/item/storage/belt/medical = list(CAT_BEL, "Medical belt", 0, "black"),
 		/obj/item/storage/pouch/autoinjector/advanced/full = list(CAT_POU, "Advanced Autoinjector pouch", 0, "orange"),
-		/obj/item/storage/pouch/hypospray/corps/full = list(CAT_POU, "Advanced Hypospray pouch", 0, "orange")
+		/obj/item/storage/pouch/hypospray/corps/full = list(CAT_POU, "Advanced Hypospray pouch", 0, "orange"),
 		/obj/item/helmet_module/welding = list(CAT_HEL, "Jaeger welding module", 0, "orange"),
 		/obj/item/helmet_module/binoculars =  list(CAT_HEL, "Jaeger binoculars module", 0, "orange"),
 		/obj/item/helmet_module/antenna = list(CAT_HEL, "Jaeger Antenna module", 0, "orange"),
