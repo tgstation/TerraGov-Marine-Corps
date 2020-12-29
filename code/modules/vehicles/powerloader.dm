@@ -123,9 +123,6 @@
 		return FALSE
 	return ..()
 
-/obj/vehicle/powerloader/Destroy()
-	return ..()
-
 /obj/vehicle/powerloader/verb/enter_powerloader(mob/M)
 	set category = "Object"
 	set name = "Enter Power Loader"
