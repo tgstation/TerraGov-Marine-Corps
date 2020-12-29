@@ -198,7 +198,7 @@
 		playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
 		if(!do_after(user, 30, FALSE, src, BUSY_ICON_BUILD))
 			return FALSE
-		if(ammo_equipped || clamp.loaded != clamp_ammo || !LAZYLEN(clamp.linked_powerloader?.buckled_mobs) || clamp.linked_powerloader.buckled_mobs[1] != user)
+		if(ammo_equipped || clamp.loaded != clamp_ammo)
 			return FALSE
 		clamp_ammo.forceMove(src)
 		clamp.loaded = null
@@ -212,7 +212,7 @@
 		playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
 		if(!do_after(user, 30, FALSE, src, BUSY_ICON_BUILD))
 			return FALSE
-		if(!ammo_equipped || !LAZYLEN(clamp.linked_powerloader?.buckled_mobs) || clamp.linked_powerloader.buckled_mobs[1] != user)
+		if(!ammo_equipped)
 			return FALSE
 		playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
 		if(!ammo_equipped.ammo_count)
@@ -220,7 +220,7 @@
 			to_chat(user, "<span class='notice'>You've discarded the empty [ammo_equipped.name] in [src].</span>")
 			qdel(ammo_equipped)
 		else
-			ammo_equipped.forceMove(clamp.linked_powerloader)
+			ammo_equipped.forceMove(clamp)
 			clamp.loaded = ammo_equipped
 			clamp.update_icon()
 			to_chat(user, "<span class='notice'>You've removed [ammo_equipped] from [src] and loaded it into [clamp].</span>")
@@ -235,9 +235,9 @@
 		var/duration_time = ship_base ? 70 : 10 //uninstalling equipment takes more time
 		if(!do_after(user, duration_time, FALSE, src, BUSY_ICON_BUILD))
 			return FALSE
-		if(clamp.loaded || !LAZYLEN(clamp.linked_powerloader?.buckled_mobs) || clamp.linked_powerloader.buckled_mobs[1] != user)
+		if(clamp.loaded)
 			return FALSE
-		forceMove(clamp.linked_powerloader)
+		forceMove(clamp)
 		clamp.loaded = src
 		SEND_SIGNAL(src, COMSIG_DROPSHIP_EQUIPMENT_UNEQUIPPED)
 		playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)

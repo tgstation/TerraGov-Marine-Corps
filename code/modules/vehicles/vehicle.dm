@@ -187,6 +187,7 @@
 	if(cell)
 		UnregisterSignal(cell, COMSIG_PARENT_QDELETING)
 	cell = new_cell
+	powercheck()
 	if(cell)
 		RegisterSignal(cell, COMSIG_PARENT_QDELETING, .proc/on_cell_deletion)
 
@@ -205,7 +206,6 @@
 
 	H.transferItemToLoc(C, src)
 	set_cell(C)
-	powercheck()
 	to_chat(usr, "<span class='notice'>You install [C] in [src].</span>")
 
 /obj/vehicle/proc/remove_cell(mob/living/carbon/human/H)
@@ -216,7 +216,6 @@
 	cell.forceMove(get_turf(H))
 	H.put_in_hands(cell)
 	set_cell(null)
-	powercheck()
 
 /obj/vehicle/proc/RunOver(mob/living/carbon/human/H)
 	return		//write specifics for different vehicles

@@ -284,6 +284,7 @@
 #include "code\datums\components\mobile_power.dm"
 #include "code\datums\components\orbiter.dm"
 #include "code\datums\components\overlay_lighting.dm"
+#include "code\datums\components\powerloaderconnected.dm"
 #include "code\datums\components\riding.dm"
 #include "code\datums\components\rotation.dm"
 #include "code\datums\components\shield.dm"

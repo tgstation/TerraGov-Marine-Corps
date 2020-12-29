@@ -25,39 +25,33 @@
 	var/point_cost = 0 //how many points it costs to build this with the fabricator, set to 0 if unbuildable.
 
 
-	attackby(obj/item/I, mob/user)
-
-		if(istype(I, /obj/item/powerloader_clamp))
-			var/obj/item/powerloader_clamp/PC = I
-			if(PC.linked_powerloader)
-				if(PC.loaded)
-					if(istype(PC.loaded, /obj/structure/ship_ammo))
-						var/obj/structure/ship_ammo/SA = PC.loaded
-						if(SA.transferable_ammo && SA.ammo_count > 0 && SA.type == type)
-							if(ammo_count < max_ammo_count)
-								var/transf_amt = min(max_ammo_count - ammo_count, SA.ammo_count)
-								ammo_count += transf_amt
-								SA.ammo_count -= transf_amt
-								playsound(loc, 'sound/machines/hydraulics_1.ogg', 40, 1)
-								to_chat(user, "<span class='notice'>You transfer [transf_amt] [ammo_name] to [src].</span>")
-								if(!SA.ammo_count)
-									PC.loaded = null
-									PC.update_icon()
-									qdel(SA)
-				else
-					forceMove(PC.linked_powerloader)
-					PC.loaded = src
-					playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
-					PC.update_icon()
-					to_chat(user, "<span class='notice'>You grab [PC.loaded] with [PC].</span>")
-					update_icon()
-			return TRUE
-		. = ..()
+/obj/structure/ship_ammo/attackby(obj/item/I, mob/user)
+	if(istype(I, /obj/item/powerloader_clamp))
+		var/obj/item/powerloader_clamp/PC = I
+		if(PC.loaded)
+			if(istype(PC.loaded, /obj/structure/ship_ammo))
+				var/obj/structure/ship_ammo/SA = PC.loaded
+				if(SA.transferable_ammo && SA.ammo_count > 0 && SA.type == type)
+					if(ammo_count < max_ammo_count)
+						var/transf_amt = min(max_ammo_count - ammo_count, SA.ammo_count)
+						ammo_count += transf_amt
+						SA.ammo_count -= transf_amt
+						playsound(loc, 'sound/machines/hydraulics_1.ogg', 40, 1)
+						to_chat(user, "<span class='notice'>You transfer [transf_amt] [ammo_name] to [src].</span>")
+						if(!SA.ammo_count)
+							PC.loaded = null
+							PC.update_icon()
+							qdel(SA)
+		else
+			PC.load(src, user)
+			update_icon()
+		return TRUE
+	. = ..()
 
 
-	examine(mob/user)
-		..()
-		to_chat(user, "Moving this will require some sort of lifter.")
+/obj/structure/ship_ammo/examine(mob/user)
+	..()
+	to_chat(user, "Moving this will require some sort of lifter.")
 
 //what to show to the user that examines the weapon we're loaded on.
 /obj/structure/ship_ammo/proc/show_loaded_desc(mob/user)
@@ -308,7 +302,7 @@
 	impact.ceiling_debris_check(2)
 
 	explosion(impact, 0, 2, 4, 5, adminlog = FALSE, small_animation = TRUE)//no messaging admin, that'd spam them.
-	var/datum/effect_system/expl_particles/P = new 
+	var/datum/effect_system/expl_particles/P = new
 	P.set_up(4, 0, impact)
 	P.start()
 	addtimer(CALLBACK(src, .proc/delayed_smoke_spread, impact), 0.5 SECONDS)

@@ -261,9 +261,6 @@
 	if(istype(I, /obj/item/powerloader_clamp))
 		var/obj/item/powerloader_clamp/PC = I
 
-		if(!PC.linked_powerloader)
-			return TRUE
-
 		if(PC.loaded)
 			if(!istype(PC.loaded, /obj/structure/ob_ammo))
 				return TRUE
@@ -298,19 +295,17 @@
 				PC.update_icon()
 				update_icon()
 		else
+			var/obj/to_load
 			if(fuel_amt)
-				var/obj/structure/ob_ammo/ob_fuel/OF = new(PC.linked_powerloader)
-				PC.loaded = OF
+				var/obj/structure/ob_ammo/ob_fuel/OF = new()
+				to_load = OF
 				fuel_amt--
 			else if(warhead)
-				warhead.forceMove(PC.linked_powerloader)
-				PC.loaded = warhead
+				to_load = warhead
 				warhead = null
 			else
 				return TRUE
-			PC.update_icon()
-			playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
-			to_chat(user, "<span class='notice'>You grab [PC.loaded] with [PC].</span>")
+			PC.load(to_load, user)
 			update_icon()
 
 		return TRUE
@@ -329,20 +324,11 @@
 
 /obj/structure/ob_ammo/attackby(obj/item/I, mob/user, params)
 	. = ..()
-
 	if(istype(I, /obj/item/powerloader_clamp))
 		var/obj/item/powerloader_clamp/PC = I
-		if(!PC.linked_powerloader)
-			return TRUE
-
 		if(PC.loaded)
 			return TRUE
-
-		forceMove(PC.linked_powerloader)
-		PC.loaded = src
-		playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
-		PC.update_icon()
-		to_chat(user, "<span class='notice'>You grab [PC.loaded] with [PC].</span>")
+		PC.load(src, user)
 		update_icon()
 		return TRUE
 
@@ -362,7 +348,7 @@
 
 
 /obj/structure/ob_ammo/warhead/proc/warhead_impact(turf/target, inaccuracy_amt = 0)
-
+	return
 
 /obj/structure/ob_ammo/warhead/explosive
 	name = "\improper HE orbital warhead"
@@ -371,7 +357,6 @@
 
 /obj/structure/ob_ammo/warhead/explosive/warhead_impact(turf/target, inaccuracy_amt = 0)
 	explosion(target, 6 - inaccuracy_amt, 10 - inaccuracy_amt, 15 - inaccuracy_amt, 11 - inaccuracy_amt)
-
 
 
 /obj/structure/ob_ammo/warhead/incendiary

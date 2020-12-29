@@ -24,9 +24,7 @@
 /obj/vehicle/powerloader/Initialize()
 	. = ..()
 	set_cell(new /obj/item/cell/apc(src))
-	hand_one = new hand_one(src)
-	hand_two = new hand_two(src)
-
+	setup_hands(hand_one, hand_two)
 
 /obj/vehicle/powerloader/attack_hand(mob/living/user)
 	. = ..()
@@ -95,11 +93,11 @@
 	move_delay = max(4, move_delay - buckling_mob.skills.getRating("powerloader"))
 	var/equipment_equipped = 0
 	var/equipment_required = 0
-	for(var/obj/item/item in list(hand_one, hand_two))
-		if(item)
+	for(var/obj/item/hand in list(hand_one, hand_two))
+		if(hand)
 			equipment_required++
-		if(!buckling_mob.put_in_hands(item))
-			item.forceMove(src)
+		if(!buckling_mob.put_in_hands(hand))
+			hand.forceMove(src)
 			continue
 		equipment_equipped++
 	if(equipment_equipped != equipment_required)
@@ -144,9 +142,18 @@
 		buckled_mob.setDir(dir)
 
 /obj/vehicle/powerloader/deconstruct(disassembled)
-	new wreckage_type(loc)
+	if(wreckage_type)
+		new wreckage_type(loc)
 	playsound(loc, 'sound/effects/metal_crash.ogg', 75)
 	return ..()
+
+/obj/vehicle/powerloader/proc/setup_hands(_hand_one, _hand_two)
+	if(_hand_one)
+		hand_one = new _hand_one(src)
+		hand_one.AddComponent(/datum/component/powerloader_connected, src)
+	if(_hand_two)
+		hand_two = new _hand_two(src)
+		hand_two.AddComponent(/datum/component/powerloader_connected, src)
 
 /obj/item/powerloader_clamp
 	icon = 'icons/obj/powerloader.dmi'
@@ -156,9 +163,6 @@
 	var/obj/loaded
 
 /obj/item/powerloader_clamp/attack(mob/living/victim, mob/living/user, def_zone)
-	if(victim in linked_powerloader.buckled_mobs)
-		linked_powerloader.unbuckle_mob(victim) //if the pilot clicks themself with the clamp, it unbuckles them.
-		return TRUE
 	if(isxeno(victim) && victim.stat == DEAD && !victim.anchored && user.a_intent == INTENT_HELP)
 		load(victim, user)
 	return ..()
@@ -285,5 +289,35 @@
 
 /obj/structure/powerloader_wreckage/screwpley
 	name = "Screwpley wreckage"
-	desc = "damn"
+	desc = "He ain't throwin' anymore..."
 	icon_state = "screwpley_wreck"
+
+/obj/vehicle/powerloader/custom
+	name = "custom powerloader"
+	desc = "loads custom power"
+	hand_one = null
+	hand_two = null
+	wreckage_type = null
+	var/setup = FALSE
+
+/obj/vehicle/powerloader/custom/attack_ghost(mob/user)
+	if(!IsAdminGhost(user) || setup)
+		return
+	var/chosen_one
+	var/chosen_two
+	for(var/i in 1 to 2)
+		var/object = input(user, "What to add?", text("Input")) as text
+		if(!object || object == "")
+			continue
+		var/chosen = pick_closest_path(object)
+		if(!chosen)
+			continue
+		if(!ispath(chosen, /obj/item))
+			to_chat(user, "<span class='warning'>[chosen] is not an item, please try again.</span>")
+			return
+		if(!chosen_one)
+			chosen_one = chosen
+		else
+			chosen_two = chosen
+	setup_hands(chosen_one, chosen_two)
+	setup = TRUE
