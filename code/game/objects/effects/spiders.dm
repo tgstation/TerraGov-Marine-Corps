@@ -22,16 +22,13 @@
 	if(istype(mover, /mob/living/simple_animal/hostile/poison/giant_spider))
 		return TRUE
 
-	if(incorporeal_movement_check(mover)) //Incorporeal things move through most solid obstacles
-		return TRUE
-
 	if(isliving(mover))
 		if(istype(mover.pulledby, /mob/living/simple_animal/hostile/poison/giant_spider))
 			return TRUE
 		if(prob(50))
 			to_chat(mover, "<span class='danger'>You get stuck in \the [src] for a moment.</span>")
 			return FALSE
-	if(istype(mover, /obj/projectile))
+	else if(istype(mover, /obj/projectile))
 		return prob(30)
 
 	return TRUE

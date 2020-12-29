@@ -26,11 +26,6 @@
 
 /obj/machinery/space_heater/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
-	if(!density) //Because broken racks -Agouri |TODO: SPRITE!|
-		return 1
-
-	if(incorporeal_movement_check(mover)) //Incorporeal things move through most solid obstacles
-		return TRUE
 
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
 		return 1

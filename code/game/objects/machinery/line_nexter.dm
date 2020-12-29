@@ -17,7 +17,8 @@
 /obj/machinery/line_nexter/ex_act(severity)
 	return
 
-/obj/machinery/line_nexter/CheckExit(atom/movable/O, turf/target)
+/obj/machinery/line_nexter/CanAllowExit(atom/movable/O, turf/target)
+	. = ..()
 	if(iscarbon(O))
 		var/mob/living/carbon/C = O
 		if(C.pulledby)

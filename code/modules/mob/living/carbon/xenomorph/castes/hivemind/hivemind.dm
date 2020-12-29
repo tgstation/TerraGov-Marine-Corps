@@ -47,11 +47,6 @@
 		core = null
 	return ..()
 
-/obj/effect/particle_effect/smoke/plasmaloss/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
-	if(isxenowraith(mover) && mover.status_flags & INCORPOREAL)
-		return FALSE
-
 /mob/living/carbon/xenomorph/hivemind/flamer_fire_act()
 	forceMove(get_turf(core))
 	to_chat(src, "<span class='xenonotice'>We were on top of fire, we got moved to our core.")

@@ -139,7 +139,7 @@ directive is properly returned.
 	SHOULD_CALL_PARENT(TRUE)
 	. = CanAllowThrough(mover, target)
 	if(mover.status_flags & INCORPOREAL)
-		if(mover.CanPassThrough(src, target, .) == FALSE && resistance_flags == RESIST_ALL) //If we can't normally move through it, and it has resist_all, override incorporeal.
+		if(mover.CanPassThrough(src, target, .) == FALSE && (resistance_flags & STOP_INCORPOREAL)) //If we can't normally move through it, and it stops incorporeal movement.
 			return FALSE
 
 		return TRUE
@@ -152,7 +152,23 @@ directive is properly returned.
 	SHOULD_CALL_PARENT(TRUE)
 	return !density
 
+
 /atom/proc/CheckExit(atom/movable/mover, turf/target)
+	SHOULD_CALL_PARENT(TRUE)
+	. = CanAllowExit(mover, target)
+	if(mover.status_flags & INCORPOREAL)
+		if(mover.CanPassThrough(src, target, .) == FALSE && resistance_flags & STOP_INCORPOREAL) //If we can't normally move through it, and it stops incorporeal movement.
+			return FALSE
+
+		return TRUE
+
+	// This is cheaper than calling the proc every time since most things dont override CheckExit
+	if(!mover.generic_canpass)
+		return mover.CanPassThrough(src, target, .)
+
+/// Returns true or false to allow the mover to move out of the atom
+/atom/proc/CanAllowExit(atom/movable/mover, turf/target)
+	SHOULD_CALL_PARENT(TRUE)
 	if(!density || !(flags_atom & ON_BORDER) || !(get_dir(mover.loc, target) & dir))
 		return TRUE
 	return FALSE

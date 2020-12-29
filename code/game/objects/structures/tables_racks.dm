@@ -209,9 +209,6 @@
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
 		return TRUE
 
-	if(incorporeal_movement_check(mover)) //Incorporeal things move through most solid obstacles
-		return TRUE
-
 	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
 	if(S?.climbable && !(S.flags_atom & ON_BORDER) && climbable && isliving(mover)) //Climbable non-border objects allow you to universally climb over others
 		return TRUE
@@ -222,14 +219,11 @@
 			return TRUE
 
 
-/obj/structure/table/CheckExit(atom/movable/mover, turf/target)
+/obj/structure/table/CanAllowExit(atom/movable/mover, turf/target)
+	. = ..()
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
 		return TRUE
-	if(flipped)
-		if(get_dir(loc, target) & dir)
-			return !density
-		else
-			return TRUE
+
 	return TRUE
 
 

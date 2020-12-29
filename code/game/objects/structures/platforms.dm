@@ -32,7 +32,8 @@
 			I.pixel_x = -16
 	overlays += I
 
-/obj/structure/platform/CheckExit(atom/movable/O, turf/target)
+/obj/structure/platform/CanAllowExit(atom/movable/O, turf/target)
+	. = ..()
 	if(O && O.throwing)
 		return 1
 

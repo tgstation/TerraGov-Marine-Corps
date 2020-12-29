@@ -39,6 +39,11 @@
 	else
 		return 1
 
+/obj/machinery/door/poddoor/railing/CanAllowExit(atom/movable/O, turf/target)
+	. = ..()
+	if(O && O.throwing)
+		return 1
+
 /obj/machinery/door/poddoor/railing/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
 	if(!density)

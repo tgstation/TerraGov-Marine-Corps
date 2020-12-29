@@ -53,7 +53,8 @@
 			to_chat(user, "<span class='warning'>It's crumbling apart, just a few more blows will tear it apart.</span>")
 
 
-/obj/structure/barricade/CheckExit(atom/movable/O, turf/target)
+/obj/structure/barricade/CanAllowExit(atom/movable/O, turf/target)
+	. = ..()
 	if(closed)
 		return TRUE
 
@@ -67,11 +68,6 @@
 		if(!allow_thrown_objs && !istype(O, /obj/projectile))
 			if(get_dir(loc, target) & dir)
 				return FALSE
-		return TRUE
-
-	if(get_dir(loc, target) & dir)
-		return FALSE
-	else
 		return TRUE
 
 /obj/structure/barricade/CanAllowThrough(atom/movable/mover, turf/target)

@@ -63,21 +63,19 @@
 	keybind_signal = COMSIG_XENOABILITY_HYPERPOSITION
 
 
-/datum/action/xeno_action/hyperposition/proc/can_use_ability()
-
+/datum/action/xeno_action/hyperposition/can_use_action(silent = FALSE, override_flags)
+	. = ..()
 	var/mob/living/carbon/xenomorph/wraith/ghost = owner
 	var/obj/effect/xenomorph/warp_shadow/shadow = ghost.warp_shadow
 
 	if(!shadow)
-		to_chat(ghost, "<span class='xenodanger'>We have no warp shadow to teleport to!</span>")
+		if(!silent)
+			to_chat(ghost, "<span class='xenodanger'>We have no warp shadow to teleport to!</span>")
 		return FALSE
 
 	return TRUE
 
 /datum/action/xeno_action/hyperposition/action_activate()
-
-	if(!can_use_ability())
-		return fail_activate()
 
 	var/mob/living/carbon/xenomorph/wraith/ghost = owner
 	var/obj/effect/xenomorph/warp_shadow/shadow = ghost.warp_shadow
@@ -108,7 +106,7 @@
 
 /datum/action/xeno_action/hyperposition/proc/hyperposition_swap_location() //This handles the location swap between the Wraith and the Warp Shadow
 
-	if(!can_use_ability()) //Check if we can actually position swap again due to the wind up delay.
+	if(!can_use_action()) //Check if we can actually position swap again due to the wind up delay.
 		return FALSE
 
 	var/mob/living/carbon/xenomorph/wraith/ghost = owner
@@ -254,7 +252,7 @@
 		to_chat(owner, "<span class='xenowarning'>We can't blink without line of sight to our destination!</span>")
 		return FALSE
 
-	for(var/atom/movable/check_atom in T)
+	for(var/atom/movable/check_atom as() in T)
 		if(check_atom.opacity)
 			to_chat(owner, "<span class='xenowarning'>We can't blink without line of sight to our destination!</span>")
 			return FALSE
@@ -277,12 +275,6 @@
 
 	blink_warp(owner, T, owner.pulling) //If we're pulling, bring the target we're pulling with us, but at the cost of sharply increasing the next cooldown
 
-	succeed_activate()
-	add_cooldown()
-
-	GLOB.round_statistics.wraith_blinks++
-	SSblackbox.record_feedback("tally", "round_statistics", 1, "wraith_blinks") //Statistics
-
 
 /datum/action/xeno_action/activable/blink/proc/blink_warp(mob/living/carbon/xenomorph/wraith/ghost, turf/T, mob/pulled = null) //This handles the location swap between the Wraith and the Warp Shadow
 
@@ -295,26 +287,31 @@
 
 	ghost.forceMove(T) //Teleport to our target turf
 
+	var/cooldown_mod = 1
 	if(pulled) //bring the pulled target with us if applicable
-		cooldown_timer *= WRAITH_BLINK_DRAG_MULTIPLIER
+		cooldown_mod = WRAITH_BLINK_DRAG_MULTIPLIER
 		to_chat(ghost, "<span class='xenodanger'>We bring [pulled.name] with us. We won't be ready to blink again for [cooldown_timer * 0.1] seconds due to the strain of doing so.</span>")
 
 	teleport_debuff_aoe(ghost) //Debuff when we reappear
 
+	succeed_activate()
+	add_cooldown(cooldown_mod)
+
+	GLOB.round_statistics.wraith_blinks++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "wraith_blinks") //Statistics
+
 
 //Called by many of the Wraith's teleportation effects
-/datum/action/xeno_action/proc/teleport_debuff_aoe(atom/movable/teleporter, silent = FALSE, no_visuals = FALSE)
+/datum/action/xeno_action/proc/teleport_debuff_aoe(atom/movable/teleporter, silent = FALSE)
 
 	var/mob/living/carbon/xenomorph/ghost = owner
 
 	if(!silent) //Sound effects
 		playsound(teleporter, 'sound/effects/EMPulse.ogg', 25, 1) //Sound at the location we are arriving at
 
-	if(!no_visuals) //Visuals
-		new /obj/effect/temp_visual/blink_portal(get_turf(teleporter))
+	new /obj/effect/temp_visual/blink_portal(get_turf(teleporter))
 
-
-	for(var/turf/affected_tile in range(1,teleporter.loc))
+	for(var/turf/affected_tile in RANGE_TURFS(1,teleporter.loc))
 		affected_tile.Shake(4, 4, 1 SECONDS) //Cool SFX
 		affected_tile.add_filter("wraith_blink_distortion",1,list("type"="radial_blur", "size" = 0.5))
 		addtimer(CALLBACK(affected_tile, /atom.proc/remove_filter, "wraith_blink_distortion"), 1 SECONDS)
