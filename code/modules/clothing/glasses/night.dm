@@ -59,4 +59,3 @@
 	item_state = "alien_lens"
 	darkness_view = 7
 	lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
-	flags_item = NODROP|DELONDROP

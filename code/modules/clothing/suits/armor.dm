@@ -237,7 +237,6 @@
 	desc = "A field of invisible energy, it protects the wearer but prevents any clothing from being worn."
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "shield-blue"
-	flags_item = NODROP|DELONDROP
 	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	soft_armor = list("melee" = 55, "bullet" = 55, "laser" = 35, "energy" = 20, "bomb" = 40, "bio" = 40, "rad" = 10, "fire" = 40, "acid" = 40)
 	allowed = list()//how would you put a gun onto a field of energy?
