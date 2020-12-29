@@ -441,18 +441,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	accuracy_mod = 0.05
 	scatter_mod = -15
 
-/obj/item/attachable/mosinbarrel
-	name = "mosin barrel"
-	icon_state = "mosinbarrel"
-	desc = "A heavy barrel. CANNOT BE REMOVED."
-	slot = "under" //only way for it to work with a bayonet is to make this take the underbarrel slot. no more bipods.
-
-	pixel_shift_x = 20
-	pixel_shift_y = 16
-	flags_attach_features = NONE
-	accuracy_mod = 0.05
-	scatter_mod = -15
-
 /obj/item/attachable/sniperbarrel
 	name = "sniper barrel"
 	icon_state = "sniperbarrel"

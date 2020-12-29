@@ -526,8 +526,8 @@ can cause issues with ammo types getting mixed up during the burst.
 
 	pump_notice(user)
 	if(pump_animation)
-		do_pump_animation()
-	play_pump_sound(user)
+		flick("[pump_animation]", src)
+	playsound(user, pump_sound, 25, 1)
 	recent_pump = world.time
 	if(in_chamber) //Lock only if we have ammo loaded.
 		pump_lock = TRUE
@@ -543,12 +543,6 @@ can cause issues with ammo types getting mixed up during the burst.
 
 /obj/item/weapon/gun/shotgun/pump/proc/pump_notice(mob/user)
 	to_chat(user, "<span class='notice'><b>You pump [src].</b></span>")
-
-/obj/item/weapon/gun/shotgun/pump/proc/do_pump_animation()
-	flick("[pump_animation]", src)
-
-/obj/item/weapon/gun/shotgun/pump/proc/play_pump_sound(mob/user)
-	playsound(user, pump_sound, 25, 1)
 
 /obj/item/weapon/gun/shotgun/pump/reload_into_chamber(mob/user)
 	if(active_attachable && active_attachable.flags_attach_features & ATTACH_PROJECTILE)
@@ -638,7 +632,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	)
 	flags_item_map_variant = NONE
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER
-	attachable_offset = list("muzzle_x" = 50, "muzzle_y" = 21,"rail_x" = 12, "rail_y" = 21, "under_x" = 37, "under_y" = 16, "stock_x" = 18, "stock_y" = 13)
+	attachable_offset = list("muzzle_x" = 50, "muzzle_y" = 21,"rail_x" = 12, "rail_y" = 21, "under_x" = 37, "under_y" = 16, "stock_x" = 20, "stock_y" = 13)
 	starting_attachment_types = list(
 		/obj/item/attachable/scope/mosin,
 		/obj/item/attachable/stock/mosin,
