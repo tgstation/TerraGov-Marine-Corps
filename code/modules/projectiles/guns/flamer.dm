@@ -602,6 +602,7 @@
 	light_on = TRUE
 	light_power = 3
 	light_color = LIGHT_COLOR_LAVA
+	resistance_flags = STOP_INCORPOREAL //For wraiths; other incorporeal beings will normally be able to pass
 	var/firelevel = 12 //Tracks how much "fire" there is. Basically the timer of how long the fire burns
 	var/burnlevel = 10 //Tracks how HOT the fire is. This is basically the heat level of the fire and determines the temperature.
 	var/flame_color = "red"
@@ -639,6 +640,8 @@
 
 // override this proc to give different walking-over-fire effects
 /mob/living/proc/flamer_fire_crossed(burnlevel, firelevel, fire_mod = 1)
+	if(status_flags & (INCORPOREAL|GODMODE))
+		return FALSE
 	if(!CHECK_BITFIELD(flags_pass, PASSFIRE)) //Pass fire allow to cross fire without being ignited
 		adjust_fire_stacks(burnlevel) //Make it possible to light them on fire later.
 		IgniteMob()
@@ -714,6 +717,8 @@
 			break
 		var/atom/A = i
 		if(QDELETED(A)) //The destruction by fire of one atom may destroy others in the same turf.
+			continue
+		if(A.resistance_flags & RESIST_ALL) //Ignore stuff that's indestructible
 			continue
 		A.flamer_fire_act(burnlevel, firelevel)
 

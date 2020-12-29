@@ -7,6 +7,7 @@
 	can_bloody = FALSE
 	light_power = 0.25
 	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
+	resistance_flags = STOP_INCORPOREAL //For wraiths; other incorporeal beings will normally be able to pass
 
 
 /turf/open/space/basic/New()	//Do not convert to Initialize

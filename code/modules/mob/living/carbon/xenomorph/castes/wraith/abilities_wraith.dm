@@ -182,7 +182,7 @@
 /datum/action/xeno_action/phase_shift/proc/phase_shift_warning()
 
 	owner.remove_filter("wraith_phase_shift")
-	owner.add_filter("wraith_phase_shift", 4, list("type" = "blur", 3)) //Downgrade the blur
+	owner.add_filter("wraith_phase_shift", 4, list("type" = "blur", 2)) //Downgrade the blur
 	owner.alpha = WRAITH_PHASE_SHIFT_ALPHA * 1.5 //Become less translucent
 
 	to_chat(owner,"<span class='highdanger'>We begin to move back into phase with reality... We can only remain out of phase for [WRAITH_PHASE_SHIFT_DURATION * (1-WRAITH_PHASE_SHIFT_DURATION_WARNING) * 0.1] more seconds!</span>")

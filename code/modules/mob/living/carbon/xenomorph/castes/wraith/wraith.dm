@@ -19,15 +19,16 @@
 	. = ..()
 	if(isxenohivemind(mover))
 		return FALSE
-	if(isxenowraith(mover) && mover.get_filter("wraith_phase_shift")) //If we're Phase Shifting we cannot pass this; don't ask me why I have to specify this as being non-false; it won't work otherwise
+
+	if(isxenowraith(mover) && (mover.status_flags & INCORPOREAL))
 		return FALSE
 
 /obj/effect/particle_effect/smoke/plasmaloss/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
-	if(isxenowraith(mover) && (mover.get_filter("wraith_phase_shift") != FALSE)) //If we're Phase Shifting we cannot pass this; don't ask me why I have to specify this as being non-false; it won't work otherwise
+	if(isxenowraith(mover) && (mover.status_flags & INCORPOREAL))
 		return FALSE
 
 /turf/open/space/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
-	if(isxenowraith(mover) && mover.get_filter("wraith_phase_shift")) //If we're Phase Shifting we cannot pass this; don't ask me why I have to specify this as being non-false; it won't work otherwise
+	if(isxenowraith(mover) && (mover.status_flags & INCORPOREAL))
 		return FALSE
