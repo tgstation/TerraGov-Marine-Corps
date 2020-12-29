@@ -38,6 +38,9 @@
 	. = ..()
 	update_icon()
 
+/obj/item/binoculars/tactical/unique_action(mob/user)
+	toggle_mode(user)
+
 /obj/item/binoculars/tactical/examine()
 	..()
 	switch(mode)
@@ -121,8 +124,6 @@
 	set name = "Toggle Laser Mode"
 	if(!user && isliving(loc))
 		user = loc
-	if(zoom)
-		return
 	if(!changable)
 		to_chat(user, "These binoculars only have one mode.")
 		return
