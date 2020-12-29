@@ -360,10 +360,10 @@
 	if(!M)
 		return FALSE
 
-	if(CHECK_BITFIELD(flags_item, NODROP) && slot != SLOT_L_HAND && slot != SLOT_R_HAND) //No drops can only be equipped to a hand slot
+	if(CHECK_BITFIELD(flags_item, NODROP) && slot != SLOT_L_HAND && slot != SLOT_R_HAND) //What no drop starts in the hand, stays in the hand
 		if(slot == SLOT_L_HAND || slot == SLOT_R_HAND)
 			to_chat(M, "<span class='notice'>[src] is stuck to our hand!</span>")
-		return FALSE
+			return FALSE
 
 	if(ishuman(M))
 		//START HUMAN
