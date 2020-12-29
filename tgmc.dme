@@ -277,6 +277,7 @@
 #include "code\datums\components\full_auto_fire.dm"
 #include "code\datums\components\largeobjecttransparency.dm"
 #include "code\datums\components\orbiter.dm"
+#include "code\datums\components\powerloaderconnected.dm"
 #include "code\datums\components\riding.dm"
 #include "code\datums\components\rotation.dm"
 #include "code\datums\components\shield.dm"
