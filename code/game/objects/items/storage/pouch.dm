@@ -455,7 +455,7 @@
 
 /obj/item/storage/pouch/hypospray/corps
 	name = "Corps hypospray pouch"
-	desc = "It can contain hyposprays and autoinjectors, this one got a terragov corpsmans logo on its back."
+	desc = "It can contain hyposprays and autoinjectors, this one has a Terragov corpsman logo on its back."
 	icon_state = "syringe"
 	storage_slots = 4 //1 extra for corps
 	can_hold = list(/obj/item/reagent_containers/hypospray)
