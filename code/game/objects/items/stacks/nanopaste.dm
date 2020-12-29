@@ -17,6 +17,9 @@
 		var/mob/living/carbon/human/H = M
 		var/datum/limb/S = H.get_limb(user.zone_selected)
 
+		if(H.species.species_flags & IS_SYNTHETIC)
+			H.blood_volume = BLOOD_VOLUME_NORMAL
+
 		if(S.surgery_open_stage == 0)
 			if (S && (S.limb_status & LIMB_ROBOT))
 				if(user.action_busy || !do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_MEDICAL))

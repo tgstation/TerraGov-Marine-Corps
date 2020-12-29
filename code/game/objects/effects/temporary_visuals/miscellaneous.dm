@@ -3,6 +3,12 @@
 	icon_state = "empdisable"
 	duration = 0.5 SECONDS
 
+/obj/effect/temp_visual/explosion
+	name = "explosion"
+	icon = 'icons/effects/explosion.dmi'
+	icon_state = "grenade"
+	duration = 0.8 SECONDS
+
 //unsorted miscellaneous temporary visuals
 /obj/effect/temp_visual/dir_setting/bloodsplatter
 	icon = 'icons/effects/blood.dmi'
@@ -48,3 +54,8 @@
 			target_pixel_y = -16
 			layer = ABOVE_MOB_LAYER
 	animate(src, pixel_x = target_pixel_x, pixel_y = target_pixel_y, alpha = 0, time = duration)
+
+/obj/effect/temp_visual/transfer_plasma
+	name = "transfer plasma"
+	icon_state = "transfer_plasma"
+	duration = 0.5 SECONDS

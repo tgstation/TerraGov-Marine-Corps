@@ -109,7 +109,7 @@
 
 //medical hud used by ghosts
 /datum/atom_hud/medical/observer
-	hud_icons = list(HEALTH_HUD, XENO_EMBRYO_HUD, STATUS_HUD)
+	hud_icons = list(HEALTH_HUD, XENO_EMBRYO_HUD, XENO_REAGENT_HUD, STATUS_HUD)
 
 
 /datum/atom_hud/medical/pain
@@ -209,6 +209,19 @@
 	var/image/status_hud = hud_list[STATUS_HUD] //Status for med-hud.
 	var/image/infection_hud = hud_list[XENO_EMBRYO_HUD] //State of the xeno embryo.
 	var/image/simple_status_hud = hud_list[STATUS_HUD_SIMPLE] //Status for the naked eye.
+	var/image/xeno_reagent = hud_list[XENO_REAGENT_HUD] // Displays active xeno reagents
+
+	if(!reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile) && !reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox))
+		xeno_reagent.icon_state = ""
+
+	else if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile) && !reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox))
+		xeno_reagent.icon_state = "hemodile_icon"
+
+	else if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox) && !reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile))
+		xeno_reagent.icon_state = "transvitox_icon"
+
+	else if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile) && reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox))
+		xeno_reagent.icon_state = "hemodile_transvitox_icon"
 
 	if(species.species_flags & IS_SYNTHETIC)
 		simple_status_hud.icon_state = ""
@@ -322,6 +335,13 @@
 /datum/atom_hud/xeno_infection
 	hud_icons = list(XENO_EMBRYO_HUD)
 
+//active reagent hud that apppears only for xenos
+/datum/atom_hud/xeno_reagents
+	hud_icons = list(XENO_REAGENT_HUD)
+
+///hud component for revealing tunnels to xenos
+/datum/atom_hud/xeno_tunnels
+	hud_icons = list(XENO_TUNNEL_HUD)
 
 //Xeno status hud, for xenos
 /datum/atom_hud/xeno
@@ -409,7 +429,7 @@
 
 
 /datum/atom_hud/security
-	hud_icons = list(IMPTRACK_HUD, IMPLOYAL_HUD, IMPCHEM_HUD, WANTED_HUD)
+	hud_icons = list(WANTED_HUD)
 
 
 /mob/living/carbon/human/proc/sec_hud_set_security_status()
@@ -498,14 +518,3 @@
 
 	hud_list[ORDER_HUD] = holder
 
-
-/datum/atom_hud/ai_detector
-	hud_icons = list(AI_DETECT_HUD)
-
-
-/datum/atom_hud/ai_detector/add_hud_to(mob/M)
-	. = ..()
-	if(M && (length(hudusers) == 1))
-		for(var/V in GLOB.aiEyes)
-			var/mob/camera/aiEye/E = V
-			E.update_ai_detect_hud()

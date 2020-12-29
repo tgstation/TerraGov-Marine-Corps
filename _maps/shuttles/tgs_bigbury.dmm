@@ -819,6 +819,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/machinery/vending/armor_supply,
 /turf/open/floor/mainship,
 /area/shuttle/canterbury)
 "zb" = (
@@ -854,6 +855,10 @@
 /obj/structure/bed/chair/dropship/passenger,
 /obj/effect/landmark/start/job/crash/squadmarine,
 /turf/open/floor/mainship/mono,
+/area/shuttle/canterbury)
+"DF" = (
+/obj/machinery/vending/armor_supply,
+/turf/open/floor/mainship,
 /area/shuttle/canterbury)
 "DH" = (
 /obj/structure/barricade/plasteel{
@@ -1590,7 +1595,7 @@ ab
 py
 UO
 aO
-bA
+DF
 bA
 bA
 yp

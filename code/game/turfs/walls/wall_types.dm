@@ -51,8 +51,8 @@
 		/turf/closed/wall/mainship/outer/canterbury,
 		/obj/machinery/door/poddoor/shutters/transit,
 		/obj/machinery/door/airlock/mainship/marine/canterbury,
-		/obj/machinery/door/airlock/mainship/command/canterbury
-		)
+		/obj/machinery/door/airlock/mainship/command/canterbury,
+	)
 
 /turf/closed/wall/mainship/white
 	walltype = "wwall"
@@ -148,6 +148,9 @@
 	icon = 'icons/turf/chigusa.dmi'
 	icon_state = "chigusa0"
 	walltype = "chigusa"
+
+/turf/closed/wall/desert/invincible
+	resistance_flags = RESIST_ALL
 
 /turf/closed/wall/desert/handle_icon_junction(junction)
 	if (!walltype)

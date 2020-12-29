@@ -14,7 +14,8 @@
 		/obj/structure/window/framed,
 		/obj/structure/window_frame,
 		/obj/structure/girder,
-		/obj/machinery/door)
+		/obj/machinery/door,
+	)
 
 	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 50, "energy" = 100, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 
@@ -98,7 +99,7 @@
 
 
 /turf/closed/wall/attack_alien(mob/living/carbon/xenomorph/user)
-	if(acided_hole && user.mob_size == MOB_SIZE_BIG)
+	if(acided_hole && (user.mob_size == MOB_SIZE_BIG || user.xeno_caste.caste_flags & CASTE_IS_STRONG)) //Strong and/or big xenos can tear open acided walls
 		acided_hole.expand_hole(user)
 	else
 		. = ..()

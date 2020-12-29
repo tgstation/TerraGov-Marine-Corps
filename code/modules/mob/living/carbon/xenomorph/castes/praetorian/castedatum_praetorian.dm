@@ -39,7 +39,11 @@
 	spit_delay = 1.3 SECONDS
 	spit_types = list(/datum/ammo/xeno/toxin/heavy, /datum/ammo/xeno/acid/heavy)
 
+	acid_spray_duration = 10 SECONDS
 	acid_spray_range = 4
+	acid_spray_damage = 16
+	acid_spray_damage_on_hit = 35
+	acid_spray_structure_damage = 45
 
 	// *** Pheromones *** //
 	aura_strength = 3 //Praetorian's aura starts strong. They are the Queen's right hand. Climbs by 1 to 4.5
@@ -49,13 +53,14 @@
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
+		/datum/action/xeno_action/activable/headbite,
 		/datum/action/xeno_action/place_acidwell,
 		/datum/action/xeno_action/activable/corrosive_acid,
 		/datum/action/xeno_action/shift_spits,
 		/datum/action/xeno_action/activable/xeno_spit,
 		/datum/action/xeno_action/activable/spray_acid/cone,
-		/datum/action/xeno_action/toggle_pheromones
-		)
+		/datum/action/xeno_action/toggle_pheromones,
+	)
 
 /datum/xeno_caste/praetorian/young
 	upgrade_name = "Young"
@@ -89,6 +94,9 @@
 	// *** Ranged Attack *** //
 	spit_delay = 1.2 SECONDS
 	spit_types = list(/datum/ammo/xeno/toxin/heavy/upgrade1, /datum/ammo/xeno/acid/heavy)
+	
+	acid_spray_damage_on_hit = 39
+	acid_spray_structure_damage = 53
 
 	// *** Pheromones *** //
 	aura_strength = 3.5
@@ -123,15 +131,18 @@
 	// *** Ranged Attack *** //
 	spit_delay = 1.1 SECONDS
 	spit_types = list(/datum/ammo/xeno/toxin/heavy/upgrade2, /datum/ammo/xeno/acid/heavy)
+	
+	acid_spray_damage_on_hit = 43
+	acid_spray_structure_damage = 61
 
 	// *** Pheromones *** //
 	aura_strength = 4
 
 /datum/xeno_caste/praetorian/ancient
 	upgrade_name = "Ancient"
-	caste_desc = "Its mouth looks like a minigun."
+	caste_desc = "The maw of this creature drips with acid."
 	upgrade = XENO_UPGRADE_THREE
-	ancient_message = "We are the strongest range fighter around. Our spit is devestating and we can fire nearly a constant stream."
+	ancient_message = "We are the strongest ranged fighter around. Our spit is devastating and we can fire nearly a constant stream."
 
 	// *** Melee Attacks *** //
 	melee_damage = 23
@@ -155,6 +166,9 @@
 	// *** Ranged Attack *** //
 	spit_delay = 1 SECONDS
 	spit_types = list(/datum/ammo/xeno/toxin/heavy/upgrade3, /datum/ammo/xeno/acid/heavy)
+
+	acid_spray_damage_on_hit = 47
+	acid_spray_structure_damage = 69
 
 	// *** Pheromones *** //
 	aura_strength = 4.5

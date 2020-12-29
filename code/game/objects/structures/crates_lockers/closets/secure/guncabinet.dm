@@ -16,19 +16,18 @@
 	..()
 	update_icon()
 
-/obj/structure/closet/secure_closet/guncabinet/update_icon()
-	overlays.Cut()
+/obj/structure/closet/secure_closet/guncabinet/update_overlays()
+	. = ..()
 	if(opened)
-		overlays += icon(icon,"door_open")
+		. += image(icon,"door_open")
+		return
+	. += image(icon,"door")
+	if(broken)
+		. += image(icon,"broken")
+	else if (locked)
+		. += image(icon,"locked")
 	else
-		overlays += icon(src.icon,"door")
-
-		if(broken)
-			overlays += icon(src.icon,"broken")
-		else if (locked)
-			overlays += icon(src.icon,"locked")
-		else
-			overlays += icon(src.icon,"open")
+		. += image(icon,"open")
 
 
 /obj/structure/closet/secure_closet/guncabinet/canterbury
@@ -36,21 +35,19 @@
 
 
 /obj/structure/closet/secure_closet/guncabinet/canterbury/PopulateContents()
-	new /obj/item/weapon/gun/shotgun/combat(src)
-	new /obj/item/ammo_magazine/shotgun(src)
-	new /obj/item/clothing/suit/storage/marine/smartgunner/fancy(src)
-	new /obj/item/weapon/gun/smartgun(src)
-	new /obj/item/smartgun_powerpack/fancy(src)
-	new /obj/item/weapon/gun/flamer(src)
-	new /obj/item/ammo_magazine/flamer_tank(src)
-	new /obj/item/weapon/gun/shotgun/combat(src)
-	new /obj/item/weapon/gun/smg/standard_smg(src)
-	new /obj/item/weapon/gun/pistol/m4a3(src)
+	new /obj/item/weapon/gun/shotgun/combat/standardmarine(src)
+	new /obj/item/weapon/gun/rifle/m412(src)
+	new /obj/item/weapon/gun/flamer/marinestandard(src)
+	new /obj/item/ammo_magazine/flamer_tank/large(src)
+	new /obj/item/weapon/gun/smg/m25(src)
+	new /obj/item/weapon/gun/revolver/mateba(src)
 
 	var/list/to_spawn = list(
-		/obj/item/ammo_magazine/shotgun/buckshot = 3,
-		/obj/item/clothing/suit/armor/bulletproof = 4,
-		/obj/item/ammo_magazine/pistol/ap = 2,
+		/obj/item/ammo_magazine/shotgun/incendiary = 2, // Incendiaries are quite rare, soo...
+		/obj/item/ammo_magazine/rifle = 3,
+		/obj/item/ammo_magazine/smg/m25 = 3,
+		/obj/item/clothing/suit/armor/bulletproof = 2, // Synths might make use of it.
+		/obj/item/ammo_magazine/revolver/mateba = 2,
 	)
 	for(var/typepath in to_spawn)
 		for(var/i in 1 to to_spawn[typepath])
@@ -58,12 +55,12 @@
 
 
 /obj/structure/closet/secure_closet/guncabinet/nt_lab/PopulateContents()
-	new /obj/item/weapon/gun/smg/m39/elite(src)
+	new /obj/item/weapon/gun/smg/m25/elite(src)
 
 
 /obj/structure/closet/secure_closet/guncabinet/pmc_m39/PopulateContents()
-	new /obj/item/storage/pouch/magazine/large/pmc_m39(src)
-	new /obj/item/weapon/gun/smg/standard_smg(src)
+	new /obj/item/storage/pouch/magazine/large/pmc_m25(src)
+	new /obj/item/weapon/gun/smg/m25/elite(src)
 
 
 /obj/structure/closet/secure_closet/guncabinet/lmg/PopulateContents()

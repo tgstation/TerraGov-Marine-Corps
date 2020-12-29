@@ -94,8 +94,6 @@
 		handle_hallucinations()
 
 
-	if(halloss)
-		halloss_recovery()
 
 	if(staminaloss > -max_stamina_buffer)
 		handle_staminaloss()

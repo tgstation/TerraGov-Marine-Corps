@@ -25,7 +25,7 @@
 		stack_trace("invalid shuttle datum")
 	//shuttle_id = "[port_id]_[suffix]"
 	mappath = "[prefix][shuttle_id].dmm"
-	. = ..()
+	return ..()
 
 /datum/map_template/shuttle/preload_size(path, cache)
 	. = ..(path, TRUE) // Done this way because we still want to know if someone actualy wanted to cache the map
@@ -111,6 +111,14 @@
 /datum/map_template/shuttle/dropship_two
 	shuttle_id = "normandy"
 	name = "Normandy"
+
+/datum/map_template/shuttle/cas
+	shuttle_id = "casplane"
+	name = "Condor Jet"
+
+/datum/map_template/shuttle/minidropship
+	shuttle_id = "minidropship"
+	name = "Tadpole Drop Shuttle"
 
 /datum/map_template/shuttle/escape_pod
 	shuttle_id = "escape_pod"

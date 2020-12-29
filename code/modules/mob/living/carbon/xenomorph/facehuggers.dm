@@ -8,13 +8,13 @@
 #define IMPREGNATION_TIME 12 SECONDS
 
 /**
-  *Facehuggers
-  *
-  *They work by being activated using timers to trigger leap_at_nearest_target()
-  *Going inactive and active is handeled by go_active() and go_idle()
-  *Lifetime is handled by a timer on check_lifecycle()
-  *For the love of god do not use process() and rng for this kind of shit it makes it unreliable and buggy as fuck
-  */
+ *Facehuggers
+ *
+ *They work by being activated using timers to trigger leap_at_nearest_target()
+ *Going inactive and active is handeled by go_active() and go_idle()
+ *Lifetime is handled by a timer on check_lifecycle()
+ *For the love of god do not use process() and rng for this kind of shit it makes it unreliable and buggy as fuck
+ */
 /obj/item/clothing/mask/facehugger
 	name = "alien"
 	desc = "It has some sort of a tube at the end of its tail."
@@ -226,6 +226,11 @@
 	if(stat == CONSCIOUS)
 		HasProximity(target)
 
+/obj/item/clothing/mask/facehugger/Uncross(atom/movable/AM)
+	. = ..()
+	if(. && stat == CONSCIOUS && isxeno(AM)) //shuffle hug prevention, if a xeno steps off go_idle()
+		go_idle()
+
 /obj/item/clothing/mask/facehugger/on_found(mob/finder)
 	if(stat == CONSCIOUS)
 		HasProximity(finder)
@@ -405,7 +410,7 @@
 				if(istype(H.wear_ear, /obj/item/radio/headset/mainship/marine))
 					var/obj/item/radio/headset/mainship/marine/R = H.wear_ear
 					if(R.camera.status)
-						R.camera.status = FALSE //Turn camera off.
+						R.camera.toggle_cam(null, FALSE) //Turn camera off.
 						to_chat(H, "<span class='danger'>Your headset camera flickers off; you'll need to reactivate it by rebooting your headset HUD!<span>")
 
 	if(blocked)
@@ -436,7 +441,7 @@
 
 /obj/item/clothing/mask/facehugger/proc/Impregnate(mob/living/carbon/target)
 	var/as_planned = target?.wear_mask == src ? TRUE : FALSE
-	if(target.can_be_facehugged(src, FALSE, FALSE) && !sterile) //double check for changes
+	if(target.can_be_facehugged(src, FALSE, FALSE) && !sterile && as_planned) //is hugger still on face and can they still be impregnated
 		if(!(locate(/obj/item/alien_embryo) in target))
 			var/obj/item/alien_embryo/embryo = new(target)
 			embryo.hivenumber = hivenumber
@@ -507,7 +512,7 @@
 	..()
 	if(P.ammo.flags_ammo_behavior & AMMO_XENO)
 		return FALSE //Xeno spits ignore huggers.
-	if(P.damage && !(P.ammo.damage_type in list(OXY, HALLOSS, STAMINA)))
+	if(P.damage && !(P.ammo.damage_type in list(OXY, STAMINA)))
 		kill_hugger()
 	P.ammo.on_hit_obj(src,P)
 	return TRUE
@@ -520,8 +525,8 @@
 	kill_hugger()
 
 /obj/item/clothing/mask/facehugger/dropped(mob/user)
-    . = ..()
-    go_idle()
+	. = ..()
+	go_idle()
 
 /obj/item/clothing/mask/facehugger/effect_smoke(obj/effect/particle_effect/smoke/S)
 	. = ..()
@@ -531,8 +536,8 @@
 		go_idle()
 
 /obj/item/clothing/mask/facehugger/dropped(mob/user)
-    . = ..()
-    go_idle()
+	. = ..()
+	go_idle()
 
 /obj/item/clothing/mask/facehugger/effect_smoke(obj/effect/particle_effect/smoke/S)
 	. = ..()

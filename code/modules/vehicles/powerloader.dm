@@ -37,6 +37,7 @@
 			usr.put_in_hands(cell)
 			playsound(src,'sound/machines/click.ogg', 25, 1)
 			to_chat(usr, "You take out the [cell] out of the [src].")
+			cell.update_icon()
 			set_cell(null)
 		else
 			to_chat(usr, "There is no cell in the [src].")
@@ -53,8 +54,8 @@
 		if(cell)
 			to_chat(user, "There already is a power cell in the [src].")
 			return
-		cell = C
-		C.forceMove(src)
+		user.transferItemToLoc(C, src)
+		set_cell(C)
 		visible_message("[user] puts a new power cell in the [src].")
 		to_chat(user, "You put a new cell in the [src] containing [cell.charge] charge.")
 		playsound(src,'sound/machines/click.ogg', 25, 1)

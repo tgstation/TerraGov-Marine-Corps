@@ -16,8 +16,8 @@
 	gib_chance = 25
 	hud_type = /datum/hud/larva
 	inherent_verbs = list(
-		/mob/living/carbon/xenomorph/proc/vent_crawl
-		)
+		/mob/living/carbon/xenomorph/proc/vent_crawl,
+	)
 
 	var/base_icon_state = "Larva"
 
@@ -28,7 +28,7 @@
 	return
 
 /mob/living/carbon/xenomorph/larva/start_pulling(atom/movable/AM, suppress_message = FALSE)
-	return
+	return FALSE
 
 /mob/living/carbon/xenomorph/larva/pull_response(mob/puller)
 	return TRUE

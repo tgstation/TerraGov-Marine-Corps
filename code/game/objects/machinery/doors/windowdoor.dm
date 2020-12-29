@@ -6,7 +6,7 @@
 	layer = ABOVE_WINDOW_LAYER
 	resistance_flags = XENO_DAMAGEABLE
 	var/base_state = "left"
-	max_integrity = 150
+	max_integrity = 50
 	soft_armor = list("melee" = 20, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 70, "acid" = 100)
 	visible = FALSE
 	use_power = FALSE
@@ -19,7 +19,7 @@
 	desc = "A strong, secure door."
 	icon_state = "leftsecure"
 	base_state = "leftsecure"
-	max_integrity = 300
+	max_integrity = 100
 
 
 /obj/machinery/door/window/Initialize(mapload, set_dir)
@@ -82,12 +82,9 @@
 		do_animate("deny")
 
 
-/obj/machinery/door/window/CanPass(atom/movable/mover, turf/target)
+/obj/machinery/door/window/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
-		return TRUE
-	if(get_dir(loc, target) == dir) //Make sure looking at appropriate border
-		return !density
-	else
 		return TRUE
 
 /obj/machinery/door/window/CheckExit(atom/movable/mover, turf/target)

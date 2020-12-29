@@ -97,6 +97,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	animate(src, pixel_y = 2, time = 10, loop = -1)
 
 	grant_all_languages()
+	RegisterSignal(src, COMSIG_MOVABLE_Z_CHANGED, .proc/observer_z_changed)
+	LAZYADD(GLOB.observers_by_zlevel["[z]"], src)
 
 	return ..()
 
@@ -112,8 +114,15 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 	QDEL_NULL(orbit_menu)
 
+	LAZYREMOVE(GLOB.observers_by_zlevel["[z]"], src)
+	UnregisterSignal(src, COMSIG_MOVABLE_Z_CHANGED)
+
 	return ..()
 
+/mob/dead/observer/proc/observer_z_changed(datum/source, old_z, new_z)
+	SIGNAL_HANDLER
+	LAZYREMOVE(GLOB.observers_by_zlevel["[old_z]"], src)
+	LAZYADD(GLOB.observers_by_zlevel["[new_z]"], src)
 
 /mob/dead/observer/update_icon(new_form)
 	if(client) //We update our preferences in case they changed right before update_icon was called.
@@ -195,11 +204,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		if(!client?.prefs)
 			return
 		client.prefs.process_link(src, href_list)
-
-
-/mob/dead/CanPass(atom/movable/mover, turf/target)
-	return TRUE
-
 
 /mob/proc/ghostize(can_reenter_corpse = TRUE)
 	if(!key || isaghost(src))

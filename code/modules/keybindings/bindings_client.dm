@@ -75,13 +75,11 @@
 	set instant = TRUE
 	set hidden = TRUE
 
-	for(var/i in 1 to 10)
+	for(var/i in 1 to length(keys_held))
 		if(keys_held[i] == _key)
 			keys_held[i] = null
 			break
 
-	if(!keys_held[_key])
-		return
 	keys_held -= _key
 	var/movement = movement_keys[_key]
 	if(!(next_move_dir_add & movement))
@@ -95,10 +93,10 @@
 			break
 
 /**
-  * Manually clears any held keys, in case due to lag or other undefined behavior a key gets stuck.
-  *
-  * Hardcoded to the ESC key.
-  */
+ * Manually clears any held keys, in case due to lag or other undefined behavior a key gets stuck.
+ *
+ * Hardcoded to the ESC key.
+ */
 /client/verb/reset_held_keys()
 	set name = "Reset Held Keys"
 	set hidden = TRUE

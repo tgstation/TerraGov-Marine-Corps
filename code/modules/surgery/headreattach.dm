@@ -18,9 +18,9 @@
 
 /datum/surgery_step/head/peel
 	allowed_tools = list(
-	/obj/item/tool/surgery/retractor = 100,           \
-	/obj/item/tool/crowbar = 75,              \
-	/obj/item/tool/kitchen/utensil/fork = 50, \
+		/obj/item/tool/surgery/retractor = 100,
+		/obj/item/tool/crowbar = 75,
+		/obj/item/tool/kitchen/utensil/fork = 50,
 	)
 
 	min_duration = 30
@@ -49,9 +49,9 @@
 
 /datum/surgery_step/head/shape
 	allowed_tools = list(
-	/obj/item/tool/surgery/FixOVein = 100,         \
-	/obj/item/stack/cable_coil = 75,         \
-	/obj/item/assembly/mousetrap = 10
+		/obj/item/tool/surgery/FixOVein = 100,
+		/obj/item/stack/cable_coil = 75,
+		/obj/item/assembly/mousetrap = 10,
 	)
 
 	min_duration = 60
@@ -78,9 +78,9 @@
 
 /datum/surgery_step/head/suture
 	allowed_tools = list(
-	/obj/item/tool/surgery/hemostat = 100, \
-	/obj/item/stack/cable_coil = 60, \
-	/obj/item/tool/surgery/FixOVein = 80
+		/obj/item/tool/surgery/hemostat = 100,
+		/obj/item/stack/cable_coil = 60,
+		/obj/item/tool/surgery/FixOVein = 80,
 	)
 
 	min_duration = 60
@@ -107,10 +107,10 @@
 
 /datum/surgery_step/head/prepare
 	allowed_tools = list(
-	/obj/item/tool/surgery/cautery = 100,			\
-	/obj/item/clothing/mask/cigarette = 75,	\
-	/obj/item/tool/lighter = 50,    \
-	/obj/item/tool/weldingtool = 25
+		/obj/item/tool/surgery/cautery = 100,
+		/obj/item/clothing/mask/cigarette = 75,
+		/obj/item/tool/lighter = 50,
+		/obj/item/tool/weldingtool = 25,
 	)
 
 	min_duration = 60
@@ -168,7 +168,7 @@
 	target.UpdateDamageIcon()
 
 	//Prepare mind datum
-	if(B.brainmob.mind)
+	if(B.brainmob?.mind)
 		B.brainmob.mind.transfer_to(target)
 
 	//Deal with the head item properly

@@ -32,9 +32,9 @@
 
 /datum/surgery_step/cavity/make_space
 	allowed_tools = list(
-	/obj/item/tool/surgery/surgicaldrill = 100, \
-	/obj/item/tool/pen = 75,            \
-	/obj/item/stack/rods = 50
+		/obj/item/tool/surgery/surgicaldrill = 100,
+		/obj/item/tool/pen = 75,
+		/obj/item/stack/rods = 50,
 	)
 
 	min_duration = 60
@@ -65,10 +65,10 @@
 
 /datum/surgery_step/cavity/close_space
 	allowed_tools = list(
-	/obj/item/tool/surgery/cautery = 100,			\
-	/obj/item/clothing/mask/cigarette = 75,	\
-	/obj/item/tool/lighter = 50,    \
-	/obj/item/tool/weldingtool = 25
+		/obj/item/tool/surgery/cautery = 100,
+		/obj/item/clothing/mask/cigarette = 75,
+		/obj/item/tool/lighter = 50,
+		/obj/item/tool/weldingtool = 25,
 	)
 
 	min_duration = 60
@@ -142,9 +142,9 @@
 /datum/surgery_step/cavity/implant_removal
 	priority = 1
 	allowed_tools = list(
-	/obj/item/tool/surgery/hemostat = 100,           \
-	/obj/item/tool/wirecutters = 75,         \
-	/obj/item/tool/kitchen/utensil/fork = 20
+		/obj/item/tool/surgery/hemostat = 100,
+		/obj/item/tool/wirecutters = 75,
+		/obj/item/tool/kitchen/utensil/fork = 20,
 	)
 
 	min_duration = HEMOSTAT_REMOVE_MIN_DURATION

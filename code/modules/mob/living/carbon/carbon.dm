@@ -59,8 +59,9 @@
 			"<span class='danger'>You feel a powerful shock course through your body!</span>", \
 			"<span class='warning'> You hear a heavy electrical crack.</span>" \
 		)
-		if(isxeno(src) && mob_size == MOB_SIZE_BIG)
-			Paralyze(4 SECONDS)
+		if(isxeno(src))
+			if(mob_size != MOB_SIZE_BIG)
+				Paralyze(4 SECONDS)
 		else
 			Paralyze(8 SECONDS)
 	else
@@ -86,8 +87,6 @@
 			return
 		else
 			wielded_item.unwield(src) //Get rid of it.
-	if(wielded_item && wielded_item.zoom) //Adding this here while we're at it
-		wielded_item.zoom(src)
 	hand = !hand
 	SEND_SIGNAL(src, COMSIG_CARBON_SWAPPED_HANDS)
 	if(hud_used.l_hand_hud_object && hud_used.r_hand_hud_object)
@@ -451,14 +450,16 @@
 	. = ..()
 	if(!.)
 		return
-	log_admin("[key_name(src)] (Job: [job.title]) has been away for 15 minutes.")
-	message_admins("[ADMIN_TPMONTY(src)] (Job: [job.title]) has been away for 15 minutes.")
+	log_admin("[key_name(src)] (Job: [(job) ? job.title : "Unassigned"]) has been away for 15 minutes.")
+	message_admins("[ADMIN_TPMONTY(src)] (Job: [(job) ? job.title : "Unassigned"]) has been away for 15 minutes.")
 
 /mob/living/carbon/xenomorph/on_sdd_grace_period_end()
 	. = ..()
 	if(!.)
 		return
 	if(client)
+		return
+	if (SSticker.current_state != GAME_STATE_PLAYING)
 		return
 
 	var/mob/picked = get_alien_candidate()
@@ -470,17 +471,6 @@
 	to_chat(src, "<span class='xenoannounce'>We are an old xenomorph re-awakened from slumber!</span>")
 	playsound_local(get_turf(src), 'sound/effects/xeno_newlarva.ogg')
 
-
-/mob/living/carbon/verb/middle_mousetoggle()
-	set name = "Toggle Middle/Shift Clicking"
-	set desc = "Toggles between using middle mouse click and shift click for selected ability use."
-	set category = "IC"
-
-	middle_mouse_toggle = !middle_mouse_toggle
-	if(!middle_mouse_toggle)
-		to_chat(src, "<span class='notice'>The selected special ability will now be activated with shift clicking.</span>")
-	else
-		to_chat(src, "<span class='notice'>The selected special ability will now be activated with middle mouse clicking.</span>")
 
 /mob/living/carbon/set_stat(new_stat)
 	. = ..()

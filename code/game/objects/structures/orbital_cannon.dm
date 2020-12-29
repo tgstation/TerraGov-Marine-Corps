@@ -1,4 +1,4 @@
-#define WARHEAD_FLY_TIME 50
+#define WARHEAD_FLY_TIME 1 SECONDS
 #define WARHEAD_FALLING_SOUND_RANGE 15
 
 /obj/structure/orbital_cannon
@@ -31,7 +31,7 @@
 			amt = pick_n_take(L)
 			GLOB.marine_main_ship?.ob_type_fuel_requirements += amt
 
-	var/turf/T = locate(x+1,y+2,z)
+	var/turf/T = locate(x+1,y+1,z)
 	var/obj/structure/orbital_tray/O = new(T)
 	tray = O
 	tray.linked_ob = src
@@ -112,7 +112,7 @@
 
 	ob_cannon_busy = FALSE
 
-	var/turf/T = locate(x+1,y+2,z)
+	var/turf/T = locate(x+1,y+1,z)
 
 	tray.forceMove(T)
 	loaded_tray = FALSE
@@ -161,6 +161,14 @@
 
 	update_icon()
 
+/// Handles the playing of the Orbital Bombardment incoming sound and other visual and auditory effects of the cannon, usually a spiraling whistle noise but can be overridden.
+/obj/structure/orbital_cannon/proc/handle_ob_firing_effects(target, ob_sound = 'sound/effects/OB_incoming.ogg')
+	flick("OBC_firing",src)
+	playsound(loc, 'sound/effects/obfire.ogg', 100, FALSE, 20, 4)
+	for(var/i in hearers(WARHEAD_FALLING_SOUND_RANGE,target))
+		var/mob/M = i
+		M.playsound_local(target, ob_sound, falloff = 2)
+
 /obj/structure/orbital_cannon/proc/fire_ob_cannon(turf/T, mob/user)
 	set waitfor = 0
 
@@ -170,12 +178,7 @@
 	if(!chambered_tray || !loaded_tray || !tray || !tray.warhead)
 		return
 
-	flick("OBC_firing",src)
-
 	ob_cannon_busy = TRUE
-
-	playsound(loc, 'sound/weapons/guns/fire/tank_smokelauncher.ogg', 70, 1)
-	playsound(loc, 'sound/weapons/guns/fire/pred_plasma_shot.ogg', 70, 1)
 
 	var/inaccurate_fuel = 0
 
@@ -190,13 +193,15 @@
 			inaccurate_fuel = abs(GLOB.marine_main_ship?.ob_type_fuel_requirements[4] - tray.fuel_amt)
 
 	var/turf/target = locate(T.x + inaccurate_fuel * pick(-1,1),T.y + inaccurate_fuel * pick(-1,1),T.z)
-	for(var/i in hearers(WARHEAD_FALLING_SOUND_RANGE,target))
-		var/mob/M = i
-		M.playsound_local(target, 'sound/effects/OB_incoming.ogg', falloff = 2)
+
+	playsound_z_humans(target.z, 'sound/effects/OB_warning_announce.ogg', 100) //for marines on ground
+	playsound(target, 'sound/effects/OB_warning_announce_novoiceover.ogg', 125, FALSE, 30, 10) //VOX-less version for xenomorphs
+	playsound_z(z, 'sound/effects/OB_warning_announce.ogg', 100) //for the ship
 
 	notify_ghosts("<b>[user]</b> has just fired \the <b>[src]</b> !", source = T, action = NOTIFY_JUMP)
 
-	addtimer(CALLBACK(src, /obj/structure/orbital_cannon.proc/impact_callback, target, inaccurate_fuel), WARHEAD_FLY_TIME)
+	addtimer(CALLBACK(src, /obj/structure/orbital_cannon/proc/handle_ob_firing_effects, target), 9.5 SECONDS + (WARHEAD_FLY_TIME * (GLOB.current_orbit/3)))
+	addtimer(CALLBACK(src, /obj/structure/orbital_cannon.proc/impact_callback, target, inaccurate_fuel), 10 SECONDS + (WARHEAD_FLY_TIME * (GLOB.current_orbit/3)))
 
 /obj/structure/orbital_cannon/proc/impact_callback(target,inaccurate_fuel)
 	tray.warhead.warhead_impact(target, inaccurate_fuel)
@@ -347,7 +352,7 @@
 
 
 /obj/structure/ob_ammo/obj_destruction(damage_flag)
-	explosion(loc, light_impact_range = 2, flash_range = 3, flame_range = 2)
+	explosion(loc, light_impact_range = 2, flash_range = 3, flame_range = 2, small_animation = TRUE)
 	return ..()
 
 
@@ -395,7 +400,7 @@
 	var/total_amt = max(25 - inaccuracy_amt, 20)
 	for(var/i = 1 to total_amt)
 		var/turf/U = pick_n_take(turf_list)
-		explosion(U, 1, 4, 6, 6, throw_range = 0, adminlog = FALSE) //rocket barrage
+		explosion(U, 1, 4, 6, 6, throw_range = 0, adminlog = FALSE, small_animation = TRUE) //rocket barrage
 		sleep(1)
 
 /obj/structure/ob_ammo/warhead/plasmaloss

@@ -79,7 +79,7 @@
 	max_ammo_count = 200
 	transferable_ammo = TRUE
 	ammo_used_per_firing = 20
-	point_cost = 150
+	point_cost = 50
 	var/bullet_spread_range = 4 //how far from the real impact turf can bullets land
 
 	examine(mob/user)
@@ -126,7 +126,7 @@
 	max_ammo_count = 400
 	ammo_used_per_firing = 40
 	bullet_spread_range = 5
-	point_cost = 300
+	point_cost = 150
 
 
 
@@ -147,7 +147,7 @@
 	ammo_used_per_firing = 10
 	max_inaccuracy = 1
 	warning_sound = 'sound/effects/nightvision.ogg'
-	point_cost = 300
+	point_cost = 150
 
 
 /obj/structure/ship_ammo/laser_battery/examine(mob/user)
@@ -219,7 +219,7 @@
 	icon_state = "single"
 	travelling_time = 30 //not powerful, but reaches target fast
 	ammo_id = ""
-	point_cost = 300
+	point_cost = 150
 
 /obj/structure/ship_ammo/rocket/widowmaker/detonate_on(turf/impact)
 	impact.ceiling_debris_check(3)
@@ -231,7 +231,7 @@
 	desc = "The AGM-227 missile is a mainstay of the overhauled dropship fleet against any mobile or armored ground targets. It's earned the nickname of 'Banshee' from the sudden wail that it emitts right before hitting a target. Useful to clear out large areas."
 	icon_state = "banshee"
 	ammo_id = "b"
-	point_cost = 300
+	point_cost = 175
 
 /obj/structure/ship_ammo/rocket/banshee/detonate_on(turf/impact)
 	impact.ceiling_debris_check(3)
@@ -247,7 +247,7 @@
 
 /obj/structure/ship_ammo/rocket/keeper/detonate_on(turf/impact)
 	impact.ceiling_debris_check(3)
-	explosion(impact, 4, 5, 5, 6) //tighter blast radius, but more devastating near center
+	explosion(impact, 4, 5, 5, 6, small_animation = TRUE) //tighter blast radius, but more devastating near center
 	qdel(src)
 
 
@@ -258,7 +258,7 @@
 	ammo_id = "f"
 	travelling_time = 70 //slower but deadly accurate, even if laser guidance is stopped mid-travel.
 	max_inaccuracy = 1
-	point_cost = 450
+	point_cost = 300
 
 /obj/structure/ship_ammo/rocket/fatty/detonate_on(turf/impact)
 	impact.ceiling_debris_check(2)
@@ -272,7 +272,7 @@
 		var/list/coords = impact_coords[i]
 		var/turf/detonation_target = locate(impact.x+coords[1],impact.y+coords[2],impact.z)
 		detonation_target.ceiling_debris_check(2)
-		explosion(detonation_target, 2, 3, 4, adminlog = FALSE)
+		explosion(detonation_target, 2, 3, 4, adminlog = FALSE, small_animation = TRUE)
 	qdel(src)
 
 /obj/structure/ship_ammo/rocket/napalm
@@ -280,11 +280,11 @@
 	desc = "The XN-99 'Napalm' is an incendiary rocket used to turn specific targeted areas into giant balls of fire for a long time."
 	icon_state = "napalm"
 	ammo_id = "n"
-	point_cost = 500
+	point_cost = 350
 
 /obj/structure/ship_ammo/rocket/napalm/detonate_on(turf/impact)
 	impact.ceiling_debris_check(3)
-	explosion(impact, 2, 3, 4, 6) //relatively weak
+	explosion(impact, 2, 3, 4, 6, small_animation = TRUE) //relatively weak
 	flame_radius(5, impact, 60, 30) //cooking for a long time
 	qdel(src)
 
@@ -302,13 +302,13 @@
 	ammo_name = "minirocket"
 	travelling_time = 80 //faster than 30mm cannon, slower than real rockets
 	transferable_ammo = TRUE
-	point_cost = 300
+	point_cost = 100
 
 /obj/structure/ship_ammo/minirocket/detonate_on(turf/impact)
 	impact.ceiling_debris_check(2)
 
-	explosion(impact, 0, 2, 4, 5, adminlog = FALSE)//no messaging admin, that'd spam them.
-	var/datum/effect_system/expl_particles/P
+	explosion(impact, 0, 2, 4, 5, adminlog = FALSE, small_animation = TRUE)//no messaging admin, that'd spam them.
+	var/datum/effect_system/expl_particles/P = new 
 	P.set_up(4, 0, impact)
 	P.start()
 	addtimer(CALLBACK(src, .proc/delayed_smoke_spread, impact), 0.5 SECONDS)
@@ -333,7 +333,7 @@
 	name = "incendiary mini rocket stack"
 	desc = "A pack of laser guided incendiary mini rockets."
 	icon_state = "minirocket_inc"
-	point_cost = 500
+	point_cost = 200
 
 /obj/structure/ship_ammo/detonate_on(turf/impact)
 	. = ..()
@@ -343,7 +343,7 @@
 	name = "illumination rocket-launched flare stack"
 	desc = "A pack of laser guided mini rockets, each loaded with a payload of white-star illuminant and a parachute, while extremely ineffective at damaging the enemy, it is very effective at lighting the battlefield so marines can damage the enemy."
 	icon_state = "minirocket_ilm"
-	point_cost = 350 // Not as expensive as actual weaponry but still a hefty sum so we don't have this spammed everywhere
+	point_cost = 25 // Not a real rocket, so its cheap
 
 /obj/structure/ship_ammo/minirocket/illumination/detonate_on(turf/impact)
 	impact.ceiling_debris_check(2)
@@ -358,19 +358,21 @@
 		qdel(src) //deleted after last minirocket is fired and impact the ground.
 
 /obj/structure/ship_ammo/minirocket/illumination/proc/drop_cas_flare(turf/impact)
-	new/obj/item/flashlight/flare/on/cas(impact)
+	new /obj/effect/cas_flare(impact)
 
-/obj/item/flashlight/flare/on/cas
+/obj/effect/cas_flare
 	name = "illumination flare"
 	desc = "Report this if you actually see this FUCK"
 	icon_state = "" //No sprite
 	invisibility = INVISIBILITY_MAXIMUM
-	mouse_opacity = 0
-	brightness_on = 7 //Magnesium/sodium fires (White star) really are bright
+	resistance_flags = RESIST_ALL
+	light_system = STATIC_LIGHT
+	light_power = 7 //Magnesium/sodium fires (White star) really are bright
 
-/obj/item/flashlight/flare/on/cas/Initialize()
+/obj/effect/cas_flare/Initialize()
 	. = ..()
 	var/turf/T = get_turf(src)
-	fuel = rand(700, 900) // About the same burn time as a flare, considering it requires it's own CAS run.
-	T.visible_message("<span class='warning'>You see a tiny flash, and then a blindingly bright light from the flare as it lights off in the sky!</span>")
+	set_light(light_power)
+	T.visible_message("<span class='warning'>You see a tiny flash, and then a blindingly bright light from a flare as it lights off in the sky!</span>")
 	playsound(T, 'sound/weapons/guns/fire/flare.ogg', 50, 1, 4) // stolen from the mortar i'm not even sorry
+	QDEL_IN(src, rand(700, 900)) // About the same burn time as a flare, considering it requires it's own CAS run.

@@ -287,6 +287,7 @@
 	if(old_xeno)
 		stop_overwatch(FALSE)
 	watcher.observed_xeno = target
+	target.hud_set_queen_overwatch()
 	watcher.reset_perspective()
 	RegisterSignal(target, COMSIG_HIVE_XENO_DEATH, .proc/on_xeno_death)
 	RegisterSignal(target, list(COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED), .proc/on_xeno_evolution)
@@ -686,7 +687,6 @@
 		H.add_hud_to(new_xeno) //keep our mobhud choice
 		new_xeno.xeno_mobhud = TRUE
 
-	new_xeno.middle_mouse_toggle = T.middle_mouse_toggle //Keep our toggle state
 	new_xeno.visible_message("<span class='xenodanger'>A [new_xeno.xeno_caste.caste_name] emerges from the husk of \the [T].</span>", \
 	"<span class='xenodanger'>[X] makes us regress into our previous form.</span>")
 

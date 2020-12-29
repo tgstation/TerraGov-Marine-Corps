@@ -20,44 +20,48 @@
 
 /obj/effect/landmark/supplyspawner/weapons
 	name = "weapon supplies"
-	supply = list(/obj/structure/largecrate/supply/weapons/standard_carbine = 2,
-				/obj/structure/largecrate/supply/weapons/shotgun = 2,
-				/obj/structure/largecrate/supply/weapons/standard_smg = 2,
-				/obj/structure/largecrate/supply/weapons/pistols = 2,
-				/obj/structure/largecrate/supply/weapons/flamers = 2,
-				/obj/structure/largecrate/supply/weapons/hpr = 2,
-				/obj/structure/closet/crate/mortar_ammo/mortar_kit = 1,
-				/obj/structure/largecrate/supply/explosives/mines = 2,
-				/obj/structure/largecrate/supply/explosives/grenades = 2
-				)
+	supply = list(
+		/obj/structure/largecrate/supply/weapons/standard_carbine = 2,
+		/obj/structure/largecrate/supply/weapons/shotgun = 2,
+		/obj/structure/largecrate/supply/weapons/standard_smg = 2,
+		/obj/structure/largecrate/supply/weapons/pistols = 2,
+		/obj/structure/largecrate/supply/weapons/flamers = 2,
+		/obj/structure/largecrate/supply/weapons/hpr = 2,
+		/obj/structure/closet/crate/mortar_ammo/mortar_kit = 1,
+		/obj/structure/largecrate/supply/explosives/mines = 2,
+		/obj/structure/largecrate/supply/explosives/grenades = 2,
+	)
 
 /obj/effect/landmark/supplyspawner/ammo
 	name = "ammunition supplies"
-	supply = list(/obj/structure/largecrate/supply/ammo/m41a = 4,
-				/obj/structure/largecrate/supply/ammo/m41a_box = 4,
-				/obj/structure/largecrate/supply/ammo/shotgun = 4,
-				/obj/structure/largecrate/supply/ammo/standard_smg = 4,
-				/obj/structure/largecrate/supply/ammo/pistol = 4
-				)
+	supply = list(
+		/obj/structure/largecrate/supply/ammo/m41a = 4,
+		/obj/structure/largecrate/supply/ammo/m41a_box = 4,
+		/obj/structure/largecrate/supply/ammo/shotgun = 4,
+		/obj/structure/largecrate/supply/ammo/standard_smg = 4,
+		/obj/structure/largecrate/supply/ammo/pistol = 4,
+	)
 
 /obj/effect/landmark/supplyspawner/engineering
 	name = "engineering supplies"
-	supply = list(/obj/structure/largecrate/supply/supplies/metal = 5,
-				/obj/structure/largecrate/supply/supplies/plasteel = 3,
-				/obj/structure/largecrate/supply/supplies/sandbags = 5,
-				/obj/structure/largecrate/supply/generator = 1,
-				/obj/structure/largecrate/supply/floodlights = 2,
-				/obj/structure/largecrate/supply/supplies/flares = 3,
-				/obj/structure/largecrate/supply/powerloader = 1
-				)
+	supply = list(
+		/obj/structure/largecrate/supply/supplies/metal = 5,
+		/obj/structure/largecrate/supply/supplies/plasteel = 3,
+		/obj/structure/largecrate/supply/supplies/sandbags = 5,
+		/obj/structure/largecrate/supply/generator = 1,
+		/obj/structure/largecrate/supply/floodlights = 2,
+		/obj/structure/largecrate/supply/supplies/flares = 3,
+		/obj/structure/largecrate/supply/powerloader = 1,
+	)
 
 /obj/effect/landmark/supplyspawner/turrets
 	name = "defensive gun emplacement supplies"
-	supply = list(/obj/structure/largecrate/supply/weapons/sentries = 2,
-				/obj/structure/largecrate/supply/weapons/standard_hmg = 2,
-				/obj/structure/largecrate/supply/ammo/sentry = 1,
-				/obj/structure/largecrate/supply/ammo/standard_hmg = 1
-				)
+	supply = list(
+		/obj/structure/largecrate/supply/weapons/sentries = 2,
+		/obj/structure/largecrate/supply/weapons/standard_hmg = 2,
+		/obj/structure/largecrate/supply/ammo/sentry = 1,
+		/obj/structure/largecrate/supply/ammo/standard_hmg = 1,
+	)
 
 /obj/effect/landmark/supplyspawner/food
 	name = "food crate supplies"
@@ -65,16 +69,17 @@
 
 /obj/effect/landmark/supplyspawner/medical
 	name = "medical supplies"
-	supply = list(/obj/structure/largecrate/supply/medicine/medkits = 2,
-				/obj/structure/largecrate/supply/medicine/blood = 2,
-				/obj/structure/largecrate/supply/medicine/iv = 2,
-				/obj/structure/largecrate/supply/medicine/medivend = 2,
-				/obj/structure/largecrate/machine/autodoc = 3,
-				/obj/structure/largecrate/machine/bodyscanner = 1,
-				/obj/structure/largecrate/machine/sleeper = 2,
-				/obj/structure/largecrate/supply/medicine/optable = 1,
-				/obj/structure/largecrate/supply/supplies/tables_racks = 1
-				)
+	supply = list(
+		/obj/structure/largecrate/supply/medicine/medkits = 2,
+		/obj/structure/largecrate/supply/medicine/blood = 2,
+		/obj/structure/largecrate/supply/medicine/iv = 2,
+		/obj/structure/largecrate/supply/medicine/medivend = 2,
+		/obj/structure/largecrate/machine/autodoc = 3,
+		/obj/structure/largecrate/machine/bodyscanner = 1,
+		/obj/structure/largecrate/machine/sleeper = 2,
+		/obj/structure/largecrate/supply/medicine/optable = 1,
+		/obj/structure/largecrate/supply/supplies/tables_racks = 1,
+	)
 /*NEW SUPPLY CRATES*/
 //Lotsocrates for lotsosupplies for events, meaning less setup time.
 //Wooden crates and not metal ones so we don't have a ton of metal crates laying around
@@ -143,13 +148,13 @@
 	icon_state = "case"
 
 /obj/structure/largecrate/supply/ammo/m41a
-	name = "\improper M41A1 magazine case (x20)"
-	desc = "An ammunition case containing 20 M41A1 magazines."
+	name = "\improper M412 magazine case (x20)"
+	desc = "An ammunition case containing 20 M412 magazines."
 	supplies = list(/obj/item/ammo_magazine/rifle = 20)
 
 /obj/structure/largecrate/supply/ammo/m41a_box
-	name = "\improper M41A1 ammunition box case (x4)"
-	desc = "An ammunition case containing four M41A1 600 round boxes of ammunition."
+	name = "\improper M412 ammunition box case (x4)"
+	desc = "An ammunition case containing four M412 600 round boxes of ammunition."
 	supplies = list(/obj/item/big_ammo_box = 4)
 
 /obj/structure/largecrate/supply/ammo/shotgun
@@ -272,13 +277,14 @@
 /obj/structure/largecrate/supply/medicine/medkits
 	name = "first aid supply crate (x20)"
 	desc = "A medical supply crate containing six advanced, three standard, three burn, two toxin, two oxygen, and two radiation first aid kits."
-	supplies = list(/obj/item/storage/firstaid/regular = 3,
-					/obj/item/storage/firstaid/fire = 3,
-					/obj/item/storage/firstaid/adv = 6,
-					/obj/item/storage/firstaid/toxin = 2,
-					/obj/item/storage/firstaid/o2 = 2,
-					/obj/item/storage/firstaid/rad = 2
-					)
+	supplies = list(
+		/obj/item/storage/firstaid/regular = 3,
+		/obj/item/storage/firstaid/fire = 3,
+		/obj/item/storage/firstaid/adv = 6,
+		/obj/item/storage/firstaid/toxin = 2,
+		/obj/item/storage/firstaid/o2 = 2,
+		/obj/item/storage/firstaid/rad = 2,
+	)
 
 /obj/structure/largecrate/supply/medicine/blood
 	name = "blood supply crate (x12)"

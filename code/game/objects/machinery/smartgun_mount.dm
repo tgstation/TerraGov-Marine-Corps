@@ -32,7 +32,7 @@
 	bypass_w_limit = list(
 		/obj/item/standard_hmg,
 		/obj/item/ammo_magazine/standard_hmg,
-		)
+	)
 
 /obj/item/storage/box/standard_hmg/Initialize()
 	. = ..()
@@ -43,8 +43,8 @@
 
 // The actual gun itself.
 /obj/item/standard_hmg
-	name = "\improper TL-102 Mounted Heavy Smartgun"
-	desc = "The TL-102 Heavy Machinegun. IFF capable. No extra work required, just deploy it."
+	name = "\improper TL-102 mounted heavy smartgun"
+	desc = "The TL-102 heavy machinegun, it's too heavy to be carried or to be operated without the tripod. IFF capable. No extra work required, just deploy it."
 	max_integrity = 300
 	w_class = WEIGHT_CLASS_HUGE
 	flags_equip_slot = ITEM_SLOT_BACK
@@ -151,8 +151,8 @@
 
 // The actual Machinegun itself, going to borrow some stuff from current sentry code to make sure it functions. Also because they're similiar.
 /obj/machinery/standard_hmg
-	name = "\improper TL-102 Mounted Heavy Smartgun"
-	desc = "A deployed and mounted Heavy Smartgun. While it is capable of taking the same rounds as a smartgun, it fires specialized tungsten rounds for increased armor penetration.\n<span class='notice'>Use (ctrl-click) to toggle burstfire."
+	name = "\improper TL-102 mounted heavy smartgun"
+	desc = "A deployed and mounted heavy smartgun, ready to rock. While it is capable of taking the same rounds as the smartmachinegun, it fires specialized tungsten rounds for increased armor penetration.\n<span class='notice'>Use (ctrl-click) to toggle burstfire.</span>"
 	icon = 'icons/Marine/marine-hmg.dmi'
 	icon_state = "turret"
 	anchored = TRUE
@@ -172,6 +172,7 @@
 	var/atom/target = null // required for shooting at things.
 	var/datum/ammo/bullet/machinegun/ammo = /datum/ammo/bullet/machinegun
 	var/obj/projectile/in_chamber = null
+	var/list/iff_signal = list(ACCESS_IFF_MARINE)
 	var/locked = 0 //1 means its locked inplace (this will be for sandbag MGs)
 	var/is_bursting = 0.
 	var/icon_full = "turret" // Put this system in for other MGs or just other mounted weapons in general, future proofing.
@@ -398,6 +399,7 @@
 		A = target
 	proj_to_fire.setDir(dir)
 	proj_to_fire.def_zone = pick("chest","chest","chest","head")
+	proj_to_fire.projectile_iff = iff_signal
 	playsound(loc, 'sound/weapons/guns/fire/hmg2.ogg', 65, TRUE)
 	if(!QDELETED(target))
 		var/angle = round(Get_Angle(src,target))
@@ -406,7 +408,7 @@
 	rounds--
 	if(!rounds)
 		visible_message("<span class='notice'> [icon2html(src, viewers(src))] \The TL-102 beeps steadily and its ammo light blinks red.</span>")
-		playsound(loc, 'sound/weapons/guns/misc/smg_empty_alarm.ogg', 25, TRUE)
+		playsound(loc, 'sound/weapons/guns/misc/empty_alarm.ogg', 25, TRUE)
 		update_icon() //final safeguard.
 
 
@@ -566,8 +568,8 @@
 		playsound(loc, 'sound/items/deconstruct.ogg',25,1)
 
 /obj/machinery/standard_hmg/mg_turret //Our mapbound version with stupid amounts of ammo.
-	name = "\improper TL-102 Heavy Smartgun Nest"
-	desc = "A TL-102 Heavy Smartgun mounted upon a small reinforced post with sandbags to provide a small machinegun nest for all your defense purpose needs.\n<span class='notice'>Use (ctrl-click) to shoot in bursts."
+	name = "\improper TL-102 heavy smartgun nest"
+	desc = "A TL-102 heavy smartgun mounted upon a small reinforced post with sandbags to provide a small machinegun nest for all your defense purpose needs.\n<span class='notice'>Use (ctrl-click) to shoot in bursts.</span>"
 	burst_fire = FALSE
 	fire_delay = 2
 	rounds = 1500

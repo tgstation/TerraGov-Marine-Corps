@@ -43,10 +43,12 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(/obj/structure/gri
 
 /obj/structure/cable/Initialize(mapload)
 	. = ..()
-
+	AddElement(/datum/element/undertile, TRAIT_T_RAY_VISIBLE)
 	GLOB.cable_list += src //add it to the global cable list
 	Connect_cable()
-	AddElement(/datum/element/undertile, TRAIT_T_RAY_VISIBLE)
+	if(mapload && isturf(loc)) //Cables maploaded by templates during the round need to update
+		var/turf/T = loc
+		T.levelupdate()
 
 
 ///Set the linked indicator bitflags
@@ -365,7 +367,7 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(/obj/structure/gri
 		if(first)
 			first = FALSE
 			continue
-		addtimer(CALLBACK(O, .proc/auto_propagate_cut_cable, O), 0) //so we don't rebuild the network X times when singulo/explosion destroys a line of X cables
+		addtimer(CALLBACK(O, .proc/auto_propagate_cut_cable, O), 1, TIMER_UNIQUE) //so we don't rebuild the network X times when singulo/explosion destroys a line of X cables
 
 ///////////////////////////////////////////////
 // The cable coil object, used for laying cable
@@ -389,7 +391,6 @@ GLOBAL_LIST_INIT(cable_coil_recipes, list(new/datum/stack_recipe("cable restrain
 	color = "yellow"
 	var/cable_color = "yellow"
 	desc = "A coil of insulated power cable."
-	throwforce = 0
 	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 3
 	throw_range = 5
