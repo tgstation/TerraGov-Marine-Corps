@@ -8,8 +8,12 @@
 	anchored = FALSE
 	///Keeps track of how many items have been sucked for fluff
 	var/counter = 0
-	///The mine we have attache to this roomba
+	///The mine we have attached to this roomba
 	var/obj/item/explosive/mine/claymore //Claymore roomb
+	///So It doesnt infinitely look for an exit and crash the server
+	var/stuck_counter = 0
+	///Admins can let it have a claymore
+	var/allow_claymore = FALSE
 
 /obj/machinery/roomba/Initialize(mapload)
 	. = ..()
@@ -48,7 +52,18 @@
 
 /obj/machinery/roomba/Bump(atom/A)
 	. = ..()
-	step_to(src, get_step(src, turn(dir, pick(90, -90))))
+	if(++stuck_counter <= 3)
+		step_to(src, get_step(src, turn(dir, pick(90, -90))))
+		return
+	visible_message("<span class='warning'>The [src] beeps angrily as it get stuck!</span>")
+	stop_processing()
+	addtimer(CALLBACK(src, .proc/reactivate), 20 SECONDS)
+
+/obj/machinery/roomba/proc/reactivate()
+	stuck_counter = 0
+	start_processing()
+
+
 
 ///Called when the roomba moves, sucks in all items held in the tile and sends them to cryo
 /obj/machinery/roomba/proc/suck_items()
@@ -57,12 +72,15 @@
 		sucker.store_in_cryo()
 		GLOB.cryoed_item_list[CRYO_REQ] += sucker
 		counter++
+	stuck_counter = 0
 
 /obj/machinery/roomba/attack_hand(mob/living/user)
 	. = ..()
 	visible_message("<span class='notice'>[user] lovingly pats the [src].</span>", "<span class='notice'>You lovingly pat the [src].</span>")
 
 /obj/machinery/roomba/attackby(obj/item/I, mob/living/user, def_zone)
+	if(!allow_claymore)
+		return
 	if(!istype(I, /obj/item/explosive/mine) || claymore)
 		return
 	visible_message("<span class='warning'>[user] begins to try to attach [I] to [src]...</span>")
