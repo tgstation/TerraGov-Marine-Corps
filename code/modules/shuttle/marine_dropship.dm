@@ -277,7 +277,7 @@
 
 /mob/living/carbon/xenomorph/proc/hijack()
 	set category = "Alien"
-	set name = "Hijack"
+	set name = "Hijack Dropship"
 	set desc = "Call down the dropship to the closest LZ or unlock the doors"
 
 	if(!SSticker?.mode)
