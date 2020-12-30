@@ -124,6 +124,9 @@
 	set name = "Toggle Laser Mode"
 	if(!user && isliving(loc))
 		user = loc
+	if (laser)
+		to_chat(user, "<span class='warning'>You can't switch mode while targeting")
+		return
 	if(!changable)
 		to_chat(user, "These binoculars only have one mode.")
 		return
@@ -216,10 +219,13 @@
 			else if(!targ_area)
 				to_chat(user, "[icon2html(src, user)] <span class='warning'>No target detected!</span>")
 			else
-				to_chat(user, "<span class='notice'>TARGET ACQUIRED. RAILGUN IS FIRING. DON'T MOVE.</span>")
 				var/obj/effect/overlay/temp/laser_target/RT = new (TU, laz_name, S)
 				laser = RT
 				playsound(src, 'sound/effects/binoctarget.ogg', 35)
+				if(!do_after(user, 2 SECONDS, TRUE, user, BUSY_ICON_GENERIC))
+					QDEL_NULL(laser)
+					return
+				to_chat(user, "<span class='notice'>TARGET ACQUIRED. RAILGUN IS FIRING. DON'T MOVE.</span>")
 				while(laser)
 					GLOB.marine_main_ship?.rail_gun?.fire_rail_gun(TU,user)
 					if(!do_after(user, 5 SECONDS, TRUE, laser, BUSY_ICON_GENERIC))
@@ -252,7 +258,10 @@
 	if(A != laser || !current_turf)
 		return // Gotta click on a laser target
 	ob_fired = TRUE
-	GLOB.marine_main_ship?.orbital_cannon?.fire_ob_cannon(get_turf(laser), user)
+	var/x_offset = rand(-2,2) //Little bit of randomness.
+	var/y_offset = rand(-2,2)
+	var/turf/target = locate(current_turf.x + x_offset,current_turf.y + y_offset,current_turf.z)
+	GLOB.marine_main_ship?.orbital_cannon?.fire_ob_cannon(target, user)
 	to_chat(user, "<span class='notice'>FIRING REQUEST RECIEVED. CLEAR TARGET AREA</span>")
 	log_attack("[key_name(user)] fired an orbital bombardment in [AREACOORD(current_turf)].")
 	message_admins("[ADMIN_TPMONTY(user)] fired an orbital bombardment in [ADMIN_VERBOSEJMP(current_turf)].")
