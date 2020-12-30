@@ -976,7 +976,7 @@
 	var/list/options = valid_destinations()
 	var/obj/docking_port/mobile/marine_dropship/M = SSshuttle.getShuttle(shuttleId)
 	var/dat = "Status: [M ? M.getStatusText() : "*Missing*"]<br><br>"
-	if (M.?hijack_state == HIJACK_STATE_NORMAL)
+	if (M?.hijack_state == HIJACK_STATE_NORMAL)
 		var/destination_found
 		for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
 			if(!options.Find(S.id))
