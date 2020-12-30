@@ -12,6 +12,10 @@
 	barefootstep = FOOTSTEP_SNOW
 	mediumxenofootstep = FOOTSTEP_SNOW
 
+/turf/open/floor/plating/ground/snow/Initialize(mapload)
+	. = ..()
+	RegisterSignal(src, COMSIG_ATOM_ACIDSPRAY_ACT, .proc/acidspray_act)
+
 // Melting snow
 /turf/open/floor/plating/ground/snow/fire_act(exposed_temperature, exposed_volume)
 	slayer = 0
@@ -159,10 +163,7 @@
 //Fire act; fire now melts snow as it should; fire beats ice
 /turf/open/floor/plating/ground/snow/flamer_fire_act(burnlevel, firelevel)
 
-	if(!slayer) //Don't bother if there's no snow to melt
-		return
-
-	if(!burnlevel) //Don't bother if there's no burn stacks
+	if(!slayer || !burnlevel) //Don't bother if there's no snow to melt or if there's no burn stacks
 		return
 
 	switch(burnlevel)
@@ -172,6 +173,15 @@
 			slayer = max(0, slayer - 2)
 		if(25 to INFINITY)
 			slayer = 0
+
+/turf/open/floor/plating/ground/snow/proc/acidspray_act()
+	SIGNAL_HANDLER
+
+	if(!slayer) //Don't bother if there's no snow to melt or if there's no burn stacks
+		return
+
+	slayer-- //Melt a layer
+
 
 //SNOW LAYERS-----------------------------------//
 /turf/open/floor/plating/ground/snow/layer0
