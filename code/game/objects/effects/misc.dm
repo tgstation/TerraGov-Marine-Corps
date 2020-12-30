@@ -121,7 +121,7 @@
 				if(check_tod(H))
 					return FALSE
 		return TRUE
-	if(ishuman(mover))
+	if(ishuman(mover) && !issynth(mover))
 		var/mob/living/carbon/human/H = mover
 		if(!check_tod(H)) // Allow pulled perma-dead humans to cross
 			return TRUE
