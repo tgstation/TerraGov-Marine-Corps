@@ -130,7 +130,6 @@
 			visible_message("<span class='warning'>ERROR: Launch protocols already in process. Please standby.</span>", 3)
 			return
 
-		log_game("[key_name(usr)] has departed an ERT shuttle")
 		M.on_ignition()
 		addtimer(VARSET_CALLBACK(M, departing, TRUE), M.ignitionTime)
 
