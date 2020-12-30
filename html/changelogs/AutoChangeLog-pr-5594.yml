@@ -1,0 +1,4 @@
+author: "SplinterGP"
+delete-after: True
+changes: 
+  - tweak: "ghost orbit menu doens't auto-close when you choose to orbit something."
