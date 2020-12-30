@@ -318,7 +318,7 @@
 /datum/game_mode/proc/can_summon_dropship(mob/user)
 	if(SSticker.round_start_time + SHUTTLE_HIJACK_LOCK > world.time)
 		to_chat(user, "<span class='warning'>It's too early to call it. We must wait [DisplayTimeText(SSticker.round_start_time + SHUTTLE_HIJACK_LOCK - world.time, 1)].</span>")
-		//return FALSE
+		return FALSE
 	if(!is_ground_level(user.z))
 		to_chat(user, "<span class='warning'>We can't call the bird from here!</span>")
 		return FALSE
@@ -976,18 +976,17 @@
 	var/list/options = valid_destinations()
 	var/obj/docking_port/mobile/marine_dropship/M = SSshuttle.getShuttle(shuttleId)
 	var/dat = "Status: [M ? M.getStatusText() : "*Missing*"]<br><br>"
-	if(M)
-		if (M.hijack_state == HIJACK_STATE_NORMAL)
-			var/destination_found
-			for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
-				if(!options.Find(S.id))
-					continue
-				if(!M.check_dock(S, silent=TRUE))
-					continue
-				destination_found = TRUE
-				dat += "<A href='?src=[REF(src)];move=[S.id]'>Send to [S.name]</A><br>"
-			if(!destination_found)
-				dat += "<B>Shuttle Locked</B><br>"
+	if (M.?hijack_state == HIJACK_STATE_NORMAL)
+		var/destination_found
+		for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
+			if(!options.Find(S.id))
+				continue
+			if(!M.check_dock(S, silent=TRUE))
+				continue
+			destination_found = TRUE
+			dat += "<A href='?src=[REF(src)];move=[S.id]'>Send to [S.name]</A><br>"
+		if(!destination_found)
+			dat += "<B>Shuttle Locked</B><br>"
 
 	var/datum/browser/popup = new(user, "computer", M ? M.name : "shuttle", 300, 200)
 	popup.set_content("<center>[dat]</center>")
