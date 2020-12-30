@@ -2595,7 +2595,17 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/substation/smes)
 "akn" = (
-/obj/effect/turf_underlay/icefloor,
+/obj/structure/rack,
+/obj/item/tool/shovel/snow,
+/obj/item/tool/shovel/snow{
+	pixel_x = 6;
+	pixel_y = 2
+	},
+/obj/item/tool/shovel/snow{
+	pixel_x = 6;
+	pixel_y = 2
+	},
+/obj/item/tool/shovel/snow,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/landing_pad2)
 "ako" = (
@@ -5158,9 +5168,9 @@
 /area/ice_colony/exterior/surface/valley/northeast)
 "ate" = (
 /obj/structure/rack,
+/obj/item/storage/box/lightstick,
 /obj/item/tool/pickaxe,
 /obj/item/storage/box/lightstick/red,
-/obj/item/storage/box/lightstick,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/landing_pad2)
 "atf" = (
@@ -5219,15 +5229,7 @@
 /turf/open/floor/wood,
 /area/ice_colony/surface/dorms)
 "atq" = (
-/obj/structure/rack,
-/obj/item/tool/shovel/snow,
-/obj/item/tool/shovel/snow{
-	pixel_x = 5
-	},
-/obj/item/tool/shovel/snow{
-	pixel_x = 5
-	},
-/obj/item/tool/shovel/snow,
+/obj/structure/largecrate/random,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/landing_pad2)
 "atr" = (
@@ -5271,10 +5273,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/white,
 /area/ice_colony/surface/clinic/lobby)
-"atx" = (
-/obj/structure/largecrate/random,
-/turf/open/floor/plating/ground/snow/layer0,
-/area/ice_colony/exterior/surface/landing_pad2)
 "aty" = (
 /turf/open/floor/plating/icefloor/warnplate,
 /area/ice_colony/underground/hangar)
@@ -32457,15 +32455,6 @@
 "jmh" = (
 /turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/northeast)
-"jnx" = (
-/obj/structure/rack,
-/obj/item/tool/shovel/snow{
-	pixel_x = 6;
-	pixel_y = 2
-	},
-/obj/item/tool/shovel/snow,
-/turf/open/floor/plating/ground/snow/layer0,
-/area/ice_colony/exterior/surface/landing_pad2)
 "jqu" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/ice_rock/westWall,
@@ -39572,7 +39561,7 @@ oiZ
 dAo
 atf
 akn
-akn
+ate
 qmg
 wmf
 ycQ
@@ -39827,9 +39816,9 @@ acU
 afd
 wpJ
 dAo
-jnx
-akn
-akn
+hOW
+hOW
+hOW
 jah
 aaQ
 aaU
@@ -40084,9 +40073,9 @@ dRI
 llI
 nXf
 dAo
-ate
-akn
 hOW
+hOW
+atq
 kub
 aaZ
 alR
@@ -40343,7 +40332,7 @@ hOW
 dAo
 hyh
 hyh
-hOW
+atq
 gEI
 aac
 aac
@@ -40598,9 +40587,9 @@ sQr
 hOW
 hOW
 dAo
+hOW
+hOW
 atq
-hOW
-hOW
 gEI
 aac
 aac
@@ -40855,7 +40844,7 @@ rka
 dAo
 mxc
 dAo
-atx
+hOW
 hOW
 hOW
 gEI
@@ -41112,7 +41101,7 @@ abm
 dAo
 hOW
 hyh
-atx
+hOW
 hOW
 hOW
 gEI
@@ -41369,7 +41358,7 @@ abz
 dAo
 hOW
 hyh
-atx
+hOW
 hOW
 hOW
 gEI
@@ -43162,10 +43151,10 @@ agd
 agd
 rJF
 aog
-agd
-abz
-abz
-abz
+aog
+omz
+omz
+omz
 agd
 agd
 aaJ
@@ -43933,7 +43922,7 @@ aar
 agd
 agd
 omz
-agd
+abz
 agd
 agd
 agd
