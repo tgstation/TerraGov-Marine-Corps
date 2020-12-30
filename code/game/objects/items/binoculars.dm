@@ -16,13 +16,13 @@
 	zoom(user, 11, 12)
 
 #define MODE_CAS 0
-#define MODE_RANGE_FINDER 1
-#define MODE_RAILGUN 2
-#define MODE_ORBITAL 3
+#define MODE_RAILGUN 1
+#define MODE_ORBITAL 2
+#define MODE_RANGE_FINDER 3
 
 /obj/item/binoculars/tactical
 	name = "tactical binoculars"
-	desc = "A pair of binoculars, with a laser targeting function. Alt+Click to toggle mode. Ctrl+Click when using to target something."
+	desc = "A pair of binoculars, with a laser targeting function. Alt+Click or space to toggle mode. Ctrl+Click when using to target something. Shift+Click to get coordinates. Ctrl+Shift+Click to fire OB when lasing in OB mode"
 	var/laser_cooldown = 0
 	var/cooldown_duration = 200 //20 seconds
 	var/obj/effect/overlay/temp/laser_target/laser
@@ -61,6 +61,10 @@
 
 /obj/item/binoculars/tactical/InterceptClickOn(mob/user, params, atom/object)
 	var/list/pa = params2list(params)
+	if(!pa.Find("ctrl") && pa.Find("shift"))
+		acquire_coordinates(object, user)
+		return TRUE
+	
 	if(pa.Find("ctrl") && !pa.Find("shift"))
 		acquire_target(object, user)
 		return TRUE
@@ -145,6 +149,12 @@
 	update_icon()
 	playsound(user, 'sound/items/binoculars.ogg', 15, 1)
 
+/obj/item/binoculars/tactical/proc/acquire_coordinates(atom/A, mob/living/carbon/human/user)
+	var/turf/TU = get_turf(A)
+	targetturf = TU
+	to_chat(user, "<span class='notice'>COORDINATES: LONGITUDE [targetturf.x]. LATITUDE [targetturf.y].</span>")
+	playsound(src, 'sound/effects/binoctarget.ogg', 35)
+
 /obj/item/binoculars/tactical/proc/acquire_target(atom/A, mob/living/carbon/human/user)
 	set waitfor = 0
 
@@ -201,7 +211,7 @@
 	switch(mode)
 		if(MODE_CAS)
 			to_chat(user, "<span class='notice'>TARGET ACQUIRED. LASER TARGETING IS ONLINE. DON'T MOVE.</span>")
-			var/obj/effect/overlay/temp/laser_target/LT = new (TU, laz_name, S)
+			var/obj/effect/overlay/temp/laser_target_cas/LT = new (TU, laz_name, S)
 			laser = LT
 			playsound(src, 'sound/effects/binoctarget.ogg', 35)
 			while(laser)
@@ -219,7 +229,7 @@
 			else if(!targ_area)
 				to_chat(user, "[icon2html(src, user)] <span class='warning'>No target detected!</span>")
 			else
-				var/obj/effect/overlay/temp/laser_target/RT = new (TU, laz_name, S)
+				var/obj/effect/overlay/temp/laser_target_railgun/RT = new (TU, laz_name, S)
 				laser = RT
 				playsound(src, 'sound/effects/binoctarget.ogg', 35)
 				if(!do_after(user, 2 SECONDS, TRUE, user, BUSY_ICON_GENERIC))
@@ -276,7 +286,7 @@
 //For events
 /obj/item/binoculars/tactical/range
 	name = "range-finder"
-	desc = "A pair of binoculars designed to find coordinates."
+	desc = "A pair of binoculars designed to find coordinates. Shift+Click or Ctrl+Click to get coordinates when using"
 	changable = 0
 	mode = MODE_RANGE_FINDER
 

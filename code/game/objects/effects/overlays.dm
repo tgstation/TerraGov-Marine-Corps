@@ -129,6 +129,96 @@
 	if(ishuman(usr))
 		to_chat(usr, "<span class='danger'>It's a laser to designate artillery targets, get away from it!</span>")
 
+/obj/effect/overlay/temp/laser_target_cas
+	name = "laser"
+	anchored = TRUE
+	mouse_opacity = 1
+	icon = 'icons/obj/items/projectiles.dmi'
+	icon_state = "laser_target_coordinate"
+	effect_duration = 600
+	var/target_id
+	var/obj/item/binoculars/tactical/source_binoc
+	var/obj/machinery/camera/laser_cam/linked_cam
+	var/datum/squad/squad
+
+/obj/effect/overlay/temp/laser_target_cas/Initialize(mapload, named, assigned_squad = null)
+	. = ..()
+	if(named)
+		name = "[named] laser"
+	target_id = UNIQUEID //giving it a unique id.
+	GLOB.active_laser_targets += src
+	squad = assigned_squad
+	if(squad)
+		squad.squad_laser_targets += src
+	linked_cam = new(loc, name)
+
+/obj/effect/overlay/temp/laser_target_cas/Destroy()
+	GLOB.active_laser_targets -= src
+	if(squad)
+		squad.squad_laser_targets -= src
+		squad = null
+	if(source_binoc)
+		source_binoc.laser_cooldown = world.time + source_binoc.cooldown_duration
+		source_binoc.laser = null
+		source_binoc = null
+	if(linked_cam)
+		qdel(linked_cam)
+		linked_cam = null
+	. = ..()
+
+/obj/effect/overlay/temp/laser_target_cas/ex_act(severity) //immune to explosions
+	return
+
+/obj/effect/overlay/temp/laser_target_cas/examine()
+	..()
+	if(ishuman(usr))
+		to_chat(usr, "<span class='danger'>It's a laser to designate cas targets, get away from it!</span>")
+
+/obj/effect/overlay/temp/laser_target_railgun
+	name = "laser"
+	anchored = TRUE
+	mouse_opacity = 1
+	icon = 'icons/obj/items/projectiles.dmi'
+	icon_state = "laser_target_blue"
+	effect_duration = 600
+	var/target_id
+	var/obj/item/binoculars/tactical/source_binoc
+	var/obj/machinery/camera/laser_cam/linked_cam
+	var/datum/squad/squad
+
+/obj/effect/overlay/temp/laser_target_railgun/Initialize(mapload, named, assigned_squad = null)
+	. = ..()
+	if(named)
+		name = "[named] laser"
+	target_id = UNIQUEID //giving it a unique id.
+	GLOB.active_laser_targets += src
+	squad = assigned_squad
+	if(squad)
+		squad.squad_laser_targets += src
+	linked_cam = new(loc, name)
+
+/obj/effect/overlay/temp/laser_target_railgun/Destroy()
+	GLOB.active_laser_targets -= src
+	if(squad)
+		squad.squad_laser_targets -= src
+		squad = null
+	if(source_binoc)
+		source_binoc.laser_cooldown = world.time + source_binoc.cooldown_duration
+		source_binoc.laser = null
+		source_binoc = null
+	if(linked_cam)
+		qdel(linked_cam)
+		linked_cam = null
+	. = ..()
+
+/obj/effect/overlay/temp/laser_target_railgun/ex_act(severity) //immune to explosions
+	return
+
+/obj/effect/overlay/temp/laser_target_cas/examine()
+	..()
+	if(ishuman(usr))
+		to_chat(usr, "<span class='danger'>It's a laser to designate artillery targets, get away from it!</span>")
+
 
 //used to show where dropship ordnance will impact.
 /obj/effect/overlay/temp/blinking_laser
