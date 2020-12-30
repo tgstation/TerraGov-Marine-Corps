@@ -28,6 +28,11 @@
 	fire_delay = 4
 
 
+/obj/item/weapon/gun/flamer/Initialize()
+	. = ..()
+	if (current_mag)
+		toggle_flame(null,TRUE)
+
 /obj/item/weapon/gun/flamer/unique_action(mob/user)
 	if(under)
 		var/obj/item/attachable/hydro_cannon/hydro = under
