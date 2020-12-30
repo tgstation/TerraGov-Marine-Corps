@@ -1180,9 +1180,12 @@
 /turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/northwest)
 "afc" = (
-/obj/effect/turf_underlay/icefloor,
+/obj/structure/rack,
+/obj/item/storage/box/lightstick,
+/obj/item/tool/pickaxe,
+/obj/item/storage/box/lightstick/red,
 /turf/open/floor/plating/ground/snow/layer0,
-/area/ice_colony/exterior/surface/valley/northwest)
+/area/ice_colony/exterior/surface/landing_pad2)
 "afd" = (
 /turf/open/floor/plating,
 /area/ice_colony/exterior/surface/landing_pad2)
@@ -2731,7 +2734,7 @@
 /area/ice_colony/exterior/surface/valley/northwest)
 "akO" = (
 /obj/item/tool/shovel/snow,
-/turf/open/floor/plating/ground/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/northwest)
 "akP" = (
 /obj/effect/turf_underlay/icefloor,
@@ -5167,10 +5170,7 @@
 	},
 /area/ice_colony/exterior/surface/valley/northeast)
 "ate" = (
-/obj/structure/rack,
-/obj/item/storage/box/lightstick,
-/obj/item/tool/pickaxe,
-/obj/item/storage/box/lightstick/red,
+/obj/structure/largecrate/random,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/landing_pad2)
 "atf" = (
@@ -5228,10 +5228,6 @@
 /obj/item/clothing/under/bluepyjamas,
 /turf/open/floor/wood,
 /area/ice_colony/surface/dorms)
-"atq" = (
-/obj/structure/largecrate/random,
-/turf/open/floor/plating/ground/snow/layer0,
-/area/ice_colony/exterior/surface/landing_pad2)
 "atr" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -39561,7 +39557,7 @@ oiZ
 dAo
 atf
 akn
-ate
+afc
 qmg
 wmf
 ycQ
@@ -40075,7 +40071,7 @@ nXf
 dAo
 hOW
 hOW
-atq
+ate
 kub
 aaZ
 alR
@@ -40332,7 +40328,7 @@ hOW
 dAo
 hyh
 hyh
-atq
+ate
 gEI
 aac
 aac
@@ -40589,7 +40585,7 @@ hOW
 dAo
 hOW
 hOW
-atq
+ate
 gEI
 aac
 aac
@@ -43152,7 +43148,7 @@ agd
 rJF
 aog
 aog
-omz
+aog
 omz
 omz
 agd
@@ -43407,9 +43403,9 @@ aaJ
 agd
 agd
 agd
-omz
-abz
-abz
+aog
+agd
+agd
 aiw
 abz
 agd
@@ -43664,11 +43660,11 @@ aaC
 agd
 agd
 agd
-omz
-abz
-abz
+aog
 agd
 agd
+abz
+abz
 agd
 aaJ
 abz
@@ -43921,11 +43917,11 @@ aaG
 aar
 agd
 agd
-omz
+aog
+agd
+agd
 abz
-agd
-agd
-agd
+abz
 aaJ
 abz
 abz
@@ -44178,11 +44174,11 @@ aad
 aaB
 agd
 agd
-omz
+aog
+agd
+agd
 abz
-agd
-agd
-aaJ
+abz
 abz
 abz
 abz
@@ -44435,11 +44431,11 @@ aaB
 afO
 agd
 agd
-omz
+aog
 akO
 agd
-agd
-agd
+abz
+abz
 abz
 abz
 abz
@@ -44692,8 +44688,8 @@ acm
 aae
 agd
 agd
-omz
-abz
+aog
+agd
 alO
 abz
 abz
@@ -44949,12 +44945,12 @@ acm
 aaQ
 agd
 agd
-omz
-abz
+aog
+agd
 amQ
 abz
 abz
-afc
+abz
 abz
 abz
 aaJ
@@ -45208,10 +45204,10 @@ agd
 abz
 omz
 abz
-agd
-agd
-agd
-agd
+abz
+abz
+abz
+abz
 agd
 agd
 aaJ
@@ -45465,9 +45461,9 @@ agd
 abz
 omz
 abz
-agd
-aaJ
-aaJ
+abz
+abz
+abz
 aaJ
 aaJ
 aaJ
