@@ -1181,10 +1181,8 @@
 /area/ice_colony/exterior/surface/valley/northwest)
 "afc" = (
 /obj/effect/turf_underlay/icefloor,
-/turf/closed/ice/thin/junction{
-	dir = 4
-	},
-/area/ice_colony/exterior/surface/cliff)
+/turf/open/floor/plating/ground/snow/layer0,
+/area/ice_colony/exterior/surface/valley/northwest)
 "afd" = (
 /turf/open/floor/plating,
 /area/ice_colony/exterior/surface/landing_pad2)
@@ -2598,7 +2596,7 @@
 /area/ice_colony/surface/substation/smes)
 "akn" = (
 /obj/effect/turf_underlay/icefloor,
-/turf/closed/ice/thin/corner,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/landing_pad2)
 "ako" = (
 /obj/structure/rack,
@@ -31916,6 +31914,10 @@
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/landing_pad2)
+"dYH" = (
+/obj/effect/turf_overlay/icerock,
+/turf/open/floor/plating/ground/snow/layer2,
+/area/ice_colony/exterior/surface/valley/northwest)
 "eak" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -39569,8 +39571,8 @@ afd
 oiZ
 dAo
 atf
-xNj
-xNj
+akn
+akn
 qmg
 wmf
 ycQ
@@ -39827,7 +39829,7 @@ wpJ
 dAo
 jnx
 akn
-xNj
+akn
 jah
 aaQ
 aaU
@@ -40083,8 +40085,8 @@ llI
 nXf
 dAo
 ate
-nOj
-rCI
+akn
+hOW
 kub
 aaZ
 alR
@@ -40341,7 +40343,7 @@ hOW
 dAo
 hyh
 hyh
-abZ
+hOW
 gEI
 aac
 aac
@@ -40597,8 +40599,8 @@ hOW
 hOW
 dAo
 atq
-hdK
-aae
+hOW
+hOW
 gEI
 aac
 aac
@@ -40854,8 +40856,8 @@ dAo
 mxc
 dAo
 atx
-nmm
-aae
+hOW
+hOW
 gEI
 aac
 aaU
@@ -41111,8 +41113,8 @@ dAo
 hOW
 hyh
 atx
-iaC
-aaB
+hOW
+hOW
 gEI
 aaU
 aaU
@@ -41368,10 +41370,10 @@ dAo
 hOW
 hyh
 atx
-pwi
-aaB
+hOW
+hOW
 gEI
-aae
+oIU
 frj
 uAj
 oIU
@@ -41628,7 +41630,7 @@ yll
 yem
 aTO
 gEI
-aae
+oIU
 oIU
 oIU
 oIU
@@ -41883,9 +41885,9 @@ agd
 agd
 agd
 aaJ
-acm
-aac
-aaU
+aaJ
+aaJ
+oIU
 fXM
 aaP
 aaZ
@@ -42140,8 +42142,8 @@ agd
 agd
 agd
 aaJ
-acm
-aac
+aaJ
+aaJ
 oIU
 aaP
 afx
@@ -42397,8 +42399,8 @@ agd
 agd
 agd
 aaJ
-acm
-aad
+aaJ
+dYH
 oIU
 amC
 aaZ
@@ -42654,8 +42656,8 @@ agd
 agd
 agd
 aaJ
-acm
-aae
+aaJ
+aaJ
 oIU
 oIU
 oIU
@@ -42911,8 +42913,8 @@ agd
 agd
 agd
 aaJ
-acm
-aad
+aaJ
+dYH
 oIU
 oIU
 hNm
@@ -43168,9 +43170,9 @@ agd
 agd
 aaJ
 agd
-acj
-aaU
-aaC
+aiH
+aiH
+aiH
 oIU
 iPp
 iPp
@@ -43424,8 +43426,8 @@ abz
 agd
 aaJ
 aaJ
-aaP
-aaZ
+abz
+abz
 aiH
 alJ
 alI
@@ -43680,8 +43682,8 @@ agd
 agd
 agd
 aaJ
-aaS
-aaZ
+abz
+abz
 aiH
 aiH
 aif
@@ -43936,9 +43938,9 @@ agd
 agd
 agd
 aaJ
-aaP
-aaZ
-aaQ
+abz
+abz
+abz
 aiH
 aif
 aif
@@ -44192,10 +44194,10 @@ abz
 agd
 agd
 aaJ
-aaC
-aaB
-aar
-aaZ
+abz
+abz
+abz
+abz
 aaJ
 ahH
 ahE
@@ -44449,9 +44451,9 @@ akO
 agd
 agd
 agd
-aaG
-aac
-aae
+abz
+abz
+abz
 aaJ
 aaJ
 ahH
@@ -44704,11 +44706,11 @@ agd
 omz
 abz
 alO
-acv
-aaG
-acj
-aac
-aae
+abz
+abz
+abz
+abz
+abz
 aaJ
 aaJ
 ahH
@@ -44961,11 +44963,11 @@ agd
 omz
 abz
 amQ
-acn
-aca
+abz
+abz
 afc
-acj
-aaU
+abz
+abz
 aaJ
 aaJ
 ahH
