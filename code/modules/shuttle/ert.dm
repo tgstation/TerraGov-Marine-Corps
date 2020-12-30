@@ -86,7 +86,7 @@
 
 
 /obj/machinery/computer/shuttle/ert
-	interaction_flags = INTERACT_OBJ_NANO //No AIs allowed
+	interaction_flags = INTERACT_MACHINE_TGUI|INTERACT_MACHINE_NOSILICON //No AIs allowed
 
 /obj/machinery/computer/shuttle/ert/valid_destinations()
 	var/obj/docking_port/mobile/ert/M = SSshuttle.getShuttle(shuttleId)
