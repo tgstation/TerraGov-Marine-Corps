@@ -370,7 +370,7 @@
 	P.set_up(4, 0, impact)
 	P.start()
 	var/datum/effect_system/smoke_spread/S = new
-	S.set_up(1, impact)
+	S.set_up(3, impact)
 	S.start()
 
 /obj/structure/ship_ammo/minirocket/illumination
