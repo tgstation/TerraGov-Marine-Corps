@@ -38,6 +38,7 @@
 		var/obj/item/attachable/hydro_cannon/hydro = under
 		if(istype(hydro))
 			hydro.activate_attachment(user)
+			playsound(user, hydro.activation_sound, 15, 1)
 
 
 /obj/item/weapon/gun/flamer/examine_ammo_count(mob/user)
