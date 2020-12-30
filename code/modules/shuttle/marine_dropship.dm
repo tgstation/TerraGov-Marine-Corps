@@ -263,7 +263,7 @@
 /obj/docking_port/mobile/marine_dropship/getStatusText()
 	if(hijack_state == HIJACK_STATE_CALLED_DOWN)
 		return "Control integrity compromised"
-	else if(hijack_state==HIJACK_STATE_UNLOCKED)
+	else if(hijack_state == HIJACK_STATE_UNLOCKED)
 		return "Remote control compromised"
 	return ..()
 
