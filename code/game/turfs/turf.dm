@@ -540,7 +540,7 @@
 	var/has_obstacle
 	for(var/obj/O in contents)
 		if(istype(O, /obj/item/clothing/mask/facehugger))
-			var/obj/item/clothing/mask/facehugger/hugger_check
+			var/obj/item/clothing/mask/facehugger/hugger_check = O
 			if(hugger_check.stat != DEAD) //We don't care about dead huggers.
 				if(!silent)
 					to_chat(builder, "<span class='warning'>There is a little one here already. Best move it.</span>")
