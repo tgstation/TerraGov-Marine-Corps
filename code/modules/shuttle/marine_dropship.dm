@@ -370,7 +370,7 @@
 		D.do_start_hijack_timer(GROUND_LOCKDOWN_TIME)
 		to_chat(user, "<span class='warning'>We have overriden the shuttle lockdown!</span>")
 		playsound(user, "alien_roar", 50)
-		priority_announce("Alamo lockdown protocol compromised. Interferences preventing remote control", "Dropship Lock Alert")
+		priority_announce("Alamo lockdown protocol compromised. Interference preventing remote control", "Dropship Lock Alert")
 		return FALSE
 	if(D.hijack_state == HIJACK_STATE_CALLED_DOWN)
 		to_chat(user, "<span class='warning'>The bird's mind is already tampered with!</span>")
