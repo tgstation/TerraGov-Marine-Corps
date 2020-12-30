@@ -310,7 +310,7 @@
 		return
 
 	hive?.xeno_message("[src] has summoned down the metal bird to [port], gather to her now!")
-	priority_announce("Unknown entity tampering with dropship control. Shutting down autopilot","Dropship departure from ship")
+	priority_announce("Unknown interference with dropship control. Shutting down autopilot",  "Dropship malfunction")
 
 
 #define ALIVE_HUMANS_FOR_CALLDOWN 0.1
