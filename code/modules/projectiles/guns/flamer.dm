@@ -29,11 +29,13 @@
 
 
 /obj/item/weapon/gun/flamer/unique_action(mob/user)
-	return toggle_flame(user)
+	if(under)
+		var/obj/item/attachable/hydro_cannon/hydro = under
+		if(istype(hydro))
+			hydro.activate_attachment(user)
 
 
 /obj/item/weapon/gun/flamer/examine_ammo_count(mob/user)
-	to_chat(user, "It's turned [lit? "on" : "off"].")
 	if(current_mag)
 		to_chat(user, "The fuel gauge shows the current tank is [round(current_mag.get_ammo_percent())]% full!")
 	else
@@ -46,9 +48,11 @@
 			return
 
 
-/obj/item/weapon/gun/flamer/proc/toggle_flame(mob/user)
+/obj/item/weapon/gun/flamer/proc/toggle_flame(mob/user,var/toggle)
+	if (lit == toggle)//You can't lit what is already lit
+		return
+	lit = toggle
 	playsound(user, lit ? 'sound/weapons/guns/interact/flamethrower_off.ogg' : 'sound/weapons/guns/interact/flamethrower_on.ogg', 25, 1)
-	lit = !lit
 
 	var/image/I = image('icons/obj/items/gun.dmi', src, "+lit")
 	I.pixel_x += 3
@@ -76,9 +80,6 @@
 	if(!targloc || !curloc)
 		return //Something has gone wrong...
 
-	if(!lit)
-		to_chat(user, "<span class='alert'>The weapon isn't lit</span>")
-		return
 
 	if(!current_mag)
 		return
@@ -117,15 +118,18 @@
 				to_chat(user, "<span class='notice'>You begin reloading [src]. Hold still...</span>")
 				if(do_after(user,magazine.reload_delay, TRUE, src, BUSY_ICON_GENERIC))
 					replace_magazine(user, magazine)
+					toggle_flame(user,TRUE)
 				else
 					to_chat(user, "<span class='warning'>Your reload was interrupted!</span>")
 					return
 			else
 				replace_magazine(user, magazine)
+				toggle_flame(user,TRUE)
 		else
 			current_mag = magazine
 			magazine.loc = src
 			replace_ammo(,magazine)
+			toggle_flame(user,TRUE)
 
 	update_icon()
 	return TRUE
@@ -139,6 +143,7 @@
 		user.put_in_hands(current_mag)
 
 	playsound(user, unload_sound, 25, 1)
+	toggle_flame(user,FALSE)
 	user.visible_message("<span class='notice'>[user] unloads [current_mag] from [src].</span>",
 	"<span class='notice'>You unload [current_mag] from [src].</span>")
 	current_mag.update_icon()
@@ -209,6 +214,8 @@
 			TF = T
 
 		current_mag.current_rounds--
+		if (current_mag.current_rounds<=0)
+			toggle_flame(user,FALSE)
 		flame_turf(TF,user, burntime, burnlevel, fire_color)
 		if(blocked)
 			break
@@ -389,15 +396,18 @@
 				to_chat(user, "<span class='notice'>You begin reloading [src]. Hold still...</span>")
 				if(do_after(user,magazine.reload_delay, TRUE, src, BUSY_ICON_GENERIC))
 					replace_magazine(user, magazine)
+					toggle_flame(user,TRUE)
 				else
 					to_chat(user, "<span class='warning'>Your reload was interrupted!</span>")
 					return
 			else
 				replace_magazine(user, magazine)
+				toggle_flame(user,TRUE)
 		else
 			current_mag = magazine
 			magazine.loc = src
 			replace_ammo(,magazine)
+			toggle_flame(user,TRUE)
 
 	update_icon()
 	return TRUE
