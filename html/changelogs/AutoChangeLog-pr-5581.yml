@@ -1,0 +1,6 @@
+author: "fernandos13"
+delete-after: True
+changes: 
+  - rscadd: "new hypospray pouch"
+  - rscadd: "hypospray pouch to corpsman prep"
+  - rscadd: "new pre filled hyposprays"
