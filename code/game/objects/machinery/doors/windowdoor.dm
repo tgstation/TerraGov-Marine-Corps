@@ -87,7 +87,7 @@
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
 		return TRUE
 	if(get_dir(loc, target) == dir) //Make sure looking at appropriate border
-		return FALSE
+		return
 	return TRUE
 
 /obj/machinery/door/window/CheckExit(atom/movable/mover, turf/target)
