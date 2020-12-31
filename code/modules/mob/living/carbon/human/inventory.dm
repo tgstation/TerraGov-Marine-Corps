@@ -526,3 +526,17 @@
 		if(save_id && istype(i, /obj/item/card/id))
 			continue
 		qdel(i)
+
+/mob/living/carbon/human/proc/is_type_in_slots(type_searched)
+	var/list/equipped = list() //Heared we have lazylist or something for better perf, change needed?
+	for (var/slot in SLOT_ALL)
+		if (istype(get_item_by_slot(slot),type_searched))
+			equipped+=get_item_by_slot(slot)
+	return equipped
+
+/mob/living/carbon/human/proc/is_item_in_hands(obj/item/item_searched)
+	if (get_item_by_slot(SLOT_R_HAND) == item_searched)
+		return TRUE
+	if (get_item_by_slot(SLOT_L_HAND) == item_searched)
+		return TRUE
+	return FALSE

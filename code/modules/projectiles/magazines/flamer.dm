@@ -69,6 +69,21 @@
 			FLT.attach_fueltank(user,src)
 	else
 		return ..()
+
+/obj/item/ammo_magazine/flamer_tank/backtank/dropped(mob/user) //Dropping the tank should unlink it from the flamer
+	..()
+	var/mob/living/carbon/human/humanuser = user
+	if (istype(humanuser))
+		if(!humanuser.is_item_in_hands(src))//Equiping the tank should not unlink it
+			return
+		var/list/possibleFlamerLinked = humanuser.is_type_in_slots(/obj/item/weapon/gun/flamer)
+		for (var/i in possibleFlamerLinked)
+			var/obj/item/weapon/gun/flamer/possibleFlamer = i
+			if (possibleFlamer.current_mag == src)
+				possibleFlamer.detach_fueltank(user,FALSE)
+				break
+	else
+		return ..()
 /obj/item/ammo_magazine/flamer_tank/backtank/B
 	name = "Back fuel tank"
 	desc = "A specialized fuel tank of ultra thick napthal type B for use with the TL-84 flamethrower and M240A1 incinerator unit."

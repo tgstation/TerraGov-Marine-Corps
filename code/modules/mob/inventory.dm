@@ -231,6 +231,7 @@
 	if((I.flags_item & NODROP) && !force)
 		return FALSE //UnEquip() only fails if item has NODROP
 
+	I.dropped(src)
 	doUnEquip(I)
 
 	if (client)
@@ -239,7 +240,6 @@
 	I.plane = initial(I.plane)
 	if(newloc)
 		I.forceMove(newloc)
-	I.dropped(src)
 
 	return TRUE
 

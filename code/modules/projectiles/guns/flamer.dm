@@ -188,9 +188,10 @@
 		to_chat(user, "<span class='warning'>Your action was interrupted!</span>")
 		return
 
-/obj/item/weapon/gun/flamer/proc/detach_fueltank(mob/user)
+/obj/item/weapon/gun/flamer/proc/detach_fueltank(mob/user,volontary = TRUE)
 	current_mag = null
-	to_chat(user, "<span class='notic'>You detach the fuel tank</span>")
+	if (volontary)
+		to_chat(user, "<span class='notic'>You detach the fuel tank</span>")
 	playsound(user, unload_sound, 25, 1)
 	toggle_flame(user,FALSE)
 	update_icon(user)
@@ -198,11 +199,14 @@
 	
 /obj/item/weapon/gun/flamer/dropped(mob/user)
 	..()
-	if (istype(current_mag,/obj/item/ammo_magazine/flamer_tank/backtank/)) //Dropping the flamer unlink it from the tank
-		current_mag = null 
-		toggle_flame(null,FALSE) 
-
-	update_icon(user)
+	var/mob/living/carbon/human/humanuser = user
+	if (istype(humanuser))
+		if(!humanuser.is_item_in_hands(src))//Unequiping the flamer should not unlink it
+			return
+		if (istype(current_mag,/obj/item/ammo_magazine/flamer_tank/backtank/)) //Dropping the flamer unlink it from the tank
+			current_mag = null 
+			toggle_flame(null,FALSE) 
+		update_icon(humanuser)
 
 /obj/item/weapon/gun/flamer/proc/unleash_flame(atom/target, mob/living/user)
 	set waitfor = 0
