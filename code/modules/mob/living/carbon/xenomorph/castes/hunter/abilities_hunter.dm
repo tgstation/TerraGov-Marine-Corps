@@ -13,6 +13,7 @@
 	var/stealth = FALSE
 	var/can_sneak_attack = FALSE
 	var/stealth_alpha_multiplier = 1
+	var/last_run_intent
 
 /datum/action/xeno_action/stealth/give_action(mob/living/L)
 	. = ..()
@@ -156,6 +157,8 @@
 		owner.alpha = HUNTER_STEALTH_WALK_ALPHA * stealth_alpha_multiplier
 	//Running stealth
 	else
+		last_run_intent = world.time  //Get a time stamp for the last time we used the run intent to move, so we can't just sprint next to someone, quickswap to stalk and get full sneak attack benefits like some x-ploiter
+		message_admins("last run intent: [world.time]")
 		xenoowner.use_plasma(HUNTER_STEALTH_RUN_PLASMADRAIN)
 		owner.alpha = HUNTER_STEALTH_RUN_ALPHA * stealth_alpha_multiplier
 	//If we have 0 plasma after expending stealth's upkeep plasma, end stealth.
@@ -199,7 +202,7 @@
 	var/paralyze_time = HUNTER_SNEAK_ATTACK_PARALYZE_TIME
 	var/staggerslow_stacks = HUNTER_SNEAK_ATTACK_STAGGERSLOW_STACKS
 	var/flavour
-	if(owner.m_intent == MOVE_INTENT_RUN && ( owner.last_move_time > (world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY) ) ) //We penalize running with a compromised sneak attack, unless they've been stationary; walking is fine.
+	if(last_run_intent > (world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY)) //We penalize running with a compromised sneak attack, unless they've been stationary; walking is fine.
 		flavour = "vicious"
 		staggerslow_stacks *= HUNTER_SNEAK_ATTACK_RUNNING_MULTIPLIER //half as much stagger slow if we're running and not stationary
 		paralyze_time = 0 //No stun time for sprint sneak attacks
@@ -379,10 +382,6 @@
 			to_chat(X, "<span class='xenowarning'>We must be adjacent to the target.</span>")
 		return FALSE
 
-	if(X.m_intent == MOVE_INTENT_RUN && ( X.last_move_time > (world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY) ) )//We can't sprint up to the target and use this.
-		if(!silent)
-			to_chat(X, "<span class='xenowarning'>We must be stalking or stationary to properly sting the target!</span>")
-		return FALSE
 
 	if(sting_target.stat == DEAD)
 		if(!silent)
@@ -393,11 +392,19 @@
 		var/mob/living/carbon/human/human_target = A
 
 		if(isnestedhost(human_target)) //no bully
-			to_chat(X, "<span class='xenowarning'>We refrain from unnecessarily bullying the host.</span>")
+			if(!silent)
+				to_chat(X, "<span class='xenowarning'>We refrain from unnecessarily bullying the host.</span>")
 			return FALSE
 
 	if(!SEND_SIGNAL(X, COMSIG_HUNTER_SNEAK_ATTACK_CHECK) & COMSIG_HUNTER_SNEAK_ATTACK)
-		to_chat(X, "<span class='xenowarning'>We must be able to sneak attack the target to properly sting it!</span>")
+		if(!silent)
+			to_chat(X, "<span class='xenowarning'>We must be able to sneak attack the target to properly sting it!</span>")
+		return FALSE
+
+	var/datum/action/xeno_action/stealth/sneak_attack_check = X.actions_by_path[/datum/action/xeno_action/stealth]
+	if(sneak_attack_check.last_run_intent > (world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY))//We can't sprint up to the target and use this.
+		if(!silent)
+			to_chat(X, "<span class='xenowarning'>We must be stalking or stationary to properly sting the target!</span>")
 		return FALSE
 
 	return TRUE
@@ -422,7 +429,7 @@
 		return fail_activate()
 
 	victim.attack_alien(X) //We auto-sneak attack as part of this ability.
-	var/datum/reagent/inject_toxin = new /datum/reagent/toxin/acid/xeno_acid()
+	var/inject_toxin = /datum/reagent/toxin/acid/xeno_acid
 	var/transfer_amount = HUNTER_SNEAK_ATTACK_INJECT_AMOUNT
 	if(X.a_intent != INTENT_HARM) //Inject neurotoxin instead of acid while on non-harm intent and double the dose
 		inject_toxin = /datum/reagent/toxin/xeno_neurotoxin
