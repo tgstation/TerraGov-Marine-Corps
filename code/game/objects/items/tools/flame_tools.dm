@@ -219,11 +219,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		light("<span class='notice'>[user] lights their [src] with the [W].</span>")
 
 	else if(istype(W, /obj/item/weapon/gun/flamer))
-		var/obj/item/weapon/gun/flamer/F = W
-		if(F.lit)
-			light("<span class='notice'>[user] lights their [src] with the pilot light of the [F].</span>")
-		else
-			to_chat(user, "<span class='warning'>Turn on the pilot light first!</span>")
+		light("<span class='notice'>[user] lights their [src] with the pilot light of the [W].</span>")
 
 	else if(istype(W, /obj/item/weapon/gun))
 		var/obj/item/weapon/gun/G = W

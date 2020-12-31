@@ -28,16 +28,33 @@
 	fire_delay = 4
 
 
-/obj/item/weapon/gun/flamer/unique_action(mob/user)
-	return toggle_flame(user)
+/obj/item/weapon/gun/flamer/Initialize()
+	. = ..()
+	if (current_mag) //A flamer spawing with a mag will be lit up
+		toggle_flame(null,TRUE)
 
+/obj/item/weapon/gun/flamer/unique_action(mob/user)
+	if(under)
+		var/obj/item/attachable/hydro_cannon/hydro = under
+		if(istype(hydro))
+			hydro.activate_attachment(user)
+			playsound(user, hydro.activation_sound, 15, 1)
+
+/obj/item/weapon/gun/flamer/update_icon(mob/user)
+	if(!current_mag)
+		icon_state = base_gun_icon + "_e"
+	else if(istype(current_mag,/obj/item/ammo_magazine/flamer_tank/backtank))
+		icon_state = base_gun_icon + "_l"
+	else
+		icon_state = base_gun_icon
+	update_item_state(user)
+	update_mag_overlay(user)
 
 /obj/item/weapon/gun/flamer/examine_ammo_count(mob/user)
-	to_chat(user, "It's turned [lit? "on" : "off"].")
 	if(current_mag)
 		to_chat(user, "The fuel gauge shows the current tank is [round(current_mag.get_ammo_percent())]% full!")
 	else
-		to_chat(user, "There's no tank in [src]!")
+		to_chat(user, "[src] has no fuel tank!")
 
 /obj/item/weapon/gun/flamer/able_to_fire(mob/user)
 	. = ..()
@@ -46,9 +63,11 @@
 			return
 
 
-/obj/item/weapon/gun/flamer/proc/toggle_flame(mob/user)
+/obj/item/weapon/gun/flamer/proc/toggle_flame(mob/user,mustlit)
+	if (lit == mustlit)//You can't lit what is already lit
+		return
+	lit = mustlit
 	playsound(user, lit ? 'sound/weapons/guns/interact/flamethrower_off.ogg' : 'sound/weapons/guns/interact/flamethrower_on.ogg', 25, 1)
-	lit = !lit
 
 	var/image/I = image('icons/obj/items/gun.dmi', src, "+lit")
 	I.pixel_x += 3
@@ -76,9 +95,6 @@
 	if(!targloc || !curloc)
 		return //Something has gone wrong...
 
-	if(!lit)
-		to_chat(user, "<span class='alert'>The weapon isn't lit</span>")
-		return
 
 	if(!current_mag)
 		return
@@ -87,8 +103,6 @@
 		click_empty(user)
 	else
 		unleash_flame(target, user)
-		var/obj/screen/ammo/A = user.hud_used.ammo
-		A.update_hud(user)
 
 /obj/item/weapon/gun/flamer/reload(mob/user, obj/item/ammo_magazine/magazine)
 	if(!magazine || !istype(magazine))
@@ -117,15 +131,18 @@
 				to_chat(user, "<span class='notice'>You begin reloading [src]. Hold still...</span>")
 				if(do_after(user,magazine.reload_delay, TRUE, src, BUSY_ICON_GENERIC))
 					replace_magazine(user, magazine)
+					toggle_flame(user,TRUE)
 				else
 					to_chat(user, "<span class='warning'>Your reload was interrupted!</span>")
 					return
 			else
 				replace_magazine(user, magazine)
+				toggle_flame(user,TRUE)
 		else
 			current_mag = magazine
 			magazine.loc = src
 			replace_ammo(,magazine)
+			toggle_flame(user,TRUE)
 
 	update_icon()
 	return TRUE
@@ -133,21 +150,59 @@
 /obj/item/weapon/gun/flamer/unload(mob/user, reload_override = 0, drop_override = 0)
 	if(!current_mag)
 		return FALSE //no magazine to unload
+	if(istype(current_mag, /obj/item/ammo_magazine/flamer_tank/backtank))
+		detach_fueltank(user)
+		return
 	if(drop_override || !user) //If we want to drop it on the ground or there's no user.
 		current_mag.forceMove(get_turf(src)) //Drop it on the ground.
 	else
 		user.put_in_hands(current_mag)
 
 	playsound(user, unload_sound, 25, 1)
+	toggle_flame(user,FALSE)
 	user.visible_message("<span class='notice'>[user] unloads [current_mag] from [src].</span>",
 	"<span class='notice'>You unload [current_mag] from [src].</span>")
 	current_mag.update_icon()
 	current_mag = null
-
 	update_icon()
-
 	return TRUE
 
+/obj/item/weapon/gun/flamer/proc/attach_fueltank(mob/user, obj/item/ammo_magazine/flamer_tank/backtank/fueltank)
+	if (!fueltank || !istype(fueltank))
+		to_chat(user, "<span class='warning'>That's not an attachable fuel tank!</span>")
+		return
+	
+	if(fueltank.current_rounds <= 0)
+		to_chat(user, "<span class='warning'>That [fueltank.name] is empty!</span>")
+		return
+	
+	to_chat(user, "<span class='notice'>You begin linking [src] with [fueltank.name]. Hold still...</span>")
+	if(do_after(user,fueltank.reload_delay, TRUE, src, BUSY_ICON_GENERIC))
+		if (current_mag && !istype(current_mag,/obj/item/ammo_magazine/flamer_tank/backtank))
+			user.put_in_hands(current_mag)//We remove the fuel tank if there is one
+		current_mag = fueltank
+		toggle_flame(user,TRUE)
+		playsound(user, reload_sound, 25, 1, 5)
+		update_icon(user)
+	else
+		to_chat(user, "<span class='warning'>Your action was interrupted!</span>")
+		return
+
+/obj/item/weapon/gun/flamer/proc/detach_fueltank(mob/user)
+	current_mag = null
+	to_chat(user, "<span class='notic'>You detach the fuel tank</span>")
+	playsound(user, unload_sound, 25, 1)
+	toggle_flame(user,FALSE)
+	update_icon(user)
+	
+	
+/obj/item/weapon/gun/flamer/dropped(mob/user)
+	..()
+	if (istype(current_mag,/obj/item/ammo_magazine/flamer_tank/backtank/)) //Dropping the flamer unlink it from the tank
+		current_mag = null 
+		toggle_flame(null,FALSE) 
+
+	update_icon(user)
 
 /obj/item/weapon/gun/flamer/proc/unleash_flame(atom/target, mob/living/user)
 	set waitfor = 0
@@ -209,12 +264,17 @@
 			TF = T
 
 		current_mag.current_rounds--
+		if (current_mag.current_rounds<=0)
+			toggle_flame(user,FALSE)
+			break
 		flame_turf(TF,user, burntime, burnlevel, fire_color)
 		if(blocked)
 			break
 		distance++
 		prev_T = T
 		sleep(1)
+	var/obj/screen/ammo/A = user.hud_used.ammo
+	A.update_hud(user)
 
 /obj/item/weapon/gun/flamer/proc/flame_turf(turf/T, mob/living/user, heat, burn, f_color = "red")
 	if(!istype(T))
@@ -348,7 +408,7 @@
 
 /obj/item/weapon/gun/flamer/marinestandard
 	name = "\improper TL-84 flamethrower"
-	desc = "The TL-84 flamethrower is the current standard issue flamethrower of the TGMC, and is used for area control and urban combat. Uses large flamethrower cans to fuel itself."
+	desc = "The TL-84 flamethrower is the current standard issue flamethrower of the TGMC, and is used for area control and urban combat. Uses large flamethrower cans to fuel itself. Use unique action to use hydro cannon"
 	current_mag = /obj/item/ammo_magazine/flamer_tank/large
 	icon_state = "tl84"
 	item_state = "tl84"
@@ -389,15 +449,18 @@
 				to_chat(user, "<span class='notice'>You begin reloading [src]. Hold still...</span>")
 				if(do_after(user,magazine.reload_delay, TRUE, src, BUSY_ICON_GENERIC))
 					replace_magazine(user, magazine)
+					toggle_flame(user,TRUE)
 				else
 					to_chat(user, "<span class='warning'>Your reload was interrupted!</span>")
 					return
 			else
 				replace_magazine(user, magazine)
+				toggle_flame(user,TRUE)
 		else
 			current_mag = magazine
 			magazine.loc = src
 			replace_ammo(,magazine)
+			toggle_flame(user,TRUE)
 
 	update_icon()
 	return TRUE
