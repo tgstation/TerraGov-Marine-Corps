@@ -202,6 +202,11 @@ WEAPONS
 	)
 	cost = 120
 
+/datum/supply_packs/weapons/specdemo
+	name = "Demolitionist Specialist kit"
+	contains = list(/obj/item/weapon/gun/launcher/rocket/sadar)
+	cost = 100
+
 /datum/supply_packs/weapons/railgun
 	name = "TX-220 Railgun"
 	contains = list(/obj/item/weapon/gun/rifle/railgun)
