@@ -41412,9 +41412,6 @@
 	},
 /turf/open/ground/grass,
 /area/prison/residential/central)
-"dpL" = (
-/turf/closed/wall/r_wall/prison,
-/area/prison/residential/central)
 "dsF" = (
 /obj/structure/monorail{
 	dir = 5
@@ -50754,7 +50751,7 @@ aab
 aab
 aZP
 aZP
-dpL
+aZP
 aZP
 aZP
 aZP
