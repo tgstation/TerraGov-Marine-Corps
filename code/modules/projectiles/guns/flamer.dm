@@ -30,7 +30,7 @@
 
 /obj/item/weapon/gun/flamer/Initialize()
 	. = ..()
-	if (current_mag)
+	if (current_mag) //A flamer spawing with a mag will be lit up
 		toggle_flame(null,TRUE)
 
 /obj/item/weapon/gun/flamer/unique_action(mob/user)
@@ -181,7 +181,7 @@
 	to_chat(user, "<span class='notice'>You begin linking [src] with [fueltank.name]. Hold still...</span>")
 	if(do_after(user,fueltank.reload_delay, TRUE, src, BUSY_ICON_GENERIC))
 		if (current_mag && !istype(current_mag,/obj/item/ammo_magazine/flamer_tank/backtank))
-			user.put_in_hands(current_mag)
+			user.put_in_hands(current_mag)//We remove the fuel tank if there is one
 		current_mag = fueltank
 		toggle_flame(user,TRUE)
 		playsound(user, reload_sound, 25, 1, 5)
@@ -200,9 +200,9 @@
 	
 /obj/item/weapon/gun/flamer/dropped(mob/user)
 	..()
-	if (istype(current_mag,/obj/item/ammo_magazine/flamer_tank/backtank/))
-		current_mag = null
-		toggle_flame(null,FALSE)
+	if (istype(current_mag,/obj/item/ammo_magazine/flamer_tank/backtank/)) //Dropping the flamer unlink it from the tank
+		current_mag = null 
+		toggle_flame(null,FALSE) 
 
 	update_icon(user)
 
