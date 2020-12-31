@@ -63,10 +63,10 @@
 			return
 
 
-/obj/item/weapon/gun/flamer/proc/toggle_flame(mob/user,var/toggle)
-	if (lit == toggle)//You can't lit what is already lit
+/obj/item/weapon/gun/flamer/proc/toggle_flame(mob/user,var/mustlit)
+	if (lit == mustlit)//You can't lit what is already lit
 		return
-	lit = toggle
+	lit = mustlit
 	playsound(user, lit ? 'sound/weapons/guns/interact/flamethrower_off.ogg' : 'sound/weapons/guns/interact/flamethrower_on.ogg', 25, 1)
 
 	var/image/I = image('icons/obj/items/gun.dmi', src, "+lit")
