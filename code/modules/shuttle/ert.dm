@@ -122,7 +122,6 @@
 		return
 
 	if(href_list["depart"])
-		log_game("[key_name(usr)] has departed an ERT shuttle")
 		var/obj/docking_port/mobile/ert/M = SSshuttle.getShuttle(shuttleId)
 
 		if(M.departing)
@@ -130,6 +129,7 @@
 			visible_message("<span class='warning'>ERROR: Launch protocols already in process. Please standby.</span>", 3)
 			return
 
+		log_game("[key_name(usr)] has departed an ERT shuttle")
 		M.on_ignition()
 		addtimer(VARSET_CALLBACK(M, departing, TRUE), M.ignitionTime)
 
