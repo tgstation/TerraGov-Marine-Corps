@@ -235,8 +235,9 @@
 		COMSIG_LIVING_STATUS_SLEEP,
 		COMSIG_LIVING_STATUS_STAGGER), .proc/evasion_debuff_check)
 
+	RegisterSignal(R, COMSIG_XENO_PROJECTILE_HIT, .proc/evasion_dodge) //This is where we actually check to see if we dodge the projectile.
 	RegisterSignal(R, COMSIG_XENOMORPH_FIRE_BURNING, .proc/evasion_burn_check) //Register status effects and fire which impact evasion.
-	RegisterSignal(R, COMSIG_ATOM_FLAMER_HIT, .proc/evasion_flamer_hit) //Register status effects and fire which impact evasion.
+	RegisterSignal(R, COMSIG_ATOM_BULLET_ACT, .proc/evasion_flamer_hit) //Register status effects and fire which impact evasion.
 
 	evade_active = TRUE //evasion is currently active
 
@@ -247,16 +248,18 @@
 	add_cooldown()
 
 ///Called when the owner is hit by a flamethrower projectile; reduces evasion stacks proportionate to damage
-/datum/action/xeno_action/evasion/proc/evasion_flamer_hit(datum/source, mob/M, obj/projectile/P)
+/datum/action/xeno_action/evasion/proc/evasion_flamer_hit(datum/source, obj/projectile/proj)
 	SIGNAL_HANDLER
-	var/mob/living/carbon/xenomorph/runner/R = owner
-	if(!R.evasion_stacks) //This shouldn't be possible, but just in case.
-		evasion_deactivate()
+
+	if(!(proj.ammo.flags_ammo_behavior & AMMO_FLAME)) //If it's not from a flamethrower, we don't care
 		return
 
-	R.evasion_stacks = max(0, R.evasion_stacks - P.damage) //We lose evasion stacks equal to the burn damage
-	to_chat(R, "<span class='danger'>The searing fire compromises our ability to dodge![RUNNER_EVASION_COOLDOWN_REFRESH_THRESHOLD - R.evasion_stacks > 0 ? " We must dodge [RUNNER_EVASION_COOLDOWN_REFRESH_THRESHOLD - R.evasion_stacks] more projectile damage before Evasion's cooldown refreshes." : ""]</span>")
-	if(!R.evasion_stacks) //If all of our evasion stacks have burnt away, cancel out
+	var/mob/living/carbon/xenomorph/runner/R = owner
+
+	R.evasion_stacks = max(0, R.evasion_stacks - proj.damage) //We lose evasion stacks equal to the burn damage
+	if(R.evasion_stacks)
+		to_chat(R, "<span class='danger'>The searing fire compromises our ability to dodge![RUNNER_EVASION_COOLDOWN_REFRESH_THRESHOLD - R.evasion_stacks > 0 ? " We must dodge [RUNNER_EVASION_COOLDOWN_REFRESH_THRESHOLD - R.evasion_stacks] more projectile damage before Evasion's cooldown refreshes." : ""]</span>")
+	else //If all of our evasion stacks have burnt away, cancel out
 		evasion_deactivate()
 
 ///Called when the owner is burning; reduces evasion stacks proportionate to fire stacks
@@ -265,18 +268,22 @@
 	var/mob/living/carbon/xenomorph/runner/R = owner
 
 	R.evasion_stacks = max(0, R.evasion_stacks - (R.fire_stacks + 3) * RUNNER_EVASION_BURN_DEPLETION_MODIFIER) //We lose evasion stacks equal to the burn damage times the depletion modifier
-	to_chat(R, "<span class='danger'>Burning compromises our ability to dodge![(RUNNER_EVASION_COOLDOWN_REFRESH_THRESHOLD - R.evasion_stacks) > 0 ? " We must dodge [RUNNER_EVASION_COOLDOWN_REFRESH_THRESHOLD - R.evasion_stacks] more projectile damage before Evasion's cooldown refreshes." : ""]</span>")
+	if(R.evasion_stacks)
+		to_chat(R, "<span class='danger'>Burning compromises our ability to dodge![(RUNNER_EVASION_COOLDOWN_REFRESH_THRESHOLD - R.evasion_stacks) > 0 ? " We must dodge [RUNNER_EVASION_COOLDOWN_REFRESH_THRESHOLD - R.evasion_stacks] more projectile damage before Evasion's cooldown refreshes." : ""]</span>")
+	else //If all of our evasion stacks have burnt away, cancel out
+		evasion_deactivate()
 
-
-/datum/action/xeno_action/evasion/proc/evasion_debuff_check(amount)
+///After getting hit with an Evasion disabling debuff, this is where we check to see if evasion is active, and if we actually have debuff stacks
+/datum/action/xeno_action/evasion/proc/evasion_debuff_check(datum/source, amount)
 	SIGNAL_HANDLER
-	var/mob/living/carbon/xenomorph/runner/R = owner
-	if(!amount || !R.evasion_stacks) //We actually have to gain debuff stacks/duration and have stacks to lose
+	if(!(amount > 0) || !evade_active) //If evasion isn't active, or we're not actually receiving debuff stacks, we don't care
 		return
 	to_chat(owner, "<span class='highdanger'>Our movements have been interrupted!</span>")
+	clear_streaks = FALSE //We definitely ain't streaking
 	evasion_deactivate()
 
 
+///Where we deactivate evasion and unregister the signals/zero out vars, etc.
 /datum/action/xeno_action/evasion/proc/evasion_deactivate()
 
 	var/mob/living/carbon/xenomorph/runner/R = owner
@@ -288,10 +295,12 @@
 		COMSIG_LIVING_STATUS_IMMOBILIZE,
 		COMSIG_LIVING_STATUS_UNCONSCIOUS,
 		COMSIG_LIVING_STATUS_SLEEP,
-		COMSIG_LIVING_STATUS_STAGGER))
+		COMSIG_LIVING_STATUS_STAGGER,
+		COMSIG_XENO_PROJECTILE_HIT,
+		COMSIG_XENOMORPH_FIRE_BURNING,
+		COMSIG_ATOM_BULLET_ACT
+		))
 
-	UnregisterSignal(R, COMSIG_XENOMORPH_FIRE_BURNING) //Always unregister
-	UnregisterSignal(R, COMSIG_ATOM_FLAMER_HIT) //Register status effects and fire which impact evasion.
 	evade_active = FALSE //Evasion is no longer active
 
 	R.evasion_stacks = 0
@@ -311,49 +320,52 @@
 
 	return ..()
 
-
 ///This is where the dodgy magic happens
-/mob/living/carbon/xenomorph/runner/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
+/datum/action/xeno_action/evasion/proc/evasion_dodge(datum/source, obj/projectile/proj, cardinal_move, uncrossing)
+	SIGNAL_HANDLER
 
-	var/datum/action/xeno_action/evasion/evasion_action = actions_by_path[/datum/action/xeno_action/evasion]
-	if(!evasion_action.evade_active) //If evasion is not active we don't dodge
-		return ..()
+	var/mob/living/carbon/xenomorph/runner/R = owner
+	if(!evade_active) //If evasion is not active we don't dodge
+		return TRUE
 
-	if( (last_move_time  < (world.time - RUNNER_EVASION_RUN_DELAY) ) ) //Gotta keep moving to benefit from evasion!
-		return ..()
+	if((R.last_move_time  < (world.time - RUNNER_EVASION_RUN_DELAY))) //Gotta keep moving to benefit from evasion!
+		return TRUE
 
-	if(issamexenohive(proj.firer)) //We automatically dodge allied projectiles at no cost, and no benefit to our evasion stacks
-		return FALSE
+	if(R.issamexenohive(proj.firer)) //We automatically dodge allied projectiles at no cost, and no benefit to our evasion stacks
+		return COMPONENT_EVASION_DODGE
+
+	if(proj.ammo.flags_ammo_behavior & AMMO_FLAME) //We can't dodge literal fire
+		return TRUE
 
 	if(!(proj.ammo.flags_ammo_behavior & AMMO_SENTRY)) //We ignore projectiles from automated sources/sentries for the purpose of contributions towards our cooldown refresh
-		evasion_stacks += proj.damage //Add to evasion stacks for the purposes of determining whether or not our cooldown refreshes
+		R.evasion_stacks += proj.damage //Add to evasion stacks for the purposes of determining whether or not our cooldown refreshes
 
-	var/evasion_stack_target = RUNNER_EVASION_COOLDOWN_REFRESH_THRESHOLD * (1 + evasion_action.evasion_streak * 0.5)
-	visible_message("<span class='warning'>[name] effortlessly dodges the [proj.name]!</span>", \
-	"<span class='xenodanger'>We effortlessly dodge the [proj.name]![(evasion_stack_target - evasion_stacks) > 0 ? " We must dodge [evasion_stack_target - evasion_stacks] more projectile damage before Evasion's cooldown refreshes." : ""]</span>")
+	var/evasion_stack_target = RUNNER_EVASION_COOLDOWN_REFRESH_THRESHOLD * (1 + evasion_streak * 0.5)
+	R.visible_message("<span class='warning'>[name] effortlessly dodges the [proj.name]!</span>", \
+	"<span class='xenodanger'>We effortlessly dodge the [proj.name]![(evasion_stack_target - R.evasion_stacks) > 0 ? " We must dodge [evasion_stack_target - R.evasion_stacks] more projectile damage before Evasion's cooldown refreshes." : ""]</span>")
 
 	var/turf/T = get_turf(src) //after image SFX
 	playsound(T, pick('sound/effects/throw.ogg','sound/effects/alien_tail_swipe1.ogg', 'sound/effects/alien_tail_swipe2.ogg'), 25, 1) //sound effects
 
-	add_filter("runner_evasion", 2, list("type" = "blur", 5)) //Cool SFX
-	addtimer(CALLBACK(src, /atom.proc/remove_filter, "runner_evasion"), 0.5 SECONDS)
-	do_jitter_animation(4000) //Dodgy animation!
+	R.add_filter("runner_evasion", 2, list("type" = "blur", 5)) //Cool SFX
+	addtimer(CALLBACK(R, /atom.proc/remove_filter, "runner_evasion"), 0.5 SECONDS)
+	R.do_jitter_animation(4000) //Dodgy animation!
 
 	var/i = 0
 	var/obj/effect/temp_visual/xenomorph/runner_afterimage/A
 	while(i < 2) //number after images
 		A = new(T) //Create the after image.
-		A.pixel_x = pick(rand(src.pixel_x * 3, src.pixel_x * 1.5), rand(0, src.pixel_x * -1)) //Variation on the X position
-		A.pixel_y = pick(rand(src.pixel_y * 3, src.pixel_y * 1.5), rand(0, src.pixel_y * -1)) //Variation on the Y position
-		A.dir = src.dir //match the direction of the runner
+		A.pixel_x = pick(rand(R.pixel_x * 3, R.pixel_x * 1.5), rand(0, R.pixel_x * -1)) //Variation on the X position
+		A.pixel_y = pick(rand(R.pixel_y * 3, R.pixel_y * 1.5), rand(0, R.pixel_y * -1)) //Variation on the Y position
+		A.dir = R.dir //match the direction of the runner
 		i++
 
-	if(evasion_stacks >= evasion_stack_target && evasion_action.cooldown_remaining()) //We have more evasion stacks than needed to refresh our cooldown, while being on cooldown.
+	if(R.evasion_stacks >= evasion_stack_target && cooldown_remaining()) //We have more evasion stacks than needed to refresh our cooldown, while being on cooldown.
 		to_chat(src, "<span class='highdanger'>Our success spurs us to continue our evasive maneuvers!</span>")
-		evasion_action.clear_streaks = FALSE //We just scored a streak so we're not clearing our streaks on cooldown finish
-		evasion_action.evasion_streak++ //Increment our streak count
-		evasion_action.clear_cooldown() //Clear our cooldown
-		if(evasion_action.evasion_streak > 3) //Easter egg shoutout
+		clear_streaks = FALSE //We just scored a streak so we're not clearing our streaks on cooldown finish
+		evasion_streak++ //Increment our streak count
+		clear_cooldown() //Clear our cooldown
+		if(evasion_streak > 3) //Easter egg shoutout
 			to_chat(src, "<span class='xenodanger'>Damn we're good.</span>")
 
-	return FALSE
+	return COMPONENT_EVASION_DODGE

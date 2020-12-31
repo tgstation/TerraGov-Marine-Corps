@@ -1607,7 +1607,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "flame"
 	hud_state_empty = "flame_empty"
 	damage_type = BURN
-	flags_ammo_behavior = AMMO_INCENDIARY|AMMO_IGNORE_ARMOR
+	flags_ammo_behavior = AMMO_INCENDIARY|AMMO_IGNORE_ARMOR|AMMO_FLAME
 	armor_type = "fire"
 	max_range = 6
 	damage = 50
@@ -1618,15 +1618,12 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/fire_delay = 20
 
 /datum/ammo/flamethrower/on_hit_mob(mob/M,obj/projectile/P)
-	SEND_SIGNAL(M, COMSIG_ATOM_FLAMER_HIT, M, P)
 	drop_flame(get_turf(P))
 
 /datum/ammo/flamethrower/on_hit_obj(obj/O,obj/projectile/P)
-	SEND_SIGNAL(O, COMSIG_ATOM_FLAMER_HIT, O, P)
 	drop_flame(get_turf(P))
 
 /datum/ammo/flamethrower/on_hit_turf(turf/T,obj/projectile/P)
-	SEND_SIGNAL(T, COMSIG_ATOM_FLAMER_HIT, T, P)
 	drop_flame(get_turf(P))
 
 /datum/ammo/flamethrower/do_at_max_range(obj/projectile/P)

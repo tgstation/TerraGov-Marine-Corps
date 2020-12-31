@@ -643,6 +643,7 @@
 		return
 	remove_movespeed_modifier(MOVESPEED_ID_STAGGERSTUN)
 
+///This is where we normalize the set_slowdown input to be at least 0
 /mob/living/proc/adjust_slowdown(amount)
 	if(amount > 0)
 		set_slowdown(max(slowdown, amount)) //Slowdown overlaps rather than stacking.
