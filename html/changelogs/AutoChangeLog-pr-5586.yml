@@ -1,4 +1,0 @@
-author: "ma44, Tiviplus"
-delete-after: True
-changes: 
-  - refactor: "AI now support nide weighting and will be less likely to visit recently visited nodes"
