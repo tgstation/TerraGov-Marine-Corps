@@ -103,8 +103,6 @@
 		click_empty(user)
 	else
 		unleash_flame(target, user)
-		var/obj/screen/ammo/A = user.hud_used.ammo
-		A.update_hud(user)
 
 /obj/item/weapon/gun/flamer/reload(mob/user, obj/item/ammo_magazine/magazine)
 	if(!magazine || !istype(magazine))
@@ -268,12 +266,15 @@
 		current_mag.current_rounds--
 		if (current_mag.current_rounds<=0)
 			toggle_flame(user,FALSE)
+			break
 		flame_turf(TF,user, burntime, burnlevel, fire_color)
 		if(blocked)
 			break
 		distance++
 		prev_T = T
 		sleep(1)
+	var/obj/screen/ammo/A = user.hud_used.ammo
+	A.update_hud(user)
 
 /obj/item/weapon/gun/flamer/proc/flame_turf(turf/T, mob/living/user, heat, burn, f_color = "red")
 	if(!istype(T))
