@@ -8798,13 +8798,6 @@
 /obj/structure/jungle/vines/heavy,
 /turf/open/ground/grass,
 /area/lv624/ground/compound/n)
-"aOb" = (
-/obj/structure/fence,
-/obj/structure/fence,
-/turf/open/floor/plating/ground/dirtgrassborder{
-	dir = 4
-	},
-/area/lv624/ground/compound/c)
 "aOi" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -26164,7 +26157,7 @@ aXH
 aXH
 aXH
 aXH
-aOb
+aPW
 aPW
 aPW
 aPW
