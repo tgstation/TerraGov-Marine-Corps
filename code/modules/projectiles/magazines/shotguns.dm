@@ -36,7 +36,7 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 	default_ammo = /datum/ammo/bullet/shotgun/flechette
 
 /obj/item/ammo_magazine/shotgun/tracker
-	name = "box of .410 tracker shells"
+	name = "box of 12 gauge tracker shells"
 	desc = "A box filled with flechette shotgun shells. 12 Gauge."
 	icon_state = "flechette"
 	default_ammo = /datum/ammo/bullet/shotgun/tracker
