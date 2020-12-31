@@ -50,7 +50,7 @@
 
 /obj/item/ammo_magazine/flamer_tank/backtank
 	name = "Back fuel tank"
-	desc = "A specialized fueltank for use with the TL-84 flamethrower and M240A1 incinerator unit."
+	desc = "A specialized fuel tank for use with the TL-84 flamethrower and M240A1 incinerator unit."
 	icon_state = "flamethrower_tank"
 	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
@@ -69,6 +69,15 @@
 			FLT.attach_fueltank(user,src)
 	else
 		return ..()
+/obj/item/ammo_magazine/flamer_tank/backtank/B
+	name = "Back fuel tank"
+	desc = "A specialized fuel tank of ultra thick napthal type B for use with the TL-84 flamethrower and M240A1 incinerator unit."
+	default_ammo = /datum/ammo/flamethrower/green
+
+/obj/item/ammo_magazine/flamer_tank/backtank/X
+	name = "Back fuel tank"
+	desc = "A specialized fuel tank of ultra thick napthal type X for use with the TL-84 flamethrower and M240A1 incinerator unit."
+	default_ammo = /datum/ammo/flamethrower/blue
 	
 /obj/item/ammo_magazine/flamer_tank/large/B
 	name = "large flamethrower tank (B)"
