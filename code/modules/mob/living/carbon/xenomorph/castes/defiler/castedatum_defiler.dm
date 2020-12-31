@@ -106,23 +106,23 @@
 	tackle_damage = 32
 
 	// *** Speed *** //
-	speed = -0.9
+	speed = -1
 
 	// *** Plasma *** //
-	plasma_max = 550
-	plasma_gain = 19
+	plasma_max = 575
+	plasma_gain = 20
 
 	// *** Health *** //
-	max_health = 350
+	max_health = 375 * 0.6
 
 	// *** Evolution *** //
 	upgrade_threshold = 1000
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 38, "bullet" = 35, "laser" = 35, "energy" = 35, "bomb" = XENO_BOMB_RESIST_0, "bio" = 38, "rad" = 38, "fire" = 35, "acid" = 38)
+	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = XENO_BOMB_RESIST_0, "bio" = 40, "rad" = 40, "fire" = 40, "acid" = 40)
 
-		// *** Pheromones *** //
-	aura_strength = 2.1 //Defilers aura begins at 1.7 and ends at 2.6. It's .1 better than a carrier at ancient.
+	// *** Pheromones *** //
+	aura_strength = 2.6 //Defilers aura begins at 1.7 and ends at 2.6. It's .1 better than a carrier at ancient.
 
 /datum/xeno_caste/defiler/ancient
 	upgrade_name = "Ancient"

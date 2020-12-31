@@ -48,6 +48,10 @@
 	max_rounds = 36
 	gun_type = /obj/item/weapon/gun/rifle/standard_carbine
 
+/obj/item/ammo_magazine/rifle/standard_carbine/deescalated
+	default_ammo = /datum/ammo/bullet/rifle/deescalated
+	gun_type = /obj/item/weapon/gun/rifle/standard_carbine/deescalated
+
 //-------------------------------------------------------
 //T12 Assault Rifle
 
@@ -60,6 +64,11 @@
 	default_ammo = /datum/ammo/bullet/rifle
 	max_rounds = 50
 	gun_type = /obj/item/weapon/gun/rifle/standard_assaultrifle
+
+/obj/item/ammo_magazine/rifle/standard_assaultrifle/deescalated
+	gun_type = /obj/item/weapon/gun/rifle/standard_assaultrifle/deescalated
+	default_ammo = /datum/ammo/bullet/rifle/deescalated
+	
 
 //-------------------------------------------------------
 //T37 DMR
@@ -190,6 +199,8 @@
 	gun_type = /obj/item/weapon/gun/rifle/standard_gpmg
 	reload_delay = 3 SECONDS
 
+/obj/item/ammo_magazine/standard_gpmg/deescalated
+
 //-------------------------------------------------------
 //M412L1 HEAVY PULSE RIFLE
 
@@ -272,6 +283,10 @@
 	default_ammo = /datum/ammo/bullet/sniper/pfc
 	max_rounds = 7
 	gun_type = /obj/item/weapon/gun/rifle/chambered
+
+/obj/item/ammo_magazine/rifle/chamberedrifle/deescalated
+	default_ammo = /datum/ammo/bullet/sniper/pfc/deescalated
+	gun_type = /obj/item/weapon/gun/rifle/chambered/deescalated
 
 //-------------------------------------------------------
 //Marine magazine automatic sniper, or the T-81.

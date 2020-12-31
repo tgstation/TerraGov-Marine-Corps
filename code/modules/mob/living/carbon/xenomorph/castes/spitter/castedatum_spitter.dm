@@ -107,23 +107,23 @@
 	tackle_damage = 25
 
 	// *** Speed *** //
-	speed = -0.5
+	speed = -0.6
 
 	// *** Plasma *** //
-	plasma_max = 875
-	plasma_gain = 28
+	plasma_max = 925
+	plasma_gain = 30
 
 	// *** Health *** //
-	max_health = 290
+	max_health = 310 * 0.6
 
 	// *** Evolution *** //
 	upgrade_threshold = 480
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 20, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = XENO_BOMB_RESIST_0, "bio" = 18, "rad" = 18, "fire" = 30, "acid" = 18)
+	soft_armor = list("melee" = 25, "bullet" = 35, "laser" = 35, "energy" = 35, "bomb" = XENO_BOMB_RESIST_0, "bio" = 20, "rad" = 20, "fire" = 35, "acid" = 20)
 
 	// *** Ranged Attack *** //
-	spit_delay = 1.1 SECONDS
+	spit_delay = 1 SECONDS
 
 
 
@@ -157,5 +157,4 @@
 
 	// *** Ranged Attack *** //
 	spit_delay = 1 SECONDS
-
 

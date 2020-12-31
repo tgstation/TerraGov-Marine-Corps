@@ -132,6 +132,14 @@
 
 	if(updating_health)
 		updatehealth()
+	
+	if(!damage_taken_time_initial)
+		damage_taken_time_initial = world.time
+	
+	damage_taken_time = world.time
+	damage_taken += damage
+
+	to_chat(world, "[src] took [damage] damage")
 
 	regen_power = -xeno_caste.regen_delay //Remember, this is in deciseconds.
 

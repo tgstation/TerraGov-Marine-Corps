@@ -113,28 +113,28 @@
 	tackle_damage = 25
 
 	// *** Speed *** //
-	speed = -0.2
+	speed = -0.3
 
 	// *** Plasma *** //
-	plasma_max = 700
-	plasma_gain = 30
+	plasma_max = 800
+	plasma_gain = 38
 
 	// *** Health *** //
-	max_health = 300
+	max_health = 325 * 0.6
 
 	// *** Evolution *** //
 	upgrade_threshold = 480
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 25, "bullet" = 25, "laser" = 25, "energy" = 25, "bomb" = XENO_BOMB_RESIST_0, "bio" = 7, "rad" = 7, "fire" = 25, "acid" = 7)
+	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = XENO_BOMB_RESIST_0, "bio" = 10, "rad" = 10, "fire" = 30, "acid" = 10)
 
 	// *** Pheromones *** //
-	aura_strength = 2.3
+	aura_strength = 2.5
 
 	// *** Carrier Abilities *** //
-	huggers_max = 6
-	hugger_delay = 2 SECONDS
-	eggs_max = 5
+	huggers_max = 7
+	hugger_delay = 1.5 SECONDS
+	eggs_max = 6
 
 /datum/xeno_caste/carrier/ancient
 	upgrade_name = "Ancient"

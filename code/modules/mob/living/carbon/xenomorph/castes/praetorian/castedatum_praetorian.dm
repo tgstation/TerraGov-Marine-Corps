@@ -113,20 +113,17 @@
 	tackle_damage = 28
 
 	// *** Speed *** //
-	speed = -0.4
+	speed = -0.5
 
 	// *** Plasma *** //
 	plasma_max = 1000
-	plasma_gain = 70
+	plasma_gain = 80
 
 	// *** Health *** //
-	max_health = 340
-
-	// *** Evolution *** //
-	upgrade_threshold = 1000
+	max_health = 360 * 0.6
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 40, "bullet" = 45, "laser" = 45, "energy" = 45, "bomb" = XENO_BOMB_RESIST_0, "bio" = 35, "rad" = 35, "fire" = 45, "acid" = 35)
+	soft_armor = list("melee" = 45, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = XENO_BOMB_RESIST_0, "bio" = 38, "rad" = 38, "fire" = 50, "acid" = 38)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.1 SECONDS
@@ -136,7 +133,8 @@
 	acid_spray_structure_damage = 61
 
 	// *** Pheromones *** //
-	aura_strength = 4
+	aura_strength = 4.5
+
 
 /datum/xeno_caste/praetorian/ancient
 	upgrade_name = "Ancient"

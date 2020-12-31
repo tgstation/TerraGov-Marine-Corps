@@ -110,23 +110,20 @@
 	tackle_damage = 25
 
 	// *** Speed *** //
-	speed = -1.0
+	speed = -1.2
 
 	// *** Plasma *** //
-	plasma_max = 900
-	plasma_gain = 35
+	plasma_max = 1000
+	plasma_gain = 40
 
 	// *** Health *** //
-	max_health = 275
-
-	// *** Evolution *** //
-	upgrade_threshold = 240
+	max_health = 300 * 0.6
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 24, "bullet" = 24, "laser" = 24, "energy" = 24, "bomb" = XENO_BOMB_RESIST_0, "bio" = 10, "rad" = 10, "fire" = 24, "acid" = 10)
+	soft_armor = list("melee" = 31, "bullet" = 31, "laser" = 31, "energy" = 31, "bomb" = XENO_BOMB_RESIST_0, "bio" = 15, "rad" = 15, "fire" = 31, "acid" = 15)
 
 	// *** Pheromones *** //
-	aura_strength = 1.8
+	aura_strength = 2
 
 /datum/xeno_caste/drone/ancient
 	upgrade_name = "Ancient"

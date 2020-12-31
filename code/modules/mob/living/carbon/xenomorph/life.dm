@@ -32,6 +32,15 @@
 	var/sunder_recov = xeno_caste.sunder_recover * -1
 	if(resting)
 		sunder_recov -= 0.5
+	if(damage_taken)
+		if(world.time <= (damage_taken_time+ (5 SECONDS)))
+			var/timespan = (damage_taken_time - damage_taken_time_initial)SECONDS
+			var/dps = (damage_taken/timespan)
+			to_chat(world, "the xeno [src] took [damage_taken] on a span of [timespan] Seconds, doing a DPS of [dps]")
+			damage_taken = null
+			damage_taken_time = null
+			damage_taken_time_initial = null
+	
 	adjust_sunder(sunder_recov)
 	handle_aura_receiver()
 	handle_living_health_updates()

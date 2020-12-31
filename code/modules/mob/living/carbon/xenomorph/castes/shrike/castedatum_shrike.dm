@@ -112,23 +112,23 @@
 	tackle_damage = 28
 
 	// *** Speed *** //
-	speed = -0.5
+	speed = -0.6
 
 	// *** Plasma *** //
-	plasma_max = 900
-	plasma_gain = 40
+	plasma_max = 925
+	plasma_gain = 45
 
 	// *** Health *** //
-	max_health = 375
+	max_health = 400 * 0.6
 
 	// *** Evolution *** //
 	upgrade_threshold = 480
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = XENO_BOMB_RESIST_2, "bio" = 18, "rad" = 18, "fire" = 40, "acid" = 18)
+	soft_armor = list("melee" = 45, "bullet" = 45, "laser" = 45, "energy" = 45, "bomb" = XENO_BOMB_RESIST_2, "bio" = 23, "rad" = 23, "fire" = 45, "acid" = 20)
 
 	// *** Pheromones *** //
-	aura_strength = 2.8
+	aura_strength = 3
 
 /datum/xeno_caste/shrike/ancient
 	upgrade_name = "Ancient"

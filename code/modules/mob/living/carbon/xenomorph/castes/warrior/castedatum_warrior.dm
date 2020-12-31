@@ -99,20 +99,20 @@
 	tackle_damage = 28
 
 	// *** Speed *** //
-	speed = -0.45
+	speed = -0.5
 
 	// *** Plasma *** //
-	plasma_max = 115
-	plasma_gain = 11
+	plasma_max = 120
+	plasma_gain = 12
 
 	// *** Health *** //
-	max_health = 330
+	max_health = 350 * 0.6
 
 	// *** Evolution *** //
 	upgrade_threshold = 480
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 38, "bullet" = 50, "laser" = 50, "energy" = 38, "bomb" = XENO_BOMB_RESIST_2, "bio" = 40, "rad" = 40, "fire" = 50, "acid" = 40)
+	soft_armor = list("melee" = 42, "bullet" = 55, "laser" = 55, "energy" = 42, "bomb" = XENO_BOMB_RESIST_2, "bio" = 50, "rad" = 50, "fire" = 55, "acid" = 50)
 
 	// *** Warrior Abilities *** //
 	agility_speed_increase = -0.6

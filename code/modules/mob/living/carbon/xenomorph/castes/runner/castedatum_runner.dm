@@ -101,29 +101,29 @@
 
 	upgrade = XENO_UPGRADE_TWO
 
+	savage_cooldown = 30 SECONDS
+
 	// *** Melee Attacks *** //
 	melee_damage = 21
-
-	savage_cooldown = 30 SECONDS
 
 	// *** Tackle *** //
 	tackle_damage = 21
 
 	// *** Speed *** //
-	speed = -1.4
+	speed = -1.5
 
 	// *** Plasma *** //
 	plasma_max = 200
 	plasma_gain = 3
 
 	// *** Health *** //
-	max_health = 225
+	max_health = 240 * 0.6
 
 	// *** Evolution *** //
 	upgrade_threshold = 240
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = XENO_BOMB_RESIST_0, "bio" = 5, "rad" = 5, "fire" = 15, "acid" = 5)
+	soft_armor = list("melee" = 19, "bullet" = 19, "laser" = 19, "energy" = 19, "bomb" = XENO_BOMB_RESIST_0, "bio" = 7, "rad" = 7, "fire" = 19, "acid" = 7)
 
 	// *** Ranged Attack *** //
 	pounce_delay = 13 SECONDS
