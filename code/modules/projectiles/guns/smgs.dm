@@ -1,5 +1,5 @@
 /obj/item/weapon/gun/smg
-	fire_sound = 'sound/weapons/guns/fire/m39.ogg'
+	fire_sound = 'sound/weapons/guns/fire/smg_light.ogg'
 	unload_sound = 'sound/weapons/guns/interact/smg_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/smg_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/smg_cocked.ogg'
@@ -139,6 +139,9 @@
 	item_state = "m25"
 	caliber = "10x20mm caseless" //codex
 	max_shells = 60 //codex
+	fire_sound = 'sound/weapons/guns/fire/mp5.ogg'
+	unload_sound = 'sound/weapons/guns/interact/mp5_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/mp5_reload.ogg'
 	flags_equip_slot = ITEM_SLOT_BACK
 	current_mag = /obj/item/ammo_magazine/smg/m25
 	type_of_casings = null
@@ -173,6 +176,7 @@
 	desc = "The RivArms MR-25 submachinegun, B2 variant. Has an integrated barrel charger. This reliable weapon fires armor piercing 10x20mm rounds and is used by elite troops."
 	icon_state = "m25b2"
 	item_state = "m25b2"
+	fire_sound = 'sound/weapons/guns/fire/smg_heavy.ogg'
 	current_mag = /obj/item/ammo_magazine/smg/m25/ap
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
@@ -195,44 +199,6 @@
 	damage_mult = 1.2
 	aim_slowdown = 0.4
 	scatter = 10
-
-
-//-------------------------------------------------------
-//M5, a classic SMG used in a lot of action movies.
-
-/obj/item/weapon/gun/smg/mp5
-	name = "\improper MP5 submachinegun"
-	desc = "A German design, this was one of the most widely used submachine guns in the world. It's still possible to find this firearm in the hands of collectors or gun fanatics."
-	icon_state = "mp5"
-	item_state = "mp5"
-	caliber = "9x19mm Parabellum" //codex
-	max_shells = 30 //codex
-	fire_sound = 'sound/weapons/guns/fire/mp5.ogg'
-	unload_sound = 'sound/weapons/guns/interact/mp5_unload.ogg'
-	reload_sound = 'sound/weapons/guns/interact/mp5_reload.ogg'
-	current_mag = /obj/item/ammo_magazine/smg/mp5
-	attachable_allowed = list(
-		/obj/item/attachable/suppressor,
-		/obj/item/attachable/reddot,
-		/obj/item/attachable/flashlight,
-		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/scope,
-		/obj/item/attachable/scope/mini,
-	)
-
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
-	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 19,"rail_x" = 12, "rail_y" = 21, "under_x" = 28, "under_y" = 17, "stock_x" = 28, "stock_y" = 17)
-
-	fire_delay = 0.2 SECONDS
-	burst_delay = 0.2 SECONDS
-	burst_amount = 4
-	accuracy_mult = 1.25
-	accuracy_mult_unwielded = 1.05
-	scatter = 15
-	scatter_unwielded = 40
-	damage_mult = 1.30
-	aim_slowdown = 0.35
-	wield_delay = 0.5 SECONDS
 
 
 //-------------------------------------------------------

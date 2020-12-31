@@ -32,7 +32,7 @@
 	deevolves_to = /mob/living/carbon/xenomorph/defender
 
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
+	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_IS_STRONG
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 30, "bullet" = 40, "laser" = 40, "energy" = 30, "bomb" = XENO_BOMB_RESIST_2, "bio" = 36, "rad" = 36, "fire" = 40, "acid" = 36)
@@ -46,8 +46,9 @@
 		/datum/action/xeno_action/regurgitate,
 		/datum/action/xeno_action/activable/headbite,
 		/datum/action/xeno_action/toggle_agility,
-		/datum/action/xeno_action/activable/fling,
 		/datum/action/xeno_action/activable/lunge,
+		/datum/action/xeno_action/activable/fling,
+		/datum/action/xeno_action/activable/toss,
 		/datum/action/xeno_action/activable/punch,
 	)
 

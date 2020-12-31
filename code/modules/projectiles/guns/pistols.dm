@@ -68,34 +68,23 @@
 	scatter_unwielded = 10
 
 //-------------------------------------------------------
-//M4A3 PISTOL
+//RT-3 pistol
 
-/obj/item/weapon/gun/pistol/m4a3
-	name = "\improper M4A3 service pistol"
-	desc = "An M4A3 Colt Service Pistol, it was standard issue sidearm of the TerraGov Marine Corps, until the sidearm role was replaced by Terran Armories's TP-14 pistol."
-	icon_state = "m4a3"
-	item_state = "m4a3"
+/obj/item/weapon/gun/pistol/rt3
+	name = "\improper RT-3 target pistol"
+	desc = "An RT-3 target pistol, a common sight throughout the bubble. Fires 9mm in magazines."
+	icon_state = "rt3"
+	item_state = "rt3"
 	caliber = "9x19mm Parabellum" //codex
 	max_shells = 14 //codex
 	fire_sound = 'sound/weapons/guns/fire/pistol_service.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol
 
-	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
+	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 19,"rail_x" = 19, "rail_y" = 21, "under_x" = 21, "under_y" = 15, "stock_x" = 21, "stock_y" = 17)
 
 	fire_delay = 0.2 SECONDS
 	accuracy_mult = 1.15
-	scatter = 15
-
-
-/obj/item/weapon/gun/pistol/m4a3/custom
-	name = "\improper M4A3 custom pistol"
-	desc = "An M4A3 Colt Service Pistol. This one has an ivory-colored grip and has a slide carefully polished yearly by a team of orphan children. Looks like it belongs to a low-ranking officer."
-	icon_state = "m4a3c"
-	item_state = "m4a3c"
-
-	fire_delay = 0.15 SECONDS
-	accuracy_mult = 1.15
-	damage_mult = 1.1
+	scatter = 10
 
 //-------------------------------------------------------
 // TP-23 service pistol
@@ -144,7 +133,7 @@
 	reload_sound = 'sound/weapons/guns/interact/colt_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/colt_cocked.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/m1911
-	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
+	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 21,"rail_x" = 17, "rail_y" = 22, "under_x" = 21, "under_y" = 15, "stock_x" = 21, "stock_y" = 17)
 
 	fire_delay = 0.2 SECONDS
 	accuracy_mult = 1.05
@@ -214,7 +203,7 @@
 	aim_slowdown = 0.2
 
 /obj/item/weapon/gun/pistol/b92fs/M9
-	name = "\improper M9 Custom pistol"
+	name = "\improper M9 custom pistol"
 	desc = "A 20th century military firearm customized for special forces use, fires tranq darts to take down enemies nonlethally. It does not seem to accept any other attachments."
 	icon_state = "b92fs"
 	item_state = "b92fs"
@@ -271,6 +260,8 @@
 	recoil_unwielded = 4
 
 /obj/item/weapon/gun/pistol/heavy/gold
+	name = "\improper Desert Eagle custom pistol"
+	desc = "A magnum chambered in .50AE that comes with a serious kick. This one is in a gold finish, with lots of stylistic engravings."
 	icon_state = "g_deagle"
 	item_state = "g_deagle"
 //-------------------------------------------------------
@@ -283,7 +274,7 @@
 	item_state = "pk9"
 	caliber = ".22 LR" //codex
 	max_shells = 12 //codex
-	fire_sound = 'sound/weapons/guns/fire/c99.ogg'
+	fire_sound = 'sound/weapons/guns/fire/pistol_holdout.ogg' // Never heard in-game sadly.
 	unload_sound = 'sound/weapons/guns/interact/c99_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/c99_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/c99_cocked.ogg'
@@ -321,30 +312,6 @@
 /obj/item/weapon/gun/pistol/c99/upp/tranq
 	desc = "An updated variant of an old eastern design, dating back to from the 20th century. Features an integrated silencer, and chambered in the razor small .22 rounds. This one is usually loaded with special low-recoil .22 dart rounds, which act as a dangerous tranquilizer."
 	current_mag = /obj/item/ammo_magazine/pistol/c99t
-
-//-------------------------------------------------------
-//KT-42 //Inspired by the .44 Auto Mag pistol
-
-/obj/item/weapon/gun/pistol/kt42
-	name = "\improper KT-42 automag"
-	desc = "The KT-42 Automag is an archaic but reliable design, going back many decades. There have been many versions and variations, but the 42 model is by far the most common. You can't go wrong with this handcannon."
-	icon_state = "kt42"
-	item_state = "kt42"
-	caliber = ".44 magnum" //codex
-	max_shells = 7 //codex
-	fire_sound = 'sound/weapons/guns/fire/kt42.ogg'
-	unload_sound = 'sound/weapons/guns/interact/kt42_unload.ogg'
-	reload_sound = 'sound/weapons/guns/interact/kt42_reload.ogg'
-	cocked_sound = 'sound/weapons/guns/interact/kt42_cocked.ogg'
-	current_mag = /obj/item/ammo_magazine/pistol/automatic
-	attachable_allowed = list()
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
-	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 20,"rail_x" = 8, "rail_y" = 22, "under_x" = 22, "under_y" = 17, "stock_x" = 22, "stock_y" = 17)
-
-	fire_delay = 1 SECONDS
-	recoil = 2
-	recoil_unwielded = 3
-	accuracy_mult = 1.4
 
 //-------------------------------------------------------
 //PIZZACHIMP PROTECTION
@@ -433,11 +400,11 @@
 	scatter = 10
 
 //-------------------------------------------------------
-//VP70 //Not actually the VP70, but it's more or less the same thing. VP70 was the standard sidearm in Aliens though.
+//VP70
 
 /obj/item/weapon/gun/pistol/vp70
 	name = "\improper 88 Mod 4 combat pistol"
-	desc = "A powerful sidearm issued mainly to Nanotrasen private contractors, but issued to TGMC in very small numbers, based on the original VP70 more than a century ago. Fires 9mm armor piercing rounds and is capable of 3-round burst or automatic fire."
+	desc = "An uncommon automatic handgun used for self defense, based on the original VP70 more than a century ago. Fires 9mm armor piercing rounds and is capable of 3-round burst or automatic fire."
 	icon_state = "88m4"
 	item_state = "88m4"
 	caliber = "9x19mm Parabellum" //codex
@@ -458,11 +425,10 @@
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/burstfire_assembly,
-		/obj/item/attachable/stock/vp70,
 	)
 
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
-	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 20,"rail_x" = 11, "rail_y" = 22, "under_x" = 21, "under_y" = 16, "stock_x" = 18, "stock_y" = 11)
+	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 22,"rail_x" = 19, "rail_y" = 23, "under_x" = 21, "under_y" = 16, "stock_x" = 11, "stock_y" = 10)
 
 	fire_delay = 0.25 SECONDS
 	burst_amount = 3
@@ -512,7 +478,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	item_state = "auto9"
 	caliber = "9x19mm Parabellum" //codex
 	max_shells = 50 //codex
-	fire_sound = 'sound/weapons/guns/fire/auto9.ogg'
+	fire_sound = 'sound/weapons/guns/fire/beretta.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/auto9
 	force = 15
 	attachable_allowed = list()
@@ -550,7 +516,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 
 /obj/item/weapon/gun/pistol/knife
 	name = "\improper M6 'Eclipse Raider' ballistic knife"
-	desc = "The back issue survival knife issued to a fewTerraGov Marine Corps soldiers. There are a surprisingly large amount of attachment points on this... knife."
+	desc = "The back issue survival knife issued to a few TerraGov Marine Corps soldiers. There are a surprisingly large amount of attachment points on this... knife."
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "elite_knife"
 	reload_sound = 'sound/weapons/flipblade.ogg'

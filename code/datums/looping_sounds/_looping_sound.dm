@@ -72,7 +72,7 @@
 	var/list/atoms_cache = output_atoms
 	var/sound/S = sound(soundfile)
 	if(direct)
-		S.channel = open_sound_channel()
+		S.channel = SSsounds.random_available_channel()
 		S.volume = volume
 	for(var/i in 1 to atoms_cache.len)
 		var/atom/thing = atoms_cache[i]
@@ -87,7 +87,7 @@
 		. = pickweight(.)
 
 /datum/looping_sound/proc/on_start()
-	var/start_wait = 0
+	var/start_wait = 1
 	if(start_sound)
 		play(start_sound)
 		start_wait = start_length

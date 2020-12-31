@@ -132,10 +132,10 @@
 	. = ..()
 	acid_t = target
 	strength_t = isturf(acid_t) ? 8:4 // Turf take twice as long to take down.
-	START_PROCESSING(SSprocessing, src)
+	START_PROCESSING(SSslowprocess, src)
 
 /obj/effect/xenomorph/acid/Destroy()
-	STOP_PROCESSING(SSprocessing, src)
+	STOP_PROCESSING(SSslowprocess, src)
 	acid_t = null
 	. = ..()
 
@@ -145,7 +145,7 @@
 		return
 	if(loc != acid_t.loc && !isturf(acid_t))
 		loc = acid_t.loc
-	ticks += (delta_time*0.1) * (rand(2,3)*0.1) * (acid_strength)
+	ticks += ((delta_time*0.1) * (rand(2,3)*0.1) * (acid_strength)) * 0.1
 	if(ticks >= strength_t)
 		visible_message("<span class='xenodanger'>[acid_t] collapses under its own weight into a puddle of goop and undigested debris!</span>")
 		playsound(src, "acid_hit", 25)

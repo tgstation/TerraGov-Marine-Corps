@@ -46,6 +46,11 @@ OPERATIONS
 	contains = list(/obj/item/fulton_extraction_pack)
 	cost = 5
 
+/datum/supply_packs/operations/fulton_recovery_beacon
+	name = "fulton recovery beacon"
+	contains = list(/obj/structure/fulton_extraction_point)
+	cost = 5
+
 /datum/supply_packs/operations/cas_flares
 	name = "CAS flare pack"
 	contains = list(/obj/item/storage/box/m94/cas)
@@ -1120,7 +1125,7 @@ ENGINEERING
 
 /datum/supply_packs/engineering/watertank
 	name = "Water Tank"
-	contains = list(/obj/structure/reagent_dispensers)
+	contains = list(/obj/structure/reagent_dispensers/watertank)
 	cost = 5
 	containertype = null
 
@@ -1232,16 +1237,6 @@ Imports
 	contains = list(/obj/item/ammo_magazine/rifle/type71)
 	cost = 5
 
-/datum/supply_packs/imports/mp5
-	name = "MP5 SMG"
-	contains = list(/obj/item/weapon/gun/smg/mp5)
-	cost = 15
-
-/datum/supply_packs/imports/mp5/ammo
-	name = "MP5 SMG Ammo"
-	contains = list(/obj/item/ammo_magazine/smg/mp5)
-	cost = 5
-
 /datum/supply_packs/imports/mp7
 	name = "MP7 SMG"
 	contains = list(/obj/item/weapon/gun/smg/mp7)
@@ -1295,11 +1290,6 @@ Imports
 /datum/supply_packs/imports/sawnoff
 	name = "Sawn Off Shotgun"
 	contains = list(/obj/item/weapon/gun/shotgun/double/sawn)
-	cost = 15
-
-/datum/supply_packs/imports/kronos
-	name = "Kronos Shotgun"
-	contains = list(/obj/item/weapon/gun/shotgun/pump/ksg)
 	cost = 15
 
 /datum/supply_packs/imports/leveraction
@@ -1370,7 +1360,7 @@ Imports
 	contains = list(/obj/item/weapon/gun/rifle/famas)
 	cost = 15
 
-/datum/supply_packs/imports/m16/ammo
+/datum/supply_packs/imports/famas/ammo
 	name = "FAMAS Assault Rifle Ammo"
 	contains = list(/obj/item/ammo_magazine/rifle/famas)
 	cost = 5
@@ -1423,16 +1413,6 @@ Imports
 /datum/supply_packs/imports/deagle/ammo
 	name = "Desert Eagle Handgun Ammo"
 	contains = list(/obj/item/ammo_magazine/pistol/heavy)
-	cost = 3
-
-/datum/supply_packs/imports/kt42
-	name = "KT-42 Automag"
-	contains = list(/obj/item/weapon/gun/pistol/kt42)
-	cost = 7
-
-/datum/supply_packs/imports/kt42/ammo
-	name = "KT-42 Automag Ammo"
-	contains = list(/obj/item/ammo_magazine/pistol/automatic)
 	cost = 3
 
 /datum/supply_packs/imports/vp78

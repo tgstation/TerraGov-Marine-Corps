@@ -103,13 +103,6 @@
 					continue
 				statpanel(listed_turf.name, null, A)
 
-
-/mob/proc/prepare_huds()
-	hud_list = new
-	for(var/hud in hud_possible) //Providing huds.
-		hud_list[hud] = image('icons/mob/hud.dmi', src, "")
-
-
 /mob/proc/show_message(msg, type, alt_msg, alt_type)
 	if(!client)
 		return
@@ -291,9 +284,7 @@
 		equip_to_slot(W, slot, redraw_mob) //This proc should not ever fail.
 		if(permanent)
 			W.flags_item |= NODROP
-			//This will unzoom and unwield items -without- triggering lights.
-		if(W.zoom)
-			W.zoom(src)
+			//This will unwield items -without- triggering lights.
 		if(CHECK_BITFIELD(W.flags_item, TWOHANDED))
 			W.unwield(src)
 		return TRUE
@@ -301,9 +292,7 @@
 		equip_to_slot(W, slot, redraw_mob) //This proc should not ever fail.
 		if(permanent)
 			W.flags_item |= NODROP
-		//This will unzoom and unwield items -without- triggering lights.
-		if(W.zoom)
-			W.zoom(src)
+		//This will unwield items -without- triggering lights.
 		if(CHECK_BITFIELD(W.flags_item, TWOHANDED))
 			W.unwield(src)
 		return TRUE
@@ -313,7 +302,7 @@
 /mob/proc/equip_to_slot(obj/item/W as obj, slot)
 	return
 
-//This is just a commonly used configuration for the equip_to_slot_if_possible() proc, used to equip people when the rounds starts and when events happen and such.
+///This is just a commonly used configuration for the equip_to_slot_if_possible() proc, used to equip people when the rounds starts and when events happen and such.
 /mob/proc/equip_to_slot_or_del(obj/item/W, slot, permanent = FALSE)
 	return equip_to_slot_if_possible(W, slot, TRUE, TRUE, FALSE, FALSE, permanent)
 
@@ -437,10 +426,10 @@
 
 
 /**
-  * Handle the result of a click drag onto this mob
-  *
-  * For mobs this just shows the inventory
-  */
+ * Handle the result of a click drag onto this mob
+ *
+ * For mobs this just shows the inventory
+ */
 /mob/MouseDrop_T(atom/dropping, atom/user)
 	. = ..()
 	if(.)
@@ -536,12 +525,12 @@
 	return TRUE
 
 /**
-  * Buckle to another mob
-  *
-  * You can buckle on mobs if you're next to them since most are dense
-  *
-  * Turns you to face the other mob too
-  */
+ * Buckle to another mob
+ *
+ * You can buckle on mobs if you're next to them since most are dense
+ *
+ * Turns you to face the other mob too
+ */
 /mob/buckle_mob(mob/living/buckling_mob, force = FALSE, check_loc = TRUE, lying_buckle = FALSE, hands_needed = 0, target_hands_needed = 0, silent)
 	if(buckling_mob.buckled)
 		return FALSE
@@ -800,16 +789,6 @@
 			client.eye = loc
 
 	return TRUE
-
-
-/mob/Moved(atom/oldloc, direction)
-	if(client && (client.view != WORLD_VIEW || client.pixel_x || client.pixel_y))
-		for(var/obj/item/item in contents)
-			if(item.zoom)
-				item.zoom(src)
-				click_intercept = null
-				break
-	return ..()
 
 
 /mob/proc/update_joined_player_list(newname, oldname)

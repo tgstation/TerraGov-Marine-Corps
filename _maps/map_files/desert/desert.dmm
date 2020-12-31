@@ -1019,7 +1019,7 @@
 /turf/open/floor/wood,
 /area/desert/hive)
 "dZ" = (
-/obj/item/weapon/gun/shotgun/merc,
+/obj/item/weapon/gun/shotgun/pump/cmb,
 /turf/open/floor/wood,
 /area/desert/hive)
 "ea" = (

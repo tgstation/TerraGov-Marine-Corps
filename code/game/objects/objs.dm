@@ -32,7 +32,6 @@
 	///Optimization for dynamic explosion block values, for things whose explosion block is dependent on certain conditions.
 	var/real_explosion_block
 
-
 /obj/Initialize()
 	. = ..()
 	if(islist(soft_armor))
@@ -135,12 +134,6 @@
 	if(buckle_flags & CAN_BUCKLE)
 		return attack_hand(user)
 	return ..()
-
-
-/obj/CanPass(atom/movable/mover, turf/target)
-	if(mover in buckled_mobs) //can't collide with the thing you're buckled to
-		return TRUE
-	return..()
 
 
 /obj/effect_smoke(obj/effect/particle_effect/smoke/S)

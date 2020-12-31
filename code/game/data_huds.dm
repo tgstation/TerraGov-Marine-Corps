@@ -339,6 +339,10 @@
 /datum/atom_hud/xeno_reagents
 	hud_icons = list(XENO_REAGENT_HUD)
 
+///hud component for revealing tunnels to xenos
+/datum/atom_hud/xeno_tunnels
+	hud_icons = list(XENO_TUNNEL_HUD)
+
 //Xeno status hud, for xenos
 /datum/atom_hud/xeno
 	hud_icons = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD, ARMOR_SUNDER_HUD)
@@ -425,7 +429,7 @@
 
 
 /datum/atom_hud/security
-	hud_icons = list(IMPTRACK_HUD, IMPLOYAL_HUD, IMPCHEM_HUD, WANTED_HUD)
+	hud_icons = list(WANTED_HUD)
 
 
 /mob/living/carbon/human/proc/sec_hud_set_security_status()
@@ -514,14 +518,3 @@
 
 	hud_list[ORDER_HUD] = holder
 
-
-/datum/atom_hud/ai_detector
-	hud_icons = list(AI_DETECT_HUD)
-
-
-/datum/atom_hud/ai_detector/add_hud_to(mob/M)
-	. = ..()
-	if(M && (length(hudusers) == 1))
-		for(var/V in GLOB.aiEyes)
-			var/mob/camera/aiEye/E = V
-			E.update_ai_detect_hud()

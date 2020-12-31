@@ -44,6 +44,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	// Custom Keybindings
 	var/list/key_bindings = null
 
+	///Saves chemical recipes based on client so they persist through games
+	var/list/chem_macros = list()
+
 	//Synthetic specific preferences
 	var/synthetic_name = "David"
 	var/synthetic_type = "Synthetic"

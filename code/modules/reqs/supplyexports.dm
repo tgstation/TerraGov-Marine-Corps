@@ -12,6 +12,14 @@
 	cost = 25
 	export_obj = /obj/structure/ore_box/phoron
 
+/datum/supply_export/compactorebox/phoron
+	cost = 25
+	export_obj = /obj/item/compactorebox/phoron
+
+/datum/supply_export/compactorebox/platinum
+	cost = 50
+	export_obj = /obj/item/compactorebox/platinum
+
 /datum/supply_export/xemomorph
 	cost = 0
 	export_obj = /mob/living/carbon/xenomorph
@@ -31,10 +39,6 @@
 /datum/supply_export/xemomorph/runner
 	cost = 30
 	export_obj = /mob/living/carbon/xenomorph/runner
-
-/datum/supply_export/xemomorph/panther
-	cost = 30
-	export_obj = /mob/living/carbon/xenomorph/panther
 
 /datum/supply_export/xemomorph/defender
 	cost = 30

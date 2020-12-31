@@ -39,6 +39,7 @@
 	spit_delay = 1.3 SECONDS
 	spit_types = list(/datum/ammo/xeno/toxin/heavy, /datum/ammo/xeno/acid/heavy)
 
+	acid_spray_duration = 10 SECONDS
 	acid_spray_range = 4
 	acid_spray_damage = 16
 	acid_spray_damage_on_hit = 35

@@ -1216,10 +1216,10 @@
 	},
 /area/sulaco/medbay/storage2)
 "ahJ" = (
-/obj/structure/table/mainship,
-/obj/item/tool/crowbar,
-/obj/item/flashlight/flare,
 /obj/effect/decal/warning_stripes/thick{
+	dir = 8
+	},
+/obj/machinery/computer/cryopod{
 	dir = 8
 	},
 /turf/open/floor/prison/sterilewhite,
@@ -1456,12 +1456,13 @@
 	},
 /area/sulaco/engineering/atmos)
 "aiX" = (
-/obj/structure/table/mainship,
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/item/camera,
 /obj/effect/decal/warning_stripes/thick{
+	dir = 8
+	},
+/obj/machinery/computer/cryopod{
 	dir = 8
 	},
 /turf/open/floor/prison/sterilewhite,
@@ -1703,6 +1704,7 @@
 /area/sulaco/engineering)
 "akq" = (
 /obj/structure/table/mainship,
+/obj/item/camera,
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cryosleep)
 "akr" = (
@@ -4651,10 +4653,8 @@
 	},
 /area/sulaco/hallway/central_hall)
 "ayq" = (
-/obj/structure/table/mainship,
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-23";
-	pixel_y = 12
+/obj/machinery/computer/navigation{
+	dir = 4
 	},
 /turf/open/floor/prison/red{
 	dir = 10
@@ -9812,15 +9812,6 @@
 	dir = 8
 	},
 /area/sulaco/engineering/atmos)
-"bev" = (
-/obj/structure/bookcase{
-	dir = 4
-	},
-/obj/item/book/manual/evaguide,
-/obj/item/book/manual/supermatter_engine,
-/obj/item/book/manual/ripley_build_and_repair,
-/turf/open/floor/wood,
-/area/sulaco/liaison/quarters)
 "bew" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4
@@ -9839,6 +9830,9 @@
 	},
 /obj/item/book/manual/engineering_hacking,
 /obj/item/book/manual/nuclear,
+/obj/item/book/manual/ripley_build_and_repair,
+/obj/item/book/manual/supermatter_engine,
+/obj/item/book/manual/evaguide,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters)
 "beH" = (
@@ -11501,6 +11495,15 @@
 	},
 /turf/open/floor/prison/bright_clean,
 /area/mainship/command/self_destruct)
+"gbY" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "gcc" = (
 /turf/open/floor/prison/red{
 	dir = 10
@@ -12876,6 +12879,16 @@
 	},
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
+"kcP" = (
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
+"kee" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "kfN" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 10
@@ -14075,8 +14088,8 @@
 /turf/open/floor/prison,
 /area/sulaco/hangar)
 "mUa" = (
-/obj/effect/decal/cleanable/cobweb{
-	dir = 4
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
@@ -14137,6 +14150,10 @@
 	},
 /turf/open/floor/wood,
 /area/sulaco/bridge/office)
+"ncj" = (
+/obj/structure/musician/piano,
+/turf/open/floor/plating,
+/area/sulaco/hallway/lower_main_hall)
 "ncn" = (
 /obj/structure/bed/chair,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
@@ -17644,6 +17661,10 @@
 	dir = 10
 	},
 /area/space)
+"vzl" = (
+/obj/docking_port/stationary/marine_dropship/minidropship,
+/turf/open/floor/plating,
+/area/sulaco/hangar)
 "vAN" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
@@ -18565,6 +18586,11 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
 /turf/open/floor/mainship/tcomms,
 /area/sulaco/telecomms)
+"yfI" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/dropship_equipment/electronics/targeting_system,
+/turf/open/floor/prison,
+/area/sulaco/hangar)
 "yfW" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
@@ -50466,7 +50492,7 @@ baQ
 bcs
 bcT
 aVY
-baT
+ncj
 sMg
 aPQ
 mDu
@@ -55326,7 +55352,7 @@ rFM
 oGA
 bvu
 xca
-aPF
+kcP
 aPF
 aPF
 hgI
@@ -55754,7 +55780,7 @@ bdj
 bdI
 bdY
 bHC
-bev
+bdM
 beG
 cPc
 cPc
@@ -56097,15 +56123,15 @@ bWf
 bWf
 bWf
 bWf
-bFa
-mUa
+aPF
+aPF
 aPF
 aPF
 pfc
 aPF
 aPF
 aPF
-gHU
+aPF
 aPF
 scV
 aPF
@@ -56346,23 +56372,23 @@ aaa
 aaa
 nzi
 mDu
-mDu
-mDu
-mDu
-mDu
-mDu
-mDu
-mDu
-mDu
 bFa
-bFa
-bFa
-bFa
-bFa
-bFa
-bFa
-bFa
-aPY
+aPF
+aPF
+aPF
+aPF
+aQr
+aPF
+aPF
+aPF
+aPF
+aPF
+aPF
+aPF
+aPF
+aPF
+aPF
+aPF
 aRx
 cMx
 aRx
@@ -56601,23 +56627,23 @@ aaa
 aaa
 aaa
 aaa
-tZr
-vDU
-vDU
-vDU
-vDU
-vDU
-vDU
-vDU
+nzi
 mDu
-mDu
-mDu
-mDu
-mDu
-mDu
-mDu
-mDu
-mDu
+bFa
+mUa
+aRx
+aRx
+aRx
+aRx
+aRx
+aRx
+aRx
+aRx
+aRx
+aSk
+aPF
+aPF
+aPF
 bFa
 aTq
 cdy
@@ -56858,23 +56884,23 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-tZr
-vDU
-vDU
-vDU
-vDU
-vDU
-vDU
+nzi
 mDu
-mDu
+bFa
+aQa
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aSl
+aPF
+aPF
+aPF
 bFa
 aMK
 cdy
@@ -57115,23 +57141,23 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 nzi
 mDu
+bFa
+aQa
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aSl
+aPF
+aPF
+aPF
 bFa
 cdy
 nNP
@@ -57372,23 +57398,23 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 nzi
 mDu
+bFa
+aQa
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aSl
+aPF
+aPF
+aPF
 bFa
 aQp
 cdy
@@ -57629,25 +57655,25 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-emV
-mDu
+nzi
 mDu
 bFa
-tld
+aQa
+aPZ
+aPZ
+aPZ
+aPZ
+vzl
+aPZ
+aPZ
+aPZ
+aPZ
+aSl
+aPF
+aPF
+aPF
+aPF
+cdy
 aTs
 aUL
 cdy
@@ -57886,23 +57912,23 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 nzi
 mDu
-mDu
+bFa
+aQa
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aSl
+aPF
+aPF
+aPF
 bFa
 aTt
 cdy
@@ -58143,22 +58169,22 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 nzi
 mDu
+bFa
+aQa
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aSl
+aPF
+aPF
 bFa
 bFa
 rTP
@@ -58400,22 +58426,22 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 nzi
 mDu
+bFa
+aQa
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aSl
+aPF
+aPF
 aSN
 yle
 aSO
@@ -58657,25 +58683,25 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 nzi
 mDu
+bFa
+kee
+aRE
+aRE
+aRE
+gbY
+aRE
+aRE
+aRE
+aRE
+aRE
+aQL
+aPF
+aPF
 aSN
 gKw
-aaO
+yfI
 cdy
 aUL
 sgS
@@ -58914,22 +58940,22 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 nzi
 mDu
+bFa
+bFa
+bFa
+bFa
+bFa
+bFa
+bFa
+bFa
+bFa
+bFa
+bFa
+bFa
+bFa
+bFa
 bFa
 bFa
 ubQ
@@ -59171,21 +59197,21 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 nzi
+mDu
+mDu
+mDu
+mDu
+mDu
+mDu
+mDu
+mDu
+mDu
+mDu
+mDu
+mDu
+mDu
+mDu
 mDu
 mDu
 bFa
@@ -59428,21 +59454,21 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-tZr
+nzi
+mDu
+mDu
+mDu
+mDu
+mDu
+mDu
+mDu
+mDu
+mDu
+mDu
+mDu
+mDu
+mDu
+mDu
 mDu
 mDu
 mDu
@@ -59685,22 +59711,22 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 tZr
+vDU
+vDU
+vDU
+vDU
+vDU
+vDU
+vDU
+vDU
+vDU
+vDU
+vDU
+vDU
+vDU
+vDU
+vDU
 mDu
 mDu
 aTM

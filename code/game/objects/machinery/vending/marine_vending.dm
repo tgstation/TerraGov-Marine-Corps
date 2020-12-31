@@ -55,6 +55,7 @@
 		/obj/item/storage/box/m94 = 5,
 		/obj/item/attachable/flashlight = 10,
 		/obj/item/explosive/grenade/mirage = 5,
+		/obj/item/weapon/powerfist = 3,
 	)
 	prices = list()
 
@@ -89,7 +90,7 @@
 		/obj/item/storage/box/nade_box = 2,
 		/obj/item/storage/box/nade_box/HIDP = 2,
 		/obj/item/storage/box/nade_box/M15 = 2,
-		/obj/item/storage/box/nade_box/plasma_drain_gas = 2,
+		/obj/item/storage/box/nade_box/plasma_drain_gas = 1,
 		/obj/item/ammo_magazine/rifle/autosniper = 3,
 		/obj/item/ammo_magazine/rifle/m4ra = 3,
 		/obj/item/ammo_magazine/rocket/sadar = 3,
@@ -97,6 +98,10 @@
 		/obj/item/ammo_magazine/shotgun/mbx900 = 2,
 		/obj/item/bodybag/tarp = 2,
 		/obj/item/explosive/plastique = 2,
+		/obj/item/radio/headset/mainship/marine/alpha = 20,
+		/obj/item/radio/headset/mainship/marine/bravo = 20,
+		/obj/item/radio/headset/mainship/marine/charlie = 20,
+		/obj/item/radio/headset/mainship/marine/delta = 20,
 	)
 
 /obj/machinery/vending/marine/cargo_guns
@@ -126,14 +131,13 @@
 		/obj/item/weapon/gun/launcher/m81 = 15,
 		/obj/item/weapon/gun/pistol/standard_pocketpistol = 20,
 		/obj/item/storage/belt/gun/ts34/full = 5,
-		/obj/item/weapon/gun/shotgun/pump/ksg = 5,
 		/obj/item/weapon/gun/shotgun/pump/cmb = 5,
 		/obj/item/weapon/gun/shotgun/pump/bolt = 5,
 		/obj/item/weapon/gun/flamer/marinestandard = 2,
 		/obj/item/explosive/mine = 5,
 		/obj/item/explosive/grenade/frag/m15 = 25,
 		/obj/item/explosive/grenade/incendiary = 25,
-		/obj/item/explosive/grenade/drainbomb = 25,
+		/obj/item/explosive/grenade/drainbomb = 5,
 		/obj/item/explosive/grenade/cloakbomb = 25,
 		/obj/item/storage/box/m94 = 30,
 		/obj/item/storage/box/recoilless_system = 1,
@@ -375,7 +379,7 @@
 		/obj/item/storage/pill_bottle/tricordrazine = 3,
 		/obj/item/storage/pill_bottle/imidazoline = 3,
 		/obj/item/storage/pill_bottle/tramadol = 3,
-		/obj/item/storage/pill_bottle/russianRed = 5,
+		/obj/item/storage/pill_bottle/russian_red = 5,
 		/obj/item/storage/pill_bottle/peridaxon = 2,
 		/obj/item/storage/pill_bottle/quickclot = 2,
 		/obj/item/storage/pill_bottle/hypervene = 2,
@@ -710,11 +714,17 @@
 		/obj/item/clothing/head/slouch = 40,
 		/obj/item/clothing/glasses/mgoggles = 10,
 		/obj/item/clothing/glasses/mgoggles/prescription = 10,
+		/obj/item/radio/headset/mainship/marine/generic = 20,
 		/obj/item/clothing/mask/rebreather/scarf = 10,
 		/obj/item/clothing/mask/bandanna/skull = 10,
 		/obj/item/clothing/mask/bandanna/green = 10,
 		/obj/item/clothing/mask/bandanna/white = 10,
 		/obj/item/clothing/mask/bandanna/black = 10,
+		/obj/item/clothing/mask/bandanna = 10,
+		/obj/item/clothing/mask/bandanna/alpha = 10,
+		/obj/item/clothing/mask/bandanna/bravo = 10,
+		/obj/item/clothing/mask/bandanna/charlie = 10,
+		/obj/item/clothing/mask/bandanna/delta = 10,
 		/obj/item/clothing/mask/rebreather = 10,
 		/obj/item/clothing/mask/breath = 10,
 		/obj/item/clothing/mask/gas = 10,
@@ -755,6 +765,17 @@
 		/obj/item/clothing/head/white_dress = 50,
 		/obj/item/clothing/shoes/white = 50,
 		/obj/item/clothing/gloves/white = 50,
+		/obj/item/instrument/violin = 2,
+		/obj/item/instrument/piano_synth = 2,
+		/obj/item/instrument/banjo = 2,
+		/obj/item/instrument/guitar = 2,
+		/obj/item/instrument/glockenspiel = 2,
+		/obj/item/instrument/accordion = 2,
+		/obj/item/instrument/trumpet = 2,
+		/obj/item/instrument/saxophone = 2,
+		/obj/item/instrument/trombone = 2,
+		/obj/item/instrument/recorder = 2,
+		/obj/item/instrument/harmonica = 2,
 	)
 
 	prices = list()
@@ -776,26 +797,6 @@
 
 /obj/machinery/vending/uniform_supply/Initialize()
 	. = ..()
-	var/products2[]
-	switch(squad_tag)
-		if("Alpha")
-			products2 = list(/obj/item/radio/headset/mainship/marine/alpha = 20,
-								/obj/item/clothing/mask/bandanna/alpha = 10)
-		if("Bravo")
-			products2 = list(/obj/item/radio/headset/mainship/marine/bravo = 20,
-							/obj/item/clothing/mask/bandanna/bravo = 10)
-		if("Charlie")
-			products2 = list(/obj/item/radio/headset/mainship/marine/charlie = 20,
-							/obj/item/clothing/mask/bandanna/charlie = 10)
-		if("Delta")
-			products2 = list(/obj/item/radio/headset/mainship/marine/delta = 20,
-							/obj/item/clothing/mask/bandanna/delta = 10)
-		else
-			products2 = list(/obj/item/radio/headset/mainship/marine/generic = 20,
-							/obj/item/clothing/mask/bandanna = 10)
-	build_inventory(products2)
-	GLOB.marine_vendors.Add(src)
-
 
 /obj/machinery/vending/uniform_supply/Destroy()
 	. = ..()

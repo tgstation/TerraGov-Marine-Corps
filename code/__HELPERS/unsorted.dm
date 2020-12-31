@@ -499,28 +499,27 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 	qdel(animation)
 
 
-/atom/proc/GetAllContents(T)
+///Returns the src and all recursive contents as a list.
+/atom/proc/GetAllContents()
+	. = list(src)
+	var/i = 0
+	while(i < length(.))
+		var/atom/A = .[++i]
+		. += A.contents
+
+///identical to getallcontents but returns a list of atoms of the type passed in the argument.
+/atom/proc/get_all_contents_type(type)
 	var/list/processing_list = list(src)
-	var/list/assembled = list()
-	if(T)
-		while(length(processing_list))
-			var/atom/A = processing_list[1]
-			processing_list.Cut(1, 2)
-			//Byond does not allow things to be in multiple contents, or double parent-child hierarchies, so only += is needed
-			//This is also why we don't need to check against assembled as we go along
-			processing_list += A.contents
-			if(istype(A, T))
-				assembled += A
-	else
-		while(length(processing_list))
-			var/atom/A = processing_list[1]
-			processing_list.Cut(1, 2)
-			processing_list += A.contents
-			assembled += A
-	return assembled
+	. = list()
+	while(length(processing_list))
+		var/atom/A = processing_list[1]
+		processing_list.Cut(1, 2)
+		processing_list += A.contents
+		if(istype(A, type))
+			. += A
 
 
-//Step-towards method of determining whether one atom can see another. Similar to viewers()
+///Step-towards method of determining whether one atom can see another. Similar to viewers()
 /proc/can_see(atom/source, atom/target, length = 5) // I couldnt be arsed to do actual raycasting :I This is horribly inaccurate.
 	var/turf/current = get_turf(source)
 	var/turf/target_turf = get_turf(target)
@@ -967,8 +966,6 @@ GLOBAL_LIST_INIT(common_tools, typecacheof(list(
 		return FALSE
 	if(I.sharp)
 		return TRUE
-	if(I.edge)
-		return TRUE
 	return FALSE
 
 
@@ -1236,14 +1233,14 @@ GLOBAL_LIST_INIT(wallitems, typecacheof(list(
 	if(!length(ignore_typecache))
 		return GetAllContents()
 	var/list/processing = list(src)
-	var/list/assembled = list()
+	. = list()
 	while(processing.len)
 		var/atom/A = processing[1]
 		processing.Cut(1,2)
-		if(!ignore_typecache[A.type])
-			processing += A.contents
-			assembled += A
-	return assembled
+		if(ignore_typecache[A.type])
+			continue
+		processing += A.contents
+		. += A
 
 /atom/proc/Shake(pixelshiftx = 15, pixelshifty = 15, duration = 25 SECONDS) //Does a "shaking" effect on a sprite, code is from tgstation
 	var/initialpixelx = pixel_x
@@ -1342,8 +1339,9 @@ will handle it, but:
 	for(var/mob/M in mobs)
 		if(skip_mindless && (!M.mind && !M.ckey))
 			continue
-		if(M.client && M.client.holder && M.client.holder.fakekey) //stealthmins
-			continue
+		if(M.client?.holder)
+			if(M.client.holder.fakekey || M.client.holder.invisimined) //stealthmins
+				continue
 		var/name = avoid_assoc_duplicate_keys(M.name, namecounts)
 
 		if(M.real_name && M.real_name != M.name)

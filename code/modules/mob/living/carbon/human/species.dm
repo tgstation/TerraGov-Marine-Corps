@@ -806,16 +806,15 @@
 /datum/species/proc/can_shred(mob/living/carbon/human/H)
 
 	if(H.a_intent != INTENT_HARM)
-		return 0
+		return FALSE
 
 	if(unarmed.is_usable(H))
 		if(unarmed.shredding)
-			return 1
+			return TRUE
 	else if(secondary_unarmed.is_usable(H))
 		if(secondary_unarmed.shredding)
-			return 1
-
-	return 0
+			return TRUE
+	return FALSE
 
 //Species unarmed attacks
 /datum/unarmed_attack
@@ -829,18 +828,17 @@
 
 /datum/unarmed_attack/proc/is_usable(mob/living/carbon/human/user)
 	if(user.restrained())
-		return 0
+		return FALSE
 
 	// Check if they have a functioning hand.
 	var/datum/limb/E = user.get_limb("l_hand")
 	if(E && !(E.limb_status & LIMB_DESTROYED))
-		return 1
+		return TRUE
 
 	E = user.get_limb("r_hand")
 	if(E && !(E.limb_status & LIMB_DESTROYED))
-		return 1
-
-	return 0
+		return TRUE
+	return FALSE
 
 /datum/unarmed_attack/bite
 	attack_verb = list("bite") // 'x has biteed y', needs work.
@@ -852,8 +850,8 @@
 
 /datum/unarmed_attack/bite/is_usable(mob/living/carbon/human/user)
 	if (user.wear_mask && istype(user.wear_mask, /obj/item/clothing/mask/muzzle))
-		return 0
-	return 1
+		return FALSE
+	return TRUE
 
 /datum/unarmed_attack/punch
 	attack_verb = list("punch")
@@ -983,8 +981,6 @@
 				damage *= burn_mod
 			if(organ.take_damage_limb(0, damage, sharp, edge))
 				victim.UpdateDamageIcon()
-		if(HALLOSS)
-			if(species_flags & NO_PAIN)
 				return
 			switch(damage)
 				if(-INFINITY to 0)
@@ -995,7 +991,6 @@
 				if(50 to INFINITY)
 					if(prob(60))
 						victim.emote("pain")
-			victim.adjustHalLoss(damage)
 		if(TOX)
 			victim.adjustToxLoss(damage)
 		if(OXY)
