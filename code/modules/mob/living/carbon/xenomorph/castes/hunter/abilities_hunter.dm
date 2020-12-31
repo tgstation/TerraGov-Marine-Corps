@@ -252,16 +252,16 @@
 	range = 7
 
 // ***************************************
-// *********** Impair Senses
+// *********** Silence
 // ***************************************
 /datum/action/xeno_action/activable/impair_senses
-	name = "Impair Senses"
-	action_icon_state = "impair_senses"
-	mechanics_text = "Impairs the target's senses, causing temporary deafness and impeding vision."
-	ability_name = "impair senses"
+	name = "Silence"
+	action_icon_state = "silence"
+	mechanics_text = "Impairs the ability of hostile living creatures we can see in a 5x5 area. Targets will be unable to speak and hear for 10 seconds."
+	ability_name = "silence"
 	plasma_cost = 75
 	keybind_signal = COMSIG_XENOABILITY_HAUNT
-	cooldown_timer = 30 SECONDS
+	cooldown_timer = 40 SECONDS
 
 /datum/action/xeno_action/activable/impair_senses/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -272,29 +272,23 @@
 
 	if(!isliving(A))
 		if(!silent)
-			to_chat(impairer, "<span class='xenodanger'>We can't impair this target!</span>")
+			to_chat(impairer, "<span class='xenodanger'>We can't silence this target!</span>")
 		return
-
-	var/mob/living/victim = A
-
-	if(victim.stat == DEAD)
-		if(!silent)
-			to_chat(impairer, "<span class='xenodanger'>We can't impair the dead!</span>")
-		return FALSE
 
 	if(impairer.on_fire)
 		if(!silent)
-			to_chat(impairer, "<span class='xenodanger'>We're too busy being on fire to impair them!</span>")
+			to_chat(impairer, "<span class='xenodanger'>We're too busy being on fire to focus our psionics!</span>")
 		return FALSE
 
-	var/distance = get_dist(impairer, victim)
-	if(distance > HUNTER_IMPAIR_SENSES_RANGE)
-		to_chat(impairer, "<span class='xenodanger'>They are too far for us to reach their minds! We must be [distance - HUNTER_IMPAIR_SENSES_RANGE] tiles closer!</spam>")
-		return FALSE
-
-	if(!impairer.line_of_sight(victim)) //Need line of sight.
+	var/distance = get_dist(impairer, A)
+	if(distance > HUNTER_SILENCE_RANGE)
 		if(!silent)
-			to_chat(impairer, "<span class='xenowarning'>We require line of sight to impair them!</span>")
+			to_chat(impairer, "<span class='xenodanger'>The target location is too far! We must be [distance - HUNTER_SILENCE_RANGE] tiles closer!</spam>")
+		return FALSE
+
+	if(!impairer.line_of_sight(A)) //Need line of sight.
+		if(!silent)
+			to_chat(impairer, "<span class='xenowarning'>We require line of sight to the target location!</span>")
 		return FALSE
 
 	return TRUE
@@ -302,19 +296,42 @@
 
 /datum/action/xeno_action/activable/impair_senses/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
-	var/mob/living/victim = A
 
-	X.face_atom(victim)
+	X.face_atom(A)
 
-	to_chat(X, "<span class='xenodanger'>We reach out into mind of [victim], impairing their senses...</span>") //Notify privately
-	to_chat(victim, "<span class='danger'>Your mind convulses at the touch of something ominous as the world seems to dim, and everything falls silent!</span>") //Notify privately
+	if(!do_after(X, HUNTER_STINGER_WINDUP, TRUE, target, BUSY_ICON_HOSTILE)) //Slight wind up
+		to_chat(X, "<span class='xenodanger'>We abort silencing....</span>")
+		return fail_activate()
+
 	X.playsound_local(X, 'sound/effects/ghost.ogg', 25, 0, 1) //Spooky psychic noises.
-	victim.playsound_local(victim, 'sound/effects/ghost.ogg', 25, 0, 1) //Spooky psychic noises.
-	victim.blind_eyes(HUNTER_IMPAIR_SENSES_STACKS * 0.25) //Blind for a very short duration
-	victim.adjust_stagger(HUNTER_IMPAIR_SENSES_STACKS) //Stagger for a short duration
-	victim.adjust_blurriness(HUNTER_IMPAIR_SENSES_STACKS) //Blur for a short duration
-	victim.adjust_ear_damage(deaf = HUNTER_IMPAIR_SENSES_STACKS) //Temp deafen for a short duration
+	var/victim_count
+	var/list/target_turfs = RANGE_TURFS(2, A)
+	for(var/turf/targetted as() in target_turfs)
+		for(var/atom/movable/target as() in targetted.contents)
+			if(!isliving(target)) //We only care about living targets
+				continue
+			var/mob/living/victim = target
+			if(victim.stat == DEAD) //Ignore the dead
+				continue
+			if(!X.line_of_sight(victim)) //Need line of sight
+				continue
+			if(isxeno(victim)) //Ignore friendlies
+				var/mob/living/carbon/xenomorph/xeno_victim
+				if(X.issamexenohive(xeno_victim))
+					continue
+			to_chat(victim, "<span class='danger'>Your mind convulses at the touch of something ominous as the world seems to blur, your voice dies in your throat, and everything falls silent!</span>") //Notify privately
+			victim.playsound_local(victim, 'sound/effects/ghost.ogg', 25, 0, 1) //Spooky psychic noises.
+			victim.adjust_stagger(HUNTER_SILENCE_STAGGER_STACKS) //Stagger for a short duration
+			victim.adjust_blurriness(HUNTER_SILENCE_SENSORY_STACKS) //Blur
+			victim.adjust_ear_damage(deaf = HUNTER_SILENCE_SENSORY_STACKS) //Temp
+			victim.set_mute(HUNTER_SILENCE_SENSORY_STACKS) //Mute; in your desperate final moments, no one can hear you scream
+			victim_count++
 
+	if(!victim_count)
+		to_chat(X, "<span class='xenodanger'>We were unable to violate the minds of any victims.") //Notify privately
+		return fail_activate()
+
+	to_chat(X, "<span class='xenodanger'>We invade the mind of [victim_count] [victim_count > 1 ? "victims" : "victim"], silencing and muting them...</span>") //Notify privately
 	succeed_activate()
 	add_cooldown()
 

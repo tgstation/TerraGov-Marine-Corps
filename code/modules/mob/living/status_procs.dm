@@ -606,3 +606,11 @@
 		add_movespeed_modifier(MOVESPEED_ID_COLD, TRUE, 0, NONE, TRUE, 2)
 	else if(old_temperature < species.cold_level_1)
 		remove_movespeed_modifier(MOVESPEED_ID_COLD)
+
+/mob/living/proc/adjust_mute(amount)
+	mute = max((disabilities & MUTE) ? 1 : 0, mute + amount)
+
+
+/mob/living/proc/set_mute(amount)
+	if(!isnull(amount))
+		mute = max((disabilities & MUTE) ? 1 : 0, mute + amount)

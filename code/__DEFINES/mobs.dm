@@ -483,9 +483,11 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define HUNTER_SNEAK_ATTACK_DISARM_MULTIPLIER	1 //Multiplier for disarm full sneak attack tackle damage
 #define HUNTER_SNEAK_ATTACK_STAGGERSLOW_STACKS	4 //Stacks of stagger and slow applied to the target
 #define HUNTER_SNEAK_ATTACK_PARALYZE_TIME		1.5 SECONDS //Stacks of stagger and slow applied to the target
-#define HUNTER_IMPAIR_SENSES_STACKS				5 //Imposes this many eyeblur stacks.
-#define HUNTER_IMPAIR_SENSES_DURATION			10 SECONDS //Removes deafness from the Hunter's Impair Senses after this delay.
-#define HUNTER_IMPAIR_SENSES_RANGE				5 //Range in tiles of the Hunter's Impair Senses.
+#define HUNTER_SILENCE_STAGGER_STACKS			2 //Silence imposes this many stagger stacks
+#define HUNTER_SILENCE_SENSORY_STACKS			6 //Silence imposes this many eyeblur, mute and deafen stacks.
+#define HUNTER_SILENCE_DURATION					10 SECONDS //Removes blindness and deafness from the Hunter's Impair Senses after this delay.
+#define HUNTER_SILENCE_RANGE					5 //Range in tiles of the Hunter's Silence.
+#define HUNTER_SILENCE_WINDUP					0.3 SECONDS //Windup of the Hunter's Silence
 #define HUNTER_STINGER_WINDUP					0.3 SECONDS //Windup of the Sneak Attack sting.
 #define HUNTER_MARK_WINDUP						1 SECONDS //Windup of the Hunter's Mark
 #define HUNTER_SNEAK_ATTACK_INJECT_AMOUNT		10 //Base amount to inject on Sneak Attack

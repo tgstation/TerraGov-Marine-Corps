@@ -47,6 +47,7 @@
 	var/eye_blurry = 0
 	var/ear_deaf = 0
 	var/ear_damage = 0
+	var/mute = 0
 
 	var/dizziness = 0
 	var/jitteriness = 0
