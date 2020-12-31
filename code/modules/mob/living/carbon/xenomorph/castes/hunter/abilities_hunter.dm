@@ -202,10 +202,11 @@
 	if(owner.m_intent == MOVE_INTENT_RUN && ( owner.last_move_time > (world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY) ) ) //We penalize running with a compromised sneak attack, unless they've been stationary; walking is fine.
 		flavour = "vicious"
 		staggerslow_stacks *= HUNTER_SNEAK_ATTACK_RUNNING_MULTIPLIER //half as much stagger slow if we're running and not stationary
-		paralyze_time *= HUNTER_SNEAK_ATTACK_RUNNING_MULTIPLIER
+		paralyze_time = 0 //No stun time for sprint sneak attacks
 		armor_mod += (1 - (1 - HUNTER_SNEAK_SLASH_ARMOR_PEN) * HUNTER_SNEAK_ATTACK_RUNNING_MULTIPLIER) //We halve the penetration.
 	else
 		armor_mod += HUNTER_SNEAK_SLASH_ARMOR_PEN
+		damage_mod += damage * HUNTER_SNEAK_SLASH_DAMAGE_MULTIPLIER
 		flavour = "deadly"
 
 	owner.visible_message("<span class='danger'>\The [owner] strikes [target] with [flavour] precision!</span>", \
