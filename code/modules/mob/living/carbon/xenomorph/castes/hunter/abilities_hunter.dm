@@ -258,7 +258,7 @@
 // ***************************************
 // *********** Silence
 // ***************************************
-/datum/action/xeno_action/activable/impair_senses
+/datum/action/xeno_action/activable/silence
 	name = "Silence"
 	action_icon_state = "silence"
 	mechanics_text = "Impairs the ability of hostile living creatures we can see in a 5x5 area. Targets will be unable to speak and hear for 10 seconds."
@@ -267,17 +267,12 @@
 	keybind_signal = COMSIG_XENOABILITY_HAUNT
 	cooldown_timer = 40 SECONDS
 
-/datum/action/xeno_action/activable/impair_senses/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/xeno_action/activable/silence/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return
 
 	var/mob/living/carbon/xenomorph/impairer = owner //Type cast this for on_fire
-
-	if(!isliving(A))
-		if(!silent)
-			to_chat(impairer, "<span class='xenodanger'>We can't silence this target!</span>")
-		return
 
 	if(impairer.on_fire)
 		if(!silent)
@@ -298,7 +293,7 @@
 	return TRUE
 
 
-/datum/action/xeno_action/activable/impair_senses/use_ability(atom/A)
+/datum/action/xeno_action/activable/silence/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
 
 	X.face_atom(A)
@@ -307,7 +302,6 @@
 		to_chat(X, "<span class='xenodanger'>We abort silencing....</span>")
 		return fail_activate()
 
-	X.playsound_local(X, 'sound/effects/ghost.ogg', 25, 0, 1) //Spooky psychic noises.
 	var/victim_count
 	var/list/target_turfs = RANGE_TURFS(2, A)
 	for(var/turf/targetted as() in target_turfs)
@@ -325,22 +319,31 @@
 					continue
 			to_chat(victim, "<span class='danger'>Your mind convulses at the touch of something ominous as the world seems to blur, your voice dies in your throat, and everything falls silent!</span>") //Notify privately
 			victim.playsound_local(victim, 'sound/effects/ghost.ogg', 25, 0, 1) //Spooky psychic noises.
-			victim.adjust_stagger(HUNTER_SILENCE_STAGGER_STACKS) //Stagger for a short duration
-			victim.adjust_blurriness(HUNTER_SILENCE_SENSORY_STACKS) //Blur
-			victim.adjust_ear_damage(deaf = HUNTER_SILENCE_SENSORY_STACKS) //Temp
-			victim.set_mute(HUNTER_SILENCE_SENSORY_STACKS) //Mute; in your desperate final moments, no one can hear you scream
+			victim.adjust_stagger(HUNTER_SILENCE_STAGGER_STACKS) //Stagger for a very short duration
+			victim.adjust_blurriness(HUNTER_SILENCE_SENSORY_STACKS) //Eye blur
+			victim.adjust_ear_damage(deaf = HUNTER_SILENCE_SENSORY_STACKS) //Temporary deafness
+			victim.set_mute(HUNTER_SILENCE_SENSORY_STACKS) //Temporary mute; in your desperate final moments, no one can hear you scream
 			victim_count++
 
 	if(!victim_count)
 		to_chat(X, "<span class='xenodanger'>We were unable to violate the minds of any victims.") //Notify privately
+		cooldown_timer = HUNTER_SILENCE_WHIFF_COOLDOWN //We cooldown to prevent spam, but only for a short duration
+		add_cooldown()
 		return fail_activate()
 
+	X.playsound_local(X, 'sound/effects/ghost.ogg', 25, 0, 1) //Spooky psychic noises.
 	to_chat(X, "<span class='xenodanger'>We invade the mind of [victim_count] [victim_count > 1 ? "victims" : "victim"], silencing and muting them...</span>") //Notify privately
 	succeed_activate()
 	add_cooldown()
 
 	GLOB.round_statistics.hunter_impede_senses++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "hunter_impede_senses") //Statistics
+
+/datum/action/xeno_action/activable/silence/on_cooldown_finish()
+	to_chat(owner, "<span class='xenowarning'><b>We refocus our psionic energies, allowing us to impose silence again.</b></span>")
+	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
+	cooldown_timer = initial(cooldown_timer) //Reset the cooldown timer to its initial state in the event of a whiffed Silence.
+	return ..()
 
 // ***************************************
 // *********** Stealth Stinger

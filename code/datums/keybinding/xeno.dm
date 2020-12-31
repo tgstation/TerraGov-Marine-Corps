@@ -282,13 +282,13 @@
 /datum/keybinding/xeno/toggle_stealth
 	name = "toggle_stealth"
 	full_name = "Hunter: Toggle Stealth"
-	description = ""
+	description = "Enters stealth mode, allowing you to sneak attack. During stealth you will be translucent and harder to spot; the more slowly you move the more transparent you are."
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_STEALTH
 
 /datum/keybinding/xeno/haunt
 	name = "impair senses"
-	full_name = "Hunter: Impair Senses"
-	description = "Impair's the target's senses, deafening them and impeding their vision."
+	full_name = "Hunter: Silence"
+	description = "Impairs the ability of hostile living creatures we can see in a 5x5 area. Targets will be unable to speak and hear for 10 seconds."
 	keybind_signal = COMSIG_XENOABILITY_HAUNT
 
 /datum/keybinding/xeno/psychic_whisper

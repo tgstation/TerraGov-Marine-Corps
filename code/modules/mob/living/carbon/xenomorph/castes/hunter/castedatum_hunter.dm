@@ -49,7 +49,7 @@
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
 		/datum/action/xeno_action/activable/headbite,
-		/datum/action/xeno_action/activable/impair_senses,
+		/datum/action/xeno_action/activable/silence,
 		/datum/action/xeno_action/activable/pounce/hunter,
 		/datum/action/xeno_action/stealth,
 		/datum/action/xeno_action/activable/sneak_stinger,
