@@ -40,12 +40,21 @@
 			hydro.activate_attachment(user)
 			playsound(user, hydro.activation_sound, 15, 1)
 
+/obj/item/weapon/gun/flamer/update_icon(mob/user)
+	if(!current_mag)
+		icon_state = base_gun_icon + "_e"
+	else if(istype(current_mag,/obj/item/ammo_magazine/flamer_tank/backtank))
+		icon_state = base_gun_icon + "_l"
+	else
+		icon_state = base_gun_icon
+	update_item_state(user)
+	update_mag_overlay(user)
 
 /obj/item/weapon/gun/flamer/examine_ammo_count(mob/user)
 	if(current_mag)
 		to_chat(user, "The fuel gauge shows the current tank is [round(current_mag.get_ammo_percent())]% full!")
 	else
-		to_chat(user, "There's no tank in [src]!")
+		to_chat(user, "[src] has no fuel tank!")
 
 /obj/item/weapon/gun/flamer/able_to_fire(mob/user)
 	. = ..()
@@ -143,6 +152,9 @@
 /obj/item/weapon/gun/flamer/unload(mob/user, reload_override = 0, drop_override = 0)
 	if(!current_mag)
 		return FALSE //no magazine to unload
+	if(istype(current_mag, /obj/item/ammo_magazine/flamer_tank/backtank))
+		detach_fueltank(user)
+		return
 	if(drop_override || !user) //If we want to drop it on the ground or there's no user.
 		current_mag.forceMove(get_turf(src)) //Drop it on the ground.
 	else
@@ -154,11 +166,45 @@
 	"<span class='notice'>You unload [current_mag] from [src].</span>")
 	current_mag.update_icon()
 	current_mag = null
-
 	update_icon()
-
 	return TRUE
 
+/obj/item/weapon/gun/flamer/proc/attach_fueltank(mob/user, obj/item/ammo_magazine/flamer_tank/backtank/fueltank)
+	if (!fueltank || !istype(fueltank))
+		to_chat(user, "<span class='warning'>That's not an attachable fuel tank!</span>")
+		return
+	
+	if(fueltank.current_rounds <= 0)
+		to_chat(user, "<span class='warning'>That [fueltank.name] is empty!</span>")
+		return
+	
+	to_chat(user, "<span class='notice'>You begin linking [src] with [fueltank.name]. Hold still...</span>")
+	if(do_after(user,fueltank.reload_delay, TRUE, src, BUSY_ICON_GENERIC))
+		if (current_mag && !istype(current_mag,/obj/item/ammo_magazine/flamer_tank/backtank))
+			user.put_in_hands(current_mag)
+		current_mag = fueltank
+		toggle_flame(user,TRUE)
+		playsound(user, reload_sound, 25, 1, 5)
+		update_icon(user)
+	else
+		to_chat(user, "<span class='warning'>Your action was interrupted!</span>")
+		return
+
+/obj/item/weapon/gun/flamer/proc/detach_fueltank(mob/user)
+	current_mag = null
+	to_chat(user, "<span class='notic'>You detach the fuel tank</span>")
+	playsound(user, unload_sound, 25, 1)
+	toggle_flame(user,FALSE)
+	update_icon(user)
+	
+	
+/obj/item/weapon/gun/flamer/dropped(mob/user)
+	..()
+	if (istype(current_mag,/obj/item/ammo_magazine/flamer_tank/backtank/))
+		current_mag = null
+		toggle_flame(null,FALSE)
+
+	update_icon(user)
 
 /obj/item/weapon/gun/flamer/proc/unleash_flame(atom/target, mob/living/user)
 	set waitfor = 0

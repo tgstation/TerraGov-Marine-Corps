@@ -756,38 +756,6 @@
 	..()
 	to_chat(user, "[reagents.total_volume] units of fuel left!")
 
-// Pyrotechnician Spec backpack fuel tank
-/obj/item/storage/backpack/marine/engineerpack/flamethrower
-	name = "\improper TGMC Pyrotechnician fueltank"
-	desc = "A specialized fueltank worn by TGMC Pyrotechnicians for use with the M240-T incinerator unit. A small general storage compartment is installed."
-	icon_state = "flamethrower_tank"
-	worn_accessible = TRUE
-	max_fuel = 500
-
-
-/obj/item/storage/backpack/marine/engineerpack/flamethrower/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/ammo_magazine/flamer_tank))
-		var/obj/item/ammo_magazine/flamer_tank/FTL = I
-		if(FTL.default_ammo != /datum/ammo/flamethrower)
-			return ..()
-		if(FTL.max_rounds == FTL.current_rounds)
-			return ..()
-		if(reagents.total_volume <= 0)
-			to_chat(user, "<span class='warning'>You try to refill \the [FTL] but \the [src] fuel reserve is empty.</span>")
-			return ..()
-		var/fuel_refill = FTL.max_rounds - FTL.current_rounds
-		if(reagents.total_volume < fuel_refill)
-			fuel_refill = reagents.total_volume
-		reagents.remove_reagent(/datum/reagent/fuel, fuel_refill)
-		FTL.current_rounds = FTL.current_rounds + fuel_refill
-		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
-		to_chat(user, "<span class='notice'>You refill [FTL] with UT-Napthal Fuel as you place it inside of \the [src].</span>")
-		FTL.update_icon()
-
-	else
-		return ..()
-
-
 /obj/item/storage/backpack/lightpack
 	name = "\improper lightweight combat pack"
 	desc = "A small lightweight pack for expeditions and short-range operations."

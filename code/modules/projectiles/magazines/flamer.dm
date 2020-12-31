@@ -48,6 +48,29 @@
 	reload_delay = 3 SECONDS
 	gun_type = /obj/item/weapon/gun/flamer/marinestandard
 
+
+/obj/item/ammo_magazine/flamer_tank/backtank
+	name = "Back fuel tank"
+	desc = "A specialized fueltank for use with the TL-84 flamethrower and M240A1 incinerator unit."
+	icon_state = "flamethrower_tank"
+	flags_equip_slot = ITEM_SLOT_BACK
+	w_class = WEIGHT_CLASS_BULKY
+	max_rounds = 500
+	current_rounds = 500
+	reload_delay = 5 SECONDS
+	gun_type = /obj/item/weapon/gun/flamer
+
+
+/obj/item/ammo_magazine/flamer_tank/backtank/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/weapon/gun/flamer/))
+		var/obj/item/weapon/gun/flamer/FLT = I
+		if(FLT?.current_mag == src)
+			FLT.detach_fueltank(user)
+		else 
+			FLT.attach_fueltank(user,src)
+	else
+		return ..()
+	
 /obj/item/ammo_magazine/flamer_tank/large/B
 	name = "large flamethrower tank (B)"
 	desc = "A large fuel tank of ultra thick napthal type B, a wide-spreading sticky combustable liquid chemical, for use in the TL-84 flamethrower. Handle with care."
