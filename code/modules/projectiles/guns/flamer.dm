@@ -63,7 +63,7 @@
 			return
 
 
-/obj/item/weapon/gun/flamer/proc/toggle_flame(mob/user,var/mustlit)
+/obj/item/weapon/gun/flamer/proc/toggle_flame(mob/user,mustlit)
 	if (lit == mustlit)//You can't lit what is already lit
 		return
 	lit = mustlit
