@@ -275,7 +275,7 @@
 		output += "<a href='byond://?src=[REF(NP)];lobby_choice=manifest'>View the Crew Manifest</A><br>"
 		output += "<p><a href='byond://?src=[REF(NP)];lobby_choice=late_join'>Join the Game!</A></p>"
 
-	output += append_player_votes_link(NP)
+	output += NP.playerpolls()
 
 	output += "</div>"
 

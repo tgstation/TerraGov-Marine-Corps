@@ -732,9 +732,15 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	zoom(user, zoom_offset, zoom_viewsize)
 	return TRUE
 
+/obj/item/attachable/scope/zoom_item_turnoff(datum/source, mob/living/carbon/user)
+	if(ismob(source))
+		activate_attachment(source, TRUE)
+	else
+		activate_attachment(user, TRUE)
+
 /obj/item/attachable/scope/onzoom(mob/living/user)
-	RegisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_CARBON_SWAPPED_HANDS), .proc/activate_attachment)
-	RegisterSignal(master_gun, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED, .proc/activate_attachment))
+	RegisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_CARBON_SWAPPED_HANDS), .proc/zoom_item_turnoff)
+	RegisterSignal(master_gun, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_UNWIELD, COMSIG_ITEM_DROPPED), .proc/zoom_item_turnoff)
 	master_gun.accuracy_mult += scoped_accuracy_mod
 	if(has_nightvision)
 		update_remote_sight(user)
@@ -742,8 +748,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		active_nightvision = TRUE
 
 /obj/item/attachable/scope/onunzoom(mob/living/user)
-	UnregisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_CARBON_SWAPPED_HANDS), .proc/activate_attachment)
-	UnregisterSignal(master_gun, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED), .proc/activate_attachment)
+	UnregisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_CARBON_SWAPPED_HANDS))
+	UnregisterSignal(master_gun, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_UNWIELD, COMSIG_ITEM_DROPPED))
 	master_gun.accuracy_mult -= scoped_accuracy_mod
 	if(has_nightvision)
 		user.update_sight()

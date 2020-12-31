@@ -46,6 +46,11 @@ OPERATIONS
 	contains = list(/obj/item/fulton_extraction_pack)
 	cost = 5
 
+/datum/supply_packs/operations/fulton_recovery_beacon
+	name = "fulton recovery beacon"
+	contains = list(/obj/structure/fulton_extraction_point)
+	cost = 5
+
 /datum/supply_packs/operations/cas_flares
 	name = "CAS flare pack"
 	contains = list(/obj/item/storage/box/m94/cas)
@@ -182,17 +187,33 @@ WEAPONS
 		/obj/item/cell/lasgun/tesla,
 		/obj/item/cell/lasgun/tesla,
 	)
-	cost = 30
+	cost = 60
 
 /datum/supply_packs/weapons/recoillesskit
 	name = "Recoilless rifle kit"
 	contains = list(/obj/item/storage/box/recoilless_system)
 	cost = 40
 
+
+/datum/supply_packs/weapons/specgrenadier
+	name = "Grenadier Specialist kit"
+	contains = list(/obj/item/weapon/gun/launcher/m92)
+	cost = 80
+
+/datum/supply_packs/weapons/specscoutm4ra
+	name = "Scout Specialist kit (M4RA)"
+	contains = list(/obj/item/weapon/gun/rifle/m4ra)
+	cost = 80
+
+/datum/supply_packs/weapons/specscoutmbx
+	name = "Scout Specialist kit (MBR-900)"
+	contains = list(/obj/item/weapon/gun/shotgun/pump/lever/mbx900)
+	cost = 80
+
 /datum/supply_packs/weapons/specdemo
 	name = "Demolitionist Specialist kit"
 	contains = list(/obj/item/weapon/gun/launcher/rocket/sadar)
-	cost = 100
+	cost = 90
 
 /datum/supply_packs/weapons/autosniper
 	name = "IFF Auto Sniper kit"
@@ -201,25 +222,12 @@ WEAPONS
 		/obj/item/ammo_magazine/rifle/autosniper,
 		/obj/item/ammo_magazine/rifle/autosniper,
 	)
-	cost = 40
-
-/datum/supply_packs/weapons/antimatrifle
-	name = "Anti Material Rifle kit"
-	contains = list(
-		/obj/item/weapon/gun/rifle/sniper/antimaterial,
-		/obj/item/ammo_magazine/sniper,
-	)
-	cost = 120
-
-/datum/supply_packs/weapons/railgun
-	name = "TX-220 Railgun"
-	contains = list(/obj/item/weapon/gun/rifle/railgun)
-	cost = 150
+	cost = 70
 
 /datum/supply_packs/weapons/specminigun
 	name = "MIC-A7 Vindicator Minigun"
 	contains = list(/obj/item/weapon/gun/minigun)
-	cost = 70
+	cost = 80
 
 /datum/supply_packs/weapons/smartgun
 	name = "T-29 Smart Machinegun"
@@ -402,7 +410,7 @@ AMMO
 		/obj/item/cell/lasgun/tesla,
 		/obj/item/cell/lasgun/tesla,
 	)
-	cost = 5
+	cost = 30
 
 /datum/supply_packs/ammo/boxslug
 	name = "Slug Ammo Box"
@@ -467,21 +475,26 @@ AMMO
 /datum/supply_packs/ammo/quadlauncher
 	name = "M57A4 thermobaric rocket array"
 	contains = list(/obj/item/ammo_magazine/rocket/m57a4)
-	cost = 20
+	cost = 50
 
-/datum/supply_packs/ammo/railgun
-	name = "Railgun round"
-	contains = list(/obj/item/ammo_magazine/railgun)
-	cost = 10
+/datum/supply_packs/ammo/scout_regular
+	name = "M4RA scout magazine"
+	contains = list(/obj/item/ammo_magazine/rifle/m4ra)
+	cost = 5
 
-/datum/supply_packs/ammo/antimaterial
-	name = "Anti material rifle magazine"
-	contains = list(/obj/item/ammo_magazine/sniper)
+/datum/supply_packs/ammo/scout_impact
+	name = "M4RA scout impact magazine"
+	contains = list(/obj/item/ammo_magazine/rifle/m4ra/impact)
 	cost = 7
 
-/datum/supply_packs/ammo/antimaterial
-	name = "Anti material rifle stagger magazine"
-	contains = list(/obj/item/ammo_magazine/sniper/stagger)
+/datum/supply_packs/ammo/scout_incendiary
+	name = "M4RA scout incendiary magazine"
+	contains = list(/obj/item/ammo_magazine/rifle/m4ra/incendiary)
+	cost = 7
+
+/datum/supply_packs/ammo/scout_smart
+	name = "M4RA scout smart magazine"
+	contains = list(/obj/item/ammo_magazine/rifle/m4ra/smart)
 	cost = 7
 
 /datum/supply_packs/ammo/autosniper_regular
@@ -489,10 +502,20 @@ AMMO
 	contains = list(/obj/item/ammo_magazine/rifle/autosniper)
 	cost = 3
 
-/datum/supply_packs/ammo/tracker
-	name = "Shotgun Tracker Shells"
-	contains = list(/obj/item/ammo_magazine/shotgun/tracker)
-	cost = 15
+/datum/supply_packs/ammo/mbx900
+	name = "MBX-900 Sabot Shells"
+	contains = list(/obj/item/ammo_magazine/shotgun/mbx900)
+	cost = 5
+
+/datum/supply_packs/ammo/mbx900/buckshot
+	name = "MBX-900 Buckshot Shells"
+	contains = list(/obj/item/ammo_magazine/shotgun/mbx900/buckshot)
+	cost = 5
+
+/datum/supply_packs/ammo/mbx900/tracker
+	name = "MBX-900 Tracker Shells"
+	contains = list(/obj/item/ammo_magazine/shotgun/mbx900/tracking)
+	cost = 5
 
 /datum/supply_packs/ammo/rpg_regular
 	name = "T-152 RPG HE rocket"
@@ -522,7 +545,7 @@ AMMO
 /datum/supply_packs/ammo/smartmachinegun
 	name = "T-29 smartmachinegun ammo"
 	contains = list(/obj/item/ammo_magazine/standard_smartmachinegun)
-	cost = 7
+	cost = 10
 
 /datum/supply_packs/ammo/sentry
 	name = "UA 571-C sentry ammunition"
@@ -622,7 +645,7 @@ ARMOR
 		/obj/item/clothing/suit/storage/marine/specialist,
 		/obj/item/clothing/head/helmet/marine/specialist,
 	)
-	cost = 50
+	cost = 100
 
 /datum/supply_packs/armor/b17
 	name = "B17 Armor Set"
@@ -630,7 +653,7 @@ ARMOR
 		/obj/item/clothing/suit/storage/marine/B17,
 		/obj/item/clothing/head/helmet/marine/grenadier,
 	)
-	cost = 50
+	cost = 60
 
 /datum/supply_packs/armor/scout_cloak
 	name = "Scout Cloak"
@@ -1102,7 +1125,7 @@ ENGINEERING
 
 /datum/supply_packs/engineering/watertank
 	name = "Water Tank"
-	contains = list(/obj/structure/reagent_dispensers)
+	contains = list(/obj/structure/reagent_dispensers/watertank)
 	cost = 5
 	containertype = null
 
@@ -1332,22 +1355,7 @@ Imports
 	contains = list(/obj/item/weapon/gun/rifle/famas)
 	cost = 15
 
-/datum/supply_packs/weapons/mbx
-	name = "MBX-900"
-	contains = list(/obj/item/weapon/gun/shotgun/pump/lever/mbx900)
-	cost = 15
-
-/datum/supply_packs/ammo/mbx900
-	name = "MBX-900 Sabot Shells"
-	contains = list(/obj/item/ammo_magazine/shotgun/mbx900)
-	cost = 5
-
-/datum/supply_packs/ammo/mbx900/buckshot
-	name = "MBX-900 Buckshot Shells"
-	contains = list(/obj/item/ammo_magazine/shotgun/mbx900/buckshot)
-	cost = 5
-
-/datum/supply_packs/imports/m16/ammo
+/datum/supply_packs/imports/famas/ammo
 	name = "FAMAS Assault Rifle Ammo"
 	contains = list(/obj/item/ammo_magazine/rifle/famas)
 	cost = 5

@@ -97,6 +97,8 @@
  * * lifespan - The lifespan of the message in deciseconds
  */
 /datum/chatmessage/proc/generate_image(text, atom/target, mob/owner, list/extra_classes, lifespan)
+	if(!owner.client)
+		return
 	// Register client who owns this message
 	owned_by = owner.client
 	RegisterSignal(owned_by, COMSIG_PARENT_QDELETING, .proc/on_parent_qdel)

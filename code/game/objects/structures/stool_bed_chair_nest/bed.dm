@@ -115,10 +115,10 @@ obj/structure/bed/Destroy()
 	forceMove(buckled_bodybag.loc)
 	return FALSE
 
-/obj/structure/bed/roller/CanPass(atom/movable/mover, turf/target)
+/obj/structure/bed/roller/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(mover == buckled_bodybag)
 		return TRUE
-	return ..()
 
 /obj/structure/bed/MouseDrop_T(atom/dropping, mob/user)
 	if(accepts_bodybag && !buckled_bodybag && !LAZYLEN(buckled_mobs) && istype(dropping,/obj/structure/closet/bodybag) && ishuman(user))
@@ -166,8 +166,8 @@ obj/structure/bed/Destroy()
 					new buildstacktype (loc, buildstackamount)
 				qdel(src)
 
-/obj/structure/bed/attack_alien(mob/living/carbon/xenomorph/M)
-	SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_BED)
+/obj/structure/bed/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0)
+	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_BED)
 	return ..()
 
 /obj/structure/bed/attackby(obj/item/I, mob/user, params)
@@ -192,10 +192,10 @@ obj/structure/bed/Destroy()
 		return TRUE
 
 
-/obj/structure/bed/CanPass(atom/movable/mover, turf/target)
+/obj/structure/bed/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
 		return TRUE
-	. = ..()
 
 /obj/structure/bed/alien
 	icon_state = "abed"

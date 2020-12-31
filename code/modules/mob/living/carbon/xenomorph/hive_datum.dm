@@ -17,6 +17,8 @@
 	var/list/dead_xenos // xenos that are still assigned to this hive but are dead.
 	var/list/ssd_xenos
 	var/list/list/xenos_by_zlevel
+	var/tier3_xeno_limit
+	var/tier2_xeno_limit
 
 // ***************************************
 // *********** Init
@@ -165,6 +167,7 @@
 		LAZYADD(ssd_xenos, X)
 
 	xenos_by_typepath[X.caste_base_type] += X
+	update_tier_limits() //Update our tier limits.
 
 	return TRUE
 
@@ -183,6 +186,7 @@
 	generate_name()
 
 	SSdirection.start_tracking(HS.hivenumber, src)
+	hive.update_tier_limits() //Update our tier limits.
 
 /mob/living/carbon/xenomorph/queen/add_to_hive(datum/hive_status/HS, force=FALSE) // override to ensure proper queen/hive behaviour
 	. = ..()
@@ -207,6 +211,7 @@
 		CRASH("add_to_hive_by_hivenumber called with invalid hivenumber")
 	var/datum/hive_status/HS = GLOB.hive_datums[hivenumber]
 	add_to_hive(HS, force)
+	hive.update_tier_limits() //Update our tier limits.
 
 // This is a special proc called only when a xeno is first created to set their hive and name properly
 /mob/living/carbon/xenomorph/proc/set_initial_hivenumber()
@@ -252,6 +257,7 @@
 	UnregisterSignal(X, COMSIG_MOVABLE_Z_CHANGED)
 
 	remove_leader(X)
+	update_tier_limits() //Update our tier limits.
 
 	return TRUE
 
@@ -267,8 +273,10 @@
 
 	SSdirection.stop_tracking(hive.hivenumber, src)
 
+	var/datum/hive_status/reference_hive = hive
 	hive = null
 	hivenumber = XENO_HIVE_NONE // failsafe value
+	reference_hive.update_tier_limits() //Update our tier limits.
 
 /mob/living/carbon/xenomorph/queen/remove_from_hive() // override to ensure proper queen/hive behaviour
 	var/datum/hive_status/hive_removed_from = hive
@@ -1075,3 +1083,7 @@ to_chat will check for valid clients itself already so no need to double check f
 			var/datum/xeno_caste/caste = GLOB.xeno_caste_datums[text2path(params["path"])][XENO_UPGRADE_BASETYPE]
 			xeno.do_evolve(caste.caste_type_path, caste.display_name) // All the checks for can or can't are handled inside do_evolve
 			return
+
+/datum/hive_status/proc/update_tier_limits()
+	tier3_xeno_limit = max(length(xenos_by_tier[XENO_TIER_THREE]),FLOOR((length(xenos_by_tier[XENO_TIER_ZERO])+length(xenos_by_tier[XENO_TIER_ONE])+length(xenos_by_tier[XENO_TIER_TWO]))/3+1,1))
+	tier2_xeno_limit = max(length(xenos_by_tier[XENO_TIER_TWO]),length(xenos_by_tier[XENO_TIER_ZERO]) + length(xenos_by_tier[XENO_TIER_ONE])+1 - length(xenos_by_tier[XENO_TIER_THREE]))

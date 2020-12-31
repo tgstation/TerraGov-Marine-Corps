@@ -131,10 +131,8 @@
 			if(can_see(targets_from, HM, vision_range))
 				. += HM
 	else
-		. = list() // The following code is only very slightly slower than just returning oview(vision_range, targets_from), but it saves us much more work down the line, particularly when bees are involved
-		for (var/obj/A in oview(vision_range, targets_from))
-			. += A
-		for (var/mob/A in oview(vision_range, targets_from))
+		. = list()
+		for (var/atom/movable/A in oview(vision_range, targets_from))
 			. += A
 
 /mob/living/simple_animal/hostile/proc/FindTarget(list/possible_targets, HasTargetsList = 0)//Step 2, filter down possible targets to things we actually care about

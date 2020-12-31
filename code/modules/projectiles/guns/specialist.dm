@@ -26,7 +26,6 @@
 	current_mag = /obj/item/ammo_magazine/sniper
 	force = 12
 	wield_delay = 12 //Ends up being 1.6 seconds due to scope
-	zoomdevicename = "scope"
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 20, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 	var/targetmarker_on = FALSE
 	var/targetmarker_primed = FALSE
@@ -227,12 +226,12 @@
 	cocked_sound = 'sound/weapons/guns/interact/sniper_heavy_cocked.ogg'
 	current_mag = /obj/item/ammo_magazine/sniper/elite
 	force = 17
-	zoomdevicename = "scope"
 	attachable_allowed = list()
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 15, "rail_y" = 19, "under_x" = 20, "under_y" = 15, "stock_x" = 20, "stock_y" = 15)
 	flags_item_map_variant = NONE
 	starting_attachment_types = list(/obj/item/attachable/scope/pmc, /obj/item/attachable/sniperbarrel)
+	gun_iff_signal = list(ACCESS_IFF_PMC)
 
 	fire_delay = 1.5 SECONDS
 	accuracy_mult = 1.50

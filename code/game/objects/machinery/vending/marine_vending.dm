@@ -55,6 +55,7 @@
 		/obj/item/storage/box/m94 = 5,
 		/obj/item/attachable/flashlight = 10,
 		/obj/item/explosive/grenade/mirage = 5,
+		/obj/item/weapon/powerfist = 3,
 	)
 	prices = list()
 
@@ -139,6 +140,7 @@
 		/obj/item/explosive/grenade/drainbomb = 5,
 		/obj/item/explosive/grenade/cloakbomb = 25,
 		/obj/item/storage/box/m94 = 30,
+		/obj/item/storage/box/m94/cas = 10,
 		/obj/item/storage/box/recoilless_system = 1,
 		/obj/item/weapon/shield/riot/marine = 3,
 	)
@@ -378,7 +380,7 @@
 		/obj/item/storage/pill_bottle/tricordrazine = 3,
 		/obj/item/storage/pill_bottle/imidazoline = 3,
 		/obj/item/storage/pill_bottle/tramadol = 3,
-		/obj/item/storage/pill_bottle/russianRed = 5,
+		/obj/item/storage/pill_bottle/russian_red = 5,
 		/obj/item/storage/pill_bottle/peridaxon = 2,
 		/obj/item/storage/pill_bottle/quickclot = 2,
 		/obj/item/storage/pill_bottle/hypervene = 2,
@@ -764,6 +766,17 @@
 		/obj/item/clothing/head/white_dress = 50,
 		/obj/item/clothing/shoes/white = 50,
 		/obj/item/clothing/gloves/white = 50,
+		/obj/item/instrument/violin = 2,
+		/obj/item/instrument/piano_synth = 2,
+		/obj/item/instrument/banjo = 2,
+		/obj/item/instrument/guitar = 2,
+		/obj/item/instrument/glockenspiel = 2,
+		/obj/item/instrument/accordion = 2,
+		/obj/item/instrument/trumpet = 2,
+		/obj/item/instrument/saxophone = 2,
+		/obj/item/instrument/trombone = 2,
+		/obj/item/instrument/recorder = 2,
+		/obj/item/instrument/harmonica = 2,
 	)
 
 	prices = list()

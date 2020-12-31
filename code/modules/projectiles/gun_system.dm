@@ -4,13 +4,17 @@
 	icon = 'icons/obj/items/gun.dmi'
 	icon_state = ""
 	item_state = "gun"
+	item_state_worn = TRUE
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+		)
 	materials = list(/datum/material/metal = 100)
 	w_class 	= 3
 	throwforce 	= 5
 	throw_speed = 4
 	throw_range = 5
 	force 		= 5
-	sprite_sheet_id = 1
 	flags_atom = CONDUCT
 	flags_item = TWOHANDED
 	light_system = MOVABLE_LIGHT
@@ -809,6 +813,9 @@ and you're good to go.
 	if((flags_gun_features & GUN_WIELDED_FIRING_ONLY) && !(flags_item & WIELDED)) //If we're not holding the weapon with both hands when we should.
 		to_chat(user, "<span class='warning'>You need a more secure grip to fire this weapon!")
 		return FALSE
+	if(user.action_busy)
+		to_chat(user, "<span class='warning'>You are doing something else currently.")
+		return FALSE
 	if((flags_gun_features & GUN_POLICE) && !police_allowed_check(user))
 		return FALSE
 	return TRUE
@@ -883,7 +890,7 @@ and you're good to go.
 		gun_accuracy_mult = max(0.1, gun_accuracy_mult - max(0,movement_acc_penalty_mult * 0.15))
 		gun_scatter += max(0, movement_acc_penalty_mult * 5)
 
-	if(gun_firemode == GUN_FIREMODE_BURSTFIRE && burst_amount > 1)
+	if(gun_firemode == GUN_FIREMODE_BURSTFIRE || gun_firemode == GUN_FIREMODE_AUTOBURST && burst_amount > 1)
 		gun_accuracy_mult = max(0.1, gun_accuracy_mult * burst_accuracy_mult)
 
 	if(dual_wield) //akimbo firing gives terrible accuracy

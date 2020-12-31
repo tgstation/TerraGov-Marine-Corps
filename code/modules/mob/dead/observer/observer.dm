@@ -205,11 +205,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			return
 		client.prefs.process_link(src, href_list)
 
-
-/mob/dead/CanPass(atom/movable/mover, turf/target)
-	return TRUE
-
-
 /mob/proc/ghostize(can_reenter_corpse = TRUE)
 	if(!key || isaghost(src))
 		return FALSE

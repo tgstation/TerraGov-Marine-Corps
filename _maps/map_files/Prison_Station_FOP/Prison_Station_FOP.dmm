@@ -42647,7 +42647,7 @@
 	},
 /area/prison/maintenance/residential/sw)
 "mLZ" = (
-/obj/item/clothing/under/schoolgirl,
+/obj/item/clothing/under/color/black,
 /turf/open/floor/plating/ground/dirt,
 /area/space)
 "mMl" = (

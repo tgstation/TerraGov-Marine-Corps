@@ -522,6 +522,11 @@
 
 
 /turf/proc/check_alien_construction(mob/living/builder, silent = FALSE, planned_building)
+	var/area/ourarea = loc
+	if(ourarea.flags_area & DISALLOW_WEEDING)
+		if(!silent)
+			to_chat(builder, "<span class='warning'>We cannot build in this area!</span>")
+		return FALSE
 	var/has_obstacle
 	for(var/obj/O in contents)
 		if(istype(O, /obj/item/clothing/mask/facehugger))
@@ -634,11 +639,10 @@
 
 
 
-/turf/CanPass(atom/movable/mover, turf/target)
-	if(!target) return 0
-
-	if(istype(mover)) // turf/Enter(...) will perform more advanced checks
-		return !density
+/turf/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
+	if(!target)
+		return FALSE
 
 GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	/turf/open/space,

@@ -171,17 +171,17 @@
 	updateUsrDialog()
 
 
-/obj/structure/janitorialcart/update_icon()
-	overlays = null
+/obj/structure/janitorialcart/update_overlays()
+	. = ..()
 	if(mybag)
-		overlays += "cart_garbage"
+		. += "cart_garbage"
 	if(mymop)
-		overlays += "cart_mop"
+		. += "cart_mop"
 	if(myspray)
-		overlays += "cart_spray"
+		. += "cart_spray"
 	if(myreplacer)
-		overlays += "cart_replacer"
+		. += "cart_replacer"
 	if(mybucket)
-		overlays += "cart_bucket"
+		. += "cart_bucket"
 	if(signs)
-		overlays += "cart_sign[signs]"
+		. += "cart_sign[signs]"

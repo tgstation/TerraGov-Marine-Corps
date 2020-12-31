@@ -119,6 +119,7 @@
 
 // Legs pieces
 /obj/item/armor_module/armor/legs
+	icon = 'icons/mob/modular/modular_legs.dmi'
 	icon_state = "infantry_legs"
 
 /obj/item/armor_module/armor/legs/can_attach(mob/living/user, obj/item/clothing/suit/modular/parent, silent = FALSE)
@@ -167,6 +168,7 @@
 
 /** Arms pieces */
 /obj/item/armor_module/armor/arms
+	icon = 'icons/mob/modular/modular_arms.dmi'
 	icon_state = "infantry_arms"
 
 /obj/item/armor_module/armor/arms/can_attach(mob/living/user, obj/item/clothing/suit/modular/parent, silent = FALSE)

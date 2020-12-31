@@ -159,6 +159,18 @@
 	name = "Underground Caves"
 	icon_state = "cave"
 
+/area/ice_colony/exterior/underground/caves/ice_nw
+	name = "North Western Ice Caves"
+	icon_state = "icecave_nw"
+
+/area/ice_colony/exterior/underground/caves/ice_se
+	name = "South Eastern Ice Caves"
+	icon_state = "icecave_se"
+
+/area/ice_colony/exterior/underground/caves/ice_w
+	name = "Western Ice Caves"
+	icon_state = "icecave_w"
+
 /area/ice_colony/exterior/underground/caves/open
 	icon_state = "explored"
 
