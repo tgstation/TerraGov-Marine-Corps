@@ -1,5 +1,0 @@
-author: "Surrealaser"
-delete-after: True
-changes: 
-  - bugfix: "ERT shuttles can no longer depart instantly; the shuttle now has a 3 minute recharge time, and a 10 second depart time."
-  - bugfix: "AIs can no longer interact with the ERT ship airlocks and consoles."

@@ -1,4 +1,0 @@
-author: "Surrealaser"
-delete-after: True
-changes: 
-  - rscadd: "Fire now melts snow in proportion to its intensity (burn stacks)."
