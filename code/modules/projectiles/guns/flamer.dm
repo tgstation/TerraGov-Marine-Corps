@@ -178,8 +178,11 @@
 	
 	to_chat(user, "<span class='notice'>You begin linking [src] with [fueltank.name]. Hold still...</span>")
 	if(do_after(user,fueltank.reload_delay, TRUE, src, BUSY_ICON_GENERIC))
-		if (current_mag && !istype(current_mag,/obj/item/ammo_magazine/flamer_tank/backtank))
-			user.put_in_hands(current_mag)//We remove the fuel tank if there is one
+		if (current_mag)
+			if(istype(current_mag,/obj/item/ammo_magazine/flamer_tank/backtank))
+				detach_fueltank(user,FALSE)
+			else
+				user.put_in_hands(current_mag)//We remove the fuel tank if there is one
 		current_mag = fueltank
 		fueltank.attached_flamer = src
 		toggle_flame(user,TRUE)
@@ -192,7 +195,9 @@
 		return
 
 /obj/item/weapon/gun/flamer/proc/detach_fueltank(mob/user,volontary = TRUE)
+	var/obj/item/ammo_magazine/flamer_tank/backtank/fueltank = current_mag
 	current_mag = null
+	fueltank?.attached_flamer=null
 	if (volontary)
 		to_chat(user, "<span class='notic'>You detach the fuel tank</span>")
 	playsound(user, unload_sound, 25, 1)

@@ -67,13 +67,14 @@
 		var/mob/living/carbon/human/humanuser = user
 		if (istype(humanuser))
 			if (humanuser.is_item_in_slots(src))
-				if(FLT?.current_mag == src)
-					attached_flamer = null
+				if(FLT.current_mag == src)
 					FLT.detach_fueltank(user)
-				else 
-					if (attached_flamer)
-						attached_flamer.detach_fueltank(user,FALSE)
+				else if (attached_flamer)
+					to_chat(user, "<span class='warning'>This fuel tank is already attached to something</span>")
+				else
 					FLT.attach_fueltank(user,src)
+			else
+				to_chat(user, "<span class='warning'>You must equip or hold this fuel tank to be able to link it to a flamer</span>")
 	else
 		return ..()
 
