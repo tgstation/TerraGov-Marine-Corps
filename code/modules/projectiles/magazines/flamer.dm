@@ -49,7 +49,7 @@
 	gun_type = /obj/item/weapon/gun/flamer/marinestandard
 
 /obj/item/ammo_magazine/flamer_tank/backtank
-	name = "Back fuel tank"
+	name = "back fuel tank"
 	desc = "A specialized fuel tank for use with the TL-84 flamethrower and M240A1 incinerator unit."
 	icon_state = "flamethrower_tank"
 	flags_equip_slot = ITEM_SLOT_BACK

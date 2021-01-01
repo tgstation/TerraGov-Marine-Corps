@@ -176,7 +176,7 @@
 		to_chat(user, "<span class='warning'>That [fueltank.name] is empty!</span>")
 		return
 	
-	to_chat(user, "<span class='notice'>You begin linking [src] with [fueltank.name]. Hold still...</span>")
+	to_chat(user, "<span class='notice'>You begin linking [src] with the [fueltank.name]. Hold still...</span>")
 	if(do_after(user,fueltank.reload_delay, TRUE, src, BUSY_ICON_GENERIC))
 		if (current_mag)
 			if(istype(current_mag,/obj/item/ammo_magazine/flamer_tank/backtank))
