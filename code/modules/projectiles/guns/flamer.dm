@@ -181,9 +181,12 @@
 		if (current_mag && !istype(current_mag,/obj/item/ammo_magazine/flamer_tank/backtank))
 			user.put_in_hands(current_mag)//We remove the fuel tank if there is one
 		current_mag = fueltank
+		fueltank.attached_flamer = src
 		toggle_flame(user,TRUE)
 		playsound(user, reload_sound, 25, 1, 5)
 		update_icon(user)
+		var/obj/screen/ammo/A = user.hud_used.ammo
+		A.update_hud(user)
 	else
 		to_chat(user, "<span class='warning'>Your action was interrupted!</span>")
 		return
@@ -195,6 +198,8 @@
 	playsound(user, unload_sound, 25, 1)
 	toggle_flame(user,FALSE)
 	update_icon(user)
+	var/obj/screen/ammo/A = user.hud_used.ammo
+	A.update_hud(user)
 	
 	
 /obj/item/weapon/gun/flamer/dropped(mob/user)
@@ -204,6 +209,8 @@
 		if(!humanuser.is_item_in_hands(src))//Unequiping the flamer should not unlink it
 			return
 		if (istype(current_mag,/obj/item/ammo_magazine/flamer_tank/backtank/)) //Dropping the flamer unlink it from the tank
+			var/obj/item/ammo_magazine/flamer_tank/backtank/backfueltank = current_mag;
+			backfueltank.attached_flamer=null
 			current_mag = null 
 			toggle_flame(null,FALSE) 
 		update_icon(humanuser)

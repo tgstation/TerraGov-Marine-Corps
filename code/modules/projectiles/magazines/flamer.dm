@@ -58,14 +58,18 @@
 	current_rounds = 500
 	reload_delay = 2 SECONDS
 	gun_type = /obj/item/weapon/gun/flamer
+	var/obj/item/weapon/gun/flamer/attached_flamer = null
 
 
 /obj/item/ammo_magazine/flamer_tank/backtank/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/weapon/gun/flamer/))
 		var/obj/item/weapon/gun/flamer/FLT = I
 		if(FLT?.current_mag == src)
+			attached_flamer = null
 			FLT.detach_fueltank(user)
 		else 
+			if (attached_flamer)
+				attached_flamer.detach_fueltank(user,FALSE)
 			FLT.attach_fueltank(user,src)
 	else
 		return ..()
@@ -74,14 +78,10 @@
 	..()
 	var/mob/living/carbon/human/humanuser = user
 	if (istype(humanuser))
-		if(!humanuser.is_item_in_hands(src))//Equiping the tank should not unlink it
+		if(!humanuser.is_item_in_hands(src))//Unequiping the tank should not unlink it
 			return
-		var/list/possibleFlamerLinked = humanuser.is_type_in_slots(/obj/item/weapon/gun/flamer)
-		for (var/i in possibleFlamerLinked)
-			var/obj/item/weapon/gun/flamer/possibleFlamer = i
-			if (possibleFlamer.current_mag == src)
-				possibleFlamer.detach_fueltank(user,FALSE)
-				break
+		if(attached_flamer)
+			attached_flamer.detach_fueltank(user,FALSE)
 	else
 		return ..()
 /obj/item/ammo_magazine/flamer_tank/backtank/B
