@@ -527,12 +527,11 @@
 			continue
 		qdel(i)
 
-/mob/living/carbon/human/proc/is_type_in_slots(type_searched)
-	var/list/equipped = list() //Heared we have lazylist or something for better perf, change needed?
+/mob/living/carbon/human/proc/is_item_in_slots(item_searched) 
 	for (var/slot in SLOT_ALL)
-		if (istype(get_item_by_slot(slot),type_searched))
-			equipped+=get_item_by_slot(slot)
-	return equipped
+		if (get_item_by_slot(slot) == item_searched)
+			return TRUE
+	return FALSE
 
 /mob/living/carbon/human/proc/is_item_in_hands(obj/item/item_searched)
 	if (get_item_by_slot(SLOT_R_HAND) == item_searched)

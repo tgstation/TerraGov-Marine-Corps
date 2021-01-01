@@ -64,13 +64,16 @@
 /obj/item/ammo_magazine/flamer_tank/backtank/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/weapon/gun/flamer/))
 		var/obj/item/weapon/gun/flamer/FLT = I
-		if(FLT?.current_mag == src)
-			attached_flamer = null
-			FLT.detach_fueltank(user)
-		else 
-			if (attached_flamer)
-				attached_flamer.detach_fueltank(user,FALSE)
-			FLT.attach_fueltank(user,src)
+		var/mob/living/carbon/human/humanuser = user
+		if (istype(humanuser))
+			if (humanuser.is_item_in_slots(src))
+				if(FLT?.current_mag == src)
+					attached_flamer = null
+					FLT.detach_fueltank(user)
+				else 
+					if (attached_flamer)
+						attached_flamer.detach_fueltank(user,FALSE)
+					FLT.attach_fueltank(user,src)
 	else
 		return ..()
 
