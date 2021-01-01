@@ -89,6 +89,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	var/fire_delay_mod = 0
 	///Changes aim mode movement delay multiplicatively
 	var/aim_mode_movement_mult = 0
+	///Modifies projectile damage by a % when a marine gets passed, but not hit
+	var/shot_marine_damage_falloff = 0
 
 	///the delay between shots, for attachments that fire stuff
 	var/attachment_firing_delay = 0
@@ -181,6 +183,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	master_gun.scatter						+= scatter_mod
 	master_gun.scatter_unwielded			+= scatter_unwielded_mod
 	master_gun.aim_speed_modifier			+= initial(master_gun.aim_speed_modifier)*aim_mode_movement_mult
+	master_gun.iff_marine_damage_falloff	+= shot_marine_damage_falloff
 	if(delay_mod)
 		master_gun.modify_fire_delay(delay_mod)
 	if(burst_delay_mod)
@@ -243,6 +246,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	master_gun.scatter						-= scatter_mod
 	master_gun.scatter_unwielded			-= scatter_unwielded_mod
 	master_gun.aim_speed_modifier			-= initial(master_gun.aim_speed_modifier)*aim_mode_movement_mult
+	master_gun.iff_marine_damage_falloff	-= shot_marine_damage_falloff
 	if(delay_mod)
 		master_gun.modify_fire_delay(-delay_mod)
 	if(burst_delay_mod)
@@ -1551,6 +1555,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	scatter_unwielded_mod = -10
 	recoil_unwielded_mod = -1
 	aim_mode_movement_mult = -0.5
+	shot_marine_damage_falloff = -0.1
 
 /obj/item/attachable/lasersight
 	name = "laser sight"
