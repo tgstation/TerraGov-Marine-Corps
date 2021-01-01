@@ -142,17 +142,17 @@
 	icon_state = "floodlightcombat_off"
 	anchored = FALSE
 	density = TRUE
-	/// Determines how much light does the floodlight make , every light tube adds 4 tiles distance.
-	var/brightness = 0
-	/// Turned ON or OFF? Used for the overlays and power usage.
-	var/on = 0
-	/// Used to show if the object is tipped
-	var/tipped
 	resistance_flags = UNACIDABLE
-	appearance_flags = KEEP_TOGETHER
+	appearance_flags = KEEP_TOGETHER || TILE_BOUND
 	idle_power_usage = 50
 	active_power_usage = 2500
 	wrenchable = TRUE
+	/// Determines how much light does the floodlight make , every light tube adds 4 tiles distance.
+	var/brightness = 0
+	/// Turned ON or OFF? Used for the overlays and power usage.
+	var/on = FALSE
+	/// Used to show if the object is tipped
+	var/tipped = FALSE
 
 /// Handles the wrench act .
 /obj/machinery/floodlightcombat/wrench_act(mob/living/user, obj/item/I)
@@ -168,7 +168,7 @@
 		to_chat(user , "<span class='notice'>You wrench down [src]'s bolts")
 		anchored = TRUE
 	set_light(0, 5, "#C5E3E132")
-	on = 0
+	on = FALSE
 
 /// Visually shows that the floodlight has been tipped and breaks all the lights in it.
 /obj/machinery/floodlightcombat/proc/tip_over()
@@ -180,8 +180,8 @@
 	A.Turn(90)
 	transform = A
 	density = FALSE
-	tipped = 1
-	on = 0
+	tipped = TRUE
+	on = FALSE
 
 /// Untip the floodlight
 /obj/machinery/floodlightcombat/proc/flip_back()
@@ -189,7 +189,7 @@
 	density = TRUE
 	var/matrix/A = matrix()
 	transform = A
-	tipped = 0
+	tipped = FALSE
 
 /obj/machinery/floodlightcombat/Initialize()
 	. = ..()
@@ -203,7 +203,7 @@
 /obj/machinery/floodlightcombat/process()
 	if(!powered(LIGHT))
 		if(on)
-			on = 0
+			on = !on
 			set_light(0, 5, "#C5E3E132")
 			update_icon()
 		return FALSE
@@ -249,7 +249,7 @@
 
 /obj/machinery/floodlightcombat/attackby(obj/item/I, mob/user, params)
 	var/list/lights = contents // has to be a static list..
-	if(!(ishuman(user)))
+	if(!ishuman(user))
 		return FALSE
 	if(istype(I, /obj/item/light_bulb/tube))
 		if(on)
@@ -321,10 +321,10 @@
 		visible_message("<span class='danger'>The floodlight flashes a warning led.It is not bolted to the ground.")
 		return FALSE
 	if(on)
-		on = 0
+		on = !on
 		set_light(0, 5, "#C5E3E132")
 	else
-		on = 1
+		on = TRUE
 		set_light(brightness, 5, "#C5E3E132")
 	update_icon()
 	playsound( loc, 'sound/machines/switch.ogg', 60 , FALSE)
