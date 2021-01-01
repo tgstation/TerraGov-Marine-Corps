@@ -46,12 +46,13 @@
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
 		/datum/action/xeno_action/activable/headbite,
-		/datum/action/xeno_action/place_warp_shadow,
-		/datum/action/xeno_action/hyperposition,
-		/datum/action/xeno_action/phase_shift,
 		/datum/action/xeno_action/activable/blink,
 		/datum/action/xeno_action/activable/banish,
 		/datum/action/xeno_action/recall,
+		/datum/action/xeno_action/place_warp_shadow,
+		/datum/action/xeno_action/hyperposition,
+		/datum/action/xeno_action/phase_shift,
+		/datum/action/xeno_action/resync,
 	)
 
 /datum/xeno_caste/wraith/young

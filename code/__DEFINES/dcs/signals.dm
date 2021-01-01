@@ -578,6 +578,7 @@
 #define COMSIG_XENOABILITY_PLACE_WARP_BEACON "xenoability_place_warp_shadow"
 #define COMSIG_XENOABILITY_HYPERPOSITION "xenoability_hyperposition"
 #define COMSIG_XENOABILITY_PHASE_SHIFT "xenoability_phase_shift"
+#define COMSIG_XENOABILITY_RESYNC "xenoability_resync"
 #define COMSIG_XENOABILITY_BLINK "xenoability_blink"
 #define COMSIG_XENOABILITY_BANISH "xenoability_banish"
 #define COMSIG_XENOABILITY_RECALL "xenoability_recall"

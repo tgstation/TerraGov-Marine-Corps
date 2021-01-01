@@ -478,6 +478,12 @@
 	description = "Move out of phase with reality for a short duration after a short delay, gaining invulnerability and the ability to move through all physical obstacles."
 	keybind_signal = COMSIG_XENOABILITY_PHASE_SHIFT
 
+/datum/keybinding/xeno/resync
+	name = "resync"
+	full_name = "Wraith: Resync"
+	description = "Resynchronize with reality, ending Phase Shift's effect."
+	keybind_signal = COMSIG_XENOABILITY_RESYNC
+
 /datum/keybinding/xeno/blink
 	name = "blink"
 	full_name = "Wraith: Blink"

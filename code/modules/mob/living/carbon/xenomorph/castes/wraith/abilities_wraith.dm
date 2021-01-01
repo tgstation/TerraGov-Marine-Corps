@@ -148,7 +148,7 @@
 // ***************************************
 /datum/action/xeno_action/phase_shift
 	name = "Phase Shift"
-	action_icon_state = "stealth_on"
+	action_icon_state = "phase_shift"
 	mechanics_text = "We force ourselves temporarily out of sync with reality, allowing us to become incorporeal and move through any physical obstacles for a short duration."
 	plasma_cost = 75
 	cooldown_timer = 20 SECONDS
@@ -179,6 +179,9 @@
 
 	ghost.remove_filter("wraith_phase_shift_windup_1")
 	ghost.remove_filter("wraith_phase_shift_windup_2")
+
+	playsound(owner, "sound/effects/ghost.ogg", 25, 0, 1)
+
 	addtimer(CALLBACK(src, .proc/phase_shift_warning), WRAITH_PHASE_SHIFT_DURATION * WRAITH_PHASE_SHIFT_DURATION_WARNING) //Warn them when Phase Shift is about to end
 	addtimer(CALLBACK(src, .proc/phase_shift_deactivate), WRAITH_PHASE_SHIFT_DURATION)
 	ghost.add_filter("wraith_phase_shift", 4, list("type" = "blur", 5)) //Cool filter appear
@@ -199,8 +202,9 @@
 
 /datum/action/xeno_action/phase_shift/proc/phase_shift_warning()
 
-	owner.remove_filter("wraith_phase_shift")
-	owner.add_filter("wraith_phase_shift", 4, list("type" = "blur", 2)) //Downgrade the blur
+	if(!owner.get_filter("wraith_phase_shift")) //If phase shift isn't active, cancel out
+		return
+
 	owner.alpha = WRAITH_PHASE_SHIFT_ALPHA * 1.5 //Become less translucent
 
 	to_chat(owner,"<span class='highdanger'>We begin to move back into phase with reality... We can only remain out of phase for [WRAITH_PHASE_SHIFT_DURATION * (1-WRAITH_PHASE_SHIFT_DURATION_WARNING) * 0.1] more seconds!</span>")
@@ -208,6 +212,9 @@
 
 
 /datum/action/xeno_action/phase_shift/proc/phase_shift_deactivate()
+
+	if(!owner.get_filter("wraith_phase_shift")) //If phase shift isn't active, don't deactivate again.
+		return
 
 	var/mob/living/carbon/xenomorph/wraith/ghost = owner
 
@@ -218,7 +225,7 @@
 	ghost.alpha = initial(ghost.alpha) //Become opaque
 	ghost.remove_filter("wraith_phase_shift") //Cool filter begone
 
-	playsound(owner, "sound/effects/escape_pod_launch.ogg", 25, 0, 1)
+	playsound(owner, "sound/effects/phasein.ogg", 25, 0, 1)
 
 	ghost.add_filter("wraith_phase_shift_windup_1", 3, list("type" = "wave", 0, 0, size=rand()*2.5+0.5, offset=rand())) //Cool filter appear
 	ghost.add_filter("wraith_phase_shift_windup_2", 3, list("type" = "wave", 0, 0, size=rand()*2.5+0.5, offset=rand())) //Cool filter appear
@@ -251,6 +258,31 @@
 	to_chat(owner, "<span class='xenonotice'>We are able to fade from reality again.</span>")
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
+
+
+// ***************************************
+// *********** Resync
+// ***************************************
+/datum/action/xeno_action/resync
+	name = "Resync"
+	action_icon_state = "resync"
+	mechanics_text = "Resynchronize with realspace, ending Phase Shift's effect."
+	cooldown_timer = 1 SECONDS //Token for anti-spam
+	keybind_signal = COMSIG_XENOABILITY_RESYNC
+
+
+/datum/action/xeno_action/resync/action_activate()
+	. = ..()
+	if(!owner.get_filter("wraith_phase_shift"))
+		to_chat(owner,"<span class='xenodanger'>We are already synchronized with realspace!</span>")
+		return fail_activate()
+
+	var/mob/living/carbon/xenomorph/X = owner
+	var/datum/action/xeno_action/phase_shift/disable_shift = X.actions_by_path[/datum/action/xeno_action/phase_shift]
+	disable_shift.phase_shift_deactivate()
+
+	succeed_activate()
+	add_cooldown()
 
 
 // ***************************************
