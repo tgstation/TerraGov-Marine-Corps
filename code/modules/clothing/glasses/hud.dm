@@ -68,6 +68,25 @@
 	hud_type = DATA_HUD_MEDICAL_ADVANCED
 	actions_types = list(/datum/action/item_action/toggle)
 
+/obj/item/clothing/glasses/hud/medgoggles
+	name = "marine ballistic healthmate goggles"
+	desc = "Standard issue TGMC goggles. With internal HealthMate HUD projector."
+	icon_state = "medgoggles"
+	item_state = "medgoggles"
+	deactive_state = "degoggles_medgoggles"
+	toggleable = 1
+	hud_type = DATA_HUD_MEDICAL_ADVANCED
+	actions_types = list(/datum/action/item_action/toggle)
+	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 0, "energy" = 15, "bomb" = 35, "bio" = 10, "rad" = 10, "fire" = 30, "acid" = 30)
+	flags_equip_slot = ITEM_SLOT_EYES
+
+/obj/item/clothing/glasses/hud/medgoggles/prescription
+	name = "prescription marine ballistic goggles"
+	desc = "Standard issue TGMC goggles. With internal HealthMate HUD projector. Contains prescription lenses."
+	icon_state = "medgoggles"
+	item_state = "medgoggles"
+	prescription = TRUE
+
 /obj/item/clothing/glasses/hud/health/eyepatch
 	name = "\improper Medpatch HUD"
 	desc = "A heads-up display that scans the humans in view and provides accurate data about their health status. For the disabled and/or edgy Corpsman."

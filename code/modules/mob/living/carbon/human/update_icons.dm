@@ -455,7 +455,9 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 	if(istype(glasses,/obj/item/clothing/glasses/mgoggles))
 		overlays_standing[GOGGLES_LAYER] = glasses.make_worn_icon(body_type = species.name, slot_name = slot_glasses_str, default_icon = 'icons/mob/eyes.dmi', default_layer = GOGGLES_LAYER)
 		apply_overlay(GOGGLES_LAYER)
-	
+	if(istype(glasses,/obj/item/clothing/glasses/hud/medgoggles))
+		overlays_standing[GOGGLES_LAYER] = glasses.make_worn_icon(body_type = species.name, slot_name = slot_glasses_str, default_icon = 'icons/mob/eyes.dmi', default_layer = GOGGLES_LAYER)
+		apply_overlay(GOGGLES_LAYER)
 	else
 		overlays_standing[GLASSES_LAYER] = glasses.make_worn_icon(body_type = species.name, slot_name = slot_glasses_str, default_icon = 'icons/mob/eyes.dmi', default_layer = GLASSES_LAYER)
 		apply_overlay(GLASSES_LAYER)
