@@ -223,8 +223,6 @@
 	if(((status_flags & CANKNOCKDOWN) && !HAS_TRAIT(src, TRAIT_STUNIMMUNE)) || ignore_canstun)
 		if(absorb_stun(amount, ignore_canstun))
 			return
-		if(isxeno(src) && xeno_adjust_stun) //Xenos normally only suffer partial stun time
-			amount *= 0.2
 		var/datum/status_effect/incapacitating/paralyzed/P = IsParalyzed(FALSE)
 		if(P)
 			P.duration = max(world.time + amount, P.duration)

@@ -220,6 +220,13 @@
 
 	playsound(owner, "sound/effects/escape_pod_launch.ogg", 25, 0, 1)
 
+	ghost.add_filter("wraith_phase_shift_windup_1", 3, list("type" = "wave", 0, 0, size=rand()*2.5+0.5, offset=rand())) //Cool filter appear
+	ghost.add_filter("wraith_phase_shift_windup_2", 3, list("type" = "wave", 0, 0, size=rand()*2.5+0.5, offset=rand())) //Cool filter appear
+	animate(ghost.get_filter("wraith_phase_shift_windup_1"), x = 60*rand() - 30, y = 60*rand() - 30, size=rand()*2.5+0.5, offset=rand(), time = 0.25 SECONDS, loop = -1, flags=ANIMATION_PARALLEL)
+	animate(ghost.get_filter("wraith_phase_shift_windup_2"), x = 60*rand() - 30, y = 60*rand() - 30, size=rand()*2.5+0.5, offset=rand(), time = 0.25 SECONDS, loop = -1, flags=ANIMATION_PARALLEL)
+	addtimer(CALLBACK(ghost, /atom.proc/remove_filter, "wraith_phase_shift_windup_1"), 0.5 SECONDS)
+	addtimer(CALLBACK(ghost, /atom.proc/remove_filter, "wraith_phase_shift_windup_2"), 0.5 SECONDS)
+
 	var/current_turf = get_turf(ghost)
 
 	if(isclosedturf(current_turf) || isspaceturf(current_turf)) //So we rematerialized in a solid wall/space for some reason; Darwin award winner folks.
@@ -329,26 +336,34 @@
 
 	new /obj/effect/temp_visual/blink_portal(get_turf(teleporter))
 
-	for(var/turf/affected_tile in RANGE_TURFS(1,teleporter.loc))
+	for(var/turf/affected_tile as() in RANGE_TURFS(1,teleporter.loc))
 		affected_tile.add_filter("wraith_blink_distortion", 3, list("type" = "motion_blur", 0, 0)) //Cool filter appear
 		animate(affected_tile.get_filter("wraith_blink_distortion"), x = 60*rand() - 30, y = 60*rand() - 30, time = 0.5 SECONDS, loop = -1, flags=ANIMATION_PARALLEL)
 		addtimer(CALLBACK(affected_tile, /atom.proc/remove_filter, "wraith_blink_distortion"), 1 SECONDS)
-		for(var/mob/living/target in affected_tile)
-			target.add_filter("wraith_aoe_debuff_filter", 3, list("type" = "motion_blur", 0, 0)) //Cool filter appear
-			animate(target.get_filter("wraith_aoe_debuff_filter"), x = 60*rand() - 30, y = 60*rand() - 30, time = 0.25 SECONDS, loop = -1, flags=ANIMATION_PARALLEL)
-			addtimer(CALLBACK(target, /atom.proc/remove_filter, "wraith_aoe_debuff_filter"), 0.5 SECONDS) //1 sec blur duration
-			if(target.stat == DEAD)
+
+		for(var/obj/obj_target in affected_tile) //This is just about SFX, so we don't have objects not distorting while everything else does
+			obj_target.add_filter("wraith_aoe_debuff_filter", 3, list("type" = "motion_blur", 0, 0)) //Cool filter appear
+			animate(obj_target.get_filter("wraith_aoe_debuff_filter"), x = 60*rand() - 30, y = 60*rand() - 30, time = 0.25 SECONDS, loop = -1, flags=ANIMATION_PARALLEL)
+			addtimer(CALLBACK(obj_target, /atom.proc/remove_filter, "wraith_aoe_debuff_filter"), 0.5 SECONDS)
+
+		for(var/mob/living/living_target in affected_tile)
+			living_target.add_filter("wraith_aoe_debuff_filter", 3, list("type" = "motion_blur", 0, 0)) //Cool filter appear
+			animate(living_target.get_filter("wraith_aoe_debuff_filter"), x = 60*rand() - 30, y = 60*rand() - 30, time = 0.25 SECONDS, loop = -1, flags=ANIMATION_PARALLEL)
+			addtimer(CALLBACK(living_target, /atom.proc/remove_filter, "wraith_aoe_debuff_filter"), 0.5 SECONDS)
+
+			if(living_target.stat == DEAD)
 				continue
-			if(isxeno(target))
-				var/mob/living/carbon/xenomorph/X = target
+
+			if(isxeno(living_target))
+				var/mob/living/carbon/xenomorph/X = living_target
 				if(X.issamexenohive(ghost)) //No friendly fire
 					continue
 
-			shake_camera(target, 2, 1)
-			target.adjust_stagger(WRAITH_TELEPORT_DEBUFF_STACKS)
-			target.add_slowdown(WRAITH_TELEPORT_DEBUFF_STACKS)
-			target.adjust_blurriness(WRAITH_TELEPORT_DEBUFF_STACKS) //minor visual distortion
-			to_chat(target, "<span class='warning'>You feel nauseous as the world warps around you!</span>")
+			shake_camera(living_target, 2, 1)
+			living_target.adjust_stagger(WRAITH_TELEPORT_DEBUFF_STACKS)
+			living_target.add_slowdown(WRAITH_TELEPORT_DEBUFF_STACKS)
+			living_target.adjust_blurriness(WRAITH_TELEPORT_DEBUFF_STACKS) //minor visual distortion
+			to_chat(living_target, "<span class='warning'>You feel nauseous as reality warps around you!</span>")
 
 /datum/action/xeno_action/activable/blink/on_cooldown_finish()
 
