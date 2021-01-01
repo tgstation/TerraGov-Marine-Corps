@@ -70,7 +70,7 @@
 
 ///Relays health and location data about resin silos belonging to the same hive as the input user
 /proc/resin_silo_status_output(mob/living/carbon/xenomorph/user)
-	. += "<BR><b>List of Resin Silos:</b><BR><table cellspacing=4>" //Resin silo data
+	. = "<BR><b>List of Resin Silos:</b><BR><table cellspacing=4>" //Resin silo data
 	for(var/obj/structure/resin/silo/resin_silo as() in GLOB.xeno_resin_silos)
 		if(resin_silo.associated_hive == user.hive)
 
