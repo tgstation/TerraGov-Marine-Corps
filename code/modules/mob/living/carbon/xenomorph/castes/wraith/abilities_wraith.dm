@@ -76,7 +76,7 @@
 	return TRUE
 
 /datum/action/xeno_action/hyperposition/action_activate()
-
+	. = ..()
 	var/mob/living/carbon/xenomorph/wraith/ghost = owner
 	var/obj/effect/xenomorph/warp_shadow/shadow = ghost.warp_shadow
 
@@ -90,12 +90,23 @@
 	ghost.visible_message("<span class='warning'>The air starts to violently roil and shimmer around [ghost]!</span>", \
 	"<span class='xenodanger'>We begin to teleport to our warp shadow located at [A] (X: [shadow.x], Y: [shadow.y]). We estimate this will take [hyperposition_windup * 0.1] seconds.</span>")
 
+	ghost.add_filter("wraith_hyperposition_windup_filter_1", 3, list("type" = "motion_blur", 0, 0)) //Cool filter appear
+	ghost.add_filter("wraith_hyperposition_windup_filter_2", 3, list("type" = "motion_blur", 0, 0)) //Cool filter appear
+
+	animate(ghost.get_filter("wraith_hyperposition_windup_filter_1"), x = 30*rand() - 15, y = 30*rand() - 15, time = 0.5 SECONDS, loop = -1, flags=ANIMATION_PARALLEL)
+	animate(ghost.get_filter("wraith_hyperposition_windup_filter_2"), x = 30*rand() - 15, y = 30*rand() - 15, time = 0.5 SECONDS, loop = -1, flags=ANIMATION_PARALLEL)
+
 	if(!do_after(ghost, hyperposition_windup, TRUE, ghost, BUSY_ICON_FRIENDLY)) //Channel time/wind up
 		ghost.visible_message("<span class='xenowarning'>The space around [ghost] abruptly stops shifting and wavering.</span>", \
 		"<span class='xenodanger'>We abort teleporting back to our warp shadow.</span>")
+		ghost.remove_filter("wraith_hyperposition_windup_filter_1")
+		ghost.remove_filter("wraith_hyperposition_windup_filter_2")
 		return fail_activate()
 
-	if(!hyperposition_swap_location()) //We swap positions with our warp shadow
+	ghost.remove_filter("wraith_hyperposition_windup_filter_1")
+	ghost.remove_filter("wraith_hyperposition_windup_filter_2")
+
+	if(!hyperposition_swap_location()) //See if we swap positions with our warp shadow
 		return fail_activate()
 
 	succeed_activate()
@@ -105,7 +116,7 @@
 	add_cooldown()
 
 /datum/action/xeno_action/hyperposition/proc/hyperposition_swap_location() //This handles the location swap between the Wraith and the Warp Shadow
-
+	. = ..()
 	if(!can_use_action()) //Check if we can actually position swap again due to the wind up delay.
 		return FALSE
 
@@ -120,9 +131,6 @@
 
 	ghost.forceMove(beacon_turf) //Move to where the beacon was
 	teleport_debuff_aoe(ghost) //Apply tele debuff
-
-	ghost.add_filter("wraith_hyperposition_warp_filter", 3, list("type" = "blur", 5)) //Cool filter appear
-	addtimer(CALLBACK(ghost, /atom.proc/remove_filter, "wraith_hyperposition_warp_filter"), 1 SECONDS) //1 sec blur duration
 
 	ghost.visible_message("<span class='warning'>\ [ghost] suddenly vanishes in a vortex of warped space!</span>", \
 	"<span class='xenodanger'>We teleport, swapping positions with our warp shadow. Our warp shadow has moved to [get_area(shadow)] (X: [shadow.x], Y: [shadow.y]).</span>", null, 5) //Let user know the new location
@@ -149,6 +157,7 @@
 
 
 /datum/action/xeno_action/phase_shift/action_activate()
+	. = ..()
 	var/mob/living/carbon/xenomorph/wraith/ghost = owner
 
 	ghost.visible_message("<span class='warning'>[ghost.name] is becoming faint and translucent!</span>", \
@@ -156,11 +165,20 @@
 
 	ghost.do_jitter_animation(2000) //Animation
 
+	ghost.add_filter("wraith_phase_shift_windup_1", 3, list("type" = "wave", 0, 0, size=rand()*2.5+0.5, offset=rand())) //Cool filter appear
+	ghost.add_filter("wraith_phase_shift_windup_2", 3, list("type" = "wave", 0, 0, size=rand()*2.5+0.5, offset=rand())) //Cool filter appear
+	animate(ghost.get_filter("wraith_phase_shift_windup_1"), x = 60*rand() - 30, y = 60*rand() - 30, size=rand()*2.5+0.5, offset=rand(), time = 0.25 SECONDS, loop = -1, flags=ANIMATION_PARALLEL)
+	animate(ghost.get_filter("wraith_phase_shift_windup_2"), x = 60*rand() - 30, y = 60*rand() - 30, size=rand()*2.5+0.5, offset=rand(), time = 0.25 SECONDS, loop = -1, flags=ANIMATION_PARALLEL)
+
 	if(!do_after(ghost, WRAITH_PHASE_SHIFT_WINDUP, TRUE, ghost, BUSY_ICON_FRIENDLY)) //Channel time/wind up
 		ghost.visible_message("<span class='xenowarning'>[ghost]'s form abruptly consolidates, returning to normalcy.</span>", \
 		"<span class='xenodanger'>We abort our desynchronization.</span>")
+		ghost.remove_filter("wraith_phase_shift_windup_1")
+		ghost.remove_filter("wraith_phase_shift_windup_2")
 		return fail_activate()
 
+	ghost.remove_filter("wraith_phase_shift_windup_1")
+	ghost.remove_filter("wraith_phase_shift_windup_2")
 	addtimer(CALLBACK(src, .proc/phase_shift_warning), WRAITH_PHASE_SHIFT_DURATION * WRAITH_PHASE_SHIFT_DURATION_WARNING) //Warn them when Phase Shift is about to end
 	addtimer(CALLBACK(src, .proc/phase_shift_deactivate), WRAITH_PHASE_SHIFT_DURATION)
 	ghost.add_filter("wraith_phase_shift", 4, list("type" = "blur", 5)) //Cool filter appear
@@ -207,7 +225,7 @@
 	if(isclosedturf(current_turf) || isspaceturf(current_turf)) //So we rematerialized in a solid wall/space for some reason; Darwin award winner folks.
 		to_chat(ghost, "<span class='highdanger'>As we idiotically rematerialize in an obviously unsafe position, we revert to where we slipped out of reality at great cost.</span>")
 		ghost.adjustFireLoss((ghost.health * 0.5), TRUE) //Lose half of our health
-		ghost.Paralyze(5 SECONDS) //That oughta teach them.
+		ghost.Paralyze(5 SECONDS, xeno_adjust_stun = FALSE) //That oughta teach them.
 		ghost.forceMove(starting_turf)
 		teleport_debuff_aoe(ghost) //Debuff when we reappear
 		starting_turf = null
@@ -215,7 +233,7 @@
 
 	var/distance = get_dist(current_turf, starting_turf)
 	var/phase_shift_stun_time = clamp(distance * 0.1 SECONDS, 0.5 SECONDS, 3 SECONDS) //Recovery time
-	ghost.ParalyzeNoChain(phase_shift_stun_time)
+	ghost.ParalyzeNoChain(phase_shift_stun_time, xeno_adjust_stun = FALSE)
 	ghost.visible_message("<span class='warning'>[ghost] form wavers and becomes opaque.</span>", \
 	"<span class='highdanger'>We phase back into reality, our mind reeling from the experience. We estimate we will take [phase_shift_stun_time * 0.1] seconds to recover!</span>")
 
@@ -245,21 +263,24 @@
 	var/turf/T = get_turf(A)
 
 	if(isclosedturf(T) || isspaceturf(T))
-		to_chat(owner, "<span class='xenowarning'>We cannot blink here!</span>")
+		if(!silent)
+			to_chat(owner, "<span class='xenowarning'>We cannot blink here!</span>")
 		return FALSE
 
 	if(!owner.line_of_sight(T)) //Needs to be in line of sight.
-		to_chat(owner, "<span class='xenowarning'>We can't blink without line of sight to our destination!</span>")
+		if(!silent)
+			to_chat(owner, "<span class='xenowarning'>We can't blink without line of sight to our destination!</span>")
 		return FALSE
 
 	for(var/atom/movable/check_atom as() in T)
 		if(check_atom.opacity)
-			to_chat(owner, "<span class='xenowarning'>We can't blink without line of sight to our destination!</span>")
+			if(!silent)
+				to_chat(owner, "<span class='xenowarning'>We can't blink without line of sight to our destination!</span>")
 			return FALSE
 
 
 /datum/action/xeno_action/activable/blink/use_ability(atom/A)
-
+	. = ..()
 	var/mob/living/carbon/xenomorph/wraith/X = owner
 	var/turf/T = X.loc
 	var/turf/temp = X.loc
@@ -279,9 +300,6 @@
 /datum/action/xeno_action/activable/blink/proc/blink_warp(mob/living/carbon/xenomorph/wraith/ghost, turf/T, mob/pulled = null) //This handles the location swap between the Wraith and the Warp Shadow
 
 	ghost.face_atom(T) //Face the target so we don't look like an ass
-	ghost.add_filter("wraith_blink_warp_filter", 3, list("type" = "blur", 5)) //Cool filter appear
-	addtimer(CALLBACK(ghost, /atom.proc/remove_filter, "wraith_blink_warp_filter"), 0.5 SECONDS) //0.5 sec blur duration
-	addtimer(VARSET_CALLBACK(ghost, alpha, initial(ghost.alpha)), 0.5 SECONDS)
 
 	teleport_debuff_aoe(ghost) //Debuff when we vanish
 
@@ -312,13 +330,13 @@
 	new /obj/effect/temp_visual/blink_portal(get_turf(teleporter))
 
 	for(var/turf/affected_tile in RANGE_TURFS(1,teleporter.loc))
-		affected_tile.Shake(4, 4, 1 SECONDS) //Cool SFX
-		affected_tile.add_filter("wraith_blink_distortion",1,list("type"="radial_blur", "size" = 0.5))
+		affected_tile.add_filter("wraith_blink_distortion", 3, list("type" = "motion_blur", 0, 0)) //Cool filter appear
+		animate(affected_tile.get_filter("wraith_blink_distortion"), x = 60*rand() - 30, y = 60*rand() - 30, time = 0.5 SECONDS, loop = -1, flags=ANIMATION_PARALLEL)
 		addtimer(CALLBACK(affected_tile, /atom.proc/remove_filter, "wraith_blink_distortion"), 1 SECONDS)
 		for(var/mob/living/target in affected_tile)
-			target.Shake(4, 4, 1 SECONDS) //SFX
-			target.add_filter("wraith_aoe_debuff_filter", 3, list("type" = "blur", 5)) //Cool filter appear
-			addtimer(CALLBACK(target, /atom.proc/remove_filter, "wraith_aoe_debuff_filter"), 1 SECONDS) //1 sec blur duration
+			target.add_filter("wraith_aoe_debuff_filter", 3, list("type" = "motion_blur", 0, 0)) //Cool filter appear
+			animate(target.get_filter("wraith_aoe_debuff_filter"), x = 60*rand() - 30, y = 60*rand() - 30, time = 0.25 SECONDS, loop = -1, flags=ANIMATION_PARALLEL)
+			addtimer(CALLBACK(target, /atom.proc/remove_filter, "wraith_aoe_debuff_filter"), 0.5 SECONDS) //1 sec blur duration
 			if(target.stat == DEAD)
 				continue
 			if(isxeno(target))
@@ -381,6 +399,7 @@
 		return FALSE
 
 /datum/action/xeno_action/activable/banish/use_ability(atom/movable/A)
+	. = ..()
 	var/mob/living/carbon/xenomorph/wraith/ghost = owner
 	banished_turf = get_turf(A) //Set the banishment turf.
 	banishment_target = A //Set the banishment target
@@ -396,6 +415,11 @@
 		stasis_target.SetStasis()
 
 	var/duration = WRAITH_BANISH_BASE_DURATION //Set the duration
+
+	portal.add_filter("banish_portal_1", 3, list("type" = "motion_blur", 0, 0)) //Cool filter appear
+	portal.add_filter("banish_portal_2", 3, list("type" = "motion_blur", 0, 0)) //Cool filter appear
+	animate(portal.get_filter("banish_portal_1"), x = 20*rand() - 10, y = 20*rand() - 10, time = 0.5 SECONDS, loop = -1, flags=ANIMATION_PARALLEL)
+	animate(portal.get_filter("banish_portal_2"), x = 20*rand() - 10, y = 20*rand() - 10, time = 0.5 SECONDS, loop = -1, flags=ANIMATION_PARALLEL)
 
 	if(isxeno(banishment_target) ) //We halve the max duration for living non-allies
 		var/mob/living/carbon/xenomorph/X = banishment_target
@@ -481,7 +505,7 @@
 
 
 /datum/action/xeno_action/recall/action_activate()
-
+	. = ..()
 	if(!(SEND_SIGNAL(owner, COMSIG_XENOMORPH_WRAITH_RECALL) & COMPONENT_BANISH_TARGETS_EXIST))
 		to_chat(owner,"<span class='xenodanger'>We have no targets banished!</span>")
 		return fail_activate()
