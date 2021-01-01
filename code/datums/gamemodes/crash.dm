@@ -232,11 +232,11 @@
 	var/sound/ghost_sound = sound(pick('sound/misc/gone_to_plaid.ogg', 'sound/misc/good_is_dumb.ogg', 'sound/misc/hardon.ogg', 'sound/misc/surrounded_by_assholes.ogg', 'sound/misc/outstanding_marines.ogg', 'sound/misc/asses_kicked.ogg'), channel = CHANNEL_CINEMATIC)
 	for(var/i in GLOB.observer_list)
 		var/mob/M = i
-		if(ishuman(M.mind.current))
+		if(ishuman(M?.mind.current))
 			SEND_SOUND(M, human_track)
 			continue
 
-		if(isxeno(M.mind.current))
+		if(isxeno(M?.mind.current))
 			SEND_SOUND(M, xeno_track)
 			continue
 

@@ -73,7 +73,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		T = get_turf(body)				//Where is the body located?
 
 		gender = body.gender
-		if(body.mind?.name)
+		if(body?.mind.name)
 			name = body.mind.name
 		else
 			if(body.real_name)
@@ -238,7 +238,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	ghost.key = key
 
 	if(!can_reenter_corpse)
-		ghost.mind?.current = ghost
+		ghost?.mind?.current = ghost
 
 	if(!T)
 		T = SAFEPICK(GLOB.latejoin)

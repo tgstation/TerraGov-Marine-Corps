@@ -1445,7 +1445,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 			var/mob/living/carbon/human/H = M
 
 			if(user)
-				if(!user.mind?.bypass_ff && !H.mind?.bypass_ff && user.faction == H.faction)
+				if(!user?.mind?.bypass_ff && !H?.mind?.bypass_ff && user.faction == H.faction)
 					log_combat(user, H, "flamed", src)
 					user.ff_check(30, H) // avg between 20/40 dmg
 					log_ffattack("[key_name(usr)] flamed [key_name(H)] with [name] in [AREACOORD(T)].")

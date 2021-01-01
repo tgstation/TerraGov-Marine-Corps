@@ -175,7 +175,7 @@
 					msg += "<b>[ADMIN_TPMONTY(L)]</b> the [L.job.title] (Dead)<br>"
 
 	for(var/mob/dead/observer/D in GLOB.dead_mob_list)
-		if(!isliving(D.mind?.current))
+		if(!isliving(D?.mind?.current))
 			continue
 		var/mob/living/L = D.mind.current
 		if(L.stat == DEAD)
