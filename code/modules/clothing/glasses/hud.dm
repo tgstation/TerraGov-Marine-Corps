@@ -81,7 +81,7 @@
 	flags_equip_slot = ITEM_SLOT_EYES
 
 /obj/item/clothing/glasses/hud/medgoggles/prescription
-	name = "prescription marine ballistic goggles"
+	name = "\improper HealthMate prescription ballistic goggles"
 	desc = "Standard issue TGMC goggles. With internal HealthMate HUD projector. Contains prescription lenses."
 	icon_state = "medgoggles"
 	item_state = "medgoggles"
