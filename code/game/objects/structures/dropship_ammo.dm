@@ -123,7 +123,6 @@
 	for(var/i=1 to attack_width)
 		strafed = strafelist[1]
 		strafelist -= strafed
-		strafed.ceiling_debris_check(1)
 		strafed.ex_act(EXPLODE_LIGHT)
 		new /obj/effect/particle_effect/expl_particles(strafed)
 		new /obj/effect/temp_visual/heavyimpact(strafed)
@@ -234,7 +233,7 @@
 	name = "\improper AIM-224 'Widowmaker'"
 	desc = "The AIM-224 is the latest in air to air missile technology. Earning the nickname of 'Widowmaker' from various dropship pilots after improvements to its guidence warhead prevents it from being jammed leading to its high kill rate. Not well suited for ground bombardment, but its high velocity makes it reach its target quickly."
 	icon_state = "single"
-	travelling_time = 3 SECONDS //not powerful, but reaches target fast
+	travelling_time = 4 SECONDS //not powerful, but reaches target fast
 	ammo_id = ""
 	point_cost = 150
 
@@ -303,7 +302,7 @@
 	explosion(impact, 2, 3, 4, 6, small_animation = TRUE) //relatively weak
 	flame_radius(5, impact, 60, 30) //cooking for a long time
 	var/datum/effect_system/smoke_spread/phosphorus/warcrime = new
-	warcrime.set_up(6, loc, 7)
+	warcrime.set_up(6, impact, 7)
 	warcrime.start()
 	qdel(src)
 

@@ -651,7 +651,6 @@
 	update_icon()
 
 /obj/structure/dropship_equipment/weapon/proc/open_fire(obj/selected_target, attackdir)
-	set waitfor = FALSE
 	var/turf/target_turf = get_turf(selected_target)
 	if(firing_sound)
 		playsound(loc, firing_sound, 70, 1)
