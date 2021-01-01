@@ -1,6 +1,6 @@
 
 /datum/action/item_action
-	name = "Use item"
+	name = ""
 	/**
 	 *the item that has this action in its list of actions. Is not necessarily the target
 	 * e.g. gun attachment action: target = attachment, holder = gun.
@@ -13,7 +13,8 @@
 		holder = target
 	holder_item = holder
 	LAZYADD(holder_item.actions, src)
-	name = "Use [target]"
+	if(!name)
+		name = "Use [target]"
 	button.name = name
 
 /datum/action/item_action/Destroy()
@@ -85,6 +86,9 @@
 			current_action_vis_obj = autoburst
 	button.vis_contents += current_action_vis_obj
 	action_firemode = holder_gun.gun_firemode
+
+/datum/action/item_action/aim_mode
+	name = "Take Aim"
 
 /datum/action/item_action/aim_mode/update_button_icon()
 	button.overlays.Cut()

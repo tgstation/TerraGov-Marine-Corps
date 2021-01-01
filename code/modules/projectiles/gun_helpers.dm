@@ -906,7 +906,7 @@ should be alright.
 	var/obj/item/card/id/C = user.wear_id
 	gun_iff_signal = C.access
 	modify_fire_delay(aim_fire_delay)
-	to_chat(user, "<span class='notice'>You line up your aim.</b></span>")
+	to_chat(user, "<span class='notice'>You line up your aim, allowing you to shoot past allies.</b></span>")
 
 //----------------------------------------------------------
 				//				   	   \\
