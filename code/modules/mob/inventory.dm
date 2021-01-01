@@ -230,7 +230,7 @@
 
 	if((I.flags_item & NODROP) && !force)
 		return FALSE //UnEquip() only fails if item has NODROP
-	
+
 	doUnEquip(I)
 
 	if (client)

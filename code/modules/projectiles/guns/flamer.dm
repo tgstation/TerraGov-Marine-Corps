@@ -145,6 +145,7 @@
 			toggle_flame(user,TRUE)
 
 	update_icon()
+
 	return TRUE
 
 /obj/item/weapon/gun/flamer/unload(mob/user, reload_override = 0, drop_override = 0)
@@ -185,6 +186,7 @@
 				user.put_in_hands(current_mag)//We remove the fuel tank if there is one
 		current_mag = fueltank
 		fueltank.attached_flamer = src
+		replace_ammo(user, fueltank)
 		toggle_flame(user,TRUE)
 		playsound(user, reload_sound, 25, 1, 5)
 		update_icon(user)

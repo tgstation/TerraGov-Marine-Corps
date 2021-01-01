@@ -87,7 +87,7 @@
 	else
 		return ..()
 /obj/item/ammo_magazine/flamer_tank/backtank/X
-	name = "Back fuel tank"
+	name = "back fuel tank (X)"
 	desc = "A specialized fuel tank of ultra thick napthal type X for use with the TL-84 flamethrower and M240A1 incinerator unit."
 	default_ammo = /datum/ammo/flamethrower/blue
 	
