@@ -155,7 +155,7 @@
 			if(!(X.client.prefs.mute_xeno_health_alert_messages)) //Build the filter list; people who opted not to receive health alert messages
 				filter_list += X //Add the xeno to the filter list
 
-		xeno_message("<span class='xenoannounce'>Our sister [name] is badly hurt with ([health]/[maxHealth]) health remaining at [get_area(src)] (X: [x], Y: [y])!</span>", 2, hivenumber, FALSE, src, 'sound/voice/alien_help2.ogg', TRUE, filter_list)
+		xeno_message("<span class='xenoannounce'>Our sister [name] is badly hurt with ([health]/[maxHealth]) health remaining at [get_area(src)] (X: [x], Y: [y])!</span>", 2, hivenumber, FALSE, src, 'sound/voice/alien_help1.ogg', TRUE, filter_list)
 		COOLDOWN_START(src, xeno_health_alert_cooldown, XENO_HEALTH_ALERT_COOLDOWN) //set the cooldown.
 
 	return damage
