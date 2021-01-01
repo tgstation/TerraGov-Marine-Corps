@@ -116,7 +116,7 @@
 	add_cooldown()
 
 /datum/action/xeno_action/hyperposition/proc/hyperposition_swap_location() //This handles the location swap between the Wraith and the Warp Shadow
-	. = ..()
+
 	if(!can_use_action()) //Check if we can actually position swap again due to the wind up delay.
 		return FALSE
 

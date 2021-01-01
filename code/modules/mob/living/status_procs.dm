@@ -215,7 +215,7 @@
 		return 0
 	return Paralyze(amount, ignore_canstun, xeno_adjust_stun = xeno_adjust_stun)
 
-/mob/living/proc/Paralyze(amount, ignore_canstun = FALSE) //Can't go below remaining duration
+/mob/living/proc/Paralyze(amount, ignore_canstun = FALSE, xeno_adjust_stun = TRUE) //Can't go below remaining duration
 	if(status_flags & GODMODE)
 		return
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_PARALYZE, amount, ignore_canstun) & COMPONENT_NO_STUN)
@@ -223,6 +223,8 @@
 	if(((status_flags & CANKNOCKDOWN) && !HAS_TRAIT(src, TRAIT_STUNIMMUNE)) || ignore_canstun)
 		if(absorb_stun(amount, ignore_canstun))
 			return
+		if(isxeno(src) && xeno_adjust_stun) //Xenos normally only suffer partial stun time
+			amount *= 0.2
 		var/datum/status_effect/incapacitating/paralyzed/P = IsParalyzed(FALSE)
 		if(P)
 			P.duration = max(world.time + amount, P.duration)

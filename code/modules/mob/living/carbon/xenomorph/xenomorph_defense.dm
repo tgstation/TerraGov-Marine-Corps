@@ -25,8 +25,3 @@ Contains most of the procs that are called when a xeno is attacked by something
 /mob/living/carbon/xenomorph/Stun(amount, updating, ignore_canstun)
 	amount *= 0.5 // half length
 	return ..()
-
-/mob/living/carbon/xenomorph/Paralyze(amount, updating, ignore_canstun, xeno_adjust_stun = TRUE)
-	if(xeno_adjust_stun)
-		amount *= 0.2 // replaces the old knock_down -5
-	return ..()
