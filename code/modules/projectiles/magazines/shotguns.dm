@@ -37,7 +37,7 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 
 /obj/item/ammo_magazine/shotgun/tracker
 	name = "box of 12 gauge tracker shells"
-	desc = "A box filled with flechette shotgun shells. 12 Gauge."
+	desc = "A box filled with tracker shotgun shells. 12 Gauge."
 	icon_state = "flechette"
 	default_ammo = /datum/ammo/bullet/shotgun/tracker
 

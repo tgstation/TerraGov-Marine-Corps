@@ -15,14 +15,9 @@
 
 /obj/item/ammo_magazine/sniper/stagger
 	name = "\improper AMR stagger magazine (10x30mm)"
-	desc = "A magazine of flat tipped sniper ammo made to stagger targets for longer."
-	caliber = "10x30mm"
-	icon_state = "m42a"
-	w_class = WEIGHT_CLASS_NORMAL
-	max_rounds = 5
+	desc = "A magazine of flat tipped sniper ammo made to stagger targets at a distance."
 	default_ammo = /datum/ammo/bullet/sniper/stagger
 	gun_type = /obj/item/weapon/gun/rifle/sniper/antimaterial
-	reload_delay = 3
 
 
 //M42C magazine
@@ -257,13 +252,12 @@ obj/item/ammo_magazine/rifle/m4ra/smart
 //Railgun
 
 /obj/item/ammo_magazine/railgun
-	name = "Railgun canister (Rail)"
+	name = "railgun canister (rail projectile)"
 	desc = "A canister holding a projectile to be used inside a railgun."
-	caliber = "Rail"
+	caliber = "rail projectile"
 	icon_state = "rail"
 	default_ammo = /datum/ammo/bullet/railgun
 	max_rounds = 1
 	reload_delay = 20 //Hard to reload.
 	w_class = WEIGHT_CLASS_NORMAL
 	gun_type = /obj/item/weapon/gun/rifle/railgun
-

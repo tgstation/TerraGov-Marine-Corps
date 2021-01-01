@@ -1095,12 +1095,12 @@ obj/item/weapon/gun/minigun/Fire(atom/target, mob/living/user, params, reflex = 
 
 /obj/item/weapon/gun/rifle/railgun
 	name = "\improper TX-220 railgun"
-	desc = "The TX-220 is  a specialized heavy duty railgun made to shred through a hard targets armor to allow for follow up attacks. Uses specialzed canisters to reload."
+	desc = "The TX-220 is a specialized heavy duty railgun made to shred through hard armor to allow for follow up attacks. Uses specialized canisters to reload."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "railgun"
 	item_state = "railgun"
 	max_shells = 5 //codex
-	caliber = "Rail"
+	caliber = "rail projectile"
 	fire_sound = 'sound/weapons/guns/fire/sniper.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/sniper_unload.ogg'
@@ -1120,4 +1120,3 @@ obj/item/weapon/gun/minigun/Fire(atom/target, mob/living/user, params, reflex = 
 	burst_amount = 1
 	accuracy_mult = 2
 	recoil = 0
-

@@ -1023,7 +1023,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sundering = 2.5
 
 /datum/ammo/bullet/railgun
-	name = "railgun round"
+	name = "railgun bolt"
 	hud_state = "minigun"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	shell_speed = 5
