@@ -1,4 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - bugfix: "Ammo hud is now up to date when tactical reloading"
