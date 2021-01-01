@@ -207,12 +207,10 @@
 	A.update_hud(user)
 	
 	
-/obj/item/weapon/gun/flamer/dropped(mob/user)
+/obj/item/weapon/gun/flamer/dropped_new_loc(mob/user)
 	..()
 	var/mob/living/carbon/human/humanuser = user
 	if (istype(humanuser))
-		if(!humanuser.is_item_in_hands(src))//Unequiping the flamer should not unlink it
-			return
 		if (istype(current_mag,/obj/item/ammo_magazine/flamer_tank/backtank/)) //Dropping the flamer unlink it from the tank
 			var/obj/item/ammo_magazine/flamer_tank/backtank/backfueltank = current_mag;
 			backfueltank.attached_flamer=null

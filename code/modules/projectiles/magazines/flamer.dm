@@ -78,21 +78,14 @@
 	else
 		return ..()
 
-/obj/item/ammo_magazine/flamer_tank/backtank/dropped(mob/user) //Dropping the tank should unlink it from the flamer
+/obj/item/ammo_magazine/flamer_tank/backtank/dropped_new_loc(mob/user) //Dropping the tank should unlink it from the flamer
 	..()
 	var/mob/living/carbon/human/humanuser = user
 	if (istype(humanuser))
-		if(!humanuser.is_item_in_hands(src))//Unequiping the tank should not unlink it
-			return
 		if(attached_flamer)
 			attached_flamer.detach_fueltank(user,FALSE)
 	else
 		return ..()
-/obj/item/ammo_magazine/flamer_tank/backtank/B
-	name = "Back fuel tank"
-	desc = "A specialized fuel tank of ultra thick napthal type B for use with the TL-84 flamethrower and M240A1 incinerator unit."
-	default_ammo = /datum/ammo/flamethrower/green
-
 /obj/item/ammo_magazine/flamer_tank/backtank/X
 	name = "Back fuel tank"
 	desc = "A specialized fuel tank of ultra thick napthal type X for use with the TL-84 flamethrower and M240A1 incinerator unit."

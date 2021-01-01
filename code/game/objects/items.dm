@@ -244,6 +244,9 @@
 	if(flags_item & DELONDROP)
 		qdel(src)
 
+//Called whenever an item is unequipped to a new loc (IE, not when the item ends up in the hands)
+/obj/item/proc/dropped_new_loc(mob/user)
+	return
 
 // called just as an item is picked up (loc is not yet changed)
 /obj/item/proc/pickup(mob/user)
