@@ -678,9 +678,10 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	attach_icon = "sniperscope_a"
 	desc = "A rail mounted zoom sight scope. Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
 	slot = "rail"
-	aim_speed_mod = 0.06 SECONDS //Extra slowdown when aiming
+	aim_speed_mod = 0.06 //Extra slowdown when aiming
 	wield_delay_mod = 0.4 SECONDS
 	accuracy_mod = 0.1
+	scoped_accuracy_mod = SCOPE_RAIL
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION
 	attachment_action_type = /datum/action/item_action/toggle
 	scope_zoom_mod = TRUE // codex
@@ -689,7 +690,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	var/zoom_offset = 11
 	///how many tiles to increase the users view box
 	var/zoom_viewsize = 12
-	scoped_accuracy_mod = SCOPE_RAIL
+	///how much slowdown the scope gives when zoomed. You want this to be slowdown you want minus aim_speed_mod
+	var/zoom_slowdown = 1.44
 	///boolean as to whether a scope can apply nightvision
 	var/has_nightvision = FALSE
 	///boolean as to whether the attachment is currently giving nightvision
@@ -715,6 +717,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 /obj/item/attachable/scope/unremovable/tl127
 	name = "T-45 rail scope"
 	aim_speed_mod = 0
+	zoom_slowdown = 1.5
 	wield_delay_mod = 0
 	attach_icon = "none"
 	desc = "A rail mounted zoom sight scope specialized for the T-127 sniper rifle. Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
@@ -739,8 +742,9 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		activate_attachment(user, TRUE)
 
 /obj/item/attachable/scope/onzoom(mob/living/user)
-	RegisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_CARBON_SWAPPED_HANDS), .proc/zoom_item_turnoff)
+	RegisterSignal(user, COMSIG_CARBON_SWAPPED_HANDS, .proc/zoom_item_turnoff)
 	RegisterSignal(master_gun, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_UNWIELD, COMSIG_ITEM_DROPPED), .proc/zoom_item_turnoff)
+	user.add_movespeed_modifier(MOVESPEED_ID_SCOPE_SLOWDOWN, TRUE, 0, NONE, TRUE, zoom_slowdown)
 	master_gun.accuracy_mult += scoped_accuracy_mod
 	if(has_nightvision)
 		update_remote_sight(user)
@@ -748,8 +752,9 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		active_nightvision = TRUE
 
 /obj/item/attachable/scope/onunzoom(mob/living/user)
-	UnregisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_CARBON_SWAPPED_HANDS))
+	UnregisterSignal(user, COMSIG_CARBON_SWAPPED_HANDS)
 	UnregisterSignal(master_gun, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_UNWIELD, COMSIG_ITEM_DROPPED))
+	user.remove_movespeed_modifier(MOVESPEED_ID_SCOPE_SLOWDOWN)
 	master_gun.accuracy_mult -= scoped_accuracy_mod
 	if(has_nightvision)
 		user.update_sight()
@@ -772,12 +777,13 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	wield_delay_mod = 0.2 SECONDS
 	accuracy_mod = 0.05
 	accuracy_unwielded_mod = -0.05
-	aim_speed_mod = 0.04 SECONDS
+	aim_speed_mod = 0.04
 	zoom_offset = 5
 	zoom_viewsize = 7
 	scoped_accuracy_mod = SCOPE_RAIL_MINI
 	scope_zoom_mod = TRUE
 	has_nightvision = FALSE
+	zoom_slowdown = 0.46
 
 /obj/item/attachable/scope/mini/m4ra
 	name = "T-45 rail scope"
