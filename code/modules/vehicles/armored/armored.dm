@@ -77,7 +77,7 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	flags_atom = PREVENT_CONTENTS_EXPLOSION
 	anchored = TRUE //No bumping / pulling the tank
 	demolish_on_ram = TRUE
-	soft_armor = list("melee" = 50, "bullet" = 60, "laser" = 30, "energy" = 20, "bomb" = 0, "bio" = 50, "rad" = 0, "fire" = 50, "acid" = 20)
+	soft_armor = list("melee" = 60, "bullet" = 70, "laser" = 30, "energy" = 20, "bomb" = 90, "bio" = 50, "rad" = 0, "fire" = 50, "acid" = 20)
 	open = TRUE //whether we need access in order to go in, false is we do NOT need it
 	COOLDOWN_DECLARE(tank_move_cooldown)
 	COOLDOWN_DECLARE(drive_sound_cooldown)
@@ -165,7 +165,7 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	max_integrity = 2000
 	max_passengers = 2
 	allow_diagonal_movement = FALSE
-	move_delay = 0.7 SECONDS
+	move_delay = 0.5 SECONDS
 	///The hitbox default type(size) for this vehicle
 	var/hitbox_type = /obj/hitbox
 	///hitbox we need to be moved when we move
