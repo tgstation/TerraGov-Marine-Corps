@@ -324,7 +324,7 @@ Init and destroy procs for both multitile and 1x1 vehicles.
 		damage_overlay.icon = damage_icon_path
 		damage_overlay.layer = layer+0.1
 		vis_contents += damage_overlay
-		damage_overlay.RegisterSignal(src, COMSIG_ATOM_DIR_CHANGE, .proc/changedir)
+		damage_overlay.RegisterSignal(src, COMSIG_ATOM_DIR_CHANGE, /atom/movable/vis_obj/tank_damage.proc/changedir)
 	if(CHECK_BITFIELD(flags_armored, HAS_PRIMARY_WEAPON))
 		turret_overlay = new()
 		turret_overlay.icon = turret_icon

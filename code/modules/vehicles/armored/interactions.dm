@@ -342,7 +342,7 @@ tbh this should be actions but that needs sprites and muh effort
 		set_light(0)
 	else
 		to_chat(usr, "<span class='notice'>You turn [src]'s floodlights on.</span>")
-		set_light(5)
+		set_light(10)
 	TOGGLE_BITFIELD(flags_armored, LIGHTS_ON)
 
 
