@@ -195,14 +195,3 @@
 	X.do_attack_animation(src, ATTACK_EFFECT_DISARM2) //SFX
 	playsound(loc, pick('sound/effects/bang.ogg','sound/effects/metal_crash.ogg','sound/effects/meteorimpact.ogg'), 25, 1) //SFX
 	Shake(4, 4, 2 SECONDS)
-
-
-///Disables the computer; it can be repaired with a welder after a 5 second wind up
-/obj/machinery/computer/proc/set_disabled()
-
-	if(machine_stat & (BROKEN|DISABLED)) //If we're already broken or disabled, don't bother
-		return
-
-	machine_stat |= DISABLED
-	density = FALSE
-	update_icon()
