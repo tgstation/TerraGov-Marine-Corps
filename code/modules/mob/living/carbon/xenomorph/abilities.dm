@@ -262,7 +262,7 @@
 		to_chat(X, "<span class='warning'>We can only shape on weeds. We must find some resin before we start building!</span>")
 		return fail_activate()
 
-	if(!T.check_alien_construction(X, planned_building = X.selected_resin))
+	if(!T.check_alien_construction(X, planned_building = X.selected_resin) || !T.check_disallow_alien_fortification(X))
 		return fail_activate()
 
 	if(X.selected_resin == /obj/structure/mineral_door/resin)
@@ -297,7 +297,7 @@
 	if(!alien_weeds)
 		return fail_activate()
 
-	if(!T.check_alien_construction(X, planned_building = X.selected_resin))
+	if(!T.check_alien_construction(X, planned_building = X.selected_resin) || !T.check_disallow_alien_fortification(X))
 		return fail_activate()
 
 	if(X.selected_resin == /obj/structure/mineral_door/resin)
@@ -995,7 +995,7 @@
 	if(!do_after(owner, 3 SECONDS, FALSE, alien_weeds))
 		return FALSE
 
-	if(!current_turf.check_alien_construction(owner))
+	if(!current_turf.check_alien_construction(owner) || !current_turf.check_disallow_alien_fortification(owner))
 		return FALSE
 
 	owner.visible_message("<span class='xenowarning'>\The [owner] has laid an egg!</span>", \

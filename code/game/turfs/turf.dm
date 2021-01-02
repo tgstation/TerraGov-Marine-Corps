@@ -521,12 +521,15 @@
 
 
 
-/turf/proc/check_alien_construction(mob/living/builder, silent = FALSE, planned_building)
+/turf/proc/check_disallow_alien_fortification(mob/living/builder, silent = FALSE)
 	var/area/ourarea = loc
 	if(ourarea.flags_area & DISALLOW_WEEDING)
 		if(!silent)
 			to_chat(builder, "<span class='warning'>We cannot build in this area!</span>")
 		return FALSE
+	return TRUE
+
+/turf/proc/check_alien_construction(mob/living/builder, silent = FALSE, planned_building)
 	var/has_obstacle
 	for(var/obj/O in contents)
 		if(istype(O, /obj/item/clothing/mask/facehugger))
