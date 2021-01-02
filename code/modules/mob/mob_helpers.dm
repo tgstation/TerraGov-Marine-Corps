@@ -517,7 +517,7 @@ mob/proc/get_standard_bodytemperature()
 
 /mob/living/carbon/human/proc/do_activate_rail_attachment()
 	SIGNAL_HANDLER
-	. = COMSIG_KB_ACTIVATED
 	
 	var/obj/item/weapon/gun/active_gun = get_active_firearm(src)
-	active_gun.toggle_rail_attachment()
+	active_gun?.toggle_rail_attachment()
+	return COMSIG_KB_ACTIVATED
