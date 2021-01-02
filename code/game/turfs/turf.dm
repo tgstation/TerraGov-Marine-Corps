@@ -519,8 +519,6 @@
 /turf/open/floor/plating/ground/snow/is_weedable()
 	return !slayer && ..()
 
-
-
 /turf/proc/check_disallow_alien_fortification(mob/living/builder, silent = FALSE)
 	var/area/ourarea = loc
 	if(ourarea.flags_area & DISALLOW_WEEDING)

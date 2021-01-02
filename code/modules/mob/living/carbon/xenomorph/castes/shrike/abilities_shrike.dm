@@ -402,7 +402,8 @@
 
 /datum/action/xeno_action/place_acidwell/action_activate()
 	var/turf/T = get_turf(owner)
-
+	if(!T.check_disallow_alien_fortification(owner))
+		return FALSE
 	succeed_activate()
 
 	playsound(T, "alien_resin_build", 25)
