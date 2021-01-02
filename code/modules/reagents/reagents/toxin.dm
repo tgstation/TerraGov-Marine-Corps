@@ -551,7 +551,7 @@
 
 /datum/reagent/toxin/xeno_transvitox //when damage is received, converts brute/burn equal to 50% of damage received to tox damage
 	name = "Transvitox"
-	description = "Converts burn damage to toxin damage, and causes damage received to inflict toxins in proportion to brute damage."
+	description = "Converts burn damage to toxin damage, and causes damage received to inflict extra toxin damage in proportion to current brute damage."
 	reagent_state = LIQUID
 	color = "#94FF00"
 	custom_metabolism = 0.4
@@ -578,7 +578,7 @@
 	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
 		tox_cap_multiplier *= 2
 
-	L.adjustToxLoss(min(L.getBruteLoss() * 0.15 * tox_cap_multiplier, damage * 0.15 * tox_cap_multiplier))  //Deal bonus damage equal to a % of the lesser of the damage taken or the target's brute damage.
+	L.adjustToxLoss(min(L.getBruteLoss() * 0.15 * tox_cap_multiplier, damage * 0.15 * tox_cap_multiplier))  //Deal bonus tox damage equal to a % of the lesser of the damage taken or the target's brute damage.
 
 	if(!L.getFireLoss()) //If we have no burn damage, cancel out
 		return
