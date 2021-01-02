@@ -12,13 +12,11 @@
 		return 0
 
 	var/damage = veh.ram_damage // Each vehicle gets its own damage, you can modify it with snowplows and such ideally
-	var/veh_damage = 10
 
 	if(world.time > veh.lastsound + 1 SECONDS)
 		visible_message("<span class='danger'>[veh] crushes the [src]!</span>")
 		playsound(src, 'sound/effects/metal_crash.ogg', 45)
 		veh.lastsound = world.time
-		veh.take_damage(veh_damage)
 	return damage
 
 /obj/structure/vehicle_collision(obj/vehicle/veh, facing, turf/T, turf/temp)
