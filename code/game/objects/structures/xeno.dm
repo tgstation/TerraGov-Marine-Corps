@@ -700,9 +700,12 @@ TUNNEL
 		to_chat(M, "<span class='xenowarning'>We can't climb through a tunnel while immobile.</span>")
 		return FALSE
 
-	if(LAZYLEN(M.stomach_contents))
-		to_chat(M, "<span class='warning'>We must spit out the host inside of us first.</span>")
-		return
+	for(var/tummy_resident in M.stomach_contents)
+		if(ishuman(tummy_resident))
+			var/mob/living/carbon/human/H = tummy_resident
+			if(check_tod(H))
+				to_chat(M, "<span class='warning'>We cannot enter the tunnel while the host we devoured has signs of life. We should headbite it to finish it off.</span>")
+				return
 
 	var/obj/structure/tunnel/targettunnel = input(M, "Choose a tunnel to crawl to", "Tunnel") as null|anything in GLOB.xeno_tunnels
 	if(!targettunnel)

@@ -140,6 +140,7 @@
 		/obj/item/explosive/grenade/drainbomb = 5,
 		/obj/item/explosive/grenade/cloakbomb = 25,
 		/obj/item/storage/box/m94 = 30,
+		/obj/item/storage/box/m94/cas = 10,
 		/obj/item/storage/box/recoilless_system = 1,
 		/obj/item/weapon/shield/riot/marine = 3,
 	)
