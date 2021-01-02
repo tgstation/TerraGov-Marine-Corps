@@ -147,7 +147,6 @@
 		go_active(TRUE)
 
 /obj/item/clothing/mask/facehugger/proc/go_idle(hybernate = FALSE, no_activate = FALSE)
-	message_admins("go_idle triggered")
 	deltimer(jumptimer)
 	deltimer(lifetimer)
 	lifetimer = null
@@ -162,7 +161,6 @@
 		addtimer(CALLBACK(src, .proc/go_active), ACTIVATE_TIME * activity_modifier)
 
 /obj/item/clothing/mask/facehugger/proc/go_active(unhybernate = FALSE)
-	message_admins("go_active triggered")
 	if(unhybernate)
 		stasis = FALSE
 	if(stat == UNCONSCIOUS && !stasis)
@@ -174,7 +172,6 @@
 	return FALSE
 
 /obj/item/clothing/mask/facehugger/proc/check_lifecycle()
-	message_admins("check_lifecycle triggered")
 
 	if(sterile && !combat_hugger) //We are now useless; time to die.
 		kill_hugger()
@@ -588,8 +585,9 @@
 	var/mob/living/victim = M
 	do_attack_animation(M)
 	var/armor_block = victim.run_armor_check(BODY_ZONE_CHEST, "bio")
-	victim.apply_damage(150, STAMINA, BODY_ZONE_CHEST, armor_block)
-	victim.reagents.add_reagent(/datum/reagent/toxin/xeno_neurotoxin, 20)
+	victim.apply_damage(100, STAMINA, BODY_ZONE_CHEST, armor_block) //This should prevent sprinting
+	victim.apply_damage(1, BRUTE, sharp = TRUE) //Token brute for the injection
+	victim.reagents.add_reagent(/datum/reagent/toxin/xeno_neurotoxin, 20, no_overdose = TRUE)
 	playsound(victim, 'sound/effects/spray3.ogg', 25, 1)
 	victim.visible_message("<span class='danger'>[src] penetrates [victim] with its sharp probscius!</span>","<span class='danger'>[src] penetrates you with a sharp probscius before falling down!</span>")
 	go_idle() //We're a bit slow on the recovery
