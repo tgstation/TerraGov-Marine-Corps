@@ -103,6 +103,10 @@
 	playsound(A, 'sound/effects/bomb_fall.ogg', 75, FALSE)
 	for(var/turf/targetted as() in turfs)
 		for(var/atom/movable/item as() in targetted.contents)
+			if(isxeno(item))
+				var/mob/living/carbon/xenomorph/xeno = item
+				if(xeno.issamexenohive(owner))
+					continue
 			item.ex_act(EXPLODE_HEAVY)	//crushing without damaging the nearby area
 		addtimer(CALLBACK(targetted, /atom.proc/remove_filter, "crushblur"), 1 SECONDS)
 
