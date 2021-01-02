@@ -173,7 +173,7 @@
 /// Visually shows that the floodlight has been tipped and breaks all the lights in it.
 /obj/machinery/floodlightcombat/proc/tip_over()
 	for(var/obj/item/light_bulb/tube/T in contents)
-		T.status = 2
+		T.status = LIGHT_BROKEN
 	update_icon()
 	calculate_brightness()
 	var/matrix/A = matrix()
@@ -192,7 +192,7 @@
 	tipped = FALSE
 
 /obj/machinery/floodlightcombat/Initialize()
-	. = ..()
+	..()
 	start_processing()
 	return INITIALIZE_HINT_LATELOAD
 
@@ -201,19 +201,19 @@
 	power_change()
 
 /obj/machinery/floodlightcombat/process()
-	if(!powered(LIGHT))
+	if(powered(LIGHT))
+		use_power(on ? active_power_usage : idle_power_usage, LIGHT)
+	else
 		if(on)
 			on = !on
 			set_light(0, 5, "#C5E3E132")
 			update_icon()
-		return FALSE
-	use_power(on ? active_power_usage : idle_power_usage, LIGHT)
 
 /// Loops between the light tubes until it finds a light to break.
 /obj/machinery/floodlightcombat/proc/break_a_light()
 	var/obj/item/light_bulb/tube/T = pick(contents)
-	if(T.status == 0)
-		T.status = 2
+	if(T.status == LIGHT_OK)
+		T.status = LIGHT_BROKEN
 		calculate_brightness()
 		return TRUE
 	break_a_light()
@@ -239,23 +239,20 @@
 	if(brightness == 0)
 		to_chat(M, "<span class='xenonotice'>There are no lights to slash!")
 		return FALSE
-	else
-		playsound( loc, 'sound/weapons/alien_claw_metal1.ogg', 60, FALSE)
-		to_chat(M, "<span class='xenonotice'>You slash one of the lights!")
-		break_a_light()
-		set_light(brightness, 5, "#C5E3E132")
-		update_icon()
-
+	playsound( loc, 'sound/weapons/alien_claw_metal1.ogg', 60, FALSE)
+	to_chat(M, "<span class='xenonotice'>You slash one of the lights!")
+	break_a_light()
+	set_light(brightness, 5, "#C5E3E132")
+	update_icon()
 
 /obj/machinery/floodlightcombat/attackby(obj/item/I, mob/user, params)
-	var/list/lights = contents // has to be a static list..
 	if(!ishuman(user))
 		return FALSE
 	if(istype(I, /obj/item/light_bulb/tube))
 		if(on)
 			to_chat(user, "<span class='notice'>The [src]'s safety systems won't let you open the light hatch! You should turn it off first.")
 			return FALSE
-		if(lights.len > 3)
+		if(contents.len > 3)
 			to_chat(user, "<span class='notice'>All the light sockets are occupied!")
 			return FALSE
 		to_chat(user, "You insert the [I] into the [src]")
@@ -266,7 +263,7 @@
 		if(on)
 			to_chat(user, "<span class='notice'>The [I] cannot dispense lights into functioning machinery!")
 			return FALSE
-		if(lights.len > 3)
+		if(contents.len > 3)
 			to_chat(user, "<span class='notice'>All the light sockets are occupied!")
 			return FALSE
 		var/obj/item/lightreplacer/A = I
@@ -283,7 +280,7 @@
 /obj/machinery/floodlightcombat/proc/calculate_brightness()
 	brightness = 0
 	for(var/obj/item/light_bulb/tube/T in contents)
-		if(T.status == 0)
+		if(T.status == LIGHT_OK)
 			brightness += 4
 
 /// Updates each light
@@ -332,32 +329,32 @@
 /obj/machinery/floodlightcombat/attack_hand(mob/living/user)
 	if(!ishuman(user))
 		return FALSE
-	if(user.a_intent == INTENT_GRAB)
-		var/list/lights = contents
-		if(!density)
-			to_chat(user, "You begin flipping back the floodlight")
-			if(do_after(user , 60 SECONDS, TRUE, src))
-				flip_back()
-				to_chat(user, "You flip back the floodlight!")
-				return TRUE
-		if(on)
-			to_chat (user, "<span class='danger'>You burn the tip of your finger as you try to take off the light tube!")
-			return FALSE
-		if(lights.len > 0)
-			to_chat(user, "You take out one of the lights")
-			visible_message("[user] takes out one of the lights tubes!")
-			playsound( loc,'sound/items/screwdriver.ogg', 60 , FALSE)
-			var/obj/item/light_bulb/item = pick(lights)
-			item.forceMove(user.loc)
-			item.update()
-			user.put_in_hands(item)
-			update_icon()
-		else
-			to_chat(user, "There are no lights to pull out")
-			return FALSE
-		calculate_brightness()
+	if(user.a_intent != INTENT_GRAB)
+		switch_light()
 		return TRUE
-	switch_light()
+	if(!density)
+		to_chat(user, "You begin flipping back the floodlight")
+		if(do_after(user , 60 SECONDS, TRUE, src))
+			flip_back()
+			to_chat(user, "You flip back the floodlight!")
+			return TRUE
+	if(on)
+		to_chat (user, "<span class='danger'>You burn the tip of your finger as you try to take off the light tube!")
+		return FALSE
+	if(contents.len > 0)
+		to_chat(user, "You take out one of the lights")
+		visible_message("[user] takes out one of the lights tubes!")
+		playsound( loc,'sound/items/screwdriver.ogg', 60 , FALSE)
+		var/obj/item/light_bulb/item = pick(contents)
+		item.forceMove(user.loc)
+		item.update()
+		user.put_in_hands(item)
+		update_icon()
+	else
+		to_chat(user, "There are no lights to pull out")
+		return FALSE
+	calculate_brightness()
+	return TRUE
 
 /obj/machinery/floodlight/outpost
 	name = "Outpost Light"
