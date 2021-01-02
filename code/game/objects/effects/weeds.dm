@@ -170,6 +170,14 @@
 	node_turfs = filled_turfs(src, node_range, "square")
 	SSweeds.add_node(src)
 
+/obj/effect/alien/weeds/node/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/tool/pickaxe/plasmacutter))
+		Destroy()
+		playsound(I.loc, 'sound/machines/click.ogg', 25, 1, 5)
+		playsound(src, "alien_resin_break", 25)
+
 
 // =================
 // stronger weed node
