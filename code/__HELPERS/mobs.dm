@@ -132,7 +132,7 @@
 		stoplag(1)
 		P?.update(world.time - starttime)
 
-		if(QDELETED(user) || user.incapacitated(TRUE) || (!ignore_turf_checks && user.loc != Uloc) || (extra_checks && !extra_checks.Invoke()))
+		if(QDELETED(user) || user.incapacitated(TRUE) || HAS_TRAIT(user, RESTING_TRAIT) || (!ignore_turf_checks && user.loc != Uloc) || (extra_checks && !extra_checks.Invoke()))
 			. = FALSE
 			break
 
