@@ -91,7 +91,7 @@
 				playsound(loc, attack.miss_sound, 25, TRUE)
 				visible_message("<span class='danger'>[H] tried to [pick(attack.attack_verb)] [src]!</span>", null, null, 5)
 				log_combat(H, src, "[pick(attack.attack_verb)]ed", "(missed)")
-				if(!H?.mind?.bypass_ff && !mind?.bypass_ff && H.faction == faction)
+				if(!H.mind?.bypass_ff && !mind?.bypass_ff && H.faction == faction)
 					var/turf/T = get_turf(src)
 					log_ffattack("[key_name(H)] missed a punch against [key_name(src)] in [AREACOORD(T)].")
 					msg_admin_ff("[ADMIN_TPMONTY(H)] missed a punch against [ADMIN_TPMONTY(src)] in [ADMIN_VERBOSEJMP(T)].")

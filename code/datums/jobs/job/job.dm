@@ -178,7 +178,7 @@ GLOBAL_PROTECT(exp_specialmap)
 		C.rank = J.title
 		C.paygrade = J.paygrade
 		C.update_label()
-		if(H?.mind?.initial_account) // In most cases they won't have a mind at this point.
+		if(H.mind?.initial_account) // In most cases they won't have a mind at this point.
 			C.associated_account_number = H.mind.initial_account.account_number
 
 	H.update_action_buttons()

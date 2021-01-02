@@ -116,7 +116,7 @@
 	UPDATEHEALTH(src)
 
 	log_combat(user, src, "attacked", I, "(INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(I.damtype)]) (RAW DMG: [power])")
-	if(power && !user?.mind?.bypass_ff && !mind?.bypass_ff && user.faction == faction)
+	if(power && !user.mind?.bypass_ff && !mind?.bypass_ff && user.faction == faction)
 		var/turf/T = get_turf(src)
 		user.ff_check(power, src)
 		log_ffattack("[key_name(user)] attacked [key_name(src)] with \the [I] in [AREACOORD(T)] (RAW DMG: [power]).")
@@ -166,7 +166,7 @@
 			M.visible_message("<span class='avoidharm'>\The [src] misses [M]!</span>",
 				"<span class='avoidharm'>\The [src] narrowly misses you!</span>", null, COMBAT_MESSAGE_RANGE)
 		log_combat(user, M, "attacked", src, "(missed) (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(damtype)])")
-		if(force && !user?.mind?.bypass_ff && !M?.mind?.bypass_ff && user.faction == M.faction)
+		if(force && !user.mind?.bypass_ff && !M.mind?.bypass_ff && user.faction == M.faction)
 			var/turf/T = get_turf(M)
 			log_ffattack("[key_name(user)] missed [key_name(M)] with \the [src] in [AREACOORD(T)].")
 			msg_admin_ff("[ADMIN_TPMONTY(user)] missed [ADMIN_TPMONTY(M)] with \the [src] in [ADMIN_VERBOSEJMP(T)].")
