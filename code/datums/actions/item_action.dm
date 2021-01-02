@@ -92,7 +92,7 @@
 
 /datum/action/item_action/aim_mode/update_button_icon()
 	button.overlays.Cut()
-	button.overlays += image('icons/mob/actions.dmi', null, "sniper_zoom", ABOVE_HUD_LAYER)
+	button.overlays += image('icons/mob/actions.dmi', null, "aim_mode", ABOVE_HUD_LAYER)
 
 /datum/action/item_action/aim_mode/action_activate()
 	var/obj/item/weapon/gun/I = target
