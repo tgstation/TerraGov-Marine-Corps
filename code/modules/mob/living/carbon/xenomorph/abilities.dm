@@ -1187,7 +1187,8 @@
 
 	X.face_atom(A) //Face towards the target so we don't look silly
 
-	xeno_message("<span class='xenoannounce'>Our leader [X] is rallying the hive to [get_area(A)] (X: [A.x], Y: [A.y])!</span>", 3, X.hivenumber, FALSE, get_turf(A), 'sound/voice/alien_distantroar_3.ogg')
+	xeno_message("<span class='xenoannounce'>Our leader [X] is rallying the hive to [AREACOORD_NO_Z(A)]!</span>", 3, X.hivenumber, FALSE, get_turf(A), 'sound/voice/alien_distantroar_3.ogg')
+	notify_ghosts("\ [X] is rallying the hive to [AREACOORD_NO_Z(A)]!", source = get_turf(A), action = NOTIFY_ORBIT)
 
 	succeed_activate()
 	add_cooldown()

@@ -47,3 +47,27 @@
 	opacity = FALSE
 	anchored = FALSE
 	animate_movement = SLIDE_STEPS
+
+///Image that appears at the Xeno Rally target; only Xenos can see it
+/obj/effect/temp_visual/xenomorph/xeno_tracker_target
+	name = "xeno tracker target"
+	icon_state = "nothing"
+	duration = XENO_HEALTH_ALERT_POINTER_DURATION
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	color = COLOR_RED
+	hud_possible = list(XENO_TACTICAL_HUD)
+
+/obj/effect/temp_visual/xenomorph/xeno_tracker_target/Initialize(mapload)
+	. = ..()
+	prepare_huds()
+	for(var/datum/atom_hud/xeno_tactical/xeno_tac_hud in GLOB.huds) //Add to the xeno tachud
+		xeno_tac_hud.add_to_hud(src)
+	hud_set_xeno_tracker_target()
+
+/obj/effect/temp_visual/xenomorph/xeno_tracker_target/proc/hud_set_xeno_tracker_target()
+	var/image/holder = hud_list[XENO_TACTICAL_HUD]
+	if(!holder)
+		return
+	holder.icon = 'icons/Marine/marine-items.dmi'
+	holder.icon_state = "detector_blip"
+	hud_list[XENO_TACTICAL_HUD] = holder

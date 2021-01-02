@@ -307,9 +307,7 @@
 /datum/hive_status/proc/add_leader(mob/living/carbon/xenomorph/X)
 	xeno_leader_list += X
 	X.queen_chosen_lead = TRUE
-
-	if(!isxenoshrike(X) && !isxenoqueen(X) && !isxenohivemind(X)) //These innately have the Rally Hive ability
-		X.xeno_caste.actions += /datum/action/xeno_action/activable/rally_hive
+	X.give_rally_hive_ability()
 
 /datum/hive_status/proc/remove_leader(mob/living/carbon/xenomorph/X)
 	xeno_leader_list -= X
@@ -520,6 +518,7 @@ to_chat will check for valid clients itself already so no need to double check f
 		if(target) //Apply tracker arrow to point to the subject of the message if applicable
 			var/obj/screen/xeno_tracker_arrow/arrow = new /obj/screen/xeno_tracker_arrow //Prepare the tracker object and set its parameters
 			arrow.add_hud(X, target)
+			new /obj/effect/temp_visual/xenomorph/xeno_tracker_target(target) //Ping the source of our alert
 
 		to_chat(X, "<span class='xenodanger'><font size=[size]> [message]</font></span>")
 
