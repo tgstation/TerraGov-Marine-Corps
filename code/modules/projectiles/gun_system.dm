@@ -348,6 +348,8 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 			load_into_chamber()
 
 	update_icon(user)
+	var/obj/screen/ammo/A = user.hud_used.ammo
+	A.update_hud(user)
 	return TRUE
 
 /obj/item/weapon/gun/proc/replace_magazine(mob/user, obj/item/ammo_magazine/magazine)
