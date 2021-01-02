@@ -690,6 +690,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	var/zoom_offset = 11
 	///how many tiles to increase the users view box
 	var/zoom_viewsize = 12
+	///can this scope move while zooming ? default of no, scopes with higher viewrange than 7 cause maptick lag on moving according to tivi.
+	var/zoom_movement = FALSE
 	///how much slowdown the scope gives when zoomed. You want this to be slowdown you want minus aim_speed_mod
 	var/zoom_slowdown = 1.44
 	///boolean as to whether a scope can apply nightvision
@@ -742,9 +744,12 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		activate_attachment(user, TRUE)
 
 /obj/item/attachable/scope/onzoom(mob/living/user)
+	if(!zoom_movement)
+		RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/zoom_item_turnoff)
 	RegisterSignal(user, COMSIG_CARBON_SWAPPED_HANDS, .proc/zoom_item_turnoff)
 	RegisterSignal(master_gun, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_UNWIELD, COMSIG_ITEM_DROPPED), .proc/zoom_item_turnoff)
-	user.add_movespeed_modifier(MOVESPEED_ID_SCOPE_SLOWDOWN, TRUE, 0, NONE, TRUE, zoom_slowdown)
+	if(zoom_movement)
+		user.add_movespeed_modifier(MOVESPEED_ID_SCOPE_SLOWDOWN, TRUE, 0, NONE, TRUE, zoom_slowdown)
 	master_gun.accuracy_mult += scoped_accuracy_mod
 	if(has_nightvision)
 		update_remote_sight(user)
@@ -752,9 +757,12 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		active_nightvision = TRUE
 
 /obj/item/attachable/scope/onunzoom(mob/living/user)
+	if(!zoom_movement)
+		UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
 	UnregisterSignal(user, COMSIG_CARBON_SWAPPED_HANDS)
 	UnregisterSignal(master_gun, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_UNWIELD, COMSIG_ITEM_DROPPED))
-	user.remove_movespeed_modifier(MOVESPEED_ID_SCOPE_SLOWDOWN)
+	if(zoom_movement)
+		user.remove_movespeed_modifier(MOVESPEED_ID_SCOPE_SLOWDOWN)
 	master_gun.accuracy_mult -= scoped_accuracy_mod
 	if(has_nightvision)
 		user.update_sight()
@@ -783,6 +791,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	scoped_accuracy_mod = SCOPE_RAIL_MINI
 	scope_zoom_mod = TRUE
 	has_nightvision = FALSE
+	zoom_movement = TRUE
 	zoom_slowdown = 0.46
 
 /obj/item/attachable/scope/mini/m4ra
