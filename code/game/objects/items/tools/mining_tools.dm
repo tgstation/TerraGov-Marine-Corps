@@ -328,6 +328,13 @@
 
 
 /obj/item/tool/pickaxe/plasmacutter/attack_obj(obj/O, mob/living/user)
+	if(istype(O, /obj/effect/alien/weeds/node))
+		var/obj/effect/alien/weeds/node/N = O
+		playsound(user.loc, 'sound/machines/click.ogg', 5, 1, 5)
+		user.do_attack_animation(N, used_item = src)
+		N.Destroy()
+		return TRUE
+
 	if(!powered || user.action_busy || CHECK_BITFIELD(O.resistance_flags, INDESTRUCTIBLE))
 		. = ..()
 		return TRUE
