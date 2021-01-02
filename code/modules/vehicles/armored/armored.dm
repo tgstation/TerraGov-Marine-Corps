@@ -267,6 +267,11 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	icon = 'icons/obj/tank/tank_damage.dmi' //set by tank
 	icon_state = "null" // set on demand
 
+///Wrapper for when the parent vehicles dir changes
+/atom/movable/vis_obj/tank_damage/proc/changedir(datum/source, olddir, newdir)
+	SIGNAL_HANDLER
+	setDir(newdir)
+
 /**
  * TANK HITBOX
  * The core of multitile. Acts as a relay for damage and stops people from walking onto the tank sprite
@@ -319,6 +324,7 @@ Init and destroy procs for both multitile and 1x1 vehicles.
 		damage_overlay.icon = damage_icon_path
 		damage_overlay.layer = layer+0.1
 		vis_contents += damage_overlay
+		damage_overlay.RegisterSignal(src, COMSIG_ATOM_DIR_CHANGE, .proc/changedir)
 	if(CHECK_BITFIELD(flags_armored, HAS_PRIMARY_WEAPON))
 		turret_overlay = new()
 		turret_overlay.icon = turret_icon
