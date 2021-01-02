@@ -203,7 +203,7 @@
 	action_icon_state = "evasion"
 	mechanics_text = "Take evasive action, forcing non-friendly projectiles that would hit you to miss for a short duration so long as you keep moving."
 	plasma_cost = 10
-	cooldown_timer = 8 SECONDS
+	cooldown_timer = 10 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_EVASION
 	///Whether evasion is currently active
 	var/evade_active = FALSE
@@ -340,7 +340,7 @@
 	if(!(proj.ammo.flags_ammo_behavior & AMMO_SENTRY)) //We ignore projectiles from automated sources/sentries for the purpose of contributions towards our cooldown refresh
 		R.evasion_stacks += proj.damage //Add to evasion stacks for the purposes of determining whether or not our cooldown refreshes
 
-	var/evasion_stack_target = RUNNER_EVASION_COOLDOWN_REFRESH_THRESHOLD * (1 + evasion_streak * 0.5)
+	var/evasion_stack_target = RUNNER_EVASION_COOLDOWN_REFRESH_THRESHOLD * (1 + evasion_streak) //Each streak increases the amount we have to dodge by the initial value
 	R.visible_message("<span class='warning'>[name] effortlessly dodges the [proj.name]!</span>", \
 	"<span class='xenodanger'>We effortlessly dodge the [proj.name]![(evasion_stack_target - R.evasion_stacks) > 0 ? " We must dodge [evasion_stack_target - R.evasion_stacks] more projectile damage before Evasion's cooldown refreshes." : ""]</span>")
 
