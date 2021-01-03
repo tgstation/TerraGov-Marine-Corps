@@ -164,6 +164,7 @@
 		/obj/item/storage/pill_bottle,
 		/obj/item/clothing/gloves/latex,
 		/obj/item/reagent_containers/hypospray/autoinjector,
+		/obj/item/reagent_containers/hypospray/advanced,
 		/obj/item/reagent_containers/hypospray,
 		/obj/item/stack/medical,
 	)
