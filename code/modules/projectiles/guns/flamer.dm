@@ -31,7 +31,7 @@
 /obj/item/weapon/gun/flamer/Initialize()
 	. = ..()
 	if (current_mag) //A flamer spawing with a mag will be lit up
-		toggle_flame(null,TRUE)
+		light_pilot(null,TRUE)
 
 /obj/item/weapon/gun/flamer/unique_action(mob/user)
 	if(under)
@@ -62,8 +62,13 @@
 		if(!current_mag || !current_mag.current_rounds)
 			return
 
-
-/obj/item/weapon/gun/flamer/proc/toggle_flame(mob/user,mustlit)
+/**
+ * Light the pilot light of a flamer
+ * 
+ * mob/user if not null will play a sound and add an overlay
+ * mustlit boolean, if true the pilot light will be lit
+ */
+/obj/item/weapon/gun/flamer/proc/light_pilot(mob/user,mustlit)
 	if (lit == mustlit)//You can't lit what is already lit
 		return
 	lit = mustlit
@@ -131,18 +136,18 @@
 				to_chat(user, "<span class='notice'>You begin reloading [src]. Hold still...</span>")
 				if(do_after(user,magazine.reload_delay, TRUE, src, BUSY_ICON_GENERIC))
 					replace_magazine(user, magazine)
-					toggle_flame(user,TRUE)
+					light_pilot(user,TRUE)
 				else
 					to_chat(user, "<span class='warning'>Your reload was interrupted!</span>")
 					return
 			else
 				replace_magazine(user, magazine)
-				toggle_flame(user,TRUE)
+				light_pilot(user,TRUE)
 		else
 			current_mag = magazine
 			magazine.loc = src
 			replace_ammo(,magazine)
-			toggle_flame(user,TRUE)
+			light_pilot(user,TRUE)
 
 	update_icon()
 
@@ -160,7 +165,7 @@
 		user.put_in_hands(current_mag)
 
 	playsound(user, unload_sound, 25, 1)
-	toggle_flame(user,FALSE)
+	light_pilot(user,FALSE)
 	user.visible_message("<span class='notice'>[user] unloads [current_mag] from [src].</span>",
 	"<span class='notice'>You unload [current_mag] from [src].</span>")
 	current_mag.update_icon()
@@ -187,7 +192,7 @@
 		current_mag = fueltank
 		fueltank.attached_flamer = src
 		replace_ammo(user, fueltank)
-		toggle_flame(user,TRUE)
+		light_pilot(user,TRUE)
 		playsound(user, reload_sound, 25, 1, 5)
 		update_icon(user)
 		var/obj/screen/ammo/A = user.hud_used.ammo
@@ -203,7 +208,7 @@
 	if (volontary)
 		to_chat(user, "<span class='notic'>You detach the fuel tank</span>")
 	playsound(user, unload_sound, 25, 1)
-	toggle_flame(user,FALSE)
+	light_pilot(user,FALSE)
 	update_icon(user)
 	var/obj/screen/ammo/A = user.hud_used.ammo
 	A.update_hud(user)
@@ -217,7 +222,7 @@
 			var/obj/item/ammo_magazine/flamer_tank/backtank/backfueltank = current_mag;
 			backfueltank.attached_flamer=null
 			current_mag = null 
-			toggle_flame(null,FALSE) 
+			light_pilot(null,FALSE) 
 		update_icon(humanuser)
 
 /obj/item/weapon/gun/flamer/proc/unleash_flame(atom/target, mob/living/user)
@@ -281,7 +286,7 @@
 
 		current_mag.current_rounds--
 		if (current_mag.current_rounds<=0)
-			toggle_flame(user,FALSE)
+			light_pilot(user,FALSE)
 			break
 		flame_turf(TF,user, burntime, burnlevel, fire_color)
 		if(blocked)
@@ -465,18 +470,18 @@
 				to_chat(user, "<span class='notice'>You begin reloading [src]. Hold still...</span>")
 				if(do_after(user,magazine.reload_delay, TRUE, src, BUSY_ICON_GENERIC))
 					replace_magazine(user, magazine)
-					toggle_flame(user,TRUE)
+					light_pilot(user,TRUE)
 				else
 					to_chat(user, "<span class='warning'>Your reload was interrupted!</span>")
 					return
 			else
 				replace_magazine(user, magazine)
-				toggle_flame(user,TRUE)
+				light_pilot(user,TRUE)
 		else
 			current_mag = magazine
 			magazine.loc = src
 			replace_ammo(,magazine)
-			toggle_flame(user,TRUE)
+			light_pilot(user,TRUE)
 
 	update_icon()
 	return TRUE
