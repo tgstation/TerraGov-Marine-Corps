@@ -541,6 +541,7 @@
 #define COMSIG_KB_QUICKEQUIP "keybinding_quickequip"
 #define COMSIG_KB_HOLSTER "keybinding_holster"
 #define COMSIG_KB_UNIQUEACTION "keybinding_uniqueaction"
+#define COMSIG_KB_RAILATTACHMENT "keybinding_railattachment"
 
 // Ability adding/removing signals
 #define ACTION_GIVEN "gave_an_action"		//from base of /datum/action/proc/give_action(): (datum/action)
