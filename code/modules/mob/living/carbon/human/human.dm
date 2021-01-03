@@ -28,6 +28,8 @@
 	var/datum/action/skill/issue_order/focus/issue_order_focus = new
 	issue_order_focus.give_action(src)
 
+	AddComponent(/datum/component/bump_attack)
+
 	//makes order hud visible
 	var/datum/atom_hud/H = GLOB.huds[DATA_HUD_ORDER]
 	H.add_hud_to(usr)

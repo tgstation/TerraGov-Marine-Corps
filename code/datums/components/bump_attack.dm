@@ -70,14 +70,17 @@
 /datum/component/bump_attack/proc/human_bump_action(datum/source, atom/target)
 	SIGNAL_HANDLER
 	var/mob/living/carbon/human/bumper = parent
-	. = carbon_bump_action_checks(target)
-	if(!isnull(.))
+	if(!ismob(target))
+		return
+	if(bumper.next_move > world.time)
 		return
 	var/mob/living/living_target = target
 	if(bumper.faction == living_target.faction)
 		return //FF
-	return living_do_bump_action(target)
-
+	var/obj/item/weapon/gun/gun = bumper.get_active_held_item()
+	if(istype(gun, /obj/item/weapon/gun))
+		gun.attack(target, bumper, CHEST)
+		bumper.changeNext_move(CLICK_CD_MELEE)
 
 /datum/component/bump_attack/proc/xeno_bump_action(datum/source, atom/target)
 	SIGNAL_HANDLER
