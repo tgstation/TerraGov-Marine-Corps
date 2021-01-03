@@ -209,8 +209,8 @@
 	switch(mode)
 		if(MODE_CAS)
 			to_chat(user, "<span class='notice'>TARGET ACQUIRED. LASER TARGETING IS ONLINE. DON'T MOVE.</span>")
-			var/obj/effect/overlay/temp/laser_target_cas/LT = new (TU, laz_name, S)
-			laser = LT
+			var/obj/effect/overlay/temp/laser_target/cas/CS = new (TU, laz_name, S)
+			laser = CS
 			playsound(src, 'sound/effects/binoctarget.ogg', 35)
 			while(laser)
 				if(!do_after(user, 5 SECONDS, TRUE, laser, BUSY_ICON_GENERIC))
@@ -227,8 +227,8 @@
 			else if(!targ_area)
 				to_chat(user, "[icon2html(src, user)] <span class='warning'>No target detected!</span>")
 			else
-				var/obj/effect/overlay/temp/laser_target_railgun/RT = new (TU, laz_name, S)
-				laser = RT
+				var/obj/effect/overlay/temp/laser_target/RGL = new (TU, laz_name, S)
+				laser = RGL
 				playsound(src, 'sound/effects/binoctarget.ogg', 35)
 				if(!do_after(user, 2 SECONDS, TRUE, user, BUSY_ICON_GENERIC))
 					QDEL_NULL(laser)
@@ -244,8 +244,8 @@
 			if(!targ_area)
 				to_chat(user, "[icon2html(src, user)] <span class='warning'>No target detected!</span>")
 			else
-				var/obj/effect/overlay/temp/laser_target/OB = new (TU, laz_name, S)
-				laser = OB
+				var/obj/effect/overlay/temp/laser_target/OB/OBL = new (TU, laz_name, S)
+				laser = OBL
 				playsound(src, 'sound/effects/binoctarget.ogg', 35)
 				if(!do_after(user, 15 SECONDS, TRUE, user, BUSY_ICON_GENERIC))
 					QDEL_NULL(laser)
