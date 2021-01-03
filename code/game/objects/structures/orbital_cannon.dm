@@ -1,4 +1,5 @@
 #define WARHEAD_FLY_TIME 1 SECONDS
+#define RG_FLY_TIME 1 SECONDS
 #define WARHEAD_FALLING_SOUND_RANGE 15
 
 /obj/structure/orbital_cannon
@@ -545,7 +546,6 @@
 	rail_gun_ammo.ammo_count = 8000
 
 /obj/structure/ship_rail_gun/proc/fire_rail_gun(turf/T, mob/user)
-	set waitfor = 0
 	if(cannon_busy)
 		return
 	if(!rail_gun_ammo?.ammo_count)
@@ -557,7 +557,9 @@
 	playsound(loc, 'sound/weapons/guns/fire/tank_smokelauncher.ogg', 70, 1)
 	playsound(loc, 'sound/weapons/guns/fire/pred_plasma_shot.ogg', 70, 1)
 	var/turf/target = locate(T.x + pick(-2,2), T.y + pick(-2,2), T.z)
-	sleep(15)
-	rail_gun_ammo.detonate_on(target)
 	rail_gun_ammo.ammo_count = max(0, rail_gun_ammo.ammo_count - rail_gun_ammo.ammo_used_per_firing)
+	addtimer(CALLBACK(src, /obj/structure/ship_rail_gun/proc/impact_rail_gun, target), 2 SECONDS + (RG_FLY_TIME * (GLOB.current_orbit/3)))	
+		
+/obj/structure/ship_rail_gun/proc/impact_rail_gun(turf/T)
+	rail_gun_ammo.detonate_on(T)
 	cannon_busy = FALSE

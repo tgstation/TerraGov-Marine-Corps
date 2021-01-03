@@ -105,7 +105,6 @@
 	squad = assigned_squad
 	if(squad)
 		squad.squad_laser_targets += src
-	linked_cam = new(loc, name)
 
 /obj/effect/overlay/temp/laser_target/Destroy()
 	GLOB.active_laser_targets -= src
@@ -125,6 +124,23 @@
 	return
 
 /obj/effect/overlay/temp/laser_target/examine()
+	..()
+	if(ishuman(usr))
+		to_chat(usr, "<span class='danger'>It's a laser to designate artillery targets, get away from it!</span>")
+
+/obj/effect/overlay/temp/laser_target/cas
+	icon_state = "laser_target_coordinate"
+	linked_cam = new(loc, name)
+
+/obj/effect/overlay/temp/laser_target/cas/examine()
+	..()
+	if(ishuman(usr))
+		to_chat(usr, "<span class='danger'>It's a laser to designate cas targets, get away from it!</span>")
+
+/obj/effect/overlay/temp/laser_target/railgun
+	icon_state = "laser_target_blue"
+
+/obj/effect/overlay/temp/laser_target/railgun/examine()
 	..()
 	if(ishuman(usr))
 		to_chat(usr, "<span class='danger'>It's a laser to designate artillery targets, get away from it!</span>")
