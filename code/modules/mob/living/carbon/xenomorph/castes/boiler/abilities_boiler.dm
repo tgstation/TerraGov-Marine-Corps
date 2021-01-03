@@ -36,6 +36,10 @@
 
 /datum/action/xeno_action/toggle_bomb/action_activate()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
+	if((X.corrosive_ammo + X.neuro_ammo) >= X.xeno_caste.max_ammo)
+		if((X.ammo.type == /datum/ammo/xeno/boiler_gas/corrosive && X.neuro_ammo==0) || (X.ammo.type == /datum/ammo/xeno/boiler_gas && X.corrosive_ammo==0))	
+			to_chat(X, "<span class='warning'>We won't be able to carry this kind of globule</span>")
+			return
 	if(X.ammo.type == /datum/ammo/xeno/boiler_gas)
 		X.ammo = GLOB.ammo_list[/datum/ammo/xeno/boiler_gas/corrosive]
 		to_chat(X, "<span class='notice'>We will now fire corrosive acid. This is lethal!</span>")
