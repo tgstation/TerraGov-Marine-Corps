@@ -343,6 +343,7 @@
 		new_xeno.hud_set_queen_overwatch()
 		if(hive.living_xeno_queen)
 			new_xeno.handle_xeno_leader_pheromones(hive.living_xeno_queen)
+		new_xeno.give_rally_hive_ability() //Give them back their rally hive ability
 
 	qdel(src)
 	INVOKE_ASYNC(new_xeno, /mob/living.proc/do_jitter_animation, 1000)

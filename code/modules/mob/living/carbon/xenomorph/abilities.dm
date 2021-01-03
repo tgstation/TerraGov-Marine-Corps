@@ -1168,6 +1168,36 @@
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
+////////////////////
+/// Rally Hive
+///////////////////
+/datum/action/xeno_action/activable/rally_hive
+	name = "Rally Hive"
+	action_icon_state = "rally_hive"
+	mechanics_text = "Rallies the hive to a congregate at a target location, along with an arrow pointer. Gives the Hive your current health status. 60 second cooldown."
+	use_state_flags = XACT_TARGET_SELF
+	ability_name = "rally hive"
+	plasma_cost = 0
+	keybind_signal = COMSIG_XENOABILITY_RALLY_HIVE
+	cooldown_timer = 60 SECONDS
+
+/datum/action/xeno_action/activable/rally_hive/use_ability(atom/A)
+
+	var/mob/living/carbon/xenomorph/X = owner
+
+	X.face_atom(A) //Face towards the target so we don't look silly
+
+	xeno_message("<span class='xenoannounce'>Our leader [X] is rallying the hive to [AREACOORD_NO_Z(A)]!</span>", 3, X.hivenumber, FALSE, get_turf(A), 'sound/voice/alien_distantroar_3.ogg')
+	notify_ghosts("\ [X] is rallying the hive to [AREACOORD_NO_Z(A)]!", source = get_turf(A), action = NOTIFY_ORBIT)
+
+	succeed_activate()
+	add_cooldown()
+
+	GLOB.round_statistics.xeno_rally_hive++ //statistics
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "xeno_rally_hive")
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+
 /mob/living/carbon/xenomorph/proc/add_abilities()
 	for(var/action_path in xeno_caste.actions)
 		var/datum/action/xeno_action/A = new action_path()
@@ -1177,3 +1207,6 @@
 /mob/living/carbon/xenomorph/proc/remove_abilities()
 	for(var/action_datum in xeno_abilities)
 		qdel(action_datum)
+
+/datum/action/xeno_action/activable/rally_hive/hivemind //Halve the cooldown for Hiveminds as their relative omnipresence means they can actually make use of this lower cooldown.
+	cooldown_timer = 30 SECONDS

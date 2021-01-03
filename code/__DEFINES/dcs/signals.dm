@@ -462,6 +462,7 @@
 #define COMSIG_XENOABILITY_HIDE "xenoability_hide"
 #define COMSIG_XENOABILITY_NEUROTOX_STING "xenoability_neurotox_sting"
 #define COMSIG_XENOABILITY_INJECT_EGG_NEUROGAS "xenoability_inject_egg_neurogas"
+#define COMSIG_XENOABILITY_RALLY_HIVE "xenoability_rally_hive"
 
 #define COMSIG_XENOABILITY_LONG_RANGE_SIGHT "xenoability_long_range_sight"
 #define COMSIG_XENOABILITY_TOGGLE_BOMB "xenoability_toggle_bomb"
