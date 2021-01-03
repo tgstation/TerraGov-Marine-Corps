@@ -113,6 +113,7 @@
 		/obj/item/weapon/gun/revolver/standard_revolver = 10,
 		/obj/item/weapon/gun/pistol/standard_heavypistol = 10,
 		/obj/item/weapon/gun/pistol/vp70 = 10,
+		/obj/item/ammo_magazine/smg/m25 = 5,
 		/obj/item/weapon/gun/smg/ppsh = 5,
 		/obj/item/weapon/gun/smg/standard_smg = 10,
 		/obj/item/weapon/gun/smg/standard_machinepistol = 10,
@@ -198,6 +199,7 @@
 		/obj/item/ammo_magazine/flamer_tank = 10,
 		/obj/item/ammo_magazine/smg/ppsh/ = 30,
 		/obj/item/ammo_magazine/smg/ppsh/extended = 10,
+		/obj/item/ammo_magazine/smg/m25 = 30,
 		/obj/item/ammo_magazine/rifle/bolt = 7,
 	)
 	premium = list()
