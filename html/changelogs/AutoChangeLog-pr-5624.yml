@@ -1,5 +1,0 @@
-author: "Walarks"
-delete-after: True
-changes: 
-  - tweak: "aim mode button renamed to \"Take Aim\", added a better button icon + other wording for improved clarity"
-  - refactor: "makes item_action/New take custom names"
