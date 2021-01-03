@@ -520,8 +520,10 @@
 	return !slayer && ..()
 
 
-//Check if shutters are opened. Proced when constructing resin, acid wells, 
-//jelly pod dispensers and hugger traps 
+/** 
+ * Check if shutters are closed in the area. 
+ * Proced when constructing resin, acid wells, jelly pod dispensers and hugger traps 
+ */
 /turf/proc/check_disallow_alien_fortification(mob/living/builder, silent = FALSE)
 	var/area/ourarea = loc
 	if(ourarea.flags_area & DISALLOW_WEEDING)
@@ -529,6 +531,10 @@
 			to_chat(builder, "<span class='warning'>We cannot build in this area before the talls are out!</span>")
 		return FALSE
 	return TRUE
+
+/** 
+ * Check if alien abilities can construct structure on the turf 
+ * Proced when constructing every kind of xenos structure, including weeds*/
 
 /turf/proc/check_alien_construction(mob/living/builder, silent = FALSE, planned_building)
 	var/has_obstacle
