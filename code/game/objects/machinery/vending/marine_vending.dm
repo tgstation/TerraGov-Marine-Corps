@@ -56,17 +56,17 @@
 		/obj/item/attachable/flashlight = 10,
 		/obj/item/explosive/grenade/mirage = 5,
 		/obj/item/weapon/powerfist = 3,
-		/obj/item/big_ammo_box = 2
-		/obj/item/ammobox = 2
-		/obj/item/shotgunbox = 2
-		/obj/item/ammobox/standard_smg = 2
-		/obj/item/ammobox/standard_machinepistol = 2
-		/obj/item/ammobox/standard_pistol = 2
-		/obj/item/ammobox/standard_rifle = 2
-		/obj/item/ammobox/standard_dmr = 2
-		/obj/item/ammobox/standard_lmg = 2
-		/obj/item/shotgunbox/buckshot = 2
-		/obj/item/shotgunbox/flechette = 2
+		/obj/item/big_ammo_box = 2,
+		/obj/item/ammobox = 2,
+		/obj/item/shotgunbox = 2,
+		/obj/item/shotgunbox/buckshot = 2,
+		/obj/item/shotgunbox/flechette = 2,
+		/obj/item/ammobox/standard_smg = 2,
+		/obj/item/ammobox/standard_machinepistol = 2,
+		/obj/item/ammobox/standard_pistol = 2,
+		/obj/item/ammobox/standard_rifle = 2,
+		/obj/item/ammobox/standard_dmr = 2,
+		/obj/item/ammobox/standard_lmg = 2,
 	)
 	prices = list()
 
