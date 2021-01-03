@@ -203,11 +203,11 @@
 /obj/machinery/floodlightcombat/process()
 	if(powered(LIGHT))
 		use_power(on ? active_power_usage : idle_power_usage, LIGHT)
-	else
-		if(on)
-			on = !on
-			set_light(0, 5, "#C5E3E132")
-			update_icon()
+		return
+	if(on)
+		on = !on
+		set_light(0, 5, "#C5E3E132")
+		update_icon()
 
 /// Loops between the light tubes until it finds a light to break.
 /obj/machinery/floodlightcombat/proc/break_a_light()
