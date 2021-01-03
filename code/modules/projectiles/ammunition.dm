@@ -27,6 +27,7 @@ They're all essentially identical when it comes to getting the job done.
 	var/used_casings = 0 //Just an easier way to track how many shells to eject later.
 	var/flags_magazine = AMMUNITION_REFILLABLE //flags specifically for magazines.
 	var/base_mag_icon //the default mag icon state.
+	var/handful_max = /datum/ammo/bullet
 
 /obj/item/ammo_magazine/Initialize(mapload, spawn_empty)
 	. = ..()
@@ -218,6 +219,7 @@ If it is the same and the other stack isn't full, transfer an amount (default 1)
 /obj/item/ammo_magazine/handful/proc/generate_handful(new_ammo, new_caliber, maximum_rounds, new_rounds, new_gun_type)
 	var/datum/ammo/A = GLOB.ammo_list[new_ammo]
 	var/ammo_name = A.name //Let's pull up the name.
+	var/handfull_ammount = A.handful_max
 
 	name = "handful of [ammo_name + (ammo_name == "shotgun buckshot"? " ":"s ") + "([new_caliber])"]"
 	switch(new_caliber)
@@ -230,9 +232,12 @@ If it is the same and the other stack isn't full, transfer an amount (default 1)
 
 	default_ammo = new_ammo
 	caliber = new_caliber
-	max_rounds = maximum_rounds
 	current_rounds = new_rounds
 	gun_type = new_gun_type
+	if (handfull_ammount != maximum_rounds)
+		max_rounds = handfull_ammount
+	else
+		max_rounds = maximum_rounds
 	update_icon()
 
 // A pre-set version of the buckshot shells for the sake of pre-set marine jobs. Sorry Terra.

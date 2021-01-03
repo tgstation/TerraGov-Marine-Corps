@@ -35,6 +35,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/armor_type					= "bullet"	// Does this have an override for the armor type the ammo should test? Bullet by default
 	var/sundering					= 0 		// How many stacks of sundering to apply to a mob on hit
 	var/flags_ammo_behavior = NONE
+	var/handful_max = 8							// how much can you have if you got a handfull of this ammo
 	///Determines what color our bullet will be when it flies
 	var/bullet_color = COLOR_WHITE
 
@@ -206,6 +207,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 10
 	shrapnel_chance = 10
 	bullet_color = COLOR_VERY_SOFT_YELLOW
+	handful_max = 8
 
 /*
 //================================================
@@ -222,6 +224,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 5
 	accurate_range = 5
 	sundering = 2
+	handful_max = 21
 
 /datum/ammo/bullet/pistol/tiny
 	name = "light pistol bullet"
@@ -302,6 +305,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_INCENDIARY|AMMO_IGNORE_ARMOR
 	shell_speed = 2
 	damage = 15
+	handful_max = 1  //just so we don't fuck up in here
 
 
 /datum/ammo/bullet/pistol/mankey/on_hit_mob(mob/M,obj/projectile/P)
@@ -323,6 +327,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 40
 	penetration = 10
 	sundering = 3
+	handful_max = 14 //double of a speed loader
 
 /datum/ammo/bullet/revolver/on_hit_mob(mob/M,obj/projectile/P)
 	staggerstun(M, P, stagger = 1, slowdown = 0.5, knockback = 1)
@@ -425,6 +430,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_falloff = 1
 	sundering = 0.5
 	penetration = 5
+	handful_max = 50
 
 /datum/ammo/bullet/smg/ap
 	name = "armor-piercing submachinegun bullet"
@@ -448,6 +454,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 25
 	penetration = 5
 	sundering = 0.5
+	handful_max = 32
 
 /datum/ammo/bullet/rifle/ap
 	name = "armor-piercing rifle bullet"
@@ -469,6 +476,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "rifle_heavy"
 	damage = 20
 	penetration = 10
+	handful_max = 100
 
 /datum/ammo/bullet/rifle/m4ra
 	name = "A19 high velocity bullet"
@@ -549,7 +557,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/shotgun
 	hud_state_empty = "shotgun_empty"
 	shell_speed = 2
-
+	handful_max = 5  //inline with original ammount. again just to be sure it wont break
 
 /datum/ammo/bullet/shotgun/slug
 	name = "shotgun slug"
@@ -832,6 +840,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 80
 	penetration = 60
 	sundering = 15
+	handful_max = 7
 
 /datum/ammo/bullet/sniper/incendiary
 	name = "incendiary sniper bullet"
@@ -978,7 +987,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy = 15
 	barricade_clear_distance = 2
 	sundering = 5
-
+	handful_max = 100
 /datum/ammo/bullet/minigun
 	name = "minigun bullet"
 	hud_state = "minigun"

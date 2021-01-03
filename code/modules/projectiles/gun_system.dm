@@ -410,6 +410,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		// Get gun information from the current mag if its equipped otherwise the default ammo & caliber
 		var/bullet_ammo_type = in_chamber.ammo.type
 		var/bullet_caliber
+		var/bullet_handful_max = 8 //setting up as old default just as a failsafe again
 		if(current_mag)
 			bullet_caliber = current_mag.caliber //make sure it's the functional caliber
 		else
@@ -423,18 +424,18 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 			X = user.l_hand
 
 		var/obj/item/ammo_magazine/handful/H
-		if (X && X.default_ammo == bullet_ammo_type && X.caliber == bullet_caliber && X.current_rounds < X.max_rounds)
+		if (X && X.default_ammo == bullet_ammo_type && X.handful_max == bullet_handful_max && X.caliber == bullet_caliber && X.current_rounds < X.max_rounds)
 			H = X
 		else
 			for(var/obj/item/ammo_magazine/handful/HL in user.loc)
-				if(HL.default_ammo == bullet_ammo_type && HL.caliber == bullet_caliber && HL.current_rounds < HL.max_rounds)
+				if(HL.default_ammo == bullet_ammo_type && HL.handful_max == bullet_handful_max && HL.caliber == bullet_caliber && HL.current_rounds < HL.max_rounds)
 					H = HL
 					break
 		if(H)
 			H.current_rounds++
 		else
 			H = new
-			H.generate_handful(bullet_ammo_type, bullet_caliber, 8, 1, type)
+			H.generate_handful(bullet_ammo_type, bullet_caliber, bullet_handful_max, 1, type)
 			user.put_in_hands(H)
 
 		H.update_icon()
