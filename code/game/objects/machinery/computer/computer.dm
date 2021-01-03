@@ -8,7 +8,8 @@
 	idle_power_usage = 300
 	active_power_usage = 300
 	var/processing = 0
-	var/durability = 2 //How many times the computer can be smashed by a Xeno before it is disabled.
+	///How many times the computer can be smashed by a Xeno before it is disabled.
+	var/durability = 2
 	resistance_flags = UNACIDABLE
 
 /obj/machinery/computer/Initialize()
@@ -21,7 +22,7 @@
 	power_change()
 
 /obj/machinery/computer/examine(mob/user)
-	..()
+	. = ..()
 	if(machine_stat & (NOPOWER))
 		to_chat(user, "<span class='warning'>It is currently unpowered.</span>")
 
@@ -99,36 +100,47 @@
 	text = replacetext(text, "\n", "<BR>")
 	return text
 
+/obj/machinery/computer/welder_act(mob/living/user, obj/item/I)
+	if(user.action_busy)
+		return FALSE
+
+	var/obj/item/tool/weldingtool/welder = I
+
+	if(!machine_stat & (DISABLED) && durability == initial(durability))
+		to_chat(user, "<span class='notice'>The [src] doesn't need welding!</span>")
+		return FALSE
+
+	if(!welder.tool_use_check(user, 2))
+		return FALSE
+
+	if(user.skills.getRating("engineer") < SKILL_ENGINEER_MASTER)
+		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to deconstruct [src].</span>",
+		"<span class='notice'>You fumble around figuring out how to deconstruct [src].</span>")
+		var/fumbling_time = 50 * ( SKILL_ENGINEER_MASTER - user.skills.getRating("engineer") )
+		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+			return
+
+	user.visible_message("<span class='notice'>[user] begins repairing damage to [src].</span>",
+	"<span class='notice'>You begin repairing the damage to [src].</span>")
+	playsound(loc, 'sound/items/welder2.ogg', 25, 1)
+
+	if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+		return
+
+	if(!welder.remove_fuel(2, user))
+		to_chat(user, "<span class='warning'>Not enough fuel to finish the task.</span>")
+		return TRUE
+
+	user.visible_message("<span class='notice'>[user] repairs [src]'s damage.</span>",
+	"<span class='notice'>You repair [src].</span>")
+	machine_stat &= ~DISABLED //Remove the disabled flag
+	durability = initial(durability) //Reset its durability to its initial value
+	update_icon()
+	playsound(loc, 'sound/items/welder2.ogg', 25, 1)
+
 
 /obj/machinery/computer/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	if(iswelder(I) && machine_stat & (DISABLED))
-		if(user.skills.getRating("engineer") < SKILL_ENGINEER_MASTER)
-			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to deconstruct [src].</span>",
-			"<span class='notice'>You fumble around figuring out how to deconstruct [src].</span>")
-			var/fumbling_time = 50 * ( SKILL_ENGINEER_MASTER - user.skills.getRating("engineer") )
-			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
-				return
-
-		var/obj/item/tool/weldingtool/welder = I
-
-		if(!welder.remove_fuel(0, user))
-			return FALSE
-
-		user.visible_message("<span class='notice'>[user] begins repairing damage to [src].</span>",
-		"<span class='notice'>You begin repairing the damage to [src].</span>")
-		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
-
-		if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY))
-			return
-
-		user.visible_message("<span class='notice'>[user] repairs some damage on [src].</span>",
-		"<span class='notice'>You repair [src].</span>")
-		machine_stat &= ~DISABLED //Remove the disabled flag
-		durability = initial(durability) //Reset its durability to its initial value
-		update_icon()
-		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
-
 
 	if(isscrewdriver(I) && circuit)
 		if(user.skills.getRating("engineer") < SKILL_ENGINEER_MASTER)

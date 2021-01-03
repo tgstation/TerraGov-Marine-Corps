@@ -387,11 +387,14 @@
 			wires.cut_all()
 			visible_message("<span class='danger'>\The [src]'s wires snap apart in a rain of sparks!</span>", null, null, 5)
 
-	if(istype(src, /obj/machinery/computer)) //Currently only computers use this; falcon punch away its density
-		set_disabled()
+
 
 	update_icon()
 	return TRUE
+
+/obj/machinery/computer/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone) //Break open the machine
+	set_disabled() //Currently only computers use this; falcon punch away its density
+	return ..()
 
 /obj/machinery/light/punch_act(mob/living/carbon/xenomorph/X)
 	. = ..()
