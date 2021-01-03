@@ -23,16 +23,16 @@
 
 /obj/machinery/computer/examine(mob/user)
 	. = ..()
-	if(machine_stat & (NOPOWER))
+	if(machine_stat & NOPOWER)
 		to_chat(user, "<span class='warning'>It is currently unpowered.</span>")
 
 	if(durability < initial(durability))
 		to_chat(user, "<span class='warning'>It is damaged, and can be fixed with a welder.</span>")
 
-	if(machine_stat & (DISABLED))
+	if(machine_stat & DISABLED)
 		to_chat(user, "<span class='warning'>It is currently disabled, and can be fixed with a welder.</span>")
 
-	if(machine_stat & (BROKEN))
+	if(machine_stat & BROKEN)
 		to_chat(user, "<span class='warning'>It is broken and needs to be rebuilt.</span>")
 
 /obj/machinery/computer/process()
@@ -106,7 +106,7 @@
 
 	var/obj/item/tool/weldingtool/welder = I
 
-	if(!machine_stat & (DISABLED) && durability == initial(durability))
+	if(!machine_stat & DISABLED && durability == initial(durability))
 		to_chat(user, "<span class='notice'>The [src] doesn't need welding!</span>")
 		return FALSE
 
@@ -116,7 +116,7 @@
 	if(user.skills.getRating("engineer") < SKILL_ENGINEER_MASTER)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to deconstruct [src].</span>",
 		"<span class='notice'>You fumble around figuring out how to deconstruct [src].</span>")
-		var/fumbling_time = 50 * ( SKILL_ENGINEER_MASTER - user.skills.getRating("engineer") )
+		var/fumbling_time = 50 * (SKILL_ENGINEER_MASTER - user.skills.getRating("engineer"))
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return
 
@@ -137,7 +137,6 @@
 	durability = initial(durability) //Reset its durability to its initial value
 	update_icon()
 	playsound(loc, 'sound/items/welder2.ogg', 25, 1)
-
 
 /obj/machinery/computer/attackby(obj/item/I, mob/user, params)
 	. = ..()

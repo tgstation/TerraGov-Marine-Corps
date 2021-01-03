@@ -387,8 +387,6 @@
 			wires.cut_all()
 			visible_message("<span class='danger'>\The [src]'s wires snap apart in a rain of sparks!</span>", null, null, 5)
 
-
-
 	update_icon()
 	return TRUE
 
