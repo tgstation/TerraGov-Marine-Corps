@@ -412,6 +412,12 @@
 /mob/living/pre_crush_act(mob/living/carbon/xenomorph/charger, datum/action/xeno_action/ready_charge/charge_datum)
 	return (stat == DEAD ? 0 : CHARGE_SPEED(charge_datum) * charge_datum.crush_living_damage)
 
+//Tank hitbox
+/obj/hitbox/pre_crush_act(mob/living/carbon/xenomorph/charger, datum/action/xeno_action/ready_charge/charge_datum)
+	charge_datum.do_stop_momentum(FALSE)
+	charger.visible_message("<span class='danger'>[charger] slams [src] into the ground!</span>",
+	"<span class='xenowarning'>We slam [src] into the ground!</span>")
+	return (CHARGE_SPEED(charge_datum) * 20)
 
 //Special override case. May not call the parent.
 /mob/living/carbon/xenomorph/pre_crush_act(mob/living/carbon/xenomorph/charger, datum/action/xeno_action/ready_charge/charge_datum)
