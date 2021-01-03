@@ -758,10 +758,6 @@
 	},
 /turf/open/floor/tile/bar,
 /area/lavaland/civilian/cook)
-"in" = (
-/obj/effect/alien/weeds/node,
-/turf/closed/brock,
-/area/lavaland/cave/southwest)
 "io" = (
 /obj/machinery/vending/boozeomat,
 /turf/open/floor/tile/bar,
@@ -1152,11 +1148,6 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/tile/bar,
 /area/lavaland/civilian/cook)
-"lL" = (
-/turf/open/lavaland/lava/side{
-	dir = 8
-	},
-/area/space)
 "lM" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/lavaland/basalt,
@@ -1631,10 +1622,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/tile/dark2,
 /area/lavaland/civilian)
-"qj" = (
-/obj/effect/alien/weeds/node,
-/turf/closed/wall/indestructible/mineral,
-/area/lavaland/cave/southwest)
 "qk" = (
 /obj/machinery/vending/MarineMed,
 /turf/open/floor/tile/white,
@@ -2017,9 +2004,6 @@
 	},
 /turf/open/floor/tile/dark2,
 /area/lavaland/civilian/cargo)
-"tM" = (
-/turf/closed/brock,
-/area/space)
 "tS" = (
 /obj/structure/closet/crate/medical,
 /obj/item/stack/nanopaste,
@@ -2190,11 +2174,6 @@
 /obj/vehicle/train/cargo/trolley,
 /turf/open/floor/tile/dark2,
 /area/lavaland/civilian/cargo)
-"vb" = (
-/turf/open/lavaland/lava/corner{
-	dir = 1
-	},
-/area/space)
 "vg" = (
 /turf/closed/wall/indestructible/mineral,
 /area/shuttle/drop1/lz1)
@@ -2640,9 +2619,6 @@
 	dir = 8
 	},
 /area/lavaland/security/nuke)
-"zK" = (
-/turf/open/lavaland/lava,
-/area/space)
 "zM" = (
 /obj/structure/closet/cabinet,
 /turf/open/floor/wood,
@@ -3523,12 +3499,7 @@
 /turf/open/lavaland/lava/lpiece{
 	dir = 8
 	},
-/area/space)
-"Iu" = (
-/turf/open/lavaland/lava/side{
-	dir = 4
-	},
-/area/space)
+/area/lavaland/cave/north)
 "Ix" = (
 /obj/structure/cable,
 /turf/open/lavaland/basalt,
@@ -4144,9 +4115,6 @@
 	},
 /turf/open/lavaland/basalt,
 /area/lavaland/engie/two)
-"Pn" = (
-/turf/closed/wall/indestructible/mineral,
-/area/space)
 "Pq" = (
 /obj/structure/xenoautopsy/tank/escaped,
 /turf/open/floor/tile/dark,
@@ -4155,7 +4123,7 @@
 /turf/open/lavaland/lava/corner{
 	dir = 4
 	},
-/area/space)
+/area/lavaland/cave/north)
 "Pw" = (
 /obj/machinery/floodlight/outpost,
 /turf/open/floor/plating/asteroidfloor,
@@ -4839,9 +4807,6 @@
 /obj/machinery/atmospherics/pipe/manifold4w/green/hidden,
 /turf/open/floor/tile/white,
 /area/lavaland/security)
-"Wy" = (
-/turf/open/lavaland/lava/lpiece,
-/area/space)
 "WH" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/white,
@@ -11289,7 +11254,7 @@ Vz
 Vz
 Vz
 HQ
-in
+HQ
 KP
 KP
 aI
@@ -11548,7 +11513,7 @@ QM
 Vz
 HQ
 HQ
-qj
+KP
 aI
 aI
 aI
@@ -15927,7 +15892,7 @@ Vz
 Vz
 HQ
 KP
-qj
+KP
 aI
 aI
 aI
@@ -21951,12 +21916,12 @@ aI
 aI
 aI
 aI
-Pn
-Pn
-Pn
-Pn
-Pn
-Pn
+ah
+ah
+ah
+ah
+ah
+ah
 ah
 al
 aZ
@@ -22208,12 +22173,12 @@ aI
 aI
 aI
 aI
-Pn
-tM
-tM
-tM
-tM
-tM
+ah
+al
+al
+al
+al
+al
 al
 al
 al
@@ -22465,12 +22430,12 @@ aI
 aI
 aI
 aI
-Pn
-tM
-tM
-Wy
-Iu
-Iu
+ah
+al
+al
+qh
+nM
+nM
 nM
 nM
 nM
@@ -22722,12 +22687,12 @@ aI
 aI
 aI
 aI
-Pn
-tM
-Wy
-vb
-zK
-zK
+ah
+al
+qh
+XP
+AF
+AF
 AF
 AF
 AF
@@ -22979,12 +22944,12 @@ aI
 aI
 aI
 aI
-Pn
-tM
+ah
+al
 Is
-lL
+mO
 Pr
-zK
+AF
 AF
 AF
 AF
@@ -23236,12 +23201,12 @@ aI
 aI
 aI
 aI
-Pn
-tM
-tM
-tM
+ah
+al
+al
+al
 Is
-lL
+mO
 mO
 mO
 mO
@@ -23493,12 +23458,12 @@ aI
 aI
 aI
 aI
-Pn
-tM
-tM
-tM
-tM
-tM
+ah
+al
+al
+al
+al
+al
 al
 al
 al
@@ -23750,12 +23715,12 @@ aI
 aI
 aI
 aI
-Pn
-Pn
-Pn
-Pn
-Pn
-Pn
+ah
+ah
+ah
+ah
+ah
+ah
 ah
 al
 aZ
