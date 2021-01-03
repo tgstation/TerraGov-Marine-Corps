@@ -129,6 +129,10 @@
 	},
 /turf/open/lavaland/basalt,
 /area/lavaland/misc/outpost)
+"aS" = (
+/obj/machinery/camera/autoname/lz_camera,
+/turf/open/floor/plating,
+/area/shuttle/drop1/lz1)
 "aV" = (
 /obj/item/lightstick/red/anchored,
 /turf/open/lavaland/basalt,
@@ -48410,7 +48414,7 @@ HR
 HR
 HR
 HR
-HR
+aS
 HR
 HR
 HR
@@ -48660,6 +48664,7 @@ VL
 HR
 HR
 HR
+aS
 HR
 HR
 HR
@@ -48674,8 +48679,7 @@ HR
 HR
 HR
 HR
-HR
-HR
+aS
 HR
 HR
 xl
@@ -50716,6 +50720,7 @@ VL
 HR
 HR
 HR
+aS
 HR
 HR
 HR
@@ -50730,8 +50735,7 @@ HR
 HR
 HR
 HR
-HR
-HR
+aS
 HR
 HR
 xl
@@ -50980,7 +50984,7 @@ HR
 HR
 HR
 HR
-HR
+aS
 HR
 HR
 HR
