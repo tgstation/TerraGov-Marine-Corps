@@ -658,3 +658,19 @@
 /datum/reagent/sterilizine/on_mob_life(mob/living/L, metabolism)
 	L.adjustToxLoss(2*REM)
 	return ..()
+
+/*
+/datum/reagent/virilyth
+	name = "Virilyth"
+	description = "A strange substance with high regenerative properties."
+	color = "#488C54"
+	taste_description = "slimy lemon"
+	can_synth = FALSE
+	custom_metabolism = REAGENTS_METABOLISM * 0.1
+	overdose_threshold = REAGENTS_OVERDOSE
+	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
+	addiction_threshold = 1
+	scannable = TRUE
+	purge_list = list
+	purge_rate = 0
+*/

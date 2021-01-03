@@ -20,11 +20,138 @@
 	user.visible_message("<span class='danger'>[user] is falling on the [src.name]! It looks like [user.p_theyre()] trying to commit suicide.</span>")
 	return(BRUTELOSS)
 
+/obj/item/weapon/claymore/harvester
+	name = "\improper Hervester"
+	desc = "An advanced weapon that trades sheer force for the ability to apply a variety of debilitating effects when loaded with certain reagents. It also harvests substances from alien lifeforms it hits. Use a syringe to empty the reagent tank."
+	icon_state = "machete"
+	force = 60
+	attack_speed = 12
+	w_class = WEIGHT_CLASS_BULKY
+	var/obj/item/reagent_containers/glass/beaker/vial/beaker = null
+	var/max_storage = 200
+	var/current_storage
+
+	var/effect_loaded = FALSE
+	var/effect_active = FALSE
+	var/list/loadable_reagents = list(
+		/datum/reagent/medicine/bicaridine,
+		/datum/reagent/medicine/tramadol,
+		/datum/reagent/medicine/kelotane,
+	)
+
+/obj/item/weapon/claymore/harvester/examine(mob/user)
+	..()
+	if(length(beaker.reagents.reagent_list))
+		to_chat(user, "It currently holds [beaker.reagents.total_volume]u of [beaker.reagents.reagent_list[1].name]")
+	to_chat(user, "<b>Compatible chemicals:</b>")
+	for(var/R in loadable_reagents)
+		var/atom/L = R
+		to_chat(user, "[initial(L.name)]")
+
+/obj/item/weapon/claymore/harvester/Initialize()
+	. = .. ()
+	beaker = new /obj/item/reagent_containers/glass/beaker/vial
+
+/obj/item/weapon/claymore/harvester/attack(mob/living/M, mob/living/user)
+	. = .. ()
+	if(isxeno(M))
+		current_storage += min(40, max_storage - current_storage)
+
+/obj/item/weapon/claymore/harvester/attackby(obj/item/I, mob/user)
+	if(user.action_busy)
+		return
+
+	if(!istype(I, /obj/item/reagent_containers))
+		return
+
+	var/trans
+	var/obj/item/reagent_containers/container = I
+	if(istype(container, /obj/item/reagent_containers/syringe))
+		trans = beaker.reagents.trans_to(container, 40)
+		to_chat(user, "<span class='rose'>You take [trans]u out of the internal storage. It now contains [beaker.reagents.total_volume]u.</span>")
+		return
+
+	if(length(container.reagents.reagent_list) > 1)
+		to_chat(user, "<span class='rose'>The solution needs to be uniform and contain only a single type of reagent to be compatible.</span>")
+		return FALSE
+	message_admins("[loadable_reagents[3]]")
+	message_admins("[container.reagents.reagent_list[1].type]")
+
+	if(!locate(container.reagents.reagent_list[1].type) in loadable_reagents)
+		to_chat(user, "<span class='rose'>This reagent is not compatible with the weapon's mechanism. Check the engraved symbols for further information.</span>")
+		return FALSE
+
+	if(container.reagents.total_volume < 10)
+		to_chat(user, "<span class='rose'>At least 10u of the substance is needed.</span>")
+		return FALSE
+
+	trans = container.reagents.trans_to(beaker, 40)
+	to_chat(user, "<span class='rose'>You load [trans]u into the internal system. It now holds [beaker.reagents.total_volume]u.</span>")
+
+/obj/item/weapon/claymore/harvester/unique_action(mob/user)
+	if(effect_loaded)
+		effect_active = TRUE
+		to_chat(user, "<span class='rose'>You release the holding mechanism, empowering your next attack.</span>")
+		return TRUE
+
+	if(beaker.reagents.total_volume < 10)
+		to_chat(user, "<span class='rose'>You don't have enough substance.</span>")
+		return FALSE
+
+	if(user.action_busy)
+		return
+
+	to_chat(user, "<span class='rose'>You start filling up the small chambers along the blade's edge.</span>")
+	if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_BAR, ignore_turf_checks = TRUE))
+		to_chat(user, "<span class='rose'>You are interrupted! The safety machanism drains out the reagent back into the main storage.</span>")
+		return FALSE
+
+	effect_loaded = TRUE
+	return TRUE
+
+/obj/item/weapon/claymore/harvester/attack(mob/living/M, mob/living/user)
+	. = .. ()
+	if(!effect_active)
+		return
+
+	switch(beaker.reagents.reagent_list[1].type)
+		if(/datum/reagent/medicine/tramadol)
+			M.apply_status_effect(/datum/status_effect/incapacitating/slowdown, 2 SECONDS)
+
+		if(/datum/reagent/medicine/kelotane)
+			var/flame_dir = Get_Angle(user, M.loc)
+			message_admins("[flame_dir]")
+			generate_flames(user, M.loc, flame_direction = flame_dir)
+
+	effect_active = FALSE
+	effect_loaded = FALSE
+
+/obj/item/weapon/claymore/harvester/proc/generate_flames(mob/user, turf/location, flame_range = 2, flame_width = 90, flame_direction)
+	location.ignite()
+	var/right_angle = flame_direction + flame_width/2
+	var/left_angle = flame_direction - flame_width/2
+
+	for(var/turf/T in range(1, location))
+		var/turf_angle = Get_Angle(user, T)
+		if(locate(/obj/flamer_fire) in T)
+			continue
+		if(get_dist(user, T) > flame_range || get_dist(user, T) < 1)
+			continue
+		if(!get_step_towards(location, T))
+			continue
+		if(left_angle > right_angle)
+			if(turf_angle <= right_angle || turf_angle >= left_angle)
+				generate_flames(user, T, flame_range, flame_width, flame_direction)
+				return
+
+		if(turf_angle <= right_angle && turf_angle >= left_angle)
+			generate_flames(user, T, flame_range, flame_width, flame_direction)
+
 /obj/item/weapon/claymore/mercsword
 	name = "combat sword"
 	desc = "A dusty sword commonly seen in historical museums. Where you got this is a mystery, for sure. Only a mercenary would be nuts enough to carry one of these. Sharpened to deal massive damage."
 	icon_state = "mercsword"
-	item_state = "machete"
+	item_state = "machee"
 	force = 39
 
 
