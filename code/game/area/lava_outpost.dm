@@ -124,3 +124,33 @@
 /area/lavaland/civilian/cargo
 	name = "Civilian Cargo"
 	icon_state = "lava_civ_cargo"
+
+//Misc Locations
+
+/area/lavaland/misc/stationed
+	name = "Stationed Ship"
+	icon_state = "lava_misc_stationed"
+	outside = FALSE
+
+/area/lavaland/misc/outpost
+	name = "Abandoned Outpost"
+	icon_state = "lava_misc_outpost"
+	outside = FALSE
+
+/area/lavaland/misc/alienstorage
+	name = "Alien Storage"
+	icon_state = "lava_misc_alienstorage"
+	outside = FALSE
+
+/area/lavaland/misc/shack
+	name = "Shack"
+	icon_state = "lava_misc_shack"
+	outside = FALSE
+
+/area/lavaland/misc/genstorage
+	name = "General Storage"
+	icon_state =  "lava_misc_genstorage"
+
+/area/lavaland/misc/crashed
+	name = "Crashed Ship"
+	icon_state = "lava_misc_crashed"
