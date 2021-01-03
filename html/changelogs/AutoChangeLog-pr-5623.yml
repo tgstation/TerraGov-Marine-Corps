@@ -1,0 +1,4 @@
+author: "Walarks"
+delete-after: True
+changes: 
+  - balance: "gyroscopic stabilizer reduces aim mode movement speed reduction by 50%, but also decreases bullet damage by 10% per marine passed"
