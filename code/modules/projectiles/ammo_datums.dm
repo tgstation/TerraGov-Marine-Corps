@@ -840,7 +840,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 80
 	penetration = 60
 	sundering = 15
-	handful_max = 7
+	handful_max = 6
 
 /datum/ammo/bullet/sniper/incendiary
 	name = "incendiary sniper bullet"
