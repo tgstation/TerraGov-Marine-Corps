@@ -135,28 +135,30 @@
 
 	regen_power = -xeno_caste.regen_delay //Remember, this is in deciseconds.
 
-	if(damage) //If we've actually taken damage, check whether we alert the hive
-		if(!COOLDOWN_CHECK(src, xeno_health_alert_cooldown))
-			return
-		//If we're alive and health is less than either the alert threshold, or the alert trigger percent, whichever is greater, and we're not on alert cooldown, trigger the hive alert
-		if(stat == DEAD || (health > max(XENO_HEALTH_ALERT_TRIGGER_THRESHOLD, maxHealth * XENO_HEALTH_ALERT_TRIGGER_PERCENT)))
-			return
+	if(!damage) //If we've actually taken damage, check whether we alert the hive
+		return
 
-		var/list/filter_list = list()
-		for(var/i in hive.get_all_xenos())
+	if(!COOLDOWN_CHECK(src, xeno_health_alert_cooldown))
+		return
+	//If we're alive and health is less than either the alert threshold, or the alert trigger percent, whichever is greater, and we're not on alert cooldown, trigger the hive alert
+	if(stat == DEAD || (health > max(XENO_HEALTH_ALERT_TRIGGER_THRESHOLD, maxHealth * XENO_HEALTH_ALERT_TRIGGER_PERCENT)))
+		return
 
-			var/mob/living/carbon/xenomorph/X = i
-			if(!X.client) //Don't bother if they don't have a client; also runtime filters
-				continue
+	var/list/filter_list = list()
+	for(var/i in hive.get_all_xenos())
 
-			if(X == src) //We don't need an alert about ourself.
-				filter_list += X //Add the xeno to the filter list
+		var/mob/living/carbon/xenomorph/X = i
+		if(!X.client) //Don't bother if they don't have a client; also runtime filters
+			continue
 
-			if(!(X.client.prefs.mute_xeno_health_alert_messages)) //Build the filter list; people who opted not to receive health alert messages
-				filter_list += X //Add the xeno to the filter list
+		if(X == src) //We don't need an alert about ourself.
+			filter_list += X //Add the xeno to the filter list
 
-		xeno_message("<span class='xenoannounce'>Our sister [name] is badly hurt with ([health]/[maxHealth]) health remaining at [get_area(src)] (X: [x], Y: [y])!</span>", 2, hivenumber, FALSE, src, 'sound/voice/alien_help1.ogg', TRUE, filter_list)
-		COOLDOWN_START(src, xeno_health_alert_cooldown, XENO_HEALTH_ALERT_COOLDOWN) //set the cooldown.
+		if(!(X.client.prefs.mute_xeno_health_alert_messages)) //Build the filter list; people who opted not to receive health alert messages
+			filter_list += X //Add the xeno to the filter list
+
+	xeno_message("<span class='xenoannounce'>Our sister [name] is badly hurt with ([health]/[maxHealth]) health remaining at [get_area(src)] (X: [x], Y: [y])!</span>", 2, hivenumber, FALSE, src, 'sound/voice/alien_help1.ogg', TRUE, filter_list)
+	COOLDOWN_START(src, xeno_health_alert_cooldown, XENO_HEALTH_ALERT_COOLDOWN) //set the cooldown.
 
 	return damage
 

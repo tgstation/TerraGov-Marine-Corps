@@ -62,8 +62,7 @@
 
 		xenoinfo += " <b><font color=[hp_color]>Health: ([X.health]/[X.maxHealth])</font></b>"
 
-		var/area/A = get_area(X)
-		xenoinfo += " <b><font color=green>([A ? A.name : null])</b></td></tr>"
+		xenoinfo += " <b><font color=green>([AREACOORD_NO_Z(X)])</b></td></tr>"
 
 	return xenoinfo
 
@@ -81,7 +80,7 @@
 				if(0 to 0.33)
 					hp_color = "red"
 
-			. += "<b>[resin_silo.name] <font color=[hp_color]>Health: ([resin_silo.obj_integrity]/[resin_silo.max_integrity])</font></b> located at: <b><font color=green>[get_area(resin_silo)] (X: [resin_silo.x], Y: [resin_silo.y])</b></font><BR>"
+			. += "<b>[resin_silo.name] <font color=[hp_color]>Health: ([resin_silo.obj_integrity]/[resin_silo.max_integrity])</font></b> located at: <b><font color=green>[AREACOORD_NO_Z(resin_silo)]</b></font><BR>"
 
 	. += "</table>"
 
