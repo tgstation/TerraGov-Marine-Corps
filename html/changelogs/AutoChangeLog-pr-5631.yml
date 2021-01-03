@@ -1,0 +1,4 @@
+author: "SplinterGP"
+delete-after: True
+changes: 
+  - rscadd: "Added keybind for rail attachment(Default key is F)"
