@@ -33,13 +33,6 @@
 	if (current_mag) //A flamer spawing with a mag will be lit up
 		light_pilot(null,TRUE)
 
-/obj/item/weapon/gun/flamer/unique_action(mob/user)
-	if(under)
-		var/obj/item/attachable/hydro_cannon/hydro = under
-		if(istype(hydro))
-			hydro.activate_attachment(user)
-			playsound(user, hydro.activation_sound, 15, 1)
-
 /obj/item/weapon/gun/flamer/update_icon(mob/user)
 	if(!current_mag)
 		icon_state = base_gun_icon + "_e"
@@ -173,6 +166,10 @@
 	update_icon()
 	return TRUE
 
+/**Attach a back fuel tank to the flamer, wich will use it a standard magazine
+ * mob/user if not null, will play sound and update hud
+ * obj/item/ammo_magazine/flamer_tank/backtank/fueltank the back tank that is gonna be linked
+ */
 /obj/item/weapon/gun/flamer/proc/attach_fueltank(mob/user, obj/item/ammo_magazine/flamer_tank/backtank/fueltank)
 	if (!fueltank || !istype(fueltank))
 		to_chat(user, "<span class='warning'>That's not an attachable fuel tank!</span>")
@@ -201,6 +198,10 @@
 		to_chat(user, "<span class='warning'>Your action was interrupted!</span>")
 		return
 
+/**Proced when unlinking the back fuel tank, making the flamer unlit and unable to fire
+ * mob/user if not null, will allow to play sound and update icons / hud
+ * volontary if TRUE, will span a notice describing the action
+ */
 /obj/item/weapon/gun/flamer/proc/detach_fueltank(mob/user,volontary = TRUE)
 	var/obj/item/ammo_magazine/flamer_tank/backtank/fueltank = current_mag
 	current_mag = null
@@ -213,7 +214,7 @@
 	var/obj/screen/ammo/A = user.hud_used.ammo
 	A.update_hud(user)
 	
-	
+
 /obj/item/weapon/gun/flamer/dropped_new_loc(mob/user)
 	..()
 	var/mob/living/carbon/human/humanuser = user
@@ -440,6 +441,7 @@
 		/obj/item/attachable/hydro_cannon,
 	)
 	var/last_use
+	var/hydro_active
 
 /obj/item/weapon/gun/flamer/marinestandard/Initialize()
 	. = ..()
@@ -498,12 +500,28 @@
 	to_chat(user, "<span class='notice'>Its hydro cannon contains [reagents.get_reagent_amount(/datum/reagent/water)]/[reagents.maximum_volume] units of water!</span>")
 
 
+/obj/item/weapon/gun/flamer/marinestandard/unique_action(mob/user)
+	if(under)
+		var/obj/item/attachable/hydro_cannon/hydro = under
+		if(istype(hydro))
+			playsound(user, hydro.activation_sound, 15, 1)
+			if (hydro.activate_attachment(user))
+				hydro_active = TRUE
+				light_pilot(user, FALSE)
+			else 
+				hydro_active = FALSE
+				light_pilot(user, TRUE)
+			var/obj/screen/ammo/A = user.hud_used.ammo
+			A.update_hud(user)
+
 
 /obj/item/weapon/gun/flamer/marinestandard/Fire(atom/target, mob/living/user, params, reflex)
 	if(active_attachable && istype(active_attachable, /obj/item/attachable/hydro_cannon) && (world.time > last_use + 10))
 		extinguish(target,user) //Fire it.
 		last_fired = world.time
 		last_use = world.time
+		var/obj/screen/ammo/A = user.hud_used.ammo
+		A.update_hud(user)
 		return
 	if(user.skills.getRating("firearms") < 0 && !do_after(user, 1 SECONDS, TRUE, src))
 		return
@@ -516,7 +534,19 @@
 		o.reagents.trans_to(src, reagents.maximum_volume)
 		to_chat(user, "<span class='notice'>\The [src]'s hydro cannon is refilled with water.</span>")
 		playsound(src.loc, 'sound/effects/refill.ogg', 25, 1, 3)
+		var/obj/screen/ammo/A = user.hud_used.ammo
+		A.update_hud(user)
 		return
+
+/obj/item/weapon/gun/flamer/marinestandard/get_ammo_count()
+	if (hydro_active)
+		return reagents.get_reagent_amount(/datum/reagent/water)
+	return ..()
+	
+/obj/item/weapon/gun/flamer/marinestandard/get_ammo_type()
+	if (hydro_active)
+		return list("water","water_empty")
+	return ..()
 
 /turf/proc/ignite(fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0)
 	//extinguish any flame present
