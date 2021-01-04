@@ -442,12 +442,14 @@
 	)
 	var/last_use
 	var/hydro_active
+	var/water_count
 
 /obj/item/weapon/gun/flamer/marinestandard/Initialize()
 	. = ..()
 	reagents = new /datum/reagents(FLAMER_WATER)
 	reagents.my_atom = src
 	reagents.add_reagent(/datum/reagent/water, reagents.maximum_volume)
+	water_count=reagents.maximum_volume
 
 /obj/item/weapon/gun/flamer/marinestandard/reload(mob/user, obj/item/ammo_magazine/magazine)
 	if(!magazine || !istype(magazine))
@@ -517,6 +519,7 @@
 /obj/item/weapon/gun/flamer/marinestandard/Fire(atom/target, mob/living/user, params, reflex)
 	if(active_attachable && istype(active_attachable, /obj/item/attachable/hydro_cannon) && (world.time > last_use + 10))
 		extinguish(target,user) //Fire it.
+		water_count -=7//reagents is not updated in this proc, we need water_count for a updated HUD
 		last_fired = world.time
 		last_use = world.time
 		var/obj/screen/ammo/A = user.hud_used.ammo
@@ -531,6 +534,7 @@
 	if(istype(target, /obj/structure/reagent_dispensers/watertank) && get_dist(user,target) <= 1)
 		var/obj/o = target
 		o.reagents.trans_to(src, reagents.maximum_volume)
+		water_count = reagents.maximum_volume
 		to_chat(user, "<span class='notice'>\The [src]'s hydro cannon is refilled with water.</span>")
 		playsound(src.loc, 'sound/effects/refill.ogg', 25, 1, 3)
 		var/obj/screen/ammo/A = user.hud_used.ammo
@@ -539,7 +543,7 @@
 
 /obj/item/weapon/gun/flamer/marinestandard/get_ammo_count()
 	if (hydro_active)
-		return reagents.get_reagent_amount(/datum/reagent/water)
+		return max(water_count,0)
 	return ..()
 	
 /obj/item/weapon/gun/flamer/marinestandard/get_ammo_type()
