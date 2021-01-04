@@ -91,6 +91,10 @@
 	to_chat(owner, "<span class='xenodanger'>We feel our dorsal vents bristle with heated gas. We can use Emit Noxious Gas again.</span>")
 	return ..()
 
+/datum/action/xeno_action/activable/emit_neurogas/fail_activate(mob/living/carbon/xenomorph/Defiler/X)
+	X.use_plasma(plasma_cost)
+	return ..()
+
 /datum/action/xeno_action/activable/emit_neurogas/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/Defiler/X = owner
 
@@ -106,8 +110,7 @@
 			to_chat(X, "<span class='xenodanger'>We abort emitting fumes, our expended plasma resulting in nothing.</span>")
 			X.emitting_gas = FALSE
 			X.icon_state = "Defiler Running"
-			X.use_plasma(plasma_cost)
-			return fail_activate()
+			return fail_activate(X)
 	X.emitting_gas = FALSE
 	X.icon_state = "Defiler Running"
 
