@@ -439,6 +439,10 @@
 	dir = 1
 	},
 /area/shuttle/drop2/lz2)
+"eH" = (
+/obj/structure/ore_box,
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/west)
 "eP" = (
 /obj/machinery/light,
 /turf/open/lavaland/basalt,
@@ -4410,6 +4414,10 @@
 	},
 /turf/open/lavaland/basalt,
 /area/lavaland/engie/two)
+"RI" = (
+/obj/structure/ore_box,
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/northwest)
 "RJ" = (
 /obj/machinery/vending/medical,
 /turf/open/floor/tile/white,
@@ -15880,7 +15888,7 @@ ZN
 ZN
 ZW
 ZW
-ZN
+eH
 Lj
 ZW
 ZW
@@ -16653,7 +16661,7 @@ ZW
 ZN
 ZN
 Gn
-ZN
+eH
 ZW
 Dt
 TO
@@ -18698,7 +18706,7 @@ QR
 QR
 ZN
 ZW
-ZN
+eH
 ZN
 Gn
 ZN
@@ -18951,7 +18959,7 @@ rK
 rK
 rK
 rK
-QR
+RI
 HO
 BP
 ZW
@@ -19738,7 +19746,7 @@ ZN
 ZN
 BP
 ZN
-ZN
+eH
 ZW
 ZW
 Dt
@@ -21019,7 +21027,7 @@ ZW
 ZW
 ZW
 ZW
-ZN
+eH
 ZN
 ZN
 ZN
