@@ -174,7 +174,7 @@
 	return TRUE
 
 /obj/item/weapon/gun/flamer/proc/attach_fueltank(mob/user, obj/item/ammo_magazine/flamer_tank/backtank/fueltank)
-	if (!fueltank || !istype(fueltank))
+	if (!istype(fueltank))
 		to_chat(user, "<span class='warning'>That's not an attachable fuel tank!</span>")
 		return
 	
