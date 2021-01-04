@@ -2131,8 +2131,8 @@
 	},
 /area/ice_colony/exterior/surface/landing_pad2)
 "aiH" = (
-/turf/open/floor/plating/ground/ice,
-/area/ice_colony/exterior/surface/valley/northwest)
+/turf/open/floor/plating/ground/snow/layer2,
+/area/ice_colony/exterior/underground/caves/ice_w)
 "aiI" = (
 /obj/effect/landmark/start/job/survivor,
 /obj/structure/cable,
@@ -31908,10 +31908,6 @@
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/landing_pad2)
-"dYH" = (
-/obj/effect/turf_overlay/icerock,
-/turf/open/floor/plating/ground/snow/layer2,
-/area/ice_colony/exterior/surface/valley/northwest)
 "eak" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -42385,7 +42381,7 @@ agd
 agd
 aaJ
 aaJ
-dYH
+aaJ
 oIU
 amC
 aaZ
@@ -42643,7 +42639,7 @@ agd
 aaJ
 aaJ
 aaJ
-oIU
+aiH
 oIU
 oIU
 iPp
@@ -42899,9 +42895,9 @@ agd
 agd
 aaJ
 aaJ
-dYH
-oIU
-oIU
+aaJ
+aiH
+aiH
 hNm
 iPp
 alJ
@@ -43155,10 +43151,10 @@ agd
 agd
 aaJ
 agd
+aaJ
+aaJ
+aaJ
 aiH
-aiH
-aiH
-oIU
 iPp
 iPp
 iPp
@@ -43412,9 +43408,9 @@ agd
 aaJ
 aaJ
 abz
-abz
-aiH
-alJ
+aaJ
+aaJ
+alI
 alI
 alI
 iPp
@@ -43669,8 +43665,8 @@ agd
 aaJ
 abz
 abz
-aiH
-aiH
+aaJ
+aaJ
 aif
 ahH
 ahH
@@ -43926,7 +43922,7 @@ aaJ
 abz
 abz
 abz
-aiH
+aaJ
 aif
 aif
 ahK
