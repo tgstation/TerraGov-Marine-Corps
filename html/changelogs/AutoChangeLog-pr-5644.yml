@@ -1,0 +1,4 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - bugfix: "Boiler can't change of globule type if it will prevent them from firing or making a new globule"
