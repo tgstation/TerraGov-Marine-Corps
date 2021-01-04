@@ -57,7 +57,6 @@
 
 /datum/xeno_caste/wraith/young
 	upgrade_name = "Young"
-
 	upgrade = XENO_UPGRADE_ZERO
 
 /datum/xeno_caste/wraith/mature

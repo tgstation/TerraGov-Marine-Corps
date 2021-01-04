@@ -125,7 +125,7 @@
 /obj/machinery/door/poddoor/shutters/mainship/selfdestruct
 	name = "Self Destruct Lockdown"
 	id = "sd_lockdown"
-	resistance_flags = RESIST_ALL_STOP_INCORPOREAL
+	resistance_flags = RESIST_ALL
 
 
 /obj/machinery/door/poddoor/shutters/mainship/open/checkpoint

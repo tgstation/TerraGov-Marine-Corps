@@ -238,7 +238,6 @@
 	opacity = FALSE
 	color = "#791697"
 	smoke_traits = SMOKE_PLASMALOSS
-	resistance_flags = STOP_INCORPOREAL //For wraiths; other incorporeal beings will normally be able to pass
 
 //////////////////////////////////////
 // FLASHBANG SMOKE

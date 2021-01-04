@@ -1,13 +1,14 @@
 /mob/living/proc/Life()
-	if(stat != DEAD)
+	if(stat == DEAD || IsStasis()) //If we're dead or in true stasis don't bother processing life
+		return
 
-		handle_status_effects() //all special effects, stun, knockdown, jitteryness, hallucination, sleeping, etc
+	handle_status_effects() //all special effects, stun, knockdown, jitteryness, hallucination, sleeping, etc
 
-		handle_regular_hud_updates()
+	handle_regular_hud_updates()
 
-		handle_organs()
+	handle_organs()
 
-		updatehealth()
+	updatehealth()
 
 
 //this updates all special effects: knockdown, druggy, stuttering, etc..

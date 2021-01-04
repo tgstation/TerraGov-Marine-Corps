@@ -23,8 +23,8 @@
 		var/mob/living/carbon/C = O
 		if(C.pulledby)
 			if(!C.incapacitated() && target == locate(x-1,y,z))
-				return 0
-	return 1
+				return FALSE
+	return TRUE
 
 /obj/machinery/line_nexter/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()

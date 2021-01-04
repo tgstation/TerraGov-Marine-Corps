@@ -94,9 +94,8 @@
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
 		return TRUE
 	if(get_dir(loc, target) == dir)
-		return !density
-	else
-		return TRUE
+		return ..()
+	return TRUE
 
 /obj/machinery/door/window/open(forced = DOOR_NOT_FORCED)
 	if(operating)

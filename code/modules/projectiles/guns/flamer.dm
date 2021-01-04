@@ -602,7 +602,6 @@
 	light_on = TRUE
 	light_power = 3
 	light_color = LIGHT_COLOR_LAVA
-	resistance_flags = STOP_INCORPOREAL //For wraiths; other incorporeal beings will normally be able to pass
 	var/firelevel = 12 //Tracks how much "fire" there is. Basically the timer of how long the fire burns
 	var/burnlevel = 10 //Tracks how HOT the fire is. This is basically the heat level of the fire and determines the temperature.
 	var/flame_color = "red"
@@ -637,6 +636,10 @@
 	if(istype(M))
 		M.flamer_fire_crossed(burnlevel, firelevel)
 
+/obj/flamer_fire/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
+	if(isxenohivemind(mover))
+		return FALSE
 
 // override this proc to give different walking-over-fire effects
 /mob/living/proc/flamer_fire_crossed(burnlevel, firelevel, fire_mod = 1)

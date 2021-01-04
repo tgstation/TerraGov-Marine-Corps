@@ -3,14 +3,15 @@
 	set invisibility = 0
 	set background = 1
 
-	if(stat != DEAD) //Chemicals in body and some other stuff.
+	if(stat == DEAD || IsStasis()) //If we're dead or in true stasis don't bother processing life
+		return
 
-		if((life_tick % CARBON_BREATH_DELAY == 0) || failed_last_breath) //First, resolve location and get a breath
-			breathe() //Only try to take a breath every 2 ticks, unless suffocating
+	if((life_tick % CARBON_BREATH_DELAY == 0) || failed_last_breath) //First, resolve location and get a breath
+		breathe() //Only try to take a breath every 2 ticks, unless suffocating
 
-		else if(isobj(loc))//Still give containing object the chance to interact
-			var/obj/location_as_object = loc
-			location_as_object.handle_internal_lifeform(src)
+	else if(isobj(loc))//Still give containing object the chance to interact
+		var/obj/location_as_object = loc
+		location_as_object.handle_internal_lifeform(src)
 
 	. = ..()
 

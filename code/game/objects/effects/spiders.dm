@@ -21,7 +21,6 @@
 	. = ..()
 	if(istype(mover, /mob/living/simple_animal/hostile/poison/giant_spider))
 		return TRUE
-
 	if(isliving(mover))
 		if(istype(mover.pulledby, /mob/living/simple_animal/hostile/poison/giant_spider))
 			return TRUE
@@ -30,7 +29,6 @@
 			return FALSE
 	else if(istype(mover, /obj/projectile))
 		return prob(30)
-
 	return TRUE
 
 

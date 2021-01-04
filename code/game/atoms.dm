@@ -139,10 +139,8 @@ directive is properly returned.
 	SHOULD_CALL_PARENT(TRUE)
 	. = CanAllowThrough(mover, target)
 	if(mover.status_flags & INCORPOREAL)
-		if(mover.CanPassThrough(src, target, .) == FALSE && (resistance_flags & STOP_INCORPOREAL)) //If we can't normally move through it, and it stops incorporeal movement.
-			return FALSE
+		return mover.IncorporealCanPassThrough(src, target) //Defaults to TRUE; allows for custom checks via child procs
 
-		return TRUE
 	// This is cheaper than calling the proc every time since most things dont override CanPassThrough
 	if(!mover.generic_canpass)
 		return mover.CanPassThrough(src, target, .)
@@ -157,9 +155,6 @@ directive is properly returned.
 	SHOULD_CALL_PARENT(TRUE)
 	. = CanAllowExit(mover, target)
 	if(mover.status_flags & INCORPOREAL)
-		if(mover.CanPassThrough(src, target, .) == FALSE && resistance_flags & STOP_INCORPOREAL) //If we can't normally move through it, and it stops incorporeal movement.
-			return FALSE
-
 		return TRUE
 
 	// This is cheaper than calling the proc every time since most things dont override CheckExit

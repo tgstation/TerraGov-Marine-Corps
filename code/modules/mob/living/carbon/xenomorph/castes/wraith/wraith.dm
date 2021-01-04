@@ -1,3 +1,12 @@
+///Global list of things the wraith can't pass while ethereal
+GLOBAL_LIST_INIT(wraith_no_ethereal_pass, typecacheof(list(
+/obj/flamer_fire,
+/obj/effect/particle_effect/smoke/plasmaloss,
+/turf/open/space,
+/obj/machinery/door/poddoor/timed_late/containment,
+/obj/machinery/door/poddoor/shutters/mainship/selfdestruct)))
+
+
 /mob/living/carbon/xenomorph/wraith
 	caste_base_type = /mob/living/carbon/xenomorph/wraith
 	name = "Wraith"
@@ -15,20 +24,9 @@
 		/mob/living/carbon/xenomorph/proc/vent_crawl,
 	)
 
-/obj/flamer_fire/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
-	if(isxenohivemind(mover))
+/// Returns true or false to allow src to move through the blocker, mover has final say
+/mob/living/carbon/xenomorph/wraith/IncorporealCanPassThrough(atom/blocker, turf/target)
+	if(is_type_in_typecache(blocker, GLOB.wraith_no_ethereal_pass)) //If we're incorporeal via Phase Shift and we encounter something on the no-go list, it's time to stop
 		return FALSE
 
-	if(isxenowraith(mover) && (mover.status_flags & INCORPOREAL))
-		return FALSE
-
-/obj/effect/particle_effect/smoke/plasmaloss/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
-	if(isxenowraith(mover) && (mover.status_flags & INCORPOREAL))
-		return FALSE
-
-/turf/open/space/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
-	if(isxenowraith(mover) && (mover.status_flags & INCORPOREAL))
-		return FALSE
+	return ..()

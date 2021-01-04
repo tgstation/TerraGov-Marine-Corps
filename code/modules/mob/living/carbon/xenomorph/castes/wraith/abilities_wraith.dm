@@ -106,22 +106,9 @@
 	ghost.remove_filter("wraith_hyperposition_windup_filter_1")
 	ghost.remove_filter("wraith_hyperposition_windup_filter_2")
 
-	if(!hyperposition_swap_location()) //See if we swap positions with our warp shadow
+	if(!can_use_action()) //Check if we can actually position swap again due to the wind up delay.
 		return fail_activate()
 
-	succeed_activate()
-	GLOB.round_statistics.wraith_hyperpositions++
-	SSblackbox.record_feedback("tally", "round_statistics", 1, "wraith_hyperpositions") //Statistics
-
-	add_cooldown()
-
-/datum/action/xeno_action/hyperposition/proc/hyperposition_swap_location() //This handles the location swap between the Wraith and the Warp Shadow
-
-	if(!can_use_action()) //Check if we can actually position swap again due to the wind up delay.
-		return FALSE
-
-	var/mob/living/carbon/xenomorph/wraith/ghost = owner
-	var/obj/effect/xenomorph/warp_shadow/shadow = ghost.warp_shadow
 	var/beacon_turf = get_turf(shadow)
 
 	shadow.forceMove(get_turf(ghost)) //Move the beacon to where we are leaving
@@ -135,7 +122,11 @@
 	ghost.visible_message("<span class='warning'>\ [ghost] suddenly vanishes in a vortex of warped space!</span>", \
 	"<span class='xenodanger'>We teleport, swapping positions with our warp shadow. Our warp shadow has moved to [get_area(shadow)] (X: [shadow.x], Y: [shadow.y]).</span>", null, 5) //Let user know the new location
 
-	return TRUE
+	GLOB.round_statistics.wraith_hyperpositions++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "wraith_hyperpositions") //Statistics
+	succeed_activate()
+	add_cooldown()
+
 
 /datum/action/xeno_action/hyperposition/on_cooldown_finish()
 
@@ -311,11 +302,10 @@
 			to_chat(owner, "<span class='xenowarning'>We can't blink without line of sight to our destination!</span>")
 		return FALSE
 
-	for(var/atom/movable/check_atom as() in T)
-		if(check_atom.opacity)
-			if(!silent)
-				to_chat(owner, "<span class='xenowarning'>We can't blink without line of sight to our destination!</span>")
-			return FALSE
+	if(IS_OPAQUE_TURF(T))
+		if(!silent)
+			to_chat(owner, "<span class='xenowarning'>We can't blink without line of sight to our destination!</span>")
+		return FALSE
 
 
 /datum/action/xeno_action/activable/blink/use_ability(atom/A)
@@ -331,25 +321,21 @@
 		T = temp
 
 	if(!can_use_ability(T)) //Since we updated the turf, check it again.
-		fail_activate()
+		return fail_activate()
 
-	blink_warp(owner, T, owner.pulling) //If we're pulling, bring the target we're pulling with us, but at the cost of sharply increasing the next cooldown
+	X.face_atom(T) //Face the target so we don't look like an ass
 
+	teleport_debuff_aoe(X) //Debuff when we vanish
 
-/datum/action/xeno_action/activable/blink/proc/blink_warp(mob/living/carbon/xenomorph/wraith/ghost, turf/T, mob/pulled = null) //This handles the location swap between the Wraith and the Warp Shadow
-
-	ghost.face_atom(T) //Face the target so we don't look like an ass
-
-	teleport_debuff_aoe(ghost) //Debuff when we vanish
-
-	ghost.forceMove(T) //Teleport to our target turf
+	X.forceMove(T) //Teleport to our target turf
 
 	var/cooldown_mod = 1
-	if(pulled) //bring the pulled target with us if applicable
+	var/pulled_target = owner.pulling
+	if(pulled_target) //bring the pulled target with us if applicable but at the cost of sharply increasing the next cooldown
 		cooldown_mod = WRAITH_BLINK_DRAG_MULTIPLIER
-		to_chat(ghost, "<span class='xenodanger'>We bring [pulled.name] with us. We won't be ready to blink again for [cooldown_timer * 0.1] seconds due to the strain of doing so.</span>")
+		to_chat(X, "<span class='xenodanger'>We bring [pulled_target] with us. We won't be ready to blink again for [cooldown_timer * 0.1] seconds due to the strain of doing so.</span>")
 
-	teleport_debuff_aoe(ghost) //Debuff when we reappear
+	teleport_debuff_aoe(X) //Debuff when we reappear
 
 	succeed_activate()
 	add_cooldown(cooldown_mod)
@@ -357,8 +343,7 @@
 	GLOB.round_statistics.wraith_blinks++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "wraith_blinks") //Statistics
 
-
-//Called by many of the Wraith's teleportation effects
+///Called by many of the Wraith's teleportation effects
 /datum/action/xeno_action/proc/teleport_debuff_aoe(atom/movable/teleporter, silent = FALSE)
 
 	var/mob/living/carbon/xenomorph/ghost = owner
@@ -398,11 +383,10 @@
 			to_chat(living_target, "<span class='warning'>You feel nauseous as reality warps around you!</span>")
 
 /datum/action/xeno_action/activable/blink/on_cooldown_finish()
-
+	. = ..()
 	if(cooldown_timer > initial(cooldown_timer) ) //Reset the cooldown if increased from dragging someone.
 		to_chat(owner, "<span class='xenodanger'>We are able to blink again.</span>")
 		owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
-		cooldown_timer = initial(cooldown_timer)
 	return ..()
 
 // ***************************************
@@ -468,12 +452,12 @@
 	animate(portal.get_filter("banish_portal_1"), x = 20*rand() - 10, y = 20*rand() - 10, time = 0.5 SECONDS, loop = -1, flags=ANIMATION_PARALLEL)
 	animate(portal.get_filter("banish_portal_2"), x = 20*rand() - 10, y = 20*rand() - 10, time = 0.5 SECONDS, loop = -1, flags=ANIMATION_PARALLEL)
 
-	if(isxeno(banishment_target) ) //We halve the max duration for living non-allies
+	if(isxeno(banishment_target)) //We halve the max duration for living non-allies
 		var/mob/living/carbon/xenomorph/X = banishment_target
 		if(!X.issamexenohive(ghost)) //Enemy hive
 			duration *= 0.5
 
-	else if(isliving(banishment_target) ) //We halve the max duration for living non-allies
+	else if(isliving(banishment_target)) //We halve the max duration for living non-allies
 		duration *= 0.5
 
 	banishment_target.visible_message("<span class='warning'>Space abruptly twists and warps around [banishment_target.name] as it suddenly vanishes!</span>", \
@@ -517,24 +501,21 @@
 		living_target = banishment_target
 		living_target.status_flags = initial(living_target.status_flags) //Remove stasis and temp invulerability
 		living_target.SetStasis(remove = TRUE)
-		living_target.Stun(1 SECONDS) //Short stun upon snap back to reality
 
 	banishment_target.visible_message("<span class='warning'>[banishment_target.name] abruptly reappears!</span>", \
-	"<span class='warning'>You suddenly reappear back in what you believe to be reality. It takes you a moment to regain your bearings.</span>")
+	"<span class='warning'>You suddenly reappear back in what you believe to be reality.</span>")
 
 	to_chat(owner, "<span class='xenodanger'>Our target [banishment_target.name] has returned to reality at [get_area(banishment_target)] (X: [banishment_target.x], Y: [banishment_target.y])</span>") //Always alert the Wraith
 
-	if(portal)
-		QDEL_NULL(portal) //Eliminate the Brazil portal if we need to
+	QDEL_NULL(portal) //Eliminate the Brazil portal if we need to
 
 	banished_turf = null
 	banishment_target = null
-	portal = null
 
 	return TRUE //For the recall sub-ability
 
 /datum/action/xeno_action/activable/banish/on_cooldown_finish()
-
+	. = ..()
 	to_chat(owner, "<span class='xenodanger'>We are able to banish again.</span>")
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
