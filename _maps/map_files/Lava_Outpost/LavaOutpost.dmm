@@ -448,6 +448,11 @@
 /obj/effect/spawner/random/toolbox,
 /turf/open/floor/tile/dark2,
 /area/lavaland/engie/engine)
+"eU" = (
+/obj/effect/decal/remains/human,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/tile/white,
+/area/lavaland/misc/outpost)
 "fe" = (
 /turf/closed/wall/indestructible/mineral,
 /area/shuttle/drop2/lz2)
@@ -849,6 +854,11 @@
 	},
 /turf/open/floor/tile/bar,
 /area/lavaland/civilian/cook)
+"jg" = (
+/turf/open/lavaland/lava/lpiece{
+	dir = 1
+	},
+/area/lavaland/cave/west)
 "jj" = (
 /obj/machinery/power/apc/drained{
 	dir = 8
@@ -1220,6 +1230,8 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/effect/decal/remains/human,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/brown/full,
 /area/lavaland/misc/genstorage)
 "mv" = (
@@ -1316,6 +1328,10 @@
 /obj/structure/largecrate/supply/supplies/mre,
 /turf/open/floor/plating/platebot,
 /area/lavaland/security/nuke)
+"nm" = (
+/obj/item/tool/pickaxe,
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/northwest)
 "no" = (
 /obj/structure/bed/chair/dropship/pilot{
 	dir = 1
@@ -1958,6 +1974,11 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/lavaland/misc/stationed)
+"tk" = (
+/obj/effect/decal/remains/human,
+/obj/item/clothing/head/hardhat/orange,
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/west)
 "tq" = (
 /obj/machinery/door/poddoor/mainship{
 	dir = 1;
@@ -2404,6 +2425,12 @@
 	},
 /turf/open/lavaland/basalt,
 /area/lavaland/misc/genstorage)
+"xI" = (
+/obj/effect/decal/remains/human,
+/obj/item/clothing/head/hardhat/orange,
+/obj/effect/decal/cleanable/blood,
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/northwest)
 "xP" = (
 /turf/open/lavaland/lava,
 /area/lavaland/cave/southwest)
@@ -2411,6 +2438,10 @@
 /obj/machinery/light,
 /turf/open/floor/tile/dark2,
 /area/lavaland/civilian)
+"xW" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/tile/brown/full,
+/area/lavaland/misc/genstorage)
 "xX" = (
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -2686,6 +2717,7 @@
 /obj/effect/decal/remains/human,
 /obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /obj/structure/cable,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/mainship,
 /area/lavaland/misc/stationed)
 "Aw" = (
@@ -2725,6 +2757,10 @@
 	},
 /turf/open/floor/tile/white,
 /area/lavaland/security)
+"AE" = (
+/obj/item/tool/pickaxe,
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/west)
 "AF" = (
 /turf/open/lavaland/lava,
 /area/lavaland/cave/north)
@@ -3145,6 +3181,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/lavaland/engie/three)
+"Et" = (
+/obj/effect/decal/remains/xeno,
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/north)
 "Eu" = (
 /obj/structure/cable,
 /turf/open/lavaland/basalt,
@@ -3468,6 +3508,10 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark2,
 /area/lavaland/engie/refine)
+"HO" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/lavaland/basalt/glowing,
+/area/lavaland/cave/northwest)
 "HQ" = (
 /turf/closed/brock,
 /area/lavaland/cave/southwest)
@@ -3504,6 +3548,10 @@
 	dir = 8
 	},
 /area/lavaland/cave/north)
+"It" = (
+/obj/machinery/floodlight/landing,
+/turf/open/floor/plating/asteroidfloor,
+/area/shuttle/drop1/lz1)
 "Ix" = (
 /obj/structure/cable,
 /turf/open/lavaland/basalt,
@@ -3652,6 +3700,12 @@
 	},
 /turf/open/lavaland/basalt,
 /area/lavaland/engie/three)
+"Kg" = (
+/obj/effect/decal/remains/human,
+/obj/item/clothing/head/hardhat/orange,
+/obj/effect/decal/cleanable/blood,
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/west)
 "Kh" = (
 /obj/machinery/floodlight/outpost,
 /turf/open/lavaland/basalt,
@@ -4119,8 +4173,13 @@
 	},
 /turf/open/lavaland/basalt,
 /area/lavaland/engie/two)
+"Pn" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/tile/white,
+/area/lavaland/misc/outpost)
 "Pq" = (
 /obj/structure/xenoautopsy/tank/escaped,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark,
 /area/lavaland/misc/alienstorage)
 "Pr" = (
@@ -4319,6 +4378,10 @@
 /obj/structure/cable,
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/south)
+"Rr" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/tile/dark,
+/area/lavaland/misc/alienstorage)
 "Ru" = (
 /obj/structure/fence,
 /turf/open/lavaland/basalt,
@@ -4569,6 +4632,11 @@
 	},
 /turf/open/floor/tile/dark,
 /area/lavaland/security/nuke)
+"TV" = (
+/obj/item/tool/pickaxe,
+/obj/effect/decal/cleanable/blood,
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/west)
 "TW" = (
 /obj/machinery/computer/shuttle/shuttle_control/dropship1,
 /obj/structure/table/reinforced,
@@ -14026,7 +14094,7 @@ TO
 TO
 TO
 TO
-TO
+Tq
 eu
 ZW
 ZW
@@ -14276,7 +14344,7 @@ ZW
 ZW
 ZW
 Gs
-TO
+CS
 TO
 TO
 TO
@@ -15054,7 +15122,7 @@ TO
 TO
 TO
 TO
-TO
+Ah
 Fb
 ZW
 ZN
@@ -15309,7 +15377,7 @@ TO
 TO
 TO
 TO
-TO
+Ah
 Va
 Fb
 ZN
@@ -15560,12 +15628,12 @@ ZW
 ZW
 ZW
 Gs
+CS
 TO
 TO
 TO
 TO
-TO
-TO
+Ah
 Fb
 ZN
 ZN
@@ -15768,7 +15836,7 @@ gr
 nD
 KI
 Di
-pT
+eU
 pT
 Di
 Ap
@@ -15812,8 +15880,8 @@ ZN
 ZN
 ZW
 ZW
-ZW
-ZW
+ZN
+Lj
 ZW
 ZW
 Dt
@@ -15821,7 +15889,7 @@ TO
 TO
 TO
 TO
-TO
+Ah
 Fb
 ZN
 ZN
@@ -16025,7 +16093,7 @@ nD
 nD
 pT
 Di
-pT
+Pn
 AI
 Di
 pT
@@ -16069,9 +16137,9 @@ ZN
 ZW
 ZW
 ZW
-ZW
-ZW
-ZW
+AE
+Gn
+Kg
 ZW
 Dt
 TO
@@ -16326,15 +16394,15 @@ ZN
 ZW
 ZW
 ZW
-ZW
-ZW
-ZW
+Kg
+ZN
+AE
 ZW
 Dt
 TO
 TO
 TO
-TO
+Ah
 Fb
 ZN
 ZN
@@ -16582,14 +16650,14 @@ ZN
 ZN
 ZW
 ZW
-ZW
-ZW
-ZW
-ZW
+ZN
+ZN
+Gn
+ZN
 ZW
 Dt
 TO
-TO
+Ah
 Va
 Fb
 ZN
@@ -16597,7 +16665,7 @@ ZN
 ZN
 ZN
 Gs
-Fb
+eu
 ZW
 ZW
 ZW
@@ -16839,10 +16907,10 @@ ZN
 ZN
 ZW
 ZW
-ZW
-ZW
-ZW
-ZW
+ZN
+ZN
+ZN
+ZN
 ZN
 QO
 Va
@@ -16853,8 +16921,8 @@ ZN
 ZN
 ZN
 Gs
-US
-ZW
+CS
+jg
 ZW
 ZW
 ZW
@@ -17096,9 +17164,9 @@ ZN
 ZW
 ZW
 ZW
-ZW
-ZW
-ZW
+ZN
+Gn
+BP
 ZN
 ZN
 ZN
@@ -17319,7 +17387,7 @@ CQ
 nD
 PK
 pT
-pT
+Pn
 Di
 QR
 QR
@@ -17352,8 +17420,8 @@ ZN
 ZN
 ZN
 ZW
-ZW
-ZW
+ZN
+ZN
 ZN
 ZN
 ZN
@@ -17366,7 +17434,7 @@ ZN
 ZN
 ZN
 Gs
-TO
+CS
 US
 ZW
 ZW
@@ -17576,7 +17644,7 @@ nD
 nD
 Di
 AI
-pT
+eU
 Di
 QR
 QR
@@ -17613,7 +17681,7 @@ ZN
 ZN
 ZN
 ZN
-ZN
+Gn
 ZN
 ZN
 Gn
@@ -17879,7 +17947,7 @@ ZN
 ZN
 Gs
 as
-TO
+CS
 TO
 TO
 eu
@@ -18089,8 +18157,8 @@ Di
 nD
 nD
 PK
-pT
-pT
+eU
+Pn
 Di
 QR
 QR
@@ -18114,8 +18182,8 @@ rK
 rK
 rK
 rK
-ZW
-ZW
+TV
+Kg
 ZW
 ZW
 ZW
@@ -18134,7 +18202,7 @@ ZN
 ZN
 ZN
 Gs
-TO
+CS
 TO
 TO
 TO
@@ -18370,11 +18438,11 @@ rK
 rK
 rK
 rK
-rK
-ZW
-ZW
-ZW
-ZW
+QR
+ZN
+ZN
+ZN
+ZN
 ZN
 ZN
 ZN
@@ -18390,7 +18458,7 @@ ZN
 Gs
 as
 as
-TO
+CS
 TO
 TO
 TO
@@ -18626,13 +18694,13 @@ rK
 rK
 rK
 rK
-rK
-rK
-ZW
-ZW
-ZW
+QR
+QR
+ZN
 ZW
 ZN
+ZN
+Gn
 ZN
 ZN
 ZN
@@ -18644,7 +18712,7 @@ ZN
 ZN
 ZW
 ZW
-TO
+Dt
 TO
 TO
 TO
@@ -18883,9 +18951,9 @@ rK
 rK
 rK
 rK
-rK
-rK
-ZW
+QR
+HO
+BP
 ZW
 ZW
 ZN
@@ -18902,7 +18970,7 @@ ZN
 ZW
 ZW
 QO
-TO
+qs
 TO
 TO
 TO
@@ -19140,15 +19208,15 @@ rK
 rK
 rK
 rK
-rK
-rK
-ZW
-ZW
-ZW
+xI
+QR
 ZN
 ZN
 ZN
 ZN
+ZN
+ZN
+BP
 ZN
 ZN
 ZN
@@ -19398,10 +19466,10 @@ rK
 rK
 rK
 rK
-rK
-ZW
-ZW
-ZW
+nm
+ZN
+ZN
+ZN
 ZN
 ZN
 ZN
@@ -19409,7 +19477,7 @@ ZN
 gy
 ZN
 ZN
-ZN
+Gn
 ZN
 ZN
 ZN
@@ -19668,9 +19736,9 @@ ZN
 ZN
 ZN
 ZN
+BP
 ZN
-ZW
-ZW
+ZN
 ZW
 ZW
 Dt
@@ -19925,10 +19993,10 @@ ZN
 ZN
 ZN
 ZN
-ZW
-ZW
-ZW
-ZW
+ZN
+ZN
+Lj
+Kg
 ZW
 Dt
 TO
@@ -20182,10 +20250,10 @@ ZN
 ZN
 ZN
 ZN
-ZW
-ZW
-ZW
-ZW
+ZN
+ZN
+ZN
+AE
 ZW
 Dt
 TO
@@ -20435,13 +20503,13 @@ ZN
 ZN
 ZN
 ZN
-ZW
-ZW
-ZW
-ZW
-ZW
-ZW
-ZW
+ZN
+ZN
+ZN
+ZN
+ZN
+ZN
+ZN
 ZW
 ZW
 Dt
@@ -20688,19 +20756,20 @@ ZN
 ZN
 ZW
 ZW
+ZN
+ZN
+ZN
+ZN
 ZW
-ZW
-ZW
-ZW
-ZW
-ZW
-ZW
-ZW
-ZW
-ZW
+ZN
+ZN
+ZN
+ZN
+ZN
 ZW
 ZW
 Gs
+CS
 TO
 TO
 TO
@@ -20709,8 +20778,7 @@ TO
 TO
 TO
 TO
-TO
-TO
+Tq
 eu
 ZW
 ZW
@@ -20945,16 +21013,16 @@ ZW
 ZW
 ZW
 ZW
+ZN
+ZN
 ZW
 ZW
 ZW
 ZW
-ZW
-ZW
-ZW
-ZW
-ZW
-ZW
+ZN
+ZN
+ZN
+ZN
 ZW
 ZW
 Dt
@@ -21206,11 +21274,11 @@ ZW
 ZW
 ZW
 ZW
-ZW
-ZW
-ZW
-ZW
-ZW
+AE
+Kg
+ZN
+ZN
+ZN
 ZW
 ZW
 ZW
@@ -21463,16 +21531,16 @@ ZW
 ZW
 ZW
 ZW
-ZW
-ZW
-ZW
-ZW
+ZN
+ZN
+ZN
+BP
 ZW
 ZW
 ZW
 ZW
 QO
-TO
+qs
 TO
 TO
 TO
@@ -21999,9 +22067,9 @@ TO
 US
 ZW
 ZW
-ZW
-ZW
-ZW
+tk
+ZN
+AE
 ZW
 ZW
 ZN
@@ -22244,7 +22312,7 @@ ZW
 ZW
 ZW
 QO
-TO
+qs
 TO
 TO
 TO
@@ -22255,11 +22323,11 @@ TO
 TO
 US
 ZW
-ZW
-ZW
-ZW
-ZW
-ZW
+ZN
+AE
+ZN
+Gn
+tk
 ZW
 ZN
 ZN
@@ -22512,11 +22580,11 @@ TO
 TO
 US
 ZW
-ZW
-ZW
-ZW
-ZW
-ZW
+ZN
+Gn
+ZN
+BP
+ZN
 ZW
 ZW
 ZN
@@ -22769,11 +22837,11 @@ TO
 TO
 US
 ZW
-ZW
-ZW
-ZW
-ZW
-ZW
+ZN
+ZN
+ZN
+ZN
+ZN
 ZN
 ZN
 ZN
@@ -23018,7 +23086,7 @@ ZW
 QO
 Va
 Va
-TO
+qs
 TO
 TO
 TO
@@ -23027,8 +23095,8 @@ TO
 US
 ZW
 ZW
-ZW
-ZW
+ZN
+ZN
 ZN
 ZN
 ZN
@@ -23277,7 +23345,7 @@ ZW
 ZW
 QO
 Va
-TO
+qs
 TO
 TO
 TO
@@ -23535,7 +23603,7 @@ ZW
 ZW
 ZW
 QO
-TO
+qs
 TO
 TO
 US
@@ -24112,7 +24180,7 @@ et
 rH
 Qp
 Qp
-Qp
+Rr
 Qp
 rH
 et
@@ -24307,11 +24375,11 @@ ZW
 ZW
 ZW
 QO
-TO
+qs
 TO
 US
 ZW
-ZW
+ZN
 ZN
 ZN
 ZN
@@ -24568,9 +24636,9 @@ Dt
 TO
 US
 ZW
-ZW
+AE
 ZN
-ZN
+BP
 ZN
 ZN
 ZN
@@ -24825,10 +24893,10 @@ Dt
 TO
 US
 ZW
-ZW
-ZW
-ZW
-ZN
+tk
+Gn
+tk
+AE
 ZN
 ZN
 ZN
@@ -24884,7 +24952,7 @@ et
 Ia
 Mm
 Qh
-Qp
+Rr
 Pq
 et
 Yy
@@ -25082,9 +25150,9 @@ Dt
 TO
 US
 ZW
-ZW
-ZW
-ZW
+ZN
+ZN
+ZN
 ZW
 Ge
 Qt
@@ -25340,7 +25408,7 @@ TO
 US
 YL
 YL
-YL
+Qb
 YL
 YL
 GO
@@ -28359,7 +28427,7 @@ aZ
 iD
 aZ
 bL
-aZ
+Et
 cw
 aZ
 aZ
@@ -41270,7 +41338,7 @@ Vc
 FN
 jX
 FN
-FN
+xW
 FN
 FN
 EF
@@ -47643,7 +47711,7 @@ FO
 FO
 FO
 FO
-Pw
+It
 FO
 FO
 FO
@@ -48145,7 +48213,7 @@ aI
 aI
 aI
 vg
-Pw
+It
 FO
 JZ
 JZ
@@ -48168,7 +48236,7 @@ JZ
 JZ
 JZ
 JZ
-Pw
+It
 FO
 FO
 FO
@@ -51743,7 +51811,7 @@ aI
 aI
 aI
 vg
-Pw
+It
 FO
 FO
 FO
@@ -51755,7 +51823,7 @@ FO
 FO
 FO
 FO
-Pw
+It
 FO
 FO
 FO
@@ -51766,7 +51834,7 @@ Iy
 FO
 FO
 FO
-Pw
+It
 vg
 sa
 OD

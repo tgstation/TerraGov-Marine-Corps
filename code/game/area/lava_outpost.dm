@@ -150,6 +150,7 @@
 /area/lavaland/misc/genstorage
 	name = "General Storage"
 	icon_state =  "lava_misc_genstorage"
+	outside = FALSE
 
 /area/lavaland/misc/crashed
 	name = "Crashed Ship"
