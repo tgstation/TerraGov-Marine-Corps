@@ -92,6 +92,10 @@
 	name = "Afro"
 	icon_state = "hair_afro"
 
+/datum/sprite_accessory/hair/antenna
+	name = "Antenna"
+	icon_state = "hair_antenna"
+
 /datum/sprite_accessory/hair/balding
 	name = "Balding Hair"
 	icon_state = "hair_balding"
@@ -129,6 +133,19 @@
 	name = "Bedhead 3"
 	icon_state = "hair_bedhead3"
 
+/datum/sprite_accessory/hair/bedhead_long
+	name = "Bedhead Long"
+	icon_state = "hair_bedhead_long"
+	gender = FEMALE
+
+/datum/sprite_accessory/hair/bob
+	name = "Bob Hair"
+	icon_state = "hair_bob"
+
+/datum/sprite_accessory/hair/bob2
+	name = "Bob Hair 2"
+	icon_state = "hair_bob2"
+
 /datum/sprite_accessory/hair/bobcurl
 	name = "Bobcurl"
 	icon_state = "hair_bobcurl"
@@ -143,6 +160,11 @@
 	name = "Bobcut Alt"
 	icon_state = "hair_bobcutalt"
 	gender = FEMALE
+
+/datum/sprite_accessory/hair/boddicker
+	name = "Boddicker"
+	icon_state = "hair_boddicker"
+	gender = MALE
 
 /datum/sprite_accessory/hair/braidgrande
 	name = "Braid Grande"
@@ -212,6 +234,11 @@
 /datum/sprite_accessory/hair/combover
 	name = "Combover"
 	icon_state = "hair_combover"
+	gender = MALE
+
+/datum/sprite_accessory/hair/combover
+	name = "Combover 2"
+	icon_state = "hair_combover2"
 	gender = MALE
 
 /datum/sprite_accessory/hair/cornrows
@@ -302,6 +329,11 @@
 	name = "Flaired Hair"
 	icon_state = "hair_flaired"
 
+/datum/sprite_accessory/hair/flaired2
+	name = "Flaired Hair 2"
+	icon_state = "hair_flaired2"
+	gender = FEMALE
+
 /datum/sprite_accessory/hair/flattop
 	name = "Flat Top"
 	icon_state = "hair_flattop"
@@ -340,6 +372,11 @@
 	icon_state = "hair_gentle2long"
 	gender = FEMALE
 
+/datum/sprite_accessory/hair/gentleman
+	name = "Gentleman's Cut"
+	icon_state = "hair_cleancut"
+	gender = MALE
+
 /datum/sprite_accessory/hair/halfbanged
 	name = "Half-banged Hair"
 	icon_state = "hair_halfbanged"
@@ -367,6 +404,10 @@
 	icon_state = "hair_highandtight"
 	gender = MALE
 
+/datum/sprite_accessory/hair/highfade
+	name = "High Fade"
+	icon_state = "hair_highfade"
+
 /datum/sprite_accessory/hair/himecut
 	name = "Hime Cut"
 	icon_state = "hair_himecut"
@@ -377,10 +418,19 @@
 	icon_state = "hair_himecutshort"
 	gender = FEMALE
 
+/datum/sprite_accessory/hair/hitop
+	name = "Hitop"
+	icon_state = "hair_hitop"
+	gender = MALE
+
 /datum/sprite_accessory/hair/iceman
 	name = "Iceman"
 	icon_state = "hair_iceman"
 	gender = MALE
+
+/datum/sprite_accessory/hair/kusangi
+	name = "Kusanagi Hair"
+	icon_state = "hair_kusanagi"
 
 /datum/sprite_accessory/hair/long
 	name = "Long Hair"
@@ -406,6 +456,10 @@
 	name = "Longer Fringe"
 	icon_state = "hair_longerfringe"
 
+/datum/sprite_accessory/hair/lowfade
+	name = "Low Fade"
+	icon_state = "hair_lowfade"
+
 /datum/sprite_accessory/hair/ltrasczak
 	name = "Lt. Rasczak"
 	icon_state = "hair_ltrasczak"
@@ -414,6 +468,21 @@
 /datum/sprite_accessory/hair/manbun
 	name = "Manbun"
 	icon_state = "hair_manbun"
+	gender = MALE
+
+/datum/sprite_accessory/hair/marine_fade
+	name = "Marine Fade"
+	icon_state = "hair_mmarinefade"
+	gender = MALE
+
+/datum/sprite_accessory/hair/marine_flat_top
+	name = "Marine Flat Top"
+	icon_state = "hair_mflattop"
+	gender = FEMALE
+
+/datum/sprite_accessory/hair/marine_mohawk
+	name = "Marine Mohawk"
+	icon_state = "hair_mmarinemohawk"
 	gender = MALE
 
 /datum/sprite_accessory/hair/marysue
@@ -458,6 +527,10 @@
 	name = "Nitori"
 	icon_state = "hair_nitori"
 	gender = FEMALE
+
+/datum/sprite_accessory/hair/nofade
+	name = "No Fade"
+	icon_state = "hair_nofade"
 
 /datum/sprite_accessory/hair/ombre
 	name = "Ombre"
@@ -532,6 +605,16 @@
 /datum/sprite_accessory/hair/ponytaillong
 	name = "Ponytail Long"
 	icon_state = "hair_ponytaillong"
+	gender = FEMALE
+
+/datum/sprite_accessory/hair/poofy
+	name = "Poofy"
+	icon_state = "hair_poofy"
+	gender = FEMALE
+
+/datum/sprite_accessory/hair/pvt_clarison
+	name = "Pvt. Clarison"
+	icon_state = "hair_pvtclari"
 	gender = FEMALE
 
 /datum/sprite_accessory/hair/pvtjoker
@@ -708,6 +791,11 @@
 	name = "Wardaddy"
 	icon_state = "hair_wardaddy"
 	gender = MALE
+
+/datum/sprite_accessory/hair/wisp
+	name = "Wisp"
+	icon_state = "hair_wisp"
+	gender = FEMALE
 
 // Non-humans from here on.
 
