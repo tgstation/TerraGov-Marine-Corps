@@ -753,7 +753,7 @@
 	..()
 
 /obj/item/storage/backpack/marine/engineerpack/examine(mob/user)
-	..()
+	. = ..()
 	to_chat(user, "[reagents.total_volume] units of fuel left!")
 
 
