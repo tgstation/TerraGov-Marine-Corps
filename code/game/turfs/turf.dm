@@ -535,7 +535,7 @@
 /** 
  * Check if alien abilities can construct structure on the turf 
  * Proced when constructing every kind of xenos structure, including weeds*/
-
+ */
 /turf/proc/check_alien_construction(mob/living/builder, silent = FALSE, planned_building)
 	var/has_obstacle
 	for(var/obj/O in contents)
