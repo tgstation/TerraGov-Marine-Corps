@@ -591,6 +591,10 @@
 	},
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/east)
+"gC" = (
+/obj/structure/ore_box,
+/turf/open/lavaland/basalt/glowing,
+/area/lavaland/cave/west)
 "gE" = (
 /turf/open/floor/grass,
 /area/lavaland/civilian/garden)
@@ -1978,11 +1982,6 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/lavaland/misc/stationed)
-"tk" = (
-/obj/effect/decal/remains/human,
-/obj/item/clothing/head/hardhat/orange,
-/turf/open/lavaland/basalt,
-/area/lavaland/cave/west)
 "tq" = (
 /obj/machinery/door/poddoor/mainship{
 	dir = 1;
@@ -22075,9 +22074,9 @@ TO
 US
 ZW
 ZW
-tk
+Kg
 ZN
-AE
+TV
 ZW
 ZW
 ZN
@@ -22332,10 +22331,10 @@ TO
 US
 ZW
 ZN
-AE
+TV
 ZN
-Gn
-tk
+gC
+Kg
 ZW
 ZN
 ZN
@@ -22588,7 +22587,7 @@ TO
 TO
 US
 ZW
-ZN
+eH
 Gn
 ZN
 BP
@@ -24387,7 +24386,7 @@ qs
 TO
 US
 ZW
-ZN
+eH
 ZN
 ZN
 ZN
@@ -24644,7 +24643,7 @@ Dt
 TO
 US
 ZW
-AE
+TV
 ZN
 BP
 ZN
@@ -24901,10 +24900,10 @@ Dt
 TO
 US
 ZW
-tk
+Kg
 Gn
-tk
-AE
+Kg
+TV
 ZN
 ZN
 ZN
@@ -25160,7 +25159,7 @@ US
 ZW
 ZN
 ZN
-ZN
+eH
 ZW
 Ge
 Qt
