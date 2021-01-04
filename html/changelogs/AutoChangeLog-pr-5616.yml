@@ -1,0 +1,4 @@
+author: "Walarks"
+delete-after: True
+changes: 
+  - balance: "removes aim mode requirement to stand still (you still need to wait for the bar to fill up)"
