@@ -115,7 +115,7 @@
 
 	// keep them alive
 	var/updating_health = FALSE
-	occupant.adjustToxLoss(-1 * REM) // pretend they get IV dylovene
+	occupant.adjustToxLoss(-0.5) // pretend they get IV dylovene
 	occupant.adjustOxyLoss(-occupant.getOxyLoss()) // keep them breathing, pretend they get IV dexalinplus
 	if(filtering)
 		var/filtered = 0
