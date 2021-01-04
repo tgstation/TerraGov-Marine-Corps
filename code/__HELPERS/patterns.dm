@@ -79,3 +79,38 @@
 				turfs_to_check += AdjT
 				results += AdjT
 	return results
+
+///Generates a cone shape. Any other checks should be handled with the resulting list. Can work with up to 359 degrees
+/proc/generate_cone(atom/center, outer_range = 10, inner_range = 1, cone_width = 60, cone_direction = 0, blocked = TRUE)
+	var/right_angle = cone_direction + cone_width/2
+	var/left_angle = cone_direction - cone_width/2
+
+	//These are needed because degrees need to be from 0 to 359 for the checks to function
+	if(right_angle >= 360)
+		right_angle -= 360
+
+	if(left_angle < 0)
+		left_angle += 360
+
+	var/list/turfs_to_check = list(get_turf(center))
+	var/list/cone_turfs = list()
+	for(var/r in 1 to outer_range)
+		for(var/turf/C in turfs_to_check)
+			for(var/direction in GLOB.cardinals)
+				var/turf/T = get_step(C, direction)
+				if(cone_turfs.Find(T))
+					continue
+				if(get_dist(center, T) > outer_range || get_dist(center, T) < inner_range)
+					continue
+				var/turf_angle = Get_Angle(center, T)
+				if(right_angle > left_angle && (turf_angle > right_angle || turf_angle < left_angle))
+					continue
+				if(turf_angle > right_angle && turf_angle < left_angle)
+					continue
+				if(blocked)
+					if(T.density || LinkBlocked(C, T) || TurfBlockedNonWindow(T))
+						continue
+				cone_turfs += T
+				turfs_to_check += T
+			turfs_to_check -= C
+	return	cone_turfs

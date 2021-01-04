@@ -38,6 +38,7 @@
 		/datum/reagent/medicine/tramadol,
 		/datum/reagent/medicine/kelotane,
 	)
+	var/list/flamed_turfs = list()
 
 /obj/item/weapon/claymore/harvester/examine(mob/user)
 	..()
@@ -74,8 +75,6 @@
 	if(length(container.reagents.reagent_list) > 1)
 		to_chat(user, "<span class='rose'>The solution needs to be uniform and contain only a single type of reagent to be compatible.</span>")
 		return FALSE
-	message_admins("[loadable_reagents[3]]")
-	message_admins("[container.reagents.reagent_list[1].type]")
 
 	if(!locate(container.reagents.reagent_list[1].type) in loadable_reagents)
 		to_chat(user, "<span class='rose'>This reagent is not compatible with the weapon's mechanism. Check the engraved symbols for further information.</span>")
@@ -115,37 +114,20 @@
 		return
 
 	switch(beaker.reagents.reagent_list[1].type)
-		if(/datum/reagent/medicine/tramadol)
-			M.apply_status_effect(/datum/status_effect/incapacitating/slowdown, 2 SECONDS)
+//		if(/datum/reagent/medicine/tramadol)
+//			M.apply_status_effect(/datum/status_effect/track, 10 SECONDS)
 
 		if(/datum/reagent/medicine/kelotane)
-			var/flame_dir = Get_Angle(user, M.loc)
-			message_admins("[flame_dir]")
-			generate_flames(user, M.loc, flame_direction = flame_dir)
+			get_turf(M).ignite()
+			var/list/cone_turfs = generate_cone(user, 2, 1, 91, Get_Angle(user, M.loc))
+			for(var/turf/T in cone_turfs)
+				T.ignite()
+
+		if(/datum/reagent/medicine/bicaridine)
+			M.apply_status_effect(/datum/status_effect/incapacitating/slowdown, 2 SECONDS)
 
 	effect_active = FALSE
 	effect_loaded = FALSE
-
-/obj/item/weapon/claymore/harvester/proc/generate_flames(mob/user, turf/location, flame_range = 2, flame_width = 90, flame_direction)
-	location.ignite()
-	var/right_angle = flame_direction + flame_width/2
-	var/left_angle = flame_direction - flame_width/2
-
-	for(var/turf/T in range(1, location))
-		var/turf_angle = Get_Angle(user, T)
-		if(locate(/obj/flamer_fire) in T)
-			continue
-		if(get_dist(user, T) > flame_range || get_dist(user, T) < 1)
-			continue
-		if(!get_step_towards(location, T))
-			continue
-		if(left_angle > right_angle)
-			if(turf_angle <= right_angle || turf_angle >= left_angle)
-				generate_flames(user, T, flame_range, flame_width, flame_direction)
-				return
-
-		if(turf_angle <= right_angle && turf_angle >= left_angle)
-			generate_flames(user, T, flame_range, flame_width, flame_direction)
 
 /obj/item/weapon/claymore/mercsword
 	name = "combat sword"
