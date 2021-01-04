@@ -1587,7 +1587,6 @@
 #include "code\modules\vehicles\multitile\multitile.dm"
 #include "code\modules\vehicles\multitile\tank.dm"
 #include "code\modules\vehicles\multitile\tankvendor.dm"
-#include "code\modules\xenomorph\xeno_structures.dm"
 #include "interface\interface.dm"
 #include "interface\menu.dm"
 #include "interface\stylesheet.dm"
