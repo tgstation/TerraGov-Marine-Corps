@@ -128,7 +128,7 @@
 	max_integrity = 5
 	layer = RESIN_STRUCTURE_LAYER
 	var/obj/item/clothing/mask/facehugger/hugger = null
-	var/mob/living/linked_carrier //The carrier that placed us.
+	var/mob/living/carbon/xenomorph/linked_carrier //The carrier that placed us.
 
 /obj/effect/alien/resin/trap/Initialize(mapload, mob/living/builder)
 	. = ..()
@@ -182,11 +182,9 @@
 		playsound(src, "alien_resin_break", 25)
 		C.visible_message("<span class='warning'>[C] trips on [src]!</span>",\
 						"<span class='danger'>You trip on [src]!</span>")
-		C.Paralyze(40)
-		if(!QDELETED(linked_carrier) && linked_carrier.stat == CONSCIOUS && linked_carrier.z == z)
-			var/area/A = get_area(src)
-			if(A)
-				to_chat(linked_carrier, "<span class='xenoannounce'>You sense one of your traps at [A.name] has been triggered!</span>")
+		C.Paralyze(4 SECONDS)
+		if(linked_carrier)
+			xeno_message("<span class='xenoannounce'>A facehugger trap at [AREACOORD_NO_Z(src)] has been triggered!</span>", 2, linked_carrier.hivenumber,  FALSE, get_turf(src), 'sound/voice/alien_distantroar_3.ogg') //Follow the trend of hive wide alerts for important events
 		drop_hugger()
 
 /obj/effect/alien/resin/trap/proc/drop_hugger()

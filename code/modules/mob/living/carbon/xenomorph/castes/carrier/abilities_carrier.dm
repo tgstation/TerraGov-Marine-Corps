@@ -193,7 +193,7 @@
 
 /datum/action/xeno_action/spawn_hugger/on_cooldown_finish()
 	to_chat(owner, "<span class='xenodanger'>We can now spawn another young one.</span>")
-	playsound(owner, 'sound/effects/xeno_newlarva.ogg', 50, 0, 1)
+	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
 
 /datum/action/xeno_action/spawn_hugger/can_use_action(silent = FALSE, override_flags)

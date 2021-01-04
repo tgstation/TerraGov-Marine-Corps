@@ -256,8 +256,8 @@
 /obj/item/clothing/mask/facehugger/throw_impact(atom/hit_atom, speed)
 	if(stat != CONSCIOUS)
 		return ..()
-	if(isliving(hit_atom))
-		var/mob/living/M = hit_atom
+	if(iscarbon(hit_atom))
+		var/mob/living/carbon/M = hit_atom
 		if(leaping && M.can_be_facehugged(src)) //Standard leaping behaviour, not attributable to being _thrown_ such as by a Carrier.
 			if(!Attach(M))
 				go_idle()
@@ -268,7 +268,7 @@
 			jumptimer = addtimer(CALLBACK(src, .proc/fast_activate), 1.5 SECONDS * activity_modifier, TIMER_STOPPABLE|TIMER_UNIQUE)
 			return ..()
 	else
-		for(var/mob/living/M in loc)
+		for(var/mob/living/carbon/M in loc)
 			if(M.can_be_facehugged(src))
 				if(!Attach(M))
 					go_idle()
@@ -293,12 +293,13 @@
 	if(check_death && stat == DEAD)
 		return FALSE
 
-	if(isxeno(src))
-		var/mob/living/carbon/xenomorph/X = src
-		if(F.hivenumber == X.hive.hivenumber)
-			return FALSE
-
 	return TRUE
+
+/mob/living/carbon/xenomorph/can_be_facehugged(obj/item/clothing/mask/facehugger/F, check_death = TRUE, check_mask = TRUE, provoked = FALSE)
+	if(F.hivenumber == hive.hivenumber)
+		return FALSE
+
+	return ..()
 
 /mob/living/carbon/human/can_be_facehugged(obj/item/clothing/mask/facehugger/F, check_death = TRUE, check_mask = TRUE, provoked = FALSE)
 	if((status_flags & (XENO_HOST|GODMODE)) || F.stat == DEAD)
@@ -639,17 +640,19 @@
 
 	visible_message("<span class='danger'>[src] explodes into a mess of viscous resin!</span>")
 
-	for(var/turf/sticky_tile in RANGE_TURFS(1, loc))
+	for(var/turf/sticky_tile as() in RANGE_TURFS(1, loc))
 		if(!locate(/obj/effect/xenomorph/spray) in sticky_tile.contents)
 			new /obj/effect/alien/resin/sticky/thin(sticky_tile)
 
+	var/armor_block
 	for(var/mob/living/target in range(1, loc))
 		if(isxeno(target)) //Xenos aren't affected by sticky resin
 			continue
 
 		target.adjust_stagger(3)
 		target.add_slowdown(10)
-		target.apply_damage(20, STAMINA) //Small amount of armor ignoring stamina damage
+		armor_block = target.run_armor_check(BODY_ZONE_CHEST, "bio")
+		target.apply_damage(50, STAMINA, BODY_ZONE_CHEST, armor_block) //Small amount of stamina damage; meant to stop sprinting.
 
 	melt_away()
 
