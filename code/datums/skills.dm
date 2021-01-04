@@ -296,9 +296,10 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	melee_weapons = SKILL_MELEE_WEAK
 	police = SKILL_POLICE_MP
 
-/datum/skills/AI
+/datum/skills/ai
 	name = "AI"
 	engineer = SKILL_ENGINEER_MASTER
+
 /datum/skills/synthetic
 	name = SYNTHETIC
 	engineer = SKILL_ENGINEER_MASTER
