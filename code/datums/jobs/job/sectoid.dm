@@ -14,6 +14,7 @@
 /datum/outfit/job/sectoid/grunt
 	name = "Sectoid Grunt"
 	jobtype = /datum/job/sectoid/grunt
+	nodrop_override = TRUE
 
 	id = /obj/item/card/id
 	belt = /obj/item/storage/belt/marine/sectoid
@@ -48,6 +49,7 @@
 /datum/outfit/job/sectoid/leader
 	name = "Sectoid Leader"
 	jobtype = /datum/job/sectoid/leader
+	nodrop_override = TRUE
 
 	id = /obj/item/card/id
 	belt = /obj/item/storage/belt/marine/sectoid

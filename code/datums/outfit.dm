@@ -25,6 +25,8 @@
 	var/list/implants = null
 	var/accessory = null
 
+	///Whether or not we override nodrop considerations/limits upon equipping with this outfit
+	var/nodrop_override = FALSE
 	var/can_be_admin_equipped = TRUE // Set to FALSE if your outfit requires runtime parameters
 
 
@@ -43,32 +45,32 @@
 
 	//Start with uniform,suit,backpack for additional slots
 	if(w_uniform)
-		H.equip_to_slot_or_del(new w_uniform(H),SLOT_W_UNIFORM)
+		H.equip_to_slot_or_del(new w_uniform(H),SLOT_W_UNIFORM, override_nodrop = nodrop_override)
 	if(wear_suit)
-		H.equip_to_slot_or_del(new wear_suit(H),SLOT_WEAR_SUIT)
+		H.equip_to_slot_or_del(new wear_suit(H),SLOT_WEAR_SUIT, override_nodrop = nodrop_override)
 	if(back)
-		H.equip_to_slot_or_del(new back(H),SLOT_BACK)
+		H.equip_to_slot_or_del(new back(H),SLOT_BACK, override_nodrop = nodrop_override)
 	if(belt)
-		H.equip_to_slot_or_del(new belt(H),SLOT_BELT)
+		H.equip_to_slot_or_del(new belt(H),SLOT_BELT, override_nodrop = nodrop_override)
 	if(gloves)
-		H.equip_to_slot_or_del(new gloves(H),SLOT_GLOVES)
+		H.equip_to_slot_or_del(new gloves(H),SLOT_GLOVES, override_nodrop = nodrop_override)
 	if(shoes)
-		H.equip_to_slot_or_del(new shoes(H),SLOT_SHOES)
+		H.equip_to_slot_or_del(new shoes(H),SLOT_SHOES, override_nodrop = nodrop_override)
 	if(head)
-		H.equip_to_slot_or_del(new head(H),SLOT_HEAD)
+		H.equip_to_slot_or_del(new head(H),SLOT_HEAD, override_nodrop = nodrop_override)
 	if(mask)
-		H.equip_to_slot_or_del(new mask(H),SLOT_WEAR_MASK)
+		H.equip_to_slot_or_del(new mask(H),SLOT_WEAR_MASK, override_nodrop = nodrop_override)
 	if(ears)
 		if(visualsOnly)
-			H.equip_to_slot_or_del(new /obj/item/radio/headset(H), SLOT_EARS) //We don't want marine cameras. For now they have the same item_state as the rest.
+			H.equip_to_slot_or_del(new /obj/item/radio/headset(H), SLOT_EARS, override_nodrop = nodrop_override) //We don't want marine cameras. For now they have the same item_state as the rest.
 		else
-			H.equip_to_slot_or_del(new ears(H), SLOT_EARS)
+			H.equip_to_slot_or_del(new ears(H), SLOT_EARS, override_nodrop = nodrop_override)
 	if(glasses)
-		H.equip_to_slot_or_del(new glasses(H),SLOT_GLASSES)
+		H.equip_to_slot_or_del(new glasses(H),SLOT_GLASSES, override_nodrop = nodrop_override)
 	if(id)
-		H.equip_to_slot_or_del(new id(H),SLOT_WEAR_ID)
+		H.equip_to_slot_or_del(new id(H),SLOT_WEAR_ID, override_nodrop = nodrop_override)
 	if(suit_store)
-		H.equip_to_slot_or_del(new suit_store(H),SLOT_S_STORE)
+		H.equip_to_slot_or_del(new suit_store(H),SLOT_S_STORE, override_nodrop = nodrop_override)
 	if(l_hand)
 		H.put_in_l_hand(new l_hand(H))
 	if(r_hand)
