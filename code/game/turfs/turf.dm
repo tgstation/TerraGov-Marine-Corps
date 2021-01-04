@@ -521,8 +521,8 @@
 
 
 /** 
- * Check if shutters are closed in the area. 
- * Proced when constructing resin, acid wells, jelly pod dispensers and hugger traps 
+ * Checks for whether we can build advanced xeno structures here
+ * Returns TRUE if present, FALSE otherwise
  */
 /turf/proc/check_disallow_alien_fortification(mob/living/builder, silent = FALSE)
 	var/area/ourarea = loc
