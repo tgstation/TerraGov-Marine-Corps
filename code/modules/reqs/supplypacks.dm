@@ -175,11 +175,6 @@ WEAPONS
 	contains = list(/obj/item/storage/box/standard_hmg)
 	cost = 80
 
-/datum/supply_packs/weapons/quadlauncher
-	name = "M57A4 Quad Thermobaric Launcher"
-	contains = list(/obj/item/weapon/gun/launcher/rocket/m57a4)
-	cost = 250
-
 /datum/supply_packs/weapons/tesla
 	name = "Energy Ball Rifle"
 	contains = list(
@@ -471,11 +466,6 @@ AMMO
 	name = "Box of Incendiary Slugs"
 	contains = list(/obj/item/ammo_magazine/shotgun/incendiary)
 	cost = 10
-
-/datum/supply_packs/ammo/quadlauncher
-	name = "M57A4 thermobaric rocket array"
-	contains = list(/obj/item/ammo_magazine/rocket/m57a4)
-	cost = 50
 
 /datum/supply_packs/ammo/scout_regular
 	name = "M4RA scout magazine"
