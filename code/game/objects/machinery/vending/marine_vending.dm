@@ -609,7 +609,6 @@
 		/obj/item/attachable/heavy_barrel = 25,
 		/obj/item/attachable/suppressor = 25,
 		/obj/item/attachable/lace = 25,
-
 		/obj/item/attachable/flashlight = 25,
 		/obj/item/attachable/magnetic_harness = 25,
 		/obj/item/attachable/reddot = 25,
