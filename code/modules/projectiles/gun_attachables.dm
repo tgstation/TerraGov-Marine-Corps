@@ -1696,6 +1696,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		playsound(user, 'sound/weapons/fistclamp.ogg', 25, 1, 7)
 		icon_state = "lace-on"
 		attach_icon = "lace_a_on"
+		lace_deployed as lace_deployed = !lace_deployed
 
 	for(var/i in master_gun.actions)
 		var/datum/action/action_to_update = i
