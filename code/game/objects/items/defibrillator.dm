@@ -99,7 +99,7 @@
 		return
 	for(var/g in GLOB.observer_list)
 		var/mob/dead/observer/ghost = g
-		if(!ghost?.mind.current == src)
+		if(!ghost.mind?.current == src) //Somehow we can find mindless ghosts.
 			continue
 		if(ghost.client && ghost.can_reenter_corpse)
 			return ghost
