@@ -62,6 +62,7 @@
 
 
 /obj/item/ammo_magazine/flamer_tank/backtank/attackby(obj/item/I, mob/user, params)
+	. = ..()
 	if(istype(I, /obj/item/weapon/gun/flamer/))
 		var/obj/item/weapon/gun/flamer/FLT = I
 		var/mob/living/carbon/human/humanuser = user
@@ -69,23 +70,26 @@
 			if (humanuser.is_item_in_slots(src))
 				if(FLT.current_mag == src)
 					FLT.detach_fueltank(user)
+					return
 				else if (attached_flamer)
 					to_chat(user, "<span class='warning'>This fuel tank is already attached to something</span>")
+					return
 				else
 					FLT.attach_fueltank(user,src)
+					return
 			else
 				to_chat(user, "<span class='warning'>You must equip or hold this fuel tank to be able to link it to a flamer</span>")
-	else
-		return ..()
+				return
 
-/obj/item/ammo_magazine/flamer_tank/backtank/dropped_new_loc(mob/user) //Dropping the tank should unlink it from the flamer
-	..()
+/obj/item/ammo_magazine/flamer_tank/backtank/removed_from_inventory(mob/user) //Dropping the tank should unlink it from the flamer
+	. = ..()
 	var/mob/living/carbon/human/humanuser = user
 	if (istype(humanuser))
 		if(attached_flamer)
 			attached_flamer.detach_fueltank(user,FALSE)
-	else
-		return ..()
+			return
+		return
+
 /obj/item/ammo_magazine/flamer_tank/backtank/X
 	name = "back fuel tank (X)"
 	desc = "A specialized fuel tank of ultra thick napthal type X for use with the TL-84 flamethrower and M240A1 incinerator unit."

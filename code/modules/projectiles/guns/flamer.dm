@@ -194,6 +194,7 @@
 		update_icon(user)
 		var/obj/screen/ammo/A = user.hud_used.ammo
 		A.update_hud(user)
+		return
 	else
 		to_chat(user, "<span class='warning'>Your action was interrupted!</span>")
 		return
@@ -215,16 +216,15 @@
 	A.update_hud(user)
 	
 
-/obj/item/weapon/gun/flamer/dropped_new_loc(mob/user)
-	..()
+/obj/item/weapon/gun/flamer/removed_from_inventory(mob/user)
+	. = ..()
 	var/mob/living/carbon/human/humanuser = user
-	if (istype(humanuser))
-		if (istype(current_mag,/obj/item/ammo_magazine/flamer_tank/backtank/)) //Dropping the flamer unlink it from the tank
-			var/obj/item/ammo_magazine/flamer_tank/backtank/backfueltank = current_mag;
-			backfueltank.attached_flamer=null
-			current_mag = null 
-			light_pilot(null,FALSE) 
-		update_icon(humanuser)
+	if (istype(current_mag,/obj/item/ammo_magazine/flamer_tank/backtank/)) //Dropping the flamer unlink it from the tank
+		var/obj/item/ammo_magazine/flamer_tank/backtank/backfueltank = current_mag;
+		backfueltank.attached_flamer=null
+		current_mag = null 
+		light_pilot(null,FALSE) 
+	update_icon(humanuser)
 
 /obj/item/weapon/gun/flamer/proc/unleash_flame(atom/target, mob/living/user)
 	set waitfor = 0
@@ -501,18 +501,17 @@
 
 
 /obj/item/weapon/gun/flamer/marinestandard/unique_action(mob/user)
-	if(under)
-		var/obj/item/attachable/hydro_cannon/hydro = under
-		if(istype(hydro))
-			playsound(user, hydro.activation_sound, 15, 1)
-			if (hydro.activate_attachment(user))
-				hydro_active = TRUE
-				light_pilot(user, FALSE)
-			else 
-				hydro_active = FALSE
-				light_pilot(user, TRUE)
-			var/obj/screen/ammo/A = user.hud_used.ammo
-			A.update_hud(user)
+	var/obj/item/attachable/hydro_cannon/hydro = under
+	if(istype(hydro))
+		playsound(user, hydro.activation_sound, 15, 1)
+		if (hydro.activate_attachment(user))
+			hydro_active = TRUE
+			light_pilot(user, FALSE)
+		else 
+			hydro_active = FALSE
+			light_pilot(user, TRUE)
+		var/obj/screen/ammo/A = user.hud_used.ammo
+		A.update_hud(user)
 
 
 /obj/item/weapon/gun/flamer/marinestandard/Fire(atom/target, mob/living/user, params, reflex)

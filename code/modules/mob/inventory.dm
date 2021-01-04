@@ -239,7 +239,7 @@
 	I.plane = initial(I.plane)
 	if(newloc)
 		I.forceMove(newloc)
-		I.dropped_new_loc(src)
+		I.removed_from_inventory(src)
 	I.dropped(src)
 
 	return TRUE
