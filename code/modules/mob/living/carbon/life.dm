@@ -3,7 +3,10 @@
 	set invisibility = 0
 	set background = 1
 
-	if(stat == DEAD || IsStasis()) //If we're dead or in true stasis don't bother processing life
+	if(notransform) //If we're dead or set to notransform don't bother processing life
+		return
+
+	if(stat == DEAD) //If we're dead or set to notransform don't bother processing life
 		return
 
 	if((life_tick % CARBON_BREATH_DELAY == 0) || failed_last_breath) //First, resolve location and get a breath

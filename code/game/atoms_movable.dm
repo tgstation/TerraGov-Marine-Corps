@@ -929,6 +929,9 @@
 /// Returns true or false to allow src to move through the blocker, mover has final say
 /atom/movable/proc/CanPassThrough(atom/blocker, turf/target, blocker_opinion)
 	SHOULD_CALL_PARENT(TRUE)
+	if(status_flags & INCORPOREAL) //Incorporeal can normally pass through anything
+		blocker_opinion = TRUE
+
 	return blocker_opinion
 
 ///returns FALSE if there isnt line of sight to target within view dist and TRUE if there is

@@ -1,5 +1,5 @@
 /mob/living/proc/Life()
-	if(stat == DEAD || IsStasis()) //If we're dead or in true stasis don't bother processing life
+	if(stat == DEAD || notransform) //If we're dead or notransform don't bother processing life
 		return
 
 	handle_status_effects() //all special effects, stun, knockdown, jitteryness, hallucination, sleeping, etc

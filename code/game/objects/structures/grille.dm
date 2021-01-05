@@ -71,9 +71,6 @@
 	else if(istype(mover, /obj/projectile))
 		return prob(90)
 
-	if(istype(mover, /obj/projectile))
-		return prob(90)
-
 /obj/structure/grille/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(.)

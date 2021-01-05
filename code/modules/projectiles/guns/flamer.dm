@@ -636,11 +636,6 @@
 	if(istype(M))
 		M.flamer_fire_crossed(burnlevel, firelevel)
 
-/obj/flamer_fire/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
-	if(isxenohivemind(mover))
-		return FALSE
-
 // override this proc to give different walking-over-fire effects
 /mob/living/proc/flamer_fire_crossed(burnlevel, firelevel, fire_mod = 1)
 	if(status_flags & (INCORPOREAL|GODMODE))

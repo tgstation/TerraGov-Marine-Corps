@@ -12,7 +12,7 @@
 
 	..()
 
-	if(IsStasis()) //If we're in true stasis don't bother processing life
+	if(notransform) //If we're in true stasis don't bother processing life
 		return
 
 	if(stat == DEAD) //Dead, nothing else to do but this.

@@ -138,11 +138,8 @@ directive is properly returned.
 /atom/proc/CanPass(atom/movable/mover, turf/target)
 	SHOULD_CALL_PARENT(TRUE)
 	. = CanAllowThrough(mover, target)
-	if(mover.status_flags & INCORPOREAL)
-		return mover.IncorporealCanPassThrough(src, target) //Defaults to TRUE; allows for custom checks via child procs
-
 	// This is cheaper than calling the proc every time since most things dont override CanPassThrough
-	if(!mover.generic_canpass)
+	if(!mover.generic_canpass || mover.status_flags & INCORPOREAL)
 		return mover.CanPassThrough(src, target, .)
 
 /// Returns true or false to allow the mover to move through src
@@ -154,11 +151,8 @@ directive is properly returned.
 /atom/proc/CheckExit(atom/movable/mover, turf/target)
 	SHOULD_CALL_PARENT(TRUE)
 	. = CanAllowExit(mover, target)
-	if(mover.status_flags & INCORPOREAL)
-		return TRUE
-
 	// This is cheaper than calling the proc every time since most things dont override CheckExit
-	if(!mover.generic_canpass)
+	if(!mover.generic_canpass || mover.status_flags & INCORPOREAL)
 		return mover.CanPassThrough(src, target, .)
 
 /// Returns true or false to allow the mover to move out of the atom

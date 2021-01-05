@@ -338,27 +338,6 @@
 		S = apply_status_effect(STATUS_EFFECT_ADMINSLEEP)
 	return S
 
-/////////////////////////////////// STASIS ////////////////////////////////////
-
-/mob/living/proc/IsStasis()
-	return has_status_effect(STATUS_EFFECT_STASIS)
-
-/mob/living/proc/ToggleStasis()
-	var/datum/status_effect/incapacitating/stasis/S = IsStasis()
-	if(S)
-		qdel(S)
-	else
-		S = apply_status_effect(STATUS_EFFECT_STASIS)
-	return S
-
-/mob/living/proc/SetStasis(remove = FALSE)
-	var/datum/status_effect/incapacitating/stasis/S = IsStasis()
-	if(remove)
-		qdel(S)
-	else
-		S = apply_status_effect(STATUS_EFFECT_STASIS)
-	return S
-
 //////////////////UNCONSCIOUS
 /mob/living/proc/IsUnconscious() //If we're unconscious
 	return has_status_effect(STATUS_EFFECT_UNCONSCIOUS)

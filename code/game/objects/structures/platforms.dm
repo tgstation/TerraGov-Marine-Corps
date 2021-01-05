@@ -35,12 +35,7 @@
 /obj/structure/platform/CanAllowExit(atom/movable/O, turf/target)
 	. = ..()
 	if(O && O.throwing)
-		return 1
-
-	if(((flags_atom & ON_BORDER) && get_dir(loc, target) == dir))
-		return 0
-	else
-		return 1
+		return TRUE
 
 /obj/structure/platform/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()

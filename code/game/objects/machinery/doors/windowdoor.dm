@@ -81,7 +81,6 @@
 	else
 		do_animate("deny")
 
-
 /obj/machinery/door/window/CanAllowThrough(atom/movable/mover, turf/target)
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
 		return TRUE
@@ -90,12 +89,9 @@
 	return TRUE
 
 /obj/machinery/door/window/CanAllowExit(atom/movable/mover, turf/target)
-	. = ..()
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
 		return TRUE
-	if(get_dir(loc, target) == dir)
-		return ..()
-	return TRUE
+	return ..()
 
 /obj/machinery/door/window/open(forced = DOOR_NOT_FORCED)
 	if(operating)

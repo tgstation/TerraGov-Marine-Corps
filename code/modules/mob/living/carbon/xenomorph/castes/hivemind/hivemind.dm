@@ -140,6 +140,11 @@
 /mob/living/carbon/xenomorph/hivemind/med_hud_set_status()
 	return
 
+/obj/flamer_fire/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
+	if(isxenohivemind(mover))
+		return FALSE
+
 
 // =================
 // hivemind core
