@@ -232,10 +232,10 @@
 /mob/living/effect_smoke(obj/effect/particle_effect/smoke/S)
 	. = ..()
 	if(!.)
-		if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CAMO))
+		if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CAMO) && ishuman(src))
 			smokecloak_off()
 		return
-	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CAMO))
+	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CAMO) && ishuman(src))
 		smokecloak_on()
 	if(smoke_delay)
 		return FALSE
