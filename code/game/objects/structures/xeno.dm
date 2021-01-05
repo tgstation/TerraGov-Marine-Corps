@@ -715,7 +715,7 @@ TUNNEL
 
 	pick_a_tunnel(M)
 
-
+///Here we pick a tunnel to go to, then travel to that tunnel and peep out, confirming whether or not we want to emerge or go to another tunnel.
 /obj/structure/tunnel/proc/pick_a_tunnel(mob/living/carbon/xenomorph/M)
 	var/obj/structure/tunnel/targettunnel = input(M, "Choose a tunnel to crawl to", "Tunnel") as null|anything in GLOB.xeno_tunnels
 	if(!targettunnel)
