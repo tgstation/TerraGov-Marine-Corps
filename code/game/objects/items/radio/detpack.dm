@@ -11,7 +11,7 @@
 	var/frequency = 1457
 	var/on = FALSE
 	var/armed = FALSE
-	var/timer = 5
+	var/timer = 2
 	var/code = 2
 	var/det_mode = FALSE //FALSE for breach, TRUE for demolition.
 	var/atom/plant_target = null //which atom the detpack is planted on
