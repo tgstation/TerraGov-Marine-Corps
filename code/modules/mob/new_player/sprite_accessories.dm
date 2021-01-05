@@ -161,11 +161,6 @@
 	name = "Bedhead 3"
 	icon_state = "hair_bedhead3"
 
-/datum/sprite_accessory/hair/bedhead_long
-	name = "Bedhead Long"
-	icon_state = "hair_bedhead_long"
-	gender = FEMALE
-
 /datum/sprite_accessory/hair/bob
 	name = "Bob Hair"
 	icon_state = "hair_bob"
