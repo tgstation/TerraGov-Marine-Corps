@@ -131,9 +131,17 @@
 		linked_carrier = builder
 	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, .proc/shuttle_crush)
 
-/obj/effect/alien/resin/trap/proc/shuttle_crush() //No more trapping shuttles with huggies
+/obj/effect/alien/resin/trap/obj_destruction(damage_flag)
+	if(hugger && loc)
+		drop_hugger()
+
+	return ..()
+
+///No more trapping shuttles with huggies
+/obj/effect/alien/resin/trap/proc/shuttle_crush()
 	SIGNAL_HANDLER
-	QDEL_NULL(hugger)
+	qdel(hugger)
+	hugger = null
 
 /obj/effect/alien/resin/trap/examine(mob/user)
 	. = ..()
@@ -222,12 +230,6 @@
 	. = ..()
 	if(iscarbon(A))
 		HasProximity(A)
-
-/obj/effect/alien/resin/trap/Destroy()
-	if(hugger && loc)
-		drop_hugger()
-	return ..()
-
 
 
 //Resin Doors
