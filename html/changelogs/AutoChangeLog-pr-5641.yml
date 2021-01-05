@@ -1,0 +1,5 @@
+author: "Vondiech"
+delete-after: True
+changes: 
+  - rscadd: "Multiple new locations added to lava outpost."
+  - tweak: "Multiple things have been moved around and/or adjusted on lava outpost."
