@@ -62,6 +62,7 @@
 //"Engineer"
 /area/lavaland/engie
 	outside = FALSE
+	icon_state = "lava_engine"
 
 /area/lavaland/engie/one
 	name = "Generator One"
@@ -75,13 +76,9 @@
 	name = "Generator Three"
 	icon_state = "lava_eng3"
 
-/area/lavaland/engie/refine
-	name = "Ore Processing Facility"
-	icon_state = "lava_eng4"
-
 /area/lavaland/engie/engine
 	name = "Engineering Facility"
-	icon_state = "lava_eng5"
+	icon_state = "lava_eng4"
 
 //Security
 
@@ -151,6 +148,20 @@
 	name = "General Storage"
 	icon_state =  "lava_misc_genstorage"
 	outside = FALSE
+
+/area/lavaland/misc/eastarmory
+	name = "Eastern Armory"
+	icon_state =  "lava_misc_armory1"
+	outside = FALSE
+
+/area/lavaland/misc/westarmory
+	name = "Western Armory"
+	icon_state =  "lava_misc_armory2"
+	outside = FALSE
+
+/area/lavaland/misc/refinery
+	name = "Ore Processing Facility"
+	icon_state = "lava_misc_refinery"
 
 /area/lavaland/misc/crashed
 	name = "Crashed Ship"
