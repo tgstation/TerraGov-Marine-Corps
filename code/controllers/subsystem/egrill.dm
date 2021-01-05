@@ -1,7 +1,7 @@
 SUBSYSTEM_DEF(egrill)
 	name = "Egrills"
 	priority = FIRE_PRIORITY_PROCESS
-	flags = SS_NO_INIT
+	flags = SS_NO_INIT|SS_BACKGROUND
 	wait = 20
 
 	var/spark_factor = 10

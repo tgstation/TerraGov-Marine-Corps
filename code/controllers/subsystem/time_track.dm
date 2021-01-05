@@ -1,6 +1,6 @@
 SUBSYSTEM_DEF(time_track)
 	name = "Time Tracking"
-	wait = 600
+	wait = 60 SECONDS
 	flags = SS_NO_INIT|SS_NO_TICK_CHECK
 	runlevels = RUNLEVEL_LOBBY|RUNLEVELS_DEFAULT
 

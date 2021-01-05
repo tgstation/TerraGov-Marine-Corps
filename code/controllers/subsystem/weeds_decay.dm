@@ -3,6 +3,7 @@ SUBSYSTEM_DEF(weeds_decay)
 	priority = FIRE_PRIORITY_WEED
 	runlevels = RUNLEVEL_LOBBY|RUNLEVEL_SETUP|RUNLEVEL_GAME|RUNLEVEL_POSTGAME
 	wait = 15 SECONDS
+	flags = SS_BACKGROUND
 
 	// This is a list of nodes on the map.
 	var/list/decaying = list()
