@@ -105,7 +105,7 @@
 //=================================================
 
 //Define detpack
-#define DETPACK_TIMER_MIN			5
+#define DETPACK_TIMER_MIN			2
 #define DETPACK_TIMER_MAX			300
 
 //Define sniper laser multipliers
