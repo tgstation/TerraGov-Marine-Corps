@@ -64,6 +64,7 @@
 		/datum/action/xeno_action/activable/psychic_fling,
 		/datum/action/xeno_action/activable/unrelenting_force,
 		/datum/action/xeno_action/toggle_pheromones,
+		/datum/action/xeno_action/activable/rally_hive,
 	)
 
 /datum/xeno_caste/shrike/young

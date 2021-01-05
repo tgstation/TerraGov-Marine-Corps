@@ -444,6 +444,8 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 		dat += "[GLOB.round_statistics.xeno_headbites] number of times victims headbitten."
 	if(GLOB.round_statistics.xeno_silo_corpses)
 		dat += "[GLOB.round_statistics.xeno_silo_corpses] number of corpses fed to resin silos."
+	if(GLOB.round_statistics.xeno_rally_hive)
+		dat += "[GLOB.round_statistics.xeno_rally_hive] number of times xeno leaders rallied the hive."
 
 	var/output = jointext(dat, "<br>")
 	for(var/mob/player in GLOB.player_list)

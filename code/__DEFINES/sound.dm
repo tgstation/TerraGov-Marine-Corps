@@ -12,6 +12,8 @@
 
 #define CHANNEL_HIGHEST_AVAILABLE 1017
 
+#define MAX_INSTRUMENT_CHANNELS (128 * 6)
+
 #define FALLOFF_SOUNDS 1
 
 ///Frequency stuff only works with 45kbps oggs.

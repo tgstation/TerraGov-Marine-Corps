@@ -132,7 +132,7 @@
 
 /obj/item/storage/firstaid/rad/fill_firstaid_kit()
 	new /obj/item/healthanalyzer(src)
-	new /obj/item/storage/pill_bottle/russianRed(src)
+	new /obj/item/storage/pill_bottle/russian_red(src)
 	new /obj/item/storage/pill_bottle/dylovene(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine(src)
@@ -371,7 +371,7 @@
 	icon_state = "pill_canister10"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/peridaxon
 
-/obj/item/storage/pill_bottle/russianRed
+/obj/item/storage/pill_bottle/russian_red
 	name = "\improper Russian Red pill bottle"
 	desc = "Contains pills that heal all damage rapidly at the cost of small amounts of unhealable damage."
 	icon_state = "pill_canister1"

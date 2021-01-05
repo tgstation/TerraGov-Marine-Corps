@@ -324,8 +324,6 @@
 	if(lighting_alpha != new_xeno.lighting_alpha)
 		new_xeno.toggle_nightvision(lighting_alpha)
 
-	new_xeno.middle_mouse_toggle = middle_mouse_toggle //Keep our toggle state
-
 	new_xeno.update_spits() //Update spits to new/better ones
 
 	new_xeno.visible_message("<span class='xenodanger'>A [new_xeno.xeno_caste.caste_name] emerges from the husk of \the [src].</span>", \
@@ -345,6 +343,7 @@
 		new_xeno.hud_set_queen_overwatch()
 		if(hive.living_xeno_queen)
 			new_xeno.handle_xeno_leader_pheromones(hive.living_xeno_queen)
+		new_xeno.give_rally_hive_ability() //Give them back their rally hive ability
 
 	qdel(src)
 	INVOKE_ASYNC(new_xeno, /mob/living.proc/do_jitter_animation, 1000)

@@ -13,6 +13,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	var/obj/effect/ai_node/current_node //Current node to use for calculating action states: this is the mob's node
 	var/cur_action //Contains a defined term that tells us what we're doing; useful for switch() statements
 	var/mob/mob_parent //Ref to the parent associated with this mind
+	var/identifier //An identifier associated with this behavior, used for accessing specific values of a node's weights
 
 /datum/ai_behavior/New(loc, parent_to_assign)
 	..()
@@ -47,7 +48,13 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 			cleanup_current_action()
 			if(isainode(atom_to_walk_to)) //Cases where the atom we're walking to can be a mob to kill or turfs
 				current_node = atom_to_walk_to
-			atom_to_walk_to = pick(current_node.adjacent_nodes)
+				if(identifier)
+					current_node.set_weight(identifier, NODE_LAST_VISITED, world.time) //We recently visited this node, update the time
+
+			if(identifier)
+				atom_to_walk_to = current_node.get_best_adj_node(list(NODE_LAST_VISITED = -1), identifier)
+			else
+				atom_to_walk_to = pick(current_node.adjacent_nodes)
 			mob_parent.AddElement(/datum/element/pathfinder, atom_to_walk_to, distance_to_maintain, sidestep_prob)
 			cur_action = MOVING_TO_NODE
 			register_action_signals(cur_action)

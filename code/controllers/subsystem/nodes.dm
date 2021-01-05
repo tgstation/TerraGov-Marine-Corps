@@ -4,11 +4,11 @@ SUBSYSTEM_DEF(nodes)
 	flags = SS_NO_FIRE //For now
 
 /datum/controller/subsystem/nodes/Initialize()
-	InitAllAdjacent()
+	repopulate_node_adjacencies()
 	return ..()
 
 //Call this to manually make adjacencies
-/datum/controller/subsystem/nodes/proc/InitAllAdjacent()
+/datum/controller/subsystem/nodes/proc/repopulate_node_adjacencies()
 	for(var/nodes in GLOB.allnodes)
 		var/obj/effect/ai_node/node = nodes
-		node.MakeAdjacents()
+		node.make_adjacents()

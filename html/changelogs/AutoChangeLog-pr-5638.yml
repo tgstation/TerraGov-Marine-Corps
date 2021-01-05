@@ -1,0 +1,4 @@
+author: "fernandos13"
+delete-after: True
+changes: 
+  - tweak: "adds ammoboxes \"that are already in code\" to the marine vendors"
