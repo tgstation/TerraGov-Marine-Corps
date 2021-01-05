@@ -1,0 +1,5 @@
+author: "Holistic"
+delete-after: True
+changes: 
+  - tweak: "Moonshine have new recipe"
+  - bugfix: "Moonshine now havent got same recipe with vodka"
