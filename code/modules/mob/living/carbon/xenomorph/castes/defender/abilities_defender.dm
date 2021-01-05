@@ -65,7 +65,7 @@
 
 	X.face_atom(H) //Face towards the target so we don't look silly
 
-	var/damage = X.xeno_caste.melee_damage
+	var/damage = X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier
 	damage *= (1 + distance * 0.25) //More distance = more momentum = stronger Headbutt.
 	var/affecting = H.get_limb(ran_zone(null, 0))
 	if(!affecting) //Still nothing??
@@ -135,7 +135,7 @@
 	for (var/mob/living/carbon/human/H in L)
 		step_away(H, src, sweep_range, 2)
 		if(H.stat != DEAD && !isnestedhost(H) ) //No bully
-			var/damage = X.xeno_caste.melee_damage
+			var/damage = X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier
 			var/affecting = H.get_limb(ran_zone(null, 0))
 			if(!affecting) //Still nothing??
 				affecting = H.get_limb("chest") //Gotta have a torso?!
