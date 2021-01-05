@@ -491,8 +491,8 @@
 	description = "An emergency generic treatment with extreme side effects."
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	custom_metabolism = REAGENTS_METABOLISM * 5
-	overdose_threshold = REAGENTS_OVERDOSE/2
-	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/3
+	overdose_threshold = REAGENTS_OVERDOSE/1.20   //so it makes the OD threshold effectively 15 so two pills  is too much but one is fine
+	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/1.667 //and this makes the Critical OD 29.99 aka almost 30
 	scannable = TRUE
 
 /datum/reagent/medicine/russian_red/on_mob_life(mob/living/L, metabolism)
