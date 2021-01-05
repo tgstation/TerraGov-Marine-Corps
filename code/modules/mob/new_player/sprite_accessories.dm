@@ -71,7 +71,7 @@
 */
 
 /datum/sprite_accessory/hair
-	species_allowed = list("Human","Unathi","Tajara","Skrell","Vox","Machine","Synthetic","Early Synthetic")
+	species_allowed = list("Human","Unathi","Tajara","Skrell","Vox","Machine","Synthetic","Early Synthetic", "Vat-Grown", "Vatborn")
 	icon = 'icons/mob/Human_face.dmi'
 
 /datum/sprite_accessory/hair/bald
@@ -1161,7 +1161,7 @@
 	name = "Shaved"
 	icon_state = "bald"
 	gender = NEUTER
-	species_allowed = list("Human","Unathi","Tajara","Skrell","Vox","Machine","Synthetic", "Early Synthetic")
+	species_allowed = list("Human","Unathi","Tajara","Skrell","Vox","Machine","Synthetic", "Early Synthetic", "Vat-Grown", "Vatborn")
 
 /datum/sprite_accessory/facial_hair/watson
 	name = "Watson Mustache"
