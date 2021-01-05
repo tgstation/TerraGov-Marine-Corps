@@ -747,7 +747,7 @@ TUNNEL
 	if(do_after(M, tunnel_time, FALSE, src, BUSY_ICON_GENERIC))
 		if(targettunnel && isturf(targettunnel.loc)) //Make sure the end tunnel is still there
 			M.forceMove(targettunnel)
-			var/double_check = input(M, "Emerge here?", "Tunnel") as null|anything in list("Yes","Pick another tunnel")
+			var/double_check = input(M, "Emerge here?", "Tunnel: [targettunnel]") as null|anything in list("Yes","Pick another tunnel")
 			if(double_check == "Pick another tunnel")
 				return targettunnel.pick_a_tunnel(M)
 			else //Whether we say yes or cancel out of it
