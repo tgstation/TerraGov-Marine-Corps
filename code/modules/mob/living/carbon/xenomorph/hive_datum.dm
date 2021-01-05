@@ -307,10 +307,14 @@
 /datum/hive_status/proc/add_leader(mob/living/carbon/xenomorph/X)
 	xeno_leader_list += X
 	X.queen_chosen_lead = TRUE
+	X.give_rally_hive_ability()
 
 /datum/hive_status/proc/remove_leader(mob/living/carbon/xenomorph/X)
 	xeno_leader_list -= X
 	X.queen_chosen_lead = FALSE
+
+	if(!isxenoshrike(X) && !isxenoqueen(X) && !isxenohivemind(X)) //These innately have the Rally Hive ability
+		X.xeno_caste.actions -= /datum/action/xeno_action/activable/rally_hive
 
 /datum/hive_status/proc/update_leader_pheromones() // helper function to easily trigger an update of leader pheromones
 	for(var/i in xeno_leader_list)
@@ -488,13 +492,34 @@ The force parameter is for messages that should ignore a dead queen
 to_chat will check for valid clients itself already so no need to double check for clients
 
 */
-/datum/hive_status/proc/xeno_message(message = null, size = 3, force = FALSE)
+
+///Used for Hive Message alerts
+/datum/hive_status/proc/xeno_message(message = null, size = 3, force = FALSE, atom/target = null, sound = null, apply_preferences = FALSE, filter_list = null)
+
 	if(!force && !can_xeno_message())
 		return
-	for(var/i in get_all_xenos())
-		var/mob/living/carbon/xenomorph/X = i
+
+	var/list/final_list = get_all_xenos()
+
+	if(filter_list) //Filter out Xenos in the filter list if applicable
+		final_list -= filter_list
+
+	for(var/mob/living/carbon/xenomorph/X as() in final_list)
+
 		if(X.stat) // dead/crit cant hear
 			continue
+
+		if(!X.client) // If no client, there's no point; also runtime prevention
+			continue
+
+		if(sound) //Play sound if applicable
+			X.playsound_local(X, sound, max(size * 20, 60), 0, 1)
+
+		if(target) //Apply tracker arrow to point to the subject of the message if applicable
+			var/obj/screen/xeno_tracker_arrow/arrow = new /obj/screen/xeno_tracker_arrow //Prepare the tracker object and set its parameters
+			arrow.add_hud(X, target)
+			new /obj/effect/temp_visual/xenomorph/xeno_tracker_target(target) //Ping the source of our alert
+
 		to_chat(X, "<span class='xenodanger'><font size=[size]> [message]</font></span>")
 
 // This is to simplify the process of talking in hivemind, this will invoke the receive proc of all xenos in this hive
@@ -595,9 +620,11 @@ to_chat will check for valid clients itself already so no need to double check f
 	if(length(possible_silos) > 1)
 		chosen_silo = input("Available Egg Silos") as null|anything in possible_silos
 		xeno_candidate.forceMove(chosen_silo)
-		var/double_check = input(xeno_candidate, "Spawn here?", "Spawn location") as null|anything in list("Yes","No")
-		if(double_check != "Yes")
-			attempt_to_spawn_larva_in_silo(xeno_candidate, possible_silos)
+		var/double_check = input(xeno_candidate, "Spawn here?", "Spawn location") as null|anything in list("Yes","Pick another silo")
+		if(double_check == "Pick another silo")
+			return attempt_to_spawn_larva_in_silo(xeno_candidate, possible_silos)
+		else if(double_check != "Yes")
+			return FALSE
 	else
 		chosen_silo = possible_silos[1]
 

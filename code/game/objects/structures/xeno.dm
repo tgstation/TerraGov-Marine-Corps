@@ -631,13 +631,15 @@ TUNNEL
 	max_integrity = 140
 	var/mob/living/carbon/xenomorph/hivelord/creator = null
 
-	hud_possible = list(XENO_TUNNEL_HUD)
+	hud_possible = list(XENO_TACTICAL_HUD)
 
 
 /obj/structure/tunnel/Initialize(mapload)
 	. = ..()
 	GLOB.xeno_tunnels += src
 	prepare_huds()
+	for(var/datum/atom_hud/xeno_tactical/xeno_tac_hud in GLOB.huds) //Add to the xeno tachud
+		xeno_tac_hud.add_to_hud(src)
 	hud_set_xeno_tunnel()
 
 /obj/structure/tunnel/Destroy()
@@ -739,11 +741,12 @@ TUNNEL
 
 //Makes sure the tunnel is visible to other xenos even through obscuration.
 /obj/structure/tunnel/proc/hud_set_xeno_tunnel()
-	var/image/holder = hud_list[XENO_TUNNEL_HUD]
+	var/image/holder = hud_list[XENO_TACTICAL_HUD]
 	if(!holder)
 		return
-	holder.icon_state = "traitorhud"
-	hud_list[XENO_TUNNEL_HUD] = holder
+	holder.icon = 'icons/mob/hud.dmi'
+	holder.icon_state = "hudtraitor"
+	hud_list[XENO_TACTICAL_HUD] = holder
 
 //Resin Water Well
 /obj/effect/alien/resin/acidwell

@@ -61,7 +61,10 @@
 	var/damage = 0
 	var/accuracy = 85 //Base projectile accuracy. Can maybe be later taken from the mob if desired.
 
-	var/damage_falloff = 0 //how many damage point the projectile loses per tiles travelled
+	///how many damage points the projectile loses per tiles travelled
+	var/damage_falloff = 0
+	///Modifies projectile damage by a % when a marine gets passed, but not hit
+	var/damage_marine_falloff = 0
 
 	var/scatter = 0 //Chance of scattering, also maximum amount scattered. High variance.
 
@@ -721,6 +724,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 /mob/living/carbon/human/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
 	if(get_target_lock(proj.projectile_iff))
+		proj.damage += proj.damage*proj.damage_marine_falloff
 		return FALSE
 	if(mobility_aura)
 		. -= mobility_aura * 5

@@ -483,3 +483,11 @@
 	description = "Summon the entire hive to your location"
 	keybind_signal = COMSIG_XENOABILITY_HIVE_SUMMON
 */
+
+/*
+/datum/keybinding/xeno/rally_hive
+	name = "rally_hive"
+	full_name = "Rally Hive"
+	description = "Rallies the hive to a target location."
+	keybind_signal = COMSIG_XENOABILITY_RALLY_HIVE
+*/
