@@ -35,18 +35,6 @@
 		setDir(set_dir)
 	return ..()
 
-/obj/effect/temp_visual/xenomorph/runner_afterimage
-	name = "runner afterimage"
-	desc = "It has become speed.."
-	icon = 'icons/Xeno/2x2_Xenos.dmi' //They are now like, 2x1 or something
-	icon_state = "Runner Walking"
-	layer = MOB_LAYER
-	alpha = 64 //Translucent
-	duration = 0.5 SECONDS
-	density = FALSE
-	opacity = FALSE
-	anchored = FALSE
-	animate_movement = SLIDE_STEPS
 
 ///Image that appears at the Xeno Rally target; only Xenos can see it
 /obj/effect/temp_visual/xenomorph/xeno_tracker_target
