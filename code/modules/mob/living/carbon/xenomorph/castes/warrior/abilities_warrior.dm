@@ -344,7 +344,7 @@
 	if(!target_zone)
 		target_zone = "chest"
 
-	if(!A.punch_act(X, X.xeno_caste.melee_damage, target_zone))
+	if(!A.punch_act(X, X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier, target_zone))
 		return fail_activate()
 
 	GLOB.round_statistics.warrior_punches++

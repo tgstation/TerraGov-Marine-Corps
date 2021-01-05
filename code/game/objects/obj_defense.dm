@@ -136,8 +136,7 @@
 		"<span class='danger'>We slash [src]!</span>")
 		X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 		playsound(loc, "alien_claw_metal", 25)
-	attack_generic(X, damage_amount, damage_type, damage_flag, effects, armor_penetration)
-	attack_generic(X, X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier, BRUTE, "melee", FALSE)
+	attack_generic(X, damage_amount * X.xeno_melee_damage_modifier, damage_type, damage_flag, effects, armor_penetration)
 
 
 /obj/attack_larva(mob/living/carbon/xenomorph/larva/L)
