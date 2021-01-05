@@ -140,7 +140,7 @@
 ///No more trapping shuttles with huggies
 /obj/effect/alien/resin/trap/proc/shuttle_crush()
 	SIGNAL_HANDLER
-	qdel(hugger)
+	QDEL_NULL(hugger)
 	hugger = null
 
 /obj/effect/alien/resin/trap/examine(mob/user)
