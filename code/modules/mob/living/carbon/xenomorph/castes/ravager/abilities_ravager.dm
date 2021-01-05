@@ -118,10 +118,13 @@
 	var/turf/current_turf = get_turf(X)
 	var/facing = X.dir
 	var/list/turf/turfs = list(get_step(current_turf, facing), get_step(current_turf, turn(facing,45)), get_step(current_turf, turn(facing,-45)) ) //Only get the turfs we need
-	for(var/turf/target_turf in turfs)
-		for(var/atom/movable/target in target_turf)
-			target.attack_alien(X, X.xeno_caste.melee_damage * 0.25, FALSE, TRUE, FALSE, TRUE, INTENT_HARM)
+	for(var/turf/target_turf as() in turfs)
+		for(var/atom/movable/target as() in target_turf)
+			target.Shake(4, 4, 2 SECONDS)
+			if(isobj(target))
+				target.attack_alien(X, X.xeno_caste.melee_damage * 1.25) //1.25 multiplier because vs objects this is the literal damage dealt
 			if(isliving(target))
+				target.attack_alien(X, X.xeno_caste.melee_damage * 0.25, FALSE, TRUE, FALSE, TRUE, INTENT_HARM)
 				if(isxeno(target))
 					var/mob/living/carbon/xenomorph/xeno_target = target
 					if(xeno_target.issamexenohive(X)) //No friendly fire
@@ -199,6 +202,7 @@
 	to_chat(owner,"<span class='highdanger'>We feel the plasma draining from our veins... [ability_name] will last for only [RAVAGER_ENDURE_DURATION * (1-RAVAGER_ENDURE_WARNING) * 0.1] more seconds!</span>")
 	owner.playsound_local(owner, 'sound/voice/hiss4.ogg', 50, 0, 1)
 
+///Turns off the Endure buff
 /datum/action/xeno_action/activable/endure/proc/endure_deactivate()
 	var/mob/living/carbon/xenomorph/ravager/R = owner
 
@@ -250,7 +254,6 @@
 
 /datum/action/xeno_action/activable/rage/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
-
 	if(!.)
 		return
 
@@ -357,9 +360,8 @@
 	GLOB.round_statistics.ravager_rages++ //Statistics
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "ravager_rages")
 
-
+///Warns the user when his rage is about to end.
 /datum/action/xeno_action/activable/rage/proc/rage_warning(bonus_duration = 0)
-
 	to_chat(owner,"<span class='highdanger'>Our rage begins to subside... [ability_name] will only last for only [(RAVAGER_RAGE_DURATION + bonus_duration) * (1-RAVAGER_RAGE_WARNING) * 0.1] more seconds!</span>")
 	owner.playsound_local(owner, 'sound/voice/hiss4.ogg', 50, 0, 1)
 
