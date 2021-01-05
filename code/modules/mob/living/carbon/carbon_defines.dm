@@ -43,8 +43,6 @@
 	var/afk_timer_id
 	var/afk_status = MOB_DISCONNECTED
 
-	var/middle_mouse_toggle = TRUE //This toggles whether special clicks use middle mouse clicking or shift clicking
-
 	// halucination vars
 	var/hal_screwyhud = SCREWYHUD_NONE
 	var/next_hallucination = 0

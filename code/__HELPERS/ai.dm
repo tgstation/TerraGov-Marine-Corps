@@ -1,5 +1,5 @@
 //Various macros
-#define GET_WEIGHT(NODE, NAME) NODE.weights[NAME]
+#define NODE_GET_VALUE_OF_WEIGHT(IDENTIFIER, NODE, WEIGHT_NAME) NODE.weights[IDENTIFIER][WEIGHT_NAME]
 
 //The equivalent of get_step_towards but now for nodes; will NOT intelligently pathfind based on node weights or anything else
 //Returns nothing if a suitable node in a direction isn't found, otherwise returns a node
@@ -7,7 +7,7 @@
 	if(startnode == destination)
 		return startnode
 	//Null value returned means no node in that direction
-	return startnode.GetNodeInDirInAdj(get_dir(startnode, destination))
+	return startnode.get_node_in_dir_in_adj(get_dir(startnode, destination))
 
 ///Returns a list of humans via get_dist and same z level method, very cheap compared to range()
 /proc/cheap_get_humans_near(atom/movable/source, distance)

@@ -1180,11 +1180,12 @@
 /turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/northwest)
 "afc" = (
-/obj/effect/turf_underlay/icefloor,
-/turf/closed/ice/thin/junction{
-	dir = 4
-	},
-/area/ice_colony/exterior/surface/cliff)
+/obj/structure/rack,
+/obj/item/storage/box/lightstick,
+/obj/item/tool/pickaxe,
+/obj/item/storage/box/lightstick/red,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/ice_colony/exterior/surface/landing_pad2)
 "afd" = (
 /turf/open/floor/plating,
 /area/ice_colony/exterior/surface/landing_pad2)
@@ -2130,8 +2131,8 @@
 	},
 /area/ice_colony/exterior/surface/landing_pad2)
 "aiH" = (
-/turf/open/floor/plating/ground/ice,
-/area/ice_colony/exterior/surface/valley/northwest)
+/turf/open/floor/plating/ground/snow/layer2,
+/area/ice_colony/exterior/underground/caves/ice_w)
 "aiI" = (
 /obj/effect/landmark/start/job/survivor,
 /obj/structure/cable,
@@ -2597,8 +2598,18 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/substation/smes)
 "akn" = (
-/obj/effect/turf_underlay/icefloor,
-/turf/closed/ice/thin/corner,
+/obj/structure/rack,
+/obj/item/tool/shovel/snow,
+/obj/item/tool/shovel/snow{
+	pixel_x = 6;
+	pixel_y = 2
+	},
+/obj/item/tool/shovel/snow{
+	pixel_x = 6;
+	pixel_y = 2
+	},
+/obj/item/tool/shovel/snow,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/landing_pad2)
 "ako" = (
 /obj/structure/rack,
@@ -2723,7 +2734,7 @@
 /area/ice_colony/exterior/surface/valley/northwest)
 "akO" = (
 /obj/item/tool/shovel/snow,
-/turf/open/floor/plating/ground/snow/layer0,
+/turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/northwest)
 "akP" = (
 /obj/effect/turf_underlay/icefloor,
@@ -5159,10 +5170,7 @@
 	},
 /area/ice_colony/exterior/surface/valley/northeast)
 "ate" = (
-/obj/structure/rack,
-/obj/item/tool/pickaxe,
-/obj/item/storage/box/lightstick/red,
-/obj/item/storage/box/lightstick,
+/obj/structure/largecrate/random,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/landing_pad2)
 "atf" = (
@@ -5220,18 +5228,6 @@
 /obj/item/clothing/under/bluepyjamas,
 /turf/open/floor/wood,
 /area/ice_colony/surface/dorms)
-"atq" = (
-/obj/structure/rack,
-/obj/item/tool/shovel/snow,
-/obj/item/tool/shovel/snow{
-	pixel_x = 5
-	},
-/obj/item/tool/shovel/snow{
-	pixel_x = 5
-	},
-/obj/item/tool/shovel/snow,
-/turf/open/floor/plating/ground/snow/layer0,
-/area/ice_colony/exterior/surface/landing_pad2)
 "atr" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -5273,10 +5269,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/white,
 /area/ice_colony/surface/clinic/lobby)
-"atx" = (
-/obj/structure/largecrate/random,
-/turf/open/floor/plating/ground/snow/layer0,
-/area/ice_colony/exterior/surface/landing_pad2)
 "aty" = (
 /turf/open/floor/plating/icefloor/warnplate,
 /area/ice_colony/underground/hangar)
@@ -12936,9 +12928,7 @@
 /turf/closed/ice,
 /area/ice_colony/exterior/surface/clearing/pass)
 "aSa" = (
-/obj/structure/device/piano{
-	icon_state = "pianobroken"
-	},
+/obj/structure/musician/piano,
 /turf/open/floor/wood,
 /area/ice_colony/surface/bar/bar)
 "aSb" = (
@@ -32457,15 +32447,6 @@
 "jmh" = (
 /turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/northeast)
-"jnx" = (
-/obj/structure/rack,
-/obj/item/tool/shovel/snow{
-	pixel_x = 6;
-	pixel_y = 2
-	},
-/obj/item/tool/shovel/snow,
-/turf/open/floor/plating/ground/snow/layer0,
-/area/ice_colony/exterior/surface/landing_pad2)
 "jqu" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/ice_rock/westWall,
@@ -39571,8 +39552,8 @@ afd
 oiZ
 dAo
 atf
-xNj
-xNj
+akn
+afc
 qmg
 wmf
 ycQ
@@ -39827,9 +39808,9 @@ acU
 afd
 wpJ
 dAo
-jnx
-akn
-xNj
+hOW
+hOW
+hOW
 jah
 aaQ
 aaU
@@ -40084,9 +40065,9 @@ dRI
 llI
 nXf
 dAo
+hOW
+hOW
 ate
-nOj
-rCI
 kub
 aaZ
 alR
@@ -40343,7 +40324,7 @@ hOW
 dAo
 hyh
 hyh
-abZ
+ate
 gEI
 aac
 aac
@@ -40598,9 +40579,9 @@ sQr
 hOW
 hOW
 dAo
-atq
-hdK
-aae
+hOW
+hOW
+ate
 gEI
 aac
 aac
@@ -40855,9 +40836,9 @@ rka
 dAo
 mxc
 dAo
-atx
-nmm
-aae
+hOW
+hOW
+hOW
 gEI
 aac
 aaU
@@ -41112,9 +41093,9 @@ abm
 dAo
 hOW
 hyh
-atx
-iaC
-aaB
+hOW
+hOW
+hOW
 gEI
 aaU
 aaU
@@ -41369,11 +41350,11 @@ abz
 dAo
 hOW
 hyh
-atx
-pwi
-aaB
+hOW
+hOW
+hOW
 gEI
-aae
+oIU
 frj
 uAj
 oIU
@@ -41630,7 +41611,7 @@ yll
 yem
 aTO
 gEI
-aae
+oIU
 oIU
 oIU
 oIU
@@ -41885,9 +41866,9 @@ agd
 agd
 agd
 aaJ
-acm
-aac
-aaU
+aaJ
+aaJ
+oIU
 fXM
 aaP
 aaZ
@@ -42142,8 +42123,8 @@ agd
 agd
 agd
 aaJ
-acm
-aac
+aaJ
+aaJ
 oIU
 aaP
 afx
@@ -42399,8 +42380,8 @@ agd
 agd
 agd
 aaJ
-acm
-aad
+aaJ
+aaJ
 oIU
 amC
 aaZ
@@ -42656,9 +42637,9 @@ agd
 agd
 agd
 aaJ
-acm
-aae
-oIU
+aaJ
+aaJ
+aiH
 oIU
 oIU
 iPp
@@ -42913,10 +42894,10 @@ agd
 agd
 agd
 aaJ
-acm
-aad
-oIU
-oIU
+aaJ
+aaJ
+aiH
+aiH
 hNm
 iPp
 alJ
@@ -43162,18 +43143,18 @@ agd
 agd
 rJF
 aog
-agd
-abz
-abz
-abz
+aog
+aog
+omz
+omz
 agd
 agd
 aaJ
 agd
-acj
-aaU
-aaC
-oIU
+aaJ
+aaJ
+aaJ
+aiH
 iPp
 iPp
 iPp
@@ -43418,18 +43399,18 @@ aaJ
 agd
 agd
 agd
-omz
-abz
-abz
+aog
+agd
+agd
 aiw
 abz
 agd
 aaJ
 aaJ
-aaP
-aaZ
-aiH
-alJ
+abz
+aaJ
+aaJ
+alI
 alI
 alI
 iPp
@@ -43675,17 +43656,17 @@ aaC
 agd
 agd
 agd
-omz
-abz
-abz
+aog
 agd
 agd
+abz
+abz
 agd
 aaJ
-aaS
-aaZ
-aiH
-aiH
+abz
+abz
+aaJ
+aaJ
 aif
 ahH
 ahH
@@ -43932,16 +43913,16 @@ aaG
 aar
 agd
 agd
-omz
+aog
 agd
 agd
-agd
-agd
+abz
+abz
 aaJ
-aaP
-aaZ
-aaQ
-aiH
+abz
+abz
+abz
+aaJ
 aif
 aif
 ahK
@@ -44189,15 +44170,15 @@ aad
 aaB
 agd
 agd
-omz
+aog
+agd
+agd
 abz
-agd
-agd
-aaJ
-aaC
-aaB
-aar
-aaZ
+abz
+abz
+abz
+abz
+abz
 aaJ
 ahH
 ahE
@@ -44446,14 +44427,14 @@ aaB
 afO
 agd
 agd
-omz
+aog
 akO
 agd
-agd
-agd
-aaG
-aac
-aae
+abz
+abz
+abz
+abz
+abz
 aaJ
 aaJ
 ahH
@@ -44703,14 +44684,14 @@ acm
 aae
 agd
 agd
-omz
-abz
+aog
+agd
 alO
-acv
-aaG
-acj
-aac
-aae
+abz
+abz
+abz
+abz
+abz
 aaJ
 aaJ
 ahH
@@ -44960,14 +44941,14 @@ acm
 aaQ
 agd
 agd
-omz
-abz
+aog
+agd
 amQ
-acn
-aca
-afc
-acj
-aaU
+abz
+abz
+abz
+abz
+abz
 aaJ
 aaJ
 ahH
@@ -45219,10 +45200,10 @@ agd
 abz
 omz
 abz
-agd
-agd
-agd
-agd
+abz
+abz
+abz
+abz
 agd
 agd
 aaJ
@@ -45476,9 +45457,9 @@ agd
 abz
 omz
 abz
-agd
-aaJ
-aaJ
+abz
+abz
+abz
 aaJ
 aaJ
 aaJ

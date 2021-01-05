@@ -1216,10 +1216,10 @@
 	},
 /area/sulaco/medbay/storage2)
 "ahJ" = (
-/obj/structure/table/mainship,
-/obj/item/tool/crowbar,
-/obj/item/flashlight/flare,
 /obj/effect/decal/warning_stripes/thick{
+	dir = 8
+	},
+/obj/machinery/computer/cryopod{
 	dir = 8
 	},
 /turf/open/floor/prison/sterilewhite,
@@ -1456,12 +1456,13 @@
 	},
 /area/sulaco/engineering/atmos)
 "aiX" = (
-/obj/structure/table/mainship,
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/item/camera,
 /obj/effect/decal/warning_stripes/thick{
+	dir = 8
+	},
+/obj/machinery/computer/cryopod{
 	dir = 8
 	},
 /turf/open/floor/prison/sterilewhite,
@@ -1703,6 +1704,7 @@
 /area/sulaco/engineering)
 "akq" = (
 /obj/structure/table/mainship,
+/obj/item/camera,
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cryosleep)
 "akr" = (
@@ -9810,15 +9812,6 @@
 	dir = 8
 	},
 /area/sulaco/engineering/atmos)
-"bev" = (
-/obj/structure/bookcase{
-	dir = 4
-	},
-/obj/item/book/manual/evaguide,
-/obj/item/book/manual/supermatter_engine,
-/obj/item/book/manual/ripley_build_and_repair,
-/turf/open/floor/wood,
-/area/sulaco/liaison/quarters)
 "bew" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4
@@ -9837,6 +9830,9 @@
 	},
 /obj/item/book/manual/engineering_hacking,
 /obj/item/book/manual/nuclear,
+/obj/item/book/manual/ripley_build_and_repair,
+/obj/item/book/manual/supermatter_engine,
+/obj/item/book/manual/evaguide,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters)
 "beH" = (
@@ -14158,6 +14154,10 @@
 	},
 /turf/open/floor/wood,
 /area/sulaco/bridge/office)
+"ncj" = (
+/obj/structure/musician/piano,
+/turf/open/floor/plating,
+/area/sulaco/hallway/lower_main_hall)
 "ncn" = (
 /obj/structure/bed/chair,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
@@ -50497,7 +50497,7 @@ baQ
 bcs
 bcT
 aVY
-baT
+ncj
 sMg
 aPQ
 mDu
@@ -55785,7 +55785,7 @@ bdj
 bdI
 bdY
 bHC
-bev
+bdM
 beG
 cPc
 cPc

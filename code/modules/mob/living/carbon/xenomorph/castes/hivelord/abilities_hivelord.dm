@@ -224,6 +224,9 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 		if(!silent)
 			to_chat(owner, "<span class='warning'>We can only shape on weeds. We must find some resin before we start building!</span>")
 		return FALSE
+	
+	if(!T.check_disallow_alien_fortification(owner, silent))
+		return FALSE
 
 	if(!T.check_alien_construction(owner, silent))
 		return FALSE
