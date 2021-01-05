@@ -1343,7 +1343,7 @@
 
 /datum/sprite_accessory/hair/taj_ears_mohawk
 	name = "Tajaran Mohawk"
-	icon_state = "hair_mohawk"
+	icon_state = "hair_tajmohawk"
 	species_allowed = list("Tajara")
 
 /datum/sprite_accessory/hair/taj_ears_plait
@@ -1358,7 +1358,7 @@
 
 /datum/sprite_accessory/hair/taj_ears_long
 	name = "Tajara Long"
-	icon_state = "hair_long"
+	icon_state = "hair_tajlong"
 	species_allowed = list("Tajara")
 
 /datum/sprite_accessory/hair/taj_ears_rattail
@@ -1373,7 +1373,7 @@
 
 /datum/sprite_accessory/hair/taj_ears_messy
 	name = "Tajara Messy"
-	icon_state = "hair_messy"
+	icon_state = "hairtaj_messy"
 	species_allowed = list("Tajara")
 
 /datum/sprite_accessory/hair/vox_quills_short
