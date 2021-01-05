@@ -79,8 +79,8 @@
 	},
 /area/shuttle/ert/upp)
 "p" = (
-/obj/machinery/door/airlock/mainship/generic,
 /obj/machinery/door/poddoor/shutters/transit/open,
+/obj/machinery/door/airlock/mainship/generic/ert,
 /turf/open/shuttle/dropship/three,
 /area/shuttle/ert/upp)
 "q" = (
@@ -173,10 +173,10 @@
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/ert/upp)
 "I" = (
-/obj/machinery/door/airlock/mainship/generic{
+/obj/machinery/door/poddoor/shutters/transit/open{
 	dir = 2
 	},
-/obj/machinery/door/poddoor/shutters/transit/open{
+/obj/machinery/door/airlock/mainship/generic/ert{
 	dir = 2
 	},
 /turf/open/shuttle/dropship/floor,

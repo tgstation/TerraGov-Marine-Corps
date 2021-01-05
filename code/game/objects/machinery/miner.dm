@@ -65,9 +65,12 @@
 	if(miner_upgrade_type)
 		to_chat(user, "<span class='info'>The [src]'s module sockets are already occupied by the [miner_upgrade_type].</span>")
 		return FALSE
-	if(user.skills.getRating("construction")<SKILL_CONSTRUCTION_ADVANCED)
-		to_chat(user, "<span class='info'>You can't figure out how to install the complex module.</span>")
-		return FALSE
+	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
+		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to install the module on [src].</span>",
+		"<span class='notice'>You fumble around figuring out how to install the module on [src].</span>")
+		var/fumbling_time = 15 SECONDS - 2 SECONDS * user.skills.getRating("engineer")
+		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+			return FALSE
 	user.visible_message("<span class='notice'>[user] begins attaching a module to [src]'s sockets.</span>")
 	to_chat(user, "<span class='info'>You begin installing the [upgrade] on the miner.</span>")
 	if(!do_after(user, 15 SECONDS, TRUE, src, BUSY_ICON_BUILD))

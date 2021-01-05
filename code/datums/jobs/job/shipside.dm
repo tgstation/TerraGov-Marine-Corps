@@ -775,6 +775,7 @@ In addition, being a Synthetic gives you knowledge in every field and specializa
 	exp_type = EXP_TYPE_REGULAR_ALL
 	exp_type_department = EXP_TYPE_SILICON
 	display_order = JOB_DISPLAY_ORDER_AI
+	skills_type = /datum/skills/ai
 	job_flags = JOB_FLAG_SPECIALNAME|JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_OVERRIDELATEJOINSPAWN|JOB_FLAG_ISCOMMAND|JOB_FLAG_BOLD_NAME_ON_SELECTION
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,

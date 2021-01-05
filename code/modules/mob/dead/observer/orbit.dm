@@ -21,7 +21,6 @@
 		var/atom/movable/poi = pois[params["name"]]
 		if (poi != null)
 			owner.ManualFollow(poi)
-			ui.close()
 
 /datum/orbit_menu/ui_data(mob/user)
 	var/list/data = list()

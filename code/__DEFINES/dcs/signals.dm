@@ -462,6 +462,7 @@
 #define COMSIG_XENOABILITY_HIDE "xenoability_hide"
 #define COMSIG_XENOABILITY_NEUROTOX_STING "xenoability_neurotox_sting"
 #define COMSIG_XENOABILITY_INJECT_EGG_NEUROGAS "xenoability_inject_egg_neurogas"
+#define COMSIG_XENOABILITY_RALLY_HIVE "xenoability_rally_hive"
 
 #define COMSIG_XENOABILITY_LONG_RANGE_SIGHT "xenoability_long_range_sight"
 #define COMSIG_XENOABILITY_TOGGLE_BOMB "xenoability_toggle_bomb"
@@ -541,6 +542,7 @@
 #define COMSIG_KB_QUICKEQUIP "keybinding_quickequip"
 #define COMSIG_KB_HOLSTER "keybinding_holster"
 #define COMSIG_KB_UNIQUEACTION "keybinding_uniqueaction"
+#define COMSIG_KB_RAILATTACHMENT "keybinding_railattachment"
 
 // Ability adding/removing signals
 #define ACTION_GIVEN "gave_an_action"		//from base of /datum/action/proc/give_action(): (datum/action)
@@ -549,6 +551,13 @@
 // Action state signal that's sent whenever the action state has a distance maintained with the target being walked to
 #define COMSIG_STATE_MAINTAINED_DISTANCE "action_state_maintained_dist_with_target"
 #define COMSIG_OBSTRUCTED_MOVE "unable_to_step_towards_thing" //Tried to step in a direction and there was a obstruction
+
+// /datum/song signals
+
+///sent to the instrument when a song starts playing
+#define COMSIG_SONG_START 	"song_start"
+///sent to the instrument when a song stops playing
+#define COMSIG_SONG_END		"song_end"
 
 /*******Non-Signal Component Related Defines*******/
 

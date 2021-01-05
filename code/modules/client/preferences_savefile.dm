@@ -134,9 +134,11 @@
 	READ_FILE(S["clientfps"], clientfps)
 	READ_FILE(S["tooltips"], tooltips)
 	READ_FILE(S["key_bindings"], key_bindings)
+	READ_FILE(S["chem_macros"], chem_macros)
 
 	READ_FILE(S["mute_self_combat_messages"], mute_self_combat_messages)
 	READ_FILE(S["mute_others_combat_messages"], mute_others_combat_messages)
+	READ_FILE(S["mute_xeno_health_alert_messages"], mute_xeno_health_alert_messages)
 
 	// Runechat options
 	READ_FILE(S["chat_on_map"], chat_on_map)
@@ -175,9 +177,11 @@
 	tooltips		= sanitize_integer(tooltips, FALSE, TRUE, initial(tooltips))
 
 	key_bindings 	= sanitize_islist(key_bindings, list())
+	chem_macros 	= sanitize_islist(chem_macros, list())
 
 	mute_self_combat_messages	= sanitize_integer(mute_self_combat_messages, FALSE, TRUE, initial(mute_self_combat_messages))
 	mute_others_combat_messages	= sanitize_integer(mute_others_combat_messages, FALSE, TRUE, initial(mute_others_combat_messages))
+	mute_xeno_health_alert_messages	= sanitize_integer(mute_xeno_health_alert_messages, FALSE, TRUE, initial(mute_xeno_health_alert_messages))
 
 	chat_on_map			= sanitize_integer(chat_on_map, FALSE, TRUE, initial(chat_on_map))
 	max_chat_length		= sanitize_integer(max_chat_length, 1, CHAT_MESSAGE_MAX_LENGTH, initial(max_chat_length))
@@ -219,6 +223,7 @@
 	windowflashing	= sanitize_integer(windowflashing, FALSE, TRUE, initial(windowflashing))
 	auto_fit_viewport= sanitize_integer(auto_fit_viewport, FALSE, TRUE, initial(auto_fit_viewport))
 	key_bindings	= sanitize_islist(key_bindings, list())
+	chem_macros		= sanitize_islist(chem_macros, list())
 	ghost_vision	= sanitize_integer(ghost_vision, FALSE, TRUE, initial(ghost_vision))
 	ghost_orbit		= sanitize_inlist(ghost_orbit, GLOB.ghost_orbits, initial(ghost_orbit))
 	ghost_form		= sanitize_inlist_assoc(ghost_form, GLOB.ghost_forms, initial(ghost_form))
@@ -230,6 +235,7 @@
 
 	mute_self_combat_messages	= sanitize_integer(mute_self_combat_messages, FALSE, TRUE, initial(mute_self_combat_messages))
 	mute_others_combat_messages	= sanitize_integer(mute_others_combat_messages, FALSE, TRUE, initial(mute_others_combat_messages))
+	mute_xeno_health_alert_messages	= sanitize_integer(mute_xeno_health_alert_messages, FALSE, TRUE, initial(mute_xeno_health_alert_messages))
 
 	// Runechat
 	chat_on_map			= sanitize_integer(chat_on_map, FALSE, TRUE, initial(chat_on_map))
@@ -254,6 +260,7 @@
 	WRITE_FILE(S["auto_fit_viewport"], auto_fit_viewport)
 	WRITE_FILE(S["menuoptions"], menuoptions)
 	WRITE_FILE(S["key_bindings"], key_bindings)
+	WRITE_FILE(S["chem_macros"], chem_macros)
 	WRITE_FILE(S["ghost_vision"], ghost_vision)
 	WRITE_FILE(S["ghost_orbit"], ghost_orbit)
 	WRITE_FILE(S["ghost_form"], ghost_form)
@@ -265,6 +272,7 @@
 
 	WRITE_FILE(S["mute_self_combat_messages"], mute_self_combat_messages)
 	WRITE_FILE(S["mute_others_combat_messages"], mute_others_combat_messages)
+	WRITE_FILE(S["mute_xeno_health_alert_messages"], mute_xeno_health_alert_messages)
 
 	// Runechat options
 	WRITE_FILE(S["chat_on_map"], chat_on_map)

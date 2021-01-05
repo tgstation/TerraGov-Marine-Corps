@@ -1,4 +1,0 @@
-author: "Hughgent"
-delete-after: True
-changes: 
-  - bugfix: "Synthetic head reattachment surgery will now use the head up."
