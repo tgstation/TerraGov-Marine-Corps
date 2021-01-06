@@ -150,7 +150,7 @@
 		/obj/item/ammobox/standard_lmg = 2,
 	)
 
-// HvH version of the vending machine, containing no ammo for spec weapons and restricted ones
+/// HvH version of the vending machine, containing no ammo for spec weapons and restricted ones
 /obj/machinery/vending/marine/cargo_supply/hvh
 	products = list(
 		/obj/item/storage/box/ammo = 30,
