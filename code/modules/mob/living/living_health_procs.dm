@@ -12,6 +12,12 @@
 	if(updating_health)
 		updatehealth()
 
+///We straight up set bruteloss/brute damage to a desired amount
+/mob/living/proc/setBruteLoss(amount)
+	if(status_flags & GODMODE)
+		return FALSE	//godmode
+	bruteloss = amount
+
 
 /mob/living/proc/getFireLoss()
 	return fireloss
@@ -23,6 +29,12 @@
 
 	if(updating_health)
 		updatehealth()
+
+///We straight up set fireloss/burn damage to a desired amount
+/mob/living/proc/setFireLoss(amount)
+	if(status_flags & GODMODE)
+		return FALSE	//godmode
+	fireloss = amount
 
 
 /mob/living/proc/getOxyLoss()

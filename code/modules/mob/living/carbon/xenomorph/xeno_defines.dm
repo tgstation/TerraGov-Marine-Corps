@@ -317,8 +317,6 @@
 	// *** Ravager vars *** //
 	/// when true the rav will not go into crit or take crit damage.
 	var/endure = FALSE
-	/// how far "dead" the rav has got while ignoring pain.
-	var/endure_state = 0
 
 	// *** Carrier vars *** //
 	var/selected_hugger_type = /obj/item/clothing/mask/facehugger
