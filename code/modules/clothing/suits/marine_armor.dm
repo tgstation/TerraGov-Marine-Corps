@@ -604,7 +604,7 @@
 	slowdown = SLOWDOWN_ARMOR_HEAVY
 	soft_armor = list("melee" = 65, "bullet" = 65, "laser" = 65, "energy" = 60, "bomb" = 60, "bio" = 10, "rad" = 10, "fire" = 60, "acid" = 60)
 
-// Modified version of the armor for HvH combat. Stats are based on heavy armor, with tyr mark 2.
+/// Modified version of the armor for HvH combat. Stats are based on heavy armor, with tyr mark 2.
 /obj/item/clothing/suit/storage/marine/smartgunner/UPP/hvh
 	soft_armor = list("melee" = 60, "bullet" = 80, "laser" = 80, "energy" = 65, "bomb" = 60, "bio" = 60, "rad" = 60, "fire" = 60, "acid" = 70)
 
