@@ -229,7 +229,7 @@
 	if(isclosedturf(current_turf) || isspaceturf(current_turf)) //So we rematerialized in a solid wall/space for some reason; Darwin award winner folks.
 		to_chat(ghost, "<span class='highdanger'>As we idiotically rematerialize in an obviously unsafe position, we revert to where we slipped out of reality at great cost.</span>")
 		ghost.adjustFireLoss((ghost.health * 0.5), TRUE) //Lose half of our health
-		ghost.Paralyze(5 SECONDS * XENO_PARALYZE_NORMALIZATION_MULTIPLIER, xeno_adjust_stun = FALSE) //That oughta teach them.
+		ghost.Paralyze(5 SECONDS * XENO_PARALYZE_NORMALIZATION_MULTIPLIER) //That oughta teach them.
 		ghost.forceMove(starting_turf)
 		teleport_debuff_aoe(ghost) //Debuff when we reappear
 		starting_turf = null
