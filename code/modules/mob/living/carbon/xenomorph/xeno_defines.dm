@@ -310,8 +310,6 @@
 	// *** Ravager vars *** //
 	/// when true the rav will not go into crit or take crit damage.
 	var/endure = FALSE
-	/// how far "dead" the rav has got while ignoring pain.
-	var/endure_state = 0
 
 	//Notification spam controls
 	var/recent_notice = 0

@@ -161,10 +161,10 @@
 /datum/action/xeno_action/activable/endure
 	name = "Endure"
 	action_icon_state = "ignore_pain"
-	mechanics_text = "For the next few moments you will not go into crit, but you still die."
+	mechanics_text = "For the next few moments you will not go into crit, but you still die if you take damage exceeding twice your maximum health."
 	ability_name = "Endure"
 	plasma_cost = 200
-	cooldown_timer = RAVAGER_ENDURE_DURATION
+	cooldown_timer = 60 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY | XACT_IGNORE_SELECTED_ABILITY
 	keybind_signal = COMSIG_XENOABILITY_IGNORE_PAIN
 
@@ -181,7 +181,6 @@
 	"<span class='xenowarning'>We feel the plasma flowing through our veins!</span>")
 
 	X.endure = TRUE
-	X.endure_state = 0
 
 	X.add_filter("ravager_endure_outline", 4, list("type" = "outline", "size" = 1, "color" = COLOR_PURPLE)) //Set our cool aura; also confirmation we have the buff
 
@@ -189,6 +188,8 @@
 	addtimer(CALLBACK(src, .proc/endure_deactivate), RAVAGER_ENDURE_DURATION)
 
 	ADD_TRAIT(X, TRAIT_STAGGERIMMUNE, ENDURE_TRAIT) //Can now endure impacts/damages that would make lesser xenos flinch
+
+	RegisterSignal(X, COMSIG_XENOMORPH_TAKING_DAMAGE, .proc/damage_taken) //Warns us if our health is critically low
 
 	succeed_activate()
 	add_cooldown()
@@ -206,14 +207,29 @@
 /datum/action/xeno_action/activable/endure/proc/endure_deactivate()
 	var/mob/living/carbon/xenomorph/ravager/R = owner
 
+	UnregisterSignal(R, COMSIG_XENOMORPH_TAKING_DAMAGE)
+
 	R.do_jitter_animation(1000)
 	R.endure = FALSE
 	R.remove_filter("ravager_endure_outline")
+	if(R.health < R.get_death_threshold() && R.health > RAVAGER_ENDURE_HP_LIMIT) //If we have less health than our death threshold, but more than our Endure death threshold, set our HP to just a hair above insta dying
+		var/total_damage = R.getFireLoss() + R.getBruteLoss()
+		var/burn_percentile_damage = R.getFireLoss() / total_damage
+		var/brute_percentile_damage = R.getBruteLoss() / total_damage
+		R.setBruteLoss((R.xeno_caste.max_health - R.get_death_threshold()-1) * brute_percentile_damage)
+		R.setFireLoss((R.xeno_caste.max_health - R.get_death_threshold()-1) * burn_percentile_damage)
 
 	REMOVE_TRAIT(R, TRAIT_STAGGERIMMUNE, ENDURE_TRAIT)
 
 	to_chat(owner,"<span class='highdanger'>The last of the plasma drains from our body... We can no longer endure beyond our normal limits!</span>")
 	owner.playsound_local(owner, 'sound/voice/hiss4.ogg', 50, 0, 1)
+
+///Warns us when our health is critically low and tells us exactly how much more punishment we can take
+/datum/action/xeno_action/activable/endure/proc/damage_taken(mob/living/carbon/xenomorph/X, damage_taken)
+	SIGNAL_HANDLER
+	if(X.health < 0)
+		to_chat(X, "<span class='xenohighdanger' style='color: red;'>We are critically wounded! We can only withstand [(RAVAGER_ENDURE_HP_LIMIT-X.health) * -1] more damage before we perish!</span>")
+
 
 /datum/action/xeno_action/activable/endure/ai_should_start_consider()
 	return TRUE
