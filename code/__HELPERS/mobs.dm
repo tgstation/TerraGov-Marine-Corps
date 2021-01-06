@@ -44,7 +44,7 @@
 
 
 /proc/get_playable_species()
-	var/list/playable_species = list(GLOB.all_species[DEFAULT_SPECIES])
+	var/list/playable_species = list(GLOB.roundstart_species[DEFAULT_SPECIES])
 	return playable_species
 
 

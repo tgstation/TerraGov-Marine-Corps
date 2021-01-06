@@ -252,7 +252,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	dat += "<br>"
 	dat += "<b>Eye:</b> <a href='?_src_=prefs;preference=eyecolor'>Color</a> <font face='fixedsys' size='3' color='#[num2hex(r_eyes, 2)][num2hex(g_eyes, 2)][num2hex(b_eyes, 2)]'><table  style='display:inline;' bgcolor='#[num2hex(r_eyes, 2)][num2hex(g_eyes, 2)][num2hex(b_eyes)]'><tr><td>__</td></tr></table></font><br>"
 
-	var/datum/species/current_species = GLOB.all_species[species]
+	var/datum/species/current_species = GLOB.roundstart_species[species]
 	if(current_species.preferences)
 		for(var/preference_id in current_species.preferences)
 			dat += "<b>[current_species.preferences[preference_id]]:</b> <a href='?_src_=prefs;preference=[preference_id]'><b>[vars[preference_id]]</b></a><br>"
@@ -667,7 +667,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			real_name = newname
 
 		if("randomize_name")
-			var/datum/species/S = GLOB.all_species[species]
+			var/datum/species/S = GLOB.roundstart_species[species]
 			real_name = S.random_name(gender)
 
 		if("random_name")
@@ -698,7 +698,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			ethnicity = new_ethnicity
 
 		if("species")
-			var/new_species = input(user, "Choose your species:", "Species") as null|anything in GLOB.all_species[DEFAULT_SPECIES]
+			var/new_species = input(user, "Choose your species:", "Species") as null|anything in GLOB.roundstart_species
 			if(!new_species)
 				return
 			species = new_species
