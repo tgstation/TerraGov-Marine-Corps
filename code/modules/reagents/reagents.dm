@@ -61,7 +61,7 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	/// Specific trait flags, like HEARTSTOPPER CHESTSTOPPER BRADYCARDICS TACHYCARDIC
 	var/trait_flags = NONE
 	///Reagents Effect Multiplier - affects the strength of reagent effects
-	var/REM = 0.5
+	var/rem = 1
 
 /datum/reagent/New()
 	. = ..()
