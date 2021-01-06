@@ -778,6 +778,6 @@
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
 	soft_armor = list("melee" = 55, "bullet" = 50, "laser" = 40, "energy" = 55, "bomb" = 55, "bio" = 55, "rad" = 55, "fire" = 55, "acid" = 60)
 
-// Modified version of the armor for HvH combat. Stats are based on medium armor with mark 2 tyr.
+/// Modified version of the armor for HvH combat. Stats are based on medium armor with mark 2 tyr.
 /obj/item/clothing/suit/storage/marine/som/leader/hvh
 	soft_armor = list("melee" = 55, "bullet" = 75, "laser" = 75, "energy" = 60, "bomb" = 60, "bio" = 60, "rad" = 60, "fire" = 60, "acid" = 65)
