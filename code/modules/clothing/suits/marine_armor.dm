@@ -582,7 +582,7 @@
 	icon_state = "upp_armor_commando"
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 
-// Modified version of the armor for HvH combat. Stats are based on medium armor, with tyr mark 2.
+/// Modified version of the armor for HvH combat. Stats are based on medium armor, with tyr mark 2.
 /obj/item/clothing/suit/storage/faction/UPP/commando/hvh
 	soft_armor = list("melee" = 55, "bullet" = 75, "laser" = 75, "energy" = 60, "bomb" = 60, "bio" = 45, "rad" = 45, "fire" = 60, "acid" = 65)
 
