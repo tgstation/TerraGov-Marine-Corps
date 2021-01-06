@@ -750,7 +750,7 @@
 	flags_item_map_variant = NONE
 
 
-// Modified version of the armor for HvH combat. Stats are on medium armor.
+/// Modified version of the armor for HvH combat. Stats are on medium armor.
 /obj/item/clothing/suit/storage/marine/som/hvh
 	soft_armor = list("melee" = 50, "bullet" = 60, "laser" = 60, "energy" = 55, "bomb" = 55, "bio" = 55, "rad" = 55, "fire" = 55, "acid" = 55)
 
