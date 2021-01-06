@@ -156,7 +156,20 @@
 	desc = "A powerful light placed concealed on the base to provide better visibility."
 	density = 0
 	alpha = 0
+	resistance_flags = RESIST_ALL
 
 /obj/machinery/floodlight/landing/testroom/Initialize(mapload, ...)
 	. = ..()
 	set_light(25)
+
+/// meant for HvH purposes.
+/obj/machinery/floodlight/landing/hvh
+	name = "Sunlight"
+	desc = "Discord light theme edition."
+	density = 0
+	alpha = 0
+	resistance_flags = RESIST_ALL
+
+/obj/machinery/floodlight/landing/hvh/Initialize(mapload, ...)
+	. = ..()
+	set_light(100)
