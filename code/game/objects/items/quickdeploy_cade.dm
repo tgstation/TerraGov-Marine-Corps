@@ -61,6 +61,12 @@
 	to_chat(user, "<span class='notice'>You plop down the barricade in front of you.")
 	return TRUE
 
+/obj/item/quikdeploy/cade/hvh
+	thing_to_deploy = /obj/structure/barricade/metal/hvh
+
 /obj/item/quikdeploy/cade/plasteel
 	thing_to_deploy = /obj/structure/barricade/plasteel
 	icon_state = "plasteel"
+
+/obj/item/quikdeploy/cade/plasteel/hvh
+	thing_to_deploy = /obj/structure/barricade/plasteel/hvh

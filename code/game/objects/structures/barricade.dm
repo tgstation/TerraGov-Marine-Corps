@@ -774,6 +774,14 @@
 #undef BARRICADE_METAL_ANCHORED
 #undef BARRICADE_METAL_FIRM
 
+/// [8:30 PM] AbsoluteJerry: also will you buff cades to be stronk for HvH?
+/// [8:30 PM] AbsoluteJerry: and add a 100% block chance?
+/obj/structure/barricade/metal/hvh
+	name = "kevlar-weave metal barricade"
+	desc = "A sturdy and easily assembled barricade made of kevlar-weave metal plates, often used for quick fortifications. Use a blowtorch to repair."
+	max_integrity = 250
+	soft_armor = list("melee" = 30, "bullet" = 45, "laser" = 20, "energy" = 20, "bomb" = 70, "bio" = 100, "rad" = 0, "fire" = 80, "acid" = 40)
+
 /*----------------------*/
 // PLASTEEL
 /*----------------------*/
@@ -1056,6 +1064,12 @@
 #undef BARRICADE_PLASTEEL_LOOSE
 #undef BARRICADE_PLASTEEL_ANCHORED
 #undef BARRICADE_PLASTEEL_FIRM
+
+/obj/structure/barricade/plasteel/hvh
+	name = "kevlar-weave plasteel barricade"
+	desc = "A very sturdy barricade made out of kevlar-weave infused plasteel panels, the pinnacle of strongpoints. Use a blowtorch to repair. Can be flipped down to create a path."
+	max_integrity = 550
+	soft_armor = list("melee" = 30, "bullet" = 50, "laser" = 10, "energy" = 10, "bomb" = 25, "bio" = 100, "rad" = 0, "fire" = 80, "acid" = 40)
 
 /*----------------------*/
 // SANDBAGS
