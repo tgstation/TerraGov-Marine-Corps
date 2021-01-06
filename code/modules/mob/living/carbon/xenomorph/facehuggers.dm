@@ -216,7 +216,7 @@
 		if(throwing || !lifetimer)//theres only a lifetimer as long as the huggers conscious
 			return
 	var/i = 10//So if we have a pile of dead bodies around, it doesn't scan everything, just ten iterations.
-	for(var/mob/living/M in view(4,src))
+	for(var/mob/living/carbon/M in view(4,src))
 		if(!i)
 			break
 		if(M.can_be_facehugged(src))
@@ -608,7 +608,7 @@
 
 	visible_message("<span class='danger'>[src] explodes into a smoking splatter of acid!</span>")
 
-	for(var/turf/acid_tile in RANGE_TURFS(1, loc))
+	for(var/turf/acid_tile as() in RANGE_TURFS(1, loc))
 		if(!locate(/obj/effect/xenomorph/spray) in acid_tile.contents)
 			new /obj/effect/xenomorph/spray(acid_tile, 10 SECONDS, 16)
 
