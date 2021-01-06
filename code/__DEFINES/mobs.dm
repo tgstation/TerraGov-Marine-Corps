@@ -447,6 +447,9 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define XENO_SILO_DETECTION_COOLDOWN		1 MINUTES
 #define XENO_SILO_DETECTION_RANGE			10//How far silos can detect hostiles
 
+#define XENO_PARALYZE_NORMALIZATION_MULTIPLIER	5 //Multiplies an input to normalize xeno paralyze duration times.
+#define XENO_STUN_NORMALIZATION_MULTIPLIER		2 //Multiplies an input to normalize xeno stun duration times.
+
 #define CANNOT_HOLD_EGGS 0
 #define CAN_HOLD_TWO_HANDS 1
 #define CAN_HOLD_ONE_HAND 2

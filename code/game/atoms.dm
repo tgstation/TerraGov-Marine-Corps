@@ -139,7 +139,7 @@ directive is properly returned.
 	SHOULD_CALL_PARENT(TRUE)
 	. = CanAllowThrough(mover, target)
 	// This is cheaper than calling the proc every time since most things dont override CanPassThrough
-	if(!mover.generic_canpass || mover.status_flags & INCORPOREAL)
+	if(!mover.generic_canpass)
 		return mover.CanPassThrough(src, target, .)
 
 /// Returns true or false to allow the mover to move through src
@@ -152,7 +152,7 @@ directive is properly returned.
 	SHOULD_CALL_PARENT(TRUE)
 	. = CanAllowExit(mover, target)
 	// This is cheaper than calling the proc every time since most things dont override CheckExit
-	if(!mover.generic_canpass || mover.status_flags & INCORPOREAL)
+	if(!mover.generic_canpass)
 		return mover.CanPassThrough(src, target, .)
 
 /// Returns true or false to allow the mover to move out of the atom

@@ -41,7 +41,7 @@
 
 /obj/machinery/door/poddoor/railing/CanAllowExit(atom/movable/O, turf/target)
 	. = ..()
-	if(O && O.throwing)
+	if(O.throwing)
 		return TRUE
 
 /obj/machinery/door/poddoor/railing/CanAllowThrough(atom/movable/mover, turf/target)

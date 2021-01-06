@@ -34,7 +34,7 @@
 
 /obj/structure/platform/CanAllowExit(atom/movable/O, turf/target)
 	. = ..()
-	if(O && O.throwing)
+	if(O.throwing)
 		return TRUE
 
 /obj/structure/platform/CanAllowThrough(atom/movable/mover, turf/target)

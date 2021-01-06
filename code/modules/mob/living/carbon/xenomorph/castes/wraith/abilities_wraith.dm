@@ -36,7 +36,7 @@
 	succeed_activate()
 	add_cooldown()
 
-
+///Nulls out the warp shadow
 /datum/action/xeno_action/place_warp_shadow/proc/unset_warp_shadow()
 	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/ghost = owner
@@ -70,7 +70,6 @@
 		if(!silent)
 			to_chat(ghost, "<span class='xenodanger'>We have no warp shadow to teleport to!</span>")
 		return FALSE
-	return TRUE
 
 /datum/action/xeno_action/hyperposition/action_activate()
 	. = ..()
@@ -146,6 +145,7 @@
 /datum/action/xeno_action/phase_shift/action_activate()
 	. = ..()
 	var/mob/living/carbon/xenomorph/wraith/ghost = owner
+	var/atom/movable/ghost_movable = owner
 
 	ghost.visible_message("<span class='warning'>[ghost.name] is becoming faint and translucent!</span>", \
 	"<span class='xenodanger'>We begin to move out of phase with reality....</span>") //Fluff
@@ -173,6 +173,7 @@
 	addtimer(CALLBACK(src, .proc/phase_shift_deactivate), WRAITH_PHASE_SHIFT_DURATION)
 	ghost.add_filter("wraith_phase_shift", 4, list("type" = "blur", 5)) //Cool filter appear
 
+	ghost_movable.generic_canpass = FALSE //So incorporeality is actually checked for collision
 	ghost.status_flags = GODMODE | INCORPOREAL //Become temporarily invulnerable and incorporeal
 	ghost.resistance_flags = RESIST_ALL
 	ghost.density = FALSE
@@ -187,6 +188,7 @@
 	succeed_activate()
 	add_cooldown()
 
+///Warns the user when Phase Shift is about to end.
 /datum/action/xeno_action/phase_shift/proc/phase_shift_warning()
 
 	if(!owner.get_filter("wraith_phase_shift")) //If phase shift isn't active, cancel out
@@ -197,13 +199,15 @@
 	to_chat(owner,"<span class='highdanger'>We begin to move back into phase with reality... We can only remain out of phase for [WRAITH_PHASE_SHIFT_DURATION * (1-WRAITH_PHASE_SHIFT_DURATION_WARNING) * 0.1] more seconds!</span>")
 	owner.playsound_local(owner, 'sound/voice/hiss4.ogg', 50, 0, 1)
 
-
+///Deactivates and turns off the Phase Shift ability/effects
 /datum/action/xeno_action/phase_shift/proc/phase_shift_deactivate()
-	if(!owner.get_filter("wraith_phase_shift")) //If phase shift isn't active, don't deactivate again.
+	if(!owner.get_filter("wraith_phase_shift")) //If phase shift isn't active, don't deactivate again; generally here for the timed proc.
 		return
 
 	var/mob/living/carbon/xenomorph/wraith/ghost = owner
+	var/atom/movable/ghost_movable = owner
 
+	ghost_movable.generic_canpass = initial(ghost_movable.generic_canpass)
 	ghost.status_flags = initial(ghost.status_flags) //Become merely mortal again
 	ghost.resistance_flags = initial(ghost.resistance_flags)
 	ghost.density = initial(ghost.density)
@@ -225,7 +229,7 @@
 	if(isclosedturf(current_turf) || isspaceturf(current_turf)) //So we rematerialized in a solid wall/space for some reason; Darwin award winner folks.
 		to_chat(ghost, "<span class='highdanger'>As we idiotically rematerialize in an obviously unsafe position, we revert to where we slipped out of reality at great cost.</span>")
 		ghost.adjustFireLoss((ghost.health * 0.5), TRUE) //Lose half of our health
-		ghost.Paralyze(5 SECONDS, xeno_adjust_stun = FALSE) //That oughta teach them.
+		ghost.Paralyze(5 SECONDS * XENO_PARALYZE_NORMALIZATION_MULTIPLIER, xeno_adjust_stun = FALSE) //That oughta teach them.
 		ghost.forceMove(starting_turf)
 		teleport_debuff_aoe(ghost) //Debuff when we reappear
 		starting_turf = null
@@ -233,7 +237,7 @@
 
 	var/distance = get_dist(current_turf, starting_turf)
 	var/phase_shift_stun_time = clamp(distance * 0.1 SECONDS, 0.5 SECONDS, 3 SECONDS) //Recovery time
-	ghost.ParalyzeNoChain(phase_shift_stun_time, xeno_adjust_stun = FALSE)
+	ghost.ParalyzeNoChain(phase_shift_stun_time * XENO_PARALYZE_NORMALIZATION_MULTIPLIER)
 	ghost.visible_message("<span class='warning'>[ghost] form wavers and becomes opaque.</span>", \
 	"<span class='highdanger'>We phase back into reality, our mind reeling from the experience. We estimate we will take [phase_shift_stun_time * 0.1] seconds to recover!</span>")
 
@@ -304,10 +308,10 @@
 	for(var/atom/blocker as() in T)
 		if(blocker.CanPass(owner, T))
 			continue
-		else
-			if(!silent)
-				to_chat(owner, "<span class='xenowarning'>We can't blink into a solid object!</span>")
-			return FALSE
+
+		if(!silent)
+			to_chat(owner, "<span class='xenowarning'>We can't blink into a solid object!</span>")
+		return FALSE
 
 
 /datum/action/xeno_action/activable/blink/use_ability(atom/A)
@@ -384,7 +388,6 @@
 			to_chat(living_target, "<span class='warning'>You feel nauseous as reality warps around you!</span>")
 
 /datum/action/xeno_action/activable/blink/on_cooldown_finish()
-	. = ..()
 	to_chat(owner, "<span class='xenodanger'>We are able to blink again.</span>")
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
@@ -479,6 +482,7 @@
 	GLOB.round_statistics.wraith_banishes++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "wraith_banishes") //Statistics
 
+///Warns the user when Banish's duration is about to lapse.
 /datum/action/xeno_action/activable/banish/proc/banish_warning()
 
 	if(!banished_turf || !banishment_target)
@@ -487,7 +491,7 @@
 	to_chat(owner,"<span class='highdanger'>Our banishment target [banishment_target.name] is about to return to reality at [AREACOORD_NO_Z(portal)]!</span>")
 	owner.playsound_local(owner, 'sound/voice/hiss4.ogg', 50, 0, 1)
 
-
+///Ends the effect of the Banish ability
 /datum/action/xeno_action/activable/banish/proc/banish_deactivate()
 	SIGNAL_HANDLER
 	if(!banished_turf || !banishment_target)
@@ -520,7 +524,6 @@
 	return TRUE //For the recall sub-ability
 
 /datum/action/xeno_action/activable/banish/on_cooldown_finish()
-	. = ..()
 	to_chat(owner, "<span class='xenodanger'>We are able to banish again.</span>")
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
