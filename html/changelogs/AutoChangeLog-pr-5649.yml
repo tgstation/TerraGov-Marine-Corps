@@ -1,5 +1,0 @@
-author: "Holistic"
-delete-after: True
-changes: 
-  - tweak: "Removed one virus recipe."
-  - bugfix: "Now virus food have only one recipe."
