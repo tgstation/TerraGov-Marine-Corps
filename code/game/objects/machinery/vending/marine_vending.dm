@@ -77,8 +77,8 @@
 /obj/machinery/vending/marine/ex_act(severity)
 	return
 
-// HvH version of the vending machine, containing no snipers or slugs. and MGs, shotguns, grenades and scoped weapons are rarer
-// want to get shotguns, scoped weapons and MGs? go to the cargo vendor instead.
+/// HvH version of the vending machine, containing no snipers or slugs. and MGs, shotguns, grenades and scoped weapons are rarer
+/// want to get shotguns, scoped weapons and MGs? go to the cargo vendor instead.
 /obj/machinery/vending/marine/hvh
 	products = list(
 		/obj/item/weapon/gun/pistol/standard_pistol = 25,
@@ -227,8 +227,8 @@
 	. = ..()
 	GLOB.cargo_guns_vendors.Remove(src)
 
-//HvH version
-//The only way to get LMG, DMR, shotguns and GPMG
+///HvH version
+///The only way to get LMG, DMR, shotguns and GPMG
 /obj/machinery/vending/marine/cargo_guns/hvh
 	products = list(
 		/obj/item/weapon/gun/pistol/standard_pistol = 10,
