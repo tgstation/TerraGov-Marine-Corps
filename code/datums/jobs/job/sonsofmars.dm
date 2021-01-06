@@ -35,6 +35,12 @@
 	l_store = /obj/item/storage/pouch/pistol
 	back = /obj/item/storage/backpack/lightpack/som
 
+/datum/outfit/job/som/standard/hvh
+	name = "SOM Standard (HvH)"
+
+	wear_suit = /obj/item/clothing/suit/storage/marine/som/hvh
+	r_store = /obj/item/storage/pouch/firstaid/som/full
+
 
 /datum/outfit/job/som/standard/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -95,6 +101,11 @@
 	l_store = /obj/item/storage/pouch/general/large
 	back = /obj/item/storage/backpack/lightpack/som
 
+/datum/outfit/job/som/medic/hvh
+	name = "SOM Medic (HvH)"
+
+	wear_suit = /obj/item/clothing/suit/storage/marine/som/hvh
+
 
 /datum/outfit/job/som/medic/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -151,6 +162,11 @@
 	r_store = /obj/item/storage/pouch/general/large
 	l_store = /obj/item/storage/pouch/firstaid/som/full
 	back = /obj/item/storage/backpack/lightpack/som
+
+/datum/outfit/job/som/veteran/hvh
+	name = "SOM Veteran (HvH)"
+
+	wear_suit = /obj/item/clothing/suit/storage/marine/som/veteran/hvh
 
 
 /datum/outfit/job/som/veteran/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -209,6 +225,11 @@
 	r_store = /obj/item/storage/pouch/general/som
 	l_store = /obj/item/storage/pouch/firstaid/som/full
 	back = /obj/item/storage/backpack/lightpack/som
+
+/datum/outfit/job/som/leader/hvh
+	name = "SOM Leader (HvH)"
+
+	wear_suit = /obj/item/clothing/suit/storage/marine/som/leader/hvh
 
 
 /datum/outfit/job/som/leader/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)

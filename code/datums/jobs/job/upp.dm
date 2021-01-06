@@ -29,6 +29,11 @@
 	l_store = /obj/item/storage/pouch/magazine/pistol/large
 	back = /obj/item/storage/backpack/lightpack
 
+/datum/outfit/job/upp/standard/hvh
+	name = "USL Gunner (HvH)"
+
+	wear_suit = /obj/item/clothing/suit/storage/faction/UPP/hvh
+
 
 /datum/outfit/job/upp/standard/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -87,6 +92,11 @@
 	l_store = /obj/item/storage/pouch/general/large
 	back = /obj/item/storage/backpack/lightpack
 
+/datum/outfit/job/upp/medic/hvh
+	name = "USL Surgeon (HvH)"
+
+	wear_suit = /obj/item/clothing/suit/storage/faction/UPP/hvh
+
 
 /datum/outfit/job/upp/medic/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -141,6 +151,11 @@
 	l_store = /obj/item/storage/pouch/firstaid/full
 	back = /obj/item/storage/backpack/lightpack
 
+/datum/outfit/job/upp/heavy/hvh
+	name = "USL Powder Monkey (HvH)"
+
+	wear_suit = /obj/item/clothing/suit/storage/faction/UPP/heavy/hvh
+
 
 /datum/outfit/job/upp/heavy/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -174,6 +189,11 @@
 	skills_type = /datum/skills/SL/upp
 	outfit = /datum/outfit/job/upp/leader
 
+
+/datum/outfit/job/upp/leader/hvh
+	name = "USL Captain (HvH)"
+
+	wear_suit = /obj/item/clothing/suit/storage/faction/UPP/heavy/hvh
 
 /datum/outfit/job/upp/leader
 	name = "USL Captain"
