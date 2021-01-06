@@ -888,7 +888,7 @@
 	if(!do_after(owner, 3 SECONDS, FALSE, alien_weeds))
 		return FALSE
 
-	if(!current_turf.check_alien_construction(owner) || !current_turf.check_disallow_alien_fortification(owner))
+	if(!current_turf.check_alien_construction(owner, FALSE, /obj/effect/alien/egg) || !current_turf.check_disallow_alien_fortification(owner))
 		return FALSE
 
 	owner.visible_message("<span class='xenowarning'>\The [owner] has laid an egg!</span>", \
