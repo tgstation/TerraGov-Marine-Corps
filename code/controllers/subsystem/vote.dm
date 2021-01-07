@@ -280,6 +280,8 @@ SUBSYSTEM_DEF(vote)
 		. += "</li><li>"
 
 		var/avm = CONFIG_GET(flag/allow_vote_mode)
+		if((length(GLOB.clients) > CONFIG_GET(number/maximum_clients_for_gamemode_vote)))
+			avm = FALSE
 		if(avm || admin)
 			. += "<a href='?_src_=vote;vote=gamemode'>GameMode</a>"
 		else
