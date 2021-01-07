@@ -978,6 +978,15 @@
 	recoil = 3
 	scatter = -100
 
+/obj/item/weapon/gun/launcher/rocket/sadar/equipped(mob/user, slot)
+	. = ..()
+	if (GLOB.monitor_statistics.SADAR_in_use.Find(src))
+		GLOB.monitor_statistics.SADAR_in_use+=src
+
+/obj/item/weapon/gun/launcher/rocket/sadar/removed_from_inventory()
+	. = ..()
+	GLOB.monitor_statistics.SADAR_in_use-=src
+
 //-------------------------------------------------------
 //M5 RPG'S MEAN FUCKING COUSIN
 
@@ -1069,6 +1078,14 @@
 	recoil_unwielded = 4
 	damage_falloff_mult = 0.5
 
+/obj/item/weapon/gun/minigun/pickup(mob/user)
+	. = ..()
+	if (!GLOB.monitor_statistics.Miniguns_in_use.Find(src))
+		GLOB.monitor_statistics.Miniguns_in_use+=src
+
+/obj/item/weapon/gun/minigun/removed_from_inventory()
+	. = ..()
+	GLOB.monitor_statistics.Miniguns_in_use-=src
 
 //This is a minigun not a chaingun.
 obj/item/weapon/gun/minigun/Fire(atom/target, mob/living/user, params, reflex = FALSE, dual_wield)

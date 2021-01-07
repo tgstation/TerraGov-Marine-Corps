@@ -289,6 +289,15 @@
 	supporting_limbs = CHEST | GROIN | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_LEFT | LEG_RIGHT | FOOT_LEFT | FOOT_RIGHT //B18 effectively stabilizes these.
 	resistance_flags = UNACIDABLE
 
+/obj/item/clothing/suit/storage/marine/specialist/equipped(mob/user, slot)
+	. = ..()
+	if (GLOB.monitor_statistics.B18_in_use.Find(src))
+		GLOB.monitor_statistics.B18_in_use+=src
+
+/obj/item/clothing/suit/storage/marine/specialist/unequipped(mob/user, slot)
+	. = ..()
+	GLOB.monitor_statistics.B18_in_use-=src
+
 /obj/item/clothing/suit/storage/marine/specialist/Initialize(mapload, ...)
 	. = ..()
 	AddComponent(/datum/component/suit_autodoc)
@@ -305,6 +314,15 @@
 	flags_heat_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 	slowdown = SLOWDOWN_ARMOR_HEAVY
 
+/obj/item/clothing/suit/storage/marine/B17/equipped(mob/user, slot)
+	. = ..()
+	if (GLOB.monitor_statistics.B17_in_use.Find(src))
+		GLOB.monitor_statistics.B17_in_use+=src
+
+
+/obj/item/clothing/suit/storage/marine/B17/unequipped(mob/user, slot)
+	. = ..()
+	GLOB.monitor_statistics.B17_in_use-=src
 /obj/item/clothing/suit/storage/marine/M3T
 	name = "\improper M3-T light armor"
 	desc = "A custom set of M3 armor designed for users of long ranged explosive weaponry."

@@ -526,3 +526,14 @@
 		if(save_id && istype(i, /obj/item/card/id))
 			continue
 		qdel(i)
+
+/**
+ * Return the number of item equipped or in the hands of the human of type type_searched  of type type_searched 
+ * type_searched the type of item you want to check
+ */
+/mob/living/carbon/human/proc/is_type_in_slots(type_searched) 
+	var/amount = 0
+	for (var/slot in SLOT_ALL)
+		if (istype(get_item_by_slot(slot), type_searched))
+			amount++
+	return amount

@@ -244,6 +244,9 @@
 	if(flags_item & DELONDROP)
 		qdel(src)
 
+///Called whenever an item is removed from the inventory (IE dropped to the ground or given to someone else)
+/obj/item/proc/removed_from_inventory(mob/user)
+	return
 
 // called just as an item is picked up (loc is not yet changed)
 /obj/item/proc/pickup(mob/user)

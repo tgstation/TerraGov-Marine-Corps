@@ -344,6 +344,13 @@
 		if(hive.living_xeno_queen)
 			new_xeno.handle_xeno_leader_pheromones(hive.living_xeno_queen)
 
+	if(upgrade == XENO_UPGRADE_THREE)
+		switch(tier)
+			if(XENO_TIER_TWO)
+				GLOB.monitor_statistics.Ancient_T2--
+			if(XENO_TIER_THREE)
+				GLOB.monitor_statistics.Ancient_T3--
+
 	qdel(src)
 	INVOKE_ASYNC(new_xeno, /mob/living.proc/do_jitter_animation, 1000)
 

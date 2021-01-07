@@ -213,7 +213,7 @@ WEAPONS
 /datum/supply_packs/weapons/specdemo
 	name = "Demolitionist Specialist kit"
 	contains = list(/obj/item/weapon/gun/launcher/rocket/sadar)
-	cost = 90
+	cost = SADAR_PRICE
 
 /datum/supply_packs/weapons/autosniper
 	name = "IFF Auto Sniper kit"
@@ -227,7 +227,7 @@ WEAPONS
 /datum/supply_packs/weapons/specminigun
 	name = "MIC-A7 Vindicator Minigun"
 	contains = list(/obj/item/weapon/gun/minigun)
-	cost = 80
+	cost = MINIGUN_PRICE
 
 /datum/supply_packs/weapons/smartgun
 	name = "T-29 Smart Machinegun"
@@ -645,7 +645,7 @@ ARMOR
 		/obj/item/clothing/suit/storage/marine/specialist,
 		/obj/item/clothing/head/helmet/marine/specialist,
 	)
-	cost = 100
+	cost = B18_PRICE
 
 /datum/supply_packs/armor/b17
 	name = "B17 Armor Set"
@@ -653,7 +653,7 @@ ARMOR
 		/obj/item/clothing/suit/storage/marine/B17,
 		/obj/item/clothing/head/helmet/marine/grenadier,
 	)
-	cost = 60
+	cost = B17_PRICE
 
 /datum/supply_packs/armor/scout_cloak
 	name = "Scout Cloak"
