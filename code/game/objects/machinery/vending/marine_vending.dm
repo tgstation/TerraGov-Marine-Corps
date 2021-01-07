@@ -101,8 +101,6 @@
 		/obj/item/ammo_magazine/rifle/standard_br = 10,
 		/obj/item/weapon/gun/energy/lasgun/lasrifle = 10,
 		/obj/item/cell/lasgun/lasrifle = 20,
-		/obj/item/ammo_magazine/shotgun/buckshot = 5,
-		/obj/item/ammo_magazine/shotgun/flechette = 5,
 		/obj/item/explosive/grenade/frag = 15,
 		/obj/item/attachable/bayonetknife = 20,
 		/obj/item/weapon/throwing_knife = 5,
