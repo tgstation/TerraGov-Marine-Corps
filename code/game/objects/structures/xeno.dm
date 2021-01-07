@@ -140,7 +140,7 @@
 ///Ensures that no huggies will be released when the trap is crushed by a shuttle; no more trapping shuttles with huggies
 /obj/effect/alien/resin/trap/proc/shuttle_crush()
 	SIGNAL_HANDLER
-	QDEL_NULL(src)
+	qdel(src)
 
 
 /obj/effect/alien/resin/trap/examine(mob/user)
@@ -780,7 +780,7 @@ TUNNEL
 ///Ensures that no acid gas will be released when the well is crushed by a shuttle
 /obj/effect/alien/resin/acidwell/proc/shuttle_crush()
 	SIGNAL_HANDLER
-	QDEL_NULL(src)
+	qdel(src)
 
 
 /obj/effect/alien/resin/acidwell/obj_destruction(damage_amount, damage_type, damage_flag)
