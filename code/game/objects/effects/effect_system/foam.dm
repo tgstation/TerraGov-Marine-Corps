@@ -36,15 +36,7 @@
 	STOP_PROCESSING(SSfastprocess, src)
 	return ..()	
 
-
-/*/obj/effect/particle_effect/foam/New(loc)
-	..(loc)
-	icon_state = "[ismetal ? "m":""]foam"
-	metal = ismetal
-	spawn(3 + metal*3)
-		process()
-		checkReagents()*/
-
+///Finishes the foam, stopping it from processing and doing whatever it has to do.
 /obj/effect/particle_effect/foam/proc/kill_foam()
 	STOP_PROCESSING(SSfastprocess, src)
 	switch(metal)
@@ -61,7 +53,6 @@
 	flick("[icon_state]-disolve", src)
 	QDEL_IN(src, 5)
 
-
 /obj/effect/particle_effect/foam/process()
 	lifetime--
 	if(lifetime < 1)
@@ -76,7 +67,7 @@
 			reagents.reaction(O, VAPOR, fraction)
 	var/hit = 0
 	for(var/mob/living/L in range(0, src))
-		hit += foam_mob(L))
+		hit += foam_mob(L)
 	if(hit)
 		lifetime++
 	var/T = get_turf(src)
@@ -86,6 +77,7 @@
 		return
 	spread_foam()
 
+///Applies foam reagents reaction on the mob OR anything overrided by some foam type.
 /obj/effect/particle_effect/foam/proc/foam_mob(mob/living/L)
 	if(lifetime < 1)
 		return FALSE
@@ -97,6 +89,7 @@
 	lifetime--
 	return TRUE
 
+///Spreads the foam in the 4 cardinal directions and gives them the reagents and all.
 /obj/effect/particle_effect/foam/proc/spread_foam()
 	for(var/direction in GLOB.cardinals)
 		var/turf/T = get_step(src, direction)
