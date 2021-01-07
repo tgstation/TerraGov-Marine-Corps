@@ -1,0 +1,4 @@
+author: "Surrealaser"
+delete-after: True
+changes: 
+  - rscadd: "Xenos can now scout out the surroundings of a tunnel they travel to."
