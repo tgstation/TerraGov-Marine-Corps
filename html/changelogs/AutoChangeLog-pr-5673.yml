@@ -1,4 +1,0 @@
-author: "Surrealaser"
-delete-after: True
-changes: 
-  - bugfix: "Observers can now properly move to Rally Hive and Resin Silo death alerts"

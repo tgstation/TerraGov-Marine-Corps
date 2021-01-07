@@ -1,8 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - tweak: "tweaked railgunning timing a bit, it now takes time to triangulate the laser and for railgun shells to reach ground (depends on the orbit, between 3-5 seconds to reach ground after being called instead of 1.5-2 currently)"
-  - tweak: "tweaked tac binos, you can know shift click to get coordinates instead of using range finder mode, each mode now has its own laser dot"
-  - tweak: "Cas can no longer begin fire mission on OB or railgun laser"
-  - imageadd: "added blue laser dot"
-  - bugfix: "firing the OB from tac binos didn't have any randomness like using overwatch did, now fixed"

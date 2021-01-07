@@ -1,4 +1,0 @@
-author: "fernandos13"
-delete-after: True
-changes: 
-  - bugfix: "OD too close to critical OD on RR"
