@@ -231,7 +231,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 /mob/living/IsVocal()
 	. = ..()
 
-	if(mute || disabilities & MUTE)
+	if(HAS_TRAIT(src, TRAIT_MUTED) || disabilities & MUTE)
 		return FALSE
 
 /mob/living/proc/can_speak_vocal(message) //Check AFTER handling of xeno channels

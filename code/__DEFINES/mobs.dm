@@ -474,6 +474,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define HUNTER_STEALTH_RUN_ALPHA				128 //50% transparency
 #define HUNTER_STEALTH_STEALTH_DELAY			30 //3 seconds before 95% stealth
 #define HUNTER_STEALTH_INITIAL_DELAY			20 //2 seconds before we can increase stealth
+#define HUNTER_STEALTH_LAST_RUN_INTENT_COOLDOWN	2 SECONDS
 #define HUNTER_POUNCE_SNEAKATTACK_DELAY 		30 //3 seconds before we can sneak attack
 #define HANDLE_STEALTH_CHECK					1
 #define HANDLE_SNEAK_ATTACK_CHECK				3
@@ -486,7 +487,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define HUNTER_SNEAK_SLASH_DAMAGE_MULTIPLIER	0.5 //Multiplies the Hunter's slash damage by this amount on a successful sneak attack
 #define HUNTER_SILENCE_STAGGER_STACKS			1 //Silence imposes this many stagger stacks
 #define HUNTER_SILENCE_SENSORY_STACKS			6 //Silence imposes this many eyeblur, mute and deafen stacks.
-#define HUNTER_SILENCE_DURATION					10 SECONDS //Removes blindness and deafness from the Hunter's Impair Senses after this delay.
+#define HUNTER_SILENCE_DURATION					10 SECONDS //Removes mute from the Hunter's Silence after this delay.
 #define HUNTER_SILENCE_RANGE					5 //Range in tiles of the Hunter's Silence.
 #define HUNTER_SILENCE_WINDUP					0.3 SECONDS //Windup of the Hunter's Silence
 #define HUNTER_SILENCE_WHIFF_COOLDOWN			5 SECONDS //If we fail to target anyone with Silence, partial cooldown to prevent spam.

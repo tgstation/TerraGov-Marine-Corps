@@ -473,11 +473,13 @@
 	full_name = "Hunter: Stealth Stinger"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_STEALTH_STINGER
+
 /datum/keybinding/xeno/hunter_mark
 	name = "hunter_mark"
 	full_name = "Hunter: Stealth Stinger"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_HUNTER_MARK
+
 /datum/keybinding/xeno/psychic_trace
 	name = "psychic_trace"
 	full_name = "Hunter: Psychic Trace"

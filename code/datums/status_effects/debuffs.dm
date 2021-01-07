@@ -228,3 +228,17 @@
 
 /datum/status_effect/noplasmaregen/tick()
 	to_chat(owner, "<span class='warning'>You feel too weak to summon new plasma...</span>")
+
+//MUTE
+/datum/status_effect/mute
+	id = "mute"
+
+/datum/status_effect/mute/on_apply()
+	. = ..()
+	if(!.)
+		return
+	ADD_TRAIT(owner, TRAIT_MUTED, TRAIT_STATUS_EFFECT(id))
+
+/datum/status_effect/incapacitating/adminsleep/on_remove()
+	REMOVE_TRAIT(owner, TRAIT_MUTED, TRAIT_STATUS_EFFECT(id))
+	return ..()

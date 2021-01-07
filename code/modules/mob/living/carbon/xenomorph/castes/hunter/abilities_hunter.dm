@@ -13,7 +13,7 @@
 	var/stealth = FALSE
 	var/can_sneak_attack = FALSE
 	var/stealth_alpha_multiplier = 1
-	var/last_run_intent
+	COOLDOWN_DECLARE(stealth_last_run_intent)
 
 /datum/action/xeno_action/stealth/give_action(mob/living/L)
 	. = ..()
@@ -83,6 +83,7 @@
 
 	//Now we reset Stealth:
 	stealth = TRUE
+	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED, .proc/handle_stealth)
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, .proc/handle_stealth)
 	handle_stealth()
 
@@ -117,10 +118,9 @@
 	add_cooldown()
 	addtimer(CALLBACK(src, .proc/sneak_attack_cooldown), HUNTER_POUNCE_SNEAKATTACK_DELAY) //Short delay before we can sneak attack.
 
+///Cancels out of the Stealth effect, ending it
 /datum/action/xeno_action/stealth/proc/cancel_stealth(silent = FALSE, change_move_intent = TRUE) //This happens if we take damage, attack, pounce, toggle stealth off, and do other such exciting stealth breaking activities.
 	SIGNAL_HANDLER
-	if(!stealth)//sanity check/safeguard
-		return
 	if(!silent)
 		to_chat(owner, "<span class='xenodanger'>We emerge from the shadows.</span>")
 	if(change_move_intent) //By default we swap to running after sneak attack for quick get-aways
@@ -129,7 +129,7 @@
 	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED) //This should be handled on the ability datum or a component.
 	stealth = FALSE
 	can_sneak_attack = FALSE
-	owner.alpha = 255 //no transparency/translucency
+	owner.alpha = initial(owner.alpha) //no transparency/translucency
 
 /datum/action/xeno_action/stealth/proc/sneak_attack_cooldown()
 	if(!stealth || can_sneak_attack)
@@ -157,8 +157,7 @@
 		owner.alpha = HUNTER_STEALTH_WALK_ALPHA * stealth_alpha_multiplier
 	//Running stealth
 	else
-		last_run_intent = world.time  //Get a time stamp for the last time we used the run intent to move, so we can't just sprint next to someone, quickswap to stalk and get full sneak attack benefits like some x-ploiter
-		message_admins("last run intent: [world.time]")
+		COOLDOWN_START(src, stealth_last_run_intent, HUNTER_STEALTH_LAST_RUN_INTENT_COOLDOWN) //set the cooldown. //Get a time stamp for the last time we used the run intent to move, so we can't just sprint next to someone, quickswap to stalk and get full sneak attack benefits like some x-ploiter
 		xenoowner.use_plasma(HUNTER_STEALTH_RUN_PLASMADRAIN)
 		owner.alpha = HUNTER_STEALTH_RUN_ALPHA * stealth_alpha_multiplier
 	//If we have 0 plasma after expending stealth's upkeep plasma, end stealth.
@@ -202,7 +201,7 @@
 	var/paralyze_time = HUNTER_SNEAK_ATTACK_PARALYZE_TIME
 	var/staggerslow_stacks = HUNTER_SNEAK_ATTACK_STAGGERSLOW_STACKS
 	var/flavour
-	if(last_run_intent > (world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY)) //We penalize running with a compromised sneak attack, unless they've been stationary; walking is fine.
+	if(!COOLDOWN_CHECK(src, stealth_last_run_intent)) //We penalize running with a compromised sneak attack, unless they've been stationary; walking is fine.
 		flavour = "vicious"
 		staggerslow_stacks *= HUNTER_SNEAK_ATTACK_RUNNING_MULTIPLIER //half as much stagger slow if we're running and not stationary
 		paralyze_time = 0 //No stun time for sprint sneak attacks
@@ -241,10 +240,11 @@
 		return
 	return COMSIG_ACCURATE_ZONE
 
+///Check to see if we can sneak attack
 /datum/action/xeno_action/stealth/proc/sneak_attack_check()
 	SIGNAL_HANDLER
 	if(!stealth || !can_sneak_attack)
-		return
+		return NONE
 	return COMSIG_HUNTER_SNEAK_ATTACK
 
 
@@ -299,30 +299,29 @@
 	X.face_atom(A)
 
 	if(!do_after(X, HUNTER_STINGER_WINDUP, TRUE, target, BUSY_ICON_HOSTILE)) //Slight wind up
-		to_chat(X, "<span class='xenodanger'>We abort silencing....</span>")
+		to_chat(X, "<span class='xenodanger'>We abort silencing...</span>")
 		return fail_activate()
 
 	var/victim_count
 	var/list/target_turfs = RANGE_TURFS(2, A)
 	for(var/turf/targetted as() in target_turfs)
-		for(var/atom/movable/target as() in targetted.contents)
-			if(!isliving(target)) //We only care about living targets
+		for(var/mob/living/target as() in targetted.contents)
+			if(!isliving(target)) //Filter out non-living
 				continue
-			var/mob/living/victim = target
-			if(victim.stat == DEAD) //Ignore the dead
+			if(target.stat == DEAD) //Ignore the dead
 				continue
-			if(!X.line_of_sight(victim)) //Need line of sight
+			if(!X.line_of_sight(target)) //Need line of sight
 				continue
-			if(isxeno(victim)) //Ignore friendlies
-				var/mob/living/carbon/xenomorph/xeno_victim
+			if(isxeno(target)) //Ignore friendlies
+				var/mob/living/carbon/xenomorph/xeno_victim = target
 				if(X.issamexenohive(xeno_victim))
 					continue
-			to_chat(victim, "<span class='danger'>Your mind convulses at the touch of something ominous as the world seems to blur, your voice dies in your throat, and everything falls silent!</span>") //Notify privately
-			victim.playsound_local(victim, 'sound/effects/ghost.ogg', 25, 0, 1) //Spooky psychic noises.
-			victim.adjust_stagger(HUNTER_SILENCE_STAGGER_STACKS) //Stagger for a very short duration
-			victim.adjust_blurriness(HUNTER_SILENCE_SENSORY_STACKS) //Eye blur
-			victim.adjust_ear_damage(deaf = HUNTER_SILENCE_SENSORY_STACKS) //Temporary deafness
-			victim.set_mute(HUNTER_SILENCE_SENSORY_STACKS) //Temporary mute; in your desperate final moments, no one can hear you scream
+			to_chat(target, "<span class='danger'>Your mind convulses at the touch of something ominous as the world seems to blur, your voice dies in your throat, and everything falls silent!</span>") //Notify privately
+			target.playsound_local(target, 'sound/effects/ghost.ogg', 25, 0, 1) //Spooky psychic noises.
+			target.adjust_stagger(HUNTER_SILENCE_STAGGER_STACKS) //Stagger for a very short duration
+			target.adjust_blurriness(HUNTER_SILENCE_SENSORY_STACKS) //Eye blur
+			target.adjust_ear_damage(deaf = HUNTER_SILENCE_SENSORY_STACKS) //Temporary deafness
+			target.Mute(HUNTER_SILENCE_DURATION) //Temporary mute; in your desperate final moments, no one can hear you scream
 			victim_count++
 
 	if(!victim_count)
@@ -399,13 +398,13 @@
 				to_chat(X, "<span class='xenowarning'>We refrain from unnecessarily bullying the host.</span>")
 			return FALSE
 
-	if(!SEND_SIGNAL(X, COMSIG_HUNTER_SNEAK_ATTACK_CHECK) & COMSIG_HUNTER_SNEAK_ATTACK)
+	if(!(SEND_SIGNAL(X, COMSIG_HUNTER_SNEAK_ATTACK_CHECK) & COMSIG_HUNTER_SNEAK_ATTACK))
 		if(!silent)
 			to_chat(X, "<span class='xenowarning'>We must be able to sneak attack the target to properly sting it!</span>")
 		return FALSE
 
 	var/datum/action/xeno_action/stealth/sneak_attack_check = X.actions_by_path[/datum/action/xeno_action/stealth]
-	if(sneak_attack_check.last_run_intent > (world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY))//We can't sprint up to the target and use this.
+	if(!COOLDOWN_CHECK(sneak_attack_check, stealth_last_run_intent))//We can't sprint up to the target and use this.
 		if(!silent)
 			to_chat(X, "<span class='xenowarning'>We must be stalking or stationary to properly sting the target!</span>")
 		return FALSE
@@ -434,10 +433,8 @@
 	victim.attack_alien(X) //We auto-sneak attack as part of this ability.
 	var/inject_toxin = /datum/reagent/toxin/acid/xeno_acid
 	var/transfer_amount = HUNTER_SNEAK_ATTACK_INJECT_AMOUNT
-	if(X.a_intent != INTENT_HARM) //Inject neurotoxin instead of acid while on non-harm intent and double the dose
-		inject_toxin = /datum/reagent/toxin/xeno_neurotoxin
-		transfer_amount *= 2
-		if(X.a_intent == INTENT_HELP) //So we do *something* visual
+	if(X.a_intent != INTENT_HARM)
+		if(X.a_intent == INTENT_HELP) //So we do *something* visual for help intent
 			X.do_attack_animation(victim)
 
 	var/atom/reagent_name = inject_toxin
@@ -526,6 +523,7 @@
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "hunter_marks") //Statistics
 	add_cooldown()
 
+///Nulls the target of our hunter's mark
 /datum/action/xeno_action/activable/hunter_mark/proc/unset_target()
 	var/mob/living/carbon/xenomorph/X = owner
 	UnregisterSignal(X.hunter_mark_target, COMSIG_PARENT_PREQDELETED)
@@ -579,11 +577,9 @@
 
 	return succeed_activate()
 
-/datum/action/xeno_action/psychic_trace/proc/calculate_mark_health() //Where we calculate the approximate health of our trace target
+///Where we calculate the approximate health of our trace target
+/datum/action/xeno_action/psychic_trace/proc/calculate_mark_health()
 	var/mob/living/carbon/xenomorph/X = owner
-
-	if(!isliving(X.hunter_mark_target)) //Sanity
-		return "indeterminant"
 
 	var/mob/living/target = X.hunter_mark_target
 	if(target.stat == DEAD)

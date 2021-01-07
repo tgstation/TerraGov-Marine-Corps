@@ -301,6 +301,8 @@
 #define COMSIG_LIVING_STATUS_SLEEP "living_sleeping"			//from base of mob/living/Sleeping() (amount, update, ignore)
 #define COMSIG_LIVING_STATUS_CONFUSED "living_confused"			//from base of mob/living/Confused() (amount, update, ignore)
 	#define COMPONENT_NO_STUN (1<<0)			//For all of them
+#define COMSIG_LIVING_STATUS_MUTE "living_mute"					//from base of mob/living/Mute()
+	#define COMPONENT_NO_MUTE (1<<0)							//Whether the target can be muted
 
 #define COMSIG_LIVING_ADD_VENTCRAWL "living_add_ventcrawl"
 #define COMSIG_LIVING_WEEDS_ADJACENT_REMOVED "living_weeds_adjacent_removed"	///from obj/effect/alien/weeds/Destroy()

@@ -259,11 +259,6 @@
 	if(ear_damage < 100)
 		adjust_ear_damage(-0.05, -1)	// having ear damage impairs the recovery of ear_deaf
 
-/mob/living/carbon/proc/handle_impaired_speaking()
-	//Mouth
-	adjust_mute(-1)		//Remove a tick of temporary mute
-
 /mob/living/carbon/proc/handle_disabilities()
 	handle_impaired_vision()
 	handle_impaired_hearing()
-	handle_impaired_speaking()
