@@ -81,7 +81,7 @@
 // Default preferences
 #define DEFAULT_SPECIES "Human"
 
-#define GAME_YEAR 2415
+#define GAME_YEAR 2416
 
 
 #define MAX_MESSAGE_LEN 1024
