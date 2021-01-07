@@ -23,9 +23,8 @@
 	var/amount = 3
 	///How much long the foam lasts
 	var/lifetime = 40
-	
+	///How much the reagents in the foam are divided when applying and how much it can apply per proccess.
 	var/reagent_divisor = 7
-	var/expand = 1
 	animate_movement = NO_STEPS
 	var/metal = 0
 
