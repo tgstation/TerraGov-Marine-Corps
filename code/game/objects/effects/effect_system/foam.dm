@@ -19,8 +19,11 @@
 	density = FALSE
 	layer = BELOW_MOB_LAYER
 	mouse_opacity = 0
+	///How much tiles the foam expands on. 
 	var/amount = 3
+	///How much long the foam lasts
 	var/lifetime = 40
+	
 	var/reagent_divisor = 7
 	var/expand = 1
 	animate_movement = NO_STEPS
@@ -158,7 +161,7 @@
 		metal = metalfoam
 
 /datum/effect_system/foam_spread/start()
-	var/obj/effect/particle_effect/foam/F = new effect_type(location)
+	var/obj/effect/particle_effect/foam/F = new(location)
 	var/foamcolor = mix_color_from_reagents(chemholder.reagents.reagent_list)
 	chemholder.reagents.copy_to(F, chemholder.reagents.total_volume/amount)
 	F.add_atom_colour(foamcolor, FIXED_COLOUR_PRIORITY)
