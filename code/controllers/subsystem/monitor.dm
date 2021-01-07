@@ -29,9 +29,9 @@ SUBSYSTEM_DEF(monitor)
 
 ///checks if we should refresh the director state, and reschedules if necessary
 /datum/controller/subsystem/monitor/proc/check_state()
-    if(scheduled <= world.time)
-        etablish_state()
-        reschedule()
+	if(scheduled <= world.time)
+		etablish_state()
+		reschedule()
 
 ///decides which world.time we should calculate a new monitor state at.
 /datum/controller/subsystem/monitor/proc/reschedule()
