@@ -494,7 +494,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define HUNTER_STINGER_WINDUP					0.3 SECONDS //Windup of the Sneak Attack sting.
 #define HUNTER_MARK_WINDUP						1 SECONDS //Windup of the Hunter's Mark
 #define HUNTER_SNEAK_ATTACK_INJECT_AMOUNT		10 //Base amount to inject on Sneak Attack
-#define HUNTER_PSYCHIC_TRACE_COOLDOWN			3 SECONDS //Cooldown of the Hunter's Psychic Trace
+#define HUNTER_PSYCHIC_TRACE_COOLDOWN			4 SECONDS //Cooldown of the Hunter's Psychic Trace
 
 
 //Ravager defines:

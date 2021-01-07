@@ -476,7 +476,7 @@
 
 /datum/keybinding/xeno/hunter_mark
 	name = "hunter_mark"
-	full_name = "Hunter: Stealth Stinger"
+	full_name = "Hunter: Hunter's Mark"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_HUNTER_MARK
 
