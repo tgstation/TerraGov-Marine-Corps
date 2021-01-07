@@ -43,7 +43,7 @@ GLOBAL_LIST_EMPTY(language_datum_instances)
 GLOBAL_LIST_EMPTY(all_languages)
 
 GLOBAL_LIST_EMPTY(all_species)
-GLOBAL_LIST_INIT(roundstart_species, list("Human", "Vatborn"))
+GLOBAL_LIST_EMPTY(roundstart_species)
 
 GLOBAL_LIST_EMPTY_TYPED(xeno_caste_datums, /list/datum/xeno_caste)
 GLOBAL_LIST_INIT(xeno_types_tier_one, list(/mob/living/carbon/xenomorph/runner, /mob/living/carbon/xenomorph/drone, /mob/living/carbon/xenomorph/sentinel, /mob/living/carbon/xenomorph/defender))
