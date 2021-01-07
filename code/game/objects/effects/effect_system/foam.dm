@@ -61,36 +61,27 @@
 	flick("[icon_state]-disolve", src)
 	QDEL_IN(src, 5)
 
-// transfer any reagents to the floor
-/*/obj/effect/particle_effect/foam/proc/checkReagents()
-	if(!metal && reagents)
-		for(var/atom/A in src.loc.contents)
-			if(A == src)
-				continue
-			reagents.reaction(A, 1, 1)*/
 
 /obj/effect/particle_effect/foam/process()
 	lifetime--
 	if(lifetime < 1)
 		kill_foam()
+		return
 
 	var/fraction = 1/initial(reagent_divisor)
 	for(var/obj/O in range(0, src))
 		if(O.type == src.type)
 			continue
-		if(isturf(O.loc))
-			var/turf/T = O.loc
-			if(T.intact_tile && HAS_TRAIT(O, TRAIT_T_RAY_VISIBLE))
-				continue
 		if(lifetime % reagent_divisor)
-			reagents.reaction(O, VAPOR,fraction)
+			reagents.reaction(O, VAPOR, fraction)
+	var/hit = 0
 	for(var/mob/living/L in range(0, src))
-		if(foam_mob(L))
-			lifetime++
+		hit += foam_mob(L))
+	if(hit)
+		lifetime++
 	var/T = get_turf(src)
 	if(lifetime % reagent_divisor)
 		reagents.reaction(T, VAPOR, fraction)
-
 	if(--amount < 0)
 		return
 	spread_foam()
@@ -105,27 +96,6 @@
 		reagents.reaction(L, VAPOR, fraction)
 	lifetime--
 	return TRUE
-
-/*for(var/direction in GLOB.cardinals)
-		var/turf/T = get_step(src,direction)
-		if(!T)
-			continue
-
-		if(!T.Enter(src))
-			continue
-
-		var/obj/effect/particle_effect/foam/F = locate() in T
-		if(F)
-			continue
-
-		F = new(T, metal)
-		F.amount = amount
-		if(!metal)
-			F.create_reagents(10)
-			if (reagents)
-				for(var/datum/reagent/R in reagents.reagent_list)
-					F.reagents.add_reagent(R.type, 1, safety = 1)		//added safety check since reagents in the foam have already had a chance to react
-*/
 
 /obj/effect/particle_effect/foam/proc/spread_foam()
 	for(var/direction in GLOB.cardinals)
@@ -145,16 +115,12 @@
 		reagents.copy_to(F, reagents.total_volume)
 		F.color = color
 		F.metal = metal
-		
-	
 
 // foam disolves when heated
 // except metal foams
 /obj/effect/particle_effect/foam/fire_act(exposed_temperature, exposed_volume)
 	if(!metal && prob(max(0, exposed_temperature - 475)))
-		flick("[icon_state]-disolve", src)
-
-		QDEL_IN(src, 5)
+		kill_foam()
 
 
 /obj/effect/particle_effect/foam/Crossed(atom/movable/AM)
@@ -173,7 +139,6 @@
 	var/amount = 5				// the size of the foam spread.
 	var/list/carried_reagents	// the IDs of reagents present when the foam was mixed
 	var/obj/chemholder
-	var/effect_type = /obj/effect/particle_effect/foam
 	var/metal = 0				// 0=foam, 1=metalfoam, 2=razorburn
 
 /datum/effect_system/foam_spread/New()
@@ -206,15 +171,6 @@
 	F.add_atom_colour(foamcolor, FIXED_COLOUR_PRIORITY)
 	F.amount = amount
 	F.metal = metal
-	
-	/*spawn(0)
-		var/obj/effect/particle_effect/foam/F = locate() in location
-		if(F)
-			F.amount += amount
-			return
-
-		F = new(src.location, metal)
-		F.amount = amount*/
 
 // wall formed by metal foams
 // dense and opaque, but easy to break
