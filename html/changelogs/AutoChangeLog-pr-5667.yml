@@ -1,0 +1,4 @@
+author: "XSlayer300"
+delete-after: True
+changes: 
+  - rscadd: "TerraGov allowed barbers to shave marines with more haircuts, more haircuts are now available from the preferences menu."
