@@ -259,11 +259,11 @@
 	if(eyeobj.eye_user)
 		to_chat(user, "<span class='warning'>CAS mode is already in-use!</span>")
 		return
-	if(!length(GLOB.active_laser_targets))
+	if(!length(GLOB.active_cas_targets))
 		to_chat(user, "<span class='warning'>No active laser targets detected!</span>")
 		return
 	to_chat(user, "<span class='warning'>Laser targets detected, routing to target.</span>")
-	var/input = input(user, "Select a CAS target", "CAS targetting") as null|anything in GLOB.active_laser_targets
+	var/input = input(user, "Select a CAS target", "CAS targetting") as null|anything in GLOB.active_cas_targets
 	if(!input)
 		return
 	give_eye_control(user)
@@ -353,7 +353,7 @@
 		if(weapon == active_weapon)
 			.["active_weapon_tag"] = element_nbr
 		element_nbr++
-	.["active_lasers"] = length(GLOB.active_laser_targets)
+	.["active_lasers"] = length(GLOB.active_cas_targets)
 	.["active_weapon_name"] = null
 	.["active_weapon_ammo"] = null
 	.["active_weapon_max_ammo"] = null
