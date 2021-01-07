@@ -41,8 +41,9 @@ SUBSYSTEM_DEF(monitor)
 /datum/controller/subsystem/monitor/proc/etablish_state()
 	current_points = calculate_state_points() / max(GLOB.alive_human_list.len + GLOB.alive_xeno_list.len,20)//having less than 20 players gives bad results
 	set_state(current_points)
-	spam_admins() //only for testing
+	//spam_admins() only for testing
 
+///Messages admin with the current state
 /datum/controller/subsystem/monitor/proc/spam_admins()
 	message_admins("New state calculated by the monitor, state : [current_state] , exact balance points : [current_points]")
 
