@@ -1,0 +1,4 @@
+author: "Walarks"
+delete-after: True
+changes: 
+  - tweak: "added the weeds_speed_mod var for configuring xeno movement speed on weeds on a per-caste basis."
