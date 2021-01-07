@@ -1,0 +1,4 @@
+author: "Holistic"
+delete-after: True
+changes: 
+  - tweak: "Hyposprays capacity changed from 60u to 120u, one hypospray cost changed from 2 to 3."
