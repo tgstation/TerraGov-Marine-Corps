@@ -35,7 +35,7 @@
 	if(ishuman(L)) //Critical overdose causes total blackout and heart damage. Too much stimulant
 		var/mob/living/carbon/human/H = L
 		var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
-		E.take_damage(0.5*rem, TRUE)
+		E.take_damage(0.5*effect_str, TRUE)
 	if(prob(10))
 		L.emote(pick("twitch","blink_r","shiver"))
 
@@ -59,12 +59,12 @@
 
 /datum/reagent/medicine/ryetalyn/overdose_process(mob/living/L, metabolism)
 	L.Confused(40 SECONDS)
-	L.apply_damage(rem, TOX)
+	L.apply_damage(effect_str, TOX)
 
 /datum/reagent/medicine/ryetalyn/overdose_crit_process(mob/living/L, metabolism)
 	if(prob(15))
 		L.Unconscious(30 SECONDS)
-	L.apply_damage(3*rem, CLONE)
+	L.apply_damage(3*effect_str, CLONE)
 
 /datum/reagent/medicine/paracetamol
 	name = "Paracetamol"
@@ -79,18 +79,18 @@
 
 /datum/reagent/medicine/paracetamol/on_mob_life(mob/living/L, metabolism)
 	L.reagent_pain_modifier += PAIN_REDUCTION_HEAVY
-	L.heal_limb_damage(0.2*rem, 0.2*rem)
-	L.adjustToxLoss(-0.1*rem)
-	L.adjustStaminaLoss(-rem)
+	L.heal_limb_damage(0.2*effect_str, 0.2*effect_str)
+	L.adjustToxLoss(-0.1*effect_str)
+	L.adjustStaminaLoss(-effect_str)
 	return ..()
 
 /datum/reagent/paracetamol/overdose_process(mob/living/L, metabolism)
 	L.hallucination = max(L.hallucination, 2)
 	L.reagent_pain_modifier += PAIN_REDUCTION_VERY_LIGHT
-	L.apply_damage(0.5*rem, TOX)
+	L.apply_damage(0.5*effect_str, TOX)
 
 /datum/reagent/paracetamol/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damage(3*rem, TOX)
+	L.apply_damage(3*effect_str, TOX)
 
 /datum/reagent/medicine/tramadol
 	name = "Tramadol"
@@ -105,15 +105,15 @@
 	L.reagent_pain_modifier += PAIN_REDUCTION_VERY_HEAVY
 	if(volume > 20)
 		L.reagent_pain_modifier += PAIN_REDUCTION_LIGHT
-		L.apply_damage(0.25*rem, TOX)
+		L.apply_damage(0.25*effect_str, TOX)
 	return ..()
 
 /datum/reagent/medicine/tramadol/overdose_process(mob/living/L, metabolism)
 	L.hallucination = max(L.hallucination, 2) //Hallucinations and oxy damage
-	L.apply_damage(rem, OXY)
+	L.apply_damage(effect_str, OXY)
 
 /datum/reagent/medicine/tramadol/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damage(3*rem, TOX)
+	L.apply_damage(3*effect_str, TOX)
 
 /datum/reagent/medicine/oxycodone
 	name = "Oxycodone"
@@ -126,23 +126,23 @@
 
 /datum/reagent/medicine/oxycodone/on_mob_life(mob/living/L, metabolism)
 	L.reagent_pain_modifier += PAIN_REDUCTION_FULL
-	L.adjustStaminaLoss(0.5*rem)
+	L.adjustStaminaLoss(0.5*effect_str)
 	return ..()
 
 /datum/reagent/medicine/oxycodone/overdose_process(mob/living/L, metabolism)
 	L.hallucination = max(L.hallucination, 3)
 	L.set_drugginess(10)
-	L.apply_damage(rem, TOX)
+	L.apply_damage(effect_str, TOX)
 	L.jitter(3)
 
 /datum/reagent/medicine/oxycodone/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damage(3*rem, TOX)
+	L.apply_damage(3*effect_str, TOX)
 	L.reagent_pain_modifier += PAIN_REDUCTION_FULL
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
 		var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
 		if(E)
-			E.take_damage(3*rem, TRUE)
+			E.take_damage(3*effect_str, TRUE)
 
 /datum/reagent/medicine/hydrocodone
 	name = "Hydrocodone"
@@ -158,10 +158,10 @@
 	return ..()
 
 /datum/reagent/medicine/hydrocodone/overdose_process(mob/living/L, metabolism)
-	L.adjustToxLoss(2.5*rem, TRUE)
+	L.adjustToxLoss(2.5*effect_str, TRUE)
 
 /datum/reagent/medicine/hydrocodone/overdose_crit_process(mob/living/L, metabolism)
-	L.adjustBrainLoss(1.5*rem, TRUE)
+	L.adjustBrainLoss(1.5*effect_str, TRUE)
 
 /datum/reagent/medicine/leporazine
 	name = "Leporazine"
@@ -174,9 +174,9 @@
 /datum/reagent/medicine/leporazine/on_mob_life(mob/living/L, metabolism)
 	var/target_temp = L.get_standard_bodytemperature()
 	if(L.bodytemperature > target_temp)
-		L.adjust_bodytemperature(-40*TEMPERATURE_DAMAGE_COEFFICIENT*rem, target_temp)
+		L.adjust_bodytemperature(-40*TEMPERATURE_DAMAGE_COEFFICIENT*effect_str, target_temp)
 	else if(L.bodytemperature < target_temp + 1)
-		L.adjust_bodytemperature(40*TEMPERATURE_DAMAGE_COEFFICIENT*rem, 0, target_temp)
+		L.adjust_bodytemperature(40*TEMPERATURE_DAMAGE_COEFFICIENT*effect_str, 0, target_temp)
 	return ..()
 
 /datum/reagent/medicine/leporazine/overdose_process(mob/living/L, metabolism)
@@ -198,21 +198,21 @@
 
 /datum/reagent/medicine/kelotane/on_mob_life(mob/living/L, metabolism)
 	var/target_temp = L.get_standard_bodytemperature()
-	L.heal_limb_damage(0, rem)
+	L.heal_limb_damage(0, effect_str)
 	if(L.bodytemperature > target_temp)
-		L.adjust_bodytemperature(-2.5*TEMPERATURE_DAMAGE_COEFFICIENT*rem, target_temp)
+		L.adjust_bodytemperature(-2.5*TEMPERATURE_DAMAGE_COEFFICIENT*effect_str, target_temp)
 	if(volume > 10)
 		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
 	if(volume > 20)
 		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
-		L.heal_limb_damage(0, 0.5*rem)
+		L.heal_limb_damage(0, 0.5*effect_str)
 	return ..()
 
 /datum/reagent/medicine/kelotane/overdose_process(mob/living/L, metabolism)
-	L.apply_damages(rem, 0, rem)
+	L.apply_damages(effect_str, 0, effect_str)
 
 /datum/reagent/medicine/kelotane/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damages(2*rem, 0, 2*rem)
+	L.apply_damages(2*effect_str, 0, 2*effect_str)
 
 /datum/reagent/medicine/dermaline
 	name = "Dermaline"
@@ -226,21 +226,21 @@
 
 /datum/reagent/medicine/dermaline/on_mob_life(mob/living/L, metabolism)
 	var/target_temp = L.get_standard_bodytemperature()
-	L.heal_limb_damage(0, 2*rem)
+	L.heal_limb_damage(0, 2*effect_str)
 	if(L.bodytemperature > target_temp)
-		L.adjust_bodytemperature(-5*TEMPERATURE_DAMAGE_COEFFICIENT*rem, target_temp)
+		L.adjust_bodytemperature(-5*TEMPERATURE_DAMAGE_COEFFICIENT*effect_str, target_temp)
 	if(volume > 5)
 		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
 	if(volume > 10)
 		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
-		L.heal_limb_damage(0, 1.5*rem)
+		L.heal_limb_damage(0, 1.5*effect_str)
 	return ..()
 
 /datum/reagent/medicine/dermaline/overdose_process(mob/living/L, metabolism)
-	L.apply_damages(rem, 0, rem)
+	L.apply_damages(effect_str, 0, effect_str)
 
 /datum/reagent/medicine/dermaline/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damages(3*rem, 0, 3*rem)
+	L.apply_damages(3*effect_str, 0, 3*effect_str)
 
 /datum/reagent/medicine/dexalin
 	name = "Dexalin"
@@ -252,17 +252,17 @@
 
 /datum/reagent/medicine/dexalin/on_mob_life(mob/living/L,metabolism)
 	if(metabolism & IS_VOX)
-		L.adjustToxLoss(3*rem)
+		L.adjustToxLoss(3*effect_str)
 	else
-		L.adjustOxyLoss(-3*rem)
-	holder.remove_reagent("lexorin", rem)
+		L.adjustOxyLoss(-3*effect_str)
+	holder.remove_reagent("lexorin", effect_str)
 	return ..()
 
 /datum/reagent/medicine/dexalin/overdose_process(mob/living/L, metabolism)
-	L.apply_damage(rem, TOX)
+	L.apply_damage(effect_str, TOX)
 
 /datum/reagent/medicine/dexalin/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damages(2*rem, 0, 2*rem)
+	L.apply_damages(2*effect_str, 0, 2*effect_str)
 
 /datum/reagent/medicine/dexalinplus
 	name = "Dexalin Plus"
@@ -274,17 +274,17 @@
 
 /datum/reagent/medicine/dexalinplus/on_mob_life(mob/living/L,metabolism)
 	if(metabolism & IS_VOX)
-		L.adjustToxLoss(1.5*rem)
+		L.adjustToxLoss(1.5*effect_str)
 	else
 		L.adjustOxyLoss(-L.getOxyLoss())
-	holder.remove_reagent("lexorin", rem)
+	holder.remove_reagent("lexorin", effect_str)
 	return ..()
 
 /datum/reagent/medicine/dexalinplus/overdose_process(mob/living/L, metabolism)
-	L.apply_damage(rem, TOX)
+	L.apply_damage(effect_str, TOX)
 
 /datum/reagent/medicine/dexalinplus/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damages(2*rem, 0, 3*rem)
+	L.apply_damages(2*effect_str, 0, 3*effect_str)
 
 /datum/reagent/medicine/tricordrazine
 	name = "Tricordrazine"
@@ -299,9 +299,9 @@
 
 /datum/reagent/medicine/tricordrazine/on_mob_life(mob/living/L, metabolism)
 
-	L.adjustOxyLoss(-0.5*rem)
-	L.adjustToxLoss(-0.4*rem)
-	L.heal_limb_damage(0.8*rem, 0.8*rem)
+	L.adjustOxyLoss(-0.5*effect_str)
+	L.adjustToxLoss(-0.4*effect_str)
+	L.heal_limb_damage(0.8*effect_str, 0.8*effect_str)
 	if(volume > 10)
 		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
 	if(volume > 20)
@@ -310,10 +310,10 @@
 
 /datum/reagent/medicine/tricordrazine/overdose_process(mob/living/L, metabolism)
 	L.jitter(5)
-	L.adjustBrainLoss(rem, TRUE)
+	L.adjustBrainLoss(effect_str, TRUE)
 
 /datum/reagent/medicine/tricordrazine/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damages(3*rem, 3*rem, 3*rem)
+	L.apply_damages(3*effect_str, 3*effect_str, 3*effect_str)
 
 /datum/reagent/medicine/dylovene
 	name = "Dylovene"
@@ -327,10 +327,10 @@
 	taste_description = "a roll of gauze"
 
 /datum/reagent/medicine/dylovene/on_mob_life(mob/living/L,metabolism)
-	L.hallucination = max(0, L.hallucination -  2.5*rem)
-	L.adjustToxLoss(-rem)
+	L.hallucination = max(0, L.hallucination -  2.5*effect_str)
+	L.adjustToxLoss(-effect_str)
 	if(volume > 10)
-		L.adjustStaminaLoss(0.5*rem)
+		L.adjustStaminaLoss(0.5*effect_str)
 	return ..()
 
 /datum/reagent/medicine/dylovene/overdose_process(mob/living/L, metabolism)
@@ -339,15 +339,15 @@
 	var/mob/living/carbon/human/H = L
 	var/datum/internal_organ/eyes/E = H.internal_organs_by_name["eyes"]
 	if(E)
-		E.take_damage(0.5*rem, TRUE)
+		E.take_damage(0.5*effect_str, TRUE)
 
 /datum/reagent/medicine/dylovene/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damages(2*rem, 2*rem)
+	L.apply_damages(2*effect_str, 2*effect_str)
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
 		var/datum/internal_organ/eyes/E = H.internal_organs_by_name["eyes"]
 		if(E)
-			E.take_damage(1.5*rem, TRUE)
+			E.take_damage(1.5*effect_str, TRUE)
 
 /datum/reagent/medicine/adminordrazine //An OP chemical for admins
 	name = "Adminordrazine"
@@ -356,7 +356,7 @@
 	taste_description = "badmins"
 
 /datum/reagent/medicine/adminordrazine/on_mob_life(mob/living/L, metabolism)
-	L.reagents.remove_all_type(/datum/reagent/toxin, 2.5*rem, 0, 1)
+	L.reagents.remove_all_type(/datum/reagent/toxin, 2.5*effect_str, 0, 1)
 	L.setCloneLoss(0)
 	L.setOxyLoss(0)
 	L.heal_limb_damage(5, 5)
@@ -396,22 +396,22 @@
 	L.AdjustUnconscious(-20)
 	L.AdjustStun(-20)
 	L.AdjustParalyzed(-20)
-	L.adjustToxLoss(2*rem)
+	L.adjustToxLoss(2*effect_str)
 	L.hallucination = max(0, L.hallucination - 10)
 	switch(current_cycle)
 		if(1 to 5)
-			L.adjustStaminaLoss(-7.5*rem)
+			L.adjustStaminaLoss(-7.5*effect_str)
 		if(6 to 20)
-			L.adjustStaminaLoss((current_cycle*1.5 - 14)*rem)
+			L.adjustStaminaLoss((current_cycle*1.5 - 14)*effect_str)
 		if(20 to INFINITY)
-			L.adjustStaminaLoss(15*rem)
+			L.adjustStaminaLoss(15*effect_str)
 	return ..()
 
 /datum/reagent/medicine/synaptizine/overdose_process(mob/living/L, metabolism)
-	L.apply_damage(rem, TOX)
+	L.apply_damage(effect_str, TOX)
 
 /datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damages(rem, rem, rem)
+	L.apply_damages(effect_str, effect_str, effect_str)
 
 /datum/reagent/medicine/neuraline //injected by neurostimulator implant and medic-only injector
 	name = "Neuraline"
@@ -436,16 +436,16 @@
 	L.AdjustStun(-40)
 	L.AdjustParalyzed(-20)
 	L.AdjustSleeping(-40)
-	L.adjustStaminaLoss(-30*rem)
-	L.heal_limb_damage(7.5*rem, 7.5*rem)
-	L.adjustToxLoss(3.75*rem)
+	L.adjustStaminaLoss(-30*effect_str)
+	L.heal_limb_damage(7.5*effect_str, 7.5*effect_str)
+	L.adjustToxLoss(3.75*effect_str)
 	return ..()
 
 /datum/reagent/medicine/neuraline/overdose_process(mob/living/L, metabolism)
-	L.adjustToxLoss(2.5*rem, TRUE)
+	L.adjustToxLoss(2.5*effect_str, TRUE)
 
 /datum/reagent/medicine/neuraline/overdose_crit_process(mob/living/L, metabolism)
-	L.adjustBrainLoss(10*rem, TRUE) //if you double inject, you're fucked till surgery. This is the downside of a very strong chem.
+	L.adjustBrainLoss(10*effect_str, TRUE) //if you double inject, you're fucked till surgery. This is the downside of a very strong chem.
 
 /datum/reagent/medicine/hyronalin
 	name = "Hyronalin"
@@ -457,14 +457,14 @@
 	scannable = TRUE
 
 /datum/reagent/medicine/hyronalin/on_mob_life(mob/living/L)
-	L.adjustToxLoss(-rem)
+	L.adjustToxLoss(-effect_str)
 	return ..()
 
 /datum/reagent/medicine/hyronalin/overdose_process(mob/living/L, metabolism)
-	L.apply_damage(2*rem, TOX)
+	L.apply_damage(2*effect_str, TOX)
 
 /datum/reagent/medicine/hyronalin/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damages(0, rem, rem)
+	L.apply_damages(0, effect_str, effect_str)
 
 /datum/reagent/medicine/arithrazine
 	name = "Arithrazine"
@@ -475,16 +475,16 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/2
 
 /datum/reagent/medicine/arithrazine/on_mob_life(mob/living/L)
-	L.adjustToxLoss(-0.5*rem)
+	L.adjustToxLoss(-0.5*effect_str)
 	if(prob(15))
-		L.take_limb_damage(rem, 0)
+		L.take_limb_damage(effect_str, 0)
 	return ..()
 
 /datum/reagent/medicine/arithrazine/overdose_process(mob/living/L, metabolism)
-	L.apply_damage(rem, TOX)
+	L.apply_damage(effect_str, TOX)
 
 /datum/reagent/arithrazine/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damages(rem, rem, 2*rem)
+	L.apply_damages(effect_str, effect_str, 2*effect_str)
 
 /datum/reagent/medicine/russian_red
 	name = "Russian Red"
@@ -496,18 +496,18 @@
 	scannable = TRUE
 
 /datum/reagent/medicine/russian_red/on_mob_life(mob/living/L, metabolism)
-	L.heal_limb_damage(5*rem, 5*rem)
-	L.adjustToxLoss(-2.5*rem)
-	L.adjustCloneLoss(2*rem)
+	L.heal_limb_damage(5*effect_str, 5*effect_str)
+	L.adjustToxLoss(-2.5*effect_str)
+	L.adjustCloneLoss(2*effect_str)
 	return ..()
 
 /datum/reagent/medicine/russian_red/overdose_process(mob/living/L, metabolism)
-	L.apply_damages(rem, 0, 0)
-	L.adjustBrainLoss(rem, TRUE)
+	L.apply_damages(effect_str, 0, 0)
+	L.adjustBrainLoss(effect_str, TRUE)
 
 /datum/reagent/medicine/russian_red/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damages(rem, 2*rem, rem)
-	L.adjustBrainLoss(rem, TRUE)
+	L.apply_damages(effect_str, 2*effect_str, effect_str)
+	L.adjustBrainLoss(effect_str, TRUE)
 
 /datum/reagent/medicine/alkysine
 	name = "Alkysine"
@@ -520,14 +520,14 @@
 
 /datum/reagent/medicine/alkysine/on_mob_life(mob/living/L, metabolism)
 	L.reagent_shock_modifier += PAIN_REDUCTION_VERY_LIGHT
-	L.adjustBrainLoss(-1.5*rem)
+	L.adjustBrainLoss(-1.5*effect_str)
 	return ..()
 
 /datum/reagent/medicine/alkysine/overdose_process(mob/living/L, metabolism)
-	L.apply_damage(rem, TOX)
+	L.apply_damage(effect_str, TOX)
 
 /datum/reagent/medicine/alkysine/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damages(0, rem, rem)
+	L.apply_damages(0, effect_str, effect_str)
 
 /datum/reagent/medicine/imidazoline
 	name = "Imidazoline"
@@ -545,14 +545,14 @@
 		var/mob/living/carbon/human/H = L
 		var/datum/internal_organ/eyes/E = H.internal_organs_by_name["eyes"]
 		if(E)
-			E.heal_organ_damage(rem)
+			E.heal_organ_damage(effect_str)
 	return ..()
 
 /datum/reagent/medicine/imidazoline/overdose_process(mob/living/L, metabolism)
-	L.apply_damage(2*rem, TOX)
+	L.apply_damage(2*effect_str, TOX)
 
 /datum/reagent/medicine/imidazoline/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damages(0, rem, 2*rem)
+	L.apply_damages(0, effect_str, 2*effect_str)
 
 /datum/reagent/medicine/peridaxon
 	name = "Peridaxon"
@@ -571,14 +571,14 @@
 		if(I.damage)
 			if(L.bodytemperature > 169 && I.damage > 5)
 				continue
-			I.heal_organ_damage(rem)
+			I.heal_organ_damage(effect_str)
 	return ..()
 
 /datum/reagent/medicine/peridaxon/overdose_process(mob/living/L, metabolism)
-	L.apply_damage(2*rem, BRUTE)
+	L.apply_damage(2*effect_str, BRUTE)
 
 /datum/reagent/peridaxon/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damages(rem, 3*rem, 3*rem)
+	L.apply_damages(effect_str, 3*effect_str, 3*effect_str)
 
 /datum/reagent/medicine/peridaxon_plus
 	name = "Peridaxon Plus"
@@ -596,14 +596,14 @@
 	var/mob/living/carbon/human/H = L
 	for(var/datum/internal_organ/I in H.internal_organs)
 		if(I.damage)
-			I.heal_organ_damage(2*rem)
+			I.heal_organ_damage(2*effect_str)
 	return ..()
 
 /datum/reagent/medicine/peridaxon_plus/overdose_process(mob/living/L, metabolism)
-	L.apply_damage(15*rem, TOX)
+	L.apply_damage(15*effect_str, TOX)
 
 /datum/reagent/peridaxon_plus/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damages(15*rem, TOX) //Ya triple-clicked. Ya shouldn'ta did that.
+	L.apply_damages(15*effect_str, TOX) //Ya triple-clicked. Ya shouldn'ta did that.
 
 /datum/reagent/medicine/bicaridine
 	name = "Bicaridine"
@@ -616,20 +616,20 @@
 	scannable = TRUE
 
 /datum/reagent/medicine/bicaridine/on_mob_life(mob/living/L, metabolism)
-	L.heal_limb_damage(rem, 0)
+	L.heal_limb_damage(effect_str, 0)
 	if(volume > 10)
 		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
 	if(volume > 20)
 		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
-		L.heal_limb_damage(0.5*rem, 0)
+		L.heal_limb_damage(0.5*effect_str, 0)
 	return ..()
 
 
 /datum/reagent/medicine/bicaridine/overdose_process(mob/living/L, metabolism)
-	L.apply_damage(rem, BURN)
+	L.apply_damage(effect_str, BURN)
 
 /datum/reagent/medicine/bicaridine/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damages(rem, 3*rem, 2*rem)
+	L.apply_damages(effect_str, 3*effect_str, 2*effect_str)
 
 /datum/reagent/medicine/meralyne
 	name = "Meralyne"
@@ -642,20 +642,20 @@
 	purge_rate = 0.2
 
 /datum/reagent/medicine/meralyne/on_mob_life(mob/living/L, metabolism)
-	L.heal_limb_damage(2*rem, 0)
+	L.heal_limb_damage(2*effect_str, 0)
 	if(volume > 5)
 		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
 	if(volume > 10)
 		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
-		L.heal_limb_damage(1.5*rem, 0)
+		L.heal_limb_damage(1.5*effect_str, 0)
 	return ..()
 
 
 /datum/reagent/medicine/meralyne/overdose_process(mob/living/L, metabolism)
-	L.apply_damage(2*rem, BURN)
+	L.apply_damage(2*effect_str, BURN)
 
 /datum/reagent/medicine/meralyne/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damages(2*rem, 6*rem, 4*rem)
+	L.apply_damages(2*effect_str, 6*effect_str, 4*effect_str)
 
 /datum/reagent/medicine/quickclot
 	name = "Quick Clot"
@@ -673,7 +673,7 @@
 	for(var/datum/limb/X in H.limbs)
 		for(var/datum/wound/W in X.wounds)
 			if(W.internal)
-				W.damage = max(0, W.damage - (rem))
+				W.damage = max(0, W.damage - (effect_str))
 				X.update_damages()
 				if (X.update_icon())
 					X.owner.UpdateDamageIcon(1)
@@ -681,10 +681,10 @@
 
 
 /datum/reagent/medicine/quickclot/overdose_process(mob/living/L, metabolism)
-	L.apply_damage(2*rem, BRUTE)
+	L.apply_damage(2*effect_str, BRUTE)
 
 /datum/reagent/medicine/quickclot/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damages(0, 2*rem, 2*rem)
+	L.apply_damages(0, 2*effect_str, 2*effect_str)
 
 
 /datum/reagent/medicine/quickclotplus
@@ -701,18 +701,18 @@
 	for(var/datum/limb/X in H.limbs)
 		for(var/datum/wound/W in X.wounds)
 			if(W.internal)
-				W.damage = max(0, W.damage - (2.5*rem))
+				W.damage = max(0, W.damage - (2.5*effect_str))
 				X.update_damages()
 				if (X.update_icon())
 					X.owner.UpdateDamageIcon(1)
 	L.reagents.add_reagent(/datum/reagent/toxin,5)
 	L.reagent_shock_modifier -= PAIN_REDUCTION_FULL
-	L.adjustStaminaLoss(15*rem)
+	L.adjustStaminaLoss(15*effect_str)
 	return ..()
 
 
 /datum/reagent/medicine/quickclotplus/overdose_process(mob/living/L, metabolism)
-	L.apply_damage(1.5*rem, TOX)
+	L.apply_damage(1.5*effect_str, TOX)
 	L.blood_volume -= 4
 
 /datum/reagent/medicine/quickclotplus/overdose_crit_process(mob/living/L, metabolism)
@@ -763,13 +763,13 @@
 /datum/reagent/medicine/hyperzine/on_mob_life(mob/living/L, metabolism)
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
-		C.adjust_nutrition(-volume * 1.5*rem)
+		C.adjust_nutrition(-volume * 1.5*effect_str)
 	if(prob(1))
 		L.emote(pick("twitch","blink_r","shiver"))
 		if(ishuman(L))
 			var/mob/living/carbon/human/H = L
 			var/datum/internal_organ/heart/F = H.internal_organs_by_name["heart"]
-			F.take_damage(rem, TRUE)
+			F.take_damage(effect_str, TRUE)
 	return ..()
 
 /datum/reagent/medicine/hyperzine/overdose_process(mob/living/L, metabolism)
@@ -778,7 +778,7 @@
 		var/mob/living/carbon/human/H = L
 		var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
 		if(E)
-			E.take_damage(0.5*rem, TRUE)
+			E.take_damage(0.5*effect_str, TRUE)
 	if(prob(10))
 		L.emote(pick("twitch", "blink_r", "shiver"))
 
@@ -788,7 +788,7 @@
 		var/mob/living/carbon/human/H = L
 		var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
 		if(E)
-			E.take_damage(2*rem, TRUE)
+			E.take_damage(2*effect_str, TRUE)
 	if(prob(25))
 		L.emote(pick("twitch", "blink_r", "shiver"))
 
@@ -814,7 +814,7 @@
 		L.AdjustParalyzed(-20)
 		L.AdjustStun(-20)
 		L.AdjustUnconscious(-20)
-	L.adjustStaminaLoss(-2*rem)
+	L.adjustStaminaLoss(-2*effect_str)
 	if(prob(2))
 		L.emote(pick("twitch","blink_r","shiver"))
 	return ..()
@@ -850,8 +850,8 @@
 		L.hallucination += 20
 		L.AdjustConfused(10 SECONDS)
 		L.dizzy(60)
-	L.adjustToxLoss(0.1*rem)
-	L.adjustBrainLoss(0.1*rem, TRUE)
+	L.adjustToxLoss(0.1*effect_str)
+	L.adjustBrainLoss(0.1*effect_str, TRUE)
 
 /datum/reagent/medicine/ultrazine/addiction_act_stage4(mob/living/L, metabolism)
 	if(prob(10))
@@ -864,13 +864,13 @@
 		L.hallucination += 30
 		L.AdjustConfused(14 SECONDS)
 		L.dizzy(80)
-	L.adjustToxLoss(0.3*rem)
-	L.adjustBrainLoss(0.1*rem, TRUE)
+	L.adjustToxLoss(0.3*effect_str)
+	L.adjustBrainLoss(0.1*effect_str, TRUE)
 	if(prob(15) && ishuman(L))
 		var/mob/living/carbon/human/H = L
 		var/affected_organ = pick("heart","lungs","liver","kidneys")
 		var/datum/internal_organ/I =  H.internal_organs_by_name[affected_organ]
-		I.take_damage(5.5*rem)
+		I.take_damage(5.5*effect_str)
 	return
 
 
@@ -879,20 +879,20 @@
 		var/mob/living/carbon/human/H = L
 		var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
 		if(E)
-			E.take_damage(0.5*rem, TRUE)
+			E.take_damage(0.5*effect_str, TRUE)
 	else
-		L.adjustToxLoss(0.5*rem)
+		L.adjustToxLoss(0.5*effect_str)
 	if(prob(10))
 		L.emote(pick("twitch", "blink_r", "shiver"))
 
 /datum/reagent/medicine/ultrazine/overdose_crit_process(mob/living/L, metabolism)
 	if(!ishuman(L))
-		L.adjustToxLoss(1.5*rem)
+		L.adjustToxLoss(1.5*effect_str)
 	else
 		var/mob/living/carbon/human/H = L
 		var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
 		if(E)
-			E.take_damage(1.5*rem, TRUE)
+			E.take_damage(1.5*effect_str, TRUE)
 
 /datum/reagent/medicine/cryoxadone
 	name = "Cryoxadone"
@@ -905,10 +905,10 @@
 
 /datum/reagent/medicine/cryoxadone/on_mob_life(mob/living/L, metabolism)
 	if(L.bodytemperature < 170)
-		L.adjustCloneLoss(-rem)
-		L.adjustOxyLoss(-rem)
-		L.heal_limb_damage(rem,rem)
-		L.adjustToxLoss(-rem)
+		L.adjustCloneLoss(-effect_str)
+		L.adjustOxyLoss(-effect_str)
+		L.heal_limb_damage(effect_str,effect_str)
+		L.adjustToxLoss(-effect_str)
 	return ..()
 
 /datum/reagent/medicine/clonexadone
@@ -921,10 +921,10 @@
 
 /datum/reagent/medicine/clonexadone/on_mob_life(mob/living/L, metabolism)
 	if(L.bodytemperature < 170)
-		L.adjustCloneLoss(-3*rem)
-		L.adjustOxyLoss(-3*rem)
-		L.heal_limb_damage(3*rem,3*rem)
-		L.adjustToxLoss(-3*rem)
+		L.adjustCloneLoss(-3*effect_str)
+		L.adjustOxyLoss(-3*effect_str)
+		L.heal_limb_damage(3*effect_str,3*effect_str)
+		L.adjustToxLoss(-3*effect_str)
 
 	return ..()
 
@@ -941,27 +941,27 @@
 /datum/reagent/medicine/rezadone/on_mob_life(mob/living/L, metabolism)
 	switch(current_cycle)
 		if(1 to 15)
-			L.adjustCloneLoss(-rem)
-			L.heal_limb_damage(rem,rem)
+			L.adjustCloneLoss(-effect_str)
+			L.heal_limb_damage(effect_str,effect_str)
 		if(16 to 35)
-			L.adjustCloneLoss(-2*rem)
-			L.heal_limb_damage(2*rem,rem)
+			L.adjustCloneLoss(-2*effect_str)
+			L.heal_limb_damage(2*effect_str,effect_str)
 
 			L.status_flags &= ~DISFIGURED
 			if(ishuman(L))
 				var/mob/living/carbon/human/H = L
 				H.name = H.get_visible_name()
 		if(35 to INFINITY)
-			L.adjustToxLoss(rem)
+			L.adjustToxLoss(effect_str)
 			L.dizzy(5)
 			L.jitter(5)
 	return ..()
 
 /datum/reagent/medicine/rezadone/overdose_process(mob/living/L, metabolism)
-	L.apply_damage(rem, TOX)
+	L.apply_damage(effect_str, TOX)
 
 /datum/reagent/medicine/rezadone/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damage(2*rem, TOX)
+	L.apply_damage(2*effect_str, TOX)
 
 /datum/reagent/medicine/spaceacillin
 	name = "Spaceacillin"
@@ -973,10 +973,10 @@
 	scannable = TRUE
 
 /datum/reagent/medicine/spaceacillin/overdose_process(mob/living/L, metabolism)
-	L.apply_damage(rem, TOX)
+	L.apply_damage(effect_str, TOX)
 
 /datum/reagent/medicine/spaceacillin/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damage(2*rem, TOX)
+	L.apply_damage(2*effect_str, TOX)
 
 /datum/reagent/medicine/polyhexanide
 	name = "Polyhexanide"
@@ -989,17 +989,17 @@
 /datum/reagent/medicine/polyhexanide/on_mob_life(mob/living/L, metabolism)
 	switch(current_cycle)
 		if(1 to 9)
-			L.adjustToxLoss(rem)
+			L.adjustToxLoss(effect_str)
 			L.adjustDrowsyness(5)
 		if(10 to 50)
-			L.adjustToxLoss(1.25*rem)
+			L.adjustToxLoss(1.25*effect_str)
 			L.Sleeping(10 SECONDS)
 		if(51 to INFINITY)
-			L.adjustToxLoss((current_cycle/10-4.6)*rem) //why yes, the sleeping stops after it stops working. Yay screaming patients running off!
+			L.adjustToxLoss((current_cycle/10-4.6)*effect_str) //why yes, the sleeping stops after it stops working. Yay screaming patients running off!
 	return ..()
 
 /datum/reagent/medicine/polyhexanide/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damage(2*rem, TOX)
+	L.apply_damage(2*effect_str, TOX)
 
 /datum/reagent/medicine/larvaway
 	name = "Larvaway"
@@ -1013,22 +1013,22 @@
 /datum/reagent/medicine/larvaway/on_mob_life(mob/living/L, metabolism)
 	switch(current_cycle)
 		if(1 to 100)
-			L.adjustToxLoss(0.5*rem)
+			L.adjustToxLoss(0.5*effect_str)
 			if(prob(25))
-				L.adjustStaminaLoss(0.5*rem)
+				L.adjustStaminaLoss(0.5*effect_str)
 		if(101 to 200)
-			L.adjustToxLoss(rem)
+			L.adjustToxLoss(effect_str)
 			if(prob(25))
-				L.adjustStaminaLoss(20*rem)
+				L.adjustStaminaLoss(20*effect_str)
 		if(201 to INFINITY)
-			L.adjustToxLoss(3*rem)
+			L.adjustToxLoss(3*effect_str)
 	return ..()
 
 /datum/reagent/medicine/larvaway/overdose_process(mob/living/L, metabolism)
-	L.apply_damage(rem, TOX)
+	L.apply_damage(effect_str, TOX)
 
 /datum/reagent/medicine/larvaway/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damage(2*rem, TOX)
+	L.apply_damage(2*effect_str, TOX)
 
 
 /datum/reagent/medicine/ethylredoxrazine	// FUCK YOU, ALCOHOL
@@ -1046,14 +1046,14 @@
 	L.AdjustConfused(-20)
 	var/mob/living/carbon/C = L
 	C.drunkenness = max(C.drunkenness-4, 0)
-	L.reagents.remove_all_type(/datum/reagent/consumable/ethanol, 0.5*rem, 0, 1)
+	L.reagents.remove_all_type(/datum/reagent/consumable/ethanol, 0.5*effect_str, 0, 1)
 	return ..()
 
 /datum/reagent/medicine/ethylredoxrazine/overdose_process(mob/living/L, metabolism)
-	L.apply_damage(rem, TOX)
+	L.apply_damage(effect_str, TOX)
 
 /datum/reagent/medicine/ethylredoxrazine/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damage(2*rem, TOX)
+	L.apply_damage(2*effect_str, TOX)
 
 /datum/reagent/medicine/hypervene
 	name = "Hypervene"
@@ -1075,13 +1075,13 @@
 	return ..()
 
 /datum/reagent/medicine/hypervene/overdose_process(mob/living/L, metabolism)
-	L.apply_damages(rem, rem)
+	L.apply_damages(effect_str, effect_str)
 	if(prob(10)) //heavy vomiting
 		L.vomit()
 	L.reagent_shock_modifier -= PAIN_REDUCTION_VERY_HEAVY * 1.25//Massive pain.
 
 /datum/reagent/medicine/hypervene/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damages(2*rem, 2*rem)
+	L.apply_damages(2*effect_str, 2*effect_str)
 	if(prob(50)) //violent vomiting
 		L.vomit()
 	L.reagent_shock_modifier -= PAIN_REDUCTION_FULL //Unlimited agony.
@@ -1096,12 +1096,12 @@
 
 /datum/reagent/medicine/roulettium/on_mob_life(mob/living/L, metabolism)
 	L.reagent_shock_modifier += PAIN_REDUCTION_FULL
-	L.adjustToxLoss(-30*rem)
-	L.heal_limb_damage(30*rem, 30*rem)
-	L.adjustStaminaLoss(-30*rem)
+	L.adjustToxLoss(-30*effect_str)
+	L.heal_limb_damage(30*effect_str, 30*effect_str)
+	L.adjustStaminaLoss(-30*effect_str)
 	L.AdjustStun(-100)
 	if(prob(5))
-		L.adjustBruteLoss(1200*rem) //the big oof. No, it's not kill or gib, I want them to nugget.
+		L.adjustBruteLoss(1200*effect_str) //the big oof. No, it's not kill or gib, I want them to nugget.
 
 /datum/reagent/medicine/lemoline
 	name = "Lemoline"

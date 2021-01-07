@@ -59,16 +59,16 @@
 /datum/reagent/water/on_mob_life(mob/living/L,metabolism)
 	switch(current_cycle)
 		if(4 to 5) //1 sip, starting at the end
-			L.adjustStaminaLoss(-2*rem)
-			L.heal_limb_damage(rem, rem)
+			L.adjustStaminaLoss(-2*effect_str)
+			L.heal_limb_damage(effect_str, effect_str)
 		if(6 to 10) //sip 2
-			L.adjustStaminaLoss(-0.5*rem)
-			L.heal_limb_damage(0.1*rem, 0.1*rem)
+			L.adjustStaminaLoss(-0.5*effect_str)
+			L.heal_limb_damage(0.1*effect_str, 0.1*effect_str)
 	return ..()
 
 /datum/reagent/water/overdose_process(mob/living/L, metabolism)
 	if(prob(10))
-		L.adjustStaminaLoss(50*rem)
+		L.adjustStaminaLoss(50*effect_str)
 		to_chat(L, "<span class='warning'>You cramp up! Too much water!</span>")
 
 /datum/reagent/water/holywater
@@ -186,7 +186,7 @@
 
 /datum/reagent/nitrogen/on_mob_life(mob/living/L, metabolism)
 	if(metabolism & IS_VOX)
-		L.adjustOxyLoss(-rem)
+		L.adjustOxyLoss(-effect_str)
 	return ..()
 
 /datum/reagent/hydrogen
@@ -253,7 +253,7 @@
 	taste_description = "chlorine"
 
 /datum/reagent/chlorine/on_mob_life(mob/living/L, metabolism)
-	L.take_limb_damage(0.5*rem, 0)
+	L.take_limb_damage(0.5*effect_str, 0)
 	return ..()
 
 /datum/reagent/chlorine/overdose_process(mob/living/L, metabolism)
@@ -272,7 +272,7 @@
 	taste_description = "acid"
 
 /datum/reagent/fluorine/on_mob_life(mob/living/L, metabolism)
-	L.adjustToxLoss(0.5*rem)
+	L.adjustToxLoss(0.5*effect_str)
 	return ..()
 
 /datum/reagent/fluorine/overdose_process(mob/living/L, metabolism)
@@ -341,7 +341,7 @@
 	taste_description = "the colour blue and regret"
 
 /datum/reagent/radium/on_mob_life(mob/living/L, metabolism)
-	L.apply_effect(rem/L.metabolism_efficiency, AGONY)
+	L.apply_effect(effect_str/L.metabolism_efficiency, AGONY)
 	return ..()
 
 /datum/reagent/radium/reaction_turf(turf/T, volume)
@@ -531,7 +531,7 @@
 /datum/reagent/impedrezene/on_mob_life(mob/living/L, metabolism)
 	L.jitter(-5)
 	if(prob(80))
-		L.adjustBrainLoss(rem, TRUE)
+		L.adjustBrainLoss(effect_str, TRUE)
 	if(prob(50))
 		L.setDrowsyness(max(L.drowsyness, 3))
 	if(prob(10))
@@ -656,5 +656,5 @@
 	T.germ_level -= min(volume*20, T.germ_level)
 
 /datum/reagent/sterilizine/on_mob_life(mob/living/L, metabolism)
-	L.adjustToxLoss(rem)
+	L.adjustToxLoss(effect_str)
 	return ..()
