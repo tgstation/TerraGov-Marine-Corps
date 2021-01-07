@@ -12,8 +12,17 @@ SUBSYSTEM_DEF(monitor)
 	var/stalemate = FALSE
 	///The current state points
 	var/current_points = 0
-	///The amount of time we had the same state consecutly
+	///The number of time we had the same state consecutively
 	var/stale_counter = 0
+	///The number of humans on ground
+	var/human_on_ground = 0
+	///The number of humans being in either lz1 or lz2
+	var/human_in_FOB = 0
+	///The number of time most of humans are in FOB consecutively
+	var/humans_all_in_FOB_counter = 0
+	///TRUE if we detect a state of FOB hugging
+	var/FOB_hugging = FALSE
+	
 
 
 /datum/controller/subsystem/monitor/Initialize(time, zlevel)
@@ -39,9 +48,11 @@ SUBSYSTEM_DEF(monitor)
 
 ///Start the calculation
 /datum/controller/subsystem/monitor/proc/etablish_state()
+	process_human_positions()
 	current_points = calculate_state_points() / max(GLOB.alive_human_list.len + GLOB.alive_xeno_list.len,20)//having less than 20 players gives bad results
+	FOB_hugging_check()
 	set_state(current_points)
-	//spam_admins() only for testing
+	//spam_admins() //Only for testing
 
 ///Messages admin with the current state
 /datum/controller/subsystem/monitor/proc/spam_admins()
@@ -58,7 +69,8 @@ SUBSYSTEM_DEF(monitor)
 	actualPoints += GLOB.monitor_statistics.Elder_T3 * ELDER_T3_WEIGHT
 	actualPoints += GLOB.monitor_statistics.Ancient_Queen * ANCIENT_QUEEN_WEIGHT
 	actualPoints += GLOB.monitor_statistics.Elder_Queen * ELDER_QUEEN_WEIGHT
-	actualPoints += GLOB.alive_human_list.len * HUMAN_LIFE_WEIGHT
+	actualPoints += human_on_ground * HUMAN_LIFE_ON_GROUND_WEIGHT
+	actualPoints += (GLOB.alive_human_list.len - human_on_ground) * HUMAN_LIFE_ON_SHIP_WEIGHT
 	actualPoints += GLOB.alive_xeno_list.len * XENOS_LIFE_WEIGHT
 	actualPoints += (xeno_job.total_positions - xeno_job.current_positions) * BURROWED_LARVA_WEIGHT
 	actualPoints += GLOB.monitor_statistics.Miniguns_in_use.len * MINIGUN_PRICE * REQ_POINTS_WEIGHT
@@ -69,9 +81,29 @@ SUBSYSTEM_DEF(monitor)
 	actualPoints += GLOB.monitor_statistics.OB_available * OB_AVAILABLE_WEIGHT
 	return actualPoints
 
+///Keep the monitor informed about the position of humans
+/datum/controller/subsystem/monitor/proc/process_human_positions()
+	human_on_ground = 0
+	human_in_FOB = 0
+	for(var/human in GLOB.alive_human_list)
+		var/turf/TU = get_turf(human)
+		if(is_ground_level(TU.z))
+			human_on_ground++
+			if(istype(TU.loc,/area/shuttle/drop1/lz1) || istype(TU.loc,/area/shuttle/drop2/lz2))
+				human_in_FOB++
+
+///Check if we are in a FOB camping situation
+/datum/controller/subsystem/monitor/proc/FOB_hugging_check()
+	if (human_on_ground && human_in_FOB/(human_on_ground) >= PROPORTION_MARINE_FOB_HUGGING_THRESHOLD)
+		humans_all_in_FOB_counter++
+		if (humans_all_in_FOB_counter == 3)
+			FOB_hugging = TRUE
+	else
+		humans_all_in_FOB_counter = 0
+		FOB_hugging = FALSE
+
 ///Etablish the new monitor state of the game, and update the GLOB values
 /datum/controller/subsystem/monitor/proc/set_state(actualPoints)
-
 	//We set the actual state
 	if (actualPoints > XENOS_DELAYING_THRESHOLD)
 		current_state = XENOS_DELAYING
@@ -91,7 +123,3 @@ SUBSYSTEM_DEF(monitor)
 		stalemate = TRUE
 	else
 		stalemate = FALSE
-
-
-
-
