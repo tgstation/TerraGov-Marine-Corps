@@ -484,7 +484,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define HUNTER_SNEAK_ATTACK_DISARM_MULTIPLIER	1 //Multiplier for disarm full sneak attack tackle damage
 #define HUNTER_SNEAK_ATTACK_STAGGERSLOW_STACKS	4 //Stacks of stagger and slow applied to the target
 #define HUNTER_SNEAK_ATTACK_PARALYZE_TIME		1.5 SECONDS //Duration of stun applied to the target
-#define HUNTER_SNEAK_SLASH_DAMAGE_MULTIPLIER	0.5 //Multiplies the Hunter's slash damage by this amount on a successful sneak attack
+#define HUNTER_SNEAK_SLASH_DAMAGE_MULTIPLIER	1.5 //Multiplies the Hunter's slash damage by this amount on a successful sneak attack
 #define HUNTER_SILENCE_STAGGER_STACKS			1 //Silence imposes this many stagger stacks
 #define HUNTER_SILENCE_SENSORY_STACKS			6 //Silence imposes this many eyeblur, mute and deafen stacks.
 #define HUNTER_SILENCE_DURATION					10 SECONDS //Removes mute from the Hunter's Silence after this delay.

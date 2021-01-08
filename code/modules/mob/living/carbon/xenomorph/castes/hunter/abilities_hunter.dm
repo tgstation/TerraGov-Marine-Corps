@@ -208,7 +208,7 @@
 		armor_mod += (1 - (1 - HUNTER_SNEAK_SLASH_ARMOR_PEN) * HUNTER_SNEAK_ATTACK_RUNNING_MULTIPLIER) //We halve the penetration.
 	else
 		armor_mod += HUNTER_SNEAK_SLASH_ARMOR_PEN
-		damage_mod += damage * HUNTER_SNEAK_SLASH_DAMAGE_MULTIPLIER
+		damage_mod += HUNTER_SNEAK_SLASH_DAMAGE_MULTIPLIER
 		flavour = "deadly"
 
 	owner.visible_message("<span class='danger'>\The [owner] strikes [target] with [flavour] precision!</span>", \

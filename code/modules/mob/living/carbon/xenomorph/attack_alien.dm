@@ -123,8 +123,8 @@
 	if(!(signal_return & COMPONENT_BYPASS_ARMOR))
 		armor_block = run_armor_check(affecting, "melee")
 
-	for(var/i in damage_mod)
-		damage += i
+	for(var/i in damage_mod) //Mods are multiplicative
+		damage *= i
 
 	for(var/i in armor_mod)
 		armor_block *= i
