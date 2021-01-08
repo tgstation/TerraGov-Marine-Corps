@@ -94,12 +94,19 @@ SUBSYSTEM_DEF(spawning)
 
 /// Holder datum for various data relating to individual spawners
 /datum/spawnerdata
+	///Fire incrementor
 	var/fire_increment = 0
+	///Required fire increment
 	var/required_increment
+	///Spawn types
 	var/spawntypes
+	///Spawn amount
 	var/spawnamount
+	///Max allowed mobs
 	var/max_allowed_mobs
+	///Spawned mobs
 	var/list/spawnedmobs = list()
+	///Post spawn callback
 	var/datum/callback/post_spawn_cb
 
 /datum/spawnerdata/New(increment, spawntypesarg, max, squadamount, datum/callback/postcb)
