@@ -116,6 +116,11 @@
 		/obj/item/storage/pill_bottle/packet,
 		/obj/item/roller,
 	)
+	
+	cant_hold = list(
+		/obj/item/reagent_containers/food,
+		/obj/item/reagent_containers/spray/pepper,
+	)
 
 /obj/item/storage/belt/medical/Initialize()
 	. = ..()
