@@ -554,6 +554,21 @@
 		/obj/item/stack/medical/advanced/bruise_pack,
 		/obj/item/stack/nanopaste,
 	)
+/obj/item/storage/internal/tie/white_vest/Initialize()
+	. = ..()
+	new /obj/item/tool/surgery/scalpel/manager(src)
+	new /obj/item/tool/surgery/scalpel(src)
+	new /obj/item/tool/surgery/hemostat(src)
+	new /obj/item/tool/surgery/retractor(src)
+	new /obj/item/stack/medical/advanced/bruise_pack(src)
+	new /obj/item/tool/surgery/cautery(src)
+	new /obj/item/tool/surgery/circular_saw(src)
+	new /obj/item/tool/surgery/surgicaldrill(src)
+	new /obj/item/tool/surgery/bonegel(src)
+	new /obj/item/tool/surgery/bonesetter(src)
+	new /obj/item/tool/surgery/FixOVein(src)
+	new /obj/item/stack/nanopaste(src)
+
 
 /obj/item/clothing/tie/storage/white_vest/medic
 	name = "corpsman webbing"
@@ -565,16 +580,15 @@
 	can_hold = list(
 		/obj/item/stack/medical,
 		/obj/item/healthanalyzer,
-		/obj/item/reagent_containers/dropper,
-		/obj/item/reagent_containers/glass/beaker,
-		/obj/item/reagent_containers/glass/bottle,
-		/obj/item/reagent_containers/pill,
-		/obj/item/reagent_containers/syringe,
+		/obj/item/reagent_containers,
 		/obj/item/storage/pill_bottle,
-		/obj/item/reagent_containers/hypospray,
 		/obj/item/bodybag,
 		/obj/item/roller,
 		/obj/item/clothing/glasses/hud/health,
+	)
+	cant_hold = list(
+		/obj/item/reagent_containers/food,
+		/obj/item/reagent_containers/spray/pepper,
 	)
 
 /obj/item/clothing/tie/storage/knifeharness
@@ -598,14 +612,6 @@
 	. = ..()
 	new /obj/item/weapon/unathiknife(hold)
 	new /obj/item/weapon/unathiknife(hold)
-
-
-
-
-
-
-
-
 
 /*
 	Holobadges are worn on the belt or neck, and can be used to show that the holder is an authorized

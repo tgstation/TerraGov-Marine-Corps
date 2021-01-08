@@ -372,15 +372,15 @@
 
 	can_hold = list(
 		/obj/item/healthanalyzer,
-		/obj/item/reagent_containers/dropper,
-		/obj/item/reagent_containers/pill,
-		/obj/item/reagent_containers/glass/bottle,
-		/obj/item/reagent_containers/syringe,
+		/obj/item/reagent_containers,
 		/obj/item/storage/pill_bottle,
 		/obj/item/stack/medical,
 		/obj/item/flashlight/pen,
 		/obj/item/storage/pill_bottle/packet,
-		/obj/item/reagent_containers/hypospray,
+	)
+	cant_hold = list(
+		/obj/item/reagent_containers/food,
+		/obj/item/reagent_containers/spray/pepper,
 	)
 
 /obj/item/storage/pouch/medical/full/Initialize()
@@ -477,16 +477,18 @@
 	max_w_class = 4
 	storage_slots = 7
 	can_hold = list(
+		/obj/item/roller,
+		/obj/item/bodybag,
 		/obj/item/healthanalyzer,
-		/obj/item/reagent_containers/dropper,
-		/obj/item/reagent_containers/pill,
-		/obj/item/reagent_containers/glass/bottle,
-		/obj/item/reagent_containers/syringe,
+		/obj/item/reagent_containers,
 		/obj/item/storage/pill_bottle,
 		/obj/item/stack/medical,
 		/obj/item/flashlight/pen,
 		/obj/item/storage/pill_bottle/packet,
-		/obj/item/reagent_containers/hypospray,
+	)
+	cant_hold = list(
+		/obj/item/reagent_containers/food,
+		/obj/item/reagent_containers/spray/pepper,
 	)
 
 /obj/item/storage/pouch/medkit/full/Initialize()
@@ -619,7 +621,7 @@
 
 /obj/item/storage/pouch/construction
 	name = "construction pouch"
-	desc = "It's designed to hold construction materials - glass/metal sheets, metal rods, barbed wire, cable coil, and empty sandbags. It also has a hook for an entrenching tool."
+	desc = "It's designed to hold construction materials - glass or metal sheets, metal rods, barbed wire, cable coil, and empty sandbags. It also has a hook for an entrenching tool."
 	storage_slots = 3
 	max_w_class = 3
 	icon_state = "construction"
@@ -647,7 +649,7 @@
 /obj/item/storage/pouch/tools
 	name = "tools pouch"
 	desc = "It's designed to hold maintenance tools - screwdriver, wrench, cable coil, etc. It also has a hook for an entrenching tool."
-	storage_slots = 5
+	storage_slots = 6
 	max_w_class = 3
 	icon_state = "tools"
 	can_hold = list(
@@ -669,6 +671,7 @@
 	new /obj/item/multitool (src)
 	new /obj/item/tool/wrench (src)
 	new /obj/item/tool/crowbar (src)
+	new /obj/item/tool/weldingtool (src)
 
 /obj/item/storage/pouch/shotgun //New shotgun shell pouch that is actually worth a shit and will be replacing light general in vendors
 	name = "shotgun shell pouch"

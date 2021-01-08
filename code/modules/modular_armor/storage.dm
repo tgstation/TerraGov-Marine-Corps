@@ -157,16 +157,17 @@
 	storage_slots = 5
 	max_w_class = WEIGHT_CLASS_SMALL
 	can_hold = list(
+		/obj/item/roller,
+		/obj/item/bodybag,
 		/obj/item/healthanalyzer,
-		/obj/item/reagent_containers/glass/bottle,
-		/obj/item/reagent_containers/pill,
-		/obj/item/reagent_containers/syringe,
+		/obj/item/reagent_containers,
 		/obj/item/storage/pill_bottle,
 		/obj/item/clothing/gloves/latex,
-		/obj/item/reagent_containers/hypospray/autoinjector,
-		/obj/item/reagent_containers/hypospray/advanced,
-		/obj/item/reagent_containers/hypospray,
 		/obj/item/stack/medical,
+	)
+	cant_hold = list(
+		/obj/item/reagent_containers/food,
+		/obj/item/reagent_containers/spray/pepper,
 	)
 
 /obj/item/armor_module/storage/integrated
