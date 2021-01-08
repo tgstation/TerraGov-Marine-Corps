@@ -85,7 +85,7 @@
 	skills_type = /datum/skills/combat_medic/crafty
 	outfit = /datum/outfit/job/som/medic
 
-/datum/job/som/medic
+/datum/job/som/medic/hvh
 	outfit = /datum/outfit/job/som/medic/hvh
 
 
