@@ -6,7 +6,7 @@
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "smartgun_case"
 	w_class = WEIGHT_CLASS_HUGE
-	storage_slots = 3
+	storage_slots = 4
 	slowdown = 1
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
 	foldable = null
