@@ -301,7 +301,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	max_storage_space = 15
 	spawn_type = /obj/item/explosive/mine
-	spawn_number = 15
+	spawn_number = 10
 
 /obj/item/storage/box/explosive_mines/update_icon()
 	icon_state = initial(icon_state)
