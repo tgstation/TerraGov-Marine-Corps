@@ -676,7 +676,7 @@
 	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 21,"rail_x" = 8, "rail_y" = 23, "under_x" = 25, "under_y" = 14, "stock_x" = 11, "stock_y" = 14)
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.2 SECONDS
-	aim_speed_modifier = 8 // marching fire
+	aim_speed_modifier = 6
 
 	fire_delay = 0.165 SECONDS
 	damage_falloff_mult = 0.25
