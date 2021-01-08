@@ -1,0 +1,8 @@
+author: "Surrealaser"
+delete-after: True
+changes: 
+  - rscadd: "Healing Infusion ability replaces Acidic Salve for the Hivelord. This is a short-range heal over time that trades spike healing, immunity to fire interruption and independence from weeds for power. Recovery pheromones improve its HP and Sunder recovery by 10% per rank."
+  - refactor: "Sunder recovery refactored."
+  - tweak: "Baseline Sunder recovery halved."
+  - tweak: "Sunder recovery now doubled by weeds and resting, and increased by 10% per rank of recovery pheromones."
+  - tweak: "Sunder recovery now blocked by being on fire."
