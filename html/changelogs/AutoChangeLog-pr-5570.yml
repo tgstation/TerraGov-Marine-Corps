@@ -1,0 +1,7 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - bugfix: "Xenos unlocking of doors is no longer instant"
+  - rscadd: "New hijack state (unlocked) triggered when alamo is locked down entirely and hive leader use the call down dropship verb."
+  - rscadd: "Touching the dropship console as hive leader is now the same as calling it down, preventing delaying abuse by AI
+tweak : changed the priority announcements a bit so it corresponds more to what's really happening, shortened the length of hijack.ogg"
