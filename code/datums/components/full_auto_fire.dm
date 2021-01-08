@@ -324,10 +324,21 @@
 /datum/component/automatic_fire/proc/modify_firedelay(datum/source, new_delay)
 	SIGNAL_HANDLER
 	autofire_shot_delay = new_delay
+	if(component_fire_mode == GUN_FIREMODE_AUTOMATIC && auto_delay_timer)
+		if(!deltimer(auto_delay_timer))
+			INVOKE_NEXT_TICK(src, .proc/keep_trying_to_delete_timer, auto_delay_timer)
+		auto_delay_timer = null
+		auto_delay_timer = addtimer(CALLBACK(src, .proc/process_shot), autofire_shot_delay, TIMER_STOPPABLE|TIMER_LOOP)
 
 /datum/component/automatic_fire/proc/modify_burst_delay(datum/source, new_delay)
 	SIGNAL_HANDLER
 	burstfire_shot_delay = new_delay
+	if(component_fire_mode == GUN_FIREMODE_AUTOBURST && auto_delay_timer)
+		if(!deltimer(auto_delay_timer))
+			INVOKE_NEXT_TICK(src, .proc/keep_trying_to_delete_timer, auto_delay_timer)
+		auto_delay_timer = null
+		var/burstfire_burst_delay = (burstfire_shot_delay * shots_to_fire) + (autofire_shot_delay * 3) //Delay between bursts, values taken from the maximum possible in non-auto burst mode.
+		auto_delay_timer = addtimer(CALLBACK(src, .proc/process_burst), burstfire_burst_delay, TIMER_STOPPABLE|TIMER_LOOP)
 
 /datum/component/automatic_fire/proc/modify_burst_amount(datum/source, new_amount)
 	SIGNAL_HANDLER
