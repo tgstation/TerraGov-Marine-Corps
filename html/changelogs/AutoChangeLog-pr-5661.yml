@@ -1,0 +1,4 @@
+author: "Surrealaser"
+delete-after: True
+changes: 
+  - bugfix: "Hugger traps crushed by the shuttle no longer discharge huggers (again)."
