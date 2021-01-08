@@ -52,9 +52,8 @@
 		/datum/action/xeno_action/activable/reposition_core,
 		/datum/action/xeno_action/plant_weeds/slow,
 		/datum/action/xeno_action/psychic_whisper,
+		/datum/action/xeno_action/toggle_pheromones,
 		/datum/action/xeno_action/activable/rally_hive/hivemind,
-		/datum/action/xeno_action/activable/psychic_cure,
-		/datum/action/xeno_action/toggle_pheromones
 	)
 
 	// *** Core Durability *** //
@@ -89,11 +88,11 @@
 		/datum/action/xeno_action/plant_weeds/slow,
 		/datum/action/xeno_action/psychic_whisper,
 		/datum/action/xeno_action/activable/psychic_cure,
-		/datum/action/xeno_action/activable/rally_hive/hivemind,
+		/datum/action/xeno_action/activable/mind_wrack,
 		/datum/action/xeno_action/toggle_pheromones,
 		/datum/action/xeno_action/choose_resin,
 		/datum/action/xeno_action/activable/secrete_resin/slow,
-		/datum/action/xeno_action/activable/mind_wrack,
+		/datum/action/xeno_action/activable/rally_hive/hivemind,
 	)
 
 	// *** Core Durability *** //
@@ -125,11 +124,11 @@
 		/datum/action/xeno_action/plant_weeds/slow,
 		/datum/action/xeno_action/psychic_whisper,
 		/datum/action/xeno_action/activable/psychic_cure/hivemind,
+		/datum/action/xeno_action/activable/mind_wrack,
 		/datum/action/xeno_action/toggle_pheromones,
-		/datum/action/xeno_action/activable/rally_hive/hivemind,
 		/datum/action/xeno_action/choose_resin,
 		/datum/action/xeno_action/activable/secrete_resin/slow,
-		/datum/action/xeno_action/activable/mind_wrack,
+		/datum/action/xeno_action/activable/rally_hive/hivemind,
 	)
 
 	// *** Core Durability *** //
@@ -162,11 +161,11 @@
 		/datum/action/xeno_action/plant_weeds/slow,
 		/datum/action/xeno_action/psychic_whisper,
 		/datum/action/xeno_action/activable/psychic_cure/hivemind,
+		/datum/action/xeno_action/activable/mind_wrack,
 		/datum/action/xeno_action/toggle_pheromones,
 		/datum/action/xeno_action/choose_resin,
 		/datum/action/xeno_action/activable/secrete_resin/slow,
 		/datum/action/xeno_action/activable/rally_hive/hivemind,
-		/datum/action/xeno_action/activable/mind_wrack,
 	)
 
 	// *** Core Durability *** //

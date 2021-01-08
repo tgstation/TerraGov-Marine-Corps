@@ -11,7 +11,7 @@
 // ***************************************
 /datum/action/xeno_action/activable/reposition_core
 	name = "Reposition Core"
-	action_icon_state = "emit_neurogas"
+	action_icon_state = "lay_hivemind"
 	mechanics_text = "Reposition your core to a target location on weeds. The further away the location is the longer this will take up to a maximum of 60 seconds. 10 minute cooldown."
 	ability_name = "reposition core"
 	plasma_cost = 150
@@ -161,6 +161,7 @@
 	if(get_dist(owner, victim) > HIVEMIND_MIND_WRACK_MAX_RANGE)
 		if(!silent)
 			to_chat(X, "<span class='xenowarning'>They are too far for us to reach their minds! The target must be [get_dist(owner, victim) - HIVEMIND_MIND_WRACK_MAX_RANGE] tiles closer!</spam>")
+		return FALSE
 
 	if(!owner.line_of_sight(target, HIVEMIND_MIND_WRACK_MAX_RANGE))
 		if(!silent)
@@ -204,10 +205,17 @@
 	to_chat(X, "<span class='danger'>We scour the mind of this unfortunate creature with [calculate_power(power_level, X)] power.</span>")
 	to_chat(victim, "<span class='danger'>Your thoughts are suddenly overwhelmed by an alien presence as unworldly screaming fills your mind. Your brain feels as though it's on fire and your world convulses!</span>")
 	new /obj/effect/temp_visual/telepathy(get_turf(victim))
+	victim.add_filter("hivemind_mindwrack_sfx_1", 3, list("type" = "wave", 0, 0, size=rand()*2.5+0.5, offset=rand())) //Cool filter appear
+	victim.add_filter("hivemind_mindwrack_sfx_2", 3, list("type" = "wave", 0, 0, size=rand()*2.5+0.5, offset=rand())) //Cool filter appear
+	animate(victim.get_filter("hivemind_mindwrack_sfx_1"), x = 60*rand() - 30, y = 60*rand() - 30, size=rand()*2.5+0.5, offset=rand(), time = 0.25 SECONDS, loop = -1, flags=ANIMATION_PARALLEL)
+	animate(victim.get_filter("hivemind_mindwrack_sfx_2"), x = 60*rand() - 30, y = 60*rand() - 30, size=rand()*2.5+0.5, offset=rand(), time = 0.25 SECONDS, loop = -1, flags=ANIMATION_PARALLEL)
+	addtimer(CALLBACK(victim, /atom.proc/remove_filter, "hivemind_mindwrack_sfx_1"), 1 SECONDS)
+	addtimer(CALLBACK(victim, /atom.proc/remove_filter, "hivemind_mindwrack_sfx_2"), 1 SECONDS)
 	shake_camera(victim, power_level * 0.01 SECONDS, 1)
-	victim.ParalyzeNoChain(0.0033 SECONDS * power_level)
+	if(power_level > 100) //Need a minimum power to stun
+		victim.ParalyzeNoChain(0.0033 SECONDS * power_level)
 	victim.hallucination = min(victim.hallucination + power_level, 200) //I want the hallucination effect to *eventually* go away; capped at 200 stacks.
-	victim.set_drugginess(power_level * 0.025) //visuals
+	victim.set_drugginess(power_level * 0.05) //visuals
 	victim.blur_eyes(power_level * 0.05)
 	victim.adjustStaminaLoss(power_level * 0.75)
 	victim.adjust_stagger(power_level * 0.05)
