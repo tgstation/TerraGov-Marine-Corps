@@ -54,6 +54,9 @@ PROTECT_LEGACY_RANKS
 #GITHUBURL
 #BANAPPEALS
 
+## Discord bot command prefix, if the discord bot is used
+# DISCORDBOTCOMMANDPREFIX ?
+
 ## Uncomment to enable global ban DB using the provided URL. The API should expect to receive a ckey at the end of the URL.
 ## More API details can be found here: https://centcom.melonmesa.com
 CENTCOM_BAN_DB https://centcom.melonmesa.com/ban/search
