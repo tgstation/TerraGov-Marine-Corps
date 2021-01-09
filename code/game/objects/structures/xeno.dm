@@ -112,127 +112,6 @@
 	ignore_weed_destruction = FALSE
 
 
-//Carrier trap
-/obj/effect/alien/resin/trap
-	desc = "It looks like a hiding hole."
-	name = "resin hole"
-	icon_state = "trap0"
-	density = FALSE
-	opacity = FALSE
-	anchored = TRUE
-	max_integrity = 5
-	layer = RESIN_STRUCTURE_LAYER
-	var/obj/item/clothing/mask/facehugger/hugger = null
-	var/mob/living/linked_carrier //The carrier that placed us.
-
-/obj/effect/alien/resin/trap/Initialize(mapload, mob/living/builder)
-	. = ..()
-	if(builder)
-		linked_carrier = builder
-	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, .proc/shuttle_crush)
-
-/obj/effect/alien/resin/trap/obj_destruction(damage_amount, damage_type, damage_flag)
-	if(damage_amount && hugger && loc)
-		drop_hugger()
-
-	return ..()
-
-///Ensures that no huggies will be released when the trap is crushed by a shuttle; no more trapping shuttles with huggies
-/obj/effect/alien/resin/trap/proc/shuttle_crush()
-	SIGNAL_HANDLER
-	qdel(src)
-
-
-/obj/effect/alien/resin/trap/examine(mob/user)
-	. = ..()
-	if(isxeno(user))
-		to_chat(user, "A hole for a little one to hide in ambush.")
-		if(hugger)
-			to_chat(user, "There's a little one inside.")
-		else
-			to_chat(user, "It's empty.")
-
-
-/obj/effect/alien/resin/trap/flamer_fire_act()
-	if(hugger)
-		hugger.forceMove(loc)
-		hugger.kill_hugger()
-		hugger = null
-		icon_state = "trap0"
-	..()
-
-/obj/effect/alien/resin/trap/fire_act()
-	if(hugger)
-		hugger.forceMove(loc)
-		hugger.kill_hugger()
-		hugger = null
-		icon_state = "trap0"
-	..()
-
-/obj/effect/alien/resin/trap/HasProximity(atom/movable/AM)
-	if(!iscarbon(AM) || !hugger)
-		return
-	var/mob/living/carbon/C = AM
-	if(C.can_be_facehugged(hugger))
-		playsound(src, "alien_resin_break", 25)
-		C.visible_message("<span class='warning'>[C] trips on [src]!</span>",\
-						"<span class='danger'>You trip on [src]!</span>")
-		C.Paralyze(40)
-		if(!QDELETED(linked_carrier) && linked_carrier.stat == CONSCIOUS && linked_carrier.z == z)
-			var/area/A = get_area(src)
-			if(A)
-				to_chat(linked_carrier, "<span class='xenoannounce'>You sense one of your traps at [A.name] (X: [x], Y: [y]) has been triggered!</span>")
-		drop_hugger()
-
-/obj/effect/alien/resin/trap/proc/drop_hugger()
-	hugger.forceMove(loc)
-	hugger.stasis = FALSE
-	addtimer(CALLBACK(hugger, /obj/item/clothing/mask/facehugger.proc/fast_activate), 1.5 SECONDS)
-	icon_state = "trap0"
-	visible_message("<span class='warning'>[hugger] gets out of [src]!</span>")
-	hugger = null
-
-/obj/effect/alien/resin/trap/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
-	if(X.a_intent == INTENT_HARM)
-		return ..()
-	if(!(X.xeno_caste.caste_flags & CASTE_CAN_HOLD_FACEHUGGERS))
-		return
-	if(!hugger)
-		to_chat(X, "<span class='warning'>[src] is empty.</span>")
-		return
-	icon_state = "trap0"
-	X.put_in_active_hand(hugger)
-	hugger.go_active(TRUE)
-	hugger = null
-	to_chat(X, "<span class='xenonotice'>We remove the facehugger from [src].</span>")
-
-
-/obj/effect/alien/resin/trap/attackby(obj/item/I, mob/user, params)
-	. = ..()
-
-	if(istype(I, /obj/item/clothing/mask/facehugger) && isxeno(user))
-		var/obj/item/clothing/mask/facehugger/FH = I
-		if(hugger)
-			to_chat(user, "<span class='warning'>There is already a facehugger in [src].</span>")
-			return
-
-		if(FH.stat == DEAD)
-			to_chat(user, "<span class='warning'>You can't put a dead facehugger in [src].</span>")
-			return
-
-		user.transferItemToLoc(FH, src)
-		FH.go_idle(TRUE)
-		hugger = FH
-		icon_state = "trap1"
-		to_chat(user, "<span class='xenonotice'>You place a facehugger in [src].</span>")
-
-
-/obj/effect/alien/resin/trap/Crossed(atom/A)
-	. = ..()
-	if(iscarbon(A))
-		HasProximity(A)
-
-
 //Resin Doors
 /obj/structure/mineral_door/resin
 	name = "resin door"
@@ -623,6 +502,13 @@
 	///Whether we override the normal hivewide cooldown on alerts for hive structures being destroyed; TRUE for tunnels and other VIP buildings, otherwise FALSE
 	var/override_cooldown = FALSE
 
+/obj/structure/xeno/Initialize(mapload, mob/living/carbon/xenomorph/X)
+	. = ..()
+	if(!X) //Make sure X exists
+		return
+	if(X.hivenumber)
+		hivenumber = X.hivenumber
+
 /obj/structure/xeno/flamer_fire_act()
 	take_damage(50, BURN, "fire")
 
@@ -638,7 +524,7 @@
 		if(EXPLODE_LIGHT)
 			take_damage(100, BRUTE, "bomb")
 
-/obj/structure/xeno/obj_destruction(damage_flag)
+/obj/structure/xeno/obj_destruction(damage_amount, damage_type, damage_flag)
 
 	if(!destruction_alert)  //Whether or not we alert the hive on destruction; true by default. We are a hivemind after all.
 		return ..()
@@ -687,6 +573,123 @@
 
 	return TRUE
 
+//Carrier trap
+/obj/structure/xeno/trap
+	desc = "It looks like a hiding hole."
+	name = "resin hole"
+	icon_state = "trap0"
+	density = FALSE
+	opacity = FALSE
+	anchored = TRUE
+	max_integrity = 50
+	layer = RESIN_STRUCTURE_LAYER
+	var/obj/item/clothing/mask/facehugger/hugger = null
+
+/obj/structure/xeno/trap/Initialize(mapload, mob/living/carbon/xenomorph/X)
+	. = ..()
+	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, .proc/shuttle_crush)
+
+/obj/structure/xeno/trap/obj_destruction(damage_amount, damage_type, damage_flag)
+	if(damage_amount && hugger && loc)
+		drop_hugger()
+
+	return ..()
+
+///Ensures that no huggies will be released when the trap is crushed by a shuttle; no more trapping shuttles with huggies
+/obj/structure/xeno/trap/proc/shuttle_crush()
+	SIGNAL_HANDLER
+	qdel(src)
+
+
+/obj/structure/xeno/trap/examine(mob/user)
+	. = ..()
+	if(isxeno(user))
+		to_chat(user, "A hole for a little one to hide in ambush.")
+		if(hugger)
+			to_chat(user, "There's a little one inside.")
+		else
+			to_chat(user, "It's empty.")
+
+
+/obj/structure/xeno/trap/flamer_fire_act()
+	if(hugger)
+		hugger.forceMove(loc)
+		hugger.kill_hugger()
+		hugger = null
+		icon_state = "trap0"
+	..()
+
+/obj/structure/xeno/trap/fire_act()
+	if(hugger)
+		hugger.forceMove(loc)
+		hugger.kill_hugger()
+		hugger = null
+		icon_state = "trap0"
+	..()
+
+/obj/structure/xeno/trap/HasProximity(atom/movable/AM)
+	if(!iscarbon(AM) || !hugger)
+		return
+	var/mob/living/carbon/C = AM
+	if(C.can_be_facehugged(hugger))
+		playsound(src, "alien_resin_break", 25)
+		C.visible_message("<span class='warning'>[C] trips on [src]!</span>",\
+						"<span class='danger'>You trip on [src]!</span>")
+		C.Paralyze(40)
+		var/datum/hive_status/HS = GLOB.hive_datums[hivenumber]
+		HS.xeno_message("<span class='xenoannounce'>Our [name] at [AREACOORD_NO_Z(src)] has been triggered!</span>", 2, FALSE, src, 'sound/voice/alien_growl1.ogg') //Alert the hive
+		notify_ghosts("\ [C] triggered a [src] at [AREACOORD_NO_Z(C)]!", source = C, action = NOTIFY_ORBIT)
+		drop_hugger()
+
+///Drops the hugger within when the trap is tripped or destroyed
+/obj/structure/xeno/trap/proc/drop_hugger()
+	hugger.forceMove(loc)
+	hugger.stasis = FALSE
+	addtimer(CALLBACK(hugger, /obj/item/clothing/mask/facehugger.proc/fast_activate), 1.5 SECONDS)
+	icon_state = "trap0"
+	visible_message("<span class='warning'>[hugger] gets out of [src]!</span>")
+	hugger = null
+
+/obj/structure/xeno/trap/attack_alien(mob/living/carbon/xenomorph/M)
+	if(M.a_intent != INTENT_HARM)
+		if(M.xeno_caste.caste_flags & CASTE_CAN_HOLD_FACEHUGGERS)
+			if(!hugger)
+				to_chat(M, "<span class='warning'>[src] is empty.</span>")
+			else
+				icon_state = "trap0"
+				M.put_in_active_hand(hugger)
+				hugger.go_active(TRUE)
+				hugger = null
+				to_chat(M, "<span class='xenonotice'>We remove the [hugger] from [src].</span>")
+		return
+	..()
+
+/obj/structure/xeno/trap/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/clothing/mask/facehugger) && isxeno(user))
+		var/obj/item/clothing/mask/facehugger/FH = I
+		if(hugger)
+			to_chat(user, "<span class='warning'>There is already a facehugger in [src].</span>")
+			return
+
+		if(FH.stat == DEAD)
+			to_chat(user, "<span class='warning'>You can't put a dead facehugger in [src].</span>")
+			return
+
+		user.transferItemToLoc(FH, src)
+		FH.go_idle(TRUE)
+		hugger = FH
+		icon_state = "trap1"
+		to_chat(user, "<span class='xenonotice'>You place a facehugger in [src].</span>")
+
+
+/obj/structure/xeno/trap/Crossed(atom/A)
+	. = ..()
+	if(iscarbon(A))
+		HasProximity(A)
+
+
 
 /*
 TUNNEL
@@ -718,7 +721,7 @@ TUNNEL
 /obj/structure/xeno/tunnel/fire_act()
 	return
 
-/obj/structure/xeno/tunnel/Initialize(mapload)
+/obj/structure/xeno/tunnel/Initialize(mapload, mob/living/carbon/xenomorph/X)
 	. = ..()
 	GLOB.xeno_tunnels += src
 	prepare_huds()
@@ -799,8 +802,8 @@ TUNNEL
 	pick_a_tunnel(X)
 
 ///Here we pick a tunnel to go to, then travel to that tunnel and peep out, confirming whether or not we want to emerge or go to another tunnel.
-/obj/structure/tunnel/proc/pick_a_tunnel(mob/living/carbon/xenomorph/M)
-	var/obj/structure/tunnel/targettunnel = input(M, "Choose a tunnel to crawl to", "Tunnel") as null|anything in GLOB.xeno_tunnels
+/obj/structure/xeno/tunnel/proc/pick_a_tunnel(mob/living/carbon/xenomorph/M)
+	var/obj/structure/xeno/tunnel/targettunnel = input(M, "Choose a tunnel to crawl to", "Tunnel") as null|anything in GLOB.xeno_tunnels
 	if(QDELETED(src)) //Make sure we still exist in the event the player keeps the interface open
 		return
 	if(!M.Adjacent(src) && M.loc != src) //Make sure we're close enough to our tunnel; either adjacent to or in one
@@ -869,26 +872,16 @@ TUNNEL
 	var/charges = 1
 	var/ccharging = FALSE
 
-/obj/structure/xeno/acidwell/Initialize()
+/obj/structure/xeno/acidwell/Initialize(mapload, mob/living/carbon/xenomorph/X)
 	. = ..()
 	update_icon()
-
-/obj/structure/xeno/acidwell/Destroy()
-	creator = null
-	return ..()
 
 ///Ensures that no acid gas will be released when the well is crushed by a shuttle
 /obj/effect/alien/resin/acidwell/proc/shuttle_crush()
 	SIGNAL_HANDLER
 	qdel(src)
 
-/obj/effect/alien/resin/acidwell/obj_destruction(damage_amount, damage_type, damage_flag)
-/obj/structure/xeno/acidwell/obj_destruction(damage_flag)
-	if(!QDELETED(creator) && creator.stat == CONSCIOUS && creator.z == z)
-		var/area/A = get_area(src)
-		if(A)
-			to_chat(creator, "<span class='xenoannounce'>You sense your [src] at [A.name] (X: [x], Y: [y]) has been destroyed!</span>")
-
+/obj/structure/xeno/acidwell/obj_destruction(damage_amount, damage_type, damage_flag)
 	if(damage_amount) //Spawn the gas only if we actually get destroyed by damage
 		var/datum/effect_system/smoke_spread/xeno/acid/A = new(get_turf(src))
 		A.set_up(clamp(charges,0,2),src)
@@ -1003,7 +996,7 @@ TUNNEL
 	///Countdown to the next time we generate a jelly
 	var/nextjelly = 0
 
-/obj/structure/xeno/resin_jelly_pod/Initialize()
+/obj/structure/xeno/resin_jelly_pod/Initialize(mapload, mob/living/carbon/xenomorph/X)
 	. = ..()
 	add_overlay(image(icon, "resinpod_inside", layer + 0.01, dir))
 	START_PROCESSING(SSslowprocess, src)
@@ -1168,7 +1161,7 @@ TUNNEL
 	to_chat(user, "<span class='warning'>You scrape ineffectively at \the [src].</span>")
 	return TRUE
 
-/obj/structure/xeno/silo/Initialize()
+/obj/structure/xeno/silo/Initialize(mapload, mob/living/carbon/xenomorph/X)
 	. = ..()
 
 	var/static/number = 1
@@ -1190,7 +1183,10 @@ TUNNEL
 	. = ..()
 	if(!locate(/obj/effect/alien/weeds) in center_turf)
 		new /obj/effect/alien/weeds/node(center_turf)
-	associated_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
+	if(hivenumber) //Set our hivenumber; default to xeno_hive_normal if none
+		associated_hive = GLOB.hive_datums[hivenumber]
+	else
+		associated_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	if(associated_hive)
 		RegisterSignal(associated_hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK), .proc/is_burrowed_larva_host)
 	silo_area = get_area(src)
@@ -1269,7 +1265,7 @@ TUNNEL
 	if(get_dist(loc, hostile) > 2) //Can only send alerts for those within 2 of us; so we don't have all silos sending alerts when one is proxy tripped
 		return
 
-	associated_hive.xeno_message("<span class='xenoannounce'>Our [name] has detected a nearby hostile [hostile] at [get_area(hostile)] (X: [hostile.x], Y: [hostile.y]). [name] has [obj_integrity]/[max_integrity] Health remaining.</span>", 2, FALSE, hostile, 'sound/voice/alien_help1.ogg')
+	associated_hive.xeno_message("<span class='xenoannounce'>Our [name] has detected a nearby hostile [hostile] at [AREACOORD_NO_Z(hostile)]. [name] has [obj_integrity]/[max_integrity] Health remaining.</span>", 2, FALSE, hostile, 'sound/voice/alien_help1.ogg')
 	COOLDOWN_START(src, silo_proxy_alert_cooldown, XENO_HEALTH_ALERT_COOLDOWN) //set the cooldown.
 
 

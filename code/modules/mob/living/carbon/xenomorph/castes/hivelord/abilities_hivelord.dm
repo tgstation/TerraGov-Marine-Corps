@@ -171,7 +171,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	var/mob/living/carbon/xenomorph/hivelord/X = owner
 	X.visible_message("<span class='xenonotice'>\The [X] digs out a tunnel entrance.</span>", \
 	"<span class='xenonotice'>We dig out a tunnel, connecting it to our network.</span>", null, 5)
-	var/obj/structure/xeno/tunnel/newt = new(T)
+	var/obj/structure/xeno/tunnel/newt = new(T, X)
 	playsound(T, 'sound/weapons/pierce.ogg', 25, 1)
 
 	newt.hivenumber = X.hivenumber //Set our structure's hive
@@ -243,7 +243,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	succeed_activate()
 
 	playsound(T, "alien_resin_build", 25)
-	var/obj/structure/xeno/resin_jelly_pod/pod = new(T)
+	var/obj/structure/xeno/resin_jelly_pod/pod = new(T, owner)
 	var/mob/living/carbon/xenomorph/X = owner
 	pod.hivenumber = X.hivenumber //Set our structure's hive
 
