@@ -80,6 +80,7 @@
 			else
 				to_chat(user, "<span class='warning'>You must equip or hold this fuel tank to be able to link it to a flamer</span>")
 				return
+		return
 
 /obj/item/ammo_magazine/flamer_tank/backtank/removed_from_inventory(mob/user) //Dropping the tank should unlink it from the flamer
 	. = ..()
@@ -89,6 +90,7 @@
 			attached_flamer.detach_fueltank(user,FALSE)
 			return
 		return
+	return
 
 /obj/item/ammo_magazine/flamer_tank/backtank/X
 	name = "back fuel tank (X)"
