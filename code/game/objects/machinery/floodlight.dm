@@ -203,7 +203,9 @@
 /obj/machinery/floodlightcombat/process()
 	if(powered(LIGHT))
 		use_power(on ? active_power_usage : idle_power_usage, LIGHT)
+		machine_stat &= ~NOPOWER
 		return
+	machine_stat |= NOPOWER
 	if(on)
 		on = !on
 		set_light(0, 5, "#C5E3E132")
