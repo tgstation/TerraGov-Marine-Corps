@@ -111,7 +111,7 @@
 		to_chat(user, "<span class='warning'>That [magazine.name] is empty!</span>")
 		return
 
-	if(!istype(src, magazine.gun_type))
+	if(!istype(src, magazine.gun_type) || istype(magazine, /obj/item/ammo_magazine/flamer_tank/backtank))
 		to_chat(user, "<span class='warning'>That magazine doesn't fit in there!</span>")
 		return
 
@@ -460,7 +460,7 @@
 		to_chat(user, "<span class='warning'>That [magazine.name] is empty!</span>")
 		return
 
-	if(!istype(src, magazine.gun_type))
+	if(!istype(src, magazine.gun_type) || istype(magazine, /obj/item/ammo_magazine/flamer_tank/backtank))
 		to_chat(user, "<span class='warning'>That magazine doesn't fit in there!</span>")
 		return
 

@@ -621,7 +621,7 @@ AMMO
 /datum/supply_packs/ammo/back_fuel_tank_x
 	name = "Type X back fuel tank"
 	contains = list(/obj/item/ammo_magazine/flamer_tank/backtank/X)
-	cost = 150
+	cost = 100
 
 
 /*******************************************************************************
