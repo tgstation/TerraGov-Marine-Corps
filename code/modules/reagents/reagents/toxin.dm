@@ -480,14 +480,13 @@
 			L.jitter(8) //Shows that things are *really* bad
 
 	//Apply stamina damage, or tox damage if our stamina loss is maxed out
-	var/health_limit = L.maxHealth * 2
-	if(L.staminaloss + power > health_limit) //If we exceed maxHealth * 2 stamina damage, apply any excess as toxloss and oxyloss
-		var/stamina_excess_damage = L.staminaloss + power * 0.5 - health_limit
+	var/stamina_loss_limit = L.maxHealth * 2
+	if(L.staminaloss + power > stamina_loss_limit) //If we exceed maxHealth * 2 stamina damage, apply any excess as toxloss and oxyloss
+		var/stamina_excess_damage = (L.staminaloss + power * 0.5) - stamina_loss_limit
 		L.adjustToxLoss(stamina_excess_damage)
 		L.adjustOxyLoss(stamina_excess_damage)
 
-	else
-		L.adjustStaminaLoss(power)
+	L.adjustStaminaLoss(min(power, max(0, stamina_loss_limit - L.staminaloss))) //If we're under our stamina_loss limit, apply the difference between our limit and current stamina damage or power, whichever's less
 
 	if(L.eye_blurry < 30) //So we don't have the visual acuity of Mister Magoo forever
 		L.adjust_blurriness(1.3)
