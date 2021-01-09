@@ -1,4 +1,0 @@
-author: "Walarks"
-delete-after: True
-changes: 
-  - tweak: "changed REM to a reagent var, changed related calculations in code, added REM to some calculations"
