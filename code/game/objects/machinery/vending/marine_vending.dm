@@ -205,7 +205,7 @@
 		/obj/item/ammo_magazine/rifle/tx15_flechette = 50,
 		/obj/item/ammo_magazine/pistol/standard_pocketpistol = 50,
 		/obj/item/ammo_magazine/flamer_tank/large = 10,
-		/obj/item/ammo_magazine/standard_smartmachinegun = 4,
+		/obj/item/ammo_magazine/standard_smartmachinegun = 2,
 		/obj/item/ammo_magazine/flamer_tank = 10,
 		/obj/item/ammo_magazine/smg/ppsh/ = 30,
 		/obj/item/ammo_magazine/smg/ppsh/extended = 10,
