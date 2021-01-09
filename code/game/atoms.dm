@@ -151,9 +151,9 @@ directive is properly returned.
 /atom/proc/CheckExit(atom/movable/mover, turf/target)
 	SHOULD_CALL_PARENT(TRUE)
 	. = CanAllowExit(mover, target)
-	// This is cheaper than calling the proc every time since most things dont override CheckExit
-	if(!mover.generic_canpass)
-		return mover.CanPassThrough(src, target, .)
+	if(mover.status_flags & INCORPOREAL)
+		return TRUE
+	return .
 
 /// Returns true or false to allow the mover to move out of the atom
 /atom/proc/CanAllowExit(atom/movable/mover, turf/target)

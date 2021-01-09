@@ -140,6 +140,7 @@
 	cooldown_timer = 20 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_PHASE_SHIFT
 	var/turf/starting_turf = null
+	var/phase_shift_active = FALSE
 
 
 /datum/action/xeno_action/phase_shift/action_activate()
@@ -185,13 +186,14 @@
 	GLOB.round_statistics.wraith_phase_shifts++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "wraith_phase_shifts") //Statistics
 
+	phase_shift_active = TRUE //Flag phase shift as being active
 	succeed_activate()
 	add_cooldown()
 
 ///Warns the user when Phase Shift is about to end.
 /datum/action/xeno_action/phase_shift/proc/phase_shift_warning()
 
-	if(!owner.get_filter("wraith_phase_shift")) //If phase shift isn't active, cancel out
+	if(!phase_shift_active) //If phase shift isn't active, cancel out
 		return
 
 	owner.alpha = WRAITH_PHASE_SHIFT_ALPHA * 1.5 //Become less translucent
@@ -201,8 +203,10 @@
 
 ///Deactivates and turns off the Phase Shift ability/effects
 /datum/action/xeno_action/phase_shift/proc/phase_shift_deactivate()
-	if(!owner.get_filter("wraith_phase_shift")) //If phase shift isn't active, don't deactivate again; generally here for the timed proc.
+	if(!phase_shift_active) //If phase shift isn't active, don't deactivate again; generally here for the timed proc.
 		return
+
+	phase_shift_active = FALSE //Flag phase shift as being off
 
 	var/mob/living/carbon/xenomorph/wraith/ghost = owner
 	var/atom/movable/ghost_movable = owner
@@ -398,14 +402,17 @@
 /datum/action/xeno_action/activable/banish
 	name = "Banish"
 	action_icon_state = "banish"
-	mechanics_text = "We banish a target object or creature within line of sight to nullspace for a short duration. Can target onself and allies."
+	mechanics_text = "We banish a target object or creature within line of sight to nullspace for a short duration. Can target onself and allies. Non-friendlies are banished for half as long."
 	use_state_flags = XACT_TARGET_SELF
 	plasma_cost = 100
 	cooldown_timer = 20 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_BANISH
-	var/turf/banished_turf = null //The turf the target was banished on
-	var/atom/movable/banishment_target = null //Target we've banished
-	var/obj/effect/temp_visual/banishment_portal/portal = null //SFX indicating the banished target's position
+	///The turf the target was banished on
+	var/turf/banished_turf = null
+	///Target we've banished
+	var/atom/movable/banishment_target = null
+	///SFX indicating the banished target's position
+	var/obj/effect/temp_visual/banishment_portal/portal = null
 
 /datum/action/xeno_action/activable/banish/give_action(mob/living/L)
 	. = ..()
@@ -467,11 +474,11 @@
 	else if(isliving(banishment_target)) //We halve the max duration for living non-allies
 		duration *= WRAITH_BANISH_NONFRIENDLY_LIVING_MULTIPLIER
 
-	banishment_target.visible_message("<span class='warning'>Space abruptly twists and warps around [banishment_target.name] as it suddenly vanishes!</span>", \
+	banishment_target.visible_message("<span class='warning'>Space abruptly twists and warps around [banishment_target] as it suddenly vanishes!</span>", \
 	"<span class='highdanger'>The world around you reels, reality seeming to twist and tear until you find yourself trapped in a forsaken void beyond space and time.</span>")
 	playsound(banished_turf, 'sound/weapons/emitter2.ogg', 50, 1) //this isn't quiet
 
-	to_chat(ghost,"<span class='xenodanger'>We have banished [banishment_target.name] to nullspace for [duration * 0.1] seconds.</span>")
+	to_chat(ghost,"<span class='xenodanger'>We have banished [banishment_target] to nullspace for [duration * 0.1] seconds.</span>")
 
 	addtimer(CALLBACK(src, .proc/banish_warning), duration * 0.7) //Warn when Banish is about to end
 	addtimer(CALLBACK(src, .proc/banish_deactivate), duration)

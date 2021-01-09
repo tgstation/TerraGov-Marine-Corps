@@ -208,7 +208,7 @@
 		return P.duration - world.time
 	return 0
 
-/mob/living/proc/ParalyzeNoChain(amount, ignore_canstun = FALSE) // knockdown only if not already knockeddown; set adjust_stun to FALSE when we want xenos to suffer the full duration
+/mob/living/proc/ParalyzeNoChain(amount, ignore_canstun = FALSE) // knockdown only if not already knockeddown
 	if(status_flags & GODMODE)
 		return
 	if(IsParalyzed())
