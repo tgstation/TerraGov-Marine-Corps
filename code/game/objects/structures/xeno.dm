@@ -577,6 +577,7 @@
 /obj/structure/xeno/trap
 	desc = "It looks like a hiding hole."
 	name = "resin hole"
+	icon = 'icons/Xeno/Effects.dmi'
 	icon_state = "trap0"
 	density = FALSE
 	opacity = FALSE
@@ -637,11 +638,11 @@
 						"<span class='danger'>You trip on [src]!</span>")
 		C.Paralyze(40)
 		var/datum/hive_status/HS = GLOB.hive_datums[hivenumber]
-		HS.xeno_message("<span class='xenoannounce'>Our [name] at [AREACOORD_NO_Z(src)] has been triggered!</span>", 2, FALSE, src, 'sound/voice/alien_growl1.ogg') //Alert the hive
+		HS.xeno_message("<span class='xenoannounce'>Our [name] at [AREACOORD_NO_Z(src)] has been triggered!</span>", 2, FALSE, src, 'sound/voice/alien_growl1.ogg', ping_time = XENO_RALLY_PING_TIME_DURATION) //Alert the hive
 		notify_ghosts("\ [C] triggered a [src] at [AREACOORD_NO_Z(C)]!", source = C, action = NOTIFY_ORBIT)
 		drop_hugger()
 
-///Drops the hugger within when the trap is tripped or destroyed
+///Ejects  the hugger within when the trap is tripped or destroyed
 /obj/structure/xeno/trap/proc/drop_hugger()
 	hugger.forceMove(loc)
 	hugger.stasis = FALSE

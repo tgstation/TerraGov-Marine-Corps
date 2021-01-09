@@ -438,6 +438,8 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 #define XENO_STRUCTURE_DESTRUCTION_ALERT_COOLDOWN	5 SECONDS //Low cooldown, mainly intended to avoid chat being flooded when an explosive annihilates a bunch of structures simultaneously.
 
+#define XENO_RALLY_PING_TIME_DURATION		10 SECONDS //How long the ping time of the Xeno rally defaults to
+
 #define CANNOT_HOLD_EGGS 0
 #define CAN_HOLD_TWO_HANDS 1
 #define CAN_HOLD_ONE_HAND 2
