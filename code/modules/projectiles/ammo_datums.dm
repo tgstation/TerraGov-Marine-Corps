@@ -1359,11 +1359,16 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_low = 3
 	accuracy_var_high = 3
 	bullet_color = COLOR_LIME
-	var/datum/effect_system/smoke_spread/xeno/smoke_system
-	var/list/datum/reagent/spit_reagents = new/list()
+	///List of reagents transferred upon spit impact if any
+	var/list/datum/reagent/spit_reagents
+	///Amount of reagents transferred upon spit impact if any
 	var/reagent_transfer_amount
+	///Amount of stagger stacks imposed on impact if any
 	var/stagger_stacks
+	///Amount of slowdown stacks imposed on impact if any
 	var/slowdown_stacks
+	///These define the reagent transfer strength of the smoke caused by the spit, if any, and its aoe
+	var/datum/effect_system/smoke_spread/xeno/smoke_system
 	var/smoke_strength
 	var/smoke_range
 
@@ -1384,6 +1389,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	smoke_range = 0
 	reagent_transfer_amount = 5
 
+///Set up the list of reagents the spit transfers upon impact
 /datum/ammo/xeno/toxin/proc/set_reagents()
 	spit_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = reagent_transfer_amount)
 

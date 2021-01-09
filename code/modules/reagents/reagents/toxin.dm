@@ -457,35 +457,42 @@
 	custom_metabolism = REAGENTS_METABOLISM * 2
 	purge_list = list(/datum/reagent/medicine)
 	purge_rate = 1
-	overdose_threshold = REAGENTS_OVERDOSE
-	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL * 1.2 //make this a little more forgiving in light of the lethality
+	overdose_threshold = 10000 //Overdosing for neuro is what happens when you run out of stamina to avoid its oxy and toxin damage
 	scannable = TRUE
 	toxpwr = 0
 
 
 /datum/reagent/toxin/xeno_neurotoxin/on_mob_life(mob/living/L, metabolism)
+	var/power
 	switch(current_cycle)
 		if(1 to 20)
-			L.adjustStaminaLoss(2*effect_str) //While stamina loss is going, stamina regen apparently doesn't happen, so I can keep this smaller.
+			power = (2*effect_str) //While stamina loss is going, stamina regen apparently doesn't happen, so I can keep this smaller.
 			L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
 		if(21 to 45)
 			L.adjust_drugginess(1.1) //Move this to stage 2 and 3 so it's not so obnoxious
-			L.adjustStaminaLoss(6*effect_str)
+			power = (6*effect_str)
 			L.reagent_pain_modifier -= PAIN_REDUCTION_HEAVY
+			L.jitter(4) //Shows that things are bad
 		if(46 to INFINITY)
 			L.adjust_drugginess(1.1)
-			L.adjustStaminaLoss(15*effect_str)
+			power = (15*effect_str)
 			L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_HEAVY
-	L.adjust_blurriness(1.3)
+			L.jitter(8) //Shows that things are *really* bad
+
+	//Apply stamina damage, or tox damage if our stamina loss is maxed out
+	var/health_limit = L.maxHealth * 2
+	if(L.staminaloss + power > health_limit) //If we exceed maxHealth * 2 stamina damage, apply any excess as toxloss and oxyloss
+		var/stamina_excess_damage = L.staminaloss + power * 0.5 - health_limit
+		L.adjustToxLoss(stamina_excess_damage)
+		L.adjustOxyLoss(stamina_excess_damage)
+
+	else
+		L.adjustStaminaLoss(power)
+
+	if(L.eye_blurry < 30) //So we don't have the visual acuity of Mister Magoo forever
+		L.adjust_blurriness(1.3)
 	L.stuttering = max(L.stuttering, 1)
 	return ..()
-
-
-/datum/reagent/toxin/xeno_neurotoxin/overdose_process(mob/living/L, metabolism)
-	L.adjustToxLoss(0.5*effect_str) //Overdose starts applying toxin and oxygen damage. Long-term overdose will kill the host.
-	L.adjustOxyLoss(0.5*effect_str)
-	L.jitter(4) //Lets Xenos know they're ODing and should probably stop.
-
 
 /datum/reagent/toxin/xeno_neurotoxin/overdose_crit_process(mob/living/L, metabolism)
 	L.Losebreath(1) //Can't breathe; for punishing the bullies

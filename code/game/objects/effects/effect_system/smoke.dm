@@ -277,7 +277,7 @@
 	alpha = 60
 	opacity = FALSE
 	smoke_can_spread_through = TRUE
-	smoke_traits = SMOKE_XENO|SMOKE_XENO_NEURO|SMOKE_GASP|SMOKE_COUGH //Light neuro smoke doesn't extinguish
+	smoke_traits = SMOKE_XENO|SMOKE_XENO_NEURO|SMOKE_GASP|SMOKE_COUGH|SMOKE_NEURO_LIGHT //Light neuro smoke doesn't extinguish
 
 /obj/effect/particle_effect/smoke/xeno/hemodile
 	alpha = 40

@@ -35,7 +35,7 @@
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_NEURO))
 		if(!is_blind(src) && has_eyes())
 			to_chat(src, "<span class='danger'>Your eyes sting. You can't see!</span>")
-		if(!istype(S, /obj/effect/particle_effect/smoke/xeno/neuro/light)) //Only full neurogas blinds
+		if(!CHECK_BITFIELD(S.smoke_traits, SMOKE_NEURO_LIGHT)) //Only full neurogas blinds
 			blind_eyes(2)
 		blur_eyes(4)
 		reagents.add_reagent(/datum/reagent/toxin/xeno_neurotoxin, GAS_INHALE_REAGENT_TRANSFER_AMOUNT * S.strength)
