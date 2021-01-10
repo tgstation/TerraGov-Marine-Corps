@@ -275,7 +275,6 @@
 		/datum/reagent/medicine/bicaridine = 20,
 		/datum/reagent/medicine/kelotane = 20,
 		/datum/reagent/medicine/tramadol = 20,
-	)	
 	
 /obj/item/reagent_containers/hypospray/advanced/combat_advanced
 	name = "Advanced combat hypospray"
@@ -358,3 +357,9 @@
 					dat += "\n \t <b>Unknown:</b> [R.volume]|[percent]% <b>Amount per dose:</b> [dose]</br>"
 		if(dat)
 			to_chat(user, "<span class = 'notice'>[src]'s reagent display shows the following contents: [dat.Join(" ")]</span>")
+
+/obj/item/reagent_containers/hypospray/advanced/big
+	name = "advanced big hypospray"
+	desc = "The hypospray is a sterile, air-needle reusable autoinjector for rapid administration of drugs to patients with customizable dosages. Comes complete with an internal reagent analyzer and digital labeler. Handy. This one is a 120 unit version."
+	core_name = "hypospray"
+	volume = 120
