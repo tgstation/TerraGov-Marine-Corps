@@ -1690,7 +1690,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		if(lace_deployed)
 			return
 		lace_deployed = TRUE
-		to_chat(user, "<span class='notice'>You deploy the[src].</span>")
+		to_chat(user, "<span class='notice'>You deploy the [src].</span>")
 		ENABLE_BITFIELD(master_gun.flags_item, NODROP)
 		to_chat(user, "<span class='warning'>You feel the [src] shut around your wrist!</span>")
 		playsound(user, 'sound/weapons/fistclamp.ogg', 25, 1, 7)
