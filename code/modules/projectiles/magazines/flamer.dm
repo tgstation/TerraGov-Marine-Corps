@@ -56,7 +56,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	max_rounds = 500
 	current_rounds = 500
-	reload_delay = 1 SECONDS
+	reload_delay = 2 SECONDS
 	gun_type = /obj/item/weapon/gun/flamer
 	var/obj/item/weapon/gun/flamer/attached_flamer = null
 
