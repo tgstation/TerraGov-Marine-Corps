@@ -275,6 +275,7 @@
 		/datum/reagent/medicine/bicaridine = 20,
 		/datum/reagent/medicine/kelotane = 20,
 		/datum/reagent/medicine/tramadol = 20,
+	)	
 	
 /obj/item/reagent_containers/hypospray/advanced/combat_advanced
 	name = "Advanced combat hypospray"
