@@ -1288,11 +1288,6 @@ Imports
 	contains = list(/obj/item/weapon/gun/shotgun/pump/lever/mbx900)
 	cost = 15
 
-/datum/supply_packs/ammo/mbx900
-	name = "MBX-900 Sabot Shells"
-	contains = list(/obj/item/ammo_magazine/shotgun/mbx900)
-	cost = 5
-
 /datum/supply_packs/ammo/mbx900/buckshot
 	name = "MBX-900 Buckshot Shells"
 	contains = list(/obj/item/ammo_magazine/shotgun/mbx900/buckshot)
