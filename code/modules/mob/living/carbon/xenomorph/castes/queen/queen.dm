@@ -27,7 +27,7 @@
 		/mob/living/carbon/xenomorph/proc/claw_toggle,
 		/mob/living/carbon/xenomorph/queen/proc/set_orders,
 		/mob/living/carbon/xenomorph/queen/proc/hive_Message,
-		/mob/living/carbon/xenomorph/proc/calldown_dropship,
+		/mob/living/carbon/xenomorph/proc/hijack,
 	)
 
 // ***************************************
@@ -134,3 +134,9 @@
 /mob/living/carbon/xenomorph/queen/proc/is_burrowed_larva_host(datum/source, list/mothers, list/silos)
 	if(!incapacitated(TRUE))
 		mothers += src //Adding us to the list.
+
+// ***************************************
+// *********** Queen Acidic Salve
+// ***************************************
+/datum/action/xeno_action/activable/psychic_cure/acidic_salve/queen
+	heal_range = HIVELORD_HEAL_RANGE

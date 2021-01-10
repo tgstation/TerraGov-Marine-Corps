@@ -79,3 +79,9 @@
 	icon = 'icons/effects/heavyimpact.dmi'
 	icon_state = "heavyimpact"
 	duration = 13
+
+/obj/effect/temp_visual/healing
+	name = "healing"
+	icon = 'icons/effects/progressicons.dmi'
+	icon_state = "busy_medical"
+	duration = 0.8 SECONDS

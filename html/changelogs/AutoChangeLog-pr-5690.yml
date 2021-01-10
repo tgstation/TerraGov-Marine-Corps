@@ -1,0 +1,4 @@
+author: "EvilMelonTheSecond"
+delete-after: True
+changes: 
+  - tweak: "C4 now does small explosion and plays detpack ringing when detonation time is up"

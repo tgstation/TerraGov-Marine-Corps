@@ -247,7 +247,7 @@ WEAPONS
 
 /datum/supply_packs/weapons/explosives_mines
 	name = "claymore mines"
-	notes = "Contains 5 mines"
+	notes = "Contains 10 mines"
 	contains = list(/obj/item/storage/box/explosive_mines)
 	cost = 15
 
@@ -545,7 +545,7 @@ AMMO
 /datum/supply_packs/ammo/smartmachinegun
 	name = "T-29 smartmachinegun ammo"
 	contains = list(/obj/item/ammo_magazine/standard_smartmachinegun)
-	cost = 10
+	cost = 5
 
 /datum/supply_packs/ammo/sentry
 	name = "UA 571-C sentry ammunition"
