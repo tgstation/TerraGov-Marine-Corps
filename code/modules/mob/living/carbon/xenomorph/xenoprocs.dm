@@ -166,7 +166,7 @@
 	popup.open(FALSE)
 
 ///Send a message to all xenos. Force forces the message whether or not the hivemind is intact. Target is an atom that is pointed out to the hive. Filter list is a list of xenos we don't message.
-/proc/xeno_message(message = null, size = 3, hivenumber = XENO_HIVE_NORMAL, force = FALSE, atom/target = null, sound = null, apply_preferences = FALSE, filter_list = null)
+/proc/xeno_message(message = null, size = 3, hivenumber = XENO_HIVE_NORMAL, force = FALSE, atom/target = null, sound = null, apply_preferences = FALSE, filter_list = null, arrow_type)
 	if(!message)
 		return
 
@@ -174,7 +174,7 @@
 		CRASH("xeno_message called with invalid hivenumber")
 
 	var/datum/hive_status/HS = GLOB.hive_datums[hivenumber]
-	HS.xeno_message(message, size, force, target, sound, apply_preferences, filter_list)
+	HS.xeno_message(message, size, force, target, sound, apply_preferences, filter_list, arrow_type)
 
 /mob/living/carbon/xenomorph/proc/upgrade_possible()
 	return (upgrade != XENO_UPGRADE_INVALID && upgrade != XENO_UPGRADE_THREE)
