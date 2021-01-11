@@ -337,6 +337,8 @@
 #define COMSIG_WARRIOR_USED_GRAPPLE_TOSS "warrior_used_grapple_toss"
 
 #define COMSIG_XENOMORPH_PLASMA_REGEN "xenomorph_plasma_regen"
+#define COMSIG_XENOMORPH_HEALTH_REGEN "xenomorph_health_regen"
+#define COMSIG_XENOMORPH_SUNDER_REGEN "xenomorph_sunder_regen"
 
 #define COMSIG_XENOMORPH_ZONE_SELECT "xenomorph_zone_select"
 	#define COMSIG_ACCURATE_ZONE (1<<0)
@@ -464,6 +466,7 @@
 #define COMSIG_XENOABILITY_HIDE "xenoability_hide"
 #define COMSIG_XENOABILITY_NEUROTOX_STING "xenoability_neurotox_sting"
 #define COMSIG_XENOABILITY_INJECT_EGG_NEUROGAS "xenoability_inject_egg_neurogas"
+#define COMSIG_XENOABILITY_RALLY_HIVE "xenoability_rally_hive"
 
 #define COMSIG_XENOABILITY_LONG_RANGE_SIGHT "xenoability_long_range_sight"
 #define COMSIG_XENOABILITY_TOGGLE_BOMB "xenoability_toggle_bomb"
@@ -500,6 +503,7 @@
 #define COMSIG_XENOABILITY_BUILD_TUNNEL "xenoability_build_tunnel"
 #define COMSIG_XENOABILITY_PLACE_JELLY_POD "xenoability_place_jelly_pod"
 #define COMSIG_XENOABILITY_CREATE_JELLY "xenoability_create_jelly"
+#define COMSIG_XENOABILITY_HEALING_INFUSION "xenoability_healing_infusion"
 
 #define COMSIG_XENOABILITY_TOGGLE_STEALTH "xenoability_toggle_stealth"
 
@@ -543,6 +547,7 @@
 #define COMSIG_KB_QUICKEQUIP "keybinding_quickequip"
 #define COMSIG_KB_HOLSTER "keybinding_holster"
 #define COMSIG_KB_UNIQUEACTION "keybinding_uniqueaction"
+#define COMSIG_KB_RAILATTACHMENT "keybinding_railattachment"
 
 // Ability adding/removing signals
 #define ACTION_GIVEN "gave_an_action"		//from base of /datum/action/proc/give_action(): (datum/action)

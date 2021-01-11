@@ -14,7 +14,7 @@
 
 /datum/reagent/toxin/on_mob_life(mob/living/L, metabolism)
 	if(toxpwr)
-		L.adjustToxLoss(toxpwr*REM)
+		L.adjustToxLoss(toxpwr*0.5*effect_str)
 	return ..()
 
 /datum/reagent/toxin/hptoxin
@@ -32,7 +32,7 @@
 	taste_description = "alchemy"
 
 /datum/reagent/toxin/sdtoxin/on_mob_life(mob/living/L, metabolism)
-	L.adjustOxyLoss(2*REM)
+	L.adjustOxyLoss(effect_str)
 	return ..()
 
 
@@ -62,7 +62,7 @@
 	toxpwr = 3
 
 /datum/reagent/toxin/phoron/on_mob_life(mob/living/L, metabolism)
-	holder.remove_reagent(/datum/reagent/medicine/inaprovaline, 2*REM)
+	holder.remove_reagent(/datum/reagent/medicine/inaprovaline, effect_str)
 	return ..()
 
 /datum/reagent/toxin/lexorin
@@ -76,7 +76,7 @@
 
 /datum/reagent/toxin/lexorin/on_mob_life(mob/living/L, metabolism)
 	if(prob(33))
-		L.take_limb_damage(REM, 0)
+		L.take_limb_damage(0.5*effect_str, 0)
 	L.adjustOxyLoss(3)
 	if(prob(20))
 		L.emote("gasp")
@@ -96,7 +96,7 @@
 	custom_metabolism = REAGENTS_METABOLISM * 2
 
 /datum/reagent/toxin/cyanide/on_mob_life(mob/living/L, metabolism)
-	L.adjustOxyLoss(4*REM)
+	L.adjustOxyLoss(2*effect_str)
 	if(current_cycle > 10)
 		L.Sleeping(40)
 	return ..()
@@ -128,7 +128,7 @@
 	return ..()
 
 /datum/reagent/toxin/zombiepowder/on_mob_life(mob/living/L, metabolism)
-	L.adjustOxyLoss(0.5*REM)
+	L.adjustOxyLoss(0.25*effect_str)
 	L.Paralyze(20 SECONDS)
 	return ..()
 
@@ -268,7 +268,7 @@
 			L.Sleeping(10 SECONDS)
 		if(61 to INFINITY)
 			L.Sleeping(10 SECONDS)
-			L.adjustToxLoss((current_cycle/2 - 50)*REM)
+			L.adjustToxLoss((current_cycle/4 - 25)*effect_str)
 	return ..()
 
 /datum/reagent/toxin/chloralhydrate/overdose_process(mob/living/L, metabolism)
@@ -332,7 +332,7 @@
 			L.Sleeping(10 SECONDS)
 		if(51 to INFINITY)
 			L.Sleeping(10 SECONDS)
-			L.adjustToxLoss((current_cycle - 50)*REM)
+			L.adjustToxLoss((current_cycle/2 - 25)*effect_str)
 	return ..()
 
 /datum/reagent/toxin/plasticide
@@ -355,7 +355,7 @@
 	taste_description = "acid"
 
 /datum/reagent/toxin/acid/on_mob_life(mob/living/L, metabolism)
-	L.take_limb_damage(0, REM)
+	L.take_limb_damage(0, 0.5*effect_str)
 	return ..()
 
 /datum/reagent/toxin/acid/reaction_mob(mob/living/L, method = TOUCH, volume, metabolism, show_message = TRUE, touch_protection = 0)
@@ -445,7 +445,7 @@
 	color = "#535E66" // rgb: 83, 94, 102
 
 /datum/reagent/toxin/nanites/on_mob_life(mob/living/L, metabolism)
-	L.apply_damages(10*REM, 6*REM, 6*REM) //DO NOT DRINK THIS. Seriously!
+	L.apply_damages(5*effect_str, 3*effect_str, 3*effect_str) //DO NOT DRINK THIS. Seriously!
 	L.blood_volume -= 10
 	return ..()
 
@@ -466,13 +466,13 @@
 /datum/reagent/toxin/xeno_neurotoxin/on_mob_life(mob/living/L, metabolism)
 	switch(current_cycle)
 		if(1 to 20)
-			L.adjustStaminaLoss(4*REM) //While stamina loss is going, stamina regen apparently doesn't happen, so I can keep this smaller.
+			L.adjustStaminaLoss(2*effect_str) //While stamina loss is going, stamina regen apparently doesn't happen, so I can keep this smaller.
 			L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
 		if(21 to 45)
-			L.adjustStaminaLoss(12*REM)
+			L.adjustStaminaLoss(6*effect_str)
 			L.reagent_pain_modifier -= PAIN_REDUCTION_HEAVY
 		if(46 to INFINITY)
-			L.adjustStaminaLoss(30*REM)
+			L.adjustStaminaLoss(15*effect_str)
 			L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_HEAVY
 	L.adjust_drugginess(1.1)
 	L.stuttering = max(L.stuttering, 1)
@@ -480,8 +480,8 @@
 
 
 /datum/reagent/toxin/xeno_neurotoxin/overdose_process(mob/living/L, metabolism)
-	L.adjustToxLoss(REM) //Overdose starts applying toxin and oxygen damage. Long-term overdose will kill the host.
-	L.adjustOxyLoss(REM)
+	L.adjustToxLoss(0.5*effect_str) //Overdose starts applying toxin and oxygen damage. Long-term overdose will kill the host.
+	L.adjustOxyLoss(0.5*effect_str)
 	L.jitter(4) //Lets Xenos know they're ODing and should probably stop.
 
 

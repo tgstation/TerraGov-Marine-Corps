@@ -37,6 +37,7 @@
 
 	// *** Speed *** //
 	var/speed = 1
+	var/weeds_speed_mod = -0.4
 
 	// *** Regeneration Delay ***//
 	///Time after you take damage before a xenomorph can regen.
@@ -308,3 +309,5 @@
 	var/notice_delay = 20 //2 second between notices
 
 	var/fire_luminosity = 0 //Luminosity of the current fire while burning
+
+	COOLDOWN_DECLARE(xeno_health_alert_cooldown)

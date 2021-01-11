@@ -33,7 +33,7 @@
 
 				if (bloodDNA && !locate(/obj/structure) in contents)
 					src.AddTracks(/obj/effect/decal/cleanable/blood/tracks/footprints,bloodDNA,H.dir,0,bloodcolor) // Coming
-					var/turf/from = get_step(H,reverse_direction(H.dir))
+					var/turf/from = get_step(H,REVERSE_DIR(H.dir))
 					if(istype(from) && from)
 						from.AddTracks(/obj/effect/decal/cleanable/blood/tracks/footprints,bloodDNA,0,H.dir,bloodcolor) // Going
 
