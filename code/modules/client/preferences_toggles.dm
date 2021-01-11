@@ -331,9 +331,9 @@ GLOBAL_LIST_INIT(ghost_others_options, list(GHOST_OTHERS_SIMPLE, GHOST_OTHERS_DE
 
 	to_chat(usr, "<span class='notice'>You will [(usr.client.prefs.toggles_sound & SOUND_INSTRUMENTS_OFF) ? "no longer" : "now"] hear instruments.</span>")
 
-client/proc/toggle_right_click()
+client/verb/toggle_right_click()
 	set name = "Toggle Right Click"
-	set category = "Admin"
+	set category = "Preferences"
 
 	if(!show_popup_menus)
 		show_popup_menus = TRUE
