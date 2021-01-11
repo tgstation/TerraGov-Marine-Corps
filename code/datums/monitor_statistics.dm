@@ -8,8 +8,8 @@ GLOBAL_DATUM_INIT(monitor_statistics, /datum/monitor_statistics, new)
 	var/Elder_T3 = 0
 	var/Ancient_T2 = 0
 	var/Elder_T2 = 0
-	var/list/Miniguns_in_use = new() 
-	var/list/SADAR_in_use = new() 
-	var/list/B18_in_use = new()
-	var/list/B17_in_use = new()
+	var/list/Miniguns_in_use = list()
+	var/list/SADAR_in_use = list() 
+	var/list/B18_in_use = list()
+	var/list/B17_in_use = list()
 	var/OB_available = 0

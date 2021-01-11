@@ -362,8 +362,8 @@
 
 
 /obj/structure/ob_ammo/warhead/proc/warhead_impact(turf/target, inaccuracy_amt = 0)
-	GLOB.monitor_statistics.OB_available--
 	SHOULD_CALL_PARENT(TRUE)
+	GLOB.monitor_statistics.OB_available--
 
 /obj/structure/ob_ammo/warhead/Initialize()
 	. = ..()

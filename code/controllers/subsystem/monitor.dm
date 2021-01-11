@@ -10,7 +10,7 @@ SUBSYSTEM_DEF(monitor)
 	var/last_state = STATE_BALANCED
 	///If we consider the state as a stalemate
 	var/stalemate = FALSE
-	///The current state points
+	///The current state points. Negative means xenos are winning, positive points correspond to marine winning
 	var/current_points = 0
 	///The number of time we had the same state consecutively
 	var/stale_counter = 0
@@ -22,13 +22,15 @@ SUBSYSTEM_DEF(monitor)
 	var/humans_all_in_FOB_counter = 0
 	///TRUE if we detect a state of FOB hugging
 	var/FOB_hugging = FALSE
+	///TRUE if xenos have hijacked into ship. Disable the monitor
+	var/hijacked = FALSE
 	
 
 
 /datum/controller/subsystem/monitor/Initialize(time, zlevel)
 	if(CONFIG_GET(flag/monitor_disallowed))
 		can_fire = 0
-	reschedule()
+	scheduled = START_STATE_CALCULATION + world.time
 	return ..()
 
 /datum/controller/subsystem/monitor/fire(resumed = 0)
@@ -38,7 +40,7 @@ SUBSYSTEM_DEF(monitor)
 
 ///checks if we should refresh the director state, and reschedules if necessary
 /datum/controller/subsystem/monitor/proc/check_state()
-	if(scheduled <= world.time)
+	if(scheduled <= world.time && !hijacked)
 		etablish_state()
 		reschedule()
 
@@ -61,25 +63,24 @@ SUBSYSTEM_DEF(monitor)
 	
 ///Calculate the points supposedly representating of the situation	
 /datum/controller/subsystem/monitor/proc/calculate_state_points()
-	var/actualPoints = 0
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	actualPoints += GLOB.monitor_statistics.Ancient_T2 * ANCIENT_T2_WEIGHT
-	actualPoints += GLOB.monitor_statistics.Ancient_T3 * ANCIENT_T3_WEIGHT
-	actualPoints += GLOB.monitor_statistics.Elder_T2 * ELDER_T2_WEIGHT
-	actualPoints += GLOB.monitor_statistics.Elder_T3 * ELDER_T3_WEIGHT
-	actualPoints += GLOB.monitor_statistics.Ancient_Queen * ANCIENT_QUEEN_WEIGHT
-	actualPoints += GLOB.monitor_statistics.Elder_Queen * ELDER_QUEEN_WEIGHT
-	actualPoints += human_on_ground * HUMAN_LIFE_ON_GROUND_WEIGHT
-	actualPoints += (GLOB.alive_human_list.len - human_on_ground) * HUMAN_LIFE_ON_SHIP_WEIGHT
-	actualPoints += GLOB.alive_xeno_list.len * XENOS_LIFE_WEIGHT
-	actualPoints += (xeno_job.total_positions - xeno_job.current_positions) * BURROWED_LARVA_WEIGHT
-	actualPoints += GLOB.monitor_statistics.Miniguns_in_use.len * MINIGUN_PRICE * REQ_POINTS_WEIGHT
-	actualPoints += GLOB.monitor_statistics.SADAR_in_use.len * SADAR_PRICE * REQ_POINTS_WEIGHT
-	actualPoints += GLOB.monitor_statistics.B17_in_use.len * B17_PRICE * REQ_POINTS_WEIGHT
-	actualPoints += GLOB.monitor_statistics.B18_in_use.len * B18_PRICE * REQ_POINTS_WEIGHT
-	actualPoints += SSpoints.supply_points * REQ_POINTS_WEIGHT
-	actualPoints += GLOB.monitor_statistics.OB_available * OB_AVAILABLE_WEIGHT
-	return actualPoints
+	. += GLOB.monitor_statistics.Ancient_T2 * ANCIENT_T2_WEIGHT
+	. += GLOB.monitor_statistics.Ancient_T3 * ANCIENT_T3_WEIGHT
+	. += GLOB.monitor_statistics.Elder_T2 * ELDER_T2_WEIGHT
+	. += GLOB.monitor_statistics.Elder_T3 * ELDER_T3_WEIGHT
+	. += GLOB.monitor_statistics.Ancient_Queen * ANCIENT_QUEEN_WEIGHT
+	. += GLOB.monitor_statistics.Elder_Queen * ELDER_QUEEN_WEIGHT
+	. += human_on_ground * HUMAN_LIFE_ON_GROUND_WEIGHT
+	. += (GLOB.alive_human_list.len - human_on_ground) * HUMAN_LIFE_ON_SHIP_WEIGHT
+	. += GLOB.alive_xeno_list.len * XENOS_LIFE_WEIGHT
+	. += (xeno_job.total_positions - xeno_job.current_positions) * BURROWED_LARVA_WEIGHT
+	. += GLOB.monitor_statistics.Miniguns_in_use.len * MINIGUN_PRICE * REQ_POINTS_WEIGHT
+	. += GLOB.monitor_statistics.SADAR_in_use.len * SADAR_PRICE * REQ_POINTS_WEIGHT
+	. += GLOB.monitor_statistics.B17_in_use.len * B17_PRICE * REQ_POINTS_WEIGHT
+	. += GLOB.monitor_statistics.B18_in_use.len * B18_PRICE * REQ_POINTS_WEIGHT
+	. += SSpoints.supply_points * REQ_POINTS_WEIGHT
+	. += GLOB.monitor_statistics.OB_available * OB_AVAILABLE_WEIGHT
+	return
 
 ///Keep the monitor informed about the position of humans
 /datum/controller/subsystem/monitor/proc/process_human_positions()

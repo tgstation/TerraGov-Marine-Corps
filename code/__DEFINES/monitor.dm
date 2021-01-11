@@ -1,4 +1,5 @@
 //How often we calculate the state
+#define START_STATE_CALCULATION 30 MINUTES
 #define FREQUENCY_STATE_CALCULATION 5 MINUTES
 
 //The different states possible
