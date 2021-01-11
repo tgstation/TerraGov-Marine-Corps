@@ -799,3 +799,19 @@
 /obj/screen/arrow/silo_damaged_arrow
 	name = "Hive damaged tracker arrow"
 	icon_state = "Red_arrow"
+
+/obj/screen/arrow/silo_damaged_arrow
+	name = "Hive damaged tracker arrow"
+	icon_state = "Red_arrow"
+
+/obj/screen/arrow/attack_order_arrow
+	name = "attack order arrow"
+	icon_state = "Attack_order"
+
+/obj/screen/arrow/regroup_order_arrow
+	name = "Rally order arrow"
+	icon_state = "Regroup_order"
+
+/obj/screen/arrow/defend_order_arrow
+	name = "Rally order arrow"
+	icon_state = "Defend_order"
