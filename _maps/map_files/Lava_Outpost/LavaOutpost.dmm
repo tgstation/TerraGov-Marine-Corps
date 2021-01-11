@@ -1356,7 +1356,7 @@
 	},
 /obj/machinery/door_control/directional{
 	dir = 8;
-	id = "secure_blast2";
+	id = "secure_blast3";
 	name = "Vault Access"
 	},
 /turf/open/floor/tile/dark,
