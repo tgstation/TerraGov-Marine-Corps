@@ -584,11 +584,20 @@
 /mob/proc/facedir(ndir)
 	if(!canface())
 		return FALSE
+	if(facing_dir)
+		facing_dir = ndir
 	setDir(ndir)
 	if(buckled && !buckled.anchored)
 		buckled.setDir(ndir)
 	return TRUE
 
+/mob/setDir(newdir)
+	if(facing_dir)
+		if(!canface())
+			facing_dir = null
+		else if(newdir != facing_dir)
+			return
+	..()
 
 /proc/is_species(A, species_datum)
 	. = FALSE

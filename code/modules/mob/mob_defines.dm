@@ -46,6 +46,7 @@
 	///Mob's angle in BYOND degrees. 0 is north (up/standing for humans), 90 and 270 are east and west respectively (lying horizontally), and 90 is south (upside-down).
 	var/lying_angle = 0
 	var/lying_prev = 0
+	var/facing_dir
 
 	//Security
 	var/computer_id

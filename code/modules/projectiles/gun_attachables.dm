@@ -686,12 +686,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	attachment_action_type = /datum/action/item_action/toggle
 	scope_zoom_mod = TRUE // codex
 	accuracy_unwielded_mod = -0.05
-	///how many tiles to shift the users viewpoint
-	var/zoom_offset = 11
-	///how many tiles to increase the users view box
-	var/zoom_viewsize = 12
-	///can this scope move while zooming ? default of no, scopes with higher viewrange than 7 cause maptick lag on moving according to tivi.
-	var/zoom_movement = FALSE
+	zoom_tile_offset = 11
+	zoom_viewsize = 12
 	///how much slowdown the scope gives when zoomed. You want this to be slowdown you want minus aim_speed_mod
 	var/zoom_slowdown = 1.44
 	///boolean as to whether a scope can apply nightvision
@@ -727,14 +723,14 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/scope/activate_attachment(mob/living/carbon/user, turn_off)
 	if(turn_off)
-		zoom(user, zoom_offset, zoom_viewsize)
+		zoom(user)
 		return TRUE
 
-	if(!master_gun.zoom && !(master_gun.flags_item & WIELDED))
+	if(!(master_gun.flags_item & WIELDED))
 		if(user)
 			to_chat(user, "<span class='warning'>You must hold [master_gun] with two hands to use [src].</span>")
 		return FALSE
-	zoom(user, zoom_offset, zoom_viewsize)
+	zoom(user)
 	return TRUE
 
 /obj/item/attachable/scope/zoom_item_turnoff(datum/source, mob/living/carbon/user)
@@ -744,12 +740,13 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		activate_attachment(user, TRUE)
 
 /obj/item/attachable/scope/onzoom(mob/living/user)
-	if(!zoom_movement)
-		RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/zoom_item_turnoff)
-	RegisterSignal(user, COMSIG_CARBON_SWAPPED_HANDS, .proc/zoom_item_turnoff)
-	RegisterSignal(master_gun, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_UNWIELD, COMSIG_ITEM_DROPPED), .proc/zoom_item_turnoff)
-	if(zoom_movement)
+	if(zoom_allow_movement)
 		user.add_movespeed_modifier(MOVESPEED_ID_SCOPE_SLOWDOWN, TRUE, 0, NONE, TRUE, zoom_slowdown)
+		RegisterSignal(user, COMSIG_CARBON_SWAPPED_HANDS, .proc/zoom_item_turnoff)
+	else
+		RegisterSignal(user, list(COMSIG_CARBON_SWAPPED_HANDS, COMSIG_MOVABLE_MOVED), .proc/zoom_item_turnoff)
+	RegisterSignal(user, COMSIG_ATOM_DIR_CHANGE, .proc/change_zoom_offset)
+	RegisterSignal(master_gun, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_UNWIELD, COMSIG_ITEM_DROPPED), .proc/zoom_item_turnoff)
 	master_gun.accuracy_mult += scoped_accuracy_mod
 	if(has_nightvision)
 		update_remote_sight(user)
@@ -757,12 +754,13 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		active_nightvision = TRUE
 
 /obj/item/attachable/scope/onunzoom(mob/living/user)
-	if(!zoom_movement)
-		UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
-	UnregisterSignal(user, COMSIG_CARBON_SWAPPED_HANDS)
-	UnregisterSignal(master_gun, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_UNWIELD, COMSIG_ITEM_DROPPED))
-	if(zoom_movement)
+	if(zoom_allow_movement)
 		user.remove_movespeed_modifier(MOVESPEED_ID_SCOPE_SLOWDOWN)
+		UnregisterSignal(user, COMSIG_CARBON_SWAPPED_HANDS)	
+	else
+		UnregisterSignal(user, list(COMSIG_CARBON_SWAPPED_HANDS, COMSIG_MOVABLE_MOVED))
+	UnregisterSignal(user, COMSIG_ATOM_DIR_CHANGE)
+	UnregisterSignal(master_gun, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_UNWIELD, COMSIG_ITEM_DROPPED))
 	master_gun.accuracy_mult -= scoped_accuracy_mod
 	if(has_nightvision)
 		user.update_sight()
@@ -786,13 +784,13 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	accuracy_mod = 0.05
 	accuracy_unwielded_mod = -0.05
 	aim_speed_mod = 0.04
-	zoom_offset = 5
-	zoom_viewsize = 7
 	scoped_accuracy_mod = SCOPE_RAIL_MINI
 	scope_zoom_mod = TRUE
 	has_nightvision = FALSE
-	zoom_movement = TRUE
+	zoom_allow_movement = TRUE
 	zoom_slowdown = 0.46
+	zoom_tile_offset = 5
+	zoom_viewsize = 7
 
 /obj/item/attachable/scope/mini/m4ra
 	name = "T-45 rail scope"
