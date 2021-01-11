@@ -322,16 +322,6 @@
 "cw" = (
 /turf/open/lavaland/basalt/glowing,
 /area/lavaland/cave/north)
-"cx" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door_control/directional{
-	dir = 8;
-	id = "secure_blast1";
-	name = "Vault Access"
-	},
-/turf/open/lavaland/basalt,
-/area/lavaland/engie/one)
 "cz" = (
 /obj/structure/barricade/guardrail,
 /obj/structure/barricade/guardrail{
@@ -4052,6 +4042,18 @@
 /obj/structure/largecrate/guns/merc,
 /turf/open/floor/tile/dark2,
 /area/lavaland/misc/refinery)
+"Ir" = (
+/obj/machinery/door/poddoor/mainship{
+	id = "secure_blast1";
+	name = "\improper Secure Armory Blast Door"
+	},
+/obj/machinery/door_control/unmeltable{
+	id = "secure_blast1";
+	name = "Vault Access";
+	pixel_y = 32
+	},
+/turf/open/floor/tile/dark,
+/area/lavaland/security/nuke)
 "Is" = (
 /turf/open/lavaland/lava/lpiece{
 	dir = 8
@@ -44716,7 +44718,7 @@ RP
 RP
 AV
 AV
-cx
+AV
 AV
 jb
 wj
@@ -44974,7 +44976,7 @@ EB
 ZS
 Gt
 Gt
-TR
+Ir
 gM
 TR
 Gt
