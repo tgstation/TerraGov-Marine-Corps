@@ -524,7 +524,6 @@ to_chat will check for valid clients itself already so no need to double check f
 					arrow_hud = new /obj/screen/arrow/silo_damaged_arrow
 			  //Prepare the tracker object and set its parameters
 			arrow_hud.add_hud(X, target)
-			new /obj/effect/temp_visual/xenomorph/xeno_tracker_target(target) //Ping the source of our alert
 
 		to_chat(X, "<span class='xenodanger'><font size=[size]> [message]</font></span>")
 

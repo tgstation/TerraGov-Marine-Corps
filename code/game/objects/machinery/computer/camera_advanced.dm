@@ -70,6 +70,7 @@
 
 	current_user = null
 	user.unset_interaction()
+	user.client.click_intercept = null
 	playsound(src, 'sound/machines/terminal_off.ogg', 25, 0)
 
 
@@ -154,6 +155,7 @@
 
 /obj/machinery/computer/camera_advanced/proc/give_eye_control(mob/user)
 	give_actions(user)
+	user.client.click_intercept = src
 	current_user = user
 	eyeobj.eye_user = user
 	eyeobj.name = "Camera Eye ([user.name])"

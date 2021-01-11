@@ -8,6 +8,9 @@
 #define HIDE_ON_GROUND 1
 #define HIDE_ON_SHIP 2
 
+#define NO_ORDER 0
+#define ATTACK_ORDER 1
+
 GLOBAL_LIST_EMPTY(active_orbital_beacons)
 GLOBAL_LIST_EMPTY(active_laser_targets)
 GLOBAL_LIST_EMPTY(active_cas_targets)
@@ -30,7 +33,19 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	var/z_hidden = 0 //which z level is ignored when showing marines.
 	var/datum/squad/current_squad = null //Squad being currently overseen
 	var/obj/selected_target //Selected target for bombarding
+	var/current_order = NO_ORDER //Selected order to give to marine
+	var/datum/action/innate/attack_order/send_attack_order
 
+/obj/machinery/computer/camera_advanced/overwatch/Initialize()
+	. = ..()
+	send_attack_order = new
+
+/obj/machinery/computer/camera_advanced/overwatch/give_actions(mob/living/user)
+	. = ..()
+	if(send_attack_order)
+		send_attack_order.target = user
+		send_attack_order.give_action(user)
+		actions += send_attack_order
 
 /obj/machinery/computer/camera_advanced/overwatch/main
 	icon_state = "overwatch_main"
@@ -1215,6 +1230,40 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	dat += "<A href='?src=\ref[src];operation=choose_z'>{Change Locations Ignored}</a><br>"
 	dat += "<br><A href='?src=\ref[src];operation=back'>{Back}</a>"
 	return dat
+
+/obj/machinery/computer/camera_advanced/overwatch/InterceptClickOn(mob/user, params, atom/object)
+	var/list/pa = params2list(params)
+	if (pa.Find("shift"))
+		var/turf/TU = get_turf(object)
+		send_orders(TU)
+
+/obj/machinery/computer/camera_advanced/overwatch/proc/send_orders(turf/target_turf)
+	switch (current_order)
+		if (ATTACK_ORDER)
+			
+			
+
+datum/action/innate/attack_order
+	name = "Send Attack Order"
+	background_icon_state = "template2"
+
+datum/action/innate/attack_order/Activate()
+	active = TRUE
+	if(!isliving(target))
+		return
+	var/mob/living/C = target
+	var/mob/camera/aiEye/remote/remote_eye = C.remote_control
+	var/obj/machinery/computer/camera_advanced/overwatch/console = remote_eye.origin
+	console.current_order = ATTACK_ORDER
+
+datum/action/innate/attack_order/Deactivate()
+	active = FALSE
+	if(!isliving(target))
+		return
+	var/mob/living/C = target
+	var/mob/camera/aiEye/remote/remote_eye = C.remote_control
+	var/obj/machinery/computer/camera_advanced/overwatch/console = remote_eye.origin
+	console.current_order = NO_ORDER
 
 #undef OW_MAIN
 #undef OW_MONITOR

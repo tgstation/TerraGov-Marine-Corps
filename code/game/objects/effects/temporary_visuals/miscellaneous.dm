@@ -79,3 +79,18 @@
 	icon = 'icons/effects/heavyimpact.dmi'
 	icon_state = "heavyimpact"
 	duration = 13
+
+/obj/effect/temp_visual/order
+	icon = 'icons/Marine/marine-items.dmi'
+	hud_list = list(SQUAD_HUD)
+	duration = 15 SECONDS
+	layer = TURF_LAYER
+
+/obj/effect/temp_visual/order/Initialize(mapload)
+	. = ..()
+	for(var/datum/atom_hud/squad/squad_hud in GLOB.huds) //Add to the xeno tachud
+		squad_hud.add_to_hud(src)
+
+/obj/effect/temp_visual/order/attack_order
+	name = "attack order"
+	icon_state = "Attack_order"
