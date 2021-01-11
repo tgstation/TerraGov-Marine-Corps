@@ -1,7 +1,0 @@
-author: "XSlayer300"
-delete-after: True
-changes: 
-  - rscadd: "Added HvH variants for hostile ERT armor and marine vendors, admin-spawnable only."
-  - tweak: "Renamed most M3 armor to PAS."
-  - tweak: "Removed the suppressor in NEXUS closets, you can still get them via attachment vendor."
-  - balance: "Buffs some armor to PAS-level."
