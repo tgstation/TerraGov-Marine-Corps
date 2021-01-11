@@ -21,6 +21,8 @@
 	var/tier2_xeno_limit
 	///Hive wide cooldown on alert messages when xeno structures belonging to the hive are destroyed
 	COOLDOWN_DECLARE(xeno_structure_destruction_alert_cooldown)
+	///Hive wide cooldown on alert messages when xeno structures using the override belonging to the hive are destroyed; intended to avoid soundstacking
+	COOLDOWN_DECLARE(xeno_structure_destruction_alert_cooldown_override)
 
 // ***************************************
 // *********** Init

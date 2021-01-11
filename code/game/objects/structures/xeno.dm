@@ -500,7 +500,17 @@
 	///Whether the structure alerts the hive when destroyed; we default to true
 	var/destruction_alert = TRUE
 	///Whether we override the normal hivewide cooldown on alerts for hive structures being destroyed; TRUE for tunnels and other VIP buildings, otherwise FALSE
-	var/override_cooldown = FALSE
+	var/override_destruction_alert_cooldown = FALSE
+	///Whether we can repair this structure. Defaults to TRUE
+	var/can_repair = TRUE
+
+
+/obj/structure/xeno/examine(mob/user)
+	. = ..()
+	if(!isxeno(user) && !isobserver(user))
+		return
+	to_chat(user, "<span class='xenonotice'>[src] has <b>[obj_integrity]/[max_integrity]</b> Health.[(obj_integrity < max_integrity && can_repair) ? "": " It can be repaired."]</span>")
+
 
 /obj/structure/xeno/Initialize(mapload, mob/living/carbon/xenomorph/X)
 	. = ..()
@@ -530,13 +540,18 @@
 		return ..()
 
 	var/datum/hive_status/HS = GLOB.hive_datums[hivenumber]
-	if(!COOLDOWN_CHECK(HS, xeno_structure_destruction_alert_cooldown) && !override_cooldown) //We're on cooldown and we have no override
+	if(!COOLDOWN_CHECK(HS, xeno_structure_destruction_alert_cooldown) && !override_destruction_alert_cooldown) //We're on cooldown and we have no override
+		return ..()
+
+	else if(!COOLDOWN_CHECK(HS, xeno_structure_destruction_alert_cooldown_override)) //Override cooldown check; this is very short; used mainly to avoid soundstacking
 		return ..()
 
 	HS.xeno_message("<span class='xenoannounce'>Our [name] at [AREACOORD_NO_Z(src)] has been destroyed!</span>", 2) //Alert the hive!
 
-	if(!override_cooldown) //Overriding structures don't begin our cooldown
+	if(!override_destruction_alert_cooldown) //Overriding structures don't begin our cooldown
 		COOLDOWN_START(HS, xeno_structure_destruction_alert_cooldown, XENO_STRUCTURE_DESTRUCTION_ALERT_COOLDOWN) //set the cooldown for the hive
+	else
+		COOLDOWN_START(HS, xeno_structure_destruction_alert_cooldown_override, XENO_STRUCTURE_DESTRUCTION_ALERT_OVERRIDE_COOLDOWN) //set the override cooldown for the hive
 
 	return ..()
 
@@ -546,10 +561,14 @@
 	if(M.a_intent != INTENT_HELP) //We must be on help intent to repair
 		return FALSE
 
+	if(!CHECK_BITFIELD(M.xeno_caste.caste_flags, CASTE_IS_BUILDER)) //Check to see if we can actually repair
+		return FALSE
+
 	if(obj_integrity >= max_integrity) //If the structure is at max health (or higher somehow), no need to continue
 		return FALSE
 
-	if(!CHECK_BITFIELD(M.xeno_caste.caste_flags, CASTE_IS_BUILDER)) //Check to see if we can actually repair
+	if(!can_repair)
+		to_chat(M, "<span class='xenodanger'>We can't repair [src]!</span>")
 		return FALSE
 
 	if(M.plasma_stored < 1) //You need to have at least 1 plasma to repair the structure
@@ -572,6 +591,11 @@
 	new /obj/effect/temp_visual/healing(get_turf(src)) //SFX
 
 	return TRUE
+
+/obj/structure/xeno/attack_alien(mob/living/carbon/xenomorph/M)
+
+	repair_xeno_structure(M) //Repair if possible
+
 
 //Carrier trap
 /obj/structure/xeno/trap
@@ -604,13 +628,11 @@
 
 /obj/structure/xeno/trap/examine(mob/user)
 	. = ..()
-	if(isxeno(user))
-		to_chat(user, "A hole for a little one to hide in ambush.")
-		if(hugger)
-			to_chat(user, "There's a little one inside.")
-		else
-			to_chat(user, "It's empty.")
+	if(!isxeno(user) && !isobserver(user))
+		return
 
+	to_chat(user, "<span class='xenonotice'>A hole for a little one to hide in ambush. \
+			[hugger ? "There's a little one inside." : "It's empty, and can host a hugger."]</span>")
 
 /obj/structure/xeno/trap/flamer_fire_act()
 	if(hugger)
@@ -652,6 +674,7 @@
 	hugger = null
 
 /obj/structure/xeno/trap/attack_alien(mob/living/carbon/xenomorph/M)
+	. = ..()
 	if(M.a_intent != INTENT_HARM)
 		if(M.xeno_caste.caste_flags & CASTE_CAN_HOLD_FACEHUGGERS)
 			if(!hugger)
@@ -716,6 +739,8 @@ TUNNEL
 
 	hud_possible = list(XENO_TACTICAL_HUD)
 
+	override_destruction_alert_cooldown = TRUE //Tunnels are tactically important structures and thus override normal destruction alert cooldowns
+
 /obj/structure/xeno/tunnel/flamer_fire_act()
 	return
 
@@ -773,15 +798,14 @@ TUNNEL
 	attack_alien(user)
 
 /obj/structure/tunnel/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	. = ..()
+
 	if(!istype(X) || X.stat || X.lying_angle)
 		return
 
 	if(M.a_intent == INTENT_HARM && M == creator)
 		deconstruct(TRUE, M, HIVELORD_TUNNEL_DISMANTLE_TIME, "<span class='xenoannounce'>We begin filling in our tunnel...</span>", "<span class='xenoannounce'>We fill in our tunnel.</span>")
 		return
-
-	//Check for repairs
-	repair_xeno_structure(M)
 
 	//Prevents using tunnels by the queen to bypass the fog.
 	if(SSticker?.mode && SSticker.mode.flags_round_type & MODE_FOG_ACTIVATED)
@@ -893,7 +917,7 @@ TUNNEL
 	..()
 	if(!isxeno(user) && !isobserver(user))
 		return
-	to_chat(user, "<span class='xenonotice'>[src] has <b>[obj_integrity]/[max_integrity]</b> Health and currently has <b>[charges]/[XENO_ACID_WELL_MAX_CHARGES]<b> charges.</span>")
+	to_chat(user, "<span class='xenonotice'>It currently has <b>[charges]/[XENO_ACID_WELL_MAX_CHARGES]<b> charges.</span>")
 
 /obj/structure/xeno/acidwell/update_icon()
 	..()
@@ -901,11 +925,11 @@ TUNNEL
 	set_light(charges , charges / 2, LIGHT_COLOR_GREEN)
 
 /obj/structure/xeno/acidwell/attack_alien(mob/living/carbon/xenomorph/M)
+	. = ..()
+
 	if(M.a_intent == INTENT_HARM && CHECK_BITFIELD(M.xeno_caste.caste_flags, CASTE_IS_BUILDER) ) //If we're a builder caste and we're on harm intent, deconstruct it.
 		deconstruct(TRUE, M)
 		return
-
-	repair_xeno_structure(M) //Repair if possible
 
 	if(charges >= 5)
 		to_chat(M, "<span class='xenodanger'>[src] is already full!</span>")
@@ -1000,6 +1024,7 @@ TUNNEL
 /obj/structure/xeno/resin_jelly_pod/Initialize(mapload, mob/living/carbon/xenomorph/X)
 	. = ..()
 	add_overlay(image(icon, "resinpod_inside", layer + 0.01, dir))
+	chargesleft++ //Start with 1 jelly, just as acid pools start with 1 charge of acid
 	START_PROCESSING(SSslowprocess, src)
 
 /obj/structure/xeno/resin_jelly_pod/Destroy()
@@ -1010,8 +1035,7 @@ TUNNEL
 	. = ..()
 	if(!isxeno(user) && !isobserver(user))
 		return
-	to_chat(user, "<span class='xenonotice'>This [src] has <b>[chargesleft]</b> jelly globules remaining[datum_flags & DF_ISPROCESSING ? ", and will create a new jelly in [(recharge_rate-nextjelly)*5] seconds": " and seems latent"]. \
-			It has <b>[obj_integrity]/[max_integrity]</b> Health.")
+	to_chat(user, "<span class='xenonotice'>It has <b>[chargesleft]/[maxcharges]</b> jelly globules remaining[datum_flags & DF_ISPROCESSING ? ", and will create a new jelly in [(recharge_rate-nextjelly)*5] seconds": " and seems latent"]")
 
 /obj/structure/xeno/resin_jelly_pod/process()
 	if(nextjelly <= recharge_rate)
@@ -1023,11 +1047,11 @@ TUNNEL
 		return PROCESS_KILL
 
 /obj/structure/resin_jelly_pod/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	. = ..()
+
 	if(X.a_intent == INTENT_HARM && isxenohivelord(X))
 		deconstruct(TRUE, X)
 		return
-
-	repair_xeno_structure(X) //Repair if possible
 
 	if(!chargesleft)
 		to_chat(X, "<span class='xenonotice'>We reach into \the [src], but only find dregs of resin. We should wait some more.</span>")
@@ -1152,6 +1176,8 @@ TUNNEL
 
 	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 50, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 0) //Explosion resistant and highly fire resistant; so we don't have to snowflake ex and fire_act
 
+	override_destruction_alert_cooldown = TRUE //Resin silos are important structures and thus override normal destruction alert cooldowns
+
 	var/turf/center_turf
 	var/datum/hive_status/associated_hive
 	var/silo_area
@@ -1194,12 +1220,6 @@ TUNNEL
 
 /obj/structure/xeno/silo/Destroy()
 	GLOB.xeno_resin_silos -= src
-	if(associated_hive)
-		UnregisterSignal(associated_hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK))
-		//Since resin silos are more important now, we need a better notification.
-		associated_hive.xeno_message("<span class='xenoannounce'>A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!</span>", 2, FALSE, src, 'sound/voice/alien_help2.ogg')
-		associated_hive = null
-		notify_ghosts("\ A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!", source = get_turf(src), action = NOTIFY_ORBIT)
 
 	for(var/i in contents)
 		var/atom/movable/AM = i
@@ -1210,23 +1230,6 @@ TUNNEL
 	center_turf = null
 	STOP_PROCESSING(SSslowprocess, src)
 	return ..()
-
-
-/obj/structure/xeno/silo/examine(mob/user)
-	. = ..()
-	var/current_integrity = (obj_integrity / max_integrity) * 100
-	switch(current_integrity)
-		if(0 to 20)
-			to_chat(user, "<span class='warning'>It's barely holding, there's leaking oozes all around, and most eggs are broken. Yet it is not inert.</span>")
-		if(20 to 40)
-			to_chat(user, "<span class='warning'>It looks severely damaged, its movements slow.</span>")
-		if(40 to 60)
-			to_chat(user, "<span class='warning'>It's quite beat up, but it seems alive.</span>")
-		if(60 to 80)
-			to_chat(user, "<span class='warning'>It's slightly damaged, but still seems healthy.</span>")
-		if(80 to 100)
-			to_chat(user, "<span class='info'>It appears in good shape, pulsating healthily.</span>")
-
 
 /obj/structure/xeno/silo/take_damage(damage_amount, damage_type, damage_flag, sound_effect, attack_dir, armour_penetration)
 	. = ..()

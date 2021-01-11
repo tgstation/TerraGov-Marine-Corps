@@ -437,6 +437,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define XENO_SILO_DAMAGE_POINTER_DURATION	10 SECONDS //How long the alert directional pointer lasts when silos are damaged
 
 #define XENO_STRUCTURE_DESTRUCTION_ALERT_COOLDOWN	5 SECONDS //Low cooldown, mainly intended to avoid chat being flooded when an explosive annihilates a bunch of structures simultaneously.
+#define XENO_STRUCTURE_DESTRUCTION_ALERT_OVERRIDE_COOLDOWN	5 //Very low cooldown; intended as no cooldown, but used to avoid ear cancer sound stacking.
 
 #define XENO_RALLY_PING_TIME_DURATION		10 SECONDS //How long the ping time of the Xeno rally defaults to
 
