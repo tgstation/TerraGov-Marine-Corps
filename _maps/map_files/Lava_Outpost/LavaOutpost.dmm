@@ -88,6 +88,26 @@
 "ax" = (
 /turf/closed/wall/r_wall,
 /area/lavaland/security/infocenter)
+"az" = (
+/obj/structure/barricade/guardrail{
+	dir = 1
+	},
+/turf/open/lavaland/lava/side{
+	dir = 8
+	},
+/area/lavaland)
+"aB" = (
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/east)
+"aE" = (
+/obj/structure/barricade/guardrail{
+	dir = 1
+	},
+/turf/open/lavaland/lava,
+/area/lavaland)
 "aI" = (
 /turf/open/space/basic,
 /area/space)
@@ -121,6 +141,11 @@
 /obj/item/lightstick/red/anchored,
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/southeast)
+"aX" = (
+/obj/structure/cable,
+/obj/structure/barricade/guardrail,
+/turf/open/lavaland/catwalk,
+/area/lavaland/cave/east)
 "aY" = (
 /turf/open/floor/tile/dark2,
 /area/lavaland/engie/engine)
@@ -152,6 +177,14 @@
 /obj/structure/closet/secure_closet/atmos_personal,
 /turf/open/floor/tile/dark2,
 /area/lavaland/engie/engine)
+"br" = (
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/turf/open/lavaland/lava/lpiece{
+	dir = 4
+	},
+/area/lavaland)
 "bu" = (
 /obj/structure/table,
 /obj/item/storage/syringe_case,
@@ -184,6 +217,12 @@
 /obj/effect/landmark/corpsespawner/engineer,
 /turf/open/floor/tile/dark2,
 /area/lavaland/engie/engine)
+"bG" = (
+/obj/structure/barricade/guardrail,
+/turf/open/lavaland/lava/corner{
+	dir = 4
+	},
+/area/lavaland)
 "bH" = (
 /obj/item/lightstick/red/anchored,
 /turf/open/lavaland/basalt,
@@ -268,6 +307,18 @@
 "cn" = (
 /turf/open/floor/plating/mainship,
 /area/lavaland/misc/crashed)
+"cp" = (
+/obj/structure/barricade/guardrail,
+/turf/open/lavaland/lava/lpiece{
+	dir = 1
+	},
+/area/lavaland)
+"ct" = (
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/turf/open/lavaland/lava/lpiece,
+/area/lavaland/cave/southwest)
 "cw" = (
 /turf/open/lavaland/basalt/glowing,
 /area/lavaland/cave/north)
@@ -281,13 +332,24 @@
 	},
 /turf/open/lavaland/basalt,
 /area/lavaland/engie/one)
+"cz" = (
+/obj/structure/barricade/guardrail,
+/obj/structure/barricade/guardrail{
+	dir = 4;
+	pixel_y = 7
+	},
+/turf/open/lavaland/lava/lpiece{
+	dir = 4
+	},
+/area/lavaland)
 "cB" = (
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/lavaland/security/infocenter)
-"cF" = (
-/turf/closed/wall,
-/area/lavaland/cave/south)
+"cG" = (
+/obj/structure/barricade/guardrail,
+/turf/open/floor/plating,
+/area/lavaland/cave/central)
 "cH" = (
 /obj/structure/bed/chair/dropship/pilot{
 	dir = 1
@@ -312,10 +374,37 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/southwest)
+"cT" = (
+/obj/structure/barricade/guardrail,
+/obj/structure/barricade/guardrail{
+	dir = 4;
+	pixel_y = 7
+	},
+/turf/open/lavaland/lava/side{
+	dir = 1
+	},
+/area/lavaland)
+"cX" = (
+/obj/structure/barricade/guardrail{
+	dir = 4;
+	pixel_y = 7
+	},
+/turf/open/lavaland/lava/side{
+	dir = 8
+	},
+/area/lavaland/cave/south)
 "cY" = (
 /obj/effect/spawner/random/toolbox,
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/north)
+"cZ" = (
+/obj/structure/barricade/guardrail,
+/obj/structure/barricade/guardrail{
+	dir = 4;
+	pixel_y = 7
+	},
+/turf/open/lavaland/lava,
+/area/lavaland)
 "df" = (
 /obj/structure/rack,
 /obj/item/ammo_magazine/revolver/cmb,
@@ -382,6 +471,13 @@
 "dJ" = (
 /turf/open/floor/plating/dmg2,
 /area/lavaland/misc/crashed)
+"dM" = (
+/obj/structure/barricade/guardrail{
+	dir = 4;
+	pixel_y = 7
+	},
+/turf/open/lavaland/catwalk,
+/area/lavaland/cave/east)
 "dR" = (
 /obj/machinery/door/airlock/mainship/generic,
 /turf/open/floor/tile/white,
@@ -394,14 +490,25 @@
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/north)
+"dZ" = (
+/obj/structure/barricade/guardrail,
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/central)
 "eg" = (
 /turf/closed/wall/r_wall,
 /area/lavaland/cave/east)
+"ei" = (
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/turf/open/lavaland/lava/lpiece,
+/area/lavaland/cave/north)
 "el" = (
 /obj/machinery/light,
 /turf/open/floor/tile/brown/full,
 /area/lavaland/misc/genstorage)
 "em" = (
+/obj/structure/barricade/guardrail,
 /turf/open/lavaland/lava/side{
 	dir = 1
 	},
@@ -432,6 +539,12 @@
 /obj/machinery/power/apc/drained,
 /turf/open/floor/plating/asteroidfloor,
 /area/lavaland/misc/eastarmory)
+"eE" = (
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/turf/open/lavaland/lava/lpiece,
+/area/lavaland)
 "eG" = (
 /obj/machinery/landinglight/ds2/delayone{
 	dir = 1
@@ -444,6 +557,14 @@
 /obj/structure/ore_box,
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/west)
+"eL" = (
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/turf/open/lavaland/lava/corner{
+	dir = 1
+	},
+/area/lavaland)
 "eP" = (
 /obj/machinery/floodlight/outpost,
 /turf/open/lavaland/basalt,
@@ -458,6 +579,10 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/white,
 /area/lavaland/misc/outpost)
+"fb" = (
+/obj/structure/barricade/guardrail,
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/south)
 "fe" = (
 /turf/closed/wall/indestructible/mineral,
 /area/shuttle/drop2/lz2)
@@ -475,6 +600,12 @@
 /obj/structure/ore_box,
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/north)
+"fy" = (
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/central)
 "fz" = (
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
@@ -581,6 +712,14 @@
 /obj/structure/ore_box,
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/south)
+"gu" = (
+/obj/structure/barricade/guardrail{
+	dir = 1
+	},
+/turf/open/lavaland/lava/side{
+	dir = 4
+	},
+/area/lavaland)
 "gy" = (
 /obj/machinery/miner/damaged,
 /turf/open/lavaland/basalt,
@@ -592,6 +731,12 @@
 	},
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/east)
+"gB" = (
+/obj/structure/barricade/guardrail,
+/turf/open/lavaland/lava/side{
+	dir = 1
+	},
+/area/lavaland/cave/south)
 "gC" = (
 /obj/structure/ore_box,
 /turf/open/lavaland/basalt/glowing,
@@ -640,6 +785,15 @@
 	},
 /turf/open/floor/tile/white,
 /area/lavaland/security/infocenter)
+"gX" = (
+/obj/structure/barricade/guardrail,
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/turf/open/lavaland/lava/corner{
+	dir = 8
+	},
+/area/lavaland)
 "hb" = (
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 10
@@ -690,6 +844,11 @@
 /obj/item/reagent_containers/food/snacks/donkpocket,
 /turf/open/floor/tile/bar,
 /area/lavaland/civilian/cook)
+"hv" = (
+/turf/open/lavaland/lava/corner{
+	dir = 1
+	},
+/area/lavaland/cave/southwest)
 "hw" = (
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/tile/dark2,
@@ -752,6 +911,10 @@
 	dir = 4
 	},
 /area/lavaland/cave/southwest)
+"hV" = (
+/obj/structure/barricade/guardrail,
+/turf/open/lavaland/catwalk,
+/area/lavaland/cave/east)
 "ib" = (
 /obj/machinery/light,
 /turf/open/floor/engine,
@@ -816,6 +979,15 @@
 	},
 /turf/open/floor/tile/bar,
 /area/lavaland/civilian/cook)
+"iJ" = (
+/obj/structure/barricade/guardrail,
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/turf/open/lavaland/lava/side{
+	dir = 1
+	},
+/area/lavaland/cave/south)
 "iK" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /obj/structure/cable,
@@ -961,6 +1133,11 @@
 	dir = 8
 	},
 /area/lavaland/security/storage)
+"jV" = (
+/obj/structure/cable,
+/obj/structure/barricade/guardrail,
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/central)
 "jX" = (
 /obj/vehicle/train/cargo/trolley,
 /turf/open/floor/tile/brown/full,
@@ -1007,6 +1184,13 @@
 	dir = 8
 	},
 /area/lavaland/security/nuke)
+"kl" = (
+/obj/structure/barricade/guardrail,
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/east)
 "km" = (
 /obj/machinery/power/apc/drained{
 	dir = 8
@@ -1014,6 +1198,13 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/lavaland/civilian/cargo)
+"kr" = (
+/obj/structure/barricade/guardrail{
+	dir = 4;
+	pixel_y = 7
+	},
+/turf/open/lavaland/lava,
+/area/lavaland)
 "ks" = (
 /turf/open/ground/river,
 /area/lavaland/engie/engine)
@@ -1037,6 +1228,12 @@
 /obj/machinery/processor,
 /turf/open/floor/tile/bar,
 /area/lavaland/civilian/cook)
+"kF" = (
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/turf/open/lavaland/lava,
+/area/lavaland)
 "kG" = (
 /obj/machinery/light,
 /turf/open/floor/tile/bar,
@@ -1075,10 +1272,6 @@
 /obj/structure/kitchenspike,
 /turf/open/floor/tile/bar,
 /area/lavaland/civilian/cook)
-"kQ" = (
-/obj/structure/window/framed/colony,
-/turf/closed/wall,
-/area/lavaland/engie/engine)
 "kR" = (
 /obj/machinery/miner/damaged,
 /turf/open/lavaland/basalt,
@@ -1102,6 +1295,12 @@
 	},
 /turf/open/floor/tile/dark2,
 /area/lavaland/civilian)
+"kZ" = (
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/south)
 "ld" = (
 /turf/open/floor/plating/dmg3,
 /area/lavaland/misc/crashed)
@@ -1125,9 +1324,20 @@
 /obj/structure/fence,
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/central)
+"ln" = (
+/obj/structure/barricade/guardrail{
+	dir = 4;
+	pixel_y = 7
+	},
+/turf/open/floor/plating,
+/area/lavaland/cave/south)
 "lr" = (
 /turf/closed/wall,
 /area/lavaland/civilian/botany)
+"lt" = (
+/obj/structure/barricade/guardrail,
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/northeast)
 "lu" = (
 /obj/machinery/computer/intel_computer,
 /turf/open/floor/tile/dark2,
@@ -1136,6 +1346,10 @@
 /obj/machinery/landinglight/ds2/delaythree,
 /turf/open/floor/plating/asteroidwarning,
 /area/shuttle/drop2/lz2)
+"ly" = (
+/obj/structure/barricade/guardrail,
+/turf/open/lavaland/basalt,
+/area/lavaland)
 "lA" = (
 /obj/structure/window/framed/colony,
 /turf/open/floor/plating,
@@ -1244,6 +1458,15 @@
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/tile/white,
 /area/lavaland/security/storage)
+"mw" = (
+/obj/structure/barricade/guardrail{
+	dir = 4;
+	pixel_y = 7
+	},
+/turf/open/lavaland/lava/side{
+	dir = 8
+	},
+/area/lavaland)
 "mz" = (
 /obj/structure/largecrate/supply/supplies/flares,
 /turf/open/floor/tile/brown/full,
@@ -1315,6 +1538,18 @@
 	},
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/south)
+"mS" = (
+/obj/structure/barricade/guardrail,
+/turf/open/lavaland/lava/lpiece{
+	dir = 4
+	},
+/area/lavaland)
+"mZ" = (
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/turf/open/lavaland/catwalk,
+/area/lavaland/cave/south)
 "na" = (
 /obj/structure/closet/crate,
 /obj/item/storage/box/lightstick/red,
@@ -1326,6 +1561,12 @@
 /obj/item/explosive/plastique,
 /turf/open/floor/tile/dark2,
 /area/lavaland/civilian/cargo)
+"nf" = (
+/obj/structure/barricade/guardrail,
+/turf/open/lavaland/lava/side{
+	dir = 8
+	},
+/area/lavaland)
 "ng" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -1349,6 +1590,15 @@
 /obj/structure/cable,
 /turf/open/floor/plating/asteroidfloor,
 /area/lavaland/misc/eastarmory)
+"nx" = (
+/obj/structure/barricade/guardrail,
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/turf/open/lavaland/lava/side{
+	dir = 4
+	},
+/area/lavaland)
 "nz" = (
 /obj/machinery/floodlight/outpost,
 /turf/open/lavaland/basalt,
@@ -1397,6 +1647,13 @@
 /obj/effect/alien/weeds/node,
 /turf/closed/brock,
 /area/lavaland/cave/northwest)
+"nS" = (
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/obj/structure/barricade/guardrail,
+/turf/open/lavaland/lava,
+/area/lavaland)
 "nT" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/drained,
@@ -1468,6 +1725,12 @@
 	},
 /turf/open/floor/tile/white,
 /area/lavaland/medical)
+"oG" = (
+/obj/structure/barricade/guardrail,
+/turf/open/lavaland/lava/corner{
+	dir = 1
+	},
+/area/lavaland)
 "oN" = (
 /obj/structure/rack,
 /obj/item/weapon/gun/smg/m25,
@@ -1636,6 +1899,10 @@
 /turf/open/lavaland/catwalk,
 /area/lavaland/cave/central)
 "qd" = (
+/obj/structure/barricade/guardrail{
+	dir = 4;
+	pixel_y = 7
+	},
 /turf/open/lavaland/lava/side{
 	dir = 8
 	},
@@ -1767,6 +2034,14 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark2,
 /area/lavaland/civilian)
+"rr" = (
+/obj/structure/barricade/guardrail{
+	dir = 4;
+	pixel_y = 7
+	},
+/obj/structure/barricade/guardrail,
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/north)
 "rt" = (
 /obj/structure/largecrate/supply/medicine/medivend,
 /turf/open/floor/tile/brown/full,
@@ -1912,6 +2187,14 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark2,
 /area/lavaland/civilian)
+"ss" = (
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/turf/open/lavaland/lava/lpiece{
+	dir = 4
+	},
+/area/lavaland/cave/southwest)
 "sw" = (
 /obj/effect/spawner/random/toolbox,
 /turf/open/lavaland/basalt,
@@ -1931,6 +2214,15 @@
 "sA" = (
 /turf/open/floor/tile/dark,
 /area/lavaland/security/nuke)
+"sJ" = (
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/obj/structure/barricade/guardrail,
+/turf/open/lavaland/lava/side{
+	dir = 1
+	},
+/area/lavaland)
 "sK" = (
 /obj/machinery/light{
 	dir = 4
@@ -1944,10 +2236,6 @@
 	},
 /turf/open/floor/tile/dark2,
 /area/lavaland/engie/engine)
-"sQ" = (
-/obj/machinery/floodlight/outpost,
-/turf/open/lavaland/basalt,
-/area/lavaland/cave/northeast)
 "sS" = (
 /turf/closed/wall,
 /area/lavaland/engie/one)
@@ -1958,6 +2246,13 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark2,
 /area/lavaland/civilian)
+"sW" = (
+/obj/structure/barricade/guardrail,
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/turf/open/lavaland/lava/lpiece,
+/area/lavaland)
 "sZ" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -1976,6 +2271,14 @@
 	},
 /turf/open/floor/tile/dark2,
 /area/lavaland/civilian/cargo)
+"tb" = (
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/turf/open/lavaland/lava/corner{
+	dir = 4
+	},
+/area/lavaland)
 "tc" = (
 /obj/structure/cable,
 /obj/machinery/door/poddoor/mainship{
@@ -1985,6 +2288,13 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/lavaland/misc/stationed)
+"th" = (
+/obj/structure/barricade/guardrail,
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/turf/open/lavaland/lava,
+/area/lavaland)
 "tq" = (
 /obj/machinery/door/poddoor/mainship{
 	dir = 1;
@@ -2119,6 +2429,13 @@
 	},
 /turf/open/floor/tile/dark,
 /area/lavaland/misc/alienstorage)
+"uu" = (
+/obj/structure/barricade/guardrail{
+	dir = 4;
+	pixel_y = 7
+	},
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/east)
 "uw" = (
 /obj/structure/cable,
 /turf/open/floor/plating/mainship,
@@ -2326,6 +2643,30 @@
 /obj/machinery/miner/damaged/platinum,
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/west)
+"ws" = (
+/obj/structure/barricade/guardrail{
+	dir = 1
+	},
+/turf/open/lavaland/lava/side,
+/area/lavaland)
+"ww" = (
+/obj/structure/barricade/guardrail,
+/obj/structure/barricade/guardrail{
+	dir = 4;
+	pixel_y = 7
+	},
+/turf/open/lavaland/lava/lpiece{
+	dir = 8
+	},
+/area/lavaland)
+"wz" = (
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/turf/open/lavaland/lava/side{
+	dir = 1
+	},
+/area/lavaland)
 "wD" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/landmark/corpsespawner/security,
@@ -2369,6 +2710,15 @@
 	},
 /turf/open/floor/tile/dark,
 /area/lavaland/security/storage)
+"xj" = (
+/obj/structure/barricade/guardrail{
+	dir = 4;
+	pixel_y = 7
+	},
+/turf/open/lavaland/lava/lpiece{
+	dir = 8
+	},
+/area/lavaland)
 "xl" = (
 /turf/open/floor/plating/asteroidwarning{
 	dir = 1
@@ -2386,6 +2736,11 @@
 /obj/structure/cable,
 /turf/open/floor/tile/bar,
 /area/lavaland/civilian/botany)
+"xr" = (
+/obj/structure/cable,
+/obj/structure/barricade/guardrail,
+/turf/open/floor/plating,
+/area/lavaland/cave/east)
 "xs" = (
 /obj/structure/bed/chair/comfy/black,
 /turf/open/floor/tile/red/whitered/full,
@@ -2410,6 +2765,21 @@
 /obj/structure/closet/wardrobe/green,
 /turf/open/floor/tile/bar,
 /area/lavaland/civilian/botany)
+"xB" = (
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/obj/structure/barricade/guardrail,
+/turf/open/lavaland/lava/lpiece{
+	dir = 4
+	},
+/area/lavaland)
 "xD" = (
 /obj/structure/closet/crate/hydroponics,
 /turf/open/floor/tile/bar,
@@ -2430,6 +2800,15 @@
 /obj/machinery/light,
 /turf/open/floor/tile/dark2,
 /area/lavaland/civilian)
+"xS" = (
+/obj/structure/barricade/guardrail,
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/turf/open/lavaland/lava/lpiece{
+	dir = 4
+	},
+/area/lavaland)
 "xW" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/brown/full,
@@ -2544,6 +2923,10 @@
 	},
 /turf/open/lavaland/basalt,
 /area/lavaland/civilian/cargo)
+"yx" = (
+/obj/structure/barricade/guardrail,
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/east)
 "yA" = (
 /turf/open/lavaland/lava/corner,
 /area/lavaland/cave/south)
@@ -2588,6 +2971,11 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark2,
 /area/lavaland/engie/engine)
+"yX" = (
+/obj/effect/decal/remains/human,
+/obj/structure/barricade/guardrail,
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/south)
 "yY" = (
 /obj/machinery/light,
 /turf/open/floor/tile/blue/whiteblue,
@@ -2603,6 +2991,7 @@
 /turf/open/floor/tile/red/whitered/full,
 /area/lavaland/misc/outpost)
 "zi" = (
+/obj/structure/barricade/guardrail,
 /turf/open/lavaland/lava/lpiece{
 	dir = 1
 	},
@@ -2659,6 +3048,15 @@
 /obj/structure/jungle/plantbot1/alien,
 /turf/open/floor/plating/ground/dirt,
 /area/lavaland/misc/alienstorage)
+"zX" = (
+/obj/structure/barricade/guardrail{
+	dir = 4;
+	pixel_y = 7
+	},
+/turf/open/lavaland/lava/lpiece{
+	dir = 8
+	},
+/area/lavaland/cave/southwest)
 "zY" = (
 /obj/structure/bed,
 /turf/open/floor/wood,
@@ -2813,6 +3211,12 @@
 	dir = 8
 	},
 /area/lavaland/medical)
+"Bb" = (
+/obj/structure/barricade/guardrail,
+/turf/open/lavaland/lava/side{
+	dir = 1
+	},
+/area/lavaland)
 "Bf" = (
 /obj/structure/rack,
 /obj/item/ammo_magazine/shotgun,
@@ -2888,6 +3292,20 @@
 	dir = 8
 	},
 /area/shuttle/drop2/lz2)
+"BG" = (
+/obj/structure/barricade/guardrail,
+/obj/structure/barricade/guardrail,
+/obj/structure/barricade/guardrail{
+	dir = 4;
+	pixel_y = 7
+	},
+/turf/open/lavaland/catwalk,
+/area/lavaland/cave/south)
+"BH" = (
+/obj/item/tool/pickaxe/plasmacutter,
+/obj/structure/barricade/guardrail,
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/south)
 "BI" = (
 /turf/closed/wall/mainship,
 /area/lavaland/misc/stationed)
@@ -2950,6 +3368,13 @@
 	dir = 8
 	},
 /area/lavaland/security/nuke)
+"Ce" = (
+/obj/structure/barricade/guardrail,
+/obj/structure/barricade/guardrail,
+/turf/open/lavaland/lava/side{
+	dir = 1
+	},
+/area/lavaland)
 "Cf" = (
 /turf/open/floor/wood,
 /area/lavaland/civilian)
@@ -3029,6 +3454,15 @@
 /obj/item/weapon/gun/pistol/highpower,
 /turf/open/floor/plating/platebot,
 /area/lavaland/security/nuke)
+"Dd" = (
+/obj/structure/barricade/guardrail,
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/turf/open/lavaland/lava/side{
+	dir = 1
+	},
+/area/lavaland)
 "De" = (
 /turf/open/lavaland/basalt,
 /area/lavaland)
@@ -3115,6 +3549,22 @@
 	},
 /turf/open/floor/tile/dark,
 /area/lavaland/security/nuke)
+"DH" = (
+/obj/structure/barricade/guardrail{
+	dir = 4;
+	pixel_y = 7
+	},
+/turf/open/lavaland/catwalk,
+/area/lavaland/cave/south)
+"DI" = (
+/turf/open/floor/plating,
+/area/lavaland/cave/northeast)
+"DJ" = (
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/turf/open/lavaland/lava/side,
+/area/lavaland)
 "DL" = (
 /obj/structure/largecrate/random,
 /turf/open/floor/tile/dark2,
@@ -3124,6 +3574,14 @@
 /obj/machinery/computer/secure_data,
 /turf/open/floor/tile/white,
 /area/lavaland/security/infocenter)
+"DP" = (
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/turf/open/lavaland/lava/side{
+	dir = 4
+	},
+/area/lavaland/cave/southwest)
 "DU" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_pump{
@@ -3131,6 +3589,14 @@
 	},
 /turf/open/floor/plating,
 /area/lavaland/engie/three)
+"DW" = (
+/obj/structure/barricade/guardrail,
+/obj/structure/barricade/guardrail{
+	dir = 4;
+	pixel_y = 7
+	},
+/turf/open/lavaland/lava/corner,
+/area/lavaland)
 "Eg" = (
 /turf/open/lavaland/lava/lpiece{
 	dir = 4
@@ -3143,6 +3609,23 @@
 /obj/structure/closet/firecloset,
 /turf/open/floor/marking,
 /area/lavaland/cave/central)
+"Ek" = (
+/obj/structure/barricade/guardrail{
+	dir = 4;
+	pixel_y = 7
+	},
+/turf/open/lavaland/lava/corner{
+	dir = 4
+	},
+/area/lavaland)
+"El" = (
+/obj/structure/barricade/guardrail{
+	dir = 4;
+	pixel_y = 7
+	},
+/obj/structure/barricade/guardrail,
+/turf/open/lavaland/catwalk,
+/area/lavaland/cave/east)
 "Eo" = (
 /obj/structure/cable,
 /turf/open/lavaland/basalt/glowing,
@@ -3249,6 +3732,10 @@
 	dir = 1
 	},
 /area/lavaland)
+"Fc" = (
+/obj/structure/barricade/guardrail,
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/west)
 "Fg" = (
 /obj/structure/closet/secure_closet/medical3/colony,
 /turf/open/floor/tile/white,
@@ -3459,6 +3946,13 @@
 	},
 /turf/open/floor/plating/platebot,
 /area/lavaland/security/nuke)
+"GZ" = (
+/obj/structure/barricade/guardrail{
+	dir = 4;
+	pixel_y = 7
+	},
+/turf/open/lavaland/lava/side,
+/area/lavaland)
 "Ha" = (
 /obj/machinery/light{
 	dir = 1
@@ -3497,6 +3991,14 @@
 "HB" = (
 /turf/closed/wall/indestructible/mineral,
 /area/lavaland/cave/northeast)
+"HE" = (
+/obj/structure/barricade/guardrail,
+/obj/structure/barricade/guardrail{
+	dir = 4;
+	pixel_y = 7
+	},
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/south)
 "HG" = (
 /obj/machinery/conveyor{
 	id = "lower_garbage"
@@ -3507,6 +4009,10 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark2,
 /area/lavaland/misc/refinery)
+"HN" = (
+/obj/structure/barricade/guardrail,
+/turf/open/lavaland/catwalk,
+/area/lavaland/cave/south)
 "HO" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/lavaland/basalt/glowing,
@@ -3526,6 +4032,10 @@
 	dir = 8
 	},
 /area/lavaland/misc/alienstorage)
+"Ie" = (
+/obj/structure/barricade/guardrail,
+/turf/open/lavaland/catwalk,
+/area/lavaland/cave/central)
 "Ih" = (
 /obj/machinery/mineral/processing_unit,
 /turf/open/floor/tile/dark2,
@@ -3561,6 +4071,13 @@
 	},
 /turf/open/floor/plating/asteroidfloor,
 /area/shuttle/drop1/lz1)
+"IC" = (
+/obj/structure/barricade/guardrail,
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/south)
 "ID" = (
 /obj/item/lightstick/red/anchored,
 /obj/structure/cable,
@@ -3575,6 +4092,16 @@
 	dir = 4
 	},
 /area/lavaland/medical)
+"II" = (
+/obj/structure/barricade/guardrail{
+	dir = 4;
+	pixel_y = 7
+	},
+/obj/structure/barricade/guardrail,
+/turf/open/lavaland/lava/lpiece{
+	dir = 1
+	},
+/area/lavaland/cave/southwest)
 "IK" = (
 /obj/structure/rack,
 /obj/item/explosive/plastique,
@@ -3595,6 +4122,12 @@
 /obj/machinery/mineral/unloading_machine,
 /turf/open/floor/tile/dark2,
 /area/lavaland/misc/refinery)
+"IV" = (
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/turf/open/lavaland/catwalk,
+/area/lavaland)
 "IX" = (
 /obj/structure/cable,
 /obj/structure/barricade/metal,
@@ -3625,6 +4158,16 @@
 /obj/structure/barricade/metal,
 /turf/open/lavaland/basalt/glowing,
 /area/lavaland/cave/west)
+"Jj" = (
+/obj/structure/barricade/guardrail{
+	dir = 4;
+	pixel_y = 7
+	},
+/obj/structure/barricade/guardrail{
+	dir = 1
+	},
+/turf/open/lavaland/lava/side,
+/area/lavaland)
 "Jk" = (
 /turf/open/floor/tile/white,
 /area/lavaland/security/storage)
@@ -3666,6 +4209,22 @@
 /obj/machinery/computer/intel_computer,
 /turf/open/floor/tile/white,
 /area/lavaland/security/infocenter)
+"JF" = (
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/turf/open/lavaland/lava/lpiece{
+	dir = 8
+	},
+/area/lavaland)
+"JG" = (
+/obj/structure/barricade/guardrail,
+/obj/structure/barricade/guardrail{
+	dir = 4;
+	pixel_y = 7
+	},
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/east)
 "JI" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
@@ -3701,11 +4260,6 @@
 	dir = 4
 	},
 /area/shuttle/drop1/lz1)
-"Ke" = (
-/obj/structure/cable,
-/obj/machinery/floodlight/outpost,
-/turf/open/lavaland/basalt,
-/area/lavaland/cave/west)
 "Kg" = (
 /obj/effect/decal/remains/human,
 /obj/item/clothing/head/hardhat/orange,
@@ -3818,6 +4372,13 @@
 /obj/docking_port/stationary/marine_dropship/lz2,
 /turf/open/floor/plating,
 /area/shuttle/drop2/lz2)
+"Lm" = (
+/obj/structure/barricade/guardrail{
+	dir = 4;
+	pixel_y = 7
+	},
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/south)
 "Ls" = (
 /turf/open/lavaland/basalt/glowing,
 /area/lavaland/cave/northwest)
@@ -3830,6 +4391,7 @@
 "Lx" = (
 /obj/item/weapon/claymore/mercsword/machete,
 /obj/structure/cable,
+/obj/structure/barricade/guardrail,
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/east)
 "Lz" = (
@@ -3858,6 +4420,11 @@
 /obj/machinery/prop/mainship/computer/PC,
 /turf/open/floor/tile/red/whitered/full,
 /area/lavaland/misc/outpost)
+"LO" = (
+/obj/structure/cable,
+/obj/structure/barricade/guardrail,
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/east)
 "LQ" = (
 /obj/structure/barricade/wooden{
 	dir = 1
@@ -3904,9 +4471,6 @@
 	},
 /turf/open/floor/plating/asteroidfloor,
 /area/lavaland/misc/eastarmory)
-"Mi" = (
-/turf/closed/wall,
-/area/lavaland/cave/east)
 "Mm" = (
 /turf/open/ground/coast/corner2{
 	dir = 1
@@ -3921,7 +4485,7 @@
 /area/lavaland/security)
 "Mq" = (
 /obj/structure/window/framed/mainship/white,
-/turf/closed/wall/mainship/white/canterbury,
+/turf/open/floor/plating,
 /area/lavaland/misc/outpost)
 "Mt" = (
 /obj/structure/largecrate/random/barrel,
@@ -3934,10 +4498,13 @@
 /obj/machinery/light,
 /turf/open/floor/tile/dark,
 /area/lavaland/security/nuke)
-"MB" = (
-/obj/machinery/floodlight/outpost,
-/turf/open/lavaland/basalt,
-/area/lavaland/cave/southeast)
+"MF" = (
+/obj/structure/barricade/guardrail{
+	dir = 4;
+	pixel_y = 7
+	},
+/turf/open/lavaland/catwalk,
+/area/lavaland)
 "MH" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/drinks/coffee,
@@ -3990,6 +4557,13 @@
 /obj/structure/cable,
 /turf/open/floor/plating/asteroidfloor,
 /area/lavaland/misc/westarmory)
+"Ng" = (
+/obj/structure/barricade/guardrail{
+	dir = 4;
+	pixel_y = 7
+	},
+/turf/open/floor/plating,
+/area/lavaland/cave/east)
 "Ni" = (
 /obj/machinery/prop/mainship/computer/PC,
 /obj/structure/table,
@@ -3999,6 +4573,15 @@
 /obj/structure/fence,
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/east)
+"Nr" = (
+/obj/structure/barricade/guardrail{
+	dir = 4;
+	pixel_y = 7
+	},
+/turf/open/lavaland/lava/side{
+	dir = 4
+	},
+/area/lavaland)
 "Nv" = (
 /obj/machinery/sleep_console,
 /turf/open/floor/tile/white,
@@ -4010,6 +4593,10 @@
 	},
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/east)
+"NL" = (
+/obj/structure/barricade/guardrail,
+/turf/open/lavaland/lava/corner,
+/area/lavaland)
 "NQ" = (
 /obj/effect/landmark/corpsespawner/miner,
 /turf/open/lavaland/basalt,
@@ -4033,18 +4620,39 @@
 	dir = 8
 	},
 /area/lavaland/cave/south)
+"Oa" = (
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/turf/open/lavaland/lava/side{
+	dir = 4
+	},
+/area/lavaland)
 "Oc" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
 	},
 /turf/open/floor/tile/white,
 /area/lavaland/medical)
+"Of" = (
+/obj/structure/barricade/guardrail,
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/southeast)
 "Oh" = (
 /obj/structure/table,
 /obj/item/bodybag/cryobag,
 /obj/item/storage/box/syringes,
 /turf/open/floor/tile/white,
 /area/lavaland/medical)
+"Oj" = (
+/obj/structure/barricade/guardrail{
+	dir = 4;
+	pixel_y = 7
+	},
+/turf/open/lavaland/lava/corner{
+	dir = 1
+	},
+/area/lavaland)
 "Ok" = (
 /turf/open/lavaland/lava/side{
 	dir = 4
@@ -4103,6 +4711,14 @@
 	},
 /turf/open/floor/tile/dark,
 /area/lavaland/security/nuke)
+"OH" = (
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/turf/open/lavaland/lava/side{
+	dir = 8
+	},
+/area/lavaland)
 "OP" = (
 /obj/structure/closet/secure_closet/engineering_personal,
 /obj/machinery/light,
@@ -4150,10 +4766,6 @@
 	},
 /turf/open/floor/plating/asteroidfloor,
 /area/shuttle/drop1/lz1)
-"Pi" = (
-/obj/machinery/floodlight/outpost,
-/turf/open/lavaland/basalt,
-/area/lavaland/cave/east)
 "Pn" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/white,
@@ -4168,10 +4780,22 @@
 	dir = 4
 	},
 /area/lavaland/cave/north)
+"Pv" = (
+/obj/structure/barricade/guardrail,
+/turf/open/lavaland/lava/corner{
+	dir = 8
+	},
+/area/lavaland)
 "Pw" = (
 /obj/machinery/floodlight/outpost,
 /turf/open/floor/plating/asteroidfloor,
 /area/shuttle/drop1/lz1)
+"Px" = (
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/north)
 "Pz" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -4192,9 +4816,6 @@
 /obj/machinery/autodoc,
 /turf/open/floor/tile/white,
 /area/lavaland/medical)
-"PN" = (
-/turf/closed/wall,
-/area/lavaland/cave/southeast)
 "PR" = (
 /obj/structure/rack,
 /obj/item/stack/sheet/wood{
@@ -4205,6 +4826,14 @@
 	},
 /turf/open/floor/plating/platebot,
 /area/lavaland/security/nuke)
+"PW" = (
+/obj/structure/barricade/guardrail{
+	dir = 4;
+	pixel_y = 7
+	},
+/obj/structure/barricade/guardrail,
+/turf/open/lavaland/catwalk,
+/area/lavaland/cave/south)
 "Qb" = (
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/central)
@@ -4261,6 +4890,14 @@
 /obj/structure/cable,
 /turf/open/floor/plating/dmg2,
 /area/lavaland/cave/central)
+"QJ" = (
+/obj/structure/barricade/guardrail,
+/turf/open/lavaland/lava,
+/area/lavaland)
+"QK" = (
+/obj/structure/barricade/guardrail,
+/turf/open/lavaland/catwalk,
+/area/lavaland)
 "QL" = (
 /obj/machinery/door_control{
 	id = "lava_misc_stationed"
@@ -4279,6 +4916,13 @@
 	dir = 8
 	},
 /area/lavaland)
+"QP" = (
+/obj/structure/barricade/guardrail,
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/central)
 "QQ" = (
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -4376,6 +5020,16 @@
 /obj/item/tool/pickaxe/plasmacutter,
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/east)
+"Rx" = (
+/obj/structure/barricade/guardrail,
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/southwest)
+"Ry" = (
+/obj/structure/barricade/guardrail,
+/turf/open/lavaland/lava/side{
+	dir = 4
+	},
+/area/lavaland)
 "RA" = (
 /turf/open/floor/plating,
 /area/lavaland/cave/central)
@@ -4389,6 +5043,9 @@
 "RF" = (
 /turf/open/floor/plating,
 /area/shuttle/drop2/lz2)
+"RG" = (
+/turf/open/floor/plating,
+/area/lavaland)
 "RI" = (
 /obj/structure/ore_box,
 /turf/open/lavaland/basalt,
@@ -4410,6 +5067,15 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/east)
+"RQ" = (
+/obj/structure/barricade/guardrail{
+	dir = 4;
+	pixel_y = 7
+	},
+/turf/open/lavaland/lava/side{
+	dir = 1
+	},
+/area/lavaland)
 "RW" = (
 /obj/machinery/light{
 	dir = 8
@@ -4433,6 +5099,10 @@
 /turf/open/floor/tile/white,
 /area/lavaland/medical)
 "Sg" = (
+/obj/structure/barricade/guardrail,
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
 /turf/open/lavaland/lava/lpiece{
 	dir = 4
 	},
@@ -4575,6 +5245,12 @@
 /obj/structure/xenoautopsy/tank/alien,
 /turf/open/floor/tile/white,
 /area/lavaland/medical/cmo)
+"TH" = (
+/obj/structure/barricade/guardrail{
+	dir = 1
+	},
+/turf/open/lavaland/lava/lpiece,
+/area/lavaland)
 "TJ" = (
 /obj/structure/ore_box,
 /turf/open/floor/plating/mainship,
@@ -4605,6 +5281,13 @@
 	},
 /turf/open/floor/tile/dark,
 /area/lavaland/security/nuke)
+"TT" = (
+/obj/structure/barricade/guardrail{
+	dir = 4;
+	pixel_y = 7
+	},
+/turf/open/lavaland/lava/lpiece,
+/area/lavaland)
 "TV" = (
 /obj/item/tool/pickaxe,
 /obj/effect/decal/cleanable/blood,
@@ -4632,6 +5315,13 @@
 /obj/effect/landmark/start/job/xenomorph,
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/south)
+"Ud" = (
+/obj/structure/barricade/guardrail,
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/turf/open/lavaland/basalt,
+/area/lavaland)
 "Ue" = (
 /turf/open/floor/plating,
 /area/lavaland/medical)
@@ -4657,6 +5347,16 @@
 	icon_state = "wood-broken4"
 	},
 /area/lavaland/misc/shack)
+"Uu" = (
+/obj/structure/barricade/guardrail{
+	dir = 4;
+	pixel_y = 7
+	},
+/obj/structure/barricade/guardrail,
+/turf/open/lavaland/lava/lpiece{
+	dir = 1
+	},
+/area/lavaland)
 "Uv" = (
 /turf/closed/wall/indestructible/mineral,
 /area/lavaland/cave/east)
@@ -4674,6 +5374,9 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/brock,
 /area/lavaland/cave/north)
+"UE" = (
+/turf/open/lavaland/lava/corner,
+/area/lavaland/cave/southwest)
 "UJ" = (
 /obj/machinery/chem_master,
 /turf/open/floor/tile/white,
@@ -4853,6 +5556,15 @@
 /obj/machinery/atmospherics/pipe/manifold4w/green/hidden,
 /turf/open/floor/tile/white,
 /area/lavaland/security)
+"WC" = (
+/obj/structure/barricade/guardrail{
+	dir = 4;
+	pixel_y = 7
+	},
+/turf/open/lavaland/lava/lpiece{
+	dir = 1
+	},
+/area/lavaland/cave/south)
 "WE" = (
 /obj/machinery/light{
 	dir = 4
@@ -4904,6 +5616,10 @@
 /area/lavaland/misc/genstorage)
 "Xb" = (
 /obj/machinery/floodlight/outpost,
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/obj/structure/barricade/guardrail,
 /turf/open/lavaland/catwalk,
 /area/lavaland)
 "Xc" = (
@@ -4927,11 +5643,40 @@
 /obj/structure/window/framed/colony,
 /turf/open/floor/plating,
 /area/lavaland/medical)
+"Xp" = (
+/obj/structure/barricade/guardrail{
+	dir = 4;
+	pixel_y = 7
+	},
+/turf/open/lavaland/lava/lpiece{
+	dir = 1
+	},
+/area/lavaland)
+"Xq" = (
+/obj/structure/barricade/guardrail{
+	dir = 4;
+	pixel_y = 7
+	},
+/obj/structure/barricade/guardrail,
+/turf/open/lavaland/lava/corner{
+	dir = 8
+	},
+/area/lavaland)
 "Xs" = (
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 9
 	},
 /area/lavaland/medical)
+"Xt" = (
+/obj/structure/barricade/guardrail,
+/obj/structure/barricade/guardrail{
+	dir = 4;
+	pixel_y = 7
+	},
+/turf/open/lavaland/lava/lpiece{
+	dir = 1
+	},
+/area/lavaland)
 "Xx" = (
 /obj/machinery/door/poddoor/mainship/indestructible{
 	id = "secure_blast4";
@@ -4939,6 +5684,9 @@
 	},
 /turf/open/floor/plating/asteroidfloor,
 /area/lavaland/misc/eastarmory)
+"Xz" = (
+/turf/open/lavaland/catwalk,
+/area/lavaland)
 "XA" = (
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 1
@@ -4965,6 +5713,14 @@
 "XF" = (
 /turf/closed/wall/indestructible/mineral,
 /area/lavaland/cave/west)
+"XG" = (
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/turf/open/lavaland/lava/lpiece{
+	dir = 1
+	},
+/area/lavaland)
 "XI" = (
 /obj/structure/ore_box,
 /obj/structure/cable,
@@ -5036,6 +5792,16 @@
 /obj/item/ammo_magazine/pistol,
 /turf/open/floor/plating/platebot,
 /area/lavaland/security/nuke)
+"Yv" = (
+/obj/structure/barricade/guardrail,
+/obj/structure/barricade/guardrail{
+	dir = 4;
+	pixel_y = 7
+	},
+/turf/open/lavaland/lava/side{
+	dir = 1
+	},
+/area/lavaland/cave/south)
 "Yy" = (
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/south)
@@ -5060,6 +5826,11 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/lavaland/medical)
+"YF" = (
+/turf/open/lavaland/lava/corner{
+	dir = 4
+	},
+/area/lavaland/cave/southwest)
 "YH" = (
 /obj/machinery/light{
 	dir = 4
@@ -5125,6 +5896,12 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/white,
 /area/lavaland/medical)
+"Zg" = (
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/lavaland/cave/south)
 "Zi" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 9
@@ -5147,6 +5924,11 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/white,
 /area/lavaland/security)
+"Zy" = (
+/obj/structure/cable,
+/obj/structure/barricade/guardrail,
+/turf/open/lavaland/catwalk,
+/area/lavaland/cave/central)
 "ZG" = (
 /obj/structure/cable,
 /turf/open/floor/tile/dark2,
@@ -5160,6 +5942,16 @@
 "ZK" = (
 /turf/closed/brock,
 /area/lavaland/cave/south)
+"ZL" = (
+/obj/structure/barricade/guardrail{
+	dir = 4;
+	pixel_y = 7
+	},
+/obj/structure/barricade/guardrail,
+/turf/open/lavaland/lava/side{
+	dir = 1
+	},
+/area/lavaland)
 "ZN" = (
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/west)
@@ -12578,9 +13370,9 @@ Vz
 Vz
 Vz
 Vz
-Vz
-kw
-xP
+Rx
+zX
+YF
 xP
 Hb
 HQ
@@ -12836,10 +13628,10 @@ Vz
 Vz
 Vz
 Vz
-Vz
-kw
+Rx
+zX
 qd
-Ku
+II
 Vz
 Vz
 Vz
@@ -14124,9 +14916,9 @@ Vz
 Vz
 Vz
 Vz
-Vz
-by
-hU
+Rx
+ct
+ss
 HQ
 HQ
 HQ
@@ -14380,9 +15172,9 @@ Vz
 Vz
 Vz
 Vz
-Vz
-by
-xP
+Rx
+ct
+hv
 Hb
 HQ
 HQ
@@ -14637,7 +15429,7 @@ Vz
 Vz
 Vz
 Vz
-Vz
+Rx
 Ot
 xP
 Hb
@@ -14893,9 +15685,9 @@ Vz
 Vz
 Vz
 Vz
-Vz
-by
-xP
+Rx
+ct
+hv
 xP
 Hb
 HQ
@@ -15111,7 +15903,7 @@ TO
 TO
 TO
 Ah
-Fb
+Xp
 ZW
 ZN
 ZN
@@ -15150,7 +15942,7 @@ Vz
 Vz
 Vz
 Vz
-Vz
+Rx
 Ot
 xP
 xP
@@ -15366,8 +16158,8 @@ TO
 TO
 TO
 Ah
-Va
-Fb
+mw
+Uu
 ZN
 ZN
 ZN
@@ -15410,8 +16202,8 @@ HQ
 HQ
 Ot
 xP
-xP
-Ku
+UE
+II
 Vz
 Vz
 Vz
@@ -15622,7 +16414,7 @@ TO
 TO
 TO
 Ah
-Fb
+Uu
 ZN
 ZN
 ZN
@@ -15665,9 +16457,9 @@ Vz
 HQ
 HQ
 HQ
-kw
+zX
 qd
-Ku
+II
 Vz
 Vz
 Vz
@@ -15878,7 +16670,7 @@ TO
 TO
 TO
 Ah
-Fb
+Uu
 ZN
 ZN
 ZN
@@ -16134,7 +16926,7 @@ TO
 TO
 TO
 TO
-US
+Bb
 ZN
 ZN
 ZN
@@ -16391,7 +17183,7 @@ TO
 TO
 TO
 Ah
-Fb
+Uu
 ZN
 ZN
 ZN
@@ -16646,14 +17438,14 @@ ZW
 Dt
 TO
 Ah
-Va
-Fb
+mw
+Uu
 ZN
 ZN
 ZN
-ZN
-Gs
-eu
+Fc
+eE
+br
 ZW
 ZW
 ZW
@@ -16899,16 +17691,16 @@ ZN
 ZN
 ZN
 ZN
-ZN
-QO
-Va
-Fb
-ZN
-ZN
+Fc
+xj
+mw
+Uu
 ZN
 ZN
 ZN
-Gs
+ZN
+Fc
+eE
 CS
 jg
 ZW
@@ -17154,7 +17946,7 @@ ZW
 ZW
 ZN
 Gn
-BP
+ZN
 ZN
 ZN
 ZN
@@ -17164,7 +17956,7 @@ ZN
 ZN
 ZN
 gy
-ZN
+Fc
 Dt
 US
 ZW
@@ -17420,8 +18212,8 @@ ZN
 ZN
 ZN
 ZN
-ZN
-Gs
+Fc
+eE
 CS
 US
 ZW
@@ -17464,10 +18256,10 @@ Vz
 Vz
 Vz
 Vz
-Vz
-by
-Ok
-Ok
+Rx
+ct
+DP
+DP
 hU
 HQ
 HQ
@@ -17677,7 +18469,7 @@ ZN
 ZN
 ZN
 ZN
-ZN
+Fc
 Dt
 TO
 US
@@ -17721,7 +18513,7 @@ Vz
 Vz
 Vz
 Vz
-Vz
+Rx
 Ot
 xP
 xP
@@ -17932,9 +18724,9 @@ ZN
 ZN
 ZN
 ZN
-ZN
-Gs
-as
+Fc
+eE
+Oa
 CS
 TO
 TO
@@ -17981,7 +18773,7 @@ HQ
 HQ
 Ot
 xP
-xP
+UE
 Ku
 HQ
 HQ
@@ -18188,8 +18980,8 @@ ZN
 ZN
 ZN
 ZN
-ZN
-Gs
+Fc
+eE
 CS
 TO
 TO
@@ -18442,10 +19234,10 @@ ZN
 ZN
 ZN
 ZN
-ZN
-Gs
-as
-as
+Fc
+eE
+Oa
+Oa
 CS
 TO
 TO
@@ -18494,7 +19286,7 @@ Vz
 HQ
 HQ
 kw
-xP
+YF
 Hb
 HQ
 HQ
@@ -18941,7 +19733,7 @@ rK
 rK
 RI
 HO
-BP
+ZN
 ZW
 ZW
 ZN
@@ -19204,7 +19996,7 @@ ZN
 ZN
 ZN
 ZN
-BP
+ZN
 ZN
 ZN
 ZN
@@ -19724,7 +20516,7 @@ ZN
 ZN
 ZN
 ZN
-BP
+ZN
 ZN
 eH
 ZW
@@ -21522,7 +22314,7 @@ ZW
 ZN
 ZN
 ZN
-BP
+ZN
 ZW
 ZW
 ZW
@@ -22242,8 +23034,8 @@ al
 al
 al
 al
-aZ
-qh
+rr
+ei
 Sg
 aZ
 aZ
@@ -22571,7 +23363,7 @@ ZW
 eH
 Gn
 ZN
-BP
+ZN
 ZN
 ZW
 ZW
@@ -23527,12 +24319,12 @@ al
 al
 al
 al
+Px
+Px
+Px
 aZ
 aZ
-aZ
-aZ
-aZ
-aZ
+Px
 aZ
 aZ
 aZ
@@ -23646,9 +24438,9 @@ Yy
 Yy
 Yy
 Yy
-Gs
-CS
-US
+TT
+Oj
+ZL
 Yy
 et
 et
@@ -24417,9 +25209,9 @@ Yy
 Yy
 Yy
 Yy
-Dt
-TO
-US
+Xz
+Xz
+Xz
 Rq
 et
 et
@@ -24626,7 +25418,7 @@ US
 ZW
 TV
 ZN
-BP
+ZN
 ZN
 ZN
 ZN
@@ -24674,9 +25466,9 @@ Yy
 Yy
 Yy
 Yy
-Dt
-TO
-US
+DJ
+kF
+sJ
 Rq
 Rq
 et
@@ -24934,7 +25726,7 @@ as
 CS
 TO
 Tq
-eu
+xS
 Rq
 et
 Ia
@@ -25181,17 +25973,17 @@ Ey
 Rj
 LG
 Yy
-Gs
+TH
 as
 as
 as
-CS
+Oj
+kr
 TO
 TO
-TO
-TO
-TO
-US
+kr
+kr
+ZL
 Rq
 et
 zW
@@ -25628,8 +26420,8 @@ ZW
 ZW
 ZW
 ZW
-Ge
-BP
+ZW
+ZN
 Ix
 ZN
 ZN
@@ -25876,7 +26668,7 @@ aZ
 jo
 aZ
 aZ
-cd
+al
 al
 al
 al
@@ -25955,15 +26747,15 @@ du
 du
 OR
 OR
-TO
-TO
-TO
-TO
-TO
-TO
-TO
-US
-ZK
+Xz
+MF
+MF
+MF
+MF
+MF
+MF
+MF
+Lm
 ZK
 ZK
 ZK
@@ -26133,7 +26925,7 @@ aZ
 aZ
 aZ
 aZ
-BP
+ZN
 al
 al
 al
@@ -26212,7 +27004,7 @@ Vb
 du
 OR
 OR
-TO
+QK
 TO
 TO
 TO
@@ -26469,7 +27261,7 @@ dS
 du
 OR
 OR
-TO
+QK
 TO
 TO
 TO
@@ -26726,7 +27518,7 @@ Jw
 du
 OR
 OR
-TO
+QK
 TO
 TO
 TO
@@ -26983,7 +27775,7 @@ du
 du
 OR
 OR
-TO
+QK
 TO
 TO
 TO
@@ -27176,8 +27968,8 @@ ZW
 ZW
 ZW
 ZW
-Ge
-Ke
+ZW
+Ix
 ZN
 ZN
 ZN
@@ -27240,7 +28032,7 @@ Vb
 du
 OR
 OR
-TO
+QK
 TO
 TO
 TO
@@ -27384,8 +28176,8 @@ al
 al
 al
 al
-cd
-bP
+al
+aZ
 aZ
 aZ
 aZ
@@ -27448,8 +28240,8 @@ fw
 fw
 fw
 fw
-kQ
-kQ
+nO
+nO
 fw
 fw
 fw
@@ -27497,7 +28289,7 @@ dS
 du
 OR
 OR
-TO
+QK
 TO
 TO
 TO
@@ -27754,7 +28546,7 @@ RK
 du
 OR
 OR
-TO
+QK
 TO
 TO
 TO
@@ -27939,7 +28731,7 @@ al
 ZN
 ZN
 ZN
-Ge
+ZW
 ZW
 ZW
 ZW
@@ -28011,7 +28803,7 @@ du
 du
 OR
 OR
-TO
+QK
 TO
 TO
 TO
@@ -28196,7 +28988,7 @@ aZ
 ZN
 ZN
 FG
-BP
+ZN
 ZW
 ZW
 ZN
@@ -28268,7 +29060,7 @@ Vb
 du
 OR
 OR
-TO
+QK
 TO
 TO
 TO
@@ -28525,7 +29317,7 @@ dS
 du
 OR
 OR
-Va
+QK
 Va
 qs
 TO
@@ -28677,8 +29469,8 @@ aZ
 aZ
 aZ
 aZ
-bP
-cd
+aZ
+al
 al
 al
 al
@@ -28783,7 +29575,7 @@ du
 Yy
 Yy
 Yy
-Yy
+IC
 Dt
 TO
 TO
@@ -28979,7 +29771,7 @@ Ix
 Gn
 ZN
 ZN
-BP
+ZN
 ZN
 ZN
 Gn
@@ -29040,7 +29832,7 @@ du
 Yy
 Yy
 Yy
-Yy
+fb
 Dt
 TO
 TO
@@ -29297,7 +30089,7 @@ du
 Yy
 Yy
 Yy
-Yy
+fb
 QO
 Va
 Va
@@ -29312,11 +30104,11 @@ TO
 Tq
 as
 as
-eu
+xS
 Yy
-Yy
+fb
 Gs
-TO
+CS
 TO
 Ah
 Va
@@ -29555,9 +30347,9 @@ Yy
 Yy
 Yy
 Yy
-Yy
-Yy
-Yy
+kZ
+kZ
+IC
 Dt
 TO
 TO
@@ -29569,9 +30361,9 @@ TO
 TO
 TO
 Ah
-Fb
+Xt
 Yy
-Yy
+fb
 Dt
 TO
 Ah
@@ -29814,7 +30606,7 @@ Yy
 Yy
 Yy
 Yy
-Yy
+fb
 Dt
 TO
 TO
@@ -29825,10 +30617,10 @@ TO
 TO
 TO
 TO
-US
+Bb
 Yy
 Yy
-Yy
+fb
 Dt
 TO
 US
@@ -30071,7 +30863,7 @@ Yy
 Yy
 Yy
 Yy
-Yy
+fb
 Dt
 TO
 TO
@@ -30082,10 +30874,10 @@ TO
 TO
 TO
 TO
-US
+Bb
 Yy
 Yy
-Yy
+fb
 Dt
 TO
 US
@@ -30328,7 +31120,7 @@ Yy
 Yy
 Yy
 Yy
-Yy
+fb
 Dt
 TO
 TO
@@ -30338,11 +31130,11 @@ TO
 TO
 TO
 TO
-TO
-Fb
+Ah
+Xt
 Yy
-Yy
-Gs
+fb
+eE
 CS
 Ah
 Fb
@@ -30523,7 +31315,7 @@ Qb
 Qb
 Qb
 Qb
-GO
+YL
 YL
 YL
 fw
@@ -30585,7 +31377,7 @@ Yy
 Yy
 Yy
 Yy
-Yy
+fb
 Dt
 TO
 TO
@@ -30595,10 +31387,10 @@ TO
 TO
 TO
 TO
-US
+Bb
 Yy
 Yy
-Yy
+fb
 Dt
 TO
 US
@@ -30780,7 +31572,7 @@ Qb
 Qb
 Qb
 Qb
-Kh
+Qb
 Qb
 YL
 fw
@@ -30852,7 +31644,7 @@ TO
 TO
 TO
 TO
-US
+Bb
 Yy
 Yy
 Yy
@@ -31027,8 +31819,8 @@ YL
 YL
 YL
 YL
-GO
-Kh
+YL
+Qb
 Qb
 Qb
 Eu
@@ -31096,8 +31888,8 @@ Yy
 Yy
 Yy
 Yy
-nz
-cF
+Yy
+ZK
 ZK
 ZK
 Dt
@@ -31109,7 +31901,7 @@ TO
 TO
 TO
 TO
-US
+Bb
 Yy
 Yy
 Yy
@@ -31340,8 +32132,8 @@ ZK
 ZK
 ZK
 ZK
-cF
-nz
+ZK
+Yy
 Yy
 Yy
 xu
@@ -31366,10 +32158,10 @@ TO
 TO
 TO
 TO
-US
+Bb
 TB
 Yy
-Yy
+fb
 Dt
 TO
 Tq
@@ -31509,8 +32301,8 @@ al
 al
 al
 al
-cd
-bP
+al
+aZ
 aZ
 aZ
 aZ
@@ -31560,8 +32352,8 @@ fw
 fw
 fw
 fw
-kQ
-kQ
+nO
+nO
 fw
 fw
 fw
@@ -31589,10 +32381,10 @@ YL
 ZK
 Yy
 Yy
-Yy
-Dt
-TO
-US
+fb
+GZ
+kr
+ZL
 Yy
 Yy
 Yy
@@ -31623,10 +32415,10 @@ TO
 TO
 TO
 TO
-US
+Bb
 Yy
 Yy
-Yy
+fb
 Dt
 TO
 TO
@@ -31880,10 +32672,10 @@ TO
 TO
 TO
 TO
-US
+Bb
 Yy
 Yy
-Yy
+fb
 Dt
 TO
 TO
@@ -32137,11 +32929,11 @@ TO
 TO
 TO
 TO
-US
+Bb
 Yy
 Yy
-Yy
-QO
+fb
+xj
 qs
 TO
 TO
@@ -32395,10 +33187,10 @@ TO
 TO
 TO
 Tq
-eu
+xS
 Yy
 Yy
-Yy
+fb
 Dt
 TO
 TO
@@ -32528,8 +33320,8 @@ al
 al
 al
 al
-cd
-bP
+al
+aZ
 aZ
 aZ
 aZ
@@ -32617,10 +33409,10 @@ Qb
 Yy
 Yy
 Yy
-Yy
-Dt
-TO
-US
+HE
+DJ
+kF
+wz
 ZK
 ZK
 ZK
@@ -32652,10 +33444,10 @@ TO
 TO
 TO
 TO
-US
+Bb
 Yy
 Yy
-Yy
+fb
 QO
 qs
 TO
@@ -32888,7 +33680,7 @@ ZK
 ZK
 ZK
 Yy
-nz
+Yy
 xu
 Yy
 Yy
@@ -32910,10 +33702,10 @@ TO
 TO
 TO
 Tq
-eu
+xS
 Yy
 Yy
-Yy
+IC
 QO
 qs
 TO
@@ -33145,7 +33937,7 @@ ZK
 ZK
 ZK
 ZK
-cF
+ZK
 xu
 Yy
 ZK
@@ -33167,11 +33959,11 @@ TO
 TO
 TO
 TO
-US
+Bb
 Yy
 Yy
 Yy
-Yy
+IC
 QO
 Va
 Va
@@ -33424,12 +34216,12 @@ TO
 TO
 TO
 TO
-US
+Bb
 Yy
 Yy
 Yy
 Yy
-Yy
+kZ
 ZK
 ZK
 QO
@@ -33681,7 +34473,7 @@ Va
 Va
 Va
 Va
-Fb
+cp
 Yy
 Yy
 Yy
@@ -33861,7 +34653,7 @@ Qb
 Qb
 Qb
 Qb
-Kh
+Qb
 Qb
 YL
 Qb
@@ -34118,7 +34910,7 @@ Qb
 Qb
 YL
 YL
-GO
+YL
 YL
 YL
 Qb
@@ -34165,8 +34957,8 @@ US
 ZK
 ZK
 ZK
-cF
-nz
+ZK
+Yy
 vk
 Yy
 Yy
@@ -34364,8 +35156,8 @@ aZ
 Qb
 Qb
 Eu
-Kh
-GO
+Qb
+YL
 YL
 YL
 YL
@@ -35656,7 +36448,7 @@ YL
 YL
 YL
 YL
-Kh
+Qb
 Qb
 Qb
 Qb
@@ -35957,7 +36749,7 @@ Qb
 Qb
 Yy
 vk
-Dt
+ws
 TO
 US
 ZK
@@ -36144,8 +36936,8 @@ aZ
 al
 al
 al
-cd
-bP
+al
+aZ
 aZ
 aZ
 uc
@@ -36214,9 +37006,9 @@ Fa
 Qb
 Yy
 Yy
-Dt
-TO
-US
+Jj
+kr
+RQ
 ZK
 ZK
 Yy
@@ -36382,8 +37174,8 @@ al
 al
 al
 al
-cd
-bP
+al
+aZ
 aZ
 aZ
 aZ
@@ -36478,9 +37270,9 @@ Yy
 bH
 Yy
 vk
-Yy
-Gs
-eu
+fb
+eE
+mS
 Yy
 Yy
 Yy
@@ -36735,9 +37527,9 @@ Yy
 Yy
 Yy
 Yy
-Yy
+fb
 Dt
-US
+Bb
 Yy
 Yy
 Yy
@@ -36971,7 +37763,7 @@ YL
 YL
 Dt
 Tq
-eu
+mS
 Qb
 Qb
 Qb
@@ -36985,16 +37777,16 @@ Qb
 Qb
 Yy
 ZK
-Dt
-TO
-US
+DJ
+kF
+wz
 ZK
 ZK
 Yy
 Yy
-Yy
+fb
 Dt
-US
+Bb
 Yy
 Yy
 Yy
@@ -37228,7 +38020,7 @@ Gs
 as
 CS
 TO
-US
+Ce
 Qb
 Qb
 Qb
@@ -37249,9 +38041,9 @@ ZK
 ZK
 Yy
 Yy
-Yy
+fb
 Dt
-US
+Bb
 Yy
 Yy
 Yy
@@ -37474,41 +38266,41 @@ qc
 TO
 Tq
 as
-as
+Ry
 He
 qc
-He
+Ie
 as
 as
 as
 CS
 TO
 TO
+TO
+Pv
+He
+He
+Ie
+Oa
+Oa
+Oa
+Oa
+Oa
+as
+as
+as
+as
+as
+CS
 TO
 Tq
-He
-He
 as
 as
-as
-as
-as
-as
-as
-as
-as
-as
-as
+Oa
+Oa
+Oa
 CS
-TO
-Tq
-as
-as
-as
-as
-as
-CS
-US
+Bb
 Yy
 Yy
 Yy
@@ -37731,20 +38523,21 @@ qc
 qc
 TO
 TO
-TO
+cZ
 He
 qc
+Ie
+TO
+TO
+TO
+TO
+TO
+TO
+TO
+QJ
 He
-TO
-TO
-TO
-TO
-TO
-TO
-TO
-TO
 He
-He
+Ie
 TO
 TO
 TO
@@ -37764,8 +38557,7 @@ TO
 TO
 TO
 TO
-TO
-US
+Bb
 Yy
 Yy
 Yy
@@ -37991,7 +38783,7 @@ qc
 qc
 qc
 qc
-He
+Ie
 TO
 TO
 TO
@@ -38002,7 +38794,7 @@ TO
 TO
 He
 He
-TO
+He
 TO
 TO
 TO
@@ -38013,16 +38805,16 @@ Ah
 Va
 Va
 Va
-qs
-TO
-TO
-TO
-TO
-TO
-TO
-TO
-TO
-Tq
+Ek
+kr
+kr
+kr
+kr
+kr
+kr
+kr
+kr
+Xq
 OR
 Yy
 Yy
@@ -38245,21 +39037,21 @@ TO
 qc
 qc
 qc
+th
+He
+He
+Ie
+TO
+TO
+TO
+TO
+TO
+TO
+TO
 TO
 He
 He
 He
-TO
-TO
-TO
-TO
-TO
-TO
-TO
-TO
-He
-He
-TO
 TO
 TO
 TO
@@ -38502,10 +39294,10 @@ TO
 TO
 TO
 TO
-Ah
+NL
 He
 He
-He
+Ie
 qs
 TO
 TO
@@ -38516,7 +39308,7 @@ TO
 TO
 He
 He
-TO
+He
 TO
 TO
 TO
@@ -38539,13 +39331,13 @@ OR
 OR
 OR
 OR
+HN
+Oa
+nx
 OR
-as
-as
-as
 Wu
 OR
-as
+gu
 CS
 TO
 TO
@@ -38743,7 +39535,7 @@ Qb
 Qb
 Qb
 Qb
-Qb
+dZ
 Gs
 as
 as
@@ -38759,10 +39551,10 @@ TO
 TO
 TO
 Ah
-Fb
+cp
 Qb
 Qb
-Qb
+dZ
 QO
 qs
 TO
@@ -38773,7 +39565,7 @@ TO
 TO
 He
 He
-TO
+He
 TO
 TO
 TO
@@ -38796,13 +39588,13 @@ OR
 OR
 OR
 OR
+HN
+TO
+QJ
 OR
-TO
-TO
-TO
 Wu
 OR
-TO
+aE
 TO
 TO
 TO
@@ -38972,8 +39764,8 @@ al
 aZ
 al
 al
-cd
-bP
+al
+aZ
 aZ
 aZ
 aZ
@@ -39000,8 +39792,8 @@ YL
 Qb
 Qb
 Qb
-Qb
-QO
+dZ
+xj
 qs
 TO
 TO
@@ -39030,7 +39822,7 @@ TO
 TO
 He
 He
-TO
+He
 TO
 TO
 TO
@@ -39051,24 +39843,24 @@ ZK
 ZK
 ZK
 ZK
-QO
-Va
-qs
+JF
+OH
+tb
 TO
-TO
-TO
+QJ
+OR
 Wu
 OR
-TO
+aE
 TO
 TO
 TO
 TO
 yA
+cX
 NU
 NU
-NU
-BE
+WC
 ZK
 ZK
 ZK
@@ -39258,8 +40050,8 @@ Qb
 Qb
 Qb
 Qb
-Qb
-QO
+dZ
+xj
 qs
 TO
 qc
@@ -39284,19 +40076,19 @@ TO
 TO
 TO
 TO
-TO
+QJ
 He
 He
-TO
+Ie
 TO
 TO
 TO
 TO
 Tq
-as
+Ry
 He
 Qb
-ZK
+Yy
 ZK
 Yy
 Yy
@@ -39313,7 +40105,7 @@ ZK
 Dt
 TO
 TO
-TO
+OR
 Wu
 OR
 TO
@@ -39321,7 +40113,7 @@ TO
 TO
 TO
 TO
-EM
+gB
 Yy
 Yy
 Yy
@@ -39494,13 +40286,13 @@ aZ
 aZ
 aZ
 aZ
-bP
-cd
+aZ
 al
 al
 al
 al
 al
+al
 YL
 YL
 YL
@@ -39516,7 +40308,7 @@ Qb
 Qb
 Qb
 Qb
-Qb
+dZ
 Dt
 TO
 qc
@@ -39541,19 +40333,19 @@ TO
 TO
 TO
 TO
-Ah
+NL
 He
 He
-Va
+Ie
 qs
 TO
 TO
 TO
 TO
-TO
+QJ
 He
 He
-eu
+HN
 ZK
 ZK
 ZK
@@ -39570,7 +40362,7 @@ ZK
 Dt
 TO
 TO
-TO
+OR
 Wu
 OR
 TO
@@ -39578,7 +40370,7 @@ TO
 TO
 TO
 TO
-EM
+gB
 Yy
 vk
 Yy
@@ -39769,11 +40561,11 @@ YL
 YL
 YL
 YL
-Gs
-eu
+eE
+xS
 Qb
 Qb
-Qb
+dZ
 Dt
 TO
 TO
@@ -39798,10 +40590,10 @@ TO
 TO
 TO
 TO
-US
+Bb
 RA
 RA
-Qb
+cG
 QO
 Va
 Va
@@ -39810,7 +40602,7 @@ qs
 TO
 He
 He
-Tq
+HN
 as
 as
 eu
@@ -39826,16 +40618,16 @@ ZK
 ZK
 Dt
 TO
-TO
-TO
+QJ
+OR
 Wu
 OR
+aE
 TO
 TO
 TO
 TO
-TO
-EM
+gB
 Yy
 Yy
 Yy
@@ -40021,16 +40813,16 @@ YL
 Gs
 He
 He
+QK
 as
 as
 as
 as
-as
-TO
-US
+CS
+Bb
 Qb
 Qb
-Qb
+dZ
 Dt
 qc
 qc
@@ -40055,19 +40847,19 @@ TO
 TO
 TO
 Ah
-Fb
+Xt
 RA
 RA
-Qb
-Qb
-Qb
-Qb
-Qb
+RA
+fy
+fy
+fy
+QP
 Dt
 TO
 He
 He
-TO
+HN
 TO
 TO
 Tq
@@ -40083,18 +40875,18 @@ as
 as
 CS
 TO
-TO
-TO
+QJ
+OR
 Wu
 OR
-Va
+az
 qs
 TO
 TO
 TO
-EM
+gB
 Yy
-nz
+Yy
 Yy
 Yy
 Yy
@@ -40240,8 +41032,8 @@ al
 al
 al
 al
-cd
-bP
+al
+aZ
 aZ
 aZ
 aZ
@@ -40278,16 +41070,16 @@ YL
 Dt
 He
 He
+QK
 TO
 TO
 TO
 TO
 TO
-TO
-US
+Bb
 Qb
 Qb
-Qb
+dZ
 Dt
 qc
 TO
@@ -40311,45 +41103,45 @@ Dt
 TO
 TO
 Ah
-Fb
+Uu
 Qb
 RA
 RA
-hC
+RA
 Qb
 Qb
 Qb
 Qb
-Dt
-TO
+IV
+IV
 He
 He
-TO
-TO
-TO
-TO
-TO
-TO
-TO
-TO
-TO
-TO
-TO
-TO
-TO
-TO
-TO
-TO
-TO
-TO
-Wu
+OR
+mZ
 xb
-Yy
+xb
+xb
+mZ
+mZ
+mZ
+mZ
+mZ
+mZ
+mZ
+mZ
+mZ
+mZ
+mZ
+mZ
+xb
+xX
+xb
+IC
 QO
+Va
 qs
 TO
-TO
-EM
+gB
 Yy
 TB
 vk
@@ -40532,21 +41324,21 @@ al
 YL
 Gs
 as
-TO
+oG
 He
 He
+QK
 TO
 TO
 TO
 TO
 TO
-TO
-US
+Bb
 Qb
 Qb
-Qb
-QO
-qc
+dZ
+ww
+Zy
 qs
 TO
 Fb
@@ -40567,7 +41359,7 @@ YL
 Dt
 TO
 TO
-US
+Bb
 Qb
 Qb
 RA
@@ -40583,9 +41375,9 @@ He
 He
 OR
 OR
-OR
 xb
 xb
+xb
 OR
 OR
 OR
@@ -40598,15 +41390,15 @@ OR
 OR
 OR
 OR
-OR
+xb
 xX
 xb
-Yy
-Yy
-Dt
+TB
+kZ
+Ud
+GZ
 TO
-TO
-EM
+Yv
 Yy
 Yy
 Yy
@@ -40768,7 +41560,7 @@ aZ
 aZ
 aZ
 aZ
-bP
+aZ
 al
 al
 al
@@ -40787,23 +41579,23 @@ al
 Gs
 as
 as
+CS
 TO
-TO
-TO
+QJ
 He
 He
+QK
 TO
 TO
 TO
 TO
 TO
-TO
-US
+Bb
 Qb
 Qb
 Qb
 Qb
-Eu
+jV
 Dt
 US
 YL
@@ -40824,7 +41616,7 @@ YL
 Dt
 TO
 TO
-US
+Bb
 Qb
 Qb
 RA
@@ -40840,32 +41632,32 @@ He
 He
 OR
 OR
-OR
 xb
 xb
+xb
 OR
 OR
+DH
+DH
 OR
 OR
-OR
-OR
-OR
-OR
-OR
-OR
-OR
-OR
+DH
+DH
+DH
+DH
+DH
+DH
 xb
 xX
 xb
-nz
-Yy
-pF
-qs
-TO
-EM
-Yy
-Yy
+xb
+xb
+xb
+OR
+OR
+OR
+xb
+xb
 nJ
 Yy
 ZK
@@ -41042,25 +41834,25 @@ al
 al
 al
 QO
+qs
 TO
-TO
-TO
+Ah
 Va
-TO
+bG
 EK
 EK
+QK
 TO
 TO
 TO
 TO
 TO
-TO
-TO
-eu
+Tq
+xS
 EF
 EF
 EF
-Xd
+LO
 Dt
 US
 EB
@@ -41081,7 +41873,7 @@ EB
 Dt
 TO
 TO
-US
+Bb
 Qb
 Qb
 RA
@@ -41097,11 +41889,11 @@ He
 He
 OR
 OR
-OR
 xb
 xb
+xb
 OR
-OR
+BG
 TO
 TO
 TO
@@ -41111,8 +41903,8 @@ TO
 BI
 As
 TO
-US
-TB
+Bb
+xb
 xX
 xb
 xb
@@ -41306,14 +42098,14 @@ EB
 Dt
 EK
 EK
+QK
 TO
 TO
 TO
 TO
 TO
 TO
-TO
-US
+Bb
 EF
 EF
 Xd
@@ -41339,7 +42131,7 @@ QO
 Va
 qs
 Tq
-eu
+xB
 Qb
 RA
 RA
@@ -41354,10 +42146,10 @@ He
 He
 OR
 OR
-OR
 xb
 xb
-OR
+xb
+PW
 TO
 BI
 Zd
@@ -41368,8 +42160,8 @@ BI
 BI
 QL
 Ah
-Fb
-nz
+cp
+xb
 xX
 xb
 bY
@@ -41563,14 +42355,14 @@ EB
 Dt
 EK
 EK
+QK
 TO
 TO
 TO
 TO
-TO
-TO
-Va
-Fb
+Ah
+mw
+Xt
 EF
 EF
 Xd
@@ -41596,24 +42388,24 @@ EB
 EB
 QO
 Va
-Fb
+cp
 Qb
+hC
 Qb
-Qb
-Qb
-Gs
-as
-as
-CS
+dZ
+eE
+Oa
+Oa
+eL
+kF
+kF
 TO
 TO
-TO
-TO
-TO
-TO
-TO
+kF
+th
 OR
 OR
+HN
 TO
 TO
 Zd
@@ -41625,16 +42417,16 @@ Ou
 Bg
 tq
 OR
-xb
+Zg
 xb
 xX
 xb
 Um
-Yy
-Yy
-Dt
+Lm
+HE
+DJ
 TO
-EM
+iJ
 Yy
 vk
 Yy
@@ -41820,12 +42612,12 @@ EB
 QO
 EK
 EK
-Va
-Va
+QK
+mw
+qs
 TO
 TO
-TO
-US
+Bb
 EF
 EF
 EF
@@ -41845,7 +42637,7 @@ el
 Vc
 EB
 EB
-Pi
+EF
 Xd
 EF
 EB
@@ -41857,7 +42649,7 @@ EB
 Qb
 Qb
 Qb
-Qb
+dZ
 Dt
 TO
 TO
@@ -41867,10 +42659,10 @@ TO
 TO
 TO
 TO
-TO
-TO
+QJ
 OR
 OR
+HN
 TO
 TO
 Zd
@@ -41886,7 +42678,7 @@ xX
 xX
 xX
 xb
-Xj
+yX
 mC
 as
 CS
@@ -42077,12 +42869,12 @@ EF
 EF
 Hp
 Hp
-EF
-EF
-QO
-Va
-Va
-Fb
+Hp
+yx
+xj
+mw
+mw
+Xt
 EF
 EF
 EF
@@ -42114,7 +42906,7 @@ EB
 EB
 EB
 EB
-Qb
+dZ
 Dt
 TO
 TO
@@ -42125,7 +42917,7 @@ TO
 TO
 TO
 TO
-TO
+OR
 OR
 OR
 TO
@@ -42139,11 +42931,11 @@ uw
 pu
 Yd
 OR
-xb
+ln
 xb
 xb
 Cg
-nJ
+BH
 Dt
 TO
 TO
@@ -42334,7 +43126,7 @@ EF
 EF
 Hp
 Hp
-EF
+Hp
 EF
 EF
 EF
@@ -42382,7 +43174,7 @@ TO
 TO
 TO
 TO
-TO
+OR
 OR
 OR
 TO
@@ -42396,11 +43188,11 @@ BI
 BI
 BI
 Tq
-as
-eu
+mS
 xb
 xb
-Yy
+xb
+HE
 Dt
 TO
 TO
@@ -42591,7 +43383,7 @@ EF
 EF
 Hp
 Hp
-EF
+Hp
 EF
 EF
 EF
@@ -42638,10 +43430,10 @@ TO
 TO
 TO
 TO
-TO
-Ah
+QJ
 OR
 OR
+HN
 TO
 TO
 TO
@@ -42653,11 +43445,11 @@ TO
 BI
 jJ
 TO
-TO
-Tq
+Pv
 OR
 OR
-as
+OR
+gu
 CS
 TO
 TO
@@ -42816,7 +43608,7 @@ sa
 sa
 sa
 OD
-sQ
+OD
 OD
 OD
 OD
@@ -42848,21 +43640,21 @@ EF
 EF
 Hp
 Hp
+Hp
 EF
 EF
 EF
+EB
+EB
+EB
+EB
+EB
+EB
 EF
-EB
-EB
-EB
-EB
-EB
-EB
-EB
-EB
+EF
 EF
 Xd
-EB
+EF
 EB
 EB
 Vc
@@ -42895,11 +43687,11 @@ qs
 TO
 TO
 TO
-Ah
-Fb
+NL
+OR
 Yy
-Yy
-QO
+fb
+xj
 qs
 TO
 TO
@@ -42910,11 +43702,11 @@ TO
 TO
 TO
 TO
-TO
-TO
+QJ
 OR
 OR
-TO
+OR
+aE
 TO
 TO
 TO
@@ -43101,22 +43893,22 @@ sa
 OD
 EF
 EF
+yx
+sW
+EK
+EK
+QK
+Oa
+Oa
+br
+EB
+EB
+EB
+EB
+EB
+EB
 EF
-Gs
-EK
-EK
-as
-as
-as
-eu
-EB
-EB
-EB
-EB
-EB
-EB
-EB
-EB
+EF
 EF
 Xd
 EF
@@ -43128,8 +43920,8 @@ FN
 FN
 el
 Vc
-Mi
-Pi
+EB
+EF
 EF
 Xd
 EF
@@ -43152,11 +43944,11 @@ QO
 qs
 TO
 Ah
-Fb
+cp
 wj
 wj
 wj
-wj
+Of
 QO
 Va
 Va
@@ -43168,7 +43960,7 @@ TO
 TO
 TO
 TO
-TO
+fj
 fj
 fj
 TO
@@ -43357,12 +44149,12 @@ sa
 sa
 OD
 EF
-EF
-Gs
-CS
+yx
+eE
+oG
 EK
 EK
-TO
+QK
 TO
 TO
 US
@@ -43373,8 +44165,8 @@ EB
 EB
 EB
 EB
-EB
-EB
+EF
+EF
 Xd
 EF
 EF
@@ -43406,14 +44198,14 @@ EB
 EB
 EB
 EB
-QO
-Va
-Fb
+xj
+mw
+Uu
 ZS
 wj
 QC
 wj
-wj
+Of
 ZS
 ZS
 ZS
@@ -43424,11 +44216,11 @@ Va
 qs
 TO
 TO
-TO
-TO
+QJ
 fj
 fj
-TO
+fj
+aE
 TO
 Ah
 Fb
@@ -43619,7 +44411,7 @@ Dt
 TO
 EK
 EK
-TO
+Xz
 TO
 TO
 US
@@ -43631,7 +44423,7 @@ EB
 EB
 EB
 EB
-EB
+EF
 Xd
 Xd
 Xd
@@ -43681,11 +44473,11 @@ ZS
 QO
 Va
 Va
-Va
-qs
+nf
 fj
 fj
-Va
+fj
+az
 Va
 Fb
 ZS
@@ -43876,7 +44668,7 @@ Dt
 TO
 EK
 EK
-TO
+Xz
 TO
 TO
 US
@@ -43939,7 +44731,7 @@ ZS
 ZS
 ZS
 ZS
-QO
+fj
 fj
 fj
 ZS
@@ -44130,10 +44922,10 @@ OD
 EF
 EB
 Dt
-TO
+QJ
 EK
 EK
-TO
+QK
 Ah
 Va
 Fb
@@ -44195,8 +44987,8 @@ ZS
 ZS
 ZS
 ZS
-ZS
-ZS
+wj
+wj
 wj
 wj
 ZS
@@ -44387,23 +45179,23 @@ sa
 EB
 EB
 Dt
-TO
+QJ
 EK
 EK
-TO
-US
+QK
+Bb
 EB
 EB
 EB
 EB
 EF
-EF
+yx
 Gs
 as
 as
 as
 as
-eu
+xS
 EF
 Xd
 EF
@@ -44429,7 +45221,7 @@ VH
 EF
 EF
 EF
-Mi
+EB
 EB
 EF
 VH
@@ -44632,7 +45424,7 @@ OD
 OD
 OD
 OD
-sQ
+OD
 sa
 sa
 sa
@@ -44644,24 +45436,24 @@ sa
 EB
 EB
 Dt
-TO
+QJ
 EK
 EK
-TO
-US
+QK
+Bb
 EF
 EF
 EF
 EF
 EF
-EF
+yx
 QO
 qs
 TO
 TO
 TO
 Tq
-eu
+xS
 Xd
 EF
 EB
@@ -44686,7 +45478,7 @@ VH
 EF
 LY
 EF
-Pi
+EF
 EF
 EF
 VH
@@ -44900,32 +45692,32 @@ Gs
 as
 as
 as
-CS
-TO
+Oj
+cZ
 EK
 EK
+QK
+Bb
+EF
+EF
+EF
+EF
+EF
+EF
+kl
+xj
+mw
+Ek
 TO
-US
-EF
-EF
-EF
-EF
-EF
-EF
-EF
-QO
-Va
-qs
 TO
-TO
-US
+cT
 Xd
-EF
-Gs
+yx
+TT
 CS
 Tq
-as
-eu
+Nr
+cz
 EF
 EF
 EF
@@ -44962,7 +45754,7 @@ Gt
 wj
 wj
 QC
-MB
+wj
 wj
 ZS
 ZS
@@ -45149,20 +45941,20 @@ OD
 OD
 OD
 Ca
-Gs
-as
-as
-as
-CS
-TO
-TO
-TO
-TO
-Ah
-EK
-EK
-qs
-US
+De
+RG
+RG
+RG
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Hp
+Hp
+RG
+IV
 EF
 EF
 EF
@@ -45219,7 +46011,7 @@ Gt
 Gt
 wj
 wj
-PN
+ZS
 ZS
 ZS
 ZS
@@ -45406,9 +46198,9 @@ OD
 OD
 OD
 OD
-Bz
-Bz
-Bz
+OD
+DI
+DI
 Bz
 Bz
 Bz
@@ -45418,7 +46210,7 @@ EK
 EK
 Hp
 Hp
-EK
+Hp
 EK
 EF
 EF
@@ -45663,7 +46455,7 @@ OD
 pr
 OD
 OD
-Bz
+OD
 Bz
 Bz
 Bz
@@ -45675,8 +46467,8 @@ EK
 EK
 Hp
 Hp
-EK
-EK
+Hp
+dM
 EF
 EF
 EF
@@ -45920,19 +46712,19 @@ OD
 OD
 OD
 OD
-QO
-Va
-Va
-Va
-qs
-TO
-TO
-TO
-TO
-Tq
+ly
+JF
+OH
+OH
+tb
+kF
+kF
+kF
+kF
+gX
 EK
 EK
-CS
+QK
 US
 EB
 EF
@@ -45941,19 +46733,19 @@ kR
 Xd
 EF
 EF
+yx
+eE
+eL
+kF
+Dd
 EF
-Gs
-CS
-TO
-US
-EF
-EF
-Dt
-TO
-TO
+yx
+DJ
+kF
+kF
 Ah
 Va
-Fb
+XG
 EF
 EF
 EF
@@ -46186,10 +46978,10 @@ Va
 Va
 Va
 Va
-qs
+bG
 EK
 EK
-TO
+QK
 US
 EB
 EB
@@ -46197,14 +46989,14 @@ EF
 EF
 Xd
 EF
-EF
-EF
+uu
+JG
 Dt
 TO
 TO
-US
+Bb
 EF
-EF
+yx
 QO
 qs
 Ah
@@ -46432,7 +47224,7 @@ OD
 OD
 OD
 OD
-sQ
+OD
 sa
 sa
 sa
@@ -46446,20 +47238,20 @@ EB
 Dt
 EK
 EK
-TO
+Xz
 US
 EB
 EB
 EF
 EF
 Xd
-EF
+yx
 Gs
 as
 CS
 TO
 Ah
-Fb
+cp
 EF
 EF
 EB
@@ -46703,22 +47495,22 @@ EB
 Dt
 EK
 EK
-TO
+Xz
 US
 EB
 EB
 EB
 EF
 Xd
-EF
+yx
 Dt
 TO
 TO
 TO
-US
+Bb
+aB
 EF
 EF
-EF
 EB
 EB
 EB
@@ -46728,7 +47520,7 @@ EB
 EB
 EB
 EF
-Pi
+EF
 LY
 EF
 EF
@@ -46960,19 +47752,19 @@ EB
 Dt
 EK
 EK
-TO
+Xz
 US
 EB
 EB
 EB
 EF
 Xd
-EF
+yx
 QO
 Va
 Va
 Va
-Fb
+cp
 EF
 EF
 EF
@@ -46985,7 +47777,7 @@ EB
 EB
 EB
 EB
-Mi
+EB
 EF
 EF
 EF
@@ -47217,7 +48009,7 @@ EB
 Dt
 EK
 EK
-TO
+Xz
 US
 EB
 EB
@@ -47471,13 +48263,13 @@ sa
 Gs
 as
 as
-CS
+oG
 EK
 EK
-TO
+QK
 Tq
 as
-eu
+mS
 EF
 EF
 Xd
@@ -47724,17 +48516,17 @@ pr
 OD
 OD
 De
-De
+ly
 Dt
 TO
 TO
-TO
+QJ
 EK
 EK
+QK
 TO
 TO
-TO
-US
+Bb
 EF
 EF
 Xd
@@ -47980,15 +48772,15 @@ OD
 OD
 OD
 OD
-OD
-Gs
+lt
+eE
 CS
 TO
 TO
-TO
+QJ
 EK
 EK
-TO
+Xz
 TO
 TO
 US
@@ -48237,15 +49029,15 @@ OD
 OD
 OD
 OD
-OD
+lt
 Dt
 TO
 TO
 TO
-TO
+QJ
 EK
 EK
-TO
+Xz
 TO
 TO
 US
@@ -48494,18 +49286,18 @@ ac
 ag
 OD
 OD
-OD
-QO
+lt
+xj
 qs
 TO
 TO
-TO
+QJ
 EK
 EK
+QK
 TO
 TO
-TO
-US
+Bb
 EF
 EF
 Xd
@@ -48752,17 +49544,17 @@ ag
 OD
 OD
 OD
-OD
-Dt
-TO
-TO
-Ah
+lt
+GZ
+kr
+kr
+DW
 EK
 EK
-qs
-TO
-TO
-US
+QK
+kr
+kr
+cT
 EF
 EF
 Xd
@@ -49022,7 +49814,7 @@ EK
 EK
 Hp
 Hp
-EL
+xr
 EB
 EB
 EB
@@ -49279,7 +50071,7 @@ ZZ
 ZZ
 ZZ
 ZZ
-ZZ
+aX
 eu
 EB
 EB
@@ -49291,8 +50083,8 @@ EB
 EB
 EB
 EB
-Mi
-Pi
+EB
+EF
 LY
 EF
 EF
@@ -49320,8 +50112,8 @@ Zk
 SB
 EB
 ZS
-PN
-MB
+ZS
+wj
 aV
 wj
 wj
@@ -49528,15 +50320,15 @@ EK
 EK
 ZZ
 EK
-Hp
-Hp
-EK
-EK
-EK
-EK
-EK
-EK
-EK
+Ng
+Ng
+dM
+dM
+dM
+dM
+dM
+dM
+El
 Tq
 as
 as
@@ -49557,8 +50349,8 @@ EF
 EB
 EB
 EB
-Mi
-Pi
+EB
+EF
 LY
 EF
 Sc
@@ -49779,12 +50571,12 @@ AK
 ag
 OD
 OD
-OD
-Dt
-TO
+lt
+DJ
+nS
 EK
 ZZ
-EK
+hV
 as
 as
 CS
@@ -50036,12 +50828,12 @@ ac
 ag
 OD
 OD
-OD
+lt
 Dt
-TO
+QJ
 EK
 ZZ
-EK
+hV
 TO
 TO
 TO
@@ -50298,7 +51090,7 @@ Dt
 TO
 EK
 ZZ
-EK
+hV
 TO
 TO
 TO
@@ -50555,7 +51347,7 @@ Dt
 TO
 EK
 ZZ
-EK
+hV
 TO
 TO
 TO
@@ -50812,7 +51604,7 @@ Dt
 TO
 EK
 ZZ
-EK
+hV
 TO
 TO
 TO
@@ -51064,9 +51856,9 @@ OD
 OD
 OD
 OD
-OD
+lt
 Dt
-TO
+QJ
 EK
 ZZ
 EK
@@ -51116,8 +51908,8 @@ Zk
 TL
 SB
 EB
-Mi
-MB
+EB
+wj
 wj
 ZS
 ZS
@@ -51890,7 +52682,7 @@ EF
 EF
 EF
 wj
-MB
+wj
 wj
 wj
 wj
@@ -52147,7 +52939,7 @@ EF
 HU
 EF
 wj
-PN
+ZS
 wj
 wj
 wj
