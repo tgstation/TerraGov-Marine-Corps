@@ -333,22 +333,22 @@ if(selected_ability.target_flags & flagname){\
 */
 
 
-/mob/proc/RightClickOn(var/atom/A)
+/mob/proc/RightClickOn(atom/A)
 	A.RightClick(src)
 
-/mob/proc/ShiftRightClickOn(var/atom/A)
+/mob/proc/ShiftRightClickOn(atom/A)
 	A.ShiftRightClick(src)
 
-/mob/proc/AltRightClickOn(var/atom/A)
+/mob/proc/AltRightClickOn(atom/A)
 	A.AltRightClick(src)
 
-/atom/proc/ShiftRightClick(var/mob/user)
+/atom/proc/ShiftRightClick(mob/user)
 	return
 
-/atom/proc/AltRightClick(var/mob/user)
+/atom/proc/AltRightClick(mob/user)
 	return
 
-/atom/proc/RightClick(var/mob/user)
+/atom/proc/RightClick(mob/user)
 	return
 
 /*
