@@ -193,7 +193,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/shipboard/starboard_missiles)
+/area/mainship/hallways/hangar/droppod)
 "aaQ" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
@@ -201,7 +201,7 @@
 /obj/structure/droppod,
 /obj/structure/dropprop,
 /turf/open/floor/mainship/cargo,
-/area/mainship/shipboard/starboard_missiles)
+/area/mainship/hallways/hangar/droppod)
 "aaR" = (
 /obj/machinery/door/poddoor/mainship{
 	density = 0;
@@ -278,7 +278,7 @@
 "aaZ" = (
 /obj/machinery/door_control/mainship/droppod,
 /turf/closed/wall/mainship/outer,
-/area/mainship/shipboard/starboard_missiles)
+/area/mainship/hallways/hangar/droppod)
 "aba" = (
 /obj/docking_port/stationary/escape_pod/right,
 /turf/open/floor/plating,
@@ -303,7 +303,7 @@
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 4
 	},
-/area/mainship/shipboard/starboard_missiles)
+/area/mainship/hallways/hangar/droppod)
 "abe" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -5948,7 +5948,7 @@
 /obj/structure/droppod,
 /obj/structure/dropprop,
 /turf/open/floor/mainship/cargo,
-/area/mainship/shipboard/starboard_missiles)
+/area/mainship/hallways/hangar/droppod)
 "arx" = (
 /obj/machinery/vending/nanomed,
 /obj/machinery/vending/cigarette,
@@ -9641,7 +9641,7 @@
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 4
 	},
-/area/mainship/shipboard/starboard_missiles)
+/area/mainship/hallways/hangar/droppod)
 "aBA" = (
 /obj/structure/table/mainship,
 /obj/item/megaphone,
@@ -20702,7 +20702,7 @@
 /area/mainship/shipboard/weapon_room)
 "bjy" = (
 /turf/closed/wall/mainship/outer,
-/area/mainship/shipboard/starboard_missiles)
+/area/mainship/hallways/hangar/droppod)
 "bjz" = (
 /obj/structure/cable,
 /obj/machinery/door/firedoor/mainship{
@@ -21259,7 +21259,7 @@
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 8
 	},
-/area/mainship/shipboard/starboard_missiles)
+/area/mainship/hallways/hangar/droppod)
 "bkM" = (
 /obj/structure/largecrate/random/case,
 /turf/open/floor/mainship/mono,
@@ -21429,7 +21429,7 @@
 /area/mainship/shipboard/weapon_room)
 "blt" = (
 /turf/closed/wall/mainship,
-/area/mainship/shipboard/starboard_missiles)
+/area/mainship/hallways/hangar/droppod)
 "blz" = (
 /obj/machinery/landinglight/ds2{
 	dir = 4
@@ -21618,7 +21618,7 @@
 /obj/structure/droppod,
 /obj/structure/dropprop,
 /turf/open/floor/mainship/cargo,
-/area/mainship/shipboard/starboard_missiles)
+/area/mainship/hallways/hangar/droppod)
 "bmt" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -22031,7 +22031,7 @@
 /obj/structure/droppod,
 /obj/structure/dropprop,
 /turf/open/floor/mainship/cargo,
-/area/mainship/shipboard/starboard_missiles)
+/area/mainship/hallways/hangar/droppod)
 "bof" = (
 /obj/effect/decal/warning_stripes/thin,
 /obj/effect/decal/warning_stripes/thin{
@@ -22550,13 +22550,13 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/shipboard/starboard_missiles)
+/area/mainship/hallways/hangar/droppod)
 "bqd" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/shipboard/starboard_missiles)
+/area/mainship/hallways/hangar/droppod)
 "bqf" = (
 /obj/machinery/landinglight/ds2/delaytwo{
 	dir = 4
@@ -23099,11 +23099,11 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
-/area/mainship/shipboard/starboard_missiles)
+/area/mainship/hallways/hangar/droppod)
 "brX" = (
 /obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/mainship/mono,
-/area/mainship/shipboard/starboard_missiles)
+/area/mainship/hallways/hangar/droppod)
 "brY" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -23114,7 +23114,7 @@
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 8
 	},
-/area/mainship/shipboard/starboard_missiles)
+/area/mainship/hallways/hangar/droppod)
 "brZ" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -23768,7 +23768,7 @@
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 4
 	},
-/area/mainship/shipboard/starboard_missiles)
+/area/mainship/hallways/hangar/droppod)
 "bvh" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 5
@@ -23779,7 +23779,7 @@
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 8
 	},
-/area/mainship/shipboard/starboard_missiles)
+/area/mainship/hallways/hangar/droppod)
 "bvi" = (
 /turf/open/floor/mainship{
 	dir = 6;
@@ -23802,7 +23802,7 @@
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 8
 	},
-/area/mainship/shipboard/starboard_missiles)
+/area/mainship/hallways/hangar/droppod)
 "bvm" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 9
@@ -24228,7 +24228,7 @@
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 4
 	},
-/area/mainship/shipboard/starboard_missiles)
+/area/mainship/hallways/hangar/droppod)
 "bxe" = (
 /obj/machinery/gear{
 	id = "hangarelevatorgear"
@@ -24535,7 +24535,7 @@
 /obj/structure/droppod,
 /obj/structure/dropprop,
 /turf/open/floor/mainship/cargo,
-/area/mainship/shipboard/starboard_missiles)
+/area/mainship/hallways/hangar/droppod)
 "byQ" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 6
@@ -24795,7 +24795,7 @@
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 8
 	},
-/area/mainship/shipboard/starboard_missiles)
+/area/mainship/hallways/hangar/droppod)
 "bzN" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -24825,7 +24825,7 @@
 	dir = 5
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/shipboard/starboard_missiles)
+/area/mainship/hallways/hangar/droppod)
 "bzT" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -25248,7 +25248,7 @@
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 4
 	},
-/area/mainship/shipboard/starboard_missiles)
+/area/mainship/hallways/hangar/droppod)
 "bBp" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -25574,7 +25574,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
-/area/mainship/shipboard/starboard_missiles)
+/area/mainship/hallways/hangar/droppod)
 "bCH" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -27007,11 +27007,11 @@
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 4
 	},
-/area/mainship/shipboard/starboard_missiles)
+/area/mainship/hallways/hangar/droppod)
 "bJg" = (
 /obj/machinery/door_control/mainship/droppod,
 /turf/closed/wall/mainship,
-/area/mainship/shipboard/starboard_missiles)
+/area/mainship/hallways/hangar/droppod)
 "bJh" = (
 /obj/machinery/power/apc/mainship,
 /obj/structure/cable,
@@ -27258,7 +27258,7 @@
 	dir = 10
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/shipboard/starboard_missiles)
+/area/mainship/hallways/hangar/droppod)
 "bKo" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
@@ -27668,7 +27668,7 @@
 	dir = 2
 	},
 /turf/open/floor/mainship/stripesquare,
-/area/mainship/shipboard/starboard_missiles)
+/area/mainship/hallways/hangar/droppod)
 "bLE" = (
 /obj/machinery/door_control{
 	id = "Solid_Fuel";
@@ -35891,7 +35891,7 @@
 	dir = 2
 	},
 /turf/open/floor/mainship/stripesquare,
-/area/mainship/shipboard/starboard_missiles)
+/area/mainship/hallways/hangar/droppod)
 "jba" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -46754,14 +46754,14 @@ aaa
 aaa
 aaa
 aaa
-bjx
-bjx
-bwS
-bwS
-bwS
-bwS
-bwS
-bwS
+bjy
+bjy
+blt
+blt
+blt
+blt
+blt
+blt
 auU
 bwW
 byF
