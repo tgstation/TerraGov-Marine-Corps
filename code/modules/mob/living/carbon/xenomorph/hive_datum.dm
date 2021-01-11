@@ -520,6 +520,8 @@ to_chat will check for valid clients itself already so no need to double check f
 			switch(arrow_type)
 				if(arrow_hive_leader_rallying)
 					arrow_hud = new /obj/screen/arrow/leader_tracker_arrow
+				if (arrow_silo_attacked)
+					arrow_hud = new /obj/screen/arrow/silo_damaged_arrow
 			  //Prepare the tracker object and set its parameters
 			arrow_hud.add_hud(X, target)
 			new /obj/effect/temp_visual/xenomorph/xeno_tracker_target(target) //Ping the source of our alert

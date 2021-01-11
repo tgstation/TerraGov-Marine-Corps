@@ -780,6 +780,14 @@
 	START_PROCESSING(SSprocessing, src)
 	QDEL_IN(src, XENO_RALLYING_POINTER_DURATION)
 
+/obj/screen/arrow/process() //We ping the target, revealing its direction with an arrow
+	if(target.z != tracker.z || get_dist(tracker, target) < 1 || tracker == target)
+		alpha = 0
+	else
+		alpha = 128
+		transform = 0 //Reset and 0 out
+		transform = turn(transform, Get_Angle(tracker, target))
+
 /obj/screen/xeno_health_alert/Destroy()
 	STOP_PROCESSING(SSprocessing, src)
 	return ..()
@@ -788,11 +796,6 @@
 	name = "hive leader tracker arrow"
 	icon_state = "Blue_arrow"		
 
-/obj/screen/arrow/leader_tracker_arrow/process() //We ping the target, revealing its direction with an arrow
-
-	if(target.z != tracker.z || get_dist(tracker, target) < 1 || tracker == target)
-		icon_state = ""
-	else
-		icon_state = "Blue_arrow"
-		transform = 0 //Reset and 0 out
-		transform = turn(transform, Get_Angle(tracker, target))
+/obj/screen/arrow/silo_damaged_arrow
+	name = "Hive damaged tracker arrow"
+	icon_state = "Red_arrow"
