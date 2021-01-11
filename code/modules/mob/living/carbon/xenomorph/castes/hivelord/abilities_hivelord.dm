@@ -284,7 +284,8 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	var/heal_range = HIVELORD_HEAL_RANGE
 	var/health_ticks_remaining = 0 //Buff ends whenever we run out of either health or sunder ticks, or time, whichever comes first
 	var/sunder_ticks_remaining = 0
-	var/infusion_active = FALSE //Flags whether the infusion is active or not
+	///Indicates whether the infusion is active or not
+	var/infusion_active = FALSE
 
 /datum/action/xeno_action/activable/healing_infusion/can_use_ability(atom/target, silent = FALSE, override_flags)
 	. = ..()
@@ -344,7 +345,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 
 	patient.add_filter("hivelord_healing_infusion_outline", 3, list("type" = "outline", "size" = 1, "color" = COLOR_VERY_PALE_LIME_GREEN)) //Set our cool aura; also confirmation we have the buff
 
-	infusion_active = TRUE //Flag the infusion as being active
+	infusion_active = TRUE //Indicate the infusion as being active
 
 	health_ticks_remaining = HIVELORD_HEALING_INFUSION_TICKS
 	sunder_ticks_remaining = HIVELORD_HEALING_INFUSION_TICKS

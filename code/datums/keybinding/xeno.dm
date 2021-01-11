@@ -462,6 +462,6 @@
 /datum/keybinding/xeno/healing_infusion
 	name = "healing_infusion"
 	full_name = "Hivelord: Healing Infusion"
-	description = "Heals a target xeno restoring sunder and health once per life tick for up to 5 ticks. 60 second duration."
+	description = "Imbues a target xeno with healing energy, restoring extra Sunder and Health once every 2 seconds up to 5 times whenever it regenerates normally. 60 second duration."
 	keybind_signal = COMSIG_XENOABILITY_HEALING_INFUSION
 
