@@ -156,6 +156,7 @@
 	desc = "A powerful light placed concealed on the base to provide better visibility."
 	density = 0
 	alpha = 0
+	resistance_flags = RESIST_ALL
 
 /obj/machinery/floodlight/landing/testroom/Initialize(mapload, ...)
 	. = ..()

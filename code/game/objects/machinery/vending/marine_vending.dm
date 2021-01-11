@@ -77,6 +77,39 @@
 /obj/machinery/vending/marine/ex_act(severity)
 	return
 
+/// HvH version of the vending machine, containing no snipers or slugs. and MGs, shotguns, grenades and scoped weapons are rarer
+/// want to get shotguns, scoped weapons and MGs? go to the cargo vendor instead.
+/obj/machinery/vending/marine/hvh
+	products = list(
+		/obj/item/weapon/gun/pistol/standard_pistol = 25,
+		/obj/item/ammo_magazine/pistol/standard_pistol = 30,
+		/obj/item/weapon/gun/pistol/standard_heavypistol = 10,
+		/obj/item/ammo_magazine/pistol/standard_heavypistol = 25,
+		/obj/item/weapon/gun/revolver/standard_revolver = 15,
+		/obj/item/ammo_magazine/revolver/standard_revolver = 25,
+		/obj/item/weapon/gun/smg/standard_machinepistol = 20,
+		/obj/item/ammo_magazine/smg/standard_machinepistol = 30,
+		/obj/item/weapon/gun/pistol/standard_pocketpistol = 25,
+		/obj/item/ammo_magazine/pistol/standard_pocketpistol = 50,
+		/obj/item/weapon/gun/smg/standard_smg = 20,
+		/obj/item/ammo_magazine/smg/standard_smg = 30,
+		/obj/item/weapon/gun/rifle/standard_carbine = 25,
+		/obj/item/ammo_magazine/rifle/standard_carbine = 25,
+		/obj/item/weapon/gun/rifle/standard_assaultrifle = 25,
+		/obj/item/ammo_magazine/rifle/standard_assaultrifle = 25,
+		/obj/item/weapon/gun/rifle/standard_br = 2,
+		/obj/item/ammo_magazine/rifle/standard_br = 10,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle = 10,
+		/obj/item/cell/lasgun/lasrifle = 20,
+		/obj/item/explosive/grenade/frag = 15,
+		/obj/item/attachable/bayonetknife = 20,
+		/obj/item/weapon/throwing_knife = 5,
+		/obj/item/storage/box/m94 = 5,
+		/obj/item/attachable/flashlight = 10,
+		/obj/item/explosive/grenade/mirage = 5,
+		/obj/item/weapon/powerfist = 3,
+	)
+
 /obj/machinery/vending/marine/cargo_supply
 	name = "\improper Operational Supplies Vendor"
 	desc = "A large vendor for dispensing specialty and bulk supplies. Restricted to cargo personnel only."
@@ -102,6 +135,36 @@
 		/obj/item/radio/headset/mainship/marine/bravo = 20,
 		/obj/item/radio/headset/mainship/marine/charlie = 20,
 		/obj/item/radio/headset/mainship/marine/delta = 20,
+		/obj/item/big_ammo_box = 2,
+		/obj/item/ammobox = 2,
+		/obj/item/shotgunbox = 2,
+		/obj/item/shotgunbox/buckshot = 2,
+		/obj/item/shotgunbox/flechette = 2,
+		/obj/item/ammobox/standard_smg = 2,
+		/obj/item/ammobox/standard_machinepistol = 2,
+		/obj/item/ammobox/standard_pistol = 2,
+		/obj/item/ammobox/standard_rifle = 2,
+		/obj/item/ammobox/standard_dmr = 2,
+		/obj/item/ammobox/standard_lmg = 2,
+	)
+
+/// HvH version of the vending machine, containing no ammo for spec weapons and restricted ones
+/obj/machinery/vending/marine/cargo_supply/hvh
+	products = list(
+		/obj/item/storage/box/ammo = 30,
+		/obj/item/storage/box/nade_box = 1,
+		/obj/item/storage/box/nade_box/HIDP = 1,
+		/obj/item/explosive/plastique = 2,
+		/obj/item/radio/headset/mainship/marine/alpha = 20,
+		/obj/item/radio/headset/mainship/marine/bravo = 20,
+		/obj/item/radio/headset/mainship/marine/charlie = 20,
+		/obj/item/radio/headset/mainship/marine/delta = 20,
+		/obj/item/big_ammo_box = 2,
+		/obj/item/ammobox = 2,
+		/obj/item/ammobox/standard_smg = 2,
+		/obj/item/ammobox/standard_machinepistol = 2,
+		/obj/item/ammobox/standard_pistol = 2,
+		/obj/item/ammobox/standard_rifle = 2,
 	)
 
 /obj/machinery/vending/marine/cargo_guns
@@ -162,7 +225,36 @@
 	. = ..()
 	GLOB.cargo_guns_vendors.Remove(src)
 
-
+///HvH version
+///The only way to get LMG, DMR, shotguns and GPMG
+/obj/machinery/vending/marine/cargo_guns/hvh
+	products = list(
+		/obj/item/weapon/gun/pistol/standard_pistol = 10,
+		/obj/item/weapon/gun/revolver/standard_revolver = 10,
+		/obj/item/weapon/gun/pistol/standard_heavypistol = 10,
+		/obj/item/weapon/gun/pistol/vp70 = 10,
+		/obj/item/weapon/gun/smg/standard_smg = 10,
+		/obj/item/weapon/gun/smg/standard_machinepistol = 10,
+		/obj/item/weapon/gun/rifle/standard_carbine = 10,
+		/obj/item/weapon/gun/rifle/standard_assaultrifle = 10,
+		/obj/item/weapon/gun/rifle/standard_lmg = 2,
+		/obj/item/weapon/gun/rifle/standard_gpmg = 1,
+		/obj/item/weapon/gun/rifle/standard_dmr = 1,
+		/obj/item/weapon/gun/rifle/standard_br = 2,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle = 10,
+		/obj/item/weapon/gun/shotgun/pump/t35 = 2,
+		/obj/item/weapon/gun/rifle/standard_autoshotgun = 1,
+		/obj/item/weapon/gun/launcher/m92/standardmarine = 1,
+		/obj/item/weapon/gun/pistol/standard_pocketpistol = 20,
+		/obj/item/storage/belt/gun/ts34/full = 5,
+		/obj/item/weapon/gun/flamer/marinestandard = 1,
+		/obj/item/explosive/mine = 5,
+		/obj/item/explosive/grenade/incendiary = 5,
+		/obj/item/explosive/grenade/cloakbomb = 2,
+		/obj/item/storage/box/m94 = 30,
+		/obj/item/storage/box/m94/cas = 10,
+		/obj/item/storage/box/recoilless_system = 1,
+	)
 
 
 /obj/machinery/vending/marine/cargo_ammo
@@ -214,6 +306,33 @@
 /obj/machinery/vending/marine/cargo_ammo/Destroy()
 	. = ..()
 	GLOB.cargo_ammo_vendors.Remove(src)
+
+// HvH only
+/obj/machinery/vending/marine/cargo_ammo/hvh
+	products = list(
+		/obj/item/ammo_magazine/pistol/standard_pistol = 50,
+		/obj/item/ammo_magazine/revolver/standard_revolver = 50,
+		/obj/item/ammo_magazine/pistol/standard_heavypistol = 50,
+		/obj/item/ammo_magazine/pistol/vp70 = 50,
+		/obj/item/ammo_magazine/smg/standard_smg = 50,
+		/obj/item/ammo_magazine/smg/standard_machinepistol = 50,
+		/obj/item/ammo_magazine/rifle/standard_carbine = 50,
+		/obj/item/ammo_magazine/rifle/standard_assaultrifle = 50,
+		/obj/item/ammo_magazine/standard_lmg = 5,
+		/obj/item/ammo_magazine/standard_gpmg = 3,
+		/obj/item/ammo_magazine/rifle/standard_dmr = 5,
+		/obj/item/ammo_magazine/rifle/standard_br = 10,
+		/obj/item/cell/lasgun/lasrifle = 50,
+		/obj/item/ammo_magazine/shotgun/buckshot = 3,
+		/obj/item/ammo_magazine/shotgun/flechette = 3,
+		/obj/item/ammo_magazine/rifle/tx15_flechette = 5,
+		/obj/item/ammo_magazine/pistol/standard_pocketpistol = 50,
+		/obj/item/ammo_magazine/flamer_tank/large = 1,
+		/obj/item/ammo_magazine/standard_smartmachinegun = 2,
+		/obj/item/ammo_magazine/flamer_tank = 5,
+		/obj/item/ammo_magazine/smg/ppsh/ = 10,
+		/obj/item/ammo_magazine/smg/ppsh/extended = 2,
+	)
 
 /obj/machinery/vending/lasgun
 	name = "\improper Lasrifle Field Charger"
@@ -639,6 +758,33 @@
 	. = ..()
 	GLOB.attachment_vendors.Remove(src)
 
+// HVH, no silencers or scopes
+/obj/machinery/vending/attachments
+	products = list(
+		/obj/item/attachable/bayonet = 25,
+		/obj/item/attachable/compensator = 25,
+		/obj/item/attachable/extended_barrel = 25,
+		/obj/item/attachable/heavy_barrel = 25,
+
+		/obj/item/attachable/flashlight = 25,
+		/obj/item/attachable/magnetic_harness = 25,
+		/obj/item/attachable/reddot = 25,
+
+		/obj/item/attachable/angledgrip = 25,
+		/obj/item/attachable/bipod = 25,
+		/obj/item/attachable/burstfire_assembly = 25,
+		/obj/item/attachable/gyro = 25,
+		/obj/item/attachable/lasersight = 25,
+		/obj/item/attachable/verticalgrip = 25,
+
+		/obj/item/attachable/stock/t19stock = 25,
+		/obj/item/attachable/stock/t35stock = 25,
+		/obj/item/attachable/stock/tactical = 25,
+
+		/obj/item/attachable/attached_gun/flamer = 2,
+		/obj/item/attachable/attached_gun/shotgun = 2,
+		/obj/item/attachable/attached_gun/grenade = 2,
+	)
 
 
 /obj/machinery/vending/armor_supply
