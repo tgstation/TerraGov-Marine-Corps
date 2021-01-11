@@ -85,6 +85,15 @@
 	if(modifiers["ctrl"])
 		CtrlClickOn(A)
 		return
+	if(modifiers["shift"] && modifiers["right"])
+		ShiftRightClickOn(A)
+		return 1
+	if(modifiers["alt"] && modifiers["right"])
+		AltRightClickOn(A)
+		return 1
+	if(modifiers["right"])
+		RightClickOn(A)
+		return
 
 	if(incapacitated(TRUE))
 		return
@@ -318,6 +327,29 @@ if(selected_ability.target_flags & flagname){\
 	A = ability_target(A)
 	if(selected_ability.can_use_ability(A))
 		selected_ability.use_ability(A)
+
+/*
+	Right click
+*/
+
+
+/mob/proc/RightClickOn(var/atom/A)
+	A.RightClick(src)
+
+/mob/proc/ShiftRightClickOn(var/atom/A)
+	A.ShiftRightClick(src)
+
+/mob/proc/AltRightClickOn(var/atom/A)
+	A.AltRightClick(src)
+
+/atom/proc/ShiftRightClick(var/mob/user)
+	return
+
+/atom/proc/AltRightClick(var/mob/user)
+	return
+
+/atom/proc/RightClick(var/mob/user)
+	return
 
 /*
 	Shift click

@@ -1224,3 +1224,19 @@
 	qdel(frommob)
 
 	return TRUE
+
+//A verb so that admins can toggle right click if they need to use debug stuff. - Matt, thanks matt
+/client/proc/toggle_right_click()
+	set name = "Toggle Right Click"
+	set category = "Admin"
+
+	if(!show_popup_menus)
+		show_popup_menus = TRUE
+		to_chat(src, "<span class='interface'>Right click enabled.</span>")
+	else
+		show_popup_menus = FALSE
+		to_chat(src, "<span class='interface'>Right click disabled.</span>")
+
+	if(!check_rights(R_ADMIN))
+		return
+
