@@ -634,6 +634,12 @@
 	},
 /turf/open/floor/tile/white,
 /area/lavaland/security/infocenter)
+"fR" = (
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/turf/open/lavaland/catwalk,
+/area/lavaland/cave/east)
 "fT" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/blood,
@@ -1336,10 +1342,6 @@
 /obj/machinery/landinglight/ds2/delaythree,
 /turf/open/floor/plating/asteroidwarning,
 /area/shuttle/drop2/lz2)
-"ly" = (
-/obj/structure/barricade/guardrail,
-/turf/open/lavaland/basalt,
-/area/lavaland)
 "lA" = (
 /obj/structure/window/framed/colony,
 /turf/open/floor/plating,
@@ -3453,9 +3455,6 @@
 	dir = 1
 	},
 /area/lavaland)
-"De" = (
-/turf/open/lavaland/basalt,
-/area/lavaland)
 "Df" = (
 /turf/open/lavaland/lava/lpiece{
 	dir = 4
@@ -5045,9 +5044,6 @@
 "RF" = (
 /turf/open/floor/plating,
 /area/shuttle/drop2/lz2)
-"RG" = (
-/turf/open/floor/plating,
-/area/lavaland)
 "RI" = (
 /obj/structure/ore_box,
 /turf/open/lavaland/basalt,
@@ -5623,7 +5619,7 @@
 	},
 /obj/structure/barricade/guardrail,
 /turf/open/lavaland/catwalk,
-/area/lavaland)
+/area/lavaland/cave/east)
 "Xc" = (
 /turf/closed/wall/mainship,
 /area/lavaland/misc/crashed)
@@ -40815,7 +40811,7 @@ YL
 Gs
 He
 He
-QK
+Ie
 as
 as
 as
@@ -41072,7 +41068,7 @@ YL
 Dt
 He
 He
-QK
+Ie
 TO
 TO
 TO
@@ -41329,7 +41325,7 @@ as
 oG
 He
 He
-QK
+Ie
 TO
 TO
 TO
@@ -41586,7 +41582,7 @@ TO
 QJ
 He
 He
-QK
+Ie
 TO
 TO
 TO
@@ -41843,7 +41839,7 @@ Va
 bG
 EK
 EK
-QK
+hV
 TO
 TO
 TO
@@ -42100,7 +42096,7 @@ EB
 Dt
 EK
 EK
-QK
+hV
 TO
 TO
 TO
@@ -42357,7 +42353,7 @@ EB
 Dt
 EK
 EK
-QK
+hV
 TO
 TO
 TO
@@ -42614,7 +42610,7 @@ EB
 QO
 EK
 EK
-QK
+hV
 mw
 qs
 TO
@@ -43899,7 +43895,7 @@ yx
 sW
 EK
 EK
-QK
+hV
 Oa
 Oa
 br
@@ -44156,7 +44152,7 @@ eE
 oG
 EK
 EK
-QK
+hV
 TO
 TO
 US
@@ -44413,7 +44409,7 @@ Dt
 TO
 EK
 EK
-Xz
+EK
 TO
 TO
 US
@@ -44670,7 +44666,7 @@ Dt
 TO
 EK
 EK
-Xz
+EK
 TO
 TO
 US
@@ -44927,7 +44923,7 @@ Dt
 QJ
 EK
 EK
-QK
+hV
 Ah
 Va
 Fb
@@ -45184,7 +45180,7 @@ Dt
 QJ
 EK
 EK
-QK
+hV
 Bb
 EB
 EB
@@ -45441,7 +45437,7 @@ Dt
 QJ
 EK
 EK
-QK
+hV
 Bb
 EF
 EF
@@ -45698,7 +45694,7 @@ Oj
 cZ
 EK
 EK
-QK
+hV
 Bb
 EF
 EF
@@ -45943,20 +45939,20 @@ OD
 OD
 OD
 Ca
-De
-RG
-RG
-RG
-Xz
-Xz
-Xz
-Xz
-Xz
-Xz
+OD
+DI
+DI
+DI
+Bz
+Bz
+EK
+EK
+EK
+EK
 Hp
 Hp
-RG
-IV
+Hp
+fR
 EF
 EF
 EF
@@ -46714,7 +46710,7 @@ OD
 OD
 OD
 OD
-ly
+lt
 JF
 OH
 OH
@@ -46726,7 +46722,7 @@ kF
 gX
 EK
 EK
-QK
+hV
 US
 EB
 EF
@@ -46983,7 +46979,7 @@ Va
 bG
 EK
 EK
-QK
+hV
 US
 EB
 EB
@@ -47240,7 +47236,7 @@ EB
 Dt
 EK
 EK
-Xz
+EK
 US
 EB
 EB
@@ -47497,7 +47493,7 @@ EB
 Dt
 EK
 EK
-Xz
+EK
 US
 EB
 EB
@@ -47754,7 +47750,7 @@ EB
 Dt
 EK
 EK
-Xz
+EK
 US
 EB
 EB
@@ -48011,7 +48007,7 @@ EB
 Dt
 EK
 EK
-Xz
+EK
 US
 EB
 EB
@@ -48268,7 +48264,7 @@ as
 oG
 EK
 EK
-QK
+hV
 Tq
 as
 mS
@@ -48517,15 +48513,15 @@ OD
 pr
 OD
 OD
-De
-ly
+OD
+lt
 Dt
 TO
 TO
 QJ
 EK
 EK
-QK
+hV
 TO
 TO
 Bb
@@ -48782,7 +48778,7 @@ TO
 QJ
 EK
 EK
-Xz
+EK
 TO
 TO
 US
@@ -49039,7 +49035,7 @@ TO
 QJ
 EK
 EK
-Xz
+EK
 TO
 TO
 US
@@ -49296,7 +49292,7 @@ TO
 QJ
 EK
 EK
-QK
+hV
 TO
 TO
 Bb
@@ -49553,7 +49549,7 @@ kr
 DW
 EK
 EK
-QK
+hV
 kr
 kr
 cT
