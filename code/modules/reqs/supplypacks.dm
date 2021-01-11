@@ -275,6 +275,12 @@ WEAPONS
 	contains = list(/obj/item/storage/box/nade_box/phos)
 	cost = 70
 
+/datum/supply_packs/weapons/explosives_plasmadrain
+	name = "M40-T gas grenade box crate"
+	notes = "Contains 25 grenades"
+	contains = list(/obj/item/storage/box/nade_box/plasma_drain_gas)
+	cost = 70
+
 /datum/supply_packs/weapons/plastique
 	name = "C4 plastic explosive"
 	contains = list(/obj/item/explosive/plastique)
