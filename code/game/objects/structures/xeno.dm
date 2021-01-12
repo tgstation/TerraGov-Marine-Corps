@@ -131,9 +131,17 @@
 		linked_carrier = builder
 	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, .proc/shuttle_crush)
 
-/obj/effect/alien/resin/trap/proc/shuttle_crush() //No more trapping shuttles with huggies
+/obj/effect/alien/resin/trap/obj_destruction(damage_amount, damage_type, damage_flag)
+	if(damage_amount && hugger && loc)
+		drop_hugger()
+
+	return ..()
+
+///Ensures that no huggies will be released when the trap is crushed by a shuttle; no more trapping shuttles with huggies
+/obj/effect/alien/resin/trap/proc/shuttle_crush()
 	SIGNAL_HANDLER
-	QDEL_NULL(hugger)
+	qdel(src)
+
 
 /obj/effect/alien/resin/trap/examine(mob/user)
 	. = ..()
@@ -222,12 +230,6 @@
 	. = ..()
 	if(iscarbon(A))
 		HasProximity(A)
-
-/obj/effect/alien/resin/trap/Destroy()
-	if(hugger && loc)
-		drop_hugger()
-	return ..()
-
 
 
 //Resin Doors
@@ -631,13 +633,15 @@ TUNNEL
 	max_integrity = 140
 	var/mob/living/carbon/xenomorph/hivelord/creator = null
 
-	hud_possible = list(XENO_TUNNEL_HUD)
+	hud_possible = list(XENO_TACTICAL_HUD)
 
 
 /obj/structure/tunnel/Initialize(mapload)
 	. = ..()
 	GLOB.xeno_tunnels += src
 	prepare_huds()
+	for(var/datum/atom_hud/xeno_tactical/xeno_tac_hud in GLOB.huds) //Add to the xeno tachud
+		xeno_tac_hud.add_to_hud(src)
 	hud_set_xeno_tunnel()
 
 /obj/structure/tunnel/Destroy()
@@ -700,15 +704,33 @@ TUNNEL
 		to_chat(M, "<span class='xenowarning'>We can't climb through a tunnel while immobile.</span>")
 		return FALSE
 
-	if(LAZYLEN(M.stomach_contents))
-		to_chat(M, "<span class='warning'>We must spit out the host inside of us first.</span>")
-		return
+	if(length(GLOB.xeno_tunnels) < 2)
+		to_chat(M, "<span class='warning'>There are no other tunnels in the network!</span>")
+		return FALSE
 
+	for(var/tummy_resident in M.stomach_contents)
+		if(ishuman(tummy_resident))
+			var/mob/living/carbon/human/H = tummy_resident
+			if(check_tod(H))
+				to_chat(M, "<span class='warning'>We cannot enter the tunnel while the host we devoured has signs of life. We should headbite it to finish it off.</span>")
+				return
+
+	pick_a_tunnel(M)
+
+///Here we pick a tunnel to go to, then travel to that tunnel and peep out, confirming whether or not we want to emerge or go to another tunnel.
+/obj/structure/tunnel/proc/pick_a_tunnel(mob/living/carbon/xenomorph/M)
 	var/obj/structure/tunnel/targettunnel = input(M, "Choose a tunnel to crawl to", "Tunnel") as null|anything in GLOB.xeno_tunnels
 	if(!targettunnel)
 		return
+	if(targettunnel == src)
+		to_chat(M, "<span class='warning'>We're already here!</span>")
+		if(M.loc == src) //If we're in the tunnel and cancelling out, spit us out.
+			M.forceMove(loc)
+		return
 	if(targettunnel.z != z)
 		to_chat(M, "<span class='warning'>That tunnel isn't connected to this one!</span>")
+		if(M.loc == src) //If we're in the tunnel and cancelling out, spit us out.
+			M.forceMove(loc)
 		return
 	var/distance = get_dist(get_turf(src), get_turf(targettunnel))
 	var/tunnel_time = clamp(distance, HIVELORD_TUNNEL_MIN_TRAVEL_TIME, HIVELORD_TUNNEL_SMALL_MAX_TRAVEL_TIME)
@@ -726,9 +748,14 @@ TUNNEL
 
 	if(do_after(M, tunnel_time, FALSE, src, BUSY_ICON_GENERIC))
 		if(targettunnel && isturf(targettunnel.loc)) //Make sure the end tunnel is still there
-			M.forceMove(targettunnel.loc)
-			M.visible_message("<span class='xenonotice'>\The [M] pops out of \the [src].</span>", \
-			"<span class='xenonotice'>We pop out through the other side!</span>")
+			M.forceMove(targettunnel)
+			var/double_check = input(M, "Emerge here?", "Tunnel: [targettunnel]") as null|anything in list("Yes","Pick another tunnel")
+			if(double_check == "Pick another tunnel")
+				return targettunnel.pick_a_tunnel(M)
+			else //Whether we say yes or cancel out of it
+				M.forceMove(targettunnel.loc)
+				M.visible_message("<span class='xenonotice'>\The [M] pops out of \the [src].</span>", \
+				"<span class='xenonotice'>We pop out through the other side!</span>")
 		else
 			to_chat(M, "<span class='warning'>\The [src] ended unexpectedly, so we return back up.</span>")
 	else
@@ -736,11 +763,12 @@ TUNNEL
 
 //Makes sure the tunnel is visible to other xenos even through obscuration.
 /obj/structure/tunnel/proc/hud_set_xeno_tunnel()
-	var/image/holder = hud_list[XENO_TUNNEL_HUD]
+	var/image/holder = hud_list[XENO_TACTICAL_HUD]
 	if(!holder)
 		return
-	holder.icon_state = "traitorhud"
-	hud_list[XENO_TUNNEL_HUD] = holder
+	holder.icon = 'icons/mob/hud.dmi'
+	holder.icon_state = "hudtraitor"
+	hud_list[XENO_TACTICAL_HUD] = holder
 
 //Resin Water Well
 /obj/effect/alien/resin/acidwell
@@ -769,14 +797,19 @@ TUNNEL
 	creator = null
 	return ..()
 
+///Ensures that no acid gas will be released when the well is crushed by a shuttle
+/obj/effect/alien/resin/acidwell/proc/shuttle_crush()
+	SIGNAL_HANDLER
+	qdel(src)
 
-/obj/effect/alien/resin/acidwell/obj_destruction(damage_flag)
+
+/obj/effect/alien/resin/acidwell/obj_destruction(damage_amount, damage_type, damage_flag)
 	if(!QDELETED(creator) && creator.stat == CONSCIOUS && creator.z == z)
 		var/area/A = get_area(src)
 		if(A)
 			to_chat(creator, "<span class='xenoannounce'>You sense your acid well at [A.name] has been destroyed!</span>")
 
-	if(damage_flag) //Spawn the gas only if we actually get destroyed by damage
+	if(damage_amount) //Spawn the gas only if we actually get destroyed by damage
 		var/datum/effect_system/smoke_spread/xeno/acid/A = new(get_turf(src))
 		A.set_up(clamp(charges,0,2),src)
 		A.start()

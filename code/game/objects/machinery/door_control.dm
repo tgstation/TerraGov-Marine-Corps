@@ -19,6 +19,9 @@
 	idle_power_usage = 2
 	active_power_usage = 4
 
+/obj/machinery/door_control/unmeltable
+	resistance_flags = RESIST_ALL
+
 /obj/machinery/door_control/ai
 	name = "AI Lockdown"
 

@@ -64,11 +64,6 @@
 	results = list(/datum/reagent/impedrezene = 2)
 	required_reagents = list(/datum/reagent/mercury = 1, /datum/reagent/oxygen = 1, /datum/reagent/consumable/sugar = 1)
 
-/datum/chemical_reaction/virus_food
-	name = "Virus Food"
-	results = list(/datum/reagent/consumable/virus_food = 5)
-	required_reagents = list(/datum/reagent/water = 1, /datum/reagent/consumable/drink/milk = 1)
-
 /datum/chemical_reaction/cryptobiolin
 	name = "Cryptobiolin"
 	results = list(/datum/reagent/cryptobiolin = 3)

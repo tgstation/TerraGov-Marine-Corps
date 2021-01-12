@@ -24,7 +24,7 @@
 
 
 /obj/machinery/bot/examine(mob/user)
-	..()
+	. = ..()
 	if(obj_integrity < max_integrity)
 		if(obj_integrity > max_integrity/3)
 			to_chat(user, "<span class='warning'>[src]'s parts look loose.</span>")

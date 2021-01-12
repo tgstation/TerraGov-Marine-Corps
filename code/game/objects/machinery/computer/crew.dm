@@ -23,7 +23,7 @@
 	ui_y = 800
 
 /obj/machinery/computer/crew/update_icon()
-	if(machine_stat & BROKEN)
+	if(machine_stat & (BROKEN|DISABLED))
 		icon_state = "crewb"
 	else if(machine_stat & NOPOWER)
 		icon_state = "crew0"
