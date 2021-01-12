@@ -383,7 +383,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 
 	var/total_heal_amount = 10 + patient.maxHealth * 0.05 //Base amount 10 HP plus 5% of max
 	if(patient.recovery_aura)
-		total_heal_amount *= (1 + patient.recovery_aura * 0.1) //Recovery aura multiplier; 10% bonus per full level
+		total_heal_amount *= (1 + patient.recovery_aura * 0.05) //Recovery aura multiplier; 5% bonus per full level
 
 	#ifdef DEBUG_HIVELORD_ABILITIES
 	message_admins("<span class='danger'>HIVELORD_ABILITIES_DEBUG: Healing pool from Healing Infusion Pre-Brute, Pre-Burn: [total_heal_amount]</span>")
@@ -428,7 +428,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 
 	new /obj/effect/temp_visual/telekinesis(get_turf(patient)) //Visual confirmation
 
-	patient.adjust_sunder(-3 * (1 + patient.recovery_aura * 0.1)) //10% bonus per rank of our recovery aura
+	patient.adjust_sunder(-3 * (1 + patient.recovery_aura * 0.05)) //5% bonus per rank of our recovery aura
 	#ifdef DEBUG_HIVELORD_ABILITIES
 	message_admins("HIVELORD_ABILITIES_DEBUG: Sunder reduction from Healing Infusion: [-3 * (1 + patient.recovery_aura * 0.1)]")
 	#endif
