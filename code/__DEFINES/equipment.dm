@@ -51,6 +51,7 @@
 #define BEING_REMOVED			(1<<6)	//Cuffs
 #define DOES_NOT_NEED_HANDS		(1<<7)	//Dont need hands to use it
 #define SYNTH_RESTRICTED		(1<<8)	//Prevents synths from wearing items with this flag
+#define DRAINS_XENO				(1<<9)  //Enables the item to collect resource for chem_booster component
 //==========================================================================================
 
 

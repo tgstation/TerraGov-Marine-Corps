@@ -28,8 +28,6 @@
 	attack_speed = 12
 	w_class = WEIGHT_CLASS_BULKY
 	var/obj/item/reagent_containers/glass/beaker/vial/beaker = null
-	var/max_storage = 200
-	var/current_storage
 
 	var/effect_loaded = FALSE
 	var/effect_active = FALSE
@@ -38,7 +36,6 @@
 		/datum/reagent/medicine/tramadol,
 		/datum/reagent/medicine/kelotane,
 	)
-	var/list/flamed_turfs = list()
 
 /obj/item/weapon/claymore/harvester/examine(mob/user)
 	..()
@@ -49,14 +46,19 @@
 		var/atom/L = R
 		to_chat(user, "[initial(L.name)]")
 
+/obj/item/weapon/claymore/harvester/get_mechanics_info()
+	. = ..()
+	var/list/traits = list()
+
+	traits += "Tramadol - slow your target"
+	traits += "Kelotane - produce a cone of flames"
+	traits += "Bicaridine - heal your target"
+
+	. += jointext(traits, "<br>")
+
 /obj/item/weapon/claymore/harvester/Initialize()
 	. = .. ()
 	beaker = new /obj/item/reagent_containers/glass/beaker/vial
-
-/obj/item/weapon/claymore/harvester/attack(mob/living/M, mob/living/user)
-	. = .. ()
-	if(isxeno(M))
-		current_storage += min(40, max_storage - current_storage)
 
 /obj/item/weapon/claymore/harvester/attackby(obj/item/I, mob/user)
 	if(user.action_busy)
@@ -88,6 +90,10 @@
 	to_chat(user, "<span class='rose'>You load [trans]u into the internal system. It now holds [beaker.reagents.total_volume]u.</span>")
 
 /obj/item/weapon/claymore/harvester/unique_action(mob/user)
+	if(effect_active)
+		to_chat(user, "<span class='rose'>The blade is powered with [beaker.reagents.reagent_list[1]]. You can release the effect by stabbing a creature.</span>")
+		return
+
 	if(effect_loaded)
 		effect_active = TRUE
 		to_chat(user, "<span class='rose'>You release the holding mechanism, empowering your next attack.</span>")
@@ -109,31 +115,39 @@
 	return TRUE
 
 /obj/item/weapon/claymore/harvester/attack(mob/living/M, mob/living/user)
-	. = .. ()
-	if(!effect_active)
-		return
+	if(effect_active)
+		switch(beaker.reagents.reagent_list[1].type)
+			if(/datum/reagent/medicine/tramadol)
+				M.apply_status_effect(/datum/status_effect/incapacitating/slowdown, 2 SECONDS)
 
-	switch(beaker.reagents.reagent_list[1].type)
-//		if(/datum/reagent/medicine/tramadol)
-//			M.apply_status_effect(/datum/status_effect/track, 10 SECONDS)
+			if(/datum/reagent/medicine/kelotane)
+				var/turf/target = get_turf(M)
+				target.ignite()
+				var/list/cone_turfs = generate_cone(user, 2, 1, 91, Get_Angle(user, M.loc))
+				for(var/turf/T in cone_turfs)
+					T.ignite()
 
-		if(/datum/reagent/medicine/kelotane)
-			get_turf(M).ignite()
-			var/list/cone_turfs = generate_cone(user, 2, 1, 91, Get_Angle(user, M.loc))
-			for(var/turf/T in cone_turfs)
-				T.ignite()
+			if(/datum/reagent/medicine/bicaridine)
+				var/target_self = TRUE
+				if(!M == user)
+					target_self = FALSE
+				if(!do_after(user, 2 SECONDS, TRUE, M, BUSY_ICON_DANGER, ignore_turf_checks = target_self))
+					to_chat(user, "<span class='rose'>You are interrupted!</span>")
+					return FALSE
+				new /obj/effect/temp_visual/telekinesis(get_turf(M))
+				M.heal_overall_damage(10, 0, TRUE)
+				return TRUE
 
-		if(/datum/reagent/medicine/bicaridine)
-			M.apply_status_effect(/datum/status_effect/incapacitating/slowdown, 2 SECONDS)
+		effect_active = FALSE
+		effect_loaded = FALSE
 
-	effect_active = FALSE
-	effect_loaded = FALSE
+	return ..()
 
 /obj/item/weapon/claymore/mercsword
 	name = "combat sword"
 	desc = "A dusty sword commonly seen in historical museums. Where you got this is a mystery, for sure. Only a mercenary would be nuts enough to carry one of these. Sharpened to deal massive damage."
 	icon_state = "mercsword"
-	item_state = "machee"
+	item_state = "machete"
 	force = 39
 
 

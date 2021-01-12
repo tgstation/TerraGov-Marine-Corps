@@ -1,7 +1,7 @@
 /**
 	Chem booster component
 
-	This component stores virilyth and uses it to increase REM of chems in body.
+	This component stores virilyth and uses it to increase effect_str of chems in body.
 
 	Parameters
 	*
@@ -12,24 +12,23 @@
 	var/mob/living/carbon/wearer
 
 	///Amount of substance that the component can store
-	var/resource_storage_max
+	var/resource_storage_max = 200
 	///Ammount of sunstance stored currently
 	var/resource_storage_current
 	///Amount required for operation
-	var/resource_drain_amount
+	var/resource_drain_amount = 10
 	///Opens radial menu with settings
 	var/datum/action/chem_booster/configure/configure_action
 	///Determines whether the suit is on
 	var/boost_on = FALSE
 	///Stores the value with which effect_mult has been modified
 	var/boost_amount
+	///Item connected to the system
+	var/obj/item/connected_item
 
-/datum/component/chem_booster/Initialize(reagent_storage_amount)
+/datum/component/chem_booster/Initialize()
 	if(!istype(parent, /obj/item))
 		return COMPONENT_INCOMPATIBLE
-
-	if(!isnull(reagent_storage_amount))
-		resource_storage_max = resource_storage_amount
 	boost_amount = 0
 
 /datum/component/chem_booster/Destroy(force, silent)
@@ -44,10 +43,26 @@
 	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED_TO_SLOT, .proc/equipped)
 	RegisterSignal(configure_action, COMSIG_ACTION_TRIGGER, .proc/configure)
 
+/datum/component/suit_autodoc/UnregisterFromParent()
+	. = ..()
+	UnregisterSignal(parent, list(
+		COMSIG_PARENT_EXAMINE,
+		COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT,
+		COMSIG_ITEM_DROPPED,
+		COMSIG_ITEM_EQUIPPED_TO_SLOT))
+	QDEL_NULL(configure_action)
+
 /datum/component/chem_booster/proc/dropped(datum/source, mob/user)
 	SIGNAL_HANDLER
 	if(!iscarbon(user))
 		return
+	if(boost_on)
+		on_off()
+	if(connected_item)
+		to_chat(wearer, "<span class='warning'>You disconnect the [connected_item].</span>")
+		DISABLE_BITFIELD(connected_item.flags_item, NODROP)
+		UnregisterSignal(connected_item, COMSIG_ITEM_ATTACK)
+		connected_item = null
 	configure_action.remove_action(wearer)
 	wearer = null
 
@@ -78,71 +93,83 @@
 		"boost_2" = image(icon = 'icons/mob/radial.dmi', icon_state = "cboost_t2"),
 		)
 
-	var/choice = show_radial_menu(wearer, wearer, radial_options_show, null, 48, null, TRUE)
+	var/choice = show_radial_menu(H, H, radial_options, null, 48, null, TRUE)
 	switch(choice)
 		if("on_off")
 			on_off()
-		if("drain")
-			drain_resource()
+		if("connect")
+			connect_weapon()
 		if("boost_1")
-			update_rem(1-boost_amount)
+			update_boost(1-boost_amount)
 		if("boost_2")
-			update_rem(3-boost_amount)
+			update_boost(3-boost_amount)
 
 /datum/component/chem_booster/proc/on_off(datum/source)
 	if(boost_on)
 		STOP_PROCESSING(SSobj, src)
-		UnegisterSignal(wearer, COMSIG_REAGENT_ADD)
-		update_rem(-boost_amount)
+		UnregisterSignal(wearer, COMSIG_REAGENT_ADD)
+		update_boost(-boost_amount)
 		boost_on = FALSE
 		to_chat(wearer, "<span class='warning'>Halting reagent injection.</span>")
 		return
 
+	if(resource_storage_current < resource_drain_amount)
+		to_chat(wearer, "<span class='warning'>Not enough resource to sustain operation.</span>")
+		return
 	START_PROCESSING(SSobj, src)
-	RegisterSignal(wearer, COMSIG_REAGENT_ADD, .proc/late_add_rem)
-	update_rem(boost_amount)
+	RegisterSignal(wearer, COMSIG_REAGENT_ADD, .proc/late_add_chem)
+	update_boost(boost_amount)
 	boost_on = TRUE
 	to_chat(wearer, "Commensing reagent injection.")
 
-/datum/component/chem_booster/proc/refill_storage()
+/datum/component/chem_booster/proc/connect_weapon()
 	if(wearer.action_busy)
 		to_chat(wearer, "<span class='warning'>You are already occupied with something.</span>")
 		return
 
-	if(resource_storage_current >= resource_storage_max)
-		to_chat(wearer, "<span class='warning'>The system's nternal storage is full. Aborting transfer.</span>")
-		return
-
 	var/obj/item/held_item = wearer.get_held_item()
-	if(!istype(held_item, /obj/item/weapon/claymore/harvester))
-		to_chat(wearer, "<span class='warning'>You need to be holding an applicable weapon to extract resources.</span>")
+	if(!CHECK_BITFIELD(held_item.flags_item, DRAINS_XENO) || !held_item)
+		to_chat(wearer, "<span class='warning'>You need to be holding an item compatible with the system.</span>")
 		return
 
-	var/obj/item/weapon/claymore/harvester = held_item
-	if(harvester.current_storage <= 0)
-		to_chat(wearer, "<span class='warning'>The weapon's virilyth tank is empty.</span>")
+	if(connected_item)
+		to_chat(wearer, "<span class='warning'>You disconnect the [held_item].</span>")
+		DISABLE_BITFIELD(connected_item.flags_item, NODROP)
+		UnregisterSignal(connected_item, COMSIG_ITEM_ATTACK)
+		connected_item = null
 		return
 
-	wearer.add_movespeed_modifier(MOVESPEED_ID_CHEM_BOOSTER_REFILL, TRUE, 0, NONE, TRUE, 4)
-	to_chat(wearer, "You slow down and beging refilling your suit's internal tank.")
-	if(!do_after(wearer, 10 SECONDS, TRUE, harvester, BUSY_ICON_MEDICAL, null, PROGRESS_BRASS, ignore_turf_checks = TRUE))
-		wearer.remove_movespeed_modifier(MOVESPEED_ID_CHEM_BOOSTER_REFILL)
-		to_chat(wearer, "<span class='warning'>Disturbance detected. Aborting transfer.</span>")
+	wearer.add_movespeed_modifier(MOVESPEED_ID_CHEM_CONNECT, TRUE, 0, NONE, TRUE, 4)
+	to_chat(wearer, "You begin connecting the [held_item] to the storage tank.")
+	if(!do_after(wearer, 4 SECONDS, TRUE, held_item, BUSY_ICON_FRIENDLY, null, PROGRESS_BRASS, ignore_turf_checks = TRUE))
+		wearer.remove_movespeed_modifier(MOVESPEED_ID_CHEM_CONNECT)
+		to_chat(wearer, "<span class='warning'>You are interrupted.</span>")
 		return
-	wearer.remove_movespeed_modifier(MOVESPEED_ID_CHEM_BOOSTER_REFILL)
+	wearer.remove_movespeed_modifier(MOVESPEED_ID_CHEM_CONNECT)
+	connected_item = held_item
+	ENABLE_BITFIELD(connected_item.flags_item, NODROP)
+	RegisterSignal(connected_item, COMSIG_ITEM_ATTACK, .proc/drain_resource)
 
-	var/virilyth_transfer_amount = min(resource_storage_max - resource_storage_current, harvester.current_storage)
-	resource_storage_current += virilyth_transfer_amount
-	harvester.current_storage -= virilyth_transfer_amount
+/datum/component/chem_booster/proc/drain_resource(datum/source, mob/living/M, mob/living/user)
+	SIGNAL_HANDLER
+	if(isxeno(M))
+		return
+	if(resource_storage_current >= resource_storage_max)
+		return
+	resource_storage_current += min(resource_storage_max - resource_storage_current, 20)
 
+//Updates the effect_str of chems that enter the body while the component is on
 /datum/component/chem_booster/proc/late_add_chem(datum/source, datum/reagent/added_chem, amount)
-	added_chem.rem += boost_amount
+	SIGNAL_HANDLER
+	added_chem.effect_str += boost_amount
 
+//Updates the boost amount of the suit and effect_str of reagents if component is on
 /datum/component/chem_booster/proc/update_boost(amount)
 	boost_amount += amount
-	for(var/datum/reagent/R in wearer.reagents.reagents_list)
-		R.rem += amount
 	resource_drain_amount = boost_amount^2
+	if(boost_on)
+		for(var/datum/reagent/R in wearer.reagents.reagent_list)
+			R.effect_str += amount
 
 /datum/action/chem_booster/configure
 	name = "Configure Vali CHemical Enhancement"
