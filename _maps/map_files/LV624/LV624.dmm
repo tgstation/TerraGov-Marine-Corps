@@ -7102,13 +7102,6 @@
 	dir = 1
 	},
 /area/lv624/ground/river1)
-"aEK" = (
-/obj/structure/ladder{
-	height = 1;
-	id = Building1
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/west1)
 "aEL" = (
 /turf/open/ground/grass,
 /area/lv624/lazarus/research)
@@ -10769,13 +10762,6 @@
 /obj/effect/decal/cleanable/blood/splatter/animated,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
-"aYM" = (
-/obj/structure/ladder{
-	height = 2;
-	id = Building1
-	},
-/turf/open/floor/tile/white,
-/area/lv624/ground/river1)
 "aYN" = (
 /obj/structure/catwalk,
 /turf/open/floor/marking/warning,
@@ -17708,11 +17694,11 @@ abb
 abb
 abb
 abb
-abc
-abc
-abc
-abc
-abc
+abb
+abb
+abb
+abb
+abb
 abb
 abb
 abb
@@ -17768,7 +17754,7 @@ awg
 awg
 asJ
 aBd
-aYM
+ase
 ase
 bms
 asJ
@@ -17887,11 +17873,11 @@ abb
 abb
 abb
 abb
-abc
-aEK
-abc
-abc
-abc
+abb
+abb
+abb
+abb
+abb
 abb
 abb
 abb
@@ -18066,11 +18052,11 @@ abb
 abb
 abb
 abb
-abc
-abc
-abc
-abc
-abc
+abb
+abb
+abb
+abb
+abb
 abb
 abb
 abb
@@ -18245,11 +18231,11 @@ abb
 abb
 abb
 abb
-abc
-abc
-abc
-abc
-abc
+abb
+abb
+abb
+abb
+abb
 abb
 abb
 abb
@@ -18424,11 +18410,11 @@ abb
 abb
 abb
 abb
-abc
-abc
-abc
-abc
-abc
+abb
+abb
+abb
+abb
+abb
 abb
 abb
 abb
@@ -18603,11 +18589,11 @@ abb
 abb
 abb
 abb
-abc
-abc
-abc
-abc
-abc
+abb
+abb
+abb
+abb
+abb
 abb
 abb
 abb
@@ -18782,11 +18768,11 @@ abb
 abb
 abb
 abb
-abc
-abc
-abc
-abc
-abc
+abb
+abb
+abb
+abb
+abb
 abb
 abb
 abb
@@ -18961,11 +18947,11 @@ abb
 abb
 abb
 abb
-abc
-abc
-abc
-abc
-abc
+abb
+abb
+abb
+abb
+abb
 abb
 abb
 abb
