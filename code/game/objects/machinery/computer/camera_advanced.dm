@@ -74,7 +74,7 @@
 
 
 /obj/machinery/computer/camera_advanced/check_eye(mob/living/user)
-	if(machine_stat & (NOPOWER|BROKEN) || user.incapacitated(TRUE))
+	if(machine_stat & (NOPOWER|BROKEN|DISABLED) || user.incapacitated(TRUE))
 		user.unset_interaction()
 	if(isAI(user))
 		return
