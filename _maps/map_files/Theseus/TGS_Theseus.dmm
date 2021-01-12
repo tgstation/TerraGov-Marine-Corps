@@ -258,7 +258,6 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 5
 	},
-/obj/machinery/camera/autoname/mainship,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
@@ -268,8 +267,6 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 9
 	},
-/obj/machinery/camera/autoname/mainship,
-/obj/structure/cable,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
@@ -9424,15 +9421,6 @@
 	dir = 1
 	},
 /area/mainship/engineering/lower_engineering)
-"aAW" = (
-/obj/machinery/firealarm{
-	dir = 4
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 8
-	},
-/turf/open/floor/plating/mainship,
-/area/mainship/hallways/hangar)
 "aAX" = (
 /obj/machinery/light{
 	dir = 8
@@ -26149,7 +26137,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/structure/cable,
 /obj/machinery/door/poddoor/railing/opened{
 	dir = 1
 	},
@@ -26159,7 +26146,6 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
 	},
-/obj/structure/cable,
 /obj/machinery/door/poddoor/railing/opened{
 	dir = 1
 	},
@@ -26172,7 +26158,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
 	},
-/obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/weapon_room)
 "bFA" = (
@@ -26980,17 +26965,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/weapon_room)
-"bJc" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 1;
-	on = 1
-	},
-/turf/open/floor/plating,
-/area/mainship/hallways/hangar)
 "bJe" = (
 /obj/docking_port/stationary/marine_dropship/minidropship{
 	dir = 8
@@ -27012,14 +26986,6 @@
 /obj/machinery/door_control/mainship/droppod,
 /turf/closed/wall/mainship,
 /area/mainship/hallways/hangar/droppod)
-"bJh" = (
-/obj/machinery/power/apc/mainship,
-/obj/structure/cable,
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/mainship/hallways/hangar)
 "bJo" = (
 /obj/machinery/vending/nanomed,
 /obj/machinery/light{
@@ -34521,18 +34487,6 @@
 	dir = 8
 	},
 /area/mainship/hallways/hangar)
-"cki" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/structure/cable,
-/turf/open/floor/mainship,
-/area/mainship/shipboard/weapon_room)
-"ckm" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/mainship/hallways/hangar)
 "cko" = (
 /obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/plating,
@@ -34663,7 +34617,10 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/weapon_room)
 "ckQ" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 1;
+	on = 1
+	},
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/hangar)
 "ckT" = (
@@ -36672,7 +36629,6 @@
 /area/mainship/squads/req)
 "olm" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/cable,
 /obj/machinery/door/poddoor/railing/opened{
 	dir = 8
 	},
@@ -36947,7 +36903,6 @@
 /area/mainship/hallways/hangar)
 "pJd" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/structure/cable,
 /obj/machinery/door/poddoor/railing/opened{
 	dir = 8
 	},
@@ -37899,7 +37854,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
 	},
-/obj/structure/cable,
 /obj/machinery/door/poddoor/railing/opened{
 	dir = 8
 	},
@@ -38174,10 +38128,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
-"xjx" = (
-/obj/structure/cable,
-/turf/open/floor/mainship/stripesquare,
-/area/mainship/hallways/hangar)
 "xjQ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -47030,7 +46980,7 @@ bFk
 cjR
 bgb
 cjA
-aAW
+cjH
 cjH
 cjH
 cjH
@@ -47798,9 +47748,9 @@ bls
 bls
 bls
 bFl
-cki
-xjx
-ckm
+bGE
+bia
+cjB
 blA
 blA
 blA
@@ -48057,7 +48007,7 @@ bls
 bFl
 bGE
 bia
-ckm
+cjB
 blA
 blA
 blA
@@ -48314,7 +48264,7 @@ bls
 bFn
 qoU
 ckQ
-bJc
+cjB
 blA
 blA
 bJe
@@ -48571,7 +48521,7 @@ bls
 bFl
 bGE
 bia
-ckm
+cjB
 blA
 blA
 blA
@@ -48828,7 +48778,7 @@ bls
 bFl
 bGE
 bia
-ckm
+cjB
 blA
 blA
 blA
@@ -49342,7 +49292,7 @@ blq
 blq
 vsz
 bgb
-bJh
+cjB
 blA
 blA
 blA
