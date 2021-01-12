@@ -236,6 +236,7 @@
 	if(mapload)
 		var/area/ourarea = get_area(src)
 		ENABLE_BITFIELD(ourarea.flags_area, DISALLOW_WEEDING)
+		ENABLE_BITFIELD(ourarea.flags_area, NEAR_FOB)
 
 
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/open()

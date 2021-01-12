@@ -52,7 +52,6 @@
 					SSmonitor.monitor_statistics[ELDER_T3]--
 				if(XENO_TIER_FOUR)
 					SSmonitor.monitor_statistics[ELDER_QUEEN]--
-			return
 		if(XENO_UPGRADE_THREE)
 			switch(tier)
 				if(XENO_TIER_TWO)
@@ -61,7 +60,6 @@
 					SSmonitor.monitor_statistics[ANCIENT_T3]--
 				if(XENO_TIER_FOUR)
 					SSmonitor.monitor_statistics[ANCIENT_QUEEN]--
-			return
 
 	var/isAI = GetComponent(/datum/component/ai_controller)
 	if (isAI)

@@ -1,6 +1,6 @@
 //How often we calculate the state
-#define START_STATE_CALCULATION 30 MINUTES
-#define FREQUENCY_STATE_CALCULATION 5 MINUTES
+#define START_STATE_CALCULATION 0 MINUTES
+#define FREQUENCY_STATE_CALCULATION 1 MINUTES
 
 //The different states possible
 #define STATE_BALANCED "state balanced"
