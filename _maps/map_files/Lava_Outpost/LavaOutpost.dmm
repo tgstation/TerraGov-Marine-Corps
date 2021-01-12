@@ -1582,6 +1582,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating/asteroidfloor,
 /area/lavaland/misc/eastarmory)
+"nu" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
+/turf/closed/brock,
+/area/lavaland/cave/northeast)
 "nx" = (
 /obj/structure/barricade/guardrail,
 /obj/structure/barricade/guardrail{
@@ -4827,6 +4831,13 @@
 	},
 /turf/open/floor/plating/platebot,
 /area/lavaland/security/nuke)
+"PV" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 1
+	},
+/turf/closed/brock,
+/area/shuttle/drop1/lz1)
 "PW" = (
 /obj/structure/barricade/guardrail{
 	dir = 4;
@@ -4871,6 +4882,12 @@
 	},
 /turf/open/floor/marking,
 /area/lavaland/cave/west)
+"Qw" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 1
+	},
+/turf/closed/brock,
+/area/lavaland/cave/northeast)
 "QA" = (
 /turf/closed/wall/indestructible/mineral,
 /area/lavaland/cave/south)
@@ -44375,20 +44392,20 @@ sa
 sa
 sa
 sa
-Cq
-Cq
-Cq
+ab
+ab
+ab
 ac
 ac
 ac
 ac
 ac
-Cq
-Cq
-Cq
-Cq
-Cq
-Cq
+ab
+ab
+ab
+ab
+ab
+PV
 sa
 sa
 sa
@@ -44645,7 +44662,7 @@ FO
 FO
 FO
 FO
-Cq
+aa
 sa
 sa
 sa
@@ -44902,7 +44919,7 @@ FO
 FO
 FO
 FO
-Cq
+aa
 sa
 sa
 sa
@@ -45159,7 +45176,7 @@ FO
 FO
 FO
 FO
-Cq
+aa
 sa
 sa
 sa
@@ -45416,7 +45433,7 @@ FO
 FO
 FO
 FO
-Cq
+aa
 sa
 OD
 OD
@@ -45673,7 +45690,7 @@ FO
 FO
 FO
 gf
-Cq
+aa
 pr
 OD
 OD
@@ -47215,7 +47232,7 @@ FO
 FO
 FO
 gf
-Cq
+aa
 OD
 OD
 OD
@@ -47472,7 +47489,7 @@ FO
 FO
 FO
 Cq
-Cq
+aa
 sa
 pr
 OD
@@ -47729,7 +47746,7 @@ FO
 Cq
 Cq
 Cq
-Cq
+aa
 sa
 sa
 sa
@@ -47986,14 +48003,14 @@ TW
 Cq
 Cq
 Cq
-Cq
-Cq
-Cq
-Cq
-Cq
-Cq
-Cq
-Cq
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
 OD
 OD
 sa
@@ -52099,10 +52116,10 @@ Zc
 Zc
 Zc
 FO
-vg
-vg
-vg
-vg
+AK
+AK
+AK
+AK
 AK
 AK
 oP
@@ -52356,10 +52373,10 @@ FO
 FO
 FO
 FO
-vg
-sa
-sa
-sa
+AK
+nu
+nu
+nu
 ab
 ac
 ag
@@ -52613,8 +52630,8 @@ FO
 FO
 FO
 It
-vg
-sa
+AK
+Qw
 OD
 OD
 OD
@@ -52864,14 +52881,14 @@ FO
 FO
 FO
 gf
-vg
-vg
-vg
-vg
-vg
-vg
-vg
-sa
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+Qw
 OD
 OD
 OD
@@ -53121,14 +53138,14 @@ FO
 FO
 FO
 FO
-vg
-sa
-sa
-sa
-sa
-sa
-sa
-sa
+AK
+nu
+nu
+nu
+nu
+nu
+nu
+nu
 pr
 OD
 OD
