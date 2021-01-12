@@ -336,6 +336,9 @@
 
 	return best_item
 
+///Tranfer all the items in all slots to a new loc
+/mob/proc/transferAllItemToLoc(atom/newloc, force = FALSE)
+	return
 
 // The mob is trying to strip an item from someone
 /mob/proc/stripPanelUnequip(obj/item/I, mob/M)

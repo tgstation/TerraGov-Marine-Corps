@@ -363,11 +363,11 @@
 
 /obj/structure/ob_ammo/warhead/proc/warhead_impact(turf/target, inaccuracy_amt = 0)
 	SHOULD_CALL_PARENT(TRUE)
-	GLOB.monitor_statistics.OB_available--
+	SSmonitor.monitor_statistics[OB_AVAILABLE]--
 
 /obj/structure/ob_ammo/warhead/Initialize()
 	. = ..()
-	GLOB.monitor_statistics.OB_available++
+	SSmonitor.monitor_statistics[OB_AVAILABLE]++
 
 /obj/structure/ob_ammo/warhead/explosive
 	name = "\improper HE orbital warhead"

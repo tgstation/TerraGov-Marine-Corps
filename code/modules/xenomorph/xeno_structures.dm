@@ -134,7 +134,7 @@
 		return
 
 	victim.forceMove(src)
-	victim.gib() //Gibing is much easier for monitor item tracking, since it unequip everything. Not a perfect fit, but works fine for now
+	victim.transferAllItemToLoc(src)
 
 	if(prob(5)) //5% chance to play
 		shake(4 SECONDS)
