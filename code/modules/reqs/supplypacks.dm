@@ -803,7 +803,7 @@ CLOTHING
 /datum/supply_packs/clothing/combat_pack
 	name = "Combat Backpack"
 	contains = list(/obj/item/storage/backpack/lightpack)
-	cost = 20
+	cost = 15
 
 /datum/supply_packs/clothing/welding_pack
 	name = "Engineering Welding Pack"
