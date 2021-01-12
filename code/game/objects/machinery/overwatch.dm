@@ -1240,8 +1240,15 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 /obj/machinery/computer/camera_advanced/overwatch/proc/send_orders(turf/target_turf)
 	switch (current_order)
 		if (ATTACK_ORDER)
+			send_attack_orders(target_turf)
 			
-			
+
+/obj/machinery/computer/camera_advanced/overwatch/proc/send_attack_orders(turf/target_turf)
+	var/obj/effect/temp_visual/order/attack_order = new
+	var/datum/atom_hud/squad/squad_hud = GLOB.huds[DATA_HUD_SQUAD]
+	for(var/hud_user in squad_hud.hudusers)
+		var/mob/living/carbon/M = hud_user
+		order_arrow.add_hud(M,target_turf)
 
 datum/action/innate/attack_order
 	name = "Send Attack Order"

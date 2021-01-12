@@ -774,6 +774,8 @@
 	tracker.client.screen += src
 	process() //Ping immediately after parameters have been set
 
+/obj/screen/arrow/proc/set_target(atom/target_input)
+	target = target_input
 
 /obj/screen/arrow/Initialize() //Self-deletes
 	. = ..()
@@ -807,11 +809,14 @@
 /obj/screen/arrow/attack_order_arrow
 	name = "attack order arrow"
 	icon_state = "Attack_order"
+	hud_list = list(SQUAD_HUD)
 
 /obj/screen/arrow/regroup_order_arrow
 	name = "Rally order arrow"
 	icon_state = "Regroup_order"
+	hud_list = list(SQUAD_HUD)
 
 /obj/screen/arrow/defend_order_arrow
 	name = "Rally order arrow"
 	icon_state = "Defend_order"
+	hud_list = list(SQUAD_HUD)
