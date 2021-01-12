@@ -1,0 +1,4 @@
+author: "Surrealaser"
+delete-after: True
+changes: 
+  - tweak: "Computers can now be disabled by multiple xeno attacks or a Warrior punch. Disabled computers do not obstruct pathing and can be repaired by a welder."
