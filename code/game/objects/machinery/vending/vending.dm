@@ -638,6 +638,7 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 
 	say("[message]")
 
+
 /obj/machinery/vending/update_icon()
 	if(machine_stat & BROKEN)
 		icon_state = "[initial(icon_state)]-broken"

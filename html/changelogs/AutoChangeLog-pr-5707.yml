@@ -1,0 +1,4 @@
+author: "Surrealaser"
+delete-after: True
+changes: 
+  - bugfix: "Fixes silo related runtimes when observers try to look at Hive Status."

@@ -23,7 +23,7 @@
 
 	//DESTROYING SECOND
 	if(obj_integrity <= 0)
-		obj_destruction(damage_flag)
+		obj_destruction(damage_amount, damage_type, damage_flag)
 
 
 /obj/proc/repair_damage(repair_amount)
@@ -155,7 +155,7 @@
 
 
 ///what happens when the obj's integrity reaches zero.
-/obj/proc/obj_destruction(damage_flag)
+/obj/proc/obj_destruction(damage_amount, damage_type, damage_flag)
 	if(destroy_sound)
 		playsound(loc, destroy_sound, 35, 1)
 	deconstruct(FALSE)

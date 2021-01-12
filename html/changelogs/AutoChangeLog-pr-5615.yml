@@ -1,0 +1,4 @@
+author: "Pariah919"
+delete-after: True
+changes: 
+  - balance: "machine pistol fire speed reduced to 0.2 from 0.15, aka 100 rpm less"

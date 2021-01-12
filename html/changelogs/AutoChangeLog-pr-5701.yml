@@ -1,0 +1,6 @@
+author: "Surrealaser"
+delete-after: True
+changes: 
+  - rscadd: "Hotkeys added for Rally Hive and Healing Infusion."
+  - bugfix: "Possible fix for Healing Infusion SFX inconsistency."
+  - code_imp: "Code improvement for Healing Infusion."

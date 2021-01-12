@@ -413,7 +413,7 @@
 	light_power = 3
 	light_color = LIGHT_COLOR_GREEN
 	var/datum/squad/user_squad
-	var/obj/effect/overlay/temp/laser_target/target
+	var/obj/effect/overlay/temp/laser_target/cas/target
 
 /obj/item/explosive/grenade/flare/cas/turn_on(mob/living/carbon/human/user)
 	. = ..()
