@@ -1,5 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes: 
-  - code_imp: "cleaned up mortar code"
-  - admin: "Mortar firing is now logged in game log"
