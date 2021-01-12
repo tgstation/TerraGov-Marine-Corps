@@ -150,10 +150,11 @@ directive is properly returned.
 
 /atom/proc/CheckExit(atom/movable/mover, turf/target)
 	SHOULD_CALL_PARENT(TRUE)
-	. = CanAllowExit(mover, target)
+	if(!density || !(flags_atom & ON_BORDER) || !(get_dir(mover.loc, target) & dir))
+		return TRUE
 	if(mover.status_flags & INCORPOREAL)
 		return TRUE
-	return .
+	return FALSE
 
 /// Returns true or false to allow the mover to move out of the atom
 /atom/proc/CanAllowExit(atom/movable/mover, turf/target)
@@ -161,6 +162,7 @@ directive is properly returned.
 	if(!density || !(flags_atom & ON_BORDER) || !(get_dir(mover.loc, target) & dir))
 		return TRUE
 	return FALSE
+
 
 
 // Convenience proc for reagents handling.

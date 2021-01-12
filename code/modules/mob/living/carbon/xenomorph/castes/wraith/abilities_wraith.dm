@@ -324,7 +324,7 @@
 	var/turf/T = X.loc
 	var/turf/temp = X.loc
 
-	for (var/x in 1 to WRAITH_BLINK_RANGE)
+	for (var/x = 1 to WRAITH_BLINK_RANGE)
 		temp = get_step(T, get_dir(T, A))
 		if (!temp)
 			break
