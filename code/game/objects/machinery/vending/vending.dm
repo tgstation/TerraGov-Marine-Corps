@@ -636,7 +636,7 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 	if (!message)
 		return
 
-	say("<span class='game say'><span class='name'>[src]</span> beeps, \"[message]\"</span>")
+	say("[message]")
 
 /obj/machinery/vending/update_icon()
 	if(machine_stat & BROKEN)
