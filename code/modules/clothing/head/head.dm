@@ -100,7 +100,7 @@
 	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 10, "bio" = 5, "rad" = 0, "fire" = 5, "acid" = 5)
 	var/flipped_cap = FALSE
 	var/base_cap_icon
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
+	flags_item_map_variant = (ITEM_ICE_VARIANT)
 
 
 /obj/item/clothing/head/tgmccap/verb/fliphat()

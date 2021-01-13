@@ -29,6 +29,7 @@
 #define MAINT		(1<<3)		// under maintaince
 #define EMPED		(1<<4)		// temporary broken by EMP pulse
 #define PANEL_OPEN	(1<<5)
+#define DISABLED	(1<<6)		// can be fixed with a welder; removes density. Used primary to stop otherwise indestructible computers from obstructing pathing.
 #define MACHINE_DO_NOT_PROCESS 32768 //Do not added these to processing queue.
 
 #define ENGINE_EJECT_Z	3

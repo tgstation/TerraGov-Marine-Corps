@@ -37,7 +37,7 @@
 	for(var/obj/effect/alien/A in loc.contents)
 		if(QDELETED(A) || A == src || A.ignore_weed_destruction)
 			continue
-		A.obj_destruction("melee")
+		A.obj_destruction(damage_flag = "melee")
 
 	var/oldloc = loc
 	parent_node = null

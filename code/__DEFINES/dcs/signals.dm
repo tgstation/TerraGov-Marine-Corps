@@ -335,6 +335,8 @@
 #define COMSIG_WARRIOR_USED_GRAPPLE_TOSS "warrior_used_grapple_toss"
 
 #define COMSIG_XENOMORPH_PLASMA_REGEN "xenomorph_plasma_regen"
+#define COMSIG_XENOMORPH_HEALTH_REGEN "xenomorph_health_regen"
+#define COMSIG_XENOMORPH_SUNDER_REGEN "xenomorph_sunder_regen"
 
 #define COMSIG_XENOMORPH_ZONE_SELECT "xenomorph_zone_select"
 	#define COMSIG_ACCURATE_ZONE (1<<0)
@@ -499,6 +501,7 @@
 #define COMSIG_XENOABILITY_BUILD_TUNNEL "xenoability_build_tunnel"
 #define COMSIG_XENOABILITY_PLACE_JELLY_POD "xenoability_place_jelly_pod"
 #define COMSIG_XENOABILITY_CREATE_JELLY "xenoability_create_jelly"
+#define COMSIG_XENOABILITY_HEALING_INFUSION "xenoability_healing_infusion"
 
 #define COMSIG_XENOABILITY_TOGGLE_STEALTH "xenoability_toggle_stealth"
 

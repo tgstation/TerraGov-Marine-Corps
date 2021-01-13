@@ -113,3 +113,8 @@
 	holder.icon = 'icons/Marine/marine-items.dmi'
 	holder.icon_state = icon_state_on
 	hud_list[SQUAD_HUD] = holder
+/obj/effect/temp_visual/healing
+	name = "healing"
+	icon = 'icons/effects/progressicons.dmi'
+	icon_state = "busy_medical"
+	duration = 0.8 SECONDS
