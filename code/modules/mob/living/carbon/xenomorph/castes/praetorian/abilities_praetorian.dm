@@ -70,7 +70,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		var/turf/next_T = get_step(T, facing)
 
 		for (var/obj/O in T)
-			if(!O.CheckExit(owner, next_T))
+			if(!O.CanAllowExit(owner, next_T))
 				if(is_type_in_typecache(O, GLOB.acid_spray_hit) && O.acid_spray_act(owner))
 					return // returned true if normal density applies
 				if(O.density && !O.throwpass && !(O.flags_atom & ON_BORDER))
@@ -117,7 +117,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 			var/next_normal_turf = get_step(normal_turf, normal_dir)
 
 			for (var/obj/O in normal_turf)
-				if(!O.CheckExit(left_S, next_normal_turf))
+				if(!O.CanAllowExit(left_S, next_normal_turf))
 					normal_density_flag = TRUE
 					if(is_type_in_typecache(O, GLOB.acid_spray_hit))
 						normal_density_flag = O.acid_spray_act(owner)
@@ -145,7 +145,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 			var/next_inverse_normal_turf = get_step(inverse_normal_turf, inverse_normal_dir)
 
 			for (var/obj/O in inverse_normal_turf)
-				if(!O.CheckExit(right_S, next_inverse_normal_turf))
+				if(!O.CanAllowExit(right_S, next_inverse_normal_turf))
 					inverse_normal_density_flag = TRUE
 					if(is_type_in_typecache(O, GLOB.acid_spray_hit))
 						inverse_normal_density_flag = O.acid_spray_act(owner)

@@ -269,7 +269,7 @@
 	. = ..()
 	if(SEND_SIGNAL(src, COMSIG_MOVABLE_UNCROSS, AM) & COMPONENT_MOVABLE_BLOCK_UNCROSS)
 		return FALSE
-	if(isturf(newloc) && !CheckExit(AM, newloc))
+	if(isturf(newloc) && !CanAllowExit(AM, newloc))
 		return FALSE
 
 
