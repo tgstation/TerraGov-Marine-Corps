@@ -1250,7 +1250,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	var/list/pa = params2list(params)
 	if (pa.Find("shift"))
 		var/turf/TU = get_turf(object)
-		if(!send_orders(TU))
+		if(!send_orders(TU) && current_order)
 			to_chat(usr, "<span class='warning'>Your last order was too recent</span>")
 				
 
@@ -1263,21 +1263,35 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 				send_defend_orders(target_turf)
 			if (RETREAT_ORDER)
 				send_retreat_orders(target_turf)
+			else
+				return TRUE
 		last_order_time = world.time
 		return TRUE
 	else	
 		return FALSE
 	
+/obj/machinery/computer/camera_advanced/overwatch/proc/notify_marine(mob/living/marine, turf/target_turf)
+	if(marine.z == target_turf.z)
+		switch(current_order)
+			if (ATTACK_ORDER)
+				to_chat(marine,"<span class='ordercic'>Command is urging you to attack the ennemy at [target_turf.loc.name]</span>")
+			if (DEFEND_ORDER)
+				to_chat(marine,"<span class='ordercic'>Command is urging you to defend our positions in [target_turf.loc.name]</span>")
+			if (RETREAT_ORDER)
+				to_chat(marine,"<span class='ordercic'>Command is urging you retreat now from [target_turf.loc.name]</span>")
+		marine.playsound_local(marine, "sound/effects/CIC_order.ogg", 10, 1)
+		
 
 /obj/machinery/computer/camera_advanced/overwatch/proc/send_attack_orders(turf/target_turf)
 	new /obj/effect/temp_visual/order/attack_order(target_turf)
 	var/obj/screen/arrow/arrow_hud
 	var/datum/atom_hud/squad/squad_hud = GLOB.huds[DATA_HUD_SQUAD]
 	var/list/final_list = squad_hud.hudusers
-	final_list -= current_user //We don't want the eye to have an arrow, it's silly
+	//final_list -= current_user //We don't want the eye to have an arrow, it's silly
 	for(var/hud_user in final_list)
 		arrow_hud = new /obj/screen/arrow/attack_order_arrow
 		arrow_hud.add_hud(hud_user, target_turf)
+		notify_marine(hud_user, target_turf)
 
 /obj/machinery/computer/camera_advanced/overwatch/proc/send_retreat_orders(turf/target_turf)
 	new /obj/effect/temp_visual/order/retreat_order(target_turf)
@@ -1289,6 +1303,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	for(var/hud_user in squad_hud.hudusers)
 		arrow_hud = new /obj/screen/arrow/defend_order_arrow
 		arrow_hud.add_hud(hud_user, target_turf)
+		notify_marine(hud_user, target_turf)
 
 datum/action/innate/attack_order
 	name = "Send Attack Order"
