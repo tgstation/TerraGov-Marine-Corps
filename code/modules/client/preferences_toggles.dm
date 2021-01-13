@@ -331,13 +331,10 @@ GLOBAL_LIST_INIT(ghost_others_options, list(GHOST_OTHERS_SIMPLE, GHOST_OTHERS_DE
 
 	to_chat(usr, "<span class='notice'>You will [(usr.client.prefs.toggles_sound & SOUND_INSTRUMENTS_OFF) ? "no longer" : "now"] hear instruments.</span>")
 
-client/verb/toggle_right_click()
+///Toggles the right click menu on and off
+/client/verb/toggle_right_click()
 	set name = "Toggle Right Click"
 	set category = "Preferences"
 
-	if(!show_popup_menus)
-		show_popup_menus = TRUE
-		to_chat(src, "<span class='interface'>Right click enabled.</span>")
-	else
-		show_popup_menus = FALSE
-		to_chat(src, "<span class='interface'>Right click disabled.</span>")
+	show_popup_menus = !show_popup_menus
+	to_chat(src, "<span class='interface'>Right click [show_popup_menus ? "en" : "dis"]abled.</span>")
