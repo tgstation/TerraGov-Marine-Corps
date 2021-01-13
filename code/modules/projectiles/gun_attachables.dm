@@ -1693,7 +1693,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		icon_state = "lace-on"
 		attach_icon = "lace_a_on"
 
-	lace_deployed != lace_deployed
+	lace_deployed = !lace_deployed
 
 	for(var/i in master_gun.actions)
 		var/datum/action/action_to_update = i
