@@ -812,8 +812,8 @@
 
 /obj/screen/arrow/regroup_order_arrow
 	name = "Rally order arrow"
-	icon_state = "Regroup_order"
+	icon_state = "Regroup_arrow"
 
 /obj/screen/arrow/defend_order_arrow
 	name = "Rally order arrow"
-	icon_state = "Defend_order"
+	icon_state = "Defend_arrow"
