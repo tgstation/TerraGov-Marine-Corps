@@ -106,6 +106,7 @@
 	name = "retreat order"
 	icon_state_on = "Retreat_order"
 
+///Set visuals for the hud
 /obj/effect/temp_visual/order/proc/set_visuals()
 	var/image/holder = hud_list[SQUAD_HUD]
 	if(!holder)
@@ -113,6 +114,7 @@
 	holder.icon = 'icons/Marine/marine-items.dmi'
 	holder.icon_state = icon_state_on
 	hud_list[SQUAD_HUD] = holder
+
 /obj/effect/temp_visual/healing
 	name = "healing"
 	icon = 'icons/effects/progressicons.dmi'

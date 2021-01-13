@@ -129,5 +129,6 @@
 #define ui_ai_multicam "SOUTH+1:6,WEST+13"
 #define ui_ai_add_multicam "SOUTH+1:6,WEST+14"
 
+// Hive alerts
 #define arrow_silo_attacked "Silo attacked"
 #define arrow_hive_leader_rallying "Hive leader rallying"
