@@ -783,7 +783,7 @@
 	QDEL_IN(src, XENO_RALLYING_POINTER_DURATION)
 
 /obj/screen/arrow/process() //We ping the target, revealing its direction with an arrow
-	if(target.z != tracker.z || get_dist(tracker, target) < 1 || tracker == target)
+	if(target.z != tracker.z || get_dist(tracker, target) < 5 || tracker == target)
 		alpha = 0
 	else
 		alpha = 128
@@ -808,15 +808,12 @@
 
 /obj/screen/arrow/attack_order_arrow
 	name = "attack order arrow"
-	icon_state = "Attack_order"
-	hud_list = list(SQUAD_HUD)
+	icon_state = "Attack_arrow"
 
 /obj/screen/arrow/regroup_order_arrow
 	name = "Rally order arrow"
 	icon_state = "Regroup_order"
-	hud_list = list(SQUAD_HUD)
 
 /obj/screen/arrow/defend_order_arrow
 	name = "Rally order arrow"
 	icon_state = "Defend_order"
-	hud_list = list(SQUAD_HUD)

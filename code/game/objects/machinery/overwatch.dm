@@ -10,6 +10,8 @@
 
 #define NO_ORDER 0
 #define ATTACK_ORDER 1
+#define DEFEND_ORDER 2
+#define RETREAT_ORDER 3
 
 GLOBAL_LIST_EMPTY(active_orbital_beacons)
 GLOBAL_LIST_EMPTY(active_laser_targets)
@@ -35,10 +37,14 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	var/obj/selected_target //Selected target for bombarding
 	var/current_order = NO_ORDER //Selected order to give to marine
 	var/datum/action/innate/attack_order/send_attack_order
+	var/datum/action/innate/retreat_order/send_retreat_order
+	var/datum/action/innate/defend_order/send_defend_order
 
 /obj/machinery/computer/camera_advanced/overwatch/Initialize()
 	. = ..()
 	send_attack_order = new
+	send_defend_order = new
+	send_retreat_order = new
 
 /obj/machinery/computer/camera_advanced/overwatch/give_actions(mob/living/user)
 	. = ..()
@@ -46,6 +52,14 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		send_attack_order.target = user
 		send_attack_order.give_action(user)
 		actions += send_attack_order
+	if(send_defend_order)
+		send_defend_order.target = user
+		send_defend_order.give_action(user)
+		actions += send_defend_order
+	if(send_retreat_order)
+		send_retreat_order.target = user
+		send_retreat_order.give_action(user)
+		actions += send_retreat_order
 
 /obj/machinery/computer/camera_advanced/overwatch/main
 	icon_state = "overwatch_main"
@@ -1241,18 +1255,46 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	switch (current_order)
 		if (ATTACK_ORDER)
 			send_attack_orders(target_turf)
-			
+		if (DEFEND_ORDER)
+			send_defend_orders(target_turf)
+		if (RETREAT_ORDER)
+			send_retreat_orders(target_turf)
 
 /obj/machinery/computer/camera_advanced/overwatch/proc/send_attack_orders(turf/target_turf)
-	var/obj/effect/temp_visual/order/attack_order = new
+	new /obj/effect/temp_visual/order/attack_order(target_turf)
+	var/obj/screen/arrow/arrow_hud
+	var/datum/atom_hud/squad/squad_hud = GLOB.huds[DATA_HUD_SQUAD]
+	var/list/final_list = squad_hud.hudusers
+	//final_list -= current_user
+	for(var/hud_user in final_list)
+		arrow_hud = new /obj/screen/arrow/attack_order_arrow
+		arrow_hud.add_hud(hud_user, target_turf)
+
+/obj/machinery/computer/camera_advanced/overwatch/proc/send_retreat_orders(turf/target_turf)
+	new /obj/effect/temp_visual/order/retreat_order(target_turf)
+
+/obj/machinery/computer/camera_advanced/overwatch/proc/send_defend_orders(turf/target_turf)
+	new /obj/effect/temp_visual/order/defend_order(target_turf)
+	var/obj/screen/arrow/arrow_hud
 	var/datum/atom_hud/squad/squad_hud = GLOB.huds[DATA_HUD_SQUAD]
 	for(var/hud_user in squad_hud.hudusers)
-		var/mob/living/carbon/M = hud_user
-		order_arrow.add_hud(M,target_turf)
+		arrow_hud = new /obj/screen/arrow/defend_order_arrow
+		arrow_hud.add_hud(hud_user, target_turf)
 
 datum/action/innate/attack_order
 	name = "Send Attack Order"
 	background_icon_state = "template2"
+	action_icon_state = "Attack_order"
+
+datum/action/innate/defend_order
+	name = "Send Defend Order"
+	background_icon_state = "template2"
+	action_icon_state = "Defend_order"
+
+datum/action/innate/retreat_order
+	name = "Send Retreat Order"
+	background_icon_state = "template2"
+	action_icon_state = "Retreat_order"
 
 datum/action/innate/attack_order/Activate()
 	active = TRUE
@@ -1264,6 +1306,42 @@ datum/action/innate/attack_order/Activate()
 	console.current_order = ATTACK_ORDER
 
 datum/action/innate/attack_order/Deactivate()
+	active = FALSE
+	if(!isliving(target))
+		return
+	var/mob/living/C = target
+	var/mob/camera/aiEye/remote/remote_eye = C.remote_control
+	var/obj/machinery/computer/camera_advanced/overwatch/console = remote_eye.origin
+	console.current_order = NO_ORDER
+
+datum/action/innate/defend_order/Activate()
+	active = TRUE
+	if(!isliving(target))
+		return
+	var/mob/living/C = target
+	var/mob/camera/aiEye/remote/remote_eye = C.remote_control
+	var/obj/machinery/computer/camera_advanced/overwatch/console = remote_eye.origin
+	console.current_order = DEFEND_ORDER
+
+datum/action/innate/defend_order/Deactivate()
+	active = FALSE
+	if(!isliving(target))
+		return
+	var/mob/living/C = target
+	var/mob/camera/aiEye/remote/remote_eye = C.remote_control
+	var/obj/machinery/computer/camera_advanced/overwatch/console = remote_eye.origin
+	console.current_order = NO_ORDER
+
+datum/action/innate/retreat_order/Activate()
+	active = TRUE
+	if(!isliving(target))
+		return
+	var/mob/living/C = target
+	var/mob/camera/aiEye/remote/remote_eye = C.remote_control
+	var/obj/machinery/computer/camera_advanced/overwatch/console = remote_eye.origin
+	console.current_order = RETREAT_ORDER
+
+datum/action/innate/retreat_order/Deactivate()
 	active = FALSE
 	if(!isliving(target))
 		return

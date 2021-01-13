@@ -82,15 +82,34 @@
 
 /obj/effect/temp_visual/order
 	icon = 'icons/Marine/marine-items.dmi'
-	hud_list = list(SQUAD_HUD)
+	var/icon_state_on
+	hud_possible = list(SQUAD_HUD)
 	duration = 15 SECONDS
 	layer = TURF_LAYER
 
 /obj/effect/temp_visual/order/Initialize(mapload)
 	. = ..()
-	for(var/datum/atom_hud/squad/squad_hud in GLOB.huds) //Add to the xeno tachud
-		squad_hud.add_to_hud(src)
+	prepare_huds()
+	var/datum/atom_hud/squad/squad_hud = GLOB.huds[DATA_HUD_SQUAD]
+	squad_hud.add_to_hud(src)
+	set_visuals()
 
 /obj/effect/temp_visual/order/attack_order
 	name = "attack order"
-	icon_state = "Attack_order"
+	icon_state_on = "Attack_order"
+
+/obj/effect/temp_visual/order/defend_order
+	name = "defend order"
+	icon_state_on = "Defend_order"
+
+/obj/effect/temp_visual/order/retreat_order
+	name = "retreat order"
+	icon_state_on = "Retreat_order"
+
+/obj/effect/temp_visual/order/proc/set_visuals()
+	var/image/holder = hud_list[SQUAD_HUD]
+	if(!holder)
+		return
+	holder.icon = 'icons/Marine/marine-items.dmi'
+	holder.icon_state = icon_state_on
+	hud_list[SQUAD_HUD] = holder
