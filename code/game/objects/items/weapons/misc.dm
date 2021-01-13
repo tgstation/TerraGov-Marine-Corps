@@ -40,6 +40,7 @@
 	icon_state = "powerfist"
 	item_state = "powerfist"
 	flags_equip_slot = ITEM_SLOT_BELT
+	w_class = WEIGHT_CLASS_BULKY
 	force = 10
 	attack_verb = list("smashed", "rammed", "power-fisted")
 	var/obj/item/cell/cell
