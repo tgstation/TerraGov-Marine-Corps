@@ -36,6 +36,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	var/datum/squad/current_squad = null //Squad being currently overseen
 	var/obj/selected_target //Selected target for bombarding
 	var/current_order = NO_ORDER //Selected order to give to marine
+	var/last_order_time = 0
 	var/datum/action/innate/attack_order/send_attack_order
 	var/datum/action/innate/retreat_order/send_retreat_order
 	var/datum/action/innate/defend_order/send_defend_order
@@ -1249,23 +1250,31 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	var/list/pa = params2list(params)
 	if (pa.Find("shift"))
 		var/turf/TU = get_turf(object)
-		send_orders(TU)
+		if(!send_orders(TU))
+			to_chat(usr, "<span class='warning'>Your last order was too recent</span>")
+				
 
 /obj/machinery/computer/camera_advanced/overwatch/proc/send_orders(turf/target_turf)
-	switch (current_order)
-		if (ATTACK_ORDER)
-			send_attack_orders(target_turf)
-		if (DEFEND_ORDER)
-			send_defend_orders(target_turf)
-		if (RETREAT_ORDER)
-			send_retreat_orders(target_turf)
+	if (world.time > last_order_time + ORDER_COOLDOWN)
+		switch (current_order)
+			if (ATTACK_ORDER)
+				send_attack_orders(target_turf)
+			if (DEFEND_ORDER)
+				send_defend_orders(target_turf)
+			if (RETREAT_ORDER)
+				send_retreat_orders(target_turf)
+		last_order_time = world.time
+		return TRUE
+	else	
+		return FALSE
+	
 
 /obj/machinery/computer/camera_advanced/overwatch/proc/send_attack_orders(turf/target_turf)
 	new /obj/effect/temp_visual/order/attack_order(target_turf)
 	var/obj/screen/arrow/arrow_hud
 	var/datum/atom_hud/squad/squad_hud = GLOB.huds[DATA_HUD_SQUAD]
 	var/list/final_list = squad_hud.hudusers
-	//final_list -= current_user
+	final_list -= current_user //We don't want the eye to have an arrow, it's silly
 	for(var/hud_user in final_list)
 		arrow_hud = new /obj/screen/arrow/attack_order_arrow
 		arrow_hud.add_hud(hud_user, target_turf)
@@ -1284,17 +1293,17 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 datum/action/innate/attack_order
 	name = "Send Attack Order"
 	background_icon_state = "template2"
-	action_icon_state = "Attack_order"
+	action_icon_state = "attack"
 
 datum/action/innate/defend_order
 	name = "Send Defend Order"
 	background_icon_state = "template2"
-	action_icon_state = "Defend_order"
+	action_icon_state = "defend"
 
 datum/action/innate/retreat_order
 	name = "Send Retreat Order"
 	background_icon_state = "template2"
-	action_icon_state = "Retreat_order"
+	action_icon_state = "retreat"
 
 datum/action/innate/attack_order/Activate()
 	active = TRUE

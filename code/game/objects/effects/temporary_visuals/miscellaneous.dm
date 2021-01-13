@@ -84,7 +84,7 @@
 	icon = 'icons/Marine/marine-items.dmi'
 	var/icon_state_on
 	hud_possible = list(SQUAD_HUD)
-	duration = 15 SECONDS
+	duration = ORDER_DURATION
 	layer = TURF_LAYER
 
 /obj/effect/temp_visual/order/Initialize(mapload)
@@ -96,15 +96,15 @@
 
 /obj/effect/temp_visual/order/attack_order
 	name = "attack order"
-	icon_state_on = "Attack_order"
+	icon_state_on = "attack"
 
 /obj/effect/temp_visual/order/defend_order
 	name = "defend order"
-	icon_state_on = "Defend_order"
+	icon_state_on = "defend"
 
 /obj/effect/temp_visual/order/retreat_order
 	name = "retreat order"
-	icon_state_on = "Retreat_order"
+	icon_state_on = "retreat"
 
 ///Set visuals for the hud
 /obj/effect/temp_visual/order/proc/set_visuals()
