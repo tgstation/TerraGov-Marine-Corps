@@ -110,3 +110,11 @@
 	config_entry_value = FALSE
 
 /datum/config_entry/flag/aggressive_changelog
+
+///The chance for a larva chosing to evolve into a runner to get a roony, in percent
+/datum/config_entry/number/roony_spawn
+	config_entry_value = 0.1
+
+///If TRUE, the evo proc will consider ro spawn roony with a proportion of roony_spawn
+/datum/config_entry/flag/roony
+	config_entry_value = TRUE
