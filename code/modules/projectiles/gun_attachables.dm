@@ -1676,7 +1676,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/lace/activate_attachment(mob/living/user, turn_off)
 	if(lace_deployed)
-		lace_deployed = FALSE
 		DISABLE_BITFIELD(master_gun.flags_item, NODROP)
 		to_chat(user, "<span class='notice'>You feel the [src] loosen around your wrist!</span>")
 		playsound(user, 'sound/weapons/fistunclamp.ogg', 25, 1, 7)
@@ -1687,13 +1686,14 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 			return
 		if(!do_after(user, 0.5 SECONDS, TRUE, src, BUSY_ICON_BAR))
 			return
-		lace_deployed = TRUE
 		to_chat(user, "<span class='notice'>You deploy the [src].</span>")
 		ENABLE_BITFIELD(master_gun.flags_item, NODROP)
 		to_chat(user, "<span class='warning'>You feel the [src] shut around your wrist!</span>")
 		playsound(user, 'sound/weapons/fistclamp.ogg', 25, 1, 7)
 		icon_state = "lace-on"
 		attach_icon = "lace_a_on"
+
+	lace_deployed != lace_deployed
 
 	for(var/i in master_gun.actions)
 		var/datum/action/action_to_update = i
