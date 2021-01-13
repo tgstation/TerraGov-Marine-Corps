@@ -1687,8 +1687,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 			return
 		if(!do_after(user, 0.5 SECONDS, TRUE, src, BUSY_ICON_BAR))
 			return
-		if(lace_deployed)
-			return
 		lace_deployed = TRUE
 		to_chat(user, "<span class='notice'>You deploy the [src].</span>")
 		ENABLE_BITFIELD(master_gun.flags_item, NODROP)
