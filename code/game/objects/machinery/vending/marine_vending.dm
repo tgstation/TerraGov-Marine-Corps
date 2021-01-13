@@ -759,7 +759,7 @@
 	GLOB.attachment_vendors.Remove(src)
 
 // HVH, no silencers or scopes
-/obj/machinery/vending/attachments
+/obj/machinery/vending/attachments/hvh
 	products = list(
 		/obj/item/attachable/bayonet = 25,
 		/obj/item/attachable/compensator = 25,

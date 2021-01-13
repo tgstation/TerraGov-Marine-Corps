@@ -453,18 +453,15 @@
 	description = "Inject an egg with neurogas, killing the little one inside"
 	keybind_signal = COMSIG_XENOABILITY_INJECT_EGG_NEUROGAS
 
-/*
 /datum/keybinding/xeno/rally_hive
 	name = "rally_hive"
 	full_name = "Rally Hive"
 	description = "Rallies the hive to a target location."
 	keybind_signal = COMSIG_XENOABILITY_RALLY_HIVE
-*/
 
-/*
 /datum/keybinding/xeno/healing_infusion
 	name = "healing_infusion"
 	full_name = "Hivelord: Healing Infusion"
-	description = "Heals a target xeno over the next 10 seconds, restoring sunder and health."
+	description = "Imbues a target xeno with healing energy, restoring extra Sunder and Health once every 2 seconds up to 5 times whenever it regenerates normally. 60 second duration."
 	keybind_signal = COMSIG_XENOABILITY_HEALING_INFUSION
-*/
+

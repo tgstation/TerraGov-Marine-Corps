@@ -390,6 +390,10 @@
 	update_icon()
 	return TRUE
 
+/obj/machinery/computer/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone) //Break open the machine
+	set_disabled() //Currently only computers use this; falcon punch away its density
+	return ..()
+
 /obj/machinery/light/punch_act(mob/living/carbon/xenomorph/X)
 	. = ..()
 	attack_alien(X) //Smash it
