@@ -175,11 +175,6 @@ WEAPONS
 	contains = list(/obj/item/storage/box/standard_hmg)
 	cost = 80
 
-/datum/supply_packs/weapons/quadlauncher
-	name = "M57A4 Quad Thermobaric Launcher"
-	contains = list(/obj/item/weapon/gun/launcher/rocket/m57a4)
-	cost = 250
-
 /datum/supply_packs/weapons/tesla
 	name = "Energy Ball Rifle"
 	contains = list(
@@ -244,7 +239,7 @@ WEAPONS
 
 /datum/supply_packs/weapons/explosives_mines
 	name = "claymore mines"
-	notes = "Contains 5 mines"
+	notes = "Contains 10 mines"
 	contains = list(/obj/item/storage/box/explosive_mines)
 	cost = 15
 
@@ -270,6 +265,12 @@ WEAPONS
 	name = "M40 HSDP white phosphorous grenade box crate"
 	notes = "Contains 15 grenades"
 	contains = list(/obj/item/storage/box/nade_box/phos)
+	cost = 70
+
+/datum/supply_packs/weapons/explosives_plasmadrain
+	name = "M40-T gas grenade box crate"
+	notes = "Contains 25 grenades"
+	contains = list(/obj/item/storage/box/nade_box/plasma_drain_gas)
 	cost = 70
 
 /datum/supply_packs/weapons/plastique
@@ -469,11 +470,6 @@ AMMO
 	contains = list(/obj/item/ammo_magazine/shotgun/incendiary)
 	cost = 10
 
-/datum/supply_packs/ammo/quadlauncher
-	name = "M57A4 thermobaric rocket array"
-	contains = list(/obj/item/ammo_magazine/rocket/m57a4)
-	cost = 50
-
 /datum/supply_packs/ammo/scout_regular
 	name = "M4RA scout magazine"
 	contains = list(/obj/item/ammo_magazine/rifle/m4ra)
@@ -531,7 +527,7 @@ AMMO
 /datum/supply_packs/ammo/smartmachinegun
 	name = "T-29 smartmachinegun ammo"
 	contains = list(/obj/item/ammo_magazine/standard_smartmachinegun)
-	cost = 10
+	cost = 5
 
 /datum/supply_packs/ammo/sentry
 	name = "UA 571-C sentry ammunition"
@@ -793,7 +789,7 @@ CLOTHING
 /datum/supply_packs/clothing/combat_pack
 	name = "Combat Backpack"
 	contains = list(/obj/item/storage/backpack/lightpack)
-	cost = 20
+	cost = 15
 
 /datum/supply_packs/clothing/welding_pack
 	name = "Engineering Welding Pack"

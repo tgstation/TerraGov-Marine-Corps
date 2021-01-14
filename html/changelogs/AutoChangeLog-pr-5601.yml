@@ -1,5 +1,0 @@
-author: "Wayland-Smithy"
-delete-after: True
-changes: 
-  - bugfix: "Xeno Silo Fog on Crash now allows perma-dead humans to pass, as well as Xenos with one inside its tummy."
-  - bugfix: "Tunnels now allow xenos to travel with a devoured perma-dead human."

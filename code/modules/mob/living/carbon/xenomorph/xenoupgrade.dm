@@ -20,6 +20,9 @@
 			activable_ability.select()
 			break
 
+	if(queen_chosen_lead)
+		give_rally_hive_ability() //Give them back their rally hive ability
+
 	switch(upgrade)
 		//FIRST UPGRADE
 		if(XENO_UPGRADE_ONE)
