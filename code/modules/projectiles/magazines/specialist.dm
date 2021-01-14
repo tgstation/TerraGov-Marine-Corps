@@ -255,7 +255,7 @@ obj/item/ammo_magazine/rifle/m4ra/smart
 	name = "railgun canister (rail projectile)"
 	desc = "A canister holding a projectile to be used inside a railgun."
 	caliber = "rail projectile"
-	icon_state = "rail"
+	icon_state = "railgun"
 	default_ammo = /datum/ammo/bullet/railgun
 	max_rounds = 1
 	reload_delay = 20 //Hard to reload.
