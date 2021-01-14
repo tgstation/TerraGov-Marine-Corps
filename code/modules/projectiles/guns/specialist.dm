@@ -1108,7 +1108,6 @@ obj/item/weapon/gun/minigun/Fire(atom/target, mob/living/user, params, reflex = 
 	current_mag = /obj/item/ammo_magazine/railgun
 	force = 12
 	wield_delay = 2 SECONDS //You're not quick drawing this.
-	zoomdevicename = "scope"
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 20, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 	attachable_allowed = list(
 		/obj/item/attachable/scope,
