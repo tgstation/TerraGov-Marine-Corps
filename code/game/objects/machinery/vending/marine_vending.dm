@@ -906,6 +906,7 @@
 		/obj/item/clothing/tie/storage/brown_vest = 10,
 		/obj/item/clothing/tie/storage/white_vest/medic = 10,
 		/obj/item/clothing/tie/storage/webbing = 10,
+		/obj/item/clothing/tie/storage/grenade_bandolier = 10,
 		/obj/item/clothing/tie/holster = 10,
 		/obj/item/flashlight/combat = 10,
 		/obj/item/clothing/under/whites = 50,

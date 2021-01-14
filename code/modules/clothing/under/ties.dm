@@ -492,11 +492,13 @@
 
 /obj/item/clothing/tie/storage/webbing
 	name = "webbing"
-	desc = "A sturdy mess of synthcotton belts and buckles, ready to share your burden."
+	desc = "A sturdy mess of synthcotton belts and buckles made to carry ammo and small things, ready to share your burden."
 	icon_state = "webbing"
 	hold = /obj/item/storage/internal/tie/webbing
 
 /obj/item/storage/internal/tie/webbing
+	storage_slots = null
+	max_storage_space = 6 //2 magazines of normal guns, 3 of small guns
 	bypass_w_limit = list(
 		/obj/item/ammo_magazine/rifle,
 		/obj/item/ammo_magazine/smg,
@@ -517,7 +519,7 @@
 	hold = /obj/item/storage/internal/tie/vest
 
 /obj/item/storage/internal/tie/vest
-	storage_slots = 5
+	storage_slots = 4
 	cant_hold = list(
 		/obj/item/stack/razorwire,
 		/obj/item/stack/sheet,
@@ -556,12 +558,12 @@
 	)
 
 /obj/item/clothing/tie/storage/white_vest/medic
-	name = "corpsman webbing"
+	name = "medical webbing"
 	desc = "A clean white Nylon vest with large pockets specially designed for holding common medical supplies."
 	hold = /obj/item/storage/internal/tie/white_vest/medic
 
 /obj/item/storage/internal/tie/white_vest/medic
-	storage_slots = 6 //one more than the brown webbing but you lose out on being able to hold non-medic stuff
+	storage_slots = 6 //two more than the brown webbing but you lose out on being able to hold non-medic stuff
 	can_hold = list(
 		/obj/item/stack/medical,
 		/obj/item/healthanalyzer,
@@ -575,6 +577,18 @@
 		/obj/item/bodybag,
 		/obj/item/roller,
 		/obj/item/clothing/glasses/hud/health,
+	)
+
+/obj/item/clothing/tie/storage/grenade_bandolier
+	name = "grenade bandolier"
+	desc = "A green nylon bandolier that holds grenades, and only grenades."
+	icon_state = "grenade_bandolier"
+	hold = /obj/item/storage/internal/tie/grenade_bandolier
+
+/obj/item/storage/internal/tie/grenade_bandolier
+	storage_slots = 5 //one more than the brown webbing but you lose out on being able to hold anything that isn't a grenade.
+	can_hold = list(
+		/obj/item/explosive/grenade,
 	)
 
 /obj/item/clothing/tie/storage/knifeharness
