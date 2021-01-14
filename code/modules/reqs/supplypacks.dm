@@ -191,10 +191,7 @@ WEAPONS
 
 /datum/supply_packs/weapons/antimatrifle
 	name = "Anti Material Rifle kit"
-	contains = list(
-		/obj/item/weapon/gun/rifle/sniper/antimaterial,
-		/obj/item/ammo_magazine/sniper,
-	)
+	contains = list(/obj/item/weapon/gun/rifle/sniper/antimaterial)
 	cost = 120
 
 /datum/supply_packs/weapons/specdemo
@@ -209,11 +206,7 @@ WEAPONS
 
 /datum/supply_packs/weapons/autosniper
 	name = "IFF Auto Sniper kit"
-	contains = list(
-		/obj/item/weapon/gun/rifle/standard_autosniper,
-		/obj/item/ammo_magazine/rifle/autosniper,
-		/obj/item/ammo_magazine/rifle/autosniper,
-	)
+	contains = list(/obj/item/weapon/gun/rifle/standard_autosniper)
 	cost = 40
 
 /datum/supply_packs/weapons/specminigun
