@@ -287,7 +287,7 @@
 	)
 
 /obj/item/reagent_containers/hypospray/advanced/meraderm
-	name = "A meraderm hypospray"
+	name = "Meraderm hypospray"
 	desc = "A hypospray loaded with meralyne and dermaline."
 	list_reagents = list(
 		/datum/reagent/medicine/meralyne = 30,
@@ -295,21 +295,21 @@
 	)
 
 /obj/item/reagent_containers/hypospray/advanced/meralyne
-	name = "A meralyne hypospray"
+	name = "Meralyne hypospray"
 	desc = "A hypospray loaded with meralyne."
 	list_reagents = list(
 		/datum/reagent/medicine/meralyne = 60,
 	)
 
 /obj/item/reagent_containers/hypospray/advanced/dermaline
-	name = "A dermaline hypospray"
+	name = "Dermaline hypospray"
 	desc = "A hypospray loaded with dermaline."
 	list_reagents = list(
 		/datum/reagent/medicine/dermaline = 60,
 	)
 	
 /obj/item/reagent_containers/hypospray/advanced/ironsugar
-	name = "A ironsugar hypospray"
+	name = "Ironsugar hypospray"
 	desc = "A hypospray loaded with ironsugar."
 	list_reagents = list(
 		/datum/reagent/iron = 30, 
