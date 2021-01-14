@@ -3,10 +3,10 @@
 //Keyword rifles. They are subtype of rifles, but still contained here as a specialist weapon.
 
 /obj/item/ammo_magazine/sniper
-	name = "\improper AMR marksman magazine (10x30mm)"
+	name = "\improper T-26 AMR marksman magazine (10x30mm)"
 	desc = "A magazine of sniper rifle ammo."
 	caliber = "10x30mm"
-	icon_state = "m42a"
+	icon_state = "t26"
 	w_class = WEIGHT_CLASS_NORMAL
 	max_rounds = 5
 	default_ammo = /datum/ammo/bullet/sniper
@@ -14,10 +14,10 @@
 	reload_delay = 3
 
 /obj/item/ammo_magazine/sniper/stagger
-	name = "\improper AMR stagger magazine (10x30mm)"
+	name = "\improper T-26 AMR stagger magazine (10x30mm)"
 	desc = "A magazine of flat tipped sniper ammo made to stagger targets at a distance."
+	icon_state = "t26s"
 	default_ammo = /datum/ammo/bullet/sniper/stagger
-	gun_type = /obj/item/weapon/gun/rifle/sniper/antimaterial
 
 
 //M42C magazine
