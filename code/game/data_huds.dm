@@ -204,6 +204,15 @@
 	else
 		holder.icon_state = ""
 
+///Sets XENO_TACTICAL_HUD icons for the living; currently used only for the Hunter's Mark ability
+/mob/living/proc/xeno_tactical_hud_set_status()
+	var/image/xeno_tactical = hud_list[XENO_TACTICAL_HUD] //Displays active xeno tactical elements
+
+	if(!xeno_marked)
+		xeno_tactical.icon_state = ""
+		return
+
+	xeno_tactical.icon_state = "hunter_mark"
 
 /mob/living/carbon/human/med_hud_set_status()
 	var/image/status_hud = hud_list[STATUS_HUD] //Status for med-hud.

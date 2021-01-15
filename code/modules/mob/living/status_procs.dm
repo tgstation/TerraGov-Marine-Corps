@@ -611,7 +611,7 @@
 
 ///Checks to see if we're muted
 /mob/living/proc/IsMute()
-	return has_status_effect(STATUS_EFFECT_MUTED)
+	return has_status_effect(STATUS_EFFECT_MUTED) || disabilities & MUTE || HAS_TRAIT(src, TRAIT_MUTED)
 
 ///Checks the duration left on our mute status effect
 /mob/living/proc/AmountMute()

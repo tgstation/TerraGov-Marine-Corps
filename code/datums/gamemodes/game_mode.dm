@@ -452,8 +452,8 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 		dat += "[GLOB.round_statistics.hunter_stings] number of times Hunters used their stealth sting."
 	if(GLOB.round_statistics.hunter_marks)
 		dat += "[GLOB.round_statistics.hunter_marks] number of times Hunters marked a target."
-	if(GLOB.round_statistics.hunter_impede_senses)
-		dat += "[GLOB.round_statistics.hunter_impede_senses] number of times Hunters impeded a target's senses."
+	if(GLOB.round_statistics.hunter_silence_targets)
+		dat += "[GLOB.round_statistics.hunter_silence_targets] number of targets silenced by Hunters."
 
 
 	var/output = jointext(dat, "<br>")

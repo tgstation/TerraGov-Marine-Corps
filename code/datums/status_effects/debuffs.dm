@@ -232,6 +232,17 @@
 //MUTE
 /datum/status_effect/mute
 	id = "mute"
+	alert_type = /obj/screen/alert/status_effect/mute
+
+/obj/screen/alert/status_effect/mute
+	name = "Muted"
+	desc = "You can't speak!"
+
+/datum/status_effect/mute/on_creation(mob/living/new_owner, set_duration)
+	owner = new_owner
+	if(set_duration) //If the duration is limited, set it
+		duration = set_duration
+	return ..()
 
 /datum/status_effect/mute/on_apply()
 	. = ..()
@@ -239,6 +250,6 @@
 		return
 	ADD_TRAIT(owner, TRAIT_MUTED, TRAIT_STATUS_EFFECT(id))
 
-/datum/status_effect/incapacitating/adminsleep/on_remove()
+/datum/status_effect/mute/on_remove()
 	REMOVE_TRAIT(owner, TRAIT_MUTED, TRAIT_STATUS_EFFECT(id))
 	return ..()

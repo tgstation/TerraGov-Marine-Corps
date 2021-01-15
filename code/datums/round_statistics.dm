@@ -66,4 +66,4 @@ GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 	var/hivelord_healing_infusions = 0
 	var/hunter_stings = 0
 	var/hunter_marks = 0
-	var/hunter_impede_senses = 0
+	var/hunter_silence_targets = 0

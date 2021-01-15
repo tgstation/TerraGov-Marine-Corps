@@ -447,7 +447,7 @@
 	custom_metabolism = REAGENTS_METABOLISM
 
 /datum/reagent/toxin/acid/on_mob_life(mob/living/L, metabolism)
-	var/acid_damage = 2 * toxpwr * REM //2 * 1.5 * 0.5 = 1.5
+	var/acid_damage = 2 * toxpwr * effect_str //2 * 1.5 * 0.5 = 1.5
 	L.take_limb_damage(acid_damage, acid_damage) //REM being 0.5, so 3 damage per tick (1.5 brute + 1.5 burn + 0.75 toxin) * 2 = 6.75 damage / sec
 	L.reagent_pain_modifier -= PAIN_REDUCTION_HEAVY //Internal acid is pretty painful
 

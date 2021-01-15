@@ -10,12 +10,6 @@ proc/is_blind(A)
 		return M.eye_blind
 	return FALSE
 
-proc/ismute(A)
-	if(isliving(A))
-		var/mob/living/M = A
-		return HAS_TRAIT(M, TRAIT_MUTED) || M.disabilities & MUTE
-	return FALSE
-
 proc/hasorgans(A)
 	return ishuman(A)
 
