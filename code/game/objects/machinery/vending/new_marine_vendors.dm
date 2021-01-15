@@ -1155,10 +1155,11 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 	)
 
 /obj/machinery/marine_selector/gear/doctor
-	name = "NEXUS Automated medical officer Equipment Rack"
+	name = "NEXUS Automated Medical Officer Equipment Rack"
 	desc = "An automated medical officer equipment rack hooked up to a colossal storage unit."
 	icon_state = "marinemed"
-	vendor_role = /datum/job/terragov/medical
+	lock_flags = JOB_LOCK
+	vendor_role = null //to avoid runtimes and allow the whole medical staff to use it. still not the corpsman
 	req_access = list(ACCESS_MARINE_CHEMISTRY)  //any CMO MO or MR should be able to get on this one but them alone no one else
 
 	listed_products = list(
@@ -1205,6 +1206,8 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 		/obj/item/reagent_containers/hypospray/advanced/big = list(CAT_MEDSUP, "Big hypospray", 5, "black"),
 		/obj/item/clothing/glasses/hud/health = list(CAT_MEDSUP, "Medical HUD glasses", 2, "black"),
 		/obj/item/storage/pill_bottle/polyhexanide = list(CAT_MEDSUP, "polyhexanide pills", 5, "black"),
+		/obj/item/tank/anesthetic = list(CAT_MEDSUP, "anesthetic tank", 3, "black"),
+		/obj/item/storage/briefcase/inflatable = list(CAT_MEDSUP, "inflatable case", 5, "black"), //price is mostly to avoid spamming it
 
 	)
 

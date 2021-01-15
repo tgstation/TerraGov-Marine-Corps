@@ -407,6 +407,12 @@
 	max_storage_space = 7
 	pill_type_to_fill = /obj/item/reagent_containers/pill/zoom
 
+/obj/item/storage/pill_bottle/polyhexanide
+	name = "polyhexanide pill bottle"
+	desc = "A pill, that contains polyhexide for surgeries performed in the field."
+	max_storage_space = 7
+	pill_type_to_fill = /obj/item/reagent_containers/pill/polyhexanide
+
 //Pill bottles with identification locks.
 
 /obj/item/storage/pill_bottle/restricted
