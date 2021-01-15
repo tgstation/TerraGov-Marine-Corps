@@ -166,6 +166,6 @@ SUBSYSTEM_DEF(points)
 		return
 	var/list/datum/supply_order/orders = process_cart(user, ckey_shopping_cart)
 	for(var/i in 1 to length(orders))
-		orders[i].reason = reason
+		orders[i].reason = "I would like this thing"
 		requestlist["[orders[i].id]"] = orders[i]
 	ckey_shopping_cart.Cut()

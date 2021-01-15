@@ -1,5 +1,5 @@
-GLOBAL_VAR_INIT(ooc_allowed, TRUE)
-GLOBAL_VAR_INIT(dooc_allowed, TRUE)
+GLOBAL_VAR_INIT(ooc_allowed, FALSE)
+GLOBAL_VAR_INIT(dooc_allowed, FALSE)
 GLOBAL_VAR_INIT(dsay_allowed, TRUE)
 GLOBAL_VAR_INIT(enter_allowed, TRUE)
 GLOBAL_VAR_INIT(respawn_allowed, TRUE)
