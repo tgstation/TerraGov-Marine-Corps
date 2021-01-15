@@ -294,7 +294,7 @@
 	icon_state = "hair_combover"
 	gender = MALE
 
-/datum/sprite_accessory/hair/combover
+/datum/sprite_accessory/hair/combover2
 	name = "Combover 2"
 	icon_state = "hair_combover2"
 	gender = MALE
