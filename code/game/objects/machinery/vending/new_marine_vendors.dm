@@ -1168,7 +1168,6 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 		/obj/item/clothing/under/rank/medical/green = list(CAT_STD, "Medical scrubs (green)", 0, "black"),
 		/obj/item/clothing/under/rank/medical/purple = list(CAT_STD, "Medical scrubs (purple)", 0, "black"),
 		/obj/item/clothing/under/rank/psych = list(CAT_STD, "psychiatrist scrubs", 0, "black"),
-		/obj/item/clothing/under/rank/psych/turtleneck = list(CAT_STD, "psychiatrist turtleneck", 0, "black"),
 
 		/obj/effect/essentials_set/basic_doctor = list(CAT_ESS, "Standard MO kit", 0, "orange"),
 		/obj/effect/essentials_set/basic_medicmodular = list(CAT_ESS, "Essential MO Jaeger Kit", 0, "orange"),
