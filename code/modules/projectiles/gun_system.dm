@@ -4,13 +4,17 @@
 	icon = 'icons/obj/items/gun.dmi'
 	icon_state = ""
 	item_state = "gun"
+	item_state_worn = TRUE
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+		)
 	materials = list(/datum/material/metal = 100)
 	w_class 	= 3
 	throwforce 	= 5
 	throw_speed = 4
 	throw_range = 5
 	force 		= 5
-	sprite_sheet_id = 1
 	flags_atom = CONDUCT
 	flags_item = TWOHANDED
 	light_system = MOVABLE_LIGHT
@@ -59,6 +63,8 @@
 	var/shell_speed_mod	= 0						//Modifies the speed of projectiles fired.
 	/// Determines which humans the gun's shot will pass through based on the victim's ID access list.
 	var/list/gun_iff_signal = null
+	///Modifies projectile damage by a % when a marine gets passed, but not hit
+	var/iff_marine_damage_falloff = 0
 	///Determines how fire delay is changed when aim mode is active
 	var/aim_fire_delay = 0
 	///Determines character slowdown from aim mode. Default is 66%
@@ -344,6 +350,8 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 			load_into_chamber()
 
 	update_icon(user)
+	var/obj/screen/ammo/A = user.hud_used.ammo
+	A.update_hud(user)
 	return TRUE
 
 /obj/item/weapon/gun/proc/replace_magazine(mob/user, obj/item/ammo_magazine/magazine)
@@ -809,6 +817,9 @@ and you're good to go.
 	if((flags_gun_features & GUN_WIELDED_FIRING_ONLY) && !(flags_item & WIELDED)) //If we're not holding the weapon with both hands when we should.
 		to_chat(user, "<span class='warning'>You need a more secure grip to fire this weapon!")
 		return FALSE
+	if(user.action_busy)
+		to_chat(user, "<span class='warning'>You are doing something else currently.")
+		return FALSE
 	if((flags_gun_features & GUN_POLICE) && !police_allowed_check(user))
 		return FALSE
 	return TRUE
@@ -867,6 +878,7 @@ and you're good to go.
 	projectile_to_fire.damage_falloff *= damage_falloff_mult
 	projectile_to_fire.projectile_speed += shell_speed_mod
 	projectile_to_fire.projectile_iff = gun_iff_signal
+	projectile_to_fire.damage_marine_falloff = iff_marine_damage_falloff
 
 
 /obj/item/weapon/gun/proc/setup_bullet_accuracy(obj/projectile/projectile_to_fire, mob/user, bullets_fired = 1, dual_wield = FALSE)

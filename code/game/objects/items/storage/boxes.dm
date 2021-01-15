@@ -299,9 +299,9 @@
 	desc = "A secure box holding anti-personel proximity mines."
 	icon_state = "minebox"
 	w_class = WEIGHT_CLASS_NORMAL
-	max_storage_space = 10
+	max_storage_space = 15
 	spawn_type = /obj/item/explosive/mine
-	spawn_number = 5
+	spawn_number = 10
 
 /obj/item/storage/box/explosive_mines/update_icon()
 	icon_state = initial(icon_state)

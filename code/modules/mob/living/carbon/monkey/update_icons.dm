@@ -53,9 +53,8 @@
 		if(client && hud_used && hud_used.hud_version != HUD_STYLE_NOHUD)
 			client.screen += r_hand
 			r_hand.screen_loc = ui_rhand
-		var/t_state = r_hand.item_state
-		if(!t_state)	t_state = r_hand.icon_state
-		overlays_standing[M_R_HAND_LAYER]	= image("icon" = r_hand.sprite_sheet_id?'icons/mob/items_righthand_1.dmi':'icons/mob/items_righthand_0.dmi', "icon_state" = t_state, "layer" =-M_R_HAND_LAYER)
+		
+		overlays_standing[M_R_HAND_LAYER] = r_hand.make_worn_icon(body_type = species.name, inhands = TRUE, slot_name = slot_r_hand_str, default_icon = 'icons/mob/items_righthand_0.dmi', default_layer = M_R_HAND_LAYER)
 		apply_overlay(M_R_HAND_LAYER)
 
 
@@ -65,9 +64,8 @@
 		if(client && hud_used && hud_used.hud_version != HUD_STYLE_NOHUD)
 			client.screen += l_hand
 			l_hand.screen_loc = ui_lhand
-		var/t_state = l_hand.item_state
-		if(!t_state)	 t_state = l_hand.icon_state
-		overlays_standing[M_L_HAND_LAYER]	= image("icon" = l_hand.sprite_sheet_id?'icons/mob/items_lefthand_1.dmi':'icons/mob/items_lefthand_0.dmi', "icon_state" = t_state, "layer" =-M_L_HAND_LAYER)
+		
+		overlays_standing[M_L_HAND_LAYER] = l_hand.make_worn_icon(body_type = species.name, inhands = TRUE, slot_name = slot_l_hand_str, default_icon = 'icons/mob/items_lefthand_0.dmi', default_layer = M_L_HAND_LAYER)
 		remove_overlay(M_L_HAND_LAYER)
 
 
@@ -84,7 +82,7 @@
 /mob/living/carbon/monkey/update_inv_handcuffed()
 	remove_overlay(M_HANDCUFF_LAYER)
 	if(handcuffed)
-		overlays_standing[M_HANDCUFF_LAYER]	= image("icon" = 'icons/mob/monkey.dmi', "icon_state" = "handcuff1", "layer" =-M_HANDCUFF_LAYER)
+		overlays_standing[M_HANDCUFF_LAYER]	= image("icon" = 'icons/mob/monkey.dmi', "icon_state" = "handcuff", "layer" =-M_HANDCUFF_LAYER)
 
 		apply_overlay(M_HANDCUFF_LAYER)
 

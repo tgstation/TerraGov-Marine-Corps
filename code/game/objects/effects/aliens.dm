@@ -95,7 +95,7 @@
 		return
 
 	for(var/mob/living/carbon/human/H in loc)
-		H.acid_spray_crossed(slow_amt)
+		H.acid_spray_crossed(acid_damage, slow_amt)
 
 	for(var/atom/A in loc) //Infrastructure for other interactions
 		SEND_SIGNAL(A, COMSIG_ATOM_ACIDSPRAY_ACT, src)

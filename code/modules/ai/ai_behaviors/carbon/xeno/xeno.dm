@@ -2,6 +2,7 @@
 
 /datum/ai_behavior/carbon/xeno
 	sidestep_prob = 25
+	identifier = IDENTIFIER_XENO
 
 /datum/ai_behavior/carbon/xeno/New(loc, parent_to_assign)
 	..()

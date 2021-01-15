@@ -31273,6 +31273,7 @@
 /area/mainship/living/cafeteria_port)
 "bYe" = (
 /obj/structure/table/mainship,
+/obj/item/instrument/guitar,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/cafeteria_port)
 "bYf" = (
@@ -35199,6 +35200,12 @@
 /obj/machinery/holopad,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
+"dUH" = (
+/obj/machinery/roomba,
+/turf/open/floor/mainship{
+	icon_state = "green"
+	},
+/area/mainship/squads/req)
 "dWu" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/terragov/west{
@@ -37167,6 +37174,10 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/stairs/rampbottom,
 /area/mainship/squads/req)
+"pBB" = (
+/obj/structure/musician/piano,
+/turf/open/floor/mainship/mono,
+/area/mainship/living/grunt_rnr)
 "pCF" = (
 /obj/machinery/vending/MarineMed/Blood,
 /turf/open/floor/mainship/sterile/side,
@@ -37334,6 +37345,11 @@
 /obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/mainship,
 /area/mainship/shipboard/weapon_room)
+"qpC" = (
+/obj/structure/table/mainship,
+/obj/item/instrument/eguitar,
+/turf/open/floor/mainship/mono,
+/area/mainship/living/cafeteria_starboard)
 "qpM" = (
 /obj/structure/cable,
 /obj/structure/sink{
@@ -69677,7 +69693,7 @@ bUc
 bUc
 bUc
 bUc
-bYV
+bSC
 aVs
 aVs
 cbf
@@ -69934,7 +69950,7 @@ bUd
 bVB
 bUf
 bUc
-bSF
+pBB
 aVs
 caC
 aVG
@@ -77877,7 +77893,7 @@ bpl
 brd
 bsQ
 buE
-wKa
+dUH
 bnD
 bnD
 bnD
@@ -86343,7 +86359,7 @@ aYS
 aWV
 bbp
 xnY
-bdB
+qpC
 bbv
 bbv
 bbv

@@ -44,7 +44,8 @@
 	else
 		return 1
 
-/obj/machinery/door/poddoor/railing/CanPass(atom/movable/mover, turf/target)
+/obj/machinery/door/poddoor/railing/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(!density)
 		return 1
 

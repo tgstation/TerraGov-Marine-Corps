@@ -650,13 +650,11 @@
 		ammo_equipped.ammo_count = max(ammo_equipped.ammo_count-ammo_equipped.ammo_used_per_firing, 0)
 	update_icon()
 
-/obj/structure/dropship_equipment/weapon/proc/open_fire(obj/selected_target)
-	set waitfor = 0
+/obj/structure/dropship_equipment/weapon/proc/open_fire(obj/selected_target, attackdir)
 	var/turf/target_turf = get_turf(selected_target)
 	if(firing_sound)
 		playsound(loc, firing_sound, 70, 1)
 	var/obj/structure/ship_ammo/SA = ammo_equipped //necessary because we nullify ammo_equipped when firing big rockets
-	var/ammo_max_inaccuracy = SA.max_inaccuracy
 	var/ammo_accuracy_range = SA.accuracy_range
 	var/ammo_travelling_time = SA.travelling_time //how long the rockets/bullets take to reach the ground target.
 	var/ammo_warn_sound = SA.warning_sound
@@ -665,26 +663,17 @@
 	if(linked_shuttle)
 		for(var/obj/structure/dropship_equipment/electronics/targeting_system/TS in linked_shuttle.equipments)
 			ammo_accuracy_range = max(ammo_accuracy_range-2, 0) //targeting system increase accuracy and reduce travelling time.
-			ammo_max_inaccuracy = max(ammo_max_inaccuracy -3, 1)
-			ammo_travelling_time = max(ammo_travelling_time - 20, 10)
+			ammo_travelling_time = max(ammo_travelling_time - 2 SECONDS, 1 SECONDS)
 			break
 
-	if(ammo_travelling_time)
-		var/total_seconds = max(round(ammo_travelling_time/10),1)
-		for(var/i = 0 to total_seconds)
-			sleep(10)
-			if(!selected_target || !selected_target.loc)//if laser disappeared before we reached the target,
-				ammo_accuracy_range = min(ammo_accuracy_range + 1, ammo_max_inaccuracy) //accuracy decreases
-
 	var/list/possible_turfs = list()
-	for(var/turf/TU in range(ammo_accuracy_range, target_turf))
+	for(var/turf/TU as() in RANGE_TURFS(ammo_accuracy_range, target_turf))
 		possible_turfs += TU
 	var/turf/impact = pick(possible_turfs)
 	if(ammo_warn_sound)
 		playsound(impact, ammo_warn_sound, 70, 1)
 	new /obj/effect/overlay/temp/blinking_laser (impact)
-	sleep(10)
-	SA.detonate_on(impact)
+	addtimer(CALLBACK(SA, /obj/structure/ship_ammo.proc/detonate_on, impact, attackdir), ammo_travelling_time)
 
 /obj/structure/dropship_equipment/weapon/heavygun
 	name = "\improper GAU-21 30mm cannon"
@@ -814,7 +803,10 @@
 	. = ..()
 	if(!deployed_table)
 		deployed_table = new(src)
-		RegisterSignal(deployed_table, COMSIG_PARENT_ATTACKBY, /atom/.proc/attackby)//if something (like a powerloader) clicks on the deployed thing relay it
+		RegisterSignal(deployed_table, COMSIG_PARENT_ATTACKBY, .proc/attackby_wrapper)//if something (like a powerloader) clicks on the deployed thing relay it
+
+/obj/structure/dropship_equipment/operatingtable/proc/attackby_wrapper(datum/source, obj/item/I, mob/user, params)
+	attackby(I, user, params)
 
 /obj/structure/dropship_equipment/operatingtable/examine(mob/user)
 	. = ..()

@@ -35,7 +35,7 @@
 
 	user.visible_message("[user] begins attaching [src] to the wall.", "You being attaching [src] to the wall.")
 	playsound(loc, 'sound/machines/click.ogg', 15, 1)
-	var/constrdir = reverse_direction(user.dir)
+	var/constrdir = REVERSE_DIR(user.dir)
 	var/constrloc = user.loc
 
 	if(!do_after(user, 30, TRUE, wall, BUSY_ICON_BUILD))

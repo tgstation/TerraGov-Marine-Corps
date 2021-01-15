@@ -87,6 +87,10 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	var/detach_delay = 30
 	///how long in deciseconds this adds to your base fire delay.
 	var/fire_delay_mod = 0
+	///Changes aim mode movement delay multiplicatively
+	var/aim_mode_movement_mult = 0
+	///Modifies projectile damage by a % when a marine gets passed, but not hit
+	var/shot_marine_damage_falloff = 0
 
 	///the delay between shots, for attachments that fire stuff
 	var/attachment_firing_delay = 0
@@ -178,6 +182,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	master_gun.w_class						+= size_mod
 	master_gun.scatter						+= scatter_mod
 	master_gun.scatter_unwielded			+= scatter_unwielded_mod
+	master_gun.aim_speed_modifier			+= initial(master_gun.aim_speed_modifier)*aim_mode_movement_mult
+	master_gun.iff_marine_damage_falloff	+= shot_marine_damage_falloff
 	if(delay_mod)
 		master_gun.modify_fire_delay(delay_mod)
 	if(burst_delay_mod)
@@ -239,6 +245,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	master_gun.w_class						-= size_mod
 	master_gun.scatter						-= scatter_mod
 	master_gun.scatter_unwielded			-= scatter_unwielded_mod
+	master_gun.aim_speed_modifier			-= initial(master_gun.aim_speed_modifier)*aim_mode_movement_mult
+	master_gun.iff_marine_damage_falloff	-= shot_marine_damage_falloff
 	if(delay_mod)
 		master_gun.modify_fire_delay(-delay_mod)
 	if(burst_delay_mod)
@@ -1542,7 +1550,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/gyro
 	name = "gyroscopic stabilizer"
-	desc = "A set of weights and balances to stabilize the weapon when burst firing or moving, especially while shooting one-handed. Greatly reduces movement penalties to accuracy. Significantly reduces burst scatter, recoil and general scatter."
+	desc = "A set of weights and balances to stabilize the weapon when burst firing or moving, especially while shooting one-handed. Greatly reduces movement penalties to accuracy. Significantly reduces burst scatter, recoil and general scatter. By increasing accuracy while moving, it let you move faster when taking aim."
 	icon_state = "gyro"
 	attach_icon = "gyro_a"
 	slot = "under"
@@ -1551,6 +1559,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	movement_acc_penalty_mod = -0.5
 	scatter_unwielded_mod = -10
 	recoil_unwielded_mod = -1
+	aim_mode_movement_mult = -0.5
+	shot_marine_damage_falloff = -0.1
 
 /obj/item/attachable/lasersight
 	name = "laser sight"

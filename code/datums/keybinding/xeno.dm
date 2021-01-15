@@ -414,31 +414,31 @@
 /datum/keybinding/xeno/toggle_agility
 	name = "toggle_agility"
 	full_name = "Warrior: Toggle Agility"
-	description = ""
+	description = "Toggles Agility mode. While in Agility mode, you move much more quickly but can't use abilities and your armor is greatly reduced."
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_AGILITY
 
 /datum/keybinding/xeno/lunge
 	name = "lunge"
 	full_name = "Warrior: Lunge"
-	description = ""
+	description = "Charges towards a target, then neckgrabs them if they're adjacent to you. Stuns on upon grabbing for 1 second."
 	keybind_signal = COMSIG_XENOABILITY_LUNGE
 
 /datum/keybinding/xeno/fling
 	name = "fling"
 	full_name = "Warrior: Fling"
-	description = ""
+	description = "Quickly flings a target 4 tiles away and inflicts a short stun. Shared cooldown with Grapple Toss."
 	keybind_signal = COMSIG_XENOABILITY_FLING
-/*
+
 /datum/keybinding/xeno/grapple_toss
 	name = "grapple_toss"
 	full_name = "Warrior: Grapple Toss"
-	description = ""
+	description = "Throw a target you're grabbing up to 5 tiles away. Inflicts a short stun and stagger and slow stacks. Shared cooldown with Fling."
 	keybind_signal = COMSIG_XENOABILITY_GRAPPLE_TOSS
-*/
+
 /datum/keybinding/xeno/punch
 	name = "punch"
 	full_name = "Warrior: Punch"
-	description = ""
+	description = "Punch a hostile creature, a structure or piece of machinery. Damage and status durations are doubled vs creatures you are grabbing. Damage is quadrupled vs structures and machinery."
 	keybind_signal = COMSIG_XENOABILITY_PUNCH
 
 /datum/keybinding/xeno/psychic_choke
@@ -452,3 +452,16 @@
 	full_name = "Inject Egg (Neurogas)"
 	description = "Inject an egg with neurogas, killing the little one inside"
 	keybind_signal = COMSIG_XENOABILITY_INJECT_EGG_NEUROGAS
+
+/datum/keybinding/xeno/rally_hive
+	name = "rally_hive"
+	full_name = "Rally Hive"
+	description = "Rallies the hive to a target location."
+	keybind_signal = COMSIG_XENOABILITY_RALLY_HIVE
+
+/datum/keybinding/xeno/healing_infusion
+	name = "healing_infusion"
+	full_name = "Hivelord: Healing Infusion"
+	description = "Imbues a target xeno with healing energy, restoring extra Sunder and Health once every 2 seconds up to 5 times whenever it regenerates normally. 60 second duration."
+	keybind_signal = COMSIG_XENOABILITY_HEALING_INFUSION
+

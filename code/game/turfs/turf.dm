@@ -520,7 +520,22 @@
 	return !slayer && ..()
 
 
+/** 
+ * Checks for whether we can build advanced xeno structures here
+ * Returns TRUE if present, FALSE otherwise
+ */
+/turf/proc/check_disallow_alien_fortification(mob/living/builder, silent = FALSE)
+	var/area/ourarea = loc
+	if(ourarea.flags_area & DISALLOW_WEEDING)
+		if(!silent)
+			to_chat(builder, "<span class='warning'>We cannot build in this area before the talls are out!</span>")
+		return FALSE
+	return TRUE
 
+/** 
+ * Check if alien abilities can construct structure on the turf 
+ * Return TRUE if allowed, FALSE otherwise
+ */
 /turf/proc/check_alien_construction(mob/living/builder, silent = FALSE, planned_building)
 	var/has_obstacle
 	for(var/obj/O in contents)
@@ -634,11 +649,10 @@
 
 
 
-/turf/CanPass(atom/movable/mover, turf/target)
-	if(!target) return 0
-
-	if(istype(mover)) // turf/Enter(...) will perform more advanced checks
-		return !density
+/turf/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
+	if(!target)
+		return FALSE
 
 GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	/turf/open/space,

@@ -204,7 +204,8 @@
 		setDir(SOUTH)
 
 
-/obj/structure/table/CanPass(atom/movable/mover, turf/target)
+/obj/structure/table/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
 		return TRUE
 	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
@@ -212,10 +213,9 @@
 		return TRUE
 	if(flipped)
 		if(get_dir(loc, target) & dir)
-			return !density
+			return FALSE
 		else
 			return TRUE
-	return !density
 
 
 /obj/structure/table/CheckExit(atom/movable/mover, turf/target)
@@ -580,16 +580,13 @@
 	resistance_flags = XENO_DAMAGEABLE
 	var/parts = /obj/item/frame/rack
 
-/obj/structure/rack/CanPass(atom/movable/mover, turf/target)
-	if(!density) //Because broken racks
-		return TRUE
+/obj/structure/rack/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
 		return TRUE
 	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
 	if(S?.climbable && !(S.flags_atom & ON_BORDER) && climbable && isliving(mover)) //Climbable non-border  objects allow you to universally climb over others
 		return TRUE
-	else
-		return FALSE
 
 /obj/structure/rack/MouseDrop_T(obj/item/I, mob/user)
 	if (!istype(I) || user.get_active_held_item() != I)

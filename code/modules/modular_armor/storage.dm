@@ -7,7 +7,7 @@
 
 /** Storage modules */
 /obj/item/armor_module/storage
-	icon = 'icons/mob/modular/modular_armor.dmi'
+	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "mod_is_bag"
 
 	/// Internal storage type
@@ -164,6 +164,8 @@
 		/obj/item/storage/pill_bottle,
 		/obj/item/clothing/gloves/latex,
 		/obj/item/reagent_containers/hypospray/autoinjector,
+		/obj/item/reagent_containers/hypospray/advanced,
+		/obj/item/reagent_containers/hypospray,
 		/obj/item/stack/medical,
 	)
 
