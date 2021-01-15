@@ -225,13 +225,13 @@ obj/item/ammo_magazine/rifle/m4ra/smart
 //one use rpg
 
 /obj/item/ammo_magazine/rocket/oneuse
-	name = "\improper 67mm high-explosive shell"
+	name = "\improper 68mm high-explosive shell"
 	desc = "A rocket used to reload a one use rocket once returned to an armory."
 	caliber = "rocket"
 	icon_state = "rocket"
 	w_class = WEIGHT_CLASS_BULKY
 	max_rounds = 1
-	default_ammo = /datum/ammo/rocket
+	default_ammo = /datum/ammo/rocket/oneuse
 	gun_type = /obj/item/weapon/gun/launcher/rocket/oneuse
 	flags_magazine = NONE
 	reload_delay = 30

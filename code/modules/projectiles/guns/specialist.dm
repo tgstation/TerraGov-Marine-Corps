@@ -1041,7 +1041,7 @@
 
 /obj/item/weapon/gun/launcher/rocket/oneuse
 	name = "\improper T-72 rocket launcher"
-	desc = "This is the primier disposable rocket launcher used throughout the galaxy, isn't unloadable or reloadable on the field. This one a 84mm HE rocket."
+	desc = "This is the primier disposable rocket launcher used throughout the galaxy, isn't unloadable or reloadable on the field. This one a 68mm explosive rocket."
 	icon_state = "t72"
 	item_state = "t72"
 	max_shells = 1 //codex
