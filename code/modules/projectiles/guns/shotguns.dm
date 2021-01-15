@@ -608,8 +608,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	desc = "A mosin nagant rifle, even just looking at it you can feel the cosmoline already. Commonly known by its slang, \"Moist Nugget\", by downbrained colonists and outlaws."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "mosin"
-	item_state = "mosin" //thank you Alterist
-	pump_animation = "mosin_bolt"
+	item_state = "mosin"
 	fire_sound = 'sound/weapons/guns/fire/mosin.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	reload_sound = 'sound/weapons/guns/interact/mosin_reload.ogg'
