@@ -1,4 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - bugfix: "Condor will correctly stop its engine when the fuel reaches zero"
