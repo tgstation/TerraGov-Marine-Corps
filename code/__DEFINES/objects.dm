@@ -103,8 +103,8 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 #define TOKEN_ALL				15
 
 //MEDEVAC DEFINES
-#define MEDEVAC_COOLDOWN		3000 //300 seconds or 5 minutes
-#define MEDEVAC_TELE_DELAY		50 //5 seconds
+#define MEDEVAC_COOLDOWN		1800 //180 seconds or 3 minutes
+#define MEDEVAC_TELE_DELAY		30 //3 seconds
 //Sentry defines
 #define SENTRY_ALERT_AMMO				1
 #define SENTRY_ALERT_HOSTILE			2
