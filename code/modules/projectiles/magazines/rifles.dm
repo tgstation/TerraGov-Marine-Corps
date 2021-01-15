@@ -213,10 +213,10 @@
 /obj/item/ammo_magazine/box10x26mm
 	name = "box of 10x26mm"
 	desc = "A box containing 100 rounds of 10x26mm caseless.."
-	caliber = "10x27mm caseless"
 	icon_state = "box_10x26mm"
+	caliber = "10x26mm caseless"
+	default_ammo = /datum/ammo/bullet/rifle/machinegun
 	w_class = WEIGHT_CLASS_NORMAL
-	default_ammo = /datum/ammo/bullet/rifle/standard_dmr
 	current_rounds = 325
 	max_rounds = 325
 
