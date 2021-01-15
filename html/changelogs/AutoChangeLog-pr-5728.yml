@@ -1,0 +1,4 @@
+author: "XSlayer300"
+delete-after: True
+changes: 
+  - rscdel: "Removed some names in the last name list."
