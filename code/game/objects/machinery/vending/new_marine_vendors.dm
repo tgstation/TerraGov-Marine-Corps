@@ -1154,6 +1154,59 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 		/obj/item/attachable/stock/t19stock = list(CAT_ATT, "T-19 machine pistol stock", 0, "black"),
 	)
 
+/obj/machinery/marine_selector/gear/doctor
+	name = "NEXUS Automated medical officer Equipment Rack"
+	desc = "An automated medical officer equipment rack hooked up to a colossal storage unit."
+	icon_state = "marinemed"
+	vendor_role = /datum/job/terragov/medical
+	req_access = list(ACCESS_MARINE_CHEMISTRY)  //any CMO MO or MR should be able to get on this one but them alone no one else
+
+	listed_products = list(
+		/obj/item/clothing/under/rank/medical = list(CAT_STD, "Medical scrubs (white)", 0, "orange"),
+		/obj/item/clothing/under/rank/medical/blue = list(CAT_STD, "Medical scrubs (blue)", 0, "black"),
+		/obj/item/clothing/under/rank/medical/green = list(CAT_STD, "Medical scrubs (green)", 0, "black"),
+		/obj/item/clothing/under/rank/medical/purple = list(CAT_STD, "Medical scrubs (purple)", 0, "black"),
+		/obj/item/clothing/under/rank/psych = list(CAT_STD, "psychiatrist scrubs", 0, "black"),
+		/obj/item/clothing/under/rank/psych/turtleneck = list(CAT_STD, "psychiatrist turtleneck", 0, "black"),
+
+		/obj/effect/essentials_set/basic_doctor = list(CAT_ESS, "Standard MO kit", 0, "orange"),
+		/obj/effect/essentials_set/basic_medicmodular = list(CAT_ESS, "Essential MO Jaeger Kit", 0, "orange"),
+
+		/obj/effect/essentials_set/modular/skirmisher = list(CAT_AMR, "Light Skirmisher Jaeger kit", 0, "orange"),
+		/obj/effect/essentials_set/modular/infantry = list(CAT_AMR, "Medium Infantry Jaeger kit", 0, "orange"),
+		/obj/effect/essentials_set/modular/eva = list(CAT_AMR, "Medium EVA Jaeger kit", 0, "orange"),
+		/obj/effect/essentials_set/modular/assault = list(CAT_AMR, "Heavy Assault Jaeger kit", 0, "orange"),
+		/obj/effect/essentials_set/modular/eod = list(CAT_AMR, "Heavy EOD Jaeger kit", 0, "orange"),
+		/obj/item/clothing/suit/storage/marine/pasvest = list(CAT_AMR, "Regular armor", 0, "orange"),
+
+		/obj/item/clothing/tie/storage/white_vest = list(CAT_WEB, "Corpsman surgical vest", 0, "orange"),
+		/obj/item/storage/backpack/marine/satchel/corpsman = list(CAT_BAK, "Satchel", 0, "black"),
+		/obj/item/clothing/tie/storage/white_vest = list(CAT_WEB, "Corpsman surgical vest", 0, "orange"),
+		/obj/item/clothing/tie/storage/white_vest/medic = list(CAT_WEB, "Corpsman white vest", 0, "black"),
+		/obj/item/storage/belt/medicLifesaver = list(CAT_BEL, "Lifesaver medic belt", 0, "orange"),
+		/obj/item/storage/belt/medical = list(CAT_BEL, "Medical belt", 0, "black"),
+		/obj/item/storage/pouch/autoinjector/advanced/full = list(CAT_POU, "Advanced Autoinjector pouch", 0, "orange"),
+		/obj/item/storage/pouch/hypospray/corps/full = list(CAT_POU, "Advanced hypospray pouch", 0, "orange"),
+		/obj/item/armor_module/storage/medical = list(CAT_MOD, "Medical Storage Module", 0, "black"),
+
+		/obj/item/storage/surgical_tray = list(CAT_MEDSUP, "Surgical tray full of its tools", 20, "white"),
+		/obj/item/storage/pill_bottle/paracetamol = list(CAT_MEDSUP, "Paracetamol pills", 10, "orange"),
+		/obj/item/storage/syringe_case/meralyne = list(CAT_MEDSUP, "syringe Case (120u Meralyne)", 16, "orange"),
+		/obj/item/reagent_containers/hypospray/advanced/meralyne = list(CAT_MEDSUP, "hypospray (60u Meralyne)", 8, "orange"), //half the units of the mera case half the price
+		/obj/item/storage/syringe_case/dermaline = list(CAT_MEDSUP, "syringe Case (120u Dermaline)", 16, "orange"),
+		/obj/item/reagent_containers/hypospray/advanced/dermaline = list(CAT_MEDSUP, "hypospray (60u dermaline)", 8, "orange"), //half the units of the derm case half the price
+		/obj/item/storage/syringe_case/meraderm = list(CAT_MEDSUP, "syringe Case (120u Meraderm)", 16, "orange"),
+		/obj/item/reagent_containers/hypospray/advanced/meraderm = list(CAT_MEDSUP, "hypospray (60u Meraderm)", 8, "orange"), //half the units of the meraderm case half the price
+		/obj/item/storage/syringe_case/ironsugar = list(CAT_MEDSUP, "syringe Case (120u Ironsugar)", 5, "black"),
+		/obj/item/reagent_containers/hypospray/advanced/ironsugar = list(CAT_MEDSUP, "hypospray (60u Ironsugar)", 3, "black"), //bit more than half of the ironsugar case
+		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = list(CAT_MEDSUP, "Injector (Advanced)", 5, "black"),
+		/obj/item/reagent_containers/hypospray/autoinjector/neuraline = list(CAT_MEDSUP, "Injector (Neuraline)", 14, "orange"),
+		/obj/item/reagent_containers/hypospray/advanced = list(CAT_MEDSUP, "Advanced hypospray", 1, "black"),
+		/obj/item/reagent_containers/hypospray/advanced/big = list(CAT_MEDSUP, "Big hypospray", 5, "black"),
+		/obj/item/clothing/glasses/hud/health = list(CAT_MEDSUP, "Medical HUD glasses", 2, "black"),
+		/obj/item/storage/pill_bottle/polyhexanide = list(CAT_MEDSUP, "polyhexanide pills", 5, "black"),
+
+	)
 
 /obj/effect/essentials_set
 	var/list/spawned_gear_list
@@ -1256,6 +1309,31 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 		/obj/item/clothing/shoes/marine/full,
 		/obj/item/storage/box/MRE,
 		/obj/item/facepaint/green,
+	)
+
+/obj/effect/essentials_set/basic_doctormodular
+	spawned_gear_list = list(
+		/obj/item/clothing/under/marine/jaeger,
+		/obj/item/clothing/head/helmet/marine/corpsman,
+		/obj/item/clothing/glasses/hud/health,
+		/obj/item/clothing/shoes/marine/full,
+		/obj/item/facepaint/green,
+		/obj/item/bodybag/cryobag,
+		/obj/item/defibrillator,
+		/obj/item/healthanalyzer,
+		/obj/item/roller,
+		/obj/item/storage/firstaid/adv,
+	)
+
+/obj/effect/essentials_set/basic_doctor
+	spawned_gear_list = list(
+		/obj/item/clothing/head/helmet/marine/corpsman,
+		/obj/item/clothing/glasses/hud/health,
+		/obj/item/bodybag/cryobag,
+		/obj/item/defibrillator,
+		/obj/item/healthanalyzer,
+		/obj/item/roller,
+		/obj/item/storage/firstaid/adv,
 	)
 
 /obj/effect/essentials_set/basic_engineer

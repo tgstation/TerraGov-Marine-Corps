@@ -231,3 +231,8 @@
 	//pill_desc = "An ultrazine pill. A highly-potent, long-lasting combination CNS and muscle stimulant. Extremely addictive."
 	list_reagents = list(/datum/reagent/medicine/ultrazine = 5)
 	pill_id = 21
+
+/obj/item/reagent_containers/pill/polyhexanide
+	pill_desc = "A pill. that contains polyhexide for surgeries performed in the field."
+	list_reagents = list(/datum/reagent/medicine/polyhexanide = 15)
+	pill_id = 15
