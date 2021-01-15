@@ -12,6 +12,16 @@
 	default_ammo = /datum/ammo/bullet/pistol
 	gun_type = /obj/item/weapon/gun/pistol/standard_pistol
 
+/obj/item/ammo_magazine/box9mm
+	name = "box of 9mm"
+	desc = "A box containing 70 rounds of 9mm."
+	caliber = "9x19mm Parabellum"
+	icon_state = "box_9mm"
+	current_rounds = 70
+	max_rounds = 70
+	w_class = WEIGHT_CLASS_SMALL
+	default_ammo = /datum/ammo/bullet/pistol
+
 
 //-------------------------------------------------------
 //RT-3 PISTOL
@@ -59,7 +69,7 @@
 
 /obj/item/ammo_magazine/acp
 	name = "box of .45 ACP"
-	icon_state = "box45" //With thanks to Eris
+	icon_state = "box_.45acp"
 	default_ammo = /datum/ammo/bullet/pistol/heavy
 	caliber = ".45 ACP"
 	current_rounds = 50

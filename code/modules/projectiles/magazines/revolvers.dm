@@ -72,7 +72,7 @@
 //a very literal box of ammunition.
 /obj/item/ammo_magazine/magnum
 	name = "box of .44 magnum"
-	icon_state = "box45" //Maybe change this
+	icon_state = "box_44mag" //Maybe change this
 	default_ammo = /datum/ammo/bullet/revolver
 	caliber = ".44"
 	current_rounds = 50
