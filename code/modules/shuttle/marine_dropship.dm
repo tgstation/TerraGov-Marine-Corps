@@ -304,6 +304,15 @@
 	if(!D.can_summon_dropship(src))
 		return
 
+	D.announce_bioscans()
+	var/confirm = alert(src, "Would you like to crash the metal bird?", "Crash the ship", "Yes", "No")
+	if(confirm == "Yes")
+		var/datum/game_mode/infestation/distress/distress_mode = SSticker.mode
+		var/message = "The Xenos have crashed the alamo. RIP"
+		priority_announce(message, title = "ALAMO CRASHED")
+		distress_mode.round_stage = DISTRESS_DROPSHIP_CRASHED_XENOS
+		return
+
 	var/obj/docking_port/stationary/port = D.summon_dropship(src)
 	if(!port)
 		to_chat(src, "<span class='warning'>Something went wrong.</span>")

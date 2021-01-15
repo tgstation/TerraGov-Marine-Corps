@@ -1,6 +1,7 @@
 #define DISTRESS_MARINE_DEPLOYMENT 0
 #define DISTRESS_DROPSHIP_CRASHED 1
 #define DISTRESS_MARINE_RETREAT 2
+#define DISTRESS_DROPSHIP_CRASHED_XENOS 3
 
 /datum/game_mode/infestation/distress
 	name = "Distress Signal"
@@ -101,11 +102,6 @@
 
 
 /datum/game_mode/infestation/distress/check_finished()
-	if(round_finished)
-		return TRUE
-
-	if(world.time < (SSticker.round_start_time + 5 SECONDS))
-		return FALSE
 
 	var/living_player_list[] = count_humans_and_xenos(count_flags = COUNT_IGNORE_ALIVE_SSD|COUNT_IGNORE_XENO_SPECIAL_AREA)
 	var/num_humans = living_player_list[1]
@@ -116,7 +112,7 @@
 		round_finished = MODE_GENERIC_DRAW_NUKE
 		return TRUE
 
-	if(round_stage == DISTRESS_MARINE_RETREAT)
+	if(round_stage == DISTRESS_MARINE_RETREAT || round_stage == DISTRESS_DROPSHIP_CRASHED_XENOS)
 		message_admins("Round finished: [MODE_INFESTATION_X_MINOR]")
 		round_finished = MODE_INFESTATION_X_MINOR
 		return TRUE
