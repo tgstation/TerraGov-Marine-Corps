@@ -1049,9 +1049,7 @@
 	load_method = SINGLE_CASING //codex
 	current_mag = /obj/item/ammo_magazine/rocket/oneuse
 	flags_equip_slot = ITEM_SLOT_BELT
-	attachable_allowed = list(
-		/obj/item/attachable/magnetic_harness
-	)
+	attachable_allowed = list(/obj/item/attachable/magnetic_harness)
 
 	dry_fire_sound = 'sound/weapons/guns/fire/launcher_empty.ogg'
 	reload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
