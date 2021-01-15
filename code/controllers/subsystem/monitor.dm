@@ -84,7 +84,6 @@ SUBSYSTEM_DEF(monitor)
 	. += monitor_statistics[B18_USED].len * B18_PRICE * REQ_POINTS_WEIGHT
 	. += SSpoints.supply_points * REQ_POINTS_WEIGHT
 	. += monitor_statistics[OB_AVAILABLE] * OB_AVAILABLE_WEIGHT
-	return
 
 ///Keep the monitor informed about the position of humans
 /datum/controller/subsystem/monitor/proc/process_human_positions()
