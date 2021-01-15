@@ -127,9 +127,6 @@
 /mob/living/carbon/xenomorph/hivemind/CtrlShiftClickOn(atom/A)
 	return FALSE
 
-/mob/living/carbon/xenomorph/hivemind/ShiftClickOn(atom/A)
-	return FALSE
-
 /mob/living/carbon/xenomorph/hivemind/CtrlClickOn(atom/A)
 	return FALSE
 

@@ -1,0 +1,4 @@
+author: "Surrealaser"
+delete-after: True
+changes: 
+  - bugfix: "Fixes a bug so that Rally Hive is properly removed from demoted xenos."
