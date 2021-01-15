@@ -69,7 +69,7 @@
 
 /obj/item/ammo_magazine/acp
 	name = "box of .45 ACP"
-	icon_state = "box_.45acp"
+	icon_state = "box_45acp"
 	default_ammo = /datum/ammo/bullet/pistol/heavy
 	caliber = ".45 ACP"
 	current_rounds = 50
