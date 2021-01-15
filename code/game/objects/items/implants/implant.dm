@@ -12,7 +12,7 @@
 	var/implant_color = "b"
 	///whether this implant allows reagents to be inserted into it
 	var/allow_reagents = FALSE
-	///What level of mmalfunction/breakage this implant is at, used for functionality checks
+	///What level of malfunction/breakage this implant is at, used for functionality checks
 	var/malfunction = MALFUNCTION_NONE
 	///Implant secific flags
 	var/flags_implant = GRANT_ACTIVATION_ACTION
