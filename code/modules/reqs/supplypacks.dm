@@ -241,7 +241,7 @@ WEAPONS
 		/obj/item/weapon/gun/launcher/rocket/oneuse,
 		/obj/item/weapon/gun/launcher/rocket/oneuse,
 		/obj/item/weapon/gun/launcher/rocket/oneuse,
-		/obj/item/weapon/gun/launcher/rocket/oneuse
+		/obj/item/weapon/gun/launcher/rocket/oneuse,
 	)
 	notes = "Contains 5."
 	cost = 50
