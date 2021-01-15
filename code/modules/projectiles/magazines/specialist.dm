@@ -220,31 +220,6 @@ obj/item/ammo_magazine/rifle/m4ra/smart
 	current_rounds = 0
 	reload_delay = 30
 
-
-//-------------------------------------------------------
-//one use rpg
-
-/obj/item/ammo_magazine/rocket/oneuse
-	name = "\improper 67mm high-explosive shell"
-	desc = "A rocket used to reload a one use rocket once returned to an armory."
-	caliber = "rocket"
-	icon_state = "rocket"
-	w_class = WEIGHT_CLASS_BULKY
-	max_rounds = 1
-	default_ammo = /datum/ammo/rocket
-	gun_type = /obj/item/weapon/gun/launcher/rocket/oneuse
-	flags_magazine = NONE
-	reload_delay = 30
-
-/obj/item/ammo_magazine/internal/launcher/rocket/oneuse
-	name = "\improper 67mm internal tube"
-	desc = "The internal tube of a one use rpg."
-	caliber = "rocket"
-	default_ammo = /datum/ammo/rocket/recoilless
-	max_rounds = 1
-	current_rounds = 0
-	reload_delay = 30
-
 //-------------------------------------------------------
 //M5 RPG'S MEAN FUCKING COUSIN
 
