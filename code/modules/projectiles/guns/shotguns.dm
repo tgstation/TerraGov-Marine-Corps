@@ -565,10 +565,10 @@ can cause issues with ammo types getting mixed up during the burst.
 	return ..()
 
 //-------------------------------------------------------
-//Based off of the Benelli M3
+//A shotgun, how quaint.
 /obj/item/weapon/gun/shotgun/pump/cmb
 	name = "\improper Paladin-12 pump shotgun"
-	desc = "A nine-round pump action shotgun. A sporterized version of a classic shotgun used for hunting, home defence and police work, modified and used by Nanotrasen security."
+	desc = "A nine-round pump action shotgun. A shotgun used for hunting, home defence and police work, modified and used by just about anyone."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "pal12"
 	item_state = "pal12"
@@ -641,9 +641,9 @@ can cause issues with ammo types getting mixed up during the burst.
 	aim_fire_delay = 1
 
 	fire_delay = 17.5
-	accuracy_mult = 1.45
+	accuracy_mult = 1.4
 	accuracy_mult_unwielded = 0.7
-	scatter = -25
+	scatter = -10
 	scatter_unwielded = 40
 	recoil = 0
 	recoil_unwielded = 4
