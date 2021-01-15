@@ -568,7 +568,7 @@ can cause issues with ammo types getting mixed up during the burst.
 //A shotgun, how quaint.
 /obj/item/weapon/gun/shotgun/pump/cmb
 	name = "\improper Paladin-12 pump shotgun"
-	desc = "A nine-round pump action shotgun. A shotgun used for hunting, home defence and police work, modified and used by just about anyone."
+	desc = "A nine-round pump action shotgun. A shotgun used for hunting, home defence and police work, many versions of it exist and are used by just about anyone."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "pal12"
 	item_state = "pal12"
@@ -585,7 +585,7 @@ can cause issues with ammo types getting mixed up during the burst.
 		/obj/item/attachable/magnetic_harness,
 	)
 	flags_item_map_variant = NONE
-	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 16,"rail_x" = 14, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 21, "stock_y" = 14)
+	attachable_offset = list("muzzle_x" = 38, "muzzle_y" = 19,"rail_x" = 14, "rail_y" = 19, "under_x" = 37, "under_y" = 16, "stock_x" = 15, "stock_y" = 11)
 	starting_attachment_types = list(
 		/obj/item/attachable/stock/irremoveable/pal12,
 	)
@@ -632,7 +632,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	)
 	flags_item_map_variant = NONE
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER
-	attachable_offset = list("muzzle_x" = 50, "muzzle_y" = 21,"rail_x" = 12, "rail_y" = 21, "under_x" = 37, "under_y" = 16, "stock_x" = 20, "stock_y" = 13)
+	attachable_offset = list("muzzle_x" = 37, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 20, "under_x" = 25, "under_y" = 13, "stock_x" = 15, "stock_y" = 14)
 	starting_attachment_types = list(
 		/obj/item/attachable/scope/mosin,
 		/obj/item/attachable/stock/mosin,
