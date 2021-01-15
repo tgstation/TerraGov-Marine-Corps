@@ -468,6 +468,7 @@
 	icon_off = "secure_off_cargo"
 
 /obj/structure/closet/secure_closet/req_officer/PopulateContents()
+	new /obj/item/supplytablet(src)
 	new /obj/item/clothing/under/rank/ro_suit(src)
 	new /obj/item/clothing/shoes/marine(src)
 	new /obj/item/storage/belt/marine(src)
