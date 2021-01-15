@@ -1159,7 +1159,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 	desc = "An automated medical officer equipment rack hooked up to a colossal storage unit."
 	icon_state = "marinemed"
 	lock_flags = JOB_LOCK
-	vendor_role = null //to avoid runtimes and allow the whole medical staff to use it. still not the corpsman
+	vendor_role = /datum/job/terragov/medical/researcher //to avoid runtimes and allow the whole medical staff to use it. still not the corpsman
 	req_access = list(ACCESS_MARINE_CHEMISTRY)  //any CMO MO or MR should be able to get on this one but them alone no one else
 
 	listed_products = list(
