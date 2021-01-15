@@ -92,10 +92,10 @@ SUBSYSTEM_DEF(monitor)
 	human_in_FOB = 0
 	for(var/human in GLOB.alive_human_list)
 		var/turf/TU = get_turf(human)
-		var/area/area = TU.loc
+		var/area/myarea = TU.loc
 		if(is_ground_level(TU.z))
 			human_on_ground++
-			if(area.flags_area & NEAR_FOB)
+			if(myarea.flags_area & NEAR_FOB)
 				human_in_FOB++
 
 ///Check if we are in a FOB camping situation
