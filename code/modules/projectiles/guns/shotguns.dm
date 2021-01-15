@@ -641,9 +641,9 @@ can cause issues with ammo types getting mixed up during the burst.
 	aim_fire_delay = 1
 
 	fire_delay = 17.5
-	accuracy_mult = 1.4
+	accuracy_mult = 1.45
 	accuracy_mult_unwielded = 0.7
-	scatter = -10
+	scatter = -25
 	scatter_unwielded = 40
 	recoil = 0
 	recoil_unwielded = 4
