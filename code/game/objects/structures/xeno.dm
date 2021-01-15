@@ -646,7 +646,7 @@ TUNNEL
 
 /obj/structure/tunnel/Destroy()
 	var/drop_loc = get_turf(src)
-	for(var/atom/movable/thing as() in src) //Empty the tunnel of contents
+	for(var/atom/movable/thing as() in contents) //Empty the tunnel of contents
 		thing.forceMove(drop_loc)
 
 	if(!QDELETED(creator))
@@ -761,13 +761,11 @@ TUNNEL
 		if(targettunnel && isturf(targettunnel.loc)) //Make sure the end tunnel is still there
 			M.forceMove(targettunnel)
 			var/double_check = input(M, "Emerge here?", "Tunnel: [targettunnel]") as null|anything in list("Yes","Pick another tunnel")
-			if(!targettunnel) //double check that the tunnel we're now in exists in the event it gets destroyed while we still have the interface open
-				return
 			if(M.loc != targettunnel) //double check that we're still in the tunnel in the event it gets destroyed while we still have the interface open
 				return
 			if(double_check == "Pick another tunnel")
 				return targettunnel.pick_a_tunnel(M)
-			else //Whether we say yes or cancel out of it;
+			else //Whether we say yes or cancel out of it
 				M.forceMove(targettunnel.loc)
 				M.visible_message("<span class='xenonotice'>\The [M] pops out of \the [src].</span>", \
 				"<span class='xenonotice'>We pop out through the other side!</span>")
