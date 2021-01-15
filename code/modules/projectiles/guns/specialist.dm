@@ -1040,10 +1040,10 @@
 //M5 RPG
 
 /obj/item/weapon/gun/launcher/rocket/oneuse
-	name = "\improper M-72 rocket launcher"
+	name = "\improper T-72 rocket launcher"
 	desc = "This is the primier disposable rocket launcher used throughout the galaxy, isn't unloadable or reloadable on the field. This one a 84mm HE rocket."
-	icon_state = "m5"
-	item_state = "m5"
+	icon_state = "t72"
+	item_state = "t72"
 	max_shells = 1 //codex
 	caliber = "84mm rockets" //codex
 	load_method = SINGLE_CASING //codex
