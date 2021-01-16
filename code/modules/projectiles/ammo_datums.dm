@@ -560,7 +560,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sundering = 7
 
 /datum/ammo/bullet/shotgun/slug/on_hit_mob(mob/M,obj/projectile/P)
-	staggerstun(M, P, weaken = 1, stagger = 2, knockback = 1)
+	staggerstun(M, P, weaken = 1, stagger = 2, slowdown = 0.5, knockback = 1)
 
 
 /datum/ammo/bullet/shotgun/beanbag
@@ -614,10 +614,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_low = 8
 	accuracy_var_high = 8
 	max_range = 15
-	damage = 40
+	damage = 50
 	damage_falloff = 0.5
 	penetration = 15
-	sundering = 3.5
+	sundering = 3
 
 /datum/ammo/bullet/shotgun/flechette_spread
 	name = "additional flechette"
