@@ -294,7 +294,7 @@
 
 /datum/xeno_caste/roony/ancient
 	upgrade_name = "Ancient"
-	caste_desc = "Not what you want to run into in a dark alley. It looks extremely deadly."
+	caste_desc = "Not what you want to run into in a dark alley. It looks extremely adorable, yet it thirsts for your blood!"
 	ancient_message = "We are the fastest assassin of all time. Our speed is unmatched."
 	upgrade = XENO_UPGRADE_THREE
 	wound_type = "runner" //used to match appropriate wound overlays
