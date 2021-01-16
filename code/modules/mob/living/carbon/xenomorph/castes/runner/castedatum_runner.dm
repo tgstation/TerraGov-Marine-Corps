@@ -231,7 +231,7 @@
 
 /datum/xeno_caste/roony/mature
 	upgrade_name = "Mature"
-	caste_desc = "A fast, four-legged terror, but weak in sustained combat. It looks a little more dangerous."
+	caste_desc = "A fast, four-legged adorable, out-of-place terror, but weak in sustained combat. It looks a little more dangerous."
 
 	upgrade = XENO_UPGRADE_ONE
 
