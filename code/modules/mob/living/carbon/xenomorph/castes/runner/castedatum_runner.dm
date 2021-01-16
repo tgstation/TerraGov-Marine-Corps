@@ -261,7 +261,7 @@
 
 /datum/xeno_caste/roony/elder
 	upgrade_name = "Elder"
-	caste_desc = "A fast, four-legged terror, but weak in sustained combat. It looks pretty strong."
+	caste_desc = "A fast, four-legged adorable, out-of-place terror, but weak in sustained combat. It looks pretty strong."
 
 	upgrade = XENO_UPGRADE_TWO
 
@@ -325,4 +325,3 @@
 
 	// *** Ranged Attack *** //
 	pounce_delay = 13 SECONDS
-
