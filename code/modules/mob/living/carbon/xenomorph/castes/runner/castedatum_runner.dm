@@ -166,7 +166,7 @@
 	caste_name = "Roony"
 	display_name = "Roony"
 	upgrade_name = ""
-	caste_desc = "A fast, four-legged terror, but weak in sustained combat."
+	caste_desc = "A fast, four-legged adorable, out-of-place terror, but weak in sustained combat."
 	caste_type_path = /mob/living/carbon/xenomorph/roony
 	tier = XENO_TIER_ONE
 	upgrade = XENO_UPGRADE_BASETYPE
@@ -325,5 +325,4 @@
 
 	// *** Ranged Attack *** //
 	pounce_delay = 13 SECONDS
-
 
