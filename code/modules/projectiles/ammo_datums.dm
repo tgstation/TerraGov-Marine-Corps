@@ -614,10 +614,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_low = 8
 	accuracy_var_high = 8
 	max_range = 15
-	damage = 50
+	damage = 40
 	damage_falloff = 0.5
 	penetration = 15
-	sundering = 3
+	sundering = 3.5
 
 /datum/ammo/bullet/shotgun/flechette_spread
 	name = "additional flechette"
@@ -637,19 +637,19 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "shotgun_buckshot"
 	flags_ammo_behavior = AMMO_BALLISTIC
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/spread
-	bonus_projectiles_amount = 5
-	bonus_projectiles_scatter = 10
+	bonus_projectiles_amount = 4
+	bonus_projectiles_scatter = 5
 	accuracy_var_low = 9
 	accuracy_var_high = 9
 	accurate_range = 3
 	max_range = 10
 	damage = 40
-	damage_falloff = 4
+	damage_falloff = 2
 	penetration = 0
 
 
 /datum/ammo/bullet/shotgun/buckshot/on_hit_mob(mob/M,obj/projectile/P)
-	staggerstun(M, P, weaken = 1, stagger = 1, knockback = 2, slowdown = 0.5, max_range = 3)
+	staggerstun(M, P, weaken = 1, stagger = 1, knockback = 3, slowdown = 0.5, max_range = 5)
 
 /datum/ammo/bullet/shotgun/spread
 	name = "additional buckshot"
@@ -659,9 +659,12 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_high = 9
 	accurate_range = 3
 	max_range = 10
-	damage = 40
-	damage_falloff = 4
+	damage = 20
+	damage_falloff = 2
 	penetration = 0
+
+/datum/ammo/bullet/shotgun/spread/on_hit_mob(mob/M,obj/projectile/P)
+	staggerstun(M, P, slowdown = 0.1, max_range = 5)
 
 //buckshot variant only used by the masterkey shotgun attachment.
 /datum/ammo/bullet/shotgun/buckshot/masterkey
