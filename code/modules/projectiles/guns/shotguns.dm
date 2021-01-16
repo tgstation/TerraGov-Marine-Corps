@@ -569,6 +569,8 @@ can cause issues with ammo types getting mixed up during the burst.
 	attachable_allowed = list(
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/gyro,
+						/obj/item/attachable/bayonetknife,
+						/obj/item/attachable/bayonet,
 						/obj/item/attachable/flashlight,
 						/obj/item/attachable/compensator,
 						/obj/item/attachable/scope/mini,

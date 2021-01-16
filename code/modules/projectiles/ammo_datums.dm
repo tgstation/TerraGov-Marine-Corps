@@ -637,7 +637,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "shotgun_buckshot"
 	flags_ammo_behavior = AMMO_BALLISTIC
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/spread
-	bonus_projectiles_amount = 4
+	bonus_projectiles_amount = 5
 	bonus_projectiles_scatter = 5
 	accuracy_var_low = 9
 	accuracy_var_high = 9
@@ -659,7 +659,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_high = 9
 	accurate_range = 3
 	max_range = 10
-	damage = 20
+	damage = 25
 	damage_falloff = 2
 	penetration = 0
 
