@@ -16,13 +16,11 @@
 
 ///Store all relevant variables to pass along
 /datum/action/xeno_action/place_warp_shadow/on_xeno_pre_upgrade()
-	SIGNAL_HANDLER
 	var/datum/action/place_warp_shadow_data_storage_datum/storage_datum = new /datum/action/place_warp_shadow_data_storage_datum
 	owner.actions_by_path[storage_datum.type] = storage_datum //store it in actions for reference later
 	storage_datum.warp_shadow = warp_shadow
 
 /datum/action/xeno_action/place_warp_shadow/on_xeno_upgrade()
-	SIGNAL_HANDLER
 	//Pass along relevant variables
 	var/datum/action/place_warp_shadow_data_storage_datum/storage_datum = owner.actions_by_path[/datum/action/place_warp_shadow_data_storage_datum]
 	warp_shadow = storage_datum.warp_shadow
@@ -182,7 +180,6 @@
 
 ///Store all relevant variables to pass along
 /datum/action/xeno_action/phase_shift/on_xeno_pre_upgrade()
-	SIGNAL_HANDLER
 	var/datum/action/phase_shift_data_storage_datum/storage_datum = new /datum/action/phase_shift_data_storage_datum
 	owner.actions_by_path[storage_datum.type] = storage_datum //store it in actions for reference later
 	storage_datum.starting_turf = starting_turf
@@ -190,7 +187,6 @@
 	storage_datum.phase_shift_timer_duration = timeleft(phase_shift_duration_timer_id)
 
 /datum/action/xeno_action/phase_shift/on_xeno_upgrade()
-	SIGNAL_HANDLER
 	//Pass along relevant variables
 	var/datum/action/phase_shift_data_storage_datum/storage_datum = owner.actions_by_path[/datum/action/phase_shift_data_storage_datum]
 	starting_turf = storage_datum.starting_turf
@@ -301,10 +297,8 @@
 		starting_turf = null
 		return
 
-
 	var/distance = get_dist(current_turf, starting_turf)
 	var/phase_shift_stun_time = clamp(distance * 0.1 SECONDS, 0.5 SECONDS, 3 SECONDS) //Recovery time
-	phase_shift_stun_time = 0
 	ghost.ParalyzeNoChain(phase_shift_stun_time * XENO_PARALYZE_NORMALIZATION_MULTIPLIER)
 	ghost.visible_message("<span class='warning'>[ghost] form wavers and becomes opaque.</span>", \
 	"<span class='highdanger'>We phase back into reality, our mind reeling from the experience. We estimate we will take [phase_shift_stun_time * 0.1] seconds to recover!</span>")
@@ -491,7 +485,6 @@
 
 ///Store all relevant variables to pass along
 /datum/action/xeno_action/activable/banish/on_xeno_pre_upgrade()
-	SIGNAL_HANDLER
 	var/datum/action/banish_data_storage_datum/storage_datum = new /datum/action/banish_data_storage_datum
 	owner.actions_by_path[storage_datum.type] = storage_datum //store it in actions for reference later
 	storage_datum.banished_turf = banished_turf
@@ -500,7 +493,6 @@
 	storage_datum.banish_timer_duration = timeleft(banish_duration_timer_id)
 
 /datum/action/xeno_action/activable/banish/on_xeno_upgrade()
-	SIGNAL_HANDLER
 	//Pass along relevant variables
 	var/datum/action/banish_data_storage_datum/storage_datum = owner.actions_by_path[/datum/action/banish_data_storage_datum]
 	banished_turf = storage_datum.banished_turf
