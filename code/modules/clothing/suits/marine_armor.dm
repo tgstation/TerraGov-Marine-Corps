@@ -292,11 +292,11 @@
 
 /obj/item/clothing/suit/storage/marine/specialist/equipped(mob/user, slot)
 	. = ..()
-	SSmonitor.monitor_statistics[B18_USED] |= src
+	SSmonitor.stats.B18_in_use |= src
 
 /obj/item/clothing/suit/storage/marine/specialist/unequipped(mob/user, slot)
 	. = ..()
-	SSmonitor.monitor_statistics[B18_USED] -= src
+	SSmonitor.stats.B18_in_use -= src
 
 /obj/item/clothing/suit/storage/marine/specialist/Initialize(mapload, ...)
 	. = ..()
@@ -316,12 +316,12 @@
 
 /obj/item/clothing/suit/storage/marine/B17/equipped(mob/user, slot)
 	. = ..()
-	SSmonitor.monitor_statistics[B17_USED] |= src
+	SSmonitor.stats.B17_in_use|=src
 
 
 /obj/item/clothing/suit/storage/marine/B17/unequipped(mob/user, slot)
 	. = ..()
-	SSmonitor.monitor_statistics[B17_USED] -= src
+	SSmonitor.stats.B17_in_use-=src
 
 /obj/item/clothing/suit/storage/marine/M3T
 	name = "\improper M3-T light armor"

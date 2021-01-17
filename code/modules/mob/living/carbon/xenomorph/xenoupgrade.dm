@@ -33,22 +33,22 @@
 			to_chat(src, "<span class='xenodanger'>We feel a whole lot stronger.</span>")
 			switch(tier)
 				if(XENO_TIER_TWO)
-					SSmonitor.monitor_statistics[ELDER_T2]++
+					SSmonitor.stats.Elder_T2++
 				if(XENO_TIER_THREE)
-					SSmonitor.monitor_statistics[ELDER_T3]++
+					SSmonitor.stats.Elder_T3++
 				if(XENO_TIER_FOUR)
-					SSmonitor.monitor_statistics[ELDER_QUEEN]++
+					SSmonitor.stats.Elder_Queen++
 
 		//Final UPGRADE
 		if(XENO_UPGRADE_THREE)
 			to_chat(src, "<span class='xenoannounce'>[xeno_caste.ancient_message]</span>")
 			switch(tier)
 				if(XENO_TIER_TWO)
-					SSmonitor.monitor_statistics[ANCIENT_T2]++
+					SSmonitor.stats.Ancient_T2++
 				if(XENO_TIER_THREE)
-					SSmonitor.monitor_statistics[ANCIENT_T3]++
+					SSmonitor.stats.Ancient_T3++
 				if(XENO_TIER_FOUR)
-					SSmonitor.monitor_statistics[ANCIENT_QUEEN]++
+					SSmonitor.stats.Ancient_Queen++
 
 	generate_name() //Give them a new name now
 

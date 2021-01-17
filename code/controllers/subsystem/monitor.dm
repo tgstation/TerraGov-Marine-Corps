@@ -2,7 +2,10 @@ SUBSYSTEM_DEF(monitor)
 	name = "Monitor"
 	init_order = INIT_ORDER_MONITOR
 	runlevels = RUNLEVEL_GAME
-	wait = FREQUENCY_STATE_CALCULATION
+	wait = 5 MINUTES
+	can_fire = 0
+
+
 	///The next world.time for wich the monitor subsystem refresh the state
 	var/scheduled = 0
 	///The current state
@@ -26,25 +29,27 @@ SUBSYSTEM_DEF(monitor)
 	///TRUE if xenos have hijacked into ship. Disable the monitor
 	var/hijacked = FALSE
 	///List of all int stats
-	var/list/list/monitor_statistics[B17_USED]
+	var/datum/monitor_statistics/stats = new
 	
+/datum/monitor_statistics
+	var/Ancient_Queen = 0
+	var/Elder_Queen = 0
+	var/Ancient_T3 = 0
+	var/Elder_T3 = 0
+	var/Ancient_T2 = 0
+	var/Elder_T2 = 0
+	var/list/Miniguns_in_use = list()
+	var/list/SADAR_in_use = list() 
+	var/list/B18_in_use = list()
+	var/list/B17_in_use = list()
+	var/OB_available = 0
 
-
-/datum/controller/subsystem/monitor/Initialize(time, zlevel)
-	var/i
-	var/list/l
-	for(i=ANCIENT_QUEEN, i<=OB_AVAILABLE, i++)
-		monitor_statistics[i] = 0
-	for(i=MINIGUN_USED, i<= B17_USED, i++)
-		l = list()
-		monitor_statistics[i] = l
-	if(CONFIG_GET(flag/monitor_disallowed))
-		can_fire = 0
-	scheduled = START_STATE_CALCULATION + world.time
-	return ..()
+/datum/controller/subsystem/monitor/Initialize(start_timeofday)
+	. = ..()
+	addtimer(VARSET_CALLBACK(src, can_fire, TRUE), START_STATE_CALCULATION)
 
 /datum/controller/subsystem/monitor/fire(resumed = 0)
-	if(!resumed & world.time>START_STATE_CALCULATION)
+	if(!resumed)
 		check_state() //only check these if we aren't resuming a paused fire
 
 
@@ -68,22 +73,22 @@ SUBSYSTEM_DEF(monitor)
 ///Calculate the points supposedly representating of the situation	
 /datum/controller/subsystem/monitor/proc/calculate_state_points()
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	. += monitor_statistics[ANCIENT_T2] * ANCIENT_T2_WEIGHT
-	. += monitor_statistics[ANCIENT_T3] * ANCIENT_T3_WEIGHT
-	. += monitor_statistics[ELDER_T2] * ELDER_T2_WEIGHT
-	. += monitor_statistics[ELDER_T3] * ELDER_T3_WEIGHT
-	. += monitor_statistics[ANCIENT_QUEEN] * ANCIENT_QUEEN_WEIGHT
-	. += monitor_statistics[ELDER_QUEEN] * ELDER_QUEEN_WEIGHT
+	. += stats.Ancient_T2 * ANCIENT_T2_WEIGHT
+	. += stats.Ancient_T3 * ANCIENT_T3_WEIGHT
+	. += stats.Elder_T2 * ELDER_T2_WEIGHT
+	. += stats.Elder_T3 * ELDER_T3_WEIGHT
+	. += stats.Ancient_Queen * ANCIENT_QUEEN_WEIGHT
+	. += stats.Elder_Queen * ELDER_QUEEN_WEIGHT
 	. += human_on_ground * HUMAN_LIFE_ON_GROUND_WEIGHT
 	. += (GLOB.alive_human_list.len - human_on_ground) * HUMAN_LIFE_ON_SHIP_WEIGHT
 	. += GLOB.alive_xeno_list.len * XENOS_LIFE_WEIGHT
 	. += (xeno_job.total_positions - xeno_job.current_positions) * BURROWED_LARVA_WEIGHT
-	. += monitor_statistics[MINIGUN_USED].len * MINIGUN_PRICE * REQ_POINTS_WEIGHT
-	. += monitor_statistics[SADAR_USED].len * SADAR_PRICE * REQ_POINTS_WEIGHT
-	. += monitor_statistics[B17_USED].len * B17_PRICE * REQ_POINTS_WEIGHT
-	. += monitor_statistics[B18_USED].len * B18_PRICE * REQ_POINTS_WEIGHT
+	. += stats.Miniguns_in_use.len * MINIGUN_PRICE * REQ_POINTS_WEIGHT
+	. += stats.SADAR_in_use.len * SADAR_PRICE * REQ_POINTS_WEIGHT
+	. += stats.B17_in_use.len * B17_PRICE * REQ_POINTS_WEIGHT
+	. += stats.B18_in_use.len * B18_PRICE * REQ_POINTS_WEIGHT
 	. += SSpoints.supply_points * REQ_POINTS_WEIGHT
-	. += monitor_statistics[OB_AVAILABLE] * OB_AVAILABLE_WEIGHT
+	. += stats.OB_available * OB_AVAILABLE_WEIGHT
 
 ///Keep the monitor informed about the position of humans
 /datum/controller/subsystem/monitor/proc/process_human_positions()
@@ -103,6 +108,8 @@ SUBSYSTEM_DEF(monitor)
 		humans_all_in_FOB_counter++
 		if (humans_all_in_FOB_counter == 3)
 			FOB_hugging = TRUE
+			return
+		return
 	else
 		humans_all_in_FOB_counter = 0
 		FOB_hugging = FALSE

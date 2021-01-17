@@ -980,11 +980,11 @@
 
 /obj/item/weapon/gun/launcher/rocket/sadar/equipped(mob/user, slot)
 	. = ..()
-	SSmonitor.monitor_statistics[SADAR_USED] |= src
+	SSmonitor.stats.SADAR_in_use|=src
 
 /obj/item/weapon/gun/launcher/rocket/sadar/removed_from_inventory()
 	. = ..()
-	SSmonitor.monitor_statistics[SADAR_USED] -= src
+	SSmonitor.stats.SADAR_in_use-=src
 
 //-------------------------------------------------------
 //M5 RPG'S MEAN FUCKING COUSIN
@@ -1079,11 +1079,11 @@
 
 /obj/item/weapon/gun/minigun/pickup(mob/user)
 	. = ..()
-	SSmonitor.monitor_statistics[MINIGUN_USED] |= src
+	SSmonitor.stats.Miniguns_in_use |= src
 
 /obj/item/weapon/gun/minigun/removed_from_inventory()
 	. = ..()
-	SSmonitor.monitor_statistics[MINIGUN_USED] -= src
+	SSmonitor.stats.Miniguns_in_use -= src
 
 //This is a minigun not a chaingun.
 obj/item/weapon/gun/minigun/Fire(atom/target, mob/living/user, params, reflex = FALSE, dual_wield)

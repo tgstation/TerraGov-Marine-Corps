@@ -348,9 +348,9 @@
 	if(upgrade == XENO_UPGRADE_THREE)
 		switch(tier)
 			if(XENO_TIER_TWO)
-				SSmonitor.monitor_statistics[ANCIENT_T2]--
+				SSmonitor.stats.Ancient_T2--
 			if(XENO_TIER_THREE)
-				SSmonitor.monitor_statistics[ANCIENT_T3]--
+				SSmonitor.stats.Ancient_T3--
 
 	qdel(src)
 	INVOKE_ASYNC(new_xeno, /mob/living.proc/do_jitter_animation, 1000)
