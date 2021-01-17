@@ -13,8 +13,8 @@
 	gun_type = /obj/item/weapon/gun/pistol/standard_pistol
 
 /obj/item/ammo_magazine/box9mm
-	name = "box of 9mm"
-	desc = "A box containing 70 rounds of 9mm."
+	name = "packet of 9mm"
+	desc = "A packet containing 70 rounds of 9mm."
 	caliber = "9x19mm Parabellum"
 	icon_state = "box_9mm"
 	current_rounds = 70
@@ -68,7 +68,7 @@
 	gun_type = /obj/item/weapon/gun/pistol/m1911
 
 /obj/item/ammo_magazine/acp
-	name = "box of .45 ACP"
+	name = "packet of .45 ACP"
 	icon_state = "box_45acp"
 	default_ammo = /datum/ammo/bullet/pistol/heavy
 	caliber = ".45 ACP"

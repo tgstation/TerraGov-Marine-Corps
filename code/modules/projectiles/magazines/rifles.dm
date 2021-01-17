@@ -211,14 +211,14 @@
 	reload_delay = 3 SECONDS
 
 /obj/item/ammo_magazine/box10x26mm
-	name = "box of 10x26mm"
-	desc = "A box containing 100 rounds of 10x26mm caseless.."
+	name = "packet of 10x26mm"
+	desc = "A packet containing 100 rounds of 10x26mm caseless.."
 	icon_state = "box_10x26mm"
 	caliber = "10x26mm caseless"
 	default_ammo = /datum/ammo/bullet/rifle/machinegun
-	w_class = WEIGHT_CLASS_NORMAL
-	current_rounds = 325
-	max_rounds = 325
+	w_class = WEIGHT_CLASS_SMALL
+	current_rounds = 100
+	max_rounds = 100
 
 //-------------------------------------------------------
 //M412L1 HEAVY PULSE RIFLE
