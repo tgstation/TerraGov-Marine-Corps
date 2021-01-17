@@ -164,16 +164,10 @@
 /datum/surgery_step/cavity/implant_removal/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	if(affected.implants.len)
 
-		var/obj/item/obj = affected.implants[1]
+		var/obj/item/implantfound = affected.implants[1]
 		user.visible_message("<span class='notice'>[user] takes something out of incision on [target]'s [affected.display_name] with \the [tool].</span>", \
-		"<span class='notice'>You take [obj] out of incision on [target]'s [affected.display_name]s with \the [tool].</span>")
-		obj.unembed_ourself()
-
-		obj.loc = get_turf(target)
-		if(istype(obj,/obj/item/implant))
-			var/obj/item/implant/imp = obj
-			imp.imp_in = null
-			imp.implanted = 0
+		"<span class='notice'>You take [implantfound] out of incision on [target]'s [affected.display_name]s with \the [tool].</span>")
+		implantfound.unembed_ourself()
 
 	else if(affected.hidden)
 		user.visible_message("<span class='notice'>[user] takes something out of incision on [target]'s [affected.display_name] with \the [tool].</span>", \
