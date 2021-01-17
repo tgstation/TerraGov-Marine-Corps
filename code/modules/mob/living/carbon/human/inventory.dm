@@ -242,7 +242,7 @@
 	for(var/slot in SLOT_ALL)
 		item = get_item_by_slot(slot)
 		if (item)
-			src.doUnEquip(item)
+			doUnEquip(item)
 			item.removed_from_inventory()
 			item.forceMove(newloc)
 
@@ -535,4 +535,3 @@
 		if(save_id && istype(i, /obj/item/card/id))
 			continue
 		qdel(i)
-
