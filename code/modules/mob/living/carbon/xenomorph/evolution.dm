@@ -215,7 +215,7 @@
 
 
 	else
-		if(new_caste_type == /mob/living/carbon/xenomorph/runner & prob(CONFIG_GET(number/roony_spawn)) & CONFIG_GET(flag/roony))
+		if(new_caste_type == /mob/living/carbon/xenomorph/runner & CONFIG_GET(flag/roony))//If the fun config is set, every runner is a roony
 			new_caste_type = /mob/living/carbon/xenomorph/roony
 		var/potential_queens = length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/larva]) + length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/drone])
 
