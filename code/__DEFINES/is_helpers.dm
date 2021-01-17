@@ -216,6 +216,8 @@
 
 #define isxenoresearcharea(A) (istype(A, /area/mainship/medical/medical_science))
 
+#define isspacearea(A) (istype(A, /area/space)) //Spacceeeee
+
 // Admin
 #define isaghost(mob) ( mob.key && mob.key[1] == "@" )
 #define isclientedaghost(living) (isaghost(living) && GLOB.directory[copytext_char(living.ckey, 2)] && living.get_ghost())

@@ -174,6 +174,10 @@
 			to_chat(src, "<span class='warning'>Something in this place is isolating us from Queen Mother's psychic presence. We should leave before it's too late!</span>")
 			return
 
+		if(isspacearea(get_area(src))) //In the unlikely event we find ourselves outside a hull in a space area, prevent evolving into a caste that can prevent hivemind collapse
+			to_chat(src, "<span class='warning'>We are unable to evolve into a Queen in space!</span>")
+			return
+
 		switch(hivenumber) // because it causes issues otherwise
 			if(XENO_HIVE_CORRUPTED)
 				new_caste_type = /mob/living/carbon/xenomorph/queen/Corrupted
@@ -199,6 +203,10 @@
 			to_chat(src, "<span class='warning'>Something in this place is interfering with our link to Queen Mother. We are unable to evolve to a psychic caste here!</span>")
 			return
 
+		if(isspacearea(get_area(src))) //In the unlikely event we find ourselves outside a hull in a space area, prevent evolving into a caste that can prevent hivemind collapse
+			to_chat(src, "<span class='warning'>We are unable to evolve into a Shrike in space!</span>")
+			return
+
 	else if(new_caste_type == /mob/living/carbon/xenomorph/hivemind) //Special case for dealing with hiveminds - this may be subject to heavy change, such as multiple hiveminds potentially being an option
 		if(length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/hivemind]))
 			to_chat(src, "<span class='warning'>There cannot be two manifestations of the hivemind's will at once.</span>")
@@ -206,6 +214,10 @@
 
 		if(isxenoresearcharea(get_area(src)))
 			to_chat(src, "<span class='warning'>Something in this place is interfering with our link to the Hivemind. We are unable to evolve to be its manifestation!</span>")
+			return
+
+		if(isspacearea(get_area(src)))
+			to_chat(src, "<span class='warning'>We are unable to manifest the Hivemind in space!</span>")
 			return
 
 		var/turf/T = get_turf(src)
