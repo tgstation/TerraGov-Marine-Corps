@@ -6,7 +6,7 @@
 	caste_type_path = /mob/living/carbon/xenomorph/wraith
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_BASETYPE
-	wound_type = "screecher" //used to match appropriate wound overlays
+	wound_type = "wraith" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
 	melee_damage = 17

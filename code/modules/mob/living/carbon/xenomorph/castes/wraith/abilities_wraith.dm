@@ -8,6 +8,33 @@
 	plasma_cost = 150
 	cooldown_timer = 60 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_PLACE_WARP_BEACON
+	/// This is the warp shadow that the Wraith creates with its Place Warp Shadow ability, and teleports to with Hyperposition
+	var/obj/effect/xenomorph/warp_shadow/warp_shadow
+
+/datum/action/place_warp_shadow_data_storage_datum
+	var/obj/effect/xenomorph/warp_shadow/warp_shadow
+
+///Store all relevant variables to pass along
+/datum/action/xeno_action/place_warp_shadow/on_xeno_pre_upgrade()
+	SIGNAL_HANDLER
+	var/datum/action/place_warp_shadow_data_storage_datum/storage_datum = new /datum/action/place_warp_shadow_data_storage_datum
+	owner.actions_by_path[storage_datum.type] = storage_datum //store it in actions for reference later
+	storage_datum.warp_shadow = warp_shadow
+
+/datum/action/xeno_action/place_warp_shadow/on_xeno_upgrade()
+	SIGNAL_HANDLER
+	//Pass along relevant variables
+	var/datum/action/place_warp_shadow_data_storage_datum/storage_datum = owner.actions_by_path[/datum/action/place_warp_shadow_data_storage_datum]
+	warp_shadow = storage_datum.warp_shadow
+
+	//Null out and delete the storage datum
+	storage_datum.warp_shadow = null
+	owner.actions_by_path[storage_datum.type] = null
+	QDEL_NULL(storage_datum)
+
+/datum/action/xeno_action/place_warp_shadow/give_action()
+	. = ..()
+	RegisterSignal(owner, COMSIG_XENOMORPH_DEATH, .proc/unset_warp_shadow) //Removes warp shadow on death
 
 /datum/action/xeno_action/place_warp_shadow/action_activate()
 	var/mob/living/carbon/xenomorph/wraith/ghost = owner
@@ -18,6 +45,7 @@
 	if(!do_after(ghost, WRAITH_PLACE_WARP_BEACON_WINDUP, TRUE, ghost, BUSY_ICON_BUILD)) //Channel time/wind up
 		ghost.visible_message("<span class='xenowarning'>The space around [ghost] abruptly stops shifting and wavering.</span>", \
 		"<span class='xenodanger'>We cease binding our essence to this place...</span>")
+		add_cooldown(cooldown_override = WRAITH_PLACE_WARP_BEACON_FAIL_COOLDOWN_OVERRIDE)
 		return fail_activate()
 
 	var/turf/T = get_turf(ghost)
@@ -25,13 +53,14 @@
 	"<span class='xenodanger'>We complete our work, binding our essence to this point.</span>", null, 5) //Fluff
 	var/obj/effect/xenomorph/warp_shadow/shadow = new(T) //Create the new warp shadow.
 	playsound(T, 'sound/weapons/emitter.ogg', 25, 1)
-	QDEL_NULL(ghost.warp_shadow) //Delete the old warp shadow
-	ghost.warp_shadow = shadow //Set our new warp shadow
-	RegisterSignal(ghost.warp_shadow, COMSIG_PARENT_PREQDELETED, .proc/unset_warp_shadow) //For var clean up
-	shadow.setDir(ghost.dir) //Have it imitate our facing
-	shadow.pixel_x = ghost.pixel_x //Inherit pixel offsets
-	shadow.pixel_y = ghost.pixel_y //Inherit pixel offsets
-	teleport_debuff_aoe(shadow) //SFX
+	QDEL_NULL(warp_shadow) //Delete the old warp shadow
+	warp_shadow = shadow //Set the new warp shadow
+	RegisterSignal(warp_shadow, COMSIG_PARENT_PREQDELETED, .proc/unset_warp_shadow) //For var clean up
+	RegisterSignal(owner, COMSIG_PARENT_PREQDELETED, .proc/unset_warp_shadow) //For var clean up
+	warp_shadow.setDir(ghost.dir) //Have it imitate our facing
+	warp_shadow.pixel_x = ghost.pixel_x //Inherit pixel offsets
+	warp_shadow.pixel_y = ghost.pixel_y //Inherit pixel offsets
+	teleport_debuff_aoe(warp_shadow) //SFX
 
 	succeed_activate()
 	add_cooldown()
@@ -39,9 +68,12 @@
 ///Nulls out the warp shadow
 /datum/action/xeno_action/place_warp_shadow/proc/unset_warp_shadow()
 	SIGNAL_HANDLER
-	var/mob/living/carbon/xenomorph/ghost = owner
-	UnregisterSignal(ghost.warp_shadow, COMSIG_PARENT_PREQDELETED)
-	ghost.warp_shadow = null
+	if(!warp_shadow) //In the event the parent dies without placing a shadow
+		return
+	UnregisterSignal(warp_shadow, COMSIG_PARENT_PREQDELETED)
+	UnregisterSignal(owner, COMSIG_PARENT_PREQDELETED)
+	QDEL_NULL(warp_shadow) //remove the actual shadow
+	warp_shadow = null
 
 
 /datum/action/xeno_action/place_warp_shadow/on_cooldown_finish()
@@ -63,60 +95,60 @@
 
 /datum/action/xeno_action/hyperposition/can_use_action(silent = FALSE, override_flags)
 	. = ..()
-	var/mob/living/carbon/xenomorph/wraith/ghost = owner
-	var/obj/effect/xenomorph/warp_shadow/shadow = ghost.warp_shadow
+	var/datum/action/xeno_action/place_warp_shadow/warp_shadow_check = owner.actions_by_path[/datum/action/xeno_action/place_warp_shadow]
+	if(!warp_shadow_check) //Mainly for when we transition on upgrading
+		return FALSE
 
-	if(!shadow)
+	if(!warp_shadow_check.warp_shadow)
 		if(!silent)
-			to_chat(ghost, "<span class='xenodanger'>We have no warp shadow to teleport to!</span>")
+			to_chat(owner, "<span class='xenodanger'>We have no warp shadow to teleport to!</span>")
 		return FALSE
 
 /datum/action/xeno_action/hyperposition/action_activate()
 	. = ..()
-	var/mob/living/carbon/xenomorph/wraith/ghost = owner
-	var/obj/effect/xenomorph/warp_shadow/shadow = ghost.warp_shadow
+	var/datum/action/xeno_action/place_warp_shadow/warp_shadow_check = owner.actions_by_path[/datum/action/xeno_action/place_warp_shadow]
+	var/obj/effect/xenomorph/warp_shadow/shadow = warp_shadow_check.warp_shadow
 
 	var/area/A = get_area(shadow)
 
-	ghost.do_jitter_animation(2000) //Animation
-
-	var/distance = get_dist(ghost, shadow) //Get the distance so we can calculate the wind up
+	var/distance = get_dist(owner, shadow) //Get the distance so we can calculate the wind up
 	var/hyperposition_windup = clamp(distance * 0.5 SECONDS - 5 SECONDS, WRAITH_HYPERPOSITION_MIN_WINDUP, WRAITH_HYPERPOSITION_MAX_WINDUP)
 
-	ghost.visible_message("<span class='warning'>The air starts to violently roil and shimmer around [ghost]!</span>", \
+	owner.visible_message("<span class='warning'>The air starts to violently roil and shimmer around [owner]!</span>", \
 	"<span class='xenodanger'>We begin to teleport to our warp shadow located at [A] (X: [shadow.x], Y: [shadow.y]). We estimate this will take [hyperposition_windup * 0.1] seconds.</span>")
 
-	ghost.add_filter("wraith_hyperposition_windup_filter_1", 3, list("type" = "motion_blur", 0, 0)) //Cool filter appear
-	ghost.add_filter("wraith_hyperposition_windup_filter_2", 3, list("type" = "motion_blur", 0, 0)) //Cool filter appear
+	owner.add_filter("wraith_hyperposition_windup_filter_1", 3, list("type" = "motion_blur", 0, 0)) //Cool filter appear
+	owner.add_filter("wraith_hyperposition_windup_filter_2", 3, list("type" = "motion_blur", 0, 0)) //Cool filter appear
 
-	animate(ghost.get_filter("wraith_hyperposition_windup_filter_1"), x = 30*rand() - 15, y = 30*rand() - 15, time = 0.5 SECONDS, loop = -1, flags=ANIMATION_PARALLEL)
-	animate(ghost.get_filter("wraith_hyperposition_windup_filter_2"), x = 30*rand() - 15, y = 30*rand() - 15, time = 0.5 SECONDS, loop = -1, flags=ANIMATION_PARALLEL)
+	animate(owner.get_filter("wraith_hyperposition_windup_filter_1"), x = 30*rand() - 15, y = 30*rand() - 15, time = 0.5 SECONDS, loop = -1, flags=ANIMATION_PARALLEL)
+	animate(owner.get_filter("wraith_hyperposition_windup_filter_2"), x = 30*rand() - 15, y = 30*rand() - 15, time = 0.5 SECONDS, loop = -1, flags=ANIMATION_PARALLEL)
 
-	if(!do_after(ghost, hyperposition_windup, TRUE, ghost, BUSY_ICON_FRIENDLY)) //Channel time/wind up
-		ghost.visible_message("<span class='xenowarning'>The space around [ghost] abruptly stops shifting and wavering.</span>", \
+	if(!do_after(owner, hyperposition_windup, TRUE, owner, BUSY_ICON_FRIENDLY)) //Channel time/wind up
+		owner.visible_message("<span class='xenowarning'>The space around [owner] abruptly stops shifting and wavering.</span>", \
 		"<span class='xenodanger'>We abort teleporting back to our warp shadow.</span>")
-		ghost.remove_filter("wraith_hyperposition_windup_filter_1")
-		ghost.remove_filter("wraith_hyperposition_windup_filter_2")
+		owner.remove_filter("wraith_hyperposition_windup_filter_1")
+		owner.remove_filter("wraith_hyperposition_windup_filter_2")
+		add_cooldown(cooldown_override = WRAITH_HYPERPOSITION_COOLDOWN_OVERRIDE)
 		return fail_activate()
 
-	ghost.remove_filter("wraith_hyperposition_windup_filter_1")
-	ghost.remove_filter("wraith_hyperposition_windup_filter_2")
+	owner.remove_filter("wraith_hyperposition_windup_filter_1")
+	owner.remove_filter("wraith_hyperposition_windup_filter_2")
 
 	if(!can_use_action()) //Check if we can actually position swap again due to the wind up delay.
 		return fail_activate()
 
 	var/beacon_turf = get_turf(shadow)
 
-	shadow.forceMove(get_turf(ghost)) //Move the beacon to where we are leaving
-	shadow.dir = ghost.dir //Have it imitate our facing
-	shadow.pixel_x = ghost.pixel_x //Inherit pixel offsets
-	teleport_debuff_aoe(ghost) //Apply tele debuff
+	shadow.forceMove(get_turf(owner)) //Move the beacon to where we are leaving
+	shadow.dir = owner.dir //Have it imitate our facing
+	shadow.pixel_x = owner.pixel_x //Inherit pixel offsets
+	teleport_debuff_aoe(owner) //Apply tele debuff
 
-	ghost.forceMove(beacon_turf) //Move to where the beacon was
-	teleport_debuff_aoe(ghost) //Apply tele debuff
+	owner.forceMove(beacon_turf) //Move to where the beacon was
+	teleport_debuff_aoe(owner) //Apply tele debuff
 
-	ghost.visible_message("<span class='warning'>\ [ghost] suddenly vanishes in a vortex of warped space!</span>", \
-	"<span class='xenodanger'>We teleport, swapping positions with our warp shadow. Our warp shadow has moved to [get_area(shadow)] (X: [shadow.x], Y: [shadow.y]).</span>", null, 5) //Let user know the new location
+	owner.visible_message("<span class='warning'>\ [owner] suddenly vanishes in a vortex of warped space!</span>", \
+	"<span class='xenodanger'>We teleport, swapping positions with our warp shadow. Our warp shadow has moved to  [AREACOORD_NO_Z(shadow)].</span>", null, 5) //Let user know the new location
 
 	GLOB.round_statistics.wraith_hyperpositions++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "wraith_hyperpositions") //Statistics
@@ -141,7 +173,37 @@
 	keybind_signal = COMSIG_XENOABILITY_PHASE_SHIFT
 	var/turf/starting_turf = null
 	var/phase_shift_active = FALSE
+	var/phase_shift_duration_timer_id
 
+/datum/action/phase_shift_data_storage_datum
+	var/turf/starting_turf = null
+	var/phase_shift_active = FALSE
+	var/phase_shift_timer_duration
+
+///Store all relevant variables to pass along
+/datum/action/xeno_action/phase_shift/on_xeno_pre_upgrade()
+	SIGNAL_HANDLER
+	var/datum/action/phase_shift_data_storage_datum/storage_datum = new /datum/action/phase_shift_data_storage_datum
+	owner.actions_by_path[storage_datum.type] = storage_datum //store it in actions for reference later
+	storage_datum.starting_turf = starting_turf
+	storage_datum.phase_shift_active = phase_shift_active
+	storage_datum.phase_shift_timer_duration = timeleft(phase_shift_duration_timer_id)
+
+/datum/action/xeno_action/phase_shift/on_xeno_upgrade()
+	SIGNAL_HANDLER
+	//Pass along relevant variables
+	var/datum/action/phase_shift_data_storage_datum/storage_datum = owner.actions_by_path[/datum/action/phase_shift_data_storage_datum]
+	starting_turf = storage_datum.starting_turf
+	phase_shift_active = storage_datum.phase_shift_active
+	if(phase_shift_active && storage_datum.phase_shift_timer_duration)
+		phase_shift_duration_timer_id = addtimer(CALLBACK(src, .proc/phase_shift_deactivate), storage_datum.phase_shift_timer_duration, TIMER_STOPPABLE)
+
+	//Null out and delete the storage datum
+	storage_datum.starting_turf = null
+	storage_datum.phase_shift_active = null
+	storage_datum.phase_shift_timer_duration = null
+	owner.actions_by_path[storage_datum.type] = null
+	QDEL_NULL(storage_datum)
 
 /datum/action/xeno_action/phase_shift/action_activate()
 	. = ..()
@@ -171,7 +233,7 @@
 	playsound(owner, "sound/effects/ghost.ogg", 25, 0, 1)
 
 	addtimer(CALLBACK(src, .proc/phase_shift_warning), WRAITH_PHASE_SHIFT_DURATION * WRAITH_PHASE_SHIFT_DURATION_WARNING) //Warn them when Phase Shift is about to end
-	addtimer(CALLBACK(src, .proc/phase_shift_deactivate), WRAITH_PHASE_SHIFT_DURATION)
+	phase_shift_duration_timer_id = addtimer(CALLBACK(src, .proc/phase_shift_deactivate), WRAITH_PHASE_SHIFT_DURATION, TIMER_STOPPABLE)
 	ghost.add_filter("wraith_phase_shift", 4, list("type" = "blur", 5)) //Cool filter appear
 
 	ghost_movable.generic_canpass = FALSE //So incorporeality is actually checked for collision
@@ -239,8 +301,10 @@
 		starting_turf = null
 		return
 
+
 	var/distance = get_dist(current_turf, starting_turf)
 	var/phase_shift_stun_time = clamp(distance * 0.1 SECONDS, 0.5 SECONDS, 3 SECONDS) //Recovery time
+	phase_shift_stun_time = 0
 	ghost.ParalyzeNoChain(phase_shift_stun_time * XENO_PARALYZE_NORMALIZATION_MULTIPLIER)
 	ghost.visible_message("<span class='warning'>[ghost] form wavers and becomes opaque.</span>", \
 	"<span class='highdanger'>We phase back into reality, our mind reeling from the experience. We estimate we will take [phase_shift_stun_time * 0.1] seconds to recover!</span>")
@@ -263,15 +327,18 @@
 	cooldown_timer = 1 SECONDS //Token for anti-spam
 	keybind_signal = COMSIG_XENOABILITY_RESYNC
 
+/datum/action/xeno_action/resync/can_use_action(silent = FALSE, override_flags)
+	. = ..()
+
+	if(!(owner.status_flags & INCORPOREAL))
+		if(!silent)
+			to_chat(owner,"<span class='xenodanger'>We are already synchronized with realspace!</span>")
+		return FALSE
 
 /datum/action/xeno_action/resync/action_activate()
 	. = ..()
-	if(!owner.status_flags & INCORPOREAL)
-		to_chat(owner,"<span class='xenodanger'>We are already synchronized with realspace!</span>")
-		return fail_activate()
 
-	var/mob/living/carbon/xenomorph/X = owner
-	var/datum/action/xeno_action/phase_shift/disable_shift = X.actions_by_path[/datum/action/xeno_action/phase_shift]
+	var/datum/action/xeno_action/phase_shift/disable_shift = owner.actions_by_path[/datum/action/xeno_action/phase_shift]
 	disable_shift.phase_shift_deactivate()
 
 	succeed_activate()
@@ -413,30 +480,61 @@
 	var/atom/movable/banishment_target = null
 	///SFX indicating the banished target's position
 	var/obj/effect/temp_visual/banishment_portal/portal = null
+	///The timer ID of any Banish currently active
+	var/banish_duration_timer_id
 
-/datum/action/xeno_action/activable/banish/give_action(mob/living/L)
-	. = ..()
-	RegisterSignal(L, COMSIG_XENOMORPH_WRAITH_RECALL, .proc/banish_deactivate)
+/datum/action/banish_data_storage_datum
+	var/turf/banished_turf
+	var/atom/movable/banishment_target
+	var/obj/effect/temp_visual/banishment_portal/portal
+	var/banish_timer_duration
 
-/datum/action/xeno_action/activable/banish/remove_action(mob/living/L)
-	UnregisterSignal(L, COMSIG_XENOMORPH_WRAITH_RECALL)
-	return ..()
+///Store all relevant variables to pass along
+/datum/action/xeno_action/activable/banish/on_xeno_pre_upgrade()
+	SIGNAL_HANDLER
+	var/datum/action/banish_data_storage_datum/storage_datum = new /datum/action/banish_data_storage_datum
+	owner.actions_by_path[storage_datum.type] = storage_datum //store it in actions for reference later
+	storage_datum.banished_turf = banished_turf
+	storage_datum.banishment_target = banishment_target
+	storage_datum.portal = portal
+	storage_datum.banish_timer_duration = timeleft(banish_duration_timer_id)
+
+/datum/action/xeno_action/activable/banish/on_xeno_upgrade()
+	SIGNAL_HANDLER
+	//Pass along relevant variables
+	var/datum/action/banish_data_storage_datum/storage_datum = owner.actions_by_path[/datum/action/banish_data_storage_datum]
+	banished_turf = storage_datum.banished_turf
+	banishment_target = storage_datum.banishment_target
+	portal = storage_datum.portal
+	if(banishment_target && storage_datum.banish_timer_duration) //set the remaining time for the banishment portal
+		banish_duration_timer_id = addtimer(CALLBACK(src, .proc/banish_deactivate), storage_datum.banish_timer_duration, TIMER_STOPPABLE)
+
+	//Null out and delete the storage datum
+	storage_datum.banished_turf = null
+	storage_datum.banishment_target = null
+	storage_datum.portal = null
+	storage_datum.banish_timer_duration = null
+	owner.actions_by_path[storage_datum.type] = null
+	QDEL_NULL(storage_datum)
 
 
 /datum/action/xeno_action/activable/banish/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 
-	if(!ismovable(A) || A.resistance_flags & RESIST_ALL) //Cannot banish non-movables/things that are supposed to be invul
-		to_chat(owner, "<span class='xenowarning'>We cannot banish this!</span>")
+	if(!ismovableatom(A) || CHECK_BITFIELD(A.resistance_flags, INDESTRUCTIBLE)) //Cannot banish non-movables/things that are supposed to be invul
+		if(!silent)
+			to_chat(owner, "<span class='xenowarning'>We cannot banish this!</span>")
 		return FALSE
 
 	var/distance = get_dist(owner, A)
 	if(distance > WRAITH_BANISH_RANGE) //Needs to be in range.
-		to_chat(owner, "<span class='xenowarning'>Our target is too far away! It must be [distance - WRAITH_BANISH_RANGE] tiles closer!</span>")
+		if(!silent)
+			to_chat(owner, "<span class='xenowarning'>Our target is too far away! It must be [distance - WRAITH_BANISH_RANGE] tiles closer!</span>")
 		return FALSE
 
 	if(!owner.line_of_sight(A)) //Needs to be in line of sight.
-		to_chat(owner, "<span class='xenowarning'>We can't banish without line of sight to our target!</span>")
+		if(!silent)
+			to_chat(owner, "<span class='xenowarning'>We can't banish without line of sight to our target!</span>")
 		return FALSE
 
 /datum/action/xeno_action/activable/banish/use_ability(atom/movable/A)
@@ -453,11 +551,9 @@
 	banishment_target.resistance_flags = RESIST_ALL
 	if(isliving(A))
 		var/mob/living/stasis_target = banishment_target
-		stasis_target.set_stat(UNCONSCIOUS) //Force the target to KO
-		stasis_target.update_stat() //Force a stat update immediately
+		stasis_target.apply_status_effect(/datum/status_effect/incapacitating/unconscious) //Force the target to KO
 		stasis_target.notransform = TRUE //Stasis
 		stasis_target.overlay_fullscreen("banish", /obj/screen/fullscreen/blind) //Force the blind overlay
-
 
 	var/duration = WRAITH_BANISH_BASE_DURATION //Set the duration
 
@@ -474,6 +570,7 @@
 	else if(isliving(banishment_target)) //We halve the max duration for living non-allies
 		duration *= WRAITH_BANISH_NONFRIENDLY_LIVING_MULTIPLIER
 
+
 	banishment_target.visible_message("<span class='warning'>Space abruptly twists and warps around [banishment_target] as it suddenly vanishes!</span>", \
 	"<span class='highdanger'>The world around you reels, reality seeming to twist and tear until you find yourself trapped in a forsaken void beyond space and time.</span>")
 	playsound(banished_turf, 'sound/weapons/emitter2.ogg', 50, 1) //this isn't quiet
@@ -481,7 +578,7 @@
 	to_chat(ghost,"<span class='xenodanger'>We have banished [banishment_target] to nullspace for [duration * 0.1] seconds.</span>")
 
 	addtimer(CALLBACK(src, .proc/banish_warning), duration * 0.7) //Warn when Banish is about to end
-	addtimer(CALLBACK(src, .proc/banish_deactivate), duration)
+	banish_duration_timer_id = addtimer(CALLBACK(src, .proc/banish_deactivate), duration, TIMER_STOPPABLE) //store the timer ID
 
 	succeed_activate()
 	add_cooldown()
@@ -514,8 +611,8 @@
 		var/mob/living/living_target = banishment_target
 		living_target = banishment_target
 		living_target.status_flags = initial(living_target.status_flags) //Remove stasis and temp invulerability
+		living_target.remove_status_effect(/datum/status_effect/incapacitating/unconscious) //Force the target to KO
 		living_target.notransform = initial(living_target.notransform)
-		living_target.update_stat() //Force a stat update immediately so that we don't spend time unconscious until the next tick
 		living_target.clear_fullscreen("banish") //Remove the blind overlay
 
 	banishment_target.visible_message("<span class='warning'>[banishment_target.name] abruptly reappears!</span>", \
@@ -546,13 +643,23 @@
 	cooldown_timer = 1 SECONDS //Token for anti-spam
 	keybind_signal = COMSIG_XENOABILITY_RECALL
 
+/datum/action/xeno_action/recall/can_use_action(silent = FALSE, override_flags)
+	. = ..()
+
+	var/datum/action/xeno_action/activable/banish/banish_check = owner.actions_by_path[/datum/action/xeno_action/activable/banish]
+	if(!banish_check) //Mainly for when we transition on upgrading
+		return FALSE
+
+	if(!banish_check.banishment_target)
+		if(!silent)
+			to_chat(owner,"<span class='xenodanger'>We have no targets banished!</span>")
+		return FALSE
+
 
 /datum/action/xeno_action/recall/action_activate()
 	. = ..()
-	if(!(SEND_SIGNAL(owner, COMSIG_XENOMORPH_WRAITH_RECALL) & COMPONENT_BANISH_TARGETS_EXIST))
-		to_chat(owner,"<span class='xenodanger'>We have no targets banished!</span>")
-		return fail_activate()
-
+	var/datum/action/xeno_action/activable/banish/banish_check = owner.actions_by_path[/datum/action/xeno_action/activable/banish]
+	banish_check.banish_deactivate()
 	succeed_activate()
 	add_cooldown()
 
