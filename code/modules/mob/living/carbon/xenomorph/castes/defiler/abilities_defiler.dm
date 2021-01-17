@@ -1,3 +1,10 @@
+GLOBAL_LIST_INIT(defiler_toxins, typecacheof(list(
+		/datum/reagent/toxin/xeno_neurotoxin,
+		/datum/reagent/toxin/xeno_hemodile,
+		/datum/reagent/toxin/xeno_transvitox
+	)))
+
+
 
 // ***************************************
 // *********** Defile
