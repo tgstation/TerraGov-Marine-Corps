@@ -26,7 +26,7 @@
 /mob/living/carbon/xenomorph/roony 
 	caste_base_type = /mob/living/carbon/xenomorph/roony
 	name = "Roony"
-	desc = "A small red alien that looks like it could run fairly quickly..."
+	desc = "A small red, out-of-place alien that looks like it could run fairly quickly... it looks adorable though!"
 	icon = 'icons/Xeno/2x2_Xenos.dmi' //They are now like, 2x1 or something
 	icon_state = "Roony Walking"
 	health = 100

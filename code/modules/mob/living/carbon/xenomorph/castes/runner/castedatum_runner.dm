@@ -166,7 +166,7 @@
 	caste_name = "Roony"
 	display_name = "Roony"
 	upgrade_name = ""
-	caste_desc = "A fast, four-legged terror, but weak in sustained combat."
+	caste_desc = "A fast, four-legged adorable, out-of-place terror, but weak in sustained combat."
 	caste_type_path = /mob/living/carbon/xenomorph/roony
 	tier = XENO_TIER_ONE
 	upgrade = XENO_UPGRADE_BASETYPE
@@ -231,7 +231,7 @@
 
 /datum/xeno_caste/roony/mature
 	upgrade_name = "Mature"
-	caste_desc = "A fast, four-legged terror, but weak in sustained combat. It looks a little more dangerous."
+	caste_desc = "A fast, four-legged adorable, out-of-place terror, but weak in sustained combat. It looks a little more dangerous."
 
 	upgrade = XENO_UPGRADE_ONE
 
@@ -261,7 +261,7 @@
 
 /datum/xeno_caste/roony/elder
 	upgrade_name = "Elder"
-	caste_desc = "A fast, four-legged terror, but weak in sustained combat. It looks pretty strong."
+	caste_desc = "A fast, four-legged adorable, out-of-place terror, but weak in sustained combat. It looks pretty strong."
 
 	upgrade = XENO_UPGRADE_TWO
 
@@ -294,7 +294,7 @@
 
 /datum/xeno_caste/roony/ancient
 	upgrade_name = "Ancient"
-	caste_desc = "Not what you want to run into in a dark alley. It looks extremely deadly."
+	caste_desc = "Not what you want to run into in a dark alley. It looks extremely adorable, yet it thirsts for your blood!"
 	ancient_message = "We are the fastest assassin of all time. Our speed is unmatched."
 	upgrade = XENO_UPGRADE_THREE
 	wound_type = "runner" //used to match appropriate wound overlays
@@ -325,5 +325,3 @@
 
 	// *** Ranged Attack *** //
 	pounce_delay = 13 SECONDS
-
-
