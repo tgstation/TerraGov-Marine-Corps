@@ -5,9 +5,6 @@
 	if(effects)
 		play_attack_sound(damage_amount, damage_type, damage_flag)
 
-	if(damage_type != BRUTE || damage_type != BURN) //special human damage should not break objects (OXY, STAMINA and so on).
-		return
-
 	if((resistance_flags & INDESTRUCTIBLE) || obj_integrity <= 0)
 		return
 	damage_amount = run_obj_armor(damage_amount, damage_type, damage_flag, attack_dir, armour_penetration)
@@ -26,7 +23,7 @@
 
 	//DESTROYING SECOND
 	if(obj_integrity <= 0)
-		obj_destruction(damage_flag)
+		obj_destruction(damage_amount, damage_type, damage_flag)
 
 
 /obj/proc/repair_damage(repair_amount)
@@ -158,7 +155,7 @@
 
 
 ///what happens when the obj's integrity reaches zero.
-/obj/proc/obj_destruction(damage_flag)
+/obj/proc/obj_destruction(damage_amount, damage_type, damage_flag)
 	if(destroy_sound)
 		playsound(loc, destroy_sound, 35, 1)
 	deconstruct(FALSE)
