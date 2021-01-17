@@ -1,0 +1,6 @@
+author: "TiviPlus"
+delete-after: True
+changes: 
+  - rscadd: "Adds medic tweezers for removing shrapenel
+spriteadd: Sprite by Daytona"
+  - code_imp: "known_implants is now a managed global"
