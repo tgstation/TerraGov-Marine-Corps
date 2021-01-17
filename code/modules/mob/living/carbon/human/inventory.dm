@@ -537,6 +537,16 @@
 	return FALSE
 
 /**
+ * Return the first item found in SLOT_ALL of the type searched
+ * type searched the type you are looking for
+ */
+/mob/living/carbon/human/proc/get_type_in_slots(type_searched)
+	for (var/slot in SLOT_ALL)
+		if (istype(get_item_by_slot(slot),type_searched))
+			return get_item_by_slot(slot)
+	
+
+/**
  * Return [TRUE]|[FALSE] if item_searched is in the hands of the human
  * item_searched the item you want to check
  */

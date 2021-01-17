@@ -490,6 +490,13 @@
 	update_icon()
 	return TRUE
 
+/obj/item/weapon/gun/flamer/marinestandard/wield(mob/user)//Auto linking
+	if (!current_mag)
+		var/mob/living/carbon/human/human_user = user
+		var/obj/item/ammo_magazine/flamer_tank/backtank/back_tank = human_user.get_type_in_slots(/obj/item/ammo_magazine/flamer_tank/backtank)
+		if (back_tank)
+			attach_fueltank(user, back_tank)
+	.=..()
 
 /obj/item/weapon/gun/flamer/marinestandard/able_to_fire(mob/user)
 	. = ..()
@@ -511,10 +518,40 @@
 			light_pilot(user, FALSE)
 		else 
 			hydro_active = FALSE
-			light_pilot(user, TRUE)
+			if (current_mag?.current_rounds > 0)
+				light_pilot(user, TRUE)
 		var/obj/screen/ammo/A = user.hud_used.ammo
 		A.update_hud(user)
 
+/obj/item/weapon/gun/flamer/marinestandard/attach_fueltank(mob/user, obj/item/ammo_magazine/flamer_tank/backtank/fueltank)
+	if (!istype(fueltank))
+		to_chat(user, "<span class='warning'>That's not an attachable fuel tank!</span>")
+		return
+	
+	if(fueltank.current_rounds <= 0)
+		to_chat(user, "<span class='warning'>That [fueltank.name] is empty!</span>")
+		return
+	
+	to_chat(user, "<span class='notice'>You begin linking [src] with the [fueltank.name]. Hold still...</span>")
+	if(do_after(user,fueltank.reload_delay, TRUE, src, BUSY_ICON_GENERIC))
+		if (current_mag)
+			if(istype(current_mag,/obj/item/ammo_magazine/flamer_tank/backtank))
+				detach_fueltank(user,FALSE)
+			else
+				user.put_in_hands(current_mag)//We remove the fuel tank if there is one
+		current_mag = fueltank
+		fueltank.attached_flamer = src
+		replace_ammo(user, fueltank)
+		if (!hydro_active)
+			light_pilot(user,TRUE)
+		playsound(user, reload_sound, 25, 1, 5)
+		update_icon(user)
+		var/obj/screen/ammo/A = user.hud_used.ammo
+		A.update_hud(user)
+		return
+	else
+		to_chat(user, "<span class='warning'>Your action was interrupted!</span>")
+		return
 
 /obj/item/weapon/gun/flamer/marinestandard/Fire(atom/target, mob/living/user, params, reflex)
 	if(active_attachable && istype(active_attachable, /obj/item/attachable/hydro_cannon) && (world.time > last_use + 10))
