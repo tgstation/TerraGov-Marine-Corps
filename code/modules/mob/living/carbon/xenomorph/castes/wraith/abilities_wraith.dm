@@ -402,7 +402,7 @@
 	var/mob/pulled_target = owner.pulling
 	if(pulled_target) //bring the pulled target with us if applicable but at the cost of sharply increasing the next cooldown
 		cooldown_mod = WRAITH_BLINK_DRAG_MULTIPLIER
-		to_chat(X, "<span class='xenodanger'>We bring [pulled_target] with us. We won't be ready to blink again for [cooldown_timer * 0.1] seconds due to the strain of doing so.</span>")
+		to_chat(X, "<span class='xenodanger'>We bring [pulled_target] with us. We won't be ready to blink again for [cooldown_timer * WRAITH_BLINK_DRAG_MULTIPLIER * 0.1] seconds due to the strain of doing so.</span>")
 		pulled_target.forceMove(T) //Teleport to our target turf
 
 	X.forceMove(T) //Teleport to our target turf
@@ -513,7 +513,7 @@
 /datum/action/xeno_action/activable/banish/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 
-	if(!ismovableatom(A) || CHECK_BITFIELD(A.resistance_flags, INDESTRUCTIBLE)) //Cannot banish non-movables/things that are supposed to be invul
+	if(!ismovableatom(A) || iseffect(A) || CHECK_BITFIELD(A.resistance_flags, INDESTRUCTIBLE)) //Cannot banish non-movables/things that are supposed to be invul; also we ignore effects
 		if(!silent)
 			to_chat(owner, "<span class='xenowarning'>We cannot banish this!</span>")
 		return FALSE
