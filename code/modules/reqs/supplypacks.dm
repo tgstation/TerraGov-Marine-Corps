@@ -1142,6 +1142,11 @@ ENGINEERING
 	contains = list(/obj/item/explosive/grenade/chem_grenade/metalfoam)
 	cost = 3
 
+/datum/supply_packs/engineering/floodlight
+	name = "Combat Grade Floodlight"
+	contains = list(/obj/machinery/floodlightcombat)
+	cost = 5
+
 /*******************************************************************************
 SUPPLIES
 *******************************************************************************/

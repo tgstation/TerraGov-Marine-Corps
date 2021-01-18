@@ -314,7 +314,7 @@
 	X.queen_chosen_lead = FALSE
 
 	if(!isxenoshrike(X) && !isxenoqueen(X) && !isxenohivemind(X)) //These innately have the Rally Hive ability
-		X.xeno_caste.actions -= /datum/action/xeno_action/activable/rally_hive
+		X.remove_rally_hive_ability()
 
 /datum/hive_status/proc/update_leader_pheromones() // helper function to easily trigger an update of leader pheromones
 	for(var/i in xeno_leader_list)
