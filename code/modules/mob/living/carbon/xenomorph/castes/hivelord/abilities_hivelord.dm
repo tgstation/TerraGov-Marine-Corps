@@ -331,16 +331,13 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 
 	owner.face_atom(target) //Face the target so we don't look stupid
 	owner.visible_message(owner, "<span class='xenodanger'>\the [owner] begins channeling mysterious energies towards [target] ...</span>")
-	if(!do_mob(owner.beam(target,"medbeam",'icons/effects/beam.dmi',40, 10,/obj/effect/ebeam,1)))
-		return FALSE
-	if(!do_mob(owner, target, 4 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+	if(!do_mob(owner, target, 4 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL, owner.beam(target,"medbeam",'icons/effects/beam.dmi',40, 10,/obj/effect/ebeam,1)))
 		return FALSE
 	owner.visible_message("<span class='xenodanger'>\the [owner] infuses [target] with mysterious energy!</span>", \
 	"<span class='xenodanger'>We empower [target] with our [src]!</span>")
 
 	playsound(target, 'sound/effects/magic.ogg', 25) //Cool SFX
 	playsound(owner, 'sound/effects/magic.ogg', 25) //Cool SFX
-	owner.beam(target,"medbeam",'icons/effects/beam.dmi',10, 10,/obj/effect/ebeam,1)
 	new /obj/effect/temp_visual/telekinesis(get_turf(owner))
 	new /obj/effect/temp_visual/telekinesis(get_turf(target))
 	to_chat(target, "<span class='xenodanger'>Our wounds begin to knit and heal rapidly as [owner]'s healing energies infuse us.</span>") //Let the target know.
