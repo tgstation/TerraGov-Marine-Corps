@@ -12,8 +12,8 @@
 /mob/proc/spawn_gibs()
 	hgibs(loc)
 
-
-
+/mob/proc/siloed(obj/structure/resin/silo/siloed_to)
+	return
 
 
 //This is the proc for turning a mob into ash. Mostly a copy of gib code (above).

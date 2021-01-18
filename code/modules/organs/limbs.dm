@@ -857,6 +857,73 @@ Note that amputating the affected organ does in fact remove the infection from t
 		return
 	owner.update_inv_gloves()
 
+/datum/limb/proc/silolimb(obj/structure/resin/silo/siloed_to)
+	if(limb_status & LIMB_DESTROYED)
+		return FALSE
+
+	if(body_part == CHEST)
+		return FALSE
+
+	remove_limb_flags()
+	add_limb_flags(LIMB_BLEEDING | LIMB_DESTROYED)
+
+	for(var/i in implants)
+		var/obj/item/embedded_thing = i
+		embedded_thing.unembed_ourself(TRUE)
+
+	germ_level = 0
+	if(hidden)
+		hidden.forceMove(owner.loc)
+		hidden = null
+
+	//we reset the surgery related variables
+	reset_limb_surgeries()
+
+	var/obj/organ	//Dropped limb object
+	switch(body_part)
+		if(HEAD)
+			organ = new /obj/item/limb/head(siloed_to, owner)
+		if(ARM_RIGHT)
+			if(limb_status & LIMB_ROBOT)
+				organ = new /obj/item/robot_parts/r_arm(siloed_to)
+			else
+				organ = new /obj/item/limb/r_arm(siloed_to, owner)
+		if(ARM_LEFT)
+			if(limb_status & LIMB_ROBOT)
+				organ = new /obj/item/robot_parts/l_arm(siloed_to)
+			else
+				organ = new /obj/item/limb/l_arm(siloed_to, owner)
+		if(LEG_RIGHT)
+			if(limb_status & LIMB_ROBOT)
+				organ = new /obj/item/robot_parts/r_leg(siloed_to)
+			else
+				organ = new /obj/item/limb/r_leg(siloed_to, owner)
+		if(LEG_LEFT)
+			if(limb_status & LIMB_ROBOT)
+				organ = new /obj/item/robot_parts/l_leg(siloed_to)
+			else
+				organ = new /obj/item/limb/l_leg(siloed_to, owner)
+		if(HAND_RIGHT)
+			if(!(limb_status & LIMB_ROBOT))
+				organ= new /obj/item/limb/r_hand(siloed_to, owner)
+		if(HAND_LEFT)
+			if(!(limb_status & LIMB_ROBOT))
+				organ= new /obj/item/limb/l_hand(siloed_to, owner)
+		if(FOOT_RIGHT)
+			if(!(limb_status & LIMB_ROBOT))
+				organ= new /obj/item/limb/r_foot/(siloed_to, owner)
+		if(FOOT_LEFT)
+			if(!(limb_status & LIMB_ROBOT))
+				organ = new /obj/item/limb/l_foot(siloed_to, owner)
+
+	owner.update_body(1, 1)
+
+	// OK so maybe your limb just flew off, but if it was attached to a pair of cuffs then hooray! Freedom!
+	release_restraints()
+
+	if(vital)
+		owner.death()
+	return TRUE
 
 /****************************************************
 			HELPERS

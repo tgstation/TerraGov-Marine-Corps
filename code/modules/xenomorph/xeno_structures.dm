@@ -198,6 +198,7 @@
 
 	victim.forceMove(src)
 	victim.transferAllItemToLoc(src)
+	victim.siloed(src)
 
 	if(prob(5)) //5% chance to play
 		shake(4 SECONDS)

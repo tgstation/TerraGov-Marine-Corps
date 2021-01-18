@@ -17,9 +17,9 @@
 		return
 	..()
 
-
-
-
+/mob/living/carbon/human/siloed(obj/structure/resin/silo/siloed_to)
+	for(var/datum/limb/E in limbs)
+		E.silolimb(siloed_to)
 
 /mob/living/carbon/human/gib_animation()
 	new /obj/effect/overlay/temp/gib_animation(loc, src, species ? species.gibbed_anim : "gibbed-h")
