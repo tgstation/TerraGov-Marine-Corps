@@ -36,15 +36,3 @@
 #define ANCIENT_QUEEN_WEIGHT -100
 #define OB_AVAILABLE_WEIGHT 20
 
-//How variables are stored in the list
-#define ANCIENT_QUEEN 1
-#define ELDER_QUEEN 2
-#define ANCIENT_T3 3
-#define ELDER_T3 4
-#define ANCIENT_T2 5
-#define ELDER_T2 6
-#define OB_AVAILABLE 7
-#define MINIGUN_USED 8
-#define SADAR_USED 9
-#define B18_USED 10
-#define B17_USED 11
