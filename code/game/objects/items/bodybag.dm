@@ -71,7 +71,7 @@
 /obj/structure/closet/bodybag/Initialize(mapload, foldedbag)
 	. = ..()
 	foldedbag_instance = foldedbag
-	RegisterSignal(src, COMSIG_ATOM_ACIDSPRAY_ACT, .proc/acidspray_act)
+	RegisterSignal(src, COMSIG_ATOM_ACIDSPRAY_ACT, /atom/.proc/acidspray_act)
 
 /obj/structure/closet/bodybag/Destroy()
 	open()
@@ -82,7 +82,7 @@
 			stack_trace("[src] destroyed while the [foldedbag_instance] foldedbag_instance was neither destroyed nor in nullspace. This shouldn't happen.")
 		QDEL_NULL(foldedbag_instance)
 
-	UnregisterSignal(src, COMSIG_ATOM_ACIDSPRAY_ACT, .proc/acidspray_act)
+	UnregisterSignal(src, COMSIG_ATOM_ACIDSPRAY_ACT, /atom/.proc/acidspray_act)
 	return ..()
 
 
@@ -232,16 +232,15 @@
 			visible_message("<span class='danger'>\The shockwave blows [name] apart!</span>")
 			qdel(src) //blown apart
 
-/obj/structure/closet/bodybag/proc/acidspray_act()
+/obj/structure/closet/bodybag/acidspray_act(datum/source, obj/effect/xenomorph/spray/acid_puddle)
 	SIGNAL_HANDLER
 	if(!opened && bodybag_occupant)
-		var/obj/effect/xenomorph/spray/S = locate() in range(0, src) //get the acid Hans
-		if(!S) //Sanity
+		if(!source) //Sanity
 			return
 
 		if(ishuman(bodybag_occupant))
 			var/mob/living/carbon/human/H = bodybag_occupant
-			INVOKE_ASYNC(H, /mob/living/carbon/human.proc/acid_spray_crossed, S.slow_amt) //tarp isn't acid proof; pass it on to the occupant
+			INVOKE_ASYNC(H, /mob/living/carbon/human.proc/acid_spray_crossed, acid_puddle.acid_damage, acid_puddle.slow_amt) //tarp isn't acid proof; pass it on to the occupant
 
 		to_chat(bodybag_occupant, "<span class='danger'>The sizzling acid forces us out of [name]!</span>")
 		open() //Get out

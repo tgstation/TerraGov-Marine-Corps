@@ -91,10 +91,11 @@
 		qdel(src)
 		return
 
-	for(var/mob/living/carbon/human/H in loc)
+	for(var/mob/living/carbon/human/H in T)
 		H.acid_spray_crossed(acid_damage, slow_amt)
 
-	for(var/atom/A in loc) //Infrastructure for other interactions
+	SEND_SIGNAL(T, COMSIG_ATOM_ACIDSPRAY_ACT, src) //Signal the turf
+	for(var/atom/A in T) //Infrastructure for other interactions
 		SEND_SIGNAL(A, COMSIG_ATOM_ACIDSPRAY_ACT, src)
 
 //Medium-strength acid
