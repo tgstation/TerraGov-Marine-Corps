@@ -592,9 +592,9 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 	switch(playtime_mins)
 		if(0 to 1500) // starting
 			new_human.wear_id.paygrade = "O1"
-		if(1501 to 6000) // 25 hrs
+		if(1501 to 3000) // 25 hrs
 			new_human.wear_id.paygrade = "O2"
-		if(6001 to INFINITY) // 100 hrs
+		if(3001 to INFINITY) // 50 hrs
 			new_human.wear_id.paygrade = "O3"
 
 /datum/job/terragov/medical/medicalofficer/radio_help_message(mob/M)
