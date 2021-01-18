@@ -31,3 +31,13 @@
 	var/datum/action/xeno_action/activable/rally_hive/rally = new /datum/action/xeno_action/activable/rally_hive
 
 	rally.give_action(src)
+
+///Helper proc for removing the rally hive ability appropriately
+/mob/living/carbon/xenomorph/proc/remove_rally_hive_ability()
+
+	var/datum/action/xeno_action/activable/rally_hive/rally = actions_by_path[/datum/action/xeno_action/activable/rally_hive]
+
+	if(!rally) //We don't have Rally Hive; abort.
+		return
+
+	rally.remove_action(src)

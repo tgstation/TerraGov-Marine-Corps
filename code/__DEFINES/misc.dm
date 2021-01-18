@@ -124,3 +124,10 @@ GLOBAL_VAR_INIT(global_unique_id, 1)
 
 // The alpha we give to stuff under tiles, if they want it
 #define ALPHA_UNDERTILE 128
+
+// For lights.
+
+#define LIGHT_OK 0
+#define LIGHT_EMPTY 1
+#define LIGHT_BROKEN 2
+#define LIGHT_BURNED 3

@@ -182,6 +182,9 @@
 		to_chat(chair.occupant, "<span class='warning'>Out of fuel, landing.</span>")
 		SSshuttle.moveShuttle(id, "casplane", TRUE)
 		end_cas_mission(chair.occupant)
+	if (fuel_left <= 0)
+		fuel_left = 0
+		turn_off_engines()
 
 
 /obj/docking_port/mobile/marine_dropship/casplane/on_ignition()
