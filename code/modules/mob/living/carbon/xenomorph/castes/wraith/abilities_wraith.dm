@@ -398,14 +398,14 @@
 
 	teleport_debuff_aoe(X) //Debuff when we vanish
 
-	X.forceMove(T) //Teleport to our target turf
-
 	var/cooldown_mod = 1
-	var/pulled_target = owner.pulling
+	var/mob/pulled_target = owner.pulling
 	if(pulled_target) //bring the pulled target with us if applicable but at the cost of sharply increasing the next cooldown
 		cooldown_mod = WRAITH_BLINK_DRAG_MULTIPLIER
 		to_chat(X, "<span class='xenodanger'>We bring [pulled_target] with us. We won't be ready to blink again for [cooldown_timer * 0.1] seconds due to the strain of doing so.</span>")
+		pulled_target.forceMove(T) //Teleport to our target turf
 
+	X.forceMove(T) //Teleport to our target turf
 	teleport_debuff_aoe(X) //Debuff when we reappear
 
 	succeed_activate()
