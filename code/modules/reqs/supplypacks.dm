@@ -1056,8 +1056,7 @@ MEDICAL
 		/obj/item/stack/medical/splint,
 		/obj/item/stack/medical/splint,
 		/obj/item/stack/medical/splint,
-		/obj/item/stack/medical/splint,
-		)
+		/obj/item/stack/medical/splint,)
 	cost = 10 //you have ALMOST infinite ones in medbay if you need this crate you fucked up. but no reason to make the price too high either
 	containertype = /obj/structure/closet/crate/secure/surgery
 	access = ACCESS_MARINE_MEDBAY
