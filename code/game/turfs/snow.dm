@@ -173,7 +173,6 @@
 			update_icon(1, 0)
 
 /turf/open/floor/plating/ground/snow/acidspray_act()
-	SIGNAL_HANDLER
 
 	if(!slayer) //Don't bother if there's no snow to melt or if there's no burn stacks
 		return

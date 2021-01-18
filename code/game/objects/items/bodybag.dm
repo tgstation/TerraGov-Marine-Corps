@@ -233,7 +233,6 @@
 			qdel(src) //blown apart
 
 /obj/structure/closet/bodybag/acidspray_act(datum/source, obj/effect/xenomorph/spray/acid_puddle)
-	SIGNAL_HANDLER
 	if(!opened && bodybag_occupant)
 		if(!source) //Sanity
 			return
