@@ -338,7 +338,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 
 	playsound(target, 'sound/effects/magic.ogg', 25) //Cool SFX
 	playsound(owner, 'sound/effects/magic.ogg', 25) //Cool SFX
-	owner.beam(target,"medbeam",'icons/effects/beam.dmi',40, 10,/obj/effect/ebeam,1)
+	owner.beam(target,"medbeam",'icons/effects/beam.dmi',10, 10,/obj/effect/ebeam,1)
 	new /obj/effect/temp_visual/telekinesis(get_turf(owner))
 	new /obj/effect/temp_visual/telekinesis(get_turf(target))
 	to_chat(target, "<span class='xenodanger'>Our wounds begin to knit and heal rapidly as [owner]'s healing energies infuse us.</span>") //Let the target know.
