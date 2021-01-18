@@ -331,7 +331,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 
 	owner.face_atom(target) //Face the target so we don't look stupid
 	owner.visible_message(owner, "<span class='xenodanger'>\the [owner] begins channeling mysterious energies towards [target] ...</span>")
-	if(!do_after(owner, 8 SECONDS, TRUE, src, BUSY_ICON_MEDICAL))
+	if(!do_mob(owner, target, 3 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 		return FALSE
 	owner.visible_message("<span class='xenodanger'>\the [owner] infuses [target] with mysterious energy!</span>", \
 	"<span class='xenodanger'>We empower [target] with our [src]!</span>")
