@@ -383,7 +383,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 
 	new /obj/effect/temp_visual/healing(get_turf(patient)) //Cool SFX
 
-	var/total_heal_amount = 10 + patient.maxHealth * 0.05 //Base amount 10 HP plus 5% of max
+	var/total_heal_amount = 25
 	if(patient.recovery_aura)
 		total_heal_amount *= (1 + patient.recovery_aura * 0.05) //Recovery aura multiplier; 5% bonus per full level
 
@@ -430,7 +430,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 
 	new /obj/effect/temp_visual/telekinesis(get_turf(patient)) //Visual confirmation
 
-	patient.adjust_sunder(-3 * (1 + patient.recovery_aura * 0.05)) //5% bonus per rank of our recovery aura
+	patient.adjust_sunder(-3 * (0.5 + patient.recovery_aura * 0.05)) //5% bonus per rank of our recovery aura
 	#ifdef DEBUG_HIVELORD_ABILITIES
 	message_admins("HIVELORD_ABILITIES_DEBUG: Sunder reduction from Healing Infusion: [-3 * (1 + patient.recovery_aura * 0.1)]")
 	#endif
