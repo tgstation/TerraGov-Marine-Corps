@@ -7,7 +7,7 @@
 //#define DEBUG_ATTACK_ALIEN
 
 /mob/living/proc/attack_alien_grab(mob/living/carbon/xenomorph/X)
-	if(X == src || anchored || buckled)
+	if(X == src || anchored || buckled || status_flags & INCORPOREAL)
 		return FALSE
 
 	if(!Adjacent(X))
@@ -34,6 +34,9 @@
 	return TRUE
 
 /mob/living/proc/can_xeno_slash(mob/living/carbon/xenomorph/X)
+	if(X.status_flags & INCORPOREAL) // Incorporeal xenos can never slash
+		return FALSE
+
 	if(CHECK_BITFIELD(X.xeno_caste.caste_flags, CASTE_IS_INTELLIGENT)) // intelligent ignore restrictions
 		return TRUE
 

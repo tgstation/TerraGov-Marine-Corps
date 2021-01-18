@@ -716,7 +716,7 @@
 		var/atom/A = i
 		if(QDELETED(A)) //The destruction by fire of one atom may destroy others in the same turf.
 			continue
-		if(A.resistance_flags & RESIST_ALL) //Ignore stuff that's indestructible
+		if(A.resistance_flags & INDESTRUCTIBLE) //Ignore stuff that's indestructible
 			continue
 		A.flamer_fire_act(burnlevel, firelevel)
 

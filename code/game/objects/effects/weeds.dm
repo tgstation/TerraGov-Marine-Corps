@@ -12,6 +12,7 @@
 	layer = XENO_WEEDS_LAYER
 	plane = FLOOR_PLANE
 	max_integrity = 25
+	resistance_flags = UNACIDABLE
 
 	var/obj/effect/alien/weeds/node/parent_node
 
