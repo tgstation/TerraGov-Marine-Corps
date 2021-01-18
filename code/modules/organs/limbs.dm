@@ -857,6 +857,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		return
 	owner.update_inv_gloves()
 
+///handles siloing of limbs
 /datum/limb/proc/silolimb(obj/structure/resin/silo/siloed_to)
 	if(limb_status & LIMB_DESTROYED)
 		return FALSE

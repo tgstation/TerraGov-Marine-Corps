@@ -12,6 +12,7 @@
 /mob/proc/spawn_gibs()
 	hgibs(loc)
 
+///Proc called when siloing a mob
 /mob/proc/siloed(obj/structure/resin/silo/siloed_to)
 	return
 
