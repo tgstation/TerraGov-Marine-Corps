@@ -1,8 +1,0 @@
-author: "Vondiech"
-delete-after: True
-changes: 
-  - rscadd: "Adds guard railings to alot of the bridges around lava outpost to make gameplay less frustrating, still can be thrown off into the lava though if you are not careful."
-  - rscdel: "Removed alot of outpost lights that weren't either there before at the old lava outpost or were infront of entrances as a piece of feedback i got was that Lava Outpost was too bright, even with the relatively lava-less areas."
-  - tweak: "Made bridges wider as this was another piece of feedback i got."
-  - tweak: "Moved the central silo point towards near the shack as a piece of feedback i got with survivors trying to reach security without getting blasted by every xeno."
-  - bugfix: "Got rid of some walls that were inside of windows due to my own fault."
