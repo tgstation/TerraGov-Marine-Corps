@@ -531,7 +531,7 @@
 	toxpwr = 0
 
 /datum/reagent/toxin/xeno_hemodile/on_mob_life(mob/living/L, metabolism)
-	if(prob(25))
+	if(prob(10))
 		to_chat(L, "<span class='warning'>You feel your legs tense up.</span>")
 
 	var/slowdown_multiplier = 1
@@ -551,7 +551,7 @@
 
 /datum/reagent/toxin/xeno_transvitox //when damage is received, converts brute/burn equal to 50% of damage received to tox damage
 	name = "Transvitox"
-	description = "Converts burn damage to toxin damage, and causes damage received to inflict extra toxin damage in proportion to current brute damage."
+	description = "Converts burn damage to toxin damage over time, and causes brute damage received to inflict extra toxin damage."
 	reagent_state = LIQUID
 	color = "#94FF00"
 	custom_metabolism = 0.4
@@ -563,7 +563,7 @@
 	RegisterSignal(L, COMSIG_HUMAN_DAMAGE_TAKEN, .proc/transvitox_human_damage_taken)
 
 /datum/reagent/toxin/xeno_transvitox/on_mob_life(mob/living/L, metabolism)
-	if(prob(25))
+	if(prob(10))
 		to_chat(L, "<span class='warning'>You notice your wounds crusting over with disgusting green ichor.</span>")
 
 	var/fire_loss = L.getFireLoss()
@@ -607,4 +607,4 @@
 	if(tox_loss > DEFILER_TRANSVITOX_CAP) //If toxin levels are already at their cap, cancel out
 		return
 
-	L.setToxLoss(clamp(tox_loss + min(L.getBruteLoss() * 0.15 * tox_cap_multiplier, damage * 0.15 * tox_cap_multiplier),tox_loss,DEFILER_TRANSVITOX_CAP))  //Deal bonus tox damage equal to a % of the lesser of the damage taken or the target's brute damage; capped at 180.
+	L.setToxLoss(max(tox_loss + min(L.getBruteLoss() * 0.15 * tox_cap_multiplier, damage * 0.15 * tox_cap_multiplier),tox_loss))  //Deal bonus tox damage equal to a % of the lesser of the damage taken or the target's brute damage; capped at 180.

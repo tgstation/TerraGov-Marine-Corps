@@ -134,8 +134,18 @@ GLOBAL_LIST_INIT(defiler_toxins, typecacheof(list(
 	dispense_gas()
 
 /datum/action/xeno_action/activable/emit_neurogas/proc/dispense_gas(count = 3)
+	if(!count) //If no repetitions left, cancel out
+		return
+
 	var/mob/living/carbon/xenomorph/Defiler/X = owner
-	set waitfor = FALSE
+
+	if(X.stagger) //If we got staggered, return
+		to_chat(X, "<span class='xenowarning'>We try to emit toxins but are staggered!</span>")
+		return
+	if(X.IsStun() || X.IsParalyzed())
+		to_chat(X, "<span class='xenowarning'>We try to emit toxins but are disabled!</span>")
+		return
+
 	var/smoke_range = 2
 	var/datum/effect_system/smoke_spread/xeno/neuro/medium/N = new(X)
 	N.strength = 1
@@ -145,32 +155,27 @@ GLOBAL_LIST_INIT(defiler_toxins, typecacheof(list(
 	else if(X.selected_reagent == /datum/reagent/toxin/xeno_transvitox)
 		N.smoke_type = /obj/effect/particle_effect/smoke/xeno/transvitox
 		smoke_range = 4
-	while(count)
-		if(X.stagger) //If we got staggered, return
-			to_chat(X, "<span class='xenowarning'>We try to emit toxins but are staggered!</span>")
-			return
-		if(X.IsStun() || X.IsParalyzed())
-			to_chat(X, "<span class='xenowarning'>We try to emit toxins but are disabled!</span>")
-			return
-		var/turf/T = get_turf(X)
-		playsound(T, 'sound/effects/smoke.ogg', 25)
-		if(count > 1)
-			N.set_up(smoke_range, T)
-		else //last emission is larger
-			N.set_up(CEILING(smoke_range*1.3, 1), T)
-		N.start()
-		T.visible_message("<span class='danger'>Noxious smoke billows from the hulking xenomorph!</span>")
-		count = max(0,count - 1)
-		sleep(DEFILER_GAS_DELAY)
+
+	var/turf/T = get_turf(X)
+	playsound(T, 'sound/effects/smoke.ogg', 25)
+	if(count > 1)
+		N.set_up(smoke_range, T)
+	else //last emission is larger
+		N.set_up(CEILING(smoke_range*1.3, 1), T)
+	N.start()
+	T.visible_message("<span class='danger'>Noxious smoke billows from the hulking xenomorph!</span>")
+	count = max(0,count - 1)
+
+	addtimer(CALLBACK(src, .proc/dispense_gas, count), DEFILER_GAS_DELAY) //Cycle; replaces use of sleep
 
 
 // ***************************************
 // *********** Inject Egg Neurogas
 // ***************************************
 /datum/action/xeno_action/activable/inject_egg_neurogas
-	name = "Inject Neurogas"
+	name = "Inject Gas"
 	action_icon_state = "inject_egg"
-	mechanics_text = "Inject an egg with neurogas, killing the egg, but filling it full with neurogas ready to explode."
+	mechanics_text = "Inject an egg with gas of the selected toxin type, killing the facehugger inside, but filling it with gas ready to explode."
 	ability_name = "inject neurogas"
 	plasma_cost = 100
 	cooldown_timer = 5 SECONDS
@@ -203,8 +208,17 @@ GLOBAL_LIST_INIT(defiler_toxins, typecacheof(list(
 	succeed_activate()
 	add_cooldown()
 
-	new /obj/effect/alien/egg/gas(A.loc)
+	var/obj/effect/alien/egg/gas/trapped_egg = new(A.loc)
 	qdel(alien_egg)
+
+	if(X.selected_reagent == /datum/reagent/toxin/xeno_hemodile)
+		trapped_egg.selected_reagent = /obj/effect/particle_effect/smoke/xeno/hemodile
+		trapped_egg.aoe_increment = 1
+	else if(X.selected_reagent == /datum/reagent/toxin/xeno_transvitox)
+		trapped_egg.selected_reagent = /obj/effect/particle_effect/smoke/xeno/transvitox
+		trapped_egg.aoe_increment = 1
+	else
+		trapped_egg.selected_reagent = /obj/effect/particle_effect/smoke/xeno/neuro //apply the gassssss
 
 	GLOB.round_statistics.defiler_inject_egg_neurogas++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "defiler_inject_egg_neurogas")

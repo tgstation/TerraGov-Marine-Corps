@@ -177,7 +177,6 @@
 			forceMove(E)
 			E.hugger = src
 			E.update_status(EGG_GROWN)
-			E.deploy_egg_triggers()
 			go_idle(TRUE)
 			return FALSE
 		var/obj/effect/alien/resin/trap/T = locate() in loc

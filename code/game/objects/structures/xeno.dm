@@ -408,9 +408,9 @@
 	var/obj/item/clothing/mask/facehugger/hugger = null
 	var/hugger_type = /obj/item/clothing/mask/facehugger/stasis
 	var/trigger_size = 1
-	var/list/egg_triggers = list()
 	var/status = EGG_GROWING
 	var/hivenumber = XENO_HIVE_NORMAL
+	COOLDOWN_DECLARE(egg_proxy_trigger_cooldown)
 
 /obj/effect/alien/egg/prop //just useful as a map prop
 	icon_state = "Egg Opened"
@@ -426,9 +426,42 @@
 			hugger.go_idle(TRUE)
 	addtimer(CALLBACK(src, .proc/Grow), rand(EGG_MIN_GROWTH_TIME, EGG_MAX_GROWTH_TIME))
 
-/obj/effect/alien/egg/Destroy()
-	QDEL_LIST(egg_triggers)
-	return ..()
+	var/list/turf/target_locations = filled_turfs(src, trigger_size, "circle", FALSE)
+	for(var/i in target_locations)
+		RegisterSignal(i, COMSIG_ATOM_ENTERED, .proc/egg_proximity)
+
+
+///Triggers the egg when hostiles get too close
+/obj/effect/alien/egg/proc/egg_proximity(datum/source, atom/hostile)
+	SIGNAL_HANDLER
+
+	if(status != EGG_GROWN || status == (EGG_BURST|EGG_DESTROYED) ) //Don't bother if we're not grown or we're already burst/destroyed
+		return
+
+	if(!COOLDOWN_CHECK(src, egg_proxy_trigger_cooldown)) //Proxy alert triggered too recently; abort
+		return
+
+	if(!isliving(hostile))
+		return
+
+	var/mob/living/living_triggerer = hostile
+	if(living_triggerer.stat == DEAD) //We don't care about the dead
+		return
+
+	if(issamexenohive(hostile))
+		return
+
+	if(hugger_type && iscarbon(living_triggerer)) //If we have a hugger we then care about whether the target can be facehugged.
+		var/mob/living/carbon_triggerer = living_triggerer
+		if(!carbon_triggerer.can_be_facehugged(hugger))
+			return
+
+	if(get_dist(loc, hostile) > trigger_size) //Can only send alerts for those within 2 of us; so we don't have all silos sending alerts when one is proxy tripped
+		return
+
+	Burst(FALSE)
+	xeno_message("<span class='xenoannounce'>A hostile has triggered an [name] at [AREACOORD_NO_Z(src)]!</span>", 2, hivenumber) //Trap was tripped! Alert the hive.
+	COOLDOWN_START(src, egg_proxy_trigger_cooldown, 2 SECONDS) //set the cooldown.
 
 /obj/effect/alien/egg/proc/transfer_to_hive(new_hivenumber)
 	if(hivenumber == new_hivenumber)
@@ -440,13 +473,6 @@
 /obj/effect/alien/egg/proc/Grow()
 	if(status == EGG_GROWING)
 		update_status(EGG_GROWN)
-		deploy_egg_triggers()
-
-/obj/effect/alien/egg/proc/deploy_egg_triggers()
-	QDEL_LIST(egg_triggers)
-	var/list/turf/target_locations = filled_turfs(src, trigger_size, "circle", FALSE)
-	for(var/turf/trigger_location in target_locations)
-		egg_triggers += new /obj/effect/egg_trigger(trigger_location, src)
 
 /obj/effect/alien/egg/ex_act(severity)
 	Burst(TRUE)//any explosion destroys the egg.
@@ -482,14 +508,12 @@
 	if(kill)
 		if(status != EGG_DESTROYED)
 			QDEL_NULL(hugger)
-			QDEL_LIST(egg_triggers)
 			update_status(EGG_DESTROYED)
 			flick("Egg Exploding", src)
 			playsound(src.loc, "sound/effects/alien_egg_burst.ogg", 25)
 	else
 		if(status in list(EGG_GROWN, EGG_GROWING))
 			update_status(EGG_BURSTING)
-			QDEL_LIST(egg_triggers)
 			flick("Egg Opening", src)
 			playsound(src.loc, "sound/effects/alien_egg_move.ogg", 25)
 			addtimer(CALLBACK(src, .proc/unleash_hugger), 1 SECONDS)
@@ -551,7 +575,6 @@
 		F.go_idle(TRUE)
 		hugger = F
 		update_status(EGG_GROWN)
-		deploy_egg_triggers()
 
 
 /obj/effect/alien/egg/deconstruct(disassembled = TRUE)
@@ -564,64 +587,30 @@
 /obj/effect/alien/egg/fire_act()
 	Burst(TRUE)
 
-/obj/effect/alien/egg/HasProximity(atom/movable/AM)
-	if((status != EGG_GROWN) || QDELETED(hugger) || !iscarbon(AM))
-		return FALSE
-	var/mob/living/carbon/C = AM
-	if(!C.can_be_facehugged(hugger))
-		return FALSE
-	Burst(FALSE)
-	return TRUE
-
-//The invisible traps around the egg to tell it there's a mob right next to it.
-/obj/effect/egg_trigger
-	name = "egg trigger"
-	icon = 'icons/effects/effects.dmi'
-	anchored = TRUE
-	mouse_opacity = 0
-	invisibility = INVISIBILITY_MAXIMUM
-	var/obj/effect/alien/egg/linked_egg
-
-/obj/effect/egg_trigger/Initialize(mapload, obj/effect/alien/egg/source_egg)
-	. = ..()
-	linked_egg = source_egg
-
-
-/obj/effect/egg_trigger/Crossed(atom/A)
-	. = ..()
-	if(!linked_egg) //something went very wrong
-		qdel(src)
-	else if(get_dist(src, linked_egg) != 1 || !isturf(linked_egg.loc)) //something went wrong
-		loc = linked_egg
-	else if(iscarbon(A))
-		var/mob/living/carbon/C = A
-		linked_egg.HasProximity(C)
-
 
 
 /obj/effect/alien/egg/gas
 	hugger_type = null
 	trigger_size = 2
+	///The type of gas in the egg
+	var/selected_reagent
+	///Increments the gas AOE by this amount; Hemodile and Transvitox have an increased area as they are weaker gasses overall
+	var/aoe_increment
 
 /obj/effect/alien/egg/gas/Burst(kill)
 	var/spread = EGG_GAS_DEFAULT_SPREAD
 	if(kill) // Kill is more violent
 		spread = EGG_GAS_KILL_SPREAD
 
-	QDEL_LIST(egg_triggers)
 	update_status(EGG_DESTROYED)
 	flick("Egg Exploding", src)
 	playsound(loc, "sound/effects/alien_egg_burst.ogg", 30)
 
-	var/datum/effect_system/smoke_spread/xeno/neuro/NS = new(src)
-	NS.set_up(spread, get_turf(src))
-	NS.start()
+	var/datum/effect_system/smoke_spread/xeno/neuro/toxic_gas = new(src)
+	toxic_gas.smoke_type = selected_reagent
+	toxic_gas.set_up(spread + aoe_increment, get_turf(src))
+	toxic_gas.start()
 
-/obj/effect/alien/egg/gas/HasProximity(atom/movable/AM)
-	if(issamexenohive(AM))
-		return FALSE
-	Burst(FALSE)
-	return TRUE
 /*
 TUNNEL
 */
