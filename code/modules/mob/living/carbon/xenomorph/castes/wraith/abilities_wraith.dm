@@ -474,18 +474,22 @@
 	var/obj/effect/temp_visual/banishment_portal/portal = null
 	///The timer ID of any Banish currently active
 	var/banish_duration_timer_id
+	///Luminosity of the banished target
+	var/stored_luminosity
 
 /datum/action/banish_data_storage_datum
 	var/atom/movable/banishment_target
 	var/obj/effect/temp_visual/banishment_portal/portal
 	var/banish_timer_duration
+	var/stored_luminosity
 
-///Store all relevant variables to pass along
+///Store all relevant variables to pass along so nothing breaks if we're banishing a target while upgrading/maturing
 /datum/action/xeno_action/activable/banish/on_xeno_pre_upgrade()
 	var/datum/action/banish_data_storage_datum/storage_datum = new /datum/action/banish_data_storage_datum
 	owner.actions_by_path[storage_datum.type] = storage_datum //store it in actions for reference later
 	storage_datum.banishment_target = banishment_target
 	storage_datum.portal = portal
+	storage_datum.stored_luminosity = stored_luminosity
 	storage_datum.banish_timer_duration = timeleft(banish_duration_timer_id)
 
 /datum/action/xeno_action/activable/banish/on_xeno_upgrade()
@@ -493,6 +497,7 @@
 	var/datum/action/banish_data_storage_datum/storage_datum = owner.actions_by_path[/datum/action/banish_data_storage_datum]
 	banishment_target = storage_datum.banishment_target
 	portal = storage_datum.portal
+	stored_luminosity = storage_datum.stored_luminosity
 	if(banishment_target && storage_datum.banish_timer_duration) //set the remaining time for the banishment portal
 		banish_duration_timer_id = addtimer(CALLBACK(src, .proc/banish_deactivate), storage_datum.banish_timer_duration, TIMER_STOPPABLE)
 
@@ -500,6 +505,7 @@
 	storage_datum.banishment_target = null
 	storage_datum.portal = null
 	storage_datum.banish_timer_duration = null
+	storage_datum.stored_luminosity = null
 	owner.actions_by_path[storage_datum.type] = null
 	QDEL_NULL(storage_datum)
 
@@ -535,6 +541,8 @@
 	portal = new /obj/effect/temp_visual/banishment_portal(banished_turf)
 	banishment_target.forceMove(portal) //Banish the target to Brazil; yes he's going there
 	banishment_target.resistance_flags = RESIST_ALL
+	stored_luminosity = banishment_target.luminosity //Store the target's luminosity
+	banishment_target.luminosity = 0 //Zero out the target's lights
 	if(isliving(A))
 		var/mob/living/stasis_target = banishment_target
 		stasis_target.apply_status_effect(/datum/status_effect/incapacitating/unconscious) //Force the target to KO
@@ -591,6 +599,7 @@
 	banishment_target.resistance_flags = initial(banishment_target.resistance_flags)
 	teleport_debuff_aoe(banishment_target) //Debuff/distortion when we reappear
 	banishment_target.add_filter("wraith_banishment_filter", 3, list("type" = "blur", 5)) //Cool filter appear
+	banishment_target.luminosity = stored_luminosity
 	addtimer(CALLBACK(banishment_target, /atom.proc/remove_filter, "wraith_banishment_filter"), 1 SECONDS) //1 sec blur duration
 
 	if(isliving(banishment_target))
