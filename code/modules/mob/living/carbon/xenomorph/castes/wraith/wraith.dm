@@ -13,6 +13,9 @@ GLOBAL_LIST_INIT(wraith_no_incorporeal_pass_areas, typecacheof(list(
 	/area/outpost/lz1,
 	/area/outpost/lz2)))
 
+GLOBAL_LIST_INIT(wraith_no_incorporeal_pass_shutters, typecacheof(list(
+	/obj/machinery/door/poddoor/timed_late/containment,
+	/obj/machinery/door/poddoor/shutters/mainship/selfdestruct)))
 
 /mob/living/carbon/xenomorph/wraith
 	caste_base_type = /mob/living/carbon/xenomorph/wraith
@@ -33,7 +36,14 @@ GLOBAL_LIST_INIT(wraith_no_incorporeal_pass_areas, typecacheof(list(
 
 /// Returns true or false to allow src to move through the blocker, mover has final say
 /mob/living/carbon/xenomorph/wraith/CanPassThrough(atom/blocker, turf/target, blocker_opinion)
-	var/area/target_area = get_area(target)
-	if(status_flags & INCORPOREAL && (is_type_in_typecache(blocker, GLOB.wraith_no_incorporeal_pass_atoms) || is_type_in_typecache(target_area, GLOB.wraith_no_incorporeal_pass_areas))) //If we're incorporeal via Phase Shift and we encounter something on the no-go list, it's time to stop
+	if(!status_flags & INCORPOREAL) //If we're not incorporeal don't bother with special checks
+		return ..()
+	if(is_type_in_typecache(blocker, GLOB.wraith_no_incorporeal_pass_atoms)) //If we're incorporeal via Phase Shift and we encounter something on the no-go list, it's time to stop
 		return FALSE
-	return ..()
+	if(is_type_in_typecache(blocker, GLOB.wraith_no_incorporeal_pass_shutters) && blocker.density) //If we're incorporeal via Phase Shift and we encounter no-go shutters that are closed, it's time to stop
+		return FALSE
+	var/area/target_area = get_area(target) //Have to set this as vars or is_type_in freaks out
+	var/area/current_area = get_area(src)
+	if(is_type_in_typecache(target_area, GLOB.wraith_no_incorporeal_pass_areas) && !is_type_in_typecache(current_area, GLOB.wraith_no_incorporeal_pass_areas)) //If we're incorporeal via Phase Shift and we enter an off-limits area while not in one, it's time to stop
+		return FALSE
+	return TRUE
