@@ -716,8 +716,10 @@
 		var/atom/A = i
 		if(QDELETED(A)) //The destruction by fire of one atom may destroy others in the same turf.
 			continue
-		if(A.resistance_flags & INDESTRUCTIBLE) //Ignore stuff that's indestructible
-			continue
+		if(ismob(A)) //Ignore stuff that's incorporeal
+			var/mob/mob_target = A
+			if(mob_target.status_flags & INCORPOREAL)
+				continue
 		A.flamer_fire_act(burnlevel, firelevel)
 
 	firelevel -= 2 //reduce the intensity by 2 per tick

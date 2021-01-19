@@ -468,8 +468,6 @@
 	plasma_cost = 100
 	cooldown_timer = 20 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_BANISH
-	///The turf the target was banished on
-	var/turf/banished_turf = null
 	///Target we've banished
 	var/atom/movable/banishment_target = null
 	///SFX indicating the banished target's position
@@ -478,7 +476,6 @@
 	var/banish_duration_timer_id
 
 /datum/action/banish_data_storage_datum
-	var/turf/banished_turf
 	var/atom/movable/banishment_target
 	var/obj/effect/temp_visual/banishment_portal/portal
 	var/banish_timer_duration
@@ -487,7 +484,6 @@
 /datum/action/xeno_action/activable/banish/on_xeno_pre_upgrade()
 	var/datum/action/banish_data_storage_datum/storage_datum = new /datum/action/banish_data_storage_datum
 	owner.actions_by_path[storage_datum.type] = storage_datum //store it in actions for reference later
-	storage_datum.banished_turf = banished_turf
 	storage_datum.banishment_target = banishment_target
 	storage_datum.portal = portal
 	storage_datum.banish_timer_duration = timeleft(banish_duration_timer_id)
@@ -495,14 +491,12 @@
 /datum/action/xeno_action/activable/banish/on_xeno_upgrade()
 	//Pass along relevant variables
 	var/datum/action/banish_data_storage_datum/storage_datum = owner.actions_by_path[/datum/action/banish_data_storage_datum]
-	banished_turf = storage_datum.banished_turf
 	banishment_target = storage_datum.banishment_target
 	portal = storage_datum.portal
 	if(banishment_target && storage_datum.banish_timer_duration) //set the remaining time for the banishment portal
 		banish_duration_timer_id = addtimer(CALLBACK(src, .proc/banish_deactivate), storage_datum.banish_timer_duration, TIMER_STOPPABLE)
 
 	//Null out and delete the storage datum
-	storage_datum.banished_turf = null
 	storage_datum.banishment_target = null
 	storage_datum.portal = null
 	storage_datum.banish_timer_duration = null
@@ -532,7 +526,7 @@
 /datum/action/xeno_action/activable/banish/use_ability(atom/movable/A)
 	. = ..()
 	var/mob/living/carbon/xenomorph/wraith/ghost = owner
-	banished_turf = get_turf(A) //Set the banishment turf.
+	var/banished_turf = get_turf(A) //Set the banishment turf.
 	banishment_target = A //Set the banishment target
 
 	ghost.face_atom(A) //Face the target so we don't look like an ass
@@ -581,7 +575,7 @@
 ///Warns the user when Banish's duration is about to lapse.
 /datum/action/xeno_action/activable/banish/proc/banish_warning()
 
-	if(!banished_turf || !banishment_target)
+	if(!banishment_target)
 		return
 
 	to_chat(owner,"<span class='highdanger'>Our banishment target [banishment_target.name] is about to return to reality at [AREACOORD_NO_Z(portal)]!</span>")
@@ -590,10 +584,10 @@
 ///Ends the effect of the Banish ability
 /datum/action/xeno_action/activable/banish/proc/banish_deactivate()
 	SIGNAL_HANDLER
-	if(!banished_turf || !banishment_target)
+	if(!banishment_target)
 		return
 
-	banishment_target.forceMove(banished_turf)
+	banishment_target.forceMove(get_turf(portal))
 	banishment_target.resistance_flags = initial(banishment_target.resistance_flags)
 	teleport_debuff_aoe(banishment_target) //Debuff/distortion when we reappear
 	banishment_target.add_filter("wraith_banishment_filter", 3, list("type" = "blur", 5)) //Cool filter appear
@@ -612,9 +606,9 @@
 
 	to_chat(owner, "<span class='highdanger'>Our target [banishment_target] has returned to reality at [AREACOORD_NO_Z(banishment_target)]</span>") //Always alert the Wraith
 
+
 	QDEL_NULL(portal) //Eliminate the Brazil portal if we need to
 
-	banished_turf = null
 	banishment_target = null
 
 	return TRUE //For the recall sub-ability
