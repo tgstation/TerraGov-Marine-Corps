@@ -31,7 +31,7 @@
 	desc = "A slimy, oozy resin bed filled with foul-looking egg-like ...things."
 	bound_width = 96
 	bound_height = 96
-	max_integrity = 400
+	max_integrity = 2000
 	var/turf/center_turf
 	var/datum/hive_status/associated_hive
 	var/silo_area
@@ -46,6 +46,8 @@
 	number++
 
 	GLOB.xeno_resin_silos += src
+	if(associated_hive)
+		associated_hive.handle_silo_death_timer()
 	center_turf = get_step(src, NORTHEAST)
 	if(!istype(center_turf))
 		center_turf = loc
@@ -70,7 +72,8 @@
 	if(associated_hive)
 		UnregisterSignal(associated_hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK))
 		//Since resin silos are more important now, we need a better notification.
-		associated_hive.xeno_message("<span class='xenoannounce'>A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!</span>", 2, FALSE, src, 'sound/voice/alien_help2.ogg')
+		associated_hive.xeno_message("<span class='xenoannounce'>A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!</span>", 2, FALSE,src.loc, 'sound/voice/alien_help2.ogg',FALSE,null)
+		associated_hive.handle_silo_death_timer()
 		associated_hive = null
 		notify_ghosts("\ A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!", source = get_turf(src), action = NOTIFY_JUMP)
 

@@ -256,9 +256,13 @@
 		if(XENO_HIVE_NORMAL)
 			if(hive.hive_orders && hive.hive_orders != "")
 				stat("Hive Orders:", hive.hive_orders)
-			var/countdown = SSticker.mode?.get_hivemind_collapse_countdown()
-			if(countdown)
-				stat("<b>Orphan hivemind collapse timer:</b>", countdown)
+			var/rulerless_countdown = SSticker.mode.get_hivemind_collapse_countdown()
+			if(rulerless_countdown)
+				stat("<b>Orphan hivemind collapse timer:</b>", rulerless_countdown)
+			var/siloless_countdown = SSticker.mode.get_siloless_collapse_countdown()
+			if(siloless_countdown)
+				stat("<b>Silo less hive collapse timer:</b>", siloless_countdown)
+			return
 		if(XENO_HIVE_CORRUPTED)
 			stat("Hive Orders:","Follow the instructions of our masters")
 
