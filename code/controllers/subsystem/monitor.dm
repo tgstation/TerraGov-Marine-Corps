@@ -110,9 +110,8 @@ SUBSYSTEM_DEF(monitor)
 			FOB_hugging = TRUE
 			return
 		return
-	else
-		humans_all_in_FOB_counter = 0
-		FOB_hugging = FALSE
+	humans_all_in_FOB_counter = 0
+	FOB_hugging = FALSE
 
 ///Etablish the new monitor state of the game, and update the GLOB values
 /datum/controller/subsystem/monitor/proc/set_state(actualPoints)
