@@ -1,5 +1,5 @@
 #define DISTRESS_MARINE_DEPLOYMENT 0
-#define DISTRESS_DROPSHIP_CRASHED 1
+#define DISTRESS_DROPSHIP_CRASHING 1
 #define DISTRESS_MARINE_RETREAT 2
 
 /datum/game_mode/infestation/distress
@@ -127,7 +127,7 @@
 			message_admins("Round finished: [MODE_INFESTATION_DRAW_DEATH]") //everyone died at the same time, no one wins
 			round_finished = MODE_INFESTATION_DRAW_DEATH
 			return TRUE
-		if(round_stage == DISTRESS_DROPSHIP_CRASHED)
+		if(round_stage == DISTRESS_DROPSHIP_CRASHING)
 			message_admins("Round finished: [MODE_INFESTATION_X_MAJOR]") //xenos wiped our marines, xeno major victory
 			round_finished = MODE_INFESTATION_X_MAJOR
 			return TRUE
@@ -135,7 +135,7 @@
 		round_finished = MODE_INFESTATION_X_MAJOR
 		return TRUE
 	if(!num_xenos)
-		if(round_stage == DISTRESS_DROPSHIP_CRASHED)
+		if(round_stage == DISTRESS_DROPSHIP_CRASHING)
 			message_admins("Round finished: [MODE_INFESTATION_X_MINOR]") //xenos hijacked the shuttle and won groundside but died on the ship, minor victory
 			round_finished = MODE_INFESTATION_X_MINOR
 			return TRUE
@@ -276,7 +276,7 @@
 		return
 	if(round_finished)
 		return
-	if(round_stage == DISTRESS_DROPSHIP_CRASHED)
+	if(round_stage == DISTRESS_DROPSHIP_CRASHING)
 		round_finished = MODE_INFESTATION_M_MINOR
 		return
 	round_finished = MODE_INFESTATION_M_MAJOR
@@ -295,7 +295,7 @@
 		return
 	if(round_finished)
 		return
-	if(round_stage == DISTRESS_DROPSHIP_CRASHED)
+	if(round_stage == DISTRESS_DROPSHIP_CRASHING)
 		return
 	round_finished = MODE_INFESTATION_M_MAJOR
 

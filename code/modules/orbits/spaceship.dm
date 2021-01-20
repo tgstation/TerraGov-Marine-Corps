@@ -255,7 +255,7 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 
 	if(isdistress(SSticker.mode))
 		var/datum/game_mode/infestation/distress/distress_mode = SSticker.mode
-		if(distress_mode.round_stage == DISTRESS_DROPSHIP_CRASHED)
+		if(distress_mode.round_stage == DISTRESS_DROPSHIP_CRASHING)
 			//Xenos got onto the ship before it fully got away.
 			var/message = "The [SSmapping.configs[SHIP_MAP].map_name] is unable to initiate jump due to structual damage. Please schedule maintenance at your earliest convenience."
 			priority_announce(message, title = "Maintenance Report")

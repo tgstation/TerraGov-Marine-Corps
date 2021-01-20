@@ -71,11 +71,14 @@
 	GLOB.xeno_resin_silos -= src
 	if(associated_hive)
 		UnregisterSignal(associated_hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK))
-		//Since resin silos are more important now, we need a better notification.
-		associated_hive.xeno_message("<span class='xenoannounce'>A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!</span>", 2, FALSE,src.loc, 'sound/voice/alien_help2.ogg',FALSE,null)
-		associated_hive.handle_silo_death_timer()
-		associated_hive = null
-		notify_ghosts("\ A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!", source = get_turf(src), action = NOTIFY_JUMP)
+		if(isdistress(SSticker.mode))
+			var/datum/game_mode/infestation/distress/distress_mode = SSticker.mode
+		if (!distress_mode.round_stage?.DISTRESS_DROPSHIP_CRASHING)//No need to notify the xenos shipside
+			//Since resin silos are more important now, we need a better notification.
+			associated_hive.xeno_message("<span class='xenoannounce'>A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!</span>", 2, FALSE,src.loc, 'sound/voice/alien_help2.ogg',FALSE,null)
+			associated_hive.handle_silo_death_timer()
+			associated_hive = null
+			notify_ghosts("\ A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!", source = get_turf(src), action = NOTIFY_JUMP)
 
 	for(var/i in contents)
 		var/atom/movable/AM = i
