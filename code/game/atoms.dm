@@ -334,9 +334,6 @@ directive is properly returned.
 	return
 
 
-/atom/proc/acidspray_act()
-
-
 /atom/proc/hitby(atom/movable/AM)
 	if(density)
 		AM.set_throwing(FALSE)

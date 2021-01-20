@@ -71,7 +71,7 @@
 /obj/structure/closet/bodybag/Initialize(mapload, foldedbag)
 	. = ..()
 	foldedbag_instance = foldedbag
-	RegisterSignal(src, COMSIG_ATOM_ACIDSPRAY_ACT, /atom/.proc/acidspray_act)
+	RegisterSignal(src, COMSIG_ATOM_ACIDSPRAY_ACT, .proc/acidspray_act)
 
 /obj/structure/closet/bodybag/Destroy()
 	open()
@@ -82,7 +82,7 @@
 			stack_trace("[src] destroyed while the [foldedbag_instance] foldedbag_instance was neither destroyed nor in nullspace. This shouldn't happen.")
 		QDEL_NULL(foldedbag_instance)
 
-	UnregisterSignal(src, COMSIG_ATOM_ACIDSPRAY_ACT, /atom/.proc/acidspray_act)
+	UnregisterSignal(src, COMSIG_ATOM_ACIDSPRAY_ACT, .proc/acidspray_act)
 	return ..()
 
 
@@ -232,10 +232,8 @@
 			visible_message("<span class='danger'>\The shockwave blows [name] apart!</span>")
 			qdel(src) //blown apart
 
-/obj/structure/closet/bodybag/acidspray_act(datum/source, obj/effect/xenomorph/spray/acid_puddle)
+/obj/structure/closet/bodybag/proc/acidspray_act(datum/source, obj/effect/xenomorph/spray/acid_puddle)
 	if(!opened && bodybag_occupant)
-		if(!source) //Sanity
-			return
 
 		if(ishuman(bodybag_occupant))
 			var/mob/living/carbon/human/H = bodybag_occupant

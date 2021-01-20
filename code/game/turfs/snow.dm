@@ -14,7 +14,7 @@
 
 /turf/open/floor/plating/ground/snow/Initialize(mapload)
 	. = ..()
-	RegisterSignal(src, COMSIG_ATOM_ACIDSPRAY_ACT, /atom/.proc/acidspray_act)
+	RegisterSignal(src, COMSIG_ATOM_ACIDSPRAY_ACT, .proc/acidspray_act)
 	update_icon(1,1) //Update icon and sides on start, but skip nearby check for turfs.
 
 // Melting snow
@@ -172,7 +172,7 @@
 			slayer = 0
 			update_icon(1, 0)
 
-/turf/open/floor/plating/ground/snow/acidspray_act()
+/turf/open/floor/plating/ground/snow/proc/acidspray_act()
 
 	if(!slayer) //Don't bother if there's no snow to melt or if there's no burn stacks
 		return
