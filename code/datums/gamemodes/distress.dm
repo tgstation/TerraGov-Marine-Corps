@@ -302,7 +302,7 @@
 
 /datum/game_mode/infestation/distress/get_siloless_collapse_countdown()
 	if(!siloless_hive_timer)
-		return
+		return 0
 	var/eta = timeleft(siloless_hive_timer) * 0.1
 	if(eta > 0)
 		return "[(eta / 60) % 60]:[add_leading(num2text(eta % 60), 2, "0")]"
