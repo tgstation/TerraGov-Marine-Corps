@@ -74,7 +74,7 @@
 		var/datum/game_mode/infestation/distress/distress_mode
 		if(isdistress(SSticker.mode))
 			distress_mode = SSticker.mode
-			if (!distress_mode?.round_stage == DISTRESS_DROPSHIP_CRASHING)//No need to notify the xenos shipside
+			if (!distress_mode.round_stage == DISTRESS_DROPSHIP_CRASHING)//No need to notify the xenos shipside
 				//Since resin silos are more important now, we need a better notification.
 				associated_hive.xeno_message("<span class='xenoannounce'>A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!</span>", 2, FALSE,src.loc, 'sound/voice/alien_help2.ogg',FALSE,null)
 				associated_hive.handle_silo_death_timer()
