@@ -37,4 +37,3 @@ As a xeno, do not block other xenos' paths when they are retreating. Circumvent 
 As a ravager or the Queen, you are fire-resistant, NOT fireproof. You can still get lit on fire, but you take very little damage from it.
 As a spitter, boiler, praetorian, or the Queen take advantage of unguarded barricades and defenses, melt or constantly spit acid on them if you can.
 As a xeno, take advantage of acid wells, they put out fire and explode into an acid cloud when destroyed.
-As a xeno, you will die quickly and horribly if you find yourself in a pressureless enviroment.
