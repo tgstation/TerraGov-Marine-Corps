@@ -1,7 +1,6 @@
 "a" = (/obj/structure/shuttle/engine/propulsion/burst/right,/turf/open/floor/podhatch/floor,/area/shuttle/minidropship)
 "b" = (/obj/structure/window/framed/mainship/spaceworthy,/turf/open/floor/mainship/mono,/area/shuttle/minidropship)
 "c" = (/obj/effect/attach_point/crew_weapon/minidropship{dir = 2},/turf/open/floor/plating/plating_catwalk,/area/shuttle/minidropship)
-"d" = (/obj/structure/window/framed/mainship/spaceworthy{step_x = 0; step_y = 0},/turf/open/floor/mainship/mono,/area/shuttle/minidropship)
 "e" = (/turf/closed/wall/mainship,/area/shuttle/minidropship)
 "f" = (/turf/template_noop,/area/template_noop)
 "g" = (/obj/structure/bed/chair/dropship/passenger{dir = 8},/turf/open/shuttle/dropship/floor,/area/shuttle/minidropship)
@@ -26,7 +25,7 @@
 
 (1,1,1) = {"
 fobbbof
-fbSLzdf
+fbSLzbf
 ooiNioo
 roeOeoa
 fshFTsf
