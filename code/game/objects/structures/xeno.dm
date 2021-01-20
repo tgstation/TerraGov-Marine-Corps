@@ -724,11 +724,11 @@ TUNNEL
 ///Here we pick a tunnel to go to, then travel to that tunnel and peep out, confirming whether or not we want to emerge or go to another tunnel.
 /obj/structure/tunnel/proc/pick_a_tunnel(mob/living/carbon/xenomorph/M)
 	var/obj/structure/tunnel/targettunnel = input(M, "Choose a tunnel to crawl to", "Tunnel") as null|anything in GLOB.xeno_tunnels
-	if(!src) //Make sure we still exist in the event the player keeps the interface open
+	if(QDELETED(src)) //Make sure we still exist in the event the player keeps the interface open
 		return
 	if(!M.Adjacent(src) && M.loc != src) //Make sure we're close enough to our tunnel; either adjacent to or in one
 		return
-	if(!targettunnel) //Make sure our target destination still exists in the event the player keeps the interface open
+	if(QDELETED(targettunnel)) //Make sure our target destination still exists in the event the player keeps the interface open
 		to_chat(M, "<span class='warning'>That tunnel no longer exists!</span>")
 		if(M.loc == src) //If we're in the tunnel and cancelling out, spit us out.
 			M.forceMove(loc)
