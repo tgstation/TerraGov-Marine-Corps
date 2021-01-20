@@ -5,7 +5,6 @@
 
 #define MINER_RESISTANT	"reinforced components"
 #define MINER_COMPACTOR	"upgraded crystalizer module"
-#define MINER_OVERCLOCKED "high-efficiency drill"
 
 
 ///Resource generator that produces a certain material that can be repaired by marines and attacked by xenos, Intended as an objective for marines to play towards to get more req gear
@@ -84,8 +83,6 @@
 				mineral_produced = /obj/item/compactorebox/platinum
 			else
 				mineral_produced = /obj/item/compactorebox/phoron
-		if(MINER_OVERCLOCKED)
-			required_ticks = 35
 	miner_upgrade_type = upgrade.uptype
 	user.visible_message("<span class='notice'>[user] attaches the [miner_upgrade_type] to the [src]!</span>")
 	qdel(upgrade)
@@ -124,9 +121,6 @@
 				else
 					miner_integrity = initial(miner_integrity)
 				max_miner_integrity = initial(max_miner_integrity)
-			if(MINER_OVERCLOCKED)
-				upgrade = new /obj/item/minerupgrade/overclock
-				required_ticks = initial(required_ticks)
 			if(MINER_COMPACTOR)
 				upgrade = new /obj/item/minerupgrade/compactor
 				mineral_produced = initial(mineral_produced)
