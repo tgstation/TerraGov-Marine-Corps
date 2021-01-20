@@ -980,11 +980,11 @@
 
 /obj/item/weapon/gun/launcher/rocket/sadar/equipped(mob/user, slot)
 	. = ..()
-	SSmonitor.stats.SADAR_in_use|=src
+	SSmonitor.stats.SADAR_in_use |= src
 
 /obj/item/weapon/gun/launcher/rocket/sadar/removed_from_inventory()
 	. = ..()
-	SSmonitor.stats.SADAR_in_use-=src
+	SSmonitor.stats.SADAR_in_use -= src
 
 //-------------------------------------------------------
 //M5 RPG'S MEAN FUCKING COUSIN
