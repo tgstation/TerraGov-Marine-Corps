@@ -1305,22 +1305,22 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		arrow_hud.add_hud(hud_user, target_turf)
 		notify_marine(hud_user, target_turf)
 
-datum/action/innate/attack_order
+/datum/action/innate/attack_order
 	name = "Send Attack Order"
 	background_icon_state = "template2"
 	action_icon_state = "attack"
 
-datum/action/innate/defend_order
+/datum/action/innate/defend_order
 	name = "Send Defend Order"
 	background_icon_state = "template2"
 	action_icon_state = "defend"
 
-datum/action/innate/retreat_order
+/datum/action/innate/retreat_order
 	name = "Send Retreat Order"
 	background_icon_state = "template2"
 	action_icon_state = "retreat"
 
-datum/action/innate/attack_order/Activate()
+/datum/action/innate/attack_order/Activate()
 	active = TRUE
 	if(!isliving(target))
 		return
@@ -1329,7 +1329,7 @@ datum/action/innate/attack_order/Activate()
 	var/obj/machinery/computer/camera_advanced/overwatch/console = remote_eye.origin
 	console.current_order = ATTACK_ORDER
 
-datum/action/innate/attack_order/Deactivate()
+/datum/action/innate/attack_order/Deactivate()
 	active = FALSE
 	if(!isliving(target))
 		return
@@ -1338,7 +1338,7 @@ datum/action/innate/attack_order/Deactivate()
 	var/obj/machinery/computer/camera_advanced/overwatch/console = remote_eye.origin
 	console.current_order = NO_ORDER
 
-datum/action/innate/defend_order/Activate()
+/datum/action/innate/defend_order/Activate()
 	active = TRUE
 	if(!isliving(target))
 		return
@@ -1347,7 +1347,7 @@ datum/action/innate/defend_order/Activate()
 	var/obj/machinery/computer/camera_advanced/overwatch/console = remote_eye.origin
 	console.current_order = DEFEND_ORDER
 
-datum/action/innate/defend_order/Deactivate()
+/datum/action/innate/defend_order/Deactivate()
 	active = FALSE
 	if(!isliving(target))
 		return
@@ -1356,7 +1356,7 @@ datum/action/innate/defend_order/Deactivate()
 	var/obj/machinery/computer/camera_advanced/overwatch/console = remote_eye.origin
 	console.current_order = NO_ORDER
 
-datum/action/innate/retreat_order/Activate()
+/datum/action/innate/retreat_order/Activate()
 	active = TRUE
 	if(!isliving(target))
 		return
@@ -1365,7 +1365,7 @@ datum/action/innate/retreat_order/Activate()
 	var/obj/machinery/computer/camera_advanced/overwatch/console = remote_eye.origin
 	console.current_order = RETREAT_ORDER
 
-datum/action/innate/retreat_order/Deactivate()
+/datum/action/innate/retreat_order/Deactivate()
 	active = FALSE
 	if(!isliving(target))
 		return

@@ -761,6 +761,7 @@
 	var/mob/living/carbon/tracker
 	///The target which the arrow points to
 	var/atom/target
+	var/duration
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	screen_loc = ui_sl_dir
 	alpha = 128 //translucent
@@ -777,6 +778,11 @@
 /obj/screen/arrow/proc/set_target(atom/target_input)
 	target = target_input
 
+/obj/screen/arrow/Initialize() //Self-deletes
+	. = ..()
+	START_PROCESSING(SSprocessing, src)
+	QDEL_IN(src, duration)	
+
 /obj/screen/arrow/process() //We ping the target, revealing its direction with an arrow
 	if(target.z != tracker.z || get_dist(tracker, target) < 5 || tracker == target)
 		alpha = 0
@@ -792,44 +798,24 @@
 /obj/screen/arrow/leader_tracker_arrow
 	name = "hive leader tracker arrow"
 	icon_state = "Blue_arrow"	
-
-/obj/screen/arrow/leader_tracker_arrow/Initialize() //Self-deletes
-	. = ..()
-	START_PROCESSING(SSprocessing, src)
-	QDEL_IN(src, XENO_RALLYING_POINTER_DURATION)	
+	duration = XENO_RALLYING_POINTER_DURATION
 
 /obj/screen/arrow/silo_damaged_arrow
 	name = "Hive damaged tracker arrow"
 	icon_state = "Red_arrow"
-
-/obj/screen/arrow/silo_damaged_arrow/Initialize() //Self-deletes
-	. = ..()
-	START_PROCESSING(SSprocessing, src)
-	QDEL_IN(src, XENO_SILO_DAMAGE_POINTER_DURATION)	
+	duration = XENO_SILO_DAMAGE_POINTER_DURATION
 
 /obj/screen/arrow/attack_order_arrow
 	name = "attack order arrow"
 	icon_state = "Attack_arrow"
-
-/obj/screen/arrow/attack_order_arrow/Initialize() //Self-deletes
-	. = ..()
-	START_PROCESSING(SSprocessing, src)
-	QDEL_IN(src, ORDER_DURATION)	
+	duration = ORDER_DURATION
 
 /obj/screen/arrow/regroup_order_arrow
 	name = "Rally order arrow"
 	icon_state = "Regroup_arrow"
-
-/obj/screen/arrow/regroup_order_arrow/Initialize() //Self-deletes
-	. = ..()
-	START_PROCESSING(SSprocessing, src)
-	QDEL_IN(src, ORDER_DURATION)
+	duration = ORDER_DURATION
 
 /obj/screen/arrow/defend_order_arrow
 	name = "Defend order arrow"
 	icon_state = "Defend_arrow"
-
-/obj/screen/arrow/defend_order_arrow/Initialize() //Self-deletes
-	. = ..()
-	START_PROCESSING(SSprocessing, src)
-	QDEL_IN(src, ORDER_DURATION)
+	duration = ORDER_DURATION
