@@ -307,7 +307,7 @@
 /datum/game_mode/proc/can_summon_dropship(mob/user)
 	if(SSticker.round_start_time + SHUTTLE_HIJACK_LOCK > world.time)
 		to_chat(user, "<span class='warning'>It's too early to call it. We must wait [DisplayTimeText(SSticker.round_start_time + SHUTTLE_HIJACK_LOCK - world.time, 1)].</span>")
-		//return FALSE
+		return FALSE
 	if(!is_ground_level(user.z))
 		to_chat(user, "<span class='warning'>We can't call the bird from here!</span>")
 		return FALSE
@@ -424,7 +424,7 @@
 		return
 	if(SSticker.round_start_time + SHUTTLE_HIJACK_LOCK > world.time)
 		to_chat(X, "<span class='xenowarning'>It's too early to do this!</span>")
-		//return
+		return
 	var/obj/docking_port/mobile/marine_dropship/M = SSshuttle.getShuttle(shuttleId)
 	var/dat = "Status: [M ? M.getStatusText() : "*Missing*"]<br><br>"
 	if(M)
