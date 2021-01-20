@@ -30,6 +30,7 @@
 		handle_aura_emiter()
 
 	handle_aura_receiver()
+	handle_environment()
 	handle_living_sunder_updates()
 	handle_living_health_updates()
 	handle_living_plasma_updates()
@@ -277,8 +278,13 @@
 
 	return TRUE
 
-/mob/living/carbon/xenomorph/proc/handle_environment() //unused while atmos is not on
+/mob/living/carbon/xenomorph/proc/handle_environment() //most of the heat stuff is unused cause no atmos lul but the pressure stuff is still used
 	var/env_temperature = loc.return_temperature()
+	var/env_pressure = return_pressure()
+
+	if(status_flags & GODMODE)
+		return 1 //Godmode
+
 	if(!(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE))
 		if(env_temperature > (T0C + 66))
 			adjustFireLoss((env_temperature - (T0C + 66) ) * 0.2 * clamp(xeno_caste.fire_resist + fire_resist_modifier, 0, 1)) //Might be too high, check in testing.
@@ -290,6 +296,17 @@
 		else
 			if(hud_used && hud_used.fire_icon)
 				hud_used.fire_icon.icon_state = "fire0"
+
+
+	switch(env_pressure)
+		if(WARNING_LOW_PRESSURE to WARNING_HIGH_PRESSURE)
+			pressure_alert = 0
+		if(HAZARD_LOW_PRESSURE to WARNING_LOW_PRESSURE)
+			pressure_alert = -1
+		else
+			adjustBruteLoss(666) //this is a spessmen game not a spessxeno game
+
+	return
 
 /mob/living/carbon/xenomorph/updatehealth()
 	if(status_flags & GODMODE)
