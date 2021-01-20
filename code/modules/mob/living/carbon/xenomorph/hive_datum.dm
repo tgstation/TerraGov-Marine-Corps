@@ -1115,6 +1115,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	tier3_xeno_limit = max(length(xenos_by_tier[XENO_TIER_THREE]),FLOOR((length(xenos_by_tier[XENO_TIER_ZERO])+length(xenos_by_tier[XENO_TIER_ONE])+length(xenos_by_tier[XENO_TIER_TWO]))/3+1,1))
 	tier2_xeno_limit = max(length(xenos_by_tier[XENO_TIER_TWO]),length(xenos_by_tier[XENO_TIER_ZERO]) + length(xenos_by_tier[XENO_TIER_ONE])+1 - length(xenos_by_tier[XENO_TIER_THREE]))
 
+///Handles the timer when all silos are destroyed
 /datum/hive_status/proc/handle_silo_death_timer()
 
 /datum/hive_status/normal/handle_silo_death_timer()
@@ -1131,6 +1132,6 @@ to_chat will check for valid clients itself already so no need to double check f
 	if(D.siloless_hive_timer)
 		return
 
-	var/timer_length = 10 MINUTES
+	var/timer_length = 30 SECONDS
 	xeno_message("<span class='xenoannounce'>A sudden tremor ripples through the hive... the last silo was destroyed! The hive will collapse in nothing is done</span>", 3, TRUE)
 	D.siloless_hive_timer = addtimer(CALLBACK(D, /datum/game_mode.proc/siloless_hive_collapse), timer_length, TIMER_STOPPABLE)
