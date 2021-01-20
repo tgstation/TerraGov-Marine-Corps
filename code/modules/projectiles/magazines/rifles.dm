@@ -61,6 +61,16 @@
 	max_rounds = 50
 	gun_type = /obj/item/weapon/gun/rifle/standard_assaultrifle
 
+/obj/item/ammo_magazine/box10x24mm
+	name = "box of 10x24mm"
+	desc = "A box containing 150 rounds of 10x24mm caseless.."
+	caliber = "10x24mm caseless"
+	icon_state = "box_10x24mm"
+	w_class = WEIGHT_CLASS_NORMAL
+	default_ammo = /datum/ammo/bullet/rifle
+	current_rounds = 150
+	max_rounds = 150
+
 //-------------------------------------------------------
 //T37 DMR
 
@@ -106,6 +116,16 @@
 	default_ammo = /datum/ammo/bullet/rifle/standard_dmr/incendiary
 	max_rounds = 20
 	gun_type = /obj/item/weapon/gun/rifle/standard_br
+
+/obj/item/ammo_magazine/box10x27mm
+	name = "box of 10x27mm"
+	desc = "A box containing 100 rounds of 10x27mm caseless.."
+	caliber = "10x27mm caseless"
+	icon_state = "box_10x27mm"
+	w_class = WEIGHT_CLASS_NORMAL
+	default_ammo = /datum/ammo/bullet/rifle/standard_dmr
+	current_rounds = 100
+	max_rounds = 100
 
 //-------------------------------------------------------
 //M41A TRUE AND ORIGINAL
@@ -189,6 +209,16 @@
 	max_rounds = 250
 	gun_type = /obj/item/weapon/gun/rifle/standard_gpmg
 	reload_delay = 3 SECONDS
+
+/obj/item/ammo_magazine/box10x26mm
+	name = "packet of 10x26mm"
+	desc = "A packet containing 100 rounds of 10x26mm caseless.."
+	icon_state = "box_10x26mm"
+	caliber = "10x26mm caseless"
+	default_ammo = /datum/ammo/bullet/rifle/machinegun
+	w_class = WEIGHT_CLASS_SMALL
+	current_rounds = 100
+	max_rounds = 100
 
 //-------------------------------------------------------
 //M412L1 HEAVY PULSE RIFLE
