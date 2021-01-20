@@ -1248,7 +1248,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 
 /obj/machinery/computer/camera_advanced/overwatch/InterceptClickOn(mob/user, params, atom/object)
 	var/list/pa = params2list(params)
-	if (pa.Find("shift"))
+	if (pa["shift"])
 		var/turf/TU = get_turf(object)
 		if(!send_orders(TU) && current_order)
 			to_chat(usr, "<span class='warning'>Your last order was too recent</span>")
