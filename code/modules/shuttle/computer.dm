@@ -7,6 +7,7 @@
 	var/shuttleId
 	var/possible_destinations = ""
 	var/admin_controlled
+	density = FALSE
 
 
 /obj/machinery/computer/shuttle/ui_interact(mob/user)

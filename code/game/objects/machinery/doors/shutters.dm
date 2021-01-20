@@ -161,6 +161,14 @@
 	open_layer = PODDOOR_CLOSED_LAYER
 	closed_layer = PODDOOR_CLOSED_LAYER
 
+/obj/machinery/door/poddoor/shutters/tadpole_cockpit
+	name = "pressure shutters"
+	density = FALSE
+	opacity = FALSE
+	icon_state = "shutter0"
+	open_layer = PODDOOR_CLOSED_LAYER
+	closed_layer = PODDOOR_CLOSED_LAYER
+
 //mainship shutters
 /obj/machinery/door/poddoor/shutters/mainship/hangar
 	name = "\improper Hangar Shutters"

@@ -26,6 +26,7 @@
 	x_offset = 0
 	y_offset = 0
 	designate_time = 100
+	density = FALSE
 
 // No lockable side or rear doors
 /obj/machinery/computer/shuttle/minidropship
@@ -40,3 +41,4 @@
 	name = "\improper 'Tadpole' weapons controls"
 	shuttle_tag = "minidropship"
 	req_access = list(ACCESS_MARINE_DROPSHIP)
+	density = FALSE
