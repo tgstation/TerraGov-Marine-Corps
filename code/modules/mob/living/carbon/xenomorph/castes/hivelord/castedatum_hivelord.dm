@@ -16,6 +16,7 @@
 
 	// *** Speed *** //
 	speed = 0.4
+	weeds_speed_mod = 0 // Resin walk.
 
 	// *** Plasma *** //
 	plasma_max = 800

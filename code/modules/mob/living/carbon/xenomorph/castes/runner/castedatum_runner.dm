@@ -22,6 +22,7 @@
 
 	// *** Speed *** //
 	speed = -1.3
+	weeds_speed_mod = -0.1 // Already too fast.
 
 	// *** Plasma *** //
 	plasma_max = 100

@@ -15,7 +15,8 @@
 	tackle_damage = 20
 
 	// *** Speed *** //
-	speed = -0.8
+	speed = -0.5
+	weeds_speed_mod = -0.1 // Makes weeds, less effect
 
 	// *** Plasma *** //
 	plasma_max = 750
@@ -79,7 +80,7 @@
 	tackle_damage = 20
 
 	// *** Speed *** //
-	speed = -0.9
+	speed = -0.6
 
 	// *** Plasma *** //
 	plasma_max = 800
@@ -110,7 +111,7 @@
 	tackle_damage = 25
 
 	// *** Speed *** //
-	speed = -1.0
+	speed = -0.7
 
 	// *** Plasma *** //
 	plasma_max = 900
@@ -141,7 +142,7 @@
 	tackle_damage = 25
 
 	// *** Speed *** //
-	speed = -1.2
+	speed = -0.8
 
 	// *** Plasma *** //
 	plasma_max = 1000
