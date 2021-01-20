@@ -18,12 +18,6 @@
 // It will need to be manually refilled with lights.
 // If it's part of a robot module, it will charge when the Robot is inside a Recharge Station.
 
-#define LIGHT_OK 0
-#define LIGHT_EMPTY 1
-#define LIGHT_BROKEN 2
-#define LIGHT_BURNED 3
-
-
 /obj/item/lightreplacer
 
 	name = "light replacer"
@@ -151,7 +145,3 @@
 	else
 		return 0
 
-#undef LIGHT_OK
-#undef LIGHT_EMPTY
-#undef LIGHT_BROKEN
-#undef LIGHT_BURNED
