@@ -367,6 +367,7 @@
 			return FALSE
 		D.set_hijack_state(HIJACK_STATE_UNLOCKED)
 		D.unlock_all()
+		D.start_hijack_timer(GROUND_LOCKDOWN_TIME)
 		to_chat(user, "<span class='warning'>We have overriden the shuttle lockdown!</span>")
 		playsound(user, "alien_roar", 50)
 		priority_announce("Alamo lockdown protocol compromised. Interference preventing remote control", "Dropship Lock Alert")
@@ -411,7 +412,6 @@
 		if(M.id == "alamo")
 			D = M
 	D.summon_dropship_to(closest)
-	D.start_hijack_timer()
 	return closest
 
 // ************************************************	//
