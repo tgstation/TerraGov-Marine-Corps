@@ -586,12 +586,14 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define WRAITH_PHASE_SHIFT_DURATION_WARNING	0.7
 #define WRAITH_PHASE_SHIFT_ALPHA			128 //50% transparency
 
-#define WRAITH_BLINK_DRAG_MULTIPLIER		20 //The amount we multiply the cooldown by when we teleport while dragging a target
-#define WRAITH_BLINK_RANGE					3
+#define WRAITH_BLINK_DRAG_NONFRIENDLY_MULTIPLIER	20 //The amount we multiply the cooldown by when we teleport while dragging a non-friendly target
+#define WRAITH_BLINK_DRAG_FRIENDLY_MULTIPLIER		4 //The amount we multiply the cooldown by when we teleport while dragging a friendly target
+#define WRAITH_BLINK_RANGE							3
 
 #define WRAITH_BANISH_BASE_DURATION					10 SECONDS
 #define WRAITH_BANISH_RANGE							3
 #define WRAITH_BANISH_NONFRIENDLY_LIVING_MULTIPLIER	0.5
+#define WRAITH_BANISH_VERY_SHORT_MULTIPLIER			0.3
 
 #define WRAITH_TELEPORT_DEBUFF_STACKS			1 //Stagger and slow stacks applied to adjacent living hostiles before/after a teleport
 

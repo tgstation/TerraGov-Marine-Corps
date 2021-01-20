@@ -1,3 +1,6 @@
+GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
+	/obj/structure/barricade)))
+
 // ***************************************
 // *********** Place Warp Shadow
 // ***************************************
@@ -100,6 +103,11 @@
 	if(!warp_shadow_check.warp_shadow)
 		if(!silent)
 			to_chat(owner, "<span class='xenodanger'>We have no warp shadow to teleport to!</span>")
+		return FALSE
+
+	if(warp_shadow_check.warp_shadow.z != owner.z) //We must be on the same Z level to teleport to the warp shadow
+		if(!silent)
+			to_chat(owner, "<span class='xenodanger'>Our warp shadow is beyond our ability to teleport to!</span>")
 		return FALSE
 
 /datum/action/xeno_action/hyperposition/action_activate()
@@ -378,6 +386,14 @@
 			to_chat(owner, "<span class='xenowarning'>We can't blink into a solid object!</span>")
 		return FALSE
 
+	if(owner.pulling) //We can't teleport into forbidden areas while pulling a mob
+		var/area/target_area = get_area(T) //Have to set this as vars or is_type_in freaks out
+		var/area/current_area = get_area(owner)
+		if(is_type_in_typecache(target_area, GLOB.wraith_no_incorporeal_pass_areas) && !is_type_in_typecache(current_area, GLOB.wraith_no_incorporeal_pass_areas)) //If we're incorporeal via Phase Shift and we enter an off-limits area while not in one, it's time to stop
+			if(!silent)
+				to_chat(owner, "<span class='xenowarning'>We can't blink into this area from here while grabbing something!</span>")
+			return FALSE
+
 
 /datum/action/xeno_action/activable/blink/use_ability(atom/A)
 	. = ..()
@@ -396,13 +412,22 @@
 
 	X.face_atom(T) //Face the target so we don't look like an ass
 
-	teleport_debuff_aoe(X) //Debuff when we vanish
-
 	var/cooldown_mod = 1
 	var/mob/pulled_target = owner.pulling
 	if(pulled_target) //bring the pulled target with us if applicable but at the cost of sharply increasing the next cooldown
-		cooldown_mod = WRAITH_BLINK_DRAG_MULTIPLIER
-		to_chat(X, "<span class='xenodanger'>We bring [pulled_target] with us. We won't be ready to blink again for [cooldown_timer * WRAITH_BLINK_DRAG_MULTIPLIER * 0.1] seconds due to the strain of doing so.</span>")
+
+		if(pulled_target.issamexenohive(X))
+			cooldown_mod = WRAITH_BLINK_DRAG_FRIENDLY_MULTIPLIER
+		else
+			if(!do_after(owner, 0.5 SECONDS, TRUE, owner, BUSY_ICON_HOSTILE)) //Grap-porting hostiles has a slight wind up
+				return fail_activate()
+			cooldown_mod = WRAITH_BLINK_DRAG_NONFRIENDLY_MULTIPLIER
+
+		to_chat(X, "<span class='xenodanger'>We bring [pulled_target] with us. We won't be ready to blink again for [cooldown_timer * cooldown_mod * 0.1] seconds due to the strain of doing so.</span>")
+
+	teleport_debuff_aoe(X) //Debuff when we vanish
+
+	if(pulled_target) //Yes, duplicate check because otherwise we end up with the initial teleport debuff AoE happening prior to the wind up which looks really bad and is actually exploitable via deliberate do after cancels
 		pulled_target.forceMove(T) //Teleport to our target turf
 
 	X.forceMove(T) //Teleport to our target turf
@@ -556,14 +581,11 @@
 	animate(portal.get_filter("banish_portal_1"), x = 20*rand() - 10, y = 20*rand() - 10, time = 0.5 SECONDS, loop = -1, flags=ANIMATION_PARALLEL)
 	animate(portal.get_filter("banish_portal_2"), x = 20*rand() - 10, y = 20*rand() - 10, time = 0.5 SECONDS, loop = -1, flags=ANIMATION_PARALLEL)
 
-	if(isxeno(banishment_target)) //We halve the max duration for living non-allies
-		var/mob/living/carbon/xenomorph/X = banishment_target
-		if(!X.issamexenohive(ghost)) //Enemy hive
-			duration *= WRAITH_BANISH_NONFRIENDLY_LIVING_MULTIPLIER
-
-	else if(isliving(banishment_target)) //We halve the max duration for living non-allies
+	if(isliving(banishment_target) && !(banishment_target.issamexenohive(ghost))) //We halve the max duration for living non-allies
 		duration *= WRAITH_BANISH_NONFRIENDLY_LIVING_MULTIPLIER
 
+	else if(is_type_in_typecache(banishment_target, GLOB.wraith_banish_very_short_duration_list)) //Barricades should only be gone long enough to admit an infiltrator xeno or two; one way.
+		duration *= WRAITH_BANISH_VERY_SHORT_MULTIPLIER
 
 	banishment_target.visible_message("<span class='warning'>Space abruptly twists and warps around [banishment_target] as it suddenly vanishes!</span>", \
 	"<span class='highdanger'>The world around you reels, reality seeming to twist and tear until you find yourself trapped in a forsaken void beyond space and time.</span>")
