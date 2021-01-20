@@ -7,19 +7,19 @@
 	SSpoints.supply_points += .
 
 /obj/structure/ore_box/phoron/supply_export()
-	. = 20
+	. = 10
 	SSpoints.supply_points += .
 
 /obj/item/compactorebox/phoron/supply_export()
-	. = 20
+	. = 10
 	SSpoints.supply_points += .
 
 /obj/item/compactorebox/platinum/supply_export()
-	. = 40
+	. = 30
 	SSpoints.supply_points += .
 
 /obj/structure/ore_box/platinum/supply_export()
-	. = 40
+	. = 30
 	SSpoints.supply_points += .
 
 /mob/living/carbon/xenomorph/supply_export()
