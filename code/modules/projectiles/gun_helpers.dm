@@ -894,7 +894,7 @@ should be alright.
 
 	if(user.action_busy)
 		return
-	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_BAR))
+	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_BAR, ignore_turf_checks = TRUE))
 		to_chat(user, "<span class='warning'>Your concentration is interrupted!</b></span>")
 		return
 	if(!CHECK_BITFIELD(flags_item, WIELDED))
@@ -906,7 +906,7 @@ should be alright.
 	var/obj/item/card/id/C = user.wear_id
 	gun_iff_signal = C.access
 	modify_fire_delay(aim_fire_delay)
-	to_chat(user, "<span class='notice'>You line up your aim.</b></span>")
+	to_chat(user, "<span class='notice'>You line up your aim, allowing you to shoot past allies.</b></span>")
 
 //----------------------------------------------------------
 				//				   	   \\

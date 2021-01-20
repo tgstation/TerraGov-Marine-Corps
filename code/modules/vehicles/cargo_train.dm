@@ -117,7 +117,7 @@
 		return FALSE
 
 	if(is_train_head())
-		if(direction == reverse_direction(dir) && tow)
+		if(direction == REVERSE_DIR(dir) && tow)
 			return 0
 	return ..()
 

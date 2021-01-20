@@ -122,6 +122,8 @@
 
 /obj/item/explosive/plastique/proc/detonate()
 	if(QDELETED(plant_target))
+		playsound(loc, 'sound/weapons/ring.ogg', 200, FALSE)
+		explosion(plant_target, 0, 0, 0, 1)
 		qdel(src)
 		return
 	plant_target.ex_act(EXPLODE_DEVASTATE)

@@ -151,6 +151,13 @@ const NormalOperation = (props, context) => {
             onClick={() => act("deploy")}
             disabled={data.plane_state !== 3} />
         </Box>
+        <Box
+          width="100%"
+          textAlign="center">
+          <Button
+            content={"Strafe Direction: "+data.attackdir}
+            onClick={() => act('cycle_attackdir')} />
+        </Box>
       </Section>
     </Fragment>
   );

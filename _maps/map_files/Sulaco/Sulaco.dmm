@@ -11729,6 +11729,10 @@
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/mainship/living/pilotbunks)
+"gGU" = (
+/obj/machinery/roomba,
+/turf/open/floor/prison,
+/area/sulaco/marine)
 "gHU" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/bright_clean,
@@ -17888,6 +17892,7 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/roomba,
 /turf/open/floor/prison/red,
 /area/sulaco/cargo)
 "wie" = (
@@ -35840,7 +35845,7 @@ aIz
 mDu
 mDu
 cfA
-aBk
+gGU
 aBk
 aGk
 aBk

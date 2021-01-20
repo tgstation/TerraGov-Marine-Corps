@@ -754,3 +754,44 @@
 			overlays += image('icons/mob/ammoHUD.dmi', src, "o9")
 			overlays += image('icons/mob/ammoHUD.dmi', src, "t9")
 			overlays += image('icons/mob/ammoHUD.dmi', src, "h9")
+
+/obj/screen/xeno_tracker_arrow
+	name = "xeno tracker arrow"
+	icon = 'icons/Marine/marine-items.dmi'
+	icon_state = "SL_locator"
+	alpha = 128 //translucent
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	color = COLOR_RED
+	screen_loc = ui_sl_dir
+	///The xenomorph for which the arrow appears
+	var/mob/living/carbon/xenomorph/tracker
+	///The target which the arrow points to
+	var/mob/living/target
+
+/obj/screen/xeno_tracker_arrow/proc/add_hud(mob/living/carbon/xenomorph/tracker_input, atom/target_input)
+	if(!tracker_input?.client)
+		return
+
+	tracker = tracker_input
+	target = target_input
+	color = tracker.hive.color
+	tracker.client.screen += src
+	process() //Ping immediately after parameters have been set
+
+/obj/screen/xeno_tracker_arrow/Initialize() //Self-deletes
+	. = ..()
+	START_PROCESSING(SSprocessing, src)
+	QDEL_IN(src, XENO_HEALTH_ALERT_POINTER_DURATION)
+
+/obj/screen/xeno_health_alert/Destroy()
+	STOP_PROCESSING(SSprocessing, src)
+	return ..()
+
+/obj/screen/xeno_tracker_arrow/process() //We ping the target, revealing its direction with an arrow
+
+	if(target.z != tracker.z || get_dist(tracker, target) < 1 || tracker == target)
+		icon_state = ""
+	else
+		icon_state = "SL_locator"
+		transform = 0 //Reset and 0 out
+		transform = turn(transform, Get_Angle(tracker, target))

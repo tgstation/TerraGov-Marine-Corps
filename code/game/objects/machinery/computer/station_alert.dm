@@ -48,7 +48,7 @@
 
 
 /obj/machinery/computer/station_alert/proc/triggerAlarm(class, area/A, O, alarmsource)
-	if(machine_stat & (BROKEN))
+	if(machine_stat & (BROKEN|DISABLED))
 		return
 	var/list/L = src.alarms[class]
 	for (var/I in L)
@@ -71,7 +71,7 @@
 
 
 /obj/machinery/computer/station_alert/proc/cancelAlarm(class, area/A as area, obj/origin)
-	if(machine_stat & (BROKEN))
+	if(machine_stat & (BROKEN|DISABLED))
 		return
 	var/list/L = src.alarms[class]
 	var/cleared = 0
@@ -91,7 +91,7 @@
 	if (machine_stat &(NOPOWER))
 		icon_state = "atmos0"
 		return
-	if(machine_stat & (BROKEN))
+	if(machine_stat & (BROKEN|DISABLED))
 		icon_state = "atmosb"
 		return
 	var/active_alarms = 0
