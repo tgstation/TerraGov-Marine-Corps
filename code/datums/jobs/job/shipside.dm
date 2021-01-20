@@ -582,6 +582,22 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
 	)
 
+/datum/job/terragov/medical/medicalofficer/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
+	. = ..()
+	if(!ishuman(new_mob))
+		return
+	var/mob/living/carbon/human/new_human = new_mob
+	var/playtime_mins = user?.client?.get_exp(title)
+	if(!playtime_mins || playtime_mins < 1 )
+		return
+	switch(playtime_mins)
+		if(0 to 1500) // starting
+			new_human.wear_id.paygrade = "O1"
+		if(1501 to 3000) // 25 hrs
+			new_human.wear_id.paygrade = "O2"
+		if(3001 to INFINITY) // 50 hrs
+			new_human.wear_id.paygrade = "O3"
+
 /datum/job/terragov/medical/medicalofficer/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"You are a military doctor stationed aboard the [SSmapping.configs[SHIP_MAP].map_name].
