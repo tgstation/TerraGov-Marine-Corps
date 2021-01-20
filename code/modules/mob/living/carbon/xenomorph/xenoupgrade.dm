@@ -46,9 +46,9 @@
 	update_spits() //Update spits to new/better ones
 
 //Tiered spawns.
-//Fuck you to whoever made this originally, it was hell to read.
 
-//-----RUNNER-----//
+//-----RUNNER START-----//
+
 /mob/living/carbon/xenomorph/runner/mature
 	upgrade = XENO_UPGRADE_ONE
 
@@ -58,9 +58,10 @@
 /mob/living/carbon/xenomorph/runner/ancient
 	upgrade = XENO_UPGRADE_THREE
 
-//-----RUNNER-----//
+//-----RUNNER END-----//
 //================//
-//-----BULL-----//
+//-----BULL START-----//
+
 /mob/living/carbon/xenomorph/bull/mature
 	upgrade = XENO_UPGRADE_ONE
 
@@ -70,9 +71,10 @@
 /mob/living/carbon/xenomorph/bull/ancient
 	upgrade = XENO_UPGRADE_THREE
 
-//-----BULL-----//
+//-----BULL END-----//
 //================//
-//-----DRONE-----//
+//-----DRONE START-----//
+
 /mob/living/carbon/xenomorph/drone/mature
 	upgrade = XENO_UPGRADE_ONE
 
@@ -82,11 +84,12 @@
 /mob/living/carbon/xenomorph/drone/ancient
 	upgrade = XENO_UPGRADE_THREE
 
-//-----DRONE-----//
+//-----DRONE END-----//
 //================//
 
 //----------------------------------------------//
-// ERT DRONE Versions:
+// ERT DRONE START
+
 /mob/living/carbon/xenomorph/drone/elder/Corrupted
 	hivenumber = XENO_HIVE_CORRUPTED
 
@@ -99,8 +102,10 @@
 /mob/living/carbon/xenomorph/drone/elder/Zeta
 	hivenumber = XENO_HIVE_ZETA
 
+// ERT DRONE START END
 //---------------------------------------------//
-//-----CARRIER-----//
+//-----CARRIER START-----//
+
 /mob/living/carbon/xenomorph/carrier/mature
 	upgrade = XENO_UPGRADE_ONE
 
@@ -110,9 +115,10 @@
 /mob/living/carbon/xenomorph/carrier/ancient
 	upgrade = XENO_UPGRADE_THREE
 
-//-----CARRIER-----//
+//-----CARRIER END-----//
 //================//
-//----HIVELORD----//
+//----HIVELORD START----//
+
 /mob/living/carbon/xenomorph/hivelord/mature
 	upgrade = XENO_UPGRADE_ONE
 
@@ -122,9 +128,10 @@
 /mob/living/carbon/xenomorph/hivelord/ancient
 	upgrade = XENO_UPGRADE_THREE
 
-//----HIVELORD----//
+//----HIVELORD END----//
 //================//
-//----HIVEMIND----//
+//----HIVEMIND START----//
+
 /mob/living/carbon/xenomorph/hivemind/mature
 	upgrade = XENO_UPGRADE_ONE
 
@@ -134,9 +141,10 @@
 /mob/living/carbon/xenomorph/hivemind/ancient
 	upgrade = XENO_UPGRADE_THREE
 
-//----HIVEMIND----//
+//----HIVEMIND END----//
 //================//
-//----PRAETORIAN----//
+//----PRAETORIAN START----//
+
 /mob/living/carbon/xenomorph/praetorian/mature
 	upgrade = XENO_UPGRADE_ONE
 
@@ -146,9 +154,10 @@
 /mob/living/carbon/xenomorph/praetorian/ancient
 	upgrade = XENO_UPGRADE_THREE
 
-//----PRAETORIAN----//
+//----PRAETORIAN END----//
 //================//
-//----RAVAGER----//
+//----RAVAGER START----//
+
 /mob/living/carbon/xenomorph/ravager/mature
 	upgrade = XENO_UPGRADE_ONE
 
@@ -158,9 +167,10 @@
 /mob/living/carbon/xenomorph/ravager/ancient
 	upgrade = XENO_UPGRADE_THREE
 
-//----RAVAGER----//
+//----RAVAGER END----//
 //================//
-//----SENTINEL----//
+//----SENTINEL START----//
+
 /mob/living/carbon/xenomorph/sentinel/mature
 	upgrade = XENO_UPGRADE_ONE
 
@@ -170,9 +180,10 @@
 /mob/living/carbon/xenomorph/sentinel/ancient
 	upgrade = XENO_UPGRADE_THREE
 
-//----SENTINEL----//
+//----SENTINEL END----//
 //================//
-//-----SPITTER-----//
+//-----SPITTER START-----//
+
 /mob/living/carbon/xenomorph/spitter/mature
 	upgrade = XENO_UPGRADE_ONE
 
@@ -182,9 +193,10 @@
 /mob/living/carbon/xenomorph/spitter/ancient
 	upgrade = XENO_UPGRADE_THREE
 
-//-----SPITTER-----//
+//-----SPITTER END-----//
 //================//
-//SENTINEL ERT Versions:
+//SENTINEL ERT START
+
 /mob/living/carbon/xenomorph/spitter/mature/Corrupted
 	hivenumber = XENO_HIVE_CORRUPTED
 
@@ -196,8 +208,11 @@
 
 /mob/living/carbon/xenomorph/spitter/mature/Zeta
 	hivenumber = XENO_HIVE_ZETA
+
+//SENTINEL ERT END
 //================//
-//----HUNTER----//
+//----HUNTER START----//
+
 /mob/living/carbon/xenomorph/hunter/mature
 	upgrade = XENO_UPGRADE_ONE
 
@@ -207,9 +222,10 @@
 /mob/living/carbon/xenomorph/hunter/ancient
 	upgrade = XENO_UPGRADE_THREE
 
-//----HUNTER----//
+//----HUNTER END----//
 //================//
-//HUNTER ERT Versions:
+//HUNTER ERT START
+
 /mob/living/carbon/xenomorph/hunter/mature/Corrupted
 	hivenumber = XENO_HIVE_CORRUPTED
 
@@ -221,8 +237,11 @@
 
 /mob/living/carbon/xenomorph/hunter/mature/Zeta
 	hivenumber = XENO_HIVE_ZETA
+
+//HUNTER ERT END
 //================//
-//----QUEEN----//
+//----QUEEN START----//
+
 /mob/living/carbon/xenomorph/queen/mature
 	upgrade = XENO_UPGRADE_ONE
 
@@ -232,9 +251,10 @@
 /mob/living/carbon/xenomorph/queen/ancient
 	upgrade = XENO_UPGRADE_THREE
 
-//----QUEEN----//
+//----QUEEN END----//
 //============//
-//---CRUSHER---//
+//---CRUSHER START---//
+
 /mob/living/carbon/xenomorph/crusher/mature
 	upgrade = XENO_UPGRADE_ONE
 
@@ -244,9 +264,10 @@
 /mob/living/carbon/xenomorph/crusher/ancient
 	upgrade = XENO_UPGRADE_THREE
 
-//---CRUSHER---//
+//---CRUSHER END---//
 //============//
-//---BOILER---//
+//---BOILER START---//
+
 /mob/living/carbon/xenomorph/boiler/mature
 	upgrade = XENO_UPGRADE_ONE
 
@@ -256,9 +277,10 @@
 /mob/living/carbon/xenomorph/boiler/ancient
 	upgrade = XENO_UPGRADE_THREE
 
-//---BOILER---//
+//---BOILER END---//
 //============//
-//---DEFENDER---//
+//---DEFENDER START---//
+
 /mob/living/carbon/xenomorph/defender/mature
 	upgrade = XENO_UPGRADE_ONE
 
@@ -268,9 +290,10 @@
 /mob/living/carbon/xenomorph/defender/ancient
 	upgrade = XENO_UPGRADE_THREE
 
-//---DEFENDER---//
+//---DEFENDER END---//
 //============//
-//----WARRIOR----//
+//----WARRIOR START----//
+
 /mob/living/carbon/xenomorph/warrior/mature
 	upgrade = XENO_UPGRADE_ONE
 
@@ -280,9 +303,10 @@
 /mob/living/carbon/xenomorph/warrior/ancient
 	upgrade = XENO_UPGRADE_THREE
 
-//----WARRIOR----//
+//----WARRIOR END----//
 //============//
-//----DEFILER----//
+//----DEFILER START----//
+
 /mob/living/carbon/xenomorph/Defiler/mature
 	upgrade = XENO_UPGRADE_ONE
 
@@ -292,10 +316,9 @@
 /mob/living/carbon/xenomorph/Defiler/ancient
 	upgrade = XENO_UPGRADE_THREE
 
-
-//----DEFILER----//
+//----DEFILER END----//
 //============//
-//----SHRIKE----//
+//----SHRIKE START----//
 
 /mob/living/carbon/xenomorph/shrike/mature
 	upgrade = XENO_UPGRADE_ONE
@@ -306,5 +329,5 @@
 /mob/living/carbon/xenomorph/shrike/ancient
 	upgrade = XENO_UPGRADE_THREE
 
-//----SHRIKE----//
+//----SHRIKE END----//
 //============//
