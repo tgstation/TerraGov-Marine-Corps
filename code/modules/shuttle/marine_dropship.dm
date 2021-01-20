@@ -305,13 +305,6 @@
 		return
 
 	D.announce_bioscans()
-	var/confirm = alert(src, "Would you like to crash the metal bird?", "Crash the ship", "Yes", "No")
-	if(confirm == "Yes")
-		var/datum/game_mode/infestation/distress/distress_mode = SSticker.mode
-		var/message = "The Xenos have crashed the alamo. RIP"
-		priority_announce(message, title = "ALAMO CRASHED")
-		distress_mode.round_stage = DISTRESS_DROPSHIP_CRASHED_XENOS
-		return
 
 	var/obj/docking_port/stationary/port = D.summon_dropship(src)
 	if(!port)
@@ -451,6 +444,7 @@
 		dat += "<A href='?src=[REF(src)];hijack=1'>Launch to [SSmapping.configs[SHIP_MAP].map_name]</A><br>"
 		M.unlock_all()
 		M.hijack_state = HIJACK_STATE_CALLED_DOWN
+		dat += "<A href='?src=[REF(src)];abduct=1'>Capture the [M]</A><br>"
 
 	var/datum/browser/popup = new(X, "computer", M ? M.name : "shuttle", 300, 200)
 	popup.set_content("<center>[dat]</center>")
@@ -628,6 +622,14 @@
 			return
 		do_hijack(M, CT, X)
 
+	if(href_list["abduct"])
+		var/confirm = alert(src, "Would you like to capture the metal bird?\nTHIS WILL END THE ROUND", "Capture the ship?", "Yes", "No")
+		if(confirm == "Yes")
+			var/datum/game_mode/infestation/distress/distress_mode = SSticker.mode
+			var/message = "The Xenos have crashed the alamo. RIP"
+			priority_announce(message, title = "ALAMO CRASHED")
+			distress_mode.round_stage = DISTRESS_DROPSHIP_CRASHED_XENOS
+			return
 
 /obj/machinery/computer/shuttle/marine_dropship/proc/do_hijack(obj/docking_port/mobile/marine_dropship/crashing_dropship, obj/docking_port/stationary/marine_dropship/crash_target/crash_target, mob/living/carbon/xenomorph/user)
 	crashing_dropship.set_hijack_state(HIJACK_STATE_CRASHING)
