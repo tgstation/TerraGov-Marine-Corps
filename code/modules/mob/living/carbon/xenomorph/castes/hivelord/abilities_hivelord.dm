@@ -306,7 +306,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 
 	if(patient.infusion_active)
 		if(!silent)
-			to_chat(owner, "<span class='warning'>[patient] is already benefitting from our [name]!</span>")
+			to_chat(owner, "<span class='warning'>[patient] is already benefitting from our [src]!</span>")
 		return FALSE
 
 
@@ -330,7 +330,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	owner.face_atom(target) //Face the target so we don't look stupid
 
 	owner.visible_message("<span class='xenodanger'>\the [owner] infuses [target] with mysterious energy!</span>", \
-	"<span class='xenodanger'>We empower [target] with our [name]!</span>")
+	"<span class='xenodanger'>We empower [target] with our [src]!</span>")
 
 	playsound(target, 'sound/effects/magic.ogg', 25) //Cool SFX
 	playsound(owner, 'sound/effects/magic.ogg', 25) //Cool SFX
