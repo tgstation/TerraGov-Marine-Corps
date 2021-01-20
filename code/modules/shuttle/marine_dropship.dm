@@ -218,7 +218,7 @@
 	unlock_all()
 
 /obj/docking_port/mobile/marine_dropship/proc/reset_hijack()
-	if(hijack_state == HIJACK_STATE_CALLED_DOWN)
+	if(hijack_state == HIJACK_STATE_CALLED_DOWN || hijack_state == HIJACK_STATE_UNLOCKED)
 		set_hijack_state(HIJACK_STATE_NORMAL)
 
 /obj/docking_port/mobile/marine_dropship/proc/summon_dropship_to(obj/docking_port/stationary/S)
@@ -367,7 +367,6 @@
 			return FALSE
 		D.set_hijack_state(HIJACK_STATE_UNLOCKED)
 		D.unlock_all()
-		D.do_start_hijack_timer(GROUND_LOCKDOWN_TIME)
 		to_chat(user, "<span class='warning'>We have overriden the shuttle lockdown!</span>")
 		playsound(user, "alien_roar", 50)
 		priority_announce("Alamo lockdown protocol compromised. Interference preventing remote control", "Dropship Lock Alert")
@@ -412,6 +411,7 @@
 		if(M.id == "alamo")
 			D = M
 	D.summon_dropship_to(closest)
+	D.start_hijack_timer()
 	return closest
 
 // ************************************************	//
