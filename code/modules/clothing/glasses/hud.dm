@@ -64,7 +64,7 @@
 	icon_state = "healthhud"
 	deactive_state = "degoggles_med"
 	flags_armor_protection = 0
-	toggleable = 1
+	toggleable = TRUE
 	hud_type = DATA_HUD_MEDICAL_ADVANCED
 	actions_types = list(/datum/action/item_action/toggle)
 
@@ -74,11 +74,12 @@
 	icon_state = "medgoggles"
 	item_state = "medgoggles"
 	deactive_state = "degoggles_medgoggles"
-	toggleable = 1
+	toggleable = TRUE
 	hud_type = DATA_HUD_MEDICAL_ADVANCED
 	actions_types = list(/datum/action/item_action/toggle)
 	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 0, "energy" = 15, "bomb" = 35, "bio" = 10, "rad" = 10, "fire" = 30, "acid" = 30)
 	flags_equip_slot = ITEM_SLOT_EYES
+	goggles = TRUE
 
 /obj/item/clothing/glasses/hud/medgoggles/prescription
 	name = "\improper HealthMate prescription ballistic goggles"

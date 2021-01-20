@@ -16,6 +16,7 @@
 	var/invis_view = SEE_INVISIBLE_LIVING
 	var/invis_override = 0 //Override to allow glasses to set higher than normal see_invis
 	var/lighting_alpha
+	var/goggles = FALSE
 
 
 /obj/item/clothing/glasses/update_clothing_icon()
@@ -118,6 +119,7 @@
 	item_state = "mgoggles"
 	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 0, "energy" = 15, "bomb" = 35, "bio" = 10, "rad" = 10, "fire" = 30, "acid" = 30)
 	flags_equip_slot = ITEM_SLOT_EYES|ITEM_SLOT_MASK
+	goggles = TRUE
 
 /obj/item/clothing/glasses/mgoggles/prescription
 	name = "prescription marine ballistic goggles"
