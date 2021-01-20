@@ -225,6 +225,7 @@
 	if(hijack_state != HIJACK_STATE_NORMAL)
 		return
 	unlock_all()
+	do_start_hijack_timer()
 	switch(mode)
 		if(SHUTTLE_IDLE)
 			set_hijack_state(HIJACK_STATE_CALLED_DOWN)
@@ -234,13 +235,6 @@
 			playsound(loc,'sound/effects/alert.ogg', 50)
 			addtimer(CALLBACK(src, .proc/request_to, S), 15 SECONDS)
 
-/obj/docking_port/mobile/marine_dropship/proc/start_hijack_timer(datum/source, new_mode)
-	SIGNAL_HANDLER
-	if(new_mode != SHUTTLE_RECHARGING)
-		return
-	UnregisterSignal(src, COMSIG_SHUTTLE_SETMODE)
-	do_start_hijack_timer()
-
 
 /obj/docking_port/mobile/marine_dropship/proc/do_start_hijack_timer(hijack_time = LOCKDOWN_TIME)
 	addtimer(CALLBACK(src, .proc/reset_hijack), hijack_time)
@@ -249,7 +243,6 @@
 /obj/docking_port/mobile/marine_dropship/proc/request_to(obj/docking_port/stationary/S)
 	set_idle()
 	request(S)
-	RegisterSignal(src, COMSIG_SHUTTLE_SETMODE, .proc/start_hijack_timer)
 
 /obj/docking_port/mobile/marine_dropship/proc/set_hijack_state(new_state)
 	hijack_state = new_state
@@ -283,10 +276,6 @@
 	if(!SSticker?.mode)
 		to_chat(src, "<span class='warning'>This power doesn't work in this gamemode.</span>")
 
-	if(hive.living_xeno_ruler != src)
-		to_chat(src, "<span class='warning'>Only the ruler of the hive may attempt this.</span>")
-		return
-
 	if(!(hive.hive_flags & HIVE_CAN_HIJACK))
 		to_chat(src, "<span class='warning'>Our hive lacks the psychic prowess to hijack the bird.</span>")
 		return
@@ -318,7 +307,7 @@
 /datum/game_mode/proc/can_summon_dropship(mob/user)
 	if(SSticker.round_start_time + SHUTTLE_HIJACK_LOCK > world.time)
 		to_chat(user, "<span class='warning'>It's too early to call it. We must wait [DisplayTimeText(SSticker.round_start_time + SHUTTLE_HIJACK_LOCK - world.time, 1)].</span>")
-		return FALSE
+		//return FALSE
 	if(!is_ground_level(user.z))
 		to_chat(user, "<span class='warning'>We can't call the bird from here!</span>")
 		return FALSE
@@ -365,9 +354,9 @@
 		if(!is_ground_level(D.z))
 			to_chat(user, "<span class='warning'>The bird has left meanwhile, try again.</span>")
 			return FALSE
-		D.set_hijack_state(HIJACK_STATE_UNLOCKED)
 		D.unlock_all()
-		D.start_hijack_timer(GROUND_LOCKDOWN_TIME)
+		D.set_hijack_state(HIJACK_STATE_UNLOCKED)
+		D.do_start_hijack_timer(GROUND_LOCKDOWN_TIME)
 		to_chat(user, "<span class='warning'>We have overriden the shuttle lockdown!</span>")
 		playsound(user, "alien_roar", 50)
 		priority_announce("Alamo lockdown protocol compromised. Interference preventing remote control", "Dropship Lock Alert")
@@ -435,13 +424,15 @@
 		return
 	if(SSticker.round_start_time + SHUTTLE_HIJACK_LOCK > world.time)
 		to_chat(X, "<span class='xenowarning'>It's too early to do this!</span>")
-		return
+		//return
 	var/obj/docking_port/mobile/marine_dropship/M = SSshuttle.getShuttle(shuttleId)
 	var/dat = "Status: [M ? M.getStatusText() : "*Missing*"]<br><br>"
 	if(M)
 		dat += "<A href='?src=[REF(src)];hijack=1'>Launch to [SSmapping.configs[SHIP_MAP].map_name]</A><br>"
 		M.unlock_all()
-		M.hijack_state = HIJACK_STATE_CALLED_DOWN
+		if(M.hijack_state != HIJACK_STATE_CALLED_DOWN)
+			M.hijack_state = HIJACK_STATE_CALLED_DOWN
+			M.do_start_hijack_timer()
 
 	var/datum/browser/popup = new(X, "computer", M ? M.name : "shuttle", 300, 200)
 	popup.set_content("<center>[dat]</center>")
@@ -600,9 +591,6 @@
 	var/mob/living/carbon/xenomorph/X = usr
 
 	if(href_list["hijack"])
-		if(X.hive.living_xeno_ruler != X)
-			to_chat(X, "<span class='warning'>Only the ruler of the hive may attempt this.</span>")
-			return
 		if(!(X.hive.hive_flags & HIVE_CAN_HIJACK))
 			to_chat(X, "<span class='warning'>Our hive lacks the psychic prowess to hijack the bird.</span>")
 			return
