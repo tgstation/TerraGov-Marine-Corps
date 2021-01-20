@@ -1,0 +1,4 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - admin: "Stricter time lock for shipside and command jobs"

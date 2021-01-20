@@ -201,7 +201,6 @@
 	if(!ishuman(M))
 		return list()
 	var/surgery_list = list()
-	var/known_implants = list(/obj/item/implant/neurostim)
 	for(var/datum/limb/L in M.limbs)
 		if(L)
 			for(var/datum/wound/W in L.wounds)
@@ -239,7 +238,7 @@
 			var/skip_embryo_check = FALSE
 			if(L.implants.len)
 				for(var/I in L.implants)
-					if(!is_type_in_list(I,known_implants))
+					if(!is_type_in_list(I,GLOB.known_implants))
 						surgery_list += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_SHRAPNEL)
 						if(L.body_part == CHEST)
 							skip_embryo_check = TRUE
@@ -303,8 +302,6 @@
 	visible_message("[src] begins to operate, loud audible clicks lock the pod.")
 	surgery = TRUE
 	update_icon()
-
-	var/known_implants = list(/obj/item/implant/neurostim)
 
 	for(var/datum/autodoc_surgery/A in surgery_todo_list)
 		if(A.type_of_surgery == EXTERNAL_SURGERY)
@@ -551,7 +548,7 @@
 							for(var/obj/item/I in S.limb_ref.implants)
 								if(!surgery)
 									break
-								if(!is_type_in_list(I,known_implants))
+								if(!is_type_in_list(I, GLOB.known_implants))
 									sleep(HEMOSTAT_REMOVE_MAX_DURATION*surgery_mod)
 									I.unembed_ourself(TRUE)
 						if(S.limb_ref.body_part == CHEST || S.limb_ref.body_part == HEAD)
@@ -1233,13 +1230,12 @@
 
 
 		if(href_list["shrapnel"])
-			var/known_implants = list(/obj/item/implant/neurostim)
 			for(var/i in connected.occupant.limbs)
 				var/datum/limb/L = i
 				var/skip_embryo_check = FALSE
 				var/obj/item/alien_embryo/A = locate() in connected.occupant
 				for(var/I in L.implants)
-					if(is_type_in_list(I, known_implants))
+					if(is_type_in_list(I, GLOB.known_implants))
 						continue
 					N.fields["autodoc_manual"] += create_autodoc_surgery(L, LIMB_SURGERY,ADSURGERY_SHRAPNEL)
 					needed++
