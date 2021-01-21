@@ -71,9 +71,6 @@
 /obj/machinery/door/poddoor/shutters/transit,
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
-"t" = (
-/turf/open/space/basic,
-/area/shuttle/minidropship)
 "u" = (
 /obj/effect/attach_point/weapon/minidropship{
 	dir = 8
@@ -175,7 +172,7 @@ o
 b
 S
 i
-t
+e
 h
 h
 X
