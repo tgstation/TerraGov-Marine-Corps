@@ -626,7 +626,7 @@
 		var/confirm = alert(usr, "Would you like to capture the metal bird?\n THIS WILL END THE ROUND", "Capture the ship?", "Yes", "No")
 		if(confirm == "Yes")
 			var/datum/game_mode/infestation/distress/distress_mode = SSticker.mode
-			var/message = "The Alamo has been captured! Losing their main means of accessing the ground, the marines have no choice but to retreat."
+			var/message = "The Alamo has been captured! Losing their main mean of accessing the ground, the marines have no choice but to retreat."
 			priority_announce(message, title = "ALAMO CAPTURED")
 			distress_mode.round_stage = DISTRESS_DROPSHIP_CAPTURED_XENOS
 			return
