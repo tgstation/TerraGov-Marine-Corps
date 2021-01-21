@@ -187,8 +187,8 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define LIMB_STABILIZED (1<<9) //certain suits will support a broken limb while worn such as the b18
 
 /////////////////MOVE DEFINES//////////////////////
-#define MOVE_INTENT_WALK        0
-#define MOVE_INTENT_RUN         1
+#define MOVE_INTENT_WALK        1
+#define MOVE_INTENT_RUN         0
 #define XENO_HUMAN_PUSHED_DELAY 5
 
 ///////////////////INTERNAL ORGANS DEFINES///////////////////
