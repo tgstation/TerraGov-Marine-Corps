@@ -168,6 +168,11 @@
 	mediumxenofootstep = FOOTSTEP_WATER
 	heavyxenofootstep = FOOTSTEP_WATER
 
+/turf/open/beach/sea/Entered(atom/movable/AM, atom/oldloc)
+	. = ..()
+	if(isliving(AM))
+		var/mob/living/spaceman = AM
+		spaceman.adjustFireLoss(666) //Really bad idea, spessman.
 
 //Nostromo turfs
 

@@ -10,6 +10,12 @@
 	temperature = TCMB
 	pressure = 0
 
+/area/space/Entered(atom/movable/AM, atom/oldloc)
+	. = ..()
+	if(isliving(AM))
+		var/mob/living/spaceman = AM
+		spaceman.adjustFireLoss(600) //Bad idea, spessman.
+
 /area/engine/
 	ambience = list('sound/ambience/ambisin1.ogg','sound/ambience/ambisin2.ogg','sound/ambience/ambisin3.ogg','sound/ambience/ambisin4.ogg')
 /area/turret_protected/
