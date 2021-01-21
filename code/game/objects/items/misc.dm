@@ -169,9 +169,3 @@
 	desc = "A box with a few pumps and a big drill, meant to replace the standard drill used in normal mining wells for faster extraction."
 	icon_state = "mining_drill_overclockeddisplay"
 	uptype = "high-efficiency drill"
-
-/obj/item/minerupgrade/compactor
-	name = "crystalizer module"
-	desc = "A bulky module meant to replace the normal crystalizer in mining wells, used to compress boxes for easy carrying."
-	icon_state = "mining_drill_compactordisplay"
-	uptype = "upgraded crystalizer module"
