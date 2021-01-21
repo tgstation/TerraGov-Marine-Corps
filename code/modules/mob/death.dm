@@ -12,11 +12,6 @@
 /mob/proc/spawn_gibs()
 	hgibs(loc)
 
-///Proc called when siloing a mob
-/mob/proc/siloed(obj/structure/resin/silo/siloed_to)
-	return
-
-
 //This is the proc for turning a mob into ash. Mostly a copy of gib code (above).
 //Originally created for wizard disintegrate. I've removed the virus code since it's irrelevant here.
 //Dusting robots does not eject the MMI, so it's a bit more powerful than gib() /N
