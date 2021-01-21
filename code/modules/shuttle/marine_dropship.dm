@@ -623,12 +623,12 @@
 		do_hijack(M, CT, X)
 
 	if(href_list["abduct"])
-		var/confirm = alert(src, "Would you like to capture the metal bird?\nTHIS WILL END THE ROUND", "Capture the ship?", "Yes", "No")
+		var/confirm = alert(usr, "Would you like to capture the metal bird?\n THIS WILL END THE ROUND", "Capture the ship?", "Yes", "No")
 		if(confirm == "Yes")
 			var/datum/game_mode/infestation/distress/distress_mode = SSticker.mode
-			var/message = "The Xenos have crashed the alamo. RIP"
-			priority_announce(message, title = "ALAMO CRASHED")
-			distress_mode.round_stage = DISTRESS_DROPSHIP_CRASHED_XENOS
+			var/message = "The Alamo has been captured! Losing their main means of accessing the ground, the marines have no choice but to retreat."
+			priority_announce(message, title = "ALAMO CAPTURED")
+			distress_mode.round_stage = DISTRESS_DROPSHIP_CAPTURED_XENOS
 			return
 
 /obj/machinery/computer/shuttle/marine_dropship/proc/do_hijack(obj/docking_port/mobile/marine_dropship/crashing_dropship, obj/docking_port/stationary/marine_dropship/crash_target/crash_target, mob/living/carbon/xenomorph/user)
