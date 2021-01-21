@@ -24,7 +24,7 @@
 	///Tracks how many ticks have passed since we last added a sheet of material
 	var/add_tick = 0
 	///How many times we neeed to tick for a resource to be created, in this case this is 2* the specified amount
-	var/required_ticks = 140  //make one crate every 280 seconds
+	var/required_ticks = 70  //make one crate every 140 seconds
 	///The mineral type that's produced
 	var/mineral_produced = /obj/item/compactorebox/phoron
 	///Health for the miner we use because changing obj_integrity is apparently bad
@@ -77,7 +77,7 @@
 			max_miner_integrity = 300
 			miner_integrity = 300
 		if(MINER_OVERCLOCKED)
-			required_ticks = 105
+			required_ticks = 50
 	miner_upgrade_type = upgrade.uptype
 	user.visible_message("<span class='notice'>[user] attaches the [miner_upgrade_type] to the [src]!</span>")
 	qdel(upgrade)
@@ -233,7 +233,7 @@
 	if(add_tick >= required_ticks)
 		stored_mineral += 1
 		add_tick = 0
-	if(stored_mineral >= 5)	//Stores 5 boxes worth of minerals
+	if(stored_mineral >= 8)	//Stores 8 boxes worth of minerals
 		stop_processing()
 	else
 		add_tick += 1

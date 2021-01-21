@@ -13,11 +13,11 @@
 	export_obj = /obj/structure/ore_box/phoron
 
 /datum/supply_export/compactorebox/phoron
-	cost = 50
+	cost = 25
 	export_obj = /obj/item/compactorebox/phoron
 
 /datum/supply_export/compactorebox/platinum
-	cost = 100
+	cost = 50
 	export_obj = /obj/item/compactorebox/platinum
 
 /datum/supply_export/xemomorph
