@@ -963,7 +963,7 @@
 	INVOKE_ASYNC(src, .proc/restore_blood)
 
 	if(!(species.species_flags & NO_STAMINA))
-//		AddComponent(/datum/component/stamina_behavior)
+		AddComponent(/datum/component/stamina_behavior)
 		max_stamina_buffer = species.max_stamina_buffer
 		setStaminaLoss(-max_stamina_buffer)
 

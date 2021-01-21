@@ -1,5 +1,3 @@
-/* Uncomment and tick this if you want run stamina to work for whatever reason.
-
 /datum/component/stamina_behavior
 	var/stamina_state = STAMINA_STATE_IDLE
 
@@ -45,7 +43,7 @@
 	var/mob/living/stamina_holder = parent
 	if(oldloc == stamina_holder.loc)
 		return
-	stamina_holder.adjustStaminaLoss(1)
+//	stamina_holder.adjustStaminaLoss(1)
 	if(stamina_holder.staminaloss >= 0)
 		stamina_holder.toggle_move_intent(MOVE_INTENT_WALK)
 
@@ -56,4 +54,3 @@
 	if(canmove || stamina_holder.m_intent == MOVE_INTENT_WALK)
 		return
 	stamina_holder.toggle_move_intent(MOVE_INTENT_WALK)
-*/

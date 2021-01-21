@@ -345,7 +345,7 @@
 			return FALSE
 		m_intent = new_intent
 	else
-		if(m_intent == MOVE_INTENT_WALK)
+		if(m_intent == MOVE_INTENT_RUN)
 			m_intent = MOVE_INTENT_WALK
 		else
 			m_intent = MOVE_INTENT_RUN
