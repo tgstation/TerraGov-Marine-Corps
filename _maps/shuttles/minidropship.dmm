@@ -81,12 +81,6 @@
 /obj/machinery/computer/dropship_weapons/minidropship,
 /turf/open/shuttle/blackfloor,
 /area/shuttle/minidropship)
-"E" = (
-/obj/structure/window/framed/mainship/spaceworthy{
-	
-	},
-/turf/open/floor/mainship/mono,
-/area/shuttle/minidropship)
 "F" = (
 /obj/docking_port/mobile/marine_dropship/minidropship,
 /turf/open/shuttle/dropship/grating,
@@ -202,7 +196,7 @@ q
 "}
 (6,1,1) = {"
 o
-E
+b
 o
 o
 s

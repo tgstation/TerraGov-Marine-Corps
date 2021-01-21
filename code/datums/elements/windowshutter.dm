@@ -33,7 +33,6 @@
 	Detach(source)
 
 /datum/element/windowshutter/cokpitshutters/spawn_shutter(datum/source)
-	SIGNAL_HANDLER
 	UnregisterSignal(source, ELEMENT_CLOSE_SHUTTER_LINKED)
 	for(var/direction in GLOB.cardinals)
 		for(var/obj/structure/window/W in get_step(source,direction) )
