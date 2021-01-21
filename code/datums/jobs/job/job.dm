@@ -263,25 +263,24 @@ GLOBAL_PROTECT(exp_specialmap)
 /mob/living/carbon/human/apply_assigned_role_to_spawn(datum/job/assigned_role, client/player, datum/squad/assigned_squad, admin_action = FALSE)
 	. = ..()
 	comm_title = job.comm_title
-	var/mob/living/carbon/human/marine = src
 	if(job.outfit)
 		var/id_type = job.outfit.id ? job.outfit.id : /obj/item/card/id
 		var/obj/item/card/id/id_card = new id_type
 		if(wear_id)
 			if(!admin_action)
-				stack_trace("[marine] had an ID when apply_outfit_to_spawn() ran")
+				stack_trace("[src] had an ID when apply_outfit_to_spawn() ran")
 			QDEL_NULL(wear_id)
 		equip_to_slot_or_del(id_card, SLOT_WEAR_ID)
-		job.outfit.handle_id(marine)
-		job.outfit.equip(marine)
+		job.outfit.handle_id(src)
+		job.outfit.equip(src)
 
 	if((job.job_flags & JOB_FLAG_ALLOWS_PREFS_GEAR) && player)
 		equip_preference_gear(player)
 
-	if(!marine.assigned_squad && assigned_squad)
-		job.equip_spawning_squad(marine, assigned_squad, player)
+	if(assigned_squad)
+		job.equip_spawning_squad(src, assigned_squad, player)
 	
-	marine.hud_set_job()
+	hud_set_job()
 
 /datum/job/proc/equip_spawning_squad(mob/living/carbon/human/new_character, datum/squad/assigned_squad, client/player)
 	return
