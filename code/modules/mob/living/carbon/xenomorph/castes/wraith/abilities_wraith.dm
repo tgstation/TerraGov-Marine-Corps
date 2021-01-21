@@ -37,6 +37,21 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	. = ..()
 	RegisterSignal(owner, COMSIG_XENOMORPH_DEATH, .proc/unset_warp_shadow) //Removes warp shadow on death
 
+/datum/action/xeno_action/place_warp_shadow/can_use_action(silent = FALSE, override_flags)
+	. = ..()
+	var/turf/T = get_turf(owner)
+	if(isclosedturf(T) || isspaceturf(T))
+		if(!silent)
+			to_chat(owner, "<span class='xenowarning'>We cannot create a warp shadow here!</span>")
+		return FALSE
+
+	var/area/current_area = get_area(owner) //Have to define this in a local var or is_type_in_typecache freaks out
+	if(is_type_in_typecache(current_area, GLOB.wraith_no_incorporeal_pass_areas)) //We cannot create a Warp Shadow in prohibited areas.
+		if(!silent)
+			to_chat(owner, "<span class='xenowarning'>This area interferes with our ability to create a warp shadow!</span>")
+		return FALSE
+
+
 /datum/action/xeno_action/place_warp_shadow/action_activate()
 	var/mob/living/carbon/xenomorph/wraith/ghost = owner
 

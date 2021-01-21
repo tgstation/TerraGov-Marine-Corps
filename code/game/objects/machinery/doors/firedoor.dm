@@ -116,6 +116,9 @@
 	return FALSE
 
 /obj/machinery/door/firedoor/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(M.status_flags & INCORPOREAL)
+		return FALSE
+
 	var/turf/cur_loc = X.loc
 	if(blocked)
 		to_chat(X, "<span class='warning'>\The [src] is welded shut.</span>")

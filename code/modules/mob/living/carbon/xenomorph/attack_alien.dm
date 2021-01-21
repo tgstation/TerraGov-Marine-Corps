@@ -7,7 +7,7 @@
 //#define DEBUG_ATTACK_ALIEN
 
 /mob/living/proc/attack_alien_grab(mob/living/carbon/xenomorph/X)
-	if(X == src || anchored || buckled || status_flags & INCORPOREAL)
+	if(X == src || anchored || buckled || X.status_flags & INCORPOREAL)
 		return FALSE
 
 	if(!Adjacent(X))
@@ -17,6 +17,9 @@
 	return TRUE
 
 /mob/living/carbon/human/attack_alien_grab(mob/living/carbon/xenomorph/X)
+	if(X.status_flags & INCORPOREAL)
+		return FALSE
+
 	if(check_shields(COMBAT_TOUCH_ATTACK, X.xeno_caste.tackle_damage, "melee"))
 		return ..()
 	X.visible_message("<span class='danger'>\The [X]'s grab is blocked by [src]'s shield!</span>",
@@ -26,6 +29,9 @@
 
 
 /mob/living/proc/attack_alien_disarm(mob/living/carbon/xenomorph/X, dam_bonus)
+	if(X.status_flags & INCORPOREAL)
+		return FALSE
+
 	SEND_SIGNAL(src, COMSIG_LIVING_MELEE_ALIEN_DISARMED, X)
 	X.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
 	playsound(loc, 'sound/weapons/alien_knockdown.ogg', 25, TRUE)
@@ -86,6 +92,9 @@
 	return affecting
 
 /mob/living/proc/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
+	if(X.status_flags & INCORPOREAL)
+		return FALSE
+
 	if(!can_xeno_slash(X))
 		return FALSE
 
@@ -152,6 +161,9 @@
 	return TRUE
 
 /mob/living/silicon/attack_alien_disarm(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
+	if(X.status_flags & INCORPOREAL)
+		return FALSE
+
 	if(stat == DEAD) //A bit of visual flavor for attacking Cyborgs. Sparks!
 		return FALSE
 	. = ..()
@@ -165,6 +177,9 @@
 	playsound(loc, "alien_claw_metal", 25, TRUE)
 
 /mob/living/silicon/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
+	if(X.status_flags & INCORPOREAL)
+		return FALSE
+
 	if(stat == DEAD) //A bit of visual flavor for attacking Cyborgs. Sparks!
 		return FALSE
 	. = ..()
@@ -187,6 +202,9 @@
 
 
 /mob/living/carbon/human/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
+	if(X.status_flags & INCORPOREAL)
+		return FALSE
+
 	if(stat == DEAD)
 		if(istype(wear_ear, /obj/item/radio/headset/mainship))
 			var/obj/item/radio/headset/mainship/cam_headset = wear_ear
@@ -214,6 +232,9 @@
 
 //Every other type of nonhuman mob //MARKER OVERRIDE
 /mob/living/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(X.status_flags & INCORPOREAL)
+		return FALSE
+
 	if (X.fortify)
 		return FALSE
 

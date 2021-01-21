@@ -186,6 +186,9 @@
 		qdel(src)
 
 /obj/structure/closet/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(M.status_flags & INCORPOREAL)
+		return FALSE
+
 	if(X.a_intent == INTENT_HARM && !CHECK_BITFIELD(resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
 		X.do_attack_animation(src, ATTACK_EFFECT_SMASH)
 		if(!opened && prob(70))

@@ -2,9 +2,7 @@
 GLOBAL_LIST_INIT(wraith_no_incorporeal_pass_atoms, typecacheof(list(
 	/obj/flamer_fire,
 	/obj/effect/particle_effect/smoke/plasmaloss,
-	/turf/open/space,
-	/obj/machinery/door/poddoor/timed_late/containment,
-	/obj/machinery/door/poddoor/shutters/mainship/selfdestruct)))
+	/turf/open/space)))
 
 GLOBAL_LIST_INIT(wraith_no_incorporeal_pass_areas, typecacheof(list(
 	/area/space,
