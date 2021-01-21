@@ -20,7 +20,7 @@
 
 	var/siloless_countdown = SSticker.mode.get_siloless_collapse_countdown()
 	if(siloless_countdown)
-		dat += "<b>Orphan hivemind collapse in [rulerless_countdown]</b><br>"
+		dat += "<b>Orphan hivemind collapse in [siloless_countdown]</b><br>"
 
 	dat += "<b>Evacuation:</b> "
 	switch(SSevacuation.evac_status)
