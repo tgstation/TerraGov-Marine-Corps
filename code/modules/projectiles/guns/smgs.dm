@@ -124,10 +124,9 @@
 	scatter = 5 //use the ext barrel for 2 hands a least buut i'm not your boss anyway
 	fire_delay = 0.132 SECONDS
 	scatter_unwielded = 25 //so you need the recoil comp and the gyro if shooting one handed. any other way you got scatter.
-	recoil_unwielded = 3 //you either get the recoil comp and gyro to one hand or you dont one hand  if you want to use suuupressor you got EVEN more damage fall of
+	recoil_unwielded = 2 //you either get the recoil comp and gyro to one hand or you dont one hand  if you want to use suuupressor you got EVEN more damage fall of
 	aim_slowdown = 0.25
 	burst_amount = 0
-	damage_falloff_mult = 2.72 //most SHOTGUNS have 4 so a middle ground for , a lot of testing went in THIS vale
 	damage_mult = 1.3 //should give that humpf it lacks. making the TTK better overall
 
 /obj/item/weapon/gun/smg/standard_smg/breacher
