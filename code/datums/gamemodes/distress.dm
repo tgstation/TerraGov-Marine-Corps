@@ -1,5 +1,5 @@
 #define DISTRESS_MARINE_DEPLOYMENT 0
-#define DISTRESS_DROPSHIP_CRASHED 1
+#define DISTRESS_DROPSHIP_CRASHING 1
 
 /datum/game_mode/infestation/distress
 	name = "Distress Signal"
