@@ -121,16 +121,15 @@
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 15,"rail_x" = 22, "rail_y" = 22, "under_x" = 17, "under_y" = 15, "stock_x" = 24, "stock_y" = 10)
 
 	accuracy_mult = 1.15
-	accuracy_mult_unwielded = 0.8
-	scatter = 5 //you either use the ext barrel or your in for trouble
-	fire_delay = 0.132 SECONDS
-	recoil = 0 //so you get SOME attachies on it
+	accuracy_mult_unwielded = 0.7 //discorage one handling
+	scatter = 5 //use the ext barrel for 2 hands a least buut i'm not your boss anyway
+	fire_delay = 0.132 SECONDSs
 	scatter_unwielded = 25 //so you need the recoil comp and the gyro if shooting one handed. any other way you got scatter.
-	recoil_unwielded = 3 //you either get the recoil comp and gyro to one hand or you dont one hand
+	recoil_unwielded = 3 //you either get the recoil comp and gyro to one hand or you dont one hand  if you want to use suuupressor you got EVEN more damage fall of
 	aim_slowdown = 0.25
 	burst_amount = 0
-	damage_falloff_mult = 2 //most SHOTGUNS have 4 so a middle ground for
-	damage_mult = 1.2 //should give that humpf it lacks. making the TTK better overall
+	damage_falloff_mult = 2.72 //most SHOTGUNS have 4 so a middle ground for , a lot of testing went in THIS vale
+	damage_mult = 1.3 //should give that humpf it lacks. making the TTK better overall
 
 /obj/item/weapon/gun/smg/standard_smg/breacher
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
