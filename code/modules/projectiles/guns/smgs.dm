@@ -123,13 +123,14 @@
 	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.8
 	scatter = 5 //you either use the ext barrel or your in for trouble
-	fire_delay = 0.165 SECONDS
-	recoil = 1 //so you get SOME attachies on it
+	fire_delay = 0.132 SECONDS
+	recoil = 0 //so you get SOME attachies on it
 	scatter_unwielded = 25 //so you need the recoil comp and the gyro if shooting one handed. any other way you got scatter.
 	recoil_unwielded = 3 //you either get the recoil comp and gyro to one hand or you dont one hand
 	aim_slowdown = 0.25
 	burst_amount = 0
 	damage_falloff_mult = 2 //most SHOTGUNS have 4 so a middle ground for
+	damage_mult = 1.2 //should give that humpf it lacks. making the TTK better overall
 
 /obj/item/weapon/gun/smg/standard_smg/breacher
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
