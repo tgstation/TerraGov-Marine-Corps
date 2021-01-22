@@ -1,5 +1,0 @@
-author: "Surrealaser"
-delete-after: True
-changes: 
-  - bugfix: "Fixes a bug related to keeping the xeno tunnel selection interface open."
-  - code_imp: "Proofs xeno tunnels against future bugs/unintended behaviours."
