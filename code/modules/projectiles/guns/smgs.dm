@@ -110,7 +110,6 @@
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/gyro,
 		/obj/item/attachable/angledgrip,
-		/obj/item/attachable/burstfire_assembly, //needs to be tested, if this is left in the code. it was tested and performed well
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
