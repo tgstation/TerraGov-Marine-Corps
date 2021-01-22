@@ -422,7 +422,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_high = 7
 	damage = 20
 	accurate_range = 5
-	damage_falloff_mult = 2.72 //most SHOTGUNS have 4 so a middle ground for , a lot of testing went in THIS value
+	damage_falloff = 2.72 //most SHOTGUNS have 4 so a middle ground for , a lot of testing went in THIS value
 	sundering = 0.5
 	penetration = 5
 
