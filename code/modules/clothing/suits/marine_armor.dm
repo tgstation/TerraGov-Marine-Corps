@@ -267,14 +267,28 @@
 // MARINE PAS-11 vests, the new armor. It is basically equivalent to a modular armor with general storage on it.
 
 /obj/item/clothing/suit/storage/marine/pasvest
-	name = "\improper PAS-11 pattern armored vest"
+	name = "\improper Classic PAS-11 pattern armored vest"
 	desc = "A somewhat outdated but robust armored vest, still in use despite the rise of exoskeleton armor due to ease of use and manufacturing. Tougher than it looks. Use it to toggle the built-in flashlight."
 	icon_state = "2"
 	soft_armor = list("melee" = 40, "bullet" = 60, "laser" = 60, "energy" = 45, "bomb" = 45, "bio" = 45, "rad" = 45, "fire" = 45, "acid" = 50)
 	slowdown = 0.5 //a bit less
 	light_range = 6
 
+/obj/item/clothing/suit/storage/marine/lightpasvest
+	name = "\improper Light PAS-11 pattern armored vest"
+	desc = "A somewhat outdated but robust armored vest, still in use despite the rise of exoskeleton armor due to ease of use and manufacturing. Tougher than it looks. Use it to toggle the built-in flashlight."
+	icon_state = "6"
+	soft_armor = list("melee" = 30, "bullet" = 35, "laser" = 35, "energy" = 45, "bomb" = 45, "bio" = 45, "rad" = 45, "fire" = 45, "acid" = 50)
+	slowdown = 0.3
+	light_range = 6
 
+/obj/item/clothing/suit/storage/marine/pasvest
+	name = "\improper Heavy PAS-11 pattern armored vest"
+	desc = "A somewhat outdated but robust armored vest, still in use despite the rise of exoskeleton armor due to ease of use and manufacturing. Tougher than it looks. Use it to toggle the built-in flashlight."
+	icon_state = "5"
+	soft_armor = ("melee" = 40, "bullet" = 45, "laser" = 45, "energy" = 45, "bomb" = 45, "bio" = 45, "rad" = 45, "fire" = 45, "acid" = 50)
+	slowdown = 0.7
+	light_range = 6
 //===========================SPECIALIST================================
 
 
