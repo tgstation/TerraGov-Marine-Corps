@@ -94,7 +94,7 @@
 	caliber = "10x20mm caseless" //codex
 	max_shells = 50 //codex
 	flags_equip_slot = ITEM_SLOT_BACK
-	wield_delay = 0.5 SECONDS
+	wield_delay = 0.8 SECONDS  //with angled it gets back to the old value so if you going for two hands you will want it
 	force = 20
 	current_mag = /obj/item/ammo_magazine/smg/standard_smg
 	type_of_casings = null
@@ -108,19 +108,28 @@
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/burstfire_assembly, //needs to be tested, if this is left in the code. it was tested and performed well
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
+	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_fire_delay = 0.3 SECONDS //just dont
+	aim_speed_modifier = 2 //you wont be nearly as fast and mobile. kinda defeats the SMG main thing, unless you pack a gyro and then you loose on the Agrip
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 15,"rail_x" = 22, "rail_y" = 22, "under_x" = 17, "under_y" = 15, "stock_x" = 24, "stock_y" = 10)
 
 	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.8
-	scatter = 0
+	scatter = 5 //you either use the ext barrel or your in for trouble
 	fire_delay = 0.165 SECONDS
-	scatter_unwielded = 30
+	recoil = 1 //so you get SOME attachies on it
+	scatter_unwielded = 25 //so you need the recoil comp and the gyro if shooting one handed. any other way you got scatter.
+	recoil_unwielded = 3 //you either get the recoil comp and gyro to one hand or you dont one hand
 	aim_slowdown = 0.25
 	burst_amount = 0
+	damage_falloff_mult = 2 //most SHOTGUNS have 4 so a middle ground for
 
 /obj/item/weapon/gun/smg/standard_smg/breacher
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
