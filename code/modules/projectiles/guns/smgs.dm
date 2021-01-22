@@ -120,7 +120,7 @@
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 15,"rail_x" = 22, "rail_y" = 22, "under_x" = 17, "under_y" = 15, "stock_x" = 24, "stock_y" = 10)
 
 	accuracy_mult = 1.15
-	accuracy_mult_unwielded = 0.7 //discorage one handling
+	accuracy_mult_unwielded = 0.8
 	scatter = 5 //use the ext barrel for 2 hands a least buut i'm not your boss anyway
 	fire_delay = 0.132 SECONDS
 	scatter_unwielded = 25 //so you need the recoil comp and the gyro if shooting one handed. any other way you got scatter.
