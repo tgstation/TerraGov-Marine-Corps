@@ -128,6 +128,7 @@
 	aim_slowdown = 0.25
 	burst_amount = 0
 	damage_mult = 1.3 //should give that humpf it lacks. making the TTK better overall
+	damage_falloff = 2 //most SHOTGUNS have 4 so a middle ground for , a lot of testing went in THIS value
 
 /obj/item/weapon/gun/smg/standard_smg/breacher
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
