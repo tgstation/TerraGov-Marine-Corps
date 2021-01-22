@@ -10,7 +10,7 @@ Stepping directly on the mine will also blow it up
 	icon = 'icons/obj/items/grenade.dmi'
 	icon_state = "m20"
 	force = 5
-	w_class = WEIGHT_CLASS_TINY
+	w_class = WEIGHT_CLASS_SMALL
 	throwforce = 5
 	throw_range = 6
 	throw_speed = 3
