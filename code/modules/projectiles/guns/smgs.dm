@@ -122,7 +122,7 @@
 	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.7 //discorage one handling
 	scatter = 5 //use the ext barrel for 2 hands a least buut i'm not your boss anyway
-	fire_delay = 0.132 SECONDSs
+	fire_delay = 0.132 SECONDS
 	scatter_unwielded = 25 //so you need the recoil comp and the gyro if shooting one handed. any other way you got scatter.
 	recoil_unwielded = 3 //you either get the recoil comp and gyro to one hand or you dont one hand  if you want to use suuupressor you got EVEN more damage fall of
 	aim_slowdown = 0.25
