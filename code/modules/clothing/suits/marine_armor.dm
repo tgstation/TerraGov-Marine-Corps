@@ -282,7 +282,7 @@
 	slowdown = 0.3
 	light_range = 6
 
-/obj/item/clothing/suit/storage/marine/pasvest
+/obj/item/clothing/suit/storage/marine/heavypasvest
 	name = "\improper Heavy PAS-11 pattern armored vest"
 	desc = "A somewhat outdated but robust armored vest, still in use despite the rise of exoskeleton armor due to ease of use and manufacturing. Tougher than it looks. Use it to toggle the built-in flashlight."
 	icon_state = "5"
