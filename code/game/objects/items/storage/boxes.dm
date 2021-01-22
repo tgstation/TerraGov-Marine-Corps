@@ -308,7 +308,7 @@
 	if(!length(contents))
 		icon_state += "_e"
 
-/obj/item/storage/box/explosive_mines/big
+/obj/item/storage/box/explosive_mines/large
 	name = "\improper M20 mine box"
 	desc = "A large secure box holding anti-personel proximity mines."
 	icon_state = "minebox"
