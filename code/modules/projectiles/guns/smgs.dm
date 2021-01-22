@@ -122,13 +122,13 @@
 	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.8
 	scatter = 5 //use the ext barrel for 2 hands a least buut i'm not your boss anyway
-	fire_delay = 0.132 SECONDS
+	fire_delay = 0.125 SECONDS
 	scatter_unwielded = 25 //so you need the recoil comp and the gyro if shooting one handed. any other way you got scatter.
 	recoil_unwielded = 2 //you either get the recoil comp and gyro to one hand or you dont one hand  if you want to use suuupressor you got EVEN more damage fall of
 	aim_slowdown = 0.25
 	burst_amount = 0
 	damage_mult = 1.1 //should give that humpf it lacks. making the TTK better overall
-	damage_falloff_mult = 2 //most SHOTGUNS have 4 so a middle ground for , a lot of testing went in THIS value
+	damage_falloff_mult = 1.75 //most SHOTGUNS have 4 so a middle ground for , a lot of testing went in THIS value
 
 /obj/item/weapon/gun/smg/standard_smg/breacher
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
