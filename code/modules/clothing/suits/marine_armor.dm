@@ -270,7 +270,7 @@
 	name = "\improper Classic PAS-11 pattern armored vest"
 	desc = "A somewhat outdated but robust armored vest, still in use despite the rise of exoskeleton armor due to ease of use and manufacturing. Tougher than it looks. Use it to toggle the built-in flashlight."
 	icon_state = "2"
-	soft_armor = list("melee" = 35, "bullet" = 40, "laser" = 40, "energy" = 30, "bomb" = 30, "bio" = 30, "rad" = 30, "fire" = 35, "acid" = 30)
+	soft_armor = list("melee" = 40, "bullet" = 45, "laser" = 45, "energy" = 30, "bomb" = 30, "bio" = 30, "rad" = 30, "fire" = 35, "acid" = 30)
 	slowdown = 0.5 //a bit less
 	light_range = 6
 
@@ -278,7 +278,7 @@
 	name = "\improper Light PAS-11 pattern armored vest"
 	desc = "A somewhat outdated but robust armored vest, still in use despite the rise of exoskeleton armor due to ease of use and manufacturing. Tougher than it looks. Use it to toggle the built-in flashlight."
 	icon_state = "6"
-	soft_armor = list("melee" = 30, "bullet" = 35, "laser" = 35, "energy" = 25, "bomb" = 25, "bio" = 25, "rad" = 25, "fire" = 25, "acid" = 40)
+	soft_armor = list("melee" = 35, "bullet" = 40, "laser" = 40, "energy" = 25, "bomb" = 25, "bio" = 25, "rad" = 25, "fire" = 25, "acid" = 40)
 	slowdown = 0.3
 	light_range = 6
 
@@ -286,7 +286,7 @@
 	name = "\improper Heavy PAS-11 pattern armored vest"
 	desc = "A somewhat outdated but robust armored vest, still in use despite the rise of exoskeleton armor due to ease of use and manufacturing. Tougher than it looks. Use it to toggle the built-in flashlight."
 	icon_state = "5"
-	soft_armor = list("melee" = 40, "bullet" = 45, "laser" = 45, "energy" = 45, "bomb" = 45, "bio" = 45, "rad" = 45, "fire" = 45, "acid" = 50)
+	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 45, "bomb" = 45, "bio" = 45, "rad" = 45, "fire" = 45, "acid" = 50)
 	slowdown = 0.7
 	light_range = 6
 //===========================SPECIALIST================================
