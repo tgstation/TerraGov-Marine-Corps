@@ -24,9 +24,9 @@
 	///Tracks how many ticks have passed since we last added a sheet of material
 	var/add_tick = 0
 	///How many times we neeed to tick for a resource to be created, in this case this is 2* the specified amount
-	var/required_ticks = 70  //make one crate every 140 seconds
+	var/required_ticks = 140  //make one crate every 280 seconds
 	///The mineral type that's produced
-	var/mineral_produced = /obj/structure/ore_box/phoron
+	var/mineral_produced = /obj/item/compactorebox/phoron
 	///Health for the miner we use because changing obj_integrity is apparently bad
 	var/miner_integrity = 100
 	///Max health of the miner
@@ -41,7 +41,7 @@
 /obj/machinery/miner/damaged/platinum
 	name = "\improper Nanotrasen platinum Mining Well"
 	desc = "A Nanotrasen platinum drill with an internal packaging module. Produces even more valuable materials than it's phoron counterpart"
-	mineral_produced = /obj/structure/ore_box/platinum
+	mineral_produced = /obj/item/compactorebox/platinum
 
 /obj/machinery/miner/Initialize()
 	. = ..()
@@ -50,10 +50,7 @@
 /obj/machinery/miner/update_icon()
 	switch(miner_status)
 		if(MINER_RUNNING)
-			if((mineral_produced == /obj/item/compactorebox/platinum) && (miner_upgrade_type == MINER_COMPACTOR))
-				icon_state = "mining_drill_active_platinum_[miner_upgrade_type]"
-			else
-				icon_state = "mining_drill_active_[miner_upgrade_type]"
+			icon_state = "mining_drill_active_[miner_upgrade_type]"
 		if(MINER_SMALL_DAMAGE)
 			icon_state = "mining_drill_braced_[miner_upgrade_type]"
 		if(MINER_MEDIUM_DAMAGE)
@@ -79,13 +76,8 @@
 		if(MINER_RESISTANT)
 			max_miner_integrity = 300
 			miner_integrity = 300
-		if(MINER_COMPACTOR)
-			if(mineral_produced == /obj/structure/ore_box/platinum)
-				mineral_produced = /obj/item/compactorebox/platinum
-			else
-				mineral_produced = /obj/item/compactorebox/phoron
 		if(MINER_OVERCLOCKED)
-			required_ticks = 35
+			required_ticks = 105
 	miner_upgrade_type = upgrade.uptype
 	user.visible_message("<span class='notice'>[user] attaches the [miner_upgrade_type] to the [src]!</span>")
 	qdel(upgrade)
@@ -127,9 +119,6 @@
 			if(MINER_OVERCLOCKED)
 				upgrade = new /obj/item/minerupgrade/overclock
 				required_ticks = initial(required_ticks)
-			if(MINER_COMPACTOR)
-				upgrade = new /obj/item/minerupgrade/compactor
-				mineral_produced = initial(mineral_produced)
 		upgrade.forceMove(user.loc)
 		miner_upgrade_type = null
 		update_icon()
@@ -244,7 +233,7 @@
 	if(add_tick >= required_ticks)
 		stored_mineral += 1
 		add_tick = 0
-	if(stored_mineral >= 2)	//Stores 2 boxes worth of minerals
+	if(stored_mineral >= 5)	//Stores 5 boxes worth of minerals
 		stop_processing()
 	else
 		add_tick += 1
