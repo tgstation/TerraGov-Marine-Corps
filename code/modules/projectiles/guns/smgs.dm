@@ -127,7 +127,7 @@
 	recoil_unwielded = 2 //you either get the recoil comp and gyro to one hand or you dont one hand  if you want to use suuupressor you got EVEN more damage fall of
 	aim_slowdown = 0.25
 	burst_amount = 0
-	damage_mult = 1.2 //should give that humpf it lacks. making the TTK better overall
+	damage_mult = 1.1 //should give that humpf it lacks. making the TTK better overall
 	damage_falloff_mult = 2 //most SHOTGUNS have 4 so a middle ground for , a lot of testing went in THIS value
 
 /obj/item/weapon/gun/smg/standard_smg/breacher
