@@ -40,17 +40,10 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 /datum/action/xeno_action/place_warp_shadow/can_use_action(silent = FALSE, override_flags)
 	. = ..()
 	var/turf/T = get_turf(owner)
-	if(isclosedturf(T) || isspaceturf(T))
+	if(!check_warp_shadow_placement(T, owner)) //Check if our placement is legal
 		if(!silent)
 			to_chat(owner, "<span class='xenowarning'>We cannot create a warp shadow here!</span>")
 		return FALSE
-
-	var/area/current_area = get_area(owner) //Have to define this in a local var or is_type_in_typecache freaks out
-	if(is_type_in_typecache(current_area, GLOB.wraith_no_incorporeal_pass_areas)) //We cannot create a Warp Shadow in prohibited areas.
-		if(!silent)
-			to_chat(owner, "<span class='xenowarning'>This area interferes with our ability to create a warp shadow!</span>")
-		return FALSE
-
 
 /datum/action/xeno_action/place_warp_shadow/action_activate()
 	var/mob/living/carbon/xenomorph/wraith/ghost = owner
@@ -97,6 +90,19 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
 
+
+///Check Warp Shadow to stop Wraiths from placing a Warp Shadow or teleporting to one in a solid object with say Phase Shift; prevents them using exploiting say closed turfs as a shield by swapping positions with the Warp Shadow later
+/proc/check_warp_shadow_placement(turf/T, mob/owner)
+
+	if(isclosedturf(T) || isspaceturf(T))
+		return FALSE
+
+	for(var/obj/blocker in T) //
+		if(blocker.density && !(blocker.flags_atom & ON_BORDER)) //If we find a dense, non-border obj it's time to stop
+			return FALSE
+
+	return TRUE
+
 // ***************************************
 // *********** Hyperposition
 // ***************************************
@@ -115,15 +121,23 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	if(!warp_shadow_check) //Mainly for when we transition on upgrading
 		return FALSE
 
-	if(!warp_shadow_check.warp_shadow)
+	var/obj/effect/xenomorph/warp_shadow/shadow = warp_shadow_check.warp_shadow
+	if(!shadow)
 		if(!silent)
 			to_chat(owner, "<span class='xenodanger'>We have no warp shadow to teleport to!</span>")
 		return FALSE
 
-	if(warp_shadow_check.warp_shadow.z != owner.z) //We must be on the same Z level to teleport to the warp shadow
+	if(shadow.z != owner.z) //We must be on the same Z level to teleport to the warp shadow
 		if(!silent)
 			to_chat(owner, "<span class='xenodanger'>Our warp shadow is beyond our ability to teleport to!</span>")
 		return FALSE
+
+	var/turf/T = get_turf(shadow)
+	if(isclosedturf(T) || isspaceturf(T))
+		if(!silent)
+			to_chat(owner, "<span class='xenodanger'>We can't teleport to our warp shadow while it's in space or a wall!</span>")
+		return FALSE
+
 
 /datum/action/xeno_action/hyperposition/action_activate()
 	. = ..()
@@ -254,6 +268,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	addtimer(CALLBACK(src, .proc/phase_shift_warning), WRAITH_PHASE_SHIFT_DURATION * WRAITH_PHASE_SHIFT_DURATION_WARNING) //Warn them when Phase Shift is about to end
 	phase_shift_duration_timer_id = addtimer(CALLBACK(src, .proc/phase_shift_deactivate), WRAITH_PHASE_SHIFT_DURATION, TIMER_STOPPABLE)
 	ghost.add_filter("wraith_phase_shift", 4, list("type" = "blur", 5)) //Cool filter appear
+	ghost.stop_pulling() //We can't pull things while incorporeal
 
 	ghost_movable.generic_canpass = FALSE //So incorporeality is actually checked for collision
 	ghost.status_flags = GODMODE | INCORPOREAL //Become temporarily invulnerable and incorporeal
@@ -394,12 +409,10 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		return FALSE
 
 	for(var/atom/blocker as() in T)
-		if(blocker.CanPass(owner, T))
-			continue
-
-		if(!silent)
-			to_chat(owner, "<span class='xenowarning'>We can't blink into a solid object!</span>")
-		return FALSE
+		if(!blocker.CanPass(owner, T))
+			if(!silent)
+				to_chat(owner, "<span class='xenowarning'>We can't blink into a solid object!</span>")
+			return FALSE
 
 	if(owner.pulling) //We can't teleport into forbidden areas while pulling a mob
 		var/area/target_area = get_area(T) //Have to set this as vars or is_type_in freaks out
