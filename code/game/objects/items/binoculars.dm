@@ -64,7 +64,7 @@
 	if(!pa.Find("ctrl") && pa.Find("shift"))
 		acquire_coordinates(object, user)
 		return TRUE
-
+	
 	if(pa.Find("ctrl") && !pa.Find("shift"))
 		acquire_target(object, user)
 		return TRUE
