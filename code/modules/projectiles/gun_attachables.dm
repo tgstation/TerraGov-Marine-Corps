@@ -934,7 +934,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	scatter_mod = -10
 	movement_acc_penalty_mod = 0.1
 
-/obj/item/attachable/stock/irremoveable/rifle
+/obj/item/attachable/stock/rifle/irremoveable
 	name = "\improper M412 solid stock"
 	pixel_shift_x = 32
 	pixel_shift_y = 13
