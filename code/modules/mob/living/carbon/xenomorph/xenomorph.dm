@@ -326,9 +326,7 @@
 				else
 					LL_dir.icon_state = "trackondirect"	
 					return
-				return
-			return
-			
+
 		else if (istype(tracked, /obj/structure/resin/silo))
 			var/mob/living/carbon/xenomorph/silo_tracked = tracked
 			
@@ -348,8 +346,7 @@
 				else
 					LL_dir.icon_state = "trackondirect"	
 					return
-				return
-			return
+					
 		return
 		
 	else
