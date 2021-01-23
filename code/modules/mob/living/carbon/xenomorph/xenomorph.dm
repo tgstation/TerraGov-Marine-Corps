@@ -302,25 +302,71 @@
 /mob/living/carbon/xenomorph/reagent_check(datum/reagent/R) //For the time being they can't metabolize chemicals.
 	return TRUE
 
-/mob/living/carbon/xenomorph/update_leader_tracking(mob/living/carbon/xenomorph/X)
+/mob/living/carbon/xenomorph/update_tracking(mob/living/carbon/xenomorph/X)
 	if(!hud_used?.locate_leader)
 		return
-
 	var/obj/screen/LL_dir = hud_used.locate_leader
-	if(hive.living_xeno_ruler == src || src == X) // No need to track ourselves, especially if we are the hive leader.
-		LL_dir.icon_state = "trackoff"
+	if (tracked)
+		if (istype(tracked,/mob/living/carbon/xenomorph))
+			var/mob/living/carbon/xenomorph/xeno_tracked = tracked
+			
+			if(xeno_tracked == src) // No need to track ourselves
+				LL_dir.icon_state = "trackoff"
+				return	
+			if(xeno_tracked.z != src.z || get_dist(src,xeno_tracked) < 1)
+				LL_dir.icon_state = "trackondirect"
+				return
+			else
+				var/area/A = get_area(src.loc)
+				var/area/QA = get_area(xeno_tracked.loc)
+				if(A.fake_zlevel == QA.fake_zlevel)
+					LL_dir.icon_state = "trackon"
+					LL_dir.setDir(get_dir(src, xeno_tracked))
+					return
+				else
+					LL_dir.icon_state = "trackondirect"	
+					return
+				return
+			return
+			
+		else if (istype(tracked, /obj/structure/resin/silo))
+			var/mob/living/carbon/xenomorph/silo_tracked = tracked
+			
+			if(silo_tracked == src) // No need to track ourselves
+				LL_dir.icon_state = "trackoff"
+				return	
+			if(silo_tracked.z != src.z || get_dist(src,silo_tracked) < 1)
+				LL_dir.icon_state = "trackondirect"
+				return
+			else
+				var/area/A = get_area(src.loc)
+				var/area/QA = get_area(silo_tracked.loc)
+				if(A.fake_zlevel == QA.fake_zlevel)
+					LL_dir.icon_state = "trackon"
+					LL_dir.setDir(get_dir(src, silo_tracked))
+					return
+				else
+					LL_dir.icon_state = "trackondirect"	
+					return
+				return
+			return
 		return
-
-	if(X.z != src.z || get_dist(src,X) < 1 || src == X)
-		LL_dir.icon_state = "trackondirect"
+		
 	else
-		var/area/A = get_area(src.loc)
-		var/area/QA = get_area(X.loc)
-		if(A.fake_zlevel == QA.fake_zlevel)
-			LL_dir.icon_state = "trackon"
-			LL_dir.setDir(get_dir(src, X))
-		else
+		if(hive.living_xeno_ruler == src || src == X) // No need to track ourselves, especially if we are the hive leader.
+			LL_dir.icon_state = "trackoff"
+			return
+
+		if(X.z != src.z || get_dist(src,X) < 1 || src == X)
 			LL_dir.icon_state = "trackondirect"
+		else
+			var/area/A = get_area(src.loc)
+			var/area/QA = get_area(X.loc)
+			if(A.fake_zlevel == QA.fake_zlevel)
+				LL_dir.icon_state = "trackon"
+				LL_dir.setDir(get_dir(src, X))
+			else
+				LL_dir.icon_state = "trackondirect"
 
 /mob/living/carbon/xenomorph/clear_leader_tracking()
 	if(!hud_used?.locate_leader)

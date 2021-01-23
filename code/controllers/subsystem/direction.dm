@@ -54,7 +54,7 @@ SUBSYSTEM_DEF(direction)
 			if(QDELETED(L))
 				stop_tracking(squad_id, L)
 				continue
-			L.update_leader_tracking(SL)
+			L.update_tracking(SL)
 			if(MC_TICK_CHECK)
 				return
 

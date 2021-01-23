@@ -39,17 +39,14 @@
 
 
 
-/proc/xeno_status_output(list/xenolist, can_overwatch = FALSE, ignore_leads = TRUE, user)
+/proc/xeno_status_output(list/xenolist, ignore_leads = TRUE, user)
 	var/xenoinfo = ""
 	var/leadprefix = (ignore_leads?"":"<b>(-L-)</b>")
 	for(var/i in xenolist)
 		var/mob/living/carbon/xenomorph/X = i
 		if(ignore_leads && X.queen_chosen_lead)
 			continue
-		if(can_overwatch)
-			xenoinfo += "<tr><td>[leadprefix]<a href='byond://?src=\ref[user];watch_xeno_name=[X.nicknumber]'>[X.name]</a> "
-		else
-			xenoinfo += "<tr><td>[leadprefix][X.name] "
+		xenoinfo += "<tr><td>[leadprefix]<a href='byond://?src=\ref[user];track_xeno_name=[X.nicknumber]'>[X.name]</a> "
 		if(!X.client)
 			xenoinfo += " <i>(SSD)</i>"
 
@@ -80,7 +77,7 @@
 				if(0 to 0.33)
 					hp_color = "red"
 
-			. += "<b>[resin_silo.name] <font color=[hp_color]>Health: ([resin_silo.obj_integrity]/[resin_silo.max_integrity])</font></b> located at: <b><font color=green>[AREACOORD_NO_Z(resin_silo)]</b></font><BR>"
+			. += "<b><a href='byond://?src=\ref[user];track_silo_number=[resin_silo.number_silo]'>[resin_silo.name]</a> <font color=[hp_color]>Health: ([resin_silo.obj_integrity]/[resin_silo.max_integrity])</font></b> located at: <b><font color=green>[AREACOORD_NO_Z(resin_silo)]</b></font><BR>"
 
 	. += "</table>"
 
@@ -103,18 +100,14 @@
 		CRASH("couldnt find a hive in check_hive_status")
 
 	var/xenoinfo = ""
-	var/can_overwatch = FALSE
 
 	var/tier3counts = ""
 	var/tier2counts = ""
 	var/tier1counts = ""
 
-	if(isxenoqueen(user))
-		can_overwatch = TRUE
+	xenoinfo += xeno_status_output(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/queen], TRUE, user)
 
-	xenoinfo += xeno_status_output(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/queen], FALSE, TRUE)
-
-	xenoinfo += xeno_status_output(hive.xeno_leader_list, can_overwatch, FALSE, user)
+	xenoinfo += xeno_status_output(hive.xeno_leader_list, FALSE, user)
 
 	for(var/typepath in hive.xenos_by_typepath)
 		var/mob/living/carbon/xenomorph/T = typepath
@@ -132,9 +125,9 @@
 			if(XENO_TIER_ONE)
 				tier1counts += " | [initial(T.name)]s: [length(hive.xenos_by_typepath[typepath])]"
 
-		xenoinfo += xeno_status_output(hive.xenos_by_typepath[typepath], can_overwatch, TRUE, user)
+		xenoinfo += xeno_status_output(hive.xenos_by_typepath[typepath], TRUE, user)
 
-	xenoinfo += xeno_status_output(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/larva], can_overwatch, TRUE, user)
+	xenoinfo += xeno_status_output(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/larva], TRUE, user)
 
 	var/hivemind_text = length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/hivemind]) > 0 ? "Active" : "Inactive"
 	var/mob/living/carbon/xenomorph/queen/hive_queen = hive.living_xeno_queen
@@ -164,6 +157,37 @@
 	var/datum/browser/popup = new(user, "roundstatus", "<div align='center'>Hive Status</div>", 650, 650)
 	popup.set_content(dat)
 	popup.open(FALSE)
+
+/mob/living/carbon/xenomorph/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
+
+	if(href_list["track_xeno_name"])
+		if(!check_state())
+			return
+		var/xeno_name = href_list["track_xeno_name"]
+		for(var/Y in hive.get_all_xenos())
+			var/mob/living/carbon/xenomorph/X = Y
+			if(isnum(X.nicknumber))
+				if(num2text(X.nicknumber) != xeno_name)
+					continue
+			else
+				if(X.nicknumber != xeno_name)
+					continue
+			to_chat(usr,"<span class='notice'> You will now track [X.name]</span>")
+			tracked = X
+			break
+	
+	if(href_list["track_silo_number"])
+		if(!check_state())
+			return
+		var/silo_number = href_list["track_silo_number"]
+		for(var/obj/structure/resin/silo/resin_silo as() in GLOB.xeno_resin_silos)
+			if(resin_silo.associated_hive == hive && num2text(resin_silo.number_silo) == silo_number)
+				tracked = resin_silo
+				to_chat(usr,"<span class='notice'> You will now track [resin_silo.name]</span>")
+				break
 
 ///Send a message to all xenos. Force forces the message whether or not the hivemind is intact. Target is an atom that is pointed out to the hive. Filter list is a list of xenos we don't message.
 /proc/xeno_message(message = null, size = 3, hivenumber = XENO_HIVE_NORMAL, force = FALSE, atom/target = null, sound = null, apply_preferences = FALSE, filter_list = null)

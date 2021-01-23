@@ -310,4 +310,6 @@
 
 	var/fire_luminosity = 0 //Luminosity of the current fire while burning
 
+	var/tracked
+
 	COOLDOWN_DECLARE(xeno_health_alert_cooldown)
