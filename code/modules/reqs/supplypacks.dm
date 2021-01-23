@@ -620,7 +620,7 @@ ARMOR
 		/obj/item/clothing/suit/storage/marine/specialist,
 		/obj/item/clothing/head/helmet/marine/specialist,
 	)
-	cost = 70
+	cost = 100
 
 /datum/supply_packs/armor/b17
 	name = "B17 Armor Set"
