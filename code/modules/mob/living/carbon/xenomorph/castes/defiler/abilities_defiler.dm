@@ -63,6 +63,7 @@ GLOBAL_LIST_INIT(defiler_toxins, typecacheof(list(
 		return fail_activate()
 	add_cooldown()
 	playsound(C, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)
+	playsound(C, 'sound/effects/spray3.ogg', 15, TRUE)
 	var/obj/item/alien_embryo/embryo = new(C)
 	embryo.hivenumber = X.hivenumber
 	GLOB.round_statistics.now_pregnant++
