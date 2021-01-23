@@ -163,12 +163,12 @@ WEAPONS
 /datum/supply_packs/weapons/sentry
 	name = "UA 571-C Base Defense Sentry"
 	contains = list(/obj/item/storage/box/sentry)
-	cost = 120
+	cost = 80
 
 /datum/supply_packs/weapons/minisentry
 	name = "UA-580 Portable Sentry"
 	contains = list(/obj/item/storage/box/minisentry)
-	cost = 60
+	cost = 40
 
 /datum/supply_packs/weapons/m56d_emplacement
 	name = "TL-102 Mounted Heavy Smartgun"
