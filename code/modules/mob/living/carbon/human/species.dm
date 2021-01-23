@@ -330,7 +330,8 @@
 /datum/species/human/vatgrown
 	name = "Vat-Grown Human"
 	name_plural = "Vat-Grown Humans"
-	species_flags = HAS_SKIN_TONE
+	icobase = 'icons/mob/human_races/r_vatgrown.dmi'
+	deform = 'icons/mob/human_races/r_vatgrown.dmi'
 	brute_mod = 1.05
 	burn_mod = 1.05
 	slowdown = 1.05
