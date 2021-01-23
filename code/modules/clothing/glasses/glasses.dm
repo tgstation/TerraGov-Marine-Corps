@@ -69,6 +69,18 @@
 	item_state = "eyepatch"
 	flags_armor_protection = 0
 
+/obj/item/clothing/glasses/eyepatch/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/clothing/glasses/hud/health))
+		var/obj/item/clothing/glasses/hud/medpatch/P = new
+		to_chat(user, "<span class='notice'>You fasten the medical hud projector to the inside of the eyepatch.</span>")
+		qdel(I)
+		qdel(src)
+		user.put_in_hands(P)
+	
+		update_icon(user)
+
 /obj/item/clothing/glasses/monocle
 	name = "monocle"
 	desc = "Such a dapper eyepiece!"
@@ -86,11 +98,23 @@
 	vision_flags = SEE_OBJS
 
 /obj/item/clothing/glasses/regular
-	name = "regulation prescription glasses"
+	name = "\improper regulation prescription glasses"
 	desc = "The Corps may call them Regulation Prescription Glasses but you know them as Rut Prevention Glasses."
 	icon_state = "glasses"
 	item_state = "glasses"
 	prescription = TRUE
+
+/obj/item/clothing/glasses/regular/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/clothing/glasses/hud/health))
+		var/obj/item/clothing/glasses/hud/medglasses/P = new
+		to_chat(user, "<span class='notice'>You fasten the medical hud projector to the inside of the glasses.</span>")
+		qdel(I)
+		qdel(src)
+		user.put_in_hands(P)
+	
+		update_icon(user)
 
 /obj/item/clothing/glasses/regular/hipster
 	name = "prescription glasses"
@@ -121,12 +145,30 @@
 	flags_equip_slot = ITEM_SLOT_EYES|ITEM_SLOT_MASK
 	goggles = TRUE
 
+
 /obj/item/clothing/glasses/mgoggles/prescription
 	name = "prescription marine ballistic goggles"
 	desc = "Standard issue TGMC goggles. Mostly used to decorate one's helmet. Contains prescription lenses in case you weren't sure if they were lame or not."
-	icon_state = "mgoggles"
-	item_state = "mgoggles"
 	prescription = TRUE
+
+/obj/item/clothing/glasses/mgoggles/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/clothing/glasses/hud/health))
+		if(prescription)
+			var/obj/item/clothing/glasses/hud/medgoggles/prescription/P = new
+			to_chat(user, "<span class='notice'>You fasten the medical hud projector to the inside of the goggles.</span>")
+			qdel(I)
+			qdel(src)
+			user.put_in_hands(P)
+		else
+			var/obj/item/clothing/glasses/hud/medgoggles/S = new
+			to_chat(user, "<span class='notice'>You fasten the medical hud projector to the inside of the goggles.</span>")
+			qdel(I)
+			qdel(src)
+			user.put_in_hands(S)
+	
+		update_icon(user)
 
 /obj/item/clothing/glasses/m42_goggles
 	name = "\improper M42 scout sight"

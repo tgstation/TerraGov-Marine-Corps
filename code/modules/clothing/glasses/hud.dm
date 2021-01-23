@@ -60,7 +60,7 @@
 
 /obj/item/clothing/glasses/hud/health
 	name = "\improper HealthMate HUD"
-	desc = "A heads-up display that scans the humans in view and provides accurate data about their health status."
+	desc = "A heads-up display that scans the humans in view and provides accurate data about their health status. The projector can be attached to compatable eyewear."
 	icon_state = "healthhud"
 	deactive_state = "degoggles_med"
 	flags_armor_protection = 0
@@ -70,7 +70,7 @@
 
 /obj/item/clothing/glasses/hud/medgoggles
 	name = "\improper HealthMate ballistic goggles"
-	desc = "Standard issue TGMC goggles. With an internal HealthMate HUD projector."
+	desc = "Standard issue TGMC goggles. This pair has been fitted with an internal HealthMate HUD projector."
 	icon_state = "medgoggles"
 	item_state = "medgoggles"
 	deactive_state = "degoggles_medgoggles"
@@ -83,16 +83,28 @@
 
 /obj/item/clothing/glasses/hud/medgoggles/prescription
 	name = "\improper HealthMate prescription ballistic goggles"
-	desc = "Standard issue TGMC goggles. With an internal HealthMate HUD projector and prescription lenses."
-	icon_state = "medgoggles"
-	item_state = "medgoggles"
+	desc = "Standard issue TGMC prescription goggles. This pair has been fitted with an internal HealthMate HUD projector."
 	prescription = TRUE
 
-/obj/item/clothing/glasses/hud/health/eyepatch
+/obj/item/clothing/glasses/hud/medpatch
 	name = "\improper Medpatch HUD"
 	desc = "A heads-up display that scans the humans in view and provides accurate data about their health status. For the disabled and/or edgy Corpsman."
 	icon_state = "medpatchhud"
 	deactive_state = "degoggles_medpatch"
+	toggleable = TRUE
+	hud_type = DATA_HUD_MEDICAL_ADVANCED
+	actions_types = list(/datum/action/item_action/toggle)
+
+/obj/item/clothing/glasses/hud/medglasses
+	name = "\improper HealthMate regulation prescription glasses"
+	desc = "Standard issue TGMC Regulation Prescription Glasses. This pair has been fitted with an internal HealthMate HUD projector."
+	icon_state = "medglasses"
+	item_state = "medglasses"
+	deactive_state = "degoggles_medglasses"
+	prescription = TRUE
+	toggleable = TRUE
+	hud_type = DATA_HUD_MEDICAL_ADVANCED
+	actions_types = list(/datum/action/item_action/toggle)
 
 /obj/item/clothing/glasses/hud/security
 	name = "\improper PatrolMate HUD"

@@ -976,8 +976,6 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/reagent_containers/hypospray/advanced = list(CAT_MEDSUP, "Advanced hypospray", 2, "black"),
 		/obj/item/reagent_containers/hypospray/advanced/big = list(CAT_MEDSUP, "Big hypospray", 10, "black"),
 		/obj/item/clothing/glasses/hud/health = list(CAT_MEDSUP, "Medical HUD glasses", 2, "black"),
-		/obj/item/clothing/glasses/hud/medgoggles = list(CAT_MEDSUP, "Medical HUD goggles", 2, "black"),
-		/obj/item/clothing/glasses/hud/medgoggles/prescription = list(CAT_MEDSUP, "Medical HUD goggles prescription", 2, "black"),
 		/obj/item/attachable/suppressor = list(CAT_ATT, "Suppressor", 0, "black"),
 		/obj/item/attachable/extended_barrel = list(CAT_ATT, "Extended barrel", 0, "orange"),
 		/obj/item/attachable/compensator = list(CAT_ATT, "Recoil compensator", 0, "black"),
