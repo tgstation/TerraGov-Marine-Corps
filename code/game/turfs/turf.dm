@@ -66,6 +66,8 @@
 	///Lazylist of movable atoms providing opacity sources.
 	var/list/atom/movable/opacity_sources
 
+	///Whether explosions can happen on this turf; when an explosion acts on the turf, sets to TRUE for 1 tick.
+	var/no_explosion = FALSE
 
 /turf/Initialize(mapload)
 	SHOULD_CALL_PARENT(FALSE) // anti laggies
@@ -910,3 +912,13 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	if(var_name in banned_edits)
 		return FALSE
 	return ..()
+
+///Here we set the no_explosion var to prevent stacking explosions
+/turf/ex_act(severity)
+	if(no_explosion)
+		return
+
+	no_explosion = TRUE
+	addtimer(VARSET_CALLBACK(src, no_explosion, FALSE), 1) //slight delay before we reset the var so no stacking explosions
+	return ..()
+
