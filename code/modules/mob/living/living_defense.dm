@@ -239,8 +239,6 @@
 		smokecloak_on()
 	if(smoke_delay)
 		return FALSE
-	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_EXTINGUISH))
-		ExtinguishMob()
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO) && (stat == DEAD || isnestedhost(src)))
 		return FALSE
 	smoke_delay = TRUE

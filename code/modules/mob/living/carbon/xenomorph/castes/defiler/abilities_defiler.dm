@@ -97,7 +97,7 @@
 	var/mob/living/carbon/xenomorph/Defiler/X = owner
 	set waitfor = FALSE
 	var/smoke_range = 2
-	var/datum/effect_system/smoke_spread/xeno/neuro/N = new(X)
+	var/datum/effect_system/smoke_spread/xeno/neuro/medium/N = new(X)
 	N.strength = 1
 	if(X.selected_reagent == /datum/reagent/toxin/xeno_hemodile)
 		N.smoke_type = /obj/effect/particle_effect/smoke/xeno/hemodile

@@ -272,7 +272,12 @@
 	color = "#ffbf58" //Mustard orange?
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_NEURO|SMOKE_GASP|SMOKE_COUGH|SMOKE_EXTINGUISH
 
-//Xeno neurotox smoke.
+///Xeno neurotox smoke for Defilers; doesn't extinguish
+/obj/effect/particle_effect/smoke/xeno/neuro/medium
+	color = "#ffbf58" //Mustard orange?
+	smoke_traits = SMOKE_XENO|SMOKE_XENO_NEURO|SMOKE_GASP|SMOKE_COUGH
+
+///Xeno neurotox smoke for neurospit; doesn't extinguish or blind
 /obj/effect/particle_effect/smoke/xeno/neuro/light
 	alpha = 60
 	opacity = FALSE
@@ -327,6 +332,9 @@ datum/effect_system/smoke_spread/tactical
 
 /datum/effect_system/smoke_spread/xeno/neuro
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/neuro
+
+/datum/effect_system/smoke_spread/xeno/neuro/medium
+	smoke_type = /obj/effect/particle_effect/smoke/xeno/neuro/medium
 
 /datum/effect_system/smoke_spread/xeno/neuro/light
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/neuro/light
