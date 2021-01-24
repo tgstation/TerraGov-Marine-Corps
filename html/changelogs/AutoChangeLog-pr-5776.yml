@@ -1,0 +1,5 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - bugfix: "Hijack state correctly resets"
+  - tweak: "Shrike or queen can hijack alamo even without being the hive ruler"
