@@ -1,4 +1,0 @@
-author: "Pariah919"
-delete-after: True
-changes: 
-  - rscadd: "Added new ammo packets, and adds them to marine ammo cargo vendor"
