@@ -66,8 +66,8 @@
 	///Lazylist of movable atoms providing opacity sources.
 	var/list/atom/movable/opacity_sources
 
-	///Whether explosions can happen on this turf; when an explosion acts on the turf, sets to TRUE for 1 tick.
-	var/no_explosion = FALSE
+	///Filters out explosions to prevent stacking; records explosion severity and filters out all explosions not of greater strength until the next tick
+	var/explosion_stack_filter = TURF_EXPLOSION_STACK_FILTER_DEFAULT
 
 /turf/Initialize(mapload)
 	SHOULD_CALL_PARENT(FALSE) // anti laggies
@@ -913,12 +913,12 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 		return FALSE
 	return ..()
 
-///Here we set the no_explosion var to prevent stacking explosions
+///Here we set the no_explosion var to prevent stacking explosions; we will accept higher level explosions, but nothing else
 /turf/ex_act(severity)
-	if(no_explosion)
+	if(severity >= explosion_stack_filter) //We only let through explosions of greater severity (that are lower in value) so lesser explosions can't block out larger ones
 		return
 
-	no_explosion = TRUE
-	addtimer(VARSET_CALLBACK(src, no_explosion, FALSE), 1) //slight delay before we reset the var so no stacking explosions
+	explosion_stack_filter = severity
+	addtimer(VARSET_CALLBACK(src, explosion_stack_filter, TURF_EXPLOSION_STACK_FILTER_DEFAULT), 1) //slight delay before we reset the var so no stacking explosions
 	return ..()
 

@@ -44,3 +44,5 @@
 #define EXPLODE_DEVASTATE 1
 #define EXPLODE_HEAVY 2
 #define EXPLODE_LIGHT 3
+
+#define TURF_EXPLOSION_STACK_FILTER_DEFAULT 4 //Effectively permits all explosions to go through per /turf/ex_act for the purpose of the explosion anti-stacking mechanism
