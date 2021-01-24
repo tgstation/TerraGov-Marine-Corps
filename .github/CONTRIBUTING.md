@@ -1,13 +1,4 @@
-# CONTRIBUTING
-
-## Reporting Issues
-
-See [this page](https://github.com/tgstation/TerraGov-Marine-Corps/issues/new?template=bug_report.md) for a guide and format to issue reports.
-
-## Introduction
-
-Hello and welcome to the TGMC contributing page. You are here because you are curious or interested in contributing - thank you! Everyone is free to contribute to this project as long as they follow the simple guidelines and specifications below. We strive to maintain long-term code stability and maintainability, and to do that, we need all pull requests to hold up to those specifications. It's in everyone's best interests - including yours! - if the same bug doesn't have to be fixed twice because of duplicated code.
-
+ndsfpihgrph4etr[0hgkojp
 First things first, we want to make it clear how you can contribute (if you've never contributed before), as well as what the structure of the team and the processes are, to avoid any unpleasant surprises if your pull request is closed for a reason you didn't foresee.
 
 ## Getting Started
