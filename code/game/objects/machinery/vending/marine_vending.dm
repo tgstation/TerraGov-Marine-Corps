@@ -842,6 +842,7 @@
 		/obj/item/helmet_module/binoculars = 20,
 		/obj/item/helmet_module/antenna = 20,
 		/obj/item/facepaint/green = 20,
+		/obj/item/jetpack_marine = 5,
 	)
 
 	prices = list()
