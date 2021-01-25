@@ -283,7 +283,7 @@
 	light_range = 6
 
 /obj/item/clothing/suit/storage/marine/heavypasvest
-	name = "\improper Heavy PAS-11 pattern armored vest"
+	name = "\improper PAS-11 pattern heavy-armored vest"
 	desc = "A somewhat outdated but robust armored vest, still in use despite the rise of exoskeleton armor due to ease of use and manufacturing. It will slow you down a little more, but you have better protection. Use it to toggle the built-in flashlight."
 	icon_state = "5"
 	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 45, "bomb" = 45, "bio" = 45, "rad" = 45, "fire" = 45, "acid" = 50)
