@@ -77,7 +77,7 @@
 	recoil_unwielded = 0
 	scatter = 0
 	fire_delay = 0.2 SECONDS
-	scatter_unwielded = 0 //Made to be used one handed.
+	scatter_unwielded = 10 //Made to be used one handed.
 	aim_slowdown = 0.15
 	burst_amount = 5
 	movement_acc_penalty_mult = 0
@@ -96,6 +96,8 @@
 	flags_equip_slot = ITEM_SLOT_BACK
 	wield_delay = 0.8 SECONDS  //with angled it gets back to the old value so if you going for two hands you will want it
 	force = 20
+	aim_speed_modifier = 0.4
+	aim_fire_delay = 0.2 SECONDS
 	current_mag = /obj/item/ammo_magazine/smg/standard_smg
 	type_of_casings = null
 	attachable_allowed = list(
@@ -121,7 +123,6 @@
 
 	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.8
-	scatter = 5 //use the ext barrel for 2 hands a least buut i'm not your boss anyway
 	fire_delay = 0.125 SECONDS
 	scatter_unwielded = 25 //so you need the recoil comp and the gyro if shooting one handed. any other way you got scatter.
 	recoil_unwielded = 2 //you either get the recoil comp and gyro to one hand or you dont one hand  if you want to use suuupressor you got EVEN more damage fall of
