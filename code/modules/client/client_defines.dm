@@ -27,7 +27,7 @@
 	// Because discarding that input makes the game less responsive.
 	var/next_move_dir_add // On next move, add this dir to the move that would otherwise be done
 	var/next_move_dir_sub // On next move, subtract this dir from the move that would otherwise be done
-	var/datum/click_intercept = null // Needs to implement InterceptClickOn(user,params,atom) proc
+	var/list/datum/click_intercept = list() // Needs to implement InterceptClickOn(user,params,atom) proc
 	var/move_delay = 0
 	var/area = null
 	var/obj/screen/click_catcher/void = null

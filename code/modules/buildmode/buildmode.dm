@@ -34,7 +34,7 @@
 	holder.show_popup_menus = FALSE
 	create_buttons()
 	holder.screen += buttons
-	holder.click_intercept = src
+	holder.click_intercept |= src
 	mode.enter_mode(src)
 
 
@@ -43,7 +43,7 @@
 	message_admins("[ADMIN_TPMONTY(usr)] has left build mode.")
 	mode.exit_mode(src)
 	holder.screen -= buttons
-	holder.click_intercept = null
+	holder.click_intercept -= src
 	holder.show_popup_menus = TRUE
 	qdel(src)
 

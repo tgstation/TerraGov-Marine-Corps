@@ -416,12 +416,12 @@ force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.adm
 			holder.mouse_up_icon = 'icons/effects/supplypod_target.dmi' //Icon for when mouse is released
 			holder.mouse_down_icon = 'icons/effects/supplypod_down_target.dmi' //Icon for when mouse is pressed
 			holder.mouse_pointer_icon = holder.mouse_up_icon //Icon for idle mouse (same as icon for when released)
-			holder.click_intercept = src //Create a click_intercept so we know where the user is clicking
+			holder.click_intercept |= src //Create a click_intercept so we know where the user is clicking
 		else
 			var/mob/M = holder.mob
 			holder.mouse_up_icon = null
 			holder.mouse_down_icon = null
-			holder.click_intercept = null
+			holder.click_intercept -= src
 			if (M)
 				M.update_mouse_pointer() //set the moues icons to null, then call update_moues_pointer() which resets them to the correct values based on what the mob is doing (in a mech, holding a spell, etc)()
 
