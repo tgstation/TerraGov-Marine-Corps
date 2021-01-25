@@ -14,6 +14,7 @@
 	var/fuel_indicator = 40
 	var/fuel_use = 5 ///how much fuel we use every flight
 	var/range = 6 ///how far the jetpack can fly in one burst
+	var/speed = 1 ///How quick you will fly
 	COOLDOWN_DECLARE(cooldown_jetpack)
 	var/image/fuel_indicator_overlay
 
@@ -23,23 +24,22 @@
 	overlays += fuel_indicator_overlay
 	
 /obj/item/jetpack_marine/equipped(mob/user, slot)
+	. = ..()
 	if(slot == SLOT_BACK)
-		user.client.click_intercept |= src
+		RegisterSignal(user, COMSIG_MOB_CLICK_ALT, .proc/try_to_use_jetpack)
 
 /obj/item/jetpack_marine/dropped(mob/user)
 	. = ..()
-	user.client.click_intercept -= src
+	UnregisterSignal(user, COMSIG_MOB_CLICK_ALT)
 
-/obj/item/jetpack_marine/InterceptClickOn(mob/user, params, atom/object)
-	var/list/pa = params2list(params)
-	if (pa["alt"])
-		var/mob/living/carbon/human/human_user = user
-		if (use_jetpack(human_user))
-			change_icon_lit(TRUE)
-			COOLDOWN_START(src, cooldown_jetpack, 10 SECONDS)
-			human_user.fly_at(object,6,1)
+/obj/item/jetpack_marine/proc/try_to_use_jetpack(datum/source, atom/A)
+	var/mob/living/carbon/human/human_user = usr
+	if (use_jetpack(human_user))
+		change_icon_lit(TRUE)
+		COOLDOWN_START(src, cooldown_jetpack, 10 SECONDS)
+		human_user.fly_at(A,range,1)
 
-/obj/item/jetpack_marine/proc/use_jetpack(mob/living/carbon/human/human_user)
+/obj/item/jetpack_marine/proc/use_jetpack(mob/living/carbon/human/human_user) ///Check if we can use the jetpack and give feedback to the users
 	if(!COOLDOWN_CHECK(src,cooldown_jetpack))
 		to_chat(human_user,"<span class='warning'>You can't use the jetpack yet</span>")
 		return FALSE
@@ -53,7 +53,7 @@
 	return FALSE
 	
 
-/obj/item/jetpack_marine/proc/change_icon_lit(lit)
+/obj/item/jetpack_marine/proc/change_icon_lit(lit)///Add a flame overlay when the jetpack is on
 	var/image/I = image('icons/obj/items/jetpack.dmi', src, "+jetpacklit")
 	if (lit)
 		overlays += I
@@ -61,7 +61,7 @@
 		overlays -= I
 		qdel(I)
 
-/obj/item/jetpack_marine/proc/change_icon_indicator()
+/obj/item/jetpack_marine/proc/change_icon_indicator()///Manage the fuel indicator overlay
 	if (fuel_left == fuel_max)
 		overlays -= fuel_indicator_overlay
 		fuel_indicator_overlay = image('icons/obj/items/jetpack.dmi', src, "+jetpackfull")
@@ -87,7 +87,7 @@
 			overlays += fuel_indicator_overlay
 			return
 
-/obj/item/jetpack_marine/afterattack(obj/target, mob/user , flag) //refuel at fueltanks when we run out of ammo.
+/obj/item/jetpack_marine/afterattack(obj/target, mob/user , flag) //refuel at fueltanks when we run out of fuel
 
 	if(istype(target, /obj/structure/reagent_dispensers/fueltank) && get_dist(user,target) <= 1)
 		var/obj/structure/reagent_dispensers/fueltank/FT = target
