@@ -276,7 +276,7 @@
 
 /obj/item/clothing/suit/storage/marine/lightpasvest
 	name = "\improper Light PAS-11 pattern armored vest"
-	desc = "A somewhat outdated but robust armored vest, still in use despite the rise of exoskeleton armor due to ease of use and manufacturing. Tougher than it looks. Use it to toggle the built-in flashlight."
+	desc = "A somewhat outdated but robust armored vest, still in use despite the rise of exoskeleton armor due to ease of use and manufacturing. Lighter than the standard vest at the cost of some protection. Use it to toggle the built-in flashlight."
 	icon_state = "6"
 	soft_armor = list("melee" = 35, "bullet" = 40, "laser" = 40, "energy" = 25, "bomb" = 25, "bio" = 25, "rad" = 25, "fire" = 25, "acid" = 40)
 	slowdown = 0.3
