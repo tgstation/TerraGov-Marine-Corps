@@ -86,7 +86,7 @@
 	. = ..()
 	user.reset_perspective(src)
 	user.update_sight()
-	user.client.click_intercept |= src
+	user.client.click_intercept = src
 
 
 /obj/item/binoculars/tactical/update_remote_sight(mob/living/user)
@@ -102,7 +102,7 @@
 	if(!user?.client)
 		return
 
-	user.client.click_intercept -= src
+	user.client.click_intercept = null
 	user.reset_perspective(user)
 	user.update_sight()
 

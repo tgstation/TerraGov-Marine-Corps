@@ -190,7 +190,7 @@
 		return TRUE
 	targetmarker_primed = TRUE //We prime the target laser
 	if(user?.client)
-		user.client.click_intercept |= src
+		user.client.click_intercept = src
 		to_chat(user, "<span class='notice'><b>You activate your target marker and take careful aim.</b></span>")
 		playsound(user,'sound/machines/click.ogg', 25, 1)
 	return TRUE
@@ -205,7 +205,7 @@
 		targetmarker_on = FALSE
 	targetmarker_primed = FALSE
 	if(user?.client)
-		user.client.click_intercept -= src
+		user.client.click_intercept = null
 		to_chat(user, "<span class='notice'><b>You deactivate your target marker.</b></span>")
 		playsound(user,'sound/machines/click.ogg', 25, 1)
 	return TRUE

@@ -518,11 +518,11 @@
 			holder.mouse_up_icon = 'icons/effects/supplypod_target.dmi'
 			holder.mouse_down_icon = 'icons/effects/supplypod_down_target.dmi'
 			holder.mouse_pointer_icon = holder.mouse_up_icon
-			holder.click_intercept |= src
+			holder.click_intercept = src
 		else
 			holder.mouse_up_icon = null
 			holder.mouse_down_icon = null
-			holder.click_intercept -= src
+			holder.click_intercept = null
 			holder.mouse_pointer_icon = initial(holder.mouse_pointer_icon)
 
 

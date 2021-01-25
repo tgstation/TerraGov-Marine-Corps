@@ -528,16 +528,14 @@ if(selected_ability.target_flags & flagname){\
 
 /mob/proc/check_click_intercept(params,A)
 	//Client level intercept
-	if(client?.click_intercept.len != 0)
-		for(var/datum/intercept in client.click_intercept)
-			if(call(intercept, "InterceptClickOn")(src, params, A))
-				return TRUE
+	if(client?.click_intercept)
+		if(call(client.click_intercept, "InterceptClickOn")(src, params, A))
+			return TRUE
 
 	//Mob level intercept
-	if(click_intercept.len !=0)
-		for(var/datum/intercept in click_intercept)
-			if(call(intercept, "InterceptClickOn")(src, params, A))
-				return TRUE
+	if(click_intercept)
+		if(call(click_intercept, "InterceptClickOn")(src, params, A))
+			return TRUE
 
 	return FALSE
 
