@@ -59,6 +59,8 @@
 
 /obj/effect/xenomorph/spray/Crossed(atom/movable/AM)
 	. = ..()
+	if(CHECK_MULTIPLE_BITFIELDS(AM.flags_pass, HOVERING))
+		return
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
 		H.acid_spray_crossed(acid_damage, slow_amt)
