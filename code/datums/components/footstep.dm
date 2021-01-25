@@ -86,7 +86,7 @@
 			GLOB.barefootstep[FOOTSTEP_RESIN][3] + e_range)
 		return
 	var/mob/living/carbon/human/H = parent
-	if (!CHECK_BITFIELD(H.flags_pass,(PASSTABLE|PASSFIRE)))//are we flying?
+	if (!CHECK_BITFIELD(H.flags_pass,(PASSFIRE)))//are we flying?
 		if(H.shoes) //are we wearing shoes 
 			playsound(T, pick(GLOB.shoefootstep[T.shoefootstep][1]),
 				GLOB.shoefootstep[T.shoefootstep][2] * volume,

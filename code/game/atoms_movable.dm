@@ -929,10 +929,10 @@
 
 /atom/movable/proc/set_flying(flying)
 	if (flying)
-		flags_pass |= (PASSMOB|PASSFIRE)
+		ENABLE_BITFIELD(flags_pass, HOVERING)
 		return
 	else
-		flags_pass &= ~(PASSMOB|PASSFIRE)
+		DISABLE_BITFIELD(flags_pass, HOVERING)
 	
 
 /atom/movable/CanAllowThrough(atom/movable/mover, turf/target)

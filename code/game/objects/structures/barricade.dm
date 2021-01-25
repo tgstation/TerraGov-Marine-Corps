@@ -57,6 +57,9 @@
 	if(closed)
 		return TRUE
 
+	if(istype(O) && CHECK_BITFIELD(O.flags_pass, PASSSMALLSTRUCT))
+		return TRUE
+
 	if(O.throwing)
 		if(is_wired && iscarbon(O)) //Leaping mob against barbed wire fails
 			if(get_dir(loc, target) & dir)
@@ -74,6 +77,9 @@
 /obj/structure/barricade/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
 	if(closed)
+		return TRUE
+
+	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSSMALLSTRUCT))
 		return TRUE
 
 	if(mover?.throwing)
