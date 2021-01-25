@@ -169,7 +169,7 @@
 	succeed_activate()
 	add_cooldown()
 	X.usedPounce = TRUE // this is needed for throwing code
-	X.flags_pass = PASSTABLE
+	X.flags_pass = PASSTABLE|PASSFIRE
 	X.throw_at(A, range, 2, X) //Victim, distance, speed
 
 	addtimer(CALLBACK(X, /mob/living/carbon/xenomorph/.proc/reset_flags_pass), 6)

@@ -1,9 +1,11 @@
 //PASS FLAGS
-#define PASSTABLE	(1<<0)
-#define PASSGLASS	(1<<1)
-#define PASSGRILLE	(1<<2)
-#define PASSBLOB	(1<<3)
-#define PASSMOB		(1<<4)
+#define PASSTABLE		(1<<0)
+#define PASSGLASS		(1<<1)
+#define PASSGRILLE		(1<<2)
+#define PASSBLOB		(1<<3)
+#define PASSMOB			(1<<4)
+#define PASSSMALLSTRUCT (1<<5)
+#define PASSFIRE		(1<<6)
 
 //==========================================================================================
 

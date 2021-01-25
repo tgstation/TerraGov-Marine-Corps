@@ -486,6 +486,90 @@
 		thrower = null
 		throw_source = null
 
+/atom/movable/proc/fly_at(atom/target, range, speed)
+	set waitfor = FALSE
+	if(!target || !src)
+		return FALSE
+
+	set_flying(TRUE)
+	throw_source = get_turf(src)	//store the origin turf
+
+	var/dist_x = abs(target.x - x)
+	var/dist_y = abs(target.y - y)
+
+	var/dx
+	if(target.x > x)
+		dx = EAST
+	else
+		dx = WEST
+
+	var/dy
+	if(target.y > y)
+		dy = NORTH
+	else
+		dy = SOUTH
+	var/dist_travelled = 0
+	var/dist_since_sleep = 0
+	if(dist_x > dist_y)
+		var/error = dist_x/2 - dist_y
+		while(!gc_destroyed && target &&((((x < target.x && dx == EAST) || (x > target.x && dx == WEST)) && dist_travelled < range) || isspaceturf(loc)) && istype(loc, /turf))
+			// only stop when we've gone the whole distance (or max throw range) and are on a non-space tile, or hit something, or hit the end of the map
+			if(error < 0)
+				var/atom/step = get_step(src, dy)
+				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
+					break
+				Move(step)
+				hit_check(speed)
+				error += dist_x
+				dist_travelled++
+				dist_since_sleep++
+				if(dist_since_sleep >= speed)
+					dist_since_sleep = 0
+					sleep(1)
+			else
+				var/atom/step = get_step(src, dx)
+				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
+					break
+				Move(step)
+				hit_check(speed)
+				error -= dist_y
+				dist_travelled++
+				dist_since_sleep++
+				if(dist_since_sleep >= speed)
+					dist_since_sleep = 0
+					sleep(1)
+	else
+		var/error = dist_y/2 - dist_x
+		while(!gc_destroyed && target &&((((y < target.y && dy == NORTH) || (y > target.y && dy == SOUTH)) && dist_travelled < range) || isspaceturf(loc)) && istype(loc, /turf))
+			// only stop when we've gone the whole distance (or max throw range) and are on a non-space tile, or hit something, or hit the end of the map, or someone picks it up
+			if(error < 0)
+				var/atom/step = get_step(src, dx)
+				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
+					break
+				Move(step)
+				hit_check(speed)
+				error += dist_y
+				dist_travelled++
+				dist_since_sleep++
+				if(dist_since_sleep >= speed)
+					dist_since_sleep = 0
+					sleep(1)
+			else
+				var/atom/step = get_step(src, dy)
+				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
+					break
+				Move(step)
+				hit_check(speed)
+				error -= dist_x
+				dist_travelled++
+				dist_since_sleep++
+				if(dist_since_sleep >= speed)
+					dist_since_sleep = 0
+					sleep(1)
+	
+	if(loc)
+		set_flying(FALSE)
+		throw_source = null
 
 /atom/movable/proc/handle_buckled_mob_movement(NewLoc, direct)
 	for(var/m in buckled_mobs)
@@ -912,6 +996,14 @@
 		return
 	. = throwing
 	throwing = new_throwing
+
+/atom/movable/proc/set_flying(flying)
+	if (flying)
+		flags_pass |= (PASSMOB|PASSFIRE)
+		return
+	else
+		flags_pass &= ~(PASSMOB|PASSFIRE)
+	
 
 /atom/movable/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()

@@ -9,6 +9,7 @@
 
 	status_flags = GODMODE | INCORPOREAL
 	resistance_flags = RESIST_ALL
+	flags_pass = PASSFIRE //to prevent hivemind eye to catch fire when crossing lava
 	density = FALSE
 	throwpass = TRUE
 

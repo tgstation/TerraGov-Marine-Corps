@@ -427,6 +427,14 @@
 		pulledby.stop_pulling()
 	return ..()
 
+/mob/living/fly_at(atom/target, range, speed)
+	if(!target || !src)
+		return 0
+	if(pulling)
+		stop_pulling() //being thrown breaks pulls.
+	if(pulledby)
+		pulledby.stop_pulling()
+	return ..()
 
 /mob/living/proc/offer_mob()
 	GLOB.offered_mob_list += src

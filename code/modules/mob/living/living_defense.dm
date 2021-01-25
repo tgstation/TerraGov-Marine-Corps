@@ -79,7 +79,7 @@
 
 		if(O.item_fire_stacks)
 			fire_stacks += O.item_fire_stacks
-		if(CHECK_BITFIELD(O.resistance_flags, ON_FIRE))
+		
 			IgniteMob()
 
 		O.set_throwing(FALSE) //it hit, so stop moving
@@ -129,6 +129,8 @@
 //Mobs on Fire
 /mob/living/proc/IgniteMob()
 	if(!CHECK_BITFIELD(datum_flags, DF_ISPROCESSING))
+		return FALSE
+	if(CHECK_BITFIELD(flags_pass, PASSFIRE))
 		return FALSE
 	if(fire_stacks > 0 && !on_fire)
 		on_fire = TRUE
