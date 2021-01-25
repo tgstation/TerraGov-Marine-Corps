@@ -87,7 +87,7 @@
 		return
 	var/mob/living/carbon/human/H = parent
 
-	if(H.shoes) //are we wearing shoes
+	if(H.shoes & !CHECK_BITFIELD(H.flags_pass,PASSTABLE)) //are we wearing shoes, are we flying?
 		playsound(T, pick(GLOB.shoefootstep[T.shoefootstep][1]),
 			GLOB.shoefootstep[T.shoefootstep][2] * volume,
 			TRUE,

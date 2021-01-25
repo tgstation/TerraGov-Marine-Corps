@@ -18,4 +18,18 @@
 	var/list/pa = params2list(params)
 	if (pa["alt"])
 		var/mob/living/carbon/human/human_user = user
-		human_user.fly_at(object,5,1.5)
+		toggle_flame(user, TRUE)
+		human_user.fly_at(object,5,1.2)
+		toggle_flame(user, FALSE)
+
+/obj/item/jetpack_marine/proc/toggle_flame(mob/user, on)
+	var/image/I = image('icons/obj/items/jetpack.dmi', src, "+jetpacklit")
+
+	if (on)
+		overlays += I
+		playsound(user,'sound/items/jetpack_sound.ogg',25)
+	else
+		overlays -= I
+		qdel(I)
+
+	return TRUE
