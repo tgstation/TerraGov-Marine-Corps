@@ -1,10 +1,6 @@
-#define FULL "full"
-#define HALF_FULL "half full"
-#define EMPTY "empty"
-
 /obj/item/jetpack_marine
 	name = "marine jetpack"
-	desc = "Allows for fast and agile movement on the battlefield"
+	desc = "Allows for fast and agile movement on the battlefield. Alt click to fly to a destination when the jetpack is equiped"
 	icon = 'icons/obj/items/jetpack.dmi'
 	icon_state = "jetpack_marine"
 	w_class = WEIGHT_CLASS_BULKY
@@ -36,8 +32,9 @@
 	var/mob/living/carbon/human/human_user = usr
 	if (use_jetpack(human_user))
 		change_icon_lit(TRUE)
+		human_user.layer = FLY_LAYER
 		COOLDOWN_START(src, cooldown_jetpack, 10 SECONDS)
-		human_user.fly_at(A,range,1)
+		human_user.fly_at(A,range,speed)
 
 /obj/item/jetpack_marine/proc/use_jetpack(mob/living/carbon/human/human_user) ///Check if we can use the jetpack and give feedback to the users
 	if(!COOLDOWN_CHECK(src,cooldown_jetpack))

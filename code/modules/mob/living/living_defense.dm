@@ -79,7 +79,7 @@
 
 		if(O.item_fire_stacks)
 			fire_stacks += O.item_fire_stacks
-		
+		if(CHECK_BITFIELD(O.resistance_flags, ON_FIRE))
 			IgniteMob()
 
 		O.set_throwing(FALSE) //it hit, so stop moving
