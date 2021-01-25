@@ -416,6 +416,8 @@
 
 /atom/movable/proc/fly_at(atom/target, range, speed)
 	set waitfor = FALSE
+	var/init_layer = layer
+	layer = FLY_LAYER
 	if(!target || !src)
 		return FALSE
 
@@ -424,6 +426,7 @@
 	if(loc)
 		set_flying(FALSE)
 		throw_source = null
+		layer = init_layer
 
 /atom/movable/proc/move_at(atom/target, range, speed, catchable = TRUE)
 	throw_source = get_turf(src)	//store the origin turf

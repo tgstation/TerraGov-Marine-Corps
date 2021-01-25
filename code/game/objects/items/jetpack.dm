@@ -32,7 +32,6 @@
 	var/mob/living/carbon/human/human_user = usr
 	if (use_jetpack(human_user))
 		change_icon_lit(TRUE)
-		human_user.layer = FLY_LAYER
 		COOLDOWN_START(src, cooldown_jetpack, 10 SECONDS)
 		human_user.fly_at(A,range,speed)
 
