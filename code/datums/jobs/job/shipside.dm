@@ -751,11 +751,11 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 		return
 	switch(playtime_mins)
 		if(601 to 1500) // 10 hrs
-			new_human.wear_id.paygrade = "SO1"
+			new_human.wear_id.paygrade = "Mk.I"
 		if(1501 to 6000) // 50 hrs
-			new_human.wear_id.paygrade = "MS"
+			new_human.wear_id.paygrade = "Mk.II"
 		if(6001 to INFINITY) // 100 hrs
-			new_human.wear_id.paygrade = "CS"
+			new_human.wear_id.paygrade = "Mk.III"
 
 /datum/job/terragov/silicon/synthetic/radio_help_message(mob/M)
 	. = ..()
