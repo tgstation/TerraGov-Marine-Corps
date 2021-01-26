@@ -37,7 +37,7 @@
 
 /obj/item/jetpack_marine/proc/use_jetpack(mob/living/carbon/human/human_user) ///Check if we can use the jetpack and give feedback to the users
 	if(!COOLDOWN_CHECK(src,cooldown_jetpack))
-		to_chat(human_user,"<span class='warning'>You can't use the jetpack yet</span>")
+		to_chat(human_user,"<span class='warning'>You cannot use the jetpack yet!</span>")
 		return FALSE
 	else if(fuel_left>=fuel_use)
 		playsound(human_user,'sound/items/weldingtool_on.ogg',25)
