@@ -343,12 +343,14 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 
 	patient.add_filter("hivelord_healing_infusion_outline", 3, list("type" = "outline", "size" = 1, "color" = COLOR_VERY_PALE_LIME_GREEN)) //Set our cool aura; also confirmation we have the buff
 
+	var/datum/action/healing_infusion_storage_datum/storage_datum = new /datum/action/healing_infusion_storage_datum //Create the buff datum
+
 	patient.infusion_active = TRUE //Indicate the infusion as being active
 
-	health_ticks_remaining = HIVELORD_HEALING_INFUSION_TICKS
-	sunder_ticks_remaining = HIVELORD_HEALING_INFUSION_TICKS
+	storage_datum.health_ticks_remaining = HIVELORD_HEALING_INFUSION_TICKS
+	storage_datum.sunder_ticks_remaining = HIVELORD_HEALING_INFUSION_TICKS
 
-	addtimer(CALLBACK(src, .proc/healing_infusion_timer_check, patient), HIVELORD_HEALING_INFUSION_DURATION)
+	addtimer(CALLBACK(storage_datum, /datum/action/healing_infusion_storage_datum/.proc/healing_infusion_timer_check, patient), HIVELORD_HEALING_INFUSION_DURATION)
 
 	succeed_activate()
 	add_cooldown()
@@ -356,12 +358,18 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	GLOB.round_statistics.hivelord_healing_infusions++ //Statistics
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "hivelord_healing_infusions")
 
-	RegisterSignal(patient, COMSIG_XENOMORPH_HEALTH_REGEN, .proc/healing_infusion_regeneration) //Register so we apply the effect whenever the target heals
-	RegisterSignal(patient, COMSIG_XENOMORPH_SUNDER_REGEN, .proc/healing_infusion_sunder_regeneration) //Register so we apply the effect whenever the target heals
+	storage_datum.RegisterSignal(patient, COMSIG_XENOMORPH_HEALTH_REGEN, /datum/action/healing_infusion_storage_datum/.proc/healing_infusion_regeneration) //Register so we apply the effect whenever the target heals
+	storage_datum.RegisterSignal(patient, COMSIG_XENOMORPH_SUNDER_REGEN, /datum/action/healing_infusion_storage_datum/.proc/healing_infusion_sunder_regeneration) //Register so we apply the effect whenever the target heals
+
+
+///Store all relevant information for each target
+/datum/action/healing_infusion_storage_datum
+	var/health_ticks_remaining = 0 //Buff ends whenever we run out of either health or sunder ticks, or time, whichever comes first
+	var/sunder_ticks_remaining = 0
 
 
 ///Called when the target xeno regains HP via heal_wounds in life.dm
-/datum/action/xeno_action/activable/healing_infusion/proc/healing_infusion_regeneration(datum/source, mob/living/carbon/xenomorph/patient)
+/datum/action/healing_infusion_storage_datum/proc/healing_infusion_regeneration(datum/source, mob/living/carbon/xenomorph/patient)
 	SIGNAL_HANDLER
 
 	if(!patient.infusion_active || !health_ticks_remaining)
@@ -408,7 +416,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	#endif
 
 ///Called when the target xeno regains Sunder via heal_wounds in life.dm
-/datum/action/xeno_action/activable/healing_infusion/proc/healing_infusion_sunder_regeneration(datum/source, mob/living/carbon/xenomorph/patient)
+/datum/action/healing_infusion_storage_datum/proc/healing_infusion_sunder_regeneration(datum/source, mob/living/carbon/xenomorph/patient)
 	SIGNAL_HANDLER
 
 	if(!patient.infusion_active || !sunder_ticks_remaining)
@@ -432,7 +440,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	#endif
 
 ///Called when the duration of the buff lapses before its effect is exhausted
-/datum/action/xeno_action/activable/healing_infusion/proc/healing_infusion_timer_check(mob/living/carbon/xenomorph/patient)
+/datum/action/healing_infusion_storage_datum/proc/healing_infusion_timer_check(mob/living/carbon/xenomorph/patient)
 
 	if(!patient.infusion_active) //If the effect is already gone, don't try to remove it again
 		return
@@ -441,7 +449,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 
 
 ///Called when the duration of healing infusion lapses
-/datum/action/xeno_action/activable/healing_infusion/proc/healing_infusion_deactivate(mob/living/carbon/xenomorph/patient)
+/datum/action/healing_infusion_storage_datum/proc/healing_infusion_deactivate(mob/living/carbon/xenomorph/patient)
 
 	UnregisterSignal(patient, list(COMSIG_XENOMORPH_HEALTH_REGEN, COMSIG_XENOMORPH_SUNDER_REGEN)) //unregister the signals; party's over
 
@@ -462,3 +470,4 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	message_admins("HIVELORD_ABILITIES_DEBUG: healing_infusion_deactivate: Infusion Status: [patient.infusion_active]")
 	#endif
 
+	QDEL_NULL(src) //self-destruct
