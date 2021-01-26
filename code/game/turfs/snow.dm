@@ -144,15 +144,14 @@
 		if(EXPLODE_DEVASTATE)
 			if(slayer)
 				slayer = 0
-				update_icon(1, 0)
 		if(EXPLODE_HEAVY)
 			if(slayer && prob(60))
 				slayer = max(slayer - 2, 0)
-				update_icon(1, 0)
 		if(EXPLODE_LIGHT)
 			if(slayer && prob(20))
 				slayer = max(slayer - 1, 0)
-				update_icon(1, 0)
+
+	update_icon(1, 0)
 	return ..()
 
 //Fire act; fire now melts snow as it should; fire beats ice
@@ -164,13 +163,12 @@
 	switch(burnlevel)
 		if(1 to 10)
 			slayer = max(0, slayer - 1)
-			update_icon(1, 0)
 		if(11 to 24)
 			slayer = max(0, slayer - 2)
-			update_icon(1, 0)
 		if(25 to INFINITY)
 			slayer = 0
-			update_icon(1, 0)
+
+	update_icon(1, 0)
 
 /turf/open/floor/plating/ground/snow/proc/acidspray_act()
 
