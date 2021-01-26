@@ -4,7 +4,7 @@
 	/// Resets the armor on clothing since by default /objs get 100 bio armor
 	soft_armor = list()
 
-	/// Bitflags used to determine the state of the armor (light on, overlay used, or reinfornced), currently support flags are in [equipment.dm:100]
+	/// Bitflags used to determine the estate of the armor (light on, overlay used, or reinfornced), currently support flags are in [equipment.dm:100]
 	var/flags_armor_features = NONE
 
 
