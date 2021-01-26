@@ -43,7 +43,5 @@
 
 /mob/living/carbon/xenomorph/roony/set_stat()
 	. = ..()
-	if(isnull(.))
-		return
 	if(. == CONSCIOUS && layer != initial(layer))
 		layer = MOB_LAYER
