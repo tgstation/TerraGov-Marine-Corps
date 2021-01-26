@@ -404,7 +404,7 @@
 	set_throwing(TRUE)
 	src.thrower = thrower
 
-	move_at(target,range,speed,thrower)
+	move_at(target,range,speed,TRUE)
 
 	//done throwing, either because it hit something or it finished moving
 	if(isobj(src) && throwing)
