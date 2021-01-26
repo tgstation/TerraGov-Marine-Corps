@@ -343,11 +343,11 @@
 			. = size ? "MERC " : "MERC Engineer"
 		if("VM")
 			. = size ? "VAT " : "VatGrown Marine"
-		if("CS")
-			. = size ? "CS " : "Chief Synthetic"
-		if("MS")
-			. = size ? "MS" : "Major Synthetic"
-		if("SO1")
-			. = size ? "SO1 " : "Synthetic First Class"
+		if("Mk.III")
+			. = size ? "Mk.III " : "Mark III"
+		if("Mk.II")
+			. = size ? "Mk.II " : "Mark II"
+		if("Mk.I")
+			. = size ? "Mk.I " : "Mark I"
 		else
 			. = paygrade + " " //custom paygrade
