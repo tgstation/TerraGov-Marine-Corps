@@ -938,14 +938,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	name = "\improper M412 solid stock"
 	icon_state = "riflestock"
 	attach_icon = "riflestock_a"
-	wield_delay_mod = 0.2 SECONDS
-	size_mod = 1
 	pixel_shift_x = 32
 	pixel_shift_y = 13
-	accuracy_mod = 0.05
-	recoil_mod = -3
-	scatter_mod = -10
-	movement_acc_penalty_mod = 0.1
 
 /obj/item/attachable/stock/rifle/marksman
 	name = "\improper T-45 marksman stock"
