@@ -66,7 +66,7 @@
 	spawndelay = 10 SECONDS
 	maxamount = 10
 
-////////////////////Tier 4s
+////////////////////Tier 3s
 
 /obj/effect/ai_node/spawner/xeno/ravager
 	spawntypes = /mob/living/carbon/xenomorph/ravager/ai
