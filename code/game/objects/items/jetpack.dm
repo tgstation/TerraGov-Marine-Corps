@@ -1,6 +1,6 @@
 /obj/item/jetpack_marine
 	name = "marine jetpack"
-	desc = "Allows for fast and agile movement on the battlefield. Alt click to fly to a destination when the jetpack is equiped"
+	desc = "A high powered jetpack with enough fuel to send a person flying for a short while. It allows for fast and agile movement on the battlefield. <b>Alt click to fly to a destination when the jetpack is equipped.</b>"
 	icon = 'icons/obj/items/jetpack.dmi'
 	icon_state = "jetpack_marine"
 	w_class = WEIGHT_CLASS_BULKY
