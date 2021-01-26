@@ -93,7 +93,6 @@
 			user.visible_message("<span class='danger'>[user] slams [C] into the [src]!</span>", "<span class='notice'>You slam [C] into the [src]!</span>")
 			log_combat(user, C, "slammed", "", "into the \the [src]")
 			C.apply_damage(8, BRUTE, updating_health = TRUE)
-			UPDATEHEALTH(C)
 
 	else if(cistern && !issilicon(user)) //STOP PUTTING YOUR MODULES IN THE TOILET.
 		if(I.w_class > 3)
