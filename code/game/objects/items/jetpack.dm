@@ -45,7 +45,7 @@
 		change_icon_indicator()
 		addtimer(CALLBACK(src,.proc/change_icon_lit,FALSE),1.5 SECONDS)
 		return TRUE
-	to_chat(human_user,"<span class='warning'>The jetpack ran out of fuel</span>")
+	to_chat(human_user,"<span class='warning'>The jetpack ran out of fuel!</span>")
 	return FALSE
 	
 
