@@ -70,21 +70,22 @@
 
 	TIMER_COOLDOWN_START(src, COOLDOWN_ACID, 1 SECONDS)
 	if(HAS_TRAIT(src, TRAIT_FLOORED))
-		take_overall_damage_armored(acid_damage, BURN, "acid", updating_health = TRUE)
+		INVOKE_ASYNC(src, .proc/take_overall_damage_armored, acid_damage, BURN, "acid", FALSE, FALSE, TRUE)
 		to_chat(src, "<span class='danger'>You are scalded by the burning acid!</span>")
 		return
 	to_chat(src, "<span class='danger'>Your feet scald and burn! Argh!</span>")
 	if(!(species.species_flags & NO_PAIN))
-		emote("pain")
+		INVOKE_ASYNC(src, .proc/emote, "pain")
+
 	next_move_slowdown += slow_amt
 	var/datum/limb/affecting = get_limb(BODY_ZONE_PRECISE_L_FOOT)
 	var/armor_block = run_armor_check(affecting, "acid")
-	if(istype(affecting) && affecting.take_damage_limb(0, acid_damage/2, FALSE, FALSE, armor_block, TRUE))
-		UpdateDamageIcon()
+	INVOKE_ASYNC(affecting, /datum/limb/.proc/take_damage_limb, 0, acid_damage/2, FALSE, FALSE, armor_block)
+
 	affecting = get_limb(BODY_ZONE_PRECISE_R_FOOT)
 	armor_block = run_armor_check(affecting, "acid")
-	if(istype(affecting) && affecting.take_damage_limb(0, acid_damage/2, FALSE, FALSE, armor_block, TRUE, updating_health = TRUE))
-		UpdateDamageIcon()
+	INVOKE_ASYNC(affecting, /datum/limb/.proc/take_damage_limb, 0, acid_damage/2, FALSE, FALSE, armor_block, TRUE)
+
 
 /obj/effect/xenomorph/spray/process()
 	var/turf/T = loc
