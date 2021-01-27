@@ -69,8 +69,7 @@
 
 	TIMER_COOLDOWN_START(src, COOLDOWN_ACID, 1 SECONDS)
 	if(HAS_TRAIT(src, TRAIT_FLOORED))
-		take_overall_damage_armored(acid_damage, BURN, "acid")
-		UPDATEHEALTH(src)
+		take_overall_damage_armored(acid_damage, BURN, "acid", updating_health = TRUE)
 		to_chat(src, "<span class='danger'>You are scalded by the burning acid!</span>")
 		return
 	to_chat(src, "<span class='danger'>Your feet scald and burn! Argh!</span>")
@@ -80,12 +79,10 @@
 	var/datum/limb/affecting = get_limb(BODY_ZONE_PRECISE_L_FOOT)
 	var/armor_block = run_armor_check(affecting, "acid")
 	if(istype(affecting) && affecting.take_damage_limb(0, acid_damage/2, FALSE, FALSE, armor_block, TRUE))
-		UPDATEHEALTH(src)
 		UpdateDamageIcon()
 	affecting = get_limb(BODY_ZONE_PRECISE_R_FOOT)
 	armor_block = run_armor_check(affecting, "acid")
-	if(istype(affecting) && affecting.take_damage_limb(0, acid_damage/2, FALSE, FALSE, armor_block, TRUE))
-		UPDATEHEALTH(src)
+	if(istype(affecting) && affecting.take_damage_limb(0, acid_damage/2, FALSE, FALSE, armor_block, TRUE, updating_health = TRUE))
 		UpdateDamageIcon()
 
 /obj/effect/xenomorph/spray/process()
