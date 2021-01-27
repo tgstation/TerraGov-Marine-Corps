@@ -21,9 +21,9 @@
 #define RADIO_KEY_COMMAND "v"
 #define RADIO_TOKEN_COMMAND ":v"
 
-#define RADIO_CHANNEL_POLICE "Police"
-#define RADIO_KEY_POLICE "p"
-#define RADIO_TOKEN_POLICE ":p"
+#define RADIO_CHANNEL_CAS "fire support"
+#define RADIO_KEY_CAS "s"
+#define RADIO_TOKEN_CAS ":s" //s for support
 
 #define RADIO_CHANNEL_ALPHA "Alpha"
 #define RADIO_KEY_ALPHA "q"
