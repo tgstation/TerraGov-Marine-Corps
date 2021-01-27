@@ -728,6 +728,7 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 	title = SYNTHETIC
 	req_admin_notify = TRUE
 	comm_title = "Syn"
+	paygrade = "Mk.I"
 	supervisors = "the acting captain"
 	total_positions = 1
 	skills_type = /datum/skills/synthetic
