@@ -7,7 +7,7 @@
 	desc = "A pistol magazine."
 	caliber = "9x19mm Parabellum"
 	icon_state = "tp14"
-	max_rounds = 14
+	max_rounds = 21
 	w_class = WEIGHT_CLASS_SMALL
 	default_ammo = /datum/ammo/bullet/pistol
 	gun_type = /obj/item/weapon/gun/pistol/standard_pistol
@@ -84,7 +84,7 @@
 	default_ammo = /datum/ammo/bullet/pistol/heavy
 	caliber = ".45 ACP"
 	icon_state = ".45"
-	max_rounds = 11
+	max_rounds = 14
 	gun_type = /obj/item/weapon/gun/pistol/standard_heavypistol
 
 
