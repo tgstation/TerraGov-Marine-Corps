@@ -10,7 +10,7 @@
 	var/fuel_indicator = 40 ///threshold to change the jetpack fuel indicator
 	var/fuel_use = 5 ///how much fuel we use every flight
 	var/range = 6 ///how far the jetpack can fly in one burst
-	var/speed = 1.5 ///How quick you will fly
+	var/speed = 1 ///How quick you will fly (warning, it rounds up to the nearest integer)
 	var/hovering_time = 1 SECONDS ///How long the jetpack allows you to fly over things
 	var/image/fuel_indicator_overlay ///image overlay off the fuel indicator
 	COOLDOWN_DECLARE(cooldown_jetpack)
