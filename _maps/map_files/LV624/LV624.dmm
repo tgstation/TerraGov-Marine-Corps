@@ -113,7 +113,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
 "aaK" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand7)
 "aaL" = (
@@ -220,7 +220,7 @@
 /turf/closed/mineral,
 /area/lv624/ground/caves/east1)
 "abh" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /obj/structure/catwalk,
 /turf/open/ground/river,
 /area/lv624/ground/sand8)
@@ -260,7 +260,7 @@
 /turf/open/floor/engine/cult,
 /area/lv624/ground/caves/east2)
 "abs" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /obj/structure/catwalk,
 /turf/open/ground/coast{
 	dir = 8
@@ -381,7 +381,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west1)
 "abP" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand5)
 "abQ" = (
@@ -731,7 +731,7 @@
 /turf/closed/wall/r_wall,
 /area/lv624/ground/sand6)
 "acM" = (
-/obj/machinery/colony_floodlight{
+/obj/machinery/floodlight/colony{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/dirt,
@@ -1615,7 +1615,7 @@
 /turf/open/ground/coast,
 /area/lv624/ground/caves/west1)
 "agm" = (
-/obj/machinery/colony_floodlight{
+/obj/machinery/floodlight/colony{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/dirt,
@@ -1624,7 +1624,7 @@
 /turf/open/ground/coast/corner2,
 /area/lv624/ground/sand8)
 "ago" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/floor,
 /area/lv624/ground/sand5)
 "agp" = (
@@ -2082,7 +2082,7 @@
 /turf/open/floor/plating,
 /area/lv624/ground/tfort)
 "aif" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand2)
 "aig" = (
@@ -2368,7 +2368,7 @@
 /turf/open/floor,
 /area/lv624/ground/sand2)
 "ajl" = (
-/obj/machinery/colony_floodlight{
+/obj/machinery/floodlight/colony{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/dirt,
@@ -2679,7 +2679,7 @@
 /turf/closed/wall,
 /area/lv624/ground/sand8)
 "akJ" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand8)
 "akK" = (
@@ -2731,7 +2731,7 @@
 	},
 /area/lv624/ground/river3)
 "akW" = (
-/obj/machinery/colony_floodlight{
+/obj/machinery/floodlight/colony{
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
@@ -2875,7 +2875,7 @@
 /turf/open/ground/river,
 /area/lv624/ground/river2)
 "alv" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -3091,7 +3091,7 @@
 	},
 /area/lv624/ground/filtration)
 "amk" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand9)
 "aml" = (
@@ -3180,7 +3180,7 @@
 /area/lv624/ground/sand8)
 "amA" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/obj/machinery/colony_floodlight{
+/obj/machinery/floodlight/colony{
 	dir = 4
 	},
 /obj/structure/catwalk,
@@ -3189,7 +3189,7 @@
 	},
 /area/lv624/ground/jungle7)
 "amB" = (
-/obj/machinery/colony_floodlight{
+/obj/machinery/floodlight/colony{
 	dir = 8
 	},
 /obj/structure/catwalk,
@@ -3565,7 +3565,7 @@
 /turf/open/ground/river,
 /area/lv624/ground/jungle9)
 "anM" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 1
 	},
@@ -3586,7 +3586,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/floor,
 /area/lv624/ground/sand9)
 "anR" = (
@@ -3608,7 +3608,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/floor,
 /area/lv624/ground/sand9)
 "anV" = (
@@ -3830,7 +3830,7 @@
 /turf/open/floor,
 /area/lv624/ground/river2)
 "aoQ" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 8
 	},
@@ -3952,7 +3952,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/floor,
 /area/lv624/ground/jungle7)
 "aps" = (
@@ -4006,7 +4006,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/floor,
 /area/lv624/ground/jungle7)
 "apG" = (
@@ -4323,7 +4323,7 @@
 	},
 /area/lv624/ground/jungle7)
 "arr" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle8)
 "ars" = (
@@ -4701,7 +4701,7 @@
 /turf/closed/gm/dense,
 /area/lv624/ground/jungle7)
 "atm" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle7)
 "atn" = (
@@ -4785,7 +4785,7 @@
 	},
 /area/lv624/ground/river1)
 "atD" = (
-/obj/machinery/colony_floodlight{
+/obj/machinery/floodlight/colony{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/dirt,
@@ -4833,7 +4833,7 @@
 /turf/open/floor,
 /area/lv624/ground/jungle7)
 "atN" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 8
 	},
@@ -4856,7 +4856,7 @@
 	},
 /area/lv624/ground/jungle7)
 "atS" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
 	dir = 8
 	},
@@ -4874,7 +4874,7 @@
 	},
 /area/lv624/ground/jungle7)
 "atV" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 1
 	},
@@ -4939,7 +4939,7 @@
 /turf/open/floor,
 /area/lv624/ground/jungle6)
 "auj" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 1
 	},
@@ -5267,7 +5267,7 @@
 /area/lv624/lazarus/hydroponics)
 "avH" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
 "avI" = (
@@ -6214,7 +6214,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle7)
 "azq" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
 "azr" = (
@@ -6595,7 +6595,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder,
 /area/lv624/ground/jungle6)
 "aBk" = (
-/obj/machinery/colony_floodlight{
+/obj/machinery/floodlight/colony{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/dirt,
@@ -6967,7 +6967,7 @@
 /turf/open/floor/plating/platebotc,
 /area/lv624/lazarus/quartstorage/outdoors)
 "aDk" = (
-/obj/machinery/colony_floodlight{
+/obj/machinery/floodlight/colony{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/dirt,
@@ -6992,7 +6992,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle5)
 "aDo" = (
-/obj/machinery/colony_floodlight{
+/obj/machinery/floodlight/colony{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/dirt,
@@ -7011,7 +7011,7 @@
 /turf/open/floor/plating,
 /area/lv624/ground/river1)
 "aDx" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 8
 	},
@@ -7484,7 +7484,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/compound/n)
 "aGE" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/ground/grass,
 /area/lv624/ground/compound/n)
 "aGF" = (
@@ -7589,7 +7589,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle5)
 "aHd" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle6)
 "aHe" = (
@@ -7704,7 +7704,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage)
 "aHD" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle5)
 "aHM" = (
@@ -8629,7 +8629,7 @@
 	},
 /area/lv624/lazarus/quartstorage/outdoors)
 "aMP" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/quartstorage/outdoors)
 "aMS" = (
@@ -9637,7 +9637,7 @@
 /area/lv624/ground/compound/c)
 "aSf" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
 "aSg" = (
@@ -9797,7 +9797,7 @@
 /turf/closed/gm/dense,
 /area/lv624/ground/jungle9)
 "aSP" = (
-/obj/machinery/colony_floodlight{
+/obj/machinery/floodlight/colony{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/dirtgrassborder{
@@ -10012,7 +10012,7 @@
 /turf/closed/gm/dense,
 /area/lv624/ground/jungle9)
 "aTF" = (
-/obj/machinery/colony_floodlight{
+/obj/machinery/floodlight/colony{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/dirt,
@@ -10720,7 +10720,7 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/quartstorage)
 "aWU" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 4
 	},
@@ -10909,7 +10909,7 @@
 /turf/open/floor,
 /area/shuttle/drop2/lz2)
 "aXO" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
 "aXT" = (
@@ -11283,7 +11283,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle9)
 "aZU" = (
-/obj/machinery/colony_floodlight{
+/obj/machinery/floodlight/colony{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/dirt,
@@ -11594,7 +11594,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder,
 /area/lv624/ground/compound/sw)
 "bbp" = (
-/obj/machinery/colony_floodlight{
+/obj/machinery/floodlight/colony{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/dirt,
@@ -12665,7 +12665,7 @@
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/jungle9)
 "bhr" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle9)
 "bhs" = (
@@ -13084,7 +13084,7 @@
 	},
 /area/lv624/ground/jungle1)
 "bjy" = (
-/obj/machinery/colony_floodlight{
+/obj/machinery/floodlight/colony{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/dirt,
@@ -13353,7 +13353,7 @@
 	},
 /area/lv624/ground/jungle1)
 "bkT" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
@@ -13715,7 +13715,7 @@
 	},
 /area/lv624/ground/jungle3)
 "bmA" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle3)
 "bmB" = (
@@ -13955,7 +13955,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle3)
 "bnF" = (
-/obj/machinery/colony_floodlight{
+/obj/machinery/floodlight/colony{
 	dir = 8
 	},
 /turf/open/ground/grass,
@@ -14303,7 +14303,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/se)
 "boR" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 4
 	},
@@ -14538,7 +14538,7 @@
 	},
 /area/lv624/ground/jungle2)
 "bqf" = (
-/obj/machinery/colony_floodlight{
+/obj/machinery/floodlight/colony{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/dirt,
@@ -14741,7 +14741,7 @@
 	},
 /area/lv624/ground/jungle1)
 "brg" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle1)
 "brj" = (
@@ -15550,7 +15550,7 @@
 	},
 /area/lv624/ground/jungle1)
 "goN" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle4)
 "gwG" = (
@@ -16703,7 +16703,7 @@
 /turf/open/floor/plating/platebotc,
 /area/lv624/lazarus/quartstorage)
 "tqG" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/dirtgrassborder/corner2,
 /area/lv624/ground/compound/sw)
 "tqW" = (
@@ -16925,7 +16925,7 @@
 /turf/closed/gm/dense,
 /area/lv624/ground/jungle3)
 "waj" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle6)
 "wiK" = (

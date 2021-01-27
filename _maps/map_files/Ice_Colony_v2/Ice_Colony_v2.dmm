@@ -1396,7 +1396,7 @@
 	},
 /area/ice_colony/exterior/surface/valley/north)
 "afM" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/northwest)
 "afN" = (
@@ -2862,7 +2862,7 @@
 	},
 /area/ice_colony/surface/substation)
 "alr" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "als" = (
@@ -3571,7 +3571,7 @@
 /turf/open/floor/plating,
 /area/ice_colony/surface/tcomms)
 "aod" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/north)
 "aoe" = (
@@ -5181,7 +5181,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/landing_pad2)
 "atg" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/west)
 "ath" = (
@@ -8825,7 +8825,7 @@
 	},
 /area/ice_colony/surface/command/checkpoint)
 "aEY" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/north)
 "aEZ" = (
@@ -8978,7 +8978,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/pass)
 "aFx" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/pass)
 "aFy" = (
@@ -9182,7 +9182,7 @@
 	},
 /area/ice_colony/surface/garage/one)
 "aGa" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/pass)
 "aGb" = (
@@ -9833,7 +9833,7 @@
 /turf/closed/wall/r_wall,
 /area/ice_colony/surface/command/control/pv2)
 "aHR" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/southeast)
 "aHS" = (
@@ -10964,7 +10964,7 @@
 /turf/open/floor/wood,
 /area/ice_colony/surface/bar/canteen)
 "aLV" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/south)
 "aLW" = (
@@ -12010,7 +12010,7 @@
 	},
 /area/ice_colony/surface/hangar/checkpoint)
 "aPp" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/southwest)
 "aPq" = (
@@ -14188,7 +14188,7 @@
 	},
 /area/ice_colony/surface/research)
 "aVU" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/container_yard)
 "aVV" = (
@@ -14978,7 +14978,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/responsehangar)
 "aYm" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/landing_pad)
 "aYn" = (
@@ -15814,7 +15814,7 @@
 /obj/structure/barricade/metal{
 	dir = 8
 	},
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 9
 	},
@@ -16121,7 +16121,7 @@
 /obj/structure/barricade/metal{
 	dir = 8
 	},
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
@@ -17312,7 +17312,7 @@
 	},
 /area/ice_colony/exterior/surface/valley/south)
 "bgf" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/south)
 "bgg" = (
@@ -29641,7 +29641,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/south_east)
 "bUI" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 9
 	},
@@ -29662,7 +29662,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/south_east)
 "bUL" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 5
 	},
@@ -33173,7 +33173,7 @@
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/landing_pad2)
 "qEc" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/south)
 "qFz" = (

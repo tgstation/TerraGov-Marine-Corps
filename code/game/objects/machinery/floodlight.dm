@@ -1,13 +1,10 @@
-//these are probably broken
-
 /obj/machinery/floodlight
 	name = "Emergency Floodlight"
 	icon = 'icons/obj/machines/floodlight.dmi'
 	icon_state = "flood00"
 	anchored = TRUE
 	density = TRUE
-	var/on = 0
-	var/obj/item/cell/cell = null
+	var/on = FALSE
 	var/use = 0
 	var/unlocked = 0
 	var/open = 0
@@ -15,108 +12,30 @@
 
 /obj/machinery/floodlight/Initialize()
 	. = ..()
-	cell = new /obj/item/cell(src)
 	if(on)
 		turn_light(null,TRUE)
 
-
-/obj/machinery/floodlight/proc/updateicon()
-	icon_state = "flood[open ? "o" : ""][open && cell ? "b" : ""]0[on]"
-/*
-/obj/machinery/floodlight/process()
-	if(on && cell)
-		if(cell.charge >= use)
-			cell.use(use)
-		else
-			on = 0
-			updateicon()
-			SetLuminosity(0)
-			src.visible_message("<span class='warning'>[src] shuts down due to lack of power!</span>")
-			return
-*/
-//ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/machinery/floodlight/attack_hand(mob/living/user)
-	. = ..()
-	if(open && cell)
-		if(ishuman(user))
-			if(!user.get_active_held_item())
-				user.put_in_hands(cell)
-				cell.loc = user.loc
-		else
-			cell.loc = loc
+	return
 
-		cell.update_icon()
-
-		src.cell = null
-		to_chat(user, "You remove the power cell.")
-		updateicon()
-		return
-	turn_light(user, on)
+/obj/machinery/floodlight/attackby()
+	return
 
 /obj/machinery/floodlight/turn_light(mob/user, toggle_on, cooldown = 0)
 	if(toggle_on)	
-		if(!cell)
-			return
-		if(cell.charge <= 0)
-			return
 		on = TRUE
 		to_chat(user, "<span class='notice'>You turn on the light.</span>")
 		set_light(brightness_on)
 		DISABLE_BITFIELD(resistance_flags, UNACIDABLE)
+		return
 	else
 		on = FALSE
 		to_chat(user, "<span class='notice'>You turn off the light.</span>")
 		set_light(0)
 		ENABLE_BITFIELD(resistance_flags, UNACIDABLE)
-	updateicon()
+		if(cooldown > 0)
+			addtimer(CALLBACK(src, .turn_light, null, TRUE), cooldown)
 
-/obj/machinery/floodlight/attackby(obj/item/I, mob/user, params)
-	. = ..()
-
-	if(!ishuman(user))
-		return
-
-	if(iswrench(I))
-		anchored = !anchored
-		if(anchored)
-			to_chat(user, "You anchor the [src] in place.")
-		else
-			to_chat(user, "You remove the bolts from the [src].")
-
-	else if(isscrewdriver(I))
-		if(open)
-			return
-		unlocked = !unlocked
-		if(unlocked)
-			to_chat(user, "You unscrew the battery panel.")
-		else
-			to_chat(user, "You screw the battery panel in place.")
-
-	else if(iscrowbar(I))
-		if(!unlocked)
-			return
-		open = !open
-		if(open)
-			to_chat(user, "You remove the battery panel.")
-		else if(unlocked)
-			overlays.Cut()
-			to_chat(user, "You crowbar the battery panel in place.")
-
-	else if(istype(I, /obj/item/cell))
-		if(!open)
-			return
-
-		if(cell)
-			to_chat(user, "There is a power cell already installed.")
-			return
-
-		if(user.transferItemToLoc(I, src))
-			cell = I
-			to_chat(user, "You insert the power cell.")
-
-	updateicon()
-
-//Magical floodlight that cannot be destroyed or interacted with.
 /obj/machinery/floodlight/landing
 	name = "Landing Light"
 	desc = "A powerful light stationed near landing zones to provide better visibility."
@@ -124,12 +43,6 @@
 	on = TRUE
 	use_power = 0
 	brightness_on = 5
-
-/obj/machinery/floodlight/landing/attack_hand(mob/living/user)
-	return
-
-/obj/machinery/floodlight/landing/attackby()
-	return
 
 /obj/machinery/floodlight/outpost
 	name = "Outpost Light"
@@ -151,11 +64,6 @@
 	on = TRUE
 	brightness_on = 25
 
-
-
-/obj/machinery/floodlight/colony
-	name = "Colony Floodlight"
-	icon_state = "floodoff"
 
 /obj/machinery/floodlightcombat
 	name = "Armoured floodlight"
@@ -332,29 +240,34 @@
 		target_slot++
 
 /// Called whenever someone tries to turn the floodlight on/off
-/obj/machinery/floodlightcombat/proc/switch_light()
+/obj/machinery/floodlightcombat/proc/switch_light(mob/user = null)
 	if(machine_stat & (NOPOWER|BROKEN))
-		visible_message("<span class='notice'>You flip the switch , but nothing happens , perhaps its not powered?.")
+		to_chat(user, "<span class='notice'>You flip the switch , but nothing happens , perhaps its not powered?.")
 		return FALSE
 	if(!anchored || tipped)
-		visible_message("<span class='danger'>The floodlight flashes a warning led.It is not bolted to the ground.")
+		to_chat(user, "<span class='danger'>The floodlight flashes a warning led.It is not bolted to the ground.")
 		return FALSE
 	turn_light(null,!on)
 	playsound( loc, 'sound/machines/switch.ogg', 60 , FALSE)
 
+/obj/machinery/floodlightcombat/proc/reset_light()
+	if(!on)
+		switch_light()
+
 /obj/machinery/floodlightcombat/turn_light(mob/user, toggle_on, cooldown = 0)
-	if(on != toggle_on)
-		if(toggle_on)
-			set_light(0, 5, "#C5E3E132")
-		else
-			set_light(brightness, 5, "#C5E3E132")
-		update_icon()
+	if(toggle_on)
+		set_light(brightness, 5, "#C5E3E132")
+	else
+		set_light(0, 5, "#C5E3E132")
+		if(cooldown > 0)
+			addtimer(CALLBACK(src, .proc/reset_light), cooldown)
+	update_icon()
 
 /obj/machinery/floodlightcombat/attack_hand(mob/living/user)
 	if(!ishuman(user))
 		return FALSE
 	if(user.a_intent != INTENT_GRAB)
-		switch_light()
+		switch_light(user)
 		return TRUE
 	if(!density)
 		to_chat(user, "You begin flipping back the floodlight")
@@ -380,3 +293,109 @@
 	calculate_brightness()
 	return TRUE
 
+#define FLOODLIGHT_TICK_CONSUMPTION 800
+
+/obj/machinery/floodlight/colony
+	name = "Colony Floodlight"
+	icon_state = "floodoff"
+	var/obj/machinery/colony_floodlight_switch/fswitch = null //Reverse lookup for power grabbing in area
+	brightness_on = 7
+
+/obj/machinery/floodlight/colony/Destroy()
+	turn_light(null, FALSE)
+	if(fswitch)
+		fswitch.floodlist -= src
+		fswitch = null
+	. = ..()
+
+/obj/machinery/floodlight/colony/proc/reset_light()
+	if(fswitch?.turned_on)
+		turn_light(null, TRUE)
+
+/obj/machinery/floodlight/colony/turn_light(mob/user, toggle_on, cooldown = 0)
+	if(!fswitch) //no master, should never happen
+		return
+	if(toggle_on && !on)
+		set_light(brightness_on)
+		fswitch.active_power_usage += FLOODLIGHT_TICK_CONSUMPTION
+		on = TRUE
+		icon_state = "panelon"
+		update_icon()
+	else if(!toggle_on && on)
+		set_light(0)
+		fswitch.active_power_usage -= FLOODLIGHT_TICK_CONSUMPTION
+		on = FALSE
+		icon_state = "paneloff"
+		update_icon()
+		if(cooldown > 0)
+			addtimer(CALLBACK(src, .proc/reset_light), cooldown)
+
+
+#undef FLOODLIGHT_TICK_CONSUMPTION
+
+/obj/machinery/colony_floodlight_switch
+	name = "Colony Floodlight Switch"
+	icon = 'icons/obj/machines/floodlight.dmi'
+	icon_state = "panelnopower"
+	desc = "This switch controls the floodlights surrounding the archaeology complex. It only functions when there is power."
+	density = FALSE
+	anchored = TRUE
+	var/turned_on = FALSE //has to be toggled in engineering
+	use_power = IDLE_POWER_USE
+	idle_power_usage = 5
+	active_power_usage = 0
+	resistance_flags = UNACIDABLE|XENO_DAMAGEABLE
+	var/list/floodlist = list() // This will save our list of floodlights on the map
+
+/obj/machinery/colony_floodlight_switch/Initialize()
+	..()
+	. = INITIALIZE_HINT_LATELOAD
+
+/obj/machinery/colony_floodlight_switch/LateInitialize() //Populate our list of floodlights so we don't need to scan for them ever again
+	. = ..()
+	for(var/obj/machinery/floodlight/colony/F in GLOB.machines)
+		floodlist += F
+		F.fswitch = src
+
+/obj/machinery/colony_floodlight_switch/update_icon()
+	if(machine_stat & NOPOWER)
+		icon_state = "panelnopower"
+	else if(turned_on)
+		icon_state = "panelon"
+	else
+		icon_state = "paneloff"
+
+/obj/machinery/colony_floodlight_switch/power_change()
+	..()
+	if(machine_stat & NOPOWER)
+		if(turned_on)
+			toggle_lights(FALSE)
+			turned_on = FALSE
+	update_icon()
+
+/obj/machinery/colony_floodlight_switch/proc/toggle_power()
+	turned_on = !turned_on
+
+
+/obj/machinery/colony_floodlight_switch/proc/toggle_lights(switch_on)
+	for(var/obj/machinery/floodlight/colony/F in floodlist)
+		addtimer(CALLBACK(F, /obj/machinery/floodlight/colony/turn_light, null, switch_on), rand(1,50))
+
+/obj/machinery/colony_floodlight_switch/attack_paw(mob/living/carbon/monkey/user)
+	return src.attack_hand(user)
+
+/obj/machinery/colony_floodlight_switch/attack_hand(mob/living/user)
+	. = ..()
+	if(.)
+		return
+	if(!ishuman(user))
+		to_chat(user, "Nice try.")
+		return FALSE
+	if(machine_stat & NOPOWER)
+		to_chat(user, "Nothing happens.")
+		return FALSE
+	playsound(src,'sound/machines/click.ogg', 15, 1)
+	toggle_lights(turned_on ? FALSE : TRUE)
+	toggle_power()
+	update_icon()
+	return TRUE
