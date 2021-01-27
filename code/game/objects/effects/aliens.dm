@@ -59,11 +59,14 @@
 
 /obj/effect/xenomorph/spray/Crossed(atom/movable/AM)
 	. = ..()
-	if(ishuman(AM))
-		var/mob/living/carbon/human/H = AM
-		H.acid_spray_crossed(acid_damage, slow_amt)
+	SEND_SIGNAL(AM, COMSIG_ATOM_ACIDSPRAY_ACT, src, acid_damage, slow_amt)
 
-/mob/living/carbon/human/proc/acid_spray_crossed(acid_damage, slow_amt)
+
+/mob/living/carbon/human/proc/acid_spray_crossed(datum/source, obj/effect/xenomorph/spray/acid_spray, acid_damage, slow_amt)
+	SIGNAL_HANDLER
+
+	message_admins("source: [source], acid_spray: [acid_spray], acid_damage: [acid_damage], slow_amt: [slow_amt]")
+
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ACID))
 		return
 
@@ -95,11 +98,7 @@
 	for(var/H in T)
 
 		var/atom/A = H
-		SEND_SIGNAL(A, COMSIG_ATOM_ACIDSPRAY_ACT, src)
-
-		if(ishuman(A))
-			var/mob/living/carbon/human/H2 = H
-			H2.acid_spray_crossed(acid_damage, slow_amt)
+		SEND_SIGNAL(A, COMSIG_ATOM_ACIDSPRAY_ACT, src, acid_damage, slow_amt)
 
 //Medium-strength acid
 /obj/effect/xenomorph/acid
