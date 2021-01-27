@@ -314,6 +314,6 @@
 
 	var/fire_luminosity = 0 //Luminosity of the current fire while burning
 
-	var/tracked
+	var/tracked ///The xenos/silo currently tracked by the xeno_tracker arrow
 
 	COOLDOWN_DECLARE(xeno_health_alert_cooldown)
