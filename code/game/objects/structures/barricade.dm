@@ -115,8 +115,8 @@
 	if(is_wired)
 		X.visible_message("<span class='danger'>The barbed wire slices into [X]!</span>",
 		"<span class='danger'>The barbed wire slices into us!</span>", null, 5)
-		X.apply_damage(10)
-		UPDATEHEALTH(X)
+		X.apply_damage(10, updating_health = TRUE)
+
 	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_BARRICADE)
 	return ..()
 
