@@ -65,8 +65,6 @@
 /mob/living/carbon/human/proc/acid_spray_crossed(datum/source, obj/effect/xenomorph/spray/acid_spray, acid_damage, slow_amt)
 	SIGNAL_HANDLER
 
-	message_admins("source: [source], acid_spray: [acid_spray], acid_damage: [acid_damage], slow_amt: [slow_amt]")
-
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ACID))
 		return
 
