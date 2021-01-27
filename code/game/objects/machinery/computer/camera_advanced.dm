@@ -70,7 +70,7 @@
 
 	current_user = null
 	user.unset_interaction()
-	user.client.click_intercept = null
+	UnregisterSignal(user, COMSIG_MOB_CLICK_SHIFT)
 	playsound(src, 'sound/machines/terminal_off.ogg', 25, 0)
 
 
@@ -155,13 +155,17 @@
 
 /obj/machinery/computer/camera_advanced/proc/give_eye_control(mob/user)
 	give_actions(user)
-	user.client.click_intercept = src
+	RegisterSignal(user, COMSIG_MOB_CLICK_SHIFT, .proc/send_orders)
 	current_user = user
 	eyeobj.eye_user = user
 	eyeobj.name = "Camera Eye ([user.name])"
 	user.remote_control = eyeobj
 	user.reset_perspective(eyeobj)
 	eyeobj.setLoc(eyeobj.loc)
+
+/obj/machinery/computer/camera_advanced/proc/send_orders(atom/object) ///Send an order to marines on the ground
+	SIGNAL_HANDLER
+	return
 
 
 /obj/machinery/computer/camera_advanced/proc/track(mob/living/target)

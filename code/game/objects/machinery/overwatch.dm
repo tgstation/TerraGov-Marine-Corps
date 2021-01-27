@@ -30,16 +30,16 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	var/x_offset_s = 0
 	var/y_offset_s = 0
 	var/living_marines_sorting = FALSE
-	var/busy = FALSE //The overwatch computer is busy launching an OB/SB, lock controls
-	var/dead_hidden = FALSE //whether or not we show the dead marines in the squad.
-	var/z_hidden = 0 //which z level is ignored when showing marines.
-	var/datum/squad/current_squad = null //Squad being currently overseen
-	var/obj/selected_target //Selected target for bombarding
-	var/current_order = NO_ORDER //Selected order to give to marine
-	var/last_order_time = 0
-	var/datum/action/innate/attack_order/send_attack_order
-	var/datum/action/innate/retreat_order/send_retreat_order
-	var/datum/action/innate/defend_order/send_defend_order
+	var/busy = FALSE ///The overwatch computer is busy launching an OB/SB, lock controls
+	var/dead_hidden = FALSE ///whether or not we show the dead marines in the squad.
+	var/z_hidden = 0 ///which z level is ignored when showing marines.
+	var/datum/squad/current_squad = null ///Squad being currently overseen
+	var/obj/selected_target ///Selected target for bombarding
+	var/current_order = NO_ORDER ///Selected order to give to marine
+	var/datum/action/innate/attack_order/send_attack_order ///datum used when sending an attack order
+	var/datum/action/innate/retreat_order/send_retreat_order ///datum used when sending a retreat order
+	var/datum/action/innate/defend_order/send_defend_order ///datum used when sending a defend order
+	COOLDOWN_DECLARE(cooldown_order_cic)
 
 /obj/machinery/computer/camera_advanced/overwatch/Initialize()
 	. = ..()
@@ -1244,45 +1244,44 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	dat += "<A href='?src=\ref[src];operation=hide_dead'>{[dead_hidden ? "Show Dead Marines" : "Hide Dead Marines" ]}</a><br>"
 	dat += "<A href='?src=\ref[src];operation=choose_z'>{Change Locations Ignored}</a><br>"
 	dat += "<br><A href='?src=\ref[src];operation=back'>{Back}</a>"
-	return dat
+	return dat			
 
-/obj/machinery/computer/camera_advanced/overwatch/InterceptClickOn(mob/user, params, atom/object)
-	var/list/pa = params2list(params)
-	if (pa["shift"])
-		var/turf/TU = get_turf(object)
-		if(!send_orders(TU) && current_order)
-			to_chat(usr, "<span class='warning'>Your last order was too recent</span>")
-				
+/obj/machinery/computer/camera_advanced/overwatch/send_orders(atom/object)
+	var/turf/target_turf = get_turf(object)
+	if (current_order)
+		if(COOLDOWN_CHECK(src, cooldown_order_cic))
+			COOLDOWN_START(src, cooldown_order_cic, ORDER_COOLDOWN)
+			switch (current_order)
+				if (ATTACK_ORDER)
+					send_attack_orders(target_turf)
+					return
+				if (DEFEND_ORDER)
+					send_defend_orders(target_turf)
+					return
+				if (RETREAT_ORDER)
+					send_retreat_orders(target_turf)
+					return
+		to_chat(usr, "<span class='warning'>Your last order was too recent</span>")
+		return
+	return
 
-/obj/machinery/computer/camera_advanced/overwatch/proc/send_orders(turf/target_turf)
-	if (world.time > last_order_time + ORDER_COOLDOWN)
-		switch (current_order)
-			if (ATTACK_ORDER)
-				send_attack_orders(target_turf)
-			if (DEFEND_ORDER)
-				send_defend_orders(target_turf)
-			if (RETREAT_ORDER)
-				send_retreat_orders(target_turf)
-			else
-				return TRUE
-		last_order_time = world.time
-		return TRUE
-	else	
-		return FALSE
 	
-/obj/machinery/computer/camera_advanced/overwatch/proc/notify_marine(mob/living/marine, turf/target_turf)
+/obj/machinery/computer/camera_advanced/overwatch/proc/notify_marine(mob/living/marine, turf/target_turf) ///Send an order to that specific marine if it's on the right z level
 	if(marine.z == target_turf.z)
+		marine.playsound_local(marine, "sound/effects/CIC_order.ogg", 10, 1)
 		switch(current_order)
 			if (ATTACK_ORDER)
 				to_chat(marine,"<span class='ordercic'>Command is urging you to attack the ennemy at [target_turf.loc.name]</span>")
+				return
 			if (DEFEND_ORDER)
 				to_chat(marine,"<span class='ordercic'>Command is urging you to defend our positions in [target_turf.loc.name]</span>")
+				return
 			if (RETREAT_ORDER)
 				to_chat(marine,"<span class='ordercic'>Command is urging you retreat now from [target_turf.loc.name]</span>")
-		marine.playsound_local(marine, "sound/effects/CIC_order.ogg", 10, 1)
+				return
 		
 
-/obj/machinery/computer/camera_advanced/overwatch/proc/send_attack_orders(turf/target_turf)
+/obj/machinery/computer/camera_advanced/overwatch/proc/send_attack_orders(turf/target_turf) ///Send an attack order to all marines
 	new /obj/effect/temp_visual/order/attack_order(target_turf)
 	var/obj/screen/arrow/arrow_hud
 	var/datum/atom_hud/squad/squad_hud = GLOB.huds[DATA_HUD_SQUAD]
@@ -1293,10 +1292,10 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		arrow_hud.add_hud(hud_user, target_turf)
 		notify_marine(hud_user, target_turf)
 
-/obj/machinery/computer/camera_advanced/overwatch/proc/send_retreat_orders(turf/target_turf)
+/obj/machinery/computer/camera_advanced/overwatch/proc/send_retreat_orders(turf/target_turf) ///Send a retreat order
 	new /obj/effect/temp_visual/order/retreat_order(target_turf)
 
-/obj/machinery/computer/camera_advanced/overwatch/proc/send_defend_orders(turf/target_turf)
+/obj/machinery/computer/camera_advanced/overwatch/proc/send_defend_orders(turf/target_turf) ///Send a defend order
 	new /obj/effect/temp_visual/order/defend_order(target_turf)
 	var/obj/screen/arrow/arrow_hud
 	var/datum/atom_hud/squad/squad_hud = GLOB.huds[DATA_HUD_SQUAD]
