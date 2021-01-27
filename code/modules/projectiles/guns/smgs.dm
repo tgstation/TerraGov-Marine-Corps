@@ -75,9 +75,9 @@
 	accuracy_mult = 1.5
 	accuracy_mult_unwielded = 0.85
 	recoil_unwielded = 0
-	scatter = 15
+	scatter = 0
 	fire_delay = 0.2 SECONDS
-	scatter_unwielded = 0 //Made to be used one handed.
+	scatter_unwielded = 10 //Made to be used one handed.
 	aim_slowdown = 0.15
 	burst_amount = 5
 	movement_acc_penalty_mult = 0
@@ -96,6 +96,8 @@
 	flags_equip_slot = ITEM_SLOT_BACK
 	wield_delay = 0.5 SECONDS
 	force = 20
+	aim_speed_modifier = 0.4
+	aim_fire_delay = 0.2 SECONDS
 	current_mag = /obj/item/ammo_magazine/smg/standard_smg
 	type_of_casings = null
 	attachable_allowed = list(
@@ -117,7 +119,7 @@
 	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.8
 	scatter = 0
-	fire_delay = 0.165 SECONDS
+	fire_delay = 0.15 SECONDS
 	scatter_unwielded = 30
 	aim_slowdown = 0.25
 	burst_amount = 0
@@ -267,6 +269,7 @@
 /obj/item/weapon/gun/smg/ppsh
 	name = "\improper PPSh-17b submachinegun"
 	desc = "A replica of a 20th century USSR model submachinegun that many terrorist organizations had copied all over the years. Despite its small-hitting firepower, its reliablity, extreme longevity and high firepower rate proves useful for the hands of the user."
+	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "ppsh"
 	item_state = "ppsh"
 	caliber = "7.62x25mm" //codex
@@ -285,7 +288,10 @@
 	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
-	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 15, "rail_y" = 19, "under_x" = 26, "under_y" = 15, "stock_x" = 26, "stock_y" = 15)
+	attachable_offset = list("muzzle_x" = 38, "muzzle_y" = 19,"rail_x" = 13, "rail_y" = 21, "under_x" = 26, "under_y" = 15, "stock_x" = 19, "stock_y" = 13)
+	starting_attachment_types = list(
+		/obj/item/attachable/stock/irremoveable/ppsh,
+	)
 
 	fire_delay = 0.125 SECONDS
 	burst_amount = 6

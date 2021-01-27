@@ -42,7 +42,7 @@
 	var/min_cold_protection_temperature //Set this variable to determine down to which temperature (IN KELVIN) the item protects against cold damage. 0 is NOT an acceptable number due to if(varname) tests!! Keep at null to disable protection. Only protects areas set by flags_cold_protection flags
 
 	var/list/actions = list() //list of /datum/action's that this item has.
-	var/list/actions_types = list() //list of paths of action datums to give to the item on New().
+	var/list/actions_types = list() //list of paths of action datums to give to the item on Initialize().
 
 	var/gas_transfer_coefficient = 1 // for leaking gas from turf to mask and vice-versa (for masks right now, but at some point, i'd like to include space helmets)
 	var/permeability_coefficient = 1 // for chemicals/diseases

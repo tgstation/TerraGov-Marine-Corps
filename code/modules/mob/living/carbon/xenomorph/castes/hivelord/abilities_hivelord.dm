@@ -278,14 +278,12 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	name = "Healing Infusion"
 	action_icon_state = "healing_infusion"
 	mechanics_text = "Psychically infuses a friendly xeno with regenerative energies, greatly improving its natural healing. Doesn't work if the target can't naturally heal."
-	cooldown_timer = 5 SECONDS
+	cooldown_timer = 30 SECONDS
 	plasma_cost = 200
 	keybind_signal = COMSIG_XENOABILITY_HEALING_INFUSION
 	var/heal_range = HIVELORD_HEAL_RANGE
 	var/health_ticks_remaining = 0 //Buff ends whenever we run out of either health or sunder ticks, or time, whichever comes first
 	var/sunder_ticks_remaining = 0
-	///Indicates whether the infusion is active or not
-	var/infusion_active = FALSE
 
 /datum/action/xeno_action/activable/healing_infusion/can_use_ability(atom/target, silent = FALSE, override_flags)
 	. = ..()
@@ -306,7 +304,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	if(!check_distance(target, silent))
 		return FALSE
 
-	if(patient.get_filter("hivelord_healing_infusion_outline"))
+	if(patient.infusion_active)
 		if(!silent)
 			to_chat(owner, "<span class='warning'>[patient] is already benefitting from our [src]!</span>")
 		return FALSE
@@ -345,7 +343,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 
 	patient.add_filter("hivelord_healing_infusion_outline", 3, list("type" = "outline", "size" = 1, "color" = COLOR_VERY_PALE_LIME_GREEN)) //Set our cool aura; also confirmation we have the buff
 
-	infusion_active = TRUE //Indicate the infusion as being active
+	patient.infusion_active = TRUE //Indicate the infusion as being active
 
 	health_ticks_remaining = HIVELORD_HEALING_INFUSION_TICKS
 	sunder_ticks_remaining = HIVELORD_HEALING_INFUSION_TICKS
@@ -366,9 +364,9 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 /datum/action/xeno_action/activable/healing_infusion/proc/healing_infusion_regeneration(datum/source, mob/living/carbon/xenomorph/patient)
 	SIGNAL_HANDLER
 
-	if(!infusion_active || !health_ticks_remaining)
+	if(!patient.infusion_active || !health_ticks_remaining)
 		#ifdef DEBUG_HIVELORD_ABILITIES
-		message_admins("<span class='danger'>HIVELORD_ABILITIES_DEBUG: healing_infusion_regeneration depleted. Infusion Status: [infusion_active], Health Stacks: [health_ticks_remaining]</span>")
+		message_admins("<span class='danger'>HIVELORD_ABILITIES_DEBUG: healing_infusion_regeneration depleted. Infusion Status: [patient.infusion_active], Health Stacks: [health_ticks_remaining]</span>")
 		#endif
 		healing_infusion_deactivate(patient) //if we somehow lose the buff or run out of ticks; maybe there's a purge mechanic later, whatever
 		return
@@ -381,7 +379,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 
 	new /obj/effect/temp_visual/healing(get_turf(patient)) //Cool SFX
 
-	var/total_heal_amount = 10 + patient.maxHealth * 0.05 //Base amount 10 HP plus 5% of max
+	var/total_heal_amount = 25 //Base amount 25 HP on our target.
 	if(patient.recovery_aura)
 		total_heal_amount *= (1 + patient.recovery_aura * 0.05) //Recovery aura multiplier; 5% bonus per full level
 
@@ -413,9 +411,9 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 /datum/action/xeno_action/activable/healing_infusion/proc/healing_infusion_sunder_regeneration(datum/source, mob/living/carbon/xenomorph/patient)
 	SIGNAL_HANDLER
 
-	if(!infusion_active || !sunder_ticks_remaining)
+	if(!patient.infusion_active || !sunder_ticks_remaining)
 		#ifdef DEBUG_HIVELORD_ABILITIES
-		message_admins("<span class='danger'>HIVELORD_ABILITIES_DEBUG: healing_infusion_sunder_regeneration depleted. Infusion Status: [infusion_active], Sunder Stacks: [sunder_ticks_remaining]</span>")
+		message_admins("<span class='danger'>HIVELORD_ABILITIES_DEBUG: healing_infusion_sunder_regeneration depleted. Infusion Status: [patient.infusion_active], Sunder Stacks: [sunder_ticks_remaining]</span>")
 		#endif
 		healing_infusion_deactivate(patient) //if we somehow lose the buff or run out of ticks; maybe there's a purge mechanic later, whatever
 		return
@@ -428,7 +426,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 
 	new /obj/effect/temp_visual/telekinesis(get_turf(patient)) //Visual confirmation
 
-	patient.adjust_sunder(-3 * (1 + patient.recovery_aura * 0.05)) //5% bonus per rank of our recovery aura
+	patient.adjust_sunder(-3 * (0.5 + patient.recovery_aura * 0.05)) //5% bonus per rank of our recovery aura
 	#ifdef DEBUG_HIVELORD_ABILITIES
 	message_admins("HIVELORD_ABILITIES_DEBUG: Sunder reduction from Healing Infusion: [-3 * (1 + patient.recovery_aura * 0.1)]")
 	#endif
@@ -436,7 +434,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 ///Called when the duration of the buff lapses before its effect is exhausted
 /datum/action/xeno_action/activable/healing_infusion/proc/healing_infusion_timer_check(mob/living/carbon/xenomorph/patient)
 
-	if(!infusion_active) //If the effect is already gone, don't try to remove it again
+	if(!patient.infusion_active) //If the effect is already gone, don't try to remove it again
 		return
 
 	healing_infusion_deactivate(patient)
@@ -452,7 +450,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	health_ticks_remaining = 0 //Null vars
 	sunder_ticks_remaining = 0
 
-	infusion_active = FALSE
+	patient.infusion_active = FALSE
 
 	new /obj/effect/temp_visual/telekinesis(get_turf(patient)) //Wearing off SFX
 	new /obj/effect/temp_visual/healing(get_turf(patient)) //Wearing off SFX
@@ -461,6 +459,6 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	patient.playsound_local(patient, 'sound/voice/hiss5.ogg', 25)
 
 	#ifdef DEBUG_HIVELORD_ABILITIES
-	message_admins("HIVELORD_ABILITIES_DEBUG: healing_infusion_deactivate: Infusion Status: [infusion_active]")
+	message_admins("HIVELORD_ABILITIES_DEBUG: healing_infusion_deactivate: Infusion Status: [patient.infusion_active]")
 	#endif
 
