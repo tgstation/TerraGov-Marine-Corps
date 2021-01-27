@@ -46,8 +46,7 @@
 	number++
 
 	GLOB.xeno_resin_silos += src
-	if(associated_hive)
-		associated_hive.handle_silo_death_timer()
+	associated_hive?.handle_silo_death_timer()
 	center_turf = get_step(src, NORTHEAST)
 	if(!istype(center_turf))
 		center_turf = loc
