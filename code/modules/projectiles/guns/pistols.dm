@@ -31,6 +31,8 @@
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	actions_types = list(/datum/action/item_action/aim_mode) // all pistols can aim mode
 	aim_speed_modifier = 0.65
+	scatter = 0
+	scatter_unwielded = 0
 
 
 /obj/item/weapon/gun/pistol/unique_action(mob/user)
@@ -68,7 +70,9 @@
 	accuracy_mult = 1.1
 	accuracy_mult_unwielded = 0.95
 	scatter = -5
-	scatter_unwielded = 10
+	scatter_unwielded = 0
+	recoil = -2
+	recoil_unwielded = -2
 
 //-------------------------------------------------------
 //RT-3 pistol
@@ -87,7 +91,7 @@
 
 	fire_delay = 0.2 SECONDS
 	accuracy_mult = 1.15
-	scatter = 10
+	scatter = 0
 
 //-------------------------------------------------------
 // TP-23 service pistol
@@ -116,10 +120,11 @@
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
 
-	fire_delay = 0.2 SECONDS
+	fire_delay = 0.175 SECONDS
 	accuracy_mult = 1.20 //Has a forced laser sight.
 	accuracy_mult_unwielded = 0.95
-	recoil_unwielded = 1
+	recoil = -2
+	recoil_unwielded = -2
 
 //-------------------------------------------------------
 //M1911
@@ -138,11 +143,12 @@
 	current_mag = /obj/item/ammo_magazine/pistol/m1911
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 21,"rail_x" = 17, "rail_y" = 22, "under_x" = 21, "under_y" = 15, "stock_x" = 21, "stock_y" = 17)
 
-	fire_delay = 0.2 SECONDS
+	fire_delay = 0.175 SECONDS
 	accuracy_mult = 1.05
 	accuracy_mult_unwielded = 0.85
 	damage_mult = 1.15
-	recoil_unwielded = 2
+	recoil = -2
+	recoil_unwielded = -1
 
 /obj/item/weapon/gun/pistol/m1911/custom
 	name = "\improper M1911A1 custom pistol"
@@ -202,7 +208,7 @@
 	fire_delay = 0.2 SECONDS
 	burst_amount = 3
 	accuracy_mult = 1.15
-	scatter_unwielded = 25
+	scatter_unwielded = 0
 	aim_slowdown = 0.2
 
 /obj/item/weapon/gun/pistol/b92fs/M9
@@ -259,8 +265,8 @@
 	fire_delay = 0.7 SECONDS
 	scatter_unwielded = 25
 	damage_mult = 1.2
-	recoil = 2
-	recoil_unwielded = 4
+	recoil = 1
+	recoil_unwielded = 2
 
 /obj/item/weapon/gun/pistol/heavy/gold
 	name = "\improper Desert Eagle custom pistol"
@@ -298,8 +304,6 @@
 	fire_delay = 0.175 SECONDS
 	accuracy_mult = 1.65
 	accuracy_mult_unwielded = 1.5
-	scatter = 5
-	scatter_unwielded = 10
 	damage_mult = 1.3
 	aim_slowdown = 0.1
 
@@ -367,6 +371,8 @@
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 21, "rail_y" = 13, "under_x" = 17, "under_y" = 15, "stock_x" = 22, "stock_y" = 17)
 
+	damage_mult = 1.5
+	damage_falloff_mult = 1.5
 	fire_delay = 0.125 SECONDS
 	recoil = -2
 	recoil_unwielded = -2
@@ -397,10 +403,11 @@
 
 	fire_delay = 1 SECONDS
 	damage_mult = 1.5
-	recoil = 2
-	recoil_unwielded = 3
+	recoil = 1
+	recoil_unwielded = 2
 	accuracy_mult = 1.5
-	scatter = 10
+	scatter = 0
+	scatter_unwielded = 15
 
 //-------------------------------------------------------
 //VP70
@@ -433,13 +440,16 @@
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 22,"rail_x" = 19, "rail_y" = 23, "under_x" = 21, "under_y" = 16, "stock_x" = 11, "stock_y" = 10)
 
-	fire_delay = 0.25 SECONDS
+	fire_delay = 0.2 SECONDS
+	burst_delay = 0.1 SECONDS
 	burst_amount = 3
 	accuracy_mult = 1.2
 	accuracy_mult_unwielded = 0.95
-	recoil_unwielded = 2
+	recoil = 0
+	recoil_unwielded = 0
 	aim_slowdown = 0.2
 	scatter = 5
+	scatter_unwielded = 15
 
 
 //-------------------------------------------------------
