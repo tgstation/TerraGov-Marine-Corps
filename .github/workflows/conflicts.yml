@@ -5,7 +5,7 @@ on:
       - master
 jobs:
   triage:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - uses: mschilde/auto-label-merge-conflicts@master
         with:

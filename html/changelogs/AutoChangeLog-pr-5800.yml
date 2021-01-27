@@ -1,5 +1,0 @@
-author: "Sulaboy"
-delete-after: True
-changes: 
-  - bugfix: "M412L1 and M412 Elite now show correct stock"
-  - bugfix: "M412L1 can now attach rail-scope, and mini-scope"
