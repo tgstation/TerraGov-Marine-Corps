@@ -616,6 +616,20 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		return FALSE
 	return TRUE
 
+/obj/machinery/marine_turret/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
+	if(sentry_verify_iff(proj.projectile_iff))
+		proj.damage += proj.damage*proj.damage_marine_falloff
+		return FALSE
+	return src == proj.original_target
+
+///Checks to see whether IFF matches
+/obj/machinery/marine_turret/proc/sentry_verify_iff(list/unique_access)
+	for(var/access_tag in unique_access)
+		if(access_tag in iff_signal)
+			return TRUE
+
+	return FALSE
+
 /obj/machinery/door/poddoor/railing/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
 	return src == proj.original_target
 
@@ -836,8 +850,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			feedback_flags |= BULLET_FEEDBACK_SCREAM
 		bullet_message(proj, feedback_flags, damage)
 		proj.play_damage_effect(src)
-		if(apply_damage(damage, proj.ammo.damage_type, proj.def_zone)) //This could potentially delete the source.
-			UPDATEHEALTH(src)
+		apply_damage(damage, proj.ammo.damage_type, proj.def_zone, updating_health = TRUE) //This could potentially delete the source.
 		if(shrapnel_roll)
 			embed_projectile_shrapnel(proj)
 	else

@@ -591,12 +591,10 @@
 	to_chat(src, "<span class='xenodanger'>\The [X] showers you in corrosive acid!</span>")
 
 /mob/living/carbon/proc/apply_acid_spray_damage(damage, armor_block)
-	apply_damage(damage, BURN, null, armor_block)
-	UPDATEHEALTH(src)
+	apply_damage(damage, BURN, null, armor_block, updating_health = TRUE)
 
 /mob/living/carbon/human/apply_acid_spray_damage(damage, armor_block)
-	take_overall_damage_armored(damage, BURN, "acid")
-	UPDATEHEALTH(src)
+	take_overall_damage_armored(damage, BURN, "acid", updating_health = TRUE)
 	emote("scream")
 	Paralyze(20)
 
