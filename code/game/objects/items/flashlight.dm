@@ -1,3 +1,5 @@
+#define STILL_ON_COOLDOWN
+
 /obj/item/flashlight
 	name = "flashlight"
 	desc = "A hand-held emergency light."
@@ -16,38 +18,36 @@
 	var/raillight_compatible = TRUE //Can this be turned into a rail light ?
 	var/activation_sound = 'sound/items/flashlight.ogg'
 
+	COOLDOWN_DECLARE(cooldown_flashlight)
+
 /obj/item/flashlight/Initialize()
 	. = ..()
 	if(light_on)
-		update_brightness()
+		turn_light(null, TRUE)
 
 
-/obj/item/flashlight/proc/update_brightness(mob/user = null)
-	if(!user && ismob(loc))
-		user = loc
-	if(!light_on)
-		icon_state = "[initial(icon_state)]-on"
-		set_light_on(TRUE)
-	else
-		icon_state = initial(icon_state)
-		set_light_on(FALSE)
+/obj/item/flashlight/proc/turn_light(mob/user = null, toggle_on, cooldown = 1 SECONDS)
+	if(COOLDOWN_CHECK(src, cooldown_flashlight))
+		COOLDOWN_START(src, cooldown_flashlight, cooldown)
+		var/initial_on = light_on
+		if(!user && ismob(loc))
+			user = loc
+		set_light_on(toggle_on)
+		if(toggle_on)
+			icon_state = "[initial(icon_state)]-on"
+		else
+			icon_state = initial(icon_state)
+		update_action_button_icons()
+		return light_on
+	return STILL_ON_COOLDOWN
 
 /obj/item/flashlight/attack_self(mob/user)
 	if(!isturf(user.loc))
 		to_chat(user, "You cannot turn the light on while in [user.loc].")
 		return FALSE
-	if(activation_sound)
+	if(activation_sound && (turn_light(user, !light_on)!=STILL_ON_COOLDOWN))
 		playsound(get_turf(src), activation_sound, 15, 1)
-	update_brightness()
-	update_action_button_icons()
 	return TRUE
-
-/obj/item/flashlight/proc/turn_off_light(mob/bearer)
-	if(light_on)
-		update_brightness(bearer)
-		update_action_button_icons()
-		return TRUE
-	return FALSE
 
 /obj/item/flashlight/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -188,15 +188,14 @@
 
 /obj/item/flashlight/flare/proc/turn_off()
 	fuel = 0 //Flares are one way; if you turn them off, you're snuffing them out.
-	light_on = TRUE
 	heat = 0
 	force = initial(force)
 	damtype = initial(damtype)
 	if(ismob(loc))
 		var/mob/U = loc
-		update_brightness(U)
+		turn_light(U, FALSE)
 	else
-		update_brightness(null)
+		turn_light(null, FALSE)
 	icon_state = "[initial(icon_state)]-empty"
 
 /obj/item/flashlight/flare/attack_self(mob/user)
@@ -224,7 +223,7 @@
 	. = ..()
 	light_on = TRUE
 	heat = 1500
-	update_brightness()
+	turn_light(null, TRUE)
 	force = on_damage
 	damtype = "fire"
 	addtimer(CALLBACK(src, .proc/turn_off), fuel)

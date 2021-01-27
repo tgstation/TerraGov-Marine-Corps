@@ -125,6 +125,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	///what gun this attachment is currently attached to, if any.
 	var/obj/item/weapon/gun/master_gun
 
+	COOLDOWN_DECLARE(cooldown_flashlight)
+
 
 /obj/item/attachable/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -600,14 +602,21 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	attachment_action_type = /datum/action/item_action/toggle
 	activation_sound = 'sound/items/flashlight.ogg'
 
-/obj/item/attachable/flashlight/activate_attachment(mob/living/user, turn_off)
+	COOLDOWN_DECLARE(cooldown_flashligh)
+
+/obj/item/attachable/flashlight/activate_attachment(mob/living/user, turn_off, cooldown = 1 SECONDS)
 	if(turn_off && !(master_gun.flags_gun_features & GUN_FLASHLIGHT_ON))
+		return
+
+	if(!COOLDOWN_CHECK(src, cooldown_flashligh))
 		return
 
 	if(ismob(master_gun.loc) && !user)
 		user = master_gun.loc
-
+	
+	COOLDOWN_START(src, cooldown_flashligh, cooldown)
 	if(master_gun.flags_gun_features & GUN_FLASHLIGHT_ON)
+		
 		icon_state = "flashlight"
 		attach_icon = "flashlight_a"
 		master_gun.set_light_range(0)

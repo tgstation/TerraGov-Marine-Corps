@@ -11,37 +11,41 @@
 	siemens_coefficient = 0.9
 	flags_inventory = BLOCKSHARPOBJ
 
+	COOLDOWN_DECLARE(cooldown_light)
+
 /obj/item/clothing/head/hardhat/attack_self(mob/user)
 	if(!isturf(user.loc))
 		to_chat(user, "You cannot turn the light on while in [user.loc]")
 		return
-	toggle_helmet_light()
-	icon_state = "hardhat[on]_[hardhat_color]"
-	item_state = "hardhat[on]_[hardhat_color]"
-
-	if(user == loc)
-		var/mob/M = loc
-		M.update_inv_head()
-
-	update_action_button_icons()
+	toggle_helmet_light(user)
 
 
-/obj/item/clothing/head/hardhat/proc/toggle_helmet_light()
+/obj/item/clothing/head/hardhat/proc/toggle_helmet_light(mob/user)
 	on = !on
-	if(on)
-		turn_on()
-	else
-		turn_off()
-	update_icon()
+	turn_light(user, on)
+	
 
 
-/obj/item/clothing/head/hardhat/proc/turn_on()
-	set_light(brightness_on)
+/obj/item/clothing/head/hardhat/proc/turn_light(mob/user = null, toggle_on ,cooldown = 1 SECONDS)
+	if(COOLDOWN_CHECK(src, cooldown_light))
+		var/initial_light = on
+		COOLDOWN_START(src, cooldown_light, cooldown)
+		on = toggle_on
+		if (toggle_on)
+			set_light(brightness_on)
+		else
+			set_light(0)
+		icon_state = "hardhat[on]_[hardhat_color]"
+		item_state = "hardhat[on]_[hardhat_color]"
 
+		if(user == loc)
+			var/mob/M = loc
+			M.update_inv_head()
 
-/obj/item/clothing/head/hardhat/proc/turn_off()
-	set_light(0)
-
+		update_action_button_icons()
+		update_icon()
+		return !on 
+	return
 
 /obj/item/clothing/head/hardhat/orange
 	icon_state = "hardhat0_orange"
