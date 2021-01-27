@@ -342,7 +342,7 @@
 		/obj/item/attachable/lasersight,
 	)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 13, "rail_y" = 23, "under_x" = 22, "under_y" = 14, "stock_x" = 22, "stock_y" = 19)
-	fire_delay = 0.275
+	fire_delay = 0.275 SECONDS
 	accuracy_mult_unwielded = 1
 	accuracy_mult = 1.5
 	scatter_unwielded = 5
