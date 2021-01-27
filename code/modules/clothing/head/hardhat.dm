@@ -24,7 +24,8 @@
 	on = !on
 	turn_light(user, on)
 	
-
+/obj/item/clothing/head/hardhat/proc/reset_light()
+	turn_light(null, TRUE)
 
 /obj/item/clothing/head/hardhat/turn_light(mob/user = null, toggle_on ,cooldown = 1 SECONDS)
 	if(COOLDOWN_CHECK(src, cooldown_light))
@@ -35,6 +36,8 @@
 			set_light(brightness_on)
 		else
 			set_light(0)
+			if(cooldown > 1 SECONDS)
+				addtimer(CALLBACK(src, .proc/reset_light), cooldown + 1)
 		icon_state = "hardhat[on]_[hardhat_color]"
 		item_state = "hardhat[on]_[hardhat_color]"
 

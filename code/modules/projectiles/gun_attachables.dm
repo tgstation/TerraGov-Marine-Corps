@@ -604,6 +604,9 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 	COOLDOWN_DECLARE(cooldown_flashligh)
 
+/obj/item/attachable/flashlight/proc/reset_light()
+	activate_attachment(null, FALSE)
+
 /obj/item/attachable/flashlight/activate_attachment(mob/living/user, turn_off, cooldown = 1 SECONDS)
 	if(turn_off && !(master_gun.flags_gun_features & GUN_FLASHLIGHT_ON))
 		return
@@ -622,6 +625,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		master_gun.set_light_range(0)
 		master_gun.set_light_power(0)
 		master_gun.set_light_on(FALSE)
+		if(cooldown > 1 SECONDS)
+			addtimer(CALLBACK(src, .proc/reset_light), cooldown + 1)
 	else
 		icon_state = "flashlight-on"
 		attach_icon = "flashlight_a-on"

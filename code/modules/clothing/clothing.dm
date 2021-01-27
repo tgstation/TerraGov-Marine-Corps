@@ -137,6 +137,8 @@
 	TIMER_COOLDOWN_START(src, COOLDOWN_ARMOR_LIGHT, cooldown)
 	if(flags_armor_features & ARMOR_LAMP_ON)
 		set_light_on(FALSE)
+		if(cooldown > 1 SECONDS)
+			addtimer(CALLBACK(src, .proc/toggle_armor_light, null), cooldown + 1)
 	else
 		set_light_on(TRUE)
 	flags_armor_features ^= ARMOR_LAMP_ON

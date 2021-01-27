@@ -25,6 +25,9 @@
 	if(light_on)
 		turn_light(null, TRUE)
 
+/obj/item/flashlight/proc/reset_light()
+	turn_light(null, TRUE)
+
 
 /obj/item/flashlight/turn_light(mob/user = null, toggle_on, cooldown = 1 SECONDS)
 	if(COOLDOWN_CHECK(src, cooldown_flashlight))
@@ -37,6 +40,8 @@
 			icon_state = "[initial(icon_state)]-on"
 		else
 			icon_state = initial(icon_state)
+			if(cooldown > 1 SECONDS)
+				addtimer(CALLBACK(src, .proc/reset_light), cooldown + 1)
 		update_action_button_icons()
 		return initial_on
 	return STILL_ON_COOLDOWN
