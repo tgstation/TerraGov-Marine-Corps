@@ -473,18 +473,8 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 			if(isspaceturf(H.loc))
 				continue
 			num_humans++
-
-	for(var/i in GLOB.humans_by_zlevel[ZTRAIT_STATION])
-		var/mob/living/carbon/human/H = i
-		if(!istype(H)) // Small fix?
-			continue
-		if(count_flags & COUNT_IGNORE_HUMAN_SSD && !H.client)
-			continue
-		if(H.status_flags & XENO_HOST)
-			continue
-		if(isspaceturf(H.loc))
-			continue
-		num_humans_ship++
+			if ("[z]" == ZTRAITS_MAIN_SHIP)//it's here so i can use it later for monitor tivi
+				num_humans_ship++
 
 	for(var/z in z_levels)
 		for(var/i in GLOB.hive_datums[XENO_HIVE_NORMAL].xenos_by_zlevel["[z]"])
