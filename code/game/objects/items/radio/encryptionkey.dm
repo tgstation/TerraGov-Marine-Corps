@@ -14,7 +14,7 @@
 	icon_state = "eng_cypherkey"
 	channels = list(RADIO_CHANNEL_ENGINEERING = TRUE,RADIO_CHANNEL_CAS = TRUE)
 
-/obj/item/encryptionkey/sec
+/obj/item/encryptionkey/cas
 	name = "Fire support specialist Key"
 	icon_state = "sec_cypherkey"
 	channels = list(RADIO_CHANNEL_CAS = TRUE)
