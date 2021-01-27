@@ -59,7 +59,7 @@
 	icon_state = "tp14"
 	item_state = "tp14"
 	caliber = "9x19mm Parabellum" //codex
-	max_shells = 14 //codex
+	max_shells = 21 //codex
 	fire_sound = 'sound/weapons/guns/fire/tp14.ogg'
 	reload_sound = 'sound/weapons/guns/interact/tp14_reload.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/standard_pistol
@@ -102,7 +102,7 @@
 	icon_state = "tp23"
 	item_state = "tp23"
 	caliber = ".45 ACP" //codex
-	max_shells = 11 //codex
+	max_shells = 14 //codex
 	fire_sound = 'sound/weapons/guns/fire/tp23.ogg'
 	unload_sound = 'sound/weapons/guns/interact/colt_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/colt_reload.ogg'
