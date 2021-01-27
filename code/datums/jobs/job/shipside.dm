@@ -767,11 +767,11 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 	if(!playtime_mins || playtime_mins < 1 )
 		return
 	switch(playtime_mins)
-		if(601 to 1500) // 10 hrs
+		if(0 to 600) //up to 10 hours
 			new_human.wear_id.paygrade = "Mk.I"
-		if(1501 to 6000) // 50 hrs
+		if(601 to 3000) // 10 to 50 hrs
 			new_human.wear_id.paygrade = "Mk.II"
-		if(6001 to INFINITY) // 100 hrs
+		if(3000 to INFINITY) // more than 50 hrs
 			new_human.wear_id.paygrade = "Mk.III"
 
 /datum/job/terragov/silicon/synthetic/radio_help_message(mob/M)
