@@ -1118,6 +1118,7 @@ to_chat will check for valid clients itself already so no need to double check f
 ///Handles the timer when all silos are destroyed
 /datum/hive_status/proc/handle_silo_death_timer()
 	return
+
 /datum/hive_status/normal/handle_silo_death_timer()
 	if(!isdistress(SSticker.mode))
 		return
