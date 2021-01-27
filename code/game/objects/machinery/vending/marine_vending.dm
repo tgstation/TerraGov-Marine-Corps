@@ -291,6 +291,12 @@
 		/obj/item/ammo_magazine/smg/ppsh/ = 30,
 		/obj/item/ammo_magazine/smg/ppsh/extended = 10,
 		/obj/item/ammo_magazine/rifle/bolt = 7,
+		/obj/item/ammo_magazine/box9mm = 50,
+		/obj/item/ammo_magazine/acp = 50,
+		/obj/item/ammo_magazine/magnum = 50,
+		/obj/item/ammo_magazine/box10x24mm = 50,
+		/obj/item/ammo_magazine/box10x26mm = 50,
+		/obj/item/ammo_magazine/box10x27mm = 50,
 	)
 	premium = list()
 

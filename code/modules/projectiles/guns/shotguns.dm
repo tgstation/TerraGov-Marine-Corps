@@ -565,10 +565,11 @@ can cause issues with ammo types getting mixed up during the burst.
 	return ..()
 
 //-------------------------------------------------------
-//Based off of the Benelli M3
+//A shotgun, how quaint.
 /obj/item/weapon/gun/shotgun/pump/cmb
 	name = "\improper Paladin-12 pump shotgun"
-	desc = "A nine-round pump action shotgun. A sporterized version of a classic shotgun used for hunting, home defence and police work, modified and used by Nanotrasen security."
+	desc = "A nine-round pump action shotgun. A shotgun used for hunting, home defence and police work, many versions of it exist and are used by just about anyone."
+	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "pal12"
 	item_state = "pal12"
 	fire_sound = 'sound/weapons/guns/fire/shotgun_cmb.ogg'
@@ -584,7 +585,10 @@ can cause issues with ammo types getting mixed up during the burst.
 		/obj/item/attachable/magnetic_harness,
 	)
 	flags_item_map_variant = NONE
-	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 16,"rail_x" = 14, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 17)
+	attachable_offset = list("muzzle_x" = 38, "muzzle_y" = 19,"rail_x" = 14, "rail_y" = 19, "under_x" = 37, "under_y" = 16, "stock_x" = 15, "stock_y" = 14)
+	starting_attachment_types = list(
+		/obj/item/attachable/stock/irremoveable/pal12,
+	)
 
 	fire_delay = 15
 	damage_mult = 0.75
@@ -602,9 +606,9 @@ can cause issues with ammo types getting mixed up during the burst.
 /obj/item/weapon/gun/shotgun/pump/bolt
 	name = "\improper Mosin Nagant rifle"
 	desc = "A mosin nagant rifle, even just looking at it you can feel the cosmoline already. Commonly known by its slang, \"Moist Nugget\", by downbrained colonists and outlaws."
+	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "mosin"
-	item_state = "mosin" //thank you Alterist
-	pump_animation = "mosin_pump"
+	item_state = "mosin"
 	fire_sound = 'sound/weapons/guns/fire/mosin.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	reload_sound = 'sound/weapons/guns/interact/mosin_reload.ogg'
@@ -620,25 +624,25 @@ can cause issues with ammo types getting mixed up during the burst.
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/bayonetknife,
 		/obj/item/attachable/scope,
+		/obj/item/attachable/scope/mosin,
 		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/bayonet,
 	)
 	flags_item_map_variant = NONE
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER
-	attachable_offset = list("muzzle_x" = 50, "muzzle_y" = 21,"rail_x" = 8, "rail_y" = 21, "under_x" = 37, "under_y" = 16, "stock_x" = 20, "stock_y" = 14)
+	attachable_offset = list("muzzle_x" = 37, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 15, "stock_y" = 12)
 	starting_attachment_types = list(
-		/obj/item/attachable/scope,
-		/obj/item/attachable/mosinbarrel,
+		/obj/item/attachable/scope/mosin,
 		/obj/item/attachable/stock/mosin,
 	)
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 1
 
 	fire_delay = 17.5
-	accuracy_mult = 1.4
+	accuracy_mult = 1.45
 	accuracy_mult_unwielded = 0.7
-	scatter = -10
+	scatter = -25
 	scatter_unwielded = 40
 	recoil = 0
 	recoil_unwielded = 4
