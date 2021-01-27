@@ -267,6 +267,8 @@
 	damage_mult = 1.2
 	recoil = 1
 	recoil_unwielded = 2
+	scatter = 5
+	scatter_unwielded = 10
 
 /obj/item/weapon/gun/pistol/heavy/gold
 	name = "\improper Desert Eagle custom pistol"
