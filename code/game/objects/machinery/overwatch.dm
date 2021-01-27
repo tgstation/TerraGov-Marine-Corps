@@ -1246,7 +1246,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	dat += "<br><A href='?src=\ref[src];operation=back'>{Back}</a>"
 	return dat			
 
-/obj/machinery/computer/camera_advanced/overwatch/send_orders(atom/object)
+/obj/machinery/computer/camera_advanced/overwatch/send_orders(datum/source, atom/object)
 	var/turf/target_turf = get_turf(object)
 	if (current_order)
 		if(COOLDOWN_CHECK(src, cooldown_order_cic))
@@ -1294,11 +1294,18 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 
 /obj/machinery/computer/camera_advanced/overwatch/proc/send_retreat_orders(turf/target_turf) ///Send a retreat order
 	new /obj/effect/temp_visual/order/retreat_order(target_turf)
+	var/datum/atom_hud/squad/squad_hud = GLOB.huds[DATA_HUD_SQUAD]
+	var/list/final_list = squad_hud.hudusers
+	final_list -= current_user
+	for(var/hud_user in final_list)
+		notify_marine(hud_user, target_turf)
 
 /obj/machinery/computer/camera_advanced/overwatch/proc/send_defend_orders(turf/target_turf) ///Send a defend order
 	new /obj/effect/temp_visual/order/defend_order(target_turf)
 	var/obj/screen/arrow/arrow_hud
 	var/datum/atom_hud/squad/squad_hud = GLOB.huds[DATA_HUD_SQUAD]
+	var/list/final_list = squad_hud.hudusers
+	final_list -= current_user
 	for(var/hud_user in squad_hud.hudusers)
 		arrow_hud = new /obj/screen/arrow/defend_order_arrow
 		arrow_hud.add_hud(hud_user, target_turf)
