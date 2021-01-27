@@ -203,7 +203,7 @@
 
 /obj/machinery/light/LateInitialize()
 	var/area/A = get_area(src)
-	seton(A.lightswitch && A.power_light)
+	turn_light(null, (A.lightswitch && A.power_light))
 
 
 /obj/machinery/light/Destroy()
@@ -220,7 +220,7 @@
 /obj/machinery/light/update_icon()
 
 	switch(status)		// set icon_states
-		if(LIGHT_OK)
+		if(LIGHT_OK, LIGHT_DISABLED)
 			icon_state = "[base_state][on]"
 		if(LIGHT_EMPTY)
 			icon_state = "[base_state]-empty"
@@ -236,7 +236,7 @@
 // update the icon_state and luminosity of the light depending on its state
 /obj/machinery/light/proc/update(trigger = TRUE)
 	switch(status)
-		if(LIGHT_BROKEN, LIGHT_BURNED, LIGHT_EMPTY)
+		if(LIGHT_BROKEN, LIGHT_BURNED, LIGHT_EMPTY, LIGHT_DISABLED)
 			on = FALSE
 	if(on)
 		var/BR = brightness
@@ -265,11 +265,21 @@
 		on_gs = on
 	update_icon()
 
+///reset the light to a normal status if it was only disabled
+/obj/machinery/light/proc/reset_light()
+	if(status == LIGHT_DISABLED)
+		status = LIGHT_OK
+		var/area/A = get_area(src)
+		on = (A.lightswitch && A.power_light)
+		update()
 
 // attempt to set the light's on/off status
 // will not switch on if broken/burned/empty
-/obj/machinery/light/proc/seton(s)
-	on = (s && status == LIGHT_OK)
+/obj/machinery/light/turn_light(mob/user, toggle_on, cooldown = 0)
+	if(!toggle_on & cooldown>0)
+		status = LIGHT_DISABLED
+		addtimer(CALLBACK(src,.proc/reset_light), cooldown)
+	on = (toggle_on && status == LIGHT_OK)
 	update()
 
 // examine verb
@@ -510,7 +520,7 @@
 // called when area power state changes
 /obj/machinery/light/power_change()
 	var/area/A = get_area(src)
-	seton(A.lightswitch && A.power_light)
+	turn_light(null, (A.lightswitch && A.power_light))
 
 // called when on fire
 

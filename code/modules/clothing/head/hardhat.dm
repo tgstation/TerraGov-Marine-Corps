@@ -26,7 +26,7 @@
 	
 
 
-/obj/item/clothing/head/hardhat/proc/turn_light(mob/user = null, toggle_on ,cooldown = 1 SECONDS)
+/obj/item/clothing/head/hardhat/turn_light(mob/user = null, toggle_on ,cooldown = 1 SECONDS)
 	if(COOLDOWN_CHECK(src, cooldown_light))
 		var/initial_light = on
 		COOLDOWN_START(src, cooldown_light, cooldown)
@@ -44,7 +44,7 @@
 
 		update_action_button_icons()
 		update_icon()
-		return !on 
+		return initial_light 
 	return
 
 /obj/item/clothing/head/hardhat/orange

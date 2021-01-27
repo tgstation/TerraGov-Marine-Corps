@@ -125,36 +125,14 @@
 /datum/action/xeno_action/activable/screech/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/queen/X = owner
 
-	//screech is so powerful it kills huggers in our hands
-	if(istype(X.r_hand, /obj/item/clothing/mask/facehugger))
-		var/obj/item/clothing/mask/facehugger/FH = X.r_hand
-		if(FH.stat != DEAD)
-			FH.kill_hugger()
-
-	if(istype(X.l_hand, /obj/item/clothing/mask/facehugger))
-		var/obj/item/clothing/mask/facehugger/FH = X.l_hand
-		if(FH.stat != DEAD)
-			FH.kill_hugger()
-
 	succeed_activate()
 	add_cooldown()
 
-	playsound(X.loc, 'sound/voice/alien_queen_screech.ogg', 75, 0)
-	X.visible_message("<span class='xenohighdanger'>\The [X] emits an ear-splitting guttural roar!</span>")
-	GLOB.round_statistics.queen_screech++
-	SSblackbox.record_feedback("tally", "round_statistics", 1, "queen_screech")
-	X.create_shriekwave() //Adds the visual effect. Wom wom wom
-	//stop_momentum(charge_dir) //Screech kills a charge
+	for(var/mob/living/L in viewers(WORLD_VIEW, X))
+		L.disable_lights(TRUE, TRUE, FALSE, FALSE, TRUE, FALSE, 10 SECONDS)
 
-	var/list/nearby_living = list()
-	for(var/mob/living/L in hearers(WORLD_VIEW, X))
-		nearby_living.Add(L)
-
-	for(var/i in GLOB.mob_living_list)
-		var/mob/living/L = i
-		if(get_dist(L, X) > WORLD_VIEW_NUM)
-			continue
-		L.screech_act(X, WORLD_VIEW_NUM, L in nearby_living)
+	for(var/atom/o in view(WORLD_VIEW, X))
+		o.turn_light(null, FALSE, 10 SECONDS)
 
 /datum/action/xeno_action/activable/screech/ai_should_start_consider()
 	return TRUE

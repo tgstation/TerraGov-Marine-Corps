@@ -1,4 +1,4 @@
-#define STILL_ON_COOLDOWN
+#define STILL_ON_COOLDOWN 2
 
 /obj/item/flashlight
 	name = "flashlight"
@@ -26,7 +26,7 @@
 		turn_light(null, TRUE)
 
 
-/obj/item/flashlight/proc/turn_light(mob/user = null, toggle_on, cooldown = 1 SECONDS)
+/obj/item/flashlight/turn_light(mob/user = null, toggle_on, cooldown = 1 SECONDS)
 	if(COOLDOWN_CHECK(src, cooldown_flashlight))
 		COOLDOWN_START(src, cooldown_flashlight, cooldown)
 		var/initial_on = light_on
@@ -38,14 +38,15 @@
 		else
 			icon_state = initial(icon_state)
 		update_action_button_icons()
-		return light_on
+		return initial_on
 	return STILL_ON_COOLDOWN
 
 /obj/item/flashlight/attack_self(mob/user)
 	if(!isturf(user.loc))
 		to_chat(user, "You cannot turn the light on while in [user.loc].")
 		return FALSE
-	if(activation_sound && (turn_light(user, !light_on)!=STILL_ON_COOLDOWN))
+	var/flicked = turn_light(user, !light_on)
+	if(activation_sound & (flicked != STILL_ON_COOLDOWN))
 		playsound(get_turf(src), activation_sound, 15, 1)
 	return TRUE
 

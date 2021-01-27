@@ -444,7 +444,7 @@
 		overlay_fullscreen_timer(40, 20, "flash", type)
 		return TRUE
 
-/mob/living/proc/disable_lights(armor = TRUE, guns = TRUE, flares = TRUE, misc = TRUE, sparks = FALSE, silent = FALSE)
+/mob/living/proc/disable_lights(armor = TRUE, guns = TRUE, flares = TRUE, misc = TRUE, sparks = FALSE, silent = FALSE, cooldown = 1 SECONDS)
 	return FALSE
 
 

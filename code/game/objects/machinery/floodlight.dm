@@ -11,12 +11,13 @@
 	var/use = 0
 	var/unlocked = 0
 	var/open = 0
-	var/brightness_on = 7		//can't remember what the maxed out value is
-	resistance_flags = UNACIDABLE
+	var/brightness_on = 7
 
 /obj/machinery/floodlight/Initialize()
 	. = ..()
 	cell = new /obj/item/cell(src)
+	if(on)
+		turn_light(null,TRUE)
 
 
 /obj/machinery/floodlight/proc/updateicon()
@@ -50,24 +51,24 @@
 		to_chat(user, "You remove the power cell.")
 		updateicon()
 		return
+	turn_light(user, on)
 
-	if(on)
-		on = 0
-		to_chat(user, "<span class='notice'>You turn off the light.</span>")
-		set_light(0)
-		ENABLE_BITFIELD(resistance_flags, UNACIDABLE)
-	else
+/obj/machinery/floodlight/turn_light(mob/user, toggle_on, cooldown = 0)
+	if(toggle_on)	
 		if(!cell)
 			return
 		if(cell.charge <= 0)
 			return
-		on = 1
+		on = TRUE
 		to_chat(user, "<span class='notice'>You turn on the light.</span>")
 		set_light(brightness_on)
 		DISABLE_BITFIELD(resistance_flags, UNACIDABLE)
-
+	else
+		on = FALSE
+		to_chat(user, "<span class='notice'>You turn off the light.</span>")
+		set_light(0)
+		ENABLE_BITFIELD(resistance_flags, UNACIDABLE)
 	updateicon()
-
 
 /obj/machinery/floodlight/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -120,21 +121,41 @@
 	name = "Landing Light"
 	desc = "A powerful light stationed near landing zones to provide better visibility."
 	icon_state = "flood01"
-	on = 1
+	on = TRUE
 	use_power = 0
-
-
-/obj/machinery/floodlight/landing/Initialize(mapload, ...)
-	. = ..()
-	set_light(5)
-
+	brightness_on = 5
 
 /obj/machinery/floodlight/landing/attack_hand(mob/living/user)
 	return
 
-
 /obj/machinery/floodlight/landing/attackby()
 	return
+
+/obj/machinery/floodlight/outpost
+	name = "Outpost Light"
+	icon_state = "flood01"
+	on = TRUE
+	use_power = FALSE
+	brightness_on = 10
+
+/obj/machinery/floodlight/landing/hq
+	name = "Installation Light"
+	desc = "A powerful light stationed on the base to provide better visibility."
+
+/obj/machinery/floodlight/landing/testroom
+	name = "Ambience Light"
+	desc = "A powerful light placed concealed on the base to provide better visibility."
+	density = 0
+	alpha = 0
+	resistance_flags = RESIST_ALL
+	on = TRUE
+	brightness_on = 25
+
+
+
+/obj/machinery/floodlight/colony
+	name = "Colony Floodlight"
+	icon_state = "floodoff"
 
 /obj/machinery/floodlightcombat
 	name = "Armoured floodlight"
@@ -167,7 +188,6 @@
 	else
 		to_chat(user , "<span class='notice'>You wrench down [src]'s bolts")
 		anchored = TRUE
-	set_light(0, 5, "#C5E3E132")
 	on = FALSE
 
 /// Visually shows that the floodlight has been tipped and breaks all the lights in it.
@@ -319,14 +339,16 @@
 	if(!anchored || tipped)
 		visible_message("<span class='danger'>The floodlight flashes a warning led.It is not bolted to the ground.")
 		return FALSE
-	if(on)
-		on = !on
-		set_light(0, 5, "#C5E3E132")
-	else
-		on = TRUE
-		set_light(brightness, 5, "#C5E3E132")
-	update_icon()
+	turn_light(null,!on)
 	playsound( loc, 'sound/machines/switch.ogg', 60 , FALSE)
+
+/obj/machinery/floodlightcombat/turn_light(mob/user, toggle_on, cooldown = 0)
+	if(on != toggle_on)
+		if(toggle_on)
+			set_light(0, 5, "#C5E3E132")
+		else
+			set_light(brightness, 5, "#C5E3E132")
+		update_icon()
 
 /obj/machinery/floodlightcombat/attack_hand(mob/living/user)
 	if(!ishuman(user))
@@ -358,27 +380,3 @@
 	calculate_brightness()
 	return TRUE
 
-/obj/machinery/floodlight/outpost
-	name = "Outpost Light"
-	icon_state = "flood01"
-	on = TRUE
-	use_power = FALSE
-
-/obj/machinery/floodlight/landing/hq
-	name = "Installation Light"
-	desc = "A powerful light stationed on the base to provide better visibility."
-
-/obj/machinery/floodlight/landing/Initialize(mapload, ...)
-	. = ..()
-	set_light(10)
-
-/obj/machinery/floodlight/landing/testroom
-	name = "Ambience Light"
-	desc = "A powerful light placed concealed on the base to provide better visibility."
-	density = 0
-	alpha = 0
-	resistance_flags = RESIST_ALL
-
-/obj/machinery/floodlight/landing/testroom/Initialize(mapload, ...)
-	. = ..()
-	set_light(25)

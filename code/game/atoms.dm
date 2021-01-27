@@ -799,3 +799,7 @@ Proc for attack log creation, because really why not
 	hud_list = new
 	for(var/hud in hud_possible) //Providing huds.
 		hud_list[hud] = image('icons/mob/hud.dmi', src, "")
+
+///if this object has lights, turn it on/off.
+/atom/proc/turn_light(mob/user = null, toggle_on ,cooldown = 1 SECONDS)
+	return
