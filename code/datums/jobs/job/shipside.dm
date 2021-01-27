@@ -758,6 +758,22 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 		return /datum/skills/early_synthetic
 	return ..()
 
+/datum/job/terragov/silicon/synthetic/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
+	. = ..()
+	if(!ishuman(new_mob))
+		return
+	var/mob/living/carbon/human/new_human = new_mob
+	var/playtime_mins = user?.client?.get_exp(title)
+	if(!playtime_mins || playtime_mins < 1 )
+		return
+	switch(playtime_mins)
+		if(601 to 1500) // 10 hrs
+			new_human.wear_id.paygrade = "Mk.I"
+		if(1501 to 6000) // 50 hrs
+			new_human.wear_id.paygrade = "Mk.II"
+		if(6001 to INFINITY) // 100 hrs
+			new_human.wear_id.paygrade = "Mk.III"
+
 /datum/job/terragov/silicon/synthetic/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"Your primary job is to support and assist all TGMC departments and personnel on-board.
