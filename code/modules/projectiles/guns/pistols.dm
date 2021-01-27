@@ -448,7 +448,6 @@
 	accuracy_mult = 1.2
 	accuracy_mult_unwielded = 0.95
 	recoil = 0
-	recoil_unwielded = 0
 	aim_slowdown = 0.2
 	scatter = 5
 	scatter_unwielded = 15
