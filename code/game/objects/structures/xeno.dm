@@ -645,6 +645,10 @@ TUNNEL
 	hud_set_xeno_tunnel()
 
 /obj/structure/tunnel/Destroy()
+	var/drop_loc = get_turf(src)
+	for(var/atom/movable/thing as() in contents) //Empty the tunnel of contents
+		thing.forceMove(drop_loc)
+
 	if(!QDELETED(creator))
 		to_chat(creator, "<span class='xenoannounce'>You sense your [name] at [tunnel_desc] has been destroyed!</span>") //Alert creator
 
@@ -720,7 +724,14 @@ TUNNEL
 ///Here we pick a tunnel to go to, then travel to that tunnel and peep out, confirming whether or not we want to emerge or go to another tunnel.
 /obj/structure/tunnel/proc/pick_a_tunnel(mob/living/carbon/xenomorph/M)
 	var/obj/structure/tunnel/targettunnel = input(M, "Choose a tunnel to crawl to", "Tunnel") as null|anything in GLOB.xeno_tunnels
-	if(!targettunnel)
+	if(QDELETED(src)) //Make sure we still exist in the event the player keeps the interface open
+		return
+	if(!M.Adjacent(src) && M.loc != src) //Make sure we're close enough to our tunnel; either adjacent to or in one
+		return
+	if(QDELETED(targettunnel)) //Make sure our target destination still exists in the event the player keeps the interface open
+		to_chat(M, "<span class='warning'>That tunnel no longer exists!</span>")
+		if(M.loc == src) //If we're in the tunnel and cancelling out, spit us out.
+			M.forceMove(loc)
 		return
 	if(targettunnel == src)
 		to_chat(M, "<span class='warning'>We're already here!</span>")
@@ -750,6 +761,8 @@ TUNNEL
 		if(targettunnel && isturf(targettunnel.loc)) //Make sure the end tunnel is still there
 			M.forceMove(targettunnel)
 			var/double_check = input(M, "Emerge here?", "Tunnel: [targettunnel]") as null|anything in list("Yes","Pick another tunnel")
+			if(M.loc != targettunnel) //double check that we're still in the tunnel in the event it gets destroyed while we still have the interface open
+				return
 			if(double_check == "Pick another tunnel")
 				return targettunnel.pick_a_tunnel(M)
 			else //Whether we say yes or cancel out of it
