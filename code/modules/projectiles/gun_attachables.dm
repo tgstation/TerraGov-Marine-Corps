@@ -936,6 +936,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/stock/irremoveable/rifle
 	name = "\improper M412 solid stock"
+	icon_state = "riflestock"
+	attach_icon = "riflestock_a"
 	pixel_shift_x = 32
 	pixel_shift_y = 13
 
