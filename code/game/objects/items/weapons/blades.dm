@@ -28,6 +28,7 @@
 	attack_speed = 12
 	w_class = WEIGHT_CLASS_BULKY
 	var/obj/item/reagent_containers/glass/beaker/vial/beaker = null
+	flags_item = DRAINS_XENO
 
 	var/effect_loaded = FALSE
 	var/effect_active = FALSE

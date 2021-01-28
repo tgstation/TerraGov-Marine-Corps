@@ -108,21 +108,3 @@
 	slowdown = 1.5
 	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 60, "rad" = 100, "fire" = 0, "acid" = 0)
 	flags_inv_hide = HIDEJUMPSUIT|HIDETAIL
-
-/obj/item/clothing/suit/chemsuit
-	name = "Vali chemical enhancement suit"
-	desc = "A suit that enhances the strength of reagents in the body. Requires a special substance, gathered from xenomorph lifeforms, to function."
-	icon_state = "k_pyro_armor"
-	item_state = "k_pyro_armor"
-	w_class = WEIGHT_CLASS_BULKY
-	gas_transfer_coefficient = 0.90
-	permeability_coefficient = 0.50
-	flags_armor_protection = CHEST|GROIN|LEGS|ARMS|HANDS|FEET
-	allowed = list(/obj/item/flashlight,/obj/item/tank/emergency_oxygen,/obj/item/clothing/mask/gas, /obj/item/weapon/claymore/harvester)
-	slowdown = 0.2
-	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 20, "energy" = 20, "bomb" = 40, "bio" = 60, "rad" = 100, "fire" = 40, "acid" = 40)
-	flags_inv_hide = HIDEJUMPSUIT|HIDETAIL
-
-/obj/item/clothing/suit/chemsuit/Initialize()
-	. = ..()
-	AddComponent(/datum/component/chem_booster)

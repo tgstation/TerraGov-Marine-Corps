@@ -590,7 +590,8 @@
 			R.on_merge(data, amount)
 			if(!no_react)
 				handle_reactions()
-			SEND_SIGNAL(src, COMSIG_REAGENT_ADD, reagent, amount)
+			message_admins("reagent added > [R.type]")
+			SEND_SIGNAL(src, COMSIG_REAGENT_ADD, R, amount)
 			return TRUE
 
 	//otherwise make a new one
