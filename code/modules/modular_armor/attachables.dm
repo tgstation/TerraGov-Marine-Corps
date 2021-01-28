@@ -185,21 +185,3 @@
 	parent.soft_armor = parent.soft_armor.detachArmor(soft_armor)
 	parent.slowdown -= slowdown
 	return ..()
-/**
-/** Chem booster module */
-/obj/item/armor_module/attachable/chem_enhancer
-	name = "\improper Vali Chemical Enhancement System"
-	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Uses a substance harvested from xenomorphs to enhance effects of reagents in the body."
-	icon_state = "mod_chem_icon"
-	item_state = "mod_chem"
-	slowdown = 0
-
-/obj/item/armor_module/attachable/chem_enhancer/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
-	. = ..()
-	parent.AddComponent(/datum/component/chem_booster)
-
-/obj/item/armor_module/attachable/chem_enhancer/do_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
-	var/datum/component/chem_booster/chem = parent.GetComponent(/datum/component/chem_booster)
-	chem.RemoveComponent()
-	return ..()
-*/
