@@ -121,12 +121,11 @@
 		update_boost(0, FALSE)
 		boost_on = FALSE
 		to_chat(wearer, "<span class='warning'>Halting reagent injection.</span>")
-		COOLDOWN_START(wearer, chemboost_activation_cooldown, 10 SECONDS)
+		COOLDOWN_START(src, chemboost_activation_cooldown, 10 SECONDS)
 		return
 
-	if(COOLDOWN_CHECK(chemboost_activation_cooldown))
+	if(COOLDOWN_CHECK(src, chemboost_activation_cooldown))
 		to_chat(wearer, "<span class='warning'>Your body is still strained after the last exposure. You need to wait a bit... unless you want to burst for excessing use.</span>")
-
 		return
 
 	if(resource_storage_current < resource_drain_amount)
