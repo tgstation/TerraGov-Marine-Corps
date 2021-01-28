@@ -129,10 +129,10 @@
 	add_cooldown()
 
 	for(var/mob/living/L in viewers(WORLD_VIEW, X))
-		L.disable_lights(TRUE, TRUE, TRUE, FALSE, TRUE, FALSE, 10 SECONDS)
+		L.disable_lights(TRUE, TRUE, TRUE, FALSE, TRUE, FALSE, 10 SECONDS, TRUE)
 
 	for(var/atom/o in view(WORLD_VIEW, X))
-		o.turn_light(null, FALSE, 10 SECONDS, TRUE)
+		o.turn_light(null, FALSE, 10 SECONDS, TRUE, TRUE)
 
 /datum/action/xeno_action/activable/screech/ai_should_start_consider()
 	return TRUE

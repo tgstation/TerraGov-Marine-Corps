@@ -27,8 +27,8 @@
 /obj/item/clothing/head/hardhat/proc/reset_light()
 	turn_light(null, TRUE)
 
-/obj/item/clothing/head/hardhat/turn_light(mob/user = null, toggle_on ,cooldown = 1 SECONDS, sparks)
-	if(COOLDOWN_CHECK(src, cooldown_light))
+/obj/item/clothing/head/hardhat/turn_light(mob/user = null, toggle_on ,cooldown = 1 SECONDS, sparks = FALSE, forced = FALSE)
+	if(COOLDOWN_CHECK(src, cooldown_light) || forced)
 		if(sparks)
 			var/datum/effect_system/spark_spread/spark_system = new
 			spark_system.set_up(5, 0, src)
@@ -41,7 +41,7 @@
 			set_light(brightness_on)
 		else
 			set_light(0)
-			if(cooldown > 1 SECONDS)
+			if(forced)
 				addtimer(CALLBACK(src, .proc/reset_light), cooldown + 1)
 		icon_state = "hardhat[on]_[hardhat_color]"
 		item_state = "hardhat[on]_[hardhat_color]"

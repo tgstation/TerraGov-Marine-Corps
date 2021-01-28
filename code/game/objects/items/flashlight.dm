@@ -29,8 +29,8 @@
 	turn_light(null, TRUE)
 
 
-/obj/item/flashlight/turn_light(mob/user = null, toggle_on, cooldown = 1 SECONDS, sparks)
-	if(COOLDOWN_CHECK(src, cooldown_flashlight))
+/obj/item/flashlight/turn_light(mob/user = null, toggle_on, cooldown = 1 SECONDS, sparks = FALSE, forced = FALSE)
+	if(COOLDOWN_CHECK(src, cooldown_flashlight) || forced)
 		COOLDOWN_START(src, cooldown_flashlight, cooldown)
 		if(sparks)
 			var/datum/effect_system/spark_spread/spark_system = new
@@ -45,7 +45,7 @@
 			icon_state = "[initial(icon_state)]-on"
 		else
 			icon_state = initial(icon_state)
-			if(cooldown > 1 SECONDS)
+			if(forced) //Is true when turn light is called by a phantom
 				addtimer(CALLBACK(src, .proc/reset_light), cooldown + 1)
 		update_action_button_icons()
 		return initial_on
