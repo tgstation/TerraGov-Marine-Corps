@@ -801,5 +801,5 @@ Proc for attack log creation, because really why not
 		hud_list[hud] = image('icons/mob/hud.dmi', src, "")
 
 ///if this object has lights, turn it on/off.
-/atom/proc/turn_light(mob/user = null, toggle_on ,cooldown = 1 SECONDS)
+/atom/proc/turn_light(mob/user = null, toggle_on ,cooldown = 1 SECONDS, sparks = FALSE)
 	return

@@ -21,7 +21,12 @@
 /obj/machinery/floodlight/attackby()
 	return
 
-/obj/machinery/floodlight/turn_light(mob/user, toggle_on, cooldown = 0)
+/obj/machinery/floodlight/turn_light(mob/user, toggle_on, cooldown = 0, sparks)
+	if(sparks)
+		var/datum/effect_system/spark_spread/spark_system = new
+		spark_system.set_up(5, 0, src)
+		spark_system.attach(src)
+		spark_system.start(src)
 	if(toggle_on)	
 		on = TRUE
 		to_chat(user, "<span class='notice'>You turn on the light.</span>")
@@ -254,7 +259,12 @@
 	if(!on)
 		switch_light()
 
-/obj/machinery/floodlightcombat/turn_light(mob/user, toggle_on, cooldown = 0)
+/obj/machinery/floodlightcombat/turn_light(mob/user, toggle_on, cooldown = 0, sparks)
+	if(sparks)
+		var/datum/effect_system/spark_spread/spark_system = new
+		spark_system.set_up(5, 0, src)
+		spark_system.attach(src)
+		spark_system.start(src)
 	if(toggle_on)
 		set_light(brightness, 5, "#C5E3E132")
 	else
@@ -312,9 +322,14 @@
 	if(fswitch?.turned_on)
 		turn_light(null, TRUE)
 
-/obj/machinery/floodlight/colony/turn_light(mob/user, toggle_on, cooldown = 0)
+/obj/machinery/floodlight/colony/turn_light(mob/user, toggle_on, cooldown = 0, sparks)
 	if(!fswitch) //no master, should never happen
 		return
+	if(sparks)
+		var/datum/effect_system/spark_spread/spark_system = new
+		spark_system.set_up(5, 0, src)
+		spark_system.attach(src)
+		spark_system.start(src)
 	if(toggle_on && !on)
 		set_light(brightness_on)
 		fswitch.active_power_usage += FLOODLIGHT_TICK_CONSUMPTION

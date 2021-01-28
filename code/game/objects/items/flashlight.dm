@@ -29,9 +29,14 @@
 	turn_light(null, TRUE)
 
 
-/obj/item/flashlight/turn_light(mob/user = null, toggle_on, cooldown = 1 SECONDS)
+/obj/item/flashlight/turn_light(mob/user = null, toggle_on, cooldown = 1 SECONDS, sparks)
 	if(COOLDOWN_CHECK(src, cooldown_flashlight))
 		COOLDOWN_START(src, cooldown_flashlight, cooldown)
+		if(sparks)
+			var/datum/effect_system/spark_spread/spark_system = new
+			spark_system.set_up(5, 0, src)
+			spark_system.attach(src)
+			spark_system.start(src)
 		var/initial_on = light_on
 		if(!user && ismob(loc))
 			user = loc

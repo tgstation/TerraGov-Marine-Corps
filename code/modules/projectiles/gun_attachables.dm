@@ -607,7 +607,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 /obj/item/attachable/flashlight/proc/reset_light()
 	activate_attachment(null, FALSE)
 
-/obj/item/attachable/flashlight/activate_attachment(mob/living/user, turn_off, cooldown = 1 SECONDS)
+/obj/item/attachable/flashlight/activate_attachment(mob/living/user, turn_off, cooldown = 1 SECONDS, sparks = FALSE)
 	if(turn_off && !(master_gun.flags_gun_features & GUN_FLASHLIGHT_ON))
 		return
 
@@ -618,6 +618,11 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		user = master_gun.loc
 	
 	COOLDOWN_START(src, cooldown_flashligh, cooldown)
+	if(sparks)
+		var/datum/effect_system/spark_spread/spark_system = new
+		spark_system.set_up(5, 0, src)
+		spark_system.attach(src)
+		spark_system.start(src)
 	if(master_gun.flags_gun_features & GUN_FLASHLIGHT_ON)
 		
 		icon_state = "flashlight"

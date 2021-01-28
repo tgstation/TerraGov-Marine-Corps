@@ -27,8 +27,13 @@
 /obj/item/clothing/head/hardhat/proc/reset_light()
 	turn_light(null, TRUE)
 
-/obj/item/clothing/head/hardhat/turn_light(mob/user = null, toggle_on ,cooldown = 1 SECONDS)
+/obj/item/clothing/head/hardhat/turn_light(mob/user = null, toggle_on ,cooldown = 1 SECONDS, sparks)
 	if(COOLDOWN_CHECK(src, cooldown_light))
+		if(sparks)
+			var/datum/effect_system/spark_spread/spark_system = new
+			spark_system.set_up(5, 0, src)
+			spark_system.attach(src)
+			spark_system.start(src)
 		var/initial_light = on
 		COOLDOWN_START(src, cooldown_light, cooldown)
 		on = toggle_on

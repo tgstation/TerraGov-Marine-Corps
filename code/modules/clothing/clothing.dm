@@ -121,9 +121,9 @@
 
 	This proc forces the light to off, useful when the armor is dropped or if a xeno slashes the armor to disable it.
 */
-/obj/item/clothing/suit/proc/turn_off_light(mob/wearer, cooldown = 1 SECONDS)
+/obj/item/clothing/suit/proc/turn_off_light(mob/wearer, cooldown = 1 SECONDS, sound_on = TRUE)
 	if(flags_armor_features & ARMOR_LAMP_ON)
-		toggle_armor_light(wearer, cooldown) //turn the light off
+		toggle_armor_light(wearer, cooldown, sound_on) //turn the light off
 		return TRUE
 	return FALSE
 
@@ -133,7 +133,7 @@
 
 	This proc will toggle the light enabled or disabled on the armor, playing a sound and updating the action button for the user.
 */
-/obj/item/clothing/suit/proc/toggle_armor_light(mob/user, cooldown = 1 SECONDS)
+/obj/item/clothing/suit/proc/toggle_armor_light(mob/user, cooldown = 1 SECONDS, sound_on)
 	TIMER_COOLDOWN_START(src, COOLDOWN_ARMOR_LIGHT, cooldown)
 	if(flags_armor_features & ARMOR_LAMP_ON)
 		set_light_on(FALSE)
@@ -142,7 +142,8 @@
 	else
 		set_light_on(TRUE)
 	flags_armor_features ^= ARMOR_LAMP_ON
-	playsound(src, 'sound/items/flashlight.ogg', 15, TRUE)
+	if(sound_on)
+		playsound(src, 'sound/items/flashlight.ogg', 15, TRUE)
 	update_icon(user)
 	update_action_button_icons()
 

@@ -984,12 +984,6 @@
 	return ..()
 
 /mob/living/carbon/human/disable_lights(clothing = TRUE, guns = TRUE, flares = TRUE, misc = TRUE, sparks = FALSE, silent = FALSE, cooldown = 2.5 SECONDS)
-	if(sparks)
-		var/datum/effect_system/spark_spread/spark_system = new
-		spark_system.set_up(5, 0, src)
-		spark_system.attach(src)
-		spark_system.start(src)
-
 	var/light_off = 0
 	var/goes_out = 0
 	if(clothing)
@@ -998,19 +992,19 @@
 			S.turn_off_light(src, cooldown)
 			light_off++
 		for(var/obj/item/clothing/head/hardhat/H in contents) //Potential bug abuse here, lights in bags and such are not affected
-			H.turn_light(src, FALSE ,cooldown)				  //I don't see any easy fix
+			H.turn_light(src, FALSE ,cooldown, sparks)				  //I don't see any easy fix
 			light_off++
 		for(var/obj/item/flashlight/L in contents)
 			if(istype(L, /obj/item/flashlight/flare))
 				continue
-			if(L.turn_light(src, FALSE, cooldown))
+			if(L.turn_light(src, FALSE, cooldown, sparks))
 				light_off++
 	if(guns)
 		for(var/obj/item/weapon/gun/lit_gun in contents)
 			if(!isattachmentflashlight(lit_gun.rail))
 				continue
 			var/obj/item/attachable/flashlight/lit_rail_flashlight = lit_gun.rail
-			lit_rail_flashlight.activate_attachment(src, TRUE, cooldown)
+			lit_rail_flashlight.activate_attachment(src, TRUE, cooldown, sparks)
 			light_off++
 	if(flares)
 		for(var/obj/item/flashlight/flare/F in contents)
@@ -1035,6 +1029,11 @@
 		for(var/obj/item/tool/lighter/Z in contents)
 			if(Z.turn_off(src))
 				goes_out++
+	if(sparks & light_off)
+		var/datum/effect_system/spark_spread/spark_system = new
+		spark_system.set_up(5, 0, src)
+		spark_system.attach(src)
+		spark_system.start(src)
 	if(!silent)
 		if(goes_out && light_off)
 			to_chat(src, "<span class='notice'>Your sources of light short and fizzle out.</span>")

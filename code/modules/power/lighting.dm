@@ -275,7 +275,12 @@
 
 // attempt to set the light's on/off status
 // will not switch on if broken/burned/empty
-/obj/machinery/light/turn_light(mob/user, toggle_on, cooldown = 0)
+/obj/machinery/light/turn_light(mob/user, toggle_on, cooldown = 0, sparks)
+	if(sparks)
+		var/datum/effect_system/spark_spread/spark_system = new
+		spark_system.set_up(5, 0, src)
+		spark_system.attach(src)
+		spark_system.start(src)
 	if(!toggle_on & cooldown>0)
 		status = LIGHT_DISABLED
 		addtimer(CALLBACK(src,.proc/reset_light), cooldown)
