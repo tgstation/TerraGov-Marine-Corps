@@ -68,10 +68,10 @@
 
 
 ///Relays health and location data about resin silos belonging to the same hive as the input user
-/proc/resin_silo_status_output(mob/living/carbon/xenomorph/user)
+/proc/resin_silo_status_output(mob/living/carbon/xenomorph/user, datum/hive_status/hive)
 	. = "<BR><b>List of Resin Silos:</b><BR><table cellspacing=4>" //Resin silo data
 	for(var/obj/structure/resin/silo/resin_silo as() in GLOB.xeno_resin_silos)
-		if(resin_silo.associated_hive == user.hive)
+		if(resin_silo.associated_hive == hive)
 
 			var/hp_color = "green"
 			switch(resin_silo.obj_integrity/resin_silo.max_integrity)
@@ -159,7 +159,7 @@
 	dat += "<table cellspacing=4>"
 	dat += xenoinfo
 	dat += "</table>"
-	dat += resin_silo_status_output(user)
+	dat += resin_silo_status_output(user, hive)
 
 	var/datum/browser/popup = new(user, "roundstatus", "<div align='center'>Hive Status</div>", 650, 650)
 	popup.set_content(dat)
@@ -566,12 +566,10 @@
 	to_chat(src, "<span class='xenodanger'>\The [X] showers you in corrosive acid!</span>")
 
 /mob/living/carbon/proc/apply_acid_spray_damage(damage, armor_block)
-	apply_damage(damage, BURN, null, armor_block)
-	UPDATEHEALTH(src)
+	apply_damage(damage, BURN, null, armor_block, updating_health = TRUE)
 
 /mob/living/carbon/human/apply_acid_spray_damage(damage, armor_block)
-	take_overall_damage_armored(damage, BURN, "acid")
-	UPDATEHEALTH(src)
+	take_overall_damage_armored(damage, BURN, "acid", updating_health = TRUE)
 	emote("scream")
 	Paralyze(20)
 

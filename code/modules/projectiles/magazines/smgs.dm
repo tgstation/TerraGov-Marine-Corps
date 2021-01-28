@@ -92,7 +92,6 @@
 	name = "\improper PPSh-17b drum magazine (7.62x25mm)"
 	icon_state = "ppsh_ext"
 	max_rounds = 71
-	bonus_overlay = "ppsh_ex"
 
 //-------------------------------------------------------
 //GENERIC UZI //Based on the uzi submachinegun, of course.

@@ -20,7 +20,7 @@
 /obj/machinery/computer/security/check_eye(mob/living/user)
 	if(!istype(user))
 		return
-	if((machine_stat & (NOPOWER|BROKEN)) || user.incapacitated() || user.eye_blind )
+	if((machine_stat & (NOPOWER|BROKEN|DISABLED)) || user.incapacitated() || user.eye_blind )
 		user.unset_interaction()
 		return
 	if(!(user in watchers))
@@ -169,7 +169,7 @@
 
 /obj/machinery/computer/security/telescreen/update_icon()
 	icon_state = initial(icon_state)
-	if(machine_stat & BROKEN)
+	if(machine_stat & (BROKEN|DISABLED))
 		icon_state += "b"
 	return
 
