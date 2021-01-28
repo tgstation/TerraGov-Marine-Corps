@@ -76,7 +76,7 @@ GLOBAL_LIST_INIT(defiler_toxins, typecacheof(list(
 	C.adjust_blurriness(3) //Cosmetic eye blur SFX
 	C.reagents.add_reagent(X.selected_reagent, DEFILER_DEFILE_INJECT_AMOUNT, no_overdose = TRUE) //Inject selected chem with OD protection
 	C.apply_damage(50, STAMINA) //Mainly to remove the ability to sprint
-	C.apply_damage(5, BRUTE, "chest") //Cosmetic
+	C.apply_damage(5, BRUTE, "chest", updating_health = TRUE) //Cosmetic
 	C.emote("scream")
 	GLOB.round_statistics.defiler_defiler_stings++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "defiler_defiler_stings")
