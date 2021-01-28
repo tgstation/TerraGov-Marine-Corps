@@ -800,15 +800,7 @@
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 20, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
 	starting_attachment_types = list(/obj/item/attachable/attached_gun/flamer/unremovable)
 
-/obj/item/weapon/gun/rifle/type71/carbine
-	name = "\improper Type 71 pulse carbine"
-	desc = "A carbine variant of the Type 71 pulse rifle for quicker aiming. A surpression model in addition to the main rifle is in progress."
-	icon_state = "type71c"
-	item_state = "type71c"
-	wield_delay = 0.2 SECONDS //Carbine is more lightweight
-
-
-/obj/item/weapon/gun/rifle/type71/carbine/commando
+/obj/item/weapon/gun/rifle/type71/commando
 	name = "\improper Type 73 'Commando' pulse carbine"
 	desc = "An much rarer variant of the standard Type 71, this version contains an integrated supressor, a scope, and lots of fine-tuning. Many parts have been replaced, filed down, and improved upon. As a result, this variant is rarely seen issued outside of commando units."
 	icon_state = "type73"
