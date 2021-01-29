@@ -1,6 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - imageadd: "roonies sprite"
-  - rscadd: "new xenos, the roony, wich is exatcly like a runner but much cuter"
-  - admin: "config settings to change every runner into a roony"
