@@ -1142,12 +1142,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/rocket/recoilless/light/drop_nade(turf/T)
 	explosion(T, 0, 1, 8, 5)
 
-/datum/ammo/rocket/oneuse
-	name = "explosive rocket"
-	damage = 100
-	penetration = 100
-	sundering = 100
-
 /*
 //================================================
 					Energy Ammo
