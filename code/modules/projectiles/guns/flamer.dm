@@ -496,7 +496,7 @@
 		var/obj/item/ammo_magazine/flamer_tank/backtank/back_tank = human_user.get_type_in_slots(/obj/item/ammo_magazine/flamer_tank/backtank)
 		if (back_tank)
 			attach_fueltank(user, back_tank)
-	.=..()
+	return ..()
 
 /obj/item/weapon/gun/flamer/marinestandard/able_to_fire(mob/user)
 	. = ..()
@@ -549,9 +549,8 @@
 		var/obj/screen/ammo/A = user.hud_used.ammo
 		A.update_hud(user)
 		return
-	else
-		to_chat(user, "<span class='warning'>Your action was interrupted!</span>")
-		return
+	to_chat(user, "<span class='warning'>Your action was interrupted!</span>")
+	return
 
 /obj/item/weapon/gun/flamer/marinestandard/Fire(atom/target, mob/living/user, params, reflex)
 	if(active_attachable && istype(active_attachable, /obj/item/attachable/hydro_cannon) && (world.time > last_use + 10))
