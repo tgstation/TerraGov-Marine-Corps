@@ -1037,6 +1037,40 @@
 	scatter = -100
 
 //-------------------------------------------------------
+//M5 RPG
+
+/obj/item/weapon/gun/launcher/rocket/oneuse
+	name = "\improper T-72 rocket launcher"
+	desc = "This is the premier disposable rocket launcher used throughout the galaxy, it cannot be reloaded or unloaded on the field. This one fires a 68mm explosive rocket."
+	icon_state = "t72"
+	item_state = "t72"
+	max_shells = 1 //codex
+	caliber = "84mm rockets" //codex
+	load_method = SINGLE_CASING //codex
+	current_mag = /obj/item/ammo_magazine/rocket/oneuse
+	flags_equip_slot = ITEM_SLOT_BELT
+	attachable_allowed = list(/obj/item/attachable/magnetic_harness)
+
+	dry_fire_sound = 'sound/weapons/guns/fire/launcher_empty.ogg'
+	reload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
+	unload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 6, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
+	fire_delay = 1 SECONDS
+	recoil = 3
+	scatter = -100
+
+/obj/item/weapon/gun/launcher/rocket/oneuse/unload(mob/user) // Unsurprisngly you can't unload this.
+	to_chat(user, "<span class='warning'>You can't unload this!</span>")
+	return FALSE
+
+
+/obj/item/weapon/gun/launcher/rocket/oneuse/examine_ammo_count(mob/user)
+	if(current_mag?.current_rounds)
+		to_chat(user, "It's loaded.")
+	else
+		to_chat(user, "It's empty.")
+
+//-------------------------------------------------------
 //This gun is very powerful, but also has a kick.
 
 /obj/item/weapon/gun/minigun
