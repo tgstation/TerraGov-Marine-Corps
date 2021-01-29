@@ -437,12 +437,11 @@
 /mob/living/proc/fly_at(atom/target, range, speed, hovering_time) 
 	var/init_layer = layer
 	layer = FLY_LAYER
-	//RegisterSignal(src,COMSIG_LIVING_END_FLYING,.proc/end_flying)
 	set_flying(TRUE)
 	throw_at(target, range, speed, null, 0, TRUE)
 	addtimer(CALLBACK(src,.proc/end_flying,init_layer), hovering_time)
 			
-	
+///remove flying flags and reset the sprite layer
 /mob/living/proc/end_flying(init_layer)
 	set_flying(FALSE)
 	layer = init_layer

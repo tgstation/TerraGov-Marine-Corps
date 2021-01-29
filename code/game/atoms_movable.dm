@@ -917,8 +917,7 @@
 	if (flying)
 		ENABLE_BITFIELD(flags_pass, HOVERING)
 		return
-	else
-		DISABLE_BITFIELD(flags_pass, HOVERING)
+	DISABLE_BITFIELD(flags_pass, HOVERING)
 	
 
 /atom/movable/CanAllowThrough(atom/movable/mover, turf/target)

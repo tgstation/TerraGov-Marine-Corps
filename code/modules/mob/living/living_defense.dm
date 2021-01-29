@@ -130,8 +130,6 @@
 /mob/living/proc/IgniteMob()
 	if(!CHECK_BITFIELD(datum_flags, DF_ISPROCESSING))
 		return FALSE
-	if(CHECK_BITFIELD(flags_pass, PASSFIRE))
-		return FALSE
 	if(fire_stacks > 0 && !on_fire)
 		on_fire = TRUE
 		RegisterSignal(src, COMSIG_LIVING_DO_RESIST, .proc/resist_fire)

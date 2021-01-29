@@ -346,8 +346,9 @@
 
 			if(!L.on_fire || L.getFireLoss() <= 200)
 				L.take_overall_damage(null, 20, clamp(L.getarmor(null, "fire"), 0, 80))
-				L.adjust_fire_stacks(20)
-				L.IgniteMob()
+				if(!CHECK_BITFIELD(L.flags_pass, PASSFIRE))//Pass fire allow to cross lava without igniting
+					L.adjust_fire_stacks(20)
+					L.IgniteMob()
 				. = 1
 
 /turf/open/lavaland/lava/attackby(obj/item/C, mob/user, params)
