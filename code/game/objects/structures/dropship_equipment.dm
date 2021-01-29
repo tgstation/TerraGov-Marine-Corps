@@ -168,7 +168,7 @@
 	///how many points it costs to build this with the fabricator, set to 0 if unbuildable.
 	var/point_cost = 0
 	///what kind of ammo this uses if any
-	var/obj/structure/ship_ammo/ammo_type
+	var/ammo_type
 
 /obj/structure/dropship_equipment/Destroy()
 	QDEL_NULL(ammo_equipped)
@@ -182,8 +182,7 @@
 		if(linked_console?.selected_equipment == src)
 			linked_console.selected_equipment = null
 		linked_console = null
-	if(ammo_type)
-		ammo_type = null //null the ammo type
+	ammo_type = null
 	return ..()
 
 /obj/structure/dropship_equipment/attackby(obj/item/I, mob/user, params)
@@ -196,7 +195,7 @@
 		if(((!dropship_equipment_flags & IS_NOT_REMOVABLE) && !ship_base) || !(dropship_equipment_flags & USES_AMMO) || ammo_equipped || !istype(clamp.loaded, /obj/structure/ship_ammo))
 			return FALSE
 		var/obj/structure/ship_ammo/clamp_ammo = clamp.loaded
-		if(istype(type, clamp_ammo.equipment_type) || clamp_ammo.type != ammo_type) //Incompatible ammo
+		if(istype(type, clamp_ammo.equipment_type) || clamp_ammo.ammo_type != ammo_type) //Incompatible ammo
 			to_chat(user, "<span class='warning'>[clamp_ammo] doesn't fit in [src].</span>")
 			return FALSE
 		playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
@@ -686,7 +685,7 @@
 	firing_sound = 'sound/weapons/gunship_chaingun.ogg'
 	point_cost = 400
 	dropship_equipment_flags = USES_AMMO|IS_WEAPON|IS_INTERACTABLE
-	ammo_type = /obj/structure/ship_ammo/heavygun
+	ammo_type = CAS_30MM
 
 /obj/structure/dropship_equipment/weapon/heavygun/update_icon()
 	if(ammo_equipped)
@@ -712,7 +711,7 @@
 	firing_sound = 'sound/weapons/gunship_rocket.ogg'
 	firing_delay = 5
 	point_cost = 600
-	ammo_type = /obj/structure/ship_ammo/rocket
+	ammo_type = CAS_MISSILE
 
 /obj/structure/dropship_equipment/weapon/rocket_pod/deplete_ammo()
 	ammo_equipped = null //nothing left to empty after firing
@@ -736,7 +735,7 @@
 	firing_sound = 'sound/weapons/gunship_rocketpod.ogg'
 	firing_delay = 10 //1 seconds
 	point_cost = 600
-	ammo_type = /obj/structure/ship_ammo/minirocket
+	ammo_type = CAS_MINI_ROCKET
 
 /obj/structure/dropship_equipment/weapon/minirocket_pod/update_icon()
 	if(ammo_equipped && ammo_equipped.ammo_count)
@@ -761,7 +760,7 @@
 	firing_delay = 50 //5 seconds
 	point_cost = 500
 	dropship_equipment_flags = USES_AMMO|IS_WEAPON|IS_INTERACTABLE
-	ammo_type = /obj/structure/ship_ammo/laser_battery
+	ammo_type = CAS_LASER_BATTERY
 
 /obj/structure/dropship_equipment/weapon/laser_beam_gun/update_icon()
 	if(ammo_equipped && ammo_equipped.ammo_count)
