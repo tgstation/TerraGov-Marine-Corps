@@ -162,8 +162,7 @@
 	else //Normal xenomorph friendship with benefits
 		log_combat(X, src, log)
 
-	apply_damage(damage, BRUTE, affecting, armor_block, TRUE, TRUE) //This should slicey dicey
-	UPDATEHEALTH(src)
+	apply_damage(damage, BRUTE, affecting, armor_block, TRUE, TRUE, updating_health = TRUE) //This should slicey dicey
 
 	return TRUE
 
