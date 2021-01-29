@@ -110,3 +110,7 @@
 	config_entry_value = FALSE
 
 /datum/config_entry/flag/aggressive_changelog
+
+///If TRUE, the evo proc will consider spawn roony instead of runner on evo
+/datum/config_entry/flag/roony
+	config_entry_value = FALSE

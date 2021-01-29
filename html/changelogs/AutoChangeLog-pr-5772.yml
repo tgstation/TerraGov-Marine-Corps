@@ -1,8 +1,0 @@
-author: "Surrealaser"
-delete-after: True
-changes: 
-  - rscadd: "Sentries now have HUD indicators displaying current health and ammo. Those with the Squad HUD can see this."
-  - rscadd: "Sentries now display health and ammo info to non-xenos examining it."
-  - rscadd: "Sentries now don't get hit by friendly IFF munitions."
-  - code_imp: "Sentry damage alerts more accurate and responsive."
-  - bugfix: "Sentry damage alerts now work properly."
