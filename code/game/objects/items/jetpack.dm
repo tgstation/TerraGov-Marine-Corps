@@ -94,12 +94,12 @@
 		return
 	return
 
-/obj/item/jetpack_marine/afterattack(obj/target, mob/user , flag) //refuel at fueltanks when we run out of fuel
-	if(istype(target, /obj/structure/reagent_dispensers/fueltank))
+/obj/item/jetpack_marine/afterattack(obj/target, mob/user , proximity_flag) //refuel at fueltanks when we run out of fuel
+	if(istype(target, /obj/structure/reagent_dispensers/fueltank) & proximity_flag)
 		var/obj/structure/reagent_dispensers/fueltank/FT = target
 		if(FT.reagents.total_volume == 0)
 			to_chat(user, "<span class='warning'>Out of fuel!</span>")
-			return..()
+			return ..()
 
 		var/fuel_transfer_amount = min(FT.reagents.total_volume, (fuel_max - fuel_left))
 		FT.reagents.remove_reagent(/datum/reagent/fuel, fuel_transfer_amount)
