@@ -41,8 +41,8 @@
 
 	acid_spray_duration = 10 SECONDS
 	acid_spray_range = 4
-	acid_spray_damage = 16
-	acid_spray_damage_on_hit = 35
+	acid_spray_damage = 25
+	acid_spray_damage_on_hit = 25
 	acid_spray_structure_damage = 45
 
 	// *** Pheromones *** //
@@ -94,7 +94,7 @@
 	// *** Ranged Attack *** //
 	spit_delay = 1.2 SECONDS
 	spit_types = list(/datum/ammo/xeno/toxin/heavy/upgrade1, /datum/ammo/xeno/acid/heavy)
-	
+
 	acid_spray_damage_on_hit = 39
 	acid_spray_structure_damage = 53
 
@@ -131,7 +131,7 @@
 	// *** Ranged Attack *** //
 	spit_delay = 1.1 SECONDS
 	spit_types = list(/datum/ammo/xeno/toxin/heavy/upgrade2, /datum/ammo/xeno/acid/heavy)
-	
+
 	acid_spray_damage_on_hit = 43
 	acid_spray_structure_damage = 61
 
