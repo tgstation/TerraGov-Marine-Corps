@@ -455,7 +455,10 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 		dat += "[GLOB.round_statistics.xeno_rally_hive] number of times xeno leaders rallied the hive."
 	if(GLOB.round_statistics.hivelord_healing_infusions)
 		dat += "[GLOB.round_statistics.hivelord_healing_infusions] number of times Hivelords used Healing Infusion."
-
+	if(GLOB.round_statistics.spitter_acid_sprays)
+		dat += "[GLOB.round_statistics.spitter_acid_sprays] number of times Spitters spewed an Acid Spray."
+	if(GLOB.round_statistics.spitter_scatter_spits)
+		dat += "[GLOB.round_statistics.spitter_scatter_spits] number of times Spitters horked up scatter spits."
 
 	var/output = jointext(dat, "<br>")
 	for(var/mob/player in GLOB.player_list)

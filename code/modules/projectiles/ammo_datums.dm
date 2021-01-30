@@ -156,7 +156,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		if(bonus_projectiles_type)
 			new_proj.generate_bullet(GLOB.ammo_list[bonus_projectiles_type])
 			var/obj/item/weapon/gun/g = source
-			new_proj.damage *= g.damage_mult //Bonus or reduced damage based on damage modifiers on the gun.
+			if(source)
+				new_proj.damage *= g.damage_mult //Bonus or reduced damage based on damage modifiers on the gun.
 		else //If no bonus type is defined then the extra projectiles are the same as the main one.
 			new_proj.generate_bullet(src)
 		new_proj.accuracy = round(new_proj.accuracy * main_proj.accuracy/initial(main_proj.accuracy)) //if the gun changes the accuracy of the main projectile, it also affects the bonus ones.
@@ -1568,11 +1569,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sound_hit 	 = "acid_hit"
 	sound_bounce	= "acid_bounce"
 	damage_type = BURN
-	added_spit_delay = 5
-	spit_cost = 75
-	flags_ammo_behavior = AMMO_XENO|AMMO_EXPLOSIVE
+	spit_cost = 50
+	flags_ammo_behavior = AMMO_XENO|AMMO_EXPLOSIVE|AMMO_SKIPS_ALIENS
 	armor_type = "acid"
-	damage = 18
+	damage = 20
 	max_range = 8
 	bullet_color = COLOR_PALE_GREEN_GRAY
 
@@ -1617,6 +1617,16 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/xeno/acid/heavy/do_at_max_range(obj/projectile/P)
 	drop_nade(get_turf(P))
+
+///For the Spitter's Scatterspit ability
+/datum/ammo/xeno/acid/heavy/scatter
+	damage = 20
+	bonus_projectiles_type = /datum/ammo/xeno/acid/heavy/scatter/bonus
+	bonus_projectiles_amount = 5
+	bonus_projectiles_scatter = 5
+
+/datum/ammo/xeno/acid/heavy/scatter/bonus
+	damage = 20
 
 /datum/ammo/xeno/acid/drop_nade(turf/T) //Leaves behind a short lived acid pool; lasts for 1-3 seconds.
 	if(T.density)

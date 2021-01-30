@@ -6,8 +6,8 @@
 	action_icon_state = "spray_acid"
 	mechanics_text = "Spray a line of dangerous acid at your target."
 	ability_name = "spray acid"
-	plasma_cost = 250
-	cooldown_timer = 30 SECONDS
+	plasma_cost = 200
+	cooldown_timer = 20 SECONDS
 
 /datum/action/xeno_action/activable/spray_acid/line/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
@@ -15,6 +15,8 @@
 
 	if(!istype(target)) //Something went horribly wrong. Clicked off edge of map probably
 		return
+
+	X.face_atom(target) //Face target so we don't look stupid
 
 	if(X.do_actions || !do_after(X, 5, TRUE, target, BUSY_ICON_DANGER))
 		return
@@ -30,6 +32,9 @@
 	var/turflist = getline(X, target)
 	spray_turfs(turflist)
 	add_cooldown()
+
+	GLOB.round_statistics.spitter_acid_sprays++ //Statistics
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "spitter_acid_sprays")
 
 
 /datum/action/xeno_action/activable/spray_acid/line/proc/spray_turfs(list/turflist)
@@ -89,3 +94,54 @@
 
 		prev_turf = T
 		sleep(2)
+
+/datum/action/xeno_action/activable/spray_acid/line/on_cooldown_finish()
+	to_chat(owner, "<span class='xenodanger'>Our dermal pouches bloat with fresh acid; we can use acid spray again.</span>")
+	owner.playsound_local(owner, 'sound/voice/alien_drool2.ogg', 25, 0, 1)
+	return ..()
+
+// ***************************************
+// *********** Scatterspit
+// ***************************************
+/datum/action/xeno_action/activable/scatter_spit
+	name = "Scatter Spit"
+	action_icon_state = "scatter_spit"
+	mechanics_text = "Spits a spread of acid projectiles that splatter on the ground."
+	ability_name = "scatter spit"
+	plasma_cost = 150
+	cooldown_timer = 8 SECONDS
+
+
+/datum/action/xeno_action/activable/scatter_spit/can_use_ability(atom/target, silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return
+
+/datum/action/xeno_action/activable/scatter_spit/use_ability(atom/target)
+
+	var/mob/living/carbon/xenomorph/X = owner
+
+	X.face_atom(target) //Face target so we don't look stupid
+
+	//Shoot at the thing
+	playsound(X.loc, 'sound/effects/blobattack.ogg', 50, 1)
+
+	var/datum/ammo/xeno/acid/heavy/scatter/scatter_spit = GLOB.ammo_list[/datum/ammo/xeno/acid/heavy/scatter]
+
+	var/obj/projectile/newspit = new /obj/projectile(get_turf(X))
+	newspit.generate_bullet(scatter_spit, scatter_spit.damage * SPIT_UPGRADE_BONUS(X))
+	newspit.permutated += X
+	newspit.def_zone = X.get_limbzone_target()
+
+	newspit.fire_at(target, X, null)
+
+	succeed_activate()
+	add_cooldown()
+
+	GLOB.round_statistics.spitter_scatter_spits++ //Statistics
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "spitter_scatter_spits")
+
+/datum/action/xeno_action/activable/scatter_spit/on_cooldown_finish()
+	to_chat(owner, "<span class='xenodanger'>Our auxiliary sacks fill to bursting; we can use scatter spit again.</span>")
+	owner.playsound_local(owner, 'sound/voice/alien_drool1.ogg', 25, 0, 1)
+	return ..()
