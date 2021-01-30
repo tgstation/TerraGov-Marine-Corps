@@ -1588,12 +1588,13 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	added_spit_delay = 8
 	spit_cost = 75
 	damage = 30
+	var/puddle_duration = 1 SECONDS //Lasts 1-3 seconds
 
 /datum/ammo/xeno/acid/heavy/on_hit_mob(mob/M,obj/projectile/P)
 	var/turf/T = get_turf(M)
 	if(!T)
 		T = get_turf(P)
-	drop_nade(T)
+	drop_nade(T, puddle_duration)
 
 /datum/ammo/xeno/acid/heavy/on_hit_obj(obj/O,obj/projectile/P)
 	var/turf/T = get_turf(O)
@@ -1603,7 +1604,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	if(O.density && !(O.flags_atom & ON_BORDER))
 		T = get_turf(get_step(T, turn(P.dir, 180))) //If the object is dense and not a border object like barricades, we instead drop in the location just prior to the target
 
-	drop_nade(T)
+	drop_nade(T, puddle_duration)
 
 
 /datum/ammo/xeno/acid/heavy/on_hit_turf(turf/T,obj/projectile/P)
@@ -1613,25 +1614,28 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	if(isclosedturf(T))
 		T = get_turf(get_step(T, turn(P.dir, 180))) //If the turf is closed, we instead drop in the location just prior to the turf
 
-	drop_nade(T)
+	drop_nade(T, puddle_duration)
 
 /datum/ammo/xeno/acid/heavy/do_at_max_range(obj/projectile/P)
-	drop_nade(get_turf(P))
+	drop_nade(get_turf(P), puddle_duration)
+
+
+/datum/ammo/xeno/acid/drop_nade(turf/T, duration = 1 SECONDS) //Leaves behind an acid pool; defaults to 1-3 seconds.
+	if(T.density)
+		return
+	new /obj/effect/xenomorph/spray(T, duration)
+
 
 ///For the Spitter's Scatterspit ability
 /datum/ammo/xeno/acid/heavy/scatter
 	damage = 20
 	bonus_projectiles_type = /datum/ammo/xeno/acid/heavy/scatter/bonus
 	bonus_projectiles_amount = 5
-	bonus_projectiles_scatter = 5
+	bonus_projectiles_scatter = 8
+	puddle_duration = 3 SECONDS //Lasts 3-5 seconds
 
 /datum/ammo/xeno/acid/heavy/scatter/bonus
-	damage = 20
 
-/datum/ammo/xeno/acid/drop_nade(turf/T) //Leaves behind a short lived acid pool; lasts for 1-3 seconds.
-	if(T.density)
-		return
-	new /obj/effect/xenomorph/spray(T, 10)
 
 /datum/ammo/xeno/boiler_gas
 	name = "glob of gas"
