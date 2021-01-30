@@ -97,7 +97,7 @@ a.popt {text-decoration: none;}
    font-variant: small-caps;
    font-size: 1.1em;
    font-weight: bold;
-	color: #ddd;
+	color: #dddddd;
 }
 #newMessages:hover {background: #2b2b2b;}
 #newMessages i {vertical-align: middle; padding-left: 3px;}
@@ -111,7 +111,7 @@ a.popt {text-decoration: none;}
    height: 30px;
 	padding: 5px 0;
 	display: block;
-	color: #ddd;
+	color: #dddddd;
 	text-decoration: none;
    line-height: 28px;
    border-top: 1px solid #b4b4b4;
@@ -155,24 +155,24 @@ a.popt {text-decoration: none;}
 	position: fixed;
 	top: 50%;
 	left: 50%;
-	background: #ddd;
+	background: #dddddd;
 }
 .popup .close {
 	position: absolute;
-	background: #aaa;
+	background: #aaaaaa;
 	top: 0;
 	right: 0;
-	color: #333;
+	color: #333333;
 	text-decoration: none;
 	z-index: 2;
 	padding: 0 10px;
 	height: 30px;
 	line-height: 30px;
 }
-.popup .close:hover {background: #999;}
+.popup .close:hover {background: #999999;}
 .popup .head {
-	background: #999;
-	color: #ddd;
+	background: #999999;
+	color: #dddddd;
 	padding: 0 10px;
 	height: 30px;
 	line-height: 30px;
@@ -181,14 +181,14 @@ a.popt {text-decoration: none;}
 	font-weight: bold;
 	border-bottom: 2px solid green;
 }
-.popup input {border: 1px solid #999; background: #fff; margin: 0; padding: 5px; outline: none; color: #333;}
+.popup input {border: 1px solid #999999; background: #ffffff; margin: 0; padding: 5px; outline: none; color: #333333;}
 .popup input[type=text]:hover, .popup input[type=text]:active, .popup input[type=text]:focus {border-color: green;}
-.popup input[type=submit] {padding: 5px 10px; background: #999; color: #ddd; text-transform: uppercase; font-size: 0.9em; font-weight: bold;}
-.popup input[type=submit]:hover, .popup input[type=submit]:focus, .popup input[type=submit]:active {background: #aaa; cursor: pointer;}
+.popup input[type=submit] {padding: 5px 10px; background: #999999; color: #dddddd; text-transform: uppercase; font-size: 0.9em; font-weight: bold;}
+.popup input[type=submit]:hover, .popup input[type=submit]:focus, .popup input[type=submit]:active {background: #aaaaaa; cursor: pointer;}
 
 .changeFont {padding: 10px;}
-.changeFont a {display: block; text-decoration: none; padding: 3px; color: #333;}
-.changeFont a:hover {background: #ccc;}
+.changeFont a {display: block; text-decoration: none; padding: 3px; color: #333333;}
+.changeFont a:hover {background: #cccccc;}
 
 .highlightPopup {padding: 10px; text-align: center;}
 .highlightPopup input[type=text] {display: block; width: 215px; text-align: left; margin-top: 5px;}
@@ -256,7 +256,7 @@ a.popt {text-decoration: none;}
 .name					{					font-weight: bold;}
 
 
-.say					{}
+.say					{color: #eeeeee;}
 .deadsay				{color: #732FCD;}
 .radio					{color: #008000;}
 .deptradio				{color: #ff00ff;}
