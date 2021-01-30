@@ -21,7 +21,7 @@
 #define RADIO_KEY_COMMAND "v"
 #define RADIO_TOKEN_COMMAND ":v"
 
-#define RADIO_CHANNEL_CAS "fire support"
+#define RADIO_CHANNEL_CAS "Fire support"
 #define RADIO_KEY_CAS "s"
 #define RADIO_TOKEN_CAS ":s" //s for support
 
