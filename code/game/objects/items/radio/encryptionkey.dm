@@ -29,7 +29,7 @@
 	icon_state = "cargo_cypherkey"
 	channels = list(RADIO_CHANNEL_REQUISITIONS = TRUE)
 
-/obj/item/encryptionkey/mmpo
+/obj/item/encryptionkey/cas
 	name = "\improper fire support specialist radio encryption key"
 	icon_state = "rob_cypherkey"
 	channels = list(RADIO_CHANNEL_CAS = TRUE, RADIO_CHANNEL_COMMAND = TRUE)

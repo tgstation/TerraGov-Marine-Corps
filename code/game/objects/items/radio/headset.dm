@@ -499,7 +499,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	name = "marine generic radio headset"
 	icon_state = "headset_marine_generic"
 
-/obj/item/radio/headset/mainship/marine/generic/mmpo
+/obj/item/radio/headset/mainship/marine/generic/cas
 	name = "marine fire support specialist headset"
 	icon_state = "sec_headset"
 	keyslot2 = /obj/item/encryptionkey/cas
