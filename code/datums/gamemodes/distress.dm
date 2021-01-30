@@ -5,7 +5,7 @@
 	name = "Distress Signal"
 	config_tag = "Distress Signal"
 	required_players = 2
-	flags_round_type = MODE_INFESTATION|MODE_LZ_SHUTTERS|MODE_XENO_RULER
+	flags_round_type = MODE_INFESTATION|MODE_LZ_SHUTTERS|MODE_XENO_RULER|MODE_XENO_FREE_RESPAWN
 	flags_landmarks = MODE_LANDMARK_SPAWN_XENO_TUNNELS|MODE_LANDMARK_SPAWN_MAP_ITEM
 	round_end_states = list(MODE_INFESTATION_X_MAJOR, MODE_INFESTATION_M_MAJOR, MODE_INFESTATION_X_MINOR, MODE_INFESTATION_M_MINOR, MODE_INFESTATION_DRAW_DEATH)
 
@@ -72,8 +72,21 @@
 /datum/game_mode/infestation/distress/post_setup()
 	. = ..()
 	scale_gear()
-	for(var/i in GLOB.xeno_resin_silo_turfs)
-		new /obj/structure/resin/silo(i)
+	var/silo_number
+	switch(TGS_CLIENT_COUNT)
+		if(0 to 20)
+			silo_number = 2
+		if(20 to 40)
+			silo_number = 3
+		if(40 to 60)
+			silo_number = 4
+		if(60 to INFINITY)
+			silo_number = 5
+	
+	for(var/i in 1 to silo_number)//Random silo generation depending on the number of players
+		var/turf = GLOB.xeno_resin_silo_turfs[rand(1,GLOB.xeno_resin_silo_turfs.len)]
+		GLOB.xeno_resin_silo_turfs -= turf
+		new /obj/structure/resin/silo(turf)
 
 	addtimer(CALLBACK(src, .proc/announce_bioscans, FALSE, 1), rand(30 SECONDS, 1 MINUTES)) //First scan shows no location but more precise numbers.
 
