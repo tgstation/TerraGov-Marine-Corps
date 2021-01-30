@@ -934,19 +934,13 @@
 	},
 /area/sulaco/medbay/west)
 "acY" = (
-/obj/machinery/bioprinter,
-/obj/machinery/light{
-	dir = 4
-	},
+/obj/machinery/bioprinter/stocked,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
 	},
 /area/sulaco/medbay/surgery_two)
 "acZ" = (
-/obj/machinery/bioprinter,
-/obj/machinery/light{
-	dir = 8
-	},
+/obj/machinery/bioprinter/stocked,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
 	},
@@ -1767,6 +1761,9 @@
 	dir = 4
 	},
 /area/sulaco/engineering/atmos)
+"agb" = (
+/turf/closed/wall/mainship/white,
+/area/sulaco/hallway/lower_main_hall)
 "agm" = (
 /obj/machinery/vending/tool,
 /turf/open/floor/prison,
@@ -11900,9 +11897,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint)
-"fVW" = (
-/turf/closed/wall/mainship/white,
-/area/sulaco/hallway/lower_main_hall)
 "fWv" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 4
@@ -48369,7 +48363,7 @@ aWG
 xKR
 aWG
 iqZ
-fVW
+agb
 aaJ
 ajO
 aiA
@@ -48626,7 +48620,7 @@ aWG
 vmi
 aWG
 eVE
-fVW
+agb
 aaJ
 yiP
 aio
@@ -48883,7 +48877,7 @@ aWG
 xKR
 aWG
 agm
-fVW
+agb
 aaJ
 ajQ
 aeL
@@ -49139,7 +49133,7 @@ aVZ
 aWG
 xKR
 aWG
-fVW
+agb
 aaQ
 aaJ
 aaJ
