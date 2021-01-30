@@ -293,7 +293,6 @@
 		/obj/item/weapon/gun/rifle/m412l1_hpr,
 		/obj/item/weapon/gun/rifle/type71/flamer,
 		/obj/item/weapon/gun/rifle/type71,
-		/obj/item/weapon/gun/rifle/type71/carbine,
 		/obj/item/weapon/gun/rifle/standard_autoshotgun,
 		/obj/item/weapon/gun/energy/lasgun/lasrifle,
 		/obj/item/weapon/gun/shotgun/pump,
@@ -307,7 +306,7 @@
 	name = "Tier 4 Weapon Spawn"
 	icon_state = "weapon4"
 	weapon_list = list(
-		/obj/item/weapon/gun/rifle/type71/carbine/commando,
+		/obj/item/weapon/gun/rifle/type71/commando,
 		/obj/item/weapon/gun/rifle/m412/elite,
 		/obj/item/weapon/gun/rifle/sniper/elite,
 		/obj/item/weapon/gun/smg/m25/elite,
