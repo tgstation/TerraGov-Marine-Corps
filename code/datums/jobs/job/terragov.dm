@@ -7,9 +7,8 @@
 		to_chat(M, "<span class='notice'><b>As this ship was initially staffed with a [CONFIG_GET(flag/jobs_have_minimal_access) ? "skeleton crew, additional access may" : "full crew, only the job's necessities"] have been added to the crew's ID cards.</b></span>")
 
 /datum/job/terragov/return_spawn_type(datum/preferences/prefs)
-	return prefs ? prefs.species : /mob/living/carbon/human
-	Switch()
-	if "Human"
-		/mob/living/carbon/human
-	if "Vatborn"
-		/mob/living/carbon/human/species/vatborn
+	switch(prefs?.species)
+		if("Vatborn")
+			return /mob/living/carbon/human/species/vatborn
+		else
+			return /mob/living/carbon/human

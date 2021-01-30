@@ -386,9 +386,6 @@
 	close_spawn_windows()
 	var/spawn_type = assigned_role.return_spawn_type(client.prefs)
 	var/mob/living/spawning_living = new spawn_type()
-	if(ishuman(spawning_living))
-		var/mob/living/carbon/human/spawninghuman = spawning_living
-		spawninghuman.set_species(client.prefs.species)
 	GLOB.joined_player_list += ckey
 
 	spawning_living.on_spawn(src)
