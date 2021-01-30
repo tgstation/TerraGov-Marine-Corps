@@ -25,6 +25,7 @@
 		/obj/item/grown/nettle/death = list(/datum/reagent/toxin/acid/polyacid = 0),
 		/obj/item/grown/nettle = list(/datum/reagent/toxin/acid = 0),
 		/obj/item/alien_embryo = list(/datum/reagent/consumable/larvajelly = 5),
+		/obj/item/scalp = list(/datum/reagent/consumable/larvajelly = 5),
 
 		//Blender Stuff
 		/obj/item/reagent_containers/food/snacks/grown/soybeans = list(/datum/reagent/consumable/drink/milk/soymilk = 0),
@@ -364,6 +365,17 @@
 
 	//special xeno embryo grinding
 	for (var/obj/item/alien_embryo/O in holdingitems)
+		if(beaker.reagents.total_volume >= beaker.reagents.maximum_volume)
+			break
+		var/space = beaker.reagents.maximum_volume - beaker.reagents.total_volume
+		var/amount = O.grinder_amount
+		beaker.reagents.add_reagent(O.grinder_datum,min(amount, space))
+		if(space < amount)
+			break
+		remove_object(O)
+		break
+
+	for (var/obj/item/scalp/O in holdingitems)
 		if(beaker.reagents.total_volume >= beaker.reagents.maximum_volume)
 			break
 		var/space = beaker.reagents.maximum_volume - beaker.reagents.total_volume

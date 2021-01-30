@@ -26,3 +26,5 @@
 	icon = 'icons/unused/Marine_research.dmi'
 	icon_state = "chitin-chunk"
 	w_class = WEIGHT_CLASS_TINY
+	var/grinder_datum = /datum/reagent/consumable/larvajelly //good ol cookin
+	var/grinder_amount = 5
