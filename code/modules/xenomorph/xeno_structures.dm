@@ -148,7 +148,7 @@
 	COOLDOWN_START(src, spawning_pool_proxy_alert_cooldown, XENO_HEALTH_ALERT_COOLDOWN) //set the cooldown.
 
 
-/obj/structure/resin/spawning_poolning_pool/process()
+/obj/structure/resin/spawning_pool/process()
 	//Regenerate if we're at less than max integrity
 	if(obj_integrity < max_integrity)
 		obj_integrity = min(obj_integrity + 25, max_integrity) //Regen 5 HP per sec

@@ -616,7 +616,7 @@ to_chat will check for valid clients itself already so no need to double check f
 
 
 /datum/hive_status/normal/proc/attempt_to_spawn_larva_in_spawning_pool(mob/xeno_candidate, possible_spawning_pools)
-	var/obj/structure/resin/spawning_poolning_pool/chosen_spawning_pool
+	var/obj/structure/resin/spawning_pool/chosen_spawning_pool
 	if(length(possible_spawning_pools) > 1)
 		chosen_spawning_pool = input("Available Egg Silos") as null|anything in possible_spawning_pools
 		xeno_candidate.forceMove(chosen_spawning_pool)
