@@ -67,20 +67,20 @@
 	return xenoinfo
 
 
-///Relays health and location data about resin silos belonging to the same hive as the input user
-/proc/resin_silo_status_output(mob/living/carbon/xenomorph/user, datum/hive_status/hive)
-	. = "<BR><b>List of Resin Silos:</b><BR><table cellspacing=4>" //Resin silo data
-	for(var/obj/structure/resin/silo/resin_silo as() in GLOB.xeno_resin_silos)
-		if(resin_silo.associated_hive == hive)
+///Relays health and location data about resin spawning_pools belonging to the same hive as the input user
+/proc/resin_spawning_pool_status_output(mob/living/carbon/xenomorph/user, datum/hive_status/hive)
+	. = "<BR><b>List of Resin Silos:</b><BR><table cellspacing=4>" //Resin spawning_pool data
+	for(var/obj/structure/resin/spawning_pool/resin_spawning_pool as() in GLOB.xeno_resin_spawning_pools)
+		if(resin_spawning_pool.associated_hive == hive)
 
 			var/hp_color = "green"
-			switch(resin_silo.obj_integrity/resin_silo.max_integrity)
+			switch(resin_spawning_pool.obj_integrity/resin_spawning_pool.max_integrity)
 				if(0.33 to 0.66)
 					hp_color = "orange"
 				if(0 to 0.33)
 					hp_color = "red"
 
-			. += "<b>[resin_silo.name] <font color=[hp_color]>Health: ([resin_silo.obj_integrity]/[resin_silo.max_integrity])</font></b> located at: <b><font color=green>[AREACOORD_NO_Z(resin_silo)]</b></font><BR>"
+			. += "<b>[resin_spawning_pool.name] <font color=[hp_color]>Health: ([resin_spawning_pool.obj_integrity]/[resin_spawning_pool.max_integrity])</font></b> located at: <b><font color=green>[AREACOORD_NO_Z(resin_spawning_pool)]</b></font><BR>"
 
 	. += "</table>"
 
@@ -159,7 +159,7 @@
 	dat += "<table cellspacing=4>"
 	dat += xenoinfo
 	dat += "</table>"
-	dat += resin_silo_status_output(user, hive)
+	dat += resin_spawning_pool_status_output(user, hive)
 
 	var/datum/browser/popup = new(user, "roundstatus", "<div align='center'>Hive Status</div>", 650, 650)
 	popup.set_content(dat)
@@ -259,9 +259,9 @@
 			var/rulerless_countdown = SSticker.mode.get_hivemind_collapse_countdown()
 			if(rulerless_countdown)
 				stat("<b>Orphan hivemind collapse timer:</b>", rulerless_countdown)
-			var/siloless_countdown = SSticker.mode.get_siloless_collapse_countdown()
-			if(siloless_countdown)
-				stat("<b>Silo less hive collapse timer:</b>", siloless_countdown)
+			var/no_spawning_pool_countdown = SSticker.mode.get_spawning_poolless_collapse_countdown()
+			if(no_spawning_pool_countdown)
+				stat("<b>Silo less hive collapse timer:</b>", no_spawning_pool_countdown)
 			return
 		if(XENO_HIVE_CORRUPTED)
 			stat("Hive Orders:","Follow the instructions of our masters")
@@ -387,41 +387,6 @@
 	SEND_SIGNAL(src, COMSIG_XENO_NONE_THROW_HIT)
 	set_throwing(FALSE) //Resert throwing since something was hit.
 	return ..() //Do the parent otherwise, for turfs.
-
-
-//Bleuugh
-
-/mob/living/carbon/xenomorph/proc/empty_gut(warning = FALSE, content_cleanup = FALSE)
-	if(warning)
-		if(LAZYLEN(stomach_contents))
-			visible_message("<span class='xenowarning'>\The [src] hurls out the contents of their stomach!</span>", \
-			"<span class='xenowarning'>We hurl out the contents of our stomach!</span>", null, 5)
-		else
-			to_chat(src, "<span class='warning'>There is nothing to regurgitate.</span>")
-
-	for(var/i in stomach_contents)
-		do_regurgitate(i)
-
-	if(content_cleanup)
-		for(var/x in contents) //Get rid of anything that may be stuck inside us as well
-			var/atom/movable/stowaway = x
-			stowaway.forceMove(get_turf(src))
-			stack_trace("[stowaway] found in [src]'s contents. It shouldn't have ended there.")
-
-
-/mob/living/carbon/xenomorph/proc/do_devour(mob/living/carbon/prey)
-	LAZYADD(stomach_contents, prey)
-	prey.Paralyze(12 MINUTES)
-	prey.adjust_tinttotal(TINT_BLIND)
-	prey.forceMove(src)
-	SEND_SIGNAL(prey, COMSIG_CARBON_DEVOURED_BY_XENO)
-
-
-/mob/living/carbon/xenomorph/proc/do_regurgitate(mob/living/carbon/prey)
-	LAZYREMOVE(stomach_contents, prey)
-	prey.forceMove(get_turf(src))
-	prey.adjust_tinttotal(-TINT_BLIND)
-	SEND_SIGNAL(prey, COMSIG_MOVABLE_RELEASED_FROM_STOMACH, src)
 
 
 /mob/living/carbon/xenomorph/proc/toggle_nightvision(new_lighting_alpha)

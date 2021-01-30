@@ -38,7 +38,7 @@
 	var/bioscan_current_interval = 45 MINUTES
 	var/bioscan_ongoing_interval = 20 MINUTES
 	var/orphan_hive_timer
-	var/siloless_hive_timer
+	var/spawning_poolless_hive_timer
 
 
 /datum/game_mode/infestation/distress/announce()
@@ -72,21 +72,21 @@
 /datum/game_mode/infestation/distress/post_setup()
 	. = ..()
 	scale_gear()
-	var/silo_number
+	var/spawning_pool_number
 	switch(TGS_CLIENT_COUNT)
 		if(0 to 20)
-			silo_number = 2
+			spawning_pool_number = 2
 		if(20 to 40)
-			silo_number = 3
+			spawning_pool_number = 3
 		if(40 to 60)
-			silo_number = 4
+			spawning_pool_number = 4
 		if(60 to INFINITY)
-			silo_number = 5
+			spawning_pool_number = 5
 	
-	for(var/i in 1 to silo_number)//Random silo generation depending on the number of players
-		var/turf = GLOB.xeno_resin_silo_turfs[rand(1,GLOB.xeno_resin_silo_turfs.len)]
-		GLOB.xeno_resin_silo_turfs -= turf
-		new /obj/structure/resin/silo(turf)
+	for(var/i in 1 to spawning_pool_number)//Random spawning_pool generation depending on the number of players
+		var/turf = GLOB.xeno_resin_spawning_pool_turfs[rand(1,GLOB.xeno_resin_spawning_pool_turfs.len)]
+		GLOB.xeno_resin_spawning_pool_turfs -= turf
+		new /obj/structure/resin/spawning_pool(turf)
 
 	addtimer(CALLBACK(src, .proc/announce_bioscans, FALSE, 1), rand(30 SECONDS, 1 MINUTES)) //First scan shows no location but more precise numbers.
 
@@ -297,7 +297,7 @@
 		return "[(eta / 60) % 60]:[add_leading(num2text(eta % 60), 2, "0")]"
 
 
-/datum/game_mode/infestation/distress/siloless_hive_collapse()
+/datum/game_mode/infestation/distress/spawning_poolless_hive_collapse()
 	if(!(flags_round_type & MODE_INFESTATION))
 		return
 	if(round_finished)
@@ -307,10 +307,10 @@
 	round_finished = MODE_INFESTATION_M_MAJOR
 
 
-/datum/game_mode/infestation/distress/get_siloless_collapse_countdown()
-	if(!siloless_hive_timer)
+/datum/game_mode/infestation/distress/get_spawning_poolless_collapse_countdown()
+	if(!spawning_poolless_hive_timer)
 		return 0
-	var/eta = timeleft(siloless_hive_timer) * 0.1
+	var/eta = timeleft(spawning_poolless_hive_timer) * 0.1
 	if(eta > 0)
 		return "[(eta / 60) % 60]:[add_leading(num2text(eta % 60), 2, "0")]"
 

@@ -85,8 +85,8 @@
 
 /datum/game_mode/infestation/crash/post_setup()
 	. = ..()
-	for(var/i in GLOB.xeno_resin_silo_turfs)
-		new /obj/structure/resin/silo(i)
+	for(var/i in GLOB.xeno_resin_spawning_pool_turfs)
+		new /obj/structure/resin/spawning_pool(i)
 
 	for(var/i in GLOB.nuke_spawn_locs)
 		new /obj/machinery/nuclearbomb(i)
@@ -357,7 +357,7 @@
 	var/num_xenos = xeno_hive.get_total_xeno_number() + stored_larva
 	var/larvapoints = (get_total_joblarvaworth() - (num_xenos * xeno_job.job_points_needed )) / xeno_job.job_points_needed
 	if(!num_xenos)
-		if(!length(GLOB.xeno_resin_silos))
+		if(!length(GLOB.xeno_resin_spawning_pools))
 			check_finished(TRUE)
 			return //RIP benos.
 		if(stored_larva)

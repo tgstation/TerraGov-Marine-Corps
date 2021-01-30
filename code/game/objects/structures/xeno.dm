@@ -712,13 +712,6 @@ TUNNEL
 		to_chat(M, "<span class='warning'>There are no other tunnels in the network!</span>")
 		return FALSE
 
-	for(var/tummy_resident in M.stomach_contents)
-		if(ishuman(tummy_resident))
-			var/mob/living/carbon/human/H = tummy_resident
-			if(check_tod(H))
-				to_chat(M, "<span class='warning'>We cannot enter the tunnel while the host we devoured has signs of life. We should headbite it to finish it off.</span>")
-				return
-
 	pick_a_tunnel(M)
 
 ///Here we pick a tunnel to go to, then travel to that tunnel and peep out, confirming whether or not we want to emerge or go to another tunnel.

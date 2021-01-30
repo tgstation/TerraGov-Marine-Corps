@@ -41445,7 +41445,7 @@
 /turf/open/floor/plating,
 /area/prison/security/monitoring/lowsec/sw)
 "dDs" = (
-/obj/effect/landmark/xeno_silo_spawn,
+/obj/effect/landmark/xeno_spawning_pool_spawn,
 /obj/structure/cable,
 /turf/open/floor/prison/darkred{
 	dir = 8
@@ -41879,7 +41879,7 @@
 /turf/open/floor/wood,
 /area/prison/residential/south)
 "gMf" = (
-/obj/effect/landmark/xeno_silo_spawn,
+/obj/effect/landmark/xeno_spawning_pool_spawn,
 /turf/open/floor/plating,
 /area/prison/cellblock/mediumsec/south)
 "gPc" = (
@@ -42104,7 +42104,7 @@
 /turf/open/floor/prison,
 /area/prison/research/secret/dissection)
 "iFe" = (
-/obj/effect/landmark/xeno_silo_spawn,
+/obj/effect/landmark/xeno_spawning_pool_spawn,
 /turf/open/floor/plating,
 /area/prison/research/secret/biolab)
 "iHR" = (
@@ -43513,7 +43513,7 @@
 /turf/open/floor/plating,
 /area/prison/maintenance/hangar_barracks)
 "tme" = (
-/obj/effect/landmark/xeno_silo_spawn,
+/obj/effect/landmark/xeno_spawning_pool_spawn,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},

@@ -15,113 +15,6 @@
 	X.lay_down()
 	return succeed_activate()
 
-// Regurgitate
-/datum/action/xeno_action/regurgitate
-	name = "Regurgitate"
-	action_icon_state = "regurgitate"
-	mechanics_text = "Vomit whatever you have devoured."
-	use_state_flags = XACT_USE_STAGGERED|XACT_USE_FORTIFIED|XACT_USE_CRESTED
-	keybind_signal = COMSIG_XENOABILITY_REGURGITATE
-
-/datum/action/xeno_action/regurgitate/can_use_action(silent = FALSE, override_flags)
-	. = ..()
-	if(!.)
-		return FALSE
-	var/mob/living/carbon/xenomorph/devourer = owner
-	if(!LAZYLEN(devourer.stomach_contents))
-		if(!silent)
-			to_chat(devourer, "<span class='warning'>There's nothing in our stomach that needs regurgitating.</span>")
-		return FALSE
-
-/datum/action/xeno_action/regurgitate/action_activate()
-	var/mob/living/carbon/xenomorph/spewer = owner
-	spewer.empty_gut(TRUE)
-
-	return succeed_activate()
-
-//*********
-// Headbite
-//*********
-/datum/action/xeno_action/activable/headbite
-	name = "Headbite"
-	action_icon_state = "headbite"
-	mechanics_text = "Permanently kill a target."
-	use_state_flags = XACT_USE_STAGGERED|XACT_USE_FORTIFIED|XACT_USE_CRESTED //can't use while staggered, defender fortified or crest down
-	keybind_signal = COMSIG_XENOABILITY_HEADBITE
-	plasma_cost = 100
-
-/datum/action/xeno_action/activable/headbite/can_use_ability(atom/A, silent = FALSE, override_flags)
-	. = ..() //do after checking the below stuff
-	if(!.)
-		return
-	if(!iscarbon(A))
-		return FALSE
-	var/mob/living/carbon/xenomorph/X = owner
-	var/mob/living/carbon/victim = A //target of ability
-	if(X.action_busy) //can't use if busy
-		return FALSE
-	if(!X.Adjacent(victim)) //checks if owner next to target
-		return FALSE
-	if(X.on_fire)
-		if(!silent)
-			to_chat(X, "<span class='warning'>We're too busy being on fire to do this!</span>")
-		return FALSE
-	if(victim.stat != DEAD)
-		if(!silent)
-			to_chat(X, "<span class='warning'>This creature is struggling too much for us to aim precisely.</span>")
-		return FALSE
-	if(victim.headbitten)
-		if(!silent)
-			to_chat(X, "<span class='warning'>This creature has already been headbitten.</span>")
-		return FALSE
-	if(victim.chestburst)
-		if(!silent)
-			to_chat(X, "<span class='warning'>This creature has already served its purpose.</span>")
-		return FALSE
-	if(X.issamexenohive(victim)) //checks if target and victim are in the same hive
-		if(!silent)
-			to_chat(X, "<span class='warning'>We can't bring ourselves to harm a fellow sister to this magnitude.</span>")
-		return FALSE
-	if(issynth(victim)) //checks if target is a synth
-		if(!silent)
-			to_chat(X, "<span class='warning'>We have no reason to bite this non-living thing.</span>")
-		return FALSE
-	X.face_atom(victim) //Face towards the target so we don't look silly
-	X.visible_message("<span class='xenowarning'>\The [X] begins opening its mouth and extending a second jaw towards \the [victim].</span>", \
-	"<span class='danger'>We prepare our inner jaw for a finishing blow on \the [victim]!</span>", null, 20)
-	if(!do_after(X, 10 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(X, /mob.proc/break_do_after_checks, list("health" = X.health))))
-		X.visible_message("<span class='xenowarning'>\The [X] retracts its inner jaw.</span>", \
-		"<span class='danger'>We retract our inner jaw.</span>", null, 20)
-		return FALSE
-	succeed_activate() //dew it
-
-/datum/action/xeno_action/activable/headbite/use_ability(mob/M)
-	var/mob/living/carbon/xenomorph/X = owner
-	var/mob/living/carbon/victim = M
-
-	X.visible_message("<span class='xenodanger'>\The [X] viciously bites into \the [victim]'s head with its inner jaw!</span>", \
-	"<span class='xenodanger'>We suddenly bite into the \the [victim]'s head with our second jaw!</span>")
-
-	if(ishuman(victim))
-		var/mob/living/carbon/human/H = victim
-		victim.emote_burstscream()
-		var/datum/internal_organ/O
-		O = H.internal_organs_by_name["brain"] //This removes (and later garbage collects) the organ. No brain means instant death.
-		H.internal_organs_by_name -= "brain"
-		H.internal_organs -= O
-
-	X.do_attack_animation(victim, ATTACK_EFFECT_BITE)
-	playsound(victim, pick( 'sound/weapons/alien_tail_attack.ogg', 'sound/weapons/alien_bite1.ogg'), 50)
-	victim.death()
-	victim.headbitten = TRUE
-	victim.update_headbite()
-
-	log_combat(victim, owner, "was headbitten.")
-	log_game("[key_name(victim)] was headbitten at [AREACOORD(victim.loc)].")
-
-	GLOB.round_statistics.xeno_headbites++
-	SSblackbox.record_feedback("tally", "round_statistics", 1, "xeno_headbites")
-
 // ***************************************
 // *********** Drone-y abilities
 // ***************************************
@@ -1009,24 +902,21 @@
 
 
 ////////////////////
-/// Build silo
+/// Build spawning_pool
 ///////////////////
-/datum/action/xeno_action/activable/build_silo
-	name = "Secrete resin silo"
-	action_icon_state = "resin_silo"
-	mechanics_text = "Creates a new resin silo on a tile with a nest."
+/datum/action/xeno_action/activable/build_spawning_pool
+	name = "Secrete resin spawning_pool"
+	action_icon_state = "resin_spawning_pool"
+	mechanics_text = "Creates a new resin spawning pool"
 	ability_name = "secrete resin"
 	plasma_cost = 150
-	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN_SILO
+	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN_SPAWNING_POOL
 	cooldown_timer = 60 SECONDS
 
 	/// How long does it take to build
 	var/build_time = 10 SECONDS
 
-	/// how many dead / non-chestbursted mobs are required to build the silo
-	var/required_mobs = 3
-
-/datum/action/xeno_action/activable/build_silo/can_use_ability(atom/A, silent, override_flags)
+/datum/action/xeno_action/activable/build_spawning_pool/can_use_ability(atom/A, silent, override_flags)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -1035,42 +925,9 @@
 		if(!silent)
 			to_chat(owner, "<span class='warning'>We need to get closer!.</span>")
 		return FALSE
-	var/obj/structure/bed/nest/found_nest = locate() in get_turf(A)
-	if(!found_nest)
-		if(!silent)
-			to_chat(owner, "<span class='warning'>You must build a resin nest and have [required_mobs] bodies for a silo!</span>")
-		return FALSE
 
 
-/datum/action/xeno_action/activable/build_silo/use_ability(atom/A)
-	// we do this check here so we can clear the mobs afterwards
-	var/list/mob/living/valid_mobs = list()
-	for(var/thing in get_turf(A))
-		if(!ishuman(thing))
-			continue
-		var/mob/living/turf_mob = thing
-		if(turf_mob.stat == DEAD && turf_mob.chestburst == 0)
-			valid_mobs += turf_mob
-
-	if(length(valid_mobs) < required_mobs)
-		to_chat(owner, "<span class='warning'>There are not enough dead bodies, you need [required_mobs] bodies for a silo!</span>")
-		return fail_activate()
-
-	if(!do_after(owner, build_time, TRUE, A, BUSY_ICON_BUILD))
-		return fail_activate()
-
-	var/obj/structure/resin/silo/hivesilo = new(get_step(A, SOUTHWEST))
-
-	// Throw the mobs inside the silo
-	for(var/iter in valid_mobs)
-		var/mob/living/to_move = iter
-		to_move.chestburst = 2 //So you can't reuse corpses if the silo is destroyed
-		to_move.update_burst()
-		to_move.forceMove(hivesilo)
-
-	// Just to protect against two people doing the action at the same time
-	if(!QDELETED(A))
-		qdel(A)
+/datum/action/xeno_action/activable/build_spawning_pool/use_ability(atom/A)
 
 	succeed_activate()
 

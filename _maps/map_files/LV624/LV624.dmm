@@ -54,7 +54,7 @@
 /turf/closed/mineral,
 /area/lv624/ground/caves/west2)
 "aaB" = (
-/obj/effect/landmark/xeno_silo_spawn,
+/obj/effect/landmark/xeno_spawning_pool_spawn,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west2)
 "aaC" = (
@@ -346,10 +346,6 @@
 /obj/effect/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central1)
-"acv" = (
-/obj/item/clothing/head/helmet/augment/alien,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/west2)
 "acB" = (
 /obj/structure/mineral_door/resin/thick,
 /turf/open/floor/plating/ground/dirt,
@@ -14789,7 +14785,7 @@
 /turf/open/floor/marking/bot,
 /area/shuttle/drop2/lz2)
 "cPW" = (
-/obj/effect/landmark/xeno_silo_spawn,
+/obj/effect/landmark/xeno_spawning_pool_spawn,
 /turf/open/floor/engine/cult,
 /area/lv624/ground/caves/west2)
 "cRw" = (
@@ -15291,7 +15287,7 @@
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/engineering)
 "hAR" = (
-/obj/effect/landmark/xeno_silo_spawn,
+/obj/effect/landmark/xeno_spawning_pool_spawn,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central1)
 "hDA" = (
@@ -15725,7 +15721,7 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "lFw" = (
-/obj/effect/landmark/xeno_silo_spawn,
+/obj/effect/landmark/xeno_spawning_pool_spawn,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east2)
 "lRP" = (
@@ -15741,7 +15737,7 @@
 /turf/closed/wall/r_wall,
 /area/shuttle/drop1/lz1)
 "lXt" = (
-/obj/effect/landmark/xeno_silo_spawn,
+/obj/effect/landmark/xeno_spawning_pool_spawn,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east1)
 "lYR" = (
@@ -15797,7 +15793,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/corner2,
 /area/lv624/ground/compound/sw)
 "mqj" = (
-/obj/effect/landmark/xeno_silo_spawn,
+/obj/effect/landmark/xeno_spawning_pool_spawn,
 /turf/open/floor/engine/cult,
 /area/lv624/ground/caves/west1)
 "mrh" = (
@@ -16020,6 +16016,11 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
+"oRM" = (
+/obj/effect/decal/remains/xeno,
+/obj/effect/alien/weeds/node,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/east1)
 "oVq" = (
 /obj/structure/sign/botany{
 	dir = 4
@@ -16597,6 +16598,11 @@
 "vNz" = (
 /turf/open/floor,
 /area/storage/testroom)
+"vPh" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/alien/weeds/node,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/east2)
 "vTe" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/structure/sign/botany{
@@ -16763,7 +16769,7 @@
 /turf/open/space/basic,
 /area/lv624/lazarus/robotics)
 "xLJ" = (
-/obj/effect/landmark/xeno_silo_spawn,
+/obj/effect/landmark/xeno_spawning_pool_spawn,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west1)
 "xMw" = (
@@ -19563,7 +19569,7 @@ tRG
 tRG
 tRG
 abc
-abc
+abd
 tRG
 tRG
 tRG
@@ -19700,9 +19706,9 @@ aej
 lRP
 aal
 aej
+aal
 aej
-aej
-aej
+aal
 aej
 abb
 abb
@@ -20274,7 +20280,7 @@ abb
 abb
 abc
 abc
-abc
+abd
 abc
 abc
 abc
@@ -20631,7 +20637,7 @@ abb
 abb
 abb
 abc
-abc
+abd
 abc
 abc
 abb
@@ -21513,7 +21519,7 @@ abc
 abk
 abk
 abc
-abc
+abd
 abk
 abk
 abb
@@ -21862,7 +21868,7 @@ abc
 abc
 abu
 abc
-abc
+abd
 abc
 abc
 abc
@@ -22219,7 +22225,7 @@ abc
 abc
 abu
 abc
-abc
+abd
 abc
 abu
 abu
@@ -22395,7 +22401,7 @@ tRG
 abc
 abc
 abc
-abc
+abd
 abu
 abc
 abc
@@ -22927,7 +22933,7 @@ aaD
 aaD
 aaD
 abk
-abc
+abd
 tRG
 abc
 abc
@@ -23446,7 +23452,7 @@ aej
 aej
 aej
 aej
-aej
+aal
 oNR
 aai
 aaA
@@ -25589,7 +25595,7 @@ aej
 aej
 aan
 aej
-aej
+aal
 aej
 aej
 aej
@@ -25607,7 +25613,7 @@ aej
 aej
 aat
 aej
-aej
+aal
 aej
 aej
 aej
@@ -25768,7 +25774,7 @@ aej
 aej
 aat
 aej
-acv
+aej
 aej
 aal
 aej
@@ -25780,7 +25786,7 @@ aej
 aej
 aat
 aej
-aej
+aal
 aej
 aej
 aej
@@ -26150,7 +26156,7 @@ aaa
 aej
 abc
 abc
-abc
+abd
 abc
 abc
 abc
@@ -26327,11 +26333,11 @@ aaa
 aaa
 aaa
 aaa
+abd
 abc
 abc
 abc
-abc
-abc
+abd
 abc
 acO
 acO
@@ -26671,7 +26677,7 @@ aej
 aej
 oNR
 aej
-aej
+aal
 aej
 aej
 aaa
@@ -27237,7 +27243,7 @@ acO
 acO
 acO
 acO
-acO
+adh
 acO
 acN
 acN
@@ -27386,7 +27392,7 @@ acs
 abf
 abf
 abf
-abf
+acs
 abe
 abe
 abe
@@ -27587,9 +27593,9 @@ aeP
 aeP
 aeP
 acO
-acO
+adh
 adA
-acO
+adh
 acO
 acO
 adh
@@ -27598,7 +27604,7 @@ acO
 acO
 acO
 acO
-acO
+adh
 aeP
 acN
 aeP
@@ -28485,12 +28491,12 @@ acO
 acO
 adA
 acO
+adh
 acO
 acO
 acO
 acO
-acO
-acO
+adh
 acO
 aeP
 cZd
@@ -40831,7 +40837,7 @@ abG
 abi
 abi
 abi
-abi
+abo
 abi
 abg
 ohY
@@ -41367,7 +41373,7 @@ abg
 abi
 abi
 abi
-abi
+abo
 abg
 abg
 ohY
@@ -41543,7 +41549,7 @@ abg
 abg
 abi
 abi
-abi
+abo
 abo
 abi
 abi
@@ -42083,7 +42089,7 @@ abg
 abi
 abi
 aeS
-abi
+abo
 abi
 dbI
 dbI
@@ -42797,7 +42803,7 @@ abg
 abg
 abg
 abi
-abi
+abo
 abi
 aeS
 abi
@@ -42979,8 +42985,8 @@ abi
 abi
 aeS
 abi
-abi
-aeS
+abo
+oRM
 abi
 ohY
 abg
@@ -43155,7 +43161,7 @@ abg
 abg
 abi
 abi
-abi
+abo
 abi
 aeS
 abi
@@ -43333,12 +43339,12 @@ abi
 abi
 abg
 abi
-abi
+abo
 abi
 abi
 abi
 aeS
-abi
+abo
 abi
 ohY
 abg
@@ -43514,7 +43520,7 @@ abG
 abG
 abG
 abi
-abi
+abo
 abi
 abi
 abo
@@ -43873,7 +43879,7 @@ abi
 abG
 abi
 abi
-abi
+abo
 abi
 abi
 abi
@@ -44406,9 +44412,9 @@ abi
 abi
 abo
 abi
+abo
 abi
-abi
-abi
+abo
 abi
 abg
 abg
@@ -44743,7 +44749,7 @@ aaf
 abI
 abI
 abI
-abI
+aaj
 abn
 abp
 abp
@@ -44912,7 +44918,7 @@ abr
 abr
 xfZ
 abp
-aar
+vPh
 abn
 abI
 abI
@@ -44944,7 +44950,7 @@ abg
 abg
 abq
 abq
-abi
+abo
 abi
 tUj
 abq
@@ -45279,7 +45285,7 @@ aaf
 aaf
 abI
 abI
-abI
+aaj
 abI
 abn
 abn
@@ -45459,7 +45465,7 @@ aaf
 aaf
 vTz
 abI
-abI
+aaj
 abn
 abn
 abI
@@ -45658,9 +45664,9 @@ xib
 abg
 abi
 abi
+abo
 abi
-abi
-abi
+abo
 abi
 abi
 abi

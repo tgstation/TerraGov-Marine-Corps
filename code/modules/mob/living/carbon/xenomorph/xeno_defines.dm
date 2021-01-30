@@ -220,7 +220,6 @@
 	var/time_of_birth
 
 	var/list/stomach_contents
-	var/devour_timer = 0
 
 	var/evolution_stored = 0 //How much evolution they have stored
 
