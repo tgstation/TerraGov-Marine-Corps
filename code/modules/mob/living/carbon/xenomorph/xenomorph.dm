@@ -222,6 +222,7 @@
 		return FALSE //to stop xeno from pulling marines on roller beds.
 	if(ishuman(L))
 		if(L.stat == DEAD) //Can't drag dead human bodies
+			to_chat(usr,"<span class='xenowarning'>This looks gross, better not touch it</span>")
 			return FALSE
 		do_attack_animation(L, ATTACK_EFFECT_GRAB)
 		pull_speed += XENO_DEADHUMAN_DRAG_SLOWDOWN

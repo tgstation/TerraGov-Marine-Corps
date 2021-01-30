@@ -940,6 +940,9 @@
 
 	var/obj/structure/resin/spawning_pool/pool = new(get_step(A, SOUTHWEST))
 	GLOB.xeno_resin_spawning_pools += pool
+
+	var/mob/living/carbon/xenomorph/X = owner
+	SSpoints.xeno_points_by_hive[X.hivenumber] -= psych_cost
 	
 	if(!QDELETED(A))// Just to protect against two people doing the action at the same time
 		qdel(A)
