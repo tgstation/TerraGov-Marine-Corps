@@ -213,7 +213,7 @@
 	wear_suit = /obj/item/clothing/suit/storage/faction/UPP/heavy
 	gloves = /obj/item/clothing/gloves/marine/veteran/PMC
 	head = /obj/item/clothing/head/uppcap/beret
-	suit_store = /obj/item/weapon/gun/rifle/type71/carbine
+	suit_store = /obj/item/weapon/gun/rifle/type71
 	r_store = /obj/item/storage/pouch/general/large
 	l_store = /obj/item/storage/pouch/firstaid/full
 	back = /obj/item/storage/backpack/lightpack
