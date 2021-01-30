@@ -70,7 +70,7 @@ GLOBAL_LIST_INIT(defiler_toxins, typecacheof(list(
 	C.reagents.add_reagent(/datum/reagent/toxin/xeno_growthtoxin, REAGENTS_OVERDOSE, no_overdose = TRUE) //Inject the maximum possible larval growth without ODing
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "now_pregnant")
 	to_chat(X, "<span class='xenodanger'>Our stinger successfully implants a larva into the host.</span>")
-	to_chat(C, "<span class='danger'>You feel horrible pain as something large is forcefully implanted in your thorax.</span>")
+	to_chat(C, "<span class='highdanger'>You feel horrible pain as something large is forcefully implanted in your thorax.</span>")
 	C.adjust_stagger(3)
 	C.add_slowdown(3)
 	C.adjust_blurriness(3) //Cosmetic eye blur SFX
