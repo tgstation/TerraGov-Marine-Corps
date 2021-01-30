@@ -7,7 +7,8 @@ SUBSYSTEM_DEF(spawning_pool)
 	var/max_spawning_pool_spawning = 0
 
 /datum/controller/subsystem/spawning_pool/Initialize(timeofday)
-	addtimer(VARSET_CALLBACK(src, can_fire, TRUE), START_FREE_SPAWNING)
+	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND), .proc/start_spawning)
+	return ..()
 
 /datum/controller/subsystem/spawning_pool/fire(resumed = 0)
 	if(!CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_XENO_FREE_RESPAWN))
@@ -16,6 +17,9 @@ SUBSYSTEM_DEF(spawning_pool)
 	adjust_max_spawning_pool_number()
 	add_larvas()
 
+///Activate the subsystem when shutters open
+/datum/controller/subsystem/spawning_pool/proc/start_spawning()
+	can_fire = TRUE
 
 ///Adjust the maxinum number of spawning_pool able to spawn larvas for free, to preven xenos to just spawn them
 /datum/controller/subsystem/spawning_pool/proc/adjust_max_spawning_pool_number()
