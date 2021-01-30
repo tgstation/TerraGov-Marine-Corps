@@ -905,9 +905,9 @@
 /// Build spawning_pool
 ///////////////////
 /datum/action/xeno_action/activable/build_spawning_pool
-	name = "Secrete resin spawning_pool"
-	action_icon_state = "resin_spawning_pool"
-	mechanics_text = "Creates a new resin spawning pool"
+	name = "Secrete spawning pool"
+	action_icon_state = "spawning_pool"
+	mechanics_text = "Creates a new spawning pool"
 	ability_name = "secrete resin"
 	plasma_cost = 150
 	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN_SPAWNING_POOL
@@ -915,6 +915,8 @@
 
 	/// How long does it take to build
 	var/build_time = 10 SECONDS
+	/// Pyschic point cost
+	var/psych_cost = 18000 //If you have 10 generators, that makes one new pool every 30 minutes
 
 /datum/action/xeno_action/activable/build_spawning_pool/can_use_ability(atom/A, silent, override_flags)
 	. = ..()
@@ -925,10 +927,23 @@
 		if(!silent)
 			to_chat(owner, "<span class='warning'>We need to get closer!.</span>")
 		return FALSE
+	
+	var/mob/living/carbon/xenomorph/X = owner
+	if(SSpoints.xeno_points_by_hive[X.hivenumber]<psych_cost)
+		to_chat(owner, "<span class='xenowarning'>The hive doesn't have the necessary psychic points for you to do that!</span>")
+		return FALSE
 
 
 /datum/action/xeno_action/activable/build_spawning_pool/use_ability(atom/A)
+	if(!do_after(owner, build_time, TRUE, A, BUSY_ICON_BUILD))
+		return fail_activate()
 
+	var/obj/structure/resin/spawning_pool/pool = new(get_step(A, SOUTHWEST))
+	GLOB.xeno_resin_spawning_pools += pool
+	
+	if(!QDELETED(A))// Just to protect against two people doing the action at the same time
+		qdel(A)
+	
 	succeed_activate()
 
 // Salvage Biomass

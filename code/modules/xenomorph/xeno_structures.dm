@@ -25,8 +25,8 @@
 
 
 /obj/structure/resin/spawning_pool
-	icon = 'icons/Xeno/resin_silo.dmi'
-	icon_state = "brown_silo"
+	icon = 'icons/Xeno/spawning_pool.dmi'
+	icon_state = "spawning_pool"
 	name = "spawning pool"
 	desc = "A slimy, oozy resin bed filled with foul-looking egg-like ...things."
 	bound_width = 96
