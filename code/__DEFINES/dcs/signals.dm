@@ -513,6 +513,7 @@
 #define COMSIG_XENOABILITY_QUEEN_GIVE_ORDER "xenoability_queen_give_order"
 #define COMSIG_XENOABILITY_DEEVOLVE "xenoability_deevolve"
 #define COMSIG_XENOABILITY_QUEEN_LARVAL_GROWTH "xenoability_queen_larval_growth"
+#define COMSIG_XENOABILITY_CORRUPT_GENERATOR "xenoability_corrupt_generator"
 
 #define COMSIG_XENOABILITY_LAY_HIVEMIND "xenoability_lay_hivemind"
 #define COMSIG_XENOABILITY_LAY_EGG "xenoability_lay_egg"

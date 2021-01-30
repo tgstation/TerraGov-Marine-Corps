@@ -146,6 +146,7 @@
 		if(!hive_queen.client)
 			queen_text += " <i>(SSD)</i>"
 
+	dat += "<b>Current psychic points: [SSpoints.xeno_points_by_hive["[hive.hivenumber]"]]</b><BR>"
 	dat += "<b>Total Living Sisters: [hive.get_total_xeno_number()]</b><BR>"
 	dat += "<b>Tier 3: ([length(hive.xenos_by_tier[XENO_TIER_THREE])]/[hive.tier3_xeno_limit]) Sisters</b>[tier3counts]<BR>"
 	dat += "<b>Tier 2: ([length(hive.xenos_by_tier[XENO_TIER_TWO])]/[hive.tier2_xeno_limit]) Sisters</b>[tier2counts]<BR>"

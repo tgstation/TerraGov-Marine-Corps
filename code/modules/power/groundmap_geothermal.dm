@@ -15,16 +15,30 @@
 	var/power_generation_max = 100000 //Full capacity
 	var/buildstate = GEOTHERMAL_HEAVY_DAMAGE //What state of building it are we on, 0-3, 1 is "broken", the default
 	var/is_on = FALSE  //Is this damn thing on or what?
-	var/fail_rate = 0 //% chance of failure each fail_tick check
+	///% chance of failure each fail_tick check
+	var/fail_rate = 0
 	var/fail_check_ticks = 100 //Check for failure every this many ticks
 	var/cur_tick = 0 //Tick updater
+	///Hive it should be powering and whether it should be generating hive psycic points instead of power on process()
+	var/corrupted = 0
+	///how many points this generator will make per tick
+	var/corrupt_point_amout = 0.1
+	///whether we wil allow these to be corrupted
+	var/is_corruptible = TRUE
+
+/obj/machinery/power/geothermal/examine(mob/user, distance, infix, suffix)
+	. = ..()
+	if(corrupted)
+		to_chat(user, "It is covered in writhing tendrils [!isxeno(user) ? "that could be cut away with a welder" : ""].")
+	if(!isxeno(user) && !is_corruptible)
+		to_chat(user, "It is reinforced, making us not able to corrupt it.")
 
 /obj/machinery/power/geothermal/should_have_node()
 	return TRUE
 
 //We don't want to cut/update the power overlays every single proc. Just when it actually changes. This should save on CPU cycles. Efficiency!
 /obj/machinery/power/geothermal/update_icon()
-	..()
+	. = ..()
 	switch(buildstate)
 		if(GEOTHERMAL_NO_DAMAGE)
 			if(is_on)
@@ -51,12 +65,20 @@
 			icon_state = "wrench"
 			desc = "A thermoelectric generator sitting atop a plasma-filled borehole. This one is lightly damaged. Use a wrench to repair it."
 
+/obj/machinery/power/geothermal/update_overlays()
+	. = ..()
+	if(corrupted)
+		. += image(icon, src, "overlay_corrupted", layer)
+
 /obj/machinery/power/geothermal/power_change()
 	return
 
 /obj/machinery/power/geothermal/process()
+	if(corrupted)
+		SSpoints.xeno_points_by_hive["[corrupted]"] += corrupt_point_amout
+		return
 	if(!is_on || buildstate || !anchored || !powernet) //Default logic checking
-		return FALSE
+		return PROCESS_KILL
 
 	if(!check_failure()) //Wait! Check to see if it breaks during processing
 		if(power_gen_percent < 100)
@@ -147,13 +169,12 @@
 	start_processing()
 	return TRUE
 
-/obj/machinery/power/geothermal/attackby(obj/item/I, mob/user, params)
-	. = ..()
-	if(iswelder(I))
-		var/obj/item/tool/weldingtool/WT = I
+/obj/machinery/power/geothermal/welder_act(mob/living/user, obj/item/I)
+	var/obj/item/tool/weldingtool/WT = I
+	if(corrupted)
 		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
-			user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s internals.</span>",
-			"<span class='notice'>You fumble around figuring out [src]'s internals.</span>")
+			user.visible_message("<span class='notice'>[user] fumbles around figuring out the resin tendrils on [src].</span>",
+			"<span class='notice'>You fumble around figuring out the resin tendrils on [src].</span>")
 			var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating("engineer")
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)) || buildstate != GEOTHERMAL_HEAVY_DAMAGE || is_on)
 				return
@@ -162,67 +183,99 @@
 			to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
 			return
 		playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
-		user.visible_message("<span class='notice'>[user] starts welding [src]'s internal damage.</span>",
-		"<span class='notice'>You start welding [src]'s internal damage.</span>")
+		user.visible_message("<span class='notice'>[user] carefully starts burning [src]'s resin off.</span>",
+		"<span class='notice'>You carefully start burning [src]'s resin off.</span>")
 
-		if(!do_after(user, 200, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)) || buildstate != GEOTHERMAL_HEAVY_DAMAGE || is_on)
+		if(!do_after(user, 20 SECONDS, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)) || buildstate != GEOTHERMAL_HEAVY_DAMAGE || is_on)
 			return FALSE
 
 		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
-		buildstate = GEOTHERMAL_MEDIUM_DAMAGE
-		user.visible_message("<span class='notice'>[user] welds [src]'s internal damage.</span>",
-		"<span class='notice'>You weld [src]'s internal damage.</span>")
+		user.visible_message("<span class='notice'>[user] burns [src]'s resin off.</span>",
+		"<span class='notice'>You burn [src]'s resin off.</span>")
+		corrupted = 0
+		stop_processing()
 		update_icon()
-		return TRUE
-	else if(iswirecutter(I))
-		if(buildstate != GEOTHERMAL_MEDIUM_DAMAGE || is_on)
+		return
+
+	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
+		user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s internals.</span>",
+		"<span class='notice'>You fumble around figuring out [src]'s internals.</span>")
+		var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating("engineer")
+		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)) || buildstate != GEOTHERMAL_HEAVY_DAMAGE || is_on)
 			return
-		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
-			user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s wiring.</span>",
-			"<span class='notice'>You fumble around figuring out [src]'s wiring.</span>")
-			var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating("engineer")
-			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED) || buildstate != GEOTHERMAL_MEDIUM_DAMAGE || is_on)
-				return
-		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
-		user.visible_message("<span class='notice'>[user] starts securing [src]'s wiring.</span>",
-		"<span class='notice'>You start securing [src]'s wiring.</span>")
 
-		if(!do_after(user, 120, TRUE, src, BUSY_ICON_BUILD) || buildstate != GEOTHERMAL_MEDIUM_DAMAGE || is_on)
-			return FALSE
+	if(!WT.remove_fuel(1, user))
+		to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
+		return
+	playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
+	user.visible_message("<span class='notice'>[user] starts welding [src]'s internal damage.</span>",
+	"<span class='notice'>You start welding [src]'s internal damage.</span>")
 
-		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
-		buildstate = GEOTHERMAL_LIGHT_DAMAGE
-		user.visible_message("<span class='notice'>[user] secures [src]'s wiring.</span>",
-		"<span class='notice'>You secure [src]'s wiring.</span>")
-		update_icon()
-		return TRUE
-	else if(iswrench(I))
-		if(buildstate != GEOTHERMAL_LIGHT_DAMAGE || is_on)
+	if(!do_after(user, 20 SECONDS, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)) || buildstate != GEOTHERMAL_HEAVY_DAMAGE || is_on)
+		return FALSE
+
+	playsound(loc, 'sound/items/welder2.ogg', 25, 1)
+	buildstate = GEOTHERMAL_MEDIUM_DAMAGE
+	user.visible_message("<span class='notice'>[user] welds [src]'s internal damage.</span>",
+	"<span class='notice'>You weld [src]'s internal damage.</span>")
+	update_icon()
+	return TRUE
+
+/obj/machinery/power/geothermal/wirecutter_act(mob/living/user, obj/item/I)
+	if(buildstate != GEOTHERMAL_MEDIUM_DAMAGE || is_on)
+		return
+	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
+		user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s wiring.</span>",
+		"<span class='notice'>You fumble around figuring out [src]'s wiring.</span>")
+		var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating("engineer")
+		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED) || buildstate != GEOTHERMAL_MEDIUM_DAMAGE || is_on)
 			return
-		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
-			user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s tubing and plating.</span>",
-			"<span class='notice'>You fumble around figuring out [src]'s tubing and plating.</span>")
-			var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating("engineer")
-			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED) || buildstate != GEOTHERMAL_LIGHT_DAMAGE || is_on)
-				return
+	playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
+	user.visible_message("<span class='notice'>[user] starts securing [src]'s wiring.</span>",
+	"<span class='notice'>You start securing [src]'s wiring.</span>")
 
-		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
-		user.visible_message("<span class='notice'>[user] starts repairing [src]'s tubing and plating.</span>",
-		"<span class='notice'>You start repairing [src]'s tubing and plating.</span>")
+	if(!do_after(user, 12 SECONDS, TRUE, src, BUSY_ICON_BUILD) || buildstate != GEOTHERMAL_MEDIUM_DAMAGE || is_on)
+		return FALSE
 
-		if(!do_after(user, 150, TRUE, src, BUSY_ICON_BUILD) || buildstate != GEOTHERMAL_LIGHT_DAMAGE || is_on)
-			return FALSE
+	playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
+	buildstate = GEOTHERMAL_LIGHT_DAMAGE
+	user.visible_message("<span class='notice'>[user] secures [src]'s wiring.</span>",
+	"<span class='notice'>You secure [src]'s wiring.</span>")
+	update_icon()
+	return TRUE
 
-		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
-		buildstate = GEOTHERMAL_NO_DAMAGE
-		user.visible_message("<span class='notice'>[user] repairs [src]'s tubing and plating.</span>",
-		"<span class='notice'>You repair [src]'s tubing and plating.</span>")
-		update_icon()
-		return TRUE
+/obj/machinery/power/geothermal/wrench_act(mob/living/user, obj/item/I)
+	if(buildstate != GEOTHERMAL_LIGHT_DAMAGE || is_on)
+		return
+	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
+		user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s tubing and plating.</span>",
+		"<span class='notice'>You fumble around figuring out [src]'s tubing and plating.</span>")
+		var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating("engineer")
+		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED) || buildstate != GEOTHERMAL_LIGHT_DAMAGE || is_on)
+			return
+
+	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+	user.visible_message("<span class='notice'>[user] starts repairing [src]'s tubing and plating.</span>",
+	"<span class='notice'>You start repairing [src]'s tubing and plating.</span>")
+
+	if(!do_after(user, 15 SECONDS, TRUE, src, BUSY_ICON_BUILD) || buildstate != GEOTHERMAL_LIGHT_DAMAGE || is_on)
+		return FALSE
+
+	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+	buildstate = GEOTHERMAL_NO_DAMAGE
+	user.visible_message("<span class='notice'>[user] repairs [src]'s tubing and plating.</span>",
+	"<span class='notice'>You repair [src]'s tubing and plating.</span>")
+	update_icon()
+	return TRUE
 
 /obj/machinery/power/geothermal/bigred //used on big red
 	name = "\improper Reactor Turbine"
 	power_generation_max = 1e+6
+	corrupt_point_amout = 1
+
+/obj/machinery/power/geothermal/reinforced
+	name = "\improper Reinforced Reactor Turbine"
+	is_corruptible = FALSE
 
 #undef GEOTHERMAL_NO_DAMAGE
 #undef GEOTHERMAL_LIGHT_DAMAGE
@@ -422,25 +475,26 @@
 		return FALSE
 
 /obj/machinery/colony_floodlight/examine(mob/user)
-	..()
-	if(ishuman(user))
-		if(damaged)
-			to_chat(user, "<span class='warning'>It is damaged.</span>")
-			if(user.skills.getRating("engineer") >= SKILL_ENGINEER_ENGI)
-				if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
-					to_chat(user, "<span class='info'>You must first open its maintenance hatch.</span>")
-				else
-					switch(repair_state)
-						if(FLOODLIGHT_REPAIR_WELD)
-							to_chat(user, "<span class='info'>You must weld the damage to it.</span>")
-						if(FLOODLIGHT_REPAIR_WIRECUTTER)
-							to_chat(user, "<span class='info'>You must mend its damaged cables.</span>")
-						else
-							to_chat(user, "<span class='info'>You must screw its maintenance hatch closed.</span>")
-		else if(!is_lit)
-			to_chat(user, "<span class='info'>It doesn't seem powered.</span>")
-		if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
-			to_chat(user, "<span class='notice'>The maintenance hatch is open.</span>")
+	. = ..()
+	if(!ishuman(user))
+		return
+	if(damaged)
+		to_chat(user, "<span class='warning'>It is damaged.</span>")
+		if(user.skills.getRating("engineer") >= SKILL_ENGINEER_ENGI)
+			if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
+				to_chat(user, "<span class='info'>You must first open its maintenance hatch.</span>")
+			else
+				switch(repair_state)
+					if(FLOODLIGHT_REPAIR_WELD)
+						to_chat(user, "<span class='info'>You must weld the damage to it.</span>")
+					if(FLOODLIGHT_REPAIR_WIRECUTTER)
+						to_chat(user, "<span class='info'>You must mend its damaged cables.</span>")
+					else
+						to_chat(user, "<span class='info'>You must screw its maintenance hatch closed.</span>")
+	else if(!is_lit)
+		to_chat(user, "<span class='info'>It doesn't seem powered.</span>")
+	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
+		to_chat(user, "<span class='notice'>The maintenance hatch is open.</span>")
 
 /obj/machinery/colony_floodlight/proc/toggle_light(switch_on)
 	if(!fswitch) //no master, should never happen
