@@ -32,7 +32,4 @@ SUBSYSTEM_DEF(spawning_pool)
 ///Add larvas job 
 /datum/controller/subsystem/spawning_pool/proc/add_larvas()
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-		for(var/i in 1 to GLOB.xeno_resin_spawning_pools.len)
-			if(i > MAX_NUMBER_SPAWNING_POOL_GENERATING) //Having more than 6 spawning pools doesn't give more free larva
-				break
-			xeno_job.add_job_points(LARVA_SPAWN_RATE) //You need 8 points for a new larva
+	xeno_job.add_job_points(min(LARVA_SPAWN_RATE*GLOB.xeno_resin_spawning_pools.len, LARVA_SPAWN_RATE*MAX_NUMBER_SPAWNING_POOL_GENERATING))	

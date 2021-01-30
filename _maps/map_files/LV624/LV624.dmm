@@ -16663,7 +16663,7 @@
 /turf/open/floor/marking/bot,
 /area/shuttle/drop2/lz2)
 "wDI" = (
-/obj/effect/landmark/xeno_silo_spawn,
+/obj/effect/landmark/xeno_spawning_pool_spawn,
 /turf/open/floor/engine/cult,
 /area/lv624/ground/caves/east2)
 "wJZ" = (
