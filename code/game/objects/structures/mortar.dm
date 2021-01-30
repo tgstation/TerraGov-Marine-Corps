@@ -442,6 +442,6 @@
 	new /obj/item/encryptionkey/engi(src)
 	new /obj/item/encryptionkey/engi(src)
 	new /obj/item/binoculars/tactical/range(src)
-	/obj/item/radio/headset/mainship/marine/generic/mmpo
-	/obj/item/radio/headset/mainship/marine/generic/mmpo
-	/obj/item/radio/headset/mainship/marine/generic/mmpo
+	new /obj/item/radio/headset/mainship/marine/generic/mmpo(src)
+	new /obj/item/radio/headset/mainship/marine/generic/mmpo(src)
+	new /obj/item/radio/headset/mainship/marine/generic/mmpo(src)
