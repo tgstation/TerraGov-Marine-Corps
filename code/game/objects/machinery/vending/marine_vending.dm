@@ -868,7 +868,7 @@
 		/obj/item/clothing/glasses/mgoggles = 10,
 		/obj/item/clothing/glasses/mgoggles/prescription = 10,
 		/obj/item/radio/headset/mainship/marine/generic = 20,
-		/obj/item/radio/headset/mainship/marine/generic/mmpo = 10,
+		/obj/item/encryptionkey/cas = 10,
 		/obj/item/clothing/mask/rebreather/scarf = 10,
 		/obj/item/clothing/mask/bandanna/skull = 10,
 		/obj/item/clothing/mask/bandanna/green = 10,
