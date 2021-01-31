@@ -40,7 +40,7 @@
 	)
 
 /obj/item/weapon/claymore/harvester/examine(mob/user)
-	..()
+	. = ..()
 	if(length(beaker.reagents.reagent_list))
 		to_chat(user, "It currently holds [beaker.reagents.total_volume]u of [beaker.reagents.reagent_list[1].name]")
 	to_chat(user, "<b>Compatible chemicals:</b>")
