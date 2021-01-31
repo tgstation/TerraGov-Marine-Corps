@@ -1569,10 +1569,11 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sound_hit 	 = "acid_hit"
 	sound_bounce	= "acid_bounce"
 	damage_type = BURN
-	spit_cost = 50
-	flags_ammo_behavior = AMMO_XENO|AMMO_EXPLOSIVE|AMMO_SKIPS_ALIENS
+	added_spit_delay = 5
+	spit_cost = 75
+	flags_ammo_behavior = AMMO_XENO|AMMO_EXPLOSIVE
 	armor_type = "acid"
-	damage = 20
+	damage = 18
 	max_range = 8
 	bullet_color = COLOR_PALE_GREEN_GRAY
 
@@ -1629,6 +1630,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 ///For the Spitter's Scatterspit ability
 /datum/ammo/xeno/acid/heavy/scatter
 	damage = 15
+	flags_ammo_behavior = AMMO_XENO|AMMO_EXPLOSIVE|AMMO_SKIPS_ALIENS
 	bonus_projectiles_type = /datum/ammo/xeno/acid/heavy/scatter/bonus
 	bonus_projectiles_amount = 5
 	bonus_projectiles_scatter = 10

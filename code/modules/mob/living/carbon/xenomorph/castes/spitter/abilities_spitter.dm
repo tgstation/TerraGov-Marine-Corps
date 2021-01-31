@@ -6,8 +6,8 @@
 	action_icon_state = "spray_acid"
 	mechanics_text = "Spray a line of dangerous acid at your target."
 	ability_name = "spray acid"
-	plasma_cost = 200
-	cooldown_timer = 20 SECONDS
+	plasma_cost = 250
+	cooldown_timer = 30 SECONDS
 
 /datum/action/xeno_action/activable/spray_acid/line/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
