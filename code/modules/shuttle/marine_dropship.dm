@@ -618,7 +618,7 @@
 			groundside_humans++
 
 		if(groundside_humans > 5)
-			to_chat(X, "<span class='xenowarning'>There is still pray left to hunt!</span>")
+			to_chat(X, "<span class='xenowarning'>There is still prey left to hunt!</span>")
 			return
 
 		var/confirm = alert(usr, "Would you like to capture the metal bird?\n THIS WILL END THE ROUND", "Capture the ship?", "Yes", "No")
