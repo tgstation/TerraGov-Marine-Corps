@@ -161,7 +161,6 @@
 	amount -= boost_amount
 	if(update_boost_amount)
 		boost_amount += amount
-	message_admins("effect_str modification amount > [amount]")
 	resource_drain_amount = boost_amount*4
 	if(boost_on)
 		for(var/datum/reagent/R in wearer.reagents.reagent_list)
@@ -173,7 +172,6 @@
 	for(var/datum/reagent/R in wearer.reagents.reagent_list)
 		if(!istype(R, added_chem))
 			continue
-		message_admins("added chem boosted by > [boost_amount]")
 		R.effect_str += boost_amount
 		break
 
