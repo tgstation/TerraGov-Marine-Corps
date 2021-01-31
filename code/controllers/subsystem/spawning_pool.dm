@@ -11,9 +11,6 @@ SUBSYSTEM_DEF(spawning_pool)
 	return ..()
 
 /datum/controller/subsystem/spawning_pool/fire(resumed = 0)
-	if(!CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_XENO_FREE_RESPAWN))
-		can_fire = FALSE
-		return
 	adjust_max_spawning_pool_number()
 	add_larvas()
 
