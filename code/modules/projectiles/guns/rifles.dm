@@ -379,7 +379,7 @@
 //M41A
 
 /obj/item/weapon/gun/rifle/m41a
-	name = "\improper KM11 pulse rifle"
+	name = "\improper HK-11 pulse rifle"
 	desc = "A strange failed electronically fired rifle, a rather unknown weapon of its time. It caused a surge in the use of electronic firing in the modern era though. Uses 10x24mm caseless ammunition. Has a irremoveable grenade launcher."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "m41a"
