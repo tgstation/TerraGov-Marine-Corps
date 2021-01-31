@@ -207,7 +207,7 @@
 	wearer.remove_movespeed_modifier(MOVESPEED_ID_CHEM_CONNECT)
 	manage_weapon_connection(held_item)
 
-/datum/component/chem_booster/proc/manage_weapon_connection(var/obj/item/weapon_to_connect)
+/datum/component/chem_booster/proc/manage_weapon_connection(obj/item/weapon_to_connect)
 	if(connected_weapon)
 		to_chat(wearer, "<span class='warning'>You disconnect the [connected_weapon].</span>")
 		DISABLE_BITFIELD(connected_weapon.flags_item, NODROP)
