@@ -1178,6 +1178,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	scatter_mod = 0
 	movement_acc_penalty_mod = 0
 
+/obj/item/attachable/stock/irremoveable/m41a
+	icon_state = "m41a"
 
 ////////////// Underbarrel Attachments ////////////////////////////////////
 
