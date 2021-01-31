@@ -234,18 +234,6 @@ WEAPONS
 	contains = list(/obj/item/weapon/gun/flamer/marinestandard)
 	cost = 15
 
-/datum/supply_packs/weapons/rpgoneuse
-	name = "T-72 RPGs"
-	contains = list(
-		/obj/item/weapon/gun/launcher/rocket/oneuse,
-		/obj/item/weapon/gun/launcher/rocket/oneuse,
-		/obj/item/weapon/gun/launcher/rocket/oneuse,
-		/obj/item/weapon/gun/launcher/rocket/oneuse,
-		/obj/item/weapon/gun/launcher/rocket/oneuse,
-	)
-	notes = "Contains 5."
-	cost = 50
-
 /datum/supply_packs/weapons/mateba
 	name = "Mateba Autorevolver belt"
 	contains = list(/obj/item/storage/belt/gun/mateba/full)
