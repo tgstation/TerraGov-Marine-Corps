@@ -1327,7 +1327,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	action_icon_state = "retreat"
 
 ///Set the order as selected on the overwatch console
-/datum/action/innate/proc/set_selected_order(var/order_name)
+/datum/action/innate/proc/set_selected_order(order_name)
 	var/mob/living/C = target
 	var/mob/camera/aiEye/remote/remote_eye = C.remote_control
 	var/obj/machinery/computer/camera_advanced/overwatch/console = remote_eye.origin
