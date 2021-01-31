@@ -1326,59 +1326,47 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	background_icon_state = "template2"
 	action_icon_state = "retreat"
 
+///Set the order as selected on the overwatch console
+/datum/action/innate/proc/set_selected_order(var/order_name)
+	var/mob/living/C = target
+	var/mob/camera/aiEye/remote/remote_eye = C.remote_control
+	var/obj/machinery/computer/camera_advanced/overwatch/console = remote_eye.origin
+	console.send_attack_order.remove_selected_frame()
+	console.send_defend_order.remove_selected_frame()
+	console.send_retreat_order.remove_selected_frame()
+	if(console.current_order != order_name)
+		console.current_order = order_name
+		add_selected_frame()
+		return
+	console.current_order = NO_ORDER
+
 /datum/action/innate/attack_order/Activate()
 	active = TRUE
 	if(!isliving(target))
 		return
-	var/mob/living/C = target
-	var/mob/camera/aiEye/remote/remote_eye = C.remote_control
-	var/obj/machinery/computer/camera_advanced/overwatch/console = remote_eye.origin
-	console.current_order = ATTACK_ORDER
+	set_selected_order(ATTACK_ORDER)
 
 /datum/action/innate/attack_order/Deactivate()
 	active = FALSE
-	if(!isliving(target))
-		return
-	var/mob/living/C = target
-	var/mob/camera/aiEye/remote/remote_eye = C.remote_control
-	var/obj/machinery/computer/camera_advanced/overwatch/console = remote_eye.origin
-	console.current_order = NO_ORDER
+	set_selected_order(ATTACK_ORDER)
 
 /datum/action/innate/defend_order/Activate()
 	active = TRUE
-	if(!isliving(target))
-		return
-	var/mob/living/C = target
-	var/mob/camera/aiEye/remote/remote_eye = C.remote_control
-	var/obj/machinery/computer/camera_advanced/overwatch/console = remote_eye.origin
-	console.current_order = DEFEND_ORDER
+	set_selected_order(DEFEND_ORDER)
 
 /datum/action/innate/defend_order/Deactivate()
 	active = FALSE
 	if(!isliving(target))
 		return
-	var/mob/living/C = target
-	var/mob/camera/aiEye/remote/remote_eye = C.remote_control
-	var/obj/machinery/computer/camera_advanced/overwatch/console = remote_eye.origin
-	console.current_order = NO_ORDER
+	set_selected_order(DEFEND_ORDER)
 
 /datum/action/innate/retreat_order/Activate()
 	active = TRUE
-	if(!isliving(target))
-		return
-	var/mob/living/C = target
-	var/mob/camera/aiEye/remote/remote_eye = C.remote_control
-	var/obj/machinery/computer/camera_advanced/overwatch/console = remote_eye.origin
-	console.current_order = RETREAT_ORDER
+	set_selected_order(RETREAT_ORDER)
 
 /datum/action/innate/retreat_order/Deactivate()
 	active = FALSE
-	if(!isliving(target))
-		return
-	var/mob/living/C = target
-	var/mob/camera/aiEye/remote/remote_eye = C.remote_control
-	var/obj/machinery/computer/camera_advanced/overwatch/console = remote_eye.origin
-	console.current_order = NO_ORDER
+	set_selected_order(RETREAT_ORDER)
 
 #undef OW_MAIN
 #undef OW_MONITOR
