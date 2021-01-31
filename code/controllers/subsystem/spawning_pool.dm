@@ -17,9 +17,11 @@ SUBSYSTEM_DEF(spawning_pool)
 	adjust_max_spawning_pool_number()
 	add_larvas()
 
-///Activate the subsystem when shutters open
+///Activate the subsystem when shutters open and remove the free spawning when marines are joining
 /datum/controller/subsystem/spawning_pool/proc/start_spawning()
 	can_fire = TRUE
+	for(var/datum/job/j in SSjob.occupations)
+		j.jobworth[/datum/job/xenomorph] = 0
 
 ///Adjust the maxinum number of spawning_pool able to spawn larvas for free, to preven xenos to just spawn them
 /datum/controller/subsystem/spawning_pool/proc/adjust_max_spawning_pool_number()
