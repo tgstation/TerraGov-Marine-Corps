@@ -10,7 +10,7 @@
 	///Amount of substance that the component can store
 	var/resource_storage_max = 200
 	///Amount of substance stored currently
-	var/resource_storage_current = 0.1
+	var/resource_storage_current = 0
 	///Amount required for operation
 	var/resource_drain_amount = 10
 	///Opens radial menu with settings
@@ -93,7 +93,6 @@
  *	Opens the radial menu with everything
  */
 /datum/component/chem_booster/proc/configure(datum/source)
-	SIGNAL_HANDLER
 	var/mob/living/carbon/human/H = wearer
 
 	var/list/radial_options = list(
@@ -163,7 +162,7 @@
 	if(update_boost_amount)
 		boost_amount += amount
 	message_admins("effect_str modification amount > [amount]")
-	resource_drain_amount = 1
+	resource_drain_amount = boost_amount*4
 	if(boost_on)
 		for(var/datum/reagent/R in wearer.reagents.reagent_list)
 			R.effect_str += amount
