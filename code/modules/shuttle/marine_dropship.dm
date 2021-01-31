@@ -611,6 +611,16 @@
 		do_hijack(M, CT, X)
 
 	if(href_list["abduct"])
+		var/groundside_humans
+		for(var/mob/H in GLOB.alive_human_list)
+			if(H.z != X.z)
+				continue
+			groundside_humans++
+
+		if(groundside_humans > 5)
+			to_chat(X, "<span class='xenowarning'>There is still pray left to hunt!</span>")
+			return
+
 		var/confirm = alert(usr, "Would you like to capture the metal bird?\n THIS WILL END THE ROUND", "Capture the ship?", "Yes", "No")
 		if(confirm == "Yes")
 			var/datum/game_mode/infestation/distress/distress_mode = SSticker.mode
