@@ -167,8 +167,6 @@
 	character.real_name = new_name
 	character.name = character.real_name
 
-	character.flavor_text = flavor_text
-
 	character.med_record = med_record
 	character.sec_record = sec_record
 	character.gen_record = gen_record

@@ -101,7 +101,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/citizenship = "TerraGov"
 	var/religion = "None"
 	var/nanotrasen_relation = "Neutral"
-	var/flavor_text = ""
 	var/med_record = ""
 	var/sec_record = ""
 	var/gen_record = ""
@@ -334,8 +333,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	dat += "<br>"
 
 	dat += "<a href ='?_src_=prefs;preference=records'>Character Records</a><br>"
-
-	dat += "<a href ='?_src_=prefs;preference=flavor_text'>Character Description</a><br>"
 
 
 
@@ -950,12 +947,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 		if("recordsclose")
 			user << browse(null, "window=records")
-
-		if("flavor_text")
-			var/msg = stripped_input(user, "Give a physical description of your character.", "Flavor Text", sanitize(flavor_text))
-			if(!msg)
-				return
-			flavor_text = msg
 
 		if("windowflashing")
 			windowflashing = !windowflashing

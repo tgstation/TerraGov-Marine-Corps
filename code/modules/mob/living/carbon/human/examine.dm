@@ -528,8 +528,6 @@
 				msg += "<a href='?src=\ref[src];squadfireteam=1'>\[Assign to a fireteam.\]</a>\n"
 
 
-	msg += "[flavor_text]<br>"
-
 	msg += "*---------*</span>"
 
 	to_chat(user, msg)

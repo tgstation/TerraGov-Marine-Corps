@@ -78,7 +78,6 @@
 
 	var/mob/remoteview_target
 
-	var/flavor_text = ""
 	var/med_record = ""
 	var/sec_record = ""
 	var/gen_record = ""

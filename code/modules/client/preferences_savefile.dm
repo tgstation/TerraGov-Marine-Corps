@@ -348,7 +348,6 @@
 	READ_FILE(S["sec_record"], sec_record)
 	READ_FILE(S["gen_record"], gen_record)
 	READ_FILE(S["exploit_record"], exploit_record)
-	READ_FILE(S["flavor_text"], flavor_text)
 
 
 	be_special		= sanitize_integer(be_special, NONE, MAX_BITFLAG, initial(be_special))
@@ -401,7 +400,6 @@
 	sec_record		= sanitize_text(sec_record, initial(sec_record))
 	gen_record		= sanitize_text(gen_record, initial(gen_record))
 	exploit_record	= sanitize_text(exploit_record, initial(exploit_record))
-	flavor_text		= sanitize_text(flavor_text, initial(flavor_text))
 
 	if(!synthetic_name)
 		synthetic_name = "David"
@@ -479,7 +477,6 @@
 	sec_record		= sanitize_text(sec_record, initial(sec_record))
 	gen_record		= sanitize_text(gen_record, initial(gen_record))
 	exploit_record	= sanitize_text(exploit_record, initial(exploit_record))
-	flavor_text		= sanitize_text(flavor_text, initial(flavor_text))
 
 	WRITE_FILE(S["be_special"], be_special)
 
@@ -529,7 +526,6 @@
 	WRITE_FILE(S["sec_record"], sec_record)
 	WRITE_FILE(S["gen_record"], gen_record)
 	WRITE_FILE(S["exploit_record"], exploit_record)
-	WRITE_FILE(S["flavor_text"], flavor_text)
 
 	return TRUE
 
