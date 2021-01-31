@@ -376,7 +376,7 @@
 
 
 //-------------------------------------------------------
-//M41A
+//HK-11
 
 /obj/item/weapon/gun/rifle/m41a
 	name = "\improper HK-11 pulse rifle"
