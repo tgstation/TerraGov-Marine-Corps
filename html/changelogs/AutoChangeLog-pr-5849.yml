@@ -1,0 +1,6 @@
+author: "Pariah919"
+delete-after: True
+changes: 
+  - rscdel: "Removed a few old sprites. M16a4, m41a, etc"
+  - balance: "m41a gl is unremoveable, has mag harness now"
+  - tweak: "m41a relored, is now named HK-11"
