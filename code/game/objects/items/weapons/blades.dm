@@ -121,7 +121,7 @@
 	if(effect_active)
 		switch(loaded_reagent)
 			if(/datum/reagent/medicine/tramadol)
-				M.apply_status_effect(/datum/status_effect/incapacitating/slowdown, 2 SECONDS)
+				M.apply_status_effect(/datum/status_effect/incapacitating/harvester_slowdown, 2 SECONDS)
 
 			if(/datum/reagent/medicine/kelotane)
 				var/turf/target = get_turf(M)

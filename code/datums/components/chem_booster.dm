@@ -84,7 +84,7 @@
 	if(resource_storage_current < resource_drain_amount)
 		to_chat(wearer, "<span class='warning'>Insufficient resources to maintain operation.</span>")
 		on_off()
-	resource_storage_current -= resource_drain_amount
+	resource_storage_current = max(resource_storage_current - resource_drain_amount, 0)
 
 	if(world.time - processing_start > 12 SECONDS)
 		wearer.overlay_fullscreen("degeneration", /obj/screen/fullscreen/infection, 1)
