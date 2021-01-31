@@ -21,16 +21,17 @@
 	return(BRUTELOSS)
 
 /obj/item/weapon/claymore/harvester
-	name = "\improper Hervester"
+	name = "\improper Harvester"
 	desc = "An advanced weapon that trades sheer force for the ability to apply a variety of debilitating effects when loaded with certain reagents. It also harvests substances from alien lifeforms it hits. Use a syringe to empty the reagent tank."
-	icon_state = "machete"
+	icon_state = "energy_sword"
+	item_state = "energy_katana"
 	force = 60
 	attack_speed = 12
 	w_class = WEIGHT_CLASS_BULKY
-	var/obj/item/reagent_containers/glass/beaker/vial/beaker = null
 	flags_item = DRAINS_XENO
 
-	var/effect_loaded = FALSE
+	var/obj/item/reagent_containers/glass/beaker/vial/beaker = null
+	var/datum/reagent/loaded_reagent = null
 	var/effect_active = FALSE
 	var/list/loadable_reagents = list(
 		/datum/reagent/medicine/bicaridine,
@@ -93,9 +94,9 @@
 /obj/item/weapon/claymore/harvester/unique_action(mob/user)
 	if(effect_active)
 		to_chat(user, "<span class='rose'>The blade is powered with [beaker.reagents.reagent_list[1]]. You can release the effect by stabbing a creature.</span>")
-		return
+		return FALSE
 
-	if(effect_loaded)
+	if(loaded_reagent)
 		effect_active = TRUE
 		to_chat(user, "<span class='rose'>You release the holding mechanism, empowering your next attack.</span>")
 		return TRUE
@@ -109,15 +110,16 @@
 
 	to_chat(user, "<span class='rose'>You start filling up the small chambers along the blade's edge.</span>")
 	if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_BAR, ignore_turf_checks = TRUE))
-		to_chat(user, "<span class='rose'>You are interrupted! The safety machanism drains out the reagent back into the main storage.</span>")
+		to_chat(user, "<span class='rose'>Due to the sudden movement, the safety machanism drains out the reagent back into the main storage.</span>")
 		return FALSE
 
-	effect_loaded = TRUE
+	beaker.reagents.remove_any(10)
+	loaded_reagent = beaker.reagents.reagent_list[1].type
 	return TRUE
 
 /obj/item/weapon/claymore/harvester/attack(mob/living/M, mob/living/user)
 	if(effect_active)
-		switch(beaker.reagents.reagent_list[1].type)
+		switch(loaded_reagent)
 			if(/datum/reagent/medicine/tramadol)
 				M.apply_status_effect(/datum/status_effect/incapacitating/slowdown, 2 SECONDS)
 
@@ -129,18 +131,14 @@
 					T.ignite()
 
 			if(/datum/reagent/medicine/bicaridine)
-				var/target_self = TRUE
-				if(!M == user)
-					target_self = FALSE
-				if(!do_after(user, 2 SECONDS, TRUE, M, BUSY_ICON_DANGER, ignore_turf_checks = target_self))
-					to_chat(user, "<span class='rose'>You are interrupted!</span>")
+				to_chat(user, "<span class='rose'>You prepare to stab [M]!</span>")
+				if(!do_after(user, 2 SECONDS, TRUE, M, BUSY_ICON_DANGER))
 					return FALSE
 				new /obj/effect/temp_visual/telekinesis(get_turf(M))
 				M.heal_overall_damage(10, 0, TRUE)
-				return TRUE
 
 		effect_active = FALSE
-		effect_loaded = FALSE
+		loaded_reagent = null
 
 	return ..()
 

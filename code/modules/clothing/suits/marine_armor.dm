@@ -343,21 +343,25 @@
 	name = "\improper M3 pattern marksman armor"
 	icon_state = "marine_sniperm"
 
-/obj/item/clothing/suit/chemsuit
-	name = "Vali chemical enhancement suit"
+/obj/item/clothing/suit/storage/marine/chemsuit
+	name = "Vali Chemical Enhancement suit"
 	desc = "A suit that enhances the strength of reagents in the body. Requires a special substance, gathered from xenomorph lifeforms, to function."
 	icon = 'icons/mob/suit_1.dmi'
 	icon_state = "k_pyro_armor"
+	item_state ="k_pyro_armor"
+	flags_item_map_variant = NONE
 	w_class = WEIGHT_CLASS_BULKY
 	gas_transfer_coefficient = 0.90
 	permeability_coefficient = 0.50
 	flags_armor_protection = CHEST|GROIN|LEGS|ARMS|HANDS|FEET
+	flags_armor_features = null
+	actions_types = list()
 	allowed = list(/obj/item/flashlight,/obj/item/tank/emergency_oxygen,/obj/item/clothing/mask/gas, /obj/item/weapon/claymore/harvester)
 	slowdown = 0.2
 	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 20, "energy" = 20, "bomb" = 40, "bio" = 60, "rad" = 100, "fire" = 40, "acid" = 40)
 	flags_inv_hide = HIDEJUMPSUIT|HIDETAIL
 
-/obj/item/clothing/suit/chemsuit/Initialize()
+/obj/item/clothing/suit/storage/marine/chemsuit/Initialize()
 	. = ..()
 	AddComponent(/datum/component/chem_booster)
 

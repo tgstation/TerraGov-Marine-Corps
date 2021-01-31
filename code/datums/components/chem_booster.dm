@@ -1,17 +1,16 @@
 /**
-	Chem booster component
-
-	This component stores "green blood" and uses it to increase effect_str of chems in the user's body.
-
-*/
-
+ *	Chem booster component
+ *
+ *	This component stores "green blood" and uses it to increase effect_str of chems in the user's body.
+ *
+ */
 /datum/component/chem_booster
-	var/mob/living/carbon/wearer
+	var/mob/living/carbon/human/wearer
 
 	///Amount of substance that the component can store
 	var/resource_storage_max = 200
-	///Ammount of sunstance stored currently
-	var/resource_storage_current
+	///Amount of substance stored currently
+	var/resource_storage_current = 0.1
 	///Amount required for operation
 	var/resource_drain_amount = 10
 	///Opens radial menu with settings
@@ -23,17 +22,19 @@
 	///Normal boost
 	var/boost_tier1 = 1
 	///Overcharged boost
-	var/boost_tier2 = 4
+	var/boost_tier2 = 3
+	///Boost icon, image cycles between 2 states
+	var/boost_icon = "cboost_t1"
 	///Item connected to the system
-	var/obj/item/connected_item
+	var/obj/item/connected_weapon
 	///When was the effect activated. Used to activate negative effects after a certain amount of use
 	var/processing_start
 	COOLDOWN_DECLARE(chemboost_activation_cooldown)
 
 /datum/component/chem_booster/Initialize()
-	if(!istype(parent, /obj/item))
+	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
-	boost_amount = 0
+	update_boost(boost_tier1)
 
 /datum/component/chem_booster/Destroy(force, silent)
 	QDEL_NULL(configure_action)
@@ -67,11 +68,8 @@
 		return
 	if(boost_on)
 		on_off()
-	if(connected_item)
-		to_chat(wearer, "<span class='warning'>You disconnect the [connected_item].</span>")
-		DISABLE_BITFIELD(connected_item.flags_item, NODROP)
-		UnregisterSignal(connected_item, COMSIG_ITEM_ATTACK)
-		connected_item = null
+	manage_weapon_connection()
+
 	configure_action.remove_action(wearer)
 	wearer = null
 
@@ -88,18 +86,20 @@
 		on_off()
 	resource_storage_current -= resource_drain_amount
 
+	if(world.time - processing_start > 12 SECONDS)
+		wearer.overlay_fullscreen("degeneration", /obj/screen/fullscreen/infection, 1)
+
 /**
  *	Opens the radial menu with everything
  */
 /datum/component/chem_booster/proc/configure(datum/source)
-	SIGNAL_HANDLER_DOES_SLEEP
+	SIGNAL_HANDLER
 	var/mob/living/carbon/human/H = wearer
 
 	var/list/radial_options = list(
 		"on_off" = image(icon = 'icons/mob/radial.dmi', icon_state = "cboost_on_off"),
-		"connect" = image(icon = 'icons/mob/radial.dmi', icon_state = "cboost_drain"),
-		"boost_1" = image(icon = 'icons/mob/radial.dmi', icon_state = "cboost_t1"),
-		"boost_2" = image(icon = 'icons/mob/radial.dmi', icon_state = "cboost_t2"),
+		"connect" = image(icon = 'icons/mob/radial.dmi', icon_state = "cboost_connect"),
+		"boost" = image(icon = 'icons/mob/radial.dmi', icon_state = "[boost_icon]"),
 		)
 
 	var/choice = show_radial_menu(H, H, radial_options, null, 48, null, TRUE)
@@ -108,14 +108,30 @@
 			on_off()
 		if("connect")
 			connect_weapon()
-		if("boost_1")
-			update_boost(boost_tier1)
-		if("boost_2")
+		if("boost")
+			if(boost_amount == boost_tier2)
+				update_boost(boost_tier1)
+				boost_icon = "cboost_t2"
+				return
 			update_boost(boost_tier2)
+			boost_icon = "cboost_t1"
 
 /datum/component/chem_booster/proc/on_off(datum/source)
 	if(boost_on)
 		STOP_PROCESSING(SSobj, src)
+
+		wearer.clear_fullscreen("degeneration")
+		var/necrotized_counter = FLOOR(min(world.time-processing_start, 20 SECONDS)/200 + (world.time-processing_start-20 SECONDS)/100, 1)
+		if(necrotized_counter >= 1)
+			for(var/datum/limb/L in shuffle(wearer.limbs))
+				if(L.limb_status & LIMB_NECROTIZED)
+					continue
+				to_chat(wearer, "<span class='warning'>You can feel the life force in your [L.display_name] draining away...</span>")
+				L.germ_level += INFECTION_LEVEL_THREE + 50
+				necrotized_counter -= 1
+				if(necrotized_counter < 1)
+					break
+
 		UnregisterSignal(wearer.reagents, COMSIG_REAGENT_ADD)
 		UnregisterSignal(wearer, COMSIG_MOB_DEATH, .proc/on_off)
 		update_boost(0, FALSE)
@@ -124,19 +140,21 @@
 		COOLDOWN_START(src, chemboost_activation_cooldown, 10 SECONDS)
 		return
 
-	if(COOLDOWN_CHECK(src, chemboost_activation_cooldown))
-		to_chat(wearer, "<span class='warning'>Your body is still strained after the last exposure. You need to wait a bit... unless you want to burst for excessing use.</span>")
+	if(!COOLDOWN_CHECK(src, chemboost_activation_cooldown))
+		to_chat(wearer, "<span class='warning'>Your body is still strained after the last exposure. You need to wait a bit... unless you want to burst from excessive use.</span>")
 		return
 
 	if(resource_storage_current < resource_drain_amount)
 		to_chat(wearer, "<span class='warning'>Not enough resource to sustain operation.</span>")
 		return
+
 	boost_on = TRUE
 	processing_start = world.time
 	START_PROCESSING(SSobj, src)
 	RegisterSignal(wearer.reagents, COMSIG_REAGENT_ADD, .proc/late_add_chem)
 	RegisterSignal(wearer, COMSIG_MOB_DEATH, .proc/on_off)
 	update_boost(boost_amount*2, FALSE)
+	addtimer(CALLBACK(wearer))
 	to_chat(wearer, "Commensing reagent injection.")
 
 //Updates the boost amount of the suit and effect_str of reagents if component is on. "amount" is the final level you want to set the boost to.
@@ -160,7 +178,11 @@
 		R.effect_str += boost_amount
 		break
 
+///Links the held item, if compatible, to the chem booster and registers attacking with it
 /datum/component/chem_booster/proc/connect_weapon()
+	if(manage_weapon_connection())
+		return
+
 	if(wearer.action_busy)
 		to_chat(wearer, "<span class='warning'>You are already occupied with something.</span>")
 		return
@@ -174,13 +196,6 @@
 		to_chat(wearer, "<span class='warning'>You need to be holding an item compatible with the system.</span>")
 		return
 
-	if(connected_item)
-		to_chat(wearer, "<span class='warning'>You disconnect the [held_item].</span>")
-		DISABLE_BITFIELD(connected_item.flags_item, NODROP)
-		UnregisterSignal(connected_item, COMSIG_ITEM_ATTACK)
-		connected_item = null
-		return
-
 	wearer.add_movespeed_modifier(MOVESPEED_ID_CHEM_CONNECT, TRUE, 0, NONE, TRUE, 4)
 	to_chat(wearer, "<span class='notice'>You begin connecting the [held_item] to the storage tank.</span>")
 	if(!do_after(wearer, 4 SECONDS, TRUE, held_item, BUSY_ICON_FRIENDLY, null, PROGRESS_BRASS, ignore_turf_checks = TRUE))
@@ -190,9 +205,23 @@
 
 	to_chat(wearer, "<span class='notice'>You finish connecting the [held_item].</span>")
 	wearer.remove_movespeed_modifier(MOVESPEED_ID_CHEM_CONNECT)
-	connected_item = held_item
-	ENABLE_BITFIELD(connected_item.flags_item, NODROP)
-	RegisterSignal(connected_item, COMSIG_ITEM_ATTACK, .proc/drain_resource)
+	manage_weapon_connection(held_item)
+
+/datum/component/chem_booster/proc/manage_weapon_connection(var/obj/item/weapon_to_connect)
+	if(connected_weapon)
+		to_chat(wearer, "<span class='warning'>You disconnect the [connected_weapon].</span>")
+		DISABLE_BITFIELD(connected_weapon.flags_item, NODROP)
+		UnregisterSignal(connected_weapon, COMSIG_ITEM_ATTACK)
+		connected_weapon = null
+		return TRUE
+
+	if(!weapon_to_connect)
+		return FALSE
+
+	connected_weapon = weapon_to_connect
+	ENABLE_BITFIELD(connected_weapon.flags_item, NODROP)
+	RegisterSignal(connected_weapon, COMSIG_ITEM_ATTACK, .proc/drain_resource)
+	return TRUE
 
 //Handles resource collection and is ativated when attacking with a weapon.
 /datum/component/chem_booster/proc/drain_resource(datum/source, mob/living/M, mob/living/user)
@@ -206,5 +235,5 @@
 	resource_storage_current += min(resource_storage_max - resource_storage_current, 20)
 
 /datum/action/chem_booster/configure
-	name = "Configure Vali CHemical Enhancement"
+	name = "Configure Vali Chemical Enhancement"
 	action_icon_state = "suit_configure"

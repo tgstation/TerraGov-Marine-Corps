@@ -139,6 +139,9 @@
 	icon_state = "painoverlay"
 	layer = FULLSCREEN_PAIN_LAYER
 
+/obj/screen/fullscreen/infection
+	icon_state = "curseoverlay"
+	layer = FULLSCREEN_INFECTION_LAYER
 
 /obj/screen/fullscreen/lighting_backdrop
 	icon = 'icons/mob/screen/generic.dmi'
