@@ -1463,11 +1463,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sound_hit 	 = "acid_hit"
 	sound_bounce	= "acid_bounce"
 	damage_type = BURN
-	added_spit_delay = 5
-	spit_cost = 75
-	flags_ammo_behavior = AMMO_XENO|AMMO_EXPLOSIVE
+	spit_cost = 50
+	flags_ammo_behavior = AMMO_XENO|AMMO_EXPLOSIVE|AMMO_SKIPS_ALIENS
 	armor_type = "acid"
-	damage = 18
+	damage = 20
 	max_range = 8
 	bullet_color = COLOR_PALE_GREEN_GRAY
 
