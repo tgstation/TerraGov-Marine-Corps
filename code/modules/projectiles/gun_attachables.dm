@@ -1247,9 +1247,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	flags_attach_features = ATTACH_ACTIVATION|ATTACH_RELOADABLE|ATTACH_WEAPON
 
 /obj/item/attachable/attached_gun/grenade/unremovable/invisible
-	icon_state = ""
-	attach_icon = ""
-
+	icon_state = "invisible"
 
 /obj/item/attachable/attached_gun/grenade/examine(mob/user)
 	..()
