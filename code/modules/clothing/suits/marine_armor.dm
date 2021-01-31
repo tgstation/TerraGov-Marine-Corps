@@ -345,7 +345,7 @@
 
 /obj/item/clothing/suit/storage/marine/chemsuit
 	name = "Vali Chemical Enhancement suit"
-	desc = "A suit that enhances the strength of reagents in the body. Requires a special substance, gathered from xenomorph lifeforms, to function."
+	desc = "A suit that enhances the strength of reagents in the body. Requires a special substance, gathered from xenomorph lifeforms, to function. \n For in-depth information https://github.com/tgstation/TerraGov-Marine-Corps/pull/5830"
 	icon = 'icons/mob/suit_1.dmi'
 	icon_state = "k_pyro_armor"
 	item_state ="k_pyro_armor"
