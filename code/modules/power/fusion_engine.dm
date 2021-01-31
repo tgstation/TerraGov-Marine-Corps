@@ -18,7 +18,7 @@
 	var/power_gen_percent = 0 //80,000W at full capacity
 	var/buildstate = FUSION_ENGINE_NO_DAMAGE //What state of building it are we on, 0-3, 1 is "broken", the default
 	var/is_on = FALSE  //Is this damn thing on or what?
-	var/fail_rate = 5 //% chance of failure each fail_tick check
+	var/fail_rate = 0 //% chance of failure each fail_tick check
 	var/cur_tick = 0 //Tick updater
 
 	var/obj/item/fuelCell/fusion_cell
