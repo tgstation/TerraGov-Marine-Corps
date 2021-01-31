@@ -109,7 +109,7 @@
 	mechanics_text = "Spits a spread of acid projectiles that splatter on the ground."
 	ability_name = "scatter spit"
 	plasma_cost = 150
-	cooldown_timer = 8 SECONDS
+	cooldown_timer = 6 SECONDS
 
 
 /datum/action/xeno_action/activable/scatter_spit/can_use_ability(atom/target, silent = FALSE, override_flags)
@@ -122,6 +122,9 @@
 	var/mob/living/carbon/xenomorph/X = owner
 
 	X.face_atom(target) //Face target so we don't look stupid
+
+	if(!do_after(X, 0.25 SECONDS, TRUE, target, BUSY_ICON_DANGER))
+		return fail_activate()
 
 	//Shoot at the thing
 	playsound(X.loc, 'sound/effects/blobattack.ogg', 50, 1)

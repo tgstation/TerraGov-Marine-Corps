@@ -1628,11 +1628,11 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 ///For the Spitter's Scatterspit ability
 /datum/ammo/xeno/acid/heavy/scatter
-	damage = 20
+	damage = 15
 	bonus_projectiles_type = /datum/ammo/xeno/acid/heavy/scatter/bonus
 	bonus_projectiles_amount = 5
-	bonus_projectiles_scatter = 8
-	puddle_duration = 3 SECONDS //Lasts 3-5 seconds
+	bonus_projectiles_scatter = 10
+	puddle_duration = 2 SECONDS //Lasts 2-4 seconds
 
 /datum/ammo/xeno/acid/heavy/scatter/bonus
 
