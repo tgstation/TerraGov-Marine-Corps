@@ -131,8 +131,8 @@
 //M41A TRUE AND ORIGINAL
 
 /obj/item/ammo_magazine/rifle/m41a
-	name = "\improper M41A magazine (10x24mm)"
-	desc = "A semi-rectangular box of rounds for the original M41A Pulse Rifle."
+	name = "\improper HK-11 magazine (10x24mm)"
+	desc = "A semi-rectangular box of rounds for the HK-11 Pulse Rifle."
 	icon_state = "m41a"
 	max_rounds = 95
 	gun_type = /obj/item/weapon/gun/rifle/m41a
