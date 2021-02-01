@@ -419,7 +419,7 @@ You are also in charge of communicating with command and letting them know about
 
 /datum/job/terragov/squad/leader/after_spawn(mob/living/carbon/C, mob/user, latejoin = FALSE)
 	. = ..()
-	if(!latejoin || !ishuman(C))
+	if(!ishuman(C))
 		return
 	var/mob/living/carbon/human/new_human = C
 	if(!new_human.assigned_squad)
