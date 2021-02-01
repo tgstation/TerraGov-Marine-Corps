@@ -109,7 +109,6 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 					dat += "<br>"
 					dat += "<A href='?src=\ref[src];operation=insubordination'>Report a marine for insubordination</a><BR>"
 					dat += "<A href='?src=\ref[src];operation=squad_transfer'>Transfer a marine to another squad</a><BR><BR>"
-					dat += "<a href='?src=\ref[src];operation=supplies'>Supply Drop Control</a><br>"
 					dat += "<a href='?src=\ref[src];operation=monitor'>Squad Monitor</a><br>"
 					dat += "----------------------<br>"
 					dat += "<b>Rail Gun Control</b><br>"
