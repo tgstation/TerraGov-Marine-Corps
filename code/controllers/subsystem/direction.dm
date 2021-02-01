@@ -45,7 +45,7 @@ SUBSYSTEM_DEF(direction)
 	for(var/squad_id in currentrun)
 		var/mob/living/L
 		var/mob/living/SL = leader_mapping[squad_id]
-		if (QDELETED(SL))
+		if (QDELETED(SL) && !isxenohive(squad_id))
 			clear_run(squad_id) // clear and reset all the squad members
 			continue
 		while(currentrun[squad_id].len)
