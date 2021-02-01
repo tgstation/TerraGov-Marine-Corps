@@ -1268,7 +1268,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 /obj/machinery/computer/camera_advanced/overwatch/proc/notify_marine(mob/living/marine, turf/target_turf) ///Send an order to that specific marine if it's on the right z level
 	if(marine.z == target_turf.z)
 		marine.playsound_local(marine, "sound/effects/CIC_order.ogg", 10, 1)
-		to_chat(marine,"<span class='ordercic'>Command is urging you [current_order.verb_name] now from [target_turf.loc.name]</span>")
+		to_chat(marine,"<span class='ordercic'>Command is urging you to [current_order.verb_name] [target_turf.loc.name]</span>")
 	
 /datum/action/innate/order
 	///the word used to describe the action when notifying marines
@@ -1282,7 +1282,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	name = "Send Attack Order"
 	background_icon_state = "template2"
 	action_icon_state = "attack"
-	verb_name = "attack"
+	verb_name = "attack the enemy at"
 	arrow_type = /obj/screen/arrow/attack_order_arrow
 	visual_type = /obj/effect/temp_visual/order/attack_order
 
@@ -1290,7 +1290,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	name = "Send Defend Order"
 	background_icon_state = "template2"
 	action_icon_state = "defend"
-	verb_name = "defend"
+	verb_name = "defend our position in"
 	arrow_type = /obj/screen/arrow/defend_order_arrow
 	visual_type = /obj/effect/temp_visual/order/defend_order
 
@@ -1298,7 +1298,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	name = "Send Retreat Order"
 	background_icon_state = "template2"
 	action_icon_state = "retreat"
-	verb_name = "retreat"
+	verb_name = "retreat from"
 	visual_type = /obj/effect/temp_visual/order/retreat_order
 
 ///Set the order as selected on the overwatch console
@@ -1306,9 +1306,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	var/mob/living/C = target
 	var/mob/camera/aiEye/remote/remote_eye = C.remote_control
 	var/obj/machinery/computer/camera_advanced/overwatch/console = remote_eye.origin
-	console.send_attack_order.remove_selected_frame()
-	console.send_defend_order.remove_selected_frame()
-	console.send_retreat_order.remove_selected_frame()
+	console.current_order.remove_selected_frame()
 	if(console.current_order != src)
 		console.current_order = src
 		add_selected_frame()

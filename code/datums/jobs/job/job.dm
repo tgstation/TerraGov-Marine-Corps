@@ -277,7 +277,7 @@ GLOBAL_PROTECT(exp_specialmap)
 	if((job.job_flags & JOB_FLAG_ALLOWS_PREFS_GEAR) && player)
 		equip_preference_gear(player)
 
-	if(assigned_squad)
+	if(!src.assigned_squad && assigned_squad)
 		job.equip_spawning_squad(src, assigned_squad, player)
 	
 	hud_set_job()
