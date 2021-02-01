@@ -2597,6 +2597,7 @@
 	dir = 1
 	},
 /obj/machinery/computer/supplydrop_console,
+/obj/structure/table/mainship,
 /turf/open/floor/mainship,
 /area/mainship/squads/req)
 "xJD" = (

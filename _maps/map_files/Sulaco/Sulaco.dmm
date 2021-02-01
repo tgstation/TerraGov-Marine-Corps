@@ -11590,6 +11590,7 @@
 /area/sulaco/hangar/droppod)
 "eOE" = (
 /obj/machinery/computer/supplydrop_console,
+/obj/structure/table/mainship,
 /turf/open/floor/prison/plate,
 /area/sulaco/cargo)
 "eON" = (
