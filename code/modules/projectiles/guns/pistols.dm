@@ -182,11 +182,11 @@
 	burst_amount = 3
 
 /obj/item/weapon/gun/pistol/g22/tranq
-	name = "\improper M9 custom pistol"
-	desc = "A military firearm customized for special forces use, fires tranq darts to take down enemies nonlethally. It does not seem to accept any other attachments."
+	name = "\improper G-22 custom pistol"
+	desc = "A firearm customized for special forces use, fires tranq darts to take down enemies nonlethally. It does not seem to accept any other attachments."
 	caliber = "9x19mm tranquilizer" //codex
 	max_shells = 12 //codex
-	current_mag =/obj/item/ammo_magazine/pistol/g22stranq
+	current_mag =/obj/item/ammo_magazine/pistol/g22tranq
 	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 21, "under_x" = 21, "under_y" = 15, "stock_x" = 21, "stock_y" = 17)
 	starting_attachment_types = list(
 		/obj/item/attachable/lasersight,

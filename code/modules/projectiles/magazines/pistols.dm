@@ -91,7 +91,7 @@
 //-------------------------------------------------------
 //Beretta 92FS, the gun McClane carries around in Die Hard. Very similar to the service pistol, all around.
 
-/obj/item/ammo_magazine/pistol/b92fs
+/obj/item/ammo_magazine/pistol/g22
 	name = "\improper G-22 magazine (9mm)"
 	caliber = "9x19mm Parabellum"
 	icon_state = "g22"
