@@ -104,11 +104,6 @@
 	var/choice = show_radial_menu(H, H, radial_options, null, 48, null, TRUE)
 	switch(choice)
 		if("on_off")
-			var/active_held_item = wearer.get_active_held_item()
-			var/offhand_held_item = wearer.get_inactive_held_item()
-			if(istype(active_held_item, /obj/item/weapon/shield) || istype(offhand_held_item, /obj/item/weapon/shield))
-				to_chat(wearer, "<span class='warning'>[active_held_item ? "[active_held_item]" : "[offhand_held_item]"] obstructs your bloodflow, causing a safety function to trigger.</span>")
-				return
 			on_off()
 
 		if("connect")
