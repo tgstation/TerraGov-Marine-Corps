@@ -56,6 +56,7 @@ GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 	var/defiler_defiler_stings = 0
 	var/defiler_neurogas_uses = 0
 	var/defiler_inject_egg_neurogas = 0
+	var/defiler_reagent_slashes = 0
 	var/larval_growth_stings = 0
 	var/drone_salvage_biomass = 0
 	var/xeno_unarmed_attacks = 0
