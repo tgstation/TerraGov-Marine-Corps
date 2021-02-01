@@ -5,16 +5,20 @@
 	desc = "used by shipside staff to issue supply drops to squad beacons"
 	icon_state = "supplydrop"
 	interaction_flags = INTERACT_MACHINE_TGUI
-
+	///Time between two supply drops
 	var/launch_cooldown = 2 MINUTES
 	COOLDOWN_DECLARE(next_fire)
-
+	///If true, the last squad will be memorised
 	var/squad_lock = null
+	///The squad wich we will look for beacons
 	var/datum/squad/current_squad = null
+	///The beacon we will send the supplies
 	var/obj/item/squad_beacon/current_beacon = null
+	///The content sent
 	var/list/supplies = list()
-
+	///X offset of the drop, relative to the supply beacon loc
 	var/x_offset = 0
+	///Y offset of the drop, relative to the supply beacon loc
 	var/y_offset = 0
 
 /obj/machinery/computer/supplydrop_console/Initialize()
@@ -114,8 +118,10 @@
 			current_squad.send_supplydrop(supplies, x_offset, y_offset)
 			to_chat(world, "Beacon sent to [current_squad.sbeacon]")
 
-
+///Look for the corresponding drop pad, and its possible content
 /obj/machinery/computer/supplydrop_console/proc/refresh_squad_pad()
+	if(!current_squad) //Prevent runtime error
+		return
 	supplies = list()
 	if(!current_squad.drop_pad) //The links somewhat disapear after loading the map, didn't find the cause
 		for(var/obj/structure/supply_drop/S in GLOB.supply_pad_list)
@@ -126,6 +132,7 @@
 		if(supplies.len > MAX_SUPPLY_DROPS)
 			break
 
+///Start the supply drop process
 /datum/squad/proc/send_supplydrop(list/supplies, x_offset = 0, y_offset = 0)
 	if(!sbeacon)
 		stack_trace("Trying to send a supply drop without a squad beacon")
@@ -152,6 +159,7 @@
 	sbeacon.visible_message("[icon2html(sbeacon, viewers(sbeacon))] <span class='boldnotice'>The [sbeacon.name] begins to beep!</span>")
 	addtimer(CALLBACK(src, .proc/fire_supplydrop, supplies, x_offset, y_offset), 10 SECONDS)
 
+///Make the supplies teleport
 /datum/squad/proc/fire_supplydrop(list/supplies, x_offset, y_offset)
 	if(QDELETED(sbeacon))
 		drop_pad.visible_message("[icon2html(drop_pad, usr)] <span class='warning'>Launch aborted! Supply beacon signal lost.</span>")

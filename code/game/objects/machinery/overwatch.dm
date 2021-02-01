@@ -19,8 +19,6 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	interaction_flags = INTERACT_MACHINE_DEFAULT
 
 	var/state = OW_MAIN
-	var/x_offset_s = 0
-	var/y_offset_s = 0
 	var/living_marines_sorting = FALSE
 	var/busy = FALSE //The overwatch computer is busy launching an OB/SB, lock controls
 	var/dead_hidden = FALSE //whether or not we show the dead marines in the squad.
