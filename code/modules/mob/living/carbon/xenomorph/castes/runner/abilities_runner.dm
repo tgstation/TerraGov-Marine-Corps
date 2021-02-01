@@ -337,7 +337,7 @@
 		evasion_stacks += proj.damage //Add to evasion stacks for the purposes of determining whether or not our cooldown refreshes
 
 	var/evasion_stack_target = RUNNER_EVASION_COOLDOWN_REFRESH_THRESHOLD * (1 + evasion_streak) //Each streak increases the amount we have to dodge by the initial value
-	R.visible_message("<span class='warning'>[name] effortlessly dodges the [proj.name]!</span>", \
+	R.visible_message("<span class='warning'>[R] effortlessly dodges the [proj.name]!</span>", \
 	"<span class='xenodanger'>We effortlessly dodge the [proj.name]![(evasion_stack_target - evasion_stacks) > 0 ? " We must dodge [evasion_stack_target - evasion_stacks] more projectile damage before Evasion's cooldown refreshes." : ""]</span>")
 
 
