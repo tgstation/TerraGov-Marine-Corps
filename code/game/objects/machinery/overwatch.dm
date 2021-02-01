@@ -1271,7 +1271,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		marine.playsound_local(marine, "sound/effects/CIC_order.ogg", 10, 1)
 		switch(current_order)
 			if (ATTACK_ORDER)
-				to_chat(marine,"<span class='ordercic'>Command is urging you to attack the ennemy at [target_turf.loc.name]</span>")
+				to_chat(marine,"<span class='ordercic'>Command is urging you to attack the enemy at [target_turf.loc.name]</span>")
 				return
 			if (DEFEND_ORDER)
 				to_chat(marine,"<span class='ordercic'>Command is urging you to defend our positions in [target_turf.loc.name]</span>")
