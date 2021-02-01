@@ -422,15 +422,7 @@ You are also in charge of communicating with command and letting them know about
 	if(!ishuman(C))
 		return
 	var/mob/living/carbon/human/new_human = C
-	if(!new_human.assigned_squad)
-		return
-	if(new_human.assigned_squad.squad_leader != new_human)
-		if(new_human.assigned_squad.squad_leader)
-			new_human.assigned_squad.demote_leader()
-		new_human.assigned_squad.promote_leader(new_human)
 	var/playtime_mins = user?.client?.get_exp(title)
-	if(!playtime_mins || playtime_mins < 1 )
-		return
 	switch(playtime_mins)
 		if(0 to 1500) // starting
 			new_human.wear_id.paygrade = "E5"
@@ -438,6 +430,14 @@ You are also in charge of communicating with command and letting them know about
 			new_human.wear_id.paygrade = "E6"
 		if(7501 to INFINITY) // 125 hrs
 			new_human.wear_id.paygrade = "E7"
+	if(!latejoin)
+		return
+	if(!new_human.assigned_squad)
+		return
+	if(new_human.assigned_squad.squad_leader != new_human)
+		if(new_human.assigned_squad.squad_leader)
+			new_human.assigned_squad.demote_leader()
+		new_human.assigned_squad.promote_leader(new_human)
 
 
 
