@@ -1306,7 +1306,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	var/mob/living/C = target
 	var/mob/camera/aiEye/remote/remote_eye = C.remote_control
 	var/obj/machinery/computer/camera_advanced/overwatch/console = remote_eye.origin
-	console.current_order.remove_selected_frame()
+	console.current_order?.remove_selected_frame()
 	if(console.current_order != src)
 		console.current_order = src
 		add_selected_frame()
