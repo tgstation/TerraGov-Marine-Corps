@@ -1255,11 +1255,11 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 			var/datum/atom_hud/squad/squad_hud = GLOB.huds[DATA_HUD_SQUAD]
 			var/list/final_list = squad_hud.hudusers
 			final_list -= current_user //We don't want the eye to have an arrow, it's silly
-			if(current_order.arrow_type)
-				for(var/hud_user in final_list)
+			for(var/hud_user in final_list)
+				if(current_order.arrow_type)
 					arrow_hud = new current_order.arrow_type
 					arrow_hud.add_hud(hud_user, target_turf)
-					notify_marine(hud_user, target_turf)
+				notify_marine(hud_user, target_turf)
 			return	
 		to_chat(usr, "<span class='warning'>Your last order was too recent</span>")
 		return
