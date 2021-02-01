@@ -41,7 +41,7 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 	icon_state = "beanbag"
 	default_ammo = /datum/ammo/bullet/shotgun/beanbag
 
-/obj/item/ammo_magazine/shotgun/tracking
+/obj/item/ammo_magazine/shotgun/tracker
 	name = "box of 12 gauge tracker shells"
 	desc = "A box filled with tracker shotgun shells. 12 Gauge."
 	icon_state = "tracking"

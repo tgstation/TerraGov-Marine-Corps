@@ -811,7 +811,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	victim.AddComponent(/datum/component/dripping, DRIP_ON_TIME, 40 SECONDS, 2 SECONDS)
 
 /datum/ammo/bullet/shotgun/tracker
-	name = "shotgun tracker round"
+	name = "shotgun tracker shell"
 	icon_state = "shotgun_slug"
 	hud_state = "shotgun_flechette"
 	shell_speed = 4

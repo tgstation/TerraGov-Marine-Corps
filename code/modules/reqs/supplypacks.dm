@@ -507,7 +507,7 @@ AMMO
 
 /datum/supply_packs/ammo/shotguntracker
 	name = "12 Gauge Tracker Shells"
-	contains = list(/obj/item/ammo_magazine/shotgun/tracking)
+	contains = list(/obj/item/ammo_magazine/shotgun/tracker)
 	cost = 5
 
 /datum/supply_packs/ammo/rpg_regular
