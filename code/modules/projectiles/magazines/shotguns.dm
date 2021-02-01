@@ -41,6 +41,12 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 	icon_state = "beanbag"
 	default_ammo = /datum/ammo/bullet/shotgun/beanbag
 
+/obj/item/ammo_magazine/shotgun/tracker
+	name = "box of 12 gauge tracker shells"
+	desc = "A box filled with tracker shotgun shells. 12 Gauge."
+	icon_state = "flechette"
+	default_ammo = /datum/ammo/bullet/shotgun/tracker
+
 /obj/item/ammo_magazine/rifle/bolt
 	name = "box of 7.62x54mmR rifle rounds"
 	desc = "A box filled with rifle bullets."
