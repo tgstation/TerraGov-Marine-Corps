@@ -2150,6 +2150,7 @@
 	dir = 5
 	},
 /obj/machinery/light,
+/obj/machinery/computer/supplycomp,
 /turf/open/floor/prison/plate,
 /area/sulaco/cargo)
 "ajc" = (
@@ -11588,7 +11589,7 @@
 	},
 /area/sulaco/hangar/droppod)
 "eOE" = (
-/obj/machinery/computer/supplycomp,
+/obj/machinery/computer/supplydrop_console,
 /turf/open/floor/prison/plate,
 /area/sulaco/cargo)
 "eON" = (

@@ -239,9 +239,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 						current_squad.message_squad("Your Overwatch officer is: [operator.name].")
 						visible_message("<span class='boldnotice'>Tactical data for squad '[current_squad]' loaded. All tactical functions initialized.</span>")
 						attack_hand(usr)
-						if(!current_squad.drop_pad) //Why the hell did this not link?
-							for(var/obj/structure/supply_drop/S in GLOB.supply_pad_list)
-								S.force_link() //LINK THEM ALL!
+						
 
 					else
 						to_chat(usr, "[icon2html(src, usr)] <span class='warning'>Invalid input. Aborting.</span>")

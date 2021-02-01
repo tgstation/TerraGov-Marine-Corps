@@ -2,7 +2,7 @@
 
 /obj/machinery/computer/supplydrop_console
 	name = "supply drop console"
-	desc = "uesd by shipside staff to issue supply drops to squad beacons"
+	desc = "used by shipside staff to issue supply drops to squad beacons"
 	icon_state = "supplydrop"
 	interaction_flags = INTERACT_MACHINE_TGUI
 
@@ -117,7 +117,10 @@
 
 /obj/machinery/computer/supplydrop_console/proc/refresh_squad_pad()
 	supplies = list()
-	for(var/obj/C in current_squad.drop_pad.loc) //This thing should ALWAYS exist.
+	if(!current_squad.drop_pad) //The links somewhat disapear after loading the map, didn't find the cause
+		for(var/obj/structure/supply_drop/S in GLOB.supply_pad_list)
+			S.force_link()
+	for(var/obj/C in current_squad.drop_pad.loc)
 		if(is_type_in_typecache(C, GLOB.supply_drops) && !C.anchored) //Can only send vendors and crates
 			supplies.Add(C)
 		if(supplies.len > MAX_SUPPLY_DROPS)
@@ -145,7 +148,7 @@
 	for(var/obj/C in supplies)
 		C.anchored = TRUE //to avoid accidental pushes
 	message_squad("Supply Drop Incoming!")
-	playsound(drop_pad.loc, 'sound/effects/bamf.ogg', 50, TRUE)  //Ehhhhhhhhh.
+	playsound(drop_pad.loc, 'sound/effects/bamf.ogg', 50, TRUE) 
 	sbeacon.visible_message("[icon2html(sbeacon, viewers(sbeacon))] <span class='boldnotice'>The [sbeacon.name] begins to beep!</span>")
 	addtimer(CALLBACK(src, .proc/fire_supplydrop, supplies, x_offset, y_offset), 10 SECONDS)
 
