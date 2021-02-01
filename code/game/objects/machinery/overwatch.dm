@@ -8,11 +8,6 @@
 #define HIDE_ON_GROUND 1
 #define HIDE_ON_SHIP 2
 
-#define NO_ORDER 0
-#define ATTACK_ORDER 1
-#define DEFEND_ORDER 2
-#define RETREAT_ORDER 3
-
 GLOBAL_LIST_EMPTY(active_orbital_beacons)
 GLOBAL_LIST_EMPTY(active_laser_targets)
 GLOBAL_LIST_EMPTY(active_cas_targets)
@@ -35,10 +30,14 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	var/z_hidden = 0 ///which z level is ignored when showing marines.
 	var/datum/squad/current_squad = null ///Squad being currently overseen
 	var/obj/selected_target ///Selected target for bombarding
-	var/current_order = NO_ORDER ///Selected order to give to marine
-	var/datum/action/innate/attack_order/send_attack_order ///datum used when sending an attack order
-	var/datum/action/innate/retreat_order/send_retreat_order ///datum used when sending a retreat order
-	var/datum/action/innate/defend_order/send_defend_order ///datum used when sending a defend order
+	///Selected order to give to marine
+	var/datum/action/innate/order/current_order 
+	///datum used when sending an attack order
+	var/datum/action/innate/order/attack_order/send_attack_order 
+	///datum used when sending a retreat order
+	var/datum/action/innate/order/retreat_order/send_retreat_order
+	///datum used when sending a defend order 
+	var/datum/action/innate/order/defend_order/send_defend_order 
 	COOLDOWN_DECLARE(cooldown_order_cic)
 
 /obj/machinery/computer/camera_advanced/overwatch/Initialize()
@@ -1251,122 +1250,80 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	if (current_order)
 		if(COOLDOWN_CHECK(src, cooldown_order_cic))
 			COOLDOWN_START(src, cooldown_order_cic, ORDER_COOLDOWN)
-			switch (current_order)
-				if (ATTACK_ORDER)
-					send_attack_orders(target_turf)
-					return
-				if (DEFEND_ORDER)
-					send_defend_orders(target_turf)
-					return
-				if (RETREAT_ORDER)
-					send_retreat_orders(target_turf)
-					return
+			new current_order.visual_type(target_turf)
+			var/obj/screen/arrow/arrow_hud
+			var/datum/atom_hud/squad/squad_hud = GLOB.huds[DATA_HUD_SQUAD]
+			var/list/final_list = squad_hud.hudusers
+			final_list -= current_user //We don't want the eye to have an arrow, it's silly
+			if(current_order.arrow_type)
+				for(var/hud_user in final_list)
+					arrow_hud = new current_order.arrow_type
+					arrow_hud.add_hud(hud_user, target_turf)
+					notify_marine(hud_user, target_turf)
+			return	
 		to_chat(usr, "<span class='warning'>Your last order was too recent</span>")
 		return
-	return
 
 	
 /obj/machinery/computer/camera_advanced/overwatch/proc/notify_marine(mob/living/marine, turf/target_turf) ///Send an order to that specific marine if it's on the right z level
 	if(marine.z == target_turf.z)
 		marine.playsound_local(marine, "sound/effects/CIC_order.ogg", 10, 1)
-		switch(current_order)
-			if (ATTACK_ORDER)
-				to_chat(marine,"<span class='ordercic'>Command is urging you to attack the ennemy at [target_turf.loc.name]</span>")
-				return
-			if (DEFEND_ORDER)
-				to_chat(marine,"<span class='ordercic'>Command is urging you to defend our positions in [target_turf.loc.name]</span>")
-				return
-			if (RETREAT_ORDER)
-				to_chat(marine,"<span class='ordercic'>Command is urging you retreat now from [target_turf.loc.name]</span>")
-				return
-		
+		to_chat(marine,"<span class='ordercic'>Command is urging you [current_order.verb_name] now from [target_turf.loc.name]</span>")
+	
+/datum/action/innate/order
+	///the word used to describe the action when notifying marines
+	var/verb_name
+	///the type of arrow used in the order
+	var/arrow_type
+	///the type of the visual added on the ground
+	var/visual_type
 
-/obj/machinery/computer/camera_advanced/overwatch/proc/send_attack_orders(turf/target_turf) ///Send an attack order to all marines
-	new /obj/effect/temp_visual/order/attack_order(target_turf)
-	var/obj/screen/arrow/arrow_hud
-	var/datum/atom_hud/squad/squad_hud = GLOB.huds[DATA_HUD_SQUAD]
-	var/list/final_list = squad_hud.hudusers
-	final_list -= current_user //We don't want the eye to have an arrow, it's silly
-	for(var/hud_user in final_list)
-		arrow_hud = new /obj/screen/arrow/attack_order_arrow
-		arrow_hud.add_hud(hud_user, target_turf)
-		notify_marine(hud_user, target_turf)
-
-/obj/machinery/computer/camera_advanced/overwatch/proc/send_retreat_orders(turf/target_turf) ///Send a retreat order
-	new /obj/effect/temp_visual/order/retreat_order(target_turf)
-	var/datum/atom_hud/squad/squad_hud = GLOB.huds[DATA_HUD_SQUAD]
-	var/list/final_list = squad_hud.hudusers
-	final_list -= current_user
-	for(var/hud_user in final_list)
-		notify_marine(hud_user, target_turf)
-
-/obj/machinery/computer/camera_advanced/overwatch/proc/send_defend_orders(turf/target_turf) ///Send a defend order
-	new /obj/effect/temp_visual/order/defend_order(target_turf)
-	var/obj/screen/arrow/arrow_hud
-	var/datum/atom_hud/squad/squad_hud = GLOB.huds[DATA_HUD_SQUAD]
-	var/list/final_list = squad_hud.hudusers
-	final_list -= current_user
-	for(var/hud_user in squad_hud.hudusers)
-		arrow_hud = new /obj/screen/arrow/defend_order_arrow
-		arrow_hud.add_hud(hud_user, target_turf)
-		notify_marine(hud_user, target_turf)
-
-/datum/action/innate/attack_order
+/datum/action/innate/order/attack_order
 	name = "Send Attack Order"
 	background_icon_state = "template2"
 	action_icon_state = "attack"
+	verb_name = "attack"
+	arrow_type = /obj/screen/arrow/attack_order_arrow
+	visual_type = /obj/effect/temp_visual/order/attack_order
 
-/datum/action/innate/defend_order
+/datum/action/innate/order/defend_order
 	name = "Send Defend Order"
 	background_icon_state = "template2"
 	action_icon_state = "defend"
+	verb_name = "defend"
+	arrow_type = /obj/screen/arrow/defend_order_arrow
+	visual_type = /obj/effect/temp_visual/order/defend_order
 
-/datum/action/innate/retreat_order
+/datum/action/innate/order/retreat_order
 	name = "Send Retreat Order"
 	background_icon_state = "template2"
 	action_icon_state = "retreat"
+	verb_name = "retreat"
+	visual_type = /obj/effect/temp_visual/order/retreat_order
 
 ///Set the order as selected on the overwatch console
-/datum/action/innate/proc/set_selected_order(order_name)
+/datum/action/innate/order/proc/set_selected_order()
 	var/mob/living/C = target
 	var/mob/camera/aiEye/remote/remote_eye = C.remote_control
 	var/obj/machinery/computer/camera_advanced/overwatch/console = remote_eye.origin
 	console.send_attack_order.remove_selected_frame()
 	console.send_defend_order.remove_selected_frame()
 	console.send_retreat_order.remove_selected_frame()
-	if(console.current_order != order_name)
-		console.current_order = order_name
+	if(console.current_order != src)
+		console.current_order = src
 		add_selected_frame()
 		return
-	console.current_order = NO_ORDER
+	console.current_order = null
 
-/datum/action/innate/attack_order/Activate()
+/datum/action/innate/order/Activate()
 	active = TRUE
 	if(!isliving(target))
 		return
-	set_selected_order(ATTACK_ORDER)
+	set_selected_order()
 
-/datum/action/innate/attack_order/Deactivate()
+/datum/action/innate/order/Deactivate()
 	active = FALSE
-	set_selected_order(ATTACK_ORDER)
-
-/datum/action/innate/defend_order/Activate()
-	active = TRUE
-	set_selected_order(DEFEND_ORDER)
-
-/datum/action/innate/defend_order/Deactivate()
-	active = FALSE
-	if(!isliving(target))
-		return
-	set_selected_order(DEFEND_ORDER)
-
-/datum/action/innate/retreat_order/Activate()
-	active = TRUE
-	set_selected_order(RETREAT_ORDER)
-
-/datum/action/innate/retreat_order/Deactivate()
-	active = FALSE
-	set_selected_order(RETREAT_ORDER)
+	set_selected_order()
 
 #undef OW_MAIN
 #undef OW_MONITOR

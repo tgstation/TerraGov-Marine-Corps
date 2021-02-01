@@ -163,7 +163,7 @@
 	user.reset_perspective(eyeobj)
 	eyeobj.setLoc(eyeobj.loc)
 
-/obj/machinery/computer/camera_advanced/proc/send_orders(atom/object) ///Send an order to marines on the ground
+/obj/machinery/computer/camera_advanced/proc/send_orders(datum/source, atom/object) ///Send an order to marines on the ground
 	SIGNAL_HANDLER
 	return
 

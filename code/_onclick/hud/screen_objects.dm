@@ -775,9 +775,6 @@
 	tracker.client.screen += src
 	process() //Ping immediately after parameters have been set
 
-/obj/screen/arrow/proc/set_target(atom/target_input)
-	target = target_input
-
 /obj/screen/arrow/Initialize() //Self-deletes
 	. = ..()
 	START_PROCESSING(SSprocessing, src)
