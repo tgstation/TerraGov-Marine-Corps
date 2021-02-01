@@ -155,18 +155,12 @@
 
 /obj/machinery/computer/camera_advanced/proc/give_eye_control(mob/user)
 	give_actions(user)
-	RegisterSignal(user, COMSIG_MOB_CLICK_SHIFT, .proc/send_orders)
 	current_user = user
 	eyeobj.eye_user = user
 	eyeobj.name = "Camera Eye ([user.name])"
 	user.remote_control = eyeobj
 	user.reset_perspective(eyeobj)
 	eyeobj.setLoc(eyeobj.loc)
-
-/obj/machinery/computer/camera_advanced/proc/send_orders(datum/source, atom/object) ///Send an order to marines on the ground
-	SIGNAL_HANDLER
-	return
-
 
 /obj/machinery/computer/camera_advanced/proc/track(mob/living/target)
 	if(!istype(target))

@@ -89,6 +89,10 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	eyeobj.icon = 'icons/mob/cameramob.dmi'
 	eyeobj.icon_state = "generic_camera"
 
+/obj/machinery/computer/camera_advanced/overwatch/give_eye_control(mob/user)
+	. = ..()
+	RegisterSignal(user, COMSIG_MOB_CLICK_SHIFT, .proc/send_orders)
+
 
 /obj/machinery/computer/camera_advanced/overwatch/can_interact(mob/user)
 	. = ..()
@@ -1245,24 +1249,27 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	dat += "<br><A href='?src=\ref[src];operation=back'>{Back}</a>"
 	return dat			
 
-/obj/machinery/computer/camera_advanced/overwatch/send_orders(datum/source, atom/object)
+///Print order visual to all marines squad hud and give them an arrow to follow the waypoint
+/obj/machinery/computer/camera_advanced/overwatch/proc/send_orders(datum/source, atom/object)
+	SIGNAL_HANDLER
 	var/turf/target_turf = get_turf(object)
-	if (current_order)
-		if(COOLDOWN_CHECK(src, cooldown_order_cic))
-			COOLDOWN_START(src, cooldown_order_cic, ORDER_COOLDOWN)
-			new current_order.visual_type(target_turf)
-			var/obj/screen/arrow/arrow_hud
-			var/datum/atom_hud/squad/squad_hud = GLOB.huds[DATA_HUD_SQUAD]
-			var/list/final_list = squad_hud.hudusers
-			final_list -= current_user //We don't want the eye to have an arrow, it's silly
-			for(var/hud_user in final_list)
-				if(current_order.arrow_type)
-					arrow_hud = new current_order.arrow_type
-					arrow_hud.add_hud(hud_user, target_turf)
-				notify_marine(hud_user, target_turf)
-			return	
+	if (!current_order)
+		return
+	if(!COOLDOWN_CHECK(src, cooldown_order_cic))
 		to_chat(usr, "<span class='warning'>Your last order was too recent</span>")
 		return
+	COOLDOWN_START(src, cooldown_order_cic, ORDER_COOLDOWN)
+	new current_order.visual_type(target_turf)
+	var/obj/screen/arrow/arrow_hud
+	var/datum/atom_hud/squad/squad_hud = GLOB.huds[DATA_HUD_SQUAD]
+	var/list/final_list = squad_hud.hudusers
+	final_list -= current_user //We don't want the eye to have an arrow, it's silly
+	
+	for(var/hud_user in final_list)
+		if(current_order.arrow_type)
+			arrow_hud = new current_order.arrow_type
+			arrow_hud.add_hud(hud_user, target_turf)
+		notify_marine(hud_user, target_turf)	
 
 	
 /obj/machinery/computer/camera_advanced/overwatch/proc/notify_marine(mob/living/marine, turf/target_turf) ///Send an order to that specific marine if it's on the right z level
