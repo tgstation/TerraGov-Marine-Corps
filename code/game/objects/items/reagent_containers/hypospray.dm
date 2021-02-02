@@ -302,7 +302,7 @@
 	)
 
 /obj/item/reagent_containers/hypospray/advanced/dermaline
-	name = "Mermaline hypospray"
+	name = "Dermaline hypospray"
 	desc = "A hypospray loaded with dermaline."
 	list_reagents = list(
 		/datum/reagent/medicine/dermaline = 60,
