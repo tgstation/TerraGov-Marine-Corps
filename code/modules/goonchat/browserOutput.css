@@ -256,7 +256,7 @@ a.popt {text-decoration: none;}
 .name					{					font-weight: bold;}
 
 
-.say					{color: #eeeeee;}
+.say					{color: #e5e5e5;}
 .deadsay				{color: #732FCD;}
 .radio					{color: #008000;}
 .deptradio				{color: #ff00ff;}
@@ -303,15 +303,15 @@ h1.alert, h2.alert		{color: #99aab5;}
 .notice					{color: #6060c9;}
 .xenonotice				{color: #2a623d;}
 .boldnotice				{color: #6060c9;	font-weight: bold;}
-.warning				{color: #ff0000;	font-style: italic;}
+.warning				{color: #ff5f5f;	font-style: italic;}
 .xenowarning			{color: #2a623d;	font-style: italic;}
-.danger					{color: #ff0000;	font-weight: bold;}
+.danger					{color: #ff2a2a;	font-weight: bold;}
 .xenodanger				{color: #2a623d;	font-weight: bold;}
 .avoidharm				{color:	#72a0e5;	font-weight: bold;}
 .highdanger				{color: #ff0000;	font-weight: bold; font-size: 1.5em;}
 .xenohighdanger			{color: #2a623d; 	font-weight: bold; font-size: 1.5em;}
 .xenoannounce           {color: #1a472a;    font-family: book-antiqua; font-weight: bold; font-style: italic; font-size: 1.5em;}
-.hivemind				{color: purple;     font-weight: bold;}
+.hivemind				{color: #BF39AF;     font-weight: bold;}
 .xenoqueen				{font-size: 1.4em;}
 .xenoshrike				{font-size: 1.2em;}
 .xenohivemind			{font-size: 1.2em;}
