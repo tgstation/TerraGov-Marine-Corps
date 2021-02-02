@@ -88,3 +88,6 @@
 			icon_state = "bioprinter_busy"
 		else
 			icon_state = "bioprinter"
+
+/obj/machinery/bioprinter/stocked
+	stored_metal = 1000

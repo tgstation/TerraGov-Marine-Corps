@@ -1,0 +1,10 @@
+author: "SplinterGP"
+delete-after: True
+changes: 
+  - bugfix: "fixes code of honey where it should use period instead of comma."
+  - bugfix: "fixes runtime at prison station init."
+  - bugfix: "fixes warning on Pillar of spring due to two pipes of same type on same tile."
+  - bugfix: "fixes hallucination shocking not working when you don't have gloves."
+  - bugfix: "fixes rogue return at explosions code."
+  - bugfix: "fixes a spot of LV where it had two fences at same tile."
+  - bugfix: "fixes issue where medhud would randomly set status as dead when marine was revivable."

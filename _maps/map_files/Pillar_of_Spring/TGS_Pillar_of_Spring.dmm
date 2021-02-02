@@ -332,9 +332,7 @@
 /turf/closed/wall/mainship,
 /area/mainship/command/self_destruct)
 "bl" = (
-/obj/machinery/bioprinter{
-	stored_metal = 1000
-	},
+/obj/machinery/bioprinter/stocked,
 /turf/open/floor/mainship/sterile/corner{
 	dir = 1
 	},
@@ -2519,9 +2517,7 @@
 	},
 /area/mainship/medical/medical_science)
 "iN" = (
-/obj/machinery/bioprinter{
-	stored_metal = 1000
-	},
+/obj/machinery/bioprinter/stocked,
 /turf/open/floor/mainship/sterile/corner,
 /area/mainship/medical/medical_science)
 "iO" = (
@@ -4096,9 +4092,7 @@
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "od" = (
-/obj/machinery/bioprinter{
-	stored_metal = 1000
-	},
+/obj/machinery/bioprinter/stocked,
 /turf/open/floor/mainship/sterile/corner{
 	dir = 8
 	},
@@ -9939,15 +9933,6 @@
 	},
 /turf/open/floor/plating,
 /area/mainship/command/corporateliaison)
-"GW" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/turf/open/floor/mainship,
-/area/mainship/squads/general)
 "GX" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 4
@@ -50892,7 +50877,7 @@ ZL
 XH
 kF
 jl
-GW
+rW
 jl
 jl
 jl

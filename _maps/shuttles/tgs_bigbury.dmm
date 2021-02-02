@@ -208,9 +208,7 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "aU" = (
-/obj/machinery/bioprinter{
-	stored_metal = 1000
-	},
+/obj/machinery/bioprinter/stocked,
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
 "aV" = (
@@ -546,6 +544,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/effect/landmark/start/latejoin/crash,
 /turf/open/floor/mainship,
 /area/shuttle/canterbury)
 "cF" = (
@@ -807,6 +806,10 @@
 /obj/effect/landmark/start/job/crash/squadcorpsman,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
+"wz" = (
+/obj/effect/landmark/start/latejoin/crash,
+/turf/open/floor/mainship,
+/area/shuttle/canterbury)
 "ye" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -822,10 +825,6 @@
 /obj/machinery/vending/armor_supply,
 /turf/open/floor/mainship,
 /area/shuttle/canterbury)
-"zb" = (
-/obj/effect/landmark/start/latejoin/crash,
-/turf/open/floor/mainship/sterile/dark,
-/area/shuttle/canterbury/medical)
 "zc" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 8
@@ -981,6 +980,7 @@
 /area/shuttle/canterbury)
 "Qg" = (
 /obj/machinery/vending/nanomed,
+/obj/effect/landmark/start/latejoin/crash,
 /turf/open/floor/mainship,
 /area/shuttle/canterbury)
 "Rd" = (
@@ -1302,9 +1302,9 @@ aq
 aq
 aI
 aA
-zb
 aA
-zb
+aA
+aA
 ap
 ah
 "}
@@ -1634,7 +1634,7 @@ bA
 bA
 bA
 bA
-bA
+wz
 ab
 ah
 "}
@@ -1700,7 +1700,7 @@ bA
 bA
 bA
 bA
-bA
+wz
 ab
 ah
 "}
