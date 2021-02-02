@@ -1159,7 +1159,7 @@ ENGINEERING
 	contains = list(/obj/machinery/floodlightcombat)
 	cost = 5
 /datum/supply_packs/engineering/advanced_generator
-	name = "wireless power generator"
+	name = "Wireless power generator"
 	contains = list(/obj/machinery/power/port_gen/pacman/mobile_power)
 	cost = 20
 
