@@ -857,6 +857,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		return
 	owner.update_inv_gloves()
 
+
 /****************************************************
 			HELPERS
 ****************************************************/

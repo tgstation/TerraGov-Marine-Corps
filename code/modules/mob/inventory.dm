@@ -335,6 +335,7 @@
 
 	return best_item
 
+
 // The mob is trying to strip an item from someone
 /mob/proc/stripPanelUnequip(obj/item/I, mob/M)
 	return

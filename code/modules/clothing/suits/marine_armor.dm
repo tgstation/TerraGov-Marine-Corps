@@ -293,8 +293,8 @@
 /obj/item/clothing/suit/storage/marine/specialist/Initialize(mapload, ...)
 	. = ..()
 	AddComponent(/datum/component/suit_autodoc)
-	SSmonitor.stats.B18_in_use += src
 	AddElement(/datum/element/limb_support, supporting_limbs)
+	SSmonitor.stats.B18_in_use += src
 
 /obj/item/clothing/suit/storage/marine/specialist/Destroy()
 	. = ..()
@@ -313,9 +313,7 @@
 
 /obj/item/clothing/suit/storage/marine/B17/Initialize(mapload, ...)
 	. = ..()
-	AddComponent(/datum/component/suit_autodoc)
 	SSmonitor.stats.B17_in_use += src
-	AddElement(/datum/element/limb_support, supporting_limbs)
 
 /obj/item/clothing/suit/storage/marine/B17/Destroy()
 	. = ..()

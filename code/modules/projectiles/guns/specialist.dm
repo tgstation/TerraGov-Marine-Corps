@@ -980,7 +980,7 @@
 
 /obj/item/weapon/gun/launcher/rocket/sadar/Initialize(mapload, spawn_empty)
 	. = ..()
-	
+	SSmonitor.stats.SADAR_in_use += src
 
 /obj/item/weapon/gun/launcher/rocket/sadar/Destroy()
 	. = ..()

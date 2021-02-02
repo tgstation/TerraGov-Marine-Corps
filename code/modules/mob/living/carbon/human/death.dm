@@ -17,6 +17,10 @@
 		return
 	..()
 
+
+
+
+
 /mob/living/carbon/human/gib_animation()
 	new /obj/effect/overlay/temp/gib_animation(loc, src, species ? species.gibbed_anim : "gibbed-h")
 
