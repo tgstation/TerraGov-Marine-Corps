@@ -926,19 +926,13 @@
 	},
 /area/sulaco/medbay/west)
 "acY" = (
-/obj/machinery/bioprinter,
-/obj/machinery/light{
-	dir = 4
-	},
+/obj/machinery/bioprinter/stocked,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
 	},
 /area/sulaco/medbay/surgery_two)
 "acZ" = (
-/obj/machinery/bioprinter,
-/obj/machinery/light{
-	dir = 8
-	},
+/obj/machinery/bioprinter/stocked,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
 	},
@@ -1799,6 +1793,9 @@
 	dir = 4
 	},
 /area/sulaco/engineering/atmos)
+"agb" = (
+/turf/closed/wall/mainship/white,
+/area/sulaco/hallway/lower_main_hall)
 "agm" = (
 /obj/machinery/vending/tool,
 /turf/open/floor/prison,
