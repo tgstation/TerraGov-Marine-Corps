@@ -63,6 +63,8 @@
 	var/shell_speed_mod	= 0						//Modifies the speed of projectiles fired.
 	/// Determines which humans the gun's shot will pass through based on the victim's ID access list.
 	var/list/gun_iff_signal = null
+	///Modifies projectile damage by a % when a marine gets passed, but not hit
+	var/iff_marine_damage_falloff = 0
 	///Determines how fire delay is changed when aim mode is active
 	var/aim_fire_delay = 0
 	///Determines character slowdown from aim mode. Default is 66%
@@ -348,6 +350,8 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 			load_into_chamber()
 
 	update_icon(user)
+	var/obj/screen/ammo/A = user.hud_used.ammo
+	A.update_hud(user)
 	return TRUE
 
 /obj/item/weapon/gun/proc/replace_magazine(mob/user, obj/item/ammo_magazine/magazine)
@@ -874,6 +878,7 @@ and you're good to go.
 	projectile_to_fire.damage_falloff *= damage_falloff_mult
 	projectile_to_fire.projectile_speed += shell_speed_mod
 	projectile_to_fire.projectile_iff = gun_iff_signal
+	projectile_to_fire.damage_marine_falloff = iff_marine_damage_falloff
 
 
 /obj/item/weapon/gun/proc/setup_bullet_accuracy(obj/projectile/projectile_to_fire, mob/user, bullets_fired = 1, dual_wield = FALSE)

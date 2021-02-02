@@ -63,6 +63,8 @@
 		attach_strings += "Wield delay: [wield_delay_mod / 10] seconds."
 	if(attach_shell_speed_mod)
 		attach_strings += "Bullet speed: [attach_shell_speed_mod * 100]%"
+	if(aim_mode_movement_mult)
+		attach_strings += "Aim Mode slowdow modifier: [aim_mode_movement_mult*100]%"
 	if(movement_acc_penalty_mod)
 		attach_strings += "Running accuracy penalty: [movement_acc_penalty_mod * 100]%"
 	if(max_rounds)

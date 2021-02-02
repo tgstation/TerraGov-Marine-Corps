@@ -54,7 +54,7 @@
 
 /obj/machinery/computer/atmos_alert/update_icon()
 	..()
-	if(machine_stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN|DISABLED))
 		return
 	if(priority_alarms.len)
 		icon_state = "alert:2"

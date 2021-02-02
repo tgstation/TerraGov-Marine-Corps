@@ -37,6 +37,7 @@
 
 	// *** Speed *** //
 	var/speed = 1
+	var/weeds_speed_mod = -0.4
 
 	// *** Regeneration Delay ***//
 	///Time after you take damage before a xenomorph can regen.
@@ -289,6 +290,10 @@
 	var/fortify = 0
 	var/crest_defense = 0
 
+	// Hivelord vars
+	///Whether or not the Hivelord's healing infusion is active on this target.
+	var/infusion_active = 0
+
 	//Leader vars
 	var/leader_aura_strength = 0 //Pheromone strength inherited from Queen
 	var/leader_current_aura = "" //Pheromone type inherited from Queen
@@ -308,3 +313,5 @@
 	var/notice_delay = 20 //2 second between notices
 
 	var/fire_luminosity = 0 //Luminosity of the current fire while burning
+
+	COOLDOWN_DECLARE(xeno_health_alert_cooldown)

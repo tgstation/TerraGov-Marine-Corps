@@ -10,7 +10,7 @@
 
 GLOBAL_LIST_EMPTY(active_orbital_beacons)
 GLOBAL_LIST_EMPTY(active_laser_targets)
-
+GLOBAL_LIST_EMPTY(active_cas_targets)
 /obj/machinery/computer/camera_advanced/overwatch
 	name = "Overwatch Console"
 	desc = "State of the art machinery for giving orders to a squad."

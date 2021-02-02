@@ -59,3 +59,42 @@
 	name = "transfer plasma"
 	icon_state = "transfer_plasma"
 	duration = 0.5 SECONDS
+
+
+/obj/effect/temp_visual/xenomorph/runner_afterimage
+	name = "runner afterimage"
+	desc = "It has become speed.."
+	icon = 'icons/Xeno/2x2_Xenos.dmi' //They are now like, 2x1 or something
+	icon_state = "Runner Walking"
+	layer = MOB_LAYER
+	alpha = 64 //Translucent
+	duration = 0.5 SECONDS
+	density = FALSE
+	opacity = FALSE
+	anchored = FALSE
+	animate_movement = SLIDE_STEPS
+
+/obj/effect/temp_visual/xenomorph/roony_afterimage
+	name = "roony afterimage"
+	desc = "It has become speed.."
+	icon = 'icons/Xeno/2x2_Xenos.dmi' //They are now like, 2x1 or something
+	icon_state = "Roony Walking"
+	layer = MOB_LAYER
+	alpha = 64 //Translucent
+	duration = 0.5 SECONDS
+	density = FALSE
+	opacity = FALSE
+	anchored = FALSE
+	animate_movement = SLIDE_STEPS
+
+/obj/effect/temp_visual/heavyimpact
+	name = "heavy impact"
+	icon = 'icons/effects/heavyimpact.dmi'
+	icon_state = "heavyimpact"
+	duration = 13
+
+/obj/effect/temp_visual/healing
+	name = "healing"
+	icon = 'icons/effects/progressicons.dmi'
+	icon_state = "busy_medical"
+	duration = 0.8 SECONDS

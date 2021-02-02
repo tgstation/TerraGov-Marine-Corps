@@ -158,20 +158,21 @@
 	flags_heat_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 
 /obj/item/clothing/suit/storage/marine/M3P/tanker
-	name = "\improper M3 pattern tanker armor"
-	desc = "A modified and refashioned suit of M3 Pattern armor designed to be worn by vehicle crew. While the suit is a bit more encumbering to wear with the crewman uniform, it offers the loader a degree of protection that would otherwise not be enjoyed."
+	name = "\improper PAS-09 pattern tanker armor"
+	desc = "A somewhat outdated but robust armored vest, still in use despite the rise of exoskeleton armor due to ease of use and manufacturing. While the suit is a bit more encumbering to wear with the crewman uniform, it offers the loader a degree of protection that would otherwise not be enjoyed."
 	icon_state = "tanker"
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT)
 
 /obj/item/clothing/suit/storage/marine/M3P/tech
-	name = "\improper M3 pattern technician armor"
-	desc = "A modified and refashioned suit of the older M3 Pattern armor designed to be worn by Ship Technicians. It offers more protection against the exotic dangers that Technicians face."
+	name = "\improper PAS-09 pattern technician armor"
+	desc = "A somewhat outdated but robust armored vest, still in use despite the rise of exoskeleton armor due to ease of use and manufacturing. It offers more protection against the exotic dangers that technicians face."
 	icon_state = "tanker"
-	soft_armor = list("melee" = 45, "bullet" = 55, "laser" = 45, "energy" = 45, "bomb" = 60, "bio" = 10, "rad" = 10, "fire" = 40, "acid" = 65)
+	soft_armor = list("melee" = 45, "bullet" = 55, "laser" = 60, "energy" = 45, "bomb" = 60, "bio" = 45, "rad" = 45, "fire" = 45, "acid" = 65)
+	flags_item_map_variant = NONE
 
 
 /obj/item/clothing/suit/storage/marine/leader
-	name = "\improper B12 pattern leader armor"
+	name = "\improper PAS-10 pattern leader armor"
 	desc = "A lightweight suit of carbon fiber body armor built for quick movement. Use it to toggle the built-in flashlight."
 	icon_state = "7"
 	soft_armor = list("melee" = 45, "bullet" = 55, "laser" = 55, "energy" = 40, "bomb" = 40, "bio" = 40, "rad" = 15, "fire" = 40, "acid" = 45)
@@ -185,10 +186,10 @@
 	max_w_class = 3
 
 /obj/item/clothing/suit/storage/marine/MP
-	name = "\improper N2 pattern MA armor"
-	desc = "A standard TerraGov Navy N2 Pattern Chestplate. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."
+	name = "\improper PAS-N2 pattern MA armor"
+	desc = "A standard TerraGov Navy N2 Personal Armor System. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."
 	icon_state = "mp"
-	soft_armor = list("melee" = 45, "bullet" = 55, "laser" = 55, "energy" = 20, "bomb" = 25, "bio" = 40, "rad" = 10, "fire" = 20, "acid" = 45)
+	soft_armor = list("melee" = 45, "bullet" = 60, "laser" = 60, "energy" = 45, "bomb" = 45, "bio" = 45, "rad" = 45, "fire" = 45, "acid" = 50)
 	slowdown = 0.4
 	flags_item_map_variant = NONE
 	allowed = list(
@@ -212,20 +213,20 @@
 
 /obj/item/clothing/suit/storage/marine/MP/WO
 	icon_state = "warrant_officer"
-	name = "\improper N3 pattern MA armor"
-	desc = "A well-crafted suit of N3 Pattern Armor typically distributed to Command Masters at Arms. Useful for letting your men know who is in charge."
+	name = "\improper PAS-N3 pattern MA armor"
+	desc = "A well-crafted suit of Personal Armor System typically distributed to Command Masters at Arms. Useful for letting your men know who is in charge."
 
 /obj/item/clothing/suit/storage/marine/MP/admiral
 	icon_state = "admiral"
-	name = "\improper M3 pattern admiral armor"
-	desc = "A well-crafted suit of M3 Pattern Armor with a gold shine. It looks very expensive, but shockingly fairly easy to carry and wear."
+	name = "\improper PAS-N3 pattern admiral armor"
+	desc = "A well-crafted suit of Personal Armor System with a gold shine. It looks very expensive, but shockingly fairly easy to carry and wear."
 	w_class = WEIGHT_CLASS_NORMAL
-	soft_armor = list("melee" = 45, "bullet" = 65, "laser" = 40, "energy" = 25, "bomb" = 30, "bio" = 30, "rad" = 10, "fire" = 25, "acid" = 25)
+	soft_armor = list("melee" = 45, "bullet" = 65, "laser" = 60, "energy" = 45, "bomb" = 45, "bio" = 45, "rad" = 45, "fire" = 45, "acid" = 50)
 
 /obj/item/clothing/suit/storage/marine/MP/RO
 	icon_state = "officer"
-	name = "\improper M3 pattern officer armor"
-	desc = "A well-crafted suit of M3 Pattern Armor typically found in the hands of higher-ranking officers. Useful for letting your men know who is in charge when taking to the field"
+	name = "\improper PAS-N3 pattern officer armor"
+	desc = "A well-crafted suit of a Navy Personal Armor System typically found in the hands of higher-ranking officers. Useful for letting your men know who is in charge when taking to the field."
 
 /obj/item/clothing/suit/storage/marine/smartgunner
 	name = "M26 combat harness"
@@ -268,7 +269,7 @@
 /obj/item/clothing/suit/storage/marine/pasvest
 	name = "\improper PAS-11 pattern armored vest"
 	desc = "A somewhat outdated but robust armored vest, still in use despite the rise of exoskeleton armor due to ease of use and manufacturing. Tougher than it looks. Use it to toggle the built-in flashlight."
-	icon_state = "3"
+	icon_state = "2"
 	soft_armor = list("melee" = 40, "bullet" = 60, "laser" = 60, "energy" = 45, "bomb" = 45, "bio" = 45, "rad" = 45, "fire" = 45, "acid" = 50)
 	slowdown = 0.5 //a bit less
 	light_range = 6
@@ -286,7 +287,7 @@
 	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 	flags_heat_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 	slowdown = SLOWDOWN_ARMOR_VERY_HEAVY
-	supporting_limbs = CHEST | GROIN | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_LEFT | LEG_RIGHT | FOOT_LEFT | FOOT_RIGHT //B18 effectively stabilizes these.
+	supporting_limbs = CHEST | GROIN | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_LEFT | LEG_RIGHT | FOOT_LEFT | FOOT_RIGHT | HEAD //B18 effectively stabilizes these.
 	resistance_flags = UNACIDABLE
 
 /obj/item/clothing/suit/storage/marine/specialist/Initialize(mapload, ...)
@@ -490,7 +491,6 @@
 
 /*===========================U.S.L================================*/
 
-
 /obj/item/clothing/suit/storage/faction
 	icon = 'icons/obj/clothing/cm_suits.dmi'
 	item_icons = list(
@@ -563,8 +563,6 @@
 	if(slot != SLOT_WEAR_SUIT) return FALSE
 	return TRUE //only give action button when armor is worn.
 
-
-
 /obj/item/clothing/suit/storage/faction/UPP
 	name = "\improper UM5 personal armor"
 	desc = "Standard body armor of the USL pirates, the UM5 (United Medium MK5) is a medium body armor, roughly on par with the venerable M3 pattern body armor in service with the TGMC."
@@ -573,25 +571,42 @@
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 	soft_armor = list("melee" = 55, "bullet" = 60, "laser" = 60, "energy" = 60, "bomb" = 55, "bio" = 10, "rad" = 10, "fire" = 60, "acid" = 60)
 
+/// Modified version of the armor for HvH combat. Stats are based on medium armor, with tyr mark 2.
+/obj/item/clothing/suit/storage/faction/UPP/hvh
+	soft_armor = list("melee" = 55, "bullet" = 75, "laser" = 75, "energy" = 60, "bomb" = 60, "bio" = 45, "rad" = 45, "fire" = 60, "acid" = 65)
+
+
 /obj/item/clothing/suit/storage/faction/UPP/commando
 	name = "\improper UM5CU personal armor"
 	desc = "A modification of the UM5, designed for stealth operations."
 	icon_state = "upp_armor_commando"
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 
+/// Modified version of the armor for HvH combat. Stats are based on medium armor, with tyr mark 2.
+/obj/item/clothing/suit/storage/faction/UPP/commando/hvh
+	soft_armor = list("melee" = 55, "bullet" = 75, "laser" = 75, "energy" = 60, "bomb" = 60, "bio" = 45, "rad" = 45, "fire" = 60, "acid" = 65)
+
 /obj/item/clothing/suit/storage/faction/UPP/heavy
 	name = "\improper UH7 heavy plated armor"
-	desc = "An extremely heavy duty set of body armor in service with the USL pirates, the UH7 (United Heavy MK5) is known for being a rugged set of armor, capable of taking immesnse punishment."
+	desc = "An extremely heavy duty set of body armor in service with the USL pirates, the UH7 (United Heavy MK7) is known for being a rugged set of armor, capable of taking immesnse punishment."
 	icon_state = "upp_armor_heavy"
 	slowdown = SLOWDOWN_ARMOR_HEAVY
 	soft_armor = list("melee" = 65, "bullet" = 65, "laser" = 65, "energy" = 60, "bomb" = 60, "bio" = 10, "rad" = 10, "fire" = 60, "acid" = 60)
 
+/// Modified version of the armor for HvH combat. Stats are based on heavy armor, with tyr mark 2.
+/obj/item/clothing/suit/storage/faction/UPP/heavy/hvh
+	soft_armor = list("melee" = 60, "bullet" = 80, "laser" = 80, "energy" = 65, "bomb" = 60, "bio" = 60, "rad" = 60, "fire" = 60, "acid" = 70)
+
 /obj/item/clothing/suit/storage/marine/smartgunner/UPP
 	name = "\improper UH7 heavy plated armor"
-	desc = "An extremely heavy duty set of body armor in service with the USL pirates, the UH7 (United Heavy MK5) is known for being a rugged set of armor, capable of taking immesnse punishment."
+	desc = "An extremely heavy duty set of body armor in service with the USL pirates, the UH7 (United Heavy MK7) is known for being a rugged set of armor, capable of taking immesnse punishment."
 	icon_state = "upp_armor_heavy"
 	slowdown = SLOWDOWN_ARMOR_HEAVY
 	soft_armor = list("melee" = 65, "bullet" = 65, "laser" = 65, "energy" = 60, "bomb" = 60, "bio" = 10, "rad" = 10, "fire" = 60, "acid" = 60)
+
+/// Modified version of the armor for HvH combat. Stats are based on heavy armor, with tyr mark 2.
+/obj/item/clothing/suit/storage/marine/smartgunner/UPP/hvh
+	soft_armor = list("melee" = 60, "bullet" = 80, "laser" = 80, "energy" = 65, "bomb" = 60, "bio" = 60, "rad" = 60, "fire" = 60, "acid" = 70)
 
 //===========================FREELANCER================================
 
@@ -724,8 +739,6 @@
 		/obj/item/weapon/combat_knife,
 	)
 
-
-
 /obj/item/clothing/suit/storage/marine/som
 	name = "\improper S12 hauberk"
 	desc = "A heavily modified piece of mining equipment remade for general purpose combat use. It's light but practically gives no armor."
@@ -737,6 +750,11 @@
 	flags_item_map_variant = NONE
 
 
+/// Modified version of the armor for HvH combat. Stats are on medium armor.
+/obj/item/clothing/suit/storage/marine/som/hvh
+	soft_armor = list("melee" = 50, "bullet" = 60, "laser" = 60, "energy" = 55, "bomb" = 55, "bio" = 55, "rad" = 55, "fire" = 55, "acid" = 55)
+
+
 /obj/item/clothing/suit/storage/marine/som/veteran
 	name = "\improper S12 combat Hauberk"
 	desc = "A heavily modified piece of mining equipment remade for general purpose combat use. Seems to have been modifed much further than other pieces like it. Heavier but tougher because of it."
@@ -744,7 +762,11 @@
 	item_state = "som_armor_veteran"
 	slowdown = SLOWDOWN_ARMOR_HEAVY
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
-	soft_armor = list("melee" = 65, "bullet" = 70, "laser" = 70, "energy" = 40, "bomb" = 30, "bio" = 10, "rad" = 10, "fire" = 40, "acid" = 60)
+	soft_armor = list("melee" = 65, "bullet" = 70, "laser" = 70, "energy" = 55, "bomb" = 55, "bio" = 55, "rad" = 55, "fire" = 55, "acid" = 60)
+
+// Modified version of the armor for HvH combat. Stats are based on heavy armor with mark 2 tyr.
+/obj/item/clothing/suit/storage/marine/som/veteran/hvh
+	soft_armor = list("melee" = 65, "bullet" = 80, "laser" = 80, "energy" = 65, "bomb" = 60, "bio" = 60, "rad" = 60, "fire" = 60, "acid" = 70)
 
 
 /obj/item/clothing/suit/storage/marine/som/leader
@@ -754,4 +776,8 @@
 	item_state = "som_armor_leader"
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
-	soft_armor = list("melee" = 55, "bullet" = 50, "laser" = 40, "energy" = 50, "bomb" = 40, "bio" = 15, "rad" = 15, "fire" = 50, "acid" = 60)
+	soft_armor = list("melee" = 55, "bullet" = 50, "laser" = 40, "energy" = 55, "bomb" = 55, "bio" = 55, "rad" = 55, "fire" = 55, "acid" = 60)
+
+/// Modified version of the armor for HvH combat. Stats are based on medium armor with mark 2 tyr.
+/obj/item/clothing/suit/storage/marine/som/leader/hvh
+	soft_armor = list("melee" = 55, "bullet" = 75, "laser" = 75, "energy" = 60, "bomb" = 60, "bio" = 60, "rad" = 60, "fire" = 60, "acid" = 65)

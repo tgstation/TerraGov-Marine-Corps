@@ -215,6 +215,8 @@
 
 
 	else
+		if(new_caste_type == /mob/living/carbon/xenomorph/runner & CONFIG_GET(flag/roony))//If the fun config is set, every runner is a roony
+			new_caste_type = /mob/living/carbon/xenomorph/roony
 		var/potential_queens = length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/larva]) + length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/drone])
 
 		tierzeros = hive.get_total_tier_zeros()
@@ -343,6 +345,7 @@
 		new_xeno.hud_set_queen_overwatch()
 		if(hive.living_xeno_queen)
 			new_xeno.handle_xeno_leader_pheromones(hive.living_xeno_queen)
+		new_xeno.give_rally_hive_ability() //Give them back their rally hive ability
 
 	qdel(src)
 	INVOKE_ASYNC(new_xeno, /mob/living.proc/do_jitter_animation, 1000)
