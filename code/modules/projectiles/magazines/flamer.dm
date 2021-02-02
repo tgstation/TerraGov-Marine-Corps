@@ -63,25 +63,28 @@
 
 /obj/item/ammo_magazine/flamer_tank/backtank/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	if(istype(I, /obj/item/weapon/gun/flamer))
-		var/obj/item/weapon/gun/flamer/FLT = I
-		var/mob/living/carbon/human/humanuser = user
-		if (istype(humanuser))
-			if (humanuser.is_item_in_slots(src))
-				if(FLT.current_mag == src)
-					FLT.detach_fueltank(user)
-					return
-				
-				if (attached_flamer)
-					to_chat(user, "<span class='warning'>This fuel tank is already attached to something</span>")
-					return
-				
-				FLT.attach_fueltank(user,src)
-				return
-			
-			to_chat(user, "<span class='warning'>You must equip or hold this fuel tank to be able to link it to a flamer</span>")
-			return
+	if(!istype(I, /obj/item/weapon/gun/flamer))
+		return	
+	var/obj/item/weapon/gun/flamer/FLT = I
+	var/mob/living/carbon/human/humanuser = user
+	if (!istype(humanuser))
 		return
+	
+	if (!humanuser.is_item_in_slots(src))
+		to_chat(user, "<span class='warning'>You must equip or hold this fuel tank to be able to link it to a flamer</span>")
+		return
+	
+	if(FLT.current_mag == src)
+		FLT.detach_fueltank(user)
+		return
+
+	if (attached_flamer)
+		to_chat(user, "<span class='warning'>This fuel tank is already attached to something</span>")
+		return
+		
+	FLT.attach_fueltank(user,src)
+
+	
 
 /obj/item/ammo_magazine/flamer_tank/backtank/removed_from_inventory(mob/user) //Dropping the tank should unlink it from the flamer
 	. = ..()
