@@ -86,12 +86,11 @@
 /obj/item/ammo_magazine/flamer_tank/backtank/removed_from_inventory(mob/user) //Dropping the tank should unlink it from the flamer
 	. = ..()
 	var/mob/living/carbon/human/humanuser = user
-	if (istype(humanuser))
-		if(attached_flamer)
-			attached_flamer.detach_fueltank(user,FALSE)
-			return
+	if (!istype(humanuser))
 		return
-	return
+	if(!attached_flamer)
+		return
+	attached_flamer.detach_fueltank(user,FALSE)
 
 /obj/item/ammo_magazine/flamer_tank/backtank/X
 	name = "back fuel tank (X)"
