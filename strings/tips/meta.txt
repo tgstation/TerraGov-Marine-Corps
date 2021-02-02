@@ -19,3 +19,4 @@ You can respawn during End-Of-Round Deathmatch in the OOC tab.
 Sundering is a concept that reduces the effectiveness of xeno armor by percentage. Xenomorph drones can heal and decrease sunder.
 When you want to claim a mob, claim it now! Others will claim it as soon as they are available.
 You can customize your ghost using the Ghost Customization command under the Preferences tab.
+As either a marine or a xeno, you will die quickly and horribly if you find yourself in a pressureless enviroment (a.k.a spess).
