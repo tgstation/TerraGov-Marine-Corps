@@ -306,7 +306,7 @@
 	if(!hud_used?.locate_leader)
 		return
 	var/obj/screen/LL_dir = hud_used.locate_leader
-	if (QDELETED(tracked) || !tracked)
+	if (!tracked)
 		if(hive.living_xeno_ruler)
 			tracked = hive.living_xeno_ruler
 		else
@@ -315,6 +315,9 @@
 	
 	if (isxeno(tracked))
 		var/mob/living/carbon/xenomorph/xeno_tracked = tracked
+		if(QDELETED(xeno_tracked))
+			tracked = null
+			return
 		if(xeno_tracked == src) // No need to track ourselves
 			LL_dir.icon_state = "trackoff"
 			return	
@@ -333,7 +336,9 @@
 
 	if (isresinsilo(tracked))
 		var/mob/living/carbon/xenomorph/silo_tracked = tracked
-
+		if(QDELETED(silo_tracked))
+			tracked = null
+			return
 		if(silo_tracked.z != z || get_dist(src,silo_tracked) < 1)
 			LL_dir.icon_state = "trackondirect"
 			return
