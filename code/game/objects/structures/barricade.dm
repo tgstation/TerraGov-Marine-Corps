@@ -57,7 +57,7 @@
 	if(closed)
 		return TRUE
 
-	if(istype(O) && CHECK_BITFIELD(O.flags_pass, PASSSMALLSTRUCT))
+	if(CHECK_BITFIELD(O.flags_pass, PASSSMALLSTRUCT))
 		return TRUE
 
 	if(O.throwing)
@@ -79,7 +79,7 @@
 	if(closed)
 		return TRUE
 
-	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSSMALLSTRUCT))
+	if(CHECK_BITFIELD(mover.flags_pass, PASSSMALLSTRUCT))
 		return TRUE
 
 	if(mover?.throwing)
