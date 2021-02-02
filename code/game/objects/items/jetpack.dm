@@ -60,7 +60,7 @@
 	if(!COOLDOWN_CHECK(src,cooldown_jetpack))
 		to_chat(human_user,"<span class='warning'>You cannot use the jetpack yet!</span>")
 		return FALSE
-	if(fuel_left<FUEL_USE)
+	if(fuel_left < FUEL_USE)
 		to_chat(human_user,"<span class='warning'>The jetpack ran out of fuel!</span>")
 		return FALSE
 	return TRUE
@@ -69,45 +69,40 @@
 	. = ..()
 	if (lit)
 		.+= image('icons/obj/items/jetpack.dmi', src, "+jetpacklit")
-	var/image/I
 	switch(fuel_indicator)
 		if(40)
-			I = image('icons/obj/items/jetpack.dmi', src, "+jetpackfull")
+			. += image('icons/obj/items/jetpack.dmi', src, "+jetpackfull")
 		if(20)
-			I = image('icons/obj/items/jetpack.dmi', src, "+jetpackhalffull")
+			. += image('icons/obj/items/jetpack.dmi', src, "+jetpackhalffull")
 		if(FUEL_USE)
-			I = image('icons/obj/items/jetpack.dmi', src, "+jetpackalmostempty")
+			. += image('icons/obj/items/jetpack.dmi', src, "+jetpackalmostempty")
 		else
-			I = image('icons/obj/items/jetpack.dmi', src, "+jetpackempty")
-	. += I
+			. += image('icons/obj/items/jetpack.dmi', src, "+jetpackempty")
 
 ///Manage the fuel indicator overlay
 /obj/item/jetpack_marine/proc/change_fuel_indicator() 
-	if(fuel_left-fuel_indicator<0)
-		if (fuel_left >= 20)
-			fuel_indicator = 20
-			return
-		if (fuel_left >= FUEL_USE)
-			fuel_indicator = FUEL_USE
-			return
-		fuel_indicator = 0
+	if(fuel_left-fuel_indicator > 0)
 		return
-	return
+	if (fuel_left >= 20)
+		fuel_indicator = 20
+		return
+	if (fuel_left >= FUEL_USE)
+		fuel_indicator = FUEL_USE
+		return
+	fuel_indicator = 0
 
-/obj/item/jetpack_marine/afterattack(obj/target, mob/user , proximity_flag) //refuel at fueltanks when we run out of fuel
-	if(istype(target, /obj/structure/reagent_dispensers/fueltank) & proximity_flag)
-		var/obj/structure/reagent_dispensers/fueltank/FT = target
-		if(FT.reagents.total_volume == 0)
-			to_chat(user, "<span class='warning'>Out of fuel!</span>")
-			return ..()
+/obj/item/jetpack_marine/afterattack(obj/target, mob/user, proximity_flag) //refuel at fueltanks when we run out of fuel
+	if(!istype(target, /obj/structure/reagent_dispensers/fueltank) & proximity_flag)
+		return ..()
+	var/obj/structure/reagent_dispensers/fueltank/FT = target
+	if(FT.reagents.total_volume == 0)
+		to_chat(user, "<span class='warning'>Out of fuel!</span>")
+		return ..()
 
-		var/fuel_transfer_amount = min(FT.reagents.total_volume, (fuel_max - fuel_left))
-		FT.reagents.remove_reagent(/datum/reagent/fuel, fuel_transfer_amount)
-		fuel_left += fuel_transfer_amount
-		fuel_indicator = 40
-		update_icon()
-		playsound(loc, 'sound/effects/refill.ogg', 30, 1, 3)
-		to_chat(user, "<span class='notice'>You refill [src] with [target].</span>")
-
-	else
-		..()
+	var/fuel_transfer_amount = min(FT.reagents.total_volume, (fuel_max - fuel_left))
+	FT.reagents.remove_reagent(/datum/reagent/fuel, fuel_transfer_amount)
+	fuel_left += fuel_transfer_amount
+	fuel_indicator = 40
+	update_icon()
+	playsound(loc, 'sound/effects/refill.ogg', 30, 1, 3)
+	to_chat(user, "<span class='notice'>You refill [src] with [target].</span>")
