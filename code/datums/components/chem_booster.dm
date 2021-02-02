@@ -155,7 +155,6 @@
 	RegisterSignal(wearer.reagents, COMSIG_REAGENT_ADD, .proc/late_add_chem)
 	RegisterSignal(wearer, COMSIG_MOB_DEATH, .proc/on_off)
 	update_boost(boost_amount*2, FALSE)
-	addtimer(CALLBACK(wearer))
 	to_chat(wearer, "Commensing reagent injection.")
 
 //Updates the boost amount of the suit and effect_str of reagents if component is on. "amount" is the final level you want to set the boost to.
