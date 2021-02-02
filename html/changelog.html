@@ -53,10 +53,256 @@
 		-->
 		<div class="commit sansserif">
 
-			<h2 class="date">28 November 2020</h2>
+			<h2 class="date">19 December 2020</h2>
+			<h3 class="author">Surrealaser updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Fixes a bug where removing melee/acid upgrades from a barricade removed more soft armor than the upgrade provided.</li>
+			</ul>
+			<h3 class="author">TiviPlus updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="code_imp">Optimized getallcontents and splits it into 2 procs</li>
+			</ul>
+
+			<h2 class="date">18 December 2020</h2>
+			<h3 class="author">SplinterGP updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">fixes xeno grabbing starting even when not adjacent when grabbing via ctrl click.</li>
+			</ul>
+
+			<h2 class="date">17 December 2020</h2>
+			<h3 class="author">SplinterGP updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">fixes bug where muting deadchat locally won't properly hide deadchat messages.</li>
+			</ul>
+			<h3 class="author">Surrealaser updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Fixes displayed T3 Hive Status.</li>
+				<li class="refactor">Adds T2 and T3 limit vars for Hive datums.</li>
+				<li class="rscadd">Warrior gains the Grapple Toss ability. Cooldown is shared with Lunge (and vice versa).</li>
+				<li class="rscadd">Lunge, Grapple Toss, Punch and Fling can all target xenos now (enemy and allied).</li>
+				<li class="tweak">Punch deals double damage and debuffs to targets the Warrior is grappling.</li>
+				<li class="tweak">Punch can now target structures/machinery, dealing 4x base melee damage to them.</li>
+				<li class="refactor">Refactored a bunch of Warrior code.</li>
+				<li class="bugfix">Warrior's Lunge now bypasses grab delays as it should.</li>
+			</ul>
+			<h3 class="author">TiviPlus updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Fix server votes probably</li>
+				<li class="rscadd">Powerfist</li>
+				<li class="imageadd">sprite by Daytona</li>
+				<li class="bugfix">fixed a likely cause for sticky plasteel overlays</li>
+				<li class="code_imp">Cleaned up various overlay code</li>
+				<li class="refactor">Turret icon updates will be much faster</li>
+			</ul>
+			<h3 class="author">Wayland-Smithy updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Fixed Queen overwatch from hive status and chat not working on numbers or names with spaces.</li>
+				<li class="bugfix">Fixed Xeno HUD for the observed not updating when starting overwatch.</li>
+			</ul>
+
+			<h2 class="date">15 December 2020</h2>
+			<h3 class="author">MLGTASTICa updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Turned Ice Caves on Ice Colony into their own areas and they are now considered deep caves.</li>
+				<li class="bugfix">fixed tadpole being able to land in caves on big red</li>
+				<li class="bugfix">fixed Tadpole being able to land in magmoor underground buildings.</li>
+			</ul>
+			<h3 class="author">Surrealaser updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Acid Wells no longer discharge gas when destroyed by shuttle crushing.</li>
+				<li class="bugfix">Hugger Traps no longer discharge huggers when destroyed by shuttle crushing.</li>
+				<li class="tweak">Transfer Plasma no longer transfers for plasma than its target needs.</li>
+				<li class="tweak">Transfer Plasma has cool SFX now.</li>
+			</ul>
+			<h3 class="author">TiviPlus updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="code_imp">cleaned up bed and chairs code</li>
+				<li class="code_imp">Cleaned up Move() and Signal defines slightly</li>
+				<li class="code_imp">removed depracated vars on items</li>
+				<li class="code_imp">documented items</li>
+				<li class="code_imp">more misc cleanup</li>
+				<li class="refactor">refactored item actions into a lazylist</li>
+			</ul>
+
+			<h2 class="date">14 December 2020</h2>
+			<h3 class="author">CthulhuOnIce, BeloneX updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Added automatic-punctuation.</li>
+			</ul>
+			<h3 class="author">SplinterGP updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">fixes bug and runtime error on scopes not unzooming on some occasions(quickstoring, dropping, etc).</li>
+				<li class="bugfix">fixes fire not lighting xenos on fire.</li>
+				<li class="bugfix">fixes acid globs stored on boiler not glowing.</li>
+				<li class="code_imp">makes xenos use newlights.</li>
+			</ul>
+
+			<h2 class="date">12 December 2020</h2>
+			<h3 class="author">SplinterGP updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="code_imp">makes acid use SSslowprocess instead of SSprocessing, saving performance.</li>
+			</ul>
+
+			<h2 class="date">09 December 2020</h2>
+			<h3 class="author">Hughgent updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Autoburst firemode now properly applying burst accuracy penalty.</li>
+			</ul>
+			<h3 class="author">TiviPlus updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="code_imp">Removes dead/unused huds</li>
+			</ul>
+			<h3 class="author">Wayland-Smithy updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Added the Salvage Biomass ability to Hivelord.</li>
+				<li class="bugfix">Fixed Crest Toss buckled mob interactions, and a visual feedback bug.</li>
+			</ul>
+			<h3 class="author">jroinc updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Russian Red doesn't yoink your arms anymore.</li>
+			</ul>
+
+			<h2 class="date">08 December 2020</h2>
 			<h3 class="author">Pariah919 updated:</h3>
 			<ul class="changes bgimages16">
-				<li class="rscdel">Removed kronos,zx,custom shotgun, kt42, mp5 from the game</li>
+				<li class="balance">nerfed lasgun overcharge to 5 sunder and 40 damage</li>
+			</ul>
+			<h3 class="author">SplinterGP updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">fixes generating negative burrowed when hijacking.</li>
+			</ul>
+			<h3 class="author">Surrealaser updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Fixed minisentry duplication bug.</li>
+				<li class="bugfix">Fixed lighting bugs for sentries.</li>
+				<li class="refactor">Minor sentry refactors and removal/revision of old code.</li>
+				<li class="bugfix">Hotkey added for Evasion.</li>
+				<li class="bugfix">Minor bug with Evasion corrected.</li>
+			</ul>
+
+			<h2 class="date">07 December 2020</h2>
+			<h3 class="author">SplinterGP updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">fixes a bug where scopes would give negative accuracy to guns.</li>
+				<li class="code_imp">optimizes zoom code to reduce lag.</li>
+			</ul>
+			<h3 class="author">TiviPlus updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="code_imp">Optimized get_hear()</li>
+				<li class="code_imp">Optimized get_hearers_in_view()</li>
+				<li class="code_imp">Microoptimized Keyloop()</li>
+				<li class="code_imp">Optimizes getviewsize()</li>
+			</ul>
+
+			<h2 class="date">06 December 2020</h2>
+			<h3 class="author">Daytona updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Added new dropped sprites</li>
+			</ul>
+			<h3 class="author">Surrealaser updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Fixes the shield damage absorption calculation.</li>
+				<li class="tweak">'Paralyze' status effect (i.e. proning) only halves the shield's cover value instead of negating it completely.</li>
+			</ul>
+			<h3 class="author">Wayland-Smithy updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscdel">Removed the arbitrary limit on resin silos.</li>
+				<li class="balance">Silo construction cooldown reduced from 120 to 60 seconds.</li>
+			</ul>
+			<h3 class="author">jroinc updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">Rebalanced toxheal chems</li>
+				<li class="spellcheck">Fixed a bad copy/paste on a pill description</li>
+			</ul>
+
+			<h2 class="date">05 December 2020</h2>
+			<h3 class="author">Chaznoodles updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Adds bandannas in a variety of squad-based colours. Scratch n' Sniff!</li>
+				<li class="rscadd">Adds squad-based radio headsets to the Requisitions Operations Vendor.</li>
+			</ul>
+			<h3 class="author">Hughgent updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="tweak">Spaceship retreat can now be prevented by admins</li>
+				<li class="tweak">Spaceship navigation console now automatically logs out after 1 minute</li>
+				<li class="tweak">Spaceship orbit cannot be changed before the 30 minute mark.</li>
+				<li class="rscadd">Xenos now get notified via announcement when marines start the retreat timer.</li>
+			</ul>
+			<h3 class="author">MLGTASTICa updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Mining well upgrades!</li>
+			</ul>
+			<h3 class="author">SplinterGP updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">fixes a runtime caused by non damage projectiles not sending the proj() to airburst() by shield.</li>
+				<li class="tweak">makes silos at dropship not break on hijacking dropship</li>
+				<li class="bugfix">fixes a bug when xenos launching to shipside with hijacked dropship would not give xenos burrowed to the xeno/marine ratio if xenos had less than half marine numbers.</li>
+			</ul>
+			<h3 class="author">StiffRobot updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Fixed the flak vest being unable to hold standard issue holster rigs</li>
+			</ul>
+			<h3 class="author">Surrealaser updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Added the Evasion ability to the Runner.</li>
+				<li class="balance">Lasrifle Overcharge damage increased from 42 to 55, Penetration increased from 20 to 50, and Sunder increased from 10 to 15.</li>
+				<li class="balance">Tadpole side entrances/exits expanded.</li>
+				<li class="balance">All of the Tadpole interior is now no-build; entrance and hardpoint tiles are still buildable.</li>
+			</ul>
+			<h3 class="author">Walarks updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">removes 4s lock on transvitox's effect being able to be triggered</li>
+				<li class="rscadd">added Aim Mode to some rifles</li>
+				<li class="refactor">refactored IFF code</li>
+			</ul>
+			<h3 class="author">Wayland-Smithy updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Fixed Crest Toss bypassing CanPass checks like for Xeno Silo fog.</li>
+				<li class="bugfix">Fixed Crest Toss failing from "there's no room" when there is.</li>
+				<li class="code_imp">The Weather datum has gained a "repeatable" field for optionally preventing back to back random selection.</li>
+				<li class="tweak">Hivemind Collapse will now only occur faster if there is a living Drone or Larva when initiated.</li>
+			</ul>
+			<h3 class="author">jroinc updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">Shrapnel and bonebreaks do damage on walk intent.</li>
+			</ul>
+
+			<h2 class="date">03 December 2020</h2>
+			<h3 class="author">Fauxvail updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">added 4 more bullets per magazine for the T-18, for a total of 36 bullets from 32.</li>
+			</ul>
+			<h3 class="author">Hughgent updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Larva can see the silo they want to spawn at before they actually spawn.</li>
+			</ul>
+			<h3 class="author">MalricB, Slayer, Hughgent updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="soundadd">added OB_warning_announce.ogg</li>
+				<li class="soundadd">added OB_firing.ogg</li>
+				<li class="soundadd">added OB_warning_announce_novoiceover.ogg</li>
+				<li class="code_imp">removed alert.ogg from overwatch.dm, replaced with OB_warning_announce.ogg</li>
+				<li class="balance">sped up OB by one whole second</li>
+			</ul>
+			<h3 class="author">Pariah919 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">reduced cas ammo cost overall and dropship surgery table</li>
+			</ul>
+			<h3 class="author">Surrealaser updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="tweak">Snow clear time for Xenos reduced from 2.5 seconds to 0.5 seconds, and all snow stacks are cleared.</li>
+				<li class="tweak">Xenos now auto-remove sticky resin when clicking it on Harm intent.</li>
+				<li class="tweak">Sticky Resin build cost down from 75 to 25, and build time has been halved.</li>
+				<li class="bugfix">Fixes lying angles for buckled/unbuckled living mobs.</li>
+				<li class="balance">Shield slowdown parameter now works as it should</li>
+			</ul>
+			<h3 class="author">Walarks updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="tweak">makes marines retreating a xeno minor victory</li>
+			</ul>
+			<h3 class="author">XSlayer300 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="tweak">Tweaked the TGMC gun cabinet inside the Canterbury, removing most of the outdated options with the current ones.</li>
 			</ul>
 		</div>
 
