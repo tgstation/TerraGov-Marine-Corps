@@ -302,11 +302,11 @@
 /mob/living/carbon/xenomorph/reagent_check(datum/reagent/R) //For the time being they can't metabolize chemicals.
 	return TRUE
 
-/mob/living/carbon/xenomorph/update_tracking(mob/living/carbon/xenomorph/X)
+/mob/living/carbon/xenomorph/update_tracking(mob/living/carbon/xenomorph/X) //X is unused, but we keep that function so it can be called with marines one
 	if(!hud_used?.locate_leader)
 		return
 	var/obj/screen/LL_dir = hud_used.locate_leader
-	if (!tracked)
+	if (QDELETED(tracked) || !tracked)
 		if(hive.living_xeno_ruler)
 			tracked = hive.living_xeno_ruler
 		else
@@ -318,7 +318,7 @@
 		if(xeno_tracked == src) // No need to track ourselves
 			LL_dir.icon_state = "trackoff"
 			return	
-		if(xeno_tracked.z != src.z || get_dist(src,xeno_tracked) < 1)
+		if(xeno_tracked.z != z || get_dist(src,xeno_tracked) < 1)
 			LL_dir.icon_state = "trackondirect"
 			return
 		var/area/A = get_area(src.loc)
@@ -334,7 +334,7 @@
 	if (isresinsilo(tracked))
 		var/mob/living/carbon/xenomorph/silo_tracked = tracked
 
-		if(silo_tracked.z != src.z || get_dist(src,silo_tracked) < 1)
+		if(silo_tracked.z != z || get_dist(src,silo_tracked) < 1)
 			LL_dir.icon_state = "trackondirect"
 			return
 	
