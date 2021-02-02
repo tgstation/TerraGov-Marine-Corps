@@ -236,16 +236,6 @@
 		update_inv_glasses()
 	return ..()
 
-
-/mob/living/carbon/human/transferAllItemToLoc(atom/newloc)
-	var/obj/item/item
-	for(var/slot in SLOT_ALL)
-		item = get_item_by_slot(slot)
-		if (item)
-			temporarilyRemoveItemFromInventory(item)
-			item.removed_from_inventory()
-			item.forceMove(newloc)
-
 //This is an UNSAFE proc. Use mob_can_equip() before calling this one! Or rather use equip_to_slot_if_possible()
 //set redraw_mob to 0 if you don't wish the hud to be updated - if you're doing it manually in your own proc.
 /mob/living/carbon/human/equip_to_slot(obj/item/W, slot)

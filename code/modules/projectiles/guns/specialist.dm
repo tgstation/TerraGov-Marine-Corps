@@ -978,11 +978,11 @@
 	recoil = 3
 	scatter = -100
 
-/obj/item/weapon/gun/launcher/rocket/sadar/equipped(mob/user, slot)
+/obj/item/weapon/gun/launcher/rocket/sadar/Initialize(mapload, spawn_empty)
 	. = ..()
-	SSmonitor.stats.SADAR_in_use |= src
+	
 
-/obj/item/weapon/gun/launcher/rocket/sadar/removed_from_inventory()
+/obj/item/weapon/gun/launcher/rocket/sadar/Destroy()
 	. = ..()
 	SSmonitor.stats.SADAR_in_use -= src
 
@@ -1077,11 +1077,11 @@
 	recoil_unwielded = 4
 	damage_falloff_mult = 0.5
 
-/obj/item/weapon/gun/minigun/pickup(mob/user)
+/obj/item/weapon/gun/minigun/Initialize(mapload, spawn_empty)
 	. = ..()
-	SSmonitor.stats.Miniguns_in_use |= src
+	SSmonitor.stats.Miniguns_in_use += src
 
-/obj/item/weapon/gun/minigun/removed_from_inventory()
+/obj/item/weapon/gun/minigun/Destroy()
 	. = ..()
 	SSmonitor.stats.Miniguns_in_use -= src
 

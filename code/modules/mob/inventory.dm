@@ -239,7 +239,6 @@
 	I.plane = initial(I.plane)
 	if(newloc)
 		I.forceMove(newloc)
-		I.removed_from_inventory(src)
 	I.dropped(src)
 
 	return TRUE
@@ -335,10 +334,6 @@
 			best_quality = I.toolspeed
 
 	return best_item
-
-///Tranfer all the items in all slots to a new loc
-/mob/proc/transferAllItemToLoc(atom/newloc, force = FALSE)
-	return
 
 // The mob is trying to strip an item from someone
 /mob/proc/stripPanelUnequip(obj/item/I, mob/M)
