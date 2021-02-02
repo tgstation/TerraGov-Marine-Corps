@@ -3,7 +3,7 @@ SUBSYSTEM_DEF(monitor)
 	init_order = INIT_ORDER_MONITOR
 	runlevels = RUNLEVEL_GAME
 	wait = 5 MINUTES
-	can_fire = 0
+	can_fire = FALSE
 
 
 	///The next world.time for wich the monitor subsystem refresh the state
