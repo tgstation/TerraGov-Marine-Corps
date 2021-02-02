@@ -49,16 +49,6 @@ SUBSYSTEM_DEF(monitor)
 	addtimer(VARSET_CALLBACK(src, can_fire, TRUE), START_STATE_CALCULATION)
 
 /datum/controller/subsystem/monitor/fire(resumed = 0)
-	if(!resumed)
-		check_state() //only check these if we aren't resuming a paused fire
-
-
-///checks if we should refresh the director state, and reschedules if necessary
-/datum/controller/subsystem/monitor/proc/check_state()
-	etablish_state()
-
-///Start the calculation
-/datum/controller/subsystem/monitor/proc/etablish_state()
 	process_human_positions()
 	current_points = calculate_state_points() / max(GLOB.alive_human_list.len + GLOB.alive_xeno_list.len,20)//having less than 20 players gives bad results
 	FOB_hugging_check()
