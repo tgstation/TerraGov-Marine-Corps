@@ -60,7 +60,7 @@
 	if(!COOLDOWN_CHECK(src,cooldown_jetpack))
 		to_chat(human_user,"<span class='warning'>You cannot use the jetpack yet!</span>")
 		return FALSE
-	if(fuel_left<FUEL_USE)
+	if(fuel_left < FUEL_USE)
 		to_chat(human_user,"<span class='warning'>The jetpack ran out of fuel!</span>")
 		return FALSE
 	return TRUE
