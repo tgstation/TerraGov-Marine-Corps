@@ -85,8 +85,21 @@
 
 /datum/game_mode/infestation/crash/post_setup()
 	. = ..()
-	for(var/i in GLOB.xeno_resin_spawning_pool_turfs)
-		new /obj/structure/resin/spawning_pool(i)
+	var/spawning_pool_number
+	switch(TGS_CLIENT_COUNT)
+		if(0 to 20)
+			spawning_pool_number = 2
+		if(20 to 40)
+			spawning_pool_number = 3
+		if(40 to 60)
+			spawning_pool_number = 4
+		if(60 to INFINITY)
+			spawning_pool_number = 5
+	
+	for(var/i in 1 to spawning_pool_number)//Random spawning_pool generation depending on the number of players
+		var/poolturf = pick(GLOB.xeno_resin_spawning_pool_turfs)
+		GLOB.xeno_resin_spawning_pool_turfs -= poolturf
+		new /obj/structure/resin/spawning_pool(poolturf)
 
 	for(var/i in GLOB.nuke_spawn_locs)
 		new /obj/machinery/nuclearbomb(i)
