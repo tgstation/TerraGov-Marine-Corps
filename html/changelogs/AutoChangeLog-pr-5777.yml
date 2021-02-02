@@ -1,0 +1,4 @@
+author: "Vondiech"
+delete-after: True
+changes: 
+  - tweak: "Both humans and Xenos now die instantly in pressureless areas (a.k.a space) and the sea/outside on prison station now instantly kills you aswell."
