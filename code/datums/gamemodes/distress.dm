@@ -146,7 +146,7 @@
 		message_admins("Round finished: [MODE_INFESTATION_M_MAJOR]") //marines win big or go home
 		round_finished = MODE_INFESTATION_M_MAJOR
 		return TRUE
-	if(round_stage == DISTRESS_DROPSHIP_CRASHED && !num_humans_ship)
+	if(round_stage == DISTRESS_DROPSHIP_CRASHING && !num_humans_ship)
 		message_admins("Round finished: [MODE_INFESTATION_X_MAJOR]") //xenos wiped our marines, xeno major victory
 		round_finished = MODE_INFESTATION_X_MAJOR
 		return TRUE
