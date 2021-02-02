@@ -73,24 +73,24 @@
 		stop_processing()
 		return FALSE
 
-		if(power_gen_percent < 100)
-			power_gen_percent++
+	if(power_gen_percent < 100)
+		power_gen_percent++
 
-			switch(power_gen_percent) //Flavor text!
-				if(10)
-					visible_message("[icon2html(src, viewers(src))] <span class='notice'><b>[src]</b> begins to whirr as it powers up.</span>")
-					fuel_rate = FUSION_ENGINE_FULL_STRENGTH_FULL_RATE * 0.1
-				if(50)
-					visible_message("[icon2html(src, viewers(src))] <span class='notice'><b>[src]</b> begins to hum loudly as it reaches half capacity.</span>")
-					fuel_rate = FUSION_ENGINE_FULL_STRENGTH_FULL_RATE * 0.5
-				if(100)
-					visible_message("[icon2html(src, viewers(src))] <span class='notice'><b>[src]</b> rumbles loudly as the combustion and thermal chambers reach full strength.</span>")
-					fuel_rate = FUSION_ENGINE_FULL_STRENGTH_FULL_RATE
+		switch(power_gen_percent) //Flavor text!
+			if(10)
+				visible_message("[icon2html(src, viewers(src))] <span class='notice'><b>[src]</b> begins to whirr as it powers up.</span>")
+				fuel_rate = FUSION_ENGINE_FULL_STRENGTH_FULL_RATE * 0.1
+			if(50)
+				visible_message("[icon2html(src, viewers(src))] <span class='notice'><b>[src]</b> begins to hum loudly as it reaches half capacity.</span>")
+				fuel_rate = FUSION_ENGINE_FULL_STRENGTH_FULL_RATE * 0.5
+			if(100)
+				visible_message("[icon2html(src, viewers(src))] <span class='notice'><b>[src]</b> rumbles loudly as the combustion and thermal chambers reach full strength.</span>")
+				fuel_rate = FUSION_ENGINE_FULL_STRENGTH_FULL_RATE
 
 
-		add_avail(FUSION_ENGINE_MAX_POWER_GEN * (power_gen_percent / 100) ) //Nope, all good, just add the power
-		fusion_cell.take(fuel_rate) //Consumes fuel
-		update_icon()
+	add_avail(FUSION_ENGINE_MAX_POWER_GEN * (power_gen_percent / 100) ) //Nope, all good, just add the power
+	fusion_cell.take(fuel_rate) //Consumes fuel
+	update_icon()
 
 /obj/machinery/power/fusion_engine/attack_hand(mob/living/user)
 	. = ..()
