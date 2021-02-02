@@ -91,20 +91,18 @@
 		return
 	fuel_indicator = 0
 
-/obj/item/jetpack_marine/afterattack(obj/target, mob/user , proximity_flag) //refuel at fueltanks when we run out of fuel
-	if(istype(target, /obj/structure/reagent_dispensers/fueltank) & proximity_flag)
-		var/obj/structure/reagent_dispensers/fueltank/FT = target
-		if(FT.reagents.total_volume == 0)
-			to_chat(user, "<span class='warning'>Out of fuel!</span>")
-			return ..()
+/obj/item/jetpack_marine/afterattack(obj/target, mob/user, proximity_flag) //refuel at fueltanks when we run out of fuel
+	if(!istype(target, /obj/structure/reagent_dispensers/fueltank) & proximity_flag)
+		return ..()
+	var/obj/structure/reagent_dispensers/fueltank/FT = target
+	if(FT.reagents.total_volume == 0)
+		to_chat(user, "<span class='warning'>Out of fuel!</span>")
+		return ..()
 
-		var/fuel_transfer_amount = min(FT.reagents.total_volume, (fuel_max - fuel_left))
-		FT.reagents.remove_reagent(/datum/reagent/fuel, fuel_transfer_amount)
-		fuel_left += fuel_transfer_amount
-		fuel_indicator = 40
-		update_icon()
-		playsound(loc, 'sound/effects/refill.ogg', 30, 1, 3)
-		to_chat(user, "<span class='notice'>You refill [src] with [target].</span>")
-
-	else
-		..()
+	var/fuel_transfer_amount = min(FT.reagents.total_volume, (fuel_max - fuel_left))
+	FT.reagents.remove_reagent(/datum/reagent/fuel, fuel_transfer_amount)
+	fuel_left += fuel_transfer_amount
+	fuel_indicator = 40
+	update_icon()
+	playsound(loc, 'sound/effects/refill.ogg', 30, 1, 3)
+	to_chat(user, "<span class='notice'>You refill [src] with [target].</span>")
