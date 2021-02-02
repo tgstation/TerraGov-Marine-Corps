@@ -910,7 +910,7 @@
 	mechanics_text = "Creates a new spawning pool"
 	ability_name = "secrete resin"
 	plasma_cost = 150
-	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN_SPAWNING_POOL
+	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN_SILO
 	cooldown_timer = 60 SECONDS
 
 	/// How long does it take to build
@@ -943,9 +943,6 @@
 
 	var/mob/living/carbon/xenomorph/X = owner
 	SSpoints.xeno_points_by_hive[X.hivenumber] -= psych_cost
-	
-	if(!QDELETED(A))// Just to protect against two people doing the action at the same time
-		qdel(A)
 	
 	succeed_activate()
 

@@ -1,3 +1,7 @@
+/mob/living/carbon/Initialize()
+	. = ..()
+	adjust_nutrition_speed(0)
+
 /mob/living/carbon/Destroy()
 	if(afk_status == MOB_RECENTLY_DISCONNECTED)
 		set_afk_status(MOB_DISCONNECTED)

@@ -84,9 +84,9 @@
 			spawning_pool_number = 5
 	
 	for(var/i in 1 to spawning_pool_number)//Random spawning_pool generation depending on the number of players
-		var/turf = GLOB.xeno_resin_spawning_pool_turfs[rand(1,GLOB.xeno_resin_spawning_pool_turfs.len)]
-		GLOB.xeno_resin_spawning_pool_turfs -= turf
-		new /obj/structure/resin/spawning_pool(turf)
+		var/poolturf = pick(GLOB.xeno_resin_spawning_pool_turfs)
+		GLOB.xeno_resin_spawning_pool_turfs -= poolturf
+		new /obj/structure/resin/spawning_pool(poolturf)
 
 	addtimer(CALLBACK(src, .proc/announce_bioscans, FALSE, 1), rand(30 SECONDS, 1 MINUTES)) //First scan shows no location but more precise numbers.
 

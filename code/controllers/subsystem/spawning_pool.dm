@@ -11,18 +11,6 @@ SUBSYSTEM_DEF(spawning_pool)
 	return ..()
 
 /datum/controller/subsystem/spawning_pool/fire(resumed = 0)
-	adjust_max_spawning_pool_generating()
-	add_larvas()
-
-///Activate the subsystem when shutters open and remove the free spawning when marines are joining
-/datum/controller/subsystem/spawning_pool/proc/start_spawning()
-	SIGNAL_HANDLER
-	can_fire = TRUE
-	for(var/datum/job/j in SSjob.occupations)
-		j.jobworth[/datum/job/xenomorph] = 0
-
-///Adjust the maxinum number of spawning_pool able to spawn larvas for free, to preven xenos to just spawn them
-/datum/controller/subsystem/spawning_pool/proc/adjust_max_spawning_pool_generating()
 	switch(TGS_CLIENT_COUNT)
 		if(0 to 20)
 			max_spawning_pool_spawning = 3
@@ -32,10 +20,14 @@ SUBSYSTEM_DEF(spawning_pool)
 			max_spawning_pool_spawning = 6
 		if(60 to INFINITY)
 			max_spawning_pool_spawning = 8	
-
-
-
-///Add larva jobs
-/datum/controller/subsystem/spawning_pool/proc/add_larvas()
+	
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	xeno_job.add_job_points(min(GLOB.xeno_resin_spawning_pools.len, max_spawning_pool_spawning)*LARVA_SPAWN_RATE)	
+
+///Activate the subsystem when shutters open and remove the free spawning when marines are joining
+/datum/controller/subsystem/spawning_pool/proc/start_spawning()
+	SIGNAL_HANDLER
+	can_fire = TRUE
+	for(var/job in SSjob.occupations)
+		var/datum/job/j = job
+		j.jobworth[/datum/job/xenomorph] = 0

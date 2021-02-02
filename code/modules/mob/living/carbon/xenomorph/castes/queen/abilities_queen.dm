@@ -711,7 +711,7 @@
 	action_icon_state = "tunnel"
 	mechanics_text = "Corrupt a generator to begin increasing the psycic energy of the hive."
 	plasma_cost = 200
-	keybind_signal = COMSIG_XENOABILITY_CORRUPT_GENERATOR
+	//keybind_signal = COMSIG_XENOABILITY_CORRUPT_GENERATOR
 
 /datum/action/xeno_action/activable/corrupt_generator/can_use_ability(atom/A, silent, override_flags)
 	. = ..()

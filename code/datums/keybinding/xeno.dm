@@ -37,7 +37,7 @@
 	name = "secrete_resin_spawning_pool"
 	full_name = "Secrete Resin Spawning Pool"
 	description = "Builds a resin spawning pool. Requires a number of dead bodies on a nest."
-	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN_SPAWNING_POOL
+	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN_SILO
 
 /datum/keybinding/xeno/emit_recovery
 	name = "emit_recovery"
