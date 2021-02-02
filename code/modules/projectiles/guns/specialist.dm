@@ -127,7 +127,7 @@
 	. = ..()
 
 /obj/item/weapon/gun/rifle/sniper/M42A/process()
-	if(!zoom)
+	if(!rail.zoom)
 		laser_off()
 		return
 	var/mob/living/user = loc
@@ -145,7 +145,7 @@
 
 /obj/item/weapon/gun/rifle/sniper/M42A/zoom(mob/living/user, tileoffset = 11, viewsize = 12) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view
 	. = ..()
-	if(!zoom && (targetmarker_on || targetmarker_primed) )
+	if(!rail.zoom && (targetmarker_on || targetmarker_primed) )
 		laser_off(user)
 
 /atom/proc/sniper_target(atom/A)
@@ -185,7 +185,7 @@
 
 
 /obj/item/weapon/gun/rifle/sniper/M42A/proc/laser_on(mob/user)
-	if(!zoom) //Can only use and prime the laser targeter when zoomed.
+	if(!rail.zoom) //Can only use and prime the laser targeter when zoomed.
 		to_chat(user, "<span class='warning'>You must be zoomed in to use your target marker!</span>")
 		return TRUE
 	targetmarker_primed = TRUE //We prime the target laser
