@@ -484,8 +484,7 @@
 			holder.overlays += IMG2
 
 	else if(job.job_flags & JOB_FLAG_PROVIDES_SQUAD_HUD)
-		var/image/IMG = image('icons/mob/hud.dmi', src, "hudmarine [job.title]")
-		holder.overlays += IMG
+		holder.overlays += image('icons/mob/hud.dmi', src, "hudmarine [job.title]")
 
 	hud_list[SQUAD_HUD] = holder
 
