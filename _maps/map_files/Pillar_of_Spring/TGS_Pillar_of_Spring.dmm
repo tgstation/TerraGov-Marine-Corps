@@ -10142,6 +10142,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
+"Ht" = (
+/obj/machinery/power/port_gen/pacman/mobile_power,
+/turf/open/floor/mainship/mono,
+/area/mainship/engineering/engineering_workshop)
 "Hv" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 1;
@@ -49138,7 +49142,7 @@ OU
 zv
 OM
 zT
-zR
+Ht
 OV
 Az
 Mb

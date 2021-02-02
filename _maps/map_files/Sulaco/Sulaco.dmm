@@ -17041,6 +17041,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/machinery/power/port_gen/pacman/mobile_power,
 /turf/open/floor/prison,
 /area/sulaco/hangar)
 "tqa" = (
