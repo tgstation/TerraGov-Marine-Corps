@@ -1,4 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - bugfix: "Can't refuel condor mid flight anymore"
