@@ -558,7 +558,8 @@
 		water_count -=7//reagents is not updated in this proc, we need water_count for a updated HUD
 		last_fired = world.time
 		last_use = world.time
-		user.hud_used.ammo.update_hud(user)
+		var/obj/screen/ammo/A = user.hud_used.ammo
+		A.update_hud(user)
 		return
 	if(user.skills.getRating("firearms") < 0 && !do_after(user, 1 SECONDS, TRUE, src))
 		return
