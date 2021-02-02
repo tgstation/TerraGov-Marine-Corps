@@ -83,16 +83,15 @@
 
 ///Manage the fuel indicator overlay
 /obj/item/jetpack_marine/proc/change_fuel_indicator() 
-	if(fuel_left-fuel_indicator<0)
-		if (fuel_left >= 20)
-			fuel_indicator = 20
-			return
-		if (fuel_left >= FUEL_USE)
-			fuel_indicator = FUEL_USE
-			return
-		fuel_indicator = 0
+	if(fuel_left-fuel_indicator > 0)
 		return
-	return
+	if (fuel_left >= 20)
+		fuel_indicator = 20
+		return
+	if (fuel_left >= FUEL_USE)
+		fuel_indicator = FUEL_USE
+		return
+	fuel_indicator = 0
 
 /obj/item/jetpack_marine/afterattack(obj/target, mob/user , proximity_flag) //refuel at fueltanks when we run out of fuel
 	if(istype(target, /obj/structure/reagent_dispensers/fueltank) & proximity_flag)
