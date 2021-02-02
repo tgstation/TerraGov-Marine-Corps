@@ -69,17 +69,15 @@
 	. = ..()
 	if (lit)
 		.+= image('icons/obj/items/jetpack.dmi', src, "+jetpacklit")
-	var/image/I
 	switch(fuel_indicator)
 		if(40)
-			I = image('icons/obj/items/jetpack.dmi', src, "+jetpackfull")
+			. += image('icons/obj/items/jetpack.dmi', src, "+jetpackfull")
 		if(20)
-			I = image('icons/obj/items/jetpack.dmi', src, "+jetpackhalffull")
+			. += image('icons/obj/items/jetpack.dmi', src, "+jetpackhalffull")
 		if(FUEL_USE)
-			I = image('icons/obj/items/jetpack.dmi', src, "+jetpackalmostempty")
+			. += image('icons/obj/items/jetpack.dmi', src, "+jetpackalmostempty")
 		else
-			I = image('icons/obj/items/jetpack.dmi', src, "+jetpackempty")
-	. += I
+			. += image('icons/obj/items/jetpack.dmi', src, "+jetpackempty")
 
 ///Manage the fuel indicator overlay
 /obj/item/jetpack_marine/proc/change_fuel_indicator() 
