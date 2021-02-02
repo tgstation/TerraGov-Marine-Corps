@@ -946,7 +946,6 @@
 	
 	if(!QDELETED(A))// Just to protect against two people doing the action at the same time
 		qdel(A)
-	
 	succeed_activate()
 
 // Salvage Biomass
