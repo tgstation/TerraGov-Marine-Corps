@@ -308,8 +308,11 @@
 	//Defiler vars
 	///How many remaining reagent slashes the Defiler has
 	var/reagent_slash_count = 0
-	///Time remaining for reagent slashes
-	var/reagent_slash_time_left = 0
+	///Time remaining for the Reagent Slashes timer; used to get around upgrade ability deletion
+	var/reagent_slash_duration = 0
+	///Timer ID for the Reagent Slashes timer; used to get around upgrade ability deletion
+	var/reagent_slash_duration_timer_id = 0
+
 
 	//Notification spam controls
 	var/recent_notice = 0
