@@ -205,7 +205,7 @@
 		/obj/item/storage/box/m94 = 30,
 		/obj/item/storage/box/m94/cas = 10,
 		/obj/item/storage/box/recoilless_system = 1,
-		/obj/item/weapon/gun/launcher/rocket/oneuse = 2,
+		/obj/item/storage/box/disposable_rpg = 1,
 		/obj/item/weapon/shield/riot/marine = 3,
 	)
 

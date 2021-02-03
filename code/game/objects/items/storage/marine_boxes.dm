@@ -300,7 +300,22 @@
 	new /obj/item/ammo_magazine/rocket/recoilless/light(src)
 	new /obj/item/storage/backpack/rpg(src)
 
+/obj/item/storage/box/disposable_rpg
+	name = "\improper T-72 disposable rpg crate"
+	desc = "Holds 3 disposable RPGs. Has a huge warning sign on the back Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
+	icon = 'icons/Marine/marine-weapons.dmi'
+	icon_state = "rocket_case"
+	w_class = WEIGHT_CLASS_HUGE
+	storage_slots = 3
+	slowdown = 1
+	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
+	foldable = null
 
+/obj/item/storage/box/recoilless_system/Initialize(mapload, ...)
+	. = ..()
+	new /obj/item/weapon/gun/launcher/rocket/oneuse(src)
+	new /obj/item/weapon/gun/launcher/rocket/oneuse(src)
+	new /obj/item/weapon/gun/launcher/rocket/oneuse(src)
 
 
 
