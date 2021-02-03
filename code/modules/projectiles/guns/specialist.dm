@@ -978,6 +978,14 @@
 	recoil = 3
 	scatter = -100
 
+/obj/item/weapon/gun/launcher/rocket/sadar/Initialize(mapload, spawn_empty)
+	. = ..()
+	SSmonitor.stats.sadar_in_use += src
+
+/obj/item/weapon/gun/launcher/rocket/sadar/Destroy()
+	. = ..()
+	SSmonitor.stats.sadar_in_use -= src
+
 //-------------------------------------------------------
 //M5 RPG'S MEAN FUCKING COUSIN
 
@@ -1103,6 +1111,13 @@
 	recoil_unwielded = 4
 	damage_falloff_mult = 0.5
 
+/obj/item/weapon/gun/minigun/Initialize(mapload, spawn_empty)
+	. = ..()
+	SSmonitor.stats.miniguns_in_use += src
+
+/obj/item/weapon/gun/minigun/Destroy()
+	. = ..()
+	SSmonitor.stats.miniguns_in_use -= src
 
 //This is a minigun not a chaingun.
 obj/item/weapon/gun/minigun/Fire(atom/target, mob/living/user, params, reflex = FALSE, dual_wield)
