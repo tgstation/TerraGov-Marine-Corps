@@ -34943,7 +34943,7 @@
 	},
 /area/mainship/living/briefing)
 "dXn" = (
-/obj/machinery/telecomms/server/presets/security,
+/obj/machinery/telecomms/server/presets/cas,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
 "ece" = (
