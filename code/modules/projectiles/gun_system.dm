@@ -36,6 +36,7 @@
 	var/cock_cooldown	= 0						//world.time value, to prevent COCK COCK COCK COCK
 	var/cock_delay		= 3 SECONDS				//Delay before we can cock again
 	var/last_fired = 0							//When it was last fired, related to world.time.
+	var/muzzle_flash_color = COLOR_VERY_SOFT_YELLOW
 
 	//Ammo will be replaced on New() for things that do not use mags..
 	var/datum/ammo/ammo = null					//How the bullet will behave once it leaves the gun, also used for basic bullet damage and effects, etc.
@@ -996,7 +997,7 @@ and you're good to go.
 	var/prev_light = light_range
 	if(!light_on && (light_range <= muzzle_flash_lum))
 		set_light_range(muzzle_flash_lum)
-		set_light_color(COLOR_VERY_SOFT_YELLOW)
+		set_light_color(muzzle_flash_color)
 		set_light_on(TRUE)
 		addtimer(CALLBACK(src, .proc/reset_light_range, prev_light), 1 SECONDS)
 
