@@ -239,12 +239,9 @@ WEAPONS
 	contains = list(
 		/obj/item/weapon/gun/launcher/rocket/oneuse,
 		/obj/item/weapon/gun/launcher/rocket/oneuse,
-		/obj/item/weapon/gun/launcher/rocket/oneuse,
-		/obj/item/weapon/gun/launcher/rocket/oneuse,
-		/obj/item/weapon/gun/launcher/rocket/oneuse,
 	)
-	notes = "Contains 5."
-	cost = 50
+	notes = "Contains 2."
+	cost = 20
 
 /datum/supply_packs/weapons/mateba
 	name = "Mateba Autorevolver belt"
