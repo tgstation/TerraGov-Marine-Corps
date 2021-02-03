@@ -242,3 +242,14 @@ SUBSYSTEM_DEF(overlays)
 		for(var/_=0 to 10)
 			player.overlays -= testlay
 	message_staff("COMPLETE REMOVAL")
+
+/datum/controller/subsystem/overlays/proc/starttwo()
+	message_staff("BEGIN TWO")
+	var/i = 0
+	while(i < length(GLOB.player_list))
+		var/mob/player = GLOB.player_list[++i]
+		var/mutable_appearance/appear = new
+		for(var/_=0 to 10)
+			appear.overlays += testlay
+		player.overlays += image(appear)
+	message_staff("COMPLETE REMOVAL TWO")
