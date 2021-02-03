@@ -6,18 +6,27 @@
 	. = ..()
 	UnregisterSignal(source, COMSIG_ITEM_ATTACK)
 
-/datum/element/scalping/proc/on_attack(datum/source, mob/living/M, mob/living/user)
+/datum/element/scalping/proc/on_attack(datum/source, mob/living/carbon/xenomorph/M, mob/living/user)
 	SIGNAL_HANDLER_DOES_SLEEP
 	if(!isxeno(M) || (M.stat != DEAD))
 		return NONE
+
 	if(M.a_intent == INTENT_HARM)
 		return NONE
+
+	if(HAS_TRAIT(M, TRAIT_SCALPED))
+		M.visible_message("<span class='notice'>[user] someone already took \the [source] scalp</span>")
+		return NONE
+
 	M.visible_message("<span class='notice'>[user] starts to tear into [M] with \the [source]</span>" ,"<span class='notice'>You start hacking away at [M] with \the [source]</span>")
 	if(!do_after(user, 2 SECONDS, TRUE, M))
 		return NONE
+
 	M.visible_message("<span class='danger'>[user] brutally scalps [M]!</span>", "<span class='danger'> You brutally scalp [M] 	with \the [source]!</span>")
 	var/obj/item/scalp/scalp = new(get_turf(M))
 	scalp.name = M.name + "'s " + initial(scalp.name)
+
+	ADD_TRAIT(M, TRAIT_SCALPED, TRAIT_GENERIC)
 	return COMPONENT_ITEM_NO_ATTACK
 
 /obj/item/scalp
