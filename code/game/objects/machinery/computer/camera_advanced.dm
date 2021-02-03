@@ -70,7 +70,6 @@
 
 	current_user = null
 	user.unset_interaction()
-	UnregisterSignal(user, COMSIG_MOB_CLICK_SHIFT)
 	playsound(src, 'sound/machines/terminal_off.ogg', 25, 0)
 
 
