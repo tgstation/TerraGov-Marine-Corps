@@ -1393,24 +1393,14 @@ Imports
 	contains = list(/obj/item/ammo_magazine/revolver)
 	cost = 3
 
-/datum/supply_packs/imports/beretta92fs
-	name = "Beretta 92FS Handgun"
-	contains = list(/obj/item/weapon/gun/pistol/b92fs)
+/datum/supply_packs/imports/g22
+	name = "G-22 Handgun"
+	contains = list(/obj/item/weapon/gun/pistol/g22)
 	cost = 7
 
 /datum/supply_packs/imports/beretta92fs/ammo
-	name = "Beretta 92FS Handgun Ammo"
-	contains = list(/obj/item/ammo_magazine/pistol/b92fs)
-	cost = 3
-
-/datum/supply_packs/imports/beretta93r
-	name = "Beretta 93R Handgun"
-	contains = list(/obj/item/weapon/gun/pistol/b92fs/raffica)
-	cost = 7
-
-/datum/supply_packs/imports/beretta93r/ammo
-	name = "Beretta 93R Handgun Ammo"
-	contains = list(/obj/item/ammo_magazine/pistol/b93r)
+	name = "G-22 Handgun Ammo"
+	contains = list(/obj/item/ammo_magazine/pistol/g22)
 	cost = 3
 
 /datum/supply_packs/imports/deagle

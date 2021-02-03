@@ -188,7 +188,7 @@
 	item_state = "g22"
 	caliber = "9x19mm tranquilizer" //codex
 	max_shells = 12 //codex
-	current_mag =/obj/item/ammo_magazine/pistol/b92fstranq
+	current_mag =/obj/item/ammo_magazine/pistol/g22tranq
 	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 21, "under_x" = 21, "under_y" = 15, "stock_x" = 21, "stock_y" = 17)
 	starting_attachment_types = list(
 		/obj/item/attachable/lasersight,
@@ -279,7 +279,7 @@
 	damage_mult = 1.3
 	aim_slowdown = 0.1
 
-/obj/item/weapon/gun/pistol/c99/upp/tranq
+/obj/item/weapon/gun/pistol/c99/tranq
 	desc = "An updated variant of an old eastern design, dating back to from the 20th century. Features an integrated silencer, and chambered in the razor small .22 rounds. This one is usually loaded with special low-recoil .22 dart rounds, which act as a dangerous tranquilizer."
 	current_mag = /obj/item/ammo_magazine/pistol/c99t
 
