@@ -123,24 +123,20 @@
 		to_chat(user, "<span class='warning'>It's still got something loaded!</span>")
 		return
 
+	
+	if(user)
+		if(magazine.reload_delay > 1)
+			to_chat(user, "<span class='notice'>You begin reloading [src]. Hold still...</span>")
+			if(!do_after(user,magazine.reload_delay, TRUE, src, BUSY_ICON_GENERIC))
+				to_chat(user, "<span class='warning'>Your reload was interrupted!</span>")
+				return
+		replace_magazine(user, magazine)
+		light_pilot(user,TRUE)
 	else
-		if(user)
-			if(magazine.reload_delay > 1)
-				to_chat(user, "<span class='notice'>You begin reloading [src]. Hold still...</span>")
-				if(do_after(user,magazine.reload_delay, TRUE, src, BUSY_ICON_GENERIC))
-					replace_magazine(user, magazine)
-					light_pilot(user,TRUE)
-				else
-					to_chat(user, "<span class='warning'>Your reload was interrupted!</span>")
-					return
-			else
-				replace_magazine(user, magazine)
-				light_pilot(user,TRUE)
-		else
-			current_mag = magazine
-			magazine.loc = src
-			replace_ammo(,magazine)
-			light_pilot(user,TRUE)
+		current_mag = magazine
+		magazine.loc = src
+		replace_ammo(,magazine)
+		light_pilot(user,TRUE)
 
 	update_icon()
 
@@ -180,24 +176,23 @@
 		return
 	
 	to_chat(user, "<span class='notice'>You begin linking [src] with the [fueltank.name]. Hold still...</span>")
-	if(do_after(user,fueltank.reload_delay, TRUE, src, BUSY_ICON_GENERIC))
-		if (current_mag)
-			if(istype(current_mag,/obj/item/ammo_magazine/flamer_tank/backtank))
-				detach_fueltank(user,FALSE)
-			else
-				user.put_in_hands(current_mag)//We remove the fuel tank if there is one
-		current_mag = fueltank
-		fueltank.attached_flamer = src
-		replace_ammo(user, fueltank)
-		light_pilot(user,TRUE)
-		playsound(user, reload_sound, 25, 1, 5)
-		update_icon(user)
-		var/obj/screen/ammo/A = user.hud_used.ammo
-		A.update_hud(user)
-		return
-	else
+	if(!do_after(user,fueltank.reload_delay, TRUE, src, BUSY_ICON_GENERIC))
 		to_chat(user, "<span class='warning'>Your action was interrupted!</span>")
 		return
+	if (current_mag)
+		if(istype(current_mag,/obj/item/ammo_magazine/flamer_tank/backtank))
+			detach_fueltank(user,FALSE)
+		else
+			user.put_in_hands(current_mag)//We remove the fuel tank if there is one
+	current_mag = fueltank
+	fueltank.attached_flamer = src
+	replace_ammo(user, fueltank)
+	light_pilot(user,TRUE)
+	playsound(user, reload_sound, 25, 1, 5)
+	update_icon(user)
+	var/obj/screen/ammo/A = user.hud_used.ammo
+	A.update_hud(user)
+
 
 /**Proced when unlinking the back fuel tank, making the flamer unlit and unable to fire
  * mob/user if not null, will allow to play sound and update icons / hud
@@ -468,24 +463,19 @@
 		to_chat(user, "<span class='warning'>It's still got something loaded!</span>")
 		return
 
+	if(user)
+		if(magazine.reload_delay > 1)
+			to_chat(user, "<span class='notice'>You begin reloading [src]. Hold still...</span>")
+			if(!do_after(user,magazine.reload_delay, TRUE, src, BUSY_ICON_GENERIC))
+				to_chat(user, "<span class='warning'>Your reload was interrupted!</span>")
+				return
+		replace_magazine(user, magazine)
+		light_pilot(user,TRUE)
 	else
-		if(user)
-			if(magazine.reload_delay > 1)
-				to_chat(user, "<span class='notice'>You begin reloading [src]. Hold still...</span>")
-				if(do_after(user,magazine.reload_delay, TRUE, src, BUSY_ICON_GENERIC))
-					replace_magazine(user, magazine)
-					light_pilot(user,TRUE)
-				else
-					to_chat(user, "<span class='warning'>Your reload was interrupted!</span>")
-					return
-			else
-				replace_magazine(user, magazine)
-				light_pilot(user,TRUE)
-		else
-			current_mag = magazine
-			magazine.loc = src
-			replace_ammo(,magazine)
-			light_pilot(user,TRUE)
+		current_mag = magazine
+		magazine.loc = src
+		replace_ammo(,magazine)
+		light_pilot(user,TRUE)
 
 	update_icon()
 	return TRUE
