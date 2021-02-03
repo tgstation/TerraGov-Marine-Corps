@@ -52,7 +52,7 @@
 	for(var/obj/structure/obstacle in things_nearby)
 		if(obstacle.resistance_flags & XENO_DAMAGEABLE)
 			var/mob/living/carbon/xenomorph/xeno = mob_parent
-			obstacle.attack_alien(xeno)
+			INVOKE_ASYNC(obstacle, /atom.proc/attack_alien, xeno)
 			mob_parent.face_atom(obstacle)
 			xeno.changeNext_move(xeno.xeno_caste.attack_delay)
 			return

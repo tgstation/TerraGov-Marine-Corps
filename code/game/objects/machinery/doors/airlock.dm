@@ -439,8 +439,8 @@
 		src.closeOther.close()
 	return ..()
 
-/obj/machinery/door/airlock/close(forced=0)
-	if(operating || welded || locked || !loc)
+/obj/machinery/door/airlock/close(forced = FALSE)
+	if(operating || welded || locked)
 		return
 	if(!forced)
 		if(!hasPower() || wires.is_cut(WIRE_BOLTS))
@@ -462,7 +462,7 @@
 				var/mob/living/carbon/C = M
 				var/datum/species/S = C.species
 				if(S?.species_flags & NO_PAIN)
-					M.emote("pain")
+					INVOKE_ASYNC(M, /mob/living.proc/emote, "pain")
 			var/turf/location = src.loc
 			if(istype(location, /turf))
 				location.add_mob_blood(M)
@@ -475,20 +475,20 @@
 		playsound(src.loc, 'sound/machines/airlock.ogg', 25, 0)
 	for(var/turf/turf in locs)
 		var/obj/structure/window/killthis = (locate(/obj/structure/window) in turf)
-		if(killthis)
-			killthis.ex_act(2)//Smashin windows
-	..()
-	return
+		killthis?.ex_act(2)//Smashin windows
+	return ..()
 
-/obj/machinery/door/airlock/proc/lock(forced=0)
-	if (operating || src.locked) return
+/obj/machinery/door/airlock/proc/lock(forced = FALSE)
+	if (operating || src.locked)
+		return
 
-	src.locked = 1
+	locked = TRUE
 	audible_message("You hear a click from the bottom of the door.", null, 1)
 	update_icon()
 
 /obj/machinery/door/airlock/proc/unlock(forced=0)
-	if (operating || !src.locked) return
+	if (operating || !locked)
+		return
 
 	if(forced || hasPower()) //only can raise bolts if power's on
 		src.locked = 0
