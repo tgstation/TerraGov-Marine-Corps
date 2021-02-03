@@ -374,6 +374,7 @@
 	accuracy_mult_unwielded = 1
 	scatter = -10
 	scatter_unwielded = -5
+	aim_speed_modifier = 0
 
 
 //-------------------------------------------------------
