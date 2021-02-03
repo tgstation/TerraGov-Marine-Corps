@@ -863,6 +863,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	w_class = WEIGHT_CLASS_SMALL
 	activation_time = 80
 	icon_activated = "motion1"
+	var/obj/machinery/camera/laser_cam/linked_cam
 
 /obj/item/squad_beacon/bomb/attack_self(mob/living/carbon/human/H)
 	if(!istype(H))
@@ -898,7 +899,9 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	if(do_after(H, delay, TRUE, src, BUSY_ICON_GENERIC))
 		message_admins("[ADMIN_TPMONTY(usr)] set up an orbital strike beacon.")
 		name = "transmitting orbital beacon"
+		GLOB.active_cas_targets += src
 		GLOB.active_orbital_beacons += src
+		linked_cam = new(H.loc)
 		var/cam_name = ""
 		cam_name += H.get_paygrade()
 		cam_name += H.name
@@ -929,7 +932,9 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		if(squad)
 			squad.squad_orbital_beacons -= src
 			squad = null
+		GLOB.active_cas_targets -= src
 		GLOB.active_orbital_beacons -= src
+		qdel(linked_cam)
 		qdel(beacon_cam)
 		beacon_cam = null
 		activated = FALSE
