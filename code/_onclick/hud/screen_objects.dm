@@ -757,14 +757,15 @@
 
 /obj/screen/arrow
 	icon = 'icons/Marine/marine-items.dmi'
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	screen_loc = ui_sl_dir
+	alpha = 128 //translucent
 	///The mob for which the arrow appears
 	var/mob/living/carbon/tracker
 	///The target which the arrow points to
 	var/atom/target
+	///The duration of the effect
 	var/duration
-	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	screen_loc = ui_sl_dir
-	alpha = 128 //translucent
 
 /obj/screen/arrow/proc/add_hud(mob/living/carbon/tracker_input, atom/target_input)
 	if(!tracker_input?.client)

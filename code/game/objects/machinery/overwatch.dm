@@ -25,11 +25,16 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	var/x_offset_s = 0
 	var/y_offset_s = 0
 	var/living_marines_sorting = FALSE
-	var/busy = FALSE ///The overwatch computer is busy launching an OB/SB, lock controls
-	var/dead_hidden = FALSE ///whether or not we show the dead marines in the squad.
-	var/z_hidden = 0 ///which z level is ignored when showing marines.
-	var/datum/squad/current_squad = null ///Squad being currently overseen
-	var/obj/selected_target ///Selected target for bombarding
+	///The overwatch computer is busy launching an OB/SB, lock controls
+	var/busy = FALSE 
+	///whether or not we show the dead marines in the squad.
+	var/dead_hidden = FALSE 
+	///which z level is ignored when showing marines.
+	var/z_hidden = 0 
+	///Squad being currently overseen
+	var/datum/squad/current_squad = null 
+	///Selected target for bombarding
+	var/obj/selected_target 
 	///Selected order to give to marine
 	var/datum/action/innate/order/current_order 
 	///datum used when sending an attack order
@@ -1271,7 +1276,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 			arrow_hud.add_hud(hud_user, target_turf)
 		notify_marine(hud_user, target_turf)	
 
-	
+///Send a message and a sound to the marine if he is on the same z level as the turf
 /obj/machinery/computer/camera_advanced/overwatch/proc/notify_marine(mob/living/marine, turf/target_turf) ///Send an order to that specific marine if it's on the right z level
 	if(marine.z == target_turf.z)
 		marine.playsound_local(marine, "sound/effects/CIC_order.ogg", 10, 1)
