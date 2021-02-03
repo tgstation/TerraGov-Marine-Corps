@@ -32,16 +32,16 @@ SUBSYSTEM_DEF(monitor)
 	var/datum/monitor_statistics/stats = new
 	
 /datum/monitor_statistics
-	var/Ancient_Queen = 0
-	var/Elder_Queen = 0
-	var/Ancient_T3 = 0
-	var/Elder_T3 = 0
-	var/Ancient_T2 = 0
-	var/Elder_T2 = 0
-	var/list/Miniguns_in_use = list()
-	var/list/SADAR_in_use = list() 
-	var/list/B18_in_use = list()
-	var/list/B17_in_use = list()
+	var/ancient_queen = 0
+	var/elder_queen = 0
+	var/ancient_T3 = 0
+	var/elder_T3 = 0
+	var/ancient_T2 = 0
+	var/elder_T2 = 0
+	var/list/miniguns_in_use = list()
+	var/list/sadar_in_use = list() 
+	var/list/b18_in_use = list()
+	var/list/b17_in_use = list()
 	var/OB_available = 0
 
 /datum/controller/subsystem/monitor/Initialize(start_timeofday)
@@ -63,20 +63,20 @@ SUBSYSTEM_DEF(monitor)
 ///Calculate the points supposedly representating of the situation	
 /datum/controller/subsystem/monitor/proc/calculate_state_points()
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	. += stats.Ancient_T2 * ANCIENT_T2_WEIGHT
-	. += stats.Ancient_T3 * ANCIENT_T3_WEIGHT
-	. += stats.Elder_T2 * ELDER_T2_WEIGHT
-	. += stats.Elder_T3 * ELDER_T3_WEIGHT
-	. += stats.Ancient_Queen * ANCIENT_QUEEN_WEIGHT
-	. += stats.Elder_Queen * ELDER_QUEEN_WEIGHT
+	. += stats.ancient_T2 * ANCIENT_T2_WEIGHT
+	. += stats.ancient_T3 * ANCIENT_T3_WEIGHT
+	. += stats.elder_T2 * ELDER_T2_WEIGHT
+	. += stats.elder_T3 * ELDER_T3_WEIGHT
+	. += stats.ancient_queen * ANCIENT_QUEEN_WEIGHT
+	. += stats.elder_queen * ELDER_QUEEN_WEIGHT
 	. += human_on_ground * HUMAN_LIFE_ON_GROUND_WEIGHT
 	. += (GLOB.alive_human_list.len - human_on_ground) * HUMAN_LIFE_ON_SHIP_WEIGHT
 	. += GLOB.alive_xeno_list.len * XENOS_LIFE_WEIGHT
 	. += (xeno_job.total_positions - xeno_job.current_positions) * BURROWED_LARVA_WEIGHT
-	. += stats.Miniguns_in_use.len * MINIGUN_PRICE * REQ_POINTS_WEIGHT
-	. += stats.SADAR_in_use.len * SADAR_PRICE * REQ_POINTS_WEIGHT
-	. += stats.B17_in_use.len * B17_PRICE * REQ_POINTS_WEIGHT
-	. += stats.B18_in_use.len * B18_PRICE * REQ_POINTS_WEIGHT
+	. += stats.miniguns_in_use.len * MINIGUN_PRICE * REQ_POINTS_WEIGHT
+	. += stats.sadar_in_use.len * SADAR_PRICE * REQ_POINTS_WEIGHT
+	. += stats.b17_in_use.len * B17_PRICE * REQ_POINTS_WEIGHT
+	. += stats.b18_in_use.len * B18_PRICE * REQ_POINTS_WEIGHT
 	. += SSpoints.supply_points * REQ_POINTS_WEIGHT
 	. += stats.OB_available * OB_AVAILABLE_WEIGHT
 

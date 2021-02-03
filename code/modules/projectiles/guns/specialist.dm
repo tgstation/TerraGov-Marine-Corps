@@ -980,11 +980,11 @@
 
 /obj/item/weapon/gun/launcher/rocket/sadar/Initialize(mapload, spawn_empty)
 	. = ..()
-	SSmonitor.stats.SADAR_in_use += src
+	SSmonitor.stats.sadar_in_use += src
 
 /obj/item/weapon/gun/launcher/rocket/sadar/Destroy()
 	. = ..()
-	SSmonitor.stats.SADAR_in_use -= src
+	SSmonitor.stats.sadar_in_use -= src
 
 //-------------------------------------------------------
 //M5 RPG'S MEAN FUCKING COUSIN
@@ -1079,11 +1079,11 @@
 
 /obj/item/weapon/gun/minigun/Initialize(mapload, spawn_empty)
 	. = ..()
-	SSmonitor.stats.Miniguns_in_use += src
+	SSmonitor.stats.miniguns_in_use += src
 
 /obj/item/weapon/gun/minigun/Destroy()
 	. = ..()
-	SSmonitor.stats.Miniguns_in_use -= src
+	SSmonitor.stats.miniguns_in_use -= src
 
 //This is a minigun not a chaingun.
 obj/item/weapon/gun/minigun/Fire(atom/target, mob/living/user, params, reflex = FALSE, dual_wield)

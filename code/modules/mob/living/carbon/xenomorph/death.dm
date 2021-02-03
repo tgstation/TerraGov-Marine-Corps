@@ -47,19 +47,19 @@
 		if(XENO_UPGRADE_TWO)
 			switch(tier)
 				if(XENO_TIER_TWO)
-					SSmonitor.stats.Elder_T2--
+					SSmonitor.stats.elder_T2--
 				if(XENO_TIER_THREE)
-					SSmonitor.stats.Elder_T3--
+					SSmonitor.stats.elder_T3--
 				if(XENO_TIER_FOUR)
-					SSmonitor.stats.Elder_Queen--
+					SSmonitor.stats.elder_queen--
 		if(XENO_UPGRADE_THREE)
 			switch(tier)
 				if(XENO_TIER_TWO)
-					SSmonitor.stats.Ancient_T2--
+					SSmonitor.stats.ancient_T2--
 				if(XENO_TIER_THREE)
-					SSmonitor.stats.Ancient_T3--
+					SSmonitor.stats.ancient_T3--
 				if(XENO_TIER_FOUR)
-					SSmonitor.stats.Ancient_Queen--
+					SSmonitor.stats.ancient_queen--
 
 	var/isAI = GetComponent(/datum/component/ai_controller)
 	if (isAI)
