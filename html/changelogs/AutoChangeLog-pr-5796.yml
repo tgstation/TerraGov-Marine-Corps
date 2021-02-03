@@ -1,0 +1,4 @@
+author: "Naaanii"
+delete-after: True
+changes: 
+  - balance: "removed stealth stun and increased armor pen from 20% to 40% on sneak attack."
