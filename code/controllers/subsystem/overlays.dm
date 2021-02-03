@@ -231,7 +231,7 @@ SUBSYSTEM_DEF(overlays)
 	while(i < length(GLOB.player_list))
 		var/mob/player = GLOB.player_list[++i]
 		for(var/_=0 to 10)
-		player.overlays += testlay
+			player.overlays += testlay
 	message_staff("COMPLETE ADDITION")
 
 /datum/controller/subsystem/overlays/proc/stop()
@@ -240,5 +240,5 @@ SUBSYSTEM_DEF(overlays)
 	while(i < length(GLOB.player_list))
 		var/mob/player = GLOB.player_list[++i]
 		for(var/_=0 to 10)
-		player.overlays -= testlay
+			player.overlays -= testlay
 	message_staff("COMPLETE REMOVAL")
