@@ -22,8 +22,6 @@
 			var/datum/action/xeno_action/A = new new_action_path()
 			A.give_action(src)
 
-	remove_abilities()
-	add_abilities()
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_ABILITY_ON_UPGRADE)
 	if(selected_ability_type)
 		for(var/datum/action/xeno_action/activable/activable_ability in actions)
