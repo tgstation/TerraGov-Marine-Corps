@@ -17852,13 +17852,6 @@
 	dir = 9
 	},
 /area/ice_colony/underground/hangar)
-"bil" = (
-/obj/structure/cable,
-/obj/machinery/power/apc/drained{
-	dir = 1
-	},
-/turf/open/floor/podhatch/floor,
-/area/ice_colony/underground/engineering/substation)
 "bio" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
@@ -20851,21 +20844,9 @@
 	dir = 4
 	},
 /area/ice_colony/underground/hallway/south_east)
-"btc" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 5
-	},
-/turf/open/floor/plating,
-/area/ice_colony/underground/engineering/substation)
 "btd" = (
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/medical/treatment)
-"bte" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/ice_colony/underground/engineering/substation)
 "btf" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -21344,14 +21325,7 @@
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/hallway/north_west)
 "buE" = (
-/obj/machinery/power/geothermal,
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/ice_colony/underground/engineering/substation)
-"buF" = (
-/obj/machinery/power/geothermal,
-/obj/structure/cable,
-/obj/machinery/light/small,
+/obj/structure/closet/secure_closet/engineering_welding,
 /turf/open/floor/plating,
 /area/ice_colony/underground/engineering/substation)
 "buG" = (
@@ -28992,8 +28966,9 @@
 	},
 /area/ice_colony/underground/medical/treatment)
 "bSV" = (
+/obj/machinery/power/terminal,
 /obj/structure/cable,
-/turf/open/floor/podhatch/floor,
+/turf/open/floor/plating,
 /area/ice_colony/underground/engineering/substation)
 "bSW" = (
 /turf/closed/ice_rock/corners{
@@ -30684,10 +30659,6 @@
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/hydroponics/south)
-"bYK" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor/plating,
-/area/ice_colony/underground/engineering/substation)
 "bYL" = (
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -30709,11 +30680,7 @@
 	},
 /area/ice_colony/underground/security/hallway)
 "bYO" = (
-/obj/machinery/power/geothermal,
-/obj/structure/cable,
-/obj/machinery/light{
-	dir = 8
-	},
+/obj/structure/closet/secure_closet/engineering_personal,
 /turf/open/floor/plating,
 /area/ice_colony/underground/engineering/substation)
 "bYP" = (
@@ -33906,6 +33873,10 @@
 /obj/effect/alien/egg,
 /turf/open/floor/plating,
 /area/ice_colony/exterior/underground/caves/ice_se)
+"xMf" = (
+/obj/machinery/power/smes/buildable/empty/dist,
+/turf/open/floor/plating,
+/area/ice_colony/underground/engineering/substation)
 "xNj" = (
 /obj/effect/turf_underlay/icefloor,
 /turf/closed/ice/thin/single,
@@ -58822,8 +58793,8 @@ btz
 buE
 buE
 bYO
-buE
-buE
+bYO
+bYO
 btz
 bYW
 bYY
@@ -59076,11 +59047,11 @@ bbK
 bbK
 bXs
 btz
-bSV
-bSV
-bSV
-bSV
-bil
+buj
+buj
+buj
+buj
+buj
 btz
 bnL
 box
@@ -59333,11 +59304,11 @@ bbK
 bbK
 jQI
 btz
-buE
-buE
+buj
+buj
 buj
 bSV
-buE
+xMf
 btz
 bnL
 box
@@ -59590,11 +59561,11 @@ bbK
 bbK
 bWE
 bYH
-bYK
-bYK
-btc
+buj
+buj
+buj
 bSV
-buE
+xMf
 btz
 bnL
 box
@@ -59849,9 +59820,9 @@ jQI
 btz
 buj
 buj
-bte
+buj
 bSV
-buF
+xMf
 btz
 bnL
 box
