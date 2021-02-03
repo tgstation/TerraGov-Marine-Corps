@@ -57,6 +57,8 @@
 
 ///Check if we can use the jetpack and give feedback to the users
 /obj/item/jetpack_marine/proc/use_jetpack(mob/living/carbon/human/human_user)
+	if(human_user.incapacitated() || human_user.lying_angle)
+		return FALSE
 	if(!COOLDOWN_CHECK(src,cooldown_jetpack))
 		to_chat(human_user,"<span class='warning'>You cannot use the jetpack yet!</span>")
 		return FALSE
