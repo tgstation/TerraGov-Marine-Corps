@@ -936,6 +936,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/stock/irremoveable/rifle
 	name = "\improper M412 solid stock"
+	icon_state = "riflestock"
+	attach_icon = "riflestock_a"
 	pixel_shift_x = 32
 	pixel_shift_y = 13
 
@@ -1176,6 +1178,9 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	scatter_mod = 0
 	movement_acc_penalty_mod = 0
 
+/obj/item/attachable/stock/irremoveable/m41a
+	name = "HK-11 stock"
+	icon_state = "m41a"
 
 ////////////// Underbarrel Attachments ////////////////////////////////////
 
@@ -1243,9 +1248,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	flags_attach_features = ATTACH_ACTIVATION|ATTACH_RELOADABLE|ATTACH_WEAPON
 
 /obj/item/attachable/attached_gun/grenade/unremovable/invisible
-	icon_state = ""
-	attach_icon = ""
-
+	icon_state = "invisible"
 
 /obj/item/attachable/attached_gun/grenade/examine(mob/user)
 	..()

@@ -6036,9 +6036,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/alpha)
 "arK" = (
-/obj/machinery/bioprinter{
-	stored_metal = 1000
-	},
+/obj/machinery/bioprinter/stocked,
 /turf/open/floor/mainship{
 	icon_state = "sterile_green_corner"
 	},
@@ -21802,9 +21800,7 @@
 /turf/open/floor/mainship/sterile/plain,
 /area/mainship/living/captain_mess)
 "bnq" = (
-/obj/machinery/bioprinter{
-	stored_metal = 1000
-	},
+/obj/machinery/bioprinter/stocked,
 /turf/open/floor/mainship{
 	icon_state = "sterile_green_corner"
 	},
@@ -23911,9 +23907,7 @@
 	},
 /area/mainship/command/cic)
 "bvS" = (
-/obj/machinery/bioprinter{
-	stored_metal = 1000
-	},
+/obj/machinery/bioprinter/stocked,
 /turf/open/floor/mainship{
 	icon_state = "sterile_green_corner"
 	},
@@ -25724,9 +25718,7 @@
 	},
 /area/mainship/command/cic)
 "bDq" = (
-/obj/machinery/bioprinter{
-	stored_metal = 1000
-	},
+/obj/machinery/bioprinter/stocked,
 /turf/open/floor/mainship{
 	icon_state = "sterile_green_corner"
 	},
@@ -27055,9 +27047,7 @@
 	},
 /area/mainship/medical/operating_room_four)
 "bJG" = (
-/obj/machinery/bioprinter{
-	stored_metal = 1000
-	},
+/obj/machinery/bioprinter/stocked,
 /turf/open/floor/mainship{
 	icon_state = "sterile_green_corner"
 	},

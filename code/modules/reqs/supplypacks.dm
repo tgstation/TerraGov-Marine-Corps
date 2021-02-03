@@ -234,6 +234,18 @@ WEAPONS
 	contains = list(/obj/item/weapon/gun/flamer/marinestandard)
 	cost = 15
 
+/datum/supply_packs/weapons/rpgoneuse
+	name = "T-72 RPGs"
+	contains = list(
+		/obj/item/weapon/gun/launcher/rocket/oneuse,
+		/obj/item/weapon/gun/launcher/rocket/oneuse,
+		/obj/item/weapon/gun/launcher/rocket/oneuse,
+		/obj/item/weapon/gun/launcher/rocket/oneuse,
+		/obj/item/weapon/gun/launcher/rocket/oneuse,
+	)
+	notes = "Contains 5."
+	cost = 50
+
 /datum/supply_packs/weapons/mateba
 	name = "Mateba Autorevolver belt"
 	contains = list(/obj/item/storage/belt/gun/mateba/full)
@@ -1146,6 +1158,11 @@ ENGINEERING
 	name = "Combat Grade Floodlight"
 	contains = list(/obj/machinery/floodlightcombat)
 	cost = 5
+
+/datum/supply_packs/engineering/advanced_generator
+	name = "Wireless power generator"
+	contains = list(/obj/machinery/power/port_gen/pacman/mobile_power)
+	cost = 20
 
 /*******************************************************************************
 SUPPLIES

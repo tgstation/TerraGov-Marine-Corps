@@ -728,6 +728,7 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 	title = SYNTHETIC
 	req_admin_notify = TRUE
 	comm_title = "Syn"
+	paygrade = "Mk.I"
 	supervisors = "the acting captain"
 	total_positions = 1
 	skills_type = /datum/skills/synthetic
@@ -757,6 +758,22 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 	if(prefs && prefs.synthetic_type == "Early Synthetic")
 		return /datum/skills/early_synthetic
 	return ..()
+
+/datum/job/terragov/silicon/synthetic/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
+	. = ..()
+	if(!ishuman(new_mob))
+		return
+	var/mob/living/carbon/human/new_human = new_mob
+	var/playtime_mins = user?.client?.get_exp(title)
+	if(!playtime_mins || playtime_mins < 1 )
+		return
+	switch(playtime_mins)
+		if(0 to 600) //up to 10 hours
+			new_human.wear_id.paygrade = "Mk.I"
+		if(601 to 3000) // 10 to 50 hrs
+			new_human.wear_id.paygrade = "Mk.II"
+		if(3000 to INFINITY) // more than 50 hrs
+			new_human.wear_id.paygrade = "Mk.III"
 
 /datum/job/terragov/silicon/synthetic/radio_help_message(mob/M)
 	. = ..()

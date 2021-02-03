@@ -78,7 +78,7 @@
 	scatter = 0
 	fire_delay = 0.2 SECONDS
 	scatter_unwielded = 10 //Made to be used one handed.
-	aim_slowdown = 0.2
+	aim_slowdown = 0.15
 	burst_amount = 5
 	movement_acc_penalty_mult = 0
 
@@ -96,6 +96,8 @@
 	flags_equip_slot = ITEM_SLOT_BACK
 	wield_delay = 0.5 SECONDS
 	force = 20
+	aim_speed_modifier = 0.4
+	aim_fire_delay = 0.2 SECONDS
 	current_mag = /obj/item/ammo_magazine/smg/standard_smg
 	type_of_casings = null
 	attachable_allowed = list(
@@ -118,7 +120,7 @@
 	accuracy_mult_unwielded = 0.7
 	scatter = 0
 	fire_delay = 0.15 SECONDS
-	scatter_unwielded = 35
+	scatter_unwielded = 30
 	aim_slowdown = 0.25
 	burst_amount = 0
 

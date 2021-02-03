@@ -458,6 +458,7 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 
 /datum/game_mode/proc/count_humans_and_xenos(list/z_levels = SSmapping.levels_by_any_trait(list(ZTRAIT_MARINE_MAIN_SHIP, ZTRAIT_GROUND, ZTRAIT_RESERVED)), count_flags)
 	var/num_humans = 0
+	var/num_humans_ship = 0
 	var/num_xenos = 0
 
 	for(var/z in z_levels)
@@ -472,6 +473,8 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 			if(isspaceturf(H.loc))
 				continue
 			num_humans++
+			if ("[z]" == ZTRAITS_MAIN_SHIP)//it's here so i can use it for monitor
+				num_humans_ship++
 
 	for(var/z in z_levels)
 		for(var/i in GLOB.hive_datums[XENO_HIVE_NORMAL].xenos_by_zlevel["[z]"])
@@ -491,7 +494,7 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 
 			num_xenos++
 
-	return list(num_humans, num_xenos)
+	return list(num_humans, num_xenos, num_humans_ship)
 
 /datum/game_mode/proc/get_total_joblarvaworth(list/z_levels = SSmapping.levels_by_any_trait(list(ZTRAIT_MARINE_MAIN_SHIP, ZTRAIT_GROUND, ZTRAIT_RESERVED)), count_flags)
 	. = 0
