@@ -10,6 +10,18 @@
 	do_jitter_animation(1000)
 	set_datum()
 	var/selected_ability_type = selected_ability?.type
+
+	for(var/check_existing_actions in xeno_abilities) //Remove xenos actions we shouldn't have
+		var/datum/action/xeno_action/existing_action_path = check_existing_actions
+		if(!locate(existing_action_path) in xeno_caste.actions)
+			existing_action_path.remove_action(src)
+
+	for(var/check_new_actions in xeno_caste.actions) //Give the xenos actions we don't currently have
+		var/datum/action/xeno_action/new_action_path = check_new_actions
+		if(!locate(new_action_path) in xeno_abilities)
+			var/datum/action/xeno_action/A = new new_action_path()
+			A.give_action(src)
+
 	remove_abilities()
 	add_abilities()
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_ABILITY_ON_UPGRADE)
