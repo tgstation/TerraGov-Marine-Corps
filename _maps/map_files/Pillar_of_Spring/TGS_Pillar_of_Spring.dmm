@@ -9933,15 +9933,6 @@
 	},
 /turf/open/floor/plating,
 /area/mainship/command/corporateliaison)
-"GW" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/turf/open/floor/mainship,
-/area/mainship/squads/general)
 "GX" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 4
@@ -10136,6 +10127,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
+"Ht" = (
+/obj/machinery/power/port_gen/pacman/mobile_power,
+/turf/open/floor/mainship/mono,
+/area/mainship/engineering/engineering_workshop)
 "Hv" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 1;
@@ -49132,7 +49127,7 @@ OU
 zv
 OM
 zT
-zR
+Ht
 OV
 Az
 Mb
@@ -50886,7 +50881,7 @@ ZL
 XH
 kF
 jl
-GW
+rW
 jl
 jl
 jl

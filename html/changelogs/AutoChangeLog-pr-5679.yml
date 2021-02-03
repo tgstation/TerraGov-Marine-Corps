@@ -1,0 +1,4 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - admin: "Added a monitor that will estimate the state of the game (xenos losing, marine losing, etc...). For later uses"

@@ -1,4 +1,0 @@
-author: "SkeletalElite"
-delete-after: True
-changes: 
-  - bugfix: "SL rank now correctly changes with playtime if you join at round start"
