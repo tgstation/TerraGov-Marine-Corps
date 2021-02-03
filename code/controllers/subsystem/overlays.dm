@@ -9,6 +9,7 @@ SUBSYSTEM_DEF(overlays)
 	var/list/stats
 	var/list/overlay_icon_state_caches
 	var/list/overlay_icon_cache
+	var/image/testlay
 
 /datum/controller/subsystem/overlays/PreInit()
 	overlay_icon_state_caches = list()
@@ -19,6 +20,7 @@ SUBSYSTEM_DEF(overlays)
 /datum/controller/subsystem/overlays/Initialize()
 	initialized = TRUE
 	fire(mc_check = FALSE)
+	testlay = image('icons/Xeno/1x1_Xenos.dmi', icon_state = "Bloody Larva", dir = SOUTH)
 	return ..()
 
 
@@ -217,3 +219,26 @@ SUBSYSTEM_DEF(overlays)
 			overlays |= cached_other
 	else if(cut_old)
 		cut_overlays()
+
+
+
+
+
+
+/datum/controller/subsystem/overlays/proc/begin()
+	message_staff("BEGIN")
+	var/i = 0
+	while(i < length(GLOB.player_list))
+		var/mob/player = GLOB.player_list[++i]
+		for(var/_=0 to 10)
+		player.overlays += testlay
+	message_staff("COMPLETE ADDITION")
+
+/datum/controller/subsystem/overlays/proc/stop()
+	message_staff("BEGIN")
+	var/i = 0
+	while(i < length(GLOB.player_list))
+		var/mob/player = GLOB.player_list[++i]
+		for(var/_=0 to 10)
+		player.overlays -= testlay
+	message_staff("COMPLETE REMOVAL")
