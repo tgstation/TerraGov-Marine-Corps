@@ -311,7 +311,7 @@
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
 	foldable = null
 
-/obj/item/storage/box/recoilless_system/Initialize(mapload, ...)
+/obj/item/storage/box/disposable_rpg/Initialize(mapload, ...)
 	. = ..()
 	new /obj/item/weapon/gun/launcher/rocket/oneuse(src)
 	new /obj/item/weapon/gun/launcher/rocket/oneuse(src)
