@@ -66,9 +66,11 @@
 	if(!istype(I, /obj/item/weapon/gun/flamer))
 		return	
 	var/obj/item/weapon/gun/flamer/FLT = I
-	var/mob/living/carbon/human/humanuser = user
-	if (!istype(humanuser))
+	
+	if(!istype(user, /mob/living/carbon/human))
 		return
+	
+	var/mob/living/carbon/human/humanuser = user
 	
 	if (!humanuser.is_item_in_slots(src))
 		to_chat(user, "<span class='warning'>You must equip or hold this fuel tank to be able to link it to a flamer</span>")

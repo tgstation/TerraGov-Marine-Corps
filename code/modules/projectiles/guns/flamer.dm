@@ -501,17 +501,18 @@
 
 /obj/item/weapon/gun/flamer/marinestandard/unique_action(mob/user)
 	var/obj/item/attachable/hydro_cannon/hydro = under
-	if(istype(hydro))
-		playsound(user, hydro.activation_sound, 15, 1)
-		if (hydro.activate_attachment(user))
-			hydro_active = TRUE
-			light_pilot(user, FALSE)
-		else 
-			hydro_active = FALSE
-			if (current_mag?.current_rounds > 0)
-				light_pilot(user, TRUE)
-		var/obj/screen/ammo/A = user.hud_used.ammo
-		A.update_hud(user)
+	if(!istype(hydro))
+		return
+	playsound(user, hydro.activation_sound, 15, 1)
+	if (hydro.activate_attachment(user))
+		hydro_active = TRUE
+		light_pilot(user, FALSE)
+	else 
+		hydro_active = FALSE
+		if (current_mag?.current_rounds > 0)
+			light_pilot(user, TRUE)
+	var/obj/screen/ammo/A = user.hud_used.ammo
+	A.update_hud(user)
 
 /obj/item/weapon/gun/flamer/marinestandard/attach_fueltank(mob/user, obj/item/ammo_magazine/flamer_tank/backtank/fueltank)
 	if (!istype(fueltank))

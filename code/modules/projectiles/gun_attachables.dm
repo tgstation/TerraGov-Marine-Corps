@@ -1697,20 +1697,19 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	attachment_action_type = /datum/action/item_action/toggle
 
 /obj/item/attachable/hydro_cannon/activate_attachment(mob/living/user, turn_off)
-	var/activated
 	if(master_gun.active_attachable == src)
 		if(user)
 			to_chat(user, "<span class='notice'>You are no longer using [src].</span>")
 		master_gun.active_attachable = null
 		icon_state = initial(icon_state)
-		activated = FALSE
+		. = FALSE
 	else if(!turn_off)
 		if(user)
 			to_chat(user, "<span class='notice'>You are now using [src].</span>")
 		master_gun.active_attachable = src
 		icon_state += "-on"
-		activated = TRUE
+		. = TRUE
 	for(var/X in master_gun.actions)
 		var/datum/action/A = X
 		A.update_button_icon()
-	return activated
+
