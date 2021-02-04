@@ -143,7 +143,7 @@
 	ancient_message = "We are the master of huggers. We shall throw them like baseballs at the marines!"
 
 	// *** Melee Attacks *** //
-	melee_damage = 24
+	melee_damage = 22
 
 	// *** Tackle *** //
 	tackle_damage = 25
@@ -171,4 +171,3 @@
 	huggers_max = 7
 	hugger_delay = 1.5 SECONDS
 	eggs_max = 6
-
