@@ -1,0 +1,6 @@
+author: "fernandos13"
+delete-after: True
+changes: 
+  - tweak: "MP headset to fire support specialist headset
+remove: master of arms headset"
+  - bugfix: "Cas and Mortar dedicated channel is now in place"

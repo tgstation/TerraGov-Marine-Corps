@@ -34933,7 +34933,7 @@
 	},
 /area/mainship/living/briefing)
 "dXn" = (
-/obj/machinery/telecomms/server/presets/security,
+/obj/machinery/telecomms/server/presets/cas,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
 "ece" = (
@@ -37125,6 +37125,11 @@
 	dir = 8
 	},
 /area/mainship/living/numbertwobunks)
+"qNK" = (
+/obj/machinery/computer/supplydrop_console,
+/obj/structure/table/mainship,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/squads/req)
 "qOp" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/secure/northleft/req,
@@ -78835,7 +78840,7 @@ buH
 buH
 buH
 sUb
-bnC
+qNK
 bnF
 cnU
 brb

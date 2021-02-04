@@ -623,7 +623,7 @@ below 100 is not dizzy
 	SEND_SIGNAL(src, COMSIG_LIVING_SET_CANMOVE, canmove)
 
 
-/mob/living/proc/update_leader_tracking(mob/living/L)
+/mob/living/proc/update_tracking(mob/living/L)
 	return
 
 /mob/living/proc/clear_leader_tracking()
