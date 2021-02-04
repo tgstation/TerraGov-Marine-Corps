@@ -31,6 +31,63 @@
 		else
 			update_inv_r_hand(FALSE)
 
+/mob/living/carbon/human/proc/do_kb_equip_slot_s_store()
+	do_kb_equip(SLOT_S_STORE)
+/mob/living/carbon/human/proc/do_kb_equip_slot_wear_suit()
+	do_kb_equip(SLOT_WEAR_SUIT)
+/mob/living/carbon/human/proc/do_kb_equip_slot_belt()
+	do_kb_equip(SLOT_BELT)
+/mob/living/carbon/human/proc/do_kb_equip_slot_back()
+	do_kb_equip(SLOT_BACK)
+/mob/living/carbon/human/proc/do_kb_equip_slot_boot()
+	do_kb_equip(SLOT_IN_BOOT)
+/mob/living/carbon/human/proc/do_kb_equip_slot_head()
+	do_kb_equip(SLOT_IN_HEAD)
+/mob/living/carbon/human/proc/do_kb_equip_slot_l_store()
+	do_kb_equip(SLOT_L_STORE)
+/mob/living/carbon/human/proc/do_kb_equip_slot_r_store()
+	do_kb_equip(SLOT_R_STORE)
+/mob/living/carbon/human/proc/do_kb_equip_slot_accessory()
+	do_kb_equip(SLOT_IN_ACCESSORY)
+/mob/living/carbon/human/proc/do_kb_equip_slot_beltholster()
+	do_kb_equip(SLOT_IN_HOLSTER)
+/mob/living/carbon/human/proc/do_kb_equip_slot_suitsholster()
+	do_kb_equip(SLOT_IN_S_HOLSTER)
+/mob/living/carbon/human/proc/do_kb_equip_slot_backholster()
+	do_kb_equip(SLOT_IN_B_HOLSTER)
+
+/mob/living/carbon/human/proc/do_kb_equip( KB )
+	SIGNAL_HANDLER_DOES_SLEEP
+	. = COMSIG_KB_ACTIVATED //The return value must be a flag compatible with the signals triggering this.
+
+	if(incapacitated() || lying_angle || istype(loc, /obj/vehicle/multitile/root/cm_armored))
+		return
+
+	var/obj/item/I = get_active_held_item()
+	if(!I)
+		if(next_move > world.time)
+			return
+		if( KB )
+			if(draw_from_slot_if_possible( KB ))
+				next_move = world.time + 3
+				return
+		for(var/slot in SLOT_DRAW_ORDER)
+			if(draw_from_slot_if_possible(slot))
+				next_move = world.time + 3
+				return
+	else
+		if(s_active && s_active.can_be_inserted(I))
+			s_active.handle_item_insertion(I, FALSE, src)
+			return
+		if( KB )
+			if(equip_to_slot_if_possible(I, KB , FALSE, FALSE, FALSE))
+				return
+		if(!equip_to_appropriate_slot(I, FALSE))
+			return
+		if(hand)
+			update_inv_l_hand(FALSE)
+		else
+			update_inv_r_hand(FALSE)
 
 /mob/living/carbon/human/proc/equip_in_one_of_slots(obj/item/W, list/slots, del_on_fail = 1)
 	for (var/slot in slots)

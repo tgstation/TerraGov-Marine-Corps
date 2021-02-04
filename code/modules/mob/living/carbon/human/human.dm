@@ -39,6 +39,19 @@
 	RegisterSignal(src, COMSIG_KB_UNIQUEACTION, .proc/do_unique_action)
 	RegisterSignal(src, COMSIG_KB_RAILATTACHMENT, .proc/do_activate_rail_attachment)
 	RegisterSignal(src, COMSIG_GRAB_SELF_ATTACK, .proc/fireman_carry_grabbed) // Fireman carry
+	RegisterSignal(src, COMSIG_KB_SLOT_S_STORE, .proc/do_kb_equip_slot_s_store)
+	RegisterSignal(src, COMSIG_KB_SLOT_WEAR_SUIT, .proc/do_kb_equip_slot_wear_suit)
+	RegisterSignal(src, COMSIG_KB_SLOT_BELT, .proc/do_kb_equip_slot_belt)
+	RegisterSignal(src, COMSIG_KB_SLOT_BACK, .proc/do_kb_equip_slot_back)
+	RegisterSignal(src, COMSIG_KB_SLOT_BOOT, .proc/do_kb_equip_slot_boot)
+	RegisterSignal(src, COMSIG_KB_SLOT_HEAD, .proc/do_kb_equip_slot_head)
+	RegisterSignal(src, COMSIG_KB_SLOT_L_STORE, .proc/do_kb_equip_slot_l_store)
+	RegisterSignal(src, COMSIG_KB_SLOT_R_STORE, .proc/do_kb_equip_slot_r_store)
+	RegisterSignal(src, COMSIG_KB_SLOT_ACCESSORY, .proc/do_kb_equip_slot_accessory)
+	RegisterSignal(src, COMSIG_KB_SLOT_BELT_HOLSTER, .proc/do_kb_equip_slot_beltholster)
+	RegisterSignal(src, COMSIG_KB_SLOT_SLOT_S_HOLSTER, .proc/do_kb_equip_slot_suitsholster)
+	RegisterSignal(src, COMSIG_KB_SLOT_B_HOLSTER, .proc/do_kb_equip_slot_backholster)
+
 	AddComponent(/datum/component/footstep, FOOTSTEP_MOB_HUMAN)
 
 /mob/living/carbon/human/proc/human_z_changed(datum/source, old_z, new_z)

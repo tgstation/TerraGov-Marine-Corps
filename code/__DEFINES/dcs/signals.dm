@@ -544,6 +544,18 @@
 // human signals for keybindings
 #define COMSIG_KB_QUICKEQUIP "keybinding_quickequip"
 #define COMSIG_KB_HOLSTER "keybinding_holster"
+#define COMSIG_KB_SLOT_S_STORE "keybinding_sstorage"
+#define COMSIG_KB_SLOT_WEAR_SUIT "keybinding_wearsuit"
+#define COMSIG_KB_SLOT_BELT "keybinding_belt"
+#define COMSIG_KB_SLOT_BACK "keybinding_back"
+#define COMSIG_KB_SLOT_BOOT "keybinding_boot"
+#define COMSIG_KB_SLOT_HEAD "keybinding_head"
+#define COMSIG_KB_SLOT_L_STORE "keybinding_lpocket"
+#define COMSIG_KB_SLOT_R_STORE "keybinding_rpocket"
+#define COMSIG_KB_SLOT_ACCESSORY "keybinding_webbing"
+#define COMSIG_KB_SLOT_BELT_HOLSTER "keybinding_beltholster"
+#define COMSIG_KB_SLOT_SLOT_S_HOLSTER "keybinding_suitsholster"
+#define COMSIG_KB_SLOT_B_HOLSTER "keybinding_backholster"
 #define COMSIG_KB_UNIQUEACTION "keybinding_uniqueaction"
 #define COMSIG_KB_RAILATTACHMENT "keybinding_railattachment"
 
