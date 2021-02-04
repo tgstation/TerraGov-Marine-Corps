@@ -33,7 +33,7 @@
 	evolves_to = list(/mob/living/carbon/xenomorph/Defiler)
 
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
+	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_HOLD_JELLY
 
 	can_hold_eggs = CAN_HOLD_TWO_HANDS
 
@@ -52,18 +52,23 @@
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
+		/datum/action/xeno_action/activable/headbite,
 		/datum/action/xeno_action/plant_weeds,
-		/datum/action/xeno_action/activable/psychic_cure/drone,
+		/datum/action/xeno_action/activable/healing_infusion,
 		/datum/action/xeno_action/place_acidwell,
 		/datum/action/xeno_action/choose_resin/hivelord,
-		/datum/action/xeno_action/activable/secrete_resin/hivelord, // TODO: (psykzz) Disabled until this is fixed.
+		/datum/action/xeno_action/activable/secrete_resin/hivelord,
+		/datum/action/xeno_action/activable/build_silo,
 		/datum/action/xeno_action/activable/transfer_plasma/improved,
+		/datum/action/xeno_action/activable/salvage_biomass,
 		/datum/action/xeno_action/activable/corrosive_acid,
 		/datum/action/xeno_action/build_tunnel,
 		/datum/action/xeno_action/toggle_speed,
 		/datum/action/xeno_action/toggle_pheromones,
-		/datum/action/xeno_action/activable/xeno_spit
-		)
+		/datum/action/xeno_action/activable/xeno_spit,
+		/datum/action/xeno_action/create_jelly,
+		/datum/action/xeno_action/place_jelly_pod,
+	)
 
 /datum/xeno_caste/hivelord/young
 	upgrade_name = "Young"

@@ -44,13 +44,13 @@
 		playsound(src,drawSound, 15, 1)
 
 /obj/item/storage/large_holster/m37
-	name = "\improper L44 M37A2 scabbard"
-	desc = "A large leather holster allowing the storage of an M37A2 Shotgun. It contains harnesses that allow it to be secured to the back for easy storage."
+	name = "\improper L44 shotgun scabbard"
+	desc = "A large leather holster allowing the storage of any shotgun. It contains harnesses that allow it to be secured to the back for easy storage."
 	icon_state = "m37_holster"
 	can_hold = list(
-		/obj/item/weapon/gun/shotgun/merc/scout,
 		/obj/item/weapon/gun/shotgun/combat,
-		/obj/item/weapon/gun/shotgun/pump)
+		/obj/item/weapon/gun/shotgun/pump,
+	)
 
 /obj/item/storage/large_holster/m37/full/Initialize()
 	. = ..()
@@ -104,7 +104,8 @@
 	desc = "A large leather holster allowing the storage of an T-35 Shotgun. It contains harnesses that allow it to be secured to the back for easy storage."
 	icon_state = "t35_holster"
 	can_hold = list(
-		/obj/item/weapon/gun/shotgun/pump/t35)
+		/obj/item/weapon/gun/shotgun/pump/t35,
+	)
 
 /obj/item/storage/large_holster/t35/full/Initialize()
 	. = ..()
@@ -112,16 +113,16 @@
 	new /obj/item/weapon/gun/shotgun/pump/t35(src)
 	base_icon = icon_state
 
-/obj/item/storage/large_holster/m39
-	name = "\improper M276 pattern M39 holster rig"
-	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is designed for the M39 SMG, and features a larger frame to support the gun. Due to its unorthodox design, it isn't a very common sight, and is only specially issued."
-	icon_state = "m39_holster"
+/obj/item/storage/large_holster/m25
+	name = "\improper M276 pattern M25 holster rig"
+	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is designed for the M25 SMG, and features a larger frame to support the gun. Due to its unorthodox design, it isn't a very common sight, and is only specially issued."
+	icon_state = "m25_holster"
 	icon = 'icons/obj/clothing/belts.dmi'
-	base_icon = "m39_holster"
+	base_icon = "m25_holster"
 	flags_equip_slot = ITEM_SLOT_BELT
-	can_hold = list(/obj/item/weapon/gun/smg/m39)
+	can_hold = list(/obj/item/weapon/gun/smg/m25)
 
-/obj/item/storage/large_holster/m39/update_icon()
+/obj/item/storage/large_holster/m25/update_icon()
 	var/mob/user = loc
 	if(contents.len)
 		var/obj/I = contents[1]
@@ -132,9 +133,9 @@
 		item_state = base_icon
 	if(istype(user)) user.update_inv_belt()
 
-/obj/item/storage/large_holster/m39/full/Initialize()
+/obj/item/storage/large_holster/m25/full/Initialize()
 	. = ..()
-	new /obj/item/weapon/gun/smg/m39(src)
+	new /obj/item/weapon/gun/smg/m25(src)
 	update_icon()
 
 /obj/item/storage/large_holster/t19

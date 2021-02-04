@@ -44,6 +44,8 @@
 /obj/effect/acid_hole/specialclick(mob/living/carbon/user)
 	if(!isxeno(user))
 		return
+	if(!user.CanReach(src))
+		return
 	if(holed_wall)
 		if(user.mob_size == MOB_SIZE_BIG)
 			expand_hole(user)
@@ -89,9 +91,10 @@
 			to_chat(user, "<span class='warning'>The hole's exit is blocked by something!</span>")
 			return
 
-	if(locate(/obj/machinery/door/poddoor/timed_late/containment) in get_turf(src))
-		to_chat(user, "<span class='warning'>You can't reach the hole's entrance under the shutters.</span>")
-		return
+	for(var/obj/machinery/door/poddoor/timed_late/containment/shutter in get_turf(src))
+		if(shutter.density)
+			to_chat(user, "<span class='warning'>You can't reach the hole's entrance under the shutters.</span>")
+			return
 
 	if(user.action_busy)
 		return
@@ -164,7 +167,7 @@
 		F.forceMove(T)
 		F.setDir(pick(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
 		step_away(F, src, rand(1,5))
-		if(F.on && loc != user)
-			F.set_light(F.brightness_on)
+		if(F.light_on && loc != user)
+			F.set_light_on(TRUE)
 		else
-			F.set_light(0)
+			F.set_light_on(FALSE)

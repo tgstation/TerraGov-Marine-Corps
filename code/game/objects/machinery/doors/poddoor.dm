@@ -150,13 +150,14 @@
 	tiles_with = list(
 		/turf/closed/wall,
 		/obj/structure/window/framed/mainship,
-		/obj/machinery/door/airlock)
+		/obj/machinery/door/airlock,
+	)
 
 /obj/machinery/door/poddoor/mainship/open
-    density = FALSE
-    opacity = FALSE
-    layer = PODDOOR_OPEN_LAYER
-    icon_state = "pdoor0"
+	density = FALSE
+	opacity = FALSE
+	layer = PODDOOR_OPEN_LAYER
+	icon_state = "pdoor0"
 
 
 /obj/machinery/door/poddoor/mainship/ai
@@ -175,7 +176,11 @@
 
 /obj/machinery/door/poddoor/mainship/ammo
 	name = "\improper Ammunition Storage"
-	id = "ammo2"	
+	id = "ammo2"
+
+/obj/machinery/door/poddoor/mainship/droppod
+	name = "\improper Drop pod Bay"
+	id = "droppod"
 
 /obj/machinery/door/poddoor/mainship/open/cic
 	name = "\improper Combat Information Center Blast Door"
@@ -183,7 +188,7 @@
 
 /obj/machinery/door/poddooor/mainship/hangar
 	name = "\improper Hangar Lockdown"
-	id = "hangar_lockdown"	
+	id = "hangar_lockdown"
 
 /obj/machinery/door/poddoor/mainship/Initialize()
 	relativewall_neighbours()
@@ -225,6 +230,19 @@
 	open_layer = UNDER_TURF_LAYER //No longer needs to be interacted with.
 	closed_layer = ABOVE_WINDOW_LAYER //Higher than usual, this is only around on the start of the round.
 
+
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/Initialize(mapload)
+	. = ..()
+	if(mapload)
+		var/area/ourarea = get_area(src)
+		ENABLE_BITFIELD(ourarea.flags_area, DISALLOW_WEEDING)
+		ENABLE_BITFIELD(ourarea.flags_area, NEAR_FOB)
+
+
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/open()
+	. = ..()
+	var/area/ourarea = get_area(src)
+	DISABLE_BITFIELD(ourarea.flags_area, DISALLOW_WEEDING)
 
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone
 	id = "landing_zone"

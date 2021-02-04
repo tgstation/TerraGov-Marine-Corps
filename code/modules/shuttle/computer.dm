@@ -31,7 +31,6 @@
 
 	var/datum/browser/popup = new(user, "computer", "<div align='center'>[M ? M.name : "shuttle"]</div>", 300, 200)
 	popup.set_content("<center>[dat]</center>")
-	popup.set_title_image(usr.browse_rsc_icon(src.icon, src.icon_state))
 	popup.open()
 
 /obj/machinery/computer/shuttle/proc/valid_destinations()
@@ -61,6 +60,7 @@
 			message_admins("[ADMIN_TPMONTY(usr)] may be attempting a href dock exploit on [src] with target location \"[href_list["move"]]\"")
 			return TRUE
 		var/previous_status = M.mode
+		log_game("[key_name(usr)] has sent the shuttle [M] to [href_list["move"]]")
 		switch(SSshuttle.moveShuttle(shuttleId, href_list["move"], 1))
 			if(0)
 				if(previous_status != SHUTTLE_IDLE)

@@ -22,8 +22,6 @@
 
 	var/rotate_on_lying = TRUE
 
-	var/halloss = 0		//Hallucination damage. 'Fake' damage obtained through hallucinating or the holodeck. Sleeping should cause it to wear off.
-
 	var/traumatic_shock = 0
 	var/shock_stage = 0
 
@@ -44,8 +42,6 @@
 
 	var/afk_timer_id
 	var/afk_status = MOB_DISCONNECTED
-
-	var/middle_mouse_toggle = TRUE //This toggles whether special clicks use middle mouse clicking or shift clicking
 
 	// halucination vars
 	var/hal_screwyhud = SCREWYHUD_NONE

@@ -6,6 +6,7 @@ GLOBAL_LIST_EMPTY(marine_vendors)					//Used by our gamemode code
 GLOBAL_LIST_EMPTY(attachment_vendors)				//Used by our gamemode code
 GLOBAL_LIST_EMPTY(marine_turrets)
 
+GLOBAL_LIST_EMPTY(droppod_list)
 GLOBAL_LIST_EMPTY(tank_list)
 GLOBAL_LIST_EMPTY(implant_list)
 GLOBAL_LIST_EMPTY(head_list)
@@ -26,9 +27,11 @@ GLOBAL_LIST_EMPTY(active_nuke_list)
 GLOBAL_LIST_EMPTY(nuke_spawn_locs)
 GLOBAL_LIST_EMPTY(nuke_disk_list)					//list of all /obj/item/disk/nuclear
 
-GLOBAL_LIST_EMPTY(chemical_reactions_list)				//list of all /datum/chemical_reaction datums. Used during chemical reactions
-GLOBAL_LIST_EMPTY(chemical_reagents_list)				//list of all /datum/reagent datums indexed by reagent id. Used by chemistry stuff
-GLOBAL_LIST_EMPTY(apcs_list)					//list of all Area Power Controller machines, separate from machines for powernet speeeeeeed.
+GLOBAL_LIST_EMPTY(chemical_required_reagents)			///list of all /datum/reagent indexed by path, with the value being their catalysts and reactions
+GLOBAL_LIST_EMPTY(chemical_reactions_list)				///list of all /datum/chemical_reaction datums index by reactants, Used during chemical reactions
+GLOBAL_LIST_EMPTY(chemical_reagents_list)				///list of all /datum/reagent datums instances indexed by reagent typepath. Used by chemistry stuff
+
+GLOBAL_LIST_EMPTY(apcs_list)							//list of all Area Power Controller machines, separate from machines for powernet speeeeeeed.
 
 GLOBAL_LIST_EMPTY(wire_color_directory)
 GLOBAL_LIST_EMPTY(wire_name_directory)

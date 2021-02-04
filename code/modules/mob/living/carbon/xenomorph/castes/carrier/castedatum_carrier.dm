@@ -53,13 +53,14 @@
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
+		/datum/action/xeno_action/activable/headbite,
 		/datum/action/xeno_action/plant_weeds,
 		/datum/action/xeno_action/activable/throw_hugger,
 		/datum/action/xeno_action/activable/retrieve_egg,
 		/datum/action/xeno_action/place_trap,
 		/datum/action/xeno_action/spawn_hugger,
-		/datum/action/xeno_action/toggle_pheromones
-		)
+		/datum/action/xeno_action/toggle_pheromones,
+	)
 
 /datum/xeno_caste/carrier/young
 	upgrade_name = "Young"

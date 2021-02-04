@@ -89,7 +89,7 @@
 	anchored = TRUE
 	mouse_opacity = 1
 	icon = 'icons/obj/items/projectiles.dmi'
-	icon_state = "laser_target2"
+	icon_state = "laser_target_blue"
 	effect_duration = 600
 	var/target_id
 	var/obj/item/binoculars/tactical/source_binoc
@@ -101,14 +101,11 @@
 	if(named)
 		name = "[named] laser"
 	target_id = UNIQUEID //giving it a unique id.
-	GLOB.active_laser_targets += src
 	squad = assigned_squad
 	if(squad)
 		squad.squad_laser_targets += src
-	linked_cam = new(loc, name)
 
 /obj/effect/overlay/temp/laser_target/Destroy()
-	GLOB.active_laser_targets -= src
 	if(squad)
 		squad.squad_laser_targets -= src
 		squad = null
@@ -124,11 +121,38 @@
 /obj/effect/overlay/temp/laser_target/ex_act(severity) //immune to explosions
 	return
 
-/obj/effect/overlay/temp/laser_target/examine()
-	..()
-	if(ishuman(usr))
+/obj/effect/overlay/temp/laser_target/examine(user)
+	. = ..()
+	if(ishuman(user))
 		to_chat(usr, "<span class='danger'>It's a laser to designate artillery targets, get away from it!</span>")
 
+/obj/effect/overlay/temp/laser_target/cas
+	icon_state = "laser_target_coordinate"
+
+/obj/effect/overlay/temp/laser_target/cas/Initialize(mapload, named, assigned_squad = null)
+	. = ..()
+	linked_cam = new(loc, name)
+	GLOB.active_cas_targets += src
+
+/obj/effect/overlay/temp/laser_target/cas/Destroy()
+	. = ..()
+	GLOB.active_cas_targets -= src
+
+/obj/effect/overlay/temp/laser_target/cas/examine(user)
+	. = ..()
+	if(ishuman(user))
+		to_chat(usr, "<span class='danger'>It's a laser to designate cas targets, get away from it!</span>")
+
+/obj/effect/overlay/temp/laser_target/OB
+	icon_state = "laser_target2"
+
+/obj/effect/overlay/temp/laser_target/OB/Initialize(mapload, named, assigned_squad)
+	. = ..()
+	GLOB.active_laser_targets += src
+
+/obj/effect/overlay/temp/laser_target/OB/Destroy()
+	. = ..()
+	GLOB.active_laser_targets -= src
 
 //used to show where dropship ordnance will impact.
 /obj/effect/overlay/temp/blinking_laser
@@ -216,3 +240,15 @@
 	pixel_x = source_mob.pixel_x
 	pixel_y = source_mob.pixel_y
 	icon_state = gib_icon
+
+///Lighting overlay for the Light overlay component
+/obj/effect/overlay/light_visible
+	name = ""
+	icon = 'icons/effects/light_overlays/light_32.dmi'
+	icon_state = "light"
+	layer = O_LIGHTING_VISUAL_LAYER
+	plane = O_LIGHTING_VISUAL_PLANE
+	appearance_flags = RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	alpha = 0
+	vis_flags = NONE

@@ -85,6 +85,13 @@
 	if(modifiers["ctrl"])
 		CtrlClickOn(A)
 		return
+	if(modifiers["shift"] && modifiers["right"])
+		ShiftRightClickOn(A)
+		return
+	if(modifiers["alt"] && modifiers["right"])
+		return
+	if(modifiers["right"] && RightClickOn(A))
+		return
 
 	if(incapacitated(TRUE))
 		return
@@ -291,19 +298,86 @@
 
 /mob/living/carbon/human/MiddleClickOn(atom/A)
 	. = ..()
-	if(!middle_mouse_toggle)
+	if(!client.prefs.toggles_gameplay & MIDDLESHIFTCLICKING)
 		return
 	var/obj/item/held_thing = get_active_held_item()
 	if(held_thing && SEND_SIGNAL(held_thing, COMSIG_ITEM_MIDDLECLICKON, A, src) & COMPONENT_ITEM_CLICKON_BYPASS)
 		return FALSE
 
+#define TARGET_FLAGS_MACRO(flagname, typepath) \
+if(selected_ability.target_flags & flagname){\
+	. = locate(typepath) in get_turf(A);\
+	if(.){\
+		return;}}
+
+/mob/living/carbon/xenomorph/proc/ability_target(atom/A)
+	TARGET_FLAGS_MACRO(XABB_MOB_TARGET, /mob/living)
+	TARGET_FLAGS_MACRO(XABB_OBJ_TARGET, /obj)
+	TARGET_FLAGS_MACRO(XABB_WALL_TARGET, /turf/closed/wall)
+	if(selected_ability.target_flags & XABB_TURF_TARGET)
+		return get_turf(A)
+	return A
 
 /mob/living/carbon/xenomorph/MiddleClickOn(atom/A)
 	. = ..()
-	if(!middle_mouse_toggle || !selected_ability)
+	if(!(client.prefs.toggles_gameplay & MIDDLESHIFTCLICKING) || !selected_ability)
 		return
+	A = ability_target(A)
 	if(selected_ability.can_use_ability(A))
 		selected_ability.use_ability(A)
+
+/mob/living/carbon/xenomorph/RightClickOn(atom/A)
+	. = ..()
+	if(!selected_ability)
+		return
+	A = ability_target(A)
+	if(selected_ability.can_use_ability(A))
+		selected_ability.use_ability(A)
+
+/*
+	Right click
+*/
+
+
+///Called when a owner mob Rightmouseclicks an atom
+/mob/proc/RightClickOn(atom/A)
+	switch(SEND_SIGNAL(src, COMSIG_MOB_CLICK_RIGHT, A))
+		if(COMSIG_MOB_CLICK_CANCELED)
+			return FALSE
+		if(COMSIG_MOB_CLICK_HANDLED)
+			return TRUE
+	return A.RightClick(src)
+
+///Called when a owner mob Shift + Rightmouseclicks an atom
+/mob/proc/ShiftRightClickOn(atom/A)
+	switch(SEND_SIGNAL(src, COMSIG_MOB_CLICK_SHIFT_RIGHT, A))
+		if(COMSIG_MOB_CLICK_CANCELED)
+			return FALSE
+		if(COMSIG_MOB_CLICK_HANDLED)
+			return TRUE
+	return A.ShiftRightClick(src)
+
+///Called when a owner mob Alt + Rightmouseclicks an atom, given that Altclick does not return TRUE
+/mob/proc/AltRightClickOn(atom/A)
+	switch(SEND_SIGNAL(src, COMSIG_MOB_CLICK_ALT_RIGHT, A))
+		if(COMSIG_MOB_CLICK_CANCELED)
+			return FALSE
+		if(COMSIG_MOB_CLICK_HANDLED)
+			return TRUE
+	return A.AltRightClick(src)
+
+///Called when a mob Rightmouseclicks this atom
+/atom/proc/RightClick(mob/user)
+	SEND_SIGNAL(src, COMSIG_CLICK_RIGHT, user)
+
+///Called when a mob Shift + Rightmouseclicks this atom
+/atom/proc/ShiftRightClick(mob/user)
+	SEND_SIGNAL(src, COMSIG_CLICK_SHIFT_RIGHT, user)
+
+///Called when a mob Alt + Rightmouseclicks this atom, given that mobs Altclick() does not return TRUE
+/atom/proc/AltRightClick(mob/user)
+	SEND_SIGNAL(src, COMSIG_CLICK_ALT_RIGHT, user)
+
 
 /*
 	Shift click
@@ -320,7 +394,7 @@
 
 
 /mob/living/carbon/human/ShiftClickOn(atom/A)
-	if(middle_mouse_toggle)
+	if(client.prefs.toggles_gameplay & MIDDLESHIFTCLICKING)
 		return ..()
 	var/obj/item/held_thing = get_active_held_item()
 
@@ -330,8 +404,9 @@
 
 
 /mob/living/carbon/xenomorph/ShiftClickOn(atom/A)
-	if(!selected_ability || middle_mouse_toggle)
+	if(!selected_ability || (client.prefs.toggles_gameplay & MIDDLESHIFTCLICKING))
 		return ..()
+	A = ability_target(A)
 	if(selected_ability.can_use_ability(A))
 		selected_ability.use_ability(A)
 	return TRUE

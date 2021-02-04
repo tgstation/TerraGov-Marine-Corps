@@ -103,11 +103,11 @@
 	new /obj/item/toy/crayon/purple(src)
 	update_icon()
 
-/obj/item/storage/fancy/crayons/update_icon()
-	overlays = list() //resets list
-	overlays += image('icons/obj/items/crayons.dmi',"crayonbox")
+/obj/item/storage/fancy/crayons/update_overlays()
+	. = ..()
+	. += image('icons/obj/items/crayons.dmi',"crayonbox")
 	for(var/obj/item/toy/crayon/crayon in contents)
-		overlays += image('icons/obj/items/crayons.dmi',crayon.colourName)
+		. += image('icons/obj/items/crayons.dmi',crayon.colourName)
 
 /obj/item/storage/fancy/crayons/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -136,7 +136,8 @@
 	storage_slots = 18
 	can_hold = list(
 		/obj/item/clothing/mask/cigarette,
-		/obj/item/tool/lighter)
+		/obj/item/tool/lighter,
+	)
 	icon_type = "cigarette"
 
 /obj/item/storage/fancy/cigarettes/Initialize(mapload, ...)
@@ -257,16 +258,16 @@
 	update_icon()
 
 /obj/item/storage/lockbox/vials/update_icon(itemremoved = 0)
-	var/total_contents = src.contents.len - itemremoved
-	src.icon_state = "vialbox[total_contents]"
-	src.overlays.Cut()
+	icon_state = "vialbox[length(contents)-itemremoved]"
+
+/obj/item/storage/lockbox/vials/update_overlays()
+	. = ..()
 	if (!broken)
-		overlays += image(icon, src, "led[locked]")
+		. += image(icon, src, "led[locked]")
 		if(locked)
-			overlays += image(icon, src, "cover")
+			. += image(icon, src, "cover")
 	else
-		overlays += image(icon, src, "ledb")
-	return
+		. += image(icon, src, "ledb")
 
 /obj/item/storage/lockbox/vials/attackby(obj/item/I, mob/user, params)
 	. = ..()

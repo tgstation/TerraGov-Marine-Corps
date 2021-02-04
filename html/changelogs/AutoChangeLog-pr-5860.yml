@@ -1,0 +1,4 @@
+author: "PsyKzz & Kuro (Sprites) & Bravemole (Merging conflict and bug fixes)"
+delete-after: True
+changes: 
+  - rscadd: "Added supply drop console"

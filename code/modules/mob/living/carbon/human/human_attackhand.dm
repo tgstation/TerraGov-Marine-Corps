@@ -114,7 +114,7 @@
 				hit_report += "(KO)"
 
 			damage += attack.damage
-			apply_damage(damage, BRUTE, affecting, armor_block, attack.sharp, attack.edge)
+			apply_damage(damage, BRUTE, affecting, armor_block, attack.sharp, attack.edge, updating_health = TRUE)
 
 			hit_report += "(RAW DMG: [damage])"
 
@@ -124,9 +124,6 @@
 				H.ff_check(damage, src)
 				log_ffattack("[key_name(H)] punched [key_name(src)] in [AREACOORD(T)] [hit_report.Join(" ")].")
 				msg_admin_ff("[ADMIN_TPMONTY(H)] punched [ADMIN_TPMONTY(src)] in [ADMIN_VERBOSEJMP(T)] [hit_report.Join(" ")].")
-
-			UPDATEHEALTH(src)
-
 
 		if(INTENT_DISARM)
 
@@ -215,11 +212,6 @@
 		var/burndamage = org.burn_dam
 		var/brute_treated = org.is_bandaged()
 		var/burn_treated = org.is_salved()
-
-		if(halloss > 0)
-			status = "tingling"
-			if(brutedamage > 0 || burndamage > 0)
-				status += " and "
 
 		switch(brutedamage)
 			if(1 to 20)

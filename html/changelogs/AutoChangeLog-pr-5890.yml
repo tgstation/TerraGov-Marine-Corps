@@ -1,0 +1,4 @@
+author: "Pariah919"
+delete-after: True
+changes: 
+  - bugfix: "v10 no longer checks for non map variants flags"

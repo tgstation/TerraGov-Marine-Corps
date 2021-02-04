@@ -6,7 +6,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	"[FREQ_IMPERIAL]" = "impradio",
 	"[FREQ_COMMAND]" = "comradio",
 	"[FREQ_AI]" = "airadio",
-	"[FREQ_POLICE]" = "secradio",
+	"[FREQ_CAS]" = "casradio",
 	"[FREQ_ENGINEERING]" = "engradio",
 	"[FREQ_MEDICAL]" = "medradio",
 	"[FREQ_REQUISITIONS]" = "supradio"
@@ -60,7 +60,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	var/endspanpart = "</span>"
 
 	//Message
-	var/messagepart = " <span class='message'>[lang_treat(speaker, message_language, raw_message, spans, message_mode)]</span></span>"
+	var/messagepart = " <span class='message'>[say_emphasis(lang_treat(speaker, message_language, raw_message, spans, message_mode))]</span></span>"
 
 	var/languageicon = ""
 	var/datum/language/D = GLOB.language_datum_instances[message_language]
@@ -141,6 +141,19 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	return "[say_mod(input, message_mode, language)], \"[spanned]\""
 
 
+#define ENCODE_HTML_EPHASIS(input, char, html, varname) \
+	var/static/regex/##varname = regex("[char]{2}(.+?)[char]{2}", "g");\
+	input = varname.Replace_char(input, "<[html]>$1</[html]>")
+
+/atom/movable/proc/say_emphasis(input)
+	ENCODE_HTML_EPHASIS(input, "\\|", "i", italics)
+	ENCODE_HTML_EPHASIS(input, "\\+", "b", bold)
+	ENCODE_HTML_EPHASIS(input, "_", "u", underline)
+	return input
+
+#undef ENCODE_HTML_EPHASIS
+
+
 /atom/movable/proc/lang_treat(atom/movable/speaker, datum/language/language, raw_message, list/spans, message_mode, no_quote = FALSE)
 	if(has_language(language))
 		var/atom/movable/AM = speaker.GetSource()
@@ -195,32 +208,27 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	return "0"
 
 
+
 /proc/get_hearers_in_view(R, atom/source)
 	// Returns a list of hearers in view(R) from source (ignoring luminosity). Used in saycode.
 	var/turf/T = get_turf(source)
-	. = list()
 
-	if(!T)
-		return
-
-	var/list/processing_list = list()
 	if (R == 0) // if the range is zero, we know exactly where to look for, we can skip view
-		processing_list += T.contents // We can shave off one iteration by assuming turfs cannot hear
+		. = T.contents.Copy() // We can shave off one iteration by assuming turfs cannot hear
 	else  // A variation of get_hear inlined here to take advantage of the compiler's fastpath for obj/mob in view
+		. = list()
 		var/lum = T.luminosity
 		T.luminosity = 6 // This is the maximum luminosity
 		for(var/mob/M in view(R, T))
-			processing_list += M
+			. += M
 		for(var/obj/O in view(R, T))
-			processing_list += O
+			. += O
 		T.luminosity = lum
 
-	while(processing_list.len) // recursive_hear_check inlined here
-		var/atom/A = processing_list[1]
-		. += A
-		processing_list.Cut(1, 2)
-		processing_list += A.contents
-
+	var/i = 0
+	while(i < length(.)) // recursive_hear_check inlined here
+		var/atom/A = .[++i]
+		. += A.contents
 
 /atom/movable/proc/GetVoice()
 	return "[src]"	//Returns the atom's name, prepended with 'The' if it's not a proper noun

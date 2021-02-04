@@ -29,7 +29,11 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 	outfit = /datum/outfit/job/marine/standard
 	total_positions = -1
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
-	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_REGULAR, /datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR, /datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR)
+	jobworth = list(
+		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
+		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
+		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
+	)
 
 /datum/job/terragov/squad/standard/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
@@ -40,12 +44,16 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 	if(!playtime_mins || playtime_mins < 1 )
 		return
 	switch(playtime_mins)
-		if(0 to 500)
+		if(0 to 600) // starting
 			new_human.wear_id.paygrade = "E1"
-		if(501 to 10000)
+		if(601 to 6000) // 10hrs
 			new_human.wear_id.paygrade = "E2"
-		if(10001 to INFINITY)
+		if(6001 to 18000) // 100 hrs
 			new_human.wear_id.paygrade = "E3"
+		if(18001 to 60000) // 300 hrs
+			new_human.wear_id.paygrade = "E3E"
+		if(60001 to INFINITY) // 1000 hrs
+			new_human.wear_id.paygrade = "E8" //If you play way too much TGMC. 1000 hours.
 
 /datum/job/terragov/squad/standard/radio_help_message(mob/M)
 	. = ..()
@@ -66,7 +74,7 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 	ears = /obj/item/radio/headset/mainship/marine
 	w_uniform = /obj/item/clothing/under/marine
 	wear_suit = /obj/item/clothing/suit/storage/marine/harness
-	shoes = /obj/item/clothing/shoes/marine
+	shoes = /obj/item/clothing/shoes/marine/full
 	gloves =/obj/item/clothing/gloves/marine
 	l_store = /obj/item/storage/pouch/firstaid/full
 	r_hand = /obj/item/portable_vendor/marine/squadmarine
@@ -85,7 +93,7 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 //Squad Engineer
 /datum/job/terragov/squad/engineer
 	title = SQUAD_ENGINEER
-	paygrade = "E4"
+	paygrade = "E3"
 	comm_title = "Eng"
 	total_positions = 12
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_ENGPREP, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_REMOTEBUILD, ACCESS_MARINE_ENGINEERING)
@@ -116,7 +124,7 @@ Your squaddies will look to you when it comes to construction in the field of ba
 	ears = /obj/item/radio/headset/mainship/marine
 	w_uniform = /obj/item/clothing/under/marine/engineer
 	wear_suit = /obj/item/clothing/suit/storage/marine
-	shoes = /obj/item/clothing/shoes/marine
+	shoes = /obj/item/clothing/shoes/marine/full
 	gloves =/obj/item/clothing/gloves/marine/insulated
 	l_store = /obj/item/storage/pouch/firstaid/full
 	r_store = /obj/item/storage/pouch/construction/equippedengineer
@@ -135,10 +143,26 @@ Your squaddies will look to you when it comes to construction in the field of ba
 	H.equip_to_slot_or_del(new /obj/item/circuitboard/general, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
 
+/datum/job/terragov/squad/engineer/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
+	. = ..()
+	if(!ishuman(new_mob))
+		return
+	var/mob/living/carbon/human/new_human = new_mob
+	var/playtime_mins = user?.client?.get_exp(title)
+	if(!playtime_mins || playtime_mins < 1 )
+		return
+	switch(playtime_mins)
+		if(0 to 1500) // starting
+			new_human.wear_id.paygrade = "E3"
+		if(1501 to 6000) // 25 hrs
+			new_human.wear_id.paygrade = "E4"
+		if(6001 to INFINITY) // 100 hrs
+			new_human.wear_id.paygrade = "E5"
+
 //Squad Corpsman
 /datum/job/terragov/squad/corpsman
 	title = SQUAD_CORPSMAN
-	paygrade = "E4"
+	paygrade = "E3"
 	comm_title = "Med"
 	total_positions = 16
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_MEDBAY)
@@ -168,7 +192,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	ears = /obj/item/radio/headset/mainship/marine
 	w_uniform = /obj/item/clothing/under/marine/corpsman
 	wear_suit = /obj/item/clothing/suit/storage/marine
-	shoes = /obj/item/clothing/shoes/marine
+	shoes = /obj/item/clothing/shoes/marine/full
 	gloves =/obj/item/clothing/gloves/marine
 	head = /obj/item/clothing/head/helmet/marine/corpsman
 	l_store = /obj/item/storage/pouch/medkit/equippedcorpsman
@@ -195,14 +219,29 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	H.equip_to_slot_or_del(new /obj/item/bodybag/cryobag, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/stack/medical/splint, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/stack/medical/advanced/bruise_pack, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/stack/medical/advanced/bruise_pack, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/stack/medical/advanced/ointment, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/stack/medical/advanced/ointment, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/tweezers, SLOT_IN_BACKPACK)
+
+/datum/job/terragov/squad/corpsman/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
+	. = ..()
+	if(!ishuman(new_mob))
+		return
+	var/mob/living/carbon/human/new_human = new_mob
+	var/playtime_mins = user?.client?.get_exp(title)
+	if(!playtime_mins || playtime_mins < 1 )
+		return
+	switch(playtime_mins)
+		if(0 to 1500) // starting
+			new_human.wear_id.paygrade = "E3"
+		if(1501 to 6000) // 25 hrs
+			new_human.wear_id.paygrade = "E4"
+		if(6001 to INFINITY) // 100 hrs
+			new_human.wear_id.paygrade = "E5"
 
 //Squad Smartgunner
 /datum/job/terragov/squad/smartgunner
 	title = SQUAD_SMARTGUNNER
-	paygrade = "E4"
+	paygrade = "E3"
 	comm_title = "SGnr"
 	total_positions = 4
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_SMARTPREP)
@@ -218,6 +257,21 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	. = ..()
 	to_chat(M, {"\nYou are the smartgunner. Your job is to provide heavy weapons support."})
 
+/datum/job/terragov/squad/smartgunner/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
+	. = ..()
+	if(!ishuman(new_mob))
+		return
+	var/mob/living/carbon/human/new_human = new_mob
+	var/playtime_mins = user?.client?.get_exp(title)
+	if(!playtime_mins || playtime_mins < 1 )
+		return
+	switch(playtime_mins)
+		if(0 to 1500) // starting
+			new_human.wear_id.paygrade = "E3"
+		if(1501 to 6000) // 25 hrs
+			new_human.wear_id.paygrade = "E4"
+		if(6001 to INFINITY) // 100 hrs
+			new_human.wear_id.paygrade = "E5"
 
 /datum/outfit/job/marine/smartgunner
 	name = SQUAD_SMARTGUNNER
@@ -232,7 +286,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	ears = /obj/item/radio/headset/mainship/marine
 	w_uniform = /obj/item/clothing/under/marine
 	wear_suit = /obj/item/clothing/suit/storage/marine/smartgunner
-	shoes = /obj/item/clothing/shoes/marine
+	shoes = /obj/item/clothing/shoes/marine/full
 	gloves =/obj/item/clothing/gloves/marine
 	head = /obj/item/clothing/head/helmet/marine
 	l_store = /obj/item/storage/pouch/firstaid/full
@@ -256,6 +310,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_smartmachinegun, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_smartmachinegun, SLOT_IN_BACKPACK)
 
+
 //Squad Specialist
 /datum/job/terragov/squad/specialist
 	title = SQUAD_SPECIALIST
@@ -269,7 +324,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	skills_type = /datum/skills/specialist
 	display_order = JOB_DISPLAY_ORDER_SQUAD_SPECIALIST
 	outfit = /datum/outfit/job/marine/specialist
-	exp_requirements = XP_REQ_INTERMEDIATE
+	exp_requirements = XP_REQ_UNSEASONED
 	exp_type = EXP_TYPE_REGULAR_ALL
 	job_flags = JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
 	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_STRONG)
@@ -303,10 +358,14 @@ You can serve a variety of roles, so choose carefully."})
 	skills_type = /datum/skills/SL
 	display_order = JOB_DISPLAY_ORDER_SQUAD_LEADER
 	outfit = /datum/outfit/job/marine/leader
-	exp_requirements = XP_REQ_EXPERIENCED
+	exp_requirements = XP_REQ_INTERMEDIATE
 	exp_type = EXP_TYPE_REGULAR_ALL
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD
-	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_REGULAR, /datum/job/terragov/squad/specialist = SPEC_POINTS_HIGH, /datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_HIGH)
+	jobworth = list(
+		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
+		/datum/job/terragov/squad/specialist = SPEC_POINTS_HIGH,
+		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_HIGH,
+	)
 
 
 /datum/job/terragov/squad/leader/radio_help_message(mob/M)
@@ -328,7 +387,7 @@ You are also in charge of communicating with command and letting them know about
 	ears = /obj/item/radio/headset/mainship/marine
 	w_uniform = /obj/item/clothing/under/marine
 	wear_suit = /obj/item/clothing/suit/storage/marine/leader
-	shoes = /obj/item/clothing/shoes/marine
+	shoes = /obj/item/clothing/shoes/marine/full
 	gloves =/obj/item/clothing/gloves/marine
 	head = /obj/item/clothing/head/helmet/marine/leader
 	glasses = /obj/item/clothing/glasses/hud/health
@@ -358,14 +417,46 @@ You are also in charge of communicating with command and letting them know about
 	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
 
 
-/datum/job/terragov/squad/leader/after_spawn(mob/living/carbon/C, mob/M, latejoin = FALSE)
+/datum/job/terragov/squad/leader/after_spawn(mob/living/carbon/C, mob/user, latejoin = FALSE)
 	. = ..()
-	if(!latejoin || !ishuman(C))
+	if(!ishuman(C))
 		return
-	var/mob/living/carbon/human/H = C
-	if(!H.assigned_squad)
+	var/mob/living/carbon/human/new_human = C
+	var/playtime_mins = user?.client?.get_exp(title)
+	switch(playtime_mins)
+		if(0 to 1500) // starting
+			new_human.wear_id.paygrade = "E5"
+		if(1501 to 7500) // 25 hrs
+			new_human.wear_id.paygrade = "E6"
+		if(7501 to INFINITY) // 125 hrs
+			new_human.wear_id.paygrade = "E7"
+	if(!latejoin)
 		return
-	if(H.assigned_squad.squad_leader != H)
-		if(H.assigned_squad.squad_leader)
-			H.assigned_squad.demote_leader()
-		H.assigned_squad.promote_leader(H)
+	if(!new_human.assigned_squad)
+		return
+	if(new_human.assigned_squad.squad_leader != new_human)
+		if(new_human.assigned_squad.squad_leader)
+			new_human.assigned_squad.demote_leader()
+		new_human.assigned_squad.promote_leader(new_human)
+
+
+
+/datum/job/terragov/squad/vatgrown
+	title = SQUAD_MARINE
+	paygrade = "VM"
+	comm_title = "Mar"
+	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP)
+	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_DROPSHIP)
+	display_order = JOB_DISPLAY_ORDER_SQUAD_MARINE
+	outfit = /datum/outfit/job/marine/vatgrown
+	total_positions = 0
+	job_flags = JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
+	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_REGULAR)
+
+/datum/job/terragov/squad/vatgrown/return_spawn_type(datum/preferences/prefs)
+	return /mob/living/carbon/human/species/vatgrown
+
+/datum/outfit/job/marine/vatgrown
+	name = SQUAD_VATGROWN
+	jobtype = /datum/job/terragov/squad/vatgrown
+	id = /obj/item/card/id/dogtag

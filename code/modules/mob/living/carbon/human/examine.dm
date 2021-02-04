@@ -9,9 +9,11 @@
 		if(species.species_flags & IS_SYNTHETIC)
 			msg += "<span style='font-weight: bold; color: purple;'>You sense this creature is not organic.</span>\n"
 		if(status_flags & XENO_HOST)
-			msg += "This creature is impregnated and [reagents.get_reagent_amount(/datum/reagent/toxin/xeno_growthtoxin) > 0 ? "" : "not"] inoculated with Larval Accelerant. \n" 
+			msg += "This creature is impregnated and [reagents.get_reagent_amount(/datum/reagent/toxin/xeno_growthtoxin) > 0 ? "" : "not"] inoculated with Larval Accelerant. \n"
 		else if(chestburst == 2)
 			msg += "A larva escaped from this creature.\n"
+		if (headbitten)
+			msg += "This creature has been purged of vital organs in the head.\n"
 		if(istype(wear_mask, /obj/item/clothing/mask/facehugger))
 			msg += "It has a little one on its face.\n"
 		if(on_fire)
@@ -20,6 +22,10 @@
 			msg += "<span style='font-weight: bold; color: purple;'>You sense this creature is dead.</span>\n"
 		else if(stat || !client)
 			msg += "<span class='xenowarning'>It doesn't seem responsive.</span>\n"
+		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox))
+			msg += "Transvitox: 40% brute/burn injuries received are converted to toxin\n"
+		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile))
+			msg += "Hemodile: 20% stamina damage received, when damaged, and slowed by 25% (inject neurotoxin for 50% slow)\n"
 		msg += "*---------*</span>"
 		to_chat(user, msg)
 		return
@@ -446,6 +452,10 @@
 	if(chestburst == 2)
 		msg += "<span class='warning'><b>[t_He] has a giant hole in [t_his] chest!</b></span>\n"
 
+	if(headbitten)
+		msg += "<span class='warning'><b>[t_He] has a giant hole in [t_his] head!</b></span>\n"
+
+
 	for(var/i in embedded_objects)
 		var/obj/item/embedded = i
 		if(!(embedded.embedding.embedded_flags & EMBEDDEED_CAN_BE_YANKED_OUT))
@@ -529,7 +539,7 @@
 		return
 	var/pulse_taken = get_pulse(GETPULSE_HAND)
 	if(pulse_taken == PULSE_NONE)
-		to_chat(user, "<span class='deadsay'>[p_they(TRUE)] has no pulse[client ? "" : " and [p_their()] soul has departed"]...</span>")
+		to_chat(user, "<span class='deadsay'>[p_they(TRUE)] has no pulse[client ? "" : " and [p_their()] soul has departed, although they may be revivable"]...</span>")
 	else
 		to_chat(user, "<span class='deadsay'>[p_their(TRUE)] pulse is [pulse_taken].</span>")
 

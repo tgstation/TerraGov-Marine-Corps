@@ -35,5 +35,5 @@ As a xeno, you can climb over window frames by SpecialClicking (Default: CTRL) o
 As a xeno, do not camp the landing zones prior to the marines building their defenses.
 As a xeno, do not block other xenos' paths when they are retreating. Circumvent this by being on Help Intent or by simply moving away.
 As a ravager or the Queen, you are fire-resistant, NOT fireproof. You can still get lit on fire, but you take very little damage from it.
-As a spitter, boiler or praetorian, take advantage of unguarded barricades and defenses, melt or constantly spit acid on them if you can.
+As a spitter, boiler, praetorian, or the Queen take advantage of unguarded barricades and defenses, melt or constantly spit acid on them if you can.
 As a xeno, take advantage of acid wells, they put out fire and explode into an acid cloud when destroyed.

@@ -64,14 +64,12 @@
 						"<span class='warning'>You kick [src].</span>", \
 						"You hear twisting metal.")
 
-/obj/structure/grille/CanPass(atom/movable/mover, turf/target)
+/obj/structure/grille/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGRILLE))
 		return TRUE
-	else
-		if(istype(mover, /obj/projectile))
-			return prob(90)
-		else
-			return !density
+	else if(istype(mover, /obj/projectile))
+		return prob(90)
 
 /obj/structure/grille/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -151,7 +149,8 @@
 	tiles_with = list(
 		/turf/closed/wall,
 		/obj/machinery/door/airlock,
-		/obj/structure/grille/mainship)
+		/obj/structure/grille/mainship,
+	)
 
 /obj/structure/grille/mainship/Initialize()
 	. = ..()

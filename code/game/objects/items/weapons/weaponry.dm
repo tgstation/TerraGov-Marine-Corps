@@ -6,7 +6,6 @@
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "toyhammer"
 	flags_equip_slot = ITEM_SLOT_BELT
-	throwforce = 0
 	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 7
 	throw_range = 15
@@ -90,23 +89,23 @@
 	if(active)
 		to_chat(user, "<span class='notice'>You flip out your [src].</span>")
 		playsound(user, 'sound/weapons/flipblade.ogg', 15, 1)
-		force = 15 //bay adjustments
+		force = 15
 		throwforce = 12
-		edge = 1
+		edge = TRUE
 		sharp = IS_SHARP_ITEM_ACCURATE
 		hitsound = 'sound/weapons/bladeslice.ogg'
 		icon_state += "_open"
 		w_class = WEIGHT_CLASS_NORMAL
 		attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
-	else
-		to_chat(user, "<span class='notice'>The butterfly knife can now be concealed.</span>")
-		force = initial(force)
-		edge = 0
-		sharp = 0
-		hitsound = initial(hitsound)
-		icon_state = initial(icon_state)
-		w_class = initial(w_class)
-		attack_verb = initial(attack_verb)
+		return
+	to_chat(user, "<span class='notice'>The [src] can now be concealed.</span>")
+	force = initial(force)
+	edge = FALSE
+	sharp = IS_NOT_SHARP_ITEM
+	hitsound = initial(hitsound)
+	icon_state = initial(icon_state)
+	w_class = initial(w_class)
+	attack_verb = initial(attack_verb)
 
 /obj/item/weapon/butterfly/switchblade
 	name = "switchblade"

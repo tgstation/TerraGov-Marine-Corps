@@ -191,6 +191,23 @@
 		container.reagents.remove_reagent(R.type, amount)
 
 
+/mob/living/carbon/monkey/inject_blood(obj/item/reagent_containers/container, amount)
+	. = ..()
+
+	// A way to assign a blood type to a monkey for clone research
+	if(blood_type)
+		return
+
+	for(var/r in container.reagents.reagent_list)
+		var/datum/reagent/R = r
+		// If its blood, lets check its compatible or not and cause some toxins.
+		if(istype(R, /datum/reagent/blood))
+			if(!R.data || !R.data["blood_type"])
+				stack_trace("reagant blood didn't have a blood_type")
+			blood_type = R.data["blood_type"]
+			break
+
+
 //Transfers blood from container to human, respecting blood types compatability.
 /mob/living/carbon/human/inject_blood(obj/item/reagent_containers/container, amount)
 	var/b_id = get_blood_id()
@@ -255,6 +272,14 @@
 	blood_data["blood_colour"] = get_blood_color()
 
 	return blood_data
+
+// Add blood type to carbons that may have one
+/mob/living/carbon/get_blood_data()
+	. = ..()
+
+	if(blood_type)
+		.["blood_type"] = blood_type
+
 
 //returns the color of the mob's blood
 /mob/living/proc/get_blood_color()

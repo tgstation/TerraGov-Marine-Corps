@@ -64,11 +64,6 @@
 	results = list(/datum/reagent/impedrezene = 2)
 	required_reagents = list(/datum/reagent/mercury = 1, /datum/reagent/oxygen = 1, /datum/reagent/consumable/sugar = 1)
 
-/datum/chemical_reaction/virus_food
-	name = "Virus Food"
-	results = list(/datum/reagent/consumable/virus_food = 5)
-	required_reagents = list(/datum/reagent/water = 1, /datum/reagent/consumable/drink/milk = 1)
-
 /datum/chemical_reaction/cryptobiolin
 	name = "Cryptobiolin"
 	results = list(/datum/reagent/cryptobiolin = 3)
@@ -203,9 +198,8 @@
 	mob_react = FALSE
 
 /datum/chemical_reaction/foam/on_reaction(datum/reagents/holder, created_volume)
-	var/location = get_turf(holder.my_atom)
-	for(var/mob/M in viewers(WORLD_VIEW_NUM, location))
-		to_chat(M, "<span class='warning'>The solution spews out foam!</span>")
+	var/turf/location = get_turf(holder.my_atom)
+	location.visible_message("<span class='warning'>The solution spews out foam!</span>")
 	var/datum/effect_system/foam_spread/s = new()
 	s.set_up(created_volume, location, holder, 0)
 	s.start()
@@ -218,10 +212,8 @@
 	mob_react = FALSE
 
 /datum/chemical_reaction/metalfoam/on_reaction(datum/reagents/holder, created_volume)
-	var/location = get_turf(holder.my_atom)
-
-	for(var/mob/M in viewers(WORLD_VIEW_NUM, location))
-		to_chat(M, "<span class='warning'>The solution spews out a metalic foam!</span>")
+	var/turf/location = get_turf(holder.my_atom)
+	location.visible_message("<span class='warning'>The solution spews out a metalic foam!</span>")
 
 	var/datum/effect_system/foam_spread/s = new()
 	s.set_up(created_volume, location, holder, 1)
@@ -235,11 +227,20 @@
 	mob_react = FALSE
 
 /datum/chemical_reaction/ironfoam/on_reaction(datum/reagents/holder, created_volume)
-	var/location = get_turf(holder.my_atom)
+	var/turf/location = get_turf(holder.my_atom)
+	location.visible_message("<span class='warning'>The solution spews out a metallic foam!</span>")
+	var/datum/effect_system/foam_spread/s = new()
+	s.set_up(created_volume, location, holder, 1)
+	s.start()
+	holder.clear_reagents()
 
-	for(var/mob/M in viewers(WORLD_VIEW_NUM, location))
-		to_chat(M, "<span class='warning'>The solution spews out a metallic foam!</span>")
+/datum/chemical_reaction/razorburn
+	name = "Razorburn Gas"
+	required_reagents = list(/datum/reagent/foaming_agent = 1, /datum/reagent/toxin/nanites = 1)
 
+/datum/chemical_reaction/razorburn/on_reaction(datum/reagents/holder, created_volume)
+	var/turf/location = get_turf(holder.my_atom)
+	location.visible_message("<span class='danger'>The solution spews out a dense, ground-hugging gas! Get away!</span>")
 	var/datum/effect_system/foam_spread/s = new()
 	s.set_up(created_volume, location, holder, 2)
 	s.start()

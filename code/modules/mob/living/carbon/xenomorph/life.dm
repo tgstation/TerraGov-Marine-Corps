@@ -29,11 +29,8 @@
 		update_evolving()
 		handle_aura_emiter()
 
-	var/sunder_recov = xeno_caste.sunder_recover * -1
-	if(resting)
-		sunder_recov -= 0.5
-	adjust_sunder(sunder_recov)
 	handle_aura_receiver()
+	handle_living_sunder_updates()
 	handle_living_health_updates()
 	handle_living_plasma_updates()
 	update_action_button_icons()
@@ -67,7 +64,7 @@
 	if(health < 0)
 		handle_critical_health_updates()
 		return
-	if(health >= maxHealth || xeno_caste.hardcore || on_fire) //can't regenerate.
+	if((health >= maxHealth) || xeno_caste.hardcore || on_fire) //can't regenerate.
 		updatehealth() //Update health-related stats, like health itself (using brute and fireloss), health HUD and status.
 		return
 	var/turf/T = loc
@@ -80,23 +77,56 @@
 
 	if(locate(/obj/effect/alien/weeds) in T || xeno_caste.caste_flags & CASTE_INNATE_HEALING) //We regenerate on weeds or can on our own.
 		if(lying_angle || resting || xeno_caste.caste_flags & CASTE_QUICK_HEAL_STANDING)
-			heal_wounds(XENO_RESTING_HEAL * ruler_healing_penalty)
+			heal_wounds(XENO_RESTING_HEAL * ruler_healing_penalty, TRUE)
 		else
-			heal_wounds(XENO_STANDING_HEAL * ruler_healing_penalty) //Major healing nerf if standing.
+			heal_wounds(XENO_STANDING_HEAL * ruler_healing_penalty, TRUE) //Major healing nerf if standing.
 	updatehealth()
+
+///Handles sunder modification/recovery during life.dm for xenos
+/mob/living/carbon/xenomorph/proc/handle_living_sunder_updates()
+
+	if(!sunder || on_fire) //No sunder, no problem; or we're on fire and can't regenerate.
+		return
+
+	var/sunder_recov = xeno_caste.sunder_recover * -0.5 //Baseline
+
+	if(resting) //Resting doubles sunder recovery
+		sunder_recov *= 2
+
+	if(locate(/obj/effect/alien/weeds) in loc) //Weeds double sunder recovery
+		sunder_recov *= 2
+
+	if(recovery_aura)
+		sunder_recov *= 1 + recovery_aura * 0.1 //10% bonus per rank of recovery aura
+
+	SEND_SIGNAL(src, COMSIG_XENOMORPH_SUNDER_REGEN, src)
+
+	adjust_sunder(sunder_recov)
 
 /mob/living/carbon/xenomorph/proc/handle_critical_health_updates()
 	var/turf/T = loc
 	if((istype(T) && locate(/obj/effect/alien/weeds) in T))
-		heal_wounds(XENO_RESTING_HEAL + warding_aura * 0.5) //Warding pheromones provides 0.25 HP per second per step, up to 2.5 HP per tick.
+		heal_wounds(XENO_RESTING_HEAL + (warding_aura * 0.5) * 0.5) //Warding pheromones provides 0.125 HP per second per step, up to 1.25 HP per tick.
 	else
-		adjustBruteLoss(XENO_CRIT_DAMAGE - warding_aura) //Warding can heavily lower the impact of bleedout. Halved at 2.5 phero, stopped at 5 phero
+		adjustBruteLoss(XENO_CRIT_DAMAGE - (warding_aura * 0.5)) //Warding can heavily lower the impact of bleedout. Halved at 5.
 
-/mob/living/carbon/xenomorph/proc/heal_wounds(multiplier = XENO_RESTING_HEAL)
-	var/amount = (1 + (maxHealth * 0.03) ) // 1 damage + 3% max health
+/mob/living/carbon/xenomorph/proc/heal_wounds(multiplier = XENO_RESTING_HEAL, scaling = FALSE)
+	var/amount = 1 + (maxHealth * 0.03) // 1 damage + 2% max health, with scaling power.
 	if(recovery_aura)
 		amount += recovery_aura * maxHealth * 0.008 // +0.8% max health per recovery level, up to +4%
+	if(scaling)
+		if(recovery_aura)
+			regen_power = clamp(regen_power + xeno_caste.regen_ramp_amount*30,0,1) //Ignores the cooldown, and gives a 50% boost.
+		else if(regen_power < 0) // We're not supposed to regenerate yet. Start a countdown for regeneration.
+			regen_power += 2 SECONDS //Life ticks are 2 seconds.
+			return
+		else
+			regen_power = min(regen_power + xeno_caste.regen_ramp_amount*20,1)
+		amount *= regen_power
 	amount *= multiplier
+
+	SEND_SIGNAL(src, COMSIG_XENOMORPH_HEALTH_REGEN, src)
+
 	adjustBruteLoss(-amount)
 	adjustFireLoss(-amount)
 
@@ -115,6 +145,9 @@
 		else
 			use_plasma(5)
 
+	if(HAS_TRAIT(src, TRAIT_NOPLASMAREGEN))
+		hud_set_plasma()
+		return
 	var/list/plasma_mod = list()
 
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_PLASMA_REGEN, plasma_mod)
@@ -126,6 +159,7 @@
 	if(!(locate(/obj/effect/alien/weeds) in T) && !(xeno_caste.caste_flags & CASTE_INNATE_PLASMA_REGEN))
 		hud_set_plasma() // since we used some plasma via the aura
 		return
+
 	var/plasma_gain = xeno_caste.plasma_gain
 
 	if(lying_angle || resting)
@@ -198,15 +232,17 @@
 /mob/living/carbon/xenomorph/proc/handle_aura_receiver()
 	if(frenzy_aura != frenzy_new || warding_aura != warding_new || recovery_aura != recovery_new)
 		set_frenzy_aura(frenzy_new)
-		warding_aura = warding_new
+		if(warding_aura != warding_new)
+			soft_armor = soft_armor.modifyAllRatings(-warding_aura * 2.5)
+			warding_aura = warding_new
+			soft_armor = soft_armor.modifyAllRatings(warding_aura * 2.5)
+		else
+			warding_aura = warding_new
 		recovery_aura = recovery_new
 	hud_set_pheromone()
 	frenzy_new = 0
 	warding_new = 0
 	recovery_new = 0
-	armor_pheromone_bonus = 0
-	if(warding_aura > 0)
-		armor_pheromone_bonus = warding_aura * 2.5 //Bonus armor from pheromones, no matter what the armor was previously.
 
 /mob/living/carbon/xenomorph/handle_regular_hud_updates()
 	if(!client)
@@ -245,7 +281,7 @@
 	var/env_temperature = loc.return_temperature()
 	if(!(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE))
 		if(env_temperature > (T0C + 66))
-			adjustFireLoss((env_temperature - (T0C + 66) ) * 0.2 * clamp(xeno_caste.fire_resist + fire_resist_modifier, 0, 1) ) //Might be too high, check in testing.
+			adjustFireLoss((env_temperature - (T0C + 66) ) * 0.2 * clamp(xeno_caste.fire_resist + fire_resist_modifier, 0, 1)) //Might be too high, check in testing.
 			updatehealth() //unused while atmos is off
 			if(hud_used && hud_used.fire_icon)
 				hud_used.fire_icon.icon_state = "fire2"

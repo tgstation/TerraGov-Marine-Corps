@@ -2,24 +2,24 @@
 //external magazines
 
 /obj/item/ammo_magazine/revolver
-	name = "\improper M44 magnum speed loader (.44)"
+	name = "\improper M-44 magnum speed loader (.44)"
 	desc = "A revolver speed loader."
 	default_ammo = /datum/ammo/bullet/revolver
 	flags_equip_slot = NONE
 	caliber = ".44"
 	icon_state = "m44"
 	w_class = WEIGHT_CLASS_SMALL
-	max_rounds = 7
+	max_rounds = 6
 	gun_type = /obj/item/weapon/gun/revolver/m44
 
 /obj/item/ammo_magazine/revolver/marksman
-	name = "\improper M44 marksman speed loader (.44)"
+	name = "\improper M-44 marksman speed loader (.44)"
 	default_ammo = /datum/ammo/bullet/revolver/marksman
 	caliber = ".44"
 	icon_state = "m_m44"
 
 /obj/item/ammo_magazine/revolver/heavy
-	name = "\improper M44 PW-MX speed loader (.44)"
+	name = "\improper M-44 PW-MX speed loader (.44)"
 	default_ammo = /datum/ammo/bullet/revolver/heavy
 	caliber = ".44"
 	icon_state = "h_m44"
@@ -71,8 +71,8 @@
 
 //a very literal box of ammunition.
 /obj/item/ammo_magazine/magnum
-	name = "box of .44 magnum"
-	icon_state = "box45" //Maybe change this
+	name = "packet of .44 magnum"
+	icon_state = "box_44mag" //Maybe change this
 	default_ammo = /datum/ammo/bullet/revolver
 	caliber = ".44"
 	current_rounds = 50
@@ -102,7 +102,7 @@
 
 /obj/item/ammo_magazine/internal/revolver/m44
 	caliber = ".44"
-	max_rounds = 7
+	max_rounds = 6
 	gun_type = /obj/item/weapon/gun/revolver/m44
 
 //-------------------------------------------------------

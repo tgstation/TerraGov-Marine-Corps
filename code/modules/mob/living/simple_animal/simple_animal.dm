@@ -143,6 +143,7 @@
 	health = 0
 	icon_state = icon_dead
 	density = FALSE
+	to_chat(src,"<b><span class='deadsay'><p style='font-size:1.5em'><big>You have perished.</big></p></span></b>")
 
 	. = ..()
 

@@ -12,6 +12,7 @@ SUBSYSTEM_DEF(weather)
 	var/list/processing = list()
 	var/list/eligible_zlevels = list()
 	var/list/next_hit_by_zlevel = list() //Used by barometers to know when the next storm is coming
+	var/list/last_weather_by_zlevel = list()
 
 /datum/controller/subsystem/weather/fire()
 	// process active weather
@@ -26,12 +27,16 @@ SUBSYSTEM_DEF(weather)
 
 	// start random weather on relevant levels
 	for(var/z in eligible_zlevels)
-		var/possible_weather = eligible_zlevels[z]
-		var/datum/weather/W = pickweight(possible_weather)
+		var/list/possible_weather = deepCopyList(eligible_zlevels[z])
+		var/datum/weather/W = last_weather_by_zlevel[z]
+		if(!isnull(W) && !initial(W.repeatable))
+			possible_weather -= last_weather_by_zlevel[z]
+		W = pickweight(possible_weather)
+		last_weather_by_zlevel[z] = W
 		run_weather(W, list(text2num(z)))
-		eligible_zlevels -= z
 		var/randTime = rand(3000, 6000)
-		next_hit_by_zlevel["[z]"] = addtimer(CALLBACK(src, .proc/make_eligible, z, possible_weather), randTime + initial(W.weather_duration_upper), TIMER_UNIQUE|TIMER_STOPPABLE) //Around 5-10 minutes between weathers
+		next_hit_by_zlevel["[z]"] = addtimer(CALLBACK(src, .proc/make_eligible, z, eligible_zlevels[z]), randTime + initial(W.weather_duration_upper), TIMER_UNIQUE|TIMER_STOPPABLE) //Around 5-10 minutes between weathers
+		eligible_zlevels -= z
 
 /datum/controller/subsystem/weather/Initialize(start_timeofday)
 	for(var/V in subtypesof(/datum/weather))
@@ -71,10 +76,10 @@ SUBSYSTEM_DEF(weather)
 	next_hit_by_zlevel["[z]"] = null
 
 /datum/controller/subsystem/weather/proc/get_weather(z, area/active_area)
-    var/datum/weather/A
-    for(var/V in processing)
-        var/datum/weather/W = V
-        if((z in W.impacted_z_levels) && W.area_type == active_area.type)
-            A = W
-            break
-    return A
+	var/datum/weather/A
+	for(var/V in processing)
+		var/datum/weather/W = V
+		if((z in W.impacted_z_levels) && W.area_type == active_area.type)
+			A = W
+			break
+	return A

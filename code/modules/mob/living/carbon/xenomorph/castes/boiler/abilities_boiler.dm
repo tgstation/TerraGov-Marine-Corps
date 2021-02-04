@@ -20,7 +20,7 @@
 			"<span class='notice'>We start focusing your sight to look off into the distance.</span>", null, 5)
 		if(!do_after(X, 1 SECONDS, FALSE, null, BUSY_ICON_GENERIC) || X.is_zoomed)
 			return
-		X.zoom_in()
+		X.zoom_in(11)
 		..()
 
 // ***************************************
@@ -33,6 +33,15 @@
 	mechanics_text = "Switches Boiler Bombard type between Corrosive Acid and Neurotoxin."
 	use_state_flags = XACT_USE_BUSY
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_BOMB
+
+/datum/action/xeno_action/toggle_bomb/can_use_action(silent = FALSE, override_flags)
+	. = ..()
+	var/mob/living/carbon/xenomorph/boiler/X = owner
+	if((X.corrosive_ammo + X.neuro_ammo) >= X.xeno_caste.max_ammo)
+		if((X.ammo.type == /datum/ammo/xeno/boiler_gas/corrosive && X.neuro_ammo==0) || (X.ammo.type == /datum/ammo/xeno/boiler_gas && X.corrosive_ammo==0))	
+			if (!silent)
+				to_chat(X, "<span class='warning'>We won't be able to carry this kind of globule</span>")
+			return FALSE	
 
 /datum/action/xeno_action/toggle_bomb/action_activate()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
@@ -84,7 +93,7 @@
 	else
 		X.neuro_ammo++
 		to_chat(X, "<span class='notice'>We prepare a neurotoxic gas globule.</span>")
-	X.updateBoilerGlow() 
+	X.update_boiler_glow()
 	update_button_icon()
 
 /datum/action/xeno_action/create_boiler_bomb/update_button_icon()
@@ -103,6 +112,7 @@
 	mechanics_text = "Launch a glob of neurotoxin or acid. Must remain stationary for a few seconds to use."
 	ability_name = "bombard"
 	keybind_signal = COMSIG_XENOABILITY_BOMBARD
+	target_flags = XABB_TURF_TARGET
 
 /datum/action/xeno_action/activable/bombard/get_cooldown()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
@@ -146,6 +156,7 @@
 
 
 /datum/action/xeno_action/activable/bombard/proc/on_ranged_attack(mob/living/carbon/xenomorph/X, atom/A, params)
+	SIGNAL_HANDLER_DOES_SLEEP
 	if(can_use_ability(A))
 		use_ability(A)
 
@@ -232,7 +243,7 @@
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "boiler_neuro_smokes")
 		X.neuro_ammo--
 
-	X.updateBoilerGlow()
+	X.update_boiler_glow()
 	update_button_icon()
 	add_cooldown()
 	X.reset_bombard_pointer()

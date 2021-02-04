@@ -39,6 +39,8 @@
 	var/list/baseturfs = /turf/baseturf_bottom
 	var/obj/effect/xenomorph/acid/current_acid = null //If it has acid spewed on it
 
+	luminosity = 1
+
 	var/changing_turf = FALSE
 
 	/// %-reduction-based armor.
@@ -46,8 +48,27 @@
 	/// Flat-damage-reduction-based armor.
 	var/datum/armor/hard_armor
 
+	var/dynamic_lighting = TRUE
+
+
+	var/tmp/lighting_corners_initialised = FALSE
+
+	///Lumcount added by sources other than lighting datum objects, such as the overlay lighting component.
+	var/dynamic_lumcount = 0
+	///List of light sources affecting this turf.
+	var/tmp/list/datum/light_source/affecting_lights
+	///Our lighting object.
+	var/tmp/atom/movable/lighting_object/lighting_object
+	var/tmp/list/datum/lighting_corner/corners
+
+	///Which directions does this turf block the vision of, taking into account both the turf's opacity and the movable opacity_sources.
+	var/directional_opacity = NONE
+	///Lazylist of movable atoms providing opacity sources.
+	var/list/atom/movable/opacity_sources
+
 
 /turf/Initialize(mapload)
+	SHOULD_CALL_PARENT(FALSE) // anti laggies
 	if(flags_atom & INITIALIZED)
 		stack_trace("Warning: [src]([type]) initialized multiple times!")
 	ENABLE_BITFIELD(flags_atom, INITIALIZED)
@@ -72,7 +93,7 @@
 		update_light()
 
 	if(opacity)
-		has_opaque_atom = TRUE
+		directional_opacity = ALL_CARDINALS
 
 	if(islist(soft_armor))
 		soft_armor = getArmor(arglist(soft_armor))
@@ -92,7 +113,7 @@
 
 
 /turf/Destroy(force)
-	. = QDEL_HINT_IWILLGC
+
 	if(!changing_turf)
 		stack_trace("Incorrect turf deletion")
 	changing_turf = FALSE
@@ -104,11 +125,13 @@
 			qdel(A)
 		for(var/I in B.vars)
 			B.vars[I] = null
-		return
+		return QDEL_HINT_IWILLGC
 	visibilityChanged()
 	DISABLE_BITFIELD(flags_atom, INITIALIZED)
+	soft_armor = null
+	hard_armor = null
 	..()
-
+	return QDEL_HINT_IWILLGC
 
 /turf/Enter(atom/movable/mover, atom/oldloc)
 	// Do not call ..()
@@ -236,16 +259,16 @@
 			// no warning though because this can happen naturaly as a result of it being built on top of
 			path = /turf/open/space
 
-	if(!GLOB.use_preloader && path == type && !(flags & CHANGETURF_FORCEOP)) // Don't no-op if the map loader requires it to be reconstructed
+	if(!GLOB.use_preloader && path == type && !(flags & CHANGETURF_FORCEOP) && (baseturfs == new_baseturfs)) // Don't no-op if the map loader requires it to be reconstructed
 		return src
 	if(flags & CHANGETURF_SKIP)
 		return new path(src)
 
-	var/old_opacity = opacity
 	var/old_dynamic_lighting = dynamic_lighting
 	var/old_affecting_lights = affecting_lights
 	var/old_lighting_object = lighting_object
 	var/old_corners = corners
+	var/old_directional_opacity = directional_opacity
 
 	var/list/old_baseturfs = baseturfs
 
@@ -271,12 +294,11 @@
 		W.AfterChange(flags)
 
 	if(SSlighting.initialized)
-		recalc_atom_opacity()
 		lighting_object = old_lighting_object
 		affecting_lights = old_affecting_lights
 		corners = old_corners
-		if(old_opacity != opacity || dynamic_lighting != old_dynamic_lighting)
-			reconsider_lights()
+		directional_opacity = old_directional_opacity
+		recalculate_directional_opacity()
 
 		if(dynamic_lighting != old_dynamic_lighting)
 			if (IS_DYNAMIC_LIGHTING(src))
@@ -498,12 +520,22 @@
 	return !slayer && ..()
 
 
-/turf/open/floor/plating/plating_catwalk/is_weedable() //covered catwalks are unweedable
-	. = ..()
-	if(covered)
+/** 
+ * Checks for whether we can build advanced xeno structures here
+ * Returns TRUE if present, FALSE otherwise
+ */
+/turf/proc/check_disallow_alien_fortification(mob/living/builder, silent = FALSE)
+	var/area/ourarea = loc
+	if(ourarea.flags_area & DISALLOW_WEEDING)
+		if(!silent)
+			to_chat(builder, "<span class='warning'>We cannot build in this area before the talls are out!</span>")
 		return FALSE
+	return TRUE
 
-
+/** 
+ * Check if alien abilities can construct structure on the turf 
+ * Return TRUE if allowed, FALSE otherwise
+ */
 /turf/proc/check_alien_construction(mob/living/builder, silent = FALSE, planned_building)
 	var/has_obstacle
 	for(var/obj/O in contents)
@@ -531,7 +563,7 @@
 				if(P.chair_state != DROPSHIP_CHAIR_BROKEN)
 					has_obstacle = TRUE
 					break
-			else
+			else if(istype(O, /obj/structure/bed/nest)) //We don't care about other beds/chairs/whatever the fuck.
 				has_obstacle = TRUE
 				break
 		if(istype(O, /obj/effect/alien/hivemindcore))
@@ -617,11 +649,10 @@
 
 
 
-/turf/CanPass(atom/movable/mover, turf/target)
-	if(!target) return 0
-
-	if(istype(mover)) // turf/Enter(...) will perform more advanced checks
-		return !density
+/turf/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
+	if(!target)
+		return FALSE
 
 GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	/turf/open/space,

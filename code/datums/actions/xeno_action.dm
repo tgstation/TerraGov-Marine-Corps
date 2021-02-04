@@ -9,6 +9,7 @@
 	var/image/cooldown_image
 	var/keybind_signal
 	var/cooldown_id
+	var/target_flags = NONE
 
 /datum/action/xeno_action/New(Target)
 	. = ..()
@@ -25,11 +26,12 @@
 	X.xeno_abilities += src
 	if(keybind_signal)
 		RegisterSignal(L, keybind_signal, .proc/keybind_activation)
-
+	RegisterSignal(L, COMSIG_XENOMORPH_ABILITY_ON_UPGRADE, .proc/on_xeno_upgrade)
 
 /datum/action/xeno_action/remove_action(mob/living/L)
 	if(keybind_signal)
 		UnregisterSignal(L, keybind_signal)
+	UnregisterSignal(L, COMSIG_XENOMORPH_ABILITY_ON_UPGRADE)
 	if(cooldown_id)
 		deltimer(cooldown_id)
 	var/mob/living/carbon/xenomorph/X = L
@@ -38,9 +40,13 @@
 
 
 /datum/action/xeno_action/proc/keybind_activation()
+	SIGNAL_HANDLER_DOES_SLEEP
 	if(can_use_action())
 		action_activate()
 	return COMSIG_KB_ACTIVATED
+
+/datum/action/xeno_action/proc/on_xeno_upgrade()
+	return
 
 /datum/action/xeno_action/can_use_action(silent = FALSE, override_flags)
 	var/mob/living/carbon/xenomorph/X = owner
@@ -48,57 +54,57 @@
 		return FALSE
 	var/flags_to_check = use_state_flags|override_flags
 
-	if(!CHECK_BITFIELD(flags_to_check, XACT_IGNORE_COOLDOWN) && !action_cooldown_check())
+	if(!(flags_to_check & XACT_IGNORE_COOLDOWN) && !action_cooldown_check())
 		if(!silent)
 			to_chat(owner, "<span class='warning'>We can't use [ability_name] yet, we must wait [cooldown_remaining()] seconds!</span>")
 		return FALSE
 
-	if(!CHECK_BITFIELD(flags_to_check, XACT_USE_INCAP) && X.incapacitated())
+	if(!(flags_to_check & XACT_USE_INCAP) && X.incapacitated())
 		if(!silent)
 			to_chat(owner, "<span class='warning'>We can't do this while incapacitated!</span>")
 		return FALSE
 
-	if(!CHECK_BITFIELD(flags_to_check, XACT_USE_LYING) && X.lying_angle)
+	if(!(flags_to_check & XACT_USE_LYING) && X.lying_angle)
 		if(!silent)
 			to_chat(owner, "<span class='warning'>We can't do this while lying down!</span>")
 		return FALSE
 
-	if(!CHECK_BITFIELD(flags_to_check, XACT_USE_BUCKLED) && X.buckled)
+	if(!(flags_to_check & XACT_USE_BUCKLED) && X.buckled)
 		if(!silent)
 			to_chat(owner, "<span class='warning'>We can't do this while buckled!</span>")
 		return FALSE
 
-	if(!CHECK_BITFIELD(flags_to_check, XACT_USE_STAGGERED) && X.stagger)
+	if(!(flags_to_check & XACT_USE_STAGGERED) && X.stagger)
 		if(!silent)
 			to_chat(owner, "<span class='warning'>We can't do this while staggered!</span>")
 		return FALSE
 
-	if(!CHECK_BITFIELD(flags_to_check, XACT_USE_FORTIFIED) && X.fortify)
+	if(!(flags_to_check & XACT_USE_FORTIFIED) && X.fortify)
 		if(!silent)
 			to_chat(owner, "<span class='warning'>We can't do this while fortified!</span>")
 		return FALSE
 
-	if(!CHECK_BITFIELD(flags_to_check, XACT_USE_CRESTED) && X.crest_defense)
+	if(!(flags_to_check & XACT_USE_CRESTED) && X.crest_defense)
 		if(!silent)
 			to_chat(owner, "<span class='warning'>We can't do this while in crest defense!</span>")
 		return FALSE
 
-	if(!CHECK_BITFIELD(flags_to_check, XACT_USE_NOTTURF) && !isturf(X.loc))
+	if(!(flags_to_check & XACT_USE_NOTTURF) && !isturf(X.loc))
 		if(!silent)
 			to_chat(owner, "<span class='warning'>We can't do this here!</span>")
 		return FALSE
 
-	if(!CHECK_BITFIELD(flags_to_check, XACT_USE_BUSY) && X.action_busy)
+	if(!(flags_to_check & XACT_USE_BUSY) && X.action_busy)
 		if(!silent)
 			to_chat(owner, "<span class='warning'>We're busy doing something right now!</span>")
 		return FALSE
 
-	if(!CHECK_BITFIELD(flags_to_check, XACT_USE_AGILITY) && X.agility)
+	if(!(flags_to_check & XACT_USE_AGILITY) && X.agility)
 		if(!silent)
 			to_chat(owner, "<span class='warning'>We can't do this in agility mode!</span>")
 		return FALSE
 
-	if(!CHECK_BITFIELD(flags_to_check, XACT_IGNORE_PLASMA) && X.plasma_stored < plasma_cost)
+	if(!(flags_to_check & XACT_IGNORE_PLASMA) && X.plasma_stored < plasma_cost)
 		if(!silent)
 			to_chat(owner, "<span class='warning'>We don't have enough plasma, we need [plasma_cost - X.plasma_stored] more.</span>")
 		return FALSE
@@ -131,10 +137,12 @@
 
 
 /datum/action/xeno_action/proc/add_cooldown()
-	if(cooldown_id) // stop doubling up
+	SIGNAL_HANDLER
+	var/cooldown_length = get_cooldown()
+	if(cooldown_id || !cooldown_length) // stop doubling up or waiting on zero
 		return
 	last_use = world.time
-	cooldown_id = addtimer(CALLBACK(src, .proc/on_cooldown_finish), get_cooldown(), TIMER_STOPPABLE)
+	cooldown_id = addtimer(CALLBACK(src, .proc/on_cooldown_finish), cooldown_length, TIMER_STOPPABLE)
 	button.overlays += cooldown_image
 	update_button_icon()
 
@@ -199,10 +207,10 @@
 /datum/action/xeno_action/activable/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.selected_ability == src)
-		to_chat(X, "You will no longer use [ability_name] with [X.middle_mouse_toggle ? "middle-click" :"shift-click"].")
+		to_chat(X, "You will no longer use [ability_name] with [(X.client.prefs.toggles_gameplay & MIDDLESHIFTCLICKING) ? "middle-click" :"shift-click"].")
 		deselect()
 	else
-		to_chat(X, "You will now use [ability_name] with [X.middle_mouse_toggle ? "middle-click" :"shift-click"].")
+		to_chat(X, "You will now use [ability_name] with [(X.client.prefs.toggles_gameplay & MIDDLESHIFTCLICKING) ? "middle-click" :"shift-click"].")
 		if(X.selected_ability)
 			X.selected_ability.deselect()
 		select()

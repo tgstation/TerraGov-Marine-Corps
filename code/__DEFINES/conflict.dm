@@ -45,13 +45,13 @@
 #define AMMO_ROCKET				(1<<4)
 #define AMMO_SNIPER				(1<<5)
 #define AMMO_INCENDIARY			(1<<6)
-#define AMMO_SKIPS_HUMANS		(1<<7)
-#define AMMO_SKIPS_ALIENS 		(1<<8)
-#define AMMO_IS_SILENCED 		(1<<9) //Unused right now.
-#define AMMO_IGNORE_ARMOR		(1<<10)
-#define AMMO_IGNORE_RESIST		(1<<11) //Unused.
-#define AMMO_BALLISTIC			(1<<12)
-#define AMMO_SUNDERING			(1<<13)
+#define AMMO_SKIPS_ALIENS 		(1<<7)
+#define AMMO_IS_SILENCED 		(1<<8) //Unused right now.
+#define AMMO_IGNORE_ARMOR		(1<<9)
+#define AMMO_IGNORE_RESIST		(1<<10) //Unused.
+#define AMMO_BALLISTIC			(1<<11)
+#define AMMO_SUNDERING			(1<<12)
+#define AMMO_CHAINING			(1<<13)
 
 //Gun defines for gun related thing. More in the projectile folder.
 //flags_gun_features
@@ -71,6 +71,8 @@
 #define GUN_BURST_FIRING		(1<<13)
 #define GUN_ALLOW_SYNTHETIC		(1<<14)
 #define GUN_HAS_AUTOBURST		(1<<15)
+#define GUN_IS_AIMING			(1<<16)
+#define AUTO_AIM_MODE			(1<<17)
 
 #define GUN_FIREMODE_SEMIAUTO "semi-auto fire mode"
 #define GUN_FIREMODE_BURSTFIRE "burst-fire mode"
@@ -117,6 +119,9 @@
 #define ENERGY_OVERCHARGE_AMMO_COST		80
 #define ENERGY_OVERCHARGE_FIRE_DELAY		10
 
+//Define stagger damage multipliers
+#define STAGGER_DAMAGE_MULTIPLIER		0.5 //-50% damage dealt by the staggered target after all other mods.
+
 //Define smoke effects
 #define SMOKE_COUGH			(1<<0)
 #define SMOKE_GASP			(1<<1)
@@ -130,8 +135,9 @@
 #define SMOKE_XENO			(1<<9)
 #define SMOKE_XENO_ACID		(1<<10)
 #define SMOKE_XENO_NEURO	(1<<11)
-#define SMOKE_CHEM			(1<<12)
-
+#define SMOKE_XENO_HEMODILE (1<<12)
+#define SMOKE_XENO_TRANSVITOX (1<<13)
+#define SMOKE_CHEM			(1<<14)
 
 //Incapacitated
 #define INCAPACITATED_IGNORE_RESTRAINED (1<<0)

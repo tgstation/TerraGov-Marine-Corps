@@ -19,6 +19,9 @@
 	idle_power_usage = 2
 	active_power_usage = 4
 
+/obj/machinery/door_control/unmeltable
+	resistance_flags = RESIST_ALL
+
 /obj/machinery/door_control/ai
 	name = "AI Lockdown"
 
@@ -163,6 +166,11 @@
 /obj/machinery/door_control/mainship/ammo
 	name = "Ammunition Storage"
 	id = "ammo2"
+	req_one_access = list(ACCESS_MARINE_BRIG, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_LEADER, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP)
+
+/obj/machinery/door_control/mainship/droppod
+	name = "Droppod bay"
+	id = "droppod"
 	req_one_access = list(ACCESS_MARINE_BRIG, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_LEADER, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP)
 
 /obj/machinery/door_control/mainship/engineering

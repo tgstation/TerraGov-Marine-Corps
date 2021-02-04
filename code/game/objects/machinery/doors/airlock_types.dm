@@ -173,19 +173,6 @@
 	desc = "And they said I was crazy."
 	icon = 'icons/obj/doors/Dooruranium.dmi'
 	mineral = "uranium"
-	var/last_event = 0
-
-/obj/machinery/door/airlock/uranium/process()
-	if(world.time > last_event+20)
-		if(prob(50))
-			radiate()
-		last_event = world.time
-	..()
-
-/obj/machinery/door/airlock/uranium/proc/radiate()
-	for(var/mob/living/L in range (3,src))
-		L.apply_effect(15, IRRADIATE)
-		UPDATEHEALTH(L)
 
 
 /obj/machinery/door/airlock/phoron
@@ -231,7 +218,8 @@
 	tiles_with = list(
 		/turf/closed/wall,
 		/obj/structure/window/framed/mainship,
-		/obj/machinery/door/airlock)
+		/obj/machinery/door/airlock,
+	)
 
 /obj/machinery/door/airlock/mainship/security
 	name = "\improper Security Airlock"
@@ -554,6 +542,11 @@
 
 /obj/machinery/door/airlock/mainship/generic/pilot/quarters
 	name = "\improper Pilot's Quarters"
+
+/obj/machinery/door/airlock/mainship/generic/ert
+	name = "\improper Airlock"
+	icon = 'icons/obj/doors/mainship/personaldoor.dmi'
+	interaction_flags = INTERACT_MACHINE_NOSILICON //go away naughty AI
 
 /obj/machinery/door/airlock/mainship/marine
 	name = "\improper Airlock"

@@ -143,6 +143,10 @@
 		to_chat(src, "<span class='warning'>Nuh-uhh.</span>")
 		return
 
+	if(!forced && !(new_caste_type in xeno_caste.evolves_to))
+		to_chat(src, "<span class='warning'>We can't evolve to that caste from our current one.</span>")
+		return
+
 	// used below
 	var/tierzeros //Larva and burrowed larva if it's a certain kinda hive
 	var/tierones
@@ -211,6 +215,8 @@
 
 
 	else
+		if(new_caste_type == /mob/living/carbon/xenomorph/runner & CONFIG_GET(flag/roony))//If the fun config is set, every runner is a roony
+			new_caste_type = /mob/living/carbon/xenomorph/roony
 		var/potential_queens = length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/larva]) + length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/drone])
 
 		tierzeros = hive.get_total_tier_zeros()
@@ -305,6 +311,7 @@
 	new_xeno.nicknumber = nicknumber
 	new_xeno.hivenumber = hivenumber
 	new_xeno.transfer_to_hive(hivenumber)
+	transfer_observers_to(new_xeno)
 
 	if(new_xeno.health - getBruteLoss(src) - getFireLoss(src) > 0) //Cmon, don't kill the new one! Shouldnt be possible though
 		new_xeno.bruteloss = src.bruteloss //Transfers the damage over.
@@ -318,8 +325,6 @@
 
 	if(lighting_alpha != new_xeno.lighting_alpha)
 		new_xeno.toggle_nightvision(lighting_alpha)
-
-	new_xeno.middle_mouse_toggle = middle_mouse_toggle //Keep our toggle state
 
 	new_xeno.update_spits() //Update spits to new/better ones
 
@@ -340,9 +345,18 @@
 		new_xeno.hud_set_queen_overwatch()
 		if(hive.living_xeno_queen)
 			new_xeno.handle_xeno_leader_pheromones(hive.living_xeno_queen)
+		new_xeno.give_rally_hive_ability() //Give them back their rally hive ability
+
+	if(upgrade == XENO_UPGRADE_THREE)
+		switch(tier)
+			if(XENO_TIER_TWO)
+				SSmonitor.stats.ancient_T2--
+			if(XENO_TIER_THREE)
+				SSmonitor.stats.ancient_T3--
 
 	qdel(src)
 	INVOKE_ASYNC(new_xeno, /mob/living.proc/do_jitter_animation, 1000)
+
 
 #undef TO_XENO_TIER_2_FORMULA
 #undef TO_XENO_TIER_3_FORMULA

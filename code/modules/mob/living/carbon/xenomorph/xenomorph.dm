@@ -62,7 +62,7 @@
 
 	ADD_TRAIT(src, TRAIT_BATONIMMUNE, TRAIT_XENO)
 	ADD_TRAIT(src, TRAIT_FLASHBANGIMMUNE, TRAIT_XENO)
-
+	hive.update_tier_limits()
 
 /mob/living/carbon/xenomorph/proc/set_datum()
 	if(!caste_base_type)
@@ -82,7 +82,7 @@
 	setXenoCasteSpeed(xeno_caste.speed)
 	soft_armor = getArmor(arglist(xeno_caste.soft_armor))
 	hard_armor = getArmor(arglist(xeno_caste.hard_armor))
-
+	warding_aura = 0 //Resets aura for reapplying armor
 
 /mob/living/carbon/xenomorph/set_armor_datum()
 	return //Handled in set_datum()
@@ -202,11 +202,13 @@
 	GLOB.xeno_mob_list -= src
 	GLOB.dead_xeno_list -= src
 
+	var/datum/hive_status/hive_placeholder = hive
 	remove_from_hive()
+	hive_placeholder.update_tier_limits() //Update our tier limits.
 
 	vis_contents -= wound_overlay
-	. = ..()
 	QDEL_NULL(wound_overlay)
+	return ..()
 
 
 /mob/living/carbon/xenomorph/slip(slip_source_name, stun_level, weaken_level, run_only, override_noslip, slide_steps)
@@ -215,16 +217,23 @@
 /mob/living/carbon/xenomorph/start_pulling(atom/movable/AM, suppress_message = TRUE)
 	if(!isliving(AM))
 		return FALSE
+	if(!Adjacent(AM)) //Logic!
+		return FALSE
 	var/mob/living/L = AM
 	if(L.buckled)
 		return FALSE //to stop xeno from pulling marines on roller beds.
 	if(ishuman(L))
+		if(!chestburst)
+			do_attack_animation(L, ATTACK_EFFECT_GRAB)
+			if(L.stat == DEAD && !L.headbitten) //Grab delay vs the non-headbitten dead
+				if(!do_mob(src, L , XENO_PULL_CHARGE_TIME, BUSY_ICON_HOSTILE))
+					return FALSE
 		pull_speed += XENO_DEADHUMAN_DRAG_SLOWDOWN
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_GRAB)
 	return ..()
 
 /mob/living/carbon/xenomorph/stop_pulling()
-	if(pulling && ishuman(pulling))
+	if(ishuman(pulling))
 		pull_speed -= XENO_DEADHUMAN_DRAG_SLOWDOWN
 	return ..()
 
@@ -261,6 +270,10 @@
 	hud_to_add = GLOB.huds[DATA_HUD_BASIC]
 	hud_to_add.add_hud_to(src)
 
+	hud_to_add = GLOB.huds[DATA_HUD_XENO_REAGENTS]
+	hud_to_add.add_hud_to(src)
+	hud_to_add = GLOB.huds[DATA_HUD_XENO_TACTICAL] //Allows us to see xeno tactical elements clearly via HUD elements
+	hud_to_add.add_hud_to(src)
 
 
 /mob/living/carbon/xenomorph/point_to_atom(atom/A, turf/T)
@@ -289,25 +302,55 @@
 /mob/living/carbon/xenomorph/reagent_check(datum/reagent/R) //For the time being they can't metabolize chemicals.
 	return TRUE
 
-/mob/living/carbon/xenomorph/update_leader_tracking(mob/living/carbon/xenomorph/X)
+/mob/living/carbon/xenomorph/update_tracking(mob/living/carbon/xenomorph/X) //X is unused, but we keep that function so it can be called with marines one
 	if(!hud_used?.locate_leader)
 		return
-
 	var/obj/screen/LL_dir = hud_used.locate_leader
-	if(hive.living_xeno_ruler == src || src == X) // No need to track ourselves, especially if we are the hive leader.
-		LL_dir.icon_state = "trackoff"
-		return
-
-	if(X.z != src.z || get_dist(src,X) < 1 || src == X)
-		LL_dir.icon_state = "trackondirect"
-	else
+	if (!tracked)
+		if(hive.living_xeno_ruler)
+			tracked = hive.living_xeno_ruler
+		else
+			LL_dir.icon_state = "trackoff"
+			return
+	
+	if (isxeno(tracked))
+		var/mob/living/carbon/xenomorph/xeno_tracked = tracked
+		if(QDELETED(xeno_tracked))
+			tracked = null
+			return
+		if(xeno_tracked == src) // No need to track ourselves
+			LL_dir.icon_state = "trackoff"
+			return	
+		if(xeno_tracked.z != z || get_dist(src,xeno_tracked) < 1)
+			LL_dir.icon_state = "trackondirect"
+			return
 		var/area/A = get_area(src.loc)
-		var/area/QA = get_area(X.loc)
+		var/area/QA = get_area(xeno_tracked.loc)
 		if(A.fake_zlevel == QA.fake_zlevel)
 			LL_dir.icon_state = "trackon"
-			LL_dir.setDir(get_dir(src, X))
-		else
+			LL_dir.setDir(get_dir(src, xeno_tracked))
+			return
+		
+		LL_dir.icon_state = "trackondirect"	
+		return
+
+	if (isresinsilo(tracked))
+		var/mob/living/carbon/xenomorph/silo_tracked = tracked
+		if(QDELETED(silo_tracked))
+			tracked = null
+			return
+		if(silo_tracked.z != z || get_dist(src,silo_tracked) < 1)
 			LL_dir.icon_state = "trackondirect"
+			return
+	
+		var/area/A = get_area(src.loc)
+		var/area/QA = get_area(silo_tracked.loc)
+		if(A.fake_zlevel == QA.fake_zlevel)
+			LL_dir.icon_state = "trackon"
+			LL_dir.setDir(get_dir(src, silo_tracked))
+			return
+		LL_dir.icon_state = "trackondirect"				
+
 
 /mob/living/carbon/xenomorph/clear_leader_tracking()
 	if(!hud_used?.locate_leader)

@@ -46,6 +46,7 @@
 	item_state = "hgpirate"
 	flags_inv_hide = HIDEJUMPSUIT
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS
+	flags_item = SYNTH_RESTRICTED
 	soft_armor = list("melee" = 60, "bullet" = 90, "laser" = 60, "energy" = 20, "bomb" = 25, "bio" = 10, "rad" = 10, "fire" = 20, "acid" = 20)
 
 
@@ -193,6 +194,7 @@
 
 
 /obj/item/clothing/suit/straight_jacket/proc/on_removal(datum/source, mob/living/user)
+	SIGNAL_HANDLER
 	DISABLE_BITFIELD(user.restrained_flags, RESTRAINED_STRAIGHTJACKET)
 	UnregisterSignal(src, COMSIG_ITEM_DROPPED)
 
@@ -363,12 +365,30 @@
 	flags_cold_protection = CHEST|ARMS
 	min_cold_protection_temperature = T0C
 	siemens_coefficient = 0.7
+	allowed = list (
+		/obj/item/flashlight,
+		/obj/item/binoculars,
+		/obj/item/weapon/combat_knife,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/storage/large_holster/machete
+	)
 
 /obj/item/clothing/suit/replica
 	name = "replica armor"
 	desc = "A replica of the armour of choice for colonial militia."
 	icon = 'icons/obj/clothing/cm_suits.dmi'
-	sprite_sheet_id = 1
+	item_icons = list(
+		slot_wear_suit_str = 'icons/mob/suit_1.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi')
 	icon_state = "rebel_armor"
 	item_state = "rebel_armor"
 	flags_armor_protection = CHEST|GROIN|LEGS
+
+/obj/item/clothing/suit/techpriest
+	name = "Techpriest Robes"
+	desc = "Praise the omnissiah!"
+	icon_state = "tp_bodyrobes"
+	item_state = "tp_bodyrobes"
+	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
+

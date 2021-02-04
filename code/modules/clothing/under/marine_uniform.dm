@@ -1,6 +1,4 @@
-
-//=========================//MARINES\\===================================
-
+/*********MARINES***********/
 
 
 /obj/item/clothing/under/marine
@@ -92,11 +90,11 @@
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
 
 /obj/item/clothing/under/marine/officer/pilot
-	name = "pilot officer bodysuit"
-	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented, survival-friendly pilot bodysuit. Fly the marines onwards to glory."
+	name = "pilot officer flightsuit"
+	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented, survival-friendly pilot flightsuit. Fly the marines onwards to glory."
 	icon_state = "pilot_flightsuit"
 	flags_cold_protection = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
+	flags_item_map_variant = null
 
 /obj/item/clothing/under/marine/officer/tanker
 	name = "tank crewman officer uniform"
@@ -152,10 +150,10 @@
 	icon_state = "marine_whites" //with thanks to Manezinho
 	rollable_sleeves = FALSE
 
-//=========================//RESPONDERS\\================================
+/*=========================RESPONDERS================================*/
 
 
-//=========================//Imperium\\==================================\\
+/*=========================Imperium=================================*/
 
 /obj/item/clothing/under/marine/imperial
 	name = "\improper Imperial uniform"
@@ -234,7 +232,7 @@
 /obj/item/clothing/under/marine/veteran/dutch/ranger
 	icon_state = "dutch_jumpsuit2"
 
-//===========================//HELGHAST - MERCENARY\\================================
+/*===========================HELGHAST - MERCENARY================================*/
 
 /obj/item/clothing/under/marine/veteran/mercenary
 	name = "mercenary fatigues"
@@ -268,14 +266,14 @@
 	name = "colonist uniform"
 	desc = "A stylish grey-green jumpsuit - standard issue for colonists."
 	icon_state = "colonist"
-	has_sensor = 0
+	has_sensor = 2
 
 /obj/item/clothing/under/CM_uniform
 	name = "colonial marshal uniform"
 	desc = "A blue shirt and tan trousers - the official uniform for a Colonial Marshal."
 	icon_state = "marshal"
-	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 5, "bomb" = 5, "bio" = 5, "rad" = 5, "fire" = 5, "acid" = 5)
-	has_sensor = 0
+	soft_armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = 5, "bio" = 5, "rad" = 5, "fire" = 5, "acid" = 5)
+	has_sensor = 2
 
 
 /obj/item/clothing/under/liaison_suit

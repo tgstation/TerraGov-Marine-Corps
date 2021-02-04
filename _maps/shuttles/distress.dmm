@@ -77,10 +77,8 @@
 	},
 /area/shuttle/ert)
 "p" = (
-/obj/machinery/door/airlock/mainship/generic,
-/obj/machinery/door/poddoor/shutters/transit/open{
-	dir = 4
-	},
+/obj/machinery/door/poddoor/shutters/transit/open,
+/obj/machinery/door/airlock/mainship/generic/ert,
 /turf/open/shuttle/dropship/three,
 /area/shuttle/ert)
 "q" = (
@@ -160,16 +158,22 @@
 	},
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/ert)
+"G" = (
+/turf/closed/shuttle/ert{
+	icon_state = "leftengine_3";
+	opacity = 0
+	},
+/area/shuttle/ert)
 "H" = (
 /turf/closed/shuttle/ert{
 	icon_state = "stan1"
 	},
 /area/shuttle/ert)
 "I" = (
-/obj/machinery/door/airlock/mainship/generic{
+/obj/machinery/door/poddoor/shutters/transit/open{
 	dir = 2
 	},
-/obj/machinery/door/poddoor/shutters/transit/open{
+/obj/machinery/door/airlock/mainship/generic/ert{
 	dir = 2
 	},
 /turf/open/shuttle/dropship/floor,
@@ -184,6 +188,36 @@
 	icon_state = "stan3"
 	},
 /area/shuttle/ert)
+"N" = (
+/turf/closed/shuttle/ert{
+	icon_state = "rightengine_3";
+	opacity = 0
+	},
+/area/shuttle/ert)
+"O" = (
+/turf/closed/shuttle/ert{
+	icon_state = "leftengine_2";
+	opacity = 0
+	},
+/area/shuttle/ert)
+"Q" = (
+/turf/closed/shuttle/ert{
+	icon_state = "rightengine_1";
+	opacity = 0
+	},
+/area/shuttle/ert)
+"R" = (
+/turf/closed/shuttle/ert{
+	icon_state = "leftengine_1";
+	opacity = 0
+	},
+/area/shuttle/ert)
+"S" = (
+/turf/closed/shuttle/ert{
+	icon_state = "rightengine_2";
+	opacity = 0
+	},
+/area/shuttle/ert)
 
 (1,1,1) = {"
 a
@@ -196,9 +230,9 @@ i
 p
 i
 x
-a
-a
-a
+G
+O
+R
 "}
 (2,1,1) = {"
 a
@@ -286,7 +320,7 @@ o
 p
 o
 B
-a
-a
-a
+N
+S
+Q
 "}

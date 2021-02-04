@@ -231,7 +231,7 @@ SUBSYSTEM_DEF(vote)
 			text += "<br>[question]"
 		log_vote(text)
 		var/vp = CONFIG_GET(number/vote_period)
-		SEND_SOUND(world, sound('sound/ambience/alarm4.ogg', channel = CHANNEL_NOTIFY))
+		SEND_SOUND(world, sound('sound/ambience/votestart.ogg', channel = CHANNEL_NOTIFY))
 		to_chat(world, "<br><font color='purple'><b>[text]</b><br>Type <b>vote</b> or click <a href='?src=[REF(src)]'>here</a> to place your votes.<br>You have [DisplayTimeText(vp)] to vote.</font>")
 		time_remaining = round(vp/10)
 		for(var/c in GLOB.clients)
@@ -280,6 +280,8 @@ SUBSYSTEM_DEF(vote)
 		. += "</li><li>"
 
 		var/avm = CONFIG_GET(flag/allow_vote_mode)
+		if((length(GLOB.clients) > CONFIG_GET(number/maximum_clients_for_gamemode_vote)))
+			avm = FALSE
 		if(avm || admin)
 			. += "<a href='?_src_=vote;vote=gamemode'>GameMode</a>"
 		else
@@ -367,6 +369,8 @@ SUBSYSTEM_DEF(vote)
 	RegisterSignal(SSdcs, COMSIG_GLOB_REMOVE_VOTE_BUTTON, .proc/remove_vote_action)
 
 /datum/action/innate/vote/proc/remove_vote_action(datum/source)
+	SIGNAL_HANDLER
+
 	if(remove_from_client())
 		remove_action(owner)
 	qdel(src)

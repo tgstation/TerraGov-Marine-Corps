@@ -44,7 +44,7 @@
 
 
 /proc/get_playable_species()
-	var/list/playable_species = list(GLOB.all_species[DEFAULT_SPECIES])
+	var/list/playable_species = list(GLOB.roundstart_species)
 	return playable_species
 
 
@@ -203,10 +203,13 @@
 
 		switch(message_type)
 			if(DEADCHAT_DEATHRATTLE)
-				if(deadchat_toggles & DISABLE_DEATHRATTLE)
+				if(CHECK_BITFIELD(deadchat_toggles, DISABLE_DEATHRATTLE))
 					continue
 			if(DEADCHAT_ARRIVALRATTLE)
-				if(deadchat_toggles & DISABLE_ARRIVALRATTLE)
+				if(CHECK_BITFIELD(deadchat_toggles, DISABLE_ARRIVALRATTLE))
+					continue
+			if(DEADCHAT_REGULAR)
+				if(!CHECK_BITFIELD(chat_toggles, CHAT_DEAD))
 					continue
 
 		if(isobserver(M))

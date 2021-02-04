@@ -103,6 +103,7 @@
 	addtimer(CALLBACK(src, .proc/sneak_attack_cooldown), HUNTER_POUNCE_SNEAKATTACK_DELAY) //Short delay before we can sneak attack.
 
 /datum/action/xeno_action/stealth/proc/cancel_stealth() //This happens if we take damage, attack, pounce, toggle stealth off, and do other such exciting stealth breaking activities.
+	SIGNAL_HANDLER
 	if(!stealth)//sanity check/safeguard
 		return
 	to_chat(owner, "<span class='xenodanger'>We emerge from the shadows.</span>")
@@ -119,6 +120,7 @@
 	playsound(owner, "sound/effects/xeno_newlarva.ogg", 25, 0, 1)
 
 /datum/action/xeno_action/stealth/proc/handle_stealth()
+	SIGNAL_HANDLER
 	if(!stealth)
 		return
 
@@ -145,6 +147,7 @@
 
 /// Callback listening for a xeno using the pounce ability
 /datum/action/xeno_action/stealth/proc/sneak_attack_pounce()
+	SIGNAL_HANDLER
 	// TODO: find out if this is needed
 	if(owner.m_intent == MOVE_INTENT_WALK) //Hunter that is currently using its stealth ability, need to unstealth him
 		owner.toggle_move_intent(MOVE_INTENT_RUN)
@@ -162,6 +165,7 @@
 
 /// Callback for when a mob gets hit as part of a pounce
 /datum/action/xeno_action/stealth/proc/mob_hit(datum/source, mob/living/M)
+	SIGNAL_HANDLER
 	if(M.stat || isxeno(M))
 		return
 	if(can_sneak_attack)
@@ -170,6 +174,7 @@
 		to_chat(owner, "<span class='xenodanger'>Pouncing from the shadows, we stagger our victim.</span>")
 
 /datum/action/xeno_action/stealth/proc/sneak_attack_slash(datum/source, mob/living/target, damage, list/damage_mod, list/armor_mod)
+	SIGNAL_HANDLER
 	if(!stealth || !can_sneak_attack)
 		return
 
@@ -189,33 +194,34 @@
 
 	cancel_stealth()
 
-/datum/action/xeno_action/stealth/proc/sneak_attack_disarm(datum/source, mob/living/target, tackle_pain, list/pain_mod)
+/datum/action/xeno_action/stealth/proc/sneak_attack_disarm(datum/source, mob/living/target, damage, list/damage_mod, list/armor_mod)
+	SIGNAL_HANDLER
 	if(!stealth || !can_sneak_attack)
 		return
 
 	var/staggerslow_stacks = 2
 	var/flavour
 	if(owner.m_intent == MOVE_INTENT_RUN && ( owner.last_move_intent > (world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY) ) ) //Allows us to slash while running... but only if we've been stationary for awhile
-		pain_mod += 1.75
 		flavour = "vicious"
 	else
-		pain_mod += 3.5
+		armor_mod += HUNTER_SNEAK_SLASH_ARMOR_PEN
 		staggerslow_stacks *= 2
 		flavour = "deadly"
 
 	owner.visible_message("<span class='danger'>\The [owner] strikes [target] with [flavour] precision!</span>", \
 	"<span class='danger'>We strike [target] with [flavour] precision!</span>")
-	target.ParalyzeNoChain(1.5 SECONDS)
 	target.adjust_stagger(staggerslow_stacks)
 	target.add_slowdown(staggerslow_stacks)
 
 	cancel_stealth()
 
 /datum/action/xeno_action/stealth/proc/damage_taken(mob/living/carbon/xenomorph/X, damage_taken)
+	SIGNAL_HANDLER
 	if(damage_taken > 15)
 		cancel_stealth()
 
 /datum/action/xeno_action/stealth/proc/plasma_regen(datum/source, list/plasma_mod)
+	SIGNAL_HANDLER
 	handle_stealth()
 
 	if(stealth && owner.last_move_intent > world.time - 20) //Stealth halves the rate of plasma recovery on weeds, and eliminates it entirely while moving
@@ -224,6 +230,7 @@
 		plasma_mod += 0.5
 
 /datum/action/xeno_action/stealth/proc/sneak_attack_zone()
+	SIGNAL_HANDLER
 	if(!stealth || !can_sneak_attack)
 		return
 	return COMSIG_ACCURATE_ZONE

@@ -3,6 +3,12 @@
 	icon_state = "empdisable"
 	duration = 0.5 SECONDS
 
+/obj/effect/temp_visual/explosion
+	name = "explosion"
+	icon = 'icons/effects/explosion.dmi'
+	icon_state = "grenade"
+	duration = 0.8 SECONDS
+
 //unsorted miscellaneous temporary visuals
 /obj/effect/temp_visual/dir_setting/bloodsplatter
 	icon = 'icons/effects/blood.dmi'
@@ -48,3 +54,47 @@
 			target_pixel_y = -16
 			layer = ABOVE_MOB_LAYER
 	animate(src, pixel_x = target_pixel_x, pixel_y = target_pixel_y, alpha = 0, time = duration)
+
+/obj/effect/temp_visual/transfer_plasma
+	name = "transfer plasma"
+	icon_state = "transfer_plasma"
+	duration = 0.5 SECONDS
+
+
+/obj/effect/temp_visual/xenomorph/runner_afterimage
+	name = "runner afterimage"
+	desc = "It has become speed.."
+	icon = 'icons/Xeno/2x2_Xenos.dmi' //They are now like, 2x1 or something
+	icon_state = "Runner Walking"
+	layer = MOB_LAYER
+	alpha = 64 //Translucent
+	duration = 0.5 SECONDS
+	density = FALSE
+	opacity = FALSE
+	anchored = FALSE
+	animate_movement = SLIDE_STEPS
+
+/obj/effect/temp_visual/xenomorph/roony_afterimage
+	name = "roony afterimage"
+	desc = "It has become speed.."
+	icon = 'icons/Xeno/2x2_Xenos.dmi' //They are now like, 2x1 or something
+	icon_state = "Roony Walking"
+	layer = MOB_LAYER
+	alpha = 64 //Translucent
+	duration = 0.5 SECONDS
+	density = FALSE
+	opacity = FALSE
+	anchored = FALSE
+	animate_movement = SLIDE_STEPS
+
+/obj/effect/temp_visual/heavyimpact
+	name = "heavy impact"
+	icon = 'icons/effects/heavyimpact.dmi'
+	icon_state = "heavyimpact"
+	duration = 13
+
+/obj/effect/temp_visual/healing
+	name = "healing"
+	icon = 'icons/effects/progressicons.dmi'
+	icon_state = "busy_medical"
+	duration = 0.8 SECONDS

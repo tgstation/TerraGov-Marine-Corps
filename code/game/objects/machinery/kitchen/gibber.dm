@@ -19,24 +19,27 @@
 	. = ..()
 	overlays += image('icons/obj/kitchen.dmi', "grjam")
 
-/obj/machinery/gibber/update_icon()
-	overlays.Cut()
-	if (dirty)
-		src.overlays += image('icons/obj/kitchen.dmi', "grbloody")
+/obj/machinery/gibber/update_overlays()
+	. = ..()
+	if(dirty)
+		. += image('icons/obj/kitchen.dmi', "grbloody")
+
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
+
 	if (!occupant)
-		src.overlays += image('icons/obj/kitchen.dmi', "grjam")
+		. += image('icons/obj/kitchen.dmi', "grjam")
 	else if (operating)
-		src.overlays += image('icons/obj/kitchen.dmi', "gruse")
+		. += image('icons/obj/kitchen.dmi', "gruse")
 	else
-		src.overlays += image('icons/obj/kitchen.dmi', "gridle")
+		. += image('icons/obj/kitchen.dmi', "gridle")
 
 /obj/machinery/gibber/attack_paw(mob/living/carbon/monkey/user)
-	return src.attack_hand(user)
+	return attack_hand(user)
 
 /obj/machinery/gibber/relaymove(mob/user)
-	if(user.incapacitated(TRUE)) return
+	if(user.incapacitated(TRUE))
+		return
 	go_out()
 
 

@@ -42,11 +42,11 @@
 		winset(src, null, "input.focus=true ; input.text=[url_encode(_key)]")
 		return
 
-	//offset by 1 because the buffer address is 0 indexed because the math was simpler
-	keys_held[current_key_address + 1] = _key
+	if(length(keys_held) >= HELD_KEY_BUFFER_LENGTH && !keys_held[_key])
+		keyUp(keys_held[1]) //We are going over the number of possible held keys, so let's remove the first one.
+
 	//the time a key was pressed isn't actually used anywhere (as of 2019-9-10) but this allows easier access usage/checking
 	keys_held[_key] = world.time
-	current_key_address = ((current_key_address + 1) % HELD_KEY_BUFFER_LENGTH)
 	var/movement = movement_keys[_key]
 	if(!(next_move_dir_sub & movement) && !keys_held["Ctrl"])
 		next_move_dir_add |= movement
@@ -75,16 +75,12 @@
 	set instant = TRUE
 	set hidden = TRUE
 
-	for(var/i in 1 to 10)
+	for(var/i in 1 to length(keys_held))
 		if(keys_held[i] == _key)
 			keys_held[i] = null
 			break
 
-	//Can't just do a remove because it would alter the length of the rolling buffer, instead search for the key then null it out if it exists
-	for(var/i in 1 to HELD_KEY_BUFFER_LENGTH)
-		if(keys_held[i] == _key)
-			keys_held[i] = null
-			break
+	keys_held -= _key
 	var/movement = movement_keys[_key]
 	if(!(next_move_dir_add & movement))
 		next_move_dir_sub |= movement
@@ -96,6 +92,17 @@
 		if(kb.up(src))
 			break
 
+/**
+ * Manually clears any held keys, in case due to lag or other undefined behavior a key gets stuck.
+ *
+ * Hardcoded to the ESC key.
+ */
+/client/verb/reset_held_keys()
+	set name = "Reset Held Keys"
+	set hidden = TRUE
+
+	for(var/key in keys_held)
+		keyUp(key)
 
 // Called every game tick
 /client/keyLoop()

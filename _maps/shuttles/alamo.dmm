@@ -86,7 +86,6 @@
 /area/shuttle/dropship/alamo)
 "as" = (
 /obj/structure/bed/chair/dropship/pilot{
-	icon_state = "pilot_chair";
 	dir = 1
 	},
 /obj/machinery/light,
@@ -101,11 +100,9 @@
 /area/shuttle/dropship/alamo)
 "au" = (
 /obj/structure/bed/chair/dropship/pilot{
-	icon_state = "pilot_chair";
 	dir = 1
 	},
 /obj/machinery/camera/autoname/mainship/dropship_one{
-	dir = 2;
 	pixel_x = -6;
 	pixel_y = -16
 	},
@@ -287,9 +284,7 @@
 /turf/template_noop,
 /area/shuttle/dropship/alamo)
 "bc" = (
-/obj/machinery/door/poddoor/shutters/transit{
-	dir = 4
-	},
+/obj/machinery/door/poddoor/shutters/transit,
 /obj/machinery/door/airlock/dropship_hatch/right,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)

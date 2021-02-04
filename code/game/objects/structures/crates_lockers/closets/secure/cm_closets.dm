@@ -273,7 +273,6 @@
 	new /obj/item/clothing/under/marine/officer/command(src)
 	new /obj/item/clothing/head/beret/marine/captain(src)
 	new /obj/item/clothing/glasses/sunglasses(src)
-	new /obj/item/radio/headset/mainship/mcom(src)
 	new /obj/item/clothing/shoes/white(src)
 	new /obj/item/clothing/gloves/white(src)
 	new /obj/item/clothing/under/whites(src)
@@ -304,7 +303,6 @@
 	new /obj/item/clothing/head/tgmcberet(src)
 	new /obj/item/clothing/head/tgmcberet/tan(src)
 	new /obj/item/clothing/head/tgmccap/ro(src)
-	new /obj/item/radio/headset/mainship/mcom(src)
 	new /obj/item/clothing/under/marine/officer/bridge(src)
 	new /obj/item/clothing/shoes/marine(src)
 	new /obj/item/clothing/suit/storage/marine/MP/RO(src)
@@ -314,7 +312,7 @@
 	new /obj/item/clothing/gloves/white(src)
 	new /obj/item/clothing/under/whites(src)
 	new /obj/item/clothing/head/white_dress(src)
-	new /obj/item/storage/backpack/marine/satchel/officer_cloak
+	new /obj/item/storage/backpack/marine/satchel/officer_cloak(src)
 
 /obj/structure/closet/secure_closet/pilot_officer
 	name = "pilot officer's locker"
@@ -327,13 +325,12 @@
 	icon_off = "secure_closed_pilot"
 
 /obj/structure/closet/secure_closet/pilot_officer/PopulateContents()
-	new /obj/item/attachable/stock/vp70(src)
 	new /obj/item/clothing/head/helmet/marine/pilot(src)
-	new /obj/item/radio/headset/mainship/mcom(src)
+	new /obj/item/clothing/head/helmet/marine/pilot/green(src)
 	new /obj/item/clothing/under/marine/officer/pilot(src)
 	new /obj/item/clothing/shoes/marine(src)
 	new /obj/item/clothing/suit/armor/vest/pilot(src)
-	new /obj/item/storage/large_holster/m39(src)
+	new /obj/item/storage/large_holster/m25(src)
 	new /obj/item/storage/backpack/marine/satchel(src)
 	new /obj/item/clothing/gloves/yellow(src)
 	new /obj/item/clothing/glasses/sunglasses/aviator/yellow(src)
@@ -367,7 +364,6 @@
 	new /obj/item/storage/belt/security/MP(src)
 	new /obj/item/flashlight(src)
 	new /obj/item/clothing/glasses/sunglasses(src)
-	new /obj/item/radio/headset/mainship/mmpo(src)
 	new /obj/item/weapon/gun/energy/taser(src)
 	new /obj/item/weapon/baton(src)
 	new /obj/item/storage/backpack/security (src)
@@ -395,7 +391,6 @@
 	new /obj/item/storage/belt/security/MP(src)
 	new /obj/item/flashlight(src)
 	new /obj/item/clothing/glasses/sunglasses(src)
-	new /obj/item/radio/headset/mainship/mcom(src)
 	new /obj/item/weapon/gun/energy/taser(src)
 	new /obj/item/weapon/baton(src)
 	new /obj/item/storage/backpack/security (src)
@@ -423,9 +418,7 @@
 	new /obj/item/clothing/head/helmet/riot(src)
 	new /obj/item/flashlight(src)
 	new /obj/item/clothing/glasses/sunglasses(src)
-	new /obj/item/radio/headset/mainship/mmpo(src)
 	new /obj/item/clothing/gloves/black(src)
-	new /obj/item/radio/headset/mainship/mmpo(src)
 	new /obj/item/clothing/tie/holster/waist(src)
 	new /obj/item/clothing/shoes/white(src)
 	new /obj/item/clothing/gloves/white(src)
@@ -475,7 +468,7 @@
 	icon_off = "secure_off_cargo"
 
 /obj/structure/closet/secure_closet/req_officer/PopulateContents()
-	new /obj/item/radio/headset/mainship/mcom(src)
+	new /obj/item/supplytablet(src)
 	new /obj/item/clothing/under/rank/ro_suit(src)
 	new /obj/item/clothing/shoes/marine(src)
 	new /obj/item/storage/belt/marine(src)

@@ -1,6 +1,6 @@
 //Update this whenever the db schema changes
 //make sure you add an update to the schema_version stable in the db changelog
-#define DB_MAJOR_VERSION 1
+#define DB_MAJOR_VERSION 2
 #define DB_MINOR_VERSION 0
 
 //Timing subsystem
@@ -49,12 +49,15 @@
 // Subsystems shutdown in the reverse of the order they initialize in
 // The numbers just define the ordering, they are meaningless otherwise.
 
-#define INIT_ORDER_GARBAGE			19
-#define INIT_ORDER_DBCORE			18
-#define INIT_ORDER_SERVER_MAINT		17
-#define INIT_ORDER_INPUT			16
+#define INIT_ORDER_GARBAGE			27
+#define INIT_ORDER_DBCORE			25
+#define INIT_ORDER_SERVER_MAINT		23
+#define INIT_ORDER_INPUT			21
+#define INIT_ORDER_SOUNDS			19
+#define INIT_ORDER_INSTRUMENTS		17
 #define INIT_ORDER_CODEX 			15
 #define INIT_ORDER_EVENTS			14
+#define INIT_ORDER_MONITOR  		13
 #define INIT_ORDER_JOBS				12
 #define INIT_ORDER_TICKER			10
 #define INIT_ORDER_MAPPING			9
@@ -83,11 +86,13 @@
 #define FIRE_PRIORITY_WEED			11
 #define FIRE_PRIORITY_GARBAGE		15
 #define FIRE_PRIORITY_DIRECTION		19
+#define FIRE_PRIORITY_SPAWNING		20
 #define FIRE_PRIORITY_AIR			20
 #define FIRE_PRIORITY_NPC			20
 #define FIRE_PRIORITY_PROCESS		25
 #define FIRE_PRIORITY_OBJ			40
 #define FIRE_PRIORITY_DEFAULT		50
+#define FIRE_PRIORITY_INSTRUMENTS	80
 #define FIRE_PRIORITY_POINTS		90
 #define FIRE_PRIORITY_MOBS			100
 #define FIRE_PRIORITY_TGUI			110
@@ -136,3 +141,12 @@
 #define SSEXPLOSIONS_MOVABLES 1
 #define SSEXPLOSIONS_TURFS 2
 #define SSEXPLOSIONS_THROWS 3
+
+/**
+	Create a new timer and add it to the queue.
+	* Arguments:
+	* * callback the callback to call on timer finish
+	* * wait deciseconds to run the timer for
+	* * flags flags for this timer, see: code\__DEFINES\subsystems.dm
+*/
+#define addtimer(args...) _addtimer(args, file = __FILE__, line = __LINE__)

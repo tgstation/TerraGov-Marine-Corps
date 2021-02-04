@@ -8,6 +8,7 @@
 
 
 /obj/item/proc/embedded_on_move(datum/source)
+	SIGNAL_HANDLER
 	unembed_ourself()
 
 
@@ -95,6 +96,7 @@
 
 
 /obj/item/proc/embedded_on_carrier_move(datum/source, atom/oldloc, direction, Forced)
+	SIGNAL_HANDLER_DOES_SLEEP
 	var/mob/living/carrier = source
 	if(!isturf(carrier.loc) || carrier.buckled)
 		return //People can safely move inside a vehicle or on a roller bed/chair.
@@ -109,11 +111,12 @@
 
 
 /obj/item/proc/embedded_on_limb_destruction(/datum/limb/source)
+	SIGNAL_HANDLER
 	unembed_ourself()
 
 
 /datum/limb/proc/process_embedded(obj/item/embedded)
-	if(limb_status & (LIMB_SPLINTED|LIMB_STABILIZED) || (owner.m_intent == MOVE_INTENT_WALK && !owner.pulledby))
+	if(limb_status & (LIMB_SPLINTED|LIMB_STABILIZED))
 		return
 	if(!prob(embedded.embedding.embed_process_chance))
 		return

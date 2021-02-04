@@ -29,6 +29,7 @@
 #define MAINT		(1<<3)		// under maintaince
 #define EMPED		(1<<4)		// temporary broken by EMP pulse
 #define PANEL_OPEN	(1<<5)
+#define DISABLED	(1<<6)		// can be fixed with a welder; removes density. Used primary to stop otherwise indestructible computers from obstructing pathing.
 #define MACHINE_DO_NOT_PROCESS 32768 //Do not added these to processing queue.
 
 #define ENGINE_EJECT_Z	3
@@ -70,6 +71,7 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 
 
 //sharp item defines
+#define IS_NOT_SHARP_ITEM			0
 #define IS_SHARP_ITEM_SIMPLE 		1 //not easily usable to cut or slice. e.g. shard, wirecutters, spear
 #define IS_SHARP_ITEM_ACCURATE		2 //knife, scalpel
 #define IS_SHARP_ITEM_BIG			3 //fireaxe, hatchet, energy sword
@@ -101,17 +103,18 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 #define TOKEN_ALL				15
 
 //MEDEVAC DEFINES
-#define MEDEVAC_COOLDOWN		3000 //300 seconds or 5 minutes
-#define MEDEVAC_TELE_DELAY		50 //5 seconds
+#define MEDEVAC_COOLDOWN		1500 //150 seconds or 2,5 minutes aka 2 minutes and 30 secs
+#define MEDEVAC_TELE_DELAY		50 // 5 seconds
 //Sentry defines
 #define SENTRY_ALERT_AMMO				1
 #define SENTRY_ALERT_HOSTILE			2
 #define SENTRY_ALERT_FALLEN				3
 #define SENTRY_ALERT_DAMAGE				4
 #define SENTRY_ALERT_BATTERY			5
+#define SENTRY_ALERT_DESTROYED			6
 #define SENTRY_ALERT_DELAY				20 SECONDS
-#define SENTRY_DAMAGE_ALERT_DELAY		5 SECONDS
-
+#define SENTRY_DAMAGE_ALERT_DELAY		4 SECONDS
+#define SENTRY_LIGHT_POWER				7
 
 //Scout cloak defines
 #define SCOUT_CLOAK_ENERGY	100
@@ -147,7 +150,7 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 #define RAZORWIRE_BASE_DAMAGE		40
 #define RAZORWIRE_ENTANGLE_DELAY	5 SECONDS
 #define RAZORWIRE_SOAK				5
-#define RAZORWIRE_MAX_HEALTH		200
+#define RAZORWIRE_MAX_HEALTH		100
 #define RAZORWIRE_SLOWDOWN			10
 #define RAZORWIRE_MIN_DAMAGE_MULT_LOW	0.4 //attacking
 #define RAZORWIRE_MAX_DAMAGE_MULT_LOW	0.6
@@ -229,3 +232,8 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 #define NO_SENSORS 0
 #define HAS_SENSORS 1
 #define LOCKED_SENSORS 2
+
+//Drop pods
+
+///This number + standard alamo launch time is when droppods are allowed to launch
+#define DROPPOD_DEPLOY_DELAY 10 MINUTES

@@ -9,11 +9,11 @@
 	icon_state = "base"
 	anchored = TRUE
 	density = FALSE
-	layer = TURF_LAYER
+	layer = XENO_WEEDS_LAYER
 	plane = FLOOR_PLANE
 	max_integrity = 25
 
-	var/parent_node
+	var/obj/effect/alien/weeds/node/parent_node
 
 /obj/effect/alien/weeds/deconstruct(disassembled = TRUE)
 	GLOB.round_statistics.weeds_destroyed++
@@ -32,16 +32,15 @@
 	update_neighbours()
 
 /obj/effect/alien/weeds/Destroy()
-
-	if(parent_node) // Allow the weed to try to regrow
-		SSweeds.add_weed(src)
-
+	for(var/mob/living/L in range(1, src))
+		SEND_SIGNAL(L, COMSIG_LIVING_WEEDS_ADJACENT_REMOVED)
 	for(var/obj/effect/alien/A in loc.contents)
 		if(QDELETED(A) || A == src || A.ignore_weed_destruction)
 			continue
-		A.obj_destruction("melee")
+		A.obj_destruction(damage_flag = "melee")
 
 	var/oldloc = loc
+	parent_node = null
 	. = ..()
 	update_neighbours(oldloc)
 
@@ -53,9 +52,9 @@
 
 /obj/effect/alien/weeds/Crossed(atom/movable/AM)
 	. = ..()
-	if(ishuman(AM))
-		var/mob/living/carbon/human/H = AM
-		H.next_move_slowdown += 1
+	if(isxeno(AM))
+		var/mob/living/carbon/xenomorph/X = AM
+		X.next_move_slowdown += X.xeno_caste.weeds_speed_mod
 
 /obj/effect/alien/weeds/proc/update_neighbours(turf/U)
 	if(!U)

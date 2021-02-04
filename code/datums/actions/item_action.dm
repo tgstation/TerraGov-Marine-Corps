@@ -1,20 +1,24 @@
 
 /datum/action/item_action
-	name = "Use item"
-	var/obj/item/holder_item //the item that has this action in its list of actions. Is not necessarily the target
-							//e.g. gun attachment action: target = attachment, holder = gun.
+	name = ""
+	/**
+	 *the item that has this action in its list of actions. Is not necessarily the target
+	 * e.g. gun attachment action: target = attachment, holder = gun.
+	 */
+	var/obj/item/holder_item
 
 /datum/action/item_action/New(Target, obj/item/holder)
 	. = ..()
 	if(!holder)
 		holder = target
 	holder_item = holder
-	holder_item.actions += src
-	name = "Use [target]"
+	LAZYADD(holder_item.actions, src)
+	if(!name)
+		name = "Use [target]"
 	button.name = name
 
 /datum/action/item_action/Destroy()
-	holder_item.actions -= src
+	LAZYREMOVE(holder_item.actions, src)
 	holder_item = null
 	return ..()
 
@@ -82,3 +86,14 @@
 			current_action_vis_obj = autoburst
 	button.vis_contents += current_action_vis_obj
 	action_firemode = holder_gun.gun_firemode
+
+/datum/action/item_action/aim_mode
+	name = "Take Aim"
+
+/datum/action/item_action/aim_mode/update_button_icon()
+	button.overlays.Cut()
+	button.overlays += image('icons/mob/actions.dmi', null, "aim_mode", ABOVE_HUD_LAYER)
+
+/datum/action/item_action/aim_mode/action_activate()
+	var/obj/item/weapon/gun/I = target
+	I.toggle_auto_aim_mode(owner)

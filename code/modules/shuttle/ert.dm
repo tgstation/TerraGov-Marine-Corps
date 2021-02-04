@@ -22,6 +22,7 @@
 	var/departing = FALSE
 	ignitionTime = 10 SECONDS
 	prearrivalTime = 10 SECONDS
+	rechargeTime = 3 MINUTES
 	callTime = 1 MINUTES
 
 	shuttle_flags = GAMEMODE_IMMUNE
@@ -42,7 +43,7 @@
 	var/obj/docking_port/stationary/S = pick(get_destinations())
 	if(!S)
 		return FALSE
-	SSshuttle.moveShuttle(id, S.id, 1)
+	SSshuttle.moveShuttle(id, S.id, TRUE)
 	return TRUE
 
 /obj/docking_port/mobile/ert/proc/open_shutters()
@@ -83,14 +84,9 @@
 				shutters += O
 	close_shutters()
 
-/obj/docking_port/mobile/ert/check()
-	if(departing)
-		intoTheSunset()
-		return
-	return ..()
 
 /obj/machinery/computer/shuttle/ert
-
+	interaction_flags = INTERACT_MACHINE_TGUI|INTERACT_MACHINE_NOSILICON //No AIs allowed
 
 /obj/machinery/computer/shuttle/ert/valid_destinations()
 	var/obj/docking_port/mobile/ert/M = SSshuttle.getShuttle(shuttleId)
@@ -114,11 +110,10 @@
 			for(var/obj/docking_port/stationary/S in M.get_destinations())
 				dat += "<A href='?src=[REF(src)];move=[S.id]'>Send to [S.name]</A><br>"
 		else
-			dat += "<A href='?src=[REF(src)];depart=1'>Depart</A><br>"
+			dat += "<A href='?src=[REF(src)];depart=1'>Depart.</A><br>"
 
 	var/datum/browser/popup = new(user, "computer", M ? M.name : "shuttle", 300, 200)
 	popup.set_content("<center>[dat]</center>")
-	popup.set_title_image(usr.browse_rsc_icon(src.icon, src.icon_state))
 	popup.open()
 
 /obj/machinery/computer/shuttle/ert/Topic(href, href_list)
@@ -128,11 +123,25 @@
 
 	if(href_list["depart"])
 		var/obj/docking_port/mobile/ert/M = SSshuttle.getShuttle(shuttleId)
+
+		if(M.departing)
+			playsound(loc, 'sound/machines/twobeep.ogg', 25, 1)
+			visible_message("<span class='warning'>ERROR: Launch protocols already in process. Please standby.</span>", 3)
+			return
+
+		log_game("[key_name(usr)] has departed an ERT shuttle")
 		M.on_ignition()
-		M.departing = TRUE
-		M.setTimer(M.ignitionTime)
+		addtimer(VARSET_CALLBACK(M, departing, TRUE), M.ignitionTime)
 
 	updateUsrDialog()
+
+
+/obj/docking_port/mobile/ert/check()
+	if(departing)
+		intoTheSunset()
+		return
+	return ..()
+
 
 /obj/machinery/computer/shuttle/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)
 	if(port && (shuttleId == initial(shuttleId) || override))

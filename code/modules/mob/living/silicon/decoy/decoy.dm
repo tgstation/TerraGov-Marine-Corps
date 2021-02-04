@@ -53,7 +53,7 @@
 /mob/living/silicon/decoy/proc/post_mortem_explosion()
 	if(isnull(loc))
 		return
-	explosion(get_turf(src), 0, 1, 9, 12)
+	explosion(get_turf(src), 0, 1, 9, 12, small_animation = TRUE)
 
 
 /mob/living/silicon/decoy/say(message, new_sound, datum/language/language) //General communication across the ship.

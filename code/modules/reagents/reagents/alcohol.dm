@@ -65,7 +65,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 		else
 			to_chat(usr, "<span class='warning'>[O]'s ink is smeared by [name], but doesn't wash away!</span>")
 
-/datum/reagent/consumbale/ethanol/reaction_mob(mob/living/L, method = TOUCH, volume, metabolism, show_message = TRUE, touch_protection = 0)
+/datum/reagent/consumable/ethanol/reaction_mob(mob/living/L, method = TOUCH, volume, metabolism, show_message = TRUE, touch_protection = 0)
 	. = ..()
 	if(method in list(TOUCH, VAPOR, PATCH))
 		L.adjust_fire_stacks(round(volume * 0.65))
@@ -142,10 +142,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	color = "#0064C8" // rgb: 0, 100, 200
 	taste_description = "grain alcohol"
 	boozepwr = 65
-
-/datum/reagent/consumable/ethanol/vodka/on_mob_life(mob/living/L, metabolism)
-	L.radiation = max(L.radiation-1,0)
-	return ..()
 
 /datum/reagent/consumable/ethanol/bilk
 	name = "Bilk"

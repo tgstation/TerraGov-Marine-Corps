@@ -85,6 +85,17 @@
  * public
  *
  * Called on an object when a tgui object is being created, allowing you to
+ * push various assets to tgui, for examples spritesheets.
+ *
+ * return list List of asset datums or file paths.
+ */
+/datum/proc/ui_assets(mob/user)
+	return list()
+
+/**
+ * public
+ *
+ * Called on an object when a tgui object is being created, allowing you to
  * customise the html
  * For example: inserting a custom stylesheet that you need in the head
  *

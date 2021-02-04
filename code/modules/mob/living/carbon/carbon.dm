@@ -10,14 +10,16 @@
 	if(isxeno(loc))
 		var/mob/living/carbon/xenomorph/devourer = loc
 		devourer.do_regurgitate(src)
-	if(back)
-		QDEL_NULL(back)
-	if(internal)
-		QDEL_NULL(internal)
-	if(handcuffed)
-		QDEL_NULL(handcuffed)
+	QDEL_NULL(back)
+	QDEL_NULL(internal)
+	QDEL_NULL(handcuffed)
 	. = ..()
 	species = null
+
+/mob/living/carbon/on_death()
+	if(species)
+		to_chat(src,"<b><span class='deadsay'><p style='font-size:1.5em'>[species.special_death_message]</p></span></b>")
+	return ..()
 
 /mob/living/carbon/Move(NewLoc, direct)
 	. = ..()
@@ -47,8 +49,7 @@
 	if (shock_damage<1)
 		return 0
 
-	apply_damage(shock_damage, BURN, def_zone)
-	UPDATEHEALTH(src)
+	apply_damage(shock_damage, BURN, def_zone, updating_health = TRUE)
 
 	playsound(loc, "sparks", 25, TRUE)
 	if (shock_damage > 10)
@@ -57,8 +58,9 @@
 			"<span class='danger'>You feel a powerful shock course through your body!</span>", \
 			"<span class='warning'> You hear a heavy electrical crack.</span>" \
 		)
-		if(isxeno(src) && mob_size == MOB_SIZE_BIG)
-			Paralyze(4 SECONDS)
+		if(isxeno(src))
+			if(mob_size != MOB_SIZE_BIG)
+				Paralyze(4 SECONDS)
 		else
 			Paralyze(8 SECONDS)
 	else
@@ -84,8 +86,6 @@
 			return
 		else
 			wielded_item.unwield(src) //Get rid of it.
-	if(wielded_item && wielded_item.zoom) //Adding this here while we're at it
-		wielded_item.zoom(src)
 	hand = !hand
 	SEND_SIGNAL(src, COMSIG_CARBON_SWAPPED_HANDS)
 	if(hud_used.l_hand_hud_object && hud_used.r_hand_hud_object)
@@ -342,7 +342,7 @@
 	. -= "Update Icon"
 	.["Regenerate Icons"] = "?_src_=vars;[HrefToken()];regenerateicons=[REF(src)]"
 
-/mob/living/carbon/update_leader_tracking(mob/living/carbon/C)
+/mob/living/carbon/update_tracking(mob/living/carbon/C)
 	var/obj/screen/LL_dir = hud_used.SL_locator
 
 	if(C.z != src.z || get_dist(src, C) < 1 || src == C)
@@ -449,14 +449,16 @@
 	. = ..()
 	if(!.)
 		return
-	log_admin("[key_name(src)] (Job: [job.title]) has been away for 15 minutes.")
-	message_admins("[ADMIN_TPMONTY(src)] (Job: [job.title]) has been away for 15 minutes.")
+	log_admin("[key_name(src)] (Job: [(job) ? job.title : "Unassigned"]) has been away for 15 minutes.")
+	message_admins("[ADMIN_TPMONTY(src)] (Job: [(job) ? job.title : "Unassigned"]) has been away for 15 minutes.")
 
 /mob/living/carbon/xenomorph/on_sdd_grace_period_end()
 	. = ..()
 	if(!.)
 		return
 	if(client)
+		return
+	if (SSticker.current_state != GAME_STATE_PLAYING)
 		return
 
 	var/mob/picked = get_alien_candidate()
@@ -468,17 +470,6 @@
 	to_chat(src, "<span class='xenoannounce'>We are an old xenomorph re-awakened from slumber!</span>")
 	playsound_local(get_turf(src), 'sound/effects/xeno_newlarva.ogg')
 
-
-/mob/living/carbon/verb/middle_mousetoggle()
-	set name = "Toggle Middle/Shift Clicking"
-	set desc = "Toggles between using middle mouse click and shift click for selected ability use."
-	set category = "IC"
-
-	middle_mouse_toggle = !middle_mouse_toggle
-	if(!middle_mouse_toggle)
-		to_chat(src, "<span class='notice'>The selected special ability will now be activated with shift clicking.</span>")
-	else
-		to_chat(src, "<span class='notice'>The selected special ability will now be activated with middle mouse clicking.</span>")
 
 /mob/living/carbon/set_stat(new_stat)
 	. = ..()

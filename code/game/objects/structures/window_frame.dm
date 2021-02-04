@@ -16,20 +16,21 @@
 	var/reinforced = FALSE
 
 	tiles_with = list(
-		/turf/closed/wall)
+		/turf/closed/wall,
+	)
 
 	var/tiles_special[] = list(/obj/machinery/door/airlock,
 		/obj/structure/window/framed,
 		/obj/structure/girder,
 		/obj/structure/window_frame)
 
-/obj/structure/window_frame/CanPass(atom/movable/mover, turf/target)
+/obj/structure/window_frame/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(climbable && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
 		return TRUE
 	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
 	if(S?.climbable)
 		return TRUE
-	return FALSE
 
 /obj/structure/window_frame/CheckExit(atom/movable/O as mob|obj, target as turf)
 	return TRUE
@@ -118,6 +119,11 @@
 	icon_state = "white_window0_frame"
 	basestate = "white_window"
 	window_type = /obj/structure/window/framed/mainship/white
+
+/obj/structure/window_frame/mainship/gray
+	icon_state = "gray_window0_frame"
+	basestate = "gray_window"
+	window_type = /obj/structure/window/framed/mainship/gray
 
 /obj/structure/window_frame/colony
 	icon_state = "col_window0_frame"

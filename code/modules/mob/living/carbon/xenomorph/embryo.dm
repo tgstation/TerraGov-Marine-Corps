@@ -75,13 +75,18 @@
 
 /obj/item/alien_embryo/proc/process_growth()
 
-	if(CHECK_BITFIELD(affected_mob.restrained_flags, RESTRAINED_XENO_NEST)) //Hosts who are nested in resin nests provide an ideal setting, larva grows faster.
-		counter += 1 + max(0, (0.03 * affected_mob.health)) //Up to +300% faster, depending on the health of the host.
-	else if(stage <= 4)
-		counter += 2 //Free burst time in ~10 min.
+	if(stage <= 4)
+		counter += 1.5 //Free burst time in ~15 min.
 
 	if(affected_mob.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_growthtoxin))
-		counter += 2 //Accelerates larval growth somewhat. You don't want this stuff in your body. Larva hits Stage 5 in exactly 5 minutes (lower if healthy and nested), assuming the victim has growth toxin for the full duration.
+		counter += 2.5 //Accelerates larval growth somewhat. You don't want this stuff in your body.
+
+	if(affected_mob.reagents.get_reagent_amount(/datum/reagent/consumable/larvajelly))
+		counter += 10 //Accelerates larval growth massively. Voluntarily drinking larval jelly while infected is straight-up suicide. Larva hits Stage 5 in exactly ONE minute.
+
+	if(affected_mob.reagents.get_reagent_amount(/datum/reagent/medicine/larvaway))
+		counter -= 1 //Halves larval growth progress, for some tradeoffs. Larval toxin purges this
+
 
 	if(stage < 5 && counter >= 120)
 		counter = 0

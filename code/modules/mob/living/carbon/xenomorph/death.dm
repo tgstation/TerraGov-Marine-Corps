@@ -12,7 +12,9 @@
 /mob/living/carbon/xenomorph/on_death()
 	GLOB.alive_xeno_list -= src
 	GLOB.dead_xeno_list += src
+
 	hive?.on_xeno_death(src)
+	hive.update_tier_limits() //Update our tier limits.
 
 	if(LAZYLEN(stomach_contents))
 		empty_gut()
@@ -21,7 +23,7 @@
 	if(is_zoomed)
 		zoom_out()
 
-	set_light(0)
+	set_light_on(FALSE)
 
 	if(hud_used)
 		if(hud_used.healths)
@@ -41,9 +43,29 @@
 	GLOB.round_statistics.total_xeno_deaths++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_xeno_deaths")
 
+	switch (upgrade) 
+		if(XENO_UPGRADE_TWO)
+			switch(tier)
+				if(XENO_TIER_TWO)
+					SSmonitor.stats.elder_T2--
+				if(XENO_TIER_THREE)
+					SSmonitor.stats.elder_T3--
+				if(XENO_TIER_FOUR)
+					SSmonitor.stats.elder_queen--
+		if(XENO_UPGRADE_THREE)
+			switch(tier)
+				if(XENO_TIER_TWO)
+					SSmonitor.stats.ancient_T2--
+				if(XENO_TIER_THREE)
+					SSmonitor.stats.ancient_T3--
+				if(XENO_TIER_FOUR)
+					SSmonitor.stats.ancient_queen--
+
 	var/isAI = GetComponent(/datum/component/ai_controller)
 	if (isAI)
 		gib()
+
+	to_chat(src,"<b><span class='deadsay'><p style='font-size:1.5em'><big>We have perished.</big><br><small>But it is not the end of us yet... wait until a newborn can rise in this world...</small></p></span></b>")
 
 	return ..()
 

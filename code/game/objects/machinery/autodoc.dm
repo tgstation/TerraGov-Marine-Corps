@@ -67,7 +67,7 @@
 
 /obj/machinery/autodoc/Destroy()
 	forceeject = TRUE
-	do_eject()
+	INVOKE_ASYNC(src, .proc/do_eject)
 	if(connected)
 		connected.connected = null
 		connected = null
@@ -75,6 +75,7 @@
 
 
 /obj/machinery/autodoc/proc/shuttle_crush()
+	SIGNAL_HANDLER
 	if(occupant)
 		var/mob/living/carbon/human/H = occupant
 		go_out()
@@ -114,7 +115,7 @@
 
 	// keep them alive
 	var/updating_health = FALSE
-	occupant.adjustToxLoss(-1 * REM) // pretend they get IV dylovene
+	occupant.adjustToxLoss(-0.5) // pretend they get IV dylovene
 	occupant.adjustOxyLoss(-occupant.getOxyLoss()) // keep them breathing, pretend they get IV dexalinplus
 	if(filtering)
 		var/filtered = 0
@@ -200,7 +201,6 @@
 	if(!ishuman(M))
 		return list()
 	var/surgery_list = list()
-	var/known_implants = list(/obj/item/implant/neurostim)
 	for(var/datum/limb/L in M.limbs)
 		if(L)
 			for(var/datum/wound/W in L.wounds)
@@ -238,7 +238,7 @@
 			var/skip_embryo_check = FALSE
 			if(L.implants.len)
 				for(var/I in L.implants)
-					if(!is_type_in_list(I,known_implants))
+					if(!is_type_in_list(I,GLOB.known_implants))
 						surgery_list += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_SHRAPNEL)
 						if(L.body_part == CHEST)
 							skip_embryo_check = TRUE
@@ -302,8 +302,6 @@
 	visible_message("[src] begins to operate, loud audible clicks lock the pod.")
 	surgery = TRUE
 	update_icon()
-
-	var/known_implants = list(/obj/item/implant/neurostim)
 
 	for(var/datum/autodoc_surgery/A in surgery_todo_list)
 		if(A.type_of_surgery == EXTERNAL_SURGERY)
@@ -550,7 +548,7 @@
 							for(var/obj/item/I in S.limb_ref.implants)
 								if(!surgery)
 									break
-								if(!is_type_in_list(I,known_implants))
+								if(!is_type_in_list(I, GLOB.known_implants))
 									sleep(HEMOSTAT_REMOVE_MAX_DURATION*surgery_mod)
 									I.unembed_ourself(TRUE)
 						if(S.limb_ref.body_part == CHEST || S.limb_ref.body_part == HEAD)
@@ -899,10 +897,6 @@
 	med_scan(H, null, implants, TRUE)
 	start_processing()
 
-/obj/machinery/autodoc/Destroy()
-	forceeject = TRUE
-	do_eject()
-	return ..()
 
 /////////////////////////////////////////////////////////////
 
@@ -920,7 +914,7 @@
 
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 40
-	var/obj/item/radio/radio
+	var/obj/item/radio/headset/mainship/doc/radio
 	var/obj/item/reagent_containers/blood/OMinus/blood_pack
 
 
@@ -1236,13 +1230,12 @@
 
 
 		if(href_list["shrapnel"])
-			var/known_implants = list(/obj/item/implant/neurostim)
 			for(var/i in connected.occupant.limbs)
 				var/datum/limb/L = i
 				var/skip_embryo_check = FALSE
 				var/obj/item/alien_embryo/A = locate() in connected.occupant
 				for(var/I in L.implants)
-					if(is_type_in_list(I, known_implants))
+					if(is_type_in_list(I, GLOB.known_implants))
 						continue
 					N.fields["autodoc_manual"] += create_autodoc_surgery(L, LIMB_SURGERY,ADSURGERY_SHRAPNEL)
 					needed++

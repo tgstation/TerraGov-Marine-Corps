@@ -33,7 +33,7 @@
 
 				if (bloodDNA && !locate(/obj/structure) in contents)
 					src.AddTracks(/obj/effect/decal/cleanable/blood/tracks/footprints,bloodDNA,H.dir,0,bloodcolor) // Coming
-					var/turf/from = get_step(H,reverse_direction(H.dir))
+					var/turf/from = get_step(H,REVERSE_DIR(H.dir))
 					if(istype(from) && from)
 						from.AddTracks(/obj/effect/decal/cleanable/blood/tracks/footprints,bloodDNA,0,H.dir,bloodcolor) // Going
 
@@ -168,6 +168,12 @@
 	mediumxenofootstep = FOOTSTEP_WATER
 	heavyxenofootstep = FOOTSTEP_WATER
 
+/turf/open/beach/sea/Entered(atom/movable/AM, atom/oldloc)
+	. = ..()
+	if(isliving(AM))
+		to_chat(AM, "<span class='danger'>The cold vacuum instantly freezes you, maybe this was a bad idea?</span>")
+		var/mob/living/spaceman = AM
+		spaceman.adjustFireLoss(666) //Really bad idea, spessman.
 
 //Nostromo turfs
 
@@ -190,6 +196,9 @@
 	icon_state = "floor"
 	icon = 'icons/turf/shuttle.dmi'
 	allow_construction = FALSE
+	shoefootstep = FOOTSTEP_PLATING
+	barefootstep = FOOTSTEP_HARD
+	mediumxenofootstep = FOOTSTEP_PLATING
 
 
 /turf/open/shuttle/check_alien_construction(mob/living/builder, silent = FALSE, planned_building)
@@ -217,6 +226,10 @@
 
 /turf/open/shuttle/dropship/eight
 	icon_state = "rasputin8"
+
+/turf/open/shuttle/dropship/grating
+	icon = 'icons/turf/elevator.dmi'
+	icon_state = "floor_grating"
 
 //not really plating, just the look
 /turf/open/shuttle/plating
@@ -265,12 +278,12 @@
 	plane = FLOOR_PLANE
 	baseturfs = /turf/open/lavaland/lava
 
+
 /turf/open/lavaland/lava
 	name = "lava"
 	icon_state = "full"
-
 	light_range = 2
-	light_power = 0.75
+	light_power = 1.4
 	light_color = LIGHT_COLOR_LAVA
 
 /turf/open/lavaland/lava/is_weedable()
@@ -365,6 +378,9 @@
 /turf/open/lavaland/basalt
 	name = "basalt"
 	icon_state = "basalt"
+	shoefootstep = FOOTSTEP_SAND
+	barefootstep = FOOTSTEP_SAND
+	mediumxenofootstep = FOOTSTEP_SAND
 
 /turf/open/lavaland/basalt/cave
 	name = "cave"
@@ -391,9 +407,12 @@
 /turf/open/lavaland/catwalk
 	name = "catwalk"
 	icon_state = "lavacatwalk"
-	light_range = 4
-	light_power = 0.75
+	light_range = 1.4
+	light_power = 2
 	light_color = LIGHT_COLOR_LAVA
+	shoefootstep = FOOTSTEP_CATWALK
+	barefootstep = FOOTSTEP_CATWALK
+	mediumxenofootstep = FOOTSTEP_CATWALK
 
 /turf/open/lavaland/catwalk/built
 	var/deconstructing = FALSE

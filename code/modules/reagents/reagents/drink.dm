@@ -232,7 +232,7 @@
 		if(E)
 			E.take_damage(1, TRUE)
 
-//nice one jpr
+//nice one jpr~
 /datum/reagent/consumable/drink/coffee/atomiccoffee
 	name = "Atomic Coffee"
 	description = "This coffee is a brewed drink prepared from roasted seeds and enriched from use in atomic coffemaker. Consume in moderation"
@@ -263,18 +263,18 @@
 /datum/reagent/consumable/drink/atomiccoffee/on_mob_life(mob/living/L, metabolism)
 	switch(current_cycle)
 		if(1 to 10)
-			L.adjustStaminaLoss(-2*REM)
+			L.adjustStaminaLoss(-effect_str)
 		if(11 to 30)
-			L.adjustStaminaLoss(-1*REM)
+			L.adjustStaminaLoss(-0.5*effect_str)
 		if(11 to 60)
-			L.adjustStaminaLoss(-0.5*REM)
+			L.adjustStaminaLoss(-0.25*effect_str)
 			L.jitter(1)
 		if(61 to 150)
-			L.adjustStaminaLoss(0.5*REM)
+			L.adjustStaminaLoss(0.25*effect_str)
 			L.apply_damage(5, TOX)
 			L.jitter(2)
 		if(151 to INFINITY)
-			L.adjustStaminaLoss(5*REM)
+			L.adjustStaminaLoss(2.5*effect_str)
 			L.apply_damage(10, TOX) //You're having a bad day.
 			L.jitter(5)
 	return ..()
@@ -469,6 +469,7 @@
 	color = "#FF8CFF" // rgb: 255, 140, 255
 	taste_description = "homely fruit"
 	nutriment_factor = - 1
+	custom_metabolism = REAGENTS_METABOLISM * 0.25 //Twice the rate of paracetamol
 	adj_dizzy = - 10
 
 /datum/reagent/consumable/drink/doctor_delight/on_mob_life(mob/living/L, metabolism)

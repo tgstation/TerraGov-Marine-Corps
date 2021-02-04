@@ -48,6 +48,7 @@
 	icon_state = "mopbucket"
 	density = TRUE
 	anchored = FALSE
+	resistance_flags = XENO_DAMAGEABLE
 	var/amount_per_transfer_from_this = 5 //Shit I dunno, adding this so syringes stop runtime erroring. --NeoFite
 
 /obj/structure/mopbucket/Initialize()
@@ -172,7 +173,8 @@ obj/item/alienjar
 	layer = MOB_LAYER
 	resistance_flags = XENO_DAMAGEABLE
 
-/obj/structure/plasticflaps/CanPass(atom/A, turf/T)
+/obj/structure/plasticflaps/CanAllowThrough(atom/A, turf/T)
+	. = ..()
 	if(istype(A) && CHECK_BITFIELD(A.flags_pass, PASSGLASS))
 		return prob(60)
 
@@ -181,13 +183,12 @@ obj/item/alienjar
 		return FALSE
 
 	if(istype(A, /obj/vehicle))	//no vehicles
-		return 0
+		return FALSE
 
 	if(isliving(A)) // You Shall Not Pass!
 		var/mob/living/M = A
-		if(!M.lying_angle && !ismonkey(M) && !istype(M, /mob/living/simple_animal/mouse) && !istype(M, /mob/living/carbon/xenomorph/larva) && !istype(M, /mob/living/carbon/xenomorph/runner) && !istype(M, /mob/living/carbon/xenomorph/panther))  //If your not laying down, or a small creature, no pass.
-			return 0
-	return ..()
+		if(!M.lying_angle && !ismonkey(M) && !istype(M, /mob/living/simple_animal/mouse) && !istype(M, /mob/living/carbon/xenomorph/larva) && !istype(M, /mob/living/carbon/xenomorph/runner) && !istype(M, /mob/living/carbon/xenomorph/roony))  //If your not laying down, or a small creature, no pass.
+			return FALSE
 
 /obj/structure/plasticflaps/ex_act(severity)
 	switch(severity)

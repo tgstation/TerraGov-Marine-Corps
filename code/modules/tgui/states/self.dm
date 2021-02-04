@@ -1,7 +1,7 @@
- /**
-  * tgui state: self_state
-  *
-  * Only checks that the user and src_object are the same.
+/**
+ * tgui state: self_state
+ *
+ * Only checks that the user and src_object are the same.
  **/
 
 GLOBAL_DATUM_INIT(self_state, /datum/ui_state/self_state, new)

@@ -10,20 +10,20 @@ Stepping directly on the mine will also blow it up
 	icon = 'icons/obj/items/grenade.dmi'
 	icon_state = "m20"
 	force = 5
-	w_class = WEIGHT_CLASS_SMALL
+	w_class = WEIGHT_CLASS_TINY
 	throwforce = 5
 	throw_range = 6
 	throw_speed = 3
 	flags_atom = CONDUCT
 
 	/// IFF signal - used to determine friendly units
-	var/iff_signal = ACCESS_IFF_MARINE 
+	var/list/iff_signal = list(ACCESS_IFF_MARINE)
 	/// If the mine has been triggered
-	var/triggered = FALSE 
+	var/triggered = FALSE
 	/// State of the mine. Will the mine explode or not
-	var/armed = FALSE 
+	var/armed = FALSE
 	/// Tripwire holds reference to the tripwire obj that is used to trigger an explosion
-	var/obj/effect/mine_tripwire/tripwire 
+	var/obj/effect/mine_tripwire/tripwire
 
 /obj/item/explosive/mine/Destroy()
 	QDEL_NULL(tripwire)
@@ -44,7 +44,7 @@ Stepping directly on the mine will also blow it up
 	. = ..()
 	INVOKE_ASYNC(src, .proc/trigger_explosion)
 
-/// Flamer fire will cause mines to trigger their explosion 
+/// Flamer fire will cause mines to trigger their explosion
 /obj/item/explosive/mine/flamer_fire_act()
 	. = ..()
 	INVOKE_ASYNC(src, .proc/trigger_explosion)
@@ -109,18 +109,17 @@ Stepping directly on the mine will also blow it up
 	var/mob/living/L = A
 	if(L.lying_angle) ///so dragged corpses don't trigger mines.
 		return
-	Bumped(A)
+	trip_mine(A)
 
-/obj/item/explosive/mine/Bumped(mob/living/L)
-	. = ..()
+/obj/item/explosive/mine/proc/trip_mine(mob/living/L)
 	if(!armed || triggered)
-		return
+		return FALSE
 	if((L.status_flags & INCORPOREAL))
-		return
+		return FALSE
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
 		if(H.get_target_lock(iff_signal))
-			return
+			return FALSE
 
 	L.visible_message("<span class='danger'>[icon2html(src, viewers(L))] \The [src] clicks as [L] moves in front of it.</span>", \
 	"<span class='danger'>[icon2html(src, viewers(L))] \The [src] clicks as you move in front of it.</span>", \
@@ -128,6 +127,7 @@ Stepping directly on the mine will also blow it up
 
 	playsound(loc, 'sound/weapons/mine_tripped.ogg', 25, 1)
 	INVOKE_ASYNC(src, .proc/trigger_explosion)
+	return TRUE
 
 /// Alien attacks trigger the explosive to instantly detonate
 /obj/item/explosive/mine/attack_alien(mob/living/carbon/xenomorph/M)
@@ -174,11 +174,11 @@ Stepping directly on the mine will also blow it up
 		return
 
 	if(linked_mine && isliving(A))
-		linked_mine.Bumped(A)
+		linked_mine.trip_mine(A)
 
 /// PMC specific mine, with IFF for PMC units
 /obj/item/explosive/mine/pmc
 	name = "\improper M20P Claymore anti-personnel mine"
 	desc = "The M20P Claymore is a directional proximity triggered anti-personnel mine designed by Armat Systems for use by the TerraGov Marine Corps. It has been modified for use by the NT PMC forces."
 	icon_state = "m20p"
-	iff_signal = ACCESS_IFF_PMC
+	iff_signal = list(ACCESS_IFF_PMC)

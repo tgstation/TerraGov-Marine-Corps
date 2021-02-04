@@ -24,7 +24,6 @@
 
 	Arguments
 		stun_amount {int} applied as Stun and Paralyze
-		agony_amount {int} dealt as HALLOSS damage to the def_zone
 		def_zone {enum} which body part to target
 */
 /mob/living/proc/stun_effect_act(stun_amount, agony_amount, def_zone)
@@ -40,7 +39,6 @@
 		apply_effect(EYE_BLUR, stun_amount)
 
 	if(agony_amount)
-		apply_damage(agony_amount, HALLOSS, def_zone)
 		apply_effect(STUTTER, agony_amount/10)
 		apply_effect(EYE_BLUR, agony_amount/10)
 
@@ -147,20 +145,23 @@
 
 /mob/living/carbon/xenomorph/IgniteMob()
 	. = ..()
-	if(.)
-		var/fire_light = min(fire_stacks,5)
-		if(fire_light > fire_luminosity) // light up xenos if new light source greater than
-			set_light(0) //Remove old fire_luminosity
-			fire_luminosity = fire_light
-			set_light(fire_luminosity) //Add new fire luminosity
-		var/obj/item/clothing/mask/facehugger/F = get_active_held_item()
-		var/obj/item/clothing/mask/facehugger/G = get_inactive_held_item()
-		if(istype(F))
-			F.kill_hugger()
-			dropItemToGround(F)
-		if(istype(G))
-			G.kill_hugger()
-			dropItemToGround(G)
+	if(!. || fire_resist_modifier <= -1)	//having high fire resist makes you immune
+		return
+	var/fire_light = min(fire_stacks,5)
+	if(fire_light > fire_luminosity) // light up xenos if new light source thats bigger hits them
+		if(fire_light < light_range)
+			set_light_range(fire_light) //update range
+		set_light_color(BlendRGB(light_color, LIGHT_COLOR_LAVA))
+		fire_luminosity = fire_light
+		set_light_on(TRUE) //And activate it
+	var/obj/item/clothing/mask/facehugger/F = get_active_held_item()
+	var/obj/item/clothing/mask/facehugger/G = get_inactive_held_item()
+	if(istype(F))
+		F.kill_hugger()
+		dropItemToGround(F)
+	if(istype(G))
+		G.kill_hugger()
+		dropItemToGround(G)
 
 
 /mob/living/proc/ExtinguishMob()
@@ -175,11 +176,11 @@
 
 /mob/living/carbon/xenomorph/ExtinguishMob()
 	. = ..()
-	set_light(0) //Reset lighting
+	set_light_on(FALSE) //Reset lighting
 
 /mob/living/carbon/xenomorph/boiler/ExtinguishMob()
 	. = ..()
-	updateBoilerGlow()
+	update_boiler_glow()
 
 /mob/living/proc/update_fire()
 	return
@@ -204,6 +205,7 @@
 
 
 /mob/living/proc/resist_fire(datum/source)
+	SIGNAL_HANDLER
 	fire_stacks = max(fire_stacks - rand(3, 6), 0)
 	Paralyze(80)
 

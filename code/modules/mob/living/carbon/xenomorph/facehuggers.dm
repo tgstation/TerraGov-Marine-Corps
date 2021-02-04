@@ -8,13 +8,13 @@
 #define IMPREGNATION_TIME 12 SECONDS
 
 /**
-  *Facehuggers
-  *
-  *They work by being activated using timers to trigger leap_at_nearest_target()
-  *Going inactive and active is handeled by go_active() and go_idle()
-  *Lifetime is handled by a timer on check_lifecycle()
-  *For the love of god do not use process() and rng for this kind of shit it makes it unreliable and buggy as fuck
-  */
+ *Facehuggers
+ *
+ *They work by being activated using timers to trigger leap_at_nearest_target()
+ *Going inactive and active is handeled by go_active() and go_idle()
+ *Lifetime is handled by a timer on check_lifecycle()
+ *For the love of god do not use process() and rng for this kind of shit it makes it unreliable and buggy as fuck
+ */
 /obj/item/clothing/mask/facehugger
 	name = "alien"
 	desc = "It has some sort of a tube at the end of its tail."
@@ -226,6 +226,11 @@
 	if(stat == CONSCIOUS)
 		HasProximity(target)
 
+/obj/item/clothing/mask/facehugger/Uncross(atom/movable/AM)
+	. = ..()
+	if(. && stat == CONSCIOUS && isxeno(AM)) //shuffle hug prevention, if a xeno steps off go_idle()
+		go_idle()
+
 /obj/item/clothing/mask/facehugger/on_found(mob/finder)
 	if(stat == CONSCIOUS)
 		HasProximity(finder)
@@ -349,7 +354,7 @@
 
 	if(M.in_throw_mode && M.dir != dir && !M.incapacitated() && !M.get_active_held_item())
 		var/catch_chance = 50
-		if(M.dir == reverse_direction(dir))
+		if(M.dir == REVERSE_DIR(dir))
 			catch_chance += 20
 		catch_chance -= M.shock_stage * 0.3
 		if(M.get_inactive_held_item())
@@ -405,7 +410,7 @@
 				if(istype(H.wear_ear, /obj/item/radio/headset/mainship/marine))
 					var/obj/item/radio/headset/mainship/marine/R = H.wear_ear
 					if(R.camera.status)
-						R.camera.status = FALSE //Turn camera off.
+						R.camera.toggle_cam(null, FALSE) //Turn camera off.
 						to_chat(H, "<span class='danger'>Your headset camera flickers off; you'll need to reactivate it by rebooting your headset HUD!<span>")
 
 	if(blocked)
@@ -436,7 +441,7 @@
 
 /obj/item/clothing/mask/facehugger/proc/Impregnate(mob/living/carbon/target)
 	var/as_planned = target?.wear_mask == src ? TRUE : FALSE
-	if(target.can_be_facehugged(src, FALSE, FALSE) && !sterile) //double check for changes
+	if(target.can_be_facehugged(src, FALSE, FALSE) && !sterile && as_planned) //is hugger still on face and can they still be impregnated
 		if(!(locate(/obj/item/alien_embryo) in target))
 			var/obj/item/alien_embryo/embryo = new(target)
 			embryo.hivenumber = hivenumber
@@ -455,8 +460,7 @@
 			target.visible_message("<span class='danger'>[src] falls limp after violating [target]'s face!</span>")
 		else //Huggered but not impregnated, deal damage.
 			target.visible_message("<span class='danger'>[src] frantically claws at [target]'s face before falling down!</span>","<span class='danger'>[src] frantically claws at your face before falling down! Auugh!</span>")
-			target.apply_damage(15, BRUTE, "head")
-			UPDATEHEALTH(target)
+			target.apply_damage(15, BRUTE, "head", updating_health = TRUE)
 
 
 /obj/item/clothing/mask/facehugger/proc/kill_hugger()
@@ -507,7 +511,7 @@
 	..()
 	if(P.ammo.flags_ammo_behavior & AMMO_XENO)
 		return FALSE //Xeno spits ignore huggers.
-	if(P.damage && !(P.ammo.damage_type in list(OXY, HALLOSS, STAMINA)))
+	if(P.damage && !(P.ammo.damage_type in list(OXY, STAMINA)))
 		kill_hugger()
 	P.ammo.on_hit_obj(src,P)
 	return TRUE
@@ -518,6 +522,28 @@
 
 /obj/item/clothing/mask/facehugger/flamer_fire_act()
 	kill_hugger()
+
+/obj/item/clothing/mask/facehugger/dropped(mob/user)
+	. = ..()
+	go_idle()
+
+/obj/item/clothing/mask/facehugger/effect_smoke(obj/effect/particle_effect/smoke/S)
+	. = ..()
+	if(!.)
+		return
+	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_ACID) || CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_NEURO))
+		go_idle()
+
+/obj/item/clothing/mask/facehugger/dropped(mob/user)
+	. = ..()
+	go_idle()
+
+/obj/item/clothing/mask/facehugger/effect_smoke(obj/effect/particle_effect/smoke/S)
+	. = ..()
+	if(!.)
+		return
+	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_ACID) || CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_NEURO))
+		go_idle()
 
 /////////////////////////////
 // SUBTYPES

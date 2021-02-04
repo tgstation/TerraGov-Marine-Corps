@@ -15,8 +15,11 @@
 	icon = 'icons/mob/modular/modular_armor.dmi'
 	icon_state = "underarmor_icon"
 	item_state = "underarmor"
+	item_state_worn = TRUE
+	item_icons = list(slot_wear_suit_str = 'icons/mob/modular/modular_armor.dmi')
 	flags_atom = CONDUCT
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
+	flags_item = SYNTH_RESTRICTED
 	/// What is allowed to be equipped in suit storage
 	allowed = list(
 		/obj/item/weapon/gun,
@@ -24,14 +27,14 @@
 		/obj/item/storage/large_holster/machete,
 		/obj/item/weapon/claymore,
 		/obj/item/storage/belt/gun,
-		/obj/item/storage/belt/knifepouch
+		/obj/item/storage/belt/knifepouch,
 	)
 	flags_equip_slot = ITEM_SLOT_OCLOTHING
 	w_class = WEIGHT_CLASS_BULKY
 	time_to_equip = 2 SECONDS
 	time_to_unequip = 1 SECONDS
 
-	soft_armor = list("melee" = 10, "bullet" = 25, "laser" = 25, "energy" = 20, "bomb" = 15, "bio" = 15, "rad" = 15, "fire" = 15, "acid" = 15)
+	soft_armor = list("melee" = 5, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 15, "bio" = 15, "rad" = 15, "fire" = 15, "acid" = 15)
 	siemens_coefficient = 0.9
 	permeability_coefficient = 1
 	gas_transfer_coefficient = 1
@@ -59,7 +62,7 @@
 	var/equip_delay = 0.5 SECONDS
 
 	/// Misc stats
-	light_strength = 5
+	light_range = 5
 
 
 /obj/item/clothing/suit/modular/Destroy()
@@ -73,6 +76,20 @@
 	QDEL_NULL(storage)
 	return ..()
 
+/obj/item/clothing/suit/modular/apply_custom(image/standing)
+	if(slot_chest)
+		standing.overlays += image(slot_chest.icon, ITEM_STATE_IF_SET(slot_chest))
+	if(slot_arms)
+		standing.overlays += image(slot_arms.icon, ITEM_STATE_IF_SET(slot_arms))
+	if(slot_legs)
+		standing.overlays += image(slot_legs.icon, ITEM_STATE_IF_SET(slot_legs))
+	for(var/mod in installed_modules)
+		var/obj/item/armor_module/module = mod
+		standing.overlays += image(module.icon, ITEM_STATE_IF_SET(module))
+	if(installed_storage)
+		standing.overlays += image(installed_storage.icon, ITEM_STATE_IF_SET(installed_storage))
+	
+	
 /obj/item/clothing/suit/modular/mob_can_equip(mob/user, slot, warning)
 	if(slot == SLOT_WEAR_SUIT && ishuman(user))
 		var/mob/living/carbon/human/H = user
@@ -99,7 +116,7 @@
 
 
 /obj/item/clothing/suit/modular/item_action_slot_check(mob/user, slot)
-	if(!light_strength) // No light no ability
+	if(!light_range) // No light no ability
 		return FALSE
 	if(!ishuman(user))
 		return FALSE
@@ -308,13 +325,14 @@
 /obj/item/clothing/head/modular
 	name = "Jaeger Pattern Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points."
-	icon = 'icons/mob/modular/modular_armor.dmi'
+	icon = 'icons/mob/modular/modular_helmet_icon.dmi'
 	icon_state = "medium_helmet"
+	item_icons = list(slot_head_str = 'icons/mob/modular/modular_helmet.dmi')
 	flags_armor_protection = HEAD
 	flags_armor_features = ARMOR_NO_DECAP
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS
-	allowed = list()
+	allowed = null
 	flags_equip_slot = ITEM_SLOT_HEAD
 	w_class = WEIGHT_CLASS_NORMAL
 
@@ -327,13 +345,6 @@
 
 	/// How long it takes to attach or detach to this item
 	var/equip_delay = 3 SECONDS
-
-
-/obj/item/clothing/head/modular/Initialize()
-	. = ..()
-	// Removes the _icon from the end of the icon_state
-	icon_state = "[initial(icon_state)]_icon"
-	item_state = initial(icon_state)
 
 
 /obj/item/clothing/head/modular/attackby(obj/item/I, mob/user, params)
@@ -357,8 +368,7 @@
 	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 		return TRUE
 
-	icon_state = "[initial(icon_state)]_[new_color]_icon"
-	item_state = "[initial(icon_state)]_[new_color]"
+	icon_state = "[initial(icon_state)]_[new_color]"
 
 	return TRUE
 
@@ -366,7 +376,6 @@
 /obj/item/clothing/head/modular/Destroy()
 	QDEL_NULL(installed_module)
 	return ..()
-
 
 /obj/item/clothing/head/modular/item_action_slot_check(mob/user, slot)
 	if(!ishuman(user))
@@ -421,6 +430,10 @@
 	if(installed_module)
 		. += image(installed_module.icon, installed_module.item_state)
 
+/obj/item/clothing/head/modular/apply_custom(image/standing)
+	if(installed_module)
+		standing.overlays += image(installed_module.icon, ITEM_STATE_IF_SET(installed_module))
+
 
 /obj/item/clothing/head/modular/get_mechanics_info()
 	. = ..()
@@ -465,10 +478,25 @@
 
 /obj/item/clothing/head/modular/marine/skirmisher
 	name = "Jaeger Pattern Skirmisher Helmet"
-	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Infantry markings."
+	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Skirmisher markings."
 	icon_state = "skirmisher_helmet"
 
 /obj/item/clothing/head/modular/marine/assault
 	name = "Jaeger Pattern Assault Helmet"
-	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Infantry markings."
+	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Assault markings."
 	icon_state = "assault_helmet"
+
+/obj/item/clothing/head/modular/marine/eva
+	name = "Jaeger Pattern EVA Helmet"
+	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has EVA markings."
+	icon_state = "eva_helmet"
+
+/obj/item/clothing/head/modular/marine/eva/skull
+	name = "Jaeger Pattern EVA Skull Helmet"
+	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has EVA markings and a skull on the visor."
+	icon_state = "eva_skull_helmet"
+
+/obj/item/clothing/head/modular/marine/eod
+	name = "Jaeger Pattern EOD Helmet"
+	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has EOD markings"
+	icon_state = "eod_helmet"

@@ -89,6 +89,7 @@
 
 ///Called by the deletion of the referenced powercell.
 /obj/item/defibrillator/proc/on_cell_deletion(obj/item/cell/source, force)
+	SIGNAL_HANDLER
 	stack_trace("Powercell deleted while powering the defib, this isn't supposed to happen normally.")
 	set_dcell(null)
 
@@ -98,7 +99,7 @@
 		return
 	for(var/g in GLOB.observer_list)
 		var/mob/dead/observer/ghost = g
-		if(ghost.mind.current != src)
+		if(!ghost?.mind.current == src) //we can find undeletted ghost references in here, ghost deletting problem.
 			continue
 		if(ghost.client && ghost.can_reenter_corpse)
 			return ghost
@@ -108,7 +109,7 @@
 /mob/living/carbon/human/proc/is_revivable()
 	var/datum/internal_organ/heart/heart = internal_organs_by_name["heart"]
 
-	if(!heart || heart.is_broken() || !has_brain() || chestburst)
+	if(!heart || heart.is_broken() || !has_brain())
 		return FALSE
 	return TRUE
 

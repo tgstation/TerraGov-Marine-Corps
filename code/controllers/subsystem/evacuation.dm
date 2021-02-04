@@ -178,7 +178,7 @@ SUBSYSTEM_DEF(evacuation)
 
 	var/f = SSmapping.levels_by_trait(ZTRAIT_MARINE_MAIN_SHIP)
 	if(f in z_levels)
-		ship_intact = FALSE
+		ship_intact = TRUE
 
 	for(var/x in GLOB.player_list)
 		var/mob/M = x

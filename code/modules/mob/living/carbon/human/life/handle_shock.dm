@@ -79,22 +79,3 @@
 				to_chat(src, "<span class='danger'>[pick("You black out", "You feel like you could die any moment now", "You're about to lose consciousness")]!</span>")
 				Unconscious(10 SECONDS)
 			Paralyze(10 SECONDS)
-
-
-/mob/living/carbon/human/halloss_recovery()
-	if(status_flags & GODMODE || analgesic || (species && species.species_flags & NO_PAIN) || stat == DEAD)
-		setHalLoss(0)
-		return
-	var/rate = BASE_HALLOSS_RECOVERY_RATE
-
-	if(lying_angle || last_move_intent < world.time - 20) //If we're standing still or knocked down we benefit from the downed halloss rate
-		if(resting || IsSleeping()) //we're deliberately resting, comfortably taking a breather
-			rate = REST_HALLOSS_RECOVERY_RATE
-		else
-			rate = DOWNED_HALLOSS_RECOVERY_RATE
-	else if(m_intent == MOVE_INTENT_WALK)
-		rate = WALK_HALLOSS_RECOVERY_RATE
-	if(aura_recovery_multiplier)
-		rate *= aura_recovery_multiplier
-
-	adjustHalLoss(rate)

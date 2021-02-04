@@ -109,14 +109,22 @@
 	return attack_hand(M)
 
 
-/obj/effect/forcefield/fog/CanPass(atom/movable/mover, turf/target)
-	if(isobj(mover))
-		return TRUE
+/obj/effect/forcefield/fog/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
+	if(isobj(mover)) //No grenades/bullets should cross this
+		return FALSE
 	if(isxeno(mover))
 		var/mob/living/carbon/xenomorph/moving_xeno = mover
-		if(LAZYLEN(moving_xeno.stomach_contents))
-			return FALSE
+		for(var/tummy_resident in moving_xeno.stomach_contents)
+			if(ishuman(tummy_resident))
+				var/mob/living/carbon/human/H = tummy_resident
+				if(check_tod(H))
+					return FALSE
 		return TRUE
+	if(ishuman(mover) && !issynth(mover))
+		var/mob/living/carbon/human/H = mover
+		if(H.stat == DEAD && !check_tod(H)) // Allow pulled perma-dead humans to cross
+			return TRUE
 	return FALSE
 
 /obj/effect/forcefield/fog/passable_fog
@@ -126,7 +134,8 @@
 	icon_state = "smoke"
 	density = FALSE
 
-/obj/effect/forcefield/fog/passable_fog/CanPass(atom/movable/mover, turf/target)
+/obj/effect/forcefield/fog/passable_fog/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	return TRUE
 
 /obj/effect/forcefield/fog/passable_fog/Crossed(atom/movable/mover, oldloc)
@@ -168,11 +177,16 @@
 	light_color = "#FFFFFF"
 	light_range = MINIMUM_USEFUL_LIGHT_RANGE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-
+	light_system = MOVABLE_LIGHT
 
 /obj/effect/dummy/lighting_obj/Initialize(mapload, _color, _range, _power, _duration)
 	. = ..()
-	set_light(_range ? _range : light_range, _power ? _power : light_power, _color ? _color : light_color)
+	if(!isnull(_range))
+		set_light_range(_range)
+	if(!isnull(_power))
+		set_light_power(_power)
+	if(!isnull(_color))
+		set_light_color(_color)
 	if(_duration)
 		QDEL_IN(src, _duration)
 

@@ -1,6 +1,6 @@
 //Sectoids
 /datum/emergency_call/sectoid
-	name = "Sectoids"
+	name = "Sectoid Expedition"
 	probability = 5
 	spawn_type = /mob/living/carbon/human/species/sectoid
 	shuttle_id = "distress_ufo"
@@ -34,9 +34,9 @@
 		leader = H
 		var/datum/job/J = SSjob.GetJobType(/datum/job/sectoid/leader)
 		H.apply_assigned_role_to_spawn(J)
-		to_chat(H, "<span class='notice'>You are the leader of this scouting expedition. Your are able to use your stronger psionic power to reduce any impact that might harm you.</span>")
+		to_chat(H, "<p style='font-size:1.5em'><span class='notice'>You are the leader of this scouting expedition. You are able to use your stronger psionic powers to protect yourself from harm.</span></p>")
 		return
 
 	var/datum/job/J = SSjob.GetJobType(/datum/job/sectoid/grunt)
 	H.apply_assigned_role_to_spawn(J)
-	to_chat(H, "<span class='notice'>You are a grunt, with limited psionic potential.</span>")
+	to_chat(H, "<p style='font-size:1.5em'><span class='notice'>You are a grunt, with limited psionic potential.</span></p>")

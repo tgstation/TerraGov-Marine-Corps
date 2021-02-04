@@ -48,13 +48,12 @@ obj/structure/windoor_assembly/Destroy()
 /obj/structure/windoor_assembly/update_icon()
 	icon_state = "[facing]_[secure]windoor_assembly[state]"
 
-/obj/structure/windoor_assembly/CanPass(atom/movable/mover, turf/target)
+/obj/structure/windoor_assembly/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
 		return 1
-	if(get_dir(loc, target) == dir) //Make sure looking at appropriate border
-		return !density
-	else
-		return 1
+	if(!(get_dir(loc, target) == dir)) //Make sure looking at appropriate border
+		return TRUE
 
 /obj/structure/windoor_assembly/CheckExit(atom/movable/mover as mob|obj, turf/target as turf)
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
@@ -228,7 +227,7 @@ obj/structure/windoor_assembly/Destroy()
 				to_chat(user, "<span class='notice'>You finish the windoor!</span>")
 
 				if(secure)
-					var/obj/machinery/door/window/brigdoor/BR = new(loc)
+					var/obj/machinery/door/window/secure/BR = new(loc)
 					if(facing == "l")
 						BR.icon_state = "leftsecureopen"
 						BR.base_state = "leftsecure"

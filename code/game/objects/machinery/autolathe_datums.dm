@@ -114,6 +114,21 @@ GLOBAL_LIST_EMPTY(autolathe_categories)
 	path = /obj/item/circuitboard/airlock
 	category = "Engineering"
 
+/datum/autolathe/recipe/miningwellresistance
+	name = "mining well reinforcement upgrade"
+	path = /obj/item/minerupgrade/reinforcement
+	category = "Engineering"
+
+/datum/autolathe/recipe/miningwellcompactor
+	name = "mining well compactor upgrade"
+	path = /obj/item/minerupgrade/compactor
+	category = "Engineering"
+
+/datum/autolathe/recipe/miningwelloverclock
+	name = "mining well overclock upgrade"
+	path = /obj/item/minerupgrade/overclock
+	category = "Engineering"
+
 /datum/autolathe/recipe/airalarm
 	name = "air alarm electronics"
 	path = /obj/item/circuitboard/airalarm
@@ -266,4 +281,14 @@ GLOBAL_LIST_EMPTY(autolathe_categories)
 /datum/autolathe/recipe/camera_assembly
 	name = "camera assembly"
 	path = /obj/item/frame/camera
+	category = "Devices and Components"
+
+/datum/autolathe/recipe/conveyors
+	name = "30 conveyors"
+	path = /obj/item/stack/conveyor/thirty
+	category = "Devices and Components"
+
+/datum/autolathe/recipe/conveyors
+	name = "Conveyor Switch"
+	path = /obj/item/conveyor_switch_construct
 	category = "Devices and Components"

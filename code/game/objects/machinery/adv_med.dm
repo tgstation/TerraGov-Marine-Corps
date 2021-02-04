@@ -171,7 +171,6 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 3
 	var/obj/machinery/bodyscanner/connected
-	var/known_implants = list(/obj/item/implant/neurostim)
 	var/delete
 	var/temphtml
 
@@ -211,7 +210,7 @@
 	var/dat
 	if(connected?.occupant) //Is something connected?
 		var/mob/living/carbon/human/H = connected.occupant
-		dat = med_scan(H, dat, known_implants)
+		dat = med_scan(H, dat, GLOB.known_implants)
 	else
 		dat = "<font color='red'> Error: No Body Scanner connected.</font>"
 
@@ -249,4 +248,5 @@
 
 ///Called by the deletion of the connected bodyscanner.
 /obj/machinery/body_scanconsole/proc/on_bodyscanner_deletion(obj/machinery/bodyscanner/source, force)
+	SIGNAL_HANDLER
 	set_connected(null)

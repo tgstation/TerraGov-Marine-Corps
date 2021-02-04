@@ -30,7 +30,7 @@
 	var/mob/living/carbon/xenomorph/devourer = owner
 	if(!LAZYLEN(devourer.stomach_contents))
 		if(!silent)
-			to_chat(devourer, "<span class='warning'>There's nothing in our belly that needs regurgitating.</span>")
+			to_chat(devourer, "<span class='warning'>There's nothing in our stomach that needs regurgitating.</span>")
 		return FALSE
 
 /datum/action/xeno_action/regurgitate/action_activate()
@@ -38,6 +38,89 @@
 	spewer.empty_gut(TRUE)
 
 	return succeed_activate()
+
+//*********
+// Headbite
+//*********
+/datum/action/xeno_action/activable/headbite
+	name = "Headbite"
+	action_icon_state = "headbite"
+	mechanics_text = "Permanently kill a target."
+	use_state_flags = XACT_USE_STAGGERED|XACT_USE_FORTIFIED|XACT_USE_CRESTED //can't use while staggered, defender fortified or crest down
+	keybind_signal = COMSIG_XENOABILITY_HEADBITE
+	plasma_cost = 100
+
+/datum/action/xeno_action/activable/headbite/can_use_ability(atom/A, silent = FALSE, override_flags)
+	. = ..() //do after checking the below stuff
+	if(!.)
+		return
+	if(!iscarbon(A))
+		return FALSE
+	var/mob/living/carbon/xenomorph/X = owner
+	var/mob/living/carbon/victim = A //target of ability
+	if(X.action_busy) //can't use if busy
+		return FALSE
+	if(!X.Adjacent(victim)) //checks if owner next to target
+		return FALSE
+	if(X.on_fire)
+		if(!silent)
+			to_chat(X, "<span class='warning'>We're too busy being on fire to do this!</span>")
+		return FALSE
+	if(victim.stat != DEAD)
+		if(!silent)
+			to_chat(X, "<span class='warning'>This creature is struggling too much for us to aim precisely.</span>")
+		return FALSE
+	if(victim.headbitten)
+		if(!silent)
+			to_chat(X, "<span class='warning'>This creature has already been headbitten.</span>")
+		return FALSE
+	if(victim.chestburst)
+		if(!silent)
+			to_chat(X, "<span class='warning'>This creature has already served its purpose.</span>")
+		return FALSE
+	if(X.issamexenohive(victim)) //checks if target and victim are in the same hive
+		if(!silent)
+			to_chat(X, "<span class='warning'>We can't bring ourselves to harm a fellow sister to this magnitude.</span>")
+		return FALSE
+	if(issynth(victim)) //checks if target is a synth
+		if(!silent)
+			to_chat(X, "<span class='warning'>We have no reason to bite this non-living thing.</span>")
+		return FALSE
+	X.face_atom(victim) //Face towards the target so we don't look silly
+	X.visible_message("<span class='xenowarning'>\The [X] begins opening its mouth and extending a second jaw towards \the [victim].</span>", \
+	"<span class='danger'>We prepare our inner jaw for a finishing blow on \the [victim]!</span>", null, 20)
+	if(!do_after(X, 10 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(X, /mob.proc/break_do_after_checks, list("health" = X.health))))
+		X.visible_message("<span class='xenowarning'>\The [X] retracts its inner jaw.</span>", \
+		"<span class='danger'>We retract our inner jaw.</span>", null, 20)
+		return FALSE
+	succeed_activate() //dew it
+
+/datum/action/xeno_action/activable/headbite/use_ability(mob/M)
+	var/mob/living/carbon/xenomorph/X = owner
+	var/mob/living/carbon/victim = M
+
+	X.visible_message("<span class='xenodanger'>\The [X] viciously bites into \the [victim]'s head with its inner jaw!</span>", \
+	"<span class='xenodanger'>We suddenly bite into the \the [victim]'s head with our second jaw!</span>")
+
+	if(ishuman(victim))
+		var/mob/living/carbon/human/H = victim
+		victim.emote_burstscream()
+		var/datum/internal_organ/O
+		O = H.internal_organs_by_name["brain"] //This removes (and later garbage collects) the organ. No brain means instant death.
+		H.internal_organs_by_name -= "brain"
+		H.internal_organs -= O
+
+	X.do_attack_animation(victim, ATTACK_EFFECT_BITE)
+	playsound(victim, pick( 'sound/weapons/alien_tail_attack.ogg', 'sound/weapons/alien_bite1.ogg'), 50)
+	victim.death()
+	victim.headbitten = TRUE
+	victim.update_headbite()
+
+	log_combat(victim, owner, "was headbitten.")
+	log_game("[key_name(victim)] was headbitten at [AREACOORD(victim.loc)].")
+
+	GLOB.round_statistics.xeno_headbites++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "xeno_headbites")
 
 // ***************************************
 // *********** Drone-y abilities
@@ -92,6 +175,14 @@
 /datum/action/xeno_action/plant_weeds/slow
 	cooldown_timer = 12 SECONDS
 
+/datum/action/xeno_action/plant_weeds/slow/action_activate()
+	if(locate(/obj/effect/alien/weeds) in range(1, owner.loc))
+		return ..()
+	var/mob/living/carbon/xenomorph/hivemind/hiveminde = owner
+	hiveminde.forceMove(get_turf(hiveminde.core))
+	to_chat(hiveminde, "<span class='xenonotice'>We can't plant a node without weeds nearby, we've been moved back to our core.</span>")
+	return fail_activate()
+
 // Choose Resin
 /datum/action/xeno_action/choose_resin
 	name = "Choose Resin Structure"
@@ -143,7 +234,12 @@
 	if(!scaling_wait)
 		return
 	var/mob/living/carbon/xenomorph/X = owner
-	return base_wait + scaling_wait - max(0, (scaling_wait * X.health / X.maxHealth))
+
+	var/sticky_resin_modifier = 1
+	if(X.selected_resin == /obj/effect/alien/resin/sticky) //Sticky resin builds twice as fast
+		sticky_resin_modifier = 0.5
+
+	return (base_wait + scaling_wait - max(0, (scaling_wait * X.health / X.maxHealth))) * sticky_resin_modifier
 
 /datum/action/xeno_action/activable/secrete_resin/proc/build_resin(turf/T)
 	var/mob/living/carbon/xenomorph/X = owner
@@ -166,7 +262,7 @@
 		to_chat(X, "<span class='warning'>We can only shape on weeds. We must find some resin before we start building!</span>")
 		return fail_activate()
 
-	if(!T.check_alien_construction(X, planned_building = X.selected_resin))
+	if(!T.check_alien_construction(X, planned_building = X.selected_resin) || !T.check_disallow_alien_fortification(X))
 		return fail_activate()
 
 	if(X.selected_resin == /obj/structure/mineral_door/resin)
@@ -201,7 +297,7 @@
 	if(!alien_weeds)
 		return fail_activate()
 
-	if(!T.check_alien_construction(X, planned_building = X.selected_resin))
+	if(!T.check_alien_construction(X, planned_building = X.selected_resin) || !T.check_disallow_alien_fortification(X))
 		return fail_activate()
 
 	if(X.selected_resin == /obj/structure/mineral_door/resin)
@@ -233,9 +329,14 @@
 	else
 		new_resin = new X.selected_resin(T)
 
+	if(X.selected_resin == /obj/effect/alien/resin/sticky) //Sticky resin is discounted because let's face it, it's nowhere near as good as a wall or door
+		plasma_cost = 25
+
 	if(new_resin)
 		add_cooldown()
 		succeed_activate()
+
+	plasma_cost = initial(plasma_cost) //Reset the plasma cost
 
 // Slower version of the secret resin
 /datum/action/xeno_action/activable/secrete_resin/slow
@@ -364,29 +465,42 @@
 			to_chat(owner, "<span class='warning'>We need to be closer to [target].</span>")
 		return FALSE
 
+	if(target.plasma_stored >= target.xeno_caste.plasma_max) //We can't select targets that won't benefit
+		to_chat(owner, "<span class='xenowarning'>[target] already has full plasma.</span>")
+		return FALSE
+
 /datum/action/xeno_action/activable/transfer_plasma/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/carbon/xenomorph/target = A
 
 	to_chat(X, "<span class='notice'>We start focusing our plasma towards [target].</span>")
+	new /obj/effect/temp_visual/transfer_plasma(get_turf(X)) //Cool SFX that confirms our source and our target
+	new /obj/effect/temp_visual/transfer_plasma(get_turf(target)) //Cool SFX that confirms our source and our target
+	playsound(X, "alien_drool", 25)
+
+	X.face_atom(target) //Face our target so we don't look silly
+
 	if(!do_after(X, transfer_delay, TRUE, null, BUSY_ICON_FRIENDLY))
 		return fail_activate()
 
 	if(!can_use_ability(A))
 		return fail_activate()
 
+	target.beam(X,"drain_life",'icons/effects/beam.dmi',10, 10,/obj/effect/ebeam,1) //visual SFX
+	target.add_filter("transfer_plasma_outline", 3, list("type" = "outline", "size" = 1, "color" = COLOR_STRONG_MAGENTA))
+	addtimer(CALLBACK(target, /atom.proc/remove_filter, "transfer_plasma_outline"), 1 SECONDS) //Failsafe blur removal
+
 	var/amount = plasma_transfer_amount
 	if(X.plasma_stored < plasma_transfer_amount)
 		amount = X.plasma_stored //Just use all of it
 
-	if(target.plasma_stored >= target.xeno_caste.plasma_max)
-		to_chat(X, "<span class='xenowarning'>[target] already has full plasma.</span>")
-		return
+	else //Otherwise transfer as much as the target can use
+		amount = clamp(target.xeno_caste.plasma_max - target.plasma_stored, 0, plasma_transfer_amount)
 
 	X.use_plasma(amount)
 	target.gain_plasma(amount)
-	to_chat(target, "<span class='xenowarning'>[X] has transfered [amount] units of plasma to us. We now have [target.plasma_stored]/[target.xeno_caste.plasma_max].</span>")
-	to_chat(X, "<span class='xenowarning'>We have transferred [amount] units of plasma to [target]. We now have [X.plasma_stored]/[X.xeno_caste.plasma_max].</span>")
+	to_chat(target, "<span class='xenodanger'>[X] has transfered [amount] units of plasma to us. We now have [target.plasma_stored]/[target.xeno_caste.plasma_max].</span>")
+	to_chat(X, "<span class='xenodanger'>We have transferred [amount] units of plasma to [target]. We now have [X.plasma_stored]/[X.xeno_caste.plasma_max].</span>")
 	playsound(X, "alien_drool", 25)
 
 //Xeno Larval Growth Sting
@@ -398,6 +512,7 @@
 	plasma_cost = 150
 	cooldown_timer = 12 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_LARVAL_GROWTH_STING
+	target_flags = XABB_MOB_TARGET
 
 /datum/action/xeno_action/activable/larval_growth_sting/on_cooldown_finish()
 	playsound(owner.loc, 'sound/voice/alien_drool1.ogg', 50, 1)
@@ -526,7 +641,7 @@
 	if(!current_acid)
 		return FALSE
 
-	if(initial(new_acid.acid_strength) < current_acid.acid_strength)
+	if(initial(new_acid.acid_strength) > current_acid.acid_strength)
 		return FALSE
 	return TRUE
 
@@ -536,7 +651,7 @@
 	if(!current_acid)
 		return FALSE
 
-	if(initial(new_acid.acid_strength) < current_acid.acid_strength)
+	if(initial(new_acid.acid_strength) > current_acid.acid_strength)
 		return FALSE
 	return TRUE
 
@@ -588,7 +703,7 @@
 
 	if(istype(A, /obj/vehicle/multitile/root/cm_armored))
 		var/obj/vehicle/multitile/root/cm_armored/R = A
-		R.take_damage_type( (1 / newacid.acid_strength) * 20, "acid", X)
+		R.take_damage_type( (1 * newacid.acid_strength) * 20, "acid", X)
 		X.visible_message("<span class='xenowarning'>\The [X] vomits globs of vile stuff at \the [R]. It sizzles under the bubbling mess of acid!</span>", \
 			"<span class='xenowarning'>We vomit globs of vile stuff at \the [R]. It sizzles under the bubbling mess of acid!</span>", null, 5)
 		playsound(X.loc, "sound/bullets/acid_impact1.ogg", 25)
@@ -679,7 +794,9 @@
 /datum/action/xeno_action/activable/spray_acid/proc/acid_splat_turf(turf/T)
 	. = locate(/obj/effect/xenomorph/spray) in T
 	if(!.)
-		. = new /obj/effect/xenomorph/spray(T)
+		var/mob/living/carbon/xenomorph/X = owner
+
+		. = new /obj/effect/xenomorph/spray(T, X.xeno_caste.acid_spray_duration, X.xeno_caste.acid_spray_damage)
 
 		for(var/i in T)
 			var/atom/A = i
@@ -818,28 +935,6 @@
 	X.recurring_injection(A, /datum/reagent/toxin/xeno_neurotoxin, XENO_NEURO_CHANNEL_TIME, XENO_NEURO_AMOUNT_RECURRING)
 
 
-//Panther Neurotox Sting
-/datum/action/xeno_action/activable/neurotox_sting/panther
-	name = "Panther Neurotoxin Sting"
-	mechanics_text = "A channeled melee attack that injects the target with neurotoxin over a few seconds, temporarily stunning them."
-	ability_name = "panther neurotoxin sting"
-	cooldown_timer = 50 SECONDS
-	plasma_cost = 60
-	keybind_signal = COMSIG_XENOABILITY_NEUROTOX_STING
-
-/datum/action/xeno_action/activable/neurotox_sting/panther/use_ability(atom/A)
-	var/mob/living/carbon/xenomorph/X = owner
-
-	succeed_activate()
-
-	add_cooldown()
-
-	GLOB.round_statistics.panther_neurotoxin_stings++
-	SSblackbox.record_feedback("tally", "round_statistics", 1, "panther_neurotoxin_stings")
-
-	X.recurring_injection(A, /datum/reagent/toxin/xeno_neurotoxin, XENO_NEURO_CHANNEL_TIME, XENO_NEURO_AMOUNT_RECCURING_PANTHER)
-
-
 // ***************************************
 // *********** Psychic Whisper
 // ***************************************
@@ -900,7 +995,7 @@
 	if(!do_after(owner, 3 SECONDS, FALSE, alien_weeds))
 		return FALSE
 
-	if(!current_turf.check_alien_construction(owner))
+	if(!current_turf.check_alien_construction(owner) || !current_turf.check_disallow_alien_fortification(owner))
 		return FALSE
 
 	owner.visible_message("<span class='xenowarning'>\The [owner] has laid an egg!</span>", \
@@ -913,6 +1008,194 @@
 	add_cooldown()
 
 
+////////////////////
+/// Build silo
+///////////////////
+/datum/action/xeno_action/activable/build_silo
+	name = "Secrete resin silo"
+	action_icon_state = "resin_silo"
+	mechanics_text = "Creates a new resin silo on a tile with a nest."
+	ability_name = "secrete resin"
+	plasma_cost = 150
+	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN_SILO
+	cooldown_timer = 60 SECONDS
+
+	/// How long does it take to build
+	var/build_time = 10 SECONDS
+
+	/// how many dead / non-chestbursted mobs are required to build the silo
+	var/required_mobs = 3
+
+/datum/action/xeno_action/activable/build_silo/can_use_ability(atom/A, silent, override_flags)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if(!in_range(owner, A))
+		if(!silent)
+			to_chat(owner, "<span class='warning'>We need to get closer!.</span>")
+		return FALSE
+	var/obj/structure/bed/nest/found_nest = locate() in get_turf(A)
+	if(!found_nest)
+		if(!silent)
+			to_chat(owner, "<span class='warning'>You must build a resin nest and have [required_mobs] bodies for a silo!</span>")
+		return FALSE
+
+
+/datum/action/xeno_action/activable/build_silo/use_ability(atom/A)
+	// we do this check here so we can clear the mobs afterwards
+	var/list/mob/living/valid_mobs = list()
+	for(var/thing in get_turf(A))
+		if(!ishuman(thing))
+			continue
+		var/mob/living/turf_mob = thing
+		if(turf_mob.stat == DEAD && turf_mob.chestburst == 0)
+			valid_mobs += turf_mob
+
+	if(length(valid_mobs) < required_mobs)
+		to_chat(owner, "<span class='warning'>There are not enough dead bodies, you need [required_mobs] bodies for a silo!</span>")
+		return fail_activate()
+
+	if(!do_after(owner, build_time, TRUE, A, BUSY_ICON_BUILD))
+		return fail_activate()
+
+	var/obj/structure/resin/silo/hivesilo = new(get_step(A, SOUTHWEST))
+
+	// Throw the mobs inside the silo
+	for(var/iter in valid_mobs)
+		var/mob/living/to_move = iter
+		to_move.chestburst = 2 //So you can't reuse corpses if the silo is destroyed
+		to_move.update_burst()
+		to_move.forceMove(hivesilo)
+
+	// Just to protect against two people doing the action at the same time
+	if(!QDELETED(A))
+		qdel(A)
+
+	succeed_activate()
+
+// Salvage Biomass
+/datum/action/xeno_action/activable/salvage_biomass
+	name = "Salvage Biomass"
+	action_icon_state = "salvage_plasma"
+	ability_name = "salvage biomass"
+	keybind_signal = COMSIG_XENOABILITY_SALVAGE_PLASMA
+	cooldown_timer = DRONE_SALVAGE_COOLDOWN
+
+/datum/action/xeno_action/activable/salvage_biomass/on_cooldown_finish()
+	owner.playsound_local(owner, 'sound/voice/alien_drool1.ogg', 25, 0, 1)
+	to_chat(owner, "<span class='notice'>We are ready to salvage xeno biomass again.</span>")
+	return ..()
+
+/datum/action/xeno_action/activable/salvage_biomass/can_use_ability(atom/A, silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	var/mob/living/carbon/xenomorph/X = owner
+	if(!isxeno(A))
+		to_chat(X, "<span class='xenowarning'>We can only salvage the biomass of deceased xenomorphs!</span>")
+		return FALSE
+
+	var/mob/living/carbon/xenomorph/target = A
+
+	if(target.stat != DEAD)
+		to_chat(X, "<span class='xenowarning'>We can't salvage the biomass of living sisters!</span>")
+		return FALSE
+
+	var/distance = get_dist(X, target)
+	if(distance > DRONE_SALVAGE_BIOMASS_RANGE)
+		to_chat(X, "<span class='xenowarning'>We need to be [distance -  DRONE_SALVAGE_BIOMASS_RANGE] tiles closer to [target].</span>")
+		return FALSE
+
+
+/datum/action/xeno_action/activable/salvage_biomass/use_ability(atom/A)
+
+	var/mob/living/carbon/xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/target = A
+
+
+	X.face_atom(target) //Face the target so we don't look like an ass
+	to_chat(X, "<span class='xenowarning'>We begin to salvage the biomass of [target]...</span>")
+	playsound(X, pick('sound/voice/alien_drool1.ogg','sound/voice/alien_drool2.ogg'), 25)
+
+	if(!do_after(X, DRONE_SALVAGE_BIOMASS_WINDUP, TRUE, target, BUSY_ICON_FRIENDLY)) //Wind up
+		return fail_activate()
+
+
+	X.face_atom(target) //Face the target so we don't look like an ass
+
+	if(!can_use_ability(target, FALSE, XACT_IGNORE_PLASMA)) //Check to make sure the target hasn't gone anywhere/been exploded/etc
+		return fail_activate()
+
+	succeed_activate()
+
+	var/upgrade_amount = target.upgrade_stored * DRONE_SALVAGE_BIOMASS_SALVAGE_RATIO //We only recover a small portion of the target's upgrade and evo points.
+	var/evo_amount = target.evolution_stored * DRONE_SALVAGE_BIOMASS_SALVAGE_RATIO
+
+	//Take all the plas-mar
+	X.gain_plasma(target.plasma_stored)
+
+	//Distribute the upgrade and evo points the target had to the hive:
+	var/list/list_of_upgrade_xenos = list()
+	var/list/list_of_evolve_xenos = list()
+
+	for(var/mob/living/carbon/xenomorph/filter in X.hive.get_all_xenos())
+		if(!(filter.upgrade in DRONE_SALVAGE_UPGRADE_FILTER_LIST)) //Only Xenos who can use the salvage get it; filter them
+			list_of_upgrade_xenos += filter
+		if(!(filter.tier in DRONE_SALVAGE_EVOLUTION_FILTER_LIST) && (filter.evolution_stored < filter.xeno_caste.evolution_threshold))
+			list_of_evolve_xenos += filter
+
+	if(length(list_of_upgrade_xenos))
+		upgrade_amount /= length(list_of_upgrade_xenos) //get the amount distributed to each xeno; protect against dividing by 0
+		for(var/mob/living/carbon/xenomorph/beneficiary in list_of_upgrade_xenos) //Distribute the upgrade salvage to those who can use it
+			beneficiary.upgrade_stored += upgrade_amount
+
+	if(length(list_of_evolve_xenos))
+		evo_amount /= length(list_of_evolve_xenos)
+		for(var/mob/living/carbon/xenomorph/beneficiary in list_of_evolve_xenos) //Distribute the evolve salvage to those who can use it
+			beneficiary.evolution_stored = min(beneficiary.xeno_caste.evolution_threshold, beneficiary.evolution_stored + evo_amount) //Prevents janky overflow
+
+	playsound(target, 'sound/effects/alien_egg_burst.ogg', 25)
+	X.hive.xeno_message("[target]'s remains were salvaged by [X], recovering [upgrade_amount] upgrade points for [length(list_of_upgrade_xenos)] sisters and [evo_amount] evolution points for [length(list_of_evolve_xenos) ] sisters.") //Notify hive and give credit to the good boy drone
+	X.visible_message("<span class='xenowarning'>\ [X] gruesomely absorbs and devours the remains of [target]!</span>", \
+	"<span class='xenowarning'>We messily devour the remains of [target], absorbing [target.plasma_stored] plasma and distributing our deceased sister's essence throughout the hive. We now have [X.plasma_stored]/[X.xeno_caste.plasma_max] plasma stored.</span>") //Narrative description.
+
+	target.gib() //Destroy the corpse
+
+	GLOB.round_statistics.drone_salvage_biomass++ //Statistic incrementation
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "drone_salvage_biomass")
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////
+/// Rally Hive
+///////////////////
+/datum/action/xeno_action/activable/rally_hive
+	name = "Rally Hive"
+	action_icon_state = "rally_hive"
+	mechanics_text = "Rallies the hive to a congregate at a target location, along with an arrow pointer. Gives the Hive your current health status. 60 second cooldown."
+	use_state_flags = XACT_TARGET_SELF
+	ability_name = "rally hive"
+	plasma_cost = 0
+	keybind_signal = COMSIG_XENOABILITY_RALLY_HIVE
+	cooldown_timer = 60 SECONDS
+
+/datum/action/xeno_action/activable/rally_hive/use_ability(atom/A)
+
+	var/mob/living/carbon/xenomorph/X = owner
+
+	X.face_atom(A) //Face towards the target so we don't look silly
+
+	xeno_message("<span class='xenoannounce'>Our leader [X] is rallying the hive to [AREACOORD_NO_Z(A)]!</span>", 3, X.hivenumber, FALSE, get_turf(A), 'sound/voice/alien_distantroar_3.ogg')
+	notify_ghosts("\ [X] is rallying the hive to [AREACOORD_NO_Z(A)]!", source = get_turf(A), action = NOTIFY_JUMP)
+
+	succeed_activate()
+	add_cooldown()
+
+	GLOB.round_statistics.xeno_rally_hive++ //statistics
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "xeno_rally_hive")
+
 /////////////////////////////////////////////////////////////////////////////////////////////
 
 /mob/living/carbon/xenomorph/proc/add_abilities()
@@ -924,3 +1207,6 @@
 /mob/living/carbon/xenomorph/proc/remove_abilities()
 	for(var/action_datum in xeno_abilities)
 		qdel(action_datum)
+
+/datum/action/xeno_action/activable/rally_hive/hivemind //Halve the cooldown for Hiveminds as their relative omnipresence means they can actually make use of this lower cooldown.
+	cooldown_timer = 30 SECONDS

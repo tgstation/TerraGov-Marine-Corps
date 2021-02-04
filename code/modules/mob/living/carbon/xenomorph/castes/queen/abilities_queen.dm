@@ -168,79 +168,6 @@
 		return ..()
 	return TRUE
 
-
-// ***************************************
-// *********** Tail sweep
-// ***************************************
-/datum/action/xeno_action/activable/tail_sweep
-	name = "Tail Sweep"
-	action_icon_state = "tail_sweep"
-	mechanics_text = "Hit all adjacent units around you, knocking them away and down."
-	ability_name = "tail sweep"
-	plasma_cost = 35
-	cooldown_timer = 12 SECONDS
-	keybind_flags = XACT_KEYBIND_USE_ABILITY
-	keybind_signal = COMSIG_XENOABILITY_TAIL_SWEEP
-
-/datum/action/xeno_action/activable/tail_sweep/can_use_ability(atom/A, silent = FALSE, override_flags)
-	. = ..()
-	if(!.)
-		return FALSE
-	var/mob/living/carbon/xenomorph/X = owner
-	if(X.crest_defense && X.plasma_stored < (plasma_cost * 2))
-		if(!silent)
-			to_chat(X, "<span class='xenowarning'>We don't have enough plasma, we need [(plasma_cost * 2) - X.plasma_stored] more plasma!</span>")
-		return FALSE
-
-/datum/action/xeno_action/activable/tail_sweep/on_cooldown_finish()
-	var/mob/living/carbon/xenomorph/X = owner
-	to_chat(X, "<span class='notice'>We gather enough strength to tail sweep again.</span>")
-	return ..()
-
-/datum/action/xeno_action/activable/tail_sweep/use_ability()
-	var/mob/living/carbon/xenomorph/X = owner
-
-	GLOB.round_statistics.defender_tail_sweeps++
-	SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_tail_sweeps")
-	X.visible_message("<span class='xenowarning'>\The [X] sweeps its tail in a wide circle!</span>", \
-	"<span class='xenowarning'>We sweep our tail in a wide circle!</span>")
-
-	X.spin(4, 1)
-
-	var/sweep_range = 1
-	var/list/L = orange(sweep_range, X)		// Not actually the fruit
-
-	for (var/mob/living/carbon/human/H in L)
-		step_away(H, src, sweep_range, 2)
-		if(H.stat != DEAD && !isnestedhost(H) ) //No bully
-			var/damage = X.xeno_caste.melee_damage
-			var/affecting = H.get_limb(ran_zone(null, 0))
-			if(!affecting) //Still nothing??
-				affecting = H.get_limb("chest") //Gotta have a torso?!
-			var/armor_block = H.run_armor_check(affecting, "melee")
-			H.apply_damage(damage, BRUTE, affecting, armor_block) //Crap base damage after armour...
-			H.apply_damage(damage, STAMINA) //...But some sweet armour ignoring Stamina
-			UPDATEHEALTH(H)
-			H.Paralyze(20)
-		GLOB.round_statistics.defender_tail_sweep_hits++
-		SSblackbox.record_feedback("tally", "round_statistics", 1, "tail_sweep_hits")
-		shake_camera(H, 2, 1)
-
-		to_chat(H, "<span class='xenowarning'>We are struck by \the [X]'s tail sweep!</span>")
-		playsound(H,'sound/weapons/alien_claw_block.ogg', 50, 1)
-
-	succeed_activate()
-	add_cooldown()
-
-/datum/action/xeno_action/activable/tail_sweep/ai_should_use(target)
-	if(!iscarbon(target))
-		return ..()
-	if(get_dist(target, owner) > 1)
-		return ..()
-	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
-		return ..()
-	return TRUE
-
 // ***************************************
 // *********** Gut
 // ***************************************
@@ -360,6 +287,7 @@
 	if(old_xeno)
 		stop_overwatch(FALSE)
 	watcher.observed_xeno = target
+	target.hud_set_queen_overwatch()
 	watcher.reset_perspective()
 	RegisterSignal(target, COMSIG_HIVE_XENO_DEATH, .proc/on_xeno_death)
 	RegisterSignal(target, list(COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED), .proc/on_xeno_evolution)
@@ -381,24 +309,30 @@
 
 
 /datum/action/xeno_action/watch_xeno/proc/on_list_xeno_selection(datum/source, mob/living/carbon/xenomorph/selected_xeno)
+	SIGNAL_HANDLER_DOES_SLEEP
 	select_xeno(selected_xeno)
 
 /datum/action/xeno_action/watch_xeno/proc/on_xeno_evolution(datum/source, mob/living/carbon/xenomorph/new_xeno)
+	SIGNAL_HANDLER
 	start_overwatch(new_xeno)
 
 /datum/action/xeno_action/watch_xeno/proc/on_xeno_death(datum/source, mob/living/carbon/xenomorph/dead_xeno)
+	SIGNAL_HANDLER
 	if(overwatch_active)
 		stop_overwatch()
 
 /datum/action/xeno_action/watch_xeno/proc/on_owner_death(mob/source, gibbing)
+	SIGNAL_HANDLER
 	if(overwatch_active)
 		stop_overwatch()
 
 /datum/action/xeno_action/watch_xeno/proc/on_movement(datum/source, atom/oldloc, direction, Forced)
+	SIGNAL_HANDLER
 	if(overwatch_active)
 		stop_overwatch()
 
 /datum/action/xeno_action/watch_xeno/proc/on_ctrl_middle_click(datum/source, atom/A)
+	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/queen/watcher = owner
 	if(!watcher.check_state())
 		return
@@ -526,10 +460,11 @@
 	if(feedback)
 		to_chat(xeno_ruler, "<span class='xenonotice'>We've selected [selected_xeno] as a Hive Leader.</span>")
 		to_chat(selected_xeno, "<span class='xenoannounce'>[xeno_ruler] has selected us as a Hive Leader. The other Xenomorphs must listen to us. We will also act as a beacon for the Queen's pheromones.</span>")
+
 	xeno_ruler.hive.add_leader(selected_xeno)
 	selected_xeno.hud_set_queen_overwatch()
 	selected_xeno.handle_xeno_leader_pheromones(xeno_ruler)
-
+	notify_ghosts("\ [xeno_ruler] has designated [selected_xeno] as a Hive Leader", source = selected_xeno, action = NOTIFY_ORBIT)
 
 // ***************************************
 // *********** Queen heal
@@ -753,7 +688,6 @@
 		H.add_hud_to(new_xeno) //keep our mobhud choice
 		new_xeno.xeno_mobhud = TRUE
 
-	new_xeno.middle_mouse_toggle = T.middle_mouse_toggle //Keep our toggle state
 	new_xeno.visible_message("<span class='xenodanger'>A [new_xeno.xeno_caste.caste_name] emerges from the husk of \the [T].</span>", \
 	"<span class='xenodanger'>[X] makes us regress into our previous form.</span>")
 

@@ -17,6 +17,17 @@
 
 	to_chat(src, "<span class='notice'>As a ghost, you will now [(prefs.toggles_chat & CHAT_GHOSTEARS) ? "see all speech in the world" : "only see speech from nearby mobs"].</span>")
 
+/client/verb/middle_mousetoggle()
+	set name = "Toggle Middle/Shift Clicking"
+	set category = "Preferences"
+
+	prefs.toggles_gameplay ^= MIDDLESHIFTCLICKING
+	prefs.save_preferences()
+
+	to_chat(src, "<span class='notice'>The selected special ability will now be activated with [(prefs.toggles_gameplay & MIDDLESHIFTCLICKING) ? "middle button" : "shift"] clicking.</span>")
+
+	prefs.save_preferences()
+
 
 /client/verb/toggle_ghost_sight()
 	set category = "Preferences"
@@ -309,3 +320,21 @@ GLOBAL_LIST_INIT(ghost_others_options, list(GHOST_OTHERS_SIMPLE, GHOST_OTHERS_DE
 
 	TOGGLE_BITFIELD(prefs.toggles_deadchat, DISABLE_DEATHRATTLE)
 	to_chat(usr, "<span class='notice'>Death announcements have been [(prefs.toggles_deadchat & DISABLE_DEATHRATTLE) ? "disabled" : "enabled"].</span>")
+
+
+/client/verb/toggle_instrument_sound()
+	set category = "Preferences"
+	set name = "Toggle Instrument Sound"
+
+	usr.client.prefs.toggles_sound ^= SOUND_INSTRUMENTS_OFF
+	usr.client.prefs.save_preferences()
+
+	to_chat(usr, "<span class='notice'>You will [(usr.client.prefs.toggles_sound & SOUND_INSTRUMENTS_OFF) ? "no longer" : "now"] hear instruments.</span>")
+
+///Toggles the right click menu on and off
+/client/verb/toggle_right_click()
+	set name = "Toggle Right Click"
+	set category = "Preferences"
+
+	show_popup_menus = !show_popup_menus
+	to_chat(src, "<span class='interface'>Right click [show_popup_menus ? "en" : "dis"]abled.</span>")

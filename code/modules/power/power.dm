@@ -70,6 +70,9 @@
 	if(use_power == NO_POWER_USE)
 		return TRUE
 
+	if(SEND_SIGNAL(src, COMSIG_MACHINERY_POWERED) & COMPONENT_POWERED)
+		return TRUE
+
 	var/area/A = get_area(src)
 	if(!A)
 		return FALSE
@@ -80,6 +83,10 @@
 
 // increment the power usage stats for an area
 /obj/machinery/proc/use_power(amount, chan = -1) // defaults to power_channel
+	var/list/power_sources = list()
+	if(SEND_SIGNAL(src, COMSIG_MACHINERY_USE_POWER, amount, chan, power_sources) & COMPONENT_POWER_USED)
+		return
+
 	var/area/A = get_area(src)
 	if(!A)
 		return

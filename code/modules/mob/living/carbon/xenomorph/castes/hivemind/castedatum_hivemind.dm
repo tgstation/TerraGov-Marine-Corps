@@ -48,8 +48,11 @@
 
 	// *** Abilities *** //
 	actions = list(
+		/datum/action/xeno_action/return_to_core,
 		/datum/action/xeno_action/plant_weeds/slow,
-		)
+		/datum/action/xeno_action/psychic_whisper,
+		/datum/action/xeno_action/activable/rally_hive/hivemind,
+	)
 
 /datum/xeno_caste/hivemind/young
 	upgrade_name = "Young"
@@ -69,9 +72,12 @@
 
 	// *** Abilities *** //
 	actions = list(
+		/datum/action/xeno_action/return_to_core,
 		/datum/action/xeno_action/plant_weeds/slow,
+		/datum/action/xeno_action/psychic_whisper,
 		/datum/action/xeno_action/activable/psychic_cure,
-		)
+		/datum/action/xeno_action/activable/rally_hive/hivemind,
+	)
 
 
 /datum/xeno_caste/hivemind/elder
@@ -79,7 +85,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Plasma *** //
-	plasma_max = 250 
+	plasma_max = 250
 	plasma_gain = 60 // This is 4 weed every 10 secs.
 
 	// *** Health *** //
@@ -90,18 +96,21 @@
 
 	// *** Abilities *** //
 	actions = list(
+		/datum/action/xeno_action/return_to_core,
 		/datum/action/xeno_action/plant_weeds/slow,
+		/datum/action/xeno_action/psychic_whisper,
 		/datum/action/xeno_action/activable/psychic_cure,
 		/datum/action/xeno_action/toggle_pheromones,
-		)
+		/datum/action/xeno_action/activable/rally_hive/hivemind,
+	)
 
 /datum/xeno_caste/hivemind/ancient
 	upgrade_name = "Ancient"
-	ancient_message = "We are a collective. Strongest there can be. Nothing can stop us, we are one"
+	ancient_message = "We are a collective. Strongest there can be. Nothing can stop us, we are one."
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Plasma *** //
-	plasma_max = 300 
+	plasma_max = 300
 	plasma_gain = 75 // This is 5 weed every 10 secs.
 
 	// *** Health *** //
@@ -112,9 +121,12 @@
 
 	// *** Abilities *** //
 	actions = list(
+		/datum/action/xeno_action/return_to_core,
 		/datum/action/xeno_action/plant_weeds/slow,
+		/datum/action/xeno_action/psychic_whisper,
 		/datum/action/xeno_action/activable/psychic_cure,
 		/datum/action/xeno_action/choose_resin,
 		/datum/action/xeno_action/toggle_pheromones,
 		/datum/action/xeno_action/activable/secrete_resin/slow,
-		)
+		/datum/action/xeno_action/activable/rally_hive/hivemind,
+	)

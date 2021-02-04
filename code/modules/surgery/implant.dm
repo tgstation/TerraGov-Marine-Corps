@@ -32,9 +32,9 @@
 
 /datum/surgery_step/cavity/make_space
 	allowed_tools = list(
-	/obj/item/tool/surgery/surgicaldrill = 100, \
-	/obj/item/tool/pen = 75,            \
-	/obj/item/stack/rods = 50
+		/obj/item/tool/surgery/surgicaldrill = 100,
+		/obj/item/tool/pen = 75,
+		/obj/item/stack/rods = 50,
 	)
 
 	min_duration = 60
@@ -65,10 +65,10 @@
 
 /datum/surgery_step/cavity/close_space
 	allowed_tools = list(
-	/obj/item/tool/surgery/cautery = 100,			\
-	/obj/item/clothing/mask/cigarette = 75,	\
-	/obj/item/tool/lighter = 50,    \
-	/obj/item/tool/weldingtool = 25
+		/obj/item/tool/surgery/cautery = 100,
+		/obj/item/clothing/mask/cigarette = 75,
+		/obj/item/tool/lighter = 50,
+		/obj/item/tool/weldingtool = 25,
 	)
 
 	min_duration = 60
@@ -142,9 +142,9 @@
 /datum/surgery_step/cavity/implant_removal
 	priority = 1
 	allowed_tools = list(
-	/obj/item/tool/surgery/hemostat = 100,           \
-	/obj/item/tool/wirecutters = 75,         \
-	/obj/item/tool/kitchen/utensil/fork = 20
+		/obj/item/tool/surgery/hemostat = 100,
+		/obj/item/tool/wirecutters = 75,
+		/obj/item/tool/kitchen/utensil/fork = 20,
 	)
 
 	min_duration = HEMOSTAT_REMOVE_MIN_DURATION
@@ -164,16 +164,10 @@
 /datum/surgery_step/cavity/implant_removal/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	if(affected.implants.len)
 
-		var/obj/item/obj = affected.implants[1]
+		var/obj/item/implantfound = affected.implants[1]
 		user.visible_message("<span class='notice'>[user] takes something out of incision on [target]'s [affected.display_name] with \the [tool].</span>", \
-		"<span class='notice'>You take [obj] out of incision on [target]'s [affected.display_name]s with \the [tool].</span>")
-		obj.unembed_ourself()
-
-		obj.loc = get_turf(target)
-		if(istype(obj,/obj/item/implant))
-			var/obj/item/implant/imp = obj
-			imp.imp_in = null
-			imp.implanted = 0
+		"<span class='notice'>You take [implantfound] out of incision on [target]'s [affected.display_name]s with \the [tool].</span>")
+		implantfound.unembed_ourself()
 
 	else if(affected.hidden)
 		user.visible_message("<span class='notice'>[user] takes something out of incision on [target]'s [affected.display_name] with \the [tool].</span>", \

@@ -458,6 +458,7 @@ Currently only has the tank hardpoints
 	starter_ammo = /obj/item/ammo_magazine/tank/m56_cupola
 	max_clips = 1
 	max_angle = 90
+	var/list/iff_signal = list(ACCESS_IFF_MARINE)
 
 /obj/item/hardpoint/secondary/m56cupola/broken
 	obj_integrity = 0
@@ -478,6 +479,7 @@ Currently only has the tank hardpoints
 		A = get_step(A, pick(GLOB.cardinals))
 	var/obj/projectile/P = new
 	P.generate_bullet(new ammo.default_ammo)
+	P.projectile_iff = iff_signal
 	P.fire_at(A, owner, src, P.ammo.max_range, P.ammo.shell_speed)
 	playsound(get_turf(src), pick(list('sound/weapons/guns/fire/smartgun1.ogg', 'sound/weapons/guns/fire/smartgun2.ogg', 'sound/weapons/guns/fire/smartgun3.ogg')), 60, 1)
 	ammo.current_rounds--
@@ -516,7 +518,7 @@ Currently only has the tank hardpoints
 	log_combat(usr, usr, "fired the [src].")
 	log_explosion("[usr] fired the [src] at [AREACOORD(loc)].")
 	P.fire_at(A, owner, src, P.ammo.max_range, P.ammo.shell_speed)
-	playsound(get_turf(src), 'sound/weapons/guns/fire/m92_attachable.ogg', 60, 1)
+	playsound(get_turf(src), 'sound/weapons/guns/fire/grenadelauncher.ogg', 60, 1)
 	ammo.current_rounds--
 /////////////////////
 // SECONDARY SLOTS // END

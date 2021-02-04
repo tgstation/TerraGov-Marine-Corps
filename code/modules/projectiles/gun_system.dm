@@ -4,29 +4,39 @@
 	icon = 'icons/obj/items/gun.dmi'
 	icon_state = ""
 	item_state = "gun"
+	item_state_worn = TRUE
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+		)
 	materials = list(/datum/material/metal = 100)
 	w_class 	= 3
 	throwforce 	= 5
 	throw_speed = 4
 	throw_range = 5
 	force 		= 5
-	sprite_sheet_id = 1
 	flags_atom = CONDUCT
 	flags_item = TWOHANDED
+	light_system = MOVABLE_LIGHT
+	light_range = 0
+	light_on = FALSE
+	light_color = COLOR_WHITE
 
 	var/atom/movable/vis_obj/effect/muzzle_flash/muzzle_flash
 	var/muzzleflash_iconstate
 	var/muzzle_flash_lum = 3 //muzzle flash brightness
-
+	///State for a fire animation if the gun has any
+	var/fire_animation = null
 	var/fire_sound 		= 'sound/weapons/guns/fire/gunshot.ogg'
 	var/dry_fire_sound	= 'sound/weapons/guns/fire/empty.ogg'
 	var/unload_sound 	= 'sound/weapons/flipblade.ogg'
-	var/empty_sound 	= 'sound/weapons/guns/misc/smg_empty_alarm.ogg'
+	var/empty_sound 	= 'sound/weapons/guns/misc/empty_alarm.ogg'
 	var/reload_sound 	= null					//We don't want these for guns that don't have them.
 	var/cocked_sound 	= null
 	var/cock_cooldown	= 0						//world.time value, to prevent COCK COCK COCK COCK
 	var/cock_delay		= 3 SECONDS				//Delay before we can cock again
 	var/last_fired = 0							//When it was last fired, related to world.time.
+	var/muzzle_flash_color = COLOR_VERY_SOFT_YELLOW
 
 	//Ammo will be replaced on New() for things that do not use mags..
 	var/datum/ammo/ammo = null					//How the bullet will behave once it leaves the gun, also used for basic bullet damage and effects, etc.
@@ -52,6 +62,14 @@
 	var/movement_acc_penalty_mult = 5				//Multiplier. Increased and decreased through attachments. Multiplies the accuracy/scatter penalty of the projectile when firing onehanded while moving.
 	var/fire_delay = 6							//For regular shots, how long to wait before firing again.
 	var/shell_speed_mod	= 0						//Modifies the speed of projectiles fired.
+	/// Determines which humans the gun's shot will pass through based on the victim's ID access list.
+	var/list/gun_iff_signal = null
+	///Modifies projectile damage by a % when a marine gets passed, but not hit
+	var/iff_marine_damage_falloff = 0
+	///Determines how fire delay is changed when aim mode is active
+	var/aim_fire_delay = 0
+	///Determines character slowdown from aim mode. Default is 66%
+	var/aim_speed_modifier = 6
 
 	//Burst fire.
 	var/burst_amount 	= 1						//How many shots can the weapon shoot in burst? Anything less than 2 and you cannot toggle burst.
@@ -107,6 +125,9 @@
 /obj/item/weapon/gun/Initialize(mapload, spawn_empty) //You can pass on spawn_empty to make the sure the gun has no bullets or mag or anything when created.
 	. = ..()					//This only affects guns you can get from vendors for now. Special guns spawn with their own things regardless.
 	base_gun_icon = icon_state
+
+	verbs -= /obj/item/verb/verb_pickup
+
 	if(current_mag)
 		if(spawn_empty && !(flags_gun_features & GUN_INTERNAL_MAG)) //Internal mags will still spawn, but they won't be filled.
 			current_mag = null
@@ -237,6 +258,8 @@
 	A.add_hud(user)
 	A.update_hud(user)
 	do_wield(user, wdelay)
+	if(CHECK_BITFIELD(flags_gun_features, AUTO_AIM_MODE))
+		toggle_aim_mode(user)
 
 
 /obj/item/weapon/gun/unwield(mob/user)
@@ -244,14 +267,14 @@
 	if(!.)
 		return FALSE
 
-	if(zoom)
-		zoom(user)
-
 	user.remove_movespeed_modifier(MOVESPEED_ID_AIM_SLOWDOWN)
 
 	var/obj/screen/ammo/A = user.hud_used?.ammo
 	if(A)
 		A.remove_hud(user)
+
+	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_AIMING))
+		toggle_aim_mode(user)
 
 	return TRUE
 
@@ -271,13 +294,10 @@
 		ammo = GLOB.ammo_list[overcharge? magazine.overcharge_ammo : magazine.default_ammo]
 		//to_chat(user, "DEBUG: REPLACE AMMO. Ammo: [ammo]")
 
-//Hardcoded and horrible
+///Effects when the gun gets cocked, currently just plays the sound
 /obj/item/weapon/gun/proc/cock_gun(mob/user)
-	set waitfor = 0
 	if(cocked_sound)
-		sleep(3)
-		if(user && loc)
-			playsound(user, cocked_sound, 25, 1)
+		addtimer(CALLBACK(GLOBAL_PROC, .proc/playsound, user, cocked_sound, 25, 1),3)
 
 /*
 Reload a gun using a magazine.
@@ -328,6 +348,8 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 			load_into_chamber()
 
 	update_icon(user)
+	var/obj/screen/ammo/A = user.hud_used.ammo
+	A.update_hud(user)
 	return TRUE
 
 /obj/item/weapon/gun/proc/replace_magazine(mob/user, obj/item/ammo_magazine/magazine)
@@ -626,6 +648,10 @@ and you're good to go.
 		//vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
 		projectile_to_fire.fire_at(target, user, src, projectile_to_fire.ammo.max_range, projectile_to_fire.ammo.shell_speed, firing_angle)
 		//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+		if(fire_animation) //Fires gun firing animation if it has any. ex: rotating barrel
+			flick("[fire_animation]", src)
+
 		last_fired = world.time
 
 		//This is where we load the next bullet in the chamber. We check for attachments too, since we don't want to load anything if an attachment is active.
@@ -659,13 +685,13 @@ and you're good to go.
 		. = ..()
 		if(!.)
 			return
+
 		if(!active_attachable && gun_firemode == GUN_FIREMODE_BURSTFIRE && burst_amount > 1)
 			Fire(M, user)
 			return TRUE
+
 		DISABLE_BITFIELD(flags_gun_features, GUN_BURST_FIRING)
 		//Point blanking simulates firing the bullet proper but without actually firing it.
-		if(active_attachable && !CHECK_BITFIELD(active_attachable.flags_attach_features, ATTACH_PROJECTILE))
-			active_attachable.activate_attachment(null, TRUE)//No way.
 		var/obj/projectile/projectile_to_fire = load_into_chamber(user)
 		in_chamber = null //Projectiles live and die fast. It's better to null the reference early so the GC can handle it immediately.
 		if(!projectile_to_fire) //We actually have a projectile, let's move on. We're going to simulate the fire cycle.
@@ -744,9 +770,6 @@ and you're good to go.
 		return
 
 	switch(projectile_to_fire.ammo.damage_type)
-		if(HALLOSS)
-			to_chat(user, "<span class = 'notice'>Ow...</span>")
-			user.apply_effect(110, AGONY)
 		if(STAMINA)
 			to_chat(user, "<span class = 'notice'>Ow...</span>")
 			user.apply_damage(200, STAMINA)
@@ -791,6 +814,9 @@ and you're good to go.
 		return FALSE
 	if((flags_gun_features & GUN_WIELDED_FIRING_ONLY) && !(flags_item & WIELDED)) //If we're not holding the weapon with both hands when we should.
 		to_chat(user, "<span class='warning'>You need a more secure grip to fire this weapon!")
+		return FALSE
+	if(user.action_busy)
+		to_chat(user, "<span class='warning'>You are doing something else currently.")
 		return FALSE
 	if((flags_gun_features & GUN_POLICE) && !police_allowed_check(user))
 		return FALSE
@@ -849,6 +875,8 @@ and you're good to go.
 	projectile_to_fire.damage *= damage_mult
 	projectile_to_fire.damage_falloff *= damage_falloff_mult
 	projectile_to_fire.projectile_speed += shell_speed_mod
+	projectile_to_fire.projectile_iff = gun_iff_signal
+	projectile_to_fire.damage_marine_falloff = iff_marine_damage_falloff
 
 
 /obj/item/weapon/gun/proc/setup_bullet_accuracy(obj/projectile/projectile_to_fire, mob/user, bullets_fired = 1, dual_wield = FALSE)
@@ -865,7 +893,7 @@ and you're good to go.
 		gun_accuracy_mult = max(0.1, gun_accuracy_mult - max(0,movement_acc_penalty_mult * 0.15))
 		gun_scatter += max(0, movement_acc_penalty_mult * 5)
 
-	if(gun_firemode == GUN_FIREMODE_BURSTFIRE && burst_amount > 1)
+	if(gun_firemode == GUN_FIREMODE_BURSTFIRE || gun_firemode == GUN_FIREMODE_AUTOBURST && burst_amount > 1)
 		gun_accuracy_mult = max(0.1, gun_accuracy_mult * burst_accuracy_mult)
 
 	if(dual_wield) //akimbo firing gives terrible accuracy
@@ -964,9 +992,11 @@ and you're good to go.
 	if(!muzzle_flash || muzzle_flash.applied)
 		return
 	var/prev_light = light_range
-	if(light_range < muzzle_flash_lum)
-		set_light(muzzle_flash_lum)
-		addtimer(CALLBACK(src, /atom.proc/set_light, prev_light), 1 SECONDS)
+	if(!light_on && (light_range <= muzzle_flash_lum))
+		set_light_range(muzzle_flash_lum)
+		set_light_color(muzzle_flash_color)
+		set_light_on(TRUE)
+		addtimer(CALLBACK(src, .proc/reset_light_range, prev_light), 1 SECONDS)
 
 	//Offset the pixels.
 	switch(angle)
@@ -1042,6 +1072,11 @@ and you're good to go.
 
 	addtimer(CALLBACK(src, .proc/remove_muzzle_flash, flash_loc, muzzle_flash), 0.2 SECONDS)
 
+/obj/item/weapon/gun/proc/reset_light_range(lightrange)
+	set_light_range(lightrange)
+	set_light_color(initial(light_color))
+	if(lightrange <= 0)
+		set_light_on(FALSE)
 
 /obj/item/weapon/gun/proc/remove_muzzle_flash(atom/movable/flash_loc, atom/movable/vis_obj/effect/muzzle_flash/muzzle_flash)
 	if(!QDELETED(flash_loc))
@@ -1081,6 +1116,7 @@ and you're good to go.
 
 
 /obj/item/weapon/gun/proc/do_fire_attachment(datum/source, atom/target, mob/user)
+	SIGNAL_HANDLER
 	if(!able_to_fire(user))
 		return
 	if(gun_on_cooldown(user))

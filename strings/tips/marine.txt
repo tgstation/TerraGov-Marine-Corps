@@ -5,7 +5,6 @@ Using a multitool on a lasgun battery will turn it into an improvised explosive 
 In a pinch, you can use lasgun batteries to power APCs and sentry guns.
 Lasgun batteries can be recharged in APCs and power cell rechargers, if the generators are on.
 As a marine, if you aren't a PFC, then you have a special room in prep with special gear vendors.
-AP, Hollowpoint or Incendiary bullets aren't always better: they have their own specialized uses; AP deals less damage, but better at piercing through armor. Hollowpoint is the reverse and Incendiary bullets makes any target burst into flames upon impact!
 Sidearms aren't complete garbage. They are often faster than reloading if in a very tight situation, it may save your life. 
 The Revolver and Service Pistol can be decent primary weapons if used properly, though with the short magazine capacity, expect to run dry on ammo quick!
 There is no "best" loadout. Experiment and find what works for you.
@@ -42,6 +41,7 @@ As a human, wear a helmet. It prevents decapitation.
 As a human, you can dual-wield two weapons to fire both at them at the same time. This will increase spread and decrease accuracy however.
 As a human, if you are trained enough to do so, you can tactical reload by drag-clicking the magazine to the weapon in your active hand.
 As a human, when you are already infected, facehuggers will ignore you. But you still need medical attention regardless.
+As a human, please try not to aim for the head. It benefits more for the xenomorphs as they will not take more damage on the head and when you commit friendly-fire to someone, you might break their head instead. Aim for the center of mass!
 Not being ready at the start of the round means xenos get more burrowed larva, and that you don't get to play as quickly.
 As a combat marine, you can vend seperate Jaeger Pattern armor pieces and modules for your XM-02 Combat Exoskeleton inside a Surplus Equipment Vendor. It is a modular piece of equipment after all.
 As a combat marine, you can practice using your weapons on the Firing Range, which is only available at the Sulaco or at the Thesus.
@@ -80,3 +80,4 @@ As the Captain, you have a unique Mateba revolver that takes a chunk of a target
 As the Captain or the Field Commander, you have a unique T-90A smartgun inside the emergency gun cabinet. You can use this as your primary weapon should you decide to fight.
 Even if a patient dies a second after being successfully revived by a defibrillator, this resets the time it takes for them to become permanently brain dead.
 Don't forget that xenomorphs spawn infinitely during the Crash gamemode. Don't waste too much time hunting xenomorphs down!
+You can memorialize fallen marines by using their dogtags on the ship's memorial! Memorialized solders will be displayed at the end of the round.

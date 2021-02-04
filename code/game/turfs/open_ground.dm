@@ -101,6 +101,9 @@
 /turf/open/ground/coast
 	name = "coastline"
 	icon_state = "beach"
+	shoefootstep = FOOTSTEP_SAND
+	barefootstep = FOOTSTEP_SAND
+	mediumxenofootstep = FOOTSTEP_SAND
 
 /turf/open/ground/coast/corner
 	icon_state = "beachcorner"

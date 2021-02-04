@@ -37,10 +37,12 @@
 	RegisterSignal(src, list(COMSIG_KB_QUICKEQUIP, COMSIG_CLICK_QUICKEQUIP), .proc/do_quick_equip)
 	RegisterSignal(src, COMSIG_KB_HOLSTER, .proc/do_holster)
 	RegisterSignal(src, COMSIG_KB_UNIQUEACTION, .proc/do_unique_action)
+	RegisterSignal(src, COMSIG_KB_RAILATTACHMENT, .proc/do_activate_rail_attachment)
 	RegisterSignal(src, COMSIG_GRAB_SELF_ATTACK, .proc/fireman_carry_grabbed) // Fireman carry
 	AddComponent(/datum/component/footstep, FOOTSTEP_MOB_HUMAN)
 
 /mob/living/carbon/human/proc/human_z_changed(datum/source, old_z, new_z)
+	SIGNAL_HANDLER
 	LAZYREMOVE(GLOB.humans_by_zlevel["[old_z]"], src)
 	LAZYADD(GLOB.humans_by_zlevel["[new_z]"], src)
 
@@ -145,8 +147,8 @@
 	to_chat(world, "DEBUG EX_ACT: armor: [armor * 100], b_loss: [b_loss], f_loss: [f_loss]")
 	#endif
 
-	take_overall_damage(b_loss, f_loss, armor * 100)
-	UPDATEHEALTH(src)
+	take_overall_damage(b_loss, f_loss, armor * 100, updating_health = TRUE)
+
 
 /mob/living/carbon/human/attack_animal(mob/living/M as mob)
 	if(M.melee_damage == 0)
@@ -160,9 +162,7 @@
 		var/dam_zone = pick("chest", "l_hand", "r_hand", "l_leg", "r_leg")
 		var/datum/limb/affecting = get_limb(ran_zone(dam_zone))
 		var/armor = run_armor_check(affecting, "melee")
-		if(apply_damage(damage, BRUTE, affecting, armor))
-			UPDATEHEALTH(src)
-
+		apply_damage(damage, BRUTE, affecting, armor, updating_health = TRUE)
 
 /mob/living/carbon/human/show_inv(mob/living/user)
 	var/obj/item/clothing/under/suit
@@ -759,6 +759,7 @@
 
 
 /mob/living/carbon/human/proc/fireman_carry_grabbed()
+	SIGNAL_HANDLER_DOES_SLEEP
 	var/mob/living/grabbed = pulling
 	if(!istype(grabbed))
 		return NONE
@@ -1005,7 +1006,7 @@
 			light_off++
 	if(flares)
 		for(var/obj/item/flashlight/flare/F in contents)
-			if(F.on)
+			if(F.light_on)
 				goes_out++
 			F.turn_off(src)
 		for(var/obj/item/explosive/grenade/flare/FL in contents)

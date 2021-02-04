@@ -59,6 +59,10 @@
 	if(!msg)
 		return
 
+	var/end = copytext(msg, length(message))
+	if(!(end in list("!", ".", "?", ":", "\"", "-")))
+		msg += "."
+
 	if(intentional)
 		user.log_message(msg, LOG_EMOTE)
 	var/dchatmsg = "[prefix]<b>[user]</b> [msg]"

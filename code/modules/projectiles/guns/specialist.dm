@@ -25,7 +25,6 @@
 	current_mag = /obj/item/ammo_magazine/sniper
 	force = 12
 	wield_delay = 12 //Ends up being 1.6 seconds due to scope
-	zoomdevicename = "scope"
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 20, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 	var/targetmarker_on = FALSE
 	var/targetmarker_primed = FALSE
@@ -33,12 +32,11 @@
 	var/image/LT = null
 	var/obj/item/binoculars/tactical/integrated_laze = null
 	attachable_allowed = list(
-						/obj/item/attachable/bipod,
-						/obj/item/attachable/lasersight,
-						)
+		/obj/item/attachable/bipod,
+		/obj/item/attachable/lasersight,
+	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
 	starting_attachment_types = list(/obj/item/attachable/scope/m42a, /obj/item/attachable/sniperbarrel)
 
 	fire_delay = 2.5 SECONDS
@@ -129,7 +127,7 @@
 	. = ..()
 
 /obj/item/weapon/gun/rifle/sniper/M42A/process()
-	if(!zoom)
+	if(!rail.zoom)
 		laser_off()
 		return
 	var/mob/living/user = loc
@@ -147,7 +145,7 @@
 
 /obj/item/weapon/gun/rifle/sniper/M42A/zoom(mob/living/user, tileoffset = 11, viewsize = 12) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view
 	. = ..()
-	if(!zoom && (targetmarker_on || targetmarker_primed) )
+	if(!rail.zoom && (targetmarker_on || targetmarker_primed) )
 		laser_off(user)
 
 /atom/proc/sniper_target(atom/A)
@@ -178,6 +176,7 @@
 
 
 /obj/item/weapon/gun/rifle/sniper/M42A/proc/scan_turf_for_target(datum/source, turf/target_turf)
+	SIGNAL_HANDLER
 	if(QDELETED(laser_target) || !isturf(laser_target.loc))
 		return NONE
 	if(get_turf(laser_target) == target_turf)
@@ -186,7 +185,7 @@
 
 
 /obj/item/weapon/gun/rifle/sniper/M42A/proc/laser_on(mob/user)
-	if(!zoom) //Can only use and prime the laser targeter when zoomed.
+	if(!rail.zoom) //Can only use and prime the laser targeter when zoomed.
 		to_chat(user, "<span class='warning'>You must be zoomed in to use your target marker!</span>")
 		return TRUE
 	targetmarker_primed = TRUE //We prime the target laser
@@ -226,12 +225,12 @@
 	cocked_sound = 'sound/weapons/guns/interact/sniper_heavy_cocked.ogg'
 	current_mag = /obj/item/ammo_magazine/sniper/elite
 	force = 17
-	zoomdevicename = "scope"
 	attachable_allowed = list()
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 15, "rail_y" = 19, "under_x" = 20, "under_y" = 15, "stock_x" = 20, "stock_y" = 15)
 	flags_item_map_variant = NONE
 	starting_attachment_types = list(/obj/item/attachable/scope/pmc, /obj/item/attachable/sniperbarrel)
+	gun_iff_signal = list(ACCESS_IFF_PMC)
 
 	fire_delay = 1.5 SECONDS
 	accuracy_mult = 1.50
@@ -266,17 +265,21 @@
 	current_mag = /obj/item/ammo_magazine/sniper/svd
 	type_of_casings = "cartridge"
 	attachable_allowed = list(
-						/obj/item/attachable/reddot,
-						/obj/item/attachable/verticalgrip,
-						/obj/item/attachable/gyro,
-						/obj/item/attachable/flashlight,
-						/obj/item/attachable/bipod,
-						/obj/item/attachable/magnetic_harness,
-						/obj/item/attachable/scope/slavic)
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/bipod,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/scope/slavic,
+	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 13, "rail_y" = 19, "under_x" = 24, "under_y" = 13, "stock_x" = 20, "stock_y" = 14)
 	starting_attachment_types = list(/obj/item/attachable/scope/slavic, /obj/item/attachable/slavicbarrel, /obj/item/attachable/stock/slavic)
+	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_fire_delay = 0.2 SECONDS
+	aim_speed_modifier = 2
 
 	fire_delay = 1.2 SECONDS
 	burst_amount = 1
@@ -296,7 +299,7 @@
 	max_shells = 20 //codex
 	muzzleflash_iconstate = "muzzle_flash_medium"
 	caliber = "10x28mm caseless" //codex
-	fire_sound = 'sound/weapons/guns/fire/m4ra.ogg'
+	fire_sound = 'sound/weapons/guns/fire/t64.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m4ra_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m4ra_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/m4ra_cocked.ogg'
@@ -304,22 +307,26 @@
 	force = 16
 	aim_slowdown = 0.35
 	attachable_allowed = list(
-						/obj/item/attachable/suppressor,
-						/obj/item/attachable/extended_barrel,
-						/obj/item/attachable/compensator,
-						/obj/item/attachable/verticalgrip,
-						/obj/item/attachable/angledgrip,
-						/obj/item/attachable/bipod,
-						/obj/item/attachable/lasersight,
-						/obj/item/attachable/attached_gun/flamer,
-						/obj/item/attachable/attached_gun/grenade
-						)
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/bipod,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/attached_gun/flamer,
+		/obj/item/attachable/attached_gun/grenade,
+	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
+	gun_iff_signal = list(ACCESS_IFF_MARINE)
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
 	gun_skill_category = GUN_SKILL_FIREARMS
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
 	starting_attachment_types = list(/obj/item/attachable/scope/mini/m4ra, /obj/item/attachable/stock/rifle/marksman)
+	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_fire_delay = 0.2 SECONDS
+	aim_speed_modifier = 2
 
 	fire_delay = 0.45 SECONDS
 	burst_amount = 1
@@ -352,17 +359,19 @@
 	var/restriction_toggled = TRUE //Begin with the safety on.
 	gun_skill_category = GUN_SKILL_SMARTGUN
 	attachable_allowed = list(
-						/obj/item/attachable/extended_barrel,
-						/obj/item/attachable/heavy_barrel,
-						/obj/item/attachable/flashlight,
-						/obj/item/attachable/bipod,
-						/obj/item/attachable/compensator,
-						/obj/item/attachable/lasersight)
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/bipod,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/lasersight,
+	)
 
 	flags_gun_features = GUN_INTERNAL_MAG|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	starting_attachment_types = list(/obj/item/attachable/flashlight)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 16,"rail_x" = 11, "rail_y" = 18, "under_x" = 22, "under_y" = 14, "stock_x" = 22, "stock_y" = 14)
+	gun_iff_signal = list(ACCESS_IFF_MARINE)
 
 	fire_delay = 0.3 SECONDS
 	burst_amount = 4
@@ -471,15 +480,16 @@
 	throw_range = 10
 	force = 5.0
 	wield_delay = 0.6 SECONDS
-	fire_sound = 'sound/weapons/guns/fire/m92_attachable.ogg'
+	fire_sound = 'sound/weapons/guns/fire/grenadelauncher.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/m92_cocked.ogg'
 	var/list/grenades = list()
 	var/max_grenades = 6
 	aim_slowdown = 1
 	general_codex_key = "explosive weapons"
 	attachable_allowed = list(
-						/obj/item/attachable/magnetic_harness,
-						/obj/item/attachable/scope/mini)
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/scope/mini,
+	)
 
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	gun_skill_category = GUN_SKILL_FIREARMS
@@ -580,6 +590,8 @@
 		F.throwforce += F.launchforce //Throws with signifcantly more force than a standard marine can.
 		F.throw_at(target, 20, 3, user)
 		playsound(F.loc, fire_sound, 50, 1)
+		if(fire_animation)
+			flick("[fire_animation]", src)
 
 /obj/item/weapon/gun/launcher/m92/get_ammo_type()
 	if(length(grenades) == 0)
@@ -600,6 +612,7 @@
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "t70"
 	item_state = "t70"
+	fire_animation = "t70_fire"
 	max_shells = 6 //codex
 	caliber = "40mm grenades" //codex
 	load_method = SINGLE_CASING //codex
@@ -609,21 +622,22 @@
 	throw_range = 10
 	force = 5.0
 	wield_delay = 1 SECONDS
-	fire_sound = 'sound/weapons/guns/fire/m92_attachable.ogg'
+	fire_sound = 'sound/weapons/guns/fire/underbarrel_grenadelauncher.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/m92_cocked.ogg'
-	aim_slowdown = 1
+	aim_slowdown = 1.2
 	general_codex_key = "explosive weapons"
 	attachable_allowed = list(
-						/obj/item/attachable/magnetic_harness,
-						/obj/item/attachable/flashlight,
-						/obj/item/attachable/scope/mini)
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/scope/mini,
+	)
 
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	starting_attachment_types = list(/obj/item/attachable/stock/t70stock)
 	gun_skill_category = GUN_SKILL_FIREARMS
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 11, "stock_y" = 12)
 
-	fire_delay = 2.2 SECONDS
+	fire_delay = 1.2 SECONDS
 
 /obj/item/weapon/gun/launcher/m92/standardmarine/Initialize()
 	. = ..()
@@ -644,7 +658,7 @@
 	throw_range = 10
 	force = 5.0
 	wield_delay = 0.2 SECONDS
-	fire_sound = 'sound/weapons/armbomb.ogg'
+	fire_sound = 'sound/weapons/guns/fire/grenadelauncher.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/m92_cocked.ogg'
 	aim_slowdown = 1
 	gun_skill_category = GUN_SKILL_FIREARMS
@@ -742,17 +756,14 @@
 	F.loc = user.loc
 	F.throw_range = 20
 	F.throw_at(target, 20, 2, user)
-	if(F && F.loc) //Apparently it can get deleted before the next thing takes place, so it runtimes.
+	if(F?.loc) //Apparently it can get deleted before the next thing takes place, so it runtimes.
 		log_explosion("[key_name(user)] fired a grenade [F] from \a [src] at [AREACOORD(user.loc)].")
 		message_admins("[ADMIN_TPMONTY(user)] fired a grenade [F] from \a [src].")
 		F.icon_state = initial(F.icon_state) + "_active"
 		F.activate()
 		F.updateicon()
 		playsound(F.loc, fire_sound, 50, 1)
-		sleep(10)
-		if(F?.loc)
-			F.prime()
-
+		addtimer(CALLBACK(F, /obj/item/explosive/grenade.proc/prime), 1 SECONDS)
 
 /obj/item/weapon/gun/launcher/m81/riot
 	name = "\improper M81 riot grenade launcher"
@@ -762,12 +773,13 @@
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_POLICE|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	req_access = list(ACCESS_MARINE_BRIG)
 
+
 //-------------------------------------------------------
 //M5 RPG
 
 /obj/item/weapon/gun/launcher/rocket
-	name = "\improper T-152 rocket launcher"
-	desc = "The T-152 is the primary anti-armor weapon of the TGMC. Used to take out light-tanks and enemy structures, the T-152 rocket launcher is a dangerous weapon with a variety of combat uses. Uses a variety of 84mm rockets."
+	name = "\improper M-5 rocket launcher"
+	desc = "The M-5 is the primary anti-armor used around the galaxy. Used to take out light-tanks and enemy structures, the M-5 rocket launcher is a dangerous weapon with a variety of combat uses. Uses a variety of 84mm rockets."
 	icon_state = "m5"
 	item_state = "m5"
 	max_shells = 1 //codex
@@ -783,8 +795,9 @@
 	aim_slowdown = 1.75
 	general_codex_key = "explosive weapons"
 	attachable_allowed = list(
-						/obj/item/attachable/magnetic_harness,
-						/obj/item/attachable/scope/mini)
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/scope/mini,
+	)
 
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	gun_skill_category = GUN_SKILL_FIREARMS
@@ -927,11 +940,55 @@
 		return current_mag.current_rounds
 
 //-------------------------------------------------------
+//T-152 RPG
+
+/obj/item/weapon/gun/launcher/rocket/sadar
+	name = "\improper T-152 rocket launcher"
+	desc = "The T-152 is the primary anti-armor weapon of the TGMC. Used to take out light-tanks and enemy structures, the T-152 rocket launcher is a dangerous weapon with a variety of combat uses. Uses a variety of 84mm rockets."
+	icon_state = "m5"
+	item_state = "m5"
+	max_shells = 1 //codex
+	caliber = "84mm rockets" //codex
+	load_method = SINGLE_CASING //codex
+	materials = list(/datum/material/metal = 10000)
+	current_mag = /obj/item/ammo_magazine/rocket/sadar
+	flags_equip_slot = NONE
+	w_class = WEIGHT_CLASS_HUGE
+	force = 15
+	wield_delay = 12
+	wield_penalty = 1.6 SECONDS
+	aim_slowdown = 1.75
+	general_codex_key = "explosive weapons"
+	attachable_allowed = list(
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/scope/mini,
+	)
+
+	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
+	gun_skill_category = GUN_SKILL_FIREARMS
+	dry_fire_sound = 'sound/weapons/guns/fire/launcher_empty.ogg'
+	reload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
+	unload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 6, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
+
+	fire_delay = 1 SECONDS
+	recoil = 3
+	scatter = -100
+
+/obj/item/weapon/gun/launcher/rocket/sadar/Initialize(mapload, spawn_empty)
+	. = ..()
+	SSmonitor.stats.sadar_in_use += src
+
+/obj/item/weapon/gun/launcher/rocket/sadar/Destroy()
+	. = ..()
+	SSmonitor.stats.sadar_in_use -= src
+
+//-------------------------------------------------------
 //M5 RPG'S MEAN FUCKING COUSIN
 
 /obj/item/weapon/gun/launcher/rocket/m57a4
-	name = "\improper M57-A4 'Lightning Bolt' quad thermobaric launcher"
-	desc = "The M57-A4 'Lightning Bolt' is posssibly the most destructive man-portable weapon ever made. It is a 4-barreled missile launcher capable of burst-firing 4 thermobaric missiles. Enough said."
+	name = "\improper M57A4 quad thermobaric launcher"
+	desc = "The M57A4 is posssibly the most destructive man-portable weapon ever made. It is a 4-barreled missile launcher capable of burst-firing 4 thermobaric missiles. Enough said."
 	icon_state = "m57a4"
 	item_state = "m57a4"
 	max_shells = 4 //codex
@@ -948,42 +1005,75 @@
 	burst_amount = 4
 	accuracy_mult = 0.8
 
+
 //-------------------------------------------------------
-//SCOUT SHOTGUN
+//T-160 Recoilless Rifle. Its effectively an RPG codewise.
 
-/obj/item/weapon/gun/shotgun/merc/scout
-	name = "\improper ZX-76 assault shotgun"
-	desc = "The MIC ZX-76 Assault Shotgun, a double barreled semi-automatic combat shotgun with a twin shot mode, has a 9 round internal magazine. Currently retired by the main TGMC forces for the addition of the SX-16 and later the MBX-900, it is now only used in special operations and smaller divisions across Terra."
-	icon_state = "zx-76"
-	item_state = "zx-76"
-	max_shells = 10 //codex
-	caliber = "12 gauge shotgun shells" //codex
+/obj/item/weapon/gun/launcher/rocket/recoillessrifle
+	name = "\improper T-160 recoilless rifle"
+	desc = "The T-160 recoilless rifle is a long range explosive ordanance device used by the TGMC used to fire explosive shells at far distances. Uses a variety of 67mm shells designed for various purposes."
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "t160"
+	item_state = "t160"
+	max_shells = 1 //codex
+	caliber = "67mm shells" //codex
 	load_method = SINGLE_CASING //codex
-	fire_sound = 'sound/weapons/guns/fire/shotgun_light.ogg'
-	current_mag = /obj/item/ammo_magazine/internal/shotgun/scout
-	gun_skill_category = GUN_SKILL_SHOTGUNS
-	aim_slowdown = 0.75
+	materials = list(/datum/material/metal = 10000)
+	current_mag = /obj/item/ammo_magazine/rocket/recoilless
+	flags_equip_slot = NONE
+	w_class = WEIGHT_CLASS_HUGE
+	force = 15
+	wield_delay = 1 SECONDS
+	recoil = 1
+	wield_penalty = 1.6 SECONDS
+	aim_slowdown = 1
+	general_codex_key = "explosive weapons"
 	attachable_allowed = list(
-						/obj/item/attachable/bayonet,
-						/obj/item/attachable/reddot,
-						/obj/item/attachable/verticalgrip,
-						/obj/item/attachable/angledgrip,
-						/obj/item/attachable/gyro,
-						/obj/item/attachable/flashlight,
-						/obj/item/attachable/extended_barrel,
-						/obj/item/attachable/compensator,
-						/obj/item/attachable/magnetic_harness,
-						/obj/item/attachable/lasersight,
-						/obj/item/attachable/attached_gun/flamer,
-						/obj/item/attachable/attached_gun/shotgun,
-						/obj/item/attachable/attached_gun/grenade)
-	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 8, "rail_y" = 18, "under_x" = 24, "under_y" = 12, "stock_x" = 13, "stock_y" = 15)
-	starting_attachment_types = list(/obj/item/attachable/stock/scout)
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/scope/mini,
+	)
 
-	fire_delay = 2 SECONDS
-	burst_delay = 0.01 SECONDS //basically instantaneous two shots
-	burst_accuracy_mult = 0.7
-	accuracy_mult = 1
+	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
+	gun_skill_category = GUN_SKILL_FIREARMS
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 15, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
+
+	fire_delay = 1 SECONDS
+	recoil = 3
+	scatter = -100
+
+//-------------------------------------------------------
+//M5 RPG
+
+/obj/item/weapon/gun/launcher/rocket/oneuse
+	name = "\improper T-72 rocket launcher"
+	desc = "This is the premier disposable rocket launcher used throughout the galaxy, it cannot be reloaded or unloaded on the field. This one fires a 68mm explosive rocket."
+	icon_state = "t72"
+	item_state = "t72"
+	max_shells = 1 //codex
+	caliber = "84mm rockets" //codex
+	load_method = SINGLE_CASING //codex
+	current_mag = /obj/item/ammo_magazine/rocket/oneuse
+	flags_equip_slot = ITEM_SLOT_BELT
+	attachable_allowed = list(/obj/item/attachable/magnetic_harness)
+
+	dry_fire_sound = 'sound/weapons/guns/fire/launcher_empty.ogg'
+	reload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
+	unload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 6, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
+	fire_delay = 1 SECONDS
+	recoil = 3
+	scatter = -100
+
+/obj/item/weapon/gun/launcher/rocket/oneuse/unload(mob/user) // Unsurprisngly you can't unload this.
+	to_chat(user, "<span class='warning'>You can't unload this!</span>")
+	return FALSE
+
+
+/obj/item/weapon/gun/launcher/rocket/oneuse/examine_ammo_count(mob/user)
+	if(current_mag?.current_rounds)
+		to_chat(user, "It's loaded.")
+	else
+		to_chat(user, "It's empty.")
 
 //-------------------------------------------------------
 //This gun is very powerful, but also has a kick.
@@ -1009,8 +1099,7 @@
 	aim_slowdown = 0.8
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
-	attachable_allowed = list(
-						/obj/item/attachable/flashlight)
+	attachable_allowed = list(/obj/item/attachable/flashlight)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 24, "under_y" = 14, "stock_x" = 24, "stock_y" = 12)
 
 	fire_delay = 0.175 SECONDS
@@ -1019,6 +1108,13 @@
 	recoil_unwielded = 4
 	damage_falloff_mult = 0.5
 
+/obj/item/weapon/gun/minigun/Initialize(mapload, spawn_empty)
+	. = ..()
+	SSmonitor.stats.miniguns_in_use += src
+
+/obj/item/weapon/gun/minigun/Destroy()
+	. = ..()
+	SSmonitor.stats.miniguns_in_use -= src
 
 //This is a minigun not a chaingun.
 obj/item/weapon/gun/minigun/Fire(atom/target, mob/living/user, params, reflex = FALSE, dual_wield)

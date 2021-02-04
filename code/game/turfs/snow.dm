@@ -8,6 +8,13 @@
 	icon = 'icons/turf/snow2.dmi'
 	icon_state = "snow_0"
 	hull_floor = TRUE
+	shoefootstep = FOOTSTEP_SNOW
+	barefootstep = FOOTSTEP_SNOW
+	mediumxenofootstep = FOOTSTEP_SNOW
+
+/turf/open/floor/plating/ground/snow/Initialize(mapload)
+	. = ..()
+	RegisterSignal(src, COMSIG_ATOM_ACIDSPRAY_ACT, .proc/acidspray_act)
 
 // Melting snow
 /turf/open/floor/plating/ground/snow/fire_act(exposed_temperature, exposed_volume)
@@ -25,7 +32,7 @@
 		M.visible_message("<span class='notice'>\The [M] starts clearing out \the [src].</span>", \
 		"<span class='notice'>We start clearing out \the [src].</span>", null, 5)
 		playsound(M.loc, 'sound/weapons/alien_claw_swipe.ogg', 25, 1)
-		if(!do_after(M, 25, FALSE, src, BUSY_ICON_BUILD))
+		if(!do_after(M, 5, FALSE, src, BUSY_ICON_BUILD))
 			return FALSE
 
 		if(!slayer)
@@ -34,7 +41,7 @@
 
 		M.visible_message("<span class='notice'>\The [M] clears out \the [src].</span>", \
 		"<span class='notice'>We clear out \the [src].</span>", null, 5)
-		slayer -= 1
+		slayer = 0
 		update_icon(1, 0)
 
 	//PLACING/REMOVING/BUILDING
@@ -152,6 +159,29 @@
 				slayer -= 1
 				update_icon(1, 0)
 	return ..()
+
+//Fire act; fire now melts snow as it should; fire beats ice
+/turf/open/floor/plating/ground/snow/flamer_fire_act(burnlevel, firelevel)
+
+	if(!slayer || !burnlevel) //Don't bother if there's no snow to melt or if there's no burn stacks
+		return
+
+	switch(burnlevel)
+		if(1 to 10)
+			slayer--
+		if(11 to 24)
+			slayer = max(0, slayer - 2)
+		if(25 to INFINITY)
+			slayer = 0
+
+/turf/open/floor/plating/ground/snow/proc/acidspray_act()
+	SIGNAL_HANDLER
+
+	if(!slayer) //Don't bother if there's no snow to melt or if there's no burn stacks
+		return
+
+	slayer-- //Melt a layer
+
 
 //SNOW LAYERS-----------------------------------//
 /turf/open/floor/plating/ground/snow/layer0

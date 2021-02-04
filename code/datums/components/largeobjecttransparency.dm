@@ -72,15 +72,18 @@
 	registered_turfs.Cut()
 
 /datum/component/largetransparency/proc/OnMove()
+	SIGNAL_HANDLER
 	amounthidden = 0
 	restoreAlpha()
 	UnregisterFromTurfs()
 	RegisterWithTurfs()
 
 /datum/component/largetransparency/proc/OnTurfChange()
-	addtimer(CALLBACK(src, .proc/OnMove), 0, TIMER_UNIQUE|TIMER_OVERRIDE) //*pain
+	SIGNAL_HANDLER
+	addtimer(CALLBACK(src, .proc/OnMove), 1, TIMER_UNIQUE|TIMER_OVERRIDE) //*pain
 
 /datum/component/largetransparency/proc/objectEnter(datum/source, atom/enterer)
+	SIGNAL_HANDLER
 	if(!(enterer.flags_atom & CRITICAL_ATOM))
 		return
 	if(!amounthidden)
@@ -88,6 +91,7 @@
 	amounthidden++
 
 /datum/component/largetransparency/proc/objectLeave(datum/source, atom/leaver)
+	SIGNAL_HANDLER
 	if(!(leaver.flags_atom & CRITICAL_ATOM))
 		return
 	amounthidden = max(0, amounthidden - 1)

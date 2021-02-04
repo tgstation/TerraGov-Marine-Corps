@@ -11,8 +11,12 @@
 
 	var/href_token
 
-	var/deadmined
+	///Whether this admin is currently deadminned or not
+	var/deadmined = FALSE
+	///Whether this admin has ghost interaction enabled
 	var/ghost_interact = FALSE
+	///Whether this admin is invisiminning
+	var/invisimined = FALSE
 
 
 /datum/admins/New(datum/admin_rank/R, ckey, protected)
@@ -355,7 +359,8 @@ GLOBAL_PROTECT(admin_verbs_asay)
 	/datum/admins/proc/view_refs,
 	/datum/admins/proc/view_del_failures,
 #endif
-	/datum/admins/proc/check_bomb_impacts
+	/datum/admins/proc/check_bomb_impacts,
+	/client/proc/toggle_cdn
 	)
 GLOBAL_LIST_INIT(admin_verbs_debug, world.AVdebug())
 GLOBAL_PROTECT(admin_verbs_debug)
@@ -404,7 +409,8 @@ GLOBAL_PROTECT(admin_verbs_varedit)
 	/client/proc/toggle_buildmode,
 	/client/proc/force_event,
 	/client/proc/toggle_events,
-	/client/proc/run_weather
+	/client/proc/run_weather,
+	/client/proc/cmd_display_del_log,
 	)
 GLOBAL_LIST_INIT(admin_verbs_fun, world.AVfun())
 GLOBAL_PROTECT(admin_verbs_fun)
@@ -431,15 +437,16 @@ GLOBAL_PROTECT(admin_verbs_fun)
 	/datum/admins/proc/change_ground_map,
 	/datum/admins/proc/change_ship_map,
 	/datum/admins/proc/panic_bunker,
-	/datum/admins/proc/mode_check
+	/datum/admins/proc/mode_check,
+	/client/proc/toggle_cdn
 	)
 GLOBAL_LIST_INIT(admin_verbs_server, world.AVserver())
 GLOBAL_PROTECT(admin_verbs_server)
 
 /world/proc/AVpermissions()
 	return list(
-	/datum/admins/proc/permissions_panel,
-	/datum/admins/proc/create_poll
+	/client/proc/edit_admin_permissions,
+	/client/proc/poll_panel,
 	)
 GLOBAL_LIST_INIT(admin_verbs_permissions, world.AVpermissions())
 GLOBAL_PROTECT(admin_verbs_permissions)

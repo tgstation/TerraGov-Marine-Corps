@@ -1,10 +1,10 @@
 //This is the lowest supported version, anything below this is completely obsolete and the entire savefile will be wiped.
-#define SAVEFILE_VERSION_MIN	38
+#define SAVEFILE_VERSION_MIN 38
 //This is the current version, anything below this will attempt to update (if it's not obsolete)
 //	You do not need to raise this if you are adding new values that have sane defaults.
 //	Only raise this value when changing the meaning/format/name/layout of an existing value
 //	where you would want the updater procs below to run
-#define SAVEFILE_VERSION_MAX	41
+#define SAVEFILE_VERSION_MAX 42
 
 /datum/preferences/proc/savefile_needs_update(savefile/S)
 	var/savefile_version
@@ -29,6 +29,23 @@
 		key_bindings = (!focus_chat) ? deepCopyList(GLOB.hotkey_keybinding_list_by_key) : deepCopyList(GLOB.classic_keybinding_list_by_key)
 		parent.update_movement_keys(src)
 		to_chat(parent, "<span class='userdanger'>Empty keybindings, setting default to [!focus_chat ? "Hotkey" : "Classic"] mode</span>")
+
+	// Add missing keybindings for T L O M for when they were removed as defaults
+	if(current_version < 42)
+		var/list/missing_keybinds = list(
+			"T" = "say",
+			"M" = "me",
+			"O" = "ooc",
+			"L" = "looc",
+		)
+		for(var/key in missing_keybinds)
+			var/kb_path = missing_keybinds[key]
+			if(!(key in key_bindings) || !islist(key_bindings[key]))
+				key_bindings[key] = list()
+			if(!(kb_path in key_bindings[key]))
+				key_bindings[key] += list(kb_path)
+
+		to_chat(parent, "<span class='userdanger'>Forced keybindings for say (T), me (M), ooc (O), looc (L) have been applied.</span>")
 
 //handles converting savefiles to new formats
 //MAKE SURE YOU KEEP THIS UP TO DATE!
@@ -117,9 +134,11 @@
 	READ_FILE(S["clientfps"], clientfps)
 	READ_FILE(S["tooltips"], tooltips)
 	READ_FILE(S["key_bindings"], key_bindings)
+	READ_FILE(S["chem_macros"], chem_macros)
 
 	READ_FILE(S["mute_self_combat_messages"], mute_self_combat_messages)
 	READ_FILE(S["mute_others_combat_messages"], mute_others_combat_messages)
+	READ_FILE(S["mute_xeno_health_alert_messages"], mute_xeno_health_alert_messages)
 
 	// Runechat options
 	READ_FILE(S["chat_on_map"], chat_on_map)
@@ -158,9 +177,11 @@
 	tooltips		= sanitize_integer(tooltips, FALSE, TRUE, initial(tooltips))
 
 	key_bindings 	= sanitize_islist(key_bindings, list())
+	chem_macros 	= sanitize_islist(chem_macros, list())
 
 	mute_self_combat_messages	= sanitize_integer(mute_self_combat_messages, FALSE, TRUE, initial(mute_self_combat_messages))
 	mute_others_combat_messages	= sanitize_integer(mute_others_combat_messages, FALSE, TRUE, initial(mute_others_combat_messages))
+	mute_xeno_health_alert_messages	= sanitize_integer(mute_xeno_health_alert_messages, FALSE, TRUE, initial(mute_xeno_health_alert_messages))
 
 	chat_on_map			= sanitize_integer(chat_on_map, FALSE, TRUE, initial(chat_on_map))
 	max_chat_length		= sanitize_integer(max_chat_length, 1, CHAT_MESSAGE_MAX_LENGTH, initial(max_chat_length))
@@ -202,6 +223,7 @@
 	windowflashing	= sanitize_integer(windowflashing, FALSE, TRUE, initial(windowflashing))
 	auto_fit_viewport= sanitize_integer(auto_fit_viewport, FALSE, TRUE, initial(auto_fit_viewport))
 	key_bindings	= sanitize_islist(key_bindings, list())
+	chem_macros		= sanitize_islist(chem_macros, list())
 	ghost_vision	= sanitize_integer(ghost_vision, FALSE, TRUE, initial(ghost_vision))
 	ghost_orbit		= sanitize_inlist(ghost_orbit, GLOB.ghost_orbits, initial(ghost_orbit))
 	ghost_form		= sanitize_inlist_assoc(ghost_form, GLOB.ghost_forms, initial(ghost_form))
@@ -213,6 +235,7 @@
 
 	mute_self_combat_messages	= sanitize_integer(mute_self_combat_messages, FALSE, TRUE, initial(mute_self_combat_messages))
 	mute_others_combat_messages	= sanitize_integer(mute_others_combat_messages, FALSE, TRUE, initial(mute_others_combat_messages))
+	mute_xeno_health_alert_messages	= sanitize_integer(mute_xeno_health_alert_messages, FALSE, TRUE, initial(mute_xeno_health_alert_messages))
 
 	// Runechat
 	chat_on_map			= sanitize_integer(chat_on_map, FALSE, TRUE, initial(chat_on_map))
@@ -237,6 +260,7 @@
 	WRITE_FILE(S["auto_fit_viewport"], auto_fit_viewport)
 	WRITE_FILE(S["menuoptions"], menuoptions)
 	WRITE_FILE(S["key_bindings"], key_bindings)
+	WRITE_FILE(S["chem_macros"], chem_macros)
 	WRITE_FILE(S["ghost_vision"], ghost_vision)
 	WRITE_FILE(S["ghost_orbit"], ghost_orbit)
 	WRITE_FILE(S["ghost_form"], ghost_form)
@@ -248,6 +272,7 @@
 
 	WRITE_FILE(S["mute_self_combat_messages"], mute_self_combat_messages)
 	WRITE_FILE(S["mute_others_combat_messages"], mute_others_combat_messages)
+	WRITE_FILE(S["mute_xeno_health_alert_messages"], mute_xeno_health_alert_messages)
 
 	// Runechat options
 	WRITE_FILE(S["chat_on_map"], chat_on_map)

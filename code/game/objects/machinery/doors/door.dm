@@ -87,10 +87,10 @@
 		return
 
 
-/obj/machinery/door/CanPass(atom/movable/mover, turf/target)
+/obj/machinery/door/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
 		return !opacity
-	return !density
 
 /obj/machinery/door/proc/bumpopen(mob/user as mob)
 	if(operating)
@@ -185,6 +185,7 @@
 
 
 /obj/machinery/door/proc/open()
+	SIGNAL_HANDLER_DOES_SLEEP
 	if(!density)
 		return TRUE
 	if(operating > 0 || !loc)

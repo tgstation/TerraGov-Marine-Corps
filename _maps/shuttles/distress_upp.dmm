@@ -79,10 +79,8 @@
 	},
 /area/shuttle/ert/upp)
 "p" = (
-/obj/machinery/door/airlock/mainship/generic,
-/obj/machinery/door/poddoor/shutters/transit/open{
-	dir = 4
-	},
+/obj/machinery/door/poddoor/shutters/transit/open,
+/obj/machinery/door/airlock/mainship/generic/ert,
 /turf/open/shuttle/dropship/three,
 /area/shuttle/ert/upp)
 "q" = (
@@ -175,10 +173,10 @@
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/ert/upp)
 "I" = (
-/obj/machinery/door/airlock/mainship/generic{
+/obj/machinery/door/poddoor/shutters/transit/open{
 	dir = 2
 	},
-/obj/machinery/door/poddoor/shutters/transit/open{
+/obj/machinery/door/airlock/mainship/generic/ert{
 	dir = 2
 	},
 /turf/open/shuttle/dropship/floor,
@@ -198,6 +196,42 @@
 	icon_state = "upp3"
 	},
 /area/shuttle/ert/upp)
+"N" = (
+/turf/closed/shuttle/ert{
+	icon_state = "leftengine_2";
+	opacity = 0
+	},
+/area/shuttle/ert/upp)
+"Q" = (
+/turf/closed/shuttle/ert{
+	icon_state = "leftengine_3";
+	opacity = 0
+	},
+/area/shuttle/ert/upp)
+"U" = (
+/turf/closed/shuttle/ert{
+	icon_state = "leftengine_1";
+	opacity = 0
+	},
+/area/shuttle/ert/upp)
+"V" = (
+/turf/closed/shuttle/ert{
+	icon_state = "rightengine_3";
+	opacity = 0
+	},
+/area/shuttle/ert/upp)
+"X" = (
+/turf/closed/shuttle/ert{
+	icon_state = "rightengine_1";
+	opacity = 0
+	},
+/area/shuttle/ert/upp)
+"Z" = (
+/turf/closed/shuttle/ert{
+	icon_state = "rightengine_2";
+	opacity = 0
+	},
+/area/shuttle/ert/upp)
 
 (1,1,1) = {"
 a
@@ -210,9 +244,9 @@ i
 p
 i
 A
-a
-a
-a
+Q
+N
+U
 "}
 (2,1,1) = {"
 a
@@ -300,7 +334,7 @@ o
 p
 o
 F
-a
-a
-a
+V
+Z
+X
 "}

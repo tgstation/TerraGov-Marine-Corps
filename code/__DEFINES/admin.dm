@@ -62,6 +62,7 @@
 #define ADMIN_TPMONTY(user) "[key_name_admin(user)] [ADMIN_TPMONTY_NONAME(user)]"
 #define COORD(src) "[src ? "([src.x],[src.y],[src.z])" : "nonexistent location"]"
 #define AREACOORD(src) "[src ? "[get_area_name(src, TRUE)] ([src.x], [src.y], [src.z])" : "nonexistent location"]"
+#define AREACOORD_NO_Z(src) "[src ? "[get_area_name(src, TRUE)] (X: [src.x], Y: [src.y])" : "nonexistent location"]"
 #define ADMIN_COORDJMP(src) "[src ? "[COORD(src)] [ADMIN_JMP(src)]" : "nonexistent location"]"
 #define ADMIN_VERBOSEJMP(src) "[src ? "[AREACOORD(src)] [ADMIN_JMP(src)]" : "nonexistent location"]"
 #define ADMIN_INDIVIDUALLOG(user) "(<a href='?_src_=holder;[HrefToken(TRUE)];individuallog=[REF(user)]'>LOGS</a>)"
@@ -85,7 +86,7 @@
 #define MAX_COMMANDS_PER_KEY 5
 ///Max amount of keypress messages per second over two seconds before client is autokicked
 #define MAX_KEYPRESS_AUTOKICK 50
-///Length of held key rolling buffer
+///Length of held key buffer
 #define HELD_KEY_BUFFER_LENGTH 15
 ///Maximum keys allowed per keybind
 #define MAX_KEYS_PER_KEYBIND 3
@@ -122,3 +123,7 @@
 #define APICKER_PLAYER	"Cliented Mob"
 
 #define ADMIN_SPAWN_CAP 100
+
+// LOG BROWSE TYPES
+#define BROWSE_ROOT_ALL_LOGS 1
+#define BROWSE_ROOT_CURRENT_LOGS 2

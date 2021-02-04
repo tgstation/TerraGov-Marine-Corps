@@ -18,7 +18,7 @@
 	name = "Synthetic Blood"
 	color = "#EEEEEE"
 	taste_description = "sludge"
-	description = "A synthetic blood-like liquid used by all Synthetics."
+	description = "A white blood-like liquid used by all Synthetics."
 
 /datum/reagent/blood/xeno_blood
 	name = "Acid Blood"
@@ -59,16 +59,16 @@
 /datum/reagent/water/on_mob_life(mob/living/L,metabolism)
 	switch(current_cycle)
 		if(4 to 5) //1 sip, starting at the end
-			L.adjustStaminaLoss(-4*REM)
-			L.heal_limb_damage(2*REM, 2*REM)
+			L.adjustStaminaLoss(-2*effect_str)
+			L.heal_limb_damage(effect_str, effect_str)
 		if(6 to 10) //sip 2
-			L.adjustStaminaLoss(-REM)
-			L.heal_limb_damage(0.2*REM, 0.2*REM)
+			L.adjustStaminaLoss(-0.5*effect_str)
+			L.heal_limb_damage(0.1*effect_str, 0.1*effect_str)
 	return ..()
 
 /datum/reagent/water/overdose_process(mob/living/L, metabolism)
 	if(prob(10))
-		L.adjustStaminaLoss(100*REM)
+		L.adjustStaminaLoss(50*effect_str)
 		to_chat(L, "<span class='warning'>You cramp up! Too much water!</span>")
 
 /datum/reagent/water/holywater
@@ -186,7 +186,7 @@
 
 /datum/reagent/nitrogen/on_mob_life(mob/living/L, metabolism)
 	if(metabolism & IS_VOX)
-		L.adjustOxyLoss(-2*REM)
+		L.adjustOxyLoss(-effect_str)
 	return ..()
 
 /datum/reagent/hydrogen
@@ -253,7 +253,7 @@
 	taste_description = "chlorine"
 
 /datum/reagent/chlorine/on_mob_life(mob/living/L, metabolism)
-	L.take_limb_damage(REM, 0)
+	L.take_limb_damage(0.5*effect_str, 0)
 	return ..()
 
 /datum/reagent/chlorine/overdose_process(mob/living/L, metabolism)
@@ -272,7 +272,7 @@
 	taste_description = "acid"
 
 /datum/reagent/fluorine/on_mob_life(mob/living/L, metabolism)
-	L.adjustToxLoss(REM)
+	L.adjustToxLoss(0.5*effect_str)
 	return ..()
 
 /datum/reagent/fluorine/overdose_process(mob/living/L, metabolism)
@@ -341,7 +341,7 @@
 	taste_description = "the colour blue and regret"
 
 /datum/reagent/radium/on_mob_life(mob/living/L, metabolism)
-	L.apply_effect(2*REM/L.metabolism_efficiency, IRRADIATE)
+	L.apply_effect(effect_str/L.metabolism_efficiency, AGONY)
 	return ..()
 
 /datum/reagent/radium/reaction_turf(turf/T, volume)
@@ -361,10 +361,8 @@
 	taste_description = "iron"
 
 /datum/reagent/iron/on_mob_life(mob/living/L, metabolism)
-	if(iscarbon(L))
-		var/mob/living/carbon/C = L
-		if(C.blood_volume < BLOOD_VOLUME_NORMAL)
-			C.blood_volume += 0.8
+	if(L.blood_volume < BLOOD_VOLUME_NORMAL)
+		L.blood_volume += 0.8
 	return ..()
 
 /datum/reagent/iron/overdose_process(mob/living/L, metabolism)
@@ -392,7 +390,7 @@
 	taste_description = "the inside of a reactor"
 
 /datum/reagent/uranium/on_mob_life(mob/living/L, metabolism)
-	L.apply_effect(1/L.metabolism_efficiency, IRRADIATE)
+	L.apply_effect(1/L.metabolism_efficiency, AGONY)//WHAT THE HELL DID YOU THINK WOULD HAPPEN
 	return ..()
 
 /datum/reagent/uranium/reaction_turf(turf/T, reac_volume)
@@ -533,7 +531,7 @@
 /datum/reagent/impedrezene/on_mob_life(mob/living/L, metabolism)
 	L.jitter(-5)
 	if(prob(80))
-		L.adjustBrainLoss(2*REM, TRUE)
+		L.adjustBrainLoss(effect_str, TRUE)
 	if(prob(50))
 		L.setDrowsyness(max(L.drowsyness, 3))
 	if(prob(10))
@@ -549,12 +547,6 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/datum/reagent/nanites
-	name = "Nanomachines"
-	description = "Microscopic construction robots."
-	taste_description = "sludge"
-	reagent_state = LIQUID
-	color = "#535E66" // rgb: 83, 94, 102
 
 /datum/reagent/xenomicrobes
 	name = "Xenomicrobes"
@@ -664,5 +656,5 @@
 	T.germ_level -= min(volume*20, T.germ_level)
 
 /datum/reagent/sterilizine/on_mob_life(mob/living/L, metabolism)
-	L.adjustToxLoss(2*REM)
+	L.adjustToxLoss(effect_str)
 	return ..()

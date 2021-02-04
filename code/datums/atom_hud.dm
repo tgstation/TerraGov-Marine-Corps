@@ -11,11 +11,12 @@ GLOBAL_LIST_INIT(huds, list(
 	DATA_HUD_MEDICAL_ADVANCED_SYNTH = new /datum/atom_hud/medical/advanced/synthetic,
 	DATA_HUD_MEDICAL_OBSERVER = new /datum/atom_hud/medical/observer,
 	DATA_HUD_XENO_INFECTION = new /datum/atom_hud/xeno_infection,
+	DATA_HUD_XENO_REAGENTS = new /datum/atom_hud/xeno_reagents,
 	DATA_HUD_XENO_STATUS = new /datum/atom_hud/xeno,
 	DATA_HUD_SQUAD = new /datum/atom_hud/squad,
 	DATA_HUD_ORDER = new /datum/atom_hud/order,
-	DATA_HUD_AI_DETECT = new /datum/atom_hud/ai_detector,
-	DATA_HUD_MEDICAL_PAIN = new /datum/atom_hud/medical/pain
+	DATA_HUD_MEDICAL_PAIN = new /datum/atom_hud/medical/pain,
+	DATA_HUD_XENO_TACTICAL = new /datum/atom_hud/xeno_tactical,
 	))
 
 
@@ -116,6 +117,8 @@ GLOBAL_LIST_INIT(huds, list(
 
 
 /datum/atom_hud/proc/clean_mob_refs(datum/source, force)
+	SIGNAL_HANDLER
+
 	remove_hud_from(source)
 	remove_from_hud(source)
 	next_time_allowed -= source
@@ -128,7 +131,7 @@ GLOBAL_LIST_INIT(huds, list(
 				hud.add_to_single_hud(src, A)
 
 
-/mob/dead/new_player/reload_huds()
+/mob/new_player/reload_huds()
 	return
 
 
@@ -136,5 +139,5 @@ GLOBAL_LIST_INIT(huds, list(
 	client.screen += client.void
 
 
-/mob/dead/new_player/add_click_catcher()
+/mob/new_player/add_click_catcher()
 	return

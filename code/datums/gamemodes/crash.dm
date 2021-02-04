@@ -275,7 +275,7 @@
 		output += "<a href='byond://?src=[REF(NP)];lobby_choice=manifest'>View the Crew Manifest</A><br>"
 		output += "<p><a href='byond://?src=[REF(NP)];lobby_choice=late_join'>Join the Game!</A></p>"
 
-	output += append_player_votes_link(NP)
+	output += NP.playerpolls()
 
 	output += "</div>"
 
@@ -287,6 +287,7 @@
 	return TRUE
 
 /datum/game_mode/infestation/crash/proc/on_nuclear_diffuse(obj/machinery/nuclearbomb/bomb, mob/living/carbon/xenomorph/X)
+	SIGNAL_HANDLER
 	var/list/living_player_list = count_humans_and_xenos(count_flags = COUNT_IGNORE_HUMAN_SSD)
 	var/num_humans = living_player_list[1]
 	if(!num_humans) // no humans left on planet to try and restart it.
@@ -295,10 +296,12 @@
 	priority_announce("WARNING. WARNING. Planetary Nuke deactivated. WARNING. WARNING. Self destruct failed. WARNING. WARNING.", "Priority Alert")
 
 /datum/game_mode/infestation/crash/proc/on_nuclear_explosion(datum/source, z_level)
+	SIGNAL_HANDLER
 	planet_nuked = CRASH_NUKE_INPROGRESS
 	INVOKE_ASYNC(src, .proc/play_cinematic, z_level)
 
 /datum/game_mode/infestation/crash/proc/on_nuke_started(obj/machinery/nuclearbomb/nuke)
+	SIGNAL_HANDLER
 	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	var/area_name = get_area_name(nuke)
 	HS.xeno_message("An overwhelming wave of dread ripples throughout the hive... A nuke has been activated[area_name ? " in [area_name]":""]!")
@@ -336,6 +339,7 @@
 
 
 /datum/game_mode/infestation/crash/proc/on_xeno_evolve(datum/source, mob/living/carbon/xenomorph/new_xeno)
+	SIGNAL_HANDLER
 	switch(new_xeno.tier)
 		if(XENO_TIER_ONE)
 			new_xeno.upgrade_xeno(XENO_UPGRADE_TWO)
