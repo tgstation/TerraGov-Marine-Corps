@@ -89,6 +89,9 @@
 /obj/structure/caspart/caschair/attackby(obj/item/I, mob/user, params)
 	if(!istype(I, /obj/item/reagent_containers/jerrycan))
 		return ..()
+	if(owner.state == PLANE_STATE_FLYING)
+		to_chat(user, "<span class='warning'>You can't refuel mid-air!</span>")
+		return
 	var/obj/item/reagent_containers/jerrycan/gascan = I
 	if(gascan.reagents.total_volume == 0)
 		to_chat(user, "<span class='warning'>Out of fuel!</span>")
