@@ -1,0 +1,4 @@
+author: "GLACoding"
+delete-after: True
+changes: 
+  - bugfix: "Fixed a bug with minirockets being deleted before explosion"
