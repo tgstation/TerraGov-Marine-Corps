@@ -1262,6 +1262,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	SIGNAL_HANDLER
 	var/turf/target_turf = get_turf(object)
 	if (!current_order)
+		to_chat(usr, "<span class='warning'>You didn't select any order</span>")
 		return
 	if(!COOLDOWN_CHECK(src, cooldown_order_cic))
 		to_chat(usr, "<span class='warning'>Your last order was too recent</span>")
@@ -1330,8 +1331,6 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 
 /datum/action/innate/order/Activate()
 	active = TRUE
-	if(!isliving(target))
-		return
 	set_selected_order()
 
 /datum/action/innate/order/Deactivate()
