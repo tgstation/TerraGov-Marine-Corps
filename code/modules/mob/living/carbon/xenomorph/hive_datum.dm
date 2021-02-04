@@ -516,13 +516,8 @@ to_chat will check for valid clients itself already so no need to double check f
 			X.playsound_local(X, sound, max(size * 20, 60), 0, 1)
 
 		if(target) //Apply tracker arrow to point to the subject of the message if applicable
-			var/obj/screen/arrow/arrow_hud
-			switch(arrow_type)
-				if(arrow_hive_leader_rallying)
-					arrow_hud = new /obj/screen/arrow/leader_tracker_arrow
-				if (arrow_silo_attacked)
-					arrow_hud = new /obj/screen/arrow/silo_damaged_arrow
-			  //Prepare the tracker object and set its parameters
+			var/obj/screen/arrow/arrow_hud = new arrow_type
+			//Prepare the tracker object and set its parameters
 			arrow_hud.add_hud(X, target)
 
 		to_chat(X, "<span class='xenodanger'><font size=[size]> [message]</font></span>")
