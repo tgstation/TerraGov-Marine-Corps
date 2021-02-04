@@ -442,3 +442,6 @@
 	new /obj/item/encryptionkey/engi(src)
 	new /obj/item/encryptionkey/engi(src)
 	new /obj/item/binoculars/tactical/range(src)
+	new /obj/item/encryptionkey/cas(src)
+	new /obj/item/encryptionkey/cas(src)
+	new /obj/item/encryptionkey/cas(src)

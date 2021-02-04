@@ -1,0 +1,4 @@
+author: "XSlayer300"
+delete-after: True
+changes: 
+  - rscadd: "Roundstart species, allowing vatborns to be used in startup prefs."

@@ -83,8 +83,7 @@
 			interact(occupant)
 			RegisterSignal(occupant, COMSIG_LIVING_DO_RESIST, /atom/movable.proc/resisted_against)
 			set_cockpit_overlay("cockpit_closing")
-			sleep(7)
-			set_cockpit_overlay("cockpit_closed")
+			addtimer(CALLBACK(src, .proc/set_cockpit_overlay, "cockpit_closed"), 7)
 
 /obj/structure/caspart/caschair/attackby(obj/item/I, mob/user, params)
 	if(!istype(I, /obj/item/reagent_containers/jerrycan))
@@ -120,8 +119,7 @@
 		if(!do_after(occupant, 2 SECONDS, TRUE, src))
 			return
 		set_cockpit_overlay("cockpit_opening")
-		sleep(7)
-	set_cockpit_overlay("cockpit_open")
+		addtimer(CALLBACK(src, .proc/set_cockpit_overlay, "cockpit_open"), 7)
 	UnregisterSignal(occupant, COMSIG_LIVING_DO_RESIST)
 	occupant.unset_interaction()
 	occupant.forceMove(loc)

@@ -698,7 +698,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			ethnicity = new_ethnicity
 
 		if("species")
-			var/new_species = input(user, "Choose your species:", "Species") as null|anything in GLOB.all_species[DEFAULT_SPECIES]
+			var/new_species = input(user, "Choose your species:", "Species") as null|anything in GLOB.roundstart_species
 			if(!new_species)
 				return
 			species = new_species
