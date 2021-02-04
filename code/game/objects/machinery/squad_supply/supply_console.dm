@@ -116,7 +116,6 @@
 
 			COOLDOWN_START(src, next_fire, launch_cooldown)
 			current_squad.send_supplydrop(supplies, x_offset, y_offset)
-			to_chat(world, "Beacon sent to [current_squad.sbeacon]")
 
 ///Look for the corresponding drop pad, and its possible content
 /obj/machinery/computer/supplydrop_console/proc/refresh_squad_pad()
