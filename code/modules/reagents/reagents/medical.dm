@@ -575,13 +575,15 @@
 	return ..()
 
 /datum/reagent/medicine/peridaxon/overdose_process(mob/living/L, metabolism)
-	L.apply_damage(2*effect_str, BRUTE)
+	L.apply_damage(4*effect_str, BRUTE)
 	L.adjustCloneLoss(-0.5*effect_str)
-	L.reagent_pain_modifier += PAIN_REDUCTION_LIGHT
+	L.reagent_pain_modifier += PAIN_REDUCTION_MEDIUM
+	L.adjustStaminaLoss(5*effect_str)
 
 /datum/reagent/peridaxon/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damages(effect_str, 3*effect_str, 3*effect_str)
+	L.apply_damages(effect_str, 5*effect_str, 5*effect_str)
 	L.adjustCloneLoss(-1*effect_str)  // even with the stack wont reach the 2 that RR causes
+	L.adjustStaminaLoss(15*effect_str)
 	L.reagent_pain_modifier += PAIN_REDUCTION_HEAVY //the pain and damage it causes will make the player stop so this should keep people from pre meding it
 
 /datum/reagent/medicine/peridaxon_plus
