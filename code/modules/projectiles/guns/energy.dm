@@ -127,7 +127,6 @@
 	aim_slowdown = 0.75
 	wield_delay = 1 SECONDS
 	gun_skill_category = GUN_SKILL_RIFLES
-	muzzle_flash_color = COLOR_LASER_RED
 
 	fire_delay = 3
 	accuracy_mult = 1.5
@@ -136,18 +135,23 @@
 	damage_falloff_mult = 0.5
 
 /obj/item/weapon/gun/energy/lasgun/tesla
-	name = "\improper M43-T tesla shock rifle"
-	desc = "A prototype TGMC energy rifle that fires balls of elecricity that shock all those near them, it is meant to drain the plasma of unidentified creatures from within, limiting their abilities. Handle only with insulated clothing. Reloaded with power cells."
+	name = "\improper Energy Rifle"
+	desc = "A wieldy rifle that fires balls of elecricity that shock all those near them. Handle only with insulated clothing. Reloaded with power cells."
 	icon_state = "m43"
 	item_state = "m43"
 	fire_sound = 'sound/weapons/guns/fire/tesla.ogg'
 	ammo = /datum/ammo/energy/tesla
 	cell_type = /obj/item/cell/lasgun/tesla
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_ENERGY|GUN_AMMO_COUNTER
-	muzzle_flash_color = COLOR_TESLA_BLUE
+	aim_slowdown = 0.75
+	wield_delay = 1 SECONDS
+	gun_skill_category = GUN_SKILL_RIFLES
 
 	charge_cost = 500
 	fire_delay = 4 SECONDS
+	accuracy_mult = 1.5
+	accuracy_mult_unwielded = 0.6
+	damage_falloff_mult = 0.5
 
 //-------------------------------------------------------
 //M43 Sunfury Lasgun MK1
@@ -398,7 +402,6 @@
 	muzzleflash_iconstate = "muzzle_flash_pulse"
 	cell_type = /obj/item/cell/lasgun/pulse
 	charge_cost = ENERGY_STANDARD_AMMO_COST
-	muzzle_flash_color = COLOR_PULSE_BLUE
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 15, "stock_x" = 22, "stock_y" = 12)
@@ -420,7 +423,6 @@
 	cell_type = /obj/item/cell/lasgun/M43/practice
 	attachable_allowed = list()
 	starting_attachment_types = list(/obj/item/attachable/stock/lasgun/practice)
-	muzzle_flash_color = COLOR_DISABLER_BLUE
 
 	damage_falloff_mult = 1
 	fire_delay = 0.33 SECONDS

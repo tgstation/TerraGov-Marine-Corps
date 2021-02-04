@@ -54,8 +54,6 @@ GLOBAL_LIST_EMPTY(randomized_pill_icons)
 		var/datum/species/S = new T
 		S.race_key = rkey //Used in mob icon caching.
 		GLOB.all_species[S.name] = S
-		if(S.joinable_roundstart)
-			GLOB.roundstart_species[S.name] = S
 
 	// Our ammo stuff is initialized here.
 	var/blacklist = list(/datum/ammo/energy, /datum/ammo/bullet/shotgun, /datum/ammo/xeno)

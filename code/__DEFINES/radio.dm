@@ -21,9 +21,9 @@
 #define RADIO_KEY_COMMAND "v"
 #define RADIO_TOKEN_COMMAND ":v"
 
-#define RADIO_CHANNEL_CAS "Fire support"
-#define RADIO_KEY_CAS "s"
-#define RADIO_TOKEN_CAS ":s" //s for support
+#define RADIO_CHANNEL_POLICE "Police"
+#define RADIO_KEY_POLICE "p"
+#define RADIO_TOKEN_POLICE ":p"
 
 #define RADIO_CHANNEL_ALPHA "Alpha"
 #define RADIO_KEY_ALPHA "q"
@@ -71,7 +71,7 @@
 #define FREQ_COMMAND 		1353
 #define FREQ_MEDICAL		1355
 #define FREQ_ENGINEERING	1357
-#define FREQ_CAS			1359
+#define FREQ_POLICE			1359
 #define FREQ_REQUISITIONS	1354
 
 #define FREQ_ALPHA		1361

@@ -95,10 +95,10 @@
 	updateUsrDialog()
 
 /obj/machinery/keycard_auth/proc/reset()
-	active = FALSE
+	active = 0
 	event = ""
 	screen = 1
-	confirmed = FALSE
+	confirmed = 0
 	event_source = null
 	icon_state = "auth_off"
 	event_triggered_by = null
@@ -107,15 +107,13 @@
 /obj/machinery/keycard_auth/proc/broadcast_request()
 	icon_state = "auth_on"
 	for(var/obj/machinery/keycard_auth/KA in GLOB.machines)
-		if(KA == src)
-			continue
+		if(KA == src) continue
 		KA.reset()
 		KA.receive_request(src)
-	addtimer(CALLBACK(src, .proc/finish_confirm), confirm_delay)
 
-/obj/machinery/keycard_auth/proc/finish_confirm()
+	sleep(confirm_delay)
 	if(confirmed)
-		confirmed = FALSE
+		confirmed = 0
 		trigger_event(event)
 		log_game("[key_name(event_triggered_by)] triggered and [key_name(event_confirmed_by)] confirmed event [event].")
 		message_admins("[ADMIN_TPMONTY(event_triggered_by)] triggered and [ADMIN_TPMONTY(event_confirmed_by)] confirmed event [event].")
@@ -125,16 +123,17 @@
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	event_source = source
-	busy = FALSE
-	active = TRUE
+	busy = 1
+	active = 1
 	icon_state = "auth_on"
+
 	addtimer(CALLBACK(src, .proc/confirm), confirm_delay)
 
 /obj/machinery/keycard_auth/proc/confirm()
 	event_source = null
 	icon_state = "auth_off"
-	active = FALSE
-	busy = FALSE
+	active = 0
+	busy = 0
 
 /obj/machinery/keycard_auth/proc/trigger_event()
 	switch(event)
@@ -147,5 +146,5 @@
 
 /obj/machinery/door/airlock/allowed(mob/M)
 	if(is_mainship_level(z) && GLOB.marine_main_ship.maint_all_access && src.check_access_list(list(ACCESS_MARINE_ENGINEERING)))
-		return TRUE
+		return 1
 	return ..(M)

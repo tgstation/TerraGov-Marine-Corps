@@ -330,7 +330,7 @@
 	P.start()
 	addtimer(CALLBACK(src, .proc/delayed_smoke_spread, impact), 0.5 SECONDS)
 	if(!ammo_count)
-		QDEL_IN(src, travelling_time) //deleted after last minirocket has fired and impacted the ground.
+		qdel(src) //deleted after last minirocket is fired
 
 /obj/structure/ship_ammo/minirocket/proc/delayed_smoke_spread(turf/impact)
 	var/datum/effect_system/smoke_spread/S = new
@@ -388,7 +388,7 @@
 	addtimer(CALLBACK(src, .proc/delayed_smoke_spread, offset_impact), 0.5 SECONDS)
 	addtimer(CALLBACK(src, .proc/drop_cas_flare, offset_impact), 1.5 SECONDS)
 	if(!ammo_count)
-		QDEL_IN(src, travelling_time) //deleted after last minirocket has fired and impacted the ground.
+		qdel(src) //deleted after last minirocket is fired and impact the ground.
 
 /obj/structure/ship_ammo/minirocket/illumination/proc/drop_cas_flare(turf/impact)
 	new /obj/effect/cas_flare(impact)

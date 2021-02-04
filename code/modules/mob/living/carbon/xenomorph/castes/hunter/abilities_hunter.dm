@@ -189,6 +189,7 @@
 
 	owner.visible_message("<span class='danger'>\The [owner] strikes [target] with [flavour] precision!</span>", \
 	"<span class='danger'>We strike [target] with [flavour] precision!</span>")
+	target.ParalyzeNoChain(1 SECONDS)
 	target.adjust_stagger(staggerslow_stacks)
 	target.add_slowdown(staggerslow_stacks)
 
@@ -210,6 +211,7 @@
 
 	owner.visible_message("<span class='danger'>\The [owner] strikes [target] with [flavour] precision!</span>", \
 	"<span class='danger'>We strike [target] with [flavour] precision!</span>")
+	target.ParalyzeNoChain(1 SECONDS)
 	target.adjust_stagger(staggerslow_stacks)
 	target.add_slowdown(staggerslow_stacks)
 

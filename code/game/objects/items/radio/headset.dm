@@ -4,7 +4,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	RADIO_CHANNEL_COMMAND = RADIO_TOKEN_COMMAND,
 	RADIO_CHANNEL_MEDICAL = RADIO_TOKEN_MEDICAL,
 	RADIO_CHANNEL_ENGINEERING = RADIO_TOKEN_ENGINEERING,
-	RADIO_CHANNEL_CAS = RADIO_TOKEN_CAS,
+	RADIO_CHANNEL_POLICE = RADIO_TOKEN_POLICE,
 	RADIO_CHANNEL_ALPHA = RADIO_TOKEN_ALPHA,
 	RADIO_CHANNEL_BRAVO = RADIO_TOKEN_BRAVO,
 	RADIO_CHANNEL_CHARLIE = RADIO_TOKEN_CHARLIE,
@@ -348,6 +348,21 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	icon_state = "cargo_headset"
 	keyslot = /obj/item/encryptionkey/req
 
+
+/obj/item/radio/headset/mainship/mmpo
+	name = "marine master at arms radio headset"
+	icon_state = "sec_headset"
+	keyslot = /obj/item/encryptionkey/mmpo
+
+
+/obj/item/radio/headset/mainship/cmpcom
+	name = "marine command master at arms radio headset"
+	icon_state = "sec_headset_alt"
+	keyslot = /obj/item/encryptionkey/cmpcom
+	use_command = TRUE
+	command = TRUE
+
+
 /obj/item/radio/headset/mainship/mcom
 	name = "marine command radio headset"
 	icon_state = "com_headset_alt"
@@ -407,6 +422,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/mainship/marine/alpha/engi
 	name = "marine alpha engineer radio headset"
 	keyslot2 = /obj/item/encryptionkey/engi
+
 
 /obj/item/radio/headset/mainship/marine/alpha/med
 	name = "marine alpha corpsman radio headset"
@@ -498,11 +514,6 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/mainship/marine/generic
 	name = "marine generic radio headset"
 	icon_state = "headset_marine_generic"
-
-/obj/item/radio/headset/mainship/marine/generic/cas
-	name = "marine fire support specialist headset"
-	icon_state = "sec_headset"
-	keyslot2 = /obj/item/encryptionkey/cas
 
 //Distress headsets.
 /obj/item/radio/headset/distress

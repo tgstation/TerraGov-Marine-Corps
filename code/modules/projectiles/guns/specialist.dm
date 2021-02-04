@@ -756,14 +756,17 @@
 	F.loc = user.loc
 	F.throw_range = 20
 	F.throw_at(target, 20, 2, user)
-	if(F?.loc) //Apparently it can get deleted before the next thing takes place, so it runtimes.
+	if(F && F.loc) //Apparently it can get deleted before the next thing takes place, so it runtimes.
 		log_explosion("[key_name(user)] fired a grenade [F] from \a [src] at [AREACOORD(user.loc)].")
 		message_admins("[ADMIN_TPMONTY(user)] fired a grenade [F] from \a [src].")
 		F.icon_state = initial(F.icon_state) + "_active"
 		F.activate()
 		F.updateicon()
 		playsound(F.loc, fire_sound, 50, 1)
-		addtimer(CALLBACK(F, /obj/item/explosive/grenade.proc/prime), 1 SECONDS)
+		sleep(10)
+		if(F?.loc)
+			F.prime()
+
 
 /obj/item/weapon/gun/launcher/m81/riot
 	name = "\improper M81 riot grenade launcher"

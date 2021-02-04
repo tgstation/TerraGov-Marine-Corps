@@ -64,7 +64,7 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/c99, SLOT_IN_L_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/c99, SLOT_IN_L_POUCH)
 
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/c99, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/c99/upp, SLOT_IN_R_POUCH)
 
 	H.equip_to_slot_or_del(new /obj/item/weapon/combat_knife/upp, SLOT_IN_BOOT)
 

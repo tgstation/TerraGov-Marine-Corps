@@ -118,10 +118,10 @@
 	autolinkers = list("engineering")
 
 
-/obj/machinery/telecomms/server/presets/cas
-	id = "Fire Support Server"
-	freq_listening = list(FREQ_CAS)
-	autolinkers = list("firesupport")
+/obj/machinery/telecomms/server/presets/security
+	id = "Police Server"
+	freq_listening = list(FREQ_POLICE)
+	autolinkers = list("police")
 
 
 /obj/machinery/telecomms/server/presets/common

@@ -14,11 +14,7 @@ See commit 36b8db4952be79a79b28a6738889d9e9eb23b12a
 
 Sprites added in commit d407e97e26ee5e6bb1daf945a8eb3bd9a6b11976 are CC-BY-NC 3.0
 
-All sounds added/remixed in the PR's:
-https://github.com/tgstation/TerraGov-Marine-Corps/pull/5261
-https://github.com/tgstation/TerraGov-Marine-Corps/pull/5861
-are licensed under CC-BY-NC-SA 3.0
-
+All sounds added/remixed in the PR https://github.com/tgstation/TerraGov-Marine-Corps/pull/5261 are licensed under CC-BY-NC-SA 3.0
 
 Sound added in PR https://github.com/tgstation/TerraGov-Marine-Corps/pull/5604 is taken from https://freesound.org/people/nicStage/sounds/127731/ (CC Attribution)
 

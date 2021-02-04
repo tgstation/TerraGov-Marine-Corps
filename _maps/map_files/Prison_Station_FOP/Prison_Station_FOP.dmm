@@ -32718,7 +32718,7 @@
 "bYp" = (
 /obj/structure/bed,
 /obj/item/bedsheet,
-/obj/item/weapon/gun/pistol/g22,
+/obj/item/weapon/gun/pistol/b92fs,
 /turf/open/floor/wood,
 /area/prison/residential/south)
 "bYq" = (
@@ -36357,7 +36357,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9
 	},
-/obj/item/ammo_magazine/pistol/g22,
+/obj/item/ammo_magazine/pistol/b92fs,
 /turf/open/floor/wood,
 /area/prison/security/head)
 "cjr" = (
@@ -36484,7 +36484,7 @@
 /area/prison/cellblock/protective)
 "cjI" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/gun/pistol/g22,
+/obj/item/weapon/gun/pistol/b92fs,
 /turf/open/floor/wood,
 /area/prison/security/head)
 "cjK" = (

@@ -3463,7 +3463,7 @@
 /area/icy_caves/caves)
 "uf" = (
 /obj/item/ammo_casing,
-/obj/item/weapon/gun/pistol/g22,
+/obj/item/weapon/gun/pistol/b92fs,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
@@ -3710,7 +3710,7 @@
 /area/icy_caves/outpost/refinery)
 "vQ" = (
 /obj/item/ammo_casing,
-/obj/item/ammo_magazine/pistol/g22,
+/obj/item/ammo_magazine/pistol/b93r,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/dorms)
 "vR" = (
@@ -4717,7 +4717,7 @@
 "Ef" = (
 /obj/effect/landmark/corpsespawner/security,
 /obj/item/ammo_casing,
-/obj/item/ammo_magazine/pistol/g22,
+/obj/item/ammo_magazine/pistol/b93r,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 8
 	},
@@ -5683,13 +5683,13 @@
 /area/icy_caves/outpost/outside)
 "LR" = (
 /obj/structure/closet/secure_closet/guncabinet/highpower,
-/obj/item/weapon/gun/pistol/g22,
-/obj/item/weapon/gun/pistol/g22,
-/obj/item/ammo_magazine/pistol/g22,
-/obj/item/ammo_magazine/pistol/g22,
-/obj/item/ammo_magazine/pistol/g22,
-/obj/item/ammo_magazine/pistol/g22,
-/obj/item/ammo_magazine/pistol/g22,
+/obj/item/weapon/gun/pistol/b92fs,
+/obj/item/weapon/gun/pistol/b92fs,
+/obj/item/ammo_magazine/pistol/b92fs,
+/obj/item/ammo_magazine/pistol/b92fs,
+/obj/item/ammo_magazine/pistol/b92fs,
+/obj/item/ammo_magazine/pistol/b92fs,
+/obj/item/ammo_magazine/pistol/b92fs,
 /turf/open/floor/tile/dark/red2{
 	dir = 10
 	},

@@ -42,8 +42,6 @@
 	for(var/upgrade in GLOB.xenoupgradetiers)
 		xenos_by_upgrade[upgrade] = list()
 
-	SSdirection.set_leader(hivenumber, null)
-
 
 // ***************************************
 // *********** Helpers
