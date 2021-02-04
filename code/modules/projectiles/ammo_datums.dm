@@ -1374,7 +1374,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/xeno/toxin
 	name = "neurotoxic spit"
-	flags_ammo_behavior = AMMO_XENO|AMMO_EXPLOSIVE
+	flags_ammo_behavior = AMMO_XENO|AMMO_EXPLOSIVE|AMMO_SKIPS_ALIENS
 	spit_cost = 50
 	added_spit_delay = 5
 	damage_type = STAMINA
