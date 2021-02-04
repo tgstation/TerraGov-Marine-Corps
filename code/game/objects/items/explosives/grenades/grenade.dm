@@ -54,7 +54,7 @@
 		C.throw_mode_on()
 
 
-/obj/item/explosive/grenade/proc/activate(mob/user as mob)
+/obj/item/explosive/grenade/proc/activate(mob/user)
 	if(active)
 		return
 
