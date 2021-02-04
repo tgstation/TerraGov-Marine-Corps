@@ -800,11 +800,11 @@
 /area/desert/interior/main_building)
 "dg" = (
 /obj/structure/rack,
-/obj/item/ammo_magazine/pistol/b92fs,
-/obj/item/ammo_magazine/pistol/b92fs,
-/obj/item/ammo_magazine/pistol/b92fs,
-/obj/item/ammo_magazine/pistol/b92fs,
-/obj/item/ammo_magazine/pistol/b92fs,
+/obj/item/ammo_magazine/pistol/g22,
+/obj/item/ammo_magazine/pistol/g22,
+/obj/item/ammo_magazine/pistol/g22,
+/obj/item/ammo_magazine/pistol/g22,
+/obj/item/ammo_magazine/pistol/g22,
 /turf/open/floor/tile/red/full,
 /area/desert/interior/command/office)
 "dh" = (
@@ -1731,7 +1731,7 @@
 /turf/open/floor/grass,
 /area/desert/interior/main_building)
 "gy" = (
-/obj/item/weapon/gun/pistol/b92fs,
+/obj/item/weapon/gun/pistol/g22,
 /turf/open/floor/tile/white,
 /area/desert/interior/science)
 "gz" = (
@@ -1762,7 +1762,7 @@
 /turf/open/floor/tile/white,
 /area/desert/interior/science)
 "gF" = (
-/obj/item/ammo_magazine/pistol/b92fs,
+/obj/item/ammo_magazine/pistol/g22,
 /turf/open/floor/tile/white,
 /area/desert/interior/science)
 "gG" = (
@@ -2646,14 +2646,9 @@
 	dir = 4
 	},
 /area/desert/interior/main_building)
-"jK" = (
-/obj/effect/landmark/corpsespawner/security,
-/obj/item/weapon/gun/pistol/b92fs/raffica,
-/turf/open/floor/tile/white,
-/area/desert/interior/main_building)
 "jL" = (
 /obj/effect/landmark/corpsespawner/security,
-/obj/item/weapon/gun/pistol/b92fs,
+/obj/item/weapon/gun/pistol/g22,
 /turf/open/floor/tile/white,
 /area/desert/interior/main_building)
 "jM" = (
@@ -28240,7 +28235,7 @@ bi
 bi
 eG
 cs
-jK
+jL
 cF
 cT
 aZ

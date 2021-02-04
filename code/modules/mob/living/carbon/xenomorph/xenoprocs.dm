@@ -39,17 +39,14 @@
 
 
 
-/proc/xeno_status_output(list/xenolist, can_overwatch = FALSE, ignore_leads = TRUE, user)
+/proc/xeno_status_output(list/xenolist, ignore_leads = TRUE, user)
 	var/xenoinfo = ""
 	var/leadprefix = (ignore_leads?"":"<b>(-L-)</b>")
 	for(var/i in xenolist)
 		var/mob/living/carbon/xenomorph/X = i
 		if(ignore_leads && X.queen_chosen_lead)
 			continue
-		if(can_overwatch)
-			xenoinfo += "<tr><td>[leadprefix]<a href='byond://?src=\ref[user];watch_xeno_name=[X.nicknumber]'>[X.name]</a> "
-		else
-			xenoinfo += "<tr><td>[leadprefix][X.name] "
+		xenoinfo += "<tr><td>[leadprefix]<a href='byond://?src=\ref[user];track_xeno_name=[X.nicknumber]'>[X.name]</a> "
 		if(!X.client)
 			xenoinfo += " <i>(SSD)</i>"
 
@@ -67,20 +64,21 @@
 	return xenoinfo
 
 
-///Relays health and location data about resin spawning_pools belonging to the same hive as the input user
-/proc/resin_spawning_pool_status_output(mob/living/carbon/xenomorph/user, datum/hive_status/hive)
-	. = "<BR><b>List of Resin Silos:</b><BR><table cellspacing=4>" //Resin spawning_pool data
-	for(var/obj/structure/resin/spawning_pool/resin_spawning_pool as() in GLOB.xeno_resin_spawning_pools)
-		if(resin_spawning_pool.associated_hive == hive)
+///Relays health and location data about resin silos belonging to the same hive as the input user
+/proc/resin_silo_status_output(mob/living/carbon/xenomorph/user, datum/hive_status/hive)
+	. = "<BR><b>List of Resin Silos:</b><BR><table cellspacing=4>" //Resin silo data
+	for(var/obj/structure/resin/silo/resin_silo as() in GLOB.xeno_resin_silos)
+		if(resin_silo.associated_hive == hive)
 
 			var/hp_color = "green"
-			switch(resin_spawning_pool.obj_integrity/resin_spawning_pool.max_integrity)
+			switch(resin_silo.obj_integrity/resin_silo.max_integrity)
 				if(0.33 to 0.66)
 					hp_color = "orange"
 				if(0 to 0.33)
 					hp_color = "red"
 
-			. += "<b>[resin_spawning_pool.name] <font color=[hp_color]>Health: ([resin_spawning_pool.obj_integrity]/[resin_spawning_pool.max_integrity])</font></b> located at: <b><font color=green>[AREACOORD_NO_Z(resin_spawning_pool)]</b></font><BR>"
+			var/distance = get_dist(user, resin_silo)
+			. += "<b><a href='byond://?src=\ref[user];track_silo_number=[resin_silo.number_silo]'>[resin_silo.name]</a> <font color=[hp_color]>Health: ([resin_silo.obj_integrity]/[resin_silo.max_integrity])</font></b> located at: <b><font color=green>[AREACOORD_NO_Z(resin_silo)]</font>  Distance : [distance]</b><BR>"
 
 	. += "</table>"
 
@@ -103,18 +101,14 @@
 		CRASH("couldnt find a hive in check_hive_status")
 
 	var/xenoinfo = ""
-	var/can_overwatch = FALSE
 
 	var/tier3counts = ""
 	var/tier2counts = ""
 	var/tier1counts = ""
 
-	if(isxenoqueen(user))
-		can_overwatch = TRUE
+	xenoinfo += xeno_status_output(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/queen], TRUE, user)
 
-	xenoinfo += xeno_status_output(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/queen], FALSE, TRUE)
-
-	xenoinfo += xeno_status_output(hive.xeno_leader_list, can_overwatch, FALSE, user)
+	xenoinfo += xeno_status_output(hive.xeno_leader_list, FALSE, user)
 
 	for(var/typepath in hive.xenos_by_typepath)
 		var/mob/living/carbon/xenomorph/T = typepath
@@ -132,9 +126,9 @@
 			if(XENO_TIER_ONE)
 				tier1counts += " | [initial(T.name)]s: [length(hive.xenos_by_typepath[typepath])]"
 
-		xenoinfo += xeno_status_output(hive.xenos_by_typepath[typepath], can_overwatch, TRUE, user)
+		xenoinfo += xeno_status_output(hive.xenos_by_typepath[typepath], TRUE, user)
 
-	xenoinfo += xeno_status_output(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/larva], can_overwatch, TRUE, user)
+	xenoinfo += xeno_status_output(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/larva], TRUE, user)
 
 	var/hivemind_text = length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/hivemind]) > 0 ? "Active" : "Inactive"
 	var/mob/living/carbon/xenomorph/queen/hive_queen = hive.living_xeno_queen
@@ -146,7 +140,6 @@
 		if(!hive_queen.client)
 			queen_text += " <i>(SSD)</i>"
 
-	dat += "<b>Current psychic points: [SSpoints.xeno_points_by_hive["[hive.hivenumber]"]]</b><BR>"
 	dat += "<b>Total Living Sisters: [hive.get_total_xeno_number()]</b><BR>"
 	dat += "<b>Tier 3: ([length(hive.xenos_by_tier[XENO_TIER_THREE])]/[hive.tier3_xeno_limit]) Sisters</b>[tier3counts]<BR>"
 	dat += "<b>Tier 2: ([length(hive.xenos_by_tier[XENO_TIER_TWO])]/[hive.tier2_xeno_limit]) Sisters</b>[tier2counts]<BR>"
@@ -160,11 +153,42 @@
 	dat += "<table cellspacing=4>"
 	dat += xenoinfo
 	dat += "</table>"
-	dat += resin_spawning_pool_status_output(user, hive)
+	dat += resin_silo_status_output(user, hive)
 
 	var/datum/browser/popup = new(user, "roundstatus", "<div align='center'>Hive Status</div>", 650, 650)
 	popup.set_content(dat)
 	popup.open(FALSE)
+
+/mob/living/carbon/xenomorph/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
+
+	if(href_list["track_xeno_name"])
+		if(!check_state())
+			return
+		var/xeno_name = href_list["track_xeno_name"]
+		for(var/Y in hive.get_all_xenos())
+			var/mob/living/carbon/xenomorph/X = Y
+			if(isnum(X.nicknumber))
+				if(num2text(X.nicknumber) != xeno_name)
+					continue
+			else
+				if(X.nicknumber != xeno_name)
+					continue
+			to_chat(usr,"<span class='notice'> You will now track [X.name]</span>")
+			tracked = X
+			break
+	
+	if(href_list["track_silo_number"])
+		if(!check_state())
+			return
+		var/silo_number = href_list["track_silo_number"]
+		for(var/obj/structure/resin/silo/resin_silo as() in GLOB.xeno_resin_silos)
+			if(resin_silo.associated_hive == hive && num2text(resin_silo.number_silo) == silo_number)
+				tracked = resin_silo
+				to_chat(usr,"<span class='notice'> You will now track [resin_silo.name]</span>")
+				break
 
 ///Send a message to all xenos. Force forces the message whether or not the hivemind is intact. Target is an atom that is pointed out to the hive. Filter list is a list of xenos we don't message.
 /proc/xeno_message(message = null, size = 3, hivenumber = XENO_HIVE_NORMAL, force = FALSE, atom/target = null, sound = null, apply_preferences = FALSE, filter_list = null)
@@ -257,13 +281,9 @@
 		if(XENO_HIVE_NORMAL)
 			if(hive.hive_orders && hive.hive_orders != "")
 				stat("Hive Orders:", hive.hive_orders)
-			var/rulerless_countdown = SSticker.mode.get_hivemind_collapse_countdown()
-			if(rulerless_countdown)
-				stat("<b>Orphan hivemind collapse timer:</b>", rulerless_countdown)
-			var/no_spawning_pool_countdown = SSticker.mode.get_spawning_poolless_collapse_countdown()
-			if(no_spawning_pool_countdown)
-				stat("<b>Silo less hive collapse timer:</b>", no_spawning_pool_countdown)
-			return
+			var/countdown = SSticker.mode?.get_hivemind_collapse_countdown()
+			if(countdown)
+				stat("<b>Orphan hivemind collapse timer:</b>", countdown)
 		if(XENO_HIVE_CORRUPTED)
 			stat("Hive Orders:","Follow the instructions of our masters")
 
@@ -388,6 +408,41 @@
 	SEND_SIGNAL(src, COMSIG_XENO_NONE_THROW_HIT)
 	set_throwing(FALSE) //Resert throwing since something was hit.
 	return ..() //Do the parent otherwise, for turfs.
+
+
+//Bleuugh
+
+/mob/living/carbon/xenomorph/proc/empty_gut(warning = FALSE, content_cleanup = FALSE)
+	if(warning)
+		if(LAZYLEN(stomach_contents))
+			visible_message("<span class='xenowarning'>\The [src] hurls out the contents of their stomach!</span>", \
+			"<span class='xenowarning'>We hurl out the contents of our stomach!</span>", null, 5)
+		else
+			to_chat(src, "<span class='warning'>There is nothing to regurgitate.</span>")
+
+	for(var/i in stomach_contents)
+		do_regurgitate(i)
+
+	if(content_cleanup)
+		for(var/x in contents) //Get rid of anything that may be stuck inside us as well
+			var/atom/movable/stowaway = x
+			stowaway.forceMove(get_turf(src))
+			stack_trace("[stowaway] found in [src]'s contents. It shouldn't have ended there.")
+
+
+/mob/living/carbon/xenomorph/proc/do_devour(mob/living/carbon/prey)
+	LAZYADD(stomach_contents, prey)
+	prey.Paralyze(12 MINUTES)
+	prey.adjust_tinttotal(TINT_BLIND)
+	prey.forceMove(src)
+	SEND_SIGNAL(prey, COMSIG_CARBON_DEVOURED_BY_XENO)
+
+
+/mob/living/carbon/xenomorph/proc/do_regurgitate(mob/living/carbon/prey)
+	LAZYREMOVE(stomach_contents, prey)
+	prey.forceMove(get_turf(src))
+	prey.adjust_tinttotal(-TINT_BLIND)
+	SEND_SIGNAL(prey, COMSIG_MOVABLE_RELEASED_FROM_STOMACH, src)
 
 
 /mob/living/carbon/xenomorph/proc/toggle_nightvision(new_lighting_alpha)

@@ -1277,9 +1277,9 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/item/weapon/gun/pistol/b92fs,
-/obj/item/weapon/gun/pistol/b92fs,
-/obj/item/weapon/gun/pistol/b92fs,
+/obj/item/weapon/gun/pistol/g22,
+/obj/item/weapon/gun/pistol/g22,
+/obj/item/weapon/gun/pistol/g22,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -3848,12 +3848,12 @@
 /area/lavaland/engie/one)
 "Gh" = (
 /obj/structure/rack,
-/obj/item/ammo_magazine/pistol/b92fs,
-/obj/item/ammo_magazine/pistol/b92fs,
-/obj/item/ammo_magazine/pistol/b92fs,
-/obj/item/ammo_magazine/pistol/b92fs,
-/obj/item/ammo_magazine/pistol/b92fs,
-/obj/item/ammo_magazine/pistol/b92fs,
+/obj/item/ammo_magazine/pistol/g22,
+/obj/item/ammo_magazine/pistol/g22,
+/obj/item/ammo_magazine/pistol/g22,
+/obj/item/ammo_magazine/pistol/g22,
+/obj/item/ammo_magazine/pistol/g22,
+/obj/item/ammo_magazine/pistol/g22,
 /turf/open/floor/plating/platebot,
 /area/lavaland/security/nuke)
 "Gi" = (

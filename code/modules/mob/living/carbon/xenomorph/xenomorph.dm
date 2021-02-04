@@ -299,25 +299,55 @@
 /mob/living/carbon/xenomorph/reagent_check(datum/reagent/R) //For the time being they can't metabolize chemicals.
 	return TRUE
 
-/mob/living/carbon/xenomorph/update_leader_tracking(mob/living/carbon/xenomorph/X)
+/mob/living/carbon/xenomorph/update_tracking(mob/living/carbon/xenomorph/X) //X is unused, but we keep that function so it can be called with marines one
 	if(!hud_used?.locate_leader)
 		return
-
 	var/obj/screen/LL_dir = hud_used.locate_leader
-	if(hive.living_xeno_ruler == src || src == X) // No need to track ourselves, especially if we are the hive leader.
-		LL_dir.icon_state = "trackoff"
-		return
-
-	if(X.z != src.z || get_dist(src,X) < 1 || src == X)
-		LL_dir.icon_state = "trackondirect"
-	else
+	if (!tracked)
+		if(hive.living_xeno_ruler)
+			tracked = hive.living_xeno_ruler
+		else
+			LL_dir.icon_state = "trackoff"
+			return
+	
+	if (isxeno(tracked))
+		var/mob/living/carbon/xenomorph/xeno_tracked = tracked
+		if(QDELETED(xeno_tracked))
+			tracked = null
+			return
+		if(xeno_tracked == src) // No need to track ourselves
+			LL_dir.icon_state = "trackoff"
+			return	
+		if(xeno_tracked.z != z || get_dist(src,xeno_tracked) < 1)
+			LL_dir.icon_state = "trackondirect"
+			return
 		var/area/A = get_area(src.loc)
-		var/area/QA = get_area(X.loc)
+		var/area/QA = get_area(xeno_tracked.loc)
 		if(A.fake_zlevel == QA.fake_zlevel)
 			LL_dir.icon_state = "trackon"
-			LL_dir.setDir(get_dir(src, X))
-		else
+			LL_dir.setDir(get_dir(src, xeno_tracked))
+			return
+		
+		LL_dir.icon_state = "trackondirect"	
+		return
+
+	if (isresinsilo(tracked))
+		var/mob/living/carbon/xenomorph/silo_tracked = tracked
+		if(QDELETED(silo_tracked))
+			tracked = null
+			return
+		if(silo_tracked.z != z || get_dist(src,silo_tracked) < 1)
 			LL_dir.icon_state = "trackondirect"
+			return
+	
+		var/area/A = get_area(src.loc)
+		var/area/QA = get_area(silo_tracked.loc)
+		if(A.fake_zlevel == QA.fake_zlevel)
+			LL_dir.icon_state = "trackon"
+			LL_dir.setDir(get_dir(src, silo_tracked))
+			return
+		LL_dir.icon_state = "trackondirect"				
+
 
 /mob/living/carbon/xenomorph/clear_leader_tracking()
 	if(!hud_used?.locate_leader)
