@@ -31,6 +31,7 @@
 #define COLOR_LIGHT_GRAYISH_RED			"#E4C7C5"
 /// Warm but extremely diluted red. rgb(250, 130, 130)
 #define COLOR_SOFT_RED					"#FA8282"
+#define COLOR_LASER_RED					"#FF8D8D"
 
 #define COLOR_YELLOW					"#FFFF00"
 #define COLOR_VIVID_YELLOW				"#FBFF23"
@@ -53,6 +54,9 @@
 #define COLOR_BLUE_LIGHT				"#33CCFF"
 #define COLOR_NAVY						"#000080"
 #define COLOR_BLUE_GRAY					"#75A2BB"
+#define COLOR_DISABLER_BLUE				"#7E89FF"
+#define COLOR_PULSE_BLUE				"#BEFFFF"
+#define COLOR_TESLA_BLUE				"#DAD9FF"
 
 #define COLOR_PINK						"#FFC0CB"
 #define COLOR_MOSTLY_PURE_PINK			"#E4005B"
