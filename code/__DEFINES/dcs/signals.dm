@@ -287,6 +287,7 @@
 #define COMSIG_MOB_GUN_AUTOFIRED "mob_gun_autofired"
 #define COMSIG_MOB_ATTACHMENT_FIRED "mob_attachment_fired"
 #define COMSIG_MOB_TOGGLEMOVEINTENT "mob_togglemoveintent"		//drom base of mob/toggle_move_intent(): (new_intent)
+#define COMSIG_MOB_SPECIAL_CLICK "mob_special_click"
 
 //mob/dead/observer
 #define COMSIG_OBSERVER_CLICKON "observer_clickon"				//from mob/dead/observer/ClickOn(): (atom/A, params)
