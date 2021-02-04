@@ -1037,6 +1037,13 @@ MEDICAL
 	containertype = /obj/structure/closet/crate/secure/surgery
 	access = ACCESS_MARINE_MEDBAY
 
+/datum/supply_packs/medical/hypospray
+	name = "advanced big hypospray"
+	contains = list(/obj/item/reagent_containers/hypospray/advanced/big)
+	cost = 12 //just a little over the regular hypo.
+	containertype = /obj/structure/closet/crate/secure/surgery
+	access = ACCESS_MARINE_MEDBAY
+
 /datum/supply_packs/medical/medvac
 	name = "medvac system"
 	contains = list(
@@ -1052,6 +1059,38 @@ MEDICAL
 	notes = "Contains 1 bottle of lemoline with 10 units."
 	contains = list(/obj/item/reagent_containers/glass/bottle/lemoline)
 	cost = 50
+
+/datum/supply_packs/medical/advancedKits
+	name = "Advanced medical packs"
+	notes = "Contains 5 advanced packs of each type and 5 splints."
+	contains = list(
+		/obj/item/stack/medical/advanced/bruise_pack,
+		/obj/item/stack/medical/advanced/bruise_pack,
+		/obj/item/stack/medical/advanced/bruise_pack,
+		/obj/item/stack/medical/advanced/bruise_pack,
+		/obj/item/stack/medical/advanced/bruise_pack,
+		/obj/item/stack/medical/advanced/ointment,
+		/obj/item/stack/medical/advanced/ointment,
+		/obj/item/stack/medical/advanced/ointment,
+		/obj/item/stack/medical/advanced/ointment,
+		/obj/item/stack/medical/advanced/ointment,
+		/obj/item/stack/medical/splint,
+		/obj/item/stack/medical/splint,
+		/obj/item/stack/medical/splint,
+		/obj/item/stack/medical/splint,
+		/obj/item/stack/medical/splint,
+	)
+	cost = 10 //you have ALMOST infinite ones in medbay if you need this crate you fucked up. but no reason to make the price too high either
+	containertype = /obj/structure/closet/crate/secure/surgery
+	access = ACCESS_MARINE_MEDBAY
+
+/datum/supply_packs/medical/tweezers
+	name = "tweezers"
+	notes = "contains a pair of tweezers."
+	contains = list(/obj/item/tweezers)
+	cost = 20  //shouldn't be easy to get
+	containertype = /obj/structure/closet/crate/secure/surgery
+	access = ACCESS_MARINE_MEDBAY
 
 /*******************************************************************************
 ENGINEERING
@@ -1408,24 +1447,14 @@ Imports
 	contains = list(/obj/item/ammo_magazine/revolver)
 	cost = 3
 
-/datum/supply_packs/imports/beretta92fs
-	name = "Beretta 92FS Handgun"
-	contains = list(/obj/item/weapon/gun/pistol/b92fs)
+/datum/supply_packs/imports/g22
+	name = "G-22 Handgun"
+	contains = list(/obj/item/weapon/gun/pistol/g22)
 	cost = 7
 
 /datum/supply_packs/imports/beretta92fs/ammo
-	name = "Beretta 92FS Handgun Ammo"
-	contains = list(/obj/item/ammo_magazine/pistol/b92fs)
-	cost = 3
-
-/datum/supply_packs/imports/beretta93r
-	name = "Beretta 93R Handgun"
-	contains = list(/obj/item/weapon/gun/pistol/b92fs/raffica)
-	cost = 7
-
-/datum/supply_packs/imports/beretta93r/ammo
-	name = "Beretta 93R Handgun Ammo"
-	contains = list(/obj/item/ammo_magazine/pistol/b93r)
+	name = "G-22 Handgun Ammo"
+	contains = list(/obj/item/ammo_magazine/pistol/g22)
 	cost = 3
 
 /datum/supply_packs/imports/deagle

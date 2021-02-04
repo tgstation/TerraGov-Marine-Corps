@@ -82,6 +82,9 @@
 #define COMSIG_CLICK_ALT "alt_click"							//from base of atom/AltClick(): (/mob)
 #define COMSIG_CLICK_CTRL_SHIFT "ctrl_shift_click"				//from base of atom/CtrlShiftClick(/mob)
 #define COMSIG_CLICK_CTRL_MIDDLE "ctrl_middle_click"
+#define COMSIG_CLICK_RIGHT "right_click"						//from base of atom/RightClick(): (/mob)
+#define COMSIG_CLICK_SHIFT_RIGHT "shift_right_click"						//from base of atom/ShiftRightClick(): (/mob)
+#define COMSIG_CLICK_ALT_RIGHT "alt_right_click"							//from base of atom/AltRightClick(): (/mob)
 
 #define COMSIG_DBLCLICK_SHIFT_MIDDLE "dblclick_shift_middle"
 #define COMSIG_DBLCLICK_CTRL_SHIFT "dblclick_ctrl_shift"
@@ -263,6 +266,9 @@
 #define COMSIG_MOB_CLICKON "mob_clickon"						//from base of mob/clickon(): (atom/A, params)
 #define COMSIG_MOB_CLICK_SHIFT "mob_click_shift"				//from base of mob/ShiftClickOn(): (atom/A)
 #define COMSIG_MOB_CLICK_ALT "mob_click_alt"					//from base of mob/AltClickOn(): (atom/A)
+#define COMSIG_MOB_CLICK_RIGHT "mob_click_right"				//from base of mob/RightClickOn(): (atom/A)
+#define COMSIG_MOB_CLICK_SHIFT_RIGHT "mob_click_shift_right"	//from base of mob/ShiftRightClick(): (atom/A)
+#define COMSIG_MOB_CLICK_ALT_RIGHT "mob_click_alt_right"		//from base of mob/AltRightClick(): (atom/A)
 	#define COMSIG_MOB_CLICK_CANCELED (1<<0)
 	#define COMSIG_MOB_CLICK_HANDLED (1<<1)
 #define COMSIG_MOB_ATTACK_RANGED "mob_attack_ranged"			//from base of mob/RangedAttack(): (atom/A, params)
