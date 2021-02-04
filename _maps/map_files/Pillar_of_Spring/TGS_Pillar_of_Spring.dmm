@@ -13556,6 +13556,11 @@
 /obj/structure/toilet,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/numbertwobunks)
+"SR" = (
+/obj/machinery/computer/supplydrop_console,
+/obj/structure/table/mainship,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "ST" = (
 /obj/machinery/alarm{
 	dir = 8
@@ -47778,10 +47783,10 @@ gd
 kM
 kS
 nf
-kM
+UW
 ZR
 on
-UW
+SR
 wk
 Wc
 gq
