@@ -731,7 +731,6 @@
 		/obj/item/attachable/bayonet = 25,
 		/obj/item/attachable/compensator = 25,
 		/obj/item/attachable/extended_barrel = 25,
-		/obj/item/attachable/heavy_barrel = 25,
 		/obj/item/attachable/suppressor = 25,
 
 		/obj/item/attachable/flashlight = 25,
@@ -770,7 +769,6 @@
 		/obj/item/attachable/bayonet = 25,
 		/obj/item/attachable/compensator = 25,
 		/obj/item/attachable/extended_barrel = 25,
-		/obj/item/attachable/heavy_barrel = 25,
 
 		/obj/item/attachable/flashlight = 25,
 		/obj/item/attachable/magnetic_harness = 25,
