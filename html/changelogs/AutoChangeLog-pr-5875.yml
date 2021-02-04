@@ -1,5 +1,0 @@
-author: "Pariah919"
-delete-after: True
-changes: 
-  - rscadd: "Added new g22 to replace m9, new pk9 sprite"
-  - rscdel: "Removed m93r and pk9 variants"
