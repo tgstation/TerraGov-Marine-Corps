@@ -618,6 +618,7 @@
 	user.hive.on_shuttle_hijack(crashing_dropship)
 	playsound(src, 'sound/misc/queen_alarm.ogg')
 	SSevacuation.flags_scuttle &= ~FLAGS_SDEVAC_TIMELOCK
+	SSmonitor.hijacked = TRUE
 	switch(SSshuttle.moveShuttleToDock(shuttleId, crash_target, TRUE))
 		if(0)
 			visible_message("Shuttle departing. Please stand away from the doors.")

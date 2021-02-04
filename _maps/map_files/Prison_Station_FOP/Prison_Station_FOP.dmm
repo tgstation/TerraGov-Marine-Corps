@@ -30489,10 +30489,6 @@
 	},
 /turf/open/floor/prison/bright_clean/two,
 /area/prison/residential/south)
-"bQH" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/prison/bright_clean/two,
-/area/prison/residential/south)
 "bQI" = (
 /obj/machinery/light,
 /turf/open/floor/prison/bright_clean/two,
@@ -30891,7 +30887,6 @@
 	dir = 2;
 	name = "Garden"
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/prison/bright_clean/two,
 /area/prison/residential/south)
 "bSi" = (
@@ -31430,12 +31425,6 @@
 "bTL" = (
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/access/south)
-"bTM" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 9
-	},
-/turf/template_noop,
-/area/prison/residential/south)
 "bTP" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	on = 1
@@ -41423,9 +41412,6 @@
 	},
 /turf/open/ground/grass,
 /area/prison/residential/central)
-"dpL" = (
-/turf/closed/wall/r_wall/prison,
-/area/prison/residential/central)
 "dsF" = (
 /obj/structure/monorail{
 	dir = 5
@@ -50765,7 +50751,7 @@ aab
 aab
 aZP
 aZP
-dpL
+aZP
 aZP
 aZP
 aZP
@@ -53097,10 +53083,10 @@ bCb
 bCb
 bCb
 bCb
-bPc
-bQH
+bNK
+bCb
 bSh
-bTM
+bYs
 bYs
 bYs
 bYs

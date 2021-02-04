@@ -39,6 +39,24 @@
 	GLOB.round_statistics.total_xeno_deaths++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_xeno_deaths")
 
+	switch (upgrade) 
+		if(XENO_UPGRADE_TWO)
+			switch(tier)
+				if(XENO_TIER_TWO)
+					SSmonitor.stats.elder_T2--
+				if(XENO_TIER_THREE)
+					SSmonitor.stats.elder_T3--
+				if(XENO_TIER_FOUR)
+					SSmonitor.stats.elder_queen--
+		if(XENO_UPGRADE_THREE)
+			switch(tier)
+				if(XENO_TIER_TWO)
+					SSmonitor.stats.ancient_T2--
+				if(XENO_TIER_THREE)
+					SSmonitor.stats.ancient_T3--
+				if(XENO_TIER_FOUR)
+					SSmonitor.stats.ancient_queen--
+
 	var/isAI = GetComponent(/datum/component/ai_controller)
 	if (isAI)
 		gib()
