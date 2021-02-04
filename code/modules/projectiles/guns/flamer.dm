@@ -214,7 +214,7 @@
 /obj/item/weapon/gun/flamer/removed_from_inventory(mob/user)
 	. = ..()
 	var/mob/living/carbon/human/humanuser = user
-	if (istype(current_mag,/obj/item/ammo_magazine/flamer_tank/backtank/)) //Dropping the flamer unlink it from the tank
+	if (istype(current_mag,/obj/item/ammo_magazine/flamer_tank/backtank)) //Dropping the flamer unlink it from the tank
 		var/obj/item/ammo_magazine/flamer_tank/backtank/backfueltank = current_mag;
 		backfueltank.attached_flamer=null
 		current_mag = null 
