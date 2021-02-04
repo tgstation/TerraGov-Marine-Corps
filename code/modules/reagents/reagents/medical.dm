@@ -576,9 +576,12 @@
 
 /datum/reagent/medicine/peridaxon/overdose_process(mob/living/L, metabolism)
 	L.apply_damage(2*effect_str, BRUTE)
+	L.adjustCloneLoss(-0.5*effect_str)
+	L.reagent_pain_modifier += PAIN_REDUCTION_LIGHT
 
 /datum/reagent/peridaxon/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damages(effect_str, 3*effect_str, 3*effect_str)
+	L.adjustCloneLoss(-1*effect_str)
 
 /datum/reagent/medicine/peridaxon_plus
 	name = "Peridaxon Plus"
