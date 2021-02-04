@@ -13,8 +13,6 @@
 	var/fuel_left = 60 
 	///threshold to change the jetpack fuel indicator
 	var/fuel_indicator = 40 
-	///how much fuel we use every flight
-	var/range = 6 
 	///How quick you will fly (warning, it rounds up to the nearest integer)
 	var/speed = 1 
 	///How long the jetpack allows you to fly over things
@@ -52,8 +50,22 @@
 		fuel_left -= FUEL_USE
 		change_fuel_indicator()
 		update_icon()
-		human_user.fly_at(A,range,speed,hovering_time)
+		human_user.fly_at(A,calculate_range(human_user),speed,hovering_time)
 		addtimer(CALLBACK(src,.proc/reset_flame), hovering_time)
+
+///Calculate the max range of the jetpack, changed by some item slowdown
+/obj/item/jetpack_marine/proc/calculate_range(mob/living/carbon/human/human_user)
+	switch(human_user.cached_additive_slowdown_items)
+		if(0 to 0.35) //light armor or above
+			return 7
+		if(0.35 to 0.75)//medium armor with shield
+			return 5
+		if(0.75 to 1.2)//heavy armor with shield
+			return 4
+		if(1.2 to 1.5)//heavy armor with shield and tyr mk2
+			return 3
+		if(1.5 to INFINITY)//the rest
+			return 2	
 
 ///Check if we can use the jetpack and give feedback to the users
 /obj/item/jetpack_marine/proc/use_jetpack(mob/living/carbon/human/human_user)
@@ -94,7 +106,7 @@
 	fuel_indicator = 0
 
 /obj/item/jetpack_marine/afterattack(obj/target, mob/user, proximity_flag) //refuel at fueltanks when we run out of fuel
-	if(!istype(target, /obj/structure/reagent_dispensers/fueltank) & proximity_flag)
+	if(!istype(target, /obj/structure/reagent_dispensers/fueltank) || !proximity_flag)
 		return ..()
 	var/obj/structure/reagent_dispensers/fueltank/FT = target
 	if(FT.reagents.total_volume == 0)

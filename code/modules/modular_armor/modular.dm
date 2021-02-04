@@ -41,6 +41,8 @@
 
 	actions_types = list(/datum/action/item_action/toggle)
 
+	entrave_movement = TRUE
+
 	/// Attachment slots for chest armor
 	var/obj/item/armor_module/armor/slot_chest
 	/// Attachment slots for arm armor

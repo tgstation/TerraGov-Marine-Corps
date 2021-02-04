@@ -42,6 +42,7 @@
 	time_to_equip = 2 SECONDS
 	pockets = /obj/item/storage/internal/suit/marine
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
+	entrave_movement = TRUE
 
 /obj/item/storage/internal/suit/marine
 	bypass_w_limit = list(

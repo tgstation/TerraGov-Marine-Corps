@@ -48,6 +48,8 @@
 	var/permeability_coefficient = 1 // for chemicals/diseases
 	var/siemens_coefficient = 1 // for electrical admittance/conductance (electrocution checks and shit)
 	var/slowdown = 0 // How much clothing is slowing you down. Negative values speeds you up
+	///If this item gives specific movement malus on top of slowing down (like jetpack)
+	var/entrave_movement = FALSE
 	var/breakouttime = 0
 
 	var/list/allowed = null //suit storage stuff.
@@ -315,7 +317,7 @@
 		if(flags_armor_protection)
 			human_user.add_limb_armor(src)
 		if(slowdown)
-			human_user.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, slowdown)
+			human_user.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, slowdown, FALSE, entrave_movement)
 
 
 ///Called when an item is removed from an equipment slot. The loc should still be in the unequipper.
@@ -337,7 +339,7 @@
 		if(flags_armor_protection)
 			human_unequipper.remove_limb_armor(src)
 		if(slowdown)
-			human_unequipper.remove_movespeed_modifier(type)
+			human_unequipper.remove_movespeed_modifier(type, TRUE, entrave_movement)
 
 
 //sometimes we only want to grant the item's action if it's equipped in a specific slot.
