@@ -331,7 +331,7 @@
 		LL_dir.icon_state = "trackondirect"	
 		return
 
-	if (isresinsilo(tracked))
+	if (isspawningpool(tracked))
 		var/mob/living/carbon/xenomorph/silo_tracked = tracked
 		if(QDELETED(silo_tracked))
 			tracked = null
