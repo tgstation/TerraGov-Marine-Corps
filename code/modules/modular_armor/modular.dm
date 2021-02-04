@@ -507,6 +507,6 @@
 	icon_state = "scout_helmet"
 
 /obj/item/clothing/head/modular/marine/infantry
-	name = "Jaeger Pattern Infantry Helmet"
-	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Scout markings"
+	name = "Jaeger Pattern Infantry-Open Helmet"
+	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Infantry markings and no visor."
 	icon_state = "infantryopen_helmet"
