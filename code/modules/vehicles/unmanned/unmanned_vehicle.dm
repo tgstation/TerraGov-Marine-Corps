@@ -1,63 +1,100 @@
+
 /obj/vehicle/unmanned
-	name = "light unmanned vehicle"
+	name = "unmanned vehicle"
+	desc = "A small remote-controllable vehicle"
+	icon = 'icons/obj/unmanned_vehicles.dmi'
+	icon_state = "light_uv"
 	anchored = FALSE
 	buckle_flags = null
-	light_range = 6
-	icon = 'icons/obj/vehicles.dmi'
-	icon_state = "cargo_engine"
+	light_range = 4
+	light_system = MOVABLE_LIGHT
 	move_delay = 1.8	//set this to limit the speed of the vehicle
 	max_integrity = 200
+	resistance_flags = XENO_DAMAGEABLE
+	///Type of "turret" attached
+	var/turret_type
+	///Delay in byond ticks between weapon fires
 	var/fire_delay = 5
-	var/last_fired = 0
-	var/current_rounds
+	///Ammo remaining for the robot
+	var/current_rounds = 0
+	///max ammo the robot can hold
 	var/max_rounds = 300
+	///Buller type we fire, declared as type but set to a reference in Initialize
 	var/datum/ammo/bullet/ammo = /datum/ammo/bullet/smg
+	///The currently loaded and ready to fire projectile
 	var/obj/projectile/in_chamber = null
+	COOLDOWN_DECLARE(fire_cooldown)
 
 /obj/vehicle/unmanned/Initialize()
 	. = ..()
 	current_rounds = max_rounds
 	ammo = GLOB.ammo_list[ammo]
 
+/obj/vehicle/unmanned/update_overlays()
+	. = ..()
+	switch(turret_type)
+		if(TURRET_TYPE_HEAVY)
+			. += image('icons/obj/unmanned_vehicles.dmi', src, "heavy_cannon")
+		if(TURRET_TYPE_LIGHT)
+			. += image('icons/obj/unmanned_vehicles.dmi', src, "light_cannon")
+		if(TURRET_TYPE_EXPLOSIVE)
+			. += image('icons/obj/unmanned_vehicles.dmi', src, "bomb")
+
+/obj/vehicle/unmanned/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(!istype(I, /obj/item/uav_turret) && !istype(I, /obj/item/explosive/plastique))
+		return
+	user.visible_message("<span class='notice'>You start to attach [I] to [src].</span>",
+	"<span class='notice'>[user] starts to attach [I] to [src].</span>")
+	if(!do_after(user, 3 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+		return
+	if(istype(I, /obj/item/uav_turret))
+		var/obj/item/uav_turret/turret = I
+		turret_type = turret.turret_type
+	else if(istype(I, /obj/item/explosive/plastique))
+		turret_type = TURRET_TYPE_EXPLOSIVE
+	user.visible_message("<span class='notice'>You attach [I] to [src].</span>",
+	"<span class='notice'>[user] attaches [I] to [src].</span>")
+	update_icon()
+	qdel(I)
+	SEND_SIGNAL(src, COMSIG_UNMANNED_TURRET_UPDATED, turret_type)
+
 /obj/vehicle/unmanned/proc/load_into_chamber()
 	if(in_chamber)
 		return TRUE //Already set!
-	create_bullet()
-	return TRUE
-
-
-/obj/vehicle/unmanned/proc/create_bullet()
-	if(current_rounds == 0)
+	if(current_rounds <= 0)
 		return FALSE
 	in_chamber = new /obj/projectile(src) //New bullet!
 	in_chamber.generate_bullet(ammo)
-
-/obj/vehicle/unmanned/proc/fire_shot(atom/target, mob/user)
-	if(world.time <= last_fired + fire_delay)
-		return
-	if(load_into_chamber())
-		if(istype(in_chamber,/obj/projectile))
-			//Setup projectile
-			in_chamber.original_target = target
-			in_chamber.def_zone = pick("chest","chest","chest","head")
-			//Shoot at the thing
-			playsound(loc, 'sound/weapons/guns/fire/rifle.ogg', 75, 1)
-			in_chamber.fire_at(target, src, null, ammo.max_range, ammo.shell_speed)
-			in_chamber = null
-			last_fired = world.time
-			current_rounds--
 	return TRUE
 
 
-/obj/vehicle/unmanned/heavy
-	name = "heavy unmanned vehicle"
-	icon = 'icons/obj/vehicles.dmi'
-	icon_state = "cargo_engine"
-	move_delay = 3.5
+///Check if we have/create a new bullet and fire it at an atom target
+/obj/vehicle/unmanned/proc/fire_shot(atom/target, mob/user)
+	if(!COOLDOWN_CHECK(src, fire_cooldown))
+		return FALSE
+	if(load_into_chamber() && istype(in_chamber, /obj/projectile))
+		//Setup projectile
+		in_chamber.original_target = target
+		in_chamber.def_zone = pick("chest","chest","chest","head")
+		//Shoot at the thing
+		playsound(loc, "gun_smartgun", 75, 1)
+		in_chamber.fire_at(target, src, null, ammo.max_range, ammo.shell_speed)
+		in_chamber = null
+		COOLDOWN_START(src, fire_cooldown, fire_delay)
+		current_rounds--
+	return TRUE
+
+/obj/vehicle/unmanned/medium
+	name = "medium unmanned vehicle"
+	icon_state = "medium_uv"
+	move_delay = 2.4
 	max_rounds = 200
 	ammo = /datum/ammo/bullet/machinegun
 
-/obj/vehicle/unmanned/explosive
-	name = "ohmygodjcabomb"
-	icon = 'icons/obj/vehicles.dmi'
-	icon_state = "cargo_engine"
+/obj/vehicle/unmanned/heavy
+	name = "heavy unmanned vehicle"
+	icon_state = "heavy_uv"
+	move_delay = 3.5
+	max_rounds = 200
+	ammo = /datum/ammo/bullet/machinegun
