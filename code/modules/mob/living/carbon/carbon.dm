@@ -342,7 +342,7 @@
 	. -= "Update Icon"
 	.["Regenerate Icons"] = "?_src_=vars;[HrefToken()];regenerateicons=[REF(src)]"
 
-/mob/living/carbon/update_leader_tracking(mob/living/carbon/C)
+/mob/living/carbon/update_tracking(mob/living/carbon/C)
 	var/obj/screen/LL_dir = hud_used.SL_locator
 
 	if(C.z != src.z || get_dist(src, C) < 1 || src == C)
