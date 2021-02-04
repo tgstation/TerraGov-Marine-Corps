@@ -83,12 +83,14 @@
 			interact(occupant)
 			RegisterSignal(occupant, COMSIG_LIVING_DO_RESIST, /atom/movable.proc/resisted_against)
 			set_cockpit_overlay("cockpit_closing")
-			sleep(7)
-			set_cockpit_overlay("cockpit_closed")
+			addtimer(CALLBACK(src, .proc/set_cockpit_overlay, "cockpit_closed"), 7)
 
 /obj/structure/caspart/caschair/attackby(obj/item/I, mob/user, params)
 	if(!istype(I, /obj/item/reagent_containers/jerrycan))
 		return ..()
+	if(owner.state == PLANE_STATE_FLYING)
+		to_chat(user, "<span class='warning'>You can't refuel mid-air!</span>")
+		return
 	var/obj/item/reagent_containers/jerrycan/gascan = I
 	if(gascan.reagents.total_volume == 0)
 		to_chat(user, "<span class='warning'>Out of fuel!</span>")
@@ -117,8 +119,7 @@
 		if(!do_after(occupant, 2 SECONDS, TRUE, src))
 			return
 		set_cockpit_overlay("cockpit_opening")
-		sleep(7)
-	set_cockpit_overlay("cockpit_open")
+		addtimer(CALLBACK(src, .proc/set_cockpit_overlay, "cockpit_open"), 7)
 	UnregisterSignal(occupant, COMSIG_LIVING_DO_RESIST)
 	occupant.unset_interaction()
 	occupant.forceMove(loc)

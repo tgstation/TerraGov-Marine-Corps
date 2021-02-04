@@ -7,19 +7,19 @@ html, body {
 	padding: 0;
 	margin: 0;
 	height: 100%;
-	color: #99aab5;
+	color: #eeeeee;
 }
 body {
-	background: #2e332b;
+	background: #111111;
    font-family: Verdana, sans-serif;
    font-size: 9pt;
    line-height: 1.2;
 	overflow-x: hidden;
 	overflow-y: scroll;
 	word-wrap: break-word;
-	scrollbar-face-color:#1A1A1A;
-	scrollbar-track-color:#2c2f33;
-	scrollbar-highlight-color:#2c2f33;
+	scrollbar-face-color:#111111;
+	scrollbar-track-color:#202020;
+	scrollbar-highlight-color:#464646;
 }
 
 em {
@@ -92,14 +92,14 @@ a.popt {text-decoration: none;}
 	bottom: 0;
 	right: 0;
 	padding: 8px;
-	background: #ddd;
+	background: #202020;
 	text-decoration: none;
    font-variant: small-caps;
    font-size: 1.1em;
    font-weight: bold;
-	color: #8ba5c4;
+	color: #dddddd;
 }
-#newMessages:hover {background: #171717;}
+#newMessages:hover {background: #2b2b2b;}
 #newMessages i {vertical-align: middle; padding-left: 3px;}
 #userBar {
 	position: fixed;
@@ -111,12 +111,12 @@ a.popt {text-decoration: none;}
    height: 30px;
 	padding: 5px 0;
 	display: block;
-	color: #8ba5c4;
+	color: #dddddd;
 	text-decoration: none;
    line-height: 28px;
    border-top: 1px solid #b4b4b4;
 }
-#userBar .subCell:hover {background: #202020;}
+#userBar .subCell:hover {background: #2b2b2b;}
 #userBar .toggle {
 	width: 40px;
    background: #202020;
@@ -155,24 +155,24 @@ a.popt {text-decoration: none;}
 	position: fixed;
 	top: 50%;
 	left: 50%;
-	background: #ddd;
+	background: #dddddd;
 }
 .popup .close {
 	position: absolute;
-	background: #aaa;
+	background: #aaaaaa;
 	top: 0;
 	right: 0;
-	color: #333;
+	color: #333333;
 	text-decoration: none;
 	z-index: 2;
 	padding: 0 10px;
 	height: 30px;
 	line-height: 30px;
 }
-.popup .close:hover {background: #999;}
+.popup .close:hover {background: #999999;}
 .popup .head {
-	background: #999;
-	color: #ddd;
+	background: #999999;
+	color: #dddddd;
 	padding: 0 10px;
 	height: 30px;
 	line-height: 30px;
@@ -181,14 +181,14 @@ a.popt {text-decoration: none;}
 	font-weight: bold;
 	border-bottom: 2px solid green;
 }
-.popup input {border: 1px solid #999; background: #fff; margin: 0; padding: 5px; outline: none; color: #333;}
+.popup input {border: 1px solid #999999; background: #ffffff; margin: 0; padding: 5px; outline: none; color: #333333;}
 .popup input[type=text]:hover, .popup input[type=text]:active, .popup input[type=text]:focus {border-color: green;}
-.popup input[type=submit] {padding: 5px 10px; background: #999; color: #ddd; text-transform: uppercase; font-size: 0.9em; font-weight: bold;}
-.popup input[type=submit]:hover, .popup input[type=submit]:focus, .popup input[type=submit]:active {background: #aaa; cursor: pointer;}
+.popup input[type=submit] {padding: 5px 10px; background: #999999; color: #dddddd; text-transform: uppercase; font-size: 0.9em; font-weight: bold;}
+.popup input[type=submit]:hover, .popup input[type=submit]:focus, .popup input[type=submit]:active {background: #aaaaaa; cursor: pointer;}
 
 .changeFont {padding: 10px;}
-.changeFont a {display: block; text-decoration: none; padding: 3px; color: #333;}
-.changeFont a:hover {background: #ccc;}
+.changeFont a {display: block; text-decoration: none; padding: 3px; color: #333333;}
+.changeFont a:hover {background: #cccccc;}
 
 .highlightPopup {padding: 10px; text-align: center;}
 .highlightPopup input[type=text] {display: block; width: 215px; text-align: left; margin-top: 5px;}
@@ -213,21 +213,21 @@ a.popt {text-decoration: none;}
 /* OUTPUT COLORS */
 .highlight {background: yellow;}
 
-.motd					{color: #99aab5;	font-family: Verdana, sans-serif;}
+.motd					{color: #638500;	font-family: Verdana, sans-serif;}
 .motd h1, .motd h2, .motd h3, .motd h4, .motd h5, .motd h6
-	{color: #99aab5;	text-decoration: underline;}
+	{color: #638500;	text-decoration: underline;}
 .motd a, .motd a:link, .motd a:visited, .motd a:active, .motd a:hover
-	{color: #99aab5;}
+	{color: #638500;}
 .tip					{color: #a000c4;	font-weight: bold;}
 
 .prefix					{					font-weight: bold;}
 
 .ooc					{					font-weight: bold;}
-.colorooc				{color: #3257c6;	font-weight: bold;}
-.looc					{color: #84add6;	font-weight: bold;}
+.colorooc				{color: #004ed8;	font-weight: bold;}
+.looc					{color: #3A9696;	font-weight: bold;}
 .hostooc				{color: #323232;	font-weight: bold;}
 .projleadooc			{color: #7F44A6;	font-weight: bold;}
-.headcoderooc			{color: #838332;	font-weight: bold;}
+.headcoderooc			{color: #000064;	font-weight: bold;}
 .headminooc				{color: #9F2524;	font-weight: bold;}
 .headmentorooc			{color: #397339;	font-weight: bold;}
 .adminooc				{color: #c3324a;	font-weight: bold;}
@@ -242,33 +242,34 @@ a.popt {text-decoration: none;}
 .adminmsay				{color: #84664a;	font-weight: bold;}
 .headminmsay			{color: #665442;	font-weight: bold;}
 
-.admin					{color: #ff0000;	font-weight: bold;}
-.asay					{color: #ab40dc;	font-weight: bold;}
-.headminasay			{color: #9751C5;	font-weight: bold;}
-.boldannounce			{color: #c51e1e;	font-weight: bold;}
+.admin					{color: #386aff;	font-weight: bold;}
+.asay					{color: #9611D4;	font-weight: bold;}
+.headminasay			{color: #5A0A7F;	font-weight: bold;}
+.boldannounce			{color: #ff0000;	font-weight: bold;}
 
-.staffpmin				{color: #f0134d;	font-weight: bold;}
-.staffpmout				{color: #3e64ff;	font-weight: bold;}
+.staffpmin				{color: red;	font-weight: bold;}
+.staffpmout				{color: blue;	font-weight: bold;}
 
 .adminnotice			{color: #3d5bc3;}
 .adminhelp              {color: #c51e1e;    font-weight: bold;}
 
 .name					{					font-weight: bold;}
 
-.say					{color: #a4bad6;}
-.deadsay				{color: #646695;}
-.radio					{color: #CE9178;}
-.deptradio				{color: #993399;}
-.comradio				{color: #567192; text-shadow: #474747 1px 3px 2px, 0px 0px 0px #266875;}
+
+.say					{color: #e5e5e5;}
+.deadsay				{color: #732FCD;}
+.radio					{color: #008000;}
+.deptradio				{color: #ff00ff;}
+.comradio				{color: #395A9A;} /* text-shadow: #474747 1px 3px 2px, 0px 0px 0px #266875;*/
 .syndradio				{color: #6D3F40;}
-.centradio				{color: #2b677e;}
-.airadio				{color: #811981;}
+.centradio				{color: #5C5C8A;}
+.airadio				{color: #FF00FF;}
 
 .casradio				{color: #A30000;}
-.engradio				{color: #c75f35;}
-.medradio				{color: #2D9955;}
-.sciradio				{color: #7c00e6;}
-.supradio				{color: #8b6532;}
+.engradio				{color: #A66300;}
+.medradio				{color: #008160;}
+.sciradio				{color: #993399;}
+.supradio				{color: #5F4519;}
 
 .alpharadio				{color: #EA0000;}
 .bravoradio				{color: #C68610;}
@@ -279,7 +280,7 @@ a.popt {text-decoration: none;}
 .binarysay a  			{color: #00ff00;}
 .binarysay a:active, .binarysay a:visited {color: #88ff88;}
 
-.alert					{color: #c51e1e;}
+.alert					{color: #ff0000;}
 h1.alert, h2.alert		{color: #99aab5;}
 
 .emote					{					font-style: italic;}
@@ -289,35 +290,36 @@ h1.alert, h2.alert		{color: #99aab5;}
 
 .attack					{color: #ff0000;}
 .moderate				{color: #CC0000;}
-.disarm					{color: #780202;}
-.passive				{color: #510000;}
+.disarm					{color: #990000;}
+.passive				{color: #660000;}
 
 .scanner			{color: #ff0000;}
 .scannerb			{color: #ff0000;	font-weight: bold;}
 .scannerburn	{color: #ffa500;}
 .scannerburnb	{color: #ffa500;	font-weight: bold;}
 .rose					{color: #ff5050;}
-.info					{color: #3d5bc3;}
+.info					{color: #6060c9;}
 .debuginfo				{color: #493D26;	font-style: italic;}
-.notice					{color: #3d5bc3;}
-.xenonotice				{color: #b5cea8;}
-.boldnotice				{color: #3d5bc3;	font-weight: bold;}
-.warning				{color: #ce9178;	font-style: italic;}
-.xenowarning			{color: #6A9955;	font-style: italic;}
-.danger					{color: #d16969;	font-weight: bold;}
-.xenodanger				{color: #16825D;	font-weight: bold;}
+.notice					{color: #6060c9;}
+.xenonotice				{color: #2a623d;}
+.boldnotice				{color: #6060c9;	font-weight: bold;}
+.warning				{color: #ff5f5f;	font-style: italic;}
+.xenowarning			{color: #2a623d;	font-style: italic;}
+.danger					{color: #ff2a2a;	font-weight: bold;}
+.xenodanger				{color: #2a623d;	font-weight: bold;}
 .avoidharm				{color:	#72a0e5;	font-weight: bold;}
-.highdanger				{color: #f44747;	font-weight: bold; font-size: 1.5em;}
-.xenohighdanger			{color: #6a9955; 	font-weight: bold; font-size: 1.5em;}
-.xenoannounce           {color: #4EC9B0;    font-family: book-antiqua; font-weight: bold; font-style: italic; font-size: 1.5em;}
+.highdanger				{color: #ff0000;	font-weight: bold; font-size: 1.5em;}
+.xenohighdanger			{color: #2a623d; 	font-weight: bold; font-size: 1.5em;}
+.xenoannounce           {color: #1a472a;    font-family: book-antiqua; font-weight: bold; font-style: italic; font-size: 1.5em;}
+.hivemind				{color: #BF39AF;     font-weight: bold;}
 .xenoqueen				{font-size: 1.4em;}
 .xenoshrike				{font-size: 1.2em;}
 .xenohivemind			{font-size: 1.2em;}
 .xenoleader				{font-size: 1.2em;}
-.hivemind				{color: #c586c0;}
+
 
 .alien					{color: #543354;}
-.newscaster				{color: #800000;}
+.newscaster				{color: #750000;}
 
 .role_header			{color: #db0000;	display: block; text-align: center; font-weight: bold; font-family: trebuchet-ms; font-size: 1.5em;}
 .role_body				{color: #5a5abd;	display: block; text-align: center;}

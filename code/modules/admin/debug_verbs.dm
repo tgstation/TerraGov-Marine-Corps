@@ -527,7 +527,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	for(var/obj/blocking_object in epicenter)
 		if(!blocking_object.density)
 			continue
-			current_exp_block += ( (blocking_object.explosion_block == EXPLOSION_BLOCK_PROC) ? blocking_object.GetExplosionBlock(0) : blocking_object.explosion_block ) //0 is the result of get_dir between two atoms on the same tile.
+		current_exp_block += ( (blocking_object.explosion_block == EXPLOSION_BLOCK_PROC) ? blocking_object.GetExplosionBlock(0) : blocking_object.explosion_block ) //0 is the result of get_dir between two atoms on the same tile.
 
 	var/list/turfs_by_dist = list()
 	turfs_by_dist[epicenter] = current_exp_block

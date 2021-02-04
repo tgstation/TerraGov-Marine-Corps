@@ -50,12 +50,10 @@
 			return
 	else if(ishuman(user) && user.hallucination > 50 && prob(10) && !operating)
 		var/mob/living/carbon/human/H = user
-		if(H.gloves)
+		if(!H.gloves || H.gloves.siemens_coefficient)
 			to_chat(H, "<span class='danger'>You feel a powerful shock course through your body!</span>")
-			var/obj/item/clothing/gloves/G = H.gloves
-			if(G.siemens_coefficient)//not insulated
-				H.adjustStaminaLoss(200)
-				return
+			H.adjustStaminaLoss(200)
+			return
 	return ..(user)
 
 /obj/machinery/door/airlock/bumpopen(mob/living/simple_animal/user as mob)

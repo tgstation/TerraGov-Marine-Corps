@@ -293,13 +293,10 @@
 		ammo = GLOB.ammo_list[overcharge? magazine.overcharge_ammo : magazine.default_ammo]
 		//to_chat(user, "DEBUG: REPLACE AMMO. Ammo: [ammo]")
 
-//Hardcoded and horrible
+///Effects when the gun gets cocked, currently just plays the sound
 /obj/item/weapon/gun/proc/cock_gun(mob/user)
-	set waitfor = 0
 	if(cocked_sound)
-		sleep(3)
-		if(user && loc)
-			playsound(user, cocked_sound, 25, 1)
+		addtimer(CALLBACK(GLOBAL_PROC, .proc/playsound, user, cocked_sound, 25, 1),3)
 
 /*
 Reload a gun using a magazine.
