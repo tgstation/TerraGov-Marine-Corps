@@ -1387,7 +1387,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	slowdown_stacks = 1
 	smoke_strength = 0.5
 	smoke_range = 0
-	reagent_transfer_amount = 5
+	reagent_transfer_amount = 6.5
 
 ///Set up the list of reagents the spit transfers upon impact
 /datum/ammo/xeno/toxin/proc/set_reagents()
@@ -1450,15 +1450,15 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/xeno/toxin/upgrade1
 	smoke_strength = 0.55
-	reagent_transfer_amount = 5.5
+	reagent_transfer_amount = 7
 
 /datum/ammo/xeno/toxin/upgrade2
 	smoke_strength = 0.6
-	reagent_transfer_amount = 6
+	reagent_transfer_amount = 7.5
 
 /datum/ammo/xeno/toxin/upgrade3
 	smoke_strength = 0.65
-	reagent_transfer_amount = 6.5
+	reagent_transfer_amount = 8
 
 
 /datum/ammo/xeno/toxin/medium //Queen
@@ -1466,19 +1466,19 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	added_spit_delay = 10
 	spit_cost = 75
 	smoke_strength = 0.6
-	reagent_transfer_amount = 6
+	reagent_transfer_amount = 7.5
 
 /datum/ammo/xeno/toxin/medium/upgrade1
 	smoke_strength = 0.65
-	reagent_transfer_amount = 6.5
+	reagent_transfer_amount = 8
 
 /datum/ammo/xeno/toxin/medium/upgrade2
 	smoke_strength = 0.7
-	reagent_transfer_amount = 7
+	reagent_transfer_amount = 8.5
 
 /datum/ammo/xeno/toxin/medium/upgrade3
 	smoke_strength = 0.75
-	reagent_transfer_amount = 7.5
+	reagent_transfer_amount = 9
 
 
 /datum/ammo/xeno/toxin/heavy //Praetorian
@@ -1486,19 +1486,19 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	added_spit_delay = 15
 	spit_cost = 100
 	smoke_strength = 0.65
-	reagent_transfer_amount = 6.5
+	reagent_transfer_amount = 8.5
 
 /datum/ammo/xeno/toxin/heavy/upgrade1
 	smoke_strength = 0.7
-	reagent_transfer_amount = 7
+	reagent_transfer_amount = 9
 
 /datum/ammo/xeno/toxin/heavy/upgrade2
 	smoke_strength = 0.75
-	reagent_transfer_amount = 7.5
+	reagent_transfer_amount = 9.5
 
 /datum/ammo/xeno/toxin/heavy/upgrade3
 	smoke_strength = 0.8
-	reagent_transfer_amount = 8
+	reagent_transfer_amount = 10
 
 
 /datum/ammo/xeno/sticky

@@ -33,11 +33,10 @@
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_ACID))
 		adjustOxyLoss(4 + S.strength * 2)
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_NEURO))
-		if(!is_blind(src) && has_eyes())
+		if(!CHECK_BITFIELD(S.smoke_traits, SMOKE_NEURO_LIGHT) && !is_blind(src) && has_eyes()) //Only full neurogas blinds
 			to_chat(src, "<span class='danger'>Your eyes sting. You can't see!</span>")
-		if(!CHECK_BITFIELD(S.smoke_traits, SMOKE_NEURO_LIGHT)) //Only full neurogas blinds
 			blind_eyes(2)
-		blur_eyes(4)
+			blur_eyes(4)
 		reagents.add_reagent(/datum/reagent/toxin/xeno_neurotoxin, GAS_INHALE_REAGENT_TRANSFER_AMOUNT * S.strength)
 		if(prob(10 * S.strength)) //Likely to momentarily freeze up/fall due to arms/hands seizing up
 			to_chat(src, "<span class='danger'>You feel your body going numb and lifeless!</span>")

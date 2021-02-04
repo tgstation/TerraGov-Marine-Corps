@@ -469,32 +469,37 @@
 			power = (2*effect_str) //While stamina loss is going, stamina regen apparently doesn't happen, so I can keep this smaller.
 			L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
 		if(21 to 45)
-			L.adjust_drugginess(1.1) //Move this to stage 2 and 3 so it's not so obnoxious
 			power = (6*effect_str)
 			L.reagent_pain_modifier -= PAIN_REDUCTION_HEAVY
 			L.jitter(4) //Shows that things are bad
 		if(46 to INFINITY)
-			L.adjust_drugginess(1.1)
 			power = (15*effect_str)
 			L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_HEAVY
 			L.jitter(8) //Shows that things are *really* bad
 
-	//Apply stamina damage, or tox damage if our stamina loss is maxed out
+	//Apply stamina damage, then apply any 'excess' stamina damage beyond our maximum as tox and oxy damage
 	var/stamina_loss_limit = L.maxHealth * 2
-	if(L.staminaloss + power > stamina_loss_limit) //If we exceed maxHealth * 2 stamina damage, apply any excess as toxloss and oxyloss
-		var/stamina_excess_damage = (L.staminaloss + power * 0.5) - stamina_loss_limit
-		L.adjustToxLoss(stamina_excess_damage)
-		L.adjustOxyLoss(stamina_excess_damage)
-
 	L.adjustStaminaLoss(min(power, max(0, stamina_loss_limit - L.staminaloss))) //If we're under our stamina_loss limit, apply the difference between our limit and current stamina damage or power, whichever's less
+
+	var/stamina_excess_damage = (L.staminaloss + power) - stamina_loss_limit
+	if(stamina_excess_damage > 0) //If we exceed maxHealth * 2 stamina damage, apply any excess as toxloss and oxyloss
+		L.adjustToxLoss(stamina_excess_damage * 0.5)
+		L.adjustOxyLoss(stamina_excess_damage * 0.5)
+		L.Losebreath(2) //So the oxy loss actually means something.
+
+	L.stuttering = max(L.stuttering, 1)
+
+	if(current_cycle < 21) //Additional effects at higher cycles
+		return ..()
+
+	L.adjust_drugginess(1.1) //Move this to stage 2 and 3 so it's not so obnoxious
 
 	if(L.eye_blurry < 30) //So we don't have the visual acuity of Mister Magoo forever
 		L.adjust_blurriness(1.3)
-	L.stuttering = max(L.stuttering, 1)
+
+
 	return ..()
 
-/datum/reagent/toxin/xeno_neurotoxin/overdose_crit_process(mob/living/L, metabolism)
-	L.Losebreath(1) //Can't breathe; for punishing the bullies
 
 /datum/reagent/toxin/xeno_growthtoxin
 	name = "Larval Accelerant"
