@@ -78,17 +78,18 @@
 		return
 	if(modifiers["middle"] && MiddleClickOn(A))
 		return
+	if(modifiers["shift"] && modifiers["right"])
+		ShiftRightClickOn(A)
+		return
 	if(modifiers["shift"] && ShiftClickOn(A))
+		return
+	if(modifiers["alt"] && modifiers["right"])
+		AltRightClickOn(A)
 		return
 	if(modifiers["alt"] && AltClickOn(A))
 		return
 	if(modifiers["ctrl"])
 		CtrlClickOn(A)
-		return
-	if(modifiers["shift"] && modifiers["right"])
-		ShiftRightClickOn(A)
-		return
-	if(modifiers["alt"] && modifiers["right"])
 		return
 	if(modifiers["right"] && RightClickOn(A))
 		return

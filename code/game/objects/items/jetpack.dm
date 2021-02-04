@@ -2,7 +2,7 @@
 
 /obj/item/jetpack_marine
 	name = "marine jetpack"
-	desc = "A high powered jetpack with enough fuel to send a person flying for a short while. It allows for fast and agile movement on the battlefield. <b>Alt click to fly to a destination when the jetpack is equipped.</b>"
+	desc = "A high powered jetpack with enough fuel to send a person flying for a short while. It allows for fast and agile movement on the battlefield. <b>Alt right click to fly to a destination when the jetpack is equipped.</b>"
 	icon = 'icons/obj/items/jetpack.dmi'
 	icon_state = "jetpack_marine"
 	w_class = WEIGHT_CLASS_BULKY
@@ -28,11 +28,11 @@
 /obj/item/jetpack_marine/equipped(mob/user, slot)
 	. = ..()
 	if(slot == SLOT_BACK)
-		RegisterSignal(user, COMSIG_MOB_CLICK_ALT, .proc/try_to_use_jetpack)
+		RegisterSignal(user, COMSIG_MOB_CLICK_ALT_RIGHT, .proc/try_to_use_jetpack)
 
 /obj/item/jetpack_marine/dropped(mob/user)
 	. = ..()
-	UnregisterSignal(user, COMSIG_MOB_CLICK_ALT)
+	UnregisterSignal(user, COMSIG_MOB_CLICK_ALT_RIGHT)
 
 ///remove the flame overlay
 /obj/item/jetpack_marine/proc/reset_flame()
