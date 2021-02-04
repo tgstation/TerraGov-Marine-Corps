@@ -363,7 +363,12 @@
 
 
 /obj/structure/ob_ammo/warhead/proc/warhead_impact(turf/target, inaccuracy_amt = 0)
+	SHOULD_CALL_PARENT(TRUE)
+	SSmonitor.stats.OB_available--
 
+/obj/structure/ob_ammo/warhead/Initialize()
+	. = ..()
+	SSmonitor.stats.OB_available++
 
 /obj/structure/ob_ammo/warhead/explosive
 	name = "\improper HE orbital warhead"
@@ -371,6 +376,7 @@
 	icon_state = "ob_warhead_1"
 
 /obj/structure/ob_ammo/warhead/explosive/warhead_impact(turf/target, inaccuracy_amt = 0)
+	. = ..()
 	explosion(target, 6 - inaccuracy_amt, 10 - inaccuracy_amt, 15 - inaccuracy_amt, 11 - inaccuracy_amt)
 
 
@@ -382,6 +388,7 @@
 
 
 /obj/structure/ob_ammo/warhead/incendiary/warhead_impact(turf/target, inaccuracy_amt = 0)
+	. = ..()
 	var/range_num = max(15 - inaccuracy_amt, 12)
 	flame_radius(range_num, target,	burn_intensity = 36, burn_duration = 40, colour = "blue")
 
@@ -393,7 +400,7 @@
 
 /obj/structure/ob_ammo/warhead/cluster/warhead_impact(turf/target, inaccuracy_amt = 0)
 	set waitfor = FALSE
-
+	. = ..()
 	var/range_num = max(9 - inaccuracy_amt, 6)
 	var/list/turf_list = list()
 	for(var/turf/T in range(range_num, target))
@@ -411,6 +418,7 @@
 	var/datum/effect_system/smoke_spread/plasmaloss/smoke
 
 /obj/structure/ob_ammo/warhead/plasmaloss/warhead_impact(turf/target, inaccuracy_amt = 0)
+	. = ..()
 	smoke = new(src)
 	smoke.set_up(25, target, 3 SECONDS)//Vape nation
 	smoke.start()

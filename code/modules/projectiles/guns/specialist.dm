@@ -756,17 +756,14 @@
 	F.loc = user.loc
 	F.throw_range = 20
 	F.throw_at(target, 20, 2, user)
-	if(F && F.loc) //Apparently it can get deleted before the next thing takes place, so it runtimes.
+	if(F?.loc) //Apparently it can get deleted before the next thing takes place, so it runtimes.
 		log_explosion("[key_name(user)] fired a grenade [F] from \a [src] at [AREACOORD(user.loc)].")
 		message_admins("[ADMIN_TPMONTY(user)] fired a grenade [F] from \a [src].")
 		F.icon_state = initial(F.icon_state) + "_active"
 		F.activate()
 		F.updateicon()
 		playsound(F.loc, fire_sound, 50, 1)
-		sleep(10)
-		if(F?.loc)
-			F.prime()
-
+		addtimer(CALLBACK(F, /obj/item/explosive/grenade.proc/prime), 1 SECONDS)
 
 /obj/item/weapon/gun/launcher/m81/riot
 	name = "\improper M81 riot grenade launcher"
@@ -978,6 +975,14 @@
 	recoil = 3
 	scatter = -100
 
+/obj/item/weapon/gun/launcher/rocket/sadar/Initialize(mapload, spawn_empty)
+	. = ..()
+	SSmonitor.stats.sadar_in_use += src
+
+/obj/item/weapon/gun/launcher/rocket/sadar/Destroy()
+	. = ..()
+	SSmonitor.stats.sadar_in_use -= src
+
 //-------------------------------------------------------
 //M5 RPG'S MEAN FUCKING COUSIN
 
@@ -1103,6 +1108,13 @@
 	recoil_unwielded = 4
 	damage_falloff_mult = 0.5
 
+/obj/item/weapon/gun/minigun/Initialize(mapload, spawn_empty)
+	. = ..()
+	SSmonitor.stats.miniguns_in_use += src
+
+/obj/item/weapon/gun/minigun/Destroy()
+	. = ..()
+	SSmonitor.stats.miniguns_in_use -= src
 
 //This is a minigun not a chaingun.
 obj/item/weapon/gun/minigun/Fire(atom/target, mob/living/user, params, reflex = FALSE, dual_wield)
