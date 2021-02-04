@@ -290,12 +290,11 @@ GLOBAL_LIST_EMPTY_TYPED(exports_types, /datum/supply_export)
 		return FALSE
 	return TRUE
 
-/datum/supply_ui/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/datum/supply_ui/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 
 	if(!ui)
-		ui = new(user, src, ui_key, tgui_name, source_object.name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, tgui_name, source_object.name)
 		ui.open()
 
 /datum/supply_ui/ui_static_data(mob/user)

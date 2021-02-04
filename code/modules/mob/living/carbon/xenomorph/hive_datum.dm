@@ -1040,15 +1040,18 @@ to_chat will check for valid clients itself already so no need to double check f
 /mob/living/carbon/xenomorph/get_xeno_hivenumber()
 	return hivenumber
 
+/datum/hive_status/ui_state(mob/user)
+	return GLOB.xeno_state
+
 /// Controls the evolution UI
-/datum/hive_status/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.xeno_state)
+/datum/hive_status/ui_interact(mob/user, datum/tgui/ui)
 	// Xeno only screen
 	if(!isxeno(user))
 		return
 
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "HiveEvolveScreen", "Xenomorph Evolution", 400, 750, master_ui, state)
+		ui = new(user, src, "HiveEvolveScreen")
 		ui.open()
 
 /// Static data provided once when the ui is opened
