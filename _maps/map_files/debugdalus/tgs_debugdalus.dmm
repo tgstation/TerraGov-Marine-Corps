@@ -1265,7 +1265,7 @@
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
 "afu" = (
-/obj/machinery/telecomms/server/presets/security,
+/obj/machinery/telecomms/server/presets/cas,
 /turf/open/floor/mainship,
 /area/mainship/command/telecomms)
 "afv" = (
