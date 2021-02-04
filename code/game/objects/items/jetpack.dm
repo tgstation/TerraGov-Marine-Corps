@@ -35,9 +35,10 @@
 	UnregisterSignal(user, COMSIG_MOB_CLICK_ALT_RIGHT)
 
 ///remove the flame overlay
-/obj/item/jetpack_marine/proc/reset_flame()
+/obj/item/jetpack_marine/proc/reset_flame(mob/living/carbon/human/human_user)
 	lit = FALSE
 	update_icon()
+	human_user.update_inv_back()
 
 ///Signal handler for alt click, when the user want to fly at an atom
 /obj/item/jetpack_marine/proc/try_to_use_jetpack(datum/source, atom/A) 
@@ -46,12 +47,13 @@
 	if (use_jetpack(human_user))
 		COOLDOWN_START(src, cooldown_jetpack, 10 SECONDS)
 		lit = TRUE
-		playsound(human_user,'sound/items/weldingtool_on.ogg',25)
+		playsound(human_user,'sound/items/jetpack_sound.ogg',45)
 		fuel_left -= FUEL_USE
 		change_fuel_indicator()
+		human_user.update_inv_back()
 		update_icon()
 		human_user.fly_at(A,calculate_range(human_user),speed,hovering_time)
-		addtimer(CALLBACK(src,.proc/reset_flame), hovering_time)
+		addtimer(CALLBACK(src,.proc/reset_flame, human_user), hovering_time)
 
 ///Calculate the max range of the jetpack, changed by some item slowdown
 /obj/item/jetpack_marine/proc/calculate_range(mob/living/carbon/human/human_user)
@@ -78,7 +80,7 @@
 		to_chat(human_user,"<span class='warning'>The jetpack ran out of fuel!</span>")
 		return FALSE
 	return TRUE
-	
+
 /obj/item/jetpack_marine/update_overlays()
 	. = ..()
 	if (lit)
@@ -92,6 +94,10 @@
 			. += image('icons/obj/items/jetpack.dmi', src, "+jetpackalmostempty")
 		else
 			. += image('icons/obj/items/jetpack.dmi', src, "+jetpackempty")
+
+/obj/item/jetpack_marine/apply_custom(image/standing)
+	if(lit)
+		standing.overlays += image('icons/mob/back.dmi',src,"+jetpack_lit")	
 
 ///Manage the fuel indicator overlay
 /obj/item/jetpack_marine/proc/change_fuel_indicator() 
