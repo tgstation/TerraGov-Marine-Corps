@@ -1373,7 +1373,7 @@ will handle it, but:
 				areas += V
 	return areas
 
-/*
+/**
  *	Generates a cone shape. Any other checks should be handled with the resulting list. Can work with up to 359 degrees
  *	Variables:
  *	center - where the cone begins, or center of a circle drawn with this
