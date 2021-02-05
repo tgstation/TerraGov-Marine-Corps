@@ -22,6 +22,7 @@ jobs:
           bash tools/ci/install_build_tools.sh
           bash tools/ci/install_spaceman_dmm.sh dreamchecker
           sudo apt install pcregrep
+          tools/bootstrap/python -c ''
           pip3 install -r tools/requirements.txt
       - name: Run Linters
         run: |
