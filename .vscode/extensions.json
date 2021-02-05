@@ -1,6 +1,11 @@
 {
     "recommendations": [
         "gbasood.byond-dm-language-support",
+		"kevinkyang.auto-comment-blocks",
+		"arcanis.vscode-zipfs",
+		"dbaeumer.vscode-eslint",
+		"stylemistake.auto-comment-blocks",
+		"oderwat.indent-rainbow",
         "platymuus.dm-langclient",
         "EditorConfig.EditorConfig"
     ]
