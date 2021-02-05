@@ -127,10 +127,10 @@
 
 /obj/effect/alien/weeds/weedwall/window/proc/special_click_signal(datum/source, mob/living/carbon/user)
 	SIGNAL_HANDLER
-	var/obj/structure/window/framed/F = locate() in loc
+	var/obj/structure/window_frame/F = locate() in loc
 	if(!F)
 		return ..()
-	return F.specialclick(user)
+	return INVOKE_ASYNC(F, /obj/structure/window_frame/proc.specialclick, user)
 
 /obj/effect/alien/weeds/weedwall/frame
 	layer = ABOVE_TABLE_LAYER
@@ -155,7 +155,7 @@
 	var/obj/structure/window_frame/WF = locate() in loc
 	if(!WF)
 		return ..()
-	return WF.specialclick(user)
+	return INVOKE_ASYNC(WF, /obj/structure/window_frame/proc.specialclick, user)
 
 
 // =================
