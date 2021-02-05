@@ -1,7 +1,6 @@
 {
 	"recommendations": [
 		"gbasood.byond-dm-language-support",
-		"kevinkyang.auto-comment-blocks",
 		"arcanis.vscode-zipfs",
 		"dbaeumer.vscode-eslint",
 		"stylemistake.auto-comment-blocks",
