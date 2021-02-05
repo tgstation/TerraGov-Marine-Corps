@@ -299,7 +299,7 @@
 
 /mob/living/carbon/human/MiddleClickOn(atom/A)
 	. = ..()
-	if(!client.prefs.toggles_gameplay & MIDDLESHIFTCLICKING)
+	if(!(client.prefs.toggles_gameplay & MIDDLESHIFTCLICKING))
 		return
 	var/obj/item/held_thing = get_active_held_item()
 	if(held_thing && SEND_SIGNAL(held_thing, COMSIG_ITEM_MIDDLECLICKON, A, src) & COMPONENT_ITEM_CLICKON_BYPASS)
