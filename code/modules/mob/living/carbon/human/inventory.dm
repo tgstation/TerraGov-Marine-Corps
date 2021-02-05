@@ -88,9 +88,10 @@
 				next_move = world.time + DELAY_KB_EQUIP
 				return
 	else
-		if(s_active?.can_be_insterted(I))
+		if(s_active?.can_be_inserted(I))
 			s_active.handle_item_insertion(I, FALSE, src)
 			return
+
 		if(!KB)
 			return
 
