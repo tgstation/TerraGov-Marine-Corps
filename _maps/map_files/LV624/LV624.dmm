@@ -7466,7 +7466,7 @@
 	},
 /area/lv624/lazarus/research)
 "aGB" = (
-/obj/item/weapon/gun/pistol/b92fs,
+/obj/item/weapon/gun/pistol/g22,
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 5
 	},
@@ -7622,7 +7622,7 @@
 	},
 /area/lv624/lazarus/research)
 "aHi" = (
-/obj/item/ammo_magazine/pistol/b92fs,
+/obj/item/ammo_magazine/pistol/g22,
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 5
 	},
@@ -11965,12 +11965,12 @@
 	dir = 1
 	},
 /obj/structure/rack,
-/obj/item/weapon/gun/pistol/b92fs,
-/obj/item/weapon/gun/pistol/b92fs,
-/obj/item/ammo_magazine/pistol/b92fs,
-/obj/item/ammo_magazine/pistol/b92fs,
-/obj/item/ammo_magazine/pistol/b92fs,
-/obj/item/ammo_magazine/pistol/b92fs,
+/obj/item/weapon/gun/pistol/g22,
+/obj/item/weapon/gun/pistol/g22,
+/obj/item/ammo_magazine/pistol/g22,
+/obj/item/ammo_magazine/pistol/g22,
+/obj/item/ammo_magazine/pistol/g22,
+/obj/item/ammo_magazine/pistol/g22,
 /obj/item/weapon/gun/rifle/m412,
 /obj/item/ammo_magazine/rifle,
 /obj/item/ammo_magazine/rifle,
@@ -13486,9 +13486,9 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/item/weapon/gun/pistol/b92fs,
-/obj/item/weapon/gun/pistol/b92fs,
-/obj/item/weapon/gun/pistol/b92fs,
+/obj/item/weapon/gun/pistol/g22,
+/obj/item/weapon/gun/pistol/g22,
+/obj/item/weapon/gun/pistol/g22,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -13829,12 +13829,12 @@
 /area/lv624/lazarus/secure_storage)
 "bnb" = (
 /obj/structure/rack,
-/obj/item/ammo_magazine/pistol/b92fs,
-/obj/item/ammo_magazine/pistol/b92fs,
-/obj/item/ammo_magazine/pistol/b92fs,
-/obj/item/ammo_magazine/pistol/b92fs,
-/obj/item/ammo_magazine/pistol/b92fs,
-/obj/item/ammo_magazine/pistol/b92fs,
+/obj/item/ammo_magazine/pistol/g22,
+/obj/item/ammo_magazine/pistol/g22,
+/obj/item/ammo_magazine/pistol/g22,
+/obj/item/ammo_magazine/pistol/g22,
+/obj/item/ammo_magazine/pistol/g22,
+/obj/item/ammo_magazine/pistol/g22,
 /turf/open/floor/plating/platebot,
 /area/lv624/lazarus/secure_storage)
 "bnc" = (
