@@ -19,7 +19,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /turf/open/floor/prison/whitegreen{
 	dir = 1
-	},https://github.com/tgstation/TerraGov-Marine-Corps/pull/5695
+	},
 /area/sulaco/research)
 "aae" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
