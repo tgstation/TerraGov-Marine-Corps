@@ -34,6 +34,7 @@
 /datum/component/chem_booster/Initialize()
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
+	update_boost(boost_tier1)
 
 /datum/component/chem_booster/Destroy(force, silent)
 	QDEL_NULL(configure_action)
@@ -59,7 +60,7 @@
 
 /datum/component/chem_booster/proc/examine(datum/source, mob/user)
 	SIGNAL_HANDLER
-	to_chat(user, "<span class='notice'>The chemical system currently holds [resource_storage_current]u of green blood. Its' enhancement level is set to [boost_amount].</span>")
+	to_chat(user, "<span class='notice'>The chemical system currently holds [resource_storage_current]u of green blood. Its' enhancement level is set to [boost_amount+1].</span>")
 
 /datum/component/chem_booster/proc/dropped(datum/source, mob/user)
 	SIGNAL_HANDLER
@@ -93,15 +94,17 @@
  */
 /datum/component/chem_booster/proc/configure(datum/source)
 	SIGNAL_HANDLER
-	var/mob/living/carbon/human/H = wearer
+	INVOKE_ASYNC(src, .proc/show_radial)
 
-	var/static/list/radial_options = list(
+///Shows the radial menu with suit options. It is separate from configure() due to linters
+/datum/component/chem_booster/proc/show_radial()
+	var/list/radial_options = list(
 		"on_off" = image(icon = 'icons/mob/radial.dmi', icon_state = "cboost_on_off"),
 		"connect" = image(icon = 'icons/mob/radial.dmi', icon_state = "cboost_connect"),
 		"boost" = image(icon = 'icons/mob/radial.dmi', icon_state = "[boost_icon]"),
 		)
 
-	var/choice = show_radial_menu(H, H, radial_options, null, 48, null, TRUE)
+	var/choice = show_radial_menu(wearer, wearer, radial_options, null, 48, null, TRUE)
 	switch(choice)
 		if("on_off")
 			on_off()
@@ -112,10 +115,10 @@
 		if("boost")
 			if(boost_amount == boost_tier2)
 				update_boost(boost_tier1)
-				boost_icon = "cboost_t2"
+				boost_icon = "cboost_t1"
 				return
 			update_boost(boost_tier2)
-			boost_icon = "cboost_t1"
+			boost_icon = "cboost_t2"
 
 /datum/component/chem_booster/proc/on_off(datum/source)
 	if(boost_on)
@@ -163,6 +166,7 @@
 	amount -= boost_amount
 	if(update_boost_amount)
 		boost_amount += amount
+		to_chat(wearer, "<span class='notice'>Reagent effectiveness set to [boost_amount+1].</span>")
 	resource_drain_amount = boost_amount*4
 	if(boost_on)
 		for(var/X in wearer.reagents.reagent_list)
@@ -176,9 +180,7 @@
 		if(!istype(X, added_chem))
 			continue
 		var/datum/reagent/R = X
-		message_admins("pre-add [R.effect_str]")
 		R.effect_str += boost_amount
-		message_admins("after-add [R.effect_str]")
 		break
 
 ///Links the held item, if compatible, to the chem booster and registers attacking with it

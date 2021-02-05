@@ -74,7 +74,7 @@
 		return FALSE
 
 	if(istype(container, /obj/item/reagent_containers/syringe))
-		trans = beaker.reagents.trans_to(container, 40)
+		trans = beaker.reagents.trans_to(container, 30)
 		to_chat(user, "<span class='rose'>You take [trans]u out of the internal storage. It now contains [beaker.reagents.total_volume]u.</span>")
 		return
 
@@ -88,6 +88,14 @@
 
 	if(container.reagents.total_volume < 10)
 		to_chat(user, "<span class='rose'>At least 10u of the substance is needed.</span>")
+		return FALSE
+
+	if(beaker.reagents.total_volume >= 30)
+		to_chat(user, "<span class='rose'>The internal storage is full.</span>")
+		return FALSE
+
+	to_chat(user, "<span class='notice'>You begin filling up the [src] with [container.reagents.reagent_list[1]].</span>")
+	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_BAR, null, PROGRESS_BATTERY))
 		return FALSE
 
 	trans = container.reagents.trans_to(beaker, 40)
