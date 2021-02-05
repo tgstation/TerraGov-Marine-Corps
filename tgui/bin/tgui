@@ -77,7 +77,6 @@ task-clean() {
   rm -rf public/.tmp
   rm -f public/*.map
   rm -f public/*.chunk.*
-  rm -f public/*.bundle.*
   rm -f public/*.hot-update.*
   ## Yarn artifacts
   rm -rf .yarn/cache
@@ -92,6 +91,18 @@ task-clean() {
   ## Dummy DM
   rm -f ../code/modules/tgui/USE_BUILD_BAT_INSTEAD_OF_DREAM_MAKER.dm
 }
+
+## Validates current build against the build stored in git
+task-validate-build() {
+  cd "${base_dir}"
+  local diff
+  diff="$(git diff packages/tgui/public/tgui.bundle.*)"
+  if [[ -n ${diff} ]]; then
+    echo "Error: our build differs from the build committed into git."
+    echo "Please rebuild tgui."
+    exit 1
+  fi
+  echo "tgui: build is ok"
 
 ## Installs merge drivers and git hooks
 task-install-git-hooks() {
@@ -134,6 +145,17 @@ if [[ ${1} == "--install-git-hooks" ]]; then
   task-install-git-hooks
   exit 0
 fi
+
+## Continuous integration scenario
+if [[ ${1} == "--ci" ]]; then
+  task-clean
+  task-install
+  task-eslint
+  task-webpack --mode=production
+  task-validate-build
+  exit 0
+fi
+
 
 if [[ ${1} == "--clean" ]]; then
   task-clean
@@ -183,7 +205,7 @@ if [[ ${1} == '--build' ]]; then
 fi
 
 ## Make a production webpack build + Run eslint
-if [[ ${1} == '--ci' ]]; then
+if [[ -z ${1} ]]; then
   task-install
   task-eslint --fix
   task-webpack --mode=production
