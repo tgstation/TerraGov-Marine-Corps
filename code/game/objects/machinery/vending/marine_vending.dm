@@ -146,6 +146,7 @@
 		/obj/item/ammobox/standard_rifle = 2,
 		/obj/item/ammobox/standard_dmr = 2,
 		/obj/item/ammobox/standard_lmg = 2,
+		/obj/item/jetpack_marine = 10,
 	)
 
 /// HvH version of the vending machine, containing no ammo for spec weapons and restricted ones
@@ -840,7 +841,6 @@
 		/obj/item/helmet_module/binoculars = 20,
 		/obj/item/helmet_module/antenna = 20,
 		/obj/item/facepaint/green = 20,
-		/obj/item/jetpack_marine = 5,
 	)
 
 	prices = list()
