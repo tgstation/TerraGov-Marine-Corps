@@ -76,7 +76,6 @@ task-clean() {
   ## Build artifacts
   rm -rf public/.tmp
   rm -f public/*.map
-  rm -f public/*.chunk.*
   rm -f public/*.hot-update.*
   ## Yarn artifacts
   rm -rf .yarn/cache
