@@ -34,7 +34,6 @@
 /datum/component/chem_booster/Initialize()
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
-	update_boost(boost_tier1)
 
 /datum/component/chem_booster/Destroy(force, silent)
 	QDEL_NULL(configure_action)
@@ -93,9 +92,10 @@
  *	Opens the radial menu with everything
  */
 /datum/component/chem_booster/proc/configure(datum/source)
+	SIGNAL_HANDLER
 	var/mob/living/carbon/human/H = wearer
 
-	var/list/radial_options = list(
+	var/static/list/radial_options = list(
 		"on_off" = image(icon = 'icons/mob/radial.dmi', icon_state = "cboost_on_off"),
 		"connect" = image(icon = 'icons/mob/radial.dmi', icon_state = "cboost_connect"),
 		"boost" = image(icon = 'icons/mob/radial.dmi', icon_state = "[boost_icon]"),
@@ -124,7 +124,8 @@
 		wearer.clear_fullscreen("degeneration")
 		var/necrotized_counter = FLOOR(min(world.time-processing_start, 20 SECONDS)/200 + (world.time-processing_start-20 SECONDS)/100, 1)
 		if(necrotized_counter >= 1)
-			for(var/datum/limb/L in shuffle(wearer.limbs))
+			for(var/X in shuffle(wearer.limbs))
+				var/datum/limb/L = X
 				if(L.limb_status & LIMB_NECROTIZED)
 					continue
 				to_chat(wearer, "<span class='warning'>You can feel the life force in your [L.display_name] draining away...</span>")
@@ -133,7 +134,7 @@
 				if(necrotized_counter < 1)
 					break
 
-		UnregisterSignal(wearer.reagents, COMSIG_REAGENT_ADD)
+		UnregisterSignal(wearer.reagents, COMSIG_NEW_REAGENT_ADD)
 		UnregisterSignal(wearer, COMSIG_MOB_DEATH, .proc/on_off)
 		update_boost(0, FALSE)
 		boost_on = FALSE
@@ -152,10 +153,10 @@
 	boost_on = TRUE
 	processing_start = world.time
 	START_PROCESSING(SSobj, src)
-	RegisterSignal(wearer.reagents, COMSIG_REAGENT_ADD, .proc/late_add_chem)
+	RegisterSignal(wearer.reagents, COMSIG_NEW_REAGENT_ADD, .proc/late_add_chem)
 	RegisterSignal(wearer, COMSIG_MOB_DEATH, .proc/on_off)
 	update_boost(boost_amount*2, FALSE)
-	to_chat(wearer, "Commensing reagent injection.")
+	to_chat(wearer, "<span class='notice'>Commensing reagent injection.</span>")
 
 //Updates the boost amount of the suit and effect_str of reagents if component is on. "amount" is the final level you want to set the boost to.
 /datum/component/chem_booster/proc/update_boost(amount, update_boost_amount = TRUE)
@@ -164,16 +165,20 @@
 		boost_amount += amount
 	resource_drain_amount = boost_amount*4
 	if(boost_on)
-		for(var/datum/reagent/R in wearer.reagents.reagent_list)
+		for(var/X in wearer.reagents.reagent_list)
+			var/datum/reagent/R = X
 			R.effect_str += amount
 
 //Updates the effect_str of chems that enter the body while the component is on
 /datum/component/chem_booster/proc/late_add_chem(datum/source, datum/reagent/added_chem, amount)
 	SIGNAL_HANDLER
-	for(var/datum/reagent/R in wearer.reagents.reagent_list)
-		if(!istype(R, added_chem))
+	for(var/X in wearer.reagents.reagent_list)
+		if(!istype(X, added_chem))
 			continue
+		var/datum/reagent/R = X
+		message_admins("pre-add [R.effect_str]")
 		R.effect_str += boost_amount
+		message_admins("after-add [R.effect_str]")
 		break
 
 ///Links the held item, if compatible, to the chem booster and registers attacking with it

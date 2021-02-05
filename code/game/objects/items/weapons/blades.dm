@@ -52,9 +52,7 @@
 	. = ..()
 	var/list/traits = list()
 
-	traits += "Tramadol - slow your target"
-	traits += "Kelotane - produce a cone of flames"
-	traits += "Bicaridine - heal your target"
+	traits += "Tramadol - slow your target\nKelotane - produce a cone of flames\nBicaridine - heal your target"
 
 	. += jointext(traits, "<br>")
 
@@ -71,6 +69,10 @@
 
 	var/trans
 	var/obj/item/reagent_containers/container = I
+	if(!container.reagents.total_volume)
+		to_chat(user, "<span class='rose'>[container] is empty.</span>")
+		return FALSE
+
 	if(istype(container, /obj/item/reagent_containers/syringe))
 		trans = beaker.reagents.trans_to(container, 40)
 		to_chat(user, "<span class='rose'>You take [trans]u out of the internal storage. It now contains [beaker.reagents.total_volume]u.</span>")
@@ -118,28 +120,33 @@
 	return TRUE
 
 /obj/item/weapon/claymore/harvester/attack(mob/living/M, mob/living/user)
-	if(effect_active)
-		switch(loaded_reagent)
-			if(/datum/reagent/medicine/tramadol)
-				M.apply_status_effect(/datum/status_effect/incapacitating/harvester_slowdown, 2 SECONDS)
+	if(!effect_active)
+		return ..()
 
-			if(/datum/reagent/medicine/kelotane)
-				var/turf/target = get_turf(M)
-				target.ignite()
-				var/list/cone_turfs = generate_cone(user, 2, 1, 91, Get_Angle(user, M.loc))
-				for(var/turf/T in cone_turfs)
-					T.ignite()
+	effect_active = FALSE
 
-			if(/datum/reagent/medicine/bicaridine)
-				to_chat(user, "<span class='rose'>You prepare to stab [M]!</span>")
-				if(!do_after(user, 2 SECONDS, TRUE, M, BUSY_ICON_DANGER))
-					return FALSE
-				new /obj/effect/temp_visual/telekinesis(get_turf(M))
-				M.heal_overall_damage(10, 0, TRUE)
+	switch(loaded_reagent)
+		if(/datum/reagent/medicine/tramadol)
+			M.apply_status_effect(/datum/status_effect/incapacitating/harvester_slowdown, 2 SECONDS)
 
-		effect_active = FALSE
-		loaded_reagent = null
+		if(/datum/reagent/medicine/kelotane)
+			var/turf/target = get_turf(M)
+			target.ignite()
+			var/list/cone_turfs = generate_cone(user, 2, 1, 91, Get_Angle(user, M.loc))
+			for(var/X in cone_turfs)
+				var/turf/T = X
+				T.ignite()
 
+		if(/datum/reagent/medicine/bicaridine)
+			to_chat(user, "<span class='rose'>You prepare to stab [M]!</span>")
+			if(!do_after(user, 2 SECONDS, TRUE, M, BUSY_ICON_DANGER))
+				return TRUE
+			new /obj/effect/temp_visual/telekinesis(get_turf(M))
+			M.heal_overall_damage(10, 0, TRUE)
+			loaded_reagent = null
+			return FALSE
+
+	loaded_reagent = null
 	return ..()
 
 /obj/item/weapon/claymore/mercsword
