@@ -31,15 +31,6 @@
 
 
 /obj/machinery/door/poddoor/railing/CheckExit(atom/movable/O, turf/target)
-	if(!density)
-		return 1
-
-	if(get_dir(loc, target) == dir)
-		return 0
-	else
-		return 1
-
-/obj/machinery/door/poddoor/railing/CanAllowExit(atom/movable/O, turf/target)
 	. = ..()
 	if(O.throwing)
 		return TRUE

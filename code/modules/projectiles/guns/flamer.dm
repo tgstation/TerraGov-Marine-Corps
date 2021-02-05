@@ -716,10 +716,6 @@
 		var/atom/A = i
 		if(QDELETED(A)) //The destruction by fire of one atom may destroy others in the same turf.
 			continue
-		if(ismob(A)) //Ignore stuff that's incorporeal
-			var/mob/mob_target = A
-			if(mob_target.status_flags & INCORPOREAL)
-				continue
 		A.flamer_fire_act(burnlevel, firelevel)
 
 	firelevel -= 2 //reduce the intensity by 2 per tick
@@ -728,6 +724,8 @@
 // override this proc to give different idling-on-fire effects
 /mob/living/flamer_fire_act(burnlevel, firelevel)
 	if(!burnlevel)
+		return
+	if(status_flags & (INCORPOREAL|GODMODE)) //Ignore incorporeal/invul targets
 		return
 	if(hard_armor.getRating("fire") >= 100)
 		to_chat(src, "<span class='warning'>Your suit protects you from most of the flames.</span>")

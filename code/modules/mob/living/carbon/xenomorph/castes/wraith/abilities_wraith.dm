@@ -14,25 +14,6 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	/// This is the warp shadow that the Wraith creates with its Place Warp Shadow ability, and teleports to with Hyperposition
 	var/obj/effect/xenomorph/warp_shadow/warp_shadow
 
-/datum/action/place_warp_shadow_data_storage_datum
-	var/obj/effect/xenomorph/warp_shadow/warp_shadow
-
-///Store all relevant variables to pass along
-/datum/action/xeno_action/place_warp_shadow/on_xeno_pre_upgrade()
-	var/datum/action/place_warp_shadow_data_storage_datum/storage_datum = new /datum/action/place_warp_shadow_data_storage_datum
-	owner.actions_by_path[storage_datum.type] = storage_datum //store it in actions for reference later
-	storage_datum.warp_shadow = warp_shadow
-
-/datum/action/xeno_action/place_warp_shadow/on_xeno_upgrade()
-	//Pass along relevant variables
-	var/datum/action/place_warp_shadow_data_storage_datum/storage_datum = owner.actions_by_path[/datum/action/place_warp_shadow_data_storage_datum]
-	warp_shadow = storage_datum.warp_shadow
-
-	//Null out and delete the storage datum
-	storage_datum.warp_shadow = null
-	owner.actions_by_path[storage_datum.type] = null
-	QDEL_NULL(storage_datum)
-
 /datum/action/xeno_action/place_warp_shadow/give_action()
 	. = ..()
 	RegisterSignal(owner, COMSIG_XENOMORPH_DEATH, .proc/unset_warp_shadow) //Removes warp shadow on death
@@ -209,34 +190,6 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	var/turf/starting_turf = null
 	var/phase_shift_active = FALSE
 	var/phase_shift_duration_timer_id
-
-/datum/action/phase_shift_data_storage_datum
-	var/turf/starting_turf = null
-	var/phase_shift_active = FALSE
-	var/phase_shift_timer_duration
-
-///Store all relevant variables to pass along
-/datum/action/xeno_action/phase_shift/on_xeno_pre_upgrade()
-	var/datum/action/phase_shift_data_storage_datum/storage_datum = new /datum/action/phase_shift_data_storage_datum
-	owner.actions_by_path[storage_datum.type] = storage_datum //store it in actions for reference later
-	storage_datum.starting_turf = starting_turf
-	storage_datum.phase_shift_active = phase_shift_active
-	storage_datum.phase_shift_timer_duration = timeleft(phase_shift_duration_timer_id)
-
-/datum/action/xeno_action/phase_shift/on_xeno_upgrade()
-	//Pass along relevant variables
-	var/datum/action/phase_shift_data_storage_datum/storage_datum = owner.actions_by_path[/datum/action/phase_shift_data_storage_datum]
-	starting_turf = storage_datum.starting_turf
-	phase_shift_active = storage_datum.phase_shift_active
-	if(phase_shift_active && storage_datum.phase_shift_timer_duration)
-		phase_shift_duration_timer_id = addtimer(CALLBACK(src, .proc/phase_shift_deactivate), storage_datum.phase_shift_timer_duration, TIMER_STOPPABLE)
-
-	//Null out and delete the storage datum
-	storage_datum.starting_turf = null
-	storage_datum.phase_shift_active = null
-	storage_datum.phase_shift_timer_duration = null
-	owner.actions_by_path[storage_datum.type] = null
-	QDEL_NULL(storage_datum)
 
 /datum/action/xeno_action/phase_shift/action_activate()
 	. = ..()
@@ -462,7 +415,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	teleport_debuff_aoe(X) //Debuff when we reappear
 
 	succeed_activate()
-	add_cooldown(cooldown_mod)
+	add_cooldown(cooldown_timer * cooldown_mod)
 
 	GLOB.round_statistics.wraith_blinks++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "wraith_blinks") //Statistics
@@ -529,39 +482,6 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	var/banish_duration_timer_id
 	///Luminosity of the banished target
 	var/stored_luminosity
-
-/datum/action/banish_data_storage_datum
-	var/atom/movable/banishment_target
-	var/obj/effect/temp_visual/banishment_portal/portal
-	var/banish_timer_duration
-	var/stored_luminosity
-
-///Store all relevant variables to pass along so nothing breaks if we're banishing a target while upgrading/maturing
-/datum/action/xeno_action/activable/banish/on_xeno_pre_upgrade()
-	var/datum/action/banish_data_storage_datum/storage_datum = new /datum/action/banish_data_storage_datum
-	owner.actions_by_path[storage_datum.type] = storage_datum //store it in actions for reference later
-	storage_datum.banishment_target = banishment_target
-	storage_datum.portal = portal
-	storage_datum.stored_luminosity = stored_luminosity
-	storage_datum.banish_timer_duration = timeleft(banish_duration_timer_id)
-
-/datum/action/xeno_action/activable/banish/on_xeno_upgrade()
-	//Pass along relevant variables
-	var/datum/action/banish_data_storage_datum/storage_datum = owner.actions_by_path[/datum/action/banish_data_storage_datum]
-	banishment_target = storage_datum.banishment_target
-	portal = storage_datum.portal
-	stored_luminosity = storage_datum.stored_luminosity
-	if(banishment_target && storage_datum.banish_timer_duration) //set the remaining time for the banishment portal
-		banish_duration_timer_id = addtimer(CALLBACK(src, .proc/banish_deactivate), storage_datum.banish_timer_duration, TIMER_STOPPABLE)
-
-	//Null out and delete the storage datum
-	storage_datum.banishment_target = null
-	storage_datum.portal = null
-	storage_datum.banish_timer_duration = null
-	storage_datum.stored_luminosity = null
-	owner.actions_by_path[storage_datum.type] = null
-	QDEL_NULL(storage_datum)
-
 
 /datum/action/xeno_action/activable/banish/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()

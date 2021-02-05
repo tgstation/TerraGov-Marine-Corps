@@ -53,7 +53,7 @@
 			to_chat(user, "<span class='warning'>It's crumbling apart, just a few more blows will tear it apart.</span>")
 
 
-/obj/structure/barricade/CanAllowExit(atom/movable/O, turf/target)
+/obj/structure/barricade/CheckExit(atom/movable/O, turf/target)
 	. = ..()
 	if(closed)
 		return TRUE

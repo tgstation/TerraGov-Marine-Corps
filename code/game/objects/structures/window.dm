@@ -76,7 +76,7 @@
 	if(!is_full_window() && !(get_dir(loc, target) == dir))
 		return TRUE
 
-/obj/structure/window/CanAllowExit(atom/movable/mover, turf/target)
+/obj/structure/window/CheckExit(atom/movable/mover, turf/target)
 	. = ..()
 	if(CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
 		return TRUE
