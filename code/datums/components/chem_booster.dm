@@ -86,8 +86,9 @@
 		on_off()
 	resource_storage_current = max(resource_storage_current - resource_drain_amount, 0)
 
-	if(world.time - processing_start > 12 SECONDS)
+	if(world.time - processing_start > 12 SECONDS && world.time - processing_start < 15 SECONDS)
 		wearer.overlay_fullscreen("degeneration", /obj/screen/fullscreen/infection, 1)
+		to_chat(wearer, "<span class='highdanger'>WARNING: You have [(200 - (world.time - processing_start))/10] seconds before necrotic tissue forms on your limbs.</span>")
 
 /**
  *	Opens the radial menu with everything
