@@ -22,6 +22,7 @@ jobs:
           bash tools/ci/install_build_tools.sh
           bash tools/ci/install_spaceman_dmm.sh dreamchecker
           sudo apt install pcregrep
+          git update-index --chmod=+x ./.github/tools/bootstrap/python.sh
           tools/bootstrap/python -c ''
       - name: Run Linters
         run: |
