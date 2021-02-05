@@ -1,5 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - rscadd: "Xenos can chose to track another xenomorph or a silo in hive status"
-  - rscadd: "Distance to silo in hive status"

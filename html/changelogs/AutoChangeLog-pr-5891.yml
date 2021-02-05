@@ -1,7 +1,0 @@
-author: "XSlayer300"
-delete-after: True
-changes: 
-  - rscadd: "Added new dedicated sprites for the laser bolts."
-  - tweak: "Changed the colors for the laser bolts."
-  - tweak: "Changed the tesla energy gun into a proper weapon."
-  - tweak: "Changed the colors of the muzzleflash for the energy weapons."
