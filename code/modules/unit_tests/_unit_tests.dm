@@ -2,6 +2,7 @@
 //Keep this sorted alphabetically
 
 #ifdef UNIT_TESTS
+#include "bespoke_id.dm"
 #include "component_tests.dm"
 #include "initialize_sanity.dm"
 #include "keybinding_init.dm"
