@@ -28,7 +28,7 @@
 	///Item connected to the system
 	var/obj/item/connected_weapon
 	///When was the effect activated. Used to activate negative effects after a certain amount of use
-	var/processing_start
+	var/processing_start = 0
 	COOLDOWN_DECLARE(chemboost_activation_cooldown)
 
 /datum/component/chem_booster/Initialize()
