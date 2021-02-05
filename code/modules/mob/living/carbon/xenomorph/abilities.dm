@@ -906,7 +906,7 @@
 ///////////////////
 /datum/action/xeno_action/activable/build_spawning_pool
 	name = "Secrete spawning pool"
-	action_icon_state = "spawning_pool"
+	action_icon_state = "resin_silo"
 	mechanics_text = "Creates a new spawning pool"
 	ability_name = "secrete resin"
 	plasma_cost = 150
