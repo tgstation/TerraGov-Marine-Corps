@@ -78,15 +78,15 @@
 		if(next_move > world.time)
 			return
 
-		if(!KB)
+		if(KB)
 			return
 		if(draw_from_slot_if_possible(KB))
 			next_move = world.time + DELAY_KB_EQUIP
-
+			return
 		for(var/slot in SLOT_DRAW_ORDER)
 			if(draw_from_slot_if_possible(slot))
 				next_move = world.time + DELAY_KB_EQUIP
-				return FALSE
+			return
 	else
 		if(s_active?.can_be_inserted(I))
 			s_active.handle_item_insertion(I, FALSE, src)
@@ -94,9 +94,8 @@
 
 		if(!KB)
 			return
-
-		if(equip_to_slot_if_possible(I,KB, FALSE, FALSE, FALSE) && !equip_to_appropriate_slot(I, FALSE))
-			return FALSE
+		if(!equip_to_slot_if_possible(I,KB, FALSE, FALSE, FALSE) && !equip_to_appropriate_slot(I, FALSE))
+			return
 
 		if(hand)
 			update_inv_l_hand(FALSE)
