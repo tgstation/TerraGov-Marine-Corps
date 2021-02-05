@@ -388,7 +388,7 @@
 #define COMSIG_XENO_LIVING_THROW_HIT "xeno_living_throw_hit"		///from [/mob/living/carbon/xenomorph/throw_impact]: (mob/living/target)
 	#define COMPONENT_KEEP_THROWING (1<<0)
 #define COMSIG_XENO_PROJECTILE_HIT "xeno_projectile_hit"			///from [/mob/living/carbon/xenomorph/projectile_hit] called when a projectile hits a xeno but before confirmation of a hit (can miss due to inaccuracy/evasion)
-	#define COMPONENT_EVASION_DODGE (1<<0)
+	#define COMPONENT_PROJECTILE_DODGE (1<<0)
 
 //human signals
 #define COMSIG_CLICK_QUICKEQUIP "click_quickequip"

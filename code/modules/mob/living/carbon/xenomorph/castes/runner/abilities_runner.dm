@@ -328,7 +328,7 @@
 		return TRUE
 
 	if(R.issamexenohive(proj.firer)) //We automatically dodge allied projectiles at no cost, and no benefit to our evasion stacks
-		return COMPONENT_EVASION_DODGE
+		return COMPONENT_PROJECTILE_DODGE
 
 	if(proj.ammo.flags_ammo_behavior & AMMO_FLAME) //We can't dodge literal fire
 		return TRUE
@@ -338,7 +338,7 @@
 
 	var/evasion_stack_target = RUNNER_EVASION_COOLDOWN_REFRESH_THRESHOLD * (1 + evasion_streak) //Each streak increases the amount we have to dodge by the initial value
 	R.visible_message("<span class='warning'>[R] effortlessly dodges the [proj.name]!</span>", \
-	"<span class='xenodanger'>We effortlessly dodge the [proj.name]![(evasion_stack_target - evasion_stacks) > 0 ? " We must dodge [evasion_stack_target - evasion_stacks] more projectile damage before Evasion's cooldown refreshes." : ""]</span>")
+	"<span class='xenodanger'>We effortlessly dodge the [proj.name]![(evasion_stack_target - evasion_stacks) > 0 ? " We must dodge [evasion_stack_target - evasion_stacks] more projectile damage before [src]'s cooldown refreshes." : ""]</span>")
 
 
 	R.add_filter("runner_evasion", 2, list("type" = "blur", 5)) //Cool SFX
@@ -363,4 +363,4 @@
 		if(evasion_streak > 3) //Easter egg shoutout
 			to_chat(R, "<span class='xenodanger'>Damn we're good.</span>")
 
-	return COMPONENT_EVASION_DODGE
+	return COMPONENT_PROJECTILE_DODGE
