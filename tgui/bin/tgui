@@ -54,7 +54,6 @@ task-install() {
 task-webpack() {
   cd "${base_dir}"
   yarn run webpack-cli "${@}"
-  touch "../code/modules/tgui/USE_BUILD_BAT_INSTEAD_OF_DREAM_MAKER.dm"
 }
 
 ## Runs a development server
@@ -87,8 +86,6 @@ task-clean() {
   ## NPM artifacts
   rm -rf **/node_modules
   rm -f **/package-lock.json
-  ## Dummy DM
-  rm -f ../code/modules/tgui/USE_BUILD_BAT_INSTEAD_OF_DREAM_MAKER.dm
 }
 
 ## Validates current build against the build stored in git
