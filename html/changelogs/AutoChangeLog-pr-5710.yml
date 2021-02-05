@@ -1,5 +1,0 @@
-author: "Pariah919"
-delete-after: True
-changes: 
-  - rscdel: "Right click menu is now toggleable in preferences"
-  - tweak: "moved safety from alt click to right click"

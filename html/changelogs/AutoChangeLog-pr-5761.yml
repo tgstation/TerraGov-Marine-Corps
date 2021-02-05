@@ -1,6 +1,0 @@
-author: "fernandos13"
-delete-after: True
-changes: 
-  - rscadd: "big hypo to the req orders"
-  - rscadd: "advanced medical pack crate to the req orders"
-  - rscadd: "tweezers to the req orders"
