@@ -14,14 +14,9 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	/// This is the warp shadow that the Wraith creates with its Place Warp Shadow ability, and teleports to with Hyperposition
 	var/obj/effect/xenomorph/warp_shadow/warp_shadow
 
-/datum/action/xeno_action/place_warp_shadow/give_action()
-	. = ..()
-	RegisterSignal(owner, COMSIG_XENOMORPH_DEATH, .proc/unset_warp_shadow) //Removes warp shadow on death
-
 /datum/action/xeno_action/place_warp_shadow/can_use_action(silent = FALSE, override_flags)
 	. = ..()
-	var/turf/T = get_turf(owner)
-	if(!check_warp_shadow_placement(T, owner)) //Check if our placement is legal
+	if(!check_warp_shadow_placement(get_turf(owner), owner)) //Check if our placement is legal
 		if(!silent)
 			to_chat(owner, "<span class='xenowarning'>We cannot create a warp shadow here!</span>")
 		return FALSE
@@ -45,6 +40,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	playsound(T, 'sound/weapons/emitter.ogg', 25, 1)
 	QDEL_NULL(warp_shadow) //Delete the old warp shadow
 	warp_shadow = shadow //Set the new warp shadow
+	RegisterSignal(owner, COMSIG_XENOMORPH_DEATH, .proc/unset_warp_shadow) //Removes warp shadow on death
 	RegisterSignal(warp_shadow, COMSIG_PARENT_PREQDELETED, .proc/unset_warp_shadow) //For var clean up
 	RegisterSignal(owner, COMSIG_PARENT_PREQDELETED, .proc/unset_warp_shadow) //For var clean up
 	warp_shadow.setDir(ghost.dir) //Have it imitate our facing
@@ -58,8 +54,6 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 ///Nulls out the warp shadow
 /datum/action/xeno_action/place_warp_shadow/proc/unset_warp_shadow()
 	SIGNAL_HANDLER
-	if(!warp_shadow) //In the event the parent dies without placing a shadow
-		return
 	UnregisterSignal(warp_shadow, COMSIG_PARENT_PREQDELETED)
 	UnregisterSignal(owner, COMSIG_PARENT_PREQDELETED)
 	QDEL_NULL(warp_shadow) //remove the actual shadow
@@ -345,10 +339,15 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 /datum/action/xeno_action/activable/blink/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	var/turf/T = get_turf(A)
-
 	if(isclosedturf(T) || isspaceturf(T))
 		if(!silent)
 			to_chat(owner, "<span class='xenowarning'>We cannot blink here!</span>")
+		return FALSE
+
+	var/area/target_area = get_area(T) //We are forced to set this; will not work otherwise
+	if(is_type_in_typecache(target_area, GLOB.wraith_strictly_forbidden_areas)) //We can't enter these period.
+		if(!silent)
+			to_chat(owner, "<span class='xenowarning'>We can't blink into this area!</span>")
 		return FALSE
 
 	if(!owner.line_of_sight(T)) //Needs to be in line of sight.
@@ -365,14 +364,6 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		if(!blocker.CanPass(owner, T))
 			if(!silent)
 				to_chat(owner, "<span class='xenowarning'>We can't blink into a solid object!</span>")
-			return FALSE
-
-	if(owner.pulling) //We can't teleport into forbidden areas while pulling a mob
-		var/area/target_area = get_area(T) //Have to set this as vars or is_type_in freaks out
-		var/area/current_area = get_area(owner)
-		if(is_type_in_typecache(target_area, GLOB.wraith_no_incorporeal_pass_areas) && !is_type_in_typecache(current_area, GLOB.wraith_no_incorporeal_pass_areas)) //If we're incorporeal via Phase Shift and we enter an off-limits area while not in one, it's time to stop
-			if(!silent)
-				to_chat(owner, "<span class='xenowarning'>We can't blink into this area from here while grabbing something!</span>")
 			return FALSE
 
 

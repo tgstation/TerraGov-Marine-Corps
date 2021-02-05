@@ -5,11 +5,14 @@ GLOBAL_LIST_INIT(wraith_no_incorporeal_pass_atoms, typecacheof(list(
 	/turf/open/space)))
 
 GLOBAL_LIST_INIT(wraith_no_incorporeal_pass_areas, typecacheof(list(
-	/area/space,
 	/area/shuttle/drop1/lz1,
 	/area/shuttle/drop2/lz2,
 	/area/outpost/lz1,
 	/area/outpost/lz2)))
+
+//Don't even think of going in here
+GLOBAL_LIST_INIT(wraith_strictly_forbidden_areas, typecacheof(list(
+	/area/space)))
 
 GLOBAL_LIST_INIT(wraith_no_incorporeal_pass_shutters, typecacheof(list(
 	/obj/machinery/door/poddoor/timed_late/containment,
@@ -42,6 +45,8 @@ GLOBAL_LIST_INIT(wraith_no_incorporeal_pass_shutters, typecacheof(list(
 		return FALSE
 	var/area/target_area = get_area(target) //Have to set this as vars or is_type_in freaks out
 	var/area/current_area = get_area(src)
+	if(is_type_in_typecache(target_area, GLOB.wraith_strictly_forbidden_areas)) //We can't enter these period.
+		return FALSE
 	if(is_type_in_typecache(target_area, GLOB.wraith_no_incorporeal_pass_areas) && !is_type_in_typecache(current_area, GLOB.wraith_no_incorporeal_pass_areas)) //If we're incorporeal via Phase Shift and we enter an off-limits area while not in one, it's time to stop
 		return FALSE
 	return TRUE
