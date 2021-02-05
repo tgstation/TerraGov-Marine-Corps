@@ -241,6 +241,16 @@
 	new /obj/item/reagent_containers/glass/bottle/ironsugar(src)
 	new /obj/item/reagent_containers/glass/bottle/ironsugar(src)
 
+/obj/item/storage/syringe_case/tricordrazine
+	name = "syringe case (tricordrazine)"
+	desc = "It's a medical case for storing syringes and bottles. This one contains Tricordrazine"
+
+/obj/item/storage/syringe_case/tricordrazine/PopulateContents()
+	. = ..()
+	new /obj/item/reagent_containers/syringe(src)
+	new /obj/item/reagent_containers/glass/bottle/tricordrazine(src)
+	new /obj/item/reagent_containers/glass/bottle/tricordrazine(src)
+
 /obj/item/storage/syringe_case/combat
 	name = "syringe case (combat)"
 	desc = "It's a medical case for storing syringes and bottles. This one contains combat autoinjectors."
@@ -311,6 +321,12 @@
 	icon_state = "pill_canister2"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/kelotane
 
+/obj/item/storage/pill_bottle/keloderm
+	name = "keloderm pill bottle"
+	desc = "Contains pills that heal burns, but cause slight pain. Take two to heal faster, but have slightly more pain."
+	icon_state = "pill_canister2"
+	pill_type_to_fill = /obj/item/reagent_containers/pill/keloderm
+
 /obj/item/storage/pill_bottle/dylovene
 	name = "dylovene pill bottle"
 	desc = "Contains pills that heal toxic damage and purge toxins and neurotoxins of all kinds."
@@ -346,6 +362,12 @@
 	desc = "Contains pills that heal cuts and bruises, but cause slight pain. Take two to heal faster, but have slightly more pain."
 	icon_state = "pill_canister11"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/bicaridine
+
+/obj/item/storage/pill_bottle/bicamera
+	name = "bicamera pill bottle"
+	desc = "Contains pills that heal cuts and bruises, but cause slight pain. Take two to heal faster, but have slightly more pain."
+	icon_state = "pill_canister11"
+	pill_type_to_fill = /obj/item/reagent_containers/pill/bicamera
 
 /obj/item/storage/pill_bottle/dexalin
 	name = "dexalin pill bottle"
