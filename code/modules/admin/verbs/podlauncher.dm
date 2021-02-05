@@ -118,7 +118,7 @@
 
 	return data
 
-/datum/podlauncher/ui_act(action, params)
+/datum/podlauncher/ui_act(action, list/params)
 	. = ..()
 	if(.)
 		return

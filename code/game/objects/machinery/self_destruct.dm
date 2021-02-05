@@ -60,7 +60,7 @@
 	return list("dest_status" = active_state)
 
 
-/obj/machinery/self_destruct/console/ui_act(action, params)
+/obj/machinery/self_destruct/console/ui_act(action, list/params)
 	. = ..()
 	if(.)
 		return

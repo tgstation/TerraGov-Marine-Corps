@@ -1104,7 +1104,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	)
 
 /// Handles actuually evolving
-/datum/hive_status/ui_act(action, params)
+/datum/hive_status/ui_act(action, list/params)
 	. = ..()
 	if(.)
 		return

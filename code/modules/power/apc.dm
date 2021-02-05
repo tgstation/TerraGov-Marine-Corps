@@ -748,7 +748,7 @@
 		return FALSE
 	return TRUE
 
-/obj/machinery/power/apc/ui_act(action, params)
+/obj/machinery/power/apc/ui_act(action, list/params)
 	. = ..()
 	if(. || !can_use(usr, TRUE) || locked)
 		return

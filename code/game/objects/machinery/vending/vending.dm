@@ -430,7 +430,7 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 	.["coin"] = coin ? coin.name : null
 	.["isshared"] = isshared
 
-/obj/machinery/vending/ui_act(action, params)
+/obj/machinery/vending/ui_act(action, list/params)
 	. = ..()
 	if(.)
 		return

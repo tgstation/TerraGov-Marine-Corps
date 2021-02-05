@@ -78,7 +78,7 @@
 
 	return data
 
-/obj/machinery/computer/intel_computer/ui_act(action, params)
+/obj/machinery/computer/intel_computer/ui_act(action, list/params)
 	. = ..()
 	if(.)
 		return

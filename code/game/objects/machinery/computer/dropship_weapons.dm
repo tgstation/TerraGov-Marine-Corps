@@ -55,7 +55,7 @@
 
 	.["shuttle_mode"] = shuttle.mode == SHUTTLE_CALL
 
-/obj/machinery/computer/dropship_weapons/ui_act(action, params)
+/obj/machinery/computer/dropship_weapons/ui_act(action, list/params)
 	. = ..()
 	if(.)
 		return

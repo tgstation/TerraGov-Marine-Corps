@@ -271,7 +271,7 @@
 	data["status"] = get_status()
 	return data
 
-/datum/wires/ui_act(action, params)
+/datum/wires/ui_act(action, list/params)
 	. = ..() 
 	
 	if(. || !interactable(usr))

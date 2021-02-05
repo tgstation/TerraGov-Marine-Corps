@@ -564,7 +564,7 @@ SUBSYSTEM_DEF(shuttle)
 
 	return data
 
-/datum/controller/subsystem/shuttle/ui_act(action, params)
+/datum/controller/subsystem/shuttle/ui_act(action, list/params)
 	. = ..()
 	if(.)
 		return

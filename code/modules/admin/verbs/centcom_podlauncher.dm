@@ -98,7 +98,7 @@
 	data["styles"] = GLOB.pod_styles
 	return data
 
-/datum/centcom_podlauncher/ui_act(action, params)
+/datum/centcom_podlauncher/ui_act(action, list/params)
 	. = ..()
 	if(.)
 		return

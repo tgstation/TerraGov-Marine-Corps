@@ -526,7 +526,7 @@
 		valid_destinations += list(list("name" = S.name, "id" = S.id))
 	.["destinations"] = valid_destinations
 
-/obj/machinery/computer/shuttle/marine_dropship/ui_act(action, params)
+/obj/machinery/computer/shuttle/marine_dropship/ui_act(action, list/params)
 	. = ..()
 	if(.)
 		return

@@ -162,7 +162,7 @@
 
 	.["recordingRecipe"] = recording_recipe
 
-/obj/machinery/chem_dispenser/ui_act(action, params)
+/obj/machinery/chem_dispenser/ui_act(action, list/params)
 	. = ..()
 	if(.)
 		return

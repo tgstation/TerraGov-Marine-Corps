@@ -172,7 +172,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 			if(buy_flags & flag)
 				.["cats"][i]["remaining"]++
 
-/obj/machinery/marine_selector/ui_act(action, params)
+/obj/machinery/marine_selector/ui_act(action, list/params)
 	. = ..()
 	if(.)
 		return

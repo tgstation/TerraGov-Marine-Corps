@@ -175,7 +175,7 @@
 		))
 	return data
 
-/obj/item/hud_tablet/ui_act(action, params)
+/obj/item/hud_tablet/ui_act(action, list/params)
 	. = ..()
 	if(.)
 		return

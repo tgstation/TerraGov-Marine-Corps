@@ -102,7 +102,7 @@
 
 	return data
 
-/obj/machinery/computer/crew/ui_act(action, params)
+/obj/machinery/computer/crew/ui_act(action, list/params)
 	. = ..()
 	if(.)
 		return

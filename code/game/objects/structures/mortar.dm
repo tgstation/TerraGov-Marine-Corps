@@ -60,7 +60,7 @@
 	.["DY"] = coords["dial_y"]
 	.["last_three_inputs"] = last_three_inputs
 
-/obj/structure/mortar/ui_act(action, params)
+/obj/structure/mortar/ui_act(action, list/params)
 	. = ..()
 	if(.)
 		return

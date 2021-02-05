@@ -95,7 +95,7 @@
 	)
 	return data
 
-/obj/item/portable_vendor/ui_act(action, params)
+/obj/item/portable_vendor/ui_act(action, list/params)
 	. = ..()
 	if(.)
 		return

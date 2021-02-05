@@ -275,7 +275,7 @@
 	)
 	return data
 
-/obj/machinery/power/smes/ui_act(action, params)
+/obj/machinery/power/smes/ui_act(action, list/params)
 	. = ..()
 	if(.)
 		return

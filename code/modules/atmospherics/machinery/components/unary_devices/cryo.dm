@@ -396,7 +396,7 @@
 	data["beakerContents"] = beakerContents
 	return data
 
-/obj/machinery/atmospherics/components/unary/cryo_cell/ui_act(action, params)
+/obj/machinery/atmospherics/components/unary/cryo_cell/ui_act(action, list/params)
 	. = ..()
 	if(.)
 		return

@@ -106,7 +106,7 @@
 		))
 	return data
 
-/obj/machinery/computer/camera/ui_act(action, params)
+/obj/machinery/computer/camera/ui_act(action, list/params)
 	. = ..()
 	if(.)
 		return

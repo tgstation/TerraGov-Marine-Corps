@@ -403,7 +403,7 @@
 		"mini" = istype(src, /obj/machinery/marine_turret/mini)
 	)
 
-/obj/machinery/marine_turret/ui_act(action, params)
+/obj/machinery/marine_turret/ui_act(action, list/params)
 	. = ..()
 	if(.)
 		return
