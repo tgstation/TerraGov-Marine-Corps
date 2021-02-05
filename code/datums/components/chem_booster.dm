@@ -217,6 +217,7 @@
 		to_chat(wearer, "<span class='warning'>You disconnect the [connected_weapon].</span>")
 		DISABLE_BITFIELD(connected_weapon.flags_item, NODROP)
 		UnregisterSignal(connected_weapon, COMSIG_ITEM_ATTACK)
+		UnregisterSignal(connected_weapon, list(COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_DROPPED))
 		connected_weapon = null
 		return TRUE
 
@@ -226,6 +227,7 @@
 	connected_weapon = weapon_to_connect
 	ENABLE_BITFIELD(connected_weapon.flags_item, NODROP)
 	RegisterSignal(connected_weapon, COMSIG_ITEM_ATTACK, .proc/drain_resource)
+	RegisterSignal(connected_weapon, list(COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_DROPPED), .proc/connect_weapon)
 	return TRUE
 
 //Handles resource collection and is ativated when attacking with a weapon.
@@ -233,7 +235,7 @@
 	SIGNAL_HANDLER
 	if(!isxeno(M))
 		return
-	if(isdead(M))
+	if(M.stat == DEAD)
 		return
 	if(resource_storage_current >= resource_storage_max)
 		return
