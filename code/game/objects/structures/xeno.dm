@@ -648,7 +648,7 @@
 		hugger.kill_hugger()
 		hugger = null
 		icon_state = "trap0"
-	..()
+	return ..()
 
 /obj/structure/xeno/trap/HasProximity(atom/movable/AM)
 	if(!iscarbon(AM) || !hugger)
@@ -675,37 +675,42 @@
 
 /obj/structure/xeno/trap/attack_alien(mob/living/carbon/xenomorph/M)
 	. = ..()
-	if(M.a_intent != INTENT_HARM)
-		if(M.xeno_caste.caste_flags & CASTE_CAN_HOLD_FACEHUGGERS)
-			if(!hugger)
-				to_chat(M, "<span class='warning'>[src] is empty.</span>")
-			else
-				icon_state = "trap0"
-				M.put_in_active_hand(hugger)
-				hugger.go_active(TRUE)
-				hugger = null
-				to_chat(M, "<span class='xenonotice'>We remove the [hugger] from [src].</span>")
+
+	if(M.a_intent == INTENT_HARM)
 		return
-	..()
+	if(!(M.xeno_caste.caste_flags & CASTE_CAN_HOLD_FACEHUGGERS))
+		return
+	if(!hugger)
+		to_chat(M, "<span class='warning'>[src] is empty.</span>")
+		return
+
+	icon_state = "trap0"
+	M.put_in_active_hand(hugger)
+	hugger.go_active(TRUE)
+	to_chat(M, "<span class='xenonotice'>We remove the [hugger] from [src].</span>")
+	hugger = null
+
 
 /obj/structure/xeno/trap/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/clothing/mask/facehugger) && isxeno(user))
-		var/obj/item/clothing/mask/facehugger/FH = I
-		if(hugger)
-			to_chat(user, "<span class='warning'>There is already a facehugger in [src].</span>")
-			return
+	if(!istype(I, /obj/item/clothing/mask/facehugger) || !isxeno(user))
+		return
 
-		if(FH.stat == DEAD)
-			to_chat(user, "<span class='warning'>You can't put a dead facehugger in [src].</span>")
-			return
+	var/obj/item/clothing/mask/facehugger/FH = I
+	if(hugger)
+		to_chat(user, "<span class='warning'>There is already a facehugger in [src].</span>")
+		return
 
-		user.transferItemToLoc(FH, src)
-		FH.go_idle(TRUE)
-		hugger = FH
-		icon_state = "trap1"
-		to_chat(user, "<span class='xenonotice'>You place a facehugger in [src].</span>")
+	if(FH.stat == DEAD)
+		to_chat(user, "<span class='warning'>You can't put a dead facehugger in [src].</span>")
+		return
+
+	user.transferItemToLoc(FH, src)
+	FH.go_idle(TRUE)
+	hugger = FH
+	icon_state = "trap1"
+	to_chat(user, "<span class='xenonotice'>You place a facehugger in [src].</span>")
 
 
 /obj/structure/xeno/trap/Crossed(atom/A)
@@ -1181,6 +1186,7 @@ TUNNEL
 	var/turf/center_turf
 	var/datum/hive_status/associated_hive
 	var/silo_area
+	var/number_silo
 	COOLDOWN_DECLARE(silo_damage_alert_cooldown)
 	COOLDOWN_DECLARE(silo_proxy_alert_cooldown)
 
@@ -1193,6 +1199,7 @@ TUNNEL
 
 	var/static/number = 1
 	name = "[name] [number]"
+	number_silo = number
 	number++
 
 	GLOB.xeno_resin_silos += src
@@ -1282,6 +1289,7 @@ TUNNEL
 	//If we're at max integrity, stop regenerating and processing.
 	return PROCESS_KILL
 
+///Add this silo to the list of silos if it has an associated hive
 /obj/structure/xeno/silo/proc/is_burrowed_larva_host(datum/source, list/mothers, list/silos)
 	SIGNAL_HANDLER
 	if(associated_hive)
@@ -1352,6 +1360,7 @@ TUNNEL
 	animate(src, pixel_x = pixel_x + offset, time = 2, loop = -1) //start shaking
 	addtimer(CALLBACK(src, .proc/stop_shake, old_pixel_x), duration)
 
+///Terminate the shaking animation after blending
 /obj/structure/xeno/silo/proc/stop_shake(old_px)
 	animate(src)
 	pixel_x = old_px
