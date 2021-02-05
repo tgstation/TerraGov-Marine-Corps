@@ -183,7 +183,7 @@ if [[ ${1} == '--build' ]]; then
 fi
 
 ## Make a production webpack build + Run eslint
-if [[ -z ${1} ]]; then
+if [[ -z ${1} == '--ci' ]]; then
   task-install
   task-eslint --fix
   task-webpack --mode=production
