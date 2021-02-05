@@ -129,7 +129,7 @@
 	SIGNAL_HANDLER
 	var/obj/structure/window_frame/F = locate() in loc
 	if(!F)
-		return ..()
+		return
 	return INVOKE_ASYNC(F, /obj/structure/window_frame/proc.specialclick, user)
 
 /obj/effect/alien/weeds/weedwall/frame
@@ -154,7 +154,7 @@
 	SIGNAL_HANDLER
 	var/obj/structure/window_frame/WF = locate() in loc
 	if(!WF)
-		return ..()
+		return
 	return INVOKE_ASYNC(WF, /obj/structure/window_frame/proc.specialclick, user)
 
 
