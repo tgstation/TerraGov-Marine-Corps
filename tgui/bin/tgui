@@ -103,6 +103,7 @@ task-validate-build() {
     exit 1
   fi
   echo "tgui: build is ok"
+}
 
 ## Installs merge drivers and git hooks
 task-install-git-hooks() {
