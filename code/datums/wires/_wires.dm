@@ -245,7 +245,7 @@
 /datum/wires/ui_state(mob/user)
 	return GLOB.physical_state
 
-/datum/wires/ui_interact(mob/user, datum/tgui/ui,)
+/datum/wires/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if (!ui)
 		ui = new(user, src, "Wires", "[holder.name] Wires")

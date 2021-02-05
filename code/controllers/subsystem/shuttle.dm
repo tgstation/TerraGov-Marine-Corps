@@ -491,7 +491,7 @@ SUBSYSTEM_DEF(shuttle)
 	return GLOB.admin_state
 
 /datum/controller/subsystem/shuttle/ui_interact(mob/user, datum/tgui/ui)
-	ui = SStgui.try_update_ui(user, src ,ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "ShuttleManipulator", name)
 		ui.open()
