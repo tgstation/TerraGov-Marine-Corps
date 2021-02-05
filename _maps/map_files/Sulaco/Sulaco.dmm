@@ -19,7 +19,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /turf/open/floor/prison/whitegreen{
 	dir = 1
-	},
+	},https://github.com/tgstation/TerraGov-Marine-Corps/pull/5695
 /area/sulaco/research)
 "aae" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
@@ -12365,8 +12365,7 @@
 "hkD" = (
 /obj/machinery/crema_switch{
 	id = "crema";
-	pixel_x = 10;
-	pixel_y = 0
+	pixel_x = 10
 	},
 /turf/closed/wall/mainship/gray,
 /area/sulaco/research)
