@@ -86,7 +86,7 @@
 		for(var/slot in SLOT_DRAW_ORDER)
 			if(draw_from_slot_if_possible(slot))
 				next_move = world.time + DELAY_KB_EQUIP
-				return
+				return FALSE
 	else
 		if(s_active?.can_be_inserted(I))
 			s_active.handle_item_insertion(I, FALSE, src)
@@ -96,7 +96,7 @@
 			return
 
 		if(equip_to_slot_if_possible(I,KB, FALSE, FALSE, FALSE) && !equip_to_appropriate_slot(I, FALSE))
-			return
+			return FALSE
 
 		if(hand)
 			update_inv_l_hand(FALSE)
