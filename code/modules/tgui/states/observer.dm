@@ -15,4 +15,3 @@ GLOBAL_DATUM_INIT(observer_state, /datum/ui_state/observer_state, new)
 	if(isobserver(user))
 		return UI_INTERACTIVE
 	return UI_CLOSE
-

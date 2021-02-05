@@ -7,8 +7,6 @@
 	flags_equip_slot = ITEM_SLOT_POCKET
 	w_class = WEIGHT_CLASS_SMALL
 
-	var/ui_x = 870
-	var/ui_y = 708
 	interaction_flags = INTERACT_MACHINE_TGUI
 
 

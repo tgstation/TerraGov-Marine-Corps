@@ -103,7 +103,8 @@
 	return data
 
 /obj/machinery/computer/crew/ui_act(action, params)
-	if(..())
+	. = ..()
+	if(.)
 		return
 
 	switch(action)

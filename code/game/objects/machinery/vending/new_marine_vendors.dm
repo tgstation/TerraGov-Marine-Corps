@@ -173,7 +173,8 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 				.["cats"][i]["remaining"]++
 
 /obj/machinery/marine_selector/ui_act(action, params)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	switch(action)
 		if("vend")

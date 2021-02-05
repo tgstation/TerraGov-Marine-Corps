@@ -527,7 +527,8 @@
 	.["destinations"] = valid_destinations
 
 /obj/machinery/computer/shuttle/marine_dropship/ui_act(action, params)
-	if(..())
+	. = ..()
+	if(.)
 		return
 
 	var/obj/docking_port/mobile/marine_dropship/M = SSshuttle.getShuttle(shuttleId)

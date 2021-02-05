@@ -163,7 +163,8 @@
 	.["recordingRecipe"] = recording_recipe
 
 /obj/machinery/chem_dispenser/ui_act(action, params)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	switch(action)
 		if("amount")

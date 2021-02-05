@@ -1105,7 +1105,8 @@ to_chat will check for valid clients itself already so no need to double check f
 
 /// Handles actuually evolving
 /datum/hive_status/ui_act(action, params)
-	if(..())
+	. = ..()
+	if(.)
 		return
 
 	var/mob/living/carbon/xenomorph/xeno = usr
@@ -1114,7 +1115,7 @@ to_chat will check for valid clients itself already so no need to double check f
 			SStgui.close_user_uis(usr, src, "main")
 			var/datum/xeno_caste/caste = GLOB.xeno_caste_datums[text2path(params["path"])][XENO_UPGRADE_BASETYPE]
 			xeno.do_evolve(caste.caste_type_path, caste.display_name) // All the checks for can or can't are handled inside do_evolve
-			return
+			return TRUE
 
 /datum/hive_status/proc/update_tier_limits()
 	tier3_xeno_limit = max(length(xenos_by_tier[XENO_TIER_THREE]),FLOOR((length(xenos_by_tier[XENO_TIER_ZERO])+length(xenos_by_tier[XENO_TIER_ONE])+length(xenos_by_tier[XENO_TIER_TWO]))/3+1,1))

@@ -1,7 +1,7 @@
+import { Fragment } from 'inferno';
 import { useBackend, useLocalState } from '../backend';
 import { Button, Flex, Divider, Collapsible, AnimatedNumber, Box, Section, LabeledList, Icon, Input } from '../components';
 import { Window } from '../layouts';
-import { Fragment } from 'inferno';
 import { map } from 'common/collections';
 import { FlexItem } from '../components/Flex';
 import { Table, TableRow, TableCell } from '../components/Table';
@@ -160,7 +160,7 @@ const Menu = (props, context) => {
     <Section height="100%" p="5px">
       Points: <AnimatedNumber value={currentpoints} />
       { !readOnly && (
-        <Fragment>
+        <>
           <Divider />
           <Flex>
             <FlexItem grow={1}>
@@ -188,7 +188,7 @@ const Menu = (props, context) => {
               Elevator: {elevator}
             </FlexItem>
           </Flex>
-        </Fragment>
+        </>
       )}
       <Divider />
       <Flex>
@@ -206,7 +206,7 @@ const Menu = (props, context) => {
         <FlexItem>Cost: <AnimatedNumber value={shopping_list_cost} /></FlexItem>
       </Flex>
       { !readOnly && (
-        <Fragment>
+        <>
           <MenuButton
             icon="history"
             menuname="Previous Purchases"
@@ -215,7 +215,7 @@ const Menu = (props, context) => {
             icon="shipping-fast"
             menuname="Export History"
             condition={!export_history.length} />
-        </Fragment>
+        </>
       )}
       <Divider />
       <Flex>
@@ -283,7 +283,7 @@ const OrderList = (props, context) => {
           <Section key={id} level={2}
             title={"Order #"+id}
             buttons={!readOnly && (
-              <Fragment>
+              <>
                 { (!authed_by || selectedMenu==="Denied Requests") && (
                   <Button
                     onClick={() => act('approve', { id: id })}
@@ -294,7 +294,7 @@ const OrderList = (props, context) => {
                     onClick={() => act('deny', { id: id })}
                     icon="times"
                     content="Deny" />)}
-              </Fragment>
+              </>
             )}>
             <LabeledList>
               <LabeledListItem label="Requested by">
@@ -387,7 +387,7 @@ const Requests = (props, context) => {
     <OrderList type={requests}
       readOnly={readOnly}
       buttons={!readOnly && (
-        <Fragment>
+        <>
           <Button
             icon="check-double"
             onClick={() => act('approveall')}
@@ -396,7 +396,7 @@ const Requests = (props, context) => {
             icon="times-circle"
             onClick={() => act('denyall')}
             content="Deny All" />
-        </Fragment>
+        </>
       )} />
   );
 };
@@ -440,13 +440,13 @@ const ShoppingCart = (props, context) => {
           onClick={() => act('clearcart')} />
       </Box>
       { readOnly && (
-        <Fragment>
+        <>
           <Box width="10%" inline>Reason: </Box>
           <Input
             width="89%"
             inline value={reason}
             onInput={(e, value) => setReason(value)} />
-        </Fragment>
+        </>
       )}
       <Category selectedPackCat={shopping_list_array} level={2} />
     </Section>
@@ -496,10 +496,10 @@ const Category = (props, context) => {
 
   return (
     <Section level={level || 1} title={
-      <Fragment>
+      <>
         <Icon name={category_icon[selectedMenu]} mr="5px" />
         {selectedMenu}
-      </Fragment>
+      </>
     }>
       <Table>
         { selectedPackCat.map(entry => {
@@ -553,7 +553,7 @@ const PackContents = (props, context) => {
   } = props;
 
   return (
-    <Fragment>
+    <>
       <TableRow>
         <TableCell bold>
           Item Type
@@ -572,7 +572,7 @@ const PackContents = (props, context) => {
           </TableCell>
         </TableRow>
       ))(contains)}
-    </Fragment>
+    </>
   );
 };
 
@@ -597,7 +597,10 @@ export const CargoRequest = (props, context) => {
     : null;
 
   return (
-    <Window resizable>
+    <Window 
+      width={900}
+      height={700}
+      resizable>
       <Flex height="650px" align="stretch">
         <Flex.Item width="280px">
           <Menu readOnly={1} />

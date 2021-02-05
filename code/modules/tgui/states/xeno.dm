@@ -1,8 +1,3 @@
-/*!
- * Copyright (c) 2020 Aleksej Komarov
- * SPDX-License-Identifier: MIT
- */
-
 /**
  * tgui state: xeno_state
  *

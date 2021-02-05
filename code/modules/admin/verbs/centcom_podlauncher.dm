@@ -99,7 +99,8 @@
 	return data
 
 /datum/centcom_podlauncher/ui_act(action, params)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	switch(action)
 		////////////////////////////UTILITIES//////////////////

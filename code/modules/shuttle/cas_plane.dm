@@ -21,10 +21,6 @@
 	var/mob/living/carbon/human/occupant
 	///Animated cockpit /image overlay, 96x96
 	var/image/cockpit
-	///Ui size in x
-	var/ui_x = 600
-	///UI size in y
-	var/ui_y = 500
 
 /obj/structure/caspart/caschair/Initialize()
 	. = ..()

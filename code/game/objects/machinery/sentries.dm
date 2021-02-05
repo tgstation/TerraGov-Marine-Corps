@@ -404,7 +404,8 @@
 	)
 
 /obj/machinery/marine_turret/ui_act(action, params)
-	if(..())
+	. = ..()
+	if(.)
 		return
 
 	var/mob/living/carbon/human/user = usr

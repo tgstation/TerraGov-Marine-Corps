@@ -11,7 +11,8 @@
 	return ..()
 
 /obj/machinery/computer/droppod_control/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
-	if(..())
+	. = ..() 
+	if(.)
 		return
 	switch(action)
 		if("relink")

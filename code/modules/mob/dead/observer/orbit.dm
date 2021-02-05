@@ -12,17 +12,17 @@
 /datum/orbit_menu/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if (!ui)
-		ui = new(user, src, "Orbit", "Orbit")
+		ui = new(user, src, "Orbit")
 		ui.open()
 
 /datum/orbit_menu/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
-	if (..())
+	. = ..()
+	if(.)
 		return
 
 	if (action == "orbit")
-		var/is_admin = check_other_rights(owner.client, R_ADMIN, FALSE)
-		var/list/pois = getpois(skip_mindless = !is_admin)
-		var/atom/movable/poi = pois[params["name"]]
+		var/ref = params["ref"]
+		var/atom/movable/poi = (locate(ref) in GLOB.mob_list) //|| (locate(ref) in GLOB.poi_list)
 		if (poi != null)
 			owner.ManualFollow(poi)
 
@@ -45,6 +45,8 @@
 		serialized["name"] = name
 
 		var/poi = pois[name]
+
+		serialized["ref]"] = REF(poi)
 
 		var/mob/M = poi
 		if (!istype(M))

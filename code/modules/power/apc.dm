@@ -749,7 +749,8 @@
 	return TRUE
 
 /obj/machinery/power/apc/ui_act(action, params)
-	if(..() || !can_use(usr, TRUE) || locked)
+	. = ..()
+	if(. || !can_use(usr, TRUE) || locked)
 		return
 	switch(action)
 		if("lock")

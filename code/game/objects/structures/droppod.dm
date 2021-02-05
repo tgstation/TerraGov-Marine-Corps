@@ -42,7 +42,8 @@
 	GLOB.droppod_list -= src
 
 /obj/structure/droppod/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	switch(action)
 		if("set_x_target")

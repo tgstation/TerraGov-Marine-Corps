@@ -1,5 +1,5 @@
 import { createSearch } from 'common/string';
-import { Button, Input, Section } from '../components';
+import { Button, Input, Icon, Section, Flex } from '../components';
 import { Window } from '../layouts';
 import { useBackend, useLocalState } from '../backend';
 
@@ -44,7 +44,7 @@ const BasicSection = (props, context) => {
           key={thing.name}
           content={thing.name.replace(PATTERN_DESCRIPTOR, "")}
           onClick={() => act("orbit", {
-            name: thing.name,
+            ref: thing.ref,
           })} />
       ))}
     </Section>
@@ -59,7 +59,7 @@ const OrbitedButton = (props, context) => {
     <Button
       color={color}
       onClick={() => act("orbit", {
-        name: thing.name,
+        ref: thing.ref,
       })}>
       {thing.name}
       {thing.orbiters && (` (${thing.orbiters})`)}
@@ -93,21 +93,35 @@ export const Orbit = (props, context) => {
         .filter(searchFor(searchText))
         .sort(compareNumberedText)[0];
       if (member !== undefined) {
-        act("orbit", { name: member.name });
+        act("orbit", { ref: member.ref });
         break;
       }
     }
   };
 
   return (
-    <Window>
+    <Window
+      title="Orbit"
+      width={350}
+      height={700}>
       <Window.Content scrollable>
         <Section>
-          <Input
-            fluid
-            value={searchText}
-            onInput={(_, value) => setSearchText(value)}
-            onEnter={(_, value) => orbitMostRelevant(value)} />
+          <Flex>
+            <Flex.Item>
+              <Icon
+                name="search"
+                mr="6px" />
+            </Flex.Item>
+            <Flex.Item grow={1}>
+              <Input
+                placeholder="Search..."
+                autoFocus
+                fluid
+                value={searchText}
+                onInput={(_, value) => setSearchText(value)}
+                onEnter={(_, value) => orbitMostRelevant(value)} />
+            </Flex.Item>
+          </Flex>
         </Section>
 
         <BasicSection

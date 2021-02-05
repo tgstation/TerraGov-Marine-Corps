@@ -1076,7 +1076,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			user << browse(null, "window=keybindings")
 
 		if("keybindings_reset")
-			var/choice = tgalert(usr, "Would you prefer 'hotkey' or 'classic' defaults?", "Setup keybindings", "Hotkey", "Classic", "Cancel")
+			var/choice = tgui_alert(usr, "Would you prefer 'hotkey' or 'classic' defaults?", "Setup keybindings", list("Hotkey", "Classic", "Cancel"))
 			if (choice == "Cancel")
 				ShowKeybindings(user)
 				return

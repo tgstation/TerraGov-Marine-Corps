@@ -61,7 +61,8 @@
 
 
 /obj/machinery/self_destruct/console/ui_act(action, params)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	switch(action)
 		if("dest_start")

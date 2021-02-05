@@ -79,7 +79,8 @@
 	return data
 
 /obj/machinery/computer/intel_computer/ui_act(action, params)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	switch(action)
 		if("login")

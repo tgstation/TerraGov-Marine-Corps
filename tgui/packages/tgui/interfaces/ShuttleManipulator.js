@@ -1,5 +1,4 @@
 import { map } from 'common/collections';
-import { Fragment } from 'inferno';
 import { useBackend, useLocalState } from '../backend';
 import { Button, Flex, LabeledList, Section, Table, Tabs } from '../components';
 import { Window } from '../layouts';
@@ -7,7 +6,10 @@ import { Window } from '../layouts';
 export const ShuttleManipulator = (props, context) => {
   const [tab, setTab] = useLocalState(context, 'tab', 1);
   return (
-    <Window resizable>
+    <Window
+      width={800}
+      height={600}
+      resizable>
       <Window.Content scrollable>
         <Tabs>
           <Tabs.Tab
@@ -78,7 +80,7 @@ export const ShuttleManipulatorStatus = (props, context) => {
             <Table.Cell>
               {shuttle.mode}
               {!!shuttle.timer && (
-                <Fragment>
+                <>
                   ({shuttle.timeleft})
                   <Button
                     content="Fast Travel"
@@ -87,7 +89,7 @@ export const ShuttleManipulatorStatus = (props, context) => {
                     onClick={() => act('fast_travel', {
                       id: shuttle.id,
                     })} />
-                </Fragment>
+                </>
               )}
             </Table.Cell>
           </Table.Row>
@@ -172,7 +174,7 @@ export const ShuttleManipulatorModification = (props, context) => {
   return (
     <Section>
       {selected ? (
-        <Fragment>
+        <>
           <Section
             level={2}
             title={selected.name}>
@@ -208,9 +210,9 @@ export const ShuttleManipulatorModification = (props, context) => {
                   )}>
                   {existingShuttle.status}
                   {!!existingShuttle.timer && (
-                    <Fragment>
+                    <>
                       ({existingShuttle.timeleft})
-                    </Fragment>
+                    </>
                   )}
                 </LabeledList.Item>
               </LabeledList>
@@ -235,7 +237,7 @@ export const ShuttleManipulatorModification = (props, context) => {
                 shuttle_id: selected.shuttle_id,
               })} />
           </Section>
-        </Fragment>
+        </>
       ) : 'No shuttle selected'}
     </Section>
   );

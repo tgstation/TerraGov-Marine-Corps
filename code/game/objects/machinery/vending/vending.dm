@@ -431,7 +431,8 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 	.["isshared"] = isshared
 
 /obj/machinery/vending/ui_act(action, params)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	switch(action)
 		if("remove_coin")
