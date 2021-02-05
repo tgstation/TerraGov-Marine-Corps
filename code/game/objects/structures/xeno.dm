@@ -514,7 +514,7 @@
 
 /obj/structure/xeno/Initialize(mapload, mob/living/carbon/xenomorph/X)
 	. = ..()
-	if(!X) //Make sure X exists
+	if(X?.hivenumber) //Make sure X has a hive number
 		return
 	if(X.hivenumber)
 		hivenumber = X.hivenumber
