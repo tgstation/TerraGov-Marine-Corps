@@ -86,62 +86,62 @@
 
 //Hot hot Aliens on Aliens action.
 //Actually just used for eating people.
-/mob/living/carbon/xenomorph/attack_alien(mob/living/carbon/xenomorph/M)
-	if(src != M)
-		if(isxenolarva(M)) //Larvas can't eat people
-			M.visible_message("<span class='danger'>[M] nudges its head against \the [src].</span>", \
+/mob/living/carbon/xenomorph/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(src != X)
+		if(isxenolarva(X)) //Larvas can't eat people
+			X.visible_message("<span class='danger'>[X] nudges its head against \the [src].</span>", \
 			"<span class='danger'>We nudge our head against \the [src].</span>")
 			return 0
 
-		switch(M.a_intent)
+		switch(X.a_intent)
 			if(INTENT_HELP)
 
 				if(on_fire)
 					fire_stacks = max(fire_stacks - 1, 0)
-					playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
-					M.visible_message("<span class='danger'>[M] tries to put out the fire on [src]!</span>", \
+					playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
+					X.visible_message("<span class='danger'>[X] tries to put out the fire on [src]!</span>", \
 						"<span class='warning'>We try to put out the fire on [src]!</span>", null, 5)
 					if(fire_stacks <= 0)
-						M.visible_message("<span class='danger'>[M] has successfully extinguished the fire on [src]!</span>", \
+						X.visible_message("<span class='danger'>[X] has successfully extinguished the fire on [src]!</span>", \
 							"<span class='notice'>We extinguished the fire on [src].</span>", null, 5)
 						ExtinguishMob()
 					return 1
 				else
-					M.visible_message("<span class='notice'>\The [M] caresses \the [src] with its scythe-like arm.</span>", \
+					X.visible_message("<span class='notice'>\The [X] caresses \the [src] with its scythe-like arm.</span>", \
 					"<span class='notice'>We caress \the [src] with our scythe-like arm.</span>", null, 5)
 
 			if(INTENT_GRAB)
-				if(M == src || anchored)
+				if(X == src || anchored)
 					return 0
-				if(M.start_pulling(src))
-					M.visible_message("<span class='warning'>[M] grabs \the [src]!</span>", \
+				if(X.start_pulling(src))
+					X.visible_message("<span class='warning'>[X] grabs \the [src]!</span>", \
 					"<span class='warning'>We grab \the [src]!</span>", null, 5)
 					playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 
 			if(INTENT_HARM, INTENT_DISARM)//Can't slash other xenos for now. SORRY  // You can now! --spookydonut
-				if(issamexenohive(M))
-					M.do_attack_animation(src)
-					M.visible_message("<span class='warning'>\The [M] nibbles \the [src].</span>", \
+				if(issamexenohive(X))
+					X.do_attack_animation(src)
+					X.visible_message("<span class='warning'>\The [X] nibbles \the [src].</span>", \
 					"<span class='warning'>We nibble \the [src].</span>", null, 5)
 					return 1
 				else
 					// copypasted from attack_alien.dm
 					//From this point, we are certain a full attack will go out. Calculate damage and modifiers
-					var/damage = M.xeno_caste.melee_damage
+					var/damage = X.xeno_caste.melee_damage
 
 					//Somehow we will deal no damage on this attack
 					if(!damage)
-						M.do_attack_animation(src)
-						playsound(M.loc, 'sound/weapons/alien_claw_swipe.ogg', 25, 1)
-						M.visible_message("<span class='danger'>\The [M] lunges at [src]!</span>", \
+						X.do_attack_animation(src)
+						playsound(X.loc, 'sound/weapons/alien_claw_swipe.ogg', 25, 1)
+						X.visible_message("<span class='danger'>\The [X] lunges at [src]!</span>", \
 						"<span class='danger'>We lunge at [src]!</span>", null, 5)
 						return 0
 
-					M.visible_message("<span class='danger'>\The [M] slashes [src]!</span>", \
+					X.visible_message("<span class='danger'>\The [X] slashes [src]!</span>", \
 					"<span class='danger'>We slash [src]!</span>", null, 5)
-					log_combat(M, src, "slashed")
+					log_combat(X, src, "slashed")
 
-					M.do_attack_animation(src, ATTACK_EFFECT_REDSLASH)
+					X.do_attack_animation(src, ATTACK_EFFECT_REDSLASH)
 					playsound(loc, "alien_claw_flesh", 25, 1)
 					apply_damage(damage, BRUTE, updating_health = TRUE)
 		return 1

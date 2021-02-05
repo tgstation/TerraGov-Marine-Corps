@@ -317,7 +317,7 @@
 	blending = FALSE
 
 
-/obj/item/camera/proc/after_picture(mob/user, datum/picture/picture, proximity_flag)
+/obj/item/camera/proc/after_picture(mob/user, datum/picture/picture, has_proximity)
 	printpicture(user, picture)
 
 

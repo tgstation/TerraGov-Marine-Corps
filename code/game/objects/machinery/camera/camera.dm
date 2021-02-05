@@ -153,7 +153,7 @@
 	return TRUE
 
 
-/obj/machinery/camera/attack_alien(mob/living/carbon/xenomorph/X)
+/obj/machinery/camera/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(obj_integrity <= 0)
 		to_chat(X, "<span class='warning'>The camera is already disabled.</span>")
 		return

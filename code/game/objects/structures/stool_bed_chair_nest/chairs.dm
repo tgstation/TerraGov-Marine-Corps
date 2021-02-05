@@ -277,9 +277,9 @@
 		return
 	..()
 
-/obj/structure/bed/chair/dropship/passenger/attack_alien(mob/living/user)
+/obj/structure/bed/chair/dropship/passenger/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(chair_state != DROPSHIP_CHAIR_BROKEN)
-		user.visible_message("<span class='warning'>[user] smashes \the [src], shearing the bolts!</span>",
+		X.visible_message("<span class='warning'>[X] smashes \the [src], shearing the bolts!</span>",
 		"<span class='warning'>We smash \the [src], shearing the bolts!</span>")
 		fold_down(1)
 
