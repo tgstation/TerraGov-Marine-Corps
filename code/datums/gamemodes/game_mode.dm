@@ -473,7 +473,7 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 			if(isspaceturf(H.loc))
 				continue
 			num_humans++
-			if ("[z]" == ZTRAITS_MAIN_SHIP)//it's here so i can use it for monitor
+			if (is_mainship_level(z))//it's here so i can use it for monitor
 				num_humans_ship++
 
 	for(var/z in z_levels)

@@ -167,13 +167,13 @@
 	fire_delay = 0.15 SECONDS
 
 //-------------------------------------------------------
-//Beretta 92FS, the gun McClane carries around in Die Hard. Very similar to the service pistol, all around.
+//G-22. Blocc
 
-/obj/item/weapon/gun/pistol/b92fs
-	name = "\improper Beretta 92FS pistol"
-	desc = "A popular police firearm in the 20th century, often employed by hardboiled cops while confronting terrorists. A classic of its time, chambered in 9x19mm."
-	icon_state = "b92fs"
-	item_state = "b92fs"
+/obj/item/weapon/gun/pistol/g22
+	name = "\improper G-22 pistol"
+	desc = "A popular police firearm in the modern day. Chambered in 9x19mm."
+	icon_state = "g22"
+	item_state = "g22"
 	caliber = "9x19mm Parabellum" //codex
 	max_shells = 15 //codex
 	fire_sound = 'sound/weapons/guns/fire/beretta.ogg'
@@ -181,29 +181,8 @@
 	unload_sound = 'sound/weapons/guns/interact/beretta_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/beretta_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/beretta_cocked.ogg'
-	current_mag = /obj/item/ammo_magazine/pistol/b92fs
+	current_mag = /obj/item/ammo_magazine/pistol/g22
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
-
-	fire_delay = 0.2 SECONDS
-
-/obj/item/weapon/gun/pistol/b92fs/raffica
-	name = "\improper Beretta 93R pistol"
-	desc = "A variant of a classic pistol, modified to allow for bursts. It is fitted with a vertical foregrip at the front end of the trigger guard to provide better stability when firing."
-	icon_state = "b93r"
-	item_state = "b93r"
-	caliber = "9x19mm Parabellum" //codex
-	max_shells = 20 //codex
-	current_mag = /obj/item/ammo_magazine/pistol/b93r
-	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 21, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
-	attachable_allowed = list(
-		/obj/item/attachable/suppressor,
-		/obj/item/attachable/reddot,
-		/obj/item/attachable/flashlight,
-		/obj/item/attachable/compensator,
-		/obj/item/attachable/extended_barrel,
-		/obj/item/attachable/heavy_barrel,
-		/obj/item/attachable/quickfire,
-	)
 
 	fire_delay = 0.2 SECONDS
 	burst_amount = 3
@@ -211,14 +190,14 @@
 	scatter_unwielded = 0
 	aim_slowdown = 0.2
 
-/obj/item/weapon/gun/pistol/b92fs/M9
-	name = "\improper M9 custom pistol"
+/obj/item/weapon/gun/pistol/g22/tranq
+	name = "\improper G-22 custom pistol"
 	desc = "A 20th century military firearm customized for special forces use, fires tranq darts to take down enemies nonlethally. It does not seem to accept any other attachments."
-	icon_state = "b92fs"
-	item_state = "b92fs"
+	icon_state = "g22"
+	item_state = "g22"
 	caliber = "9x19mm tranquilizer" //codex
 	max_shells = 12 //codex
-	current_mag =/obj/item/ammo_magazine/pistol/b92fstranq
+	current_mag =/obj/item/ammo_magazine/pistol/g22tranq
 	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 21, "under_x" = 21, "under_y" = 15, "stock_x" = 21, "stock_y" = 17)
 	starting_attachment_types = list(
 		/obj/item/attachable/lasersight,
@@ -280,7 +259,7 @@
 
 /obj/item/weapon/gun/pistol/c99
 	name = "\improper Korovin PK-9 pistol"
-	desc = "An updated variant of an old eastern design, dating back to from the 20th century. Features an integrated silencer, and chambered in the razor small .22 rounds. This one is loaded with the more common .22 hollowpoint rounds and appears to be a mercenary version."
+	desc = "An updated variant of an old handgun design, Features an integrated silencer, and chambered in the razor small .22 rounds. This one is loaded with the more common .22 hollowpoint rounds and appears to be a mercenary version."
 	icon_state = "pk9"
 	item_state = "pk9"
 	caliber = ".22 LR" //codex
@@ -311,16 +290,7 @@
 	damage_mult = 1.3
 	aim_slowdown = 0.1
 
-/obj/item/weapon/gun/pistol/c99/russian
-	icon_state = "pk9r"
-	item_state = "pk9r"
-
-/obj/item/weapon/gun/pistol/c99/upp
-	desc = "An updated variant of an old eastern design, dating back to from the 20th century. Features an integrated silencer, and chambered in the razor small .22 rounds. This one is loaded with the more common .22 hollowpoint rounds and appears to be a USL model."
-	icon_state = "pk9u"
-	item_state = "pk9u"
-
-/obj/item/weapon/gun/pistol/c99/upp/tranq
+/obj/item/weapon/gun/pistol/c99/tranq
 	desc = "An updated variant of an old eastern design, dating back to from the 20th century. Features an integrated silencer, and chambered in the razor small .22 rounds. This one is usually loaded with special low-recoil .22 dart rounds, which act as a dangerous tranquilizer."
 	current_mag = /obj/item/ammo_magazine/pistol/c99t
 
@@ -384,6 +354,7 @@
 	accuracy_mult_unwielded = 1
 	scatter = -10
 	scatter_unwielded = -5
+	aim_speed_modifier = 0
 
 
 //-------------------------------------------------------

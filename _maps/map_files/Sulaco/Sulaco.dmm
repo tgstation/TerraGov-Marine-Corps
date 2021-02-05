@@ -2147,6 +2147,7 @@
 	dir = 5
 	},
 /obj/machinery/light,
+/obj/machinery/computer/supplycomp,
 /turf/open/floor/prison/plate,
 /area/sulaco/cargo)
 "ajc" = (
@@ -10115,7 +10116,7 @@
 /turf/open/floor/prison,
 /area/sulaco/hangar)
 "bbV" = (
-/obj/machinery/telecomms/server/presets/security,
+/obj/machinery/telecomms/server/presets/cas,
 /obj/machinery/light/small{
 	dir = 8
 	},
@@ -11585,7 +11586,8 @@
 	},
 /area/sulaco/hangar/droppod)
 "eOE" = (
-/obj/machinery/computer/supplycomp,
+/obj/machinery/computer/supplydrop_console,
+/obj/structure/table/mainship,
 /turf/open/floor/prison/plate,
 /area/sulaco/cargo)
 "eON" = (
@@ -12363,8 +12365,7 @@
 "hkD" = (
 /obj/machinery/crema_switch{
 	id = "crema";
-	pixel_x = 10;
-	pixel_y = 0
+	pixel_x = 10
 	},
 /turf/closed/wall/mainship/gray,
 /area/sulaco/research)
