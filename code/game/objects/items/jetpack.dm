@@ -19,20 +19,66 @@
 	var/hovering_time = 1 SECONDS 
 	///True when jetpack has flame overlay
 	var/lit
+	///True if you can use shift click/middle click to use it
+	var/selected
 	COOLDOWN_DECLARE(cooldown_jetpack)
 
 /obj/item/jetpack_marine/Initialize()
 	. = ..()
 	update_icon()
-	
+
+/obj/item/jetpack_marine/examine(mob/user, distance, infix, suffix)
+	. = ..()
+	if(!ishuman(user))
+		return
+	if(fuel_left == 0)
+		to_chat(user, "The fuel gauge beeps out, it has no fuel left")
+	else
+		to_chat(user, "The fuel gauge meter indicate it has [fuel_left/FUEL_USE] uses left")
+	icon = 'icons/obj/items/jetpack.dmi'
+	icon_state = "jetpack_marine"
+	update_icon() //The animation breaks often in high pop, this tries to fix it. 
+	user.update_inv_back()//Not sure it'll work, i don't understand what is causing the bug anyway
+
 /obj/item/jetpack_marine/equipped(mob/user, slot)
 	. = ..()
 	if(slot == SLOT_BACK)
 		RegisterSignal(user, COMSIG_MOB_CLICK_ALT_RIGHT, .proc/try_to_use_jetpack)
+		var/datum/action/item_action/toggle/action = new(src)
+		action.give_action(user)
 
 /obj/item/jetpack_marine/dropped(mob/user)
 	. = ..()
 	UnregisterSignal(user, COMSIG_MOB_CLICK_ALT_RIGHT)
+	UnregisterSignal(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE)
+	UnregisterSignal(src, list(COMSIG_ITEM_MIDDLECLICKON, COMSIG_ITEM_SHIFTCLICKON))
+	selected = FALSE
+	actions.Cut()
+
+/obj/item/jetpack_marine/ui_action_click(mob/user, datum/action/item_action/action)
+	if(selected)
+		UnregisterSignal(src, list(COMSIG_ITEM_MIDDLECLICKON, COMSIG_ITEM_SHIFTCLICKON))
+		action.remove_selected_frame()
+		UnregisterSignal(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE)
+	else
+		RegisterSignal(src, list(COMSIG_ITEM_MIDDLECLICKON, COMSIG_ITEM_SHIFTCLICKON), .proc/try_to_use_jetpack)
+		action.add_selected_frame()
+		SEND_SIGNAL(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE, user)
+		RegisterSignal(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE, .proc/unselect)
+	selected = !selected 
+
+/obj/item/jetpack_marine/proc/unselect(datum/source, mob/user)
+	SIGNAL_HANDLER
+	if(selected)
+		selected = FALSE
+		UnregisterSignal(src, list(COMSIG_ITEM_MIDDLECLICKON, COMSIG_ITEM_SHIFTCLICKON))
+		UnregisterSignal(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE)
+		for(var/datum/action/action in user.actions)
+			if (istype(action, /datum/action/item_action))
+				var/datum/action/item_action/iaction = action
+				if(iaction?.holder_item == src)
+					action.remove_selected_frame()
+	
 
 ///remove the flame overlay
 /obj/item/jetpack_marine/proc/reset_flame(mob/living/carbon/human/human_user)
@@ -52,7 +98,7 @@
 		change_fuel_indicator()
 		human_user.update_inv_back()
 		update_icon()
-		human_user.fly_at(A,calculate_range(human_user),speed,hovering_time)
+		human_user.fly_at(A, calculate_range(human_user), speed, hovering_time)
 		addtimer(CALLBACK(src,.proc/reset_flame, human_user), hovering_time)
 
 ///Calculate the max range of the jetpack, changed by some item slowdown

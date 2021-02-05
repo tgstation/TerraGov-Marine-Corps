@@ -374,10 +374,9 @@
 
 
 //decided whether a movable atom being thrown can pass through the turf it is in.
-/atom/movable/proc/hit_check(speed)
+/atom/movable/proc/hit_check(speed, flying = FALSE)
 	if(!throwing)
 		return
-
 	for(var/atom/A in get_turf(src))
 		if(A == src)
 			continue
@@ -386,7 +385,7 @@
 			if(!L.density || L.throwpass)
 				continue
 			throw_impact(A, speed)
-		if(isobj(A) && A.density && !(A.flags_atom & ON_BORDER) && (!A.throwpass || iscarbon(src)))
+		if(isobj(A) && A.density && !(A.flags_atom & ON_BORDER) && (!A.throwpass || iscarbon(src)) && !flying)
 			throw_impact(A, speed)
 
 
@@ -401,8 +400,9 @@
 	if(spin)
 		animation_spin(5, 1)
 
-	set_throwing(TRUE)
-	src.thrower = thrower
+	if(!flying)
+		set_throwing(TRUE)
+		src.thrower = thrower
 
 	throw_source = get_turf(src)	//store the origin turf
 

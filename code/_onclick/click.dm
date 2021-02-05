@@ -304,6 +304,10 @@
 	var/obj/item/held_thing = get_active_held_item()
 	if(held_thing && SEND_SIGNAL(held_thing, COMSIG_ITEM_MIDDLECLICKON, A, src) & COMPONENT_ITEM_CLICKON_BYPASS)
 		return FALSE
+	var/obj/item/back_item = get_item_by_slot(SLOT_BACK)
+	if(back_item && SEND_SIGNAL(back_item, COMSIG_ITEM_MIDDLECLICKON, A, src) & COMPONENT_ITEM_CLICKON_BYPASS)
+		return FALSE
+	
 
 #define TARGET_FLAGS_MACRO(flagname, typepath) \
 if(selected_ability.target_flags & flagname){\
@@ -400,6 +404,9 @@ if(selected_ability.target_flags & flagname){\
 	var/obj/item/held_thing = get_active_held_item()
 
 	if(held_thing && SEND_SIGNAL(held_thing, COMSIG_ITEM_SHIFTCLICKON, A, src) & COMPONENT_ITEM_CLICKON_BYPASS)
+		return FALSE
+	var/obj/item/back_item = get_item_by_slot(SLOT_BACK)
+	if(back_item && SEND_SIGNAL(back_item, COMSIG_ITEM_SHIFTCLICKON, A, src) & COMPONENT_ITEM_CLICKON_BYPASS)
 		return FALSE
 	return ..()
 

@@ -1212,11 +1212,14 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	if(master_gun.active_attachable == src)
 		if(user)
 			to_chat(user, "<span class='notice'>You are no longer using [src].</span>")
-		master_gun.on_gun_attachment_detach(src)
+			UnregisterSignal(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE)
+		master_gun.on_gun_attachment_detach(null, src)
 		icon_state = initial(icon_state)
 	else if(!turn_off)
 		if(user)
 			to_chat(user, "<span class='notice'>You are now using [src].</span>")
+			SEND_SIGNAL(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE, user)
+			RegisterSignal(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE, .proc/desactivate)
 		master_gun.on_gun_attachment_attach(src)
 		icon_state += "-on"
 
@@ -1225,7 +1228,9 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		A.update_button_icon()
 	return TRUE
 
-
+/obj/item/attachable/attached_gun/proc/desactivate(datum/source, mob/living/user)
+	SIGNAL_HANDLER
+	activate_attachment(user, TRUE)
 
 //The requirement for an attachable being alt fire is AMMO CAPACITY > 0.
 /obj/item/attachable/attached_gun/grenade
