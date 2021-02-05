@@ -1,4 +1,0 @@
-author: "Surrealaser"
-delete-after: True
-changes: 
-  - code_imp: "Upgrading no longer qdels and replaces ability lists wholesale."
