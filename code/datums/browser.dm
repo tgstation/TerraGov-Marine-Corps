@@ -175,7 +175,6 @@
 
 /**
  * **DEPRECATED: USE tgui_alert(...) INSTEAD**
-This conversation was marked as resolved by bobbahbrown
  *
  * Designed as a drop in replacement for alert(); functions the same. (outside of needing User specified)
  * Arguments:
