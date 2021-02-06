@@ -94,15 +94,15 @@
 
 
 //Deal with picking up facehuggers. "attack_alien" is the universal 'xenos click something while unarmed' proc.
-/obj/item/xeno_egg/attack_alien(mob/living/carbon/xenomorph/user)
-	switch(user.xeno_caste.can_hold_eggs)
+/obj/item/xeno_egg/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	switch(X.xeno_caste.can_hold_eggs)
 		if(CAN_HOLD_ONE_HAND)
-			attack_hand(user)
+			attack_hand(X)
 		if(CAN_HOLD_TWO_HANDS)
-			if(user.r_hand || user.l_hand)
-				to_chat(user, "<span class='xenowarning'>We need two hands to hold [src].</span>")
+			if(X.r_hand || X.l_hand)
+				to_chat(X, "<span class='xenowarning'>We need two hands to hold [src].</span>")
 			else
-				attack_hand(user)
+				attack_hand(X)
 
 /obj/item/xeno_egg/fire_act(exposed_temperature, exposed_volume)
 	if(exposed_temperature > 300)
