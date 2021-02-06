@@ -21,14 +21,6 @@
 	dir = 1
 	},
 /area/sulaco/research)
-"aad" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/prison/whitegreen{
-	dir = 8
-	},
-/area/sulaco/research)
 "aae" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor/prison/sterilewhite,
@@ -51,12 +43,10 @@
 /turf/open/space,
 /area/space)
 "aai" = (
-/obj/machinery/door/airlock/multi_tile/mainship/medidoor/medbay{
-	id_tag = "mbayexit"
-	},
 /obj/machinery/door/poddoor/shutters/opened/medbay{
 	dir = 2
 	},
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor/medbay/free_access,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
 	},
@@ -72,7 +62,7 @@
 /area/sulaco/medbay)
 "aak" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/mainship_hull/gray,
+/turf/closed/wall/mainship/gray/outer,
 /area/space)
 "aal" = (
 /obj/structure/closet/crate/internals,
@@ -541,9 +531,6 @@
 "abG" = (
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/west)
-"abH" = (
-/turf/closed/wall/mainship/gray,
-/area/sulaco/medbay)
 "abI" = (
 /obj/effect/landmark/start/job/squadcorpsman,
 /obj/effect/decal/warning_stripes/thick,
@@ -559,9 +546,6 @@
 	},
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/chemistry)
-"abK" = (
-/turf/closed/wall/mainship/gray,
-/area/sulaco/medbay/storage2)
 "abL" = (
 /obj/machinery/light{
 	dir = 8
@@ -942,19 +926,13 @@
 	},
 /area/sulaco/medbay/west)
 "acY" = (
-/obj/machinery/bioprinter,
-/obj/machinery/light{
-	dir = 4
-	},
+/obj/machinery/bioprinter/stocked,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
 	},
 /area/sulaco/medbay/surgery_two)
 "acZ" = (
-/obj/machinery/bioprinter,
-/obj/machinery/light{
-	dir = 8
-	},
+/obj/machinery/bioprinter/stocked,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
 	},
@@ -1203,6 +1181,10 @@
 /obj/item/reagent_containers/spray/cleaner,
 /obj/item/reagent_containers/spray/cleaner,
 /obj/item/reagent_containers/spray/cleaner,
+/obj/item/reagent_containers/spray/surgery,
+/obj/item/reagent_containers/spray/surgery,
+/obj/item/reagent_containers/spray/surgery,
+/obj/item/reagent_containers/spray/surgery,
 /obj/item/storage/box/rxglasses,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
@@ -1381,6 +1363,10 @@
 /obj/machinery/alarm{
 	dir = 1
 	},
+/obj/structure/table/mainship,
+/obj/machinery/recharger,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
@@ -1403,6 +1389,9 @@
 	pixel_x = -2;
 	pixel_y = -2
 	},
+/obj/item/storage/box/syringes,
+/obj/item/storage/box/syringes,
+/obj/item/storage/box/syringes,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
@@ -1455,6 +1444,32 @@
 /obj/item/storage/pill_bottle/tricordrazine{
 	pixel_x = -7
 	},
+/obj/item/storage/pill_bottle/packet/paracetamol{
+	pixel_y = 7
+	},
+/obj/item/storage/pill_bottle/packet/paracetamol{
+	pixel_y = 7
+	},
+/obj/item/storage/pill_bottle/packet/paracetamol{
+	pixel_y = 7
+	},
+/obj/item/storage/pill_bottle/packet/paracetamol{
+	pixel_y = 7
+	},
+/obj/item/storage/pill_bottle/tricordrazine{
+	pixel_x = -7
+	},
+/obj/item/storage/pill_bottle/tricordrazine{
+	pixel_x = -7
+	},
+/obj/item/storage/pill_bottle/tricordrazine,
+/obj/item/storage/pill_bottle/tricordrazine,
+/obj/item/storage/pill_bottle/tricordrazine{
+	pixel_x = 7
+	},
+/obj/item/storage/pill_bottle/tricordrazine{
+	pixel_x = 7
+	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
@@ -1473,6 +1488,9 @@
 /obj/item/storage/syringe_case,
 /obj/item/clothing/glasses/hud/health,
 /obj/item/clothing/glasses/hud/health,
+/obj/item/storage/syringe_case,
+/obj/item/storage/syringe_case,
+/obj/item/storage/syringe_case,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
@@ -1775,6 +1793,9 @@
 	dir = 4
 	},
 /area/sulaco/engineering/atmos)
+"agb" = (
+/turf/closed/wall/mainship/white,
+/area/sulaco/hallway/lower_main_hall)
 "agm" = (
 /obj/machinery/vending/tool,
 /turf/open/floor/prison,
@@ -2126,6 +2147,7 @@
 	dir = 5
 	},
 /obj/machinery/light,
+/obj/machinery/computer/supplycomp,
 /turf/open/floor/prison/plate,
 /area/sulaco/cargo)
 "ajc" = (
@@ -2220,6 +2242,7 @@
 /obj/structure/table/mainship,
 /obj/item/clothing/glasses/hud/health,
 /obj/structure/paper_bin,
+/obj/item/tool/pen,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
@@ -8713,6 +8736,7 @@
 	dir = 1
 	},
 /obj/item/clothing/tie/stethoscope,
+/obj/item/tank/anesthetic,
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/medbay/hangar)
 "aRc" = (
@@ -10092,7 +10116,7 @@
 /turf/open/floor/prison,
 /area/sulaco/hangar)
 "bbV" = (
-/obj/machinery/telecomms/server/presets/security,
+/obj/machinery/telecomms/server/presets/cas,
 /obj/machinery/light/small{
 	dir = 8
 	},
@@ -10617,6 +10641,9 @@
 "bPM" = (
 /turf/open/floor/prison/plate,
 /area/sulaco/cargo)
+"bPU" = (
+/turf/closed/wall/mainship/white,
+/area/sulaco/hallway/lower_main_hall)
 "bTI" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/plate,
@@ -10703,6 +10730,14 @@
 "coO" = (
 /turf/open/floor/prison/whitegreen{
 	dir = 8
+	},
+/area/sulaco/research)
+"cpa" = (
+/obj/structure/morgue/crematorium{
+	id = "crema"
+	},
+/turf/open/floor/prison/whitegreen{
+	dir = 9
 	},
 /area/sulaco/research)
 "cpN" = (
@@ -11551,7 +11586,8 @@
 	},
 /area/sulaco/hangar/droppod)
 "eOE" = (
-/obj/machinery/computer/supplycomp,
+/obj/machinery/computer/supplydrop_console,
+/obj/structure/table/mainship,
 /turf/open/floor/prison/plate,
 /area/sulaco/cargo)
 "eON" = (
@@ -12326,6 +12362,13 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/hallway/central_hall3)
+"hkD" = (
+/obj/machinery/crema_switch{
+	id = "crema";
+	pixel_x = 10
+	},
+/turf/closed/wall/mainship/gray,
+/area/sulaco/research)
 "hlP" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
@@ -12383,7 +12426,11 @@
 /area/sulaco/hallway/central_hall)
 "hBC" = (
 /obj/structure/table/mainship,
-/obj/item/defibrillator,
+/obj/item/roller,
+/obj/item/roller,
+/obj/item/roller,
+/obj/item/roller,
+/obj/item/roller,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
@@ -15488,6 +15535,14 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/telecomms/office)
+"pxz" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/prison/whitegreen/corner{
+	dir = 1
+	},
+/area/sulaco/research)
 "pxD" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
@@ -15721,8 +15776,8 @@
 /area/sulaco/engineering/engine)
 "qjQ" = (
 /obj/structure/table/mainship,
-/obj/machinery/recharger,
-/obj/item/reagent_containers/spray/cleaner,
+/obj/item/defibrillator,
+/obj/item/defibrillator,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
@@ -16984,6 +17039,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/machinery/power/port_gen/pacman/mobile_power,
 /turf/open/floor/prison,
 /area/sulaco/hangar)
 "tqa" = (
@@ -41182,12 +41238,12 @@ nWB
 nWB
 nWB
 cfA
-aDO
-aDO
-aDO
-aDO
-aKb
-aKb
+cfA
+cfA
+cfA
+cfA
+aOX
+aOX
 aHk
 aKK
 aKK
@@ -41435,7 +41491,7 @@ oQN
 aPP
 aWG
 aam
-mDu
+sGG
 mDu
 mDu
 mDu
@@ -41692,20 +41748,20 @@ aWG
 xKR
 aWG
 aam
-mDu
-mDu
-mDu
-mDu
-mDu
-mDu
+sGG
+sGG
+sGG
+sGG
+sGG
+sGG
 aak
-mDu
-mDu
-mDu
-mDu
-mDu
-mDu
-mDu
+sGG
+sGG
+sGG
+sGG
+sGG
+sGG
+sGG
 mDu
 mDu
 mDu
@@ -41962,7 +42018,7 @@ aam
 aam
 aam
 aam
-mDu
+sGG
 vDU
 vDU
 vDU
@@ -42219,7 +42275,7 @@ jYs
 add
 acT
 aam
-qDO
+sGG
 aaa
 aaa
 aaa
@@ -42476,7 +42532,7 @@ adE
 abx
 abG
 aam
-qDO
+sGG
 aaa
 aaa
 aaa
@@ -42733,7 +42789,7 @@ aam
 aam
 aam
 aam
-qDO
+sGG
 aaa
 aaa
 aaa
@@ -42990,7 +43046,7 @@ adF
 adL
 vsT
 adv
-qDO
+sGG
 aaa
 aaa
 aaa
@@ -43247,7 +43303,7 @@ acW
 adM
 abF
 fFu
-qDO
+sGG
 aaa
 aaa
 aaa
@@ -43504,7 +43560,7 @@ adK
 adI
 lzb
 adv
-qDO
+sGG
 aaa
 aaa
 aaa
@@ -43761,7 +43817,7 @@ acY
 adq
 oIW
 adv
-qDO
+sGG
 aaa
 aaa
 aaa
@@ -44018,7 +44074,7 @@ aam
 aam
 aam
 aam
-qDO
+sGG
 aaa
 aaa
 aaa
@@ -44275,7 +44331,7 @@ acZ
 adr
 mzl
 abe
-qDO
+sGG
 aaa
 aaa
 aaa
@@ -44532,7 +44588,7 @@ adJ
 adC
 mMX
 abe
-qDO
+sGG
 aaa
 aaa
 aaa
@@ -44789,7 +44845,7 @@ adb
 adQ
 abM
 lPo
-mDu
+sGG
 vyQ
 aaa
 aaa
@@ -45046,7 +45102,7 @@ adG
 adS
 gsg
 abe
-mDu
+sGG
 qDO
 aaa
 aaa
@@ -45163,7 +45219,7 @@ aYZ
 aaW
 aRh
 aRh
-aRh
+hkD
 aRh
 aRh
 aZU
@@ -45303,7 +45359,7 @@ aaJ
 aaJ
 aaJ
 aaJ
-mDu
+sGG
 qDO
 aaa
 aaa
@@ -45419,8 +45475,8 @@ mDu
 aYZ
 aaW
 aRh
-ieK
-aad
+cpa
+coO
 oxw
 aRh
 oxk
@@ -45559,8 +45615,8 @@ adB
 ade
 acJ
 aaJ
-mDu
-mDu
+sGG
+sGG
 qDO
 aaa
 aaa
@@ -45816,7 +45872,7 @@ adH
 adf
 acK
 aaJ
-mDu
+sGG
 mDu
 qDO
 aaa
@@ -45934,7 +45990,7 @@ aYZ
 aaW
 aRh
 dFk
-tao
+pxz
 imd
 aRh
 aFT
@@ -46073,7 +46129,7 @@ kMl
 ade
 kMl
 aaJ
-mDu
+sGG
 mDu
 qDO
 aaa
@@ -46330,7 +46386,7 @@ vtC
 adf
 aem
 aaJ
-mDu
+sGG
 mDu
 qDO
 aaa
@@ -46587,7 +46643,7 @@ gXI
 ade
 wUm
 aaJ
-mDu
+sGG
 mDu
 qDO
 aaa
@@ -46844,7 +46900,7 @@ wAz
 adf
 ael
 aaJ
-mDu
+sGG
 mDu
 wFA
 aaa
@@ -47101,7 +47157,7 @@ fzI
 ade
 hBC
 aaJ
-mDu
+sGG
 qDO
 aaa
 aaa
@@ -47358,7 +47414,7 @@ adW
 adf
 qjQ
 aaJ
-mDu
+sGG
 qDO
 aaa
 aaa
@@ -47615,7 +47671,7 @@ fzI
 ade
 aer
 aaJ
-mDu
+sGG
 qDO
 aaa
 aaa
@@ -47872,7 +47928,7 @@ wAz
 adf
 wAz
 aaJ
-mDu
+sGG
 qDO
 aaa
 aaa
@@ -48116,7 +48172,7 @@ aPY
 aWG
 xKR
 kXj
-abH
+aaJ
 aaJ
 aaJ
 aeF
@@ -48129,7 +48185,7 @@ jhf
 ade
 adV
 aaJ
-mDu
+sGG
 qDO
 aaa
 aaa
@@ -48374,7 +48430,7 @@ aWG
 xKR
 aWG
 iqZ
-aVY
+bPU
 aaJ
 ajO
 aiA
@@ -48386,7 +48442,7 @@ adO
 adg
 bqm
 aaJ
-mDu
+sGG
 qDO
 aaa
 aaa
@@ -48631,7 +48687,7 @@ aWG
 vmi
 aWG
 eVE
-aVY
+bPU
 aaJ
 yiP
 aio
@@ -48643,7 +48699,7 @@ mJk
 ade
 kMl
 aaJ
-mDu
+sGG
 qDO
 aaa
 aaa
@@ -48888,7 +48944,7 @@ aWG
 xKR
 aWG
 agm
-aVY
+bPU
 aaJ
 ajQ
 aeL
@@ -48900,7 +48956,7 @@ pCD
 aej
 jsp
 aaJ
-mDu
+sGG
 qDO
 aaa
 aaa
@@ -49144,7 +49200,7 @@ aVZ
 aWG
 xKR
 aWG
-aVY
+bPU
 aaQ
 aaJ
 aaJ
@@ -49157,7 +49213,7 @@ aaJ
 aaJ
 aaJ
 aaJ
-mDu
+sGG
 qDO
 aaa
 aaa
@@ -49401,7 +49457,7 @@ bPx
 aWG
 xKR
 aWG
-abK
+aaQ
 adR
 act
 acU
@@ -49412,9 +49468,9 @@ yfW
 adi
 aeG
 aaQ
-mDu
-mDu
-mDu
+sGG
+sGG
+sGG
 qDO
 aaa
 aaa
@@ -49669,7 +49725,7 @@ aeI
 adj
 aeO
 aaQ
-mDu
+sGG
 mDu
 vDU
 wFA
@@ -49915,7 +49971,7 @@ aPY
 aTA
 aXA
 aWx
-abK
+aaQ
 aeA
 adP
 aew
@@ -49926,7 +49982,7 @@ acs
 acv
 aez
 aaQ
-mDu
+sGG
 qDO
 aaa
 aaa
@@ -50172,7 +50228,7 @@ aPY
 aWQ
 aXE
 aWG
-abK
+aaQ
 aaQ
 aaQ
 aaQ
@@ -50183,7 +50239,7 @@ aaQ
 uRy
 aaQ
 aaQ
-mDu
+sGG
 qDO
 aaa
 aaa
@@ -50439,8 +50495,8 @@ aVY
 ncj
 sMg
 aPQ
-mDu
-mDu
+sGG
+sGG
 wFA
 aaa
 aaa

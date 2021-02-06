@@ -8,3 +8,5 @@
 //flags_area
 ///When present prevents xenos from weeding this area
 #define DISALLOW_WEEDING (1<<0)
+///When present, monitor will consider marines inside it to be at FOB
+#define NEAR_FOB (1<<1)

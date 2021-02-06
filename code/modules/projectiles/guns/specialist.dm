@@ -127,7 +127,7 @@
 	. = ..()
 
 /obj/item/weapon/gun/rifle/sniper/M42A/process()
-	if(!zoom)
+	if(!rail.zoom)
 		laser_off()
 		return
 	var/mob/living/user = loc
@@ -145,7 +145,7 @@
 
 /obj/item/weapon/gun/rifle/sniper/M42A/zoom(mob/living/user, tileoffset = 11, viewsize = 12) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view
 	. = ..()
-	if(!zoom && (targetmarker_on || targetmarker_primed) )
+	if(!rail.zoom && (targetmarker_on || targetmarker_primed) )
 		laser_off(user)
 
 /atom/proc/sniper_target(atom/A)
@@ -185,7 +185,7 @@
 
 
 /obj/item/weapon/gun/rifle/sniper/M42A/proc/laser_on(mob/user)
-	if(!zoom) //Can only use and prime the laser targeter when zoomed.
+	if(!rail.zoom) //Can only use and prime the laser targeter when zoomed.
 		to_chat(user, "<span class='warning'>You must be zoomed in to use your target marker!</span>")
 		return TRUE
 	targetmarker_primed = TRUE //We prime the target laser
@@ -756,17 +756,14 @@
 	F.loc = user.loc
 	F.throw_range = 20
 	F.throw_at(target, 20, 2, user)
-	if(F && F.loc) //Apparently it can get deleted before the next thing takes place, so it runtimes.
+	if(F?.loc) //Apparently it can get deleted before the next thing takes place, so it runtimes.
 		log_explosion("[key_name(user)] fired a grenade [F] from \a [src] at [AREACOORD(user.loc)].")
 		message_admins("[ADMIN_TPMONTY(user)] fired a grenade [F] from \a [src].")
 		F.icon_state = initial(F.icon_state) + "_active"
 		F.activate()
 		F.updateicon()
 		playsound(F.loc, fire_sound, 50, 1)
-		sleep(10)
-		if(F?.loc)
-			F.prime()
-
+		addtimer(CALLBACK(F, /obj/item/explosive/grenade.proc/prime), 1 SECONDS)
 
 /obj/item/weapon/gun/launcher/m81/riot
 	name = "\improper M81 riot grenade launcher"
@@ -978,6 +975,14 @@
 	recoil = 3
 	scatter = -100
 
+/obj/item/weapon/gun/launcher/rocket/sadar/Initialize(mapload, spawn_empty)
+	. = ..()
+	SSmonitor.stats.sadar_in_use += src
+
+/obj/item/weapon/gun/launcher/rocket/sadar/Destroy()
+	. = ..()
+	SSmonitor.stats.sadar_in_use -= src
+
 //-------------------------------------------------------
 //M5 RPG'S MEAN FUCKING COUSIN
 
@@ -1037,6 +1042,40 @@
 	scatter = -100
 
 //-------------------------------------------------------
+//M5 RPG
+
+/obj/item/weapon/gun/launcher/rocket/oneuse
+	name = "\improper T-72 rocket launcher"
+	desc = "This is the premier disposable rocket launcher used throughout the galaxy, it cannot be reloaded or unloaded on the field. This one fires a 68mm explosive rocket."
+	icon_state = "t72"
+	item_state = "t72"
+	max_shells = 1 //codex
+	caliber = "84mm rockets" //codex
+	load_method = SINGLE_CASING //codex
+	current_mag = /obj/item/ammo_magazine/rocket/oneuse
+	flags_equip_slot = ITEM_SLOT_BELT
+	attachable_allowed = list(/obj/item/attachable/magnetic_harness)
+
+	dry_fire_sound = 'sound/weapons/guns/fire/launcher_empty.ogg'
+	reload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
+	unload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 6, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
+	fire_delay = 1 SECONDS
+	recoil = 3
+	scatter = -100
+
+/obj/item/weapon/gun/launcher/rocket/oneuse/unload(mob/user) // Unsurprisngly you can't unload this.
+	to_chat(user, "<span class='warning'>You can't unload this!</span>")
+	return FALSE
+
+
+/obj/item/weapon/gun/launcher/rocket/oneuse/examine_ammo_count(mob/user)
+	if(current_mag?.current_rounds)
+		to_chat(user, "It's loaded.")
+	else
+		to_chat(user, "It's empty.")
+
+//-------------------------------------------------------
 //This gun is very powerful, but also has a kick.
 
 /obj/item/weapon/gun/minigun
@@ -1069,6 +1108,13 @@
 	recoil_unwielded = 4
 	damage_falloff_mult = 0.5
 
+/obj/item/weapon/gun/minigun/Initialize(mapload, spawn_empty)
+	. = ..()
+	SSmonitor.stats.miniguns_in_use += src
+
+/obj/item/weapon/gun/minigun/Destroy()
+	. = ..()
+	SSmonitor.stats.miniguns_in_use -= src
 
 //This is a minigun not a chaingun.
 obj/item/weapon/gun/minigun/Fire(atom/target, mob/living/user, params, reflex = FALSE, dual_wield)

@@ -26,6 +26,8 @@
 	var/warning_sound = 'sound/machines/hydraulics_2.ogg'
 	var/ammo_used_per_firing = 1
 	var/point_cost = 0 //how many points it costs to build this with the fabricator, set to 0 if unbuildable.
+	///Type of ammo
+	var/ammo_type
 
 
 	attackby(obj/item/I, mob/user)
@@ -89,6 +91,7 @@
 	var/bullet_spread_range = 2
 	///Width of the square we are attacking, so you can make rectangular attacks later
 	var/attack_width = 3
+	ammo_type = CAS_30MM
 
 /obj/structure/ship_ammo/heavygun/examine(mob/user)
 	. = ..()
@@ -165,7 +168,7 @@
 	point_cost = 150
 	///The length of the beam that will come out of when we fire do both ends xxxoxxx where o is where you click
 	var/laze_radius = 4
-
+	ammo_type = CAS_LASER_BATTERY
 
 /obj/structure/ship_ammo/laser_battery/examine(mob/user)
 	. = ..()
@@ -223,6 +226,7 @@
 	bound_height = 32
 	travelling_time = 6 SECONDS //faster than 30mm rounds
 	point_cost = 0
+	ammo_type = CAS_MISSILE
 
 /obj/structure/ship_ammo/rocket/detonate_on(turf/impact, attackdir = NORTH)
 	qdel(src)
@@ -321,6 +325,7 @@
 	travelling_time = 7 SECONDS //faster than 30mm cannon, slower than real rockets
 	transferable_ammo = TRUE
 	point_cost = 100
+	ammo_type = CAS_MINI_ROCKET
 
 /obj/structure/ship_ammo/minirocket/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(2)
@@ -330,7 +335,7 @@
 	P.start()
 	addtimer(CALLBACK(src, .proc/delayed_smoke_spread, impact), 0.5 SECONDS)
 	if(!ammo_count)
-		qdel(src) //deleted after last minirocket is fired
+		QDEL_IN(src, travelling_time) //deleted after last minirocket has fired and impacted the ground.
 
 /obj/structure/ship_ammo/minirocket/proc/delayed_smoke_spread(turf/impact)
 	var/datum/effect_system/smoke_spread/S = new
@@ -388,7 +393,7 @@
 	addtimer(CALLBACK(src, .proc/delayed_smoke_spread, offset_impact), 0.5 SECONDS)
 	addtimer(CALLBACK(src, .proc/drop_cas_flare, offset_impact), 1.5 SECONDS)
 	if(!ammo_count)
-		qdel(src) //deleted after last minirocket is fired and impact the ground.
+		QDEL_IN(src, travelling_time) //deleted after last minirocket has fired and impacted the ground.
 
 /obj/structure/ship_ammo/minirocket/illumination/proc/drop_cas_flare(turf/impact)
 	new /obj/effect/cas_flare(impact)
