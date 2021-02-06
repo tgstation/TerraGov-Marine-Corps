@@ -12,19 +12,9 @@ SUBSYSTEM_DEF(spawning_pool)
 	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND), .proc/start_spawning)
 	return ..()
 
-/datum/controller/subsystem/spawning_pool/fire(resumed = 0)
-	switch(TGS_CLIENT_COUNT)
-		if(0 to 20)
-			max_spawning_pool_spawning = 3
-		if(20 to 40)
-			max_spawning_pool_spawning = 4
-		if(40 to 60)
-			max_spawning_pool_spawning = 6
-		if(60 to INFINITY)
-			max_spawning_pool_spawning = 8	
-	
+/datum/controller/subsystem/spawning_pool/fire(resumed = 0)	
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	xeno_job.add_job_points(min(GLOB.xeno_resin_spawning_pools.len, max_spawning_pool_spawning)*larva_spawn_rate)	
+	xeno_job.add_job_points(GLOB.xeno_resin_spawning_pools.len * larva_spawn_rate)	
 
 ///Activate the subsystem when shutters open and remove the free spawning when marines are joining
 /datum/controller/subsystem/spawning_pool/proc/start_spawning()

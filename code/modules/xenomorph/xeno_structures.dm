@@ -31,7 +31,7 @@
 	desc = "A slimy, oozy resin bed filled with foul-looking egg-like ...things."
 	bound_width = 96
 	bound_height = 96
-	max_integrity = 2000
+	max_integrity = 1000
 	var/turf/center_turf
 	var/datum/hive_status/associated_hive
 	var/spawning_pool_area
