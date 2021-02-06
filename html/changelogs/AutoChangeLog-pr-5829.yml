@@ -1,4 +1,0 @@
-author: "Surrealaser"
-delete-after: True
-changes: 
-  - bugfix: "Fixes a bug that allows players to load incorrect ammo into CAS weapons."

@@ -78,10 +78,10 @@
 
 	ignore_weed_destruction = TRUE
 
-/obj/effect/alien/resin/sticky/attack_alien(mob/living/carbon/xenomorph/M)
+/obj/effect/alien/resin/sticky/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 
-	if(M.a_intent == INTENT_HARM) //Clear it out on hit; no need to double tap.
-		M.do_attack_animation(src, ATTACK_EFFECT_CLAW) //SFX
+	if(X.a_intent == INTENT_HARM) //Clear it out on hit; no need to double tap.
+		X.do_attack_animation(src, ATTACK_EFFECT_CLAW) //SFX
 		playsound(src, "alien_resin_break", 25) //SFX
 		deconstruct(TRUE)
 		return
@@ -192,19 +192,20 @@
 	visible_message("<span class='warning'>[hugger] gets out of [src]!</span>")
 	hugger = null
 
-/obj/effect/alien/resin/trap/attack_alien(mob/living/carbon/xenomorph/M)
-	if(M.a_intent != INTENT_HARM)
-		if(M.xeno_caste.caste_flags & CASTE_CAN_HOLD_FACEHUGGERS)
-			if(!hugger)
-				to_chat(M, "<span class='warning'>[src] is empty.</span>")
-			else
-				icon_state = "trap0"
-				M.put_in_active_hand(hugger)
-				hugger.go_active(TRUE)
-				hugger = null
-				to_chat(M, "<span class='xenonotice'>We remove the facehugger from [src].</span>")
+/obj/effect/alien/resin/trap/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(X.a_intent == INTENT_HARM)
+		return ..()
+	if(!(X.xeno_caste.caste_flags & CASTE_CAN_HOLD_FACEHUGGERS))
 		return
-	..()
+	if(!hugger)
+		to_chat(X, "<span class='warning'>[src] is empty.</span>")
+		return
+	icon_state = "trap0"
+	X.put_in_active_hand(hugger)
+	hugger.go_active(TRUE)
+	hugger = null
+	to_chat(X, "<span class='xenonotice'>We remove the facehugger from [src].</span>")
+
 
 /obj/effect/alien/resin/trap/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -275,19 +276,19 @@
 	return TRUE
 
 //clicking on resin doors attacks them, or opens them without harm intent
-/obj/structure/mineral_door/resin/attack_alien(mob/living/carbon/xenomorph/M)
-	var/turf/cur_loc = M.loc
+/obj/structure/mineral_door/resin/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	var/turf/cur_loc = X.loc
 	if(!istype(cur_loc))
 		return FALSE //Some basic logic here
-	if(M.a_intent != INTENT_HARM)
-		TryToSwitchState(M)
+	if(X.a_intent != INTENT_HARM)
+		TryToSwitchState(X)
 		return TRUE
 
-	M.visible_message("<span class='warning'>\The [M] digs into \the [src] and begins ripping it down.</span>", \
+	X.visible_message("<span class='warning'>\The [X] digs into \the [src] and begins ripping it down.</span>", \
 	"<span class='warning'>We dig into \the [src] and begin ripping it down.</span>", null, 5)
 	playsound(src, "alien_resin_break", 25)
-	if(do_after(M, 80, FALSE, src, BUSY_ICON_HOSTILE))
-		M.visible_message("<span class='danger'>[M] rips down \the [src]!</span>", \
+	if(do_after(X, 80, FALSE, src, BUSY_ICON_HOSTILE))
+		X.visible_message("<span class='danger'>[X] rips down \the [src]!</span>", \
 		"<span class='danger'>We rip down \the [src]!</span>", null, 5)
 		qdel(src)
 
@@ -442,7 +443,7 @@
 /obj/effect/alien/egg/ex_act(severity)
 	Burst(TRUE)//any explosion destroys the egg.
 
-/obj/effect/alien/egg/attack_alien(mob/living/carbon/xenomorph/M)
+/obj/effect/alien/egg/attack_alien(mob/living/carbon/xenomorph/M, damage_amount = M.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 
 	if(!istype(M))
 		return attack_hand(M)
@@ -685,41 +686,41 @@ TUNNEL
 		return ..()
 	attack_alien(user)
 
-/obj/structure/tunnel/attack_alien(mob/living/carbon/xenomorph/M)
-	if(!istype(M) || M.stat || M.lying_angle)
+/obj/structure/tunnel/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(!istype(X) || X.stat || X.lying_angle)
 		return
 
-	if(M.a_intent == INTENT_HARM && M == creator)
-		to_chat(M, "<span class='xenowarning'>We begin filling in our tunnel...</span>")
-		if(do_after(M, HIVELORD_TUNNEL_DISMANTLE_TIME, FALSE, src, BUSY_ICON_BUILD))
+	if(X.a_intent == INTENT_HARM && X == creator)
+		to_chat(X, "<span class='xenowarning'>We begin filling in our tunnel...</span>")
+		if(do_after(X, HIVELORD_TUNNEL_DISMANTLE_TIME, FALSE, src, BUSY_ICON_BUILD))
 			deconstruct(FALSE)
 		return
 
 	//Prevents using tunnels by the queen to bypass the fog.
 	if(SSticker?.mode && SSticker.mode.flags_round_type & MODE_FOG_ACTIVATED)
-		if(!M.hive.living_xeno_ruler)
-			to_chat(M, "<span class='xenowarning'>There is no ruler. We must choose one first.</span>")
+		if(!X.hive.living_xeno_ruler)
+			to_chat(X, "<span class='xenowarning'>There is no ruler. We must choose one first.</span>")
 			return FALSE
-		else if(isxenoqueen(M))
-			to_chat(M, "<span class='xenowarning'>There is no reason to leave the safety of the caves yet.</span>")
+		else if(isxenoqueen(X))
+			to_chat(X, "<span class='xenowarning'>There is no reason to leave the safety of the caves yet.</span>")
 			return FALSE
 
-	if(M.anchored)
-		to_chat(M, "<span class='xenowarning'>We can't climb through a tunnel while immobile.</span>")
+	if(X.anchored)
+		to_chat(X, "<span class='xenowarning'>We can't climb through a tunnel while immobile.</span>")
 		return FALSE
 
 	if(length(GLOB.xeno_tunnels) < 2)
-		to_chat(M, "<span class='warning'>There are no other tunnels in the network!</span>")
+		to_chat(X, "<span class='warning'>There are no other tunnels in the network!</span>")
 		return FALSE
 
-	for(var/tummy_resident in M.stomach_contents)
+	for(var/tummy_resident in X.stomach_contents)
 		if(ishuman(tummy_resident))
 			var/mob/living/carbon/human/H = tummy_resident
 			if(check_tod(H))
-				to_chat(M, "<span class='warning'>We cannot enter the tunnel while the host we devoured has signs of life. We should headbite it to finish it off.</span>")
+				to_chat(X, "<span class='warning'>We cannot enter the tunnel while the host we devoured has signs of life. We should headbite it to finish it off.</span>")
 				return
 
-	pick_a_tunnel(M)
+	pick_a_tunnel(X)
 
 ///Here we pick a tunnel to go to, then travel to that tunnel and peep out, confirming whether or not we want to emerge or go to another tunnel.
 /obj/structure/tunnel/proc/pick_a_tunnel(mob/living/carbon/xenomorph/M)
@@ -857,29 +858,29 @@ TUNNEL
 		return ..()
 	attack_alien(user)
 
-/obj/effect/alien/resin/acidwell/attack_alien(mob/living/carbon/xenomorph/M)
-	if(M.a_intent != INTENT_HARM)
+/obj/effect/alien/resin/acidwell/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(X.a_intent != INTENT_HARM)
 		if(charges >= 5)
-			to_chat(M, "<span class='xenoannounce'>[src] is already full!</span>")
+			to_chat(X, "<span class='xenoannounce'>[src] is already full!</span>")
 			return
 		if(ccharging)
-			to_chat(M, "<span class='xenoannounce'>[src] is already being filled!</span>")
+			to_chat(X, "<span class='xenoannounce'>[src] is already being filled!</span>")
 			return
 		ccharging = TRUE
-		if(!do_after(M, 10 SECONDS, FALSE, src, BUSY_ICON_BUILD))
+		if(!do_after(X, 10 SECONDS, FALSE, src, BUSY_ICON_BUILD))
 			ccharging = FALSE
 			return
-		if(M.plasma_stored < 200)
+		if(X.plasma_stored < 200)
 			ccharging = FALSE
 			return
-		M.plasma_stored -= 200
+		X.plasma_stored -= 200
 		charges++
 		ccharging = FALSE
 		update_icon()
-		to_chat(M,"<span class='xenonotice'>We fill up by one [src].</span>")
+		to_chat(X,"<span class='xenonotice'>We fill up by one [src].</span>")
 	else
-		to_chat(M, "<span class='xenowarning'>We begin removing [src]...</span>")
-		if(do_after(M, 5 SECONDS, FALSE, src, BUSY_ICON_BUILD))
+		to_chat(X, "<span class='xenowarning'>We begin removing [src]...</span>")
+		if(do_after(X, 5 SECONDS, FALSE, src, BUSY_ICON_BUILD))
 			deconstruct(FALSE)
 		return
 
@@ -967,7 +968,7 @@ TUNNEL
 	if(chargesleft >= maxcharges)
 		return PROCESS_KILL
 
-/obj/structure/resin_jelly_pod/attack_alien(mob/living/carbon/xenomorph/X)
+/obj/structure/resin_jelly_pod/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(X.a_intent == INTENT_HARM && isxenohivelord(X))
 		to_chat(X, "<span class='xenowarning'>We begin tearing at the [src]...</span>")
 		if(do_after(X, HIVELORD_TUNNEL_DISMANTLE_TIME, FALSE, src, BUSY_ICON_BUILD))
@@ -991,7 +992,7 @@ TUNNEL
 	soft_armor = list("fire" = 200)
 	var/immune_time = 15 SECONDS
 
-/obj/item/resin_jelly/attack_alien(mob/living/carbon/xenomorph/X)
+/obj/item/resin_jelly/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(X.xeno_caste.caste_flags & CASTE_CAN_HOLD_JELLY)
 		return attack_hand(X)
 	if(X.action_busy)

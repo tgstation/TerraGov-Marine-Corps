@@ -287,7 +287,13 @@
 	for(var/i in 1 to 7)
 		new /obj/item/light_bulb/bulb(src)
 
-
+/obj/item/storage/box/trampop
+	name = "box of Tram-pops"
+	desc = "Maybe if you behave the doctor will reward you with one."
+	icon_state = "trampop"
+	spawn_type = /obj/item/reagent_containers/food/snacks/lollipop/tramadol
+	spawn_number = 14
+	w_class = WEIGHT_CLASS_SMALL
 
 
 
