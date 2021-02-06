@@ -215,7 +215,7 @@
 
 /datum/action/xeno_action/activable/nightfall
 	name = "Nightfall"
-	action_icon_state = "heal_xeno"
+	action_icon_state = "nightfall"
 	mechanics_text = "Shut down lights around the shrike."
 	cooldown_timer = 1.5 MINUTES
 	plasma_cost = 400
