@@ -1,0 +1,5 @@
+author: "TiviPlus"
+delete-after: True
+changes: 
+  - code_imp: "Updates unit tests code"
+  - code_imp: "Coders are now recommended to install an extension that eases unit testing"
