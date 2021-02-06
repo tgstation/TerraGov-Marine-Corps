@@ -331,6 +331,7 @@
 #include "code\datums\gamemodes\game_mode.dm"
 #include "code\datums\gamemodes\infestation.dm"
 #include "code\datums\helper_datums\getrev.dm"
+#include "code\datums\helper_datums\stack_end_detector.dm"
 #include "code\datums\jobs\access.dm"
 #include "code\datums\jobs\squads.dm"
 #include "code\datums\jobs\job\clf.dm"

@@ -1,7 +1,7 @@
 /*
 	Animals & All Unspecified
 */
-/mob/living/UnarmedAttack(atom/A)
+/mob/living/UnarmedAttack(atom/A, has_proximity, params)
 	A.attack_animal(src)
 
 
@@ -13,7 +13,7 @@
 /*
 	Monkeys
 */
-/mob/living/carbon/monkey/UnarmedAttack(atom/A)
+/mob/living/carbon/monkey/UnarmedAttack(atom/A, has_proximity, params)
 	A.attack_paw(src)
 
 /atom/proc/attack_paw(mob/living/carbon/monkey/user)

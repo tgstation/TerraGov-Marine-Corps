@@ -27,7 +27,7 @@
 	return ..()
 
 
-/obj/item/grab/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+/obj/item/grab/afterattack(atom/target, mob/user, has_proximity, click_parameters)
 	if(user.pulling == user.buckled)
 		return //can't move the thing you're sitting on.
 	target = get_turf(target)	//we still try to move the grabbed thing to the turf.

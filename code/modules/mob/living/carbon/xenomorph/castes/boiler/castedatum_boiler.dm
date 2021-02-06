@@ -41,13 +41,14 @@
 	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = XENO_BOMB_RESIST_0, "bio" = 30, "rad" = 30, "fire" = 40, "acid" = 30)
 
 	// *** Ranged Attack *** //
-	spit_delay = 4 SECONDS
+	spit_delay = 1.3 SECONDS
+	spit_types = list(/datum/ammo/xeno/acid/medium)
 
 	// *** Boiler Abilities *** //
 	max_ammo = 4
 	bomb_strength = 1 //Multiplier to the effectiveness of the boiler glob.
 	bomb_delay = 30 SECONDS
-	
+
 	acid_spray_duration = 10 SECONDS
 	acid_spray_damage = 16
 	acid_spray_damage_on_hit = 35
@@ -60,6 +61,7 @@
 		/datum/action/xeno_action/create_boiler_bomb,
 		/datum/action/xeno_action/activable/bombard,
 		/datum/action/xeno_action/toggle_long_range,
+		/datum/action/xeno_action/activable/xeno_spit,
 		/datum/action/xeno_action/toggle_bomb,
 		/datum/action/xeno_action/activable/spray_acid/line/boiler,
 	)
@@ -134,7 +136,7 @@
 
 	// *** Ranged Attack *** //
 	spit_delay = 2 SECONDS
-	
+
 	acid_spray_damage_on_hit = 43
 	acid_spray_structure_damage = 61
 
