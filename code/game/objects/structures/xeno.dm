@@ -592,7 +592,7 @@
 
 	return TRUE
 
-/obj/structure/xeno/attack_alien(mob/living/carbon/xenomorph/M)
+/obj/structure/xeno/attack_alien(mob/living/carbon/xenomorph/M, isrightclick = FALSE)
 
 	repair_xeno_structure(M) //Repair if possible
 
@@ -673,7 +673,7 @@
 	visible_message("<span class='warning'>[hugger] gets out of [src]!</span>")
 	hugger = null
 
-/obj/structure/xeno/trap/attack_alien(mob/living/carbon/xenomorph/M)
+/obj/structure/xeno/trap/attack_alien(mob/living/carbon/xenomorph/M, isrightclick = FALSE)
 	. = ..()
 
 	if(M.a_intent == INTENT_HARM)
@@ -929,7 +929,7 @@ TUNNEL
 	icon_state = "well[charges]"
 	set_light(charges , charges / 2, LIGHT_COLOR_GREEN)
 
-/obj/structure/xeno/acidwell/attack_alien(mob/living/carbon/xenomorph/M)
+/obj/structure/xeno/acidwell/attack_alien(mob/living/carbon/xenomorph/M, isrightclick = FALSE)
 	. = ..()
 
 	if(M.a_intent == INTENT_HARM && CHECK_BITFIELD(M.xeno_caste.caste_flags, CASTE_IS_BUILDER) ) //If we're a builder caste and we're on harm intent, deconstruct it.
