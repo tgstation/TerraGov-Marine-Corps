@@ -55,10 +55,12 @@
 		return PROCESS_KILL
 
 	if(affected_mob.stat == DEAD)
-		if(ishuman(affected_mob) && check_tod(affected_mob))
-			var/mob/living/carbon/xenomorph/larva/L = locate() in affected_mob
-			L?.initiate_burst(affected_mob)
-			return PROCESS_KILL
+		if(ishuman(affected_mob))
+			var/mob/living/carbon/human/H = affected_mob
+			if(check_tod(H)) //Can't be defibbed.
+				var/mob/living/carbon/xenomorph/larva/L = locate() in affected_mob
+				L?.initiate_burst(affected_mob)
+				return PROCESS_KILL
 		var/mob/living/carbon/xenomorph/larva/L = locate() in affected_mob
 		L?.initiate_burst(affected_mob)
 		return PROCESS_KILL
