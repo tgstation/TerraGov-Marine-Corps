@@ -321,6 +321,14 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_UNRELENTING_FORCE
 
+/*
+/datum/keybinding/xeno/nightfall
+	name = "nightfall"
+	full_name = "Shrike: Nightfall"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_NIGHTFALL
+*/
+
 /datum/keybinding/xeno/psychic_heal
 	name = "psychic_cure"
 	full_name = "Shrike: Psychic Cure"
