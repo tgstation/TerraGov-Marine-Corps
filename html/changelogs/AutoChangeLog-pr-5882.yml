@@ -1,0 +1,5 @@
+author: "TiviPlus"
+delete-after: True
+changes: 
+  - refactor: "Clients should now delete properly"
+  - admin: "admins will be alerted when the server is left on with no staff"
