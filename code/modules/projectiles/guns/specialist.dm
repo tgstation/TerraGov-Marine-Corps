@@ -14,8 +14,9 @@
 /obj/item/weapon/gun/rifle/sniper/antimaterial
 	name = "\improper T-26 scoped rifle"
 	desc = "The T-26 is an IFF capable sniper rifle which is mostly used by long range marksmen. It excels in long-range combat situations and support sniping. It has a laser designator installed, and the scope itself has IFF integrated into it. Uses specialized 10x28 caseless rounds made to work with the guns odd IFF-scope system.  \nIt has an integrated Target Marker and a Laser Targeting system.\n\"Peace Through Superior Firepower\"."
-	icon_state = "antimaterial"
-	item_state = "antimaterial"
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "t26"
+	item_state = "t26"
 	max_shells = 15 //codex
 	caliber = "10x28mm"
 	fire_sound = 'sound/weapons/guns/fire/sniper.ogg'
