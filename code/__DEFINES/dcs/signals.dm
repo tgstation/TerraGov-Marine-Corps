@@ -551,6 +551,7 @@
 
 // remote control signals
 #define COMSIG_REMOTECONTROL_TOGGLE "remotecontrol_toggle"
+#define COMSIG_REMOTECONTROL_UNLINK "remotecontrol_unlink"
 
 // human signals for keybindings
 #define COMSIG_KB_QUICKEQUIP "keybinding_quickequip"

@@ -56,9 +56,10 @@
 	user.visible_message("<span class='notice'>You attach [I] to [src].</span>",
 	"<span class='notice'>[user] attaches [I] to [src].</span>")
 	update_icon()
-	qdel(I)
 	SEND_SIGNAL(src, COMSIG_UNMANNED_TURRET_UPDATED, turret_type)
+	qdel(I)
 
+///Checks if we can or already have a bullet loaded that we can shoot
 /obj/vehicle/unmanned/proc/load_into_chamber()
 	if(in_chamber)
 		return TRUE //Already set!
