@@ -45,7 +45,7 @@
 			icon_state = "[initial(icon_state)]-on"
 		else
 			icon_state = initial(icon_state)
-			if(forced) //Is true when turn light is called by a phantom
+			if(forced) //Is true when turn light is called by nightfall
 				addtimer(CALLBACK(src, .proc/reset_light), cooldown + 1)
 		update_action_button_icons()
 		return initial_on
