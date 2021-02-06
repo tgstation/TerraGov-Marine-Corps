@@ -44,7 +44,7 @@ const BasicSection = (props, context) => {
           key={thing.name}
           content={thing.name.replace(PATTERN_DESCRIPTOR, "")}
           onClick={() => act("orbit", {
-            ref: thing.ref,
+            name: thing.name,
           })} />
       ))}
     </Section>
@@ -59,7 +59,7 @@ const OrbitedButton = (props, context) => {
     <Button
       color={color}
       onClick={() => act("orbit", {
-        ref: thing.ref,
+        name: thing.name,
       })}>
       {thing.name}
       {thing.orbiters && (` (${thing.orbiters})`)}
@@ -93,7 +93,7 @@ export const Orbit = (props, context) => {
         .filter(searchFor(searchText))
         .sort(compareNumberedText)[0];
       if (member !== undefined) {
-        act("orbit", { ref: member.ref });
+        act("orbit", { name: member.name });
         break;
       }
     }
@@ -110,7 +110,7 @@ export const Orbit = (props, context) => {
             <Flex.Item>
               <Icon
                 name="search"
-                mr="6px" />
+                mr={1} />
             </Flex.Item>
             <Flex.Item grow={1}>
               <Input

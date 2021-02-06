@@ -21,8 +21,9 @@
 		return
 
 	if (action == "orbit")
-		var/ref = params["ref"]
-		var/atom/movable/poi = (locate(ref) in GLOB.mob_list) //|| (locate(ref) in GLOB.poi_list)
+		var/is_admin = check_other_rights(owner.client, R_ADMIN, FALSE)
+		var/list/pois = getpois(skip_mindless = !is_admin)
+		var/atom/movable/poi = pois[params["name"]]
 		if (poi != null)
 			owner.ManualFollow(poi)
 
@@ -46,12 +47,16 @@
 
 		var/poi = pois[name]
 
-		serialized["ref]"] = REF(poi)
+		serialized["ref"] = REF(poi)
 
 		var/mob/M = poi
 		if (!istype(M))
 			misc += list(serialized)
 			continue
+		
+		var/number_of_orbiters = M.orbiters?.orbiters?.len
+		if (number_of_orbiters)
+			serialized["orbiters"] = number_of_orbiters
 
 		if (isobserver(M))
 			ghosts += list(serialized)
@@ -59,21 +64,16 @@
 			dead += list(serialized)
 		else if (M.mind == null)
 			npcs += list(serialized)
-		else
-			var/number_of_orbiters = M.orbiters?.orbiters?.len
-			if (number_of_orbiters)
-				serialized["orbiters"] = number_of_orbiters
-
-			if (isxeno(poi))
-				xenos += list(serialized)
-			else if(ishuman(poi))
-				var/mob/living/carbon/human/H = poi
-				if(ismarinejob(H.job))
-					marines += list(serialized)
-				else if (issurvivorjob(H.job))
-					survivors += list(serialized)
-				else
-					humans += list(serialized)
+		else if (isxeno(poi))
+			xenos += list(serialized)	
+		else if(ishuman(poi))
+			var/mob/living/carbon/human/H = poi
+			if(ismarinejob(H.job))
+				marines += list(serialized)
+			else if (issurvivorjob(H.job))
+				survivors += list(serialized)
+			else
+				humans += list(serialized)
 
 	data["humans"] = humans
 	data["marines"] = marines
