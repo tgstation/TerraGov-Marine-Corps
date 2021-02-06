@@ -42,7 +42,10 @@ export const Cargo = (props, context) => {
     : null;
 
   return (
-    <Window resizable>
+    <Window 
+      width={900}
+      height={700}
+      resizable>
       <Flex height="650px" align="stretch">
         <Flex.Item width="280px">
           <Menu />
