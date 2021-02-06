@@ -20,7 +20,7 @@
 	var/fail_check_ticks = 100 //Check for failure every this many ticks
 	var/cur_tick = 0 //Tick updater
 	///Hive it should be powering and whether it should be generating hive psycic points instead of power on process()
-	var/corrupted = TRUE
+	var/corrupted = XENO_HIVE_NORMAL
 	///how many points this generator will make per tick
 	var/corrupt_point_amout = 0.1
 	///whether we wil allow these to be corrupted
