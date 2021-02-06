@@ -3,10 +3,10 @@
 //Keyword rifles. They are subtype of rifles, but still contained here as a specialist weapon.
 
 /obj/item/ammo_magazine/sniper
-	name = "\improper antimaterial marksman magazine (10x28mm)"
-	desc = "A magazine of sniper rifle ammo."
+	name = "\improper T-26 magazine (10x28mm)"
+	desc = "A magazine of antimaterial rifle ammo."
 	caliber = "10x28mm"
-	icon_state = "antimaterial"
+	icon_state = "t26"
 	w_class = WEIGHT_CLASS_NORMAL
 	max_rounds = 15
 	default_ammo = /datum/ammo/bullet/sniper
@@ -15,14 +15,14 @@
 
 
 /obj/item/ammo_magazine/sniper/incendiary
-	name = "\improper antimaterial incendiary magazine (10x28mm)"
+	name = "\improper T-26 incendiary magazine (10x28mm)"
 	default_ammo = /datum/ammo/bullet/sniper/incendiary
-	icon_state = "antimaterial_inc"
+	icon_state = "t26_inc"
 
 /obj/item/ammo_magazine/sniper/flak
-	name = "\improper antimaterial flak magazine (10x28mm)"
+	name = "\improper T-26 flak magazine (10x28mm)"
 	default_ammo = /datum/ammo/bullet/sniper/flak
-	icon_state = "antimaterial_flak"
+	icon_state = "t26_flak"
 
 
 //M42C magazine
