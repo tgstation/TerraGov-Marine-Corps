@@ -58,7 +58,7 @@
 	current_rounds = 500
 	reload_delay = 1 SECONDS
 	gun_type = /obj/item/weapon/gun/flamer
-	var/obj/item/weapon/gun/flamer/attached_flamer = null
+	var/obj/item/weapon/gun/flamer/attached_flamer
 
 
 /obj/item/ammo_magazine/flamer_tank/backtank/attackby(obj/item/I, mob/user, params)
