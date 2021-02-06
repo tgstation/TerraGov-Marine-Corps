@@ -20,11 +20,18 @@
 	var/fail_check_ticks = 100 //Check for failure every this many ticks
 	var/cur_tick = 0 //Tick updater
 	///Hive it should be powering and whether it should be generating hive psycic points instead of power on process()
-	var/corrupted = 0
+	var/corrupted = TRUE
 	///how many points this generator will make per tick
 	var/corrupt_point_amout = 0.1
 	///whether we wil allow these to be corrupted
 	var/is_corruptible = TRUE
+	///whether they should generate corruption if corrupted
+	var/corruption_on = FALSE
+
+/obj/machinery/power/geothermal/Initialize()
+	. = ..()
+	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND), .proc/activate_corrution)
+	update_icon()
 
 /obj/machinery/power/geothermal/examine(mob/user, distance, infix, suffix)
 	. = ..()
@@ -73,8 +80,13 @@
 /obj/machinery/power/geothermal/power_change()
 	return
 
+/obj/machinery/power/geothermal/proc/activate_corrution(datum/source)
+	SIGNAL_HANDLER
+	corruption_on = TRUE
+	start_processing()
+
 /obj/machinery/power/geothermal/process()
-	if(corrupted)
+	if(corrupted & corruption_on)
 		SSpoints.xeno_points_by_hive["[corrupted]"] += corrupt_point_amout
 		return
 	if(!is_on || buildstate || !anchored || !powernet) //Default logic checking

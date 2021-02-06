@@ -88,13 +88,13 @@
 	var/spawning_pool_number
 	switch(TGS_CLIENT_COUNT)
 		if(0 to 20)
-			spawning_pool_number = 2
+			spawning_pool_number = 1
 		if(20 to 40)
-			spawning_pool_number = 3
+			spawning_pool_number = 2
 		if(40 to 60)
-			spawning_pool_number = 4
+			spawning_pool_number = 3
 		if(60 to INFINITY)
-			spawning_pool_number = 5
+			spawning_pool_number = 4
 	
 	for(var/i in 1 to spawning_pool_number)//Random spawning_pool generation depending on the number of players
 		var/poolturf = pick(GLOB.xeno_resin_spawning_pool_turfs)
