@@ -163,12 +163,12 @@
 		TryToSwitchState(X)
 		return TRUE
 
-	M.visible_message("<span class='xenonotice'>\The [M] starts tearing down \the [src]!</span>", \
+	X.visible_message("<span class='xenonotice'>\The [X] starts tearing down \the [src]!</span>", \
 	"<span class='xenonotice'>We start to tear down \the [src].</span>")
-	if(!do_after(M, XENO_DISMANTLE_TIME, TRUE, M, BUSY_ICON_GENERIC))
+	if(!do_after(X, XENO_DISMANTLE_TIME, TRUE, X, BUSY_ICON_GENERIC))
 		return
-	M.do_attack_animation(src, ATTACK_EFFECT_CLAW)
-	M.visible_message("<span class='xenonotice'>\The [M] tears down \the [src]!</span>", \
+	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
+	X.visible_message("<span class='xenonotice'>\The [X] tears down \the [src]!</span>", \
 	"<span class='xenonotice'>We tear down \the [src].</span>")
 	playsound(src, "alien_resin_break", 25)
 	deconstruct(TRUE)
@@ -802,14 +802,14 @@ TUNNEL
 		return ..()
 	attack_alien(user)
 
-/obj/structure/tunnel/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+/obj/structure/xeno/tunnel/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	. = ..()
 
 	if(!istype(X) || X.stat || X.lying_angle)
 		return
 
-	if(M.a_intent == INTENT_HARM && M == creator)
-		deconstruct(TRUE, M, HIVELORD_TUNNEL_DISMANTLE_TIME, "<span class='xenoannounce'>We begin filling in our tunnel...</span>", "<span class='xenoannounce'>We fill in our tunnel.</span>")
+	if(X.a_intent == INTENT_HARM && X == creator)
+		deconstruct(TRUE, X, HIVELORD_TUNNEL_DISMANTLE_TIME, "<span class='xenoannounce'>We begin filling in our tunnel...</span>", "<span class='xenoannounce'>We fill in our tunnel.</span>")
 		return
 
 	//Prevents using tunnels by the queen to bypass the fog.
@@ -1051,7 +1051,7 @@ TUNNEL
 	if(chargesleft >= maxcharges)
 		return PROCESS_KILL
 
-/obj/structure/resin_jelly_pod/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+/obj/structure/xeno/resin_jelly_pod/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	. = ..()
 
 	if(X.a_intent == INTENT_HARM && isxenohivelord(X))
