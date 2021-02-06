@@ -485,8 +485,8 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 /obj/vehicle/multitile/hitbox/cm_armored/attackby(obj/item/I, mob/user, params)
 	return root.attackby(I, user, params)
 
-/obj/vehicle/multitile/hitbox/cm_armored/attack_alien(mob/living/carbon/xenomorph/M, dam_bonus)
-	return root.attack_alien(M, dam_bonus)
+/obj/vehicle/multitile/hitbox/cm_armored/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	return root.attack_alien(X, damage_amount)
 
 /obj/vehicle/multitile/hitbox/cm_armored/effect_smoke(obj/effect/particle_effect/smoke/S)
 	. = ..()
@@ -546,13 +546,13 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 			take_damage(rand(30, 40)) //Heavy explosions do some damage, but are largely deferred by the armour/bulk.
 
 //Honestly copies some code from the Xeno files, just handling some special cases
-/obj/vehicle/multitile/root/cm_armored/attack_alien(mob/living/carbon/xenomorph/M, dam_bonus)
+/obj/vehicle/multitile/root/cm_armored/attack_alien(mob/living/carbon/xenomorph/M, damage_amount = M.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 
 	if(M.loc == entrance.loc && M.a_intent == INTENT_HELP)
 		handle_player_entrance(M) //will call the get out of tank proc on its own
 		return
 
-	var/damage = M.xeno_caste.melee_damage + dam_bonus
+	var/damage = damage_amount
 
 	//Somehow we will deal no damage on this attack
 	if(!damage)

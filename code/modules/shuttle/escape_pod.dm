@@ -239,19 +239,19 @@
 		user.stop_pulling()
 		move_mob_inside(user)
 
-/obj/machinery/cryopod/evacuation/attack_alien(mob/living/carbon/xenomorph/user)
+/obj/machinery/cryopod/evacuation/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(being_forced)
-		to_chat(user, "<span class='xenowarning'>It's being forced open already!</span>")
+		to_chat(X, "<span class='xenowarning'>It's being forced open already!</span>")
 		return FALSE
 
 	if(!occupant)
-		to_chat(user, "<span class='xenowarning'>There is nothing of interest in there.</span>")
+		to_chat(X, "<span class='xenowarning'>There is nothing of interest in there.</span>")
 		return FALSE
 
 	being_forced = !being_forced
-	visible_message("<span class='warning'>[user] begins to pry the [src]'s cover!</span>", 3)
+	visible_message("<span class='warning'>[X] begins to pry the [src]'s cover!</span>", 3)
 	playsound(src,'sound/effects/metal_creaking.ogg', 25, 1)
-	if(do_after(user, 20, FALSE, src, BUSY_ICON_HOSTILE))
+	if(do_after(X, 2 SECONDS, FALSE, src, BUSY_ICON_HOSTILE))
 		go_out() //Force the occupant out.
 	being_forced = !being_forced
 
@@ -313,5 +313,5 @@
 /obj/machinery/door/airlock/evacuation/attack_hand(mob/living/user)
 	return TRUE
 
-/obj/machinery/door/airlock/evacuation/attack_alien()
+/obj/machinery/door/airlock/evacuation/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	return FALSE //Probably a better idea that these cannot be forced open.
