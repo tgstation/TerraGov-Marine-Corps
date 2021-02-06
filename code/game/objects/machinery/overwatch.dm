@@ -38,7 +38,6 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	var/datum/action/innate/order/retreat_order/send_retreat_order
 	///datum used when sending a defend order 
 	var/datum/action/innate/order/defend_order/send_defend_order 
-	COOLDOWN_DECLARE(cooldown_order_cic)
 
 /obj/machinery/computer/camera_advanced/overwatch/Initialize()
 	. = ..()
@@ -897,10 +896,10 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	if (!current_order)
 		to_chat(usr, "<span class='warning'>You didn't select any order</span>")
 		return
-	if(!COOLDOWN_CHECK(src, cooldown_order_cic))
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_CIC_ORDERS))
 		to_chat(usr, "<span class='warning'>Your last order was too recent</span>")
 		return
-	COOLDOWN_START(src, cooldown_order_cic, ORDER_COOLDOWN)
+	TIMER_COOLDOWN_START(src, COOLDOWN_CIC_ORDERS, ORDER_COOLDOWN)
 	new current_order.visual_type(target_turf)
 	var/obj/screen/arrow/arrow_hud
 	var/datum/atom_hud/squad/squad_hud = GLOB.huds[DATA_HUD_SQUAD]
