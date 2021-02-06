@@ -713,7 +713,7 @@ TUNNEL
 		to_chat(X, "<span class='warning'>There are no other tunnels in the network!</span>")
 		return FALSE
 
-	pick_a_tunnel(M)
+	pick_a_tunnel(X)
 
 ///Here we pick a tunnel to go to, then travel to that tunnel and peep out, confirming whether or not we want to emerge or go to another tunnel.
 /obj/structure/tunnel/proc/pick_a_tunnel(mob/living/carbon/xenomorph/M)
