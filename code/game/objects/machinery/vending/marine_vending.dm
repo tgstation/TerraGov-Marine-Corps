@@ -481,7 +481,7 @@
 	icon_state = "marinemed"
 	icon_deny = "marinemed-deny"
 	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;All natural chemicals!;This stuff saves lives.;Don't you want some?;Ping!"
-	req_one_access = list(ALL_MARINE_ACCESS)
+	req_one_access = ALL_MARINE_ACCESS
 	wrenchable = FALSE
 	products = list(
 		/obj/item/reagent_containers/hypospray/autoinjector/bicaridine = 6,
