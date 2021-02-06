@@ -1,4 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes: 
-  - balance: "Flamed grenades will respect detonation timers"

@@ -1,4 +1,4 @@
 author: "Pariah919"
 delete-after: True
 changes: 
-  - rscdel: "Removed barrel charger"
+  - balance: "tl 127 aim mode nerf"
