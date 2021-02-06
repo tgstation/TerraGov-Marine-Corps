@@ -98,6 +98,7 @@
 /area/sulaco/medbay/chemistry)
 "aar" = (
 /obj/structure/closet/secure_closet/medical3,
+/obj/item/storage/surgical_tray,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
@@ -131,6 +132,7 @@
 /area/sulaco/cargo)
 "aau" = (
 /obj/structure/closet/secure_closet/medical3,
+/obj/item/storage/surgical_tray,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
@@ -1791,6 +1793,9 @@
 	dir = 4
 	},
 /area/sulaco/engineering/atmos)
+"agb" = (
+/turf/closed/wall/mainship/white,
+/area/sulaco/hallway/lower_main_hall)
 "agm" = (
 /obj/machinery/vending/tool,
 /turf/open/floor/prison,
@@ -10636,6 +10641,9 @@
 "bPM" = (
 /turf/open/floor/prison/plate,
 /area/sulaco/cargo)
+"bPU" = (
+/turf/closed/wall/mainship/white,
+/area/sulaco/hallway/lower_main_hall)
 "bTI" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/plate,
@@ -10722,6 +10730,14 @@
 "coO" = (
 /turf/open/floor/prison/whitegreen{
 	dir = 8
+	},
+/area/sulaco/research)
+"cpa" = (
+/obj/structure/morgue/crematorium{
+	id = "crema"
+	},
+/turf/open/floor/prison/whitegreen{
+	dir = 9
 	},
 /area/sulaco/research)
 "cpN" = (
@@ -12053,14 +12069,6 @@
 /obj/structure/closet/emcloset,
 /turf/open/floor/prison,
 /area/sulaco/hallway/central_hall2)
-"gnM" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/prison/whitegreen/corner{
-	dir = 1
-	},
-/area/sulaco/research)
 "goL" = (
 /obj/machinery/door/poddoor/open/bridge,
 /obj/machinery/door/airlock/mainship/command/cic{
@@ -12354,6 +12362,14 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/hallway/central_hall3)
+"hkD" = (
+/obj/machinery/crema_switch{
+	id = "crema";
+	pixel_x = 10;
+	pixel_y = 0
+	},
+/turf/closed/wall/mainship/gray,
+/area/sulaco/research)
 "hlP" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
@@ -12967,14 +12983,6 @@
 	},
 /turf/open/floor/prison,
 /area/mainship/living/pilotbunks)
-"iWQ" = (
-/obj/machinery/crema_switch{
-	id = "crema";
-	pixel_x = 10;
-	pixel_y = 0
-	},
-/turf/closed/wall/mainship/gray,
-/area/sulaco/research)
 "iWV" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -14041,9 +14049,6 @@
 	},
 /turf/open/floor/prison/bright_clean,
 /area/mainship/command/self_destruct)
-"lTW" = (
-/turf/closed/wall/mainship/white,
-/area/sulaco/hallway/lower_main_hall)
 "lVj" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
 /turf/open/floor/prison/bright_clean,
@@ -15531,6 +15536,14 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/telecomms/office)
+"pxz" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/prison/whitegreen/corner{
+	dir = 1
+	},
+/area/sulaco/research)
 "pxD" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
@@ -17197,14 +17210,6 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/telecomms/office)
-"tOd" = (
-/obj/structure/morgue/crematorium{
-	id = "crema"
-	},
-/turf/open/floor/prison/whitegreen{
-	dir = 9
-	},
-/area/sulaco/research)
 "tOJ" = (
 /obj/machinery/power/apc/super{
 	dir = 1
@@ -45215,7 +45220,7 @@ aYZ
 aaW
 aRh
 aRh
-iWQ
+hkD
 aRh
 aRh
 aZU
@@ -45471,7 +45476,7 @@ mDu
 aYZ
 aaW
 aRh
-tOd
+cpa
 coO
 oxw
 aRh
@@ -45986,7 +45991,7 @@ aYZ
 aaW
 aRh
 dFk
-gnM
+pxz
 imd
 aRh
 aFT
@@ -48426,7 +48431,7 @@ aWG
 xKR
 aWG
 iqZ
-lTW
+bPU
 aaJ
 ajO
 aiA
@@ -48683,7 +48688,7 @@ aWG
 vmi
 aWG
 eVE
-lTW
+bPU
 aaJ
 yiP
 aio
@@ -48940,7 +48945,7 @@ aWG
 xKR
 aWG
 agm
-lTW
+bPU
 aaJ
 ajQ
 aeL
@@ -49196,7 +49201,7 @@ aVZ
 aWG
 xKR
 aWG
-lTW
+bPU
 aaQ
 aaJ
 aaJ

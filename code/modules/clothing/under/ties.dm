@@ -551,7 +551,7 @@
 	name = "surgical vest"
 	desc = "A clean white Nylon vest with large pockets specially designed for holding surgical supplies."
 	icon_state = "vest_white"
-	hold = /obj/item/storage/internal/tie/white_vest/surgery
+	hold = /obj/item/storage/internal/tie/white_vest
 
 /obj/item/storage/internal/tie/white_vest/surgery
 	can_hold = list(
@@ -560,7 +560,7 @@
 		/obj/item/stack/medical/advanced/bruise_pack,
 	)
 
-/obj/item/storage/internal/tie/white_vest/surgery/Initialize()
+/obj/item/clothing/tie/storage/white_vest/surgery/Initialize()
 	. = ..()
 	new /obj/item/tool/surgery/scalpel/manager(src)
 	new /obj/item/tool/surgery/scalpel(src)
