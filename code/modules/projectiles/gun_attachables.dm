@@ -611,43 +611,46 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	if(turn_off && !(master_gun.flags_gun_features & GUN_FLASHLIGHT_ON))
 		return
 
-	if(COOLDOWN_CHECK(src, cooldown_flashligh))		
-		COOLDOWN_START(src, cooldown_flashligh, cooldown)
+	if(!COOLDOWN_CHECK(src, cooldown_flashligh))
+		return	
 		
-		if(ismob(master_gun.loc) && !user)
-			user = master_gun.loc
+	COOLDOWN_START(src, cooldown_flashligh, cooldown)
+	
+	if(ismob(master_gun.loc) && !user)
+		user = master_gun.loc
+	
+	if(sparks)
+		var/datum/effect_system/spark_spread/spark_system = new
+		spark_system.set_up(5, 0, src)
+		spark_system.attach(src)
+		spark_system.start(src)
+	
+	if(master_gun.flags_gun_features & GUN_FLASHLIGHT_ON)
 		
-		if(sparks)
-			var/datum/effect_system/spark_spread/spark_system = new
-			spark_system.set_up(5, 0, src)
-			spark_system.attach(src)
-			spark_system.start(src)
-		
-		if(master_gun.flags_gun_features & GUN_FLASHLIGHT_ON)
-			
-			icon_state = "flashlight"
-			attach_icon = "flashlight_a"
-			master_gun.set_light_range(0)
-			master_gun.set_light_power(0)
-			master_gun.set_light_on(FALSE)
-			if(forced)
-				addtimer(CALLBACK(src, .proc/reset_light), cooldown + 1)
-		else
-			icon_state = "flashlight-on"
-			attach_icon = "flashlight_a-on"
-			master_gun.set_light_range(light_mod)
-			master_gun.set_light_power(3)
-			master_gun.set_light_on(TRUE)
+		icon_state = "flashlight"
+		attach_icon = "flashlight_a"
+		master_gun.set_light_range(0)
+		master_gun.set_light_power(0)
+		master_gun.set_light_on(FALSE)
+		if(forced)
+			addtimer(CALLBACK(src, .proc/reset_light), cooldown + 1)
+	else
+		icon_state = "flashlight-on"
+		attach_icon = "flashlight_a-on"
+		master_gun.set_light_range(light_mod)
+		master_gun.set_light_power(3)
+		master_gun.set_light_on(TRUE)
 
-		master_gun.flags_gun_features ^= GUN_FLASHLIGHT_ON
+	master_gun.flags_gun_features ^= GUN_FLASHLIGHT_ON
 
-		master_gun.update_attachable(slot)
+	master_gun.update_attachable(slot)
 
-		for(var/X in master_gun.actions)
-			var/datum/action/A = X
-			A.update_button_icon()
-		return TRUE
-	return
+	for(var/X in master_gun.actions)
+		var/datum/action/A = X
+		A.update_button_icon()
+	
+	return TRUE
+	
 
 
 

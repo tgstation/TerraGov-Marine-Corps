@@ -8,6 +8,7 @@
 	var/use = 0
 	var/unlocked = 0
 	var/open = 0
+	///The brightness of the floodlight
 	var/brightness_on = 7
 
 /obj/machinery/floodlight/Initialize()
@@ -21,7 +22,12 @@
 /obj/machinery/floodlight/attackby()
 	return
 
+/obj/machinery/floodlight/proc/reset_light()
+	turn_light(null, TRUE)
+
 /obj/machinery/floodlight/turn_light(mob/user, toggle_on, cooldown = 0, sparks)
+	if(!on & !toggle_on)
+		return
 	if(sparks)
 		var/datum/effect_system/spark_spread/spark_system = new
 		spark_system.set_up(5, 0, src)
@@ -33,13 +39,12 @@
 		set_light(brightness_on)
 		DISABLE_BITFIELD(resistance_flags, UNACIDABLE)
 		return
-	else
-		on = FALSE
-		to_chat(user, "<span class='notice'>You turn off the light.</span>")
-		set_light(0)
-		ENABLE_BITFIELD(resistance_flags, UNACIDABLE)
-		if(cooldown > 0)
-			addtimer(CALLBACK(src, .turn_light, null, TRUE), cooldown)
+	on = FALSE
+	to_chat(user, "<span class='notice'>You turn off the light.</span>")
+	set_light(0)
+	ENABLE_BITFIELD(resistance_flags, UNACIDABLE)
+	if(cooldown > 0)
+		addtimer(CALLBACK(src, .proc/reset_light), cooldown)
 
 /obj/machinery/floodlight/landing
 	name = "Landing Light"
@@ -318,7 +323,7 @@
 		fswitch = null
 	. = ..()
 
-/obj/machinery/floodlight/colony/proc/reset_light()
+/obj/machinery/floodlight/colony/reset_light()
 	if(fswitch?.turned_on)
 		turn_light(null, TRUE)
 
@@ -334,13 +339,13 @@
 		set_light(brightness_on)
 		fswitch.active_power_usage += FLOODLIGHT_TICK_CONSUMPTION
 		on = TRUE
-		icon_state = "panelon"
+		icon_state = "floodon"
 		update_icon()
 	else if(!toggle_on && on)
 		set_light(0)
 		fswitch.active_power_usage -= FLOODLIGHT_TICK_CONSUMPTION
 		on = FALSE
-		icon_state = "paneloff"
+		icon_state = "floodoff"
 		update_icon()
 		if(cooldown > 0)
 			addtimer(CALLBACK(src, .proc/reset_light), cooldown)
@@ -394,7 +399,7 @@
 
 /obj/machinery/colony_floodlight_switch/proc/toggle_lights(switch_on)
 	for(var/obj/machinery/floodlight/colony/F in floodlist)
-		addtimer(CALLBACK(F, /obj/machinery/floodlight/colony/turn_light, null, switch_on), rand(1,50))
+		F.turn_light(null, switch_on)
 
 /obj/machinery/colony_floodlight_switch/attack_paw(mob/living/carbon/monkey/user)
 	return src.attack_hand(user)

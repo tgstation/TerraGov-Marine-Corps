@@ -30,26 +30,27 @@
 
 
 /obj/item/flashlight/turn_light(mob/user = null, toggle_on, cooldown = 1 SECONDS, sparks = FALSE, forced = FALSE)
-	if(COOLDOWN_CHECK(src, cooldown_flashlight) || forced)
-		COOLDOWN_START(src, cooldown_flashlight, cooldown)
-		if(sparks)
-			var/datum/effect_system/spark_spread/spark_system = new
-			spark_system.set_up(5, 0, src)
-			spark_system.attach(src)
-			spark_system.start(src)
-		var/initial_on = light_on
-		if(!user && ismob(loc))
-			user = loc
-		set_light_on(toggle_on)
-		if(toggle_on)
-			icon_state = "[initial(icon_state)]-on"
-		else
-			icon_state = initial(icon_state)
-			if(forced) //Is true when turn light is called by nightfall
-				addtimer(CALLBACK(src, .proc/reset_light), cooldown + 1)
-		update_action_button_icons()
-		return initial_on
-	return STILL_ON_COOLDOWN
+	if(!COOLDOWN_CHECK(src, cooldown_flashlight) || forced)
+		return STILL_ON_COOLDOWN
+	COOLDOWN_START(src, cooldown_flashlight, cooldown)
+	if(sparks)
+		var/datum/effect_system/spark_spread/spark_system = new
+		spark_system.set_up(5, 0, src)
+		spark_system.attach(src)
+		spark_system.start(src)
+	var/initial_on = light_on
+	if(!user && ismob(loc))
+		user = loc
+	set_light_on(toggle_on)
+	if(toggle_on)
+		icon_state = "[initial(icon_state)]-on"
+	else
+		icon_state = initial(icon_state)
+		if(forced) //Is true when turn light is called by nightfall
+			addtimer(CALLBACK(src, .proc/reset_light), cooldown + 1)
+	update_action_button_icons()
+	return initial_on
+	
 
 /obj/item/flashlight/attack_self(mob/user)
 	if(!isturf(user.loc))

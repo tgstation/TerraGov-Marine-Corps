@@ -267,11 +267,12 @@
 
 ///reset the light to a normal status if it was only disabled
 /obj/machinery/light/proc/reset_light()
-	if(status == LIGHT_DISABLED)
-		status = LIGHT_OK
-		var/area/A = get_area(src)
-		on = (A.lightswitch && A.power_light)
-		update()
+	if(status != LIGHT_DISABLED)
+		return
+	status = LIGHT_OK
+	var/area/A = get_area(src)
+	on = (A.lightswitch && A.power_light)
+	update()
 
 // attempt to set the light's on/off status
 // will not switch on if broken/burned/empty
