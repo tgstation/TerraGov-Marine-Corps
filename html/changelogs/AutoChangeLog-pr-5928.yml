@@ -1,4 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes: 
-  - refactor: "Refactors attack_alien to be able to support alternate attacks"
