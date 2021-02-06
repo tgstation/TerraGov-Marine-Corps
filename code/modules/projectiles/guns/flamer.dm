@@ -196,13 +196,13 @@
 
 /**Proced when unlinking the back fuel tank, making the flamer unlit and unable to fire
  * mob/user if not null, will allow to play sound and update icons / hud
- * volontary if TRUE, will span a notice describing the action
+ * voluntary if TRUE, will span a notice describing the action
  */
-/obj/item/weapon/gun/flamer/proc/detach_fueltank(mob/user,volontary = TRUE)
+/obj/item/weapon/gun/flamer/proc/detach_fueltank(mob/user, voluntary = TRUE)
 	var/obj/item/ammo_magazine/flamer_tank/backtank/fueltank = current_mag
 	current_mag = null
-	fueltank?.attached_flamer=null
-	if (volontary)
+	fueltank?.attached_flamer = null
+	if (voluntary)
 		to_chat(user, "<span class='notic'>You detach the fuel tank</span>")
 	playsound(user, unload_sound, 25, 1)
 	light_pilot(user,FALSE)
@@ -213,13 +213,12 @@
 
 /obj/item/weapon/gun/flamer/removed_from_inventory(mob/user)
 	. = ..()
-	var/mob/living/carbon/human/humanuser = user
 	if (istype(current_mag,/obj/item/ammo_magazine/flamer_tank/backtank)) //Dropping the flamer unlink it from the tank
 		var/obj/item/ammo_magazine/flamer_tank/backtank/backfueltank = current_mag;
 		backfueltank.attached_flamer=null
 		current_mag = null 
 		light_pilot(null,FALSE) 
-	update_icon(humanuser)
+	update_icon()
 
 /obj/item/weapon/gun/flamer/proc/unleash_flame(atom/target, mob/living/user)
 	set waitfor = 0
@@ -436,15 +435,17 @@
 		/obj/item/attachable/hydro_cannon,
 	)
 	var/last_use
-	var/hydro_active
-	var/water_count
+	///If we are using the hydro cannon when clicking
+	var/hydro_active = FALSE
+	///How much water the hydro cannon has
+	var/water_count = 0
 
 /obj/item/weapon/gun/flamer/marinestandard/Initialize()
 	. = ..()
 	reagents = new /datum/reagents(FLAMER_WATER)
 	reagents.my_atom = src
 	reagents.add_reagent(/datum/reagent/water, reagents.maximum_volume)
-	water_count=reagents.maximum_volume
+	water_count = reagents.maximum_volume
 
 /obj/item/weapon/gun/flamer/marinestandard/reload(mob/user, obj/item/ammo_magazine/magazine)
 	if(!magazine || !istype(magazine))

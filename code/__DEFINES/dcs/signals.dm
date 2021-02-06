@@ -208,7 +208,7 @@
 #define COMSIG_ITEM_EQUIPPED_TO_SLOT "item_equip_to_slot"			//from base of obj/item/equipped(): (/mob/equipper)
 #define COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT "item_equip_not_in_slot"	//from base of obj/item/equipped(): (/mob/equipper, slot)
 #define COMSIG_ITEM_UNEQUIPPED "item_unequip"						//from base of obj/item/unequipped(): (/mob/unequipper, slot)
-#define COMSIG_ITEM_DROPPED "item_drop"								//from base of obj/item/dropped(): (mob/user)
+#define COMSIG_ITEM_DROPPED "item_drop"							//from base of obj/item/dropped(): (mob/user)
 #define COMSIG_ITEM_REMOVED_INVENTORY "item_removed_inventory"		//from base of obj/item/removed_from_inventory() :(mov/user)				
 #define COMSIG_ITEM_WIELD "item_wield"
 #define COMSIG_ITEM_UNWIELD "item_unwield"                      //from base of obj/item/
