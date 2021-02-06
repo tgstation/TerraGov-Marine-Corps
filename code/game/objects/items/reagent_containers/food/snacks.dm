@@ -2866,6 +2866,6 @@
 //med pop
 /obj/item/reagent_containers/food/snacks/lollipop/tramadol
 	name = "Tram-pop"
-	desc = "Your reward for behaving so well in the medbay."
+	desc = "Your reward for behaving so well in the medbay. Can be eaten or put in the mask slot."
 	list_reagents = list(/datum/reagent/consumable/sugar = 1, /datum/reagent/medicine/tramadol = 4)
-	tastes = list("cough syrup" = 1)
+	tastes = list("cough syrup" = 1, "artificial sweetness" = 1)

@@ -179,35 +179,35 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 		R.product_name = initial(temp_path.name)
 
 
-/obj/machinery/vending/attack_alien(mob/living/carbon/xenomorph/M)
+/obj/machinery/vending/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(tipped_level)
-		to_chat(M, "<span class='warning'>There's no reason to bother with that old piece of trash.</span>")
+		to_chat(X, "<span class='warning'>There's no reason to bother with that old piece of trash.</span>")
 		return FALSE
 
-	if(M.a_intent == INTENT_HARM)
-		M.do_attack_animation(src, ATTACK_EFFECT_SMASH)
-		if(prob(M.xeno_caste.melee_damage))
+	if(X.a_intent == INTENT_HARM)
+		X.do_attack_animation(src, ATTACK_EFFECT_SMASH)
+		if(prob(X.xeno_caste.melee_damage))
 			playsound(loc, 'sound/effects/metalhit.ogg', 25, 1)
-			M.visible_message("<span class='danger'>\The [M] smashes \the [src] beyond recognition!</span>", \
+			X.visible_message("<span class='danger'>\The [X] smashes \the [src] beyond recognition!</span>", \
 			"<span class='danger'>We enter a frenzy and smash \the [src] apart!</span>", null, 5)
 			malfunction()
 			return TRUE
 		else
-			M.visible_message("<span class='danger'>[M] slashes \the [src]!</span>", \
+			X.visible_message("<span class='danger'>[X] slashes \the [src]!</span>", \
 			"<span class='danger'>We slash \the [src]!</span>", null, 5)
 			playsound(loc, 'sound/effects/metalhit.ogg', 25, 1)
 		return TRUE
 
-	M.visible_message("<span class='warning'>\The [M] begins to lean against \the [src].</span>", \
+	X.visible_message("<span class='warning'>\The [X] begins to lean against \the [src].</span>", \
 	"<span class='warning'>You begin to lean against \the [src].</span>", null, 5)
 	tipped_level = 1
-	var/shove_time = 100
-	if(M.mob_size == MOB_SIZE_BIG)
-		shove_time = 50
-	if(istype(M,/mob/living/carbon/xenomorph/crusher))
-		shove_time = 15
-	if(do_after(M, shove_time, FALSE, src, BUSY_ICON_HOSTILE))
-		M.visible_message("<span class='danger'>\The [M] knocks \the [src] down!</span>", \
+	var/shove_time = 1 SECONDS
+	if(X.mob_size == MOB_SIZE_BIG)
+		shove_time = 5 SECONDS
+	if(istype(X,/mob/living/carbon/xenomorph/crusher))
+		shove_time = 1.5 SECONDS
+	if(do_after(X, shove_time, FALSE, src, BUSY_ICON_HOSTILE))
+		X.visible_message("<span class='danger'>\The [X] knocks \the [src] down!</span>", \
 		"<span class='danger'>You knock \the [src] down!</span>", null, 5)
 		tip_over()
 	else

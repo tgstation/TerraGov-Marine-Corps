@@ -22,7 +22,7 @@
 	var/recharge_counter = 0
 
 	///Reagent amounts that are dispenced
-	var/static/list/possible_transfer_amounts = list(1,5,10,15,20,30,60)
+	var/static/list/possible_transfer_amounts = list(1,5,10,15,20,30,40,60,120)
 
 	var/working_state = "dispenser_working"
 

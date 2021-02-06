@@ -197,12 +197,12 @@
 		icon_state = icon_opened
 
 
-/obj/structure/closet/bodybag/attack_alien(mob/living/carbon/xenomorph/xeno)
+/obj/structure/closet/bodybag/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(opened)
 		return FALSE // stop xeno closing things
-	xeno.do_attack_animation(src, ATTACK_EFFECT_CLAW)
+	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 	open()
-	xeno.visible_message("<span class='danger'>\The [xeno] slashes \the [src] open!</span>", \
+	X.visible_message("<span class='danger'>\The [X] slashes \the [src] open!</span>", \
 		"<span class='danger'>We slash \the [src] open!</span>", null, 5)
 	return TRUE
 
