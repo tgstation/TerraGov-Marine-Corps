@@ -214,18 +214,6 @@
 	keybind_signal = COMSIG_XENOABILITY_REAGENT_SLASH
 	target_flags = XABB_MOB_TARGET
 
-//So this doesn't fuck up while the buff is active mid-upgrade; preserve and transfer the timer var so we can rebuild it
-/datum/action/xeno_action/reagent_slash/on_xeno_pre_upgrade()
-	var/mob/living/carbon/xenomorph/X = owner
-	X.reagent_slash_duration = timeleft(X.reagent_slash_duration_timer_id)
-
-//So this doesn't fuck up while the buff is active mid-upgrade; preserve and transfer the timer var so we can rebuild it
-/datum/action/xeno_action/reagent_slash/on_xeno_upgrade()
-	var/mob/living/carbon/xenomorph/X = owner
-	var/time_left = X.reagent_slash_duration
-	if(time_left) //rebuild the timer before it was so rudely interrupted
-		X.reagent_slash_duration_timer_id = addtimer(CALLBACK(src, .proc/reagent_slash_timer_check, X), time_left, TIMER_STOPPABLE)
-
 /datum/action/xeno_action/reagent_slash/action_activate()
 	. = ..()
 	var/mob/living/carbon/xenomorph/X = owner
