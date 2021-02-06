@@ -212,7 +212,7 @@ WEAPONS
 
 /datum/supply_packs/weapons/antimaterial
 	name = "T-26 Antimaterial rifle kit"
-	contains = list(/obj/item/weapon/gun/rifle/sniper/antimaterialr)
+	contains = list(/obj/item/weapon/gun/rifle/sniper/antimaterial)
 	cost = 120
 
 /datum/supply_packs/weapons/specminigun
