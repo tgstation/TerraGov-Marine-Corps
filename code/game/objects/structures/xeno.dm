@@ -193,18 +193,19 @@
 	hugger = null
 
 /obj/effect/alien/resin/trap/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
-	if(X.a_intent != INTENT_HARM)
-		if(X.xeno_caste.caste_flags & CASTE_CAN_HOLD_FACEHUGGERS)
-			if(!hugger)
-				to_chat(X, "<span class='warning'>[src] is empty.</span>")
-			else
-				icon_state = "trap0"
-				X.put_in_active_hand(hugger)
-				hugger.go_active(TRUE)
-				hugger = null
-				to_chat(X, "<span class='xenonotice'>We remove the facehugger from [src].</span>")
+	if(X.a_intent == INTENT_HARM)
+		return ..()
+	if(!(X.xeno_caste.caste_flags & CASTE_CAN_HOLD_FACEHUGGERS))
 		return
-	..()
+	if(!hugger)
+		to_chat(X, "<span class='warning'>[src] is empty.</span>")
+		return
+	icon_state = "trap0"
+	X.put_in_active_hand(hugger)
+	hugger.go_active(TRUE)
+	hugger = null
+	to_chat(X, "<span class='xenonotice'>We remove the facehugger from [src].</span>")
+
 
 /obj/effect/alien/resin/trap/attackby(obj/item/I, mob/user, params)
 	. = ..()
