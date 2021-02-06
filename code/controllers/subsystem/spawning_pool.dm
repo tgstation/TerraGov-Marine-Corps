@@ -6,7 +6,7 @@ SUBSYSTEM_DEF(spawning_pool)
 	///The max amount of spawning pools that can spawn free larvas
 	var/max_spawning_pool_spawning = 0
 	///How many larva points each pool gives per minute
-	var/larva_spawn_rate = 0.7
+	var/larva_spawn_rate = 0.3
 
 /datum/controller/subsystem/spawning_pool/Initialize(timeofday)
 	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND), .proc/start_spawning)
