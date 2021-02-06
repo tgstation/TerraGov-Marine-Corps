@@ -13,7 +13,7 @@
 	qdel(src)
 
 /obj/item/explosive/grenade/frag/flamer_fire_act()
-	prime()
+	activate()
 
 
 
@@ -26,13 +26,12 @@
 	dangerous = FALSE
 
 /obj/item/explosive/grenade/frag/training/prime()
-	spawn(0)
-		playsound(loc, 'sound/items/detector.ogg', 80, 0, 7)
-		active = 0 //so we can reuse it
-		overlays.Cut()
-		icon_state = initial(icon_state)
-		det_time = initial(det_time) //these can be modified when fired by UGL
-		throw_range = initial(throw_range)
+	playsound(loc, 'sound/items/detector.ogg', 80, 0, 7)
+	active = FALSE //so we can reuse it
+	overlays.Cut()
+	icon_state = initial(icon_state)
+	det_time = initial(det_time) //these can be modified when fired by UGL
+	throw_range = initial(throw_range)
 
 
 /obj/item/explosive/grenade/frag/training/flamer_fire_act()

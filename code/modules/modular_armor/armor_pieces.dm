@@ -100,6 +100,11 @@
 	soft_armor = list("melee" = 10, "bullet" = 15, "laser" = 15, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
 	slowdown = 0.1
 
+/obj/item/armor_module/armor/chest/marine/skirmisher/scout
+	name = "\improper Jaeger Pattern Light Scout chestplates"
+	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides minor protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Scout armor piece."
+	icon_state = "scout_chest"
+
 /obj/item/armor_module/armor/chest/marine/assault
 	name = "\improper Jaeger Pattern Heavy Assault chestplates"
 	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides high protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Assault armor piece."
@@ -151,6 +156,11 @@
 	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Skirmisher armor piece."
 	icon_state = "skirmisher_legs"
 
+/obj/item/armor_module/armor/legs/marine/scout
+	name = "\improper Jaeger Pattern Scout leg plates"
+	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Scout armor piece."
+	icon_state = "scout_legs"
+
 /obj/item/armor_module/armor/legs/marine/assault
 	name = "\improper Jaeger Pattern Assault leg plates"
 	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Assault armor piece."
@@ -199,6 +209,11 @@
 	name = "\improper Jaeger Pattern Skirmisher arm plates"
 	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides protection and encumbrance  when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Skirmisher armor piece."
 	icon_state = "skirmisher_arms"
+
+/obj/item/armor_module/armor/arms/marine/scout
+	name = "\improper Jaeger Pattern Scout arm plates"
+	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides protection and encumbrance  when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Scout armor piece."
+	icon_state = "scout_arms"
 
 /obj/item/armor_module/armor/arms/marine/assault
 	name = "\improper Jaeger Pattern Assault arm plates"

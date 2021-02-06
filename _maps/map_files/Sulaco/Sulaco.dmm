@@ -926,19 +926,13 @@
 	},
 /area/sulaco/medbay/west)
 "acY" = (
-/obj/machinery/bioprinter,
-/obj/machinery/light{
-	dir = 4
-	},
+/obj/machinery/bioprinter/stocked,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
 	},
 /area/sulaco/medbay/surgery_two)
 "acZ" = (
-/obj/machinery/bioprinter,
-/obj/machinery/light{
-	dir = 8
-	},
+/obj/machinery/bioprinter/stocked,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
 	},
@@ -1799,6 +1793,9 @@
 	dir = 4
 	},
 /area/sulaco/engineering/atmos)
+"agb" = (
+/turf/closed/wall/mainship/white,
+/area/sulaco/hallway/lower_main_hall)
 "agm" = (
 /obj/machinery/vending/tool,
 /turf/open/floor/prison,
@@ -2150,6 +2147,7 @@
 	dir = 5
 	},
 /obj/machinery/light,
+/obj/machinery/computer/supplycomp,
 /turf/open/floor/prison/plate,
 /area/sulaco/cargo)
 "ajc" = (
@@ -10118,7 +10116,7 @@
 /turf/open/floor/prison,
 /area/sulaco/hangar)
 "bbV" = (
-/obj/machinery/telecomms/server/presets/security,
+/obj/machinery/telecomms/server/presets/cas,
 /obj/machinery/light/small{
 	dir = 8
 	},
@@ -11588,7 +11586,8 @@
 	},
 /area/sulaco/hangar/droppod)
 "eOE" = (
-/obj/machinery/computer/supplycomp,
+/obj/machinery/computer/supplydrop_console,
+/obj/structure/table/mainship,
 /turf/open/floor/prison/plate,
 /area/sulaco/cargo)
 "eON" = (
@@ -17041,6 +17040,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/machinery/power/port_gen/pacman/mobile_power,
 /turf/open/floor/prison,
 /area/sulaco/hangar)
 "tqa" = (

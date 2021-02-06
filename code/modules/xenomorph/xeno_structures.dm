@@ -35,6 +35,7 @@
 	var/turf/center_turf
 	var/datum/hive_status/associated_hive
 	var/silo_area
+	var/number_silo
 	COOLDOWN_DECLARE(silo_damage_alert_cooldown)
 	COOLDOWN_DECLARE(silo_proxy_alert_cooldown)
 
@@ -43,6 +44,7 @@
 
 	var/static/number = 1
 	name = "[name] [number]"
+	number_silo = number
 	number++
 
 	GLOB.xeno_resin_silos += src
