@@ -85,10 +85,7 @@
 		if(80 to INFINITY)
 			spawning_pool_number = 5
 	
-	for(var/i in 1 to spawning_pool_number)//Random spawning_pool generation depending on the number of players
-		var/poolturf = pick(GLOB.xeno_resin_spawning_pool_turfs)
-		GLOB.xeno_resin_spawning_pool_turfs -= poolturf
-		new /obj/structure/resin/spawning_pool(poolturf)
+	SSpoints.xeno_points_by_hive[XENO_HIVE_NORMAL] = spawning_pool_number * POOL_PRICE
 
 	addtimer(CALLBACK(src, .proc/announce_bioscans, FALSE, 1), rand(30 SECONDS, 1 MINUTES)) //First scan shows no location but more precise numbers.
 

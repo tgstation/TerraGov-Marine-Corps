@@ -916,7 +916,7 @@
 	/// How long does it take to build
 	var/build_time = 10 SECONDS
 	/// Pyschic point cost
-	var/psych_cost = 900 //If you have 10 generators, that makes one new pool every 15 minutes
+	var/psych_cost = POOL_PRICE //If you have 10 generators, that makes one new pool every 15 minutes
 
 /datum/action/xeno_action/activable/build_spawning_pool/can_use_ability(atom/A, silent, override_flags)
 	. = ..()
