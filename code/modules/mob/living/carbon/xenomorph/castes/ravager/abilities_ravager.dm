@@ -114,7 +114,7 @@
 		if(target_facing != X.dir && target_facing != turn(X.dir,45) && target_facing != turn(X.dir,-45) ) //Have to be actually facing the target
 			continue
 		if(H.stat != DEAD && !isnestedhost(H)) //No bully
-			H.attack_alien(X, X.xeno_caste.melee_damage * 0.25, FALSE, TRUE, FALSE, TRUE, INTENT_HARM)
+			H.attack_alien_harm(X, X.xeno_caste.melee_damage * 0.25, FALSE, TRUE, FALSE, TRUE)
 			victims++
 			step_away(H, X, sweep_range, 2)
 			shake_camera(H, 2, 1)

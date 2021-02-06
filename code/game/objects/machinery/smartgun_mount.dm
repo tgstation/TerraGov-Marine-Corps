@@ -313,8 +313,8 @@
 		qdel(src)
 
 
-/obj/machinery/standard_hmg/attack_alien(mob/living/carbon/xenomorph/M) // Those Ayy lmaos.
-	SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_M56)
+/obj/machinery/standard_hmg/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE) // Those Ayy lmaos.
+	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_M56)
 	return ..()
 
 
