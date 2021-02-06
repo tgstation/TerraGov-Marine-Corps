@@ -263,7 +263,7 @@
 				to_chat(usr, "<span class='warning'>Spawning currently disabled, please observe.</span>")
 				return
 			var/datum/job/job_datum = locate(href_list["job_selected"])
-			if(!isxenosjob(job_datum)) && (SSmonitor.current_state == XENOS_LOSING || SSmonitor.current_state == XENOS_DELAYING))
+			if(!isxenosjob(job_datum) && (SSmonitor.current_state == XENOS_LOSING || SSmonitor.current_state == XENOS_DELAYING))
 				var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 				if((xeno_job.total_positions-xeno_job.current_positions) >= 3)
 					var/datum/browser/popup = new(src, "xenosunbalanced", "Warning: the game is unbalanced", 450, 250)
