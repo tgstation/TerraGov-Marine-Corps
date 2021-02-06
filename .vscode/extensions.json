@@ -2,6 +2,7 @@
     "recommendations": [
         "gbasood.byond-dm-language-support",
         "platymuus.dm-langclient",
-        "EditorConfig.EditorConfig"
+        "EditorConfig.EditorConfig",
+		"Donkie.vscode-tgstation-test-adapter"
     ]
 }
