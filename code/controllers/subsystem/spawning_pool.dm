@@ -12,7 +12,11 @@ SUBSYSTEM_DEF(spawning_pool)
 	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND), .proc/start_spawning)
 	return ..()
 
-/datum/controller/subsystem/spawning_pool/fire(resumed = 0)	
+/datum/controller/subsystem/spawning_pool/fire(resumed = 0)
+
+	if(iscrashgamemode(SSticker.mode) && (SSmonitor.current_state == MARINES_LOSING || SSmonitor.current_state == MARINES_DELAYING))
+		return //In crash, marine can't kill pools. So we limit the production of larvas if xenos are already winning
+	
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	xeno_job.add_job_points(GLOB.xeno_resin_spawning_pools.len * larva_spawn_rate)	
 
