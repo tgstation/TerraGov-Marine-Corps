@@ -730,12 +730,12 @@ to_chat will check for valid clients itself already so no need to double check f
 		if(!is_ground_level(spawning_pool.z))
 			continue
 		qdel(spawning_pool)
-	
+
 	SSpoints.xeno_points_by_hive["hivenumber"] = 900 //Give a free spawning pool to the hive when going shipside
-	
+
 	var/list/living_player_list = SSticker.mode.count_humans_and_xenos(count_flags = COUNT_IGNORE_HUMAN_SSD)
-	var/num_humans = living_player_list[1] 
-	SSspawning_pool.larva_spawn_rate = 0.2 * num_humans //That mean that one silo give 1 larva every minute for 40 marines
+	var/num_humans = living_player_list[1]
+	SSspawning_pool.larva_spawn_rate = 0.2 * num_humans //That mean that one pool give 1 larva every minute for 40 marines
 
 
 // ***************************************
