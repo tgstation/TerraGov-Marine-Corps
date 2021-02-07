@@ -12,8 +12,6 @@
 	req_one_access = list(ACCESS_MARINE_CMO, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CHEMISTRY)
 	layer = BELOW_OBJ_LAYER //So beakers reliably appear above it
 
-	ui_x = 565
-	ui_y = 620
 
 	var/obj/item/cell/cell
 	var/powerefficiency = 0.1
@@ -121,11 +119,10 @@
 
 
 
-/obj/machinery/chem_dispenser/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-											datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/chem_dispenser/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "ChemDispenser", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, "ChemDispenser", name)
 		ui.open()
 
 /obj/machinery/chem_dispenser/ui_static_data(mob/user)
@@ -165,8 +162,9 @@
 
 	.["recordingRecipe"] = recording_recipe
 
-/obj/machinery/chem_dispenser/ui_act(action, params)
-	if(..())
+/obj/machinery/chem_dispenser/ui_act(action, list/params)
+	. = ..()
+	if(.)
 		return
 	switch(action)
 		if("amount")

@@ -715,7 +715,7 @@
 
 	var/hud_state = ammo_type[1]
 	var/hud_state_empty = ammo_type[2]
-
+	
 	overlays.Cut()
 
 	var/empty = image('icons/mob/ammoHUD.dmi', src, "[hud_state_empty]")
@@ -732,7 +732,8 @@
 			spawn(20)
 				user.client.screen -= F
 				qdel(F)
-				overlays += empty
+				if(G.get_ammo_count() == 0)
+					overlays += empty
 	else
 		warned = FALSE
 		overlays += image('icons/mob/ammoHUD.dmi', src, "[hud_state]")

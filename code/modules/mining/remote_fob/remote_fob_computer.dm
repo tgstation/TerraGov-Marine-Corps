@@ -84,7 +84,7 @@
 		to_chat(user, "<span class='notice'>Communication with the drone impossible due to fuel-residue in deployment zone atmosphere.</span>")
 		return
 	spawn_spot = FALSE
-	switch(tgalert(user, "Summon Drone in:", "FOB Construction Drone Control", "LZ1","LZ2","Cancel"))
+	switch(tgui_alert(user, "Summon Drone in:", "FOB Construction Drone Control", list("LZ1","LZ2", "Cancel")))
 		if("LZ1")
 			spawn_spot = locate(/obj/docking_port/stationary/marine_dropship/lz1) in SSshuttle.stationary
 			if(!spawn_spot)

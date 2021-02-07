@@ -326,7 +326,7 @@ if(selected_ability.target_flags & flagname){\
 /mob/living/carbon/xenomorph/MiddleClickOn(atom/A)
 	. = ..()
 	if(!(client.prefs.toggles_gameplay & MIDDLESHIFTCLICKING) || !selected_ability)
-		return
+		return FALSE
 	A = ability_target(A)
 	if(selected_ability.can_use_ability(A))
 		selected_ability.use_ability(A)
@@ -334,7 +334,7 @@ if(selected_ability.target_flags & flagname){\
 /mob/living/carbon/xenomorph/RightClickOn(atom/A)
 	. = ..()
 	if(!selected_ability)
-		return
+		return FALSE
 	A = ability_target(A)
 	if(selected_ability.can_use_ability(A))
 		selected_ability.use_ability(A)
@@ -352,6 +352,13 @@ if(selected_ability.target_flags & flagname){\
 		if(COMSIG_MOB_CLICK_HANDLED)
 			return TRUE
 	return A.RightClick(src)
+
+/mob/living/carbon/human/RightClickOn(atom/A)
+	var/obj/item/held_thing = get_active_held_item()
+
+	if(held_thing && SEND_SIGNAL(held_thing, COMSIG_ITEM_RIGHTCLICKON, A, src) & COMPONENT_ITEM_CLICKON_BYPASS)
+		return FALSE
+	return ..()
 
 ///Called when a owner mob Shift + Rightmouseclicks an atom
 /mob/proc/ShiftRightClickOn(atom/A)

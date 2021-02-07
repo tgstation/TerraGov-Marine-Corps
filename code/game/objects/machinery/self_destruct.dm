@@ -8,8 +8,6 @@
 	var/active_state = SELF_DESTRUCT_MACHINE_INACTIVE
 	///Whether only marines can activate this. left here in case of admins feeling nice or events
 	var/marine_only_activate = TRUE
-	ui_x = 470
-	ui_y = 290
 
 /obj/machinery/self_destruct/Initialize()
 	. = ..()
@@ -51,20 +49,20 @@
 	return ..()
 
 
-/obj/machinery/self_destruct/console/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/self_destruct/console/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 
 	if(!ui)
-		ui = new(user, src, ui_key, "SelfDestruct", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, "SelfDestruct", name)
 		ui.open()
 
 /obj/machinery/self_destruct/console/ui_data(mob/user)
 	return list("dest_status" = active_state)
 
 
-/obj/machinery/self_destruct/console/ui_act(action, params)
-	if(..())
+/obj/machinery/self_destruct/console/ui_act(action, list/params)
+	. = ..()
+	if(.)
 		return
 	switch(action)
 		if("dest_start")

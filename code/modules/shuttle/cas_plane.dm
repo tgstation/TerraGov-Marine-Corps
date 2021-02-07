@@ -21,10 +21,6 @@
 	var/mob/living/carbon/human/occupant
 	///Animated cockpit /image overlay, 96x96
 	var/image/cockpit
-	///Ui size in x
-	var/ui_x = 600
-	///UI size in y
-	var/ui_y = 500
 
 /obj/structure/caspart/caschair/Initialize()
 	. = ..()
@@ -327,12 +323,11 @@
 		return
 	active_weapon.open_fire(target, attackdir)
 
-/obj/structure/caspart/caschair/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/structure/caspart/caschair/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 
 	if(!ui)
-		ui = new(user, src, ui_key, "MarineCasship", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, "MarineCasship", name)
 		ui.open()
 
 /obj/structure/caspart/caschair/ui_data(mob/user)
