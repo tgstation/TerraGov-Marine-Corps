@@ -10,7 +10,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 GLOBAL_LIST_EMPTY(active_cas_targets)
 /obj/machinery/computer/camera_advanced/overwatch
 	name = "Overwatch Console"
-	desc = "State of the art machinery for giving orders to a squad. Shift click to send order when watching squads"
+	desc = "State of the art machinery for giving orders to a squad. <b>Shift click</b> to send order when watching squads."
 	density = FALSE
 	icon_state = "overwatch"
 	req_access = list(ACCESS_MARINE_BRIDGE)
