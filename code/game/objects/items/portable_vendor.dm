@@ -60,12 +60,10 @@
 
 	return TRUE
 
-/obj/item/portable_vendor/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
-
+/obj/item/portable_vendor/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "PortableVendor", name, 600, 700, master_ui, state)
+		ui = new(user, src, "PortableVendor", name)
 		ui.open()
 
 /obj/item/portable_vendor/ui_data(mob/user)
@@ -97,8 +95,9 @@
 	)
 	return data
 
-/obj/item/portable_vendor/ui_act(action, params)
-	if(..())
+/obj/item/portable_vendor/ui_act(action, list/params)
+	. = ..()
+	if(.)
 		return
 	switch(action)
 		if("vend")

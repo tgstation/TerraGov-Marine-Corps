@@ -232,16 +232,12 @@
 			visible_message("<span class='danger'>\The shockwave blows [name] apart!</span>")
 			qdel(src) //blown apart
 
-/obj/structure/closet/bodybag/proc/acidspray_act()
-	SIGNAL_HANDLER
+/obj/structure/closet/bodybag/proc/acidspray_act(datum/source, obj/effect/xenomorph/spray/acid_puddle)
 	if(!opened && bodybag_occupant)
-		var/obj/effect/xenomorph/spray/S = locate() in range(0, src) //get the acid Hans
-		if(!S) //Sanity
-			return
 
 		if(ishuman(bodybag_occupant))
 			var/mob/living/carbon/human/H = bodybag_occupant
-			INVOKE_ASYNC(H, /mob/living/carbon/human.proc/acid_spray_crossed, S.slow_amt) //tarp isn't acid proof; pass it on to the occupant
+			SEND_SIGNAL(H, COMSIG_ATOM_ACIDSPRAY_ACT, src, acid_puddle.acid_damage, acid_puddle.slow_amt) //tarp isn't acid proof; pass it on to the occupant
 
 		to_chat(bodybag_occupant, "<span class='danger'>The sizzling acid forces us out of [name]!</span>")
 		open() //Get out

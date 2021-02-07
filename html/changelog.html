@@ -53,10 +53,43 @@
 		-->
 		<div class="commit sansserif">
 
+			<h2 class="date">07 February 2021</h2>
+			<h3 class="author">BraveMole updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Added back fuel tank, can be attached to flamethrowers to act as a huge fuel tank. Multiple versions for different fuel type</li>
+				<li class="rscadd">2 standard back fuel tanks added in ammunition vendor</li>
+				<li class="rscadd">Req can buy standard back fuel for 20 points and blue flame version for 150 points (Ammo tab)</li>
+				<li class="rscadd">Ammo hud for hydrocannon</li>
+				<li class="tweak">The flamers will now automaticly lit up when they have access to fuel</li>
+				<li class="tweak">You can toggle the hydro cannon of the tl84 using unique action (space bar as defaut)</li>
+				<li class="rscdel">Remove the pyro backpack (replaced by the back fuel tank)</li>
+				<li class="imageadd">Added images of flamers linked to back fuel tank</li>
+				<li class="imageadd">Added water ammo hud</li>
+				<li class="bugfix">ammo HUD is now up to date after firing a flamethrower</li>
+			</ul>
+			<h3 class="author">SplinterGP updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="code_imp">Updates from TGUI3 to TGUI 4.3.</li>
+				<li class="code_imp">adds tgui_alert and tgui_input_list, the drone control uses tgui_alert.</li>
+			</ul>
+			<h3 class="author">Surrealaser updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Fire and acid now both properly update snow stack visuals.</li>
+				<li class="refactor">Refactored elements of acidspray_act and related procs.</li>
+			</ul>
+			<h3 class="author">TiviPlus updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Gun attachments can now be fired with rclick</li>
+				<li class="bugfix">Likely fix for strange ghost behaviour</li>
+				<li class="code_imp">Misc. xeno code cleanup</li>
+			</ul>
+
 			<h2 class="date">06 February 2021</h2>
 			<h3 class="author">Pariah919 updated:</h3>
 			<ul class="changes bgimages16">
 				<li class="balance">mbx moved to imports, made cheaper, 12 gauge tracker shells added</li>
+				<li class="balance">boiler spits acid</li>
+				<li class="bugfix">jaeger helmet disappearing</li>
 			</ul>
 			<h3 class="author">TiviPlus updated:</h3>
 			<ul class="changes bgimages16">
@@ -67,6 +100,10 @@
 				<li class="admin">Enables automute logging and admin messages</li>
 				<li class="code_imp">Updated various coder tools</li>
 				<li class="refactor">Refactors attack_alien to be able to support alternate attacks</li>
+				<li class="code_imp">Adds unit test for bespoke ids</li>
+				<li class="code_imp">Adds unit test for weeding</li>
+				<li class="code_imp">Updates unit tests code</li>
+				<li class="code_imp">Coders are now recommended to install an extension that eases unit testing</li>
 			</ul>
 			<h3 class="author">grinkgo updated:</h3>
 			<ul class="changes bgimages16">
@@ -946,27 +983,6 @@
 				<li class="code_imp">Optimized get_hearers_in_view()</li>
 				<li class="code_imp">Microoptimized Keyloop()</li>
 				<li class="code_imp">Optimizes getviewsize()</li>
-			</ul>
-
-			<h2 class="date">06 December 2020</h2>
-			<h3 class="author">Daytona updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="rscadd">Added new dropped sprites</li>
-			</ul>
-			<h3 class="author">Surrealaser updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="bugfix">Fixes the shield damage absorption calculation.</li>
-				<li class="tweak">'Paralyze' status effect (i.e. proning) only halves the shield's cover value instead of negating it completely.</li>
-			</ul>
-			<h3 class="author">Wayland-Smithy updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="rscdel">Removed the arbitrary limit on resin silos.</li>
-				<li class="balance">Silo construction cooldown reduced from 120 to 60 seconds.</li>
-			</ul>
-			<h3 class="author">jroinc updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="balance">Rebalanced toxheal chems</li>
-				<li class="spellcheck">Fixed a bad copy/paste on a pill description</li>
 			</ul>
 		</div>
 

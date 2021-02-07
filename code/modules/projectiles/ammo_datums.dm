@@ -1675,6 +1675,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	fire_delay = 35
 	bullet_color = COLOR_NAVY
 
+/datum/ammo/water
+	name = "water"
+	hud_state = "water"
+
 /datum/ammo/flare
 	name = "flare"
 	ping = null //no bounce off.

@@ -1,7 +1,6 @@
 import { useBackend, useLocalState } from '../backend';
 import { Button, Section, Box, ProgressBar, LabeledList, Modal } from '../components';
 import { Window } from '../layouts';
-import { Fragment } from 'inferno';
 import { LabeledListItem } from '../components/LabeledList';
 
 export const MarineSelector = (props, context) => {
@@ -38,7 +37,9 @@ export const MarineSelector = (props, context) => {
     ));
 
   return (
-    <Window>
+    <Window
+      width={600}
+      height={700}>
       {!!showDesc && (
         <Modal width="400px">
           <Box>{showDesc}</Box>
@@ -53,7 +54,7 @@ export const MarineSelector = (props, context) => {
           <Section
             title="Choose your equipment"
             buttons={
-              <Fragment>
+              <>
                 {!!show_points && (
                   <ProgressBar
                     width="100px"
@@ -73,7 +74,7 @@ export const MarineSelector = (props, context) => {
                   onClick={() => setShowEmpty(!showEmpty)}>
                   Show Empty Categories
                 </Button>
-              </Fragment>
+              </>
             } />
         </div>
         <div className="VendingWindow__content">
@@ -160,18 +161,18 @@ const ItemLine = (props, context) => {
     <LabeledListItem
       key={id}
       buttons={
-        <Fragment>
+        <>
           {prod_color === "white"
-          && (<Box inline mr={1} ml={1}>Essential!</Box>)}
+          && (<Box inline mr="6px" ml="6px">Essential!</Box>)}
           {prod_color === "orange"
           && (
-            <Box inline mr={1} ml={1} color="orange">
+            <Box inline mr="6px" ml="6px" color="orange">
               Recommended
             </Box>
           )}
           {prod_cost > 0
           && (
-            <Box inline width="75px" mr={1} ml={1}>
+            <Box inline width="75px" mr="6px" ml="6px">
               {prod_cost} points
             </Box>
           )}
@@ -183,7 +184,7 @@ const ItemLine = (props, context) => {
             selected={prod_color === "white"}>
             Vend
           </Button>
-        </Fragment>
+        </>
       }
       label={prod_name}
       labelColor="white">
