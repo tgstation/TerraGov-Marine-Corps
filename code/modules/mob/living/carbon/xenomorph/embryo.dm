@@ -202,11 +202,16 @@
 
 	if(ishuman(victim))
 		var/mob/living/carbon/human/H = victim
+		H.apply_damage(200, BRUTE, H.get_limb("chest"), updating_health = TRUE) //lethal armor ignoring brute damage
 		var/datum/internal_organ/O
-		for(var/i in list("heart", "lungs")) //This removes (and later garbage collects) both organs. No heart means instant death.
+		for(var/i in list("heart", "lungs", "stomach")) //Bruise all torso internal organs
 			O = H.internal_organs_by_name[i]
-			H.internal_organs_by_name -= i
-			H.internal_organs -= O
+			O.take_damage(O.min_bruised_damage, TRUE)
+
+		var/datum/limb/chest = H.get_limb("chest")
+		var/datum/wound/internal_bleeding/I = new (15) //Apply internal bleeding to chest
+		chest.wounds += I
+
 
 	victim.chestburst = 2
 	victim.update_burst()
