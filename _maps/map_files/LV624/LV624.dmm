@@ -346,10 +346,6 @@
 /obj/effect/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central1)
-"acB" = (
-/obj/structure/mineral_door/resin/thick,
-/turf/open/floor/plating/ground/dirt,
-/area/space)
 "acH" = (
 /obj/effect/alien/weeds/node,
 /obj/structure/mineral_door/resin,
@@ -20339,7 +20335,7 @@ mHM
 oNR
 oNR
 pLD
-acB
+pLD
 oNR
 oNR
 aaA
