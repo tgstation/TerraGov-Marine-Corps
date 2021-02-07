@@ -622,12 +622,11 @@
 			return
 
 		var/confirm = alert(usr, "Would you like to capture the metal bird?\n THIS WILL END THE ROUND", "Capture the ship?", "Yes", "No")
-		if(confirm == "Yes")
-			var/datum/game_mode/infestation/distress/distress_mode = SSticker.mode
-			var/message = "The Alamo has been captured! Losing their main mean of accessing the ground, the marines have no choice but to retreat."
-			priority_announce(message, title = "ALAMO CAPTURED")
-			distress_mode.round_stage = DISTRESS_DROPSHIP_CAPTURED_XENOS
+		if(confirm != "Yes")
 			return
+		priority_announce("The Alamo has been captured! Losing their main mean of accessing the ground, the marines have no choice but to retreat.", title = "ALAMO CAPTURED")
+		SSticker.mode.round_stage = DISTRESS_DROPSHIP_CAPTURED_XENOS
+		return
 
 /obj/machinery/computer/shuttle/marine_dropship/proc/do_hijack(obj/docking_port/mobile/marine_dropship/crashing_dropship, obj/docking_port/stationary/marine_dropship/crash_target/crash_target, mob/living/carbon/xenomorph/user)
 	crashing_dropship.set_hijack_state(HIJACK_STATE_CRASHING)
