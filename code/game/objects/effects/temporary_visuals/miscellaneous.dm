@@ -103,4 +103,4 @@
 	name = "smoke"
 	icon = 'icons/obj/items/jetpack.dmi'
 	icon_state = "smoke"
-	duration = 1 SECONDS
+	duration = 1.2 SECONDS
