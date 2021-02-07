@@ -1,5 +1,0 @@
-author: "Surrealaser"
-delete-after: True
-changes: 
-  - bugfix: "Fire and acid now both properly update snow stack visuals."
-  - refactor: "Refactored elements of acidspray_act and related procs."

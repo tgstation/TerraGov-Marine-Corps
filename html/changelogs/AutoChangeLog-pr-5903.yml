@@ -1,5 +1,0 @@
-author: "SplinterGP"
-delete-after: True
-changes: 
-  - code_imp: "Updates from TGUI3 to TGUI 4.3."
-  - code_imp: "adds tgui_alert and tgui_input_list, the drone control uses tgui_alert."
