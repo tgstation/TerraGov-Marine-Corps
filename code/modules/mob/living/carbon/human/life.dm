@@ -30,7 +30,8 @@
 
 		else //Dead
 			if(!undefibbable && timeofdeath && life_tick > 5 && life_tick % 2 == 0)
-				if(timeofdeath < 5 || !check_tod(src) || !is_revivable())	//We are dead beyond revival, or we're junk mobs spawned like the clowns on the clown shuttle
+				dead_ticks += 2
+				if(timeofdeath < 5 || check_tod(src) || !is_revivable())	//We are dead beyond revival, or we're junk mobs spawned like the clowns on the clown shuttle
 					set_undefibbable()
 				else
 					med_hud_set_status()

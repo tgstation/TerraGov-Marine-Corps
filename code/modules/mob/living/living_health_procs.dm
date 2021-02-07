@@ -334,6 +334,7 @@
 
 	reagents.clear_reagents() //and clear all reagents in them
 	undefibbable = FALSE
+	dead_ticks = 0
 	chestburst = 0
 	headbitten = FALSE
 	update_body()
