@@ -1,0 +1,13 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - rscadd: "Added back fuel tank, can be attached to flamethrowers to act as a huge fuel tank. Multiple versions for different fuel type"
+  - rscadd: "2 standard back fuel tanks added in ammunition vendor"
+  - rscadd: "Req can buy standard back fuel for 20 points and blue flame version for 150 points (Ammo tab)"
+  - rscadd: "Ammo hud for hydrocannon"
+  - tweak: "The flamers will now automaticly lit up when they have access to fuel"
+  - tweak: "You can toggle the hydro cannon of the tl84 using unique action (space bar as defaut)"
+  - rscdel: "Remove the pyro backpack (replaced by the back fuel tank)"
+  - imageadd: "Added images of flamers linked to back fuel tank"
+  - imageadd: "Added water ammo hud"
+  - bugfix: "ammo HUD is now up to date after firing a flamethrower"

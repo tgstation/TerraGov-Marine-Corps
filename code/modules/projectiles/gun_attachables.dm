@@ -1702,13 +1702,14 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 			to_chat(user, "<span class='notice'>You are no longer using [src].</span>")
 		master_gun.active_attachable = null
 		icon_state = initial(icon_state)
+		. = FALSE
 	else if(!turn_off)
 		if(user)
 			to_chat(user, "<span class='notice'>You are now using [src].</span>")
 		master_gun.active_attachable = src
 		icon_state += "-on"
-
+		. = TRUE
 	for(var/X in master_gun.actions)
 		var/datum/action/A = X
 		A.update_button_icon()
-	return TRUE
+

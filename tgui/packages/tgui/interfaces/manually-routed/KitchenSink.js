@@ -1,4 +1,4 @@
-import { Component, Fragment } from 'inferno';
+import { Component } from 'inferno';
 import { useBackend, useLocalState } from '../../backend';
 import { BlockQuote, Box, Button, ByondUi, Collapsible, Flex, Icon, Input, Knob, LabeledList, NumberInput, ProgressBar, Section, Slider, Tabs, Tooltip } from '../../components';
 import { DraggableControl } from '../../components/DraggableControl';
@@ -265,7 +265,7 @@ const KitchenSinkTooltip = props => {
     'bottom-right',
   ];
   return (
-    <Fragment>
+    <>
       <Box>
         <Box inline position="relative" mr={1}>
           Box (hover me).
@@ -285,7 +285,7 @@ const KitchenSinkTooltip = props => {
             content={position} />
         ))}
       </Box>
-    </Fragment>
+    </>
   );
 };
 

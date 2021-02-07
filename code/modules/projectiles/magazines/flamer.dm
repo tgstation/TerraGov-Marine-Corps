@@ -48,6 +48,60 @@
 	reload_delay = 3 SECONDS
 	gun_type = /obj/item/weapon/gun/flamer/marinestandard
 
+/obj/item/ammo_magazine/flamer_tank/backtank
+	name = "back fuel tank"
+	desc = "A specialized fuel tank for use with the TL-84 flamethrower and M240A1 incinerator unit."
+	icon_state = "flamethrower_tank"
+	flags_equip_slot = ITEM_SLOT_BACK
+	w_class = WEIGHT_CLASS_BULKY
+	max_rounds = 500
+	current_rounds = 500
+	reload_delay = 1 SECONDS
+	gun_type = /obj/item/weapon/gun/flamer
+	var/obj/item/weapon/gun/flamer/attached_flamer
+
+
+/obj/item/ammo_magazine/flamer_tank/backtank/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(!istype(I, /obj/item/weapon/gun/flamer))
+		return	
+	var/obj/item/weapon/gun/flamer/FLT = I
+	
+	if(!istype(user, /mob/living/carbon/human))
+		return
+	
+	var/mob/living/carbon/human/humanuser = user
+	
+	if (!humanuser.is_item_in_slots(src))
+		to_chat(user, "<span class='warning'>You must equip or hold this fuel tank to be able to link it to a flamer</span>")
+		return
+	
+	if(FLT.current_mag == src)
+		FLT.detach_fueltank(user)
+		return
+
+	if (attached_flamer)
+		to_chat(user, "<span class='warning'>This fuel tank is already attached to something</span>")
+		return
+		
+	FLT.attach_fueltank(user,src)
+
+	
+
+/obj/item/ammo_magazine/flamer_tank/backtank/removed_from_inventory(mob/user) //Dropping the tank should unlink it from the flamer
+	. = ..()
+	var/mob/living/carbon/human/humanuser = user
+	if (!istype(humanuser))
+		return
+	if(!attached_flamer)
+		return
+	attached_flamer.detach_fueltank(user,FALSE)
+
+/obj/item/ammo_magazine/flamer_tank/backtank/X
+	name = "back fuel tank (X)"
+	desc = "A specialized fuel tank of ultra thick napthal type X for use with the TL-84 flamethrower and M240A1 incinerator unit."
+	default_ammo = /datum/ammo/flamethrower/blue
+	
 /obj/item/ammo_magazine/flamer_tank/large/B
 	name = "large flamethrower tank (B)"
 	desc = "A large fuel tank of ultra thick napthal type B, a wide-spreading sticky combustable liquid chemical, for use in the TL-84 flamethrower. Handle with care."
