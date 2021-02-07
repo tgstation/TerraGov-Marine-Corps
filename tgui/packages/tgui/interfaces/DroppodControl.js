@@ -5,7 +5,9 @@ import { Section, Button, Box } from '../components';
 export const DroppodControl = (props, context) => {
   const { act, data } = useBackend(context);
   return (
-    <Window>
+    <Window
+      width={450}
+      height={250}>
       <Window.Content scrollable>
         <Section title="Launch Control">
           <Button

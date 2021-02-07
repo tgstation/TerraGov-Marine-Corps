@@ -244,6 +244,11 @@
 	if(flags_item & DELONDROP)
 		qdel(src)
 
+///Called whenever an item is unequipped to a new loc (IE, not when the item ends up in the hands)
+/obj/item/proc/removed_from_inventory(mob/user)
+	SEND_SIGNAL(src, COMSIG_ITEM_REMOVED_INVENTORY, user)
+	return
+
 // called just as an item is picked up (loc is not yet changed)
 /obj/item/proc/pickup(mob/user)
 	if(current_acid) //handle acid removal
