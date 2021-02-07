@@ -1331,7 +1331,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 
 /obj/item/attachable/attached_gun/flamer/examine(mob/user)
-	..()
+	. = ..()
 	if(current_rounds > 0)
 		to_chat(user, "It has [current_rounds] unit\s of fuel left.")
 	else
