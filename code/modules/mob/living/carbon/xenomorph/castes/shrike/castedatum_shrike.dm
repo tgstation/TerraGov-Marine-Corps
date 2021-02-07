@@ -48,6 +48,7 @@
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/activable/soul_mining,
 		/datum/action/xeno_action/plant_weeds,
 		/datum/action/xeno_action/lay_egg,
 		/datum/action/xeno_action/activable/larval_growth_sting,
@@ -63,7 +64,7 @@
 		/datum/action/xeno_action/activable/unrelenting_force,
 		/datum/action/xeno_action/toggle_pheromones,
 		/datum/action/xeno_action/activable/corrupt_generator,
-		/datum/action/xeno_action/activable/rally_hive,	
+		/datum/action/xeno_action/activable/rally_hive,
 	)
 
 /datum/xeno_caste/shrike/young

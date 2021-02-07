@@ -927,7 +927,7 @@
 		if(!silent)
 			to_chat(owner, "<span class='warning'>We need to get closer!.</span>")
 		return FALSE
-	
+
 	var/mob/living/carbon/xenomorph/X = owner
 	if(SSpoints.xeno_points_by_hive[X.hivenumber]<psych_cost)
 		to_chat(owner, "<span class='xenowarning'>The hive doesn't have the necessary psychic points for you to do that!</span>")
@@ -943,7 +943,7 @@
 
 	var/mob/living/carbon/xenomorph/X = owner
 	SSpoints.xeno_points_by_hive[X.hivenumber] -= psych_cost
-	
+
 	succeed_activate()
 
 // Salvage Biomass
@@ -1067,6 +1067,67 @@
 
 	GLOB.round_statistics.xeno_rally_hive++ //statistics
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "xeno_rally_hive")
+
+//*********
+// Soul mining
+//*********
+/datum/action/xeno_action/activable/soul_mining
+	name = "Soul mining"
+	action_icon_state = "regurgitate"
+	mechanics_text = "Generate pysch points out of a dead human."
+	use_state_flags = XACT_USE_STAGGERED|XACT_USE_FORTIFIED|XACT_USE_CRESTED //can't use while staggered, defender fortified or crest down
+	keybind_signal = COMSIG_XENOABILITY_HEADBITE
+	plasma_cost = 100
+	///How much psych points does one soul mining gives
+	var/psych_earned = 60 //the equivalent of 2 minutes of the amount given by 10 generators
+
+/datum/action/xeno_action/activable/soul_mining/can_use_ability(atom/A, silent = FALSE, override_flags)
+	. = ..() //do after checking the below stuff
+	if(!.)
+		return
+	if(!iscarbon(A))
+		return FALSE
+	var/mob/living/carbon/xenomorph/X = owner
+	var/mob/living/carbon/victim = A //target of ability
+	if(X.action_busy) //can't use if busy
+		return FALSE
+	if(!X.Adjacent(victim)) //checks if owner next to target
+		return FALSE
+	if(X.on_fire)
+		if(!silent)
+			to_chat(X, "<span class='warning'>We're too busy being on fire to do this!</span>")
+		return FALSE
+	if(victim.stat != DEAD)
+		if(!silent)
+			to_chat(X, "<span class='warning'>This creature is struggling too much for us to aim precisely.</span>")
+		return FALSE
+	if(victim.soul_mined)
+		if(!silent)
+			to_chat(X, "<span class='warning'>This creature has already been mined for psych points.</span>")
+		return FALSE
+	if(issynth(victim)) //checks if target is a synth
+		if(!silent)
+			to_chat(X, "<span class='warning'>This creature has no soul</span>")
+		return FALSE
+	X.face_atom(victim) //Face towards the target so we don't look silly
+	X.visible_message("<span class='xenowarning'>\The [X] begins opening its mouth and extending a second jaw towards \the [victim].</span>", \
+	"<span class='danger'>We prepare our inner jaw to syphon the life force of \the [victim]!</span>", null, 20)
+	if(!do_after(X, 10 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(X, /mob.proc/break_do_after_checks, list("health" = X.health))))
+		X.visible_message("<span class='xenowarning'>\The [X] retracts its inner jaw.</span>", \
+		"<span class='danger'>We retract our inner jaw.</span>", null, 20)
+		return FALSE
+	succeed_activate() //dew it
+
+/datum/action/xeno_action/activable/soul_mining/use_ability(mob/M)
+	var/mob/living/carbon/xenomorph/X = owner
+	var/mob/living/carbon/victim = M
+
+	X.visible_message("<span class='xenodanger'>\The [X] feeds the hive with \the [victim]'s life force</span>", \
+	"<span class='xenodanger'>We suddenly feel \the [victim]'s life force affluing into us</span>")
+
+	victim.soul_mined = TRUE
+
+	SSpoints.xeno_points_by_hive[X.hivenumber] += psych_earned
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 

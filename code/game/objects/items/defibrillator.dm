@@ -237,6 +237,7 @@
 	H.regenerate_icons()
 	H.reload_fullscreens()
 	H.flash_act()
+	H.soul_mined = FALSE
 	H.apply_effect(10, EYE_BLUR)
 	H.apply_effect(10, PARALYZE)
 	H.handle_regular_hud_updates()

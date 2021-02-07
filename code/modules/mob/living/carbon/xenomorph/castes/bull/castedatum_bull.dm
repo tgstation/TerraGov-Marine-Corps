@@ -39,6 +39,7 @@
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/activable/soul_mining,
 		/datum/action/xeno_action/ready_charge/bull_charge,
 		/datum/action/xeno_action/activable/bull_charge,
 	)

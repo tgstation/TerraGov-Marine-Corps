@@ -52,6 +52,7 @@
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/activable/soul_mining,
 		/datum/action/xeno_action/place_acidwell,
 		/datum/action/xeno_action/activable/corrosive_acid,
 		/datum/action/xeno_action/shift_spits,
@@ -92,7 +93,7 @@
 	// *** Ranged Attack *** //
 	spit_delay = 1.2 SECONDS
 	spit_types = list(/datum/ammo/xeno/toxin/heavy/upgrade1, /datum/ammo/xeno/acid/heavy)
-	
+
 	acid_spray_damage_on_hit = 39
 	acid_spray_structure_damage = 53
 
@@ -129,7 +130,7 @@
 	// *** Ranged Attack *** //
 	spit_delay = 1.1 SECONDS
 	spit_types = list(/datum/ammo/xeno/toxin/heavy/upgrade2, /datum/ammo/xeno/acid/heavy)
-	
+
 	acid_spray_damage_on_hit = 43
 	acid_spray_structure_damage = 61
 

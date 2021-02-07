@@ -335,6 +335,7 @@
 	reagents.clear_reagents() //and clear all reagents in them
 	undefibbable = FALSE
 	chestburst = 0
+	soul_mined = FALSE
 	update_body()
 	update_hair()
 	return ..()

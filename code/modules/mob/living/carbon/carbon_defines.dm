@@ -49,3 +49,6 @@
 
 	/// % Chance of exploding on death, incremented by total damage taken if not initially zero.
 	var/gib_chance = 0
+
+	///TRUE if a xenos already stole life force from the mob
+	var/soul_mined = FALSE
