@@ -243,7 +243,7 @@
 
 /obj/item/storage/syringe_case/tricordrazine
 	name = "syringe case (tricordrazine)"
-	desc = "It's a medical case for storing syringes and bottles. This one contains Tricordrazine"
+	desc = "It's a medical case for storing syringes and bottles. This one contains Tricordrazine."
 
 /obj/item/storage/syringe_case/tricordrazine/PopulateContents()
 	. = ..()
