@@ -126,10 +126,10 @@
 /obj/machinery/computer/shuttle/escape_pod/escape_shuttle
 	name = "escape shuttle controller"
 
-/obj/machinery/computer/shuttle/escape_pod/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/computer/shuttle/escape_pod/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "EscapePod", "Escape pod", 400, 140, master_ui, state)
+		ui = new(user, src, "EscapePod")
 		ui.open()
 
 /obj/machinery/computer/shuttle/escape_pod/ui_data(mob/user)

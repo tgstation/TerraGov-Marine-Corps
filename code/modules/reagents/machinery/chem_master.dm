@@ -8,8 +8,6 @@
 	layer = BELOW_OBJ_LAYER //So bottles/pills reliably appear above it
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 20
-	ui_x = 465
-	ui_y = 550
 
 	var/obj/item/reagent_containers/beaker = null
 	var/obj/item/storage/pill_bottle/loaded_pill_bottle = null

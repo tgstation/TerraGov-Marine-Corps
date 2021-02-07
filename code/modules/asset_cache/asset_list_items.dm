@@ -1,15 +1,23 @@
 //DEFINITIONS FOR ASSET DATUMS START HERE.
 
-/datum/asset/simple/tgui
-	legacy = TRUE
+/datum/asset/simple/tgui_common
+	keep_local_name = TRUE
 	assets = list(
-		"tgui.bundle.js" = 'tgui/packages/tgui/public/tgui.bundle.js',
-		"tgui.bundle.css" = 'tgui/packages/tgui/public/tgui.bundle.css',
+		"tgui-common.bundle.js" = 'tgui/public/tgui-common.bundle.js',
 	)
-/datum/asset/group/tgui
-	children = list(
-		/datum/asset/simple/tgui,
-		/datum/asset/simple/namespaced/fontawesome,
+
+/datum/asset/simple/tgui
+	keep_local_name = TRUE
+	assets = list(
+		"tgui.bundle.js" = 'tgui/public/tgui.bundle.js',
+		"tgui.bundle.css" = 'tgui/public/tgui.bundle.css',
+	)
+
+/datum/asset/simple/tgui_panel
+	keep_local_name = TRUE
+	assets = list(
+		"tgui-panel.bundle.js" = 'tgui/public/tgui-panel.bundle.js',
+		"tgui-panel.bundle.css" = 'tgui/public/tgui-panel.bundle.css',
 	)
 
 /datum/asset/simple/namespaced/changelog
