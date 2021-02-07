@@ -916,7 +916,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 /obj/machinery/computer/camera_advanced/overwatch/proc/notify_marine(mob/living/marine, turf/target_turf) ///Send an order to that specific marine if it's on the right z level
 	if(marine.z == target_turf.z)
 		marine.playsound_local(marine, "sound/effects/CIC_order.ogg", 10, 1)
-		to_chat(marine,"<span class='ordercic'>Command is urging you to [current_order.verb_name] [target_turf.loc.name]</span>")
+		to_chat(marine,"<span class='ordercic'>Command is urging you to [current_order.verb_name] [target_turf.loc.name]!</span>")
 	
 /datum/action/innate/order
 	///the word used to describe the action when notifying marines
