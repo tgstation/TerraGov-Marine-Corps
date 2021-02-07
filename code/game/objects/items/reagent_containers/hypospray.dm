@@ -318,7 +318,7 @@
 
 /obj/item/reagent_containers/hypospray/advanced/tricordrazine
 	name = "Tricordrazine hypospray"
-	desc = "A hypospray loaded with tricordrazine"
+	desc = "A hypospray loaded with tricordrazine."
 	list_reagents = list(
 		/datum/reagent/medicine/tricordrazine = 60,
 	)
