@@ -268,7 +268,7 @@
 	var/turf/T = get_turf(src) //after image SFX
 	playsound(T, pick('sound/effects/throw.ogg','sound/effects/alien_tail_swipe1.ogg', 'sound/effects/alien_tail_swipe2.ogg'), 25, 1) //sound effects
 
-	add_filter("runner_evasion", 2, list("type" = "blur", 5)) //Cool SFX
+	add_filter("runner_evasion", 2, gauss_blur_filter(5)) //Cool SFX
 	addtimer(CALLBACK(src, /atom.proc/remove_filter, "runner_evasion"), 0.5 SECONDS)
 	do_jitter_animation(1000) //Dodgy animation!
 

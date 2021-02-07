@@ -341,7 +341,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 
 	var/mob/living/carbon/xenomorph/patient = target
 
-	patient.add_filter("hivelord_healing_infusion_outline", 3, list("type" = "outline", "size" = 1, "color" = COLOR_VERY_PALE_LIME_GREEN)) //Set our cool aura; also confirmation we have the buff
+	patient.add_filter("hivelord_healing_infusion_outline", 3, outline_filter(1, COLOR_VERY_PALE_LIME_GREEN)) //Set our cool aura; also confirmation we have the buff
 
 	patient.infusion_active = TRUE //Indicate the infusion as being active
 
