@@ -897,7 +897,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		to_chat(usr, "<span class='warning'>You didn't select any order!</span>")
 		return
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_CIC_ORDERS))
-		to_chat(usr, "<span class='warning'>Your last order was too recent</span>")
+		to_chat(usr, "<span class='warning'>Your last order was too recent.</span>")
 		return
 	TIMER_COOLDOWN_START(src, COOLDOWN_CIC_ORDERS, ORDER_COOLDOWN)
 	new current_order.visual_type(target_turf)
