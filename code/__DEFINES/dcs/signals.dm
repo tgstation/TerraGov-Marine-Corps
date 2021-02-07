@@ -11,6 +11,7 @@
 #define COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE "!open_timed_shutters_late"
 #define COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND "!open_timed_shutters_xeno_hivemind"
 #define COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH "!open_timed_shutters_crash"
+#define COMSIG_GLOB_OPEN_SHUTTERS_EARLY "!open_shutters_early"
 
 #define COMSIG_GLOB_REMOVE_VOTE_BUTTON "!remove_vote_button"
 #define COMSIG_GLOB_NUKE_START "!nuke_start"

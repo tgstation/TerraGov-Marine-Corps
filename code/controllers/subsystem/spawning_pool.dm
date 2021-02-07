@@ -10,7 +10,7 @@ SUBSYSTEM_DEF(spawning_pool)
 
 
 /datum/controller/subsystem/spawning_pool/Initialize(timeofday)
-	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND), .proc/start_spawning)
+	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY), .proc/start_spawning)
 	return ..()
 
 /datum/controller/subsystem/spawning_pool/fire(resumed = 0)
@@ -24,6 +24,7 @@ SUBSYSTEM_DEF(spawning_pool)
 ///Activate the subsystem when shutters open and remove the free spawning when marines are joining
 /datum/controller/subsystem/spawning_pool/proc/start_spawning()
 	SIGNAL_HANDLER
+	UnregisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY))
 	can_fire = TRUE
 	for(var/job in SSjob.occupations)
 		var/datum/job/j = job
