@@ -74,15 +74,15 @@
 
 
 //Deal with picking up facehuggers. "attack_alien" is the universal 'xenos click something while unarmed' proc.
-/obj/item/clothing/mask/facehugger/attack_alien(mob/living/carbon/xenomorph/user)
-	if(!issamexenohive(user) && stat != DEAD)
-		user.do_attack_animation(src, ATTACK_EFFECT_SMASH)
-		user.visible_message("<span class='xenowarning'>[user] crushes \the [src]",
+/obj/item/clothing/mask/facehugger/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(!issamexenohive(X) && stat != DEAD)
+		X.do_attack_animation(src, ATTACK_EFFECT_SMASH)
+		X.visible_message("<span class='xenowarning'>[X] crushes \the [src]",
 			"<span class='xenowarning'>We crush \the [src]")
 		kill_hugger()
 		return
 	else
-		attack_hand(user)
+		attack_hand(X)
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/clothing/mask/facehugger/attack_hand(mob/living/user)

@@ -93,4 +93,4 @@
 	/// Messages currently seen by this client
 	var/list/seen_messages
 
-	show_popup_menus = FALSE // right click menu no longer shows up
+	show_popup_menus = TRUE // right click menu no longer shows up

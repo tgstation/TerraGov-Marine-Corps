@@ -90,8 +90,8 @@
 		standing.overlays += image(module.icon, ITEM_STATE_IF_SET(module))
 	if(installed_storage)
 		standing.overlays += image(installed_storage.icon, ITEM_STATE_IF_SET(installed_storage))
-	
-	
+
+
 /obj/item/clothing/suit/modular/mob_can_equip(mob/user, slot, warning)
 	if(slot == SLOT_WEAR_SUIT && ishuman(user))
 		var/mob/living/carbon/human/H = user
@@ -502,3 +502,13 @@
 	name = "Jaeger Pattern EOD Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has EOD markings"
 	icon_state = "eod_helmet"
+
+/obj/item/clothing/head/modular/marine/scout
+	name = "Jaeger Pattern Scout Helmet"
+	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Scout markings"
+	icon_state = "scout_helmet"
+
+/obj/item/clothing/head/modular/marine/infantry
+	name = "Jaeger Pattern Infantry-Open Helmet"
+	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Infantry markings and no visor."
+	icon_state = "infantryopen_helmet"

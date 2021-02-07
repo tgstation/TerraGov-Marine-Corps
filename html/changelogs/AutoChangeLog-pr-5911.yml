@@ -1,5 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes: 
-  - rscadd: "Xenos can now rightclick to use abilities"
-  - code_imp: "Rclick signal framework"
