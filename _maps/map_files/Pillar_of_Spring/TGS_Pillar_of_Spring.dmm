@@ -332,7 +332,9 @@
 /turf/closed/wall/mainship,
 /area/mainship/command/self_destruct)
 "bl" = (
-/obj/machinery/bioprinter/stocked,
+/obj/machinery/bioprinter{
+	stored_metal = 1000
+	},
 /turf/open/floor/mainship/sterile/corner{
 	dir = 1
 	},
@@ -2517,7 +2519,9 @@
 	},
 /area/mainship/medical/medical_science)
 "iN" = (
-/obj/machinery/bioprinter/stocked,
+/obj/machinery/bioprinter{
+	stored_metal = 1000
+	},
 /turf/open/floor/mainship/sterile/corner,
 /area/mainship/medical/medical_science)
 "iO" = (
@@ -4092,7 +4096,9 @@
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "od" = (
-/obj/machinery/bioprinter/stocked,
+/obj/machinery/bioprinter{
+	stored_metal = 1000
+	},
 /turf/open/floor/mainship/sterile/corner{
 	dir = 8
 	},
@@ -9933,6 +9939,15 @@
 	},
 /turf/open/floor/plating,
 /area/mainship/command/corporateliaison)
+"GW" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/mainship,
+/area/mainship/squads/general)
 "GX" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 4
@@ -10127,10 +10142,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
-"Ht" = (
-/obj/machinery/power/port_gen/pacman/mobile_power,
-/turf/open/floor/mainship/mono,
-/area/mainship/engineering/engineering_workshop)
 "Hv" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 1;
@@ -13556,11 +13567,6 @@
 /obj/structure/toilet,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/numbertwobunks)
-"SR" = (
-/obj/machinery/computer/supplydrop_console,
-/obj/structure/table/mainship,
-/turf/open/floor/mainship/mono,
-/area/mainship/squads/req)
 "ST" = (
 /obj/machinery/alarm{
 	dir = 8
@@ -14727,7 +14733,7 @@
 /turf/open/floor/mainship/cargo,
 /area/mainship/hull/lower_hull)
 "YJ" = (
-/obj/machinery/telecomms/server/presets/cas,
+/obj/machinery/telecomms/server/presets/security,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
 "YL" = (
@@ -47783,10 +47789,10 @@ gd
 kM
 kS
 nf
-UW
+kM
 ZR
 on
-SR
+UW
 wk
 Wc
 gq
@@ -49132,7 +49138,7 @@ OU
 zv
 OM
 zT
-Ht
+zR
 OV
 Az
 Mb
@@ -50886,7 +50892,7 @@ ZL
 XH
 kF
 jl
-rW
+GW
 jl
 jl
 jl

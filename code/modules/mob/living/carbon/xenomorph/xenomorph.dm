@@ -309,7 +309,7 @@
 		else
 			LL_dir.icon_state = "trackoff"
 			return
-	
+
 	if (isxeno(tracked))
 		var/mob/living/carbon/xenomorph/xeno_tracked = tracked
 		if(QDELETED(xeno_tracked))
@@ -317,7 +317,7 @@
 			return
 		if(xeno_tracked == src) // No need to track ourselves
 			LL_dir.icon_state = "trackoff"
-			return	
+			return
 		if(xeno_tracked.z != z || get_dist(src,xeno_tracked) < 1)
 			LL_dir.icon_state = "trackondirect"
 			return
@@ -327,26 +327,26 @@
 			LL_dir.icon_state = "trackon"
 			LL_dir.setDir(get_dir(src, xeno_tracked))
 			return
-		
-		LL_dir.icon_state = "trackondirect"	
+
+		LL_dir.icon_state = "trackondirect"
 		return
 
 	if (isspawningpool(tracked))
-		var/mob/living/carbon/xenomorph/silo_tracked = tracked
-		if(QDELETED(silo_tracked))
+		var/mob/living/carbon/xenomorph/pool_tracked = tracked
+		if(QDELETED(pool_tracked))
 			tracked = null
 			return
-		if(silo_tracked.z != z || get_dist(src,silo_tracked) < 1)
+		if(pool_tracked.z != z || get_dist(src,pool_tracked) < 1)
 			LL_dir.icon_state = "trackondirect"
 			return
-	
+
 		var/area/A = get_area(src.loc)
-		var/area/QA = get_area(silo_tracked.loc)
+		var/area/QA = get_area(pool_tracked.loc)
 		if(A.fake_zlevel == QA.fake_zlevel)
 			LL_dir.icon_state = "trackon"
-			LL_dir.setDir(get_dir(src, silo_tracked))
+			LL_dir.setDir(get_dir(src, pool_tracked))
 			return
-		LL_dir.icon_state = "trackondirect"				
+		LL_dir.icon_state = "trackondirect"
 
 
 /mob/living/carbon/xenomorph/clear_leader_tracking()

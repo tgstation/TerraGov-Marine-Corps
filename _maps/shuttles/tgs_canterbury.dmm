@@ -554,7 +554,9 @@
 /turf/open/floor/mainship/red/full,
 /area/shuttle/canterbury)
 "bR" = (
-/obj/machinery/bioprinter/stocked,
+/obj/machinery/bioprinter{
+	stored_metal = 1000
+	},
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
 "bS" = (
