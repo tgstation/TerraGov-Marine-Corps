@@ -1,0 +1,4 @@
+author: "Surrealaser"
+delete-after: True
+changes: 
+  - bugfix: "Fixed Healing Infusion timer mismatches cancelling the buff early."
