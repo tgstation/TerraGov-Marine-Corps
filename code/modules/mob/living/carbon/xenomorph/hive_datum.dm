@@ -727,11 +727,9 @@ to_chat will check for valid clients itself already so no need to double check f
 		if(xeno_job.total_positions < (-difference + xeno_job.current_positions))
 			xeno_job.set_job_positions(-difference + xeno_job.current_positions)
 	for(var/obj/structure/resin/spawning_pool/spawning_pool as() in GLOB.xeno_resin_spawning_pools)
-		if(!is_ground_level(spawning_pool.z))
-			continue
-		qdel(spawning_pool)
+		spawning_pool.Destroy()
 
-	SSpoints.xeno_points_by_hive["hivenumber"] = 900 //Give a free spawning pool to the hive when going shipside
+	SSpoints.xeno_points_by_hive[hivenumber] = POOL_PRICE //Give a free spawning pool to the hive when going shipside
 
 	var/list/living_player_list = SSticker.mode.count_humans_and_xenos(count_flags = COUNT_IGNORE_HUMAN_SSD)
 	var/num_humans = living_player_list[1]
