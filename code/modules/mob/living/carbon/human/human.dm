@@ -493,7 +493,7 @@
 									if("Fire Team 2") ID.assigned_fireteam = 2
 									if("Fire Team 3") ID.assigned_fireteam = 3
 									else return
-								hud_set_squad()
+								hud_set_job()
 
 
 	if (href_list["criminal"])

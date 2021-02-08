@@ -343,7 +343,7 @@
 	if(C.z != src.z || get_dist(src, C) < 1 || src == C)
 		LL_dir.icon_state = ""
 	else
-		LL_dir.icon_state = "SL_locator"
+		LL_dir.icon_state = "Blue_arrow"
 		LL_dir.transform = 0 //Reset and 0 out
 		LL_dir.transform = turn(LL_dir.transform, Get_Angle(src, C))
 
