@@ -21,23 +21,23 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	var/state = OW_MAIN
 	var/living_marines_sorting = FALSE
 	///The overwatch computer is busy launching an OB/SB, lock controls
-	var/busy = FALSE 
+	var/busy = FALSE
 	///whether or not we show the dead marines in the squad.
-	var/dead_hidden = FALSE 
+	var/dead_hidden = FALSE
 	///which z level is ignored when showing marines.
-	var/z_hidden = 0 
+	var/z_hidden = 0
 	///Squad being currently overseen
-	var/datum/squad/current_squad = null 
+	var/datum/squad/current_squad = null
 	///Selected target for bombarding
-	var/obj/selected_target 
+	var/obj/selected_target
 	///Selected order to give to marine
-	var/datum/action/innate/order/current_order 
+	var/datum/action/innate/order/current_order
 	///datum used when sending an attack order
-	var/datum/action/innate/order/attack_order/send_attack_order 
+	var/datum/action/innate/order/attack_order/send_attack_order
 	///datum used when sending a retreat order
 	var/datum/action/innate/order/retreat_order/send_retreat_order
-	///datum used when sending a defend order 
-	var/datum/action/innate/order/defend_order/send_defend_order 
+	///datum used when sending a defend order
+	var/datum/action/innate/order/defend_order/send_defend_order
 
 /obj/machinery/computer/camera_advanced/overwatch/Initialize()
 	. = ..()
@@ -276,7 +276,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 						current_squad.message_squad("Your Overwatch officer is: [operator.name].")
 						visible_message("<span class='boldnotice'>Tactical data for squad '[current_squad]' loaded. All tactical functions initialized.</span>")
 						attack_hand(usr)
-						
+
 
 					else
 						to_chat(usr, "[icon2html(src, usr)] <span class='warning'>Invalid input. Aborting.</span>")
@@ -887,7 +887,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	dat += "<A href='?src=\ref[src];operation=hide_dead'>{[dead_hidden ? "Show Dead Marines" : "Hide Dead Marines" ]}</a><br>"
 	dat += "<A href='?src=\ref[src];operation=choose_z'>{Change Locations Ignored}</a><br>"
 	dat += "<br><A href='?src=\ref[src];operation=back'>{Back}</a>"
-	return dat			
+	return dat
 
 ///Print order visual to all marines squad hud and give them an arrow to follow the waypoint
 /obj/machinery/computer/camera_advanced/overwatch/proc/send_orders(datum/source, atom/object)
@@ -905,19 +905,22 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	var/datum/atom_hud/squad/squad_hud = GLOB.huds[DATA_HUD_SQUAD]
 	var/list/final_list = squad_hud.hudusers
 	final_list -= current_user //We don't want the eye to have an arrow, it's silly
-	
+
 	for(var/hud_user in final_list)
+		var/mob/marine = hud_user
+		if(marine.stat == DEAD)
+			continue
 		if(current_order.arrow_type)
 			arrow_hud = new current_order.arrow_type
 			arrow_hud.add_hud(hud_user, target_turf)
-		notify_marine(hud_user, target_turf)	
+		notify_marine(hud_user, target_turf)
 
 ///Send a message and a sound to the marine if he is on the same z level as the turf
 /obj/machinery/computer/camera_advanced/overwatch/proc/notify_marine(mob/living/marine, turf/target_turf) ///Send an order to that specific marine if it's on the right z level
 	if(marine.z == target_turf.z)
 		marine.playsound_local(marine, "sound/effects/CIC_order.ogg", 10, 1)
 		to_chat(marine,"<span class='ordercic'>Command is urging you to [current_order.verb_name] [target_turf.loc.name]!</span>")
-	
+
 /datum/action/innate/order
 	///the word used to describe the action when notifying marines
 	var/verb_name
