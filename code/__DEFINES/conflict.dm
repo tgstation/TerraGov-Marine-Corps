@@ -52,6 +52,8 @@
 #define AMMO_BALLISTIC			(1<<11)
 #define AMMO_SUNDERING			(1<<12)
 #define AMMO_CHAINING			(1<<13)
+#define AMMO_SENTRY				(1<<14) //Used to identify ammo from sentry guns and other automated sources
+#define AMMO_FLAME				(1<<15) //Used to identify flamethrower projectiles and similar projectiles
 
 //Gun defines for gun related thing. More in the projectile folder.
 //flags_gun_features

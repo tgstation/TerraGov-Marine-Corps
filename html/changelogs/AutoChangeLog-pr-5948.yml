@@ -1,0 +1,5 @@
+author: "Pariah919"
+delete-after: True
+changes: 
+  - rscadd: "Added new antimaterial rifle to marines, 120 points. Functions like the old m42a scout sniper"
+  - balance: "autosniper repriced to 40"

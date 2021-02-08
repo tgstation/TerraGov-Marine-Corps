@@ -389,6 +389,13 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 /datum/game_mode/proc/get_hivemind_collapse_countdown()
 	return
 
+///handles end of the round when no spawning pool is left
+/datum/game_mode/proc/spawning_poolless_hive_collapse()
+	return
+
+///starts the timer to end the round when no spawning pool is left
+/datum/game_mode/proc/get_spawning_poolless_collapse_countdown()
+	return
 
 /datum/game_mode/proc/announce_medal_awards()
 	if(!length(GLOB.medal_awards))
@@ -440,10 +447,6 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 		dat += "[GLOB.round_statistics.defiler_neurogas_uses] number of times Defilers vented neurogas."
 	if(GLOB.round_statistics.xeno_unarmed_attacks && GLOB.round_statistics.xeno_bump_attacks)
 		dat += "[GLOB.round_statistics.xeno_bump_attacks] bump attacks, which made up [(GLOB.round_statistics.xeno_bump_attacks / GLOB.round_statistics.xeno_unarmed_attacks) * 100]% of all attacks ([GLOB.round_statistics.xeno_unarmed_attacks])."
-	if(GLOB.round_statistics.xeno_headbites)
-		dat += "[GLOB.round_statistics.xeno_headbites] number of times victims headbitten."
-	if(GLOB.round_statistics.xeno_silo_corpses)
-		dat += "[GLOB.round_statistics.xeno_silo_corpses] number of corpses fed to resin silos."
 	if(GLOB.round_statistics.xeno_rally_hive)
 		dat += "[GLOB.round_statistics.xeno_rally_hive] number of times xeno leaders rallied the hive."
 	if(GLOB.round_statistics.hivelord_healing_infusions)
@@ -517,7 +520,7 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 	return FALSE
 
 /datum/game_mode/infestation/distress/is_xeno_in_forbidden_zone(mob/living/carbon/xenomorph/xeno)
-	if(round_stage == DISTRESS_DROPSHIP_CRASHED)
+	if(round_stage == DISTRESS_DROPSHIP_CRASHING)
 		return FALSE
 	if(isxenoresearcharea(get_area(xeno)))
 		return TRUE

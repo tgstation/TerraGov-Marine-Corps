@@ -952,7 +952,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/turret
 	name = "autocannon bullet"
 	icon_state 	= "redbullet" //Red bullets to indicate friendly fire restriction
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_SENTRY
 	accurate_range = 10
 	accuracy_var_low = 3
 	accuracy_var_high = 3
@@ -1628,7 +1628,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "flame"
 	hud_state_empty = "flame_empty"
 	damage_type = BURN
-	flags_ammo_behavior = AMMO_INCENDIARY|AMMO_IGNORE_ARMOR
+	flags_ammo_behavior = AMMO_INCENDIARY|AMMO_IGNORE_ARMOR|AMMO_FLAME
 	armor_type = "fire"
 	max_range = 6
 	damage = 50
