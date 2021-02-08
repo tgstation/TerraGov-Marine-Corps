@@ -938,7 +938,7 @@
 	if(!do_after(owner, build_time, TRUE, A, BUSY_ICON_BUILD))
 		return fail_activate()
 
-	var/obj/structure/resin/spawning_pool/pool = new(get_step(A, SOUTHWEST))
+	new /obj/structure/resin/spawning_pool(get_step(A, SOUTHWEST))
 
 	var/mob/living/carbon/xenomorph/X = owner
 	SSpoints.xeno_points_by_hive[X.hivenumber] -= psych_cost
