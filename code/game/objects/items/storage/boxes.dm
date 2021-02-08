@@ -305,14 +305,22 @@
 	desc = "A secure box holding anti-personel proximity mines."
 	icon_state = "minebox"
 	w_class = WEIGHT_CLASS_NORMAL
-	max_storage_space = 15
+	max_storage_space = 10
 	spawn_type = /obj/item/explosive/mine
-	spawn_number = 10
+	spawn_number = 5
 
 /obj/item/storage/box/explosive_mines/update_icon()
 	icon_state = initial(icon_state)
 	if(!length(contents))
 		icon_state += "_e"
+
+/obj/item/storage/box/explosive_mines/large
+	name = "\improper M20 mine box"
+	desc = "A large secure box holding anti-personel proximity mines."
+	icon_state = "minebox"
+	max_storage_space = 20
+	spawn_type = /obj/item/explosive/mine
+	spawn_number = 10
 
 /obj/item/storage/box/explosive_mines/pmc
 	name = "\improper M20P mine box"
