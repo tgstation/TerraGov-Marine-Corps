@@ -783,8 +783,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/scope/mini/tx11
 	name = "TX-11 mini rail scope"
-	icon_state = "tx11"
-	attach_icon = "tx11"
+	icon_state = "tx11scope"
+	attach_icon = "tx11scope"
 
 /obj/item/attachable/scope/mini/m4ra
 	name = "T-45 rail scope"
@@ -1189,7 +1189,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/stock/irremoveable/tx11
 	name = "TX-11 stock"
-	icon_state = "tx11"
+	icon_state = "tx11stock"
 
 ////////////// Underbarrel Attachments ////////////////////////////////////
 
