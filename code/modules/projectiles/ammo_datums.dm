@@ -810,6 +810,19 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/shotgun/mbx900_tracker/on_hit_mob(mob/living/victim, obj/projectile/proj)
 	victim.AddComponent(/datum/component/dripping, DRIP_ON_TIME, 40 SECONDS, 2 SECONDS)
 
+/datum/ammo/bullet/shotgun/tracker
+	name = "shotgun tracker shell"
+	icon_state = "shotgun_slug"
+	hud_state = "shotgun_flechette"
+	shell_speed = 4
+	max_range = 30
+	damage = 5
+	penetration = 100
+
+/datum/ammo/bullet/shotgun/tracker/on_hit_mob(mob/living/victim, obj/projectile/proj)
+	victim.AddComponent(/datum/component/dripping, DRIP_ON_TIME, 40 SECONDS, 2 SECONDS)
+
+
 /*
 //================================================
 					Sniper Ammo
@@ -939,7 +952,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/turret
 	name = "autocannon bullet"
 	icon_state 	= "redbullet" //Red bullets to indicate friendly fire restriction
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_SENTRY
 	accurate_range = 10
 	accuracy_var_low = 3
 	accuracy_var_high = 3
@@ -1164,7 +1177,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_ENERGY
 	armor_type = "energy"
 	accuracy = 20
-	bullet_color = COLOR_VIVID_RED
+	bullet_color = COLOR_LASER_RED
 
 /datum/ammo/energy/emitter //Damage is determined in emitter.dm
 	name = "emitter bolt"
@@ -1172,6 +1185,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_IGNORE_ARMOR
 	accurate_range = 10
 	max_range = 10
+	bullet_color = COLOR_VIBRANT_LIME
 
 /datum/ammo/energy/taser
 	name = "taser bolt"
@@ -1194,6 +1208,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_CHAINING
 	damage = 20
 	penetration = 20
+	bullet_color = COLOR_TESLA_BLUE
 
 /datum/ammo/energy/lasgun
 	name = "laser bolt"
@@ -1215,7 +1230,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/energy/lasgun/M43/overcharge
 	name = "overcharged laser bolt"
-	icon_state = "heavylaser"
+	icon_state = "overchargedlaser"
 	hud_state = "laser_sniper"
 	damage = 40
 	max_range = 40
@@ -1224,7 +1239,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/energy/lasgun/M43/heat
 	name = "microwave heat bolt"
-	icon_state = "heavylaser"
+	icon_state = "microwavelaser"
 	hud_state = "laser_heat"
 	damage = 12 //requires mod with -0.15 multiplier should math out to 10
 	penetration = 100 // It's a laser that burns the skin! The fire stacks go threw anyway.
@@ -1233,7 +1248,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/energy/lasgun/M43/blast
 	name = "wide range laser blast"
-	icon_state = "heavylaser"
+	icon_state = "heavylaser2"
 	hud_state = "laser_spread"
 	bonus_projectiles_type = /datum/ammo/energy/lasgun/M43/spread
 	bonus_projectiles_amount = 2
@@ -1261,11 +1276,12 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/energy/lasgun/M43/disabler
 	name = "disabler bolt"
+	icon_state = "disablershot"
 	hud_state = "laser_disabler"
 	damage = 45
 	penetration = 0
 	damage_type = STAMINA
-	bullet_color = COLOR_BLUE
+	bullet_color = COLOR_DISABLER_BLUE
 
 /datum/ammo/energy/lasgun/M43/disabler/on_hit_mob(mob/M,obj/projectile/P)
 	staggerstun(M, P, stagger = 0.5, slowdown = 0.75)
@@ -1278,16 +1294,17 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 40
 	penetration = 100
 	sundering = 100
-	bullet_color = COLOR_BLUE
+	bullet_color = COLOR_PULSE_BLUE
 
 /datum/ammo/energy/lasgun/M43/practice
 	name = "practice laser bolt"
-	icon_state = "laser"
-	hud_state = "laser"
+	icon_state = "disablershot"
+	hud_state = "laser_disabler"
 	damage = 45
 	penetration = 0
 	damage_type = STAMINA
 	flags_ammo_behavior = AMMO_ENERGY
+	bullet_color = COLOR_DISABLER_BLUE
 
 /datum/ammo/energy/lasgun/M43/practice/on_hit_mob(mob/living/carbon/C, obj/projectile/P)
 	if(!istype(C) || C.stat == DEAD || C.issamexenohive(P.firer) )
@@ -1611,7 +1628,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "flame"
 	hud_state_empty = "flame_empty"
 	damage_type = BURN
-	flags_ammo_behavior = AMMO_INCENDIARY|AMMO_IGNORE_ARMOR
+	flags_ammo_behavior = AMMO_INCENDIARY|AMMO_IGNORE_ARMOR|AMMO_FLAME
 	armor_type = "fire"
 	max_range = 6
 	damage = 50
@@ -1657,6 +1674,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	burntime = 40
 	fire_delay = 35
 	bullet_color = COLOR_NAVY
+
+/datum/ammo/water
+	name = "water"
+	hud_state = "water"
 
 /datum/ammo/flare
 	name = "flare"

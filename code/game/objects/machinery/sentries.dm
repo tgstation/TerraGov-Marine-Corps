@@ -258,9 +258,6 @@
 	var/magazine_type = /obj/item/ammo_magazine/sentry
 	var/obj/item/radio/radio
 
-	ui_x = 360
-	ui_y = 320
-
 /obj/machinery/marine_turret/examine(mob/user)
 	. = ..()
 	if(isxeno(user))
@@ -378,12 +375,11 @@
 
 	return
 
-/obj/machinery/marine_turret/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/marine_turret/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 
 	if(!ui)
-		ui = new(user, src, ui_key, "Sentry", "Sentry Gun", ui_x, ui_y, master_ui, state)
+		ui = new(user, src, "Sentry", "Sentry Gun")
 		ui.open()
 
 /obj/machinery/marine_turret/ui_data(mob/user)
@@ -407,8 +403,9 @@
 		"mini" = istype(src, /obj/machinery/marine_turret/mini)
 	)
 
-/obj/machinery/marine_turret/ui_act(action, params)
-	if(..())
+/obj/machinery/marine_turret/ui_act(action, list/params)
+	. = ..()
+	if(.)
 		return
 
 	var/mob/living/carbon/human/user = usr
@@ -818,7 +815,7 @@
 			take_damage(rand(30, 100))
 
 
-/obj/machinery/marine_turret/attack_alien(mob/living/carbon/xenomorph/X)
+/obj/machinery/marine_turret/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_SENTRY)
 	return ..()
 

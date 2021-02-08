@@ -136,10 +136,10 @@
 		O.forceMove(drop_location())
 		adjust_item_drop_location(O)
 
-/obj/machinery/smartfridge/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/smartfridge/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "SmartVend", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, "SmartVend", name)
 		ui.set_autoupdate(FALSE)
 		ui.open()
 
@@ -164,7 +164,7 @@
 /obj/machinery/smartfridge/handle_atom_del(atom/A) // Update the UIs in case something inside gets deleted
 	SStgui.update_uis(src)
 
-/obj/machinery/smartfridge/ui_act(action, params)
+/obj/machinery/smartfridge/ui_act(action, list/params)
 	. = ..()
 	if(.)
 		return

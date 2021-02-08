@@ -109,6 +109,7 @@
 
 	var/datum/namepool/namepool = /datum/namepool
 	var/special_death_message = "You have perished." // Special death message that gets overwritten if possible.
+	var/joinable_roundstart = FALSE
 
 /datum/species/New()
 	if(hud_type)
@@ -297,6 +298,7 @@
 	burstscreams = list(MALE = "male_preburst", FEMALE = "female_preburst")
 	warcries = list(MALE = "male_warcry", FEMALE = "female_warcry")
 	special_death_message = "<big>You have perished.</big><br><small>But it is not the end of you yet... if you still have your body or an unbursted corpse, wait until somebody can resurrect you...</small>"
+	joinable_roundstart = TRUE
 
 	//If you wanted to add a species-level ability:
 	/*abilities = list(/client/proc/test_ability)*/
@@ -304,6 +306,8 @@
 /datum/species/human/vatborn
 	name = "Vatborn"
 	name_plural = "Vatborns"
+	icobase = 'icons/mob/human_races/r_vatborn.dmi'
+	deform = 'icons/mob/human_races/r_vatborn.dmi'
 
 	namepool = /datum/namepool/vatborn
 
@@ -321,14 +325,17 @@
 	heat_level_1 = 390
 	heat_level_2 = 480
 	heat_level_3 = 1100
+	joinable_roundstart = FALSE
 
 /datum/species/human/vatgrown
 	name = "Vat-Grown Human"
 	name_plural = "Vat-Grown Humans"
-	species_flags = HAS_SKIN_TONE
+	icobase = 'icons/mob/human_races/r_vatgrown.dmi'
+	deform = 'icons/mob/human_races/r_vatgrown.dmi'
 	brute_mod = 1.05
 	burn_mod = 1.05
 	slowdown = 1.05
+	joinable_roundstart = FALSE
 
 /datum/species/human/vatgrown/random_name(gender)
 	. = "CS-[gender == FEMALE ? "F": "M"]-[rand(111,999)]"
@@ -388,6 +395,7 @@
 	cold_level_1 = 100
 	cold_level_2 = 50
 	cold_level_3 = 20
+	joinable_roundstart = FALSE
 
 //To show them we mean business.
 /datum/species/human/spook/handle_unique_behavior(mob/living/carbon/human/H)

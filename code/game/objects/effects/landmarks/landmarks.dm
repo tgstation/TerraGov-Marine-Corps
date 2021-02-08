@@ -126,12 +126,12 @@
 /obj/effect/landmark/distress_item
 
 
-/obj/effect/landmark/xeno_silo_spawn
-	name = "xeno silo spawn landmark"
+/obj/effect/landmark/xeno_spawning_pool_spawn
+	name = "xeno spawning pool spawn landmark"
 	icon_state = "tdome_observer"
 
-/obj/effect/landmark/xeno_silo_spawn/Initialize()
-	GLOB.xeno_resin_silo_turfs += loc
+/obj/effect/landmark/xeno_spawning_pool_spawn/Initialize()
+	GLOB.xeno_resin_spawning_pool_turfs += loc
 	. = ..()
 	return INITIALIZE_HINT_QDEL
 
@@ -213,14 +213,11 @@
 		/obj/item/weapon/gun/pistol/rt3,
 		/obj/item/weapon/gun/pistol/m1911,
 		/obj/item/weapon/gun/pistol/standard_heavypistol,
-		/obj/item/weapon/gun/pistol/b92fs,
-		/obj/item/weapon/gun/pistol/b92fs/M9,
+		/obj/item/weapon/gun/pistol/g22,
 		/obj/item/weapon/gun/pistol/heavy,
 		/obj/item/weapon/gun/pistol/heavy/gold,
 		/obj/item/weapon/gun/pistol/c99,
-		/obj/item/weapon/gun/pistol/c99/russian,
-		/obj/item/weapon/gun/pistol/c99/upp,
-		/obj/item/weapon/gun/pistol/c99/upp/tranq,
+		/obj/item/weapon/gun/pistol/c99/tranq,
 		/obj/item/weapon/gun/pistol/holdout,
 		/obj/item/weapon/gun/pistol/highpower,
 		/obj/item/weapon/gun/pistol/vp70,
@@ -252,7 +249,7 @@
 		/obj/item/weapon/gun/energy/lasgun/M43,
 		/obj/item/weapon/gun/energy/lasgun/M43/stripped,
 		/obj/item/weapon/gun/shotgun/pump/lever,
-		/obj/item/weapon/gun/pistol/b92fs/raffica,
+		/obj/item/weapon/gun/pistol/g22/tranq,
 		/obj/item/weapon/gun/pistol/m1911/custom,
 		/obj/item/weapon/gun/revolver/mateba,
 		/obj/item/weapon/gun/revolver/mateba/notmarine,
@@ -311,7 +308,7 @@
 		/obj/item/weapon/gun/rifle/sniper/elite,
 		/obj/item/weapon/gun/smg/m25/elite,
 		/obj/item/weapon/gun/rifle/sniper/elite/xmas,
-		/obj/item/weapon/gun/rifle/sniper/M42A,
+		/obj/item/weapon/gun/rifle/sniper/antimaterial,
 		/obj/item/weapon/gun/rifle/sniper/svd,
 		/obj/item/weapon/gun/launcher/m81,
 		/obj/item/weapon/gun/rifle/standard_smartmachinegun,
