@@ -736,7 +736,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	return TRUE
 
 /obj/item/attachable/scope/zoom_item_turnoff(datum/source, mob/living/carbon/user)
-	if(ismob(source))
+	if(isliving(source))
 		activate_attachment(source, TRUE)
 	else
 		activate_attachment(user, TRUE)
@@ -758,7 +758,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 /obj/item/attachable/scope/onunzoom(mob/living/user)
 	if(zoom_allow_movement)
 		user.remove_movespeed_modifier(MOVESPEED_ID_SCOPE_SLOWDOWN)
-		UnregisterSignal(user, COMSIG_CARBON_SWAPPED_HANDS)	
+		UnregisterSignal(user, COMSIG_CARBON_SWAPPED_HANDS)
 	else
 		UnregisterSignal(user, list(COMSIG_CARBON_SWAPPED_HANDS, COMSIG_MOVABLE_MOVED))
 	UnregisterSignal(user, COMSIG_ATOM_DIR_CHANGE)
