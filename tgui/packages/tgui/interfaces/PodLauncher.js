@@ -6,7 +6,10 @@ export const Crew = (props, context) => {
   const { act, data } = useBackend(context);
 
   return (
-    <Window>
+    <Window
+      title="Pod Launcher"
+      width={1000}
+      height={700}>
       <Window.Content>
         <Section title="Supplypod bay">
           <Button

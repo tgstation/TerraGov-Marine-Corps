@@ -97,8 +97,8 @@
 	return TRUE
 
 
-/obj/effect/forcefield/fog/attack_alien(M)
-	return attack_hand(M)
+/obj/effect/forcefield/fog/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	return attack_hand(X)
 
 
 /obj/effect/forcefield/fog/attack_paw(mob/living/carbon/monkey/user)

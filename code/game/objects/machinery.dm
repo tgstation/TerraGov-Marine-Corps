@@ -22,9 +22,6 @@
 	var/obj/item/circuitboard/circuit // Circuit to be created and inserted when the machinery is created
 	var/mob/living/carbon/human/operator
 
-	var/ui_x	//For storing and overriding ui dimensions
-	var/ui_y
-
 /obj/machinery/Initialize()
 	. = ..()
 	GLOB.machines += src

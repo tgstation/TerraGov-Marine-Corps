@@ -200,11 +200,6 @@ WEAPONS
 	contains = list(/obj/item/weapon/gun/rifle/m4ra)
 	cost = 80
 
-/datum/supply_packs/weapons/specscoutmbx
-	name = "Scout Specialist kit (MBR-900)"
-	contains = list(/obj/item/weapon/gun/shotgun/pump/lever/mbx900)
-	cost = 80
-
 /datum/supply_packs/weapons/specdemo
 	name = "Demolitionist Specialist kit"
 	contains = list(/obj/item/weapon/gun/launcher/rocket/sadar)
@@ -212,12 +207,13 @@ WEAPONS
 
 /datum/supply_packs/weapons/autosniper
 	name = "IFF Auto Sniper kit"
-	contains = list(
-		/obj/item/weapon/gun/rifle/standard_autosniper,
-		/obj/item/ammo_magazine/rifle/autosniper,
-		/obj/item/ammo_magazine/rifle/autosniper,
-	)
-	cost = 70
+	contains = list(/obj/item/weapon/gun/rifle/standard_autosniper)
+	cost = 40
+
+/datum/supply_packs/weapons/antimaterial
+	name = "T-26 Antimaterial rifle kit"
+	contains = list(/obj/item/weapon/gun/rifle/sniper/antimaterial)
+	cost = 120
 
 /datum/supply_packs/weapons/specminigun
 	name = "MIC-A7 Vindicator Minigun"
@@ -254,7 +250,7 @@ WEAPONS
 
 /datum/supply_packs/weapons/explosives_mines
 	name = "claymore mines"
-	notes = "Contains 10 mines"
+	notes = "Contains 5 mines"
 	contains = list(/obj/item/storage/box/explosive_mines)
 	cost = 15
 
@@ -510,19 +506,14 @@ AMMO
 	contains = list(/obj/item/ammo_magazine/rifle/autosniper)
 	cost = 3
 
-/datum/supply_packs/ammo/mbx900
-	name = "MBX-900 Sabot Shells"
-	contains = list(/obj/item/ammo_magazine/shotgun/mbx900)
-	cost = 5
+/datum/supply_packs/ammo/antimaterial
+	name = "T-26 magazine"
+	contains = list(/obj/item/ammo_magazine/sniper)
+	cost = 10
 
-/datum/supply_packs/ammo/mbx900/buckshot
-	name = "MBX-900 Buckshot Shells"
-	contains = list(/obj/item/ammo_magazine/shotgun/mbx900/buckshot)
-	cost = 5
-
-/datum/supply_packs/ammo/mbx900/tracker
-	name = "MBX-900 Tracker Shells"
-	contains = list(/obj/item/ammo_magazine/shotgun/mbx900/tracking)
+/datum/supply_packs/ammo/shotguntracker
+	name = "12 Gauge Tracker Shells"
+	contains = list(/obj/item/ammo_magazine/shotgun/tracker)
 	cost = 5
 
 /datum/supply_packs/ammo/rpg_regular
@@ -620,6 +611,16 @@ AMMO
 	name = "Vindicator Minigun Ammo Drum"
 	contains = list(/obj/item/ammo_magazine/minigun)
 	cost = 5
+
+/datum/supply_packs/ammo/back_fuel_tank
+	name = "Standard back fuel tank"
+	contains = list(/obj/item/ammo_magazine/flamer_tank/backtank)
+	cost = 20
+
+/datum/supply_packs/ammo/back_fuel_tank_x
+	name = "Type X back fuel tank"
+	contains = list(/obj/item/ammo_magazine/flamer_tank/backtank/X)
+	cost = 100
 
 
 /*******************************************************************************
@@ -1010,7 +1011,6 @@ MEDICAL
 	name = "surgical equipment"
 	contains = list(
 		/obj/item/storage/surgical_tray,
-		/obj/item/clothing/tie/storage/white_vest,
 		/obj/item/clothing/mask/breath/medical,
 		/obj/item/tank/anesthetic,
 		/obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin,
@@ -1352,6 +1352,16 @@ Imports
 /datum/supply_packs/imports/leveraction/ammo
 	name = "Lever Action Rifle Ammo"
 	contains = list(/obj/item/ammo_magazine/magnum)
+	cost = 5
+
+/datum/supply_packs/imports/mbx900
+	name = "MBX 900"
+	contains = list(/obj/item/weapon/gun/shotgun/pump/lever/mbx900)
+	cost = 15
+
+/datum/supply_packs/imports/mbx900/buckshot
+	name = "MBX-900 Buckshot Shells"
+	contains = list(/obj/item/ammo_magazine/shotgun/mbx900/buckshot)
 	cost = 5
 
 /datum/supply_packs/imports/mosin

@@ -1,0 +1,12 @@
+author: "grinkgo"
+delete-after: True
+changes: 
+  - balance: "Corpsmen can now buy a wider variety of pills and injectors, including bicamera and keloderm."
+  - rscadd: "Fully stocked medkit pouch added to Corpsmen closet."
+  - tweak: "Medkit pouches now have advanced kits."
+  - rscdel: "Corpsmen equipment vendor no longer vends the surgical vest."
+  - tweak: "Surgical vests now spawn with a surgery tray's worth of tools."
+  - tweak: "MarineMeds are now accessible to all marine personnel."
+  - tweak: "Changed around some items in the MarineMed and in the corpsman vendor."
+  - tweak: "Advanced combat autoinjectors now have 5u of tramadol instead of 5u of oxycodone."
+  - tweak: "Oxycodone, Meralyne, and Dermaline OD changed from 19.8u to 15u."
