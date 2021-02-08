@@ -812,7 +812,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				gear = list()
 
 		if("ui")
-			var/choice = tgui_input_list(user, "Please choose an UI style.", "UI Style", UI_STYLES) 
+			var/choice = tgui_input_list(user, "Please choose an UI style.", "UI Style", UI_STYLES)
 			if(!choice)
 				return
 			ui_style = choice
@@ -863,9 +863,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				valid_facialhairstyles[facialhairstyle] = GLOB.facial_hair_styles_list[facialhairstyle]
 
-			var/list/f_hairstyles = valid_facialhairstyles
-			f_hairstyles += "Shaved"
-			var/new_f_style = tgui_input_list(user, "Choose your character's facial-hair style:", "Facial Hair Style", f_hairstyles)
+			var/new_f_style = tgui_input_list(user, "Choose your character's facial-hair style:", "Facial Hair Style", valid_facialhairstyles + "Shaved")
 			if(!new_f_style)
 				return
 			f_style = new_f_style

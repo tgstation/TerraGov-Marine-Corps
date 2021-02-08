@@ -662,8 +662,7 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/available_levels = list("green", "blue", "red", "delta") - GLOB.marine_main_ship.get_security_level()
-	var/sec_level = tgui_input_list(usr, "It's currently code [GLOB.marine_main_ship.get_security_level()]. Choose the new security level.", "Set Security Level", available_levels)
+	var/sec_level = tgui_input_list(usr, "It's currently code [GLOB.marine_main_ship.get_security_level()]. Choose the new security level.", "Set Security Level", list("green", "blue", "red", "delta") - GLOB.marine_main_ship.get_security_level())
 	if(!sec_level)
 		return
 
@@ -1061,7 +1060,7 @@
 		var/obj/docking_port/mobile/M = i
 		available_shuttles["[M.name] ([M.id])"] = M.id
 
-	var/answer = tgui_input_list(usr, "Which shuttle do you want to move?", "Force Dropship", available_shuttles) 
+	var/answer = tgui_input_list(usr, "Which shuttle do you want to move?", "Force Dropship", available_shuttles)
 	var/shuttle_id = available_shuttles[answer]
 	if(!shuttle_id)
 		return
