@@ -207,12 +207,13 @@ WEAPONS
 
 /datum/supply_packs/weapons/autosniper
 	name = "IFF Auto Sniper kit"
-	contains = list(
-		/obj/item/weapon/gun/rifle/standard_autosniper,
-		/obj/item/ammo_magazine/rifle/autosniper,
-		/obj/item/ammo_magazine/rifle/autosniper,
-	)
-	cost = 70
+	contains = list(/obj/item/weapon/gun/rifle/standard_autosniper)
+	cost = 40
+
+/datum/supply_packs/weapons/antimaterial
+	name = "T-26 Antimaterial rifle kit"
+	contains = list(/obj/item/weapon/gun/rifle/sniper/antimaterial)
+	cost = 120
 
 /datum/supply_packs/weapons/specminigun
 	name = "MIC-A7 Vindicator Minigun"
@@ -504,6 +505,11 @@ AMMO
 	name = "T-81 IFF sniper magazine"
 	contains = list(/obj/item/ammo_magazine/rifle/autosniper)
 	cost = 3
+
+/datum/supply_packs/ammo/antimaterial
+	name = "T-26 magazine"
+	contains = list(/obj/item/ammo_magazine/sniper)
+	cost = 10
 
 /datum/supply_packs/ammo/shotguntracker
 	name = "12 Gauge Tracker Shells"
