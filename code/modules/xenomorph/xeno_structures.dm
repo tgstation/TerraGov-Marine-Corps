@@ -76,7 +76,7 @@
 		if(isdistress(SSticker.mode)) //Silo can only be destroy in distress mode, but this check can create bugs if new gamemodes are added.
 			distress_mode = SSticker.mode
 			if (!(distress_mode.round_stage == DISTRESS_DROPSHIP_CRASHING))//No need to notify the xenos shipside
-				associated_hive.xeno_message("<span class='xenoannounce'>A resin spawning_pool has been destroyed at [AREACOORD_NO_Z(src)]!</span>", 2, FALSE,src.loc, 'sound/voice/alien_help2.ogg',FALSE,null)
+				associated_hive.xeno_message("<span class='xenoannounce'>A resin spawning_pool has been destroyed at [AREACOORD_NO_Z(src)]!</span>", 2, FALSE,src.loc, 'sound/voice/alien_help2.ogg',FALSE , null, /obj/screen/arrow/silo_damaged_arrow)
 				associated_hive.handle_spawning_pool_death_timer()
 				associated_hive = null
 				notify_ghosts("\ A resin spawning_pool has been destroyed at [AREACOORD_NO_Z(src)]!", source = get_turf(src), action = NOTIFY_JUMP)
@@ -121,7 +121,7 @@
 	if(!COOLDOWN_CHECK(src, spawning_pool_damage_alert_cooldown))
 		return
 
-	associated_hive.xeno_message("<span class='xenoannounce'>Our [name] at [AREACOORD_NO_Z(src)] is under attack! It has [obj_integrity]/[max_integrity] Health remaining.</span>", 2, FALSE, src, 'sound/voice/alien_help1.ogg')
+	associated_hive.xeno_message("<span class='xenoannounce'>Our [name] at [AREACOORD_NO_Z(src)] is under attack! It has [obj_integrity]/[max_integrity] Health remaining.</span>", 2, FALSE, src, 'sound/voice/alien_help1.ogg',FALSE, null, /obj/screen/arrow/silo_damaged_arrow)
 	COOLDOWN_START(src, spawning_pool_damage_alert_cooldown, XENO_HEALTH_ALERT_COOLDOWN) //set the cooldown.
 
 ///Alerts the Hive when hostiles get too close to their resin spawning_pool

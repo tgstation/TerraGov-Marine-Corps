@@ -458,11 +458,11 @@
 	hud_icons = list(SQUAD_HUD, MACHINE_HEALTH_HUD, SENTRY_AMMO_HUD)
 
 
-/mob/proc/hud_set_squad()
+/mob/proc/hud_set_job()
 	return
 
 
-/mob/living/carbon/human/hud_set_squad()
+/mob/living/carbon/human/hud_set_job()
 	var/image/holder = hud_list[SQUAD_HUD]
 	holder.icon_state = ""
 	holder.overlays.Cut()
@@ -484,7 +484,7 @@
 			holder.overlays += IMG2
 
 	else if(job.job_flags & JOB_FLAG_PROVIDES_SQUAD_HUD)
-		holder.icon_state = "hudmarine [job.title]"
+		holder.overlays += image('icons/mob/hud.dmi', src, "hudmarine [job.title]")
 
 	hud_list[SQUAD_HUD] = holder
 
