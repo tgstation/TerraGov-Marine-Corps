@@ -927,7 +927,7 @@
 		if(!silent)
 			to_chat(owner, "<span class='warning'>We need to get closer!.</span>")
 		return FALSE
-	
+
 	var/mob/living/carbon/xenomorph/X = owner
 	if(SSpoints.xeno_points_by_hive[X.hivenumber]<psych_cost)
 		to_chat(owner, "<span class='xenowarning'>The hive doesn't have the necessary psychic points for you to do that!</span>")
@@ -939,11 +939,10 @@
 		return fail_activate()
 
 	var/obj/structure/resin/spawning_pool/pool = new(get_step(A, SOUTHWEST))
-	GLOB.xeno_resin_spawning_pools += pool
 
 	var/mob/living/carbon/xenomorph/X = owner
 	SSpoints.xeno_points_by_hive[X.hivenumber] -= psych_cost
-	
+
 	succeed_activate()
 
 // Salvage Biomass
