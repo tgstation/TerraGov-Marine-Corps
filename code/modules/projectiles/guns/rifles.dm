@@ -1062,3 +1062,55 @@
 	recoil_unwielded = 4
 	aim_slowdown = 1
 	wield_delay = 1.3 SECONDS
+
+//-------------------------------------------------------
+//TX-11 Rifle, based on the gamer-11
+
+/obj/item/weapon/gun/rifle/tx11
+	name = "\improper TX-11 rifle"
+	desc = "The TX-11 is the former standard issue rifle of the TGMC. Most of them have been mothballed into storage long ago, but some still pop up in marine hands. Is known for its large magazine size and great burst fire. Is rather awkward to use. It uses 4.92×34mm caseless HV ammunition."
+	icon_state = "tx11"
+	item_state = "tx11"
+	caliber = "4.92×34mm caseless" //codex
+	max_shells = 70 //codex
+	wield_delay = 0.65 SECONDS
+	fire_sound = "sound/weapons/guns/fire/m412.ogg"
+	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
+	current_mag = /obj/item/ammo_magazine/standard_lmg
+	attachable_allowed = list(
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/bipod,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/scope,
+		/obj/item/attachable/scope/marine,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/stock/t42stock,
+		/obj/item/attachable/magnetic_harness,
+	)
+
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE,, GUN_FIREMODE_AUTOMATIC)
+	starting_attachment_types = list(/obj/item/attachable/stock/irremoveable/tx11, /obj/item/attachable/scope/mini/tx11)
+	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 17,"rail_x" = 4, "rail_y" = 20, "under_x" = 16, "under_y" = 13, "stock_x" = 0, "stock_y" = 13)
+	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_fire_delay = 0.125 SECONDS
+	aim_speed_modifier = 2
+
+	fire_delay = 0.225 SECONDS
+	burst_amount = 3
+	burst_delay = 0.05 SECONDS
+	accuracy_mult_unwielded = 0.5
+	accuracy_mult = 1.2
+	scatter = -10
+	scatter_unwielded = 30
+	aim_slowdown = 0.45

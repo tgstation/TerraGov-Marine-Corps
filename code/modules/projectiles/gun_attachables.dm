@@ -781,6 +781,11 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	scope_zoom_mod = TRUE
 	has_nightvision = FALSE
 
+/obj/item/attachable/scope/mini/tx11
+	name = "TX-11 mini rail scope"
+	icon_state = "tx11"
+	attach_icon = "tx11"
+
 /obj/item/attachable/scope/mini/m4ra
 	name = "T-45 rail scope"
 	aim_speed_mod = 0
@@ -1181,6 +1186,10 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 /obj/item/attachable/stock/irremoveable/m41a
 	name = "HK-11 stock"
 	icon_state = "m41a"
+
+/obj/item/attachable/stock/irremoveable/tx11
+	name = "TX-11 stock"
+	icon_state = "tx11"
 
 ////////////// Underbarrel Attachments ////////////////////////////////////
 
