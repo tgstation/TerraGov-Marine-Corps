@@ -328,6 +328,7 @@
 	icon_state = "tp44"
 	item_state = "tp44"
 	caliber = ".44 Magnum" //codex
+	w_class = WEIGHT_CLASS_BULKY
 	max_shells = 7 //codex
 	current_mag = /obj/item/ammo_magazine/internal/revolver/standard_revolver
 	force = 8
