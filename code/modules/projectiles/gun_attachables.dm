@@ -426,7 +426,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/compensator
 	name = "recoil compensator"
-	desc = "A muzzle attachment that reduces recoil and scatter by diverting expelled gasses upwards. \nSignificantly reduces recoil and scatter, at the cost of a small amount of weapon damage."
+	desc = "A muzzle attachment that reduces recoil and scatter by diverting expelled gasses upwards. \nSignificantly reduces recoil and scatter, regardless of if the weapon is wielded."
 	slot = "muzzle"
 	icon_state = "comp"
 	attach_icon = "comp_a"
@@ -1480,7 +1480,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	name = "masterkey shotgun"
 	icon_state = "masterkey"
 	attach_icon = "masterkey_a"
-	desc = "A weapon-mounted, three-shot shotgun. Reloadable with buckshot. The short barrel reduces the ammo's effectiveness."
+	desc = "A weapon-mounted, three-shot shotgun. Reloadable with buckshot. The short barrel reduces the ammo's effectiveness, but allows it to be fired one handed."
 	w_class = WEIGHT_CLASS_BULKY
 	max_rounds = 3
 	current_rounds = 3
