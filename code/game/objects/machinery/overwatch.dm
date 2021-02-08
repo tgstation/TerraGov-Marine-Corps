@@ -907,8 +907,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	final_list -= current_user //We don't want the eye to have an arrow, it's silly
 
 	for(var/hud_user in final_list)
-		var/mob/marine = hud_user
-		if(marine.stat == DEAD)
+		if(!ishuman(hud_user))
 			continue
 		if(current_order.arrow_type)
 			arrow_hud = new current_order.arrow_type
