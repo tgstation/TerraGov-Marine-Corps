@@ -567,7 +567,7 @@
 /obj/screen/SL_locator
 	name = "sl locator"
 	icon = 'icons/Marine/marine-items.dmi'
-	icon_state = "SL_locator"
+	icon_state = "Blue_arrow"
 	alpha = 0 //invisible
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	screen_loc = ui_sl_dir
@@ -715,7 +715,7 @@
 
 	var/hud_state = ammo_type[1]
 	var/hud_state_empty = ammo_type[2]
-
+	
 	overlays.Cut()
 
 	var/empty = image('icons/mob/ammoHUD.dmi', src, "[hud_state_empty]")
@@ -732,7 +732,8 @@
 			spawn(20)
 				user.client.screen -= F
 				qdel(F)
-				overlays += empty
+				if(G.get_ammo_count() == 0)
+					overlays += empty
 	else
 		warned = FALSE
 		overlays += image('icons/mob/ammoHUD.dmi', src, "[hud_state]")
@@ -755,43 +756,65 @@
 			overlays += image('icons/mob/ammoHUD.dmi', src, "t9")
 			overlays += image('icons/mob/ammoHUD.dmi', src, "h9")
 
-/obj/screen/xeno_tracker_arrow
-	name = "xeno tracker arrow"
+/obj/screen/arrow
 	icon = 'icons/Marine/marine-items.dmi'
-	icon_state = "SL_locator"
-	alpha = 128 //translucent
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	color = COLOR_RED
 	screen_loc = ui_sl_dir
-	///The xenomorph for which the arrow appears
-	var/mob/living/carbon/xenomorph/tracker
+	alpha = 128 //translucent
+	///The mob for which the arrow appears
+	var/mob/living/carbon/tracker
 	///The target which the arrow points to
-	var/mob/living/target
+	var/atom/target
+	///The duration of the effect
+	var/duration
 
-/obj/screen/xeno_tracker_arrow/proc/add_hud(mob/living/carbon/xenomorph/tracker_input, atom/target_input)
+/obj/screen/arrow/proc/add_hud(mob/living/carbon/tracker_input, atom/target_input)
 	if(!tracker_input?.client)
 		return
 
 	tracker = tracker_input
 	target = target_input
-	color = tracker.hive.color
 	tracker.client.screen += src
 	process() //Ping immediately after parameters have been set
 
-/obj/screen/xeno_tracker_arrow/Initialize() //Self-deletes
+/obj/screen/arrow/Initialize() //Self-deletes
 	. = ..()
 	START_PROCESSING(SSprocessing, src)
-	QDEL_IN(src, XENO_HEALTH_ALERT_POINTER_DURATION)
+	QDEL_IN(src, duration)	
+
+/obj/screen/arrow/process() //We ping the target, revealing its direction with an arrow
+	if(target.z != tracker.z || get_dist(tracker, target) < 5 || tracker == target)
+		alpha = 0
+	else
+		alpha = 128
+		transform = 0 //Reset and 0 out
+		transform = turn(transform, Get_Angle(tracker, target))
 
 /obj/screen/xeno_health_alert/Destroy()
 	STOP_PROCESSING(SSprocessing, src)
 	return ..()
 
-/obj/screen/xeno_tracker_arrow/process() //We ping the target, revealing its direction with an arrow
+/obj/screen/arrow/leader_tracker_arrow
+	name = "hive leader tracker arrow"
+	icon_state = "Blue_arrow"	
+	duration = XENO_RALLYING_POINTER_DURATION
 
-	if(target.z != tracker.z || get_dist(tracker, target) < 1 || tracker == target)
-		icon_state = ""
-	else
-		icon_state = "SL_locator"
-		transform = 0 //Reset and 0 out
-		transform = turn(transform, Get_Angle(tracker, target))
+/obj/screen/arrow/silo_damaged_arrow
+	name = "Hive damaged tracker arrow"
+	icon_state = "Red_arrow"
+	duration = XENO_SILO_DAMAGE_POINTER_DURATION
+
+/obj/screen/arrow/attack_order_arrow
+	name = "attack order arrow"
+	icon_state = "Attack_arrow"
+	duration = ORDER_DURATION
+
+/obj/screen/arrow/regroup_order_arrow
+	name = "Rally order arrow"
+	icon_state = "Regroup_arrow"
+	duration = ORDER_DURATION
+
+/obj/screen/arrow/defend_order_arrow
+	name = "Defend order arrow"
+	icon_state = "Defend_arrow"
+	duration = ORDER_DURATION

@@ -34,6 +34,7 @@
 
 	randomize_appearance()
 
+	RegisterSignal(src, COMSIG_ATOM_ACIDSPRAY_ACT, .proc/acid_spray_crossed)
 	RegisterSignal(src, list(COMSIG_KB_QUICKEQUIP, COMSIG_CLICK_QUICKEQUIP), .proc/do_quick_equip)
 	RegisterSignal(src, COMSIG_KB_HOLSTER, .proc/do_holster)
 	RegisterSignal(src, COMSIG_KB_UNIQUEACTION, .proc/do_unique_action)
@@ -492,7 +493,7 @@
 									if("Fire Team 2") ID.assigned_fireteam = 2
 									if("Fire Team 3") ID.assigned_fireteam = 3
 									else return
-								hud_set_squad()
+								hud_set_job()
 
 
 	if (href_list["criminal"])

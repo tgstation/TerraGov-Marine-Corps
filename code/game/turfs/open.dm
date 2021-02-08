@@ -168,6 +168,12 @@
 	mediumxenofootstep = FOOTSTEP_WATER
 	heavyxenofootstep = FOOTSTEP_WATER
 
+/turf/open/beach/sea/Entered(atom/movable/AM, atom/oldloc)
+	. = ..()
+	if(isliving(AM))
+		to_chat(AM, "<span class='danger'>The cold vacuum instantly freezes you, maybe this was a bad idea?</span>")
+		var/mob/living/spaceman = AM
+		spaceman.adjustFireLoss(666) //Really bad idea, spessman.
 
 //Nostromo turfs
 
@@ -411,13 +417,13 @@
 /turf/open/lavaland/catwalk/built
 	var/deconstructing = FALSE
 
-/turf/open/lavaland/catwalk/built/attack_alien(mob/living/carbon/xenomorph/M)
-	if(M.a_intent != INTENT_HARM)
+/turf/open/lavaland/catwalk/built/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(X.a_intent != INTENT_HARM)
 		return
 	if(deconstructing)
 		return
 	deconstructing = TRUE
-	if(!do_after(M, 10 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+	if(!do_after(X, 10 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 		deconstructing = FALSE
 		return
 	deconstructing = FALSE

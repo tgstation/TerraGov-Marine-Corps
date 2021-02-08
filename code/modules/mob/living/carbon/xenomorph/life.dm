@@ -36,17 +36,6 @@
 	update_action_button_icons()
 	update_icons()
 
-
-/mob/living/carbon/xenomorph/update_stat()
-	. = ..()
-	if(.)
-		return
-
-	//Deal with devoured things and people
-	if(LAZYLEN(stomach_contents) && world.time > devour_timer && !is_ventcrawling)
-		empty_gut()
-
-
 /mob/living/carbon/xenomorph/handle_status_effects()
 	. = ..()
 	handle_stagger() // 1 each time

@@ -244,6 +244,10 @@
 	if(flags_item & DELONDROP)
 		qdel(src)
 
+///Called whenever an item is unequipped to a new loc (IE, not when the item ends up in the hands)
+/obj/item/proc/removed_from_inventory(mob/user)
+	SEND_SIGNAL(src, COMSIG_ITEM_REMOVED_INVENTORY, user)
+	return
 
 // called just as an item is picked up (loc is not yet changed)
 /obj/item/proc/pickup(mob/user)
@@ -645,7 +649,7 @@
 	if(usr.get_active_held_item())
 		return
 
-	usr.UnarmedAttack(src)
+	usr.UnarmedAttack(src, TRUE)
 
 
 //This proc is executed when someone clicks the on-screen UI button. To make the UI button show, set the 'icon_action_button' to the icon_state of the image of the button in actions.dmi
@@ -795,7 +799,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 //This proc is here to prevent Xenomorphs from picking up objects (default attack_hand behaviour)
 //Note that this is overriden by every proc concerning a child of obj unless inherited
-/obj/item/attack_alien(mob/living/carbon/xenomorph/X)
+/obj/item/attack_alien(mob/living/carbon/xenomorph/X, isrightclick = FALSE)
 	return FALSE
 
 

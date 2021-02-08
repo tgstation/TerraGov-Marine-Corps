@@ -13,7 +13,10 @@ export const PortableGenerator = (props, context) => {
     || 'bad'
   );
   return (
-    <Window resizable>
+    <Window
+      width={450}
+      height={340}
+      resizable>
       <Window.Content scrollable>
         {!data.anchored && (
           <NoticeBox>Generator not anchored.</NoticeBox>
@@ -32,7 +35,7 @@ export const PortableGenerator = (props, context) => {
               <Box inline color={stackPercentState}>{data.sheets}</Box>
               {(data.sheets >= 1) && (
                 <Button
-                  ml={1}
+                  ml="6px"
                   icon="eject"
                   disabled={data.active}
                   onClick={() => act('eject')}>

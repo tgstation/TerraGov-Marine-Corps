@@ -57,6 +57,7 @@
 #define INIT_ORDER_INSTRUMENTS		17
 #define INIT_ORDER_CODEX 			15
 #define INIT_ORDER_EVENTS			14
+#define INIT_ORDER_MONITOR  		13
 #define INIT_ORDER_JOBS				12
 #define INIT_ORDER_TICKER			10
 #define INIT_ORDER_MAPPING			9
@@ -71,6 +72,7 @@
 #define INIT_ORDER_STICKY_BAN		-10
 #define INIT_ORDER_LIGHTING			-20
 #define INIT_ORDER_SHUTTLE			-21
+#define INIT_ORDER_SPAWNING_POOL	-25
 #define INIT_ORDER_PATH				-50
 #define INIT_ORDER_EXPLOSIONS		-69
 #define INIT_ORDER_CHAT				-100 //Should be last to ensure chat remains smooth during init.
@@ -117,7 +119,7 @@
 
 
 #define COMPILE_OVERLAYS(A)\
-	if (TRUE) {\
+	do {\
 		var/list/ad = A.add_overlays;\
 		var/list/rm = A.remove_overlays;\
 		var/list/po = A.priority_overlays;\
@@ -133,7 +135,8 @@
 			A.overlays |= po;\
 		}\
 		A.flags_atom &= ~OVERLAY_QUEUED;\
-	}
+	} while (FALSE)
+
 
 
 /// Explosion Subsystem subtasks

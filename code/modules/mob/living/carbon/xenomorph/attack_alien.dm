@@ -227,14 +227,12 @@
 	if(!.)
 		return FALSE
 
-//Every other type of nonhuman mob
-/mob/living/attack_alien(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
+//Every other type of nonhuman mob //MARKER OVERRIDE
+/mob/living/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if (X.fortify)
 		return FALSE
 
-	var/intent = force_intent ? force_intent : X.a_intent
-
-	switch(intent)
+	switch(X.a_intent)
 		if(INTENT_HELP)
 			if(on_fire)
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, 7)
@@ -250,7 +248,7 @@
 			return attack_alien_grab(X)
 
 		if(INTENT_HARM, INTENT_DISARM)
-			return attack_alien_harm(X, dam_bonus, set_location, random_location, no_head, no_crit, force_intent)
+			return attack_alien_harm(X)
 	return FALSE
 
 /mob/living/attack_larva(mob/living/carbon/xenomorph/larva/M)

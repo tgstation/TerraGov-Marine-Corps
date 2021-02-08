@@ -13,6 +13,8 @@ export const Mortar = (props, context) => {
   } = data;
   return (
     <Window
+      width={450}
+      height={180}
       resizable>
       <Window.Content>
         <Flex direction="column" justify="space-between">

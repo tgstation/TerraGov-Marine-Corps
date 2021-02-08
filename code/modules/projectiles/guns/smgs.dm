@@ -258,11 +258,6 @@
 	fire_delay = 0.15 SECONDS
 	aim_slowdown = 0.3
 
-
-/obj/item/weapon/gun/smg/skorpion/upp
-	icon_state = "skorpion_u"
-	item_state = "skorpion_u"
-
 //-------------------------------------------------------
 //PPSH //Based on the PPSh-41.
 
