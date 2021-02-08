@@ -79,7 +79,7 @@
 	head = /obj/item/clothing/head/uppcap
 	mask = /obj/item/clothing/mask/gas/PMC/upp
 	glasses = /obj/item/clothing/glasses/night/m42_night_goggles/upp
-	suit_store = /obj/item/weapon/gun/smg/skorpion/upp
+	suit_store = /obj/item/weapon/gun/smg/skorpion
 	r_store = /obj/item/storage/pouch/medkit
 	l_store = /obj/item/storage/pouch/general/large
 	back = /obj/item/storage/backpack/lightpack
