@@ -606,7 +606,8 @@
 
 	if(href_list["abduct"])
 		var/groundside_humans
-		for(var/mob/H in GLOB.alive_human_list)
+		for(var/N in GLOB.alive_human_list)
+			var/mob/H = N
 			if(H.z != X.z)
 				continue
 			groundside_humans++
