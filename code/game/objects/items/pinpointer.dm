@@ -71,10 +71,10 @@
 	desc = "A pinpointer designed to detect the encrypted emissions of nuclear devices"
 
 
-/obj/item/pinpointer/crash/activate()
+/obj/item/pinpointer/crash/Initialize()
+	. = ..()
 	tracked_list += GLOB.nuke_disk_generators
 	tracked_list += GLOB.nuke_list
-	. = ..()
 
 
 /obj/item/pinpointer/crash/examine(mob/user)
@@ -89,6 +89,6 @@
 	name = "pool pinpointer"
 	desc = "A pinpointer able to detect the psychic energy emmaning from spawning pools"
 
-/obj/item/pinpointer/pool/activate(mob/living/user)
-	tracked_list = GLOB.xeno_resin_spawning_pools
+/obj/item/pinpointer/pool/Initialize()
 	. = ..()
+	tracked_list = GLOB.xeno_resin_spawning_pools
