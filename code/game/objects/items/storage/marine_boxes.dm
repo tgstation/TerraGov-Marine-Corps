@@ -183,7 +183,7 @@
 	new /obj/item/clothing/head/helmet/marine/specialist(src)
 
 /obj/item/storage/box/m42c_system
-	name = "\improper M42A scoped rifle system (recon set)"
+	name = "\improper antimaterial scoped rifle system (recon set)"
 	desc = "A large case containing your very own long-range sniper rifle. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "sniper_case"
@@ -206,7 +206,7 @@
 	new /obj/item/weapon/gun/pistol/vp70(src)
 	new /obj/item/ammo_magazine/pistol/vp70(src)
 	new /obj/item/ammo_magazine/pistol/vp70(src)
-	new /obj/item/weapon/gun/rifle/sniper/M42A(src)
+	new /obj/item/weapon/gun/rifle/sniper/antimaterial(src)
 	new /obj/item/bodybag/tarp(src)
 	if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD])
 		new /obj/item/clothing/head/helmet/marine/standard(src)
@@ -215,7 +215,7 @@
 		new /obj/item/facepaint/sniper(src)
 
 /obj/item/storage/box/m42c_system_Jungle
-	name = "\improper M42A scoped rifle system (marksman set)"
+	name = "\improper antimaterial scoped rifle system (marksman set)"
 	desc = "A large case containing your very own long-range sniper rifle. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "sniper_case"
@@ -234,7 +234,7 @@
 	new /obj/item/ammo_magazine/sniper(src)
 	new /obj/item/ammo_magazine/sniper(src)
 	new /obj/item/ammo_magazine/sniper/incendiary(src)
-	new /obj/item/weapon/gun/rifle/sniper/M42A(src)
+	new /obj/item/weapon/gun/rifle/sniper/antimaterial(src)
 	if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD])
 		new /obj/item/clothing/under/marine/sniper(src)
 		new /obj/item/storage/backpack/marine/satchel(src)
@@ -372,7 +372,7 @@
 	new /obj/item/ammo_magazine/pistol/vp70(src)
 	new /obj/item/ammo_magazine/pistol/vp70(src)
 	new /obj/item/storage/backpack/marine/satchel/scout_cloak/sniper(src)
-	new /obj/item/weapon/gun/rifle/sniper/M42A(src)
+	new /obj/item/weapon/gun/rifle/sniper/antimaterial(src)
 	new /obj/item/explosive/grenade/cloakbomb(src)
 	new /obj/item/explosive/grenade/cloakbomb(src)
 	new /obj/item/explosive/grenade/cloakbomb(src)
@@ -929,8 +929,8 @@
 	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
 	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
 	new /obj/item/clothing/glasses/night/m42_night_goggles(src)
-	new /obj/item/weapon/gun/rifle/sniper/M42A(src)
-	new /obj/item/storage/belt/marine/m42a(src)
+	new /obj/item/weapon/gun/rifle/sniper/antimaterial(src)
+	new /obj/item/storage/belt/marine/antimaterial(src)
 	new /obj/item/ammo_magazine/sniper(src)
 	new /obj/item/storage/pouch/pistol/vp70(src)
 	new /obj/item/ammo_magazine/pistol/vp70(src)

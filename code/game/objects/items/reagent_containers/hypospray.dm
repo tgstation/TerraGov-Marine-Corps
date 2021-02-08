@@ -316,6 +316,13 @@
 		/datum/reagent/consumable/sugar = 30,
 	)
 
+/obj/item/reagent_containers/hypospray/advanced/tricordrazine
+	name = "Tricordrazine hypospray"
+	desc = "A hypospray loaded with tricordrazine."
+	list_reagents = list(
+		/datum/reagent/medicine/tricordrazine = 60,
+	)
+
 /obj/item/reagent_containers/hypospray/advanced/update_icon()
 	. = ..()
 

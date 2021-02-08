@@ -348,7 +348,7 @@
 	new /obj/item/ammo_magazine/smg/standard_smg(src)
 	new /obj/item/ammo_magazine/smg/standard_smg(src)
 
-/obj/item/storage/belt/marine/m42a/Initialize()
+/obj/item/storage/belt/marine/antimaterial/Initialize()
 	. = ..()
 	new /obj/item/ammo_magazine/sniper/flak(src)
 	new /obj/item/ammo_magazine/sniper/flak(src)

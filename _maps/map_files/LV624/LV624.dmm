@@ -78,7 +78,7 @@
 /turf/closed/mineral,
 /area/lv624/ground/caves/west2)
 "aaB" = (
-/obj/effect/landmark/xeno_silo_spawn,
+/obj/effect/landmark/xeno_spawning_pool_spawn,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west2)
 "aaC" = (
@@ -14216,18 +14216,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor/plating/warning{
-	dir = 1
-	},
-/area/lv624/lazarus/engineering)
-"boF" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/turf/open/floor/plating/warning{
-	dir = 1
-	},
+/turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
 "boG" = (
 /obj/structure/sign/electricshock,
@@ -14235,9 +14224,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor/plating/warning{
-	dir = 1
-	},
+/turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
 "boH" = (
 /obj/structure/cable,
@@ -15248,6 +15235,9 @@
 "dEz" = (
 /turf/open/ground/coast/corner2,
 /area/lv624/ground/jungle9)
+"dIV" = (
+/turf/open/floor/plating,
+/area/lv624/lazarus/engineering)
 "dQh" = (
 /obj/structure/flora/ausbushes/grassybush,
 /turf/open/ground/grass,
@@ -15666,6 +15656,11 @@
 	},
 /turf/open/floor/marking/bot,
 /area/shuttle/drop2/lz2)
+"ibW" = (
+/turf/open/floor/plating/warning{
+	dir = 1
+	},
+/area/lv624/lazarus/engineering)
 "ibX" = (
 /obj/effect/decal/remains/human,
 /turf/open/floor/plating/ground/dirt,
@@ -16072,7 +16067,7 @@
 /turf/closed/wall/r_wall,
 /area/shuttle/drop1/lz1)
 "lXt" = (
-/obj/effect/landmark/xeno_silo_spawn,
+/obj/effect/landmark/xeno_spawning_pool_spawn,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east1)
 "lYR" = (
@@ -16203,6 +16198,14 @@
 /obj/structure/flora/tree/jungle/small,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle3)
+"nfk" = (
+/obj/machinery/power/geothermal,
+/obj/structure/lattice,
+/obj/structure/cable,
+/turf/open/floor/plating/warning{
+	dir = 6
+	},
+/area/lv624/lazarus/engineering)
 "njQ" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
@@ -16351,7 +16354,7 @@
 /turf/closed/wall/resin,
 /area/lv624/ground/caves/east2)
 "phD" = (
-/obj/effect/landmark/xeno_silo_spawn,
+/obj/effect/landmark/xeno_spawning_pool_spawn,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/ground/ruin)
 "pkH" = (
@@ -16949,7 +16952,7 @@
 /turf/open/floor/marking/bot,
 /area/shuttle/drop2/lz2)
 "wDI" = (
-/obj/effect/landmark/xeno_silo_spawn,
+/obj/effect/landmark/xeno_spawning_pool_spawn,
 /turf/open/floor/engine/cult,
 /area/lv624/ground/caves/east2)
 "wJZ" = (
@@ -17042,7 +17045,7 @@
 /turf/open/space/basic,
 /area/lv624/lazarus/robotics)
 "xLJ" = (
-/obj/effect/landmark/xeno_silo_spawn,
+/obj/effect/landmark/xeno_spawning_pool_spawn,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west1)
 "xMw" = (
@@ -32279,12 +32282,12 @@ blj
 blO
 blO
 bnm
-blO
+blj
 boD
 bpJ
 bqj
 bqj
-bqj
+ibW
 blo
 bsg
 bpx
@@ -32457,13 +32460,13 @@ bkw
 dgb
 blP
 bmH
-bmH
 bnP
+dIV
 boE
 dgb
 blj
 blj
-blj
+ibW
 brE
 bsh
 bpx
@@ -32636,13 +32639,13 @@ blj
 blh
 blj
 blj
-blj
-blj
-boF
+dgb
+dIV
+boH
 dgb
 bqj
 bqR
-bqj
+ibW
 blo
 bsh
 bpx
@@ -32815,8 +32818,8 @@ blj
 dgb
 blR
 bmJ
-bmJ
-bmJ
+nfk
+dIV
 boG
 bkA
 bkA
@@ -32995,7 +32998,7 @@ blj
 blS
 blS
 blS
-blS
+dIV
 boH
 bkA
 bqm

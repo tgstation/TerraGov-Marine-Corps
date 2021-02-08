@@ -19634,7 +19634,7 @@
 /turf/closed/mineral/bigred,
 /area/bigredv2/caves/west)
 "dWD" = (
-/obj/effect/landmark/xeno_silo_spawn,
+/obj/effect/landmark/xeno_spawning_pool_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southwest)
 "dXh" = (
@@ -20203,7 +20203,7 @@
 /turf/closed/mineral/bigred,
 /area/bigredv2/caves/southeast)
 "jlx" = (
-/obj/effect/landmark/xeno_silo_spawn,
+/obj/effect/landmark/xeno_spawning_pool_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
 "joZ" = (
@@ -20314,7 +20314,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
 "klu" = (
-/obj/effect/landmark/xeno_silo_spawn,
+/obj/effect/landmark/xeno_spawning_pool_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northeast)
 "knF" = (
@@ -20952,7 +20952,7 @@
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "qvY" = (
-/obj/effect/landmark/xeno_silo_spawn,
+/obj/effect/landmark/xeno_spawning_pool_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/north)
 "qxt" = (
@@ -21719,7 +21719,7 @@
 /turf/open/floor/tile/darkgreen/darkgreen2,
 /area/bigredv2/caves/lambda_lab)
 "xYz" = (
-/obj/effect/landmark/xeno_silo_spawn,
+/obj/effect/landmark/xeno_spawning_pool_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/south)
 "yek" = (
