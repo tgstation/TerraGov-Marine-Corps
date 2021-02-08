@@ -142,6 +142,11 @@
 	list_reagents = list(/datum/reagent/medicine/kelotane = 15)
 	pill_id = 5
 
+/obj/item/reagent_containers/pill/keloderm
+	pill_desc = "A keloderm pill. Heals burn damage at a higher rate than kelotane."
+	list_reagents = list(/datum/reagent/medicine/kelotane = 7.5, /datum/reagent/medicine/dermaline = 7.5)
+	pill_id = 5
+
 /obj/item/reagent_containers/pill/paracetamol
 	pill_desc = "A paracetamol pill. Painkiller for the ages."
 	list_reagents = list(/datum/reagent/medicine/paracetamol = 15)
@@ -205,6 +210,11 @@
 /obj/item/reagent_containers/pill/bicaridine
 	pill_desc = "A bicaridine pill. Heals brute damage."
 	list_reagents = list(/datum/reagent/medicine/bicaridine = 15)
+	pill_id = 19
+
+/obj/item/reagent_containers/pill/bicamera
+	pill_desc = "A bicamera pill. Heals brute damage at a higher rate than bicaridine."
+	list_reagents = list(/datum/reagent/medicine/meralyne = 7.5, /datum/reagent/medicine/bicaridine = 7.5)
 	pill_id = 19
 
 /obj/item/reagent_containers/pill/quickclot

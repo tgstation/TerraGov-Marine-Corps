@@ -66,7 +66,7 @@
 	if(!pa.Find("ctrl") && pa.Find("shift"))
 		acquire_coordinates(object, user)
 		return TRUE
-	
+
 	if(pa.Find("ctrl") && !pa.Find("shift"))
 		acquire_target(object, user)
 		return TRUE
@@ -170,9 +170,6 @@
 		to_chat(user, "<span class='warning'>You can't focus properly through \the [src] while looking through something else.</span>")
 		return
 
-	if(!can_see(user, A, 25))
-		to_chat(user, "<span class='warning'>You can't see anything there.</span>")
-		return
 
 	if(!user.mind)
 		return

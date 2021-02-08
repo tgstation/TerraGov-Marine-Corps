@@ -25,10 +25,6 @@
 	var/traumatic_shock = 0
 	var/shock_stage = 0
 
-	//Stagger vars
-	var/slowdown = 0 //Temporary penalty on movement. Regenerates each tick.
-	var/stagger = 0 //Temporary inability to use special actions; hurts accuracy. Regenerates each tick.
-
 	var/losebreath = 0
 	var/nutrition = NUTRITION_WELLFED
 

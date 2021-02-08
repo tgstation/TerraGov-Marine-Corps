@@ -1,15 +1,10 @@
 /mob/living/carbon/Initialize()
 	. = ..()
-	RegisterSignal(src, COMSIG_CARBON_DEVOURED_BY_XENO, .proc/on_devour_by_xeno)
 	adjust_nutrition_speed(0)
-
 
 /mob/living/carbon/Destroy()
 	if(afk_status == MOB_RECENTLY_DISCONNECTED)
 		set_afk_status(MOB_DISCONNECTED)
-	if(isxeno(loc))
-		var/mob/living/carbon/xenomorph/devourer = loc
-		devourer.do_regurgitate(src)
 	QDEL_NULL(back)
 	QDEL_NULL(internal)
 	QDEL_NULL(handcuffed)
@@ -49,8 +44,7 @@
 	if (shock_damage<1)
 		return 0
 
-	apply_damage(shock_damage, BURN, def_zone)
-	UPDATEHEALTH(src)
+	apply_damage(shock_damage, BURN, def_zone, updating_health = TRUE)
 
 	playsound(loc, "sparks", 25, TRUE)
 	if (shock_damage > 10)
@@ -343,13 +337,13 @@
 	. -= "Update Icon"
 	.["Regenerate Icons"] = "?_src_=vars;[HrefToken()];regenerateicons=[REF(src)]"
 
-/mob/living/carbon/update_leader_tracking(mob/living/carbon/C)
+/mob/living/carbon/update_tracking(mob/living/carbon/C)
 	var/obj/screen/LL_dir = hud_used.SL_locator
 
 	if(C.z != src.z || get_dist(src, C) < 1 || src == C)
 		LL_dir.icon_state = ""
 	else
-		LL_dir.icon_state = "SL_locator"
+		LL_dir.icon_state = "Blue_arrow"
 		LL_dir.transform = 0 //Reset and 0 out
 		LL_dir.transform = turn(LL_dir.transform, Get_Angle(src, C))
 

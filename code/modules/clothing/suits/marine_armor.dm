@@ -287,13 +287,18 @@
 	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 	flags_heat_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 	slowdown = SLOWDOWN_ARMOR_VERY_HEAVY
-	supporting_limbs = CHEST | GROIN | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_LEFT | LEG_RIGHT | FOOT_LEFT | FOOT_RIGHT //B18 effectively stabilizes these.
+	supporting_limbs = CHEST | GROIN | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_LEFT | LEG_RIGHT | FOOT_LEFT | FOOT_RIGHT | HEAD //B18 effectively stabilizes these.
 	resistance_flags = UNACIDABLE
 
 /obj/item/clothing/suit/storage/marine/specialist/Initialize(mapload, ...)
 	. = ..()
 	AddComponent(/datum/component/suit_autodoc)
 	AddElement(/datum/element/limb_support, supporting_limbs)
+	SSmonitor.stats.b18_in_use += src
+
+/obj/item/clothing/suit/storage/marine/specialist/Destroy()
+	. = ..()
+	SSmonitor.stats.b18_in_use -= src
 
 /obj/item/clothing/suit/storage/marine/B17
 	name = "\improper B17 defensive armor"
@@ -305,6 +310,14 @@
 	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 	flags_heat_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 	slowdown = SLOWDOWN_ARMOR_HEAVY
+
+/obj/item/clothing/suit/storage/marine/B17/Initialize(mapload, ...)
+	. = ..()
+	SSmonitor.stats.b17_in_use += src
+
+/obj/item/clothing/suit/storage/marine/B17/Destroy()
+	. = ..()
+	SSmonitor.stats.b17_in_use -= src
 
 /obj/item/clothing/suit/storage/marine/M3T
 	name = "\improper M3-T light armor"

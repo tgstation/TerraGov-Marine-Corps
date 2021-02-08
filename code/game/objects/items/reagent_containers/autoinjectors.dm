@@ -58,7 +58,7 @@
 	list_reagents = list(
 		/datum/reagent/medicine/meralyne = 5,
 		/datum/reagent/medicine/dermaline = 5,
-		/datum/reagent/medicine/oxycodone = 5,
+		/datum/reagent/medicine/tramadol = 5,
 	)
 
 /obj/item/reagent_containers/hypospray/autoinjector/quickclot

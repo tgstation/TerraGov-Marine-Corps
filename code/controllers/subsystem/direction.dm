@@ -13,6 +13,10 @@ SUBSYSTEM_DEF(direction)
 
 	var/list/mobs_in_processing = list() // reference lookup
 
+
+
+
+
 	// the purpose of separating these two things is it avoids having to do anything for mobs tracking a particular
 	//  leader when the leader changes, and its cached to avoid looking up via hive/squad datums.
 	// it's up to the user of this subsystem to remove themselves via the macros
@@ -45,7 +49,7 @@ SUBSYSTEM_DEF(direction)
 	for(var/squad_id in currentrun)
 		var/mob/living/L
 		var/mob/living/SL = leader_mapping[squad_id]
-		if (QDELETED(SL))
+		if (QDELETED(SL) && !isxenohive(squad_id))
 			clear_run(squad_id) // clear and reset all the squad members
 			continue
 		while(currentrun[squad_id].len)
@@ -54,7 +58,7 @@ SUBSYSTEM_DEF(direction)
 			if(QDELETED(L))
 				stop_tracking(squad_id, L)
 				continue
-			L.update_leader_tracking(SL)
+			L.update_tracking(SL)
 			if(MC_TICK_CHECK)
 				return
 

@@ -74,7 +74,6 @@
 	var/fire_stacks = 0 //Tracks how many stacks of fire we have on, max is
 
 	var/chestburst = 0 // 0: normal, 1: bursting, 2: bursted.
-	var/headbitten = FALSE //false: normal, true: brain removed
 	var/metabolism_efficiency = 1 //more or less efficiency to metabolize helpful/harmful reagents and (TODO) regulate body temperature..
 
 	var/tinttotal = TINT_NONE
@@ -119,3 +118,9 @@
 
 	/// How much friendly fire damage has this mob done in the last 30 seconds.
 	var/list/friendly_fire = list()
+
+	///Stagger and slow vars; Stagger penalizes projectile damage for non-Xenos and disables ability use for Xenos. Slowdown is obvious.
+	///Temporary penalty on movement. Regenerates each tick.
+	var/slowdown = 0
+	///Temporary inability to use special actions; hurts projectile damage. Regenerates each tick.
+	var/stagger = 0

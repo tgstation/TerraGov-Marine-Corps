@@ -1,4 +1,3 @@
-import { Fragment } from 'inferno';
 import { useBackend, useLocalState } from '../backend';
 import { Button, Section, Box, LabeledList, ProgressBar, Modal, Divider } from '../components';
 import { decodeHtmlEntities } from 'common/string';
@@ -19,7 +18,10 @@ export const Vending = (props, context) => {
   ] = useLocalState(context, 'showEmpty', 0);
 
   return (
-    <Window>
+    <Window
+      title="Vending Machine"
+      width={500}
+      height={600}>
       {showDesc ? (
         <Modal width="400px">
           <Box>{showDesc}</Box>
@@ -50,7 +52,7 @@ export const Vending = (props, context) => {
         </div>
         <div className="VendingWindow__content">
           <Window.Content scrollable>
-            <Fragment>
+            <>
               {(!!((data.premium_length > 0) || (data.isshared > 0))) && (
                 <Premium />
               )}
@@ -58,7 +60,7 @@ export const Vending = (props, context) => {
                 <Hacked />
               )}
               <Products />
-            </Fragment>
+            </>
           </Window.Content>
         </div>
       </div>
@@ -78,7 +80,7 @@ const Buying = (props, context) => {
         <Button
           onClick={() => act('swipe')}
           icon="id-card"
-          ml={1}>
+          ml="6px">
           Swipe
         </Button>
         <Button
@@ -163,7 +165,7 @@ const ProductEntry = (props, context) => {
     <LabeledListItem
       labelColor="white"
       buttons={
-        <Fragment>
+        <>
           <ProgressBar
             width="60px"
             value={stock}
@@ -187,7 +189,7 @@ const ProductEntry = (props, context) => {
               Vend
             </Box>
           </Button>
-        </Fragment>
+        </>
       }
       label={decodeHtmlEntities(product_name)}>
       {!!prod_desc && (

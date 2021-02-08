@@ -220,7 +220,6 @@
 	var/time_of_birth
 
 	var/list/stomach_contents
-	var/devour_timer = 0
 
 	var/evolution_stored = 0 //How much evolution they have stored
 
@@ -290,6 +289,10 @@
 	var/fortify = 0
 	var/crest_defense = 0
 
+	// Hivelord vars
+	///Whether or not the Hivelord's healing infusion is active on this target.
+	var/infusion_active = 0
+
 	//Leader vars
 	var/leader_aura_strength = 0 //Pheromone strength inherited from Queen
 	var/leader_current_aura = "" //Pheromone type inherited from Queen
@@ -297,8 +300,6 @@
 	//Runner vars
 	var/savage = FALSE
 	var/savage_used = FALSE
-	///Defines how much projectile damage evasion can still absorb
-	var/evasion_stacks = 0
 
 	// *** Ravager vars *** //
 	var/ignore_pain = FALSE // when true the rav will not go into crit or take crit damage.
@@ -309,5 +310,8 @@
 	var/notice_delay = 20 //2 second between notices
 
 	var/fire_luminosity = 0 //Luminosity of the current fire while burning
+
+	///The xenos/pool currently tracked by the xeno_tracker arrow
+	var/tracked
 
 	COOLDOWN_DECLARE(xeno_health_alert_cooldown)

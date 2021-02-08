@@ -127,9 +127,6 @@
 /mob/living/carbon/xenomorph/hivemind/CtrlShiftClickOn(atom/A)
 	return FALSE
 
-/mob/living/carbon/xenomorph/hivemind/ShiftClickOn(atom/A)
-	return FALSE
-
 /mob/living/carbon/xenomorph/hivemind/CtrlClickOn(atom/A)
 	return FALSE
 
@@ -177,7 +174,7 @@
 
 //hivemind cores
 
-/obj/effect/alien/hivemindcore/attack_alien(mob/living/carbon/xenomorph/X)
+/obj/effect/alien/hivemindcore/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(isxenoqueen(X))
 		var/choice = alert(X, "Are you sure you want to destroy the hivemind?", "Destroy hivemind", "Yes", "Cancel")
 		if(choice == "Yes")

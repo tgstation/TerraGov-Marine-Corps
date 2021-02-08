@@ -1,5 +1,5 @@
 import { createSearch } from 'common/string';
-import { Button, Input, Section } from '../components';
+import { Button, Input, Icon, Section, Flex } from '../components';
 import { Window } from '../layouts';
 import { useBackend, useLocalState } from '../backend';
 
@@ -100,14 +100,28 @@ export const Orbit = (props, context) => {
   };
 
   return (
-    <Window>
+    <Window
+      title="Orbit"
+      width={350}
+      height={700}>
       <Window.Content scrollable>
         <Section>
-          <Input
-            fluid
-            value={searchText}
-            onInput={(_, value) => setSearchText(value)}
-            onEnter={(_, value) => orbitMostRelevant(value)} />
+          <Flex>
+            <Flex.Item>
+              <Icon
+                name="search"
+                mr={1} />
+            </Flex.Item>
+            <Flex.Item grow={1}>
+              <Input
+                placeholder="Search..."
+                autoFocus
+                fluid
+                value={searchText}
+                onInput={(_, value) => setSearchText(value)}
+                onEnter={(_, value) => orbitMostRelevant(value)} />
+            </Flex.Item>
+          </Flex>
         </Section>
 
         <BasicSection
