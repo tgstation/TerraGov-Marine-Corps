@@ -325,7 +325,7 @@
 			T["[C.c_tag][C.can_use() ? null : " (Deactivated)"]"] = C
 
 	playsound(origin, 'sound/machines/terminal_prompt.ogg', 25, 0)
-	var/camera = input("Choose which camera you want to view?", "Cameras") as null|anything in T
+	var/camera = tgui_input_list(origin, "Choose which camera you want to view?", "Cameras", T)
 	var/obj/machinery/camera/C = T[camera]
 	playsound(src, "terminal_type", 25, 0)
 

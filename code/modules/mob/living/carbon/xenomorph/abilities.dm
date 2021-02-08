@@ -956,7 +956,7 @@
 		to_chat(X, "<span class='warning'>There's nobody nearby to whisper to.</span>")
 		return
 
-	var/mob/living/L = input("Target", "Send a Psychic Whisper to whom?") as null|anything in target_list
+	var/mob/living/L = tgui_input_list(X, "Target", "Send a Psychic Whisper to whom?", target_list)
 	if(!L)
 		return
 

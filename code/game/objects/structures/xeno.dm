@@ -724,7 +724,7 @@ TUNNEL
 
 ///Here we pick a tunnel to go to, then travel to that tunnel and peep out, confirming whether or not we want to emerge or go to another tunnel.
 /obj/structure/tunnel/proc/pick_a_tunnel(mob/living/carbon/xenomorph/M)
-	var/obj/structure/tunnel/targettunnel = input(M, "Choose a tunnel to crawl to", "Tunnel") as null|anything in GLOB.xeno_tunnels
+	var/obj/structure/tunnel/targettunnel = tgui_input_list(M, "Choose a tunnel to crawl to", "Tunnel", GLOB.xeno_tunnels)
 	if(QDELETED(src)) //Make sure we still exist in the event the player keeps the interface open
 		return
 	if(!M.Adjacent(src) && M.loc != src) //Make sure we're close enough to our tunnel; either adjacent to or in one
@@ -761,7 +761,7 @@ TUNNEL
 	if(do_after(M, tunnel_time, FALSE, src, BUSY_ICON_GENERIC))
 		if(targettunnel && isturf(targettunnel.loc)) //Make sure the end tunnel is still there
 			M.forceMove(targettunnel)
-			var/double_check = input(M, "Emerge here?", "Tunnel: [targettunnel]") as null|anything in list("Yes","Pick another tunnel")
+			var/double_check = tgui_alert(M, "Emerge here?", "Tunnel: [targettunnel]", list("Yes","Pick another tunnel"))
 			if(M.loc != targettunnel) //double check that we're still in the tunnel in the event it gets destroyed while we still have the interface open
 				return
 			if(double_check == "Pick another tunnel")

@@ -896,7 +896,7 @@
 		to_chat(user, "<span class='warning'>No active medevac stretcher detected.</span>")
 		return
 
-	var/stretcher_choice = input("Which emitting stretcher would you like to link with?", "Available stretchers") as null|anything in possible_stretchers
+	var/stretcher_choice = tgui_input_list(user, "Which emitting stretcher would you like to link with?", "Available stretchers", possible_stretchers)
 	if(!stretcher_choice)
 		return
 

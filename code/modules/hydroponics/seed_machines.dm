@@ -15,7 +15,7 @@
 
 /obj/item/disk/botany/attack_self(mob/user as mob)
 	if(genes.len)
-		var/choice = alert(user, "Are you sure you want to wipe the disk?", "Xenobotany Data", "No", "Yes")
+		var/choice = tgui_alert(user, "Are you sure you want to wipe the disk?", "Xenobotany Data", list("No", "Yes"))
 		if(src && user && genes && choice == "Yes")
 			to_chat(user, "You wipe the disk data.")
 			name = initial(name)
