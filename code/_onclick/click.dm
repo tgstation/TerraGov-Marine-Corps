@@ -414,7 +414,6 @@ if(selected_ability.target_flags & flagname){\
 
 	if(held_thing && SEND_SIGNAL(held_thing, COMSIG_ITEM_SHIFTCLICKON, A, src) & COMPONENT_ITEM_CLICKON_BYPASS)
 		return FALSE
-	var/obj/item/back_item = get_item_by_slot(SLOT_BACK)
 	return ..()
 
 
