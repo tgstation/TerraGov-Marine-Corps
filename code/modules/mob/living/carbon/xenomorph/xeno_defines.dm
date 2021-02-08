@@ -220,7 +220,6 @@
 	var/time_of_birth
 
 	var/list/stomach_contents
-	var/devour_timer = 0
 
 	var/evolution_stored = 0 //How much evolution they have stored
 
@@ -313,8 +312,8 @@
 	var/notice_delay = 20 //2 second between notices
 
 	var/fire_luminosity = 0 //Luminosity of the current fire while burning
-	
-	///The xenos/silo currently tracked by the xeno_tracker arrow
-	var/tracked 
+
+	///The xenos/pool currently tracked by the xeno_tracker arrow
+	var/tracked
 
 	COOLDOWN_DECLARE(xeno_health_alert_cooldown)
