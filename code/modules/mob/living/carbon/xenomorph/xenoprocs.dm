@@ -696,3 +696,13 @@
 	if(.)
 		return
 	return (sunder * -0.01) + 1
+
+/mob/living/carbon/xenomorph/adjust_stagger(amount)
+	if(is_charging >= CHARGE_ON) //If we're charging we don't accumulate more stagger stacks.
+		return FALSE
+	return ..()
+
+/mob/living/carbon/xenomorph/add_slowdown(amount)
+	if(is_charging >= CHARGE_ON) //If we're charging we're immune to slowdown.
+		return
+	adjust_slowdown(amount * XENO_SLOWDOWN_REGEN)
