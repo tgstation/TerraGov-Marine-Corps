@@ -409,7 +409,7 @@
 	name = "load bearing equipment"
 	desc = "Used to hold things when you don't have enough hands."
 	icon_state = "webbing"
-	w_class = WEIGHT_CLASS_NORMAL
+	w_class = WEIGHT_CLASS_BULKY
 	var/obj/item/storage/internal/hold = /obj/item/storage/internal/tie
 
 /obj/item/storage/internal/tie
@@ -538,8 +538,8 @@
 	hold = /obj/item/storage/internal/tie/white_vest
 
 /obj/item/storage/internal/tie/white_vest
-	storage_slots = 12
-	max_storage_space = 24
+	storage_slots = 6
+	max_storage_space = 12
 	max_w_class = WEIGHT_CLASS_BULKY
 
 	can_hold = list(
@@ -553,11 +553,15 @@
 	icon_state = "vest_white"
 	hold = /obj/item/storage/internal/tie/white_vest/surgery
 
+/obj/item/storage/internal/tie/white_vest
+	storage_slots = 12
+	max_storage_space = 24
+	max_w_class = WEIGHT_CLASS_BULKY
+
 /obj/item/storage/internal/tie/white_vest/surgery
 	can_hold = list(
 		/obj/item/tool/surgery,
 		/obj/item/stack/nanopaste,
-		/obj/item/stack/medical/advanced/bruise_pack,
 	)
 
 /obj/item/storage/internal/tie/white_vest/surgery/Initialize()
