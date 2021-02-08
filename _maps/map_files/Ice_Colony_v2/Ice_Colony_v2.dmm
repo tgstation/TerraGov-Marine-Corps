@@ -17920,11 +17920,10 @@
 	},
 /area/ice_colony/underground/hangar)
 "bil" = (
-/obj/structure/cable,
 /obj/machinery/power/apc/drained{
 	dir = 1
 	},
-/turf/open/floor/podhatch/floor,
+/turf/open/floor/plating,
 /area/ice_colony/underground/engineering/substation)
 "bio" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -21497,14 +21496,7 @@
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/hallway/north_west)
 "buE" = (
-/obj/machinery/power/geothermal,
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/ice_colony/underground/engineering/substation)
-"buF" = (
-/obj/machinery/power/geothermal,
-/obj/structure/cable,
-/obj/machinery/light/small,
+/obj/structure/closet/toolcloset,
 /turf/open/floor/plating,
 /area/ice_colony/underground/engineering/substation)
 "buG" = (
@@ -29167,10 +29159,6 @@
 	dir = 5
 	},
 /area/ice_colony/underground/medical/treatment)
-"bSV" = (
-/obj/structure/cable,
-/turf/open/floor/podhatch/floor,
-/area/ice_colony/underground/engineering/substation)
 "bSW" = (
 /turf/closed/ice_rock/corners{
 	dir = 5
@@ -30910,11 +30898,7 @@
 	},
 /area/ice_colony/underground/security/hallway)
 "bYO" = (
-/obj/machinery/power/geothermal,
-/obj/structure/cable,
-/obj/machinery/light{
-	dir = 8
-	},
+/obj/structure/closet/secure_closet/engineering_personal,
 /turf/open/floor/plating,
 /area/ice_colony/underground/engineering/substation)
 "bYP" = (
@@ -32247,6 +32231,10 @@
 "hyh" = (
 /turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/landing_pad2)
+"hzV" = (
+/obj/structure/closet/secure_closet/miner,
+/turf/open/floor/plating,
+/area/ice_colony/underground/engineering/substation)
 "hCT" = (
 /turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/north)
@@ -58686,8 +58674,8 @@ bbK
 bbK
 bYk
 btz
-buE
-buE
+hzV
+bYO
 bYO
 buE
 buE
@@ -58943,10 +58931,10 @@ bbK
 bbK
 bXs
 btz
-bSV
-bSV
-bSV
-bSV
+buj
+buj
+buj
+buj
 bil
 btz
 bnL
@@ -59200,11 +59188,11 @@ bbK
 bbK
 jQI
 btz
-buE
-buE
 buj
-bSV
-buE
+buj
+buj
+buj
+buj
 btz
 bnL
 box
@@ -59460,8 +59448,8 @@ bYH
 bYK
 bYK
 btc
-bSV
-buE
+buj
+buj
 btz
 bnL
 box
@@ -59717,8 +59705,8 @@ btz
 buj
 buj
 bte
-bSV
-buF
+buj
+buj
 btz
 bnL
 box
@@ -59970,7 +59958,7 @@ bbK
 bbK
 bbK
 bYk
-btz
+caA
 bsg
 bYL
 bYP
@@ -60227,7 +60215,7 @@ bbK
 bbK
 bbK
 bXs
-btz
+caA
 buj
 bYL
 btg
@@ -60484,7 +60472,7 @@ brx
 brx
 brx
 bYC
-btz
+caA
 bsh
 bTa
 buH
@@ -71919,16 +71907,16 @@ acz
 acz
 acz
 aeh
-adC
-aej
+aeM
+aeM
 aeO
 adC
 adC
 afT
 adC
 agG
-aej
-adC
+aeP
+aeM
 acT
 ajA
 ajF
@@ -72176,16 +72164,16 @@ adj
 adj
 adj
 aeh
-adC
-aej
-aeP
+aeM
+aeM
+aeM
 aej
 aej
 afU
 aej
 aeP
-aej
-adC
+aeP
+aeM
 aeh
 aeI
 aiz

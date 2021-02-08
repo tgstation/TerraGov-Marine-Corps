@@ -113,6 +113,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	updateallghostimages()
 
 	QDEL_NULL(orbit_menu)
+	GLOB.observer_list -= src //"wait isnt this done in logout?" Yes it is but because this is clients thats unreliable so we do it again here
 
 	LAZYREMOVE(GLOB.observers_by_zlevel["[z]"], src)
 	UnregisterSignal(src, COMSIG_MOVABLE_Z_CHANGED)

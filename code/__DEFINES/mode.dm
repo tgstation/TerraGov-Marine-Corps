@@ -126,4 +126,8 @@
 
 #define COUNT_IGNORE_ALIVE_SSD (COUNT_IGNORE_HUMAN_SSD|COUNT_IGNORE_XENO_SSD)
 
+<<<<<<< HEAD
 #define POOL_PRICE 1200
+=======
+#define POOL_PRICE 900
+>>>>>>> master
