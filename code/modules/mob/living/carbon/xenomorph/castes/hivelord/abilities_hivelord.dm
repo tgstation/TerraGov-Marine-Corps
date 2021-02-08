@@ -278,7 +278,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	name = "Healing Infusion"
 	action_icon_state = "healing_infusion"
 	mechanics_text = "Psychically infuses a friendly xeno with regenerative energies, greatly improving its natural healing. Doesn't work if the target can't naturally heal."
-	cooldown_timer = 30 SECONDS
+	cooldown_timer = 5 SECONDS
 	plasma_cost = 200
 	keybind_signal = COMSIG_XENOABILITY_HEALING_INFUSION
 	var/heal_range = HIVELORD_HEAL_RANGE
