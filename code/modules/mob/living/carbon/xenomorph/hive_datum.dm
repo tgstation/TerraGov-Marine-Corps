@@ -727,7 +727,7 @@ to_chat will check for valid clients itself already so no need to double check f
 		if(xeno_job.total_positions < (-difference + xeno_job.current_positions))
 			xeno_job.set_job_positions(-difference + xeno_job.current_positions)
 	for(var/obj/structure/resin/spawning_pool/spawning_pool as() in GLOB.xeno_resin_spawning_pools)
-		spawning_pool.Destroy()
+		qdel(spawning_pool)
 
 	SSpoints.xeno_points_by_hive[hivenumber] = POOL_PRICE //Give a free spawning pool to the hive when going shipside
 
