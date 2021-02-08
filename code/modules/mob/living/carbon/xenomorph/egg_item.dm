@@ -94,7 +94,7 @@
 
 //Deal with picking up facehuggers. "attack_alien" is the universal 'xenos click something while unarmed' proc.
 /obj/item/xeno_egg/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
-	if(user.status_flags & INCORPOREAL)
+	if(X.status_flags & INCORPOREAL)
 		return
 
 	switch(X.xeno_caste.can_hold_eggs)

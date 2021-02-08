@@ -79,7 +79,7 @@
 	ignore_weed_destruction = TRUE
 
 /obj/effect/alien/resin/sticky/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
-	if(M.status_flags & INCORPOREAL)
+	if(X.status_flags & INCORPOREAL)
 		return FALSE
 
 	if(X.a_intent == INTENT_HARM) //Clear it out on hit; no need to double tap.
@@ -198,7 +198,7 @@
 	hugger = null
 
 /obj/effect/alien/resin/trap/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
-	if(M.status_flags & INCORPOREAL)
+	if(X.status_flags & INCORPOREAL)
 		return FALSE
 
 	if(X.a_intent == INTENT_HARM)
@@ -697,8 +697,7 @@ TUNNEL
 	attack_alien(user)
 
 /obj/structure/tunnel/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
-	if(!istype(X) || X.stat || X.lying_angle)
-	if(!istype(M) || M.stat || M.lying_angle || M.status_flags & INCORPOREAL)
+	if(!istype(X) || X.stat || X.lying_angle || X.status_flags & INCORPOREAL)
 		return
 
 	if(X.a_intent == INTENT_HARM && X == creator)
