@@ -1005,7 +1005,6 @@ MEDICAL
 	name = "surgical equipment"
 	contains = list(
 		/obj/item/storage/surgical_tray,
-		/obj/item/clothing/tie/storage/white_vest,
 		/obj/item/clothing/mask/breath/medical,
 		/obj/item/tank/anesthetic,
 		/obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin,
