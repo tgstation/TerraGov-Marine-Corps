@@ -927,33 +927,18 @@
 		if(!silent)
 			to_chat(owner, "<span class='warning'>We need to get closer!.</span>")
 		return FALSE
-<<<<<<< HEAD
-=======
-
-	var/mob/living/carbon/xenomorph/X = owner
-	if(SSpoints.xeno_points_by_hive[X.hivenumber]<psych_cost)
-		to_chat(owner, "<span class='xenowarning'>The hive doesn't have the necessary psychic points for you to do that!</span>")
-		return FALSE
->>>>>>> master
 
 	var/mob/living/carbon/xenomorph/X = owner
 	if(SSpoints.xeno_points_by_hive[X.hivenumber]<psych_cost)
 		to_chat(owner, "<span class='xenowarning'>The hive doesn't have the necessary psychic points for you to do that!</span>")
 		return FALSE
 
-<<<<<<< HEAD
-
-=======
->>>>>>> master
 /datum/action/xeno_action/activable/build_spawning_pool/use_ability(atom/A)
 	if(!do_after(owner, build_time, TRUE, A, BUSY_ICON_BUILD))
 		return fail_activate()
 
 	var/obj/structure/resin/spawning_pool/pool = new(get_step(A, SOUTHWEST))
 	GLOB.xeno_resin_spawning_pools += pool
-
-	var/mob/living/carbon/xenomorph/X = owner
-	SSpoints.xeno_points_by_hive[X.hivenumber] -= psych_cost
 
 	var/mob/living/carbon/xenomorph/X = owner
 	SSpoints.xeno_points_by_hive[X.hivenumber] -= psych_cost
