@@ -305,15 +305,6 @@
 	var/ignore_pain = FALSE // when true the rav will not go into crit or take crit damage.
 	var/ignore_pain_state = 0 // how far "dead" the rav has got while ignoring pain.
 
-	//Defiler vars
-	///How many remaining reagent slashes the Defiler has
-	var/reagent_slash_count = 0
-	///Time remaining for the Reagent Slashes timer; used to get around upgrade ability deletion
-	var/reagent_slash_duration = 0
-	///Timer ID for the Reagent Slashes timer; used to get around upgrade ability deletion
-	var/reagent_slash_duration_timer_id = 0
-
-
 	//Notification spam controls
 	var/recent_notice = 0
 	var/notice_delay = 20 //2 second between notices

@@ -26,7 +26,6 @@
 	X.xeno_abilities += src
 	if(keybind_signal)
 		RegisterSignal(L, keybind_signal, .proc/keybind_activation)
-	RegisterSignal(L, COMSIG_XENOMORPH_ABILITY_ON_PRE_UPGRADE, .proc/on_xeno_pre_upgrade)
 	RegisterSignal(L, COMSIG_XENOMORPH_ABILITY_ON_UPGRADE, .proc/on_xeno_upgrade)
 
 /datum/action/xeno_action/remove_action(mob/living/L)
@@ -45,10 +44,6 @@
 	if(can_use_action())
 		action_activate()
 	return COMSIG_KB_ACTIVATED
-
-///Event that allows us to manipulate/interact with xeno_actions just before they're removed by the upgrade process
-/datum/action/xeno_action/proc/on_xeno_pre_upgrade()
-	return
 
 /datum/action/xeno_action/proc/on_xeno_upgrade()
 	return

@@ -207,12 +207,19 @@
 /datum/action/xeno_action/reagent_slash
 	name = "Reagent Slash"
 	action_icon_state = "reagent_slash"
-	mechanics_text = "The next 3 slashes over 4 seconds injects 4u of the Defiler's selected toxin and growth toxin per slash."
+	mechanics_text = "For a short duration the next 3 slashes made will inject a small amount of selected toxin."
 	ability_name = "reagent slash"
 	cooldown_timer = 6 SECONDS
 	plasma_cost = 100
 	keybind_signal = COMSIG_XENOABILITY_REAGENT_SLASH
 	target_flags = XABB_MOB_TARGET
+	///How many remaining reagent slashes the Defiler has
+	var/reagent_slash_count = 0
+	///Time remaining for the Reagent Slashes timer; used to get around upgrade ability deletion
+	var/reagent_slash_duration = 0
+	///Timer ID for the Reagent Slashes timer; used to get around upgrade ability deletion
+	var/reagent_slash_duration_timer_id
+
 
 /datum/action/xeno_action/reagent_slash/action_activate()
 	. = ..()
@@ -220,9 +227,8 @@
 
 	RegisterSignal(X, COMSIG_XENOMORPH_ATTACK_LIVING, .proc/reagent_slash)
 
-	//Save vars to the Xeno to proof against upgrades
-	X.reagent_slash_count = DEFILER_REAGENT_SLASH_COUNT
-	X.reagent_slash_duration_timer_id = addtimer(CALLBACK(src, .proc/reagent_slash_timer_check, X), DEFILER_REAGENT_SLASH_DURATION, TIMER_STOPPABLE) //Save the timer ID
+	reagent_slash_count = DEFILER_REAGENT_SLASH_COUNT
+	reagent_slash_duration_timer_id = addtimer(CALLBACK(src, .proc/reagent_slash_timer_check, X), DEFILER_REAGENT_SLASH_DURATION, TIMER_STOPPABLE) //Save the timer ID
 
 	to_chat(X, "<span class='xenodanger'>Our spines fill with virulent toxins!</span>") //Let the target know
 	X.playsound_local(X, 'sound/voice/alien_drool2.ogg', 25)
@@ -233,7 +239,7 @@
 ///Called when the duration of the buff lapses before its effect is exhausted
 /datum/action/xeno_action/reagent_slash/proc/reagent_slash_timer_check(mob/living/carbon/xenomorph/X)
 
-	if(!X.reagent_slash_count) //If the effect is already gone, don't try to remove it again
+	if(!reagent_slash_count) //If the effect is already gone, don't try to remove it again
 		return
 
 	reagent_slash_deactivate(X)
@@ -243,9 +249,10 @@
 /datum/action/xeno_action/reagent_slash/proc/reagent_slash_deactivate(mob/living/carbon/xenomorph/X)
 	UnregisterSignal(X, COMSIG_XENOMORPH_ATTACK_LIVING) //unregister the signals; party's over
 
-	X.reagent_slash_count = 0 //Zero out vars
-	X.reagent_slash_duration = 0
-	X.reagent_slash_duration_timer_id = 0
+	reagent_slash_count = 0 //Zero out vars
+	reagent_slash_duration = 0
+	deltimer(reagent_slash_duration_timer_id) //delete the timer so we don't have mismatch issues
+	reagent_slash_duration_timer_id = null
 
 	to_chat(X, "<span class='xenodanger'>We are no longer benefitting from [src].</span>") //Let the target know
 	X.playsound_local(X, 'sound/voice/hiss5.ogg', 25)
@@ -261,17 +268,17 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/carbon/carbon_target = target
 
-	carbon_target.reagents.add_reagent(X.selected_reagent, DEFILER_REAGENT_SLASH_U_AMOUNT)
-	carbon_target.reagents.add_reagent(/datum/reagent/toxin/xeno_growthtoxin, DEFILER_REAGENT_SLASH_U_AMOUNT, no_overdose = TRUE) //Inject larval growth without ODing
+	carbon_target.reagents.add_reagent(X.selected_reagent, DEFILER_REAGENT_SLASH_INJECT_AMOUNT)
+	carbon_target.reagents.add_reagent(/datum/reagent/toxin/xeno_growthtoxin, DEFILER_REAGENT_SLASH_INJECT_AMOUNT, no_overdose = TRUE) //Inject larval growth without ODing
 	playsound(carbon_target, 'sound/effects/spray3.ogg', 15, TRUE)
 	X.visible_message(carbon_target, "<span class='danger'>[carbon_target] is pricked by [X]'s spines!</span>")
 
 	GLOB.round_statistics.defiler_reagent_slashes++ //Statistics
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "defiler_reagent_slashes")
 
-	X.reagent_slash_count-- //Decrement the reagent slash count
+	reagent_slash_count-- //Decrement the reagent slash count
 
-	if(!X.reagent_slash_count) //Deactivate if we have no reagent slashes remaining
+	if(!reagent_slash_count) //Deactivate if we have no reagent slashes remaining
 		reagent_slash_deactivate(X)
 
 
