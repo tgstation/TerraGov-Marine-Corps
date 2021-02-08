@@ -5446,7 +5446,7 @@
 /turf/open/ground,
 /area/lv624/ground/caves/central1)
 "vJ" = (
-/obj/effect/landmark/xeno_silo_spawn,
+/obj/effect/landmark/xeno_spawning_pool_spawn,
 /turf/open/ground,
 /area/lv624/ground/caves/central1)
 "wi" = (
@@ -5492,7 +5492,7 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "Ca" = (
-/obj/effect/landmark/xeno_silo_spawn,
+/obj/effect/landmark/xeno_spawning_pool_spawn,
 /turf/open/floor/plating/ground/dirt,
 /area/vapor_processing/caves/se)
 "CU" = (
@@ -5519,7 +5519,7 @@
 /turf/open/floor/grass,
 /area/lv624/lazarus/quartstorage)
 "It" = (
-/obj/effect/landmark/xeno_silo_spawn,
+/obj/effect/landmark/xeno_spawning_pool_spawn,
 /turf/open/floor/plating/ground/dirt,
 /area/space)
 "Iu" = (

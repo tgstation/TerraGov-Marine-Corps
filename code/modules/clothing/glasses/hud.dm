@@ -67,6 +67,7 @@
 	toggleable = 1
 	hud_type = DATA_HUD_MEDICAL_ADVANCED
 	actions_types = list(/datum/action/item_action/toggle)
+	prescription = TRUE
 
 /obj/item/clothing/glasses/hud/health/eyepatch
 	name = "\improper Medpatch HUD"

@@ -207,12 +207,13 @@ WEAPONS
 
 /datum/supply_packs/weapons/autosniper
 	name = "IFF Auto Sniper kit"
-	contains = list(
-		/obj/item/weapon/gun/rifle/standard_autosniper,
-		/obj/item/ammo_magazine/rifle/autosniper,
-		/obj/item/ammo_magazine/rifle/autosniper,
-	)
-	cost = 70
+	contains = list(/obj/item/weapon/gun/rifle/standard_autosniper)
+	cost = 40
+
+/datum/supply_packs/weapons/antimaterial
+	name = "T-26 Antimaterial rifle kit"
+	contains = list(/obj/item/weapon/gun/rifle/sniper/antimaterial)
+	cost = 120
 
 /datum/supply_packs/weapons/specminigun
 	name = "MIC-A7 Vindicator Minigun"
@@ -249,7 +250,7 @@ WEAPONS
 
 /datum/supply_packs/weapons/explosives_mines
 	name = "claymore mines"
-	notes = "Contains 10 mines"
+	notes = "Contains 5 mines"
 	contains = list(/obj/item/storage/box/explosive_mines)
 	cost = 15
 
@@ -504,6 +505,11 @@ AMMO
 	name = "T-81 IFF sniper magazine"
 	contains = list(/obj/item/ammo_magazine/rifle/autosniper)
 	cost = 3
+
+/datum/supply_packs/ammo/antimaterial
+	name = "T-26 magazine"
+	contains = list(/obj/item/ammo_magazine/sniper)
+	cost = 10
 
 /datum/supply_packs/ammo/shotguntracker
 	name = "12 Gauge Tracker Shells"
@@ -1011,7 +1017,6 @@ MEDICAL
 	name = "surgical equipment"
 	contains = list(
 		/obj/item/storage/surgical_tray,
-		/obj/item/clothing/tie/storage/white_vest,
 		/obj/item/clothing/mask/breath/medical,
 		/obj/item/tank/anesthetic,
 		/obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin,

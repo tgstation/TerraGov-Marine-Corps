@@ -108,7 +108,7 @@
 // *********** Larva Mother
 // ***************************************
 
-/mob/living/carbon/xenomorph/queen/proc/is_burrowed_larva_host(datum/source, list/mothers, list/silos)
+/mob/living/carbon/xenomorph/queen/proc/is_burrowed_larva_host(datum/source, list/mothers, list/spawning_pools)
 	if(!incapacitated(TRUE))
 		mothers += src //Adding us to the list.
 
