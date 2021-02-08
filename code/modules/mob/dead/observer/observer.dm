@@ -113,6 +113,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	updateallghostimages()
 
 	QDEL_NULL(orbit_menu)
+	GLOB.observer_list -= src //"wait isnt this done in logout?" Yes it is but because this is clients thats unreliable so we do it again here
 
 	LAZYREMOVE(GLOB.observers_by_zlevel["[z]"], src)
 	UnregisterSignal(src, COMSIG_MOVABLE_Z_CHANGED)
@@ -293,9 +294,12 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		if(status_value)
 			stat("Evacuation in:", status_value)
 		if(SSticker.mode)
-			status_value = SSticker.mode.get_hivemind_collapse_countdown()
-			if(status_value)
-				stat("<b>Orphan hivemind collapse timer:</b>", status_value)
+			var/rulerless_countdown = SSticker.mode.get_hivemind_collapse_countdown()
+			if(rulerless_countdown)
+				stat("<b>Orphan hivemind collapse timer:</b>", rulerless_countdown)
+			var/spawning_poolless_countdown = SSticker.mode.get_spawning_poolless_collapse_countdown()
+			if(spawning_poolless_countdown)
+				stat("<b>Silo less hive collapse timer:</b>", spawning_poolless_countdown)
 		if(GLOB.respawn_allowed)
 			status_value = (timeofdeath + GLOB.respawntime - world.time) * 0.1
 			if(status_value <= 0)

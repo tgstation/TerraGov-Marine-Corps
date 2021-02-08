@@ -102,7 +102,9 @@
 	resistance_flags = RESIST_ALL
 	req_access = list(ACCESS_MARINE_DROPSHIP)
 
-
+/obj/machinery/button/door/open_only/landing_zone/pulsed()
+	. = ..()
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_OPEN_SHUTTERS_EARLY)
 
 /obj/machinery/button/door/open_only/landing_zone/lz2
 	id = "landing_zone_2"

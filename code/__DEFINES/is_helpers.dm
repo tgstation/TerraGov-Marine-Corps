@@ -104,7 +104,7 @@
 #define isxenobull(A) (istype(A, /mob/living/carbon/xenomorph/bull))
 #define isxenohivemind(A) (istype(A, /mob/living/carbon/xenomorph/hivemind))
 
-#define isresinsilo(A) (istype(A, /obj/structure/resin/silo))
+#define isspawningpool(A) (istype(A, /obj/structure/resin/spawning_pool))
 
 //Silicon mobs
 #define issilicon(A) (istype(A, /mob/living/silicon))

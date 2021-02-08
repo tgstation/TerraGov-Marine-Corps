@@ -56,8 +56,6 @@
 	if(!job) //It might be setup on spawn.
 		setup_job()
 
-	RegisterSignal(src, COMSIG_GRAB_SELF_ATTACK, .proc/devour_grabbed) //Devour ability.
-
 	AddComponent(/datum/component/bump_attack)
 
 	ADD_TRAIT(src, TRAIT_BATONIMMUNE, TRAIT_XENO)
@@ -223,11 +221,10 @@
 	if(L.buckled)
 		return FALSE //to stop xeno from pulling marines on roller beds.
 	if(ishuman(L))
-		if(!chestburst)
-			do_attack_animation(L, ATTACK_EFFECT_GRAB)
-			if(L.stat == DEAD && !L.headbitten) //Grab delay vs the non-headbitten dead
-				if(!do_mob(src, L , XENO_PULL_CHARGE_TIME, BUSY_ICON_HOSTILE))
-					return FALSE
+		if(L.stat == DEAD) //Can't drag dead human bodies
+			to_chat(usr,"<span class='xenowarning'>This looks gross, better not touch it</span>")
+			return FALSE
+		do_attack_animation(L, ATTACK_EFFECT_GRAB)
 		pull_speed += XENO_DEADHUMAN_DRAG_SLOWDOWN
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_GRAB)
 	return ..()
@@ -312,7 +309,7 @@
 		else
 			LL_dir.icon_state = "trackoff"
 			return
-	
+
 	if (isxeno(tracked))
 		var/mob/living/carbon/xenomorph/xeno_tracked = tracked
 		if(QDELETED(xeno_tracked))
@@ -320,7 +317,7 @@
 			return
 		if(xeno_tracked == src) // No need to track ourselves
 			LL_dir.icon_state = "trackoff"
-			return	
+			return
 		if(xeno_tracked.z != z || get_dist(src,xeno_tracked) < 1)
 			LL_dir.icon_state = "trackondirect"
 			return
@@ -330,26 +327,26 @@
 			LL_dir.icon_state = "trackon"
 			LL_dir.setDir(get_dir(src, xeno_tracked))
 			return
-		
-		LL_dir.icon_state = "trackondirect"	
+
+		LL_dir.icon_state = "trackondirect"
 		return
 
-	if (isresinsilo(tracked))
-		var/mob/living/carbon/xenomorph/silo_tracked = tracked
-		if(QDELETED(silo_tracked))
+	if (isspawningpool(tracked))
+		var/mob/living/carbon/xenomorph/pool_tracked = tracked
+		if(QDELETED(pool_tracked))
 			tracked = null
 			return
-		if(silo_tracked.z != z || get_dist(src,silo_tracked) < 1)
+		if(pool_tracked.z != z || get_dist(src,pool_tracked) < 1)
 			LL_dir.icon_state = "trackondirect"
 			return
-	
+
 		var/area/A = get_area(src.loc)
-		var/area/QA = get_area(silo_tracked.loc)
+		var/area/QA = get_area(pool_tracked.loc)
 		if(A.fake_zlevel == QA.fake_zlevel)
 			LL_dir.icon_state = "trackon"
-			LL_dir.setDir(get_dir(src, silo_tracked))
+			LL_dir.setDir(get_dir(src, pool_tracked))
 			return
-		LL_dir.icon_state = "trackondirect"				
+		LL_dir.icon_state = "trackondirect"
 
 
 /mob/living/carbon/xenomorph/clear_leader_tracking()
