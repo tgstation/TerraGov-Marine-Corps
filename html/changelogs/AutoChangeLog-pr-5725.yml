@@ -1,9 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - tweak: "Xenos rallying and silo arrow stays longer, and another colored arrow for silo destroyed"
-  - tweak: "Rallying the hive arrow will now target the caster, and not a tile"
-  - refactor: "refactored surreal code on hive alerts"
-  - rscadd: "You can give orders (defend, attack, retreat) from the overwatch console, wich acts as \"waypoints\" for every marine on ground."
-  - bugfix: "Add back hud icons for non-squad job (Captain, CMO, FC, synth, etc..)
-sound: Marines have a sound when receiving an order"
