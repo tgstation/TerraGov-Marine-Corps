@@ -26,6 +26,7 @@
 #define COOLDOWN_IV_PING	"iv_ping"
 #define COOLDOWN_RACK_BOLT	"rack_bolt"
 #define COOLDOWN_JETPACK "jetpack"
+#define COOLDOWN_CIC_ORDERS "cic_orders"
 
 //// COOLDOWN SYSTEMS
 /*

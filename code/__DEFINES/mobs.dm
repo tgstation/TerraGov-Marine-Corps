@@ -429,6 +429,8 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define XENO_HEALTH_ALERT_TRIGGER_THRESHOLD	100 //If a xeno is damaged while its current hit points are less than this amount, we send out an alert to the hive
 #define XENO_HEALTH_ALERT_COOLDOWN			30 SECONDS //The cooldown on these xeno damage alerts
 #define XENO_HEALTH_ALERT_POINTER_DURATION	6 SECONDS //How long the alert directional pointer lasts.
+#define XENO_RALLYING_POINTER_DURATION		15 SECONDS //How long the rally hive pointer lasts
+#define XENO_SILO_DAMAGE_POINTER_DURATION	10 SECONDS //How long the alert directional pointer lasts when silos are damaged
 
 #define CANNOT_HOLD_EGGS 0
 #define CAN_HOLD_TWO_HANDS 1

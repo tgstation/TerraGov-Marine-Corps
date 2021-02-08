@@ -3,6 +3,3 @@ dreamchecker = true
 
 [dmdoc]
 use_typepath_names = true
-
-[debugger]
-engine = "auxtools"
