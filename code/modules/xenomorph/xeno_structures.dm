@@ -81,9 +81,6 @@
 				associated_hive = null
 				notify_ghosts("\ A resin spawning_pool has been destroyed at [AREACOORD_NO_Z(src)]!", source = get_turf(src), action = NOTIFY_JUMP)
 
-	for(var/i in contents)
-		var/atom/movable/AM = i
-		AM.forceMove(get_step(center_turf, pick(CARDINAL_ALL_DIRS)))
 	playsound(loc,'sound/effects/alien_egg_burst.ogg', 75)
 
 	spawning_pool_area = null
