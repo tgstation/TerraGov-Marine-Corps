@@ -1,4 +1,5 @@
 #define FUEL_USE 5
+#define JETPACK_COOLDOWN_TIME 10 SECONDS
 
 /obj/item/jetpack_marine
 	name = "marine jetpack"
@@ -10,18 +11,17 @@
 	///maximum amount of fuel in the jetpack
 	var/fuel_max = 60
 	///current amount of fuel in the jetpack
-	var/fuel_left = 60 
+	var/fuel_left = 60
 	///threshold to change the jetpack fuel indicator
-	var/fuel_indicator = 40 
+	var/fuel_indicator = 40
 	///How quick you will fly (warning, it rounds up to the nearest integer)
-	var/speed = 1 
+	var/speed = 1
 	///How long the jetpack allows you to fly over things
-	var/hovering_time = 1 SECONDS 
+	var/hovering_time = 1 SECONDS
 	///True when jetpack has flame overlay
 	var/lit
 	///True if you can use shift click/middle click to use it
 	var/selected
-	COOLDOWN_DECLARE(cooldown_jetpack)
 
 /obj/item/jetpack_marine/Initialize()
 	. = ..()
@@ -37,7 +37,7 @@
 		to_chat(user, "The fuel gauge meter indicate it has [fuel_left/FUEL_USE] uses left")
 	icon = 'icons/obj/items/jetpack.dmi'
 	icon_state = "jetpack_marine"
-	update_icon() //The animation breaks often in high pop, this tries to fix it. 
+	update_icon() //The animation breaks often in high pop, this tries to fix it.
 	user.update_inv_back()//Not sure it'll work, i don't understand what is causing the bug anyway
 
 /obj/item/jetpack_marine/equipped(mob/user, slot)
@@ -49,36 +49,35 @@
 
 /obj/item/jetpack_marine/dropped(mob/user)
 	. = ..()
-	UnregisterSignal(user, COMSIG_MOB_CLICK_ALT_RIGHT)
+	UnregisterSignal(user, list(COMSIG_MOB_CLICK_ALT_RIGHT, COMSIG_MOB_MIDDLE_CLICK))
 	UnregisterSignal(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE)
-	UnregisterSignal(src, list(COMSIG_ITEM_MIDDLECLICKON, COMSIG_ITEM_SHIFTCLICKON))
 	selected = FALSE
 	actions.Cut()
 
 /obj/item/jetpack_marine/ui_action_click(mob/user, datum/action/item_action/action)
 	if(selected)
-		UnregisterSignal(src, list(COMSIG_ITEM_MIDDLECLICKON, COMSIG_ITEM_SHIFTCLICKON))
+		UnregisterSignal(user, COMSIG_MOB_MIDDLE_CLICK)
 		action.remove_selected_frame()
 		UnregisterSignal(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE)
 	else
-		RegisterSignal(src, list(COMSIG_ITEM_MIDDLECLICKON, COMSIG_ITEM_SHIFTCLICKON), .proc/try_to_use_jetpack)
+		RegisterSignal(user, COMSIG_MOB_MIDDLE_CLICK, .proc/try_to_use_jetpack)
 		action.add_selected_frame()
 		SEND_SIGNAL(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE, user)
 		RegisterSignal(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE, .proc/unselect)
-	selected = !selected 
+	selected = !selected
 
 /obj/item/jetpack_marine/proc/unselect(datum/source, mob/user)
 	SIGNAL_HANDLER
 	if(selected)
 		selected = FALSE
-		UnregisterSignal(src, list(COMSIG_ITEM_MIDDLECLICKON, COMSIG_ITEM_SHIFTCLICKON))
+		UnregisterSignal(src, COMSIG_ITEM_MIDDLECLICKON)
 		UnregisterSignal(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE)
 		for(var/datum/action/action in user.actions)
 			if (istype(action, /datum/action/item_action))
 				var/datum/action/item_action/iaction = action
 				if(iaction?.holder_item == src)
 					action.remove_selected_frame()
-	
+
 
 ///remove the flame overlay
 /obj/item/jetpack_marine/proc/reset_flame(mob/living/carbon/human/human_user)
@@ -87,11 +86,11 @@
 	human_user.update_inv_back()
 
 ///Signal handler for alt click, when the user want to fly at an atom
-/obj/item/jetpack_marine/proc/try_to_use_jetpack(datum/source, atom/A) 
+/obj/item/jetpack_marine/proc/try_to_use_jetpack(datum/source, atom/A)
 	SIGNAL_HANDLER
 	var/mob/living/carbon/human/human_user = usr
 	if (use_jetpack(human_user))
-		COOLDOWN_START(src, cooldown_jetpack, 10 SECONDS)
+		TIMER_COOLDOWN_START(src, COOLDOWN_JETPACK, JETPACK_COOLDOWN_TIME)
 		lit = TRUE
 		playsound(human_user,'sound/items/jetpack_sound.ogg',45)
 		fuel_left -= FUEL_USE
@@ -114,13 +113,13 @@
 		if(1.2 to 1.5)//heavy armor with shield and tyr mk2
 			return 3
 		if(1.5 to INFINITY)//the rest
-			return 2	
+			return 2
 
 ///Check if we can use the jetpack and give feedback to the users
 /obj/item/jetpack_marine/proc/use_jetpack(mob/living/carbon/human/human_user)
 	if(human_user.incapacitated() || human_user.lying_angle)
 		return FALSE
-	if(!COOLDOWN_CHECK(src,cooldown_jetpack))
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_JETPACK))
 		to_chat(human_user,"<span class='warning'>You cannot use the jetpack yet!</span>")
 		return FALSE
 	if(fuel_left < FUEL_USE)
@@ -144,10 +143,10 @@
 
 /obj/item/jetpack_marine/apply_custom(image/standing)
 	if(lit)
-		standing.overlays += image('icons/mob/back.dmi',src,"+jetpack_lit")	
+		standing.overlays += image('icons/mob/back.dmi',src,"+jetpack_lit")
 
 ///Manage the fuel indicator overlay
-/obj/item/jetpack_marine/proc/change_fuel_indicator() 
+/obj/item/jetpack_marine/proc/change_fuel_indicator()
 	if(fuel_left-fuel_indicator > 0)
 		return
 	if (fuel_left >= 20)
