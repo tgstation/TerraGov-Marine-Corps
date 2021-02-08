@@ -258,7 +258,6 @@
 		/obj/item/weapon/gun/smg/m25,
 		/obj/item/weapon/gun/smg/mp7,
 		/obj/item/weapon/gun/smg/skorpion,
-		/obj/item/weapon/gun/smg/skorpion/upp,
 		/obj/item/weapon/gun/smg/ppsh,
 		/obj/item/weapon/gun/smg/uzi,
 		/obj/item/weapon/claymore,
