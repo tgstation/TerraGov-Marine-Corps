@@ -29,3 +29,5 @@ tools/BalanceTool/raw.json
 dmdoc/*
 
 tools/UnstandardnessTestForDM/UnstandardnessTestForDM/obj/x86/Debug/.NETFramework,Version=v4.0,Profile=Client.AssemblyAttributes.cs
+tools/dmi/__pycache__/__init__.cpython-36.pyc
+tools/hooks/__pycache__/merge_frontend.cpython-36.pyc
