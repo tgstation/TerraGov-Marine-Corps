@@ -19,7 +19,7 @@
 	item_icons = list(slot_wear_suit_str = 'icons/mob/modular/modular_armor.dmi')
 	flags_atom = CONDUCT
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
-	flags_item = SYNTH_RESTRICTED
+	flags_item = (SYNTH_RESTRICTED|SPECIFIC_SLOWDOWN)
 	/// What is allowed to be equipped in suit storage
 	allowed = list(
 		/obj/item/weapon/gun,
@@ -40,8 +40,6 @@
 	gas_transfer_coefficient = 1
 
 	actions_types = list(/datum/action/item_action/toggle)
-
-	entrave_movement = TRUE
 
 	/// Attachment slots for chest armor
 	var/obj/item/armor_module/armor/slot_chest

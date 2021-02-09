@@ -36,13 +36,12 @@
 	var/list/armor_overlays
 	actions_types = list(/datum/action/item_action/toggle)
 	flags_armor_features = ARMOR_LAMP_OVERLAY
-	flags_item = SYNTH_RESTRICTED
+	flags_item = (SYNTH_RESTRICTED|SPECIFIC_SLOWDOWN)
 	w_class = WEIGHT_CLASS_HUGE
 	time_to_unequip = 2 SECONDS
 	time_to_equip = 2 SECONDS
 	pockets = /obj/item/storage/internal/suit/marine
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
-	entrave_movement = TRUE
 
 /obj/item/storage/internal/suit/marine
 	bypass_w_limit = list(

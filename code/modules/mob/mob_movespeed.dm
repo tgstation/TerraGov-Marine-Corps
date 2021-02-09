@@ -38,8 +38,6 @@ Key procs
 /mob/proc/add_movespeed_modifier(id, update = TRUE, priority = 0, flags = NONE, override = FALSE, multiplicative_slowdown = 0, conflict = FALSE, item = FALSE)
 	var/list/temp = list(priority, flags, multiplicative_slowdown, conflict) //build the modification list
 	var/resort = TRUE
-	if(item)
-		cached_additive_slowdown_items += multiplicative_slowdown
 	if(LAZYACCESS(movespeed_modification, id))
 		var/list/existing_data = movespeed_modification[id]
 		if(!override)
@@ -58,8 +56,6 @@ Key procs
 	var/list/movespeed_mod = LAZYACCESS(movespeed_modification, id)
 	if(!movespeed_mod)
 		return FALSE
-	if(item)
-		cached_additive_slowdown_items -= movespeed_mod[MOVESPEED_DATA_INDEX_MULTIPLICATIVE_SLOWDOWN]
 	LAZYREMOVE(movespeed_modification, id)
 	UNSETEMPTY(movespeed_modification)
 	if(update)
@@ -177,3 +173,10 @@ Key procs
 			assembled[our_id] = our_data
 	movespeed_modification = assembled
 	UNSETEMPTY(movespeed_modification)
+
+///Give the sum of all slowdown that have flag
+/mob/proc/additive_flagged_slowdown(flag)
+	for(var/id in movespeed_modification)
+		var/list/data = movespeed_modification[id]
+		if(CHECK_BITFIELD(data[MOVESPEED_DATA_INDEX_FLAGS], flag))
+			. += data[MOVESPEED_DATA_INDEX_MULTIPLICATIVE_SLOWDOWN]

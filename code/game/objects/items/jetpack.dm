@@ -19,9 +19,9 @@
 	///How long the jetpack allows you to fly over things
 	var/hovering_time = 1 SECONDS
 	///True when jetpack has flame overlay
-	var/lit
+	var/lit = FALSE
 	///True if you can use shift click/middle click to use it
-	var/selected
+	var/selected = FALSE
 
 /obj/item/jetpack_marine/Initialize()
 	. = ..()
@@ -66,17 +66,20 @@
 		RegisterSignal(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE, .proc/unselect)
 	selected = !selected
 
+///Signal handler for making it impossible to use middleclick to use the jetpack
 /obj/item/jetpack_marine/proc/unselect(datum/source, mob/user)
 	SIGNAL_HANDLER
-	if(selected)
-		selected = FALSE
-		UnregisterSignal(src, COMSIG_ITEM_MIDDLECLICKON)
-		UnregisterSignal(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE)
-		for(var/datum/action/action in user.actions)
-			if (istype(action, /datum/action/item_action))
-				var/datum/action/item_action/iaction = action
-				if(iaction?.holder_item == src)
-					action.remove_selected_frame()
+	if(!selected)
+		return
+	selected = FALSE
+	UnregisterSignal(src, COMSIG_ITEM_MIDDLECLICKON)
+	UnregisterSignal(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE)
+	for(var/datum/action/action in user.actions)
+		if (!istype(action, /datum/action/item_action))
+			continue
+		var/datum/action/item_action/iaction = action
+		if(iaction?.holder_item == src)
+			action.remove_selected_frame()
 
 
 ///remove the flame overlay
@@ -89,21 +92,23 @@
 /obj/item/jetpack_marine/proc/try_to_use_jetpack(datum/source, atom/A)
 	SIGNAL_HANDLER
 	var/mob/living/carbon/human/human_user = usr
-	if (use_jetpack(human_user))
-		TIMER_COOLDOWN_START(src, COOLDOWN_JETPACK, JETPACK_COOLDOWN_TIME)
-		lit = TRUE
-		playsound(human_user,'sound/items/jetpack_sound.ogg',45)
-		fuel_left -= FUEL_USE
-		change_fuel_indicator()
-		human_user.update_inv_back()
-		update_icon()
-		new /obj/effect/temp_visual/smoke(get_turf(human_user))
-		human_user.fly_at(A, calculate_range(human_user), speed, hovering_time)
-		addtimer(CALLBACK(src,.proc/reset_flame, human_user), hovering_time)
+	if (!use_jetpack(human_user))
+		return
+	TIMER_COOLDOWN_START(src, COOLDOWN_JETPACK, JETPACK_COOLDOWN_TIME)
+	lit = TRUE
+	playsound(human_user,'sound/items/jetpack_sound.ogg',45)
+	fuel_left -= FUEL_USE
+	change_fuel_indicator()
+	human_user.update_inv_back()
+	update_icon()
+	new /obj/effect/temp_visual/smoke(get_turf(human_user))
+	human_user.fly_at(A, calculate_range(human_user), speed, hovering_time)
+	addtimer(CALLBACK(src,.proc/reset_flame, human_user), hovering_time)
 
 ///Calculate the max range of the jetpack, changed by some item slowdown
 /obj/item/jetpack_marine/proc/calculate_range(mob/living/carbon/human/human_user)
-	switch(human_user.cached_additive_slowdown_items)
+	var/range_limiting_factor = human_user.additive_flagged_slowdown(SPECIFIC_SLOWDOWN)
+	switch(range_limiting_factor)
 		if(0 to 0.35) //light armor or above
 			return 7
 		if(0.35 to 0.75)//medium armor with shield

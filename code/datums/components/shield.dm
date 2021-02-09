@@ -140,7 +140,7 @@
 		return
 	var/mob/living/carbon/human/human_user = user
 	if(parent_item.slowdown)
-		human_user.add_movespeed_modifier(parent.type, TRUE, 0, NONE, TRUE, parent_item.slowdown, FALSE, TRUE)
+		human_user.add_movespeed_modifier(parent.type, TRUE, 0, parent_item.flags_item, TRUE, parent_item.slowdown, FALSE, TRUE)
 
 /datum/component/shield/proc/shield_dropped(datum/source, mob/user)
 	SIGNAL_HANDLER
