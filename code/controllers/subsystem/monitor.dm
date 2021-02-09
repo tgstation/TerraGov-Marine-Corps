@@ -79,7 +79,6 @@ SUBSYSTEM_DEF(monitor)
 	. += stats.b18_in_use.len * B18_PRICE * REQ_POINTS_WEIGHT
 	. += SSpoints.supply_points * REQ_POINTS_WEIGHT
 	. += stats.OB_available * OB_AVAILABLE_WEIGHT
-	. += GLOB.xeno_resin_spawning_pools.len * SPAWNING_POOL_WEIGHT
 
 ///Keep the monitor informed about the position of humans
 /datum/controller/subsystem/monitor/proc/process_human_positions()
