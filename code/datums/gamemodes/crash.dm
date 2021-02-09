@@ -95,11 +95,11 @@
 			spawning_pool_number = 3
 		if(60 to INFINITY)
 			spawning_pool_number = 4
-	
+
 	for(var/i in 1 to spawning_pool_number)//Random spawning_pool generation depending on the number of players
 		var/poolturf = pick(GLOB.xeno_resin_spawning_pool_turfs)
 		GLOB.xeno_resin_spawning_pool_turfs -= poolturf
-		new /obj/structure/resin/spawning_pool(poolturf)
+		new /obj/structure/xeno/spawning_pool(poolturf)
 
 	for(var/i in GLOB.nuke_spawn_locs)
 		new /obj/machinery/nuclearbomb(i)

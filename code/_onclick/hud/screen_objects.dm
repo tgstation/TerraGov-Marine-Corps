@@ -777,10 +777,13 @@
 	tracker.client.screen += src
 	process() //Ping immediately after parameters have been set
 
-/obj/screen/arrow/Initialize() //Self-deletes
+/obj/screen/arrow/Initialize(manual_duration = 0) //Self-deletes
 	. = ..()
 	START_PROCESSING(SSprocessing, src)
-	QDEL_IN(src, duration)	
+	if(manual_duration) //If we automatically set the duration
+		duration = manual_duration
+
+	QDEL_IN(src, duration)
 
 /obj/screen/arrow/process() //We ping the target, revealing its direction with an arrow
 	if(target.z != tracker.z || get_dist(tracker, target) < 5 || tracker == target)
@@ -796,7 +799,7 @@
 
 /obj/screen/arrow/leader_tracker_arrow
 	name = "hive leader tracker arrow"
-	icon_state = "Blue_arrow"	
+	icon_state = "Blue_arrow"
 	duration = XENO_RALLYING_POINTER_DURATION
 
 /obj/screen/arrow/silo_damaged_arrow

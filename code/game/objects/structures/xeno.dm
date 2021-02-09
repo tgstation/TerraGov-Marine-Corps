@@ -503,6 +503,9 @@
 	var/override_destruction_alert_cooldown = FALSE
 	///Whether we can repair this structure. Defaults to TRUE
 	var/can_repair = TRUE
+	hit_sound = "alien_resin_break"
+	layer = RESIN_STRUCTURE_LAYER
+	resistance_flags = UNACIDABLE
 
 
 /obj/structure/xeno/examine(mob/user)
@@ -515,8 +518,6 @@
 /obj/structure/xeno/Initialize(mapload, mob/living/carbon/xenomorph/X)
 	. = ..()
 	if(X?.hivenumber) //Make sure X has a hive number
-		return
-	if(X.hivenumber)
 		hivenumber = X.hivenumber
 
 /obj/structure/xeno/flamer_fire_act()
@@ -593,7 +594,6 @@
 	return TRUE
 
 /obj/structure/xeno/attack_alien(mob/living/carbon/xenomorph/M, isrightclick = FALSE)
-
 	repair_xeno_structure(M) //Repair if possible
 
 
@@ -607,7 +607,6 @@
 	opacity = FALSE
 	anchored = TRUE
 	max_integrity = 50
-	layer = RESIN_STRUCTURE_LAYER
 	var/obj/item/clothing/mask/facehugger/hugger = null
 
 /obj/structure/xeno/trap/Initialize(mapload, mob/living/carbon/xenomorph/X)
@@ -640,7 +639,7 @@
 		hugger.kill_hugger()
 		hugger = null
 		icon_state = "trap0"
-	..()
+	return ..()
 
 /obj/structure/xeno/trap/fire_act()
 	if(hugger)
@@ -734,8 +733,6 @@ TUNNEL
 	density = FALSE
 	opacity = FALSE
 	anchored = TRUE
-	resistance_flags = UNACIDABLE
-	layer = RESIN_STRUCTURE_LAYER
 
 	var/tunnel_desc = "" //description added by the hivelord.
 
@@ -894,7 +891,6 @@ TUNNEL
 	opacity = FALSE
 	anchored = TRUE
 	max_integrity = 120
-	layer = RESIN_STRUCTURE_LAYER
 
 	hit_sound = "alien_resin_move"
 	destroy_sound = "alien_resin_move"
@@ -1165,7 +1161,7 @@ TUNNEL
 //*******************
 
 /obj/structure/xeno/silo
-	icon = 'icons/Xeno/resin_silo.dmi'
+	icon = 'icons/Xeno/spawning_pool.dmi'
 	icon_state = "brown_silo"
 	name = "resin silo"
 	desc = "A slimy, oozy resin bed filled with foul-looking egg-like ...things."
@@ -1173,8 +1169,6 @@ TUNNEL
 	bound_height = 96
 	max_integrity = 400
 	hit_sound = "alien_resin_break"
-	layer = RESIN_STRUCTURE_LAYER
-	resistance_flags = UNACIDABLE
 
 	hit_sound = "alien_resin_move"
 	destroy_sound = "alien_resin_move"
@@ -1202,7 +1196,6 @@ TUNNEL
 	number_silo = number
 	number++
 
-	GLOB.xeno_resin_silos += src
 	center_turf = get_step(src, NORTHEAST)
 	if(!istype(center_turf))
 		center_turf = loc
@@ -1221,12 +1214,10 @@ TUNNEL
 		associated_hive = GLOB.hive_datums[hivenumber]
 	else
 		associated_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
-	if(associated_hive)
-		RegisterSignal(associated_hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK), .proc/is_burrowed_larva_host)
+
 	silo_area = get_area(src)
 
 /obj/structure/xeno/silo/Destroy()
-	GLOB.xeno_resin_silos -= src
 
 	for(var/i in contents)
 		var/atom/movable/AM = i
@@ -1289,79 +1280,145 @@ TUNNEL
 	//If we're at max integrity, stop regenerating and processing.
 	return PROCESS_KILL
 
-///Add this silo to the list of silos if it has an associated hive
-/obj/structure/xeno/silo/proc/is_burrowed_larva_host(datum/source, list/mothers, list/silos)
-	SIGNAL_HANDLER
-	if(associated_hive)
-		silos += src
 
 
-//*******************
-//Corpse recyclinging
-//*******************
-/obj/structure/xeno/silo/attackby(obj/item/I, mob/user, params)
+
+/obj/structure/xeno/spawning_pool
+	name = "spawning pool"
+	icon = 'icons/Xeno/spawning_pool.dmi'
+	icon_state = "spawning_pool"
+	desc = "A slimy, oozy resin bed filled with foul-looking egg-like ...things."
+	bound_width = 96
+	bound_height = 96
+	max_integrity = 1000
+	var/turf/center_turf
+	var/datum/hive_status/associated_hive
+	var/spawning_pool_area
+	var/number_pool
+	COOLDOWN_DECLARE(spawning_pool_damage_alert_cooldown)
+	COOLDOWN_DECLARE(spawning_pool_proxy_alert_cooldown)
+
+/obj/structure/xeno/spawning_pool/Initialize()
 	. = ..()
-	if(!isxeno(user)) //only xenos can deposit corpses
+
+	var/static/number = 1
+	name = "[name] [number]"
+	number_pool = number
+	number++
+
+	GLOB.xeno_resin_spawning_pools += src
+	associated_hive?.handle_spawning_pool_death_timer()
+	center_turf = get_step(src, NORTHEAST)
+	if(!istype(center_turf))
+		center_turf = loc
+
+	for(var/i in RANGE_TURFS(2, src))
+		RegisterSignal(i, COMSIG_ATOM_ENTERED, .proc/resin_spawning_pool_proxy_alert)
+
+	return INITIALIZE_HINT_LATELOAD
+
+
+/obj/structure/xeno/spawning_pool/LateInitialize()
+	. = ..()
+	if(!locate(/obj/effect/alien/weeds) in center_turf)
+		new /obj/effect/alien/weeds/node(center_turf)
+	associated_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
+	if(associated_hive)
+		RegisterSignal(associated_hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK), .proc/is_burrowed_larva_host)
+	spawning_pool_area = get_area(src)
+
+/obj/structure/xeno/spawning_pool/Destroy()
+	GLOB.xeno_resin_spawning_pools -= src
+	if(associated_hive)
+		UnregisterSignal(associated_hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK))
+		var/datum/game_mode/infestation/distress/distress_mode
+		if(isdistress(SSticker.mode)) //Silo can only be destroy in distress mode, but this check can create bugs if new gamemodes are added.
+			distress_mode = SSticker.mode
+			if (!(distress_mode.round_stage == DISTRESS_DROPSHIP_CRASHING))//No need to notify the xenos shipside
+				associated_hive.xeno_message("<span class='xenoannounce'>A resin spawning_pool has been destroyed at [AREACOORD_NO_Z(src)]!</span>", 2, FALSE,src.loc, 'sound/voice/alien_help2.ogg',FALSE , null, /obj/screen/arrow/silo_damaged_arrow)
+				associated_hive.handle_spawning_pool_death_timer()
+				associated_hive = null
+				notify_ghosts("\ A resin spawning_pool has been destroyed at [AREACOORD_NO_Z(src)]!", source = get_turf(src), action = NOTIFY_JUMP)
+
+	for(var/i in contents)
+		var/atom/movable/AM = i
+		AM.forceMove(get_step(center_turf, pick(CARDINAL_ALL_DIRS)))
+	playsound(loc,'sound/effects/alien_egg_burst.ogg', 75)
+
+	spawning_pool_area = null
+	center_turf = null
+	STOP_PROCESSING(SSslowprocess, src)
+	return ..()
+
+
+/obj/structure/xeno/spawning_pool/examine(mob/user)
+	. = ..()
+	var/current_integrity = (obj_integrity / max_integrity) * 100
+	switch(current_integrity)
+		if(0 to 20)
+			to_chat(user, "<span class='warning'>It's barely holding, there's leaking oozes all around, and most eggs are broken. Yet it is not inert.</span>")
+		if(20 to 40)
+			to_chat(user, "<span class='warning'>It looks severely damaged, its movements slow.</span>")
+		if(40 to 60)
+			to_chat(user, "<span class='warning'>It's quite beat up, but it seems alive.</span>")
+		if(60 to 80)
+			to_chat(user, "<span class='warning'>It's slightly damaged, but still seems healthy.</span>")
+		if(80 to 100)
+			to_chat(user, "<span class='info'>It appears in good shape, pulsating healthily.</span>")
+
+
+/obj/structure/xeno/spawning_pool/take_damage(damage_amount, damage_type, damage_flag, sound_effect, attack_dir, armour_penetration)
+	. = ..()
+
+	//We took damage, so it's time to start regenerating if we're not already processing
+	if(!CHECK_BITFIELD(datum_flags, DF_ISPROCESSING))
+		START_PROCESSING(SSslowprocess, src)
+
+	resin_spawning_pool_damage_alert()
+
+/obj/structure/xeno/spawning_pool/proc/resin_spawning_pool_damage_alert()
+	if(!COOLDOWN_CHECK(src, spawning_pool_damage_alert_cooldown))
 		return
 
-	if(!istype(I, /obj/item/grab))
+	associated_hive.xeno_message("<span class='xenoannounce'>Our [name] at [AREACOORD_NO_Z(src)] is under attack! It has [obj_integrity]/[max_integrity] Health remaining.</span>", 2, FALSE, src, 'sound/voice/alien_help1.ogg',FALSE, null, /obj/screen/arrow/silo_damaged_arrow)
+	COOLDOWN_START(src, spawning_pool_damage_alert_cooldown, XENO_HEALTH_ALERT_COOLDOWN) //set the cooldown.
+
+///Alerts the Hive when hostiles get too close to their resin spawning_pool
+/obj/structure/xeno/spawning_pool/proc/resin_spawning_pool_proxy_alert(datum/source, atom/hostile)
+	SIGNAL_HANDLER
+
+	if(!COOLDOWN_CHECK(src, spawning_pool_proxy_alert_cooldown)) //Proxy alert triggered too recently; abort
 		return
 
-	var/obj/item/grab/G = I
-	if(!iscarbon(G.grabbed_thing))
-		return
-	var/mob/living/carbon/victim = G.grabbed_thing
-	if(!(ishuman(victim) || ismonkey(victim))) //humans and monkeys only for now
-		to_chat(user, "<span class='notice'>[src] can only process humanoid anatomies!</span>")
+	if(!isliving(hostile))
 		return
 
-	if(victim.chestburst)
-		to_chat(user, "<span class='notice'>[victim] has already been exhausted to incubate a sister!</span>")
+	var/mob/living/living_triggerer = hostile
+	if(living_triggerer.stat == DEAD) //We don't care about the dead
 		return
 
-	if(issynth(victim))
-		to_chat(user, "<span class='notice'>[victim] has no useful biomass for us.</span>")
-		return
-
-	if(ishuman(victim))
-		var/mob/living/carbon/human/H = victim
-		if(check_tod(H))
-			to_chat(user, "<span class='notice'>[H] still has some signs of life. We should headbite it to finish it off.</span>")
+	if(isxeno(hostile))
+		var/mob/living/carbon/xenomorph/X = hostile
+		if(X.hive == associated_hive) //Trigger proxy alert only for hostile xenos
 			return
 
-	visible_message("[user] starts putting [victim] into [src].", 3)
-
-	if(!do_after(user, 20, FALSE, victim, BUSY_ICON_DANGER) || QDELETED(src))
+	if(get_dist(loc, hostile) > 2) //Can only send alerts for those within 2 of us; so we don't have all spawning_pools sending alerts when one is proxy tripped
 		return
 
-	victim.chestburst = 2 //So you can't reuse corpses if the silo is destroyed
-	victim.update_burst()
-	victim.forceMove(src)
+	associated_hive.xeno_message("<span class='xenoannounce'>Our [name] has detected a nearby hostile [hostile] at [get_area(hostile)] (X: [hostile.x], Y: [hostile.y]). [name] has [obj_integrity]/[max_integrity] Health remaining.</span>", 2, FALSE, hostile, 'sound/voice/alien_help1.ogg')
+	COOLDOWN_START(src, spawning_pool_proxy_alert_cooldown, XENO_HEALTH_ALERT_COOLDOWN) //set the cooldown.
 
-	if(prob(5)) //5% chance to play
-		shake(4 SECONDS)
-	else
-		playsound(loc, 'sound/effects/blobattack.ogg', 25)
 
-	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	xeno_job.add_job_points(1.75) //4 corpses per burrowed; 7 points per larva
+/obj/structure/xeno/spawning_pool/process()
+	//Regenerate if we're at less than max integrity
+	if(obj_integrity < max_integrity)
+		obj_integrity = min(obj_integrity + 25, max_integrity) //Regen 5 HP per sec
+		return
 
-	log_combat(victim, user, "was consumed by a resin silo")
-	log_game("[key_name(victim)] was consumed by a resin silo at [AREACOORD(victim.loc)].")
+	//If we're at max integrity, stop regenerating and processing.
+	return PROCESS_KILL
 
-	GLOB.round_statistics.xeno_silo_corpses++
-	SSblackbox.record_feedback("tally", "round_statistics", 1, "xeno_silo_corpses")
-
-/obj/structure/xeno/silo/proc/shake(duration)
-	var/offset = prob(50) ? -2 : 2
-	var/old_pixel_x = pixel_x
-	var/shake_sound = rand(1, 100) == 1 ? 'sound/machines/blender.ogg' : 'sound/machines/juicer.ogg'
-	playsound(src, shake_sound, 25, TRUE)
-	animate(src, pixel_x = pixel_x + offset, time = 2, loop = -1) //start shaking
-	addtimer(CALLBACK(src, .proc/stop_shake, old_pixel_x), duration)
-
-///Terminate the shaking animation after blending
-/obj/structure/xeno/silo/proc/stop_shake(old_px)
-	animate(src)
-	pixel_x = old_px
-
+/obj/structure/xeno/spawning_pool/proc/is_burrowed_larva_host(datum/source, list/mothers, list/spawning_pools)
+	SIGNAL_HANDLER
+	if(associated_hive)
+		spawning_pools += src

@@ -9,7 +9,7 @@
 	var/timerid
 
 
-/obj/effect/temp_visual/Initialize(mapload, manual_duration = FALSE)
+/obj/effect/temp_visual/Initialize(mapload, manual_duration = 0)
 	. = ..()
 	if(randomdir)
 		setDir(pick(GLOB.cardinals))
@@ -47,12 +47,13 @@
 	color = COLOR_RED
 	hud_possible = list(XENO_TACTICAL_HUD)
 
-/obj/effect/temp_visual/xenomorph/xeno_tracker_target/Initialize(mapload)
+/obj/effect/temp_visual/xenomorph/xeno_tracker_target/Initialize(mapload, manual_duration = 0)
 	. = ..()
 	prepare_huds()
 	for(var/datum/atom_hud/xeno_tactical/xeno_tac_hud in GLOB.huds) //Add to the xeno tachud
 		xeno_tac_hud.add_to_hud(src)
 	hud_set_xeno_tracker_target()
+
 
 ///Icon set up and HUD registration
 /obj/effect/temp_visual/xenomorph/xeno_tracker_target/proc/hud_set_xeno_tracker_target()

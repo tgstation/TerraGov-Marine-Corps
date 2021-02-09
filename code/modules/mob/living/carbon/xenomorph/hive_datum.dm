@@ -500,7 +500,7 @@ to_chat will check for valid clients itself already so no need to double check f
 */
 
 ///Used for Hive Message alerts
-/datum/hive_status/proc/xeno_message(message = null, size = 3, force = FALSE, atom/target = null, sound = null, apply_preferences = FALSE, filter_list = null, arrow_type)
+/datum/hive_status/proc/xeno_message(message = null, size = 3, force = FALSE, atom/target = null, sound = null, apply_preferences = FALSE, filter_list = null, arrow_type, manual_duration = 0)
 
 	if(!force && !can_xeno_message())
 		return
@@ -522,10 +522,12 @@ to_chat will check for valid clients itself already so no need to double check f
 			X.playsound_local(X, sound, max(size * 20, 60), 0, 1)
 
 		if(target) //Apply tracker arrow to point to the subject of the message if applicable
-			var/obj/screen/arrow/arrow_hud = new arrow_type
+			var/obj/screen/arrow/arrow_hud = new arrow_type(X, manual_duration)
 			//Prepare the tracker object and set its parameters
 			arrow_hud.add_hud(X, target)
-			new /obj/effect/temp_visual/xenomorph/xeno_tracker_target(get_turf(target), ping_time) //Ping the source of our alert
+
+			manual_duration = arrow_hud.duration //Blip will match the arrow's duration
+			new /obj/effect/temp_visual/xenomorph/xeno_tracker_target(get_turf(target), manual_duration) //Ping the source of our alert
 
 		to_chat(X, "<span class='xenodanger'><font size=[size]> [message]</font></span>")
 
@@ -623,7 +625,7 @@ to_chat will check for valid clients itself already so no need to double check f
 
 
 /datum/hive_status/normal/proc/attempt_to_spawn_larva_in_spawning_pool(mob/xeno_candidate, possible_spawning_pools)
-	var/obj/structure/resin/spawning_pool/chosen_spawning_pool
+	var/obj/structure/xeno/spawning_pool/chosen_spawning_pool
 	if(length(possible_spawning_pools) > 1)
 		chosen_spawning_pool = input("Available Egg Silos") as null|anything in possible_spawning_pools
 		xeno_candidate.forceMove(chosen_spawning_pool)
@@ -731,7 +733,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	if(difference < 0)
 		if(xeno_job.total_positions < (-difference + xeno_job.current_positions))
 			xeno_job.set_job_positions(-difference + xeno_job.current_positions)
-	for(var/obj/structure/resin/spawning_pool/spawning_pool as() in GLOB.xeno_resin_spawning_pools)
+	for(var/obj/structure/xeno/spawning_pool/spawning_pool as() in GLOB.xeno_resin_spawning_pools)
 		if(!is_ground_level(spawning_pool.z))
 			continue
 		qdel(spawning_pool)

@@ -938,12 +938,12 @@
 	if(!do_after(owner, build_time, TRUE, A, BUSY_ICON_BUILD))
 		return fail_activate()
 
-	var/obj/structure/resin/spawning_pool/pool = new(get_step(A, SOUTHWEST))
+	var/obj/structure/xeno/spawning_pool/pool = new(get_step(A, SOUTHWEST))
 	GLOB.xeno_resin_spawning_pools += pool
 
 	var/mob/living/carbon/xenomorph/X = owner
 	SSpoints.xeno_points_by_hive[X.hivenumber] -= psych_cost
-	
+
 	succeed_activate()
 
 // Salvage Biomass
@@ -1053,12 +1053,14 @@
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	cooldown_timer = 60 SECONDS
 
-/datum/action/xeno_action/activable/rally_hive/use_ability()
+/datum/action/xeno_action/activable/rally_hive/use_ability(atom/A)
 
 	var/mob/living/carbon/xenomorph/X = owner
 
-	xeno_message("<span class='xenoannounce'>Our leader [X] is rallying the hive to [AREACOORD_NO_Z(X.loc)]!</span>", 3, X.hivenumber, FALSE, X, 'sound/voice/alien_distantroar_3.ogg',TRUE,null,/obj/screen/arrow/leader_tracker_arrow)
-	notify_ghosts("\ [X] is rallying the hive to [AREACOORD_NO_Z(X.loc)]!", source = X, action = NOTIFY_JUMP)
+	X.face_atom(A)
+
+	xeno_message("<span class='xenoannounce'>Our leader [X] is rallying the hive to [AREACOORD_NO_Z(X.loc)]!</span>", 3, X.hivenumber, FALSE, A, 'sound/voice/alien_distantroar_3.ogg',TRUE,null,/obj/screen/arrow/leader_tracker_arrow)
+	notify_ghosts("\ [X] is rallying the hive to [AREACOORD_NO_Z(A.loc)]!", source = A.loc, action = NOTIFY_JUMP)
 
 	succeed_activate()
 	add_cooldown()

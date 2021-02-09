@@ -75,7 +75,7 @@
 ///Relays health and location data about spawning pool belonging to the same hive as the input user
 /proc/spawning_pool_status_output(mob/living/carbon/xenomorph/user, datum/hive_status/hive)
 	. = "<BR><b>List of Spawning Pool:</b><BR><table cellspacing=4>" //Spawning pool data
-	for(var/obj/structure/resin/spawning_pool/spawning_pool as() in GLOB.xeno_resin_spawning_pools)
+	for(var/obj/structure/xeno/spawning_pool/spawning_pool as() in GLOB.xeno_resin_spawning_pools)
 		if(spawning_pool.associated_hive == hive)
 
 			var/hp_color = "green"
@@ -188,12 +188,12 @@
 			to_chat(usr,"<span class='notice'> You will now track [X.name]</span>")
 			tracked = X
 			break
-	
+
 	if(href_list["track_pool_number"])
 		if(!check_state())
 			return
 		var/pool_number = href_list["track_pool_number"]
-		for(var/obj/structure/resin/spawning_pool/spawning_pool as() in GLOB.xeno_resin_spawning_pools)
+		for(var/obj/structure/xeno/spawning_pool/spawning_pool as() in GLOB.xeno_resin_spawning_pools)
 			if(spawning_pool.associated_hive == hive && num2text(spawning_pool.number_pool) == pool_number)
 				tracked = spawning_pool
 				to_chat(usr,"<span class='notice'> You will now track [spawning_pool.name]</span>")
