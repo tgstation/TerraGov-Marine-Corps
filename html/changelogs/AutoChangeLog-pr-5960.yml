@@ -1,0 +1,5 @@
+author: "TiviPlus"
+delete-after: True
+changes: 
+  - code_imp: "Admins and coders can now edit filters on the fly"
+  - refactor: "Refactors filters"
