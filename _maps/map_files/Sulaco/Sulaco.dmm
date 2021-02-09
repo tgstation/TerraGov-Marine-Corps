@@ -1794,8 +1794,9 @@
 	},
 /area/sulaco/engineering/atmos)
 "agb" = (
-/turf/closed/wall/mainship/white,
-/area/sulaco/hallway/lower_main_hall)
+/obj/structure/dropship_equipment/weapon/minirocket_pod,
+/turf/open/floor/prison,
+/area/sulaco/hangar)
 "agm" = (
 /obj/machinery/vending/tool,
 /turf/open/floor/prison,
@@ -8126,10 +8127,6 @@
 "aMF" = (
 /turf/closed/wall/mainship/gray/outer,
 /area/sulaco/marine/bravo)
-"aMK" = (
-/obj/machinery/dropship_part_fabricator,
-/turf/open/floor/prison,
-/area/sulaco/hangar)
 "aMP" = (
 /obj/structure/dropship_equipment/weapon/heavygun,
 /turf/open/floor/prison,
@@ -13270,7 +13267,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/structure/ship_ammo/minirocket,
+/obj/structure/ship_ammo/minirocket/illumination,
 /turf/open/floor/prison,
 /area/sulaco/hangar)
 "jWd" = (
@@ -13849,11 +13846,6 @@
 /obj/machinery/vending/uniform_supply,
 /turf/open/floor/prison,
 /area/sulaco/cargo)
-"lvp" = (
-/obj/structure/ship_ammo/rocket/banshee,
-/obj/effect/decal/warning_stripes/thin,
-/turf/open/floor/prison,
-/area/sulaco/hangar)
 "lwy" = (
 /obj/structure/closet/toolcloset,
 /obj/item/radio/intercom/general{
@@ -14442,10 +14434,6 @@
 /obj/machinery/door/airlock/mainship/generic,
 /turf/open/floor/prison/red,
 /area/sulaco/cafeteria)
-"mTZ" = (
-/obj/structure/ship_ammo/rocket/widowmaker,
-/turf/open/floor/prison,
-/area/sulaco/hangar)
 "mUa" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 6
@@ -14564,7 +14552,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
 "npi" = (
-/obj/structure/dropship_equipment/weapon/minirocket_pod,
+/obj/structure/ship_ammo/minirocket/illumination,
 /turf/open/floor/prison,
 /area/sulaco/hangar)
 "nqJ" = (
@@ -14832,11 +14820,6 @@
 /obj/machinery/door/firedoor/mainship,
 /turf/open/floor/plating/platebotc,
 /area/sulaco/medbay)
-"odD" = (
-/obj/structure/ship_ammo/rocket/keeper,
-/obj/effect/decal/warning_stripes/thin,
-/turf/open/floor/prison,
-/area/sulaco/hangar)
 "ofF" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
@@ -14955,11 +14938,6 @@
 /obj/structure/cable,
 /turf/open/floor/prison/plate,
 /area/sulaco/cargo)
-"oqn" = (
-/obj/structure/ship_ammo/rocket/widowmaker,
-/obj/effect/decal/warning_stripes/thin,
-/turf/open/floor/prison,
-/area/sulaco/hangar)
 "oqN" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -15571,7 +15549,7 @@
 /turf/closed/wall/mainship/gray/outer,
 /area/sulaco/liaison/quarters)
 "pAt" = (
-/obj/structure/dropship_equipment/medevac_system,
+/obj/structure/dropship_equipment/operatingtable,
 /turf/open/floor/prison,
 /area/sulaco/maintenance/lower_maint)
 "pBw" = (
@@ -15690,7 +15668,7 @@
 /turf/open/floor/plating,
 /area/sulaco/engineering/smes)
 "pWC" = (
-/obj/structure/ship_ammo/rocket/banshee,
+/obj/machinery/dropship_part_fabricator,
 /turf/open/floor/prison,
 /area/sulaco/hangar)
 "pWS" = (
@@ -17563,7 +17541,7 @@
 /area/sulaco/hallway/lower_main_hall)
 "uXj" = (
 /obj/machinery/camera/autoname,
-/obj/structure/ship_ammo/rocket/widowmaker,
+/obj/structure/ship_ammo/rocket/banshee,
 /turf/open/floor/prison,
 /area/sulaco/hangar)
 "uXn" = (
@@ -17631,7 +17609,7 @@
 /turf/open/floor/prison,
 /area/sulaco/hangar)
 "vfc" = (
-/obj/structure/ship_ammo/rocket/keeper,
+/obj/structure/ship_ammo/rocket/widowmaker,
 /turf/open/floor/prison,
 /area/sulaco/hangar)
 "vgl" = (
@@ -47899,16 +47877,16 @@ bFa
 aQa
 cdy
 aMP
-cpN
-cpN
+cdy
+agb
 nOM
 cpN
 lDT
 kut
 nqJ
-kut
+npi
 jVN
-cdy
+npi
 npi
 aSl
 aPY
@@ -48150,7 +48128,7 @@ nzi
 mDu
 bFa
 pWC
-lvp
+rpN
 bUI
 dFt
 qUq
@@ -48663,8 +48641,8 @@ aaa
 nzi
 mDu
 aSN
-pWC
-lvp
+cdy
+rpN
 xKB
 aPZ
 aPZ
@@ -49177,8 +49155,8 @@ aaa
 nzi
 mDu
 bFa
-mTZ
-oqn
+cdy
+rpN
 ebD
 aPZ
 aPZ
@@ -50206,7 +50184,7 @@ nzi
 mDu
 bFa
 vfc
-odD
+rpN
 gyp
 aPZ
 aPZ
@@ -50719,7 +50697,7 @@ aaa
 nzi
 mDu
 aSN
-vfc
+cdy
 rpN
 gZO
 aPZ
@@ -56902,7 +56880,7 @@ aPF
 aPF
 aPF
 bFa
-aMK
+cdy
 cdy
 aUL
 aaO
