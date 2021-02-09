@@ -56,8 +56,6 @@
 	if(!job) //It might be setup on spawn.
 		setup_job()
 
-	RegisterSignal(src, COMSIG_GRAB_SELF_ATTACK, .proc/devour_grabbed) //Devour ability.
-
 	AddComponent(/datum/component/bump_attack)
 
 	ADD_TRAIT(src, TRAIT_BATONIMMUNE, TRAIT_XENO)
@@ -223,11 +221,10 @@
 	if(L.buckled)
 		return FALSE //to stop xeno from pulling marines on roller beds.
 	if(ishuman(L))
-		if(!chestburst)
-			do_attack_animation(L, ATTACK_EFFECT_GRAB)
-			if(L.stat == DEAD && !L.headbitten) //Grab delay vs the non-headbitten dead
-				if(!do_mob(src, L , XENO_PULL_CHARGE_TIME, BUSY_ICON_HOSTILE))
-					return FALSE
+		if(L.stat == DEAD) //Can't drag dead human bodies
+			to_chat(usr,"<span class='xenowarning'>This looks gross, better not touch it</span>")
+			return FALSE
+		do_attack_animation(L, ATTACK_EFFECT_GRAB)
 		pull_speed += XENO_DEADHUMAN_DRAG_SLOWDOWN
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_GRAB)
 	return ..()

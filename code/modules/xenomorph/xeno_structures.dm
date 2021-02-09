@@ -27,11 +27,10 @@
 /obj/structure/resin/silo
 	icon = 'icons/Xeno/spawning_pool.dmi'
 	icon_state = "spawning_pool"
-	name = "resin silo"
 	desc = "A slimy, oozy resin bed filled with foul-looking egg-like ...things."
 	bound_width = 96
 	bound_height = 96
-	max_integrity = 400
+	max_integrity = 1000
 	var/turf/center_turf
 	var/datum/hive_status/associated_hive
 	var/silo_area
@@ -66,10 +65,10 @@
 	associated_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	if(associated_hive)
 		RegisterSignal(associated_hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK), .proc/is_burrowed_larva_host)
-	silo_area = get_area(src)
+	spawning_pool_area = get_area(src)
 
-/obj/structure/resin/silo/Destroy()
-	GLOB.xeno_resin_silos -= src
+/obj/structure/resin/spawning_pool/Destroy()
+	GLOB.xeno_resin_spawning_pools -= src
 	if(associated_hive)
 		UnregisterSignal(associated_hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK))
 		var/datum/game_mode/infestation/distress/distress_mode

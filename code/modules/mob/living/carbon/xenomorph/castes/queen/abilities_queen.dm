@@ -89,7 +89,7 @@
 
 	pslash_delay = TRUE
 
-	var/choice = tgui_input_list(src, "Choose which level of slashing hosts to permit to your hive.","Harming", list("Allowed", "Restricted - Less Damage", "Forbidden"))
+	var/choice = input("Choose which level of slashing hosts to permit to your hive.","Harming") as null|anything in list("Allowed", "Restricted - Less Damage", "Forbidden")
 
 	if(choice == "Allowed")
 		to_chat(src, "<span class='xenonotice'>We allow slashing.</span>")
@@ -271,7 +271,7 @@
 	if(QDELETED(selected_xeno))
 		var/list/possible_xenos = X.hive.get_watchable_xenos()
 
-		selected_xeno = tgui_input_list(X, "Target", "Watch which xenomorph?", possible_xenos)
+		selected_xeno = input(X, "Target", "Watch which xenomorph?") as null|anything in possible_xenos
 		if(QDELETED(selected_xeno) || selected_xeno == X.observed_xeno || selected_xeno.stat == DEAD || is_centcom_level(selected_xeno.z) || !X.check_state())
 			if(!X.observed_xeno)
 				return
@@ -418,7 +418,7 @@
 	if(QDELETED(selected_xeno))
 		var/list/possible_xenos = xeno_ruler.hive.get_leaderable_xenos()
 
-		selected_xeno = tgui_input_list(xeno_ruler, "Target", "Watch which xenomorph?", possible_xenos)
+		selected_xeno = input(xeno_ruler, "Target", "Watch which xenomorph?") as null|anything in possible_xenos
 		if(QDELETED(selected_xeno) || selected_xeno.stat == DEAD || is_centcom_level(selected_xeno.z) || !xeno_ruler.check_state())
 			return
 
@@ -634,8 +634,8 @@
 
 	var/datum/xeno_caste/new_caste = GLOB.xeno_caste_datums[T.xeno_caste.deevolves_to][XENO_UPGRADE_ZERO]
 
-	var/confirm = tgui_alert(X, "Are you sure you want to deevolve [T] from [T.xeno_caste.caste_name] to [new_caste.caste_name]?", list("Yes", "No"))
-	if(confirm != "Yes")
+	var/confirm = alert(X, "Are you sure you want to deevolve [T] from [T.xeno_caste.caste_name] to [new_caste.caste_name]?", , "Yes", "No")
+	if(confirm == "No")
 		return
 
 	var/reason = stripped_input(X, "Provide a reason for deevolving this xenomorph, [T]")
@@ -672,8 +672,6 @@
 	for(var/obj/item/W in T.contents) //Drop stuff
 		T.dropItemToGround(W)
 
-	T.empty_gut(FALSE, TRUE)
-
 	if(T.mind)
 		T.mind.transfer_to(new_xeno)
 	else
@@ -707,3 +705,34 @@
 	SSblackbox.record_feedback("tally", "round_statistics", -1, "total_xenos_created")
 	qdel(T)
 	X.use_plasma(600)
+
+/datum/action/xeno_action/activable/corrupt_generator
+	name = "Corrupt generator"
+	action_icon_state = "tunnel"
+	mechanics_text = "Corrupt a generator to begin increasing the psycic energy of the hive."
+	plasma_cost = 200
+	//keybind_signal = COMSIG_XENOABILITY_CORRUPT_GENERATOR
+
+/datum/action/xeno_action/activable/corrupt_generator/can_use_ability(atom/A, silent, override_flags)
+	. = ..()
+	if(!.)
+		return
+	if(!istype(A, /obj/machinery/power/geothermal))
+		return FALSE
+
+/datum/action/xeno_action/activable/corrupt_generator/use_ability(atom/A)
+	var/obj/machinery/power/geothermal/gen = A
+	if(!gen.is_corruptible)
+		to_chat(owner, "<span class='warning'>[A] is reinforced and cannot be corrupted!</span>")
+		return fail_activate()
+	if(!do_after(owner, 10 SECONDS, TRUE, gen, BUSY_ICON_HOSTILE))
+		return fail_activate()
+	var/mob/living/carbon/xenomorph/X = owner
+	gen.corrupted = X.hivenumber
+	gen.is_on = FALSE
+	gen.power_gen_percent = 0
+	gen.cur_tick = 0
+	gen.icon_state = "off"
+	to_chat(owner, "<span class='notice'>You have corrupted [A]</span>")
+	gen.update_icon()
+	gen.start_processing()

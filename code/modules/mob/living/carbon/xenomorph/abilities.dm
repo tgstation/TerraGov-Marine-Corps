@@ -122,10 +122,6 @@
 	GLOB.round_statistics.xeno_headbites++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "xeno_headbites")
 
-<<<<<<< HEAD
-
-=======
->>>>>>> master
 // ***************************************
 // *********** Drone-y abilities
 // ***************************************
@@ -1026,6 +1022,9 @@
 
 	/// How long does it take to build
 	var/build_time = 10 SECONDS
+	/// Pyschic point cost
+	var/psych_cost = POOL_PRICE //If you have 10 generators, that makes one new pool every 15 minutes
+
 
 /datum/action/xeno_action/activable/build_silo/can_use_ability(atom/A, silent, override_flags)
 	. = ..()
@@ -1038,7 +1037,7 @@
 		return FALSE
 
 	var/mob/living/carbon/xenomorph/X = owner
-	if(SSpoints.xeno_points_by_hive[X.hivenumber]<psych_cost)
+	if(SSpoints.xeno_points_by_hive[X.hivenumber] < psych_cost)
 		to_chat(owner, "<span class='xenowarning'>The hive doesn't have the necessary psychic points for you to do that!</span>")
 		return FALSE
 
@@ -1047,12 +1046,11 @@
 	if(!do_after(owner, build_time, TRUE, A, BUSY_ICON_BUILD))
 		return fail_activate()
 
-	if(SSpoints.xeno_points_by_hive[X.hivenumber]<psych_cost)
+	if(SSpoints.xeno_points_by_hive[X.hivenumber] < psych_cost)
 		to_chat(owner, "<span class='xenowarning'>Someone used all the psych points while we were building!</span>")
 		return FALSE
 
-	var/obj/structure/resin/silo/pool = new(get_step(A, SOUTHWEST))
-	GLOB.xeno_resin_silos += pool
+	new /obj/structure/resin/silo (get_step(A, SOUTHWEST))
 
 	var/mob/living/carbon/xenomorph/X = owner
 	SSpoints.xeno_points_by_hive[X.hivenumber] -= psych_cost

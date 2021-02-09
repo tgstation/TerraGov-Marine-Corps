@@ -451,7 +451,7 @@
 
 
 /datum/hive_status/normal/check_ruler()
-	if(!SSticker?.mode || !(SSticker.mode.flags_round_type & MODE_XENO_RULER))
+	if(!(SSticker?.mode.flags_round_type & MODE_XENO_RULER))
 		return TRUE
 	return living_xeno_ruler
 
@@ -543,7 +543,7 @@ to_chat will check for valid clients itself already so no need to double check f
 
 
 /datum/hive_status/normal/handle_ruler_timer()
-	if(!isdistress(SSticker?.mode))
+	if(!isdistress(SSticker.mode))
 		return
 	var/datum/game_mode/infestation/distress/D = SSticker.mode
 
@@ -727,23 +727,15 @@ to_chat will check for valid clients itself already so no need to double check f
 		if(xeno_job.total_positions < (-difference + xeno_job.current_positions))
 			xeno_job.set_job_positions(-difference + xeno_job.current_positions)
 	for(var/obj/structure/resin/silo/silo as() in GLOB.xeno_resin_silos)
-<<<<<<< HEAD
 		if(!is_ground_level(silo.z))
 			continue
 		qdel(silo)
 
-	SSpoints.xeno_points_by_hive["hivenumber"] = 900 //Give a free siloive when going shipside
+	SSpoints.xeno_points_by_hive[hivenumber] = SILO_PRICE //Give a free silo when going shipside
 
 	var/list/living_player_list = SSticker.mode.count_humans_and_xenos(count_flags = COUNT_IGNORE_HUMAN_SSD)
 	var/num_humans = living_player_list[1]
-	SSsilo.larva_spawn_rate = 0.2 * num_humans //That mean that one pool give 1 larva every minute for 40 marines
-=======
-		if(isalamoarea(get_area(silo)))
-			continue
-		if(!is_ground_level(silo.z))
-			continue
-		qdel(silo)
->>>>>>> master
+	SSsilo.larva_spawn_rate = 0.2 * num_humans //That mean that one silo give 1 larva every minute for 40 marines
 
 
 // ***************************************
@@ -1132,7 +1124,6 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/proc/update_tier_limits()
 	tier3_xeno_limit = max(length(xenos_by_tier[XENO_TIER_THREE]),FLOOR((length(xenos_by_tier[XENO_TIER_ZERO])+length(xenos_by_tier[XENO_TIER_ONE])+length(xenos_by_tier[XENO_TIER_TWO]))/3+1,1))
 	tier2_xeno_limit = max(length(xenos_by_tier[XENO_TIER_TWO]),length(xenos_by_tier[XENO_TIER_ZERO]) + length(xenos_by_tier[XENO_TIER_ONE])+1 - length(xenos_by_tier[XENO_TIER_THREE]))
-<<<<<<< HEAD
 
 ///Handles the timer when all silos are destroyed
 /datum/hive_status/proc/handle_silo_death_timer()
@@ -1154,5 +1145,3 @@ to_chat will check for valid clients itself already so no need to double check f
 
 	xeno_message("<span class='xenoannounce'>A sudden tremor ripples through the hive... the last siloroyed! The hive will collapse in nothing is done</span>", 3, TRUE)
 	D.siloless_hive_timer = addtimer(CALLBACK(D, /datum/game_mode.proc/siloless_hive_collapse), 10 MINUTES, TIMER_STOPPABLE)
-=======
->>>>>>> master
