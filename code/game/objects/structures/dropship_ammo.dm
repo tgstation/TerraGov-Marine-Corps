@@ -12,7 +12,7 @@
 	climbable = TRUE
 	resistance_flags = XENO_DAMAGEABLE
 	///Time before the ammo impacts
-	var/travelling_time = 10 * (GLOB.current_orbit/3) SECONDS
+	var/travelling_time = 10 SECONDS
 	///type of equipment that accept this type of ammo.
 	var/equipment_type
 	var/ammo_count
@@ -80,7 +80,7 @@
 	icon_state = "30mm_crate"
 	desc = "A crate full of 30mm bullets used on the dropship heavy guns."
 	equipment_type = /obj/structure/dropship_equipment/weapon/heavygun
-	travelling_time =  6 * (GLOB.current_orbit/3) SECONDS
+	travelling_time =  6 SECONDS
 	ammo_count = 200
 	max_ammo_count = 200
 	transferable_ammo = TRUE
@@ -139,7 +139,7 @@
 	name = "high-velocity 30mm ammo crate"
 	icon_state = "30mm_crate_hv"
 	desc = "A crate full of 30mm high-velocity bullets used on the dropship heavy guns."
-	travelling_time = 5 * (GLOB.current_orbit/3) SECONDS
+	travelling_time = 5 SECONDS
 
 
 
@@ -217,7 +217,7 @@
 	ammo_id = ""
 	bound_width = 64
 	bound_height = 32
-	travelling_time = 6 * (GLOB.current_orbit/3) SECONDS
+	travelling_time = 6 SECONDS
 	point_cost = 0
 	ammo_type = CAS_MISSILE
 
@@ -230,7 +230,7 @@
 	name = "\improper AIM-224 'Widowmaker'"
 	desc = "The AIM-224 is the latest in air to air missile technology. Earning the nickname of 'Widowmaker' from various dropship pilots after improvements to its guidence warhead prevents it from being jammed leading to its high kill rate. Not well suited for ground bombardment, but its high velocity makes it reach its target quickly."
 	icon_state = "single"
-	travelling_time = 4 * (GLOB.current_orbit/3) SECONDS //not powerful, but reaches target fast
+	travelling_time = 4 SECONDS //not powerful, but reaches target fast
 	ammo_id = ""
 	point_cost = 150
 
@@ -314,7 +314,7 @@
 	ammo_count = 6
 	max_ammo_count = 6
 	ammo_name = "minirocket"
-	travelling_time = 6 * (GLOB.current_orbit/3) SECONDS
+	travelling_time = 6 SECONDS
 	transferable_ammo = TRUE
 	point_cost = 100
 	ammo_type = CAS_MINI_ROCKET
