@@ -250,7 +250,7 @@
 		target_slot++
 
 /// Called whenever someone tries to turn the floodlight on/off
-/obj/machinery/floodlightcombat/proc/switch_light(mob/user = null)
+/obj/machinery/floodlightcombat/proc/switch_light(mob/user)
 	if(machine_stat & (NOPOWER|BROKEN))
 		to_chat(user, "<span class='notice'>You flip the switch , but nothing happens , perhaps its not powered?.")
 		return FALSE
