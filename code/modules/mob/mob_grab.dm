@@ -191,4 +191,4 @@
 	prey.adjust_blindness(-1)
 	UnregisterSignal(src, COMSIG_MOVABLE_RELEASED_FROM_STOMACH)
 
-	*/
+*/
