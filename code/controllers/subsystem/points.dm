@@ -12,8 +12,6 @@ SUBSYSTEM_DEF(points)
 
 	var/dropship_points = 0
 	var/supply_points = 120
-	///Assoc list of xeno points: xeno_points_by_hive["hivenum"]
-	var/list/xeno_points_by_hive = list()
 
 	var/ordernum = 1					//order number given to next order
 

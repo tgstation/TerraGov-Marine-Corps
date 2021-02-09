@@ -11,7 +11,6 @@
 #define COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE "!open_timed_shutters_late"
 #define COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND "!open_timed_shutters_xeno_hivemind"
 #define COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH "!open_timed_shutters_crash"
-#define COMSIG_GLOB_OPEN_SHUTTERS_EARLY "!open_shutters_early"
 
 #define COMSIG_GLOB_REMOVE_VOTE_BUTTON "!remove_vote_button"
 #define COMSIG_GLOB_NUKE_START "!nuke_start"
@@ -354,6 +353,8 @@
 
 #define COMSIG_XENOMORPH_POUNCE "xenomorph_pounce"
 
+#define COMSIG_XENOMORPH_HEADBITE "headbite"
+
 #define COMSIG_XENOMORPH_GIBBING "xenomorph_gibbing"
 #define COMSIG_XENOMORPH_POSTEVOLVING "xenomorph_evolving"
 #define COMSIG_XENOMORPH_ABILITY_ON_UPGRADE "xenomorph_ability_on_upgrade"
@@ -526,7 +527,6 @@
 #define COMSIG_XENOABILITY_QUEEN_GIVE_ORDER "xenoability_queen_give_order"
 #define COMSIG_XENOABILITY_DEEVOLVE "xenoability_deevolve"
 #define COMSIG_XENOABILITY_QUEEN_LARVAL_GROWTH "xenoability_queen_larval_growth"
-#define COMSIG_XENOABILITY_CORRUPT_GENERATOR "xenoability_corrupt_generator"
 
 #define COMSIG_XENOABILITY_LAY_HIVEMIND "xenoability_lay_hivemind"
 #define COMSIG_XENOABILITY_LAY_EGG "xenoability_lay_egg"
