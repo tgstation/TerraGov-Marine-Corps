@@ -93,7 +93,7 @@
 	gloves = /obj/item/clothing/gloves/marine/veteran/PMC
 	head = /obj/item/clothing/head/uppcap
 	glasses = /obj/item/clothing/glasses/hud/health
-	suit_store = /obj/item/weapon/gun/smg/skorpion/upp
+	suit_store = /obj/item/weapon/gun/smg/skorpion
 	r_store = /obj/item/storage/pouch/medkit
 	l_store = /obj/item/storage/pouch/general/large
 	back = /obj/item/storage/backpack/lightpack
