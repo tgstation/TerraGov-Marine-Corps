@@ -140,13 +140,12 @@
 		if(!hive_queen.client)
 			queen_text += " <i>(SSD)</i>"
 
-	dat += "<b>Psychic points : [SSpoints.xeno_points_by_hive[hive.hivenumber]]<BR>"
-	dat += resin_silo_status_output(user, hive)
 	dat += "<b>Total Living Sisters: [hive.get_total_xeno_number()]</b><BR>"
 	dat += "<b>Tier 3: ([length(hive.xenos_by_tier[XENO_TIER_THREE])]/[hive.tier3_xeno_limit]) Sisters</b>[tier3counts]<BR>"
 	dat += "<b>Tier 2: ([length(hive.xenos_by_tier[XENO_TIER_TWO])]/[hive.tier2_xeno_limit]) Sisters</b>[tier2counts]<BR>"
 	dat += "<b>Tier 1: [length(hive.xenos_by_tier[XENO_TIER_ONE])] Sisters</b>[tier1counts]<BR>"
 	dat += "<b>Larvas: [length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/larva])] Sisters<BR>"
+	dat += "<b>Psychic points : [SSpoints.xeno_points_by_hive[hive.hivenumber]]<BR>"
 	dat += "<b>Queen: [queen_text]<BR>"
 	dat += "<b>Hivemind: [hivemind_text]<BR>"
 	if(hive.hivenumber == XENO_HIVE_NORMAL)
@@ -155,6 +154,7 @@
 	dat += "<table cellspacing=4>"
 	dat += xenoinfo
 	dat += "</table>"
+	dat += resin_silo_status_output(user, hive)
 
 	var/datum/browser/popup = new(user, "roundstatus", "<div align='center'>Hive Status</div>", 650, 650)
 	popup.set_content(dat)
