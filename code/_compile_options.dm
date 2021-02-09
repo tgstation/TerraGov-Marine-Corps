@@ -43,7 +43,7 @@
 #define MAX_COMPILER_VERSION 513
 #define MAX_COMPILER_BUILD 1542
 #if DM_VERSION > MAX_COMPILER_VERSION || DM_BUILD > MAX_COMPILER_BUILD
-#warn WARNING! your byond version is over the recommended version! There may be unexpected byond bugs!
+#warn WARNING! your byond version is over the recommended version(MAX_COMPILER_VERSION:MAX_COMPILER_BUILD)! There may be unexpected byond bugs!
 #endif
 
 //Additional code for the above flags.
