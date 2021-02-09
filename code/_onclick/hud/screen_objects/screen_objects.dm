@@ -773,10 +773,10 @@
 /obj/screen/arrow/Initialize() //Self-deletes
 	. = ..()
 	START_PROCESSING(SSprocessing, src)
-	QDEL_IN(src, duration)	
+	QDEL_IN(src, duration)
 
 /obj/screen/arrow/process() //We ping the target, revealing its direction with an arrow
-	if(target.z != tracker.z || get_dist(tracker, target) < 5 || tracker == target)
+	if(target.z != tracker.z || get_dist(tracker, target) < 2 || tracker == target)
 		alpha = 0
 	else
 		alpha = 128
