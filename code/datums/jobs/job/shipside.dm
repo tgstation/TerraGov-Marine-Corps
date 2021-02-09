@@ -24,6 +24,7 @@
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_ISCOMMAND|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
+		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
 	)
 
@@ -90,6 +91,7 @@ Godspeed, captain! And remember, you are not above the law."})
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_ISCOMMAND|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
+		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
 	)
 
@@ -156,6 +158,7 @@ Make the TGMC proud!"})
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_ISCOMMAND|JOB_FLAG_PROVIDES_SQUAD_HUD
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
+		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
 	)
 
@@ -209,6 +212,7 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE_STRONG,
+		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
 	)
 
@@ -271,6 +275,7 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
+		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
 	)
 
@@ -323,6 +328,7 @@ You could use STs help to repair and replace hardpoints."})
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_ISCOMMAND|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
+		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
 	)
 
@@ -382,6 +388,7 @@ You are also next in the chain of command, should the bridge crew fall in the li
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
+		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
 	)
 
@@ -451,6 +458,7 @@ requisitions line and later on to be ready to send supplies for marines who are 
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_ISCOMMAND|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
+		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
 	)
 
@@ -520,6 +528,7 @@ A happy ship is a well-functioning ship."})
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_ISCOMMAND|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
+		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
 	)
 
@@ -569,6 +578,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
+		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
 	)
 
@@ -632,6 +642,7 @@ You are also an expert when it comes to medication and treatment. If you do not 
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
+		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
 	)
 
@@ -683,6 +694,7 @@ While the Corporate Liaison is not your boss, it would be wise to consult them o
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
+		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
 	)
 
@@ -729,6 +741,7 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 	job_flags = JOB_FLAG_SPECIALNAME|JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_ISCOMMAND|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE_STRONG,
+		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
 	)
 
@@ -799,6 +812,7 @@ In addition, being a Synthetic gives you knowledge in every field and specializa
 	job_flags = JOB_FLAG_SPECIALNAME|JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_OVERRIDELATEJOINSPAWN|JOB_FLAG_ISCOMMAND|JOB_FLAG_BOLD_NAME_ON_SELECTION
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
+		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
 	)
 
