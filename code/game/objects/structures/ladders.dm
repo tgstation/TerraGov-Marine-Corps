@@ -179,7 +179,7 @@
 			to_chat(usr, "Someone's already looking through [src].")
 			return
 		if(up && down)
-			switch( tgui_alert(usr ,"Look up or down the ladder?", list("Ladder", "Up", "Down", "Cancel")))
+			switch( tgui_alert(usr ,"Look up or down the ladder?", "Ladder", list("Up", "Down", "Cancel")))
 				if("Up")
 					usr.visible_message("<span class='notice'>[usr] looks up [src]!</span>",
 					"<span class='notice'>You look up [src]!</span>")
