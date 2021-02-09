@@ -1,5 +1,5 @@
 #define DISTRESS_MARINE_DEPLOYMENT 0
-#define DISTRESS_DROPSHIP_CRASHED 1
+#define DISTRESS_DROPSHIP_CRASHING 1
 
 /datum/game_mode/infestation/distress
 	name = "Distress Signal"
@@ -85,7 +85,7 @@
 		if(80 to INFINITY)
 			silo_number = 5
 
-	SSpoints.xeno_points_by_hive[XENO_HIVE_NORMAL] = silo_number * POOL_PRICE
+	SSpoints.xeno_points_by_hive[XENO_HIVE_NORMAL] = silo_number * SILO_PRICE
 
 	addtimer(CALLBACK(src, .proc/announce_bioscans, FALSE, 1), rand(30 SECONDS, 1 MINUTES)) //First scan shows no location but more precise numbers.
 
@@ -138,14 +138,14 @@
 		round_finished = MODE_INFESTATION_X_MAJOR
 		return TRUE
 	if(!num_xenos)
-		if(round_stage == DISTRESS_DROPSHIP_CRASHED)
+		if(round_stage == DISTRESS_DROPSHIP_CRASHING)
 			message_admins("Round finished: [MODE_INFESTATION_X_MINOR]") //xenos hijacked the shuttle and won groundside but died on the ship, minor victory
 			round_finished = MODE_INFESTATION_X_MINOR
 			return TRUE
 		message_admins("Round finished: [MODE_INFESTATION_M_MAJOR]") //marines win big or go home
 		round_finished = MODE_INFESTATION_M_MAJOR
 		return TRUE
-	if(round_stage == DISTRESS_DROPSHIP_CRASHED && !num_humans_ship)
+	if(round_stage == DISTRESS_DROPSHIP_CRASHING && !num_humans_ship)
 		message_admins("Round finished: [MODE_INFESTATION_X_MAJOR]") //xenos wiped our marines, xeno major victory
 		round_finished = MODE_INFESTATION_X_MAJOR
 		return TRUE
@@ -283,7 +283,7 @@
 		return
 	if(round_finished)
 		return
-	if(round_stage == DISTRESS_DROPSHIP_CRASHED)
+	if(round_stage == DISTRESS_DROPSHIP_CRASHING)
 		round_finished = MODE_INFESTATION_M_MINOR
 		return
 	round_finished = MODE_INFESTATION_M_MAJOR

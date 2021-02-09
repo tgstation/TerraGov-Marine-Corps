@@ -1023,7 +1023,7 @@
 	/// How long does it take to build
 	var/build_time = 10 SECONDS
 	/// Pyschic point cost
-	var/psych_cost = POOL_PRICE //If you have 10 generators, that makes one new pool every 15 minutes
+	var/psych_cost = SILO_PRICE //If you have 10 generators, that makes one new pool every 15 minutes
 
 
 /datum/action/xeno_action/activable/build_silo/can_use_ability(atom/A, silent, override_flags)
@@ -1046,13 +1046,14 @@
 	if(!do_after(owner, build_time, TRUE, A, BUSY_ICON_BUILD))
 		return fail_activate()
 
+	var/mob/living/carbon/xenomorph/X = owner
+
 	if(SSpoints.xeno_points_by_hive[X.hivenumber] < psych_cost)
 		to_chat(owner, "<span class='xenowarning'>Someone used all the psych points while we were building!</span>")
 		return FALSE
 
 	new /obj/structure/resin/silo (get_step(A, SOUTHWEST))
 
-	var/mob/living/carbon/xenomorph/X = owner
 	SSpoints.xeno_points_by_hive[X.hivenumber] -= psych_cost
 
 	succeed_activate()
