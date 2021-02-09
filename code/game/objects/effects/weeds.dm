@@ -98,6 +98,17 @@
 	plane = GAME_PLANE
 	icon_state = "weedwall"
 
+/obj/effect/alien/weeds/weedwall/Initialize()
+	. = ..()
+	RegisterSignal(src, COMSIG_MOB_SPECIAL_CLICK, .proc/special_click_signal)
+
+/obj/effect/alien/weeds/weedwall/proc/special_click_signal(datum/source, mob/living/carbon/user)
+	SIGNAL_HANDLER
+	var/obj/structure/window_frame/F = locate() in loc
+	if(!F)
+		return
+	return INVOKE_ASYNC(F, /obj/structure/window_frame/proc.specialclick, user)
+
 /obj/effect/alien/weeds/weedwall/update_sprite()
 	if(iswallturf(loc))
 		var/turf/closed/wall/W = loc
@@ -110,10 +121,6 @@
 /obj/effect/alien/weeds/weedwall/window
 	layer = ABOVE_TABLE_LAYER
 
-/obj/effect/alien/weeds/weedwall/window/Initialize()
-	. = ..()
-	RegisterSignal(src, COMSIG_MOB_SPECIAL_CLICK, .proc/special_click_signal)
-
 /obj/effect/alien/weeds/weedwall/window/update_sprite()
 	var/obj/structure/window/framed/F = locate() in loc
 	if(F && F.junction)
@@ -125,19 +132,8 @@
 		return ..()
 	return F.MouseDrop_T(dropping, user)
 
-/obj/effect/alien/weeds/weedwall/window/proc/special_click_signal(datum/source, mob/living/carbon/user)
-	SIGNAL_HANDLER
-	var/obj/structure/window_frame/F = locate() in loc
-	if(!F)
-		return
-	return INVOKE_ASYNC(F, /obj/structure/window_frame/proc.specialclick, user)
-
 /obj/effect/alien/weeds/weedwall/frame
 	layer = ABOVE_TABLE_LAYER
-
-/obj/effect/alien/weeds/weedwall/frame/Initialize()
-	. = ..()
-	RegisterSignal(src, COMSIG_MOB_SPECIAL_CLICK, .proc/special_click_signal)
 
 /obj/effect/alien/weeds/weedwall/frame/update_sprite()
 	var/obj/structure/window_frame/WF = locate() in loc
@@ -149,13 +145,6 @@
 	if(!WF)
 		return ..()
 	return WF.MouseDrop_T(dropping, user)
-
-/obj/effect/alien/weeds/weedwall/frame/proc/special_click_signal(datum/source, mob/living/carbon/user)
-	SIGNAL_HANDLER
-	var/obj/structure/window_frame/WF = locate() in loc
-	if(!WF)
-		return
-	return INVOKE_ASYNC(WF, /obj/structure/window_frame/proc.specialclick, user)
 
 
 // =================

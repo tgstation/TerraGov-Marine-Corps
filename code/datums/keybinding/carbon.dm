@@ -146,4 +146,3 @@
 		UnregisterSignal(user, (COMSIG_MOB_CLICKON))
 		return
 	A.specialclick(user)
-	SEND_SIGNAL(A, COMSIG_MOB_SPECIAL_CLICK, user)
