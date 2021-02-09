@@ -95,7 +95,7 @@
 		return FALSE
 
 	to_chat(user, "<span class='notice'>You begin filling up the [src] with [container.reagents.reagent_list[1]].</span>")
-	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_BAR, null, PROGRESS_BATTERY))
+	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_BAR, null, PROGRESS_BRASS))
 		return FALSE
 
 	trans = container.reagents.trans_to(beaker, 40)

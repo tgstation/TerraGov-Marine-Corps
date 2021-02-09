@@ -122,6 +122,7 @@
 			boost_icon = "cboost_t2"
 
 /datum/component/chem_booster/proc/on_off(datum/source)
+	SEND_SIGNAL(parent, COMSIG_CHEM_BOOSTER_ON_OFF, !boost_on)
 	if(boost_on)
 		STOP_PROCESSING(SSobj, src)
 
@@ -240,7 +241,19 @@
 		return
 	if(resource_storage_current >= resource_storage_max)
 		return
-	resource_storage_current += min(resource_storage_max - resource_storage_current, 20)
+	update_resource(20)
+
+///Adds or removes resource from the suit. Gets updated
+/datum/component/chem_booster/proc/update_resource(amount)
+	var/amount_added = min(resource_storage_max - resource_storage_current, amount)
+	var/storage_segment = resource_storage_max*0.25
+	var/current_resource_str_tier = FLOOR(resource_storage_current, storage_segment)
+	var/new_resource_str_tier = FLOOR(resource_storage_current + amount_added, storage_segment)
+
+	if(new_resource_str_tier != current_resource_str_tier)
+		var/resource_percentage = (resource_storage_current+amount_added)/resource_storage_max
+		SEND_SIGNAL(parent, COMSIG_CHEM_BOOSTER_RES_UPD, resource_percentage, amount_added)
+	resource_storage_current += amount_added
 
 /datum/action/chem_booster/configure
 	name = "Configure Vali Chemical Enhancement"

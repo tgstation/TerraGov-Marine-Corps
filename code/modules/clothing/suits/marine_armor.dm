@@ -347,8 +347,8 @@
 	name = "\improper Vali chemical enhancement suit"
 	desc = "A suit that enhances the strength of reagents in the body. Requires a special substance, gathered from xenomorph lifeforms, to function. \n For in-depth information https://github.com/tgstation/TerraGov-Marine-Corps/pull/5830"
 	icon = 'icons/mob/suit_1.dmi'
-	icon_state = "k_pyro_armor"
-	item_state ="k_pyro_armor"
+	icon_state = "chemsuit"
+	item_state ="chemsuit"
 	flags_item_map_variant = NONE
 	w_class = WEIGHT_CLASS_BULKY
 	gas_transfer_coefficient = 0.90
@@ -362,6 +362,16 @@
 /obj/item/clothing/suit/storage/marine/chemsuit/Initialize()
 	. = ..()
 	AddComponent(/datum/component/chem_booster)
+	RegisterSignal(src, COMSIG_CHEM_BOOSTER_RES_UPD, .proc/update_clothing_icon)
+
+/obj/item/clothing/suit/storage/marine/chemsuit/apply_custom(image/standing)
+	. = ..()
+	message_admins("signal test")
+	var/image/resource_amount = image('icons/mob/hud.dmi',icon_state = "chemsuit_vis")
+	var/datum/component/chem_booster/C = datum_components[/datum/component/chem_booster]
+	var/resource_percent = 	C.resource_storage_current/C.resource_storage_max
+	resource_amount.color = rgb(61, 185, 4, 255*resource_percent)
+	standing.overlays += resource_amount
 
 /*=============================PMCS==================================*/
 
