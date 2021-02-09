@@ -207,9 +207,9 @@
 		return
 
 	if(href_list["change_category"])
-
-		var/choice = input("Which category do you wish to display?") as null|anything in GLOB.autolathe_categories+"All"
-		if(!choice) return
+		var/choice = tgui_input_list(usr, "Which category do you wish to display?", GLOB.autolathe_categories+"All")
+		if(!choice) 
+			return
 		show_category = choice
 
 	if(href_list["make"] && GLOB.autolathe_recipes)

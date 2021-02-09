@@ -33,10 +33,10 @@
 	description = "Builds whatever you’ve selected with (choose resin structure) on your tile."
 	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN
 
-/datum/keybinding/xeno/secrete_resin_spawning_pool
-	name = "secrete_resin_spawning_pool"
-	full_name = "Secrete Resin Spawning Pool"
-	description = "Builds a resin spawning pool. Requires a number of dead bodies on a nest."
+/datum/keybinding/xeno/secrete_resin_silo
+	name = "secrete_resin_silo"
+	full_name = "Secrete Resin Silo"
+	description = "Builds a resin silo. Requires a number of dead bodies on a nest."
 	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN_SILO
 
 /datum/keybinding/xeno/emit_recovery

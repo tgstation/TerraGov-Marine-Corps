@@ -133,7 +133,7 @@
 	if(!client)
 		return
 	var/list/listed_huds = list("Medical HUD", "Security HUD", "Squad HUD")
-	var/hud_choice = input("Choose a HUD to toggle", "Toggle HUD", null) as null|anything in listed_huds
+	var/hud_choice = tgui_input_list(src, "Choose a HUD to toggle", "Toggle HUD", listed_huds)
 	if(!client)
 		return
 	var/datum/atom_hud/H

@@ -96,7 +96,7 @@
 	X.visible_message("<span class='xenowarning'>\The [X] lunges towards [A]!</span>", \
 	"<span class='xenowarning'>We lunge at [A]!</span>")
 
-	X.add_filter("warrior_lunge", 2, list("type" = "blur", 3))
+	X.add_filter("warrior_lunge", 2, gauss_blur_filter(3))
 	var/distance = get_dist(X, A)
 
 	X.throw_at(get_step_towards(A, X), 6, 2, X)

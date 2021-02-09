@@ -43,7 +43,7 @@
 	for(var/type in tiers_to_pick_from)
 		var/datum/xeno_caste/available_caste = GLOB.xeno_caste_datums[type][XENO_UPGRADE_BASETYPE]
 		castes_to_pick += available_caste.caste_name
-	var/castepick = input("We are growing into a beautiful alien! It is time to choose a caste.") as null|anything in castes_to_pick
+	var/castepick = tgui_input_list(src, "We are growing into a beautiful alien! It is time to choose a caste.", castes_to_pick)
 	if(!castepick) //Changed my mind
 		return
 
@@ -115,7 +115,7 @@
 		for(var/type in xeno_caste.evolves_to)
 			var/datum/xeno_caste/Z = GLOB.xeno_caste_datums[type][XENO_UPGRADE_BASETYPE]
 			castes_to_pick += Z.caste_name
-		castepick = input("We are growing into a beautiful alien! It is time to choose a caste.") as null|anything in castes_to_pick
+		castepick = tgui_input_list(src, "We are growing into a beautiful alien! It is time to choose a caste.", castes_to_pick)
 		if(!castepick) //Changed my mind
 			return
 
@@ -299,6 +299,8 @@
 
 	for(var/obj/item/W in contents) //Drop stuff
 		dropItemToGround(W)
+
+	empty_gut(FALSE, TRUE)
 
 	if(mind)
 		mind.transfer_to(new_xeno)

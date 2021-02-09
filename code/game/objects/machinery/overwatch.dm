@@ -262,7 +262,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 						if(!S.overwatch_officer)
 							squad_choices += S.name
 
-					var/squad_name = input("Which squad would you like to claim for Overwatch?") as null|anything in squad_choices
+					var/squad_name = tgui_input_list(usr, "Which squad would you like to claim for Overwatch?",  squad_choices)
 					if(!squad_name || operator != usr)
 						return
 					if(current_squad)
@@ -497,7 +497,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	for(var/mob/living/carbon/human/H in current_squad.get_all_members())
 		if(istype(H) && H.stat != DEAD && H.mind && !is_banned_from(H.ckey, SQUAD_LEADER))
 			sl_candidates += H
-	var/new_lead = input(usr, "Choose a new Squad Leader") as null|anything in sl_candidates
+	var/new_lead = tgui_input_list(usr, "Choose a new Squad Leader", sl_candidates)
 	if(!new_lead || new_lead == "Cancel") return
 	var/mob/living/carbon/human/H = new_lead
 	if(!istype(H) || !H.mind || H.stat == DEAD) //marines_list replaces mob refs of gibbed marines with just a name string
@@ -528,7 +528,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	if(!current_squad)
 		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>No squad selected!</span>")
 		return
-	var/mob/living/carbon/human/wanted_marine = input(usr, "Report a marine for insubordination") as null|anything in current_squad.get_all_members()
+	var/mob/living/carbon/human/wanted_marine = tgui_input_list(usr, "Report a marine for insubordination", current_squad.get_all_members())
 	if(!wanted_marine) return
 	if(!istype(wanted_marine))//gibbed/deleted, all we have is a name.
 		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>[wanted_marine] is missing in action.</span>")
@@ -556,7 +556,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>No squad selected!</span>")
 		return
 	var/datum/squad/S = current_squad
-	var/mob/living/carbon/human/transfer_marine = input(usr, "Choose marine to transfer") as null|anything in current_squad.get_all_members()
+	var/mob/living/carbon/human/transfer_marine = tgui_input_list(usr, "Choose marine to transfer", current_squad.get_all_members())
 	if(!transfer_marine)
 		return
 
@@ -574,7 +574,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>Transfer aborted. [transfer_marine] isn't wearing an ID.</span>")
 		return
 
-	var/choice = input(usr, "Choose the marine's new squad") as null|anything in SSjob.active_squads
+	var/choice = tgui_input_list(usr, "Choose the marine's new squad", SSjob.active_squads)
 	if(!choice)
 		return
 	if(S != current_squad)
