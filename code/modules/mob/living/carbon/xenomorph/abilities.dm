@@ -15,6 +15,114 @@
 	X.lay_down()
 	return succeed_activate()
 
+// Regurgitate
+/datum/action/xeno_action/regurgitate
+	name = "Regurgitate"
+	action_icon_state = "regurgitate"
+	mechanics_text = "Vomit whatever you have devoured."
+	use_state_flags = XACT_USE_STAGGERED|XACT_USE_FORTIFIED|XACT_USE_CRESTED
+	keybind_signal = COMSIG_XENOABILITY_REGURGITATE
+
+/datum/action/xeno_action/regurgitate/can_use_action(silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return FALSE
+	var/mob/living/carbon/xenomorph/devourer = owner
+	if(!LAZYLEN(devourer.stomach_contents))
+		if(!silent)
+			to_chat(devourer, "<span class='warning'>There's nothing in our stomach that needs regurgitating.</span>")
+		return FALSE
+
+/datum/action/xeno_action/regurgitate/action_activate()
+	var/mob/living/carbon/xenomorph/spewer = owner
+	spewer.empty_gut(TRUE)
+
+	return succeed_activate()
+
+//*********
+// Headbite
+//*********
+/datum/action/xeno_action/activable/headbite
+	name = "Headbite"
+	action_icon_state = "headbite"
+	mechanics_text = "Permanently kill a target."
+	use_state_flags = XACT_USE_STAGGERED|XACT_USE_FORTIFIED|XACT_USE_CRESTED //can't use while staggered, defender fortified or crest down
+	keybind_signal = COMSIG_XENOABILITY_HEADBITE
+	plasma_cost = 100
+
+/datum/action/xeno_action/activable/headbite/can_use_ability(atom/A, silent = FALSE, override_flags)
+	. = ..() //do after checking the below stuff
+	if(!.)
+		return
+	if(!iscarbon(A))
+		return FALSE
+	var/mob/living/carbon/xenomorph/X = owner
+	var/mob/living/carbon/victim = A //target of ability
+	if(X.action_busy) //can't use if busy
+		return FALSE
+	if(!X.Adjacent(victim)) //checks if owner next to target
+		return FALSE
+	if(X.on_fire)
+		if(!silent)
+			to_chat(X, "<span class='warning'>We're too busy being on fire to do this!</span>")
+		return FALSE
+	if(victim.stat != DEAD)
+		if(!silent)
+			to_chat(X, "<span class='warning'>This creature is struggling too much for us to aim precisely.</span>")
+		return FALSE
+	if(victim.headbitten)
+		if(!silent)
+			to_chat(X, "<span class='warning'>This creature has already been headbitten.</span>")
+		return FALSE
+	if(victim.chestburst)
+		if(!silent)
+			to_chat(X, "<span class='warning'>This creature has already served its purpose.</span>")
+		return FALSE
+	if(X.issamexenohive(victim)) //checks if target and victim are in the same hive
+		if(!silent)
+			to_chat(X, "<span class='warning'>We can't bring ourselves to harm a fellow sister to this magnitude.</span>")
+		return FALSE
+	if(issynth(victim)) //checks if target is a synth
+		if(!silent)
+			to_chat(X, "<span class='warning'>We have no reason to bite this non-living thing.</span>")
+		return FALSE
+	X.face_atom(victim) //Face towards the target so we don't look silly
+	X.visible_message("<span class='xenowarning'>\The [X] begins opening its mouth and extending a second jaw towards \the [victim].</span>", \
+	"<span class='danger'>We prepare our inner jaw for a finishing blow on \the [victim]!</span>", null, 20)
+	if(!do_after(X, 10 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(X, /mob.proc/break_do_after_checks, list("health" = X.health))))
+		X.visible_message("<span class='xenowarning'>\The [X] retracts its inner jaw.</span>", \
+		"<span class='danger'>We retract our inner jaw.</span>", null, 20)
+		return FALSE
+	succeed_activate() //dew it
+
+/datum/action/xeno_action/activable/headbite/use_ability(mob/M)
+	var/mob/living/carbon/xenomorph/X = owner
+	var/mob/living/carbon/victim = M
+
+	X.visible_message("<span class='xenodanger'>\The [X] viciously bites into \the [victim]'s head with its inner jaw!</span>", \
+	"<span class='xenodanger'>We suddenly bite into the \the [victim]'s head with our second jaw!</span>")
+
+	if(ishuman(victim))
+		var/mob/living/carbon/human/H = victim
+		victim.emote_burstscream()
+		var/datum/internal_organ/O
+		O = H.internal_organs_by_name["brain"] //This removes (and later garbage collects) the organ. No brain means instant death.
+		H.internal_organs_by_name -= "brain"
+		H.internal_organs -= O
+
+	X.do_attack_animation(victim, ATTACK_EFFECT_BITE)
+	playsound(victim, pick( 'sound/weapons/alien_tail_attack.ogg', 'sound/weapons/alien_bite1.ogg'), 50)
+	victim.death()
+	victim.headbitten = TRUE
+	victim.update_headbite()
+
+	log_combat(victim, owner, "was headbitten.")
+	log_game("[key_name(victim)] was headbitten at [AREACOORD(victim.loc)].")
+
+	GLOB.round_statistics.xeno_headbites++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "xeno_headbites")
+
+
 // ***************************************
 // *********** Drone-y abilities
 // ***************************************
@@ -902,12 +1010,12 @@
 
 
 ////////////////////
-/// Build spawning_pool
+/// Build silo
 ///////////////////
-/datum/action/xeno_action/activable/build_spawning_pool
-	name = "Secrete spawning pool"
+/datum/action/xeno_action/activable/build_silo
+	name = "Secrete silo"
 	action_icon_state = "resin_silo"
-	mechanics_text = "Creates a new spawning pool"
+	mechanics_text = "Creates a new silo"
 	ability_name = "secrete resin"
 	plasma_cost = 150
 	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN_SILO
@@ -918,7 +1026,7 @@
 	/// Pyschic point cost
 	var/psych_cost = POOL_PRICE //If you have 10 generators, that makes one new pool every 15 minutes
 
-/datum/action/xeno_action/activable/build_spawning_pool/can_use_ability(atom/A, silent, override_flags)
+/datum/action/xeno_action/activable/build_silo/can_use_ability(atom/A, silent, override_flags)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -927,23 +1035,23 @@
 		if(!silent)
 			to_chat(owner, "<span class='warning'>We need to get closer!.</span>")
 		return FALSE
-	
+
 	var/mob/living/carbon/xenomorph/X = owner
 	if(SSpoints.xeno_points_by_hive[X.hivenumber]<psych_cost)
 		to_chat(owner, "<span class='xenowarning'>The hive doesn't have the necessary psychic points for you to do that!</span>")
 		return FALSE
 
 
-/datum/action/xeno_action/activable/build_spawning_pool/use_ability(atom/A)
+/datum/action/xeno_action/activable/build_silo/use_ability(atom/A)
 	if(!do_after(owner, build_time, TRUE, A, BUSY_ICON_BUILD))
 		return fail_activate()
 
-	var/obj/structure/resin/spawning_pool/pool = new(get_step(A, SOUTHWEST))
-	GLOB.xeno_resin_spawning_pools += pool
+	var/obj/structure/resin/silo/pool = new(get_step(A, SOUTHWEST))
+	GLOB.xeno_resin_silos += pool
 
 	var/mob/living/carbon/xenomorph/X = owner
 	SSpoints.xeno_points_by_hive[X.hivenumber] -= psych_cost
-	
+
 	succeed_activate()
 
 // Salvage Biomass

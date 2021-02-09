@@ -78,7 +78,7 @@
 /turf/closed/mineral,
 /area/lv624/ground/caves/west2)
 "aaB" = (
-/obj/effect/landmark/xeno_spawning_pool_spawn,
+/obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west2)
 "aaC" = (
@@ -16067,7 +16067,7 @@
 /turf/closed/wall/r_wall,
 /area/shuttle/drop1/lz1)
 "lXt" = (
-/obj/effect/landmark/xeno_spawning_pool_spawn,
+/obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east1)
 "lYR" = (
@@ -16354,7 +16354,7 @@
 /turf/closed/wall/resin,
 /area/lv624/ground/caves/east2)
 "phD" = (
-/obj/effect/landmark/xeno_spawning_pool_spawn,
+/obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/ground/ruin)
 "pkH" = (
@@ -16952,7 +16952,7 @@
 /turf/open/floor/marking/bot,
 /area/shuttle/drop2/lz2)
 "wDI" = (
-/obj/effect/landmark/xeno_spawning_pool_spawn,
+/obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/engine/cult,
 /area/lv624/ground/caves/east2)
 "wJZ" = (
@@ -17045,7 +17045,7 @@
 /turf/open/space/basic,
 /area/lv624/lazarus/robotics)
 "xLJ" = (
-/obj/effect/landmark/xeno_spawning_pool_spawn,
+/obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west1)
 "xMw" = (

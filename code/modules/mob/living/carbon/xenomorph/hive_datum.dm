@@ -586,12 +586,12 @@ to_chat will check for valid clients itself already so no need to double check f
 		return FALSE
 
 	var/list/possible_mothers = list()
-	var/list/possible_spawning_pools = list()
-	SEND_SIGNAL(src, COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, possible_mothers, possible_spawning_pools) //List variable passed by reference, and hopefully populated.
+	var/list/possible_silos = list()
+	SEND_SIGNAL(src, COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, possible_mothers, possible_silos) //List variable passed by reference, and hopefully populated.
 
 	if(!length(possible_mothers))
-		if(length(possible_spawning_pools))
-			return attempt_to_spawn_larva_in_spawning_pool(xeno_candidate, possible_spawning_pools)
+		if(length(possible_silos))
+			return attempt_to_spawn_larva_in_silo(xeno_candidate, possible_silos)
 		else
 			to_chat(xeno_candidate, "<span class='warning'>There are no places currently available to receive new larvas.</span>")
 			return FALSE
@@ -617,20 +617,20 @@ to_chat will check for valid clients itself already so no need to double check f
 	return spawn_larva(xeno_candidate, chosen_mother)
 
 
-/datum/hive_status/normal/proc/attempt_to_spawn_larva_in_spawning_pool(mob/xeno_candidate, possible_spawning_pools)
-	var/obj/structure/resin/spawning_pool/chosen_spawning_pool
-	if(length(possible_spawning_pools) > 1)
-		chosen_spawning_pool = input("Available Egg Silos") as null|anything in possible_spawning_pools
-		xeno_candidate.forceMove(chosen_spawning_pool)
-		var/double_check = input(xeno_candidate, "Spawn here?", "Spawn location") as null|anything in list("Yes","Pick another spawning pool")
-		if(double_check == "Pick another spawning pool")
-			return attempt_to_spawn_larva_in_spawning_pool(xeno_candidate, possible_spawning_pools)
+/datum/hive_status/normal/proc/attempt_to_spawn_larva_in_silo(mob/xeno_candidate, possible_silos)
+	var/obj/structure/resin/silo/chosen_silo
+	if(length(possible_silos) > 1)
+		chosen_silo = input("Available Egg Silos") as null|anything in possible_silos
+		xeno_candidate.forceMove(chosen_silo)
+		var/double_check = input(xeno_candidate, "Spawn here?", "Spawn location") as null|anything in list("Yes","Pick another silo")
+		if(double_check == "Pick another silo")
+			return attempt_to_spawn_larva_in_silo(xeno_candidate, possible_silos)
 		else if(double_check != "Yes")
 			return FALSE
 	else
-		chosen_spawning_pool = possible_spawning_pools[1]
+		chosen_silo = possible_silos[1]
 
-	if(QDELETED(chosen_spawning_pool) || !xeno_candidate?.client)
+	if(QDELETED(chosen_silo) || !xeno_candidate?.client)
 		return FALSE
 
 	if(!isnewplayer(xeno_candidate) && XENODEATHTIME_CHECK(xeno_candidate))
@@ -648,7 +648,7 @@ to_chat will check for valid clients itself already so no need to double check f
 		to_chat(xeno_candidate, "<span class='warning'>There are no longer burrowed larvas available.</span>")
 		return FALSE
 
-	return do_spawn_larva(xeno_candidate, chosen_spawning_pool.loc)
+	return do_spawn_larva(xeno_candidate, chosen_silo.loc)
 
 
 /datum/hive_status/normal/proc/spawn_larva(mob/xeno_candidate, mob/living/carbon/xenomorph/mother)
@@ -726,16 +726,16 @@ to_chat will check for valid clients itself already so no need to double check f
 	if(difference < 0)
 		if(xeno_job.total_positions < (-difference + xeno_job.current_positions))
 			xeno_job.set_job_positions(-difference + xeno_job.current_positions)
-	for(var/obj/structure/resin/spawning_pool/spawning_pool as() in GLOB.xeno_resin_spawning_pools)
-		if(!is_ground_level(spawning_pool.z))
+	for(var/obj/structure/resin/silo/silo as() in GLOB.xeno_resin_silos)
+		if(!is_ground_level(silo.z))
 			continue
-		qdel(spawning_pool)
+		qdel(silo)
 
-	SSpoints.xeno_points_by_hive["hivenumber"] = 900 //Give a free spawning pool to the hive when going shipside
+	SSpoints.xeno_points_by_hive["hivenumber"] = 900 //Give a free siloive when going shipside
 
 	var/list/living_player_list = SSticker.mode.count_humans_and_xenos(count_flags = COUNT_IGNORE_HUMAN_SSD)
 	var/num_humans = living_player_list[1]
-	SSspawning_pool.larva_spawn_rate = 0.2 * num_humans //That mean that one pool give 1 larva every minute for 40 marines
+	SSsilo.larva_spawn_rate = 0.2 * num_humans //That mean that one pool give 1 larva every minute for 40 marines
 
 
 // ***************************************
@@ -1125,23 +1125,23 @@ to_chat will check for valid clients itself already so no need to double check f
 	tier3_xeno_limit = max(length(xenos_by_tier[XENO_TIER_THREE]),FLOOR((length(xenos_by_tier[XENO_TIER_ZERO])+length(xenos_by_tier[XENO_TIER_ONE])+length(xenos_by_tier[XENO_TIER_TWO]))/3+1,1))
 	tier2_xeno_limit = max(length(xenos_by_tier[XENO_TIER_TWO]),length(xenos_by_tier[XENO_TIER_ZERO]) + length(xenos_by_tier[XENO_TIER_ONE])+1 - length(xenos_by_tier[XENO_TIER_THREE]))
 
-///Handles the timer when all spawning_pools are destroyed
-/datum/hive_status/proc/handle_spawning_pool_death_timer()
+///Handles the timer when all silos are destroyed
+/datum/hive_status/proc/handle_silo_death_timer()
 	return
 
-/datum/hive_status/normal/handle_spawning_pool_death_timer()
+/datum/hive_status/normal/handle_silo_death_timer()
 	if(!isdistress(SSticker.mode))
 		return
 	var/datum/game_mode/infestation/distress/D = SSticker.mode
 
-	if(GLOB.xeno_resin_spawning_pools.len)
-		if(D?.spawning_poolless_hive_timer)
-			deltimer(D.spawning_poolless_hive_timer)
-			D.spawning_poolless_hive_timer = null
+	if(GLOB.xeno_resin_silos.len)
+		if(D?.siloless_hive_timer)
+			deltimer(D.siloless_hive_timer)
+			D.siloless_hive_timer = null
 		return
 
-	if(D?.spawning_poolless_hive_timer)
+	if(D?.siloless_hive_timer)
 		return
 
-	xeno_message("<span class='xenoannounce'>A sudden tremor ripples through the hive... the last spawning pool was destroyed! The hive will collapse in nothing is done</span>", 3, TRUE)
-	D.spawning_poolless_hive_timer = addtimer(CALLBACK(D, /datum/game_mode.proc/spawning_poolless_hive_collapse), 10 MINUTES, TIMER_STOPPABLE)
+	xeno_message("<span class='xenoannounce'>A sudden tremor ripples through the hive... the last siloroyed! The hive will collapse in nothing is done</span>", 3, TRUE)
+	D.siloless_hive_timer = addtimer(CALLBACK(D, /datum/game_mode.proc/siloless_hive_collapse), 10 MINUTES, TIMER_STOPPABLE)

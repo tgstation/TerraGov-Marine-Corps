@@ -30,7 +30,7 @@ SUBSYSTEM_DEF(monitor)
 	var/hijacked = FALSE
 	///List of all int stats
 	var/datum/monitor_statistics/stats = new
-	
+
 /datum/monitor_statistics
 	var/ancient_queen = 0
 	var/elder_queen = 0
@@ -39,7 +39,7 @@ SUBSYSTEM_DEF(monitor)
 	var/ancient_T2 = 0
 	var/elder_T2 = 0
 	var/list/miniguns_in_use = list()
-	var/list/sadar_in_use = list() 
+	var/list/sadar_in_use = list()
 	var/list/b18_in_use = list()
 	var/list/b17_in_use = list()
 	var/OB_available = 0
@@ -59,8 +59,8 @@ SUBSYSTEM_DEF(monitor)
 /datum/controller/subsystem/monitor/proc/spam_admins()
 	message_admins("New state calculated by the monitor, state : [current_state] , exact balance points : [current_points]")
 
-	
-///Calculate the points supposedly representating of the situation	
+
+///Calculate the points supposedly representating of the situation
 /datum/controller/subsystem/monitor/proc/calculate_state_points()
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	. += stats.ancient_T2 * ANCIENT_T2_WEIGHT
@@ -79,7 +79,7 @@ SUBSYSTEM_DEF(monitor)
 	. += stats.b18_in_use.len * B18_PRICE * REQ_POINTS_WEIGHT
 	. += SSpoints.supply_points * REQ_POINTS_WEIGHT
 	. += stats.OB_available * OB_AVAILABLE_WEIGHT
-	. += GLOB.xeno_resin_spawning_pools.len * SPAWNING_POOL_WEIGHT
+	. += GLOB.xeno_resin_silos.len * SPAWNING_POOL_WEIGHT
 
 ///Keep the monitor informed about the position of humans
 /datum/controller/subsystem/monitor/proc/process_human_positions()
@@ -117,7 +117,7 @@ SUBSYSTEM_DEF(monitor)
 		current_state = MARINES_LOSING
 	else
 		current_state = MARINES_DELAYING
-	
+
 	//We check for possible stalemate
 	if (current_state == last_state)
 		stale_counter++

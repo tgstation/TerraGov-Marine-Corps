@@ -38,7 +38,7 @@
 	var/bioscan_current_interval = 45 MINUTES
 	var/bioscan_ongoing_interval = 20 MINUTES
 	var/orphan_hive_timer
-	var/spawning_poolless_hive_timer
+	var/siloless_hive_timer
 
 
 /datum/game_mode/infestation/distress/announce()
@@ -72,20 +72,20 @@
 /datum/game_mode/infestation/distress/post_setup()
 	. = ..()
 	scale_gear()
-	var/spawning_pool_number
+	var/silo_number
 	switch(TGS_CLIENT_COUNT)
 		if(0 to 20)
-			spawning_pool_number = 1
+			silo_number = 1
 		if(20 to 40)
-			spawning_pool_number = 2
+			silo_number = 2
 		if(40 to 60)
-			spawning_pool_number = 3
+			silo_number = 3
 		if(60 to 80)
-			spawning_pool_number = 4
+			silo_number = 4
 		if(80 to INFINITY)
-			spawning_pool_number = 5
-	
-	SSpoints.xeno_points_by_hive[XENO_HIVE_NORMAL] = spawning_pool_number * POOL_PRICE
+			silo_number = 5
+
+	SSpoints.xeno_points_by_hive[XENO_HIVE_NORMAL] = silo_number * POOL_PRICE
 
 	addtimer(CALLBACK(src, .proc/announce_bioscans, FALSE, 1), rand(30 SECONDS, 1 MINUTES)) //First scan shows no location but more precise numbers.
 
@@ -297,7 +297,7 @@
 		return "[(eta / 60) % 60]:[add_leading(num2text(eta % 60), 2, "0")]"
 
 
-/datum/game_mode/infestation/distress/spawning_poolless_hive_collapse()
+/datum/game_mode/infestation/distress/siloless_hive_collapse()
 	if(!(flags_round_type & MODE_INFESTATION))
 		return
 	if(round_finished)
@@ -307,10 +307,10 @@
 	round_finished = MODE_INFESTATION_M_MAJOR
 
 
-/datum/game_mode/infestation/distress/get_spawning_poolless_collapse_countdown()
-	if(!spawning_poolless_hive_timer)
+/datum/game_mode/infestation/distress/get_siloless_collapse_countdown()
+	if(!siloless_hive_timer)
 		return 0
-	var/eta = timeleft(spawning_poolless_hive_timer) * 0.1
+	var/eta = timeleft(siloless_hive_timer) * 0.1
 	if(eta > 0)
 		return "[(eta / 60) % 60]:[add_leading(num2text(eta % 60), 2, "0")]"
 

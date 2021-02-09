@@ -64,21 +64,21 @@
 	return xenoinfo
 
 
-///Relays health and location data about spawning pool belonging to the same hive as the input user
-/proc/spawning_pool_status_output(mob/living/carbon/xenomorph/user, datum/hive_status/hive)
+///Relays health and location data about silo belonging to the same hive as the input user
+/proc/silo_status_output(mob/living/carbon/xenomorph/user, datum/hive_status/hive)
 	. = "<BR><b>List of Spawning Pool:</b><BR><table cellspacing=4>" //Spawning pool data
-	for(var/obj/structure/resin/spawning_pool/spawning_pool as() in GLOB.xeno_resin_spawning_pools)
-		if(spawning_pool.associated_hive == hive)
+	for(var/obj/structure/resin/silo/silo as() in GLOB.xeno_resin_silos)
+		if(silo.associated_hive == hive)
 
 			var/hp_color = "green"
-			switch(spawning_pool.obj_integrity/spawning_pool.max_integrity)
+			switch(silo.obj_integrity/silo.max_integrity)
 				if(0.33 to 0.66)
 					hp_color = "orange"
 				if(0 to 0.33)
 					hp_color = "red"
 
-			var/distance = get_dist(user, spawning_pool)
-			. += "<b><a href='byond://?src=\ref[user];track_pool_number=[spawning_pool.number_pool]'>[spawning_pool.name]</a> <font color=[hp_color]>Health: ([spawning_pool.obj_integrity]/[spawning_pool.max_integrity])</font></b> located at: <b><font color=green>[AREACOORD_NO_Z(spawning_pool)]</font>  Distance : [distance]</b><BR>"
+			var/distance = get_dist(user, silo)
+			. += "<b><a href='byond://?src=\ref[user];track_pool_number=[silo.number_pool]'>[silo.name]</a> <font color=[hp_color]>Health: ([silo.obj_integrity]/[silo.max_integrity])</font></b> located at: <b><font color=green>[AREACOORD_NO_Z(silo)]</font>  Distance : [distance]</b><BR>"
 
 	. += "</table>"
 
@@ -154,7 +154,7 @@
 	dat += xenoinfo
 	dat += "</table>"
 	dat += "<b>Psychic points : [SSpoints.xeno_points_by_hive[hive.hivenumber]]<BR>"
-	dat += spawning_pool_status_output(user, hive)
+	dat += silo_status_output(user, hive)
 
 	var/datum/browser/popup = new(user, "roundstatus", "<div align='center'>Hive Status</div>", 650, 650)
 	popup.set_content(dat)
@@ -180,15 +180,15 @@
 			to_chat(usr,"<span class='notice'> You will now track [X.name]</span>")
 			tracked = X
 			break
-	
+
 	if(href_list["track_pool_number"])
 		if(!check_state())
 			return
 		var/pool_number = href_list["track_pool_number"]
-		for(var/obj/structure/resin/spawning_pool/spawning_pool as() in GLOB.xeno_resin_spawning_pools)
-			if(spawning_pool.associated_hive == hive && num2text(spawning_pool.number_pool) == pool_number)
-				tracked = spawning_pool
-				to_chat(usr,"<span class='notice'> You will now track [spawning_pool.name]</span>")
+		for(var/obj/structure/resin/silo/silo as() in GLOB.xeno_resin_silos)
+			if(silo.associated_hive == hive && num2text(silo.number_pool) == pool_number)
+				tracked = silo
+				to_chat(usr,"<span class='notice'> You will now track [silo.name]</span>")
 				break
 
 ///Send a message to all xenos. Force forces the message whether or not the hivemind is intact. Target is an atom that is pointed out to the hive. Filter list is a list of xenos we don't message.

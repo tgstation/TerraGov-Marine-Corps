@@ -56,7 +56,7 @@
 		/datum/action/xeno_action/place_acidwell,
 		/datum/action/xeno_action/choose_resin/hivelord,
 		/datum/action/xeno_action/activable/secrete_resin/hivelord,
-		/datum/action/xeno_action/activable/build_spawning_pool,
+		/datum/action/xeno_action/activable/build_silo,
 		/datum/action/xeno_action/activable/transfer_plasma/improved,
 		/datum/action/xeno_action/activable/salvage_biomass,
 		/datum/action/xeno_action/activable/corrosive_acid,

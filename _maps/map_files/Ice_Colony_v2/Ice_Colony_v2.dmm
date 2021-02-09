@@ -31984,7 +31984,7 @@
 	},
 /area/ice_colony/exterior/underground/caves)
 "fkF" = (
-/obj/effect/landmark/xeno_spawning_pool_spawn,
+/obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/valley/northeast)
 "fol" = (
@@ -32103,7 +32103,7 @@
 /turf/closed/wall/r_wall,
 /area/ice_colony/underground/maintenance/engineering)
 "gaB" = (
-/obj/effect/landmark/xeno_spawning_pool_spawn,
+/obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves/open)
 "gqo" = (
@@ -32385,7 +32385,7 @@
 /area/ice_colony/surface/engineering/generator)
 "iUP" = (
 /obj/effect/turf_underlay/icefloor,
-/obj/effect/landmark/xeno_spawning_pool_spawn,
+/obj/effect/landmark/xeno_silo_spawn,
 /turf/closed/ice/thin/corner{
 	dir = 4
 	},
@@ -32440,7 +32440,7 @@
 /turf/closed/ice_rock/westWall,
 /area/ice_colony/exterior/surface/valley/north)
 "jro" = (
-/obj/effect/landmark/xeno_spawning_pool_spawn,
+/obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/underground/maintenance/south)
 "jvd" = (
@@ -32825,7 +32825,7 @@
 	},
 /area/ice_colony/exterior/surface/landing_pad2)
 "ndK" = (
-/obj/effect/landmark/xeno_spawning_pool_spawn,
+/obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/underground/maintenance/engineering)
 "neG" = (
@@ -33129,7 +33129,7 @@
 	},
 /area/ice_colony/surface/tcomms)
 "qrL" = (
-/obj/effect/landmark/xeno_spawning_pool_spawn,
+/obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/underground/maintenance/east)
 "qsE" = (
