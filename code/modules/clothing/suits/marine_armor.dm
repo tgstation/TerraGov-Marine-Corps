@@ -355,7 +355,7 @@
 	permeability_coefficient = 0.50
 	flags_armor_protection = CHEST|GROIN|LEGS|ARMS|HANDS|FEET
 	allowed = list(/obj/item/flashlight,/obj/item/tank/emergency_oxygen,/obj/item/clothing/mask/gas, /obj/item/weapon/claymore/harvester)
-	slowdown = 0.2
+	slowdown = 0
 	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 20, "energy" = 20, "bomb" = 40, "bio" = 60, "rad" = 100, "fire" = 40, "acid" = 40)
 	flags_inv_hide = HIDEJUMPSUIT|HIDETAIL
 

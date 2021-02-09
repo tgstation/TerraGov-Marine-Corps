@@ -203,6 +203,9 @@
 
 /datum/component/chem_booster/proc/scan_user(datum/source)
 	SIGNAL_HANDLER
+	INVOKE_ASYNC(src, .proc/act_scanner)
+
+datum/component/chem_booster/proc/act_scanner()
 	analyzer.attack(wearer, wearer, TRUE)
 
 ///Links the held item, if compatible, to the chem booster and registers attacking with it
@@ -225,7 +228,7 @@
 
 	wearer.add_movespeed_modifier(MOVESPEED_ID_CHEM_CONNECT, TRUE, 0, NONE, TRUE, 4)
 	to_chat(wearer, "<span class='notice'>You begin connecting the [held_item] to the storage tank.</span>")
-	if(!do_after(wearer, 4 SECONDS, TRUE, held_item, BUSY_ICON_FRIENDLY, null, PROGRESS_BRASS, ignore_turf_checks = TRUE))
+	if(!do_after(wearer, 2 SECONDS, TRUE, held_item, BUSY_ICON_FRIENDLY, null, PROGRESS_BRASS, ignore_turf_checks = TRUE))
 		wearer.remove_movespeed_modifier(MOVESPEED_ID_CHEM_CONNECT)
 		to_chat(wearer, "<span class='warning'>You are interrupted.</span>")
 		return
