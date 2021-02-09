@@ -140,11 +140,6 @@
 	icon_state = "30mm_crate_hv"
 	desc = "A crate full of 30mm high-velocity bullets used on the dropship heavy guns."
 	travelling_time = 5 * (GLOB.current_orbit/3) SECONDS
-	ammo_count = 200
-	max_ammo_count = 200
-	ammo_used_per_firing = 20
-	bullet_spread_range = 3
-	point_cost = 150
 
 
 
@@ -154,7 +149,7 @@
 	name = "high-capacity laser battery"
 	icon_state = "laser_battery"
 	desc = "A high-capacity laser battery used to power laser beam weapons."
-	travelling_time = 1 * (GLOB.current_orbit/3) SECONDS
+	travelling_time = 1 SECONDS
 	ammo_count = 100
 	max_ammo_count = 100
 	ammo_used_per_firing = 40
