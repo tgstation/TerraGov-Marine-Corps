@@ -620,9 +620,9 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/normal/proc/attempt_to_spawn_larva_in_silo(mob/xeno_candidate, possible_silos)
 	var/obj/structure/resin/silo/chosen_silo
 	if(length(possible_silos) > 1)
-		chosen_silo = input("Available Egg Silos") as null|anything in possible_silos
+		chosen_silo = tgui_input_list(xeno_candidate, "Available Egg Silos", "Spawn location", possible_silos)
 		xeno_candidate.forceMove(chosen_silo)
-		var/double_check = input(xeno_candidate, "Spawn here?", "Spawn location") as null|anything in list("Yes","Pick another silo")
+		var/double_check = tgui_alert(xeno_candidate, "Spawn here?", "Spawn location", list("Yes","Pick another silo"))
 		if(double_check == "Pick another silo")
 			return attempt_to_spawn_larva_in_silo(xeno_candidate, possible_silos)
 		else if(double_check != "Yes")
