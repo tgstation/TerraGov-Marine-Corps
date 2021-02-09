@@ -220,7 +220,7 @@
 	cooldown_timer = 1.5 MINUTES
 	plasma_cost = 400
 	//keybind_signal = COMSIG_XENOABILITY_NIGHTFALL
-	//keybind_flags = XACT_KEYBIND_USE_ABILITY | XACT_IGNORE_SELECTED_ABILITY
+	keybind_flags = XACT_KEYBIND_USE_ABILITY | XACT_IGNORE_SELECTED_ABILITY
 
 /datum/action/xeno_action/activable/nightfall/on_cooldown_finish()
 	to_chat(owner, "<span class='notice'>We gather enough mental strength to extinguish lights again.</span>")
