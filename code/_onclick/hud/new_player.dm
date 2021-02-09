@@ -5,8 +5,8 @@
 	buttons -= /obj/screen/text/lobby/clickable //skip the parent type for clickables
 	var/ycoord = 12
 	for(var/button in buttons)
-		var/obj/screen/text/lobby/screen = new button(owner, owner)
-		static_inventory += screen
+		var/obj/screen/text/lobby/screen = new button()
 		screen.hud = src
+		static_inventory += screen
 		screen.set_position(2, ycoord--)
 

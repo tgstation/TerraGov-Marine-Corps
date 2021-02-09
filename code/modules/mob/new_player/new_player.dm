@@ -33,7 +33,7 @@
 	return ..()
 
 
-/mob/new_player/proc/playerpolls()
+/mob/new_player/proc/check_playerpolls()
 	var/output
 	if (SSdbcore.Connect())
 		var/isadmin = FALSE
@@ -55,17 +55,16 @@
 				AND deleted = 0
 			)
 		"}, list("isadmin" = isadmin, "ckey" = ckey))
-		var/rs = REF(src)
 		if(!query_get_new_polls.Execute())
 			qdel(query_get_new_polls)
 			return
 		if(query_get_new_polls.NextRow())
-			output += "<p><b><a href='byond://?src=[rs];showpoll=1'>Show Player Polls</A> (NEW!)</b></p>"
+			output = TRUE
 		else
-			output += "<p><a href='byond://?src=[rs];showpoll=1'>Show Player Polls</A></p>"
+			output = FALSE
 		qdel(query_get_new_polls)
 		if(QDELETED(src))
-			return
+			return null
 		return output
 
 /mob/new_player/Stat()
@@ -367,12 +366,14 @@
 ///Toggles the new players ready state
 /mob/new_player/proc/toggle_ready()
 	if(SSticker?.current_state > GAME_STATE_PREGAME)
+		to_chat(src, "<span class='warning'>The round has already started.</span>")
 		return
 	ready = !ready
 	if(ready)
 		GLOB.ready_players += src
 	else
 		GLOB.ready_players -= src
+	to_chat(src, "<span class='warning'>You are now [ready? "" : "not "] ready.</span>")
 
 ///Attempts to latejoin the player
 /mob/new_player/proc/attempt_late_join(queue_override = FALSE)

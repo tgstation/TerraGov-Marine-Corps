@@ -14,6 +14,16 @@
 	maptext_width = 480
 	maptext = "If you see this yell at coders"
 
+/**
+ * What the hell is this proc? you might be asking
+ * Well this is the answer to a wierd ass bug where the hud datum passes null to Initialize instead of a reference to itself
+ * Why does this happen? I'd love to know but noone else has so far
+ * Please fix it so you dont have to manually set the owner and this junk to make it work
+ *
+ * This proc sets the maptext of the screen obj when it's updated
+ */
+/obj/screen/text/lobby/proc/set_text()
+	return
 
 /obj/screen/text/lobby/title
 	maptext = "<span class=menutext>Welcome to TGMC</span>"
@@ -21,10 +31,13 @@
 /obj/screen/text/lobby/title/Initialize()
 	. = ..()
 	maptext = "<span class=menutext>Welcome to TGMC[SSmapping?.configs ? " - [SSmapping.configs[SHIP_MAP].map_name]" : ""]</span>"
+	var/matrix/M = matrix()
+	M.Scale(1.2, 1.2)//make text bigger for title page
+	transform = M
 
 
 /obj/screen/text/lobby/year
-	maptext = "<span class=menutext>Current Year: ERROR</span>"
+	maptext = "<span class=menutext>Current Year: Loading...</span>"
 
 /obj/screen/text/lobby/year/Initialize()
 	. = ..()
@@ -38,22 +51,18 @@
 /obj/screen/text/lobby/owners_char/Initialize(mapload)
 	. = ..()
 	if(!mapload)
-		INVOKE_NEXT_TICK(src, .proc/update_appeared_name)//used to dodge some a race condition when sending back to lobby
+		INVOKE_NEXT_TICK(src, .proc/set_text)//stupid fucking hud race conditions  fuck you
 		return
-	update_appeared_name()
+	set_text()
 
-/obj/screen/text/lobby/owners_char/proc/update_appeared_name()
-	SIGNAL_HANDLER
+/obj/screen/text/lobby/owners_char/set_text()
 	maptext = "<span class=menutext>Current character: [hud.mymob.client ? hud.mymob.client.prefs.real_name : "Unknown User"]</span>"
 
 ///Clickable UI lobby objects which do stuff on Click() when pressed
 /obj/screen/text/lobby/clickable
 	maptext = "if you see this a coder was stinky"
-	mouse_opacity = MOUSE_OPACITY_OPAQUE
-
-/obj/screen/text/lobby/clickable/Click()
-	var/mob/new_player/player = usr
-	player.playsound_local(player, "bloop", 50)
+	icon = 'icons/UI_Icons/lobby_prop.dmi' //hitbox prop
+	mouse_opacity = MOUSE_OPACITY_ICON
 
 /obj/screen/text/lobby/clickable/MouseEntered(location, control, params)
 	. = ..()
@@ -102,14 +111,20 @@
 
 /obj/screen/text/lobby/clickable/ready/Initialize(mapload)
 	. = ..()
+	if(!mapload)
+		INVOKE_NEXT_TICK(src, .proc/set_text)
+		return
+	set_text()
+
+/obj/screen/text/lobby/clickable/ready/set_text()
 	var/mob/new_player/player = hud.mymob
-	maptext = "<span class=menutext>[player.ready ? "" : "Not "]Ready</span>"
+	maptext = "<span class=menutext>You are [player.ready ? "" : "Not "]Ready</span>"
 
 /obj/screen/text/lobby/clickable/ready/Click()
 	. = ..()
 	var/mob/new_player/player = hud.mymob
 	player.toggle_ready()
-	maptext = "<span class=menutext>[player.ready ? "" : "Not "]Ready</span>"
+	maptext = "<span class=menutext>You are [player.ready ? "" : "Not "]Ready</span>"
 
 
 /obj/screen/text/lobby/clickable/changelog
@@ -132,19 +147,27 @@
 /obj/screen/text/lobby/clickable/polls
 	maptext = "<span class=menutext>Polls</span>"
 
-/obj/screen/text/lobby/clickable/polls/Initialize(mapload)
+/obj/screen/text/lobby/clickable/polls/Initialize(mapload, atom/one, atom/two)
 	. = ..()
+	if(!mapload)
+		INVOKE_NEXT_TICK(src, .proc/fetch_polls)
+		return
 	INVOKE_ASYNC(src, .proc/fetch_polls)
 
 ///This proc is invoked async to avoid sleeping in Initialize and fetches polls from the DB
 /obj/screen/text/lobby/clickable/polls/proc/fetch_polls()
 	var/mob/new_player/player = hud.mymob
-	var/pollstring = player.playerpolls()
-	if(!pollstring)
-		pollstring = "No Database connection!"
-	maptext = "<span class=menutext>" + pollstring + "</span>"
-//no Click() needed because hrefs in playerpolls()
+	var/hasnewpolls = player.check_playerpolls()
+	if(isnull(hasnewpolls))
+		maptext = "<span class=menutext>No Database connection!</span>"
+		return
+	maptext = "<span class=menutext>Show Polls[hasnewpolls ? "" : " (NEW!)"]</span>"
 
+/obj/screen/text/lobby/clickable/polls/Click()
+	. = ..()
+	var/mob/new_player/player = hud.mymob
+	player.handle_playeR_DBRANKSing()
+	fetch_polls()
 
 /obj/screen/text/lobby/clickable/manifest
 	maptext = "<span class=menutext>View Manifest</span>"
