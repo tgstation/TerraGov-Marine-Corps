@@ -61,9 +61,12 @@
 	if(over_object.name == "r_hand" || over_object.name == "l_hand")
 		if(master_item.time_to_unequip)
 			INVOKE_ASYNC(src, .proc/unequip_item, user)
-		else
+		else if(over_object.name == "r_hand")
 			user.dropItemToGround(master_item)
 			user.put_in_r_hand(master_item)
+		else if(over_object.name == "l_hand")
+			user.dropItemToGround(master_item)
+			user.put_in_l_hand(master_item)
 	return FALSE
 
 ///unequips items that require a do_after because they have an unequip time
