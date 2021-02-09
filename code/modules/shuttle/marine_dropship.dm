@@ -289,6 +289,8 @@
 	if(!D.can_summon_dropship(src))
 		return
 
+	D.announce_bioscans()
+
 	var/obj/docking_port/stationary/port = D.summon_dropship(src)
 	if(!port)
 		to_chat(src, "<span class='warning'>Something went wrong.</span>")
@@ -424,6 +426,7 @@
 	if(M)
 		dat += "<A href='?src=[REF(src)];hijack=1'>Launch to [SSmapping.configs[SHIP_MAP].map_name]</A><br>"
 		M.unlock_all()
+		dat += "<A href='?src=[REF(src)];abduct=1'>Capture the [M]</A><br>"
 		if(M.hijack_state != HIJACK_STATE_CALLED_DOWN)
 			M.hijack_state = HIJACK_STATE_CALLED_DOWN
 			M.do_start_hijack_timer()
@@ -601,6 +604,25 @@
 			return
 		do_hijack(M, CT, X)
 
+	if(href_list["abduct"])
+		var/groundside_humans
+		for(var/N in GLOB.alive_human_list)
+			var/mob/H = N
+			if(H.z != X.z)
+				continue
+			groundside_humans++
+
+		if(groundside_humans > 5)
+			to_chat(X, "<span class='xenowarning'>There is still prey left to hunt!</span>")
+			return
+
+		var/confirm = tgui_alert(usr, "Would you like to capture the metal bird?\n THIS WILL END THE ROUND", "Capture the ship?", list( "Yes", "No"))
+		if(confirm != "Yes")
+			return
+		priority_announce("The Alamo has been captured! Losing their main mean of accessing the ground, the marines have no choice but to retreat.", title = "ALAMO CAPTURED")
+		var/datum/game_mode/infestation/distress/distress_mode = SSticker.mode
+		distress_mode.round_stage = DISTRESS_DROPSHIP_CAPTURED_XENOS
+		return
 
 /obj/machinery/computer/shuttle/marine_dropship/proc/do_hijack(obj/docking_port/mobile/marine_dropship/crashing_dropship, obj/docking_port/stationary/marine_dropship/crash_target/crash_target, mob/living/carbon/xenomorph/user)
 	crashing_dropship.set_hijack_state(HIJACK_STATE_CRASHING)
