@@ -317,7 +317,7 @@
 	if(!SSticker || SSticker.current_state == GAME_STATE_STARTUP)
 		to_chat(src, "<span class='warning'>The game is still setting up, please try again later.</span>")
 		return
-	if(alert("Are you sure you wish to observe?[SSticker.mode?.observe_respawn_message()]", "Observe", "Yes", "No") != "Yes")
+	if(tgui_alert("Are you sure you wish to observe?[SSticker.mode?.observe_respawn_message()]", "Observe",list("Yes", "No")) != "Yes")
 		return
 	if(!client)
 		return TRUE
