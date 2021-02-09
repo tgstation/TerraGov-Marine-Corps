@@ -1,0 +1,5 @@
+author: "Naaanii"
+delete-after: True
+changes: 
+  - rscadd: "adds the option for the xenos to capture the Alamo after it has been brought groundside, closing the round. This requires there to be less than 5 humans groundside"
+  - rscadd: "when the Alamo gets called, a bioscan signal is sent"
