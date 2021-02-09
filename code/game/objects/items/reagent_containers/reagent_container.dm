@@ -30,7 +30,7 @@
 	if(!length(possible_transfer_amounts))
 		return
 
-	var/N = input("Amount per transfer from this:", "[src]") as null|anything in possible_transfer_amounts
+	var/N = tgui_input_list(user, "Amount per transfer from this:", "[src]", possible_transfer_amounts)
 	if(!N)
 		return
 
@@ -42,7 +42,7 @@
 	set category = "Object"
 	set src in view(1)
 
-	var/N = input("Amount per transfer from this:", "[src]") as null|anything in possible_transfer_amounts
+	var/N = tgui_input_list(usr, "Amount per transfer from this:", "[src]", possible_transfer_amounts)
 	if(!N)
 		return
 

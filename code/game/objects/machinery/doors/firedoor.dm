@@ -156,9 +156,9 @@
 		if(A.flags_alarm_state & ALARM_WARNING_FIRE || A.air_doors_activated)
 			alarmed = TRUE
 
-	var/answer = alert(user, "Would you like to [density ? "open" : "close"] this [src.name]?[ alarmed && density ? "\nNote that by doing so, you acknowledge any damages from opening this\n[src.name] as being your own fault, and you will be held accountable under the law." : ""]",\
-	"\The [src]", "Yes, [density ? "open" : "close"]", "No")
-	if(answer == "No")
+	var/answer = tgui_alert(user, "Would you like to [density ? "open" : "close"] this [src.name]?[ alarmed && density ? "\nNote that by doing so, you acknowledge any damages from opening this\n[src.name] as being your own fault, and you will be held accountable under the law." : ""]",\
+	"\The [src]", list("Yes, [density ? "open" : "close"]", "No"))
+	if(answer == "No" || !answer)
 		return
 	if(user.incapacitated() || (!user.canmove && !isAI(user)) || (get_dist(src, user) > 1  && !isAI(user)))
 		to_chat(user, "Sorry, you must remain able bodied and close to \the [src] in order to use it.")

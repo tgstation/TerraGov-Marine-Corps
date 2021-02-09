@@ -35,7 +35,7 @@
 
 /datum/keybinding/xeno/secrete_resin_silo
 	name = "secrete_resin_silo"
-	full_name = "Secrete Resin Spawning Pool"
+	full_name = "Secrete Resin Silo"
 	description = "Builds a resin silo. Requires a number of dead bodies on a nest."
 	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN_SILO
 

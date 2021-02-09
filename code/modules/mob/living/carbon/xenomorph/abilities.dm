@@ -122,7 +122,10 @@
 	GLOB.round_statistics.xeno_headbites++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "xeno_headbites")
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 // ***************************************
 // *********** Drone-y abilities
 // ***************************************
@@ -957,7 +960,7 @@
 		to_chat(X, "<span class='warning'>There's nobody nearby to whisper to.</span>")
 		return
 
-	var/mob/living/L = input("Target", "Send a Psychic Whisper to whom?") as null|anything in target_list
+	var/mob/living/L = tgui_input_list(X, "Target", "Send a Psychic Whisper to whom?", target_list)
 	if(!L)
 		return
 
@@ -1013,7 +1016,7 @@
 /// Build silo
 ///////////////////
 /datum/action/xeno_action/activable/build_silo
-	name = "Secrete silo"
+	name = "Secrete resin silo"
 	action_icon_state = "resin_silo"
 	mechanics_text = "Creates a new silo"
 	ability_name = "secrete resin"
@@ -1023,8 +1026,6 @@
 
 	/// How long does it take to build
 	var/build_time = 10 SECONDS
-	/// Pyschic point cost
-	var/psych_cost = POOL_PRICE //If you have 10 generators, that makes one new pool every 15 minutes
 
 /datum/action/xeno_action/activable/build_silo/can_use_ability(atom/A, silent, override_flags)
 	. = ..()
@@ -1045,6 +1046,10 @@
 /datum/action/xeno_action/activable/build_silo/use_ability(atom/A)
 	if(!do_after(owner, build_time, TRUE, A, BUSY_ICON_BUILD))
 		return fail_activate()
+
+	if(SSpoints.xeno_points_by_hive[X.hivenumber]<psych_cost)
+		to_chat(owner, "<span class='xenowarning'>Someone used all the psych points while we were building!</span>")
+		return FALSE
 
 	var/obj/structure/resin/silo/pool = new(get_step(A, SOUTHWEST))
 	GLOB.xeno_resin_silos += pool

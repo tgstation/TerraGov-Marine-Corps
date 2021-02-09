@@ -14939,10 +14939,6 @@
 /obj/structure/sign/double/barsign/carp,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/magmoor/compound)
-"lqW" = (
-/obj/machinery/power/geothermal,
-/turf/open/floor/plating,
-/area/magmoor/engi/power)
 "lrb" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4;
@@ -49839,9 +49835,9 @@ xil
 mPq
 mSf
 tdn
-tdn
-lqW
-tdn
+vfy
+nMn
+vfy
 oJi
 eGv
 eGv
@@ -53101,9 +53097,9 @@ dmb
 mPq
 mwx
 tdn
-tdn
-lqW
-tdn
+vfy
+nMn
+vfy
 opE
 eGv
 eGv

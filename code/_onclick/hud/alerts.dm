@@ -141,7 +141,7 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 		if(NOTIFY_JOIN_AS_LARVA)
 			if(!isxeno(target))
 				return FALSE
-			switch(alert(G, "What would you like to do?", "Burrowed larva source available", "Join as Larva", "Jump to it", "Cancel"))
+			switch(tgui_alert(G, "What would you like to do?", "Burrowed larva source available", list("Join as Larva", "Jump to it", "Cancel")))
 				if("Join as Larva")
 					SSticker.mode.spawn_larva(G, target)
 				if("Jump to it")

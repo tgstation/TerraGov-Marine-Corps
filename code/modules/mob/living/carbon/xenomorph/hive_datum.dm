@@ -451,7 +451,7 @@
 
 
 /datum/hive_status/normal/check_ruler()
-	if(!(SSticker?.mode.flags_round_type & MODE_XENO_RULER))
+	if(!SSticker?.mode || !(SSticker.mode.flags_round_type & MODE_XENO_RULER))
 		return TRUE
 	return living_xeno_ruler
 
@@ -543,7 +543,7 @@ to_chat will check for valid clients itself already so no need to double check f
 
 
 /datum/hive_status/normal/handle_ruler_timer()
-	if(!isdistress(SSticker.mode))
+	if(!isdistress(SSticker?.mode))
 		return
 	var/datum/game_mode/infestation/distress/D = SSticker.mode
 
@@ -598,7 +598,7 @@ to_chat will check for valid clients itself already so no need to double check f
 
 	var/mob/living/carbon/xenomorph/chosen_mother
 	if(length(possible_mothers) > 1)
-		chosen_mother = input("Available Mothers") as null|anything in possible_mothers
+		chosen_mother = tgui_input_list(xeno_candidate, "Available Mothers", possible_mothers)
 	else
 		chosen_mother = possible_mothers[1]
 
@@ -607,7 +607,7 @@ to_chat will check for valid clients itself already so no need to double check f
 
 	if(!isnewplayer(xeno_candidate) && XENODEATHTIME_CHECK(xeno_candidate))
 		if(check_other_rights(xeno_candidate.client, R_ADMIN, FALSE))
-			if(alert(xeno_candidate, "You wouldn't normally qualify for this respawn. Are you sure you want to bypass it with your admin powers?", "Bypass Respawn", "Yes", "No") != "Yes")
+			if(tgui_alert(xeno_candidate, "You wouldn't normally qualify for this respawn. Are you sure you want to bypass it with your admin powers?", "Bypass Respawn", list("Yes", "No")) != "Yes")
 				XENODEATHTIME_MESSAGE(xeno_candidate)
 				return FALSE
 		else
@@ -620,9 +620,9 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/normal/proc/attempt_to_spawn_larva_in_silo(mob/xeno_candidate, possible_silos)
 	var/obj/structure/resin/silo/chosen_silo
 	if(length(possible_silos) > 1)
-		chosen_silo = input("Available Egg Silos") as null|anything in possible_silos
+		chosen_silo = tgui_input_list(xeno_candidate, "Available Egg Silos", "Spawn location", possible_silos)
 		xeno_candidate.forceMove(chosen_silo)
-		var/double_check = input(xeno_candidate, "Spawn here?", "Spawn location") as null|anything in list("Yes","Pick another silo")
+		var/double_check = tgui_alert(xeno_candidate, "Spawn here?", "Spawn location", list("Yes","Pick another silo"))
 		if(double_check == "Pick another silo")
 			return attempt_to_spawn_larva_in_silo(xeno_candidate, possible_silos)
 		else if(double_check != "Yes")
@@ -635,7 +635,7 @@ to_chat will check for valid clients itself already so no need to double check f
 
 	if(!isnewplayer(xeno_candidate) && XENODEATHTIME_CHECK(xeno_candidate))
 		if(check_other_rights(xeno_candidate.client, R_ADMIN, FALSE))
-			if(alert(xeno_candidate, "You wouldn't normally qualify for this respawn. Are you sure you want to bypass it with your admin powers?", "Bypass Respawn", "Yes", "No") != "Yes")
+			if(tgui_alert(xeno_candidate, "You wouldn't normally qualify for this respawn. Are you sure you want to bypass it with your admin powers?", "Bypass Respawn", list("Yes", "No")) != "Yes")
 				XENODEATHTIME_MESSAGE(xeno_candidate)
 				return FALSE
 		else
@@ -727,6 +727,7 @@ to_chat will check for valid clients itself already so no need to double check f
 		if(xeno_job.total_positions < (-difference + xeno_job.current_positions))
 			xeno_job.set_job_positions(-difference + xeno_job.current_positions)
 	for(var/obj/structure/resin/silo/silo as() in GLOB.xeno_resin_silos)
+<<<<<<< HEAD
 		if(!is_ground_level(silo.z))
 			continue
 		qdel(silo)
@@ -736,6 +737,13 @@ to_chat will check for valid clients itself already so no need to double check f
 	var/list/living_player_list = SSticker.mode.count_humans_and_xenos(count_flags = COUNT_IGNORE_HUMAN_SSD)
 	var/num_humans = living_player_list[1]
 	SSsilo.larva_spawn_rate = 0.2 * num_humans //That mean that one pool give 1 larva every minute for 40 marines
+=======
+		if(isalamoarea(get_area(silo)))
+			continue
+		if(!is_ground_level(silo.z))
+			continue
+		qdel(silo)
+>>>>>>> master
 
 
 // ***************************************
@@ -1124,6 +1132,7 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/proc/update_tier_limits()
 	tier3_xeno_limit = max(length(xenos_by_tier[XENO_TIER_THREE]),FLOOR((length(xenos_by_tier[XENO_TIER_ZERO])+length(xenos_by_tier[XENO_TIER_ONE])+length(xenos_by_tier[XENO_TIER_TWO]))/3+1,1))
 	tier2_xeno_limit = max(length(xenos_by_tier[XENO_TIER_TWO]),length(xenos_by_tier[XENO_TIER_ZERO]) + length(xenos_by_tier[XENO_TIER_ONE])+1 - length(xenos_by_tier[XENO_TIER_THREE]))
+<<<<<<< HEAD
 
 ///Handles the timer when all silos are destroyed
 /datum/hive_status/proc/handle_silo_death_timer()
@@ -1145,3 +1154,5 @@ to_chat will check for valid clients itself already so no need to double check f
 
 	xeno_message("<span class='xenoannounce'>A sudden tremor ripples through the hive... the last siloroyed! The hive will collapse in nothing is done</span>", 3, TRUE)
 	D.siloless_hive_timer = addtimer(CALLBACK(D, /datum/game_mode.proc/siloless_hive_collapse), 10 MINUTES, TIMER_STOPPABLE)
+=======
+>>>>>>> master

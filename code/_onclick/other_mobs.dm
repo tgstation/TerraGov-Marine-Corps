@@ -41,7 +41,7 @@
 				if(user_unbuckle_mob(buckled_mobs[1], user))
 					return TRUE
 			else
-				var/unbuckled = input(user, "Who do you wish to unbuckle?", "Unbuckle Who?") as null|mob in sortNames(buckled_mobs)
+				var/unbuckled = tgui_input_list(user, "Who do you wish to unbuckle?", "Unbuckle Who?", sortNames(buckled_mobs))
 				if(!unbuckled)
 					return
 				if(user_unbuckle_mob(unbuckled, user))

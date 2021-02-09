@@ -134,7 +134,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 		to_chat(usr, "<span class='warning'>All of the modules can't be activated or are broken.</span>")
 		return
 
-	var/slot = input("Select a slot.") in slots
+	var/slot = tgui_input_list(usr, "Select a slot.", slots)
 
 	var/obj/item/hardpoint/HP = hardpoints[slot]
 	if(!(HP?.obj_integrity))
@@ -162,7 +162,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 		to_chat(usr, "<span class='warning'>All of the modules can't be reloaded or are broken.</span>")
 		return
 
-	var/slot = input("Select a slot.") in slots
+	var/slot = tgui_input_list(usr, "Select a slot.", slots)
 
 	var/obj/item/hardpoint/HP = hardpoints[slot]
 	if(!length(HP?.backup_clips))
@@ -642,7 +642,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 			return
 
 	//Pick what to repair
-	var/slot = input("Select a slot to try and repair") in hardpoints
+	var/slot = tgui_input_list(user, "Select a slot to try and repair", hardpoints) //maybe tgui alert ?
 	var/obj/item/I = user.get_active_held_item()
 	if(!Adjacent(user) || (!iswelder(I) && !iswrench(I)))
 		return
@@ -730,7 +730,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 	//That would make it easier to differentiate between the two for skills
 	//Instead of using MT skills for these procs and TC skills for operation
 	//Oh but wait then the MTs would be able to drive fuck that
-	var/slot = input("Select a slot to try and refill") in hardpoints
+	var/slot = tgui_input_list(user, "Select a slot to try and refill", hardpoints)
 	if(!Adjacent(user) || user.get_active_held_item() != AM)
 		return
 	var/obj/item/hardpoint/HP = hardpoints[slot]
@@ -799,7 +799,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return
 
-	var/slot = input("Select a slot to try and remove") in hardpoints
+	var/slot = tgui_input_list(user, "Select a slot to try and remove", hardpoints)
 	if(!Adjacent(user) || !iscrowbar(user.get_active_held_item()))
 		return
 

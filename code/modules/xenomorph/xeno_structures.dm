@@ -25,17 +25,17 @@
 
 
 /obj/structure/resin/silo
-	name = "silo"
 	icon = 'icons/Xeno/spawning_pool.dmi'
 	icon_state = "spawning_pool"
+	name = "resin silo"
 	desc = "A slimy, oozy resin bed filled with foul-looking egg-like ...things."
 	bound_width = 96
 	bound_height = 96
-	max_integrity = 1000
+	max_integrity = 400
 	var/turf/center_turf
 	var/datum/hive_status/associated_hive
 	var/silo_area
-	var/number_pool
+	var/number_silo
 	COOLDOWN_DECLARE(silo_damage_alert_cooldown)
 	COOLDOWN_DECLARE(silo_proxy_alert_cooldown)
 
@@ -44,7 +44,7 @@
 
 	var/static/number = 1
 	name = "[name] [number]"
-	number_pool = number
+	number_silo = number
 	number++
 
 	GLOB.xeno_resin_silos += src
@@ -163,3 +163,73 @@
 	SIGNAL_HANDLER
 	if(associated_hive)
 		silos += src
+
+/*
+//*******************
+//Corpse recyclinging
+//*******************
+/obj/structure/resin/silo/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(!isxeno(user)) //only xenos can deposit corpses
+		return
+
+	if(!istype(I, /obj/item/grab))
+		return
+
+	var/obj/item/grab/G = I
+	if(!iscarbon(G.grabbed_thing))
+		return
+	var/mob/living/carbon/victim = G.grabbed_thing
+	if(!(ishuman(victim) || ismonkey(victim))) //humans and monkeys only for now
+		to_chat(user, "<span class='notice'>[src] can only process humanoid anatomies!</span>")
+		return
+
+	if(victim.chestburst)
+		to_chat(user, "<span class='notice'>[victim] has already been exhausted to incubate a sister!</span>")
+		return
+
+	if(issynth(victim))
+		to_chat(user, "<span class='notice'>[victim] has no useful biomass for us.</span>")
+		return
+
+	if(ishuman(victim))
+		var/mob/living/carbon/human/H = victim
+		if(check_tod(H))
+			to_chat(user, "<span class='notice'>[H] still has some signs of life. We should headbite it to finish it off.</span>")
+			return
+
+	visible_message("[user] starts putting [victim] into [src].", 3)
+
+	if(!do_after(user, 20, FALSE, victim, BUSY_ICON_DANGER) || QDELETED(src))
+		return
+
+	victim.chestburst = 2 //So you can't reuse corpses if the silo is destroyed
+	victim.update_burst()
+	victim.forceMove(src)
+
+	if(prob(5)) //5% chance to play
+		shake(4 SECONDS)
+	else
+		playsound(loc, 'sound/effects/blobattack.ogg', 25)
+
+	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+	xeno_job.add_job_points(1.75) //4 corpses per burrowed; 7 points per larva
+
+	log_combat(victim, user, "was consumed by a resin silo")
+	log_game("[key_name(victim)] was consumed by a resin silo at [AREACOORD(victim.loc)].")
+
+	GLOB.round_statistics.xeno_silo_corpses++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "xeno_silo_corpses")
+
+/obj/structure/resin/silo/proc/shake(duration)
+	var/offset = prob(50) ? -2 : 2
+	var/old_pixel_x = pixel_x
+	var/shake_sound = rand(1, 100) == 1 ? 'sound/machines/blender.ogg' : 'sound/machines/juicer.ogg'
+	playsound(src, shake_sound, 25, TRUE)
+	animate(src, pixel_x = pixel_x + offset, time = 2, loop = -1) //start shaking
+	addtimer(CALLBACK(src, .proc/stop_shake, old_pixel_x), duration)
+
+/obj/structure/resin/silo/proc/stop_shake(old_px)
+	animate(src)
+	pixel_x = old_px
+*/
