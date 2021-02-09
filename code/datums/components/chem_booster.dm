@@ -15,6 +15,12 @@
 	var/resource_drain_amount = 10
 	///Opens radial menu with settings
 	var/datum/action/chem_booster/configure/configure_action
+	///Turns the suit on and off. Can be used while downed
+	var/datum/action/chem_booster/power/power_action
+	///Activates the chemsuit's analyzer
+	var/datum/action/chem_booster/scan/scan_action
+	///Instant analyzer for the chemsuit
+	var/obj/item/healthanalyzer/integrated/analyzer
 	///Determines whether the suit is on
 	var/boost_on = FALSE
 	///Stores the value with which effect_mult is modified
@@ -35,21 +41,29 @@
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
 	update_boost(boost_tier1)
+	analyzer = new
 
 /datum/component/chem_booster/Destroy(force, silent)
 	QDEL_NULL(configure_action)
+	QDEL_NULL(power_action)
+	QDEL_NULL(scan_action)
+	QDEL_NULL(analyzer)
 	wearer = null
 	return ..()
 
 /datum/component/chem_booster/RegisterWithParent()
 	. = ..()
 	configure_action = new(parent)
+	power_action = new(parent)
+	scan_action = new(parent)
 	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, .proc/examine)
 	RegisterSignal(parent, list(COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_DROPPED), .proc/dropped)
 	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED_TO_SLOT, .proc/equipped)
 	RegisterSignal(configure_action, COMSIG_ACTION_TRIGGER, .proc/configure)
+	RegisterSignal(power_action, COMSIG_ACTION_TRIGGER, .proc/on_off)
+	RegisterSignal(scan_action, COMSIG_ACTION_TRIGGER, .proc/scan_user)
 
-/datum/component/suit_autodoc/UnregisterFromParent()
+/datum/component/chem_booster/UnregisterFromParent()
 	. = ..()
 	UnregisterSignal(parent, list(
 		COMSIG_PARENT_EXAMINE,
@@ -57,6 +71,8 @@
 		COMSIG_ITEM_DROPPED,
 		COMSIG_ITEM_EQUIPPED_TO_SLOT))
 	QDEL_NULL(configure_action)
+	QDEL_NULL(power_action)
+	QDEL_NULL(scan_action)
 
 /datum/component/chem_booster/proc/examine(datum/source, mob/user)
 	SIGNAL_HANDLER
@@ -71,6 +87,8 @@
 	manage_weapon_connection()
 
 	configure_action.remove_action(wearer)
+	power_action.remove_action(wearer)
+	scan_action.remove_action(wearer)
 	wearer = null
 
 /datum/component/chem_booster/proc/equipped(datum/source, mob/equipper, slot)
@@ -79,12 +97,14 @@
 		return
 	wearer = equipper
 	configure_action.give_action(wearer)
+	power_action.give_action(wearer)
+	scan_action.give_action(wearer)
 
 /datum/component/chem_booster/process()
 	if(resource_storage_current < resource_drain_amount)
 		to_chat(wearer, "<span class='warning'>Insufficient resources to maintain operation.</span>")
 		on_off()
-	resource_storage_current = max(resource_storage_current - resource_drain_amount, 0)
+	update_resource(-resource_drain_amount)
 
 	if(world.time - processing_start > 12 SECONDS && world.time - processing_start < 15 SECONDS)
 		wearer.overlay_fullscreen("degeneration", /obj/screen/fullscreen/infection, 1)
@@ -100,16 +120,12 @@
 ///Shows the radial menu with suit options. It is separate from configure() due to linters
 /datum/component/chem_booster/proc/show_radial()
 	var/list/radial_options = list(
-		"on_off" = image(icon = 'icons/mob/radial.dmi', icon_state = "cboost_on_off"),
 		"connect" = image(icon = 'icons/mob/radial.dmi', icon_state = "cboost_connect"),
 		"boost" = image(icon = 'icons/mob/radial.dmi', icon_state = "[boost_icon]"),
 		)
 
 	var/choice = show_radial_menu(wearer, wearer, radial_options, null, 48, null, TRUE)
 	switch(choice)
-		if("on_off")
-			on_off()
-
 		if("connect")
 			connect_weapon()
 
@@ -185,6 +201,10 @@
 		R.effect_str += boost_amount
 		break
 
+/datum/component/chem_booster/proc/scan_user(datum/source)
+	SIGNAL_HANDLER
+	analyzer.attack(wearer, wearer, TRUE)
+
 ///Links the held item, if compatible, to the chem booster and registers attacking with it
 /datum/component/chem_booster/proc/connect_weapon()
 	if(manage_weapon_connection())
@@ -243,7 +263,7 @@
 		return
 	update_resource(20)
 
-///Adds or removes resource from the suit. Gets updated
+///Adds or removes resource from the suit. Signal gets sent at every 25%
 /datum/component/chem_booster/proc/update_resource(amount)
 	var/amount_added = min(resource_storage_max - resource_storage_current, amount)
 	var/storage_segment = resource_storage_max*0.25
@@ -253,8 +273,16 @@
 	if(new_resource_str_tier != current_resource_str_tier)
 		var/resource_percentage = (resource_storage_current+amount_added)/resource_storage_max
 		SEND_SIGNAL(parent, COMSIG_CHEM_BOOSTER_RES_UPD, resource_percentage, amount_added)
-	resource_storage_current += amount_added
+	resource_storage_current = max(resource_storage_current + amount_added, 0)
 
 /datum/action/chem_booster/configure
 	name = "Configure Vali Chemical Enhancement"
-	action_icon_state = "suit_configure"
+	action_icon_state = "csuit_configure"
+
+/datum/action/chem_booster/power
+	name = "Power Vali Chemical Enhancement"
+	action_icon_state = "csuit_power"
+
+/datum/action/chem_booster/scan
+	name = "Activate Analyzer"
+	action_icon_state = "suit_scan"
