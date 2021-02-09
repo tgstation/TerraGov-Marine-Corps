@@ -1068,7 +1068,7 @@
 
 /obj/item/weapon/gun/rifle/tx11
 	name = "\improper TX-11 rifle"
-	desc = "The TX-11 is the former standard issue rifle of the TGMC. Most of them have been mothballed into storage long ago, but some still pop up in marine hands. Is known for its large magazine size and great burst fire. Is rather awkward to use. It uses 4.92×34mm caseless HV ammunition."
+	desc = "The TX-11 is the former standard issue rifle of the TGMC. Most of them have been mothballed into storage long ago, but some still pop up in marine or mercenary hands. It is known for its large magazine size and great burst fire, but rather awkward to use, especially during combat. It uses 4.92×34mm caseless HV ammunition."
 	icon_state = "tx11"
 	item_state = "tx11"
 	caliber = "4.92×34mm caseless" //codex
