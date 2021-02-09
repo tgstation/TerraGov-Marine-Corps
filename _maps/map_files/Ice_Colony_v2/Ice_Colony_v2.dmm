@@ -17920,10 +17920,11 @@
 	},
 /area/ice_colony/underground/hangar)
 "bil" = (
+/obj/structure/cable,
 /obj/machinery/power/apc/drained{
 	dir = 1
 	},
-/turf/open/floor/plating,
+/turf/open/floor/podhatch/floor,
 /area/ice_colony/underground/engineering/substation)
 "bio" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -21496,7 +21497,14 @@
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/hallway/north_west)
 "buE" = (
-/obj/structure/closet/toolcloset,
+/obj/machinery/power/geothermal,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/ice_colony/underground/engineering/substation)
+"buF" = (
+/obj/machinery/power/geothermal,
+/obj/structure/cable,
+/obj/machinery/light/small,
 /turf/open/floor/plating,
 /area/ice_colony/underground/engineering/substation)
 "buG" = (
@@ -29159,6 +29167,10 @@
 	dir = 5
 	},
 /area/ice_colony/underground/medical/treatment)
+"bSV" = (
+/obj/structure/cable,
+/turf/open/floor/podhatch/floor,
+/area/ice_colony/underground/engineering/substation)
 "bSW" = (
 /turf/closed/ice_rock/corners{
 	dir = 5
@@ -30898,7 +30910,11 @@
 	},
 /area/ice_colony/underground/security/hallway)
 "bYO" = (
-/obj/structure/closet/secure_closet/engineering_personal,
+/obj/machinery/power/geothermal,
+/obj/structure/cable,
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/open/floor/plating,
 /area/ice_colony/underground/engineering/substation)
 "bYP" = (
@@ -31984,7 +32000,7 @@
 	},
 /area/ice_colony/exterior/underground/caves)
 "fkF" = (
-/obj/effect/landmark/xeno_spawning_pool_spawn,
+/obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/valley/northeast)
 "fol" = (
@@ -32103,7 +32119,7 @@
 /turf/closed/wall/r_wall,
 /area/ice_colony/underground/maintenance/engineering)
 "gaB" = (
-/obj/effect/landmark/xeno_spawning_pool_spawn,
+/obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves/open)
 "gqo" = (
@@ -32231,10 +32247,6 @@
 "hyh" = (
 /turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/landing_pad2)
-"hzV" = (
-/obj/structure/closet/secure_closet/miner,
-/turf/open/floor/plating,
-/area/ice_colony/underground/engineering/substation)
 "hCT" = (
 /turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/north)
@@ -32385,7 +32397,7 @@
 /area/ice_colony/surface/engineering/generator)
 "iUP" = (
 /obj/effect/turf_underlay/icefloor,
-/obj/effect/landmark/xeno_spawning_pool_spawn,
+/obj/effect/landmark/xeno_silo_spawn,
 /turf/closed/ice/thin/corner{
 	dir = 4
 	},
@@ -32440,7 +32452,7 @@
 /turf/closed/ice_rock/westWall,
 /area/ice_colony/exterior/surface/valley/north)
 "jro" = (
-/obj/effect/landmark/xeno_spawning_pool_spawn,
+/obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/underground/maintenance/south)
 "jvd" = (
@@ -32825,7 +32837,7 @@
 	},
 /area/ice_colony/exterior/surface/landing_pad2)
 "ndK" = (
-/obj/effect/landmark/xeno_spawning_pool_spawn,
+/obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/underground/maintenance/engineering)
 "neG" = (
@@ -33129,7 +33141,7 @@
 	},
 /area/ice_colony/surface/tcomms)
 "qrL" = (
-/obj/effect/landmark/xeno_spawning_pool_spawn,
+/obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/underground/maintenance/east)
 "qsE" = (
@@ -58674,8 +58686,8 @@ bbK
 bbK
 bYk
 btz
-hzV
-bYO
+buE
+buE
 bYO
 buE
 buE
@@ -58931,10 +58943,10 @@ bbK
 bbK
 bXs
 btz
-buj
-buj
-buj
-buj
+bSV
+bSV
+bSV
+bSV
 bil
 btz
 bnL
@@ -59188,11 +59200,11 @@ bbK
 bbK
 jQI
 btz
+buE
+buE
 buj
-buj
-buj
-buj
-buj
+bSV
+buE
 btz
 bnL
 box
@@ -59448,8 +59460,8 @@ bYH
 bYK
 bYK
 btc
-buj
-buj
+bSV
+buE
 btz
 bnL
 box
@@ -59705,8 +59717,8 @@ btz
 buj
 buj
 bte
-buj
-buj
+bSV
+buF
 btz
 bnL
 box
@@ -59958,7 +59970,7 @@ bbK
 bbK
 bbK
 bYk
-caA
+btz
 bsg
 bYL
 bYP
@@ -60215,7 +60227,7 @@ bbK
 bbK
 bbK
 bXs
-caA
+btz
 buj
 bYL
 btg
@@ -60472,7 +60484,7 @@ brx
 brx
 brx
 bYC
-caA
+btz
 bsh
 bTa
 buH
@@ -71907,16 +71919,16 @@ acz
 acz
 acz
 aeh
-aeM
-aeM
+adC
+aej
 aeO
 adC
 adC
 afT
 adC
 agG
-aeP
-aeM
+aej
+adC
 acT
 ajA
 ajF
@@ -72164,16 +72176,16 @@ adj
 adj
 adj
 aeh
-aeM
-aeM
-aeM
+adC
+aej
+aeP
 aej
 aej
 afU
 aej
 aeP
-aeP
-aeM
+aej
+adC
 aeh
 aeI
 aiz
