@@ -112,7 +112,6 @@
 	user.advance_grab_state(attacked)
 	return TRUE
 
-/*
 /mob/living/carbon/xenomorph/proc/devour_grabbed()
 	SIGNAL_HANDLER_DOES_SLEEP
 	var/mob/living/carbon/prey = pulling
@@ -190,5 +189,3 @@
 	prey.SetParalyzed(20)
 	prey.adjust_blindness(-1)
 	UnregisterSignal(src, COMSIG_MOVABLE_RELEASED_FROM_STOMACH)
-
-*/
