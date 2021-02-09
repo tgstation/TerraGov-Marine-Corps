@@ -1,0 +1,4 @@
+author: "TiviPlus"
+delete-after: True
+changes: 
+  - server: "Add maximum reccomended version of byond"
