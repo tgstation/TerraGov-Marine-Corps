@@ -60,7 +60,7 @@
 
 	if(over_object.name == "r_hand" || over_object.name == "l_hand")
 		if(master_item.time_to_unequip)
-			INVOKE_ASYNC(src, .proc/unequip_item, user)
+			INVOKE_ASYNC(src, .proc/unequip_item, user, over_object.name)
 		else if(over_object.name == "r_hand")
 			user.dropItemToGround(master_item)
 			user.put_in_r_hand(master_item)
@@ -70,12 +70,16 @@
 	return FALSE
 
 ///unequips items that require a do_after because they have an unequip time
-/obj/item/storage/internal/proc/unequip_item(mob/living/carbon/user)
+/obj/item/storage/internal/proc/unequip_item(mob/living/carbon/user, hand_to_put_in)
 	if(!do_after(user, master_item.time_to_unequip, TRUE, master_item, BUSY_ICON_FRIENDLY))
 		to_chat(user, "You stop taking off \the [master_item]")
 		return
-	user.dropItemToGround(master_item)
-	user.put_in_r_hand(master_item)
+	if(hand_to_put_in == "r_hand")
+		user.dropItemToGround(master_item)
+		user.put_in_r_hand(master_item)
+	else
+		user.dropItemToGround(master_item)
+		user.put_in_l_hand(master_item)
 
 //Items that use internal storage have the option of calling this to emulate default storage attack_hand behaviour.
 //Returns 1 if the master item's parent's attack_hand() should be called, 0 otherwise.
