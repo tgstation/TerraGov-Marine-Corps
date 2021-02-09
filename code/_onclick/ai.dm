@@ -181,7 +181,7 @@
 	var/turf/TU = get_turf(up)
 	var/turf/TD = get_turf(down)
 	if(up && down)
-		switch(alert("Go up or down the ladder?", "Ladder", "Up", "Down", "Cancel"))
+		switch(tgui_alert(AI, "Go up or down the ladder?", "Ladder", list("Up", "Down", "Cancel")))
 			if("Up")
 				TU.move_camera_by_click()
 			if("Down")

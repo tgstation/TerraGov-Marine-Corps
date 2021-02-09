@@ -236,7 +236,7 @@
 		if("clear_recipes")
 			if(!is_operational())
 				return
-			var/yesno = alert("Clear all recipes?",, "Yes","No")
+			var/yesno = tgui_alert(usr, "Clear all recipes?", list("Yes","No"))
 			if(yesno == "Yes")
 				usr.client.prefs.chem_macros = list()
 				usr.client.prefs.save_preferences()
@@ -250,7 +250,7 @@
 			if(!is_operational())
 				return
 			var/name = stripped_input(usr, "Name", "What do you want to name this recipe?", "Recipe", MAX_NAME_LEN)
-			if(usr.client.prefs.chem_macros[name] && alert("\"[name]\" already exists, do you want to overwrite it?",, "Yes", "No") == "No")
+			if(usr.client.prefs.chem_macros[name] && tgui_alert(usr, "\"[name]\" already exists, do you want to overwrite it?", "Yes", "No") == "No")
 				return
 			else if(length(usr.client.prefs.chem_macros) >= 10)
 				to_chat(usr, "<span class='danger'>You can remember <b>up to 10</b> recipes!</span>")
