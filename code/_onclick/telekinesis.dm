@@ -219,4 +219,4 @@ Redefine as needed.
 	focus.layer = old_layer
 	focus.plane = old_plane
 
-#undef TK_MAX_RANGE
+#undef TK_MAXRANGE
