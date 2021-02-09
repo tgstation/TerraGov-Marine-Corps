@@ -34,7 +34,7 @@
 	///List of Internal organs of this body part
 	var/list/datum/internal_organ/internal_organs
 
-	///
+	/// Message that displays when you feel pain from this limb
 	var/damage_msg = "<span class='warning'> You feel an intense pain</span>"
 	var/broken_description
 
