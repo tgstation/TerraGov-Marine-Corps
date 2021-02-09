@@ -4,10 +4,8 @@
 	var/found = FALSE
 	var/turf/origin = get_turf(node)
 	for(var/dir in GLOB.cardinals)
-		var/turf/t = get_step(origin, dir)
 		if(locate(/obj/effect/alien/weeds) in get_step(origin, dir))
 			found = TRUE
-	var/area/a = get_area(node)
 	TEST_ASSERT(found, "No weeds found in neighbouring tiles after 5 seconds!")
 	qdel(node)
 	sleep(60)
