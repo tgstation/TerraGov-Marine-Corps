@@ -321,7 +321,7 @@
 	if(fswitch)
 		fswitch.floodlist -= src
 		fswitch = null
-	. = ..()
+	return ..()
 
 /obj/machinery/floodlight/colony/reset_light()
 	if(fswitch?.turned_on)
