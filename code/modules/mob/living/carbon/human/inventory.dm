@@ -11,11 +11,11 @@
 			return
 		if(client?.prefs?.preferred_slot)
 			if(draw_from_slot_if_possible(client.prefs.preferred_slot))
-				next_move = world.time + 3
+				next_move = world.time
 				return
 		for(var/slot in SLOT_DRAW_ORDER)
 			if(draw_from_slot_if_possible(slot))
-				next_move = world.time + 3
+				next_move = world.time
 				return
 	else
 		if(s_active && s_active.can_be_inserted(I))
@@ -32,60 +32,60 @@
 			update_inv_r_hand(FALSE)
 
 /mob/living/carbon/human/proc/do_kb_equip_slot_s_store()
-	do_kb_equip(SLOT_S_STORE)
+	do_kb_equip(SLOT_S_STORE,COMSIG_KB_SLOT_S_STORE)
 
 /mob/living/carbon/human/proc/do_kb_equip_slot_wear_suit()
-	do_kb_equip(SLOT_WEAR_SUIT)
+	do_kb_equip(SLOT_WEAR_SUIT,COMSIG_KB_SLOT_WEAR_SUIT)
 
 /mob/living/carbon/human/proc/do_kb_equip_slot_belt()
-	do_kb_equip(SLOT_BELT)
+	do_kb_equip(SLOT_BELT,COMSIG_KB_SLOT_BELT)
 
 /mob/living/carbon/human/proc/do_kb_equip_slot_back()
-	do_kb_equip(SLOT_BACK)
+	do_kb_equip(SLOT_BACK,COMSIG_KB_SLOT_BACK)
 
 /mob/living/carbon/human/proc/do_kb_equip_slot_boot()
-	do_kb_equip(SLOT_IN_BOOT)
+	do_kb_equip(SLOT_IN_BOOT,COMSIG_KB_SLOT_BOOT)
 
 /mob/living/carbon/human/proc/do_kb_equip_slot_head()
-	do_kb_equip(SLOT_IN_HEAD)
+	do_kb_equip(SLOT_IN_HEAD,COMSIG_KB_SLOT_HEAD)
 
 /mob/living/carbon/human/proc/do_kb_equip_slot_l_store()
-	do_kb_equip(SLOT_L_STORE)
+	do_kb_equip(SLOT_L_STORE,COMSIG_KB_SLOT_L_STORE)
 
 /mob/living/carbon/human/proc/do_kb_equip_slot_r_store()
-	do_kb_equip(SLOT_R_STORE)
+	do_kb_equip(SLOT_R_STORE,COMSIG_KB_SLOT_R_STORE)
 
 /mob/living/carbon/human/proc/do_kb_equip_slot_accessory()
-	do_kb_equip(SLOT_IN_ACCESSORY)
+	do_kb_equip(SLOT_IN_ACCESSORY,COMSIG_KB_SLOT_ACCESSORY)
 
 /mob/living/carbon/human/proc/do_kb_equip_slot_beltholster()
-	do_kb_equip(SLOT_IN_HOLSTER)
+	do_kb_equip(SLOT_IN_HOLSTER,COMSIG_KB_SLOT_BELT_HOLSTER)
 
 /mob/living/carbon/human/proc/do_kb_equip_slot_suitsholster()
-	do_kb_equip(SLOT_IN_S_HOLSTER)
+	do_kb_equip(SLOT_IN_S_HOLSTER,COMSIG_KB_SLOT_SLOT_S_HOLSTER)
 
 /mob/living/carbon/human/proc/do_kb_equip_slot_backholster()
-	do_kb_equip(SLOT_IN_B_HOLSTER)
+	do_kb_equip(SLOT_IN_B_HOLSTER,COMSIG_KB_SLOT_B_HOLSTER)
 
-/mob/living/carbon/human/proc/do_kb_equip(KB)
-	. = COMSIG_KB_ACTIVATED //The return value must be a flag compatible with the signals triggering this.
+/mob/living/carbon/human/proc/do_kb_equip(KB,COMSIG)
+	. = COMSIG //The return value must be a flag compatible with the signals triggering this.
 
 	if(incapacitated() || lying_angle || istype(loc, /obj/vehicle/multitile/root/cm_armored))
 		return
 
 	var/obj/item/I = get_active_held_item()
 	if(!I)
-		if(next_move > world.time)
-			return
+		if(!next_move > world.time)
+			return FALSE
 
-		if(KB)
-			return
+		if(!KB)
+			return FALSE
 		if(draw_from_slot_if_possible(KB))
-			next_move = world.time + DELAY_KB_EQUIP
+			next_move = world.time
 			return
 		for(var/slot in SLOT_DRAW_ORDER)
 			if(draw_from_slot_if_possible(slot))
-				next_move = world.time + DELAY_KB_EQUIP
+				next_move = world.time
 			return
 	else
 		if(s_active?.can_be_inserted(I))
@@ -93,8 +93,10 @@
 			return
 
 		if(!KB)
+			return FALSE
+		if(equip_to_slot_if_possible(I,KB, FALSE, FALSE, FALSE))
 			return
-		if(!equip_to_slot_if_possible(I,KB, FALSE, FALSE, FALSE) && !equip_to_appropriate_slot(I, FALSE))
+		if(!equip_to_appropriate_slot(I, FALSE))
 			return
 
 		if(hand)
