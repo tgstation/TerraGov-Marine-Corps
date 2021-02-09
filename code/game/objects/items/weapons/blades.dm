@@ -52,7 +52,9 @@
 	. = ..()
 	var/list/traits = list()
 
-	traits += "Tramadol - slow your target\nKelotane - produce a cone of flames\nBicaridine - heal your target"
+	traits += "Bicaridine - heal your target"
+	traits += "Kelotane - produce a cone of flames"
+	traits += "Tramadol - slow your target"
 
 	. += jointext(traits, "<br>")
 
@@ -62,24 +64,24 @@
 
 /obj/item/weapon/claymore/harvester/attackby(obj/item/I, mob/user)
 	if(user.action_busy)
-		return
+		return FALSE
 
 	if(!istype(I, /obj/item/reagent_containers/glass))
-		return
+		return FALSE
 
 	var/trans
 	var/obj/item/reagent_containers/container = I
 	if(!container.reagents.total_volume)
-		to_chat(user, "<span class='rose'>[container] is empty.</span>")
-		return FALSE
-
-	if(istype(container, /obj/item/reagent_containers/syringe))
 		trans = beaker.reagents.trans_to(container, 30)
 		to_chat(user, "<span class='rose'>You take [trans]u out of the internal storage. It now contains [beaker.reagents.total_volume]u.</span>")
-		return
+		return TRUE
 
 	if(length(container.reagents.reagent_list) > 1)
 		to_chat(user, "<span class='rose'>The solution needs to be uniform and contain only a single type of reagent to be compatible.</span>")
+		return FALSE
+
+	if(beaker.reagents.total_volume && !istype(container.reagents.reagent_list[1].type, beaker.reagents.reagent_list[1].type))
+		to_chat(user, "<span class='rose'>[src]'s internal storage can contain only kind of solution at the same time. It currently contains <b>[beaker.reagents.reagent_list[1].name]</b></span>")
 		return FALSE
 
 	if(!locate(container.reagents.reagent_list[1].type) in loadable_reagents)
@@ -100,6 +102,7 @@
 
 	trans = container.reagents.trans_to(beaker, 40)
 	to_chat(user, "<span class='rose'>You load [trans]u into the internal system. It now holds [beaker.reagents.total_volume]u.</span>")
+	return TRUE
 
 /obj/item/weapon/claymore/harvester/unique_action(mob/user)
 	if(effect_active)
