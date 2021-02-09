@@ -369,7 +369,7 @@
 
 /obj/machinery/colony_floodlight_switch/Initialize()
 	..()
-	. = INITIALIZE_HINT_LATELOAD
+	return INITIALIZE_HINT_LATELOAD
 
 /obj/machinery/colony_floodlight_switch/LateInitialize() //Populate our list of floodlights so we don't need to scan for them ever again
 	. = ..()
