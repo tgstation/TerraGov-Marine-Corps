@@ -64,7 +64,7 @@
 	if(user.action_busy)
 		return
 
-	if(!istype(I, /obj/item/reagent_containers))
+	if(!istype(I, /obj/item/reagent_containers/glass))
 		return
 
 	var/trans

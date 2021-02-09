@@ -659,7 +659,6 @@
 	L.adjustToxLoss(effect_str)
 	return ..()
 
-/*
 /datum/reagent/virilyth
 	name = "Virilyth"
 	description = "A strange substance with high regenerative properties."
@@ -669,8 +668,4 @@
 	custom_metabolism = REAGENTS_METABOLISM * 0.1
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
-	addiction_threshold = 1
 	scannable = TRUE
-	purge_list = list
-	purge_rate = 0
-*/

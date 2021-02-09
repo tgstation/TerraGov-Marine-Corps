@@ -122,6 +122,7 @@
 	var/list/radial_options = list(
 		"connect" = image(icon = 'icons/mob/radial.dmi', icon_state = "cboost_connect"),
 		"boost" = image(icon = 'icons/mob/radial.dmi', icon_state = "[boost_icon]"),
+		"extract" = image(icon = 'icons/mob/radial.dmi', icon_state = "cboost_extract")
 		)
 
 	var/choice = show_radial_menu(wearer, wearer, radial_options, null, 48, null, TRUE)
@@ -136,6 +137,9 @@
 				return
 			update_boost(boost_tier2)
 			boost_icon = "cboost_t2"
+
+		if("extract")
+			extract(10)
 
 /datum/component/chem_booster/proc/on_off(datum/source)
 	SEND_SIGNAL(parent, COMSIG_CHEM_BOOSTER_ON_OFF, !boost_on)
@@ -277,6 +281,40 @@ datum/component/chem_booster/proc/act_scanner()
 		var/resource_percentage = (resource_storage_current+amount_added)/resource_storage_max
 		SEND_SIGNAL(parent, COMSIG_CHEM_BOOSTER_RES_UPD, resource_percentage, amount_added)
 	resource_storage_current = max(resource_storage_current + amount_added, 0)
+
+///Extracts resource from the suit to fill a beaker
+/datum/component/chem_booster/proc/extract(volume)
+	if(wearer.action_busy)
+		return
+
+	if(resource_storage_current < volume)
+		to_chat(wearer, "<span class='warning'>Not enough resource to extract.</span>")
+		return
+
+	var/obj/item/held_item = wearer.get_held_item()
+	if(!held_item)
+		to_chat(wearer, "<span class='warning'>You need to be holding a chemical liquid container.</span>")
+		return
+
+	if(!istype(held_item, /obj/item/reagent_containers/glass))
+		to_chat(wearer, "<span class='warning'>You need to be holding a specialized chemical liquid container.</span>")
+		return
+
+	var/amount = min(held_item.reagents.maximum_volume-held_item.reagents.total_volume, volume)
+	if(!amount)
+		return
+
+	to_chat(wearer, "<span class='notice'>You begin filling [held_item].</span>")
+	if(!do_after(wearer, 1 SECONDS, TRUE, held_item, BUSY_ICON_FRIENDLY, null, PROGRESS_BRASS))
+		return
+
+	if(resource_storage_current < volume)
+		to_chat(wearer, "<span class='warning'>Not enough resource to extract.</span>")
+		return
+
+	update_resource(-amount)
+	held_item.reagents.add_reagent(/datum/reagent/virilyth, amount)
+	extract(volume)
 
 /datum/action/chem_booster/configure
 	name = "Configure Vali Chemical Enhancement"
