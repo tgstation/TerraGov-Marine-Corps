@@ -126,7 +126,7 @@
 		authenticated = FALSE
 
 	if(href_list["dept"])
-		var/choice = input(usr, "Who do you want to message?", "Fax", "") as null|anything in list("Nanotrasen", "TGMC High Command", "TGMC Provost Marshall")
+		var/choice = tgui_input_list(usr, "Who do you want to message?", "Fax", list("Nanotrasen", "TGMC High Command", "TGMC Provost Marshall"))
 		if(!choice)
 			return
 		selected = choice

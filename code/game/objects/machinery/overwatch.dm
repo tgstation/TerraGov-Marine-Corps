@@ -10,7 +10,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 GLOBAL_LIST_EMPTY(active_cas_targets)
 /obj/machinery/computer/camera_advanced/overwatch
 	name = "Overwatch Console"
-	desc = "State of the art machinery for giving orders to a squad."
+	desc = "State of the art machinery for giving orders to a squad. <b>Shift click</b> to send order when watching squads."
 	density = FALSE
 	icon_state = "overwatch"
 	req_access = list(ACCESS_MARINE_BRIDGE)
@@ -20,12 +20,45 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 
 	var/state = OW_MAIN
 	var/living_marines_sorting = FALSE
-	var/busy = FALSE //The overwatch computer is busy launching an OB/SB, lock controls
-	var/dead_hidden = FALSE //whether or not we show the dead marines in the squad.
-	var/z_hidden = 0 //which z level is ignored when showing marines.
-	var/datum/squad/current_squad = null //Squad being currently overseen
-	var/obj/selected_target //Selected target for bombarding
+	///The overwatch computer is busy launching an OB/SB, lock controls
+	var/busy = FALSE
+	///whether or not we show the dead marines in the squad.
+	var/dead_hidden = FALSE
+	///which z level is ignored when showing marines.
+	var/z_hidden = 0
+	///Squad being currently overseen
+	var/datum/squad/current_squad = null
+	///Selected target for bombarding
+	var/obj/selected_target
+	///Selected order to give to marine
+	var/datum/action/innate/order/current_order
+	///datum used when sending an attack order
+	var/datum/action/innate/order/attack_order/send_attack_order
+	///datum used when sending a retreat order
+	var/datum/action/innate/order/retreat_order/send_retreat_order
+	///datum used when sending a defend order
+	var/datum/action/innate/order/defend_order/send_defend_order
 
+/obj/machinery/computer/camera_advanced/overwatch/Initialize()
+	. = ..()
+	send_attack_order = new
+	send_defend_order = new
+	send_retreat_order = new
+
+/obj/machinery/computer/camera_advanced/overwatch/give_actions(mob/living/user)
+	. = ..()
+	if(send_attack_order)
+		send_attack_order.target = user
+		send_attack_order.give_action(user)
+		actions += send_attack_order
+	if(send_defend_order)
+		send_defend_order.target = user
+		send_defend_order.give_action(user)
+		actions += send_defend_order
+	if(send_retreat_order)
+		send_retreat_order.target = user
+		send_retreat_order.give_action(user)
+		actions += send_retreat_order
 
 /obj/machinery/computer/camera_advanced/overwatch/main
 	icon_state = "overwatch_main"
@@ -55,6 +88,13 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	eyeobj.icon = 'icons/mob/cameramob.dmi'
 	eyeobj.icon_state = "generic_camera"
 
+/obj/machinery/computer/camera_advanced/overwatch/give_eye_control(mob/user)
+	. = ..()
+	RegisterSignal(user, COMSIG_MOB_CLICK_SHIFT, .proc/send_orders)
+
+/obj/machinery/computer/camera_advanced/overwatch/remove_eye_control(mob/living/user)
+	. = ..()
+	UnregisterSignal(user, COMSIG_MOB_CLICK_SHIFT)
 
 /obj/machinery/computer/camera_advanced/overwatch/can_interact(mob/user)
 	. = ..()
@@ -222,7 +262,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 						if(!S.overwatch_officer)
 							squad_choices += S.name
 
-					var/squad_name = input("Which squad would you like to claim for Overwatch?") as null|anything in squad_choices
+					var/squad_name = tgui_input_list(usr, "Which squad would you like to claim for Overwatch?",  squad_choices)
 					if(!squad_name || operator != usr)
 						return
 					if(current_squad)
@@ -236,7 +276,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 						current_squad.message_squad("Your Overwatch officer is: [operator.name].")
 						visible_message("<span class='boldnotice'>Tactical data for squad '[current_squad]' loaded. All tactical functions initialized.</span>")
 						attack_hand(usr)
-						
+
 
 					else
 						to_chat(usr, "[icon2html(src, usr)] <span class='warning'>Invalid input. Aborting.</span>")
@@ -457,7 +497,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	for(var/mob/living/carbon/human/H in current_squad.get_all_members())
 		if(istype(H) && H.stat != DEAD && H.mind && !is_banned_from(H.ckey, SQUAD_LEADER))
 			sl_candidates += H
-	var/new_lead = input(usr, "Choose a new Squad Leader") as null|anything in sl_candidates
+	var/new_lead = tgui_input_list(usr, "Choose a new Squad Leader", sl_candidates)
 	if(!new_lead || new_lead == "Cancel") return
 	var/mob/living/carbon/human/H = new_lead
 	if(!istype(H) || !H.mind || H.stat == DEAD) //marines_list replaces mob refs of gibbed marines with just a name string
@@ -488,7 +528,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	if(!current_squad)
 		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>No squad selected!</span>")
 		return
-	var/mob/living/carbon/human/wanted_marine = input(usr, "Report a marine for insubordination") as null|anything in current_squad.get_all_members()
+	var/mob/living/carbon/human/wanted_marine = tgui_input_list(usr, "Report a marine for insubordination", current_squad.get_all_members())
 	if(!wanted_marine) return
 	if(!istype(wanted_marine))//gibbed/deleted, all we have is a name.
 		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>[wanted_marine] is missing in action.</span>")
@@ -516,7 +556,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>No squad selected!</span>")
 		return
 	var/datum/squad/S = current_squad
-	var/mob/living/carbon/human/transfer_marine = input(usr, "Choose marine to transfer") as null|anything in current_squad.get_all_members()
+	var/mob/living/carbon/human/transfer_marine = tgui_input_list(usr, "Choose marine to transfer", current_squad.get_all_members())
 	if(!transfer_marine)
 		return
 
@@ -534,7 +574,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>Transfer aborted. [transfer_marine] isn't wearing an ID.</span>")
 		return
 
-	var/choice = input(usr, "Choose the marine's new squad") as null|anything in SSjob.active_squads
+	var/choice = tgui_input_list(usr, "Choose the marine's new squad", SSjob.active_squads)
 	if(!choice)
 		return
 	if(S != current_squad)
@@ -574,7 +614,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	if(istype(H, /obj/item/radio/headset/mainship/marine))
 		H.set_frequency(new_squad.radio_freq)
 
-	transfer_marine.hud_set_squad()
+	transfer_marine.hud_set_job()
 	visible_message("<span class='boldnotice'>[transfer_marine] has been transfered from squad '[old_squad]' to squad '[new_squad]'. Logging to enlistment file.</span>")
 	to_chat(transfer_marine, "[icon2html(src, transfer_marine)] <font size='3' color='blue'><B>\[Overwatch\]:</b> You've been transfered to [new_squad]!</font>")
 
@@ -848,6 +888,88 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	dat += "<A href='?src=\ref[src];operation=choose_z'>{Change Locations Ignored}</a><br>"
 	dat += "<br><A href='?src=\ref[src];operation=back'>{Back}</a>"
 	return dat
+
+///Print order visual to all marines squad hud and give them an arrow to follow the waypoint
+/obj/machinery/computer/camera_advanced/overwatch/proc/send_orders(datum/source, atom/object)
+	SIGNAL_HANDLER
+	var/turf/target_turf = get_turf(object)
+	if (!current_order)
+		to_chat(usr, "<span class='warning'>You didn't select any order!</span>")
+		return
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_CIC_ORDERS))
+		to_chat(usr, "<span class='warning'>Your last order was too recent.</span>")
+		return
+	TIMER_COOLDOWN_START(src, COOLDOWN_CIC_ORDERS, ORDER_COOLDOWN)
+	new current_order.visual_type(target_turf)
+	var/obj/screen/arrow/arrow_hud
+	var/datum/atom_hud/squad/squad_hud = GLOB.huds[DATA_HUD_SQUAD]
+	var/list/final_list = squad_hud.hudusers
+	final_list -= current_user //We don't want the eye to have an arrow, it's silly
+
+	for(var/hud_user in final_list)
+		if(!ishuman(hud_user))
+			continue
+		if(current_order.arrow_type)
+			arrow_hud = new current_order.arrow_type
+			arrow_hud.add_hud(hud_user, target_turf)
+		notify_marine(hud_user, target_turf)
+
+///Send a message and a sound to the marine if he is on the same z level as the turf
+/obj/machinery/computer/camera_advanced/overwatch/proc/notify_marine(mob/living/marine, turf/target_turf) ///Send an order to that specific marine if it's on the right z level
+	if(marine.z == target_turf.z)
+		marine.playsound_local(marine, "sound/effects/CIC_order.ogg", 10, 1)
+		to_chat(marine,"<span class='ordercic'>Command is urging you to [current_order.verb_name] [target_turf.loc.name]!</span>")
+
+/datum/action/innate/order
+	///the word used to describe the action when notifying marines
+	var/verb_name
+	///the type of arrow used in the order
+	var/arrow_type
+	///the type of the visual added on the ground
+	var/visual_type
+
+/datum/action/innate/order/attack_order
+	name = "Send Attack Order"
+	background_icon_state = "template2"
+	action_icon_state = "attack"
+	verb_name = "attack the enemy at"
+	arrow_type = /obj/screen/arrow/attack_order_arrow
+	visual_type = /obj/effect/temp_visual/order/attack_order
+
+/datum/action/innate/order/defend_order
+	name = "Send Defend Order"
+	background_icon_state = "template2"
+	action_icon_state = "defend"
+	verb_name = "defend our position in"
+	arrow_type = /obj/screen/arrow/defend_order_arrow
+	visual_type = /obj/effect/temp_visual/order/defend_order
+
+/datum/action/innate/order/retreat_order
+	name = "Send Retreat Order"
+	background_icon_state = "template2"
+	action_icon_state = "retreat"
+	verb_name = "retreat from"
+	visual_type = /obj/effect/temp_visual/order/retreat_order
+
+///Set the order as selected on the overwatch console
+/datum/action/innate/order/proc/set_selected_order()
+	var/mob/living/C = target
+	var/mob/camera/aiEye/remote/remote_eye = C.remote_control
+	var/obj/machinery/computer/camera_advanced/overwatch/console = remote_eye.origin
+	console.current_order?.remove_selected_frame()
+	if(console.current_order != src)
+		console.current_order = src
+		add_selected_frame()
+		return
+	console.current_order = null
+
+/datum/action/innate/order/Activate()
+	active = TRUE
+	set_selected_order()
+
+/datum/action/innate/order/Deactivate()
+	active = FALSE
+	set_selected_order()
 
 #undef OW_MAIN
 #undef OW_MONITOR

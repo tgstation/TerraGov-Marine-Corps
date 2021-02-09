@@ -142,7 +142,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 
 	marines_list += H
 	H.assigned_squad = src
-	H.hud_set_squad()
+	H.hud_set_job()
 	H.update_action_buttons()
 	H.update_inv_head()
 	H.update_inv_wear_suit()
@@ -191,7 +191,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 	marines_list -= H
 
 	H.assigned_squad = null
-	H.hud_set_squad()
+	H.hud_set_job()
 	H.update_action_buttons()
 	H.update_inv_head()
 	H.update_inv_wear_suit()
@@ -223,7 +223,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 	var/mob/living/carbon/human/H = squad_leader
 	squad_leader = null
 	H.update_action_buttons()
-	H.hud_set_squad()
+	H.hud_set_job()
 	H.update_inv_head()
 	H.update_inv_wear_suit()
 
@@ -250,7 +250,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 		R.secure_radio_connections[RADIO_CHANNEL_COMMAND] = add_radio(R, GLOB.radiochannels[RADIO_CHANNEL_COMMAND])
 		R.use_command = TRUE
 
-	squad_leader.hud_set_squad()
+	squad_leader.hud_set_job()
 	squad_leader.update_action_buttons()
 	squad_leader.update_inv_head()
 	squad_leader.update_inv_wear_suit()
