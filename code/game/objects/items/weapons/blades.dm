@@ -22,7 +22,7 @@
 
 /obj/item/weapon/claymore/harvester
 	name = "\improper HP-S Harvester blade"
-	desc = "TerraGov Marine Corps' experimental High Point-Singularity 'Harvester' blade. An advanced weapon that trades sheer force for the ability to apply a variety of debilitating effects when loaded with certain reagents. It also harvests substances from alien lifeforms it hits. Use a syringe to empty the reagent tank."
+	desc = "TerraGov Marine Corps' experimental High Point-Singularity 'Harvester' blade. An advanced weapon that trades sheer force for the ability to apply a variety of debilitating effects when loaded with certain reagents. Activate after loading to prime a single use of an effect. It also harvests substances from alien lifeforms it hits. Use an empty beaker to empty the reagent tank."
 	icon_state = "energy_sword"
 	item_state = "energy_katana"
 	force = 60
