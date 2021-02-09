@@ -161,7 +161,6 @@
 	user.reset_perspective(eyeobj)
 	eyeobj.setLoc(eyeobj.loc)
 
-
 /obj/machinery/computer/camera_advanced/proc/track(mob/living/target)
 	if(!istype(target))
 		return

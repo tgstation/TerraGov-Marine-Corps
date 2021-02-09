@@ -47,7 +47,7 @@
 /turf/open/floor/tile/purple/taupepurple,
 /area/magmoor/civilian/dorms)
 "adt" = (
-/obj/effect/landmark/xeno_spawning_pool_spawn,
+/obj/effect/landmark/xeno_silo_spawn,
 /obj/effect/landmark/start/job/xenomorph,
 /turf/open/floor/cult,
 /area/magmoor/cave/northwest)
@@ -288,7 +288,7 @@
 /turf/open/floor/cult,
 /area/magmoor/cave/northwest)
 "aqL" = (
-/obj/effect/landmark/xeno_spawning_pool_spawn,
+/obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/cult,
 /area/magmoor/cave/north)
 "aqV" = (
@@ -779,7 +779,7 @@
 /turf/open/floor/cult,
 /area/magmoor/cave/northeast)
 "aOd" = (
-/obj/effect/landmark/xeno_spawning_pool_spawn,
+/obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/cult,
 /area/magmoor/cave/northeast)
 "aON" = (
@@ -2423,7 +2423,7 @@
 /turf/open/floor/mainship/sterile/purple,
 /area/magmoor/research/lab)
 "cdv" = (
-/obj/effect/landmark/xeno_spawning_pool_spawn,
+/obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/cult,
 /area/magmoor/cave/northwest)
 "cdN" = (
@@ -9116,7 +9116,7 @@
 	},
 /area/magmoor/research/researchdirector)
 "gLl" = (
-/obj/effect/landmark/xeno_spawning_pool_spawn,
+/obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/cult,
 /area/magmoor/cave/west)
 "gLp" = (
@@ -14939,10 +14939,6 @@
 /obj/structure/sign/double/barsign/carp,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/magmoor/compound)
-"lqW" = (
-/obj/machinery/power/geothermal,
-/turf/open/floor/plating,
-/area/magmoor/engi/power)
 "lrb" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4;
@@ -16325,7 +16321,7 @@
 	},
 /area/magmoor/mining/refinery)
 "mAq" = (
-/obj/effect/landmark/xeno_spawning_pool_spawn,
+/obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/cult,
 /area/magmoor/cave/mining/fossil)
 "mAE" = (
@@ -49839,9 +49835,9 @@ xil
 mPq
 mSf
 tdn
-tdn
-lqW
-tdn
+vfy
+nMn
+vfy
 oJi
 eGv
 eGv
@@ -53101,9 +53097,9 @@ dmb
 mPq
 mwx
 tdn
-tdn
-lqW
-tdn
+vfy
+nMn
+vfy
 opE
 eGv
 eGv
