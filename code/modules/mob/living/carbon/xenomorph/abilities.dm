@@ -487,7 +487,7 @@
 		return fail_activate()
 
 	target.beam(X,"drain_life",'icons/effects/beam.dmi',10, 10,/obj/effect/ebeam,1) //visual SFX
-	target.add_filter("transfer_plasma_outline", 3, list("type" = "outline", "size" = 1, "color" = COLOR_STRONG_MAGENTA))
+	target.add_filter("transfer_plasma_outline", 3, outline_filter(1, COLOR_STRONG_MAGENTA))
 	addtimer(CALLBACK(target, /atom.proc/remove_filter, "transfer_plasma_outline"), 1 SECONDS) //Failsafe blur removal
 
 	var/amount = plasma_transfer_amount
