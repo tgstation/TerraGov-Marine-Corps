@@ -33,10 +33,10 @@
 	description = "Builds whatever you’ve selected with (choose resin structure) on your tile."
 	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN
 
-/datum/keybinding/xeno/secrete_resin_silo
-	name = "secrete_resin_silo"
-	full_name = "Secrete Resin Silo"
-	description = "Builds a resin silo. Requires a number of dead bodies on a nest."
+/datum/keybinding/xeno/secrete_resin_spawning_pool
+	name = "secrete_resin_spawning_pool"
+	full_name = "Secrete Resin Spawning Pool"
+	description = "Builds a resin spawning pool. Requires a number of dead bodies on a nest."
 	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN_SILO
 
 /datum/keybinding/xeno/emit_recovery
@@ -407,7 +407,7 @@
 
 /datum/keybinding/xeno/evasion
 	name = "evasion"
-	full_name = "Evasion"
+	full_name = "Runner: Evasion"
 	description = "Take evasive action, forcing non-friendly projectiles that would hit you to miss so long as you keep moving."
 	keybind_signal = COMSIG_XENOABILITY_EVASION
 
@@ -453,10 +453,15 @@
 	description = "Inject an egg with neurogas, killing the little one inside"
 	keybind_signal = COMSIG_XENOABILITY_INJECT_EGG_NEUROGAS
 
-/*
 /datum/keybinding/xeno/rally_hive
 	name = "rally_hive"
 	full_name = "Rally Hive"
 	description = "Rallies the hive to a target location."
 	keybind_signal = COMSIG_XENOABILITY_RALLY_HIVE
-*/
+
+/datum/keybinding/xeno/healing_infusion
+	name = "healing_infusion"
+	full_name = "Hivelord: Healing Infusion"
+	description = "Imbues a target xeno with healing energy, restoring extra Sunder and Health once every 2 seconds up to 5 times whenever it regenerates normally. 60 second duration."
+	keybind_signal = COMSIG_XENOABILITY_HEALING_INFUSION
+

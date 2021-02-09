@@ -27,7 +27,7 @@
 		/mob/living/carbon/xenomorph/proc/claw_toggle,
 		/mob/living/carbon/xenomorph/queen/proc/set_orders,
 		/mob/living/carbon/xenomorph/queen/proc/hive_Message,
-		/mob/living/carbon/xenomorph/proc/calldown_dropship,
+		/mob/living/carbon/xenomorph/proc/hijack,
 	)
 
 // ***************************************
@@ -93,29 +93,6 @@
 	if(mind)
 		mind.name = name
 
-// ***************************************
-// *********** Icon
-// ***************************************
-/mob/living/carbon/xenomorph/queen/Topic(href, href_list)
-	. = ..()
-	if(.)
-		return
-
-	if(href_list["watch_xeno_name"])
-		if(!check_state())
-			return
-		var/xeno_name = href_list["watch_xeno_name"]
-		for(var/Y in hive.get_watchable_xenos())
-			var/mob/living/carbon/xenomorph/X = Y
-			if(isnum(X.nicknumber))
-				if(num2text(X.nicknumber) != xeno_name)
-					continue
-			else
-				if(X.nicknumber != xeno_name)
-					continue
-			SEND_SIGNAL(src, COMSIG_XENOMORPH_WATCHXENO, X)
-			break
-
 
 // ***************************************
 // *********** Death
@@ -131,6 +108,12 @@
 // *********** Larva Mother
 // ***************************************
 
-/mob/living/carbon/xenomorph/queen/proc/is_burrowed_larva_host(datum/source, list/mothers, list/silos)
+/mob/living/carbon/xenomorph/queen/proc/is_burrowed_larva_host(datum/source, list/mothers, list/spawning_pools)
 	if(!incapacitated(TRUE))
 		mothers += src //Adding us to the list.
+
+// ***************************************
+// *********** Queen Acidic Salve
+// ***************************************
+/datum/action/xeno_action/activable/psychic_cure/acidic_salve/queen
+	heal_range = HIVELORD_HEAL_RANGE

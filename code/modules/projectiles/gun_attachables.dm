@@ -428,7 +428,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/compensator
 	name = "recoil compensator"
-	desc = "A muzzle attachment that reduces recoil and scatter by diverting expelled gasses upwards. \nSignificantly reduces recoil and scatter, at the cost of a small amount of weapon damage."
+	desc = "A muzzle attachment that reduces recoil and scatter by diverting expelled gasses upwards. \nSignificantly reduces recoil and scatter, regardless of if the weapon is wielded."
 	slot = "muzzle"
 	icon_state = "comp"
 	attach_icon = "comp_a"
@@ -444,18 +444,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	icon_state = "slavicbarrel"
 	desc = "A heavy barrel. CANNOT BE REMOVED."
 	slot = "muzzle"
-
-	pixel_shift_x = 20
-	pixel_shift_y = 16
-	flags_attach_features = NONE
-	accuracy_mod = 0.05
-	scatter_mod = -15
-
-/obj/item/attachable/mosinbarrel
-	name = "mosin barrel"
-	icon_state = "mosinbarrel"
-	desc = "A heavy barrel. CANNOT BE REMOVED."
-	slot = "under" //only way for it to work with a bayonet is to make this take the underbarrel slot. no more bipods.
 
 	pixel_shift_x = 20
 	pixel_shift_y = 16
@@ -719,6 +707,12 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	desc = "A rail-mounted night vision scope developed by Roh-Easy industries for the TGMC. Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
 	has_nightvision = TRUE
 
+/obj/item/attachable/scope/mosin
+	name = "Mosin nagant rail scope"
+	icon_state = "mosinscope"
+	attach_icon = "mosinscope"
+	desc = "A Mosin specific mounted zoom sight scope. Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
+
 /obj/item/attachable/scope/unremovable
 	flags_attach_features = ATTACH_ACTIVATION
 
@@ -796,10 +790,10 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	desc = "A rail mounted zoom sight scope specialized for the T-45 Battle Rifle . Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
 	flags_attach_features = ATTACH_ACTIVATION
 
-/obj/item/attachable/scope/m42a
-	name = "m42a rail scope"
+/obj/item/attachable/scope/antimaterial
+	name = "antimaterial rail scope"
 	attach_icon = "none"
-	desc = "A rail mounted zoom sight scope specialized for the M42A Sniper Rifle . Allows zoom by activating the attachment. Can activate its targeting laser while zoomed to take aim for increased damage and penetration. Use F12 if your HUD doesn't come back."
+	desc = "A rail mounted zoom sight scope specialized for the antimaterial Sniper Rifle . Allows zoom by activating the attachment. Can activate its targeting laser while zoomed to take aim for increased damage and penetration. Use F12 if your HUD doesn't come back."
 	scoped_accuracy_mod = SCOPE_RAIL_SNIPER
 	flags_attach_features = ATTACH_ACTIVATION
 
@@ -831,6 +825,15 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	size_mod = 2
 	pixel_shift_x = 30
 	pixel_shift_y = 14
+
+/obj/item/attachable/stock/irremoveable
+	wield_delay_mod = 0 SECONDS
+	flags_attach_features = NONE
+	accuracy_mod = 0
+	recoil_mod = 0
+	melee_mod = 0
+	scatter_mod = 0
+	movement_acc_penalty_mod = 0
 
 /obj/item/attachable/stock/shotgun
 	name = "\improper shotgun stock"
@@ -886,6 +889,17 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	scatter_mod = -20
 	movement_acc_penalty_mod = 0.1
 
+/obj/item/attachable/stock/irremoveable/ppsh
+	name = "PPSh-17b submachinegun wooden stock"
+	desc = "A long wooden stock for a PPSh-17b submachinegun"
+	icon_state = "ppshstock"
+	pixel_shift_x = 32
+	pixel_shift_y = 13
+
+/obj/item/attachable/stock/irremoveable/pal12
+	name = "Paladin-12 pump shotgun stock"
+	desc = "A standard light stock for the Paladin-12 shotgun."
+	icon_state = "pal12stock"
 
 /obj/item/attachable/stock/m16
 	name = "M16 composite stock"
@@ -895,7 +909,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	pixel_shift_x = 32
 	pixel_shift_y = 13
 	flags_attach_features = NONE
-
 
 /obj/item/attachable/stock/ak47
 	name = "AK-47 wooden stock"
@@ -923,18 +936,12 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	scatter_mod = -10
 	movement_acc_penalty_mod = 0.1
 
-/obj/item/attachable/stock/rifle/irremoveable
+/obj/item/attachable/stock/irremoveable/rifle
 	name = "\improper M412 solid stock"
-	wield_delay_mod = 0 SECONDS
+	icon_state = "riflestock"
+	attach_icon = "riflestock_a"
 	pixel_shift_x = 32
 	pixel_shift_y = 13
-	flags_attach_features = NONE
-	accuracy_mod = 0
-	recoil_mod = 0
-	melee_mod = 0
-	scatter_mod = 0
-	movement_acc_penalty_mod = 0
-
 
 /obj/item/attachable/stock/rifle/marksman
 	name = "\improper T-45 marksman stock"
@@ -1173,6 +1180,9 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	scatter_mod = 0
 	movement_acc_penalty_mod = 0
 
+/obj/item/attachable/stock/irremoveable/m41a
+	name = "HK-11 stock"
+	icon_state = "m41a"
 
 ////////////// Underbarrel Attachments ////////////////////////////////////
 
@@ -1240,9 +1250,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	flags_attach_features = ATTACH_ACTIVATION|ATTACH_RELOADABLE|ATTACH_WEAPON
 
 /obj/item/attachable/attached_gun/grenade/unremovable/invisible
-	icon_state = ""
-	attach_icon = ""
-
+	icon_state = "invisible"
 
 /obj/item/attachable/attached_gun/grenade/examine(mob/user)
 	..()
@@ -1325,7 +1333,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 
 /obj/item/attachable/attached_gun/flamer/examine(mob/user)
-	..()
+	. = ..()
 	if(current_rounds > 0)
 		to_chat(user, "It has [current_rounds] unit\s of fuel left.")
 	else
@@ -1474,7 +1482,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	name = "masterkey shotgun"
 	icon_state = "masterkey"
 	attach_icon = "masterkey_a"
-	desc = "A weapon-mounted, three-shot shotgun. Reloadable with buckshot. The short barrel reduces the ammo's effectiveness."
+	desc = "A weapon-mounted, three-shot shotgun. Reloadable with buckshot. The short barrel reduces the ammo's effectiveness, but allows it to be fired one handed."
 	w_class = WEIGHT_CLASS_BULKY
 	max_rounds = 3
 	current_rounds = 3
@@ -1730,13 +1738,14 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 			to_chat(user, "<span class='notice'>You are no longer using [src].</span>")
 		master_gun.active_attachable = null
 		icon_state = initial(icon_state)
+		. = FALSE
 	else if(!turn_off)
 		if(user)
 			to_chat(user, "<span class='notice'>You are now using [src].</span>")
 		master_gun.active_attachable = src
 		icon_state += "-on"
-
+		. = TRUE
 	for(var/X in master_gun.actions)
 		var/datum/action/A = X
 		A.update_button_icon()
-	return TRUE
+

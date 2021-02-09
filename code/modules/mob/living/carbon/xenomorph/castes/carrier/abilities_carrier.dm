@@ -158,7 +158,7 @@
 			to_chat(owner, "<span class='warning'>We can only shape on weeds. We must find some resin before we start building!</span>")
 		return FALSE
 
-	if(!T.check_alien_construction(owner, silent))
+	if(!T.check_alien_construction(owner, silent) || !T.check_disallow_alien_fortification(owner, silent))
 		return FALSE
 
 	if(locate(/obj/effect/alien/weeds/node) in T)

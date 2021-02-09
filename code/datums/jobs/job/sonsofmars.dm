@@ -17,6 +17,9 @@
 	paygrade = "SOM1"
 	outfit = /datum/outfit/job/som/standard
 
+/datum/job/som/standard/hvh
+	outfit = /datum/outfit/job/som/standard/hvh
+
 
 /datum/outfit/job/som/standard
 	name = "SOM Standard"
@@ -34,6 +37,12 @@
 	r_store = /obj/item/storage/pouch/general/som
 	l_store = /obj/item/storage/pouch/pistol
 	back = /obj/item/storage/backpack/lightpack/som
+
+/datum/outfit/job/som/standard/hvh
+	name = "SOM Standard (HvH)"
+
+	wear_suit = /obj/item/clothing/suit/storage/marine/som/hvh
+	r_store = /obj/item/storage/pouch/firstaid/som/full
 
 
 /datum/outfit/job/som/standard/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -76,6 +85,9 @@
 	skills_type = /datum/skills/combat_medic/crafty
 	outfit = /datum/outfit/job/som/medic
 
+/datum/job/som/medic/hvh
+	outfit = /datum/outfit/job/som/medic/hvh
+
 
 /datum/outfit/job/som/medic
 	name = "SOM Medic"
@@ -90,10 +102,15 @@
 	gloves = /obj/item/clothing/gloves/marine/som
 	head = /obj/item/clothing/head/helmet/marine/som
 	glasses = /obj/item/clothing/glasses/hud/health
-	suit_store = /obj/item/weapon/gun/smg/skorpion/upp
+	suit_store = /obj/item/weapon/gun/smg/skorpion
 	r_store = /obj/item/storage/pouch/firstaid/som/full
 	l_store = /obj/item/storage/pouch/general/large
 	back = /obj/item/storage/backpack/lightpack/som
+
+/datum/outfit/job/som/medic/hvh
+	name = "SOM Medic (HvH)"
+
+	wear_suit = /obj/item/clothing/suit/storage/marine/som/hvh
 
 
 /datum/outfit/job/som/medic/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -133,6 +150,9 @@
 	paygrade = "SOM3"
 	outfit = /datum/outfit/job/som/veteran
 
+/datum/job/som/veteran/hvh
+	outfit = /datum/outfit/job/som/veteran/hvh
+
 
 /datum/outfit/job/som/veteran
 	name = "SOM Veteran"
@@ -151,6 +171,11 @@
 	r_store = /obj/item/storage/pouch/general/large
 	l_store = /obj/item/storage/pouch/firstaid/som/full
 	back = /obj/item/storage/backpack/lightpack/som
+
+/datum/outfit/job/som/veteran/hvh
+	name = "SOM Veteran (HvH)"
+
+	wear_suit = /obj/item/clothing/suit/storage/marine/som/veteran/hvh
 
 
 /datum/outfit/job/som/veteran/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -191,6 +216,9 @@
 	paygrade = "SOM3"
 	outfit = /datum/outfit/job/som/leader
 
+/datum/job/som/leader/hvh
+	outfit = /datum/outfit/job/som/leader/hvh
+
 
 /datum/outfit/job/som/leader
 	name = "SOM Leader"
@@ -209,6 +237,11 @@
 	r_store = /obj/item/storage/pouch/general/som
 	l_store = /obj/item/storage/pouch/firstaid/som/full
 	back = /obj/item/storage/backpack/lightpack/som
+
+/datum/outfit/job/som/leader/hvh
+	name = "SOM Leader (HvH)"
+
+	wear_suit = /obj/item/clothing/suit/storage/marine/som/leader/hvh
 
 
 /datum/outfit/job/som/leader/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)

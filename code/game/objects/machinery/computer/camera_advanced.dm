@@ -74,7 +74,7 @@
 
 
 /obj/machinery/computer/camera_advanced/check_eye(mob/living/user)
-	if(machine_stat & (NOPOWER|BROKEN) || user.incapacitated(TRUE))
+	if(machine_stat & (NOPOWER|BROKEN|DISABLED) || user.incapacitated(TRUE))
 		user.unset_interaction()
 	if(isAI(user))
 		return
@@ -160,7 +160,6 @@
 	user.remote_control = eyeobj
 	user.reset_perspective(eyeobj)
 	eyeobj.setLoc(eyeobj.loc)
-
 
 /obj/machinery/computer/camera_advanced/proc/track(mob/living/target)
 	if(!istype(target))

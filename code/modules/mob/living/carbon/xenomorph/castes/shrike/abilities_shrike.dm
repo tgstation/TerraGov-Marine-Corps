@@ -47,7 +47,7 @@
 	UnregisterSignal(caller.hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK))
 
 
-/datum/action/xeno_action/call_of_the_burrowed/proc/is_burrowed_larva_host(datum/source, list/mothers, list/silos) //Should only register while a viable candidate.
+/datum/action/xeno_action/call_of_the_burrowed/proc/is_burrowed_larva_host(datum/source, list/mothers, list/spawning_pools) //Should only register while a viable candidate.
 	SIGNAL_HANDLER
 	if(!owner.incapacitated())
 		mothers += owner //Adding them to the list.
@@ -395,6 +395,9 @@
 	if(!T.check_alien_construction(owner, silent))
 		return FALSE
 
+	if(!T.check_disallow_alien_fortification(owner, silent))
+		return FALSE
+
 	if(locate(/obj/effect/alien/weeds/node) in T)
 		if(!silent)
 			to_chat(owner, "<span class='warning'>There is a resin node in the way!</span>")
@@ -402,7 +405,6 @@
 
 /datum/action/xeno_action/place_acidwell/action_activate()
 	var/turf/T = get_turf(owner)
-
 	succeed_activate()
 
 	playsound(T, "alien_resin_build", 25)

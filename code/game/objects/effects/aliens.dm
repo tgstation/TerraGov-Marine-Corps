@@ -59,34 +59,33 @@
 
 /obj/effect/xenomorph/spray/Crossed(atom/movable/AM)
 	. = ..()
-	if(ishuman(AM))
-		var/mob/living/carbon/human/H = AM
-		H.acid_spray_crossed(acid_damage, slow_amt)
+	SEND_SIGNAL(AM, COMSIG_ATOM_ACIDSPRAY_ACT, src, acid_damage, slow_amt)
 
-/mob/living/carbon/human/proc/acid_spray_crossed(acid_damage, slow_amt)
+
+/mob/living/carbon/human/proc/acid_spray_crossed(datum/source, obj/effect/xenomorph/spray/acid_spray, acid_damage, slow_amt)
+	SIGNAL_HANDLER
+
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ACID))
 		return
 
 	TIMER_COOLDOWN_START(src, COOLDOWN_ACID, 1 SECONDS)
 	if(HAS_TRAIT(src, TRAIT_FLOORED))
-		take_overall_damage_armored(acid_damage, BURN, "acid")
-		UPDATEHEALTH(src)
+		INVOKE_ASYNC(src, .proc/take_overall_damage_armored, acid_damage, BURN, "acid", FALSE, FALSE, TRUE)
 		to_chat(src, "<span class='danger'>You are scalded by the burning acid!</span>")
 		return
 	to_chat(src, "<span class='danger'>Your feet scald and burn! Argh!</span>")
 	if(!(species.species_flags & NO_PAIN))
-		emote("pain")
+		INVOKE_ASYNC(src, .proc/emote, "pain")
+
 	next_move_slowdown += slow_amt
 	var/datum/limb/affecting = get_limb(BODY_ZONE_PRECISE_L_FOOT)
 	var/armor_block = run_armor_check(affecting, "acid")
-	if(istype(affecting) && affecting.take_damage_limb(0, acid_damage/2, FALSE, FALSE, armor_block, TRUE))
-		UPDATEHEALTH(src)
-		UpdateDamageIcon()
+	INVOKE_ASYNC(affecting, /datum/limb/.proc/take_damage_limb, 0, acid_damage/2, FALSE, FALSE, armor_block)
+
 	affecting = get_limb(BODY_ZONE_PRECISE_R_FOOT)
 	armor_block = run_armor_check(affecting, "acid")
-	if(istype(affecting) && affecting.take_damage_limb(0, acid_damage/2, FALSE, FALSE, armor_block, TRUE))
-		UPDATEHEALTH(src)
-		UpdateDamageIcon()
+	INVOKE_ASYNC(affecting, /datum/limb/.proc/take_damage_limb, 0, acid_damage/2, FALSE, FALSE, armor_block, TRUE)
+
 
 /obj/effect/xenomorph/spray/process()
 	var/turf/T = loc
@@ -94,11 +93,11 @@
 		qdel(src)
 		return
 
-	for(var/mob/living/carbon/human/H in loc)
-		H.acid_spray_crossed(slow_amt)
+	SEND_SIGNAL(T, COMSIG_ATOM_ACIDSPRAY_ACT, src) //Signal the turf
+	for(var/H in T)
 
-	for(var/atom/A in loc) //Infrastructure for other interactions
-		SEND_SIGNAL(A, COMSIG_ATOM_ACIDSPRAY_ACT, src)
+		var/atom/A = H
+		SEND_SIGNAL(A, COMSIG_ATOM_ACIDSPRAY_ACT, src, acid_damage, slow_amt)
 
 //Medium-strength acid
 /obj/effect/xenomorph/acid

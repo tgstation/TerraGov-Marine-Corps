@@ -12,6 +12,16 @@
 	default_ammo = /datum/ammo/bullet/pistol
 	gun_type = /obj/item/weapon/gun/pistol/standard_pistol
 
+/obj/item/ammo_magazine/box9mm
+	name = "packet of 9mm"
+	desc = "A packet containing 70 rounds of 9mm."
+	caliber = "9x19mm Parabellum"
+	icon_state = "box_9mm"
+	current_rounds = 70
+	max_rounds = 70
+	w_class = WEIGHT_CLASS_SMALL
+	default_ammo = /datum/ammo/bullet/pistol
+
 
 //-------------------------------------------------------
 //RT-3 PISTOL
@@ -58,8 +68,8 @@
 	gun_type = /obj/item/weapon/gun/pistol/m1911
 
 /obj/item/ammo_magazine/acp
-	name = "box of .45 ACP"
-	icon_state = "box45" //With thanks to Eris
+	name = "packet of .45 ACP"
+	icon_state = "box_45acp"
 	default_ammo = /datum/ammo/bullet/pistol/heavy
 	caliber = ".45 ACP"
 	current_rounds = 50
@@ -81,29 +91,21 @@
 //-------------------------------------------------------
 //Beretta 92FS, the gun McClane carries around in Die Hard. Very similar to the service pistol, all around.
 
-/obj/item/ammo_magazine/pistol/b92fs
-	name = "\improper Beretta 92FS magazine (9mm)"
+/obj/item/ammo_magazine/pistol/g22
+	name = "\improper G-22 magazine (9mm)"
 	caliber = "9x19mm Parabellum"
-	icon_state = "beretta"
+	icon_state = "g22"
 	max_rounds = 15
 	default_ammo = /datum/ammo/bullet/pistol
-	gun_type = /obj/item/weapon/gun/pistol/b92fs
+	gun_type = /obj/item/weapon/gun/pistol/g22
 
-/obj/item/ammo_magazine/pistol/b93r
-	name = "\improper Beretta 93R magazine (9mm)"
-	caliber = "9x19mm Parabellum"
-	icon_state = "beretta"
-	max_rounds = 20
-	default_ammo = /datum/ammo/bullet/pistol
-	gun_type = /obj/item/weapon/gun/pistol/b92fs/raffica
-
-/obj/item/ammo_magazine/pistol/b92fstranq
-	name = "\improper M9 tranq magazine (9mm)"
+/obj/item/ammo_magazine/pistol/g22tranq
+	name = "\improper G22 tranq magazine (9mm)"
 	caliber = "9x19mm tranquilizer"
-	icon_state = "beretta"
+	icon_state = "g22"
 	max_rounds = 12
 	default_ammo = /datum/ammo/bullet/pistol/tranq
-	gun_type = /obj/item/weapon/gun/pistol/b92fs/M9
+	gun_type = /obj/item/weapon/gun/pistol/g22/tranq
 
 
 //-------------------------------------------------------

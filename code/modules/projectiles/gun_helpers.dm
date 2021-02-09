@@ -89,7 +89,7 @@
 			//						   	  \\
 //----------------------------------------------------------
 
-/obj/item/weapon/gun/AltClick(mob/user)
+/obj/item/weapon/gun/RightClick(mob/user)
 	toggle_gun_safety()
 
 
@@ -894,7 +894,7 @@ should be alright.
 
 	if(user.action_busy)
 		return
-	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_BAR))
+	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_BAR, ignore_turf_checks = TRUE))
 		to_chat(user, "<span class='warning'>Your concentration is interrupted!</b></span>")
 		return
 	if(!CHECK_BITFIELD(flags_item, WIELDED))

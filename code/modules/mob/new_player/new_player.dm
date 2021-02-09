@@ -193,7 +193,7 @@
 				var/datum/species/species = GLOB.all_species[client.prefs.species] || GLOB.all_species[DEFAULT_SPECIES]
 
 				if(is_banned_from(ckey, "Appearance") || !client?.prefs)
-					species = GLOB.all_species[DEFAULT_SPECIES]
+					species = GLOB.roundstart_species[DEFAULT_SPECIES]
 					observer.real_name = species.random_name()
 				else if(client.prefs)
 					if(client.prefs.random_name)
@@ -319,7 +319,7 @@
 	output += "<a href='byond://?src=[REF(src)];lobby_choice=marines'>TerraGov Marine Corps</A><br><br><a href='byond://?src=[REF(src)];lobby_choice=aliens'>Xenomorph Hive</A>"
 	output += "</div>"
 
-	var/datum/browser/popup = new(src, "lore", "<div align='center'>Current Year: 2415</div>", 240, 300)
+	var/datum/browser/popup = new(src, "lore", "<div align='center'>Current Year: [GAME_YEAR]</div>", 240, 300)
 	popup.set_content(output)
 	popup.open(FALSE)
 

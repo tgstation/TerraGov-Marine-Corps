@@ -115,29 +115,29 @@
 		return ..()
 	return FALSE
 
-/obj/machinery/door/firedoor/attack_alien(mob/living/carbon/xenomorph/M)
-	var/turf/cur_loc = M.loc
+/obj/machinery/door/firedoor/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	var/turf/cur_loc = X.loc
 	if(blocked)
-		to_chat(M, "<span class='warning'>\The [src] is welded shut.</span>")
+		to_chat(X, "<span class='warning'>\The [src] is welded shut.</span>")
 		return FALSE
 	if(!istype(cur_loc))
 		return FALSE //Some basic logic here
 	if(!density)
-		to_chat(M, "<span class='warning'>\The [src] is already open!</span>")
+		to_chat(X, "<span class='warning'>\The [src] is already open!</span>")
 		return FALSE
 
-	playsound(src.loc, 'sound/effects/metal_creaking.ogg', 25, 1)
-	M.visible_message("<span class='warning'>\The [M] digs into \the [src] and begins to pry it open.</span>", \
+	playsound(loc, 'sound/effects/metal_creaking.ogg', 25, 1)
+	X.visible_message("<span class='warning'>\The [X] digs into \the [src] and begins to pry it open.</span>", \
 	"<span class='warning'>We dig into \the [src] and begin to pry it open.</span>", null, 5)
 
-	if(do_after(M, 30, FALSE, src, BUSY_ICON_BUILD))
+	if(do_after(X, 30, FALSE, src, BUSY_ICON_BUILD))
 		if(blocked)
-			to_chat(M, "<span class='warning'>\The [src] is welded shut.</span>")
+			to_chat(X, "<span class='warning'>\The [src] is welded shut.</span>")
 			return FALSE
 		if(density) //Make sure it's still closed
 			spawn(0)
 				open(1)
-				M.visible_message("<span class='danger'>\The [M] pries \the [src] open.</span>", \
+				X.visible_message("<span class='danger'>\The [X] pries \the [src] open.</span>", \
 				"<span class='danger'>We pry \the [src] open.</span>", null, 5)
 
 /obj/machinery/door/firedoor/attack_hand(mob/living/user)

@@ -42,7 +42,8 @@
 	GLOB.droppod_list -= src
 
 /obj/structure/droppod/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	switch(action)
 		if("set_x_target")
@@ -76,11 +77,10 @@
 	return data
 
 
-/obj/structure/droppod/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-							datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/structure/droppod/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if (!ui)
-		ui = new(user, src, ui_key, "Droppod", "[name]", 450, 250, master_ui, state)
+		ui = new(user, src, "Droppod", "[name]")
 		ui.open()
 
 /obj/structure/droppod/attack_hand(mob/living/user)

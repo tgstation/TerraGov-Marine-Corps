@@ -23,7 +23,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/ui_style_color = "#ffffff"
 	var/ui_style_alpha = 230
 	var/tgui_fancy = TRUE
-	var/tgui_lock = TRUE
+	var/tgui_lock = FALSE
 	var/toggles_deadchat = TOGGLES_DEADCHAT_DEFAULT
 	var/toggles_chat = TOGGLES_CHAT_DEFAULT
 	var/toggles_sound = TOGGLES_SOUND_DEFAULT
@@ -698,7 +698,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			ethnicity = new_ethnicity
 
 		if("species")
-			var/new_species = input(user, "Choose your species:", "Species") as null|anything in GLOB.all_species[DEFAULT_SPECIES]
+			var/new_species = input(user, "Choose your species:", "Species") as null|anything in GLOB.roundstart_species
 			if(!new_species)
 				return
 			species = new_species
@@ -1076,7 +1076,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			user << browse(null, "window=keybindings")
 
 		if("keybindings_reset")
-			var/choice = tgalert(usr, "Would you prefer 'hotkey' or 'classic' defaults?", "Setup keybindings", "Hotkey", "Classic", "Cancel")
+			var/choice = tgui_alert(usr, "Would you prefer 'hotkey' or 'classic' defaults?", "Setup keybindings", list("Hotkey", "Classic", "Cancel"))
 			if (choice == "Cancel")
 				ShowKeybindings(user)
 				return

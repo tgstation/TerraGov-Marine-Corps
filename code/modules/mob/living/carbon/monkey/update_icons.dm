@@ -1,5 +1,4 @@
 //Monkey Overlays Indexes////////
-#define M_HEADBITE_LAYER			10
 #define M_LASER_LAYER			9
 #define M_MASK_LAYER			8
 #define M_BACK_LAYER			7
@@ -34,7 +33,6 @@
 	update_fire()
 	update_burst()
 	update_transform()
-	update_headbite()
 
 ////////
 /mob/living/carbon/monkey/update_inv_wear_mask()
@@ -82,7 +80,7 @@
 /mob/living/carbon/monkey/update_inv_handcuffed()
 	remove_overlay(M_HANDCUFF_LAYER)
 	if(handcuffed)
-		overlays_standing[M_HANDCUFF_LAYER]	= image("icon" = 'icons/mob/monkey.dmi', "icon_state" = "handcuff1", "layer" =-M_HANDCUFF_LAYER)
+		overlays_standing[M_HANDCUFF_LAYER]	= image("icon" = 'icons/mob/monkey.dmi', "icon_state" = "handcuff", "layer" =-M_HANDCUFF_LAYER)
 
 		apply_overlay(M_HANDCUFF_LAYER)
 
@@ -109,18 +107,7 @@
 	overlays_standing[M_BURST_LAYER]	= standing
 	apply_overlay(M_BURST_LAYER)
 
-/mob/living/carbon/monkey/update_headbite()
-	remove_overlay(M_HEADBITE_LAYER)
-	var/image/standing = null
-
-	if(headbitten)
-		standing = image("icon" = 'icons/Xeno/Effects.dmi',"icon_state" = "headbite_stand", "layer" =-M_HEADBITE_LAYER)
-
-	overlays_standing[M_HEADBITE_LAYER]	= standing
-	apply_overlay(M_HEADBITE_LAYER)
-
 //Monkey Overlays Indexes////////
-#undef M_HEADBITE_LAYER
 #undef M_MASK_LAYER
 #undef M_BACK_LAYER
 #undef M_HANDCUFF_LAYER

@@ -195,8 +195,7 @@ Contains most of the procs that are called when a mob is attacked by something
 
 	user.do_attack_animation(src, used_item = I)
 
-	apply_damage(damage, I.damtype, affecting, armor, weapon_sharp, weapon_edge)
-	UPDATEHEALTH(src)
+	apply_damage(damage, I.damtype, affecting, armor, weapon_sharp, weapon_edge, updating_health = TRUE)
 
 	var/list/hit_report = list("(RAW DMG: [damage])")
 
@@ -330,9 +329,7 @@ Contains most of the procs that are called when a mob is attacked by something
 
 	visible_message("<span class='warning'>[src] has been hit in the [affecting.display_name] by \the [thrown_item].</span>", null, null, 5)
 
-	apply_damage(throw_damage, dtype, zone, armor, is_sharp(thrown_item), has_edge(thrown_item))
-
-	UPDATEHEALTH(src)
+	apply_damage(throw_damage, dtype, zone, armor, is_sharp(thrown_item), has_edge(thrown_item), updating_health = TRUE)
 
 	var/list/hit_report = list("(RAW DMG: [throw_damage])")
 
@@ -415,8 +412,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	to_chat(src, "<span class='danger'>An ear-splitting guttural roar tears through your mind and makes your world convulse!</span>")
 	Stun(stun_duration)
 	Paralyze(stun_duration)
-	apply_damage(stamina_damage, STAMINA)
-	UPDATEHEALTH(src)
+	apply_damage(stamina_damage, STAMINA, updating_health = TRUE)
 	if(!ear_deaf)
 		adjust_ear_damage(deaf = stun_duration)  //Deafens them temporarily
 	//Perception distorting effects of the psychic scream

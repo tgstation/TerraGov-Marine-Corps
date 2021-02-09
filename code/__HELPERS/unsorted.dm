@@ -1008,26 +1008,6 @@ GLOBAL_LIST_INIT(common_tools, typecacheof(list(
 #define REVERSE_DIR(dir) ( ((dir & 85) << 1) | ((dir & 170) >> 1) )
 
 
-/proc/reverse_direction(direction)
-	switch(direction)
-		if(NORTH)
-			return SOUTH
-		if(NORTHEAST)
-			return SOUTHWEST
-		if(EAST)
-			return WEST
-		if(SOUTHEAST)
-			return NORTHWEST
-		if(SOUTH)
-			return NORTH
-		if(SOUTHWEST)
-			return NORTHEAST
-		if(WEST)
-			return EAST
-		if(NORTHWEST)
-			return SOUTHEAST
-
-
 /proc/reverse_nearby_direction(direction)
 	switch(direction)
 		if(NORTH)
