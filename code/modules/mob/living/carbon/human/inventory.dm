@@ -73,35 +73,38 @@
 		return
 
 	var/obj/item/I = get_active_held_item()
-	if(!I)
-		if(!next_move > world.time)
-			return FALSE
+	if(I)
+		return FALSE
+	if(!next_move > world.time)
+		return FALSE
 
-		if(!KB)
-			return FALSE
-		if(draw_from_slot_if_possible(KB))
+	if(!KB)
+		return FALSE
+	if(draw_from_slot_if_possible(KB))
+		next_move = world.time
+		return
+	for(var/slot in SLOT_DRAW_ORDER)
+		if(draw_from_slot_if_possible(slot))
 			next_move = world.time
-			return
-		for(var/slot in SLOT_DRAW_ORDER)
-			if(draw_from_slot_if_possible(slot))
-				next_move = world.time
-			return
+		return
+	if(!I)
+		return FALSE
+
+	if(s_active?.can_be_inserted(I))
+			s_active.handle_item_insertion(I, FALSE, src)
+		return
+
+	if(!KB)
+		return FALSE
+	if(equip_to_slot_if_possible(I,KB, FALSE, FALSE, FALSE))
+		return
+	if(!equip_to_appropriate_slot(I, FALSE))
+		return
+
+	if(hand)
+		update_inv_l_hand(FALSE)
 	else
-		if(s_active?.can_be_inserted(I))
-				s_active.handle_item_insertion(I, FALSE, src)
-			return
-
-		if(!KB)
-			return FALSE
-		if(equip_to_slot_if_possible(I,KB, FALSE, FALSE, FALSE))
-			return
-		if(!equip_to_appropriate_slot(I, FALSE))
-			return
-
-		if(hand)
-			update_inv_l_hand(FALSE)
-		else
-			update_inv_r_hand(FALSE)
+		update_inv_r_hand(FALSE)
 
 /mob/living/carbon/human/proc/equip_in_one_of_slots(obj/item/W, list/slots, del_on_fail = 1)
 	for (var/slot in slots)
