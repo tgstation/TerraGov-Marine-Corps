@@ -849,9 +849,10 @@
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 16,"rail_x" = 12, "rail_y" = 17, "under_x" = 24, "under_y" = 11, "stock_x" = 26, "stock_y" = 13)
 	gun_skill_category = GUN_SKILL_SHOTGUNS
 
-	fire_delay = 1 SECONDS
+	fire_delay = 1000 SECONDS
 	accuracy_mult = 1.15
 	burst_amount = 1
+	damage_mult = 0.0001
 
 //-------------------------------------------------------
 //T-29 Smart Machine Gun (It's more of a rifle than the SG.)
