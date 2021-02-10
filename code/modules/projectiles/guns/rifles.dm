@@ -1067,7 +1067,7 @@
 //TX-11 Rifle, based on the gamer-11
 
 /obj/item/weapon/gun/rifle/tx11
-	name = "\improper TX-11 rifle"
+	name = "\improper TX-11 combat rifle"
 	desc = "The TX-11 is the former standard issue rifle of the TGMC. Most of them have been mothballed into storage long ago, but some still pop up in marine or mercenary hands. It is known for its large magazine size and great burst fire, but rather awkward to use, especially during combat. It uses 4.92×34mm caseless HV ammunition."
 	icon_state = "tx11"
 	item_state = "tx11"
