@@ -451,7 +451,7 @@
 
 
 /datum/hive_status/normal/check_ruler()
-	if(!(SSticker.mode.flags_round_type & MODE_XENO_RULER))
+	if(!(SSticker.mode?.flags_round_type & MODE_XENO_RULER))
 		return TRUE
 	return living_xeno_ruler
 
