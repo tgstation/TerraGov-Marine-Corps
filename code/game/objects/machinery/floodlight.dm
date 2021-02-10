@@ -318,7 +318,7 @@
 	var/obj/machinery/colony_floodlight_switch/fswitch = null //Reverse lookup for power grabbing in area
 	brightness_on = 7
 
-/obj/machinery/floodlight/Initialize()
+/obj/machinery/floodlight/colony/Initialize()
 	. = ..()
 	GLOB.floodlights += src
 
@@ -370,6 +370,16 @@
 	active_power_usage = 0
 	resistance_flags = UNACIDABLE|XENO_DAMAGEABLE
 	var/turned_on = FALSE //has to be toggled in engineering
+
+/obj/machinery/colony_floodlight_switch/Initialize()
+	..()
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/machinery/colony_floodlight_switch/LateInitialize()
+	. = ..()
+	for(var/F in GLOB.floodlights)
+		var/obj/machinery/floodlight/colony/flood = F
+		flood.fswitch = src
 
 /obj/machinery/colony_floodlight_switch/update_icon()
 	. = ..()
