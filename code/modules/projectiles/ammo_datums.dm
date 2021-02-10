@@ -1672,8 +1672,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	fire_color = "blue"
 	burnlevel = 36
 	burntime = 40
-	bullet_color = COLOR_NAVY
 	fire_delay = 24
+	bullet_color = COLOR_NAVY
 
 /datum/ammo/water
 	name = "water"
