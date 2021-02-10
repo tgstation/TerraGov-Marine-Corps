@@ -350,4 +350,3 @@
 #define ITEM_NOT_EQUIPPED 0
 #define ITEM_EQUIPPED_CARRIED 1 //To hands, a storage or the likes.
 #define ITEM_EQUIPPED_WORN 2 //Actually worn on the body.
-#define DELAY_KB_EQUIP 3
