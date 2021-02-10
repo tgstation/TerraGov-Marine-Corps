@@ -87,9 +87,9 @@
 				next_move = world.time
 			return
 	else
-		if(s_active?.can_be_inserted(I))
-			s_active.handle_item_insertion(I, FALSE, src)
-			return
+		if(s_active?.can_be_inserted(!I))
+			return FALSE
+		s_active.handle_item_insertion(I, FALSE, src)
 
 		if(!KB)
 			return FALSE
