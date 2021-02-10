@@ -15474,6 +15474,7 @@
 /obj/machinery/door/airlock/mainship/engineering/free_access{
 	name = "\improper Atmospherics Condenser Air Filtration"
 	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/bigredv2/outside/filtration_plant)
 "blJ" = (
@@ -19508,6 +19509,11 @@
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor,
 /area/bigredv2/outside/hydroponics)
+"cMZ" = (
+/obj/structure/cable,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/bigredv2/outside/filtration_plant)
 "cQC" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -19743,6 +19749,10 @@
 /obj/machinery/computer/nuke_disk_generator/blue,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
+"eKb" = (
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/bigredv2/outside/filtration_plant)
 "ePH" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -20211,6 +20221,11 @@
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
+"iEL" = (
+/obj/machinery/power/geothermal,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/bigredv2/outside/filtration_plant)
 "iFE" = (
 /obj/structure/cable,
 /obj/machinery/light,
@@ -21738,6 +21753,12 @@
 	dir = 1
 	},
 /area/bigredv2/outside/c)
+"wCi" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/turf/open/floor,
+/area/bigredv2/outside/filtration_plant)
 "wFG" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
@@ -47465,7 +47486,7 @@ bjK
 aZF
 bkx
 bkR
-bkR
+wCi
 bkR
 bkR
 bnn
@@ -47682,7 +47703,7 @@ bjL
 bkg
 bkt
 bkQ
-bly
+bow
 bma
 bkQ
 bmJ
@@ -47899,7 +47920,7 @@ bjL
 bgx
 bkt
 bkS
-bly
+bow
 bly
 bkQ
 bno
@@ -48116,7 +48137,7 @@ bjM
 bgx
 bkt
 bkK
-bly
+bow
 bmb
 bmK
 bnp
@@ -48550,7 +48571,7 @@ aXp
 aXp
 bkt
 bkU
-bkU
+eKb
 bkU
 bkU
 bkU
@@ -48766,12 +48787,12 @@ bes
 bes
 bes
 bkt
-bkU
-bkU
-bkU
-bkU
-bkU
-bkU
+eKb
+cMZ
+eKb
+eKb
+eKb
+eKb
 bkt
 boA
 bjw
@@ -48983,12 +49004,12 @@ bes
 bes
 bes
 bkt
-bkU
-bkU
-bkU
-bkU
-bkU
-bkU
+iEL
+iEL
+iEL
+iEL
+iEL
+iEL
 bkt
 boA
 bjw
