@@ -4,7 +4,7 @@ SUBSYSTEM_DEF(weeds_decay)
 	runlevels = RUNLEVEL_LOBBY|RUNLEVEL_SETUP|RUNLEVEL_GAME|RUNLEVEL_POSTGAME
 	wait = 15 SECONDS
 
-	// This is a list of nodes on the map.
+	/// List of decaying nodes on the map
 	var/list/decaying = list()
 
 /datum/controller/subsystem/weeds_decay/stat_entry()

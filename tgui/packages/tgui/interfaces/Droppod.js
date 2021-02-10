@@ -6,7 +6,9 @@ import { LabeledListItem } from '../components/LabeledList';
 export const Droppod = (props, context) => {
   const { data } = useBackend(context);
   return (
-    <Window>
+    <Window
+      width={450}
+      height={250}>
       <Window.Content scrollable>
         {data.drop_state === 1 ? (
           <PreDeploy />

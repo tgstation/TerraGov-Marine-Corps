@@ -18,7 +18,8 @@
 	handle_drugged()
 	handle_stuttering()
 	handle_slurring()
-
+	handle_slowdown()
+	handle_stagger()
 
 /mob/living/proc/handle_organs()
 	reagent_shock_modifier = 0
@@ -52,12 +53,6 @@
 /mob/living/proc/handle_regular_hud_updates()
 	if(!client)
 		return FALSE
-
-/mob/living/proc/add_slowdown(amount)
-	return
-
-/mob/living/proc/adjust_stagger(amount)
-	return
 
 /mob/living/proc/updatehealth()
 	if(status_flags & GODMODE)

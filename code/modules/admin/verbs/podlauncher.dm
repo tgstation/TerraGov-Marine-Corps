@@ -67,14 +67,13 @@
 /datum/podlauncher/can_interact(mob/user)
 	return TRUE
 
-/datum/podlauncher/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/datum/podlauncher/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 
 	to_chat(world, "ui_interact called")
 
 	if(!ui)
-		ui = new(user, src, ui_key, "PodLauncher", "podlauncher", 1000, 700, master_ui, state)
+		ui = new(user, src, "PodLauncher", "podlauncher")
 		ui.open()
 
 /datum/podlauncher/ui_data(mob/user)
@@ -119,8 +118,9 @@
 
 	return data
 
-/datum/podlauncher/ui_act(action, params)
-	if(..())
+/datum/podlauncher/ui_act(action, list/params)
+	. = ..()
+	if(.)
 		return
 
 	switch(action)

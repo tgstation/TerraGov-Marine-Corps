@@ -415,7 +415,7 @@
 
 /datum/keybinding/xeno/evasion
 	name = "evasion"
-	full_name = "Evasion"
+	full_name = "Runner: Evasion"
 	description = "Take evasive action, forcing non-friendly projectiles that would hit you to miss so long as you keep moving."
 	keybind_signal = COMSIG_XENOABILITY_EVASION
 

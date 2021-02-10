@@ -40,7 +40,7 @@
 	check whether you're adjacent to the target, then pass off the click to whoever
 	is receiving it.
 	The most common are:
-	* mob/UnarmedAttack(atom, adjacent) - used here only when adjacent, with no item in hand; in the case of humans, checks gloves
+	* mob/UnarmedAttack(atom, adjacent, params) - used here only when adjacent, with no item in hand; in the case of humans, checks gloves
 	* atom/attackby(item, user, params) - used only when adjacent
 	* item/afterattack(atom, user, adjacent, params) - used both ranged and adjacent when not handled by attackby
 	* mob/RangedAttack(atom, params) - used only ranged, only used for tk and laser eyes but could be changed
@@ -132,7 +132,7 @@
 		if(W)
 			W.melee_attack_chain(src, A, params)
 		else
-			UnarmedAttack(A)
+			UnarmedAttack(A, FALSE, params)
 		return
 
 	//Can't reach anything else in lockers or other weirdness
@@ -144,7 +144,7 @@
 		if(W)
 			W.melee_attack_chain(src, A, params)
 		else
-			UnarmedAttack(A, 1)
+			UnarmedAttack(A, TRUE, params)
 	else
 		if(W)
 			var/attack
@@ -251,17 +251,17 @@
 			qdel(dummy)
 
 
-/*
-	Translates into attack_hand, etc.
-
-	Note: proximity_flag here is used to distinguish between normal usage (flag=1),
-	and usage when clicking on things telekinetically (flag=0).  This proc will
-	not be called at ranged except with telekinesis.
-
-	proximity_flag is not currently passed to attack_hand, and is instead used
-	in human click code to allow glove touches only at melee range.
-*/
-/mob/proc/UnarmedAttack(atom/A, proximity_flag)
+/**
+ *Translates into attack_hand, etc.
+ *
+ * has_proximity is TRUE if this afterattack was called on something adjacent, in your square, or on your person.
+ *
+ * has_proximity is not currently passed to attack_hand, and is instead used
+ * in human click code to allow glove touches only at melee range.
+ *
+ * params is passed on here as the third arg
+ */
+/mob/proc/UnarmedAttack(atom/A, has_proximity, params)
 	if(ismob(A))
 		changeNext_move(CLICK_CD_MELEE)
 
@@ -321,7 +321,7 @@ if(selected_ability.target_flags & flagname){\
 /mob/living/carbon/xenomorph/MiddleClickOn(atom/A)
 	. = ..()
 	if(!(client.prefs.toggles_gameplay & MIDDLESHIFTCLICKING) || !selected_ability)
-		return
+		return FALSE
 	A = ability_target(A)
 	if(selected_ability.can_use_ability(A))
 		selected_ability.use_ability(A)
@@ -329,7 +329,7 @@ if(selected_ability.target_flags & flagname){\
 /mob/living/carbon/xenomorph/RightClickOn(atom/A)
 	. = ..()
 	if(!selected_ability)
-		return
+		return FALSE
 	A = ability_target(A)
 	if(selected_ability.can_use_ability(A))
 		selected_ability.use_ability(A)
@@ -347,6 +347,13 @@ if(selected_ability.target_flags & flagname){\
 		if(COMSIG_MOB_CLICK_HANDLED)
 			return TRUE
 	return A.RightClick(src)
+
+/mob/living/carbon/human/RightClickOn(atom/A)
+	var/obj/item/held_thing = get_active_held_item()
+
+	if(held_thing && SEND_SIGNAL(held_thing, COMSIG_ITEM_RIGHTCLICKON, A, src) & COMPONENT_ITEM_CLICKON_BYPASS)
+		return FALSE
+	return ..()
 
 ///Called when a owner mob Shift + Rightmouseclicks an atom
 /mob/proc/ShiftRightClickOn(atom/A)

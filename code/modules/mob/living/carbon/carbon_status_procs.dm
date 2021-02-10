@@ -10,32 +10,6 @@
 /mob/living/carbon/proc/set_stagger(amount)
 	stagger = max(amount, 0)
 
-
-/mob/living/carbon/proc/set_slowdown(amount)
-	if(slowdown == amount)
-		return
-	slowdown = amount
-	if(slowdown)
-		add_movespeed_modifier(MOVESPEED_ID_STAGGERSTUN, TRUE, 0, NONE, TRUE, slowdown)
-		return
-	remove_movespeed_modifier(MOVESPEED_ID_STAGGERSTUN)
-
-/mob/living/carbon/proc/adjust_slowdown(amount)
-	if(amount > 0)
-		set_slowdown(max(slowdown, amount)) //Slowdown overlaps rather than stacking.
-	else
-		set_slowdown(max(slowdown + amount, 0))
-	return slowdown
-
-/mob/living/carbon/add_slowdown(amount)
-	adjust_slowdown(amount * STANDARD_SLOWDOWN_REGEN)
-
-/mob/living/carbon/xenomorph/add_slowdown(amount)
-	if(is_charging >= CHARGE_ON) //If we're charging we're immune to slowdown.
-		return
-	adjust_slowdown(amount * XENO_SLOWDOWN_REGEN)
-
-
 /mob/living/carbon/proc/adjust_nutrition(amount)
 	. = nutrition
 	nutrition = max(nutrition + amount, 0)

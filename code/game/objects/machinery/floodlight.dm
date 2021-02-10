@@ -148,29 +148,29 @@
 		return TRUE
 	break_a_light()
 
-/obj/machinery/floodlightcombat/attack_alien(mob/living/carbon/xenomorph/M)
-	if(M.a_intent == INTENT_DISARM)
-		to_chat(M, "<span class='xenodanger'>You begin tipping the [src]")
+/obj/machinery/floodlightcombat/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(X.a_intent == INTENT_DISARM)
+		to_chat(X, "<span class='xenodanger'>You begin tipping the [src]")
 		if(!density)
-			to_chat(M, "<span class='xenonotice'>The [src] is already tipped over!")
+			to_chat(X, "<span class='xenonotice'>The [src] is already tipped over!")
 			return FALSE
 		var/fliptime = 10 SECONDS
-		if(M.mob_size == MOB_SIZE_BIG)
+		if(X.mob_size == MOB_SIZE_BIG)
 			fliptime = 5 SECONDS
-		if(isxenocrusher(M))
+		if(isxenocrusher(X))
 			fliptime = 3 SECONDS
-		if(!do_after(M, fliptime, FALSE, src))
+		if(!do_after(X, fliptime, FALSE, src))
 			return FALSE
-		visible_message("<span class='danger'>[M] Flips the [src] , shaterring all the lights!")
+		visible_message("<span class='danger'>[X] Flips the [src] , shaterring all the lights!")
 		playsound( loc, 'sound/effects/glasshit.ogg', 60 , FALSE)
 		tip_over()
 		update_icon()
 		return TRUE
 	if(brightness == 0)
-		to_chat(M, "<span class='xenonotice'>There are no lights to slash!")
+		to_chat(X, "<span class='xenonotice'>There are no lights to slash!")
 		return FALSE
 	playsound( loc, 'sound/weapons/alien_claw_metal1.ogg', 60, FALSE)
-	to_chat(M, "<span class='xenonotice'>You slash one of the lights!")
+	to_chat(X, "<span class='xenonotice'>You slash one of the lights!")
 	break_a_light()
 	set_light(brightness, 5, COLOR_SILVER)
 	update_icon()

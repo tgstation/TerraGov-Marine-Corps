@@ -249,13 +249,13 @@
 	else
 		add_tick += 1
 
-/obj/machinery/miner/attack_alien(mob/living/carbon/xenomorph/xeno_attacker)
-	xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_CLAW)
-	xeno_attacker.visible_message("<span class='danger'>[xeno_attacker] slashes \the [src]!</span>", \
+/obj/machinery/miner/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
+	X.visible_message("<span class='danger'>[X] slashes \the [src]!</span>", \
 	"<span class='danger'>We slash \the [src]!</span>", null, 5)
 	playsound(loc, "alien_claw_metal", 25, TRUE)
 	if(miner_status == MINER_DESTROYED)
-		to_chat(xeno_attacker, "<span class='warning'>[src] is already destroyed!</span>")
+		to_chat(X, "<span class='warning'>[src] is already destroyed!</span>")
 		return
 	miner_integrity -= 25
 	set_miner_status()

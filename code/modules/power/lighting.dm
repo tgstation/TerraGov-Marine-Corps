@@ -390,11 +390,11 @@
 
 
 //Xenos smashing lights
-/obj/machinery/light/attack_alien(mob/living/carbon/xenomorph/M)
+/obj/machinery/light/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(status == 2) //Ignore if broken.
 		return FALSE
-	M.do_attack_animation(src, ATTACK_EFFECT_SMASH)
-	M.visible_message("<span class='danger'>\The [M] smashes [src]!</span>", \
+	X.do_attack_animation(src, ATTACK_EFFECT_SMASH)
+	X.visible_message("<span class='danger'>\The [X] smashes [src]!</span>", \
 	"<span class='danger'>We smash [src]!</span>", null, 5)
 	broken() //Smashola!
 

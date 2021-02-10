@@ -120,8 +120,8 @@
 	description = "An effective and very addictive painkiller."
 	color = "#C805DC"
 	custom_metabolism = REAGENTS_METABOLISM * 1.25
-	overdose_threshold = REAGENTS_OVERDOSE * 0.66
-	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL * 0.66
+	overdose_threshold = REAGENTS_OVERDOSE * 0.5
+	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL * 0.5
 	scannable = TRUE
 
 /datum/reagent/medicine/oxycodone/on_mob_life(mob/living/L, metabolism)
@@ -218,7 +218,7 @@
 	name = "Dermaline"
 	description = "Dermaline is the next step in burn medication. Works twice as good as kelotane and enables the body to restore even the direst heat-damaged tissue."
 	color = "#F8C57C"
-	overdose_threshold = REAGENTS_OVERDOSE*0.66
+	overdose_threshold = REAGENTS_OVERDOSE*0.5
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL*0.5
 	scannable = TRUE
 	purge_list = list(/datum/reagent/medicine/oxycodone)
@@ -635,7 +635,7 @@
 	name = "Meralyne"
 	description = "Meralyne is a concentrated form of bicardine and can be used to treat extensive blunt trauma."
 	color = "#E6666C"
-	overdose_threshold = REAGENTS_OVERDOSE*0.66
+	overdose_threshold = REAGENTS_OVERDOSE*0.5
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL*0.5
 	scannable = TRUE
 	purge_list = list(/datum/reagent/medicine/oxycodone)
