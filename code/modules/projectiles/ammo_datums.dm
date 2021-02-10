@@ -1642,29 +1642,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	smoke_system.start()
 	T.visible_message(danger_message)
 
-/*
-/obj/item/explosive/grenade/drainbomb
-	name = "\improper M40-T smoke grenade"
-	desc = "The M40-T is a small, but powerful Tanglefoot grenade, designed to remove plasma with minimal side effects. Based off the same platform as the M40 HEDP. It is set to detonate in 6 seconds."
-	icon_state = "grenade_smoke"
-	det_time = 60
-	item_state = "grenade_smoke"
-	hud_state = "grenade_smoke"
-	underslug_launchable = TRUE
-	var/datum/effect_system/smoke_spread/plasmaloss/smoke
-
-/obj/item/explosive/grenade/drainbomb/Initialize()
-	. = ..()
-	smoke = new(src)
-
-/obj/item/explosive/grenade/drainbomb/prime()
-	playsound(loc, 'sound/effects/smoke.ogg', 25, 1, 4)
-	smoke.set_up(7, loc, 11)
-	smoke.start()
-	qdel(src)
-
-*/
-
 /datum/ammo/alloy_spike
 	name = "alloy spike"
 	ping = "ping_s"
