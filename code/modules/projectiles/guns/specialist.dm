@@ -1136,3 +1136,31 @@ obj/item/weapon/gun/minigun/Fire(atom/target, mob/living/user, params, reflex = 
 		return in_chamber ? 1 : 0
 	else
 		return in_chamber ? (current_mag.current_rounds + 1) : current_mag.current_rounds
+
+// pepperball gun
+
+//-------------------------------------------------------
+//T-29 Smart Machine Gun (It's more of a rifle than the SG.)
+
+/obj/item/weapon/gun/rifle/pepperball
+	name = "\improper Pepperball gun"
+	desc = "A pepperball gun that fires toxins. It fires pepperball balls."
+	icon_state = "pepperball"
+	item_state = "pepperball"
+	caliber = "pepperball" //codex
+	max_shells = 50 //codex
+	force = 10
+	aim_slowdown = 0.25
+	wield_delay = 1 SECONDS
+	current_mag = /obj/item/ammo_magazine/pepperball
+	attachable_allowed = list(/obj/item/attachable/magnetic_harness)
+
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_WIELDED_FIRING_ONLY
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
+	attachable_offset = list("muzzle_x" = 42, "muzzle_y" = 17,"rail_x" = 15, "rail_y" = 21, "under_x" = 24, "under_y" = 14, "stock_x" = 12, "stock_y" = 13)
+	fire_delay = 0.3 SECONDS
+	burst_amount = 0
+	accuracy_mult_unwielded = 0.1
+	accuracy_mult = 1.5
+	scatter = -20
+	scatter_unwielded = 100

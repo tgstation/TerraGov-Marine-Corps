@@ -1607,6 +1607,64 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 //================================================
 */
 
+/datum/ammo/pepperball
+	name = "pepperball"
+	icon_state = "boiler_gas2"
+	ping = "ping_x"
+	flags_ammo_behavior = AMMO_EXPLOSIVE
+	var/datum/effect_system/smoke_spread/smoke_system
+	var/danger_message = "<span class='danger'>The pepperball explodes with a splat and explodes into purple gas!</span>"
+	armor_type = "bio"
+	accuracy_var_high = 10
+	max_range = 30
+	penetration = 100
+	damage = 5
+
+/datum/ammo/pepperball/on_hit_mob(mob/living/victim, obj/projectile/proj)
+	drop_nade(get_turf(proj), proj.firer)
+
+/datum/ammo/pepperball/on_hit_obj(obj/O, obj/projectile/P)
+	drop_nade(get_turf(P), P.firer)
+
+/datum/ammo/pepperball/on_hit_turf(turf/T, obj/projectile/P)
+	var/target = (T.density && isturf(P.loc)) ? P.loc : T
+	drop_nade(target, P.firer) //we don't want the gas globs to land on dense turfs, they block smoke expansion.
+
+/datum/ammo/pepperball/do_at_max_range(obj/projectile/P)
+	drop_nade(get_turf(P), P.firer)
+
+/datum/ammo/pepperball/set_smoke()
+	smoke_system = new /datum/effect_system/smoke_spread/plasmaloss()
+
+/datum/ammo/pepperball/drop_nade(turf/T, atom/firer, range = 1)
+	set_smoke()
+	smoke_system.set_up(range, T)
+	smoke_system.start()
+	T.visible_message(danger_message)
+
+/*
+/obj/item/explosive/grenade/drainbomb
+	name = "\improper M40-T smoke grenade"
+	desc = "The M40-T is a small, but powerful Tanglefoot grenade, designed to remove plasma with minimal side effects. Based off the same platform as the M40 HEDP. It is set to detonate in 6 seconds."
+	icon_state = "grenade_smoke"
+	det_time = 60
+	item_state = "grenade_smoke"
+	hud_state = "grenade_smoke"
+	underslug_launchable = TRUE
+	var/datum/effect_system/smoke_spread/plasmaloss/smoke
+
+/obj/item/explosive/grenade/drainbomb/Initialize()
+	. = ..()
+	smoke = new(src)
+
+/obj/item/explosive/grenade/drainbomb/prime()
+	playsound(loc, 'sound/effects/smoke.ogg', 25, 1, 4)
+	smoke.set_up(7, loc, 11)
+	smoke.start()
+	qdel(src)
+
+*/
+
 /datum/ammo/alloy_spike
 	name = "alloy spike"
 	ping = "ping_s"
