@@ -324,7 +324,9 @@
 
 /obj/machinery/floodlight/colony/Destroy()
 	turn_light(null, FALSE)
-	GLOB.floodlights -= src
+	if(fswitch)
+		fswitch.floodlist -= src
+		fswitch = null
 	return ..()
 
 /obj/machinery/floodlight/colony/reset_light()
