@@ -67,3 +67,9 @@
 
 		update_icon()
 		M.update_icon()
+
+	else if(istype(I, /obj/item/implant))
+		user.temporarilyRemoveItemFromInventory(I)
+		I.forceMove(src)
+		imp = I
+		update_icon()
