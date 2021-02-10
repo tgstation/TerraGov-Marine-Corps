@@ -1143,11 +1143,11 @@ obj/item/weapon/gun/minigun/Fire(atom/target, mob/living/user, params, reflex = 
 //T-29 Smart Machine Gun (It's more of a rifle than the SG.)
 
 /obj/item/weapon/gun/rifle/pepperball
-	name = "\improper Pepperball gun"
-	desc = "A pepperball gun that fires toxins. It fires pepperball balls."
+	name = "\improper TLLL-12 pepperball gun"
+	desc = "A TerraGov less-lethal weapon, it comes in limited numbers and has limited use throughout the military, though sizeable use throughout TerraGov's Navy Police. The variant fires plasma-draining tanglefoot pepperballs in a compressed form, quickly delivering ammunition throughout the field.."
 	icon_state = "pepperball"
 	item_state = "pepperball"
-	caliber = "pepperball" //codex
+	caliber = "TGF-Ball" //codex
 	max_shells = 50 //codex
 	force = 10
 	aim_slowdown = 0.25

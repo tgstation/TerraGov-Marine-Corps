@@ -282,7 +282,7 @@ obj/item/ammo_magazine/rifle/m4ra/smart
 /obj/item/ammo_magazine/rifle/pepperball
 	name = "\improper Pepperball magazine (10x28mm)"
 	desc = "A magazine of pepperball ammo. Fires plasma draining toxins."
-	caliber = "pepperball"
+	caliber = "TGF-Ball"
 	icon_state = "pepperball"
 	w_class = WEIGHT_CLASS_NORMAL
 	max_rounds = 50
