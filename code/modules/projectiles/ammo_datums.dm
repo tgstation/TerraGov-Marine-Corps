@@ -1609,9 +1609,13 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/pepperball
 	name = "pepperball"
-	icon_state = "boiler_gas2"
-	ping = "ping_x"
-	flags_ammo_behavior = AMMO_EXPLOSIVE
+	icon_state = "bullet"
+
+	flags_ammo_behavior = AMMO_BALLISTIC
+	sound_hit 	 = "ballistic_hit"
+	sound_armor  = "ballistic_armor"
+	sound_miss	 = "ballistic_miss"
+	sound_bounce = "ballistic_bounce"
 	var/datum/effect_system/smoke_spread/smoke_system
 	var/danger_message = "<span class='danger'>The pepperball explodes with a splat and explodes into purple gas!</span>"
 	armor_type = "bio"
