@@ -11,8 +11,6 @@
 	siemens_coefficient = 0.9
 	flags_inventory = BLOCKSHARPOBJ
 
-	COOLDOWN_DECLARE(cooldown_light)
-
 /obj/item/clothing/head/hardhat/attack_self(mob/user)
 	if(!isturf(user.loc))
 		to_chat(user, "You cannot turn the light on while in [user.loc]")
@@ -28,32 +26,32 @@
 	turn_light(null, TRUE)
 
 /obj/item/clothing/head/hardhat/turn_light(mob/user = null, toggle_on ,cooldown = 1 SECONDS, sparks = FALSE, forced = FALSE)
-	if(COOLDOWN_CHECK(src, cooldown_light) || forced)
-		if(sparks)
-			var/datum/effect_system/spark_spread/spark_system = new
-			spark_system.set_up(5, 0, src)
-			spark_system.attach(src)
-			spark_system.start(src)
-		var/initial_light = on
-		COOLDOWN_START(src, cooldown_light, cooldown)
-		on = toggle_on
-		if (toggle_on)
-			set_light(brightness_on)
-		else
-			set_light(0)
-			if(forced)
-				addtimer(CALLBACK(src, .proc/reset_light), cooldown + 1)
-		icon_state = "hardhat[on]_[hardhat_color]"
-		item_state = "hardhat[on]_[hardhat_color]"
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_LIGHT) & !forced)
+		return
+	if(sparks)
+		var/datum/effect_system/spark_spread/spark_system = new
+		spark_system.set_up(5, 0, src)
+		spark_system.attach(src)
+		spark_system.start(src)
+	var/initial_light = on
+	TIMER_COOLDOWN_START(src, COOLDOWN_LIGHT, cooldown)
+	on = toggle_on
+	if (toggle_on)
+		set_light(brightness_on)
+	else
+		set_light(0)
+		if(forced)
+			addtimer(CALLBACK(src, .proc/reset_light), cooldown + 1)
+	icon_state = "hardhat[on]_[hardhat_color]"
+	item_state = "hardhat[on]_[hardhat_color]"
 
-		if(user == loc)
-			var/mob/M = loc
-			M.update_inv_head()
+	if(user == loc)
+		var/mob/M = loc
+		M.update_inv_head()
 
-		update_action_button_icons()
-		update_icon()
-		return initial_light 
-	return
+	update_action_button_icons()
+	update_icon()
+	return initial_light 
 
 /obj/item/clothing/head/hardhat/orange
 	icon_state = "hardhat0_orange"

@@ -1134,6 +1134,7 @@ and you're good to go.
 	active_attachable.fire_attachment(target, src, user) //Fire it.
 	last_fired = world.time
 
-/obj/item/weapon/gun/turn_light(mob/user, toggle_on, cooldown)
+/obj/item/weapon/gun/turn_light(mob/living/user, turn_off, cooldown = 1 SECONDS, sparks = FALSE, forced = FALSE)
 	if(istype(rail, /obj/item/attachable/flashlight))
-		rail.activate_attachment(user, toggle_on, cooldown)	
+		var/obj/item/attachable/flashlight/light = rail
+		light.turn_light(user, turn_off, cooldown, sparks, forced)

@@ -22,6 +22,7 @@
 /obj/machinery/floodlight/attackby()
 	return
 
+///Turn the light back on, called on timer
 /obj/machinery/floodlight/proc/reset_light()
 	turn_light(null, TRUE)
 
@@ -146,7 +147,7 @@
 	machine_stat |= NOPOWER
 	if(on)
 		on = !on
-		set_light(0, 5, "#C5E3E132")
+		set_light(0, 5, COLOR_SILVER)
 		update_icon()
 
 /// Loops between the light tubes until it finds a light to break.
@@ -182,7 +183,7 @@
 	playsound( loc, 'sound/weapons/alien_claw_metal1.ogg', 60, FALSE)
 	to_chat(M, "<span class='xenonotice'>You slash one of the lights!")
 	break_a_light()
-	set_light(brightness, 5, "#C5E3E132")
+	set_light(brightness, 5, COLOR_SILVER)
 	update_icon()
 
 /obj/machinery/floodlightcombat/attackby(obj/item/I, mob/user, params)
@@ -260,6 +261,7 @@
 	turn_light(null,!on)
 	playsound( loc, 'sound/machines/switch.ogg', 60 , FALSE)
 
+///Turn the light back on, called on timer
 /obj/machinery/floodlightcombat/proc/reset_light()
 	if(!on)
 		switch_light()
@@ -271,9 +273,9 @@
 		spark_system.attach(src)
 		spark_system.start(src)
 	if(toggle_on)
-		set_light(brightness, 5, "#C5E3E132")
+		set_light(brightness, 5, COLOR_SILVER)
 	else
-		set_light(0, 5, "#C5E3E132")
+		set_light(0, 5, COLOR_SILVER)
 		if(cooldown > 0)
 			addtimer(CALLBACK(src, .proc/reset_light), cooldown)
 	update_icon()
@@ -316,12 +318,14 @@
 	var/obj/machinery/colony_floodlight_switch/fswitch = null //Reverse lookup for power grabbing in area
 	brightness_on = 7
 
+/obj/machinery/floodlight/Initialize()
+	. = ..()
+	GLOB.floodlights += src
+
 /obj/machinery/floodlight/colony/Destroy()
 	turn_light(null, FALSE)
-	if(fswitch)
-		fswitch.floodlist -= src
-		fswitch = null
-	. = ..()
+	GLOB.floodlights -= src
+	return ..()
 
 /obj/machinery/floodlight/colony/reset_light()
 	if(fswitch?.turned_on)
@@ -341,7 +345,8 @@
 		on = TRUE
 		icon_state = "floodon"
 		update_icon()
-	else if(!toggle_on && on)
+		return
+	if(!toggle_on && on)
 		set_light(0)
 		fswitch.active_power_usage -= FLOODLIGHT_TICK_CONSUMPTION
 		on = FALSE
@@ -360,24 +365,14 @@
 	desc = "This switch controls the floodlights surrounding the archaeology complex. It only functions when there is power."
 	density = FALSE
 	anchored = TRUE
-	var/turned_on = FALSE //has to be toggled in engineering
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 5
 	active_power_usage = 0
 	resistance_flags = UNACIDABLE|XENO_DAMAGEABLE
-	var/list/floodlist = list() // This will save our list of floodlights on the map
-
-/obj/machinery/colony_floodlight_switch/Initialize()
-	..()
-	return INITIALIZE_HINT_LATELOAD
-
-/obj/machinery/colony_floodlight_switch/LateInitialize() //Populate our list of floodlights so we don't need to scan for them ever again
-	. = ..()
-	for(var/obj/machinery/floodlight/colony/F in GLOB.machines)
-		floodlist += F
-		F.fswitch = src
+	var/turned_on = FALSE //has to be toggled in engineering
 
 /obj/machinery/colony_floodlight_switch/update_icon()
+	. = ..()
 	if(machine_stat & NOPOWER)
 		icon_state = "panelnopower"
 	else if(turned_on)
@@ -386,7 +381,7 @@
 		icon_state = "paneloff"
 
 /obj/machinery/colony_floodlight_switch/power_change()
-	..()
+	. = ..()
 	if(machine_stat & NOPOWER)
 		if(turned_on)
 			toggle_lights(FALSE)
@@ -398,21 +393,22 @@
 
 
 /obj/machinery/colony_floodlight_switch/proc/toggle_lights(switch_on)
-	for(var/obj/machinery/floodlight/colony/F in floodlist)
-		F.turn_light(null, switch_on)
+	for(var/F in GLOB.floodlights)
+		var/obj/machinery/floodlight/colony/flood = F
+		flood.turn_light(null, switch_on)
 
 /obj/machinery/colony_floodlight_switch/attack_paw(mob/living/carbon/monkey/user)
-	return src.attack_hand(user)
+	return attack_hand(user)
 
 /obj/machinery/colony_floodlight_switch/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
 	if(!ishuman(user))
-		to_chat(user, "Nice try.")
+		to_chat(user, "<span class='notice'>Nice try.</span>")
 		return FALSE
 	if(machine_stat & NOPOWER)
-		to_chat(user, "Nothing happens.")
+		to_chat(user, "<span class='notice'>Nothing happens.</span>")
 		return FALSE
 	playsound(src,'sound/machines/click.ogg', 15, 1)
 	toggle_lights(turned_on ? FALSE : TRUE)

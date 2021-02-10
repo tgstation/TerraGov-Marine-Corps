@@ -125,8 +125,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	///what gun this attachment is currently attached to, if any.
 	var/obj/item/weapon/gun/master_gun
 
-	COOLDOWN_DECLARE(cooldown_flashlight)
-
 
 /obj/item/attachable/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -602,19 +600,21 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	attachment_action_type = /datum/action/item_action/toggle
 	activation_sound = 'sound/items/flashlight.ogg'
 
-	COOLDOWN_DECLARE(cooldown_flashligh)
-
+///Turn the light back on, called on a timer
 /obj/item/attachable/flashlight/proc/reset_light()
-	activate_attachment(null, FALSE)
+	turn_light(null, TRUE)
 
-/obj/item/attachable/flashlight/activate_attachment(mob/living/user, turn_off, cooldown = 1 SECONDS, sparks = FALSE, forced = FALSE)
-	if(turn_off && !(master_gun.flags_gun_features & GUN_FLASHLIGHT_ON))
+/obj/item/attachable/flashlight/activate_attachment(mob/living/user, turn_off)
+	turn_light(user, !turn_off)
+
+/obj/item/attachable/flashlight/turn_light(mob/user = null, toggle_on ,cooldown = 1 SECONDS, sparks = FALSE, forced = FALSE)
+	if(!toggle_on && !(master_gun.flags_gun_features & GUN_FLASHLIGHT_ON))
 		return
 
-	if(!COOLDOWN_CHECK(src, cooldown_flashligh))
-		return	
-		
-	COOLDOWN_START(src, cooldown_flashligh, cooldown)
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_LIGHT) & !forced)
+		return 
+	
+	TIMER_COOLDOWN_START(src, COOLDOWN_LIGHT, cooldown)
 	
 	if(ismob(master_gun.loc) && !user)
 		user = master_gun.loc

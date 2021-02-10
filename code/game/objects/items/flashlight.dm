@@ -18,21 +18,20 @@
 	var/raillight_compatible = TRUE //Can this be turned into a rail light ?
 	var/activation_sound = 'sound/items/flashlight.ogg'
 
-	COOLDOWN_DECLARE(cooldown_flashlight)
-
 /obj/item/flashlight/Initialize()
 	. = ..()
 	if(light_on)
 		turn_light(null, TRUE)
 
+///Turn the light back on, called on timer
 /obj/item/flashlight/proc/reset_light()
 	turn_light(null, TRUE)
 
 
 /obj/item/flashlight/turn_light(mob/user = null, toggle_on, cooldown = 1 SECONDS, sparks = FALSE, forced = FALSE)
-	if(!COOLDOWN_CHECK(src, cooldown_flashlight) || forced)
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_LIGHT) || forced)
 		return STILL_ON_COOLDOWN
-	COOLDOWN_START(src, cooldown_flashlight, cooldown)
+	TIMER_COOLDOWN_START(src, COOLDOWN_LIGHT, cooldown)
 	if(sparks)
 		var/datum/effect_system/spark_spread/spark_system = new
 		spark_system.set_up(5, 0, src)
@@ -56,8 +55,7 @@
 	if(!isturf(user.loc))
 		to_chat(user, "You cannot turn the light on while in [user.loc].")
 		return FALSE
-	var/flicked = turn_light(user, !light_on)
-	if(activation_sound & (flicked != STILL_ON_COOLDOWN))
+	if(activation_sound && (turn_light(user, !light_on) != STILL_ON_COOLDOWN))
 		playsound(get_turf(src), activation_sound, 15, 1)
 	return TRUE
 

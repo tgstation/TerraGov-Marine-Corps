@@ -103,8 +103,6 @@
 	var/blood_overlay_type = "suit"
 	var/fire_resist = T0C + 100
 	var/shield_state = "shield-blue"
-	
-	COOLDOWN_DECLARE(cooldown_light)
 
 	// Strength of the armor light used by [proc/set_light()]
 	light_power = 3
@@ -135,19 +133,20 @@
 	This proc will toggle the light enabled or disabled on the armor, playing a sound and updating the action button for the user.
 */
 /obj/item/clothing/suit/proc/toggle_armor_light(mob/user, cooldown = 1 SECONDS, sound_on, forced = FALSE)
-	if(COOLDOWN_CHECK(src, cooldown_light) || forced)
-		COOLDOWN_START(src, cooldown_light, cooldown)
-		if(flags_armor_features & ARMOR_LAMP_ON)
-			set_light_on(FALSE)
-			if(forced)
-				addtimer(CALLBACK(src, .proc/toggle_armor_light, null), cooldown + 1)
-		else
-			set_light_on(TRUE)
-		flags_armor_features ^= ARMOR_LAMP_ON
-		if(sound_on)
-			playsound(src, 'sound/items/flashlight.ogg', 15, TRUE)
-		update_icon(user)
-		update_action_button_icons()
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_LIGHT) & !forced)
+		return
+	TIMER_COOLDOWN_START(src, COOLDOWN_LIGHT, cooldown)
+	if(flags_armor_features & ARMOR_LAMP_ON)
+		set_light_on(FALSE)
+		if(forced)
+			addtimer(CALLBACK(src, .proc/toggle_armor_light, null), cooldown + 1)
+	else
+		set_light_on(TRUE)
+	flags_armor_features ^= ARMOR_LAMP_ON
+	if(sound_on)
+		playsound(src, 'sound/items/flashlight.ogg', 15, TRUE)
+	update_icon(user)
+	update_action_button_icons()
 
 
 /obj/item/clothing/suit/update_clothing_icon()

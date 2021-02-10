@@ -800,6 +800,13 @@ Proc for attack log creation, because really why not
 	for(var/hud in hud_possible) //Providing huds.
 		hud_list[hud] = image('icons/mob/hud.dmi', src, "")
 
-///if this object has lights, turn it on/off.
+/**
+  *If this object has lights, turn it on/off.
+  * user: the mob actioning this
+  * toggle_on: if TRUE, will try to turn ON the light. Opposite if FALSE
+  * cooldown: how long until you can toggle the light on/off again
+  * sparks: if a spark effect will be generated 
+  * forced: if TRUE and toggle_on = FALSE, will cause the light to turn on in cooldown second
+  */	
 /atom/proc/turn_light(mob/user, toggle_on ,cooldown = 1 SECONDS, sparks = FALSE, forced = FALSE)
 	return
