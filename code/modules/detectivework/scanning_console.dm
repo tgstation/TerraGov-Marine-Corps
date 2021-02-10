@@ -219,7 +219,7 @@
 				to_chat(usr, "<spawn class='warning'>No record found.</span>")
 		if("delete")
 			if(href_list["identifier"])
-				if(alert("Are you sure you want to delete this record?","Record deletion", "Yes", "No") == "Yes")
+				if(tgui_alert(usr, "Are you sure you want to delete this record?","Record deletion", list("Yes", "No")) == "Yes")
 					files.Remove(href_list["identifier"])
 					if(current && current.uid == href_list["identifier"])
 						current = null

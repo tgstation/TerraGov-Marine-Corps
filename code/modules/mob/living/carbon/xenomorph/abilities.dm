@@ -487,7 +487,7 @@
 		return fail_activate()
 
 	target.beam(X,"drain_life",'icons/effects/beam.dmi',10, 10,/obj/effect/ebeam,1) //visual SFX
-	target.add_filter("transfer_plasma_outline", 3, list("type" = "outline", "size" = 1, "color" = COLOR_STRONG_MAGENTA))
+	target.add_filter("transfer_plasma_outline", 3, outline_filter(1, COLOR_STRONG_MAGENTA))
 	addtimer(CALLBACK(target, /atom.proc/remove_filter, "transfer_plasma_outline"), 1 SECONDS) //Failsafe blur removal
 
 	var/amount = plasma_transfer_amount
@@ -956,7 +956,7 @@
 		to_chat(X, "<span class='warning'>There's nobody nearby to whisper to.</span>")
 		return
 
-	var/mob/living/L = input("Target", "Send a Psychic Whisper to whom?") as null|anything in target_list
+	var/mob/living/L = tgui_input_list(X, "Target", "Send a Psychic Whisper to whom?", target_list)
 	if(!L)
 		return
 

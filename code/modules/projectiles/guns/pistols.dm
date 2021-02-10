@@ -26,6 +26,7 @@
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/gyro,
 		/obj/item/attachable/burstfire_assembly,
+		/obj/item/attachable/lace,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
@@ -111,6 +112,7 @@
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/lace,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
@@ -154,6 +156,7 @@
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/quickfire,
+		/obj/item/attachable/lace,
 	)
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 12, "rail_y" = 22, "under_x" = 21, "under_y" = 15, "stock_x" = 21, "stock_y" = 17)
@@ -177,9 +180,8 @@
 	cocked_sound = 'sound/weapons/guns/interact/beretta_cocked.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/g22
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
-
-	fire_delay = 0.2 SECONDS
 	burst_amount = 3
+	fire_delay = 0.2 SECONDS
 
 /obj/item/weapon/gun/pistol/g22/tranq
 	name = "\improper G-22 custom pistol"
@@ -227,6 +229,7 @@
 		/obj/item/attachable/quickfire,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/compensator,
+		/obj/item/attachable/lace,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
@@ -264,6 +267,7 @@
 		/obj/item/attachable/quickfire,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/burstfire_assembly,
+		/obj/item/attachable/lace,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
@@ -304,6 +308,7 @@
 		/obj/item/attachable/quickfire,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/burstfire_assembly,
+		/obj/item/attachable/lace,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
@@ -329,6 +334,7 @@
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/lace,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
@@ -396,6 +402,7 @@
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/burstfire_assembly,
+		/obj/item/attachable/lace,
 	)
 
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
@@ -523,4 +530,5 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 		/obj/item/attachable/attached_gun/shotgun,
 		/obj/item/attachable/scope,
 		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/lace,
 	)

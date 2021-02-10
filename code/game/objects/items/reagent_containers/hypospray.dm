@@ -27,7 +27,7 @@
 
 
 /obj/item/reagent_containers/hypospray/proc/empty(mob/user)
-	if(alert(user, "Are you sure you want to empty [src]?", "Flush [src]:", "Yes", "No") != "Yes")
+	if(tgui_alert(user, "Are you sure you want to empty [src]?", "Flush [src]:", list("Yes", "No")) != "Yes")
 		return
 	if(isturf(user.loc))
 		to_chat(user, "<span class='notice'>You flush the contents of [src].</span>")
@@ -239,7 +239,7 @@
 		label(usr)
 
 	else if(href_list["set_transfer"])
-		var/N = input("Amount per transfer from this:", "[src]") as null|anything in list(1, 3, 5, 10, 15)
+		var/N = tgui_input_list(usr, "Amount per transfer from this:", "[src]", list(1, 3, 5, 10, 15))
 		if(!N)
 			return
 

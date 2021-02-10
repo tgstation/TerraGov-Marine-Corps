@@ -484,7 +484,7 @@ should be alright.
 	if(possible_attachments.len == 1)
 		A = possible_attachments[1]
 	else
-		A = input("Which attachment to remove?") as null|anything in possible_attachments
+		A = tgui_input_list(usr, "Which attachment to remove?", null,possible_attachments)
 
 	if(!A)
 		return

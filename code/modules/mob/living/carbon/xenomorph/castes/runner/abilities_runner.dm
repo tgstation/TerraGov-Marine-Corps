@@ -340,7 +340,7 @@
 	"<span class='xenodanger'>We effortlessly dodge the [proj.name]![(evasion_stack_target - evasion_stacks) > 0 ? " We must dodge [evasion_stack_target - evasion_stacks] more projectile damage before [src]'s cooldown refreshes." : ""]</span>")
 
 
-	R.add_filter("runner_evasion", 2, list("type" = "blur", 5)) //Cool SFX
+	R.add_filter("runner_evasion", 2, gauss_blur_filter(5)) //Cool SFX
 	addtimer(CALLBACK(R, /atom.proc/remove_filter, "runner_evasion"), 0.5 SECONDS)
 	R.do_jitter_animation(4000) //Dodgy animation!
 
