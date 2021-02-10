@@ -161,7 +161,7 @@
 	if(isnull(hasnewpolls))
 		maptext = "<span class=menutext>No Database connection!</span>"
 		return
-	maptext = "<span class=menutext>Show Polls[hasnewpolls ? "" : " (NEW!)"]</span>"
+	maptext = "<span class=menutext>Show Polls[hasnewpolls ? " (NEW!)" : ""]</span>"
 
 /obj/screen/text/lobby/clickable/polls/Click()
 	. = ..()
