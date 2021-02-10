@@ -86,8 +86,7 @@ export const IntelComputer = (props, context) => {
     <Window
       width={400}
       height={500}
-      theme="syndicate"
-      resizable>
+      theme="syndicate">
       <Window.Content scrollable>
         <IntelComputercontent />
       </Window.Content>
