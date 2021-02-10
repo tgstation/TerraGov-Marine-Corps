@@ -496,7 +496,7 @@ to_chat will check for valid clients itself already so no need to double check f
 */
 
 ///Used for Hive Message alerts
-/datum/hive_status/proc/xeno_message(message = null, size = 3, force = FALSE, atom/target = null, sound = null, apply_preferences = FALSE, filter_list = null)
+/datum/hive_status/proc/xeno_message(message = null, size = 3, force = FALSE, atom/target = null, sound = null, apply_preferences = FALSE, filter_list = null, arrow_type)
 
 	if(!force && !can_xeno_message())
 		return
@@ -518,9 +518,9 @@ to_chat will check for valid clients itself already so no need to double check f
 			X.playsound_local(X, sound, max(size * 20, 60), 0, 1)
 
 		if(target) //Apply tracker arrow to point to the subject of the message if applicable
-			var/obj/screen/xeno_tracker_arrow/arrow = new /obj/screen/xeno_tracker_arrow //Prepare the tracker object and set its parameters
-			arrow.add_hud(X, target)
-			new /obj/effect/temp_visual/xenomorph/xeno_tracker_target(target) //Ping the source of our alert
+			var/obj/screen/arrow/arrow_hud = new arrow_type
+			//Prepare the tracker object and set its parameters
+			arrow_hud.add_hud(X, target)
 
 		to_chat(X, "<span class='xenodanger'><font size=[size]> [message]</font></span>")
 
@@ -598,7 +598,7 @@ to_chat will check for valid clients itself already so no need to double check f
 
 	var/mob/living/carbon/xenomorph/chosen_mother
 	if(length(possible_mothers) > 1)
-		chosen_mother = input("Available Mothers") as null|anything in possible_mothers
+		chosen_mother = tgui_input_list(xeno_candidate, "Available Mothers", null, possible_mothers)
 	else
 		chosen_mother = possible_mothers[1]
 
@@ -607,7 +607,7 @@ to_chat will check for valid clients itself already so no need to double check f
 
 	if(!isnewplayer(xeno_candidate) && XENODEATHTIME_CHECK(xeno_candidate))
 		if(check_other_rights(xeno_candidate.client, R_ADMIN, FALSE))
-			if(alert(xeno_candidate, "You wouldn't normally qualify for this respawn. Are you sure you want to bypass it with your admin powers?", "Bypass Respawn", "Yes", "No") != "Yes")
+			if(tgui_alert(xeno_candidate, "You wouldn't normally qualify for this respawn. Are you sure you want to bypass it with your admin powers?", "Bypass Respawn", list("Yes", "No")) != "Yes")
 				XENODEATHTIME_MESSAGE(xeno_candidate)
 				return FALSE
 		else
@@ -620,9 +620,9 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/normal/proc/attempt_to_spawn_larva_in_silo(mob/xeno_candidate, possible_silos)
 	var/obj/structure/resin/silo/chosen_silo
 	if(length(possible_silos) > 1)
-		chosen_silo = input("Available Egg Silos") as null|anything in possible_silos
+		chosen_silo = tgui_input_list(xeno_candidate, "Available Egg Silos", "Spawn location", possible_silos)
 		xeno_candidate.forceMove(chosen_silo)
-		var/double_check = input(xeno_candidate, "Spawn here?", "Spawn location") as null|anything in list("Yes","Pick another silo")
+		var/double_check = tgui_alert(xeno_candidate, "Spawn here?", "Spawn location", list("Yes","Pick another silo"))
 		if(double_check == "Pick another silo")
 			return attempt_to_spawn_larva_in_silo(xeno_candidate, possible_silos)
 		else if(double_check != "Yes")
@@ -635,7 +635,7 @@ to_chat will check for valid clients itself already so no need to double check f
 
 	if(!isnewplayer(xeno_candidate) && XENODEATHTIME_CHECK(xeno_candidate))
 		if(check_other_rights(xeno_candidate.client, R_ADMIN, FALSE))
-			if(alert(xeno_candidate, "You wouldn't normally qualify for this respawn. Are you sure you want to bypass it with your admin powers?", "Bypass Respawn", "Yes", "No") != "Yes")
+			if(tgui_alert(xeno_candidate, "You wouldn't normally qualify for this respawn. Are you sure you want to bypass it with your admin powers?", "Bypass Respawn", list("Yes", "No")) != "Yes")
 				XENODEATHTIME_MESSAGE(xeno_candidate)
 				return FALSE
 		else
@@ -1042,15 +1042,18 @@ to_chat will check for valid clients itself already so no need to double check f
 /mob/living/carbon/xenomorph/get_xeno_hivenumber()
 	return hivenumber
 
+/datum/hive_status/ui_state(mob/user)
+	return GLOB.xeno_state
+
 /// Controls the evolution UI
-/datum/hive_status/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.xeno_state)
+/datum/hive_status/ui_interact(mob/user, datum/tgui/ui)
 	// Xeno only screen
 	if(!isxeno(user))
 		return
 
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "HiveEvolveScreen", "Xenomorph Evolution", 400, 750, master_ui, state)
+		ui = new(user, src, "HiveEvolveScreen")
 		ui.open()
 
 /// Static data provided once when the ui is opened
@@ -1101,8 +1104,9 @@ to_chat will check for valid clients itself already so no need to double check f
 	)
 
 /// Handles actuually evolving
-/datum/hive_status/ui_act(action, params)
-	if(..())
+/datum/hive_status/ui_act(action, list/params)
+	. = ..()
+	if(.)
 		return
 
 	var/mob/living/carbon/xenomorph/xeno = usr
@@ -1111,7 +1115,7 @@ to_chat will check for valid clients itself already so no need to double check f
 			SStgui.close_user_uis(usr, src, "main")
 			var/datum/xeno_caste/caste = GLOB.xeno_caste_datums[text2path(params["path"])][XENO_UPGRADE_BASETYPE]
 			xeno.do_evolve(caste.caste_type_path, caste.display_name) // All the checks for can or can't are handled inside do_evolve
-			return
+			return TRUE
 
 /datum/hive_status/proc/update_tier_limits()
 	tier3_xeno_limit = max(length(xenos_by_tier[XENO_TIER_THREE]),FLOOR((length(xenos_by_tier[XENO_TIER_ZERO])+length(xenos_by_tier[XENO_TIER_ONE])+length(xenos_by_tier[XENO_TIER_TWO]))/3+1,1))

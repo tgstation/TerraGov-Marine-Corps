@@ -12,8 +12,6 @@
 	req_one_access = list(ACCESS_MARINE_CMO, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CHEMISTRY)
 	layer = BELOW_OBJ_LAYER //So beakers reliably appear above it
 
-	ui_x = 565
-	ui_y = 620
 
 	var/obj/item/cell/cell
 	var/powerefficiency = 0.1
@@ -22,7 +20,7 @@
 	var/recharge_counter = 0
 
 	///Reagent amounts that are dispenced
-	var/static/list/possible_transfer_amounts = list(1,5,10,15,20,30,60)
+	var/static/list/possible_transfer_amounts = list(1,5,10,15,20,30,40,60,120)
 
 	var/working_state = "dispenser_working"
 
@@ -121,11 +119,10 @@
 
 
 
-/obj/machinery/chem_dispenser/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-											datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/chem_dispenser/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "ChemDispenser", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, "ChemDispenser", name)
 		ui.open()
 
 /obj/machinery/chem_dispenser/ui_static_data(mob/user)
@@ -165,8 +162,9 @@
 
 	.["recordingRecipe"] = recording_recipe
 
-/obj/machinery/chem_dispenser/ui_act(action, params)
-	if(..())
+/obj/machinery/chem_dispenser/ui_act(action, list/params)
+	. = ..()
+	if(.)
 		return
 	switch(action)
 		if("amount")
@@ -238,7 +236,7 @@
 		if("clear_recipes")
 			if(!is_operational())
 				return
-			var/yesno = alert("Clear all recipes?",, "Yes","No")
+			var/yesno = tgui_alert(usr, "Clear all recipes?", null, list("Yes","No"))
 			if(yesno == "Yes")
 				usr.client.prefs.chem_macros = list()
 				usr.client.prefs.save_preferences()
@@ -252,7 +250,7 @@
 			if(!is_operational())
 				return
 			var/name = stripped_input(usr, "Name", "What do you want to name this recipe?", "Recipe", MAX_NAME_LEN)
-			if(usr.client.prefs.chem_macros[name] && alert("\"[name]\" already exists, do you want to overwrite it?",, "Yes", "No") == "No")
+			if(usr.client.prefs.chem_macros[name] && tgui_alert(usr, "\"[name]\" already exists, do you want to overwrite it?", null, list("Yes", "No")) == "No")
 				return
 			else if(length(usr.client.prefs.chem_macros) >= 10)
 				to_chat(usr, "<span class='danger'>You can remember <b>up to 10</b> recipes!</span>")

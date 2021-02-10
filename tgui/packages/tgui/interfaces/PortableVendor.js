@@ -5,7 +5,9 @@ import { Window } from '../layouts';
 export const PortableVendor = (props, context) => {
   const { act, data } = useBackend(context);
   return (
-    <Window>
+    <Window
+      width={600}
+      height={700}>
       <Window.Content scrollable>
         {(data.show_points > 0) && (
           <ProgressBar

@@ -50,12 +50,14 @@
 	temp_pod = new(locate(/area/centcom/supplypod/podStorage) in GLOB.sorted_areas) //Create a new temp_pod in the podStorage area on centcom (so users are free to look at it and change other variables if needed)
 	orderedArea = createOrderedArea(bay) //Order all the turfs in the selected bay (top left to bottom right) to a single list. Used for the "ordered" mode (launchChoice = 1)
 
-/datum/centcom_podlauncher/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, \
-force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.admin_state)//ui_interact is called when the client verb is called.
+/datum/centcom_podlauncher/ui_state(mob/user)
+	return GLOB.admin_state
 
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/datum/centcom_podlauncher/ui_interact(mob/user, datum/tgui/ui)//ui_interact is called when the client verb is called.
+	ui = SStgui.try_update_ui(user, src, ui)
+	
 	if(!ui)
-		ui = new(user, src, ui_key, "CentcomPodLauncher", "Config/Launch Supplypod", 700, 700, master_ui, state)
+		ui = new(user, src, "CentcomPodLauncher", "Config/Launch Supplypod")
 		ui.open()
 
 /datum/centcom_podlauncher/ui_data(mob/user) //Sends info about the pod to the UI.
@@ -96,8 +98,9 @@ force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.adm
 	data["styles"] = GLOB.pod_styles
 	return data
 
-/datum/centcom_podlauncher/ui_act(action, params)
-	if(..())
+/datum/centcom_podlauncher/ui_act(action, list/params)
+	. = ..()
+	if(.)
 		return
 	switch(action)
 		////////////////////////////UTILITIES//////////////////

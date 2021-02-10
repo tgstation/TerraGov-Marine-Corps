@@ -284,6 +284,8 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	var/heal_range = HIVELORD_HEAL_RANGE
 	var/health_ticks_remaining = 0 //Buff ends whenever we run out of either health or sunder ticks, or time, whichever comes first
 	var/sunder_ticks_remaining = 0
+	///timer ID we can reference and delete old timers during clean up
+	var/timer_id
 
 /datum/action/xeno_action/activable/healing_infusion/can_use_ability(atom/target, silent = FALSE, override_flags)
 	. = ..()
@@ -341,14 +343,14 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 
 	var/mob/living/carbon/xenomorph/patient = target
 
-	patient.add_filter("hivelord_healing_infusion_outline", 3, list("type" = "outline", "size" = 1, "color" = COLOR_VERY_PALE_LIME_GREEN)) //Set our cool aura; also confirmation we have the buff
+	patient.add_filter("hivelord_healing_infusion_outline", 3, outline_filter(1, COLOR_VERY_PALE_LIME_GREEN)) //Set our cool aura; also confirmation we have the buff
 
 	patient.infusion_active = TRUE //Indicate the infusion as being active
 
 	health_ticks_remaining = HIVELORD_HEALING_INFUSION_TICKS
 	sunder_ticks_remaining = HIVELORD_HEALING_INFUSION_TICKS
 
-	addtimer(CALLBACK(src, .proc/healing_infusion_timer_check, patient), HIVELORD_HEALING_INFUSION_DURATION)
+	timer_id = addtimer(CALLBACK(src, .proc/healing_infusion_deactivate, patient), HIVELORD_HEALING_INFUSION_DURATION, TIMER_STOPPABLE)
 
 	succeed_activate()
 	add_cooldown()
@@ -431,14 +433,6 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	message_admins("HIVELORD_ABILITIES_DEBUG: Sunder reduction from Healing Infusion: [-3 * (1 + patient.recovery_aura * 0.1)]")
 	#endif
 
-///Called when the duration of the buff lapses before its effect is exhausted
-/datum/action/xeno_action/activable/healing_infusion/proc/healing_infusion_timer_check(mob/living/carbon/xenomorph/patient)
-
-	if(!patient.infusion_active) //If the effect is already gone, don't try to remove it again
-		return
-
-	healing_infusion_deactivate(patient)
-
 
 ///Called when the duration of healing infusion lapses
 /datum/action/xeno_action/activable/healing_infusion/proc/healing_infusion_deactivate(mob/living/carbon/xenomorph/patient)
@@ -449,6 +443,8 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 
 	health_ticks_remaining = 0 //Null vars
 	sunder_ticks_remaining = 0
+	deltimer(timer_id) //Get rid of the timer so we don't have subsequent timer mismatches
+	timer_id = null
 
 	patient.infusion_active = FALSE
 

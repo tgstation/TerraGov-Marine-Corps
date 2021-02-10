@@ -457,7 +457,6 @@
 							break
 						S.limb_ref.remove_limb_flags(LIMB_BROKEN | LIMB_SPLINTED | LIMB_STABILIZED)
 						S.limb_ref.add_limb_flags(LIMB_REPAIRED)
-						S.limb_ref.perma_injury = 0
 						close_incision(occupant, S.limb_ref)
 
 					if(ADSURGERY_MISSING)

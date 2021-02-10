@@ -100,7 +100,7 @@
 			players += player
 	//players -= usr
 
-	var/mob/living/M = input("Who do you wish to deal a card?") as null|anything in players
+	var/mob/living/M = tgui_input_list(usr, "Who do you wish to deal a card?", null, players)
 	if(!usr || gc_destroyed || !Adjacent(usr) || !M || M.gc_destroyed) return
 
 	if(!cards.len)
@@ -188,7 +188,7 @@
 	var/list/to_discard = list()
 	for(var/datum/playingcard/P in cards)
 		to_discard[P.name] = P
-	var/discarding = input("Which card do you wish to put down?") as null|anything in to_discard
+	var/discarding = tgui_input_list(usr, "Which card do you wish to put down?", null, to_discard)
 
 	if(!discarding || !usr || gc_destroyed || loc != usr) return
 

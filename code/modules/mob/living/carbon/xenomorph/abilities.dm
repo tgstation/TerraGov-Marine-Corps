@@ -487,7 +487,7 @@
 		return fail_activate()
 
 	target.beam(X,"drain_life",'icons/effects/beam.dmi',10, 10,/obj/effect/ebeam,1) //visual SFX
-	target.add_filter("transfer_plasma_outline", 3, list("type" = "outline", "size" = 1, "color" = COLOR_STRONG_MAGENTA))
+	target.add_filter("transfer_plasma_outline", 3, outline_filter(1, COLOR_STRONG_MAGENTA))
 	addtimer(CALLBACK(target, /atom.proc/remove_filter, "transfer_plasma_outline"), 1 SECONDS) //Failsafe blur removal
 
 	var/amount = plasma_transfer_amount
@@ -956,7 +956,7 @@
 		to_chat(X, "<span class='warning'>There's nobody nearby to whisper to.</span>")
 		return
 
-	var/mob/living/L = input("Target", "Send a Psychic Whisper to whom?") as null|anything in target_list
+	var/mob/living/L = tgui_input_list(X, "Target", "Send a Psychic Whisper to whom?", target_list)
 	if(!L)
 		return
 
@@ -1175,20 +1175,18 @@
 	name = "Rally Hive"
 	action_icon_state = "rally_hive"
 	mechanics_text = "Rallies the hive to a congregate at a target location, along with an arrow pointer. Gives the Hive your current health status. 60 second cooldown."
-	use_state_flags = XACT_TARGET_SELF
 	ability_name = "rally hive"
 	plasma_cost = 0
 	keybind_signal = COMSIG_XENOABILITY_RALLY_HIVE
+	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	cooldown_timer = 60 SECONDS
 
-/datum/action/xeno_action/activable/rally_hive/use_ability(atom/A)
+/datum/action/xeno_action/activable/rally_hive/use_ability()
 
 	var/mob/living/carbon/xenomorph/X = owner
 
-	X.face_atom(A) //Face towards the target so we don't look silly
-
-	xeno_message("<span class='xenoannounce'>Our leader [X] is rallying the hive to [AREACOORD_NO_Z(A)]!</span>", 3, X.hivenumber, FALSE, get_turf(A), 'sound/voice/alien_distantroar_3.ogg')
-	notify_ghosts("\ [X] is rallying the hive to [AREACOORD_NO_Z(A)]!", source = get_turf(A), action = NOTIFY_JUMP)
+	xeno_message("<span class='xenoannounce'>Our leader [X] is rallying the hive to [AREACOORD_NO_Z(X.loc)]!</span>", 3, X.hivenumber, FALSE, X, 'sound/voice/alien_distantroar_3.ogg',TRUE,null,/obj/screen/arrow/leader_tracker_arrow)
+	notify_ghosts("\ [X] is rallying the hive to [AREACOORD_NO_Z(X.loc)]!", source = X, action = NOTIFY_JUMP)
 
 	succeed_activate()
 	add_cooldown()

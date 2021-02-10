@@ -4,7 +4,7 @@ SUBSYSTEM_DEF(direction)
 	runlevels = RUNLEVEL_GAME|RUNLEVEL_POSTGAME
 	wait = 1 SECONDS
 
-	// this is a map of defines to mob references, eg; list(FACTION_ID = <mob ref>, FACTION_ID2 = <mob ref>)
+	/// this is a map of defines to mob references, eg; list(FACTION_ID = <mob ref>, FACTION_ID2 = <mob ref>)
 	var/list/leader_mapping = list()
 
 	// this is a two d list of defines to lists of mobs tracking that leader
