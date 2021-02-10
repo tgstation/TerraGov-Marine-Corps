@@ -202,8 +202,8 @@
 	new /obj/item/reagent_containers/glass/bottle/dexalin(src)
 
 /obj/item/storage/syringe_case/meralyne
-	name = "syringe case (meralyne)"
-	desc = "It's a medical case for storing syringes and bottles. This one contains Meralyne."
+	name = "syringe case (meralyne 120u)"
+	desc = "It's a medical case for storing syringes and bottles. This one contains 120 units of Meralyne."
 
 /obj/item/storage/syringe_case/meralyne/PopulateContents()
 	. = ..()
@@ -211,9 +211,18 @@
 	new /obj/item/reagent_containers/glass/bottle/meralyne(src)
 	new /obj/item/reagent_containers/glass/bottle/meralyne(src)
 
+/obj/item/storage/syringe_case/meralyne/half
+	name = "syringe case (meralyne 60u)"
+	desc = "It's a medical case for storing syringes and bottles. This one contains 60 units of Meralyne."
+
+/obj/item/storage/syringe_case/meralyne/half/PopulateContents()
+	. = ..()
+	new /obj/item/reagent_containers/syringe(src)
+	new /obj/item/reagent_containers/glass/bottle/meralyne(src)
+
 /obj/item/storage/syringe_case/dermaline
-	name = "syringe case (dermaline)"
-	desc = "It's a medical case for storing syringes and bottles. This one contains Dermaline."
+	name = "syringe case (dermaline 120u)"
+	desc = "It's a medical case for storing syringes and bottles. This one contains 120 units of Dermaline."
 
 /obj/item/storage/syringe_case/dermaline/PopulateContents()
 	. = ..()
@@ -221,15 +230,33 @@
 	new /obj/item/reagent_containers/glass/bottle/dermaline(src)
 	new /obj/item/reagent_containers/glass/bottle/dermaline(src)
 
+/obj/item/storage/syringe_case/dermaline/half
+	name = "syringe case (dermaline 60u)"
+	desc = "It's a medical case for storing syringes and bottles. This one contains 60 units of Dermaline."
+
+/obj/item/storage/syringe_case/dermaline/half/PopulateContents()
+	. = ..()
+	new /obj/item/reagent_containers/syringe(src)
+	new /obj/item/reagent_containers/glass/bottle/dermaline(src)
+
 /obj/item/storage/syringe_case/meraderm
-	name = "syringe case (meraderm)"
-	desc = "It's a medical case for storing syringes and bottles. This one contains Meraderm."
+	name = "syringe case (meraderm 120u)"
+	desc = "It's a medical case for storing syringes and bottles. This one contains 120 units of Meraderm."
 
 /obj/item/storage/syringe_case/meraderm/PopulateContents()
 	. = ..()
 	new /obj/item/reagent_containers/syringe(src)
 	new /obj/item/reagent_containers/glass/bottle/meraderm(src)
 	new /obj/item/reagent_containers/glass/bottle/meraderm(src)
+
+/obj/item/storage/syringe_case/meraderm/half
+	name = "syringe case (meraderm 60u)"
+	desc = "It's a medical case for storing syringes and bottles. This one contains 60 units of Meraderm."
+
+/obj/item/storage/syringe_case/meraderm/half/PopulateContents()
+	. = ..()
+	new /obj/item/reagent_containers/syringe(src)
+	new /obj/item/reagent_containers/glass/bottle/meraderm(src)	
 
 /obj/item/storage/syringe_case/ironsugar
 	name = "syringe case (ironsugar)"
@@ -242,14 +269,23 @@
 	new /obj/item/reagent_containers/glass/bottle/ironsugar(src)
 
 /obj/item/storage/syringe_case/tricordrazine
-	name = "syringe case (tricordrazine)"
-	desc = "It's a medical case for storing syringes and bottles. This one contains Tricordrazine."
+	name = "syringe case (tricordrazine 120u)"
+	desc = "It's a medical case for storing syringes and bottles. This one contains 120 units of Tricordrazine."
 
 /obj/item/storage/syringe_case/tricordrazine/PopulateContents()
 	. = ..()
 	new /obj/item/reagent_containers/syringe(src)
 	new /obj/item/reagent_containers/glass/bottle/tricordrazine(src)
 	new /obj/item/reagent_containers/glass/bottle/tricordrazine(src)
+
+/obj/item/storage/syringe_case/tricordrazine/half
+	name = "syringe case (tricordrazine 60u)"
+	desc = "It's a medical case for storing syringes and bottles. This one contains 60 units of Tricordrazine."
+
+/obj/item/storage/syringe_case/tricordrazine/half/PopulateContents()
+	. = ..()
+	new /obj/item/reagent_containers/syringe(src)
+	new /obj/item/reagent_containers/glass/bottle/tricordrazine(src)	
 
 /obj/item/storage/syringe_case/combat
 	name = "syringe case (combat)"
