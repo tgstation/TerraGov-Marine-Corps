@@ -195,7 +195,6 @@
 	starting_attachment_types = list(
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/suppressor,
-		/obj/item/attachable/lace,
 	)
 
 	fire_delay = 0.6 SECONDS
