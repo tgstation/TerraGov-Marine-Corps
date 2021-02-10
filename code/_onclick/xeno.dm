@@ -1,4 +1,4 @@
-/mob/living/carbon/xenomorph/UnarmedAttack(atom/A, has_proximity, params)
+/mob/living/carbon/xenomorph/UnarmedAttack(atom/A, has_proximity, modifiers)
 	if(lying_angle)
 		return FALSE
 
@@ -8,7 +8,6 @@
 		changeNext_move(CLICK_CD_MELEE)
 
 	var/atom/S = A.handle_barriers(src)
-	var/list/modifiers = params2list(params)
 	S.attack_alien(src, isrightclick = modifiers["right"])
 	GLOB.round_statistics.xeno_unarmed_attacks++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "xeno_unarmed_attacks")
@@ -18,7 +17,7 @@
 	return
 
 
-/mob/living/carbon/xenomorph/larva/UnarmedAttack(atom/A, has_proximity, params)
+/mob/living/carbon/xenomorph/larva/UnarmedAttack(atom/A, has_proximity, modifiers)
 	if(lying_angle)
 		return FALSE
 
@@ -29,7 +28,7 @@
 
 
 
-/mob/living/carbon/xenomorph/hivemind/UnarmedAttack(atom/A, has_proximity, params)
+/mob/living/carbon/xenomorph/hivemind/UnarmedAttack(atom/A, has_proximity, modifiers)
 	A.attack_hivemind(src)
 
 /atom/proc/attack_hivemind(mob/living/carbon/xenomorph/hivemind/attacker)
