@@ -1636,7 +1636,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/fire_color = "red"
 	var/burnlevel = 24
 	var/burntime = 17
-	var/fire_delay = 20
+	var/fire_delay = 4
 
 /datum/ammo/flamethrower/on_hit_mob(mob/M,obj/projectile/P)
 	drop_flame(get_turf(P))
@@ -1672,8 +1672,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	fire_color = "blue"
 	burnlevel = 36
 	burntime = 40
-	fire_delay = 35
 	bullet_color = COLOR_NAVY
+	fire_delay = 24
 
 /datum/ammo/water
 	name = "water"
