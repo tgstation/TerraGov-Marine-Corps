@@ -1382,7 +1382,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 10
 	accuracy_var_low = 3
 	accuracy_var_high = 3
-	damage = 20
+	damage = 30
 	stagger_stacks = 1
 	slowdown_stacks = 1
 	smoke_strength = 0.5
@@ -1465,6 +1465,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "neurotoxic spatter"
 	added_spit_delay = 10
 	spit_cost = 75
+	damage = 35
 	smoke_strength = 0.6
 	reagent_transfer_amount = 7.5
 
@@ -1485,6 +1486,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "neurotoxic splash"
 	added_spit_delay = 15
 	spit_cost = 100
+	damage = 40
 	smoke_strength = 0.65
 	reagent_transfer_amount = 8.5
 
