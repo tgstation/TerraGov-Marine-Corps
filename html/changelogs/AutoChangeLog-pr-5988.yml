@@ -1,4 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes: 
-  - code_imp: "Unarmedattack no longer converts params twice"
