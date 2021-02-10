@@ -215,9 +215,7 @@
 	target_flags = XABB_MOB_TARGET
 	///How many remaining reagent slashes the Defiler has
 	var/reagent_slash_count = 0
-	///Time remaining for the Reagent Slashes timer; used to get around upgrade ability deletion
-	var/reagent_slash_duration = 0
-	///Timer ID for the Reagent Slashes timer; used to get around upgrade ability deletion
+	///Timer ID for the Reagent Slashes timer; we reference this to delete the timer if the effect lapses before the timer does
 	var/reagent_slash_duration_timer_id
 
 
@@ -227,34 +225,24 @@
 
 	RegisterSignal(X, COMSIG_XENOMORPH_ATTACK_LIVING, .proc/reagent_slash)
 
-	reagent_slash_count = DEFILER_REAGENT_SLASH_COUNT
-	reagent_slash_duration_timer_id = addtimer(CALLBACK(src, .proc/reagent_slash_timer_check, X), DEFILER_REAGENT_SLASH_DURATION, TIMER_STOPPABLE) //Save the timer ID
+	reagent_slash_count = DEFILER_REAGENT_SLASH_COUNT //Set the number of slashes
+	reagent_slash_duration_timer_id = addtimer(CALLBACK(src, .proc/reagent_slash_deactivate, X), DEFILER_REAGENT_SLASH_DURATION, TIMER_STOPPABLE) //Initiate the timer and set the timer ID for reference
 
-	to_chat(X, "<span class='xenodanger'>Our spines fill with virulent toxins!</span>") //Let the target know
+	to_chat(X, "<span class='xenodanger'>Our spines fill with virulent toxins!</span>") //Let the user know
 	X.playsound_local(X, 'sound/voice/alien_drool2.ogg', 25)
 
 	succeed_activate()
 	add_cooldown()
-
-///Called when the duration of the buff lapses before its effect is exhausted
-/datum/action/xeno_action/reagent_slash/proc/reagent_slash_timer_check(mob/living/carbon/xenomorph/X)
-
-	if(!reagent_slash_count) //If the effect is already gone, don't try to remove it again
-		return
-
-	reagent_slash_deactivate(X)
-
 
 ///Called when the duration of reagent slash lapses
 /datum/action/xeno_action/reagent_slash/proc/reagent_slash_deactivate(mob/living/carbon/xenomorph/X)
 	UnregisterSignal(X, COMSIG_XENOMORPH_ATTACK_LIVING) //unregister the signals; party's over
 
 	reagent_slash_count = 0 //Zero out vars
-	reagent_slash_duration = 0
-	deltimer(reagent_slash_duration_timer_id) //delete the timer so we don't have mismatch issues
+	deltimer(reagent_slash_duration_timer_id) //delete the timer so we don't have mismatch issues, and so we don't potentially try to deactivate the ability twice
 	reagent_slash_duration_timer_id = null
 
-	to_chat(X, "<span class='xenodanger'>We are no longer benefitting from [src].</span>") //Let the target know
+	to_chat(X, "<span class='xenodanger'>We are no longer benefitting from [src].</span>") //Let the user know
 	X.playsound_local(X, 'sound/voice/hiss5.ogg', 25)
 
 
