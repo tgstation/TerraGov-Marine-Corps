@@ -15,7 +15,7 @@
 		return NONE
 
 	if(HAS_TRAIT(M, TRAIT_SCALPED))
-		M.visible_message("<span class='notice'>[user] someone already took \the [M] scalp</span>")
+		to_chat(user, "<span class='notice'>someone already took it's scalp.</span>")
 		return NONE
 
 	M.visible_message("<span class='notice'>[user] starts to tear into [M] with \the [source]</span>" ,"<span class='notice'>You start hacking away at [M] with \the [source]</span>")
