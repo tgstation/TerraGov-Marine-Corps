@@ -180,7 +180,7 @@
 	cocked_sound = 'sound/weapons/guns/interact/beretta_cocked.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/g22
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
-
+	burst_amount = 3
 	fire_delay = 0.2 SECONDS
 
 /obj/item/weapon/gun/pistol/g22/tranq
