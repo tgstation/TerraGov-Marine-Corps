@@ -4,7 +4,7 @@
 	icon_state = "flood00"
 	anchored = TRUE
 	density = TRUE
-	var/on = FALSE
+	light_on = TRUE
 	var/use = 0
 	var/unlocked = 0
 	var/open = 0
@@ -13,7 +13,7 @@
 
 /obj/machinery/floodlight/Initialize()
 	. = ..()
-	if(on)
+	if(light_on)
 		turn_light(null,TRUE)
 
 /obj/machinery/floodlight/attack_hand(mob/living/user)
@@ -22,43 +22,34 @@
 /obj/machinery/floodlight/attackby()
 	return
 
-///Turn the light back on, called on timer
-/obj/machinery/floodlight/proc/reset_light()
-	turn_light(null, TRUE)
-
-/obj/machinery/floodlight/turn_light(mob/user, toggle_on, cooldown = 0, sparks)
-	if(!on & !toggle_on)
+/obj/machinery/floodlight/turn_light(mob/user, toggle_on)
+	. = ..()
+	if(. != CHECKS_PASSED)
 		return
-	if(sparks)
-		var/datum/effect_system/spark_spread/spark_system = new
-		spark_system.set_up(5, 0, src)
-		spark_system.attach(src)
-		spark_system.start(src)
-	if(toggle_on)	
-		on = TRUE
-		to_chat(user, "<span class='notice'>You turn on the light.</span>")
+	light_on = toggle_on
+	if(toggle_on)
+		if(user)	
+			to_chat(user, "<span class='notice'>You turn on the light.</span>")
 		set_light(brightness_on)
 		DISABLE_BITFIELD(resistance_flags, UNACIDABLE)
 		return
-	on = FALSE
-	to_chat(user, "<span class='notice'>You turn off the light.</span>")
+	if(user)
+		to_chat(user, "<span class='notice'>You turn off the light.</span>")
 	set_light(0)
 	ENABLE_BITFIELD(resistance_flags, UNACIDABLE)
-	if(cooldown > 0)
-		addtimer(CALLBACK(src, .proc/reset_light), cooldown)
 
 /obj/machinery/floodlight/landing
 	name = "Landing Light"
 	desc = "A powerful light stationed near landing zones to provide better visibility."
 	icon_state = "flood01"
-	on = TRUE
+	light_on = TRUE
 	use_power = 0
 	brightness_on = 5
 
 /obj/machinery/floodlight/outpost
 	name = "Outpost Light"
 	icon_state = "flood01"
-	on = TRUE
+	light_on = TRUE
 	use_power = FALSE
 	brightness_on = 10
 
@@ -72,7 +63,7 @@
 	density = 0
 	alpha = 0
 	resistance_flags = RESIST_ALL
-	on = TRUE
+	light_on = TRUE
 	brightness_on = 25
 
 
@@ -89,8 +80,6 @@
 	wrenchable = TRUE
 	/// Determines how much light does the floodlight make , every light tube adds 4 tiles distance.
 	var/brightness = 0
-	/// Turned ON or OFF? Used for the overlays and power usage.
-	var/on = FALSE
 	/// Used to show if the object is tipped
 	var/tipped = FALSE
 
@@ -107,7 +96,7 @@
 	else
 		to_chat(user , "<span class='notice'>You wrench down [src]'s bolts")
 		anchored = TRUE
-	on = FALSE
+	light_on = FALSE
 
 /// Visually shows that the floodlight has been tipped and breaks all the lights in it.
 /obj/machinery/floodlightcombat/proc/tip_over()
@@ -120,7 +109,7 @@
 	transform = A
 	density = FALSE
 	tipped = TRUE
-	on = FALSE
+	light_on = FALSE
 
 /// Untip the floodlight
 /obj/machinery/floodlightcombat/proc/flip_back()
@@ -141,12 +130,12 @@
 
 /obj/machinery/floodlightcombat/process()
 	if(powered(LIGHT))
-		use_power(on ? active_power_usage : idle_power_usage, LIGHT)
+		use_power(light_on ? active_power_usage : idle_power_usage, LIGHT)
 		machine_stat &= ~NOPOWER
 		return
 	machine_stat |= NOPOWER
-	if(on)
-		on = !on
+	if(light_on)
+		light_on = !light_on
 		set_light(0, 5, COLOR_SILVER)
 		update_icon()
 
@@ -190,7 +179,7 @@
 	if(!ishuman(user))
 		return FALSE
 	if(istype(I, /obj/item/light_bulb/tube))
-		if(on)
+		if(light_on)
 			to_chat(user, "<span class='notice'>The [src]'s safety systems won't let you open the light hatch! You should turn it off first.")
 			return FALSE
 		if(contents.len > 3)
@@ -201,7 +190,7 @@
 		user.drop_held_item()
 		I.forceMove(src)
 	if(istype(I, /obj/item/lightreplacer))
-		if(on)
+		if(light_on)
 			to_chat(user, "<span class='notice'>The [I] cannot dispense lights into functioning machinery!")
 			return FALSE
 		if(contents.len > 3)
@@ -231,7 +220,7 @@
 	var/offsetY
 	/// Used to define which slot is targeted on the sprite and then adjust the overlay.
 	var/target_slot = 1
-	if(on && brightness > 0)
+	if(light_on && brightness > 0)
 		. += image('icons/obj/machines/floodlight.dmi', src, "floodlightcombat_lighting_glow", layer + 0.01, NORTH, 0, 5)
 	for(var/obj/item/light_bulb/tube/target in contents)
 		switch(target_slot)
@@ -258,26 +247,18 @@
 	if(!anchored || tipped)
 		to_chat(user, "<span class='danger'>The floodlight flashes a warning led.It is not bolted to the ground.")
 		return FALSE
-	turn_light(null,!on)
+	turn_light(null,!light_on)
 	playsound( loc, 'sound/machines/switch.ogg', 60 , FALSE)
 
-///Turn the light back on, called on timer
-/obj/machinery/floodlightcombat/proc/reset_light()
-	if(!on)
-		switch_light()
-
-/obj/machinery/floodlightcombat/turn_light(mob/user, toggle_on, cooldown = 0, sparks)
-	if(sparks)
-		var/datum/effect_system/spark_spread/spark_system = new
-		spark_system.set_up(5, 0, src)
-		spark_system.attach(src)
-		spark_system.start(src)
+/obj/machinery/floodlightcombat/turn_light(mob/user, toggle_on)
+	. = ..()
+	if(. != CHECKS_PASSED)
+		return
+	light_on = toggle_on
 	if(toggle_on)
 		set_light(brightness, 5, COLOR_SILVER)
 	else
 		set_light(0, 5, COLOR_SILVER)
-		if(cooldown > 0)
-			addtimer(CALLBACK(src, .proc/reset_light), cooldown)
 	update_icon()
 
 /obj/machinery/floodlightcombat/attack_hand(mob/living/user)
@@ -292,13 +273,13 @@
 			flip_back()
 			to_chat(user, "You flip back the floodlight!")
 			return TRUE
-	if(on)
+	if(light_on)
 		to_chat (user, "<span class='danger'>You burn the tip of your finger as you try to take off the light tube!")
 		return FALSE
 	if(contents.len > 0)
 		to_chat(user, "You take out one of the lights")
 		visible_message("[user] takes out one of the lights tubes!")
-		playsound( loc,'sound/items/screwdriver.ogg', 60 , FALSE)
+		playsound(loc, 'sound/items/screwdriver.ogg', 60 , FALSE)
 		var/obj/item/light_bulb/item = pick(contents)
 		item.forceMove(user.loc)
 		item.update()
@@ -315,46 +296,44 @@
 /obj/machinery/floodlight/colony
 	name = "Colony Floodlight"
 	icon_state = "floodoff"
-	var/obj/machinery/colony_floodlight_switch/fswitch = null //Reverse lookup for power grabbing in area
+	light_on = FALSE
 	brightness_on = 7
+	var/obj/machinery/colony_floodlight_switch/fswitch = null //Reverse lookup for power grabbing in area
 
 /obj/machinery/floodlight/colony/Initialize()
 	. = ..()
-	GLOB.floodlights += src
+	RegisterSignal(SSdcs, COMSIG_GLOB_FLOODLIGHT_SWITCH, .proc/floodswitch_powered)
 
 /obj/machinery/floodlight/colony/Destroy()
 	turn_light(null, FALSE)
-	GLOB.floodlights -= src
+	UnregisterSignal(SSdcs, COMSIG_GLOB_FLOODLIGHT_SWITCH)
 	return ..()
+
+///Make the link between the floodlight and the switch
+/obj/machinery/floodlight/colony/proc/floodswitch_powered(datum/source, floodswitch, toggle_on)
+	SIGNAL_HANDLER
+	fswitch = floodswitch
+	turn_light(null, toggle_on)
 
 /obj/machinery/floodlight/colony/reset_light()
 	if(fswitch?.turned_on)
 		turn_light(null, TRUE)
 
-/obj/machinery/floodlight/colony/turn_light(mob/user, toggle_on, cooldown = 0, sparks)
-	if(!fswitch) //no master, should never happen
-		return
-	if(sparks)
-		var/datum/effect_system/spark_spread/spark_system = new
-		spark_system.set_up(5, 0, src)
-		spark_system.attach(src)
-		spark_system.start(src)
-	if(toggle_on && !on)
-		set_light(brightness_on)
-		fswitch.active_power_usage += FLOODLIGHT_TICK_CONSUMPTION
-		on = TRUE
-		icon_state = "floodon"
-		update_icon()
-		return
-	if(!toggle_on && on)
-		set_light(0)
-		fswitch.active_power_usage -= FLOODLIGHT_TICK_CONSUMPTION
-		on = FALSE
-		icon_state = "floodoff"
-		update_icon()
-		if(cooldown > 0)
-			addtimer(CALLBACK(src, .proc/reset_light), cooldown)
+/obj/machinery/floodlight/colony/turn_light(mob/user, toggle_on)
+	. = ..()
+	if(toggle_on)
+		fswitch?.active_power_usage += FLOODLIGHT_TICK_CONSUMPTION
+	else	
+		fswitch?.active_power_usage -= FLOODLIGHT_TICK_CONSUMPTION
+	update_icon()
+	
 
+/obj/machinery/floodlight/colony/update_icon()
+	. = ..()
+	if(light_on)
+		icon_state = "floodon"
+	else
+		icon_state = "floodoff"
 
 #undef FLOODLIGHT_TICK_CONSUMPTION
 
@@ -370,16 +349,6 @@
 	active_power_usage = 0
 	resistance_flags = UNACIDABLE|XENO_DAMAGEABLE
 	var/turned_on = FALSE //has to be toggled in engineering
-
-/obj/machinery/colony_floodlight_switch/Initialize()
-	..()
-	return INITIALIZE_HINT_LATELOAD
-
-/obj/machinery/colony_floodlight_switch/LateInitialize()
-	. = ..()
-	for(var/F in GLOB.floodlights)
-		var/obj/machinery/floodlight/colony/flood = F
-		flood.fswitch = src
 
 /obj/machinery/colony_floodlight_switch/update_icon()
 	. = ..()
@@ -403,9 +372,7 @@
 
 
 /obj/machinery/colony_floodlight_switch/proc/toggle_lights(switch_on)
-	for(var/F in GLOB.floodlights)
-		var/obj/machinery/floodlight/colony/flood = F
-		flood.turn_light(null, switch_on)
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_FLOODLIGHT_SWITCH, src, switch_on)
 
 /obj/machinery/colony_floodlight_switch/attack_paw(mob/living/carbon/monkey/user)
 	return attack_hand(user)

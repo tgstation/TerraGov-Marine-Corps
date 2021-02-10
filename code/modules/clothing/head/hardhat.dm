@@ -3,55 +3,41 @@
 	desc = "A piece of headgear used in dangerous working conditions to protect the head. Comes with a built-in flashlight."
 	icon_state = "hardhat0_yellow"
 	item_state = "hardhat0_yellow"
-	var/brightness_on = 4 //luminosity when on
-	var/on = 0
-	var/hardhat_color = "yellow" //Determines used sprites: hardhat[on]_[hardhat_color]
 	soft_armor = list("melee" = 30, "bullet" = 5, "laser" = 20, "energy" = 10, "bomb" = 20, "bio" = 10, "rad" = 20, "fire" = 10, "acid" = 10)
 	actions_types = list(/datum/action/item_action/toggle)
 	siemens_coefficient = 0.9
 	flags_inventory = BLOCKSHARPOBJ
+	light_system = MOVABLE_LIGHT
+	light_on = FALSE
+	light_range = 4
+	light_power = 2
+	var/hardhat_color = "yellow" //Determines used sprites: hardhat[on]_[hardhat_color]
 
 /obj/item/clothing/head/hardhat/attack_self(mob/user)
 	if(!isturf(user.loc))
 		to_chat(user, "You cannot turn the light on while in [user.loc]")
 		return
-	toggle_helmet_light(user)
+	toggle_light(user)
 
+/obj/item/clothing/head/hardhat/proc/toggle_light(mob/user)
+	turn_light(user, !light_on)
 
-/obj/item/clothing/head/hardhat/proc/toggle_helmet_light(mob/user)
-	on = !on
-	turn_light(user, on)
-	
-/obj/item/clothing/head/hardhat/proc/reset_light()
-	turn_light(null, TRUE)
-
-/obj/item/clothing/head/hardhat/turn_light(mob/user = null, toggle_on ,cooldown = 1 SECONDS, sparks = FALSE, forced = FALSE)
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_LIGHT) & !forced)
+/obj/item/clothing/head/hardhat/turn_light(mob/user, toggle_on)
+	. = ..()
+	if(. != CHECKS_PASSED)
 		return
-	if(sparks)
-		var/datum/effect_system/spark_spread/spark_system = new
-		spark_system.set_up(5, 0, src)
-		spark_system.attach(src)
-		spark_system.start(src)
-	var/initial_light = on
-	TIMER_COOLDOWN_START(src, COOLDOWN_LIGHT, cooldown)
-	on = toggle_on
-	if (toggle_on)
-		set_light(brightness_on)
-	else
-		set_light(0)
-		if(forced)
-			addtimer(CALLBACK(src, .proc/reset_light), cooldown + 1)
-	icon_state = "hardhat[on]_[hardhat_color]"
-	item_state = "hardhat[on]_[hardhat_color]"
-
+	set_light_on(toggle_on)
 	if(user == loc)
 		var/mob/M = loc
 		M.update_inv_head()
 
 	update_action_button_icons()
 	update_icon()
-	return initial_light 
+
+/obj/item/clothing/head/hardhat/update_icon()
+	icon_state = "hardhat[light_on]_[hardhat_color]"
+	item_state = "hardhat[light_on]_[hardhat_color]"
+	. = ..()
 
 /obj/item/clothing/head/hardhat/orange
 	icon_state = "hardhat0_orange"

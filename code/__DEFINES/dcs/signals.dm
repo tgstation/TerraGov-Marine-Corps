@@ -33,6 +33,10 @@
 #define COMSIG_GLOB_DROPSHIP_TRANSIT "!dropship_transit"
 ///Sent when xenos launch a hijacked dropship
 #define COMSIG_GLOB_DROPSHIP_HIJACKED "!dropship_hijacked"
+///Sent when nightfall is casted
+#define COMSIG_GLOB_LIGHT_OFF "item_light_off"
+///Sent when the floodlight switch is powered
+#define COMSIG_GLOB_FLOODLIGHT_SWITCH "floodlight_switch_power_change"
 
 //////////////////////////////////////////////////////////////////
 
@@ -217,7 +221,7 @@
 #define COMSIG_ITEM_ATTACK_TURF "item_attack_turf"				//from base of obj/item/attack_turf(): (/turf, /mob)
 	#define COMPONENT_NO_ATTACK_TURF (1<<0)
 #define COMSIG_ITEM_TOGGLE_ACTION "item_toggle_action"			//from base of obj/item/ui_interact(): (/mob/user)
-#define COMSIG_ITEM_TOGGLE_ACTIVE "item_toggle_active"			//from base of /obj/item/toggle_active(): (new_state)
+#define COMSIG_ITEM_TOGGLE_ACTIVE "item_toggle_active"			//from base of /obj/item/toggle_active(): (new_state)					
 
 #define COMSIG_ITEM_MIDDLECLICKON "item_middleclickon"					//from base of mob/MiddleClickOn(): (/atom, /mob)
 #define COMSIG_ITEM_SHIFTCLICKON "item_shiftclickon"					//from base of mob/ShiftClickOn(): (/atom, /mob)

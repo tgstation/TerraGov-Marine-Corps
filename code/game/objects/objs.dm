@@ -66,6 +66,7 @@
 		else
 			req_one_access = GLOB.all_req_one_access[txt_access]
 
+
 /obj/Destroy()
 	hard_armor = null
 	soft_armor = null

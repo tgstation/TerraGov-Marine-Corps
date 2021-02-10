@@ -237,3 +237,8 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 
 ///This number + standard alamo launch time is when droppods are allowed to launch
 #define DROPPOD_DEPLOY_DELAY 10 MINUTES
+
+//Lights define
+#define CHECKS_PASSED 	  1
+#define STILL_ON_COOLDOWN 2
+#define OUT_OF_REACH	  3

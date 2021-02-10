@@ -594,53 +594,43 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	icon_state = "flashlight"
 	attach_icon = "flashlight_a"
 	light_mod = 6
+	light_on = FALSE
+	light_system = MOVABLE_LIGHT
 	slot = "rail"
 	materials = list(/datum/material/metal = 100, /datum/material/glass = 20)
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION
 	attachment_action_type = /datum/action/item_action/toggle
 	activation_sound = 'sound/items/flashlight.ogg'
 
-///Turn the light back on, called on a timer
-/obj/item/attachable/flashlight/proc/reset_light()
-	turn_light(null, TRUE)
 
-/obj/item/attachable/flashlight/activate_attachment(mob/living/user, turn_off)
-	turn_light(user, !turn_off)
+/obj/item/attachable/flashlight/activate_attachment(mob/living/user)
+	turn_light(user, !light_on)
 
-/obj/item/attachable/flashlight/turn_light(mob/user = null, toggle_on ,cooldown = 1 SECONDS, sparks = FALSE, forced = FALSE)
-	if(!toggle_on && !(master_gun.flags_gun_features & GUN_FLASHLIGHT_ON))
-		return
-
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_LIGHT) & !forced)
-		return 
+/obj/item/attachable/flashlight/turn_light(mob/user, toggle_on)
+	. =..()
 	
-	TIMER_COOLDOWN_START(src, COOLDOWN_LIGHT, cooldown)
+	if(. != CHECKS_PASSED)
+		return
 	
 	if(ismob(master_gun.loc) && !user)
 		user = master_gun.loc
 	
-	if(sparks)
-		var/datum/effect_system/spark_spread/spark_system = new
-		spark_system.set_up(5, 0, src)
-		spark_system.attach(src)
-		spark_system.start(src)
-	
-	if(master_gun.flags_gun_features & GUN_FLASHLIGHT_ON)
-		
+	if(!toggle_on & light_on)
 		icon_state = "flashlight"
 		attach_icon = "flashlight_a"
 		master_gun.set_light_range(0)
 		master_gun.set_light_power(0)
 		master_gun.set_light_on(FALSE)
-		if(forced)
-			addtimer(CALLBACK(src, .proc/reset_light), cooldown + 1)
-	else
+		light_on = FALSE
+	else if(toggle_on & !light_on)
 		icon_state = "flashlight-on"
 		attach_icon = "flashlight_a-on"
 		master_gun.set_light_range(light_mod)
 		master_gun.set_light_power(3)
 		master_gun.set_light_on(TRUE)
-
+		light_on = TRUE
+	else
+		return
 	master_gun.flags_gun_features ^= GUN_FLASHLIGHT_ON
 
 	master_gun.update_attachable(slot)
@@ -649,11 +639,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		var/datum/action/A = X
 		A.update_button_icon()
 	
-	return TRUE
-	
-
-
-
 
 /obj/item/attachable/flashlight/attackby(obj/item/I, mob/user, params)
 	. = ..()

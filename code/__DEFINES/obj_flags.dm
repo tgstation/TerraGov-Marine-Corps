@@ -3,6 +3,7 @@
 #define IN_USE					(1<<0) // If we have a user using us, this will be set on. We will check if the user has stopped using us, and thus stop updating and LAGGING EVERYTHING!
 #define CAN_BE_HIT				(1<<1) //can this be bludgeoned by items?
 #define PROJ_IGNORE_DENSITY 	(1<<2) // If non-dense structures can still get hit by projectiles
+#define LIGHT_CAN_BE_SHUT 		(1<<3) // Is sensible to nightfall ability, and its light will be turned off
 
 //Fire and Acid stuff, for resistance_flags
 #define INDESTRUCTIBLE	(1<<0) //doesn't take damage

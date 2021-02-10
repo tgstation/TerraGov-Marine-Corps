@@ -1,5 +1,3 @@
-#define STILL_ON_COOLDOWN 2
-
 /obj/item/flashlight
 	name = "flashlight"
 	desc = "A hand-held emergency light."
@@ -18,38 +16,23 @@
 	var/raillight_compatible = TRUE //Can this be turned into a rail light ?
 	var/activation_sound = 'sound/items/flashlight.ogg'
 
-/obj/item/flashlight/Initialize()
+/obj/item/flashlight/turn_light(mob/user, toggle_on)
 	. = ..()
-	if(light_on)
-		turn_light(null, TRUE)
-
-///Turn the light back on, called on timer
-/obj/item/flashlight/proc/reset_light()
-	turn_light(null, TRUE)
-
-
-/obj/item/flashlight/turn_light(mob/user = null, toggle_on, cooldown = 1 SECONDS, sparks = FALSE, forced = FALSE)
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_LIGHT) || forced)
-		return STILL_ON_COOLDOWN
-	TIMER_COOLDOWN_START(src, COOLDOWN_LIGHT, cooldown)
-	if(sparks)
-		var/datum/effect_system/spark_spread/spark_system = new
-		spark_system.set_up(5, 0, src)
-		spark_system.attach(src)
-		spark_system.start(src)
-	var/initial_on = light_on
+	if(. != CHECKS_PASSED)
+		return
 	if(!user && ismob(loc))
 		user = loc
 	set_light_on(toggle_on)
-	if(toggle_on)
+	update_action_button_icons()
+	update_icon()
+	
+/obj/item/flashlight/update_icon()
+	. = ..()
+	if(light_on)
 		icon_state = "[initial(icon_state)]-on"
 	else
 		icon_state = initial(icon_state)
-		if(forced) //Is true when turn light is called by nightfall
-			addtimer(CALLBACK(src, .proc/reset_light), cooldown + 1)
-	update_action_button_icons()
-	return initial_on
-	
+
 
 /obj/item/flashlight/attack_self(mob/user)
 	if(!isturf(user.loc))
@@ -196,17 +179,18 @@
 	. = ..()
 	fuel = rand(800, 1000) // Sorry for changing this so much but I keep under-estimating how long X number of ticks last in seconds.
 
-/obj/item/flashlight/flare/proc/turn_off()
+/obj/item/flashlight/flare/turn_light(mob/user, toggle_on)
+	. = ..()
+	if(toggle_on)
+		return
 	fuel = 0 //Flares are one way; if you turn them off, you're snuffing them out.
 	heat = 0
 	force = initial(force)
 	damtype = initial(damtype)
-	if(ismob(loc))
-		var/mob/U = loc
-		turn_light(U, FALSE)
-	else
-		turn_light(null, FALSE)
 	icon_state = "[initial(icon_state)]-empty"
+
+/obj/item/flashlight/flare/proc/turn_off()
+	turn_light(null, FALSE)
 
 /obj/item/flashlight/flare/attack_self(mob/user)
 

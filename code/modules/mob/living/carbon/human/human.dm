@@ -989,22 +989,22 @@
 	if(clothing)
 		if(istype(wear_suit, /obj/item/clothing/suit))
 			var/obj/item/clothing/suit/S = wear_suit
-			S.turn_off_light(src, cooldown, FALSE, forced)
-			light_off++
+			if(S.turn_light(src, FALSE))
+				light_off++
 		for(var/obj/item/clothing/head/hardhat/H in contents) //Potential bug abuse here, lights in bags and such are not affected
-			H.turn_light(src, FALSE ,cooldown, sparks, forced)				  //I don't see any easy fix
+			H.turn_light(src, FALSE)				  
 			light_off++
 		for(var/obj/item/flashlight/L in contents)
 			if(istype(L, /obj/item/flashlight/flare))
 				continue
-			if(L.turn_light(src, FALSE, cooldown, sparks, forced))
+			if(L.turn_light(src, FALSE))
 				light_off++
 	if(guns)
 		for(var/obj/item/weapon/gun/lit_gun in contents)
 			if(!isattachmentflashlight(lit_gun.rail))
 				continue
 			var/obj/item/attachable/flashlight/lit_rail_flashlight = lit_gun.rail
-			lit_rail_flashlight.activate_attachment(src, TRUE, cooldown, sparks, forced)
+			lit_rail_flashlight.turn_light(src, FALSE)
 			light_off++
 	if(flares)
 		for(var/obj/item/flashlight/flare/F in contents)

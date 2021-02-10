@@ -236,9 +236,6 @@
 	for(var/mob/living/L in viewers(WORLD_VIEW, X))
 		L.disable_lights(TRUE, TRUE, TRUE, FALSE, TRUE, FALSE, 12 SECONDS, TRUE)
 
-	for(var/atom/o in view(WORLD_VIEW, X))
-		o.turn_light(null, FALSE, 12 SECONDS, TRUE, TRUE)
-
 
 // ***************************************
 // *********** Psychic Cure

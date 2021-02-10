@@ -111,43 +111,22 @@
 	light_on = FALSE
 
 /obj/item/clothing/suit/dropped(mob/user)
-	turn_off_light(user)
+	turn_light(user, FALSE)
 	return ..()
 
-
-/**
-	Turn off the armor light
-
-	This proc forces the light to off, useful when the armor is dropped or if a xeno slashes the armor to disable it.
-*/
-/obj/item/clothing/suit/proc/turn_off_light(mob/wearer, cooldown = 1 SECONDS, sound_on = TRUE, forced = FALSE)
-	if(flags_armor_features & ARMOR_LAMP_ON)
-		toggle_armor_light(wearer, cooldown, sound_on) //turn the light off
-		return TRUE
-	return FALSE
-
-
-/**
-	Toggles the armor light
-
-	This proc will toggle the light enabled or disabled on the armor, playing a sound and updating the action button for the user.
-*/
-/obj/item/clothing/suit/proc/toggle_armor_light(mob/user, cooldown = 1 SECONDS, sound_on, forced = FALSE)
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_LIGHT) & !forced)
+/obj/item/clothing/suit/turn_light(mob/user, toggle_on)
+	. = ..()
+	if(. != CHECKS_PASSED)
 		return
-	TIMER_COOLDOWN_START(src, COOLDOWN_LIGHT, cooldown)
-	if(flags_armor_features & ARMOR_LAMP_ON)
-		set_light_on(FALSE)
-		if(forced)
-			addtimer(CALLBACK(src, .proc/toggle_armor_light, null), cooldown + 1)
-	else
-		set_light_on(TRUE)
+	set_light_on(toggle_on)
 	flags_armor_features ^= ARMOR_LAMP_ON
-	if(sound_on)
-		playsound(src, 'sound/items/flashlight.ogg', 15, TRUE)
+	playsound(src, 'sound/items/flashlight.ogg', 15, TRUE)
 	update_icon(user)
 	update_action_button_icons()
+	
 
+/obj/item/clothing/suit/proc/toggle_light(mob/user)
+	turn_light(user, !light_on)
 
 /obj/item/clothing/suit/update_clothing_icon()
 	if(ismob(loc))

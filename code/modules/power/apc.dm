@@ -1068,7 +1068,6 @@
 /obj/machinery/power/apc/proc/break_lights()
 	for(var/obj/machinery/light/L in get_area(src))
 		L.broken()
-		L.on = FALSE
 		stoplag()
 
 
