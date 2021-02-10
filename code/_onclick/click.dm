@@ -132,7 +132,7 @@
 		if(W)
 			W.melee_attack_chain(src, A, params)
 		else
-			UnarmedAttack(A, FALSE, params)
+			UnarmedAttack(A, FALSE, modifiers)
 		return
 
 	//Can't reach anything else in lockers or other weirdness
@@ -144,7 +144,7 @@
 		if(W)
 			W.melee_attack_chain(src, A, params)
 		else
-			UnarmedAttack(A, TRUE, params)
+			UnarmedAttack(A, TRUE, modifiers)
 	else
 		if(W)
 			var/attack
