@@ -1143,5 +1143,5 @@ to_chat will check for valid clients itself already so no need to double check f
 	if(D?.siloless_hive_timer)
 		return
 
-	xeno_message("<span class='xenoannounce'>A sudden tremor ripples through the hive... the last siloroyed! The hive will collapse in nothing is done</span>", 3, TRUE)
+	xeno_message("<span class='xenoannounce'>A sudden tremor ripples through the hive... the last silo was destroyed! The hive will collapse if nothing is done</span>", 3, TRUE)
 	D.siloless_hive_timer = addtimer(CALLBACK(D, /datum/game_mode.proc/siloless_hive_collapse), 10 MINUTES, TIMER_STOPPABLE)
