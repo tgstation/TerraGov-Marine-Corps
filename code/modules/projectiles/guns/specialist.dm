@@ -1152,7 +1152,7 @@ obj/item/weapon/gun/minigun/Fire(atom/target, mob/living/user, params, reflex = 
 	force = 10
 	aim_slowdown = 0.25
 	wield_delay = 1 SECONDS
-	current_mag = /obj/item/ammo_magazine/pepperball
+	current_mag = /obj/item/ammo_magazine/rifle/pepperball
 	attachable_allowed = list(/obj/item/attachable/magnetic_harness)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_WIELDED_FIRING_ONLY

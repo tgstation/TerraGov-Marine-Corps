@@ -286,6 +286,6 @@ obj/item/ammo_magazine/rifle/m4ra/smart
 	icon_state = "pepperball"
 	w_class = WEIGHT_CLASS_NORMAL
 	max_rounds = 50
-	default_ammo = /datum/ammo/bullet/pepperball
+	default_ammo = /datum/ammo/pepperball
 	gun_type = /obj/item/weapon/gun/rifle/pepperball
 	reload_delay = 3
