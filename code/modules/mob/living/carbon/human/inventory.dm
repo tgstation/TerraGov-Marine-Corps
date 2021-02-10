@@ -86,22 +86,22 @@
 			if(draw_from_slot_if_possible(slot))
 				next_move = world.time
 			return
-	else
+
 		if(s_active?.can_be_inserted(I))
 			s_active.handle_item_insertion(I, FALSE, src)
 			return
 
-		if(!KB)
-			return FALSE
-		if(equip_to_slot_if_possible(I,KB, FALSE, FALSE, FALSE))
-			return
-		if(!equip_to_appropriate_slot(I, FALSE))
-			return
+	if(!KB)
+		return FALSE
+	if(equip_to_slot_if_possible(I,KB, FALSE, FALSE, FALSE))
+		return
+	if(!equip_to_appropriate_slot(I, FALSE))
+		return
 
-		if(hand)
-			update_inv_l_hand(FALSE)
-		else
-			update_inv_r_hand(FALSE)
+	if(hand)
+		update_inv_l_hand(FALSE)
+	else
+		update_inv_r_hand(FALSE)
 
 /mob/living/carbon/human/proc/equip_in_one_of_slots(obj/item/W, list/slots, del_on_fail = 1)
 	for (var/slot in slots)
