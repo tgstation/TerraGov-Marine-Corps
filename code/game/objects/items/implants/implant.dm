@@ -17,7 +17,7 @@
 	///Implant secific flags
 	var/flags_implant = GRANT_ACTIVATION_ACTION
 	///Activation_action reference
-	var/datum/action/implant/activation_action
+	var/datum/action/item_action/implant/activation_action
 	///Cooldown between usages of the implant
 	var/cooldown_time = 1 SECONDS
 	COOLDOWN_DECLARE(activation_cooldown)
@@ -26,8 +26,11 @@
 	. = ..()
 	GLOB.implant_list += src
 	if(flags_implant & GRANT_ACTIVATION_ACTION)
-		activation_action = new(src)
+		activation_action = new(src, src)
 		RegisterSignal(activation_action, COMSIG_ACTION_TRIGGER, .proc/activate)
+	if(allow_reagents)
+		reagents = new /datum/reagents(MAX_IMPLANT_REAGENTS)
+		reagents.my_atom = src
 
 
 /obj/item/implant/Destroy(force)
@@ -90,7 +93,7 @@
 /obj/item/implant/proc/get_data()
 	return "No information available"
 
-///Called when the implant hears a message, used for actication phrases and the like
+///Called when the implant hears a message, used for activation phrases and the like
 /obj/item/implant/proc/on_hear(datum/source, message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode)
 	SIGNAL_HANDLER
 	return
@@ -105,10 +108,6 @@
 	icon_state = "implant_melted"
 	malfunction = MALFUNCTION_PERMANENT
 
-/datum/action/implant
+/datum/action/item_action/implant
 	name = "Activate Implant"
 	desc = "Activates a currently implanted implant"
-
-/datum/action/implant/New(obj/item/implant/Target)
-	name = "Activate Implant: [Target.name]"
-	return ..()

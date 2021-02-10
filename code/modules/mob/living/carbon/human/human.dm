@@ -717,7 +717,7 @@
 		if(!species?.count_human)
 			to_chat(usr, "<span class='warning'>Triage holocards only works on organic humanoid entities.</span>")
 			return
-		var/newcolor = tgui_input_list("Choose a triage holo card to add to the patient:", "Triage holo card", list("black", "red", "orange", "none"))
+		var/newcolor = tgui_input_list(usr, "Choose a triage holo card to add to the patient:", "Triage holo card", list("black", "red", "orange", "none"))
 		if(!newcolor)
 			return
 		if(get_dist(usr, src) > 7)

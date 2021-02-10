@@ -212,7 +212,7 @@
 #define COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT "item_equip_not_in_slot"	//from base of obj/item/equipped(): (/mob/equipper, slot)
 #define COMSIG_ITEM_UNEQUIPPED "item_unequip"						//from base of obj/item/unequipped(): (/mob/unequipper, slot)
 #define COMSIG_ITEM_DROPPED "item_drop"							//from base of obj/item/dropped(): (mob/user)
-#define COMSIG_ITEM_REMOVED_INVENTORY "item_removed_inventory"		//from base of obj/item/removed_from_inventory() :(mov/user)				
+#define COMSIG_ITEM_REMOVED_INVENTORY "item_removed_inventory"		//from base of obj/item/removed_from_inventory() :(mov/user)
 #define COMSIG_ITEM_WIELD "item_wield"
 #define COMSIG_ITEM_UNWIELD "item_unwield"                      //from base of obj/item/
 #define COMSIG_ITEM_AFTERATTACK "item_afterattack"				//from base of obj/item/afterattack(): (atom/target, mob/user, has_proximity, click_parameters)
@@ -536,7 +536,6 @@
 #define COMSIG_XENOABILITY_LAY_EGG "xenoability_lay_egg"
 #define COMSIG_XENOABILITY_CALL_OF_THE_BURROWED "xenoability_call_of_the_burrowed"
 #define COMSIG_XENOABILITY_PSYCHIC_FLING "xenoability_psychic_fling"
-#define COMSIG_XENOABILITY_PSYCHIC_CHOKE "xenoability_psychic_choke"
 #define COMSIG_XENOABILITY_PSYCHIC_CURE "xenoability_psychic_cure"
 #define COMSIG_XENOABILITY_UNRELENTING_FORCE "xenoability_unrelenting_force"
 //#define COMSIG_XENOABILITY_NIGHTFALL "xenoability_nightfall"

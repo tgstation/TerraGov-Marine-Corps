@@ -129,7 +129,7 @@
 		to_chat(user, "<span class='danger'>Assembly part missing!</span>")
 		return
 	if(istype(a_left,a_right.type))//If they are the same type it causes issues due to window code
-		switch(tgui_alert(user, "Which side would you like to use?", list("Left","Right")))
+		switch(tgui_alert(user, "Which side would you like to use?", null,list("Left","Right")))
 			if("Left")
 				a_left.attack_self(user)
 			if("Right")

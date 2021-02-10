@@ -42,10 +42,9 @@ export const Cargo = (props, context) => {
     : null;
 
   return (
-    <Window 
+    <Window
       width={900}
-      height={700}
-      resizable>
+      height={700}>
       <Flex height="650px" align="stretch">
         <Flex.Item width="280px">
           <Menu />
@@ -600,10 +599,9 @@ export const CargoRequest = (props, context) => {
     : null;
 
   return (
-    <Window 
+    <Window
       width={900}
-      height={700}
-      resizable>
+      height={700}>
       <Flex height="650px" align="stretch">
         <Flex.Item width="280px">
           <Menu readOnly={1} />

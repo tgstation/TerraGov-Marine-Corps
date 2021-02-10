@@ -598,7 +598,7 @@ to_chat will check for valid clients itself already so no need to double check f
 
 	var/mob/living/carbon/xenomorph/chosen_mother
 	if(length(possible_mothers) > 1)
-		chosen_mother = tgui_input_list(xeno_candidate, "Available Mothers", possible_mothers)
+		chosen_mother = tgui_input_list(xeno_candidate, "Available Mothers", null, possible_mothers)
 	else
 		chosen_mother = possible_mothers[1]
 
