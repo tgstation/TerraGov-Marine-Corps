@@ -1050,7 +1050,7 @@
 
 	if(SSpoints.xeno_points_by_hive[X.hivenumber] < psych_cost)
 		to_chat(owner, "<span class='xenowarning'>Someone used all the psych points while we were building!</span>")
-		return FALSE
+		return fail_activate()
 
 	new /obj/structure/resin/silo (get_step(A, SOUTHWEST))
 
