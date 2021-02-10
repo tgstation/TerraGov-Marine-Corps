@@ -47,6 +47,10 @@
 	key = "hiss3"
 	sound = 'sound/voice/alien_hiss3.ogg'
 
+/datum/emote/living/carbon/xenomorph/kiss
+    key = "kiss"
+    key_third_person = "kisses"
+    message = "blows a kiss extending their claw outwards"
 
 /datum/emote/living/carbon/xenomorph/needhelp
 	key = "heedhelp"
