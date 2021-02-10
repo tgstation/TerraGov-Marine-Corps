@@ -88,8 +88,8 @@
 			return
 	else
 		if(s_active?.can_be_inserted(I))
-			return FALSE
-		s_active.handle_item_insertion(I, FALSE, src)
+				s_active.handle_item_insertion(I, FALSE, src)
+			return
 
 		if(!KB)
 			return FALSE
