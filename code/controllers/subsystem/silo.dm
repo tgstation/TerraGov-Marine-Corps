@@ -3,8 +3,6 @@ SUBSYSTEM_DEF(silo)
 	wait = 1 MINUTES
 	can_fire = FALSE
 	init_order = INIT_ORDER_SPAWNING_POOL
-	///The max amount of silos that can spawn free larvas
-	var/max_silo_spawning = 0
 	///How many larva points each pool gives per minute
 	var/larva_spawn_rate = 0.5
 

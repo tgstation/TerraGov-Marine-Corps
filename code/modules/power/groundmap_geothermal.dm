@@ -159,6 +159,7 @@
 		to_chat(user, "<span class='warning'>You have no idea how to use that.</span>")
 		return FALSE
 	if(corrupted)
+		to_chat(user, "<span class='warning'>You have to clean that generator before it can be used!</span>")
 		return FALSE
 
 	if(buildstate == GEOTHERMAL_HEAVY_DAMAGE)
@@ -283,6 +284,15 @@
 	"<span class='notice'>You repair [src]'s tubing and plating.</span>")
 	update_icon()
 	return TRUE
+
+/obj/machinery/power/geothermal/proc/corrupt(hivenumber)
+	corrupted = hivenumber
+	is_on = FALSE
+	power_gen_percent = 0
+	cur_tick = 0
+	icon_state = "off"
+	update_icon()
+	start_processing()
 
 /obj/machinery/power/geothermal/bigred //used on big red
 	name = "\improper Reactor Turbine"

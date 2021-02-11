@@ -728,11 +728,5 @@
 	if(!do_after(owner, 10 SECONDS, TRUE, gen, BUSY_ICON_HOSTILE))
 		return fail_activate()
 	var/mob/living/carbon/xenomorph/X = owner
-	gen.corrupted = X.hivenumber
-	gen.is_on = FALSE
-	gen.power_gen_percent = 0
-	gen.cur_tick = 0
-	gen.icon_state = "off"
+	gen.corrupt(X.hivenumber)
 	to_chat(owner, "<span class='notice'>You have corrupted [A]</span>")
-	gen.update_icon()
-	gen.start_processing()
