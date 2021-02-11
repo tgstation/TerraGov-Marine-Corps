@@ -1,0 +1,4 @@
+author: "SplinterGP"
+delete-after: True
+changes: 
+  - imageadd: "added TGMC Background logo to replace nanotrasen background logo on tgui"
