@@ -499,14 +499,13 @@
 		if(user.skills.getRating("engineer") >= SKILL_ENGINEER_ENGI)
 			if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 				to_chat(user, "<span class='info'>You must first open its maintenance hatch.</span>")
-			else
-				switch(repair_state)
-					if(FLOODLIGHT_REPAIR_WELD)
-						to_chat(user, "<span class='info'>You must weld the damage to it.</span>")
-					if(FLOODLIGHT_REPAIR_WIRECUTTER)
-						to_chat(user, "<span class='info'>You must mend its damaged cables.</span>")
-					else
-						to_chat(user, "<span class='info'>You must screw its maintenance hatch closed.</span>")
+			switch(repair_state)
+				if(FLOODLIGHT_REPAIR_WELD)
+					to_chat(user, "<span class='info'>You must weld the damage to it.</span>")
+				if(FLOODLIGHT_REPAIR_WIRECUTTER)
+					to_chat(user, "<span class='info'>You must mend its damaged cables.</span>")
+				else
+					to_chat(user, "<span class='info'>You must screw its maintenance hatch closed.</span>")
 	else if(!is_lit)
 		to_chat(user, "<span class='info'>It doesn't seem powered.</span>")
 	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
