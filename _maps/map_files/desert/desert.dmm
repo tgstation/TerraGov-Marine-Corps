@@ -13,7 +13,7 @@
 /turf/open/floor/plating/ground,
 /area/desert/hive)
 "ae" = (
-/obj/effect/landmark/xeno_spawning_pool_spawn,
+/obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground,
 /area/desert/hive)
 "af" = (

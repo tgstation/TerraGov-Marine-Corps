@@ -72,7 +72,6 @@
 #define INIT_ORDER_STICKY_BAN		-10
 #define INIT_ORDER_LIGHTING			-20
 #define INIT_ORDER_SHUTTLE			-21
-#define INIT_ORDER_SPAWNING_POOL	-25
 #define INIT_ORDER_PATH				-50
 #define INIT_ORDER_EXPLOSIONS		-69
 #define INIT_ORDER_CHAT				-100 //Should be last to ensure chat remains smooth during init.

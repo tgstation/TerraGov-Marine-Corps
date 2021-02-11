@@ -15,7 +15,7 @@
 	if(!length(tracked_list))
 		to_chat(user, "<span class='warning'>No traceable signals found!</span>")
 		return
-	target = input("Select the item you wish to track.", "Pinpointer") as null|anything in tracked_list
+	target = tgui_input_list(user, "Select the item you wish to track.", "Pinpointer", tracked_list)
 	if(QDELETED(target))
 		return
 	var/turf/pinpointer_loc = get_turf(src)

@@ -263,7 +263,7 @@
 		to_chat(user, "<span class='warning'>No active laser targets detected!</span>")
 		return
 	to_chat(user, "<span class='warning'>Laser targets detected, routing to target.</span>")
-	var/input = input(user, "Select a CAS target", "CAS targetting") as null|anything in GLOB.active_cas_targets
+	var/input = tgui_input_list(user, "Select a CAS target", "CAS targetting", GLOB.active_cas_targets)
 	if(!input)
 		return
 	give_eye_control(user)

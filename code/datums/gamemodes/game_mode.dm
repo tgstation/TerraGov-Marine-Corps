@@ -389,13 +389,6 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 /datum/game_mode/proc/get_hivemind_collapse_countdown()
 	return
 
-///handles end of the round when no spawning pool is left
-/datum/game_mode/proc/spawning_poolless_hive_collapse()
-	return
-
-///starts the timer to end the round when no spawning pool is left
-/datum/game_mode/proc/get_spawning_poolless_collapse_countdown()
-	return
 
 /datum/game_mode/proc/announce_medal_awards()
 	if(!length(GLOB.medal_awards))
@@ -447,6 +440,10 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 		dat += "[GLOB.round_statistics.defiler_neurogas_uses] number of times Defilers vented neurogas."
 	if(GLOB.round_statistics.xeno_unarmed_attacks && GLOB.round_statistics.xeno_bump_attacks)
 		dat += "[GLOB.round_statistics.xeno_bump_attacks] bump attacks, which made up [(GLOB.round_statistics.xeno_bump_attacks / GLOB.round_statistics.xeno_unarmed_attacks) * 100]% of all attacks ([GLOB.round_statistics.xeno_unarmed_attacks])."
+	if(GLOB.round_statistics.xeno_headbites)
+		dat += "[GLOB.round_statistics.xeno_headbites] number of times victims headbitten."
+	if(GLOB.round_statistics.xeno_silo_corpses)
+		dat += "[GLOB.round_statistics.xeno_silo_corpses] number of corpses fed to resin silos."
 	if(GLOB.round_statistics.xeno_rally_hive)
 		dat += "[GLOB.round_statistics.xeno_rally_hive] number of times xeno leaders rallied the hive."
 	if(GLOB.round_statistics.hivelord_healing_infusions)
@@ -520,7 +517,7 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 	return FALSE
 
 /datum/game_mode/infestation/distress/is_xeno_in_forbidden_zone(mob/living/carbon/xenomorph/xeno)
-	if(round_stage == DISTRESS_DROPSHIP_CRASHING)
+	if(round_stage == DISTRESS_DROPSHIP_CRASHED)
 		return FALSE
 	if(isxenoresearcharea(get_area(xeno)))
 		return TRUE
@@ -635,7 +632,7 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 	if(instant_join)
 		return pick(available_xenos) //Just picks something at random.
 
-	var/mob/living/carbon/xenomorph/new_xeno = input("Available Xenomorphs") as null|anything in available_xenos
+	var/mob/living/carbon/xenomorph/new_xeno = tgui_input_list(usr, null, "Available Xenomorphs", null,  available_xenos)
 	if(!istype(new_xeno) || !xeno_candidate?.client)
 		return FALSE
 
@@ -649,7 +646,7 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 
 	if(XENODEATHTIME_CHECK(xeno_candidate))
 		if(check_other_rights(xeno_candidate.client, R_ADMIN, FALSE))
-			if(alert(xeno_candidate, "You wouldn't normally qualify for this respawn. Are you sure you want to bypass it with your admin powers?", "Bypass Respawn", "Yes", "No") != "Yes")
+			if(tgui_alert(xeno_candidate, "You wouldn't normally qualify for this respawn. Are you sure you want to bypass it with your admin powers?", "Bypass Respawn", list("Yes", "No")) != "Yes")
 				XENODEATHTIME_MESSAGE(xeno_candidate)
 				return FALSE
 		else

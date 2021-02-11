@@ -126,12 +126,12 @@
 /obj/effect/landmark/distress_item
 
 
-/obj/effect/landmark/xeno_spawning_pool_spawn
-	name = "xeno spawning pool spawn landmark"
+/obj/effect/landmark/xeno_silo_spawn
+	name = "xeno silo spawn landmark"
 	icon_state = "tdome_observer"
 
-/obj/effect/landmark/xeno_spawning_pool_spawn/Initialize()
-	GLOB.xeno_resin_spawning_pool_turfs += loc
+/obj/effect/landmark/xeno_silo_spawn/Initialize()
+	GLOB.xeno_resin_silo_turfs += loc
 	. = ..()
 	return INITIALIZE_HINT_QDEL
 
@@ -258,7 +258,6 @@
 		/obj/item/weapon/gun/smg/m25,
 		/obj/item/weapon/gun/smg/mp7,
 		/obj/item/weapon/gun/smg/skorpion,
-		/obj/item/weapon/gun/smg/skorpion/upp,
 		/obj/item/weapon/gun/smg/ppsh,
 		/obj/item/weapon/gun/smg/uzi,
 		/obj/item/weapon/claymore,
