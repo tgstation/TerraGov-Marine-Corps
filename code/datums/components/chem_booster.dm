@@ -196,7 +196,7 @@
 			var/datum/reagent/R = X
 			R.effect_str += amount
 
-//Updates the effect_str of chems that enter the body while the component is on
+///Updates the effect_str of chems that enter the body while the component is on
 /datum/component/chem_booster/proc/late_add_chem(datum/source, datum/reagent/added_chem, amount)
 	SIGNAL_HANDLER
 	for(var/X in wearer.reagents.reagent_list)
