@@ -184,7 +184,7 @@
 	to_chat(wearer, "<span class='notice'>Commensing reagent injection.</span>")
 	playsound(get_turf(wearer), 'sound/effects/bubbles.ogg', 30, 1)
 
-//Updates the boost amount of the suit and effect_str of reagents if component is on. "amount" is the final level you want to set the boost to.
+///Updates the boost amount of the suit and effect_str of reagents if component is on. "amount" is the final level you want to set the boost to.
 /datum/component/chem_booster/proc/update_boost(amount, update_boost_amount = TRUE)
 	amount -= boost_amount
 	if(update_boost_amount)
