@@ -22,7 +22,7 @@
 	///Hive it should be powering and whether it should be generating hive psycic points instead of power on process()
 	var/corrupted = XENO_HIVE_NORMAL
 	///how many points this generator will make per tick
-	var/corrupt_point_amout = 0.1
+	var/corrupt_point_amount = 0.1
 	///whether we wil allow these to be corrupted
 	var/is_corruptible = TRUE
 	///whether they should generate corruption if corrupted
@@ -89,7 +89,7 @@
 
 /obj/machinery/power/geothermal/process()
 	if(corrupted && corruption_on)
-		SSpoints.xeno_points_by_hive["[corrupted]"] += corrupt_point_amout
+		SSpoints.xeno_points_by_hive["[corrupted]"] += corrupt_point_amount
 		return
 	if(!is_on || buildstate || !anchored || !powernet) //Default logic checking
 		return PROCESS_KILL
@@ -297,7 +297,7 @@
 /obj/machinery/power/geothermal/bigred //used on big red
 	name = "\improper Reactor Turbine"
 	power_generation_max = 1e+6
-	corrupt_point_amout = 1
+	corrupt_point_amount = 1
 
 /obj/machinery/power/geothermal/reinforced
 	name = "\improper Reinforced Reactor Turbine"
@@ -509,14 +509,14 @@
 		if(user.skills.getRating("engineer") >= SKILL_ENGINEER_ENGI)
 			if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 				to_chat(user, "<span class='info'>You must first open its maintenance hatch.</span>")
-			else
-				switch(repair_state)
-					if(FLOODLIGHT_REPAIR_WELD)
-						to_chat(user, "<span class='info'>You must weld the damage to it.</span>")
-					if(FLOODLIGHT_REPAIR_WIRECUTTER)
-						to_chat(user, "<span class='info'>You must mend its damaged cables.</span>")
-					else
-						to_chat(user, "<span class='info'>You must screw its maintenance hatch closed.</span>")
+				return
+			switch(repair_state)
+				if(FLOODLIGHT_REPAIR_WELD)
+					to_chat(user, "<span class='info'>You must weld the damage to it.</span>")
+				if(FLOODLIGHT_REPAIR_WIRECUTTER)
+					to_chat(user, "<span class='info'>You must mend its damaged cables.</span>")
+				else
+					to_chat(user, "<span class='info'>You must screw its maintenance hatch closed.</span>")
 	else if(!is_lit)
 		to_chat(user, "<span class='info'>It doesn't seem powered.</span>")
 	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
