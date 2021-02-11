@@ -89,7 +89,7 @@
 
 /obj/machinery/power/geothermal/process()
 	if(corrupted && corruption_on)
-		SSpoints.xeno_points_by_hive["[corrupted]"] += corrupt_point_amout
+		SSpoints.xeno_points_by_hive["[corrupted]"] += corrupt_point_amount
 		return
 	if(!is_on || buildstate || !anchored || !powernet) //Default logic checking
 		return PROCESS_KILL
