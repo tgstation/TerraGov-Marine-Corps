@@ -418,7 +418,6 @@
 	var/bullet_spread_range = 5
 	var/attack_width = 3
 	travelling_time = 6 SECONDS
-	point_cost = 0
 
 /obj/structure/ship_ammo/railgun/detonate_on(turf/impact, attackdir = NORTH)
 	var/turf/beginning = impact
