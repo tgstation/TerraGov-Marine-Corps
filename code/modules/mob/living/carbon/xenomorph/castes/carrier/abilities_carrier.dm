@@ -1,6 +1,6 @@
 //List of huggie types
 GLOBAL_LIST_INIT(hugger_type_list, typecacheof(list(
-		/obj/item/clothing/mask/facehugger,
+		/obj/item/clothing/mask/facehugger/larval,
 		/obj/item/clothing/mask/facehugger/slash,
 		/obj/item/clothing/mask/facehugger/neuro,
 		/obj/item/clothing/mask/facehugger/acid,
@@ -234,6 +234,12 @@ GLOBAL_LIST_INIT(hugger_type_list, typecacheof(list(
 	action_icon_state = "facehugger"
 	mechanics_text = "Selects which hugger type you will build with the Spawn Hugger ability."
 	//keybind_signal = COMSIG_XENOABILITY_CHOOSE_RESIN
+
+/datum/action/xeno_action/choose_hugger_type/give_action(mob/living/L)
+	. = ..()
+	var/mob/living/carbon/xenomorph/X = owner
+	X.selected_hugger_type = GLOB.hugger_type_list[1] //Set our default
+	update_button_icon() //Update immediately to get our default
 
 /datum/action/xeno_action/choose_hugger_type/update_button_icon()
 	var/mob/living/carbon/xenomorph/X = owner

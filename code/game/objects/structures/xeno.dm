@@ -135,6 +135,8 @@
 	if(builder)
 		linked_carrier = builder
 	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, .proc/shuttle_crush)
+	RegisterSignal(get_turf(src), COMSIG_ATOM_ENTERED, .proc/trigger_hugger_trap) //Set up the trap signal on our turf
+
 
 /obj/effect/alien/resin/trap/obj_destruction(damage_amount, damage_type, damage_flag)
 	if(damage_amount && hugger && loc)
@@ -174,18 +176,21 @@
 		icon_state = "trap0"
 	..()
 
-/obj/effect/alien/resin/trap/HasProximity(atom/movable/AM)
+///Triggers the hugger trap
+/obj/effect/alien/resin/trap/proc/trigger_hugger_trap(datum/source, atom/movable/AM, oldloc)
+	SIGNAL_HANDLER
 	if(!iscarbon(AM) || !hugger)
 		return
 	var/mob/living/carbon/C = AM
-	if(C.can_be_facehugged(hugger))
-		playsound(src, "alien_resin_break", 25)
-		C.visible_message("<span class='warning'>[C] trips on [src]!</span>",\
+	if(!C.can_be_facehugged(hugger))
+		return
+	playsound(src, "alien_resin_break", 25)
+	C.visible_message("<span class='warning'>[C] trips on [src]!</span>",\
 						"<span class='danger'>You trip on [src]!</span>")
-		C.Paralyze(4 SECONDS)
-		if(linked_carrier)
-			xeno_message("<span class='xenoannounce'>A facehugger trap at [AREACOORD_NO_Z(src)] has been triggered!</span>", 2, linked_carrier.hivenumber,  FALSE, get_turf(src), 'sound/voice/alien_distantroar_3.ogg') //Follow the trend of hive wide alerts for important events
-		drop_hugger()
+	C.Paralyze(4 SECONDS)
+	if(linked_carrier)
+		xeno_message("<span class='xenoannounce'>A facehugger trap at [AREACOORD_NO_Z(src)] has been triggered!</span>", 2, linked_carrier.hivenumber,  FALSE, get_turf(src), 'sound/voice/alien_distantroar_3.ogg', FALSE, null, /obj/screen/arrow/leader_tracker_arrow) //Follow the trend of hive wide alerts for important events
+	drop_hugger()
 
 /obj/effect/alien/resin/trap/proc/drop_hugger()
 	hugger.forceMove(loc)
@@ -231,13 +236,6 @@
 		hugger = FH
 		icon_state = "trap1"
 		to_chat(user, "<span class='xenonotice'>You place a facehugger in [src].</span>")
-
-
-/obj/effect/alien/resin/trap/Crossed(atom/A)
-	. = ..()
-	if(iscarbon(A))
-		HasProximity(A)
-
 
 //Resin Doors
 /obj/structure/mineral_door/resin

@@ -4,6 +4,8 @@
 #define JUMP_COOLDOWN 2 SECONDS
 ///Time between being dropped and going idle
 #define ACTIVATE_TIME 4 SECONDS
+///Time to go active after impacting a carbon on a toss
+#define IMPACT_TIME 1.5 SECONDS
 ///Time it takes to impregnate someone
 #define IMPREGNATION_TIME 12 SECONDS
 
@@ -264,8 +266,12 @@
 			return ..()
 		else
 			step(src, REVERSE_DIR(dir)) //We want the hugger to bounce off if it hits a mob.
+			set_throwing(FALSE) //reset our state on collision
+			leaping = FALSE
+			go_idle(FALSE)
+			update_icon()
 			deltimer(jumptimer)
-			jumptimer = addtimer(CALLBACK(src, .proc/fast_activate), 1.5 SECONDS * activity_modifier, TIMER_STOPPABLE|TIMER_UNIQUE)
+			jumptimer = addtimer(CALLBACK(src, .proc/fast_activate), IMPACT_TIME * activity_modifier, TIMER_STOPPABLE|TIMER_UNIQUE)
 			return ..()
 	else
 		for(var/mob/living/carbon/M in loc)
@@ -570,6 +576,9 @@
 	. = ..()
 	update_icon()
 
+
+/obj/item/clothing/mask/facehugger/larval
+	name = "larval hugger"
 
 /obj/item/clothing/mask/facehugger/neuro
 	name = "neuro hugger"
