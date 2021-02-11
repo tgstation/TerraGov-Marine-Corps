@@ -123,10 +123,6 @@
 	playsound(src, 'sound/items/flashlight.ogg', 15, TRUE)
 	update_icon(user)
 	update_action_button_icons()
-	
-
-/obj/item/clothing/suit/proc/toggle_light(mob/user)
-	turn_light(user, !light_on)
 
 /obj/item/clothing/suit/update_clothing_icon()
 	if(ismob(loc))

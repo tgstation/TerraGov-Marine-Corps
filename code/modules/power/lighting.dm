@@ -133,6 +133,8 @@
 	idle_power_usage = 2
 	active_power_usage = 20
 	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
+	///If the light is emitting light
+	var/light_on_static = TRUE
 	var/on_gs = FALSE
 	var/brightness = 8			// luminosity when on, also used in power calculation
 	var/bulb_power = 1			// basically the alpha of the emitted light source
@@ -208,7 +210,7 @@
 /obj/machinery/light/Destroy()
 	var/area/A = get_area(src)
 	if(A)
-		light_on = FALSE
+		light_on_static = FALSE
 	return ..()
 
 /obj/machinery/light/proc/is_broken()
@@ -219,7 +221,7 @@
 /obj/machinery/light/update_icon()
 	switch(status)		// set icon_states
 		if(LIGHT_OK, LIGHT_DISABLED)
-			icon_state = "[base_state][light_on]"
+			icon_state = "[base_state][light_on_static]"
 		if(LIGHT_EMPTY)
 			icon_state = "[base_state]-empty"
 		if(LIGHT_BURNED)
@@ -232,8 +234,8 @@
 /obj/machinery/light/proc/update(trigger = TRUE)
 	switch(status)
 		if(LIGHT_BROKEN, LIGHT_BURNED, LIGHT_EMPTY, LIGHT_DISABLED)
-			light_on = FALSE
-	if(light_on)
+			light_on_static = FALSE
+	if(light_on_static)
 		var/BR = brightness
 		var/PO = bulb_power
 		var/CO = bulb_colour
@@ -256,8 +258,8 @@
 		set_light(0)
 
 	active_power_usage = (luminosity * 10)
-	if(light_on != on_gs)
-		on_gs = light_on
+	if(light_on_static != on_gs)
+		on_gs = light_on_static
 	update_icon()
 
 // attempt to set the light's on/off status
@@ -275,7 +277,7 @@
 	..()
 	switch(status)
 		if(LIGHT_OK)
-			to_chat(user, "It is turned [light_on? "on" : "off"].")
+			to_chat(user, "It is turned [light_on_static? "on" : "off"].")
 		if(LIGHT_EMPTY)
 			to_chat(user, "The [fitting] has been removed.")
 		if(LIGHT_BURNED)
@@ -313,7 +315,7 @@
 		switchcount = L.switchcount
 		rigged = L.rigged
 		brightness = L.brightness
-		light_on = has_power()
+		light_on_static = has_power()
 		update()
 
 		if(!user.temporarilyRemoveItemFromInventory(L))
@@ -321,7 +323,7 @@
 
 		qdel(L)
 
-		if(light_on && rigged)
+		if(light_on_static && rigged)
 			explode()
 
 	else if(status != LIGHT_BROKEN && status != LIGHT_EMPTY)
@@ -330,7 +332,7 @@
 			return
 
 		visible_message("[user] smashed the light!", "You hit the light, and it smashes!")
-		if(light_on && (I.flags_atom & CONDUCT) && prob(12))
+		if(light_on_static && (I.flags_atom & CONDUCT) && prob(12))
 			electrocute_mob(user, get_area(src), src, 0.3)
 		broken()
 
@@ -372,14 +374,14 @@
 		return
 	flickering = TRUE
 	spawn(0)
-		if(light_on && status == LIGHT_OK)
+		if(light_on_static && status == LIGHT_OK)
 			for(var/i = 0; i < amount; i++)
 				if(status != LIGHT_OK)
 					break
-				light_on = !light_on
+				light_on_static = !light_on_static
 				update(0)
 				sleep(rand(5, 15))
-			light_on = (status == LIGHT_OK)
+			light_on_static = (status == LIGHT_OK)
 			update(0)
 		flickering = FALSE
 
@@ -417,7 +419,7 @@
 			return
 
 	// make it burn hands if not wearing fire-insulated gloves
-	if(light_on)
+	if(light_on_static)
 		var/prot = 0
 		var/mob/living/carbon/human/H = user
 
@@ -476,7 +478,7 @@
 		return
 	status = LIGHT_OK
 	brightness = initial(brightness)
-	light_on = TRUE
+	light_on_static = TRUE
 	update()
 
 // explosion effect

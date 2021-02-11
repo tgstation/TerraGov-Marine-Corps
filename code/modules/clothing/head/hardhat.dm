@@ -17,9 +17,6 @@
 	if(!isturf(user.loc))
 		to_chat(user, "You cannot turn the light on while in [user.loc]")
 		return
-	toggle_light(user)
-
-/obj/item/clothing/head/hardhat/proc/toggle_light(mob/user)
 	turn_light(user, !light_on)
 
 /obj/item/clothing/head/hardhat/turn_light(mob/user, toggle_on)
