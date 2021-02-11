@@ -16,6 +16,8 @@
 	var/malfunction = MALFUNCTION_NONE
 	///Implant secific flags
 	var/flags_implant = GRANT_ACTIVATION_ACTION
+	///Whitelist for llimbs that this implavnt is allowed to be inserted into, all limbs by default
+	var/list/allowed_limbs
 	///Activation_action reference
 	var/datum/action/item_action/implant/activation_action
 	///Cooldown between usages of the implant
@@ -31,6 +33,8 @@
 	if(allow_reagents)
 		reagents = new /datum/reagents(MAX_IMPLANT_REAGENTS)
 		reagents.my_atom = src
+	if(!allowed_limbs)
+		allowed_limbs = GLOB.human_body_parts
 
 
 /obj/item/implant/Destroy(force)
@@ -53,6 +57,9 @@
 /obj/item/implant/proc/try_implant(mob/living/carbon/human/target, mob/living/user)
 	SHOULD_CALL_PARENT(TRUE)
 	if(!ishuman(target))
+		return FALSE
+	if(!(user.zone_selected in allowed_limbs))
+		to_chat(user, "<span class='warning'>You cannot implant this into that limb!!</span>")
 		return FALSE
 	return implant(target, user)
 
