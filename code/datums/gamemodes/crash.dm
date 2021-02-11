@@ -87,6 +87,20 @@
 	. = ..()
 	for(var/i in GLOB.xeno_resin_silo_turfs)
 		new /obj/structure/resin/silo(i)
+	var/silo_number
+	switch(TGS_CLIENT_COUNT)
+		if(0 to 20)
+			silo_number = 1
+		if(20 to 40)
+			silo_number = 2
+		if(40 to 60)
+			silo_number = 3
+		if(60 to INFINITY)
+			silo_number = 4
+
+	for(var/i in 1 to silo_number)//Random silo generation depending on the number of players
+		var/poolturf = pick_n_take(GLOB.xeno_resin_silo_turfs)
+		new /obj/structure/resin/silo(poolturf)
 
 	for(var/i in GLOB.nuke_spawn_locs)
 		new /obj/machinery/nuclearbomb(i)
