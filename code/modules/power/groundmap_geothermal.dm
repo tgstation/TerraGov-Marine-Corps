@@ -287,7 +287,7 @@
 /obj/machinery/power/geothermal/bigred //used on big red
 	name = "\improper Reactor Turbine"
 	power_generation_max = 1e+6
-	corrupt_point_amout = 1
+	corrupt_point_amount = 1
 
 /obj/machinery/power/geothermal/reinforced
 	name = "\improper Reinforced Reactor Turbine"
