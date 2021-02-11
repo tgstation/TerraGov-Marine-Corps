@@ -27,7 +27,6 @@
 	GLOB.implant_list += src
 	if(flags_implant & GRANT_ACTIVATION_ACTION)
 		activation_action = new(src, src)
-		RegisterSignal(activation_action, COMSIG_ACTION_TRIGGER, .proc/activate)
 	if(allow_reagents)
 		reagents = new /datum/reagents(MAX_IMPLANT_REAGENTS)
 		reagents.my_atom = src
@@ -40,10 +39,11 @@
 	GLOB.implant_list -= src
 	return ..()
 
+/obj/item/implant/ui_action_click(mob/user, datum/action/item_action/action)
+	activate()
 
 ///Handles the actual activation of the implant/it's effects. Returns TRUE on succesful activation and FALSE on failure for parentcalls
 /obj/item/implant/proc/activate()
-	SIGNAL_HANDLER
 	if(!COOLDOWN_CHECK(src, activation_cooldown))
 		return FALSE
 	COOLDOWN_START(src, activation_cooldown, cooldown_time)
@@ -109,5 +109,4 @@
 	malfunction = MALFUNCTION_PERMANENT
 
 /datum/action/item_action/implant
-	name = "Activate Implant"
 	desc = "Activates a currently implanted implant"
