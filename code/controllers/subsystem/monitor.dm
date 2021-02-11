@@ -115,6 +115,7 @@ SUBSYSTEM_DEF(monitor)
 	else if (actualPoints > MARINES_DELAYING_THRESHOLD)
 		current_state = MARINES_LOSING
 	else
+		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_RETREAT_ALLOWED)
 		current_state = MARINES_DELAYING
 	
 	//We check for possible stalemate

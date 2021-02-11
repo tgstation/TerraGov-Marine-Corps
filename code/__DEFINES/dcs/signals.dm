@@ -34,6 +34,9 @@
 ///Sent when xenos launch a hijacked dropship
 #define COMSIG_GLOB_DROPSHIP_HIJACKED "!dropship_hijacked"
 
+///Sent when high command allows marine to retreat
+#define COMSIG_GLOB_RETREAT_ALLOWED "!retreat_allowed"
+
 //////////////////////////////////////////////////////////////////
 
 // /datum signals

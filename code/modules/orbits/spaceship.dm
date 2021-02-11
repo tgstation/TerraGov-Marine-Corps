@@ -23,13 +23,17 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 	idle_power_usage = 10
 	req_access = list(ACCESS_MARINE_BRIDGE)
 	///boolean the spaceship it currently in the process of changing orbits
-	var/changing_orbit = TRUE
+	var/changing_orbit = FALSE
 	///boolean there is an authorized person logged into this console. TRUE = logged in authorized person
 	var/authenticated = FALSE
 	///boolean this machine is cut off from power and is sparking uncontrollably FALSE = everything fine
 	var/shorted = FALSE
 	///boolean this machine can be interacted with by the AI player. FELSE = can interact
 	var/aidisabled = FALSE
+	///boolean retreating is allowed by high command
+	var/retreat_allowed = FALSE
+	///The navigation popup
+	var/datum/browser/popup
 
 //-------------------------------------------
 // Standard procs
@@ -50,7 +54,6 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 /obj/machinery/computer/navigation/Initialize() //need anything special?
 	. = ..()
 	desc = "The navigation console for the [SSmapping.configs[SHIP_MAP].map_name]."
-	addtimer(VARSET_CALLBACK(src, changing_orbit, FALSE), 30 MINUTES) //people running away far too quickly it seems
 
 /obj/machinery/computer/navigation/proc/reset(wire)
 	switch(wire)
@@ -65,6 +68,18 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 //-------------------------------------------
 // Special procs
 //-------------------------------------------
+
+/obj/machinery/computer/navigation/Initialize()
+	. = ..()
+	RegisterSignal(SSdcs, list(COMSIG_GLOB_RETREAT_ALLOWED,COMSIG_GLOB_DROPSHIP_HIJACKED), .proc/allow_retreat)
+
+///Allow the ship to retreat
+/obj/machinery/computer/navigation/proc/allow_retreat()
+	SIGNAL_HANDLER
+	if(retreat_allowed)
+		return
+	priority_announce("need a text, i don't want to write it so i'll find someone to do it", "TGMC High Command", sound = 'sound/AI/commandreport.ogg');
+	retreat_allowed = TRUE
 
 /obj/machinery/computer/navigation/proc/get_power_amount()
 	//check current powernet for total available power
@@ -96,13 +111,13 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 		else
 			dat += "<center><h4>Insufficient Power Reserves to change orbit"
 			dat += "<br>"
-
+		if(retreat_allowed)
+			dat += "<center><h4><a href='byond://?src=[REF(src)];escape=1'>RETREAT</a>" //big ol red escape button. ends round after X MINUTES
 		dat += "</b></center>"
-
 	else
 		dat += "<BR>\[ <A HREF='?src=\ref[src];login=1'>LOG IN</A> \]"
 
-	var/datum/browser/popup = new(user, "Navigation", "<div align='center'>Navigation</div>")
+	popup = new(user, "Navigation", "<div align='center'>Navigation</div>")
 	popup.set_content(dat)
 	popup.open()
 
@@ -142,13 +157,23 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 		do_orbit_checks("UP")
 		TIMER_COOLDOWN_START(src, COOLDOWN_ORBIT_CHANGE, 1 MINUTES)
 
-	else if (href_list["DOWN"])
+	if (href_list["DOWN"])
 		message_admins("[ADMIN_TPMONTY(usr)] Has sent the ship Downward in orbit")
 		do_orbit_checks("DOWN")
 		TIMER_COOLDOWN_START(src, COOLDOWN_ORBIT_CHANGE, 1 MINUTES)
 
 	updateUsrDialog()
 
+	if (href_list["escape"])
+		//are you REALLY sure you want to escape?
+		popup.close()
+		switch(tgui_alert(usr, "Are you sure you want to retreat? This decision is irrevocable","Ordering Retreat", list("Yes","No")))
+			if("No")
+				return
+		message_admins("[ADMIN_TPMONTY(usr)] Is going to finish the round via the spaceship orbits mechanic. set GLOB.current_orbit to 4 to prevent this.")
+		priority_announce("The tall hosts are attempting to flee! Board the ship before it's too late", "Prey is escaping!", ANNOUNCEMENT_REGULAR, 'sound/voice/alien_drool1.ogg', receivers = GLOB.alive_xeno_list + GLOB.observer_list)
+		do_orbit_checks("escape")
+		//end the round, xeno minor.
 
 /obj/machinery/computer/navigation/proc/do_orbit_checks(direction)
 	var/current_orbit = GLOB.current_orbit
@@ -156,11 +181,19 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 	if(!can_change_orbit(current_orbit, direction))
 		return
 
+	if(direction == "escape")
+		var/message = "The [SSmapping.configs[SHIP_MAP].map_name] is leaving orbit.\nThe planet will be out of reach in 15 minutes."
+		priority_announce(message, title = "Retreat")
+		addtimer(CALLBACK(src, .proc/do_change_orbit, current_orbit, direction), 10 SECONDS)
+		return
+
 	var/message = "Prepare for orbital change in 10 seconds.\nMoving [direction] the gravity well.\nSecure all belongings and prepare for engine ignition."
 	priority_announce(message, title = "Orbit Change")
 	addtimer(CALLBACK(src, .proc/do_change_orbit, current_orbit, direction), 10 SECONDS)
 
 /obj/machinery/computer/navigation/proc/can_change_orbit(current_orbit, direction, silent = FALSE)
+	if(direction == "escape")//Can always escape
+		return TRUE
 	if(changing_orbit)
 		if(!silent)
 			to_chat(usr, "<span class='warning'>The ship is currently changing orbit.</span>")
@@ -205,6 +238,10 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 	changing_orbit = FALSE
 	engine_shudder()
 
+	if(direction == "escape")
+		addtimer(CALLBACK(src, .proc/retreat), 15 MINUTES)
+		return
+	
 //whole lotta shaking going on
 /obj/machinery/computer/navigation/proc/engine_shudder()
 	for(var/i in GLOB.alive_living_list) //knock down mobs
@@ -219,3 +256,19 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 			shake_camera(M, 10, 1)
 			M.Knockdown(3)
 		CHECK_TICK
+
+/obj/machinery/computer/navigation/proc/retreat()
+	if(isdistress(SSticker.mode))
+		var/datum/game_mode/infestation/distress/distress_mode = SSticker.mode
+		if(distress_mode.round_stage == DISTRESS_DROPSHIP_CRASHED)
+			//Xenos got onto the ship before it fully got away.
+			var/message = "The [SSmapping.configs[SHIP_MAP].map_name] is unable to initiate jump due to structual damage. Please schedule maintenance at your earliest convenience."
+			priority_announce(message, title = "Maintenance Report")
+			return
+
+		var/message = "The [SSmapping.configs[SHIP_MAP].map_name] has left the AO."
+		priority_announce(message, title = "Retreat")
+
+		distress_mode.round_stage = DISTRESS_MARINE_RETREAT
+	//This is the place where you can add checks for if the ship contains a thing.
+	//a macguffin if you will, that changes the victory condition

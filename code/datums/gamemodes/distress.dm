@@ -1,6 +1,7 @@
 #define DISTRESS_MARINE_DEPLOYMENT 0
 #define DISTRESS_DROPSHIP_CRASHED 1
 #define DISTRESS_DROPSHIP_CAPTURED_XENOS 2
+#define DISTRESS_MARINE_RETREAT 3
 
 /datum/game_mode/infestation/distress
 	name = "Distress Signal"
@@ -115,6 +116,11 @@
 	if(SSevacuation.dest_status == NUKE_EXPLOSION_FINISHED)
 		message_admins("Round finished: [MODE_GENERIC_DRAW_NUKE]") //ship blows, no one wins
 		round_finished = MODE_GENERIC_DRAW_NUKE
+		return TRUE
+
+	if(round_stage == DISTRESS_MARINE_RETREAT)
+		message_admins("Round finished: [MODE_INFESTATION_X_MINOR]")
+		round_finished = MODE_INFESTATION_X_MINOR
 		return TRUE
 
 	if(round_stage == DISTRESS_DROPSHIP_CAPTURED_XENOS)
