@@ -97,8 +97,7 @@
 			silo_number = 4
 
 	for(var/i in 1 to silo_number)//Random silo generation depending on the number of players
-		var/poolturf = pick(GLOB.xeno_resin_silo_turfs)
-		GLOB.xeno_resin_silo_turfs -= poolturf
+		var/poolturf = pick_n_take(GLOB.xeno_resin_silo_turfs)
 		new /obj/structure/resin/silo(poolturf)
 
 	for(var/i in GLOB.nuke_spawn_locs)
