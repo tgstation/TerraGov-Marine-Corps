@@ -78,7 +78,7 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 	SIGNAL_HANDLER
 	if(retreat_allowed)
 		return
-	priority_announce("need a text, i don't want to write it so i'll find someone to do it", "TGMC High Command", sound = 'sound/AI/commandreport.ogg');
+	priority_announce("Retreat protocol is now unlocked regarding the situation groundside, commanding officers are allowed to use it as they see fit", "TGMC High Command", sound = 'sound/AI/commandreport.ogg');
 	retreat_allowed = TRUE
 
 /obj/machinery/computer/navigation/proc/get_power_amount()
@@ -170,7 +170,6 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 		switch(tgui_alert(usr, "Are you sure you want to retreat? This decision is irrevocable","Ordering Retreat", list("Yes","No")))
 			if("No")
 				return
-		message_admins("[ADMIN_TPMONTY(usr)] Is going to finish the round via the spaceship orbits mechanic. set GLOB.current_orbit to 4 to prevent this.")
 		priority_announce("The tall hosts are attempting to flee! Board the ship before it's too late", "Prey is escaping!", ANNOUNCEMENT_REGULAR, 'sound/voice/alien_drool1.ogg', receivers = GLOB.alive_xeno_list + GLOB.observer_list)
 		do_orbit_checks("escape")
 		//end the round, xeno minor.
@@ -182,7 +181,7 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 		return
 
 	if(direction == "escape")
-		var/message = "The [SSmapping.configs[SHIP_MAP].map_name] is leaving orbit.\nThe planet will be out of reach in 15 minutes."
+		var/message = "The [SSmapping.configs[SHIP_MAP].map_name] is leaving orbit.\nThe planet will be out of reach in 10 minutes."
 		priority_announce(message, title = "Retreat")
 		addtimer(CALLBACK(src, .proc/do_change_orbit, current_orbit, direction), 10 SECONDS)
 		return
@@ -239,7 +238,7 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 	engine_shudder()
 
 	if(direction == "escape")
-		addtimer(CALLBACK(src, .proc/retreat), 15 MINUTES)
+		addtimer(CALLBACK(src, .proc/retreat), 10 MINUTES)
 		return
 	
 //whole lotta shaking going on
