@@ -195,8 +195,7 @@
 
 /datum/action/xeno_action/activable/bombard/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/boiler/X = owner
-	var/turf/T = get_turf(A)
-	var/turf/target = locate(T.x, T.y, T.z)
+	var/turf/target = get_turf(A)
 
 	if(!istype(target))
 		return
