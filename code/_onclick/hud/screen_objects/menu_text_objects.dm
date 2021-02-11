@@ -4,7 +4,7 @@
  * Uses maptext to display the objects
  * Automatically will align in the order that they are defined
  * Stuff happens on Click(), although hrefs are also valid to get stuff done
- * hrefs will make the text blue though :/
+ * hrefs will make the text blue though  so dont do it :/
  */
 
 ///Unclickable Lobby UI objects
@@ -32,7 +32,7 @@
 	. = ..()
 	maptext = "<span class=menutext>Welcome to TGMC[SSmapping?.configs ? " - [SSmapping.configs[SHIP_MAP].map_name]" : ""]</span>"
 	var/matrix/M = matrix()
-	M.Scale(1.2, 1.2)//make text bigger for title page
+	M.Scale(1.1, 1.1)//make text bigger for title page
 	transform = M
 
 
@@ -51,7 +51,7 @@
 /obj/screen/text/lobby/owners_char/Initialize(mapload)
 	. = ..()
 	if(!mapload)
-		INVOKE_NEXT_TICK(src, .proc/set_text)//stupid fucking hud race conditions  fuck you
+		INVOKE_NEXT_TICK(src, .proc/set_text)//stupid fucking initialize bug fuck you
 		return
 	set_text()
 
@@ -107,33 +107,31 @@
 
 
 /obj/screen/text/lobby/clickable/ready
-	maptext = "<span class=menutext>Not ready</span>"
+	maptext = "<span class=menutext>You are: Not Ready</span>"
 
 /obj/screen/text/lobby/clickable/ready/Initialize(mapload)
 	. = ..()
 	if(!mapload)
-		INVOKE_NEXT_TICK(src, .proc/set_text)
+		INVOKE_NEXT_TICK(src, .proc/set_text)//stupid fucking initialize bug fuck you
 		return
 	set_text()
 
 /obj/screen/text/lobby/clickable/ready/set_text()
 	var/mob/new_player/player = hud.mymob
-	maptext = "<span class=menutext>You are [player.ready ? "" : "Not "]Ready</span>"
+	maptext = "<span class=menutext>You are: [player.ready ? "" : "Not "]Ready</span>"
 
 /obj/screen/text/lobby/clickable/ready/Click()
 	. = ..()
 	var/mob/new_player/player = hud.mymob
 	player.toggle_ready()
-	maptext = "<span class=menutext>You are [player.ready ? "" : "Not "]Ready</span>"
+	set_text()
 
+/obj/screen/text/lobby/clickable/manifest
+	maptext = "<span class=menutext>View Manifest</span>"
 
-/obj/screen/text/lobby/clickable/changelog
-	maptext = "<span class=menutext>Changelog</span>"
-
-/obj/screen/text/lobby/clickable/changelog/Click()
-	. = ..()
-	hud.mymob.client?.changes()
-
+/obj/screen/text/lobby/clickable/manifest/Click()
+	var/mob/new_player/player = hud.mymob
+	player.view_manifest()
 
 /obj/screen/text/lobby/clickable/background
 	maptext = "<span class=menutext>Background</span>"
@@ -144,13 +142,21 @@
 	player.view_lore()
 
 
+/obj/screen/text/lobby/clickable/changelog
+	maptext = "<span class=menutext>Changelog</span>"
+
+/obj/screen/text/lobby/clickable/changelog/Click()
+	. = ..()
+	hud.mymob.client?.changes()
+
+
 /obj/screen/text/lobby/clickable/polls
 	maptext = "<span class=menutext>Polls</span>"
 
 /obj/screen/text/lobby/clickable/polls/Initialize(mapload, atom/one, atom/two)
 	. = ..()
 	if(!mapload)
-		INVOKE_NEXT_TICK(src, .proc/fetch_polls)
+		INVOKE_NEXT_TICK(src, .proc/fetch_polls)//stupid fucking initialize bug fuck you
 		return
 	INVOKE_ASYNC(src, .proc/fetch_polls)
 
@@ -169,9 +175,3 @@
 	player.handle_playeR_DBRANKSing()
 	fetch_polls()
 
-/obj/screen/text/lobby/clickable/manifest
-	maptext = "<span class=menutext>View Manifest</span>"
-
-/obj/screen/text/lobby/clickable/manifest/Click()
-	var/mob/new_player/player = hud.mymob
-	player.view_manifest()
