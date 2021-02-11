@@ -377,7 +377,7 @@
 
 /obj/structure/ob_ammo/warhead/explosive/warhead_impact(turf/target, inaccuracy_amt = 0)
 	. = ..()
-	explosion(target, 6 - inaccuracy_amt, 10 - inaccuracy_amt, 15 - inaccuracy_amt, 11 - inaccuracy_amt)
+	explosion(target, 15 - inaccuracy_amt, 15 - inaccuracy_amt, 15 - inaccuracy_amt, 15 - inaccuracy_amt)
 
 
 
