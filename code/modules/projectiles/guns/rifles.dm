@@ -452,23 +452,6 @@
 	scatter = 5
 	wield_delay = 0.7 SECONDS
 
-
-
-/obj/item/weapon/gun/rifle/ak47/carbine
-	name = "\improper AK-47U battle carbine"
-	desc = "A crude, cheaply produced battle carbine copy capable of automatic fire, a shortened version of the Kalashnikov rifle. Commonly found in the hands of criminals or mercenaries."
-	icon_state = "mar30"
-	item_state = "mar30"
-	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
-	starting_attachment_types = null
-
-	fire_delay = 0.25 SECONDS
-	burst_amount = 3
-	accuracy_mult = 1
-	accuracy_mult_unwielded = 0.5
-
-
-
 //-------------------------------------------------------
 //M16 RIFLE
 
