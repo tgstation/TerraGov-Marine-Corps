@@ -10,7 +10,6 @@
 	materials = list(/datum/material/metal = 50, /datum/material/glass = 20)
 	actions_types = list(/datum/action/item_action)
 	light_system = MOVABLE_LIGHT
-	light_on = FALSE
 	light_range = 5
 	light_power = 3 //luminosity when on
 	var/raillight_compatible = TRUE //Can this be turned into a rail light ?

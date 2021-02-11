@@ -57,7 +57,7 @@
 	///Hexadecimal RGB string representing the colour of the light. White by default.
 	var/light_color = COLOR_WHITE
 	///Boolean variable for toggleable lights. Has no effect without the proper light_system, light_range and light_power values.
-	var/light_on = TRUE
+	var/light_on = FALSE
 	///Our light source. Don't fuck with this directly unless you have a good reason!
 	var/tmp/datum/light_source/light
 	///Any light sources that are "inside" of us, for example, if src here was a mob that's carrying a flashlight, that flashlight's light source would be part of this list.

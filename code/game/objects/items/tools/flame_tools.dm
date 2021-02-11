@@ -31,7 +31,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	light_range = 2
 	light_power = 0.6
 	light_color = LIGHT_COLOR_FIRE
-	light_on = FALSE
 	var/wax = 800
 
 /obj/item/tool/candle/update_icon()
@@ -101,7 +100,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	light_range = 2
 	light_power = 0.6
 	light_color = LIGHT_COLOR_FIRE
-	light_on = FALSE
 	var/burnt = FALSE
 	var/smoketime = 5
 	w_class = WEIGHT_CLASS_TINY
@@ -471,7 +469,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	light_range = 2
 	light_power = 0.6
 	light_color = LIGHT_COLOR_FIRE
-	light_on = FALSE
 	w_class = WEIGHT_CLASS_TINY
 	throwforce = 4
 	flags_atom = CONDUCT

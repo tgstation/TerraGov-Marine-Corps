@@ -596,7 +596,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	icon_state = "flashlight"
 	attach_icon = "flashlight_a"
 	light_mod = 6
-	light_on = FALSE
 	light_system = MOVABLE_LIGHT
 	slot = "rail"
 	materials = list(/datum/material/metal = 100, /datum/material/glass = 20)

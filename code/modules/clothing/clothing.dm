@@ -108,7 +108,6 @@
 	light_power = 3
 	light_range = 4
 	light_system = MOVABLE_LIGHT
-	light_on = FALSE
 
 /obj/item/clothing/suit/dropped(mob/user)
 	turn_light(user, FALSE)
