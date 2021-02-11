@@ -260,7 +260,7 @@ datum/component/chem_booster/proc/act_scanner()
 	RegisterSignal(connected_weapon, list(COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_DROPPED), .proc/connect_weapon)
 	return TRUE
 
-//Handles resource collection and is ativated when attacking with a weapon.
+///Handles resource collection and is ativated when attacking with a weapon.
 /datum/component/chem_booster/proc/drain_resource(datum/source, mob/living/M, mob/living/user)
 	SIGNAL_HANDLER
 	if(!isxeno(M))
