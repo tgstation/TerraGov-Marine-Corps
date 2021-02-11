@@ -658,19 +658,17 @@
 	if(firing_sound)
 		playsound(loc, firing_sound, 70, 1)
 	var/obj/structure/ship_ammo/SA = ammo_equipped //necessary because we nullify ammo_equipped when firing big rockets
-	var/ammo_accuracy_range = SA.accuracy_range
 	var/ammo_travelling_time = SA.travelling_time * (GLOB.current_orbit/3) //how long the rockets/bullets take to reach the ground target.
 	var/ammo_warn_sound = SA.warning_sound
 	deplete_ammo()
 	COOLDOWN_START(src, last_fired, firing_delay)
 	if(linked_shuttle)
 		for(var/obj/structure/dropship_equipment/electronics/targeting_system/TS in linked_shuttle.equipments)
-			ammo_accuracy_range = max(ammo_accuracy_range-2, 0) //targeting system increase accuracy and reduce travelling time.
-			ammo_travelling_time = max(ammo_travelling_time - 2 SECONDS, 1 SECONDS)
+			ammo_travelling_time = max(ammo_travelling_time - 2 SECONDS, 1 SECONDS) //targeting system reduces travelling time
 			break
 
 	var/list/possible_turfs = list()
-	for(var/turf/TU as() in RANGE_TURFS(ammo_accuracy_range, target_turf))
+	for(var/turf/TU as() in (target_turf))
 		possible_turfs += TU
 	var/turf/impact = pick(possible_turfs)
 	if(ammo_warn_sound)
