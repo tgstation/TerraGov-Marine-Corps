@@ -21,7 +21,6 @@
 	var/ammo_id
 	///whether the ammo inside this magazine can be transfered to another magazine.
 	var/transferable_ammo = FALSE
-	var/accuracy_range = 0 //how many tiles the ammo can deviate from the laser target
 	///sound played mere seconds before impact
 	var/warning_sound = 'sound/machines/hydraulics_2.ogg'
 	var/ammo_used_per_firing = 1
@@ -140,6 +139,7 @@
 	icon_state = "30mm_crate_hv"
 	desc = "A crate full of 30mm high-velocity bullets used on the dropship heavy guns."
 	travelling_time = 5 SECONDS
+	point_cost = 150
 
 
 
