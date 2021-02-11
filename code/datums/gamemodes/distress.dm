@@ -60,6 +60,8 @@
 				xeno_candidate = TRUE
 				break
 	if(!xeno_candidate && !bypass_checks)
+		if(SSticker.roundend_check_paused)
+			return TRUE
 		to_chat(world, "<b>Unable to start [name].</b> No xeno candidate found.")
 		return FALSE
 
