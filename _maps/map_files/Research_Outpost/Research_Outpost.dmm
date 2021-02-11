@@ -7046,7 +7046,6 @@
 	},
 /area/outpost/engineering/hallway)
 "MG" = (
-/obj/machinery/computer/turbine_computer,
 /turf/open/floor/plating,
 /area/outpost/engineering/engine)
 "MH" = (
