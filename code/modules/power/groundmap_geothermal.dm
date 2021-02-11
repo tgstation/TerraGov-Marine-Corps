@@ -499,6 +499,7 @@
 		if(user.skills.getRating("engineer") >= SKILL_ENGINEER_ENGI)
 			if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 				to_chat(user, "<span class='info'>You must first open its maintenance hatch.</span>")
+				return
 			switch(repair_state)
 				if(FLOODLIGHT_REPAIR_WELD)
 					to_chat(user, "<span class='info'>You must weld the damage to it.</span>")
