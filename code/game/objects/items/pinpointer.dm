@@ -91,4 +91,4 @@
 
 /obj/item/pinpointer/pool/Initialize()
 	. = ..()
-	tracked_list = GLOB.xeno_resin_spawning_pools
+	tracked_list = GLOB.xeno_resin_silos
