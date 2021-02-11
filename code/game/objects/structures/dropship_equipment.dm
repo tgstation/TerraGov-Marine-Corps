@@ -667,14 +667,10 @@
 			ammo_travelling_time = max(ammo_travelling_time - 2 SECONDS, 1 SECONDS) //targeting system reduces travelling time
 			break
 
-	var/list/possible_turfs = list()
-	for(var/turf/TU as() in (target_turf))
-		possible_turfs += TU
-	var/turf/impact = pick(possible_turfs)
 	if(ammo_warn_sound)
-		playsound(impact, ammo_warn_sound, 70, 1)
-	var/obj/effect/overlay/blinking_laser/laser = new (impact)
-	addtimer(CALLBACK(SA, /obj/structure/ship_ammo.proc/detonate_on, impact, attackdir), ammo_travelling_time)
+		playsound(target_turf, ammo_warn_sound, 70, 1)
+	var/obj/effect/overlay/blinking_laser/laser = new (target_turf)
+	addtimer(CALLBACK(SA, /obj/structure/ship_ammo.proc/detonate_on, target_turf, attackdir), ammo_travelling_time)
 	addtimer(CALLBACK(GLOBAL_PROC, .proc/qdel, laser), ammo_travelling_time)
 /obj/structure/dropship_equipment/weapon/heavygun
 	name = "\improper GAU-21 30mm cannon"
