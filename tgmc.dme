@@ -557,6 +557,7 @@
 #include "code\game\objects\items\frames\light_fixtures.dm"
 #include "code\game\objects\items\frames\table_rack.dm"
 #include "code\game\objects\items\implants\implant.dm"
+#include "code\game\objects\items\implants\implant_chem.dm"
 #include "code\game\objects\items\implants\implantcase.dm"
 #include "code\game\objects\items\implants\implantchair.dm"
 #include "code\game\objects\items\implants\implanter.dm"
