@@ -22,7 +22,7 @@
 	///Hive it should be powering and whether it should be generating hive psycic points instead of power on process()
 	var/corrupted = XENO_HIVE_NORMAL
 	///how many points this generator will make per tick
-	var/corrupt_point_amout = 0.1
+	var/corrupt_point_amount = 0.1
 	///whether we wil allow these to be corrupted
 	var/is_corruptible = TRUE
 	///whether they should generate corruption if corrupted
