@@ -40,7 +40,7 @@
 		addtimer(CALLBACK(SSvote, /datum/controller/subsystem/vote.proc/initiate_vote, "gamemode", "SERVER"), 10 SECONDS)
 		return FALSE
 	if(length(GLOB.ready_players) < required_players && !bypass_checks)
-		to_chat(world, "Not enough players, [required_players] players needed. Round end check disabled")
+		to_chat(world, "Not enough players, [required_players] players needed. Round end check disabled.")
 		SSticker.roundend_check_paused = TRUE
 	if(!set_valid_job_types() && !bypass_checks)
 		return FALSE
