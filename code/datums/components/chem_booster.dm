@@ -205,12 +205,10 @@
 		R.effect_str += boost_amount
 		break
 
+///Used to scan the person
 /datum/component/chem_booster/proc/scan_user(datum/source)
 	SIGNAL_HANDLER
-	INVOKE_ASYNC(src, .proc/act_scanner)
-
-datum/component/chem_booster/proc/act_scanner()
-	analyzer.attack(wearer, wearer, TRUE)
+	INVOKE_ASYNC(analyzer, /obj/item/healthanalyzer/.proc/attack, wearer, wearer, TRUE)
 
 ///Links the held item, if compatible, to the chem booster and registers attacking with it
 /datum/component/chem_booster/proc/connect_weapon()
