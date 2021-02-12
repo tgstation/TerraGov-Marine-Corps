@@ -256,6 +256,7 @@
 		jumptimer = addtimer(CALLBACK(src, .proc/leap_at_nearest_target), JUMP_COOLDOWN * activity_modifier, TIMER_STOPPABLE|TIMER_UNIQUE)
 
 /obj/item/clothing/mask/facehugger/throw_impact(atom/hit_atom, speed)
+	. = ..()
 	if(stat != CONSCIOUS)
 		return ..()
 	if(iscarbon(hit_atom))
@@ -263,7 +264,7 @@
 		if(leaping && M.can_be_facehugged(src)) //Standard leaping behaviour, not attributable to being _thrown_ such as by a Carrier.
 			if(!Attach(M))
 				go_idle()
-			return ..()
+			return
 		else
 			step(src, REVERSE_DIR(dir)) //We want the hugger to bounce off if it hits a mob.
 			set_throwing(FALSE) //reset our state on collision
@@ -272,16 +273,15 @@
 			update_icon()
 			deltimer(jumptimer)
 			jumptimer = addtimer(CALLBACK(src, .proc/fast_activate), IMPACT_TIME * activity_modifier, TIMER_STOPPABLE|TIMER_UNIQUE)
-			return ..()
+			return
 	else
 		for(var/mob/living/carbon/M in loc)
 			if(M.can_be_facehugged(src))
 				if(!Attach(M))
 					go_idle()
-				return ..()
+				return
 		deltimer(jumptimer)
 		jumptimer = addtimer(CALLBACK(src, .proc/fast_activate), ACTIVATE_TIME * activity_modifier, TIMER_STOPPABLE|TIMER_UNIQUE)
-	. = ..()
 	leaping = FALSE
 	go_idle(FALSE)
 

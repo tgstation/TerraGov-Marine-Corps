@@ -22,8 +22,9 @@
 // *********** Death
 // ***************************************
 /mob/living/carbon/xenomorph/carrier/on_death()
+	. = ..()
 	if(!huggers)
-		return ..()
+		return
 
 	visible_message("<span class='xenowarning'>A chittering mass of tiny aliens is trying to escape [src]!</span>")
 	while(huggers > FLOOR(huggers * 0.5,1)) //Half our huggers will avenge us!
@@ -34,7 +35,6 @@
 
 		huggers--
 
-	return ..()
 
 
 // ***************************************
