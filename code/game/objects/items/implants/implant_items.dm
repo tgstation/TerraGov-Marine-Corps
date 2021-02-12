@@ -52,7 +52,7 @@
 	<b>Name:</b> Nanotrasen MA-12 Mantis Implant<BR>
 	<HR>
 	<b>Implant Details:</b><BR>
-	<b>Function:</b> Upon activation deploys a large blade from the users arm.<BR>"}
+	<b>Function:</b> Upon activation, the user deploys a large blade from the their arm.<BR>"}
 
 /obj/item/implant/deployitem/blade/put_in_slots()
 	. = ..()
@@ -64,7 +64,7 @@
 
 /obj/item/weapon/mantisblade
 	name = "mantis arm blade"
-	desc = "A wicked-looking folding blade capable of being concealed within a humans arm."
+	desc = "A wicked-looking folding blade capable of being concealed within a human's arm."
 	icon_state = "armblade"
 	item_state = "armblade"
 	force = 60

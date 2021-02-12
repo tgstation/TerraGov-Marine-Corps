@@ -59,7 +59,7 @@
 	if(!ishuman(target))
 		return FALSE
 	if(!(user.zone_selected in allowed_limbs))
-		to_chat(user, "<span class='warning'>You cannot implant this into that limb!!</span>")
+		to_chat(user, "<span class='warning'>You cannot implant this into that limb!</span>")
 		return FALSE
 	return implant(target, user)
 
