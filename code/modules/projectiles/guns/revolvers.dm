@@ -327,6 +327,7 @@
 	desc = "The TP-44 standard combat revolver, produced by Terran Armories. A sturdy and hard hitting firearm that loads .44 Magnum rounds. Holds 7 rounds in the cylinder. Due to the nature of the weapon, its rate of fire doesn’t quite match the output of other guns, but does hit much harder."
 	icon_state = "tp44"
 	item_state = "tp44"
+	w_class = WEIGHT_CLASS_BULKY
 	caliber = ".44 Magnum" //codex
 	max_shells = 7 //codex
 	current_mag = /obj/item/ammo_magazine/internal/revolver/standard_revolver
