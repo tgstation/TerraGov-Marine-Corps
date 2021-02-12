@@ -74,10 +74,12 @@
 	QDEL_NULL(power_action)
 	QDEL_NULL(scan_action)
 
+///Adds additional text for the component when examining the item it is attached to
 /datum/component/chem_booster/proc/examine(datum/source, mob/user)
 	SIGNAL_HANDLER
 	to_chat(user, "<span class='notice'>The chemical system currently holds [resource_storage_current]u of green blood. Its' enhancement level is set to [boost_amount+1].</span>")
 
+///Disables active functions and cleans up actions when the suit is unequipped
 /datum/component/chem_booster/proc/dropped(datum/source, mob/user)
 	SIGNAL_HANDLER
 	if(!iscarbon(user))
@@ -91,6 +93,7 @@
 	scan_action.remove_action(wearer)
 	wearer = null
 
+///Sets up actions and vars when the suit is equipped
 /datum/component/chem_booster/proc/equipped(datum/source, mob/equipper, slot)
 	SIGNAL_HANDLER
 	if(!isliving(equipper))
@@ -141,6 +144,7 @@
 		if("extract")
 			extract(10)
 
+///Handles turning on/off the chem effect modufying function, along with the negative effects related to this
 /datum/component/chem_booster/proc/on_off(datum/source)
 	if(boost_on)
 		STOP_PROCESSING(SSobj, src)
@@ -239,6 +243,7 @@
 	wearer.remove_movespeed_modifier(MOVESPEED_ID_CHEM_CONNECT)
 	manage_weapon_connection(held_item)
 
+///Handles the setting up and removal of signals and vars related to connecting an item to the suit
 /datum/component/chem_booster/proc/manage_weapon_connection(obj/item/weapon_to_connect)
 	if(connected_weapon)
 		to_chat(wearer, "<span class='warning'>You disconnect the [connected_weapon].</span>")
