@@ -3,7 +3,7 @@
 
 /obj/item/jetpack_marine
 	name = "marine jetpack"
-	desc = "A high powered jetpack with enough fuel to send a person flying for a short while. It allows for fast and agile movement on the battlefield. <b>Alt right click to fly to a destination when the jetpack is equipped.</b>"
+	desc = "A high powered jetpack with enough fuel to send a person flying for a short while. It allows for fast and agile movement on the battlefield. <b>Alt right click or middleclick to fly to a destination when the jetpack is equipped.</b>"
 	icon = 'icons/obj/items/jetpack.dmi'
 	icon_state = "jetpack_marine"
 	w_class = WEIGHT_CLASS_BULKY
@@ -35,10 +35,6 @@
 		to_chat(user, "The fuel gauge beeps out, it has no fuel left")
 	else
 		to_chat(user, "The fuel gauge meter indicate it has [fuel_left/FUEL_USE] uses left")
-	icon = 'icons/obj/items/jetpack.dmi'
-	icon_state = "jetpack_marine"
-	update_icon() //The animation breaks often in high pop, this tries to fix it.
-	user.update_inv_back()//Not sure it'll work, i don't understand what is causing the bug anyway
 
 /obj/item/jetpack_marine/equipped(mob/user, slot)
 	. = ..()
@@ -134,8 +130,6 @@
 
 /obj/item/jetpack_marine/update_overlays()
 	. = ..()
-	if (lit)
-		.+= image('icons/obj/items/jetpack.dmi', src, "+jetpacklit")
 	switch(fuel_indicator)
 		if(40)
 			. += image('icons/obj/items/jetpack.dmi', src, "+jetpackfull")
