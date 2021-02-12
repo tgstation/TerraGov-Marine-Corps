@@ -15,7 +15,7 @@
 	<b>Name:</b> Nanotrasen CD-64 CloakMate Implant<BR>
 	<HR>
 	<b>Implant Details:</b><BR>
-	<b>Function:</b> Upon activation decreases the reflection rate of light in order to reduce user visibility.<BR>
+	<b>Function:</b> Upon activation, this implant decreases the reflection rate of light in order to reduce user visibility.<BR>
 	<b>Current Implant status:</b>
 	Recharge time remaining: [S_TIMER_COOLDOWN_TIMELEFT(src, COOLDOWN_CLOAK_IMPLANT)/10] seconds
 	Active time remaining: [deactivation_timer ? "[timeleft(deactivation_timer)/10] seconds" :"Implant Inactive"]."}
@@ -68,4 +68,3 @@
 	implant_owner.alpha = initial(implant_owner.alpha)
 	S_TIMER_COOLDOWN_START(src, COOLDOWN_CLOAK_IMPLANT, CLOAK_IMPLANT_COOLDOWN_TIME)
 	return STEALTH_ALREADY_ACTIVE
-
