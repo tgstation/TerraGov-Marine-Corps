@@ -358,20 +358,22 @@
 	slowdown = 0
 	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 20, "energy" = 20, "bomb" = 40, "bio" = 60, "rad" = 100, "fire" = 40, "acid" = 40)
 	flags_inv_hide = HIDEJUMPSUIT|HIDETAIL
+	var/image/resource_overlay
 
 /obj/item/clothing/suit/storage/marine/chemsuit/Initialize()
 	. = ..()
 	AddComponent(/datum/component/chem_booster)
-	RegisterSignal(src, COMSIG_CHEM_BOOSTER_RES_UPD, .proc/update_clothing_icon)
+	RegisterSignal(src, COMSIG_CHEM_BOOSTER_RES_UPD, .proc/handle_str_resource_overlay)
+	resource_overlay = image('icons/mob/hud.dmi', icon_state = "chemsuit_vis")
+	resource_overlay.color = rgb(102, 201, 36, 0)
+
+/obj/item/clothing/suit/storage/marine/chemsuit/proc/handle_str_resource_overlay(datum/source, resource_percent, amount_added)
+	resource_overlay.color = rgb(102, 201, 36, 255*resource_percent)
+	update_clothing_icon()
 
 /obj/item/clothing/suit/storage/marine/chemsuit/apply_custom(image/standing)
 	. = ..()
-	message_admins("signal test")
-	var/image/resource_amount = image('icons/mob/hud.dmi',icon_state = "chemsuit_vis")
-	var/datum/component/chem_booster/C = datum_components[/datum/component/chem_booster]
-	var/resource_percent = 	C.resource_storage_current/C.resource_storage_max
-	resource_amount.color = rgb(61, 185, 4, 255*resource_percent)
-	standing.overlays += resource_amount
+	standing.overlays += resource_overlay
 
 /*=============================PMCS==================================*/
 
