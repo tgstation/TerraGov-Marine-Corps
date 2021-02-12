@@ -49,8 +49,7 @@
 	if (shock_damage<1)
 		return 0
 
-	apply_damage(shock_damage, BURN, def_zone)
-	UPDATEHEALTH(src)
+	apply_damage(shock_damage, BURN, def_zone, updating_health = TRUE)
 
 	playsound(loc, "sparks", 25, TRUE)
 	if (shock_damage > 10)
@@ -307,7 +306,7 @@
 	if(IsSleeping())
 		to_chat(src, "<span class='warning'>You are already sleeping</span>")
 		return
-	if(alert(src,"You sure you want to sleep for a while?","Sleep","Yes","No") == "Yes")
+	if(tgui_alert(src,"You sure you want to sleep for a while?","Sleep", list("Yes","No")) == "Yes")
 		SetSleeping(40 SECONDS) //Short nap
 
 
@@ -343,13 +342,13 @@
 	. -= "Update Icon"
 	.["Regenerate Icons"] = "?_src_=vars;[HrefToken()];regenerateicons=[REF(src)]"
 
-/mob/living/carbon/update_leader_tracking(mob/living/carbon/C)
+/mob/living/carbon/update_tracking(mob/living/carbon/C)
 	var/obj/screen/LL_dir = hud_used.SL_locator
 
 	if(C.z != src.z || get_dist(src, C) < 1 || src == C)
 		LL_dir.icon_state = ""
 	else
-		LL_dir.icon_state = "SL_locator"
+		LL_dir.icon_state = "Blue_arrow"
 		LL_dir.transform = 0 //Reset and 0 out
 		LL_dir.transform = turn(LL_dir.transform, Get_Angle(src, C))
 

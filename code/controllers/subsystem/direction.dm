@@ -4,7 +4,7 @@ SUBSYSTEM_DEF(direction)
 	runlevels = RUNLEVEL_GAME|RUNLEVEL_POSTGAME
 	wait = 1 SECONDS
 
-	// this is a map of defines to mob references, eg; list(FACTION_ID = <mob ref>, FACTION_ID2 = <mob ref>)
+	/// this is a map of defines to mob references, eg; list(FACTION_ID = <mob ref>, FACTION_ID2 = <mob ref>)
 	var/list/leader_mapping = list()
 
 	// this is a two d list of defines to lists of mobs tracking that leader
@@ -12,6 +12,10 @@ SUBSYSTEM_DEF(direction)
 	var/list/list/processing_mobs = list()
 
 	var/list/mobs_in_processing = list() // reference lookup
+
+
+
+
 
 	// the purpose of separating these two things is it avoids having to do anything for mobs tracking a particular
 	//  leader when the leader changes, and its cached to avoid looking up via hive/squad datums.
@@ -45,7 +49,7 @@ SUBSYSTEM_DEF(direction)
 	for(var/squad_id in currentrun)
 		var/mob/living/L
 		var/mob/living/SL = leader_mapping[squad_id]
-		if (QDELETED(SL))
+		if (QDELETED(SL) && !isxenohive(squad_id))
 			clear_run(squad_id) // clear and reset all the squad members
 			continue
 		while(currentrun[squad_id].len)
@@ -54,7 +58,7 @@ SUBSYSTEM_DEF(direction)
 			if(QDELETED(L))
 				stop_tracking(squad_id, L)
 				continue
-			L.update_leader_tracking(SL)
+			L.update_tracking(SL)
 			if(MC_TICK_CHECK)
 				return
 

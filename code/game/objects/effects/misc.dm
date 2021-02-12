@@ -97,8 +97,8 @@
 	return TRUE
 
 
-/obj/effect/forcefield/fog/attack_alien(M)
-	return attack_hand(M)
+/obj/effect/forcefield/fog/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	return attack_hand(X)
 
 
 /obj/effect/forcefield/fog/attack_paw(mob/living/carbon/monkey/user)
@@ -111,8 +111,8 @@
 
 /obj/effect/forcefield/fog/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
-	if(isobj(mover))
-		return TRUE
+	if(isobj(mover)) //No grenades/bullets should cross this
+		return FALSE
 	if(isxeno(mover))
 		var/mob/living/carbon/xenomorph/moving_xeno = mover
 		for(var/tummy_resident in moving_xeno.stomach_contents)
@@ -123,7 +123,7 @@
 		return TRUE
 	if(ishuman(mover) && !issynth(mover))
 		var/mob/living/carbon/human/H = mover
-		if(!check_tod(H)) // Allow pulled perma-dead humans to cross
+		if(H.stat == DEAD && !check_tod(H)) // Allow pulled perma-dead humans to cross
 			return TRUE
 	return FALSE
 

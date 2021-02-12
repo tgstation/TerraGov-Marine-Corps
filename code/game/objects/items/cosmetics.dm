@@ -44,7 +44,7 @@
 		else
 			to_chat(user, "<span class='notice'>You attempt to apply [src] on [H]...</span>")
 			to_chat(H, "<span class='notice'>[user] is trying to apply [src] on your face...</span>")
-			if(alert(H,"Will you allow [user] to paint your face?",,"Sure","No") == "Sure")
+			if(tgui_alert(H,"Will you allow [user] to paint your face?", null, list("Sure","No")) == "Sure")
 				if( user && loc == user && (user in range(1,H)) ) //Have to be close and hold the thing.
 					paint_face(H, user)
 					return 1

@@ -70,8 +70,8 @@
 		qdel(src) //Delete da old flashlight
 
 
-/obj/item/flashlight/attack(mob/living/M as mob, mob/living/user as mob)
-	if(light_on && user.zone_selected == "eyes")
+/obj/item/flashlight/attack(mob/living/M, mob/living/user)
+	if(light_on && user.zone_selected == BODY_ZONE_PRECISE_EYES)
 
 		if((user.getBrainLoss() >= 60) && prob(50))	//too dumb to use flashlight properly
 			return ..()	//just hit them in the head
@@ -160,10 +160,10 @@
 	if(!usr.stat)
 		attack_self(usr)
 
-/obj/item/flashlight/lamp/attack_alien(mob/living/carbon/xenomorph/xeno_attacker)
-	xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_SMASH)
+/obj/item/flashlight/lamp/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	X.do_attack_animation(src, ATTACK_EFFECT_SMASH)
 	playsound(loc, 'sound/effects/metalhit.ogg', 20, TRUE)
-	xeno_attacker.visible_message("<span class='danger'>\The [xeno_attacker] smashes [src]!</span>", \
+	X.visible_message("<span class='danger'>\The [X] smashes [src]!</span>", \
 	"<span class='danger'>We smash [src]!</span>", null, 5)
 	deconstruct(FALSE)
 

@@ -29,6 +29,7 @@
 #define MAINT		(1<<3)		// under maintaince
 #define EMPED		(1<<4)		// temporary broken by EMP pulse
 #define PANEL_OPEN	(1<<5)
+#define DISABLED	(1<<6)		// can be fixed with a welder; removes density. Used primary to stop otherwise indestructible computers from obstructing pathing.
 #define MACHINE_DO_NOT_PROCESS 32768 //Do not added these to processing queue.
 
 #define ENGINE_EJECT_Z	3
@@ -102,16 +103,17 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 #define TOKEN_ALL				15
 
 //MEDEVAC DEFINES
-#define MEDEVAC_COOLDOWN		3000 //300 seconds or 5 minutes
-#define MEDEVAC_TELE_DELAY		50 //5 seconds
+#define MEDEVAC_COOLDOWN		1500 //150 seconds or 2,5 minutes aka 2 minutes and 30 secs
+#define MEDEVAC_TELE_DELAY		50 // 5 seconds
 //Sentry defines
 #define SENTRY_ALERT_AMMO				1
 #define SENTRY_ALERT_HOSTILE			2
 #define SENTRY_ALERT_FALLEN				3
 #define SENTRY_ALERT_DAMAGE				4
 #define SENTRY_ALERT_BATTERY			5
+#define SENTRY_ALERT_DESTROYED			6
 #define SENTRY_ALERT_DELAY				20 SECONDS
-#define SENTRY_DAMAGE_ALERT_DELAY		5 SECONDS
+#define SENTRY_DAMAGE_ALERT_DELAY		4 SECONDS
 #define SENTRY_LIGHT_POWER				7
 
 //Scout cloak defines

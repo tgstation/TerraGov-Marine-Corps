@@ -12,12 +12,11 @@
 	var/obj/structure/dropship_equipment/selected_equipment //the currently selected equipment installed on the shuttle this console controls.
 	var/list/shuttle_equipments = list() //list of the equipments on the shuttle this console controls
 
-/obj/machinery/computer/dropship_weapons/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/computer/dropship_weapons/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 
 	if(!ui)
-		ui = new(user, src, ui_key, "CAS", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, "CAS", name)
 		ui.open()
 
 /obj/machinery/computer/dropship_weapons/ui_data(mob/user)
@@ -56,7 +55,7 @@
 
 	.["shuttle_mode"] = shuttle.mode == SHUTTLE_CALL
 
-/obj/machinery/computer/dropship_weapons/ui_act(action, params)
+/obj/machinery/computer/dropship_weapons/ui_act(action, list/params)
 	. = ..()
 	if(.)
 		return

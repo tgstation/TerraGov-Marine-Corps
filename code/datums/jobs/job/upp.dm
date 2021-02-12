@@ -64,7 +64,7 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/c99, SLOT_IN_L_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/c99, SLOT_IN_L_POUCH)
 
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/c99/upp, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/c99, SLOT_IN_R_POUCH)
 
 	H.equip_to_slot_or_del(new /obj/item/weapon/combat_knife/upp, SLOT_IN_BOOT)
 
@@ -93,7 +93,7 @@
 	gloves = /obj/item/clothing/gloves/marine/veteran/PMC
 	head = /obj/item/clothing/head/uppcap
 	glasses = /obj/item/clothing/glasses/hud/health
-	suit_store = /obj/item/weapon/gun/smg/skorpion/upp
+	suit_store = /obj/item/weapon/gun/smg/skorpion
 	r_store = /obj/item/storage/pouch/medkit
 	l_store = /obj/item/storage/pouch/general/large
 	back = /obj/item/storage/backpack/lightpack
@@ -213,7 +213,7 @@
 	wear_suit = /obj/item/clothing/suit/storage/faction/UPP/heavy
 	gloves = /obj/item/clothing/gloves/marine/veteran/PMC
 	head = /obj/item/clothing/head/uppcap/beret
-	suit_store = /obj/item/weapon/gun/rifle/type71/carbine
+	suit_store = /obj/item/weapon/gun/rifle/type71
 	r_store = /obj/item/storage/pouch/general/large
 	l_store = /obj/item/storage/pouch/firstaid/full
 	back = /obj/item/storage/backpack/lightpack

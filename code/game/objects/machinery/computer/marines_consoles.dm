@@ -414,7 +414,7 @@
 	else if(href_list["squad"])
 		if(allowed(usr))
 			if(modify && istype(modify))
-				var/squad_name = input("Which squad would you like to put the person in?") as null|anything in SSjob.active_squads
+				var/squad_name = tgui_input_list(usr, "Which squad would you like to put the person in?", null, SSjob.active_squads)
 				if(!squad_name)
 					return
 				var/datum/squad/selected = SSjob.active_squads[squad_name]

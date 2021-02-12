@@ -226,7 +226,8 @@
 	layer = ABOVE_MOB_LAYER //So you can't hide it under corpses
 	use_power = 0
 	req_one_access = list(ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_ENGPREP, ACCESS_MARINE_LEADER)
-	var/turret_flags = TURRET_HAS_CAMERA|TURRET_SAFETY
+	hud_possible = list(MACHINE_HEALTH_HUD, SENTRY_AMMO_HUD)
+	var/turret_flags = TURRET_HAS_CAMERA|TURRET_SAFETY|TURRET_ALERTS
 	var/list/iff_signal = list(ACCESS_IFF_MARINE)
 	var/rounds = 500
 	var/rounds_max = 500
@@ -257,13 +258,17 @@
 	var/magazine_type = /obj/item/ammo_magazine/sentry
 	var/obj/item/radio/radio
 
-	ui_x = 360
-	ui_y = 320
-
 /obj/machinery/marine_turret/examine(mob/user)
 	. = ..()
+	if(isxeno(user))
+		to_chat(user, "<span class='warning'>There's many strange numbers and indicators on this device we don't understand.</span>")
+		return
+
 	var/list/details = list()
+
 	if(CHECK_BITFIELD(turret_flags, TURRET_ON))
+		details +=("Its diagnostic display reads <b>([obj_integrity]/[max_integrity])</b> integrity.</br>")
+		details +=("Its ammo counter reads <b>([rounds]/[rounds_max])</b>.</br>")
 		details +=("It's turned on.</br>")
 
 	if(CHECK_BITFIELD(turret_flags, TURRET_SAFETY))
@@ -303,6 +308,11 @@
 	ammo = GLOB.ammo_list[ammo]
 	update_icon()
 	GLOB.marine_turrets += src
+	prepare_huds() //Set up HUDS
+	for(var/datum/atom_hud/squad/sentry_status_hud in GLOB.huds) //Add to the squad HUD
+		sentry_status_hud.add_to_hud(src)
+	hud_set_machine_health()
+	hud_set_sentry_ammo()
 
 /obj/machinery/marine_turret/proc/turn_off() //We turn the turret off
 	if(!CHECK_BITFIELD(turret_flags, TURRET_ON)) //We're already off
@@ -324,6 +334,10 @@
 	alert_list = list()
 	stop_processing()
 	GLOB.marine_turrets -= src
+	. = ..()
+
+/obj/machinery/marine_turret/obj_destruction(damage_amount, damage_type, damage_flag)
+	sentry_alert(SENTRY_ALERT_DESTROYED)
 	. = ..()
 
 /obj/machinery/marine_turret/attack_hand(mob/living/user)
@@ -361,12 +375,11 @@
 
 	return
 
-/obj/machinery/marine_turret/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/marine_turret/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 
 	if(!ui)
-		ui = new(user, src, ui_key, "Sentry", "Sentry Gun", ui_x, ui_y, master_ui, state)
+		ui = new(user, src, "Sentry", "Sentry Gun")
 		ui.open()
 
 /obj/machinery/marine_turret/ui_data(mob/user)
@@ -390,8 +403,9 @@
 		"mini" = istype(src, /obj/machinery/marine_turret/mini)
 	)
 
-/obj/machinery/marine_turret/ui_act(action, params)
-	if(..())
+/obj/machinery/marine_turret/ui_act(action, list/params)
+	. = ..()
+	if(.)
 		return
 
 	var/mob/living/carbon/human/user = usr
@@ -625,6 +639,7 @@
 		user.visible_message("<span class='notice'>[user] repairs [src].</span>",
 		"<span class='notice'>You repair [src].</span>")
 		repair_damage(50)
+		hud_set_machine_health() //Update our HUD health
 		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 
 	else if(iscrowbar(I))
@@ -691,6 +706,7 @@
 			var/obj/item/ammo_magazine/S = new magazine_type(user.loc)
 			S.current_rounds = rounds
 		rounds = min(M.current_rounds, rounds_max)
+		hud_set_sentry_ammo()
 		qdel(I)
 
 
@@ -741,11 +757,6 @@
 
 
 /obj/machinery/marine_turret/take_damage(dam)
-	if(dam > 0) //We don't report repairs.
-		if(CHECK_BITFIELD(turret_flags, TURRET_ON) && CHECK_BITFIELD(turret_flags, TURRET_ALERTS) && (world.time > (last_damage_alert + SENTRY_DAMAGE_ALERT_DELAY) || obj_integrity <= 0) ) //Alert friendlies
-			sentry_alert(SENTRY_ALERT_DAMAGE)
-			last_damage_alert = world.time
-
 	if(!machine_stat && dam > 0 && !CHECK_BITFIELD(turret_flags, TURRET_IMMOBILE))
 		if(prob(10))
 			spark_system.start()
@@ -755,7 +766,13 @@
 			if(CHECK_BITFIELD(turret_flags, TURRET_ALERTS) && CHECK_BITFIELD(turret_flags, TURRET_ON))
 				sentry_alert(SENTRY_ALERT_FALLEN)
 
-	return ..()
+	..()
+
+	if(dam > 0 && CHECK_BITFIELD(turret_flags, TURRET_ON) && CHECK_BITFIELD(turret_flags, TURRET_ALERTS) && (world.time > (last_damage_alert + SENTRY_DAMAGE_ALERT_DELAY))) //Alert friendlies
+		sentry_alert(SENTRY_ALERT_DAMAGE)
+		last_damage_alert = world.time
+
+	hud_set_machine_health() //Update our HUD health
 
 
 /obj/machinery/marine_turret/proc/check_power(power)
@@ -798,7 +815,7 @@
 			take_damage(rand(30, 100))
 
 
-/obj/machinery/marine_turret/attack_alien(mob/living/carbon/xenomorph/X)
+/obj/machinery/marine_turret/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_SENTRY)
 	return ..()
 
@@ -953,6 +970,7 @@
 		if(CHECK_BITFIELD(turret_flags, TURRET_ALERTS))
 			sentry_alert(SENTRY_ALERT_AMMO)
 
+	hud_set_sentry_ammo()
 	return TRUE
 
 /obj/machinery/marine_turret/proc/muzzle_flash(angle)
@@ -1009,7 +1027,6 @@
 			path -= get_turf(src)
 			if(CHECK_BITFIELD(turret_flags, TURRET_ALERTS)) //They're within our field of detection and thus can trigger the alarm
 				if(world.time > (last_alert + SENTRY_ALERT_DELAY) || !(M in alert_list)) //if we're not on cooldown or the target isn't in the list, sound the alarm
-					playsound(loc, 'sound/machines/warning-buzzer.ogg', 50, FALSE)
 					sentry_alert(SENTRY_ALERT_HOSTILE, M)
 					alert_list.Add(M)
 					last_alert = world.time
@@ -1156,19 +1173,19 @@
 	var/notice
 	switch(alert_code)
 		if(SENTRY_ALERT_AMMO)
-			notice = "<b>ALERT! [src]'s ammo depleted at: [get_area(src)]. Coordinates: (X: [x], Y: [y]).</b>"
+			notice = "<b>ALERT! [src]'s ammo depleted at: [AREACOORD_NO_Z(src)].</b>"
 		if(SENTRY_ALERT_HOSTILE)
-			notice = "<b>ALERT! [src] detected Hostile/Unknown: [M.name] at: [get_area(M)]. Coordinates: (X: [M.x], Y: [M.y]).</b>"
+			notice = "<b>ALERT! [src] detected Hostile/Unknown: [M.name] at: [AREACOORD_NO_Z(src)].</b>"
 		if(SENTRY_ALERT_FALLEN)
-			notice = "<b>ALERT! [src] has been knocked over at: [get_area(src)]. Coordinates: (X: [x], Y: [y]).</b>"
+			notice = "<b>ALERT! [src] has been knocked over at: [AREACOORD_NO_Z(src)].</b>"
 		if(SENTRY_ALERT_DAMAGE)
-			var/percent = max(0, (obj_integrity / max(1, max_integrity)) * 100)
-			if(percent)
-				notice = "<b>ALERT! [src] at: [get_area(src)] has taken damage. Coordinates: (X: [x], Y: [y]). Remaining Structural Integrity: [percent]%</b>"
-			else
-				notice = "<b>ALERT! [src] at: [get_area(src)], Coordinates: (X: [x], Y: [y]) has been destroyed.</b>"
+			notice = "<b>ALERT! [src] has taken damage at: [AREACOORD_NO_Z(src)]. Remaining Structural Integrity: ([obj_integrity]/[max_integrity])[obj_integrity < 50 ? " CONDITION CRITICAL!!" : ""]</b>"
+		if(SENTRY_ALERT_DESTROYED)
+			notice = "<b>ALERT! [src] at: [AREACOORD_NO_Z(src)] has been destroyed!</b>"
 		if(SENTRY_ALERT_BATTERY)
-			notice = "<b>ALERT! [src]'s battery depleted at: [get_area(src)]. Coordinates: (X: [x], Y: [y]).</b>"
+			notice = "<b>ALERT! [src]'s battery depleted at: [AREACOORD_NO_Z(src)].</b>"
+
+	playsound(loc, 'sound/machines/warning-buzzer.ogg', 50, FALSE)
 	radio.talk_into(src, "[notice]", FREQ_COMMON)
 
 /obj/machinery/marine_turret/mini
@@ -1262,7 +1279,7 @@
 	icon_state = "minisentry_packed"
 	item_state = "minisentry_packed"
 	w_class = WEIGHT_CLASS_BULKY
-	max_integrity = 200 //We keep track of this when folding up the sentry.
+	max_integrity = 100
 	var/rounds = 500
 	var/obj/item/cell/cell
 	flags_equip_slot = ITEM_SLOT_BACK

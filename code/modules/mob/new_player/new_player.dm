@@ -162,7 +162,7 @@
 			if(!SSticker || SSticker.current_state == GAME_STATE_STARTUP)
 				to_chat(src, "<span class='warning'>The game is still setting up, please try again later.</span>")
 				return
-			if(alert("Are you sure you wish to observe?[SSticker.mode?.observe_respawn_message()]", "Observe", "Yes", "No") == "Yes")
+			if(tgui_alert(src, "Are you sure you wish to observe?[SSticker.mode?.observe_respawn_message()]", "Observe", list("Yes", "No")) == "Yes")
 				if(!client)
 					return TRUE
 				var/mob/dead/observer/observer = new()
@@ -193,7 +193,7 @@
 				var/datum/species/species = GLOB.all_species[client.prefs.species] || GLOB.all_species[DEFAULT_SPECIES]
 
 				if(is_banned_from(ckey, "Appearance") || !client?.prefs)
-					species = GLOB.all_species[DEFAULT_SPECIES]
+					species = GLOB.roundstart_species[DEFAULT_SPECIES]
 					observer.real_name = species.random_name()
 				else if(client.prefs)
 					if(client.prefs.random_name)

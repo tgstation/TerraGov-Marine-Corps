@@ -89,9 +89,8 @@
 					adjust_stagger(4)
 					add_slowdown(4)
 
-	apply_damage(b_loss, BRUTE)
-	apply_damage(f_loss, BURN)
-	UPDATEHEALTH(src)
+	apply_damage(b_loss, BRUTE, updating_health = TRUE)
+	apply_damage(f_loss, BURN, updating_health = TRUE)
 
 
 /mob/living/carbon/xenomorph/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE)

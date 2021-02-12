@@ -22,7 +22,7 @@
 	if(!istype(I) || (I.flags_item & (DELONDROP|NODROP)))
 		return
 	if(r_hand == null || l_hand == null)
-		switch(alert(src,"[usr] wants to give you \a [I]?",,"Yes","No"))
+		switch(tgui_alert(src,"[usr] wants to give you \a [I]?", null,list("Yes","No")))
 			if("Yes")
 				if(!I || !usr || !istype(I))
 					return
@@ -43,7 +43,5 @@
 						if(put_in_hands(I))
 							usr.visible_message("<span class='notice'>[usr] hands [I] to [src].</span>",
 							"<span class='notice'>You hand [I] to [src].</span>", null, 4)
-			if("No")
-				return
-	else
-		to_chat(usr, "<span class='warning'>[src]'s hands are full.</span>")
+							return
+	to_chat(usr, "<span class='warning'>[src]'s hands are full.</span>")

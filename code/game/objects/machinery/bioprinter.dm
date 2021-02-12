@@ -39,7 +39,7 @@
 	if(working)
 		to_chat(user, "Something is already being printed...")
 		return
-	var/choice = input("What would you like to print?") as null|anything in products
+	var/choice = tgui_input_list(user, "What would you like to print?", null, products)
 	if(!choice)
 		return
 	if(stored_matter >= products[choice][2] && stored_metal >= products[choice][3]) //Matter and metal
@@ -88,3 +88,6 @@
 			icon_state = "bioprinter_busy"
 		else
 			icon_state = "bioprinter"
+
+/obj/machinery/bioprinter/stocked
+	stored_metal = 1000

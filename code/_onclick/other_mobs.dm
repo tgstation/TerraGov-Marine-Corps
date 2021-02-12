@@ -1,7 +1,7 @@
 /*
 	Animals & All Unspecified
 */
-/mob/living/UnarmedAttack(atom/A)
+/mob/living/UnarmedAttack(atom/A, has_proximity, modifiers)
 	A.attack_animal(src)
 
 
@@ -13,7 +13,7 @@
 /*
 	Monkeys
 */
-/mob/living/carbon/monkey/UnarmedAttack(atom/A)
+/mob/living/carbon/monkey/UnarmedAttack(atom/A, has_proximity, modifiers)
 	A.attack_paw(src)
 
 /atom/proc/attack_paw(mob/living/carbon/monkey/user)
@@ -41,7 +41,7 @@
 				if(user_unbuckle_mob(buckled_mobs[1], user))
 					return TRUE
 			else
-				var/unbuckled = input(user, "Who do you wish to unbuckle?", "Unbuckle Who?") as null|mob in sortNames(buckled_mobs)
+				var/unbuckled = tgui_input_list(user, "Who do you wish to unbuckle?", "Unbuckle Who?", sortNames(buckled_mobs))
 				if(!unbuckled)
 					return
 				if(user_unbuckle_mob(unbuckled, user))
