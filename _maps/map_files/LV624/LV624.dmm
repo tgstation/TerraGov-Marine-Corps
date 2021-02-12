@@ -13187,7 +13187,7 @@
 "bms" = (
 /obj/structure/cable,
 /obj/structure/rack,
-/obj/item/weapon/gun/pistol/b92fs,
+/obj/item/weapon/gun/pistol/g22,
 /turf/open/floor/tile/white,
 /area/lv624/ground/river1)
 "bmu" = (
@@ -14730,10 +14730,10 @@
 "cAZ" = (
 /obj/structure/cable,
 /obj/structure/rack,
-/obj/item/ammo_magazine/pistol/b92fs,
-/obj/item/ammo_magazine/pistol/b92fs,
-/obj/item/ammo_magazine/pistol/b92fs,
-/obj/item/ammo_magazine/pistol/b92fs,
+/obj/item/ammo_magazine/pistol/g22,
+/obj/item/ammo_magazine/pistol/g22,
+/obj/item/ammo_magazine/pistol/g22,
+/obj/item/ammo_magazine/pistol/g22,
 /turf/open/floor/tile/white,
 /area/lv624/ground/river1)
 "cBy" = (
@@ -15469,16 +15469,6 @@
 	dir = 4
 	},
 /area/lv624/ground/jungle6)
-"iQq" = (
-/obj/structure/fence,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/plating/ground/dirtgrassborder{
-	dir = 4
-	},
-/area/lv624/ground/jungle3)
 "iTb" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/closed/gm/dense,
@@ -16419,7 +16409,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand5)
 "qNn" = (
-/obj/item/weapon/gun/pistol/b92fs,
+/obj/item/weapon/gun/pistol/g22,
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/secure_storage)
 "qSA" = (
