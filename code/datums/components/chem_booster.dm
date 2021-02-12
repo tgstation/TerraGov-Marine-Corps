@@ -142,7 +142,6 @@
 			extract(10)
 
 /datum/component/chem_booster/proc/on_off(datum/source)
-	SEND_SIGNAL(parent, COMSIG_CHEM_BOOSTER_ON_OFF, !boost_on)
 	if(boost_on)
 		STOP_PROCESSING(SSobj, src)
 
@@ -271,7 +270,7 @@ datum/component/chem_booster/proc/act_scanner()
 		return
 	update_resource(20)
 
-///Adds or removes resource from the suit. Signal gets sent at every 25%
+///Adds or removes resource from the suit. Signal gets sent at every 25% of stored resource
 /datum/component/chem_booster/proc/update_resource(amount)
 	var/amount_added = min(resource_storage_max - resource_storage_current, amount)
 	var/storage_segment = resource_storage_max*0.25
@@ -279,8 +278,8 @@ datum/component/chem_booster/proc/act_scanner()
 	var/new_resource_str_tier = FLOOR(resource_storage_current + amount_added, storage_segment)
 
 	if(new_resource_str_tier != current_resource_str_tier)
-		var/resource_percentage = (resource_storage_current+amount_added)/resource_storage_max
-		SEND_SIGNAL(parent, COMSIG_CHEM_BOOSTER_RES_UPD, resource_percentage, amount_added)
+		var/stored_resource_percentage = (resource_storage_current+amount_added)/resource_storage_max
+		SEND_SIGNAL(parent, COMSIG_CHEM_BOOSTER_RES_UPD, stored_resource_percentage, amount_added)
 	resource_storage_current = max(resource_storage_current + amount_added, 0)
 
 ///Extracts resource from the suit to fill a beaker
