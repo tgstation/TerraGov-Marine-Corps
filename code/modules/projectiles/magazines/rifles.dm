@@ -319,7 +319,7 @@
 /obj/item/ammo_magazine/rifle/tx11
 	name = "\improper TX-11 combat rifle magazine"
 	desc = "A magazine filled with 4.92×34mm rifle rounds for the TX-11."
-	caliber = "4.92×34mm caseless"
+	caliber = "4.92x34mm caseless"
 	icon_state = "tx11"
 	default_ammo = /datum/ammo/bullet/rifle/hv
 	max_rounds = 70
