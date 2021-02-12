@@ -394,18 +394,6 @@
 				qdel(H.glasses)
 				H.update_inv_glasses(0)
 
-	else if(ismonkey(L))
-		var/mob/living/carbon/monkey/MK = L
-		if(MK.wear_mask)
-			if(!CHECK_BITFIELD(MK.wear_mask.resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
-				if(show_message)
-					to_chat(MK, "<span class='danger'>Your mask melts away but protects you from the acid!</span>")
-				qdel(MK.wear_mask)
-				MK.update_inv_wear_mask(0)
-			else if(show_message)
-				to_chat(MK, "<span class='warning'>Your mask protects you from the acid.</span>")
-			return
-
 	if(!isxeno(L))
 		if(ishuman(L) && volume >= 10)
 			var/mob/living/carbon/human/H = L

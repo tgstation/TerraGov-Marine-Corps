@@ -41,7 +41,7 @@
 	..()
 
 
-/obj/structure/closet/secure_closet/attack_paw(mob/living/carbon/monkey/user)
+/obj/structure/closet/secure_closet/attack_paw(mob/living/carbon/human/user)
 	return src.attack_hand(user)
 
 /obj/structure/closet/secure_closet/verb/verb_togglelock()

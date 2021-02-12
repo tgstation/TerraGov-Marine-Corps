@@ -281,7 +281,7 @@
 			take_damage(rand(0, 250))
 
 //Interactions
-/turf/closed/wall/attack_paw(mob/living/carbon/monkey/user)
+/turf/closed/wall/attack_paw(mob/living/carbon/human/user)
 	return attack_hand(user)
 
 

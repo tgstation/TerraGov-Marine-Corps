@@ -19,12 +19,6 @@
 		hud.add_to_hud(src)
 
 
-/mob/living/carbon/monkey/add_to_all_mob_huds()
-	for(var/h in GLOB.huds)
-		var/datum/atom_hud/hud = h
-		hud.add_to_hud(src)
-
-
 /mob/living/carbon/xenomorph/add_to_all_mob_huds()
 	for(var/h in GLOB.huds)
 		if(!istype(h, /datum/atom_hud/xeno))
@@ -43,13 +37,6 @@
 			continue
 		var/datum/atom_hud/hud = h
 		hud.remove_from_hud(src)
-
-
-/mob/living/carbon/monkey/remove_from_all_mob_huds()
-	for(var/h in GLOB.huds)
-		var/datum/atom_hud/hud = h
-		hud.add_to_hud(src)
-
 
 /mob/living/carbon/xenomorph/remove_from_all_mob_huds()
 	for(var/h in GLOB.huds)
@@ -189,20 +176,6 @@
 /mob/living/carbon/xenomorph/med_hud_set_status()
 	hud_set_plasma()
 	hud_set_pheromone()
-
-
-/mob/living/carbon/monkey/med_hud_set_status()
-	var/image/holder = hud_list[XENO_EMBRYO_HUD]
-	if(status_flags & XENO_HOST)
-		var/obj/item/alien_embryo/E = locate(/obj/item/alien_embryo) in src
-		if(E)
-			holder.icon_state = "infected[E.stage]"
-		else if(locate(/mob/living/carbon/xenomorph/larva) in src)
-			holder.icon_state = "infected5"
-	else if(stat == DEAD)
-		holder.icon_state = "huddead"
-	else
-		holder.icon_state = ""
 
 
 /mob/living/carbon/human/med_hud_set_status()

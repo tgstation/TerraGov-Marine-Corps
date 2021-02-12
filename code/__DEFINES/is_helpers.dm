@@ -58,6 +58,14 @@
 #define issectoid(H) (is_species(H, /datum/species/sectoid))
 #define ishumanbasic(H) (is_species(H, /datum/species/human))
 
+//Monkey species and subtypes
+#define ismonkey(H) (is_species(H, /datum/species/monkey))
+#define isfarwa(H) (is_species(H, /datum/species/monkey/farwa))
+#define isstok(H) (is_species(H, /datum/species/monkey/stok))
+#define isnaera(H) (is_species(H, /datum/species/monkey/naera))
+#define isyiren(H) (is_species(H, /datum/species/monkey/yiren))
+
+
 //Job/role helpers
 #define ismarinefaction(H) (H.faction == "TerraGov")
 #define isterragovjob(J) (istype(J, /datum/job/terragov))
@@ -72,14 +80,7 @@
 #define issurvivorjob(J) (istype(J, /datum/job/survivor))
 #define ischaplainjob(J) (istype(J, /datum/job/survivor/chaplain))
 
-//more carbon mobs
-#define ismonkey(A) (istype(A, /mob/living/carbon/monkey))
-
 //Monkey sub-species
-#define ismonkeytajaran(M) (istype(M, /mob/living/carbon/monkey/tajara))
-#define ismonkeyskrell(M) (istype(M, /mob/living/carbon/monkey/skrell))
-#define ismonkeyunathi(M) (istype(M, /mob/living/carbon/monkey/unathi))
-#define ismonkeyyiren(M) (istype(M, /mob/living/carbon/monkey/yiren))
 
 #define isxeno(A) (istype(A, /mob/living/carbon/xenomorph))
 

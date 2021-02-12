@@ -403,15 +403,15 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 /mob/living/carbon/human/update_inv_wear_id()
 	remove_overlay(ID_LAYER)
 	if(!wear_id)
-		return	
-		
+		return
+
 	if(client && hud_used?.hud_shown)
 		wear_id.screen_loc = ui_id
 		client.screen += wear_id
-	
+
 	if(w_uniform?.displays_id || istype(wear_id, /obj/item/card/id/dogtag))
 		overlays_standing[ID_LAYER]	= wear_id.make_worn_icon(body_type = species.name, slot_name = slot_wear_id_str, default_icon = 'icons/mob/mob.dmi', default_layer = ID_LAYER)
-	
+
 	apply_overlay(ID_LAYER)
 
 
@@ -424,7 +424,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 		overlays_standing[GLOVES_LAYER]	= gloves.make_worn_icon(body_type = species.name, slot_name = slot_gloves_str, default_icon = 'icons/mob/hands.dmi', default_layer = GLOVES_LAYER)
 		apply_overlay(GLOVES_LAYER)
 		return
-	
+
 	if(!blood_color || !bloody_hands)
 		return
 	var/datum/limb/left_hand = get_limb("l_hand")
@@ -455,7 +455,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 	if(istype(glasses,/obj/item/clothing/glasses/mgoggles))
 		overlays_standing[GOGGLES_LAYER] = glasses.make_worn_icon(body_type = species.name, slot_name = slot_glasses_str, default_icon = 'icons/mob/eyes.dmi', default_layer = GOGGLES_LAYER)
 		apply_overlay(GOGGLES_LAYER)
-	
+
 	else
 		overlays_standing[GLASSES_LAYER] = glasses.make_worn_icon(body_type = species.name, slot_name = slot_glasses_str, default_icon = 'icons/mob/eyes.dmi', default_layer = GLASSES_LAYER)
 		apply_overlay(GLASSES_LAYER)
@@ -464,7 +464,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 	remove_overlay(EARS_LAYER)
 	if(!wear_ear)
 		return
-	
+
 	if(client && hud_used?.hud_shown && hud_used.inventory_shown)
 		wear_ear.screen_loc = ui_wear_ear
 		client.screen += wear_ear
@@ -482,7 +482,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 			client.screen += shoes
 	if(wear_suit?.flags_inv_hide & HIDESHOES)
 		return
-	
+
 	if(shoes)
 		overlays_standing[SHOES_LAYER] = shoes.make_worn_icon(body_type = species.name, slot_name = slot_shoes_str, default_icon = 'icons/mob/feet.dmi', default_layer = SHOES_LAYER)
 	else if(feet_blood_color)
@@ -496,11 +496,11 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 	remove_overlay(SUIT_STORE_LAYER)
 	if(!s_store)
 		return
-	
+
 	if(client && hud_used?.hud_shown)
 		s_store.screen_loc = ui_sstore1
 		client.screen += s_store
-	
+
 	overlays_standing[SUIT_STORE_LAYER] = s_store.make_worn_icon(body_type = species.name, slot_name = slot_s_store_str, default_icon = 'icons/mob/suit_slot.dmi', default_layer = SUIT_STORE_LAYER)
 	apply_overlay(SUIT_STORE_LAYER)
 
@@ -510,11 +510,11 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 	remove_overlay(HEAD_LAYER)
 	if(!head)
 		return
-	
+
 	if(client && hud_used?.hud_shown && hud_used.inventory_shown)
 		head.screen_loc = ui_head
 		client.screen += head
-	
+
 	overlays_standing[HEAD_LAYER] = head.make_worn_icon(body_type = species.name, slot_name = slot_head_str, default_icon = 'icons/mob/head_0.dmi', default_layer = HEAD_LAYER)
 
 	apply_overlay(HEAD_LAYER)
@@ -524,7 +524,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 	remove_overlay(BELT_LAYER)
 	if(!belt)
 		return
-	
+
 	if(client && hud_used?.hud_shown)
 		belt.screen_loc = ui_belt
 		client.screen += belt
@@ -540,7 +540,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 	species?.update_inv_wear_suit(src)
 	if(!wear_suit)
 		return
-		
+
 	if(client && hud_used?.hud_shown && hud_used.inventory_shown)
 		wear_suit.screen_loc = ui_oclothing
 		client.screen += wear_suit
@@ -567,11 +567,11 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 
 	if(head?.flags_inv_hide & HIDEMASK)
 		return
-	
+
 	if(client && hud_used?.hud_shown && hud_used.inventory_shown)
 		wear_mask.screen_loc = ui_mask
 		client.screen += wear_mask
-	
+
 	overlays_standing[FACEMASK_LAYER] = wear_mask.make_worn_icon(body_type = species.name, slot_name = slot_wear_mask_str, default_icon = 'icons/mob/mask.dmi', default_layer = FACEMASK_LAYER)
 
 	apply_overlay(FACEMASK_LAYER)
@@ -584,7 +584,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 	if(client && hud_used?.hud_shown)
 		back.screen_loc = ui_back
 		client.screen += back
-	
+
 	overlays_standing[BACK_LAYER] = back.make_worn_icon(body_type = species.name, slot_name = slot_back_str, default_icon = 'icons/mob/back.dmi', default_layer = BACK_LAYER)
 
 	apply_overlay(BACK_LAYER)
@@ -615,7 +615,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 	remove_overlay(L_HAND_LAYER)
 	if(!l_hand)
 		return
-	
+
 	if(client && hud_used?.hud_version != HUD_STYLE_NOHUD)
 		client.screen += l_hand
 		l_hand.screen_loc = ui_lhand
@@ -626,15 +626,14 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 
 /mob/living/carbon/human/proc/update_tail_showing()
 	remove_overlay(TAIL_LAYER)
-
 	if(!species.tail)
 		return
-	if((wear_suit?.flags_inv_hide & HIDETAIL) && !istype(wear_suit, /obj/item/clothing/suit/space))
-		var/icon/tail_s = new/icon("icon" = 'icons/effects/species.dmi', "icon_state" = "[species.tail]_s")
-		tail_s.Blend(rgb(r_skin, g_skin, b_skin), ICON_ADD)
-		overlays_standing[TAIL_LAYER]	= image(tail_s, layer = -TAIL_LAYER)
-
-		apply_overlay(TAIL_LAYER)
+	if(istype(wear_suit, /obj/item/clothing/suit/space) || (wear_suit.flags_inv_hide & HIDETAIL))
+		return
+	var/icon/tail_s = new/icon("icon" = 'icons/effects/species.dmi', "icon_state" = "[species.tail]_s")
+	tail_s.Blend(rgb(r_skin, g_skin, b_skin), ICON_ADD)
+	overlays_standing[TAIL_LAYER]	= image(tail_s, layer = -TAIL_LAYER)
+	apply_overlay(TAIL_LAYER)
 
 
 // Used mostly for creating head items

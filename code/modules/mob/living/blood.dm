@@ -5,17 +5,10 @@
 /mob/living/proc/handle_blood()
 	return
 
-/mob/living/carbon/monkey/handle_blood()
-	if(bodytemperature >= 225) //cryosleep people do not pump the blood.
-		//Blood regeneration if there is some space
-		if(blood_volume < BLOOD_VOLUME_NORMAL)
-			blood_volume += 0.1 // regenerate blood VERY slowly
-
 
 // Takes care blood loss and regeneration
 /mob/living/carbon/human/handle_blood()
-
-	if(NO_BLOOD in species.species_flags)
+	if(species.species_flags & NO_BLOOD)
 		return
 
 	if(stat != DEAD && bodytemperature >= 170)	//Dead or cryosleep people do not pump the blood.
@@ -191,23 +184,6 @@
 		container.reagents.remove_reagent(R.type, amount)
 
 
-/mob/living/carbon/monkey/inject_blood(obj/item/reagent_containers/container, amount)
-	. = ..()
-
-	// A way to assign a blood type to a monkey for clone research
-	if(blood_type)
-		return
-
-	for(var/r in container.reagents.reagent_list)
-		var/datum/reagent/R = r
-		// If its blood, lets check its compatible or not and cause some toxins.
-		if(istype(R, /datum/reagent/blood))
-			if(!R.data || !R.data["blood_type"])
-				stack_trace("reagant blood didn't have a blood_type")
-			blood_type = R.data["blood_type"]
-			break
-
-
 //Transfers blood from container to human, respecting blood types compatability.
 /mob/living/carbon/human/inject_blood(obj/item/reagent_containers/container, amount)
 	var/b_id = get_blood_id()
@@ -292,13 +268,10 @@
 	return species.blood_color
 
 
-
+//todo make these return values defines
 //get the id of the substance this mob uses as blood.
 /mob/proc/get_blood_id()
 	return
-
-/mob/living/carbon/monkey/get_blood_id()
-	return "blood"
 
 /mob/living/carbon/xenomorph/get_blood_id()
 	return "xenoblood"

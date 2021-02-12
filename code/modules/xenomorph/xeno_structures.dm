@@ -175,7 +175,7 @@
 	if(!iscarbon(G.grabbed_thing))
 		return
 	var/mob/living/carbon/victim = G.grabbed_thing
-	if(!(ishuman(victim) || ismonkey(victim))) //humans and monkeys only for now
+	if(!ishuman(victim)) //humans and monkeys only for now
 		to_chat(user, "<span class='notice'>[src] can only process humanoid anatomies!</span>")
 		return
 

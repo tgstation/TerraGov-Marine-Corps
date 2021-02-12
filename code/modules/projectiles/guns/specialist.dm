@@ -90,11 +90,6 @@
 	apply_overlay(X_LASER_LAYER)
 	return TRUE
 
-/mob/living/carbon/monkey/apply_laser()
-	overlays_standing[M_LASER_LAYER] = image("icon" = 'icons/obj/items/projectiles.dmi',"icon_state" = "sniper_laser", "layer" =-M_LASER_LAYER)
-	apply_overlay(M_LASER_LAYER)
-	return TRUE
-
 /mob/living/carbon/proc/remove_laser()
 	return FALSE
 
@@ -104,10 +99,6 @@
 
 /mob/living/carbon/xenomorph/remove_laser()
 	remove_overlay(X_LASER_LAYER)
-	return TRUE
-
-/mob/living/carbon/monkey/remove_laser()
-	remove_overlay(M_LASER_LAYER)
 	return TRUE
 
 

@@ -179,7 +179,7 @@
 			to_chat(usr,"<span class='notice'> You will now track [X.name]</span>")
 			tracked = X
 			break
-	
+
 	if(href_list["track_silo_number"])
 		if(!check_state())
 			return
@@ -658,11 +658,6 @@
 
 
 /atom/proc/can_sting()
-	return FALSE
-
-/mob/living/carbon/monkey/can_sting()
-	if(stat != DEAD)
-		return TRUE
 	return FALSE
 
 /mob/living/carbon/human/can_sting()

@@ -259,7 +259,7 @@
 	new /obj/structure/mineral_door/resin/thick(oldloc)
 	return TRUE
 
-/obj/structure/mineral_door/resin/attack_paw(mob/living/carbon/monkey/user)
+/obj/structure/mineral_door/resin/attack_paw(mob/living/carbon/human/user)
 	if(user.a_intent == INTENT_HARM)
 		user.visible_message("<span class='xenowarning'>\The [user] claws at \the [src].</span>", \
 		"<span class='xenowarning'>You claw at \the [src].</span>")

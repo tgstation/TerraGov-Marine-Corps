@@ -318,7 +318,7 @@
 		dat += "<tr><td>[(M.key ? "[M.key]" : "No Key")]</td>"
 		dat += "<td><a href='?priv_msg=[M.ckey]'>[M.name]</a></td>"
 		if(isAI(M))
-			dat += "<td>aI</td>"
+			dat += "<td>AI</td>"
 		else if(ishuman(M))
 			dat += "<td>[M.real_name]</td>"
 		else if(istype(M, /mob/new_player))
