@@ -189,7 +189,7 @@
 	icon_state = "[initial(icon_state)]-empty"
 
 /obj/item/flashlight/flare/proc/turn_off()
-	turn_light(null, FALSE)
+	turn_light(null, FALSE, 0, FALSE, TRUE)
 
 /obj/item/flashlight/flare/attack_self(mob/user)
 

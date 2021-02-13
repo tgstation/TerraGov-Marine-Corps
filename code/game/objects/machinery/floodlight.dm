@@ -356,7 +356,7 @@
 
 /obj/machinery/colony_floodlight_switch/power_change()
 	. = ..()
-	if(machine_stat & NOPOWER)
+	if(machine_stat && NOPOWER)
 		if(turned_on)
 			toggle_lights(FALSE)
 			turned_on = FALSE

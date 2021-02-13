@@ -203,13 +203,6 @@
 	var/area/A = get_area(src)
 	turn_light(null, (A.lightswitch && A.power_light))
 
-
-/obj/machinery/light/Destroy()
-	var/area/A = get_area(src)
-	if(A)
-		light_on = FALSE
-	return ..()
-
 /obj/machinery/light/proc/is_broken()
 	if(status == LIGHT_BROKEN)
 		return TRUE
