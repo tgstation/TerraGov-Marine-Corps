@@ -89,6 +89,7 @@
 		/obj/item/ammo_magazine/revolver,
 		/obj/item/ammo_magazine/sniper,
 		/obj/item/ammo_magazine/handful,
+	)
 
 /obj/item/armor_module/storage/ammo_mag
 	name = "Magazine Storage module"
