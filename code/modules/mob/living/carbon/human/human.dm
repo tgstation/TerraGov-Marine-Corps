@@ -983,28 +983,28 @@
 		return FALSE
 	return ..()
 
-/mob/living/carbon/human/disable_lights(clothing = TRUE, guns = TRUE, flares = TRUE, misc = TRUE, sparks = FALSE, silent = FALSE, cooldown = 1 SECONDS, forced = FALSE)
+/mob/living/carbon/human/disable_lights(clothing = TRUE, guns = TRUE, flares = TRUE, misc = TRUE, sparks = FALSE, silent = FALSE, forced = FALSE)
 	var/light_off = 0
 	var/goes_out = 0
 	if(clothing)
 		if(istype(wear_suit, /obj/item/clothing/suit))
 			var/obj/item/clothing/suit/S = wear_suit
-			if(S.turn_light(src, FALSE))
+			if(S.turn_light(src, FALSE, 0, FALSE, forced))
 				light_off++
-		for(var/obj/item/clothing/head/hardhat/H in contents) //Potential bug abuse here, lights in bags and such are not affected
-			H.turn_light(src, FALSE)				  
+		for(var/obj/item/clothing/head/hardhat/H in contents)
+			H.turn_light(src, FALSE, 0,FALSE, forced)				  
 			light_off++
 		for(var/obj/item/flashlight/L in contents)
 			if(istype(L, /obj/item/flashlight/flare))
 				continue
-			if(L.turn_light(src, FALSE))
+			if(L.turn_light(src, FALSE, 0, FALSE, forced))
 				light_off++
 	if(guns)
 		for(var/obj/item/weapon/gun/lit_gun in contents)
 			if(!isattachmentflashlight(lit_gun.rail))
 				continue
 			var/obj/item/attachable/flashlight/lit_rail_flashlight = lit_gun.rail
-			lit_rail_flashlight.turn_light(src, FALSE)
+			lit_rail_flashlight.turn_light(src, FALSE, 0, FALSE, forced)
 			light_off++
 	if(flares)
 		for(var/obj/item/flashlight/flare/F in contents)
@@ -1029,7 +1029,7 @@
 		for(var/obj/item/tool/lighter/Z in contents)
 			if(Z.turn_off(src))
 				goes_out++
-	if(sparks & light_off)
+	if(sparks && light_off)
 		var/datum/effect_system/spark_spread/spark_system = new
 		spark_system.set_up(5, 0, src)
 		spark_system.attach(src)
@@ -1037,17 +1037,19 @@
 	if(!silent)
 		if(goes_out && light_off)
 			to_chat(src, "<span class='notice'>Your sources of light short and fizzle out.</span>")
-		else if(goes_out)
+			return
+		if(goes_out)
 			if(goes_out > 1)
 				to_chat(src, "<span class='notice'>Your sources of light fizzle out.</span>")
-			else
-				to_chat(src, "<span class='notice'>Your source of light fizzles out.</span>")
-		else if(light_off)
+				return
+			to_chat(src, "<span class='notice'>Your source of light fizzles out.</span>")
+			return
+		if(light_off)
 			if(light_off > 1)
 				to_chat(src, "<span class='notice'>Your sources of light short out.</span>")
-			else
-				to_chat(src, "<span class='notice'>Your sources of light shorts out.</span>")
-		return TRUE
+				return
+			to_chat(src, "<span class='notice'>Your source of light shorts out.</span>")
+		
 
 
 /mob/living/carbon/human/proc/randomize_appearance()
