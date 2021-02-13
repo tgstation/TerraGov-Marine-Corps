@@ -36,7 +36,7 @@
 
 //Processing; this is for abilities so we don't need to make endless xeno types to code specifically for what abilities they spawn with
 /datum/ai_behavior/carbon/process()
-	if(mob_parent.action_busy) //No activating more abilities if they're already in the progress of doing one
+	if(mob_parent.do_actions) //No activating more abilities if they're already in the progress of doing one
 		return ..()
 
 	for(var/datum/action/action in ability_list)

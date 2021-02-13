@@ -450,7 +450,7 @@ should be alright.
 
 	src = G
 
-	if(usr.action_busy)
+	if(usr.do_actions)
 		return
 
 	if(zoom)
@@ -492,7 +492,7 @@ should be alright.
 	if(get_active_firearm(usr) != src)//dropped the gun
 		return
 
-	if(usr.action_busy)
+	if(usr.do_actions)
 		return
 
 	if(zoom)
@@ -892,7 +892,7 @@ should be alright.
 		return
 	to_chat(user, "<span class='notice'>You steady your breathing...</b></span>")
 
-	if(user.action_busy)
+	if(user.do_actions)
 		return
 	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_BAR, ignore_turf_checks = TRUE))
 		to_chat(user, "<span class='warning'>Your concentration is interrupted!</b></span>")

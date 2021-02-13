@@ -32,7 +32,7 @@
 		return TRUE
 	if(accidental)
 		return FALSE
-	if(implant_owner.action_busy)
+	if(implant_owner.do_actions)
 		return FALSE
 	if(SEND_SIGNAL(implant_owner, COMSIG_MOB_ENABLE_STEALTH) & STEALTH_ALREADY_ACTIVE)
 		to_chat(implant_owner, "<span class='warning'>WARNING. Implant activation failed; Error code 518: Subject already cloaked.</span>")

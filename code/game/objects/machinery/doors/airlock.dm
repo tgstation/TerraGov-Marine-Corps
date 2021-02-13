@@ -217,7 +217,7 @@
 		to_chat(X, "<span class='warning'>\The [src] is already open!</span>")
 		return FALSE
 
-	if(X.action_busy)
+	if(X.do_actions)
 		return FALSE
 
 	playsound(loc, 'sound/effects/metal_creaking.ogg', 25, 1)

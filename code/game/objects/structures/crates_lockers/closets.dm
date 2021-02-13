@@ -349,7 +349,7 @@
 	if(!welded && !locked)
 		open()
 		return FALSE
-	if(user.action_busy) //Already resisting or doing something like it.
+	if(user.do_actions) //Already resisting or doing something like it.
 		return FALSE
 	if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_RESIST))
 		return FALSE

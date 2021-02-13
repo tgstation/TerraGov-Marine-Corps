@@ -360,7 +360,7 @@
 
 /datum/action/xeno_action/toggle_queen_zoom/action_activate()
 	var/mob/living/carbon/xenomorph/queen/xeno = owner
-	if(xeno.action_busy)
+	if(xeno.do_actions)
 		return
 	if(xeno.is_zoomed)
 		zoom_xeno_out(xeno.observed_xeno ? FALSE : TRUE)
