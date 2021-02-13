@@ -56,8 +56,8 @@ if grep -nP '^/*var/' code/**/*.dm; then
     st=1
 fi;
 echo "Checking for src changing"
-if grep -nP '\tsrc = null' code/**/*.dmm; then
-    echo "base /turf path use detected in maps, please replace with proper paths."
+if grep -nP '.*\tsrc = ' code/**/*.dmm; then
+    echo "Illegal src change detected, please amend"
     st=1
 fi;
 echo "Checking for 0 length timers"

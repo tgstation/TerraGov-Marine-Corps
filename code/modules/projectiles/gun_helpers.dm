@@ -737,6 +737,7 @@ should be alright.
 
 	var/obj/item/weapon/gun/G = get_active_firearm(usr)
 	if(!G)
+		return
 
 	to_chat(usr, "<span class='notice'>You toggle the safety [flags_gun_features & GUN_TRIGGER_SAFETY ? "<b>off</b>" : "<b>on</b>"].</span>")
 	playsound(usr, 'sound/weapons/guns/interact/selector.ogg', 15, 1)
