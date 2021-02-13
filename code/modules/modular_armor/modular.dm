@@ -335,6 +335,7 @@
 	allowed = null
 	flags_equip_slot = ITEM_SLOT_HEAD
 	w_class = WEIGHT_CLASS_NORMAL
+	var/obj/item/storage/internal/pockets = /obj/item/storage/internal/marinehelmet
 
 	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 15, "bio" = 15, "rad" = 15, "fire" = 15, "acid" = 15)
 
@@ -468,6 +469,23 @@
 	if(!do_after(user, equip_delay, TRUE, user, BUSY_ICON_GENERIC))
 		return FALSE
 	update_overlays()
+
+/obj/item/clothing/head/modular/Initialize()
+	. = ..()
+	pockets = new pockets(src)
+
+
+/obj/item/clothing/head/modular/attack_hand(mob/living/user)
+	if(pockets.handle_attack_hand(user))
+		return ..()
+
+/obj/item/clothing/head/modular/MouseDrop(over_object, src_location, over_location)
+	if(pockets.handle_mousedrop(usr, over_object))
+		..()
+
+/obj/item/clothing/head/modular/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	return pockets.attackby(I, user, params)
 
 /obj/item/clothing/head/modular/marine
 	name = "Jaeger Pattern Infantry Helmet"
