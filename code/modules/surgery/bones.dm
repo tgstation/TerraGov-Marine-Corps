@@ -69,7 +69,6 @@
 	affected.remove_limb_flags(LIMB_BROKEN | LIMB_SPLINTED | LIMB_STABILIZED)
 	affected.add_limb_flags(LIMB_REPAIRED)
 	affected.bone_repair_stage = 0
-	affected.perma_injury = 0
 
 /datum/surgery_step/bone/set_bone/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	if(affected.body_part == HEAD)

@@ -11,7 +11,6 @@
 #define COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE "!open_timed_shutters_late"
 #define COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND "!open_timed_shutters_xeno_hivemind"
 #define COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH "!open_timed_shutters_crash"
-#define COMSIG_GLOB_OPEN_SHUTTERS_EARLY "!open_shutters_early"
 
 #define COMSIG_GLOB_REMOVE_VOTE_BUTTON "!remove_vote_button"
 #define COMSIG_GLOB_NUKE_START "!nuke_start"
@@ -290,6 +289,8 @@
 #define COMSIG_MOB_GUN_AUTOFIRED "mob_gun_autofired"
 #define COMSIG_MOB_ATTACHMENT_FIRED "mob_attachment_fired"
 #define COMSIG_MOB_TOGGLEMOVEINTENT "mob_togglemoveintent"		//drom base of mob/toggle_move_intent(): (new_intent)
+#define COMSIG_MOB_ENABLE_STEALTH "mob_togglestealth"
+	#define STEALTH_ALREADY_ACTIVE (1<<0)
 
 //mob/dead/observer
 #define COMSIG_OBSERVER_CLICKON "observer_clickon"				//from mob/dead/observer/ClickOn(): (atom/A, params)
@@ -355,6 +356,8 @@
 	#define COMSIG_ACCURATE_ZONE (1<<0)
 
 #define COMSIG_XENOMORPH_POUNCE "xenomorph_pounce"
+
+#define COMSIG_XENOMORPH_HEADBITE "headbite"
 
 #define COMSIG_XENOMORPH_GIBBING "xenomorph_gibbing"
 #define COMSIG_XENOMORPH_POSTEVOLVING "xenomorph_evolving"
@@ -528,13 +531,11 @@
 #define COMSIG_XENOABILITY_QUEEN_GIVE_ORDER "xenoability_queen_give_order"
 #define COMSIG_XENOABILITY_DEEVOLVE "xenoability_deevolve"
 #define COMSIG_XENOABILITY_QUEEN_LARVAL_GROWTH "xenoability_queen_larval_growth"
-#define COMSIG_XENOABILITY_CORRUPT_GENERATOR "xenoability_corrupt_generator"
 
 #define COMSIG_XENOABILITY_LAY_HIVEMIND "xenoability_lay_hivemind"
 #define COMSIG_XENOABILITY_LAY_EGG "xenoability_lay_egg"
 #define COMSIG_XENOABILITY_CALL_OF_THE_BURROWED "xenoability_call_of_the_burrowed"
 #define COMSIG_XENOABILITY_PSYCHIC_FLING "xenoability_psychic_fling"
-#define COMSIG_XENOABILITY_PSYCHIC_CHOKE "xenoability_psychic_choke"
 #define COMSIG_XENOABILITY_PSYCHIC_CURE "xenoability_psychic_cure"
 #define COMSIG_XENOABILITY_UNRELENTING_FORCE "xenoability_unrelenting_force"
 
@@ -560,6 +561,7 @@
 #define COMSIG_KB_HOLSTER "keybinding_holster"
 #define COMSIG_KB_UNIQUEACTION "keybinding_uniqueaction"
 #define COMSIG_KB_RAILATTACHMENT "keybinding_railattachment"
+#define COMSIG_KB_AIMMODE "keybinding_aimmode"
 
 // Ability adding/removing signals
 #define ACTION_GIVEN "gave_an_action"		//from base of /datum/action/proc/give_action(): (datum/action)

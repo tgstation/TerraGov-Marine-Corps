@@ -183,7 +183,7 @@
 	if(!length(valid_objects))
 		CRASH("yank_out_object called for empty valid_objects, lenght of embedded_objects is [length(embedded_objects)]")
 
-	var/obj/item/selection = input("What do you want to yank out?", "Embedded objects") in valid_objects
+	var/obj/item/selection = tgui_input_list(user, "What do you want to yank out?", "Embedded objects", valid_objects)
 
 	if(user.get_active_held_item())
 		to_chat(user, "<span class='warning'>You need an empty hand for this!</span>")

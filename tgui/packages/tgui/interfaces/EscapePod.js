@@ -8,8 +8,7 @@ export const EscapePod = (props, context) => {
     <Window
       title="Escape Pod"
       width={400}
-      height={140}
-      resizable>
+      height={140}>
       <Window.Content>
         <Section title="Escape Pod">
           Welcome to Nanotransens least luxurious survival pod!

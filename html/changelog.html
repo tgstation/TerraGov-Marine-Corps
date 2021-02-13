@@ -53,10 +53,131 @@
 		-->
 		<div class="commit sansserif">
 
+			<h2 class="date">13 February 2021</h2>
+			<h3 class="author">BeloneX updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="server">added more blacklisted versions</li>
+			</ul>
+			<h3 class="author">Pariah919 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="code_imp">removes pocket pistols multiplier obfuscation</li>
+				<li class="rscadd">Added new tx-11 in req vendor</li>
+			</ul>
+			<h3 class="author">TGCMbetcher updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="spellcheck">changed -580 Point to 571-C Base</li>
+			</ul>
+			<h3 class="author">Walarks updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">adds aim mode keybinding, 6 by default</li>
+				<li class="balance">removes random boiler bombard offset</li>
+			</ul>
+
+			<h2 class="date">12 February 2021</h2>
+			<h3 class="author">Pariah919 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">medic pil bicamera/keloderm bottle price doubled</li>
+			</ul>
+			<h3 class="author">SplinterGP updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="imageadd">added TGMC Background logo to replace nanotrasen background logo on tgui</li>
+			</ul>
+			<h3 class="author">TiviPlus updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">fixed tgui background resizing</li>
+			</ul>
+			<h3 class="author">jupyterkat BeloneX updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">fixed weird announcement text renderings</li>
+			</ul>
+
+			<h2 class="date">10 February 2021</h2>
+			<h3 class="author">Pariah919 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">sandbag intregrety halved</li>
+			</ul>
+			<h3 class="author">SplinterGP updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Oversized tgui windows will now resize to fit usable screen area (relevant for small laptop screens).</li>
+				<li class="tweak">All tgui windows are now resizable, unconditionally.</li>
+				<li class="bugfix">fixed some tgui input popups not showing</li>
+			</ul>
+			<h3 class="author">TiviPlus updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">As of yet unobtainable chem implant</li>
+				<li class="code_imp">Fixed some implant bugs and cleaned up implant code</li>
+				<li class="code_imp">Removes Psychic choke code</li>
+				<li class="code_imp">Unarmedattack no longer converts params twice</li>
+			</ul>
+			<h3 class="author">fernandos13 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">adds pistol lace attachment, which when active stops your gun from being dropped.</li>
+				<li class="balance">TP14 capacity increased.</li>
+				<li class="balance">TP23, TP14, m1911 capacity increased, quicker fire rate and less recoil</li>
+				<li class="balance">g22 accuracy increased, aimmode slowdown increased.</li>
+				<li class="balance">TP17 damage increased</li>
+				<li class="balance">Highpower automag recoil reduced, and less scatter when wielded</li>
+				<li class="balance">88mod 4 has quicker fire rate, less recoil, more scatter when not wielded</li>
+				<li class="balance">most pistols have less scatter</li>
+			</ul>
+
+			<h2 class="date">09 February 2021</h2>
+			<h3 class="author">Naaanii updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">adds the option for the xenos to capture the Alamo after it has been brought groundside, closing the round. This requires there to be less than 5 humans groundside</li>
+				<li class="rscadd">when the Alamo gets called, a bioscan signal is sent</li>
+			</ul>
+			<h3 class="author">SplinterGP updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="code_imp">Changes alot of byond input popups with TGUI Input UI's.</li>
+			</ul>
+			<h3 class="author">TiviPlus updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Newer Byond versions are now supported</li>
+				<li class="code_imp">cleans up some inventory code</li>
+				<li class="code_imp">Generic code cleanup pass and documentation</li>
+				<li class="code_imp">Admins and coders can now edit filters on the fly</li>
+				<li class="refactor">Refactors filters</li>
+				<li class="server">Add maximum reccomended version of byond</li>
+			</ul>
+
 			<h2 class="date">08 February 2021</h2>
+			<h3 class="author">BraveMole updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="tweak">Xenos rallying and silo arrow stays longer, and another colored arrow for silo destroyed</li>
+				<li class="tweak">Rallying the hive arrow will now target the caster, and not a tile</li>
+				<li class="refactor">refactored surreal code on hive alerts</li>
+				<li class="rscadd">You can give orders (defend, attack, retreat) from the overwatch console, wich acts as "waypoints" for every marine on ground.</li>
+				<li class="bugfix">Add back hud icons for non-squad job (Captain, CMO, FC, synth, etc..) sound: Marines have a sound when receiving an order</li>
+				<li class="rscadd">Spawning pools. They are randomly generated in caves, and each one will generate 0.5 larva points every minute. You need 8 points for a new larva. The number of spawning pool generated at start depends of the number of players, and they only spawn larva after shutters are opened</li>
+				<li class="rscadd">Psychic points. Queen and shrike can corrupt generators (10 in each map), marines can remove that corruption using a welder</li>
+				<li class="rscadd">Spawning pools can be constructed using psych points (900 points, wich corresponds to 30 minutes with 10 generators). You are given points to build pools at starts, depending on the number of players on the server Special pool can be built when hijack, the spawn rate of this upgraded pool is linear with the number of marines alive. Psych points are resets to 900 when hijacking, so you only get one and the other are destroyed when launching alamo</li>
+				<li class="balance">Marines have a new objective: if they kill all the pools, xenos have ten minutes to build another one or they lose.</li>
+				<li class="rscdel">Headbiting is gone</li>
+				<li class="rscdel">Voring is gone</li>
+				<li class="rscdel">Silos are gone, you can't silo bodies to gain larva</li>
+				<li class="tweak">Passive larva generation when marines are joining the game only works when shutters are closed, after that spawning pools are starting</li>
+				<li class="tweak">Xenos can't grab dead humans anymore, only living ones</li>
+				<li class="imageadd">Spawning pool sprite, stole from cimex sprite</li>
+			</ul>
 			<h3 class="author">Pariah919 updated:</h3>
 			<ul class="changes bgimages16">
 				<li class="balance">mines are small items again,average mine box holds 5 mines again</li>
+				<li class="rscadd">Added new antimaterial rifle to marines, 120 points. Functions like the old m42a scout sniper</li>
+				<li class="balance">autosniper repriced to 40</li>
+				<li class="rscadd">Added new nagant revolver and automag sprite</li>
+				<li class="rscdel">Removed some old gun sprites</li>
+			</ul>
+			<h3 class="author">Surrealaser updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="tweak">Evasion can now be forcibly cancelled by stagger, stun and other immobilizing debuffs.</li>
+				<li class="tweak">Burning now zeroes out Evasion stacks, and prevents their accumulation.</li>
+				<li class="tweak">Flamer direct hits now deplete Evasion stacks.</li>
+				<li class="balance">Evasion duration reduced to 2 seconds. Cooldown reduced from 30 seconds to 10 seconds. Plasma cost reduced from 20 to 10.</li>
+				<li class="balance">Evasion no longer has a cap on projectile damage it can dodge now; instead the user accumulates Evasion Stacks equal to projectile damage dodged while Evasion is active. If 120+ stacks are accumulated during the same Evasion duration, its current cooldown resets.</li>
+				<li class="balance">Each time you clear Evasion's cooldown by dodging damage, the amount of damage you must dodge to clear its cooldown increases by 100% of the base amount. This increase is cumulative and resets when its cooldown clears normally.</li>
+				<li class="refactor">Slow and stagger statuses partially refactored and standardized.</li>
+				<li class="bugfix">Fixed Healing Infusion timer mismatches cancelling the buff early.</li>
 			</ul>
 			<h3 class="author">TGCMbetcher updated:</h3>
 			<ul class="changes bgimages16">
@@ -65,6 +186,19 @@
 			<h3 class="author">TiviPlus updated:</h3>
 			<ul class="changes bgimages16">
 				<li class="refactor">Minor dreaming refactor</li>
+			</ul>
+			<h3 class="author">grinkgo updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">Corpsmen can now buy a wider variety of pills and injectors, including bicamera and keloderm.</li>
+				<li class="rscadd">Fully stocked medkit pouch added to Corpsmen closet.</li>
+				<li class="tweak">Medkit pouches now have advanced kits.</li>
+				<li class="rscdel">Corpsmen equipment vendor no longer vends the surgical vest.</li>
+				<li class="tweak">Surgical vests now spawn with a surgery tray's worth of tools.</li>
+				<li class="tweak">MarineMeds are now accessible to all marine personnel.</li>
+				<li class="tweak">Changed around some items in the MarineMed and in the corpsman vendor.</li>
+				<li class="tweak">Advanced combat autoinjectors now have 5u of tramadol instead of 5u of oxycodone.</li>
+				<li class="tweak">Oxycodone, Meralyne, and Dermaline OD changed from 19.8u to 15u.</li>
+				<li class="bugfix">New generation Healthmate HUDs now automatically adjust their lenses to match your eyesight preferences!</li>
 			</ul>
 
 			<h2 class="date">07 February 2021</h2>
@@ -940,49 +1074,6 @@
 				<li class="bugfix">fixes fire not lighting xenos on fire.</li>
 				<li class="bugfix">fixes acid globs stored on boiler not glowing.</li>
 				<li class="code_imp">makes xenos use newlights.</li>
-			</ul>
-
-			<h2 class="date">12 December 2020</h2>
-			<h3 class="author">SplinterGP updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="code_imp">makes acid use SSslowprocess instead of SSprocessing, saving performance.</li>
-			</ul>
-
-			<h2 class="date">09 December 2020</h2>
-			<h3 class="author">Hughgent updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="bugfix">Autoburst firemode now properly applying burst accuracy penalty.</li>
-			</ul>
-			<h3 class="author">TiviPlus updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="code_imp">Removes dead/unused huds</li>
-			</ul>
-			<h3 class="author">Wayland-Smithy updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="rscadd">Added the Salvage Biomass ability to Hivelord.</li>
-				<li class="bugfix">Fixed Crest Toss buckled mob interactions, and a visual feedback bug.</li>
-			</ul>
-			<h3 class="author">jroinc updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="bugfix">Russian Red doesn't yoink your arms anymore.</li>
-			</ul>
-
-			<h2 class="date">08 December 2020</h2>
-			<h3 class="author">Pariah919 updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="balance">nerfed lasgun overcharge to 5 sunder and 40 damage</li>
-			</ul>
-			<h3 class="author">SplinterGP updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="bugfix">fixes generating negative burrowed when hijacking.</li>
-			</ul>
-			<h3 class="author">Surrealaser updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="bugfix">Fixed minisentry duplication bug.</li>
-				<li class="bugfix">Fixed lighting bugs for sentries.</li>
-				<li class="refactor">Minor sentry refactors and removal/revision of old code.</li>
-				<li class="bugfix">Hotkey added for Evasion.</li>
-				<li class="bugfix">Minor bug with Evasion corrected.</li>
 			</ul>
 		</div>
 

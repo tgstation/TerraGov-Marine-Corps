@@ -35,17 +35,18 @@
 	if(paint.uses < 1)
 		to_chat(user, "<span class='warning'>\the [paint] is out of color!</span>")
 		return TRUE
-	paint.uses--
+	
 
-	var/new_color = input(user, "Pick a color", "Pick color", "") in list(
-		"black", "snow", "desert", "gray", "brown", "red", "blue", "yellow", "green", "aqua", "purple", "orange"
-	)
-
+	var/new_color = tgui_input_list(user, "Pick a color", "Pick color", list(
+		"black", "snow", "desert", "gray", "brown", "red", "blue", "yellow", "green", "aqua", "purple", "orange"))
+	if(!new_color)
+		return
 	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 		return TRUE
 
 	icon_state = "[initial(icon_state)]_[new_color]_icon"
 	item_state = "[initial(icon_state)]_[new_color]"
+	paint.uses--
 
 	return TRUE
 

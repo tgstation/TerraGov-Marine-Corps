@@ -102,7 +102,7 @@
 	gloves = /obj/item/clothing/gloves/marine/som
 	head = /obj/item/clothing/head/helmet/marine/som
 	glasses = /obj/item/clothing/glasses/hud/health
-	suit_store = /obj/item/weapon/gun/smg/skorpion/upp
+	suit_store = /obj/item/weapon/gun/smg/skorpion
 	r_store = /obj/item/storage/pouch/firstaid/som/full
 	l_store = /obj/item/storage/pouch/general/large
 	back = /obj/item/storage/backpack/lightpack/som

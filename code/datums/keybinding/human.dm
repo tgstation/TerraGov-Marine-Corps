@@ -32,3 +32,10 @@
 	full_name = "Activate Rail attachment"
 	description = ""
 	keybind_signal = COMSIG_KB_RAILATTACHMENT
+
+/datum/keybinding/human/toggle_aim_mode
+	hotkey_keys = list("6")
+	name = "toggle_aim_mode"
+	full_name = "Toggle aim mode"
+	description = ""
+	keybind_signal = COMSIG_KB_AIMMODE

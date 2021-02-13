@@ -1,0 +1,6 @@
+author: "TiviPlus"
+delete-after: True
+changes: 
+  - rscadd: "Unobtainable cloak implant"
+  - bugfix: "implants activate properly"
+  - code_imp: "two stealths may no longer be active to avoid alpha bugs"

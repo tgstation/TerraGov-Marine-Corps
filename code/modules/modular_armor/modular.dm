@@ -207,7 +207,7 @@
 	if(LAZYLEN(installed_modules) == 1) // Single item (just take it)
 		attachment = installed_modules[1]
 	else if(LAZYLEN(installed_modules) > 1) // Multi item, ask which piece
-		attachment = input(user, "Which module would you like to remove", "Remove module") as null|anything in installed_modules
+		attachment = tgui_input_list(user, "Which module would you like to remove", "Remove module", installed_modules)
 	if(!attachment)
 		return TRUE
 
@@ -247,7 +247,7 @@
 	if(length(armor_slots) == 1) // Single item (just take it)
 		armor_slot = armor_slots[1]
 	else if(length(armor_slots) > 1) // Multi item, ask which piece
-		armor_slot = input(user, "Which armor piece would you like to remove", "Remove armor piece") as null|anything in armor_slots
+		armor_slot = tgui_input_list(user, "Which armor piece would you like to remove", "Remove armor piece", armor_slots)
 	if(!armor_slot)
 		return TRUE
 
@@ -362,9 +362,9 @@
 		return TRUE
 	paint.uses--
 
-	var/new_color = input(user, "Pick a color", "Pick color", "") in list(
+	var/new_color = tgui_input_list(user, "Pick a color", "Pick color", list(
 		"black", "snow", "desert", "gray", "brown", "red", "blue", "yellow", "green", "aqua", "purple", "orange"
-	)
+	))
 
 	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 		return TRUE

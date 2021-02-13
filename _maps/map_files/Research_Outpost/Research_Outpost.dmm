@@ -3439,7 +3439,7 @@
 /turf/open/floor/plating,
 /area/outpost/engineering/engine)
 "sm" = (
-/obj/effect/landmark/xeno_spawning_pool_spawn,
+/obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/north_east)
 "sp" = (
@@ -3838,7 +3838,7 @@
 	},
 /area/outpost/yard/north_east)
 "uP" = (
-/obj/effect/landmark/xeno_spawning_pool_spawn,
+/obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/north_west)
 "uR" = (
@@ -4913,8 +4913,8 @@
 "AY" = (
 /obj/structure/rack,
 /obj/effect/decal/cleanable/dirt,
-/obj/item/weapon/gun/rifle/ak47/carbine,
-/obj/item/weapon/gun/rifle/ak47/carbine,
+/obj/item/weapon/gun/rifle/ak47,
+/obj/item/weapon/gun/rifle/ak47,
 /obj/item/ammo_magazine/rifle/ak47,
 /obj/item/ammo_magazine/rifle/ak47,
 /obj/item/ammo_magazine/rifle/ak47,
@@ -5271,7 +5271,7 @@
 	},
 /area/outpost/engineering)
 "Dm" = (
-/obj/effect/landmark/xeno_spawning_pool_spawn,
+/obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/tile/dark,
 /area/outpost/science/xenobiology)
 "Dn" = (
@@ -5890,7 +5890,7 @@
 /turf/open/floor/tile/dark,
 /area/outpost/cargo/office)
 "GA" = (
-/obj/effect/landmark/xeno_spawning_pool_spawn,
+/obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/north)
 "GC" = (
@@ -7046,7 +7046,6 @@
 	},
 /area/outpost/engineering/hallway)
 "MG" = (
-/obj/machinery/computer/turbine_computer,
 /turf/open/floor/plating,
 /area/outpost/engineering/engine)
 "MH" = (
@@ -8945,7 +8944,7 @@
 	},
 /area/outpost/science/rd_office)
 "Wq" = (
-/obj/effect/landmark/xeno_spawning_pool_spawn,
+/obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/south)
 "Wr" = (
@@ -9419,7 +9418,7 @@
 	},
 /area/outpost/caves/south_east)
 "YO" = (
-/obj/effect/landmark/xeno_spawning_pool_spawn,
+/obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/south_east)
 "YP" = (

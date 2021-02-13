@@ -716,11 +716,18 @@ TUNNEL
 		to_chat(X, "<span class='warning'>There are no other tunnels in the network!</span>")
 		return FALSE
 
+	for(var/tummy_resident in X.stomach_contents)
+		if(ishuman(tummy_resident))
+			var/mob/living/carbon/human/H = tummy_resident
+			if(check_tod(H))
+				to_chat(X, "<span class='warning'>We cannot enter the tunnel while the host we devoured has signs of life. We should headbite it to finish it off.</span>")
+				return
+
 	pick_a_tunnel(X)
 
 ///Here we pick a tunnel to go to, then travel to that tunnel and peep out, confirming whether or not we want to emerge or go to another tunnel.
 /obj/structure/tunnel/proc/pick_a_tunnel(mob/living/carbon/xenomorph/M)
-	var/obj/structure/tunnel/targettunnel = input(M, "Choose a tunnel to crawl to", "Tunnel") as null|anything in GLOB.xeno_tunnels
+	var/obj/structure/tunnel/targettunnel = tgui_input_list(M, "Choose a tunnel to crawl to", "Tunnel", GLOB.xeno_tunnels)
 	if(QDELETED(src)) //Make sure we still exist in the event the player keeps the interface open
 		return
 	if(!M.Adjacent(src) && M.loc != src) //Make sure we're close enough to our tunnel; either adjacent to or in one
@@ -757,7 +764,7 @@ TUNNEL
 	if(do_after(M, tunnel_time, FALSE, src, BUSY_ICON_GENERIC))
 		if(targettunnel && isturf(targettunnel.loc)) //Make sure the end tunnel is still there
 			M.forceMove(targettunnel)
-			var/double_check = input(M, "Emerge here?", "Tunnel: [targettunnel]") as null|anything in list("Yes","Pick another tunnel")
+			var/double_check = tgui_alert(M, "Emerge here?", "Tunnel: [targettunnel]", list("Yes","Pick another tunnel"))
 			if(M.loc != targettunnel) //double check that we're still in the tunnel in the event it gets destroyed while we still have the interface open
 				return
 			if(double_check == "Pick another tunnel")
@@ -1034,7 +1041,7 @@ TUNNEL
 /obj/item/resin_jelly/proc/activate_jelly(mob/living/carbon/xenomorph/user)
 	user.visible_message("<span class='notice'>[user]'s chitin begins to gleam with an unseemly glow...</span>", "<span class='xenonotice'>We feel powerful as we are covered in [src]!</span>")
 	user.emote("roar")
-	user.add_filter("resin_jelly_outline", 2, list("type" = "outline", "size" = 1, "color" = COLOR_RED))
+	user.add_filter("resin_jelly_outline", 2, outline_filter(1, COLOR_RED))
 	user.fire_resist_modifier -= 20
 	forceMove(user)//keep it here till the timer finishes
 	user.temporarilyRemoveItemFromInventory(src)

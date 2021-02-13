@@ -660,7 +660,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/shuttle/drop1/lz1)
 "gg" = (
-/obj/effect/landmark/xeno_spawning_pool_spawn,
+/obj/effect/landmark/xeno_silo_spawn,
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/north)
 "gk" = (
@@ -2553,7 +2553,7 @@
 /turf/open/lavaland/basalt/glowing,
 /area/lavaland/cave/south)
 "vw" = (
-/obj/effect/landmark/xeno_spawning_pool_spawn,
+/obj/effect/landmark/xeno_silo_spawn,
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/southwest)
 "vy" = (
@@ -3062,7 +3062,7 @@
 /turf/open/floor/freezer,
 /area/lavaland/civilian)
 "Ab" = (
-/obj/effect/landmark/xeno_spawning_pool_spawn,
+/obj/effect/landmark/xeno_silo_spawn,
 /obj/effect/landmark/start/job/xenomorph,
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/southeast)
@@ -3757,8 +3757,8 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/item/weapon/gun/rifle/ak47/carbine,
-/obj/item/weapon/gun/rifle/ak47/carbine,
+/obj/item/weapon/gun/rifle/ak47,
+/obj/item/weapon/gun/rifle/ak47,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
