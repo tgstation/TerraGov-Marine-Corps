@@ -39,7 +39,7 @@
 /obj/item/jetpack_marine/equipped(mob/user, slot)
 	. = ..()
 	if(slot == SLOT_BACK)
-		RegisterSignal(user, COMSIG_MOB_CLICK_ALT_RIGHT, .proc/try_to_use_jetpack)
+		RegisterSignal(user, COMSIG_MOB_CLICK_ALT_RIGHT, .proc/use_jetpack)
 		var/datum/action/item_action/toggle/action = new(src)
 		action.give_action(user)
 
@@ -56,7 +56,7 @@
 		action.remove_selected_frame()
 		UnregisterSignal(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE)
 	else
-		RegisterSignal(user, COMSIG_MOB_MIDDLE_CLICK, .proc/try_to_use_jetpack)
+		RegisterSignal(user, COMSIG_MOB_MIDDLE_CLICK, .proc/use_jetpack)
 		action.add_selected_frame()
 		SEND_SIGNAL(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE, user)
 		RegisterSignal(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE, .proc/unselect)
@@ -85,10 +85,10 @@
 	human_user.update_inv_back()
 
 ///Signal handler for alt click, when the user want to fly at an atom
-/obj/item/jetpack_marine/proc/try_to_use_jetpack(datum/source, atom/A)
+/obj/item/jetpack_marine/proc/use_jetpack(datum/source, atom/A)
 	SIGNAL_HANDLER
 	var/mob/living/carbon/human/human_user = usr
-	if (!use_jetpack(human_user))
+	if (!can_use_jetpack(human_user))
 		return
 	TIMER_COOLDOWN_START(src, COOLDOWN_JETPACK, JETPACK_COOLDOWN_TIME)
 	lit = TRUE
@@ -103,21 +103,19 @@
 
 ///Calculate the max range of the jetpack, changed by some item slowdown
 /obj/item/jetpack_marine/proc/calculate_range(mob/living/carbon/human/human_user)
-	var/range_limiting_factor = human_user.additive_flagged_slowdown(SPECIFIC_SLOWDOWN)
+	var/range_limiting_factor = human_user.additive_flagged_slowdown(ENTRAVE_JETPACK)
 	switch(range_limiting_factor)
 		if(0 to 0.35) //light armor or above
 			return 7
 		if(0.35 to 0.75)//medium armor with shield
 			return 5
 		if(0.75 to 1.2)//heavy armor with shield
-			return 4
-		if(1.2 to 1.5)//heavy armor with shield and tyr mk2
 			return 3
-		if(1.5 to INFINITY)//the rest
+		if(1.2 to INFINITY)//heavy armor with shield and tyr mk2
 			return 2
 
 ///Check if we can use the jetpack and give feedback to the users
-/obj/item/jetpack_marine/proc/use_jetpack(mob/living/carbon/human/human_user)
+/obj/item/jetpack_marine/proc/can_use_jetpack(mob/living/carbon/human/human_user)
 	if(human_user.incapacitated() || human_user.lying_angle)
 		return FALSE
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_JETPACK))

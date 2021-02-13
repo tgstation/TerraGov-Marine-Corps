@@ -1219,7 +1219,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		if(user)
 			to_chat(user, "<span class='notice'>You are now using [src].</span>")
 			SEND_SIGNAL(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE, user)
-			RegisterSignal(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE, .proc/desactivate)
+			RegisterSignal(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE, .proc/deactivate)
 		master_gun.on_gun_attachment_attach(src)
 		icon_state += "-on"
 
@@ -1228,7 +1228,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		A.update_button_icon()
 	return TRUE
 
-/obj/item/attachable/attached_gun/proc/desactivate(datum/source, mob/living/user)
+/obj/item/attachable/attached_gun/proc/deactivate(datum/source, mob/living/user)
 	SIGNAL_HANDLER
 	activate_attachment(user, TRUE)
 
