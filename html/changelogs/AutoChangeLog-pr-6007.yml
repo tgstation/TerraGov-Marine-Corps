@@ -1,0 +1,4 @@
+author: "BeloneX"
+delete-after: True
+changes: 
+  - server: "added more blacklisted versions"
