@@ -1,6 +1,6 @@
 
 /mob/living/carbon/xenomorph/proc/death_cry()
-	playsound(loc, prob(50) == TRUE ? 'sound/voice/alien_death.ogg' : 'sound/voice/alien_death2.ogg', 25, 1)
+	playsound(loc, prob(50) ? 'sound/voice/alien_death.ogg' : 'sound/voice/alien_death2.ogg', 25, 1)
 
 
 /mob/living/carbon/xenomorph/death(gibbing, deathmessage = "lets out a waning guttural screech, green blood bubbling from its maw.", silent)
@@ -43,7 +43,7 @@
 	GLOB.round_statistics.total_xeno_deaths++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_xeno_deaths")
 
-	switch (upgrade) 
+	switch (upgrade)
 		if(XENO_UPGRADE_TWO)
 			switch(tier)
 				if(XENO_TIER_TWO)
@@ -61,8 +61,7 @@
 				if(XENO_TIER_FOUR)
 					SSmonitor.stats.ancient_queen--
 
-	var/isAI = GetComponent(/datum/component/ai_controller)
-	if (isAI)
+	if(GetComponent(/datum/component/ai_controller))
 		gib()
 
 	to_chat(src,"<b><span class='deadsay'><p style='font-size:1.5em'><big>We have perished.</big><br><small>But it is not the end of us yet... wait until a newborn can rise in this world...</small></p></span></b>")
@@ -74,7 +73,7 @@
 	if(is_centcom_level(z))
 		return
 	var/area/A = get_area(src)
-	xeno_message("Hive: \The [src] has <b>died</b>[A? " at [sanitize(A.name)]":""]!", 3, hivenumber)
+	xeno_message("Hive: \The [src] has <b>died</b>[A? " at [A]":""]!", 3, hivenumber)
 
 /mob/living/carbon/xenomorph/gib()
 

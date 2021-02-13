@@ -168,7 +168,7 @@
 	if(!. || !istype(M) || M.action_busy)
 		return
 
-	var/slot = input("Select a seat") in list("Driver", "Gunner")
+	var/slot = tgui_alert(M, "Select a seat", null, list("Driver", "Gunner"))
 	if(!Adjacent(M))
 		return
 

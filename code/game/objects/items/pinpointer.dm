@@ -43,7 +43,7 @@
 	if(!length(tracked_list))
 		to_chat(user, "<span class='warning'>No traceable signals found!</span>")
 		return
-	target = input("Select the item you wish to track.", "Pinpointer") as null|anything in tracked_list
+	target = tgui_input_list(user, "Select the item you wish to track.", "Pinpointer", tracked_list)
 	if(QDELETED(target))
 		return
 	var/turf/disk_loc = get_turf(src)
@@ -109,20 +109,16 @@
 	if(active)
 		deactivate()
 
-	switch(alert("Please select the mode you want to put the pinpointer in.", "Pinpointer Mode Select", "Disk Recovery", "Disk Generator Tracking", "Nuclear Fission Device Tracking"))
+	switch(tgui_alert(usr, "Please select the mode you want to put the pinpointer in.", "Pinpointer Mode Select", list("Disk Recovery", "Disk Generator Tracking", "Nuclear Fission Device Tracking")))
 		if("Disk Recovery")
 			do_toggle_mode(PINPOINTER_MODE_DISK)
 			activate(usr)
-			return
 		if("Disk Generator Tracking")
 			do_toggle_mode(PINPOINTER_MODE_DISK_GENERATOR)
 			activate(usr)
-			return
 		if("Nuclear Fission Device Tracking")
 			do_toggle_mode(PINPOINTER_MODE_NUKE)
 			activate(usr)
-			return
-
 
 /obj/item/pinpointer/advpinpointer/proc/do_toggle_mode(new_mode)
 	switch(new_mode)

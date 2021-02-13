@@ -11,6 +11,9 @@
 
 	var/href_token
 
+	///Reference to filteriffic tgui holder datum
+	var/datum/filter_editor/filteriffic
+
 	///Whether this admin is currently deadminned or not
 	var/deadmined = FALSE
 	///Whether this admin has ghost interaction enabled

@@ -102,10 +102,10 @@
 	else
 		return TRUE
 
-/obj/structure/barricade/attack_animal(mob/user as mob)
+/obj/structure/barricade/attack_animal(mob/user)
 	return attack_alien(user)
 
-/obj/structure/barricade/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0)
+/obj/structure/barricade/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(is_wired)
 		X.visible_message("<span class='danger'>The barbed wire slices into [X]!</span>",
 		"<span class='danger'>The barbed wire slices into us!</span>", null, 5)
@@ -1065,7 +1065,7 @@
 	name = "sandbag barricade"
 	desc = "A bunch of bags filled with sand, stacked into a small wall. Surprisingly sturdy, albeit labour intensive to set up. Trusted to do the job since 1914."
 	icon_state = "sandbag_0"
-	max_integrity = 400
+	max_integrity = 300
 	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 80, "acid" = 40)
 	coverage = 128
 	stack_type = /obj/item/stack/sandbags

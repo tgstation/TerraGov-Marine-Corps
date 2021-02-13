@@ -103,6 +103,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 	///only used by bipod, denotes whether the bipod is currently deployed
 	var/bipod_deployed = FALSE
+	///only used by lace, denotes whether the lace is currently deployed
+	var/lace_deployed = FALSE
 	///How much ammo it currently has.
 	var/current_rounds 	= 0
 	///How much ammo it can store
@@ -426,7 +428,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/compensator
 	name = "recoil compensator"
-	desc = "A muzzle attachment that reduces recoil and scatter by diverting expelled gasses upwards. \nSignificantly reduces recoil and scatter, at the cost of a small amount of weapon damage."
+	desc = "A muzzle attachment that reduces recoil and scatter by diverting expelled gasses upwards. \nSignificantly reduces recoil and scatter, regardless of if the weapon is wielded."
 	slot = "muzzle"
 	icon_state = "comp"
 	attach_icon = "comp_a"
@@ -781,6 +783,11 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	scope_zoom_mod = TRUE
 	has_nightvision = FALSE
 
+/obj/item/attachable/scope/mini/tx11
+	name = "TX-11 mini rail scope"
+	icon_state = "tx11scope"
+	attach_icon = "tx11scope"
+
 /obj/item/attachable/scope/mini/m4ra
 	name = "T-45 rail scope"
 	aim_speed_mod = 0
@@ -788,10 +795,10 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	desc = "A rail mounted zoom sight scope specialized for the T-45 Battle Rifle . Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
 	flags_attach_features = ATTACH_ACTIVATION
 
-/obj/item/attachable/scope/m42a
-	name = "m42a rail scope"
+/obj/item/attachable/scope/antimaterial
+	name = "antimaterial rail scope"
 	attach_icon = "none"
-	desc = "A rail mounted zoom sight scope specialized for the M42A Sniper Rifle . Allows zoom by activating the attachment. Can activate its targeting laser while zoomed to take aim for increased damage and penetration. Use F12 if your HUD doesn't come back."
+	desc = "A rail mounted zoom sight scope specialized for the antimaterial Sniper Rifle . Allows zoom by activating the attachment. Can activate its targeting laser while zoomed to take aim for increased damage and penetration. Use F12 if your HUD doesn't come back."
 	scoped_accuracy_mod = SCOPE_RAIL_SNIPER
 	flags_attach_features = ATTACH_ACTIVATION
 
@@ -1182,6 +1189,10 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	name = "HK-11 stock"
 	icon_state = "m41a"
 
+/obj/item/attachable/stock/irremoveable/tx11
+	name = "TX-11 stock"
+	icon_state = "tx11stock"
+
 ////////////// Underbarrel Attachments ////////////////////////////////////
 
 
@@ -1331,7 +1342,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 
 /obj/item/attachable/attached_gun/flamer/examine(mob/user)
-	..()
+	. = ..()
 	if(current_rounds > 0)
 		to_chat(user, "It has [current_rounds] unit\s of fuel left.")
 	else
@@ -1480,7 +1491,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	name = "masterkey shotgun"
 	icon_state = "masterkey"
 	attach_icon = "masterkey_a"
-	desc = "A weapon-mounted, three-shot shotgun. Reloadable with buckshot. The short barrel reduces the ammo's effectiveness."
+	desc = "A weapon-mounted, three-shot shotgun. Reloadable with buckshot. The short barrel reduces the ammo's effectiveness, but allows it to be fired one handed."
 	w_class = WEIGHT_CLASS_BULKY
 	max_rounds = 3
 	current_rounds = 3
@@ -1671,6 +1682,40 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 	return FALSE
 
+/obj/item/attachable/lace
+	name = "pistol lace"
+	desc = "A simple lace to wrap around your wrist."
+	icon_state = "lace"
+	attach_icon = "lace_a"
+	slot = "muzzle" //so you cannot have this and RC at once aka balance
+	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION
+	attachment_action_type = /datum/action/item_action/toggle
+
+/obj/item/attachable/lace/activate_attachment(mob/living/user, turn_off)
+	if(lace_deployed)
+		DISABLE_BITFIELD(master_gun.flags_item, NODROP)
+		to_chat(user, "<span class='notice'>You feel the [src] loosen around your wrist!</span>")
+		playsound(user, 'sound/weapons/fistunclamp.ogg', 25, 1, 7)
+		icon_state = "lace"
+		attach_icon = "lace_a"
+	else
+		if(user.action_busy)
+			return
+		if(!do_after(user, 0.5 SECONDS, TRUE, src, BUSY_ICON_BAR))
+			return
+		to_chat(user, "<span class='notice'>You deploy the [src].</span>")
+		ENABLE_BITFIELD(master_gun.flags_item, NODROP)
+		to_chat(user, "<span class='warning'>You feel the [src] shut around your wrist!</span>")
+		playsound(user, 'sound/weapons/fistclamp.ogg', 25, 1, 7)
+		icon_state = "lace-on"
+		attach_icon = "lace_a_on"
+
+	lace_deployed = !lace_deployed
+
+	for(var/i in master_gun.actions)
+		var/datum/action/action_to_update = i
+		action_to_update.update_button_icon()
+	return TRUE
 
 
 
@@ -1702,13 +1747,14 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 			to_chat(user, "<span class='notice'>You are no longer using [src].</span>")
 		master_gun.active_attachable = null
 		icon_state = initial(icon_state)
+		. = FALSE
 	else if(!turn_off)
 		if(user)
 			to_chat(user, "<span class='notice'>You are now using [src].</span>")
 		master_gun.active_attachable = src
 		icon_state += "-on"
-
+		. = TRUE
 	for(var/X in master_gun.actions)
 		var/datum/action/A = X
 		A.update_button_icon()
-	return TRUE
+

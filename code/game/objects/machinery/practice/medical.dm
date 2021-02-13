@@ -22,7 +22,7 @@
 		visible_message("<span class='notice'>The dummy vanishes, ending the simulation.</span>")
 		return
 	else
-		var/choice = input("What surgery would you like to simulate?") as null|anything in list("larval host", "broken bones", "missing limbs", "damaged organs")
+		var/choice = tgui_input_list(user, "What surgery would you like to simulate?", null, list("larval host", "broken bones", "missing limbs", "damaged organs"))
 		if(!choice)
 			to_chat(user, "<span class='notice'>You must select a surgery to start the simulation.</span>")
 			return

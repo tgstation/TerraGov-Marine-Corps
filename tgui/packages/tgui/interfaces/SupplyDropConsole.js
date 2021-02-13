@@ -26,7 +26,9 @@ export const SupplyDropConsole = (_props, context) => {
     && timeLeft === 0);
 
   return (
-    <Window>
+    <Window
+      width={350}
+      height={500}>
       <Window.Content scrollable>
         <Section title="Supply drop">
           <LabeledList>

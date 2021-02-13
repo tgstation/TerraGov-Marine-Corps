@@ -232,10 +232,11 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/pistol/tiny/ap
 	name = "light pistol bullet"
 	hud_state = "pistol_lightap"
-	damage = 15
+	damage = 22.5
 	penetration = 15 //So it can actually hurt something.
 	accurate_range = 5
 	sundering = 0.5
+	damage_falloff = 1.5
 
 
 /datum/ammo/bullet/pistol/tranq
@@ -453,6 +454,13 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 20
 	penetration = 30
 	sundering = 3
+
+/datum/ammo/bullet/rifle/hv
+	name = "high-velocity rifle bullet"
+	hud_state = "hivelo"
+	damage = 20
+	penetration = 10
+	sundering = 1
 
 /datum/ammo/bullet/rifle/incendiary
 	name = "incendiary rifle bullet"
@@ -810,6 +818,19 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/shotgun/mbx900_tracker/on_hit_mob(mob/living/victim, obj/projectile/proj)
 	victim.AddComponent(/datum/component/dripping, DRIP_ON_TIME, 40 SECONDS, 2 SECONDS)
 
+/datum/ammo/bullet/shotgun/tracker
+	name = "shotgun tracker shell"
+	icon_state = "shotgun_slug"
+	hud_state = "shotgun_flechette"
+	shell_speed = 4
+	max_range = 30
+	damage = 5
+	penetration = 100
+
+/datum/ammo/bullet/shotgun/tracker/on_hit_mob(mob/living/victim, obj/projectile/proj)
+	victim.AddComponent(/datum/component/dripping, DRIP_ON_TIME, 40 SECONDS, 2 SECONDS)
+
+
 /*
 //================================================
 					Sniper Ammo
@@ -939,7 +960,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/turret
 	name = "autocannon bullet"
 	icon_state 	= "redbullet" //Red bullets to indicate friendly fire restriction
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_SENTRY
 	accurate_range = 10
 	accuracy_var_low = 3
 	accuracy_var_high = 3
@@ -1615,7 +1636,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "flame"
 	hud_state_empty = "flame_empty"
 	damage_type = BURN
-	flags_ammo_behavior = AMMO_INCENDIARY|AMMO_IGNORE_ARMOR
+	flags_ammo_behavior = AMMO_INCENDIARY|AMMO_IGNORE_ARMOR|AMMO_FLAME
 	armor_type = "fire"
 	max_range = 6
 	damage = 50
@@ -1661,6 +1682,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	burntime = 40
 	fire_delay = 35
 	bullet_color = COLOR_NAVY
+
+/datum/ammo/water
+	name = "water"
+	hud_state = "water"
 
 /datum/ammo/flare
 	name = "flare"

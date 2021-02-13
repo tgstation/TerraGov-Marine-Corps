@@ -407,7 +407,7 @@
 
 /datum/keybinding/xeno/evasion
 	name = "evasion"
-	full_name = "Evasion"
+	full_name = "Runner: Evasion"
 	description = "Take evasive action, forcing non-friendly projectiles that would hit you to miss so long as you keep moving."
 	keybind_signal = COMSIG_XENOABILITY_EVASION
 
@@ -440,12 +440,6 @@
 	full_name = "Warrior: Punch"
 	description = "Punch a hostile creature, a structure or piece of machinery. Damage and status durations are doubled vs creatures you are grabbing. Damage is quadrupled vs structures and machinery."
 	keybind_signal = COMSIG_XENOABILITY_PUNCH
-
-/datum/keybinding/xeno/psychic_choke
-	name = "psychic_choke"
-	full_name = "Psychic Choke (Unused)"
-	description = ""
-	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_CHOKE
 
 /datum/keybinding/xeno/inject_egg_neurogas
 	name = "inject_egg_neurogas"

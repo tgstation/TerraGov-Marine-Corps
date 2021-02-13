@@ -46,10 +46,10 @@
 	ui_interact(user)
 
 
-/obj/structure/mortar/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = 0, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/structure/mortar/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "Mortar", name, 450, 180, master_ui, state)
+		ui = new(user, src, "Mortar", name)
 		ui.open()
 
 /obj/structure/mortar/ui_data(mob/user)
@@ -60,7 +60,7 @@
 	.["DY"] = coords["dial_y"]
 	.["last_three_inputs"] = last_three_inputs
 
-/obj/structure/mortar/ui_act(action, params)
+/obj/structure/mortar/ui_act(action, list/params)
 	. = ..()
 	if(.)
 		return

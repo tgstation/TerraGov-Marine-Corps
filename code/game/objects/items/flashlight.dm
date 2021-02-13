@@ -160,10 +160,10 @@
 	if(!usr.stat)
 		attack_self(usr)
 
-/obj/item/flashlight/lamp/attack_alien(mob/living/carbon/xenomorph/xeno_attacker)
-	xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_SMASH)
+/obj/item/flashlight/lamp/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	X.do_attack_animation(src, ATTACK_EFFECT_SMASH)
 	playsound(loc, 'sound/effects/metalhit.ogg', 20, TRUE)
-	xeno_attacker.visible_message("<span class='danger'>\The [xeno_attacker] smashes [src]!</span>", \
+	X.visible_message("<span class='danger'>\The [X] smashes [src]!</span>", \
 	"<span class='danger'>We smash [src]!</span>", null, 5)
 	deconstruct(FALSE)
 
