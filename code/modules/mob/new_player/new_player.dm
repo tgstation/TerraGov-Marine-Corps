@@ -33,13 +33,6 @@
 	new_character = null
 	return ..()
 
-/mob/new_player/proc/reconsider_job_panel()
-	var/output = "<div align='center'>"
-	output += "<p>There is a lack of xenos players on this round, unbalanced rounds are unfun for everyone.</i></p>"
-	output += "<p><b>Are you sure you want to play as a marine?</b></p>"
-	output += "<br><p><a href='byond://?src=[REF(src)];lobby_choice=continue_join'>Yes</A> | <a href='byond://?src=[REF(src)];lobby_choice=reconsider'> No </A></p>"
-	return output
-
 /mob/new_player/proc/new_player_panel()
 
 	if(SSticker?.mode?.mode_new_player_panel(src))
@@ -266,11 +259,8 @@
 			if(!isxenosjob(job_datum) && (SSmonitor.current_state == XENOS_LOSING || SSmonitor.current_state == XENOS_DELAYING))
 				var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 				if((xeno_job.total_positions-xeno_job.current_positions) >= 3)
-					var/datum/browser/popup = new(src, "xenosunbalanced", "Warning: the game is unbalanced", 450, 250)
-					popup.set_content(reconsider_job_panel())
-					popup.open(FALSE)
-					saved_job = job_datum
-					return
+					if(tgui_alert(src, "There is a lack of xenos players on this round, unbalanced rounds are unfun for everyone. Are you sure you want to play as a marine? ", "Warning : the game is unbalanced", list("Yes", "No")) == "No")
+						return
 			if(!SSticker.mode.CanLateSpawn(src, job_datum)) // Try to assigns job to new player
 				return
 			SSticker.mode.LateSpawn(src)
