@@ -56,6 +56,7 @@
 /obj/machinery/floodlight/landing/Initialize()
 	. = ..()
 	set_light(brightness_on)
+
 /obj/machinery/floodlight/landing/testroom
 	name = "Ambience Light"
 	desc = "A powerful light placed concealed on the base to provide better visibility."
