@@ -737,8 +737,9 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 /obj/item/proc/canzoom(mob/living/user)
 	var/zoom_device = zoomdevicename ? "\improper [zoomdevicename] of [src]" : "\improper [src]"
-	if(zoom_allow_movement && (zoom_viewsize > WORLD_VIEW))
-		CRASH("[src] tried to zoom with allowing movement while having a bigger viewsize than 7([zoom_viewsize])), ")
+	if(zoom_allow_movement && (zoom_viewsize > 7))
+		stack_trace("[src] tried to zoom with allowing movement while having a bigger viewsize than 7([zoom_viewsize])), ")
+		return FALSE
 
 	for(var/obj/item/I in user.contents) // awful please change later.
 		if(I.zoom && I != src)
