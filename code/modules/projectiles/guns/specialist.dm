@@ -1140,7 +1140,7 @@ obj/item/weapon/gun/minigun/Fire(atom/target, mob/living/user, params, reflex = 
 // pepperball gun
 
 //-------------------------------------------------------
-//T-29 Smart Machine Gun (It's more of a rifle than the SG.)
+// its a peppeball gun
 
 /obj/item/weapon/gun/rifle/pepperball
 	name = "\improper TLLL-12 pepperball gun"

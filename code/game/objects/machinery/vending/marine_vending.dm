@@ -207,6 +207,7 @@
 		/obj/item/storage/box/m94/cas = 10,
 		/obj/item/storage/box/recoilless_system = 1,
 		/obj/item/weapon/shield/riot/marine = 3,
+		/obj/item/weapon/gun/rifle/pepperball = 1,
 	)
 
 	premium = list()
@@ -300,6 +301,7 @@
 		/obj/item/ammo_magazine/box10x24mm = 50,
 		/obj/item/ammo_magazine/box10x26mm = 50,
 		/obj/item/ammo_magazine/box10x27mm = 50,
+		/obj/item/ammo_magazine/rifle/pepperball = 10,
 	)
 	premium = list()
 
