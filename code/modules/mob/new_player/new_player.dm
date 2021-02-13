@@ -358,7 +358,8 @@
 			observer.real_name = client.prefs.real_name
 	else
 		observer.real_name = species.random_name()
-		observer.name = observer.real_name
+
+	observer.name = observer.real_name
 
 	mind.transfer_to(observer, TRUE)
 	qdel(src)
