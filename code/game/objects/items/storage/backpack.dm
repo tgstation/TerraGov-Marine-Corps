@@ -465,7 +465,7 @@
 	camouflage()
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/proc/camouflage()
-	if (usr?.incapacitated(TRUE))
+	if (usr.incapacitated(TRUE))
 		return
 
 	var/mob/living/carbon/human/M = usr
