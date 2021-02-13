@@ -1,11 +1,5 @@
 ///After how much time of being active we die
 #define FACEHUGGER_DEATH 10 SECONDS
-///Time before we try another jump
-#define JUMP_COOLDOWN 2 SECONDS
-///Time between being dropped and going idle
-#define ACTIVATE_TIME 4 SECONDS
-///Time to go active after impacting a carbon on a toss
-#define IMPACT_TIME 1.5 SECONDS
 ///Time it takes to impregnate someone
 #define IMPREGNATION_TIME 12 SECONDS
 
@@ -50,8 +44,12 @@
 	var/lifetimer
 	///The timer tracking when we next jump
 	var/jumptimer
-	///Modifies the time needed before becoming active again. Combat huggers activate much more quickly
-	var/activity_modifier = 1
+	///Time to become active after impacting on a direct thrown hit
+	var/impact_time = 1.5 SECONDS
+	///Time to become active again
+	var/activate_time = 4 SECONDS
+	///Time to recover after jumping
+	var/jump_cooldown = 2 SECONDS
 	///Is this hugger intended for combat?
 	var/combat_hugger = FALSE
 
@@ -160,7 +158,7 @@
 		stasis = TRUE
 		lifecycle = initial(lifecycle)
 	else if(!attached && !(stasis || no_activate))
-		addtimer(CALLBACK(src, .proc/go_active), ACTIVATE_TIME * activity_modifier)
+		addtimer(CALLBACK(src, .proc/go_active), activate_time)
 
 /obj/item/clothing/mask/facehugger/proc/go_active(unhybernate = FALSE)
 	if(unhybernate)
@@ -168,7 +166,7 @@
 	if(stat == UNCONSCIOUS && !stasis)
 		stat = CONSCIOUS
 		lifetimer = addtimer(CALLBACK(src, .proc/check_lifecycle), FACEHUGGER_DEATH, TIMER_STOPPABLE|TIMER_UNIQUE)
-		jumptimer = addtimer(CALLBACK(src, .proc/leap_at_nearest_target), JUMP_COOLDOWN * activity_modifier, TIMER_STOPPABLE|TIMER_UNIQUE)
+		jumptimer = addtimer(CALLBACK(src, .proc/leap_at_nearest_target), jump_cooldown, TIMER_STOPPABLE|TIMER_UNIQUE)
 		update_icon()
 		return TRUE
 	return FALSE
@@ -227,7 +225,7 @@
 			throw_at(M, 4, 1)
 			break
 		--i
-	jumptimer = addtimer(CALLBACK(src, .proc/leap_at_nearest_target), JUMP_COOLDOWN * activity_modifier, TIMER_STOPPABLE|TIMER_UNIQUE)
+	jumptimer = addtimer(CALLBACK(src, .proc/leap_at_nearest_target), jump_cooldown, TIMER_STOPPABLE|TIMER_UNIQUE)
 
 /obj/item/clothing/mask/facehugger/proc/fast_activate(unhybernate = FALSE)
 	if(go_active(unhybernate) && !throwing)
@@ -253,7 +251,7 @@
 	. = ..()
 	update_icon()
 	if(jumptimer)
-		jumptimer = addtimer(CALLBACK(src, .proc/leap_at_nearest_target), JUMP_COOLDOWN * activity_modifier, TIMER_STOPPABLE|TIMER_UNIQUE)
+		jumptimer = addtimer(CALLBACK(src, .proc/leap_at_nearest_target), jump_cooldown, TIMER_STOPPABLE|TIMER_UNIQUE)
 
 /obj/item/clothing/mask/facehugger/throw_impact(atom/hit_atom, speed)
 	. = ..()
@@ -272,7 +270,7 @@
 			go_idle(FALSE)
 			update_icon()
 			deltimer(jumptimer)
-			jumptimer = addtimer(CALLBACK(src, .proc/fast_activate), IMPACT_TIME * activity_modifier, TIMER_STOPPABLE|TIMER_UNIQUE)
+			jumptimer = addtimer(CALLBACK(src, .proc/fast_activate), impact_time, TIMER_STOPPABLE|TIMER_UNIQUE)
 			return
 	else
 		for(var/mob/living/carbon/M in loc)
@@ -281,7 +279,7 @@
 					go_idle()
 				return
 		deltimer(jumptimer)
-		jumptimer = addtimer(CALLBACK(src, .proc/fast_activate), ACTIVATE_TIME * activity_modifier, TIMER_STOPPABLE|TIMER_UNIQUE)
+		jumptimer = addtimer(CALLBACK(src, .proc/fast_activate), activate_time, TIMER_STOPPABLE|TIMER_UNIQUE)
 	leaping = FALSE
 	go_idle(FALSE)
 
@@ -461,7 +459,7 @@
 	else
 		reset_attach_status(as_planned)
 		playsound(loc, 'sound/voice/alien_facehugger_dies.ogg', 25, 1)
-		addtimer(CALLBACK(src, .proc/go_active),ACTIVATE_TIME)
+		addtimer(CALLBACK(src, .proc/go_active),activate_time)
 		update_icon()
 
 	if(as_planned)
@@ -586,7 +584,9 @@
 	sterile = TRUE
 	color = COLOR_DARK_ORANGE
 	combat_hugger = TRUE
-	activity_modifier = 0.5
+	impact_time = 0.8 SECONDS
+	activate_time = 2 SECONDS
+	jump_cooldown = 1 SECONDS
 
 /obj/item/clothing/mask/facehugger/neuro/Attach(mob/M, mob/user)
 	if(!combat_hugger_check_target(M))
@@ -609,7 +609,9 @@
 	sterile = TRUE
 	color = COLOR_GREEN
 	combat_hugger = TRUE
-	activity_modifier = 0.5
+	impact_time = 0.8 SECONDS
+	activate_time = 2 SECONDS
+	jump_cooldown = 1 SECONDS
 
 /obj/item/clothing/mask/facehugger/acid/Attach(mob/M, mob/user)
 	if(!combat_hugger_check_target(M))
@@ -641,7 +643,9 @@
 	sterile = TRUE
 	color = COLOR_STRONG_VIOLET
 	combat_hugger = TRUE
-	activity_modifier = 0.5
+	impact_time = 0.8 SECONDS
+	activate_time = 2 SECONDS
+	jump_cooldown = 1 SECONDS
 
 /obj/item/clothing/mask/facehugger/resin/Attach(mob/M, mob/user)
 	if(!combat_hugger_check_target(M))
@@ -689,7 +693,9 @@
 	sterile = TRUE
 	color = COLOR_RED
 	combat_hugger = TRUE
-	activity_modifier = 0.25
+	impact_time = 0.4 SECONDS
+	activate_time = 1 SECONDS
+	jump_cooldown = 0.5 SECONDS
 
 /obj/item/clothing/mask/facehugger/slash/Attach(mob/M)
 	if(!combat_hugger_check_target(M))
@@ -721,6 +727,4 @@
 	return TRUE
 
 #undef FACEHUGGER_DEATH
-#undef JUMP_COOLDOWN
-#undef ACTIVATE_TIME
 #undef IMPREGNATION_TIME

@@ -31,7 +31,7 @@
 
 		var/obj/item/clothing/mask/facehugger/F = new selected_hugger_type(get_turf(src))
 		step_away(F,src,1)
-		addtimer(CALLBACK(F, /obj/item/clothing/mask/facehugger.proc/go_active, TRUE), 2 SECONDS * F.activity_modifier)
+		addtimer(CALLBACK(F, /obj/item/clothing/mask/facehugger.proc/go_active, TRUE), F.jump_cooldown)
 
 		huggers--
 
