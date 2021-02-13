@@ -17168,7 +17168,6 @@
 	},
 /area/bigredv2/outside/sw)
 "buD" = (
-/obj/machinery/power/turbinemotor,
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering)
 "buJ" = (
@@ -17210,9 +17209,6 @@
 	},
 /area/bigredv2/outside/sw)
 "buU" = (
-/obj/machinery/compressor{
-	dir = 1
-	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering)
 "buV" = (
@@ -17230,7 +17226,6 @@
 	},
 /area/bigredv2/outside/s)
 "bvf" = (
-/obj/machinery/power/turbine,
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering)
 "bvg" = (
@@ -17323,7 +17318,6 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "bvG" = (
-/obj/machinery/power/turbinemotor,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering)
@@ -17336,9 +17330,6 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering)
 "bvM" = (
-/obj/machinery/compressor{
-	dir = 1
-	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering)
