@@ -238,7 +238,7 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 	engine_shudder()
 
 	if(direction == "escape")
-		addtimer(CALLBACK(src, .proc/retreat), 10 MINUTES)
+		addtimer(CALLBACK(src, .proc/retreat), 20 MINUTES)
 		return
 	
 //whole lotta shaking going on
