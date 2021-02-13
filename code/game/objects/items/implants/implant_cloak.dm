@@ -54,17 +54,17 @@
 	RegisterSignal(implant_owner, COMSIG_MOB_ENABLE_STEALTH, .proc/deactivate_cloak)
 	playsound(implant_owner, 'sound/effects/pred_cloakon.ogg', 60, TRUE)
 	implant_owner.alpha = CLOAK_IMPLANT_ALPHA
-	deactivation_timer = addtimer(CALLBACK(src, .proc/deactivate_cloak, null, TRUE), 12 SECONDS, TIMER_STOPPABLE)
+	deactivation_timer = addtimer(CALLBACK(src, .proc/deactivate_cloak), 12 SECONDS, TIMER_STOPPABLE)
 
 ///Deactivates the implant when someone turns it off or its forced off
-/obj/item/implant/cloak/proc/deactivate_cloak(datum/source, timer_ended = FALSE)
+/obj/item/implant/cloak/proc/deactivate_cloak(datum/source)
 	SIGNAL_HANDLER
 	UnregisterSignal(implant_owner, COMSIG_MOB_ENABLE_STEALTH)
-	if(!timer_ended && deactivation_timer)
+	if(deactivation_timer)
 		deltimer(deactivation_timer)
 		deactivation_timer = null
 	playsound(implant_owner, 'sound/effects/pred_cloakoff.ogg', 60, TRUE)
-	to_chat(implant_owner, "<span class='warning'>Your [src] deactivates!</span>")
+	to_chat(implant_owner, "<span class='warning'>[src] deactivates!</span>")
 	implant_owner.alpha = initial(implant_owner.alpha)
 	S_TIMER_COOLDOWN_START(src, COOLDOWN_CLOAK_IMPLANT, CLOAK_IMPLANT_COOLDOWN_TIME)
 	return STEALTH_ALREADY_ACTIVE
