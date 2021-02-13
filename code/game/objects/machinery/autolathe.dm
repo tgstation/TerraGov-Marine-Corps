@@ -207,8 +207,8 @@
 		return
 
 	if(href_list["change_category"])
-		var/choice = tgui_input_list(usr, "Which category do you wish to display?", GLOB.autolathe_categories+"All")
-		if(!choice) 
+		var/choice = tgui_input_list(usr, "Which category do you wish to display?", null, GLOB.autolathe_categories+"All")
+		if(!choice)
 			return
 		show_category = choice
 

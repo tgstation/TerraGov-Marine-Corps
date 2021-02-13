@@ -8,8 +8,7 @@ export const ShuttleManipulator = (props, context) => {
   return (
     <Window
       width={800}
-      height={600}
-      resizable>
+      height={600}>
       <Window.Content scrollable>
         <Tabs>
           <Tabs.Tab
