@@ -608,7 +608,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	turn_light(user, !light_on)
 
 /obj/item/attachable/flashlight/turn_light(mob/user, toggle_on)
-	. =..()
+	. = ..()
 	
 	if(. != CHECKS_PASSED)
 		return
@@ -1755,4 +1755,3 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	for(var/X in master_gun.actions)
 		var/datum/action/A = X
 		A.update_button_icon()
-
