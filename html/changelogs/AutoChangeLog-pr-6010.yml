@@ -1,5 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes: 
-  - rscadd: "Unobtainable armblade implant"
-  - code_imp: "support for item-focused implants and bodypart-only implants"
