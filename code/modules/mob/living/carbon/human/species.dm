@@ -380,7 +380,8 @@
 	H.set_species("Vat-Grown Human")
 
 
-/////////TIVI MONKKEY CODE
+//todo: wound overlays are strange for monkeys and should likely use icon adding instead
+//im not about to cram in that refactor with a carbon -> species refactor though
 /datum/species/monkey
 	name = "Monkey"
 	name_plural = "Monkeys"
@@ -440,7 +441,7 @@
 	tail = null
 
 /datum/species/monkey/skrell
-	name = "Neara"
+	name = "Naera"
 	icobase = 'icons/mob/human_races/r_naera.dmi'
 	deform = 'icons/mob/human_races/r_naera.dmi'
 	speech_verb_override = "squiks"
