@@ -50,3 +50,11 @@
 /obj/item/implanter/chem
 	name = "chem implant implanter"
 	imp = /obj/item/implant/chem
+
+/obj/item/implanter/cloak
+	name = "cloak implant implanter"
+	imp = /obj/item/implant/cloak
+
+/obj/item/implanter/blade
+	name = "blade implant implanter"
+	imp = /obj/item/implant/deployitem/blade
