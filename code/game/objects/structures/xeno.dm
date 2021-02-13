@@ -128,12 +128,9 @@
 	max_integrity = 5
 	layer = RESIN_STRUCTURE_LAYER
 	var/obj/item/clothing/mask/facehugger/hugger = null
-	var/mob/living/carbon/xenomorph/linked_carrier //The carrier that placed us.
 
-/obj/effect/alien/resin/trap/Initialize(mapload, mob/living/builder)
+/obj/effect/alien/resin/trap/Initialize(mapload)
 	. = ..()
-	if(builder)
-		linked_carrier = builder
 	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, .proc/shuttle_crush)
 	RegisterSignal(get_turf(src), COMSIG_ATOM_ENTERED, .proc/trigger_hugger_trap) //Set up the trap signal on our turf
 
@@ -188,8 +185,7 @@
 	C.visible_message("<span class='warning'>[C] trips on [src]!</span>",\
 						"<span class='danger'>You trip on [src]!</span>")
 	C.Paralyze(4 SECONDS)
-	if(linked_carrier)
-		xeno_message("<span class='xenoannounce'>A facehugger trap at [AREACOORD_NO_Z(src)] has been triggered!</span>", 2, linked_carrier.hivenumber,  FALSE, get_turf(src), 'sound/voice/alien_distantroar_3.ogg', FALSE, null, /obj/screen/arrow/leader_tracker_arrow) //Follow the trend of hive wide alerts for important events
+	xeno_message("<span class='xenoannounce'>A facehugger trap at [AREACOORD_NO_Z(src)] has been triggered!</span>", 2, hugger.hivenumber,  FALSE, get_turf(src), 'sound/voice/alien_distantroar_3.ogg', FALSE, null, /obj/screen/arrow/leader_tracker_arrow) //Follow the trend of hive wide alerts for important events
 	drop_hugger()
 
 /obj/effect/alien/resin/trap/proc/drop_hugger()
