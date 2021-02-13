@@ -710,7 +710,8 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		if(user.client)
 			user.client.click_intercept = null
 			user.client.change_view(WORLD_VIEW)
-			animate(user.client, 3*(tileoffset/7), pixel_x = 0, pixel_y = 0)
+
+			animate(user.client, 3*(tileoffset ? (tileoffset/7) : 0), pixel_x = 0, pixel_y = 0)
 		return
 
 	if(!canzoom(user))
@@ -759,6 +760,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	return TRUE
 
 /obj/item/proc/change_zoom_offset(mob/living/user, olddir, newdir, zoom_offset)
+	SIGNAL_HANDLER
 
 	var/viewoffset = zoom_tile_offset * 32
 	if(zoom_offset)
