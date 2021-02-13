@@ -1145,6 +1145,7 @@ obj/item/weapon/gun/minigun/Fire(atom/target, mob/living/user, params, reflex = 
 /obj/item/weapon/gun/rifle/pepperball
 	name = "\improper TLLL-12 pepperball gun"
 	desc = "A TerraGov less-lethal weapon, it comes in limited numbers and has limited use throughout the military, though sizeable use throughout TerraGov's Navy Police. The variant fires plasma-draining tanglefoot pepperballs in a compressed form, quickly delivering ammunition throughout the field.."
+	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "pepperball"
 	item_state = "pepperball"
 	caliber = "TGF-Ball" //codex
