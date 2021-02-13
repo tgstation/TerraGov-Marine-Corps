@@ -608,14 +608,13 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	turn_light(user, !light_on)
 
 /obj/item/attachable/flashlight/turn_light(mob/user, toggle_on)
-	. =..()
+	. = ..()
 	
 	if(. != CHECKS_PASSED)
 		return
 	
 	if(ismob(master_gun.loc) && !user)
 		user = master_gun.loc
-	
 	if(!toggle_on & light_on)
 		icon_state = "flashlight"
 		attach_icon = "flashlight_a"
@@ -1755,4 +1754,3 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	for(var/X in master_gun.actions)
 		var/datum/action/A = X
 		A.update_button_icon()
-
