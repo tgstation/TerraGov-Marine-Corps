@@ -479,7 +479,7 @@
 	return ..()
 
 /obj/machinery/door/airlock/proc/lock(forced = FALSE)
-	if (operating || src.locked)
+	if (operating || locked)
 		return
 
 	locked = TRUE
