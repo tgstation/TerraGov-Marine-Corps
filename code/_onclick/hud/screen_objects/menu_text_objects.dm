@@ -12,6 +12,8 @@
 	screen_loc = "CENTER"
 	maptext_height = 480
 	maptext_width = 480
+	maptext_x = 3
+	maptext_y = 5
 	maptext = "If you see this yell at coders"
 
 /**
@@ -61,7 +63,7 @@
 ///Clickable UI lobby objects which do stuff on Click() when pressed
 /obj/screen/text/lobby/clickable
 	maptext = "if you see this a coder was stinky"
-	icon = 'icons/UI_Icons/lobby_prop.dmi' //hitbox prop
+	icon = 'icons/UI_Icons/lobby_button.dmi' //hitbox prop
 	mouse_opacity = MOUSE_OPACITY_ICON
 
 /obj/screen/text/lobby/clickable/MouseEntered(location, control, params)
@@ -165,7 +167,7 @@
 	var/mob/new_player/player = hud.mymob
 	var/hasnewpolls = player.check_playerpolls()
 	if(isnull(hasnewpolls))
-		maptext = "<span class=menutext>No Database connection!</span>"
+		maptext = "<span class=menutext>No Database!</span>"
 		return
 	maptext = "<span class=menutext>Show Polls[hasnewpolls ? " (NEW!)" : ""]</span>"
 
