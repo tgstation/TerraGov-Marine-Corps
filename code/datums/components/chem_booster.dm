@@ -35,6 +35,7 @@
 	var/obj/item/connected_weapon
 	///When was the effect activated. Used to activate negative effects after a certain amount of use
 	var/processing_start = 0
+	///Image that gets added to the wearer's overlays and gets changed based on resource_storage_current
 	var/static/image/resource_overlay = image('icons/mob/hud.dmi', icon_state = "chemsuit_vis")
 	COOLDOWN_DECLARE(chemboost_activation_cooldown)
 
@@ -171,6 +172,8 @@
 		UnregisterSignal(wearer.reagents, COMSIG_NEW_REAGENT_ADD)
 		UnregisterSignal(wearer, COMSIG_MOB_DEATH, .proc/on_off)
 		update_boost(0, FALSE)
+		power_action.action_icon_state = "cboost_off"
+		power_action.update_button_icon()
 		boost_on = FALSE
 		to_chat(wearer, "<span class='warning'>Halting reagent injection.</span>")
 		COOLDOWN_START(src, chemboost_activation_cooldown, 10 SECONDS)
@@ -190,6 +193,8 @@
 	RegisterSignal(wearer.reagents, COMSIG_NEW_REAGENT_ADD, .proc/late_add_chem)
 	RegisterSignal(wearer, COMSIG_MOB_DEATH, .proc/on_off)
 	update_boost(boost_amount*2, FALSE)
+	power_action.action_icon_state = "cboost_on"
+	power_action.update_button_icon()
 	to_chat(wearer, "<span class='notice'>Commensing reagent injection.</span>")
 	playsound(get_turf(wearer), 'sound/effects/bubbles.ogg', 30, 1)
 
@@ -323,12 +328,15 @@
 
 /datum/action/chem_booster/configure
 	name = "Configure Vali Chemical Enhancement"
-	action_icon_state = "csuit_configure"
+	action_icon = 'icons/mob/actions.dmi'
+	action_icon_state = "cboost_configure"
 
 /datum/action/chem_booster/power
 	name = "Power Vali Chemical Enhancement"
-	action_icon_state = "csuit_power"
+	action_icon = 'icons/mob/actions.dmi'
+	action_icon_state = "cboost_off"
 
 /datum/action/chem_booster/scan
 	name = "Activate Analyzer"
+	action_icon = 'icons/mob/screen_alert.dmi'
 	action_icon_state = "suit_scan"

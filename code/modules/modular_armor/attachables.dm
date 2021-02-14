@@ -189,8 +189,8 @@
 /obj/item/armor_module/attachable/chemsystem
 	name = "Vali chemical enhancement module"
 	desc = "A module that enhances the strength of reagents in the body. Requires a special substance, gathered from xenomorph lifeforms, to function. For in-depth information https://github.com/tgstation/TerraGov-Marine-Corps/pull/5830."
-	icon_state = "mod_boomimmune_icon"
-	item_state = "mod_boomimmune"
+	icon_state = "mod_chemsystem_icon"
+	item_state = "mod_chemsystem"
 
 /obj/item/armor_module/attachable/chemsystem/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	. = ..()
