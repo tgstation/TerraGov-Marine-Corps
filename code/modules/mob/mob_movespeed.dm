@@ -52,7 +52,7 @@ Key procs
 	return TRUE
 
 ///Remove a move speed modifier from a mob
-/mob/proc/remove_movespeed_modifier(id, update = TRUE, item = FALSE)
+/mob/proc/remove_movespeed_modifier(id, update = TRUE)
 	if(!LAZYACCESS(movespeed_modification, id))
 		return FALSE
 	LAZYREMOVE(movespeed_modification, id)
