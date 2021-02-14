@@ -203,7 +203,7 @@
 		user.visible_message("<span class='notice'>[user] carefully starts burning [src]'s resin off.</span>",
 		"<span class='notice'>You carefully start burning [src]'s resin off.</span>")
 
-		if(!do_after(user, 20 SECONDS, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)) || buildstate != GEOTHERMAL_HEAVY_DAMAGE || is_on)
+		if(!do_after(user, 20 SECONDS, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
 			return FALSE
 
 		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
