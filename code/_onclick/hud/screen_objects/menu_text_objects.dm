@@ -80,6 +80,10 @@
 	animate(src, transform = null, time = 1, easing = CUBIC_EASING)
 	color = initial(color)
 
+/obj/screen/text/lobby/clickable/Click()
+	var/mob/new_player/player = usr
+	player.playsound_local(player, 'sound/effects/menu_select.ogg', 50)
+
 
 /obj/screen/text/lobby/clickable/setup_character
 	maptext = "<span class=menutext>Setup Character</span>"
@@ -132,6 +136,7 @@
 	maptext = "<span class=menutext>View Manifest</span>"
 
 /obj/screen/text/lobby/clickable/manifest/Click()
+	. = ..()
 	var/mob/new_player/player = hud.mymob
 	player.view_manifest()
 
