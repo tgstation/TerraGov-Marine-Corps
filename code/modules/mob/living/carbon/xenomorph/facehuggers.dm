@@ -693,9 +693,9 @@
 	sterile = TRUE
 	color = COLOR_RED
 	combat_hugger = TRUE
-	impact_time = 0.4 SECONDS
-	activate_time = 1 SECONDS
-	jump_cooldown = 0.5 SECONDS
+	impact_time = 0.8 SECONDS
+	activate_time = 2 SECONDS
+	jump_cooldown = 1 SECONDS
 
 /obj/item/clothing/mask/facehugger/slash/Attach(mob/M)
 	if(!combat_hugger_check_target(M))
