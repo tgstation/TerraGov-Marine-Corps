@@ -1,4 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes: 
-  - refactor: "refactored doors and various other code to remove sleeping signals"

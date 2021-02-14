@@ -1,8 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - rscdel: "Remove remnant of cap gameplay on maps (eggs, bursted mobs..)"
-  - rscadd: "More silo spawn location
-tweak: Silo spawn location are fortified with thick walls and doors"
-  - rscadd: "New cave system in Icy colony"
-  - rscadd: "Additional generator room in big red"
