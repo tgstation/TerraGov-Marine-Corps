@@ -293,6 +293,8 @@
 	if(!D.can_summon_dropship(src))
 		return
 
+	D.announce_bioscans()
+
 	var/obj/docking_port/stationary/port = D.summon_dropship(src)
 	if(!port)
 		to_chat(src, "<span class='warning'>Something went wrong.</span>")
@@ -416,10 +418,8 @@
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LEADER) // TLs can only operate the remote console
 	possible_destinations = "lz1;lz2;alamo;normandy"
-	ui_x = 500
-	ui_y = 600
 
-/obj/machinery/computer/shuttle/marine_dropship/attack_alien(mob/living/carbon/xenomorph/X)
+/obj/machinery/computer/shuttle/marine_dropship/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(!(X.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT))
 		return
 	if(SSticker.round_start_time + SHUTTLE_HIJACK_LOCK > world.time)
@@ -430,6 +430,7 @@
 	if(M)
 		dat += "<A href='?src=[REF(src)];hijack=1'>Launch to [SSmapping.configs[SHIP_MAP].map_name]</A><br>"
 		M.unlock_all()
+		dat += "<A href='?src=[REF(src)];abduct=1'>Capture the [M]</A><br>"
 		if(M.hijack_state != HIJACK_STATE_CALLED_DOWN)
 			M.hijack_state = HIJACK_STATE_CALLED_DOWN
 			M.do_start_hijack_timer()
@@ -452,12 +453,11 @@
 
 	return TRUE
 
-/obj/machinery/computer/shuttle/marine_dropship/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/computer/shuttle/marine_dropship/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 
 	if(!ui)
-		ui = new(user, src, ui_key, "MarineDropship", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, "MarineDropship", name)
 		ui.open()
 
 /obj/machinery/computer/shuttle/marine_dropship/ui_data(mob/user)
@@ -529,8 +529,9 @@
 		valid_destinations += list(list("name" = S.name, "id" = S.id))
 	.["destinations"] = valid_destinations
 
-/obj/machinery/computer/shuttle/marine_dropship/ui_act(action, params)
-	if(..())
+/obj/machinery/computer/shuttle/marine_dropship/ui_act(action, list/params)
+	. = ..()
+	if(.)
 		return
 
 	var/obj/docking_port/mobile/marine_dropship/M = SSshuttle.getShuttle(shuttleId)
@@ -607,6 +608,25 @@
 			return
 		do_hijack(M, CT, X)
 
+	if(href_list["abduct"])
+		var/groundside_humans
+		for(var/N in GLOB.alive_human_list)
+			var/mob/H = N
+			if(H.z != X.z)
+				continue
+			groundside_humans++
+
+		if(groundside_humans > 5)
+			to_chat(X, "<span class='xenowarning'>There is still prey left to hunt!</span>")
+			return
+
+		var/confirm = tgui_alert(usr, "Would you like to capture the metal bird?\n THIS WILL END THE ROUND", "Capture the ship?", list( "Yes", "No"))
+		if(confirm != "Yes")
+			return
+		priority_announce("The Alamo has been captured! Losing their main mean of accessing the ground, the marines have no choice but to retreat.", title = "ALAMO CAPTURED")
+		var/datum/game_mode/infestation/distress/distress_mode = SSticker.mode
+		distress_mode.round_stage = DISTRESS_DROPSHIP_CAPTURED_XENOS
+		return
 
 /obj/machinery/computer/shuttle/marine_dropship/proc/do_hijack(obj/docking_port/mobile/marine_dropship/crashing_dropship, obj/docking_port/stationary/marine_dropship/crash_target/crash_target, mob/living/carbon/xenomorph/user)
 	crashing_dropship.set_hijack_state(HIJACK_STATE_CRASHING)
@@ -619,6 +639,7 @@
 	user.hive.on_shuttle_hijack(crashing_dropship)
 	playsound(src, 'sound/misc/queen_alarm.ogg')
 	SSevacuation.flags_scuttle &= ~FLAGS_SDEVAC_TIMELOCK
+	SSmonitor.hijacked = TRUE
 	switch(SSshuttle.moveShuttleToDock(shuttleId, crash_target, TRUE))
 		if(0)
 			visible_message("Shuttle departing. Please stand away from the doors.")
@@ -1037,7 +1058,7 @@
 		to_chat(usr, "<span class='warning'>[src] is unresponsive.</span>")
 		return FALSE
 
-	if(!length(GLOB.active_nuke_list) && alert(usr, "Are you sure you want to launch the shuttle? Without sufficiently dealing with the threat, you will be in direct violation of your orders!", "Are you sure?", "Yes", "Cancel") != "Yes")
+	if(!length(GLOB.active_nuke_list) && tgui_alert(usr, "Are you sure you want to launch the shuttle? Without sufficiently dealing with the threat, you will be in direct violation of your orders!", "Are you sure?", list("Yes", "Cancel")) != "Yes")
 		return TRUE
 
 	log_admin("[key_name(usr)] is launching the canterbury[!length(GLOB.active_nuke_list)? " early" : ""].")

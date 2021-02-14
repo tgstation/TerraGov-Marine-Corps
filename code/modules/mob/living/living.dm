@@ -18,7 +18,8 @@
 	handle_drugged()
 	handle_stuttering()
 	handle_slurring()
-
+	handle_slowdown()
+	handle_stagger()
 
 /mob/living/proc/handle_organs()
 	reagent_shock_modifier = 0
@@ -52,12 +53,6 @@
 /mob/living/proc/handle_regular_hud_updates()
 	if(!client)
 		return FALSE
-
-/mob/living/proc/add_slowdown(amount)
-	return
-
-/mob/living/proc/adjust_stagger(amount)
-	return
 
 /mob/living/proc/updatehealth()
 	if(status_flags & GODMODE)
@@ -419,7 +414,7 @@
 
 
 /mob/living/throw_at(atom/target, range, speed, thrower, spin)
-	if(!target || !src)
+	if(!target)
 		return 0
 	if(pulling)
 		stop_pulling() //being thrown breaks pulls.
@@ -606,7 +601,7 @@ below 100 is not dizzy
 	SEND_SIGNAL(src, COMSIG_LIVING_SET_CANMOVE, canmove)
 
 
-/mob/living/proc/update_leader_tracking(mob/living/L)
+/mob/living/proc/update_tracking(mob/living/L)
 	return
 
 /mob/living/proc/clear_leader_tracking()

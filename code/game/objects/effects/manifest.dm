@@ -16,6 +16,5 @@
 	var/obj/item/paper/P = new /obj/item/paper( src.loc )
 	P.info = dat
 	P.name = "paper- 'Crew Manifest'"
-	//SN src = null
 	qdel(src)
 	return

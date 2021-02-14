@@ -55,8 +55,13 @@ if grep -nP '^/*var/' code/**/*.dm; then
     echo "Unmanaged global var use detected in code, please use the helpers."
     st=1
 fi;
+echo "Checking for src changing"
+if grep -nP '.*\tsrc = ' code/**/*.dmm; then
+    echo "Illegal src change detected, please amend"
+    st=1
+fi;
 echo "Checking for 0 length timers"
-if grep -nP 'addtimer\(.+?, ?0\)($| |/)' code/**/*,dm; then
+if grep -nP 'addtimer\(.+?, ?0\)($| |/)' code/**/*.dm; then
 	echo "Default timer type with no length detected. Please add the correct flags or use the async macro call"
 	st=1
 fi;

@@ -74,11 +74,59 @@
 	anchored = FALSE
 	animate_movement = SLIDE_STEPS
 
+/obj/effect/temp_visual/xenomorph/roony_afterimage
+	name = "roony afterimage"
+	desc = "It has become speed.."
+	icon = 'icons/Xeno/2x2_Xenos.dmi' //They are now like, 2x1 or something
+	icon_state = "Roony Walking"
+	layer = MOB_LAYER
+	alpha = 64 //Translucent
+	duration = 0.5 SECONDS
+	density = FALSE
+	opacity = FALSE
+	anchored = FALSE
+	animate_movement = SLIDE_STEPS
+
 /obj/effect/temp_visual/heavyimpact
 	name = "heavy impact"
 	icon = 'icons/effects/heavyimpact.dmi'
 	icon_state = "heavyimpact"
 	duration = 13
+
+/obj/effect/temp_visual/order
+	icon = 'icons/Marine/marine-items.dmi'
+	var/icon_state_on
+	hud_possible = list(SQUAD_HUD)
+	duration = ORDER_DURATION
+	layer = TURF_LAYER
+
+/obj/effect/temp_visual/order/Initialize(mapload)
+	. = ..()
+	prepare_huds()
+	var/datum/atom_hud/squad/squad_hud = GLOB.huds[DATA_HUD_SQUAD]
+	squad_hud.add_to_hud(src)
+	set_visuals()
+
+/obj/effect/temp_visual/order/attack_order
+	name = "attack order"
+	icon_state_on = "attack"
+
+/obj/effect/temp_visual/order/defend_order
+	name = "defend order"
+	icon_state_on = "defend"
+
+/obj/effect/temp_visual/order/retreat_order
+	name = "retreat order"
+	icon_state_on = "retreat"
+
+///Set visuals for the hud
+/obj/effect/temp_visual/order/proc/set_visuals()
+	var/image/holder = hud_list[SQUAD_HUD]
+	if(!holder)
+		return
+	holder.icon = 'icons/Marine/marine-items.dmi'
+	holder.icon_state = icon_state_on
+	hud_list[SQUAD_HUD] = holder
 
 /obj/effect/temp_visual/healing
 	name = "healing"

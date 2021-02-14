@@ -38,7 +38,7 @@
 	TIMER_COOLDOWN_START(src, COOLDOWN_CHEW, 7.5 SECONDS)
 
 
-/mob/living/carbon/human/UnarmedAttack(atom/A, proximity)
+/mob/living/carbon/human/UnarmedAttack(atom/A, proximity, params)
 	if(lying_angle) //No attacks while laying down
 		return FALSE
 

@@ -1,5 +1,6 @@
 #define DISTRESS_MARINE_DEPLOYMENT 0
 #define DISTRESS_DROPSHIP_CRASHED 1
+#define DISTRESS_DROPSHIP_CAPTURED_XENOS 2
 
 /datum/game_mode/infestation/distress
 	name = "Distress Signal"
@@ -109,20 +110,22 @@
 	var/living_player_list[] = count_humans_and_xenos(count_flags = COUNT_IGNORE_ALIVE_SSD|COUNT_IGNORE_XENO_SPECIAL_AREA)
 	var/num_humans = living_player_list[1]
 	var/num_xenos = living_player_list[2]
+	var/num_humans_ship = living_player_list[3]
 
 	if(SSevacuation.dest_status == NUKE_EXPLOSION_FINISHED)
 		message_admins("Round finished: [MODE_GENERIC_DRAW_NUKE]") //ship blows, no one wins
 		round_finished = MODE_GENERIC_DRAW_NUKE
 		return TRUE
 
+	if(round_stage == DISTRESS_DROPSHIP_CAPTURED_XENOS)
+		message_admins("Round finished: [MODE_INFESTATION_X_MINOR]")
+		round_finished = MODE_INFESTATION_X_MINOR
+		return TRUE
+
 	if(!num_humans)
 		if(!num_xenos)
 			message_admins("Round finished: [MODE_INFESTATION_DRAW_DEATH]") //everyone died at the same time, no one wins
 			round_finished = MODE_INFESTATION_DRAW_DEATH
-			return TRUE
-		if(round_stage == DISTRESS_DROPSHIP_CRASHED)
-			message_admins("Round finished: [MODE_INFESTATION_X_MAJOR]") //xenos wiped our marines, xeno major victory
-			round_finished = MODE_INFESTATION_X_MAJOR
 			return TRUE
 		message_admins("Round finished: [MODE_INFESTATION_X_MAJOR]") //xenos wiped out ALL the marines without hijacking, xeno major victory
 		round_finished = MODE_INFESTATION_X_MAJOR
@@ -134,6 +137,10 @@
 			return TRUE
 		message_admins("Round finished: [MODE_INFESTATION_M_MAJOR]") //marines win big or go home
 		round_finished = MODE_INFESTATION_M_MAJOR
+		return TRUE
+	if(round_stage == DISTRESS_DROPSHIP_CRASHED && !num_humans_ship)
+		message_admins("Round finished: [MODE_INFESTATION_X_MAJOR]") //xenos wiped our marines, xeno major victory
+		round_finished = MODE_INFESTATION_X_MAJOR
 		return TRUE
 	return FALSE
 

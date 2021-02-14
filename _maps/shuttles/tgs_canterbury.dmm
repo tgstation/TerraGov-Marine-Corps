@@ -107,7 +107,7 @@
 /obj/structure/paper_bin,
 /obj/item/tool/pen,
 /obj/item/clipboard,
-/obj/item/pinpointer/advpinpointer,
+/obj/item/pinpointer/crash,
 /obj/machinery/vending/nanomed,
 /turf/open/floor/mainship/blue,
 /area/shuttle/canterbury/cic)
@@ -481,7 +481,7 @@
 /obj/machinery/cell_charger,
 /obj/item/radio,
 /obj/item/tool/crowbar,
-/obj/item/pinpointer/advpinpointer,
+/obj/item/pinpointer/crash,
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/spray/cleaner,
 /turf/open/floor/mainship/sterile,
@@ -554,9 +554,7 @@
 /turf/open/floor/mainship/red/full,
 /area/shuttle/canterbury)
 "bR" = (
-/obj/machinery/bioprinter{
-	stored_metal = 1000
-	},
+/obj/machinery/bioprinter/stocked,
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
 "bS" = (

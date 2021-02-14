@@ -23,7 +23,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/ui_style_color = "#ffffff"
 	var/ui_style_alpha = 230
 	var/tgui_fancy = TRUE
-	var/tgui_lock = TRUE
+	var/tgui_lock = FALSE
 	var/toggles_deadchat = TOGGLES_DEADCHAT_DEFAULT
 	var/toggles_chat = TOGGLES_CHAT_DEFAULT
 	var/toggles_sound = TOGGLES_SOUND_DEFAULT
@@ -631,7 +631,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			synthetic_name = newname
 
 		if("synth_type")
-			var/new_synth_type = input(user, "Choose your model of synthetic:", "Synthetic Model") as null|anything in SYNTH_TYPES
+			var/new_synth_type = tgui_input_list(user, "Choose your model of synthetic:", "Synthetic Model", SYNTH_TYPES)
 			if(!new_synth_type)
 				return
 			synthetic_type = new_synth_type
@@ -692,19 +692,19 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				underwear = 1
 
 		if("ethnicity")
-			var/new_ethnicity = input(user, "Choose your character's ethnicity:", "Ethnicity") as null|anything in GLOB.ethnicities_list
+			var/new_ethnicity = tgui_input_list(user, "Choose your character's ethnicity:", "Ethnicity", GLOB.ethnicities_list)
 			if(!new_ethnicity)
 				return
 			ethnicity = new_ethnicity
 
 		if("species")
-			var/new_species = input(user, "Choose your species:", "Species") as null|anything in GLOB.all_species[DEFAULT_SPECIES]
+			var/new_species = tgui_input_list(user, "Choose your species:", "Species", GLOB.roundstart_species)
 			if(!new_species)
 				return
 			species = new_species
 
 		if("body_type")
-			var/new_body_type = input(user, "Choose your character's body type:", "Body Type") as null|anything in GLOB.body_types_list
+			var/new_body_type = tgui_input_list(user, "Choose your character's body type:", "Body Type", GLOB.body_types_list)
 			if(!new_body_type)
 				return
 			body_type = new_body_type
@@ -715,7 +715,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		if("moth_wings")
 			if(species != "Moth")
 				return
-			var/new_wings = input(user, "Choose your character's wings: ", "Moth Wings") as null|anything in (GLOB.moth_wings_list - "Burnt Off")
+			var/new_wings = tgui_input_list(user, "Choose your character's wings: ", "Moth Wings", GLOB.moth_wings_list)
 			if(!new_wings)
 				return
 			moth_wings = new_wings
@@ -758,25 +758,25 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			else
 				underwear_options = GLOB.underwear_f
 
-			var/new_underwear = input(user, "Choose your character's underwear:", "Underwear")  as null|anything in underwear_options
+			var/new_underwear = tgui_input_list(user, "Choose your character's underwear:", "Underwear", underwear_options)
 			if(!new_underwear)
 				return
 			underwear = underwear_options.Find(new_underwear)
 
 		if("undershirt")
-			var/new_undershirt = input(user, "Choose your character's undershirt:", "Undershirt") as null|anything in GLOB.undershirt_t
+			var/new_undershirt = tgui_input_list(user, "Choose your character's undershirt:", "Undershirt", GLOB.undershirt_t)
 			if(!new_undershirt)
 				return
 			undershirt = GLOB.undershirt_t.Find(new_undershirt)
 
 		if("backpack")
-			var/new_backpack = input(user, "Choose your character's style of a backpack:", "Backpack Style")  as null|anything in GLOB.backpacklist
+			var/new_backpack = tgui_input_list(user, "Choose your character's style of a backpack:", "Backpack Style", GLOB.backpacklist)
 			if(!new_backpack)
 				return
 			backpack = GLOB.backpacklist.Find(new_backpack)
 
 		if("loadoutadd")
-			var/choice = input(user, "Select gear to add: ", "Custom Loadout") as null|anything in GLOB.gear_datums
+			var/choice = tgui_input_list(user, "Select gear to add: ", "Custom Loadout", GLOB.gear_datums)
 			if(!choice)
 				return
 
@@ -812,7 +812,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				gear = list()
 
 		if("ui")
-			var/choice = input(user, "Please choose an UI style.", "UI Style") as null|anything in UI_STYLES
+			var/choice = tgui_input_list(user, "Please choose an UI style.", "UI Style", UI_STYLES)
 			if(!choice)
 				return
 			ui_style = choice
@@ -839,7 +839,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				valid_hairstyles[hairstyle] = GLOB.hair_styles_list[hairstyle]
 
-			var/new_h_style = input(user, "Choose your character's hair style:", "Hair Style")  as null|anything in valid_hairstyles
+			var/new_h_style = tgui_input_list(user, "Choose your character's hair style:", "Hair Style", valid_hairstyles)
 			if(!new_h_style)
 				return
 			h_style = new_h_style
@@ -863,7 +863,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				valid_facialhairstyles[facialhairstyle] = GLOB.facial_hair_styles_list[facialhairstyle]
 
-			var/new_f_style = input(user, "Choose your character's facial-hair style:", "Facial Hair Style")  as null|anything in (valid_facialhairstyles + "Shaved")
+			var/new_f_style = tgui_input_list(user, "Choose your character's facial-hair style:", "Facial Hair Style", valid_facialhairstyles + "Shaved")
 			if(!new_f_style)
 				return
 			f_style = new_f_style
@@ -885,25 +885,25 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			b_eyes = hex2num(copytext(eyecolor, 6, 8))
 
 		if("citizenship")
-			var/choice = input(user, "Please choose your current citizenship.") as null|anything in CITIZENSHIP_CHOICES
+			var/choice = tgui_input_list(user, "Please choose your current citizenship.", null,CITIZENSHIP_CHOICES)
 			if(!choice)
 				return
 			citizenship = choice
 
 		if("religion")
-			var/choice = input(user, "Please choose a religion.") as null|anything in RELIGION_CHOICES
+			var/choice = tgui_input_list(user, "Please choose a religion.", null,RELIGION_CHOICES)
 			if(!choice)
 				return
 			religion = choice
 
 		if("corporation")
-			var/new_relation = input(user, "Choose your relation to the Nanotrasen company that will appear on background checks.", "Nanotrasen Relation")  as null|anything in CORP_RELATIONS
+			var/new_relation = tgui_input_list(user, "Choose your relation to the Nanotrasen company that will appear on background checks.", "Nanotrasen Relation", CORP_RELATIONS)
 			if(!new_relation)
 				return
 			nanotrasen_relation = new_relation
 
 		if("squad")
-			var/new_squad = input(user, "Choose your preferred squad.", "Preferred Squad") as null|anything in SELECTABLE_SQUADS
+			var/new_squad = tgui_input_list(user, "Choose your preferred squad.", "Preferred Squad", SELECTABLE_SQUADS)
 			if(!new_squad)
 				return
 			preferred_squad = new_squad
@@ -1076,8 +1076,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			user << browse(null, "window=keybindings")
 
 		if("keybindings_reset")
-			var/choice = tgalert(usr, "Would you prefer 'hotkey' or 'classic' defaults?", "Setup keybindings", "Hotkey", "Classic", "Cancel")
-			if (choice == "Cancel")
+			var/choice = tgui_alert(usr, "Would you prefer 'hotkey' or 'classic' defaults?", "Setup keybindings", list("Hotkey", "Classic", "Cancel"))
+			if (!choice || choice == "Cancel")
 				ShowKeybindings(user)
 				return
 			focus_chat = (choice == "Classic")

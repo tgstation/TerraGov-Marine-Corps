@@ -61,9 +61,10 @@
 
 	return
 
-/obj/item/reagent_containers/borghypo/attack_self(mob/user as mob)
-	var/selection = input("Please select a reagent:", "Reagent", null) as null|anything in reagent_ids
-	if(!selection) return
+/obj/item/reagent_containers/borghypo/attack_self(mob/user)
+	var/selection = tgui_input_list(user, "Please select a reagent:", "Reagent", reagent_ids)
+	if(!selection)
+		return
 	var/datum/reagent/R = GLOB.chemical_reagents_list[selection]
 	to_chat(user, "<span class='notice'> Synthesizer is now producing '[R.name]'.</span>")
 	mode = reagent_ids.Find(selection)

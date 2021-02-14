@@ -13,7 +13,7 @@
 	. = ..()
 	if(ismultitool(I) && is_general_board == TRUE)
 		var/obj/item/circuitboard/new_board
-		var/modepick = input("Select a mode for this circuit.") as null|anything in list("APC", "Airlock", "Fire Alarm", "Air Alarm")
+		var/modepick = tgui_input_list(user, "Select a mode for this circuit.", null,list("APC", "Airlock", "Fire Alarm", "Air Alarm"))
 		switch(modepick)
 			if("APC")
 				new_board = new /obj/item/circuitboard/apc(user.loc)

@@ -186,6 +186,25 @@
 	parent.slowdown -= slowdown
 	return ..()
 
+/** Extra armor module */
+/obj/item/armor_module/attachable/ballistic_armor
+	name = "\improper Ballistic Armor Reinforcement"
+	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. A substantial amount of additional armor plating designed to fit inside some of the vulnerable portions of the Jaeger Combat Exoskeleton conventional armor patterns against bullets and nothing else. Will definitely impact mobility."
+	icon_state = "mod_ff_icon"
+	item_state = "mod_ff"
+	soft_armor = list("melee" = 0, "bullet" = 40, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	slowdown = 0.2
+
+/obj/item/armor_module/attachable/ballistic_armor/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
+	. = ..()
+	parent.soft_armor = parent.soft_armor.attachArmor(soft_armor)
+	parent.slowdown += slowdown
+
+/obj/item/armor_module/attachable/ballistic_armor/do_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
+	parent.soft_armor = parent.soft_armor.detachArmor(soft_armor)
+	parent.slowdown -= slowdown
+	return ..()
+
 /obj/item/armor_module/attachable/chemsystem
 	name = "Vali chemical enhancement module"
 	desc = "A module that enhances the strength of reagents in the body. Requires a special substance, gathered from xenomorph lifeforms, to function. For in-depth information https://github.com/tgstation/TerraGov-Marine-Corps/pull/5830."

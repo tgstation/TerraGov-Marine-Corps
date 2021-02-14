@@ -89,7 +89,7 @@
 
 	pslash_delay = TRUE
 
-	var/choice = input("Choose which level of slashing hosts to permit to your hive.","Harming") as null|anything in list("Allowed", "Restricted - Less Damage", "Forbidden")
+	var/choice = tgui_input_list(src, "Choose which level of slashing hosts to permit to your hive.","Harming", list("Allowed", "Restricted - Less Damage", "Forbidden"))
 
 	if(choice == "Allowed")
 		to_chat(src, "<span class='xenonotice'>We allow slashing.</span>")
@@ -271,7 +271,7 @@
 	if(QDELETED(selected_xeno))
 		var/list/possible_xenos = X.hive.get_watchable_xenos()
 
-		selected_xeno = input(X, "Target", "Watch which xenomorph?") as null|anything in possible_xenos
+		selected_xeno = tgui_input_list(X, "Target", "Watch which xenomorph?", possible_xenos)
 		if(QDELETED(selected_xeno) || selected_xeno == X.observed_xeno || selected_xeno.stat == DEAD || is_centcom_level(selected_xeno.z) || !X.check_state())
 			if(!X.observed_xeno)
 				return
@@ -309,8 +309,8 @@
 
 
 /datum/action/xeno_action/watch_xeno/proc/on_list_xeno_selection(datum/source, mob/living/carbon/xenomorph/selected_xeno)
-	SIGNAL_HANDLER_DOES_SLEEP
-	select_xeno(selected_xeno)
+	SIGNAL_HANDLER
+	INVOKE_ASYNC(src, .proc/select_xeno, selected_xeno)
 
 /datum/action/xeno_action/watch_xeno/proc/on_xeno_evolution(datum/source, mob/living/carbon/xenomorph/new_xeno)
 	SIGNAL_HANDLER
@@ -418,7 +418,7 @@
 	if(QDELETED(selected_xeno))
 		var/list/possible_xenos = xeno_ruler.hive.get_leaderable_xenos()
 
-		selected_xeno = input(xeno_ruler, "Target", "Watch which xenomorph?") as null|anything in possible_xenos
+		selected_xeno = tgui_input_list(xeno_ruler, "Target", "Watch which xenomorph?", possible_xenos)
 		if(QDELETED(selected_xeno) || selected_xeno.stat == DEAD || is_centcom_level(selected_xeno.z) || !xeno_ruler.check_state())
 			return
 
@@ -634,8 +634,8 @@
 
 	var/datum/xeno_caste/new_caste = GLOB.xeno_caste_datums[T.xeno_caste.deevolves_to][XENO_UPGRADE_ZERO]
 
-	var/confirm = alert(X, "Are you sure you want to deevolve [T] from [T.xeno_caste.caste_name] to [new_caste.caste_name]?", , "Yes", "No")
-	if(confirm == "No")
+	var/confirm = tgui_alert(X, "Are you sure you want to deevolve [T] from [T.xeno_caste.caste_name] to [new_caste.caste_name]?", null, list("Yes", "No"))
+	if(confirm != "Yes")
 		return
 
 	var/reason = stripped_input(X, "Provide a reason for deevolving this xenomorph, [T]")

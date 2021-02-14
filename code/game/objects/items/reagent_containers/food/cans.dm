@@ -12,7 +12,7 @@
 		ENABLE_BITFIELD(reagents.reagent_flags, OPENCONTAINER_NOUNIT)
 		return
 	var/obj/item/reagent_containers/H = usr.get_active_held_item()
-	var/N = input("Amount per transfer from this:","[H]") as null|anything in H.possible_transfer_amounts
+	var/N = tgui_input_list(user, "Amount per transfer from this:","[H]", possible_transfer_amounts)
 	if (N)
 		H.amount_per_transfer_from_this = N
 
