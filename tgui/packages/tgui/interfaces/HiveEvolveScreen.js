@@ -62,8 +62,7 @@ export const HiveEvolveScreen = (props, context) => {
     <Window
       title="Xenomorph Evolution"
       width={400}
-      height={750}
-      resizable>
+      height={750}>
       <Window.Content scrollable>
         <Section title="Current Evolution">
           <CasteView

@@ -71,6 +71,11 @@ OPERATIONS
 	contains = list(/obj/item/motiondetector/scout)
 	cost = 20
 
+/datum/supply_packs/operations/pinpointer
+	name = "pool tracker crate"
+	contains = list(/obj/item/pinpointer/pool)
+	cost = 20
+
 /datum/supply_packs/operations/flares
 	name = "2 flare packs"
 	notes = "Contains 14 flares"
@@ -1394,16 +1399,6 @@ Imports
 
 /datum/supply_packs/imports/ak47/ammo
 	name = "AK-47 Assault Rifle Ammo"
-	contains = list(/obj/item/ammo_magazine/rifle/ak47)
-	cost = 5
-
-/datum/supply_packs/imports/ak47u
-	name = "AK-47U Battle Carbine"
-	contains = list(/obj/item/weapon/gun/rifle/ak47/carbine)
-	cost = 15
-
-/datum/supply_packs/imports/ak47u/ammo
-	name = "AK-47U Battle Carbine Ammo"
 	contains = list(/obj/item/ammo_magazine/rifle/ak47)
 	cost = 5
 

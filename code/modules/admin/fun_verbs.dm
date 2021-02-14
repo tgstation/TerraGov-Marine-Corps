@@ -129,7 +129,7 @@
 	if(!input || !customname)
 		return
 
-	if(tgui_alert(usr, "Do you want to print out a paper at the communications consoles?",, list("Yes", "No")) == "Yes")
+	if(tgui_alert(usr, "Do you want to print out a paper at the communications consoles?", null, list("Yes", "No")) == "Yes")
 		print_command_report(input, "[SSmapping.configs[SHIP_MAP].map_name] Update", announce = FALSE)
 
 	switch(tgui_alert(usr, "Should this be announced to the general population?", "Announce", list("Yes", "No", "Cancel")))
@@ -385,7 +385,7 @@
 		return
 
 	var/list/targets
-	var/style = tgui_alert(usr, "Do you want to play this globally or to the xenos/marines?", list("Globally", "Xenos", "Marines", "Locally"))
+	var/style = tgui_alert(usr, "Do you want to play this globally or to the xenos/marines?", null,list("Globally", "Xenos", "Marines", "Locally"))
 	switch(style)
 		if("Globally")
 			targets = GLOB.mob_list
@@ -490,7 +490,7 @@
 
 	list_of_calls += "Randomize"
 
-	var/choice = tgui_input_list(usr, "Which distress do you want to call?", list_of_calls)
+	var/choice = tgui_input_list(usr, "Which distress do you want to call?", null, list_of_calls)
 	if(!choice)
 		return
 
@@ -1091,7 +1091,7 @@
 		to_chat(usr, "<span class='warning'>No valid destinations found!</span>")
 		return
 
-	var/dock = tgui_input_list("Choose the destination.", "Force Dropship", valid_docks)
+	var/dock = tgui_input_list(usr, "Choose the destination.", "Force Dropship", valid_docks)
 	if(!dock)
 		return
 
@@ -1177,7 +1177,7 @@
 	if(!holder)
 		return
 
-	var/weather_type = tgui_input_list("Choose a weather", "Weather", subtypesof(/datum/weather))
+	var/weather_type = tgui_input_list(usr, "Choose a weather", "Weather", subtypesof(/datum/weather))
 	if(!weather_type)
 		return
 

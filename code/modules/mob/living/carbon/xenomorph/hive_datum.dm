@@ -598,7 +598,7 @@ to_chat will check for valid clients itself already so no need to double check f
 
 	var/mob/living/carbon/xenomorph/chosen_mother
 	if(length(possible_mothers) > 1)
-		chosen_mother = tgui_input_list(xeno_candidate, "Available Mothers", possible_mothers)
+		chosen_mother = tgui_input_list(xeno_candidate, "Available Mothers", null, possible_mothers)
 	else
 		chosen_mother = possible_mothers[1]
 
@@ -702,7 +702,7 @@ to_chat will check for valid clients itself already so no need to double check f
 
 
 /datum/hive_status/normal/proc/on_hijack_depart(datum/source, new_mode)
-	SIGNAL_HANDLER_DOES_SLEEP
+	SIGNAL_HANDLER
 	if(new_mode != SHUTTLE_CALL)
 		return
 	UnregisterSignal(source, COMSIG_SHUTTLE_SETMODE)
@@ -718,7 +718,7 @@ to_chat will check for valid clients itself already so no need to double check f
 			continue
 		if(!is_ground_level(boarder.z))
 			continue
-		boarder.gib()
+		INVOKE_ASYNC(boarder, /mob/living.proc/gib)
 		left_behind++
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	if(left_behind)

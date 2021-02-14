@@ -40,9 +40,9 @@
 
 
 /datum/action/xeno_action/proc/keybind_activation()
-	SIGNAL_HANDLER_DOES_SLEEP
+	SIGNAL_HANDLER
 	if(can_use_action())
-		action_activate()
+		INVOKE_ASYNC(src, .proc/action_activate)
 	return COMSIG_KB_ACTIVATED
 
 /datum/action/xeno_action/proc/on_xeno_upgrade()

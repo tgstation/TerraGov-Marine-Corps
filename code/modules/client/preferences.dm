@@ -885,13 +885,13 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			b_eyes = hex2num(copytext(eyecolor, 6, 8))
 
 		if("citizenship")
-			var/choice = tgui_input_list(user, "Please choose your current citizenship.", CITIZENSHIP_CHOICES)
+			var/choice = tgui_input_list(user, "Please choose your current citizenship.", null,CITIZENSHIP_CHOICES)
 			if(!choice)
 				return
 			citizenship = choice
 
 		if("religion")
-			var/choice = tgui_input_list(user, "Please choose a religion.", RELIGION_CHOICES)
+			var/choice = tgui_input_list(user, "Please choose a religion.", null,RELIGION_CHOICES)
 			if(!choice)
 				return
 			religion = choice

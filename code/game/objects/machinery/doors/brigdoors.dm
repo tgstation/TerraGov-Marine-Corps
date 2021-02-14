@@ -80,42 +80,50 @@
 
 // Closes and locks doors, power check
 /obj/machinery/door_timer/proc/timer_start()
-	if(machine_stat & (NOPOWER|BROKEN))	return 0
+	if(machine_stat & (NOPOWER|BROKEN))
+		return FALSE
 
 	// Set releasetime
 	releasetime = world.timeofday + timetoset
 
 	for(var/obj/machinery/door/window/secure/door in targets)
-		if(door.density)	continue
-		INVOKE_ASYNC(door, /obj/machinery/door.proc/close)
+		if(door.density)
+			continue
+		door.close()
 
 	for(var/obj/structure/closet/secure_closet/brig/C in targets)
-		if(C.broken)	continue
-		if(C.opened && !C.close())	continue
-		C.locked = 1
+		if(C.broken)
+			continue
+		if(C.opened && !C.close())
+			continue
+		C.locked = TRUE
 		C.icon_state = C.icon_locked
 	start_processing()
-	return 1
+	return TRUE
 
 
 // Opens and unlocks doors, power check
 /obj/machinery/door_timer/proc/timer_end()
-	if(machine_stat & (NOPOWER|BROKEN))	return 0
+	if(machine_stat & (NOPOWER|BROKEN))
+		return FALSE
 
 	// Reset releasetime
 	releasetime = 0
 
 	for(var/obj/machinery/door/window/secure/door in targets)
-		if(!door.density)	continue
-		INVOKE_ASYNC(door, /obj/machinery/door.proc/open)
+		if(!door.density)
+			continue
+		door.open()
 
 	for(var/obj/structure/closet/secure_closet/brig/C in targets)
-		if(C.broken)	continue
-		if(C.opened)	continue
-		C.locked = 0
+		if(C.broken)
+			continue
+		if(C.opened)
+			continue
+		C.locked = FALSE
 		C.icon_state = C.icon_closed
 	stop_processing()
-	return 1
+	return TRUE
 
 
 // Check for releasetime timeleft
