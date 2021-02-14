@@ -356,6 +356,7 @@
 	name = "\improper M3 pattern marksman armor"
 	icon_state = "marine_sniperm"
 
+
 /*=============================PMCS==================================*/
 
 /obj/item/clothing/suit/storage/marine/veteran
