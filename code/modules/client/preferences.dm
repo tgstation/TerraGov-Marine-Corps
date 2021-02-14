@@ -83,6 +83,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/g_hair = 0
 	var/b_hair = 0
 
+	var/grad_style = "None"
+	var/r_grad = 0
+	var/g_grad = 0
+	var/b_grad = 0
+
 	//Facial hair
 	var/f_style = "Shaved"
 	var/r_facial = 0
@@ -247,6 +252,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	dat += "<b>Good Eyesight:</b> <a href='?_src_=prefs;preference=eyesight'>[good_eyesight ? "Yes" : "No"]</a><br>"
 	dat += "<br>"
 	dat += "<b>Hair:</b> <a href='?_src_=prefs;preference=hairstyle'>[h_style]</a> | <a href='?_src_=prefs;preference=haircolor'>Color</a> <font face='fixedsys' size='3' color='#[num2hex(r_hair, 2)][num2hex(g_hair, 2)][num2hex(b_hair, 2)]'><table style='display:inline;' bgcolor='#[num2hex(r_hair, 2)][num2hex(g_hair, 2)][num2hex(b_hair)]'><tr><td>__</td></tr></table></font> "
+	dat += "<br>"
+	dat += "<b>Gradient:</b> <a href='?_src_=prefs;preference=grad_style'>[grad_style]</a> <a href='?_src_=prefs;preference=grad_color='>Color</a> <font face='fixedsys' size='3' color='#[num2hex(r_grad, 2)][num2hex(g_grad, 2)][num2hex(b_grad, 2)]'><table style='display:inline;' bgcolor='#[num2hex(r_grad, 2)][num2hex(g_grad, 2)][num2hex(b_grad)]'><tr><td>__</td></tr></table></font>"
 	dat += "<br>"
 	dat += "<b>Facial Hair:</b> <a href='?_src_=prefs;preference=facialstyle'>[f_style]</a> | <a href='?_src_=prefs;preference=facialcolor'>Color</a> <font face='fixedsys' size='3' color='#[num2hex(r_facial, 2)][num2hex(g_facial, 2)][num2hex(b_facial, 2)]'><table  style='display:inline;' bgcolor='#[num2hex(r_facial, 2)][num2hex(g_facial, 2)][num2hex(b_facial)]'><tr><td>__</td></tr></table></font> "
 	dat += "<br>"
@@ -851,6 +858,23 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			r_hair = hex2num(copytext(new_color, 2, 4))
 			g_hair = hex2num(copytext(new_color, 4, 6))
 			b_hair = hex2num(copytext(new_color, 6, 8))
+
+		if("grad_color")
+			var/new_grad = input(user, "Choose your character's secondary hair color:", "Character Preference", rgb(r_grad, g_grad, b_grad)) as null|color
+			if(!new_grad)
+				return
+				r_grad = hex2num(copytext(new_grad, 2, 4))
+				g_grad = hex2num(copytext(new_grad, 4, 6))
+				b_grad = hex2num(copytext(new_grad, 6, 8))
+				return
+
+		if("grad_style")
+			var/list/valid_gradients = GLOB.hair_gradients
+
+			var/new_grad_style = input(user, "Choose a color pattern for your hair:", "Character Preference", grad_style)  as null|anything in valid_gradients
+			if(!new_grad_style)
+				grad_style = new_grad_style
+				return
 
 		if("facialstyle")
 			var/list/valid_facialhairstyles = list()
