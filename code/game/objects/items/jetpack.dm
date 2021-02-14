@@ -68,7 +68,7 @@
 	if(!selected)
 		return
 	selected = FALSE
-	UnregisterSignal(src, COMSIG_ITEM_MIDDLECLICKON)
+	UnregisterSignal(user, COMSIG_MOB_MIDDLE_CLICK)
 	UnregisterSignal(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE)
 	for(var/action in user.actions)
 		if (!istype(action, /datum/action/item_action))
