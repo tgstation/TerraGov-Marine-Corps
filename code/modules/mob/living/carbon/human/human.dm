@@ -759,13 +759,13 @@
 
 
 /mob/living/carbon/human/proc/fireman_carry_grabbed()
-	SIGNAL_HANDLER_DOES_SLEEP
+	SIGNAL_HANDLER
 	var/mob/living/grabbed = pulling
 	if(!istype(grabbed))
 		return NONE
-	if(/*grab_state >= GRAB_AGGRESSIVE &&*/ stat == CONSCIOUS && can_be_firemanned(grabbed))
+	if(stat == CONSCIOUS && can_be_firemanned(grabbed))
 		//If you dragged them to you and you're aggressively grabbing try to fireman carry them
-		fireman_carry(grabbed)
+		INVOKE_ASYNC(src, .proc/fireman_carry, grabbed)
 		return COMSIG_GRAB_SUCCESSFUL_SELF_ATTACK
 	return NONE
 

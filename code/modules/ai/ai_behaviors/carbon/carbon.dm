@@ -26,7 +26,7 @@
 
 //Attempt to deal with a obstacle
 /datum/ai_behavior/carbon/proc/deal_with_obstacle()
-	SIGNAL_HANDLER_DOES_SLEEP
+	SIGNAL_HANDLER
 
 //Signal wrappers; this can apply to both humans, xenos and other carbons that attack
 

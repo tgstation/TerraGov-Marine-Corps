@@ -86,7 +86,10 @@
 			openclose = M.density
 		else if(CHECK_BITFIELD(specialfunctions, DOOR_FLAG_OPEN_ONLY))
 			openclose = TRUE
-		INVOKE_ASYNC(M, openclose ? /obj/machinery/door/poddoor.proc/open : /obj/machinery/door/poddoor.proc/close)
+		if(openclose)
+			M.open()
+			continue
+		M.close()
 
 
 /obj/machinery/button/door/open_only

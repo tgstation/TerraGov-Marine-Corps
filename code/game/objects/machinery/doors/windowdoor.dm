@@ -109,8 +109,10 @@
 	icon_state = "[base_state]open"
 	do_animate("opening")
 	playsound(src, 'sound/machines/windowdoor.ogg', 25, 1)
-	sleep(1 SECONDS)
+	addtimer(CALLBACK(src, .proc/finish_open), 1 SECONDS)
+	return TRUE
 
+/obj/machinery/door/window/finish_open()
 	density = FALSE
 
 	if(operating)
@@ -132,10 +134,11 @@
 
 	density = TRUE
 
-	sleep(1 SECONDS)
-
-	operating = FALSE
+	addtimer(CALLBACK(src, .proc/finish_close), 1 SECONDS)
 	return TRUE
+
+/obj/machinery/door/window/finish_close()
+	operating = FALSE
 
 
 /obj/machinery/door/window/attack_ai(mob/living/silicon/ai/AI)

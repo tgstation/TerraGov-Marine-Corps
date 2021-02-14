@@ -181,9 +181,9 @@
 			// Accountability!
 			users_to_open |= user.name
 			needs_to_close = TRUE
-		INVOKE_ASYNC(src, .proc/open)
+		open()
 	else
-		INVOKE_ASYNC(src, .proc/close)
+		close()
 
 	if(needs_to_close)
 		spawn(50)
