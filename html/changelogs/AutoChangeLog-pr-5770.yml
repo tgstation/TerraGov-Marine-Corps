@@ -1,9 +1,0 @@
-author: "Sulaboy"
-delete-after: True
-changes: 
-  - rscadd: "Added marine ballistic healthmate goggles and prescription variant as medic point buy item."
-  - imageadd: "Added corresponding worn/inventory images for above added items"
-  - tweak: "From 4 vendor points to 2 vendor points
-01/22/2021"
-  - tweak: "Removed goggles from vendor"
-  - tweak: "Added ability to combine hud and goggles/RPG glasses/eyepatch"
