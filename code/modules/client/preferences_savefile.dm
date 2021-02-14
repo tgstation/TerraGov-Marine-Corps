@@ -109,6 +109,9 @@
 			save_character()
 			return FALSE
 
+	S["enable_personal_chat_color"]			>> enable_personal_chat_color
+	S["personal_chat_color"]			>> personal_chat_color
+
 	READ_FILE(S["default_slot"], default_slot)
 	READ_FILE(S["lastchangelog"], lastchangelog)
 	READ_FILE(S["ooccolor"], ooccolor)
@@ -187,6 +190,8 @@
 	max_chat_length		= sanitize_integer(max_chat_length, 1, CHAT_MESSAGE_MAX_LENGTH, initial(max_chat_length))
 	see_chat_non_mob	= sanitize_integer(see_chat_non_mob, FALSE, TRUE, initial(see_chat_non_mob))
 	see_rc_emotes	= sanitize_integer(see_rc_emotes, FALSE, TRUE, initial(see_rc_emotes))
+	enable_personal_chat_color	= sanitize_integer(enable_personal_chat_color, 0, 1, initial(enable_personal_chat_color))
+	personal_chat_color	= sanitize_hexcolor(personal_chat_color, 6, 1, "#FFFFFF")
 
 	return TRUE
 
@@ -279,6 +284,8 @@
 	WRITE_FILE(S["max_chat_length"], max_chat_length)
 	WRITE_FILE(S["see_chat_non_mob"], see_chat_non_mob)
 	WRITE_FILE(S["see_rc_emotes"], see_rc_emotes)
+	WRITE_FILE(S["enable_personal_chat_color"], enable_personal_chat_color)
+	WRITE_FILE(S["personal_chat_color"], personal_chat_color)
 
 	return TRUE
 

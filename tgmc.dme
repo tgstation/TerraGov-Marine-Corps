@@ -74,6 +74,7 @@
 #include "code\__DEFINES\qdel.dm"
 #include "code\__DEFINES\radio.dm"
 #include "code\__DEFINES\reagents.dm"
+#include "code\__DEFINES\runechat_defines.dm"
 #include "code\__DEFINES\rust_g.dm"
 #include "code\__DEFINES\say.dm"
 #include "code\__DEFINES\shuttles.dm"

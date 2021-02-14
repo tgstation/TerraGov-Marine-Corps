@@ -126,6 +126,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/max_chat_length = CHAT_MESSAGE_MAX_LENGTH
 	///Whether emotes will be displayed on runechat. Requires chat_on_map to have effect.
 	var/see_rc_emotes = TRUE
+	var/enable_personal_chat_color = FALSE
+	var/personal_chat_color = "#ffffff"
 
 	var/auto_fit_viewport = TRUE
 
@@ -356,6 +358,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	dat += "<b>Runechat message char limit:</b> <a href='?_src_=prefs;preference=max_chat_length;task=input'>[max_chat_length]</a><br>"
 	dat += "<b>See Runechat for non-mobs:</b> <a href='?_src_=prefs;preference=see_chat_non_mob'>[see_chat_non_mob ? "Enabled" : "Disabled"]</a><br>"
 	dat += "<b>See Runechat emotes:</b> <a href='?_src_=prefs;preference=see_rc_emotes'>[see_rc_emotes ? "Enabled" : "Disabled"]</a><br>"
+	dat += "<b>Custom runechat color :</b> <a href='?_src_=prefs;preference=enable_personal_chat_color'>[enable_personal_chat_color ? "Enabled" : "Disabled"]</a> [enable_personal_chat_color ? "<span style='border: 1px solid #161616; background-color: [personal_chat_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=personal_chat_color;task=input'>Change</a>" : ""]<br>"
 
 	dat += "<h2>UI Customization:</h2>"
 	dat += "<b>Style:</b> <a href='?_src_=prefs;preference=ui'>[ui_style]</a><br>"
@@ -1003,12 +1006,26 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		if("see_rc_emotes")
 			see_rc_emotes = !see_rc_emotes
 
+		if("enable_personal_chat_color")
+			enable_personal_chat_color = !enable_personal_chat_color
+
 		if("tooltips")
 			tooltips = !tooltips
 			if(!tooltips)
 				closeToolTip(usr)
 			else if(!usr.client.tooltips && tooltips)
 				usr.client.tooltips = new /datum/tooltip(usr.client)
+
+		if("personal_chat_color")
+			var/new_chat_color = input(user, "Choose your character's runechat color:", "Character Preference",personal_chat_color) as color|null
+			if(new_chat_color)
+				var/list/temp_hsl = rgb2hsl(ReadRGB(new_chat_color)[1],ReadRGB(new_chat_color)[2],ReadRGB(new_chat_color)[3])
+				if(new_chat_color == "#000000")
+					personal_chat_color = "#FFFFFF"
+				else if(temp_hsl[3] >= 0.65 && temp_hsl[2] >= 0.15)
+					personal_chat_color = sanitize_hexcolor(new_chat_color, 6, 1)
+				else
+					to_chat(user, "<span class='danger'>Invalid color. Your color is not bright enough.</span>")
 
 		if("keybindings_menu")
 			ShowKeybindings(user)

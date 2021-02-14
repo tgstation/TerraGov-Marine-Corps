@@ -109,6 +109,23 @@
 	if (length_char(text) > maxlen)
 		text = copytext_char(text, 1, maxlen + 1) + "..." // BYOND index moment
 
+	//Totally didn't steal from Skyrat, not at all.
+	// Calculate target color if not already present
+	if (!target.chat_color || target.chat_color_name != target.name)
+		var/mob/M = target
+		if(GLOB.runechat_color_names[target.name])
+			target.chat_color = GLOB.runechat_color_names[target.name]
+		else if (ismob(target) && M.client?.prefs?.enable_personal_chat_color && M.name == M.real_name && M.name == M.client.prefs.real_name)
+			var/per_color = M.client.prefs.personal_chat_color
+			GLOB.runechat_color_names[target.name] = per_color
+			target.chat_color = per_color
+		else
+			target.chat_color = colorize_string(target.name)
+
+		target.chat_color_darkened = color_shift(target.chat_color, 0.85, 0.85)
+		target.chat_color_name = target.name
+	//~XS300
+
 	// Calculate target color if not already present
 	if (!target.chat_color || target.chat_color_name != target.name)
 		target.chat_color = colorize_string(target.name)
@@ -270,16 +287,27 @@
 	x = (x + m) * 255
 	c = (c + m) * 255
 	m *= 255
+	var/final_val
 	switch(h_int)
 		if(0)
-			return "#[num2hex(c, 2)][num2hex(x, 2)][num2hex(m, 2)]"
+			final_val = "#[num2hex(c, 2)][num2hex(x, 2)][num2hex(m, 2)]"
 		if(1)
-			return "#[num2hex(x, 2)][num2hex(c, 2)][num2hex(m, 2)]"
+			final_val = "#[num2hex(x, 2)][num2hex(c, 2)][num2hex(m, 2)]"
 		if(2)
-			return "#[num2hex(m, 2)][num2hex(c, 2)][num2hex(x, 2)]"
+			final_val = "#[num2hex(m, 2)][num2hex(c, 2)][num2hex(x, 2)]"
 		if(3)
-			return "#[num2hex(m, 2)][num2hex(x, 2)][num2hex(c, 2)]"
+			final_val = "#[num2hex(m, 2)][num2hex(x, 2)][num2hex(c, 2)]"
 		if(4)
-			return "#[num2hex(x, 2)][num2hex(m, 2)][num2hex(c, 2)]"
+			final_val = "#[num2hex(x, 2)][num2hex(m, 2)][num2hex(c, 2)]"
 		if(5)
-			return "#[num2hex(c, 2)][num2hex(m, 2)][num2hex(x, 2)]"
+			final_val = "#[num2hex(c, 2)][num2hex(m, 2)][num2hex(x, 2)]"
+
+	GLOB.runechat_color_names[name] = final_val
+	return final_val
+
+/datum/chatmessage/proc/color_shift(color, sat_shift = 1, lum_shift = 1)
+	var/list/HSL = rgb2hsl(hex2num(copytext(color, 2, 4)), hex2num(copytext(color, 4, 6)), hex2num(copytext(color, 6, 8)))
+	HSL[2] = HSL[2] * sat_shift
+	HSL[3] = HSL[3] * lum_shift
+	var/list/RGB = hsl2rgb(arglist(HSL))
+	return "#[num2hex(RGB[1],2)][num2hex(RGB[2],2)][num2hex(RGB[3],2)]"
