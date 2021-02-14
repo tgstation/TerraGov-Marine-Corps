@@ -70,12 +70,12 @@
 	selected = FALSE
 	UnregisterSignal(src, COMSIG_ITEM_MIDDLECLICKON)
 	UnregisterSignal(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE)
-	for(var/datum/action/action in user.actions)
+	for(var/action in user.actions)
 		if (!istype(action, /datum/action/item_action))
 			continue
 		var/datum/action/item_action/iaction = action
 		if(iaction?.holder_item == src)
-			action.remove_selected_frame()
+			iaction.remove_selected_frame()
 
 
 ///remove the flame overlay
