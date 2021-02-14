@@ -1336,6 +1336,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 		/obj/item/radio,
 		/obj/item/motiondetector,
 		/obj/item/binoculars/tactical,
+		/obj/item/pinpointer/pool,
 	)
 
 /obj/effect/essentials_set/commander

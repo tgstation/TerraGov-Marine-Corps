@@ -71,6 +71,11 @@ OPERATIONS
 	contains = list(/obj/item/motiondetector/scout)
 	cost = 20
 
+/datum/supply_packs/operations/pinpointer
+	name = "pool tracker crate"
+	contains = list(/obj/item/pinpointer/pool)
+	cost = 20
+
 /datum/supply_packs/operations/flares
 	name = "2 flare packs"
 	notes = "Contains 14 flares"
