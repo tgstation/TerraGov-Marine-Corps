@@ -254,7 +254,7 @@
 /datum/action/xeno_action/activable/toss/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
 	var/atom/movable/target = owner.pulling
-	var/fling_distance = 6
+	var/fling_distance = 5
 	var/stagger_slow_stacks = 3
 	var/stun_duration = 1 SECONDS
 	var/big_mob_message
@@ -265,9 +265,6 @@
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "warrior_flings")
 
 	playsound(target,'sound/weapons/alien_claw_block.ogg', 75, 1)
-
-	X.do_attack_animation(target, ATTACK_EFFECT_DISARM2)
-	target.forceMove(get_turf(X)) //First force them into our space so we can toss them behind us without problems
 
 	if(isliving(target))
 		var/mob/living/victim = target
@@ -288,6 +285,8 @@
 		victim.ParalyzeNoChain(stun_duration)
 		shake_camera(victim, 2, 1)
 
+	target.forceMove(get_turf(X)) //First force them into our space so we can toss them behind us without problems
+	X.do_attack_animation(target, ATTACK_EFFECT_DISARM2)
 	target.throw_at(get_turf(A), fling_distance, 1, X, 1)
 
 	X.visible_message("<span class='xenowarning'>\The [X] throws [target] away[big_mob_message]!</span>", \

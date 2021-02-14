@@ -89,6 +89,3 @@
 
 	/// Can they interact with station electronics
 	var/has_unlimited_silicon_privilege = 0
-
-	/// Throw range; mobs are harder to throw than most items. Large mobs will typically have their throw distance dynamically reduced via carbon.dm throw_item
-	throw_range = 3
