@@ -86,7 +86,9 @@
 		if(80 to INFINITY)
 			silo_number = 5
 
-	SSpoints.xeno_points_by_hive[XENO_HIVE_NORMAL] = silo_number * SILO_PRICE
+	for(var/i in 1 to silo_number)//Random silo generation depending on the number of players
+		var/siloturf = pick_n_take(GLOB.xeno_resin_silo_turfs)
+		new /obj/structure/resin/silo(siloturf)
 
 	addtimer(CALLBACK(src, .proc/announce_bioscans, FALSE, 1), rand(30 SECONDS, 1 MINUTES)) //First scan shows no location but more precise numbers.
 
