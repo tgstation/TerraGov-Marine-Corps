@@ -54,8 +54,7 @@
 	if(tracker_target && holder) //Check to avoid runtimes
 		tracker_target.overlays -= holder //remove the overlay
 	tracker_target = null //null the target var
-	QDEL_NULL(holder) //remove the holder
-	holder = null //null the holder var
+	QDEL_NULL(holder) //remove the holder and null the var
 
 /obj/effect/temp_visual/xenomorph/xeno_tracker_target/Initialize(mapload, atom/target)
 	. = ..()
