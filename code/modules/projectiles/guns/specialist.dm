@@ -428,7 +428,6 @@
 	var/obj/item/weapon/gun/smartgun/G = get_active_firearm(usr)
 	if(!istype(G))
 		return //Right kind of gun is not in hands, abort.
-	src = G
 	to_chat(usr, "[icon2html(src, usr)] You [restriction_toggled? "<B>disable</b>" : "<B>enable</b>"] the [src]'s fire restriction. You will [restriction_toggled ? "harm anyone in your way" : "target through IFF"].")
 	playsound(loc,'sound/machines/click.ogg', 25, 1)
 	var/A = ammo

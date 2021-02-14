@@ -486,6 +486,7 @@
 		set_throwing(FALSE)
 		thrower = null
 		throw_source = null
+	SEND_SIGNAL(src, COMSIG_MOVABLE_POST_THROW)
 
 /atom/movable/proc/handle_buckled_mob_movement(NewLoc, direct)
 	for(var/m in buckled_mobs)

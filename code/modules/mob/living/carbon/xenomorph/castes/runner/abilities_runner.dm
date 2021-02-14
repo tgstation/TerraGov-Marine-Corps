@@ -85,7 +85,7 @@
 // TODO: merge defender/ravager pounces into this typepath since they are essentially the same thing
 /datum/action/xeno_action/activable/pounce/proc/pounce_complete()
 	SIGNAL_HANDLER
-	UnregisterSignal(owner, list(COMSIG_XENO_OBJ_THROW_HIT, COMSIG_XENO_NONE_THROW_HIT, COMSIG_XENO_LIVING_THROW_HIT))
+	UnregisterSignal(owner, list(COMSIG_XENO_OBJ_THROW_HIT, COMSIG_MOVABLE_POST_THROW, COMSIG_XENO_LIVING_THROW_HIT))
 
 /datum/action/xeno_action/activable/pounce/proc/obj_hit(datum/source, obj/target, speed)
 	SIGNAL_HANDLER
@@ -156,7 +156,7 @@
 
 	RegisterSignal(X, COMSIG_XENO_OBJ_THROW_HIT, .proc/obj_hit)
 	RegisterSignal(X, COMSIG_XENO_LIVING_THROW_HIT, .proc/mob_hit)
-	RegisterSignal(X, COMSIG_XENO_NONE_THROW_HIT, .proc/pounce_complete)
+	RegisterSignal(X, COMSIG_MOVABLE_POST_THROW, .proc/pounce_complete)
 
 	prepare_to_pounce()
 
