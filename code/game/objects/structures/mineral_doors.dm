@@ -105,8 +105,6 @@
 			if(P.start_cut(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD))
 				if(is_resin)
 					multiplier += PLASMACUTTER_RESIN_MULTIPLIER //Plasma cutters are particularly good at destroying resin structures.
-				else
-					multiplier += PLASMACUTTER_RESIN_MULTIPLIER * 0.5 //Plasma cutters are particularly good at destroying resin structures.
 				P.cut_apart(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD) //Minimal energy cost.
 		if(W.damtype == "fire" && is_resin) //Burn damage deals extra vs resin structures (mostly welders).
 			multiplier += 1

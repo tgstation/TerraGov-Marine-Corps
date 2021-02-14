@@ -90,7 +90,7 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 #define PLASMACUTTER_HIGH_MOD	2
 #define PLASMACUTTER_VHIGH_MOD	3
 #define PLASMACUTTER_CUT_DELAY	30
-#define PLASMACUTTER_RESIN_MULTIPLIER	4
+#define PLASMACUTTER_RESIN_MULTIPLIER	16
 #define PLASMACUTTER_BASE_COST	1000
 
 //flags_token & tokensupport
