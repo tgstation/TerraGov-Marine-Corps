@@ -14,7 +14,7 @@
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "riot"
 	max_integrity = 200
-	flags_specific_slowdown = ENTRAVE_JETPACK
+	flags_item = ENTRAVE_JETPACK
 	flags_equip_slot = ITEM_SLOT_BACK
 	force = 5
 	throwforce = 5

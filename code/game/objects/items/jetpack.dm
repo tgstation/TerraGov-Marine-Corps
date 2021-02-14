@@ -103,7 +103,7 @@
 
 ///Calculate the max range of the jetpack, changed by some item slowdown
 /obj/item/jetpack_marine/proc/calculate_range(mob/living/carbon/human/human_user)
-	var/range_limiting_factor = human_user.additive_flagged_slowdown(ENTRAVE_JETPACK)
+	var/range_limiting_factor = human_user.additive_flagged_slowdown(SLOWDOWN_ENTRAVE_JETPACK)
 	switch(range_limiting_factor)
 		if(0 to 0.35) //light armor or above
 			return 7

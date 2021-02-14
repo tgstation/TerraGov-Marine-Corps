@@ -54,9 +54,8 @@
 #define BEING_REMOVED			(1<<6)	//Cuffs
 #define DOES_NOT_NEED_HANDS		(1<<7)	//Dont need hands to use it
 #define SYNTH_RESTRICTED		(1<<8)	//Prevents synths from wearing items with this flag
+#define ENTRAVE_JETPACK 		(1<<9)  //Reduce the range of jetpack
 //==========================================================================================
-
-#define ENTRAVE_JETPACK (1<<0) //Reduce the range of jetpack
 
 //flags_inv_hide
 //Bit flags for the flags_inv_hide variable, which determine when a piece of clothing hides another. IE a helmet hiding glasses.

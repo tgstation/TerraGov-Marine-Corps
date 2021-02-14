@@ -25,8 +25,6 @@
 	var/hitsound = null
 	var/w_class = WEIGHT_CLASS_NORMAL
 	var/flags_item = NONE	//flags for item stuff that isn't clothing/equipping specific.
-	///flags for specific slowdown effect on the item
-	var/flags_specific_slowdown = NONE
 	var/flags_equip_slot = NONE		//This is used to determine on which slots an item can fit.
 
 	//Since any item can now be a piece of clothing, this has to be put here so all items share it.
@@ -322,7 +320,7 @@
 		if(flags_armor_protection)
 			human_user.add_limb_armor(src)
 		if(slowdown)
-			human_user.add_movespeed_modifier(type, TRUE, 0, flags_specific_slowdown, TRUE, slowdown)
+			human_user.add_movespeed_modifier(type, TRUE, 0, (flags_item & ENTRAVE_JETPACK) ? SLOWDOWN_ENTRAVE_JETPACK : NONE, TRUE, slowdown)
 
 
 ///Called when an item is removed from an equipment slot. The loc should still be in the unequipper.
