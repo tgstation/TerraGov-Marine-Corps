@@ -226,8 +226,6 @@
 	if(!istype(G))
 		return
 
-	src = G
-
 	if(usr.do_actions)
 		return
 
