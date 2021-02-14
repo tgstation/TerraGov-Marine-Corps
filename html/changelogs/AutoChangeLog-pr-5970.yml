@@ -1,0 +1,5 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - rscadd: "Silo pinpointer added, 20 points in req or given at start to SLs and FC
+refractor: Pinpointer has no more modes, so it can be used without right click"
