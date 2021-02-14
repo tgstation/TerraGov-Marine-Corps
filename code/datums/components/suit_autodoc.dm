@@ -341,15 +341,15 @@
 	Proc to handle the internal analyzer scanning the user
 */
 /datum/component/suit_autodoc/proc/scan_user(datum/source)
-	SIGNAL_HANDLER_DOES_SLEEP
-	analyzer.attack(wearer, wearer, TRUE)
+	SIGNAL_HANDLER
+	INVOKE_ASYNC(analyzer, /obj/item.proc/attack, wearer, wearer, TRUE)
 
 /**
 	Proc to show the suit configuration page
 */
 /datum/component/suit_autodoc/proc/configure(datum/source)
-	SIGNAL_HANDLER_DOES_SLEEP
-	interact(wearer)
+	SIGNAL_HANDLER
+	INVOKE_ASYNC(src, .proc/interact, wearer)
 
 /**
 	Shows the suit configuration

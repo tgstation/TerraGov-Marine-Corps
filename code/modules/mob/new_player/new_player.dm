@@ -10,6 +10,8 @@
 	var/mob/living/new_character
 	var/ready = FALSE
 	var/spawning = FALSE
+	///The job we tried to join but were warned it would cause an unbalance. It's saved for later use
+	var/datum/job/saved_job
 
 
 /mob/new_player/Initialize()
@@ -140,9 +142,25 @@
 				to_chat(usr, "<span class='warning'>Spawning currently disabled, please observe.</span>")
 				return
 			var/datum/job/job_datum = locate(href_list["job_selected"])
+			if(!isxenosjob(job_datum) && (SSmonitor.current_state == XENOS_LOSING || SSmonitor.current_state == XENOS_DELAYING))
+				var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+				if((xeno_job.total_positions-xeno_job.current_positions) >= 3)
+					if(tgui_alert(src, "There is a lack of xenos players on this round, unbalanced rounds are unfun for everyone. Are you sure you want to play as a marine? ", "Warning : the game is unbalanced", list("Yes", "No")) == "No")
+						return
 			if(!SSticker.mode.CanLateSpawn(src, job_datum)) // Try to assigns job to new player
 				return
 			SSticker.mode.LateSpawn(src)
+		
+		if("continue_join")
+			DIRECT_OUTPUT(usr, browse(null, "window=xenosunbalanced"))
+			if(!saved_job)
+				return	
+			if(!SSticker.mode.CanLateSpawn(src, saved_job)) // Try to assigns job to new player
+				return
+			SSticker.mode.LateSpawn(src)
+		
+		if("reconsider")
+			DIRECT_OUTPUT(usr, browse(null, "window=xenosunbalanced"))
 
 	if(href_list["showpoll"])
 		handle_playeR_DBRANKSing()
