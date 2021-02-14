@@ -350,7 +350,7 @@
 		return
 
 	if(M.client)
-		if(alert(M, "Would you like to enter cryosleep?", , "Yes", "No") == "Yes")
+		if(tgui_alert(M, "Would you like to enter cryosleep?", list("Yes", "No")) == "Yes")
 			if(QDELETED(M) || !(G?.grabbed_thing == M))
 				return
 		else

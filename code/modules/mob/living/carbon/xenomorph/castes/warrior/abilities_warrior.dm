@@ -96,7 +96,7 @@
 	X.visible_message("<span class='xenowarning'>\The [X] lunges towards [A]!</span>", \
 	"<span class='xenowarning'>We lunge at [A]!</span>")
 
-	X.add_filter("warrior_lunge", 2, list("type" = "blur", 3))
+	X.add_filter("warrior_lunge", 2, gauss_blur_filter(3))
 	var/distance = get_dist(X, A)
 
 	X.throw_at(get_step_towards(A, X), 6, 2, X)
@@ -390,6 +390,10 @@
 	update_icon()
 	return TRUE
 
+/obj/machinery/computer/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone) //Break open the machine
+	set_disabled() //Currently only computers use this; falcon punch away its density
+	return ..()
+
 /obj/machinery/light/punch_act(mob/living/carbon/xenomorph/X)
 	. = ..()
 	attack_alien(X) //Smash it
@@ -458,7 +462,7 @@
 	add_slowdown(slowdown_stacks)
 	adjust_blurriness(slowdown_stacks) //Cosmetic eye blur SFX
 
-	apply_damage(damage, STAMINA) //Armor penetrating stamina also applies.
+	apply_damage(damage, STAMINA, updating_health = TRUE) //Armor penetrating stamina also applies.
 	shake_camera(src, 2, 1)
 	Shake(4, 4, 2 SECONDS)
 
@@ -478,7 +482,6 @@
 
 	throw_at(T, 2, 1, X, 1) //Punch em away
 
-	UPDATEHEALTH(src)
 	return TRUE
 
 /datum/action/xeno_action/activable/punch/ai_should_start_consider()

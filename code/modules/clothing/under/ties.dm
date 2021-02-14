@@ -521,7 +521,6 @@
 	cant_hold = list(
 		/obj/item/stack/razorwire,
 		/obj/item/stack/sheet,
-		/obj/item/ammo_magazine/smg/standard_smg,
 		/obj/item/stack/sandbags,
 		/obj/item/stack/snow,
 	)
@@ -538,22 +537,43 @@
 	icon_state = "vest_white"
 	hold = /obj/item/storage/internal/tie/white_vest
 
-/obj/item/clothing/tie/storage/white_vest
-	name = "surgical vest"
-	desc = "A clean white Nylon vest with large pockets specially designed for holding surgical supplies."
-	icon_state = "vest_white"
-	hold = /obj/item/storage/internal/tie/white_vest
-
 /obj/item/storage/internal/tie/white_vest
 	storage_slots = 12
 	max_storage_space = 24
 	max_w_class = WEIGHT_CLASS_BULKY
 
 	can_hold = list(
-		/obj/item/tool/surgery,
-		/obj/item/stack/medical/advanced/bruise_pack,
+		/obj/item/stack/medical,
 		/obj/item/stack/nanopaste,
 	)
+
+/obj/item/clothing/tie/storage/white_vest/surgery
+	name = "surgical vest"
+	desc = "A clean white Nylon vest with large pockets specially designed for holding surgical supplies."
+	icon_state = "vest_white"
+	hold = /obj/item/storage/internal/tie/white_vest/surgery
+
+/obj/item/storage/internal/tie/white_vest/surgery
+	can_hold = list(
+		/obj/item/tool/surgery,
+		/obj/item/stack/nanopaste,
+		/obj/item/stack/medical/advanced/bruise_pack,
+	)
+
+/obj/item/storage/internal/tie/white_vest/surgery/Initialize()
+	. = ..()
+	new /obj/item/tool/surgery/scalpel/manager(src)
+	new /obj/item/tool/surgery/scalpel(src)
+	new /obj/item/tool/surgery/hemostat(src)
+	new /obj/item/tool/surgery/retractor(src)
+	new /obj/item/stack/medical/advanced/bruise_pack(src)
+	new /obj/item/tool/surgery/cautery(src)
+	new /obj/item/tool/surgery/circular_saw(src)
+	new /obj/item/tool/surgery/surgicaldrill(src)
+	new /obj/item/tool/surgery/bonegel(src)
+	new /obj/item/tool/surgery/bonesetter(src)
+	new /obj/item/tool/surgery/FixOVein(src)
+	new /obj/item/stack/nanopaste(src)
 
 /obj/item/clothing/tie/storage/white_vest/medic
 	name = "corpsman webbing"

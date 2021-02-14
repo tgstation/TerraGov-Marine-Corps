@@ -407,7 +407,7 @@
 
 /datum/keybinding/xeno/evasion
 	name = "evasion"
-	full_name = "Evasion"
+	full_name = "Runner: Evasion"
 	description = "Take evasive action, forcing non-friendly projectiles that would hit you to miss so long as you keep moving."
 	keybind_signal = COMSIG_XENOABILITY_EVASION
 
@@ -441,22 +441,21 @@
 	description = "Punch a hostile creature, a structure or piece of machinery. Damage and status durations are doubled vs creatures you are grabbing. Damage is quadrupled vs structures and machinery."
 	keybind_signal = COMSIG_XENOABILITY_PUNCH
 
-/datum/keybinding/xeno/psychic_choke
-	name = "psychic_choke"
-	full_name = "Psychic Choke (Unused)"
-	description = ""
-	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_CHOKE
-
 /datum/keybinding/xeno/inject_egg_neurogas
 	name = "inject_egg_neurogas"
 	full_name = "Inject Egg (Neurogas)"
 	description = "Inject an egg with neurogas, killing the little one inside"
 	keybind_signal = COMSIG_XENOABILITY_INJECT_EGG_NEUROGAS
 
-/*
 /datum/keybinding/xeno/rally_hive
 	name = "rally_hive"
 	full_name = "Rally Hive"
 	description = "Rallies the hive to a target location."
 	keybind_signal = COMSIG_XENOABILITY_RALLY_HIVE
-*/
+
+/datum/keybinding/xeno/healing_infusion
+	name = "healing_infusion"
+	full_name = "Hivelord: Healing Infusion"
+	description = "Imbues a target xeno with healing energy, restoring extra Sunder and Health once every 2 seconds up to 5 times whenever it regenerates normally. 60 second duration."
+	keybind_signal = COMSIG_XENOABILITY_HEALING_INFUSION
+

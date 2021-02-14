@@ -134,7 +134,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 		to_chat(usr, "<span class='warning'>All of the modules can't be activated or are broken.</span>")
 		return
 
-	var/slot = input("Select a slot.") in slots
+	var/slot = tgui_input_list(usr, "Select a slot.", null, slots)
 
 	var/obj/item/hardpoint/HP = hardpoints[slot]
 	if(!(HP?.obj_integrity))
@@ -162,7 +162,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 		to_chat(usr, "<span class='warning'>All of the modules can't be reloaded or are broken.</span>")
 		return
 
-	var/slot = input("Select a slot.") in slots
+	var/slot = tgui_input_list(usr, "Select a slot.", null, slots)
 
 	var/obj/item/hardpoint/HP = hardpoints[slot]
 	if(!length(HP?.backup_clips))
@@ -485,8 +485,8 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 /obj/vehicle/multitile/hitbox/cm_armored/attackby(obj/item/I, mob/user, params)
 	return root.attackby(I, user, params)
 
-/obj/vehicle/multitile/hitbox/cm_armored/attack_alien(mob/living/carbon/xenomorph/M, dam_bonus)
-	return root.attack_alien(M, dam_bonus)
+/obj/vehicle/multitile/hitbox/cm_armored/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	return root.attack_alien(X, damage_amount)
 
 /obj/vehicle/multitile/hitbox/cm_armored/effect_smoke(obj/effect/particle_effect/smoke/S)
 	. = ..()
@@ -546,13 +546,13 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 			take_damage(rand(30, 40)) //Heavy explosions do some damage, but are largely deferred by the armour/bulk.
 
 //Honestly copies some code from the Xeno files, just handling some special cases
-/obj/vehicle/multitile/root/cm_armored/attack_alien(mob/living/carbon/xenomorph/M, dam_bonus)
+/obj/vehicle/multitile/root/cm_armored/attack_alien(mob/living/carbon/xenomorph/M, damage_amount = M.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 
 	if(M.loc == entrance.loc && M.a_intent == INTENT_HELP)
 		handle_player_entrance(M) //will call the get out of tank proc on its own
 		return
 
-	var/damage = M.xeno_caste.melee_damage + dam_bonus
+	var/damage = damage_amount
 
 	//Somehow we will deal no damage on this attack
 	if(!damage)
@@ -642,7 +642,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 			return
 
 	//Pick what to repair
-	var/slot = input("Select a slot to try and repair") in hardpoints
+	var/slot = tgui_input_list(user, "Select a slot to try and repair", null, hardpoints) //maybe tgui alert ?
 	var/obj/item/I = user.get_active_held_item()
 	if(!Adjacent(user) || (!iswelder(I) && !iswrench(I)))
 		return
@@ -730,7 +730,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 	//That would make it easier to differentiate between the two for skills
 	//Instead of using MT skills for these procs and TC skills for operation
 	//Oh but wait then the MTs would be able to drive fuck that
-	var/slot = input("Select a slot to try and refill") in hardpoints
+	var/slot = tgui_input_list(user, "Select a slot to try and refill", null, hardpoints)
 	if(!Adjacent(user) || user.get_active_held_item() != AM)
 		return
 	var/obj/item/hardpoint/HP = hardpoints[slot]
@@ -799,7 +799,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return
 
-	var/slot = input("Select a slot to try and remove") in hardpoints
+	var/slot = tgui_input_list(user, "Select a slot to try and remove", null, hardpoints)
 	if(!Adjacent(user) || !iscrowbar(user.get_active_held_item()))
 		return
 

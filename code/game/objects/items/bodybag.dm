@@ -197,12 +197,12 @@
 		icon_state = icon_opened
 
 
-/obj/structure/closet/bodybag/attack_alien(mob/living/carbon/xenomorph/xeno)
+/obj/structure/closet/bodybag/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(opened)
 		return FALSE // stop xeno closing things
-	xeno.do_attack_animation(src, ATTACK_EFFECT_CLAW)
+	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 	open()
-	xeno.visible_message("<span class='danger'>\The [xeno] slashes \the [src] open!</span>", \
+	X.visible_message("<span class='danger'>\The [X] slashes \the [src] open!</span>", \
 		"<span class='danger'>We slash \the [src] open!</span>", null, 5)
 	return TRUE
 
@@ -232,16 +232,12 @@
 			visible_message("<span class='danger'>\The shockwave blows [name] apart!</span>")
 			qdel(src) //blown apart
 
-/obj/structure/closet/bodybag/proc/acidspray_act()
-	SIGNAL_HANDLER
+/obj/structure/closet/bodybag/proc/acidspray_act(datum/source, obj/effect/xenomorph/spray/acid_puddle)
 	if(!opened && bodybag_occupant)
-		var/obj/effect/xenomorph/spray/S = locate() in range(0, src) //get the acid Hans
-		if(!S) //Sanity
-			return
 
 		if(ishuman(bodybag_occupant))
 			var/mob/living/carbon/human/H = bodybag_occupant
-			INVOKE_ASYNC(H, /mob/living/carbon/human.proc/acid_spray_crossed, S.slow_amt) //tarp isn't acid proof; pass it on to the occupant
+			SEND_SIGNAL(H, COMSIG_ATOM_ACIDSPRAY_ACT, src, acid_puddle.acid_damage, acid_puddle.slow_amt) //tarp isn't acid proof; pass it on to the occupant
 
 		to_chat(bodybag_occupant, "<span class='danger'>The sizzling acid forces us out of [name]!</span>")
 		open() //Get out

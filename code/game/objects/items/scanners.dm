@@ -1,3 +1,5 @@
+GLOBAL_LIST_INIT(known_implants, list(/obj/item/implant/neurostim))
+
 /*
 CONTAINS:
 T-RAY
@@ -206,7 +208,6 @@ REAGENT SCANNER
 	var/fracture_detected = FALSE
 	var/unknown_body = 0
 	//var/infected = FALSE
-	var/known_implants = list(/obj/item/implant/neurostim)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/core_fracture = FALSE
@@ -239,7 +240,7 @@ REAGENT SCANNER
 				dat += "\t<span class='scanner'> *Infected wound detected in subject's <b>[limb]</b>. Disinfection recommended.</span>\n"
 			if (e.implants.len)
 				for(var/I in e.implants)
-					if(!is_type_in_list(I,known_implants))
+					if(!is_type_in_list(I, GLOB.known_implants))
 						unknown_body++
 			if(e.hidden)
 				unknown_body++

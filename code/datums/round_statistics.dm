@@ -31,7 +31,6 @@ GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 	var/praetorian_acid_sprays = 0
 	var/praetorian_spray_direct_hits = 0
 	var/psychic_flings = 0
-	var/psychic_chokes = 0
 	var/psychic_cures = 0
 	var/warrior_flings = 0
 	var/warrior_punches = 0
@@ -63,3 +62,4 @@ GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 	var/xeno_headbites = 0
 	var/xeno_silo_corpses = 0
 	var/xeno_rally_hive = 0
+	var/hivelord_healing_infusions = 0

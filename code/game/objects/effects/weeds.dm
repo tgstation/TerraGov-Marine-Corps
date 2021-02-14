@@ -37,7 +37,7 @@
 	for(var/obj/effect/alien/A in loc.contents)
 		if(QDELETED(A) || A == src || A.ignore_weed_destruction)
 			continue
-		A.obj_destruction("melee")
+		A.obj_destruction(damage_flag = "melee")
 
 	var/oldloc = loc
 	parent_node = null
@@ -54,7 +54,7 @@
 	. = ..()
 	if(isxeno(AM))
 		var/mob/living/carbon/xenomorph/X = AM
-		X.next_move_slowdown -= 0.4
+		X.next_move_slowdown += X.xeno_caste.weeds_speed_mod
 
 /obj/effect/alien/weeds/proc/update_neighbours(turf/U)
 	if(!U)

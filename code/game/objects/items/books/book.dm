@@ -48,7 +48,7 @@
 			to_chat(user, "These pages don't seem to take the ink well. Looks like you can't modify it.")
 			return
 
-		var/choice = input("What would you like to change?") in list("Title", "Contents", "Author", "Cancel")
+		var/choice = tgui_input_list(user, "What would you like to change?", null, list("Title", "Contents", "Author", "Cancel"))
 		switch(choice)
 			if("Title")
 				var/newtitle = reject_bad_text(stripped_input(user, "Write a new title:"))

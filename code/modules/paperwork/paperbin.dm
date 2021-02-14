@@ -27,7 +27,7 @@
 		return
 	var/response = ""
 	if(!length(papers))
-		response = alert(user, "Do you take regular paper, or Carbon copy paper?", "Paper type request", "Regular", "Carbon-Copy", "Cancel")
+		response = tgui_alert(user, "Do you take regular paper, or Carbon copy paper?", "Paper type request", list("Regular", "Carbon-Copy", "Cancel"))
 		if(response != "Regular" && response != "Carbon-Copy")
 			return
 

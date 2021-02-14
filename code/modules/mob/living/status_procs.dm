@@ -606,3 +606,56 @@
 		add_movespeed_modifier(MOVESPEED_ID_COLD, TRUE, 0, NONE, TRUE, 2)
 	else if(old_temperature < species.cold_level_1)
 		remove_movespeed_modifier(MOVESPEED_ID_COLD)
+
+////////////////////////////// STAGGER ////////////////////////////////////
+
+///Returns number of stagger stacks if any
+/mob/living/proc/IsStaggered() //If we're staggered
+	return stagger
+
+///Standard stagger regen called by life.dm
+/mob/living/proc/handle_stagger()
+	if(stagger)
+		adjust_stagger(-1)
+	return stagger
+
+///Where the magic happens. Actually applies stagger stacks.
+/mob/living/proc/adjust_stagger(amount, ignore_canstun = FALSE)
+	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_STUN, amount, ignore_canstun) & COMPONENT_NO_STUN) //Stun immunity also provides immunity to its lesser cousin stagger
+		return
+	stagger = max(stagger + amount,0)
+	return stagger
+
+////////////////////////////// SLOW ////////////////////////////////////
+
+///Returns number of slowdown stacks if any
+/mob/living/proc/IsSlowed() //If we're slowed
+	return slowdown
+
+///Where the magic happens. Actually applies slow stacks.
+/mob/living/proc/set_slowdown(amount)
+	if(slowdown == amount)
+		return
+	SEND_SIGNAL(src, COMSIG_LIVING_STATUS_SLOWDOWN, amount)
+	slowdown = amount
+	if(slowdown)
+		add_movespeed_modifier(MOVESPEED_ID_STAGGERSTUN, TRUE, 0, NONE, TRUE, slowdown)
+		return
+	remove_movespeed_modifier(MOVESPEED_ID_STAGGERSTUN)
+
+///This is where we normalize the set_slowdown input to be at least 0
+/mob/living/proc/adjust_slowdown(amount)
+	if(amount > 0)
+		set_slowdown(max(slowdown, amount)) //Slowdown overlaps rather than stacking.
+	else
+		set_slowdown(max(slowdown + amount, 0))
+	return slowdown
+
+/mob/living/proc/add_slowdown(amount)
+	adjust_slowdown(amount * STANDARD_SLOWDOWN_REGEN)
+
+///Standard slowdown regen called by life.dm
+/mob/living/proc/handle_slowdown()
+	if(slowdown)
+		adjust_slowdown(-STANDARD_SLOWDOWN_REGEN)
+	return slowdown
