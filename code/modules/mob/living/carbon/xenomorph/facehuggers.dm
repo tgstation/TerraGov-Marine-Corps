@@ -53,10 +53,13 @@
 	///Is this hugger intended for combat?
 	var/combat_hugger = FALSE
 
-/obj/item/clothing/mask/facehugger/Initialize()
+/obj/item/clothing/mask/facehugger/Initialize(mapload, input_hivenumber)
 	. = ..()
 	if(stat == CONSCIOUS)
 		lifetimer = addtimer(CALLBACK(src, .proc/check_lifecycle), FACEHUGGER_DEATH, TIMER_STOPPABLE)
+
+	if(input_hivenumber)
+		hivenumber = input_hivenumber
 
 /obj/item/clothing/mask/facehugger/Destroy()
 	. = ..()
@@ -300,7 +303,7 @@
 	return TRUE
 
 /mob/living/carbon/xenomorph/can_be_facehugged(obj/item/clothing/mask/facehugger/F, check_death = TRUE, check_mask = TRUE, provoked = FALSE)
-	if(F.hivenumber == hive.hivenumber)
+	if(F.issamexenohive(src)) //Check for our hive
 		return FALSE
 
 	return ..()
@@ -584,9 +587,9 @@
 	sterile = TRUE
 	color = COLOR_DARK_ORANGE
 	combat_hugger = TRUE
-	impact_time = 0.8 SECONDS
+	impact_time = 0.5 SECONDS
 	activate_time = 2 SECONDS
-	jump_cooldown = 1 SECONDS
+	jump_cooldown = 2 SECONDS
 
 /obj/item/clothing/mask/facehugger/neuro/Attach(mob/M, mob/user)
 	if(!combat_hugger_check_target(M))
@@ -609,9 +612,9 @@
 	sterile = TRUE
 	color = COLOR_GREEN
 	combat_hugger = TRUE
-	impact_time = 0.8 SECONDS
+	impact_time = 0.5 SECONDS
 	activate_time = 2 SECONDS
-	jump_cooldown = 1 SECONDS
+	jump_cooldown = 2 SECONDS
 
 /obj/item/clothing/mask/facehugger/acid/Attach(mob/M, mob/user)
 	if(!combat_hugger_check_target(M))
@@ -621,9 +624,9 @@
 
 	for(var/turf/acid_tile as() in RANGE_TURFS(1, loc))
 		if(!locate(/obj/effect/xenomorph/spray) in acid_tile.contents)
-			new /obj/effect/xenomorph/spray(acid_tile, 10 SECONDS, 16)
+			new /obj/effect/xenomorph/spray(acid_tile, 6 SECONDS, 16)
 
-	var/datum/effect_system/smoke_spread/xeno/acid/A = new(get_turf(src)) //Spawn acid smoke
+	var/datum/effect_system/smoke_spread/xeno/acid/light/A = new(get_turf(src)) //Spawn acid smoke
 	A.set_up(1,src)
 	A.start()
 	melt_away()
@@ -633,7 +636,7 @@
 
 /obj/item/clothing/mask/facehugger/acid/kill_hugger()
 	. = ..()
-	new /obj/effect/xenomorph/spray(loc, 10 SECONDS, 16) //Make a splatter on death
+	new /obj/effect/xenomorph/spray(loc, 8 SECONDS, 16) //Make a splatter on death
 	melt_away()
 
 
@@ -643,9 +646,9 @@
 	sterile = TRUE
 	color = COLOR_STRONG_VIOLET
 	combat_hugger = TRUE
-	impact_time = 0.8 SECONDS
+	impact_time = 0.5 SECONDS
 	activate_time = 2 SECONDS
-	jump_cooldown = 1 SECONDS
+	jump_cooldown = 2 SECONDS
 
 /obj/item/clothing/mask/facehugger/resin/Attach(mob/M, mob/user)
 	if(!combat_hugger_check_target(M))
@@ -665,7 +668,7 @@
 		target.adjust_stagger(3)
 		target.add_slowdown(10)
 		armor_block = target.run_armor_check(BODY_ZONE_CHEST, "bio")
-		target.apply_damage(50, STAMINA, BODY_ZONE_CHEST, armor_block) //Small amount of stamina damage; meant to stop sprinting.
+		target.apply_damage(100, STAMINA, BODY_ZONE_CHEST, armor_block) //Small amount of stamina damage; meant to stop sprinting.
 
 	melt_away()
 
@@ -693,9 +696,9 @@
 	sterile = TRUE
 	color = COLOR_RED
 	combat_hugger = TRUE
-	impact_time = 0.8 SECONDS
+	impact_time = 0.5 SECONDS
 	activate_time = 2 SECONDS
-	jump_cooldown = 1 SECONDS
+	jump_cooldown = 2 SECONDS
 
 /obj/item/clothing/mask/facehugger/slash/Attach(mob/M)
 	if(!combat_hugger_check_target(M))

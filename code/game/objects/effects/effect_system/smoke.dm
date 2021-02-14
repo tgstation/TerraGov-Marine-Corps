@@ -267,6 +267,12 @@
 	color = "#86B028" //Mostly green?
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_ACID|SMOKE_GASP|SMOKE_COUGH
 
+//Xeno light acid smoke.for acid huggers
+/obj/effect/particle_effect/smoke/xeno/burn/light
+	lifetime = 4 //Lasts for less time
+	alpha = 60
+	opacity = FALSE
+
 //Xeno neurotox smoke.
 /obj/effect/particle_effect/smoke/xeno/neuro
 	color = "#ffbf58" //Mustard orange?
@@ -329,6 +335,9 @@ datum/effect_system/smoke_spread/tactical
 
 /datum/effect_system/smoke_spread/xeno/acid
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/burn
+
+/datum/effect_system/smoke_spread/xeno/acid/light
+	smoke_type = /obj/effect/particle_effect/smoke/xeno/burn/light
 
 /datum/effect_system/smoke_spread/xeno/neuro
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/neuro

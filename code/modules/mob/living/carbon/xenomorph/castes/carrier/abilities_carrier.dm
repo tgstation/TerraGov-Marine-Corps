@@ -49,7 +49,7 @@ GLOBAL_LIST_INIT(hugger_type_list, typecacheof(list(
 			to_chat(X, "<span class='warning'>We don't have any facehuggers to use!</span>")
 			return fail_activate()
 
-		F = new X.selected_hugger_type(get_turf(X))
+		F = new X.selected_hugger_type(get_turf(X), X.hivenumber)
 		X.huggers--
 
 		X.put_in_active_hand(F)
