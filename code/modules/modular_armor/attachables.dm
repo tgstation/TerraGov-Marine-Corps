@@ -185,3 +185,18 @@
 	parent.soft_armor = parent.soft_armor.detachArmor(soft_armor)
 	parent.slowdown -= slowdown
 	return ..()
+
+/obj/item/armor_module/attachable/chemsystem
+	name = "Vali chemical enhancement module"
+	desc = "A module that enhances the strength of reagents in the body. Requires a special substance, gathered from xenomorph lifeforms, to function. For in-depth information https://github.com/tgstation/TerraGov-Marine-Corps/pull/5830."
+	icon_state = "mod_boomimmune_icon"
+	item_state = "mod_boomimmune"
+
+/obj/item/armor_module/attachable/chemsystem/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
+	. = ..()
+	parent.AddComponent(/datum/component/chem_booster)
+
+/obj/item/armor_module/attachable/chemsystem/do_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
+	var/datum/component/chem_booster/chemsystem = parent.GetComponent(/datum/component/chem_booster)
+	chemsystem.RemoveComponent()
+	return ..()

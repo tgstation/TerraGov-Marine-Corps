@@ -35,6 +35,7 @@
 	var/obj/item/connected_weapon
 	///When was the effect activated. Used to activate negative effects after a certain amount of use
 	var/processing_start = 0
+	var/static/image/resource_overlay = image('icons/mob/hud.dmi', icon_state = "chemsuit_vis")
 	COOLDOWN_DECLARE(chemboost_activation_cooldown)
 
 /datum/component/chem_booster/Initialize()
@@ -91,6 +92,8 @@
 	configure_action.remove_action(wearer)
 	power_action.remove_action(wearer)
 	scan_action.remove_action(wearer)
+	wearer.overlays -= resource_overlay
+
 	wearer = null
 
 ///Sets up actions and vars when the suit is equipped
@@ -99,9 +102,12 @@
 	if(!isliving(equipper))
 		return
 	wearer = equipper
+
 	configure_action.give_action(wearer)
 	power_action.give_action(wearer)
 	scan_action.give_action(wearer)
+	wearer.overlays += resource_overlay
+	update_resource(0)
 
 /datum/component/chem_booster/process()
 	if(resource_storage_current < resource_drain_amount)
@@ -276,14 +282,10 @@
 ///Adds or removes resource from the suit. Signal gets sent at every 25% of stored resource
 /datum/component/chem_booster/proc/update_resource(amount)
 	var/amount_added = min(resource_storage_max - resource_storage_current, amount)
-	var/storage_segment = resource_storage_max*0.25
-	var/current_resource_str_tier = FLOOR(resource_storage_current, storage_segment)
-	var/new_resource_str_tier = FLOOR(resource_storage_current + amount_added, storage_segment)
-
-	if(new_resource_str_tier != current_resource_str_tier)
-		var/stored_resource_percentage = (resource_storage_current+amount_added)/resource_storage_max
-		SEND_SIGNAL(parent, COMSIG_CHEM_BOOSTER_RES_UPD, stored_resource_percentage, amount_added)
 	resource_storage_current = max(resource_storage_current + amount_added, 0)
+	wearer.overlays -= resource_overlay
+	resource_overlay.alpha = resource_storage_current/resource_storage_max*255
+	wearer.overlays += resource_overlay
 
 ///Extracts resource from the suit to fill a beaker
 /datum/component/chem_booster/proc/extract(volume)

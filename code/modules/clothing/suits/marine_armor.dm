@@ -343,38 +343,6 @@
 	name = "\improper M3 pattern marksman armor"
 	icon_state = "marine_sniperm"
 
-/obj/item/clothing/suit/storage/marine/chemsuit
-	name = "\improper Vali chemical enhancement suit"
-	desc = "A suit that enhances the strength of reagents in the body. Requires a special substance, gathered from xenomorph lifeforms, to function. \n For in-depth information https://github.com/tgstation/TerraGov-Marine-Corps/pull/5830"
-	icon = 'icons/mob/suit_1.dmi'
-	icon_state = "chemsuit"
-	item_state ="chemsuit"
-	flags_item_map_variant = NONE
-	w_class = WEIGHT_CLASS_BULKY
-	gas_transfer_coefficient = 0.90
-	permeability_coefficient = 0.50
-	flags_armor_protection = CHEST|GROIN|LEGS|ARMS|HANDS|FEET
-	allowed = list(/obj/item/flashlight,/obj/item/tank/emergency_oxygen,/obj/item/clothing/mask/gas, /obj/item/weapon/claymore/harvester)
-	slowdown = 0
-	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 20, "energy" = 20, "bomb" = 40, "bio" = 60, "rad" = 100, "fire" = 40, "acid" = 40)
-	flags_inv_hide = HIDEJUMPSUIT|HIDETAIL
-	var/image/resource_overlay
-
-/obj/item/clothing/suit/storage/marine/chemsuit/Initialize()
-	. = ..()
-	AddComponent(/datum/component/chem_booster)
-	RegisterSignal(src, COMSIG_CHEM_BOOSTER_RES_UPD, .proc/handle_str_resource_overlay)
-	resource_overlay = image('icons/mob/hud.dmi', icon_state = "chemsuit_vis")
-	resource_overlay.color = rgb(102, 201, 36, 0)
-
-/obj/item/clothing/suit/storage/marine/chemsuit/proc/handle_str_resource_overlay(datum/source, resource_percent, amount_added)
-	resource_overlay.color = rgb(102, 201, 36, 255*resource_percent)
-	update_clothing_icon()
-
-/obj/item/clothing/suit/storage/marine/chemsuit/apply_custom(image/standing)
-	. = ..()
-	standing.overlays += resource_overlay
-
 /*=============================PMCS==================================*/
 
 /obj/item/clothing/suit/storage/marine/veteran
