@@ -52,6 +52,9 @@
 	var/jump_cooldown = 2 SECONDS
 	///Is this hugger intended for combat?
 	var/combat_hugger = FALSE
+	///Danger overlay which we remove after the hugger has lept/died
+	var/obj/effect/overlay/danger/danger_overlay
+
 
 /obj/item/clothing/mask/facehugger/Initialize(mapload, input_hivenumber)
 	. = ..()
@@ -65,6 +68,7 @@
 	. = ..()
 	deltimer(jumptimer)
 	deltimer(lifetimer)
+	remove_danger_overlay() //Remove the danger overlay
 	lifetimer = null
 	jumptimer = null
 
@@ -72,10 +76,12 @@
 	if(stat == DEAD)
 		var/fertility = sterile ? "impregnated" : "dead"
 		icon_state = "[initial(icon_state)]_[fertility]"
+		remove_danger_overlay() //Remove the danger overlay
 	else if(throwing)
 		icon_state = "[initial(icon_state)]_thrown"
 	else if(stat == UNCONSCIOUS && !attached)
 		icon_state = "[initial(icon_state)]_inactive"
+		remove_danger_overlay() //Remove the danger overlay
 	else
 		icon_state = "[initial(icon_state)]"
 
@@ -170,9 +176,22 @@
 		stat = CONSCIOUS
 		lifetimer = addtimer(CALLBACK(src, .proc/check_lifecycle), FACEHUGGER_DEATH, TIMER_STOPPABLE|TIMER_UNIQUE)
 		jumptimer = addtimer(CALLBACK(src, .proc/leap_at_nearest_target), jump_cooldown, TIMER_STOPPABLE|TIMER_UNIQUE)
+		addtimer(CALLBACK(src, .proc/apply_danger_overlay), jump_cooldown * 0.5)
 		update_icon()
 		return TRUE
 	return FALSE
+
+///Applies an alert overlay when the hugger is about to jump
+/obj/item/clothing/mask/facehugger/proc/apply_danger_overlay()
+	overlays -= danger_overlay
+	if(!danger_overlay)
+		danger_overlay = new/obj/effect/overlay/danger
+	overlays += danger_overlay
+
+///Remove the hugger's alert overlay
+/obj/item/clothing/mask/facehugger/proc/remove_danger_overlay()
+	overlays -= danger_overlay
+	danger_overlay = null
 
 /obj/item/clothing/mask/facehugger/proc/check_lifecycle()
 
@@ -213,6 +232,7 @@
 	return FALSE
 
 /obj/item/clothing/mask/facehugger/proc/leap_at_nearest_target(forced = FALSE)
+
 	if(!isturf(loc))
 		return
 	if(!forced)
@@ -228,7 +248,10 @@
 			throw_at(M, 4, 1)
 			break
 		--i
+
+	remove_danger_overlay() //Remove the danger overlay
 	jumptimer = addtimer(CALLBACK(src, .proc/leap_at_nearest_target), jump_cooldown, TIMER_STOPPABLE|TIMER_UNIQUE)
+	addtimer(CALLBACK(src, .proc/apply_danger_overlay), jump_cooldown * 0.5)
 
 /obj/item/clothing/mask/facehugger/proc/fast_activate(unhybernate = FALSE)
 	if(go_active(unhybernate) && !throwing)
@@ -274,6 +297,7 @@
 			update_icon()
 			deltimer(jumptimer)
 			jumptimer = addtimer(CALLBACK(src, .proc/fast_activate), impact_time, TIMER_STOPPABLE|TIMER_UNIQUE)
+			apply_danger_overlay()
 			return
 	else
 		for(var/mob/living/carbon/M in loc)
@@ -282,6 +306,7 @@
 					go_idle()
 				return
 		deltimer(jumptimer)
+		addtimer(CALLBACK(src, .proc/apply_danger_overlay), activate_time * 0.5)
 		jumptimer = addtimer(CALLBACK(src, .proc/fast_activate), activate_time, TIMER_STOPPABLE|TIMER_UNIQUE)
 	leaping = FALSE
 	go_idle(FALSE)
@@ -482,6 +507,7 @@
 
 	deltimer(jumptimer)
 	deltimer(lifetimer)
+	remove_danger_overlay() //Remove the danger overlay
 	lifetimer = null
 	jumptimer = null
 
