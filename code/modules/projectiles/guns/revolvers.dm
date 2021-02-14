@@ -226,7 +226,7 @@
 	if(!istype(G))
 		return
 
-	if(usr.action_busy)
+	if(usr.do_actions)
 		return
 
 	if(zoom)

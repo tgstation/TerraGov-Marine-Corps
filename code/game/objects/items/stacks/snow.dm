@@ -49,9 +49,10 @@
 
 
 /obj/item/stack/snow/afterattack(atom/target, mob/user, proximity)
-	if(!proximity) return
+	if(!proximity)
+		return
 	if(isopenturf(target))
-		if(user.action_busy)
+		if(user.do_actions)
 			return
 		var/turf/open/T = target
 		if(T.get_dirt_type() == DIRT_TYPE_SNOW)
@@ -74,7 +75,7 @@
 		to_chat(user, "<span class='warning'>You can't build a snow barricade at this location!</span>")
 		return
 
-	if(user.action_busy)
+	if(user.do_actions)
 		return
 
 	if(amount < 3)

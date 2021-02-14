@@ -19,7 +19,7 @@
 		if(is_ventcrawling)
 			return FALSE
 		set_resting(TRUE, FALSE)
-	else if(action_busy)
+	else if(do_actions)
 		to_chat(src, "<span class='warning'>You are still in the process of standing up.</span>")
 		return
 	else if(do_mob(src, src, 2 SECONDS, ignore_flags = (IGNORE_LOC_CHANGE|IGNORE_HAND)))

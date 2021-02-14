@@ -53,7 +53,7 @@
 		use_wall_hole(user)
 
 /obj/effect/acid_hole/proc/expand_hole(mob/living/carbon/xenomorph/user)
-	if(user.action_busy || user.lying_angle)
+	if(user.do_actions || user.lying_angle)
 		return
 
 	playsound(src, 'sound/effects/metal_creaking.ogg', 25, 1)
@@ -96,7 +96,7 @@
 			to_chat(user, "<span class='warning'>You can't reach the hole's entrance under the shutters.</span>")
 			return
 
-	if(user.action_busy)
+	if(user.do_actions)
 		return
 
 	to_chat(user, "<span class='notice'>You start crawling through the hole.</span>")

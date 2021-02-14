@@ -107,7 +107,7 @@
 	qdel(src)
 
 /obj/item/standard_hmg/welder_act(mob/living/user, obj/item/I)
-	if(user.action_busy)
+	if(user.do_actions)
 		return FALSE
 
 	var/obj/item/tool/weldingtool/WT = I
@@ -228,7 +228,7 @@
 		if(rounds == rounds_max)
 			to_chat(user, "<span class='warning'>You cannot reload the Smartgun, it has a full drum of ammo!</span>")
 			return
-		if(user.action_busy)
+		if(user.do_actions)
 			return
 		if(!do_after(user, 25, TRUE, src, BUSY_ICON_FRIENDLY))
 			return
@@ -244,7 +244,7 @@
 		qdel(I)
 
 /obj/machinery/standard_hmg/welder_act(mob/living/user, obj/item/I)
-	if(user.action_busy)
+	if(user.do_actions)
 		return FALSE
 
 	var/obj/item/tool/weldingtool/WT = I

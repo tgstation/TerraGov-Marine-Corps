@@ -1628,7 +1628,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	else if(turn_off)
 		return //Was already offB
 	else
-		if(user.action_busy)
+		if(user.do_actions)
 			return
 		if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_BAR))
 			return
@@ -1699,7 +1699,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		icon_state = "lace"
 		attach_icon = "lace_a"
 	else
-		if(user.action_busy)
+		if(user.do_actions)
 			return
 		if(!do_after(user, 0.5 SECONDS, TRUE, src, BUSY_ICON_BAR))
 			return

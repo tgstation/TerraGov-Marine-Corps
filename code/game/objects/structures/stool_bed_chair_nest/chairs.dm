@@ -71,7 +71,7 @@
 		to_chat(user, "<span class='warning'>You can only deconstruct this by welding it down!</span>")
 
 	else if(iswelder(I))
-		if(user.action_busy)
+		if(user.do_actions)
 			return
 		var/obj/item/tool/weldingtool/WT = I
 

@@ -94,7 +94,7 @@
 			to_chat(owner, "<span class='warning'>We can't do this here!</span>")
 		return FALSE
 
-	if(!(flags_to_check & XACT_USE_BUSY) && X.action_busy)
+	if(!(flags_to_check & XACT_USE_BUSY) && X.do_actions)
 		if(!silent)
 			to_chat(owner, "<span class='warning'>We're busy doing something right now!</span>")
 		return FALSE

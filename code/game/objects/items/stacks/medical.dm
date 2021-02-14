@@ -282,7 +282,7 @@
 	if(. == TRUE)
 		return TRUE
 
-	if(user.action_busy)
+	if(user.do_actions)
 		return
 
 	if(ishuman(M))
