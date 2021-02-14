@@ -1,0 +1,4 @@
+author: "TiviPlus"
+delete-after: True
+changes: 
+  - code_imp: "Removes illegal src edits and adds a lint for them"
