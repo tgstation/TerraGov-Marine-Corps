@@ -21982,8 +21982,10 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/store)
 "bpW" = (
-/obj/machinery/power/apc/drained,
-/obj/structure/cable,
+/obj/structure/table/reinforced,
+/obj/machinery/computer/security{
+	network = list("PRISON")
+	},
 /turf/open/floor/prison/darkred{
 	dir = 5
 	},
@@ -25231,6 +25233,7 @@
 	},
 /area/prison/security/checkpoint/hangar)
 "bAL" = (
+/obj/machinery/computer/prisoner,
 /turf/open/floor/prison/darkred{
 	dir = 1
 	},
@@ -25386,6 +25389,10 @@
 /area/prison/cellblock/lowsec/sw)
 "bBj" = (
 /obj/effect/decal/cleanable/blood,
+/obj/machinery/power/apc/drained{
+	dir = 4
+	},
+/obj/structure/cable,
 /turf/open/floor/prison/darkred{
 	dir = 10
 	},
@@ -25576,7 +25583,6 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 4
 	},
-/obj/structure/cable,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison/darkred{
 	dir = 4
@@ -25975,10 +25981,6 @@
 	dir = 1
 	},
 /area/prison/maintenance/hangar_barracks)
-"bDd" = (
-/obj/structure/bed/chair/office/dark,
-/turf/open/floor/prison/darkred,
-/area/prison/security/checkpoint/hangar)
 "bDe" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison/darkred,
@@ -25992,7 +25994,6 @@
 	},
 /area/prison/security/checkpoint/hangar)
 "bDh" = (
-/obj/machinery/computer/prisoner,
 /turf/open/floor/prison/darkred/full,
 /area/prison/security/checkpoint/hangar)
 "bDi" = (
@@ -26595,6 +26596,7 @@
 /area/prison/security/checkpoint/hangar)
 "bEP" = (
 /obj/structure/table/reinforced,
+/obj/machinery/computer/secure_data,
 /turf/open/floor/prison/darkred/full,
 /area/prison/security/checkpoint/hangar)
 "bEQ" = (
@@ -42200,6 +42202,12 @@
 	dir = 1
 	},
 /area/space)
+"jBM" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/prison/darkred/full,
+/area/prison/security/checkpoint/hangar)
 "jEP" = (
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/prison,
@@ -43019,6 +43027,9 @@
 /obj/structure/flora/pottedplant/twentyone,
 /turf/open/floor/wood,
 /area/prison/residential/central)
+"puv" = (
+/turf/open/floor/prison,
+/area/prison/security/checkpoint/hangar)
 "pzF" = (
 /obj/structure/barricade/wooden{
 	icon_state = "wooden";
@@ -43098,6 +43109,13 @@
 	},
 /turf/open/floor/prison/kitchen,
 /area/prison/residential/north)
+"pUb" = (
+/obj/structure/table/reinforced,
+/obj/machinery/computer/security{
+	network = list("PRISON")
+	},
+/turf/open/floor/prison/darkred/full,
+/area/prison/security/checkpoint/hangar)
 "pVt" = (
 /obj/structure/window/framed/prison/reinforced/hull,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
@@ -43712,6 +43730,10 @@
 	},
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/sw)
+"tNX" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/prison/darkred/full,
+/area/prison/security/checkpoint/hangar)
 "tPw" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 8;
@@ -102864,11 +102886,11 @@ sBT
 yiF
 bmw
 bzi
-bzi
+bDb
 byu
 bDb
-bzi
-bzi
+bDb
+bDb
 fGm
 bDa
 bFN
@@ -103124,8 +103146,8 @@ bzi
 bAI
 byv
 bBj
-bAN
-bzi
+jBM
+bDb
 ghl
 bDa
 bFN
@@ -103380,9 +103402,9 @@ byi
 bzj
 bAJ
 bBM
-bDd
-bBQ
-bzi
+bDf
+tNX
+bDb
 oeg
 jpw
 bId
@@ -103636,10 +103658,10 @@ mSO
 bnQ
 bzi
 bAK
-bBM
+puv
 bDe
 bDh
-bzi
+bDb
 ghl
 mfh
 bDa
@@ -103893,10 +103915,10 @@ mSO
 bnQ
 bzk
 bAL
-bBM
+puv
 bDf
 bEO
-bzi
+bDb
 ghl
 bGO
 bIc
@@ -104408,8 +104430,8 @@ gSk
 bzi
 bAN
 bBQ
-bDh
 bEQ
+pUb
 bAO
 vsh
 aab
