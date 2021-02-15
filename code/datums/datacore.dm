@@ -23,17 +23,18 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 	var/list/misc = list()
 	var/list/isactive = list()
 	var/list/squads = list()
+	var/list/support = list()
 
 	var/dat = {"
 	<head><style>
 		.manifest {border-collapse:collapse;}
-		.manifest td, th {border:1px solid [monochrome?"black":"#DEF; background-color:white; color:black"]; padding:.25em}
-		.manifest th {height: 2em; [monochrome?"border-top-width: 3px":"background-color: #48C; color:white"]}
-		.manifest tr.head th { [monochrome?"border-top-width: 1px":"background-color: #488;"] }
+		.manifest td, th {border:1px solid [monochrome?"white":"#24252A; background-color:#1B1C1E; color:white"]; padding:.25em}
+		.manifest th {height: 2em; [monochrome?"border-top-width: 3px":"background-color: #123C5E; color:white"]}
+		.manifest tr.head th { [monochrome?"border-top-width: 1px":"background-color: #1B5E94;"] }
 		.manifest td:first-child {text-align:right}
-		.manifest tr.alt td {[monochrome?"border-top-width: 2px":"background-color: #DEF"]}
+		.manifest tr.alt td {[monochrome?"border-top-width: 2px":"background-color: #36373C"]}
 	</style></head>
-	<table class="manifest" width='350px'>
+	<table class="manifest" width='450px'>
 	<tr class='head'><th>Name</th><th>Rank</th><th>Activity</th></tr>
 	"}
 
@@ -59,6 +60,9 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 		if(GLOB.jobs_command[rank])
 			heads[name] = rank
 			department = 1
+		if(rank in GLOB.jobs_support)
+			support[name] = rank
+			department = 1
 		if(rank in GLOB.jobs_engineering)
 			eng[name] = rank
 			department = 1
@@ -72,12 +76,17 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 		if(!department && !(name in heads) && (rank in GLOB.jobs_regular_all))
 			misc[name] = rank
 	if(length(heads) > 0)
-		dat += "<tr><th colspan=3>Command Staff</th></tr>"
+		dat += "<tr><th colspan=3>Command And Control Unit</th></tr>"
 		for(var/name in heads)
 			dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[heads[name]]</td><td>[isactive[name]]</td></tr>"
 			even = !even
+	if(length(support) > 0)
+		dat += "<tr><th colspan=3>Auxiliary Support Staff</th></tr>"
+		for(var/name in support)
+			dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[support[name]]</td><td>[isactive[name]]</td></tr>"
+			even = !even
 	if(length(mar) > 0)
-		dat += "<tr><th colspan=3>Marines</th></tr>"
+		dat += "<tr><th colspan=3>Marine Personnel</th></tr>"
 		for(var/j in list("Alpha","Bravo","Charlie", "Delta"))
 			dat += "<tr><th colspan=3>[j]</th></tr>"
 			for(var/name in mar)
@@ -85,12 +94,12 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 					dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[mar[name]]</td><td>[isactive[name]]</td></tr>"
 					even = !even
 	if(length(eng) > 0)
-		dat += "<tr><th colspan=3>Engineering</th></tr>"
+		dat += "<tr><th colspan=3>Enlisted Engineering Staff</th></tr>"
 		for(var/name in eng)
 			dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[eng[name]]</td><td>[isactive[name]]</td></tr>"
 			even = !even
 	if(length(med) > 0)
-		dat += "<tr><th colspan=3>Medical</th></tr>"
+		dat += "<tr><th colspan=3>Dedicated Medical Support</th></tr>"
 		for(var/name in med)
 			dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[med[name]]</td><td>[isactive[name]]</td></tr>"
 			even = !even
