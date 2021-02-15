@@ -863,10 +863,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			var/new_grad = input(user, "Choose your character's secondary hair color:", "Character Preference", rgb(r_grad, g_grad, b_grad)) as null|color
 			if(!new_grad)
 				return
-				r_grad = hex2num(copytext(new_grad, 2, 4))
-				g_grad = hex2num(copytext(new_grad, 4, 6))
-				b_grad = hex2num(copytext(new_grad, 6, 8))
-				return
+			r_grad = hex2num(copytext(new_grad, 2, 4))
+			g_grad = hex2num(copytext(new_grad, 4, 6))
+			b_grad = hex2num(copytext(new_grad, 6, 8))
 
 		if("grad_style")
 			var/list/valid_gradients = GLOB.hair_gradients
