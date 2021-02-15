@@ -293,7 +293,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define LIMB_METAL_AMOUNT 125
 
 //How long it takes for a human to become undefibbable
-#define TIME_BEFORE_DNR 300 //The unit is the second here, due to how life() works
+#define TIME_BEFORE_DNR 150 //In life ticks, multiply by 2 to have seconds
 
 
 //species_flags

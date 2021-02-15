@@ -29,8 +29,8 @@
 			species.handle_unique_behavior(src)
 
 		else //Dead
-			if(!undefibbable && timeofdeath && life_tick > 5 && life_tick % 2 == 0)
-				dead_ticks += 2
+			if(!undefibbable && timeofdeath && life_tick > 5)
+				dead_ticks ++
 				if(timeofdeath < 5 || check_tod(src) || !is_revivable())	//We are dead beyond revival, or we're junk mobs spawned like the clowns on the clown shuttle
 					set_undefibbable()
 				else
