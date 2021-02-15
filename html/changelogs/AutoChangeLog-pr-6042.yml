@@ -1,4 +1,0 @@
-author: "Surrealaser"
-delete-after: True
-changes: 
-  - bugfix: "Extra slowdown for aggressive+ grabs capped at 3. Hopefully fixes excessive slowdown issues with Lunge."
