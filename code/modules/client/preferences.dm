@@ -253,7 +253,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	dat += "<br>"
 	dat += "<b>Hair:</b> <a href='?_src_=prefs;preference=hairstyle'>[h_style]</a> | <a href='?_src_=prefs;preference=haircolor'>Color</a> <font face='fixedsys' size='3' color='#[num2hex(r_hair, 2)][num2hex(g_hair, 2)][num2hex(b_hair, 2)]'><table style='display:inline;' bgcolor='#[num2hex(r_hair, 2)][num2hex(g_hair, 2)][num2hex(b_hair)]'><tr><td>__</td></tr></table></font> "
 	dat += "<br>"
-	dat += "<b>Gradient:</b> <a href='?_src_=prefs;preference=grad_style'>[grad_style]</a> <a href='?_src_=prefs;preference=grad_color='>Color</a> <font face='fixedsys' size='3' color='#[num2hex(r_grad, 2)][num2hex(g_grad, 2)][num2hex(b_grad, 2)]'><table style='display:inline;' bgcolor='#[num2hex(r_grad, 2)][num2hex(g_grad, 2)][num2hex(b_grad)]'><tr><td>__</td></tr></table></font>"
+	dat += "<b>Gradient:</b> <a href='?_src_=prefs;preference=grad_style'>[grad_style]</a> <a href='?_src_=prefs;preference=grad_color'>Color</a> <font face='fixedsys' size='3' color='#[num2hex(r_grad, 2)][num2hex(g_grad, 2)][num2hex(b_grad, 2)]'><table style='display:inline;' bgcolor='#[num2hex(r_grad, 2)][num2hex(g_grad, 2)][num2hex(b_grad)]'><tr><td>__</td></tr></table></font>"
 	dat += "<br>"
 	dat += "<b>Facial Hair:</b> <a href='?_src_=prefs;preference=facialstyle'>[f_style]</a> | <a href='?_src_=prefs;preference=facialcolor'>Color</a> <font face='fixedsys' size='3' color='#[num2hex(r_facial, 2)][num2hex(g_facial, 2)][num2hex(b_facial, 2)]'><table  style='display:inline;' bgcolor='#[num2hex(r_facial, 2)][num2hex(g_facial, 2)][num2hex(b_facial)]'><tr><td>__</td></tr></table></font> "
 	dat += "<br>"
@@ -860,7 +860,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			b_hair = hex2num(copytext(new_color, 6, 8))
 
 		if("grad_color")
-			var/new_grad = input(user, "Choose your character's secondary hair color:", "Character Preference", rgb(r_grad, g_grad, b_grad)) as null|color
+			var/new_grad = input(user, "Choose your character's secondary hair color:", "Gradient Color") as null|color
 			if(!new_grad)
 				return
 			r_grad = hex2num(copytext(new_grad, 2, 4))
