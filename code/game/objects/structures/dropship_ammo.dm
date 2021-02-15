@@ -141,6 +141,14 @@
 	travelling_time = 5 SECONDS
 	point_cost = 150
 
+/obj/structure/ship_ammo/heavygun/railgun
+	name = "Railgun Ammo"
+	desc = "This is not meant to exist"
+	ammo_count = 400
+	max_ammo_count = 400
+	ammo_used_per_firing = 40
+	bullet_spread_range = 5
+	point_cost = 0
 
 
 //laser battery
@@ -406,46 +414,3 @@
 	T.visible_message("<span class='warning'>You see a tiny flash, and then a blindingly bright light from a flare as it lights off in the sky!</span>")
 	playsound(T, 'sound/weapons/guns/fire/flare.ogg', 50, 1, 4) // stolen from the mortar i'm not even sorry
 	QDEL_IN(src, rand(70 SECONDS, 90 SECONDS)) // About the same burn time as a flare, considering it requires it's own CAS run.
-
-//Railgun, currently the same as GAU, but being seperated so that changes to the GAU don't affect the railgun
-/obj/structure/ship_ammo/railgun
-	name = "Railgun Ammo"
-	desc = "This is not meant to exist"
-	travelling_time = 6 SECONDS
-	ammo_count = 400
-	max_ammo_count = 400
-	ammo_used_per_firing = 40
-	var/bullet_spread_range = 5
-	var/attack_width = 3
-	travelling_time = 6 SECONDS
-
-/obj/structure/ship_ammo/railgun/detonate_on(turf/impact, attackdir = NORTH)
-	var/turf/beginning = impact
-	var/revdir = REVERSE_DIR(attackdir)
-	for(var/i=0 to bullet_spread_range)
-		beginning = get_step(beginning, revdir)
-	var/list/strafelist = list(beginning)
-	strafelist += get_step(beginning, turn(attackdir, 90))
-	strafelist += get_step(beginning, turn(attackdir, -90)) //Build this list 3 turfs at a time for strafe_turfs
-	for(var/b=0 to bullet_spread_range*2)
-		beginning = get_step(beginning, attackdir)
-		strafelist += beginning
-		strafelist += get_step(beginning, turn(attackdir, 90))
-		strafelist += get_step(beginning, turn(attackdir, -90))
-	strafe_turfs(strafelist)
-
-///Takes the top 3 turfs and miniguns them, then repeats until none left
-/obj/structure/ship_ammo/railgun/proc/strafe_turfs(list/strafelist)
-	var/turf/strafed
-	playsound(strafelist[1], get_sfx("explosion"), 40, 1, 20, falloff = 3)
-	for(var/i=1 to attack_width)
-		strafed = strafelist[1]
-		strafelist -= strafed
-		strafed.ex_act(EXPLODE_LIGHT)
-		new /obj/effect/particle_effect/expl_particles(strafed)
-		new /obj/effect/temp_visual/heavyimpact(strafed)
-		for(var/atom/movable/AM as() in strafed)
-			AM.ex_act(EXPLODE_LIGHT)
-
-	if(length(strafelist))
-		addtimer(CALLBACK(src, .proc/strafe_turfs, strafelist), 2)
