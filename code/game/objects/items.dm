@@ -320,7 +320,7 @@
 		if(flags_armor_protection)
 			human_user.add_limb_armor(src)
 		if(slowdown)
-			human_user.add_movespeed_modifier(type, TRUE, 0, (flags_item & ENTRAVE_JETPACK) ? SLOWDOWN_ENTRAVE_JETPACK : NONE, TRUE, slowdown)
+			human_user.add_movespeed_modifier(type, TRUE, 0, (flags_item & IMPEDE_JETPACK) ? SLOWDOWN_IMPEDE_JETPACK : NONE, TRUE, slowdown)
 
 
 ///Called when an item is removed from an equipment slot. The loc should still be in the unequipper.

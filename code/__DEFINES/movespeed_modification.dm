@@ -40,4 +40,4 @@
 #define MOVESPEED_ID_AIM_MODE_SLOWDOWN					"AIM_MODE_SLOWDOWN"
 
 //Specific slowdown bitfield
-#define SLOWDOWN_ENTRAVE_JETPACK (1<<0) //Reduce the range of jetpack
+#define SLOWDOWN_IMPEDE_JETPACK (1<<0) //Reduce the range of jetpack

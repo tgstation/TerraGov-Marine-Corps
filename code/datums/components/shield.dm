@@ -140,7 +140,7 @@
 		return
 	var/mob/living/carbon/human/human_user = user
 	if(parent_item.slowdown)
-		human_user.add_movespeed_modifier(parent_item.type, TRUE, 0, ((parent_item.flags_item & ENTRAVE_JETPACK) ? SLOWDOWN_ENTRAVE_JETPACK : NONE), TRUE, parent_item.slowdown)
+		human_user.add_movespeed_modifier(parent_item.type, TRUE, 0, ((parent_item.flags_item & IMPEDE_JETPACK) ? SLOWDOWN_IMPEDE_JETPACK : NONE), TRUE, parent_item.slowdown)
 /datum/component/shield/proc/shield_dropped(datum/source, mob/user)
 	SIGNAL_HANDLER
 	shield_detatch_from_user()
