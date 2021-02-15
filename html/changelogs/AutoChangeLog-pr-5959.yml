@@ -1,0 +1,5 @@
+author: "TiviPlus"
+delete-after: True
+changes: 
+  - rscadd: "Replace the lobby HTML window with a new lobby menu"
+  - code_imp: "Removed some junk code"
