@@ -872,8 +872,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 			var/new_grad_style = input(user, "Choose a color pattern for your hair:", "Character Preference", grad_style)  as null|anything in valid_gradients
 			if(!new_grad_style)
-				grad_style = new_grad_style
 				return
+			grad_style = new_grad_style
 
 		if("facialstyle")
 			var/list/valid_facialhairstyles = list()
