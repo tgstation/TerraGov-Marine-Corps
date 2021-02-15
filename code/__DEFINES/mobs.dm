@@ -406,6 +406,8 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 #define ANTI_CHAINSTUN_TICKS	2
 
+#define BASE_GRAB_SLOWDOWN		3 //Slowdown called by /mob/setGrabState(newstate) in mob.dm when grabbing a target aggressively.
+
 //Xeno Defines
 
 #define HIVE_CAN_HIJACK (1<<0)
