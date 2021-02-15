@@ -54,14 +54,6 @@ GLOBAL_LIST_INIT(hugger_type_list, typecacheof(list(
 
 		X.put_in_active_hand(F)
 		to_chat(X, "<span class='xenonotice'>We grab one of the facehuggers in our storage. Now sheltering: [X.huggers] / [X.xeno_caste.huggers_max].</span>")
-		if(istype(A, /turf/open) || istype(A, /mob/living/) || istype(A, /obj/effect/alien/weeds) || istype(A, /obj/effect/alien/resin))
-			X.dropItemToGround(F)
-			playsound(X, 'sound/effects/throw.ogg', 30, 1)
-			F.throw_at(A, CARRIER_HUGGER_THROW_DISTANCE, CARRIER_HUGGER_THROW_SPEED)
-			X.visible_message("<span class='xenowarning'>\The [X] throws something towards \the [A]!</span>", \
-			"<span class='xenowarning'>We throw a facehugger towards \the [A]!</span>")
-		add_cooldown()
-		return succeed_activate()
 
 	if(!istype(F)) //something else in our hand
 		to_chat(X, "<span class='warning'>We need a facehugger in our hand to throw one!</span>")
@@ -69,9 +61,10 @@ GLOBAL_LIST_INIT(hugger_type_list, typecacheof(list(
 
 	if(!cooldown_id)
 		X.dropItemToGround(F)
-		F.go_active(TRUE)
 		playsound(X, 'sound/effects/throw.ogg', 30, TRUE)
 		F.throw_at(A, CARRIER_HUGGER_THROW_DISTANCE, CARRIER_HUGGER_THROW_SPEED)
+		F.stat = CONSCIOUS //Hugger is conscious
+		F.leaping = FALSE //Hugger is not leaping
 		X.visible_message("<span class='xenowarning'>\The [X] throws something towards \the [A]!</span>", \
 		"<span class='xenowarning'>We throw a facehugger towards \the [A]!</span>")
 		add_cooldown()

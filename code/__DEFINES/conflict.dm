@@ -142,6 +142,7 @@
 #define SMOKE_CHEM			(1<<14)
 #define SMOKE_EXTINGUISH	(1<<15) //Extinguishes fires and mobs that are on fire
 #define SMOKE_NEURO_LIGHT	(1<<16) //Effectively a sub-flag of Neuro; precludes higher impact effects
+#define SMOKE_HUGGER_PACIFY	(1<<15)
 
 //Incapacitated
 #define INCAPACITATED_IGNORE_RESTRAINED (1<<0)

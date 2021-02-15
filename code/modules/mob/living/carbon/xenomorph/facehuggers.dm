@@ -160,6 +160,7 @@
 	deltimer(lifetimer)
 	lifetimer = null
 	jumptimer = null
+	remove_danger_overlay() //Remove the danger overlay
 	if(stat == CONSCIOUS)
 		stat = UNCONSCIOUS
 		update_icon()
@@ -183,6 +184,8 @@
 
 ///Applies an alert overlay when the hugger is about to jump
 /obj/item/clothing/mask/facehugger/proc/apply_danger_overlay()
+	if(stat == DEAD || stat == UNCONSCIOUS) //It's dead or inactive; don't bother
+		return
 	overlays -= danger_overlay
 	if(!danger_overlay)
 		danger_overlay = new/obj/effect/overlay/danger
@@ -232,12 +235,21 @@
 	return FALSE
 
 /obj/item/clothing/mask/facehugger/proc/leap_at_nearest_target(forced = FALSE)
-
 	if(!isturf(loc))
 		return
 	if(!forced)
 		if(throwing || !lifetimer)//theres only a lifetimer as long as the huggers conscious
 			return
+
+	for(var/check_smoke in get_turf(src)) //Check for pacifying smoke
+		if(!istype(check_smoke, /obj/effect/particle_effect/smoke/xeno))
+			continue
+
+		var/obj/effect/particle_effect/smoke/xeno/xeno_smoke = check_smoke
+		if(CHECK_BITFIELD(xeno_smoke.smoke_traits, SMOKE_HUGGER_PACIFY)) //Cancel out and make the hugger go idle if we have the xeno pacify tag
+			go_idle()
+			return
+
 	var/i = 10//So if we have a pile of dead bodies around, it doesn't scan everything, just ten iterations.
 	for(var/mob/living/carbon/M in view(4,src))
 		if(!i)
@@ -292,12 +304,14 @@
 		else
 			step(src, REVERSE_DIR(dir)) //We want the hugger to bounce off if it hits a mob.
 			set_throwing(FALSE) //reset our state on collision
-			leaping = FALSE
-			go_idle(FALSE)
-			update_icon()
 			deltimer(jumptimer)
-			jumptimer = addtimer(CALLBACK(src, .proc/fast_activate), impact_time, TIMER_STOPPABLE|TIMER_UNIQUE)
+			deltimer(lifetimer)
+			lifetimer = null
+			jumptimer = null
+			update_icon()
 			apply_danger_overlay()
+			lifetimer = addtimer(CALLBACK(src, .proc/check_lifecycle), FACEHUGGER_DEATH, TIMER_STOPPABLE|TIMER_UNIQUE)
+			jumptimer = addtimer(CALLBACK(src, .proc/leap_at_nearest_target), impact_time, TIMER_STOPPABLE|TIMER_UNIQUE)
 			return
 	else
 		for(var/mob/living/carbon/M in loc)
@@ -507,9 +521,9 @@
 
 	deltimer(jumptimer)
 	deltimer(lifetimer)
-	remove_danger_overlay() //Remove the danger overlay
 	lifetimer = null
 	jumptimer = null
+	remove_danger_overlay() //Remove the danger overlay
 
 	update_icon()
 	visible_message("\icon[src] <span class='danger'>\The [src] curls up into a ball!</span>")
@@ -517,7 +531,7 @@
 
 	layer = BELOW_MOB_LAYER //so dead hugger appears below live hugger if stacked on same tile.
 
-	addtimer(CALLBACK(src, .proc/melt_away), 3 MINUTES)
+	addtimer(CALLBACK(src, .proc/melt_away), 1 MINUTES)
 
 /obj/item/clothing/mask/facehugger/proc/reset_attach_status(forcedrop = TRUE)
 	flags_item &= ~NODROP
@@ -563,23 +577,10 @@
 	. = ..()
 	go_idle()
 
-/obj/item/clothing/mask/facehugger/effect_smoke(obj/effect/particle_effect/smoke/S)
-	. = ..()
-	if(!.)
-		return
-	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_ACID) || CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_NEURO))
-		go_idle()
-
 /obj/item/clothing/mask/facehugger/dropped(mob/user)
 	. = ..()
 	go_idle()
 
-/obj/item/clothing/mask/facehugger/effect_smoke(obj/effect/particle_effect/smoke/S)
-	. = ..()
-	if(!.)
-		return
-	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_ACID) || CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_NEURO))
-		go_idle()
 
 /////////////////////////////
 // SUBTYPES
