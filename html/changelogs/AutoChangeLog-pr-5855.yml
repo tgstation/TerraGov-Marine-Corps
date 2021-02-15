@@ -1,0 +1,7 @@
+author: "Surrealaser"
+delete-after: True
+changes: 
+  - balance: "Reagent slash now acts as a buff, causing the next 3 slashes made over 4 seconds to inject 4U of the user's selected toxin, and 4U of larval growth toxin."
+  - balance: "Larval growth toxin no longer has pain killing benefits."
+  - code_imp: "Infrastructure added and utilized so Reagent Slash doesn't break if active while upgrading; can also be tapped by other abilities to make them robust vs upgrading.
+tweak: Statistics tracking added for Reagent Slashes."
