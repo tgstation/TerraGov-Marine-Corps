@@ -41248,7 +41248,14 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
-/turf/closed/wall/r_wall/prison_unmeltable,
+/obj/machinery/power/apc/drained{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/carpet,
 /area/prison/command/quarters)
 "dBh" = (
 /obj/structure/window/framed/prison/reinforced,
@@ -42314,11 +42321,6 @@
 /obj/structure/mineral_door/resin,
 /turf/open/floor/prison/cleanmarked,
 /area/prison/yard)
-"ksS" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/obj/structure/cable,
-/turf/open/floor/carpet,
-/area/prison/command/quarters)
 "kva" = (
 /obj/effect/decal/cleanable/blood/splatter,
 /obj/effect/landmark/start/job/xenomorph,
@@ -44210,14 +44212,6 @@
 	dir = 8
 	},
 /area/prison/security/monitoring/maxsec/panopticon)
-"xqK" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/obj/machinery/power/apc/drained{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/carpet,
-/area/prison/command/quarters)
 "xrp" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 4
@@ -101816,7 +101810,7 @@ aYI
 aYI
 aZL
 aYI
-baz
+tGm
 aXr
 aab
 vsh
@@ -102329,8 +102323,8 @@ xKV
 aXr
 qNy
 uEg
-aYI
-tGm
+uEg
+uEg
 dAe
 aXt
 obp
@@ -102585,10 +102579,10 @@ aNH
 pWB
 qqc
 aYK
-ksS
-ksS
-ksS
-xqK
+aYK
+aYK
+aYK
+aYK
 aXt
 beu
 vnS
