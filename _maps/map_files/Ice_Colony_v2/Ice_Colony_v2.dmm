@@ -31866,7 +31866,7 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice,
-/area/space)
+/area/ice_colony/exterior/underground/caves)
 "fIy" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice_rock/corners,
@@ -32384,11 +32384,6 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice_rock/corners,
 /area/ice_colony/exterior/surface/cliff)
-"jIG" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/obj/structure/mineral_door/resin,
-/turf/open/floor/plating/ground/ice,
-/area/ice_colony/exterior/underground/caves)
 "jMW" = (
 /turf/closed/ice/end{
 	dir = 8
@@ -32515,7 +32510,7 @@
 /obj/structure/mineral_door/resin,
 /obj/structure/mineral_door/resin,
 /turf/open/floor/plating/ground/ice,
-/area/ice_colony/exterior/underground/caves)
+/area/ice_colony/exterior/underground/caves/open)
 "kXC" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/snow/layer1,
@@ -32733,7 +32728,7 @@
 "mHi" = (
 /obj/effect/turf_underlay/icefloor,
 /turf/open/space/basic,
-/area/ice_colony/exterior/underground/caves)
+/area/ice_colony/exterior/underground/caves/open)
 "mJD" = (
 /obj/machinery/computer/intel_computer,
 /turf/open/floor/tile/dark/red2,
@@ -33023,7 +33018,7 @@
 "pDL" = (
 /obj/structure/mineral_door/resin,
 /turf/open/floor/plating/ground/ice,
-/area/ice_colony/exterior/underground/caves)
+/area/ice_colony/exterior/underground/caves/open)
 "pEz" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/snow/layer1,
@@ -33687,10 +33682,6 @@
 	dir = 4
 	},
 /area/ice_colony/exterior/underground/caves/ice_se)
-"vYL" = (
-/obj/structure/mineral_door/resin,
-/turf/open/floor/plating/ground/ice,
-/area/space)
 "wdf" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -70413,7 +70404,7 @@ aZF
 gwe
 rcO
 nLI
-jIG
+gOl
 gOl
 kWJ
 ncp
@@ -70670,7 +70661,7 @@ aZF
 aZF
 aZF
 aZF
-vYL
+pDL
 pDL
 pDL
 aZF
