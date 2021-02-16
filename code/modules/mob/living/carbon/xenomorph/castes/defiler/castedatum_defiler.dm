@@ -42,9 +42,9 @@
 		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/plant_weeds,
 		/datum/action/xeno_action/select_reagent,
-		/datum/action/xeno_action/activable/defile,
+		/datum/action/xeno_action/reagent_slash,
 		/datum/action/xeno_action/activable/emit_neurogas,
-		/datum/action/xeno_action/activable/reagent_slash,
+		/datum/action/xeno_action/activable/defile,
 		/datum/action/xeno_action/activable/inject_egg_neurogas,
 		/datum/action/xeno_action/toggle_pheromones,
 	)

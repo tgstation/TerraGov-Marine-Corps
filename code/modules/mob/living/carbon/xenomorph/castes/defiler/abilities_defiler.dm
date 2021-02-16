@@ -88,7 +88,7 @@ GLOBAL_LIST_INIT(defiler_toxins, typecacheof(list(
 /datum/action/xeno_action/activable/emit_neurogas
 	name = "Emit Noxious Gas"
 	action_icon_state = "emit_neurogas"
-	mechanics_text = "Channel for 3 seconds to emit a cloud of noxious smoke, based on selected reagent, that follows the Defiler. You must remain stationary while channeling; moving will cancel the ability but will still cost plasma."
+	mechanics_text = "After a short wind up time, emits a gas of the type chosen by Select Reagent. Neurotoxin gas is opaque, but covers a smaller area. The third and final cloud is larger."
 	ability_name = "emit neurogas"
 	plasma_cost = 200
 	cooldown_timer = 40 SECONDS
@@ -230,10 +230,14 @@ GLOBAL_LIST_INIT(defiler_toxins, typecacheof(list(
 /datum/action/xeno_action/select_reagent
 	name = "Select Reagent"
 	action_icon_state = "select_reagent0"
-	mechanics_text = "Selects which reagent to use for reagent slash and noxious gas. Hemodile slows by 25%, doubled for each other Defiler chem in the target's blood, and deals 20% of damage received as stamina damage. Transvitox converts brute/burn damage to toxin based on 40% of damage received up to 45 toxin on target, upon reaching which causes a stun. Neurotoxin deals increasing stamina damage the longer it remains in the victim's system and prevents stamina regeneration."
+	mechanics_text = "Selects a reagent to use for reagent slash and noxious gas. Hemodile slows, Transvitox converts burn damage to toxin and deals bonus toxin damage, and Neurotoxin drains stamina and causes pain."
 	use_state_flags = XACT_USE_BUSY
 	keybind_signal = COMSIG_XENOABILITY_SELECT_REAGENT
 	var/list_position
+
+/datum/action/xeno_action/select_reagent/give_action(mob/living/L)
+	. = ..()
+	list_position = 1 //Default to 1
 
 /datum/action/xeno_action/select_reagent/update_button_icon()
 	var/mob/living/carbon/xenomorph/X = owner

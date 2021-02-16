@@ -234,19 +234,19 @@
 /datum/keybinding/xeno/emit_neurogas
 	name = "emit_neurogas"
 	full_name = "Defiler: Emit Neurogas"
-	description = ""
+	description = "After a short wind up time, emits a gas of the type chosen by Select Reagent. Neurotoxin gas is opaque, but covers a smaller area. The third and final cloud is larger."
 	keybind_signal = COMSIG_XENOABILITY_EMIT_NEUROGAS
 
 /datum/keybinding/xeno/select_reagent
 	name = "select_reagent"
 	full_name = "Defiler: Select Reagent"
-	description = ""
+	description = "Selects a reagent to use for reagent slash and noxious gas. Hemodile slows, Transvitox converts burn damage to toxin and deals bonus toxin damage, and Neurotoxin drains stamina and causes pain."
 	keybind_signal = COMSIG_XENOABILITY_SELECT_REAGENT
 
 /datum/keybinding/xeno/reagent_slash
 	name = "reagent_slash"
 	full_name = "Defiler: Reagent Slash"
-	description = ""
+	description = "For a short duration the next 3 slashes made will inject a small amount of selected toxin."
 	keybind_signal = COMSIG_XENOABILITY_REAGENT_SLASH
 
 /*
