@@ -1136,3 +1136,35 @@ obj/item/weapon/gun/minigun/Fire(atom/target, mob/living/user, params, reflex = 
 		return in_chamber ? 1 : 0
 	else
 		return in_chamber ? (current_mag.current_rounds + 1) : current_mag.current_rounds
+
+//railgun
+
+//-------------------------------------------------------
+//T-81 Auto-Sniper
+
+/obj/item/weapon/gun/rifle/railgun
+	name = "\improper TX-220 railgun"
+	desc = "The TX-220 is a specialized heavy duty railgun made to shred through hard armor to allow for follow up attacks. Uses specialized canisters to reload."
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "railgun"
+	item_state = "railgun"
+	max_shells = 1 //codex
+	caliber = "rail projectile"
+	fire_sound = 'sound/weapons/guns/fire/sniper.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/sniper_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/sniper_reload.ogg'
+	current_mag = /obj/item/ammo_magazine/railgun
+	force = 12
+	wield_delay = 2 SECONDS //You're not quick drawing this.
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 20, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
+	attachable_allowed = list(
+		/obj/item/attachable/scope,
+	)
+
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
+
+	fire_delay = 20 SECONDS
+	burst_amount = 1
+	accuracy_mult = 2
+	recoil = 0

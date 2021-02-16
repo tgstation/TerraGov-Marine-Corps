@@ -1010,6 +1010,19 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	shrapnel_chance = 25
 	sundering = 2.5
 
+/datum/ammo/bullet/railgun
+	name = "railgun round"
+	hud_state = "alloy_spike"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
+	shell_speed = 4
+	max_range = 12
+	damage = 100
+	penetration = 70
+	sundering = 70
+
+/datum/ammo/bullet/railgun/on_hit_mob(mob/M,obj/projectile/P)
+	staggerstun(M, P, weaken = 1, stagger = 3, slowdown = 2, knockback = 4)
+
 /*
 //================================================
 					Rocket Ammo

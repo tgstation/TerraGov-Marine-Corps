@@ -195,9 +195,9 @@ WEAPONS
 	cost = 40
 
 
-/datum/supply_packs/weapons/specgrenadier
-	name = "Grenadier Specialist kit"
-	contains = list(/obj/item/weapon/gun/launcher/m92)
+/datum/supply_packs/weapons/railgun
+	name = "TX-220 Railgun"
+	contains = list(/obj/item/weapon/gun/rifle/railgun)
 	cost = 80
 
 /datum/supply_packs/weapons/specscoutm4ra
@@ -515,6 +515,11 @@ AMMO
 	name = "T-26 magazine"
 	contains = list(/obj/item/ammo_magazine/sniper)
 	cost = 10
+
+/datum/supply_packs/ammo/railgun
+	name = "Railgun round"
+	contains = list(/obj/item/ammo_magazine/railgun)
+	cost = 4
 
 /datum/supply_packs/ammo/shotguntracker
 	name = "12 Gauge Tracker Shells"
