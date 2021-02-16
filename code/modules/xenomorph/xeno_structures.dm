@@ -237,7 +237,7 @@
 	animate(src)
 	pixel_x = old_px
 
-/obj/machinery/xeno_turret
+/obj/structure/resin/xeno_turret
 	icon = 'icons/Xeno/acidturret.dmi'
 	icon_state = "acid_turret"
 	name = "acid turret"
@@ -245,6 +245,8 @@
 	bound_width = 32
 	bound_height = 32
 	max_integrity = 300
+	layer =  ABOVE_MOB_LAYER
+	density = TRUE
 	///The hive it belongs to
 	var/datum/hive_status/associated_hive
 	///What kind of spit it uses
@@ -257,15 +259,18 @@
 	var/mob/living/carbon/last_hostile
 	///Fire rate of the target
 	var/firerate = 8
+	///Doesn't use power, it's needed because the process is in machines. Very shitcode
+	var/use_power = FALSE
 
-/obj/machinery/xeno_turret/Initialize()
+/obj/structure/resin/xeno_turret/Initialize()
 	. = ..()
 	ammo = GLOB.ammo_list[/datum/ammo/xeno/acid]
 	associated_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	START_PROCESSING(SSmachines, src)	
 	AddComponent(/datum/component/automatic_shoot_at, src, firerate, ammo)
+	RegisterSignal(src, COMSIG_SHOT_FIRED, .proc/face_target)
 
-/obj/machinery/xeno_turret/process()
+/obj/structure/resin/xeno_turret/process()
 	hostile = get_target()
 	if (!hostile)
 		if(last_hostile)
@@ -280,7 +285,7 @@
 		SEND_SIGNAL(src, COMSIG_START_SHOOTING_AT, hostile)
 	
 ///Look for the closest human in range and in light of sight. If no human is in range, will look for xenos of other hives
-/obj/machinery/xeno_turret/proc/get_target()
+/obj/structure/resin/xeno_turret/proc/get_target()
 	var/distance = INFINITY
 	var/buffer_distance
 	var/list/turf/path = list()
@@ -345,3 +350,7 @@
 		if(!blocked)
 			distance = buffer_distance
 			. = nearby_xeno
+
+/obj/structure/resin/xeno_turret/proc/face_target()
+	SIGNAL_HANDLER
+	face_atom(hostile)

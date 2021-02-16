@@ -614,4 +614,8 @@
 =======
 #define COMSIG_START_SHOOTING_AT 	"start_shooting_at"
 #define COMSIG_STOP_SHOOTING_AT		"stop_shooting_at"
+<<<<<<< HEAD
 >>>>>>> 40f4950ec (Xeno turrets is working)
+=======
+#define COMSIG_SHOT_FIRED			"shot_fired"
+>>>>>>> 83f9dc734 (xenos turret is done)

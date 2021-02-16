@@ -335,11 +335,17 @@
 
 
 /datum/component/automatic_shoot_at
+	///The target we are shooting at
 	var/atom/target
+	///The owner of this componet
 	var/atom/shooter
+	///The ammo we are shooting
 	var/datum/ammo/xeno/ammo
+	///The delay between each shot in ticks
 	var/shot_delay = 5
+	///The timer used to regulate the shot
 	var/shot_delay_timer
+	///If we are shooting
 	var/shooting = FALSE
 
 /datum/component/automatic_shoot_at/Initialize(shooter, shot_delay, ammo)
@@ -386,6 +392,7 @@
 	newspit.generate_bullet(ammo, ammo.damage)
 	newspit.permutated += shooter
 	newspit.fire_at(target, shooter, null, ammo.max_range, ammo.shell_speed)
+	SEND_SIGNAL(shooter, COMSIG_SHOT_FIRED)
 
 
 // Gun procs.
