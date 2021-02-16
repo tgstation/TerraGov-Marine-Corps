@@ -198,7 +198,7 @@ WEAPONS
 /datum/supply_packs/weapons/railgun
 	name = "TX-220 Railgun"
 	contains = list(/obj/item/weapon/gun/rifle/railgun)
-	cost = 80
+	cost = 130
 
 /datum/supply_packs/weapons/specscoutm4ra
 	name = "Scout Specialist kit (M4RA)"
