@@ -93,6 +93,9 @@
 	. = ..()
 	if(!ishuman(AM))
 		return
+	
+	if(CHECK_MULTIPLE_BITFIELDS(AM.flags_pass, HOVERING))
+		return
 
 	var/mob/living/carbon/human/H = AM
 
@@ -886,6 +889,8 @@ TUNNEL
 
 /obj/effect/alien/resin/acidwell/Crossed(atom/A)
 	. = ..()
+	if(CHECK_MULTIPLE_BITFIELDS(A.flags_pass, HOVERING))
+		return
 	if(iscarbon(A))
 		HasProximity(A)
 

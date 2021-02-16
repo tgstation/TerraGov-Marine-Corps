@@ -133,3 +133,9 @@
 	icon = 'icons/effects/progressicons.dmi'
 	icon_state = "busy_medical"
 	duration = 0.8 SECONDS
+
+/obj/effect/temp_visual/smoke
+	name = "smoke"
+	icon = 'icons/obj/items/jetpack.dmi'
+	icon_state = "smoke"
+	duration = 1.2 SECONDS
