@@ -607,6 +607,11 @@
 	#define COMPONENT_ACTION_BLOCK_TRIGGER (1<<0)
 
 //Signals for automatic fire at component
+<<<<<<< HEAD
 #define COMSIG_AUTOMATIC_SHOOTER_START_SHOOTING_AT "start_shooting_at"
 #define COMSIG_AUTOMATIC_SHOOTER_STOP_SHOOTING_AT "stop_shooting_at"
 #define COMSIG_AUTOMATIC_SHOOTER_SHOOT "shoot"
+=======
+#define COMSIG_START_SHOOTING_AT 	"start_shooting_at"
+#define COMSIG_STOP_SHOOTING_AT		"stop_shooting_at"
+>>>>>>> 40f4950ec (Xeno turrets is working)

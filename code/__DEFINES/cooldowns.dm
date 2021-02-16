@@ -29,7 +29,11 @@
 #define COOLDOWN_JETPACK "jetpack"
 #define COOLDOWN_CIC_ORDERS "cic_orders"
 #define COOLDOWN_CLOAK_IMPLANT "cloak_implant"
+<<<<<<< HEAD
 #define COOLDOWN_DRONE_CLOAK "drone_cloak"
+=======
+#define COOLDOWN_XENO_TURRETS_ALERT "xeno_turrets_alert"
+>>>>>>> 40f4950ec (Xeno turrets is working)
 
 //// COOLDOWN SYSTEMS
 /*

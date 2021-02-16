@@ -798,6 +798,11 @@
 	icon_state = "Red_arrow"
 	duration = XENO_SILO_DAMAGE_POINTER_DURATION
 
+/obj/screen/arrow/turret_attacking_arrow
+	name = "Turret attacking arrow"
+	icon_state = "Green_arrow"
+	duration = XENO_SILO_DAMAGE_POINTER_DURATION
+
 /obj/screen/arrow/attack_order_arrow
 	name = "attack order arrow"
 	icon_state = "Attack_arrow"

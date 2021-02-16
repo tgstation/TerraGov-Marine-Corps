@@ -237,7 +237,7 @@
 	animate(src)
 	pixel_x = old_px
 
-/obj/structure/resin/turret
+/obj/machinery/xeno_turret
 	icon = 'icons/Xeno/acidturret.dmi'
 	icon_state = "acid_turret"
 	name = "acid turret"
@@ -245,37 +245,103 @@
 	bound_width = 32
 	bound_height = 32
 	max_integrity = 300
+	///The hive it belongs to
 	var/datum/hive_status/associated_hive
+	///What kind of spit it uses
 	var/datum/ammo/xeno/ammo
-	var/alert_range = 8
+	///Range of the turret
+	var/range = 10
+	///Target of the turret
+	var/mob/living/carbon/hostile
+	///Last target of the turret
+	var/mob/living/carbon/last_hostile
+	///Fire rate of the target
+	var/firerate = 8
 
-/obj/structure/resin/turret/Initialize()
+/obj/machinery/xeno_turret/Initialize()
 	. = ..()
-	ammo = GLOB.ammo_list[/datum/ammo/xeno/acid/heavy]
+	ammo = GLOB.ammo_list[/datum/ammo/xeno/acid]
+	associated_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
+	START_PROCESSING(SSmachines, src)	
+	AddComponent(/datum/component/automatic_shoot_at, src, firerate, ammo)
 
-/obj/structure/resin/turret/proc/get_target()
-	for (var/mob/living/carbon/human/nearhuman as anything in cheap_get_humans_near(src, alert_range))
-		path = getline(src, M)
+/obj/machinery/xeno_turret/process()
+	hostile = get_target()
+	if (!hostile)
+		if(last_hostile)
+			last_hostile = null
+			SEND_SIGNAL(src, COMSIG_STOP_SHOOTING_AT)
+		return
+	if(!TIMER_COOLDOWN_CHECK(src, COOLDOWN_XENO_TURRETS_ALERT))
+		associated_hive.xeno_message("<span class='xenoannounce'>Our [name] has detected a nearby hostile [hostile] at [get_area(hostile)]. [name] has [obj_integrity]/[max_integrity] Health remaining.</span>", 2, FALSE, src, 'sound/voice/alien_help1.ogg', FALSE, null, /obj/screen/arrow/turret_attacking_arrow)
+		TIMER_COOLDOWN_START(src, COOLDOWN_XENO_TURRETS_ALERT, 1 MINUTES)
+	if(hostile != last_hostile)
+		last_hostile = hostile
+		SEND_SIGNAL(src, COMSIG_START_SHOOTING_AT, hostile)
+	
+///Look for the closest human in range and in light of sight. If no human is in range, will look for xenos of other hives
+/obj/machinery/xeno_turret/proc/get_target()
+	var/distance = INFINITY
+	var/buffer_distance
+	var/list/turf/path = list()
+	for (var/mob/living/carbon/human/nearby_human as anything in cheap_get_humans_near(src, range))
+		if(nearby_human.stat == DEAD)
+			continue
+		buffer_distance = get_dist(nearby_human, src)
+		if (distance <= buffer_distance) //If we already found a target that's closer
+			continue
+		path = getline(src, nearby_human)
 		path -= get_turf(src)
-		if(path.len)
-			var/blocked = FALSE
-			for(T in path)
-				if(IS_OPAQUE_TURF(T) || T.density && T.throwpass == FALSE)
+		if(!path.len) //Can't shoot if it's on the same turf
+			continue
+		var/blocked = FALSE
+		for(var/turf/T as anything in path)
+			if(IS_OPAQUE_TURF(T) || T.density && T.throwpass == FALSE)
+				blocked = TRUE
+				break //LoF Broken; stop checking; we can't proceed further.
+
+			for(var/obj/machinery/MA in T)
+				if(MA.opacity || MA.density && MA.throwpass == FALSE)
+					blocked = TRUE
 					break //LoF Broken; stop checking; we can't proceed further.
 
-				for(var/obj/machinery/MA in T)
-					if(MA.opacity || MA.density && MA.throwpass == FALSE)
-						break //LoF Broken; stop checking; we can't proceed further.
+			for(var/obj/structure/S in T)
+				if(S.opacity || S.density && S.throwpass == FALSE )
+					blocked = TRUE
+					break //LoF Broken; stop checking; we can't proceed further.
+		if(!blocked)
+			distance = buffer_distance
+			. = nearby_human
+	if(.)//We have found the closest human target, human takes priority on xenos for performance issue
+		return
+	
+	for (var/mob/living/carbon/xenomorph/nearby_xeno as anything in cheap_get_xenos_near(src, range))
+		if(associated_hive == nearby_xeno.hive) //Xenomorphs not in our hive will be attacked as well!
+			continue
+		if(nearby_xeno.stat == DEAD)
+			continue
+		buffer_distance = get_dist(nearby_xeno, src)
+		if (distance <= buffer_distance) //If we already found a target that's closer
+			continue
+		path = getline(src, nearby_xeno)
+		path -= get_turf(src)
+		if(!path.len) //Can't shoot if it's on the same turf
+			continue
+		var/blocked = FALSE
+		for(var/turf/T as anything in path)
+			if(IS_OPAQUE_TURF(T) || T.density && T.throwpass == FALSE)
+				blocked = TRUE
+				break //LoF Broken; stop checking; we can't proceed further.
 
-				for(var/obj/structure/S in T)
-					if(S.opacity || S.density && S.throwpass == FALSE )
-						break //LoF Broken; stop checking; we can't proceed further.
-				targets += nearhuman
+			for(var/obj/machinery/MA in T)
+				if(MA.opacity || MA.density && MA.throwpass == FALSE)
+					blocked = TRUE
+					break //LoF Broken; stop checking; we can't proceed further.
 
-	if(targets.len) . = pick(targets)
-
-/obj/structure/resin/turret/proc/fire_at(target)
-	var/obj/projectile/newspit = new /obj/projectile(loc)
-	newspit.generate_bullet(ammo, ammo.damage)
-	newspit.permutated += src
-	newspit.fire_at(target, src, null, ammo.max_range, ammo.shell_speed)
+			for(var/obj/structure/S in T)
+				if(S.opacity || S.density && S.throwpass == FALSE )
+					blocked = TRUE
+					break //LoF Broken; stop checking; we can't proceed further.
+		if(!blocked)
+			distance = buffer_distance
+			. = nearby_xeno
