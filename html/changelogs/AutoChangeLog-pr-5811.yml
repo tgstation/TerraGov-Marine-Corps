@@ -1,7 +1,0 @@
-author: "Bravemole & Ciel (sprites)"
-delete-after: True
-changes: 
-  - rscadd: "The marine jetpack, a new item allowing marines to have short flying burst. 15 points in req
-tweak: Runner can pounce over fire/lava without being ignited"
-  - bugfix: "Hivemind eye can no longer be ignited when crossing lava"
-  - imageadd: "Jetpack and overlay sprites"
