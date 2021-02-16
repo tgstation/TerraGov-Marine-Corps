@@ -1,7 +1,7 @@
 
 /obj/vehicle/unmanned
 	name = "unmanned vehicle"
-	desc = "A small remote-controllable vehicle"
+	desc = "A small remote-controllable vehicle, usually owned by the TGMC and other major armies."
 	icon = 'icons/obj/unmanned_vehicles.dmi'
 	icon_state = "light_uv"
 	anchored = FALSE
