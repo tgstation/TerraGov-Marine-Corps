@@ -230,7 +230,7 @@
 	if(manage_weapon_connection())
 		return
 
-	if(wearer.action_busy)
+	if(wearer.do_actions)
 		to_chat(wearer, "<span class='warning'>You are already occupied with something.</span>")
 		return
 
@@ -294,7 +294,7 @@
 
 ///Extracts resource from the suit to fill a beaker
 /datum/component/chem_booster/proc/extract(volume)
-	if(wearer.action_busy)
+	if(wearer.do_actions)
 		return
 
 	if(resource_storage_current < volume)

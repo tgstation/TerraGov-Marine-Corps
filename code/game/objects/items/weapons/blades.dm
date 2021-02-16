@@ -63,7 +63,7 @@
 	beaker = new /obj/item/reagent_containers/glass/beaker/vial
 
 /obj/item/weapon/claymore/harvester/attackby(obj/item/I, mob/user)
-	if(user.action_busy)
+	if(user.do_actions)
 		return FALSE
 
 	if(!istype(I, /obj/item/reagent_containers/glass))
@@ -118,7 +118,7 @@
 		to_chat(user, "<span class='rose'>You don't have enough substance.</span>")
 		return FALSE
 
-	if(user.action_busy)
+	if(user.do_actions)
 		return
 
 	to_chat(user, "<span class='rose'>You start filling up the small chambers along the blade's edge.</span>")
