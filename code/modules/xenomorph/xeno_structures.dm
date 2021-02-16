@@ -279,7 +279,7 @@
 		return
 	if(!TIMER_COOLDOWN_CHECK(src, COOLDOWN_XENO_TURRETS_ALERT))
 		associated_hive.xeno_message("<span class='xenoannounce'>Our [name] has detected a nearby hostile [hostile] at [get_area(hostile)]. [name] has [obj_integrity]/[max_integrity] Health remaining.</span>", 2, FALSE, src, 'sound/voice/alien_help1.ogg', FALSE, null, /obj/screen/arrow/turret_attacking_arrow)
-		TIMER_COOLDOWN_START(src, COOLDOWN_XENO_TURRETS_ALERT, 1 MINUTES)
+		TIMER_COOLDOWN_START(src, COOLDOWN_XENO_TURRETS_ALERT, 20 SECONDS)
 	if(hostile != last_hostile)
 		last_hostile = hostile
 		SEND_SIGNAL(src, COMSIG_START_SHOOTING_AT, hostile)
