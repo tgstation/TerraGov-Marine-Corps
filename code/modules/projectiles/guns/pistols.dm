@@ -351,8 +351,6 @@
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 21, "rail_y" = 13, "under_x" = 17, "under_y" = 15, "stock_x" = 22, "stock_y" = 17)
 
-	damage_mult = 1.5
-	damage_falloff_mult = 1.5
 	fire_delay = 0.125 SECONDS
 	recoil = -2
 	recoil_unwielded = -2

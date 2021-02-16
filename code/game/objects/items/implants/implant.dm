@@ -16,6 +16,8 @@
 	var/malfunction = MALFUNCTION_NONE
 	///Implant secific flags
 	var/flags_implant = GRANT_ACTIVATION_ACTION
+	///Whitelist for llimbs that this implavnt is allowed to be inserted into, all limbs by default
+	var/list/allowed_limbs
 	///Activation_action reference
 	var/datum/action/item_action/implant/activation_action
 	///Cooldown between usages of the implant
@@ -27,10 +29,11 @@
 	GLOB.implant_list += src
 	if(flags_implant & GRANT_ACTIVATION_ACTION)
 		activation_action = new(src, src)
-		RegisterSignal(activation_action, COMSIG_ACTION_TRIGGER, .proc/activate)
 	if(allow_reagents)
 		reagents = new /datum/reagents(MAX_IMPLANT_REAGENTS)
 		reagents.my_atom = src
+	if(!allowed_limbs)
+		allowed_limbs = GLOB.human_body_parts
 
 
 /obj/item/implant/Destroy(force)
@@ -40,10 +43,11 @@
 	GLOB.implant_list -= src
 	return ..()
 
+/obj/item/implant/ui_action_click(mob/user, datum/action/item_action/action)
+	activate()
 
 ///Handles the actual activation of the implant/it's effects. Returns TRUE on succesful activation and FALSE on failure for parentcalls
 /obj/item/implant/proc/activate()
-	SIGNAL_HANDLER
 	if(!COOLDOWN_CHECK(src, activation_cooldown))
 		return FALSE
 	COOLDOWN_START(src, activation_cooldown, cooldown_time)
@@ -53,6 +57,9 @@
 /obj/item/implant/proc/try_implant(mob/living/carbon/human/target, mob/living/user)
 	SHOULD_CALL_PARENT(TRUE)
 	if(!ishuman(target))
+		return FALSE
+	if(!(user.zone_selected in allowed_limbs))
+		to_chat(user, "<span class='warning'>You cannot implant this into that limb!</span>")
 		return FALSE
 	return implant(target, user)
 
@@ -109,5 +116,4 @@
 	malfunction = MALFUNCTION_PERMANENT
 
 /datum/action/item_action/implant
-	name = "Activate Implant"
 	desc = "Activates a currently implanted implant"

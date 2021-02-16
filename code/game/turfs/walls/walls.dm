@@ -341,7 +341,7 @@
 	else if(resistance_flags & INDESTRUCTIBLE)
 		to_chat(user, "<span class='warning'>[src] is much too tough for you to do anything to it with [I]</span>.")
 
-	else if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.action_busy)
+	else if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.do_actions)
 		var/obj/item/tool/pickaxe/plasmacutter/P = I
 		if(!P.start_cut(user, name, src))
 			return

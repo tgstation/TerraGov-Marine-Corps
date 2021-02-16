@@ -19,7 +19,7 @@
 	item_icons = list(slot_wear_suit_str = 'icons/mob/modular/modular_armor.dmi')
 	flags_atom = CONDUCT
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
-	flags_item = SYNTH_RESTRICTED
+	flags_item = SYNTH_RESTRICTED|IMPEDE_JETPACK
 	/// What is allowed to be equipped in suit storage
 	allowed = list(
 		/obj/item/weapon/gun,
@@ -191,7 +191,7 @@
 	if(.)
 		return
 
-	if(user.action_busy)
+	if(user.do_actions)
 		return FALSE
 
 	if(!LAZYLEN(installed_modules))
@@ -223,7 +223,7 @@
 	if(.)
 		return
 
-	if(user.action_busy)
+	if(user.do_actions)
 		return FALSE
 
 	if(ismob(loc) && (user.r_hand != src && user.l_hand != src))
@@ -262,7 +262,7 @@
 	if(.)
 		return
 
-	if(user.action_busy)
+	if(user.do_actions)
 		return FALSE
 
 	if(!installed_storage)
@@ -409,7 +409,7 @@
 	if(.)
 		return
 
-	if(user.action_busy)
+	if(user.do_actions)
 		return FALSE
 
 	if(!installed_module)
@@ -455,7 +455,7 @@
 			to_chat(user,"<span class='warning'>There is already an installed module.</span>")
 		return FALSE
 
-	if(user.action_busy)
+	if(user.do_actions)
 		return FALSE
 
 	if(!do_after(user, equip_delay, TRUE, user, BUSY_ICON_GENERIC))

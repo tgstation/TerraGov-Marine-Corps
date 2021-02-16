@@ -1,5 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes: 
-  - rscadd: "As of yet unobtainable chem implant"
-  - code_imp: "Fixed some implant bugs and cleaned up implant code"

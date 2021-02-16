@@ -309,8 +309,8 @@
 
 
 /datum/action/xeno_action/watch_xeno/proc/on_list_xeno_selection(datum/source, mob/living/carbon/xenomorph/selected_xeno)
-	SIGNAL_HANDLER_DOES_SLEEP
-	select_xeno(selected_xeno)
+	SIGNAL_HANDLER
+	INVOKE_ASYNC(src, .proc/select_xeno, selected_xeno)
 
 /datum/action/xeno_action/watch_xeno/proc/on_xeno_evolution(datum/source, mob/living/carbon/xenomorph/new_xeno)
 	SIGNAL_HANDLER
@@ -360,7 +360,7 @@
 
 /datum/action/xeno_action/toggle_queen_zoom/action_activate()
 	var/mob/living/carbon/xenomorph/queen/xeno = owner
-	if(xeno.action_busy)
+	if(xeno.do_actions)
 		return
 	if(xeno.is_zoomed)
 		zoom_xeno_out(xeno.observed_xeno ? FALSE : TRUE)

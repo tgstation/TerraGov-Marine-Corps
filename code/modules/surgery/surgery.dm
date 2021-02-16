@@ -115,7 +115,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 		return 0
 	if(user.a_intent == INTENT_HARM) //Check for Hippocratic Oath
 		return 0
-	if(user.action_busy) //already doing an action
+	if(user.do_actions) //already doing an action
 		return 1
 	if(user.skills.getRating("surgery") < SKILL_SURGERY_PROFESSIONAL)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to operate [M].</span>",
