@@ -26,8 +26,6 @@ SUBSYSTEM_DEF(monitor)
 	var/humans_all_in_FOB_counter = 0
 	///TRUE if we detect a state of FOB hugging
 	var/FOB_hugging = FALSE
-	///TRUE if xenos have hijacked into ship. Disable the monitor
-	var/hijacked = FALSE
 	///List of all int stats
 	var/datum/monitor_statistics/stats = new
 	///If the game is currently before shutters drop, after, or shipside
