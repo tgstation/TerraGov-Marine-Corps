@@ -44,7 +44,7 @@
 				return FALSE
 
 			//CPR
-			if(H.action_busy)
+			if(H.do_actions)
 				return TRUE
 
 			H.visible_message("<span class='danger'>[H] is trying perform CPR on [src]!</span>", null, null, 4)

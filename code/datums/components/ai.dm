@@ -23,7 +23,7 @@ The main purpose of this is to handle cleanup and setting up the initial ai beha
 		message_admins("Notice: An AI controller was initialized but because there's already too many AI controllers existing, the initialization was canceled.")
 		return COMPONENT_INCOMPATIBLE
 
-	if(!ismob(parent)) //Requires a mob as the element action states needed to be apply depend on several mob defines like cached_multiplicative_slowdown or action_busy
+	if(!ismob(parent)) //Requires a mob as the element action states needed to be apply depend on several mob defines like cached_multiplicative_slowdown or do_actions
 		stack_trace("An AI controller was initialized on a parent that isn't compatible with the ai component. Parent type: [parent.type]")
 		return COMPONENT_INCOMPATIBLE
 	if(isnull(behavior_type))

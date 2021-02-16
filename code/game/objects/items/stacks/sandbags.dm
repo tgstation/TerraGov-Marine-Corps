@@ -98,7 +98,7 @@
 				to_chat(user, "<span class='warning'>You need a clear, open area to build the sandbag barricade!</span>")
 				return
 
-	if(user.action_busy)
+	if(user.do_actions)
 		return
 	if(amount < 5)
 		to_chat(user, "<span class='warning'>You need at least five [name] to do this.</span>")

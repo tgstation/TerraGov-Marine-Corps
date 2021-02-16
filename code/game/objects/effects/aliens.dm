@@ -64,7 +64,9 @@
 
 /mob/living/carbon/human/proc/acid_spray_crossed(datum/source, obj/effect/xenomorph/spray/acid_spray, acid_damage, slow_amt)
 	SIGNAL_HANDLER
-
+	if(CHECK_MULTIPLE_BITFIELDS(flags_pass, HOVERING))
+		return
+	
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ACID))
 		return
 

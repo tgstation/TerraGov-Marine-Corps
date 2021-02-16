@@ -74,7 +74,9 @@
 		return ..()
 
 	var/mob/living/M = AM
-	if(M.status_flags & INCORPOREAL)
+	if(M.status_flags & INCORPOREAL)  //Flying over shards doesn't break them 
+		return ..()
+	if (CHECK_MULTIPLE_BITFIELDS(M.flags_pass, HOVERING))
 		return ..()
 
 	playsound(loc, 'sound/effects/glass_step.ogg', 25, TRUE)

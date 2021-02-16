@@ -413,7 +413,7 @@
 	now_pushing = FALSE
 
 
-/mob/living/throw_at(atom/target, range, speed, thrower, spin)
+/mob/living/throw_at(atom/target, range, speed, thrower, spin, flying = FALSE)
 	if(!target)
 		return 0
 	if(pulling)
@@ -422,7 +422,24 @@
 		pulledby.stop_pulling()
 	return ..()
 
-
+/**
+ * Throw the mob while giving HOVERING to flag_pass and setting layer to FLY_LAYER
+ *
+ * target : where will the mob be thrown at
+ * range : how far the mob will be thrown, in tile
+ * speed : how fast will it fly
+ */
+/mob/living/proc/fly_at(atom/target, range, speed, hovering_time) 
+	addtimer(CALLBACK(src,.proc/end_flying, layer), hovering_time)
+	layer = FLY_LAYER
+	set_flying(TRUE)
+	throw_at(target, range, speed, null, 0, TRUE)
+			
+///remove flying flags and reset the sprite layer
+/mob/living/proc/end_flying(init_layer)
+	set_flying(FALSE)
+	layer = init_layer
+	
 /mob/living/proc/offer_mob()
 	GLOB.offered_mob_list += src
 	notify_ghosts("<span class='boldnotice'>A mob is being offered! Name: [name][job ? " Job: [job.title]" : ""] </span>", enter_link = "claim=[REF(src)]", source = src, action = NOTIFY_ORBIT)

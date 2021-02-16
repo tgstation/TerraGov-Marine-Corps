@@ -33,13 +33,6 @@
 	return
 
 
-/obj/screen/text
-	icon = null
-	icon_state = null
-	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	screen_loc = "CENTER-7,CENTER-7"
-	maptext_height = 480
-	maptext_width = 480
 
 /obj/screen/swap_hand
 	name = "swap hand"
@@ -715,7 +708,7 @@
 
 	var/hud_state = ammo_type[1]
 	var/hud_state_empty = ammo_type[2]
-	
+
 	overlays.Cut()
 
 	var/empty = image('icons/mob/ammoHUD.dmi', src, "[hud_state_empty]")

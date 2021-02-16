@@ -374,10 +374,9 @@
 
 
 //decided whether a movable atom being thrown can pass through the turf it is in.
-/atom/movable/proc/hit_check(speed)
+/atom/movable/proc/hit_check(speed, flying = FALSE)
 	if(!throwing)
 		return
-
 	for(var/atom/A in get_turf(src))
 		if(A == src)
 			continue
@@ -386,11 +385,11 @@
 			if(!L.density || L.throwpass)
 				continue
 			throw_impact(A, speed)
-		if(isobj(A) && A.density && !(A.flags_atom & ON_BORDER) && (!A.throwpass || iscarbon(src)))
+		if(isobj(A) && A.density && !(A.flags_atom & ON_BORDER) && (!A.throwpass || iscarbon(src)) && !flying)
 			throw_impact(A, speed)
 
 
-/atom/movable/proc/throw_at(atom/target, range, speed, thrower, spin)
+/atom/movable/proc/throw_at(atom/target, range, speed, thrower, spin, flying = FALSE)
 	set waitfor = FALSE
 	if(!target || !src)
 		return FALSE
@@ -401,8 +400,10 @@
 	if(spin)
 		animation_spin(5, 1)
 
-	set_throwing(TRUE)
-	src.thrower = thrower
+	if(!flying)
+		set_throwing(TRUE)
+		src.thrower = thrower
+
 	throw_source = get_turf(src)	//store the origin turf
 
 	var/dist_x = abs(target.x - x)
@@ -423,7 +424,7 @@
 	var/dist_since_sleep = 0
 	if(dist_x > dist_y)
 		var/error = dist_x/2 - dist_y
-		while(!gc_destroyed && target &&((((x < target.x && dx == EAST) || (x > target.x && dx == WEST)) && dist_travelled < range) || isspaceturf(loc)) && throwing && istype(loc, /turf))
+		while(!gc_destroyed && target &&((((x < target.x && dx == EAST) || (x > target.x && dx == WEST)) && dist_travelled < range) || isspaceturf(loc)) && (throwing||flying) && istype(loc, /turf))
 			// only stop when we've gone the whole distance (or max throw range) and are on a non-space tile, or hit something, or hit the end of the map, or someone picks it up
 			if(error < 0)
 				var/atom/step = get_step(src, dy)
@@ -451,7 +452,7 @@
 					sleep(1)
 	else
 		var/error = dist_y/2 - dist_x
-		while(!gc_destroyed && target &&((((y < target.y && dy == NORTH) || (y > target.y && dy == SOUTH)) && dist_travelled < range) || isspaceturf(loc)) && throwing && istype(loc, /turf))
+		while(!gc_destroyed && target &&((((y < target.y && dy == NORTH) || (y > target.y && dy == SOUTH)) && dist_travelled < range) || isspaceturf(loc)) && (throwing||flying) && istype(loc, /turf))
 			// only stop when we've gone the whole distance (or max throw range) and are on a non-space tile, or hit something, or hit the end of the map, or someone picks it up
 			if(error < 0)
 				var/atom/step = get_step(src, dx)
@@ -486,7 +487,6 @@
 		thrower = null
 		throw_source = null
 	SEND_SIGNAL(src, COMSIG_MOVABLE_POST_THROW)
-
 
 /atom/movable/proc/handle_buckled_mob_movement(NewLoc, direct)
 	for(var/m in buckled_mobs)
@@ -913,6 +913,13 @@
 		return
 	. = throwing
 	throwing = new_throwing
+
+/atom/movable/proc/set_flying(flying)
+	if (flying)
+		ENABLE_BITFIELD(flags_pass, HOVERING)
+		return
+	DISABLE_BITFIELD(flags_pass, HOVERING)
+	
 
 /atom/movable/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
