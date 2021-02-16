@@ -18,7 +18,7 @@
 	min_cold_protection_temperature = ARMOR_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
 	blood_overlay_type = "armor"
-	soft_armor = list("melee" = 55, "bullet" = 65, "laser" = 65, "energy" = 20, "bomb" = 55, "bio" = 40, "rad" = 10, "fire" = 40, "acid" = 45)
+	soft_armor = list("melee" = 40, "bullet" = 60, "laser" = 60, "energy" = 45, "bomb" = 45, "bio" = 45, "rad" = 45, "fire" = 45, "acid" = 50)
 	siemens_coefficient = 0.7
 	permeability_coefficient = 0.8
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
@@ -190,7 +190,7 @@
 	desc = "A standard TerraGov Navy N2 Personal Armor System. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."
 	icon_state = "mp"
 	soft_armor = list("melee" = 45, "bullet" = 60, "laser" = 60, "energy" = 45, "bomb" = 45, "bio" = 45, "rad" = 45, "fire" = 45, "acid" = 50)
-	slowdown = 0.4
+	slowdown = 0.5
 	flags_item_map_variant = NONE
 	allowed = list(
 		/obj/item/weapon/gun,
