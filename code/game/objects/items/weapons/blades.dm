@@ -66,7 +66,8 @@
 	if(user.do_actions)
 		return FALSE
 
-	if(!istype(I, /obj/item/reagent_containers/glass))
+	if(istype(I, /obj/item/reagent_containers/pill))
+		to_chat(user, "<span class='rose'>[I] isn't compatible with [src].</span>")
 		return FALSE
 
 	var/trans
