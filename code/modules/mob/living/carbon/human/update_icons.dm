@@ -333,8 +333,9 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 			var/icon/hair_s = new/icon("icon" = hair_style.icon, "icon_state" = "[hair_style.icon_state]_s")
 			if(hair_style.do_colouration)
 				var/icon/grad_s
-				if(grad_style && grad_style != "none")
-					grad_s = new/icon("icon" = 'icons/mob/hair_gradients.dmi', "icon_state" = GLOB.hair_gradients[grad_style])
+				if(grad_style && grad_style != "None")
+					var/datum/sprite_accessory/gradient = GLOB.hair_gradients_list[grad_style]
+					grad_s = new/icon("icon" = 'icons/mob/hair_gradients.dmi', "icon_state" = gradient.icon_state)
 					grad_s.Blend(hair_s, ICON_ADD)
 					grad_s.Blend(rgb(r_grad, g_grad, b_grad), ICON_ADD)
 				hair_s.Blend(rgb(r_hair, g_hair, b_hair), ICON_ADD)

@@ -868,9 +868,15 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			b_grad = hex2num(copytext(new_grad, 6, 8))
 
 		if("grad_style")
-			var/list/valid_gradients = GLOB.hair_gradients
+			var/list/valid_grads = list()
+			for(var/grad in GLOB.hair_gradients_list)
+				var/datum/sprite_accessory/S = GLOB.hair_gradients_list[grad]
+				if(!(species in S.species_allowed))
+					continue
 
-			var/new_grad_style = input(user, "Choose a color pattern for your hair:", "Character Preference", grad_style)  as null|anything in valid_gradients
+				valid_grads[grad] = GLOB.hair_gradients_list[grad]
+
+			var/new_grad_style = tgui_input_list(user, "Choose a color pattern for your hair:", "Character Preference", valid_grads)
 			if(!new_grad_style)
 				return
 			grad_style = new_grad_style
