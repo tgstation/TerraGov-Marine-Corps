@@ -139,6 +139,10 @@
 	icon_state = "painoverlay"
 	layer = FULLSCREEN_PAIN_LAYER
 
+/obj/screen/fullscreen/machine
+	icon_state = "machine"
+	alpha = 100
+	layer = FULLSCREEN_DRUGGY_LAYER
 
 /obj/screen/fullscreen/lighting_backdrop
 	icon = 'icons/mob/screen/generic.dmi'
