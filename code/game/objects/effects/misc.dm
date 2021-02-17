@@ -97,8 +97,8 @@
 	return TRUE
 
 
-/obj/effect/forcefield/fog/attack_alien(M)
-	return attack_hand(M)
+/obj/effect/forcefield/fog/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	return attack_hand(X)
 
 
 /obj/effect/forcefield/fog/attack_paw(mob/living/carbon/monkey/user)
@@ -109,14 +109,22 @@
 	return attack_hand(M)
 
 
-/obj/effect/forcefield/fog/CanPass(atom/movable/mover, turf/target)
-	if(isobj(mover))
-		return TRUE
+/obj/effect/forcefield/fog/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
+	if(isobj(mover)) //No grenades/bullets should cross this
+		return FALSE
 	if(isxeno(mover))
 		var/mob/living/carbon/xenomorph/moving_xeno = mover
-		if(LAZYLEN(moving_xeno.stomach_contents))
-			return FALSE
+		for(var/tummy_resident in moving_xeno.stomach_contents)
+			if(ishuman(tummy_resident))
+				var/mob/living/carbon/human/H = tummy_resident
+				if(check_tod(H))
+					return FALSE
 		return TRUE
+	if(ishuman(mover) && !issynth(mover))
+		var/mob/living/carbon/human/H = mover
+		if(H.stat == DEAD && !check_tod(H)) // Allow pulled perma-dead humans to cross
+			return TRUE
 	return FALSE
 
 /obj/effect/forcefield/fog/passable_fog
@@ -126,7 +134,8 @@
 	icon_state = "smoke"
 	density = FALSE
 
-/obj/effect/forcefield/fog/passable_fog/CanPass(atom/movable/mover, turf/target)
+/obj/effect/forcefield/fog/passable_fog/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	return TRUE
 
 /obj/effect/forcefield/fog/passable_fog/Crossed(atom/movable/mover, oldloc)

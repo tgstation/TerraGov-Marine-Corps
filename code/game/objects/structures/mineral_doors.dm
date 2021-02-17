@@ -40,10 +40,10 @@
 		return
 	return TryToSwitchState(user)
 
-/obj/structure/mineral_door/CanPass(atom/movable/mover, turf/target)
+/obj/structure/mineral_door/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(istype(mover, /obj/effect/beam))
 		return !opacity
-	return !density
 
 /obj/structure/mineral_door/proc/TryToSwitchState(atom/user)
 	if(isSwitchingStates)
@@ -100,7 +100,7 @@
 		user.changeNext_move(W.attack_speed)
 		var/multiplier = 1
 		var/obj/item/tool/pickaxe/plasmacutter/P
-		if(istype(W, /obj/item/tool/pickaxe/plasmacutter) && !user.action_busy)
+		if(istype(W, /obj/item/tool/pickaxe/plasmacutter) && !user.do_actions)
 			P = W
 			if(P.start_cut(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD))
 				if(is_resin)

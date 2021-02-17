@@ -1,8 +1,8 @@
-/obj/proc/take_damage(damage_amount, damage_type = BRUTE, damage_flag = "", sound_effect = TRUE, attack_dir, armour_penetration = 0)
+/obj/proc/take_damage(damage_amount, damage_type = BRUTE, damage_flag = "", effects = TRUE, attack_dir, armour_penetration = 0)
 	if(QDELETED(src))
 		CRASH("[src] taking damage after deletion")
 
-	if(sound_effect)
+	if(effects)
 		play_attack_sound(damage_amount, damage_type, damage_flag)
 
 	if((resistance_flags & INDESTRUCTIBLE) || obj_integrity <= 0)
@@ -23,7 +23,7 @@
 
 	//DESTROYING SECOND
 	if(obj_integrity <= 0)
-		obj_destruction(damage_flag)
+		obj_destruction(damage_amount, damage_type, damage_flag)
 
 
 /obj/proc/repair_damage(repair_amount)
@@ -102,10 +102,10 @@
 	take_damage(P.damage, P.ammo.damage_type, P.ammo.armor_type, 0, turn(P.dir, 180), P.ammo.penetration)
 
 
-/obj/proc/attack_generic(mob/user, damage_amount = 0, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, armor_penetration = 0) //used by attack_alien, attack_animal, and attack_slime
+/obj/proc/attack_generic(mob/user, damage_amount = 0, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0) //used by attack_alien, attack_animal, and attack_slime
 	user.do_attack_animation(src, ATTACK_EFFECT_SMASH)
 	user.changeNext_move(CLICK_CD_MELEE)
-	return take_damage(damage_amount, damage_type, damage_flag, sound_effect, get_dir(src, user), armor_penetration)
+	return take_damage(damage_amount, damage_type, damage_flag, effects, get_dir(src, user), armor_penetration)
 
 
 /obj/attack_animal(mob/living/simple_animal/M)
@@ -122,18 +122,19 @@
 			playsound(loc, 'sound/effects/meteorimpact.ogg', 100, 1)
 
 
-/obj/attack_alien(mob/living/carbon/xenomorph/X)
+/obj/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	// SHOULD_CALL_PARENT(TRUE) // TODO: fix this
 	if(SEND_SIGNAL(src, COMSIG_OBJ_ATTACK_ALIEN, X) & COMPONENT_NO_ATTACK_ALIEN)
 		return
 	if(!(resistance_flags & XENO_DAMAGEABLE))
 		to_chat(X, "<span class='warning'>We stare at \the [src] cluelessly.</span>")
 		return
-	X.visible_message("<span class='danger'>[X] has slashed [src]!</span>",
-	"<span class='danger'>We slash [src]!</span>")
-	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
-	playsound(loc, "alien_claw_metal", 25)
-	attack_generic(X, X.xeno_caste.melee_damage, BRUTE, "melee", FALSE)
+	if(effects)
+		X.visible_message("<span class='danger'>[X] has slashed [src]!</span>",
+		"<span class='danger'>We slash [src]!</span>")
+		X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
+		playsound(loc, "alien_claw_metal", 25)
+	attack_generic(X, damage_amount, damage_type, damage_flag, effects, armor_penetration)
 
 
 /obj/attack_larva(mob/living/carbon/xenomorph/larva/L)
@@ -154,7 +155,7 @@
 
 
 ///what happens when the obj's integrity reaches zero.
-/obj/proc/obj_destruction(damage_flag)
+/obj/proc/obj_destruction(damage_amount, damage_type, damage_flag)
 	if(destroy_sound)
 		playsound(loc, destroy_sound, 35, 1)
 	deconstruct(FALSE)

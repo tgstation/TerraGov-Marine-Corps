@@ -6,6 +6,7 @@
 	icon = 'icons/obj/clothing/belts.dmi'
 	icon_state = "utilitybelt"
 	item_state = "utility"
+	item_state_worn = TRUE
 	flags_equip_slot = ITEM_SLOT_BELT
 	attack_verb = list("whipped", "lashed", "disciplined")
 	w_class = WEIGHT_CLASS_BULKY
@@ -347,7 +348,7 @@
 	new /obj/item/ammo_magazine/smg/standard_smg(src)
 	new /obj/item/ammo_magazine/smg/standard_smg(src)
 
-/obj/item/storage/belt/marine/m42a/Initialize()
+/obj/item/storage/belt/marine/antimaterial/Initialize()
 	. = ..()
 	new /obj/item/ammo_magazine/sniper/flak(src)
 	new /obj/item/ammo_magazine/sniper/flak(src)
@@ -786,7 +787,7 @@
 
 /obj/item/storage/belt/gun/korovin/standard/Initialize()
 	. = ..()
-	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/c99/upp(src)
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/c99(src)
 	new /obj/item/ammo_magazine/pistol/c99(src)
 	new /obj/item/ammo_magazine/pistol/c99(src)
 	new /obj/item/ammo_magazine/pistol/c99(src)
@@ -797,7 +798,7 @@
 
 /obj/item/storage/belt/gun/korovin/tranq/Initialize()
 	. = ..()
-	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/c99/upp/tranq(src)
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/c99/tranq(src)
 	new /obj/item/ammo_magazine/pistol/c99t(src)
 	new /obj/item/ammo_magazine/pistol/c99t(src)
 	new /obj/item/ammo_magazine/pistol/c99t(src)

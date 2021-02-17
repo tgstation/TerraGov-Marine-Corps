@@ -21,6 +21,11 @@ GLOBAL_LIST_EMPTY(gear_datums)
 	cost = 3
 	slot = SLOT_HEAD
 
+datum/gear/eye_patch
+	display_name = "Eye Patch"
+	path = /obj/item/clothing/glasses/eyepatch
+	cost = 2
+	slot = SLOT_GLASSES
 
 /datum/gear/bandanna_green
 	display_name = "TGMC bandanna (green)"

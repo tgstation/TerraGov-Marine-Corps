@@ -251,8 +251,8 @@
 
 /datum/keybinding/xeno/salvage_plasma
 	name = "salvage_plasma"
-	full_name = "Drone: Salvage Plasma"
-	description = ""
+	full_name = "Drone: Salvage Biomass"
+	description = "Salvage plasma, upgrade and evolution points from the corpse of another xenomorph, gibbing it."
 	keybind_signal = COMSIG_XENOABILITY_SALVAGE_PLASMA
 
 /datum/keybinding/xeno/resin_walker
@@ -405,38 +405,57 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_SAVAGE
 
+/datum/keybinding/xeno/evasion
+	name = "evasion"
+	full_name = "Runner: Evasion"
+	description = "Take evasive action, forcing non-friendly projectiles that would hit you to miss so long as you keep moving."
+	keybind_signal = COMSIG_XENOABILITY_EVASION
+
 /datum/keybinding/xeno/toggle_agility
 	name = "toggle_agility"
 	full_name = "Warrior: Toggle Agility"
-	description = ""
+	description = "Toggles Agility mode. While in Agility mode, you move much more quickly but can't use abilities and your armor is greatly reduced."
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_AGILITY
 
 /datum/keybinding/xeno/lunge
 	name = "lunge"
 	full_name = "Warrior: Lunge"
-	description = ""
+	description = "Charges towards a target, then neckgrabs them if they're adjacent to you. Stuns on upon grabbing for 1 second."
 	keybind_signal = COMSIG_XENOABILITY_LUNGE
 
 /datum/keybinding/xeno/fling
 	name = "fling"
 	full_name = "Warrior: Fling"
-	description = ""
+	description = "Quickly flings a target 4 tiles away and inflicts a short stun. Shared cooldown with Grapple Toss."
 	keybind_signal = COMSIG_XENOABILITY_FLING
+
+/datum/keybinding/xeno/grapple_toss
+	name = "grapple_toss"
+	full_name = "Warrior: Grapple Toss"
+	description = "Throw a target you're grabbing up to 5 tiles away. Inflicts a short stun and stagger and slow stacks. Shared cooldown with Fling."
+	keybind_signal = COMSIG_XENOABILITY_GRAPPLE_TOSS
 
 /datum/keybinding/xeno/punch
 	name = "punch"
 	full_name = "Warrior: Punch"
-	description = ""
+	description = "Punch a hostile creature, a structure or piece of machinery. Damage and status durations are doubled vs creatures you are grabbing. Damage is quadrupled vs structures and machinery."
 	keybind_signal = COMSIG_XENOABILITY_PUNCH
-
-/datum/keybinding/xeno/psychic_choke
-	name = "psychic_choke"
-	full_name = "Psychic Choke (Unused)"
-	description = ""
-	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_CHOKE
 
 /datum/keybinding/xeno/inject_egg_neurogas
 	name = "inject_egg_neurogas"
 	full_name = "Inject Egg (Neurogas)"
 	description = "Inject an egg with neurogas, killing the little one inside"
 	keybind_signal = COMSIG_XENOABILITY_INJECT_EGG_NEUROGAS
+
+/datum/keybinding/xeno/rally_hive
+	name = "rally_hive"
+	full_name = "Rally Hive"
+	description = "Rallies the hive to a target location."
+	keybind_signal = COMSIG_XENOABILITY_RALLY_HIVE
+
+/datum/keybinding/xeno/healing_infusion
+	name = "healing_infusion"
+	full_name = "Hivelord: Healing Infusion"
+	description = "Imbues a target xeno with healing energy, restoring extra Sunder and Health once every 2 seconds up to 5 times whenever it regenerates normally. 60 second duration."
+	keybind_signal = COMSIG_XENOABILITY_HEALING_INFUSION
+

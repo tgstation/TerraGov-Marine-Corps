@@ -78,8 +78,8 @@
 //-------------------------------------------
 
 //Xeno interaction with the Cargo Tug Train
-/obj/vehicle/train/attack_alien(mob/living/carbon/xenomorph/M)
-	attack_hand(M)
+/obj/vehicle/train/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	attack_hand(X)
 
 //attempts to attach src as a follower of the train T
 /obj/vehicle/train/proc/attach_to(obj/vehicle/train/T, mob/user, silent=FALSE)
@@ -146,7 +146,7 @@
 
 	if(dir == T_dir) 	//if car is ahead
 		src.attach_to(T, user, silent)
-	else if(reverse_direction(dir) == T_dir)	//else if car is behind
+	else if(REVERSE_DIR(dir) == T_dir)	//else if car is behind
 		T.attach_to(src, user, silent)
 
 //returns true if this is the lead car of the train

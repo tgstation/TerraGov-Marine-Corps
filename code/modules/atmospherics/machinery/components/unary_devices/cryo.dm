@@ -10,9 +10,6 @@
 	layer = ABOVE_WINDOW_LAYER
 	pipe_flags = PIPING_ONE_PER_TURF|PIPING_DEFAULT_LAYER_ONLY
 
-	ui_x = 400
-	ui_y = 550
-
 	var/autoeject = FALSE
 	var/release_notice = FALSE
 
@@ -346,12 +343,11 @@
 		return
 	ui_interact(user)
 
-/obj/machinery/atmospherics/components/unary/cryo_cell/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/atmospherics/components/unary/cryo_cell/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 
 	if(!ui)
-		ui = new(user, src, ui_key, "Cryo", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, "Cryo", name)
 		ui.open()
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/ui_data(mob/user)
@@ -400,8 +396,9 @@
 	data["beakerContents"] = beakerContents
 	return data
 
-/obj/machinery/atmospherics/components/unary/cryo_cell/ui_act(action, params)
-	if(..())
+/obj/machinery/atmospherics/components/unary/cryo_cell/ui_act(action, list/params)
+	. = ..()
+	if(.)
 		return
 	switch(action)
 		if("power")

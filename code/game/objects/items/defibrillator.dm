@@ -99,7 +99,7 @@
 		return
 	for(var/g in GLOB.observer_list)
 		var/mob/dead/observer/ghost = g
-		if(ghost.mind.current != src)
+		if(!ghost?.mind.current == src) //we can find undeletted ghost references in here, ghost deletting problem.
 			continue
 		if(ghost.client && ghost.can_reenter_corpse)
 			return ghost
@@ -114,7 +114,7 @@
 	return TRUE
 
 /obj/item/defibrillator/attack(mob/living/carbon/human/H, mob/living/carbon/human/user)
-	if(user.action_busy) //Currently deffibing
+	if(user.do_actions) //Currently deffibing
 		return
 
 	if(defib_cooldown > world.time) //Both for pulling the paddles out (2 seconds) and shocking (1 second)

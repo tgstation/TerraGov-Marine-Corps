@@ -57,3 +57,53 @@
 	var/datum/job/J = SSjob.GetJobType(/datum/job/upp/standard)
 	H.apply_assigned_role_to_spawn(J)
 	to_chat(H, "<p style='font-size:1.5em'><span class='notice'>You are a member of the USL pirate band to respond to the TGMC distress signal sent nearby. Do not forget your training, stand tall with your other pirates!</span></p>")
+
+/datum/emergency_call/upp/hvh
+	name = "USL Pirate Band (Human vs. Human)"
+
+/datum/emergency_call/upp/hvh/create_member(datum/mind/M)
+	. = ..()
+	if(!.)
+		return
+
+	var/mob/original = M.current
+	var/mob/living/carbon/human/H = .
+
+	H.name = GLOB.namepool[/datum/namepool/moth].random_name(H)
+	H.real_name = H.name
+
+	M.transfer_to(H, TRUE)
+	H.fully_replace_character_name(M.name, H.real_name)
+
+	if(original)
+		qdel(original)
+
+	print_backstory(H)
+
+	if(!leader)
+		leader = H
+		var/datum/job/J = SSjob.GetJobType(/datum/job/upp/leader/hvh)
+		H.apply_assigned_role_to_spawn(J)
+		to_chat(H, "<p style='font-size:1.5em'><span class='notice'>You are the leader of the USL pirate band in responding to the TGMC distress signal sent nearby. Let your squadmates march to battle, for the USL!</span></p>")
+		return
+
+	if(medics < max_medics)
+		var/datum/job/J = SSjob.GetJobType(/datum/job/upp/medic/hvh)
+		H.apply_assigned_role_to_spawn(J)
+		to_chat(H, "<p style='font-size:1.5em'><span class='notice'>You are a medic of the USL pirate band to respond to the TGMC distress signal sent nearby. Kit up and get ready to tend wounds!</span></p>")
+		medics++
+		return
+
+	if(prob(20))
+		var/datum/job/J = SSjob.GetJobType(/datum/job/upp/heavy/hvh)
+		H.apply_assigned_role_to_spawn(J)
+		to_chat(H, "<p style='font-size:1.5em'><span class='notice'>You are a specialist of the USL pirate band to respond to the TGMC distress signal sent nearby. Crush the vermin!</span></p>")
+		return
+
+	var/datum/job/J = SSjob.GetJobType(/datum/job/upp/standard/hvh)
+	H.apply_assigned_role_to_spawn(J)
+	to_chat(H, "<p style='font-size:1.5em'><span class='notice'>You are a member of the USL pirate band to respond to the TGMC distress signal sent nearby. Do not forget your training, stand tall with your other pirates!</span></p>")
+
+/datum/emergency_call/upp/hvh/human
+	name = "USL Human Pirate Band (Human vs. Human)"
+	spawn_type = /mob/living/carbon/human

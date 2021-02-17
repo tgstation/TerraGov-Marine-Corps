@@ -109,6 +109,7 @@
 
 	var/datum/namepool/namepool = /datum/namepool
 	var/special_death_message = "You have perished." // Special death message that gets overwritten if possible.
+	var/joinable_roundstart = FALSE
 
 /datum/species/New()
 	if(hud_type)
@@ -297,6 +298,7 @@
 	burstscreams = list(MALE = "male_preburst", FEMALE = "female_preburst")
 	warcries = list(MALE = "male_warcry", FEMALE = "female_warcry")
 	special_death_message = "<big>You have perished.</big><br><small>But it is not the end of you yet... if you still have your body or an unbursted corpse, wait until somebody can resurrect you...</small>"
+	joinable_roundstart = TRUE
 
 	//If you wanted to add a species-level ability:
 	/*abilities = list(/client/proc/test_ability)*/
@@ -304,6 +306,8 @@
 /datum/species/human/vatborn
 	name = "Vatborn"
 	name_plural = "Vatborns"
+	icobase = 'icons/mob/human_races/r_vatborn.dmi'
+	deform = 'icons/mob/human_races/r_vatborn.dmi'
 
 	namepool = /datum/namepool/vatborn
 
@@ -321,14 +325,17 @@
 	heat_level_1 = 390
 	heat_level_2 = 480
 	heat_level_3 = 1100
+	joinable_roundstart = FALSE
 
 /datum/species/human/vatgrown
 	name = "Vat-Grown Human"
 	name_plural = "Vat-Grown Humans"
-	species_flags = HAS_SKIN_TONE
+	icobase = 'icons/mob/human_races/r_vatgrown.dmi'
+	deform = 'icons/mob/human_races/r_vatgrown.dmi'
 	brute_mod = 1.05
 	burn_mod = 1.05
 	slowdown = 1.05
+	joinable_roundstart = FALSE
 
 /datum/species/human/vatgrown/random_name(gender)
 	. = "CS-[gender == FEMALE ? "F": "M"]-[rand(111,999)]"
@@ -388,6 +395,7 @@
 	cold_level_1 = 100
 	cold_level_2 = 50
 	cold_level_3 = 20
+	joinable_roundstart = FALSE
 
 //To show them we mean business.
 /datum/species/human/spook/handle_unique_behavior(mob/living/carbon/human/H)
@@ -806,16 +814,15 @@
 /datum/species/proc/can_shred(mob/living/carbon/human/H)
 
 	if(H.a_intent != INTENT_HARM)
-		return 0
+		return FALSE
 
 	if(unarmed.is_usable(H))
 		if(unarmed.shredding)
-			return 1
+			return TRUE
 	else if(secondary_unarmed.is_usable(H))
 		if(secondary_unarmed.shredding)
-			return 1
-
-	return 0
+			return TRUE
+	return FALSE
 
 //Species unarmed attacks
 /datum/unarmed_attack
@@ -829,18 +836,17 @@
 
 /datum/unarmed_attack/proc/is_usable(mob/living/carbon/human/user)
 	if(user.restrained())
-		return 0
+		return FALSE
 
 	// Check if they have a functioning hand.
 	var/datum/limb/E = user.get_limb("l_hand")
 	if(E && !(E.limb_status & LIMB_DESTROYED))
-		return 1
+		return TRUE
 
 	E = user.get_limb("r_hand")
 	if(E && !(E.limb_status & LIMB_DESTROYED))
-		return 1
-
-	return 0
+		return TRUE
+	return FALSE
 
 /datum/unarmed_attack/bite
 	attack_verb = list("bite") // 'x has biteed y', needs work.
@@ -852,8 +858,8 @@
 
 /datum/unarmed_attack/bite/is_usable(mob/living/carbon/human/user)
 	if (user.wear_mask && istype(user.wear_mask, /obj/item/clothing/mask/muzzle))
-		return 0
-	return 1
+		return FALSE
+	return TRUE
 
 /datum/unarmed_attack/punch
 	attack_verb = list("punch")
@@ -983,8 +989,6 @@
 				damage *= burn_mod
 			if(organ.take_damage_limb(0, damage, sharp, edge))
 				victim.UpdateDamageIcon()
-		if(HALLOSS)
-			if(species_flags & NO_PAIN)
 				return
 			switch(damage)
 				if(-INFINITY to 0)
@@ -995,7 +999,6 @@
 				if(50 to INFINITY)
 					if(prob(60))
 						victim.emote("pain")
-			victim.adjustHalLoss(damage)
 		if(TOX)
 			victim.adjustToxLoss(damage)
 		if(OXY)

@@ -28,15 +28,15 @@
 	. = ..()
 
 	if(istype(I, /obj/item/tool/pen))
-		var/t = stripped_input(user, "What would you like the label to be?", text("[]", name), null)
+		var/label = stripped_input(user, "What would you like the label to be?", text("[]", name), null)
 		if(user.get_active_held_item() != I)
 			return
 		if((!in_range(src, usr) && loc != user))
 			return
-		if(t)
-			name = text("glass case - '[]'", t)
+		if(label)
+			name = initial(name) + " - [label]"
 		else
-			name = "glass case"
+			name = initial(name)
 
 	else if(istype(I, /obj/item/reagent_containers/syringe))
 		if(!imp?.allow_reagents)
@@ -66,4 +66,10 @@
 			imp = null
 
 		update_icon()
-		M.update()
+		M.update_icon()
+
+	else if(istype(I, /obj/item/implant))
+		user.temporarilyRemoveItemFromInventory(I)
+		I.forceMove(src)
+		imp = I
+		update_icon()

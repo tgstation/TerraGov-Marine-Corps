@@ -231,6 +231,19 @@
 	closed_layer = ABOVE_WINDOW_LAYER //Higher than usual, this is only around on the start of the round.
 
 
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/Initialize(mapload)
+	. = ..()
+	if(mapload)
+		var/area/ourarea = get_area(src)
+		ENABLE_BITFIELD(ourarea.flags_area, DISALLOW_WEEDING)
+		ENABLE_BITFIELD(ourarea.flags_area, NEAR_FOB)
+
+
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/open()
+	. = ..()
+	var/area/ourarea = get_area(src)
+	DISABLE_BITFIELD(ourarea.flags_area, DISALLOW_WEEDING)
+
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone
 	id = "landing_zone"
 

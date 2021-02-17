@@ -1,6 +1,3 @@
-//The reaction procs must ALWAYS set src = null, this detaches the proc from the object (the reagent)
-//so that it can continue working when the reagent is deleted while the proc is still active.
-
 GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 
 /proc/build_name2reagent()
@@ -60,6 +57,8 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	var/purge_rate = 0
 	/// Specific trait flags, like HEARTSTOPPER CHESTSTOPPER BRADYCARDICS TACHYCARDIC
 	var/trait_flags = NONE
+	///Affects the strength of reagent effects
+	var/effect_str = 1
 
 /datum/reagent/New()
 	. = ..()

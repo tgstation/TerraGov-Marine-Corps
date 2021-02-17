@@ -61,9 +61,15 @@
 	var/damage = 0
 	var/accuracy = 85 //Base projectile accuracy. Can maybe be later taken from the mob if desired.
 
-	var/damage_falloff = 0 //how many damage point the projectile loses per tiles travelled
+	///how many damage points the projectile loses per tiles travelled
+	var/damage_falloff = 0
+	///Modifies projectile damage by a % when a marine gets passed, but not hit
+	var/damage_marine_falloff = 0
 
 	var/scatter = 0 //Chance of scattering, also maximum amount scattered. High variance.
+
+	/// Used to transfer iff_signal from source to projectile.
+	var/list/projectile_iff = null
 
 	var/distance_travelled = 0
 
@@ -574,7 +580,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		return TRUE
 	if(!throwpass)
 		return TRUE
-	if(proj.ammo.flags_ammo_behavior & AMMO_SNIPER || proj.ammo.flags_ammo_behavior & AMMO_SKIPS_HUMANS || proj.ammo.flags_ammo_behavior & AMMO_ROCKET) //sniper, rockets and IFF rounds bypass cover
+	if(proj.ammo.flags_ammo_behavior & AMMO_SNIPER || proj.projectile_iff || proj.ammo.flags_ammo_behavior & AMMO_ROCKET) //sniper, rockets and IFF rounds bypass cover
 		return FALSE
 	if(proj.distance_travelled <= proj.ammo.barricade_clear_distance)
 		return FALSE
@@ -609,6 +615,20 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			proj.uncross_scheduled += src
 		return FALSE
 	return TRUE
+
+/obj/machinery/marine_turret/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
+	if(sentry_verify_iff(proj.projectile_iff))
+		proj.damage += proj.damage*proj.damage_marine_falloff
+		return FALSE
+	return src == proj.original_target
+
+///Checks to see whether IFF matches
+/obj/machinery/marine_turret/proc/sentry_verify_iff(list/unique_access)
+	for(var/access_tag in unique_access)
+		if(access_tag in iff_signal)
+			return TRUE
+
+	return FALSE
 
 /obj/machinery/door/poddoor/railing/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
 	return src == proj.original_target
@@ -716,7 +736,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 
 /mob/living/carbon/human/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
-	if(proj.ammo.flags_ammo_behavior & AMMO_SKIPS_HUMANS && get_target_lock(proj.ammo.iff_signal))
+	if(get_target_lock(proj.projectile_iff))
+		proj.damage += proj.damage*proj.damage_marine_falloff
 		return FALSE
 	if(mobility_aura)
 		. -= mobility_aura * 5
@@ -728,6 +749,9 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 
 /mob/living/carbon/xenomorph/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
+	if(SEND_SIGNAL(src, COMSIG_XENO_PROJECTILE_HIT, proj, cardinal_move, uncrossing) & COMPONENT_PROJECTILE_DODGE)
+		return FALSE
+
 	if(proj.ammo.flags_ammo_behavior & AMMO_SKIPS_ALIENS)
 		return FALSE
 	if(mob_size == MOB_SIZE_BIG)
@@ -764,7 +788,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	damage = check_shields(COMBAT_PROJ_ATTACK, damage, proj.ammo.armor_type)
 	if(!damage)
-		proj.ammo.on_shield_block(src)
+		proj.ammo.on_shield_block(src, proj)
 		bullet_ping(proj)
 		return
 
@@ -829,8 +853,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			feedback_flags |= BULLET_FEEDBACK_SCREAM
 		bullet_message(proj, feedback_flags, damage)
 		proj.play_damage_effect(src)
-		if(apply_damage(damage, proj.ammo.damage_type, proj.def_zone)) //This could potentially delete the source.
-			UPDATEHEALTH(src)
+		apply_damage(damage, proj.ammo.damage_type, proj.def_zone, updating_health = TRUE) //This could potentially delete the source.
 		if(shrapnel_roll)
 			embed_projectile_shrapnel(proj)
 	else
@@ -1038,7 +1061,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	if(. != BULLET_MESSAGE_HUMAN_SHOOTER)
 		return
 	var/mob/living/carbon/human/firingMob = proj.firer
-	if(!firingMob.mind?.bypass_ff && !mind?.bypass_ff && firingMob.faction == faction)
+	if(!firingMob.mind?.bypass_ff && !mind?.bypass_ff && firingMob.faction == faction && proj.ammo.damage_type != STAMINA)
 		var/turf/T = get_turf(firingMob)
 		firingMob.ff_check(damage, src)
 		log_ffattack("[key_name(firingMob)] shot [key_name(src)] with [proj] in [AREACOORD(T)].")

@@ -17,6 +17,17 @@
 
 	to_chat(src, "<span class='notice'>As a ghost, you will now [(prefs.toggles_chat & CHAT_GHOSTEARS) ? "see all speech in the world" : "only see speech from nearby mobs"].</span>")
 
+/client/verb/middle_mousetoggle()
+	set name = "Toggle Middle/Shift Clicking"
+	set category = "Preferences"
+
+	prefs.toggles_gameplay ^= MIDDLESHIFTCLICKING
+	prefs.save_preferences()
+
+	to_chat(src, "<span class='notice'>The selected special ability will now be activated with [(prefs.toggles_gameplay & MIDDLESHIFTCLICKING) ? "middle button" : "shift"] clicking.</span>")
+
+	prefs.save_preferences()
+
 
 /client/verb/toggle_ghost_sight()
 	set category = "Preferences"
@@ -158,7 +169,7 @@
 	set category = "Preferences"
 	set name = "Set Preferred Slot"
 
-	var/slot = input("Which slot would you like to draw/equip from?", "Preferred Slot") as null|anything in list("Suit Storage", "Suit Inside", "Belt", "Back", "Boot", "Helmet", "Left Pocket", "Right Pocket", "Webbing", "Belt", "Belt Holster", "Suit Storage Holster", "Back Holster")
+	var/slot = tgui_input_list(usr, "Which slot would you like to draw/equip from?", "Preferred Slot", list("Suit Storage", "Suit Inside", "Belt", "Back", "Boot", "Helmet", "Left Pocket", "Right Pocket", "Webbing", "Belt", "Belt Holster", "Suit Storage Holster", "Back Holster"))
 	switch(slot)
 		if("Suit Storage")
 			prefs.preferred_slot = SLOT_S_STORE
@@ -223,7 +234,7 @@ GLOBAL_LIST_INIT(ghost_forms, list("Default" = GHOST_DEFAULT_FORM, "Ghost Ian 1"
 
 
 /client/proc/pick_form()
-	var/new_form = input(src, "Choose your ghostly form:", "Ghost Customization") as null|anything in GLOB.ghost_forms
+	var/new_form = tgui_input_list(src, "Choose your ghostly form:", "Ghost Customization", GLOB.ghost_forms)
 	if(!new_form)
 		return
 
@@ -243,7 +254,7 @@ GLOBAL_LIST_INIT(ghost_forms, list("Default" = GHOST_DEFAULT_FORM, "Ghost Ian 1"
 GLOBAL_LIST_INIT(ghost_orbits, list(GHOST_ORBIT_CIRCLE, GHOST_ORBIT_TRIANGLE, GHOST_ORBIT_SQUARE, GHOST_ORBIT_HEXAGON, GHOST_ORBIT_PENTAGON))
 
 /client/proc/pick_ghost_orbit()
-	var/new_orbit = input(src, "Choose your ghostly orbit:", "Ghost Customization") as null|anything in GLOB.ghost_orbits
+	var/new_orbit = tgui_input_list(src, "Choose your ghostly orbit:", "Ghost Customization", GLOB.ghost_orbits)
 	if(!new_orbit)
 		return
 
@@ -262,7 +273,7 @@ GLOBAL_LIST_INIT(ghost_orbits, list(GHOST_ORBIT_CIRCLE, GHOST_ORBIT_TRIANGLE, GH
 GLOBAL_LIST_INIT(ghost_others_options, list(GHOST_OTHERS_SIMPLE, GHOST_OTHERS_DEFAULT_SPRITE, GHOST_OTHERS_THEIR_SETTING))
 
 /client/proc/pick_ghost_other_form()
-	var/new_others = input(src, "Choose how you see other observers:", "Ghost Customization") as null|anything in GLOB.ghost_others_options
+	var/new_others = tgui_input_list(src, "Choose how you see other observers:", "Ghost Customization", GLOB.ghost_others_options)
 	if(!new_others)
 		return
 
@@ -284,7 +295,7 @@ GLOBAL_LIST_INIT(ghost_others_options, list(GHOST_OTHERS_SIMPLE, GHOST_OTHERS_DE
 	set desc = "Customize your ghastly appearance."
 
 
-	switch(input(src, "Which setting do you want to change?", "Ghost Customization") as null|anything in list("Ghost Form", "Ghost Orbit", "Ghosts of others"))
+	switch(tgui_alert(src, "Which setting do you want to change?", "Ghost Customization", list("Ghost Form", "Ghost Orbit", "Ghosts of others")))
 		if("Ghost Form")
 			pick_form()
 		if("Ghost Orbit")
@@ -309,3 +320,21 @@ GLOBAL_LIST_INIT(ghost_others_options, list(GHOST_OTHERS_SIMPLE, GHOST_OTHERS_DE
 
 	TOGGLE_BITFIELD(prefs.toggles_deadchat, DISABLE_DEATHRATTLE)
 	to_chat(usr, "<span class='notice'>Death announcements have been [(prefs.toggles_deadchat & DISABLE_DEATHRATTLE) ? "disabled" : "enabled"].</span>")
+
+
+/client/verb/toggle_instrument_sound()
+	set category = "Preferences"
+	set name = "Toggle Instrument Sound"
+
+	usr.client.prefs.toggles_sound ^= SOUND_INSTRUMENTS_OFF
+	usr.client.prefs.save_preferences()
+
+	to_chat(usr, "<span class='notice'>You will [(usr.client.prefs.toggles_sound & SOUND_INSTRUMENTS_OFF) ? "no longer" : "now"] hear instruments.</span>")
+
+///Toggles the right click menu on and off
+/client/verb/toggle_right_click()
+	set name = "Toggle Right Click"
+	set category = "Preferences"
+
+	show_popup_menus = !show_popup_menus
+	to_chat(src, "<span class='interface'>Right click [show_popup_menus ? "en" : "dis"]abled.</span>")

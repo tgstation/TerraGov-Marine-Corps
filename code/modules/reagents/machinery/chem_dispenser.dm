@@ -12,14 +12,15 @@
 	req_one_access = list(ACCESS_MARINE_CMO, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CHEMISTRY)
 	layer = BELOW_OBJ_LAYER //So beakers reliably appear above it
 
-	ui_x = 565
-	ui_y = 620
 
 	var/obj/item/cell/cell
 	var/powerefficiency = 0.1
 	var/amount = 30
 	var/recharge_amount = 10
 	var/recharge_counter = 0
+
+	///Reagent amounts that are dispenced
+	var/static/list/possible_transfer_amounts = list(1,5,10,15,20,30,40,60,120)
 
 	var/working_state = "dispenser_working"
 
@@ -57,8 +58,6 @@
 	)
 
 	var/list/recording_recipe
-
-	var/list/saved_recipes = list()
 
 /obj/machinery/chem_dispenser/Initialize()
 	. = ..()
@@ -120,36 +119,37 @@
 
 
 
-/obj/machinery/chem_dispenser/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-											datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/chem_dispenser/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "ChemDispenser", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, "ChemDispenser", name)
 		ui.open()
 
-/obj/machinery/chem_dispenser/ui_data(mob/user)
-	var/data = list()
-	data["amount"] = amount
-	data["energy"] = cell.charge ? cell.charge * powerefficiency : "0" //To prevent NaN in the UI.
-	data["maxEnergy"] = cell.maxcharge * powerefficiency
-	data["isBeakerLoaded"] = beaker ? 1 : 0
+/obj/machinery/chem_dispenser/ui_static_data(mob/user)
+	. = list()
+	.["beakerTransferAmounts"] = possible_transfer_amounts
 
-	var/beakerContents[0]
+/obj/machinery/chem_dispenser/ui_data(mob/user)
+	. = list()
+	.["amount"] = amount
+	.["energy"] = cell.charge ? cell.charge * powerefficiency : "0" //To prevent NaN in the UI.
+	.["maxEnergy"] = cell.maxcharge * powerefficiency
+	.["isBeakerLoaded"] = beaker ? 1 : 0
+
+	var/list/beakerContents = list()
 	var/beakerCurrentVolume = 0
 	if(beaker && beaker.reagents && beaker.reagents.reagent_list.len)
 		for(var/datum/reagent/R in beaker.reagents.reagent_list)
-			beakerContents.Add(list(list("name" = R.name, "volume" = R.volume))) // list in a list because Byond merges the first list...
+			beakerContents += list(list("name" = R.name, "volume" = R.volume))	 // list in a list because Byond merges the first list...
 			beakerCurrentVolume += R.volume
-	data["beakerContents"] = beakerContents
+	.["beakerContents"] = beakerContents
 
 	if (beaker)
-		data["beakerCurrentVolume"] = beakerCurrentVolume
-		data["beakerMaxVolume"] = beaker.volume
-		data["beakerTransferAmounts"] = beaker.possible_transfer_amounts
+		.["beakerCurrentVolume"] = beakerCurrentVolume
+		.["beakerMaxVolume"] = beaker.volume
 	else
-		data["beakerCurrentVolume"] = null
-		data["beakerMaxVolume"] = null
-		data["beakerTransferAmounts"] = null
+		.["beakerCurrentVolume"] = null
+		.["beakerMaxVolume"] = null
 
 	var/list/chemicals = list()
 	for(var/re in dispensable_reagents)
@@ -157,21 +157,21 @@
 		if(temp)
 			var/chemname = temp.name
 			chemicals.Add(list(list("title" = chemname, "id" = ckey(temp.name))))
-	data["chemicals"] = chemicals
-	data["recipes"] = saved_recipes
+	.["chemicals"] = chemicals
+	.["recipes"] = user.client.prefs.chem_macros
 
-	data["recordingRecipe"] = recording_recipe
-	return data
+	.["recordingRecipe"] = recording_recipe
 
-/obj/machinery/chem_dispenser/ui_act(action, params)
-	if(..())
+/obj/machinery/chem_dispenser/ui_act(action, list/params)
+	. = ..()
+	if(.)
 		return
 	switch(action)
 		if("amount")
 			if(!is_operational() || QDELETED(beaker))
 				return
 			var/target = text2num(params["target"])
-			if(target in beaker.possible_transfer_amounts)
+			if(target in possible_transfer_amounts)
 				amount = target
 				work_animation()
 				. = TRUE
@@ -199,7 +199,7 @@
 			if(!is_operational() || recording_recipe)
 				return
 			var/amount = text2num(params["amount"])
-			if(beaker && (amount in beaker.possible_transfer_amounts))
+			if(beaker && (amount in possible_transfer_amounts))
 				beaker.reagents.remove_all(amount)
 				work_animation()
 				. = TRUE
@@ -209,13 +209,14 @@
 		if("dispense_recipe")
 			if(!is_operational() || QDELETED(cell))
 				return
-			var/list/chemicals_to_dispense = saved_recipes[params["recipe"]]
+			var/list/chemicals_to_dispense = usr.client.prefs.chem_macros[params["recipe"]]
 			if(!LAZYLEN(chemicals_to_dispense))
 				return
 			for(var/key in chemicals_to_dispense)
 				var/reagent = GLOB.name2reagent[key]
 				var/dispense_amount = chemicals_to_dispense[key]
 				if(!dispensable_reagents.Find(reagent))
+					to_chat(usr, "<span class='danger'>[src] cannot find <b>[key]</b>!</span>")
 					return
 				if(!recording_recipe)
 					if(!beaker)
@@ -235,9 +236,10 @@
 		if("clear_recipes")
 			if(!is_operational())
 				return
-			var/yesno = alert("Clear all recipes?",, "Yes","No")
+			var/yesno = tgui_alert(usr, "Clear all recipes?", null, list("Yes","No"))
 			if(yesno == "Yes")
-				saved_recipes = list()
+				usr.client.prefs.chem_macros = list()
+				usr.client.prefs.save_preferences()
 			. = TRUE
 		if("record_recipe")
 			if(!is_operational())
@@ -248,7 +250,10 @@
 			if(!is_operational())
 				return
 			var/name = stripped_input(usr, "Name", "What do you want to name this recipe?", "Recipe", MAX_NAME_LEN)
-			if(saved_recipes[name] && alert("\"[name]\" already exists, do you want to overwrite it?",, "Yes", "No") == "No")
+			if(usr.client.prefs.chem_macros[name] && tgui_alert(usr, "\"[name]\" already exists, do you want to overwrite it?", null, list("Yes", "No")) == "No")
+				return
+			else if(length(usr.client.prefs.chem_macros) >= 10)
+				to_chat(usr, "<span class='danger'>You can remember <b>up to 10</b> recipes!</span>")
 				return
 			if(name && recording_recipe)
 				for(var/reagent in recording_recipe)
@@ -258,7 +263,8 @@
 						to_chat(usr, "<span class='danger'>[src] cannot find <b>[reagent]</b>!</span>")
 						playsound(src, 'sound/machines/buzz-two.ogg', 50, TRUE)
 						return
-				saved_recipes[name] = recording_recipe
+				usr.client.prefs.chem_macros[name] = recording_recipe
+				usr.client.prefs.save_preferences()
 				recording_recipe = null
 				. = TRUE
 		if("cancel_recording")

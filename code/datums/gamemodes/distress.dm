@@ -1,6 +1,6 @@
 #define DISTRESS_MARINE_DEPLOYMENT 0
 #define DISTRESS_DROPSHIP_CRASHED 1
-#define DISTRESS_MARINE_RETREAT 2
+#define DISTRESS_DROPSHIP_CAPTURED_XENOS 2
 
 /datum/game_mode/infestation/distress
 	name = "Distress Signal"
@@ -110,25 +110,22 @@
 	var/living_player_list[] = count_humans_and_xenos(count_flags = COUNT_IGNORE_ALIVE_SSD|COUNT_IGNORE_XENO_SPECIAL_AREA)
 	var/num_humans = living_player_list[1]
 	var/num_xenos = living_player_list[2]
+	var/num_humans_ship = living_player_list[3]
 
 	if(SSevacuation.dest_status == NUKE_EXPLOSION_FINISHED)
 		message_admins("Round finished: [MODE_GENERIC_DRAW_NUKE]") //ship blows, no one wins
 		round_finished = MODE_GENERIC_DRAW_NUKE
 		return TRUE
-	
-	if(round_stage == DISTRESS_MARINE_RETREAT)
-		message_admins("Round finished: [MODE_INFESTATION_DRAW_RETREAT]")
-		round_finished = MODE_INFESTATION_DRAW_RETREAT
+
+	if(round_stage == DISTRESS_DROPSHIP_CAPTURED_XENOS)
+		message_admins("Round finished: [MODE_INFESTATION_X_MINOR]")
+		round_finished = MODE_INFESTATION_X_MINOR
 		return TRUE
 
 	if(!num_humans)
 		if(!num_xenos)
 			message_admins("Round finished: [MODE_INFESTATION_DRAW_DEATH]") //everyone died at the same time, no one wins
 			round_finished = MODE_INFESTATION_DRAW_DEATH
-			return TRUE
-		if(round_stage == DISTRESS_DROPSHIP_CRASHED)
-			message_admins("Round finished: [MODE_INFESTATION_X_MAJOR]") //xenos wiped our marines, xeno major victory
-			round_finished = MODE_INFESTATION_X_MAJOR
 			return TRUE
 		message_admins("Round finished: [MODE_INFESTATION_X_MAJOR]") //xenos wiped out ALL the marines without hijacking, xeno major victory
 		round_finished = MODE_INFESTATION_X_MAJOR
@@ -140,6 +137,10 @@
 			return TRUE
 		message_admins("Round finished: [MODE_INFESTATION_M_MAJOR]") //marines win big or go home
 		round_finished = MODE_INFESTATION_M_MAJOR
+		return TRUE
+	if(round_stage == DISTRESS_DROPSHIP_CRASHED && !num_humans_ship)
+		message_admins("Round finished: [MODE_INFESTATION_X_MAJOR]") //xenos wiped our marines, xeno major victory
+		round_finished = MODE_INFESTATION_X_MAJOR
 		return TRUE
 	return FALSE
 
@@ -241,33 +242,6 @@
 	var/dat = "<span class='round_body'>The surviving xenomorph ruler was:<br>[HN.living_xeno_ruler.key] as <span class='boldnotice'>[HN.living_xeno_ruler]</span></span>"
 
 	to_chat(world, dat)
-
-
-/datum/game_mode/infestation/distress/mode_new_player_panel(mob/new_player/NP)
-
-	var/output = "<div align='center'>"
-	output += "<br><i>You are part of the <b>TerraGov Marine Corps</b>, a military branch of the TerraGov council.</i>"
-	output +="<hr>"
-	output += "<p><a href='byond://?src=[REF(NP)];lobby_choice=show_preferences'>Setup Character</A> | <a href='byond://?src=[REF(NP)];lobby_choice=lore'>Background</A><br><br><a href='byond://?src=[REF(NP)];lobby_choice=observe'>Observe</A></p>"
-	output +="<hr>"
-	output += "<center><p>Current character: <b>[NP.client ? NP.client.prefs.real_name : "Unknown User"]</b></p></center>"
-
-	if(SSticker.current_state <= GAME_STATE_PREGAME)
-		output += "<p>\[ [NP.ready? "<b>Ready</b>":"<a href='byond://?src=\ref[src];lobby_choice=ready'>Ready</a>"] | [NP.ready? "<a href='byond://?src=[REF(NP)];lobby_choice=ready'>Not Ready</a>":"<b>Not Ready</b>"] \]</p>"
-	else
-		output += "<a href='byond://?src=[REF(NP)];lobby_choice=manifest'>View the Crew Manifest</A><br>"
-		output += "<p><a href='byond://?src=[REF(NP)];lobby_choice=late_join'>Join the Game!</A></p>"
-
-	output += append_player_votes_link(NP)
-
-	output += "</div>"
-
-	var/datum/browser/popup = new(NP, "playersetup", "<div align='center'>Welcome to TGMC[SSmapping?.configs ? " - [SSmapping.configs[SHIP_MAP].map_name]" : ""]</div>", 300, 375)
-	popup.set_window_options("can_close=0")
-	popup.set_content(output)
-	popup.open(FALSE)
-
-	return TRUE
 
 
 /datum/game_mode/infestation/distress/orphan_hivemind_collapse()

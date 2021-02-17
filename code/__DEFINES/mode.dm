@@ -52,7 +52,6 @@
 #define MODE_INFESTATION_X_MINOR		"Xenomorph Minor Victory"
 #define MODE_INFESTATION_M_MINOR		"Marine Minor Victory"
 #define MODE_INFESTATION_DRAW_DEATH		"DRAW: Mutual Annihilation"
-#define MODE_INFESTATION_DRAW_RETREAT	"DRAW: Marine Retreat"
 
 #define MODE_BATTLEFIELD_NT_MAJOR		"NT PMC Major Success"
 #define MODE_BATTLEFIELD_M_MAJOR		"Marine Major Success"

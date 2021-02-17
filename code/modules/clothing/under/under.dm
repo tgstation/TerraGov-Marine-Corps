@@ -20,6 +20,7 @@
 	var/displays_id = 1
 	var/rollable_sleeves = FALSE //can we roll the sleeves on this uniform?
 	var/rolled_sleeves = FALSE //are the sleeves currently rolled?
+	blood_sprite_state = "uniformblood"
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/uniform.dmi')
 
 
@@ -124,7 +125,7 @@
 		return FALSE
 
 	var/list/modes = list("Off", "Binary sensors", "Vitals tracker", "Tracking beacon")
-	var/switchMode = input("Select a sensor mode:", "Suit Sensor Mode", modes[sensor_mode + 1]) in modes
+	var/switchMode = tgui_input_list(user, "Select a sensor mode:", "Suit Sensor Mode", modes)
 	if(get_dist(user, src) > 1)
 		to_chat(user, "You have moved too far away.")
 		return

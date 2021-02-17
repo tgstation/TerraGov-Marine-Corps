@@ -1,4 +1,5 @@
-#define WARHEAD_FLY_TIME 50
+#define WARHEAD_FLY_TIME 1 SECONDS
+#define RG_FLY_TIME 1 SECONDS
 #define WARHEAD_FALLING_SOUND_RANGE 15
 
 /obj/structure/orbital_cannon
@@ -161,6 +162,14 @@
 
 	update_icon()
 
+/// Handles the playing of the Orbital Bombardment incoming sound and other visual and auditory effects of the cannon, usually a spiraling whistle noise but can be overridden.
+/obj/structure/orbital_cannon/proc/handle_ob_firing_effects(target, ob_sound = 'sound/effects/OB_incoming.ogg')
+	flick("OBC_firing",src)
+	playsound(loc, 'sound/effects/obfire.ogg', 100, FALSE, 20, 4)
+	for(var/i in hearers(WARHEAD_FALLING_SOUND_RANGE,target))
+		var/mob/M = i
+		M.playsound_local(target, ob_sound, falloff = 2)
+
 /obj/structure/orbital_cannon/proc/fire_ob_cannon(turf/T, mob/user)
 	set waitfor = 0
 
@@ -170,12 +179,7 @@
 	if(!chambered_tray || !loaded_tray || !tray || !tray.warhead)
 		return
 
-	flick("OBC_firing",src)
-
 	ob_cannon_busy = TRUE
-
-	playsound(loc, 'sound/weapons/guns/fire/tank_smokelauncher.ogg', 70, 1)
-	playsound(loc, 'sound/weapons/guns/fire/pred_plasma_shot.ogg', 70, 1)
 
 	var/inaccurate_fuel = 0
 
@@ -190,13 +194,15 @@
 			inaccurate_fuel = abs(GLOB.marine_main_ship?.ob_type_fuel_requirements[4] - tray.fuel_amt)
 
 	var/turf/target = locate(T.x + inaccurate_fuel * pick(-1,1),T.y + inaccurate_fuel * pick(-1,1),T.z)
-	for(var/i in hearers(WARHEAD_FALLING_SOUND_RANGE,target))
-		var/mob/M = i
-		M.playsound_local(target, 'sound/effects/OB_incoming.ogg', falloff = 2)
+
+	playsound_z_humans(target.z, 'sound/effects/OB_warning_announce.ogg', 100) //for marines on ground
+	playsound(target, 'sound/effects/OB_warning_announce_novoiceover.ogg', 125, FALSE, 30, 10) //VOX-less version for xenomorphs
+	playsound_z(z, 'sound/effects/OB_warning_announce.ogg', 100) //for the ship
 
 	notify_ghosts("<b>[user]</b> has just fired \the <b>[src]</b> !", source = T, action = NOTIFY_JUMP)
 
-	addtimer(CALLBACK(src, /obj/structure/orbital_cannon.proc/impact_callback, target, inaccurate_fuel), WARHEAD_FLY_TIME * (GLOB.current_orbit/3))
+	addtimer(CALLBACK(src, /obj/structure/orbital_cannon/proc/handle_ob_firing_effects, target), 9.5 SECONDS + (WARHEAD_FLY_TIME * (GLOB.current_orbit/3)))
+	addtimer(CALLBACK(src, /obj/structure/orbital_cannon.proc/impact_callback, target, inaccurate_fuel), 10 SECONDS + (WARHEAD_FLY_TIME * (GLOB.current_orbit/3)))
 
 /obj/structure/orbital_cannon/proc/impact_callback(target,inaccurate_fuel)
 	tray.warhead.warhead_impact(target, inaccurate_fuel)
@@ -346,7 +352,7 @@
 	to_chat(user, "Moving this will require some sort of lifter.")
 
 
-/obj/structure/ob_ammo/obj_destruction(damage_flag)
+/obj/structure/ob_ammo/obj_destruction(damage_amount, damage_type, damage_flag)
 	explosion(loc, light_impact_range = 2, flash_range = 3, flame_range = 2, small_animation = TRUE)
 	return ..()
 
@@ -357,7 +363,12 @@
 
 
 /obj/structure/ob_ammo/warhead/proc/warhead_impact(turf/target, inaccuracy_amt = 0)
+	SHOULD_CALL_PARENT(TRUE)
+	SSmonitor.stats.OB_available--
 
+/obj/structure/ob_ammo/warhead/Initialize()
+	. = ..()
+	SSmonitor.stats.OB_available++
 
 /obj/structure/ob_ammo/warhead/explosive
 	name = "\improper HE orbital warhead"
@@ -365,7 +376,8 @@
 	icon_state = "ob_warhead_1"
 
 /obj/structure/ob_ammo/warhead/explosive/warhead_impact(turf/target, inaccuracy_amt = 0)
-	explosion(target, 6 - inaccuracy_amt, 10 - inaccuracy_amt, 15 - inaccuracy_amt, 11 - inaccuracy_amt)
+	. = ..()
+	explosion(target, 15 - inaccuracy_amt, 15 - inaccuracy_amt, 15 - inaccuracy_amt, 15 - inaccuracy_amt)
 
 
 
@@ -376,6 +388,7 @@
 
 
 /obj/structure/ob_ammo/warhead/incendiary/warhead_impact(turf/target, inaccuracy_amt = 0)
+	. = ..()
 	var/range_num = max(15 - inaccuracy_amt, 12)
 	flame_radius(range_num, target,	burn_intensity = 36, burn_duration = 40, colour = "blue")
 
@@ -387,7 +400,7 @@
 
 /obj/structure/ob_ammo/warhead/cluster/warhead_impact(turf/target, inaccuracy_amt = 0)
 	set waitfor = FALSE
-
+	. = ..()
 	var/range_num = max(9 - inaccuracy_amt, 6)
 	var/list/turf_list = list()
 	for(var/turf/T in range(range_num, target))
@@ -405,6 +418,7 @@
 	var/datum/effect_system/smoke_spread/plasmaloss/smoke
 
 /obj/structure/ob_ammo/warhead/plasmaloss/warhead_impact(turf/target, inaccuracy_amt = 0)
+	. = ..()
 	smoke = new(src)
 	smoke.set_up(25, target, 3 SECONDS)//Vape nation
 	smoke.start()
@@ -540,7 +554,6 @@
 	rail_gun_ammo.ammo_count = 8000
 
 /obj/structure/ship_rail_gun/proc/fire_rail_gun(turf/T, mob/user)
-	set waitfor = 0
 	if(cannon_busy)
 		return
 	if(!rail_gun_ammo?.ammo_count)
@@ -552,7 +565,9 @@
 	playsound(loc, 'sound/weapons/guns/fire/tank_smokelauncher.ogg', 70, 1)
 	playsound(loc, 'sound/weapons/guns/fire/pred_plasma_shot.ogg', 70, 1)
 	var/turf/target = locate(T.x + pick(-2,2), T.y + pick(-2,2), T.z)
-	sleep(15)
-	rail_gun_ammo.detonate_on(target)
 	rail_gun_ammo.ammo_count = max(0, rail_gun_ammo.ammo_count - rail_gun_ammo.ammo_used_per_firing)
+	addtimer(CALLBACK(src, /obj/structure/ship_rail_gun/proc/impact_rail_gun, target), 2 SECONDS + (RG_FLY_TIME * (GLOB.current_orbit/3)))	
+		
+/obj/structure/ship_rail_gun/proc/impact_rail_gun(turf/T)
+	rail_gun_ammo.detonate_on(T)
 	cannon_busy = FALSE

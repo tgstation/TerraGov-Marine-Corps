@@ -44,8 +44,7 @@
 			M.Paralyze(20)
 		else
 			M.Stun(20) //Otherwise we just get stunned.
-		M.apply_damage(damage, STAMINA) //Armour ignoring Stamina
-		UPDATEHEALTH(M)
+		M.apply_damage(damage, STAMINA, updating_health = TRUE) //Armour ignoring Stamina
 
 /datum/action/xeno_action/activable/stomp/ai_should_start_consider()
 	return TRUE
@@ -108,16 +107,21 @@
 			T = temp
 	else
 		facing = get_dir(L, X)
-		if(!X.check_blocked_turf(get_step(T, facing) ) ) //Make sure we can actually go to the target turf
-			L.loc = get_step(T, facing) //Move the target behind us before flinging
-			for(var/x = 0, x < toss_distance, x++)
-				temp = get_step(T, facing)
-				if (!temp)
-					break
-				T = temp
-		else
+		var/turf/throw_origin = get_step(T, facing)
+		if(isclosedturf(throw_origin)) //Make sure the victim can actually go to the target turf
 			to_chat(X, "<span class='xenowarning'>We try to fling [L] behind us, but there's no room!</span>")
 			return fail_activate()
+		for(var/obj/O in throw_origin)
+			if(!O.CanPass(L, get_turf(X)) && !istype(O, /obj/structure/barricade)) //Ignore barricades because they will once thrown anyway
+				to_chat(X, "<span class='xenowarning'>We try to fling [L] behind us, but there's no room!</span>")
+				return fail_activate()
+
+		L.forceMove(throw_origin) //Move the victim behind us before flinging
+		for(var/x = 0, x < toss_distance, x++)
+			temp = get_step(T, facing)
+			if (!temp)
+				break
+			T = temp //Throw target
 
 	//The target location deviates up to 1 tile in any direction //No.
 	/*var/scatter_x = rand(-1,1)
@@ -134,15 +138,14 @@
 
 	succeed_activate()
 
-	L.throw_at(T, toss_distance, 1, X)
+	L.throw_at(T, toss_distance, 1, X, TRUE)
 
 	//Handle the damage
 	if(!X.issamexenohive(L)) //Friendly xenos don't take damage.
 		var/damage = toss_distance * 5
 
 		L.take_overall_damage_armored(damage, BRUTE, "melee")
-		L.apply_damage(damage, STAMINA) //...But decent armour ignoring Stamina
-		UPDATEHEALTH(L)
+		L.apply_damage(damage, STAMINA, updating_health = TRUE) //...But decent armour ignoring Stamina
 		shake_camera(L, 2, 2)
 		playsound(L,pick('sound/weapons/alien_claw_block.ogg','sound/weapons/alien_bite2.ogg'), 50, 1)
 

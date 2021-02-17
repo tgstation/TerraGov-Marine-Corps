@@ -25,32 +25,35 @@
 #define COOLDOWN_CPR		"CPR"
 #define COOLDOWN_IV_PING	"iv_ping"
 #define COOLDOWN_RACK_BOLT	"rack_bolt"
+#define COOLDOWN_JETPACK "jetpack"
+#define COOLDOWN_CIC_ORDERS "cic_orders"
+#define COOLDOWN_CLOAK_IMPLANT "cloak_implant"
 
 //// COOLDOWN SYSTEMS
 /*
-  * We have 2 cooldown systems: timer cooldowns (divided between stoppable and regular) and world.time cooldowns.
-  *
-  * When to use each?
-  *
-  * * Adding a commonly-checked cooldown, like on a subsystem to check for processing
-  * * * Use the world.time ones, as they are cheaper.
-  *
-  * * Adding a rarely-used one for special situations, such as giving an uncommon item a cooldown on a target.
-  * * * Timer cooldown, as adding a new variable on each mob to track the cooldown of said uncommon item is going too far.
-  *
-  * * Triggering events at the end of a cooldown.
-  * * * Timer cooldown, registering to its signal.
-  *
-  * * Being able to check how long left for the cooldown to end.
-  * * * Either world.time or stoppable timer cooldowns, depending on the other factors. Regular timer cooldowns do not support this.
-  *
-  * * Being able to stop the timer before it ends.
-  * * * Either world.time or stoppable timer cooldowns, depending on the other factors. Regular timer cooldowns do not support this.
+ * We have 2 cooldown systems: timer cooldowns (divided between stoppable and regular) and world.time cooldowns.
+ *
+ * When to use each?
+ *
+ * * Adding a commonly-checked cooldown, like on a subsystem to check for processing
+ * * * Use the world.time ones, as they are cheaper.
+ *
+ * * Adding a rarely-used one for special situations, such as giving an uncommon item a cooldown on a target.
+ * * * Timer cooldown, as adding a new variable on each mob to track the cooldown of said uncommon item is going too far.
+ *
+ * * Triggering events at the end of a cooldown.
+ * * * Timer cooldown, registering to its signal.
+ *
+ * * Being able to check how long left for the cooldown to end.
+ * * * Either world.time or stoppable timer cooldowns, depending on the other factors. Regular timer cooldowns do not support this.
+ *
+ * * Being able to stop the timer before it ends.
+ * * * Either world.time or stoppable timer cooldowns, depending on the other factors. Regular timer cooldowns do not support this.
 */
 
 
 /*
-  * Cooldown system based on an datum-level associative lazylist using timers.
+ * Cooldown system based on an datum-level associative lazylist using timers.
 */
 
 //INDEXES
@@ -70,11 +73,11 @@
 #define TIMER_COOLDOWN_END(cd_source, cd_index) LAZYREMOVE(cd_source.cooldowns, cd_index)
 
 /**
-  * Stoppable timer cooldowns.
-  * Use indexes the same as the regular tiemr cooldowns.
-  * They make use of the TIMER_COOLDOWN_CHECK() and TIMER_COOLDOWN_END() macros the same, just not the TIMER_COOLDOWN_START() one.
-  * A bit more expensive than the regular timers, but can be reset before they end and the time left can be checked.
-  */
+ * Stoppable timer cooldowns.
+ * Use indexes the same as the regular tiemr cooldowns.
+ * They make use of the TIMER_COOLDOWN_CHECK() and TIMER_COOLDOWN_END() macros the same, just not the TIMER_COOLDOWN_START() one.
+ * A bit more expensive than the regular timers, but can be reset before they end and the time left can be checked.
+ */
 
 #define S_TIMER_COOLDOWN_START(cd_source, cd_index, cd_time) LAZYSET(cd_source.cooldowns, cd_index, addtimer(CALLBACK(GLOBAL_PROC, /proc/end_cooldown, cd_source, cd_index), cd_time, TIMER_STOPPABLE))
 
@@ -84,9 +87,9 @@
 
 
 /**
-  * Cooldown system based on storing world.time on a variable, plus the cooldown time.
-  * Better performance over timer cooldowns, lower control. Same functionality.
-  */
+ * Cooldown system based on storing world.time on a variable, plus the cooldown time.
+ * Better performance over timer cooldowns, lower control. Same functionality.
+ */
 
 #define COOLDOWN_DECLARE(cd_index) var/##cd_index = 0
 

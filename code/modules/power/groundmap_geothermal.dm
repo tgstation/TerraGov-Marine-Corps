@@ -99,7 +99,7 @@
 		return TRUE
 	return FALSE //Nope, all fine
 
-/obj/machinery/power/geothermal/attack_alien(mob/living/carbon/xenomorph/X)
+/obj/machinery/power/geothermal/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	. = ..()
 	// Can't damage a broken generator
 	if(buildstate)
@@ -277,7 +277,7 @@
 
 /obj/machinery/colony_floodlight_switch/proc/toggle_lights(switch_on)
 	for(var/obj/machinery/colony_floodlight/F in floodlist)
-		addtimer(CALLBACK(F, /obj/machinery/colony_floodlight/proc/toggle_light, switch_on), rand(0,50))
+		addtimer(CALLBACK(F, /obj/machinery/colony_floodlight/proc/toggle_light, switch_on), rand(1,50))
 
 /obj/machinery/colony_floodlight_switch/attack_paw(mob/living/carbon/monkey/user)
 	return src.attack_hand(user)

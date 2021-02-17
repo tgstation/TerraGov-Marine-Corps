@@ -1,3 +1,5 @@
+GLOBAL_LIST_INIT(known_implants, list(/obj/item/implant/neurostim))
+
 /*
 CONTAINS:
 T-RAY
@@ -112,7 +114,7 @@ REAGENT SCANNER
 		OX = fake_oxy > 50 			? 	"<b>[fake_oxy]</b>" 			: fake_oxy
 		dat += "\n<span class='notice'> Health Analyzer for [M]:\n\tOverall Status: <b>DEAD</b>\n</span>"
 	else
-		dat += "\nHealth Analyzer results for [M]:\n\tOverall Status: [M.stat > 1 ? "<b>DEAD</b>" : "<b>[M.health - M.halloss]% healthy"]</b>\n"
+		dat += "\nHealth Analyzer results for [M]:\n\tOverall Status: [M.stat > 1 ? "<b>DEAD</b>" : "<b>[M.health]% healthy"]</b>\n"
 	dat += "\tType:    <span class='notice'>Oxygen</font>-<font color='green'>Toxin</font>-<font color='#FFA500'>Burns</font>-<font color='red'>Brute</span>\n"
 	dat += "\tDamage: \t<span class='notice'>[OX]</font> - <font color='green'>[TX]</font> - <font color='#FFA500'>[BU]</font> - <font color='red'>[BR]</span>\n"
 	dat += "\tUntreated: {B}=Burns,{T}=Trauma,{F}=Fracture,{I}=Infection\n"
@@ -206,7 +208,6 @@ REAGENT SCANNER
 	var/fracture_detected = FALSE
 	var/unknown_body = 0
 	//var/infected = FALSE
-	var/known_implants = list(/obj/item/implant/neurostim)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/core_fracture = FALSE
@@ -239,7 +240,7 @@ REAGENT SCANNER
 				dat += "\t<span class='scanner'> *Infected wound detected in subject's <b>[limb]</b>. Disinfection recommended.</span>\n"
 			if (e.implants.len)
 				for(var/I in e.implants)
-					if(!is_type_in_list(I,known_implants))
+					if(!is_type_in_list(I, GLOB.known_implants))
 						unknown_body++
 			if(e.hidden)
 				unknown_body++

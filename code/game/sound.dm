@@ -1,13 +1,13 @@
 /**Proc used to play a sound.
-  * Arguments:
-  * * source: what played the sound.
-  * * soundin: the .ogg to use.
-  * * vol: the initial volume of the sound, 0 is no sound at all, 75 is loud queen screech.
-  * * vary: to make the frequency var of the sound vary (mostly unused).
-  * * sound_range: the maximum theoretical range (in tiles) of the sound, by default is equal to the volume.
-  * * falloff: how the sound's volume decreases with distance, low is fast decrease and high is slow decrease. \
+ * Arguments:
+ * * source: what played the sound.
+ * * soundin: the .ogg to use.
+ * * vol: the initial volume of the sound, 0 is no sound at all, 75 is loud queen screech.
+ * * vary: to make the frequency var of the sound vary (mostly unused).
+ * * sound_range: the maximum theoretical range (in tiles) of the sound, by default is equal to the volume.
+ * * falloff: how the sound's volume decreases with distance, low is fast decrease and high is slow decrease. \
 A good representation is: 'byond applies a volume reduction to the sound every X tiles', where X is falloff.
-  */
+ */
 /proc/playsound(atom/source, soundin, vol, vary, sound_range, falloff, is_global, frequency, channel = 0)
 	var/turf/turf_source = get_turf(source)
 
@@ -15,7 +15,7 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 		return
 
 	//allocate a channel if necessary now so its the same for everyone
-	channel = channel || open_sound_channel()
+	channel = channel || SSsounds.random_available_channel()
 
 	if(!sound_range)
 		sound_range = round(0.5*vol) //if no specific range, the max range is equal to half the volume.
@@ -33,7 +33,7 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 			continue
 		M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff, is_global, channel, S)
 
-/mob/proc/playsound_local(turf/turf_source, soundin, vol, vary, frequency, falloff, is_global, channel = 0, sound/S)
+/mob/proc/playsound_local(turf/turf_source, soundin, vol, vary, frequency, falloff, is_global, channel = 0, sound/S, distance_multiplier = 1)
 	if(!client)
 		return FALSE
 
@@ -42,7 +42,7 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 	if(!S)
 		S = sound(soundin)
 	S.wait = 0 //No queue
-	S.channel = channel || open_sound_channel()
+	S.channel = channel || SSsounds.random_available_channel()
 	S.volume = vol
 	S.environment = list(
 		100.0, 0.5, \
@@ -67,13 +67,15 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 		//sound volume falloff with distance
 		var/distance = get_dist(T, turf_source)
 
+		distance *= distance_multiplier
+
 		if(S.volume <= 2*distance)
 			return FALSE //no volume or too far away to hear such a volume level.
 
 		var/dx = turf_source.x - T.x // Hearing from the right/left
-		S.x = dx
+		S.x = dx * distance_multiplier
 		var/dz = turf_source.y - T.y // Hearing from infront/behind
-		S.z = dz
+		S.z = dz * distance_multiplier
 		//The y value is for above your head, but there is no ceiling in 2d spessmens.
 		S.y = 1
 		S.falloff = falloff ? falloff : FALLOFF_SOUNDS * max(round(S.volume * 0.05), 1)
@@ -97,14 +99,13 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 		return FALSE
 	return ..()
 
-/proc/open_sound_channel()
-	var/static/next_channel = 1	//loop through the available 1024 - (the ones we reserve) channels and pray that its not still being used
-	. = ++next_channel
-	if(next_channel > CHANNEL_HIGHEST_AVAILABLE)
-		next_channel = 1
-
 /mob/proc/stop_sound_channel(chan)
 	SEND_SOUND(src, sound(null, repeat = 0, wait = 0, channel = chan))
+
+/mob/proc/set_sound_channel_volume(channel, volume)
+	var/sound/S = sound(null, FALSE, FALSE, channel, volume)
+	S.status = SOUND_UPDATE
+	SEND_SOUND(src, S)
 
 /client/proc/play_title_music()
 	if(!SSticker?.login_music)
@@ -143,7 +144,7 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 
 ///Play sound for all online mobs on a given Z-level. Good for ambient sounds.
 /proc/playsound_z(z, soundin, _volume)
-	soundin = sound(get_sfx(soundin), channel = open_sound_channel(), volume = _volume)
+	soundin = sound(get_sfx(soundin), channel = SSsounds.random_available_channel(), volume = _volume)
 	for(var/mob/M as() in GLOB.player_list)
 		if(isnewplayer(M))
 			continue
@@ -152,7 +153,7 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 
 ///Play a sound for all cliented humans and ghosts by zlevel
 /proc/playsound_z_humans(z, soundin, _volume)
-	soundin = sound(get_sfx(soundin), channel = open_sound_channel(), volume = _volume)
+	soundin = sound(get_sfx(soundin), channel = SSsounds.random_available_channel(), volume = _volume)
 	for(var/mob/living/carbon/human/H as() in GLOB.humans_by_zlevel["[z]"])
 		if(H.client)
 			SEND_SOUND(H, soundin)
@@ -162,7 +163,7 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 
 ///Play a sound for all cliented xenos and ghosts by hive on a zlevel
 /proc/playsound_z_xenos(z, soundin, _volume, hive_type = XENO_HIVE_NORMAL)
-	soundin = sound(get_sfx(soundin), channel = open_sound_channel(), volume = _volume)
+	soundin = sound(get_sfx(soundin), channel = SSsounds.random_available_channel(), volume = _volume)
 	for(var/mob/living/carbon/xenomorph/X as() in GLOB.hive_datums[hive_type].xenos_by_zlevel["[z]"])
 		if(X.client)
 			SEND_SOUND(X, soundin)

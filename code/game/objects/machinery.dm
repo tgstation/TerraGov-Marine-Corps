@@ -22,9 +22,6 @@
 	var/obj/item/circuitboard/circuit // Circuit to be created and inserted when the machinery is created
 	var/mob/living/carbon/human/operator
 
-	var/ui_x	//For storing and overriding ui dimensions
-	var/ui_y
-
 /obj/machinery/Initialize()
 	. = ..()
 	GLOB.machines += src
@@ -454,3 +451,13 @@
 	. = . % 9
 	AM.pixel_x = -8 + ((.%3)*8)
 	AM.pixel_y = -8 + (round( . / 3)*8)
+
+///Currently used for computers only; it can be repaired with a welder after a 5 second wind up
+/obj/machinery/proc/set_disabled()
+
+	if(machine_stat & (BROKEN|DISABLED)) //If we're already broken or disabled, don't bother
+		return
+
+	machine_stat |= DISABLED
+	density = FALSE
+	update_icon()

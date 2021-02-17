@@ -17,6 +17,8 @@
 	var/list/dead_xenos // xenos that are still assigned to this hive but are dead.
 	var/list/ssd_xenos
 	var/list/list/xenos_by_zlevel
+	var/tier3_xeno_limit
+	var/tier2_xeno_limit
 
 // ***************************************
 // *********** Init
@@ -39,6 +41,8 @@
 
 	for(var/upgrade in GLOB.xenoupgradetiers)
 		xenos_by_upgrade[upgrade] = list()
+
+	SSdirection.set_leader(hivenumber, null)
 
 
 // ***************************************
@@ -165,6 +169,7 @@
 		LAZYADD(ssd_xenos, X)
 
 	xenos_by_typepath[X.caste_base_type] += X
+	update_tier_limits() //Update our tier limits.
 
 	return TRUE
 
@@ -183,6 +188,7 @@
 	generate_name()
 
 	SSdirection.start_tracking(HS.hivenumber, src)
+	hive.update_tier_limits() //Update our tier limits.
 
 /mob/living/carbon/xenomorph/queen/add_to_hive(datum/hive_status/HS, force=FALSE) // override to ensure proper queen/hive behaviour
 	. = ..()
@@ -207,6 +213,7 @@
 		CRASH("add_to_hive_by_hivenumber called with invalid hivenumber")
 	var/datum/hive_status/HS = GLOB.hive_datums[hivenumber]
 	add_to_hive(HS, force)
+	hive.update_tier_limits() //Update our tier limits.
 
 // This is a special proc called only when a xeno is first created to set their hive and name properly
 /mob/living/carbon/xenomorph/proc/set_initial_hivenumber()
@@ -252,6 +259,7 @@
 	UnregisterSignal(X, COMSIG_MOVABLE_Z_CHANGED)
 
 	remove_leader(X)
+	update_tier_limits() //Update our tier limits.
 
 	return TRUE
 
@@ -267,8 +275,10 @@
 
 	SSdirection.stop_tracking(hive.hivenumber, src)
 
+	var/datum/hive_status/reference_hive = hive
 	hive = null
 	hivenumber = XENO_HIVE_NONE // failsafe value
+	reference_hive.update_tier_limits() //Update our tier limits.
 
 /mob/living/carbon/xenomorph/queen/remove_from_hive() // override to ensure proper queen/hive behaviour
 	var/datum/hive_status/hive_removed_from = hive
@@ -299,10 +309,14 @@
 /datum/hive_status/proc/add_leader(mob/living/carbon/xenomorph/X)
 	xeno_leader_list += X
 	X.queen_chosen_lead = TRUE
+	X.give_rally_hive_ability()
 
 /datum/hive_status/proc/remove_leader(mob/living/carbon/xenomorph/X)
 	xeno_leader_list -= X
 	X.queen_chosen_lead = FALSE
+
+	if(!isxenoshrike(X) && !isxenoqueen(X) && !isxenohivemind(X)) //These innately have the Rally Hive ability
+		X.remove_rally_hive_ability()
 
 /datum/hive_status/proc/update_leader_pheromones() // helper function to easily trigger an update of leader pheromones
 	for(var/i in xeno_leader_list)
@@ -480,13 +494,34 @@ The force parameter is for messages that should ignore a dead queen
 to_chat will check for valid clients itself already so no need to double check for clients
 
 */
-/datum/hive_status/proc/xeno_message(message = null, size = 3, force = FALSE)
+
+///Used for Hive Message alerts
+/datum/hive_status/proc/xeno_message(message = null, size = 3, force = FALSE, atom/target = null, sound = null, apply_preferences = FALSE, filter_list = null, arrow_type)
+
 	if(!force && !can_xeno_message())
 		return
-	for(var/i in get_all_xenos())
-		var/mob/living/carbon/xenomorph/X = i
+
+	var/list/final_list = get_all_xenos()
+
+	if(filter_list) //Filter out Xenos in the filter list if applicable
+		final_list -= filter_list
+
+	for(var/mob/living/carbon/xenomorph/X as() in final_list)
+
 		if(X.stat) // dead/crit cant hear
 			continue
+
+		if(!X.client) // If no client, there's no point; also runtime prevention
+			continue
+
+		if(sound) //Play sound if applicable
+			X.playsound_local(X, sound, max(size * 20, 60), 0, 1)
+
+		if(target) //Apply tracker arrow to point to the subject of the message if applicable
+			var/obj/screen/arrow/arrow_hud = new arrow_type
+			//Prepare the tracker object and set its parameters
+			arrow_hud.add_hud(X, target)
+
 		to_chat(X, "<span class='xenodanger'><font size=[size]> [message]</font></span>")
 
 // This is to simplify the process of talking in hivemind, this will invoke the receive proc of all xenos in this hive
@@ -521,9 +556,9 @@ to_chat will check for valid clients itself already so no need to double check f
 	if(D.orphan_hive_timer)
 		return
 
-	var/timer_length = 2.5 MINUTES
+	var/timer_length = 5 MINUTES
 	if(length(xenos_by_typepath[/mob/living/carbon/xenomorph/larva]) || length(xenos_by_typepath[/mob/living/carbon/xenomorph/drone]))
-		timer_length = 5 MINUTES
+		timer_length = 2.5 MINUTES
 
 	D.orphan_hive_timer = addtimer(CALLBACK(D, /datum/game_mode.proc/orphan_hivemind_collapse), timer_length, TIMER_STOPPABLE)
 
@@ -563,7 +598,7 @@ to_chat will check for valid clients itself already so no need to double check f
 
 	var/mob/living/carbon/xenomorph/chosen_mother
 	if(length(possible_mothers) > 1)
-		chosen_mother = input("Available Mothers") as null|anything in possible_mothers
+		chosen_mother = tgui_input_list(xeno_candidate, "Available Mothers", null, possible_mothers)
 	else
 		chosen_mother = possible_mothers[1]
 
@@ -572,7 +607,7 @@ to_chat will check for valid clients itself already so no need to double check f
 
 	if(!isnewplayer(xeno_candidate) && XENODEATHTIME_CHECK(xeno_candidate))
 		if(check_other_rights(xeno_candidate.client, R_ADMIN, FALSE))
-			if(alert(xeno_candidate, "You wouldn't normally qualify for this respawn. Are you sure you want to bypass it with your admin powers?", "Bypass Respawn", "Yes", "No") != "Yes")
+			if(tgui_alert(xeno_candidate, "You wouldn't normally qualify for this respawn. Are you sure you want to bypass it with your admin powers?", "Bypass Respawn", list("Yes", "No")) != "Yes")
 				XENODEATHTIME_MESSAGE(xeno_candidate)
 				return FALSE
 		else
@@ -585,7 +620,13 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/normal/proc/attempt_to_spawn_larva_in_silo(mob/xeno_candidate, possible_silos)
 	var/obj/structure/resin/silo/chosen_silo
 	if(length(possible_silos) > 1)
-		chosen_silo = input("Available Egg Silos") as null|anything in possible_silos
+		chosen_silo = tgui_input_list(xeno_candidate, "Available Egg Silos", "Spawn location", possible_silos)
+		xeno_candidate.forceMove(chosen_silo)
+		var/double_check = tgui_alert(xeno_candidate, "Spawn here?", "Spawn location", list("Yes","Pick another silo"))
+		if(double_check == "Pick another silo")
+			return attempt_to_spawn_larva_in_silo(xeno_candidate, possible_silos)
+		else if(double_check != "Yes")
+			return FALSE
 	else
 		chosen_silo = possible_silos[1]
 
@@ -594,7 +635,7 @@ to_chat will check for valid clients itself already so no need to double check f
 
 	if(!isnewplayer(xeno_candidate) && XENODEATHTIME_CHECK(xeno_candidate))
 		if(check_other_rights(xeno_candidate.client, R_ADMIN, FALSE))
-			if(alert(xeno_candidate, "You wouldn't normally qualify for this respawn. Are you sure you want to bypass it with your admin powers?", "Bypass Respawn", "Yes", "No") != "Yes")
+			if(tgui_alert(xeno_candidate, "You wouldn't normally qualify for this respawn. Are you sure you want to bypass it with your admin powers?", "Bypass Respawn", list("Yes", "No")) != "Yes")
 				XENODEATHTIME_MESSAGE(xeno_candidate)
 				return FALSE
 		else
@@ -660,7 +701,7 @@ to_chat will check for valid clients itself already so no need to double check f
 
 
 /datum/hive_status/normal/proc/on_hijack_depart(datum/source, new_mode)
-	SIGNAL_HANDLER_DOES_SLEEP
+	SIGNAL_HANDLER
 	if(new_mode != SHUTTLE_CALL)
 		return
 	UnregisterSignal(source, COMSIG_SHUTTLE_SETMODE)
@@ -676,16 +717,21 @@ to_chat will check for valid clients itself already so no need to double check f
 			continue
 		if(!is_ground_level(boarder.z))
 			continue
-		boarder.gib()
+		INVOKE_ASYNC(boarder, /mob/living.proc/gib)
 		left_behind++
+	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	if(left_behind)
 		xeno_message("[left_behind > 1 ? "[left_behind] sisters" : "One sister"] perished due to being too slow to board the bird. The freeing of their psychic link allows us to call burrowed, at least.")
-		var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 		xeno_job.add_job_positions(left_behind)
-		if(difference > 0)
-			xeno_job.add_job_positions(difference)
-	for(var/i in GLOB.xeno_resin_silos)
-		qdel(i)
+	if(difference < 0)
+		if(xeno_job.total_positions < (-difference + xeno_job.current_positions))
+			xeno_job.set_job_positions(-difference + xeno_job.current_positions)
+	for(var/obj/structure/resin/silo/silo as() in GLOB.xeno_resin_silos)
+		if(isalamoarea(get_area(silo)))
+			continue
+		if(!is_ground_level(silo.z))
+			continue
+		qdel(silo)
 
 
 // ***************************************
@@ -996,15 +1042,18 @@ to_chat will check for valid clients itself already so no need to double check f
 /mob/living/carbon/xenomorph/get_xeno_hivenumber()
 	return hivenumber
 
+/datum/hive_status/ui_state(mob/user)
+	return GLOB.xeno_state
+
 /// Controls the evolution UI
-/datum/hive_status/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.xeno_state)
+/datum/hive_status/ui_interact(mob/user, datum/tgui/ui)
 	// Xeno only screen
 	if(!isxeno(user))
 		return
 
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "HiveEvolveScreen", "Xenomorph Evolution", 400, 750, master_ui, state)
+		ui = new(user, src, "HiveEvolveScreen")
 		ui.open()
 
 /// Static data provided once when the ui is opened
@@ -1055,8 +1104,9 @@ to_chat will check for valid clients itself already so no need to double check f
 	)
 
 /// Handles actuually evolving
-/datum/hive_status/ui_act(action, params)
-	if(..())
+/datum/hive_status/ui_act(action, list/params)
+	. = ..()
+	if(.)
 		return
 
 	var/mob/living/carbon/xenomorph/xeno = usr
@@ -1065,4 +1115,8 @@ to_chat will check for valid clients itself already so no need to double check f
 			SStgui.close_user_uis(usr, src, "main")
 			var/datum/xeno_caste/caste = GLOB.xeno_caste_datums[text2path(params["path"])][XENO_UPGRADE_BASETYPE]
 			xeno.do_evolve(caste.caste_type_path, caste.display_name) // All the checks for can or can't are handled inside do_evolve
-			return
+			return TRUE
+
+/datum/hive_status/proc/update_tier_limits()
+	tier3_xeno_limit = max(length(xenos_by_tier[XENO_TIER_THREE]),FLOOR((length(xenos_by_tier[XENO_TIER_ZERO])+length(xenos_by_tier[XENO_TIER_ONE])+length(xenos_by_tier[XENO_TIER_TWO]))/3+1,1))
+	tier2_xeno_limit = max(length(xenos_by_tier[XENO_TIER_TWO]),length(xenos_by_tier[XENO_TIER_ZERO]) + length(xenos_by_tier[XENO_TIER_ONE])+1 - length(xenos_by_tier[XENO_TIER_THREE]))

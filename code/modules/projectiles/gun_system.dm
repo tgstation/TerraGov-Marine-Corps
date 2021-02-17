@@ -4,13 +4,17 @@
 	icon = 'icons/obj/items/gun.dmi'
 	icon_state = ""
 	item_state = "gun"
+	item_state_worn = TRUE
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+		)
 	materials = list(/datum/material/metal = 100)
 	w_class 	= 3
 	throwforce 	= 5
 	throw_speed = 4
 	throw_range = 5
 	force 		= 5
-	sprite_sheet_id = 1
 	flags_atom = CONDUCT
 	flags_item = TWOHANDED
 	light_system = MOVABLE_LIGHT
@@ -32,6 +36,7 @@
 	var/cock_cooldown	= 0						//world.time value, to prevent COCK COCK COCK COCK
 	var/cock_delay		= 3 SECONDS				//Delay before we can cock again
 	var/last_fired = 0							//When it was last fired, related to world.time.
+	var/muzzle_flash_color = COLOR_VERY_SOFT_YELLOW
 
 	//Ammo will be replaced on New() for things that do not use mags..
 	var/datum/ammo/ammo = null					//How the bullet will behave once it leaves the gun, also used for basic bullet damage and effects, etc.
@@ -57,6 +62,14 @@
 	var/movement_acc_penalty_mult = 5				//Multiplier. Increased and decreased through attachments. Multiplies the accuracy/scatter penalty of the projectile when firing onehanded while moving.
 	var/fire_delay = 6							//For regular shots, how long to wait before firing again.
 	var/shell_speed_mod	= 0						//Modifies the speed of projectiles fired.
+	/// Determines which humans the gun's shot will pass through based on the victim's ID access list.
+	var/list/gun_iff_signal = null
+	///Modifies projectile damage by a % when a marine gets passed, but not hit
+	var/iff_marine_damage_falloff = 0
+	///Determines how fire delay is changed when aim mode is active
+	var/aim_fire_delay = 0
+	///Determines character slowdown from aim mode. Default is 66%
+	var/aim_speed_modifier = 6
 
 	//Burst fire.
 	var/burst_amount 	= 1						//How many shots can the weapon shoot in burst? Anything less than 2 and you cannot toggle burst.
@@ -245,6 +258,8 @@
 	A.add_hud(user)
 	A.update_hud(user)
 	do_wield(user, wdelay)
+	if(CHECK_BITFIELD(flags_gun_features, AUTO_AIM_MODE))
+		toggle_aim_mode(user)
 
 
 /obj/item/weapon/gun/unwield(mob/user)
@@ -252,14 +267,14 @@
 	if(!.)
 		return FALSE
 
-	if(zoom)
-		zoom(user)
-
 	user.remove_movespeed_modifier(MOVESPEED_ID_AIM_SLOWDOWN)
 
 	var/obj/screen/ammo/A = user.hud_used?.ammo
 	if(A)
 		A.remove_hud(user)
+
+	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_AIMING))
+		toggle_aim_mode(user)
 
 	return TRUE
 
@@ -279,13 +294,10 @@
 		ammo = GLOB.ammo_list[overcharge? magazine.overcharge_ammo : magazine.default_ammo]
 		//to_chat(user, "DEBUG: REPLACE AMMO. Ammo: [ammo]")
 
-//Hardcoded and horrible
+///Effects when the gun gets cocked, currently just plays the sound
 /obj/item/weapon/gun/proc/cock_gun(mob/user)
-	set waitfor = 0
 	if(cocked_sound)
-		sleep(3)
-		if(user && loc)
-			playsound(user, cocked_sound, 25, 1)
+		addtimer(CALLBACK(GLOBAL_PROC, .proc/playsound, user, cocked_sound, 25, 1),3)
 
 /*
 Reload a gun using a magazine.
@@ -336,6 +348,8 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 			load_into_chamber()
 
 	update_icon(user)
+	var/obj/screen/ammo/A = user.hud_used.ammo
+	A.update_hud(user)
 	return TRUE
 
 /obj/item/weapon/gun/proc/replace_magazine(mob/user, obj/item/ammo_magazine/magazine)
@@ -756,9 +770,6 @@ and you're good to go.
 		return
 
 	switch(projectile_to_fire.ammo.damage_type)
-		if(HALLOSS)
-			to_chat(user, "<span class = 'notice'>Ow...</span>")
-			user.apply_effect(110, AGONY)
 		if(STAMINA)
 			to_chat(user, "<span class = 'notice'>Ow...</span>")
 			user.apply_damage(200, STAMINA)
@@ -803,6 +814,9 @@ and you're good to go.
 		return FALSE
 	if((flags_gun_features & GUN_WIELDED_FIRING_ONLY) && !(flags_item & WIELDED)) //If we're not holding the weapon with both hands when we should.
 		to_chat(user, "<span class='warning'>You need a more secure grip to fire this weapon!")
+		return FALSE
+	if(user.do_actions)
+		to_chat(user, "<span class='warning'>You are doing something else currently.")
 		return FALSE
 	if((flags_gun_features & GUN_POLICE) && !police_allowed_check(user))
 		return FALSE
@@ -861,6 +875,8 @@ and you're good to go.
 	projectile_to_fire.damage *= damage_mult
 	projectile_to_fire.damage_falloff *= damage_falloff_mult
 	projectile_to_fire.projectile_speed += shell_speed_mod
+	projectile_to_fire.projectile_iff = gun_iff_signal
+	projectile_to_fire.damage_marine_falloff = iff_marine_damage_falloff
 
 
 /obj/item/weapon/gun/proc/setup_bullet_accuracy(obj/projectile/projectile_to_fire, mob/user, bullets_fired = 1, dual_wield = FALSE)
@@ -877,7 +893,7 @@ and you're good to go.
 		gun_accuracy_mult = max(0.1, gun_accuracy_mult - max(0,movement_acc_penalty_mult * 0.15))
 		gun_scatter += max(0, movement_acc_penalty_mult * 5)
 
-	if(gun_firemode == GUN_FIREMODE_BURSTFIRE && burst_amount > 1)
+	if(gun_firemode == GUN_FIREMODE_BURSTFIRE || gun_firemode == GUN_FIREMODE_AUTOBURST && burst_amount > 1)
 		gun_accuracy_mult = max(0.1, gun_accuracy_mult * burst_accuracy_mult)
 
 	if(dual_wield) //akimbo firing gives terrible accuracy
@@ -978,7 +994,7 @@ and you're good to go.
 	var/prev_light = light_range
 	if(!light_on && (light_range <= muzzle_flash_lum))
 		set_light_range(muzzle_flash_lum)
-		set_light_color(COLOR_VERY_SOFT_YELLOW)
+		set_light_color(muzzle_flash_color)
 		set_light_on(TRUE)
 		addtimer(CALLBACK(src, .proc/reset_light_range, prev_light), 1 SECONDS)
 
@@ -1091,12 +1107,12 @@ and you're good to go.
 		return
 	if(attaching.flags_attach_features & ATTACH_PROJECTILE)
 		return //These are handled through regular Fire() for now.
-	RegisterSignal(src, list(COMSIG_ITEM_MIDDLECLICKON, COMSIG_ITEM_SHIFTCLICKON), .proc/do_fire_attachment) //For weapons with special projectiles not handled via Fire()
+	RegisterSignal(src, list(COMSIG_ITEM_MIDDLECLICKON, COMSIG_ITEM_SHIFTCLICKON, COMSIG_ITEM_RIGHTCLICKON), .proc/do_fire_attachment) //For weapons with special projectiles not handled via Fire()
 
 
 /obj/item/weapon/gun/proc/on_gun_attachment_detach(obj/item/attachable/attached_gun/detaching)
 	active_attachable = null
-	UnregisterSignal(src, list(COMSIG_ITEM_MIDDLECLICKON, COMSIG_ITEM_SHIFTCLICKON))
+	UnregisterSignal(src, list(COMSIG_ITEM_MIDDLECLICKON, COMSIG_ITEM_SHIFTCLICKON, COMSIG_ITEM_RIGHTCLICKON))
 
 
 /obj/item/weapon/gun/proc/do_fire_attachment(datum/source, atom/target, mob/user)

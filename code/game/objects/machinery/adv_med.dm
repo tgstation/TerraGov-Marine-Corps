@@ -127,8 +127,6 @@
 			for(var/atom/movable/A as mob|obj in src)
 				A.loc = src.loc
 				ex_act(severity)
-				//Foreach goto(35)
-			//SN src = null
 			qdel(src)
 			return
 		if(EXPLODE_HEAVY)
@@ -136,8 +134,6 @@
 				for(var/atom/movable/A as mob|obj in src)
 					A.loc = src.loc
 					ex_act(severity)
-					//Foreach goto(108)
-				//SN src = null
 				qdel(src)
 				return
 		if(EXPLODE_LIGHT)
@@ -145,8 +141,6 @@
 				for(var/atom/movable/A as mob|obj in src)
 					A.loc = src.loc
 					ex_act(severity)
-					//Foreach goto(181)
-				//SN src = null
 				qdel(src)
 				return
 		else
@@ -171,7 +165,6 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 3
 	var/obj/machinery/bodyscanner/connected
-	var/known_implants = list(/obj/item/implant/neurostim)
 	var/delete
 	var/temphtml
 
@@ -211,7 +204,7 @@
 	var/dat
 	if(connected?.occupant) //Is something connected?
 		var/mob/living/carbon/human/H = connected.occupant
-		dat = med_scan(H, dat, known_implants)
+		dat = med_scan(H, dat, GLOB.known_implants)
 	else
 		dat = "<font color='red'> Error: No Body Scanner connected.</font>"
 

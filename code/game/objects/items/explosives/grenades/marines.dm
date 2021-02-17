@@ -13,7 +13,7 @@
 	qdel(src)
 
 /obj/item/explosive/grenade/frag/flamer_fire_act()
-	prime()
+	activate()
 
 
 
@@ -26,13 +26,12 @@
 	dangerous = FALSE
 
 /obj/item/explosive/grenade/frag/training/prime()
-	spawn(0)
-		playsound(loc, 'sound/items/detector.ogg', 80, 0, 7)
-		active = 0 //so we can reuse it
-		overlays.Cut()
-		icon_state = initial(icon_state)
-		det_time = initial(det_time) //these can be modified when fired by UGL
-		throw_range = initial(throw_range)
+	playsound(loc, 'sound/items/detector.ogg', 80, 0, 7)
+	active = FALSE //so we can reuse it
+	overlays.Cut()
+	icon_state = initial(icon_state)
+	det_time = initial(det_time) //these can be modified when fired by UGL
+	throw_range = initial(throw_range)
 
 
 /obj/item/explosive/grenade/frag/training/flamer_fire_act()
@@ -353,6 +352,9 @@
 	// All good, turn it on.
 	user.visible_message("<span class='notice'>[user] activates the flare.</span>", "<span class='notice'>You depress the ignition button, activating it!</span>")
 	turn_on(user)
+	if(iscarbon(user))
+		var/mob/living/carbon/C = usr
+		C.toggle_throw_mode()
 
 /obj/item/explosive/grenade/flare/activate(mob/user)
 	if(!active)
@@ -391,8 +393,7 @@
 			target_zone = "chest"
 		if(launched && CHECK_BITFIELD(resistance_flags, ON_FIRE))
 			var/armor_block = L.run_armor_check(target_zone, "fire")
-			L.apply_damage(rand(throwforce*0.75,throwforce*1.25), BURN, target_zone, armor_block) //Do more damage if launched from a proper launcher and active
-			UPDATEHEALTH(L)
+			L.apply_damage(rand(throwforce*0.75,throwforce*1.25), BURN, target_zone, armor_block, updating_health = TRUE) //Do more damage if launched from a proper launcher and active
 
 	// Flares instantly burn out nodes when thrown at them.
 	var/obj/effect/alien/weeds/node/N = locate() in loc
@@ -410,7 +411,7 @@
 	light_power = 3
 	light_color = LIGHT_COLOR_GREEN
 	var/datum/squad/user_squad
-	var/obj/effect/overlay/temp/laser_target/target
+	var/obj/effect/overlay/temp/laser_target/cas/target
 
 /obj/item/explosive/grenade/flare/cas/turn_on(mob/living/carbon/human/user)
 	. = ..()

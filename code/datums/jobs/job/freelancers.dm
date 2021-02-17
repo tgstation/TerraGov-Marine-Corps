@@ -19,6 +19,7 @@
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/marine
 	ears = /obj/item/radio/headset/distress/dutch
+	mask = /obj/item/clothing/mask/rebreather/scarf/freelancer
 	w_uniform = /obj/item/clothing/under/marine/veteran/freelancer
 	shoes = /obj/item/clothing/shoes/marine
 	wear_suit = /obj/item/clothing/suit/storage/faction/freelancer
@@ -50,11 +51,11 @@
 	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/attachable/verticalgrip, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/attachable/extended_barrel, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/b92fs, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/b92fs, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/b92fs, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/g22, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/g22, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/g22, SLOT_IN_BACKPACK)
 
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/b92fs/raffica, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/g22, SLOT_IN_R_POUCH)
 
 	H.equip_to_slot_or_del(new /obj/item/weapon/combat_knife, SLOT_IN_BOOT)
 
@@ -72,8 +73,9 @@
 	jobtype = /datum/job/freelancer/medic
 
 	id = /obj/item/card/id/silver
-	belt = /obj/item/storage/belt/combatLifesaver/upp
+	belt = /obj/item/storage/belt/combatLifesaver
 	ears = /obj/item/radio/headset/distress/dutch
+	mask = /obj/item/clothing/mask/rebreather/scarf/freelancer
 	w_uniform = /obj/item/clothing/under/marine/veteran/freelancer
 	shoes = /obj/item/clothing/shoes/marine
 	wear_suit = /obj/item/clothing/suit/storage/faction/freelancer
@@ -128,6 +130,7 @@
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/marine
+	mask = /obj/item/clothing/mask/rebreather/scarf/freelancer
 	ears = /obj/item/radio/headset/distress/dutch
 	w_uniform = /obj/item/clothing/under/marine/veteran/freelancer
 	shoes = /obj/item/clothing/shoes/marine

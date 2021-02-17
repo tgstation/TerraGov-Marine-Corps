@@ -37,32 +37,23 @@
 		UnregisterSignal(L, COMSIG_LIVING_DO_RESIST)
 	..()
 
-/mob/living/carbon/xenomorph/warrior/start_pulling(atom/movable/AM, lunge, suppress_message = TRUE)
+/mob/living/carbon/xenomorph/warrior/start_pulling(atom/movable/AM, suppress_message = TRUE, lunge = FALSE)
 	if(!check_state() || agility || !isliving(AM))
 		return FALSE
 
 	var/mob/living/L = AM
 
 	if(isxeno(L))
-		return ..()
+		var/mob/living/carbon/xenomorph/X = L
+		if(issamexenohive(X)) //No neckgrabbing of allies.
+			return ..()
 
 	if(lunge && ..(L, suppress_message))
 		return neck_grab(L)
 
-	if(SEND_SIGNAL(src, COMSIG_WARRIOR_NECKGRAB, L) & COMSIG_WARRIOR_CANT_NECKGRAB)
-		return FALSE
-
 	. = ..(L, suppress_message)
 
-	if(.) //successful pull
-		neck_grab(L)
-
-	SEND_SIGNAL(src, COMSIG_WARRIOR_USED_GRAB)
-
-
 /mob/living/carbon/xenomorph/warrior/proc/neck_grab(mob/living/L)
-	use_plasma(10)
-
 	GLOB.round_statistics.warrior_grabs++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "warrior_grabs")
 	setGrabState(GRAB_NECK)

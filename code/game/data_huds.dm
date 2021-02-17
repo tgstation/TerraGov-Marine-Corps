@@ -109,7 +109,7 @@
 
 //medical hud used by ghosts
 /datum/atom_hud/medical/observer
-	hud_icons = list(HEALTH_HUD, XENO_EMBRYO_HUD, XENO_REAGENT_HUD, STATUS_HUD)
+	hud_icons = list(HEALTH_HUD, XENO_EMBRYO_HUD, XENO_REAGENT_HUD, STATUS_HUD, MACHINE_HEALTH_HUD, SENTRY_AMMO_HUD)
 
 
 /datum/atom_hud/medical/pain
@@ -339,6 +339,10 @@
 /datum/atom_hud/xeno_reagents
 	hud_icons = list(XENO_REAGENT_HUD)
 
+///hud component for revealing tactical elements to xenos
+/datum/atom_hud/xeno_tactical
+	hud_icons = list(XENO_TACTICAL_HUD)
+
 //Xeno status hud, for xenos
 /datum/atom_hud/xeno
 	hud_icons = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD, ARMOR_SUNDER_HUD)
@@ -425,7 +429,7 @@
 
 
 /datum/atom_hud/security
-	hud_icons = list(IMPTRACK_HUD, IMPLOYAL_HUD, IMPCHEM_HUD, WANTED_HUD)
+	hud_icons = list(WANTED_HUD)
 
 
 /mob/living/carbon/human/proc/sec_hud_set_security_status()
@@ -451,14 +455,14 @@
 
 
 /datum/atom_hud/squad
-	hud_icons = list(SQUAD_HUD)
+	hud_icons = list(SQUAD_HUD, MACHINE_HEALTH_HUD, SENTRY_AMMO_HUD)
 
 
-/mob/proc/hud_set_squad()
+/mob/proc/hud_set_job()
 	return
 
 
-/mob/living/carbon/human/hud_set_squad()
+/mob/living/carbon/human/hud_set_job()
 	var/image/holder = hud_list[SQUAD_HUD]
 	holder.icon_state = ""
 	holder.overlays.Cut()
@@ -480,7 +484,7 @@
 			holder.overlays += IMG2
 
 	else if(job.job_flags & JOB_FLAG_PROVIDES_SQUAD_HUD)
-		holder.icon_state = "hudmarine [job.title]"
+		holder.overlays += image('icons/mob/hud.dmi', src, "hudmarine [job.title]")
 
 	hud_list[SQUAD_HUD] = holder
 
@@ -514,14 +518,32 @@
 
 	hud_list[ORDER_HUD] = holder
 
+///Makes sentry health visible
+/obj/machinery/proc/hud_set_machine_health()
+	var/image/holder = hud_list[MACHINE_HEALTH_HUD]
 
-/datum/atom_hud/ai_detector
-	hud_icons = list(AI_DETECT_HUD)
+	if(!holder)
+		return
 
+	if(obj_integrity < 1)
+		holder.icon_state = "xenohealth0"
+		return
 
-/datum/atom_hud/ai_detector/add_hud_to(mob/M)
-	. = ..()
-	if(M && (length(hudusers) == 1))
-		for(var/V in GLOB.aiEyes)
-			var/mob/camera/aiEye/E = V
-			E.update_ai_detect_hud()
+	var/amount = round(obj_integrity * 100 / max_integrity, 10)
+	if(!amount)
+		amount = 1 //don't want the 'zero health' icon when we still have 4% of our health
+	holder.icon_state = "xenohealth[amount]"
+
+///Makes sentry ammo visible
+/obj/machinery/marine_turret/proc/hud_set_sentry_ammo()
+	var/image/holder = hud_list[SENTRY_AMMO_HUD]
+
+	if(!holder)
+		return
+
+	if(!rounds)
+		holder.icon_state = "plasma0"
+		return
+
+	var/amount = round(rounds * 100 / rounds_max, 10)
+	holder.icon_state = "plasma[amount]"

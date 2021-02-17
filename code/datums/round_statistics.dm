@@ -31,7 +31,6 @@ GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 	var/praetorian_acid_sprays = 0
 	var/praetorian_spray_direct_hits = 0
 	var/psychic_flings = 0
-	var/psychic_chokes = 0
 	var/psychic_cures = 0
 	var/warrior_flings = 0
 	var/warrior_punches = 0
@@ -46,6 +45,7 @@ GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 	var/defender_crest_raises = 0 //manual disabling of the crest
 	var/defender_fortifiy_toggles = 0
 	var/runner_savage_attacks = 0
+	var/runner_evasions = 0
 	var/weeds_planted = 0
 	var/weeds_destroyed = 0
 	var/grenades_thrown = 0
@@ -55,9 +55,12 @@ GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 	var/defiler_defiler_stings = 0
 	var/defiler_neurogas_uses = 0
 	var/defiler_inject_egg_neurogas = 0
+	var/defiler_reagent_slashes = 0
 	var/larval_growth_stings = 0
-	var/drone_salvage_plasma = 0
+	var/drone_salvage_biomass = 0
 	var/xeno_unarmed_attacks = 0
 	var/xeno_bump_attacks = 0
 	var/xeno_headbites = 0
 	var/xeno_silo_corpses = 0
+	var/xeno_rally_hive = 0
+	var/hivelord_healing_infusions = 0

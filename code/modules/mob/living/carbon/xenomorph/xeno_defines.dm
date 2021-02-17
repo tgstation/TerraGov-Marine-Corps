@@ -37,6 +37,7 @@
 
 	// *** Speed *** //
 	var/speed = 1
+	var/weeds_speed_mod = -0.4
 
 	// *** Regeneration Delay ***//
 	///Time after you take damage before a xenomorph can regen.
@@ -109,6 +110,8 @@
 	// *** Acid spray *** //
 	///Number of tiles of the acid spray cone extends outward to. Not recommended to go beyond 4.
 	var/acid_spray_range = 0
+	///How long the acid spray stays on floor before it deletes itself, should be higher than 0 to avoid runtimes with timers.
+	var/acid_spray_duration = 1
 	///The damage acid spray causes on hit.
 	var/acid_spray_damage_on_hit = 0
 	///The damage acid spray causes over time.
@@ -195,6 +198,8 @@
 	faction = FACTION_XENO
 	initial_language_holder = /datum/language_holder/xeno
 	gib_chance = 5
+	light_system = MOVABLE_LIGHT
+	light_on = FALSE
 
 	var/hivenumber = XENO_HIVE_NORMAL
 
@@ -285,6 +290,10 @@
 	var/fortify = 0
 	var/crest_defense = 0
 
+	// Hivelord vars
+	///Whether or not the Hivelord's healing infusion is active on this target.
+	var/infusion_active = 0
+
 	//Leader vars
 	var/leader_aura_strength = 0 //Pheromone strength inherited from Queen
 	var/leader_current_aura = "" //Pheromone type inherited from Queen
@@ -302,3 +311,8 @@
 	var/notice_delay = 20 //2 second between notices
 
 	var/fire_luminosity = 0 //Luminosity of the current fire while burning
+	
+	///The xenos/silo currently tracked by the xeno_tracker arrow
+	var/tracked 
+
+	COOLDOWN_DECLARE(xeno_health_alert_cooldown)

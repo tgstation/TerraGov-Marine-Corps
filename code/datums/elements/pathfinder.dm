@@ -14,6 +14,28 @@
 	STOP_PROCESSING(SSpathfinding, src)
 	return ..()
 
+/*
+mob: the mob that's getting the action state
+atom_to_walk_to: target to move to
+distance to maintain: mob will try to be at this distance away from the atom to walk to
+stutter_step: a prob() chance to go left or right of the mob's direction towards the target when distance has been maintained
+*/
+
+/datum/element/pathfinder/Attach(mob/target, atom/atom_to_walk_to, distance_to_maintain = 0, stutter_step = 0)
+	. = ..()
+	if(QDELETED(target))
+		return ELEMENT_INCOMPATIBLE
+
+	if(!ismob(target))
+		return ELEMENT_INCOMPATIBLE
+
+	if(!atom_to_walk_to)
+		return ELEMENT_INCOMPATIBLE
+
+	distances_to_maintain[target] = distance_to_maintain
+	atoms_to_walk_to[target] = atom_to_walk_to
+	stutter_step_prob[target] = stutter_step
+
 /datum/element/pathfinder/process()
 	for(var/mob in distances_to_maintain)
 		var/mob/mob_to_process = mob
@@ -21,7 +43,7 @@
 			continue
 
 		//Okay it can actually physically move, but has it moved too recently?
-		if(world.time <= mob_to_process.last_move_time + mob_to_process.cached_multiplicative_slowdown || mob_to_process.action_busy)
+		if(world.time <= mob_to_process.last_move_time + mob_to_process.cached_multiplicative_slowdown || mob_to_process.do_actions)
 			continue
 
 		if(get_dist(mob_to_process, atoms_to_walk_to[mob_to_process]) == distances_to_maintain[mob_to_process])
@@ -42,25 +64,6 @@
 		if(!step_to(mob_to_process, atoms_to_walk_to[mob_to_process]))
 			SEND_SIGNAL(mob_to_process, COMSIG_OBSTRUCTED_MOVE)
 		mob_to_process.last_move_time = world.time
-
-/*
-mob: the mob that's getting the action state
-atom_to_walk_to: target to move to
-distance to maintain: mob will try to be at this distance away from the atom to walk to
-stutter_step: a prob() chance to go left or right of the mob's direction towards the target when distance has been maintained
-*/
-
-/datum/element/pathfinder/Attach(mob/target, atom/atom_to_walk_to, distance_to_maintain = 0, stutter_step = 0)
-	. = ..()
-	if(QDELETED(target))
-		return ELEMENT_INCOMPATIBLE
-	if(!ismob(target))
-		return ELEMENT_INCOMPATIBLE
-	if(!atom_to_walk_to)
-		return ELEMENT_INCOMPATIBLE
-	distances_to_maintain[target] = distance_to_maintain
-	atoms_to_walk_to[target] = atom_to_walk_to
-	stutter_step_prob[target] = stutter_step
 
 /datum/element/pathfinder/Detach(datum/source)
 	distances_to_maintain.Remove(source)

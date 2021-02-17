@@ -1,8 +1,8 @@
 
-obj/item/limb
+/obj/item/limb
 	icon = 'icons/mob/human_races/r_human.dmi'
 
-obj/item/limb/New(loc, mob/living/carbon/human/H)
+/obj/item/limb/New(loc, mob/living/carbon/human/H)
 	..(loc)
 	if(!istype(H))
 		return
@@ -42,24 +42,31 @@ obj/item/limb/New(loc, mob/living/carbon/human/H)
 /obj/item/limb/l_arm
 	name = "left arm"
 	icon_state = "l_arm"
+
 /obj/item/limb/l_foot
 	name = "left foot"
 	icon_state = "l_foot"
+
 /obj/item/limb/l_hand
 	name = "left hand"
 	icon_state = "l_hand"
+
 /obj/item/limb/l_leg
 	name = "left leg"
 	icon_state = "l_leg"
+
 /obj/item/limb/r_arm
 	name = "right arm"
 	icon_state = "r_arm"
+
 /obj/item/limb/r_foot
 	name = "right foot"
 	icon_state = "r_foot"
+
 /obj/item/limb/r_hand
 	name = "right hand"
 	icon_state = "r_hand"
+
 /obj/item/limb/r_leg
 	name = "right leg"
 	icon_state = "r_leg"

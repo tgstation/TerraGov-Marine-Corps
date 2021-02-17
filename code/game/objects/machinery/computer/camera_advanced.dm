@@ -74,7 +74,7 @@
 
 
 /obj/machinery/computer/camera_advanced/check_eye(mob/living/user)
-	if(machine_stat & (NOPOWER|BROKEN) || user.incapacitated(TRUE))
+	if(machine_stat & (NOPOWER|BROKEN|DISABLED) || user.incapacitated(TRUE))
 		user.unset_interaction()
 	if(isAI(user))
 		return
@@ -161,7 +161,6 @@
 	user.reset_perspective(eyeobj)
 	eyeobj.setLoc(eyeobj.loc)
 
-
 /obj/machinery/computer/camera_advanced/proc/track(mob/living/target)
 	if(!istype(target))
 		return
@@ -236,7 +235,6 @@
 		forceMove(T)
 	else
 		moveToNullspace()
-	update_ai_detect_hud()
 	if(use_static != USE_STATIC_NONE)
 		GLOB.cameranet.visibility(src, GetViewerClient(), null, use_static)
 	if(visible_icon && eye_user.client)
@@ -326,7 +324,7 @@
 			T["[C.c_tag][C.can_use() ? null : " (Deactivated)"]"] = C
 
 	playsound(origin, 'sound/machines/terminal_prompt.ogg', 25, 0)
-	var/camera = input("Choose which camera you want to view?", "Cameras") as null|anything in T
+	var/camera = tgui_input_list(origin, "Choose which camera you want to view?", "Cameras", T)
 	var/obj/machinery/camera/C = T[camera]
 	playsound(src, "terminal_type", 25, 0)
 

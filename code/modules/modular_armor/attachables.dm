@@ -2,7 +2,12 @@
 	Modular armor attachments
 
 	These are utilty attachments that equip into module slots on modular armor
+
 */
+
+/obj/item/armor_module/attachable
+	icon = 'icons/mob/modular/modular_armor_modules.dmi'
+
 /obj/item/armor_module/attachable/can_attach(mob/living/user, obj/item/clothing/suit/modular/parent, silent = FALSE)
 	. = ..()
 	if(!.)
@@ -121,7 +126,7 @@
 	name = "\improper Mark 1 Tyr Armor Reinforcement"
 	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. A substantial amount of additional armor plating designed to fit inside some of the vulnerable portions of the Jaeger Combat Exoskeleton conventional armor patterns. This older version has worse protection. Will definitely impact mobility."
 	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
-	slowdown = 0.3
+	slowdown = 0.4
 
 
 /** Environment protecttion module */
@@ -159,7 +164,7 @@
 	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. When activated, this system provides substantial resistance to environmental hazards, such as gases and radiological exposure. This older version provides no protection to acid. Best paired with the Mimir Environmental Helmet System. Will impact mobility." // Add the toggable thing to the description when you are done, okay? ~XS300
 	icon_state = "mod_biohazard_icon"
 	item_state = "mod_biohazard"
-	soft_armor = null //None, nada. This is made to protect you from gas and nothing else.
+	soft_armor = list("bio" = 0, "rad" = 10, "acid" = 0) //None, nada. This is made to protect you from gas and nothing else.
 	slowdown = 0.2 //So it isn't literally 100% better than running stock jaeger.
 	module_type = ARMOR_MODULE_TOGGLE
 
@@ -177,6 +182,25 @@
 	parent.slowdown += slowdown
 
 /obj/item/armor_module/attachable/hlin_explosive_armor/do_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
+	parent.soft_armor = parent.soft_armor.detachArmor(soft_armor)
+	parent.slowdown -= slowdown
+	return ..()
+
+/** Extra armor module */
+/obj/item/armor_module/attachable/ballistic_armor
+	name = "\improper Ballistic Armor Reinforcement"
+	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. A substantial amount of additional armor plating designed to fit inside some of the vulnerable portions of the Jaeger Combat Exoskeleton conventional armor patterns against bullets and nothing else. Will definitely impact mobility."
+	icon_state = "mod_ff_icon"
+	item_state = "mod_ff"
+	soft_armor = list("melee" = 0, "bullet" = 40, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	slowdown = 0.2
+
+/obj/item/armor_module/attachable/ballistic_armor/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
+	. = ..()
+	parent.soft_armor = parent.soft_armor.attachArmor(soft_armor)
+	parent.slowdown += slowdown
+
+/obj/item/armor_module/attachable/ballistic_armor/do_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	parent.soft_armor = parent.soft_armor.detachArmor(soft_armor)
 	parent.slowdown -= slowdown
 	return ..()

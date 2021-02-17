@@ -49,12 +49,15 @@
 // Subsystems shutdown in the reverse of the order they initialize in
 // The numbers just define the ordering, they are meaningless otherwise.
 
-#define INIT_ORDER_GARBAGE			19
-#define INIT_ORDER_DBCORE			18
-#define INIT_ORDER_SERVER_MAINT		17
-#define INIT_ORDER_INPUT			16
+#define INIT_ORDER_GARBAGE			27
+#define INIT_ORDER_DBCORE			25
+#define INIT_ORDER_SERVER_MAINT		23
+#define INIT_ORDER_INPUT			21
+#define INIT_ORDER_SOUNDS			19
+#define INIT_ORDER_INSTRUMENTS		17
 #define INIT_ORDER_CODEX 			15
 #define INIT_ORDER_EVENTS			14
+#define INIT_ORDER_MONITOR  		13
 #define INIT_ORDER_JOBS				12
 #define INIT_ORDER_TICKER			10
 #define INIT_ORDER_MAPPING			9
@@ -83,11 +86,13 @@
 #define FIRE_PRIORITY_WEED			11
 #define FIRE_PRIORITY_GARBAGE		15
 #define FIRE_PRIORITY_DIRECTION		19
+#define FIRE_PRIORITY_SPAWNING		20
 #define FIRE_PRIORITY_AIR			20
 #define FIRE_PRIORITY_NPC			20
 #define FIRE_PRIORITY_PROCESS		25
 #define FIRE_PRIORITY_OBJ			40
 #define FIRE_PRIORITY_DEFAULT		50
+#define FIRE_PRIORITY_INSTRUMENTS	80
 #define FIRE_PRIORITY_POINTS		90
 #define FIRE_PRIORITY_MOBS			100
 #define FIRE_PRIORITY_TGUI			110
@@ -113,7 +118,7 @@
 
 
 #define COMPILE_OVERLAYS(A)\
-	if (TRUE) {\
+	do {\
 		var/list/ad = A.add_overlays;\
 		var/list/rm = A.remove_overlays;\
 		var/list/po = A.priority_overlays;\
@@ -129,7 +134,8 @@
 			A.overlays |= po;\
 		}\
 		A.flags_atom &= ~OVERLAY_QUEUED;\
-	}
+	} while (FALSE)
+
 
 
 /// Explosion Subsystem subtasks

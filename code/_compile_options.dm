@@ -11,9 +11,6 @@
 #ifdef TESTING
 #define DATUMVAR_DEBUGGING_MODE
 
-//#define REFERENCE_TRACKING		//Enables extools-powered reference tracking system, letting you see what is
-									//referencing objects that refuse to hard delete
-
 //#define VISUALIZE_ACTIVE_TURFS	//Highlights atmos active turfs in green
 #endif
 
@@ -37,6 +34,23 @@
 #error Your version of BYOND is too out-of-date to compile this project. Go to https://secure.byond.com/download and update.
 #error You need version 513.1523 or higher
 #endif
+#endif
+
+//Update this whenever the byond version is stable so people stop updating to hilariously broken versions
+#define MAX_COMPILER_VERSION 513
+#define MAX_COMPILER_BUILD 1542
+#if DM_VERSION > MAX_COMPILER_VERSION || DM_BUILD > MAX_COMPILER_BUILD
+#warn WARNING! your byond version is over the recommended version(MAX_COMPILER_VERSION:MAX_COMPILER_BUILD)! There may be unexpected byond bugs!
+#endif
+
+//Don't load extools on 514
+#if DM_VERSION < 514
+#define USE_EXTOOLS
+#endif
+
+#ifdef USE_EXTOOLS
+//#define REFERENCE_TRACKING		//Enables extools-powered reference tracking system, letting you see what is
+									//referencing objects that refuse to hard delete
 #endif
 
 //Additional code for the above flags.

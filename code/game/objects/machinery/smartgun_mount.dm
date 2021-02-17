@@ -107,7 +107,7 @@
 	qdel(src)
 
 /obj/item/standard_hmg/welder_act(mob/living/user, obj/item/I)
-	if(user.action_busy)
+	if(user.do_actions)
 		return FALSE
 
 	var/obj/item/tool/weldingtool/WT = I
@@ -172,6 +172,7 @@
 	var/atom/target = null // required for shooting at things.
 	var/datum/ammo/bullet/machinegun/ammo = /datum/ammo/bullet/machinegun
 	var/obj/projectile/in_chamber = null
+	var/list/iff_signal = list(ACCESS_IFF_MARINE)
 	var/locked = 0 //1 means its locked inplace (this will be for sandbag MGs)
 	var/is_bursting = 0.
 	var/icon_full = "turret" // Put this system in for other MGs or just other mounted weapons in general, future proofing.
@@ -227,7 +228,7 @@
 		if(rounds == rounds_max)
 			to_chat(user, "<span class='warning'>You cannot reload the Smartgun, it has a full drum of ammo!</span>")
 			return
-		if(user.action_busy)
+		if(user.do_actions)
 			return
 		if(!do_after(user, 25, TRUE, src, BUSY_ICON_FRIENDLY))
 			return
@@ -243,7 +244,7 @@
 		qdel(I)
 
 /obj/machinery/standard_hmg/welder_act(mob/living/user, obj/item/I)
-	if(user.action_busy)
+	if(user.do_actions)
 		return FALSE
 
 	var/obj/item/tool/weldingtool/WT = I
@@ -312,8 +313,8 @@
 		qdel(src)
 
 
-/obj/machinery/standard_hmg/attack_alien(mob/living/carbon/xenomorph/M) // Those Ayy lmaos.
-	SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_M56)
+/obj/machinery/standard_hmg/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE) // Those Ayy lmaos.
+	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_M56)
 	return ..()
 
 
@@ -398,6 +399,7 @@
 		A = target
 	proj_to_fire.setDir(dir)
 	proj_to_fire.def_zone = pick("chest","chest","chest","head")
+	proj_to_fire.projectile_iff = iff_signal
 	playsound(loc, 'sound/weapons/guns/fire/hmg2.ogg', 65, TRUE)
 	if(!QDELETED(target))
 		var/angle = round(Get_Angle(src,target))

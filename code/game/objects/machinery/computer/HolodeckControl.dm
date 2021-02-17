@@ -73,10 +73,10 @@
 		return FALSE
 	attack_alien(user)
 
-/obj/item/toy/beach_ball/holoball/attack_alien(mob/living/carbon/xenomorph/user)
+/obj/item/toy/beach_ball/holoball/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(!CONFIG_GET(flag/fun_allowed))
 		return FALSE
-	attack_hand(user)
+	attack_hand(X)
 
 /obj/structure/holohoop
 	name = "basketball hoop"
@@ -116,7 +116,8 @@
 				X.score(side)
 		visible_message("<span class='notice'>[user] dunks [I] into the [src]!</span>")
 
-/obj/structure/holohoop/CanPass(atom/movable/mover, turf/target)
+/obj/structure/holohoop/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(istype(mover,/obj/item) && mover.throwing)
 		var/obj/item/I = mover
 		if(prob(50))

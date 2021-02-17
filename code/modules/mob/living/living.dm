@@ -18,7 +18,8 @@
 	handle_drugged()
 	handle_stuttering()
 	handle_slurring()
-
+	handle_slowdown()
+	handle_stagger()
 
 /mob/living/proc/handle_organs()
 	reagent_shock_modifier = 0
@@ -52,12 +53,6 @@
 /mob/living/proc/handle_regular_hud_updates()
 	if(!client)
 		return FALSE
-
-/mob/living/proc/add_slowdown(amount)
-	return
-
-/mob/living/proc/adjust_stagger(amount)
-	return
 
 /mob/living/proc/updatehealth()
 	if(status_flags & GODMODE)
@@ -418,8 +413,8 @@
 	now_pushing = FALSE
 
 
-/mob/living/throw_at(atom/target, range, speed, thrower, spin)
-	if(!target || !src)
+/mob/living/throw_at(atom/target, range, speed, thrower, spin, flying = FALSE)
+	if(!target)
 		return 0
 	if(pulling)
 		stop_pulling() //being thrown breaks pulls.
@@ -427,7 +422,24 @@
 		pulledby.stop_pulling()
 	return ..()
 
-
+/**
+ * Throw the mob while giving HOVERING to flag_pass and setting layer to FLY_LAYER
+ *
+ * target : where will the mob be thrown at
+ * range : how far the mob will be thrown, in tile
+ * speed : how fast will it fly
+ */
+/mob/living/proc/fly_at(atom/target, range, speed, hovering_time) 
+	addtimer(CALLBACK(src,.proc/end_flying, layer), hovering_time)
+	layer = FLY_LAYER
+	set_flying(TRUE)
+	throw_at(target, range, speed, null, 0, TRUE)
+			
+///remove flying flags and reset the sprite layer
+/mob/living/proc/end_flying(init_layer)
+	set_flying(FALSE)
+	layer = init_layer
+	
 /mob/living/proc/offer_mob()
 	GLOB.offered_mob_list += src
 	notify_ghosts("<span class='boldnotice'>A mob is being offered! Name: [name][job ? " Job: [job.title]" : ""] </span>", enter_link = "claim=[REF(src)]", source = src, action = NOTIFY_ORBIT)
@@ -606,7 +618,7 @@ below 100 is not dizzy
 	SEND_SIGNAL(src, COMSIG_LIVING_SET_CANMOVE, canmove)
 
 
-/mob/living/proc/update_leader_tracking(mob/living/L)
+/mob/living/proc/update_tracking(mob/living/L)
 	return
 
 /mob/living/proc/clear_leader_tracking()
@@ -760,13 +772,13 @@ below 100 is not dizzy
 	return D.Adjacent(src)
 
 /**
-  * Changes the inclination angle of a mob, used by humans and others to differentiate between standing up and prone positions.
-  *
-  * In BYOND-angles 0 is NORTH, 90 is EAST, 180 is SOUTH and 270 is WEST.
-  * This usually means that 0 is standing up, 90 and 270 are horizontal positions to right and left respectively, and 180 is upside-down.
-  * Mobs that do now follow these conventions due to unusual sprites should require a special handling or redefinition of this proc, due to the density and layer changes.
-  * The return of this proc is the previous value of the modified lying_angle if a change was successful (might include zero), or null if no change was made.
-  */
+ * Changes the inclination angle of a mob, used by humans and others to differentiate between standing up and prone positions.
+ *
+ * In BYOND-angles 0 is NORTH, 90 is EAST, 180 is SOUTH and 270 is WEST.
+ * This usually means that 0 is standing up, 90 and 270 are horizontal positions to right and left respectively, and 180 is upside-down.
+ * Mobs that do now follow these conventions due to unusual sprites should require a special handling or redefinition of this proc, due to the density and layer changes.
+ * The return of this proc is the previous value of the modified lying_angle if a change was successful (might include zero), or null if no change was made.
+ */
 /mob/living/proc/set_lying_angle(new_lying)
 	if(new_lying == lying_angle)
 		return

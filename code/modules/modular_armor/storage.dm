@@ -7,7 +7,7 @@
 
 /** Storage modules */
 /obj/item/armor_module/storage
-	icon = 'icons/mob/modular/modular_armor.dmi'
+	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "mod_is_bag"
 
 	/// Internal storage type
@@ -80,6 +80,16 @@
 	max_storage_space = 6
 	storage_slots = 2
 	max_w_class = WEIGHT_CLASS_NORMAL
+
+	bypass_w_limit = list(
+		/obj/item/ammo_magazine/rifle,
+		/obj/item/cell/lasgun,
+		/obj/item/ammo_magazine/smg,
+		/obj/item/ammo_magazine/pistol,
+		/obj/item/ammo_magazine/revolver,
+		/obj/item/ammo_magazine/sniper,
+		/obj/item/ammo_magazine/handful,
+	)
 
 /obj/item/armor_module/storage/ammo_mag
 	name = "Magazine Storage module"
@@ -164,6 +174,8 @@
 		/obj/item/storage/pill_bottle,
 		/obj/item/clothing/gloves/latex,
 		/obj/item/reagent_containers/hypospray/autoinjector,
+		/obj/item/reagent_containers/hypospray/advanced,
+		/obj/item/reagent_containers/hypospray,
 		/obj/item/stack/medical,
 	)
 

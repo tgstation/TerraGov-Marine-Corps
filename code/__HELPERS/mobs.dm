@@ -44,7 +44,7 @@
 
 
 /proc/get_playable_species()
-	var/list/playable_species = list(GLOB.all_species[DEFAULT_SPECIES])
+	var/list/playable_species = list(GLOB.roundstart_species)
 	return playable_species
 
 
@@ -58,7 +58,7 @@
 	var/holding = user.get_active_held_item()
 	var/datum/progressbar/P = prog_bar ? new prog_bar(user, delay, target, user_display, target_display) : null
 
-	user.action_busy++
+	LAZYINCREMENT(user.do_actions, target)
 	var/endtime = world.time + delay
 	var/starttime = world.time
 	. = TRUE
@@ -85,7 +85,7 @@
 	if(P)
 		qdel(P)
 
-	user.action_busy--
+	LAZYDECREMENT(user.do_actions, target)
 
 
 //some additional checks as a callback for for do_afters that want to break on losing health or on the mob taking action
@@ -124,7 +124,7 @@
 		progtarget = user
 	var/datum/progressbar/P = prog_bar ? new prog_bar(user, delay, progtarget, user_display, target_display) : null
 
-	user.action_busy++
+	LAZYINCREMENT(user.do_actions, target)
 	var/endtime = world.time + delay
 	var/starttime = world.time
 	. = TRUE
@@ -146,7 +146,7 @@
 			break
 	if(P)
 		qdel(P)
-	user.action_busy--
+	LAZYDECREMENT(user.do_actions, target)
 
 
 /mob/proc/do_after_coefficent() // This gets added to the delay on a do_after, default 1
@@ -203,10 +203,13 @@
 
 		switch(message_type)
 			if(DEADCHAT_DEATHRATTLE)
-				if(deadchat_toggles & DISABLE_DEATHRATTLE)
+				if(CHECK_BITFIELD(deadchat_toggles, DISABLE_DEATHRATTLE))
 					continue
 			if(DEADCHAT_ARRIVALRATTLE)
-				if(deadchat_toggles & DISABLE_ARRIVALRATTLE)
+				if(CHECK_BITFIELD(deadchat_toggles, DISABLE_ARRIVALRATTLE))
+					continue
+			if(DEADCHAT_REGULAR)
+				if(!CHECK_BITFIELD(chat_toggles, CHAT_DEAD))
 					continue
 
 		if(isobserver(M))

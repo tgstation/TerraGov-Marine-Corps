@@ -8,13 +8,13 @@
 #define IMPREGNATION_TIME 12 SECONDS
 
 /**
-  *Facehuggers
-  *
-  *They work by being activated using timers to trigger leap_at_nearest_target()
-  *Going inactive and active is handeled by go_active() and go_idle()
-  *Lifetime is handled by a timer on check_lifecycle()
-  *For the love of god do not use process() and rng for this kind of shit it makes it unreliable and buggy as fuck
-  */
+ *Facehuggers
+ *
+ *They work by being activated using timers to trigger leap_at_nearest_target()
+ *Going inactive and active is handeled by go_active() and go_idle()
+ *Lifetime is handled by a timer on check_lifecycle()
+ *For the love of god do not use process() and rng for this kind of shit it makes it unreliable and buggy as fuck
+ */
 /obj/item/clothing/mask/facehugger
 	name = "alien"
 	desc = "It has some sort of a tube at the end of its tail."
@@ -74,15 +74,15 @@
 
 
 //Deal with picking up facehuggers. "attack_alien" is the universal 'xenos click something while unarmed' proc.
-/obj/item/clothing/mask/facehugger/attack_alien(mob/living/carbon/xenomorph/user)
-	if(!issamexenohive(user) && stat != DEAD)
-		user.do_attack_animation(src, ATTACK_EFFECT_SMASH)
-		user.visible_message("<span class='xenowarning'>[user] crushes \the [src]",
+/obj/item/clothing/mask/facehugger/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(!issamexenohive(X) && stat != DEAD)
+		X.do_attack_animation(src, ATTACK_EFFECT_SMASH)
+		X.visible_message("<span class='xenowarning'>[X] crushes \the [src]",
 			"<span class='xenowarning'>We crush \the [src]")
 		kill_hugger()
 		return
 	else
-		attack_hand(user)
+		attack_hand(X)
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/clothing/mask/facehugger/attack_hand(mob/living/user)
@@ -354,7 +354,7 @@
 
 	if(M.in_throw_mode && M.dir != dir && !M.incapacitated() && !M.get_active_held_item())
 		var/catch_chance = 50
-		if(M.dir == reverse_direction(dir))
+		if(M.dir == REVERSE_DIR(dir))
 			catch_chance += 20
 		catch_chance -= M.shock_stage * 0.3
 		if(M.get_inactive_held_item())
@@ -460,8 +460,7 @@
 			target.visible_message("<span class='danger'>[src] falls limp after violating [target]'s face!</span>")
 		else //Huggered but not impregnated, deal damage.
 			target.visible_message("<span class='danger'>[src] frantically claws at [target]'s face before falling down!</span>","<span class='danger'>[src] frantically claws at your face before falling down! Auugh!</span>")
-			target.apply_damage(15, BRUTE, "head")
-			UPDATEHEALTH(target)
+			target.apply_damage(15, BRUTE, "head", updating_health = TRUE)
 
 
 /obj/item/clothing/mask/facehugger/proc/kill_hugger()
@@ -512,7 +511,7 @@
 	..()
 	if(P.ammo.flags_ammo_behavior & AMMO_XENO)
 		return FALSE //Xeno spits ignore huggers.
-	if(P.damage && !(P.ammo.damage_type in list(OXY, HALLOSS, STAMINA)))
+	if(P.damage && !(P.ammo.damage_type in list(OXY, STAMINA)))
 		kill_hugger()
 	P.ammo.on_hit_obj(src,P)
 	return TRUE

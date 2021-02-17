@@ -1,13 +1,16 @@
 /datum/element/scalping/Attach(datum/target, _result)
 	. = ..()
-	RegisterSignal(target, COMSIG_ITEM_ATTACK, .proc/on_attack)
+	RegisterSignal(target, COMSIG_ITEM_ATTACK, .proc/_on_attack)
 
 /datum/element/scalping/Detach(datum/source, force)
 	. = ..()
 	UnregisterSignal(source, COMSIG_ITEM_ATTACK)
 
+/datum/element/scalping/proc/_on_attack(datum/source, mob/living/M, mob/living/user)
+	SIGNAL_HANDLER
+	INVOKE_ASYNC(src, .proc/on_attack, source, M, user)
+
 /datum/element/scalping/proc/on_attack(datum/source, mob/living/M, mob/living/user)
-	SIGNAL_HANDLER_DOES_SLEEP
 	if(!isxeno(M) || (M.stat != DEAD))
 		return NONE
 	if(M.a_intent == INTENT_HARM)

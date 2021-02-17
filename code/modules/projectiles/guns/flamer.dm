@@ -28,16 +28,26 @@
 	fire_delay = 4
 
 
-/obj/item/weapon/gun/flamer/unique_action(mob/user)
-	return toggle_flame(user)
+/obj/item/weapon/gun/flamer/Initialize()
+	. = ..()
+	if (current_mag) //A flamer spawing with a mag will be lit up
+		light_pilot(null,TRUE)
 
+/obj/item/weapon/gun/flamer/update_icon(mob/user)
+	if(!current_mag)
+		icon_state = base_gun_icon + "_e"
+	else if(istype(current_mag,/obj/item/ammo_magazine/flamer_tank/backtank))
+		icon_state = base_gun_icon + "_l"
+	else
+		icon_state = base_gun_icon
+	update_item_state(user)
+	update_mag_overlay(user)
 
 /obj/item/weapon/gun/flamer/examine_ammo_count(mob/user)
-	to_chat(user, "It's turned [lit? "on" : "off"].")
 	if(current_mag)
 		to_chat(user, "The fuel gauge shows the current tank is [round(current_mag.get_ammo_percent())]% full!")
 	else
-		to_chat(user, "There's no tank in [src]!")
+		to_chat(user, "[src] has no fuel tank!")
 
 /obj/item/weapon/gun/flamer/able_to_fire(mob/user)
 	. = ..()
@@ -45,10 +55,17 @@
 		if(!current_mag || !current_mag.current_rounds)
 			return
 
-
-/obj/item/weapon/gun/flamer/proc/toggle_flame(mob/user)
+/**
+ * Light the pilot light of a flamer
+ * 
+ * mob/user if not null will play a sound and add an overlay
+ * mustlit boolean, if true the pilot light will be lit
+ */
+/obj/item/weapon/gun/flamer/proc/light_pilot(mob/user,mustlit)
+	if (lit == mustlit)//You can't lit what is already lit
+		return
+	lit = mustlit
 	playsound(user, lit ? 'sound/weapons/guns/interact/flamethrower_off.ogg' : 'sound/weapons/guns/interact/flamethrower_on.ogg', 25, 1)
-	lit = !lit
 
 	var/image/I = image('icons/obj/items/gun.dmi', src, "+lit")
 	I.pixel_x += 3
@@ -76,9 +93,6 @@
 	if(!targloc || !curloc)
 		return //Something has gone wrong...
 
-	if(!lit)
-		to_chat(user, "<span class='alert'>The weapon isn't lit</span>")
-		return
 
 	if(!current_mag)
 		return
@@ -87,8 +101,6 @@
 		click_empty(user)
 	else
 		unleash_flame(target, user)
-		var/obj/screen/ammo/A = user.hud_used.ammo
-		A.update_hud(user)
 
 /obj/item/weapon/gun/flamer/reload(mob/user, obj/item/ammo_magazine/magazine)
 	if(!magazine || !istype(magazine))
@@ -99,7 +111,7 @@
 		to_chat(user, "<span class='warning'>That [magazine.name] is empty!</span>")
 		return
 
-	if(!istype(src, magazine.gun_type))
+	if(!istype(src, magazine.gun_type) || istype(magazine, /obj/item/ammo_magazine/flamer_tank/backtank))
 		to_chat(user, "<span class='warning'>That magazine doesn't fit in there!</span>")
 		return
 
@@ -111,43 +123,102 @@
 		to_chat(user, "<span class='warning'>It's still got something loaded!</span>")
 		return
 
+	
+	if(user)
+		if(magazine.reload_delay > 1)
+			to_chat(user, "<span class='notice'>You begin reloading [src]. Hold still...</span>")
+			if(!do_after(user,magazine.reload_delay, TRUE, src, BUSY_ICON_GENERIC))
+				to_chat(user, "<span class='warning'>Your reload was interrupted!</span>")
+				return
+		replace_magazine(user, magazine)
+		light_pilot(user,TRUE)
 	else
-		if(user)
-			if(magazine.reload_delay > 1)
-				to_chat(user, "<span class='notice'>You begin reloading [src]. Hold still...</span>")
-				if(do_after(user,magazine.reload_delay, TRUE, src, BUSY_ICON_GENERIC))
-					replace_magazine(user, magazine)
-				else
-					to_chat(user, "<span class='warning'>Your reload was interrupted!</span>")
-					return
-			else
-				replace_magazine(user, magazine)
-		else
-			current_mag = magazine
-			magazine.loc = src
-			replace_ammo(,magazine)
+		current_mag = magazine
+		magazine.loc = src
+		replace_ammo(,magazine)
+		light_pilot(user,TRUE)
 
 	update_icon()
+
 	return TRUE
 
 /obj/item/weapon/gun/flamer/unload(mob/user, reload_override = 0, drop_override = 0)
 	if(!current_mag)
 		return FALSE //no magazine to unload
+	if(istype(current_mag, /obj/item/ammo_magazine/flamer_tank/backtank))
+		detach_fueltank(user)
+		return
 	if(drop_override || !user) //If we want to drop it on the ground or there's no user.
 		current_mag.forceMove(get_turf(src)) //Drop it on the ground.
 	else
 		user.put_in_hands(current_mag)
 
 	playsound(user, unload_sound, 25, 1)
+	light_pilot(user,FALSE)
 	user.visible_message("<span class='notice'>[user] unloads [current_mag] from [src].</span>",
 	"<span class='notice'>You unload [current_mag] from [src].</span>")
 	current_mag.update_icon()
 	current_mag = null
-
 	update_icon()
-
 	return TRUE
 
+/**Attach a back fuel tank to the flamer, wich will use it a standard magazine
+ * mob/user if not null, will play sound and update hud
+ * obj/item/ammo_magazine/flamer_tank/backtank/fueltank the back tank that is gonna be linked
+ */
+/obj/item/weapon/gun/flamer/proc/attach_fueltank(mob/user, obj/item/ammo_magazine/flamer_tank/backtank/fueltank)
+	if (!istype(fueltank))
+		to_chat(user, "<span class='warning'>That's not an attachable fuel tank!</span>")
+		return
+	
+	if(fueltank.current_rounds <= 0)
+		to_chat(user, "<span class='warning'>That [fueltank.name] is empty!</span>")
+		return
+	
+	to_chat(user, "<span class='notice'>You begin linking [src] with the [fueltank.name]. Hold still...</span>")
+	if(!do_after(user,fueltank.reload_delay, TRUE, src, BUSY_ICON_GENERIC))
+		to_chat(user, "<span class='warning'>Your action was interrupted!</span>")
+		return
+	if (current_mag)
+		if(istype(current_mag,/obj/item/ammo_magazine/flamer_tank/backtank))
+			detach_fueltank(user,FALSE)
+		else
+			user.put_in_hands(current_mag)//We remove the fuel tank if there is one
+	current_mag = fueltank
+	fueltank.attached_flamer = src
+	replace_ammo(user, fueltank)
+	light_pilot(user,TRUE)
+	playsound(user, reload_sound, 25, 1, 5)
+	update_icon(user)
+	var/obj/screen/ammo/A = user.hud_used.ammo
+	A.update_hud(user)
+
+
+/**Proced when unlinking the back fuel tank, making the flamer unlit and unable to fire
+ * mob/user if not null, will allow to play sound and update icons / hud
+ * voluntary if TRUE, will span a notice describing the action
+ */
+/obj/item/weapon/gun/flamer/proc/detach_fueltank(mob/user, voluntary = TRUE)
+	var/obj/item/ammo_magazine/flamer_tank/backtank/fueltank = current_mag
+	current_mag = null
+	fueltank?.attached_flamer = null
+	if (voluntary)
+		to_chat(user, "<span class='notic'>You detach the fuel tank</span>")
+	playsound(user, unload_sound, 25, 1)
+	light_pilot(user,FALSE)
+	update_icon(user)
+	var/obj/screen/ammo/A = user.hud_used.ammo
+	A.update_hud(user)
+	
+
+/obj/item/weapon/gun/flamer/removed_from_inventory(mob/user)
+	. = ..()
+	if (istype(current_mag,/obj/item/ammo_magazine/flamer_tank/backtank)) //Dropping the flamer unlink it from the tank
+		var/obj/item/ammo_magazine/flamer_tank/backtank/backfueltank = current_mag;
+		backfueltank.attached_flamer=null
+		current_mag = null 
+		light_pilot(null,FALSE) 
+	update_icon()
 
 /obj/item/weapon/gun/flamer/proc/unleash_flame(atom/target, mob/living/user)
 	set waitfor = 0
@@ -209,12 +280,17 @@
 			TF = T
 
 		current_mag.current_rounds--
+		if (current_mag.current_rounds<=0)
+			light_pilot(user,FALSE)
+			break
 		flame_turf(TF,user, burntime, burnlevel, fire_color)
 		if(blocked)
 			break
 		distance++
 		prev_T = T
 		sleep(1)
+	var/obj/screen/ammo/A = user.hud_used.ammo
+	A.update_hud(user)
 
 /obj/item/weapon/gun/flamer/proc/flame_turf(turf/T, mob/living/user, heat, burn, f_color = "red")
 	if(!istype(T))
@@ -260,9 +336,7 @@
 			if(H.hard_armor.getRating("fire") >= 100)
 				continue
 
-		var/armor_block = M.run_armor_check(null, "fire")
-		M.apply_damage(rand(burn,(burn*2))* fire_mod, BURN, null, armor_block) // Make it so its the amount of heat or twice it for the initial blast.
-		UPDATEHEALTH(M)
+		M.take_overall_damage_armored(rand(burn,(burn*2))* fire_mod, BURN, "fire", updating_health = TRUE) // Make it so its the amount of heat or twice it for the initial blast.
 		M.adjust_fire_stacks(rand(5,burn*2))
 		M.IgniteMob()
 
@@ -350,7 +424,7 @@
 
 /obj/item/weapon/gun/flamer/marinestandard
 	name = "\improper TL-84 flamethrower"
-	desc = "The TL-84 flamethrower is the current standard issue flamethrower of the TGMC, and is used for area control and urban combat. Uses large flamethrower cans to fuel itself."
+	desc = "The TL-84 flamethrower is the current standard issue flamethrower of the TGMC, and is used for area control and urban combat. Use unique action to use hydro cannon"
 	current_mag = /obj/item/ammo_magazine/flamer_tank/large
 	icon_state = "tl84"
 	item_state = "tl84"
@@ -361,12 +435,17 @@
 		/obj/item/attachable/hydro_cannon,
 	)
 	var/last_use
+	///If we are using the hydro cannon when clicking
+	var/hydro_active = FALSE
+	///How much water the hydro cannon has
+	var/water_count = 0
 
 /obj/item/weapon/gun/flamer/marinestandard/Initialize()
 	. = ..()
 	reagents = new /datum/reagents(FLAMER_WATER)
 	reagents.my_atom = src
 	reagents.add_reagent(/datum/reagent/water, reagents.maximum_volume)
+	water_count = reagents.maximum_volume
 
 /obj/item/weapon/gun/flamer/marinestandard/reload(mob/user, obj/item/ammo_magazine/magazine)
 	if(!magazine || !istype(magazine))
@@ -377,7 +456,7 @@
 		to_chat(user, "<span class='warning'>That [magazine.name] is empty!</span>")
 		return
 
-	if(!istype(src, magazine.gun_type))
+	if(!istype(src, magazine.gun_type) || istype(magazine, /obj/item/ammo_magazine/flamer_tank/backtank))
 		to_chat(user, "<span class='warning'>That magazine doesn't fit in there!</span>")
 		return
 
@@ -385,25 +464,30 @@
 		to_chat(user, "<span class='warning'>It's still got something loaded!</span>")
 		return
 
+	if(user)
+		if(magazine.reload_delay > 1)
+			to_chat(user, "<span class='notice'>You begin reloading [src]. Hold still...</span>")
+			if(!do_after(user,magazine.reload_delay, TRUE, src, BUSY_ICON_GENERIC))
+				to_chat(user, "<span class='warning'>Your reload was interrupted!</span>")
+				return
+		replace_magazine(user, magazine)
+		light_pilot(user,TRUE)
 	else
-		if(user)
-			if(magazine.reload_delay > 1)
-				to_chat(user, "<span class='notice'>You begin reloading [src]. Hold still...</span>")
-				if(do_after(user,magazine.reload_delay, TRUE, src, BUSY_ICON_GENERIC))
-					replace_magazine(user, magazine)
-				else
-					to_chat(user, "<span class='warning'>Your reload was interrupted!</span>")
-					return
-			else
-				replace_magazine(user, magazine)
-		else
-			current_mag = magazine
-			magazine.loc = src
-			replace_ammo(,magazine)
+		current_mag = magazine
+		magazine.loc = src
+		replace_ammo(,magazine)
+		light_pilot(user,TRUE)
 
 	update_icon()
 	return TRUE
 
+/obj/item/weapon/gun/flamer/marinestandard/wield(mob/user)//Auto linking
+	if (!current_mag)
+		var/mob/living/carbon/human/human_user = user
+		var/obj/item/ammo_magazine/flamer_tank/backtank/back_tank = human_user.get_type_in_slots(/obj/item/ammo_magazine/flamer_tank/backtank)
+		if (back_tank)
+			attach_fueltank(user, back_tank)
+	return ..()
 
 /obj/item/weapon/gun/flamer/marinestandard/able_to_fire(mob/user)
 	. = ..()
@@ -416,12 +500,57 @@
 	to_chat(user, "<span class='notice'>Its hydro cannon contains [reagents.get_reagent_amount(/datum/reagent/water)]/[reagents.maximum_volume] units of water!</span>")
 
 
+/obj/item/weapon/gun/flamer/marinestandard/unique_action(mob/user)
+	var/obj/item/attachable/hydro_cannon/hydro = under
+	if(!istype(hydro))
+		return
+	playsound(user, hydro.activation_sound, 15, 1)
+	if (hydro.activate_attachment(user))
+		hydro_active = TRUE
+		light_pilot(user, FALSE)
+	else 
+		hydro_active = FALSE
+		if (current_mag?.current_rounds > 0)
+			light_pilot(user, TRUE)
+	var/obj/screen/ammo/A = user.hud_used.ammo
+	A.update_hud(user)
+
+/obj/item/weapon/gun/flamer/marinestandard/attach_fueltank(mob/user, obj/item/ammo_magazine/flamer_tank/backtank/fueltank)
+	if (!istype(fueltank))
+		to_chat(user, "<span class='warning'>That's not an attachable fuel tank!</span>")
+		return
+	
+	if(fueltank.current_rounds <= 0)
+		to_chat(user, "<span class='warning'>That [fueltank.name] is empty!</span>")
+		return
+	
+	to_chat(user, "<span class='notice'>You begin linking [src] with the [fueltank.name]. Hold still...</span>")
+	if(!do_after(user,fueltank.reload_delay, TRUE, src, BUSY_ICON_GENERIC))
+		to_chat(user, "<span class='warning'>Your action was interrupted!</span>")
+		return
+	if (current_mag)
+		if(istype(current_mag,/obj/item/ammo_magazine/flamer_tank/backtank))
+			detach_fueltank(user,FALSE)
+		else
+			user.put_in_hands(current_mag)//We remove the fuel tank if there is one
+	current_mag = fueltank
+	fueltank.attached_flamer = src
+	replace_ammo(user, fueltank)
+	if (!hydro_active)
+		light_pilot(user,TRUE)
+	playsound(user, reload_sound, 25, 1, 5)
+	update_icon(user)
+	var/obj/screen/ammo/A = user.hud_used.ammo
+	A.update_hud(user)
 
 /obj/item/weapon/gun/flamer/marinestandard/Fire(atom/target, mob/living/user, params, reflex)
 	if(active_attachable && istype(active_attachable, /obj/item/attachable/hydro_cannon) && (world.time > last_use + 10))
 		extinguish(target,user) //Fire it.
+		water_count -=7//reagents is not updated in this proc, we need water_count for a updated HUD
 		last_fired = world.time
 		last_use = world.time
+		var/obj/screen/ammo/A = user.hud_used.ammo
+		A.update_hud(user)
 		return
 	if(user.skills.getRating("firearms") < 0 && !do_after(user, 1 SECONDS, TRUE, src))
 		return
@@ -432,9 +561,22 @@
 	if(istype(target, /obj/structure/reagent_dispensers/watertank) && get_dist(user,target) <= 1)
 		var/obj/o = target
 		o.reagents.trans_to(src, reagents.maximum_volume)
+		water_count = reagents.maximum_volume
 		to_chat(user, "<span class='notice'>\The [src]'s hydro cannon is refilled with water.</span>")
 		playsound(src.loc, 'sound/effects/refill.ogg', 25, 1, 3)
+		var/obj/screen/ammo/A = user.hud_used.ammo
+		A.update_hud(user)
 		return
+
+/obj/item/weapon/gun/flamer/marinestandard/get_ammo_count()
+	if (hydro_active)
+		return max(water_count,0)
+	return ..()
+	
+/obj/item/weapon/gun/flamer/marinestandard/get_ammo_type()
+	if (hydro_active)
+		return list("water","water_empty")
+	return ..()
 
 /turf/proc/ignite(fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0)
 	//extinguish any flame present
@@ -478,9 +620,7 @@
 		for(var/mob/living/C in get_turf(src))
 			C.flamer_fire_act(fire_stacks)
 
-			var/armor_block = C.run_armor_check("chest", "fire")
-			if(C.apply_damage(fire_damage, BURN, null, armor_block))
-				UPDATEHEALTH(C)
+			C.take_overall_damage_armored(fire_damage, BURN, "fire", updating_health = TRUE)
 			if(C.IgniteMob())
 				C.visible_message("<span class='danger'>[C] bursts into flames!</span>","[isxeno(C)?"<span class='xenodanger'>":"<span class='highdanger'>"]You burst into flames!</span>")
 
@@ -498,20 +638,17 @@
 
 // override this proc to give different walking-over-fire effects
 /mob/living/proc/flamer_fire_crossed(burnlevel, firelevel, fire_mod = 1)
-	adjust_fire_stacks(burnlevel) //Make it possible to light them on fire later.
-	IgniteMob()
-	var/armor_block = run_armor_check(null, "fire")
-	if(apply_damage(round(burnlevel*0.5)* fire_mod, BURN, null, armor_block))
-		UPDATEHEALTH(src)
+	if(!CHECK_BITFIELD(flags_pass, PASSFIRE)) //Pass fire allow to cross fire without being ignited
+		adjust_fire_stacks(burnlevel) //Make it possible to light them on fire later.
+		IgniteMob()
+	take_overall_damage_armored(round(burnlevel*0.5)* fire_mod, BURN, "fire", updating_health = TRUE)
 	to_chat(src, "<span class='danger'>You are burned!</span>")
 
 
 
 /mob/living/carbon/human/flamer_fire_crossed(burnlevel, firelevel, fire_mod = 1)
 	if(hard_armor.getRating("fire") >= 100)
-		var/armor_block = run_armor_check(null, "fire")
-		if(apply_damage(round(burnlevel * 0.2) * fire_mod, BURN, null, armor_block))
-			UPDATEHEALTH(src)
+		take_overall_damage_armored(round(burnlevel * 0.2) * fire_mod, BURN, "fire", updating_health = TRUE)
 		return
 	. = ..()
 	if(isxeno(pulledby))

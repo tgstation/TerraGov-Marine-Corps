@@ -64,7 +64,7 @@
 /datum/config_entry/flag/limbs_can_break
 
 /datum/config_entry/number/revive_grace_period
-	config_entry_value = 3000
+	config_entry_value = 5 MINUTES
 	min_val = 0
 
 /datum/config_entry/flag/bones_can_break
@@ -109,4 +109,11 @@
 /datum/config_entry/flag/events_disallowed
 	config_entry_value = FALSE
 
+/datum/config_entry/flag/monitor_disallowed
+	config_entry_value = FALSE
+
 /datum/config_entry/flag/aggressive_changelog
+
+///If TRUE, the evo proc will consider spawn roony instead of runner on evo
+/datum/config_entry/flag/roony
+	config_entry_value = FALSE

@@ -204,7 +204,8 @@
 		setDir(SOUTH)
 
 
-/obj/structure/table/CanPass(atom/movable/mover, turf/target)
+/obj/structure/table/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
 		return TRUE
 	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
@@ -212,10 +213,9 @@
 		return TRUE
 	if(flipped)
 		if(get_dir(loc, target) & dir)
-			return !density
+			return FALSE
 		else
 			return TRUE
-	return !density
 
 
 /obj/structure/table/CheckExit(atom/movable/mover, turf/target)
@@ -247,8 +247,8 @@
 	if(I.loc != loc)
 		step(I, get_dir(I, src))
 
-/obj/structure/table/attack_alien(mob/living/carbon/xenomorph/M)
-	SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_TABLE)
+/obj/structure/table/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_TABLE)
 	return ..()
 
 
@@ -289,8 +289,7 @@
 
 			if(prob(15))
 				M.Paralyze(10 SECONDS)
-			M.apply_damage(8, BRUTE, "head")
-			UPDATEHEALTH(M)
+			M.apply_damage(8, BRUTE, "head", updating_health = TRUE)
 			user.visible_message("<span class='danger'>[user] slams [M]'s face against [src]!</span>",
 			"<span class='danger'>You slam [M]'s face against [src]!</span>")
 			log_combat(user, M, "slammed", "", "against \the [src]")
@@ -580,16 +579,13 @@
 	resistance_flags = XENO_DAMAGEABLE
 	var/parts = /obj/item/frame/rack
 
-/obj/structure/rack/CanPass(atom/movable/mover, turf/target)
-	if(!density) //Because broken racks
-		return TRUE
+/obj/structure/rack/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
 		return TRUE
 	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
 	if(S?.climbable && !(S.flags_atom & ON_BORDER) && climbable && isliving(mover)) //Climbable non-border  objects allow you to universally climb over others
 		return TRUE
-	else
-		return FALSE
 
 /obj/structure/rack/MouseDrop_T(obj/item/I, mob/user)
 	if (!istype(I) || user.get_active_held_item() != I)
@@ -598,8 +594,8 @@
 	if(I.loc != loc)
 		step(I, get_dir(I, src))
 
-/obj/structure/rack/attack_alien(mob/living/carbon/xenomorph/M)
-	SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_RACK)
+/obj/structure/rack/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_RACK)
 	return ..()
 
 /obj/structure/rack/attackby(obj/item/I, mob/user, params)

@@ -8,7 +8,7 @@
 	unset_interaction()
 	cameraFollow = null
 
-	var/new_network = input(src, "Which network would you like to view?", "Jump To Network") as null|anything in available_networks
+	var/new_network = tgui_input_list(src, "Which network would you like to view?", "Jump To Network", available_networks)
 	if(!new_network)
 		return
 
@@ -38,7 +38,7 @@
 		return
 
 	var/list/ai_emotions = list("Very Happy", "Happy", "Neutral", "Unsure", "Confused", "Sad", "BSOD", "Blank", "Problems?", "Awesome", "Facepalm", "Thinking", "Friend Computer", "Dorfy", "Blue Glow", "Red Glow")
-	var/emote = input("Please, select a status!", "AI Status") as null|anything in ai_emotions
+	var/emote = tgui_input_list("Please, select a status!", "AI Status", ai_emotions)
 	if(!emote)
 		return
 
@@ -66,7 +66,7 @@
 	if(incapacitated())
 		return
 
-	var/hologram = input(src, "Would you like to select a hologram based on a crew member, an animal, or switch to a unique avatar?", "Hologram") as null|anything in list("Crew Member", "Unique", "Animal")
+	var/hologram = tgui_alert(src, "Would you like to select a hologram based on a crew member, an animal, or switch to a unique avatar?", "Hologram", list("Crew Member", "Unique", "Animal"))
 	switch(hologram)
 		if("Crew Member")
 			var/list/personnel_list = list()
@@ -78,7 +78,7 @@
 				to_chat(src, "<span class='warning'>No suitable records found. Aborting.</span>")
 				return
 
-			hologram = input("Select a crew member:") as null|anything in personnel_list
+			hologram = tgui_input_list(src, "Select a crew member:", null,personnel_list)
 			var/icon/character_icon = personnel_list[hologram]
 			if(!character_icon)
 				return
@@ -102,7 +102,7 @@
 			"guard" = 'icons/mob/animal.dmi'
 			)
 
-			hologram = input("Please select a hologram:") as null|anything in icon_list
+			hologram = tgui_input_list(src, "Please select a hologram:", null, icon_list)
 			if(!hologram)
 				return
 
@@ -116,7 +116,7 @@
 				"horror" = 'icons/mob/ai.dmi'
 				)
 
-			hologram = input("Please select a hologram:") as null|anything in icon_list
+			hologram = tgui_input_list(src, "Please select a hologram:", null, icon_list)
 			if(!hologram)
 				return
 
@@ -173,7 +173,7 @@
 
 	view_core()
 
-	var/ai_core_icon = input(src, "Choose your AI core display icon.", "AI Core Display", iconstates) as null|anything in iconstates
+	var/ai_core_icon = tgui_input_list(src, "Choose your AI core display icon.", "AI Core Display", iconstates)
 	if(!ai_core_icon || incapacitated())
 		return
 
@@ -247,7 +247,7 @@
 	if(incapacitated())
 		return
 
-	if(input(src, "Are you sure you want to announce your laws[radiomod ? " over the [radiomod] channel" : ""]?", "State Laws", "Yes", "No") != "Yes")
+	if(tgui_alert(src, "Are you sure you want to announce your laws[radiomod ? " over the [radiomod] channel" : ""]?", "State Laws", list("Yes", "No")) != "Yes")
 		return
 
 	say("[radiomod] Current Active Lawset:")
@@ -292,7 +292,7 @@
 	set name = "Shutdown Systems"
 
 
-	if(alert(src, "Do you want to shutdown your systems? WARNING: This will permanently put you out of your mob.", "Shutdown Systems", "Yes", "No") != "Yes")
+	if(tgui_alert(src, "Do you want to shutdown your systems? WARNING: This will permanently put you out of your mob.", "Shutdown Systems", list("Yes", "No")) != "Yes")
 		return
 
 	to_chat(src, "<span class='notice'>Systems shutting down...</span>")

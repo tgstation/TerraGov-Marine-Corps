@@ -1,8 +1,5 @@
 #define OW_MAIN 0
 #define OW_MONITOR 1
-#define OW_SUPPLIES 2
-
-#define MAX_SUPPLY_DROPS 4
 
 #define HIDE_NONE 0
 #define HIDE_ON_GROUND 1
@@ -10,10 +7,10 @@
 
 GLOBAL_LIST_EMPTY(active_orbital_beacons)
 GLOBAL_LIST_EMPTY(active_laser_targets)
-
+GLOBAL_LIST_EMPTY(active_cas_targets)
 /obj/machinery/computer/camera_advanced/overwatch
 	name = "Overwatch Console"
-	desc = "State of the art machinery for giving orders to a squad."
+	desc = "State of the art machinery for giving orders to a squad. <b>Shift click</b> to send order when watching squads."
 	density = FALSE
 	icon_state = "overwatch"
 	req_access = list(ACCESS_MARINE_BRIDGE)
@@ -22,15 +19,46 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	interaction_flags = INTERACT_MACHINE_DEFAULT
 
 	var/state = OW_MAIN
-	var/x_offset_s = 0
-	var/y_offset_s = 0
 	var/living_marines_sorting = FALSE
-	var/busy = FALSE //The overwatch computer is busy launching an OB/SB, lock controls
-	var/dead_hidden = FALSE //whether or not we show the dead marines in the squad.
-	var/z_hidden = 0 //which z level is ignored when showing marines.
-	var/datum/squad/current_squad = null //Squad being currently overseen
-	var/obj/selected_target //Selected target for bombarding
+	///The overwatch computer is busy launching an OB/SB, lock controls
+	var/busy = FALSE
+	///whether or not we show the dead marines in the squad.
+	var/dead_hidden = FALSE
+	///which z level is ignored when showing marines.
+	var/z_hidden = 0
+	///Squad being currently overseen
+	var/datum/squad/current_squad = null
+	///Selected target for bombarding
+	var/obj/selected_target
+	///Selected order to give to marine
+	var/datum/action/innate/order/current_order
+	///datum used when sending an attack order
+	var/datum/action/innate/order/attack_order/send_attack_order
+	///datum used when sending a retreat order
+	var/datum/action/innate/order/retreat_order/send_retreat_order
+	///datum used when sending a defend order
+	var/datum/action/innate/order/defend_order/send_defend_order
 
+/obj/machinery/computer/camera_advanced/overwatch/Initialize()
+	. = ..()
+	send_attack_order = new
+	send_defend_order = new
+	send_retreat_order = new
+
+/obj/machinery/computer/camera_advanced/overwatch/give_actions(mob/living/user)
+	. = ..()
+	if(send_attack_order)
+		send_attack_order.target = user
+		send_attack_order.give_action(user)
+		actions += send_attack_order
+	if(send_defend_order)
+		send_defend_order.target = user
+		send_defend_order.give_action(user)
+		actions += send_defend_order
+	if(send_retreat_order)
+		send_retreat_order.target = user
+		send_retreat_order.give_action(user)
+		actions += send_retreat_order
 
 /obj/machinery/computer/camera_advanced/overwatch/main
 	icon_state = "overwatch_main"
@@ -60,6 +88,13 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	eyeobj.icon = 'icons/mob/cameramob.dmi'
 	eyeobj.icon_state = "generic_camera"
 
+/obj/machinery/computer/camera_advanced/overwatch/give_eye_control(mob/user)
+	. = ..()
+	RegisterSignal(user, COMSIG_MOB_CLICK_SHIFT, .proc/send_orders)
+
+/obj/machinery/computer/camera_advanced/overwatch/remove_eye_control(mob/living/user)
+	. = ..()
+	UnregisterSignal(user, COMSIG_MOB_CLICK_SHIFT)
 
 /obj/machinery/computer/camera_advanced/overwatch/can_interact(mob/user)
 	. = ..()
@@ -112,7 +147,6 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 					dat += "<br>"
 					dat += "<A href='?src=\ref[src];operation=insubordination'>Report a marine for insubordination</a><BR>"
 					dat += "<A href='?src=\ref[src];operation=squad_transfer'>Transfer a marine to another squad</a><BR><BR>"
-					dat += "<a href='?src=\ref[src];operation=supplies'>Supply Drop Control</a><br>"
 					dat += "<a href='?src=\ref[src];operation=monitor'>Squad Monitor</a><br>"
 					dat += "----------------------<br>"
 					dat += "<b>Rail Gun Control</b><br>"
@@ -153,41 +187,6 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 					dat += "<br><br><a href='?src=\ref[src];operation=refresh'>{Refresh}</a>"
 			if(OW_MONITOR)//Info screen.
 				dat += get_squad_info()
-			if(OW_SUPPLIES)
-				dat += "<BR><B>Supply Drop Control</B><BR><BR>"
-				if(!current_squad)
-					dat += "No squad selected!"
-				else
-					dat += "<B>Current Supply Drop Status:</B> "
-					var/cooldown_left = (current_squad.supply_cooldown + 2 MINUTES) - world.time
-					if(cooldown_left > 0)
-						dat += "Launch tubes resetting ([round(cooldown_left/10)] seconds)<br>"
-					else
-						dat += "<font color='green'>Ready!</font><br>"
-					dat += "<B>Launch Pad Status:</b> "
-					var/can_supply = FALSE
-					for(var/obj/C in current_squad.drop_pad.loc) //This thing should ALWAYS exist.
-						if(is_type_in_typecache(C, GLOB.supply_drops) && !C.anchored) //Can only send supply droppable items
-							can_supply = TRUE
-							break
-					if(can_supply)
-						dat += "<font color='green'>Supply drop loaded</font><BR>"
-					else
-						dat += "Empty<BR>"
-					dat += "<B>Supply Beacon Status:</b> "
-					if(current_squad.sbeacon)
-						if(isturf(current_squad.sbeacon.loc))
-							dat += "<font color='green'>Transmitting!</font><BR>"
-						else
-							dat += "Not Transmitting<BR>"
-					else
-						dat += "Not Transmitting<BR>"
-					dat += "<B>X-Coordinate Offset:</B> [x_offset_s] <A href='?src=\ref[src];operation=supply_x'>\[Change\]</a><BR>"
-					dat += "<B>Y-Coordinate Offset:</B> [y_offset_s] <A href='?src=\ref[src];operation=supply_y'>\[Change\]</a><BR><BR>"
-					dat += "<A href='?src=\ref[src];operation=dropsupply'>\[LAUNCH!\]</a>"
-				dat += "<BR><BR>----------------------<br>"
-				dat += "<A href='?src=\ref[src];operation=refresh'>{Refresh}</a><br>"
-				dat += "<A href='?src=\ref[src];operation=back'>{Back}</a>"
 
 	var/datum/browser/popup = new(user, "overwatch", "<div align='center'>[current_squad ? current_squad.name : ""] Overwatch Console</div>", 550, 550)
 	popup.set_content(dat)
@@ -220,8 +219,6 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 		if("monitor4")
 			state = OW_MONITOR
 			current_squad = get_squad_by_id(DELTA_SQUAD)
-		if("supplies")
-			state = OW_SUPPLIES
 		if("change_operator")
 			if(operator != usr)
 				if(current_squad)
@@ -265,7 +262,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 						if(!S.overwatch_officer)
 							squad_choices += S.name
 
-					var/squad_name = input("Which squad would you like to claim for Overwatch?") as null|anything in squad_choices
+					var/squad_name = tgui_input_list(usr, "Which squad would you like to claim for Overwatch?", null, squad_choices)
 					if(!squad_name || operator != usr)
 						return
 					if(current_squad)
@@ -279,9 +276,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 						current_squad.message_squad("Your Overwatch officer is: [operator.name].")
 						visible_message("<span class='boldnotice'>Tactical data for squad '[current_squad]' loaded. All tactical functions initialized.</span>")
 						attack_hand(usr)
-						if(!current_squad.drop_pad) //Why the hell did this not link?
-							for(var/obj/structure/supply_drop/S in GLOB.supply_pad_list)
-								S.force_link() //LINK THEM ALL!
+
 
 					else
 						to_chat(usr, "[icon2html(src, usr)] <span class='warning'>Invalid input. Aborting.</span>")
@@ -309,16 +304,6 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 				current_squad.secondary_objective = input + " ([worldtime2text()])"
 				current_squad.message_squad("Your secondary objective has changed. See Status pane for details.")
 				visible_message("<span class='boldnotice'>Secondary objective of squad '[current_squad]' set.</span>")
-		if("supply_x")
-			var/input = input(usr,"What X-coordinate offset between -5 and 5 would you like? (Positive means east)","X Offset",0) as num
-			input = clamp(round(input), -5, 5)
-			to_chat(usr, "[icon2html(src, usr)] <span class='notice'>X-offset is now [input].</span>")
-			x_offset_s = input
-		if("supply_y")
-			var/input = input(usr,"What Y-coordinate offset between -5 and 5 would you like? (Positive means north)","Y Offset",0) as num
-			input = clamp(round(input), -5, 5)
-			to_chat(usr, "[icon2html(src, usr)] <span class='notice'>Y-offset is now [input].</span>")
-			y_offset_s = input
 		if("refresh")
 			attack_hand(usr)
 		if("change_sort")
@@ -351,12 +336,6 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 			mark_insubordination()
 		if("squad_transfer")
 			transfer_squad()
-		if("dropsupply")
-			if(current_squad)
-				if((current_squad.supply_cooldown + 2 MINUTES) > world.time)
-					to_chat(usr, "[icon2html(src, usr)] <span class='warning'>Supply drop not yet available!</span>")
-				else
-					handle_supplydrop()
 		if("dropbomb")
 			handle_bombard()
 		if("shootrailgun")
@@ -488,10 +467,11 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	visible_message("<span class='boldnotice'>Orbital bombardment request accepted. Orbital cannons are now calibrating.</span>")
 	send_to_squads("Initializing fire coordinates...")
 	if(selected_target)
-		playsound(selected_target.loc,'sound/effects/alert.ogg', 50, 1, 20)  //Placeholder
+		playsound(selected_target.loc,'sound/effects/alert.ogg', 50, 1, 20)  //mostly used to warn xenos as the new ob sounds have a quiet beginning
+
 	addtimer(CALLBACK(src, .proc/send_to_squads, "Transmitting beacon feed..."), 1.5 SECONDS)
 	addtimer(CALLBACK(src, .proc/send_to_squads, "Calibrating trajectory window..."), 3 SECONDS)
-	addtimer(CALLBACK(src, .proc/do_fire_bombard, T, usr), 4.1 SECONDS)
+	addtimer(CALLBACK(src, .proc/do_fire_bombard, T, usr), 3.1 SECONDS)
 
 /obj/machinery/computer/camera_advanced/overwatch/proc/do_fire_bombard(turf/T, user)
 	visible_message("<span class='boldnotice'>Orbital bombardment has fired! Impact imminent!</span>")
@@ -517,7 +497,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	for(var/mob/living/carbon/human/H in current_squad.get_all_members())
 		if(istype(H) && H.stat != DEAD && H.mind && !is_banned_from(H.ckey, SQUAD_LEADER))
 			sl_candidates += H
-	var/new_lead = input(usr, "Choose a new Squad Leader") as null|anything in sl_candidates
+	var/new_lead = tgui_input_list(usr, "Choose a new Squad Leader", null, sl_candidates)
 	if(!new_lead || new_lead == "Cancel") return
 	var/mob/living/carbon/human/H = new_lead
 	if(!istype(H) || !H.mind || H.stat == DEAD) //marines_list replaces mob refs of gibbed marines with just a name string
@@ -548,7 +528,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	if(!current_squad)
 		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>No squad selected!</span>")
 		return
-	var/mob/living/carbon/human/wanted_marine = input(usr, "Report a marine for insubordination") as null|anything in current_squad.get_all_members()
+	var/mob/living/carbon/human/wanted_marine = tgui_input_list(usr, "Report a marine for insubordination", null, current_squad.get_all_members())
 	if(!wanted_marine) return
 	if(!istype(wanted_marine))//gibbed/deleted, all we have is a name.
 		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>[wanted_marine] is missing in action.</span>")
@@ -576,7 +556,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>No squad selected!</span>")
 		return
 	var/datum/squad/S = current_squad
-	var/mob/living/carbon/human/transfer_marine = input(usr, "Choose marine to transfer") as null|anything in current_squad.get_all_members()
+	var/mob/living/carbon/human/transfer_marine = tgui_input_list(usr, "Choose marine to transfer", null, current_squad.get_all_members())
 	if(!transfer_marine)
 		return
 
@@ -594,7 +574,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>Transfer aborted. [transfer_marine] isn't wearing an ID.</span>")
 		return
 
-	var/choice = input(usr, "Choose the marine's new squad") as null|anything in SSjob.active_squads
+	var/choice = tgui_input_list(usr, "Choose the marine's new squad", null,  SSjob.active_squads)
 	if(!choice)
 		return
 	if(S != current_squad)
@@ -634,315 +614,9 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	if(istype(H, /obj/item/radio/headset/mainship/marine))
 		H.set_frequency(new_squad.radio_freq)
 
-	transfer_marine.hud_set_squad()
+	transfer_marine.hud_set_job()
 	visible_message("<span class='boldnotice'>[transfer_marine] has been transfered from squad '[old_squad]' to squad '[new_squad]'. Logging to enlistment file.</span>")
 	to_chat(transfer_marine, "[icon2html(src, transfer_marine)] <font size='3' color='blue'><B>\[Overwatch\]:</b> You've been transfered to [new_squad]!</font>")
-
-
-/obj/machinery/computer/camera_advanced/overwatch/proc/handle_supplydrop()
-	if(!usr || usr != operator)
-		return
-
-	if(busy)
-		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>The [name] is busy processing another action!</span>")
-		return
-
-	if(!current_squad.sbeacon)
-		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>No supply beacon detected!</span>")
-		return
-
-	var/list/supplies = list()
-	for(var/obj/C in current_squad.drop_pad.loc) //This thing should ALWAYS exist.
-		if(is_type_in_typecache(C, GLOB.supply_drops) && !C.anchored) //Can only send vendors and crates
-			supplies.Add(C)
-		if(supplies.len > MAX_SUPPLY_DROPS)
-			break
-
-	if(!supplies.len)
-		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>No deployable object was detected on the drop pad. Get Requisitions on the line!</span>")
-		return
-
-	var/area/A = get_area(current_squad.sbeacon)
-	if(A && A.ceiling >= CEILING_DEEP_UNDERGROUND)
-		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>The [current_squad.sbeacon.name]'s signal is too weak. It is probably deep underground.</span>")
-		return
-
-	var/turf/T = get_turf(current_squad.sbeacon)
-
-	if(!istype(T))
-		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>The [current_squad.sbeacon.name] was not detected on the ground.</span>")
-		return
-
-	if(isspaceturf(T) || T.density)
-		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>The [current_squad.sbeacon.name]'s landing zone appears to be obstructed or out of bounds.</span>")
-		return
-
-	busy = TRUE
-
-	var/x_offset = x_offset_s
-	var/y_offset = y_offset_s
-	x_offset = clamp(round(x_offset), -5, 5)
-	y_offset = clamp(round(y_offset), -5, 5)
-
-	visible_message("<span class='boldnotice'>The supply drop is now loading into the launch tube! Stand by!</span>")
-	current_squad.drop_pad.visible_message("<span class='warning'>\The [current_squad.drop_pad] whirrs as it beings to load the supply drop into a launch tube. Stand clear!</span>")
-	for(var/obj/C in supplies)
-		C.anchored = TRUE //to avoid accidental pushes
-	current_squad.message_squad("Supply Drop Incoming!")
-	playsound(current_squad.drop_pad.loc,'sound/effects/bamf.ogg', 50, 1)  //Ehhhhhhhhh.
-	current_squad.sbeacon.visible_message("[icon2html(current_squad.sbeacon, viewers(current_squad.sbeacon))] <span class='boldnotice'>The [current_squad.sbeacon.name] begins to beep!</span>")
-	addtimer(CALLBACK(src, .proc/fire_supplydrop, current_squad, supplies, x_offset, y_offset), 10 SECONDS)
-
-/obj/machinery/computer/camera_advanced/overwatch/proc/fire_supplydrop(datum/squad/S, list/supplies, x_offset, y_offset)
-	if(QDELETED(S.sbeacon))
-		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>Launch aborted! Supply beacon signal lost.</span>")
-		busy = FALSE
-		return
-
-	for(var/obj/C in supplies)
-		if(QDELETED(C))
-			supplies.Remove(C)
-			continue
-		if(C.loc != S.drop_pad.loc) //Crate no longer on pad somehow, abort.
-			supplies.Remove(C)
-			C.anchored = FALSE
-
-	if(!supplies.len)
-		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>Launch aborted! No deployable object detected on the drop pad.</span>")
-		busy = FALSE
-		return
-
-	S.supply_cooldown = world.time
-
-	var/turf/T = get_turf(S.sbeacon)
-	T.visible_message("<span class='boldnotice'>A supply drop falls from the sky!</span>")
-	playsound(T,'sound/effects/bamf.ogg', 50, 1)  //Ehhhhhhhhh.
-	playsound(S.drop_pad.loc,'sound/effects/bamf.ogg', 50, 1)  //Ehh
-	for(var/obj/C in supplies)
-		C.anchored = FALSE
-		var/turf/TC = locate(T.x + x_offset + rand(-2, 2), T.y + y_offset + rand(-2, 2), T.z)
-		C.forceMove(TC)
-		TC.ceiling_debris_check(2)
-	visible_message("[icon2html(src, viewers(src))] <span class='boldnotice'>Supply drop launched! Another launch will be available in two minutes.</span>")
-	busy = FALSE
-
-/obj/structure/supply_drop
-	name = "Supply Drop Pad"
-	desc = "Place unanchored supplies on here to allow bridge Overwatch officers to drop them on people's heads."
-	icon = 'icons/effects/warning_stripes.dmi'
-	anchored = TRUE
-	density = FALSE
-	resistance_flags = RESIST_ALL
-	layer = ABOVE_TURF_LAYER
-	var/squad_name = "Alpha"
-	var/sending_package = 0
-
-/obj/structure/supply_drop/Initialize() //Link a squad to a drop pad
-	. = ..()
-	force_link()
-	GLOB.supply_pad_list += src
-
-/obj/structure/supply_drop/Destroy()
-	GLOB.supply_pad_list += src
-	return ..()
-
-/obj/structure/supply_drop/proc/force_link() //Somehow, it didn't get set properly on the new proc. Force it again,
-	var/datum/squad/S = SSjob.squads[squad_name]
-	if(S)
-		S.drop_pad = src
-	else
-		to_chat(world, "Alert! Supply drop pads did not initialize properly.")
-
-/obj/structure/supply_drop/alpha
-	icon_state = "alphadrop"
-	squad_name = "Alpha"
-
-/obj/structure/supply_drop/bravo
-	icon_state = "bravodrop"
-	squad_name = "Bravo"
-
-/obj/structure/supply_drop/charlie
-	icon_state = "charliedrop"
-	squad_name = "Charlie"
-
-/obj/structure/supply_drop/delta
-	icon_state = "deltadrop"
-	squad_name = "Delta"
-
-/obj/item/squad_beacon
-	name = "squad supply beacon"
-	desc = "A rugged, glorified laser pointer capable of sending a beam into space. Activate and throw this to call for a supply drop."
-	icon_state = "motion0"
-	w_class = WEIGHT_CLASS_SMALL
-	var/activated = 0
-	var/activation_time = 60
-	var/datum/squad/squad = null
-	var/icon_activated = "motion2"
-	var/obj/machinery/camera/beacon_cam = null
-
-/obj/item/squad_beacon/Destroy()
-	GLOB.active_orbital_beacons -= src
-	if(squad)
-		if(squad.sbeacon == src)
-			squad.sbeacon = null
-		if(src in squad.squad_orbital_beacons)
-			squad.squad_orbital_beacons -= src
-		squad = null
-	if(beacon_cam)
-		qdel(beacon_cam)
-		beacon_cam = null
-	return ..()
-
-/obj/item/squad_beacon/attack_self(mob/user)
-	if(activated)
-		to_chat(user, "<span class='warning'>It's already been activated. Just leave it.</span>")
-		return
-
-	if(!ishuman(user)) return
-	var/mob/living/carbon/human/H = user
-
-	if(!user.mind)
-		to_chat(user, "<span class='warning'>It doesn't seem to do anything for you.</span>")
-		return
-
-	squad = H.assigned_squad
-
-	if(!squad)
-		to_chat(user, "<span class='warning'>You need to be in a squad for this to do anything.</span>")
-		return
-	if(squad.sbeacon)
-		to_chat(user, "<span class='warning'>Your squad already has a beacon activated.</span>")
-		return
-	var/area/A = get_area(user)
-	if(A && istype(A) && A.ceiling >= CEILING_METAL)
-		to_chat(user, "<span class='warning'>You have to be outside or under a glass ceiling to activate this.</span>")
-		return
-
-	var/delay = max(1 SECONDS, activation_time - 2 SECONDS * user.skills.getRating("leadership"))
-
-	user.visible_message("<span class='notice'>[user] starts setting up [src] on the ground.</span>",
-	"<span class='notice'>You start setting up [src] on the ground and inputting all the data it needs.</span>")
-	if(do_after(user, delay, TRUE, src, BUSY_ICON_GENERIC))
-		squad.sbeacon = src
-		user.transferItemToLoc(src, user.loc)
-		activated = 1
-		anchored = TRUE
-		w_class = 10
-		icon_state = "[icon_activated]"
-		playsound(src, 'sound/machines/twobeep.ogg', 15, 1)
-		user.visible_message("[user] activates [src]",
-		"You activate [src]")
-
-/obj/item/squad_beacon/attack_hand(mob/user)
-	..()
-	if(activated)
-		//squad = null
-		//squad.sbeacon = null
-		if(squad)
-			if(squad.sbeacon == src)
-				squad.sbeacon = null
-			if(src in squad.squad_orbital_beacons)
-				squad.squad_orbital_beacons -= src
-			squad = null
-		activated = FALSE
-		anchored = FALSE
-		w_class = initial(w_class)
-		layer = initial(layer)
-		name = initial(name)
-		icon_state = initial(icon_state)
-		playsound(src, 'sound/machines/twobeep.ogg', 15, 1)
-		usr.visible_message("[usr] deactivates [src]",
-		"You deactivate [src]")
-		usr.put_in_active_hand(src)
-
-/obj/item/squad_beacon/bomb
-	name = "orbital beacon"
-	desc = "A bulky device that fires a beam up to an orbiting vessel to send local coordinates."
-	icon_state = "motion4"
-	w_class = WEIGHT_CLASS_SMALL
-	activation_time = 80
-	icon_activated = "motion1"
-
-/obj/item/squad_beacon/bomb/attack_self(mob/living/carbon/human/H)
-	if(!istype(H))
-		return
-	if(!H.mind)
-		to_chat(H, "<span class='warning'>It doesn't seem to do anything for you.</span>")
-		return
-	activate(H)
-
-/obj/item/squad_beacon/bomb/attack_hand(mob/living/user)
-	if(!ishuman(user))
-		return ..()
-	var/mob/living/carbon/human/H = user
-	if(!H.mind)
-		to_chat(H, "<span class='warning'>It doesn't seem to do anything for you.</span>")
-		return ..()
-	if(activated)
-		deactivate(H)
-	else
-		return ..()
-
-/obj/item/squad_beacon/bomb/proc/activate(mob/living/carbon/human/H)
-	if(!is_ground_level(H.z))
-		to_chat(H, "<span class='warning'>You have to be on the planet to use this or it won't transmit.</span>")
-		return
-	var/area/A = get_area(H)
-	if(A && istype(A) && A.ceiling >= CEILING_DEEP_UNDERGROUND)
-		to_chat(H, "<span class='warning'>This won't work if you're standing deep underground.</span>")
-		return
-	var/delay = max(1.5 SECONDS, activation_time - 2 SECONDS * H.skills.getRating("leadership"))
-	H.visible_message("<span class='notice'>[H] starts setting up [src] on the ground.</span>",
-	"<span class='notice'>You start setting up [src] on the ground and inputting all the data it needs.</span>")
-	if(do_after(H, delay, TRUE, src, BUSY_ICON_GENERIC))
-		message_admins("[ADMIN_TPMONTY(usr)] set up an orbital strike beacon.")
-		name = "transmitting orbital beacon"
-		GLOB.active_orbital_beacons += src
-		var/cam_name = ""
-		cam_name += H.get_paygrade()
-		cam_name += H.name
-		if(H.assigned_squad)
-			squad = H.assigned_squad
-			name += " ([squad.name])"
-			squad.squad_orbital_beacons += src
-		cam_name += " [src]"
-		var/obj/machinery/camera/beacon_cam/BC = new(src, cam_name)
-		H.transferItemToLoc(src, H.loc)
-		beacon_cam = BC
-		activated = TRUE
-		anchored = TRUE
-		w_class = 10
-		layer = ABOVE_FLY_LAYER
-		icon_state = "[icon_activated]"
-		set_light(2)
-		playsound(src, 'sound/machines/twobeep.ogg', 15, 1)
-		H.visible_message("[H] activates [src]",
-		"You activate [src]")
-
-/obj/item/squad_beacon/bomb/proc/deactivate(mob/living/carbon/human/H)
-	var/delay = max(1 SECONDS, activation_time * 0.5 - 2 SECONDS * H.skills.getRating("leadership")) //Half as long as setting it up.
-	H.visible_message("<span class='notice'>[H] starts removing [src] from the ground.</span>",
-	"<span class='notice'>You start removing [src] from the ground, deactivating it.</span>")
-	if(do_after(H, delay, TRUE, src, BUSY_ICON_GENERIC))
-		message_admins("[ADMIN_TPMONTY(usr)] removed an orbital strike beacon.")
-		if(squad)
-			squad.squad_orbital_beacons -= src
-			squad = null
-		GLOB.active_orbital_beacons -= src
-		qdel(beacon_cam)
-		beacon_cam = null
-		activated = FALSE
-		anchored = FALSE
-		w_class = initial(w_class)
-		layer = initial(layer)
-		name = initial(name)
-		icon_state = initial(icon_state)
-		set_light(0)
-		playsound(src, 'sound/machines/twobeep.ogg', 15, 1)
-		H.visible_message("[H] deactivates [src]",
-		"You deactivate [src]")
-		H.put_in_active_hand(src)
-
 
 
 //This is perhaps one of the weirdest places imaginable to put it, but it's a leadership skill, so
@@ -1215,7 +889,87 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	dat += "<br><A href='?src=\ref[src];operation=back'>{Back}</a>"
 	return dat
 
+///Print order visual to all marines squad hud and give them an arrow to follow the waypoint
+/obj/machinery/computer/camera_advanced/overwatch/proc/send_orders(datum/source, atom/object)
+	SIGNAL_HANDLER
+	var/turf/target_turf = get_turf(object)
+	if (!current_order)
+		to_chat(usr, "<span class='warning'>You didn't select any order!</span>")
+		return
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_CIC_ORDERS))
+		to_chat(usr, "<span class='warning'>Your last order was too recent.</span>")
+		return
+	TIMER_COOLDOWN_START(src, COOLDOWN_CIC_ORDERS, ORDER_COOLDOWN)
+	new current_order.visual_type(target_turf)
+	var/obj/screen/arrow/arrow_hud
+	var/datum/atom_hud/squad/squad_hud = GLOB.huds[DATA_HUD_SQUAD]
+	var/list/final_list = squad_hud.hudusers
+	final_list -= current_user //We don't want the eye to have an arrow, it's silly
+
+	for(var/hud_user in final_list)
+		if(!ishuman(hud_user))
+			continue
+		if(current_order.arrow_type)
+			arrow_hud = new current_order.arrow_type
+			arrow_hud.add_hud(hud_user, target_turf)
+		notify_marine(hud_user, target_turf)
+
+///Send a message and a sound to the marine if he is on the same z level as the turf
+/obj/machinery/computer/camera_advanced/overwatch/proc/notify_marine(mob/living/marine, turf/target_turf) ///Send an order to that specific marine if it's on the right z level
+	if(marine.z == target_turf.z)
+		marine.playsound_local(marine, "sound/effects/CIC_order.ogg", 10, 1)
+		to_chat(marine,"<span class='ordercic'>Command is urging you to [current_order.verb_name] [target_turf.loc.name]!</span>")
+
+/datum/action/innate/order
+	///the word used to describe the action when notifying marines
+	var/verb_name
+	///the type of arrow used in the order
+	var/arrow_type
+	///the type of the visual added on the ground
+	var/visual_type
+
+/datum/action/innate/order/attack_order
+	name = "Send Attack Order"
+	background_icon_state = "template2"
+	action_icon_state = "attack"
+	verb_name = "attack the enemy at"
+	arrow_type = /obj/screen/arrow/attack_order_arrow
+	visual_type = /obj/effect/temp_visual/order/attack_order
+
+/datum/action/innate/order/defend_order
+	name = "Send Defend Order"
+	background_icon_state = "template2"
+	action_icon_state = "defend"
+	verb_name = "defend our position in"
+	arrow_type = /obj/screen/arrow/defend_order_arrow
+	visual_type = /obj/effect/temp_visual/order/defend_order
+
+/datum/action/innate/order/retreat_order
+	name = "Send Retreat Order"
+	background_icon_state = "template2"
+	action_icon_state = "retreat"
+	verb_name = "retreat from"
+	visual_type = /obj/effect/temp_visual/order/retreat_order
+
+///Set the order as selected on the overwatch console
+/datum/action/innate/order/proc/set_selected_order()
+	var/mob/living/C = target
+	var/mob/camera/aiEye/remote/remote_eye = C.remote_control
+	var/obj/machinery/computer/camera_advanced/overwatch/console = remote_eye.origin
+	console.current_order?.remove_selected_frame()
+	if(console.current_order != src)
+		console.current_order = src
+		add_selected_frame()
+		return
+	console.current_order = null
+
+/datum/action/innate/order/Activate()
+	active = TRUE
+	set_selected_order()
+
+/datum/action/innate/order/Deactivate()
+	active = FALSE
+	set_selected_order()
+
 #undef OW_MAIN
 #undef OW_MONITOR
-#undef OW_SUPPLIES
-#undef MAX_SUPPLY_DROPS
