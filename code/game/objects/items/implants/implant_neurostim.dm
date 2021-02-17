@@ -24,7 +24,7 @@
 	if(!.)
 		return
 	if(malfunction == MALFUNCTION_PERMANENT)
-		return
+		return FALSE
 
 	if(accidental) //was triggered by random chance or EMP
 		playsound(implant_owner, 'sound/machines/buzz-two.ogg', 60, 1)
@@ -37,7 +37,7 @@
 ///Plays a shocky animation
 /obj/item/implant/neurostim/proc/shock_sparks()
 	playsound(implant_owner, 'sound/effects/sparks2.ogg', 60, 1)
-	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
+	var/datum/effect_system/spark_spread/s = new
 	s.set_up(2, 1, src)
 	s.start()
 	addtimer(CALLBACK(src, .proc/shock_collar), 5)
@@ -53,14 +53,13 @@
 	UPDATEHEALTH(implant_owner)
 
 /obj/item/implant/neurostim/implant(mob/living/carbon/human/target, mob/living/user)
-	. = ..()
 	var/p = stripped_input(user, "Choose activation phrase:")
 	if(!p)
 		return FALSE
 	phrase = p
 	user.mind.store_memory("[src] in [target] can be made to deliver negative stimulus by saying something containing the phrase ''[phrase]'', <B>say [phrase]</B> to attempt to activate.", 0, 0)
 	to_chat(user, "<span class='notice'>[src] in [target] can be made to deliver negative stimulus by saying something containing the phrase ''[phrase]'', <B>say [phrase]</B> to attempt to activate.</span>")
-	return TRUE
+	return ..()
 
 
 /obj/item/implant/neurostim/emp_act(severity)

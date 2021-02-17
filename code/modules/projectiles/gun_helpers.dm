@@ -441,16 +441,13 @@ should be alright.
 	set category = "Weapons"
 	set name = "Field Strip Weapon"
 	set desc = "Remove all attachables from a weapon."
-	set src = usr.contents //We want to make sure one is picked at random, hence it's not in a list.
 
 	var/obj/item/weapon/gun/G = get_active_firearm(usr)
 
 	if(!G)
 		return
 
-	src = G
-
-	if(usr.action_busy)
+	if(usr.do_actions)
 		return
 
 	if(zoom)
@@ -484,7 +481,7 @@ should be alright.
 	if(possible_attachments.len == 1)
 		A = possible_attachments[1]
 	else
-		A = tgui_input_list(usr, "Which attachment to remove?", possible_attachments)
+		A = tgui_input_list(usr, "Which attachment to remove?", null,possible_attachments)
 
 	if(!A)
 		return
@@ -492,7 +489,7 @@ should be alright.
 	if(get_active_firearm(usr) != src)//dropped the gun
 		return
 
-	if(usr.action_busy)
+	if(usr.do_actions)
 		return
 
 	if(zoom)
@@ -714,12 +711,10 @@ should be alright.
 	set category = "Weapons"
 	set name = "Unload Weapon"
 	set desc = "Removes the magazine from your current gun and drops it on the ground, or clears the chamber if your gun is already empty."
-	set src = usr.contents
 
 	var/obj/item/weapon/gun/G = get_active_firearm(usr)
 	if(!G)
 		return
-	src = G
 
 	unload(usr,,1) //We want to drop the mag on the ground.
 
@@ -727,12 +722,10 @@ should be alright.
 	set category = "Weapons"
 	set name = "Unique Action"
 	set desc = "Use anything unique your firearm is capable of. Includes pumping a shotgun or spinning a revolver."
-	set src = usr.contents
 
 	var/obj/item/weapon/gun/G = get_active_firearm(usr)
 	if(!G)
 		return
-	src = G
 
 	unique_action(usr)
 
@@ -741,12 +734,10 @@ should be alright.
 	set category = "Weapons"
 	set name = "Toggle Gun Safety"
 	set desc = "Toggle the safety of the held gun."
-	set src = usr.contents //We want to make sure one is picked at random, hence it's not in a list.
 
 	var/obj/item/weapon/gun/G = get_active_firearm(usr)
 	if(!G)
 		return
-	src = G
 
 	to_chat(usr, "<span class='notice'>You toggle the safety [flags_gun_features & GUN_TRIGGER_SAFETY ? "<b>off</b>" : "<b>on</b>"].</span>")
 	playsound(usr, 'sound/weapons/guns/interact/selector.ogg', 15, 1)
@@ -757,16 +748,14 @@ should be alright.
 	set category = "Weapons"
 	set name = "Load From Attachment"
 	set desc = "Load from a gun attachment, such as a mounted grenade launcher, shotgun, or flamethrower."
-	set src = usr.contents
 
 	var/obj/item/weapon/gun/G = get_active_firearm(usr)
 	if(!G)
 		return
-	src = G
 
 	var/obj/item/attachable/A
 
-	var/usable_attachments[] = list() //Basic list of attachments to compare later.
+	var/list/usable_attachments = list() //Basic list of attachments to compare later.
 // rail attachment use the button to toggle flashlight instead.
 //	if(rail && (rail.flags_attach_features & ATTACH_ACTIVATION) )
 //		usable_attachments += rail
@@ -812,12 +801,10 @@ should be alright.
 	set category = "Weapons"
 	set name = "Toggle Ammo HUD"
 	set desc = "Toggles the Ammo HUD for this weapon."
-	set src = usr.contents
 
 	var/obj/item/weapon/gun/G = get_active_firearm(usr)
 	if(!G)
 		return
-	src = G
 
 	hud_enabled = !hud_enabled
 	var/obj/screen/ammo/A = usr.hud_used.ammo
@@ -892,7 +879,7 @@ should be alright.
 		return
 	to_chat(user, "<span class='notice'>You steady your breathing...</b></span>")
 
-	if(user.action_busy)
+	if(user.do_actions)
 		return
 	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_BAR, ignore_turf_checks = TRUE))
 		to_chat(user, "<span class='warning'>Your concentration is interrupted!</b></span>")

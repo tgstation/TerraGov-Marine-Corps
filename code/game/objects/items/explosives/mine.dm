@@ -106,6 +106,8 @@ Stepping directly on the mine will also blow it up
 	. = ..()
 	if(!isliving(A))
 		return
+	if(CHECK_MULTIPLE_BITFIELDS(A.flags_pass, HOVERING))
+		return
 	var/mob/living/L = A
 	if(L.lying_angle) ///so dragged corpses don't trigger mines.
 		return
@@ -168,6 +170,9 @@ Stepping directly on the mine will also blow it up
 	. = ..()
 	if(!linked_mine)
 		qdel(src)
+		return
+	
+	if(CHECK_MULTIPLE_BITFIELDS(A.flags_pass, HOVERING))
 		return
 
 	if(linked_mine.triggered) //Mine is already set to go off

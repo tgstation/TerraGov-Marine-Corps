@@ -313,3 +313,14 @@
 	default_ammo = /datum/ammo/bullet/sniper/auto
 	max_rounds = 12
 	gun_type = /obj/item/weapon/gun/rifle/standard_autosniper
+
+//-------------------------------------------------------
+//G-11, TX-11
+/obj/item/ammo_magazine/rifle/tx11
+	name = "\improper TX-11 combat rifle magazine"
+	desc = "A magazine filled with 4.92×34mm rifle rounds for the TX-11."
+	caliber = "4.92x34mm caseless"
+	icon_state = "tx11"
+	default_ammo = /datum/ammo/bullet/rifle/hv
+	max_rounds = 70
+	gun_type = /obj/item/weapon/gun/rifle/tx11

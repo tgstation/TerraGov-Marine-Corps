@@ -93,7 +93,7 @@
 	if(!istype(user))
 		return
 	var/list/camera_list = get_available_cameras()
-	var/t = tgui_input_list(user, "Which camera should you change to?", camera_list)
+	var/t = tgui_input_list(user, "Which camera should you change to?", null, camera_list)
 	if(!t)
 		user.unset_interaction()
 		playsound(src, 'sound/machines/terminal_off.ogg', 25, 0)

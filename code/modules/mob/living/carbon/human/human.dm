@@ -341,7 +341,7 @@
 						to_chat(usr, "<span class='warning'>Someone's already taken [src]'s information tag.</span>")
 					return
 			//police skill lets you strip multiple items from someone at once.
-			if(!usr.action_busy || usr.skills.getRating("police") >= SKILL_POLICE_MP)
+			if(!usr.do_actions || usr.skills.getRating("police") >= SKILL_POLICE_MP)
 				var/obj/item/what = get_item_by_slot(slot)
 				if(what)
 					usr.stripPanelUnequip(what,src,slot)
@@ -351,7 +351,7 @@
 
 	if(href_list["pockets"])
 
-		if(!usr.action_busy)
+		if(!usr.do_actions)
 			var/obj/item/place_item = usr.get_active_held_item() // Item to place in the pocket, if it's empty
 
 			var/placing = FALSE
@@ -389,7 +389,7 @@
 
 	if(href_list["internal"])
 
-		if(!usr.action_busy)
+		if(!usr.do_actions)
 			log_combat(usr, src, "attempted to toggle internals")
 			if(internal)
 				usr.visible_message("<span class='danger'>[usr] is trying to disable [src]'s internals</span>", null, null, 3)
@@ -423,7 +423,7 @@
 
 	if(href_list["splints"])
 
-		if(!usr.action_busy)
+		if(!usr.do_actions)
 			var/count = 0
 			for(var/X in limbs)
 				var/datum/limb/E = X
@@ -444,7 +444,7 @@
 						new /obj/item/stack/medical/splint(loc, limbcount)
 
 	if(href_list["tie"])
-		if(!usr.action_busy)
+		if(!usr.do_actions)
 			if(w_uniform && istype(w_uniform, /obj/item/clothing/under))
 				var/obj/item/clothing/under/U = w_uniform
 				if(U.hastie)
@@ -458,7 +458,7 @@
 								U.remove_accessory(usr)
 
 	if(href_list["sensor"])
-		if(!usr.action_busy)
+		if(!usr.do_actions)
 
 			log_combat(usr, src, "attempted to toggle sensors")
 			var/obj/item/clothing/under/U = w_uniform
@@ -717,7 +717,7 @@
 		if(!species?.count_human)
 			to_chat(usr, "<span class='warning'>Triage holocards only works on organic humanoid entities.</span>")
 			return
-		var/newcolor = tgui_input_list("Choose a triage holo card to add to the patient:", "Triage holo card", list("black", "red", "orange", "none"))
+		var/newcolor = tgui_input_list(usr, "Choose a triage holo card to add to the patient:", "Triage holo card", list("black", "red", "orange", "none"))
 		if(!newcolor)
 			return
 		if(get_dist(usr, src) > 7)
@@ -759,13 +759,13 @@
 
 
 /mob/living/carbon/human/proc/fireman_carry_grabbed()
-	SIGNAL_HANDLER_DOES_SLEEP
+	SIGNAL_HANDLER
 	var/mob/living/grabbed = pulling
 	if(!istype(grabbed))
 		return NONE
-	if(/*grab_state >= GRAB_AGGRESSIVE &&*/ stat == CONSCIOUS && can_be_firemanned(grabbed))
+	if(stat == CONSCIOUS && can_be_firemanned(grabbed))
 		//If you dragged them to you and you're aggressively grabbing try to fireman carry them
-		fireman_carry(grabbed)
+		INVOKE_ASYNC(src, .proc/fireman_carry, grabbed)
 		return COMSIG_GRAB_SUCCESSFUL_SELF_ATTACK
 	return NONE
 

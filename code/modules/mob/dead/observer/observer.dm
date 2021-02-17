@@ -430,7 +430,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		to_chat(usr, "<span class='warning'>There are no ghosts at the moment.</span>")
 		return
 
-	var/selected = tgui_input_list("Please select a Ghost:", "Follow Ghost", observers)
+	var/selected = tgui_input_list(usr, "Please select a Ghost:", "Follow Ghost", observers)
 	if(!selected)
 		return
 
@@ -570,7 +570,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		to_chat(usr, "<span class='warning'>There are no dead mobs at the moment.</span>")
 		return
 
-	var/selected = tgui_input_list("Please select a Dead Mob:", "Follow Dead", dead)
+	var/selected = tgui_input_list(usr, "Please select a Dead Mob:", "Follow Dead", dead)
 	if(!selected)
 		return
 

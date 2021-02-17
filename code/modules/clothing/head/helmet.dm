@@ -219,7 +219,9 @@
 						/obj/item/reagent_containers/food/snacks/enrg_bar = "helmet_snack_eat",
 						/obj/item/reagent_containers/food/snacks/packaged_burrito = "helmet_snack_burrito",
 						/obj/item/clothing/glasses/mgoggles = "goggles",
-						/obj/item/clothing/glasses/mgoggles/prescription = "goggles")
+						/obj/item/clothing/glasses/mgoggles/prescription = "goggles",
+						/obj/item/clothing/glasses/hud/medgoggles = "goggles",
+						/obj/item/clothing/glasses/hud/medgoggles/prescription = "goggles")
 
 /obj/item/storage/internal/marinehelmet
 	storage_slots = 2

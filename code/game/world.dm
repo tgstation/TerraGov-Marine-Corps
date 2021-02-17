@@ -8,13 +8,15 @@ GLOBAL_VAR(restart_counter)
 //This happens after the Master subsystem new(s) (it's a global datum)
 //So subsystems globals exist, but are not initialised
 /world/New()
+#ifdef USE_EXTOOLS
 	var/extools = world.GetConfig("env", "EXTOOLS_DLL") || "./byond-extools.dll"
 	if(fexists(extools))
 		call(extools, "maptick_initialize")()
-	enable_debugger()
 #ifdef REFERENCE_TRACKING
 	enable_reference_tracking()
 #endif
+#endif
+	enable_debugger()
 
 	log_world("World loaded at [time_stamp()]!")
 

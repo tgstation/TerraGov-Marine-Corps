@@ -1,9 +1,12 @@
 //PASS FLAGS
-#define PASSTABLE	(1<<0)
-#define PASSGLASS	(1<<1)
-#define PASSGRILLE	(1<<2)
-#define PASSBLOB	(1<<3)
-#define PASSMOB		(1<<4)
+#define PASSTABLE		(1<<0)
+#define PASSGLASS		(1<<1)
+#define PASSGRILLE		(1<<2)
+#define PASSBLOB		(1<<3)
+#define PASSMOB			(1<<4)
+#define PASSSMALLSTRUCT (1<<5)
+#define PASSFIRE		(1<<6)
+#define HOVERING          (PASSTABLE|PASSMOB|PASSSMALLSTRUCT|PASSFIRE)
 
 //==========================================================================================
 
@@ -51,8 +54,8 @@
 #define BEING_REMOVED			(1<<6)	//Cuffs
 #define DOES_NOT_NEED_HANDS		(1<<7)	//Dont need hands to use it
 #define SYNTH_RESTRICTED		(1<<8)	//Prevents synths from wearing items with this flag
+#define IMPEDE_JETPACK 		(1<<9)  //Reduce the range of jetpack
 //==========================================================================================
-
 
 //flags_inv_hide
 //Bit flags for the flags_inv_hide variable, which determine when a piece of clothing hides another. IE a helmet hiding glasses.
