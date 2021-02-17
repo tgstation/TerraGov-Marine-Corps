@@ -157,7 +157,7 @@
 			return
 		if(!building_checks(R, multiplier))
 			return
-		if(usr.action_busy)
+		if(usr.do_actions)
 			return
 		var/building_time = R.time
 		if(R.skill_req && usr.skills.getRating("construction") < R.skill_req)

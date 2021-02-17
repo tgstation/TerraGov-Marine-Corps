@@ -101,7 +101,7 @@
 	return text
 
 /obj/machinery/computer/welder_act(mob/living/user, obj/item/I)
-	if(user.action_busy)
+	if(user.do_actions)
 		return FALSE
 
 	var/obj/item/tool/weldingtool/welder = I

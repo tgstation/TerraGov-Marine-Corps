@@ -28,7 +28,7 @@
 /obj/item/restraints/handcuffs/proc/place_handcuffs(mob/living/carbon/target, mob/user)
 	playsound(src.loc, cuff_sound, 25, 1, 4)
 
-	if(user.action_busy)
+	if(user.do_actions)
 		return
 
 	if(!ishuman(target))

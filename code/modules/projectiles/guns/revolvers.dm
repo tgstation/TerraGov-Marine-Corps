@@ -226,9 +226,7 @@
 	if(!istype(G))
 		return
 
-	src = G
-
-	if(usr.action_busy)
+	if(usr.do_actions)
 		return
 
 	if(zoom)

@@ -631,11 +631,6 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 		var/mob/M = locate(href_list["lobby"])
 
-		if(isnewplayer(M))
-			var/mob/new_player/N = M
-			N.new_player_panel()
-			return
-
 		if(!M.client)
 			to_chat(usr, "<span class='warning'>[M] doesn't seem to have an active client.</span>")
 			return

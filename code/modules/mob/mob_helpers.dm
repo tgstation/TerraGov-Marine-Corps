@@ -1,16 +1,16 @@
-proc/isdeaf(A)
+/proc/isdeaf(A)
 	if(isliving(A))
 		var/mob/living/M = A
 		return M.ear_deaf || M.disabilities & DEAF
 	return FALSE
 
-proc/is_blind(A)
+/proc/is_blind(A)
 	if(isliving(A))
 		var/mob/living/M = A
 		return M.eye_blind
 	return FALSE
 
-proc/hasorgans(A)
+/proc/hasorgans(A)
 	return ishuman(A)
 
 /proc/hsl2rgb(h, s, l)
@@ -21,8 +21,6 @@ proc/hasorgans(A)
 /mob/proc/can_use_hands()
 	return
 
-/mob/proc/is_ready()
-	return client && !!mind
 
 /mob/proc/get_gender()
 	return gender

@@ -58,7 +58,7 @@
 		return FALSE
 	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/carbon/victim = A //target of ability
-	if(X.action_busy) //can't use if busy
+	if(X.do_actions) //can't use if busy
 		return FALSE
 	if(!X.Adjacent(victim)) //checks if owner next to target
 		return FALSE
@@ -486,7 +486,7 @@
 	if(!can_use_ability(A))
 		return fail_activate()
 
-	target.beam(X,"drain_life",'icons/effects/beam.dmi',10, 10,/obj/effect/ebeam,1) //visual SFX
+	target.beam(X,"drain_life", time = 1 SECONDS, maxdistance = 10) //visual SFX
 	target.add_filter("transfer_plasma_outline", 3, outline_filter(1, COLOR_STRONG_MAGENTA))
 	addtimer(CALLBACK(target, /atom.proc/remove_filter, "transfer_plasma_outline"), 1 SECONDS) //Failsafe blur removal
 

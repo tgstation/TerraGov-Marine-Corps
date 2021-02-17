@@ -465,7 +465,7 @@
 	camouflage()
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/proc/camouflage()
-	if (!usr || usr.incapacitated(TRUE))
+	if (usr.incapacitated(TRUE))
 		return
 
 	var/mob/living/carbon/human/M = usr
@@ -480,6 +480,10 @@
 		camo_off(usr)
 		return
 
+	if(SEND_SIGNAL(M, COMSIG_MOB_ENABLE_STEALTH) & STEALTH_ALREADY_ACTIVE)
+		to_chat(M, "<span class='warning'>You are already cloaked!</span>")
+		return FALSE
+
 	if (camo_cooldown_timer)
 		to_chat(M, "<span class='warning'>Your thermal cloak is still recalibrating! It will be ready in [(camo_cooldown_timer - world.time) * 0.1] seconds.")
 		return
@@ -488,6 +492,7 @@
 	camo_last_stealth = world.time
 	wearer = M
 
+	RegisterSignal(wearer, COMSIG_MOB_ENABLE_STEALTH, .proc/on_other_activate)
 	M.visible_message("[M] fades into thin air!", "<span class='notice'>You activate your cloak's camouflage.</span>")
 	playsound(M.loc,'sound/effects/cloak_scout_on.ogg', 15, 1)
 
@@ -522,6 +527,11 @@
 	return TRUE
 
 
+/obj/item/storage/backpack/marine/satchel/scout_cloak/proc/on_other_activate()
+	SIGNAL_HANDLER
+	return STEALTH_ALREADY_ACTIVE
+
+
 /obj/item/storage/backpack/marine/satchel/scout_cloak/proc/on_cloak()
 	if(wearer)
 		anim(wearer.loc,wearer,'icons/mob/mob.dmi',,"cloak",,wearer.dir)
@@ -531,6 +541,7 @@
 		anim(wearer.loc,wearer,'icons/mob/mob.dmi',,"uncloak",,wearer.dir)
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/proc/camo_off(mob/user)
+	UnregisterSignal(wearer, COMSIG_MOB_ENABLE_STEALTH)
 	if (!user)
 		camo_active = FALSE
 		wearer = null

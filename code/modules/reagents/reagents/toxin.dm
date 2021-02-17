@@ -489,7 +489,6 @@
 	scannable = TRUE
 
 /datum/reagent/toxin/xeno_growthtoxin/on_mob_life(mob/living/L)
-	L.reagent_pain_modifier += PAIN_REDUCTION_VERY_HEAVY
 	L.jitter(1) //So unga know to get treated
 	return ..()
 
