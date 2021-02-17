@@ -63,10 +63,17 @@
 	SEND_SIGNAL(src, COMSIG_UNMANNED_TURRET_UPDATED, turret_type)
 	qdel(I)
 
-
+/**
+ * Called when the drone is unlinked from a remote control
+ * Only argument is the remote it was linked to
+ */
 /obj/vehicle/unmanned/proc/on_link(obj/item/unmanned_vehicle_remote/remote)
 	return
 
+/**
+ * Called when the drone is linked to a remote control
+ * Only argument is the remote it is linked to
+ */
 /obj/vehicle/unmanned/proc/on_unlink(obj/item/unmanned_vehicle_remote/remote)
 	return
 

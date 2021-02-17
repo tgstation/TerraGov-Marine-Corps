@@ -9,7 +9,6 @@
 	overlay_turret = FALSE //droids dont have guns, yet
 
 
-
 /obj/vehicle/unmanned/droid/process() //play beepy noise every 5 seconds for effect while active
 	if(prob(40))
 		return
@@ -17,7 +16,7 @@
 	soundfile = file(soundfile)
 	if(!fexists(soundfile))
 		return
-	playsound(src, soundfile, 70)
+	playsound(src, soundfile, 50)
 
 /obj/vehicle/unmanned/droid/on_link(obj/item/unmanned_vehicle_remote/remote)
 	RegisterSignal(src, COMSIG_REMOTECONTROL_CHANGED, .proc/on_remote_toggle)
