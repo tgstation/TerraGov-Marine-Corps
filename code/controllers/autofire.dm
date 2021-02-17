@@ -9,7 +9,7 @@
  * Maintains a timer-like system to handle autofiring. Much of this code is modeled
  * after or adapted from the runechat subsytem.
  *
- * Note that this has the same structure for storing and queueing messages as the timer subsystem does
+ * Note that this has the same structure for storing and queueing shooter component as the timer subsystem does
  * for handling timers: the bucket_list is a list of autofire component, each of which are the head
  * of a circularly linked list. Any given index in bucket_list could be null, representing an empty bucket.
  */
@@ -87,9 +87,9 @@ SUBSYSTEM_DEF(autofire)
 	var/atom/shooter
 	/// Contains the scheduled fire time, used for scheduling EOL
 	var/next_fire
-	/// Contains the reference to the next chatmessage in the bucket, used by runechat subsystem
+	/// Contains the reference to the next component in the bucket, used by autofire subsystem
 	var/datum/component/autofire/next
-	/// Contains the reference to the previous chatmessage in the bucket, used by runechat subsystem
+	/// Contains the reference to the previous component in the bucket, used by autofire subsystem
 	var/datum/component/autofire/prev
 
 /**
@@ -150,7 +150,7 @@ SUBSYSTEM_DEF(autofire)
  * Removes this autofire component from the autofire subsystem
  */
 /datum/component/autofire/proc/leave_subsystem() //This is probably not needed
-	// Attempt to find the bucket that contains this chat message
+	// Attempt to find the bucket that contains this component
 	var/bucket_pos = BUCKET_POS(next_fire)
 
 	// Get local references to the subsystem's vars, faster than accessing on the datum
@@ -161,9 +161,7 @@ SUBSYSTEM_DEF(autofire)
 	if (bucket_pos > 0)
 		bucket_head = bucket_list[bucket_pos]
 
-	// Decrement the number of messages in buckets if the message is
-	// the head of the bucket, or has a SD less than BUCKET_LIMIT implying it fits
-	// into an existing bucket, or is otherwise not present in the secondary queue
+	//Replace the bucket head if needed
 	if(bucket_head == src)
 		bucket_list[bucket_pos] = next
 	SSautofire.bucket_count--
