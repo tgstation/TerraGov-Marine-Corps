@@ -55,6 +55,15 @@
 		unbuckle_bodybag()
 		return TRUE
 
+/**
+ * This proc is called when a human user right clicks on an atom with an empty hand
+ *
+ * Arguments:
+ * * user: The mob clicking on the atom
+ */
+/atom/proc/attack_hand_alternate(mob/living/user)
+	return
+
 /*
 	Monkey RestrainedClickOn() was apparently the
 	one and only use of all of the restrained click code
