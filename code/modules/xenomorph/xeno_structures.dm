@@ -240,7 +240,7 @@
 /obj/structure/resin/xeno_turret
 	icon = 'icons/Xeno/acidturret.dmi'
 	icon_state = "acid_turret"
-	name = "acid turret"
+	name = "resin acid turret"
 	desc = "A menacing looking thing"
 	bound_width = 32
 	bound_height = 32
