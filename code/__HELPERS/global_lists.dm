@@ -19,10 +19,6 @@ GLOBAL_LIST_EMPTY(randomized_pill_icons)
 	for(var/path in subtypesof(/datum/sprite_accessory/hair))
 		var/datum/sprite_accessory/hair/H = new path()
 		GLOB.hair_styles_list[H.name] = H
-	// Hair Gradients - Initialise all /datum/sprite_accessory/hair_gradient into an list indexed by hair-style name
-	for(var/path in subtypesof(/datum/sprite_accessory/hair_gradient))
-		var/datum/sprite_accessory/hair_gradient/H = new path()
-		GLOB.hair_gradients_list[H.name] = H
 	// Facial Hair - Initialise all /datum/sprite_accessory/facial_hair into an list indexed by facialhair-style name
 	for(var/path in subtypesof(/datum/sprite_accessory/facial_hair))
 		var/datum/sprite_accessory/facial_hair/H = new path()
