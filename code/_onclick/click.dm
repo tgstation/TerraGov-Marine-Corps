@@ -543,7 +543,7 @@ if(selected_ability.target_flags & flagname){\
 /mob/face_atom(atom/A)
 	if(buckled || stat != CONSCIOUS || !A || !x || !y || !A.x || !A.y)
 		return
-	. = ..()
+	return ..()
 
 /obj/screen/proc/scale_to(x1,y1)
 	if(!y1)
