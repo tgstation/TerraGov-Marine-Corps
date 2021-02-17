@@ -45,7 +45,7 @@
 	var/obj/item/clothing/gloves/G = gloves // not typecast specifically enough in defines
 
 	// Special glove functions:
-	// If the gloves do anything, have them return to stop
+	// If the gloves do anything, have them return TRUE to stop the touch
 	// normal attack_hand() here.
 	if(proximity && istype(G) && G.Touch(A, 1))
 		return
