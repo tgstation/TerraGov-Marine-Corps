@@ -78,17 +78,18 @@
 		return
 	if(modifiers["middle"] && MiddleClickOn(A))
 		return
+	if(modifiers["shift"] && modifiers["right"])
+		ShiftRightClickOn(A)
+		return
 	if(modifiers["shift"] && ShiftClickOn(A))
+		return
+	if(modifiers["alt"] && modifiers["right"])
+		AltRightClickOn(A)
 		return
 	if(modifiers["alt"] && AltClickOn(A))
 		return
 	if(modifiers["ctrl"])
 		CtrlClickOn(A)
-		return
-	if(modifiers["shift"] && modifiers["right"])
-		ShiftRightClickOn(A)
-		return
-	if(modifiers["alt"] && modifiers["right"])
 		return
 	if(modifiers["right"] && RightClickOn(A))
 		return
@@ -132,7 +133,7 @@
 		if(W)
 			W.melee_attack_chain(src, A, params)
 		else
-			UnarmedAttack(A, FALSE, params)
+			UnarmedAttack(A, FALSE, modifiers)
 		return
 
 	//Can't reach anything else in lockers or other weirdness
@@ -144,7 +145,7 @@
 		if(W)
 			W.melee_attack_chain(src, A, params)
 		else
-			UnarmedAttack(A, TRUE, params)
+			UnarmedAttack(A, TRUE, modifiers)
 	else
 		if(W)
 			var/attack
@@ -293,16 +294,22 @@
 	Only used for swapping hands
 */
 /mob/proc/MiddleClickOn(atom/A)
+	switch(SEND_SIGNAL(src, COMSIG_MOB_MIDDLE_CLICK, A))
+		if(COMSIG_MOB_CLICK_CANCELED)
+			return FALSE
+		if(COMSIG_MOB_CLICK_HANDLED)
+			return TRUE
 	return TRUE
 
 
 /mob/living/carbon/human/MiddleClickOn(atom/A)
 	. = ..()
-	if(!client.prefs.toggles_gameplay & MIDDLESHIFTCLICKING)
+	if(!(client.prefs.toggles_gameplay & MIDDLESHIFTCLICKING))
 		return
 	var/obj/item/held_thing = get_active_held_item()
 	if(held_thing && SEND_SIGNAL(held_thing, COMSIG_ITEM_MIDDLECLICKON, A, src) & COMPONENT_ITEM_CLICKON_BYPASS)
 		return FALSE
+
 
 #define TARGET_FLAGS_MACRO(flagname, typepath) \
 if(selected_ability.target_flags & flagname){\

@@ -21,8 +21,12 @@
 #define PROPORTION_MARINE_FOB_HUGGING_THRESHOLD 0.8
 #define CONSECUTIVE_FOb_HUGGING 3
 
+//The differente gamestate
+#define SHUTTERS_CLOSED "shutters closed"
+#define GROUNDSIDE		"GROUNDSIDE"
+#define SHIPSIDE 		"shipside"
 
-//The weight of each statistics in the state calculator
+//The weight of each statistics in the state calculator when GROUNDSIDE
 #define XENOS_LIFE_WEIGHT -200
 #define HUMAN_LIFE_ON_GROUND_WEIGHT 100
 #define HUMAN_LIFE_ON_SHIP_WEIGHT 70
@@ -36,3 +40,6 @@
 #define ANCIENT_QUEEN_WEIGHT -100
 #define OB_AVAILABLE_WEIGHT 20
 
+//The weight of each statistics in the state calculator before shutters drop and shipside
+#define XENOS_LIFE_WEIGHT_PREGAME -300
+#define HUMAN_LIFE_WEIGHT_PREGAME 100

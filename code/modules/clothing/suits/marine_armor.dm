@@ -18,10 +18,10 @@
 	min_cold_protection_temperature = ARMOR_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
 	blood_overlay_type = "armor"
-	soft_armor = list("melee" = 55, "bullet" = 65, "laser" = 65, "energy" = 20, "bomb" = 55, "bio" = 40, "rad" = 10, "fire" = 40, "acid" = 45)
+	soft_armor = list("melee" = 40, "bullet" = 60, "laser" = 60, "energy" = 45, "bomb" = 45, "bio" = 45, "rad" = 45, "fire" = 45, "acid" = 50)
 	siemens_coefficient = 0.7
 	permeability_coefficient = 0.8
-	slowdown = SLOWDOWN_ARMOR_MEDIUM
+	slowdown = 0.5
 	allowed = list(
 		/obj/item/weapon/gun,
 		/obj/item/tank/emergency_oxygen,
@@ -36,7 +36,7 @@
 	var/list/armor_overlays
 	actions_types = list(/datum/action/item_action/toggle)
 	flags_armor_features = ARMOR_LAMP_OVERLAY
-	flags_item = SYNTH_RESTRICTED
+	flags_item = SYNTH_RESTRICTED|IMPEDE_JETPACK
 	w_class = WEIGHT_CLASS_HUGE
 	time_to_unequip = 2 SECONDS
 	time_to_equip = 2 SECONDS
@@ -167,7 +167,7 @@
 	name = "\improper PAS-09 pattern technician armor"
 	desc = "A somewhat outdated but robust armored vest, still in use despite the rise of exoskeleton armor due to ease of use and manufacturing. It offers more protection against the exotic dangers that technicians face."
 	icon_state = "tanker"
-	soft_armor = list("melee" = 45, "bullet" = 55, "laser" = 60, "energy" = 45, "bomb" = 60, "bio" = 45, "rad" = 45, "fire" = 45, "acid" = 65)
+	soft_armor = list("melee" = 40, "bullet" = 55, "laser" = 60, "energy" = 45, "bomb" = 60, "bio" = 45, "rad" = 45, "fire" = 45, "acid" = 65)
 	flags_item_map_variant = NONE
 
 
@@ -175,7 +175,7 @@
 	name = "\improper PAS-10 pattern leader armor"
 	desc = "A lightweight suit of carbon fiber body armor built for quick movement. Use it to toggle the built-in flashlight."
 	icon_state = "7"
-	soft_armor = list("melee" = 45, "bullet" = 55, "laser" = 55, "energy" = 40, "bomb" = 40, "bio" = 40, "rad" = 15, "fire" = 40, "acid" = 45)
+	soft_armor = list("melee" = 40, "bullet" = 55, "laser" = 55, "energy" = 40, "bomb" = 40, "bio" = 40, "rad" = 15, "fire" = 40, "acid" = 45)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 	light_range = 8
 	pockets = /obj/item/storage/internal/suit/leader
@@ -189,8 +189,8 @@
 	name = "\improper PAS-N2 pattern MA armor"
 	desc = "A standard TerraGov Navy N2 Personal Armor System. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."
 	icon_state = "mp"
-	soft_armor = list("melee" = 45, "bullet" = 60, "laser" = 60, "energy" = 45, "bomb" = 45, "bio" = 45, "rad" = 45, "fire" = 45, "acid" = 50)
-	slowdown = 0.4
+	soft_armor = list("melee" = 40, "bullet" = 60, "laser" = 60, "energy" = 45, "bomb" = 45, "bio" = 45, "rad" = 45, "fire" = 45, "acid" = 50)
+	slowdown = 0.5
 	flags_item_map_variant = NONE
 	allowed = list(
 		/obj/item/weapon/gun,
@@ -221,7 +221,7 @@
 	name = "\improper PAS-N3 pattern admiral armor"
 	desc = "A well-crafted suit of Personal Armor System with a gold shine. It looks very expensive, but shockingly fairly easy to carry and wear."
 	w_class = WEIGHT_CLASS_NORMAL
-	soft_armor = list("melee" = 45, "bullet" = 65, "laser" = 60, "energy" = 45, "bomb" = 45, "bio" = 45, "rad" = 45, "fire" = 45, "acid" = 50)
+	soft_armor = list("melee" = 40, "bullet" = 65, "laser" = 60, "energy" = 45, "bomb" = 45, "bio" = 45, "rad" = 45, "fire" = 45, "acid" = 50)
 
 /obj/item/clothing/suit/storage/marine/MP/RO
 	icon_state = "officer"

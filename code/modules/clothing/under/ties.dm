@@ -135,7 +135,7 @@
 				if(user != H)
 					user.visible_message("[user] starts pinning [src] on [H]'s [U.name].", \
 					"<span class='notice'>You start pinning [src] on [H]'s [U.name].</span>")
-					if(user.action_busy)
+					if(user.do_actions)
 						return
 					if(!do_mob(user, H, 20, BUSY_ICON_FRIENDLY))
 						return

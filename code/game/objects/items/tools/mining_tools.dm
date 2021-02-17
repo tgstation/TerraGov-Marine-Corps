@@ -295,7 +295,7 @@
 
 
 /obj/item/tool/pickaxe/plasmacutter/afterattack(atom/target, mob/user, proximity)
-	if(!proximity || user.action_busy)
+	if(!proximity || user.do_actions)
 		return
 
 	if(isturf(target))//Melting snow with the plasma cutter.
@@ -327,8 +327,8 @@
 
 
 /obj/item/tool/pickaxe/plasmacutter/attack_obj(obj/O, mob/living/user)
-	if(!powered || user.action_busy || CHECK_BITFIELD(O.resistance_flags, INDESTRUCTIBLE))
-		. = ..()
+	if(!powered || user.do_actions || CHECK_BITFIELD(O.resistance_flags, INDESTRUCTIBLE))
+		..()
 		return TRUE
 
 	if(!start_cut(user, O.name, O))

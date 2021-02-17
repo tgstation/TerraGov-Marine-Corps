@@ -1,0 +1,4 @@
+author: "Pariah919"
+delete-after: True
+changes: 
+  - bugfix: "shipside armor now has pas vest stats"

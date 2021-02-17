@@ -10641,9 +10641,6 @@
 "bPM" = (
 /turf/open/floor/prison/plate,
 /area/sulaco/cargo)
-"bPU" = (
-/turf/closed/wall/mainship/white,
-/area/sulaco/hallway/lower_main_hall)
 "bTI" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/plate,
@@ -10688,6 +10685,9 @@
 	},
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
+"cdn" = (
+/turf/open/floor/mainship_hull/gray,
+/area/sulaco/hallway/lower_main_hall)
 "cdy" = (
 /turf/open/floor/prison,
 /area/sulaco/hangar)
@@ -10817,6 +10817,9 @@
 	dir = 8
 	},
 /area/sulaco/marine/bravo)
+"cAu" = (
+/turf/open/floor/mainship_hull/gray,
+/area/sulaco/marine)
 "cAJ" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship,
@@ -13311,6 +13314,9 @@
 	},
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint2)
+"kbB" = (
+/turf/open/floor/mainship_hull/gray,
+/area/mainship/shipboard/weapon_room)
 "kbH" = (
 /obj/structure/closet/crate/weapon,
 /turf/open/floor/prison,
@@ -14367,6 +14373,9 @@
 	dir = 1
 	},
 /area/sulaco/medbay)
+"mKh" = (
+/turf/open/floor/mainship_hull/gray,
+/area/sulaco/cafeteria)
 "mMX" = (
 /obj/structure/cable,
 /obj/structure/sink{
@@ -35580,8 +35589,8 @@ pxD
 aHz
 fNG
 aIz
-mDu
-mDu
+kbB
+kbB
 cfA
 aDI
 aEX
@@ -35837,8 +35846,8 @@ rBM
 dDU
 gSo
 aIz
-mDu
-mDu
+kbB
+cAu
 cfA
 gGU
 aBk
@@ -36094,8 +36103,8 @@ knr
 xJd
 qyL
 aPQ
-mDu
-mDu
+cdn
+cAu
 cfA
 aDK
 aEZ
@@ -36351,8 +36360,8 @@ nOn
 qzc
 qyL
 aPQ
-mDu
-mDu
+cdn
+cAu
 cfA
 aDL
 aFa
@@ -36608,8 +36617,8 @@ ljR
 qzc
 rtA
 aPQ
-mDu
-mDu
+cdn
+cAu
 cfA
 aDK
 aFa
@@ -36865,8 +36874,8 @@ pgQ
 qzc
 qyL
 aPQ
-mDu
-mDu
+cdn
+cAu
 cfA
 aDK
 aFa
@@ -37122,8 +37131,8 @@ hlP
 oVU
 qyL
 aPQ
-mDu
-mDu
+cdn
+mKh
 cfA
 aDK
 aFa
@@ -48430,7 +48439,7 @@ aWG
 xKR
 aWG
 iqZ
-bPU
+agb
 aaJ
 ajO
 aiA
@@ -48687,7 +48696,7 @@ aWG
 vmi
 aWG
 eVE
-bPU
+agb
 aaJ
 yiP
 aio
@@ -48944,7 +48953,7 @@ aWG
 xKR
 aWG
 agm
-bPU
+agb
 aaJ
 ajQ
 aeL
@@ -49200,7 +49209,7 @@ aVZ
 aWG
 xKR
 aWG
-bPU
+agb
 aaQ
 aaJ
 aaJ

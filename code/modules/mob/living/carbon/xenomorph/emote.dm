@@ -49,7 +49,7 @@
 
 
 /datum/emote/living/carbon/xenomorph/needhelp
-	key = "heedhelp"
+	key = "needhelp"
 	key_third_person = "needshelp"
 	message = "needs help!"
 	emote_type = EMOTE_AUDIBLE

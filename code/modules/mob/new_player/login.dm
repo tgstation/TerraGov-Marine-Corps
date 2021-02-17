@@ -14,7 +14,6 @@
 
 	sight |= SEE_TURFS
 
-	new_player_panel()
 	client?.play_title_music()
 
 

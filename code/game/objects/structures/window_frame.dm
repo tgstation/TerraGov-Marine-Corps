@@ -97,7 +97,7 @@
 			to_chat(user, "<span class='warning'>[M] needs to be next to [src].</span>")
 			return
 
-		if(user.action_busy)
+		if(user.do_actions)
 			return
 
 		user.visible_message("<span class='notice'>[user] starts pulling [M] onto [src].</span>",
