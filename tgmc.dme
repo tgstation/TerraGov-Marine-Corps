@@ -180,6 +180,7 @@
 #include "code\_onclick\hud\xeno\larva.dm"
 #include "code\_onclick\hud\xeno\xeno.dm"
 #include "code\controllers\admin.dm"
+#include "code\controllers\autofire.dm"
 #include "code\controllers\controller.dm"
 #include "code\controllers\failsafe.dm"
 #include "code\controllers\globals.dm"
