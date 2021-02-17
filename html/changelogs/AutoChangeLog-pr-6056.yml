@@ -1,0 +1,4 @@
+author: "Vondiech"
+delete-after: True
+changes: 
+  - bugfix: "One of the dropship-crash locations on the sulaco have been fixed as to not open up an instant death zone"
