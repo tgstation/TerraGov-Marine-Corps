@@ -257,7 +257,7 @@
 	var/mob/living/carbon/hostile
 	///Last target of the turret
 	var/mob/living/carbon/last_hostile
-	///Fire rate of the target
+	///Fire rate of the target in ticks
 	var/firerate = 8
 	///Doesn't use power, it's needed because the process is in machines. Very shitcode
 	var/use_power = FALSE
@@ -266,24 +266,30 @@
 	. = ..()
 	ammo = GLOB.ammo_list[/datum/ammo/xeno/acid]
 	associated_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
-	START_PROCESSING(SSmachines, src)	
-	AddComponent(/datum/component/automatic_shoot_at, src, firerate, ammo)
-	RegisterSignal(src, COMSIG_SHOT_FIRED, .proc/face_target)
+	START_PROCESSING(SSmachines, src)
+	AddComponent(/datum/component/autofire/automatic_shoot_at, firerate, ammo)
+	RegisterSignal(src, COMSIG_AUTOMATIC_SHOOTER_SHOT_FIRED, .proc/face_target)
+
+/obj/structure/resin/xeno_turret/Destroy()
+	. = ..()
+	hostile = null
+	last_hostile = null
+
 
 /obj/structure/resin/xeno_turret/process()
 	hostile = get_target()
 	if (!hostile)
 		if(last_hostile)
 			last_hostile = null
-			SEND_SIGNAL(src, COMSIG_STOP_SHOOTING_AT)
+			SEND_SIGNAL(src, COMSIG_AUTOMATIC_SHOOTER_STOP_SHOOTING_AT)
 		return
 	if(!TIMER_COOLDOWN_CHECK(src, COOLDOWN_XENO_TURRETS_ALERT))
 		associated_hive.xeno_message("<span class='xenoannounce'>Our [name] has detected a nearby hostile [hostile] at [get_area(hostile)]. [name] has [obj_integrity]/[max_integrity] health remaining.</span>", 2, FALSE, src, 'sound/voice/alien_help1.ogg', FALSE, null, /obj/screen/arrow/turret_attacking_arrow)
 		TIMER_COOLDOWN_START(src, COOLDOWN_XENO_TURRETS_ALERT, 20 SECONDS)
 	if(hostile != last_hostile)
 		last_hostile = hostile
-		SEND_SIGNAL(src, COMSIG_START_SHOOTING_AT, hostile)
-	
+		SEND_SIGNAL(src, COMSIG_AUTOMATIC_SHOOTER_START_SHOOTING_AT, hostile)
+
 ///Look for the closest human in range and in light of sight. If no human is in range, will look for xenos of other hives
 /obj/structure/resin/xeno_turret/proc/get_target()
 	var/distance = INFINITY
@@ -319,7 +325,7 @@
 			. = nearby_human
 	if(.)//We have found the closest human target, human takes priority on xenos for performance issue
 		return
-	
+
 	for (var/mob/living/carbon/xenomorph/nearby_xeno as anything in cheap_get_xenos_near(src, range))
 		if(associated_hive == nearby_xeno.hive) //Xenomorphs not in our hive will be attacked as well!
 			continue
@@ -351,6 +357,7 @@
 			distance = buffer_distance
 			. = nearby_xeno
 
+///Signal handler to force the turret to face its current target
 /obj/structure/resin/xeno_turret/proc/face_target()
 	SIGNAL_HANDLER
 	face_atom(hostile)

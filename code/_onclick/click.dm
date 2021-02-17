@@ -516,6 +516,8 @@ if(selected_ability.target_flags & flagname){\
 
 // Simple helper to face what you clicked on, in case it should be needed in more than one place
 /atom/proc/face_atom(atom/A)
+	if(!A || !x || !y || !A.x || !A.y)
+		return
 	var/dx = A.x - x
 	var/dy = A.y - y
 	if(!dx && !dy) // Wall items are graphically shifted but on the floor
@@ -541,7 +543,7 @@ if(selected_ability.target_flags & flagname){\
 			setDir(WEST)
 
 /mob/face_atom(atom/A)
-	if(buckled || stat != CONSCIOUS || !A || !x || !y || !A.x || !A.y)
+	if(buckled || stat != CONSCIOUS)
 		return
 	return ..()
 

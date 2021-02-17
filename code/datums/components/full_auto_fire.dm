@@ -334,67 +334,6 @@
 	shots_to_fire = new_amount
 
 
-/datum/component/automatic_shoot_at
-	///The target we are shooting at
-	var/atom/target
-	///The owner of this componet
-	var/atom/shooter
-	///The ammo we are shooting
-	var/datum/ammo/xeno/ammo
-	///The delay between each shot in ticks
-	var/shot_delay = 5
-	///The timer used to regulate the shot
-	var/shot_delay_timer
-	///If we are shooting
-	var/shooting = FALSE
-
-/datum/component/automatic_shoot_at/Initialize(shooter, shot_delay, ammo)
-	. = ..()
-	src.shooter = shooter
-	src.shot_delay = shot_delay
-	src.ammo = ammo
-	RegisterSignal(shooter, COMSIG_START_SHOOTING_AT, .proc/start_shooting)
-	RegisterSignal(shooter, COMSIG_STOP_SHOOTING_AT, .proc/stop_shooting)
-
-///Signal handler for starting the autoshooting at something
-/datum/component/automatic_shoot_at/proc/start_shooting(datum/source, target)
-	SIGNAL_HANDLER
-	src.target = target
-	shooting = TRUE
-	if(shot_delay_timer)
-		return
-	process_shot()
-	shot_delay_timer = addtimer(CALLBACK(src, .proc/process_shot), shot_delay, TIMER_STOPPABLE|TIMER_LOOP)
-
-///Signal handler for stoping the shooting
-/datum/component/automatic_shoot_at/proc/stop_shooting(datum/source)
-	SIGNAL_HANDLER
-	target = null
-	shooting = FALSE
-	if(!deltimer(shot_delay_timer))
-		INVOKE_NEXT_TICK(src, .proc/keep_trying_to_delete_timer, shot_delay_timer)
-	shot_delay_timer = null
-
-///If there was an issue deleting the timer, this is called to prevent infinite loop
-/datum/component/automatic_shoot_at/proc/keep_trying_to_delete_timer(timer_id) //This is an ugly hack until a fix for timers being unable to be deleted from inside the call stack is done.
-	set waitfor = FALSE
-	while(!(deltimer(timer_id)))
-		var/datum/timedevent/timer = SStimer.timer_id_dict[timer_id] //This is not a kosher thing to do outside of the SS. But this is a temporary hack.
-		if(!timer)
-			return //Has already been deleted.
-		stoplag(1) //Let's try again next tick.
-
-///Create the projectile
-/datum/component/automatic_shoot_at/proc/process_shot()
-	if(!shooting)
-		return
-	var/obj/projectile/newspit = new /obj/projectile(shooter.loc)
-	newspit.generate_bullet(ammo, ammo.damage)
-	newspit.permutated += shooter
-	newspit.fire_at(target, shooter, null, ammo.max_range, ammo.shell_speed)
-	SEND_SIGNAL(shooter, COMSIG_SHOT_FIRED)
-
-
 // Gun procs.
 
 /obj/item/weapon/gun/proc/on_autofire_start(mob/living/shooter)
