@@ -224,11 +224,11 @@
 			var/datum/instrument/I = SSinstruments.get_instrument(i)
 			if(I)
 				LAZYSET(categories[I.category || "ERROR CATEGORY"], I.name, I.id)
-		var/cat = input(usr, "Select Category", "Instrument Category") as null|anything in categories
+		var/cat = tgui_input_list(usr, "Select Category", "Instrument Category", categories)
 		if(!cat)
 			return
 		var/list/instruments = categories[cat]
-		var/choice = input(usr, "Select Instrument", "Instrument Selection") as null|anything in instruments
+		var/choice = tgui_input_list(usr, "Select Instrument", "Instrument Selection", instruments)
 		if(!choice)
 			return
 		choice = instruments[choice]		//get id
@@ -241,7 +241,7 @@
 			note_shift = clamp(amount, note_shift_min, note_shift_max)
 
 	else if(href_list["setsustainmode"])
-		var/choice = input(usr, "Choose a sustain mode", "Sustain Mode") as null|anything in list("Linear", "Exponential")
+		var/choice = tgui_input_list(usr, "Choose a sustain mode", "Sustain Mode", list("Linear", "Exponential"))
 		switch(choice)
 			if("Linear")
 				sustain_mode = SUSTAIN_LINEAR

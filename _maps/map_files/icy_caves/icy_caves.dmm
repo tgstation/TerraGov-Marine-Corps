@@ -445,7 +445,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/garage)
 "bC" = (
-/obj/effect/landmark/xeno_spawning_pool_spawn,
+/obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/northern)
 "bD" = (
@@ -1061,7 +1061,7 @@
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/east)
 "eL" = (
-/obj/effect/landmark/xeno_spawning_pool_spawn,
+/obj/effect/landmark/xeno_silo_spawn,
 /obj/effect/alien/weeds/node,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/east)
@@ -3283,7 +3283,7 @@
 /obj/item/ammo_magazine/rifle/ak47,
 /obj/item/ammo_magazine/rifle/ak47,
 /obj/item/ammo_magazine/rifle/ak47,
-/obj/item/weapon/gun/rifle/ak47/carbine,
+/obj/item/weapon/gun/rifle/ak47,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/security)
 "tb" = (

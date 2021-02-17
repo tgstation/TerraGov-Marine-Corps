@@ -378,6 +378,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 	update_burst()
 	UpdateDamageIcon()
 	update_transform()
+	update_headbite()
 
 
 /* --------------------------------------- */
@@ -451,10 +452,9 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 	if(client &&  hud_used?.hud_shown && hud_used.inventory_shown)
 		glasses.screen_loc = ui_glasses
 		client.screen += glasses
-	if(istype(glasses,/obj/item/clothing/glasses/mgoggles))
+	if(glasses.goggles)
 		overlays_standing[GOGGLES_LAYER] = glasses.make_worn_icon(body_type = species.name, slot_name = slot_glasses_str, default_icon = 'icons/mob/eyes.dmi', default_layer = GOGGLES_LAYER)
 		apply_overlay(GOGGLES_LAYER)
-	
 	else
 		overlays_standing[GLASSES_LAYER] = glasses.make_worn_icon(body_type = species.name, slot_name = slot_glasses_str, default_icon = 'icons/mob/eyes.dmi', default_layer = GLASSES_LAYER)
 		apply_overlay(GLASSES_LAYER)
@@ -681,6 +681,15 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 
 	overlays_standing[BURST_LAYER]	= standing
 	apply_overlay(BURST_LAYER)
+
+/mob/living/carbon/human/update_headbite()
+	remove_overlay(HEADBITE_LAYER)
+	var/image/standing
+	if(headbitten)
+		standing = image("icon" = 'icons/Xeno/Effects.dmi',"icon_state" = "headbite_stand", "layer" =-HEADBITE_LAYER)
+
+	overlays_standing[HEADBITE_LAYER]	= standing
+	apply_overlay(HEADBITE_LAYER)
 
 /mob/living/carbon/human/update_fire()
 	remove_overlay(FIRE_LAYER)

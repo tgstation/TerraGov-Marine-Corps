@@ -47,6 +47,7 @@
 #include "timer_sanity.dm"
 #include "unit_test.dm"
 #include "weed_ability.dm"
+#include "weed_spread.dm"
 #include "xeno_logical_scaling.dm"
 
 #undef TEST_ASSERT

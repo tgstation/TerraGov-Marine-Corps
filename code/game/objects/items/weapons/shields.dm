@@ -14,6 +14,7 @@
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "riot"
 	max_integrity = 200
+	flags_item = IMPEDE_JETPACK
 	flags_equip_slot = ITEM_SLOT_BACK
 	force = 5
 	throwforce = 5
@@ -69,7 +70,7 @@
 
 
 /obj/item/weapon/shield/riot/welder_act(mob/living/user, obj/item/I)
-	if(user.action_busy)
+	if(user.do_actions)
 		return FALSE
 
 	var/obj/item/tool/weldingtool/WT = I

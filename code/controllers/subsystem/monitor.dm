@@ -3,7 +3,7 @@ SUBSYSTEM_DEF(monitor)
 	init_order = INIT_ORDER_MONITOR
 	runlevels = RUNLEVEL_GAME
 	wait = 5 MINUTES
-	can_fire = FALSE
+	can_fire = TRUE
 
 
 	///The next world.time for wich the monitor subsystem refresh the state
@@ -30,6 +30,8 @@ SUBSYSTEM_DEF(monitor)
 	var/hijacked = FALSE
 	///List of all int stats
 	var/datum/monitor_statistics/stats = new
+	///TRUE if the monitor will check for stalemate and FOB hugging
+	var/stalemate_detector = FALSE
 	
 /datum/monitor_statistics
 	var/ancient_queen = 0
@@ -46,12 +48,13 @@ SUBSYSTEM_DEF(monitor)
 
 /datum/controller/subsystem/monitor/Initialize(start_timeofday)
 	. = ..()
-	addtimer(VARSET_CALLBACK(src, can_fire, TRUE), START_STATE_CALCULATION)
+	addtimer(VARSET_CALLBACK(src, stalemate_detector, TRUE), START_STATE_CALCULATION)
 
 /datum/controller/subsystem/monitor/fire(resumed = 0)
 	process_human_positions()
 	current_points = calculate_state_points() / max(GLOB.alive_human_list.len + GLOB.alive_xeno_list.len,20)//having less than 20 players gives bad results
-	FOB_hugging_check()
+	if(stalemate_detector)
+		FOB_hugging_check()
 	set_state(current_points)
 	//spam_admins() //Only for testing
 
@@ -79,7 +82,6 @@ SUBSYSTEM_DEF(monitor)
 	. += stats.b18_in_use.len * B18_PRICE * REQ_POINTS_WEIGHT
 	. += SSpoints.supply_points * REQ_POINTS_WEIGHT
 	. += stats.OB_available * OB_AVAILABLE_WEIGHT
-	. += GLOB.xeno_resin_spawning_pools.len * SPAWNING_POOL_WEIGHT
 
 ///Keep the monitor informed about the position of humans
 /datum/controller/subsystem/monitor/proc/process_human_positions()
@@ -118,6 +120,8 @@ SUBSYSTEM_DEF(monitor)
 	else
 		current_state = MARINES_DELAYING
 	
+	if(!stalemate_detector)
+		return
 	//We check for possible stalemate
 	if (current_state == last_state)
 		stale_counter++

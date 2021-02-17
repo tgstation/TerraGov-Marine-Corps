@@ -83,12 +83,16 @@
 	var/ladder_dir_name
 	var/obj/structure/ladder/ladder_dest
 	if(up && down)
-		ladder_dir_name = alert("Go up or down the ladder?", "Ladder", "Up", "Down", "Cancel")
-		if(ladder_dir_name == "Cancel")
-			return
-		ladder_dir_name = lowertext(ladder_dir_name)
-		if(ladder_dir_name == "up") ladder_dest = up
-		else ladder_dest = down
+		ladder_dir_name = tgui_alert(user, "Go up or down the ladder?", "Ladder", list("Up", "Down", "Cancel"))
+		switch(ladder_dir_name)
+			if("Up")
+				ladder_dir_name = "up"
+				ladder_dest = up
+			if("Down")
+				ladder_dir_name = "down"
+				ladder_dest = down
+			else
+				return
 	else if(up)
 		ladder_dir_name = "up"
 		ladder_dest = up
@@ -116,12 +120,12 @@
 	if(.)
 		return
 	if(up && down)
-		switch(alert("Go up or down the ladder?", "Ladder", "Up", "Down", "Cancel"))
+		switch(tgui_alert(user, "Go up or down the ladder?", "Ladder", list("Up", "Down", "Cancel")))
 			if("Up")
 				user.forceMove(get_turf(up))
 			if("Down")
 				user.forceMove(get_turf(down))
-			if("Cancel")
+			else
 				return
 
 	else if(up)
@@ -175,7 +179,7 @@
 			to_chat(usr, "Someone's already looking through [src].")
 			return
 		if(up && down)
-			switch( alert("Look up or down the ladder?", "Ladder", "Up", "Down", "Cancel") )
+			switch( tgui_alert(usr ,"Look up or down the ladder?", "Ladder", list("Up", "Down", "Cancel")))
 				if("Up")
 					usr.visible_message("<span class='notice'>[usr] looks up [src]!</span>",
 					"<span class='notice'>You look up [src]!</span>")
@@ -215,15 +219,16 @@
 		var/obj/structure/ladder/ladder_dest
 
 		if(up && down)
-			ladder_dir_name = alert("Throw up or down?", "Ladder", "Up", "Down", "Cancel")
-			if(ladder_dir_name == "Cancel")
-				return
-			ladder_dir_name = lowertext(ladder_dir_name)
-			if(ladder_dir_name == "up")
-				ladder_dest = up
-			else
-				ladder_dest = down
-
+			ladder_dir_name = tgui_alert(user, "Throw up or down?", "Ladder", list("Up", "Down", "Cancel"), 0)
+			switch(ladder_dir_name)
+				if("Up")
+					ladder_dest = up
+					ladder_dir_name = "up"
+				if("Down")
+					ladder_dest = down
+					ladder_dir_name = "down"
+				else
+					return
 		else if(up)
 			ladder_dir_name = "up"
 			ladder_dest = up
@@ -255,14 +260,16 @@
 		var/ladder_dir_name
 		var/obj/structure/ladder/ladder_dest
 		if(up && down)
-			ladder_dir_name = alert("Throw up or down?", "Ladder", "Up", "Down", "Cancel")
-			if(ladder_dir_name == "Cancel")
-				return
-			ladder_dir_name = lowertext(ladder_dir_name)
-			if(ladder_dir_name == "up")
-				ladder_dest = up
-			else
-				ladder_dest = down
+			ladder_dir_name = tgui_alert(user, "Throw up or down?", "Ladder", list("Up", "Down", "Cancel"), 0)
+			switch(ladder_dir_name)
+				if("Up")
+					ladder_dir_name = "up"
+					ladder_dest = up
+				if("Down")
+					ladder_dir_name = "up"
+					ladder_dest = down
+				else
+					return
 		else if(up)
 			ladder_dir_name = "up"
 			ladder_dest = up

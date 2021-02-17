@@ -85,7 +85,7 @@
 // TODO: merge defender/ravager pounces into this typepath since they are essentially the same thing
 /datum/action/xeno_action/activable/pounce/proc/pounce_complete()
 	SIGNAL_HANDLER
-	UnregisterSignal(owner, list(COMSIG_XENO_OBJ_THROW_HIT, COMSIG_XENO_NONE_THROW_HIT, COMSIG_XENO_LIVING_THROW_HIT))
+	UnregisterSignal(owner, list(COMSIG_XENO_OBJ_THROW_HIT, COMSIG_MOVABLE_POST_THROW, COMSIG_XENO_LIVING_THROW_HIT))
 
 /datum/action/xeno_action/activable/pounce/proc/obj_hit(datum/source, obj/target, speed)
 	SIGNAL_HANDLER
@@ -156,7 +156,7 @@
 
 	RegisterSignal(X, COMSIG_XENO_OBJ_THROW_HIT, .proc/obj_hit)
 	RegisterSignal(X, COMSIG_XENO_LIVING_THROW_HIT, .proc/mob_hit)
-	RegisterSignal(X, COMSIG_XENO_NONE_THROW_HIT, .proc/pounce_complete)
+	RegisterSignal(X, COMSIG_MOVABLE_POST_THROW, .proc/pounce_complete)
 
 	prepare_to_pounce()
 
@@ -168,7 +168,7 @@
 	succeed_activate()
 	add_cooldown()
 	X.usedPounce = TRUE // this is needed for throwing code
-	X.flags_pass = PASSTABLE
+	X.flags_pass = PASSTABLE|PASSFIRE
 	X.throw_at(A, range, 2, X) //Victim, distance, speed
 
 	addtimer(CALLBACK(X, /mob/living/carbon/xenomorph/.proc/reset_flags_pass), 6)
@@ -340,7 +340,7 @@
 	"<span class='xenodanger'>We effortlessly dodge the [proj.name]![(evasion_stack_target - evasion_stacks) > 0 ? " We must dodge [evasion_stack_target - evasion_stacks] more projectile damage before [src]'s cooldown refreshes." : ""]</span>")
 
 
-	R.add_filter("runner_evasion", 2, list("type" = "blur", 5)) //Cool SFX
+	R.add_filter("runner_evasion", 2, gauss_blur_filter(5)) //Cool SFX
 	addtimer(CALLBACK(R, /atom.proc/remove_filter, "runner_evasion"), 0.5 SECONDS)
 	R.do_jitter_animation(4000) //Dodgy animation!
 

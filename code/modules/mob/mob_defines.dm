@@ -68,7 +68,8 @@
 	var/image/typing_indicator
 
 	//Interaction
-	var/action_busy //whether the mob is currently doing an action that takes time (do_after or do_mob procs)
+	///Lazylist assoc list of do_after and do_mob actions the mob is currently performing: list([target] = amount)
+	var/list/do_actions
 	var/datum/click_intercept
 	var/atom/movable/interactee //the thing that the mob is currently interacting with (e.g. a computer, another mob (stripping a mob), manning a hmg)
 	var/obj/control_object //Used by admins to possess objects.

@@ -326,7 +326,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 
 
 /datum/action/xeno_action/activable/healing_infusion/use_ability(atom/target)
-	if(owner.action_busy)
+	if(owner.do_actions)
 		return FALSE
 
 	owner.face_atom(target) //Face the target so we don't look stupid
@@ -336,14 +336,14 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 
 	playsound(target, 'sound/effects/magic.ogg', 25) //Cool SFX
 	playsound(owner, 'sound/effects/magic.ogg', 25) //Cool SFX
-	owner.beam(target,"medbeam",'icons/effects/beam.dmi',10, 10,/obj/effect/ebeam,1)
+	owner.beam(target, "medbeam", time = 1 SECONDS, maxdistance = 10)
 	new /obj/effect/temp_visual/telekinesis(get_turf(owner))
 	new /obj/effect/temp_visual/telekinesis(get_turf(target))
 	to_chat(target, "<span class='xenodanger'>Our wounds begin to knit and heal rapidly as [owner]'s healing energies infuse us.</span>") //Let the target know.
 
 	var/mob/living/carbon/xenomorph/patient = target
 
-	patient.add_filter("hivelord_healing_infusion_outline", 3, list("type" = "outline", "size" = 1, "color" = COLOR_VERY_PALE_LIME_GREEN)) //Set our cool aura; also confirmation we have the buff
+	patient.add_filter("hivelord_healing_infusion_outline", 3, outline_filter(1, COLOR_VERY_PALE_LIME_GREEN)) //Set our cool aura; also confirmation we have the buff
 
 	patient.infusion_active = TRUE //Indicate the infusion as being active
 
