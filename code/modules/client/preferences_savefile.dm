@@ -386,7 +386,7 @@
 	r_hair			= sanitize_integer(r_hair, 0, 255, initial(r_hair))
 	g_hair			= sanitize_integer(g_hair, 0, 255, initial(g_hair))
 	b_hair			= sanitize_integer(b_hair, 0, 255, initial(b_hair))
-	message_admins("g, [grad_style		== sanitize_inlist(grad_style, GLOB.hair_gradients, initial(grad_style))]")
+
 	grad_style		= sanitize_inlist(grad_style, GLOB.hair_gradients, initial(grad_style))
 	r_grad			= sanitize_integer(r_grad, 0, 255, initial(r_grad))
 	g_grad			= sanitize_integer(g_grad, 0, 255, initial(g_grad))
