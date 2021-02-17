@@ -154,6 +154,8 @@
 	dat += "<table cellspacing=4>"
 	dat += xenoinfo
 	dat += "</table>"
+	var/larva_generated = SSsilo.current_larva_spawn_rate/8
+	dat += "<b>Larvas generated in one minute: [larva_generated]<BR>"
 	dat += resin_silo_status_output(user, hive)
 
 	var/datum/browser/popup = new(user, "roundstatus", "<div align='center'>Hive Status</div>", 650, 650)

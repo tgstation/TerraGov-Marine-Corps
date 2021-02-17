@@ -36,12 +36,13 @@
 	var/datum/hive_status/associated_hive
 	var/silo_area
 	var/number_silo
+	///How old this silo is in seconds
+	var/maturity
 	COOLDOWN_DECLARE(silo_damage_alert_cooldown)
 	COOLDOWN_DECLARE(silo_proxy_alert_cooldown)
 
 /obj/structure/resin/silo/Initialize()
 	. = ..()
-
 	var/static/number = 1
 	name = "[name] [number]"
 	number_silo = number
@@ -156,6 +157,8 @@
 	if(obj_integrity < max_integrity)
 		obj_integrity = min(obj_integrity + 25, max_integrity) //Regen 5 HP per sec
 		return
+
+	maturity += 5
 
 	//If we're at max integrity, stop regenerating and processing.
 	return PROCESS_KILL
