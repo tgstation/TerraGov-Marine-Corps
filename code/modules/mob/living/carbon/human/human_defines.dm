@@ -21,7 +21,7 @@
 	var/r_grad = 0
 	var/g_grad = 0
 	var/b_grad = 0
-	var/grad_style = "none"
+	var/grad_style = "None"
 
 	//Facial hair colour and style
 	var/r_facial = 0
