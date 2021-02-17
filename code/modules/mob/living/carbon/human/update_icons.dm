@@ -335,15 +335,11 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 				var/icon/grad_s
 				if(grad_style && grad_style != "none")
 					grad_s = new/icon("icon" = 'icons/mob/hair_gradients.dmi', "icon_state" = GLOB.hair_gradients[grad_style])
-					message_admins("[grad_style], [GLOB.hair_gradients[grad_style]]")
 					grad_s.Blend(hair_s, ICON_ADD)
 					grad_s.Blend(rgb(r_grad, g_grad, b_grad), ICON_ADD)
-					message_admins("[rgb(r_grad, g_grad, b_grad)]")
-					message_admins("[r_grad],[g_grad],[b_grad]")
 				hair_s.Blend(rgb(r_hair, g_hair, b_hair), ICON_ADD)
 				if(!isnull(grad_s))
 					hair_s.Blend(grad_s, ICON_OVERLAY)
-					message_admins("Applied")
 
 			face_standing.Blend(hair_s, ICON_OVERLAY)
 
