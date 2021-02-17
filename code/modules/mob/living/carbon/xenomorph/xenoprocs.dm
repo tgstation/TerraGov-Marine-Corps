@@ -179,7 +179,7 @@
 			to_chat(usr,"<span class='notice'> You will now track [X.name]</span>")
 			tracked = X
 			break
-	
+
 	if(href_list["track_silo_number"])
 		if(!check_state())
 			return
@@ -384,7 +384,7 @@
 //This deals with "throwing" xenos -- ravagers, hunters, and runners in particular. Everyone else defaults to normal
 //Pounce, charge both use throw_at, so we need extra code to do stuff rather than just push people aside.
 /mob/living/carbon/xenomorph/throw_impact(atom/hit_atom, speed)
-	set waitfor = 0
+	set waitfor = FALSE
 
 	// TODO: remove charge_type check
 	if(!xeno_caste.charge_type || stat || (!throwing && usedPounce)) //No charge type, unconscious or dead, or not throwing but used pounce.

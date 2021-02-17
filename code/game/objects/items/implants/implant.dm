@@ -16,8 +16,10 @@
 	var/malfunction = MALFUNCTION_NONE
 	///Implant secific flags
 	var/flags_implant = GRANT_ACTIVATION_ACTION
+	///Whitelist for llimbs that this implavnt is allowed to be inserted into, all limbs by default
+	var/list/allowed_limbs
 	///Activation_action reference
-	var/datum/action/implant/activation_action
+	var/datum/action/item_action/implant/activation_action
 	///Cooldown between usages of the implant
 	var/cooldown_time = 1 SECONDS
 	COOLDOWN_DECLARE(activation_cooldown)
@@ -26,8 +28,12 @@
 	. = ..()
 	GLOB.implant_list += src
 	if(flags_implant & GRANT_ACTIVATION_ACTION)
-		activation_action = new(src)
-		RegisterSignal(activation_action, COMSIG_ACTION_TRIGGER, .proc/activate)
+		activation_action = new(src, src)
+	if(allow_reagents)
+		reagents = new /datum/reagents(MAX_IMPLANT_REAGENTS)
+		reagents.my_atom = src
+	if(!allowed_limbs)
+		allowed_limbs = GLOB.human_body_parts
 
 
 /obj/item/implant/Destroy(force)
@@ -37,10 +43,11 @@
 	GLOB.implant_list -= src
 	return ..()
 
+/obj/item/implant/ui_action_click(mob/user, datum/action/item_action/action)
+	activate()
 
 ///Handles the actual activation of the implant/it's effects. Returns TRUE on succesful activation and FALSE on failure for parentcalls
 /obj/item/implant/proc/activate()
-	SIGNAL_HANDLER
 	if(!COOLDOWN_CHECK(src, activation_cooldown))
 		return FALSE
 	COOLDOWN_START(src, activation_cooldown, cooldown_time)
@@ -50,6 +57,9 @@
 /obj/item/implant/proc/try_implant(mob/living/carbon/human/target, mob/living/user)
 	SHOULD_CALL_PARENT(TRUE)
 	if(!ishuman(target))
+		return FALSE
+	if(!(user.zone_selected in allowed_limbs))
+		to_chat(user, "<span class='warning'>You cannot implant this into that limb!</span>")
 		return FALSE
 	return implant(target, user)
 
@@ -90,7 +100,7 @@
 /obj/item/implant/proc/get_data()
 	return "No information available"
 
-///Called when the implant hears a message, used for actication phrases and the like
+///Called when the implant hears a message, used for activation phrases and the like
 /obj/item/implant/proc/on_hear(datum/source, message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode)
 	SIGNAL_HANDLER
 	return
@@ -105,10 +115,5 @@
 	icon_state = "implant_melted"
 	malfunction = MALFUNCTION_PERMANENT
 
-/datum/action/implant
-	name = "Activate Implant"
+/datum/action/item_action/implant
 	desc = "Activates a currently implanted implant"
-
-/datum/action/implant/New(obj/item/implant/Target)
-	name = "Activate Implant: [Target.name]"
-	return ..()

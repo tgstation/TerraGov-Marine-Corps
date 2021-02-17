@@ -78,7 +78,7 @@
 				to_chat(src, "<span class='warning'>No suitable records found. Aborting.</span>")
 				return
 
-			hologram = tgui_input_list(src, "Select a crew member:", personnel_list)
+			hologram = tgui_input_list(src, "Select a crew member:", null,personnel_list)
 			var/icon/character_icon = personnel_list[hologram]
 			if(!character_icon)
 				return
@@ -102,7 +102,7 @@
 			"guard" = 'icons/mob/animal.dmi'
 			)
 
-			hologram = tgui_input_list(src, "Please select a hologram:", icon_list)
+			hologram = tgui_input_list(src, "Please select a hologram:", null, icon_list)
 			if(!hologram)
 				return
 
@@ -116,7 +116,7 @@
 				"horror" = 'icons/mob/ai.dmi'
 				)
 
-			hologram = tgui_input_list(src, "Please select a hologram:", icon_list)
+			hologram = tgui_input_list(src, "Please select a hologram:", null, icon_list)
 			if(!hologram)
 				return
 

@@ -1,16 +1,16 @@
-proc/isdeaf(A)
+/proc/isdeaf(A)
 	if(isliving(A))
 		var/mob/living/M = A
 		return M.ear_deaf || M.disabilities & DEAF
 	return FALSE
 
-proc/is_blind(A)
+/proc/is_blind(A)
 	if(isliving(A))
 		var/mob/living/M = A
 		return M.eye_blind
 	return FALSE
 
-proc/hasorgans(A)
+/proc/hasorgans(A)
 	return ishuman(A)
 
 /proc/hsl2rgb(h, s, l)
@@ -21,8 +21,6 @@ proc/hasorgans(A)
 /mob/proc/can_use_hands()
 	return
 
-/mob/proc/is_ready()
-	return client && !!mind
 
 /mob/proc/get_gender()
 	return gender
@@ -517,7 +515,7 @@ mob/proc/get_standard_bodytemperature()
 
 /mob/living/carbon/human/proc/do_activate_rail_attachment()
 	SIGNAL_HANDLER
-	
+
 	var/obj/item/weapon/gun/active_gun = get_active_firearm(src)
 	active_gun?.toggle_rail_attachment()
 	return COMSIG_KB_ACTIVATED

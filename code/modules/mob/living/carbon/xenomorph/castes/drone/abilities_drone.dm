@@ -19,7 +19,7 @@
 	heal_range = DRONE_HEAL_RANGE
 
 /datum/action/xeno_action/activable/psychic_cure/acidic_salve/use_ability(atom/target)
-	if(owner.action_busy)
+	if(owner.do_actions)
 		return FALSE
 
 	if(!do_mob(owner, target, 1 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))

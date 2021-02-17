@@ -157,7 +157,7 @@
 
 	user.next_move = world.time + 2 SECONDS
 
-	if(user.action_busy)
+	if(user.do_actions)
 		return
 
 	if(user.stat != CONSCIOUS)

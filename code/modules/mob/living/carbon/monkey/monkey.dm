@@ -92,7 +92,7 @@
 /mob/living/carbon/monkey/updatehealth()
 	. = ..()
 	var/health_deficiency = max((maxHealth - health), staminaloss)
-	
+
 	if(health_deficiency >= 40)
 		add_movespeed_modifier(MOVESPEED_ID_DAMAGE_SLOWDOWN, TRUE, 0, NONE, TRUE, health_deficiency * 0.04)
 	else
@@ -118,7 +118,7 @@
 
 	if(href_list["item"])
 		if(!usr.incapacitated() && in_range(src, usr))
-			if(!usr.action_busy)
+			if(!usr.do_actions)
 				var/slot = text2num(href_list["item"])
 				var/obj/item/what = get_item_by_slot(slot)
 				if(what)
@@ -129,7 +129,7 @@
 
 	if(href_list["internal"])
 
-		if(!usr.action_busy)
+		if(!usr.do_actions)
 			log_combat(usr, src, "toggled internals (attempted)")
 			if(internal)
 				usr.visible_message("<span class='danger'>[usr] is trying to disable [src]'s internals</span>", null, 4)

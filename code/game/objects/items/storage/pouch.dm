@@ -57,6 +57,7 @@
 	. = ..()
 	new /obj/item/binoculars/tactical(src)
 	new /obj/item/megaphone(src)
+	new /obj/item/pinpointer/pool(src)
 
 
 /obj/item/storage/pouch/general/som
@@ -444,7 +445,7 @@
 	storage_slots = 5
 	max_storage_space = 10
 	can_hold = list(/obj/item/reagent_containers/syringe)
-	
+
 /obj/item/storage/pouch/hypospray
 	name = "hypospray pouch"
 	desc = "It can contain hyposprays and autoinjectors."
