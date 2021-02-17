@@ -60,6 +60,7 @@
 		remote_control_on(user)
 	else
 		remote_control_off()
+	SEND_SIGNAL(controlled, COMSIG_REMOTECONTROL_CHANGED, is_controlling, user)
 
 ///Turns the remote control on
 /datum/component/remote_control/proc/remote_control_on(mob/newuser)
@@ -71,8 +72,7 @@
 	newuser.remote_control = controlled	//Movement inputs are handled by the controlled thing in relaymove()
 	newuser.reset_perspective(controlled)
 	user = newuser
-	if(click_proc)
-		RegisterSignal(newuser, COMSIG_MOB_MOUSEDOWN, .proc/invoke)
+	RegisterSignal(newuser, COMSIG_MOB_MOUSEDOWN, .proc/invoke)
 	RegisterSignal(newuser, COMSIG_MOB_LOGOUT, .proc/remote_control_off)
 	RegisterSignal(parent, COMSIG_ITEM_DROPPED, .proc/remote_control_off)
 

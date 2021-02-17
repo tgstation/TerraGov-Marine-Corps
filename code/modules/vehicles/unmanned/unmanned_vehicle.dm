@@ -13,6 +13,8 @@
 	resistance_flags = XENO_DAMAGEABLE
 	///Type of "turret" attached
 	var/turret_type
+	///Boolean: do we want this turret to draw overlays for itself?
+	var/overlay_turret = FALSE
 	///Delay in byond ticks between weapon fires
 	var/fire_delay = 5
 	///Ammo remaining for the robot
@@ -32,6 +34,8 @@
 
 /obj/vehicle/unmanned/update_overlays()
 	. = ..()
+	if(!overlay_turret)
+		return
 	switch(turret_type)
 		if(TURRET_TYPE_HEAVY)
 			. += image('icons/obj/unmanned_vehicles.dmi', src, "heavy_cannon")
@@ -58,6 +62,13 @@
 	update_icon()
 	SEND_SIGNAL(src, COMSIG_UNMANNED_TURRET_UPDATED, turret_type)
 	qdel(I)
+
+
+/obj/vehicle/unmanned/proc/on_link(obj/item/unmanned_vehicle_remote/remote)
+	return
+
+/obj/vehicle/unmanned/proc/on_unlink(obj/item/unmanned_vehicle_remote/remote)
+	return
 
 ///Checks if we can or already have a bullet loaded that we can shoot
 /obj/vehicle/unmanned/proc/load_into_chamber()
@@ -98,4 +109,5 @@
 	icon_state = "heavy_uv"
 	move_delay = 3.5
 	max_rounds = 200
+	anchored = TRUE
 	ammo = /datum/ammo/bullet/machinegun

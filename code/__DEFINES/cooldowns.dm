@@ -28,6 +28,7 @@
 #define COOLDOWN_JETPACK "jetpack"
 #define COOLDOWN_CIC_ORDERS "cic_orders"
 #define COOLDOWN_CLOAK_IMPLANT "cloak_implant"
+#define COOLDOWN_DRONE_CLOAK "drone_cloak"
 
 //// COOLDOWN SYSTEMS
 /*
