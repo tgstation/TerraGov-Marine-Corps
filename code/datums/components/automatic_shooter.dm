@@ -1,4 +1,4 @@
-/datum/component/autofire/automatic_shoot_at
+/datum/component/automatedfire/automatic_shoot_at
 	///The target we are shooting at
 	var/atom/target
 	///The ammo we are shooting
@@ -10,7 +10,7 @@
 	///If we are shooting
 	var/shooting = FALSE
 
-/datum/component/autofire/automatic_shoot_at/Initialize(_shot_delay, _ammo)
+/datum/component/automatedfire/automatic_shoot_at/Initialize(_shot_delay, _ammo)
 	. = ..()
 	if(!isatom(parent))
 		return COMPONENT_INCOMPATIBLE
@@ -21,22 +21,22 @@
 	RegisterSignal(parent, COMSIG_AUTOMATIC_SHOOTER_STOP_SHOOTING_AT, .proc/stop_shooting)
 
 ///Signal handler for starting the autoshooting at something
-/datum/component/autofire/automatic_shoot_at/proc/start_shooting(datum/source, _target)
+/datum/component/automatedfire/automatic_shoot_at/proc/start_shooting(datum/source, _target)
 	SIGNAL_HANDLER
 	target = _target
 	next_fire = world.time
 	if(!shooting)
 		shooting = TRUE
-		enter_subsystem()
+		schedule()
 
 
 ///Signal handler for stoping the shooting
-/datum/component/autofire/automatic_shoot_at/proc/stop_shooting(datum/source)
+/datum/component/automatedfire/automatic_shoot_at/proc/stop_shooting(datum/source)
 	SIGNAL_HANDLER
 	target = null
 	shooting = FALSE
 
-/datum/component/autofire/automatic_shoot_at/process_shot()
+/datum/component/automatedfire/automatic_shoot_at/process_shot()
 	if(!shooting)
 		return AUTOFIRE_STOPPED_SHOOTING
 	var/obj/projectile/newspit = new /obj/projectile(shooter.loc)

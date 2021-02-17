@@ -7,8 +7,12 @@
 /// Controls how many buckets should be kept, each representing a tick. Max is ten seconds, this system does not handle next fire of more than 100 ticks in order to have better perf
 #define BUCKET_LEN (world.fps * 1 * 10)
 /// Helper for getting the correct bucket
+<<<<<<< HEAD
 #define BUCKET_POS(next_fire) (((round((next_fire - SSautofire.head_offset) / world.tick_lag) + 1) % BUCKET_LEN) || BUCKET_LEN)
 >>>>>>> 2aef6ac91 (rename the subsytem)
+=======
+#define BUCKET_POS(next_fire) (((round((next_fire - SSautomatedfire.head_offset) / world.tick_lag) + 1) % BUCKET_LEN) || BUCKET_LEN)
+>>>>>>> bd5a1ac65 (xeno_turret up to code with autofire)
 
 /**
  * # Autofire Subsystem
@@ -16,6 +20,7 @@
  * Maintains a timer-like system to handle autofiring. Much of this code is modeled
  * after or adapted from the runechat subsytem.
  *
+<<<<<<< HEAD
 <<<<<<< HEAD
  * Note that this has the same structure for storing and queueing shooter component as the timer subsystem does
  * for handling timers: the bucket_list is a list of autofire component, each of which are the head
@@ -33,6 +38,14 @@ SUBSYSTEM_DEF(automatedfire)
 SUBSYSTEM_DEF(autofire)
 	name = "Autofire"
 >>>>>>> 2aef6ac91 (rename the subsytem)
+=======
+ * Note that this has the same structure for storing and queueing shooter component as the timer subsystem does
+ * for handling timers: the bucket_list is a list of autofire component, each of which are the head
+ * of a circularly linked list. Any given index in bucket_list could be null, representing an empty bucket.
+ */
+SUBSYSTEM_DEF(automatedfire)
+	name = "Automated fire"
+>>>>>>> bd5a1ac65 (xeno_turret up to code with autofire)
 	flags = SS_TICKER | SS_NO_INIT
 	wait = 1
 	priority = FIRE_PRIORITY_AUTOFIRE
@@ -60,12 +73,17 @@ SUBSYSTEM_DEF(autofire)
 	/// List of buckets, each bucket holds every shooter that has to shoot this byond tick
 	var/list/bucket_list = list()
 
+<<<<<<< HEAD
 /datum/controller/subsystem/autofire/PreInit()
 >>>>>>> 2aef6ac91 (rename the subsytem)
+=======
+/datum/controller/subsystem/automatedfire/PreInit()
+>>>>>>> bd5a1ac65 (xeno_turret up to code with autofire)
 	bucket_list.len = BUCKET_LEN
 	head_offset = world.time
 	bucket_resolution = world.tick_lag
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /datum/controller/subsystem/automatedfire/stat_entry(msg = "ActShooters:[shooter_count]")
 	return ..()
@@ -73,9 +91,12 @@ SUBSYSTEM_DEF(autofire)
 /datum/controller/subsystem/automatedfire/fire(resumed = FALSE)
 =======
 /datum/controller/subsystem/autofire/stat_entry(msg)
+=======
+/datum/controller/subsystem/automatedfire/stat_entry(msg)
+>>>>>>> bd5a1ac65 (xeno_turret up to code with autofire)
 	..("ActShooters:[bucket_count]")
 
-/datum/controller/subsystem/autofire/fire(resumed = FALSE)
+/datum/controller/subsystem/automatedfire/fire(resumed = FALSE)
 
 	if (MC_TICK_CHECK)
 		return
@@ -101,8 +122,12 @@ SUBSYSTEM_DEF(autofire)
 =======
 	// Store a reference to the 'working' shooter so that we can resume if the MC
 	// has us stop mid-way through processing
+<<<<<<< HEAD
 	var/static/datum/component/autofire/shooter
 >>>>>>> 2aef6ac91 (rename the subsytem)
+=======
+	var/static/datum/component/automatedfire/shooter
+>>>>>>> bd5a1ac65 (xeno_turret up to code with autofire)
 	if (!resumed)
 		shooter = null
 
@@ -137,15 +162,14 @@ SUBSYSTEM_DEF(autofire)
 /datum/component/automatedfire
 =======
 	while (practical_offset <= BUCKET_LEN && head_offset + ((practical_offset - 1) * world.tick_lag) <= world.time)
-		var/datum/component/autofire/bucket_head = bucket_list[practical_offset]
-		if (!shooter || !bucket_head || shooter == bucket_head)
-			bucket_head = bucket_list[practical_offset]//seems redundant?
+		var/datum/component/automatedfire/bucket_head = bucket_list[practical_offset]
+		if(!shooter)
 			shooter = bucket_head
 
 		while (shooter)
 
 			if(shooter.process_shot())//If we are still shooting, we reschedule the shooter to the next_fire
-				shooter.enter_subsystem()
+				shooter.schedule()
 
 			if (MC_TICK_CHECK)
 				return
@@ -158,20 +182,28 @@ SUBSYSTEM_DEF(autofire)
 		// Empty the bucket
 		bucket_list[practical_offset++] = null
 
-/datum/controller/subsystem/autofire/Recover()
-	bucket_list |= SSautofire.bucket_list
+/datum/controller/subsystem/automatedfire/Recover()
+	bucket_list |= SSautomatedfire.bucket_list
 
+<<<<<<< HEAD
 /datum/component/autofire
 >>>>>>> 2aef6ac91 (rename the subsytem)
+=======
+/datum/component/automatedfire
+>>>>>>> bd5a1ac65 (xeno_turret up to code with autofire)
 	///The owner of this component
 	var/atom/shooter
 	/// Contains the scheduled fire time, used for scheduling EOL
 	var/next_fire
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> bd5a1ac65 (xeno_turret up to code with autofire)
 	/// Contains the reference to the next component in the bucket, used by autofire subsystem
 	var/datum/component/automatedfire/next
 	/// Contains the reference to the previous component in the bucket, used by autofire subsystem
 	var/datum/component/automatedfire/prev
+<<<<<<< HEAD
 
 
 /// schedule the shooter into the system, inserting it into the next fire queue
@@ -185,9 +217,11 @@ SUBSYSTEM_DEF(autofire)
 	var/datum/component/autofire/next
 	/// Contains the reference to the previous chatmessage in the bucket, used by runechat subsystem
 	var/datum/component/autofire/prev
+=======
+>>>>>>> bd5a1ac65 (xeno_turret up to code with autofire)
 
 /**
- * Enters the autofire subsystem with this autofire component, inserting it into the next fire queue
+ * Schedule the shooter into the system, inserting it into the next fire queue
  *
  * This will also account for a shooter already being registered, and in which case
  * the position will be updated to remove it from the previous location if necessary
@@ -196,15 +230,15 @@ SUBSYSTEM_DEF(autofire)
  * * new_next_fire Optional, when provided is used to update an existing shooter with the new specified time
  *
  */
-/datum/component/autofire/proc/enter_subsystem(new_next_fire = 0)
-	var/list/bucket_list = SSautofire.bucket_list
+/datum/component/automatedfire/proc/schedule(new_next_fire = 0)
+	var/list/bucket_list = SSautomatedfire.bucket_list
 
 	// When necessary, de-list the shooter from its previous position
 	if (new_next_fire)
-		SSautofire.bucket_count--
+		SSautomatedfire.bucket_count--
 		var/bucket_pos = BUCKET_POS(next_fire)
 		if (bucket_pos > 0)
-			var/datum/component/autofire/bucket_head = bucket_list[bucket_pos]
+			var/datum/component/automatedfire/bucket_head = bucket_list[bucket_pos]
 			if (bucket_head == src)
 				bucket_list[bucket_pos] = next
 		if (prev != next)
@@ -225,12 +259,17 @@ SUBSYSTEM_DEF(autofire)
 
 	// Get the bucket head for that bucket, increment the bucket count
 <<<<<<< HEAD
+<<<<<<< HEAD
 	var/datum/component/automatedfire/bucket_head = bucket_list[bucket_pos]
 	SSautomatedfire.shooter_count++
 =======
 	var/datum/component/autofire/bucket_head = bucket_list[bucket_pos]
 	SSautofire.bucket_count++
 >>>>>>> 2aef6ac91 (rename the subsytem)
+=======
+	var/datum/component/automatedfire/bucket_head = bucket_list[bucket_pos]
+	SSautomatedfire.bucket_count++
+>>>>>>> bd5a1ac65 (xeno_turret up to code with autofire)
 
 	// If there is no existing head of this bucket, we can set this shooter to be that head
 	if (!bucket_head)
@@ -266,24 +305,22 @@ SUBSYSTEM_DEF(autofire)
 /**
  * Removes this autofire component from the autofire subsystem
  */
-/datum/component/autofire/proc/leave_subsystem() //This is probably not needed
-	// Attempt to find the bucket that contains this chat message
+/datum/component/automatedfire/proc/unschedule() //This is probably not needed
+	// Attempt to find the bucket that contains this component
 	var/bucket_pos = BUCKET_POS(next_fire)
 
 	// Get local references to the subsystem's vars, faster than accessing on the datum
-	var/list/bucket_list = SSautofire.bucket_list
+	var/list/bucket_list = SSautomatedfire.bucket_list
 
 	// Attempt to get the head of the bucket
-	var/datum/component/autofire/bucket_head
+	var/datum/component/automatedfire/bucket_head
 	if (bucket_pos > 0)
 		bucket_head = bucket_list[bucket_pos]
 
-	// Decrement the number of messages in buckets if the message is
-	// the head of the bucket, or has a SD less than BUCKET_LIMIT implying it fits
-	// into an existing bucket, or is otherwise not present in the secondary queue
+	//Replace the bucket head if needed
 	if(bucket_head == src)
 		bucket_list[bucket_pos] = next
-	SSautofire.bucket_count--
+	SSautomatedfire.bucket_count--
 	// Remove the shooter from the bucket, ensuring to maintain
 	// the integrity of the bucket's list if relevant
 	if(prev != next)
@@ -295,12 +332,17 @@ SUBSYSTEM_DEF(autofire)
 	prev = next = null
 
 ///Handle the firing of the autofire component
+<<<<<<< HEAD
 /datum/component/autofire/proc/process_shot()
 >>>>>>> 2aef6ac91 (rename the subsytem)
+=======
+/datum/component/automatedfire/proc/process_shot()
+>>>>>>> bd5a1ac65 (xeno_turret up to code with autofire)
 	return
 
 #undef BUCKET_LEN
 #undef BUCKET_POS
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 /obj/structure/turret_debug
@@ -379,3 +421,5 @@ SUBSYSTEM_DEF(autofire)
 =======
 
 >>>>>>> 2aef6ac91 (rename the subsytem)
+=======
+>>>>>>> bd5a1ac65 (xeno_turret up to code with autofire)

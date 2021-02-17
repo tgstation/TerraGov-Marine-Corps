@@ -267,7 +267,7 @@
 	ammo = GLOB.ammo_list[/datum/ammo/xeno/acid]
 	associated_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	START_PROCESSING(SSmachines, src)
-	AddComponent(/datum/component/autofire/automatic_shoot_at, firerate, ammo)
+	AddComponent(/datum/component/automatedfire/automatic_shoot_at, firerate, ammo)
 	RegisterSignal(src, COMSIG_AUTOMATIC_SHOOTER_SHOT_FIRED, .proc/face_target)
 
 /obj/structure/resin/xeno_turret/Destroy()
