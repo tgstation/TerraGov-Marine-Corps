@@ -1146,31 +1146,6 @@
 	species_allowed = list("Machine")
 
 /*
-/////////////////////////////////////
-/  =---------------------------=    /
-/  == Gradient Hair Definitions ==  /
-/  =---------------------------=    /
-/////////////////////////////////////
-*/
-
-/datum/sprite_accessory/hair_gradient
-	icon = 'icons/mob/hair_gradients.dmi'
-	gender = NEUTER
-
-/datum/sprite_accessory/hair_gradient/none
-	name = "None"
-	icon_state = "none"
-	species_allowed = list("Human","Synthetic", "Early Synthetic", "Vat-Grown", "Vatborn")
-
-/datum/sprite_accessory/hair_gradient/fadeup
-	name = "Fade Up"
-	icon_state = "fadeup"
-
-/datum/sprite_accessory/hair_gradient/fadedown
-	name = "Fade Down"
-	icon_state = "fadedown"
-
-/*
 ///////////////////////////////////
 /  =---------------------------=  /
 /  == Facial Hair Definitions ==  /
