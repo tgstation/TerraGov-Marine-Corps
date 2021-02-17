@@ -93,6 +93,9 @@
 	. = ..()
 	if(!ishuman(AM))
 		return
+	
+	if(CHECK_MULTIPLE_BITFIELDS(AM.flags_pass, HOVERING))
+		return
 
 	var/mob/living/carbon/human/H = AM
 
@@ -879,6 +882,8 @@ TUNNEL
 
 /obj/effect/alien/resin/acidwell/Crossed(atom/A)
 	. = ..()
+	if(CHECK_MULTIPLE_BITFIELDS(A.flags_pass, HOVERING))
+		return
 	if(iscarbon(A))
 		HasProximity(A)
 
@@ -988,7 +993,7 @@ TUNNEL
 /obj/item/resin_jelly/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(X.xeno_caste.caste_flags & CASTE_CAN_HOLD_JELLY)
 		return attack_hand(X)
-	if(X.action_busy)
+	if(X.do_actions)
 		return
 	X.visible_message("<span class='notice'>[X] starts to cover themselves in a foul substance...</span>", "<span class='xenonotice'>We begin to cover ourselves in a foul substance...</span>")
 	if(!do_after(X, 2 SECONDS, TRUE, X, BUSY_ICON_MEDICAL))
@@ -1000,7 +1005,7 @@ TUNNEL
 /obj/item/resin_jelly/attack_self(mob/living/carbon/xenomorph/user)
 	if(!isxeno(user))
 		return
-	if(user.action_busy)
+	if(user.do_actions)
 		return
 	user.visible_message("<span class='notice'>[user] starts to cover themselves in a foul substance...</span>", "<span class='xenonotice'>We begin to cover ourselves in a foul substance...</span>")
 	if(!do_after(user, 2 SECONDS, TRUE, user, BUSY_ICON_MEDICAL))
@@ -1015,7 +1020,7 @@ TUNNEL
 	if(!isxeno(M))
 		to_chat(user, "<span class='xenonotice'>We cannot apply the [src] to this creature.</span>")
 		return FALSE
-	if(user.action_busy)
+	if(user.do_actions)
 		return FALSE
 	if(!do_after(user, 1 SECONDS, TRUE, M, BUSY_ICON_MEDICAL))
 		return FALSE

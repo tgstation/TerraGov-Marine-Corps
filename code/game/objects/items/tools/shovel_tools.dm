@@ -64,10 +64,12 @@
 
 
 /obj/item/tool/shovel/afterattack(atom/target, mob/user, proximity)
-	if(!proximity) return
-	if(folded) return
+	if(!proximity)
+		return
+	if(folded)
+		return
 
-	if(user.action_busy)
+	if(user.do_actions)
 		return
 
 

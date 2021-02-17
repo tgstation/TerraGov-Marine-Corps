@@ -531,7 +531,7 @@
 
 
 /obj/item/weapon/gun/launcher/m92/afterattack(atom/target, mob/user, flag)
-	if(user.action_busy)
+	if(user.do_actions)
 		return
 	if(!able_to_fire(user))
 		return
@@ -822,7 +822,7 @@
 	return ..()
 
 /obj/item/weapon/gun/launcher/rocket/Fire(atom/target, mob/living/user, params, reflex = 0, dual_wield)
-	if(!able_to_fire(user) || user.action_busy)
+	if(!able_to_fire(user) || user.do_actions)
 		return
 
 	if(gun_on_cooldown(user))

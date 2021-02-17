@@ -343,7 +343,7 @@
 		to_chat(user, "<span class='xenodanger'>We crack open the metal bird's shell.</span>")
 		if(D.hijack_state != HIJACK_STATE_NORMAL)
 			return FALSE
-		if(user.action_busy)
+		if(user.do_actions)
 			return FALSE
 		to_chat(user, "<span class='warning'>We begin overriding the shuttle lockdown. This will take a while...</span>")
 		if(!do_after(user, 30 SECONDS, FALSE, null, BUSY_ICON_DANGER, BUSY_ICON_DANGER))
@@ -638,7 +638,6 @@
 	user.hive.on_shuttle_hijack(crashing_dropship)
 	playsound(src, 'sound/misc/queen_alarm.ogg')
 	SSevacuation.flags_scuttle &= ~FLAGS_SDEVAC_TIMELOCK
-	SSmonitor.hijacked = TRUE
 	switch(SSshuttle.moveShuttleToDock(shuttleId, crash_target, TRUE))
 		if(0)
 			visible_message("Shuttle departing. Please stand away from the doors.")

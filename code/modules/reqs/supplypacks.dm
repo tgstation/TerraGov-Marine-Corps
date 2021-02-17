@@ -932,6 +932,12 @@ CLOTHING
 	)
 	cost = 5
 
+/datum/supply_packs/clothing/jetpack
+	name = "Jetpack"
+	contains = list(
+		/obj/item/jetpack_marine,
+	)
+	cost = 15
 
 /*******************************************************************************
 MEDICAL

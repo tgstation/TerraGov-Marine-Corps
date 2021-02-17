@@ -36,7 +36,7 @@
 
 
 /obj/item/grab/attack_self(mob/living/user)
-	if(!isliving(grabbed_thing) || user.action_busy)
+	if(!isliving(grabbed_thing) || user.do_actions)
 		return
 
 	if(!ishuman(user)) //only humans can reinforce a grab.
@@ -105,7 +105,7 @@
 		return TRUE
 	if(user.grab_state > GRAB_KILL)
 		return FALSE
-	if(user.action_busy || !ishuman(user) || attacked != user.pulling)
+	if(user.do_actions || !ishuman(user) || attacked != user.pulling)
 		return FALSE
 	if(!do_mob(user, attacked, 2 SECONDS, BUSY_ICON_HOSTILE, extra_checks = CALLBACK(user, /datum/.proc/Adjacent, attacked)) || !user.pulling)
 		return TRUE

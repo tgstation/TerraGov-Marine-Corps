@@ -53,6 +53,47 @@
 		-->
 		<div class="commit sansserif">
 
+			<h2 class="date">17 February 2021</h2>
+			<h3 class="author">BraveMole updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Remove instant death tiles in Ice colony</li>
+			</ul>
+			<h3 class="author">spookydonut updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Announcements now check ic filter</li>
+			</ul>
+
+			<h2 class="date">16 February 2021</h2>
+			<h3 class="author">Bravemole & Ciel (sprites) updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">The marine jetpack, a new item allowing marines to have short flying burst. 15 points in req tweak: Runner can pounce over fire/lava without being ignited</li>
+				<li class="bugfix">Hivemind eye can no longer be ignited when crossing lava</li>
+				<li class="imageadd">Jetpack and overlay sprites</li>
+			</ul>
+
+			<h2 class="date">15 February 2021</h2>
+			<h3 class="author">Pariah919 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">general purpose module holds ammo</li>
+			</ul>
+			<h3 class="author">SkeletalElite updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">The entire explosion area of an HE OB is devastating now</li>
+			</ul>
+			<h3 class="author">Surrealaser updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Extra slowdown for aggressive+ grabs capped at 3. Hopefully fixes excessive slowdown issues with Lunge.</li>
+				<li class="balance">Reagent slash now acts as a buff, causing the next 3 slashes made over 4 seconds to inject 4U of the user's selected toxin, and 4U of larval growth toxin.</li>
+				<li class="balance">Larval growth toxin no longer has pain killing benefits.</li>
+				<li class="code_imp">Infrastructure added and utilized so Reagent Slash doesn't break if active while upgrading; can also be tapped by other abilities to make them robust vs upgrading. tweak: Statistics tracking added for Reagent Slashes.</li>
+			</ul>
+			<h3 class="author">TiviPlus updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Minor cloak formatting changes</li>
+				<li class="rscadd">Replace the lobby HTML window with a new lobby menu</li>
+				<li class="code_imp">Removed some junk code</li>
+			</ul>
+
 			<h2 class="date">14 February 2021</h2>
 			<h3 class="author">BraveMole updated:</h3>
 			<ul class="changes bgimages16">
@@ -83,6 +124,7 @@
 				<li class="refactor">Beams are now more performant</li>
 				<li class="bugfix">Fixed spammed runner pounce runtime</li>
 				<li class="code_imp">Removes illegal src edits and adds a lint for them</li>
+				<li class="refactor">Refactors doactions to store source and amount of doafters</li>
 			</ul>
 
 			<h2 class="date">13 February 2021</h2>
@@ -1080,43 +1122,6 @@
 			<ul class="changes bgimages16">
 				<li class="bugfix">Fixed Queen overwatch from hive status and chat not working on numbers or names with spaces.</li>
 				<li class="bugfix">Fixed Xeno HUD for the observed not updating when starting overwatch.</li>
-			</ul>
-
-			<h2 class="date">15 December 2020</h2>
-			<h3 class="author">MLGTASTICa updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="rscadd">Turned Ice Caves on Ice Colony into their own areas and they are now considered deep caves.</li>
-				<li class="bugfix">fixed tadpole being able to land in caves on big red</li>
-				<li class="bugfix">fixed Tadpole being able to land in magmoor underground buildings.</li>
-			</ul>
-			<h3 class="author">Surrealaser updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="bugfix">Acid Wells no longer discharge gas when destroyed by shuttle crushing.</li>
-				<li class="bugfix">Hugger Traps no longer discharge huggers when destroyed by shuttle crushing.</li>
-				<li class="tweak">Transfer Plasma no longer transfers for plasma than its target needs.</li>
-				<li class="tweak">Transfer Plasma has cool SFX now.</li>
-			</ul>
-			<h3 class="author">TiviPlus updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="code_imp">cleaned up bed and chairs code</li>
-				<li class="code_imp">Cleaned up Move() and Signal defines slightly</li>
-				<li class="code_imp">removed depracated vars on items</li>
-				<li class="code_imp">documented items</li>
-				<li class="code_imp">more misc cleanup</li>
-				<li class="refactor">refactored item actions into a lazylist</li>
-			</ul>
-
-			<h2 class="date">14 December 2020</h2>
-			<h3 class="author">CthulhuOnIce, BeloneX updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="rscadd">Added automatic-punctuation.</li>
-			</ul>
-			<h3 class="author">SplinterGP updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="bugfix">fixes bug and runtime error on scopes not unzooming on some occasions(quickstoring, dropping, etc).</li>
-				<li class="bugfix">fixes fire not lighting xenos on fire.</li>
-				<li class="bugfix">fixes acid globs stored on boiler not glowing.</li>
-				<li class="code_imp">makes xenos use newlights.</li>
 			</ul>
 		</div>
 

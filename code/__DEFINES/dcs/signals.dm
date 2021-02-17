@@ -201,6 +201,8 @@
 #define COMSIG_PORTGEN_POWER_TOGGLE "portgen_power_toggle"		/// from /obj/machinery/power/port_gen/proc/TogglePower: ()
 #define COMSIG_PORTGEN_PROCESS "portgen_process"				/// from /obj/machinery/power/port_gen/process: ()
 
+#define COMSIG_UNMANNED_TURRET_UPDATED "unmanned_turret_update" /// from /obj/vehicle/unmanned/attackby: (newtype)
+
 // /obj/item signals
 #define COMSIG_ITEM_ATTACK "item_attack"						//from base of obj/item/attack(): (/mob/living/target, /mob/living/user)
 #define COMSIG_ITEM_ATTACK_SELF "item_attack_self"				//from base of obj/item/attack_self(): (/mob)
@@ -220,6 +222,7 @@
 	#define COMPONENT_NO_ATTACK_TURF (1<<0)
 #define COMSIG_ITEM_TOGGLE_ACTION "item_toggle_action"			//from base of obj/item/ui_interact(): (/mob/user)
 #define COMSIG_ITEM_TOGGLE_ACTIVE "item_toggle_active"			//from base of /obj/item/toggle_active(): (new_state)
+#define COMSIG_ITEM_EXCLUSIVE_TOGGLE "item_exclusive_toggle"
 
 #define COMSIG_ITEM_MIDDLECLICKON "item_middleclickon"					//from base of mob/living/carbon/human/MiddleClickOn(): (/atom, /mob)
 #define COMSIG_ITEM_SHIFTCLICKON "item_shiftclickon"					//from base of mob/living/carbon/human/ShiftClickOn(): (/atom, /mob)
@@ -266,6 +269,7 @@
 #define COMSIG_MOB_MOUSEDOWN "mob_mousedown"					//from /client/MouseDown(): (atom/object, turf/location, control, params)
 #define COMSIG_MOB_MOUSEUP "mob_mouseup"						//from /client/MouseUp(): (atom/object, turf/location, control, params)
 #define COMSIG_MOB_CLICKON "mob_clickon"						//from base of mob/clickon(): (atom/A, params)
+#define COMSIG_MOB_MIDDLE_CLICK "mob_middle_click"				//from base of mob/MiddleClickOn(): (atom/A)
 #define COMSIG_MOB_CLICK_SHIFT "mob_click_shift"				//from base of mob/ShiftClickOn(): (atom/A)
 #define COMSIG_MOB_CLICK_ALT "mob_click_alt"					//from base of mob/AltClickOn(): (atom/A)
 #define COMSIG_MOB_CLICK_RIGHT "mob_click_right"				//from base of mob/RightClickOn(): (atom/A)
@@ -361,6 +365,7 @@
 
 #define COMSIG_XENOMORPH_GIBBING "xenomorph_gibbing"
 #define COMSIG_XENOMORPH_POSTEVOLVING "xenomorph_evolving"
+#define COMSIG_XENOMORPH_ABILITY_ON_PRE_UPGRADE "xenomorph_pre_upgrade"
 #define COMSIG_XENOMORPH_ABILITY_ON_UPGRADE "xenomorph_ability_on_upgrade"
 
 #define COMSIG_XENOMORPH_GRAB "xenomorph_grab"
@@ -557,6 +562,11 @@
 #define COMSIG_XENOABILITY_FLING "xenoability_fling"
 #define COMSIG_XENOABILITY_PUNCH "xenoability_punch"
 #define COMSIG_XENOABILITY_GRAPPLE_TOSS "xenoability_grapple_toss"
+
+// remote control signals
+#define COMSIG_REMOTECONTROL_TOGGLE "remotecontrol_toggle"
+#define COMSIG_REMOTECONTROL_UNLINK "remotecontrol_unlink"
+#define COMSIG_REMOTECONTROL_CHANGED "remotecontrol_changed"
 
 // human signals for keybindings
 #define COMSIG_KB_QUICKEQUIP "keybinding_quickequip"

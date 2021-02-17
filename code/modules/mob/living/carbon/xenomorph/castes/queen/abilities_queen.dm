@@ -44,6 +44,11 @@
 	if(!input)
 		return
 
+	if(CHAT_FILTER_CHECK(input))
+		to_chat(src, "<span class='warning'>That announcement contained a word prohibited in IC chat! Consider reviewing the server rules.\n<span replaceRegex='show_filtered_ic_chat'>\"[input]\"</span></span>")
+		SSblackbox.record_feedback(FEEDBACK_TALLY, "ic_blocked_words", 1, lowertext(config.ic_filter_regex.match))
+		return FALSE
+
 	var/queensWord = "<br><h2 class='alert'>The words of the queen reverberate in your head...</h2>"
 	queensWord += "<br><span class='alert'>[input]</span><br>"
 
@@ -360,7 +365,7 @@
 
 /datum/action/xeno_action/toggle_queen_zoom/action_activate()
 	var/mob/living/carbon/xenomorph/queen/xeno = owner
-	if(xeno.action_busy)
+	if(xeno.do_actions)
 		return
 	if(xeno.is_zoomed)
 		zoom_xeno_out(xeno.observed_xeno ? FALSE : TRUE)

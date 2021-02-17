@@ -25,8 +25,10 @@
 #define COOLDOWN_CPR		"CPR"
 #define COOLDOWN_IV_PING	"iv_ping"
 #define COOLDOWN_RACK_BOLT	"rack_bolt"
+#define COOLDOWN_JETPACK "jetpack"
 #define COOLDOWN_CIC_ORDERS "cic_orders"
 #define COOLDOWN_CLOAK_IMPLANT "cloak_implant"
+#define COOLDOWN_DRONE_CLOAK "drone_cloak"
 
 //// COOLDOWN SYSTEMS
 /*
