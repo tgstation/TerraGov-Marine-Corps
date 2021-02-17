@@ -24,7 +24,7 @@
 /datum/component/autofire/automatic_shoot_at/proc/start_shooting(datum/source, _target)
 	SIGNAL_HANDLER
 	target = _target
-	next_fire = world.time + shot_delay
+	next_fire = world.time
 	if(!shooting)
 		shooting = TRUE
 		enter_subsystem()
@@ -38,7 +38,7 @@
 
 /datum/component/autofire/automatic_shoot_at/process_shot()
 	if(!shooting)
-		return AUTOFIRE_STOPED_SHOOTING
+		return AUTOFIRE_STOPPED_SHOOTING
 	var/obj/projectile/newspit = new /obj/projectile(shooter.loc)
 	newspit.generate_bullet(ammo, ammo.damage)
 	newspit.permutated += shooter
