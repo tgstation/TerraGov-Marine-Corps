@@ -30,9 +30,11 @@
 	if(is_on)
 		playsound(src, 'sound/machines/drone/weapons_engaged.ogg', 70)
 		START_PROCESSING(SSslowprocess, src)
+		user.overlay_fullscreen("machine", /obj/screen/fullscreen/machine)
 	else
 		playsound(src, 'sound/machines/drone/droneoff.ogg', 70)
 		STOP_PROCESSING(SSslowprocess, src)
+		user.clear_fullscreen("machine", 5)
 
 
 ///stealth droid, like the normal droid but with stealthing ability on rclick
