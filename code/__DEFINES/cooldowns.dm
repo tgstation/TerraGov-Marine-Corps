@@ -6,33 +6,6 @@
 #define COOLDOWN_BUCKLE		"buckle"
 #define COOLDOWN_RESIST		"resist"
 #define COOLDOWN_ORDER		"order"
-#define COOLDOWN_DISPOSAL	"disposal"
-#define COOLDOWN_ACID		"acid"
-#define COOLDOWN_GUT		"gut"
-#define COOLDOWN_ZOOM		"zoom"
-#define COOLDOWN_BUMP		"bump"
-#define COOLDOWN_ENTANGLE	"entangle"
-#define COOLDOWN_NEST		"nest"
-#define COOLDOWN_BUMP_ATTACK "bump_attack"
-#define COOLDOWN_TASTE		"taste"
-#define COOLDOWN_VENTSOUND	"vendsound"
-#define COOLDOWN_ARMOR_LIGHT	"armor_light"
-#define COOLDOWN_ARMOR_ACTION	"armor_action"
-#define COOLDOWN_FRIENDLY_FIRE_CAUSED	"friendly_fire_caused"
-#define COOLDOWN_FRIENDLY_FIRE_TAKEN	"friendly_fire_taken"
-#define COOLDOWN_ORBIT_CHANGE 	"cooldown_orbit_change"
-#define COOLDOWN_TOGGLE "toggle"
-#define COOLDOWN_CPR		"CPR"
-#define COOLDOWN_IV_PING	"iv_ping"
-#define COOLDOWN_RACK_BOLT	"rack_bolt"
-<<<<<<< HEAD
-#define COOLDOWN_LIGHT "cooldown_light"
-=======
-#define COOLDOWN_JETPACK "jetpack"
->>>>>>> master_bis
-#define COOLDOWN_CIC_ORDERS "cic_orders"
-#define COOLDOWN_CLOAK_IMPLANT "cloak_implant"
-#define COOLDOWN_DRONE_CLOAK "drone_cloak"
 
 //// COOLDOWN SYSTEMS
 /*
