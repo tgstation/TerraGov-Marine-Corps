@@ -241,7 +241,7 @@
 	icon = 'icons/Xeno/acidturret.dmi'
 	icon_state = "acid_turret"
 	name = "resin acid turret"
-	desc = "A menacing looking thing"
+	desc = "A menacing looking construct of resin, it seems to be alive. It fires acid against intruders."
 	bound_width = 32
 	bound_height = 32
 	max_integrity = 300
