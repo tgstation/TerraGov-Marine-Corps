@@ -308,7 +308,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 		return
 
 	var/datum/limb/head/head_organ = get_limb("head")
-	if( !head_organ || (head_organ.limb_status & LIMB_DESTROYED) )
+	if(!head_organ || (head_organ.limb_status & LIMB_DESTROYED) )
 		return
 
 	//masks and helmets can obscure our hair.
@@ -328,18 +328,22 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 			face_standing.Blend(facial_s, ICON_OVERLAY)
 
 	if(h_style && !(head?.flags_inv_hide & HIDETOPHAIR))
-		var/icon/grad_s = null
 		var/datum/sprite_accessory/hair_style = GLOB.hair_styles_list[h_style]
 		if(hair_style && (species.name in hair_style.species_allowed))
 			var/icon/hair_s = new/icon("icon" = hair_style.icon, "icon_state" = "[hair_style.icon_state]_s")
 			if(hair_style.do_colouration)
-				if(grad_style)
+				var/icon/grad_s
+				if(grad_style && grad_style != "none")
 					grad_s = new/icon("icon" = 'icons/mob/hair_gradients.dmi', "icon_state" = GLOB.hair_gradients[grad_style])
-					grad_s.Blend(hair_s, ICON_AND)
-					grad_s.Blend(rgb(r_grad, g_grad, b_grad), ICON_MULTIPLY)
+					message_admins("[grad_style], [GLOB.hair_gradients[grad_style]]")
+					grad_s.Blend(hair_s, ICON_ADD)
+					grad_s.Blend(rgb(r_grad, g_grad, b_grad), ICON_ADD)
+					message_admins("[rgb(r_grad, g_grad, b_grad)]")
+					message_admins("[r_grad],[g_grad],[b_grad]")
 				hair_s.Blend(rgb(r_hair, g_hair, b_hair), ICON_ADD)
 				if(!isnull(grad_s))
 					hair_s.Blend(grad_s, ICON_OVERLAY)
+					message_admins("Applied")
 
 			face_standing.Blend(hair_s, ICON_OVERLAY)
 
