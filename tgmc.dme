@@ -195,10 +195,14 @@
 #include "code\controllers\subsystem\assets.dm"
 #include "code\controllers\subsystem\atoms.dm"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "code\controllers\subsystem\autofire.dm"
 =======
 #include "code\controllers\subsystem\auto_fire.dm"
 >>>>>>> a3f109c13 (bucket system for autofire)
+=======
+#include "code\controllers\subsystem\autofire.dm"
+>>>>>>> 2aef6ac91 (rename the subsytem)
 #include "code\controllers\subsystem\blackbox.dm"
 #include "code\controllers\subsystem\chat.dm"
 #include "code\controllers\subsystem\codex.dm"
