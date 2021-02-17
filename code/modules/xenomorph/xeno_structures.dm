@@ -37,7 +37,9 @@
 	var/silo_area
 	var/number_silo
 	///How old this silo is in seconds
-	var/maturity
+	var/maturity = 0
+	///If this silo should mature
+	var/does_mature = FALSE
 	COOLDOWN_DECLARE(silo_damage_alert_cooldown)
 	COOLDOWN_DECLARE(silo_proxy_alert_cooldown)
 
@@ -47,7 +49,7 @@
 	name = "[name] [number]"
 	number_silo = number
 	number++
-
+	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY), .proc/start_maturing)
 	GLOB.xeno_resin_silos += src
 	associated_hive?.handle_silo_death_timer()
 	center_turf = get_step(src, NORTHEAST)
@@ -151,17 +153,21 @@
 	associated_hive.xeno_message("<span class='xenoannounce'>Our [name] has detected a nearby hostile [hostile] at [get_area(hostile)] (X: [hostile.x], Y: [hostile.y]). [name] has [obj_integrity]/[max_integrity] Health remaining.</span>", 2, FALSE, hostile, 'sound/voice/alien_help1.ogg')
 	COOLDOWN_START(src, silo_proxy_alert_cooldown, XENO_HEALTH_ALERT_COOLDOWN) //set the cooldown.
 
+///Signal handler to tell the silo it can start maturing
+/obj/structure/resin/silo/proc/start_maturing()
+	SIGNAL_HANDLER
+	does_mature = TRUE
+	if(!CHECK_BITFIELD(datum_flags, DF_ISPROCESSING))
+		START_PROCESSING(SSslowprocess, src)
 
 /obj/structure/resin/silo/process()
 	//Regenerate if we're at less than max integrity
 	if(obj_integrity < max_integrity)
 		obj_integrity = min(obj_integrity + 25, max_integrity) //Regen 5 HP per sec
-		return
+	
+	if(does_mature)
+		maturity += 5
 
-	maturity += 5
-
-	//If we're at max integrity, stop regenerating and processing.
-	return PROCESS_KILL
 
 /obj/structure/resin/silo/proc/is_burrowed_larva_host(datum/source, list/mothers, list/silos)
 	SIGNAL_HANDLER
