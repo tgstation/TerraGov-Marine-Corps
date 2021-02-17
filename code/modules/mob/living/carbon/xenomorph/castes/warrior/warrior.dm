@@ -48,7 +48,7 @@
 		if(issamexenohive(X)) //No neckgrabbing of allies.
 			return ..()
 
-	if(lunge && ..(L, suppress_message))
+	if(lunge && ..(L, suppress_message, TRUE))
 		return neck_grab(L)
 
 	. = ..(L, suppress_message)

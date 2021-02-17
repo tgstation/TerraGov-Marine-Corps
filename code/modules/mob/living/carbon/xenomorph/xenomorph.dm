@@ -212,7 +212,7 @@
 /mob/living/carbon/xenomorph/slip(slip_source_name, stun_level, weaken_level, run_only, override_noslip, slide_steps)
 	return FALSE
 
-/mob/living/carbon/xenomorph/start_pulling(atom/movable/AM, suppress_message = TRUE)
+/mob/living/carbon/xenomorph/start_pulling(atom/movable/AM, suppress_message = TRUE, bypass_crit_delay = FALSE)
 	if(!isliving(AM))
 		return FALSE
 	if(!Adjacent(AM)) //Logic!
@@ -221,7 +221,7 @@
 	if(L.buckled)
 		return FALSE //to stop xeno from pulling marines on roller beds.
 	if(ishuman(L))
-		if(L.stat == UNCONSCIOUS)
+		if(L.stat == UNCONSCIOUS && !bypass_crit_delay)
 			if(!do_mob(src, L , XENO_PULL_CHARGE_TIME, BUSY_ICON_HOSTILE))
 				return FALSE
 		if(L.stat == DEAD) //Can't drag dead human bodies
