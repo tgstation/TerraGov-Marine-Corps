@@ -57,34 +57,37 @@ SUBSYSTEM_DEF(monitor)
 	set_state(current_points)
 
 /datum/controller/subsystem/monitor/proc/set_groundside_calculation()
+	SIGNAL_HANDLER
 	gamestate = GROUNDSIDE
 
 /datum/controller/subsystem/monitor/proc/set_shipside_calculation()
+	SIGNAL_HANDLER
 	gamestate = SHIPSIDE
 	
 ///Calculate the points supposedly representating of the situation	
 /datum/controller/subsystem/monitor/proc/calculate_state_points()
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	if(gamestate == GROUNDSIDE)
-		. += stats.ancient_T2 * ANCIENT_T2_WEIGHT
-		. += stats.ancient_T3 * ANCIENT_T3_WEIGHT
-		. += stats.elder_T2 * ELDER_T2_WEIGHT
-		. += stats.elder_T3 * ELDER_T3_WEIGHT
-		. += stats.ancient_queen * ANCIENT_QUEEN_WEIGHT
-		. += stats.elder_queen * ELDER_QUEEN_WEIGHT
-		. += human_on_ground * HUMAN_LIFE_ON_GROUND_WEIGHT
-		. += (GLOB.alive_human_list.len - human_on_ground) * HUMAN_LIFE_ON_SHIP_WEIGHT
-		. += GLOB.alive_xeno_list.len * XENOS_LIFE_WEIGHT
-		. += (xeno_job.total_positions - xeno_job.current_positions) * BURROWED_LARVA_WEIGHT
-		. += stats.miniguns_in_use.len * MINIGUN_PRICE * REQ_POINTS_WEIGHT
-		. += stats.sadar_in_use.len * SADAR_PRICE * REQ_POINTS_WEIGHT
-		. += stats.b17_in_use.len * B17_PRICE * REQ_POINTS_WEIGHT
-		. += stats.b18_in_use.len * B18_PRICE * REQ_POINTS_WEIGHT
-		. += SSpoints.supply_points * REQ_POINTS_WEIGHT
-		. += stats.OB_available * OB_AVAILABLE_WEIGHT
-		return
-	. += GLOB.alive_human_list.len * HUMAN_LIFE_WEIGHT_PREGAME
-	. += GLOB.alive_xeno_list.len * XENOS_LIFE_WEIGHT_PREGAME
+	switch(gamestate)
+		if(GROUNDSIDE)
+			. += stats.ancient_T2 * ANCIENT_T2_WEIGHT
+			. += stats.ancient_T3 * ANCIENT_T3_WEIGHT
+			. += stats.elder_T2 * ELDER_T2_WEIGHT
+			. += stats.elder_T3 * ELDER_T3_WEIGHT
+			. += stats.ancient_queen * ANCIENT_QUEEN_WEIGHT
+			. += stats.elder_queen * ELDER_QUEEN_WEIGHT
+			. += human_on_ground * HUMAN_LIFE_ON_GROUND_WEIGHT
+			. += (GLOB.alive_human_list.len - human_on_ground) * HUMAN_LIFE_ON_SHIP_WEIGHT
+			. += GLOB.alive_xeno_list.len * XENOS_LIFE_WEIGHT
+			. += (xeno_job.total_positions - xeno_job.current_positions) * BURROWED_LARVA_WEIGHT
+			. += stats.miniguns_in_use.len * MINIGUN_PRICE * REQ_POINTS_WEIGHT
+			. += stats.sadar_in_use.len * SADAR_PRICE * REQ_POINTS_WEIGHT
+			. += stats.b17_in_use.len * B17_PRICE * REQ_POINTS_WEIGHT
+			. += stats.b18_in_use.len * B18_PRICE * REQ_POINTS_WEIGHT
+			. += SSpoints.supply_points * REQ_POINTS_WEIGHT
+			. += stats.OB_available * OB_AVAILABLE_WEIGHT
+		if(SHIPSIDE, SHUTTERS_CLOSED)	
+			. += GLOB.alive_human_list.len * HUMAN_LIFE_WEIGHT_PREGAME
+			. += GLOB.alive_xeno_list.len * XENOS_LIFE_WEIGHT_PREGAME
 
 ///Keep the monitor informed about the position of humans
 /datum/controller/subsystem/monitor/proc/process_human_positions()
