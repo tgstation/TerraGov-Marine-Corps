@@ -16,6 +16,7 @@
 			clear_vehicle()
 		return ..()
 	vehicle = target
+	vehicle.on_link(src)
 	AddComponent(/datum/component/remote_control, target, vehicle.turret_type)
 	to_chat(user, "<span class='notice'>You link [target] to [src].</span>")
 	RegisterSignal(target, COMSIG_PARENT_QDELETING, .proc/clear_vehicle)
@@ -29,4 +30,5 @@
 ///Wrapper to clear reference on target vehicle deletion
 /obj/item/unmanned_vehicle_remote/proc/clear_vehicle()
 	SIGNAL_HANDLER
+	vehicle.on_unlink(src)
 	vehicle = null
