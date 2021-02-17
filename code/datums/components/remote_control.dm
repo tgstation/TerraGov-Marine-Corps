@@ -1,7 +1,11 @@
 /datum/component/remote_control
+	///User of the component
 	var/mob/user
+	///Movable atom being controlled by the component
 	var/atom/movable/controlled
+	///whether the component is currently active or not
 	var/is_controlling = FALSE
+	///Callback to be run when user clicks somewhere while remote controlling
 	var/datum/callback/click_proc
 
 
@@ -22,6 +26,7 @@
 	click_proc = null
 	return ..()
 
+///Called when Controlling should not be resumed and deleted the component
 /datum/component/remote_control/proc/on_control_terminate(datum/source)
 	SIGNAL_HANDLER
 	qdel(src)
