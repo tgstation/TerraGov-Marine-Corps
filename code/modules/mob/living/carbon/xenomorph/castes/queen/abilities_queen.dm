@@ -723,13 +723,16 @@
 	if(!.)
 		return
 	if(!istype(A, /obj/machinery/power/geothermal))
+		if(!silent)
+			to_chat(owner, "<span class='warning'>You can only use this ability on generators!</span>")
+		return FALSE
+	if(!gen.is_corruptible)
+		if(!silent)
+			to_chat(owner, "<span class='warning'>[A] is reinforced and cannot be corrupted!</span>")
 		return FALSE
 
 /datum/action/xeno_action/activable/corrupt_generator/use_ability(atom/A)
 	var/obj/machinery/power/geothermal/gen = A
-	if(!gen.is_corruptible)
-		to_chat(owner, "<span class='warning'>[A] is reinforced and cannot be corrupted!</span>")
-		return fail_activate()
 	if(!do_after(owner, 10 SECONDS, TRUE, gen, BUSY_ICON_HOSTILE))
 		return fail_activate()
 	var/mob/living/carbon/xenomorph/X = owner
