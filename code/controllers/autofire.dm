@@ -50,6 +50,12 @@ SUBSYSTEM_DEF(automatedfire)
 		practical_offset = 1
 		resumed = FALSE
 
+	// Check for when we have to reset buckets, typically from auto-reset
+	if ((length(bucket_list) != BUCKET_LEN) || (world.tick_lag != bucket_resolution))
+		reset_buckets()
+		bucket_list = src.bucket_list
+		resumed = FALSE
+
 	// Store a reference to the 'working' shooter so that we can resume if the MC
 	// has us stop mid-way through processing
 	var/static/datum/component/automatedfire/shooter
@@ -65,7 +71,7 @@ SUBSYSTEM_DEF(automatedfire)
 		while (shooter)
 
 			if(shooter.process_shot())//If we are still shooting, we reschedule the shooter to the next_fire
-				shooter.schedule()
+				shooter.schedule_shot()
 
 			if (MC_TICK_CHECK)
 				return
@@ -80,6 +86,11 @@ SUBSYSTEM_DEF(automatedfire)
 
 /datum/controller/subsystem/automatedfire/Recover()
 	bucket_list |= SSautomatedfire.bucket_list
+
+/datum/controller/subsystem/automatedfire/proc/reset_buckets()
+	bucket_list.len = BUCKET_LEN
+	head_offset = world.time
+	bucket_resolution = world.tick_lag
 
 /datum/component/automatedfire
 	///The owner of this component
@@ -101,7 +112,7 @@ SUBSYSTEM_DEF(automatedfire)
  * * new_next_fire Optional, when provided is used to update an existing shooter with the new specified time
  *
  */
-/datum/component/automatedfire/proc/schedule(new_next_fire = 0)
+/datum/component/automatedfire/proc/schedule_shot(new_next_fire = 0)
 	var/list/bucket_list = SSautomatedfire.bucket_list
 
 	// When necessary, de-list the shooter from its previous position
@@ -148,7 +159,7 @@ SUBSYSTEM_DEF(automatedfire)
 /**
  * Removes this autofire component from the autofire subsystem
  */
-/datum/component/automatedfire/proc/unschedule() //This is probably not needed
+/datum/component/automatedfire/proc/unschedule_shot() //This is probably not needed
 	// Attempt to find the bucket that contains this component
 	var/bucket_pos = BUCKET_POS(next_fire)
 
@@ -232,7 +243,7 @@ SUBSYSTEM_DEF(automatedfire)
 	next_fire = world.time
 	if(!shooting)
 		shooting = TRUE
-		schedule()
+		schedule_shot()
 
 
 ///Signal handler for stoping the shooting
