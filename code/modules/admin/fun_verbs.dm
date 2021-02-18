@@ -405,8 +405,8 @@
 		var/client/C = M?.client
 		if(!C?.prefs)
 			continue
-		if((C.prefs.toggles_sound & SOUND_MIDI) && C.chatOutput?.working && C.chatOutput.loaded)
-			C.chatOutput.sendMusic(web_sound_url, music_extra_data)
+		if(C.prefs.toggles_sound & SOUND_MIDI)
+			C.tgui_panel?.play_music(web_sound_url, music_extra_data)
 			if(show)
 				to_chat(C, "<span class='boldnotice'>An admin played: <a href='[data["webpage_url"]]'>[title]</a></span>")
 

@@ -132,7 +132,7 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 		music_extra_data["start"] = text2num(SSticker.login_music[2])
 		music_extra_data["end"] = text2num(SSticker.login_music[3])
 
-		chatOutput.sendMusic(web_sound_url,music_extra_data)
+		tgui_panel?.play_music(web_sound_url,music_extra_data)
 
 /client/proc/play_title_music_legacy(vol = 85)
 	if(!SSticker?.login_music)
