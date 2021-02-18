@@ -180,6 +180,7 @@
 #define FULLSCREEN_BLIND_LAYER 18.15 //unconscious
 #define FULLSCREEN_PAIN_LAYER	18.2 //pain flashes
 #define FULLSCREEN_CRIT_LAYER 18.25 //in critical
+#define FULLSCREEN_MACHINE_LAYER 18.3
 
 #define FULLSCREEN_PLANE 20
 
