@@ -362,25 +362,38 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 /datum/admin_help/proc/MessageNoRecipient(msg)
 	msg = sanitize(copytext_char(msg, 1, MAX_MESSAGE_LEN))
 	var/ref_src = "[REF(src)]"
+	//message to be sent to all admins
+
 
 	AddInteraction("<font color='#ff8c8c'>[LinkedReplyName(ref_src)]: [msg]</font>")
+	log_admin_private("Ticket #[id]: [key_name(initiator)]: [msg]")
 
 	//Send this to the relevant people
 	for(var/client/X in GLOB.admins)
+		var/admin_msg = "<span class='adminnotice'><span class='adminhelp'>Admin Ticket [TicketHref("#[id]", ref_src)]</span><b>: [LinkedReplyName(ref_src)] [FullMonty(ref_src)]:</b> <span class='linkify'>[keywords_lookup(msg)]</span></span>"
+		var/mentor_msg = "<span class='adminnotice'><span class='adminhelp'>Mentor Ticket [TicketHref("#[id]", ref_src)]</span><b>: [LinkedReplyName(ref_src)] [check_other_rights(X, R_ADMINTICKET, FALSE) ? FullMonty(ref_src) : HalfMonty(ref_src)] [check_other_rights(X, R_ADMINTICKET, FALSE) ? ClosureLinks(ref_src) : ClosureLinksMentor(ref_src)]:</b> <span class='linkify'>[keywords_lookup(msg)]</span></span>"
 		if(tier == TICKET_MENTOR && check_other_rights(X, R_ADMINTICKET|R_MENTOR, FALSE))
 			if(X.prefs.toggles_sound & SOUND_ADMINHELP)
 				SEND_SOUND(X, sound('sound/effects/mentorhelp.ogg', channel = CHANNEL_ADMIN))
 			window_flash(X)
-			to_chat(X, "<span class='adminnotice'><span class='adminhelp'>Mentor Ticket [TicketHref("#[id]", ref_src)]</span><b>: [LinkedReplyName(ref_src)] [check_other_rights(X, R_ADMINTICKET, FALSE) ? FullMonty(ref_src) : HalfMonty(ref_src)] [check_other_rights(X, R_ADMINTICKET, FALSE) ? ClosureLinks(ref_src) : ClosureLinksMentor(ref_src)]:</b> <span class='linkify'>[keywords_lookup(msg)]</span></span>")
+			to_chat(X,
+				type = MESSAGE_TYPE_ADMINPM,
+				html = mentor_msg,
+				confidential = TRUE)
 		if(tier == TICKET_ADMIN && check_other_rights(X, R_ADMINTICKET, FALSE))
 			if(X.prefs.toggles_sound & SOUND_ADMINHELP)
 				SEND_SOUND(X, sound('sound/effects/adminhelp.ogg', channel = CHANNEL_ADMIN))
 			window_flash(X)
-			to_chat(X, "<span class='adminnotice'><span class='adminhelp'>Admin Ticket [TicketHref("#[id]", ref_src)]</span><b>: [LinkedReplyName(ref_src)] [FullMonty(ref_src)] [ClosureLinks(ref_src)]:</b> <span class='linkify'>[keywords_lookup(msg)]</span></span>")
+			to_chat(X,
+				type = MESSAGE_TYPE_ADMINPM,
+				html = admin_msg,
+				confidential = TRUE)
 
 	//show it to the person adminhelping too
-	to_chat(initiator, "<span class='adminnotice'>PM to-<b>[tier == TICKET_ADMIN ? "Admins" : "Mentors"]</b>: <span class='linkify'>[msg]</span></span>")
-
+	to_chat(initiator,
+		type = MESSAGE_TYPE_ADMINPM,
+		html = "<span class='adminnotice'>PM to-<b>[tier == TICKET_ADMIN ? "Admins" : "Mentors"]</b>: <span class='linkify'>[msg]</span></span>",
+		confidential = TRUE)
 
 //Reopen a closed ticket
 /datum/admin_help/proc/Reopen(irc)

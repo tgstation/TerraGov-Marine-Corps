@@ -2,7 +2,6 @@
 	parent_type = /datum // black magic
 	preload_rsc = PRELOAD_RSC // This is 0 so we can set it to an URL once the player logs in and have them download the resources from a different server.
 	view = WORLD_VIEW
-	var/datum/chatOutput/chatOutput //Goonchat holder
 	var/datum/tooltip/tooltips
 
 	//Admin related

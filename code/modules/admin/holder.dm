@@ -542,17 +542,20 @@ GLOBAL_PROTECT(admin_verbs_spawn)
 
 
 /proc/message_admins(msg)
-	msg = "<span class='admin'><span class='prefix'>ADMIN LOG:</span> <span class='message linkify'>[msg]</span></span>"
-	for(var/client/C in GLOB.admins)
-		if(check_other_rights(C, R_ADMIN, FALSE))
-			to_chat(C, msg)
+	msg = "<span class=\"admin\"><span class=\"prefix\">ADMIN LOG:</span> <span class=\"message linkify\">[msg]</span></span>"
+	to_chat(GLOB.admins,
+		type = MESSAGE_TYPE_ADMINLOG,
+		html = msg,
+		confidential = TRUE)
 
 
 /proc/message_staff(msg)
-	msg = "<span class='admin'><span class='prefix'>STAFF LOG:</span> <span class='message linkify'>[msg]</span></span>"
-	for(var/client/C in GLOB.admins)
-		if(check_other_rights(C, R_ADMIN, FALSE) || is_mentor(C))
-			to_chat(C, msg)
+	msg = "<span class=\"admin\"><span class=\"prefix\">STAFF LOG:</span> <span class=\"message linkify\">[msg]</span></span>"
+	to_chat(GLOB.admins,
+		type = MESSAGE_TYPE_STAFFLOG,
+		html = msg,
+		confidential = TRUE)
+
 
 
 /proc/msg_admin_ff(msg)

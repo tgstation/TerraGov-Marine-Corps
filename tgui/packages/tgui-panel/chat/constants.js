@@ -31,8 +31,7 @@ export const MESSAGE_TYPE_OOC = 'ooc';
 export const MESSAGE_TYPE_ADMINPM = 'adminpm';
 export const MESSAGE_TYPE_COMBAT = 'combat';
 export const MESSAGE_TYPE_ADMINCHAT = 'adminchat';
-export const MESSAGE_TYPE_MODCHAT = 'modchat';
-export const MESSAGE_TYPE_EVENTCHAT = 'eventchat';
+export const MESSAGE_TYPE_MENTORCHAT = 'modchat';
 export const MESSAGE_TYPE_ADMINLOG = 'adminlog';
 export const MESSAGE_TYPE_ATTACKLOG = 'attacklog';
 export const MESSAGE_TYPE_DEBUG = 'debug';
@@ -58,7 +57,7 @@ export const MESSAGE_TYPES = [
     type: MESSAGE_TYPE_RADIO,
     name: 'Radio',
     description: 'All departments of radio messages',
-    selector: '.alert, .minorannounce, .syndradio, .centcomradio, .aiprivradio, .comradio, .secradio, .engradio, .medradio, .sciradio, .suppradio, .servradio, .radio, .deptradio, .binarysay, .newscaster',
+    selector: '.alert, .minorannounce, .syndradio, .centcomradio, .aiprivradio, .comradio, .secradio, .engradio, .medradio, .sciradio, .suppradio, .servradio, .radio, .deptradio, .binarysay, .newscaster, .hivemind',
   },
   {
     type: MESSAGE_TYPE_INFO,
@@ -110,10 +109,10 @@ export const MESSAGE_TYPES = [
     admin: true,
   },
   {
-    type: MESSAGE_TYPE_MODCHAT,
-    name: 'Mod Chat',
+    type: MESSAGE_TYPE_MENTORCHAT,
+    name: 'Mentor Chat',
     description: 'MSAY messages',
-    selector: '.mod_channel',
+    selector: '.mentor_channel',
     admin: true,
   },
   {

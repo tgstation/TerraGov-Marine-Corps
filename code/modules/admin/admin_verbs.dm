@@ -796,13 +796,22 @@
 
 /client/proc/private_message(whom, msg)
 	if(prefs.muted & MUTE_ADMINHELP)
-		to_chat(src, "<span class='warning'>You are unable to use admin PMs (muted).</span>")
+		to_chat(src,
+			type = MESSAGE_TYPE_ADMINPM,
+			html = "<span class='warning'>You are unable to use admin PMs (muted).</span>",
+			confidential = TRUE)
 		return
 
 	if(!holder && !current_ticket)
-		to_chat(src, "<span class='warning'>You can no longer reply to this ticket, please open another one by using the Adminhelp verb if need be.</span>")
+		to_chat(src,
+			type = MESSAGE_TYPE_ADMINPM,
+			html = "<span class='warning'>You can no longer reply to this ticket, please open another one by using the Adminhelp verb if need be.</span>",
+			confidential = TRUE)
 		if(msg)
-			to_chat(src, "<span class='notice'>Message: [msg]</span>")
+			to_chat(src,
+				type = MESSAGE_TYPE_ADMINPM,
+				html = "<span class='notice'>Message: [msg]</span>",
+				confidential = TRUE)
 		return
 
 	var/client/recipient
@@ -831,15 +840,24 @@
 			return
 
 		if(holder)
-			to_chat(src, "<span class='danger'>Error: Use the admin IRC/Discord channel.</span>")
+			to_chat(src,
+				type = MESSAGE_TYPE_ADMINPM,
+				html = "<span class='danger'>Error: Use the admin IRC/Discord channel.</span>",
+				confidential = TRUE)
 			return
 
 	else
 		if(!recipient)
 			if(holder)
-				to_chat(src, "<span class='warning'>Error: Client not found.</span>")
+				to_chat(src,
+					type = MESSAGE_TYPE_ADMINPM,
+					html = "<span class='warning'>Error: Client not found.</span>",
+					confidential = TRUE)
 				if(msg)
-					to_chat(src, msg)
+					to_chat(src,
+						type = MESSAGE_TYPE_ADMINPM,
+						html = msg,
+						confidential = TRUE)
 				return
 			else if(msg) // you want to continue if there's no message instead of returning now
 				current_ticket.MessageNoRecipient(msg)
@@ -853,13 +871,22 @@
 				return
 
 			if(prefs.muted & MUTE_ADMINHELP)
-				to_chat(src, "<span class='warning'>You are unable to use admin PMs (muted).</span>")
+				to_chat(src,
+					type = MESSAGE_TYPE_ADMINPM,
+					html = "<span class='warning'>You are unable to use admin PMs (muted).</span>",
+					confidential = TRUE)
 				return
 
 			if(!recipient && !external)
 				if(holder)
-					to_chat(src, "<br><span class='boldnotice'>Client not found. Here's your message, copy-paste it if needed:</span>")
-					to_chat(src, "<span class='notice'>[msg]</span><br>")
+					to_chat(src,
+						type = MESSAGE_TYPE_ADMINPM,
+						html = "<br><span class='boldnotice'>Client not found. Here's your message, copy-paste it if needed:</span>",
+						confidential = TRUE)
+					to_chat(src,
+						type = MESSAGE_TYPE_ADMINPM,
+						html = "<span class='notice'>[msg]</span><br>",
+						confidential = TRUE)
 				else
 					current_ticket.MessageNoRecipient(msg)
 				return
@@ -878,7 +905,10 @@
 	var/keywordparsedmsg = keywords_lookup(msg)
 
 	if(external)
-		to_chat(src, "<span class='notice'>PM to-<b>Staff</b>: <span class='linkify'>[rawmsg]</span></font>")
+		to_chat(src,
+			type = MESSAGE_TYPE_ADMINPM,
+			html = "<span class='notice'>PM to-<b>Staff</b>: <span class='linkify'>[rawmsg]</span></font>",
+			confidential = TRUE)
 		var/datum/admin_help/AH = admin_ticket_log(src, "<font color='#ff8c8c'>Reply PM from-<b>[key_name(src, TRUE, TRUE)] to <i>External</i>: [keywordparsedmsg]</font>")
 		externalreplyamount--
 		send2adminchat("[AH ? "#[AH.id] " : ""]Reply: [ckey]", sanitizediscord(rawmsg))
@@ -890,8 +920,15 @@
 						new /datum/admin_help(msg, recipient, TRUE, TICKET_ADMIN)
 					else
 						new /datum/admin_help(msg, recipient, TRUE, TICKET_MENTOR)
-				to_chat(recipient, "<font size='3' span class='staffpmin'>Staff PM from-<b>[key_name(src, recipient, TRUE)]</b>: <span class='linkify'>[keywordparsedmsg]</span></span>")
-				to_chat(src, "<font size='3' span class='staffpmout'>Staff PM to-<b>[key_name(recipient, src, TRUE)]</b>: <span class='linkify'>[keywordparsedmsg]</span></span>")
+
+				to_chat(recipient,
+					type = MESSAGE_TYPE_ADMINPM,
+					html = "<font size='3' span class='staffpmin'>Staff PM from-<b>[key_name(src, recipient, TRUE)]</b>: <span class='linkify'>[keywordparsedmsg]</span></span>",
+					confidential = TRUE)
+				to_chat(src,
+					type = MESSAGE_TYPE_ADMINPM,
+					html = "<font size='3' span class='staffpmout'>Staff PM to-<b>[key_name(recipient, src, TRUE)]</b>: <span class='linkify'>[keywordparsedmsg]</span></span>",
+					confidential = TRUE)
 
 				window_flash(recipient, TRUE)
 				window_flash(src, TRUE)
@@ -903,9 +940,15 @@
 
 			else //Recipient is a staff member, sender is not.
 				admin_ticket_log(src, "<font color='#ff8c8c'>Reply PM from-<b>[key_name(src, recipient, TRUE)]</b>: <span class='linkify'>[keywordparsedmsg]</span></font>")
-				to_chat(recipient, "<font size='3' color='red'>Reply PM from-<b>[key_name(src, recipient, TRUE)]</b>: <span class='linkify'>[keywordparsedmsg]</span></font>")
+				to_chat(recipient,
+					type = MESSAGE_TYPE_ADMINPM,
+					html = "<font size='3' span class='staffpmin'>Staff PM from-<b>[key_name(src, recipient, TRUE)]</b>: <span class='linkify'>[keywordparsedmsg]</span></span>",
+					confidential = TRUE)
+				to_chat(src,
+					type = MESSAGE_TYPE_ADMINPM,
+					html = "<span class='notice'>PM to-<b>Staff</b>: <span class='linkify'>[msg]</span></span>",
+					confidential = TRUE)
 				window_flash(recipient, TRUE)
-				to_chat(src, "<span class='notice'>PM to-<b>Staff</b>: <span class='linkify'>[msg]</span></span>")
 
 			//Play the bwoink if enabled.
 			if(recipient.prefs.toggles_sound & SOUND_ADMINHELP)
