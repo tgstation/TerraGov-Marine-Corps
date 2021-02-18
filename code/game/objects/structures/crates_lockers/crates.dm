@@ -142,6 +142,22 @@
 	icon_opened = "open_ammo"
 	icon_closed = "closed_ammo"
 
+/obj/structure/closet/crate/ammo/full 
+	name = "prepared ammunitions crate"
+
+/obj/structure/closet/crate/ammo/full/Initialize()
+	. = ..()
+	new /obj/item/ammobox(src)
+	new	/obj/item/shotgunbox(src)
+	new	/obj/item/shotgunbox/buckshot(src)
+	new	/obj/item/shotgunbox/flechette(src)
+	new	/obj/item/ammobox/standard_smg(src)
+	new	/obj/item/ammobox/standard_machinepistol(src)
+	new	/obj/item/ammobox/standard_pistol(src)
+	new	/obj/item/ammobox/standard_rifle(src)
+	new	/obj/item/ammobox/standard_dmr(src)
+	new	/obj/item/ammobox/standard_lmg(src)
+
 /obj/structure/closet/crate/bravo
 	name = "bravo squad crate"
 	desc = "A crate with bravo squad's symbol on it. "
@@ -176,6 +192,16 @@
 	icon_state = "closed_explosives"
 	icon_opened = "open_explosives"
 	icon_closed = "closed_explosives"
+
+/obj/structure/closet/crate/explosives/full_grenade
+	name = "prepare grenades crate"
+
+/obj/structure/closet/crate/explosives/full_grenade/Initialize()
+	. = ..()
+	new /obj/item/storage/box/nade_box(src)
+	new	/obj/item/storage/box/nade_box/HIDP(src)
+	new	/obj/item/storage/box/nade_box/M15(src)
+	new	/obj/item/storage/box/nade_box/plasma_drain_gas(src)
 
 /obj/structure/closet/crate/freezer
 	name = "freezer crate"

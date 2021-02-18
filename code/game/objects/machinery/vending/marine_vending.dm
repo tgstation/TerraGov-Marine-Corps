@@ -120,10 +120,6 @@
 	req_one_access = list(ACCESS_MARINE_CARGO, ACCESS_MARINE_LOGISTICS)
 	products = list(
 		/obj/item/storage/box/ammo = 30,
-		/obj/item/storage/box/nade_box = 2,
-		/obj/item/storage/box/nade_box/HIDP = 2,
-		/obj/item/storage/box/nade_box/M15 = 2,
-		/obj/item/storage/box/nade_box/plasma_drain_gas = 1,
 		/obj/item/ammo_magazine/rifle/autosniper = 3,
 		/obj/item/ammo_magazine/rifle/m4ra = 3,
 		/obj/item/ammo_magazine/rocket/sadar = 3,
@@ -135,17 +131,6 @@
 		/obj/item/radio/headset/mainship/marine/bravo = 20,
 		/obj/item/radio/headset/mainship/marine/charlie = 20,
 		/obj/item/radio/headset/mainship/marine/delta = 20,
-		/obj/item/big_ammo_box = 2,
-		/obj/item/ammobox = 2,
-		/obj/item/shotgunbox = 2,
-		/obj/item/shotgunbox/buckshot = 2,
-		/obj/item/shotgunbox/flechette = 2,
-		/obj/item/ammobox/standard_smg = 2,
-		/obj/item/ammobox/standard_machinepistol = 2,
-		/obj/item/ammobox/standard_pistol = 2,
-		/obj/item/ammobox/standard_rifle = 2,
-		/obj/item/ammobox/standard_dmr = 2,
-		/obj/item/ammobox/standard_lmg = 2,
 	)
 
 /// HvH version of the vending machine, containing no ammo for spec weapons and restricted ones
