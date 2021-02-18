@@ -8,7 +8,7 @@ GLOBAL_LIST_INIT(poster_designs, subtypesof(/datum/poster))
 
 
 // Pill icons
-GLOBAL_LIST_EMPTY(randomized_pill_icons)
+GLOBAL_LIST_EMPTY(pill_icons)
 
 //////////////////////////
 /////Initial Building/////
@@ -114,13 +114,8 @@ GLOBAL_LIST_EMPTY(randomized_pill_icons)
 			for(var/bound_key in instance.hotkey_keys)
 				LAZYADD(GLOB.hotkey_keybinding_list_by_key[bound_key], list(instance.name))
 
-	for(var/i in 1 to 21)
-		GLOB.randomized_pill_icons += "pill[i]"
-	shuffle(GLOB.randomized_pill_icons)
-
-	shuffle(GLOB.fruit_icon_states)
-	shuffle(GLOB.reagent_effects)
-
+	for(var/i in 1 to 22)
+		GLOB.pill_icons += "pill[i]"
 
 	for(var/path in subtypesof(/datum/material))
 		var/datum/material/M = new path

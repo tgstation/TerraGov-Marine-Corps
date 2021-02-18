@@ -17,7 +17,7 @@
 /obj/item/reagent_containers/pill/Initialize()
 	. = ..()
 	if(!icon_state)
-		icon_state = pill_id ? GLOB.randomized_pill_icons[pill_id] : pick(GLOB.randomized_pill_icons)
+		icon_state = pill_id ? GLOB.pill_icons[pill_id] : pick(GLOB.pill_icons)
 
 /obj/item/reagent_containers/pill/attack_self(mob/user as mob)
 	return
@@ -241,3 +241,8 @@
 	//pill_desc = "An ultrazine pill. A highly-potent, long-lasting combination CNS and muscle stimulant. Extremely addictive."
 	list_reagents = list(/datum/reagent/medicine/ultrazine = 5)
 	pill_id = 21
+
+/obj/item/reagent_containers/pill/polyhexanide
+	pill_desc = "A polyhexanide pill. A sterilizing agent designed for internal use. Powerful, but dangerous. Can induce sleep"
+	list_reagents = list(/datum/reagent/medicine/polyhexanide = 15)
+	pill_id = 22

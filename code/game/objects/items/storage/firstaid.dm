@@ -417,6 +417,12 @@
 	icon_state = "pill_canister9"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/tricordrazine
 
+/obj/item/storage/pill_bottle/polyhexanide
+	name = "polyhexanide pill bottle"
+	desc = "Contains pills commonly used by marines who can't sleep at night because of the nightmares."
+	icon_state = "pill_canister13"
+	pill_type_to_fill = /obj/item/reagent_containers/pill/polyhexanide
+
 /obj/item/storage/pill_bottle/happy
 	name = "happy pill bottle"
 	desc = "Contains highly illegal drugs. When you want to see the rainbow."

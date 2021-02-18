@@ -11,7 +11,7 @@ SUBSYSTEM_DEF(points)
 	wait = 10 SECONDS
 
 	var/dropship_points = 0
-	var/supply_points = 120
+	var/supply_points = 0
 	///Assoc list of xeno points: xeno_points_by_hive["hivenum"]
 	var/list/xeno_points_by_hive = list()
 
@@ -46,6 +46,8 @@ SUBSYSTEM_DEF(points)
 
 /datum/controller/subsystem/points/Initialize(timeofday)
 	ordernum = rand(1, 9000)
+
+	supply_points = TGS_CLIENT_COUNT*2 //So 120 points for 60 players
 
 	for(var/pack in subtypesof(/datum/supply_packs))
 		var/datum/supply_packs/P = pack

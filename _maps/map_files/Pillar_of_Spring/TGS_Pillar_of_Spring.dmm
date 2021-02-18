@@ -362,6 +362,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
+/obj/structure/closet/crate/mortar_ammo/mortar_kit,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "bp" = (
@@ -1602,6 +1603,10 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
+"fx" = (
+/obj/machinery/power/port_gen/pacman,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "fy" = (
 /obj/structure/flora/pottedplant{
 	icon_state = "plant-05"
@@ -1685,6 +1690,16 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/commandbunks)
+"fV" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/structure/closet/crate/construction/full,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "fW" = (
 /obj/effect/decal/warning_stripes/thin,
 /obj/effect/decal/warning_stripes/thin{
@@ -1692,8 +1707,6 @@
 	},
 /obj/structure/table/mainship,
 /obj/machinery/cell_charger,
-/obj/effect/spawner/random/powercell,
-/obj/effect/spawner/random/powercell,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "fY" = (
@@ -3348,11 +3361,10 @@
 	dir = 8
 	},
 /area/mainship/command/cic)
-"lC" = (
-/obj/structure/dropship_equipment/sentry_holder,
-/turf/open/floor/mainship/orange{
-	dir = 4
-	},
+"lD" = (
+/obj/machinery/light,
+/obj/structure/dropship_equipment/mg_holder,
+/turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "lE" = (
 /turf/closed/wall/mainship/outer,
@@ -3401,15 +3413,6 @@
 /obj/machinery/computer/emails,
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
-"lM" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 8
-	},
-/obj/structure/dropship_equipment/mg_holder,
-/turf/open/floor/mainship/orange{
-	dir = 8
-	},
-/area/mainship/hallways/hangar)
 "lN" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
@@ -3457,6 +3460,13 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
+"lW" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/structure/closet/crate/medical/full_drugs,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "lX" = (
 /obj/structure/droppod,
 /obj/structure/dropprop,
@@ -3506,7 +3516,6 @@
 	dir = 8
 	},
 /obj/effect/decal/warning_stripes/thin,
-/obj/structure/dropship_equipment/operatingtable,
 /turf/open/floor/mainship/orange{
 	dir = 8
 	},
@@ -3912,6 +3921,10 @@
 "nD" = (
 /turf/closed/wall/mainship/white,
 /area/mainship/medical/medical_science)
+"nE" = (
+/obj/machinery/power/port_gen/pacman/mobile_power,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "nF" = (
 /obj/structure/prop/mainship/missile_tube{
 	icon_state = "missiletubesouth"
@@ -6514,11 +6527,6 @@
 /obj/item/attachable/scope,
 /obj/item/ammo_magazine/standard_lmg,
 /obj/item/weapon/gun/rifle/standard_lmg,
-/obj/item/stack/sheet/metal/medium_stack,
-/obj/item/stack/sheet/metal/medium_stack{
-	pixel_x = 5;
-	pixel_y = 10
-	},
 /turf/open/floor/mainship/orange/full,
 /area/mainship/command/cic)
 "wu" = (
@@ -7576,10 +7584,6 @@
 /obj/machinery/pipedispenser,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
-"zR" = (
-/obj/machinery/power/port_gen/pacman,
-/turf/open/floor/mainship/mono,
-/area/mainship/engineering/engineering_workshop)
 "zS" = (
 /obj/machinery/portable_atmospherics/pump,
 /obj/machinery/light/small{
@@ -7777,11 +7781,6 @@
 /turf/open/floor/mainship/cargo,
 /area/mainship/engineering/engineering_workshop)
 "Ax" = (
-/obj/structure/closet/crate,
-/obj/item/stack/sheet/mineral/phoron{
-	amount = 25
-	},
-/obj/item/storage/briefcase/inflatable,
 /turf/open/floor/mainship/cargo,
 /area/mainship/engineering/engineering_workshop)
 "Ay" = (
@@ -9680,12 +9679,14 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6
 	},
+/obj/structure/dropship_equipment/operatingtable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "Gm" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
+/obj/structure/dropship_equipment/sentry_holder,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "Gn" = (
@@ -10099,10 +10100,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
-"Ht" = (
-/obj/machinery/power/port_gen/pacman/mobile_power,
-/turf/open/floor/mainship/mono,
-/area/mainship/engineering/engineering_workshop)
 "Hv" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 1;
@@ -13336,6 +13333,13 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
+"RU" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/structure/closet/crate/medical/full_surgery,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "RV" = (
 /obj/machinery/door/poddoor/mainship/umbilical/south{
 	dir = 8
@@ -13734,15 +13738,9 @@
 /turf/open/shuttle/escapepod/plain,
 /area/mainship/command/self_destruct)
 "TO" = (
-/obj/structure/rack,
-/obj/item/tool/pickaxe/plasmacutter,
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/item/tool/pickaxe/plasmacutter,
-/obj/item/storage/belt/utility/full,
-/obj/item/storage/belt/utility/full,
-/obj/item/tool/weldpack,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "TP" = (
@@ -14486,15 +14484,6 @@
 /obj/machinery/landinglight/ds2,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
-"XK" = (
-/obj/structure/closet/crate,
-/obj/item/stack/sheet/mineral/phoron{
-	amount = 25
-	},
-/obj/item/storage/briefcase/inflatable,
-/obj/item/reagent_containers/food/drinks/bottle/vodka,
-/turf/open/floor/mainship/cargo,
-/area/mainship/engineering/engineering_workshop)
 "XN" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -14641,10 +14630,6 @@
 /obj/structure/prop/mainship/name_stencil,
 /turf/open/floor/mainship_hull,
 /area/space)
-"Yx" = (
-/obj/machinery/vending/shared_vending/marine_engi,
-/turf/open/floor/mainship,
-/area/mainship/squads/general)
 "YB" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -44893,11 +44878,11 @@ TP
 Yp
 yn
 Ex
-ap
+nE
 bo
-an
+lW
 cb
-Nh
+lD
 az
 oW
 aA
@@ -45150,9 +45135,9 @@ TP
 ZI
 CO
 Ex
-ap
-bp
-ao
+fx
+fV
+RU
 cg
 Nh
 az
@@ -48582,10 +48567,10 @@ zF
 JY
 Lk
 OM
-zR
+yx
 zX
 Ai
-XK
+Ax
 Mb
 aO
 ad
@@ -49020,7 +49005,7 @@ bn
 ja
 ke
 kY
-lM
+ke
 mj
 Np
 mU
@@ -49097,7 +49082,7 @@ OU
 zv
 OM
 zT
-Ht
+yx
 OV
 Az
 Mb
@@ -49276,7 +49261,7 @@ ze
 iR
 jg
 kG
-lC
+kG
 kG
 ms
 Cu
@@ -51115,7 +51100,7 @@ jU
 QR
 jl
 qC
-Yx
+Wa
 jl
 jl
 Wa
