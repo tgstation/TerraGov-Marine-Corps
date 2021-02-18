@@ -154,7 +154,7 @@
 		var/sourcenutriment = C.nutrition / 15
 		var/sourcetotalreagents = 0
 
-		if(istype(occupant, /mob/living/carbon/human) || istype(occupant, /mob/living/carbon/xenomorph)) // why are you gibbing aliens? oh well
+		if(ismonkey(occupant) || istype(occupant, /mob/living/carbon/xenomorph)) // why are you gibbing aliens? oh well
 			totalslabs = 3
 			sourcetotalreagents = src.occupant.reagents.total_volume
 		else if(istype(occupant, /mob/living/simple_animal/cow) || istype(occupant, /mob/living/simple_animal/hostile/bear))
@@ -196,5 +196,4 @@
 				new /obj/effect/decal/cleanable/blood/gibs(Tx,i)
 		src.operating = 0
 		update_icon()
-
 
