@@ -82,14 +82,13 @@
 	if(resting) //Resting doubles sunder recovery
 		sunder_recov *= 2
 
-	var/on_weeds = locate(/obj/effect/alien/weeds) in loc
-	if(on_weeds) //Weeds double sunder recovery
+	if(locate(/obj/effect/alien/weeds) in loc) //Weeds double sunder recovery
 		sunder_recov *= 2
 
 	if(recovery_aura)
 		sunder_recov *= 1 + recovery_aura * 0.1 //10% bonus per rank of recovery aura
 
-	SEND_SIGNAL(src, COMSIG_XENOMORPH_SUNDER_REGEN, src, on_weeds)
+	SEND_SIGNAL(src, COMSIG_XENOMORPH_SUNDER_REGEN, src)
 
 	adjust_sunder(sunder_recov)
 
