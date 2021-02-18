@@ -726,6 +726,7 @@
 		if(!silent)
 			to_chat(owner, "<span class='warning'>You can only use this ability on generators!</span>")
 		return FALSE
+	var/obj/machinery/power/geothermal/gen = A
 	if(!gen.is_corruptible)
 		if(!silent)
 			to_chat(owner, "<span class='warning'>[A] is reinforced and cannot be corrupted!</span>")
