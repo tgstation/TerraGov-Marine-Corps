@@ -39,7 +39,7 @@
 /datum/component/automatedfire/automatic_shoot_at/process_shot()
 	if(!shooting)
 		return AUTOFIRE_STOPPED_SHOOTING
-	var/obj/projectile/newspit = new /obj/projectile(shooter.loc)
+	var/obj/projectile/newspit = new(shooter.loc)
 	newspit.generate_bullet(ammo, ammo.damage)
 	newspit.permutated += shooter
 	newspit.fire_at(target, shooter, null, ammo.max_range, ammo.shell_speed)
