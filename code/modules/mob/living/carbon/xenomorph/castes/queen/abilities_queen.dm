@@ -677,8 +677,6 @@
 	for(var/obj/item/W in T.contents) //Drop stuff
 		T.dropItemToGround(W)
 
-	T.empty_gut(FALSE, TRUE)
-
 	if(T.mind)
 		T.mind.transfer_to(new_xeno)
 	else
@@ -712,3 +710,33 @@
 	SSblackbox.record_feedback("tally", "round_statistics", -1, "total_xenos_created")
 	qdel(T)
 	X.use_plasma(600)
+
+/datum/action/xeno_action/activable/corrupt_generator
+	name = "Corrupt generator"
+	action_icon_state = "tunnel"
+	mechanics_text = "Corrupt a generator to begin increasing the psycic energy of the hive."
+	plasma_cost = 200
+	//keybind_signal = COMSIG_XENOABILITY_CORRUPT_GENERATOR
+
+/datum/action/xeno_action/activable/corrupt_generator/can_use_ability(atom/A, silent, override_flags)
+	. = ..()
+	if(!.)
+		return
+	if(!istype(A, /obj/machinery/power/geothermal))
+		if(!silent)
+			to_chat(owner, "<span class='warning'>You can only use this ability on generators!</span>")
+		return FALSE
+	var/obj/machinery/power/geothermal/gen = A
+	if(!gen.is_corruptible)
+		if(!silent)
+			to_chat(owner, "<span class='warning'>[A] is reinforced and cannot be corrupted!</span>")
+		return FALSE
+
+/datum/action/xeno_action/activable/corrupt_generator/use_ability(atom/A)
+	var/obj/machinery/power/geothermal/gen = A
+	if(!do_after(owner, 10 SECONDS, TRUE, gen, BUSY_ICON_HOSTILE))
+		return fail_activate()
+	var/mob/living/carbon/xenomorph/X = owner
+	gen.corrupt(X.hivenumber)
+	to_chat(owner, "<span class='notice'>You have corrupted [A]</span>")
+	succeed_activate()

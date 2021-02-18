@@ -39,7 +39,7 @@ SUBSYSTEM_DEF(monitor)
 	var/ancient_T2 = 0
 	var/elder_T2 = 0
 	var/list/miniguns_in_use = list()
-	var/list/sadar_in_use = list() 
+	var/list/sadar_in_use = list()
 	var/list/b18_in_use = list()
 	var/list/b17_in_use = list()
 	var/OB_available = 0
@@ -85,6 +85,7 @@ SUBSYSTEM_DEF(monitor)
 			. += stats.b18_in_use.len * B18_PRICE * REQ_POINTS_WEIGHT
 			. += SSpoints.supply_points * REQ_POINTS_WEIGHT
 			. += stats.OB_available * OB_AVAILABLE_WEIGHT
+			. += GLOB.xeno_resin_silos.len * SPAWNING_POOL_WEIGHT
 		if(SHIPSIDE, SHUTTERS_CLOSED)	
 			. += GLOB.alive_human_list.len * HUMAN_LIFE_WEIGHT_PREGAME
 			. += GLOB.alive_xeno_list.len * XENOS_LIFE_WEIGHT_PREGAME

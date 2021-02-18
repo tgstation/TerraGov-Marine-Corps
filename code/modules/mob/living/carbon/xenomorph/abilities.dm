@@ -1014,7 +1014,7 @@
 /datum/action/xeno_action/activable/build_silo
 	name = "Secrete resin silo"
 	action_icon_state = "resin_silo"
-	mechanics_text = "Creates a new resin silo on a tile with a nest."
+	mechanics_text = "Creates a new silo"
 	ability_name = "secrete resin"
 	plasma_cost = 150
 	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN_SILO
@@ -1022,9 +1022,9 @@
 
 	/// How long does it take to build
 	var/build_time = 10 SECONDS
+	/// Pyschic point cost
+	var/psych_cost = SILO_PRICE
 
-	/// how many dead / non-chestbursted mobs are required to build the silo
-	var/required_mobs = 3
 
 /datum/action/xeno_action/activable/build_silo/can_use_ability(atom/A, silent, override_flags)
 	. = ..()
@@ -1035,42 +1035,30 @@
 		if(!silent)
 			to_chat(owner, "<span class='warning'>We need to get closer!.</span>")
 		return FALSE
-	var/obj/structure/bed/nest/found_nest = locate() in get_turf(A)
-	if(!found_nest)
-		if(!silent)
-			to_chat(owner, "<span class='warning'>You must build a resin nest and have [required_mobs] bodies for a silo!</span>")
+
+	var/mob/living/carbon/xenomorph/X = owner
+	if(SSpoints.xeno_points_by_hive[X.hivenumber] < psych_cost)
+		to_chat(owner, "<span class='xenowarning'>The hive doesn't have the necessary psychic points for you to do that!</span>")
 		return FALSE
 
+	for(var/obj/structure/resin/silo/silo as anything in GLOB.xeno_resin_silos)
+		if(get_dist(silo, A) < 15)
+			to_chat(owner, "<span class='xenowarning'>Another silo is too close!</span>")
+			return FALSE
 
 /datum/action/xeno_action/activable/build_silo/use_ability(atom/A)
-	// we do this check here so we can clear the mobs afterwards
-	var/list/mob/living/valid_mobs = list()
-	for(var/thing in get_turf(A))
-		if(!ishuman(thing))
-			continue
-		var/mob/living/turf_mob = thing
-		if(turf_mob.stat == DEAD && turf_mob.chestburst == 0)
-			valid_mobs += turf_mob
-
-	if(length(valid_mobs) < required_mobs)
-		to_chat(owner, "<span class='warning'>There are not enough dead bodies, you need [required_mobs] bodies for a silo!</span>")
-		return fail_activate()
-
 	if(!do_after(owner, build_time, TRUE, A, BUSY_ICON_BUILD))
 		return fail_activate()
 
-	var/obj/structure/resin/silo/hivesilo = new(get_step(A, SOUTHWEST))
+	var/mob/living/carbon/xenomorph/X = owner
 
-	// Throw the mobs inside the silo
-	for(var/iter in valid_mobs)
-		var/mob/living/to_move = iter
-		to_move.chestburst = 2 //So you can't reuse corpses if the silo is destroyed
-		to_move.update_burst()
-		to_move.forceMove(hivesilo)
+	if(SSpoints.xeno_points_by_hive[X.hivenumber] < psych_cost)
+		to_chat(owner, "<span class='xenowarning'>Someone used all the psych points while we were building!</span>")
+		return fail_activate()
 
-	// Just to protect against two people doing the action at the same time
-	if(!QDELETED(A))
-		qdel(A)
+	new /obj/structure/resin/silo (get_step(A, SOUTHWEST))
+
+	SSpoints.xeno_points_by_hive[X.hivenumber] -= psych_cost
 
 	succeed_activate()
 
