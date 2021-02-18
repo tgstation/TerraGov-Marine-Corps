@@ -495,6 +495,7 @@
 		/obj/item/storage/pill_bottle/kelotane = 30,
 		/obj/item/storage/pill_bottle/tramadol = 30,
 		/obj/item/storage/pill_bottle/tricordrazine = 30,
+		/obj/item/storage/pill_bottle/dylovene = 30,
 		/obj/item/stack/medical/bruise_pack = 30,
 		/obj/item/stack/medical/ointment = 30,
 		/obj/item/healthanalyzer =30,
