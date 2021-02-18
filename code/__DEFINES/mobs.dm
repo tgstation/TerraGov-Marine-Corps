@@ -409,6 +409,12 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 #define BASE_GRAB_SLOWDOWN		3 //Slowdown called by /mob/setGrabState(newstate) in mob.dm when grabbing a target aggressively.
 
+///Stamina exhaustion
+
+#define LIVING_STAMINA_EXHAUSTION_COOLDOWN	10 SECONDS //Amount of time between 0 stamina exhaustion events
+#define STAMINA_EXHAUSTION_DEBUFF_STACKS	6 //Amount of slow and stagger stacks applied on stamina exhaustion events
+
+
 //Xeno Defines
 
 #define HIVE_CAN_HIJACK (1<<0)
@@ -563,6 +569,8 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define STANDARD_SLOWDOWN_REGEN 0.3
 
 #define HYPERVENE_REMOVAL_AMOUNT	8
+
+#define GAS_INHALE_REAGENT_TRANSFER_AMOUNT	7
 
 // Squad ID defines moved from game\jobs\job\squad.dm
 #define NO_SQUAD 0

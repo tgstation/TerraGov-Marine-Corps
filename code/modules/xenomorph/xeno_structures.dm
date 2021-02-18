@@ -25,29 +25,31 @@
 
 
 /obj/structure/resin/silo
-	icon = 'icons/Xeno/resin_silo.dmi'
-	icon_state = "brown_silo"
 	name = "resin silo"
+	icon = 'icons/Xeno/resin_silo.dmi'
+	icon_state = "resin_silo"
 	desc = "A slimy, oozy resin bed filled with foul-looking egg-like ...things."
 	bound_width = 96
 	bound_height = 96
-	max_integrity = 400
+	max_integrity = 1000
 	var/turf/center_turf
 	var/datum/hive_status/associated_hive
 	var/silo_area
 	var/number_silo
+	///How old this silo is in seconds
+	var/maturity = 0
 	COOLDOWN_DECLARE(silo_damage_alert_cooldown)
 	COOLDOWN_DECLARE(silo_proxy_alert_cooldown)
 
 /obj/structure/resin/silo/Initialize()
 	. = ..()
-
 	var/static/number = 1
 	name = "[name] [number]"
 	number_silo = number
 	number++
-
+	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY), .proc/start_maturing)
 	GLOB.xeno_resin_silos += src
+	associated_hive?.handle_silo_death_timer()
 	center_turf = get_step(src, NORTHEAST)
 	if(!istype(center_turf))
 		center_turf = loc
@@ -71,10 +73,15 @@
 	GLOB.xeno_resin_silos -= src
 	if(associated_hive)
 		UnregisterSignal(associated_hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK))
-		//Since resin silos are more important now, we need a better notification.
-		associated_hive.xeno_message("<span class='xenoannounce'>A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!</span>", 2, FALSE, src, 'sound/voice/alien_help2.ogg',FALSE , null, /obj/screen/arrow/silo_damaged_arrow)
-		associated_hive = null
-		notify_ghosts("\ A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!", source = get_turf(src), action = NOTIFY_JUMP)
+		
+		if(isdistress(SSticker.mode)) //Silo can only be destroy in distress mode, but this check can create bugs if new gamemodes are added.
+			var/datum/game_mode/infestation/distress/distress_mode
+			distress_mode = SSticker.mode
+			if (!(distress_mode.round_stage == DISTRESS_DROPSHIP_CRASHING))//No need to notify the xenos shipside
+				associated_hive.xeno_message("<span class='xenoannounce'>A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!</span>", 2, FALSE,src.loc, 'sound/voice/alien_help2.ogg',FALSE , null, /obj/screen/arrow/silo_damaged_arrow)
+				associated_hive.handle_silo_death_timer()
+				associated_hive = null
+				notify_ghosts("\ A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!", source = get_turf(src), action = NOTIFY_JUMP)
 
 	for(var/i in contents)
 		var/atom/movable/AM = i
@@ -144,86 +151,22 @@
 	associated_hive.xeno_message("<span class='xenoannounce'>Our [name] has detected a nearby hostile [hostile] at [get_area(hostile)] (X: [hostile.x], Y: [hostile.y]). [name] has [obj_integrity]/[max_integrity] Health remaining.</span>", 2, FALSE, hostile, 'sound/voice/alien_help1.ogg')
 	COOLDOWN_START(src, silo_proxy_alert_cooldown, XENO_HEALTH_ALERT_COOLDOWN) //set the cooldown.
 
+///Signal handler to tell the silo it can start maturing, so it adds it to the process if that's not the case
+/obj/structure/resin/silo/proc/start_maturing()
+	SIGNAL_HANDLER
+	if(!CHECK_BITFIELD(datum_flags, DF_ISPROCESSING))
+		START_PROCESSING(SSslowprocess, src)
 
 /obj/structure/resin/silo/process()
 	//Regenerate if we're at less than max integrity
 	if(obj_integrity < max_integrity)
 		obj_integrity = min(obj_integrity + 25, max_integrity) //Regen 5 HP per sec
-		return
+	
+	if(SSsilo.silos_do_mature)
+		maturity += 5
 
-	//If we're at max integrity, stop regenerating and processing.
-	return PROCESS_KILL
 
 /obj/structure/resin/silo/proc/is_burrowed_larva_host(datum/source, list/mothers, list/silos)
 	SIGNAL_HANDLER
 	if(associated_hive)
 		silos += src
-
-
-//*******************
-//Corpse recyclinging
-//*******************
-/obj/structure/resin/silo/attackby(obj/item/I, mob/user, params)
-	. = ..()
-	if(!isxeno(user)) //only xenos can deposit corpses
-		return
-
-	if(!istype(I, /obj/item/grab))
-		return
-
-	var/obj/item/grab/G = I
-	if(!iscarbon(G.grabbed_thing))
-		return
-	var/mob/living/carbon/victim = G.grabbed_thing
-	if(!ishuman(victim)) //humans and monkeys only for now
-		to_chat(user, "<span class='notice'>[src] can only process humanoid anatomies!</span>")
-		return
-
-	if(victim.chestburst)
-		to_chat(user, "<span class='notice'>[victim] has already been exhausted to incubate a sister!</span>")
-		return
-
-	if(issynth(victim))
-		to_chat(user, "<span class='notice'>[victim] has no useful biomass for us.</span>")
-		return
-
-	if(ishuman(victim))
-		var/mob/living/carbon/human/H = victim
-		if(check_tod(H))
-			to_chat(user, "<span class='notice'>[H] still has some signs of life. We should headbite it to finish it off.</span>")
-			return
-
-	visible_message("[user] starts putting [victim] into [src].", 3)
-
-	if(!do_after(user, 20, FALSE, victim, BUSY_ICON_DANGER) || QDELETED(src))
-		return
-
-	victim.chestburst = 2 //So you can't reuse corpses if the silo is destroyed
-	victim.update_burst()
-	victim.forceMove(src)
-
-	if(prob(5)) //5% chance to play
-		shake(4 SECONDS)
-	else
-		playsound(loc, 'sound/effects/blobattack.ogg', 25)
-
-	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	xeno_job.add_job_points(1.75) //4 corpses per burrowed; 7 points per larva
-
-	log_combat(victim, user, "was consumed by a resin silo")
-	log_game("[key_name(victim)] was consumed by a resin silo at [AREACOORD(victim.loc)].")
-
-	GLOB.round_statistics.xeno_silo_corpses++
-	SSblackbox.record_feedback("tally", "round_statistics", 1, "xeno_silo_corpses")
-
-/obj/structure/resin/silo/proc/shake(duration)
-	var/offset = prob(50) ? -2 : 2
-	var/old_pixel_x = pixel_x
-	var/shake_sound = rand(1, 100) == 1 ? 'sound/machines/blender.ogg' : 'sound/machines/juicer.ogg'
-	playsound(src, shake_sound, 25, TRUE)
-	animate(src, pixel_x = pixel_x + offset, time = 2, loop = -1) //start shaking
-	addtimer(CALLBACK(src, .proc/stop_shake, old_pixel_x), duration)
-
-/obj/structure/resin/silo/proc/stop_shake(old_px)
-	animate(src)
-	pixel_x = old_px

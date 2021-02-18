@@ -308,7 +308,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 		return
 
 	var/datum/limb/head/head_organ = get_limb("head")
-	if( !head_organ || (head_organ.limb_status & LIMB_DESTROYED) )
+	if(!head_organ || (head_organ.limb_status & LIMB_DESTROYED) )
 		return
 
 	//masks and helmets can obscure our hair.
@@ -332,7 +332,15 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 		if(hair_style && (species.name in hair_style.species_allowed))
 			var/icon/hair_s = new/icon("icon" = hair_style.icon, "icon_state" = "[hair_style.icon_state]_s")
 			if(hair_style.do_colouration)
+				var/icon/grad_s
+				if(grad_style && grad_style != "None")
+					var/datum/sprite_accessory/gradient = GLOB.hair_gradients_list[grad_style]
+					grad_s = new/icon("icon" = gradient.icon, "icon_state" = gradient.icon_state)
+					grad_s.Blend(hair_s, ICON_ADD)
+					grad_s.Blend(rgb(r_grad, g_grad, b_grad), ICON_ADD)
 				hair_s.Blend(rgb(r_hair, g_hair, b_hair), ICON_ADD)
+				if(!isnull(grad_s))
+					hair_s.Blend(grad_s, ICON_OVERLAY)
 
 			face_standing.Blend(hair_s, ICON_OVERLAY)
 
