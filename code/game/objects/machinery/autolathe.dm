@@ -140,12 +140,9 @@
 
 	//Resources are being loaded.
 	var/obj/item/eating = I
-	if(!eating.materials)
-		to_chat(user, "<span class='warning'>\The [eating] does not contain significant amounts of useful materials and cannot be accepted.</span>")
-		return
 
-	if(eating.flags_item & (NODROP|DELONDROP))
-		to_chat(user, "<span class='warning'>\The [eating] is stuck to you and cannot be placed into [src].</span>")
+	if(!ismatsheet(eating))
+		to_chat(user, "<span class='warning'>\The [src] needs raw materials!</span>")
 		return
 
 	var/filltype = 0       // Used to determine message.
