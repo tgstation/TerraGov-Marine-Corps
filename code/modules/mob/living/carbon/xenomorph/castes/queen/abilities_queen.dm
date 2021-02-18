@@ -739,3 +739,4 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	gen.corrupt(X.hivenumber)
 	to_chat(owner, "<span class='notice'>You have corrupted [A]</span>")
+	succeed_activate()
