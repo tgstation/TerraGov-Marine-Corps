@@ -1,0 +1,7 @@
+author: "SkeletalElite"
+delete-after: True
+changes: 
+  - balance: "the free dropship medevac has been replaced with an operating table"
+  - balance: "Orbit level affects how long it takes for CAS munitions to reach the ground"
+  - balance: "CAS gets much less free ammo. CAS Munition random inaccuracy removed from all current munitions that had it. Minirockets fly time reduced to 6 seconds. GAU Ammo price increased slightly. Fatty fly time reduced to 6 seconds. High velocity 30mm ammo is now the same as 30mm but with less fly time."
+  - balance: "The blinking dot that indicates incoming CAS remains until the projectile hits"
