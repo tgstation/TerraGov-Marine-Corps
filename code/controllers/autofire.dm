@@ -180,3 +180,67 @@ SUBSYSTEM_DEF(automatedfire)
 
 #undef BUCKET_LEN
 #undef BUCKET_POS
+
+/obj/structure/turret_debug
+	name = "debug turret"
+	///What kind of ammo it uses
+	var/datum/ammo/ammo
+	///Its target
+	var/atom/target 
+	///At wich rate it fires in ticks
+	var/firerate = 5
+
+
+/obj/structure/turret_debug/Initialize()
+	. = ..()
+	ammo = GLOB.ammo_list[/datum/ammo/xeno/acid]
+	target = locate(x+5, y, z)
+	AddComponent(/datum/component/automatedfire/automatic_shoot_at, firerate, ammo)
+	SEND_SIGNAL(src, COMSIG_AUTOMATIC_SHOOTER_START_SHOOTING_AT, target)
+
+/datum/component/automatedfire/automatic_shoot_at
+	///The target we are shooting at
+	var/atom/target
+	///The ammo we are shooting
+	var/datum/ammo/ammo
+	///The delay between each shot in ticks
+	var/shot_delay = 5
+	///If we are shooting
+	var/shooting = FALSE
+
+/datum/component/automatedfire/automatic_shoot_at/Initialize(_shot_delay, _ammo)
+	. = ..()
+	if(!isatom(parent))
+		return COMPONENT_INCOMPATIBLE
+	shooter = parent
+	shot_delay = _shot_delay
+	ammo = _ammo
+	RegisterSignal(parent, COMSIG_AUTOMATIC_SHOOTER_START_SHOOTING_AT, .proc/start_shooting)
+	RegisterSignal(parent, COMSIG_AUTOMATIC_SHOOTER_STOP_SHOOTING_AT, .proc/stop_shooting)
+
+///Signal handler for starting the autoshooting at something
+/datum/component/automatedfire/automatic_shoot_at/proc/start_shooting(datum/source, _target)
+	SIGNAL_HANDLER
+	target = _target
+	next_fire = world.time
+	if(!shooting)
+		shooting = TRUE
+		schedule()
+
+
+///Signal handler for stoping the shooting
+/datum/component/automatedfire/automatic_shoot_at/proc/stop_shooting(datum/source)
+	SIGNAL_HANDLER
+	target = null
+	shooting = FALSE
+
+/datum/component/automatedfire/automatic_shoot_at/process_shot()
+	if(!shooting)
+		return AUTOFIRE_STOPPED_SHOOTING
+	var/obj/projectile/newshot = new(shooter.loc)
+	newshot.generate_bullet(ammo)
+	newshot.permutated += shooter
+	newshot.fire_at(target, shooter, null, ammo.max_range, ammo.shell_speed)
+	SEND_SIGNAL(shooter, COMSIG_AUTOMATIC_SHOOTER_SHOT_FIRED)
+	next_fire = world.time + shot_delay
+	return AUTOFIRE_STILL_SHOOTING
