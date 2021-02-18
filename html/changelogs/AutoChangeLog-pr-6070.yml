@@ -1,6 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes: 
-  - bugfix: "fixed a broken lobby screen and removed deprecated ones"
-  - imageadd: "New lobby screen by Aisha"
-  - imageadd: "New lobby screen by Dragonfruits"
