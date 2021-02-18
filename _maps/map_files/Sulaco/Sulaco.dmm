@@ -10486,11 +10486,6 @@
 	dir = 4
 	},
 /area/sulaco/engineering)
-"bEB" = (
-/obj/machinery/light,
-/obj/structure/largecrate/supply/supplies/mre,
-/turf/open/floor/prison/bright_clean,
-/area/sulaco/hangar)
 "bEP" = (
 /obj/structure/cable,
 /turf/open/floor/prison/plate,
@@ -11276,10 +11271,6 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/hallway/central_hall3)
-"dXg" = (
-/obj/machinery/vending/lasgun,
-/turf/open/floor/prison/bright_clean,
-/area/sulaco/hangar)
 "dZI" = (
 /obj/structure/table/mainship,
 /obj/item/folder/yellow,
@@ -11421,6 +11412,10 @@
 /obj/machinery/status_display,
 /turf/closed/wall/mainship/gray,
 /area/mainship/living/starboard_garden)
+"ezn" = (
+/obj/structure/largecrate/supply/supplies/water,
+/turf/open/floor/prison,
+/area/sulaco/hangar)
 "ezr" = (
 /obj/machinery/computer/secure_data/detective_computer,
 /turf/open/floor/wood,
@@ -14096,10 +14091,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/red,
 /area/sulaco/cargo)
-"mel" = (
-/obj/structure/largecrate/supply/supplies/flares,
-/turf/open/floor/prison/bright_clean,
-/area/sulaco/hangar)
 "mfo" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 5
@@ -15895,6 +15886,10 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/stripesquare,
 /area/sulaco/hangar/droppod)
+"qHl" = (
+/obj/machinery/vending/lasgun,
+/turf/open/floor/prison,
+/area/sulaco/hangar)
 "qIK" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1{
@@ -16570,6 +16565,10 @@
 	},
 /turf/open/floor/grass,
 /area/mainship/living/starboard_garden)
+"smY" = (
+/obj/structure/largecrate/supply/supplies/flares,
+/turf/open/floor/prison,
+/area/sulaco/hangar)
 "sng" = (
 /obj/machinery/door/poddoor/open/east,
 /obj/structure/cable,
@@ -16590,10 +16589,6 @@
 /obj/structure/lattice,
 /turf/open/space/basic,
 /area/space)
-"sqL" = (
-/obj/structure/largecrate/supply/supplies/water,
-/turf/open/floor/prison/bright_clean,
-/area/sulaco/hangar)
 "sqS" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/cult,
@@ -16676,6 +16671,10 @@
 	dir = 1
 	},
 /area/sulaco/hallway/central_hall3)
+"sAO" = (
+/obj/structure/largecrate/supply/supplies/mre,
+/turf/open/floor/prison,
+/area/sulaco/hangar)
 "sBt" = (
 /turf/open/shuttle/escapepod{
 	icon_state = "floor8"
@@ -52249,7 +52248,7 @@ aTd
 aPF
 aPF
 gHU
-sqL
+aPF
 bFa
 mDu
 qDO
@@ -52506,7 +52505,7 @@ bbv
 aPF
 aPF
 aPF
-dXg
+aPF
 bFa
 mDu
 qDO
@@ -52763,7 +52762,7 @@ sfi
 cbg
 aSk
 aPF
-bEB
+aPF
 bFa
 mDu
 qDO
@@ -53020,7 +53019,7 @@ aPZ
 aPZ
 wbU
 aPF
-mel
+aPF
 aSN
 mDu
 mDu
@@ -56605,10 +56604,10 @@ aUL
 aTs
 cdy
 cdy
-cdy
-cdy
-cdy
-cdy
+ezn
+smY
+sAO
+qHl
 cdy
 cdy
 lGQ
