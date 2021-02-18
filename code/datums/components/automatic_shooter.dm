@@ -40,7 +40,7 @@
 	if(!shooting)
 		return AUTOFIRE_STOPPED_SHOOTING
 	var/obj/projectile/newspit = new(shooter.loc)
-	newspit.generate_bullet(ammo, ammo.damage)
+	newspit.generate_bullet(ammo)
 	newspit.permutated += shooter
 	newspit.fire_at(target, shooter, null, ammo.max_range, ammo.shell_speed)
 	SEND_SIGNAL(shooter, COMSIG_AUTOMATIC_SHOOTER_SHOT_FIRED)
