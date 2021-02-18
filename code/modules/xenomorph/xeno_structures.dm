@@ -38,8 +38,6 @@
 	var/number_silo
 	///How old this silo is in seconds
 	var/maturity = 0
-	///If this silo should mature
-	var/does_mature = FALSE
 	COOLDOWN_DECLARE(silo_damage_alert_cooldown)
 	COOLDOWN_DECLARE(silo_proxy_alert_cooldown)
 
@@ -153,10 +151,9 @@
 	associated_hive.xeno_message("<span class='xenoannounce'>Our [name] has detected a nearby hostile [hostile] at [get_area(hostile)] (X: [hostile.x], Y: [hostile.y]). [name] has [obj_integrity]/[max_integrity] Health remaining.</span>", 2, FALSE, hostile, 'sound/voice/alien_help1.ogg')
 	COOLDOWN_START(src, silo_proxy_alert_cooldown, XENO_HEALTH_ALERT_COOLDOWN) //set the cooldown.
 
-///Signal handler to tell the silo it can start maturing
+///Signal handler to tell the silo it can start maturing, so it adds it to the process if that's not the case
 /obj/structure/resin/silo/proc/start_maturing()
 	SIGNAL_HANDLER
-	does_mature = TRUE
 	if(!CHECK_BITFIELD(datum_flags, DF_ISPROCESSING))
 		START_PROCESSING(SSslowprocess, src)
 
@@ -165,7 +162,7 @@
 	if(obj_integrity < max_integrity)
 		obj_integrity = min(obj_integrity + 25, max_integrity) //Regen 5 HP per sec
 	
-	if(does_mature)
+	if(SSsilo.silos_do_mature)
 		maturity += 5
 
 

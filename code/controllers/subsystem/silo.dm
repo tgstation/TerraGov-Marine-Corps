@@ -6,7 +6,9 @@ SUBSYSTEM_DEF(silo)
 	///How many larva points each pool gives per minute with a maturity of zero
 	var/base_larva_spawn_rate = 0.65
 	///How many larva points are added every minutes in total
-	var/current_larva_spawn_rate
+	var/current_larva_spawn_rate = 0
+	///If the silos are maturing
+	var/silos_do_mature = FALSE
 
 
 /datum/controller/subsystem/silo/Initialize(timeofday)
@@ -25,6 +27,7 @@ SUBSYSTEM_DEF(silo)
 	SIGNAL_HANDLER
 	UnregisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY))
 	can_fire = TRUE
+	silos_do_mature = TRUE
 	for(var/job in SSjob.occupations)
 		var/datum/job/j = job
 		j.jobworth[/datum/job/xenomorph] = 0
