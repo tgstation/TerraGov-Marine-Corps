@@ -1,0 +1,4 @@
+author: "SkeletalElite"
+delete-after: True
+changes: 
+  - bugfix: "Got rid of the mini rocket pods that were on the public engi vendors of sulaco"
