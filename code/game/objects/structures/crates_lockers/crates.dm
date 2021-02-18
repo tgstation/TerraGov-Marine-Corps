@@ -202,7 +202,6 @@
 	new /obj/item/stack/sheet/plasteel(src, 30)
 	new /obj/item/stack/sheet/mineral/phoron(src, 50)
 	new /obj/item/stack/sheet/mineral/phoron(src, 50)
-	new /obj/machinery/exportpad(src)
 	new	/obj/item/storage/box/sentry(src)
 	new	/obj/item/storage/box/sentry(src)
 	new	/obj/item/storage/box/sentry(src)
