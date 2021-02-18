@@ -27,10 +27,10 @@
 #define SHIPSIDE 		"shipside"
 
 //The weight of each statistics in the state calculator when GROUNDSIDE
-#define XENOS_LIFE_WEIGHT -200
+#define XENOS_LIFE_WEIGHT -50
 #define HUMAN_LIFE_ON_GROUND_WEIGHT 100
 #define HUMAN_LIFE_ON_SHIP_WEIGHT 70
-#define BURROWED_LARVA_WEIGHT -100
+#define BURROWED_LARVA_WEIGHT -20
 #define REQ_POINTS_WEIGHT 2
 #define ELDER_T2_WEIGHT -20
 #define ANCIENT_T2_WEIGHT -40
@@ -39,6 +39,7 @@
 #define ELDER_QUEEN_WEIGHT -60
 #define ANCIENT_QUEEN_WEIGHT -100
 #define OB_AVAILABLE_WEIGHT 20
+#define SPAWNING_POOL_WEIGHT -600
 
 //The weight of each statistics in the state calculator before shutters drop and shipside
 #define XENOS_LIFE_WEIGHT_PREGAME -300
