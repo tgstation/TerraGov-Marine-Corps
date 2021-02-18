@@ -16997,7 +16997,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/alpha)
 "aWO" = (
-/obj/machinery/vending/MarineMed,
+/obj/machinery/vending/MarineMed/Medic,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/alpha)
 "aWP" = (
@@ -19905,7 +19905,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/bravo)
 "bgM" = (
-/obj/machinery/vending/MarineMed,
+/obj/machinery/vending/MarineMed/Medic,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/bravo)
 "bgN" = (
@@ -24934,7 +24934,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "bAn" = (
-/obj/machinery/vending/MarineMed,
+/obj/machinery/vending/MarineMed/Medic,
 /turf/open/floor/mainship/sterile/side{
 	dir = 4
 	},
@@ -25259,7 +25259,7 @@
 	},
 /area/mainship/medical/lower_medical)
 "bBC" = (
-/obj/machinery/vending/MarineMed,
+/obj/machinery/vending/MarineMed/Medic,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -30002,7 +30002,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/charlie)
 "bUx" = (
-/obj/machinery/vending/MarineMed,
+/obj/machinery/vending/MarineMed/Medic,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/charlie)
 "bUy" = (
@@ -32790,7 +32790,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/delta)
 "cei" = (
-/obj/machinery/vending/MarineMed,
+/obj/machinery/vending/MarineMed/Medic,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/delta)
 "cej" = (

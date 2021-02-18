@@ -2323,7 +2323,7 @@
 /turf/open/floor/mainship,
 /area/mainship/medical/lower_medical)
 "ajR" = (
-/obj/machinery/vending/MarineMed,
+/obj/machinery/vending/MarineMed/Medic,
 /turf/open/floor/mainship,
 /area/mainship/medical/lower_medical)
 "ajS" = (

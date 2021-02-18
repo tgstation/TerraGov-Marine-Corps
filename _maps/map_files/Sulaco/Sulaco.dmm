@@ -2234,7 +2234,7 @@
 	},
 /area/sulaco/medbay)
 "ajM" = (
-/obj/machinery/vending/MarineMed,
+/obj/machinery/vending/MarineMed/Medic,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
@@ -2418,7 +2418,7 @@
 	},
 /area/sulaco/medbay)
 "akQ" = (
-/obj/machinery/vending/MarineMed,
+/obj/machinery/vending/MarineMed/Medic,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
 	},
@@ -2707,7 +2707,6 @@
 /turf/open/floor/prison,
 /area/sulaco/cargo)
 "amG" = (
-/obj/machinery/vending/marine/cargo_ammo,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /turf/open/floor/prison,
@@ -7037,7 +7036,7 @@
 /turf/open/floor/prison/marked,
 /area/sulaco/marine/delta)
 "aHb" = (
-/obj/machinery/vending/MarineMed,
+/obj/machinery/vending/MarineMed/Medic,
 /obj/structure/sign/prop1,
 /turf/open/floor/prison,
 /area/sulaco/marine/delta)
@@ -7815,7 +7814,7 @@
 /turf/open/floor/prison/marked,
 /area/sulaco/marine/charlie)
 "aLb" = (
-/obj/machinery/vending/MarineMed,
+/obj/machinery/vending/MarineMed/Medic,
 /obj/structure/sign/prop1,
 /turf/open/floor/prison,
 /area/sulaco/marine/charlie)
@@ -7824,7 +7823,7 @@
 /turf/open/floor/prison/marked,
 /area/sulaco/marine/bravo)
 "aLd" = (
-/obj/machinery/vending/MarineMed,
+/obj/machinery/vending/MarineMed/Medic,
 /obj/structure/sign/prop1,
 /turf/open/floor/prison,
 /area/sulaco/marine/bravo)
@@ -7833,7 +7832,7 @@
 /turf/open/floor/prison/marked,
 /area/sulaco/marine/alpha)
 "aLf" = (
-/obj/machinery/vending/MarineMed,
+/obj/machinery/vending/MarineMed/Medic,
 /obj/structure/sign/prop1,
 /turf/open/floor/prison,
 /area/sulaco/marine/alpha)
@@ -11308,6 +11307,10 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/hallway/central_hall3)
+"dXl" = (
+/obj/machinery/vending/MarineMed,
+/turf/open/floor/prison,
+/area/sulaco/cargo)
 "dZI" = (
 /obj/structure/table/mainship,
 /obj/item/folder/yellow,
@@ -13156,6 +13159,7 @@
 /area/space)
 "jCJ" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/obj/machinery/vending/armor_supply,
 /turf/open/floor/prison,
 /area/sulaco/cargo)
 "jFN" = (
@@ -16850,6 +16854,10 @@
 "sQE" = (
 /turf/open/floor/grass,
 /area/mainship/living/starboard_garden)
+"sSv" = (
+/obj/machinery/vending/armor_supply,
+/turf/open/floor/prison,
+/area/sulaco/cargo)
 "sTR" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison,
@@ -44552,10 +44560,10 @@ nRb
 bjU
 lpY
 whS
-amB
+dXl
 aoM
 alx
-amB
+dXl
 jSM
 ocn
 aWG
@@ -45069,7 +45077,7 @@ ipz
 jCJ
 pwD
 alx
-amB
+sSv
 jSM
 ocn
 iAq
@@ -45580,10 +45588,10 @@ aiV
 eAf
 bhA
 alx
-amB
+rQp
 rEe
 mdt
-amB
+rQp
 jSM
 ocn
 dtf
@@ -45840,7 +45848,7 @@ oVi
 amG
 aoU
 apk
-rQp
+amB
 atU
 ocn
 aWG

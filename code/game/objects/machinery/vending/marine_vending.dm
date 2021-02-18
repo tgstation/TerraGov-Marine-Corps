@@ -480,12 +480,35 @@
 
 /obj/machinery/vending/MarineMed
 	name = "\improper MarineMed"
-	desc = "Marine Medical drug dispenser - Provided by Nanotrasen Pharmaceuticals Division(TM)."
+	desc = "Marine Medical - Provided by Nanotrasen Pharmaceuticals Division(TM)."
+	icon_state = "marinemed"
+	icon_deny = "marinemed-deny"
+	req_one_access = ALL_MARINE_ACCESS
+	wrenchable = FALSE
+	products = list(
+		/obj/item/reagent_containers/hypospray/autoinjector/bicaridine = 30,
+		/obj/item/reagent_containers/hypospray/autoinjector/kelotane = 30,
+		/obj/item/reagent_containers/hypospray/autoinjector/tramadol = 30,
+		/obj/item/reagent_containers/hypospray/autoinjector/tricordrazine = 30,
+		/obj/item/reagent_containers/hypospray/autoinjector/dylovene = 30,
+		/obj/item/storage/pill_bottle/bicaridine = 30,
+		/obj/item/storage/pill_bottle/kelotane = 30,
+		/obj/item/storage/pill_bottle/tramadol = 30,
+		/obj/item/storage/pill_bottle/tricordrazine = 30,
+		/obj/item/stack/medical/bruise_pack = 30,
+		/obj/item/stack/medical/ointment = 30,
+		/obj/item/healthanalyzer =30,
+	)
+
+
+/obj/machinery/vending/MarineMed/Medic
+	name = "\improper Corpsmen MarineMed"
+	desc = "Corpsmen Medical drug dispenser - Provided by Nanotrasen Pharmaceuticals Division(TM)."
 	icon_state = "marinemed"
 	icon_deny = "marinemed-deny"
 	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;All natural chemicals!;This stuff saves lives.;Don't you want some?;Ping!"
-	req_one_access = ALL_MARINE_ACCESS
-	wrenchable = FALSE
+	req_one_access = ACCESS_MARINE_MEDBAY
+	wrenchable = TRUE
 	products = list(
 		/obj/item/reagent_containers/hypospray/autoinjector/bicaridine = 6,
 		/obj/item/reagent_containers/hypospray/autoinjector/kelotane = 6,
@@ -497,9 +520,6 @@
 		/obj/item/reagent_containers/hypospray/autoinjector/dylovene = 6,
 		/obj/item/reagent_containers/hypospray/autoinjector/hypervene = 4,
 		/obj/item/reagent_containers/hypospray/autoinjector/quickclot = 4,
-		/obj/item/reagent_containers/hypospray/autoinjector/dexalinplus = 0,
-		/obj/item/reagent_containers/hypospray/autoinjector/quickclotplus = 0,
-		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = 0,
 		/obj/item/storage/pill_bottle/bicaridine = 5,
 		/obj/item/storage/pill_bottle/kelotane = 5,
 		/obj/item/storage/pill_bottle/tramadol = 5,

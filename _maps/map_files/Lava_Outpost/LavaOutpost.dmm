@@ -1926,7 +1926,7 @@
 /turf/open/floor/tile/dark2,
 /area/lavaland/civilian)
 "qk" = (
-/obj/machinery/vending/MarineMed,
+/obj/machinery/vending/MarineMed/Medic,
 /turf/open/floor/tile/white,
 /area/lavaland/misc/outpost)
 "ql" = (

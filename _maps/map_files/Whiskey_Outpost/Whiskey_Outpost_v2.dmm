@@ -484,7 +484,7 @@
 /turf/open/floor/plating,
 /area/whiskey_outpost)
 "bU" = (
-/obj/machinery/vending/MarineMed,
+/obj/machinery/vending/MarineMed/Medic,
 /turf/open/floor/mainship/sterile,
 /area/whiskey_outpost)
 "bV" = (
@@ -644,18 +644,6 @@
 /obj/machinery/floodlight/outpost,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/north)
-"cz" = (
-/obj/structure/barricade/sandbags{
-	pixel_w = 0;
-	pixel_z = -7
-	},
-/obj/structure/barricade/sandbags{
-	dir = 4
-	},
-/turf/open/floor/plating/asteroidwarning{
-	dir = 6
-	},
-/area/whiskey_outpost)
 "cA" = (
 /obj/structure/platform_decoration,
 /turf/open/ground/grass,
@@ -2526,7 +2514,7 @@
 	},
 /area/whiskey_outpost/outside/west)
 "jI" = (
-/obj/machinery/vending/MarineMed,
+/obj/machinery/vending/MarineMed/Medic,
 /turf/open/floor/mainship/sterile/dark,
 /area/whiskey_outpost)
 "jK" = (
@@ -5382,15 +5370,6 @@
 /obj/item/storage/box/explosive_mines,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost/outside/east)
-"EQ" = (
-/obj/structure/barricade/sandbags{
-	pixel_w = 0;
-	pixel_z = -7
-	},
-/turf/open/floor/plating/warning{
-	dir = 2
-	},
-/area/whiskey_outpost)
 "ER" = (
 /obj/structure/cable,
 /turf/open/floor/tile/yellow{
