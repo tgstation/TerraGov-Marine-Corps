@@ -48,7 +48,6 @@
 		input = /obj/item/reagent_containers/food/snacks/flour
 		output = /obj/item/reagent_containers/food/snacks/spagetti
 
-	/* mobs */  //there were here once but fuk that noise
 
 /obj/machinery/processor/proc/select_recipe(X)
 	for (var/Type in subtypesof(/datum/food_processor_process))
@@ -112,4 +111,3 @@
 		src.processing = 0
 	src.visible_message("<span class='notice'> \the [src] finished processing.</span>", \
 		"You hear the food processor stopping/")
-
