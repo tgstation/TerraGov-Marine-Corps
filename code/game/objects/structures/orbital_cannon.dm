@@ -543,13 +543,13 @@
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	var/cannon_busy = FALSE
 	var/last_firing = 0 //stores the last time it was fired to check when we can fire again
-	var/obj/structure/ship_ammo/heavygun/highvelocity/rail_gun_ammo
+	var/obj/structure/ship_ammo/heavygun/railgun/rail_gun_ammo
 
 /obj/structure/ship_rail_gun/Initialize()
 	. = ..()
 	if(!GLOB.marine_main_ship.rail_gun)
 		GLOB.marine_main_ship.rail_gun = src
-	rail_gun_ammo = new /obj/structure/ship_ammo/heavygun/highvelocity(src)
+	rail_gun_ammo = new /obj/structure/ship_ammo/heavygun/railgun(src)
 	rail_gun_ammo.max_ammo_count = 8000 //200 uses or 15 full minutes of firing.
 	rail_gun_ammo.ammo_count = 8000
 

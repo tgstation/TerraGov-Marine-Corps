@@ -14,9 +14,13 @@
 	dat += "Current Game Mode: <B>[SSticker.mode.name]</B><BR>"
 	dat += "Round Duration: <B>[worldtime2text()]</B><BR>"
 
-	var/countdown = SSticker.mode.get_hivemind_collapse_countdown()
-	if(countdown)
-		dat += "<b>Orphan hivemind collapse in [countdown]</b><br>"
+	var/rulerless_countdown = SSticker.mode.get_hivemind_collapse_countdown()
+	if(rulerless_countdown)
+		dat += "<b>Orphan hivemind collapse in [rulerless_countdown]</b><br>"
+
+	var/siloless_countdown = SSticker.mode.get_siloless_collapse_countdown()
+	if(siloless_countdown)
+		dat += "<b>Orphan hivemind collapse in [siloless_countdown]</b><br>"
 
 	dat += "<b>Evacuation:</b> "
 	switch(SSevacuation.evac_status)

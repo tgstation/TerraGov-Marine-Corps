@@ -1,0 +1,4 @@
+author: "Walarks"
+delete-after: True
+changes: 
+  - rscdel: "removed survivor from pickable jobs"
