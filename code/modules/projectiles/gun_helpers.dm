@@ -442,7 +442,10 @@ should be alright.
 	set name = "Field Strip Weapon"
 	set desc = "Remove all attachables from a weapon."
 
-	get_active_firearm(usr)?.field_strip()
+	var/obj/item/weapon/gun/G = get_active_firearm(usr)
+	if(!G)
+		return
+	G.field_strip()
 
 
 /obj/item/weapon/gun/verb/field_strip()
@@ -549,7 +552,10 @@ should be alright.
 	set name = "Toggle Auto Fire"
 	set desc = "Toggle automatic firemode, if the gun has it."
 
-	get_active_firearm(usr)?.toggle_autofire()
+	var/obj/item/weapon/gun/G = get_active_firearm(usr)
+	if(!G)
+		return
+	G.toggle_autofire()
 
 
 /obj/item/weapon/gun/verb/toggle_autofire()
@@ -578,7 +584,10 @@ should be alright.
 	set name = "Toggle Burst Fire"
 	set desc = "Toggle burst firemode, if the gun has it."
 
-	get_active_firearm(usr)?.toggle_burstfire()
+	var/obj/item/weapon/gun/G = get_active_firearm(usr)
+	if(!G)
+		return
+	G.toggle_burstfire()
 
 
 /obj/item/weapon/gun/verb/toggle_burstfire()
@@ -607,7 +616,10 @@ should be alright.
 	set name = "Toggle Fire Mode"
 	set desc = "Toggle between fire modes, if the gun has more than has one."
 
-	get_active_firearm(usr)?.toggle_firemode()
+	var/obj/item/weapon/gun/G = get_active_firearm(usr)
+	if(!G)
+		return
+	G.toggle_firemode()
 
 
 /obj/item/weapon/gun/verb/toggle_firemode()
@@ -719,7 +731,10 @@ should be alright.
 	set name = "Unload Weapon"
 	set desc = "Removes the magazine from your current gun and drops it on the ground, or clears the chamber if your gun is already empty."
 
-	get_active_firearm(usr)?.empty_mag()
+	var/obj/item/weapon/gun/G = get_active_firearm(usr)
+	if(!G)
+		return
+	G.empty_mag()
 
 
 /obj/item/weapon/gun/verb/empty_mag()
@@ -735,7 +750,10 @@ should be alright.
 	set name = "Unique Action"
 	set desc = "Use anything unique your firearm is capable of. Includes pumping a shotgun or spinning a revolver."
 
-	get_active_firearm(usr)?.use_unique_action()
+	var/obj/item/weapon/gun/G = get_active_firearm(usr)
+	if(!G)
+		return
+	G.use_unique_action()
 
 
 /obj/item/weapon/gun/verb/use_unique_action()
@@ -751,7 +769,10 @@ should be alright.
 	set name = "Toggle Gun Safety"
 	set desc = "Toggle the safety of the held gun."
 
-	get_active_firearm(usr)?.toggle_gun_safety()
+	var/obj/item/weapon/gun/G = get_active_firearm(usr)
+	if(!G)
+		return
+	G.toggle_gun_safety()
 
 
 /obj/item/weapon/gun/verb/toggle_gun_safety()
@@ -769,7 +790,10 @@ should be alright.
 	set name = "Load From Attachment"
 	set desc = "Load from a gun attachment, such as a mounted grenade launcher, shotgun, or flamethrower."
 
-	get_active_firearm(usr)?.activate_attachment_verb()
+	var/obj/item/weapon/gun/G = get_active_firearm(usr)
+	if(!G)
+		return
+	G.activate_attachment_verb()
 
 
 /obj/item/weapon/gun/verb/activate_attachment_verb()
@@ -807,7 +831,10 @@ should be alright.
 	set name = "Toggle Rail Attachment"
 	set desc = "Uses the rail attachement currently attached to the gun."
 
-	get_active_firearm(usr)?.toggle_rail_attachment()
+	var/obj/item/weapon/gun/G = get_active_firearm(usr)
+	if(!G)
+		return
+	G.toggle_rail_attachment()
 
 /obj/item/weapon/gun/verb/toggle_rail_attachment()
 	set category = null
@@ -824,7 +851,10 @@ should be alright.
 	set name = "Toggle Ammo HUD"
 	set desc = "Toggles the Ammo HUD for this weapon."
 
-	get_active_firearm(usr)?.toggle_ammo_hud()
+	var/obj/item/weapon/gun/G = get_active_firearm(usr)
+	if(!G)
+		return
+	G.toggle_ammo_hud()
 
 
 /obj/item/weapon/gun/verb/toggle_ammo_hud()
