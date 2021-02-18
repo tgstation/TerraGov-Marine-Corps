@@ -189,26 +189,13 @@ SUBSYSTEM_DEF(automatedfire)
 	var/atom/target 
 	///At wich rate it fires in ticks
 	var/firerate = 5
-
-
 /obj/structure/turret_debug/fast
 	name = "debug turret fast"
-	///What kind of ammo it uses
-	var/datum/ammo/ammo
-	///Its target
-	var/atom/target 
-	///At wich rate it fires in ticks
-	var/firerate = 1
-
+	firerate = 1
 
 /obj/structure/turret_debug/slow
 	name = "debug turret fast"
-	///What kind of ammo it uses
-	var/datum/ammo/ammo
-	///Its target
-	var/atom/target 
-	///At wich rate it fires in ticks
-	var/firerate = 25
+	firerate = 25
 
 /obj/structure/turret_debug/Initialize()
 	. = ..()
