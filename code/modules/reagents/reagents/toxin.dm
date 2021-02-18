@@ -452,27 +452,28 @@
 
 /datum/reagent/toxin/xeno_neurotoxin/on_mob_life(mob/living/L, metabolism)
 	var/power
-	var/pain_multiplier = 1 //Increased by Defiler combo chems
+	var/reagent_multiplier = 1 //Increased by Defiler combo chems
 
-	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile)) //Each other Defiler toxin increases the multiplier by 2x; 2x if we have 1 combo chem, 4x if we have 2
-		pain_multiplier *= 2
+	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile)) //Each other Defiler toxin increases the multiplier
+		reagent_multiplier *= 1.5
 
 	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox))
-		pain_multiplier *= 2
+		reagent_multiplier *= 1.5
 
 	switch(current_cycle)
 		if(1 to 20)
-			power = (2*effect_str) //While stamina loss is going, stamina regen apparently doesn't happen, so I can keep this smaller.
+			power = 2 //While stamina loss is going, stamina regen apparently doesn't happen, so I can keep this smaller.
 			L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
 		if(21 to 45)
-			power = (6*effect_str)
+			power = 6
 			L.reagent_pain_modifier -= PAIN_REDUCTION_HEAVY
 			L.jitter(4) //Shows that things are bad
 		if(46 to INFINITY)
-			power = (15*effect_str)
+			power = 15
 			L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_HEAVY
 			L.jitter(8) //Shows that things are *really* bad
 
+	power = power * effect_str * reagent_multiplier //Consolidate multipliers here
 	//Apply stamina damage, then apply any 'excess' stamina damage beyond our maximum as tox and oxy damage
 	var/stamina_loss_limit = L.maxHealth * 2
 	L.adjustStaminaLoss(min(power, max(0, stamina_loss_limit - L.staminaloss))) //If we're under our stamina_loss limit, apply the difference between our limit and current stamina damage or power, whichever's less
