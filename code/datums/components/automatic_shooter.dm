@@ -2,7 +2,7 @@
 	///The target we are shooting at
 	var/atom/target
 	///The ammo we are shooting
-	var/datum/ammo/xeno/ammo
+	var/datum/ammo
 	///The delay between each shot in ticks
 	var/shot_delay = 5
 	///The timer used to regulate the shot
