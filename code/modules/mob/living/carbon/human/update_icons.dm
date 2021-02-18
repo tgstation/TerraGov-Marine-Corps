@@ -335,7 +335,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 				var/icon/grad_s
 				if(grad_style && grad_style != "None")
 					var/datum/sprite_accessory/gradient = GLOB.hair_gradients_list[grad_style]
-					grad_s = new/icon("icon" = 'icons/mob/hair_gradients.dmi', "icon_state" = gradient.icon_state)
+					grad_s = new/icon("icon" = gradient.icon, "icon_state" = gradient.icon_state)
 					grad_s.Blend(hair_s, ICON_ADD)
 					grad_s.Blend(rgb(r_grad, g_grad, b_grad), ICON_ADD)
 				hair_s.Blend(rgb(r_hair, g_hair, b_hair), ICON_ADD)
