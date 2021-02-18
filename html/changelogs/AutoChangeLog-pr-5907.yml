@@ -1,0 +1,5 @@
+author: "TiviPlus"
+delete-after: True
+changes: 
+  - admin: "Adds playtime tracking to notes"
+  - server: "DB schema update"
