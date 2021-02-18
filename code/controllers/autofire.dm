@@ -191,6 +191,25 @@ SUBSYSTEM_DEF(automatedfire)
 	var/firerate = 5
 
 
+/obj/structure/turret_debug/fast
+	name = "debug turret fast"
+	///What kind of ammo it uses
+	var/datum/ammo/ammo
+	///Its target
+	var/atom/target 
+	///At wich rate it fires in ticks
+	var/firerate = 1
+
+
+/obj/structure/turret_debug/slow
+	name = "debug turret fast"
+	///What kind of ammo it uses
+	var/datum/ammo/ammo
+	///Its target
+	var/atom/target 
+	///At wich rate it fires in ticks
+	var/firerate = 25
+
 /obj/structure/turret_debug/Initialize()
 	. = ..()
 	ammo = GLOB.ammo_list[/datum/ammo/xeno/acid]
