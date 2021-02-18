@@ -1,3 +1,7 @@
+#define CONNECT "Connect"
+#define EXTRACT "Extract"
+#define BOOST_CONFIG "Switch Boost"
+
 /**
  *	Chem booster component
  *
@@ -130,17 +134,17 @@
 ///Shows the radial menu with suit options. It is separate from configure() due to linters
 /datum/component/chem_booster/proc/show_radial()
 	var/list/radial_options = list(
-		"connect" = image(icon = 'icons/mob/radial.dmi', icon_state = "cboost_connect"),
-		"boost" = image(icon = 'icons/mob/radial.dmi', icon_state = "[boost_icon]"),
-		"extract" = image(icon = 'icons/mob/radial.dmi', icon_state = "cboost_extract")
+		CONNECT = image(icon = 'icons/mob/radial.dmi', icon_state = "cboost_connect"),
+		BOOST_CONFIG = image(icon = 'icons/mob/radial.dmi', icon_state = "[boost_icon]"),
+		EXTRACT = image(icon = 'icons/mob/radial.dmi', icon_state = "cboost_extract")
 		)
 
-	var/choice = show_radial_menu(wearer, wearer, radial_options, null, 48, null, TRUE)
+	var/choice = show_radial_menu(wearer, wearer, radial_options, null, 48, null, TRUE, TRUE)
 	switch(choice)
-		if("connect")
+		if(CONNECT)
 			connect_weapon()
 
-		if("boost")
+		if(BOOST_CONFIG)
 			if(boost_amount == boost_tier2)
 				update_boost(boost_tier1)
 				boost_icon = "cboost_t1"
@@ -148,7 +152,7 @@
 			update_boost(boost_tier2)
 			boost_icon = "cboost_t2"
 
-		if("extract")
+		if(EXTRACT)
 			extract(10)
 
 ///Handles turning on/off the chem effect modufying function, along with the negative effects related to this
@@ -340,3 +344,7 @@
 	name = "Activate Analyzer"
 	action_icon = 'icons/mob/screen_alert.dmi'
 	action_icon_state = "suit_scan"
+
+#undef CONNECT
+#undef EXTRACT
+#undef BOOST_CONFIG

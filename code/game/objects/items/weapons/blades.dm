@@ -22,7 +22,7 @@
 
 /obj/item/weapon/claymore/harvester
 	name = "\improper HP-S Harvester blade"
-	desc = "TerraGov Marine Corps' experimental High Point-Singularity 'Harvester' blade. An advanced weapon that trades sheer force for the ability to apply a variety of debilitating effects when loaded with certain reagents. Activate after loading to prime a single use of an effect. It also harvests substances from alien lifeforms it hits. Use an empty beaker to empty the reagent tank."
+	desc = "TerraGov Marine Corps' experimental High Point-Singularity 'Harvester' blade. An advanced weapon that trades sheer force for the ability to apply a variety of debilitating effects when loaded with certain reagents. Activate after loading to prime a single use of an effect. It also harvests substances from alien lifeforms it strikes when connected to the Vali system."
 	icon_state = "energy_sword"
 	item_state = "energy_katana"
 	force = 60
@@ -39,24 +39,26 @@
 		/datum/reagent/medicine/kelotane,
 	)
 
+	var/codex_info = {"<b>Reagent info:</b><BR>
+	Bicaridine - heal your target for 10 brute. Usable on both dead and living targets.<BR>
+	Kelotane - produce a cone of flames<BR>
+	Tramadol - slow your target for 2 seconds<BR>
+	<BR>
+	<b>Tips:</b><BR>
+	> Needs to be connected to the Vali system to collect green blood. You can connect it though the Vali system's configurations menu.<BR>
+	> Filled by liquid reagent containers. Emptied by using an empty liquid reagent container.<BR>
+	> Toggle unique action (SPACE by default) to load a single-use of the reagent effect after the blade has been filled up."}
+
 /obj/item/weapon/claymore/harvester/examine(mob/user)
 	. = ..()
-	if(length(beaker.reagents.reagent_list))
-		to_chat(user, "It currently holds [beaker.reagents.total_volume]u of [beaker.reagents.reagent_list[1].name]")
-	to_chat(user, "<b>Compatible chemicals:</b>")
+	to_chat(user, "<span class='rose'>[length(beaker.reagents.reagent_list) ? "It currently holds [beaker.reagents.total_volume]u of [beaker.reagents.reagent_list[1].name]" : "The internal storage is empty"].\n<b>Compatible chemicals:</b></span>")
 	for(var/R in loadable_reagents)
 		var/atom/L = R
 		to_chat(user, "[initial(L.name)]")
 
 /obj/item/weapon/claymore/harvester/get_mechanics_info()
 	. = ..()
-	var/list/traits = list()
-
-	traits += "Bicaridine - heal your target"
-	traits += "Kelotane - produce a cone of flames"
-	traits += "Tramadol - slow your target"
-
-	. += jointext(traits, "<br>")
+	. += jointext(codex_info, "<br>")
 
 /obj/item/weapon/claymore/harvester/Initialize()
 	. = .. ()
@@ -74,7 +76,7 @@
 	var/obj/item/reagent_containers/container = I
 	if(!container.reagents.total_volume)
 		trans = beaker.reagents.trans_to(container, 30)
-		to_chat(user, "<span class='rose'>You take [trans]u out of the internal storage. It now contains [beaker.reagents.total_volume]u.</span>")
+		to_chat(user, "<span class='rose'>[trans ? "You take [trans]u out of the internal storage. It now contains [beaker.reagents.total_volume]u" : "[src]'s storage is empty."].</span>")
 		return TRUE
 
 	if(length(container.reagents.reagent_list) > 1)
