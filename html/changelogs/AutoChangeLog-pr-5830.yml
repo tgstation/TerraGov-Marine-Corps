@@ -1,0 +1,7 @@
+author: "Walarks"
+delete-after: True
+changes: 
+  - rscadd: "Added Vali chemical enhancement module and harvester blade"
+  - rscadd: "Added generalized cone generation code"
+  - rscadd: "Added virilyth reagent. It reacts with dylovene/bicaridine/kelotane/tramadol and duplicates them in a 1:1 ratio. Can be acquired by extracting green blood from the Vali module
+tweak: added signal for when a reagent is added for the first time in a holder"
