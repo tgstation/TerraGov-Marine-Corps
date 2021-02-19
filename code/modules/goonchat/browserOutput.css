@@ -225,30 +225,30 @@ a.popt {text-decoration: none;}
 .ooc					{					font-weight: bold;}
 .colorooc				{color: #004ed8;	font-weight: bold;}
 .looc					{color: #3A9696;	font-weight: bold;}
-.hostooc				{color: #323232;	font-weight: bold;}
-.projleadooc			{color: #7F44A6;	font-weight: bold;}
-.headcoderooc			{color: #000064;	font-weight: bold;}
-.headminooc				{color: #9F2524;	font-weight: bold;}
-.headmentorooc			{color: #397339;	font-weight: bold;}
-.adminooc				{color: #c3324a;	font-weight: bold;}
-.trialminooc			{color: #f35a32;	font-weight: bold;}
-.candiminooc			{color: #ff7a4a;	font-weight: bold;}
-.mentorooc				{color: #329932;	font-weight: bold;}
-.maintainerooc			{color: #4a6fde;	font-weight: bold;}
-.contributorooc			{color: #3283ff;	font-weight: bold;}
+.hostooc				{color: #666666;	font-weight: bold;}
+.projleadooc			{color: #794C99;	font-weight: bold;}
+.headcoderooc			{color: #5994B2;	font-weight: bold;}
+.headminooc				{color: #A5425E;	font-weight: bold;}
+.headmentorooc			{color: #44998C;	font-weight: bold;}
+.adminooc				{color: #BF3951;	font-weight: bold;}
+.trialminooc			{color: #CC4E47;	font-weight: bold;}
+.candiminooc			{color: #CC6E51;	font-weight: bold;}
+.mentorooc				{color: #549954;	font-weight: bold;}
+.maintainerooc			{color: #2B73D8;	font-weight: bold;}
+.contributorooc			{color: #2B73D8;	font-weight: bold;}
 .otherooc				{color: #835a32;	font-weight: bold;}
 
-.msay					{color: #927c66;	font-weight: bold;}
-.adminmsay				{color: #84664a;	font-weight: bold;}
-.headminmsay			{color: #665442;	font-weight: bold;}
+.msay					{color: #99816B;	font-weight: bold;}
+.adminmsay				{color: #A57852;	font-weight: bold;}
+.headminmsay			{color: #BF745F;	font-weight: bold;}
 
-.admin					{color: #386aff;	font-weight: bold;}
-.asay					{color: #9611D4;	font-weight: bold;}
-.headminasay			{color: #5A0A7F;	font-weight: bold;}
-.boldannounce			{color: #ff0000;	font-weight: bold;}
+.admin					{color: #3F72FF;	font-weight: bold;}
+.asay					{color: #A65BCC;	font-weight: bold;}
+.headminasay			{color: #8C5BA5;	font-weight: bold;}
+.boldannounce			{color: #CC3333;	font-weight: bold;}
 
-.staffpmin				{color: red;	font-weight: bold;}
-.staffpmout				{color: blue;	font-weight: bold;}
+.staffpmin				{color: #BF3939;	font-weight: bold;}
+.staffpmout				{color: #4B60D8;	font-weight: bold;}
 
 .adminnotice			{color: #3d5bc3;}
 .adminhelp              {color: #c51e1e;    font-weight: bold;}
@@ -256,22 +256,22 @@ a.popt {text-decoration: none;}
 .name					{					font-weight: bold;}
 
 
-.say					{color: #e5e5e5;}
-.deadsay				{color: #732FCD;}
-.radio					{color: #008000;}
-.deptradio				{color: #ff00ff;}
-.comradio				{color: #395A9A;} /* text-shadow: #474747 1px 3px 2px, 0px 0px 0px #266875;*/
+.say					{color: #BFBFBF;}
+.deadsay				{color: #8251CC;}
+.radio					{color: #4D8C56;}
+.deptradio				{color: #7447CC;}
+.comradio				{color: #526FA5;} /* text-shadow: #474747 1px 3px 2px, 0px 0px 0px #266875;*/
 .syndradio				{color: #6D3F40;}
-.centradio				{color: #5C5C8A;}
-.airadio				{color: #FF00FF;}
+.centradio				{color: #7474A5;}
+.airadio				{color: #7447CC;}
 
-.casradio				{color: #A30000;}
-.engradio				{color: #A66300;}
-.medradio				{color: #008160;}
-.sciradio				{color: #993399;}
-.supradio				{color: #5F4519;}
+.casradio				{color: #9E2F49;}
+.engradio				{color: #A56E21;}
+.medradio				{color: #388C74;}
+.sciradio				{color: #B55AB5;}
+.supradio				{color: #996F2D;}
 
-.alpharadio				{color: #EA0000;}
+.alpharadio				{color: #CC3333;}
 .bravoradio				{color: #C68610;}
 .charlieradio			{color: #AA55AA;}
 .deltaradio				{color: #3A59D9;}
@@ -290,27 +290,27 @@ h1.alert, h2.alert		{color: #99aab5;}
 
 .attack					{color: #ff0000;}
 .moderate				{color: #CC0000;}
-.disarm					{color: #990000;}
-.passive				{color: #660000;}
+.disarm					{color: #B23535;}
+.passive				{color: #B25D35;}
 
 .scanner			{color: #ff0000;}
 .scannerb			{color: #ff0000;	font-weight: bold;}
 .scannerburn	{color: #ffa500;}
 .scannerburnb	{color: #ffa500;	font-weight: bold;}
 .rose					{color: #ff5050;}
-.info					{color: #6060c9;}
-.debuginfo				{color: #493D26;	font-style: italic;}
-.notice					{color: #6060c9;}
-.xenonotice				{color: #2a623d;}
-.boldnotice				{color: #6060c9;	font-weight: bold;}
-.warning				{color: #ff5f5f;	font-style: italic;}
-.xenowarning			{color: #2a623d;	font-style: italic;}
-.danger					{color: #ff2a2a;	font-weight: bold;}
-.xenodanger				{color: #2a623d;	font-weight: bold;}
+.info					{color: #6C6CD8;}
+.debuginfo				{color: #B2A285;	font-style: italic;}
+.notice					{color: #6C6CD8;}
+.xenonotice				{color: #6BB280;}
+.boldnotice				{color: #6C6CD8;	font-weight: bold;}
+.warning				{color: #D85656;	font-style: italic;}
+.xenowarning			{color: #6BB280;	font-style: italic;}
+.danger					{color: #BF4039;	font-weight: bold;}
+.xenodanger				{color: #6BB280;	font-weight: bold;}
 .avoidharm				{color:	#72a0e5;	font-weight: bold;}
-.highdanger				{color: #ff0000;	font-weight: bold; font-size: 1.5em;}
-.xenohighdanger			{color: #2a623d; 	font-weight: bold; font-size: 1.5em;}
-.xenoannounce           {color: #1a472a;    font-family: book-antiqua; font-weight: bold; font-style: italic; font-size: 1.5em;}
+.highdanger				{color: #D84B41;	font-weight: bold; font-size: 1.5em;}
+.xenohighdanger			{color: #6BB280; 	font-weight: bold; font-size: 1.5em;}
+.xenoannounce           {color: #4C9964;    font-family: book-antiqua; font-weight: bold; font-style: italic; font-size: 1.5em;}
 .hivemind				{color: #BF39AF;     font-weight: bold;}
 .xenoqueen				{font-size: 1.4em;}
 .xenoshrike				{font-size: 1.2em;}
@@ -320,7 +320,7 @@ h1.alert, h2.alert		{color: #99aab5;}
 
 
 .alien					{color: #543354;}
-.newscaster				{color: #750000;}
+.newscaster				{color: #B22323;}
 
 .role_header			{color: #db0000;	display: block; text-align: center; font-weight: bold; font-family: trebuchet-ms; font-size: 1.5em;}
 .role_body				{color: #5a5abd;	display: block; text-align: center;}
