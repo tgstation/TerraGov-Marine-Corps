@@ -1697,7 +1697,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/structure/closet/crate/construction/full,
+/obj/structure/closet/crate/secure/construction/full,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "fW" = (
@@ -3460,13 +3460,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
-"lW" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 4
-	},
-/obj/structure/closet/crate/medical/full_drugs,
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/hangar)
 "lX" = (
 /obj/structure/droppod,
 /obj/structure/dropprop,
@@ -13337,7 +13330,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/structure/closet/crate/medical/full_surgery,
+/obj/structure/closet/crate/secure/surgery/full,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "RV" = (
@@ -44880,7 +44873,7 @@ yn
 Ex
 nE
 bo
-lW
+an
 cb
 lD
 az

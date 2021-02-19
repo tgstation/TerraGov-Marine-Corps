@@ -179,36 +179,6 @@
 	icon_opened = "open_construction"
 	icon_closed = "closed_construction"
 
-/obj/structure/closet/crate/construction/full 
-	name = "prepared construction crate"
-
-/obj/structure/closet/crate/construction/full/Initialize()
-	. = ..()
-	new /obj/item/storage/belt/utility(src)
-	new /obj/item/storage/belt/utility(src)
-	new /obj/item/storage/belt/utility(src)
-	new /obj/item/clothing/glasses/welding(src)
-	new /obj/item/clothing/glasses/welding(src)
-	new /obj/item/clothing/glasses/welding(src)
-	new /obj/item/tool/pickaxe/plasmacutter(src)
-	new /obj/item/tool/pickaxe/plasmacutter(src)
-	new /obj/item/cell/high(src)
-	new /obj/item/cell/high(src)
-	new /obj/item/cell/high(src)
-	new /obj/item/cell/high(src)
-	new /obj/item/cell/super(src)
-	new /obj/item/stack/sheet/metal(src, 50)
-	new /obj/item/stack/sheet/metal(src, 50)
-	new /obj/item/stack/sheet/plasteel(src, 30)
-	new /obj/item/stack/sheet/mineral/phoron(src, 50)
-	new /obj/item/stack/sheet/mineral/phoron(src, 50)
-	new	/obj/item/storage/box/sentry(src)
-	new	/obj/item/storage/box/sentry(src)
-	new	/obj/item/storage/box/sentry(src)
-	new	/obj/item/storage/box/sentry(src)
-	new	/obj/item/storage/box/standard_hmg(src)
-	new /obj/item/lightreplacer(src)
-
 /obj/structure/closet/crate/delta
 	name = "delta squad crate"
 	desc = "A crate with delta squad's symbol on it. "
@@ -269,52 +239,6 @@
 	icon_state = "closed_medical"
 	icon_opened = "open_medical"
 	icon_closed = "closed_medical"
-
-/obj/structure/closet/crate/medical/full_drugs
-	name = "prepared medical crate"
-
-/obj/structure/closet/crate/medical/full_drugs/Initialize()
-	. = ..()
-	new	/obj/item/defibrillator(src)
-	new /obj/item/storage/pill_bottle/bicaridine(src)
-	new /obj/item/storage/pill_bottle/kelotane(src)
-	new /obj/item/storage/pill_bottle/tramadol(src)
-	new /obj/item/storage/pill_bottle/dylovene(src)
-	new /obj/item/storage/pill_bottle/dylovene(src)
-	new /obj/item/storage/pill_bottle/inaprovaline(src)
-	new /obj/item/storage/pill_bottle/dexalin(src)
-	new /obj/item/storage/pill_bottle/spaceacillin(src)
-	new /obj/item/storage/pill_bottle/spaceacillin(src)
-	new /obj/item/storage/pill_bottle/hypervene(src)
-	new /obj/item/storage/pill_bottle/polyhexanide(src)
-	new /obj/item/storage/pill_bottle/polyhexanide(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus(src)
-
-/obj/structure/closet/crate/medical/full_surgery
-	name = "prepared surgery crate"
-
-/obj/structure/closet/crate/medical/full_surgery/Initialize()
-	. = ..()
-	new /obj/item/storage/surgical_tray(src)
-	new /obj/item/reagent_containers/spray/cleaner(src)
-	new /obj/item/reagent_containers/blood/OMinus(src)
-	new /obj/item/reagent_containers/blood/OMinus(src)
-	new /obj/item/reagent_containers/blood/OMinus(src)
-	new /obj/machinery/iv_drip(src)
-	new	/obj/item/roller(src)
-	new	/obj/item/roller(src)
-	new	/obj/item/roller(src)
-	new /obj/item/storage/briefcase/inflatable(src)
-	new /obj/item/healthanalyzer(src)
-	new	/obj/item/clothing/mask/surgical(src)
-	new	/obj/item/clothing/gloves/latex(src)
-	new	/obj/item/bodybag(src)
-	new	/obj/item/bodybag(src)
-	new	/obj/item/bodybag(src)
-	new /obj/item/bodybag/cryobag(src)
-	new /obj/item/bodybag/cryobag(src)
-	new /obj/item/bodybag/cryobag(src)
 
 /obj/structure/closet/crate/plastic
 	name = "plastic crate"

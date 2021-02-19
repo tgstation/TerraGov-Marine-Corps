@@ -10809,10 +10809,6 @@
 /obj/machinery/computer3/server,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
-"cEZ" = (
-/obj/structure/closet/crate/construction/full,
-/turf/open/floor/prison,
-/area/sulaco/hangar)
 "cFG" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -11057,10 +11053,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/cargo)
-"drj" = (
-/obj/structure/closet/crate/medical/full_drugs,
-/turf/open/floor/prison,
-/area/sulaco/hangar)
 "drG" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
@@ -13667,7 +13659,7 @@
 /turf/closed/wall/mainship/gray,
 /area/shuttle/distress/arrive_2)
 "liO" = (
-/obj/structure/closet/crate/medical/full_surgery,
+/obj/structure/closet/crate/secure/construction/full,
 /turf/open/floor/prison,
 /area/sulaco/hangar)
 "ljR" = (
@@ -15774,6 +15766,10 @@
 /obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/plating,
 /area/sulaco/hub/bottom)
+"qmy" = (
+/obj/structure/closet/crate/secure/surgery/full,
+/turf/open/floor/prison,
+/area/sulaco/hangar)
 "qnI" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -17009,7 +17005,6 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/machinery/power/port_gen/pacman/mobile_power,
 /turf/open/floor/prison,
 /area/sulaco/hangar)
 "tqa" = (
@@ -18126,6 +18121,10 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /turf/open/floor/prison,
 /area/sulaco/hallway/central_hall3)
+"wHZ" = (
+/obj/machinery/power/port_gen/pacman/mobile_power,
+/turf/open/floor/prison,
+/area/sulaco/hangar)
 "wIc" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1,
@@ -56855,7 +56854,7 @@ aPF
 aPF
 aPF
 bFa
-cEZ
+aQp
 cdy
 aUL
 aaO
@@ -57112,17 +57111,17 @@ aPF
 aPF
 aPF
 bFa
-nzZ
+wHZ
 nNP
 aUp
 cdy
 vfb
-vfb
+qmy
 osy
 osy
 jqF
 qnO
-drj
+nzZ
 liO
 aZw
 aKP
