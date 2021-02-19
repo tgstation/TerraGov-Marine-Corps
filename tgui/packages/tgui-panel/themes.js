@@ -107,9 +107,9 @@ export const setClientTheme = name => {
       'wiki.text-color': COLOR_DARK_TEXT,
       'forum.background-color': '#494949',
       'forum.text-color': COLOR_DARK_TEXT,
-      'github.background-color': '#3a3a3a',
+      'github.background-color': '#494949',
       'github.text-color': COLOR_DARK_TEXT,
-      'webmap.background-color': '#492020',
+      'webmap.background-color': '#494949',
       'webmap.text-color': COLOR_DARK_TEXT,
       // Status and verb tabs
       'output.background-color': COLOR_DARK_BG_DARKER,
