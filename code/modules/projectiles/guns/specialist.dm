@@ -1140,7 +1140,7 @@ obj/item/weapon/gun/minigun/Fire(atom/target, mob/living/user, params, reflex = 
 //railgun
 
 //-------------------------------------------------------
-//T-81 Auto-Sniper
+//TX-220 Railgun
 
 /obj/item/weapon/gun/rifle/railgun
 	name = "\improper TX-220 railgun"
