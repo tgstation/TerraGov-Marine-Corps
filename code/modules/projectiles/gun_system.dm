@@ -868,7 +868,7 @@ and you're good to go.
 			playsound(user, active_attachable.fire_sound, 50)
 		return
 	if(flags_gun_features & GUN_SILENCED)
-		playsound(user, fire_sound, 25, TRUE, frequency = firing_sndfreq)
+		playsound(user, fire_sound, 25, firing_sndfreq ? TRUE : FALSE, frequency = firing_sndfreq)
 		return
 	if(fire_rattle)
 		playsound(user, fire_rattle, 60, FALSE)
