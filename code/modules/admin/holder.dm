@@ -547,8 +547,7 @@ GLOBAL_PROTECT(admin_verbs_spawn)
 		if(check_other_rights(C, R_ADMIN, FALSE))
 			to_chat(C,
 				type = MESSAGE_TYPE_ADMINLOG,
-				html = msg,
-				confidential = TRUE)
+				html = msg)
 
 
 
@@ -558,8 +557,7 @@ GLOBAL_PROTECT(admin_verbs_spawn)
 		if(check_other_rights(C, R_ADMIN, FALSE) || is_mentor(C))
 			to_chat(C,
 				type = MESSAGE_TYPE_STAFFLOG,
-				html = msg,
-				confidential = TRUE)
+				html = msg)
 
 /proc/msg_admin_ff(msg)
 	msg = "<span class='admin'><span class='prefix'>ATTACK:</span> <span class='green linkify'>[msg]</span></span>"
@@ -569,8 +567,7 @@ GLOBAL_PROTECT(admin_verbs_spawn)
 		if((C.prefs.toggles_chat & CHAT_FFATTACKLOGS) || ((SSticker.current_state == GAME_STATE_FINISHED) && (C.prefs.toggles_chat & CHAT_ENDROUNDLOGS)))
 			to_chat(C,
 				type = MESSAGE_TYPE_ATTACKLOG,
-				html = msg,
-				confidential = TRUE)
+				html = msg)
 
 
 /client/proc/find_stealth_key(txt)

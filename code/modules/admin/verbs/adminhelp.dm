@@ -378,22 +378,19 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 			window_flash(X)
 			to_chat(X,
 				type = MESSAGE_TYPE_ADMINPM,
-				html = mentor_msg,
-				confidential = TRUE)
+				html = mentor_msg)
 		if(tier == TICKET_ADMIN && check_other_rights(X, R_ADMINTICKET, FALSE))
 			if(X.prefs.toggles_sound & SOUND_ADMINHELP)
 				SEND_SOUND(X, sound('sound/effects/adminhelp.ogg', channel = CHANNEL_ADMIN))
 			window_flash(X)
 			to_chat(X,
 				type = MESSAGE_TYPE_ADMINPM,
-				html = admin_msg,
-				confidential = TRUE)
+				html = admin_msg)
 
 	//show it to the person adminhelping too
 	to_chat(initiator,
 		type = MESSAGE_TYPE_ADMINPM,
-		html = "<span class='adminnotice'>PM to-<b>[tier == TICKET_ADMIN ? "Admins" : "Mentors"]</b>: <span class='linkify'>[msg]</span></span>",
-		confidential = TRUE)
+		html = "<span class='adminnotice'>PM to-<b>[tier == TICKET_ADMIN ? "Admins" : "Mentors"]</b>: <span class='linkify'>[msg]</span></span>")
 
 //Reopen a closed ticket
 /datum/admin_help/proc/Reopen(irc)
