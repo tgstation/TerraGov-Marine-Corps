@@ -867,14 +867,14 @@ and you're good to go.
 		if(active_attachable.fire_sound) //If we're firing from an attachment, use that noise instead.
 			playsound(user, active_attachable.fire_sound, 50)
 		return
-	if(!(flags_gun_features & GUN_SILENCED))
-		if (firing_sndfreq && fire_rattle)
-			playsound(user, fire_rattle, 60, FALSE)//if the gun has a unique 'mag rattle' SFX play that instead of pitch shifting.
-		else
-			playsound(user, fire_sound, 60, TRUE, frequency = firing_sndfreq)
-	else
+	if(flags_gun_features & GUN_SILENCED)
 		playsound(user, fire_sound, 25, TRUE, frequency = firing_sndfreq)
-	return 1
+		return
+    if(fire_rattle)
+		playsound(user, fire_rattle, 60, FALSE)
+		return
+	playsound(user, fire_sound, 60, firing_sndfreq ? TRUE : FALSE, frequency = firing_sndfreq)
+	return
 
 
 /obj/item/weapon/gun/proc/apply_gun_modifiers(obj/projectile/projectile_to_fire, atom/target)
