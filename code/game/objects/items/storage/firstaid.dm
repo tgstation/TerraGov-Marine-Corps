@@ -260,7 +260,15 @@
 	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
+/obj/item/storage/syringe_case/corps
+	name = "Corps injury treatment"
+	desc = "It's a medical case for storing syringes and bottles. This one contains peri+ QC+ and synaps autoinjectors."
 
+/obj/item/storage/syringe_case/corps/PopulateContents()
+	. = ..()
+	new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine (src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus(src)
 
 /*
 * Pill Bottles
