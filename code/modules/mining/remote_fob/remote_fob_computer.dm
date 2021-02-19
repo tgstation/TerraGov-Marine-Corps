@@ -76,18 +76,20 @@
 	flick("fobpc-eject", src)
 	var/obj/item/stack/sheet/metal/stack = /obj/item/stack/sheet/metal
 	var/turf/consolespot = get_turf(loc)
-	stack = new /obj/item/stack/sheet/metal(consolespot)
-	stack.amount = metal_remaining
-	metal_remaining = 0
+	while(metal_remaining>0)
+		stack = new /obj/item/stack/sheet/metal(consolespot)
+		stack.amount = min(metal_remaining, 50)
+		metal_remaining -= stack.amount
 
 ///Eject all the plasteel from the fob drone console
 /obj/machinery/computer/camera_advanced/remote_fob/proc/eject_plasteel()
 	flick("fobpc-eject", src)
 	var/obj/item/stack/sheet/plasteel/stack = /obj/item/stack/sheet/plasteel
 	var/turf/consolespot = get_turf(loc)
-	stack = new /obj/item/stack/sheet/plasteel(consolespot)
-	stack.amount = plasteel_remaining
-	plasteel_remaining = 0
+	while(plasteel_remaining>0)
+		stack = new /obj/item/stack/sheet/plasteel(consolespot)
+		stack.amount = min(plasteel_remaining, 50)
+		plasteel_remaining -= stack.amount
 
 /obj/machinery/computer/camera_advanced/remote_fob/interact(mob/living/user)
 	if(machine_stat & (NOPOWER|BROKEN))
