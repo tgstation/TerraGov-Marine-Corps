@@ -1137,7 +1137,6 @@ obj/item/weapon/gun/minigun/Fire(atom/target, mob/living/user, params, reflex = 
 	else
 		return in_chamber ? (current_mag.current_rounds + 1) : current_mag.current_rounds
 
-//railgun
 
 //-------------------------------------------------------
 //TX-220 Railgun
