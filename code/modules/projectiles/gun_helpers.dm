@@ -459,7 +459,7 @@ should be alright.
 		to_chat(usr, "<span class='warning'>You cannot conceviably do that while looking down \the [src]'s scope!</span>")
 		return
 
-	if(src.overcharge)
+	if(overcharge)
 		to_chat(usr, "[icon2html(src, usr)] You need to disable overcharge mode to remove attachments.")
 		return
 
