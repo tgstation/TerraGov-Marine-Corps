@@ -474,6 +474,10 @@
 		/obj/item/storage/pill_bottle/packet,
 		/obj/item/reagent_containers/hypospray,
 		/obj/item/storage/syringe_case,
+		/obj/item/bodybag,
+		/obj/item/defibrillator,
+		/obj/item/roller,
+		/obj/item/tweezers,
 	)
 
 /obj/item/storage/pouch/medkit/full/Initialize()
