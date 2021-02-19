@@ -257,14 +257,16 @@
 	var/sunder_ticks_remaining
 
 /datum/status_effect/healing_infusion/on_creation(mob/living/new_owner, set_duration = HIVELORD_HEALING_INFUSION_DURATION, stacks_to_apply = HIVELORD_HEALING_INFUSION_TICKS)
-	if(isxeno(new_owner))
-		duration = set_duration
-		owner = new_owner
-		health_ticks_remaining = stacks_to_apply //Apply stacks
-		sunder_ticks_remaining = stacks_to_apply
-		return ..()
+	if(!isxeno(new_owner))
+		CRASH("something applied [id] on a nonxeno, dont do that")
+		return
 
-	CRASH("something applied [id] on a nonxeno, dont do that")
+	duration = set_duration
+	owner = new_owner
+	health_ticks_remaining = stacks_to_apply //Apply stacks
+	sunder_ticks_remaining = stacks_to_apply
+	return ..()
+
 
 /datum/status_effect/healing_infusion/on_apply()
 	. = ..()
@@ -278,7 +280,7 @@
 /datum/status_effect/healing_infusion/on_remove()
 	REMOVE_TRAIT(owner, TRAIT_HEALING_INFUSION, TRAIT_STATUS_EFFECT(id))
 	owner.remove_filter("hivelord_healing_infusion_outline") //Remove the aura
-	UnregisterSignal(src, list(COMSIG_XENOMORPH_HEALTH_REGEN, COMSIG_XENOMORPH_SUNDER_REGEN)) //unregister the signals; party's over
+	UnregisterSignal(owner, list(COMSIG_XENOMORPH_HEALTH_REGEN, COMSIG_XENOMORPH_SUNDER_REGEN)) //unregister the signals; party's over
 
 	new /obj/effect/temp_visual/telekinesis(get_turf(owner)) //Wearing off SFX
 	new /obj/effect/temp_visual/healing(get_turf(owner)) //Wearing off SFX
