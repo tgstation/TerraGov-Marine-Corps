@@ -870,7 +870,7 @@ and you're good to go.
 	if(flags_gun_features & GUN_SILENCED)
 		playsound(user, fire_sound, 25, TRUE, frequency = firing_sndfreq)
 		return
-    if(fire_rattle)
+	if(fire_rattle)
 		playsound(user, fire_rattle, 60, FALSE)
 		return
 	playsound(user, fire_sound, 60, firing_sndfreq ? TRUE : FALSE, frequency = firing_sndfreq)
