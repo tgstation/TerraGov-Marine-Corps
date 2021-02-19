@@ -455,8 +455,6 @@
 	reagent_state = LIQUID
 	color = "#CF3600" // rgb: 207, 54, 0
 	custom_metabolism = REAGENTS_METABOLISM * 2
-	purge_list = list(/datum/reagent/medicine)
-	purge_rate = 1
 	overdose_threshold = 10000 //Overdosing for neuro is what happens when you run out of stamina to avoid its oxy and toxin damage
 	scannable = TRUE
 	toxpwr = 0
