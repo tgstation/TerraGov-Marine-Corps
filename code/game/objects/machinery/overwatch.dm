@@ -954,6 +954,15 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 ///Set the order as selected on the overwatch console
 /datum/action/innate/order/proc/set_selected_order()
 	var/mob/living/C = target
+	if(isAI(owner))
+		var/mob/living/silicon/ai/order_giver = owner
+		order_giver.current_order?.remove_selected_frame()
+		if(order_giver.current_order != src)
+			order_giver.current_order = src
+			add_selected_frame()
+			return
+		order_giver.current_order = null
+		return
 	var/mob/camera/aiEye/remote/remote_eye = C.remote_control
 	var/obj/machinery/computer/camera_advanced/overwatch/console = remote_eye.origin
 	console.current_order?.remove_selected_frame()

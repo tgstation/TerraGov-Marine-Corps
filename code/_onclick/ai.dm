@@ -105,10 +105,6 @@
 /mob/living/silicon/ai/CtrlClickOn(atom/A)
 	A.AICtrlClick(src)
 
-/mob/living/silicon/ai/AltClickOn(atom/A)
-	A.AIAltClick(src)
-
-
 /*
 	The following criminally helpful code is just the previous code cleaned up;
 	I have no idea why it was in atoms.dm instead of respective files.
@@ -125,15 +121,6 @@
 	return
 /atom/proc/AICtrlShiftClick()
 	return
-
-
-/* Holopads */
-/obj/machinery/holopad/AIAltClick(mob/living/silicon/ai/user)
-	if(z != user.z)
-		return
-
-	hangup_all_calls()
-
 
 /* Airlocks */
 /obj/machinery/door/airlock/AICtrlClick(mob/living/silicon/ai/user) // Bolts doors
