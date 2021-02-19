@@ -668,6 +668,10 @@
 
 	return TRUE
 
+/obj/item/clothing/mask/facehugger/acid/kill_hugger()
+	. = ..()
+	melt_away()
+
 
 /obj/item/clothing/mask/facehugger/resin
 	name = "resin hugger"
@@ -706,17 +710,6 @@
 
 /obj/item/clothing/mask/facehugger/resin/kill_hugger()
 	. = ..()
-
-	var/sticky_resin_present = FALSE
-	var/turf/T = get_turf(src)
-	for(var/obj/O in T.contents) //No doubling up on sticky resin
-		if(is_type_in_typecache(O, GLOB.no_sticky_resin))
-			sticky_resin_present = TRUE
-			break
-
-	if(!sticky_resin_present)
-		new /obj/effect/alien/resin/sticky(loc) //Make a splatter on death
-
 	melt_away()
 
 /obj/item/clothing/mask/facehugger/slash
