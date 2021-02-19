@@ -573,7 +573,7 @@
 
 	products = list(
 		/obj/item/clothing/under/marine/corpsman = 4,
-		/obj/item/clothing/head/helmet/marine/corpsman = 4,
+		/obj/item/clothing/head/modular/marine/infantry = 4,
 		/obj/item/storage/backpack/marine/corpsman = 4,
 		/obj/item/storage/backpack/marine/satchel/corpsman = 4,
 		/obj/item/encryptionkey/med = 4,
@@ -702,7 +702,7 @@
 
 	products = list(
 		/obj/item/clothing/suit/storage/marine/leader = 1,
-		/obj/item/clothing/head/helmet/marine/leader = 1,
+		/obj/item/clothing/head/modular/marine/infantry = 1,
 		/obj/item/clothing/tie/storage/webbing = 1,
 		/obj/item/squad_beacon = 1,
 		/obj/item/squad_beacon/bomb = 1,
@@ -806,11 +806,9 @@
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
 	products = list(
 		/obj/item/clothing/under/marine/jaeger = 30,
-		/obj/item/clothing/suit/storage/marine/pasvest = 40,
 		/obj/item/clothing/suit/storage/marine/harness = 5,
 		/obj/item/clothing/suit/armor/vest/pilot = 20,
-		/obj/item/clothing/head/helmet/marine = 40,
-		/obj/item/clothing/head/helmet/marine/heavy = 10,
+		/obj/item/clothing/head/modular/marine/infantry = 40,
 		/obj/item/clothing/mask/rebreather = 10,
 		/obj/item/clothing/mask/breath = 10,
 		/obj/item/clothing/mask/gas = 10,

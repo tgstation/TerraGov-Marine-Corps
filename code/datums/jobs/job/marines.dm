@@ -194,7 +194,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	wear_suit = /obj/item/clothing/suit/storage/marine
 	shoes = /obj/item/clothing/shoes/marine/full
 	gloves =/obj/item/clothing/gloves/marine
-	head = /obj/item/clothing/head/helmet/marine/corpsman
+	head = /obj/item/clothing/head/modular/marine/infantry
 	l_store = /obj/item/storage/pouch/medkit/equippedcorpsman
 	r_store = /obj/item/storage/pouch/medical/equippedcorpsman
 	glasses = /obj/item/clothing/glasses/hud/health
@@ -288,7 +288,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	wear_suit = /obj/item/clothing/suit/storage/marine/smartgunner
 	shoes = /obj/item/clothing/shoes/marine/full
 	gloves =/obj/item/clothing/gloves/marine
-	head = /obj/item/clothing/head/helmet/marine
+	head = /obj/item/clothing/head/modular/marine/infantry
 	l_store = /obj/item/storage/pouch/firstaid/full
 	suit_store = /obj/item/weapon/gun/rifle/standard_smartmachinegun
 	glasses = /obj/item/clothing/glasses/night/m56_goggles
@@ -389,7 +389,7 @@ You are also in charge of communicating with command and letting them know about
 	wear_suit = /obj/item/clothing/suit/storage/marine/leader
 	shoes = /obj/item/clothing/shoes/marine/full
 	gloves =/obj/item/clothing/gloves/marine
-	head = /obj/item/clothing/head/helmet/marine/leader
+	head = /obj/item/clothing/head/modular/marine/infantry
 	glasses = /obj/item/clothing/glasses/hud/health
 	suit_store = /obj/item/weapon/gun/rifle/standard_assaultrifle/rifleman
 	l_store = /obj/item/storage/pouch/firstaid/full
