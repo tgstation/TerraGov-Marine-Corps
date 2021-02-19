@@ -31,7 +31,6 @@
 	var/list/speech_chance
 	var/has_fine_manipulation = TRUE // Can use small items.
 	var/insulated                 // Immune to electrocution and glass shards to the feet.
-	var/show_paygrade = FALSE
 	var/count_human = FALSE // Does this count as a human?
 
 	// Some species-specific gibbing data.
@@ -287,7 +286,6 @@
 	primitive = /mob/living/carbon/monkey
 	unarmed_type = /datum/unarmed_attack/punch
 	species_flags = HAS_SKIN_TONE|HAS_LIPS|HAS_UNDERWEAR
-	show_paygrade = TRUE
 	count_human = TRUE
 
 	screams = list(MALE = "male_scream", FEMALE = "female_scream")
@@ -483,7 +481,6 @@
 	default_language_holder = /datum/language_holder/moth
 	eyes = "blank_eyes"
 	speech_verb_override = "flutters"
-	show_paygrade = TRUE
 	count_human = TRUE
 
 	species_flags = HAS_LIPS|HAS_NO_HAIR
@@ -543,7 +540,6 @@
 	default_language_holder = /datum/language_holder/sectoid
 	eyes = "blank_eyes"
 	speech_verb_override = "transmits"
-	show_paygrade = TRUE
 	count_human = TRUE
 
 	species_flags = HAS_NO_HAIR|NO_BREATHE|NO_POISON|NO_PAIN|USES_ALIEN_WEAPONS|NO_DAMAGE_OVERLAY
@@ -684,7 +680,6 @@
 	deform = 'icons/mob/human_races/r_skeleton.dmi'
 	unarmed_type = /datum/unarmed_attack/punch
 	speech_verb_override = "rattles"
-	show_paygrade = TRUE
 	count_human = TRUE
 
 	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_CHEM_METABOLIZATION|DETACHABLE_HEAD // Where we're going, we don't NEED underwear.
