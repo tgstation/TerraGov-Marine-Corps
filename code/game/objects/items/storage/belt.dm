@@ -133,10 +133,10 @@
 	new /obj/item/storage/pill_bottle/dylovene(src)
 	new /obj/item/storage/pill_bottle/inaprovaline(src)
 	new /obj/item/storage/pill_bottle/dexalin(src)
-	new /obj/item/storage/syringe_case/corps(src)
 	new /obj/item/storage/pill_bottle/spaceacillin(src)
 	new /obj/item/storage/pill_bottle/hypervene(src)
 	new /obj/item/storage/syringe_case/combat(src)
+	new /obj/item/storage/syringe_case/corps(src)
 	new /obj/item/healthanalyzer(src)
 
 
