@@ -1,0 +1,172 @@
+"aa" = (/turf/open/space/basic,/area/space)
+"ab" = (/turf/closed/wall/indestructible/mineral,/area/deathmatch)
+"ac" = (/obj/structure/largecrate/guns/russian,/obj/item/tool/crowbar,/turf/open/ground/grass,/area/deathmatch)
+"ad" = (/turf/open/floor/plating/ground/dirt,/area/deathmatch)
+"ae" = (/obj/structure/fence,/turf/open/ground/grass,/area/deathmatch)
+"af" = (/obj/structure/largecrate/guns/merc,/obj/item/tool/crowbar,/turf/open/ground/grass,/area/deathmatch)
+"ag" = (/turf/open/ground/coast/corner,/area/deathmatch)
+"ah" = (/obj/effect/landmark/deathmatch,/turf/open/ground/grass,/area/deathmatch)
+"ai" = (/turf/open/ground/river,/area/deathmatch)
+"aj" = (/turf/open/ground/coast{dir = 8},/area/deathmatch)
+"ak" = (/obj/structure/flora/ausbushes/sparsegrass,/turf/open/ground/grass,/area/deathmatch)
+"al" = (/obj/effect/landmark/deathmatch,/turf/open/ground/river,/area/deathmatch)
+"am" = (/turf/closed/shuttle,/area/deathmatch)
+"an" = (/turf/open/ground/coast{dir = 4},/area/deathmatch)
+"ao" = (/obj/structure/grille/broken,/obj/item/shard,/turf/open/floor/plating,/area/deathmatch)
+"ap" = (/turf/open/ground/coast{dir = 9},/area/deathmatch)
+"aq" = (/turf/open/ground/coast{dir = 1},/area/deathmatch)
+"ar" = (/turf/open/ground/coast/corner{dir = 4},/area/deathmatch)
+"as" = (/turf/closed/wall,/area/deathmatch)
+"at" = (/obj/structure/window/shuttle,/obj/structure/grille,/turf/open/shuttle/brig,/area/deathmatch)
+"au" = (/obj/structure/flora/ausbushes/grassybush,/turf/open/ground/grass,/area/deathmatch)
+"av" = (/obj/structure/bed/chair/dropship/passenger{dir = 4},/turf/open/shuttle/brig,/area/deathmatch)
+"aw" = (/turf/open/shuttle/brig,/area/deathmatch)
+"ax" = (/obj/effect/decal/cleanable/blood,/turf/open/shuttle/brig,/area/deathmatch)
+"ay" = (/obj/structure/bed/chair/dropship/passenger{dir = 8},/turf/open/shuttle/brig,/area/deathmatch)
+"az" = (/obj/effect/ai_node,/turf/open/ground/grass,/area/deathmatch)
+"aA" = (/obj/effect/ai_node,/turf/open/ground/coast{dir = 4},/area/deathmatch)
+"aB" = (/obj/effect/ai_node,/turf/open/shuttle/brig,/area/deathmatch)
+"aC" = (/obj/structure/bed/chair/dropship/pilot{icon_state = "pilot_chair"; dir = 1},/obj/effect/landmark/deathmatch,/turf/open/shuttle/brig,/area/deathmatch)
+"aD" = (/obj/structure/fence,/turf/open/floor/plating/ground/dirtgrassborder{dir = 4},/area/deathmatch)
+"aE" = (/obj/structure/table,/obj/machinery/light,/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,/turf/open/shuttle/brig,/area/deathmatch)
+"aF" = (/obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,/turf/open/ground/river,/area/deathmatch)
+"aG" = (/turf/open/ground/coast,/area/deathmatch)
+"aH" = (/obj/structure/bed/chair/dropship/passenger,/turf/open/shuttle/brig,/area/deathmatch)
+"aI" = (/obj/machinery/door/airlock/mainship/generic{dir = 2},/turf/open/shuttle/brig,/area/deathmatch)
+"aJ" = (/turf/open/floor/plating/ground/dirtgrassborder{icon_state = "grassdirt_corner"},/area/deathmatch)
+"aK" = (/obj/structure/jungle/vines/heavy,/turf/open/floor/plating/ground/dirtgrassborder/corner2,/area/deathmatch)
+"aL" = (/obj/machinery/door/airlock/mainship/generic,/turf/open/shuttle/brig,/area/deathmatch)
+"aM" = (/obj/structure/closet/walllocker/medical_wall/full,/turf/open/floor{icon_state = "panelscorched"},/area/deathmatch)
+"aN" = (/obj/structure/closet/walllocker/hydrant/full,/turf/open/shuttle/brig,/area/deathmatch)
+"aO" = (/obj/structure/closet,/obj/effect/decal/cleanable/cobweb,/turf/open/floor,/area/deathmatch)
+"aP" = (/obj/structure/table,/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,/turf/open/floor,/area/deathmatch)
+"aQ" = (/obj/structure/table,/obj/machinery/light{dir = 1},/turf/open/floor,/area/deathmatch)
+"aR" = (/obj/structure/table,/obj/structure/bedsheetbin,/turf/open/floor,/area/deathmatch)
+"aS" = (/obj/structure/table,/turf/open/floor,/area/deathmatch)
+"aT" = (/obj/structure/closet/athletic_mixed,/turf/open/floor,/area/deathmatch)
+"aU" = (/turf/open/floor/plating/ground/dirtgrassborder{dir = 8},/area/deathmatch)
+"aV" = (/obj/structure/bed/chair/dropship/passenger{dir = 8},/obj/machinery/light{dir = 4},/obj/effect/landmark/deathmatch,/turf/open/shuttle/brig,/area/deathmatch)
+"aW" = (/obj/structure/bed/chair/dropship/passenger{dir = 4},/obj/machinery/light{dir = 8},/turf/open/shuttle/brig,/area/deathmatch)
+"aX" = (/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,/turf/open/shuttle/brig,/area/deathmatch)
+"aY" = (/turf/open/floor,/area/deathmatch)
+"aZ" = (/obj/structure/bed,/obj/item/bedsheet,/turf/open/floor,/area/deathmatch)
+"ba" = (/obj/effect/decal/cleanable/generic,/turf/open/floor,/area/deathmatch)
+"bb" = (/turf/open/ground/coast/corner2{dir = 2},/area/deathmatch)
+"bc" = (/obj/machinery/light{dir = 1},/turf/open/shuttle/brig,/area/deathmatch)
+"bd" = (/obj/effect/landmark/deathmatch,/turf/open/shuttle/brig,/area/deathmatch)
+"be" = (/obj/machinery/door/airlock/mainship/generic,/turf/open/floor,/area/deathmatch)
+"bf" = (/turf/open/floor/plating/ground/dirtgrassborder/corner{dir = 4},/area/deathmatch)
+"bg" = (/obj/effect/landmark/deathmatch,/turf/open/floor,/area/deathmatch)
+"bh" = (/obj/effect/decal/cleanable/blood/drip,/turf/open/shuttle/brig,/area/deathmatch)
+"bi" = (/obj/machinery/light{dir = 8},/turf/open/floor,/area/deathmatch)
+"bj" = (/obj/machinery/light{dir = 4},/turf/open/floor,/area/deathmatch)
+"bk" = (/turf/open/floor/plating/ground/dirtgrassborder/corner2{dir = 1},/area/deathmatch)
+"bl" = (/obj/effect/decal/cleanable/blood/drip,/turf/open/ground/grass,/area/deathmatch)
+"bm" = (/obj/structure/closet/cabinet,/obj/effect/ai_node,/turf/open/floor,/area/deathmatch)
+"bn" = (/obj/structure/closet/cabinet,/obj/machinery/light,/turf/open/floor,/area/deathmatch)
+"bo" = (/obj/effect/ai_node,/turf/open/ground/river,/area/deathmatch)
+"bp" = (/obj/structure/lattice,/obj/effect/ai_node,/turf/open/ground/grass,/area/deathmatch)
+"bq" = (/obj/machinery/door/airlock/multi_tile/mainship/generic,/turf/open/floor,/area/deathmatch)
+"br" = (/obj/machinery/floodlight{name = "Floodlight"},/turf/open/ground/grass,/area/deathmatch)
+"bs" = (/obj/machinery/light{dir = 1},/turf/open/floor,/area/deathmatch)
+"bt" = (/obj/structure/lattice,/turf/open/ground/grass,/area/deathmatch)
+"bu" = (/turf/open/ground/grass,/area/deathmatch)
+"bv" = (/obj/structure/window/framed/colony,/turf/open/floor,/area/deathmatch)
+"bw" = (/obj/structure/table,/obj/item/storage/donut_box,/turf/open/floor,/area/deathmatch)
+"bx" = (/obj/item/clothing/shoes/marine{pixel_x = 10},/obj/item/clothing/shoes/marine{pixel_x = 10},/obj/item/clothing/shoes/marine{pixel_x = 10},/turf/open/floor,/area/deathmatch)
+"by" = (/obj/structure/table,/obj/item/clothing/under/marine/veteran/freelancer,/obj/item/clothing/under/marine/veteran/freelancer,/obj/item/clothing/under/marine/veteran/freelancer,/turf/open/floor,/area/deathmatch)
+"bz" = (/turf/open/floor/plating,/area/deathmatch)
+"bA" = (/turf/open/floor/plating/dmg1,/area/deathmatch)
+"bB" = (/obj/structure/table,/obj/item/ammo_magazine/shotgun,/turf/open/floor,/area/deathmatch)
+"bC" = (/obj/effect/decal/cleanable/blood/oil,/turf/open/floor,/area/deathmatch)
+"bD" = (/obj/structure/table,/obj/item/storage/bible,/turf/open/floor,/area/deathmatch)
+"bE" = (/obj/structure/table,/obj/item/ashtray/glass,/turf/open/floor,/area/deathmatch)
+"bF" = (/obj/structure/table,/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,/turf/open/floor,/area/deathmatch)
+"bG" = (/obj/structure/table,/obj/item/ammo_magazine/shotgun/buckshot,/turf/open/floor,/area/deathmatch)
+"bH" = (/obj/item/storage/belt/utility/full,/turf/open/shuttle/brig,/area/deathmatch)
+"bI" = (/obj/structure/largecrate/supply/weapons/flamers,/turf/open/shuttle/brig,/area/deathmatch)
+"bJ" = (/obj/structure/closet/crate,/obj/machinery/light,/turf/open/floor,/area/deathmatch)
+"bK" = (/obj/structure/coatrack,/turf/open/floor,/area/deathmatch)
+"bL" = (/obj/effect/decal/cleanable/blood/splatter,/turf/open/floor/plating/ground/dirtgrassborder{dir = 8},/area/deathmatch)
+"bM" = (/obj/machinery/light,/turf/open/shuttle/brig,/area/deathmatch)
+"bN" = (/obj/item/multitool,/turf/open/floor,/area/deathmatch)
+"bO" = (/obj/structure/closet/fireaxecabinet{pixel_y = 32},/turf/open/floor,/area/deathmatch)
+"bP" = (/obj/structure/closet/firecloset,/turf/open/floor,/area/deathmatch)
+"bQ" = (/obj/structure/window/shuttle,/obj/structure/grille,/turf/open/floor/plating,/area/deathmatch)
+"bR" = (/obj/structure/flora/tree/jungle/small,/turf/open/ground/grass,/area/deathmatch)
+"bS" = (/obj/machinery/light{dir = 8},/obj/structure/table,/turf/open/floor,/area/deathmatch)
+"bT" = (/obj/effect/ai_node,/turf/open/floor,/area/deathmatch)
+"bU" = (/obj/structure/bed/chair/dropship/passenger{dir = 8},/obj/effect/landmark/deathmatch,/turf/open/shuttle/brig,/area/deathmatch)
+"bV" = (/obj/effect/decal/cleanable/blood/splatter,/turf/open/shuttle/brig,/area/deathmatch)
+"bW" = (/obj/structure/rack,/turf/open/floor,/area/deathmatch)
+"bX" = (/obj/structure/rack,/obj/item/storage/belt/champion,/turf/open/floor,/area/deathmatch)
+"bY" = (/obj/structure/rack,/obj/item/storage/box/MRE,/obj/item/storage/box/MRE,/obj/item/storage/box/MRE,/obj/item/storage/box/MRE,/turf/open/floor,/area/deathmatch)
+"bZ" = (/obj/structure/bed/chair/dropship/passenger{dir = 8},/obj/machinery/light{dir = 4},/turf/open/shuttle/brig,/area/deathmatch)
+"ca" = (/obj/structure/rack,/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,/turf/open/floor,/area/deathmatch)
+"cb" = (/obj/structure/rack,/obj/item/storage/box/quickclot,/turf/open/floor,/area/deathmatch)
+"cc" = (/obj/structure/rack,/obj/item/storage/firstaid/regular,/turf/open/floor,/area/deathmatch)
+"cd" = (/obj/structure/rack,/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,/turf/open/floor,/area/deathmatch)
+"ce" = (/obj/structure/bed/chair/dropship/passenger{dir = 4},/obj/effect/landmark/deathmatch,/turf/open/shuttle/brig,/area/deathmatch)
+"cf" = (/obj/structure/rack,/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,/turf/open/floor,/area/deathmatch)
+"cg" = (/obj/structure/rack,/obj/item/storage/belt/utility/full,/turf/open/floor,/area/deathmatch)
+"ch" = (/obj/structure/closet/walllocker/hydrant/full{dir = 1},/turf/open/shuttle/brig,/area/deathmatch)
+"ci" = (/obj/structure/closet/walllocker/medical_wall/full{icon_state = "medical_wall"; dir = 1},/turf/open/floor{icon_state = "panelscorched"},/area/deathmatch)
+"cj" = (/obj/structure/closet/toolcloset,/turf/open/floor,/area/deathmatch)
+"ck" = (/obj/structure/table,/obj/item/storage/box/matches,/turf/open/floor,/area/deathmatch)
+"cl" = (/obj/structure/table,/obj/machinery/light,/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,/turf/open/floor,/area/deathmatch)
+"cm" = (/obj/structure/grille/broken,/turf/open/shuttle/brig,/area/deathmatch)
+"cn" = (/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,/turf/open/ground/river,/area/deathmatch)
+"co" = (/obj/structure/largecrate/guns,/obj/item/tool/crowbar,/turf/open/ground/grass,/area/deathmatch)
+"cs" = (/obj/structure/flora/tree/jungle,/turf/open/ground/grass,/area/deathmatch)
+"cy" = (/turf/open/floor/plating/dmg3,/area/deathmatch)
+"do" = (/obj/effect/landmark/weapon_spawn/tier5_weapon_spawn,/turf/open/ground/river,/area/deathmatch)
+"dw" = (/turf/open/floor/plating/ground/dirtgrassborder{dir = 4},/area/deathmatch)
+
+(1,1,1) = {"
+aaababababababababababababababababababababababababababababababababababababababababababababab
+aaabacbububububububububububububububuaedwadanaiaiaiajadaUaebububububububububububububububuafab
+aaabbubububububububububububuahbububuaedwadanaiaiaiajadaUaebububububububububububuakbubuahbuab
+aaabbubuahbubububububububububububuakbudwadanaialaiajadaUbubububuamamaoamatamambubububububuab
+aaabbububububuaububRbububububububububudwadanaiaiaiajadaUbububuamamavawamaxayamambubRbububuab
+aaabbubububububuazbubububububRbubububudwadaAaiaiaiajadaUbubuauamavawaBaCawawayambububububuab
+aaabbububububububRbuakbububububububuaeaDadanaiaiaiajadaUaebubuamamamawaEawamamambububububuab
+aaabbububububububububububububububuaeaedwadanaiaFaiajadaUaebubuamaHamaIamaIamaHamahbubububuab
+aaabbubuahasasasasasasasasbububuaeaeaJaKadanaiaiaiajadaUaeakbuaLawaMawamawaNawaLbubububRbuab
+aaabbubuasasaOaPaQaRaSaTasasbubuaeaJaKadadanaiaiaiajadaUaebubuaLawawaVamaWawaXaLbububububuab
+aaabbubuasaYaYaYaYaYaYaYaYasbubuaedwadadadanaiaiaiajadaUaebubuamawaxayamavawawambububububuab
+aaabbubuasaYaZaYaZaYaZbaaYasbubuaedwadagaGbbaiaiaiajadaUbububuamavawawbcbdcyayambububububuab
+aaabbububeaYaYaYaYaYbgaYaYbebubuaedwadanaiaiaiaiaiajadaUbububuamambAbtawbhawamambububububuab
+aaabbubuasbiaYaZaYaZaYaZbjasbubuaedwadanaiaialapaqaradaUaebububuamaIambzbtawbtbtbububububuab
+aaabbububeaYaYaYaYaYaYaYaYbebububudwadanaiaiaiajadadadaUaebububuamawcyawbzawbtbububRbububuab
+aaabakbuasaYaZaYaZaYaZaYaYasbububudwadanaiaiaiajadadbkbfaebubububtbtbtbtbubtbtbubububububuab
+aaabbubuasaYbaaYaYaYaYaYaYasbubuaedwadanaidoaiajadbkbfaeaebubububububublbtbtbububububububuab
+aaabbubuasbgaYaYbmbnaYaYaYasbubuaedwadanaiboaiajadaUaeaebububububububpbubububububuahbububuab
+aaabbubuasasbqaYasasbqaYasasbuakaedwadanaiaiaiajadaUaebububuahbububublbubrbubububububububuab
+aaabbuaubuasaYbgaYbsaYaYasbububuaedwadanaiaiaiajadaUaebubububububububububububRbububuaububuab
+aaabbubububvbwaYaYaYbxbybvbuahbuaedwadanaialaiajadaUaebubububububublbububtbtbtbubububububuab
+aaabbubuahbvbBaYbCaYaYbDbvbubrbuaedwadanaiaiaiajadaUaebuakcsbububububtbtbtbtbtambububububuab
+aaabbubRbubvbEaYaYbgbxbybvbububuaedwadanaiaiaiajadaUaebububublbububtbtbtbtbzawambubRbububuab
+aaabbubububvbFaYaYaYaYbGbvbubububudwadanaiaFaiajadaUbububububububuambAbHawbIawambububububuab
+aaabbububuasaYaYbJbKaYaYasbubububudwadanaiaiaiajadaUbublbububuakamamaIamaIamaIamambubububuab
+aaabbubuasasbqaYasasbqaYasasbububudwadanaiaiaiajadbLbububRbuahbuamavawawbMawawayambubububuab
+aaabbubuasaSaYaYbNbOaYaYbPasbubuaedwadanaiaiaiajadaUaebububububuaoavcyayamavawaybQbubububuab
+aaabaubuasbSaYbgbTaYaYbabjasbubuaedwadanaiboaiajadaUaebububububuamaXaBbUamavbVawambubububuab
+aaabbubuasaYaYbWbXbWbYaYaYasakbuaedwadanaiaiaiajadaUaebububububuaLawawbZamaWawawaLbubububuab
+aaabbububeaYaYcaaYaYcbaYaYbebubuaedwadanaFaiaiajadaUaebubRbububuaLbAawayamavawawaLbubububuab
+aaabbubuasbiaYccaYbgcdaYbjasbubuaedwadanaiaiaiajadaUaeakbubuahbuamawawayamceawawambubububuab
+aaabbububeaYaYcfbWcgcdaYaYbebububudwadanalaiaiajadaUbubububububuamavawawbcawawayambubububuab
+aaabbubuasaYaYaYaYaYaYaYaYasbububudwadanaiaiaiajadaUbubububububuamamchawawaXciamambubuahbuab
+aaabbubuasascjaSckclaScjasasbubuaedwadanaiaiaiajadaUaebubububububuamamatamcmamambububububuab
+aaabbuaubuasasasasasasasasbububuaedwadanaicnaiajadaUaebubububuakbububububububububububububuab
+aaabbububuakbubububububububububuaedwadanaiaialajadaUaebubRbububuaububububububububububububuab
+aaabcobububububuahbubuakbubububuaedwadanaiaiaiajadaUaebubububububububububububububRbububucoab
+aaababababababababababababababababababababababababababababababababababababababababababababab
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+"}
