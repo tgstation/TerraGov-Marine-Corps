@@ -1,0 +1,5 @@
+author: "mokulus"
+delete-after: True
+changes: 
+  - bugfix: "synthetics' paygrade now displays properly"
+  - code_imp: "remove /datum/species/show_paygrade"
