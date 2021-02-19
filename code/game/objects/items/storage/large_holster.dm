@@ -64,12 +64,17 @@
 	base_icon = "machete_holster"
 	icon_state = "machete_holster"
 	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_BACK
-	can_hold = list(/obj/item/weapon/claymore/mercsword/machete)
+	can_hold = list(/obj/item/weapon/claymore/mercsword/machete, /obj/item/weapon/claymore/harvester)
 
 /obj/item/storage/large_holster/machete/full/Initialize()
 	. = ..()
 	icon_state = "machete_holster_full"
 	new /obj/item/weapon/claymore/mercsword/machete(src)
+
+/obj/item/storage/large_holster/machete/full_harvester/Initialize()
+	. = ..()
+	icon_state = "machete_holster_full"
+	new /obj/item/weapon/claymore/harvester(src)
 
 /obj/item/storage/large_holster/katana
 	name = "\improper katana scabbard"

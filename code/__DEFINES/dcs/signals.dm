@@ -11,6 +11,7 @@
 #define COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE "!open_timed_shutters_late"
 #define COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND "!open_timed_shutters_xeno_hivemind"
 #define COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH "!open_timed_shutters_crash"
+#define COMSIG_GLOB_OPEN_SHUTTERS_EARLY "!open_shutters_early"
 
 #define COMSIG_GLOB_REMOVE_VOTE_BUTTON "!remove_vote_button"
 #define COMSIG_GLOB_NUKE_START "!nuke_start"
@@ -227,6 +228,8 @@
 #define COMSIG_ITEM_SHIFTCLICKON "item_shiftclickon"					//from base of mob/living/carbon/human/ShiftClickOn(): (/atom, /mob)
 #define COMSIG_ITEM_RIGHTCLICKON "item_rightclickon"					//from base of mob/living/carbon/human/RightClickOn(): (/atom, /mob)
 	#define COMPONENT_ITEM_CLICKON_BYPASS (1<<0)
+
+#define COMSIG_NEW_REAGENT_ADD	"new_reagent_add"					//from add_reagent(): (/datum/reagent, amount); it is sent when a reagent gets added for the first time to a holder
 
 #define COMSIG_CLOTHING_MECHANICS_INFO "clothing_mechanics_info"	//from base of /obj/item/clothing/get_mechanics_info()
 	#define COMPONENT_CLOTHING_MECHANICS_TINTED	(1<<0)
@@ -534,6 +537,8 @@
 #define COMSIG_XENOABILITY_QUEEN_GIVE_PLASMA "xenoability_queen_give_plasma"
 #define COMSIG_XENOABILITY_QUEEN_GIVE_ORDER "xenoability_queen_give_order"
 #define COMSIG_XENOABILITY_DEEVOLVE "xenoability_deevolve"
+#define COMSIG_XENOABILITY_CORRUPT_GENERATOR "xenoability_corrupt_generator"
+
 #define COMSIG_XENOABILITY_QUEEN_LARVAL_GROWTH "xenoability_queen_larval_growth"
 
 #define COMSIG_XENOABILITY_LAY_HIVEMIND "xenoability_lay_hivemind"
@@ -563,6 +568,7 @@
 // remote control signals
 #define COMSIG_REMOTECONTROL_TOGGLE "remotecontrol_toggle"
 #define COMSIG_REMOTECONTROL_UNLINK "remotecontrol_unlink"
+#define COMSIG_REMOTECONTROL_CHANGED "remotecontrol_changed"
 
 // human signals for keybindings
 #define COMSIG_KB_QUICKEQUIP "keybinding_quickequip"
