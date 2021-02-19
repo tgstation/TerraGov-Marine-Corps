@@ -2856,16 +2856,6 @@
 	},
 /turf/open/floor/prison/red,
 /area/sulaco/hallway/central_hall)
-"anJ" = (
-/obj/structure/table/mainship,
-/obj/item/tool/crowbar,
-/obj/item/tool/crowbar,
-/obj/item/tool/crowbar,
-/obj/item/tool/screwdriver,
-/obj/item/tool/screwdriver,
-/obj/item/tool/screwdriver,
-/turf/open/floor/prison,
-/area/sulaco/cargo)
 "anK" = (
 /obj/structure/cable,
 /obj/structure/cable,
@@ -11307,10 +11297,6 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/hallway/central_hall3)
-"dXl" = (
-/obj/machinery/vending/MarineMed,
-/turf/open/floor/prison,
-/area/sulaco/cargo)
 "dZI" = (
 /obj/structure/table/mainship,
 /obj/item/folder/yellow,
@@ -11358,11 +11344,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/hallway/central_hall3)
-"edg" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/closet/crate/ammo,
-/turf/open/floor/prison,
-/area/sulaco/cargo)
 "edm" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1,
@@ -13159,7 +13140,6 @@
 /area/space)
 "jCJ" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/obj/machinery/vending/armor_supply,
 /turf/open/floor/prison,
 /area/sulaco/cargo)
 "jFN" = (
@@ -13318,10 +13298,6 @@
 "kbB" = (
 /turf/open/floor/mainship_hull/gray,
 /area/mainship/shipboard/weapon_room)
-"kbH" = (
-/obj/structure/closet/crate/weapon,
-/turf/open/floor/prison,
-/area/sulaco/cargo)
 "kcn" = (
 /obj/machinery/computer3/server/rack,
 /obj/machinery/light/small{
@@ -14207,6 +14183,7 @@
 /turf/open/floor/prison,
 /area/sulaco/maintenance/lower_maint)
 "mte" = (
+/obj/machinery/vending/MarineMed,
 /turf/open/floor/prison/red{
 	dir = 4
 	},
@@ -16680,13 +16657,6 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor/cult,
 /area/sulaco/morgue)
-"szj" = (
-/obj/machinery/light,
-/obj/structure/sign/ROsign,
-/turf/open/floor/prison/red{
-	dir = 1
-	},
-/area/sulaco/cargo)
 "szr" = (
 /obj/structure/bed,
 /obj/effect/landmark/start/job/pilotofficer,
@@ -16750,12 +16720,6 @@
 "sGG" = (
 /turf/closed/wall/mainship/gray/outer,
 /area/space)
-"sId" = (
-/obj/structure/table/mainship,
-/obj/item/tool/hand_labeler,
-/obj/item/tool/hand_labeler,
-/turf/open/floor/prison,
-/area/sulaco/cargo)
 "sIy" = (
 /obj/effect/decal/siding{
 	dir = 5
@@ -43275,10 +43239,10 @@ pnM
 ajb
 eul
 amB
-edg
-anJ
-sId
-kbH
+amB
+amB
+amB
+amB
 amB
 amB
 aWG
@@ -43789,10 +43753,10 @@ bPM
 eOE
 eul
 amB
-amB
+jPn
 uig
 amB
-amB
+lvm
 amB
 bkk
 aWG
@@ -44303,12 +44267,12 @@ bPM
 bPM
 mZj
 alx
-jPn
+amB
 aoM
 alx
-lvm
-szj
-lpY
+amB
+jSM
+amB
 aWG
 xKR
 bIb
@@ -44560,12 +44524,12 @@ nRb
 bjU
 lpY
 whS
-dXl
+amo
 aoM
 alx
-dXl
+amo
 jSM
-ocn
+amB
 aWG
 xKR
 aWG
@@ -44817,12 +44781,12 @@ vRR
 sPk
 uOd
 alx
-amo
+sSv
 aoM
 alx
-amo
+sSv
 jSM
-ocn
+amB
 aWG
 xKR
 aWG
@@ -45077,9 +45041,9 @@ ipz
 jCJ
 pwD
 alx
-sSv
+amB
 jSM
-ocn
+amB
 iAq
 tvS
 aWG
