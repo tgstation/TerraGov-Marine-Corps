@@ -52,8 +52,8 @@
 	var/jump_cooldown = 2 SECONDS
 	///Is this hugger intended for combat?
 	var/combat_hugger = FALSE
-	///Danger overlay which we remove after the hugger has lept/died
-	var/obj/effect/overlay/danger/danger_overlay
+	///When TRUE hugger is about to jump
+	var/about_to_jump = FALSE
 
 
 /obj/item/clothing/mask/facehugger/Initialize(mapload, input_hivenumber)
@@ -107,6 +107,7 @@
 		if(X.xeno_caste.caste_flags & CASTE_CAN_HOLD_FACEHUGGERS)
 			deltimer(jumptimer)
 			jumptimer = null
+			remove_danger_overlay() //Remove the exclamation overlay as we pick it up
 			return ..() // These can pick up huggers.
 		else
 			return FALSE // The rest can't.
@@ -182,19 +183,26 @@
 		return TRUE
 	return FALSE
 
+/obj/item/clothing/mask/facehugger/update_overlays()
+	. = ..()
+	if(overlays)
+		cut_overlays()
+
+	if(!about_to_jump)
+		return
+	add_overlay(image('icons/obj/items/grenade.dmi', "danger"))
+
 ///Applies an alert overlay when the hugger is about to jump
 /obj/item/clothing/mask/facehugger/proc/apply_danger_overlay()
-	if(stat == DEAD || stat == UNCONSCIOUS) //It's dead or inactive; don't bother
+	if(stat == DEAD || stat == UNCONSCIOUS || !isturf(loc)) //It's dead or inactive or not on a turf don't bother
 		return
-	overlays -= danger_overlay
-	if(!danger_overlay)
-		danger_overlay = new/obj/effect/overlay/danger
-	overlays += danger_overlay
+	about_to_jump = TRUE
+	update_overlays()
 
 ///Remove the hugger's alert overlay
 /obj/item/clothing/mask/facehugger/proc/remove_danger_overlay()
-	overlays -= danger_overlay
-	danger_overlay = null
+	about_to_jump = FALSE
+	update_overlays()
 
 /obj/item/clothing/mask/facehugger/proc/check_lifecycle()
 
@@ -501,7 +509,7 @@
 	else
 		reset_attach_status(as_planned)
 		playsound(loc, 'sound/voice/alien_facehugger_dies.ogg', 25, 1)
-		addtimer(CALLBACK(src, .proc/go_active),activate_time)
+		addtimer(CALLBACK(src, .proc/go_active), activate_time)
 		update_icon()
 
 	if(as_planned)
@@ -659,12 +667,6 @@
 	melt_away()
 
 	return TRUE
-
-
-/obj/item/clothing/mask/facehugger/acid/kill_hugger()
-	. = ..()
-	new /obj/effect/xenomorph/spray(loc, 8 SECONDS, 16) //Make a splatter on death
-	melt_away()
 
 
 /obj/item/clothing/mask/facehugger/resin

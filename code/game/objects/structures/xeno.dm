@@ -132,7 +132,7 @@
 /obj/effect/alien/resin/trap/Initialize(mapload)
 	. = ..()
 	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, .proc/shuttle_crush)
-	RegisterSignal(get_turf(src), COMSIG_ATOM_ENTERED, .proc/trigger_hugger_trap) //Set up the trap signal on our turf
+	RegisterSignal(src, COMSIG_MOVABLE_CROSSED_BY, .proc/trigger_hugger_trap) //Set up the trap signal on our turf
 
 
 /obj/effect/alien/resin/trap/obj_destruction(damage_amount, damage_type, damage_flag)
