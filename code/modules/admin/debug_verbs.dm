@@ -91,7 +91,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	var/procpath
 	if(targetselected && !hascall(target, procname))
 		to_chat(usr,
-			type = MESSAGE_TYPE_DEBUG
+			type = MESSAGE_TYPE_DEBUG,
 			html = "<font color='red'>Error: callproc(): type [target.type] has no [proctype] named [procname].</font>",)
 		return
 	else if(!targetselected)
@@ -187,7 +187,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 
 	if(!ispath(/mob) && !ispath(/obj))
 		to_chat(usr,
-			type = MESSAGE_TYPE_DEBUG
+			type = MESSAGE_TYPE_DEBUG,
 			html = "<span class = 'warning'>Only works for types of /obj or /mob.</span>")
 		return
 

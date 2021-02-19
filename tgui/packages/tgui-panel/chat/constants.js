@@ -86,8 +86,8 @@ export const MESSAGE_TYPES = [
   },
   {
     type: MESSAGE_TYPE_ADMINPM,
-    name: 'Admin PMs',
-    description: 'Messages to/from admins (adminhelp)',
+    name: 'Staff PMs',
+    description: 'Messages to/from staff (adminhelp/mentorhelp)',
     selector: '.staffpmin, .staffpmout, .adminhelp, .adminnotice',
   },
   {

@@ -514,7 +514,7 @@
 		if(check_other_rights(C, R_ADMIN, FALSE))
 			to_chat(C,
 				type = MESSAGE_TYPE_MENTORCHAT,
-				html = "<span class='[color]'><span class='prefix'>[holder.rank.name]:</span> [ADMIN_TPMONTY(mob)]: <span class='message linkify'>[msg]</span></span>"
+				html = "<span class='[color]'><span class='prefix'>[holder.rank.name]:</span> [ADMIN_TPMONTY(mob)]: <span class='message linkify'>[msg]</span></span>",
 				confidential = TRUE)
 		else if(is_mentor(C) && mob.stat == DEAD)
 			to_chat(C,
@@ -763,7 +763,7 @@
 	if(prefs.muted & MUTE_ADMINHELP)
 		to_chat(src,
 			type = MESSAGE_TYPE_ADMINPM,
-			"<span class='warning'>Error: You are unable to use admin PMs (muted).</span>",
+			html = "<span class='warning'>Error: You are unable to use admin PMs (muted).</span>",
 			confidential = TRUE)
 		return
 
@@ -987,7 +987,7 @@
 						html = "<font color='red'>[holder.fakekey ? "Administrator" : holder.rank.name] PM from-<b>[key_name(src, recipient, FALSE)]</b>: <span class='linkify'>[msg]</span></font>",
 						confidential = TRUE)
 					to_chat(recipient,
-						type = MESSAGE_TYPE_ADMINPM
+						type = MESSAGE_TYPE_ADMINPM,
 						html = "<font color='red'><i>Click on the staff member's name to reply.</i></font>",
 						confidential = TRUE)
 					to_chat(src,
@@ -1021,7 +1021,7 @@
 
 			else		//neither are admins
 				to_chat(src,
-					type = MESSAGE_TYPE_ADMINPM
+					type = MESSAGE_TYPE_ADMINPM,
 					html = "<span class='warning'>Error: Non-staff to non-staff communication is disabled.</span>",
 					confidential = TRUE)
 				return
@@ -1175,7 +1175,7 @@
 		confidential = TRUE)
 	to_chat(C,
 		type = MESSAGE_TYPE_ADMINPM,
-		html = "<font color='red'>Admin PM from-<b><a href='?priv_msg=[stealthkey]'>[adminname]</A></b>: [msg]</font>"
+		html = "<font color='red'>Admin PM from-<b><a href='?priv_msg=[stealthkey]'>[adminname]</A></b>: [msg]</font>",
 		confidential = TRUE)
 	to_chat(C,
 		type = MESSAGE_TYPE_ADMINPM,
