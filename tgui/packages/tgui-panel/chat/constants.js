@@ -33,6 +33,7 @@ export const MESSAGE_TYPE_COMBAT = 'combat';
 export const MESSAGE_TYPE_ADMINCHAT = 'adminchat';
 export const MESSAGE_TYPE_MENTORCHAT = 'modchat';
 export const MESSAGE_TYPE_ADMINLOG = 'adminlog';
+export const MESSAGE_TYPE_STAFFLOG = 'stafflog';
 export const MESSAGE_TYPE_ATTACKLOG = 'attacklog';
 export const MESSAGE_TYPE_DEBUG = 'debug';
 
@@ -69,7 +70,7 @@ export const MESSAGE_TYPES = [
     type: MESSAGE_TYPE_WARNING,
     name: 'Warnings',
     description: 'Urgent messages from the game and items',
-    selector: '.warning:not(.pm), .critical, .userdanger, .italics',
+    selector: '.warning, .critical, .userdanger, .italics',
   },
   {
     type: MESSAGE_TYPE_DEADCHAT,
@@ -120,6 +121,12 @@ export const MESSAGE_TYPES = [
     name: 'Admin Log',
     description: 'ADMIN LOG: Urist McAdmin has jumped to coordinates X, Y, Z',
     selector: '.log_message',
+    admin: true,
+  },
+  {
+    type: MESSAGE_TYPE_STAFFLOG,
+    name: 'Staff Log',
+    description: 'STAFF LOG: 5Head has solved the mentor ticket #1',
     admin: true,
   },
   {
