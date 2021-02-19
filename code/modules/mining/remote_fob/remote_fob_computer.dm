@@ -13,11 +13,9 @@
 	var/drone_creation_allowed = TRUE
 	var/obj/docking_port/stationary/marine_dropship/spawn_spot
 	var/datum/action/innate/remote_fob/metal_cade/metal_cade
-	var/max_metal = 50 //mostly to prevent jokers collecting all the metal and dumping it in
-	var/metal_remaining = 0
+	var/metal_remaining = 200
 	var/datum/action/innate/remote_fob/plast_cade/plast_cade
-	var/max_plasteel = 50
-	var/plasteel_remaining = 0
+	var/plasteel_remaining = 100
 	var/datum/action/innate/remote_fob/toggle_wiring/toggle_wiring //whether or not new barricades will be wired
 	var/do_wiring = FALSE
 	var/datum/action/innate/remote_fob/sentry/sentry
@@ -74,9 +72,6 @@
 /obj/machinery/computer/camera_advanced/remote_fob/interact(mob/living/user)
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
-	if(isAI(user))
-		to_chat(user, "<span class='warning'>#ERROR! Drone terminated AI connection on handshake. Error thrown: 'We don't want machines building machines, but good try.'</span>")
-		return // In order to allow AIs to use this update_sight() needs to be refactored to properly handle living
 	if(!allowed(user))
 		to_chat(user, "<span class='warning'>Access Denied!</span>")
 		return
