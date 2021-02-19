@@ -843,7 +843,7 @@ function checkchangelog($payload, $compile = true) {
 			case 'qol':
 				if($item != 'made something easier to use') {
 					$tags[] = 'Quality of Life';
-					$currentchangelogblock[] = array('type' => 'qol', 'body' => $item)
+					$currentchangelogblock[] = array('type' => 'qol', 'body' => $item);
 				}
 				break;
 			case 'soundadd':
