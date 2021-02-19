@@ -258,7 +258,6 @@
 
 /datum/status_effect/healing_infusion/on_creation(mob/living/new_owner, set_duration = HIVELORD_HEALING_INFUSION_DURATION, stacks_to_apply = HIVELORD_HEALING_INFUSION_TICKS)
 	if(!isxeno(new_owner))
-		CRASH("something applied [id] on a nonxeno, dont do that")
 		return
 
 	duration = set_duration
