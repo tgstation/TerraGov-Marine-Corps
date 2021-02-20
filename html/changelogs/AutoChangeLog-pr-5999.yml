@@ -1,5 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - refactor: "Lighting code of items is now consistent"
-  - refactor: "Colony floodlights are now floodlight, and the code is better"
