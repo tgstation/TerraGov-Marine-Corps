@@ -1,0 +1,4 @@
+author: "XSlayer300"
+delete-after: True
+changes: 
+  - bugfix: "Shipside self-destruct animation has been fixed."
