@@ -1,4 +1,0 @@
-author: "Walarks"
-delete-after: True
-changes: 
-  - rscdel: "Removed 20% chance to miss melee attack when running"
