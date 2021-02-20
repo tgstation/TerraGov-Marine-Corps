@@ -480,7 +480,7 @@
 		if(check_other_rights(C, R_ASAY, FALSE))
 			to_chat(C,
 				type = MESSAGE_TYPE_ADMINCHAT,
-				html = msg,)
+				html = msg)
 
 
 /client/proc/get_msay()
