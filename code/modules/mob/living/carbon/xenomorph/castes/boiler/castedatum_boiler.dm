@@ -47,7 +47,7 @@
 	max_ammo = 4
 	bomb_strength = 1 //Multiplier to the effectiveness of the boiler glob.
 	bomb_delay = 30 SECONDS
-	
+
 	acid_spray_duration = 10 SECONDS
 	acid_spray_damage = 16
 	acid_spray_damage_on_hit = 35
@@ -55,8 +55,6 @@
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/regurgitate,
-		/datum/action/xeno_action/activable/headbite,
 		/datum/action/xeno_action/place_acidwell,
 		/datum/action/xeno_action/activable/corrosive_acid/strong,
 		/datum/action/xeno_action/create_boiler_bomb,
@@ -136,7 +134,7 @@
 
 	// *** Ranged Attack *** //
 	spit_delay = 2 SECONDS
-	
+
 	acid_spray_damage_on_hit = 43
 	acid_spray_structure_damage = 61
 

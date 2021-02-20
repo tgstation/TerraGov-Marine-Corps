@@ -596,32 +596,41 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	icon_state = "flashlight"
 	attach_icon = "flashlight_a"
 	light_mod = 6
+	light_system = MOVABLE_LIGHT
 	slot = "rail"
 	materials = list(/datum/material/metal = 100, /datum/material/glass = 20)
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION
 	attachment_action_type = /datum/action/item_action/toggle
 	activation_sound = 'sound/items/flashlight.ogg'
 
-/obj/item/attachable/flashlight/activate_attachment(mob/living/user, turn_off)
-	if(turn_off && !(master_gun.flags_gun_features & GUN_FLASHLIGHT_ON))
-		return
 
+/obj/item/attachable/flashlight/activate_attachment(mob/living/user)
+	turn_light(user, !light_on)
+
+/obj/item/attachable/flashlight/turn_light(mob/user, toggle_on)
+	. = ..()
+	
+	if(. != CHECKS_PASSED)
+		return
+	
 	if(ismob(master_gun.loc) && !user)
 		user = master_gun.loc
-
-	if(master_gun.flags_gun_features & GUN_FLASHLIGHT_ON)
+	if(!toggle_on & light_on)
 		icon_state = "flashlight"
 		attach_icon = "flashlight_a"
 		master_gun.set_light_range(0)
 		master_gun.set_light_power(0)
 		master_gun.set_light_on(FALSE)
-	else
+		light_on = FALSE
+	else if(toggle_on & !light_on)
 		icon_state = "flashlight-on"
 		attach_icon = "flashlight_a-on"
 		master_gun.set_light_range(light_mod)
 		master_gun.set_light_power(3)
 		master_gun.set_light_on(TRUE)
-
+		light_on = TRUE
+	else
+		return
 	master_gun.flags_gun_features ^= GUN_FLASHLIGHT_ON
 
 	master_gun.update_attachable(slot)
@@ -629,10 +638,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	for(var/X in master_gun.actions)
 		var/datum/action/A = X
 		A.update_button_icon()
-	return TRUE
-
-
-
+	
 
 /obj/item/attachable/flashlight/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -1762,4 +1768,3 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	for(var/X in master_gun.actions)
 		var/datum/action/A = X
 		A.update_button_icon()
-

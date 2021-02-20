@@ -673,7 +673,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	name = "lever action rifle"
 	desc = "A .44 magnum lever action rifle with side loading port. It has a low fire rate, but it packs quite a punch in hunting."
 	icon_state = "mares_leg"
-	item_state = "mares_leg" //With thanks to D4n0w4r https://youtu.be/PV4uWGGb4xM
+	item_state = "mbx900"
 	fire_sound = 'sound/weapons/guns/fire/leveraction.ogg'//I like how this one sounds.
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	reload_sound = 'sound/weapons/guns/interact/mosin_reload.ogg'

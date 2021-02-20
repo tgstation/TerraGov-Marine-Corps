@@ -121,11 +121,11 @@
 			target.status = L2.status
 			target.switchcount = L2.switchcount
 			target.brightness = L2.brightness
-			target.on = target.has_power()
+			target.light_on = target.has_power()
 			target.update()
 			qdel(L2)
 
-			if(target.on && target.rigged)
+			if(target.light_on && target.rigged)
 				target.explode()
 			return
 
