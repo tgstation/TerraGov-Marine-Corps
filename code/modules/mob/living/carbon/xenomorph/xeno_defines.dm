@@ -289,10 +289,6 @@
 	var/fortify = 0
 	var/crest_defense = 0
 
-	// Hivelord vars
-	///Whether or not the Hivelord's healing infusion is active on this target.
-	var/infusion_active = 0
-
 	//Leader vars
 	var/leader_aura_strength = 0 //Pheromone strength inherited from Queen
 	var/leader_current_aura = "" //Pheromone type inherited from Queen
