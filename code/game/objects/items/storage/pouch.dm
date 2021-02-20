@@ -483,21 +483,23 @@
 		/obj/item/reagent_containers/pill,
 		/obj/item/reagent_containers/glass/bottle,
 		/obj/item/reagent_containers/syringe,
+		/obj/item/storage/syringe_case,
 		/obj/item/storage/pill_bottle,
 		/obj/item/stack/medical,
 		/obj/item/flashlight/pen,
 		/obj/item/storage/pill_bottle/packet,
 		/obj/item/reagent_containers/hypospray,
+		/obj/item/tweezers,
 	)
 
 /obj/item/storage/pouch/medkit/full/Initialize()
 	. = ..()
-	new /obj/item/healthanalyzer(src)
-	new /obj/item/stack/medical/advanced/bruise_pack(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced
+	new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus
+	new /obj/item/reagent_containers/hypospray/autoinjector/dexalinplus
+	new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus
 	new /obj/item/stack/medical/advanced/bruise_pack(src)
 	new /obj/item/stack/medical/advanced/ointment(src)
-	new /obj/item/stack/medical/advanced/ointment(src)
-	new /obj/item/stack/medical/splint(src)
 	new /obj/item/stack/medical/splint(src)
 
 /obj/item/storage/pouch/medkit/equippedcorpsman/Initialize()

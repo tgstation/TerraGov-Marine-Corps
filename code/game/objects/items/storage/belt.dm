@@ -120,6 +120,7 @@
 		/obj/item/defibrillator,
 		/obj/item/storage/pill_bottle/packet,
 		/obj/item/roller,
+		/obj/item/tweezers,
 	)
 
 /obj/item/storage/belt/medical/Initialize()
@@ -157,6 +158,8 @@
 		/obj/item/reagent_containers/hypospray/autoinjector,
 		/obj/item/storage/pill_bottle/packet,
 		/obj/item/stack/medical,
+		/obj/item/healthanalyzer,
+		/obj/item/tweezers,
 	)
 
 /obj/item/storage/belt/combatLifesaver/Initialize()  //The belt, with all it's magic inside!
@@ -173,13 +176,13 @@
 	new /obj/item/storage/pill_bottle/tramadol(src)
 	new /obj/item/storage/pill_bottle/inaprovaline(src)
 	new /obj/item/storage/pill_bottle/peridaxon(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
+	new /obj/item/storage/pill_bottle/dexalin(src)
+	new /obj/item/storage/pill_bottle/quickclot
+	new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced(src)
 	new /obj/item/storage/syringe_case/combat(src)
 	new /obj/item/storage/syringe_case/combat(src)
 	new /obj/item/storage/syringe_case/combat(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/quickclot(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/dexalinplus(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/hypervene(src)
 
@@ -200,6 +203,8 @@
 		/obj/item/reagent_containers/hypospray/autoinjector,
 		/obj/item/storage/pill_bottle/packet,
 		/obj/item/stack/medical,
+		/obj/item/healthanalyzer,
+		/obj/item/tweezers,
 	)
 
 /obj/item/storage/belt/medicLifesaver/Initialize()  //The belt, with all it's magic inside!

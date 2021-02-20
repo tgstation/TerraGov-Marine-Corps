@@ -283,7 +283,7 @@
 	list_reagents = list(
 		/datum/reagent/medicine/meralyne = 20,
 		/datum/reagent/medicine/dermaline = 20,
-		/datum/reagent/medicine/oxycodone = 20,
+		/datum/reagent/medicine/tramadol = 20,
 	)
 
 /obj/item/reagent_containers/hypospray/advanced/meraderm
