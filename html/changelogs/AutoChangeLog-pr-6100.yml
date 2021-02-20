@@ -1,0 +1,7 @@
+author: "mokulus"
+delete-after: True
+changes: 
+  - bugfix: "taking over SSD xenos works again"
+  - bugfix: "monkeys can suicide again"
+  - bugfix: "prompt when someone tries to cryo you works again"
+  - bugfix: "AI can change display status again"
