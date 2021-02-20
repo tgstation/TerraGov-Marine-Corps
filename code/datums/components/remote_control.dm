@@ -44,12 +44,12 @@
 			click_proc = null
 
 ///called when a shooty turret attempts to shoot by click
-/datum/component/remote_control/proc/uv_handle_click(datum/source, atom/target, mob/user)
+/datum/component/remote_control/proc/uv_handle_click(mob/user, atom/target, params)
 	var/obj/vehicle/unmanned/T = controlled
 	T.fire_shot(target, user)
 
 ///Called when a explosive vehicle clicks and tries to explde itself
-/datum/component/remote_control/proc/uv_handle_click_explosive(datum/source, atom/target, mob/user)
+/datum/component/remote_control/proc/uv_handle_click_explosive(mob/user, atom/target, params)
 	explosion(get_turf(controlled), 1, 2, 3, 4)
 	remote_control_off()
 
@@ -60,7 +60,6 @@
 		remote_control_on(user)
 	else
 		remote_control_off()
-	SEND_SIGNAL(controlled, COMSIG_REMOTECONTROL_CHANGED, is_controlling, user)
 
 ///Turns the remote control on
 /datum/component/remote_control/proc/remote_control_on(mob/newuser)
@@ -72,24 +71,27 @@
 	newuser.remote_control = controlled	//Movement inputs are handled by the controlled thing in relaymove()
 	newuser.reset_perspective(controlled)
 	user = newuser
-	RegisterSignal(newuser, COMSIG_MOB_MOUSEDOWN, .proc/invoke)
+	SEND_SIGNAL(controlled, COMSIG_REMOTECONTROL_CHANGED, TRUE, user)
+	RegisterSignal(newuser, COMSIG_MOB_CLICKON, .proc/invoke)
 	RegisterSignal(newuser, COMSIG_MOB_LOGOUT, .proc/remote_control_off)
 	RegisterSignal(parent, COMSIG_ITEM_DROPPED, .proc/remote_control_off)
 
 ///Invokes the callback for when the controller clicks
-/datum/component/remote_control/proc/invoke(datum/source, atom/target, mob/user)
+/datum/component/remote_control/proc/invoke(datum/source, atom/target, params)
 	SIGNAL_HANDLER
 	if(target != parent)
-		click_proc?.Invoke(source, target, user)
-	return COMSIG_MOB_CLICK_CANCELED
+		click_proc?.Invoke(source, target, params)
+		return COMSIG_MOB_CLICK_CANCELED
+	return NONE
 
 ///turns remote control off
 /datum/component/remote_control/proc/remote_control_off()
 	SIGNAL_HANDLER
+	SEND_SIGNAL(controlled, COMSIG_REMOTECONTROL_CHANGED, FALSE, user)
 	is_controlling = FALSE
 	user.remote_control = null
 	user.reset_perspective(user)
-	UnregisterSignal(user, COMSIG_MOB_MOUSEDOWN)
+	UnregisterSignal(user, COMSIG_MOB_CLICKON)
 	UnregisterSignal(user, COMSIG_MOB_LOGOUT)
 	UnregisterSignal(parent, COMSIG_ITEM_DROPPED)
 	user = null

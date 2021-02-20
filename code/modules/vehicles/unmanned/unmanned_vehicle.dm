@@ -44,6 +44,11 @@
 		if(TURRET_TYPE_EXPLOSIVE)
 			. += image('icons/obj/unmanned_vehicles.dmi', src, "bomb")
 
+/obj/vehicle/unmanned/examine(mob/user, distance, infix, suffix)
+	. = ..()
+	if(ishuman(user))
+		to_chat(user, "It has [current_rounds] out of [max_rounds] ammo left.")
+
 /obj/vehicle/unmanned/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(!istype(I, /obj/item/uav_turret) && !istype(I, /obj/item/explosive/plastique))
