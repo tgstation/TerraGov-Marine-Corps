@@ -154,6 +154,8 @@
 	else if(_x>=17 && _y>=17)
 		usr.a_intent_change(INTENT_DISARM)
 
+/obj/screen/act_intent/corner/alien
+	screen_loc = ui_acti_alien
 
 /obj/screen/internals
 	name = "toggle internals"
@@ -257,6 +259,7 @@
 
 /obj/screen/mov_intent/alien
 	icon = 'icons/mob/screen/alien.dmi'
+	screen_loc = ui_movi_alien
 
 /obj/screen/rest
 	name = "rest"

@@ -41,9 +41,11 @@
 #define ui_dropbutton "EAST-4:22,1:5"
 #define ui_drop_throw "EAST-1:28,SOUTH+1:7"
 #define ui_acti "EAST-3:24,SOUTH:5"
+#define ui_acti_alien "EAST-2:26,SOUTH:5"
 #define ui_above_movement "EAST-2:26,SOUTH+1:7"
 #define ui_above_intent "EAST-3:24, SOUTH+1:7"
 #define ui_movi "EAST-2:26,SOUTH:5"
+#define ui_movi_alien "EAST -1:28,SOUTH:5"
 #define ui_zonesel "EAST-1:28,SOUTH:5"
 #define ui_acti_alt "EAST-1:28,1:5" //alternative intent switcher for when the interface is hidden (F12)
 #define ui_crafting	"EAST-4:22,SOUTH:5"

@@ -50,7 +50,7 @@
 	var/obj/screen/using
 	var/obj/screen/inventory/inv_box
 
-	using = new /obj/screen/act_intent/corner()
+	using = new /obj/screen/act_intent/corner/alien()
 	using.alpha = ui_alpha
 	using.icon_state = owner.a_intent
 	static_inventory += using
@@ -129,10 +129,6 @@
 	pull_icon.alpha = ui_alpha
 	pull_icon.update_icon(owner)
 	hotkeybuttons += pull_icon
-
-	zone_sel = new /obj/screen/zone_sel/alien()
-	zone_sel.update_icon(owner)
-	static_inventory += zone_sel
 
 /datum/hud/alien/persistent_inventory_update()
 	if(!mymob)

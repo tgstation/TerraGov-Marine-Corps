@@ -80,10 +80,8 @@
 		affecting = get_limb(ran_zone(null, 0))
 	else if(set_location)
 		affecting = get_limb(set_location)
-	else if(SEND_SIGNAL(X, COMSIG_XENOMORPH_ZONE_SELECT) & COMSIG_ACCURATE_ZONE)
-		affecting = get_limb(X.zone_selected)
 	else
-		affecting = get_limb(ran_zone(X.zone_selected, 70))
+		affecting = get_limb(ran_zone(X.zone_selected, 70))//Will be chest by default, can't be change by xenos
 	if(!affecting || (ignore_destroyed && !affecting.is_usable())) //No organ or it's destroyed, just get a random one
 		affecting = get_limb(ran_zone(null, 0))
 	if(!affecting || (no_head && affecting == get_limb("head")) || (ignore_destroyed && !affecting.is_usable()))
@@ -156,7 +154,7 @@
 
 	return TRUE
 
-/mob/living/silicon/attack_alien_disarm(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
+/mob/living/silicon/attack_alien_disarm(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = TRUE, no_head = FALSE, no_crit = FALSE, force_intent = null)
 	if(stat == DEAD) //A bit of visual flavor for attacking Cyborgs. Sparks!
 		return FALSE
 	. = ..()
@@ -169,7 +167,8 @@
 	spark_system.start(src)
 	playsound(loc, "alien_claw_metal", 25, TRUE)
 
-/mob/living/silicon/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
+
+/mob/living/silicon/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = TRUE, no_head = FALSE, no_crit = FALSE, force_intent = null)
 	if(stat == DEAD) //A bit of visual flavor for attacking Cyborgs. Sparks!
 		return FALSE
 	. = ..()
