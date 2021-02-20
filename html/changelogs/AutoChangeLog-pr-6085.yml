@@ -1,0 +1,4 @@
+author: "Walarks"
+delete-after: True
+changes: 
+  - bugfix: "Fixes loading reagents in the harvester, makes breaking bicaridine effect not trigger an attack"
