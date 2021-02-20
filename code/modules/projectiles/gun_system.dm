@@ -64,12 +64,6 @@
 	var/shell_speed_mod	= 0						//Modifies the speed of projectiles fired.
 	/// Determines which humans the gun's shot will pass through based on the victim's ID access list.
 	var/list/gun_iff_signal = null
-	///Modifies projectile damage by a % when a marine gets passed, but not hit
-	var/iff_marine_damage_falloff = 0
-	///Determines how fire delay is changed when aim mode is active
-	var/aim_fire_delay = 0
-	///Determines character slowdown from aim mode. Default is 66%
-	var/aim_speed_modifier = 6
 
 	//Burst fire.
 	var/burst_amount 	= 1						//How many shots can the weapon shoot in burst? Anything less than 2 and you cannot toggle burst.
@@ -258,8 +252,6 @@
 	A.add_hud(user)
 	A.update_hud(user)
 	do_wield(user, wdelay)
-	if(CHECK_BITFIELD(flags_gun_features, AUTO_AIM_MODE))
-		toggle_aim_mode(user)
 
 
 /obj/item/weapon/gun/unwield(mob/user)
@@ -272,9 +264,6 @@
 	var/obj/screen/ammo/A = user.hud_used?.ammo
 	if(A)
 		A.remove_hud(user)
-
-	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_AIMING))
-		toggle_aim_mode(user)
 
 	return TRUE
 
@@ -876,8 +865,6 @@ and you're good to go.
 	projectile_to_fire.damage_falloff *= damage_falloff_mult
 	projectile_to_fire.projectile_speed += shell_speed_mod
 	projectile_to_fire.projectile_iff = gun_iff_signal
-	projectile_to_fire.damage_marine_falloff = iff_marine_damage_falloff
-
 
 /obj/item/weapon/gun/proc/setup_bullet_accuracy(obj/projectile/projectile_to_fire, mob/user, bullets_fired = 1, dual_wield = FALSE)
 	var/gun_accuracy_mult = accuracy_mult_unwielded

@@ -86,22 +86,3 @@
 			current_action_vis_obj = autoburst
 	button.vis_contents += current_action_vis_obj
 	action_firemode = holder_gun.gun_firemode
-
-/datum/action/item_action/aim_mode
-	name = "Take Aim"
-
-/datum/action/item_action/aim_mode/give_action(mob/M)
-	. = ..()
-	RegisterSignal(M, COMSIG_KB_AIMMODE, .proc/action_activate)
-
-/datum/action/item_action/aim_mode/remove_action(mob/M)
-	UnregisterSignal(M, COMSIG_KB_AIMMODE, .proc/action_activate)
-	return ..()
-
-/datum/action/item_action/aim_mode/update_button_icon()
-	button.overlays.Cut()
-	button.overlays += image('icons/mob/actions.dmi', null, "aim_mode", ABOVE_HUD_LAYER)
-
-/datum/action/item_action/aim_mode/action_activate()
-	var/obj/item/weapon/gun/I = target
-	I.toggle_auto_aim_mode(owner)

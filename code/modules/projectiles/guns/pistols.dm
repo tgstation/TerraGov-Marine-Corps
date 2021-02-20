@@ -30,8 +30,6 @@
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
-	actions_types = list(/datum/action/item_action/aim_mode) // all pistols can aim mode
-	aim_speed_modifier = 0.65
 	scatter = 0
 	scatter_unwielded = 0
 
@@ -358,7 +356,6 @@
 	accuracy_mult_unwielded = 1
 	scatter = -10
 	scatter_unwielded = -5
-	aim_speed_modifier = 0
 
 
 //-------------------------------------------------------

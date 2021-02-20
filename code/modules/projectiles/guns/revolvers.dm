@@ -19,9 +19,6 @@
 	load_method = SINGLE_CASING|SPEEDLOADER //codex
 	type_of_casings = "bullet"
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER
-	actions_types = list(/datum/action/item_action/aim_mode)
-	aim_speed_modifier = 0.75
-	aim_fire_delay = 0.25 SECONDS
 	wield_delay = 0.2 SECONDS //If you modify your revolver to be two-handed, it will still be fast to aim
 	gun_skill_category = GUN_SKILL_PISTOLS
 
@@ -463,7 +460,6 @@
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 18,"rail_x" = 16, "rail_y" = 21, "under_x" = 22, "under_y" = 15, "stock_x" = 22, "stock_y" = 15)
 
 	fire_delay = 0.2 SECONDS
-	aim_fire_delay = 0.3 SECONDS
 	recoil = 0
 	accuracy_mult = 1.1
 	scatter = 10
