@@ -76,19 +76,21 @@
 
 /mob/living/carbon/get_xeno_slash_zone(mob/living/carbon/xenomorph/X, set_location = FALSE, random_location = FALSE, no_head = FALSE, ignore_destroyed = TRUE)
 	var/datum/limb/affecting
-	if(set_location)
+	if(random_location && !set_location)
+		affecting = get_limb(ran_zone(null, 0))
+	else if(set_location)
 		affecting = get_limb(set_location)
 	else if(SEND_SIGNAL(X, COMSIG_XENOMORPH_ZONE_SELECT) & COMSIG_ACCURATE_ZONE)
 		affecting = get_limb(X.zone_selected)
 	else
 		affecting = get_limb(ran_zone(X.zone_selected, 70))
-	if(!affecting || (random_location && !set_location) || (ignore_destroyed && !affecting.is_usable())) //No organ or it's destroyed, just get a random one
+	if(!affecting || (ignore_destroyed && !affecting.is_usable())) //No organ or it's destroyed, just get a random one
 		affecting = get_limb(ran_zone(null, 0))
 	if(!affecting || (no_head && affecting == get_limb("head")) || (ignore_destroyed && !affecting.is_usable()))
 		affecting = get_limb("chest")
 	return affecting
 
-/mob/living/proc/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
+/mob/living/proc/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = TRUE, no_head = FALSE, no_crit = FALSE, force_intent = null)
 	if(!can_xeno_slash(X))
 		return FALSE
 
@@ -189,7 +191,7 @@
 	return ..()
 
 
-/mob/living/carbon/human/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
+/mob/living/carbon/human/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = TRUE, no_head = FALSE, no_crit = FALSE, force_intent = null)
 	if(stat == DEAD)
 		if(istype(wear_ear, /obj/item/radio/headset/mainship))
 			var/obj/item/radio/headset/mainship/cam_headset = wear_ear
