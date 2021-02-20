@@ -118,12 +118,12 @@
 		for(var/tummy_resident in moving_xeno.stomach_contents)//Dead code, to be removed
 			if(ishuman(tummy_resident))
 				var/mob/living/carbon/human/H = tummy_resident
-				if(!HAS_TRAIT(H, TRAIT_UNDEFIBBABLE ))
+				if(!HAS_TRAIT(H, TRAIT_UNDEFIBBABLE))
 					return FALSE
 		return TRUE
 	if(ishuman(mover) && !issynth(mover))
 		var/mob/living/carbon/human/H = mover
-		if(H.stat == DEAD && (H.dead_ticks > TIME_BEFORE_DNR)) // Allow pulled perma-dead humans to cross
+		if(HAS_TRAIT(H, TRAIT_UNDEFIBBABLE)) // Allow pulled perma-dead humans to cross
 			return TRUE
 	return FALSE
 

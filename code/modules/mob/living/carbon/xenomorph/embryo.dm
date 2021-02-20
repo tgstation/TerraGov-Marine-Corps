@@ -54,9 +54,9 @@
 		affected_mob = null
 		return PROCESS_KILL
 
-	if(affected_mob.stat == DEAD)
+	if(affected_mob.stat == DEAD)//DEAD CODE TO BE REMOVED
 		if(ishuman(affected_mob))
-			if(HAS_TRAIT(affected_mob, TRAIT_UNDEFIBBABLE )) //Can't be defibbed.
+			if(!HAS_TRAIT(affected_mob, TRAIT_UNDEFIBBABLE)) 
 				var/mob/living/carbon/xenomorph/larva/L = locate() in affected_mob
 				L?.initiate_burst(affected_mob)
 				return PROCESS_KILL

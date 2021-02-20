@@ -287,7 +287,6 @@ REAGENT SCANNER
 		var/mob/living/carbon/human/H = M
 		// Show blood level
 		var/blood_volume = BLOOD_VOLUME_NORMAL
-		var/is_dead = FALSE
 		if(!(H.species.species_flags & NO_BLOOD))
 			blood_volume = round(H.blood_volume)
 
@@ -317,7 +316,7 @@ REAGENT SCANNER
 			//The actual medical advice summary:
 			var/advice = ""
 			//We start checks for ailments here:
-			if(is_dead)
+			if(H.stat == DEAD)
 				var/death_message = ""
 				//Check for whether there's an appropriate ghost
 				if(H.client)
