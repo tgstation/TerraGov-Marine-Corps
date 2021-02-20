@@ -34,6 +34,10 @@
 #define COMSIG_GLOB_DROPSHIP_TRANSIT "!dropship_transit"
 ///Sent when xenos launch a hijacked dropship
 #define COMSIG_GLOB_DROPSHIP_HIJACKED "!dropship_hijacked"
+///Sent when nightfall is casted
+#define COMSIG_GLOB_LIGHT_OFF "item_light_off"
+///Sent when the floodlight switch is powered
+#define COMSIG_GLOB_FLOODLIGHT_SWITCH "floodlight_switch_power_change"
 
 //////////////////////////////////////////////////////////////////
 
@@ -547,6 +551,7 @@
 #define COMSIG_XENOABILITY_PSYCHIC_FLING "xenoability_psychic_fling"
 #define COMSIG_XENOABILITY_PSYCHIC_CURE "xenoability_psychic_cure"
 #define COMSIG_XENOABILITY_UNRELENTING_FORCE "xenoability_unrelenting_force"
+//#define COMSIG_XENOABILITY_NIGHTFALL "xenoability_nightfall"
 
 #define COMSIG_XENOABILITY_RAVAGER_CHARGE "xenoability_ravager_charge"
 #define COMSIG_XENOABILITY_RAVAGE "xenoability_ravage"

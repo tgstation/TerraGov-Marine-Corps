@@ -37,7 +37,6 @@
 	light_range = 2
 	light_power = 2
 	light_color = COLOR_VERY_SOFT_YELLOW
-	light_on = FALSE
 
 	var/hitsound = null
 	var/datum/ammo/ammo //The ammo data which holds most of the actual info.

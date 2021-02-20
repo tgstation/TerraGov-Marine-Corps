@@ -14,7 +14,7 @@
 	///Type of "turret" attached
 	var/turret_type
 	///Boolean: do we want this turret to draw overlays for itself?
-	var/overlay_turret = FALSE
+	var/overlay_turret = TRUE
 	///Delay in byond ticks between weapon fires
 	var/fire_delay = 5
 	///Ammo remaining for the robot
@@ -43,6 +43,11 @@
 			. += image('icons/obj/unmanned_vehicles.dmi', src, "light_cannon")
 		if(TURRET_TYPE_EXPLOSIVE)
 			. += image('icons/obj/unmanned_vehicles.dmi', src, "bomb")
+
+/obj/vehicle/unmanned/examine(mob/user, distance, infix, suffix)
+	. = ..()
+	if(ishuman(user))
+		to_chat(user, "It has [current_rounds] out of [max_rounds] ammo left.")
 
 /obj/vehicle/unmanned/attackby(obj/item/I, mob/user, params)
 	. = ..()

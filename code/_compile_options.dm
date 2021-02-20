@@ -48,6 +48,12 @@
 #define USE_EXTOOLS
 #endif
 
+#if DM_BUILD < 1540
+#define AS as()
+#else
+#define AS as anything
+#endif
+
 #ifdef USE_EXTOOLS
 //#define REFERENCE_TRACKING		//Enables extools-powered reference tracking system, letting you see what is
 									//referencing objects that refuse to hard delete

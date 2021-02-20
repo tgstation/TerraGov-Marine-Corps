@@ -19,7 +19,6 @@
 	flags_item = TWOHANDED
 	light_system = MOVABLE_LIGHT
 	light_range = 0
-	light_on = FALSE
 	light_color = COLOR_WHITE
 
 	var/atom/movable/vis_obj/effect/muzzle_flash/muzzle_flash

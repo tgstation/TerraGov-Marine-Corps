@@ -111,7 +111,7 @@
 	var/mob/living/carbon/human/H = user
 	if(H.wear_suit != src)
 		return
-	toggle_armor_light(user)
+	turn_light(user, !light_on)
 	return TRUE
 
 
