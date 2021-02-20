@@ -199,7 +199,6 @@
 	initial_language_holder = /datum/language_holder/xeno
 	gib_chance = 5
 	light_system = MOVABLE_LIGHT
-	light_on = FALSE
 
 	var/hivenumber = XENO_HIVE_NORMAL
 

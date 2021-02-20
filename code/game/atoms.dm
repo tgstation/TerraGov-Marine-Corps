@@ -57,7 +57,7 @@
 	///Hexadecimal RGB string representing the colour of the light. White by default.
 	var/light_color = COLOR_WHITE
 	///Boolean variable for toggleable lights. Has no effect without the proper light_system, light_range and light_power values.
-	var/light_on = TRUE
+	var/light_on = FALSE
 	///Our light source. Don't fuck with this directly unless you have a good reason!
 	var/tmp/datum/light_source/light
 	///Any light sources that are "inside" of us, for example, if src here was a mob that's carrying a flashlight, that flashlight's light source would be part of this list.
@@ -833,3 +833,32 @@ Proc for attack log creation, because really why not
 	hud_list = new
 	for(var/hud in hud_possible) //Providing huds.
 		hud_list[hud] = image('icons/mob/hud.dmi', src, "")
+
+/**
+ * If this object has lights, turn it on/off.
+ * user: the mob actioning this
+ * toggle_on: if TRUE, will try to turn ON the light. Opposite if FALSE
+ * cooldown: how long until you can toggle the light on/off again
+ * sparks: if a spark effect will be generated 
+ * forced: if TRUE and toggle_on = FALSE, will cause the light to turn on in cooldown second
+ * originated_turf: if not null, will check if the obj_turf is closer than distance_max to originated_turf, and the proc will return if not
+ * distance_max: used to check if originated_turf is close to obj.loc
+*/	
+/atom/proc/turn_light(mob/user = null, toggle_on , cooldown = 1 SECONDS, sparks = FALSE, forced = FALSE, originated_turf = null, distance_max = 0)
+	if(originated_turf && (get_dist(originated_turf, loc)<= distance_max))
+		return OUT_OF_REACH
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_LIGHT) || forced)
+		return STILL_ON_COOLDOWN
+	TIMER_COOLDOWN_START(src, COOLDOWN_LIGHT, cooldown)
+	if(forced & !toggle_on) //Is true when turn light is called by nightfall
+		addtimer(CALLBACK(src, .proc/reset_light), cooldown + 1)
+	if(sparks)
+		var/datum/effect_system/spark_spread/spark_system = new
+		spark_system.set_up(5, 0, src)
+		spark_system.attach(src)
+		spark_system.start(src)
+	return CHECKS_PASSED
+
+///Turn on the light, should be called by a timer
+/atom/proc/reset_light()
+	turn_light(null, TRUE)

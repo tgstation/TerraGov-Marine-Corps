@@ -95,7 +95,7 @@
 	var/mob/living/carbon/human/H = user
 	if(H.wear_suit != src)
 		return
-	toggle_armor_light(user)
+	turn_light(user, !light_on)
 	return TRUE
 
 /obj/item/clothing/suit/storage/marine/item_action_slot_check(mob/user, slot)
@@ -564,7 +564,7 @@
 	var/mob/living/carbon/human/H = user
 	if(H.wear_suit != src) return
 
-	toggle_armor_light(user)
+	turn_light(user, !light_on)
 	return 1
 
 /obj/item/clothing/suit/storage/faction/item_action_slot_check(mob/user, slot)
