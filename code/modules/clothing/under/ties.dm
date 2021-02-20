@@ -558,6 +558,7 @@
 		/obj/item/tool/surgery,
 		/obj/item/stack/nanopaste,
 		/obj/item/stack/medical/advanced/bruise_pack,
+		/obj/item/tweezers,
 	)
 
 /obj/item/storage/internal/tie/white_vest/surgery/Initialize()
@@ -581,7 +582,7 @@
 	hold = /obj/item/storage/internal/tie/white_vest/medic
 
 /obj/item/storage/internal/tie/white_vest/medic
-	storage_slots = 6 //one more than the brown webbing but you lose out on being able to hold non-medic stuff
+	storage_slots = 7 //one more than the brown webbing but you lose out on being able to hold non-medic stuff
 	can_hold = list(
 		/obj/item/stack/medical,
 		/obj/item/healthanalyzer,
@@ -595,6 +596,8 @@
 		/obj/item/bodybag,
 		/obj/item/roller,
 		/obj/item/clothing/glasses/hud/health,
+		/obj/item/tweezers,
+		/obj/item/defibrillator,
 	)
 
 /obj/item/clothing/tie/storage/knifeharness
