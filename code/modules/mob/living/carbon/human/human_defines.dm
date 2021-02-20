@@ -94,6 +94,9 @@
 	//Life variables
 
 	var/undefibbable = FALSE //whether the human is dead and past the defibbrillation period.
+	
+	///How long the human is dead, in life ticks, which is 2 seconds
+	var/dead_ticks = 0
 
 	var/holo_card_color = "" //which color type of holocard is printed on us
 

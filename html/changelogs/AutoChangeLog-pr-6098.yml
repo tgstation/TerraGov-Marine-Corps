@@ -1,0 +1,4 @@
+author: "Surrealaser"
+delete-after: True
+changes: 
+  - code_imp: "Improves the code of Healing Infusion such that it no longer overrides variables between targets, and is applied as a formal status effect."

@@ -139,6 +139,10 @@
 	icon_state = "painoverlay"
 	layer = FULLSCREEN_PAIN_LAYER
 
+/obj/screen/fullscreen/infection
+	icon_state = "curseoverlay"
+	layer = FULLSCREEN_INFECTION_LAYER
+
 /obj/screen/fullscreen/machine
 	icon_state = "machine"
 	alpha = 120

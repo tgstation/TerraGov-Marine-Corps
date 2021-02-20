@@ -14,7 +14,7 @@
 	///Type of "turret" attached
 	var/turret_type
 	///Boolean: do we want this turret to draw overlays for itself?
-	var/overlay_turret = FALSE
+	var/overlay_turret = TRUE
 	///Delay in byond ticks between weapon fires
 	var/fire_delay = 5
 	///Ammo remaining for the robot

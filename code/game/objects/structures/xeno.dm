@@ -93,7 +93,7 @@
 	. = ..()
 	if(!ishuman(AM))
 		return
-	
+
 	if(CHECK_MULTIPLE_BITFIELDS(AM.flags_pass, HOVERING))
 		return
 
@@ -650,7 +650,7 @@ TUNNEL
 
 /obj/structure/tunnel/Destroy()
 	var/drop_loc = get_turf(src)
-	for(var/atom/movable/thing as() in contents) //Empty the tunnel of contents
+	for(var/atom/movable/thing AS in contents) //Empty the tunnel of contents
 		thing.forceMove(drop_loc)
 
 	if(!QDELETED(creator))

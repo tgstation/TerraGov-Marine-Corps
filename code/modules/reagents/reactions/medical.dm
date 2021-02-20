@@ -184,3 +184,24 @@
 	name = "Biomass"
 	results = list(/datum/reagent/medicine/biomass/xeno = 10)
 	required_reagents = list(/datum/reagent/blood/xeno_blood = 10, /datum/reagent/medicine/biomass = 1)
+
+/datum/chemical_reaction/dupl_bicaridine
+	name = "Duplicate Bicaridine"
+	results = list(/datum/reagent/medicine/bicaridine = 2)
+	required_reagents = list(/datum/reagent/virilyth = 1, /datum/reagent/medicine/bicaridine = 1)
+
+/datum/chemical_reaction/dupl_kelotane
+	name = "Duplicate Kelotane"
+	results = list(/datum/reagent/medicine/kelotane = 2)
+	required_reagents = list(/datum/reagent/virilyth = 1, /datum/reagent/medicine/kelotane = 1)
+
+/datum/chemical_reaction/dupl_tramadol
+	name = "Duplicate Bicaridine"
+	results = list(/datum/reagent/medicine/tramadol = 2)
+	required_reagents = list(/datum/reagent/virilyth = 1, /datum/reagent/medicine/tramadol = 1)
+
+/datum/chemical_reaction/dupl_dylovene
+	name = "Duplicate Bicaridine"
+	results = list(/datum/reagent/medicine/dylovene = 2)
+	required_reagents = list(/datum/reagent/virilyth = 1, /datum/reagent/medicine/dylovene = 1)
+

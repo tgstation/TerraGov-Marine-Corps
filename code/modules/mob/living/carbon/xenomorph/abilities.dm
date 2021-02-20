@@ -1041,7 +1041,7 @@
 		to_chat(owner, "<span class='xenowarning'>The hive doesn't have the necessary psychic points for you to do that!</span>")
 		return FALSE
 
-	for(var/obj/structure/resin/silo/silo as anything in GLOB.xeno_resin_silos)
+	for(var/obj/structure/resin/silo/silo AS in GLOB.xeno_resin_silos)
 		if(get_dist(silo, A) < 15)
 			to_chat(owner, "<span class='xenowarning'>Another silo is too close!</span>")
 			return FALSE
