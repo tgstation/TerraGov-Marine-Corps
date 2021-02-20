@@ -62,9 +62,6 @@
 	if(modifiers["shift"])
 		ShiftClickOn(A)
 		return
-	if(modifiers["alt"]) // alt and alt-gr (rightalt)
-		AltClickOn(A)
-		return
 	if(modifiers["ctrl"])
 		CtrlClickOn(A)
 		return
@@ -114,9 +111,6 @@
 /* Atom Procs */
 /atom/proc/AICtrlClick()
 	return
-/atom/proc/AIAltClick(mob/living/silicon/ai/user)
-	AltClick(user)
-	return
 /atom/proc/AIShiftClick()
 	return
 /atom/proc/AICtrlShiftClick()
@@ -131,17 +125,6 @@
 		bolt_raise(usr)
 	else if(hasPower())
 		bolt_drop(usr)
-
-
-/obj/machinery/door/airlock/AIAltClick(mob/living/silicon/ai/user) // Eletrifies doors.
-	if(z != user.z)
-		return
-
-	if(!secondsElectrified)
-		shock_perm(usr)
-	else
-		shock_restore(usr)
-
 
 /obj/machinery/door/airlock/AIShiftClick(mob/living/silicon/ai/user)  // Opens and closes doors!
 	if(z != user.z)
