@@ -62,7 +62,7 @@
 				to_chat(H, "<span class='warning'>Repeat at least every 7 seconds.</span>")
 			else if(stat == DEAD && check_tod(src) && !TIMER_COOLDOWN_CHECK(src, COOLDOWN_CPR))
 				TIMER_COOLDOWN_START(src, COOLDOWN_CPR, 7 SECONDS)
-				revive_grace_time += 5 SECONDS
+				dead_ticks -= 5
 				visible_message("<span class='warning'> [H] performs CPR on [src]!</span>", vision_distance = 3)
 				to_chat(H, "<span class='warning'>The patient gains a little more time. Repeat every 7 seconds.</span>")
 			else
@@ -86,7 +86,7 @@
 			if(!attack.is_usable(H))
 				return FALSE
 
-			if(!H.melee_damage || !prob(H.melee_accuracy))
+			if(!H.melee_damage)
 				H.do_attack_animation(src)
 				playsound(loc, attack.miss_sound, 25, TRUE)
 				visible_message("<span class='danger'>[H] tried to [pick(attack.attack_verb)] [src]!</span>", null, null, 5)

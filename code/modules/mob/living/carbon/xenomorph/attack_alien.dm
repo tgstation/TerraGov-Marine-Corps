@@ -26,12 +26,6 @@
 
 
 /mob/living/proc/attack_alien_disarm(mob/living/carbon/xenomorph/X, dam_bonus)
-	if(!prob(X.melee_accuracy))
-		X.do_attack_animation(src)
-		playsound(loc, 'sound/weapons/slashmiss.ogg', 25, TRUE)
-		X.visible_message("<span class='danger'>\The [X] shoves at [src], narroly missing!</span>",
-		"<span class='danger'>Our tackle against [src] narroly misses!</span>")
-		return FALSE
 	SEND_SIGNAL(src, COMSIG_LIVING_MELEE_ALIEN_DISARMED, X)
 	X.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
 	playsound(loc, 'sound/weapons/alien_knockdown.ogg', 25, TRUE)
@@ -96,12 +90,6 @@
 
 /mob/living/proc/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
 	if(!can_xeno_slash(X))
-		return FALSE
-
-	if(!prob(X.melee_accuracy))
-		playsound(loc, 'sound/weapons/slashmiss.ogg', 25, TRUE)
-		X.visible_message("<span class='danger'>\The [X] slashes at [src], narroly missing!</span>",
-		"<span class='danger'>Our slash against [src] narroly misses!</span>")
 		return FALSE
 
 	var/damage = X.xeno_caste.melee_damage

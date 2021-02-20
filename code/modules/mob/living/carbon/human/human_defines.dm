@@ -17,6 +17,12 @@
 	var/b_hair = 0
 	var/h_style = "Crewcut"
 
+	// Gradient color and style
+	var/r_grad = 0
+	var/g_grad = 0
+	var/b_grad = 0
+	var/grad_style = "None"
+
 	//Facial hair colour and style
 	var/r_facial = 0
 	var/g_facial = 0
@@ -88,6 +94,9 @@
 	//Life variables
 
 	var/undefibbable = FALSE //whether the human is dead and past the defibbrillation period.
+	
+	///How long the human is dead, in life ticks, which is 2 seconds
+	var/dead_ticks = 0
 
 	var/holo_card_color = "" //which color type of holocard is printed on us
 
