@@ -1,0 +1,4 @@
+author: "mokulus"
+delete-after: True
+changes: 
+  - rscadd: "weapon toggle verbs that prioritize current gun"
