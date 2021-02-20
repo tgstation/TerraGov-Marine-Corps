@@ -381,6 +381,16 @@
 		if(MOVE_INTENT_RUN)
 			add_movespeed_modifier(MOVESPEED_ID_MOB_WALK_RUN_CONFIG_SPEED, TRUE, 100, NONE, TRUE, 3 + CONFIG_GET(number/movedelay/run_delay))
 
+
+/mob/living/carbon/human/update_move_intent_effects()
+	. = ..()
+	switch(m_intent)
+		if(MOVE_INTENT_WALK)
+			melee_accuracy = initial(melee_accuracy)
+		if(MOVE_INTENT_RUN)
+			melee_accuracy = 80
+
+
 /mob/proc/cadecheck()
 	var/list/coords = list(list(x + 1, y, z), list(x, y + 1, z), list(x - 1, y, z), list(x, y - 1, z))
 	for(var/i in coords)

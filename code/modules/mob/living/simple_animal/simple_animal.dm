@@ -203,6 +203,9 @@
 
 		if(INTENT_HARM, INTENT_DISARM)
 			user.do_attack_animation(src)
+			if(!prob(user.melee_accuracy))
+				user.visible_message("<span class='danger'>[user] misses [src]!</span>", null, null, 5)
+				return FALSE
 			user.do_attack_animation(src, ATTACK_EFFECT_KICK)
 			visible_message("<span class='danger'>[user] [response_harm] [src]!</span>",
 			"<span class='userdanger'>[user] [response_harm] [src]!</span>")

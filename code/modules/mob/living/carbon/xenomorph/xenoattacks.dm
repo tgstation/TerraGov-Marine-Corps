@@ -72,7 +72,7 @@
 			if(!attack.is_usable(H))
 				return FALSE
 
-			if(!H.melee_damage)
+			if(!H.melee_damage || !prob(H.melee_accuracy))
 				H.do_attack_animation(src)
 				playsound(loc, attack.miss_sound, 25, TRUE)
 				visible_message("<span class='danger'>[H] tried to [pick(attack.attack_verb)] [src]!</span>", null, null, 5)

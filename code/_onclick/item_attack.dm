@@ -156,7 +156,7 @@
 	if(!force)
 		return FALSE
 
-	if(M != user) // Attacking yourself can't miss
+	if(M != user && !prob(user.melee_accuracy)) // Attacking yourself can't miss
 		user.do_attack_animation(M)
 		playsound(loc, 'sound/weapons/punchmiss.ogg', 25, TRUE)
 		if(user in viewers(COMBAT_MESSAGE_RANGE, M))

@@ -63,6 +63,7 @@
 	var/cameraFollow
 
 	var/melee_damage = 0
+	var/melee_accuracy = 100
 	var/attacktext = "attacks"
 	var/attack_sound
 	var/friendly = "nuzzles"
