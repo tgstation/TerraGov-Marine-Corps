@@ -106,7 +106,7 @@
 	return
 
 
-/mob/living/carbon/human/proc/working_critical_organs()
+/mob/living/carbon/human/proc/has_working_organs()
 	var/datum/internal_organ/heart/heart = internal_organs_by_name["heart"]
 
 	if(!heart || heart.is_broken() || !has_brain())
@@ -149,7 +149,7 @@
 		user.visible_message("<span class='warning'>[icon2html(src, viewers(user))] \The [src] buzzes: Vital signs detected. Aborting.</span>")
 		return
 
-	if(!H.working_critical_organs())
+	if(!H.has_working_organs())
 		user.visible_message("<span class='warning'>[icon2html(src, viewers(user))] \The [src] buzzes: Patient's general condition does not allow reviving.</span>")
 		return
 
@@ -196,7 +196,7 @@
 	if(!issynth(H) && heart && prob(25))
 		heart.take_damage(5) //Allow the defibrilator to possibly worsen heart damage. Still rare enough to just be the "clone damage" of the defib
 
-	if(!H.working_critical_organs())
+	if(!H.has_working_organs())
 		user.visible_message("<span class='warning'>[icon2html(src, viewers(user))] \The [src] buzzes: Defibrillation failed. Patient's general condition does not allow reviving.</span>")
 		return
 

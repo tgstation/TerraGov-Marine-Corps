@@ -32,7 +32,8 @@
 			dead_ticks ++
 			if(dead_ticks > TIME_BEFORE_DNR)
 				set_undefibbable()
-			med_hud_set_status()
+			else
+				med_hud_set_status()
 
 	stabilize_body_temperature() //Body temperature adjusts itself (self-regulation) (even when dead)
 
