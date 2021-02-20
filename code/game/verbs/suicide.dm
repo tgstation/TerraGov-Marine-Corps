@@ -120,7 +120,7 @@
 		to_chat(src, "You're already committing suicide! Be patient!")
 		return
 
-	var/confirm = tgui_alert("Are you sure you want to commit suicide?", "Confirm Suicide", list("Yes", "No"))
+	var/confirm = tgui_alert(usr, "Are you sure you want to commit suicide?", "Confirm Suicide", list("Yes", "No"))
 
 	if(confirm == "Yes")
 		if(!canmove || restrained())
