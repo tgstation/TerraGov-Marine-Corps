@@ -57,7 +57,7 @@
 	if(affected_mob.stat == DEAD)
 		if(ishuman(affected_mob))
 			var/mob/living/carbon/human/H = affected_mob
-			if(check_tod(H)) //Can't be defibbed.
+			if(HAS_TRAIT(affected_mob, TRAIT_UNDEFIBBABLE )) //Can't be defibbed.
 				var/mob/living/carbon/xenomorph/larva/L = locate() in affected_mob
 				L?.initiate_burst(affected_mob)
 				return PROCESS_KILL

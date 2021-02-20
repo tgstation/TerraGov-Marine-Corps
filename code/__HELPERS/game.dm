@@ -93,7 +93,7 @@
 
 		if(O.client.prefs.be_special & BE_ALIEN_UNREVIVABLE && !(O.client.prefs.be_special & BE_ALIEN) && ishuman(O.mind.current))
 			var/mob/living/carbon/human/H = O.mind.current
-			if(check_tod(H))
+			if(!HAS_TRAIT(H, TRAIT_UNDEFIBBABLE ))
 				continue
 
 		//AFK players cannot be drafted

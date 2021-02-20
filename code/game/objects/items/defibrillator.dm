@@ -106,11 +106,12 @@
 	return
 
 
-/mob/living/carbon/human/proc/is_revivable()
+/mob/living/carbon/human/proc/working_critical_organs()
 	var/datum/internal_organ/heart/heart = internal_organs_by_name["heart"]
 
 	if(!heart || heart.is_broken() || !has_brain())
 		return FALSE
+	
 	return TRUE
 
 /obj/item/defibrillator/attack(mob/living/carbon/human/H, mob/living/carbon/human/user)
@@ -148,7 +149,7 @@
 		user.visible_message("<span class='warning'>[icon2html(src, viewers(user))] \The [src] buzzes: Vital signs detected. Aborting.</span>")
 		return
 
-	if(!H.is_revivable())
+	if(!H.working_critical_organs())
 		user.visible_message("<span class='warning'>[icon2html(src, viewers(user))] \The [src] buzzes: Patient's general condition does not allow reviving.</span>")
 		return
 
@@ -156,7 +157,7 @@
 		user.visible_message("<span class='warning'>[icon2html(src, viewers(user))] \The [src] buzzes: Paddles registering >100,000 ohms, Possible cause: Suit or Armor interferring.</span>")
 		return
 
-	if((!check_tod(H) && !issynth(H)) || H.suiciding) //synthetic species have no expiration date
+	if((HAS_TRAIT(H, TRAIT_UNDEFIBBABLE ) && !issynth(H)) || H.suiciding) //synthetic species have no expiration date
 		user.visible_message("<span class='warning'>[icon2html(src, viewers(user))] \The [src] buzzes: Patient is braindead.</span>")
 		return
 
@@ -195,11 +196,11 @@
 	if(!issynth(H) && heart && prob(25))
 		heart.take_damage(5) //Allow the defibrilator to possibly worsen heart damage. Still rare enough to just be the "clone damage" of the defib
 
-	if(!H.is_revivable())
+	if(!H.working_critical_organs())
 		user.visible_message("<span class='warning'>[icon2html(src, viewers(user))] \The [src] buzzes: Defibrillation failed. Patient's general condition does not allow reviving.</span>")
 		return
 
-	if((!check_tod(H) && !issynth(H)) || H.suiciding) //synthetic species have no expiration date
+	if((HAS_TRAIT(H, TRAIT_UNDEFIBBABLE ) && !issynth(H)) || H.suiciding) //synthetic species have no expiration date
 		user.visible_message("<span class='warning'>[icon2html(src, viewers(user))] \The [src] buzzes: Patient's brain has decayed too much.</span>")
 		return
 

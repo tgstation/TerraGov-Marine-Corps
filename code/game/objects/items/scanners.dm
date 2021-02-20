@@ -120,7 +120,6 @@ REAGENT SCANNER
 	dat += "\tUntreated: {B}=Burns,{T}=Trauma,{F}=Fracture,{I}=Infection\n"
 
 	var/infection_present = 0
-	var/unrevivable = 0
 	var/overdosed = 0
 
 	// Show specific limb damage
@@ -304,12 +303,8 @@ REAGENT SCANNER
 		// Show pulse
 		var/pulse = H.handle_pulse()
 		dat += "\tPulse: <font color='[pulse == PULSE_THREADY || pulse == PULSE_NONE ? "red" : ""]'>[H.get_pulse(GETPULSE_TOOL)] bpm.</font>\n"
-		if(H.stat == DEAD)
-			is_dead = TRUE
-			//check to see if the target is revivable
-			if(!H.is_revivable())
-				unrevivable = TRUE
-		if(!unrevivable)
+		
+		if(H.working_critical_organs())
 			//Chems that conflict with others:
 			var/synaptizine_amount = reagents_in_body[/datum/reagent/medicine/synaptizine]
 			var/hyperzine_amount = reagents_in_body[/datum/reagent/medicine/hyperzine]

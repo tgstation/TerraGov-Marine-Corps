@@ -35,7 +35,7 @@
 				to_chat(H, "<span class='boldnotice'>Remove his mask!</span>")
 				return FALSE
 
-			if(stat == DEAD && !check_tod(src))
+			if(HAS_TRAIT(H, TRAIT_UNDEFIBBABLE ))
 				to_chat(H, "<span class='boldnotice'>Can't help this one. Body has gone cold.</span>")
 				return FALSE
 
@@ -49,7 +49,7 @@
 
 			H.visible_message("<span class='danger'>[H] is trying perform CPR on [src]!</span>", null, null, 4)
 
-			if(!do_mob(H, src, HUMAN_STRIP_DELAY, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL) || undefibbable)
+			if(!do_mob(H, src, HUMAN_STRIP_DELAY, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 				return TRUE
 
 			if(health > get_death_threshold() && health < get_crit_threshold())
@@ -60,7 +60,7 @@
 					"<span class='boldnotice'>You feel a breath of fresh air enter your lungs. It feels good.</span>",
 					vision_distance = 3)
 				to_chat(H, "<span class='warning'>Repeat at least every 7 seconds.</span>")
-			else if(stat == DEAD && check_tod(src) && !TIMER_COOLDOWN_CHECK(src, COOLDOWN_CPR))
+			else if(!HAS_TRAIT(src, TRAIT_UNDEFIBBABLE ) && !TIMER_COOLDOWN_CHECK(src, COOLDOWN_CPR))
 				TIMER_COOLDOWN_START(src, COOLDOWN_CPR, 7 SECONDS)
 				dead_ticks -= 5
 				visible_message("<span class='warning'> [H] performs CPR on [src]!</span>", vision_distance = 3)
