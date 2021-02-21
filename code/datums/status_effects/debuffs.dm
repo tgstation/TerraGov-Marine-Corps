@@ -301,7 +301,7 @@
 
 	new /obj/effect/temp_visual/healing(get_turf(patient)) //Cool SFX
 
-	var/total_heal_amount = 25 //Base amount 25 HP on our target.
+	var/total_heal_amount = 6 + (patient.maxHealth * 0.03) //Base amount 6 HP plus 3% of max
 	if(patient.recovery_aura)
 		total_heal_amount *= (1 + patient.recovery_aura * 0.05) //Recovery aura multiplier; 5% bonus per full level
 
@@ -334,7 +334,7 @@
 
 	new /obj/effect/temp_visual/telekinesis(get_turf(patient)) //Visual confirmation
 
-	patient.adjust_sunder(-3 * (0.5 + patient.recovery_aura * 0.05)) //5% bonus per rank of our recovery aura
+	patient.adjust_sunder(-1.8 * (1 + patient.recovery_aura * 0.05)) //5% bonus per rank of our recovery aura
 
 
 /obj/screen/alert/status_effect/healing_infusion
