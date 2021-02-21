@@ -647,15 +647,16 @@ function get_pr_code_friendliness($payload, $oldbalance = null){
 		'Refactor' => 10,
 		'Code Improvement' => 2,
 		'Grammar and Formatting' => 1,
+		'Quality of Life' => 1,
 		'Priority: High' => 15,
 		'Priority: CRITICAL' => 20,
 		'Unit Tests' => 6,
 		'Logging' => 1,
 		'Feedback' => 2,
 		'Performance' => 12,
+		'Atomic' => 2,
 		'Feature' => -10,
 		'Balance/Rebalance' => -8,
-		'Tweak' => -2,
 		'GBP: Reset' => $startingPRBalance - $oldbalance,
 	);
 
@@ -674,8 +675,7 @@ function get_pr_code_friendliness($payload, $oldbalance = null){
 		}
 	}
 
-	$affecting = abs($maxNegative) >= $maxPositive ? $maxNegative : $maxPositive;
-	return $affecting;
+	return $maxNegative + $maxPositive;
 }
 
 function is_maintainer($payload, $author){
@@ -840,12 +840,10 @@ function checkchangelog($payload, $compile = true) {
 					$currentchangelogblock[] = array('type' => 'bugfix', 'body' => $item);
 				}
 				break;
-			case 'rsctweak':
-			case 'tweaks':
-			case 'tweak':
-				if($item != 'tweaked a few things') {
-					$tags[] = 'Tweak';
-					$currentchangelogblock[] = array('type' => 'tweak', 'body' => $item);
+			case 'qol':
+				if($item != 'made something easier to use') {
+					$tags[] = 'Quality of Life';
+					$currentchangelogblock[] = array('type' => 'qol', 'body' => $item);
 				}
 				break;
 			case 'soundadd':
