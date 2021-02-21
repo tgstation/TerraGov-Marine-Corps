@@ -38,7 +38,7 @@
 
 
 /obj/machinery/proc/is_operational()
-	return !(machine_stat & (NOPOWER|BROKEN|MAINT|DISABLED))
+	return !(machine_stat & (NOPOWER|BROKEN|MAINT))
 
 
 /obj/machinery/deconstruct(disassembled = TRUE)
@@ -159,7 +159,7 @@
 	if(!is_operational())
 		return FALSE
 
-	if(iscarbon(usr) && (!in_range(src, user) || !isturf(loc)))
+	if(iscarbon(usr) && (!in_range(src, usr) || !isturf(loc)))
 		return FALSE
 
 	if(ishuman(user))
@@ -193,7 +193,7 @@
 	. = ..()
 	if(.)
 		return
-	message_admins("[can_interact(user)]")
+
 	if(!can_interact(user))
 		return
 
