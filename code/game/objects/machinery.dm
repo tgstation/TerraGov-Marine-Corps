@@ -159,7 +159,7 @@
 	if(!is_operational())
 		return FALSE
 
-	if(iscarbon(usr) && (!in_range(src, usr) || !isturf(loc)))
+	if(iscarbon(usr) && (!in_range(src, user) || !isturf(loc)))
 		return FALSE
 
 	if(ishuman(user))
