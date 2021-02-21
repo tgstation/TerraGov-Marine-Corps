@@ -384,8 +384,10 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 
 	return TRUE
 
-/// Used only when vendor is tipped to put it back up
-/// Normal usage is in ui_interact
+/**
+ * Used only when vendor is tipped to put it back up
+ * Normal usage is in ui_interact
+ */
 /obj/machinery/vending/interact(mob/user)
 	. = ..()
 	if(.) // Handled by ui_interact
