@@ -1200,6 +1200,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 		/obj/item/clothing/under/marine,
 		/obj/item/clothing/shoes/marine/full,
 		/obj/item/storage/box/MRE,
+		/obj/item/pinpointer/pool,
 	)
 
 /obj/effect/essentials_set/basicmodular
@@ -1209,6 +1210,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 		/obj/item/clothing/shoes/marine/full,
 		/obj/item/storage/box/MRE,
 		/obj/item/facepaint/green,
+		/obj/item/pinpointer/pool,
 	)
 
 /obj/effect/essentials_set/basic_smartgunner
