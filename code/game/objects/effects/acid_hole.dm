@@ -131,7 +131,7 @@
 		var/obj/item/explosive/grenade/G = I
 
 		if(issynth(user) && G.dangerous && !CONFIG_GET(flag/allow_synthetic_gun_use))
-			to_chat(H, "<span class='warning'>Your programming prevents you from doing this.</span>")
+			to_chat(user, "<span class='warning'>Your programming prevents you from doing this.</span>")
 			return
 
 		if(!T || T.density)
