@@ -1,4 +1,0 @@
-author: "Surrealaser"
-delete-after: True
-changes: 
-  - balance: "Healing Infusion ticks increased from 5 to 10. Healing per tick is now 6 + 0.03% of max HP Sunder restored per tick is now 1.8. Healing Infusion cooldown decreased from 30 seconds back to 5 seconds. Healing Infusion no longer restores Sunder unless its target is on weeds."

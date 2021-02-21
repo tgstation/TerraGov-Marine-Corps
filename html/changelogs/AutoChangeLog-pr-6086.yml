@@ -1,6 +1,0 @@
-author: "SplinterGP"
-delete-after: True
-changes: 
-  - rscadd: "Added TGChat in place of Goonchat."
-  - rscdel: "Goonchat removed."
-  - code_imp: "updated icon2base64 proc to not use a global file that doens't exist anymore."
