@@ -392,16 +392,17 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 	. = ..()
 	if(.) // Handled by ui_interact
 		return
-	if(tipped_level == 2)
-		if(!iscarbon(user)) // AI can't heave remotely
-			return
-		user.visible_message("<span class='notice'> [user] begins to heave the vending machine back into place!</span>","<span class='notice'> You start heaving the vending machine back into place..</span>")
-		if(!do_after(user, 80, FALSE, src, BUSY_ICON_FRIENDLY))
-			return FALSE
+	if(tipped_level != 2) // only fix when fully tipped
+		return
 
-		user.visible_message("<span class='notice'> [user] rights the [src]!</span>","<span class='notice'> You right the [src]!</span>")
-		flip_back()
-		return TRUE
+	if(!iscarbon(user)) // AI can't heave remotely
+		return
+	user.visible_message("<span class='notice'> [user] begins to heave the vending machine back into place!</span>","<span class='notice'> You start heaving the vending machine back into place..</span>")
+	if(!do_after(user, 80, FALSE, src, BUSY_ICON_FRIENDLY))
+		return FALSE
+	user.visible_message("<span class='notice'> [user] rights the [src]!</span>","<span class='notice'> You right the [src]!</span>")
+	flip_back()
+	return TRUE
 
 /obj/machinery/vending/ui_interact(mob/user, datum/tgui/ui)
 	if(tipped_level != 0) // Don't show when tipped or being tipped
