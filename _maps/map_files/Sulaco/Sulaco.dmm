@@ -11648,6 +11648,11 @@
 /obj/machinery/light/small,
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_main_hall)
+"eVU" = (
+/obj/structure/reagent_dispensers/fueltank,
+/obj/machinery/light,
+/turf/open/floor/prison,
+/area/sulaco/hangar)
 "eXT" = (
 /obj/structure/rack,
 /obj/item/assembly/signaler,
@@ -16785,6 +16790,15 @@
 	dir = 8
 	},
 /area/sulaco/hangar/droppod)
+"sLA" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "sLY" = (
 /obj/structure/window/framed/mainship/gray/toughened/hull,
 /turf/open/floor/plating/platebotc,
@@ -18004,6 +18018,13 @@
 	},
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/engineering/engine)
+"wpm" = (
+/obj/effect/decal/warning_stripes/thin,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "wqg" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -56375,7 +56396,7 @@ aPF
 aPF
 aPF
 aPF
-aPF
+aRQ
 aRx
 cMx
 aRx
@@ -57407,7 +57428,7 @@ aQp
 cdy
 aUL
 cdy
-aMR
+eVU
 aPY
 jaQ
 fVO
@@ -57645,7 +57666,7 @@ aaa
 nzi
 mDu
 bFa
-aQa
+wpm
 aPZ
 aPZ
 aPZ
@@ -58683,7 +58704,7 @@ aRE
 aRE
 aRE
 aRE
-aQL
+sLA
 aPF
 aPF
 aSN
