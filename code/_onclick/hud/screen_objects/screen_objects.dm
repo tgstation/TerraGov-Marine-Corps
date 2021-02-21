@@ -783,6 +783,10 @@
 		transform = 0 //Reset and 0 out
 		transform = turn(transform, Get_Angle(tracker, target))
 
+/obj/screen/arrow/Destroy()
+	STOP_PROCESSING(SSprocessing, src)
+	return ..()
+
 /obj/screen/xeno_health_alert/Destroy()
 	STOP_PROCESSING(SSprocessing, src)
 	return ..()
