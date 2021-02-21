@@ -82,8 +82,6 @@
 #define UNCONSCIOUS	1
 #define DEAD		2
 
-#define check_tod(H) (!H.undefibbable && !(H.dead_ticks < TIME_BEFORE_DNR))
-
 //Damage things
 //Way to waste perfectly good damagetype names (BRUTE) on this... If you were really worried about case sensitivity, you could have just used lowertext(damagetype) in the proc...
 #define BRUTE		"brute"

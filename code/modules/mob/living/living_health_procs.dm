@@ -345,7 +345,7 @@
 		I.damage = 0
 
 	reagents.clear_reagents() //and clear all reagents in them
-	undefibbable = FALSE
+	REMOVE_TRAIT(src, TRAIT_UNDEFIBBABLE, TRAIT_UNDEFIBBABLE)
 	dead_ticks = 0
 	chestburst = 0
 	headbitten = FALSE
