@@ -371,6 +371,8 @@
 		title = data["title"]
 		music_extra_data["start"] = data["start_time"]
 		music_extra_data["end"] = data["end_time"]
+		music_extra_data["link"] = data["webpage_url"]
+		music_extra_data["title"] = data["title"]
 		switch(tgui_alert(usr, "Show the title of and link to this song to the players?\n[title]", "Play Internet Sound", list("Yes", "No", "Cancel")))
 			if("Yes")
 				show = TRUE
@@ -403,8 +405,8 @@
 		var/client/C = M?.client
 		if(!C?.prefs)
 			continue
-		if((C.prefs.toggles_sound & SOUND_MIDI) && C.chatOutput?.working && C.chatOutput.loaded)
-			C.chatOutput.sendMusic(web_sound_url, music_extra_data)
+		if(C.prefs.toggles_sound & SOUND_MIDI)
+			C.tgui_panel?.play_music(web_sound_url, music_extra_data)
 			if(show)
 				to_chat(C, "<span class='boldnotice'>An admin played: <a href='[data["webpage_url"]]'>[title]</a></span>")
 
@@ -436,9 +438,7 @@
 
 	for(var/i in GLOB.clients)
 		var/client/C = i
-		if(!C?.chatOutput.loaded || !C.chatOutput.working)
-			continue
-		C.chatOutput.stopMusic()
+		C?.tgui_panel?.stop_music()
 
 
 	log_admin("[key_name(usr)] stopped the currently playing music.")

@@ -510,7 +510,7 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 		var/mob/living/carbon/human/H = i
 		if(!H.job)
 			continue
-		if(H.stat == DEAD && !H.is_revivable())
+		if(H.stat == DEAD && !H.has_working_organs())
 			continue
 		if(count_flags & COUNT_IGNORE_HUMAN_SSD && !H.client)
 			continue

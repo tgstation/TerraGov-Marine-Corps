@@ -205,7 +205,7 @@
 				if(!silent)
 					to_chat(owner, "<span class='xenowarning'>The host and child are still alive!</span>")
 				return FALSE
-			else if(istype(H) && !check_tod(H)) //Dead, but the host can still hatch, possibly.
+			else if(istype(H) && !HAS_TRAIT(H, TRAIT_UNDEFIBBABLE )) //Dead code
 				if(!silent)
 					to_chat(owner, "<span class='xenowarning'>The child may still hatch! Not yet!</span>")
 				return FALSE

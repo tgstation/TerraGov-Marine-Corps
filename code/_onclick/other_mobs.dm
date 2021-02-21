@@ -53,6 +53,14 @@
 		unbuckle_bodybag()
 		return TRUE
 
+/**
+ * This proc is called when a human user right clicks on an atom with an empty hand
+ *
+ * Arguments:
+ * * user: The mob clicking on the atom
+ */
+/atom/proc/attack_hand_alternate(mob/living/user)
+	return
 
 /*
 	New Players:

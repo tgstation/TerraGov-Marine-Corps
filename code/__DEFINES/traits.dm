@@ -103,6 +103,7 @@
 #define TRAIT_FAKEDEATH			"fakedeath" //Makes the owner appear as dead to most forms of medical examination
 #define TRAIT_LEGLESS			"legless" //Has lost all the appendages needed to stay standing up.
 #define TRAIT_NOPLASMAREGEN		"noplasmaregen"//xeno plasma wont recharge
+#define TRAIT_UNDEFIBBABLE 		"undefibbable"//human can't be revived
 #define TRAIT_HEALING_INFUSION	"healing_infusion"//greatly improves natural healing for xenos
 
 // item traits

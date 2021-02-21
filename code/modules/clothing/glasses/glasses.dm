@@ -78,7 +78,7 @@
 		qdel(I)
 		qdel(src)
 		user.put_in_hands(P)
-	
+
 		update_icon(user)
 
 /obj/item/clothing/glasses/monocle
@@ -113,7 +113,7 @@
 		qdel(I)
 		qdel(src)
 		user.put_in_hands(P)
-	
+
 		update_icon(user)
 
 /obj/item/clothing/glasses/regular/hipster
@@ -167,7 +167,7 @@
 			qdel(I)
 			qdel(src)
 			user.put_in_hands(S)
-	
+
 		update_icon(user)
 
 /obj/item/clothing/glasses/m42_goggles

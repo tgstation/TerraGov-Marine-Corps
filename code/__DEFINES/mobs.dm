@@ -82,8 +82,6 @@
 #define UNCONSCIOUS	1
 #define DEAD		2
 
-#define check_tod(H) (!H.undefibbable && !(H.dead_ticks < TIME_BEFORE_DNR))
-
 //Damage things
 //Way to waste perfectly good damagetype names (BRUTE) on this... If you were really worried about case sensitivity, you could have just used lowertext(damagetype) in the proc...
 #define BRUTE		"brute"
@@ -545,7 +543,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define HIVELORD_TUNNEL_SET_LIMIT				8
 #define HIVELORD_HEAL_RANGE						3
 #define HIVELORD_HEALING_INFUSION_DURATION		60 SECONDS
-#define HIVELORD_HEALING_INFUSION_TICKS			5
+#define HIVELORD_HEALING_INFUSION_TICKS			10
 
 //Shrike defines
 
