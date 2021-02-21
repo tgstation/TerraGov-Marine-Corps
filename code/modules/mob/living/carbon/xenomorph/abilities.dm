@@ -1042,7 +1042,7 @@
 		return FALSE
 
 	for(var/obj/structure/resin/silo/silo AS in GLOB.xeno_resin_silos)
-		if(get_dist(silo, A) < 15)
+		if(get_dist(silo, A) < 30)
 			to_chat(owner, "<span class='xenowarning'>Another silo is too close!</span>")
 			return FALSE
 
