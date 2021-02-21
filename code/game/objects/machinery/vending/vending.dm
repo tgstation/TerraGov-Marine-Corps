@@ -370,6 +370,10 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 			stack_trace("UNKNOWN PRODUCT: PID: [pid], CAT: [category] INSIDE [type]!")
 			return null
 
+/obj/machinery/vending/is_operational()
+	// Allow interact to fix the vendor when tipped
+	. = ..() || tipped_level == 2
+
 /obj/machinery/vending/can_interact(mob/user)
 	. = ..()
 	if(!.)
