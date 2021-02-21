@@ -57,16 +57,19 @@
 	if(stat != DEAD)
 		to_chat(usr, "<span class='boldnotice'>You must be dead to use this!</span>")
 		return
-
+	var/admin_bypass = FALSE
 	if(DEATHTIME_CHECK(usr))
 		if(check_other_rights(usr.client, R_ADMIN, FALSE))
 			if(tgui_alert(usr, "You wouldn't normally qualify for this respawn. Are you sure you want to bypass it with your admin powers?", "Bypass Respawn", list("Yes", "No"), 0) != "Yes")
 				DEATHTIME_MESSAGE(usr)
 				return
+			admin_bypass = TRUE
 		else
 			DEATHTIME_MESSAGE(usr)
 			return
-
+	if(GLOB.tickets <= 0 && !admin_bypass)
+		to_chat(usr, "<span class='boldnotice'>The marines ran out of tickets!</span>")
+		return
 	to_chat(usr, "<span class='notice'>You can respawn now, enjoy your new life!<br><b>Make sure to play a different character, and please roleplay correctly.</b></span>")
 
 	if(!client)
@@ -79,7 +82,6 @@
 	if(!client)
 		qdel(M)
 		return
-
 	M.key = key
 
 

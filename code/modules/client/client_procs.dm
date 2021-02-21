@@ -326,6 +326,7 @@
 	if(!tooltips && prefs.tooltips)
 		tooltips = new /datum/tooltip(src)
 
+	GLOB.tickets += TICKETS_PER_CLIENT
 
 	winset(src, null, "mainwindow.title='[CONFIG_GET(string/title)]'")
 

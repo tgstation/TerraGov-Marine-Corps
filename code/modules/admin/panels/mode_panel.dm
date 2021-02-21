@@ -14,6 +14,8 @@
 	dat += "Current Game Mode: <B>[SSticker.mode.name]</B><BR>"
 	dat += "Round Duration: <B>[worldtime2text()]</B><BR>"
 
+	dat += "Marine tickets remaining: <B>[GLOB.tickets]</B><BR>"
+
 	var/rulerless_countdown = SSticker.mode.get_hivemind_collapse_countdown()
 	if(rulerless_countdown)
 		dat += "<b>Orphan hivemind collapse in [rulerless_countdown]</b><br>"

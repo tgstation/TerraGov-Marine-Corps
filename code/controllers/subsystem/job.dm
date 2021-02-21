@@ -251,7 +251,8 @@ SUBSYSTEM_DEF(job)
 /datum/controller/subsystem/job/proc/spawn_character(mob/new_player/player, joined_late = FALSE)
 	var/mob/living/new_character = player.new_character
 	var/datum/job/job = player.assigned_role
-
+	if(!isxenosjob(job))
+		GLOB.tickets--
 	new_character.apply_assigned_role_to_spawn(job, player.client, player.assigned_squad)
 
 	//If we joined at roundstart we should be positioned at our workstation
