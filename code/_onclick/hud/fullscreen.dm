@@ -97,7 +97,7 @@
 	layer = FULLSCREEN_INTRO_LAYER
 
 /obj/screen/fullscreen/spawning_in
-	icon_state = "blackimageoverlay" //just a black square, you can change this if you get better ideas
+	icon_state = "blackimageoverlay" //mostly just a black square, you can change this if you get better ideas
 	layer = FULLSCREEN_INTRO_LAYER
 
 /obj/screen/fullscreen/brute
