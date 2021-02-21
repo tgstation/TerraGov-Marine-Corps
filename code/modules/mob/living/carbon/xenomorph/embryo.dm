@@ -204,7 +204,7 @@
 		var/mob/living/carbon/human/H = victim
 		H.apply_damage(200, BRUTE, H.get_limb("chest"), updating_health = TRUE) //lethal armor ignoring brute damage
 		var/datum/internal_organ/O
-		for(var/i in list("heart", "lungs", "stomach")) //Bruise all torso internal organs
+		for(var/i in list("heart", "lungs", "liver", "kidneys", "appendix")) //Bruise all torso internal organs
 			O = H.internal_organs_by_name[i]
 			O.take_damage(O.min_bruised_damage, TRUE)
 
