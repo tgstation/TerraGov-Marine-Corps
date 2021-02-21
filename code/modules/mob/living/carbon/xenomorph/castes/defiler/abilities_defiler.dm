@@ -1,18 +1,10 @@
-GLOBAL_LIST_INIT(defiler_toxins, typecacheof(list(
-		/datum/reagent/toxin/xeno_neurotoxin,
-		/datum/reagent/toxin/xeno_hemodile,
-		/datum/reagent/toxin/xeno_transvitox
-	)))
-
-
-
 // ***************************************
 // *********** Defile
 // ***************************************
 /datum/action/xeno_action/activable/defile
 	name = "Defile"
 	action_icon_state = "defiler_sting"
-	mechanics_text = "Injects an adjacent target with larval accelerant and a larva after a short wind up. All Defiler rapidly increase larval growth while the target has larval accelerant."
+	mechanics_text = "Injects an adjacent target with larval accelerant and a larva after a short wind up. All Defiler chems rapidly increase larval growth while the target has larval accelerant."
 	ability_name = "defiler sting"
 	plasma_cost = 150
 	cooldown_timer = 60 SECONDS
@@ -132,9 +124,9 @@ GLOBAL_LIST_INIT(defiler_toxins, typecacheof(list(
 
 	X.visible_message("<span class='xenodanger'>[X] emits a noxious gas!</span>", \
 	"<span class='xenodanger'>We emit noxious gas!</span>")
-	dispense_gas()
+	dispense_gas(3, X.selected_reagent)
 
-/datum/action/xeno_action/activable/emit_neurogas/proc/dispense_gas(count = 3)
+/datum/action/xeno_action/activable/emit_neurogas/proc/dispense_gas(count = 3, input_reagent)
 	if(!count) //If no repetitions left, cancel out
 		return
 
@@ -150,10 +142,10 @@ GLOBAL_LIST_INIT(defiler_toxins, typecacheof(list(
 	var/smoke_range = 2
 	var/datum/effect_system/smoke_spread/xeno/neuro/medium/N = new(X)
 	N.strength = 1
-	if(X.selected_reagent == /datum/reagent/toxin/xeno_hemodile)
+	if(input_reagent == /datum/reagent/toxin/xeno_hemodile)
 		N.smoke_type = /obj/effect/particle_effect/smoke/xeno/hemodile
 		smoke_range = 4
-	else if(X.selected_reagent == /datum/reagent/toxin/xeno_transvitox)
+	else if(input_reagent == /datum/reagent/toxin/xeno_transvitox)
 		N.smoke_type = /obj/effect/particle_effect/smoke/xeno/transvitox
 		smoke_range = 4
 
@@ -167,7 +159,7 @@ GLOBAL_LIST_INIT(defiler_toxins, typecacheof(list(
 	T.visible_message("<span class='danger'>Noxious smoke billows from the hulking xenomorph!</span>")
 	count = max(0,count - 1)
 
-	addtimer(CALLBACK(src, .proc/dispense_gas, count), DEFILER_GAS_DELAY) //Cycle; replaces use of sleep
+	addtimer(CALLBACK(src, .proc/dispense_gas, count, input_reagent), DEFILER_GAS_DELAY) //Cycle; replaces use of sleep
 
 
 // ***************************************
