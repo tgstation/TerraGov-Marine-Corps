@@ -38,7 +38,7 @@
 
 
 /obj/machinery/proc/is_operational()
-	return !(machine_stat & (NOPOWER|BROKEN|MAINT))
+	return !(machine_stat & (NOPOWER|BROKEN|MAINT|DISABLED))
 
 
 /obj/machinery/deconstruct(disassembled = TRUE)
