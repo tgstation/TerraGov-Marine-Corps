@@ -123,7 +123,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	///Whether to mute goonchat combat messages from others, such as when they are shot.
 	var/mute_others_combat_messages = FALSE
 	///Whether to mute xeno health alerts from when other xenos are badly hurt.
-	var/mute_xeno_health_alert_messages = FALSE
+	var/mute_xeno_health_alert_messages = TRUE
 
 	/// Chat on map
 	var/chat_on_map = TRUE

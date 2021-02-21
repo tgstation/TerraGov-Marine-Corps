@@ -70,6 +70,5 @@
 	holder.icon = 'icons/Marine/marine-items.dmi'
 	holder.icon_state = "detector_blip"
 	tracker_target = target
-	message_admins("target: [target] tracker_target: [tracker_target]")
 	tracker_target.overlays += holder
 	hud_list[XENO_TACTICAL_HUD] = holder
