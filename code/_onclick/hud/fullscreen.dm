@@ -92,6 +92,13 @@
 		fs_view = client_view
 		transform = matrix(actualview[1]/FULLSCREEN_OVERLAY_RESOLUTION_X, 0, 0, 0, actualview[2]/FULLSCREEN_OVERLAY_RESOLUTION_Y, 0)
 
+/obj/screen/fullscreen/black
+	icon_state = "black" //just a black square, you can change this if you get better ideas
+	layer = FULLSCREEN_INTRO_LAYER
+
+/obj/screen/fullscreen/spawning_in
+	icon_state = "blackimageoverlay" //mostly just a black square, you can change this if you get better ideas
+	layer = FULLSCREEN_INTRO_LAYER
 
 /obj/screen/fullscreen/brute
 	icon_state = "brutedamageoverlay"
