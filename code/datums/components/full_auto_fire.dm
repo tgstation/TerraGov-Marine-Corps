@@ -23,8 +23,8 @@
 	if(!isgun(parent))
 		return COMPONENT_INCOMPATIBLE
 	RegisterSignal(parent, COMSIG_GUN_FIRE_MODE_TOGGLE, .proc/wake_up)
-	RegisterSignal(parent, COMSIG_GUN_FIREDELAY_MODIFIED, .proc/modify_firedelay)
-	RegisterSignal(parent, COMSIG_GUN_BURST_SHOT_DELAY_MODIFIED, .proc/modify_burst_delay)
+	RegisterSignal(parent, COMSIG_GUN_AUTOFIREDELAY_MODIFIED, .proc/modify_firedelay)
+	RegisterSignal(parent, COMSIG_GUN_AUTOBURST_SHOT_DELAY_MODIFIED, .proc/modify_burst_delay)
 	RegisterSignal(parent, COMSIG_GUN_BURST_SHOTS_TO_FIRE_MODIFIED, .proc/modify_burst_amount)
 
 	src.autofire_shot_delay = autofire_shot_delay

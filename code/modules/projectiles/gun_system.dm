@@ -114,6 +114,15 @@
 
 	var/general_codex_key = "guns"
 
+	///The mob holding the gun
+	var/mob/gun_user
+	///The atom target by the user
+	var/atom/target
+	///How many bullets the gun fired while bursting/auto firing
+	var/shots_fired = 0
+	///If we are shooting it dual wielding
+	var/dual_wield = FALSE
+
 
 //----------------------------------------------------------
 				//				    \\
@@ -144,7 +153,7 @@
 	handle_starting_attachment()
 
 	setup_firemodes()
-	AddComponent(/datum/component/automatic_fire, fire_delay, burst_delay, burst_amount, gun_firemode, loc) //This should go after handle_starting_attachment() and setup_firemodes() to get the proper values set.
+	AddComponent(/datum/component/automatedfire/gun, fire_delay, burst_delay, burst_amount, gun_firemode) //This should go after handle_starting_attachment() and setup_firemodes() to get the proper values set.
 
 	muzzle_flash = new(src, muzzleflash_iconstate)
 
@@ -182,8 +191,12 @@
 
 /obj/item/weapon/gun/equipped(mob/user, slot)
 	unwield(user)
-
+	gun_user = user
 	return ..()
+
+/obj/item/weapon/gun/removed_from_inventory(mob/user)
+	gun_user = null
+	SEND_SIGNAL(src, COMSIG_GUN_STOP_FIRE)
 
 /obj/item/weapon/gun/update_icon(mob/user)
 	if(!current_mag || current_mag.current_rounds <= 0)
@@ -476,9 +489,6 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		return ..() //It's adjacent, is the user, or is on the user's person
 	if(QDELETED(A))
 		return
-	if(flags_gun_features & GUN_BURST_FIRING)
-		return
-
 	if(!istype(A, /obj/screen))
 		Fire(A, user, params) //Otherwise, fire normally.
 
@@ -561,114 +571,66 @@ and you're good to go.
 		//						   			   \\
 //----------------------------------------------------------
 
-/obj/item/weapon/gun/proc/Fire(atom/target, mob/living/user, params, reflex = 0, dual_wield)
-	set waitfor = 0
-
-	if(!able_to_fire(user))
+/obj/item/weapon/gun/proc/Fire()
+	SIGNAL_HANDLER
+	if(QDELETED(gun_user))
+		return
+	if(!ismob(gun_user)) //Could be an object firing the gun.
+		return TRUE
+	if(!able_to_fire(gun_user))
+		SEND_SIGNAL(src, COMSIG_GUN_STOP_FIRE)
 		return
 
-	if(gun_on_cooldown(user))
+	//The gun should return the bullet that it already loaded from the end cycle of the last Fire().
+	var/obj/projectile/projectile_to_fire = load_into_chamber(gun_user) //Load a bullet in or check for existing one.
+	in_chamber = null //Projectiles live and die fast. It's better to null the reference early so the GC can handle it immediately.
+	if(!projectile_to_fire) //If there is nothing to fire, click.
+		click_empty(gun_user)
+		SEND_SIGNAL(src, COMSIG_GUN_STOP_FIRE)
+
+	if(shots_fired == 0 && !dual_wield)//We only check when starting to shoot
+		var/obj/item/IH = gun_user.get_inactive_held_item()
+		if(istype(IH, /obj/item/weapon/gun))
+			var/obj/item/weapon/gun/OG = IH
+			if(!(OG.flags_gun_features & GUN_WIELDED_FIRING_ONLY) && OG.gun_skill_category == gun_skill_category)
+				dual_wield = TRUE
+				OG.dual_wield = TRUE
+			
+
+	apply_gun_modifiers(projectile_to_fire, target)
+	setup_bullet_accuracy(projectile_to_fire, gun_user, shots_fired, dual_wield) //User can be passed as null.
+		
+	var/firing_angle = get_angle_with_scatter((gun_user || get_turf(src)), target, get_scatter(projectile_to_fire.scatter, gun_user), projectile_to_fire.p_x, projectile_to_fire.p_y)
+
+	//Finally, make with the pew pew!
+	if(!projectile_to_fire || !istype(projectile_to_fire,/obj))
+		stack_trace("projectile malfunctioned while firing. User: [gun_user]")
+		SEND_SIGNAL(src, COMSIG_GUN_STOP_FIRE)
 		return
 
-	if(SEND_SIGNAL(src, COMSIG_GUN_FIRE, target, user) & COMPONENT_GUN_FIRED)
-		return
-
-	var/turf/targloc = get_turf(target)
-
-	/*
-	This is where burst is established for the proceeding section. Which just means the proc loops around that many times.
-	If burst = 1, you must null it if you ever RETURN during the for() cycle. If for whatever reason burst is left on while
-	the gun is not firing, it will break a lot of stuff. BREAK is fine, as it will null it.
-	*/
-
-	//Number of bullets based on burst. If an active attachable is shooting, bursting is always zero.
-	var/bullets_fired = 1
-	if(gun_firemode == GUN_FIREMODE_BURSTFIRE && burst_amount > 1)
-		bullets_fired = burst_amount
-		flags_gun_features |= GUN_BURST_FIRING
-
-	var/i
-	for(i = 1 to bullets_fired)
-		if(loc != user)
-			break //If you drop it while bursting, for example.
-
-		if(i > 1 && !(flags_gun_features & GUN_BURST_FIRING))//no longer burst firing somehow
-			break
-
-		//The gun should return the bullet that it already loaded from the end cycle of the last Fire().
-		var/obj/projectile/projectile_to_fire = load_into_chamber(user) //Load a bullet in or check for existing one.
-		in_chamber = null //Projectiles live and die fast. It's better to null the reference early so the GC can handle it immediately.
-		if(!projectile_to_fire) //If there is nothing to fire, click.
-			click_empty(user)
-			break
-
-		if(QDELETED(target)) //This can happen on burstfire, as it's a sleeping proc.
-			if(QDELETED(targloc))
-				break
-			target = targloc //If the original targets gets destroyed, fire at its location.
-
-		var/recoil_comp = 0 //used by bipod and akimbo firing
-
-		//checking for a gun in other hand to fire akimbo
-		if(i == 1 && !reflex && !dual_wield)
-			if(user)
-				var/obj/item/IH = user.get_inactive_held_item()
-				if(istype(IH, /obj/item/weapon/gun))
-					var/obj/item/weapon/gun/OG = IH
-					if(!(OG.flags_gun_features & GUN_WIELDED_FIRING_ONLY) && OG.gun_skill_category == gun_skill_category)
-						OG.Fire(target,user,params, 0, TRUE)
-						dual_wield = TRUE
-						recoil_comp++
-
-		apply_gun_modifiers(projectile_to_fire, target)
-		setup_bullet_accuracy(projectile_to_fire, user, i, dual_wield) //User can be passed as null.
-
-		if(params)
-			var/list/mouse_control = params2list(params)
-			if(mouse_control["icon-x"])
-				projectile_to_fire.p_x = text2num(mouse_control["icon-x"])
-			if(mouse_control["icon-y"])
-				projectile_to_fire.p_y = text2num(mouse_control["icon-y"])
-
-		var/firing_angle = get_angle_with_scatter((user || get_turf(src)), target, get_scatter(projectile_to_fire.scatter, user), projectile_to_fire.p_x, projectile_to_fire.p_y)
-
-		//Finally, make with the pew pew!
-		if(!projectile_to_fire || !istype(projectile_to_fire,/obj))
-			stack_trace("projectile malfunctioned while firing. User: [user]")
-			flags_gun_features &= ~GUN_BURST_FIRING
-			return
-
-		if(!QDELETED(user))
-			play_fire_sound(user)
-			muzzle_flash(firing_angle, user)
-			simulate_recoil(recoil_comp, user)
+	
+	play_fire_sound(gun_user)
+	muzzle_flash(firing_angle, gun_user)
+	simulate_recoil(dual_wield, gun_user)
 
 
-		//This is where the projectile leaves the barrel and deals with projectile code only.
-		//vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-		projectile_to_fire.fire_at(target, user, src, projectile_to_fire.ammo.max_range, projectile_to_fire.ammo.shell_speed, firing_angle)
-		//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	//This is where the projectile leaves the barrel and deals with projectile code only.
+	//vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+	projectile_to_fire.fire_at(target, gun_user, src, projectile_to_fire.ammo.max_range, projectile_to_fire.ammo.shell_speed, firing_angle)
+	//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	
+	shots_fired++
 
-		if(fire_animation) //Fires gun firing animation if it has any. ex: rotating barrel
-			flick("[fire_animation]", src)
+	if(fire_animation) //Fires gun firing animation if it has any. ex: rotating barrel
+		flick("[fire_animation]", src)
 
-		last_fired = world.time
+	last_fired = world.time
 
-		//This is where we load the next bullet in the chamber. We check for attachments too, since we don't want to load anything if an attachment is active.
-		if(!reload_into_chamber(user)) // It has to return a bullet, otherwise it's empty.
-			click_empty(user)
-			break //Nothing else to do here, time to cancel out.
+	SEND_SIGNAL(gun_user, COMSIG_MOB_GUN_FIRED, target, src)
 
-		if(i < bullets_fired) // We still have some bullets to fire.
-			extra_delay = min(extra_delay+(burst_delay*2), fire_delay*3) // The more bullets you shoot, the more delay there is, but no more than thrice the regular delay.
-			sleep(burst_delay)
 
-		SEND_SIGNAL(user, COMSIG_MOB_GUN_FIRED, target, src)
-
-	flags_gun_features &= ~GUN_BURST_FIRING // We always want to turn off bursting when we're done.
-
-	var/obj/screen/ammo/A = user.hud_used.ammo //The ammo HUD
-	A.update_hud(user)
+	var/obj/screen/ammo/A = gun_user.hud_used.ammo //The ammo HUD
+	A.update_hud(gun_user)
 
 
 /obj/item/weapon/gun/attack(mob/living/M, mob/living/user, def_zone)
@@ -690,7 +652,6 @@ and you're good to go.
 			Fire(M, user)
 			return TRUE
 
-		DISABLE_BITFIELD(flags_gun_features, GUN_BURST_FIRING)
 		//Point blanking simulates firing the bullet proper but without actually firing it.
 		var/obj/projectile/projectile_to_fire = load_into_chamber(user)
 		in_chamber = null //Projectiles live and die fast. It's better to null the reference early so the GC can handle it immediately.
@@ -799,10 +760,6 @@ and you're good to go.
 //----------------------------------------------------------
 
 /obj/item/weapon/gun/proc/able_to_fire(mob/user)
-	if(flags_gun_features & GUN_BURST_FIRING)
-		return FALSE
-	if(!ismob(user)) //Could be an object firing the gun.
-		return TRUE
 	if(!user.dextrous)
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return FALSE
