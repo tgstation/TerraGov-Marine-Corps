@@ -463,6 +463,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 	if(glasses.goggles)
 		overlays_standing[GOGGLES_LAYER] = glasses.make_worn_icon(body_type = species.name, slot_name = slot_glasses_str, default_icon = 'icons/mob/eyes.dmi', default_layer = GOGGLES_LAYER)
 		apply_overlay(GOGGLES_LAYER)
+
 	else
 		overlays_standing[GLASSES_LAYER] = glasses.make_worn_icon(body_type = species.name, slot_name = slot_glasses_str, default_icon = 'icons/mob/eyes.dmi', default_layer = GLASSES_LAYER)
 		apply_overlay(GLASSES_LAYER)
@@ -633,15 +634,14 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 
 /mob/living/carbon/human/proc/update_tail_showing()
 	remove_overlay(TAIL_LAYER)
-
 	if(!species.tail)
 		return
-	if((wear_suit?.flags_inv_hide & HIDETAIL) && !istype(wear_suit, /obj/item/clothing/suit/space))
-		var/icon/tail_s = new/icon("icon" = 'icons/effects/species.dmi', "icon_state" = "[species.tail]_s")
-		tail_s.Blend(rgb(r_skin, g_skin, b_skin), ICON_ADD)
-		overlays_standing[TAIL_LAYER]	= image(tail_s, layer = -TAIL_LAYER)
-
-		apply_overlay(TAIL_LAYER)
+	if(istype(wear_suit, /obj/item/clothing/suit/space) || (wear_suit.flags_inv_hide & HIDETAIL))
+		return
+	var/icon/tail_s = new/icon("icon" = 'icons/effects/species.dmi', "icon_state" = "[species.tail]_s")
+	tail_s.Blend(rgb(r_skin, g_skin, b_skin), ICON_ADD)
+	overlays_standing[TAIL_LAYER]	= image(tail_s, layer = -TAIL_LAYER)
+	apply_overlay(TAIL_LAYER)
 
 
 // Used mostly for creating head items

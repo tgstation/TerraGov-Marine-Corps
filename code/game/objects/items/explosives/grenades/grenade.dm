@@ -106,5 +106,5 @@
 	walk(src, null, null)
 	return
 
-/obj/item/explosive/grenade/attack_paw(mob/living/carbon/monkey/user)
+/obj/item/explosive/grenade/attack_paw(mob/living/carbon/human/user)
 	return attack_hand(user)

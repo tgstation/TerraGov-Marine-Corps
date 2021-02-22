@@ -19,7 +19,7 @@
 			log_combat(S, src, "attacked")
 
 
-/mob/living/carbon/xenomorph/attack_paw(mob/living/carbon/monkey/user)
+/mob/living/carbon/xenomorph/attack_paw(mob/living/carbon/human/user)
 	. = ..()
 
 	switch(user.a_intent)

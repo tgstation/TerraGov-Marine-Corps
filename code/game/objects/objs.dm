@@ -131,7 +131,7 @@
 	return
 
 
-/obj/attack_paw(mob/living/carbon/monkey/user)
+/obj/attack_paw(mob/living/carbon/human/user)
 	if(buckle_flags & CAN_BUCKLE)
 		return attack_hand(user)
 	return ..()

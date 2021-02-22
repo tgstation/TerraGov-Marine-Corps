@@ -965,6 +965,7 @@
 		setStaminaLoss(-max_stamina_buffer)
 
 	add_movespeed_modifier(MOVESPEED_ID_SPECIES, TRUE, 0, NONE, TRUE, species.slowdown)
+	species.on_species_gain(src, oldspecies) //todo move most of the stuff in this proc to here
 	return TRUE
 
 
@@ -974,7 +975,7 @@
 /mob/living/carbon/human/slip(slip_source_name, stun_level, weaken_level, run_only, override_noslip, slide_steps)
 	if(shoes && !override_noslip) // && (shoes.flags_inventory & NOSLIPPING)) // no more slipping if you have shoes on. -spookydonut
 		return FALSE
-	. = ..()
+	return ..()
 
 /mob/living/carbon/human/smokecloak_on()
 	var/obj/item/storage/backpack/marine/satchel/scout_cloak/S = back

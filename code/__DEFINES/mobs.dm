@@ -314,18 +314,19 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define DETACHABLE_HEAD			(1<<16)
 #define USES_ALIEN_WEAPONS		(1<<17)
 #define NO_DAMAGE_OVERLAY		(1<<18)
+#define CAN_VENTCRAWL			(1<<19)
 //=================================================
 
 //Some on_mob_life() procs check for alien races.
 #define IS_HUMAN (1<<0)
-#define IS_MONKEY (1<<1)
-#define IS_XENO (1<<2)
-#define IS_VOX (1<<3)
-#define IS_SKRELL (1<<4)
-#define IS_UNATHI (1<<5)
-#define IS_HORROR (1<<6)
-#define IS_MOTH (1<<7)
-#define IS_SECTOID (1<<8)
+#define IS_XENO (1<<1)
+#define IS_VOX (1<<2)
+#define IS_SKRELL (1<<3)
+#define IS_UNATHI (1<<4)
+#define IS_HORROR (1<<5)
+#define IS_MOTH (1<<6)
+#define IS_SECTOID (1<<7)
+#define IS_MONKEY (1<<8)
 //=================================================
 
 //AFK status

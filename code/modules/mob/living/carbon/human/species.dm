@@ -1,6 +1,7 @@
 /*
 	Datum-based species. Should make for much cleaner and easier to maintain species code.
 */
+///TODO SPLIT THIS INTO MULTIPLE FILES
 
 /datum/species
 
@@ -12,7 +13,6 @@
 	var/prone_icon                                       // If set, draws this from icobase when mob is prone.
 	var/eyes = "eyes_s"                                  // Icon for eyes.
 
-	var/primitive                              // Lesser form, if any (ie. monkey for humans)
 	var/tail                                   // Name of tail image in species effects icon file.
 	var/datum/unarmed_attack/unarmed           // For empty hand harm-intent attack
 	var/datum/unarmed_attack/secondary_unarmed // For empty hand harm-intent attack if the first fails.
@@ -66,6 +66,9 @@
 
 	var/brute_mod = null    // Physical damage reduction/malus.
 	var/burn_mod = null     // Burn damage reduction/malus.
+
+	///Whether this mob will tell when the user has logged out
+	var/is_sentient = TRUE
 
 	var/species_flags  = NONE       // Various specific features.
 
@@ -208,6 +211,9 @@
 				. = "Jeri"
 		to_chat(prefs.parent, "<span class='warning'>You forgot to set your synthetic name in your preferences. Please do so next time.</span>")
 
+/datum/species/proc/on_species_gain(mob/living/carbon/human/H, /datum/species/old_species)
+	return
+
 //special things to change after we're no longer that species
 /datum/species/proc/post_species_loss(mob/living/carbon/human/H)
 	return
@@ -228,6 +234,11 @@
 	add_inherent_verbs(H)
 
 /datum/species/proc/handle_death(mob/living/carbon/human/H) //Handles any species-specific death events.
+
+//TODO KILL ME
+///Snowflake proc for monkeys so they can call attackpaw
+/datum/species/proc/spec_unarmedattack(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	return FALSE
 
 //Only used by horrors at the moment. Only triggers if the mob is alive and not dead.
 /datum/species/proc/handle_unique_behavior(mob/living/carbon/human/H)
@@ -283,7 +294,6 @@
 /datum/species/human
 	name = "Human"
 	name_plural = "Humans"
-	primitive = /mob/living/carbon/monkey
 	unarmed_type = /datum/unarmed_attack/punch
 	species_flags = HAS_SKIN_TONE|HAS_LIPS|HAS_UNDERWEAR
 	count_human = TRUE
@@ -336,7 +346,7 @@
 	joinable_roundstart = FALSE
 
 /datum/species/human/vatgrown/random_name(gender)
-	. = "CS-[gender == FEMALE ? "F": "M"]-[rand(111,999)]"
+	return "CS-[gender == FEMALE ? "F": "M"]-[rand(111,999)]"
 
 /datum/species/human/vatgrown/handle_post_spawn(mob/living/carbon/human/H)
 	. = ..()
@@ -366,6 +376,93 @@
 
 /datum/species/human/vatgrown/early/proc/handle_age(mob/living/carbon/human/H)
 	H.set_species("Vat-Grown Human")
+
+
+//todo: wound overlays are strange for monkeys and should likely use icon adding instead
+//im not about to cram in that refactor with a carbon -> species refactor though
+/datum/species/monkey
+	name = "Monkey"
+	name_plural = "Monkeys"
+	icobase = 'icons/mob/human_races/r_monkey.dmi'
+	deform = 'icons/mob/human_races/r_monkey.dmi'
+	species_flags = HAS_NO_HAIR|NO_STAMINA|CAN_VENTCRAWL|DETACHABLE_HEAD
+	reagent_tag = IS_MONKEY
+	eyes = "blank_eyes"
+	tail = "monkeytail" //todo
+	speech_verb_override = "chimpers"
+	unarmed_type = /datum/unarmed_attack/bite/strong
+	secondary_unarmed_type = /datum/unarmed_attack/punch/strong
+	joinable_roundstart = FALSE
+	has_fine_manipulation = TRUE //monki gun
+	death_message = "lets out a faint chimper as it collapses and stops moving..."
+	dusted_anim = "dust-m"
+	gibbed_anim = "gibbed-m"
+	is_sentient = FALSE
+
+/datum/species/monkey/handle_unique_behavior(mob/living/carbon/human/H)
+	if(!H.client && H.stat == CONSCIOUS)
+		if(prob(33) && H.canmove && !H.buckled && isturf(H.loc) && !H.pulledby) //won't move if being pulled
+			step(H, pick(GLOB.cardinals))
+
+		if(prob(1))
+			H.emote(pick("scratch","jump","roll","tail"))
+
+/datum/species/monkey/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
+	. = ..()
+	H.flags_pass |= PASSTABLE
+
+/datum/species/monkey/spec_unarmedattack(mob/living/carbon/human/user, atom/target)
+	if(!iscarbon(target))
+		target.attack_paw(user)
+		return TRUE
+	var/mob/living/carbon/victim = target
+	if(prob(25))
+		victim.visible_message("<span class='danger'>[user]'s bite misses [victim]!</span>",
+			"<span class='danger'>You avoid [user]'s bite!</span>", "<span class='hear'>You hear jaws snapping shut!</span>")
+		to_chat(user, "<span class='danger'>Your bite misses [victim]!</span>")
+		return TRUE
+	victim.take_overall_damage(rand(10, 20), updating_health = TRUE)
+	victim.visible_message("<span class='danger'>[name] bites [victim]!</span>",
+		"<span class='userdanger'>[name] bites you!</span>", "<span class='hear'>You hear a chomp!</span>")
+	to_chat(user, "<span class='danger'>You bite [victim]!</span>")
+	target.attack_paw(user)
+	return TRUE
+
+/datum/species/monkey/random_name(gender,unique,lastname)
+	return "[lowertext(name)] ([rand(1,999)])"
+
+/datum/species/monkey/tajara
+	name = "Farwa"
+	icobase = 'icons/mob/human_races/r_farwa.dmi'
+	deform = 'icons/mob/human_races/r_farwa.dmi'
+	speech_verb_override = "mews"
+	tail = null
+
+/datum/species/monkey/skrell
+	name = "Naera"
+	icobase = 'icons/mob/human_races/r_naera.dmi'
+	deform = 'icons/mob/human_races/r_naera.dmi'
+	speech_verb_override = "squiks"
+	tail = null
+
+/datum/species/monkey/unathi
+	name = "Stok"
+	icobase = 'icons/mob/human_races/r_stok.dmi'
+	deform = 'icons/mob/human_races/r_stok.dmi'
+	speech_verb_override = "hisses"
+	tail = null
+
+/datum/species/monkey/yiren
+	name = "Yiren"
+	icobase = 'icons/mob/human_races/r_yiren.dmi'
+	deform = 'icons/mob/human_races/r_yiren.dmi'
+	speech_verb_override = "grumbles"
+	tail = null
+	cold_level_1 = ICE_COLONY_TEMPERATURE - 20
+	cold_level_2 = ICE_COLONY_TEMPERATURE - 40
+	cold_level_3 = ICE_COLONY_TEMPERATURE - 80
+
+
 
 //Various horrors that spawn in and haunt the living.
 /datum/species/human/spook
@@ -415,7 +512,6 @@
 	tail = "sogtail"
 	unarmed_type = /datum/unarmed_attack/claws
 	secondary_unarmed_type = /datum/unarmed_attack/bite/strong
-	primitive = /mob/living/carbon/monkey/unathi
 	taste_sensitivity = TASTE_SENSITIVE
 	gluttonous = 1
 
@@ -451,8 +547,6 @@
 	heat_level_2 = 380 //Default 400
 	heat_level_3 = 800 //Default 1000
 
-	primitive = /mob/living/carbon/monkey/tajara
-
 	species_flags = HAS_LIPS|HAS_UNDERWEAR|HAS_SKIN_COLOR
 
 	flesh_color = "#AFA59E"
@@ -464,7 +558,6 @@
 	icobase = 'icons/mob/human_races/r_skrell.dmi'
 	deform = 'icons/mob/human_races/r_def_skrell.dmi'
 	default_language_holder = /datum/language_holder/skrell
-	primitive = /mob/living/carbon/monkey/skrell
 	unarmed_type = /datum/unarmed_attack/punch
 
 	species_flags = HAS_LIPS|HAS_UNDERWEAR|HAS_SKIN_COLOR
@@ -800,7 +893,7 @@
 	return ..()
 
 
-/mob/living/carbon/human/proc/reset_jitteriness()
+/mob/living/carbon/human/proc/reset_jitteriness() //todo kill this
 	jitteriness = 0
 
 

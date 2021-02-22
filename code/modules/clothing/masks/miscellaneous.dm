@@ -9,7 +9,7 @@
 	gas_transfer_coefficient = 0.90
 
 //Monkeys can not take the muzzle off of themself! Call PETA!
-/obj/item/clothing/mask/muzzle/attack_paw(mob/living/carbon/monkey/user)
+/obj/item/clothing/mask/muzzle/attack_paw(mob/living/carbon/human/user)
 	if (src == user.wear_mask)
 		return
 	else

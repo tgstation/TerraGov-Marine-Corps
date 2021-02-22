@@ -663,11 +663,6 @@
 /atom/proc/can_sting()
 	return FALSE
 
-/mob/living/carbon/monkey/can_sting()
-	if(stat != DEAD)
-		return TRUE
-	return FALSE
-
 /mob/living/carbon/human/can_sting()
 	if(species?.species_flags & IS_SYNTHETIC)
 		return FALSE
