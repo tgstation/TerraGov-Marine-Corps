@@ -95,7 +95,7 @@
 		prev_turf = T
 		sleep(2)
 
-/datum/action/xeno_action/activable/spray_acid/line/on_cooldown_finish()
+/datum/action/xeno_action/activable/spray_acid/line/on_cooldown_finish() //Give acid spray a proper cooldown notification
 	to_chat(owner, "<span class='xenodanger'>Our dermal pouches bloat with fresh acid; we can use acid spray again.</span>")
 	owner.playsound_local(owner, 'sound/voice/alien_drool2.ogg', 25, 0, 1)
 	return ..()
@@ -110,12 +110,6 @@
 	ability_name = "scatter spit"
 	plasma_cost = 150
 	cooldown_timer = 6 SECONDS
-
-
-/datum/action/xeno_action/activable/scatter_spit/can_use_ability(atom/target, silent = FALSE, override_flags)
-	. = ..()
-	if(!.)
-		return
 
 /datum/action/xeno_action/activable/scatter_spit/use_ability(atom/target)
 

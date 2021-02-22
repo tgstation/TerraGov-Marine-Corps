@@ -156,7 +156,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		if(bonus_projectiles_type)
 			new_proj.generate_bullet(GLOB.ammo_list[bonus_projectiles_type])
 			var/obj/item/weapon/gun/g = source
-			if(source)
+			if(source) //Check for the source so we don't runtime if we have bonus projectiles from a non-gun source like a Spitter
 				new_proj.damage *= g.damage_mult //Bonus or reduced damage based on damage modifiers on the gun.
 		else //If no bonus type is defined then the extra projectiles are the same as the main one.
 			new_proj.generate_bullet(src)
@@ -1631,13 +1631,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/xeno/acid/heavy/scatter
 	damage = 15
 	flags_ammo_behavior = AMMO_XENO|AMMO_EXPLOSIVE|AMMO_SKIPS_ALIENS
-	bonus_projectiles_type = /datum/ammo/xeno/acid/heavy/scatter/bonus
+	bonus_projectiles_type = /datum/ammo/xeno/acid/heavy/scatter
 	bonus_projectiles_amount = 5
 	bonus_projectiles_scatter = 10
 	puddle_duration = 2 SECONDS //Lasts 2-4 seconds
-
-/datum/ammo/xeno/acid/heavy/scatter/bonus
-
 
 /datum/ammo/xeno/boiler_gas
 	name = "glob of gas"
