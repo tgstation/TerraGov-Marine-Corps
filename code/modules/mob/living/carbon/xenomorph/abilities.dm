@@ -1119,6 +1119,8 @@
 	succeed_activate()
 
 	var/upgrade_amount = target.upgrade_stored * DRONE_SALVAGE_BIOMASS_SALVAGE_RATIO //We only recover a small portion of the target's upgrade and evo points.
+	if(target.upgrade == XENO_UPGRADE_THREE)
+		upgrade_amount = target.xeno_caste.upgrade_threshold * DRONE_SALVAGE_BIOMASS_SALVAGE_RATIO //Ancient xenos count as having maximum upgrade points
 	var/evo_amount = target.evolution_stored * DRONE_SALVAGE_BIOMASS_SALVAGE_RATIO
 
 	//Take all the plas-mar
