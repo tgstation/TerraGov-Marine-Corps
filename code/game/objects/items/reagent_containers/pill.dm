@@ -245,5 +245,10 @@
 
 /obj/item/reagent_containers/pill/imialk
 	pill_desc = "An imialk pill, a old mix made to heal both eyes and brain."
-	list_reagents = list(/datum/reagent/medicine/imidazoline = 7.5,/datum/reagent/medicine/alkysine = 7.5 )
+	list_reagents = list(/datum/reagent/medicine/imidazoline = 7.5,/datum/reagent/medicine/alkysine = 7.5)
 	pill_id = 17
+
+/obj/item/reagent_containers/pill/iron
+	pill_desc = "An raw iron pill, terragov solution for all the bloodloss, not be confused by coins."
+	list_reagents = list(/datum/reagent/iron = 15)
+	pill_id = 12

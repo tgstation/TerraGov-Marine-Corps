@@ -444,6 +444,12 @@
 	icon_state = "pill_canister9"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/imialk
 
+/obj/item/storage/pill_bottle/iron
+	name = "iron pill bottle"
+	desc = "A medical iron pill, used in the treatment of bloodloss. Tastes like coins."
+	icon_state = "pill_canister7"
+	pill_type_to_fill = /obj/item/reagent_containers/pill/iron
+
 //Pill bottles with identification locks.
 
 /obj/item/storage/pill_bottle/restricted
