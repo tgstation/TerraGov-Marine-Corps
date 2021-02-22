@@ -370,7 +370,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	var/turf/T = X.loc
 	var/turf/temp = X.loc
 
-	for (var/x = 1 to WRAITH_BLINK_RANGE)
+	for (var/x = 1 to X.xeno_caste.wraith_blink_range)
 		temp = get_step(T, get_dir(T, A))
 		if (!temp)
 			break
@@ -386,11 +386,11 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	if(pulled_target) //bring the pulled target with us if applicable but at the cost of sharply increasing the next cooldown
 
 		if(pulled_target.issamexenohive(X))
-			cooldown_mod = WRAITH_BLINK_DRAG_FRIENDLY_MULTIPLIER
+			cooldown_mod = X.xeno_caste.wraith_blink_drag_friendly_multiplier
 		else
 			if(!do_after(owner, 0.5 SECONDS, TRUE, owner, BUSY_ICON_HOSTILE)) //Grap-porting hostiles has a slight wind up
 				return fail_activate()
-			cooldown_mod = WRAITH_BLINK_DRAG_NONFRIENDLY_MULTIPLIER
+			cooldown_mod = X.xeno_caste.wraith_blink_drag_nonfriendly_living_multiplier
 
 		to_chat(X, "<span class='xenodanger'>We bring [pulled_target] with us. We won't be ready to blink again for [cooldown_timer * cooldown_mod * 0.1] seconds due to the strain of doing so.</span>")
 
@@ -479,8 +479,10 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 			to_chat(owner, "<span class='xenowarning'>We cannot banish this!</span>")
 		return FALSE
 
+	var/mob/living/carbon/xenomorph/X = owner
+
 	var/distance = get_dist(owner, A)
-	if(distance > WRAITH_BANISH_RANGE) //Needs to be in range.
+	if(distance > X.xeno_caste.wraith_banish_range) //Needs to be in range.
 		if(!silent)
 			to_chat(owner, "<span class='xenowarning'>Our target is too far away! It must be [distance - WRAITH_BANISH_RANGE] tiles closer!</span>")
 		return FALSE
@@ -510,7 +512,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		stasis_target.notransform = TRUE //Stasis
 		stasis_target.overlay_fullscreen("banish", /obj/screen/fullscreen/blind) //Force the blind overlay
 
-	var/duration = WRAITH_BANISH_BASE_DURATION //Set the duration
+	var/duration = ghost.xeno_caste.wraith_banish_base_duration //Set the duration
 
 	portal.add_filter("banish_portal_1", 3, list("type" = "motion_blur", 0, 0)) //Cool filter appear
 	portal.add_filter("banish_portal_2", 3, list("type" = "motion_blur", 0, 0)) //Cool filter appear

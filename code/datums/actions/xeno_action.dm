@@ -136,7 +136,7 @@
 	return cooldown_timer
 
 
-/datum/action/xeno_action/proc/add_cooldown(cooldown_override = FALSE)
+/datum/action/xeno_action/proc/add_cooldown(cooldown_override = 0)
 	SIGNAL_HANDLER
 	var/cooldown_length = get_cooldown()
 	if(cooldown_override)
