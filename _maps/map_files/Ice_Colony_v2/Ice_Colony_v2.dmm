@@ -32190,10 +32190,6 @@
 	dir = 4
 	},
 /area/ice_colony/exterior/underground/caves/ice_w)
-"kpK" = (
-/obj/effect/turf_underlay/icefloor,
-/turf/open/space/basic,
-/area/ice_colony/exterior/underground/caves/open)
 "kqC" = (
 /obj/machinery/miner/damaged,
 /turf/open/floor/plating/ground/snow/layer0,
@@ -70918,9 +70914,9 @@ bmU
 aZF
 aZF
 aZF
-kpK
-kpK
-kpK
+prr
+prr
+prr
 aZF
 bnV
 aZF
