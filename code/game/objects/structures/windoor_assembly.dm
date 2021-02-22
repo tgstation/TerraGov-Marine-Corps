@@ -280,7 +280,7 @@ obj/structure/windoor_assembly/Destroy()
 		to_chat(usr, "It is fastened to the floor; therefore, you can't rotate it!")
 		return 0
 	setDir(turn(src.dir, 270))
-	return
+
 
 //Flips the windoor assembly, determines whather the door opens to the left or the right
 /obj/structure/windoor_assembly/verb/flip()
@@ -296,4 +296,4 @@ obj/structure/windoor_assembly/Destroy()
 		to_chat(usr, "The windoor will now slide to the left.")
 
 	update_icon()
-	return
+

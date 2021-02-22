@@ -168,6 +168,6 @@
 			cur = get_step(cur,dir[i])
 
 	qdel(src)
-	return
+
 
 

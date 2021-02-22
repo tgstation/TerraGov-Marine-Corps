@@ -871,7 +871,7 @@
 		var/affected_organ = pick("heart","lungs","liver","kidneys")
 		var/datum/internal_organ/I =  H.internal_organs_by_name[affected_organ]
 		I.take_damage(5.5*effect_str)
-	return
+
 
 
 /datum/reagent/medicine/ultrazine/overdose_process(mob/living/L, metabolism)

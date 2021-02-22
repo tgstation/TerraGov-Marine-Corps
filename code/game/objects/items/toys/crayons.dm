@@ -58,7 +58,7 @@
 		colour = "#000000"
 		shadeColour = "#FFFFFF"
 		to_chat(user, "You will now draw in black and white with this crayon.")
-	return
+
 
 /* A special rainbow crayon */
 /obj/item/toy/crayon/rainbow
@@ -71,7 +71,7 @@
 /obj/item/toy/crayon/rainbow/attack_self(mob/living/user as mob)
 	colour = input(user, "Please select the main colour.", "Crayon colour") as color
 	shadeColour = input(user, "Please select the shade colour.", "Crayon colour") as color
-	return
+
 
 /obj/item/toy/crayon/afterattack(atom/target, mob/user, proximity)
 	if(!proximity) 

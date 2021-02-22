@@ -132,7 +132,7 @@ directive is properly returned.
 
 /atom/proc/Bumped(atom/movable/AM)
 	SEND_SIGNAL(src, COMSIG_ATOM_BUMPED, AM)
-	return
+
 
 ///Can the mover object pass this atom, while heading for the target turf
 /atom/proc/CanPass(atom/movable/mover, turf/target)
@@ -151,9 +151,8 @@ directive is properly returned.
 
 /atom/proc/CheckExit(atom/movable/mover, turf/target)
 	if(!density || !(flags_atom & ON_BORDER) || !(get_dir(mover.loc, target) & dir))
-		return 1
-	else
-		return 0
+		return TRUE
+	return FALSE
 
 
 // Convenience proc for reagents handling.
@@ -337,7 +336,6 @@ directive is properly returned.
 /atom/proc/hitby(atom/movable/AM)
 	if(density)
 		AM.set_throwing(FALSE)
-	return
 
 
 /atom/proc/GenerateTag()

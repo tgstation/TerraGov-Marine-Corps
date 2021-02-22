@@ -13,8 +13,8 @@
 	if (src == user.wear_mask)
 		return
 	else
-		..()
-	return
+		return ..()
+
 
 
 /obj/item/clothing/mask/surgical

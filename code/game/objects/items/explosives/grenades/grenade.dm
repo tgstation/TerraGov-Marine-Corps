@@ -75,7 +75,6 @@
 	if(dangerous)
 		overlays+=new/obj/effect/overlay/danger
 		dangerous = 0
-	return
 
 
 /obj/item/explosive/grenade/proc/prime()

@@ -96,14 +96,14 @@
 
 /mob/living/proc/get_ghost()
 	if(client) //Let's call up the correct ghost!
-		return
+		return null
 	for(var/g in GLOB.observer_list)
 		var/mob/dead/observer/ghost = g
 		if(!ghost?.mind.current == src) //we can find undeletted ghost references in here, ghost deletting problem.
 			continue
 		if(ghost.client && ghost.can_reenter_corpse)
 			return ghost
-	return
+	return null
 
 
 /mob/living/carbon/human/proc/has_working_organs()

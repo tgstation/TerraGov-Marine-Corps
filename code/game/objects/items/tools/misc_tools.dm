@@ -123,11 +123,11 @@
 /obj/item/tool/pen/sleepypen/attack(mob/M as mob, mob/user as mob)
 	if(!(istype(M,/mob)))
 		return
-	..()
+	. = ..()
 	if(reagents.total_volume)
 		reagents.reaction(M, INJECT)
 		if(M.reagents) reagents.trans_to(M, 50) //used to be 150
-	return
+
 
 
 /*

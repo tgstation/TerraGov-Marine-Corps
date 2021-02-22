@@ -192,7 +192,7 @@
 	interactee?.check_eye(src)
 
 	if(!hud_used)
-		return
+		return FALSE
 
 	if(hud_used.pressure_icon)
 		hud_used.pressure_icon.icon_state = "pressure[pressure_alert]"
@@ -228,7 +228,7 @@
 			else
 				hud_used.bodytemp_icon.icon_state = "temp-4"
 
-	return 1
+	return TRUE
 
 /mob/living/carbon/monkey/proc/handle_random_events()
 	if (prob(1) && prob(2))
@@ -239,5 +239,5 @@
 	if(..())
 		return
 	adjustFireLoss(6)
-	return
+
 //END FIRE CODE

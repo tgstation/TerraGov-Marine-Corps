@@ -118,11 +118,13 @@
 /* Atom Procs */
 /atom/proc/AICtrlClick()
 	return
+
 /atom/proc/AIAltClick(mob/living/silicon/ai/user)
 	AltClick(user)
-	return
+
 /atom/proc/AIShiftClick()
 	return
+
 /atom/proc/AICtrlShiftClick()
 	return
 

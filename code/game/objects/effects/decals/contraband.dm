@@ -122,7 +122,6 @@ obj/structure/sign/poster/New(var/serial)
 		to_chat(user, "<span class='notice'>You place the poster!</span>")
 	else
 		D.roll_and_drop(temp_loc)
-	return
 
 /datum/poster
 	// Name suffix. Poster - [name]

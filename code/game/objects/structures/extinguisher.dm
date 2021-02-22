@@ -60,7 +60,6 @@
 
 /obj/structure/extinguisher_cabinet/attack_paw(mob/living/carbon/monkey/user)
 	attack_hand(user)
-	return
 
 
 /obj/structure/extinguisher_cabinet/update_icon()

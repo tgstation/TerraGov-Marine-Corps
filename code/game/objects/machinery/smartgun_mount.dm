@@ -72,7 +72,7 @@
 		icon_state = "turret_icon_e"
 	else
 		icon_state = "turret_icon"
-	return
+
 
 /obj/item/standard_hmg/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -205,7 +205,7 @@
 		icon_state = "[icon_empty]"
 	else
 		icon_state = "[icon_full]"
-	return
+
 
 /obj/machinery/standard_hmg/attackby(obj/item/I, mob/user, params) //This will be how we take it apart.
 	. = ..()

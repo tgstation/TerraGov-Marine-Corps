@@ -52,7 +52,7 @@
 	. = ..()
 	if(rolled_sleeves && !inhands)
 		. += "_d"
-	return
+
 
 /obj/item/clothing/apply_blood(image/standing)
 	if(blood_overlay && blood_sprite_state)

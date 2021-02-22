@@ -107,7 +107,7 @@
 
 	user.s_active = src
 	content_watchers |= user
-	return
+
 
 /obj/item/storage/proc/hide_from(mob/user as mob)
 
@@ -122,7 +122,7 @@
 	if(user.s_active == src)
 		user.s_active = null
 	content_watchers -= user
-	return
+
 
 /obj/item/storage/proc/can_see_content()
 	var/list/lookers = list()
@@ -248,8 +248,8 @@
 		O.layer = ABOVE_HUD_LAYER
 		O.plane = ABOVE_HUD_PLANE
 
-	src.closer.screen_loc = "4:[storage_width+19],2:16"
-	return
+	closer.screen_loc = "4:[storage_width+19],2:16"
+
 
 
 /obj/screen/storage/Click(location, control, params)
@@ -328,7 +328,6 @@
 		if (adjusted_contents > 7)
 			row_num = round((adjusted_contents-1) / 7) // 7 is the maximum allowed width.
 		slot_orient_objs(row_num, col_count, numbered_contents)
-	return
 
 //This proc return 1 if the item can be picked up and 0 if it can't.
 //Set the warning to stop it from printing messages
