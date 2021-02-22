@@ -601,7 +601,11 @@
 		/obj/item/stack/medical/advanced/ointment = 16,
 		/obj/item/stack/medical/splint = 8,
 		/obj/item/reagent_containers/glass/beaker = 8, //so medics can make SMALL mixes in their quarters
-		/obj/item/storage/syringe_case = 8,
+		/obj/item/reagent_containers/glass/bottle/bicaridine = 4,
+		/obj/item/reagent_containers/glass/bottle/kelotane = 4,
+		/obj/item/reagent_containers/glass/bottle/tramadol = 4,
+		/obj/item/reagent_containers/glass/bottle/inaprovaline = 4,
+		/obj/item/reagent_containers/glass/bottle/dylovene = 4,
 		/obj/item/reagent_containers/hypospray/autoinjector/dexalinplus = 0,
 		/obj/item/reagent_containers/hypospray/autoinjector/quickclotplus = 0,
 		/obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus = 0,
