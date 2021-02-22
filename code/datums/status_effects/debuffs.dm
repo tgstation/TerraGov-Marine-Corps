@@ -284,7 +284,7 @@
 	new /obj/effect/temp_visual/telekinesis(get_turf(owner)) //Wearing off SFX
 	new /obj/effect/temp_visual/healing(get_turf(owner)) //Wearing off SFX
 
-	to_chat(owner, "<span class='xenodanger'>We are no longer benefitting from Healing Infusion.</span>") //Let the target know
+	to_chat(owner, "<span class='xenodanger'>Our regeneration is no longer accelerated.</span>") //Let the target know
 	owner.playsound_local(owner, 'sound/voice/hiss5.ogg', 25)
 
 	return ..()
