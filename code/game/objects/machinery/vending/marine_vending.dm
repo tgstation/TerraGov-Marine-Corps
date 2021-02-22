@@ -590,18 +590,19 @@
 		/obj/item/clothing/mask/gas = 4,
 		/obj/item/storage/pouch/pistol = 4,
 		/obj/item/storage/syringe_case/combat = 4,  //these have the regular combat injectors so dont change it to adv without paying attention
-		/obj/item/storage/pill_bottle/iron = 4,   //we will add more if needed later
-		/obj/item/storage/pill_bottle/tricordrazine = 4,
 		/obj/item/storage/pill_bottle/bicaridine = 4,
 		/obj/item/storage/pill_bottle/kelotane = 4,
 		/obj/item/storage/pill_bottle/tramadol = 4,
+		/obj/item/storage/pill_bottle/tricordrazine = 4,
 		/obj/item/storage/pill_bottle/alkysine = 4,
 		/obj/item/storage/pill_bottle/imidazoline = 4,
+		/obj/item/storage/pill_bottle/iron = 4,   //we will add more if needed later
 		/obj/item/stack/medical/advanced/bruise_pack = 16,
 		/obj/item/stack/medical/advanced/ointment = 16,
 		/obj/item/stack/medical/splint = 8,
 		/obj/item/reagent_containers/hypospray/autoinjector/dexalinplus = 0,
 		/obj/item/reagent_containers/hypospray/autoinjector/quickclotplus = 0,
+		/obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus = 0,
 		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = 0,
 	)
 	contraband = list(/obj/item/reagent_containers/blood/OMinus = 1)
