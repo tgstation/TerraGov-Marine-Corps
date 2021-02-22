@@ -1,0 +1,4 @@
+author: "mokulus"
+delete-after: True
+changes: 
+  - bugfix: "boiler neurotoxin properly extinguishes xenos"
