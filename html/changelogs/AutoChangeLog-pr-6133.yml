@@ -1,0 +1,4 @@
+author: "mokulus"
+delete-after: True
+changes: 
+  - bugfix: "synthetic cannot throw dangerous grenades in acid holes now"
