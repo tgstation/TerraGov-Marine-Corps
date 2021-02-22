@@ -302,7 +302,7 @@ REAGENT SCANNER
 		// Show pulse
 		var/pulse = H.handle_pulse()
 		dat += "\tPulse: <font color='[pulse == PULSE_THREADY || pulse == PULSE_NONE ? "red" : ""]'>[H.get_pulse(GETPULSE_TOOL)] bpm.</font>\n"
-		
+
 		if(H.has_working_organs())
 			//Chems that conflict with others:
 			var/synaptizine_amount = reagents_in_body[/datum/reagent/medicine/synaptizine]

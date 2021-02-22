@@ -111,7 +111,7 @@
 
 	if(!heart || heart.is_broken() || !has_brain())
 		return FALSE
-	
+
 	return TRUE
 
 /obj/item/defibrillator/attack(mob/living/carbon/human/H, mob/living/carbon/human/user)

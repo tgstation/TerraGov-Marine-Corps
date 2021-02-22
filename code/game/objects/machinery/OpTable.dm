@@ -40,7 +40,7 @@
 
 
 /obj/machinery/optable/attack_paw(mob/living/carbon/monkey/user)
-	if(locate(/obj/machinery/optable, user.loc)
+	if(locate(/obj/machinery/optable, user.loc))
 		return
 	step(user, get_dir(user, src))
 	if(user.loc == loc)
