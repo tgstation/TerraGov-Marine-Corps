@@ -241,3 +241,9 @@
 	//pill_desc = "An ultrazine pill. A highly-potent, long-lasting combination CNS and muscle stimulant. Extremely addictive."
 	list_reagents = list(/datum/reagent/medicine/ultrazine = 5)
 	pill_id = 21
+
+
+/obj/item/reagent_containers/pill/imialk
+	pill_desc = "An imialk pill, a old mix made to heal both eyes and brain."
+	list_reagents = list(/datum/reagent/medicine/imidazoline = 7.5,/datum/reagent/medicine/alkysine = 7.5 )
+	pill_id = 17

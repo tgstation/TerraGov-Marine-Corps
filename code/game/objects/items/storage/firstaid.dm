@@ -438,6 +438,12 @@
 	max_storage_space = 7
 	pill_type_to_fill = /obj/item/reagent_containers/pill/zoom
 
+/obj/item/storage/pill_bottle/imialk
+	name = "imialk pill bottle"
+	desc = "Contains pills that heal brain and eye damage."
+	icon_state = "pill_canister9"
+	pill_type_to_fill = /obj/item/reagent_containers/pill/imialk
+
 //Pill bottles with identification locks.
 
 /obj/item/storage/pill_bottle/restricted
