@@ -547,9 +547,9 @@
 	fire_sound = initial(mode_list[mode_index].fire_sound)
 
 	if(initial(mode_list[mode_index].fire_mode) != GUN_FIREMODE_SEMIAUTO)
-		SEND_SIGNAL(src, COMSIG_GUN_FIREMODE_TOGGLE, initial(mode_list[mode_index].fire_mode), user.client)
+		SEND_SIGNAL(src, COMSIG_GUN_FIRE_MODE_TOGGLE, initial(mode_list[mode_index].fire_mode), user.client)
 	else
-		SEND_SIGNAL(src, COMSIG_GUN_FIREMODE_TOGGLE, GUN_FIREMODE_SEMIAUTO, user.client)
+		SEND_SIGNAL(src, COMSIG_GUN_FIRE_MODE_TOGGLE, GUN_FIREMODE_SEMIAUTO, user.client)
 
 	base_gun_icon = initial(mode_list[mode_index].icon_state)
 	update_icon()

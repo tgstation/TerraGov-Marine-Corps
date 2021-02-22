@@ -243,13 +243,12 @@
 
 // /obj/item/weapon/gun signals
 #define COMSIG_GUN_FIRE "gun_fire"
-	#define COMPONENT_GUN_FIRED 1
-#define COMSIG_GUN_AUTOFIRE "gun_autofire"
-#define COMSIG_GUN_CLICKEMPTY "gun_clickempty"
-#define COMSIG_GUN_FIREMODE_TOGGLE "gun_firemode_toggle"		//from /obj/item/weapon/gun/verb/toggle_firemode()
+#define COMSIG_GUN_STOP_FIRE "gun_fire"
+#define COMSIG_GUN_FIRED "gun_fired"
+#define COMSIG_GUN_FIRE_MODE_TOGGLE "gun_firemode_toggle"		//from /obj/item/weapon/gun/verb/toggle_firemode()
 #define COMSIG_GUN_FIREDELAY_MODIFIED "gun_firedelay_modified"
-#define COMSIG_GUN_BURSTDELAY_MODIFIED "gun_burstdelay_modified"
-#define COMSIG_GUN_BURSTAMOUNT_MODIFIED "gun_burstamount_modified"
+#define COMSIG_GUN_BURST_SHOT_DELAY_MODIFIED "gun_burstdelay_modified"
+#define COMSIG_GUN_BURST_SHOTS_TO_FIRE_MODIFIED "gun_burstamount_modified"
 
 // /obj/item/clothing signals
 #define COMSIG_SHOES_STEP_ACTION "shoes_step_action"			//from base of obj/item/clothing/shoes/proc/step_action(): ()

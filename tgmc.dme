@@ -293,6 +293,7 @@
 #include "code\datums\components\dripping.dm"
 #include "code\datums\components\footstep.dm"
 #include "code\datums\components\full_auto_fire.dm"
+#include "code\datums\components\gun_auto_fire.dm"
 #include "code\datums\components\largeobjecttransparency.dm"
 #include "code\datums\components\mobile_power.dm"
 #include "code\datums\components\orbiter.dm"
