@@ -600,12 +600,14 @@
 		/obj/item/stack/medical/advanced/bruise_pack = 16,
 		/obj/item/stack/medical/advanced/ointment = 16,
 		/obj/item/stack/medical/splint = 8,
+		/obj/item/reagent_containers/glass/beaker = 8, //so medics can make SMALL mixes in their quarters
+		/obj/item/storage/syringe_case = 8,
 		/obj/item/reagent_containers/hypospray/autoinjector/dexalinplus = 0,
 		/obj/item/reagent_containers/hypospray/autoinjector/quickclotplus = 0,
 		/obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus = 0,
 		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = 0,
 	)
-	contraband = list(/obj/item/reagent_containers/blood/OMinus = 1)
+	contraband = list(/obj/item/reagent_containers/blood/OMinus = 1, item/reagent_containers/glass/beaker/large = 4) //if medics REALLY want to make mixes in here. we will get in game feedback
 
 
 /obj/machinery/vending/marine_special
