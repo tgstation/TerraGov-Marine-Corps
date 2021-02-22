@@ -787,9 +787,6 @@
 	STOP_PROCESSING(SSprocessing, src)
 	return ..()
 
-/obj/screen/xeno_health_alert/Destroy()
-	STOP_PROCESSING(SSprocessing, src)
-	return ..()
 
 /obj/screen/arrow/leader_tracker_arrow
 	name = "hive leader tracker arrow"
