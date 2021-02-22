@@ -21,7 +21,6 @@
 	var/ammo_id
 	///whether the ammo inside this magazine can be transfered to another magazine.
 	var/transferable_ammo = FALSE
-	var/accuracy_range = 3 //how many tiles the ammo can deviate from the laser target
 	///sound played mere seconds before impact
 	var/warning_sound = 'sound/machines/hydraulics_2.ogg'
 	var/ammo_used_per_firing = 1
@@ -80,13 +79,12 @@
 	icon_state = "30mm_crate"
 	desc = "A crate full of 30mm bullets used on the dropship heavy guns."
 	equipment_type = /obj/structure/dropship_equipment/weapon/heavygun
-	accuracy_range = 0 //always hits
-	travelling_time = 6 SECONDS
+	travelling_time =  6 SECONDS
 	ammo_count = 200
 	max_ammo_count = 200
 	transferable_ammo = TRUE
 	ammo_used_per_firing = 20
-	point_cost = 50
+	point_cost = 75
 	///Radius of the square that the bullets will strafe
 	var/bullet_spread_range = 2
 	///Width of the square we are attacking, so you can make rectangular attacks later
@@ -129,7 +127,7 @@
 		strafed.ex_act(EXPLODE_LIGHT)
 		new /obj/effect/particle_effect/expl_particles(strafed)
 		new /obj/effect/temp_visual/heavyimpact(strafed)
-		for(var/atom/movable/AM as() in strafed)
+		for(var/atom/movable/AM AS in strafed)
 			AM.ex_act(EXPLODE_LIGHT)
 
 	if(length(strafelist))
@@ -140,13 +138,17 @@
 	name = "high-velocity 30mm ammo crate"
 	icon_state = "30mm_crate_hv"
 	desc = "A crate full of 30mm high-velocity bullets used on the dropship heavy guns."
-	travelling_time = 6 SECONDS
+	travelling_time = 5 SECONDS
+	point_cost = 150
+
+/obj/structure/ship_ammo/heavygun/railgun
+	name = "Railgun Ammo"
+	desc = "This is not meant to exist"
 	ammo_count = 400
 	max_ammo_count = 400
 	ammo_used_per_firing = 40
 	bullet_spread_range = 5
-	point_cost = 150
-
+	point_cost = 0
 
 
 //laser battery
@@ -162,7 +164,6 @@
 	equipment_type = /obj/structure/dropship_equipment/weapon/laser_beam_gun
 	ammo_name = "charge"
 	transferable_ammo = TRUE
-	accuracy_range = 0 //its a laser
 	ammo_used_per_firing = 10
 	warning_sound = 'sound/effects/nightvision.ogg'
 	point_cost = 150
@@ -224,7 +225,7 @@
 	ammo_id = ""
 	bound_width = 64
 	bound_height = 32
-	travelling_time = 6 SECONDS //faster than 30mm rounds
+	travelling_time = 6 SECONDS
 	point_cost = 0
 	ammo_type = CAS_MISSILE
 
@@ -276,7 +277,6 @@
 	desc = "The SM-17 'Fatty' is a cluster-bomb type ordnance that only requires laser-guidance when first launched."
 	icon_state = "fatty"
 	ammo_id = "f"
-	travelling_time = 7 SECONDS //slower but deadly accurate, even if laser guidance is stopped mid-travel.
 	point_cost = 300
 
 /obj/structure/ship_ammo/rocket/fatty/detonate_on(turf/impact, attackdir = NORTH)
@@ -322,7 +322,7 @@
 	ammo_count = 6
 	max_ammo_count = 6
 	ammo_name = "minirocket"
-	travelling_time = 7 SECONDS //faster than 30mm cannon, slower than real rockets
+	travelling_time = 6 SECONDS
 	transferable_ammo = TRUE
 	point_cost = 100
 	ammo_type = CAS_MINI_ROCKET

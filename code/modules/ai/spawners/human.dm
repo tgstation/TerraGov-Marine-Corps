@@ -13,5 +13,5 @@
 	var/datum/job/job = SSjob.GetJobType(/datum/job/deathsquad/leader)
 	SL.apply_assigned_role_to_spawn(job)
 	job = SSjob.GetJobType(/datum/job/deathsquad/standard)
-	for(var/mob/living/carbon/human/squaddie as() in squad)
+	for(var/mob/living/carbon/human/squaddie AS in squad)
 		squaddie.apply_assigned_role_to_spawn(job)

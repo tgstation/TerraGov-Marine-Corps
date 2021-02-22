@@ -244,7 +244,7 @@
 		if(DEAD)
 			simple_status_hud.icon_state = ""
 			infection_hud.icon_state = "huddead" //Xenos sense dead hosts, and no longer their larvas inside, which fall into stasis and no longer grow.
-			if(undefibbable)
+			if(HAS_TRAIT(src, TRAIT_UNDEFIBBABLE ))
 				status_hud.icon_state = "huddead"
 				return TRUE
 			if(!client)
@@ -256,12 +256,14 @@
 				else
 					status_hud.icon_state = "huddead"
 					return TRUE
-			var/stage = 1
-			var/death_decay_time = world.time - timeofdeath - revive_grace_time
-			if(death_decay_time > (CONFIG_GET(number/revive_grace_period) * 0.8))
-				stage = 3
-			else if(death_decay_time > (CONFIG_GET(number/revive_grace_period) * 0.4))
-				stage = 2
+			var/stage
+			switch(dead_ticks)
+				if(0 to 0.4 * TIME_BEFORE_DNR)
+					stage = 1
+				if(0.4 * TIME_BEFORE_DNR to 0.8 * TIME_BEFORE_DNR)
+					stage = 2
+				if(0.8 * TIME_BEFORE_DNR to INFINITY)
+					stage = 3
 			status_hud.icon_state = "huddeaddefib[stage]"
 			return TRUE
 		if(UNCONSCIOUS)

@@ -55,6 +55,7 @@
 #define DOES_NOT_NEED_HANDS		(1<<7)	//Dont need hands to use it
 #define SYNTH_RESTRICTED		(1<<8)	//Prevents synths from wearing items with this flag
 #define IMPEDE_JETPACK 		(1<<9)  //Reduce the range of jetpack
+#define DRAINS_XENO				(1<<10)  //Enables the item to collect resource for chem_booster component
 //==========================================================================================
 
 //flags_inv_hide

@@ -16,10 +16,6 @@
 	hive?.on_xeno_death(src)
 	hive.update_tier_limits() //Update our tier limits.
 
-	if(LAZYLEN(stomach_contents))
-		empty_gut()
-		visible_message("<span class='danger'>Something bursts out of [src]!</span>")
-
 	if(is_zoomed)
 		zoom_out()
 

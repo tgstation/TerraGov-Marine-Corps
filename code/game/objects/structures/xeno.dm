@@ -93,7 +93,7 @@
 	. = ..()
 	if(!ishuman(AM))
 		return
-	
+
 	if(CHECK_MULTIPLE_BITFIELDS(AM.flags_pass, HOVERING))
 		return
 
@@ -650,7 +650,7 @@ TUNNEL
 
 /obj/structure/tunnel/Destroy()
 	var/drop_loc = get_turf(src)
-	for(var/atom/movable/thing as() in contents) //Empty the tunnel of contents
+	for(var/atom/movable/thing AS in contents) //Empty the tunnel of contents
 		thing.forceMove(drop_loc)
 
 	if(!QDELETED(creator))
@@ -715,13 +715,6 @@ TUNNEL
 	if(length(GLOB.xeno_tunnels) < 2)
 		to_chat(X, "<span class='warning'>There are no other tunnels in the network!</span>")
 		return FALSE
-
-	for(var/tummy_resident in X.stomach_contents)
-		if(ishuman(tummy_resident))
-			var/mob/living/carbon/human/H = tummy_resident
-			if(check_tod(H))
-				to_chat(X, "<span class='warning'>We cannot enter the tunnel while the host we devoured has signs of life. We should headbite it to finish it off.</span>")
-				return
 
 	pick_a_tunnel(X)
 

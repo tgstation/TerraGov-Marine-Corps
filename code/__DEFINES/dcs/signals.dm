@@ -11,6 +11,7 @@
 #define COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE "!open_timed_shutters_late"
 #define COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND "!open_timed_shutters_xeno_hivemind"
 #define COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH "!open_timed_shutters_crash"
+#define COMSIG_GLOB_OPEN_SHUTTERS_EARLY "!open_shutters_early"
 
 #define COMSIG_GLOB_REMOVE_VOTE_BUTTON "!remove_vote_button"
 #define COMSIG_GLOB_NUKE_START "!nuke_start"
@@ -33,6 +34,10 @@
 #define COMSIG_GLOB_DROPSHIP_TRANSIT "!dropship_transit"
 ///Sent when xenos launch a hijacked dropship
 #define COMSIG_GLOB_DROPSHIP_HIJACKED "!dropship_hijacked"
+///Sent when nightfall is casted
+#define COMSIG_GLOB_LIGHT_OFF "item_light_off"
+///Sent when the floodlight switch is powered
+#define COMSIG_GLOB_FLOODLIGHT_SWITCH "floodlight_switch_power_change"
 
 //////////////////////////////////////////////////////////////////
 
@@ -200,6 +205,8 @@
 #define COMSIG_PORTGEN_POWER_TOGGLE "portgen_power_toggle"		/// from /obj/machinery/power/port_gen/proc/TogglePower: ()
 #define COMSIG_PORTGEN_PROCESS "portgen_process"				/// from /obj/machinery/power/port_gen/process: ()
 
+#define COMSIG_UNMANNED_TURRET_UPDATED "unmanned_turret_update" /// from /obj/vehicle/unmanned/attackby: (newtype)
+
 // /obj/item signals
 #define COMSIG_ITEM_ATTACK "item_attack"						//from base of obj/item/attack(): (/mob/living/target, /mob/living/user)
 #define COMSIG_ITEM_ATTACK_SELF "item_attack_self"				//from base of obj/item/attack_self(): (/mob)
@@ -225,6 +232,8 @@
 #define COMSIG_ITEM_SHIFTCLICKON "item_shiftclickon"					//from base of mob/living/carbon/human/ShiftClickOn(): (/atom, /mob)
 #define COMSIG_ITEM_RIGHTCLICKON "item_rightclickon"					//from base of mob/living/carbon/human/RightClickOn(): (/atom, /mob)
 	#define COMPONENT_ITEM_CLICKON_BYPASS (1<<0)
+
+#define COMSIG_NEW_REAGENT_ADD	"new_reagent_add"					//from add_reagent(): (/datum/reagent, amount); it is sent when a reagent gets added for the first time to a holder
 
 #define COMSIG_CLOTHING_MECHANICS_INFO "clothing_mechanics_info"	//from base of /obj/item/clothing/get_mechanics_info()
 	#define COMPONENT_CLOTHING_MECHANICS_TINTED	(1<<0)
@@ -532,6 +541,8 @@
 #define COMSIG_XENOABILITY_QUEEN_GIVE_PLASMA "xenoability_queen_give_plasma"
 #define COMSIG_XENOABILITY_QUEEN_GIVE_ORDER "xenoability_queen_give_order"
 #define COMSIG_XENOABILITY_DEEVOLVE "xenoability_deevolve"
+#define COMSIG_XENOABILITY_CORRUPT_GENERATOR "xenoability_corrupt_generator"
+
 #define COMSIG_XENOABILITY_QUEEN_LARVAL_GROWTH "xenoability_queen_larval_growth"
 
 #define COMSIG_XENOABILITY_LAY_HIVEMIND "xenoability_lay_hivemind"
@@ -540,6 +551,7 @@
 #define COMSIG_XENOABILITY_PSYCHIC_FLING "xenoability_psychic_fling"
 #define COMSIG_XENOABILITY_PSYCHIC_CURE "xenoability_psychic_cure"
 #define COMSIG_XENOABILITY_UNRELENTING_FORCE "xenoability_unrelenting_force"
+//#define COMSIG_XENOABILITY_NIGHTFALL "xenoability_nightfall"
 
 #define COMSIG_XENOABILITY_RAVAGER_CHARGE "xenoability_ravager_charge"
 #define COMSIG_XENOABILITY_RAVAGE "xenoability_ravage"
@@ -557,6 +569,11 @@
 #define COMSIG_XENOABILITY_FLING "xenoability_fling"
 #define COMSIG_XENOABILITY_PUNCH "xenoability_punch"
 #define COMSIG_XENOABILITY_GRAPPLE_TOSS "xenoability_grapple_toss"
+
+// remote control signals
+#define COMSIG_REMOTECONTROL_TOGGLE "remotecontrol_toggle"
+#define COMSIG_REMOTECONTROL_UNLINK "remotecontrol_unlink"
+#define COMSIG_REMOTECONTROL_CHANGED "remotecontrol_changed"
 
 // human signals for keybindings
 #define COMSIG_KB_QUICKEQUIP "keybinding_quickequip"

@@ -238,10 +238,9 @@
 //gets paygrade from ID
 //paygrade is a user's actual rank, as defined on their ID.  size 1 returns an abbreviation, size 0 returns the full rank name, the third input is used to override what is returned if no paygrade is assigned.
 /mob/living/carbon/human/get_paygrade(size = 1)
-	if(species.show_paygrade)
-		var/obj/item/card/id/id = wear_id
-		if(istype(id))
-			return get_paygrades(id.paygrade, size, gender)
+	var/obj/item/card/id/id = wear_id
+	if(istype(id))
+		return get_paygrades(id.paygrade, size, gender)
 	return ""
 
 
@@ -983,26 +982,28 @@
 		return FALSE
 	return ..()
 
-/mob/living/carbon/human/disable_lights(armor = TRUE, guns = TRUE, flares = TRUE, misc = TRUE, sparks = FALSE, silent = FALSE)
-	if(sparks)
-		var/datum/effect_system/spark_spread/spark_system = new
-		spark_system.set_up(5, 0, src)
-		spark_system.attach(src)
-		spark_system.start(src)
-
+/mob/living/carbon/human/disable_lights(clothing = TRUE, guns = TRUE, flares = TRUE, misc = TRUE, sparks = FALSE, silent = FALSE, forced = FALSE)
 	var/light_off = 0
 	var/goes_out = 0
-	if(armor)
+	if(clothing)
 		if(istype(wear_suit, /obj/item/clothing/suit))
 			var/obj/item/clothing/suit/S = wear_suit
-			S.turn_off_light(src)
+			if(S.turn_light(src, FALSE, 0, FALSE, forced))
+				light_off++
+		for(var/obj/item/clothing/head/hardhat/H in contents)
+			H.turn_light(src, FALSE, 0,FALSE, forced)				  
 			light_off++
+		for(var/obj/item/flashlight/L in contents)
+			if(istype(L, /obj/item/flashlight/flare))
+				continue
+			if(L.turn_light(src, FALSE, 0, FALSE, forced))
+				light_off++
 	if(guns)
 		for(var/obj/item/weapon/gun/lit_gun in contents)
 			if(!isattachmentflashlight(lit_gun.rail))
 				continue
 			var/obj/item/attachable/flashlight/lit_rail_flashlight = lit_gun.rail
-			lit_rail_flashlight.activate_attachment(turn_off = TRUE)
+			lit_rail_flashlight.turn_light(src, FALSE, 0, FALSE, forced)
 			light_off++
 	if(flares)
 		for(var/obj/item/flashlight/flare/F in contents)
@@ -1014,14 +1015,6 @@
 				goes_out++
 			FL.turn_off(src)
 	if(misc)
-		for(var/obj/item/clothing/head/hardhat/H in contents)
-			H.turn_off()
-			light_off++
-		for(var/obj/item/flashlight/L in contents)
-			if(istype(L, /obj/item/flashlight/flare))
-				continue
-			if(L.turn_off_light(src))
-				light_off++
 		for(var/obj/item/tool/weldingtool/W in contents)
 			if(W.isOn())
 				W.toggle()
@@ -1035,20 +1028,27 @@
 		for(var/obj/item/tool/lighter/Z in contents)
 			if(Z.turn_off(src))
 				goes_out++
+	if(sparks && light_off)
+		var/datum/effect_system/spark_spread/spark_system = new
+		spark_system.set_up(5, 0, src)
+		spark_system.attach(src)
+		spark_system.start(src)
 	if(!silent)
 		if(goes_out && light_off)
 			to_chat(src, "<span class='notice'>Your sources of light short and fizzle out.</span>")
-		else if(goes_out)
+			return
+		if(goes_out)
 			if(goes_out > 1)
 				to_chat(src, "<span class='notice'>Your sources of light fizzle out.</span>")
-			else
-				to_chat(src, "<span class='notice'>Your source of light fizzles out.</span>")
-		else if(light_off)
+				return
+			to_chat(src, "<span class='notice'>Your source of light fizzles out.</span>")
+			return
+		if(light_off)
 			if(light_off > 1)
 				to_chat(src, "<span class='notice'>Your sources of light short out.</span>")
-			else
-				to_chat(src, "<span class='notice'>Your sources of light shorts out.</span>")
-		return TRUE
+				return
+			to_chat(src, "<span class='notice'>Your source of light shorts out.</span>")
+		
 
 
 /mob/living/carbon/human/proc/randomize_appearance()

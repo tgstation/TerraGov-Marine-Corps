@@ -51,6 +51,13 @@
 	mouse_opacity = 0 //can't click to examine it
 	var/effect_duration = 10 //in deciseconds
 
+/obj/effect/overlay/blinking_laser //Used to indicate incoming CAS
+	name = "blinking laser"
+	anchored = TRUE
+	mouse_opacity = 0
+	icon = 'icons/obj/items/projectiles.dmi'
+	icon_state = "laser_target3"
+
 /obj/effect/overlay/temp/Initialize()
 	. = ..()
 	flick(icon_state, src)
@@ -154,8 +161,7 @@
 	. = ..()
 	GLOB.active_laser_targets -= src
 
-//used to show where dropship ordnance will impact.
-/obj/effect/overlay/temp/blinking_laser
+/obj/effect/overlay/temp/blinking_laser //not used for CAS anymore but some admin buttons still use it
 	name = "blinking laser"
 	anchored = TRUE
 	effect_duration = 10

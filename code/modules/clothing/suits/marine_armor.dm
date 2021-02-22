@@ -18,10 +18,10 @@
 	min_cold_protection_temperature = ARMOR_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
 	blood_overlay_type = "armor"
-	soft_armor = list("melee" = 55, "bullet" = 65, "laser" = 65, "energy" = 20, "bomb" = 55, "bio" = 40, "rad" = 10, "fire" = 40, "acid" = 45)
+	soft_armor = list("melee" = 40, "bullet" = 60, "laser" = 60, "energy" = 45, "bomb" = 45, "bio" = 45, "rad" = 45, "fire" = 45, "acid" = 50)
 	siemens_coefficient = 0.7
 	permeability_coefficient = 0.8
-	slowdown = SLOWDOWN_ARMOR_MEDIUM
+	slowdown = 0.5
 	allowed = list(
 		/obj/item/weapon/gun,
 		/obj/item/tank/emergency_oxygen,
@@ -95,7 +95,7 @@
 	var/mob/living/carbon/human/H = user
 	if(H.wear_suit != src)
 		return
-	toggle_armor_light(user)
+	turn_light(user, !light_on)
 	return TRUE
 
 /obj/item/clothing/suit/storage/marine/item_action_slot_check(mob/user, slot)
@@ -167,7 +167,7 @@
 	name = "\improper PAS-09 pattern technician armor"
 	desc = "A somewhat outdated but robust armored vest, still in use despite the rise of exoskeleton armor due to ease of use and manufacturing. It offers more protection against the exotic dangers that technicians face."
 	icon_state = "tanker"
-	soft_armor = list("melee" = 45, "bullet" = 55, "laser" = 60, "energy" = 45, "bomb" = 60, "bio" = 45, "rad" = 45, "fire" = 45, "acid" = 65)
+	soft_armor = list("melee" = 40, "bullet" = 55, "laser" = 60, "energy" = 45, "bomb" = 60, "bio" = 45, "rad" = 45, "fire" = 45, "acid" = 65)
 	flags_item_map_variant = NONE
 
 
@@ -175,7 +175,7 @@
 	name = "\improper PAS-10 pattern leader armor"
 	desc = "A lightweight suit of carbon fiber body armor built for quick movement. Use it to toggle the built-in flashlight."
 	icon_state = "7"
-	soft_armor = list("melee" = 45, "bullet" = 55, "laser" = 55, "energy" = 40, "bomb" = 40, "bio" = 40, "rad" = 15, "fire" = 40, "acid" = 45)
+	soft_armor = list("melee" = 40, "bullet" = 55, "laser" = 55, "energy" = 40, "bomb" = 40, "bio" = 40, "rad" = 15, "fire" = 40, "acid" = 45)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 	light_range = 8
 	pockets = /obj/item/storage/internal/suit/leader
@@ -189,8 +189,8 @@
 	name = "\improper PAS-N2 pattern MA armor"
 	desc = "A standard TerraGov Navy N2 Personal Armor System. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."
 	icon_state = "mp"
-	soft_armor = list("melee" = 45, "bullet" = 60, "laser" = 60, "energy" = 45, "bomb" = 45, "bio" = 45, "rad" = 45, "fire" = 45, "acid" = 50)
-	slowdown = 0.4
+	soft_armor = list("melee" = 40, "bullet" = 60, "laser" = 60, "energy" = 45, "bomb" = 45, "bio" = 45, "rad" = 45, "fire" = 45, "acid" = 50)
+	slowdown = 0.5
 	flags_item_map_variant = NONE
 	allowed = list(
 		/obj/item/weapon/gun,
@@ -221,7 +221,7 @@
 	name = "\improper PAS-N3 pattern admiral armor"
 	desc = "A well-crafted suit of Personal Armor System with a gold shine. It looks very expensive, but shockingly fairly easy to carry and wear."
 	w_class = WEIGHT_CLASS_NORMAL
-	soft_armor = list("melee" = 45, "bullet" = 65, "laser" = 60, "energy" = 45, "bomb" = 45, "bio" = 45, "rad" = 45, "fire" = 45, "acid" = 50)
+	soft_armor = list("melee" = 40, "bullet" = 65, "laser" = 60, "energy" = 45, "bomb" = 45, "bio" = 45, "rad" = 45, "fire" = 45, "acid" = 50)
 
 /obj/item/clothing/suit/storage/marine/MP/RO
 	icon_state = "officer"
@@ -446,16 +446,14 @@
 /obj/item/clothing/suit/storage/marine/imperial
 	name = "\improper Imperial Guard flak armour"
 	desc = "A cheap, mass produced armour worn by the Imperial Guard, which are also cheap and mass produced. You can make out what appears to be <i>Cadia stands</i> carved into the armour."
-	icon_state = "m_guardarmor"
-	item_state = "m_guardarmor"
+	icon_state = "guardarmor"
 	soft_armor = list("melee" = 75, "bullet" = 65, "laser" = 60, "energy" = 60, "bomb" = 50, "bio" = 0, "rad" = 0, "fire" = 60, "acid" = 60)
 
 /obj/item/clothing/suit/storage/marine/imperial/sergeant
 	// SL armour, better than flak, covers more
 	name = "\improper Imperial Guard sergeant armour"
 	desc = "A body armour that offers much better protection than the flak armour."
-	icon_state = "m_guardSLarmor"
-	item_state = "m_guardSLarmor"
+	icon_state = "guardSLarmor"
 	soft_armor = list("melee" = 85, "bullet" = 85, "laser" = 85, "energy" = 85, "bomb" = 85, "bio" = 25, "rad" = 25, "fire" = 85, "acid" = 85)
 	light_range = 6 // better light
 	pockets = /obj/item/storage/internal/suit/imperial
@@ -467,14 +465,12 @@
 /obj/item/clothing/suit/storage/marine/imperial/medicae
 	name = "\improper Imperial Guard medicae armour"
 	desc = "An armour worn by the medicae of the Imperial Guard."
-	icon_state = "m_guardmedicarmor"
-	item_state = "m_guardmedicarmor"
+	icon_state = "guardmedicarmor"
 
 /obj/item/clothing/suit/storage/marine/imperial/sergeant/veteran
 	name = "\improper Imperial Guard carapace armour"
 	desc = "A heavy full body armour that protects the wearer a lot more than the flak armour, also slows down considerably."
-	icon_state = "m_guardvetarmor"
-	item_state = "m_guardvetarmor"
+	icon_state = "guardvetarmor"
 	slowdown = SLOWDOWN_ARMOR_HEAVY
 	soft_armor = list("melee" = 90, "bullet" = 90, "laser" = 90, "energy" = 90, "bomb" = 90, "bio" = 30, "rad" = 30, "fire" = 90, "acid" = 90)
 
@@ -568,7 +564,7 @@
 	var/mob/living/carbon/human/H = user
 	if(H.wear_suit != src) return
 
-	toggle_armor_light(user)
+	turn_light(user, !light_on)
 	return 1
 
 /obj/item/clothing/suit/storage/faction/item_action_slot_check(mob/user, slot)

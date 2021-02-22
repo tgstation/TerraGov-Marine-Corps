@@ -177,7 +177,7 @@
 
 		if(!registered_user) registered_user = user  //
 
-		switch(tgui_alert(user, "Would you like to display the ID, or retitle it?","Choose.",list("Rename","Show")))
+		switch(tgui_alert(user, "Would you like to display the ID, or retitle it?", "Choose.", list("Rename","Show")))
 			if("Rename")
 				var/newname = stripped_input(user, "What name would you like to put on this card?", "Agent card name", ishuman(user) ? user.real_name : user.name, max_length = 26)
 				if(!newname || newname == "Unknown" || newname == "floor" || newname == "wall" || newname == "r-wall") //Same as mob/new_player/prefrences.dm
