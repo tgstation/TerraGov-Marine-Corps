@@ -1,0 +1,6 @@
+author: "mokulus"
+delete-after: True
+changes: 
+  - bugfix: "disabled computers are now unusable (repair with blowtorch)"
+  - bugfix: "tipped over vendors can be put back up"
+  - bugfix: "AI can't use disabled machines now"
