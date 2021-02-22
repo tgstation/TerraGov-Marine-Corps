@@ -611,7 +611,7 @@
 		/obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus = 0,
 		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = 0,
 	)
-	contraband = list(/obj/item/reagent_containers/blood/OMinus = 1, item/reagent_containers/glass/beaker/large = 4) //if medics REALLY want to make mixes in here. we will get in game feedback
+	contraband = list(/obj/item/reagent_containers/blood/OMinus = 1, /obj/item/reagent_containers/glass/beaker/large = 4) //if medics REALLY want to make mixes in here. we will get in game feedback
 
 
 /obj/machinery/vending/marine_special
