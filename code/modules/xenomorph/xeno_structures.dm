@@ -49,7 +49,6 @@
 	number++
 	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY), .proc/start_maturing)
 	GLOB.xeno_resin_silos += src
-	associated_hive?.handle_silo_death_timer()
 	center_turf = get_step(src, NORTHEAST)
 	if(!istype(center_turf))
 		center_turf = loc
@@ -67,6 +66,7 @@
 	associated_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	if(associated_hive)
 		RegisterSignal(associated_hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK), .proc/is_burrowed_larva_host)
+		associated_hive.handle_silo_death_timer()
 	silo_area = get_area(src)
 
 /obj/structure/resin/silo/Destroy()
