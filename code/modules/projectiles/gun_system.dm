@@ -849,7 +849,6 @@ and you're good to go.
 
 
 /obj/item/weapon/gun/proc/click_empty(mob/user)
-	SEND_SIGNAL(src, COMSIG_GUN_CLICKEMPTY)
 	if(user)
 		var/obj/screen/ammo/A = user.hud_used.ammo //The ammo HUD
 		A.update_hud(user)
