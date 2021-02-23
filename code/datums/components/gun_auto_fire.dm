@@ -88,6 +88,7 @@
 	shots_fired = 0
 	auto_burstfire_shot_delay = 0
 	have_to_reset = FALSE
+	DISABLE_BITFIELD(gun.flags_gun_features, GUN_BURST_FIRING)
 	if(shooting)
 		unschedule_shot()
 		shooting = FALSE

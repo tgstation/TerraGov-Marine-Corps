@@ -433,7 +433,6 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 //Manually cock the gun
 //This only works on weapons NOT marked with UNUSUAL_DESIGN or INTERNAL_MAG or ENERGY
 /obj/item/weapon/gun/proc/cock(mob/user)
-
 	if(flags_gun_features & (GUN_BURST_FIRING|GUN_UNUSUAL_DESIGN|GUN_INTERNAL_MAG|GUN_ENERGY))
 		return FALSE
 	if(cock_cooldown > world.time)
