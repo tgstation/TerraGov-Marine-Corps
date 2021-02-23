@@ -150,15 +150,15 @@
 			if(!SSticker.mode.CanLateSpawn(src, job_datum)) // Try to assigns job to new player
 				return
 			SSticker.mode.LateSpawn(src)
-		
+
 		if("continue_join")
 			DIRECT_OUTPUT(usr, browse(null, "window=xenosunbalanced"))
 			if(!saved_job)
-				return	
+				return
 			if(!SSticker.mode.CanLateSpawn(src, saved_job)) // Try to assigns job to new player
 				return
 			SSticker.mode.LateSpawn(src)
-		
+
 		if("reconsider")
 			DIRECT_OUTPUT(usr, browse(null, "window=xenosunbalanced"))
 
