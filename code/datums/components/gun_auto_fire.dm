@@ -15,6 +15,8 @@
 	var/shots_fired = 0
 	///If the gun is currently shooting
 	var/shooting = FALSE
+	///If TRUE, the gun will reset its references at the end of the burst
+	var/have_to_reset = FALSE
 	///Reference to the parent
 	var/obj/item/weapon/gun/gun 
 
@@ -74,6 +76,7 @@
 	if(!shooting)
 		return
 	if(CHECK_BITFIELD(gun.flags_gun_features, GUN_BURST_FIRING))
+		have_to_reset = TRUE
 		return
 	shooting = FALSE
 	unschedule_shot()
@@ -88,6 +91,9 @@
 			if(shots_fired == burst_shots_to_fire)
 				DISABLE_BITFIELD(gun.flags_gun_features, GUN_BURST_FIRING)
 				gun.extra_delay = auto_fire_shot_delay * 1.5
+				if(have_to_reset)//We failed to reset because we were bursting, we do it now
+					SEND_SIGNAL(gun, COMSIG_GUN_AUTO_FIRE_RESET)
+					shooting = FALSE
 				return AUTOFIRE_STOPPED_SHOOTING
 			ENABLE_BITFIELD(gun.flags_gun_features, GUN_BURST_FIRING)
 			next_fire = world.time + burstfire_shot_delay
@@ -99,6 +105,9 @@
 				shots_fired = 0
 				auto_burstfire_shot_delay = 0
 				DISABLE_BITFIELD(gun.flags_gun_features, GUN_BURST_FIRING)
+				if(have_to_reset)//We failed to reset because we were bursting, we do it now
+					SEND_SIGNAL(gun, COMSIG_GUN_AUTO_FIRE_RESET)
+					shooting = FALSE
 			else
 				ENABLE_BITFIELD(gun.flags_gun_features, GUN_BURST_FIRING)
 				auto_burstfire_shot_delay = min(auto_burstfire_shot_delay+(burstfire_shot_delay*2), auto_fire_shot_delay*3)

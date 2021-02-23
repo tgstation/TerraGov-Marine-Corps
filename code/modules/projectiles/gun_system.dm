@@ -201,12 +201,14 @@
 		RegisterSignal(gun_user, COMSIG_MOB_MOUSEUP, .proc/stop_fire)
 		RegisterSignal(gun_user, COMSIG_MOB_MOUSEDRAG, .proc/change_target)
 		RegisterSignal(src, COMSIG_GUN_FIRED, .proc/Fire)
+		RegisterSignal(src, COMSIG_GUN_AUTO_FIRE_RESET, .proc/reset_auto_fire)
 	else
 		if(gun_user)
 			UnregisterSignal(gun_user, COMSIG_MOB_MOUSEDOWN, .proc/start_fire)
 			UnregisterSignal(gun_user, COMSIG_MOB_MOUSEUP, .proc/stop_fire)
 			UnregisterSignal(gun_user, COMSIG_MOB_MOUSEDRAG, .proc/change_target)
 			UnregisterSignal(src, COMSIG_GUN_FIRED, .proc/Fire)
+			UnregisterSignal(src, COMSIG_GUN_AUTO_FIRE_RESET, .proc/reset_auto_fire)
 			gun_user = null
 		SEND_SIGNAL(src, COMSIG_GUN_STOP_FIRE)
 	return ..()
@@ -217,6 +219,7 @@
 		UnregisterSignal(gun_user, COMSIG_MOB_MOUSEUP, .proc/stop_fire)
 		UnregisterSignal(gun_user, COMSIG_MOB_MOUSEDRAG, .proc/change_target)
 		UnregisterSignal(src, COMSIG_GUN_FIRED, .proc/Fire)
+		UnregisterSignal(src, COMSIG_GUN_AUTO_FIRE_RESET, .proc/reset_auto_fire)
 		gun_user = null
 	SEND_SIGNAL(src, COMSIG_GUN_STOP_FIRE)
 
@@ -520,27 +523,33 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		return
 	if(!istype(object, /obj/screen))
 		target = object
+		var/list/modifiers = params2list(params)
+		if(modifiers["right"] || modifiers["middle"] || modifiers["shift"])
+			if(active_attachable)
+				do_fire_attachment()
+			return
 		if(gun_firemode == GUN_FIREMODE_SEMIAUTO)
 			if(!Fire() || windup_checked == WEAPON_WINDUP_CHECKING)
 				return
-			shots_fired = 0//Let's clean everything
-			target = null
-			windup_checked = WEAPON_WINDUP_NOT_CHECKED
-			akimbo_gun = null
-			dual_wield = FALSE
+			reset_auto_fire()
 			return
 		SEND_SIGNAL(src, COMSIG_GUN_FIRE)
 
 ///Reset variables used in firing and remove the gun from the autofire system
 /obj/item/weapon/gun/proc/stop_fire()
 	SIGNAL_HANDLER
-	if(windup_checked != WEAPON_WINDUP_CHECKING)
-		shots_fired = 0//Let's clean everything
-		target = null
-		windup_checked = WEAPON_WINDUP_NOT_CHECKED
-		akimbo_gun = null
-		dual_wield = FALSE
+	if(windup_checked != WEAPON_WINDUP_CHECKING && !CHECK_BITFIELD(flags_gun_features, GUN_BURST_FIRING))
+		reset_auto_fire()
 	SEND_SIGNAL(src, COMSIG_GUN_STOP_FIRE)
+
+///Clean all references 
+/obj/item/weapon/gun/proc/reset_auto_fire()
+	SIGNAL_HANDLER
+	shots_fired = 0//Let's clean everything
+	target = null
+	windup_checked = WEAPON_WINDUP_NOT_CHECKED
+	akimbo_gun = null
+	dual_wield = FALSE
 
 ///Update the target if you draged your mouse
 /obj/item/weapon/gun/proc/change_target(datum/source, atom/src_object, atom/over_object)
@@ -632,14 +641,8 @@ and you're good to go.
 
 /obj/item/weapon/gun/proc/Fire()
 	SIGNAL_HANDLER
-	if(QDELETED(gun_user))
-		return
-	if(!ismob(gun_user)) //Could be an object firing the gun.
-		return
-	if(!able_to_fire(gun_user))
+	if(QDELETED(gun_user) || !ismob(gun_user) || !able_to_fire(gun_user) || !target)
 		SEND_SIGNAL(src, COMSIG_GUN_STOP_FIRE)
-		return
-	if(!target)//Something went wrong, abort
 		return
 
 	//The gun should return the bullet that it already loaded from the end cycle of the last Fire().
@@ -647,6 +650,7 @@ and you're good to go.
 	in_chamber = null //Projectiles live and die fast. It's better to null the reference early so the GC can handle it immediately.
 	if(!projectile_to_fire) //If there is nothing to fire, click.
 		click_empty(gun_user)
+		SEND_SIGNAL(src, COMSIG_GUN_STOP_FIRE)
 		return
 
 	if(shots_fired == 0 && !dual_wield)//We only check when starting to shoot
@@ -1122,34 +1126,25 @@ and you're good to go.
 
 
 /obj/item/weapon/gun/proc/on_gun_attachment_attach(obj/item/attachable/attached_gun/attaching)
-	active_attachable = attaching
 	if(!(attaching.flags_attach_features & ATTACH_WEAPON))
 		return
 	if(attaching.flags_attach_features & ATTACH_PROJECTILE)
 		return //These are handled through regular Fire() for now.
-	RegisterSignal(src, list(COMSIG_ITEM_MIDDLECLICKON, COMSIG_ITEM_SHIFTCLICKON, COMSIG_ITEM_RIGHTCLICKON), .proc/do_fire_attachment) //For weapons with special projectiles not handled via Fire()
-
+	active_attachable = attaching
 
 /obj/item/weapon/gun/proc/on_gun_attachment_detach(obj/item/attachable/attached_gun/detaching)
 	active_attachable = null
-	UnregisterSignal(src, list(COMSIG_ITEM_MIDDLECLICKON, COMSIG_ITEM_SHIFTCLICKON, COMSIG_ITEM_RIGHTCLICKON))
-
-
-/obj/item/weapon/gun/proc/do_fire_attachment(datum/source, atom/target, mob/user)
-	SIGNAL_HANDLER
-	if(!able_to_fire(user))
-		return
-	if(gun_on_cooldown(user))
-		return
+B
+/obj/item/weapon/gun/proc/do_fire_attachment()
 	if(!CHECK_BITFIELD(flags_item, WIELDED))
-		to_chat(user, "<span class='warning'>[active_attachable] must be wielded to fire!</span>")
+		to_chat(gun_user, "<span class='warning'>[active_attachable] must be wielded to fire!</span>")
 		return
 	if(active_attachable.current_rounds <= 0)
-		click_empty(user) //If it's empty, let them know.
-		to_chat(user, "<span class='warning'>[active_attachable] is empty!</span>")
+		click_empty(gun_user) //If it's empty, let them know.
+		to_chat(gun_user, "<span class='warning'>[active_attachable] is empty!</span>")
 		return
 	if(!wielded_stable())
-		to_chat(user, "<span class='warning'>[active_attachable] is not ready to fire!</span>")
+		to_chat(gun_user, "<span class='warning'>[active_attachable] is not ready to fire!</span>")
 		return
-	active_attachable.fire_attachment(target, src, user) //Fire it.
+	active_attachable.fire_attachment(target, src, gun_user) //Fire it.
 	last_fired = world.time

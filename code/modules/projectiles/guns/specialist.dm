@@ -849,7 +849,7 @@
 ///Windup before shooting
 /obj/item/weapon/gun/launcher/rocket/proc/do_windup()
 	windup_checked = WEAPON_WINDUP_CHECKING
-	var/delay = 2 SECONDS
+	var/delay = 0.1 SECONDS
 	if(has_attachment(/obj/item/attachable/scope/mini))
 		delay += 0.2 SECONDS
 
