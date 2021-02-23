@@ -505,7 +505,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 			//							    \\
 			//						   	    \\
 //----------------------------------------------------------
-
+///Check if the gun can fire and add it to bucket auto_fire system if needed, or just fire the gun if not
 /obj/item/weapon/gun/proc/start_fire(datum/source, atom/object, turf/location, control, params)
 	SIGNAL_HANDLER
 	if(gun_on_cooldown(gun_user))
@@ -530,6 +530,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 			return
 		SEND_SIGNAL(src, COMSIG_GUN_FIRE)
 
+///Reset variables used in firing and remove the gun from the autofire system
 /obj/item/weapon/gun/proc/stop_fire()
 	SIGNAL_HANDLER
 	shots_fired = 0//Let's clean everything
@@ -539,6 +540,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	dual_wield = FALSE
 	SEND_SIGNAL(src, COMSIG_GUN_STOP_FIRE)
 
+///Update the target if you draged your mouse
 /obj/item/weapon/gun/proc/change_target(datum/source, atom/src_object, atom/over_object)
 	SIGNAL_HANDLER
 	if(get_dist(over_object, gun_user) == 0)

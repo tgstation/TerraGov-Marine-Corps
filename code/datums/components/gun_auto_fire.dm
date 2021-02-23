@@ -1,13 +1,21 @@
 
 
 /datum/component/automatedfire/gun
+	///The current fire mode of the gun
 	var/fire_mode
+	///Delay between two shot when in full auto
 	var/auto_fire_shot_delay
+	///Used to calculate the delay between two rounds of burst
 	var/auto_burstfire_shot_delay
+	///Delay between two burst shots
 	var/burstfire_shot_delay
+	///How many bullets are fired in burst mode
 	var/burst_shots_to_fire
+	///Count the shots fired when bursting
 	var/shots_fired = 0
+	///If the gun is currently shooting
 	var/shooting = FALSE
+	///Reference to the parent
 	var/obj/item/weapon/gun/gun 
 
 /datum/component/automatedfire/gun/Initialize(_auto_fire_shot_delay = 0.3 SECONDS, _burstfire_shot_delay, _burst_shots_to_fire = 3, _fire_mode = GUN_FIREMODE_SEMIAUTO)
@@ -29,27 +37,27 @@
 	burst_shots_to_fire = _burst_shots_to_fire
 	fire_mode = _fire_mode
 	
-
+///Setter for fire mode
 /datum/component/automatedfire/gun/proc/modify_fire_mode(datum/source, _fire_mode)
 	SIGNAL_HANDLER
 	fire_mode = _fire_mode
 
+///Setter for auto fire shot delay
 /datum/component/automatedfire/gun/proc/modify_fire_shot_delay(datum/source, _auto_fire_shot_delay)
 	SIGNAL_HANDLER
 	auto_fire_shot_delay = _auto_fire_shot_delay
 
-/datum/component/automatedfire/gun/proc/modify_auto_burstfire_shot_delay(datum/source, _auto_burstfire_shot_delay)
-	SIGNAL_HANDLER
-	auto_burstfire_shot_delay = _auto_burstfire_shot_delay
-
+///Setter for the number of shot in a burst
 /datum/component/automatedfire/gun/proc/modify_burst_shots_to_fire(datum/source, _burst_shots_to_fire)
 	SIGNAL_HANDLER
 	burst_shots_to_fire = _burst_shots_to_fire
 
+///Setter for burst shot delay
 /datum/component/automatedfire/gun/proc/modify_burstfire_shot_delay(datum/source, _burstfire_shot_delay)
 	SIGNAL_HANDLER
 	burstfire_shot_delay = _burstfire_shot_delay
 
+///Insert the component in the bucket system if it was not in already
 /datum/component/automatedfire/gun/proc/initiate_shot()
 	SIGNAL_HANDLER
 	if(shooting)//if we are already shooting, it means the gun is still on cooldown
@@ -60,6 +68,7 @@
 	auto_burstfire_shot_delay = 0
 	schedule_shot()
 
+///Remove the component from the bucket system if it was in
 /datum/component/automatedfire/gun/proc/stop_firing()
 	SIGNAL_HANDLER
 	if(!shooting)
@@ -69,6 +78,7 @@
 	shooting = FALSE
 	unschedule_shot()
 
+///Ask the gun to fire and schedule the next shot if need
 /datum/component/automatedfire/gun/process_shot()
 	if(!SEND_SIGNAL(parent, COMSIG_GUN_FIRED))
 		return AUTOFIRE_STOPPED_SHOOTING
