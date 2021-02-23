@@ -1,0 +1,5 @@
+author: "Surrealaser"
+delete-after: True
+changes: 
+  - bugfix: "Larva can now use tunnels."
+  - bugfix: "Fixes minor copy pasta bug with the Healing Infusion effect end message."
