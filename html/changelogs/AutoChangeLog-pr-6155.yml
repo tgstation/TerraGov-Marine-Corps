@@ -1,0 +1,5 @@
+author: "SplinterGP"
+delete-after: True
+changes: 
+  - bugfix: "synths can now have numbers in name."
+  - bugfix: "people now can have numbers in name to account for vatborns."
