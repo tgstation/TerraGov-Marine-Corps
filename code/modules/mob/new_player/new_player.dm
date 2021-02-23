@@ -396,7 +396,7 @@
 		GLOB.ready_players += src
 	else
 		GLOB.ready_players -= src
-	to_chat(src, "<span class='warning'>You are now [ready? "" : "not "] ready.</span>")
+	to_chat(src, "<span class='warning'>You are now [ready? "" : "not "]ready.</span>")
 
 ///Attempts to latejoin the player
 /mob/new_player/proc/attempt_late_join(queue_override = FALSE)
