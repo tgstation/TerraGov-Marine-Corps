@@ -100,7 +100,7 @@
 	if(current_mag.current_rounds <= 0)
 		click_empty(user)
 	else
-		unleash_flame(target, user)
+		INVOKE_ASYNC(src, .proc/unleash_flame, target, user)
 
 /obj/item/weapon/gun/flamer/reload(mob/user, obj/item/ammo_magazine/magazine)
 	if(!magazine || !istype(magazine))
@@ -545,7 +545,7 @@
 
 /obj/item/weapon/gun/flamer/marinestandard/Fire(atom/target, mob/living/user, params, reflex)
 	if(active_attachable && istype(active_attachable, /obj/item/attachable/hydro_cannon) && (world.time > last_use + 10))
-		extinguish(target,user) //Fire it.
+		INVOKE_ASYNC(src, .proc/flamer_extinguish, target, user) //Fire it.
 		water_count -=7//reagents is not updated in this proc, we need water_count for a updated HUD
 		last_fired = world.time
 		last_use = world.time
@@ -555,6 +555,9 @@
 	if(user.skills.getRating("firearms") < 0 && !do_after(user, 1 SECONDS, TRUE, src))
 		return
 	return ..()
+
+/obj/item/weapon/gun/flamer/marinestandard/proc/flamer_extinguish(atom/target, mob/living/user)
+	extinguish(target,user)
 
 /obj/item/weapon/gun/flamer/marinestandard/afterattack(atom/target, mob/user)
 	. = ..()

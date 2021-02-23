@@ -516,6 +516,9 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		return
 	if(!istype(object, /obj/screen))
 		target = object
+		if(gun_firemode == GUN_FIREMODE_SEMIAUTO)
+			Fire()
+			return
 		SEND_SIGNAL(src, COMSIG_GUN_FIRE)
 
 /obj/item/weapon/gun/proc/stop_fire()
