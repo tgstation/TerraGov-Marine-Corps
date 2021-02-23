@@ -449,6 +449,7 @@ should be alright.
 
 
 /obj/item/weapon/gun/verb/field_strip()
+	set category = null
 	set name = "Field Strip (Weapon)"
 	set desc = "Remove all attachables from a weapon."
 
@@ -558,6 +559,7 @@ should be alright.
 
 
 /obj/item/weapon/gun/verb/toggle_autofire()
+	set category = null
 	set name = "Toggle Auto Fire (Weapon)"
 	set desc = "Toggle automatic firemode, if the gun has it."
 
@@ -589,6 +591,7 @@ should be alright.
 
 
 /obj/item/weapon/gun/verb/toggle_burstfire()
+	set category = null
 	set name = "Toggle Burst Fire (Weapon)"
 	set desc = "Toggle burst firemode, if the gun has it."
 
@@ -620,6 +623,7 @@ should be alright.
 
 
 /obj/item/weapon/gun/verb/toggle_firemode()
+	set category = null
 	set name = "Toggle Fire Mode (Weapon)"
 	set desc = "Toggle between fire modes, if the gun has more than has one."
 
@@ -734,6 +738,7 @@ should be alright.
 
 
 /obj/item/weapon/gun/verb/empty_mag()
+	set category = null
 	set name = "Unload Weapon (Weapon)"
 	set desc = "Removes the magazine from your current gun and drops it on the ground, or clears the chamber if your gun is already empty."
 
@@ -752,6 +757,7 @@ should be alright.
 
 
 /obj/item/weapon/gun/verb/use_unique_action()
+	set category = null
 	set name = "Unique Action (Weapon)"
 	set desc = "Use anything unique your firearm is capable of. Includes pumping a shotgun or spinning a revolver."
 
@@ -770,6 +776,7 @@ should be alright.
 
 
 /obj/item/weapon/gun/verb/toggle_gun_safety()
+	set category = null
 	set name = "Toggle Gun Safety (Weapon)"
 	set desc = "Toggle the safety of the held gun."
 
@@ -790,6 +797,7 @@ should be alright.
 
 
 /obj/item/weapon/gun/verb/activate_attachment_verb()
+	set category = null
 	set name = "Load From Attachment (Weapon)"
 	set desc = "Load from a gun attachment, such as a mounted grenade launcher, shotgun, or flamethrower."
 
@@ -829,6 +837,7 @@ should be alright.
 	G.toggle_rail_attachment()
 
 /obj/item/weapon/gun/verb/toggle_rail_attachment()
+	set category = null
 	set name = "Toggle Rail Attachment (Weapon)"
 	set desc = "Uses the rail attachement currently attached to the gun."
 
@@ -849,6 +858,7 @@ should be alright.
 
 
 /obj/item/weapon/gun/verb/toggle_ammo_hud()
+	set category = null
 	set name = "Toggle Ammo HUD (Weapon)"
 	set desc = "Toggles the Ammo HUD for this weapon."
 
