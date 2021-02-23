@@ -1,0 +1,4 @@
+author: "mokulus"
+delete-after: True
+changes: 
+  - qol: "defibrillator recharging hints"
