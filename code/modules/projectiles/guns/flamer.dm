@@ -79,16 +79,16 @@
 	return TRUE
 
 
-/obj/item/weapon/gun/flamer/Fire(atom/target, mob/living/user, params, reflex)
+/obj/item/weapon/gun/flamer/Fire()
 	set waitfor = 0
 
-	if(!able_to_fire(user))
+	if(!able_to_fire(gun_user))
 		return
 
-	if(gun_on_cooldown(user))
+	if(gun_on_cooldown(gun_user))
 		return
 
-	var/turf/curloc = get_turf(user) //In case the target or we are expired.
+	var/turf/curloc = get_turf(gun_user) //In case the target or we are expired.
 	var/turf/targloc = get_turf(target)
 	if(!targloc || !curloc)
 		return //Something has gone wrong...
@@ -98,9 +98,9 @@
 		return
 
 	if(current_mag.current_rounds <= 0)
-		click_empty(user)
+		click_empty(gun_user)
 	else
-		INVOKE_ASYNC(src, .proc/unleash_flame, target, user)
+		INVOKE_ASYNC(src, .proc/unleash_flame, target, gun_user)
 
 /obj/item/weapon/gun/flamer/reload(mob/user, obj/item/ammo_magazine/magazine)
 	if(!magazine || !istype(magazine))
@@ -543,17 +543,17 @@
 	var/obj/screen/ammo/A = user.hud_used.ammo
 	A.update_hud(user)
 
-/obj/item/weapon/gun/flamer/marinestandard/Fire(atom/target, mob/living/user, params, reflex)
+/obj/item/weapon/gun/flamer/marinestandard/Fire()
 	if(active_attachable && istype(active_attachable, /obj/item/attachable/hydro_cannon) && (world.time > last_use + 10))
-		INVOKE_ASYNC(src, .proc/flamer_extinguish, target, user) //Fire it.
+		INVOKE_ASYNC(src, .proc/flamer_extinguish, target, gun_user) //Fire it.
 		water_count -=7//reagents is not updated in this proc, we need water_count for a updated HUD
 		last_fired = world.time
 		last_use = world.time
-		var/obj/screen/ammo/A = user.hud_used.ammo
-		A.update_hud(user)
+		var/obj/screen/ammo/A = gun_user.hud_used.ammo
+		A.update_hud(gun_user)
 		return
-	if(user.skills.getRating("firearms") < 0 && !do_after(user, 1 SECONDS, TRUE, src))
-		return
+	/*if(user.skills.getRating("firearms") < 0 && !do_after(user, 1 SECONDS, TRUE, src))
+		return*/ //Removed cause snowflake code with minimal impact of balance
 	return ..()
 
 /obj/item/weapon/gun/flamer/marinestandard/proc/flamer_extinguish(atom/target, mob/living/user)
