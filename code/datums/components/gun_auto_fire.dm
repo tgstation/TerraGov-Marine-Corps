@@ -33,6 +33,7 @@
 	RegisterSignal(parent, COMSIG_GUN_BURST_SHOT_DELAY_MODIFIED, .proc/modify_burstfire_shot_delay)
 	RegisterSignal(parent, COMSIG_GUN_FIRE, .proc/initiate_shot)
 	RegisterSignal(parent, COMSIG_GUN_STOP_FIRE, .proc/stop_firing)
+	RegisterSignal(parent, COMSIG_GUN_AUTO_FIRE_COMP_RESET, .proc/hard_reset)
 	
 	auto_fire_shot_delay = _auto_fire_shot_delay
 	burstfire_shot_delay = _burstfire_shot_delay
@@ -81,6 +82,16 @@
 	shooting = FALSE
 	unschedule_shot()
 
+///Hard reset the autofire, so it can be used again in situation where it would be stuck
+/datum/component/automatedfire/gun/proc/hard_reset()
+	SIGNAL_HANDLER
+	shots_fired = 0
+	auto_burstfire_shot_delay = 0
+	have_to_reset = FALSE
+	if(shooting)
+		unschedule_shot()
+		shooting = FALSE
+
 ///Ask the gun to fire and schedule the next shot if need
 /datum/component/automatedfire/gun/process_shot()
 	if(!SEND_SIGNAL(parent, COMSIG_GUN_FIRED))
@@ -92,7 +103,7 @@
 				DISABLE_BITFIELD(gun.flags_gun_features, GUN_BURST_FIRING)
 				gun.extra_delay = auto_fire_shot_delay * 1.5
 				if(have_to_reset)//We failed to reset because we were bursting, we do it now
-					SEND_SIGNAL(gun, COMSIG_GUN_AUTO_FIRE_RESET)
+					SEND_SIGNAL(gun, COMSIG_GUN_FIRE_RESET)
 					shooting = FALSE
 				return AUTOFIRE_STOPPED_SHOOTING
 			ENABLE_BITFIELD(gun.flags_gun_features, GUN_BURST_FIRING)
@@ -106,7 +117,7 @@
 				auto_burstfire_shot_delay = 0
 				DISABLE_BITFIELD(gun.flags_gun_features, GUN_BURST_FIRING)
 				if(have_to_reset)//We failed to reset because we were bursting, we do it now
-					SEND_SIGNAL(gun, COMSIG_GUN_AUTO_FIRE_RESET)
+					SEND_SIGNAL(gun, COMSIG_GUN_FIRE_RESET)
 					shooting = FALSE
 			else
 				ENABLE_BITFIELD(gun.flags_gun_features, GUN_BURST_FIRING)

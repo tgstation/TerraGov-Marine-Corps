@@ -201,16 +201,16 @@
 		RegisterSignal(gun_user, COMSIG_MOB_MOUSEUP, .proc/stop_fire)
 		RegisterSignal(gun_user, COMSIG_MOB_MOUSEDRAG, .proc/change_target)
 		RegisterSignal(src, COMSIG_GUN_FIRED, .proc/Fire)
-		RegisterSignal(src, COMSIG_GUN_AUTO_FIRE_RESET, .proc/reset_auto_fire)
+		RegisterSignal(src, COMSIG_GUN_FIRE_RESET, .proc/reset_fire)
 	else
 		if(gun_user)
 			UnregisterSignal(gun_user, COMSIG_MOB_MOUSEDOWN, .proc/start_fire)
 			UnregisterSignal(gun_user, COMSIG_MOB_MOUSEUP, .proc/stop_fire)
 			UnregisterSignal(gun_user, COMSIG_MOB_MOUSEDRAG, .proc/change_target)
 			UnregisterSignal(src, COMSIG_GUN_FIRED, .proc/Fire)
-			UnregisterSignal(src, COMSIG_GUN_AUTO_FIRE_RESET, .proc/reset_auto_fire)
+			UnregisterSignal(src, COMSIG_GUN_FIRE_RESET, .proc/reset_fire)
 			gun_user = null
-		SEND_SIGNAL(src, COMSIG_GUN_STOP_FIRE)
+		SEND_SIGNAL(src, COMSIG_GUN_AUTO_FIRE_COMP_RESET)
 	return ..()
 
 /obj/item/weapon/gun/removed_from_inventory(mob/user)
@@ -219,9 +219,9 @@
 		UnregisterSignal(gun_user, COMSIG_MOB_MOUSEUP, .proc/stop_fire)
 		UnregisterSignal(gun_user, COMSIG_MOB_MOUSEDRAG, .proc/change_target)
 		UnregisterSignal(src, COMSIG_GUN_FIRED, .proc/Fire)
-		UnregisterSignal(src, COMSIG_GUN_AUTO_FIRE_RESET, .proc/reset_auto_fire)
+		UnregisterSignal(src, COMSIG_GUN_FIRE_RESET, .proc/reset_fire)
 		gun_user = null
-	SEND_SIGNAL(src, COMSIG_GUN_STOP_FIRE)
+	SEND_SIGNAL(src, COMSIG_GUN_AUTO_FIRE_COMP_RESET)
 
 /obj/item/weapon/gun/update_icon(mob/user)
 	if(!current_mag || current_mag.current_rounds <= 0)
@@ -531,7 +531,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		if(gun_firemode == GUN_FIREMODE_SEMIAUTO)
 			if(!Fire() || windup_checked == WEAPON_WINDUP_CHECKING)
 				return
-			reset_auto_fire()
+			reset_fire()
 			return
 		SEND_SIGNAL(src, COMSIG_GUN_FIRE)
 
@@ -539,11 +539,11 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 /obj/item/weapon/gun/proc/stop_fire()
 	SIGNAL_HANDLER
 	if(windup_checked != WEAPON_WINDUP_CHECKING && !CHECK_BITFIELD(flags_gun_features, GUN_BURST_FIRING))
-		reset_auto_fire()
+		reset_fire()
 	SEND_SIGNAL(src, COMSIG_GUN_STOP_FIRE)
 
 ///Clean all references 
-/obj/item/weapon/gun/proc/reset_auto_fire()
+/obj/item/weapon/gun/proc/reset_fire()
 	SIGNAL_HANDLER
 	shots_fired = 0//Let's clean everything
 	target = null
@@ -642,7 +642,7 @@ and you're good to go.
 /obj/item/weapon/gun/proc/Fire()
 	SIGNAL_HANDLER
 	if(QDELETED(gun_user) || !ismob(gun_user) || !able_to_fire(gun_user) || !target)
-		SEND_SIGNAL(src, COMSIG_GUN_STOP_FIRE)
+		SEND_SIGNAL(src, COMSIG_GUN_AUTO_FIRE_COMP_RESET)
 		return
 
 	//The gun should return the bullet that it already loaded from the end cycle of the last Fire().
@@ -650,7 +650,7 @@ and you're good to go.
 	in_chamber = null //Projectiles live and die fast. It's better to null the reference early so the GC can handle it immediately.
 	if(!projectile_to_fire) //If there is nothing to fire, click.
 		click_empty(gun_user)
-		SEND_SIGNAL(src, COMSIG_GUN_STOP_FIRE)
+		SEND_SIGNAL(src, COMSIG_GUN_AUTO_FIRE_COMP_RESET)
 		return
 
 	if(shots_fired == 0 && !dual_wield)//We only check when starting to shoot
@@ -670,7 +670,7 @@ and you're good to go.
 	//Finally, make with the pew pew!
 	if(!projectile_to_fire || !istype(projectile_to_fire,/obj))
 		stack_trace("projectile malfunctioned while firing. User: [gun_user]")
-		SEND_SIGNAL(src, COMSIG_GUN_STOP_FIRE)
+		SEND_SIGNAL(src, COMSIG_GUN_AUTO_FIRE_COMP_RESET)
 		return
 
 	
