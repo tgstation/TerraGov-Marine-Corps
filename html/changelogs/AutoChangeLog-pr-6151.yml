@@ -1,0 +1,4 @@
+author: "Surrealaser"
+delete-after: True
+changes: 
+  - bugfix: "Ancient Xenos now provide the proper upgrade point yield when targeted with Salvage Biomass, counting as a maxed out Elder Xeno."
