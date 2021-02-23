@@ -116,12 +116,16 @@
 
 	///The mob holding the gun
 	var/mob/gun_user
-	///The atom target by the user
+	///The atom targeted by the user
 	var/atom/target
 	///How many bullets the gun fired while bursting/auto firing
 	var/shots_fired = 0
-	///If we are shooting it dual wielding
+	///If this gun is in inactive hands and shooting in akimbo
 	var/dual_wield = FALSE
+	///Used if a weapon need windup before firing
+	var/windup_checked = WEAPON_WINDUP_NOT_CHECKED
+	///Used to fire the gun in inactive hands in akimbo
+	var/obj/item/weapon/gun/akimbo_gun
 
 
 //----------------------------------------------------------
@@ -199,11 +203,11 @@
 		RegisterSignal(src, COMSIG_GUN_FIRED, .proc/Fire)
 	else
 		if(gun_user)
-			gun_user = null
 			UnregisterSignal(gun_user, COMSIG_MOB_MOUSEDOWN, .proc/start_fire)
 			UnregisterSignal(gun_user, COMSIG_MOB_MOUSEUP, .proc/stop_fire)
 			UnregisterSignal(gun_user, COMSIG_MOB_MOUSEDRAG, .proc/change_target)
 			UnregisterSignal(src, COMSIG_GUN_FIRED, .proc/Fire)
+			gun_user = null
 		SEND_SIGNAL(src, COMSIG_GUN_STOP_FIRE)
 	return ..()
 
@@ -518,12 +522,21 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		target = object
 		if(gun_firemode == GUN_FIREMODE_SEMIAUTO)
 			Fire()
+			shots_fired = 0//Let's clean everything
+			target = null
+			windup_checked = WEAPON_WINDUP_NOT_CHECKED
+			akimbo_gun = null
+			dual_wield = FALSE
 			return
 		SEND_SIGNAL(src, COMSIG_GUN_FIRE)
 
 /obj/item/weapon/gun/proc/stop_fire()
 	SIGNAL_HANDLER
+	shots_fired = 0//Let's clean everything
 	target = null
+	windup_checked = WEAPON_WINDUP_NOT_CHECKED
+	akimbo_gun = null
+	dual_wield = FALSE
 	SEND_SIGNAL(src, COMSIG_GUN_STOP_FIRE)
 
 /obj/item/weapon/gun/proc/change_target(datum/source, atom/src_object, atom/over_object)
@@ -532,6 +545,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		return
 	if(!istype(over_object, /obj/screen))
 		target = over_object
+	gun_user.face_atom(target)
 
 /*
 load_into_chamber() and reload_into_chamber() do all of the heavy lifting.
@@ -621,6 +635,8 @@ and you're good to go.
 	if(!able_to_fire(gun_user))
 		SEND_SIGNAL(src, COMSIG_GUN_STOP_FIRE)
 		return
+	if(!target)//Something went wrong, abort
+		return
 
 	//The gun should return the bullet that it already loaded from the end cycle of the last Fire().
 	var/obj/projectile/projectile_to_fire = load_into_chamber(gun_user) //Load a bullet in or check for existing one.
@@ -634,9 +650,8 @@ and you're good to go.
 		if(istype(IH, /obj/item/weapon/gun))
 			var/obj/item/weapon/gun/OG = IH
 			if(!(OG.flags_gun_features & GUN_WIELDED_FIRING_ONLY) && OG.gun_skill_category == gun_skill_category)
-				dual_wield = TRUE
-				OG.dual_wield = TRUE
-				OG.Fire()
+				akimbo_gun = OG
+				akimbo_gun.dual_wield = TRUE
 			
 
 	apply_gun_modifiers(projectile_to_fire, target)
@@ -660,7 +675,7 @@ and you're good to go.
 	//vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
 	projectile_to_fire.fire_at(target, gun_user, src, projectile_to_fire.ammo.max_range, projectile_to_fire.ammo.shell_speed, firing_angle)
 	//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-	
+	akimbo_gun?.Fire()
 	shots_fired++
 
 	if(fire_animation) //Fires gun firing animation if it has any. ex: rotating barrel
