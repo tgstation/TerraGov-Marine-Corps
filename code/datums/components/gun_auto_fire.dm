@@ -69,7 +69,8 @@
 	unschedule_shot()
 
 /datum/component/automatedfire/gun/process_shot()
-	SEND_SIGNAL(parent, COMSIG_GUN_FIRED)
+	if(!SEND_SIGNAL(parent, COMSIG_GUN_FIRED))
+		return AUTOFIRE_STOPPED_SHOOTING
 	switch(fire_mode)
 		if(GUN_FIREMODE_BURSTFIRE)
 			shots_fired++

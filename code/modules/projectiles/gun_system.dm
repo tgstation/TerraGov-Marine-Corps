@@ -191,11 +191,29 @@
 
 /obj/item/weapon/gun/equipped(mob/user, slot)
 	unwield(user)
-	gun_user = user
+	if(ishandslot(slot))
+		gun_user = user
+		RegisterSignal(gun_user, COMSIG_MOB_MOUSEDOWN, .proc/start_fire)
+		RegisterSignal(gun_user, COMSIG_MOB_MOUSEUP, .proc/stop_fire)
+		RegisterSignal(gun_user, COMSIG_MOB_MOUSEDRAG, .proc/change_target)
+		RegisterSignal(src, COMSIG_GUN_FIRED, .proc/Fire)
+	else
+		if(gun_user)
+			gun_user = null
+			UnregisterSignal(gun_user, COMSIG_MOB_MOUSEDOWN, .proc/start_fire)
+			UnregisterSignal(gun_user, COMSIG_MOB_MOUSEUP, .proc/stop_fire)
+			UnregisterSignal(gun_user, COMSIG_MOB_MOUSEDRAG, .proc/change_target)
+			UnregisterSignal(src, COMSIG_GUN_FIRED, .proc/Fire)
+		SEND_SIGNAL(src, COMSIG_GUN_STOP_FIRE)
 	return ..()
 
 /obj/item/weapon/gun/removed_from_inventory(mob/user)
-	gun_user = null
+	if(gun_user)
+		UnregisterSignal(gun_user, COMSIG_MOB_MOUSEDOWN, .proc/start_fire)
+		UnregisterSignal(gun_user, COMSIG_MOB_MOUSEUP, .proc/stop_fire)
+		UnregisterSignal(gun_user, COMSIG_MOB_MOUSEDRAG, .proc/change_target)
+		UnregisterSignal(src, COMSIG_GUN_FIRED, .proc/Fire)
+		gun_user = null
 	SEND_SIGNAL(src, COMSIG_GUN_STOP_FIRE)
 
 /obj/item/weapon/gun/update_icon(mob/user)
@@ -484,13 +502,32 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 			//						   	    \\
 //----------------------------------------------------------
 
-/obj/item/weapon/gun/afterattack(atom/A, mob/living/user, flag, params)
-	if(flag)
-		return ..() //It's adjacent, is the user, or is on the user's person
-	if(QDELETED(A))
+/obj/item/weapon/gun/proc/start_fire(datum/source, atom/object, turf/location, control, params)
+	SIGNAL_HANDLER
+	if(gun_on_cooldown(gun_user))
 		return
-	if(!istype(A, /obj/screen))
-		Fire(A, user, params) //Otherwise, fire normally.
+	if((gun_user.hand && gun_user.r_hand == src) || (!gun_user.hand && gun_user.l_hand == src))
+		return
+	if(gun_user.in_throw_mode)
+		return
+	if(get_dist(object, gun_user) <= 1) //Dealt with by attack code
+		return
+	if(QDELETED(object))
+		return
+	if(!istype(object, /obj/screen))
+		target = object
+		SEND_SIGNAL(src, COMSIG_GUN_FIRE)
+
+/obj/item/weapon/gun/proc/stop_fire()
+	SIGNAL_HANDLER
+	SEND_SIGNAL(src, COMSIG_GUN_STOP_FIRE)
+
+/obj/item/weapon/gun/proc/change_target(datum/source, atom/src_object, atom/over_object)
+	SIGNAL_HANDLER
+	if(get_dist(over_object, gun_user) == 0)
+		return
+	if(!istype(over_object, /obj/screen))
+		target = over_object
 
 /*
 load_into_chamber() and reload_into_chamber() do all of the heavy lifting.
@@ -586,7 +623,7 @@ and you're good to go.
 	in_chamber = null //Projectiles live and die fast. It's better to null the reference early so the GC can handle it immediately.
 	if(!projectile_to_fire) //If there is nothing to fire, click.
 		click_empty(gun_user)
-		SEND_SIGNAL(src, COMSIG_GUN_STOP_FIRE)
+		return
 
 	if(shots_fired == 0 && !dual_wield)//We only check when starting to shoot
 		var/obj/item/IH = gun_user.get_inactive_held_item()
@@ -632,6 +669,7 @@ and you're good to go.
 	var/obj/screen/ammo/A = gun_user.hud_used.ammo //The ammo HUD
 	A.update_hud(gun_user)
 
+	return TRUE
 
 /obj/item/weapon/gun/attack(mob/living/M, mob/living/user, def_zone)
 	if(!CHECK_BITFIELD(flags_gun_features, GUN_CAN_POINTBLANK)) // If it can't point blank, you can't suicide and such.
@@ -649,7 +687,8 @@ and you're good to go.
 			return
 
 		if(!active_attachable && gun_firemode == GUN_FIREMODE_BURSTFIRE && burst_amount > 1)
-			Fire(M, user)
+			target = M
+			SEND_SIGNAL(src, COMSIG_GUN_FIRE)
 			return TRUE
 
 		//Point blanking simulates firing the bullet proper but without actually firing it.

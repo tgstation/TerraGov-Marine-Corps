@@ -634,7 +634,7 @@ should be alright.
 		to_chat(user, "<span class='notice'>[icon2html(src, user)] You switch to <b>[gun_firemode]</b>.</span>")
 		user.update_action_buttons()
 
-	SEND_SIGNAL(src, COMSIG_GUN_FIRE_MODE_TOGGLE, gun_firemode, user.client)
+	SEND_SIGNAL(src, COMSIG_GUN_FIRE_MODE_TOGGLE, gun_firemode)
 
 
 /obj/item/weapon/gun/proc/add_firemode(added_firemode, mob/user)
