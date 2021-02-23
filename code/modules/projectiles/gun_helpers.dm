@@ -831,7 +831,7 @@ should be alright.
 
 /obj/item/weapon/gun/proc/modify_burst_delay(value, mob/user)
 	burst_delay += value
-	SEND_SIGNAL(src, COMSIG_GUN_AUTOBURST_SHOT_DELAY_MODIFIED, fire_delay)
+	SEND_SIGNAL(src, COMSIG_GUN_BURST_SHOT_DELAY_MODIFIED, fire_delay)
 
 /obj/item/weapon/gun/proc/modify_burst_amount(value, mob/user)
 	burst_amount += value

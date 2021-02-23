@@ -75,7 +75,7 @@
 	var/burst_amount 	= 1						//How many shots can the weapon shoot in burst? Anything less than 2 and you cannot toggle burst.
 	var/burst_delay 	= 0.1 SECONDS			//The delay in between shots. Lower = less delay = faster.
 	var/extra_delay		= 0						//When burst-firing, this number is extra time before the weapon can fire again. Depends on number of rounds fired.
-
+	
 
 	//Slowdowns
 	var/aim_slowdown	= 0						//Self explanatory. How much does aiming (wielding the gun) slow you
@@ -662,7 +662,7 @@ and you're good to go.
 		flick("[fire_animation]", src)
 
 	last_fired = world.time
-
+	reload_into_chamber(gun_user)
 	SEND_SIGNAL(gun_user, COMSIG_MOB_GUN_FIRED, target, src)
 
 
@@ -836,7 +836,6 @@ and you're good to go.
 						added_delay -= 2 * user.skills.getRating(gun_skill_category)
 
 	if(world.time >= last_fired + added_delay + extra_delay) //check the last time it was fired.
-		extra_delay = 0 //Since we are ready to fire again, zero it up.
 		return FALSE
 
 	if(world.time % 3 && user.client && !user.client.prefs.mute_self_combat_messages)
