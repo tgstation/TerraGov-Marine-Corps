@@ -66,7 +66,7 @@ if grep -nP 'addtimer\(.+?, ?0\)($| |/)' code/**/*.dm; then
 	st=1
 fi;
 echo "Checking for default return value returns"
-if grep -nP 'return \.\n' code/**/*.dm; then
+if grep -nP '^\s*return \.\s*\n' code/**/*.dm; then
     echo "Default return value return detected"
     st=1
 fi;
