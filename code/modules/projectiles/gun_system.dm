@@ -524,7 +524,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		target = object
 		var/list/modifiers = params2list(params)
 		if(modifiers["right"] || modifiers["middle"] || modifiers["shift"])
-			if(active_attachable)
+			if(active_attachable?.flags_attach_features & ATTACH_WEAPON)
 				do_fire_attachment()
 			return
 		if(gun_firemode == GUN_FIREMODE_SEMIAUTO)
@@ -1125,11 +1125,7 @@ and you're good to go.
 
 
 /obj/item/weapon/gun/proc/on_gun_attachment_attach(obj/item/attachable/attached_gun/attaching)
-	if(!(attaching.flags_attach_features & ATTACH_WEAPON))
-		return
-	if(attaching.flags_attach_features & ATTACH_PROJECTILE)
-		return //These are handled through regular Fire() for now.
-	active_attachable = attaching
+	active_attachable = attaching	
 
 /obj/item/weapon/gun/proc/on_gun_attachment_detach(obj/item/attachable/attached_gun/detaching)
 	active_attachable = null
