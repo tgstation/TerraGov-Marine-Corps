@@ -52,10 +52,10 @@
 	LT = image("icon" = 'icons/obj/items/projectiles.dmi',"icon_state" = "sniper_laser", "layer" =-LASER_LAYER)
 	integrated_laze = new(src)
 
-/obj/item/weapon/gun/rifle/sniper/antimaterial/Fire(atom/target, mob/living/user, params, reflex = 0, dual_wield)
-	if(!able_to_fire(user))
+/obj/item/weapon/gun/rifle/sniper/antimaterial/Fire()
+	if(!able_to_fire(gun_user))
 		return
-	if(gun_on_cooldown(user))
+	if(gun_on_cooldown(gun_user))
 		return
 	if(targetmarker_primed)
 		if(!iscarbon(target))
@@ -63,7 +63,7 @@
 		if(laser_target)
 			deactivate_laser_target()
 		if(target.apply_laser())
-			activate_laser_target(target, user)
+			activate_laser_target(target, gun_user)
 		return
 	if(!QDELETED(laser_target))
 		target = laser_target

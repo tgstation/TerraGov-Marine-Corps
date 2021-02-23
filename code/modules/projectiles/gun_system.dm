@@ -523,6 +523,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 
 /obj/item/weapon/gun/proc/stop_fire()
 	SIGNAL_HANDLER
+	target = null
 	SEND_SIGNAL(src, COMSIG_GUN_STOP_FIRE)
 
 /obj/item/weapon/gun/proc/change_target(datum/source, atom/src_object, atom/over_object)
@@ -616,7 +617,7 @@ and you're good to go.
 	if(QDELETED(gun_user))
 		return
 	if(!ismob(gun_user)) //Could be an object firing the gun.
-		return TRUE
+		return
 	if(!able_to_fire(gun_user))
 		SEND_SIGNAL(src, COMSIG_GUN_STOP_FIRE)
 		return
@@ -635,6 +636,7 @@ and you're good to go.
 			if(!(OG.flags_gun_features & GUN_WIELDED_FIRING_ONLY) && OG.gun_skill_category == gun_skill_category)
 				dual_wield = TRUE
 				OG.dual_wield = TRUE
+				OG.Fire()
 			
 
 	apply_gun_modifiers(projectile_to_fire, target)
