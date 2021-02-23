@@ -833,7 +833,7 @@
 		return TRUE
 	else if (windup_checked == WEAPON_WINDUP_CHECKING)//We are already in windup, abort
 		return TRUE
-	playsound(loc,'sound/weapons/guns/fire/launcher.ogg', 50, TRUE)
+	
 	. = ..()
 
 
@@ -843,14 +843,13 @@
 		current_mag.loc = get_turf(src)
 		current_mag.update_icon()
 		current_mag = null
-
 	log_combat(gun_user, gun_user, "fired the [gun_user].")
 	log_explosion("[gun_user] fired the [gun_user] at [AREACOORD(loc)].")
 
 ///Windup before shooting
 /obj/item/weapon/gun/launcher/rocket/proc/do_windup()
 	windup_checked = WEAPON_WINDUP_CHECKING
-	var/delay = 0.1 SECONDS
+	var/delay = 2 SECONDS
 	if(has_attachment(/obj/item/attachable/scope/mini))
 		delay += 0.2 SECONDS
 
@@ -861,7 +860,11 @@
 		windup_checked = WEAPON_WINDUP_NOT_CHECKED
 		return
 	windup_checked = WEAPON_WINDUP_CHECKED
-	Fire()
+	if(Fire())
+		playsound(loc,'sound/weapons/guns/fire/launcher.ogg', 50, TRUE)
+		return
+	windup_checked = WEAPON_WINDUP_NOT_CHECKED
+
 
 /obj/item/weapon/gun/launcher/rocket/examine_ammo_count(mob/user)
 	if(current_mag?.current_rounds)
@@ -1143,7 +1146,8 @@
 		windup_checked = WEAPON_WINDUP_NOT_CHECKED
 		return
 	windup_checked = WEAPON_WINDUP_CHECKED
-	Fire()
+	if(!Fire())
+		windup_checked = WEAPON_WINDUP_NOT_CHECKED
 
 /obj/item/weapon/gun/minigun/get_ammo_type()
 	if(!ammo)

@@ -521,7 +521,8 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	if(!istype(object, /obj/screen))
 		target = object
 		if(gun_firemode == GUN_FIREMODE_SEMIAUTO)
-			Fire()
+			if(!Fire() || windup_checked == WEAPON_WINDUP_CHECKING)
+				return
 			shots_fired = 0//Let's clean everything
 			target = null
 			windup_checked = WEAPON_WINDUP_NOT_CHECKED
@@ -533,11 +534,12 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 ///Reset variables used in firing and remove the gun from the autofire system
 /obj/item/weapon/gun/proc/stop_fire()
 	SIGNAL_HANDLER
-	shots_fired = 0//Let's clean everything
-	target = null
-	windup_checked = WEAPON_WINDUP_NOT_CHECKED
-	akimbo_gun = null
-	dual_wield = FALSE
+	if(windup_checked != WEAPON_WINDUP_CHECKING)
+		shots_fired = 0//Let's clean everything
+		target = null
+		windup_checked = WEAPON_WINDUP_NOT_CHECKED
+		akimbo_gun = null
+		dual_wield = FALSE
 	SEND_SIGNAL(src, COMSIG_GUN_STOP_FIRE)
 
 ///Update the target if you draged your mouse
