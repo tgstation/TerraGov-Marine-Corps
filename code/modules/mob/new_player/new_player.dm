@@ -150,15 +150,15 @@
 			if(!SSticker.mode.CanLateSpawn(src, job_datum)) // Try to assigns job to new player
 				return
 			SSticker.mode.LateSpawn(src)
-		
+
 		if("continue_join")
 			DIRECT_OUTPUT(usr, browse(null, "window=xenosunbalanced"))
 			if(!saved_job)
-				return	
+				return
 			if(!SSticker.mode.CanLateSpawn(src, saved_job)) // Try to assigns job to new player
 				return
 			SSticker.mode.LateSpawn(src)
-		
+
 		if("reconsider")
 			DIRECT_OUTPUT(usr, browse(null, "window=xenosunbalanced"))
 
@@ -396,7 +396,7 @@
 		GLOB.ready_players += src
 	else
 		GLOB.ready_players -= src
-	to_chat(src, "<span class='warning'>You are now [ready? "" : "not "] ready.</span>")
+	to_chat(src, "<span class='warning'>You are now [ready? "" : "not "]ready.</span>")
 
 ///Attempts to latejoin the player
 /mob/new_player/proc/attempt_late_join(queue_override = FALSE)
