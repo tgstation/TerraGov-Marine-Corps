@@ -244,7 +244,8 @@
 // /obj/item/weapon/gun signals
 #define COMSIG_GUN_FIRE "gun_fire"
 #define COMSIG_GUN_STOP_FIRE "gun_stop_fire"
-#define COMSIG_GUN_FIRED "gun_fired"
+#define COMSIG_GUN_MUST_FIRE "gun_must_fire"
+	#define GUN_HAS_FIRED	(1<<0)
 #define COMSIG_GUN_FIRE_MODE_TOGGLE "gun_firemode_toggle"		//from /obj/item/weapon/gun/verb/toggle_firemode()
 #define COMSIG_GUN_AUTOFIREDELAY_MODIFIED "gun_firedelay_modified"
 #define COMSIG_GUN_BURST_SHOTS_TO_FIRE_MODIFIED "gun_burstamount_modified"

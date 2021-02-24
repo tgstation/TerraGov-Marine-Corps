@@ -200,14 +200,14 @@
 		RegisterSignal(gun_user, COMSIG_MOB_MOUSEDOWN, .proc/start_fire)
 		RegisterSignal(gun_user, COMSIG_MOB_MOUSEUP, .proc/stop_fire)
 		RegisterSignal(gun_user, COMSIG_MOB_MOUSEDRAG, .proc/change_target)
-		RegisterSignal(src, COMSIG_GUN_FIRED, .proc/Fire)
+		RegisterSignal(src, COMSIG_GUN_MUST_FIRE, .proc/Fire)
 		RegisterSignal(src, COMSIG_GUN_FIRE_RESET, .proc/reset_fire)
 	else
 		if(gun_user)
 			UnregisterSignal(gun_user, COMSIG_MOB_MOUSEDOWN, .proc/start_fire)
 			UnregisterSignal(gun_user, COMSIG_MOB_MOUSEUP, .proc/stop_fire)
 			UnregisterSignal(gun_user, COMSIG_MOB_MOUSEDRAG, .proc/change_target)
-			UnregisterSignal(src, COMSIG_GUN_FIRED, .proc/Fire)
+			UnregisterSignal(src, COMSIG_GUN_MUST_FIRE, .proc/Fire)
 			UnregisterSignal(src, COMSIG_GUN_FIRE_RESET, .proc/reset_fire)
 			gun_user = null
 		SEND_SIGNAL(src, COMSIG_GUN_AUTO_FIRE_COMP_RESET)
@@ -218,7 +218,7 @@
 		UnregisterSignal(gun_user, COMSIG_MOB_MOUSEDOWN, .proc/start_fire)
 		UnregisterSignal(gun_user, COMSIG_MOB_MOUSEUP, .proc/stop_fire)
 		UnregisterSignal(gun_user, COMSIG_MOB_MOUSEDRAG, .proc/change_target)
-		UnregisterSignal(src, COMSIG_GUN_FIRED, .proc/Fire)
+		UnregisterSignal(src, COMSIG_GUN_MUST_FIRE, .proc/Fire)
 		UnregisterSignal(src, COMSIG_GUN_FIRE_RESET, .proc/reset_fire)
 		gun_user = null
 	SEND_SIGNAL(src, COMSIG_GUN_AUTO_FIRE_COMP_RESET)
@@ -698,7 +698,7 @@ and you're good to go.
 	var/obj/screen/ammo/A = gun_user.hud_used.ammo //The ammo HUD
 	A.update_hud(gun_user)
 
-	return TRUE
+	return GUN_HAS_FIRED
 
 /obj/item/weapon/gun/attack(mob/living/M, mob/living/user, def_zone)
 	if(!CHECK_BITFIELD(flags_gun_features, GUN_CAN_POINTBLANK)) // If it can't point blank, you can't suicide and such.

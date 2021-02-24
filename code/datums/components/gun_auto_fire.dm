@@ -95,7 +95,7 @@
 
 ///Ask the gun to fire and schedule the next shot if need
 /datum/component/automatedfire/gun/process_shot()
-	if(!SEND_SIGNAL(parent, COMSIG_GUN_FIRED))
+	if(!SEND_SIGNAL(parent, COMSIG_GUN_MUST_FIRE) & GUN_HAS_FIRED)
 		return AUTOFIRE_STOPPED_SHOOTING
 	switch(fire_mode)
 		if(GUN_FIREMODE_BURSTFIRE)
