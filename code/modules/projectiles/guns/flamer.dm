@@ -561,6 +561,7 @@
 				return
 	return ..()
 
+///Flamer windup called before firing
 /obj/item/weapon/gun/flamer/marinestandard/proc/do_windup()
 	windup_checked = WEAPON_WINDUP_CHECKING
 	if(!do_after(gun_user, 1 SECONDS, TRUE, src))
