@@ -629,6 +629,20 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	return FALSE
 
+/obj/machinery/standard_hmg/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
+	if(hmg_verify_iff(proj.projectile_iff))
+		proj.damage += proj.damage*proj.damage_marine_falloff
+		return FALSE
+	return src == proj.original_target
+
+///Checks to see whether IFF matches
+/obj/machinery/standard_hmg/proc/hmg_verify_iff(list/unique_access)
+	for(var/access_tag in unique_access)
+		if(access_tag in iff_signal)
+			return TRUE
+
+	return FALSE
+
 /obj/machinery/door/poddoor/railing/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
 	return src == proj.original_target
 
