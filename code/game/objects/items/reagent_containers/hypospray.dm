@@ -43,8 +43,25 @@
 	name = "[core_name] ([str])"
 	label = str
 
-
 /obj/item/reagent_containers/hypospray/afterattack(atom/A, mob/living/user)
+	if(istype(A, /obj/item/storage/pill_bottle)) //this should only run if its a pillbottle
+		if(reagents.total_volume == volume)
+			to_chat(user, "<span class='warning'>[src] is full.</span>")
+			return  //early returning if its full
+		var/obj/item/storage/pill_bottle/M = A
+
+		if(!M.contents.len)
+			return //early returning if its empty
+		var/obj/item/V = M.contents[1]
+
+		if((V.reagents.total_volume + reagents.total_volume) > volume)
+			to_chat(user, "<span class='warning'>[src] cannot hold that much more.</span>")
+			return // so it doesnt let people have hypos more filled than their volume
+		V.reagents.trans_to(src, V.reagents.total_volume)
+
+		to_chat(user, "<span class='notice'>You dissolve pill inside [M] in [src].</span>")
+		QDEL_IN(V, 5)
+
 	if(!A.reagents)
 		return
 	if(!istype(user))
@@ -267,7 +284,7 @@
 
 /obj/item/reagent_containers/hypospray/advanced/oxycodone
 	list_reagents = list(/datum/reagent/medicine/oxycodone = 60)
-	
+
 /obj/item/reagent_containers/hypospray/advanced/combat
 	name = "Combat hypospray"
 	desc = "A hypospray loaded with several doses of advanced healing and painkilling chemicals. Intended for use in active combat."
@@ -275,8 +292,8 @@
 		/datum/reagent/medicine/bicaridine = 20,
 		/datum/reagent/medicine/kelotane = 20,
 		/datum/reagent/medicine/tramadol = 20,
-	)	
-	
+	)
+
 /obj/item/reagent_containers/hypospray/advanced/combat_advanced
 	name = "Advanced combat hypospray"
 	desc = "A hypospray loaded with several doses of advanced healing and painkilling chemicals. Intended for use in active combat."
@@ -307,12 +324,12 @@
 	list_reagents = list(
 		/datum/reagent/medicine/dermaline = 60,
 	)
-	
+
 /obj/item/reagent_containers/hypospray/advanced/ironsugar
 	name = "Ironsugar hypospray"
 	desc = "A hypospray loaded with ironsugar."
 	list_reagents = list(
-		/datum/reagent/iron = 30, 
+		/datum/reagent/iron = 30,
 		/datum/reagent/consumable/sugar = 30,
 	)
 
