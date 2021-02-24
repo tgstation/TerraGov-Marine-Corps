@@ -44,7 +44,6 @@
 	label = str
 
 
-
 /obj/item/reagent_containers/hypospray/afterattack(atom/A, mob/living/user)
 	if(istype(A, /obj/item/storage/pill_bottle)) //this should only run if its a pillbottle
 		if(reagents.total_volume == volume)
@@ -312,7 +311,6 @@
 		/datum/reagent/medicine/meralyne = 30,
 		/datum/reagent/medicine/dermaline = 30,
 	)
-
 
 /obj/item/reagent_containers/hypospray/advanced/meralyne
 	name = "Meralyne hypospray"
