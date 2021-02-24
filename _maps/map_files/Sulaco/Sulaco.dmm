@@ -350,6 +350,10 @@
 	dir = 4
 	},
 /area/sulaco/medbay/west)
+"abc" = (
+/obj/machinery/holopad,
+/turf/open/floor/wood,
+/area/sulaco/liaison/quarters)
 "abe" = (
 /turf/closed/wall/mainship/white,
 /area/sulaco/medbay/surgery_one)
@@ -5066,6 +5070,7 @@
 /area/sulaco/hallway/central_hall2)
 "axi" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/obj/machinery/holopad,
 /turf/open/floor/prison,
 /area/sulaco/briefing)
 "axl" = (
@@ -10691,6 +10696,10 @@
 "cfA" = (
 /turf/closed/wall/mainship/gray/outer,
 /area/sulaco/marine)
+"cgK" = (
+/obj/machinery/holopad,
+/turf/open/floor/prison,
+/area/sulaco/hallway/central_hall3)
 "chQ" = (
 /obj/machinery/alarm{
 	dir = 8
@@ -12424,6 +12433,10 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /turf/open/floor/prison,
 /area/sulaco/hallway/central_hall)
+"hzp" = (
+/obj/machinery/holopad,
+/turf/open/floor/plating/mainship,
+/area/sulaco/engineering/engine)
 "hBC" = (
 /obj/structure/table/mainship,
 /obj/item/roller,
@@ -12864,6 +12877,13 @@
 	dir = 1
 	},
 /area/mainship/shipboard/weapon_room)
+"iCD" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/obj/machinery/holopad,
+/turf/open/floor/carpet,
+/area/sulaco/liaison)
 "iEv" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
@@ -15180,6 +15200,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
+/obj/machinery/holopad,
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar/droppod)
 "oLM" = (
@@ -15400,6 +15421,11 @@
 /obj/machinery/computer3/server,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
+"pkJ" = (
+/obj/structure/cable,
+/obj/machinery/holopad,
+/turf/open/floor/prison,
+/area/sulaco/cargo/office)
 "plf" = (
 /obj/machinery/light,
 /obj/structure/sign/evac,
@@ -15866,6 +15892,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint)
+"qxQ" = (
+/obj/machinery/holopad,
+/turf/open/floor/prison,
+/area/sulaco/hallway/lower_main_hall)
 "qyF" = (
 /obj/machinery/door/airlock/external,
 /turf/open/floor/prison,
@@ -16167,6 +16197,10 @@
 	dir = 4
 	},
 /area/sulaco/engineering/atmos)
+"rpg" = (
+/obj/machinery/holopad,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "rpk" = (
 /turf/open/floor/prison/blue{
 	dir = 4
@@ -16847,6 +16881,14 @@
 	},
 /turf/open/floor/prison/plate,
 /area/shuttle/distress/arrive_2)
+"sPM" = (
+/obj/machinery/door/poddoor/railing{
+	dir = 1;
+	id = "supply_elevator_railing"
+	},
+/obj/machinery/holopad,
+/turf/open/floor/prison,
+/area/sulaco/cargo)
 "sQE" = (
 /turf/open/floor/grass,
 /area/mainship/living/starboard_garden)
@@ -16995,6 +17037,10 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor/freezer,
 /area/sulaco/showers)
+"tkS" = (
+/obj/machinery/holopad,
+/turf/open/floor/mainship/ai,
+/area/sulaco/command/ai)
 "tkV" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
 /turf/open/floor/prison,
@@ -17864,6 +17910,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/cargo)
+"vSd" = (
+/obj/machinery/holopad,
+/turf/open/floor/prison,
+/area/sulaco/cargo)
 "vTd" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -18102,6 +18152,7 @@
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold/yellow/hidden,
 /obj/structure/cable,
+/obj/machinery/holopad,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/hallway/central_hall)
 "wBm" = (
@@ -42239,7 +42290,7 @@ eEH
 pXe
 kXs
 alh
-aln
+pkJ
 aln
 aln
 aqh
@@ -43261,7 +43312,7 @@ abV
 abV
 abV
 abV
-hSX
+sPM
 fCm
 pnM
 ajb
@@ -43783,7 +43834,7 @@ eul
 amB
 amB
 uig
-amB
+vSd
 amB
 amB
 bkk
@@ -44046,7 +44097,7 @@ eaW
 amB
 bsi
 leD
-aWG
+qxQ
 aam
 abE
 abG
@@ -44969,7 +45020,7 @@ wBd
 aoi
 aAI
 egQ
-aGC
+tkS
 aHD
 eMk
 aAI
@@ -46616,7 +46667,7 @@ alZ
 dLt
 mQk
 leD
-aWG
+qxQ
 aaL
 iHS
 akM
@@ -49186,7 +49237,7 @@ aPF
 aVZ
 aWG
 xKR
-aWG
+qxQ
 cdy
 aaQ
 aaJ
@@ -52269,7 +52320,7 @@ aPF
 aRT
 aPF
 scV
-aPF
+rpg
 aPF
 aPF
 aPF
@@ -56537,7 +56588,7 @@ ckf
 bdj
 lyd
 bdM
-bdM
+abc
 aUg
 beI
 lgl
@@ -56788,7 +56839,7 @@ iWV
 aZa
 aTo
 aTw
-aTw
+iCD
 aTw
 fqu
 aTP
@@ -59885,7 +59936,7 @@ plf
 aHc
 aJW
 avU
-avU
+cgK
 avU
 avU
 avU
@@ -59894,7 +59945,7 @@ aLL
 aHc
 avU
 aIp
-avU
+cgK
 avU
 aIv
 koN
@@ -66549,7 +66600,7 @@ aoN
 aoN
 aqG
 aoN
-aoN
+hzp
 aoN
 aqG
 aoN
