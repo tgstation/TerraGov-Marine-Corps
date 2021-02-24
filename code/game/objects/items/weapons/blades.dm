@@ -160,7 +160,7 @@
 	desc = "A dusty sword commonly seen in historical museums. Where you got this is a mystery, for sure. Only a mercenary would be nuts enough to carry one of these. Sharpened to deal massive damage."
 	icon_state = "mercsword"
 	item_state = "machete"
-	force = 39
+	force = 60
 
 
 /obj/item/weapon/claymore/mercsword/captain
@@ -168,7 +168,7 @@
 	desc = "A fancy ceremonial sword passed down from generation to generation. Despite this, it has been very well cared for, and is in top condition."
 	icon_state = "mercsword"
 	item_state = "machete"
-	force = 48
+	force = 60
 
 /obj/item/weapon/claymore/mercsword/machete
 	name = "\improper M2132 machete"
@@ -207,7 +207,7 @@
 	desc = "A finely made Japanese sword, with a well sharpened blade. The blade has been filed to a molecular edge, and is extremely deadly. Commonly found in the hands of mercenaries and yakuza."
 	icon_state = "katana"
 	flags_atom = CONDUCT
-	force = 50
+	force = 70
 	throwforce = 10
 	sharp = IS_SHARP_ITEM_BIG
 	edge = 1
@@ -329,7 +329,7 @@
 	if(!on)
 		on = !on
 		icon_state = "chainswordon"
-		force = 40
+		force = 60
 		throwforce = 30
 	else
 		on = !on

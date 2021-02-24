@@ -70,7 +70,7 @@
 /obj/item/weapon/energy/sword/attack_self(mob/living/user as mob)
 	toggle_active()
 	if (active)
-		force = 30
+		force = 80
 		heat = 3500
 		if(base_sword_icon != "sword")
 			icon_state = "[base_sword_icon]1"

@@ -21,7 +21,7 @@
 	icon_state = "nullrod"
 	item_state = "nullrod"
 	flags_equip_slot = ITEM_SLOT_BELT
-	force = 15
+	force = 25
 	throw_speed = 1
 	throw_range = 4
 	throwforce = 10
@@ -38,8 +38,8 @@
 	desc = "Tharr she blows!"
 	icon_state = "harpoon"
 	item_state = "harpoon"
-	force = 20
-	throwforce = 15
+	force = 30
+	throwforce = 75
 	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb = list("jabbed","stabbed","ripped")
 
@@ -51,7 +51,7 @@
 	sharp = 0
 	edge = 0
 	w_class = WEIGHT_CLASS_NORMAL
-	force = 20
+	force = 25
 	throw_speed = 3
 	throw_range = 7
 	throwforce = 7
@@ -64,7 +64,7 @@
 	desc = "A large metal baseball bat. Compared to its wooden cousin, the metal bat offers a bit more more force. Often carried by thugs and ruffians."
 	icon_state = "metalbat"
 	item_state = "metalbat"
-	force = 25
+	force = 30
 	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/weapon/butterfly
