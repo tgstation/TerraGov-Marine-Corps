@@ -1221,9 +1221,9 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/attached_gun/activate_attachment(mob/living/user, turn_off)
 	if(master_gun.active_attachable == src)
-		if(user)
-			to_chat(user, "<span class='notice'>You are no longer using [src].</span>")
-			UnregisterSignal(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE)
+		if(master_gun.gun_user)
+			to_chat(master_gun.gun_user, "<span class='notice'>You are no longer using [src].</span>")
+			UnregisterSignal(master_gun.gun_user, COMSIG_ITEM_EXCLUSIVE_TOGGLE)
 		master_gun.on_gun_attachment_detach(null, src)
 		icon_state = initial(icon_state)
 	else if(!turn_off)

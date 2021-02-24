@@ -552,9 +552,22 @@
 		var/obj/screen/ammo/A = gun_user.hud_used.ammo
 		A.update_hud(gun_user)
 		return
-	/*if(user.skills.getRating("firearms") < 0 && !do_after(user, 1 SECONDS, TRUE, src))
-		return*/ //Removed cause snowflake code with minimal impact of balance
+	if(gun_user.skills.getRating("firearms"))
+		switch(windup_checked)
+			if(WEAPON_WINDUP_NOT_CHECKED)
+				INVOKE_ASYNC(src, .proc/do_windup)
+				return
+			if(WEAPON_WINDUP_CHECKING)
+				return
 	return ..()
+
+/obj/item/weapon/gun/flamer/marinestandard/proc/do_windup()
+	windup_checked = WEAPON_WINDUP_CHECKING
+	if(!do_after(gun_user, 1 SECONDS, TRUE, src))
+		windup_checked = WEAPON_WINDUP_NOT_CHECKED
+		return
+	windup_checked = WEAPON_WINDUP_CHECKED
+	Fire()
 
 /obj/item/weapon/gun/flamer/marinestandard/proc/flamer_extinguish(atom/target, mob/living/user)
 	extinguish(target,user)
