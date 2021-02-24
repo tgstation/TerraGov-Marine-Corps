@@ -78,7 +78,6 @@
 				// Ghostship is magic: Ghosts can hear radio chatter from anywhere
 				if(speaker_coverage[ear] || (isobserver(M) && M.client?.prefs?.toggles_chat & CHAT_GHOSTRADIO))
 					. |= M		// Since we're already looping through mobs, why bother using |= ? This only slows things down.
-	return .
 
 
 // Same as above but for alien candidates.
