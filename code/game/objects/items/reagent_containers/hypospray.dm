@@ -44,6 +44,7 @@
 	label = str
 
 
+
 /obj/item/reagent_containers/hypospray/afterattack(atom/A, mob/living/user)
 	if(istype(A, /obj/item/storage/pill_bottle)) //this should only run if its a pillbottle
 		if(reagents.total_volume == volume)
@@ -285,7 +286,7 @@
 
 /obj/item/reagent_containers/hypospray/advanced/oxycodone
 	list_reagents = list(/datum/reagent/medicine/oxycodone = 60)
-
+	
 /obj/item/reagent_containers/hypospray/advanced/combat
 	name = "Combat hypospray"
 	desc = "A hypospray loaded with several doses of advanced healing and painkilling chemicals. Intended for use in active combat."
@@ -293,8 +294,8 @@
 		/datum/reagent/medicine/bicaridine = 20,
 		/datum/reagent/medicine/kelotane = 20,
 		/datum/reagent/medicine/tramadol = 20,
-	)
-
+	)	
+	
 /obj/item/reagent_containers/hypospray/advanced/combat_advanced
 	name = "Advanced combat hypospray"
 	desc = "A hypospray loaded with several doses of advanced healing and painkilling chemicals. Intended for use in active combat."
@@ -326,11 +327,12 @@
 	list_reagents = list(
 		/datum/reagent/medicine/dermaline = 60,
 	)
+	
 /obj/item/reagent_containers/hypospray/advanced/ironsugar
 	name = "Ironsugar hypospray"
 	desc = "A hypospray loaded with ironsugar."
 	list_reagents = list(
-		/datum/reagent/iron = 30,
+		/datum/reagent/iron = 30, 
 		/datum/reagent/consumable/sugar = 30,
 	)
 
