@@ -173,10 +173,10 @@
 	sharp = IS_SHARP_ITEM_BIG
 	edge = 1
 	w_class = WEIGHT_CLASS_BULKY
-	flags_equip_slot = ITEM_SLOT_BACK
+	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_BACK
 	flags_atom = CONDUCT
 	flags_item = TWOHANDED
-	force_wielded = 45
+	force_wielded = 75
 	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
 
 
@@ -207,7 +207,7 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = WEIGHT_CLASS_SMALL
-	force_wielded = 70
+	force_wielded = 150
 	wieldsound = 'sound/weapons/saberon.ogg'
 	unwieldsound = 'sound/weapons/saberoff.ogg'
 	flags_atom = NOBLOODY
@@ -238,11 +238,11 @@
 	desc = "A haphazardly-constructed yet still deadly weapon of ancient design."
 	icon_state = "spearglass"
 	item_state = "spearglass"
-	force = 14
+	force = 25
 	w_class = WEIGHT_CLASS_BULKY
 	flags_equip_slot = ITEM_SLOT_BACK
-	force_wielded = 24
-	throwforce = 30
+	force_wielded = 40
+	throwforce = 75
 	throw_speed = 3
 	edge = 1
 	sharp = IS_SHARP_ITEM_SIMPLE
@@ -258,8 +258,8 @@
 	force = 28
 	w_class = WEIGHT_CLASS_BULKY
 	flags_equip_slot = ITEM_SLOT_BACK
-	force_wielded = 60
-	throwforce = 50
+	force_wielded = 90
+	throwforce = 65
 	throw_speed = 3
 	edge = 1
 	sharp = IS_SHARP_ITEM_BIG
