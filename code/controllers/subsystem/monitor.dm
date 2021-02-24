@@ -3,7 +3,7 @@ SUBSYSTEM_DEF(monitor)
 	init_order = INIT_ORDER_MONITOR
 	runlevels = RUNLEVEL_GAME
 	wait = 5 MINUTES
-	can_fire = FALSE
+	can_fire = TRUE
 
 
 	///The next world.time for wich the monitor subsystem refresh the state
@@ -26,10 +26,10 @@ SUBSYSTEM_DEF(monitor)
 	var/humans_all_in_FOB_counter = 0
 	///TRUE if we detect a state of FOB hugging
 	var/FOB_hugging = FALSE
-	///TRUE if xenos have hijacked into ship. Disable the monitor
-	var/hijacked = FALSE
 	///List of all int stats
 	var/datum/monitor_statistics/stats = new
+	///If the game is currently before shutters drop, after, or shipside
+	var/gamestate = SHUTTERS_CLOSED
 	
 /datum/monitor_statistics
 	var/ancient_queen = 0
@@ -39,46 +39,56 @@ SUBSYSTEM_DEF(monitor)
 	var/ancient_T2 = 0
 	var/elder_T2 = 0
 	var/list/miniguns_in_use = list()
-	var/list/sadar_in_use = list() 
+	var/list/sadar_in_use = list()
 	var/list/b18_in_use = list()
 	var/list/b17_in_use = list()
 	var/OB_available = 0
 
 /datum/controller/subsystem/monitor/Initialize(start_timeofday)
 	. = ..()
-	addtimer(VARSET_CALLBACK(src, can_fire, TRUE), START_STATE_CALCULATION)
+	RegisterSignal(SSdcs, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, .proc/set_groundside_calculation)
+	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, .proc/set_shipside_calculation)
 
 /datum/controller/subsystem/monitor/fire(resumed = 0)
-	process_human_positions()
-	current_points = calculate_state_points() / max(GLOB.alive_human_list.len + GLOB.alive_xeno_list.len,20)//having less than 20 players gives bad results
-	FOB_hugging_check()
+	current_points = calculate_state_points() / max(GLOB.alive_human_list.len + GLOB.alive_xeno_list.len, 10)//having less than 10 players gives bad results
+	if(gamestate == GROUNDSIDE)
+		process_human_positions()
+		FOB_hugging_check()
 	set_state(current_points)
-	//spam_admins() //Only for testing
 
-///Messages admin with the current state
-/datum/controller/subsystem/monitor/proc/spam_admins()
-	message_admins("New state calculated by the monitor, state : [current_state] , exact balance points : [current_points]")
+/datum/controller/subsystem/monitor/proc/set_groundside_calculation()
+	SIGNAL_HANDLER
+	gamestate = GROUNDSIDE
 
+/datum/controller/subsystem/monitor/proc/set_shipside_calculation()
+	SIGNAL_HANDLER
+	gamestate = SHIPSIDE
 	
 ///Calculate the points supposedly representating of the situation	
 /datum/controller/subsystem/monitor/proc/calculate_state_points()
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	. += stats.ancient_T2 * ANCIENT_T2_WEIGHT
-	. += stats.ancient_T3 * ANCIENT_T3_WEIGHT
-	. += stats.elder_T2 * ELDER_T2_WEIGHT
-	. += stats.elder_T3 * ELDER_T3_WEIGHT
-	. += stats.ancient_queen * ANCIENT_QUEEN_WEIGHT
-	. += stats.elder_queen * ELDER_QUEEN_WEIGHT
-	. += human_on_ground * HUMAN_LIFE_ON_GROUND_WEIGHT
-	. += (GLOB.alive_human_list.len - human_on_ground) * HUMAN_LIFE_ON_SHIP_WEIGHT
-	. += GLOB.alive_xeno_list.len * XENOS_LIFE_WEIGHT
-	. += (xeno_job.total_positions - xeno_job.current_positions) * BURROWED_LARVA_WEIGHT
-	. += stats.miniguns_in_use.len * MINIGUN_PRICE * REQ_POINTS_WEIGHT
-	. += stats.sadar_in_use.len * SADAR_PRICE * REQ_POINTS_WEIGHT
-	. += stats.b17_in_use.len * B17_PRICE * REQ_POINTS_WEIGHT
-	. += stats.b18_in_use.len * B18_PRICE * REQ_POINTS_WEIGHT
-	. += SSpoints.supply_points * REQ_POINTS_WEIGHT
-	. += stats.OB_available * OB_AVAILABLE_WEIGHT
+	switch(gamestate)
+		if(GROUNDSIDE)
+			. += stats.ancient_T2 * ANCIENT_T2_WEIGHT
+			. += stats.ancient_T3 * ANCIENT_T3_WEIGHT
+			. += stats.elder_T2 * ELDER_T2_WEIGHT
+			. += stats.elder_T3 * ELDER_T3_WEIGHT
+			. += stats.ancient_queen * ANCIENT_QUEEN_WEIGHT
+			. += stats.elder_queen * ELDER_QUEEN_WEIGHT
+			. += human_on_ground * HUMAN_LIFE_ON_GROUND_WEIGHT
+			. += (GLOB.alive_human_list.len - human_on_ground) * HUMAN_LIFE_ON_SHIP_WEIGHT
+			. += GLOB.alive_xeno_list.len * XENOS_LIFE_WEIGHT
+			. += (xeno_job.total_positions - xeno_job.current_positions) * BURROWED_LARVA_WEIGHT
+			. += stats.miniguns_in_use.len * MINIGUN_PRICE * REQ_POINTS_WEIGHT
+			. += stats.sadar_in_use.len * SADAR_PRICE * REQ_POINTS_WEIGHT
+			. += stats.b17_in_use.len * B17_PRICE * REQ_POINTS_WEIGHT
+			. += stats.b18_in_use.len * B18_PRICE * REQ_POINTS_WEIGHT
+			. += SSpoints.supply_points * REQ_POINTS_WEIGHT
+			. += stats.OB_available * OB_AVAILABLE_WEIGHT
+			. += GLOB.xeno_resin_silos.len * SPAWNING_POOL_WEIGHT
+		if(SHIPSIDE, SHUTTERS_CLOSED)	
+			. += GLOB.alive_human_list.len * HUMAN_LIFE_WEIGHT_PREGAME
+			. += GLOB.alive_xeno_list.len * XENOS_LIFE_WEIGHT_PREGAME
 
 ///Keep the monitor informed about the position of humans
 /datum/controller/subsystem/monitor/proc/process_human_positions()
@@ -117,6 +127,8 @@ SUBSYSTEM_DEF(monitor)
 	else
 		current_state = MARINES_DELAYING
 	
+	if(!gamestate == GROUNDSIDE)
+		return
 	//We check for possible stalemate
 	if (current_state == last_state)
 		stale_counter++

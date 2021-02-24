@@ -54,6 +54,10 @@
 		r_hair = client.prefs.r_hair
 		g_hair = client.prefs.g_hair
 		b_hair = client.prefs.b_hair
+		grad_style = client.prefs.grad_style
+		r_grad = client.prefs.r_grad
+		g_grad = client.prefs.g_grad
+		b_grad = client.prefs.b_grad
 		r_facial = client.prefs.r_facial
 		g_facial = client.prefs.g_facial
 		b_facial = client.prefs.b_facial

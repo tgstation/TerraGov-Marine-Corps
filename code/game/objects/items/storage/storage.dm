@@ -39,34 +39,35 @@
 	var/list/content_watchers = list() //list of mobs currently seeing the storage's contents
 
 /obj/item/storage/MouseDrop(obj/over_object as obj)
-	if(ishuman(usr) || ismonkey(usr)) //so monkeys can take off their backpacks -- Urist
+	if(!ishuman(usr))
+		return
 
-		if(usr.lying_angle)
-			return
+	if(usr.lying_angle)
+		return
 
-		if(istype(usr.loc, /obj/vehicle/multitile/root/cm_armored)) // stops inventory actions in a mech/tank
-			return
+	if(istype(usr.loc, /obj/vehicle/multitile/root/cm_armored)) // stops inventory actions in a mech/tank
+		return
 
-		if(over_object == usr && Adjacent(usr)) // this must come before the screen objects only block
-			open(usr)
-			return
+	if(over_object == usr && Adjacent(usr)) // this must come before the screen objects only block
+		open(usr)
+		return
 
-		if(!istype(over_object, /obj/screen))
-			return ..()
+	if(!istype(over_object, /obj/screen))
+		return ..()
 
-		//Makes sure that the storage is equipped, so that we can't drag it into our hand from miles away.
-		//There's got to be a better way of doing this.
-		if(loc != usr || (loc && loc.loc == usr))
-			return
+	//Makes sure that the storage is equipped, so that we can't drag it into our hand from miles away.
+	//There's got to be a better way of doing this.
+	if(loc != usr || (loc && loc.loc == usr))
+		return
 
-		if(!usr.restrained() && !usr.stat)
-			switch(over_object.name)
-				if("r_hand")
-					usr.dropItemToGround(src)
-					usr.put_in_r_hand(src)
-				if("l_hand")
-					usr.dropItemToGround(src)
-					usr.put_in_l_hand(src)
+	if(!usr.restrained() && !usr.stat)
+		switch(over_object.name)
+			if("r_hand")
+				usr.dropItemToGround(src)
+				usr.put_in_r_hand(src)
+			if("l_hand")
+				usr.dropItemToGround(src)
+				usr.put_in_l_hand(src)
 
 /obj/item/storage/proc/return_inv()
 

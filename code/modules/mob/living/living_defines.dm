@@ -63,7 +63,6 @@
 	var/cameraFollow
 
 	var/melee_damage = 0
-	var/melee_accuracy = 100
 	var/attacktext = "attacks"
 	var/attack_sound
 	var/friendly = "nuzzles"
@@ -125,3 +124,6 @@
 	var/slowdown = 0
 	///Temporary inability to use special actions; hurts projectile damage. Regenerates each tick.
 	var/stagger = 0
+
+	/// This is the cooldown on suffering additional effects for when we exhaust all stamina
+	COOLDOWN_DECLARE(last_stamina_exhaustion)

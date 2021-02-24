@@ -33,7 +33,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/main_hall)
 "hJ" = (
-/obj/machinery/colony_floodlight{
+/obj/machinery/floodlight/colony{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/dirt,
@@ -66,7 +66,7 @@
 /area/lv624/ground/jungle7)
 "md" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/obj/machinery/colony_floodlight{
+/obj/machinery/floodlight/colony{
 	dir = 8
 	},
 /turf/closed/gm/dense,
@@ -177,7 +177,7 @@
 /area/lv624/ground/jungle9)
 "wt" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/obj/machinery/colony_floodlight{
+/obj/machinery/floodlight/colony{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/dirtgrassborder,
@@ -323,7 +323,7 @@
 	},
 /area/lv624/ground/jungle9)
 "KW" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
 "Lp" = (
@@ -438,7 +438,7 @@
 /area/lv624/ground/jungle7)
 "Zj" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/obj/machinery/colony_floodlight{
+/obj/machinery/floodlight/colony{
 	dir = 4
 	},
 /turf/open/ground/grass,

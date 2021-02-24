@@ -196,7 +196,7 @@
 	if(!is_outside)
 		to_chat(user, "<span class='warning'>DEPTH WARNING: Target too deep for ordnance.</span>")
 		return
-	if(user.action_busy)
+	if(user.do_actions)
 		return
 	playsound(src, 'sound/effects/nightvision.ogg', 35)
 	if(mode != MODE_RANGE_FINDER)

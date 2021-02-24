@@ -278,14 +278,10 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	name = "Healing Infusion"
 	action_icon_state = "healing_infusion"
 	mechanics_text = "Psychically infuses a friendly xeno with regenerative energies, greatly improving its natural healing. Doesn't work if the target can't naturally heal."
-	cooldown_timer = 30 SECONDS
+	cooldown_timer = 5 SECONDS
 	plasma_cost = 200
 	keybind_signal = COMSIG_XENOABILITY_HEALING_INFUSION
 	var/heal_range = HIVELORD_HEAL_RANGE
-	var/health_ticks_remaining = 0 //Buff ends whenever we run out of either health or sunder ticks, or time, whichever comes first
-	var/sunder_ticks_remaining = 0
-	///timer ID we can reference and delete old timers during clean up
-	var/timer_id
 
 /datum/action/xeno_action/activable/healing_infusion/can_use_ability(atom/target, silent = FALSE, override_flags)
 	. = ..()
@@ -306,9 +302,9 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	if(!check_distance(target, silent))
 		return FALSE
 
-	if(patient.infusion_active)
+	if(HAS_TRAIT(target, TRAIT_HEALING_INFUSION))
 		if(!silent)
-			to_chat(owner, "<span class='warning'>[patient] is already benefitting from our [src]!</span>")
+			to_chat(owner, "<span class='warning'>[patient] is already benefitting from [src]!</span>")
 		return FALSE
 
 
@@ -326,7 +322,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 
 
 /datum/action/xeno_action/activable/healing_infusion/use_ability(atom/target)
-	if(owner.action_busy)
+	if(owner.do_actions)
 		return FALSE
 
 	owner.face_atom(target) //Face the target so we don't look stupid
@@ -336,125 +332,17 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 
 	playsound(target, 'sound/effects/magic.ogg', 25) //Cool SFX
 	playsound(owner, 'sound/effects/magic.ogg', 25) //Cool SFX
-	owner.beam(target,"medbeam",'icons/effects/beam.dmi',10, 10,/obj/effect/ebeam,1)
+	owner.beam(target, "medbeam", time = 1 SECONDS, maxdistance = 10)
 	new /obj/effect/temp_visual/telekinesis(get_turf(owner))
 	new /obj/effect/temp_visual/telekinesis(get_turf(target))
 	to_chat(target, "<span class='xenodanger'>Our wounds begin to knit and heal rapidly as [owner]'s healing energies infuse us.</span>") //Let the target know.
 
 	var/mob/living/carbon/xenomorph/patient = target
 
-	patient.add_filter("hivelord_healing_infusion_outline", 3, outline_filter(1, COLOR_VERY_PALE_LIME_GREEN)) //Set our cool aura; also confirmation we have the buff
-
-	patient.infusion_active = TRUE //Indicate the infusion as being active
-
-	health_ticks_remaining = HIVELORD_HEALING_INFUSION_TICKS
-	sunder_ticks_remaining = HIVELORD_HEALING_INFUSION_TICKS
-
-	timer_id = addtimer(CALLBACK(src, .proc/healing_infusion_deactivate, patient), HIVELORD_HEALING_INFUSION_DURATION, TIMER_STOPPABLE)
+	patient.apply_status_effect(/datum/status_effect/healing_infusion, HIVELORD_HEALING_INFUSION_DURATION, HIVELORD_HEALING_INFUSION_TICKS) //per debuffs.dm
 
 	succeed_activate()
 	add_cooldown()
 
 	GLOB.round_statistics.hivelord_healing_infusions++ //Statistics
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "hivelord_healing_infusions")
-
-	RegisterSignal(patient, COMSIG_XENOMORPH_HEALTH_REGEN, .proc/healing_infusion_regeneration) //Register so we apply the effect whenever the target heals
-	RegisterSignal(patient, COMSIG_XENOMORPH_SUNDER_REGEN, .proc/healing_infusion_sunder_regeneration) //Register so we apply the effect whenever the target heals
-
-
-///Called when the target xeno regains HP via heal_wounds in life.dm
-/datum/action/xeno_action/activable/healing_infusion/proc/healing_infusion_regeneration(datum/source, mob/living/carbon/xenomorph/patient)
-	SIGNAL_HANDLER
-
-	if(!patient.infusion_active || !health_ticks_remaining)
-		#ifdef DEBUG_HIVELORD_ABILITIES
-		message_admins("<span class='danger'>HIVELORD_ABILITIES_DEBUG: healing_infusion_regeneration depleted. Infusion Status: [patient.infusion_active], Health Stacks: [health_ticks_remaining]</span>")
-		#endif
-		healing_infusion_deactivate(patient) //if we somehow lose the buff or run out of ticks; maybe there's a purge mechanic later, whatever
-		return
-
-	health_ticks_remaining-- //Decrement health ticks
-
-	#ifdef DEBUG_HIVELORD_ABILITIES
-	message_admins("<span class='danger'>HIVELORD_ABILITIES_DEBUG: healing_infusion_regeneration triggered successfully. Patient: [patient], Health Stacks: [health_ticks_remaining]</span>")
-	#endif
-
-	new /obj/effect/temp_visual/healing(get_turf(patient)) //Cool SFX
-
-	var/total_heal_amount = 25 //Base amount 25 HP on our target.
-	if(patient.recovery_aura)
-		total_heal_amount *= (1 + patient.recovery_aura * 0.05) //Recovery aura multiplier; 5% bonus per full level
-
-	#ifdef DEBUG_HIVELORD_ABILITIES
-	message_admins("<span class='danger'>HIVELORD_ABILITIES_DEBUG: Healing pool from Healing Infusion Pre-Brute, Pre-Burn: [total_heal_amount]</span>")
-	#endif
-
-	//Healing pool has been calculated; now to decrement it
-	var/brute_amount = min(patient.bruteloss, total_heal_amount)
-	if(brute_amount)
-		patient.adjustBruteLoss(-brute_amount, updating_health = TRUE)
-		total_heal_amount = max(0, total_heal_amount - brute_amount) //Decrement from our heal pool the amount of brute healed
-
-	#ifdef DEBUG_HIVELORD_ABILITIES
-	message_admins("<span class='danger'>HIVELORD_ABILITIES_DEBUG: Healing pool from Healing Infusion Post-Brute, Pre-Burn: [total_heal_amount]</span>")
-	#endif
-	if(!total_heal_amount) //no healing left, no need to continue
-		return
-
-	var/burn_amount = min(patient.fireloss, total_heal_amount)
-	if(burn_amount)
-		patient.adjustFireLoss(-burn_amount, updating_health = TRUE)
-
-	#ifdef DEBUG_HIVELORD_ABILITIES
-	message_admins("<span class='danger'>HIVELORD_ABILITIES_DEBUG: Healing pool from Healing Infusion Post-Brute, Post-Burn: [max(0, total_heal_amount - burn_amount)]</span>")
-	#endif
-
-///Called when the target xeno regains Sunder via heal_wounds in life.dm
-/datum/action/xeno_action/activable/healing_infusion/proc/healing_infusion_sunder_regeneration(datum/source, mob/living/carbon/xenomorph/patient)
-	SIGNAL_HANDLER
-
-	if(!patient.infusion_active || !sunder_ticks_remaining)
-		#ifdef DEBUG_HIVELORD_ABILITIES
-		message_admins("<span class='danger'>HIVELORD_ABILITIES_DEBUG: healing_infusion_sunder_regeneration depleted. Infusion Status: [patient.infusion_active], Sunder Stacks: [sunder_ticks_remaining]</span>")
-		#endif
-		healing_infusion_deactivate(patient) //if we somehow lose the buff or run out of ticks; maybe there's a purge mechanic later, whatever
-		return
-
-	sunder_ticks_remaining-- //Decrement sunder ticks
-
-	#ifdef DEBUG_HIVELORD_ABILITIES
-	message_admins("HIVELORD_ABILITIES_DEBUG: healing_infusion_sunder_regeneration triggered successfully. Patient: [patient], Sunder Stacks: [sunder_ticks_remaining]")
-	#endif
-
-	new /obj/effect/temp_visual/telekinesis(get_turf(patient)) //Visual confirmation
-
-	patient.adjust_sunder(-3 * (0.5 + patient.recovery_aura * 0.05)) //5% bonus per rank of our recovery aura
-	#ifdef DEBUG_HIVELORD_ABILITIES
-	message_admins("HIVELORD_ABILITIES_DEBUG: Sunder reduction from Healing Infusion: [-3 * (1 + patient.recovery_aura * 0.1)]")
-	#endif
-
-
-///Called when the duration of healing infusion lapses
-/datum/action/xeno_action/activable/healing_infusion/proc/healing_infusion_deactivate(mob/living/carbon/xenomorph/patient)
-
-	UnregisterSignal(patient, list(COMSIG_XENOMORPH_HEALTH_REGEN, COMSIG_XENOMORPH_SUNDER_REGEN)) //unregister the signals; party's over
-
-	patient.remove_filter("hivelord_healing_infusion_outline") //Remove the aura
-
-	health_ticks_remaining = 0 //Null vars
-	sunder_ticks_remaining = 0
-	deltimer(timer_id) //Get rid of the timer so we don't have subsequent timer mismatches
-	timer_id = null
-
-	patient.infusion_active = FALSE
-
-	new /obj/effect/temp_visual/telekinesis(get_turf(patient)) //Wearing off SFX
-	new /obj/effect/temp_visual/healing(get_turf(patient)) //Wearing off SFX
-
-	to_chat(patient, "<span class='xenodanger'>We are no longer benefitting from [src].</span>") //Let the target know
-	patient.playsound_local(patient, 'sound/voice/hiss5.ogg', 25)
-
-	#ifdef DEBUG_HIVELORD_ABILITIES
-	message_admins("HIVELORD_ABILITIES_DEBUG: healing_infusion_deactivate: Infusion Status: [patient.infusion_active]")
-	#endif
-

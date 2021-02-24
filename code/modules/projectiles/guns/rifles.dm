@@ -452,23 +452,6 @@
 	scatter = 5
 	wield_delay = 0.7 SECONDS
 
-
-
-/obj/item/weapon/gun/rifle/ak47/carbine
-	name = "\improper AK-47U battle carbine"
-	desc = "A crude, cheaply produced battle carbine copy capable of automatic fire, a shortened version of the Kalashnikov rifle. Commonly found in the hands of criminals or mercenaries."
-	icon_state = "mar30"
-	item_state = "mar30"
-	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
-	starting_attachment_types = null
-
-	fire_delay = 0.25 SECONDS
-	burst_amount = 3
-	accuracy_mult = 1
-	accuracy_mult_unwielded = 0.5
-
-
-
 //-------------------------------------------------------
 //M16 RIFLE
 
@@ -1062,3 +1045,46 @@
 	recoil_unwielded = 4
 	aim_slowdown = 1
 	wield_delay = 1.3 SECONDS
+
+//-------------------------------------------------------
+//TX-11 Rifle, based on the gamer-11
+
+/obj/item/weapon/gun/rifle/tx11
+	name = "\improper TX-11 combat rifle"
+	desc = "The TX-11 is the former standard issue rifle of the TGMC. Most of them have been mothballed into storage long ago, but some still pop up in marine or mercenary hands. It is known for its large magazine size and great burst fire, but rather awkward to use, especially during combat. It uses 4.92×34mm caseless HV ammunition."
+	icon_state = "tx11"
+	item_state = "tx11"
+	caliber = "4.92x34mm caseless" //codex
+	max_shells = 70 //codex
+	wield_delay = 0.65 SECONDS
+	fire_sound = "sound/weapons/guns/fire/m412.ogg"
+	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
+	current_mag = /obj/item/ammo_magazine/rifle/tx11
+	attachable_allowed = list(
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/scope/mini/tx11,
+		/obj/item/attachable/stock/irremoveable/tx11,
+		/obj/item/attachable/magnetic_harness,
+	)
+
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC)
+	starting_attachment_types = list(/obj/item/attachable/stock/irremoveable/tx11, /obj/item/attachable/scope/mini/tx11)
+	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 17,"rail_x" = 8, "rail_y" = 20, "under_x" = 16, "under_y" = 13, "stock_x" = 19, "stock_y" = 23)
+	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_fire_delay = 0.125 SECONDS
+
+	fire_delay = 0.225 SECONDS
+	burst_amount = 3
+	burst_delay = 0.05 SECONDS
+	accuracy_mult_unwielded = 0.5
+	accuracy_mult = 1.2
+	scatter = -10
+	scatter_unwielded = 30
+	aim_slowdown = 0.45

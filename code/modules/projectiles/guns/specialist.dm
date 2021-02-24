@@ -39,6 +39,7 @@
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	starting_attachment_types = list(/obj/item/attachable/scope/antimaterial, /obj/item/attachable/sniperbarrel)
+	gun_iff_signal = list(ACCESS_IFF_MARINE)
 
 	fire_delay = 2.5 SECONDS
 	burst_amount = 1
@@ -90,11 +91,6 @@
 	apply_overlay(X_LASER_LAYER)
 	return TRUE
 
-/mob/living/carbon/monkey/apply_laser()
-	overlays_standing[M_LASER_LAYER] = image("icon" = 'icons/obj/items/projectiles.dmi',"icon_state" = "sniper_laser", "layer" =-M_LASER_LAYER)
-	apply_overlay(M_LASER_LAYER)
-	return TRUE
-
 /mob/living/carbon/proc/remove_laser()
 	return FALSE
 
@@ -104,10 +100,6 @@
 
 /mob/living/carbon/xenomorph/remove_laser()
 	remove_overlay(X_LASER_LAYER)
-	return TRUE
-
-/mob/living/carbon/monkey/remove_laser()
-	remove_overlay(M_LASER_LAYER)
 	return TRUE
 
 
@@ -428,7 +420,6 @@
 	var/obj/item/weapon/gun/smartgun/G = get_active_firearm(usr)
 	if(!istype(G))
 		return //Right kind of gun is not in hands, abort.
-	src = G
 	to_chat(usr, "[icon2html(src, usr)] You [restriction_toggled? "<B>disable</b>" : "<B>enable</b>"] the [src]'s fire restriction. You will [restriction_toggled ? "harm anyone in your way" : "target through IFF"].")
 	playsound(loc,'sound/machines/click.ogg', 25, 1)
 	var/A = ammo
@@ -531,7 +522,7 @@
 
 
 /obj/item/weapon/gun/launcher/m92/afterattack(atom/target, mob/user, flag)
-	if(user.action_busy)
+	if(user.do_actions)
 		return
 	if(!able_to_fire(user))
 		return
@@ -822,7 +813,7 @@
 	return ..()
 
 /obj/item/weapon/gun/launcher/rocket/Fire(atom/target, mob/living/user, params, reflex = 0, dual_wield)
-	if(!able_to_fire(user) || user.action_busy)
+	if(!able_to_fire(user) || user.do_actions)
 		return
 
 	if(gun_on_cooldown(user))

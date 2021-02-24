@@ -78,7 +78,6 @@
 				// Ghostship is magic: Ghosts can hear radio chatter from anywhere
 				if(speaker_coverage[ear] || (isobserver(M) && M.client?.prefs?.toggles_chat & CHAT_GHOSTRADIO))
 					. |= M		// Since we're already looping through mobs, why bother using |= ? This only slows things down.
-	return .
 
 
 // Same as above but for alien candidates.
@@ -93,7 +92,7 @@
 
 		if(O.client.prefs.be_special & BE_ALIEN_UNREVIVABLE && !(O.client.prefs.be_special & BE_ALIEN) && ishuman(O.mind.current))
 			var/mob/living/carbon/human/H = O.mind.current
-			if(check_tod(H))
+			if(!HAS_TRAIT(H, TRAIT_UNDEFIBBABLE ))
 				continue
 
 		//AFK players cannot be drafted

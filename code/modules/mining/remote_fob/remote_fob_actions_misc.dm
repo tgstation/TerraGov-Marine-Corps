@@ -26,7 +26,7 @@
 	if(build_area.density)
 		to_chat(owner, "<span class='warning'>No space to build anything here.")
 		return FALSE
-	if(fobdrone.action_busy)
+	if(fobdrone.do_actions)
 		to_chat(owner, "<span class='warning'>You are already building something.")
 		return FALSE
 

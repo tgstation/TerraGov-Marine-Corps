@@ -276,30 +276,6 @@
 /mob/proc/can_be_facehugged(obj/item/clothing/mask/facehugger/F, check_death = TRUE, check_mask = TRUE, provoked = FALSE)
 	return FALSE
 
-/mob/living/carbon/monkey/can_be_facehugged(obj/item/clothing/mask/facehugger/F, check_death = TRUE, check_mask = TRUE, provoked = FALSE)
-	if(!istype(F))
-		return FALSE
-
-	if((status_flags & (XENO_HOST|GODMODE)) || F.stat == DEAD)
-		return FALSE
-
-	if(check_death && stat == DEAD)
-		return FALSE
-
-	if(check_mask)
-		if(wear_mask)
-			var/obj/item/W = wear_mask
-			if(W.flags_item & NODROP)
-				return FALSE
-			if(istype(W, /obj/item/clothing/mask/facehugger))
-				var/obj/item/clothing/mask/facehugger/hugger = W
-				if(hugger.stat != DEAD)
-					return FALSE
-	else if (wear_mask && wear_mask != F)
-		return FALSE
-
-	return TRUE
-
 /mob/living/carbon/human/can_be_facehugged(obj/item/clothing/mask/facehugger/F, check_death = TRUE, check_mask = TRUE, provoked = FALSE)
 	if((status_flags & (XENO_HOST|GODMODE)) || F.stat == DEAD)
 		return FALSE
@@ -429,8 +405,7 @@
 		var/hugsound = user.gender == FEMALE ? get_sfx("female_hugged") : get_sfx("male_hugged")
 		playsound(loc, hugsound, 25, 0)
 	if(!sterile && !issynth(user) && !isIPC(user))
-		if(user.disable_lights(sparks = TRUE, silent = TRUE)) //Knock out the lights so the victim can't be cam tracked/spotted as easily
-			user.visible_message("<span class='danger'>[user]'s lights flicker and short out in a struggle!</span>", "<span class='danger'>Your equipment's lights flicker and short out in a struggle!</span>")
+		user.disable_lights(sparks = TRUE, silent = TRUE)
 		var/stamina_dmg = user.maxHealth * 2 + user.max_stamina_buffer
 		user.apply_damage(stamina_dmg, STAMINA) // complete winds the target
 		user.Unconscious(6 SECONDS) //THIS MIGHT NEED TWEAKS // still might! // tweaked it

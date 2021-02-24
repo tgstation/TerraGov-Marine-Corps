@@ -232,10 +232,11 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/pistol/tiny/ap
 	name = "light pistol bullet"
 	hud_state = "pistol_lightap"
-	damage = 15
+	damage = 22.5
 	penetration = 15 //So it can actually hurt something.
 	accurate_range = 5
 	sundering = 0.5
+	damage_falloff = 1.5
 
 
 /datum/ammo/bullet/pistol/tranq
@@ -302,10 +303,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 15
 
 
-/datum/ammo/bullet/pistol/mankey/on_hit_mob(mob/M,obj/projectile/P)
-	if(P && P.loc && !M.stat && !istype(M,/mob/living/carbon/monkey))
+/datum/ammo/bullet/pistol/mankey/on_hit_mob(mob/M, obj/projectile/P)
+	if(!M.stat && !ismonkey(M))
 		P.visible_message("<span class='danger'>The [src] chimpers furiously!</span>")
-		new /mob/living/carbon/monkey(P.loc)
+		new /mob/living/carbon/human/species/monkey(P.loc)
 
 /*
 //================================================
@@ -453,6 +454,13 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 20
 	penetration = 30
 	sundering = 3
+
+/datum/ammo/bullet/rifle/hv
+	name = "high-velocity rifle bullet"
+	hud_state = "hivelo"
+	damage = 20
+	penetration = 10
+	sundering = 1
 
 /datum/ammo/bullet/rifle/incendiary
 	name = "incendiary rifle bullet"
@@ -1351,10 +1359,22 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_low = 3
 	accuracy_var_high = 3
 	bullet_color = COLOR_LIME
+	///List of reagents transferred upon spit impact if any
+	var/list/datum/reagent/spit_reagents
+	///Amount of reagents transferred upon spit impact if any
+	var/reagent_transfer_amount
+	///Amount of stagger stacks imposed on impact if any
+	var/stagger_stacks
+	///Amount of slowdown stacks imposed on impact if any
+	var/slowdown_stacks
+	///These define the reagent transfer strength of the smoke caused by the spit, if any, and its aoe
+	var/datum/effect_system/smoke_spread/xeno/smoke_system
+	var/smoke_strength
+	var/smoke_range
 
 /datum/ammo/xeno/toxin
 	name = "neurotoxic spit"
-	flags_ammo_behavior = AMMO_XENO
+	flags_ammo_behavior = AMMO_XENO|AMMO_EXPLOSIVE|AMMO_SKIPS_ALIENS
 	spit_cost = 50
 	added_spit_delay = 5
 	damage_type = STAMINA
@@ -1362,59 +1382,125 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 10
 	accuracy_var_low = 3
 	accuracy_var_high = 3
-	damage = 45
+	damage = 30
+	stagger_stacks = 1
+	slowdown_stacks = 1
+	smoke_strength = 0.5
+	smoke_range = 0
+	reagent_transfer_amount = 6.5
+
+///Set up the list of reagents the spit transfers upon impact
+/datum/ammo/xeno/toxin/proc/set_reagents()
+	spit_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = reagent_transfer_amount)
 
 /datum/ammo/xeno/toxin/on_hit_mob(mob/living/carbon/C, obj/projectile/P)
+	drop_neuro_smoke(get_turf(C))
+
 	if(!istype(C) || C.stat == DEAD || C.issamexenohive(P.firer) )
 		return
 
 	if(isnestedhost(C))
 		return
 
-	staggerstun(C, P, stagger = 1, slowdown = 1) //Staggers and slows down briefly
+	C.adjust_stagger(stagger_stacks) //stagger briefly; useful for support
+	C.add_slowdown(slowdown_stacks) //slow em down
+
+	set_reagents()
+	var/armor_block = (1 - C.run_armor_check(BODY_ZONE_CHEST, armor_type) * 0.01) //Check the target's armor mod; default to chest
+	for(var/reagent_id in spit_reagents) //modify by armor
+		spit_reagents[reagent_id] *= armor_block
+
+	C.reagents.add_reagent_list(spit_reagents) //transfer reagents
 
 	return ..()
 
+/datum/ammo/xeno/toxin/on_hit_obj(obj/O,obj/projectile/P)
+	var/turf/T = get_turf(O)
+	if(!T)
+		T = get_turf(P)
+
+	if(O.density && !(O.flags_atom & ON_BORDER))
+		T = get_turf(get_step(T, turn(P.dir, 180))) //If the object is dense and not a border object like barricades, we instead drop in the location just prior to the target
+
+	drop_neuro_smoke(T)
+
+/datum/ammo/xeno/toxin/on_hit_turf(turf/T,obj/projectile/P)
+	if(!T)
+		T = get_turf(P)
+
+	if(isclosedturf(T))
+		T = get_turf(get_step(T, turn(P.dir, 180))) //If the turf is closed, we instead drop in the location just prior to the turf
+
+	drop_neuro_smoke(T)
+
+/datum/ammo/xeno/toxin/do_at_max_range(obj/projectile/P)
+	drop_neuro_smoke(get_turf(P))
+
+/datum/ammo/xeno/toxin/set_smoke()
+	smoke_system = new /datum/effect_system/smoke_spread/xeno/neuro/light()
+
+/datum/ammo/xeno/toxin/proc/drop_neuro_smoke(turf/T)
+	if(T.density)
+		return
+
+	set_smoke()
+	smoke_system.strength = smoke_strength
+	smoke_system.set_up(smoke_range, T)
+	smoke_system.start()
+
 /datum/ammo/xeno/toxin/upgrade1
-	damage = 50
+	smoke_strength = 0.55
+	reagent_transfer_amount = 7
 
 /datum/ammo/xeno/toxin/upgrade2
-	damage = 55
+	smoke_strength = 0.6
+	reagent_transfer_amount = 7.5
 
 /datum/ammo/xeno/toxin/upgrade3
-	damage = 60
+	smoke_strength = 0.65
+	reagent_transfer_amount = 8
 
 
 /datum/ammo/xeno/toxin/medium //Queen
 	name = "neurotoxic spatter"
 	added_spit_delay = 10
 	spit_cost = 75
-	damage = 55
+	damage = 35
+	smoke_strength = 0.6
+	reagent_transfer_amount = 7.5
 
 /datum/ammo/xeno/toxin/medium/upgrade1
-	damage = 60
+	smoke_strength = 0.65
+	reagent_transfer_amount = 8
 
 /datum/ammo/xeno/toxin/medium/upgrade2
-	damage = 65
+	smoke_strength = 0.7
+	reagent_transfer_amount = 8.5
 
 /datum/ammo/xeno/toxin/medium/upgrade3
-	damage = 70
+	smoke_strength = 0.75
+	reagent_transfer_amount = 9
 
 
 /datum/ammo/xeno/toxin/heavy //Praetorian
 	name = "neurotoxic splash"
 	added_spit_delay = 15
 	spit_cost = 100
-	damage = 60
+	damage = 40
+	smoke_strength = 0.65
+	reagent_transfer_amount = 8.5
 
 /datum/ammo/xeno/toxin/heavy/upgrade1
-	damage = 65
+	smoke_strength = 0.7
+	reagent_transfer_amount = 9
 
 /datum/ammo/xeno/toxin/heavy/upgrade2
-	damage = 70
+	smoke_strength = 0.75
+	reagent_transfer_amount = 9.5
 
 /datum/ammo/xeno/toxin/heavy/upgrade3
-	damage = 75
+	smoke_strength = 0.8
+	reagent_transfer_amount = 10
 
 
 /datum/ammo/xeno/sticky
@@ -1430,6 +1516,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 20 //minor; this is mostly just to provide confirmation of a hit
 	max_range = 40
 	bullet_color = COLOR_PURPLE
+	stagger_stacks = 2
+	slowdown_stacks = 3
 
 
 /datum/ammo/xeno/sticky/on_hit_mob(mob/M,obj/projectile/P)
@@ -1438,8 +1526,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		var/mob/living/carbon/C = M
 		if(C.issamexenohive(P.firer))
 			return
-		C.adjust_stagger(2) //stagger briefly; useful for support
-		C.add_slowdown(3) //slow em down
+		C.adjust_stagger(stagger_stacks) //stagger briefly; useful for support
+		C.add_slowdown(slowdown_stacks) //slow em down
 
 
 /datum/ammo/xeno/sticky/on_hit_obj(obj/O,obj/projectile/P)
@@ -1540,18 +1628,41 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	icon_state = "boiler_gas2"
 	ping = "ping_x"
 	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_EXPLOSIVE
-	var/datum/effect_system/smoke_spread/xeno/smoke_system
 	var/danger_message = "<span class='danger'>A glob of acid lands with a splat and explodes into noxious fumes!</span>"
 	armor_type = "bio"
 	accuracy_var_high = 10
 	max_range = 30
+	damage = 50
+	damage_type = STAMINA
+	penetration = 40
 	bullet_color = BOILER_LUMINOSITY_AMMO_NEUROTOXIN_COLOR
+	reagent_transfer_amount = 30
+
+///Set up the list of reagents the spit transfers upon impact
+/datum/ammo/xeno/boiler_gas/proc/set_reagents()
+	spit_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = reagent_transfer_amount)
+
 
 /datum/ammo/xeno/boiler_gas/on_hit_mob(mob/living/victim, obj/projectile/proj)
 	drop_nade(get_turf(proj), proj.firer)
-	victim.Paralyze(2.1 SECONDS)
+
+	if(!istype(victim) || victim.stat == DEAD || victim.issamexenohive(proj.firer))
+		return
+
+	victim.Paralyze(0.5 SECONDS)
 	victim.blur_eyes(11)
 	victim.adjustDrowsyness(12)
+
+	if(!iscarbon(victim))
+		return
+
+	var/mob/living/carbon/carbon_victim = victim
+	set_reagents()
+	var/armor_block = (1 - carbon_victim.run_armor_check(BODY_ZONE_CHEST, armor_type) * 0.01) //Check the target's armor mod; default to chest
+	for(var/reagent_id in spit_reagents) //modify by armor
+		spit_reagents[reagent_id] *= armor_block
+
+	carbon_victim.reagents.add_reagent_list(spit_reagents) //transfer reagents
 
 /datum/ammo/xeno/boiler_gas/on_hit_obj(obj/O, obj/projectile/P)
 	drop_nade(get_turf(P), P.firer)

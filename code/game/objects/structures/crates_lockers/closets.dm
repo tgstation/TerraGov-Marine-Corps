@@ -305,7 +305,7 @@
 			addtimer(VARSET_CALLBACK(src, lastbang, FALSE), 3 SECONDS)
 
 
-/obj/structure/closet/attack_paw(mob/living/carbon/monkey/user)
+/obj/structure/closet/attack_paw(mob/living/carbon/human/user)
 	return attack_hand(user)
 
 
@@ -349,7 +349,7 @@
 	if(!welded && !locked)
 		open()
 		return FALSE
-	if(user.action_busy) //Already resisting or doing something like it.
+	if(user.do_actions) //Already resisting or doing something like it.
 		return FALSE
 	if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_RESIST))
 		return FALSE

@@ -37,10 +37,6 @@
 		AI.anchored = FALSE
 		CHECK_TICK
 
-	if(isdistress(SSticker.mode))
-		var/datum/game_mode/infestation/distress/distress_mode = SSticker.mode
-		distress_mode.round_stage = DISTRESS_DROPSHIP_CRASHED
-
 	GLOB.enter_allowed = FALSE //No joining after dropship crash
 
 	//clear areas around the shuttle with explosions
@@ -347,7 +343,7 @@
 		to_chat(user, "<span class='xenodanger'>We crack open the metal bird's shell.</span>")
 		if(D.hijack_state != HIJACK_STATE_NORMAL)
 			return FALSE
-		if(user.action_busy)
+		if(user.do_actions)
 			return FALSE
 		to_chat(user, "<span class='warning'>We begin overriding the shuttle lockdown. This will take a while...</span>")
 		if(!do_after(user, 30 SECONDS, FALSE, null, BUSY_ICON_DANGER, BUSY_ICON_DANGER))
@@ -630,6 +626,9 @@
 
 /obj/machinery/computer/shuttle/marine_dropship/proc/do_hijack(obj/docking_port/mobile/marine_dropship/crashing_dropship, obj/docking_port/stationary/marine_dropship/crash_target/crash_target, mob/living/carbon/xenomorph/user)
 	crashing_dropship.set_hijack_state(HIJACK_STATE_CRASHING)
+	if(isdistress(SSticker.mode))
+		var/datum/game_mode/infestation/distress/distress_mode = SSticker.mode
+		distress_mode.round_stage = DISTRESS_DROPSHIP_CRASHING
 	crashing_dropship.callTime = 120 * (GLOB.current_orbit/3) SECONDS
 	crashing_dropship.crashing = TRUE
 	crashing_dropship.unlock_all()
@@ -639,7 +638,6 @@
 	user.hive.on_shuttle_hijack(crashing_dropship)
 	playsound(src, 'sound/misc/queen_alarm.ogg')
 	SSevacuation.flags_scuttle &= ~FLAGS_SDEVAC_TIMELOCK
-	SSmonitor.hijacked = TRUE
 	switch(SSshuttle.moveShuttleToDock(shuttleId, crash_target, TRUE))
 		if(0)
 			visible_message("Shuttle departing. Please stand away from the doors.")

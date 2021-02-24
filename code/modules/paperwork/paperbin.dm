@@ -17,7 +17,7 @@
 	return
 
 
-/obj/structure/paper_bin/attack_paw(mob/living/carbon/monkey/user)
+/obj/structure/paper_bin/attack_paw(mob/living/carbon/human/user)
 	return attack_hand(user)
 
 

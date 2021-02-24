@@ -199,7 +199,6 @@
 	initial_language_holder = /datum/language_holder/xeno
 	gib_chance = 5
 	light_system = MOVABLE_LIGHT
-	light_on = FALSE
 
 	var/hivenumber = XENO_HIVE_NORMAL
 
@@ -220,7 +219,6 @@
 	var/time_of_birth
 
 	var/list/stomach_contents
-	var/devour_timer = 0
 
 	var/evolution_stored = 0 //How much evolution they have stored
 
@@ -290,10 +288,6 @@
 	var/fortify = 0
 	var/crest_defense = 0
 
-	// Hivelord vars
-	///Whether or not the Hivelord's healing infusion is active on this target.
-	var/infusion_active = 0
-
 	//Leader vars
 	var/leader_aura_strength = 0 //Pheromone strength inherited from Queen
 	var/leader_current_aura = "" //Pheromone type inherited from Queen
@@ -311,8 +305,8 @@
 	var/notice_delay = 20 //2 second between notices
 
 	var/fire_luminosity = 0 //Luminosity of the current fire while burning
-	
+
 	///The xenos/silo currently tracked by the xeno_tracker arrow
-	var/tracked 
+	var/tracked
 
 	COOLDOWN_DECLARE(xeno_health_alert_cooldown)
