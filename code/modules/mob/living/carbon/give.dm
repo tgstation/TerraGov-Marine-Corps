@@ -22,7 +22,7 @@
 	if(!istype(I) || (I.flags_item & (DELONDROP|NODROP)))
 		return
 	if(r_hand == null || l_hand == null)
-		switch(tgui_alert(src,"[usr] wants to give you \a [I]?",list("Yes","No")))
+		switch(tgui_alert(src, "[usr] wants to give you \a [I]?", null, list("Yes","No")))
 			if("Yes")
 				if(!I || !usr || !istype(I))
 					return

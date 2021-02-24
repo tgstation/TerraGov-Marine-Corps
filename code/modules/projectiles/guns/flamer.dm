@@ -638,12 +638,16 @@
 
 // override this proc to give different walking-over-fire effects
 /mob/living/proc/flamer_fire_crossed(burnlevel, firelevel, fire_mod = 1)
-	adjust_fire_stacks(burnlevel) //Make it possible to light them on fire later.
-	IgniteMob()
+	if(!CHECK_BITFIELD(flags_pass, PASSFIRE)) //Pass fire allow to cross fire without being ignited
+		adjust_fire_stacks(burnlevel) //Make it possible to light them on fire later.
+		IgniteMob()
 	take_overall_damage_armored(round(burnlevel*0.5)* fire_mod, BURN, "fire", updating_health = TRUE)
 	to_chat(src, "<span class='danger'>You are burned!</span>")
 
-
+/obj/flamer_fire/effect_smoke(obj/effect/particle_effect/smoke/S)
+	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_EXTINGUISH)) //Fire suppressing smoke
+		firelevel -= 20 //Water level extinguish
+		updateicon()
 
 /mob/living/carbon/human/flamer_fire_crossed(burnlevel, firelevel, fire_mod = 1)
 	if(hard_armor.getRating("fire") >= 100)

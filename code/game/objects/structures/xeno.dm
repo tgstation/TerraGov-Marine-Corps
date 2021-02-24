@@ -94,6 +94,9 @@
 	if(!ishuman(AM))
 		return
 
+	if(CHECK_MULTIPLE_BITFIELDS(AM.flags_pass, HOVERING))
+		return
+
 	var/mob/living/carbon/human/H = AM
 
 	if(H.lying_angle)
@@ -259,7 +262,7 @@
 	new /obj/structure/mineral_door/resin/thick(oldloc)
 	return TRUE
 
-/obj/structure/mineral_door/resin/attack_paw(mob/living/carbon/monkey/user)
+/obj/structure/mineral_door/resin/attack_paw(mob/living/carbon/human/user)
 	if(user.a_intent == INTENT_HARM)
 		user.visible_message("<span class='xenowarning'>\The [user] claws at \the [src].</span>", \
 		"<span class='xenowarning'>You claw at \the [src].</span>")
@@ -647,7 +650,7 @@ TUNNEL
 
 /obj/structure/tunnel/Destroy()
 	var/drop_loc = get_turf(src)
-	for(var/atom/movable/thing as() in contents) //Empty the tunnel of contents
+	for(var/atom/movable/thing AS in contents) //Empty the tunnel of contents
 		thing.forceMove(drop_loc)
 
 	if(!QDELETED(creator))
@@ -713,14 +716,11 @@ TUNNEL
 		to_chat(X, "<span class='warning'>There are no other tunnels in the network!</span>")
 		return FALSE
 
-	for(var/tummy_resident in X.stomach_contents)
-		if(ishuman(tummy_resident))
-			var/mob/living/carbon/human/H = tummy_resident
-			if(check_tod(H))
-				to_chat(X, "<span class='warning'>We cannot enter the tunnel while the host we devoured has signs of life. We should headbite it to finish it off.</span>")
-				return
-
 	pick_a_tunnel(X)
+
+/obj/structure/tunnel/attack_larva(mob/living/carbon/xenomorph/larva/L) //So larvas can actually use tunnels
+	attack_alien(L)
+
 
 ///Here we pick a tunnel to go to, then travel to that tunnel and peep out, confirming whether or not we want to emerge or go to another tunnel.
 /obj/structure/tunnel/proc/pick_a_tunnel(mob/living/carbon/xenomorph/M)
@@ -886,6 +886,8 @@ TUNNEL
 
 /obj/effect/alien/resin/acidwell/Crossed(atom/A)
 	. = ..()
+	if(CHECK_MULTIPLE_BITFIELDS(A.flags_pass, HOVERING))
+		return
 	if(iscarbon(A))
 		HasProximity(A)
 
@@ -995,7 +997,7 @@ TUNNEL
 /obj/item/resin_jelly/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(X.xeno_caste.caste_flags & CASTE_CAN_HOLD_JELLY)
 		return attack_hand(X)
-	if(X.action_busy)
+	if(X.do_actions)
 		return
 	X.visible_message("<span class='notice'>[X] starts to cover themselves in a foul substance...</span>", "<span class='xenonotice'>We begin to cover ourselves in a foul substance...</span>")
 	if(!do_after(X, 2 SECONDS, TRUE, X, BUSY_ICON_MEDICAL))
@@ -1007,7 +1009,7 @@ TUNNEL
 /obj/item/resin_jelly/attack_self(mob/living/carbon/xenomorph/user)
 	if(!isxeno(user))
 		return
-	if(user.action_busy)
+	if(user.do_actions)
 		return
 	user.visible_message("<span class='notice'>[user] starts to cover themselves in a foul substance...</span>", "<span class='xenonotice'>We begin to cover ourselves in a foul substance...</span>")
 	if(!do_after(user, 2 SECONDS, TRUE, user, BUSY_ICON_MEDICAL))
@@ -1022,7 +1024,7 @@ TUNNEL
 	if(!isxeno(M))
 		to_chat(user, "<span class='xenonotice'>We cannot apply the [src] to this creature.</span>")
 		return FALSE
-	if(user.action_busy)
+	if(user.do_actions)
 		return FALSE
 	if(!do_after(user, 1 SECONDS, TRUE, M, BUSY_ICON_MEDICAL))
 		return FALSE

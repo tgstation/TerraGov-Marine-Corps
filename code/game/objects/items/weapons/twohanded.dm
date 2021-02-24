@@ -56,7 +56,7 @@
 /obj/item/proc/unwield(mob/user)
 	if(!CHECK_MULTIPLE_BITFIELDS(flags_item, TWOHANDED|WIELDED))
 		return FALSE
-	
+
 	toggle_wielded(user, FALSE)
 	SEND_SIGNAL(src, COMSIG_ITEM_UNWIELD, user)
 	name = initial(name)
@@ -118,7 +118,7 @@
 
 /obj/item/weapon/twohanded/attack_self(mob/user)
 	. = ..()
-	if(ismonkey(user))
+	if(ismonkey(user)) //TODO MAKE THIS A SPECIES FLAG
 		to_chat(user, "<span class='warning'>It's too heavy for you to wield fully!</span>")
 		return
 

@@ -19,7 +19,7 @@
 			log_combat(S, src, "attacked")
 
 
-/mob/living/carbon/xenomorph/attack_paw(mob/living/carbon/monkey/user)
+/mob/living/carbon/xenomorph/attack_paw(mob/living/carbon/human/user)
 	. = ..()
 
 	switch(user.a_intent)
@@ -72,7 +72,7 @@
 			if(!attack.is_usable(H))
 				return FALSE
 
-			if(!H.melee_damage || !prob(H.melee_accuracy))
+			if(!H.melee_damage)
 				H.do_attack_animation(src)
 				playsound(loc, attack.miss_sound, 25, TRUE)
 				visible_message("<span class='danger'>[H] tried to [pick(attack.attack_verb)] [src]!</span>", null, null, 5)

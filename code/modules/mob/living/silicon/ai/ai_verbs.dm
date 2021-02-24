@@ -38,7 +38,7 @@
 		return
 
 	var/list/ai_emotions = list("Very Happy", "Happy", "Neutral", "Unsure", "Confused", "Sad", "BSOD", "Blank", "Problems?", "Awesome", "Facepalm", "Thinking", "Friend Computer", "Dorfy", "Blue Glow", "Red Glow")
-	var/emote = tgui_input_list("Please, select a status!", "AI Status", ai_emotions)
+	var/emote = tgui_input_list(usr, "Please, select a status!", "AI Status", ai_emotions)
 	if(!emote)
 		return
 
@@ -78,7 +78,7 @@
 				to_chat(src, "<span class='warning'>No suitable records found. Aborting.</span>")
 				return
 
-			hologram = tgui_input_list(src, "Select a crew member:", personnel_list)
+			hologram = tgui_input_list(src, "Select a crew member:", null,personnel_list)
 			var/icon/character_icon = personnel_list[hologram]
 			if(!character_icon)
 				return
@@ -102,7 +102,7 @@
 			"guard" = 'icons/mob/animal.dmi'
 			)
 
-			hologram = tgui_input_list(src, "Please select a hologram:", icon_list)
+			hologram = tgui_input_list(src, "Please select a hologram:", null, icon_list)
 			if(!hologram)
 				return
 
@@ -116,7 +116,7 @@
 				"horror" = 'icons/mob/ai.dmi'
 				)
 
-			hologram = tgui_input_list(src, "Please select a hologram:", icon_list)
+			hologram = tgui_input_list(src, "Please select a hologram:", null, icon_list)
 			if(!hologram)
 				return
 

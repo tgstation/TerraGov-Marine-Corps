@@ -226,9 +226,7 @@
 	if(!istype(G))
 		return
 
-	src = G
-
-	if(usr.action_busy)
+	if(usr.do_actions)
 		return
 
 	if(zoom)
@@ -340,9 +338,10 @@
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/lasersight,
+		/obj/item/attachable/lace,
 	)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 13, "rail_y" = 23, "under_x" = 22, "under_y" = 14, "stock_x" = 22, "stock_y" = 19)
-	fire_delay = 0.3
+	fire_delay = 0.15 SECONDS
 	accuracy_mult_unwielded = 0.85
 	accuracy_mult = 1
 	scatter_unwielded = 15
@@ -374,6 +373,7 @@
 		/obj/item/attachable/scope,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/lace,
 	)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 22,"rail_x" = 17, "rail_y" = 22, "under_x" = 22, "under_y" = 17, "stock_x" = 22, "stock_y" = 19)
 
@@ -395,6 +395,7 @@
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/lace,
 	)
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 21,"rail_x" = 14, "rail_y" = 23, "under_x" = 24, "under_y" = 19, "stock_x" = 24, "stock_y" = 19)
 
@@ -424,6 +425,7 @@
 		/obj/item/attachable/scope,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/lace,
 	)
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 19,"rail_x" = 12, "rail_y" = 21, "under_x" = 20, "under_y" = 15, "stock_x" = 20, "stock_y" = 15)
 
@@ -456,10 +458,12 @@
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/compensator,
+		/obj/item/attachable/lace,
 	)
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 18,"rail_x" = 16, "rail_y" = 21, "under_x" = 22, "under_y" = 15, "stock_x" = 22, "stock_y" = 15)
 
 	fire_delay = 0.2 SECONDS
+	aim_fire_delay = 0.3 SECONDS
 	recoil = 0
 	accuracy_mult = 1.1
 	scatter = 10
@@ -497,6 +501,7 @@
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/quickfire,
 		/obj/item/attachable/compensator,
+		/obj/item/attachable/lace,
 	)
 	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 22,"rail_x" = 11, "rail_y" = 25, "under_x" = 20, "under_y" = 18, "stock_x" = 20, "stock_y" = 18)
 

@@ -120,7 +120,6 @@ REAGENT SCANNER
 	dat += "\tUntreated: {B}=Burns,{T}=Trauma,{F}=Fracture,{I}=Infection\n"
 
 	var/infection_present = 0
-	var/unrevivable = 0
 	var/overdosed = 0
 
 	// Show specific limb damage
@@ -288,7 +287,6 @@ REAGENT SCANNER
 		var/mob/living/carbon/human/H = M
 		// Show blood level
 		var/blood_volume = BLOOD_VOLUME_NORMAL
-		var/is_dead = FALSE
 		if(!(H.species.species_flags & NO_BLOOD))
 			blood_volume = round(H.blood_volume)
 
@@ -304,12 +302,8 @@ REAGENT SCANNER
 		// Show pulse
 		var/pulse = H.handle_pulse()
 		dat += "\tPulse: <font color='[pulse == PULSE_THREADY || pulse == PULSE_NONE ? "red" : ""]'>[H.get_pulse(GETPULSE_TOOL)] bpm.</font>\n"
-		if(H.stat == DEAD)
-			is_dead = TRUE
-			//check to see if the target is revivable
-			if(!H.is_revivable())
-				unrevivable = TRUE
-		if(!unrevivable)
+		
+		if(H.has_working_organs())
 			//Chems that conflict with others:
 			var/synaptizine_amount = reagents_in_body[/datum/reagent/medicine/synaptizine]
 			var/hyperzine_amount = reagents_in_body[/datum/reagent/medicine/hyperzine]
@@ -322,7 +316,7 @@ REAGENT SCANNER
 			//The actual medical advice summary:
 			var/advice = ""
 			//We start checks for ailments here:
-			if(is_dead)
+			if(H.stat == DEAD)
 				var/death_message = ""
 				//Check for whether there's an appropriate ghost
 				if(H.client)

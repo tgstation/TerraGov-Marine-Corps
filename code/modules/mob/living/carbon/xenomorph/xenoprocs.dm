@@ -67,7 +67,7 @@
 ///Relays health and location data about resin silos belonging to the same hive as the input user
 /proc/resin_silo_status_output(mob/living/carbon/xenomorph/user, datum/hive_status/hive)
 	. = "<BR><b>List of Resin Silos:</b><BR><table cellspacing=4>" //Resin silo data
-	for(var/obj/structure/resin/silo/resin_silo as() in GLOB.xeno_resin_silos)
+	for(var/obj/structure/resin/silo/resin_silo AS in GLOB.xeno_resin_silos)
 		if(resin_silo.associated_hive == hive)
 
 			var/hp_color = "green"
@@ -145,6 +145,7 @@
 	dat += "<b>Tier 2: ([length(hive.xenos_by_tier[XENO_TIER_TWO])]/[hive.tier2_xeno_limit]) Sisters</b>[tier2counts]<BR>"
 	dat += "<b>Tier 1: [length(hive.xenos_by_tier[XENO_TIER_ONE])] Sisters</b>[tier1counts]<BR>"
 	dat += "<b>Larvas: [length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/larva])] Sisters<BR>"
+	dat += "<b>Psychic points : [SSpoints.xeno_points_by_hive[hive.hivenumber]]<BR>"
 	dat += "<b>Queen: [queen_text]<BR>"
 	dat += "<b>Hivemind: [hivemind_text]<BR>"
 	if(hive.hivenumber == XENO_HIVE_NORMAL)
@@ -153,6 +154,8 @@
 	dat += "<table cellspacing=4>"
 	dat += xenoinfo
 	dat += "</table>"
+	var/larva_generated = SSsilo.current_larva_spawn_rate/8
+	dat += "<b>Larvas generated in one minute: [larva_generated]<BR>"
 	dat += resin_silo_status_output(user, hive)
 
 	var/datum/browser/popup = new(user, "roundstatus", "<div align='center'>Hive Status</div>", 650, 650)
@@ -179,12 +182,12 @@
 			to_chat(usr,"<span class='notice'> You will now track [X.name]</span>")
 			tracked = X
 			break
-	
+
 	if(href_list["track_silo_number"])
 		if(!check_state())
 			return
 		var/silo_number = href_list["track_silo_number"]
-		for(var/obj/structure/resin/silo/resin_silo as() in GLOB.xeno_resin_silos)
+		for(var/obj/structure/resin/silo/resin_silo AS in GLOB.xeno_resin_silos)
 			if(resin_silo.associated_hive == hive && num2text(resin_silo.number_silo) == silo_number)
 				tracked = resin_silo
 				to_chat(usr,"<span class='notice'> You will now track [resin_silo.name]</span>")
@@ -384,7 +387,7 @@
 //This deals with "throwing" xenos -- ravagers, hunters, and runners in particular. Everyone else defaults to normal
 //Pounce, charge both use throw_at, so we need extra code to do stuff rather than just push people aside.
 /mob/living/carbon/xenomorph/throw_impact(atom/hit_atom, speed)
-	set waitfor = 0
+	set waitfor = FALSE
 
 	// TODO: remove charge_type check
 	if(!xeno_caste.charge_type || stat || (!throwing && usedPounce)) //No charge type, unconscious or dead, or not throwing but used pounce.
@@ -658,11 +661,6 @@
 
 
 /atom/proc/can_sting()
-	return FALSE
-
-/mob/living/carbon/monkey/can_sting()
-	if(stat != DEAD)
-		return TRUE
 	return FALSE
 
 /mob/living/carbon/human/can_sting()

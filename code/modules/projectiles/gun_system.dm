@@ -19,7 +19,6 @@
 	flags_item = TWOHANDED
 	light_system = MOVABLE_LIGHT
 	light_range = 0
-	light_on = FALSE
 	light_color = COLOR_WHITE
 
 	var/atom/movable/vis_obj/effect/muzzle_flash/muzzle_flash
@@ -815,7 +814,7 @@ and you're good to go.
 	if((flags_gun_features & GUN_WIELDED_FIRING_ONLY) && !(flags_item & WIELDED)) //If we're not holding the weapon with both hands when we should.
 		to_chat(user, "<span class='warning'>You need a more secure grip to fire this weapon!")
 		return FALSE
-	if(user.action_busy)
+	if(user.do_actions)
 		to_chat(user, "<span class='warning'>You are doing something else currently.")
 		return FALSE
 	if((flags_gun_features & GUN_POLICE) && !police_allowed_check(user))

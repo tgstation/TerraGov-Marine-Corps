@@ -1,15 +1,10 @@
 /mob/living/carbon/Initialize()
 	. = ..()
-	RegisterSignal(src, COMSIG_CARBON_DEVOURED_BY_XENO, .proc/on_devour_by_xeno)
 	adjust_nutrition_speed(0)
-
 
 /mob/living/carbon/Destroy()
 	if(afk_status == MOB_RECENTLY_DISCONNECTED)
 		set_afk_status(MOB_DISCONNECTED)
-	if(isxeno(loc))
-		var/mob/living/carbon/xenomorph/devourer = loc
-		devourer.do_regurgitate(src)
 	QDEL_NULL(back)
 	QDEL_NULL(internal)
 	QDEL_NULL(handcuffed)
@@ -39,7 +34,7 @@
 		L.initiate_burst(src)
 
 
-/mob/living/carbon/attack_paw(mob/living/carbon/monkey/user)
+/mob/living/carbon/attack_paw(mob/living/carbon/human/user)
 	user.changeNext_move(CLICK_CD_MELEE) //Adds some lag to the 'attack'
 
 
@@ -124,7 +119,9 @@
 
 
 /mob/living/carbon/proc/do_vomit()
-	Stun(10 SECONDS)
+	adjust_stagger(3)
+	add_slowdown(3)
+
 	visible_message("<spawn class='warning'>[src] throws up!","<spawn class='warning'>You throw up!", null, 5)
 	playsound(loc, 'sound/effects/splat.ogg', 25, TRUE, 7)
 
@@ -306,7 +303,7 @@
 	if(IsSleeping())
 		to_chat(src, "<span class='warning'>You are already sleeping</span>")
 		return
-	if(tgui_alert(src,"You sure you want to sleep for a while?","Sleep", list("Yes","No")) == "Yes")
+	if(tgui_alert(src, "You sure you want to sleep for a while?", "Sleep", list("Yes","No")) == "Yes")
 		SetSleeping(40 SECONDS) //Short nap
 
 

@@ -46,7 +46,7 @@
 /obj/structure/girder/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(istype(I, GIRDER_REINF_METAL) || istype(I, GIRDER_REINF_PLASTEEL))
-		if(user.action_busy)
+		if(user.do_actions)
 			return TRUE //no afterattack
 		if(!anchored)
 			return FALSE
@@ -102,7 +102,7 @@
 
 
 /obj/structure/girder/welder_act(mob/living/user, obj/item/I)
-	if(user.action_busy)
+	if(user.do_actions)
 		return FALSE
 	var/obj/item/tool/weldingtool/welder = I
 	if(!welder.isOn())
@@ -127,7 +127,7 @@
 
 
 /obj/structure/girder/wrench_act(mob/living/user, obj/item/I)
-	if(user.action_busy)
+	if(user.do_actions)
 		return FALSE
 	switch(girder_state)
 		if(GIRDER_BROKEN)
@@ -162,7 +162,7 @@
 	return FALSE
 
 /obj/structure/girder/crowbar_act(mob/living/user, obj/item/I)
-	if(user.action_busy)
+	if(user.do_actions)
 		return FALSE
 	switch(girder_state)
 		if(GIRDER_NORMAL)
@@ -197,7 +197,7 @@
 
 
 /obj/structure/girder/screwdriver_act(mob/living/user, obj/item/I)
-	if(user.action_busy)
+	if(user.do_actions)
 		return FALSE
 	switch(girder_state)
 		if(GIRDER_NORMAL)
@@ -245,7 +245,7 @@
 
 
 /obj/structure/girder/wirecutter_act(mob/living/user, obj/item/I)
-	if(user.action_busy)
+	if(user.do_actions)
 		return FALSE
 	switch(girder_state)
 		if(GIRDER_BROKEN_PATCHED)
