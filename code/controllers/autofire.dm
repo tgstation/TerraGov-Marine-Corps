@@ -73,14 +73,14 @@ SUBSYSTEM_DEF(automatedfire)
 			if(shooter.process_shot())//If we are still shooting, we reschedule the shooter to the next_fire
 				shooter.schedule_shot()
 
+			SSautomatedfire.bucket_count--
+			
 			if (MC_TICK_CHECK)
 				return
 
 			// Break once we've processed the entire bucket
 			shooter = shooter.next
-			if (shooter == bucket_head)
-				break
-
+		
 		// Empty the bucket
 		bucket_list[practical_offset++] = null
 
@@ -115,28 +115,13 @@ SUBSYSTEM_DEF(automatedfire)
 /datum/component/automatedfire/proc/schedule_shot(new_next_fire = 0)
 	var/list/bucket_list = SSautomatedfire.bucket_list
 
-	// When necessary, de-list the shooter from its previous position
-	if (new_next_fire)
-		SSautomatedfire.bucket_count--
-		var/bucket_pos = BUCKET_POS(next_fire)
-		if (bucket_pos > 0)
-			var/datum/component/automatedfire/bucket_head = bucket_list[bucket_pos]
-			if (bucket_head == src)
-				bucket_list[bucket_pos] = next
-		if (prev != next)
-			prev.next = next
-			next.prev = prev
-		else
-			prev?.next = null
-			next?.prev = null
-		prev = next = null
-		next_fire = new_next_fire
-
 	// Ensure the next_fire time is properly bound to avoid missing a scheduled event
 	next_fire = max(CEILING(next_fire, world.tick_lag), world.time + world.tick_lag)
 
 	// Get bucket position and a local reference to the datum var, it's faster to access this way
 	var/bucket_pos = BUCKET_POS(next_fire)
+	
+	message_admins("rescheduling [shooter.name] to [bucket_pos]")
 
 	// Get the bucket head for that bucket, increment the bucket count
 	var/datum/component/automatedfire/bucket_head = bucket_list[bucket_pos]
@@ -148,12 +133,13 @@ SUBSYSTEM_DEF(automatedfire)
 		return
 
 	// Otherwise it's a simple insertion into the circularly doubly-linked list
-	if (!bucket_head.prev)
-		bucket_head.prev = bucket_head
-	next = bucket_head
-	prev = bucket_head.prev
-	next.prev = src
-	prev.next = src
+	if (bucket_head.next)
+		next = bucket_head.next
+		next.prev = src
+	bucket_head.next = src
+	prev = bucket_head
+	if(prev == src || next == src)
+		CRASH("Loop")
 
 
 /**
@@ -215,6 +201,9 @@ SUBSYSTEM_DEF(automatedfire)
 	target = locate(x+5, y, z)
 	AddComponent(/datum/component/automatedfire/automatic_shoot_at, firerate, ammo)
 	SEND_SIGNAL(src, COMSIG_AUTOMATIC_SHOOTER_START_SHOOTING_AT, target)
+	var/static/number = 1
+	name = "[name] [number]"
+	number++
 
 /datum/component/automatedfire/automatic_shoot_at
 	///The target we are shooting at
@@ -225,6 +214,8 @@ SUBSYSTEM_DEF(automatedfire)
 	var/shot_delay = 5
 	///If we are shooting
 	var/shooting = FALSE
+	///For debug
+	var/last_fire 
 
 /datum/component/automatedfire/automatic_shoot_at/Initialize(_shot_delay, _ammo)
 	. = ..()
@@ -241,6 +232,7 @@ SUBSYSTEM_DEF(automatedfire)
 	SIGNAL_HANDLER
 	target = _target
 	next_fire = world.time
+	last_fire = world.time
 	if(!shooting)
 		shooting = TRUE
 		schedule_shot()
@@ -261,4 +253,9 @@ SUBSYSTEM_DEF(automatedfire)
 	newshot.fire_at(target, shooter, null, ammo.max_range, ammo.shell_speed)
 	SEND_SIGNAL(shooter, COMSIG_AUTOMATIC_SHOOTER_SHOT_FIRED)
 	next_fire = world.time + shot_delay
+	var/time_between_shoot = world.time - last_fire
+	last_fire = world.time
+	if(time_between_shoot == 0)
+		CRASH("time between shoot = 0")
+	message_admins("<span class='debuginfo'>last fired [time_between_shoot] ticks ago</span>")
 	return AUTOFIRE_STILL_SHOOTING
