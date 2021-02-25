@@ -88,7 +88,7 @@
 	if(!cell)
 		to_chat(user, "<span class='warning'>\The [src] can't operate without a source of power!</span>")
 		return
-	var/powerused = setting*100
+	var/powerused = setting*200
 	if(powerused >= cell.charge)
 		to_chat(user, "<span class='warning'>\The [src]'s cell doesn't have enough power!</span>")
 		M.apply_damage((force/5), BRUTE)
@@ -102,7 +102,7 @@
 	playsound(loc, 'sound/weapons/energy_blast.ogg', 50, TRUE)
 	playsound(loc, 'sound/weapons/genhit2.ogg', 50, TRUE)
 	var/atom/throw_target = get_edge_target_turf(M, get_dir(src, get_step_away(M, src)))
-	M.throw_at(throw_target, 5 * setting, 0.5 + (setting / 2))
+	M.throw_at(throw_target, 4 * setting, 0.5 + (setting / 2))
 	cell.charge -= powerused
 	return ..()
 
