@@ -351,11 +351,11 @@
 		return
 
 	var/obj/item/held_item = wearer.get_held_item()
-	if(!held_item && !meds_beaker.reagents.total_volume || istype(held_item, /obj/item/reagent_containers/pill))
+	if(((!held_item || !istype(held_item, /obj/item/reagent_containers)) && !meds_beaker.reagents.total_volume) || istype(held_item, /obj/item/reagent_containers/pill))
 		to_chat(wearer, "<span class='warning'>You need to be holding a liquid container to fill up the system's reagent storage.</span>")
 		return
 
-	if(!held_item && meds_beaker.reagents.total_volume)
+	if((!held_item || !istype(held_item, /obj/item/reagent_containers)) && meds_beaker.reagents.total_volume)
 		var/pick = tgui_input_list(wearer, "Automatic reagent injection on system activate:", "Vali system", list("Yes", "No"))
 		if(pick == "Yes")
 			automatic_meds_use = TRUE
