@@ -28,7 +28,8 @@
 	///State for a fire animation if the gun has any
 	var/fire_animation = null
 	var/fire_sound 		= 'sound/weapons/guns/fire/gunshot.ogg'
-	var/fire_rattle		= null ///Does our gun have a unique empty mag sound? If so use instead of pitch shifting.
+	///Does our gun have a unique empty mag sound? If so use instead of pitch shifting.
+	var/fire_rattle		= null
 	var/dry_fire_sound	= 'sound/weapons/guns/fire/empty.ogg'
 	var/unload_sound 	= 'sound/weapons/flipblade.ogg'
 	var/empty_sound 	= 'sound/weapons/guns/misc/empty_alarm.ogg'
