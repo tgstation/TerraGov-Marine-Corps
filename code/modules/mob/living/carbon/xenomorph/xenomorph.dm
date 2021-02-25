@@ -9,8 +9,11 @@
 	. = ..()
 
 	set_datum()
+	SSminimaps.add_marker(src, z, hud_flags = MINIMAP_FLAG_XENO, iconstate = xeno_caste.minimap_icon)
 	time_of_birth = world.time
 	add_inherent_verbs()
+	var/datum/action/minimap/xeno/mini = new
+	mini.give_action(src)
 	add_abilities()
 
 	create_reagents(1000)

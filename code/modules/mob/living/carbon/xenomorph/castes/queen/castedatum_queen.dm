@@ -47,6 +47,8 @@
 	// *** Queen Abilities *** //
 	queen_leader_limit = 2 //Amount of leaders allowed
 
+	minimap_icon = "xenoqueen"
+
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/plant_weeds,

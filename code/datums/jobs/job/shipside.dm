@@ -27,6 +27,7 @@
 		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
 	)
+	minimap_icon = "captain"
 
 /datum/job/terragov/command/captain/announce(mob/living/announced_mob)
 	. = ..()
@@ -94,6 +95,7 @@ Godspeed, captain! And remember, you are not above the law."})
 		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
 	)
+	minimap_icon = "fieldcommander"
 
 /datum/job/terragov/command/fieldcommander/after_spawn(mob/living/L, mob/M, latejoin)
 	. = ..()
@@ -161,7 +163,7 @@ Make the TGMC proud!"})
 		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
 	)
-
+	minimap_icon = "staffofficer"
 
 /datum/job/terragov/command/staffofficer/radio_help_message(mob/M)
 	. = ..()
@@ -331,6 +333,7 @@ You could use STs help to repair and replace hardpoints."})
 		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
 	)
+	minimap_icon = "cse"
 
 /datum/job/terragov/engineering/chief/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()

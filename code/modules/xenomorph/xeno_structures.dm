@@ -55,7 +55,7 @@
 
 	for(var/i in RANGE_TURFS(2, src))
 		RegisterSignal(i, COMSIG_ATOM_ENTERED, .proc/resin_silo_proxy_alert)
-
+	SSminimaps.add_marker(src, z, hud_flags = MINIMAP_FLAG_XENO, iconstate = "silo")
 	return INITIALIZE_HINT_LATELOAD
 
 
@@ -73,7 +73,7 @@
 	GLOB.xeno_resin_silos -= src
 	if(associated_hive)
 		UnregisterSignal(associated_hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK))
-		
+
 		if(isdistress(SSticker.mode)) //Silo can only be destroy in distress mode, but this check can create bugs if new gamemodes are added.
 			var/datum/game_mode/infestation/distress/distress_mode
 			distress_mode = SSticker.mode
@@ -161,7 +161,7 @@
 	//Regenerate if we're at less than max integrity
 	if(obj_integrity < max_integrity)
 		obj_integrity = min(obj_integrity + 25, max_integrity) //Regen 5 HP per sec
-	
+
 	if(SSsilo.silos_do_mature)
 		maturity += 5
 

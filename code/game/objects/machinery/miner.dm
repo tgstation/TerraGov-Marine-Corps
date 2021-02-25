@@ -45,6 +45,7 @@
 
 /obj/machinery/miner/Initialize()
 	. = ..()
+	SSminimaps.add_marker(src, z, hud_flags = MINIMAP_FLAG_ALL, iconstate = "miner_[mineral_produced == /obj/structure/ore_box/platinum ? "platinum" : "phoron"]")
 	start_processing()
 
 /obj/machinery/miner/update_icon()

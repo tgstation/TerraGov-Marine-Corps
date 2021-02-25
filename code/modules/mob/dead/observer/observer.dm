@@ -97,6 +97,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	animate(src, pixel_y = 2, time = 10, loop = -1)
 
 	grant_all_languages()
+	var/datum/action/minimap/observer/mini = new
+	mini.give_action(src)
 	RegisterSignal(src, COMSIG_MOVABLE_Z_CHANGED, .proc/observer_z_changed)
 	LAZYADD(GLOB.observers_by_zlevel["[z]"], src)
 
@@ -395,7 +397,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 
 
-/mob/dead/observer/verb/teleport(area/A in GLOB.sorted_areas)
+/mob/dead/observer/verb/teleport(area/A AS in GLOB.sorted_areas)
 	set category = "Ghost"
 	set name = "Teleport"
 	set desc = "Teleport to an area."
@@ -403,7 +405,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	if(!A)
 		return
 
-	loc = pick(get_area_turfs(A))
+	forceMove(pick(get_area_turfs(A)))
 
 
 /mob/dead/observer/verb/follow_ghost()
