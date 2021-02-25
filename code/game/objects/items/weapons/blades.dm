@@ -90,8 +90,8 @@
 		to_chat(user, "<span class='rose'>This reagent is not compatible with the weapon's mechanism. Check the engraved symbols for further information.</span>")
 		return FALSE
 
-	if(container.reagents.total_volume < 10)
-		to_chat(user, "<span class='rose'>At least 10u of the substance is needed.</span>")
+	if(container.reagents.total_volume < 5)
+		to_chat(user, "<span class='rose'>At least 5u of the substance is needed.</span>")
 		return FALSE
 
 	if(beaker.reagents.total_volume >= 30)
@@ -102,7 +102,7 @@
 	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_BAR, null, PROGRESS_BRASS))
 		return FALSE
 
-	trans = container.reagents.trans_to(beaker, 40)
+	trans = container.reagents.trans_to(beaker, container.amount_per_transfer_from_this)
 	to_chat(user, "<span class='rose'>You load [trans]u into the internal system. It now holds [beaker.reagents.total_volume]u.</span>")
 	return TRUE
 
