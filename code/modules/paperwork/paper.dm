@@ -434,3 +434,19 @@ then, for every time you included a field, increment fields. */
 
 /obj/item/paper/crumpled/bloody/csheet
 	info = "<b>Character Sheet</b>\n\nKorbath the Barbarian\nLevel 6 Barbarian\nHitpoints: 47/93\nSTR: 18\nDEX: 14\nCON: 16\nINT: 8\nWIS: 11\nCHA: 15\n\n<B>Inventory:</b>\nGreatsword +3 \nChain M--\n\n\nThe rest of the page is covered in smears of blood."
+
+/obj/item/paper/chemsystem
+	name = "Vali manual"
+	info = {"<b>How to use the Vali system</b><BR>
+	The Vali system uses green blood to empower reagents inside of your body.
+	This green blood is collected by attacking with a connected weapon.<BR>
+	<BR>
+	<b>Configurations menu:</b><BR>
+	From here you can configure the system.<BR>
+	> Connect - Connects/disconnects the item you are holding to the system if applicable.<BR>
+	> Extract - Fills the reagent container you are holding with green blood from the system. Green blood can be used to duplicate bicaridine/kelotane/tramadol/dylovene.<BR>
+	> Switch boost - switches between the reagent boost amounts the system offers. Usually the higher the boost amount, the more green blood is required for operation.<BR>
+	<BR>
+	<b>On-Off button</b><BR>
+	As the name implies, you switch the system's reagent boosting ability on or off with it.<BR>
+	> The system can stay on for 20 seconds before you get necrotized flesh from keeping it on.<BR>"}

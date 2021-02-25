@@ -1439,6 +1439,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 	spawned_gear_list = list(
 		/obj/item/armor_module/attachable/chemsystem,
 		/obj/item/storage/large_holster/machete/full_harvester,
+		/obj/item/paper/chemsystem,
 	)
 
 #undef MARINE_CAN_BUY_UNIFORM
