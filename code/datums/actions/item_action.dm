@@ -113,19 +113,10 @@
 /datum/action/item_action/toggle_hydro/New()
 	. = ..()
 	holder_flamer = holder_item
-	button.overlays += image('icons/mob/actions.dmi', null, "TL_84_Flame", ABOVE_HUD_LAYER)
+	RegisterSignal(holder_flamer, COMSIG_ITEM_HYDRO_CANNON_TOGGLED, .proc/update_toggle_button_icon)
 
 /datum/action/item_action/toggle_hydro/action_activate()
-	holder_flamer.unique_action()
-	update_button_icon()
-
-
-/* /datum/action/item_action/toggle_hydro/update_button_icon()
-	if (holder_flamer.hydro_active)
-		action_icon_state = "TL_84_Water"
-	else
-		action_icon_state = "TL_84_Flame" */
-
+	holder_flamer.unique_action(owner)
 
 /datum/action/item_action/toggle_hydro/update_button_icon()
 	button.overlays.Cut()
@@ -133,3 +124,8 @@
 		button.overlays += image('icons/mob/actions.dmi', null, "TL_84_Water", ABOVE_HUD_LAYER)
 		return
 	button.overlays += image('icons/mob/actions.dmi', null, "TL_84_Flame", ABOVE_HUD_LAYER)
+
+///Signal handler for when the hydro cannon is activated
+/datum/action/item_action/toggle_hydro/proc/update_toggle_button_icon()
+	SIGNAL_HANDLER
+	update_button_icon()
