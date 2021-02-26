@@ -11,7 +11,9 @@
  *
  * Note that this has the same structure for storing and queueing shooter component as the timer subsystem does
  * for handling timers: the bucket_list is a list of autofire component, each of which are the head
- * of a circularly linked list. Any given index in bucket_list could be null, representing an empty bucket.
+ * of a linked list. Any given index in bucket_list could be null, representing an empty bucket.
+ * 
+ * Doesn't support any event scheduled for more than 100 ticks in the future, as it has no secondary queue by design
  */
 SUBSYSTEM_DEF(automatedfire)
 	name = "Automated fire"
@@ -23,7 +25,7 @@ SUBSYSTEM_DEF(automatedfire)
 	var/head_offset = 0
 	/// Index of the first non-empty bucket
 	var/practical_offset = 1
-	/// world.tick_lag the bucket was designed for
+	///How many buckets exist for one tick
 	var/bucket_resolution = 0
 	/// How many shooter are in the buckets
 	var/bucket_count = 0
@@ -77,10 +79,8 @@ SUBSYSTEM_DEF(automatedfire)
 			SSautomatedfire.bucket_count--
 			
 			if (MC_TICK_CHECK)
-				message_admins("MC TICK FAILED")
 				return
 
-			// Break once we've processed the entire bucket
 			shooter = next_shooter
 		
 		// Empty the bucket
@@ -90,6 +90,7 @@ SUBSYSTEM_DEF(automatedfire)
 /datum/controller/subsystem/automatedfire/Recover()
 	bucket_list |= SSautomatedfire.bucket_list
 
+///In the event of a change of world.tick_lag, we refresh the size of the bucket and the bucket resolution
 /datum/controller/subsystem/automatedfire/proc/reset_buckets()
 	bucket_list.len = BUCKET_LEN
 	head_offset = world.time
@@ -116,7 +117,7 @@ SUBSYSTEM_DEF(automatedfire)
  *
  */
 /datum/component/automatedfire/proc/schedule_shot(new_next_fire = 0)
-	//We move to another bucket, so we clean the reference of the former linked list
+	//We move to another bucket, so we clean the reference from the former linked list
 	next = null
 	prev = null	
 	var/list/bucket_list = SSautomatedfire.bucket_list
