@@ -7210,6 +7210,7 @@
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "aHY" = (
+/obj/docking_port/stationary/marine_dropship/crash_target,
 /turf/open/floor/prison/darkpurple,
 /area/sulaco/marine)
 "aIa" = (
@@ -14621,10 +14622,6 @@
 /obj/machinery/computer3/server/rack,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
-"nvj" = (
-/obj/docking_port/stationary/marine_dropship/crash_target,
-/turf/open/floor/prison,
-/area/sulaco/marine/charlie)
 "nwU" = (
 /turf/open/floor/prison/red{
 	dir = 9
@@ -35886,7 +35883,7 @@ kOQ
 aJS
 aGH
 aJV
-nvj
+aJV
 aGH
 aJS
 aKB
