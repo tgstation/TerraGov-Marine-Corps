@@ -41,7 +41,7 @@
 	item_state = "powerfist"
 	flags_equip_slot = ITEM_SLOT_BELT
 	force = 10
-	attack_verb = list("smashed", "rammed", "power-fisted")
+	attack_verb = list("smashed", "rammed", "power-fisted", "Braziled")
 	var/obj/item/cell/cell
 	///the higher the power level the harder it hits
 	var/setting = 1
