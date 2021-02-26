@@ -19,6 +19,7 @@
 	var/have_to_reset = FALSE
 	///Reference to the parent
 	var/obj/item/weapon/gun/gun 
+	var/last_fire
 
 /datum/component/automatedfire/gun/Initialize(_auto_fire_shot_delay = 0.3 SECONDS, _burstfire_shot_delay, _burst_shots_to_fire = 3, _fire_mode = GUN_FIREMODE_SEMIAUTO)
 	. = ..()
@@ -96,7 +97,11 @@
 ///Ask the gun to fire and schedule the next shot if need
 /datum/component/automatedfire/gun/process_shot()
 	if(!SEND_SIGNAL(parent, COMSIG_GUN_MUST_FIRE) & GUN_HAS_FIRED)
-		return AUTOFIRE_STOPPED_SHOOTING
+		return
+	if(last_fire)
+		if((world.time -last_fire) != auto_fire_shot_delay)
+			message_admins("mistake [world.time -last_fire - auto_fire_shot_delay]")
+	last_fire = 0
 	switch(fire_mode)
 		if(GUN_FIREMODE_BURSTFIRE)
 			shots_fired++
@@ -106,10 +111,9 @@
 				if(have_to_reset)//We failed to reset because we were bursting, we do it now
 					SEND_SIGNAL(gun, COMSIG_GUN_FIRE_RESET)
 					shooting = FALSE
-				return AUTOFIRE_STOPPED_SHOOTING
+				return
 			ENABLE_BITFIELD(gun.flags_gun_features, GUN_BURST_FIRING)
 			next_fire = world.time + burstfire_shot_delay
-			return AUTOFIRE_STILL_SHOOTING
 		if(GUN_FIREMODE_AUTOBURST)
 			shots_fired++
 			if(shots_fired == burst_shots_to_fire)
@@ -124,8 +128,9 @@
 				ENABLE_BITFIELD(gun.flags_gun_features, GUN_BURST_FIRING)
 				auto_burstfire_shot_delay = min(auto_burstfire_shot_delay+(burstfire_shot_delay*2), auto_fire_shot_delay*3)
 				next_fire = world.time + burstfire_shot_delay
-			return AUTOFIRE_STILL_SHOOTING
 		if(GUN_FIREMODE_AUTOMATIC)
 			next_fire = world.time + auto_fire_shot_delay
-			return AUTOFIRE_STILL_SHOOTING
-	return AUTOFIRE_STOPPED_SHOOTING
+		if(GUN_FIREMODE_SEMIAUTO)
+			return
+	last_fire = world.time
+	schedule_shot()
