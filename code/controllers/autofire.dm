@@ -72,8 +72,7 @@ SUBSYSTEM_DEF(automatedfire)
 
 		while (shooter)
 			next_shooter = shooter.next
-			if(shooter.process_shot())//If we are still shooting, we reschedule the shooter to the next_fire
-				shooter.schedule_shot()
+			INVOKE_ASYNC(shooter, /datum/component/automatedfire/proc/process_shot)
 
 			SSautomatedfire.bucket_count--
 			
@@ -145,10 +144,10 @@ SUBSYSTEM_DEF(automatedfire)
 	bucket_head.next = src
 	prev = bucket_head
 	
+	//Something went wrong, probably a lag spike or something. To prevent infinite loops, we reschedule it to a another next fire
 	if(prev == src)
-		message_admins("loop, something went wrong")
-		prev = null
-		next = null
+		next_fire = next_fire += 1
+		schedule_shot()
 
 
 /**
@@ -254,7 +253,7 @@ SUBSYSTEM_DEF(automatedfire)
 
 /datum/component/automatedfire/automatic_shoot_at/process_shot()
 	if(!shooting)
-		return AUTOFIRE_STOPPED_SHOOTING
+		return
 	SEND_SIGNAL(shooter, COMSIG_AUTOMATIC_SHOOTER_SHOT_FIRED)
 	next_fire = world.time + shot_delay
-	return AUTOFIRE_STILL_SHOOTING
+	schedule_shot()
