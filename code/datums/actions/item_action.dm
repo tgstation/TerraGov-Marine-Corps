@@ -105,3 +105,31 @@
 /datum/action/item_action/aim_mode/action_activate()
 	var/obj/item/weapon/gun/I = target
 	I.toggle_auto_aim_mode(owner)
+
+
+/datum/action/item_action/toggle_hydro
+	var/obj/item/weapon/gun/flamer/marinestandard/holder_flamer
+
+/datum/action/item_action/toggle_hydro/New()
+	. = ..()
+	holder_flamer = holder_item
+	button.overlays += image('icons/mob/actions.dmi', null, "TL_84_Flame", ABOVE_HUD_LAYER)
+
+/datum/action/item_action/toggle_hydro/action_activate()
+	holder_flamer.unique_action()
+	update_button_icon()
+
+
+/* /datum/action/item_action/toggle_hydro/update_button_icon()
+	if (holder_flamer.hydro_active)
+		action_icon_state = "TL_84_Water"
+	else
+		action_icon_state = "TL_84_Flame" */
+
+
+/datum/action/item_action/toggle_hydro/update_button_icon()
+	button.overlays.Cut()
+	if (holder_flamer.hydro_active)
+		button.overlays += image('icons/mob/actions.dmi', null, "TL_84_Water", ABOVE_HUD_LAYER)
+		return
+	button.overlays += image('icons/mob/actions.dmi', null, "TL_84_Flame", ABOVE_HUD_LAYER)
