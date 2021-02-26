@@ -108,6 +108,7 @@
 
 
 /datum/action/item_action/toggle_hydro
+	/// This references the TL84 flamer
 	var/obj/item/weapon/gun/flamer/marinestandard/holder_flamer
 
 /datum/action/item_action/toggle_hydro/New()

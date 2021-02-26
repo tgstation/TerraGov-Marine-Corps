@@ -233,7 +233,7 @@
 #define COMSIG_ITEM_RIGHTCLICKON "item_rightclickon"					//from base of mob/living/carbon/human/RightClickOn(): (/atom, /mob)
 	#define COMPONENT_ITEM_CLICKON_BYPASS (1<<0)
 
-#define COMSIG_ITEM_HYDRO_CANNON_TOGGLED "hydro_cannon_togled"
+#define COMSIG_ITEM_HYDRO_CANNON_TOGGLED "hydro_cannon_toggled"
 
 #define COMSIG_NEW_REAGENT_ADD	"new_reagent_add"					//from add_reagent(): (/datum/reagent, amount); it is sent when a reagent gets added for the first time to a holder
 
