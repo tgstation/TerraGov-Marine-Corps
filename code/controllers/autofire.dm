@@ -29,6 +29,8 @@ SUBSYSTEM_DEF(automatedfire)
 	var/bucket_count = 0
 	/// List of buckets, each bucket holds every shooter that has to shoot this byond tick
 	var/list/bucket_list = list()
+	/// Reference to the next shooter before we clean shooter.next
+	var/var/datum/component/automatedfire/next_shooter
 
 /datum/controller/subsystem/automatedfire/PreInit()
 	bucket_list.len = BUCKET_LEN
@@ -69,7 +71,7 @@ SUBSYSTEM_DEF(automatedfire)
 			shooter = bucket_head
 
 		while (shooter)
-
+			next_shooter = shooter.next
 			if(shooter.process_shot())//If we are still shooting, we reschedule the shooter to the next_fire
 				shooter.schedule_shot()
 
@@ -80,7 +82,7 @@ SUBSYSTEM_DEF(automatedfire)
 				return
 
 			// Break once we've processed the entire bucket
-			shooter = shooter.next
+			shooter = next_shooter
 		
 		// Empty the bucket
 		bucket_list[practical_offset] = null
@@ -115,10 +117,9 @@ SUBSYSTEM_DEF(automatedfire)
  *
  */
 /datum/component/automatedfire/proc/schedule_shot(new_next_fire = 0)
-	
+	//We move to another bucket, so we clean the reference of the former linked list
 	next = null
-	prev = null
-	
+	prev = null	
 	var/list/bucket_list = SSautomatedfire.bucket_list
 	
 	// Ensure the next_fire time is properly bound to avoid missing a scheduled event
