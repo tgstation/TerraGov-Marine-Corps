@@ -558,6 +558,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	shell_speed = 3
 	max_range = 15
 	damage = 80
+	damage_falloff = 0.25
 	penetration = 40
 	sundering = 7
 
@@ -591,6 +592,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy = -10
 	max_range = 15
 	damage = 40
+	damage_falloff = 0.5
 	penetration = 20
 	sundering = 2
 	bullet_color = COLOR_TAN_ORANGE
@@ -726,6 +728,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	shell_speed = 3
 	max_range = 15
 	damage = 40
+	damage_falloff = 0.5
 	penetration = 20
 
 /datum/ammo/bullet/shotgun/sx16_slug/on_hit_mob(mob/M, obj/projectile/P)
@@ -760,6 +763,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	shell_speed = 3
 	max_range = 15
 	damage = 60
+	damage_falloff = 0.25
 	penetration = 30
 	sundering = 3.5
 
@@ -797,6 +801,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	shell_speed = 5
 	max_range = 30
 	damage = 50
+	damage_falloff = 0.25
 	penetration = 40
 	sundering = 3
 
