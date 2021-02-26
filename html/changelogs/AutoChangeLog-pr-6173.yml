@@ -1,4 +1,0 @@
-author: "Walarks"
-delete-after: True
-changes: 
-  - qol: "harvester fill up amount is based on beaker setting as opposed to the maximum possible amount"
