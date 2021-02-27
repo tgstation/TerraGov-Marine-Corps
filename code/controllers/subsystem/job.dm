@@ -102,6 +102,8 @@ SUBSYSTEM_DEF(job)
 		JobDebug("Successfuly assigned marine role to a squad. Player: [player.key], Job: [job.title], Squad: [player.assigned_squad]")
 	if(!latejoin)
 		unassigned -= player
+	if(!isxenosjob(src))
+		SSpoints.xeno_points_by_hive[XENO_HIVE_NORMAL] += SILO_PRICE / 15
 	job.occupy_job_positions(1)
 	player.assigned_role = job
 	JobDebug("Player: [player] is now Job: [job.title], JCP:[job.current_positions], JPL:[job.total_positions]")

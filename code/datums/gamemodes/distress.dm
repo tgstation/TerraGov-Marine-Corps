@@ -72,12 +72,6 @@
 /datum/game_mode/infestation/distress/post_setup()
 	. = ..()
 	scale_gear()
-	if(TGS_CLIENT_COUNT < 20)
-		SSpoints.xeno_points_by_hive[XENO_HIVE_NORMAL] = SILO_PRICE
-	else
-		SSpoints.xeno_points_by_hive[XENO_HIVE_NORMAL] = SILO_PRICE / 20 * TGS_CLIENT_COUNT
-
-	addtimer(CALLBACK(src, .proc/announce_bioscans, FALSE, 1), rand(30 SECONDS, 1 MINUTES)) //First scan shows no location but more precise numbers.
 
 /datum/game_mode/infestation/distress/proc/map_announce()
 	if(!SSmapping.configs[GROUND_MAP].announce_text)
