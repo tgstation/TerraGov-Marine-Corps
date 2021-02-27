@@ -103,7 +103,10 @@ SUBSYSTEM_DEF(job)
 	if(!latejoin)
 		unassigned -= player
 	if(!isxenosjob(src))
-		SSpoints.xeno_points_by_hive[XENO_HIVE_NORMAL] += SILO_PRICE / 15
+		if(SSmonitor.gamestate == SHUTTERS_CLOSED)
+			SSpoints.xeno_points_by_hive[XENO_HIVE_NORMAL] += SILO_PRICE / 15
+		else
+			SSpoints.xeno_points_by_hive[XENO_HIVE_NORMAL] += SILO_PRICE / 45
 	job.occupy_job_positions(1)
 	player.assigned_role = job
 	JobDebug("Player: [player] is now Job: [job.title], JCP:[job.current_positions], JPL:[job.total_positions]")
