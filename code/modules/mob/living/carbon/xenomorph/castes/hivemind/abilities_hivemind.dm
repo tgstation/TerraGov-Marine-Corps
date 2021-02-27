@@ -13,7 +13,7 @@
 	cooldown_timer = 2 MINUTES
 	plasma_cost = 100
 	var/range = 10
-	var/duration = 10 SECONDS
+	var/duration = 5 SECONDS
 
 /datum/action/xeno_action/activable/nightfall/on_cooldown_finish()
 	to_chat(owner, "<span class='notice'>We gather enough mental strength to shut down lights again.</span>")
