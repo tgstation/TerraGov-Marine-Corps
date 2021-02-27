@@ -1,5 +1,3 @@
-
-
 /datum/component/automatedfire/gun
 	///The current fire mode of the gun
 	var/fire_mode
@@ -81,6 +79,7 @@
 		have_to_reset = TRUE
 		return
 	shooting = FALSE
+	last_fire = 0
 	unschedule_shot()
 
 ///Hard reset the autofire, so it can be used again in situation where it would be stuck
@@ -90,6 +89,7 @@
 	auto_burstfire_shot_delay = 0
 	have_to_reset = FALSE
 	DISABLE_BITFIELD(gun.flags_gun_features, GUN_BURST_FIRING)
+	last_fire = 0
 	if(shooting)
 		unschedule_shot()
 		shooting = FALSE
@@ -99,9 +99,7 @@
 	if(!SEND_SIGNAL(parent, COMSIG_GUN_MUST_FIRE) & GUN_HAS_FIRED)
 		return
 	if(last_fire)
-		if((world.time -last_fire) != auto_fire_shot_delay)
-			message_admins("mistake [world.time -last_fire - auto_fire_shot_delay]")
-	last_fire = 0
+		message_admins("mistake [world.time -last_fire]")
 	switch(fire_mode)
 		if(GUN_FIREMODE_BURSTFIRE)
 			shots_fired++
