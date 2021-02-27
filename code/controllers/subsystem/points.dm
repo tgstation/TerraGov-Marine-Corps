@@ -47,7 +47,7 @@ SUBSYSTEM_DEF(points)
 /datum/controller/subsystem/points/Initialize(timeofday)
 	ordernum = rand(1, 9000)
 
-	supply_points = TGS_CLIENT_COUNT*2 //So 120 points for 60 players
+	supply_points = 120
 
 	for(var/pack in subtypesof(/datum/supply_packs))
 		var/datum/supply_packs/P = pack
