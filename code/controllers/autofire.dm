@@ -135,36 +135,6 @@ SUBSYSTEM_DEF(automatedfire)
 		next_fire = next_fire += 1
 		schedule_shot()
 
-
-/**
- * Removes this autofire component from the autofire subsystem
- */
-/datum/component/automatedfire/proc/unschedule_shot() //This is probably not needed
-	// Attempt to find the bucket that contains this component
-	var/bucket_pos = BUCKET_POS(next_fire)
-
-	// Get local references to the subsystem's vars, faster than accessing on the datum
-	var/list/bucket_list = SSautomatedfire.bucket_list
-
-	// Attempt to get the head of the bucket
-	var/datum/component/automatedfire/bucket_head
-	if (bucket_pos > 0)
-		bucket_head = bucket_list[bucket_pos]
-
-	//Replace the bucket head if needed
-	if(bucket_head == src)
-		bucket_list[bucket_pos] = next
-	SSautomatedfire.bucket_count--
-	// Remove the shooter from the bucket, ensuring to maintain
-	// the integrity of the bucket's list if relevant
-	if(prev != next)
-		prev.next = next
-		next.prev = prev
-	else
-		prev?.next = null
-		next?.prev = null
-	prev = next = null
-
 ///Handle the firing of the autofire component
 /datum/component/automatedfire/proc/process_shot()
 	return
@@ -179,11 +149,15 @@ SUBSYSTEM_DEF(automatedfire)
 	///Its target
 	var/atom/target 
 	///At wich rate it fires in ticks
-	var/firerate = 5
+	var/firerate = 5.5
 
 /obj/structure/turret_debug/fast
 	name = "debug turret fast"
 	firerate = 1
+
+/obj/structure/turret_debug/super_fast
+	name = "debug turret super fast"
+	firerate = 0.5
 
 /obj/structure/turret_debug/slow
 	name = "debug turret slow"
@@ -213,6 +187,8 @@ SUBSYSTEM_DEF(automatedfire)
 	var/shot_delay = 5
 	///If we are shooting
 	var/shooting = FALSE
+	///Last time it fired
+	var/last_fire
 
 /datum/component/automatedfire/automatic_shoot_at/Initialize(_shot_delay)
 	. = ..()
@@ -242,4 +218,8 @@ SUBSYSTEM_DEF(automatedfire)
 		return
 	SEND_SIGNAL(shooter, COMSIG_AUTOMATIC_SHOOTER_SHOT_FIRED)
 	next_fire = world.time + shot_delay
+	if(world.time - last_fire != shot_delay)
+		message_admins("the delay between shots was [world.time - last_fire] ticks instead of [shot_delay]")
+	last_fire = world.time
+	
 	schedule_shot()
