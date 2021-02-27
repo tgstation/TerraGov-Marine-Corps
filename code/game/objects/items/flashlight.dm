@@ -15,6 +15,14 @@
 	var/raillight_compatible = TRUE //Can this be turned into a rail light ?
 	var/activation_sound = 'sound/items/flashlight.ogg'
 
+/obj/item/flashlight/Initialize()
+	. = ..()
+	GLOB.lights += src
+
+/obj/item/flashlight/Destroy()
+	. = ..()
+	GLOB.lights -= src
+
 /obj/item/flashlight/turn_light(mob/user, toggle_on)
 	. = ..()
 	if(. != CHECKS_PASSED)

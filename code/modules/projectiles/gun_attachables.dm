@@ -603,6 +603,13 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	attachment_action_type = /datum/action/item_action/toggle
 	activation_sound = 'sound/items/flashlight.ogg'
 
+/obj/item/attachable/flashlight/Initialize()
+	. = ..()
+	GLOB.lights += src
+
+/obj/item/attachable/flashlight/Destroy()
+	. = ..()
+	GLOB.lights -= src
 
 /obj/item/attachable/flashlight/activate_attachment(mob/living/user)
 	turn_light(user, !light_on)

@@ -170,12 +170,12 @@
 /obj/machinery/light/small/built/Initialize()
 	. = ..()
 	status = LIGHT_EMPTY
-	update(FALSE)
+	update(FALSE)	
 
 // create a new lighting fixture
 /obj/machinery/light/Initialize(mapload, ...)
 	. = ..()
-
+	GLOB.lights += src
 	switch(fitting)
 		if("tube")
 			brightness = 8
@@ -198,6 +198,9 @@
 
 	return INITIALIZE_HINT_LATELOAD
 
+/obj/machinery/light/Destroy()
+	. = ..()
+	GLOB.lights -= src
 
 /obj/machinery/light/LateInitialize()
 	var/area/A = get_area(src)
@@ -250,11 +253,15 @@
 // attempt to set the light's on/off status
 // will not switch on if broken/burned/empty
 /obj/machinery/light/turn_light(mob/user, toggle_on)
+	. = ..()
+	if(. != CHECKS_PASSED)
+		return
 	if ((status != LIGHT_DISABLED) & (status != LIGHT_OK)) //Can't turn a broken light
 		return
-	. = ..()
-	if(!toggle_on)
+	if(!toggle_on && status == LIGHT_OK)
 		status = LIGHT_DISABLED
+	if(toggle_on && status == LIGHT_DISABLED)
+		status = LIGHT_OK
 	update()
 
 // examine verb
