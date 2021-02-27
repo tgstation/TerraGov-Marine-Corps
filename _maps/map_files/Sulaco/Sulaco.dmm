@@ -1802,7 +1802,9 @@
 /turf/open/floor/prison,
 /area/sulaco/hangar)
 "agm" = (
-/obj/machinery/vending/tool,
+/obj/machinery/vending/engivend{
+	req_access = null
+	},
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_main_hall)
 "agy" = (
@@ -12780,9 +12782,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/mainship/command/self_destruct)
 "iqZ" = (
-/obj/machinery/vending/engivend{
-	req_access = null
-	},
+/obj/machinery/vending/tool,
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_main_hall)
 "iti" = (
@@ -48464,8 +48464,8 @@ bPx
 aWG
 xKR
 aWG
-iqZ
-cdy
+aWG
+agm
 aaJ
 ajO
 aiA
@@ -48721,8 +48721,8 @@ bPx
 aWG
 vmi
 aWG
+aWG
 eVE
-cdy
 aaJ
 yiP
 aio
@@ -48978,8 +48978,8 @@ aGy
 aWG
 xKR
 aWG
-agm
-cdy
+aWG
+iqZ
 aaJ
 ajQ
 aeL
@@ -49235,7 +49235,7 @@ aVZ
 aWG
 xKR
 qxQ
-cdy
+aaQ
 aaQ
 aaJ
 aaJ
