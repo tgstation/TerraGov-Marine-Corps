@@ -16,8 +16,11 @@
 	///If TRUE, the gun will reset its references at the end of the burst
 	var/have_to_reset = FALSE
 	///Reference to the parent
-	var/obj/item/weapon/gun/gun 
+	var/obj/item/weapon/gun/gun
+	///For debug purpose 
 	var/last_fire
+	///For debug purpose
+	var/supposed_delay
 
 /datum/component/automatedfire/gun/Initialize(_auto_fire_shot_delay = 0.3 SECONDS, _burstfire_shot_delay, _burst_shots_to_fire = 3, _fire_mode = GUN_FIREMODE_SEMIAUTO)
 	. = ..()
@@ -65,24 +68,22 @@
 	if(shooting)//if we are already shooting, it means the gun is still on cooldown
 		return
 	shooting = TRUE
-	next_fire = world.time
-	shots_fired = 0
-	auto_burstfire_shot_delay = 0
-	schedule_shot()
+	last_fire = 0
+	process_shot()
 
 ///Remove the component from the bucket system if it was in
 /datum/component/automatedfire/gun/proc/stop_firing()
 	SIGNAL_HANDLER
 	if(!shooting)
 		return
+	///We are burst firing, we can't clean the state now. We will do it when the burst is over
 	if(CHECK_BITFIELD(gun.flags_gun_features, GUN_BURST_FIRING))
 		have_to_reset = TRUE
 		return
 	shooting = FALSE
 	last_fire = 0
-	unschedule_shot()
 
-///Hard reset the autofire, so it can be used again in situation where it would be stuck
+///Hard reset the autofire, happens when the gun fall/is thrown, at the end of a burst or when it runs out of ammunition
 /datum/component/automatedfire/gun/proc/hard_reset()
 	SIGNAL_HANDLER
 	shots_fired = 0
@@ -91,15 +92,14 @@
 	DISABLE_BITFIELD(gun.flags_gun_features, GUN_BURST_FIRING)
 	last_fire = 0
 	if(shooting)
-		unschedule_shot()
 		shooting = FALSE
 
 ///Ask the gun to fire and schedule the next shot if need
 /datum/component/automatedfire/gun/process_shot()
 	if(!SEND_SIGNAL(parent, COMSIG_GUN_MUST_FIRE) & GUN_HAS_FIRED)
 		return
-	if(last_fire)
-		message_admins("mistake [world.time -last_fire]")
+	if(last_fire && (world.time -last_fire != supposed_delay))
+		message_admins("delay between shot of [world.time -last_fire] ticks instead of [supposed_delay]")
 	switch(fire_mode)
 		if(GUN_FIREMODE_BURSTFIRE)
 			shots_fired++
@@ -112,10 +112,12 @@
 				return
 			ENABLE_BITFIELD(gun.flags_gun_features, GUN_BURST_FIRING)
 			next_fire = world.time + burstfire_shot_delay
+			supposed_delay = burstfire_shot_delay
 		if(GUN_FIREMODE_AUTOBURST)
 			shots_fired++
 			if(shots_fired == burst_shots_to_fire)
 				next_fire = world.time + auto_burstfire_shot_delay
+				supposed_delay = auto_burstfire_shot_delay
 				shots_fired = 0
 				auto_burstfire_shot_delay = 0
 				DISABLE_BITFIELD(gun.flags_gun_features, GUN_BURST_FIRING)
@@ -126,8 +128,10 @@
 				ENABLE_BITFIELD(gun.flags_gun_features, GUN_BURST_FIRING)
 				auto_burstfire_shot_delay = min(auto_burstfire_shot_delay+(burstfire_shot_delay*2), auto_fire_shot_delay*3)
 				next_fire = world.time + burstfire_shot_delay
+				supposed_delay = burstfire_shot_delay
 		if(GUN_FIREMODE_AUTOMATIC)
 			next_fire = world.time + auto_fire_shot_delay
+			supposed_delay = auto_fire_shot_delay
 		if(GUN_FIREMODE_SEMIAUTO)
 			return
 	last_fire = world.time
