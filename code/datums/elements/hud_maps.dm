@@ -6,8 +6,11 @@
 /datum/element/hud_map
 	element_flags = ELEMENT_BESPOKE
 	id_arg_index = 2
+	///Minimap we're going to be displaying and accessing
 	var/obj/screen/minimap/map
+	///map target we are going to be updating to
 	var/mapz = 0
+	///Minimap flags we are going to update for
 	var/filter = NONE
 
 /datum/element/hud_map/Attach(mob/target, ztarget, filtertargets)
@@ -56,10 +59,10 @@
 	icon_state = ""
 	screen_loc = "3,3:-2"
 
-/obj/screen/minimap/Initialize(mapload, target)
+/obj/screen/minimap/Initialize(mapload, target, flags)
 	. = ..()
 	icon = SSminimaps.minimaps_by_z["[target]"].hud_image
-	SSminimaps.add_to_updaters(src, MINIMAP_FLAG_ALL, target)
+	SSminimaps.add_to_updaters(src, flags, target)
 
 
 /**
@@ -68,7 +71,10 @@
 /datum/action/minimap
 	name = "Toggle Minimap"
 	action_icon_state = "minimap"
+	///Flags to allow them to see
 	var/minimap_flags = MINIMAP_FLAG_ALL
+	///marker flags this will give the target, mostly used for marine minimaps
+	var/marker_flags = MINIMAP_FLAG_ALL
 
 /datum/action/minimap/action_activate()
 	. = ..()
@@ -87,18 +93,24 @@
 
 /datum/action/minimap/marine
 	minimap_flags = MINIMAP_FLAG_MARINE
+	marker_flags = MINIMAP_FLAG_MARINE
 
 /datum/action/minimap/alpha
 	minimap_flags = MINIMAP_FLAG_ALPHA
+	marker_flags = MINIMAP_FLAG_ALPHA|MINIMAP_FLAG_MARINE
 
 /datum/action/minimap/bravo
 	minimap_flags = MINIMAP_FLAG_BRAVO
+	marker_flags = MINIMAP_FLAG_BRAVO|MINIMAP_FLAG_MARINE
 
 /datum/action/minimap/charlie
 	minimap_flags = MINIMAP_FLAG_CHARLIE
+	marker_flags = MINIMAP_FLAG_CHARLIE|MINIMAP_FLAG_MARINE
 
 /datum/action/minimap/delta
 	minimap_flags = MINIMAP_FLAG_DELTA
+	marker_flags = MINIMAP_FLAG_DELTA|MINIMAP_FLAG_MARINE
 
 /datum/action/minimap/observer
 	minimap_flags = MINIMAP_FLAG_XENO|MINIMAP_FLAG_MARINE
+	marker_flags = NONE

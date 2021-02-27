@@ -223,8 +223,6 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	add_minimap()
 	to_chat(wearer, "<span class='notice'>You toggle the Squad HUD on.</span>")
 	playsound(loc, 'sound/machines/click.ogg', 15, 0, 1)
-	var/datum/action/minimap/mini = new
-	mini.give_action(wearer)
 
 
 /obj/item/radio/headset/mainship/proc/disable_squadhud()
@@ -253,12 +251,12 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 			type = /datum/action/minimap/marine
 	var/datum/action/minimap/mini = new type
 	mini.give_action(wearer)
-	if(!wearer.job.minimap_icon)
+	if(!wearer.job || !wearer.job.minimap_icon)
 		return
 	if(wearer.assigned_squad)
-		SSminimaps.add_marker(wearer, wearer.z, mini.minimap_flags, lowertext(wearer.assigned_squad.name)+"_"+wearer.job.minimap_icon)
+		SSminimaps.add_marker(wearer, wearer.z, mini.marker_flags, lowertext(wearer.assigned_squad.name)+"_"+wearer.job.minimap_icon)
 		return
-	SSminimaps.add_marker(wearer, wearer.z, mini.minimap_flags, wearer.job.minimap_icon)
+	SSminimaps.add_marker(wearer, wearer.z, mini.marker_flags, wearer.job.minimap_icon)
 
 /obj/item/radio/headset/mainship/proc/remove_minimap()
 	var/type
