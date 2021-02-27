@@ -39,14 +39,10 @@ SUBSYSTEM_DEF(automatedfire)
 	head_offset = world.time
 	bucket_resolution = world.tick_lag
 
-/datum/controller/subsystem/automatedfire/stat_entry(msg)
-	..("ActShooters:[bucket_count]")
+/datum/controller/subsystem/automatedfire/stat_entry(msg = "ActShooters:[bucket_count]")
+	return ..()
 
 /datum/controller/subsystem/automatedfire/fire(resumed = FALSE)
-
-	if (MC_TICK_CHECK)
-		return
-
 	// Check for when we need to loop the buckets, this occurs when
 	// the head_offset is approaching BUCKET_LEN ticks in the past
 	if (practical_offset > BUCKET_LEN)
@@ -67,24 +63,21 @@ SUBSYSTEM_DEF(automatedfire)
 		shooter = null
 
 	// Iterate through each bucket starting from the practical offset
-	while (practical_offset <= BUCKET_LEN && head_offset + ((practical_offset - 1) * world.tick_lag) <= world.time)
-		var/datum/component/automatedfire/bucket_head = bucket_list[practical_offset]
+	while (practical_offset <= BUCKET_LEN && head_offset + ((practical_offset - 1) * world.tick_lag) <= world.time)	
 		if(!shooter)
-			shooter = bucket_head
+			shooter =  bucket_list[practical_offset]
+			bucket_list[practical_offset] = null
 
 		while (shooter)
 			next_shooter = shooter.next
 			INVOKE_ASYNC(shooter, /datum/component/automatedfire/proc/process_shot)
 
 			SSautomatedfire.bucket_count--
-			
+			shooter = next_shooter
 			if (MC_TICK_CHECK)
 				return
-
-			shooter = next_shooter
 		
 		// Empty the bucket
-		bucket_list[practical_offset] = null
 		practical_offset++
 
 /datum/controller/subsystem/automatedfire/Recover()
@@ -106,17 +99,9 @@ SUBSYSTEM_DEF(automatedfire)
 	/// Contains the reference to the previous component in the bucket, used by autofire subsystem
 	var/datum/component/automatedfire/prev
 
-/**
- * Schedule the shooter into the system, inserting it into the next fire queue
- *
- * This will also account for a shooter already being registered, and in which case
- * the position will be updated to remove it from the previous location if necessary
- *
- * Arguments:
- * * new_next_fire Optional, when provided is used to update an existing shooter with the new specified time
- *
- */
-/datum/component/automatedfire/proc/schedule_shot(new_next_fire = 0)
+
+/// chedule the shooter into the system, inserting it into the next fire queue
+/datum/component/automatedfire/proc/schedule_shot()
 	//We move to another bucket, so we clean the reference from the former linked list
 	next = null
 	prev = null	
