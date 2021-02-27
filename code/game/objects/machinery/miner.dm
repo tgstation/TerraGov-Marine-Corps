@@ -244,7 +244,7 @@
 	if(add_tick >= required_ticks)
 		stored_mineral += 1
 		add_tick = 0
-	if(stored_mineral >= 2)	//Stores 2 boxes worth of minerals
+	if(stored_mineral >= 8)	//Stores 8 boxes worth of minerals
 		stop_processing()
 	else
 		add_tick += 1
