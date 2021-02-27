@@ -187,8 +187,6 @@ SUBSYSTEM_DEF(automatedfire)
 	var/shot_delay = 5
 	///If we are shooting
 	var/shooting = FALSE
-	///Last time it fired
-	var/last_fire
 
 /datum/component/automatedfire/automatic_shoot_at/Initialize(_shot_delay)
 	. = ..()
@@ -218,8 +216,4 @@ SUBSYSTEM_DEF(automatedfire)
 		return
 	SEND_SIGNAL(shooter, COMSIG_AUTOMATIC_SHOOTER_SHOT_FIRED)
 	next_fire = world.time + shot_delay
-	if(world.time - last_fire != shot_delay)
-		message_admins("the delay between shots was [world.time - last_fire] ticks instead of [shot_delay]")
-	last_fire = world.time
-	
 	schedule_shot()
