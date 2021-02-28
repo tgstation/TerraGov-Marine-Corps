@@ -76,7 +76,7 @@ SUBSYSTEM_DEF(automatedfire)
 			shooter = next_shooter
 			if (MC_TICK_CHECK)
 				return
-		
+
 		// Empty the bucket
 		practical_offset++
 
@@ -106,7 +106,7 @@ SUBSYSTEM_DEF(automatedfire)
 	next = null
 	prev = null	
 	var/list/bucket_list = SSautomatedfire.bucket_list
-	
+
 	// Ensure the next_fire time is properly bound to avoid missing a scheduled event
 	next_fire = max(CEILING(next_fire, world.tick_lag), world.time + world.tick_lag)
 
@@ -126,10 +126,10 @@ SUBSYSTEM_DEF(automatedfire)
 	if (bucket_head.next)
 		next = bucket_head.next
 		next.prev = src
-	
+
 	bucket_head.next = src
 	prev = bucket_head
-	
+
 	//Something went wrong, probably a lag spike or something. To prevent infinite loops, we reschedule it to a another next fire
 	if(prev == src)
 		next_fire = next_fire += 1
@@ -167,8 +167,8 @@ SUBSYSTEM_DEF(automatedfire)
 	. = ..()
 	ammo = GLOB.ammo_list[/datum/ammo/xeno/acid]
 	target = locate(x+5, y, z)
-	AddComponent(/datum/component/automatedfire/automatic_shoot_at, firerate)
-	RegisterSignal(src, COMSIG_AUTOMATIC_SHOOTER_SHOT_FIRED, .proc/shoot)
+	AddComponent(/datum/component/automatedfire/xeno_turret_autofire, firerate)
+	RegisterSignal(src, COMSIG_AUTOMATIC_SHOOTER_SHOOT, .proc/shoot)
 	SEND_SIGNAL(src, COMSIG_AUTOMATIC_SHOOTER_START_SHOOTING_AT)
 	var/static/number = 1
 	name = "[name] [number]"
@@ -182,38 +182,36 @@ SUBSYSTEM_DEF(automatedfire)
 	newshot.permutated += src
 	newshot.fire_at(target, src, null, ammo.max_range, ammo.shell_speed)
 
-/datum/component/automatedfire/automatic_shoot_at
-	///The delay between each shot in ticks
-	var/shot_delay = 5
-	///If we are shooting
+/datum/component/automatedfire/xeno_turret_autofire
+	///Delay between two shots
+	var/shot_delay
+	///If we must shoot
 	var/shooting = FALSE
 
-/datum/component/automatedfire/automatic_shoot_at/Initialize(_shot_delay)
+/datum/component/automatedfire/xeno_turret_autofire/Initialize(_shot_delay)
 	. = ..()
 	if(!isatom(parent))
 		return COMPONENT_INCOMPATIBLE
-	shooter = parent
 	shot_delay = _shot_delay
 	RegisterSignal(parent, COMSIG_AUTOMATIC_SHOOTER_START_SHOOTING_AT, .proc/start_shooting)
 	RegisterSignal(parent, COMSIG_AUTOMATIC_SHOOTER_STOP_SHOOTING_AT, .proc/stop_shooting)
 
 ///Signal handler for starting the autoshooting at something
-/datum/component/automatedfire/automatic_shoot_at/proc/start_shooting()
+/datum/component/automatedfire/xeno_turret_autofire/proc/start_shooting(datum/source)
 	SIGNAL_HANDLER
-	next_fire = world.time
 	if(!shooting)
 		shooting = TRUE
-		schedule_shot()
+		INVOKE_ASYNC(src, .proc/process_shot)
 
 
 ///Signal handler for stoping the shooting
-/datum/component/automatedfire/automatic_shoot_at/proc/stop_shooting(datum/source)
+/datum/component/automatedfire/xeno_turret_autofire/proc/stop_shooting(datum/source)
 	SIGNAL_HANDLER
 	shooting = FALSE
 
-/datum/component/automatedfire/automatic_shoot_at/process_shot()
+/datum/component/automatedfire/xeno_turret_autofire/process_shot()
 	if(!shooting)
 		return
-	SEND_SIGNAL(shooter, COMSIG_AUTOMATIC_SHOOTER_SHOT_FIRED)
+	SEND_SIGNAL(parent, COMSIG_AUTOMATIC_SHOOTER_SHOOT)
 	next_fire = world.time + shot_delay
 	schedule_shot()
