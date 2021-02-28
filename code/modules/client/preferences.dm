@@ -984,6 +984,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			var/msg = stripped_input(user, "Give a physical description of your character.", "Flavor Text", sanitize(flavor_text))
 			if(!msg)
 				return
+			if(NON_ASCII_CHECK(msg))
+				return
 			flavor_text = msg
 
 		if("windowflashing")
