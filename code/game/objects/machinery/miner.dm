@@ -4,7 +4,6 @@
 #define MINER_DESTROYED	3
 
 #define MINER_RESISTANT	"reinforced components"
-#define MINER_COMPACTOR	"upgraded crystalizer module"
 #define MINER_OVERCLOCKED "high-efficiency drill"
 
 
@@ -26,7 +25,7 @@
 	///How many times we neeed to tick for a resource to be created, in this case this is 2* the specified amount
 	var/required_ticks = 70  //make one crate every 140 seconds
 	///The mineral type that's produced
-	var/mineral_produced = /obj/structure/ore_box/phoron
+	var/mineral_value = 20
 	///Health for the miner we use because changing obj_integrity is apparently bad
 	var/miner_integrity = 100
 	///Max health of the miner
@@ -41,7 +40,7 @@
 /obj/machinery/miner/damaged/platinum
 	name = "\improper Nanotrasen platinum Mining Well"
 	desc = "A Nanotrasen platinum drill with an internal packaging module. Produces even more valuable materials than it's phoron counterpart"
-	mineral_produced = /obj/structure/ore_box/platinum
+	mineral_value = 40
 
 /obj/machinery/miner/Initialize()
 	. = ..()
@@ -50,10 +49,7 @@
 /obj/machinery/miner/update_icon()
 	switch(miner_status)
 		if(MINER_RUNNING)
-			if((mineral_produced == /obj/item/compactorebox/platinum) && (miner_upgrade_type == MINER_COMPACTOR))
-				icon_state = "mining_drill_active_platinum_[miner_upgrade_type]"
-			else
-				icon_state = "mining_drill_active_[miner_upgrade_type]"
+			icon_state = "mining_drill_active_[miner_upgrade_type]"
 		if(MINER_SMALL_DAMAGE)
 			icon_state = "mining_drill_braced_[miner_upgrade_type]"
 		if(MINER_MEDIUM_DAMAGE)
@@ -79,11 +75,6 @@
 		if(MINER_RESISTANT)
 			max_miner_integrity = 300
 			miner_integrity = 300
-		if(MINER_COMPACTOR)
-			if(mineral_produced == /obj/structure/ore_box/platinum)
-				mineral_produced = /obj/item/compactorebox/platinum
-			else
-				mineral_produced = /obj/item/compactorebox/phoron
 		if(MINER_OVERCLOCKED)
 			required_ticks = 35
 	miner_upgrade_type = upgrade.uptype
@@ -127,9 +118,6 @@
 			if(MINER_OVERCLOCKED)
 				upgrade = new /obj/item/minerupgrade/overclock
 				required_ticks = initial(required_ticks)
-			if(MINER_COMPACTOR)
-				upgrade = new /obj/item/minerupgrade/compactor
-				mineral_produced = initial(mineral_produced)
 		upgrade.forceMove(user.loc)
 		miner_upgrade_type = null
 		update_icon()
@@ -233,9 +221,11 @@
 		to_chat(user, "<span class='warning'>[src] is not ready to produce a shipment yet!</span>")
 		return
 
-	new mineral_produced(user.loc, stored_mineral)
-	stored_mineral -= 1
-	start_processing()
+	SSpoints.supply_points += mineral_value * stored_mineral
+	do_sparks(5, TRUE, src)
+	playsound(loc,'sound/effects/phasein.ogg', 50, FALSE)
+	visible_message("<span class='notice'>The [src] buzzes: Ore shipment has been sold for [mineral_value * stored_mineral] points.</span>")
+	stored_mineral = 0
 
 /obj/machinery/miner/process()
 	if(miner_status != MINER_RUNNING)
