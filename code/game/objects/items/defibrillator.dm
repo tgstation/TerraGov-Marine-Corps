@@ -124,8 +124,10 @@
 	if(client) //Let's call up the correct ghost!
 		return
 	for(var/g in GLOB.observer_list)
+		if(!g) //Observers hard del often so lets just be safe
+			return
 		var/mob/dead/observer/ghost = g
-		if(!ghost?.mind.current == src) //we can find undeletted ghost references in here, ghost deletting problem.
+		if(!ghost.mind.current == src) //we can find undeletted ghost references in here, ghost deletting problem.
 			continue
 		if(ghost.client && ghost.can_reenter_corpse)
 			return ghost
