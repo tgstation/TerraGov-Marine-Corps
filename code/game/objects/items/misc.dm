@@ -138,3 +138,8 @@
 	icon_state = "mining_drill_overclockeddisplay"
 	uptype = "high-efficiency drill"
 
+obj/item/minerupgrade/automatic
+	name = "mining computer"
+	desc = "A small computer that can automate mining wells, reducing the need for oversight"
+	icon_state = "mining_drill_compactordisplay"
+	uptype = "mining computer"

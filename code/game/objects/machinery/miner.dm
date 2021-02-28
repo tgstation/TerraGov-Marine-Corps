@@ -2,7 +2,7 @@
 #define MINER_SMALL_DAMAGE	1
 #define MINER_MEDIUM_DAMAGE	2
 #define MINER_DESTROYED	3
-
+#define MINER_AUTOMATED "mining computer"
 #define MINER_RESISTANT	"reinforced components"
 #define MINER_OVERCLOCKED "high-efficiency drill"
 
@@ -32,6 +32,7 @@
 	var/max_miner_integrity = 100
 	///What type of upgrade it has installed , used to change the icon of the miner.
 	var/miner_upgrade_type
+	var/automatic = FALSE
 
 /obj/machinery/miner/damaged	//mapping and all that shebang
 	miner_status = MINER_DESTROYED
@@ -77,6 +78,15 @@
 			miner_integrity = 300
 		if(MINER_OVERCLOCKED)
 			required_ticks = 35
+		if(MINER_AUTOMATED)
+			automatic = TRUE
+			if(stored_mineral)
+				SSpoints.supply_points += mineral_value * stored_mineral
+				do_sparks(5, TRUE, src)
+				playsound(loc,'sound/effects/phasein.ogg', 50, FALSE)
+				visible_message("<span class='notice'>The [src] buzzes: Ore shipment has been sold for [mineral_value * stored_mineral] points.</span>")
+				stored_mineral = 0
+				start_processing()
 	miner_upgrade_type = upgrade.uptype
 	user.visible_message("<span class='notice'>[user] attaches the [miner_upgrade_type] to the [src]!</span>")
 	qdel(upgrade)
@@ -118,6 +128,9 @@
 			if(MINER_OVERCLOCKED)
 				upgrade = new /obj/item/minerupgrade/overclock
 				required_ticks = initial(required_ticks)
+			if(MINER_AUTOMATED)
+				upgrade = new /obj/item/minerupgrade/automatic
+				automatic = FALSE
 		upgrade.forceMove(user.loc)
 		miner_upgrade_type = null
 		update_icon()
@@ -226,12 +239,20 @@
 	playsound(loc,'sound/effects/phasein.ogg', 50, FALSE)
 	visible_message("<span class='notice'>The [src] buzzes: Ore shipment has been sold for [mineral_value * stored_mineral] points.</span>")
 	stored_mineral = 0
+	start_processing()
 
 /obj/machinery/miner/process()
 	if(miner_status != MINER_RUNNING)
 		stop_processing()
 		return
 	if(add_tick >= required_ticks)
+		if(automatic)
+			SSpoints.supply_points += mineral_value
+			do_sparks(5, TRUE, src)
+			playsound(loc,'sound/effects/phasein.ogg', 50, FALSE)
+			visible_message("<span class='notice'>The [src] buzzes: Ore shipment has been sold for [mineral_value] points.</span>")
+			add_tick = 0
+			return
 		stored_mineral += 1
 		add_tick = 0
 	if(stored_mineral >= 2)	//Stores 2 boxes worth of minerals
