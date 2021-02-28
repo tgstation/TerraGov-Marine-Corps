@@ -115,9 +115,7 @@
 
 	var/mob/living/carbon/xenomorph/X = owner
 
-	X.face_atom(target) //Face target so we don't look stupid
-
-	if(!do_after(X, 0.25 SECONDS, TRUE, target, BUSY_ICON_DANGER))
+	if(!do_after(X, 0.5 SECONDS, TRUE, target, BUSY_ICON_DANGER))
 		return fail_activate()
 
 	//Shoot at the thing
