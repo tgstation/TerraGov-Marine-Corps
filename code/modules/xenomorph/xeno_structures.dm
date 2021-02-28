@@ -244,7 +244,7 @@
 	desc = "A menacing looking construct of resin, it seems to be alive. It fires acid against intruders."
 	bound_width = 32
 	bound_height = 32
-	max_integrity = 300
+	max_integrity = 800
 	layer =  ABOVE_MOB_LAYER
 	density = TRUE
 	///The hive it belongs to
@@ -276,7 +276,11 @@
 =======
 	AddComponent(/datum/component/automatedfire/xeno_turret_autofire, firerate)
 	RegisterSignal(src, COMSIG_AUTOMATIC_SHOOTER_SHOOT, .proc/shoot)
+<<<<<<< HEAD
 >>>>>>> 530afc288 (xeno turrets)
+=======
+	set_light(2, 2, LIGHT_COLOR_GREEN)
+>>>>>>> 87437a68c (change to sprite)
 
 /obj/structure/resin/xeno_turret/Destroy()
 	. = ..()
@@ -374,5 +378,8 @@
 	newshot.generate_bullet(ammo)
 	newshot.permutated += src
 	newshot.fire_at(hostile, src, null, ammo.max_range, ammo.shell_speed)
+<<<<<<< HEAD
 	
 >>>>>>> 530afc288 (xeno turrets)
+=======
+>>>>>>> 87437a68c (change to sprite)

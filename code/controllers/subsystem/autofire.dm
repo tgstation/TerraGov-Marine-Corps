@@ -419,10 +419,13 @@ SUBSYSTEM_DEF(automatedfire)
 		shooting = TRUE
 		INVOKE_ASYNC(src, .proc/process_shot)
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		next_fire = world.time + shot_delay
 		schedule_shot()
 >>>>>>> 530afc288 (xeno turrets)
+=======
+>>>>>>> 87437a68c (change to sprite)
 
 
 ///Signal handler for stoping the shooting

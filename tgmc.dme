@@ -192,9 +192,9 @@
 #include "code\controllers\configuration\entries\general.dm"
 #include "code\controllers\configuration\entries\resources.dm"
 #include "code\controllers\subsystem\air.dm"
-#include "code\controllers\subsystem\autofire.dm"
 #include "code\controllers\subsystem\assets.dm"
 #include "code\controllers\subsystem\atoms.dm"
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 #include "code\controllers\subsystem\autofire.dm"
@@ -204,6 +204,9 @@
 =======
 #include "code\controllers\subsystem\autofire.dm"
 >>>>>>> 2aef6ac91 (rename the subsytem)
+=======
+#include "code\controllers\subsystem\autofire.dm"
+>>>>>>> 87437a68c (change to sprite)
 #include "code\controllers\subsystem\blackbox.dm"
 #include "code\controllers\subsystem\chat.dm"
 #include "code\controllers\subsystem\codex.dm"
