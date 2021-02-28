@@ -125,7 +125,7 @@
 		return
 	for(var/g in GLOB.observer_list)
 		if(!g) //Observers hard del often so lets just be safe
-			return
+			continue
 		var/mob/dead/observer/ghost = g
 		if(ghost.mind.current != src)
 			continue
