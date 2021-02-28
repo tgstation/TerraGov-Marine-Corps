@@ -144,7 +144,7 @@
 			var/datum/job/job_datum = locate(href_list["job_selected"])
 			if(!isxenosjob(job_datum))
 				var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-				if((xeno_job.total_positions-xeno_job.current_positions) >= GLOB.alive_xeno_list.len * 0.2)
+				if((SSmonitor.gamestate == SHUTTERS_CLOSED || (SSmonitor.gamestate == GROUNDSIDE && SSmonitor.current_state == XENOS_LOSING)) && ((xeno_job.total_positions-xeno_job.current_positions) >= GLOB.alive_xeno_list.len * 0.2))
 					if(tgui_alert(src, "There is a lack of xenos players on this round, unbalanced rounds are unfun for everyone. Are you sure you want to play as a marine? ", "Warning : the game is unbalanced", list("Yes", "No")) == "No")
 						return
 			if(!SSticker.mode.CanLateSpawn(src, job_datum)) // Try to assigns job to new player
