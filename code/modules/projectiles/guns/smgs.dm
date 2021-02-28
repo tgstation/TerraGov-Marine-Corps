@@ -202,6 +202,9 @@
 	aim_slowdown = 0.4
 	scatter = 10
 
+/obj/item/weapon/gun/smg/m25/elite/pmc
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
+
 
 //-------------------------------------------------------
 //MP27, based on the grease gun

@@ -1,0 +1,4 @@
+author: "Walarks"
+delete-after: True
+changes: 
+  - bugfix: "you can start shooting while wielding again"
