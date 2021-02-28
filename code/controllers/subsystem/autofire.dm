@@ -5,7 +5,7 @@
 #define BUCKET_POS(next_fire) (((round((next_fire - SSautomatedfire.head_offset) / world.tick_lag) + 1) % BUCKET_LEN) || BUCKET_LEN)
 =======
 /// Controls how many buckets should be kept, each representing a tick. Max is ten seconds, this system does not handle next fire of more than 100 ticks in order to have better perf
-#define BUCKET_LEN (world.fps * 1 * 10)
+#define BUCKET_LEN (world.fps * 10)
 /// Helper for getting the correct bucket
 <<<<<<< HEAD
 #define BUCKET_POS(next_fire) (((round((next_fire - SSautofire.head_offset) / world.tick_lag) + 1) % BUCKET_LEN) || BUCKET_LEN)
@@ -41,7 +41,9 @@ SUBSYSTEM_DEF(autofire)
 =======
  * Note that this has the same structure for storing and queueing shooter component as the timer subsystem does
  * for handling timers: the bucket_list is a list of autofire component, each of which are the head
- * of a circularly linked list. Any given index in bucket_list could be null, representing an empty bucket.
+ * of a linked list. Any given index in bucket_list could be null, representing an empty bucket.
+ * 
+ * Doesn't support any event scheduled for more than 100 ticks in the future, as it has no secondary queue by design
  */
 SUBSYSTEM_DEF(automatedfire)
 	name = "Automated fire"
@@ -55,6 +57,7 @@ SUBSYSTEM_DEF(automatedfire)
 	/// Index of the first non-empty bucket
 	var/practical_offset = 1
 <<<<<<< HEAD
+<<<<<<< HEAD
 	///How many buckets for every frame of world.fps
 	var/bucket_resolution = 0
 	/// How many shooter are in the buckets
@@ -67,11 +70,16 @@ SUBSYSTEM_DEF(automatedfire)
 /datum/controller/subsystem/automatedfire/PreInit()
 =======
 	/// world.tick_lag the bucket was designed for
+=======
+	///How many buckets exist for one tick
+>>>>>>> 530afc288 (xeno turrets)
 	var/bucket_resolution = 0
 	/// How many shooter are in the buckets
 	var/bucket_count = 0
 	/// List of buckets, each bucket holds every shooter that has to shoot this byond tick
 	var/list/bucket_list = list()
+	/// Reference to the next shooter before we clean shooter.next
+	var/var/datum/component/automatedfire/next_shooter
 
 <<<<<<< HEAD
 /datum/controller/subsystem/autofire/PreInit()
@@ -83,6 +91,7 @@ SUBSYSTEM_DEF(automatedfire)
 	head_offset = world.time
 	bucket_resolution = world.tick_lag
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 /datum/controller/subsystem/automatedfire/stat_entry(msg = "ActShooters:[shooter_count]")
@@ -102,6 +111,12 @@ SUBSYSTEM_DEF(automatedfire)
 		return
 
 >>>>>>> 2aef6ac91 (rename the subsytem)
+=======
+/datum/controller/subsystem/automatedfire/stat_entry(msg = "ActShooters:[bucket_count]")
+	return ..()
+
+/datum/controller/subsystem/automatedfire/fire(resumed = FALSE)
+>>>>>>> 530afc288 (xeno turrets)
 	// Check for when we need to loop the buckets, this occurs when
 	// the head_offset is approaching BUCKET_LEN ticks in the past
 	if (practical_offset > BUCKET_LEN)
@@ -110,6 +125,9 @@ SUBSYSTEM_DEF(automatedfire)
 		resumed = FALSE
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 530afc288 (xeno turrets)
 	// Check for when we have to reset buckets, typically from auto-reset
 	if ((length(bucket_list) != BUCKET_LEN) || (world.tick_lag != bucket_resolution))
 		reset_buckets()
@@ -132,6 +150,7 @@ SUBSYSTEM_DEF(automatedfire)
 		shooter = null
 
 	// Iterate through each bucket starting from the practical offset
+<<<<<<< HEAD
 <<<<<<< HEAD
 	while (practical_offset <= BUCKET_LEN && head_offset + ((practical_offset - 1) * world.tick_lag) <= world.time)	
 		if(!shooter)
@@ -163,32 +182,41 @@ SUBSYSTEM_DEF(automatedfire)
 =======
 	while (practical_offset <= BUCKET_LEN && head_offset + ((practical_offset - 1) * world.tick_lag) <= world.time)
 		var/datum/component/automatedfire/bucket_head = bucket_list[practical_offset]
+=======
+	while (practical_offset <= BUCKET_LEN && head_offset + ((practical_offset - 1) * world.tick_lag) <= world.time)	
+>>>>>>> 530afc288 (xeno turrets)
 		if(!shooter)
-			shooter = bucket_head
+			shooter =  bucket_list[practical_offset]
+			bucket_list[practical_offset] = null
 
 		while (shooter)
+			next_shooter = shooter.next
+			INVOKE_ASYNC(shooter, /datum/component/automatedfire/proc/process_shot)
 
-			if(shooter.process_shot())//If we are still shooting, we reschedule the shooter to the next_fire
-				shooter.schedule()
-
+			SSautomatedfire.bucket_count--
+			shooter = next_shooter
 			if (MC_TICK_CHECK)
 				return
 
-			// Break once we've processed the entire bucket
-			shooter = shooter.next
-			if (shooter == bucket_head)
-				break
-
 		// Empty the bucket
-		bucket_list[practical_offset++] = null
+		practical_offset++
 
 /datum/controller/subsystem/automatedfire/Recover()
 	bucket_list |= SSautomatedfire.bucket_list
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /datum/component/autofire
 >>>>>>> 2aef6ac91 (rename the subsytem)
 =======
+=======
+///In the event of a change of world.tick_lag, we refresh the size of the bucket and the bucket resolution
+/datum/controller/subsystem/automatedfire/proc/reset_buckets()
+	bucket_list.len = BUCKET_LEN
+	head_offset = world.time
+	bucket_resolution = world.tick_lag
+
+>>>>>>> 530afc288 (xeno turrets)
 /datum/component/automatedfire
 >>>>>>> bd5a1ac65 (xeno_turret up to code with autofire)
 	///The owner of this component
@@ -220,19 +248,8 @@ SUBSYSTEM_DEF(automatedfire)
 =======
 >>>>>>> bd5a1ac65 (xeno_turret up to code with autofire)
 
-/**
- * Schedule the shooter into the system, inserting it into the next fire queue
- *
- * This will also account for a shooter already being registered, and in which case
- * the position will be updated to remove it from the previous location if necessary
- *
- * Arguments:
- * * new_next_fire Optional, when provided is used to update an existing shooter with the new specified time
- *
- */
-/datum/component/automatedfire/proc/schedule(new_next_fire = 0)
-	var/list/bucket_list = SSautomatedfire.bucket_list
 
+<<<<<<< HEAD
 	// When necessary, de-list the shooter from its previous position
 	if (new_next_fire)
 		SSautomatedfire.bucket_count--
@@ -250,6 +267,14 @@ SUBSYSTEM_DEF(automatedfire)
 		prev = next = null
 		next_fire = new_next_fire
 >>>>>>> 2aef6ac91 (rename the subsytem)
+=======
+/// chedule the shooter into the system, inserting it into the next fire queue
+/datum/component/automatedfire/proc/schedule_shot()
+	//We move to another bucket, so we clean the reference from the former linked list
+	next = null
+	prev = null	
+	var/list/bucket_list = SSautomatedfire.bucket_list
+>>>>>>> 530afc288 (xeno turrets)
 
 	// Ensure the next_fire time is properly bound to avoid missing a scheduled event
 	next_fire = max(CEILING(next_fire, world.tick_lag), world.time + world.tick_lag)
@@ -277,10 +302,14 @@ SUBSYSTEM_DEF(automatedfire)
 		return
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 530afc288 (xeno turrets)
 	// Otherwise it's a simple insertion into the double-linked list
 	if (bucket_head.next)
 		next = bucket_head.next
 		next.prev = src
+<<<<<<< HEAD
 
 	bucket_head.next = src
 	prev = bucket_head
@@ -300,36 +329,16 @@ SUBSYSTEM_DEF(automatedfire)
 	prev = bucket_head.prev
 	next.prev = src
 	prev.next = src
+=======
+>>>>>>> 530afc288 (xeno turrets)
 
+	bucket_head.next = src
+	prev = bucket_head
 
-/**
- * Removes this autofire component from the autofire subsystem
- */
-/datum/component/automatedfire/proc/unschedule() //This is probably not needed
-	// Attempt to find the bucket that contains this component
-	var/bucket_pos = BUCKET_POS(next_fire)
-
-	// Get local references to the subsystem's vars, faster than accessing on the datum
-	var/list/bucket_list = SSautomatedfire.bucket_list
-
-	// Attempt to get the head of the bucket
-	var/datum/component/automatedfire/bucket_head
-	if (bucket_pos > 0)
-		bucket_head = bucket_list[bucket_pos]
-
-	//Replace the bucket head if needed
-	if(bucket_head == src)
-		bucket_list[bucket_pos] = next
-	SSautomatedfire.bucket_count--
-	// Remove the shooter from the bucket, ensuring to maintain
-	// the integrity of the bucket's list if relevant
-	if(prev != next)
-		prev.next = next
-		next.prev = prev
-	else
-		prev?.next = null
-		next?.prev = null
-	prev = next = null
+	//Something went wrong, probably a lag spike or something. To prevent infinite loops, we reschedule it to a another next fire
+	if(prev == src)
+		next_fire = next_fire += 1
+		schedule_shot()
 
 ///Handle the firing of the autofire component
 <<<<<<< HEAD
@@ -343,8 +352,12 @@ SUBSYSTEM_DEF(automatedfire)
 #undef BUCKET_LEN
 #undef BUCKET_POS
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 <<<<<<< HEAD
+=======
+
+>>>>>>> 530afc288 (xeno turrets)
 /obj/structure/turret_debug
 	name = "debug turret"
 	///What kind of ammo it uses
@@ -405,6 +418,11 @@ SUBSYSTEM_DEF(automatedfire)
 	if(!shooting)
 		shooting = TRUE
 		INVOKE_ASYNC(src, .proc/process_shot)
+<<<<<<< HEAD
+=======
+		next_fire = world.time + shot_delay
+		schedule_shot()
+>>>>>>> 530afc288 (xeno turrets)
 
 
 ///Signal handler for stoping the shooting
@@ -418,8 +436,11 @@ SUBSYSTEM_DEF(automatedfire)
 	SEND_SIGNAL(parent, COMSIG_AUTOMATIC_SHOOTER_SHOOT)
 	next_fire = world.time + shot_delay
 	schedule_shot()
+<<<<<<< HEAD
 =======
 
 >>>>>>> 2aef6ac91 (rename the subsytem)
 =======
 >>>>>>> bd5a1ac65 (xeno_turret up to code with autofire)
+=======
+>>>>>>> 530afc288 (xeno turrets)

@@ -192,6 +192,7 @@
 #include "code\controllers\configuration\entries\general.dm"
 #include "code\controllers\configuration\entries\resources.dm"
 #include "code\controllers\subsystem\air.dm"
+#include "code\controllers\subsystem\autofire.dm"
 #include "code\controllers\subsystem\assets.dm"
 #include "code\controllers\subsystem\atoms.dm"
 <<<<<<< HEAD
@@ -295,7 +296,6 @@
 #include "code\datums\actions\xeno_action.dm"
 #include "code\datums\components\_component.dm"
 #include "code\datums\components\ai.dm"
-#include "code\datums\components\automatic_shooter.dm"
 #include "code\datums\components\bump_attack.dm"
 #include "code\datums\components\chem_booster.dm"
 #include "code\datums\components\clothing_tint.dm"
