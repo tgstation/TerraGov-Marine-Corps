@@ -459,7 +459,7 @@
 	description = "Imbues a target xeno with healing energy, restoring extra Sunder and Health once every 2 seconds up to 5 times whenever it regenerates normally. 60 second duration."
 	keybind_signal = COMSIG_XENOABILITY_HEALING_INFUSION
 
-/*
+//Wraith keybinds - BEGIN
 /datum/keybinding/xeno/place_warp_shadow
 	name = "place_warp_shadow"
 	full_name = "Wraith: Place Warp Shadow"
@@ -475,7 +475,7 @@
 /datum/keybinding/xeno/phase_shift
 	name = "phase_shift"
 	full_name = "Wraith: Phase Shift"
-	description = "Move out of phase with reality for a short duration after a short delay, gaining invulnerability and the ability to move through all physical obstacles."
+	description = "Move out of phase with reality for a short duration after a short delay, gaining invulnerability and the ability to move through almost all physical obstacles. Can't move into space."
 	keybind_signal = COMSIG_XENOABILITY_PHASE_SHIFT
 
 /datum/keybinding/xeno/resync
@@ -499,6 +499,6 @@
 /datum/keybinding/xeno/recall
 	name = "recall"
 	full_name = "Wraith: Recall"
-	description = "Manually cancels your active banishment."
-	keybind_signal = COMSIG_XENOABILITY_BANISH
-*/
+	description = "Recall a target from netherspace, ending Banish's effect."
+	keybind_signal = COMSIG_XENOABILITY_RECALL
+//Wraith keybinds - END
