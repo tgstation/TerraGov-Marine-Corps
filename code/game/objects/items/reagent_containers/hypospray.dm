@@ -52,15 +52,15 @@
 
 		if(!A.contents.len)
 			return //early returning if its empty
-		var/obj/item/PILL = A.contents[1]
+		var/obj/item/pill = A.contents[1]
 
-		if((PILL.reagents.total_volume + reagents.total_volume) > volume)
+		if((pill.reagents.total_volume + reagents.total_volume) > volume)
 			to_chat(user, "<span class='warning'>[src] cannot hold that much more.</span>")
 			return // so it doesnt let people have hypos more filled than their volume
-		PILL.reagents.trans_to(src, PILL.reagents.total_volume)
+		pill.reagents.trans_to(src, pill.reagents.total_volume)
 
 		to_chat(user, "<span class='notice'>You dissolve pill inside [A] in [src].</span>")
-		QDEL_IN(PILL, 5)
+		QDEL_IN(pill, 5)
 		return
 
 	if(!A.reagents)
