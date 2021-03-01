@@ -1133,6 +1133,8 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/normal/handle_silo_death_timer()
 	if(!isdistress(SSticker.mode))
 		return
+	if(world.time < MINIMUM_TIME_SILO_LESS_COLLAPSE)
+		return
 	var/datum/game_mode/infestation/distress/D = SSticker.mode
 	if(D.round_stage != DISTRESS_MARINE_DEPLOYMENT)
 		if(D?.siloless_hive_timer)
