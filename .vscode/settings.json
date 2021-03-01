@@ -1,0 +1,21 @@
+{
+	"eslint.nodePath": ".yarn/sdks",
+	"eslint.workingDirectories": [
+		"./tgui"
+	],
+	"typescript.tsdk": "./tgui/.yarn/sdks/typescript/lib",
+	"typescript.enablePromptUseWorkspaceTsdk": true,
+	"search.exclude": {
+    	"**/.yarn": true,
+    	"**/.pnp.*": true
+	},
+	"workbench.editorAssociations": [
+		{
+			"filenamePattern": "*.dmi",
+			"viewtype": "imagePreview.previewEditor"
+		}
+	],
+	"files.eol": "\n",
+	"gitlens.advanced.blame.customArguments": ["-w"],
+	"tgstationTestExplorer.project.resultsType": "json"
+}
