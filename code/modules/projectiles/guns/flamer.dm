@@ -652,7 +652,7 @@
 	firelevel -= 20 //Water level extinguish
 	updateicon()
 	if(firelevel < 1) //Extinguish if our firelevel is less than 1
-		QDEL_NULL(src)
+		qdel(src)
 
 /mob/living/carbon/human/flamer_fire_crossed(burnlevel, firelevel, fire_mod = 1)
 	if(hard_armor.getRating("fire") >= 100)
