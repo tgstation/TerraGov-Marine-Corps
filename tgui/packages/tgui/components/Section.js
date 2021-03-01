@@ -5,27 +5,11 @@
  */
 
 import { canRender, classes } from 'common/react';
-import { Component, createRef, InfernoNode, RefObject } from 'inferno';
+import { Component, createRef } from 'inferno';
 import { addScrollableNode, removeScrollableNode } from '../events';
-import { BoxProps, computeBoxClassName, computeBoxProps } from './Box';
+import { computeBoxClassName, computeBoxProps } from './Box';
 
-interface SectionProps extends BoxProps {
-  className?: string;
-  title?: string;
-  buttons?: InfernoNode;
-  fill?: boolean;
-  fitted?: boolean;
-  scrollable?: boolean;
-  /** @deprecated This property no longer works, please remove it. */
-  level?: boolean;
-  /** @deprecated Please use `scrollable` property */
-  overflowY?: any;
-}
-
-export class Section extends Component<SectionProps> {
-  scrollableRef: RefObject<HTMLDivElement>;
-  scrollable: boolean;
-
+export class Section extends Component {
   constructor(props) {
     super(props);
     this.scrollableRef = createRef();
@@ -65,7 +49,7 @@ export class Section extends Component<SectionProps> {
           fitted && 'Section--fitted',
           scrollable && 'Section--scrollable',
           className,
-          computeBoxClassName(rest),
+          ...computeBoxClassName(rest),
         ])}
         {...computeBoxProps(rest)}>
         {hasTitle && (

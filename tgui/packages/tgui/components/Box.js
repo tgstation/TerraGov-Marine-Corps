@@ -4,64 +4,15 @@
  * @license MIT
  */
 
-import { BooleanLike, classes, pureComponentHooks } from 'common/react';
-import { createVNode, InfernoNode } from 'inferno';
+import { classes, pureComponentHooks } from 'common/react';
+import { createVNode } from 'inferno';
 import { ChildFlags, VNodeFlags } from 'inferno-vnode-flags';
 import { CSS_COLORS } from '../constants';
-
-export interface BoxProps {
-  [key: string]: any;
-  as?: string;
-  className?: string | BooleanLike;
-  children?: InfernoNode;
-  position?: string | BooleanLike;
-  overflow?: string | BooleanLike;
-  overflowX?: string | BooleanLike;
-  overflowY?: string | BooleanLike;
-  top?: string | BooleanLike;
-  bottom?: string | BooleanLike;
-  left?: string | BooleanLike;
-  right?: string | BooleanLike;
-  width?: string | BooleanLike;
-  minWidth?: string | BooleanLike;
-  maxWidth?: string | BooleanLike;
-  height?: string | BooleanLike;
-  minHeight?: string | BooleanLike;
-  maxHeight?: string | BooleanLike;
-  fontSize?: string | BooleanLike;
-  fontFamily?: string;
-  lineHeight?: string | BooleanLike;
-  opacity?: number;
-  textAlign?: string | BooleanLike;
-  verticalAlign?: string | BooleanLike;
-  inline?: BooleanLike;
-  bold?: BooleanLike;
-  italic?: BooleanLike;
-  nowrap?: BooleanLike;
-  m?: string | BooleanLike;
-  mx?: string | BooleanLike;
-  my?: string | BooleanLike;
-  mt?: string | BooleanLike;
-  mb?: string | BooleanLike;
-  ml?: string | BooleanLike;
-  mr?: string | BooleanLike;
-  p?: string | BooleanLike;
-  px?: string | BooleanLike;
-  py?: string | BooleanLike;
-  pt?: string | BooleanLike;
-  pb?: string | BooleanLike;
-  pl?: string | BooleanLike;
-  pr?: string | BooleanLike;
-  color?: string | BooleanLike;
-  textColor?: string | BooleanLike;
-  backgroundColor?: string | BooleanLike;
-  fillPositionedParent?: boolean;
-}
 
 /**
  * Coverts our rem-like spacing unit into a CSS unit.
  */
-export const unit = (value: unknown): string | undefined => {
+export const unit = value => {
   if (typeof value === 'string') {
     // Transparently convert pixels into rem units
     if (value.endsWith('px') && !Byond.IS_LTE_IE8) {
@@ -80,7 +31,7 @@ export const unit = (value: unknown): string | undefined => {
 /**
  * Same as `unit`, but half the size for integers numbers.
  */
-export const halfUnit = (value: unknown): string | undefined => {
+export const halfUnit = value => {
   if (typeof value === 'string') {
     return unit(value);
   }
@@ -89,13 +40,10 @@ export const halfUnit = (value: unknown): string | undefined => {
   }
 };
 
-const isColorCode = (str: unknown) => !isColorClass(str);
+const isColorCode = str => !isColorClass(str);
 
-const isColorClass = (str: unknown): boolean => {
-  if (typeof str === 'string') {
-    return CSS_COLORS.includes(str);
-  }
-};
+const isColorClass = str => typeof str === 'string'
+  && CSS_COLORS.includes(str);
 
 const mapRawPropTo = attrName => (style, value) => {
   if (typeof value === 'number' || typeof value === 'string') {
@@ -207,8 +155,8 @@ const styleMapperByPropName = {
   },
 };
 
-export const computeBoxProps = (props: BoxProps) => {
-  const computedProps: HTMLAttributes<any> = {};
+export const computeBoxProps = props => {
+  const computedProps = {};
   const computedStyles = {};
   // Compute props
   for (let propName of Object.keys(props)) {
@@ -247,7 +195,7 @@ export const computeBoxProps = (props: BoxProps) => {
   return computedProps;
 };
 
-export const computeBoxClassName = (props: BoxProps) => {
+export const computeBoxClassName = props => {
   const color = props.textColor || props.color;
   const backgroundColor = props.backgroundColor;
   return classes([
@@ -256,7 +204,7 @@ export const computeBoxClassName = (props: BoxProps) => {
   ]);
 };
 
-export const Box = (props: BoxProps) => {
+export const Box = props => {
   const {
     as = 'div',
     className,

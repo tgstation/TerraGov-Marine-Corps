@@ -12,7 +12,6 @@
  */
 
 import { perf } from 'common/perf';
-import { createAction } from 'common/redux';
 import { setupDrag } from './drag';
 import { focusMap } from './focus';
 import { createLogger } from './logging';
@@ -20,9 +19,19 @@ import { resumeRenderer, suspendRenderer } from './renderer';
 
 const logger = createLogger('backend');
 
-export const backendUpdate = createAction('backend/update');
-export const backendSetSharedState = createAction('backend/setSharedState');
-export const backendSuspendStart = createAction('backend/suspendStart');
+export const backendUpdate = state => ({
+  type: 'backend/update',
+  payload: state,
+});
+
+export const backendSetSharedState = (key, nextState) => ({
+  type: 'backend/setSharedState',
+  payload: { key, nextState },
+});
+
+export const backendSuspendStart = () => ({
+  type: 'backend/suspendStart',
+});
 
 export const backendSuspendSuccess = () => ({
   type: 'backend/suspendSuccess',
@@ -211,11 +220,11 @@ export const backendMiddleware = store => {
 };
 
 /**
-  * Sends a message to /datum/tgui_window.
-  */
-export const sendMessage = (message: any = {}) => {
+ * Sends a message to /datum/tgui_window.
+ */
+export const sendMessage = (message = {}) => {
   const { payload, ...rest } = message;
-  const data: any = {
+  const data = {
     // Message identifying header
     tgui: 1,
     window_id: window.__windowId__,
@@ -230,10 +239,10 @@ export const sendMessage = (message: any = {}) => {
 };
 
 /**
-  * Sends an action to `ui_act` on `src_object` that this tgui window
-  * is associated with.
-  */
-export const sendAct = (action: string, payload: object = {}) => {
+ * Sends an action to `ui_act` on `src_object` that this tgui window
+ * is associated with.
+ */
+export const sendAct = (action, payload = {}) => {
   // Validate that payload is an object
   const isObject = typeof payload === 'object'
     && payload !== null
@@ -248,51 +257,56 @@ export const sendAct = (action: string, payload: object = {}) => {
   });
 };
 
-type BackendState<TData> = {
-  config: {
-    title: string,
-    status: number,
-    interface: string,
-    window: {
-      key: string,
-      size: [number, number],
-      fancy: boolean,
-      locked: boolean,
-    },
-    client: {
-      ckey: string,
-      address: string,
-      computer_id: string,
-    },
-    user: {
-      name: string,
-      observer: number,
-    },
-  },
-  data: TData,
-  shared: Record<string, any>,
-  suspending: boolean,
-  suspended: boolean,
-}
+/**
+ * @typedef BackendState
+ * @type {{
+ *   config: {
+ *     title: string,
+ *     status: number,
+ *     interface: string,
+ *     window: {
+ *       key: string,
+ *       size: [number, number],
+ *       fancy: boolean,
+ *       locked: boolean,
+ *     },
+ *     client: {
+ *       ckey: string,
+ *       address: string,
+ *       computer_id: string,
+ *     },
+ *     user: {
+ *       name: string,
+ *       observer: number,
+ *     },
+ *   },
+ *   data: any,
+ *   shared: any,
+ *   suspending: boolean,
+ *   suspended: boolean,
+ * }}
+ */
 
 /**
-  * Selects a backend-related slice of Redux state
-  */
-export const selectBackend = <TData>(state: any): BackendState<TData> => (
-  state.backend || {}
-);
+ * Selects a backend-related slice of Redux state
+ *
+ * @return {BackendState}
+ */
+export const selectBackend = state => state.backend || {};
 
 /**
-  * A React hook (sort of) for getting tgui state and related functions.
-  *
-  * This is supposed to be replaced with a real React Hook, which can only
-  * be used in functional components.
-  *
-  * You can make
-  */
-export const useBackend = <TData>(context: any) => {
+ * A React hook (sort of) for getting tgui state and related functions.
+ *
+ * This is supposed to be replaced with a real React Hook, which can only
+ * be used in functional components.
+ *
+ * @return {BackendState & {
+ *   act: sendAct,
+ * }}
+ */
+export const useBackend = context => {
   const { store } = context;
-  const state = selectBackend<TData>(store.getState());
+  const state = selectBackend(store.getState());
   return {
     ...state,
     act: sendAct,
@@ -300,28 +314,19 @@ export const useBackend = <TData>(context: any) => {
 };
 
 /**
-  * A tuple that contains the state and a setter function for it.
-  */
-type StateWithSetter<T> = [T, (nextState: T) => void];
-
-/**
-  * Allocates state on Redux store without sharing it with other clients.
-  *
-  * Use it when you want to have a stateful variable in your component
-  * that persists between renders, but will be forgotten after you close
-  * the UI.
-  *
-  * It is a lot more performant than `setSharedState`.
-  *
-  * @param context React context.
-  * @param key Key which uniquely identifies this state in Redux store.
-  * @param initialState Initializes your global variable with this value.
-  */
-export const useLocalState = <T>(
-  context: any,
-  key: string,
-  initialState: T,
-): StateWithSetter<T> => {
+ * Allocates state on Redux store without sharing it with other clients.
+ *
+ * Use it when you want to have a stateful variable in your component
+ * that persists between renders, but will be forgotten after you close
+ * the UI.
+ *
+ * It is a lot more performant than `setSharedState`.
+ *
+ * @param {any} context React context.
+ * @param {string} key Key which uniquely identifies this state in Redux store.
+ * @param {any} initialState Initializes your global variable with this value.
+ */
+export const useLocalState = (context, key, initialState) => {
   const { store } = context;
   const state = selectBackend(store.getState());
   const sharedStates = state.shared ?? {};
@@ -331,37 +336,30 @@ export const useLocalState = <T>(
   return [
     sharedState,
     nextState => {
-      store.dispatch(backendSetSharedState({
-        key,
-        nextState: (
-          typeof nextState === 'function'
-            ? nextState(sharedState)
-            : nextState
-        ),
-      }));
+      store.dispatch(backendSetSharedState(key, (
+        typeof nextState === 'function'
+          ? nextState(sharedState)
+          : nextState
+      )));
     },
   ];
 };
 
 /**
-  * Allocates state on Redux store, and **shares** it with other clients
-  * in the game.
-  *
-  * Use it when you want to have a stateful variable in your component
-  * that persists not only between renders, but also gets pushed to other
-  * clients that observe this UI.
-  *
-  * This makes creation of observable s
-  *
-  * @param context React context.
-  * @param key Key which uniquely identifies this state in Redux store.
-  * @param initialState Initializes your global variable with this value.
-  */
-export const useSharedState = <T>(
-  context: any,
-  key: string,
-  initialState: T,
-): StateWithSetter<T> => {
+ * Allocates state on Redux store, and **shares** it with other clients
+ * in the game.
+ *
+ * Use it when you want to have a stateful variable in your component
+ * that persists not only between renders, but also gets pushed to other
+ * clients that observe this UI.
+ *
+ * This makes creation of observable s
+ *
+ * @param {any} context React context.
+ * @param {string} key Key which uniquely identifies this state in Redux store.
+ * @param {any} initialState Initializes your global variable with this value.
+ */
+export const useSharedState = (context, key, initialState) => {
   const { store } = context;
   const state = selectBackend(store.getState());
   const sharedStates = state.shared ?? {};

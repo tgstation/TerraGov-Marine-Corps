@@ -6,7 +6,9 @@
 
 import { createLogger } from 'common/logging.js';
 import fs from 'fs';
-import os from 'os'; import { basename } from 'path';
+import os from 'os';
+import { basename } from 'path';
+import { promisify } from 'util';
 import { resolveGlob, resolvePath } from './util.js';
 import { regQuery } from './winreg.js';
 import { DreamSeeker } from './dreamseeker.js';
@@ -91,21 +93,15 @@ export const reloadByondCache = async bundleDir => {
   for (let cacheDir of cacheDirs) {
     // Clear garbage
     const garbage = await resolveGlob(cacheDir, './*.+(bundle|chunk|hot-update).*');
-    try {
-      for (let file of garbage) {
-        fs.unlink(file);
-      }
-      // Copy assets
-      for (let asset of assets) {
-        const destination = resolvePath(cacheDir, basename(asset));
-        fs.copyFile(asset, destination);
-      }
-      logger.log(`copied ${assets.length} files to '${cacheDir}'`);
+    for (let file of garbage) {
+      await promisify(fs.unlink)(file);
     }
-    catch (err) {
-      logger.error(`failed copying to '${cacheDir}'`);
-      logger.error(err);
+    // Copy assets
+    for (let asset of assets) {
+      const destination = resolvePath(cacheDir, basename(asset));
+      await promisify(fs.copyFile)(asset, destination);
     }
+    logger.log(`copied ${assets.length} files to '${cacheDir}'`);
   }
   // Notify dreamseeker
   const dss = await dssPromise;

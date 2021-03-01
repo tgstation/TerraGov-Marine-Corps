@@ -4,18 +4,10 @@
  * @license MIT
  */
 
-import { BooleanLike, classes, pureComponentHooks } from 'common/react';
-import { Box, BoxProps, unit } from './Box';
+import { classes, pureComponentHooks } from 'common/react';
+import { Box, unit } from './Box';
 
-export interface FlexProps extends BoxProps {
-  direction: string | BooleanLike;
-  wrap: string | BooleanLike;
-  align: string | BooleanLike;
-  justify: string | BooleanLike;
-  inline: BooleanLike;
-}
-
-export const computeFlexProps = (props: FlexProps) => {
+export const computeFlexProps = props => {
   const {
     className,
     direction,
@@ -53,15 +45,7 @@ export const Flex = props => (
 
 Flex.defaultHooks = pureComponentHooks;
 
-export interface FlexItemProps extends BoxProps {
-  grow?: number;
-  order?: number;
-  shrink?: number;
-  basis?: string | BooleanLike;
-  align?: string | BooleanLike;
-}
-
-export const computeFlexItemProps = (props: FlexItemProps) => {
+export const computeFlexItemProps = props => {
   const {
     className,
     style,
@@ -93,7 +77,7 @@ export const computeFlexItemProps = (props: FlexItemProps) => {
   };
 };
 
-const FlexItem = props => (
+export const FlexItem = props => (
   <Box {...computeFlexItemProps(props)} />
 );
 

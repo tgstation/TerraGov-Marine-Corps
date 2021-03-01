@@ -6,8 +6,11 @@
 
 /**
  * Helper for conditionally adding/removing classes in React
+ *
+ * @param {any[]} classNames
+ * @return {string}
  */
-export const classes = (classNames: (string | BooleanLike)[]) => {
+export const classes = classNames => {
   let className = '';
   for (let i = 0; i < classNames.length; i++) {
     const part = classNames[i];
@@ -22,9 +25,9 @@ export const classes = (classNames: (string | BooleanLike)[]) => {
  * Normalizes children prop, so that it is always an array of VDom
  * elements.
  */
-export const normalizeChildren = <T>(children: T | T[]) => {
+export const normalizeChildren = children => {
   if (Array.isArray(children)) {
-    return children.flat().filter(value => value) as T[];
+    return children.flat().filter(value => value);
   }
   if (typeof children === 'object') {
     return [children];
@@ -36,7 +39,7 @@ export const normalizeChildren = <T>(children: T | T[]) => {
  * Shallowly checks if two objects are different.
  * Credit: https://github.com/developit/preact-compat
  */
-export const shallowDiffers = (a: object, b: object) => {
+export const shallowDiffers = (a, b) => {
   let i;
   for (i in a) {
     if (!(i in b)) {
@@ -63,14 +66,8 @@ export const pureComponentHooks = {
 /**
  * A helper to determine whether the object is renderable by React.
  */
-export const canRender = (value: unknown) => {
+export const canRender = value => {
   return value !== undefined
     && value !== null
     && typeof value !== 'boolean';
 };
-
-/**
- * A common case in tgui, when you pass a value conditionally, these are
- * the types that can fall through the condition.
- */
-export type BooleanLike = number | boolean | null | undefined;
