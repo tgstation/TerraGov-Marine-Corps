@@ -9,7 +9,7 @@
 /datum/action/xeno_action/activable/nightfall
 	name = "Nightfall"
 	action_icon_state = "nightfall"
-	mechanics_text = "Shut down all light for 10 seconds"
+	mechanics_text = "Shut down all light for 5 seconds"
 	cooldown_timer = 2 MINUTES
 	plasma_cost = 100
 	var/range = 10
