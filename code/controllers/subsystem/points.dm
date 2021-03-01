@@ -166,6 +166,10 @@ SUBSYSTEM_DEF(points)
 	var/list/ckey_shopping_cart = request_shopping_cart[user.ckey]
 	if(!length(ckey_shopping_cart))
 		return
+	if(NON_ASCII_CHECK(reason))
+		return
+	if(length(reason) > MAX_LENGTH_REQ_REASON)
+		reason = copytext(reason, 1, MAX_LENGTH_REQ_REASON)
 	var/list/datum/supply_order/orders = process_cart(user, ckey_shopping_cart)
 	for(var/i in 1 to length(orders))
 		orders[i].reason = reason

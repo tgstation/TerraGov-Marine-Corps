@@ -501,6 +501,9 @@
 	pixel_y = 2
 	},
 /obj/item/storage/firstaid/toxin,
+/obj/machinery/camera/autoname{
+	dir = 8
+	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
 	},
@@ -520,6 +523,9 @@
 /area/sulaco/medbay/west)
 "abE" = (
 /obj/structure/sign/directions/science{
+	dir = 1
+	},
+/obj/machinery/camera/autoname{
 	dir = 1
 	},
 /turf/open/floor/prison/whitegreen/corner{
@@ -1422,6 +1428,9 @@
 /obj/item/storage/box/gloves{
 	pixel_x = 4;
 	pixel_y = 4
+	},
+/obj/machinery/camera/autoname{
+	dir = 8
 	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
@@ -10736,6 +10745,10 @@
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/sulaco/hallway/central_hall)
+"cod" = (
+/obj/machinery/camera/autoname,
+/turf/open/floor/prison,
+/area/sulaco/marine/charlie)
 "coO" = (
 /turf/open/floor/prison/whitegreen{
 	dir = 8
@@ -11660,6 +11673,11 @@
 /obj/machinery/light/small,
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_main_hall)
+"eVU" = (
+/obj/structure/reagent_dispensers/fueltank,
+/obj/machinery/light,
+/turf/open/floor/prison,
+/area/sulaco/hangar)
 "eXT" = (
 /obj/structure/rack,
 /obj/item/assembly/signaler,
@@ -11677,6 +11695,10 @@
 	},
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/hallway/central_hall3)
+"fat" = (
+/obj/machinery/camera/autoname,
+/turf/open/floor/prison,
+/area/sulaco/marine/delta)
 "faO" = (
 /obj/structure/window/framed/mainship/gray/toughened/hull,
 /turf/open/floor/plating/platebotc,
@@ -11970,6 +11992,13 @@
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
 	},
+/area/sulaco/medbay/west)
+"fYC" = (
+/obj/machinery/iv_drip,
+/obj/machinery/camera/autoname{
+	dir = 1
+	},
+/turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/west)
 "gbY" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -13135,6 +13164,10 @@
 /obj/machinery/microwave,
 /turf/open/floor/prison/kitchen,
 /area/sulaco/cafeteria)
+"jvW" = (
+/obj/machinery/camera/autoname,
+/turf/open/floor/prison,
+/area/sulaco/marine/bravo)
 "jwV" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
@@ -13462,6 +13495,10 @@
 /obj/structure/ship_ammo/minirocket,
 /turf/open/floor/prison,
 /area/sulaco/hangar)
+"kuz" = (
+/obj/machinery/camera/autoname,
+/turf/open/floor/prison,
+/area/sulaco/marine/alpha)
 "kvB" = (
 /obj/structure/safe,
 /obj/item/reagent_containers/food/drinks/flask/detflask{
@@ -16816,6 +16853,15 @@
 	dir = 8
 	},
 /area/sulaco/hangar/droppod)
+"sLA" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "sLY" = (
 /obj/structure/window/framed/mainship/gray/toughened/hull,
 /turf/open/floor/plating/platebotc,
@@ -18051,6 +18097,13 @@
 	},
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/engineering/engine)
+"wpm" = (
+/obj/effect/decal/warning_stripes/thin,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "wqg" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -34082,18 +34135,18 @@ aFY
 aFY
 aCt
 aDH
-aFY
+fat
 aFY
 aHb
 aDH
-aFY
+fat
 aDk
 aDH
-aFY
+fat
 aFY
 acV
 aDH
-aFY
+fat
 aFY
 aOH
 mDu
@@ -36143,18 +36196,18 @@ aJV
 aJV
 aGH
 aJS
-aJV
+cod
 aJV
 aLb
 aJS
 aJV
 aDT
 aJS
-aJV
+cod
 aJV
 aog
 aJS
-aJV
+cod
 aJV
 aDz
 mDu
@@ -37175,8 +37228,8 @@ aJV
 aJV
 aJV
 aJV
-aJV
 aKE
+aJV
 aMd
 aJV
 aJV
@@ -38206,11 +38259,11 @@ aJX
 aKa
 aMS
 aJX
-aKa
+jvW
 aKa
 aNg
 aJX
-aKa
+jvW
 aKa
 aMF
 mDu
@@ -39231,8 +39284,8 @@ aKa
 aKa
 aKa
 aKa
-aKa
 aKJ
+aKa
 aMg
 aKa
 aKa
@@ -40255,18 +40308,18 @@ aKK
 aKK
 aGQ
 aKb
-aKK
+kuz
 aKK
 aLf
 aKb
 aKK
 aPf
 aKb
-aKK
+kuz
 aKK
 aOR
 aKb
-aKK
+kuz
 aKK
 aOX
 mDu
@@ -41287,8 +41340,8 @@ aKK
 aKK
 aKK
 aKK
-aKK
 wMZ
+aKK
 aMj
 aKK
 aKK
@@ -43066,7 +43119,7 @@ arE
 amB
 aWG
 xKR
-aWG
+kXj
 aam
 aaR
 abA
@@ -43587,7 +43640,7 @@ aam
 abN
 acd
 aam
-vRI
+fYC
 ada
 abG
 qAU
@@ -56423,7 +56476,7 @@ aPF
 aPF
 aPF
 aPF
-aPF
+aRQ
 aRx
 cMx
 aRx
@@ -57455,7 +57508,7 @@ aQp
 cdy
 aUL
 cdy
-aMR
+eVU
 aPY
 jaQ
 fVO
@@ -57693,7 +57746,7 @@ aaa
 nzi
 mDu
 bFa
-aQa
+wpm
 aPZ
 aPZ
 aPZ
@@ -58731,7 +58784,7 @@ aRE
 aRE
 aRE
 aRE
-aQL
+sLA
 aPF
 aPF
 aSN
