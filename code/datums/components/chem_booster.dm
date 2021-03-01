@@ -395,7 +395,7 @@
 		to_chat(user, "<span class='notice'>The system's reagent storage is empty.</span>")
 		return
 	to_chat(user, "<span class='notice'>The system's reagent storage contains:</span>")
-	for(var/datum/reagent/R as() in meds_beaker.reagents.reagent_list)
+	for(var/datum/reagent/R AS in meds_beaker.reagents.reagent_list)
 		to_chat(user, "<span class='rose'>[R.name] - [R.volume]u</span>")
 
 /datum/action/chem_booster/configure
