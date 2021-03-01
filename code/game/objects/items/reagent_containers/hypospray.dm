@@ -61,7 +61,7 @@
 
 		to_chat(user, "<span class='notice'>You dissolve pill inside [A] in [src].</span>")
 		A.contents -= pill
-		QDEL(pill)
+		qdel(pill)
 		return
 
 	if(!A.reagents)
