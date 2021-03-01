@@ -72,6 +72,7 @@
 /datum/game_mode/infestation/distress/post_setup()
 	. = ..()
 	scale_gear()
+	addtimer(CALLBACK(src, .proc/announce_bioscans, FALSE, 1), rand(30 SECONDS, 1 MINUTES)) //First scan shows no location but more precise numbers.
 
 /datum/game_mode/infestation/distress/proc/map_announce()
 	if(!SSmapping.configs[GROUND_MAP].announce_text)
