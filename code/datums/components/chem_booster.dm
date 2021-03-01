@@ -386,7 +386,7 @@
 		return
 
 	var/trans = held_beaker.reagents.trans_to(meds_beaker, held_beaker.amount_per_transfer_from_this)
-	to_chat(wearer, "<span class='notice'>You load [trans]u into the system's reagent storage.</span>")
+	to_chat(wearer, "<span class='notice'>You load [trans] units into the system's reagent storage.</span>")
 	show_meds_beaker_contents(wearer)
 
 ///Shows the loaded reagents to the person examining the parent/wearer
