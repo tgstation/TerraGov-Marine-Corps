@@ -50,7 +50,7 @@
 			to_chat(user, "<span class='warning'>[src] is full.</span>")
 			return  //early returning if its full
 
-		if(!M.contents.len)
+		if(!A.contents.len)
 			return //early returning if its empty
 		var/obj/item/PILL = A.contents[1]
 
