@@ -46,7 +46,7 @@
 
 /obj/item/reagent_containers/hypospray/afterattack(atom/A, mob/living/user)
 	if(istype(A, /obj/item/storage/pill_bottle)) //this should only run if its a pillbottle
-		if(reagents.total_volume  >= volume)
+		if(reagents.total_volume >= volume)
 			to_chat(user, "<span class='warning'>[src] is full.</span>")
 			return  //early returning if its full
 		var/obj/item/storage/pill_bottle/M = A
@@ -62,7 +62,7 @@
 
 		to_chat(user, "<span class='notice'>You dissolve pill inside [M] in [src].</span>")
 		QDEL_IN(PILL, 5)
-			return
+		return
 
 	if(!A.reagents)
 		return
