@@ -1,5 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - bugfix: "xenos silo proximity alerts now work"
-  - balance: "range of proximity alerts is now 10 instead of just 2"
