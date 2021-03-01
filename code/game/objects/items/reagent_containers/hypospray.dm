@@ -60,7 +60,7 @@
 		pill.reagents.trans_to(src, pill.reagents.total_volume)
 
 		to_chat(user, "<span class='notice'>You dissolve pill inside [A] in [src].</span>")
-		QDEL_IN(pill, 5)
+		QDEL(pill)
 		return
 
 	if(!A.reagents)
