@@ -41,8 +41,8 @@
 	///When was the effect activated. Used to activate negative effects after a certain amount of use
 	var/processing_start = 0
 	///Internal reagent storage used to store and automatically inject reagents into the wearer
-	var/obj/item/reagent_containers/glass/beaker/meds_beaker = null
-	///Weather the contents on the meds_beaker will be injected into the wearer when the system is turned on
+	var/obj/item/reagent_containers/glass/beaker/meds_beaker
+	///Whether the contents on the meds_beaker will be injected into the wearer when the system is turned on
 	var/automatic_meds_use = TRUE
 	///Image that gets added to the wearer's overlays and gets changed based on resource_storage_current
 	var/static/image/resource_overlay = image('icons/mob/hud.dmi', icon_state = "chemsuit_vis")
@@ -53,15 +53,15 @@
 		return COMPONENT_INCOMPATIBLE
 	update_boost(boost_tier1)
 	analyzer = new
-	meds_beaker = new /obj/item/reagent_containers/glass/beaker
+	meds_beaker = new
 
 /datum/component/chem_booster/Destroy(force, silent)
 	QDEL_NULL(configure_action)
 	QDEL_NULL(power_action)
 	QDEL_NULL(scan_action)
 	QDEL_NULL(analyzer)
+	QDEL_NULL(meds_beaker)
 	wearer = null
-	meds_beaker = null
 	return ..()
 
 /datum/component/chem_booster/RegisterWithParent()
@@ -91,7 +91,7 @@
 /datum/component/chem_booster/proc/examine(datum/source, mob/user)
 	SIGNAL_HANDLER
 	to_chat(user, "<span class='notice'>The chemical system currently holds [resource_storage_current]u of green blood. Its' enhancement level is set to [boost_amount+1].</span>")
-	show_meds_beaker_contents()
+	show_meds_beaker_contents(user)
 
 ///Disables active functions and cleans up actions when the suit is unequipped
 /datum/component/chem_booster/proc/dropped(datum/source, mob/user)
@@ -351,11 +351,11 @@
 		return
 
 	var/obj/item/held_item = wearer.get_held_item()
-	if(((!held_item || !istype(held_item, /obj/item/reagent_containers)) && !meds_beaker.reagents.total_volume) || istype(held_item, /obj/item/reagent_containers/pill))
+	if((!istype(held_item, /obj/item/reagent_containers) && !meds_beaker.reagents.total_volume) || istype(held_item, /obj/item/reagent_containers/pill))
 		to_chat(wearer, "<span class='warning'>You need to be holding a liquid container to fill up the system's reagent storage.</span>")
 		return
 
-	if((!held_item || !istype(held_item, /obj/item/reagent_containers)) && meds_beaker.reagents.total_volume)
+	if(!istype(held_item, /obj/item/reagent_containers) && meds_beaker.reagents.total_volume)
 		var/pick = tgui_input_list(wearer, "Automatic reagent injection on system activate:", "Vali system", list("Yes", "No"))
 		if(pick == "Yes")
 			automatic_meds_use = TRUE
@@ -375,7 +375,7 @@
 			if(!do_after(wearer, 0.5 SECONDS, TRUE, held_item, BUSY_ICON_FRIENDLY, null, PROGRESS_BRASS, ignore_turf_checks = TRUE))
 				return
 			meds_beaker.reagents.trans_to(held_beaker, 60)
-			show_meds_beaker_contents()
+			show_meds_beaker_contents(wearer)
 		return
 
 	if(meds_beaker.reagents.total_volume >= meds_beaker.volume)
@@ -387,17 +387,16 @@
 
 	var/trans = held_beaker.reagents.trans_to(meds_beaker, held_beaker.amount_per_transfer_from_this)
 	to_chat(wearer, "<span class='notice'>You load [trans]u into the system's reagent storage.</span>")
-	show_meds_beaker_contents()
+	show_meds_beaker_contents(wearer)
 
-///Shows the loaded reagents
-/datum/component/chem_booster/proc/show_meds_beaker_contents()
+///Shows the loaded reagents to the person examining the parent/wearer
+/datum/component/chem_booster/proc/show_meds_beaker_contents(mob/user)
 	if(!meds_beaker.reagents.total_volume)
-		to_chat(wearer, "<span class='notice'>The system's reagent storage is empty.</span>")
+		to_chat(user, "<span class='notice'>The system's reagent storage is empty.</span>")
 		return
-	to_chat(wearer, "<span class='notice'>The system's reagent storage contains:</span>")
-	for(var/X in meds_beaker.reagents.reagent_list)
-		var/datum/reagent/R = X
-		to_chat(wearer, "<span class='rose'>[R.name] - [R.volume]u</span>")
+	to_chat(user, "<span class='notice'>The system's reagent storage contains:</span>")
+	for(var/datum/reagent/R as() in meds_beaker.reagents.reagent_list)
+		to_chat(user, "<span class='rose'>[R.name] - [R.volume]u</span>")
 
 /datum/action/chem_booster/configure
 	name = "Configure Vali Chemical Enhancement"
