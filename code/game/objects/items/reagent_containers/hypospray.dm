@@ -49,18 +49,17 @@
 		if(reagents.total_volume >= volume)
 			to_chat(user, "<span class='warning'>[src] is full.</span>")
 			return  //early returning if its full
-		var/obj/item/storage/pill_bottle/M = A
 
 		if(!M.contents.len)
 			return //early returning if its empty
-		var/obj/item/PILL = M.contents[1]
+		var/obj/item/PILL = A.contents[1]
 
 		if((PILL.reagents.total_volume + reagents.total_volume) > volume)
 			to_chat(user, "<span class='warning'>[src] cannot hold that much more.</span>")
 			return // so it doesnt let people have hypos more filled than their volume
 		PILL.reagents.trans_to(src, PILL.reagents.total_volume)
 
-		to_chat(user, "<span class='notice'>You dissolve pill inside [M] in [src].</span>")
+		to_chat(user, "<span class='notice'>You dissolve pill inside [A] in [src].</span>")
 		QDEL_IN(PILL, 5)
 		return
 
