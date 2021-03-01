@@ -224,7 +224,7 @@
 	SSpoints.supply_points += mineral_value * stored_mineral
 	do_sparks(5, TRUE, src)
 	playsound(loc,'sound/effects/phasein.ogg', 50, FALSE)
-	visible_message("<span class='notice'>The [src] buzzes: Ore shipment has been sold for [mineral_value * stored_mineral] points.</span>")
+	say("Ore shipment has been sold for [mineral_value * stored_mineral] points.")
 	stored_mineral = 0
 
 /obj/machinery/miner/process()
