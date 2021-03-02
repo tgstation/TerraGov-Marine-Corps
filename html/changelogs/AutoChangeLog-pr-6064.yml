@@ -1,0 +1,4 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - code_imp: "Bucketed autofire system, can be used to sanitize full auto firing and in the xeno turrets"
