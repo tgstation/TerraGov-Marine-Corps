@@ -77,7 +77,7 @@ SUBSYSTEM_DEF(automatedfire)
 			if (MC_TICK_CHECK)
 				return
 
-		// Empty the bucket
+		// Move to the next bucket
 		practical_offset++
 
 /datum/controller/subsystem/automatedfire/Recover()
