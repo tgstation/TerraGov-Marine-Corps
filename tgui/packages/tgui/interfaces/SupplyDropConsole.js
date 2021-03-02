@@ -1,15 +1,6 @@
 import { useBackend } from '../backend';
-import {
-  Button,
-  Section,
-  LabeledList,
-  ProgressBar,
-  Divider,
-  Dropdown,
-  NumberInput,
-} from '../components';
+import { Button, Section, LabeledList, ProgressBar, Divider, Dropdown, NumberInput } from '../components';
 import { Window } from '../layouts';
-import { LabeledListItem } from '../components/LabeledList';
 
 export const SupplyDropConsole = (_props, context) => {
   const { act, data } = useBackend(context);
@@ -32,7 +23,7 @@ export const SupplyDropConsole = (_props, context) => {
       <Window.Content scrollable>
         <Section title="Supply drop">
           <LabeledList>
-            <LabeledListItem label={'Current Squad'}>
+            <LabeledList.Item label={'Current Squad'}>
               {data.squad_lock ? (
                 data.squad_lock
               ) : (
@@ -43,20 +34,20 @@ export const SupplyDropConsole = (_props, context) => {
                     act('select_squad', { select_squad: e })}
                 />
               )}
-            </LabeledListItem>
+            </LabeledList.Item>
             <Divider />
-            <LabeledListItem label="X Offset">
+            <LabeledList.Item label="X Offset">
               <NumberInput
                 value={data.x_offset}
                 onChange={(e, value) => act('set_x', { set_x: `${value}` })}
               />
-            </LabeledListItem>
-            <LabeledListItem label="Y Offset">
+            </LabeledList.Item>
+            <LabeledList.Item label="Y Offset">
               <NumberInput
                 value={data.y_offset}
                 onChange={(e, value) => act('set_y', { set_y: `${value}` })}
               />
-            </LabeledListItem>
+            </LabeledList.Item>
           </LabeledList>
           <Divider />
           <Section

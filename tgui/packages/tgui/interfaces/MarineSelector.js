@@ -1,7 +1,6 @@
 import { useBackend, useLocalState } from '../backend';
 import { Button, Section, Box, ProgressBar, LabeledList, Modal } from '../components';
 import { Window } from '../layouts';
-import { LabeledListItem } from '../components/LabeledList';
 
 export const MarineSelector = (props, context) => {
   const { act, data } = useBackend(context);
@@ -158,7 +157,7 @@ const ItemLine = (props, context) => {
   } = props;
 
   return (
-    <LabeledListItem
+    <LabeledList.Item
       key={id}
       buttons={
         <>
@@ -192,6 +191,6 @@ const ItemLine = (props, context) => {
         <Button onClick={() => setShowDesc(prod_desc)}>
           ?
         </Button>)}
-    </LabeledListItem>
+    </LabeledList.Item>
   );
 };
