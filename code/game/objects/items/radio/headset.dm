@@ -251,6 +251,9 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 			type = /datum/action/minimap/marine
 	var/datum/action/minimap/mini = new type
 	mini.give_action(wearer)
+	INVOKE_NEXT_TICK(src, .proc/update_minimap_icon, mini) //Mobs are spawned inside nullspace sometimes so this is to avoid that hijinks
+
+/obj/item/radio/headset/mainship/proc/update_minimap_icon(datum/action/minimap/mini)
 	if(!wearer.job || !wearer.job.minimap_icon)
 		return
 	if(wearer.assigned_squad)
