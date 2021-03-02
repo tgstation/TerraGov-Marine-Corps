@@ -1589,13 +1589,16 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	added_spit_delay = 8
 	spit_cost = 75
 	damage = 30
+	///Duration of the acid puddles
 	var/puddle_duration = 1 SECONDS //Lasts 1-3 seconds
+	///Damage dealt by acid puddles
+	var/puddle_acid_damage = XENO_DEFAULT_ACID_PUDDLE_DAMAGE
 
 /datum/ammo/xeno/acid/heavy/on_hit_mob(mob/M,obj/projectile/P)
 	var/turf/T = get_turf(M)
 	if(!T)
 		T = get_turf(P)
-	drop_nade(T, puddle_duration)
+	drop_nade(T, puddle_duration, puddle_acid_damage)
 
 /datum/ammo/xeno/acid/heavy/on_hit_obj(obj/O,obj/projectile/P)
 	var/turf/T = get_turf(O)
@@ -1605,7 +1608,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	if(O.density && !(O.flags_atom & ON_BORDER))
 		T = get_turf(get_step(T, turn(P.dir, 180))) //If the object is dense and not a border object like barricades, we instead drop in the location just prior to the target
 
-	drop_nade(T, puddle_duration)
+	drop_nade(T, puddle_duration, puddle_acid_damage)
 
 
 /datum/ammo/xeno/acid/heavy/on_hit_turf(turf/T,obj/projectile/P)
@@ -1615,16 +1618,16 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	if(isclosedturf(T))
 		T = get_turf(get_step(T, turn(P.dir, 180))) //If the turf is closed, we instead drop in the location just prior to the turf
 
-	drop_nade(T, puddle_duration)
+	drop_nade(T, puddle_duration, puddle_acid_damage)
 
 /datum/ammo/xeno/acid/heavy/do_at_max_range(obj/projectile/P)
-	drop_nade(get_turf(P), puddle_duration)
+	drop_nade(get_turf(P), puddle_duration, puddle_acid_damage)
 
 
-/datum/ammo/xeno/acid/drop_nade(turf/T, duration = 1 SECONDS) //Leaves behind an acid pool; defaults to 1-3 seconds.
+/datum/ammo/xeno/acid/drop_nade(turf/T, duration = 1 SECONDS, acid_damage = 14) //Leaves behind an acid pool; defaults to 1-3 seconds.
 	if(T.density)
 		return
-	new /obj/effect/xenomorph/spray(T, duration)
+	new /obj/effect/xenomorph/spray(T, duration, acid_damage)
 
 
 ///For the Spitter's Scatterspit ability
@@ -1634,7 +1637,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	bonus_projectiles_type = /datum/ammo/xeno/acid/heavy/scatter
 	bonus_projectiles_amount = 5
 	bonus_projectiles_scatter = 10
-	puddle_duration = 2 SECONDS //Lasts 2-4 seconds
+	max_range = 10
+	puddle_duration = 3 SECONDS //Lasts 2-4 seconds
+	puddle_acid_damage = 20
 
 /datum/ammo/xeno/boiler_gas
 	name = "glob of gas"
