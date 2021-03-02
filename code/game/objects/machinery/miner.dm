@@ -86,7 +86,7 @@
 			else
 				mineral_produced = /obj/item/compactorebox/phoron
 		if(MINER_OVERCLOCKED)
-			required_ticks = 35
+			required_ticks = 60
 	miner_upgrade_type = upgrade.uptype
 	user.visible_message("<span class='notice'>[user] attaches the [miner_upgrade_type] to the [src]!</span>")
 	qdel(upgrade)
