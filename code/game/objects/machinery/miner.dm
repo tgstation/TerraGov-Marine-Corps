@@ -4,13 +4,14 @@
 #define MINER_DESTROYED	3
 #define MINER_AUTOMATED "mining computer"
 #define MINER_RESISTANT	"reinforced components"
+#define MINER_COMPACTOR	"upgraded crystalizer module"
 #define MINER_OVERCLOCKED "high-efficiency drill"
 
 
 ///Resource generator that produces a certain material that can be repaired by marines and attacked by xenos, Intended as an objective for marines to play towards to get more req gear
 /obj/machinery/miner
 	name = "\improper Nanotrasen phoron Mining Well"
-	desc = "Top-of-the-line Nanotrasen research drill with it's own export module, used to extract phoron in vast quantities. Selling the phoron mined by these would net a nice profit..."
+	desc = "Top-of-the-line Nanotrasen research drill with it's own packaging module, used to extract phoron in vast quantities. Selling the phoron mined by these would net a nice profit..."
 	icon = 'icons/obj/mining_drill.dmi'
 	density = TRUE
 	icon_state = "mining_drill_active"
@@ -25,7 +26,7 @@
 	///How many times we neeed to tick for a resource to be created, in this case this is 2* the specified amount
 	var/required_ticks = 70  //make one crate every 140 seconds
 	///The mineral type that's produced
-	var/mineral_value = 20
+	var/mineral_produced = /obj/structure/ore_box/phoron
 	///Health for the miner we use because changing obj_integrity is apparently bad
 	var/miner_integrity = 100
 	///Max health of the miner
@@ -39,8 +40,8 @@
 
 /obj/machinery/miner/damaged/platinum
 	name = "\improper Nanotrasen platinum Mining Well"
-	desc = "A Nanotrasen platinum drill with an internal export module. Produces even more valuable materials than it's phoron counterpart"
-	mineral_value = 40
+	desc = "A Nanotrasen platinum drill with an internal packaging module. Produces even more valuable materials than it's phoron counterpart"
+	mineral_produced = /obj/structure/ore_box/platinum
 
 /obj/machinery/miner/Initialize()
 	. = ..()
@@ -49,7 +50,10 @@
 /obj/machinery/miner/update_icon()
 	switch(miner_status)
 		if(MINER_RUNNING)
-			icon_state = "mining_drill_active_[miner_upgrade_type]"
+			if((mineral_produced == /obj/item/compactorebox/platinum) && (miner_upgrade_type == MINER_COMPACTOR))
+				icon_state = "mining_drill_active_platinum_[miner_upgrade_type]"
+			else
+				icon_state = "mining_drill_active_[miner_upgrade_type]"
 		if(MINER_SMALL_DAMAGE)
 			icon_state = "mining_drill_braced_[miner_upgrade_type]"
 		if(MINER_MEDIUM_DAMAGE)
@@ -75,6 +79,11 @@
 		if(MINER_RESISTANT)
 			max_miner_integrity = 300
 			miner_integrity = 300
+		if(MINER_COMPACTOR)
+			if(mineral_produced == /obj/structure/ore_box/platinum)
+				mineral_produced = /obj/item/compactorebox/platinum
+			else
+				mineral_produced = /obj/item/compactorebox/phoron
 		if(MINER_OVERCLOCKED)
 			required_ticks = 35
 		if(MINER_AUTOMATED)
@@ -126,8 +135,9 @@
 			if(MINER_OVERCLOCKED)
 				upgrade = new /obj/item/minerupgrade/overclock
 				required_ticks = initial(required_ticks)
-			if(MINER_AUTOMATED)
-				upgrade = new /obj/item/minerupgrade/automatic
+			if(MINER_COMPACTOR)
+				upgrade = new /obj/item/minerupgrade/compactor
+				mineral_produced = initial(mineral_produced)
 		upgrade.forceMove(user.loc)
 		miner_upgrade_type = null
 		update_icon()
@@ -233,11 +243,8 @@
 		to_chat(user, "<span class='warning'>[src] is not ready to produce a shipment yet!</span>")
 		return
 
-	SSpoints.supply_points += mineral_value * stored_mineral
-	do_sparks(5, TRUE, src)
-	playsound(loc,'sound/effects/phasein.ogg', 50, FALSE)
-	say("Ore shipment has been sold for [mineral_value * stored_mineral] points.")
-	stored_mineral = 0
+	new mineral_produced(user.loc, stored_mineral)
+	stored_mineral -= 1
 	start_processing()
 
 /obj/machinery/miner/process()

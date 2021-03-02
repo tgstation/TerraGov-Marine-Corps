@@ -116,6 +116,38 @@
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "ectoplasm"
 
+
+/obj/item/compactorebox
+	name = "compressed ore box"
+	desc = "A heavy and pretty solid box, filled to the brim with ore"
+	icon = 'icons/obj/items/items.dmi'
+	icon_state = "phoronbox_compact"
+	item_state = "phoronbox_compact"
+	max_integrity = 20
+	w_class = WEIGHT_CLASS_HUGE
+	flags_item = TWOHANDED
+	force = 5
+	throw_range = 3
+	throwforce = 15 // Heavy box. heavy damage.
+
+/obj/item/compactorebox/pickup(mob/user)
+	. = ..()
+	wield(user)
+
+/obj/item/compactorebox/dropped(mob/user)
+	. = ..()
+	unwield(user)
+
+/obj/item/compactorebox/phoron
+	name = "compressed phoron box"
+	desc = "A heavy and pretty solid box, filled to the brim with compressed phoron crystals."
+
+/obj/item/compactorebox/platinum
+	name = "compressed platinum box"
+	desc = "A very heavy and solid box, filled with pure titanium."
+	icon_state = "platinumbox_compact"
+	item_state = "platinumbox_comact"
+
 /obj/item/minerupgrade
 	name = "miner upgrade"
 	desc = "Subtype item, should not exist."
@@ -137,6 +169,12 @@
 	desc = "A box with a few pumps and a big drill, meant to replace the standard drill used in normal mining wells for faster extraction."
 	icon_state = "mining_drill_overclockeddisplay"
 	uptype = "high-efficiency drill"
+
+/obj/item/minerupgrade/compactor
+	name = "crystalizer module"
+	desc = "A bulky module meant to replace the normal crystalizer in mining wells, used to compress boxes for easy carrying."
+	icon_state = "mining_drill_compactordisplay"
+	uptype = "upgraded crystalizer module"
 
 obj/item/minerupgrade/automatic
 	name = "mining computer"
