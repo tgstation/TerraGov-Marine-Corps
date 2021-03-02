@@ -1068,7 +1068,7 @@
 
 /datum/action/xeno_action/activable/build_turret
 	name = "Secrete acid turret"
-	action_icon_state = "resin_silo"
+	action_icon_state = "xeno_turret"
 	mechanics_text = "Creates a new xeno acid turret"
 	ability_name = "secrete acid turret"
 	plasma_cost = 150
