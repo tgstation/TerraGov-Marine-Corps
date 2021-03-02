@@ -1096,7 +1096,7 @@
 		return FALSE
 
 	for(var/obj/structure/resin/xeno_turret/turret AS in GLOB.xeno_acid_turrets)
-		if(get_dist(turret, A) < 15)
+		if(get_dist(turret, A) < 5)
 			to_chat(owner, "<span class='xenowarning'>Another turret is too close!</span>")
 			return FALSE
 

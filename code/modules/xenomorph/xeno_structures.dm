@@ -175,7 +175,7 @@
 	desc = "A menacing looking construct of resin, it seems to be alive. It fires acid against intruders."
 	bound_width = 32
 	bound_height = 32
-	max_integrity = 300
+	max_integrity = 800
 	layer =  ABOVE_MOB_LAYER
 	density = TRUE
 	///The hive it belongs to

@@ -210,7 +210,7 @@ SUBSYSTEM_DEF(automatedfire)
 	shooting = FALSE
 
 /datum/component/automatedfire/xeno_turret_autofire/process_shot()
-	if(!shooting)
+	if(!shooting || !parent)
 		return
 	SEND_SIGNAL(parent, COMSIG_AUTOMATIC_SHOOTER_SHOOT)
 	next_fire = world.time + shot_delay
