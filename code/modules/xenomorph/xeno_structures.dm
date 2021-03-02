@@ -189,7 +189,7 @@
 	///Last target of the turret
 	var/mob/living/carbon/last_hostile
 	///Fire rate of the target in ticks
-	var/firerate = 8
+	var/firerate = 5
 
 /obj/structure/resin/xeno_turret/Initialize(mapload, hivenumber = XENO_HIVE_NORMAL)
 	. = ..()
