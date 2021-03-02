@@ -100,7 +100,7 @@ SUBSYSTEM_DEF(automatedfire)
 	var/datum/component/automatedfire/prev
 
 
-/// chedule the shooter into the system, inserting it into the next fire queue
+/// schedule the shooter into the system, inserting it into the next fire queue
 /datum/component/automatedfire/proc/schedule_shot()
 	//We move to another bucket, so we clean the reference from the former linked list
 	next = null
