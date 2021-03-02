@@ -604,37 +604,9 @@
 
 // /datum/action signals
 #define COMSIG_ACTION_TRIGGER "action_trigger"                        //from base of datum/action/proc/Trigger(): (datum/action)
-<<<<<<< HEAD
-#define COMPONENT_ACTION_BLOCK_TRIGGER (1<<0)
-
-//Signals for automatic fire at component
-<<<<<<< HEAD
-<<<<<<< HEAD
-#define COMSIG_AUTOMATIC_SHOOTER_START_SHOOTING_AT "start_shooting_at"
-#define COMSIG_AUTOMATIC_SHOOTER_STOP_SHOOTING_AT "stop_shooting_at"
-#define COMSIG_AUTOMATIC_SHOOTER_SHOOT "shoot"
-=======
-#define COMSIG_START_SHOOTING_AT 	"start_shooting_at"
-#define COMSIG_STOP_SHOOTING_AT		"stop_shooting_at"
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 40f4950ec (Xeno turrets is working)
-=======
-#define COMSIG_SHOT_FIRED			"shot_fired"
->>>>>>> 83f9dc734 (xenos turret is done)
-=======
-#define COMSIG_SHOT_FIRED			"shot_fired"
->>>>>>> ce310c425 (linters)
-=======
-#define COMSIG_AUTOMATIC_SHOOTER_START_SHOOTING_AT 	"start_shooting_at"
-#define COMSIG_AUTOMATIC_SHOOTER_STOP_SHOOTING_AT		"stop_shooting_at"
-#define COMSIG_AUTOMATIC_SHOOTER_SHOT_FIRED			"shot_fired"
->>>>>>> a3f109c13 (bucket system for autofire)
-=======
 	#define COMPONENT_ACTION_BLOCK_TRIGGER (1<<0)
 
 //Signals for automatic fire at component
-#define COMSIG_AUTOMATIC_SHOOTER_START_SHOOTING_AT 	"start_shooting_at"
-#define COMSIG_AUTOMATIC_SHOOTER_STOP_SHOOTING_AT		"stop_shooting_at"
-#define COMSIG_AUTOMATIC_SHOOTER_SHOT_FIRED			"shot_fired"
->>>>>>> 6faa96d28 (debug turret)
+#define COMSIG_AUTOMATIC_SHOOTER_START_SHOOTING_AT "start_shooting_at"
+#define COMSIG_AUTOMATIC_SHOOTER_STOP_SHOOTING_AT "stop_shooting_at"
+#define COMSIG_AUTOMATIC_SHOOTER_SHOOT "shoot"

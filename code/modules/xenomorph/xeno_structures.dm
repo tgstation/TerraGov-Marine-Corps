@@ -244,7 +244,7 @@
 	desc = "A menacing looking construct of resin, it seems to be alive. It fires acid against intruders."
 	bound_width = 32
 	bound_height = 32
-	max_integrity = 800
+	max_integrity = 300
 	layer =  ABOVE_MOB_LAYER
 	density = TRUE
 	///The hive it belongs to
@@ -255,11 +255,8 @@
 	var/range = 10
 	///Target of the turret
 	var/mob/living/carbon/hostile
-<<<<<<< HEAD
 	///Last target of the turret
 	var/mob/living/carbon/last_hostile
-=======
->>>>>>> 530afc288 (xeno turrets)
 	///Fire rate of the target in ticks
 	var/firerate = 8
 	///Doesn't use power, it's needed because the process is in machines. Very shitcode
@@ -270,17 +267,8 @@
 	ammo = GLOB.ammo_list[/datum/ammo/xeno/acid]
 	associated_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	START_PROCESSING(SSmachines, src)
-<<<<<<< HEAD
-	AddComponent(/datum/component/automatedfire/automatic_shoot_at, firerate, ammo)
-	RegisterSignal(src, COMSIG_AUTOMATIC_SHOOTER_SHOT_FIRED, .proc/face_target)
-=======
 	AddComponent(/datum/component/automatedfire/xeno_turret_autofire, firerate)
 	RegisterSignal(src, COMSIG_AUTOMATIC_SHOOTER_SHOOT, .proc/shoot)
-<<<<<<< HEAD
->>>>>>> 530afc288 (xeno turrets)
-=======
-	set_light(2, 2, LIGHT_COLOR_GREEN)
->>>>>>> 87437a68c (change to sprite)
 
 /obj/structure/resin/xeno_turret/Destroy()
 	. = ..()
@@ -372,14 +360,8 @@
 /obj/structure/resin/xeno_turret/proc/face_target()
 	SIGNAL_HANDLER
 	face_atom(hostile)
-<<<<<<< HEAD
-=======
 	var/obj/projectile/newshot = new(loc)
 	newshot.generate_bullet(ammo)
 	newshot.permutated += src
 	newshot.fire_at(hostile, src, null, ammo.max_range, ammo.shell_speed)
-<<<<<<< HEAD
 	
->>>>>>> 530afc288 (xeno turrets)
-=======
->>>>>>> 87437a68c (change to sprite)
