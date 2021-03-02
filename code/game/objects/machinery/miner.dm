@@ -10,7 +10,7 @@
 ///Resource generator that produces a certain material that can be repaired by marines and attacked by xenos, Intended as an objective for marines to play towards to get more req gear
 /obj/machinery/miner
 	name = "\improper Nanotrasen phoron Mining Well"
-	desc = "Top-of-the-line Nanotrasen research drill with it's own packaging module, used to extract phoron in vast quantities. Selling the phoron mined by these would net a nice profit..."
+	desc = "Top-of-the-line Nanotrasen research drill with it's own export module, used to extract phoron in vast quantities. Selling the phoron mined by these would net a nice profit..."
 	icon = 'icons/obj/mining_drill.dmi'
 	density = TRUE
 	icon_state = "mining_drill_active"
@@ -40,7 +40,7 @@
 
 /obj/machinery/miner/damaged/platinum
 	name = "\improper Nanotrasen platinum Mining Well"
-	desc = "A Nanotrasen platinum drill with an internal packaging module. Produces even more valuable materials than it's phoron counterpart"
+	desc = "A Nanotrasen platinum drill with an internal export module. Produces even more valuable materials than it's phoron counterpart"
 	mineral_value = 40
 
 /obj/machinery/miner/Initialize()
@@ -128,9 +128,6 @@
 			if(MINER_OVERCLOCKED)
 				upgrade = new /obj/item/minerupgrade/overclock
 				required_ticks = initial(required_ticks)
-			if(MINER_AUTOMATED)
-				upgrade = new /obj/item/minerupgrade/automatic
-				automatic = FALSE
 		upgrade.forceMove(user.loc)
 		miner_upgrade_type = null
 		update_icon()
@@ -237,7 +234,7 @@
 	SSpoints.supply_points += mineral_value * stored_mineral
 	do_sparks(5, TRUE, src)
 	playsound(loc,'sound/effects/phasein.ogg', 50, FALSE)
-	visible_message("<span class='notice'>The [src] buzzes: Ore shipment has been sold for [mineral_value * stored_mineral] points.</span>")
+	say("Ore shipment has been sold for [mineral_value * stored_mineral] points.")
 	stored_mineral = 0
 	start_processing()
 
