@@ -226,6 +226,7 @@
 	playsound(loc,'sound/effects/phasein.ogg', 50, FALSE)
 	say("Ore shipment has been sold for [mineral_value * stored_mineral] points.")
 	stored_mineral = 0
+	start_processing()
 
 /obj/machinery/miner/process()
 	if(miner_status != MINER_RUNNING)
