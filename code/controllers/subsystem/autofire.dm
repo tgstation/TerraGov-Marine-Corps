@@ -25,10 +25,10 @@ SUBSYSTEM_DEF(automatedfire)
 	var/head_offset = 0
 	/// Index of the first non-empty bucket
 	var/practical_offset = 1
-	///How many buckets exist for one tick
+	///How many buckets for every frame of world.fps
 	var/bucket_resolution = 0
 	/// How many shooter are in the buckets
-	var/bucket_count = 0
+	var/shooter_count = 0
 	/// List of buckets, each bucket holds every shooter that has to shoot this byond tick
 	var/list/bucket_list = list()
 	/// Reference to the next shooter before we clean shooter.next
@@ -39,7 +39,7 @@ SUBSYSTEM_DEF(automatedfire)
 	head_offset = world.time
 	bucket_resolution = world.tick_lag
 
-/datum/controller/subsystem/automatedfire/stat_entry(msg = "ActShooters:[bucket_count]")
+/datum/controller/subsystem/automatedfire/stat_entry(msg = "ActShooters:[shooter_count]")
 	return ..()
 
 /datum/controller/subsystem/automatedfire/fire(resumed = FALSE)
@@ -72,7 +72,7 @@ SUBSYSTEM_DEF(automatedfire)
 			next_shooter = shooter.next
 			INVOKE_ASYNC(shooter, /datum/component/automatedfire/proc/process_shot)
 
-			SSautomatedfire.bucket_count--
+			SSautomatedfire.shooter_count--
 			shooter = next_shooter
 			if (MC_TICK_CHECK)
 				return
@@ -115,7 +115,7 @@ SUBSYSTEM_DEF(automatedfire)
 
 	// Get the bucket head for that bucket, increment the bucket count
 	var/datum/component/automatedfire/bucket_head = bucket_list[bucket_pos]
-	SSautomatedfire.bucket_count++
+	SSautomatedfire.shooter_count++
 
 	// If there is no existing head of this bucket, we can set this shooter to be that head
 	if (!bucket_head)
@@ -132,7 +132,7 @@ SUBSYSTEM_DEF(automatedfire)
 
 	//Something went wrong, probably a lag spike or something. To prevent infinite loops, we reschedule it to a another next fire
 	if(prev == src)
-		next_fire = next_fire += 1
+		next_fire += 1
 		schedule_shot()
 
 ///Handle the firing of the autofire component
