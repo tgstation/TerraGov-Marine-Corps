@@ -522,3 +522,16 @@
 
 	var/amount = round(rounds * 100 / rounds_max, 10)
 	holder.icon_state = "plasma[amount]"
+
+/obj/machinery/standard_hmg/proc/hud_set_hsg_ammo()
+	var/image/holder = hud_list[SENTRY_AMMO_HUD]
+
+	if(!holder)
+		return
+
+	if(!rounds)
+		holder.icon_state = "plasma0"
+		return
+	
+	var/amount = round(rounds * 100 / rounds_max, 10)
+	holder.icon_state = "plasma[amount]"

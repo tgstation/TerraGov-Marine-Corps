@@ -189,7 +189,7 @@
 	for(var/datum/atom_hud/squad/sentry_status_hud in GLOB.huds) //Add to the squad HUD
 		sentry_status_hud.add_to_hud(src)
 	hud_set_machine_health()
-	hud_set_sentry_ammo()
+	hud_set_hsg_ammo()
 
 /obj/machinery/standard_hmg/Destroy() //Make sure we pick up our trash.
 	operator?.unset_interaction()
@@ -247,6 +247,7 @@
 			D.current_rounds = rounds - (rounds_max - M.current_rounds)
 		rounds = min(rounds + M.current_rounds, rounds_max)
 		update_icon()
+		hud_set_hsg_ammo()
 		qdel(I)
 
 /obj/machinery/standard_hmg/welder_act(mob/living/user, obj/item/I)
@@ -376,6 +377,7 @@
 		return //No ammo.
 	if(last_fired)
 		return //still shooting.
+	hud_set_hsg_ammo()
 
 	if(!is_bursting)
 		last_fired = TRUE
