@@ -102,4 +102,5 @@
 		icon_state = "atmos2"
 	else
 		icon_state = "atmos"
+	..()
 
