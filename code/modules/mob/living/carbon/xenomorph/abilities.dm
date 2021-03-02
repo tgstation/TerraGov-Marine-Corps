@@ -1095,11 +1095,6 @@
 		to_chat(owner, "<span class='xenowarning'>The hive doesn't have the necessary psychic points for you to do that!</span>")
 		return FALSE
 
-	for(var/obj/structure/resin/xeno_turret/turret AS in GLOB.xeno_acid_turrets)
-		if(get_dist(turret, A) < 5)
-			to_chat(owner, "<span class='xenowarning'>Another turret is too close!</span>")
-			return FALSE
-
 /datum/action/xeno_action/activable/build_turret/use_ability(atom/A)
 	if(!do_after(owner, build_time, TRUE, A, BUSY_ICON_BUILD))
 		return fail_activate()
