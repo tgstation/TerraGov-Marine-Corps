@@ -12,7 +12,6 @@
 /obj/item/clothing/mask/muzzle/attack_paw(mob/living/carbon/human/user)
 	if (src == user.wear_mask)
 		return
-	else
 		return ..()
 
 
