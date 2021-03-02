@@ -253,10 +253,11 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	mini.give_action(wearer)
 	if(!wearer.job || !wearer.job.minimap_icon)
 		return
-	if(wearer.assigned_squad)
-		SSminimaps.add_marker(wearer, wearer.z, mini.marker_flags, lowertext(wearer.assigned_squad.name)+"_"+wearer.job.minimap_icon)
-		return
-	SSminimaps.add_marker(wearer, wearer.z, mini.marker_flags, wearer.job.minimap_icon)
+	spawn(1)
+		if(wearer.assigned_squad)
+			SSminimaps.add_marker(wearer, wearer.z, mini.marker_flags, lowertext(wearer.assigned_squad.name)+"_"+wearer.job.minimap_icon)
+			return
+		SSminimaps.add_marker(wearer, wearer.z, mini.marker_flags, wearer.job.minimap_icon)
 
 /obj/item/radio/headset/mainship/proc/remove_minimap()
 	var/type
