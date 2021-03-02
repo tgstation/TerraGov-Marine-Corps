@@ -233,6 +233,8 @@
 #define COMSIG_ITEM_RIGHTCLICKON "item_rightclickon"					//from base of mob/living/carbon/human/RightClickOn(): (/atom, /mob)
 	#define COMPONENT_ITEM_CLICKON_BYPASS (1<<0)
 
+#define COMSIG_ITEM_HYDRO_CANNON_TOGGLED "hydro_cannon_toggled"
+
 #define COMSIG_NEW_REAGENT_ADD	"new_reagent_add"					//from add_reagent(): (/datum/reagent, amount); it is sent when a reagent gets added for the first time to a holder
 
 #define COMSIG_CLOTHING_MECHANICS_INFO "clothing_mechanics_info"	//from base of /obj/item/clothing/get_mechanics_info()
@@ -603,3 +605,8 @@
 // /datum/action signals
 #define COMSIG_ACTION_TRIGGER "action_trigger"                        //from base of datum/action/proc/Trigger(): (datum/action)
 	#define COMPONENT_ACTION_BLOCK_TRIGGER (1<<0)
+
+//Signals for automatic fire at component
+#define COMSIG_AUTOMATIC_SHOOTER_START_SHOOTING_AT "start_shooting_at"
+#define COMSIG_AUTOMATIC_SHOOTER_STOP_SHOOTING_AT "stop_shooting_at"
+#define COMSIG_AUTOMATIC_SHOOTER_SHOOT "shoot"

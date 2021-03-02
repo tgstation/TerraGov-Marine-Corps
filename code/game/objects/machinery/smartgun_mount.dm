@@ -44,7 +44,7 @@
 // The actual gun itself.
 /obj/item/standard_hmg
 	name = "\improper TL-102 mounted heavy smartgun"
-	desc = "The TL-102 heavy machinegun, it's too heavy to be carried or to be operated without the tripod. IFF capable. No extra work required, just deploy it."
+	desc = "The TL-102 heavy machinegun, it's too heavy to be carried or to be operated without the tripod. IFF capable. No extra work required, just deploy it. Can be repaired with a blowtorch once deployed."
 	max_integrity = 300
 	w_class = WEIGHT_CLASS_HUGE
 	flags_equip_slot = ITEM_SLOT_BACK
@@ -152,7 +152,7 @@
 // The actual Machinegun itself, going to borrow some stuff from current sentry code to make sure it functions. Also because they're similiar.
 /obj/machinery/standard_hmg
 	name = "\improper TL-102 mounted heavy smartgun"
-	desc = "A deployed and mounted heavy smartgun, ready to rock. While it is capable of taking the same rounds as the smartmachinegun, it fires specialized tungsten rounds for increased armor penetration.\n<span class='notice'>Use (ctrl-click) to toggle burstfire.</span>"
+	desc = "A deployed and mounted heavy smartgun, ready to rock. While it is capable of taking the same rounds as the smartmachinegun, it fires specialized tungsten rounds for increased armor penetration. Can be repaired with a blowtorch. \n<span class='notice'>Use (ctrl-click) to toggle burstfire.</span>"
 	icon = 'icons/Marine/marine-hmg.dmi'
 	icon_state = "turret"
 	anchored = TRUE

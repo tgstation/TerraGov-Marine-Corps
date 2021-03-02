@@ -2,12 +2,6 @@
 "aa" = (
 /turf/open/space,
 /area/space)
-"ab" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/hangar)
 "ac" = (
 /obj/machinery/vending/nanomed,
 /turf/open/floor/mainship/cargo/arrow{
@@ -445,15 +439,11 @@
 /turf/open/floor/plating,
 /area/mainship/medical/chemistry)
 "bA" = (
-/obj/effect/attach_point/weapon/dropship1{
-	dir = 1
-	},
+/obj/effect/attach_point/weapon/dropship1,
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
 "bB" = (
-/obj/effect/attach_point/electronics/dropship1{
-	dir = 1
-	},
+/obj/effect/attach_point/electronics/dropship1,
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
 "bC" = (
@@ -1899,9 +1889,7 @@
 /turf/open/floor/mainship/cargo/arrow,
 /area/mainship/hallways/hangar)
 "gR" = (
-/obj/machinery/door/poddoor/mainship{
-	dir = 4
-	},
+/obj/machinery/door/poddoor/mainship,
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/shipboard/weapon_room)
 "gT" = (
@@ -2314,6 +2302,9 @@
 /area/mainship/medical/lower_medical)
 "ia" = (
 /obj/machinery/vending/medical,
+/obj/machinery/camera/autoname/mainship{
+	dir = 4
+	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "ib" = (
@@ -7837,9 +7828,7 @@
 /area/mainship/hallways/aft_hallway)
 "AC" = (
 /obj/machinery/door/airlock/mainship/maint,
-/obj/machinery/door/poddoor/shutters/mainship/selfdestruct{
-	dir = 4
-	},
+/obj/machinery/door/poddoor/shutters/mainship/selfdestruct,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/self_destruct)
 "AE" = (
@@ -9356,13 +9345,6 @@
 /obj/machinery/door/airlock/mainship/marine/general/engi,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
-"Fb" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
-/obj/structure/cable,
-/turf/open/floor/mainship/mono,
-/area/mainship/hull/lower_hull)
 "Fc" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -9914,9 +9896,7 @@
 /obj/machinery/door/firedoor/mainship{
 	dir = 8
 	},
-/obj/machinery/door/poddoor/shutters/mainship/corporate{
-	dir = 4
-	},
+/obj/machinery/door/poddoor/shutters/mainship/corporate,
 /turf/open/floor/plating,
 /area/mainship/command/corporateliaison)
 "GX" = (
@@ -11362,6 +11342,9 @@
 /obj/structure/rack,
 /obj/structure/ob_ammo/warhead/incendiary,
 /obj/structure/ob_ammo/warhead/incendiary,
+/obj/machinery/camera/autoname/mainship{
+	dir = 1
+	},
 /turf/open/floor/mainship/red,
 /area/mainship/shipboard/weapon_room)
 "KG" = (
@@ -11613,9 +11596,7 @@
 /area/space)
 "LJ" = (
 /obj/structure/window/framed/mainship,
-/obj/machinery/door/poddoor/shutters/mainship/corporate{
-	dir = 4
-	},
+/obj/machinery/door/poddoor/shutters/mainship/corporate,
 /turf/open/floor/plating,
 /area/mainship/command/corporateliaison)
 "LL" = (
@@ -36223,7 +36204,7 @@ Yo
 rc
 rc
 ad
-Fb
+LW
 UQ
 UQ
 UQ
@@ -36480,7 +36461,7 @@ jr
 rc
 rc
 ad
-Fb
+LW
 ta
 UQ
 UQ
@@ -36737,7 +36718,7 @@ Ve
 rc
 rc
 ad
-Fb
+LW
 UQ
 UQ
 UQ
@@ -44119,7 +44100,7 @@ aa
 Tm
 rc
 ad
-ab
+ca
 bh
 bh
 bh
@@ -44376,7 +44357,7 @@ aa
 Tm
 rc
 ad
-ab
+ca
 bh
 bh
 bh
@@ -44633,7 +44614,7 @@ aa
 Tm
 rc
 ad
-ab
+ca
 bh
 bh
 bh
@@ -44890,7 +44871,7 @@ aa
 Tm
 rc
 ad
-ab
+ca
 bh
 bh
 bh
@@ -45147,7 +45128,7 @@ aa
 Tm
 rc
 ad
-ab
+ca
 bh
 bh
 bh
@@ -45404,7 +45385,7 @@ aa
 Tm
 rc
 ad
-ab
+ca
 bh
 bh
 bh
@@ -45661,7 +45642,7 @@ aa
 Tm
 rc
 ad
-ab
+ca
 bh
 bh
 bh

@@ -85,6 +85,7 @@
 			else
 				mineral_produced = /obj/item/compactorebox/phoron
 		if(MINER_OVERCLOCKED)
+			required_ticks = 60
 			required_ticks = 35
 		if(MINER_AUTOMATED)
 			if(stored_mineral)
