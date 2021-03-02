@@ -1062,6 +1062,60 @@
 
 	succeed_activate()
 
+////////////////////
+/// Build xeno turret
+///////////////////
+
+/datum/action/xeno_action/activable/build_turret
+	name = "Secrete acid turret"
+	action_icon_state = "resin_silo"
+	mechanics_text = "Creates a new xeno acid turret"
+	ability_name = "secrete acid turret"
+	plasma_cost = 150
+	cooldown_timer = 60 SECONDS
+
+	/// How long does it take to build
+	var/build_time = 5 SECONDS
+	/// Pyschic point cost
+	var/psych_cost = 60
+
+
+/datum/action/xeno_action/activable/build_turret/can_use_ability(atom/A, silent, override_flags)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if(!in_range(owner, A))
+		if(!silent)
+			to_chat(owner, "<span class='warning'>We need to get closer!.</span>")
+		return FALSE
+
+	var/mob/living/carbon/xenomorph/X = owner
+	if(SSpoints.xeno_points_by_hive[X.hivenumber] < psych_cost)
+		to_chat(owner, "<span class='xenowarning'>The hive doesn't have the necessary psychic points for you to do that!</span>")
+		return FALSE
+
+	for(var/obj/structure/resin/xeno_turret/turret AS in GLOB.xeno_acid_turrets)
+		if(get_dist(turret, A) < 15)
+			to_chat(owner, "<span class='xenowarning'>Another turret is too close!</span>")
+			return FALSE
+
+/datum/action/xeno_action/activable/build_turret/use_ability(atom/A)
+	if(!do_after(owner, build_time, TRUE, A, BUSY_ICON_BUILD))
+		return fail_activate()
+
+	var/mob/living/carbon/xenomorph/X = owner
+
+	if(SSpoints.xeno_points_by_hive[X.hivenumber] < psych_cost)
+		to_chat(owner, "<span class='xenowarning'>Someone used all the psych points while we were building!</span>")
+		return fail_activate()
+
+	new /obj/structure/resin/xeno_turret(A, X.hivenumber)
+
+	SSpoints.xeno_points_by_hive[X.hivenumber] -= psych_cost
+
+	succeed_activate()
+
 // Salvage Biomass
 /datum/action/xeno_action/activable/salvage_biomass
 	name = "Salvage Biomass"

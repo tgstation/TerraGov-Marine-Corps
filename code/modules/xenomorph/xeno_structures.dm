@@ -190,21 +190,21 @@
 	var/mob/living/carbon/last_hostile
 	///Fire rate of the target in ticks
 	var/firerate = 8
-	///Doesn't use power, it's needed because the process is in machines. Very shitcode
-	var/use_power = FALSE
 
-/obj/structure/resin/xeno_turret/Initialize()
+/obj/structure/resin/xeno_turret/Initialize(mapload, hivenumber = XENO_HIVE_NORMAL)
 	. = ..()
 	ammo = GLOB.ammo_list[/datum/ammo/xeno/acid]
-	associated_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
-	START_PROCESSING(SSmachines, src)
+	GLOB.xeno_acid_turrets += src
+	associated_hive = GLOB.hive_datums[hivenumber]
+	START_PROCESSING(SSslowprocess, src)
 	AddComponent(/datum/component/automatedfire/xeno_turret_autofire, firerate)
 	RegisterSignal(src, COMSIG_AUTOMATIC_SHOOTER_SHOOT, .proc/shoot)
 
 /obj/structure/resin/xeno_turret/Destroy()
 	. = ..()
 	hostile = null
-
+	last_hostile = null
+	GLOB.xeno_acid_turrets -= src
 
 /obj/structure/resin/xeno_turret/process()
 	hostile = get_target()
@@ -218,7 +218,7 @@
 		TIMER_COOLDOWN_START(src, COOLDOWN_XENO_TURRETS_ALERT, 20 SECONDS)
 	if(hostile != last_hostile)
 		last_hostile = hostile
-		SEND_SIGNAL(src, COMSIG_AUTOMATIC_SHOOTER_START_SHOOTING_AT, hostile)
+		SEND_SIGNAL(src, COMSIG_AUTOMATIC_SHOOTER_START_SHOOTING_AT)
 
 ///Look for the closest human in range and in light of sight. If no human is in range, will look for xenos of other hives
 /obj/structure/resin/xeno_turret/proc/get_target()
@@ -295,4 +295,3 @@
 	newshot.generate_bullet(ammo)
 	newshot.permutated += src
 	newshot.fire_at(hostile, src, null, ammo.max_range, ammo.shell_speed)
-	
