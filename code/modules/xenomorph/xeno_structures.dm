@@ -181,7 +181,7 @@
 	///The hive it belongs to
 	var/datum/hive_status/associated_hive
 	///What kind of spit it uses
-	var/datum/ammo/xeno/ammo
+	var/datum/ammo/xeno/acid/heavy/ammo
 	///Range of the turret
 	var/range = 10
 	///Target of the turret
