@@ -118,7 +118,7 @@
 /obj/machinery/flasher_button/attack_ai(mob/user as mob)
 	return attack_hand(user)
 
-/obj/machinery/flasher_button/attack_paw(mob/living/carbon/monkey/user)
+/obj/machinery/flasher_button/attack_paw(mob/living/carbon/human/user)
 	return attack_hand(user)
 
 /obj/machinery/flasher_button/attackby(obj/item/I, mob/user, params)

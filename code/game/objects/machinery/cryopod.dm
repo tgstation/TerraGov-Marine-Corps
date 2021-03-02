@@ -345,7 +345,7 @@
 		to_chat(user, "<span class='warning'>[src] immediately rejects [M]. [M.p_they(TRUE)] passed away!</span>")
 		return
 
-	if(!(ishuman(M) || ismonkey(M)))
+	if(!ishuman(M))
 		to_chat(user, "<span class='warning'>There is no way [src] will accept [M]!</span>")
 		return
 
@@ -374,7 +374,7 @@
 	go_out()
 
 /obj/machinery/cryopod/proc/move_inside_wrapper(mob/living/M, mob/user)
-	if(user.stat != CONSCIOUS || !(ishuman(M) || ismonkey(M)))
+	if(user.stat != CONSCIOUS || !ishuman(M))
 		return
 
 	if(!QDELETED(occupant))

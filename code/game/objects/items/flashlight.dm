@@ -83,7 +83,7 @@
 		user.visible_message("<span class='notice'>[user] directs [src] to [M]'s eyes.</span>", \
 							"<span class='notice'>You direct [src] to [M]'s eyes.</span>")
 
-		if(ishuman(M) || ismonkey(M))	//robots and aliens are unaffected
+		if(ishuman(M))	//robots and aliens are unaffected
 			var/mob/living/carbon/C = M
 			if(C.stat == DEAD || C.disabilities & BLIND)	//mob is dead or fully blind
 				to_chat(user, "<span class='notice'>[C] pupils does not react to the light!</span>")

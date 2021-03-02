@@ -13,6 +13,7 @@ GLOBAL_LIST_INIT(underwear_f, list("Briefs", "Panties"))
 GLOBAL_LIST_INIT(undershirt_t, list("None","Undershirt(Sleeveless)", "Undershirt(Sleeved)", "Rolled Undershirt(Sleeveless)", "Rolled Undershirt(Sleeved)"))
 	//Mutant Human bits
 GLOBAL_LIST_EMPTY(moth_wings_list)
+GLOBAL_LIST_EMPTY(tails_list_monkey)
 
 
 GLOBAL_LIST_INIT(ghost_forms_with_directions_list, list("ghost")) //stores the ghost forms that support directional sprites

@@ -142,23 +142,23 @@
 				to_chat(usr, "<span class='warning'>Spawning currently disabled, please observe.</span>")
 				return
 			var/datum/job/job_datum = locate(href_list["job_selected"])
-			if(!isxenosjob(job_datum) && (SSmonitor.current_state == XENOS_LOSING || SSmonitor.current_state == XENOS_DELAYING))
+			if(!isxenosjob(job_datum) && (SSmonitor.gamestate == SHUTTERS_CLOSED || (SSmonitor.gamestate == GROUNDSIDE && SSmonitor.current_state == XENOS_LOSING)))
 				var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-				if((xeno_job.total_positions-xeno_job.current_positions) >= 3)
+				if((xeno_job.total_positions-xeno_job.current_positions) >= GLOB.alive_xeno_list.len * TOO_MUCH_BURROWED_PROPORTION)
 					if(tgui_alert(src, "There is a lack of xenos players on this round, unbalanced rounds are unfun for everyone. Are you sure you want to play as a marine? ", "Warning : the game is unbalanced", list("Yes", "No")) == "No")
 						return
 			if(!SSticker.mode.CanLateSpawn(src, job_datum)) // Try to assigns job to new player
 				return
 			SSticker.mode.LateSpawn(src)
-		
+
 		if("continue_join")
 			DIRECT_OUTPUT(usr, browse(null, "window=xenosunbalanced"))
 			if(!saved_job)
-				return	
+				return
 			if(!SSticker.mode.CanLateSpawn(src, saved_job)) // Try to assigns job to new player
 				return
 			SSticker.mode.LateSpawn(src)
-		
+
 		if("reconsider")
 			DIRECT_OUTPUT(usr, browse(null, "window=xenosunbalanced"))
 
@@ -396,7 +396,7 @@
 		GLOB.ready_players += src
 	else
 		GLOB.ready_players -= src
-	to_chat(src, "<span class='warning'>You are now [ready? "" : "not "] ready.</span>")
+	to_chat(src, "<span class='warning'>You are now [ready? "" : "not "]ready.</span>")
 
 ///Attempts to latejoin the player
 /mob/new_player/proc/attempt_late_join(queue_override = FALSE)

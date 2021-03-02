@@ -341,22 +341,13 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 	set name = "a-intent"
 	set hidden = 1
 
-	if(ismonkey(src))
-		switch(input)
-			if(INTENT_HELP)
-				a_intent = INTENT_HELP
-			if(INTENT_HARM)
-				a_intent = INTENT_HARM
-			if(INTENT_HOTKEY_RIGHT,INTENT_HOTKEY_LEFT)
-				a_intent = intent_numeric(intent_numeric(a_intent) - 3)
-	else
-		switch(input)
-			if(INTENT_HELP,INTENT_DISARM,INTENT_GRAB,INTENT_HARM)
-				a_intent = input
-			if(INTENT_HOTKEY_RIGHT)
-				a_intent = intent_numeric((intent_numeric(a_intent)+1) % 4)
-			if(INTENT_HOTKEY_LEFT)
-				a_intent = intent_numeric((intent_numeric(a_intent)+3) % 4)
+	switch(input)
+		if(INTENT_HELP,INTENT_DISARM,INTENT_GRAB,INTENT_HARM)
+			a_intent = input
+		if(INTENT_HOTKEY_RIGHT)
+			a_intent = intent_numeric((intent_numeric(a_intent)+1) % 4)
+		if(INTENT_HOTKEY_LEFT)
+			a_intent = intent_numeric((intent_numeric(a_intent)+3) % 4)
 
 
 	if(hud_used && hud_used.action_intent)

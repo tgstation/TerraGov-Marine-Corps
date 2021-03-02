@@ -314,18 +314,19 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define DETACHABLE_HEAD			(1<<16)
 #define USES_ALIEN_WEAPONS		(1<<17)
 #define NO_DAMAGE_OVERLAY		(1<<18)
+#define CAN_VENTCRAWL			(1<<19)
 //=================================================
 
 //Some on_mob_life() procs check for alien races.
 #define IS_HUMAN (1<<0)
-#define IS_MONKEY (1<<1)
-#define IS_XENO (1<<2)
-#define IS_VOX (1<<3)
-#define IS_SKRELL (1<<4)
-#define IS_UNATHI (1<<5)
-#define IS_HORROR (1<<6)
-#define IS_MOTH (1<<7)
-#define IS_SECTOID (1<<8)
+#define IS_XENO (1<<1)
+#define IS_VOX (1<<2)
+#define IS_SKRELL (1<<3)
+#define IS_UNATHI (1<<4)
+#define IS_HORROR (1<<5)
+#define IS_MOTH (1<<6)
+#define IS_SECTOID (1<<7)
+#define IS_MONKEY (1<<8)
 //=================================================
 
 //AFK status
@@ -441,6 +442,8 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define XENO_HEALTH_ALERT_POINTER_DURATION	6 SECONDS //How long the alert directional pointer lasts.
 #define XENO_RALLYING_POINTER_DURATION		15 SECONDS //How long the rally hive pointer lasts
 #define XENO_SILO_DAMAGE_POINTER_DURATION	10 SECONDS //How long the alert directional pointer lasts when silos are damaged
+#define XENO_SILO_DETECTION_COOLDOWN		1 MINUTES
+#define XENO_SILO_DETECTION_RANGE			10//How far silos can detect hostiles
 
 #define CANNOT_HOLD_EGGS 0
 #define CAN_HOLD_TWO_HANDS 1

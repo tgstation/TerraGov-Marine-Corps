@@ -284,9 +284,13 @@
 		if(XENO_HIVE_NORMAL)
 			if(hive.hive_orders && hive.hive_orders != "")
 				stat("Hive Orders:", hive.hive_orders)
-			var/countdown = SSticker.mode?.get_hivemind_collapse_countdown()
-			if(countdown)
-				stat("<b>Orphan hivemind collapse timer:</b>", countdown)
+			var/hivemind_countdown = SSticker.mode?.get_hivemind_collapse_countdown()
+			if(hivemind_countdown)
+				stat("<b>Orphan hivemind collapse timer:</b>", hivemind_countdown)
+			var/siloless_countdown = SSticker.mode?.get_siloless_collapse_countdown()
+			if(siloless_countdown)
+				stat("<b>Orphan hivemind collapse timer:</b>", siloless_countdown)
+			
 		if(XENO_HIVE_CORRUPTED)
 			stat("Hive Orders:","Follow the instructions of our masters")
 
@@ -661,11 +665,6 @@
 
 
 /atom/proc/can_sting()
-	return FALSE
-
-/mob/living/carbon/monkey/can_sting()
-	if(stat != DEAD)
-		return TRUE
 	return FALSE
 
 /mob/living/carbon/human/can_sting()

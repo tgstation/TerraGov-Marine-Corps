@@ -70,7 +70,7 @@
 	manual_unbuckle(user)
 
 
-/obj/effect/plantsegment/attack_paw(mob/living/carbon/monkey/user)
+/obj/effect/plantsegment/attack_paw(mob/living/carbon/human/user)
 	manual_unbuckle(user)
 
 

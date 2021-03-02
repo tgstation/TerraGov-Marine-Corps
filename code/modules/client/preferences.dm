@@ -631,7 +631,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 		if("synth_name")
 			var/newname = input(user, "Choose your Synthetic's name:", "Synthetic Name")
-			newname = reject_bad_name(newname)
+			newname = reject_bad_name(newname, TRUE)
 			if(!newname)
 				to_chat(user, "<font color='red'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</font>")
 				return
@@ -667,7 +667,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 		if("name_real")
 			var/newname = input(user, "Choose your character's name:", "Character Name")
-			newname = reject_bad_name(newname)
+			newname = reject_bad_name(newname, TRUE)
 			if(!newname)
 				to_chat(user, "<font color='red'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</font>")
 				return
@@ -983,6 +983,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		if("flavor_text")
 			var/msg = stripped_input(user, "Give a physical description of your character.", "Flavor Text", sanitize(flavor_text))
 			if(!msg)
+				return
+			if(NON_ASCII_CHECK(msg))
 				return
 			flavor_text = msg
 

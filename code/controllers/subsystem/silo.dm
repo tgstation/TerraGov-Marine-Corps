@@ -4,7 +4,7 @@ SUBSYSTEM_DEF(silo)
 	can_fire = FALSE
 	init_order = INIT_ORDER_SPAWNING_POOL
 	///How many larva points each pool gives per minute with a maturity of zero
-	var/base_larva_spawn_rate = 0.65
+	var/base_larva_spawn_rate = 0.4
 	///How many larva points are added every minutes in total
 	var/current_larva_spawn_rate = 0
 	///If the silos are maturing

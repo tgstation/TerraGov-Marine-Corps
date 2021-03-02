@@ -750,7 +750,7 @@
 
 /obj/machinery/power/apc/ui_act(action, list/params)
 	. = ..()
-	if(. || !can_use(usr, TRUE) || locked)
+	if(. || !can_use(usr, TRUE) || (locked && !usr.has_unlimited_silicon_privilege))
 		return
 	switch(action)
 		if("lock")

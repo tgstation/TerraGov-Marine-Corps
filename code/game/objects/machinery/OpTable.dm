@@ -39,7 +39,7 @@
 				qdel(src)
 
 
-/obj/machinery/optable/attack_paw(mob/living/carbon/monkey/user)
+/obj/machinery/optable/attack_paw(mob/living/carbon/human/user)
 	if(locate(/obj/machinery/optable, user.loc))
 		return
 	step(user, get_dir(user, src))

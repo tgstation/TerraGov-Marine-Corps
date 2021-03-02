@@ -276,30 +276,6 @@
 /mob/proc/can_be_facehugged(obj/item/clothing/mask/facehugger/F, check_death = TRUE, check_mask = TRUE, provoked = FALSE)
 	return FALSE
 
-/mob/living/carbon/monkey/can_be_facehugged(obj/item/clothing/mask/facehugger/F, check_death = TRUE, check_mask = TRUE, provoked = FALSE)
-	if(!istype(F))
-		return FALSE
-
-	if((status_flags & (XENO_HOST|GODMODE)) || F.stat == DEAD)
-		return FALSE
-
-	if(check_death && stat == DEAD)
-		return FALSE
-
-	if(check_mask)
-		if(wear_mask)
-			var/obj/item/W = wear_mask
-			if(W.flags_item & NODROP)
-				return FALSE
-			if(istype(W, /obj/item/clothing/mask/facehugger))
-				var/obj/item/clothing/mask/facehugger/hugger = W
-				if(hugger.stat != DEAD)
-					return FALSE
-	else if (wear_mask && wear_mask != F)
-		return FALSE
-
-	return TRUE
-
 /mob/living/carbon/human/can_be_facehugged(obj/item/clothing/mask/facehugger/F, check_death = TRUE, check_mask = TRUE, provoked = FALSE)
 	if((status_flags & (XENO_HOST|GODMODE)) || F.stat == DEAD)
 		return FALSE

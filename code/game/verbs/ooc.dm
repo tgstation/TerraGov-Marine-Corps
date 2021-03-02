@@ -18,6 +18,8 @@
 
 	if(!msg)
 		return
+	if(NON_ASCII_CHECK(msg))
+		return
 
 	msg = emoji_parse(msg)
 

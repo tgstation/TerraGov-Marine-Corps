@@ -33,12 +33,6 @@
 	"<span class='warning'>We shove [src]!</span>", null, 5)
 	return TRUE
 
-/mob/living/carbon/monkey/attack_alien_disarm(mob/living/carbon/xenomorph/X, dam_bonus)
-	. = ..()
-	if(!.)
-		return
-	Paralyze(16 SECONDS)
-
 /mob/living/proc/can_xeno_slash(mob/living/carbon/xenomorph/X)
 	if(CHECK_BITFIELD(X.xeno_caste.caste_flags, CASTE_IS_INTELLIGENT)) // intelligent ignore restrictions
 		return TRUE

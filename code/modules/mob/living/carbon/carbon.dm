@@ -34,7 +34,7 @@
 		L.initiate_burst(src)
 
 
-/mob/living/carbon/attack_paw(mob/living/carbon/monkey/user)
+/mob/living/carbon/attack_paw(mob/living/carbon/human/user)
 	user.changeNext_move(CLICK_CD_MELEE) //Adds some lag to the 'attack'
 
 

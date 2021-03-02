@@ -303,10 +303,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 15
 
 
-/datum/ammo/bullet/pistol/mankey/on_hit_mob(mob/M,obj/projectile/P)
-	if(P && P.loc && !M.stat && !istype(M,/mob/living/carbon/monkey))
+/datum/ammo/bullet/pistol/mankey/on_hit_mob(mob/M, obj/projectile/P)
+	if(!M.stat && !ismonkey(M))
 		P.visible_message("<span class='danger'>The [src] chimpers furiously!</span>")
-		new /mob/living/carbon/monkey(P.loc)
+		new /mob/living/carbon/human/species/monkey(P.loc)
 
 /*
 //================================================
@@ -1009,6 +1009,21 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 15
 	shrapnel_chance = 25
 	sundering = 2.5
+
+/datum/ammo/bullet/railgun
+	name = "railgun round"
+	hud_state = "alloy_spike"
+	icon_state 	= "blue_bullet"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
+	shell_speed = 4
+	max_range = 12
+	damage = 100
+	penetration = 70
+	sundering = 70
+	bullet_color = COLOR_PULSE_BLUE
+
+/datum/ammo/bullet/railgun/on_hit_mob(mob/M,obj/projectile/P)
+	staggerstun(M, P, weaken = 1, stagger = 3, slowdown = 2, knockback = 4)
 
 /*
 //================================================

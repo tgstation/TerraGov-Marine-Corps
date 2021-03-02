@@ -31,13 +31,13 @@
 	src.transform = M
 
 
-/obj/structure/bush/Bumped(M as mob)
+/obj/structure/bush/Bumped(mob/M) //todo shitcode
 	if (istype(M, /mob/living/simple_animal))
 		var/mob/living/simple_animal/A = M
-		A.loc = get_turf(src)
+		A.forceMove(get_turf(src))
 	else if (ismonkey(M))
-		var/mob/living/carbon/monkey/A = M
-		A.loc = get_turf(src)
+		var/mob/living/carbon/human/species/monkey/A = M
+		A.forceMove(get_turf(src))
 
 
 /obj/structure/bush/Crossed(atom/movable/AM)
