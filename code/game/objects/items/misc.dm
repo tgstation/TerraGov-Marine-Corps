@@ -141,5 +141,5 @@
 obj/item/minerupgrade/automatic
 	name = "mining computer"
 	desc = "A small computer that can automate mining wells, reducing the need for oversight"
-	icon_state = "mining_drill_compactordisplay"
+	icon_state = "mining_drill_automaticdisplay"
 	uptype = "mining computer"

@@ -32,7 +32,6 @@
 	var/max_miner_integrity = 100
 	///What type of upgrade it has installed , used to change the icon of the miner.
 	var/miner_upgrade_type
-	var/automatic = FALSE
 
 /obj/machinery/miner/damaged	//mapping and all that shebang
 	miner_status = MINER_DESTROYED
@@ -79,12 +78,11 @@
 		if(MINER_OVERCLOCKED)
 			required_ticks = 35
 		if(MINER_AUTOMATED)
-			automatic = TRUE
 			if(stored_mineral)
 				SSpoints.supply_points += mineral_value * stored_mineral
 				do_sparks(5, TRUE, src)
 				playsound(loc,'sound/effects/phasein.ogg', 50, FALSE)
-				visible_message("<span class='notice'>The [src] buzzes: Ore shipment has been sold for [mineral_value * stored_mineral] points.</span>")
+				say("Ore shipment has been sold for [mineral_value * stored_mineral] points.")
 				stored_mineral = 0
 				start_processing()
 	miner_upgrade_type = upgrade.uptype
@@ -128,6 +126,8 @@
 			if(MINER_OVERCLOCKED)
 				upgrade = new /obj/item/minerupgrade/overclock
 				required_ticks = initial(required_ticks)
+			if(MINER_AUTOMATED)
+				upgrade = new /obj/item/minerupgrade/automatic
 		upgrade.forceMove(user.loc)
 		miner_upgrade_type = null
 		update_icon()
@@ -226,7 +226,9 @@
 	if(miner_status != MINER_RUNNING)
 		to_chat(user, "<span class='warning'>[src] is damaged!</span>")
 		return
-
+	if(miner_upgrade_type == "mining computer")
+		to_chat(user, "<span class='warning'>[src] is automated!")
+		return
 	if(!stored_mineral)
 		to_chat(user, "<span class='warning'>[src] is not ready to produce a shipment yet!</span>")
 		return
@@ -243,11 +245,11 @@
 		stop_processing()
 		return
 	if(add_tick >= required_ticks)
-		if(automatic)
+		if(miner_upgrade_type == "mining computer")
 			SSpoints.supply_points += mineral_value
 			do_sparks(5, TRUE, src)
 			playsound(loc,'sound/effects/phasein.ogg', 50, FALSE)
-			visible_message("<span class='notice'>The [src] buzzes: Ore shipment has been sold for [mineral_value] points.</span>")
+			say("Ore shipment has been sold for [mineral_value] points.")
 			add_tick = 0
 			return
 		stored_mineral += 1
