@@ -252,6 +252,8 @@ SUBSYSTEM_DEF(job)
 	var/mob/living/new_character = player.new_character
 	var/datum/job/job = player.assigned_role
 
+	new_character.apply_assigned_role_to_spawn(job, player.client, player.assigned_squad)
+
 	//If we joined at roundstart we should be positioned at our workstation
 	var/turf/spawn_turf
 	if(joined_late)
@@ -266,8 +268,6 @@ SUBSYSTEM_DEF(job)
 		SendToAtom(new_character, spawn_turf)
 	else
 		SendToLateJoin(new_character, job)
-
-	new_character.apply_assigned_role_to_spawn(job, player.client, player.assigned_squad)
 
 	job.radio_help_message(player)
 
