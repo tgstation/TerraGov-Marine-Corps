@@ -2,10 +2,6 @@
 	return 0
 
 
-/obj/structure/closet/crate/supply_export()
-	. = 3
-	SSpoints.supply_points += .
-
 /mob/living/carbon/xenomorph/supply_export()
 	switch(tier)
 		if(XENO_TIER_ZERO)

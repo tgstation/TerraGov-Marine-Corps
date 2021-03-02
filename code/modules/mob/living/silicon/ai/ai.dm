@@ -11,6 +11,7 @@
 	sight = SEE_TURFS | SEE_MOBS | SEE_OBJS
 	hud_type = /datum/hud/ai
 	buckle_flags = NONE
+	has_unlimited_silicon_privilege = TRUE
 
 	var/list/available_networks = list("marinemainship", "marine", "dropship1", "dropship2")
 	var/obj/machinery/camera/current

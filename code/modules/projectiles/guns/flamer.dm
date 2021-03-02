@@ -57,7 +57,7 @@
 
 /**
  * Light the pilot light of a flamer
- * 
+ *
  * mob/user if not null will play a sound and add an overlay
  * mustlit boolean, if true the pilot light will be lit
  */
@@ -123,7 +123,7 @@
 		to_chat(user, "<span class='warning'>It's still got something loaded!</span>")
 		return
 
-	
+
 	if(user)
 		if(magazine.reload_delay > 1)
 			to_chat(user, "<span class='notice'>You begin reloading [src]. Hold still...</span>")
@@ -170,11 +170,11 @@
 	if (!istype(fueltank))
 		to_chat(user, "<span class='warning'>That's not an attachable fuel tank!</span>")
 		return
-	
+
 	if(fueltank.current_rounds <= 0)
 		to_chat(user, "<span class='warning'>That [fueltank.name] is empty!</span>")
 		return
-	
+
 	to_chat(user, "<span class='notice'>You begin linking [src] with the [fueltank.name]. Hold still...</span>")
 	if(!do_after(user,fueltank.reload_delay, TRUE, src, BUSY_ICON_GENERIC))
 		to_chat(user, "<span class='warning'>Your action was interrupted!</span>")
@@ -209,15 +209,15 @@
 	update_icon(user)
 	var/obj/screen/ammo/A = user.hud_used.ammo
 	A.update_hud(user)
-	
+
 
 /obj/item/weapon/gun/flamer/removed_from_inventory(mob/user)
 	. = ..()
 	if (istype(current_mag,/obj/item/ammo_magazine/flamer_tank/backtank)) //Dropping the flamer unlink it from the tank
 		var/obj/item/ammo_magazine/flamer_tank/backtank/backfueltank = current_mag;
 		backfueltank.attached_flamer=null
-		current_mag = null 
-		light_pilot(null,FALSE) 
+		current_mag = null
+		light_pilot(null,FALSE)
 	update_icon()
 
 /obj/item/weapon/gun/flamer/proc/unleash_flame(atom/target, mob/living/user)
@@ -508,22 +508,23 @@
 	if (hydro.activate_attachment(user))
 		hydro_active = TRUE
 		light_pilot(user, FALSE)
-	else 
+	else
 		hydro_active = FALSE
 		if (current_mag?.current_rounds > 0)
 			light_pilot(user, TRUE)
 	var/obj/screen/ammo/A = user.hud_used.ammo
 	A.update_hud(user)
+	SEND_SIGNAL(src, COMSIG_ITEM_HYDRO_CANNON_TOGGLED)
 
 /obj/item/weapon/gun/flamer/marinestandard/attach_fueltank(mob/user, obj/item/ammo_magazine/flamer_tank/backtank/fueltank)
 	if (!istype(fueltank))
 		to_chat(user, "<span class='warning'>That's not an attachable fuel tank!</span>")
 		return
-	
+
 	if(fueltank.current_rounds <= 0)
 		to_chat(user, "<span class='warning'>That [fueltank.name] is empty!</span>")
 		return
-	
+
 	to_chat(user, "<span class='notice'>You begin linking [src] with the [fueltank.name]. Hold still...</span>")
 	if(!do_after(user,fueltank.reload_delay, TRUE, src, BUSY_ICON_GENERIC))
 		to_chat(user, "<span class='warning'>Your action was interrupted!</span>")
@@ -572,7 +573,7 @@
 	if (hydro_active)
 		return max(water_count,0)
 	return ..()
-	
+
 /obj/item/weapon/gun/flamer/marinestandard/get_ammo_type()
 	if (hydro_active)
 		return list("water","water_empty")
