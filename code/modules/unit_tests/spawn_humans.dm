@@ -16,3 +16,4 @@
 		outfits_to_test.len--
 
 	sleep(10)
+	QDEL_LIST(humans)
