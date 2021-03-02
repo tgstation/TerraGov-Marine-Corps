@@ -1,0 +1,4 @@
+author: "Walarks"
+delete-after: True
+changes: 
+  - qol: "allows loading reagents into the Vali system that are automatically injected on activation"

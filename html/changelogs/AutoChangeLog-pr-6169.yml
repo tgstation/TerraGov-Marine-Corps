@@ -1,0 +1,4 @@
+author: "fernandos13"
+delete-after: True
+changes: 
+  - qol: "you can restock hypos by clicking on the pill bottle"

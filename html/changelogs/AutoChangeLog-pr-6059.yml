@@ -1,0 +1,5 @@
+author: "Pariah919"
+delete-after: True
+changes: 
+  - rscadd: "Added new railgun thing"
+  - rscdel: "Removed old spec gl from req, it literally was worse than the normal gl."

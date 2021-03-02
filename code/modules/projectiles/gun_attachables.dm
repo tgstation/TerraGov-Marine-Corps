@@ -609,10 +609,10 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/flashlight/turn_light(mob/user, toggle_on)
 	. = ..()
-	
+
 	if(. != CHECKS_PASSED)
 		return
-	
+
 	if(ismob(master_gun.loc) && !user)
 		user = master_gun.loc
 	if(!toggle_on & light_on)
@@ -638,7 +638,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	for(var/X in master_gun.actions)
 		var/datum/action/A = X
 		A.update_button_icon()
-	
+
 
 /obj/item/attachable/flashlight/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -1750,7 +1750,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	attach_icon = ""
 	slot = "under"
 	flags_attach_features = ATTACH_ACTIVATION|ATTACH_UTILITY|GUN_ALLOW_SYNTHETIC
-	attachment_action_type = /datum/action/item_action/toggle
+	attachment_action_type = /datum/action/item_action/toggle_hydro
 
 /obj/item/attachable/hydro_cannon/activate_attachment(mob/living/user, turn_off)
 	if(master_gun.active_attachable == src)
