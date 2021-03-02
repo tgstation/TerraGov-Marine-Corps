@@ -214,8 +214,8 @@
 	playsound(get_turf(wearer), 'sound/effects/bubbles.ogg', 30, 1)
 	to_chat(wearer, "<span class='notice'>Commensing reagent injection.<b>[(automatic_meds_use && meds_beaker.reagents.total_volume) ? " Adding additional reagents." : ""]</b></span>")
 	if(automatic_meds_use)
+		show_meds_beaker_contents(wearer)
 		meds_beaker.reagents.trans_to(wearer, 60)
-		scan_user()
 
 ///Updates the boost amount of the suit and effect_str of reagents if component is on. "amount" is the final level you want to set the boost to.
 /datum/component/chem_booster/proc/update_boost(amount, update_boost_amount = TRUE)
