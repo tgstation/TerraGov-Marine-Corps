@@ -1,4 +1,4 @@
-/// Controls how many buckets should be kept, each representing a tick. Max is ten seconds, this system does not handle next fire of more than 100 ticks in order to have better perf
+/// Controls how many buckets should be kept, each representing a tick. Max is ten seconds, to have better perf.
 #define BUCKET_LEN (world.fps * 10)
 /// Helper for getting the correct bucket
 #define BUCKET_POS(next_fire) (((round((next_fire - SSautomatedfire.head_offset) / world.tick_lag) + 1) % BUCKET_LEN) || BUCKET_LEN)
