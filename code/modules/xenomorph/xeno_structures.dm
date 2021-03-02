@@ -225,7 +225,7 @@
 	var/distance = INFINITY
 	var/buffer_distance
 	var/list/turf/path = list()
-	for (var/mob/living/carbon/human/nearby_human AS anything in cheap_get_humans_near(src, range))
+	for (var/mob/living/carbon/human/nearby_human AS in cheap_get_humans_near(src, range))
 		if(nearby_human.stat == DEAD)
 			continue
 		buffer_distance = get_dist(nearby_human, src)
@@ -236,7 +236,7 @@
 		if(!path.len) //Can't shoot if it's on the same turf
 			continue
 		var/blocked = FALSE
-		for(var/turf/T AS anything in path)
+		for(var/turf/T AS in path)
 			if(IS_OPAQUE_TURF(T) || T.density && T.throwpass == FALSE)
 				blocked = TRUE
 				break //LoF Broken; stop checking; we can't proceed further.
@@ -256,7 +256,7 @@
 	if(.)//We have found the closest human target, human takes priority on xenos for performance issue
 		return
 
-	for (var/mob/living/carbon/xenomorph/nearby_xeno AS anything in cheap_get_xenos_near(src, range))
+	for (var/mob/living/carbon/xenomorph/nearby_xeno AS in cheap_get_xenos_near(src, range))
 		if(associated_hive == nearby_xeno.hive) //Xenomorphs not in our hive will be attacked as well!
 			continue
 		if(nearby_xeno.stat == DEAD)
@@ -290,9 +290,9 @@
 ///Signal handler to make the turret shoot at its target
 /obj/structure/resin/xeno_turret/proc/shoot()
 	SIGNAL_HANDLER
-    if(!hostile)
+	if(!hostile)
 		SEND_SIGNAL(src, COMSIG_AUTOMATIC_SHOOTER_STOP_SHOOTING_AT)
-        return
+		return
 	face_atom(hostile)
 	var/obj/projectile/newshot = new(loc)
 	newshot.generate_bullet(ammo)
