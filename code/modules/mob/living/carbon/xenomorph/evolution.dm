@@ -352,6 +352,9 @@
 			if(XENO_TIER_THREE)
 				SSmonitor.stats.ancient_T3--
 
+	new_xeno.upgrade_stored = upgrade_stored
+	while(new_xeno.upgrade_possible() && new_xeno.upgrade_stored >= new_xeno.xeno_caste.upgrade_threshold)
+		new_xeno.upgrade_xeno(new_xeno.upgrade_next(), TRUE)
 	qdel(src)
 	INVOKE_ASYNC(new_xeno, /mob/living.proc/do_jitter_animation, 1000)
 

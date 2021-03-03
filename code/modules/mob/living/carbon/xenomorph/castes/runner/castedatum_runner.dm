@@ -85,7 +85,7 @@
 	max_health = 200
 
 	// *** Evolution *** //
-	upgrade_threshold = 120
+	upgrade_threshold = 180
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = XENO_BOMB_RESIST_0, "bio" = 3, "rad" = 3, "fire" = 10, "acid" = 3)
@@ -118,7 +118,7 @@
 	max_health = 225
 
 	// *** Evolution *** //
-	upgrade_threshold = 240
+	upgrade_threshold = 420
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = XENO_BOMB_RESIST_0, "bio" = 5, "rad" = 5, "fire" = 15, "acid" = 5)
@@ -152,7 +152,7 @@
 	max_health = 240
 
 	// *** Evolution *** //
-	upgrade_threshold = 240
+	upgrade_threshold = 660
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 19, "bullet" = 19, "laser" = 19, "energy" = 19, "bomb" = XENO_BOMB_RESIST_0, "bio" = 7, "rad" = 7, "fire" = 19, "acid" = 7)
@@ -247,7 +247,7 @@
 	max_health = 200
 
 	// *** Evolution *** //
-	upgrade_threshold = 120
+	upgrade_threshold = 180
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = XENO_BOMB_RESIST_0, "bio" = 3, "rad" = 3, "fire" = 10, "acid" = 3)
@@ -280,7 +280,7 @@
 	max_health = 225
 
 	// *** Evolution *** //
-	upgrade_threshold = 240
+	upgrade_threshold = 420
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = XENO_BOMB_RESIST_0, "bio" = 5, "rad" = 5, "fire" = 15, "acid" = 5)
@@ -314,7 +314,7 @@
 	max_health = 240
 
 	// *** Evolution *** //
-	upgrade_threshold = 240
+	upgrade_threshold = 660
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 19, "bullet" = 19, "laser" = 19, "energy" = 19, "bomb" = XENO_BOMB_RESIST_0, "bio" = 7, "rad" = 7, "fire" = 19, "acid" = 7)
