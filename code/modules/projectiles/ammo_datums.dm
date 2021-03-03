@@ -1637,7 +1637,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	bonus_projectiles_type = /datum/ammo/xeno/acid/heavy/scatter
 	bonus_projectiles_amount = 5
 	bonus_projectiles_scatter = 10
-	max_range = 10
+	max_range = 7
 	puddle_duration = 3 SECONDS //Lasts 2-4 seconds
 	puddle_acid_damage = 20
 
