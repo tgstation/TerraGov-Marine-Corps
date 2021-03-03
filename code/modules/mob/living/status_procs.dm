@@ -620,9 +620,14 @@
 	return stagger
 
 ///Where the magic happens. Actually applies stagger stacks.
-/mob/living/proc/adjust_stagger(amount, ignore_canstun = FALSE)
+/mob/living/proc/adjust_stagger(amount, ignore_canstun = FALSE, capped = 0)
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_STUN, amount, ignore_canstun) & COMPONENT_NO_STUN) //Stun immunity also provides immunity to its lesser cousin stagger
 		return
+
+	if(capped)
+		stagger = clamp(stagger + amount, 0, capped)
+		return stagger
+
 	stagger = max(stagger + amount,0)
 	return stagger
 
@@ -651,7 +656,7 @@
 		set_slowdown(max(slowdown + amount, 0))
 	return slowdown
 
-/mob/living/proc/add_slowdown(amount)
+/mob/living/proc/add_slowdown(amount, capped = 0)
 	adjust_slowdown(amount * STANDARD_SLOWDOWN_REGEN)
 
 ///Standard slowdown regen called by life.dm
