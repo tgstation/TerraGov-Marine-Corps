@@ -56,6 +56,9 @@
 	for(var/i in RANGE_TURFS(XENO_SILO_DETECTION_RANGE, src))
 		RegisterSignal(i, COMSIG_ATOM_ENTERED, .proc/resin_silo_proxy_alert)
 
+	if(SSsilo.silos_do_mature)
+		start_maturing()
+
 	return INITIALIZE_HINT_LATELOAD
 
 
