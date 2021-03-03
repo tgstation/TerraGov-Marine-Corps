@@ -1,4 +1,0 @@
-author: "Surrealaser"
-delete-after: True
-changes: 
-  - bugfix: "Boiler neurogas now properly extinguishes areas of fire within it."
