@@ -179,7 +179,6 @@ SUBSYSTEM_DEF(automatedfire)
 	SIGNAL_HANDLER
 	var/obj/projectile/newshot = new(loc)
 	newshot.generate_bullet(ammo)
-	newshot.permutated += src
 	newshot.fire_at(target, src, null, ammo.max_range, ammo.shell_speed)
 
 /datum/component/automatedfire/xeno_turret_autofire
