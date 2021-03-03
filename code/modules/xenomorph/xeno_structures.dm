@@ -202,23 +202,42 @@
 
 /obj/structure/resin/xeno_turret/Destroy()
 	. = ..()
-	hostile = null
-	last_hostile = null
+	set_hostile(null)
+	set_last_hostile(null)
 	GLOB.xeno_acid_turrets -= src
 
 /obj/structure/resin/xeno_turret/process()
-	hostile = get_target()
+	set_hostile(get_target())
 	if (!hostile)
 		if(last_hostile)
-			last_hostile = null
-			SEND_SIGNAL(src, COMSIG_AUTOMATIC_SHOOTER_STOP_SHOOTING_AT)
+			set_last_hostile(null)
 		return
 	if(!TIMER_COOLDOWN_CHECK(src, COOLDOWN_XENO_TURRETS_ALERT))
 		associated_hive.xeno_message("<span class='xenoannounce'>Our [name] has detected a nearby hostile [hostile] at [get_area(hostile)]. [name] has [obj_integrity]/[max_integrity] health remaining.</span>", 2, FALSE, src, 'sound/voice/alien_help1.ogg', FALSE, null, /obj/screen/arrow/turret_attacking_arrow)
 		TIMER_COOLDOWN_START(src, COOLDOWN_XENO_TURRETS_ALERT, 20 SECONDS)
 	if(hostile != last_hostile)
-		last_hostile = hostile
+		set_last_hostile(hostile)
 		SEND_SIGNAL(src, COMSIG_AUTOMATIC_SHOOTER_START_SHOOTING_AT)
+
+/obj/structure/resin/xeno_turret/proc/unset_hostile()
+	SIGNAL_HANDLER
+	hostile = null
+
+/obj/structure/resin/xeno_turret/proc/unset_lasthostile()
+	SIGNAL_HANDLER
+	last_hostile = null
+
+/obj/structure/resin/xeno_turret/proc/set_hostile(_hostile)
+	if(hostile)
+		UnregisterSignal(hostile, COMSIG_PARENT_QDELETING)
+	hostile = _hostile
+	RegisterSignal(hostile, COMSIG_PARENT_QDELETING, .proc/unset_hostile)
+
+/obj/structure/resin/xeno_turret/proc/set_last_hostile(_last_hostile)
+	if(last_hostile)
+		UnregisterSignal(last_hostile, COMSIG_PARENT_QDELETING)
+	last_hostile = _last_hostile
+	RegisterSignal(last_hostile, COMSIG_PARENT_QDELETING, .proc/unset_lasthostile)
 
 ///Look for the closest human in range and in light of sight. If no human is in range, will look for xenos of other hives
 /obj/structure/resin/xeno_turret/proc/get_target()
