@@ -1072,7 +1072,7 @@
 	mechanics_text = "Creates a new xeno acid turret"
 	ability_name = "secrete acid turret"
 	plasma_cost = 150
-	cooldown_timer = 60 SECOND
+	cooldown_timer = 60 SECONDS
 	/// How long does it take to build
 	var/build_time = 5 SECONDS
 	/// Pyschic point cost
