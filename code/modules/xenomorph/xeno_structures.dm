@@ -175,7 +175,7 @@
 	desc = "A menacing looking construct of resin, it seems to be alive. It fires acid against intruders."
 	bound_width = 32
 	bound_height = 32
-	max_integrity = 800
+	max_integrity = 600
 	layer =  ABOVE_MOB_LAYER
 	density = TRUE
 	///The hive it belongs to
@@ -214,18 +214,19 @@
 	if(world.time > last_scan_time + TURRET_SCAN_FREQUENCY)
 		awake = scan()
 		last_scan_time = world.time
-	if(awake)
-		set_hostile(get_target())
-		if (!hostile)
-			if(last_hostile)
-				set_last_hostile(null)
-			return
-		if(!TIMER_COOLDOWN_CHECK(src, COOLDOWN_XENO_TURRETS_ALERT))
-			associated_hive.xeno_message("<span class='xenoannounce'>Our [name] has detected a nearby hostile [hostile] at [get_area(hostile)]. [name] has [obj_integrity]/[max_integrity] health remaining.</span>", 2, FALSE, src, 'sound/voice/alien_help1.ogg', FALSE, null, /obj/screen/arrow/turret_attacking_arrow)
-			TIMER_COOLDOWN_START(src, COOLDOWN_XENO_TURRETS_ALERT, 20 SECONDS)
-		if(hostile != last_hostile)
-			set_last_hostile(hostile)
-			SEND_SIGNAL(src, COMSIG_AUTOMATIC_SHOOTER_START_SHOOTING_AT)
+	if(!awake)
+		return
+	set_hostile(get_target())
+	if (!hostile)
+		if(last_hostile)
+			set_last_hostile(null)
+		return
+	if(!TIMER_COOLDOWN_CHECK(src, COOLDOWN_XENO_TURRETS_ALERT))
+		associated_hive.xeno_message("<span class='xenoannounce'>Our [name] has detected a nearby hostile [hostile] at [get_area(hostile)]. [name] has [obj_integrity]/[max_integrity] health remaining.</span>", 2, FALSE, src, 'sound/voice/alien_help1.ogg', FALSE, null, /obj/screen/arrow/turret_attacking_arrow)
+		TIMER_COOLDOWN_START(src, COOLDOWN_XENO_TURRETS_ALERT, 20 SECONDS)
+	if(hostile != last_hostile)
+		set_last_hostile(hostile)
+		SEND_SIGNAL(src, COMSIG_AUTOMATIC_SHOOTER_START_SHOOTING_AT)
 
 ///Signal handler for hard del of hostile
 /obj/structure/resin/xeno_turret/proc/unset_hostile()
@@ -298,7 +299,7 @@
 		if(!path.len) //Can't shoot if it's on the same turf
 			continue
 		var/blocked = FALSE
-		for(var/turf/T as anything in path)
+		for(var/turf/T AS in path)
 			if(IS_OPAQUE_TURF(T) || T.density && T.throwpass == FALSE)
 				blocked = TRUE
 				break //LoF Broken; stop checking; we can't proceed further.
