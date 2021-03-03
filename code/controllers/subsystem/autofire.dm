@@ -210,6 +210,7 @@ SUBSYSTEM_DEF(automatedfire)
 	shooting = FALSE
 
 /datum/component/automatedfire/xeno_turret_autofire/process_shot()
+	//We check if the parent is not null, because the component could be scheduled to fire and then the turret is destroyed
 	if(!shooting || !parent)
 		return
 	SEND_SIGNAL(parent, COMSIG_AUTOMATIC_SHOOTER_SHOOT)

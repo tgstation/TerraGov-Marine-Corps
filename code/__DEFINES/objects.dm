@@ -242,3 +242,7 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 #define CHECKS_PASSED 	  1
 #define STILL_ON_COOLDOWN 2
 #define OUT_OF_REACH	  3
+
+//Xeno turrets define
+#define TURRET_SCAN_RANGE 40
+#define TURRET_SCAN_FREQUENCY 15 SECONDS

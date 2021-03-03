@@ -860,7 +860,7 @@
 		return
 	set_glide_size(DELAY_TO_GLIDE_SIZE(cached_multiplicative_slowdown))
 
-// Simple helper to face what you clicked on, in case it should be needed in more than one place
+///Change the direction of the atom to face the targeted atom
 /atom/movable/proc/face_atom(atom/A)
 	if(!A || !x || !y || !A.x || !A.y)
 		return

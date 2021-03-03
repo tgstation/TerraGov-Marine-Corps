@@ -194,15 +194,10 @@
 	var/awake = FALSE
 	///The last time the sentry did a scan
 	var/last_scan_time
-	///The scan range
-	var/scan_range = 40
-	///The frequency of the scan
-	var/scan_frequency = 15 SECONDS
 
 /obj/structure/resin/xeno_turret/Initialize(mapload, hivenumber = XENO_HIVE_NORMAL)
 	. = ..()
 	ammo = GLOB.ammo_list[/datum/ammo/xeno/acid]
-	GLOB.xeno_acid_turrets += src
 	associated_hive = GLOB.hive_datums[hivenumber]
 	START_PROCESSING(SSprocessing, src)
 	AddComponent(/datum/component/automatedfire/xeno_turret_autofire, firerate)
@@ -210,17 +205,15 @@
 	set_light(2, 2, LIGHT_COLOR_GREEN)
 
 /obj/structure/resin/xeno_turret/Destroy()
-	. = ..()
 	set_hostile(null)
 	set_last_hostile(null)
 	STOP_PROCESSING(SSprocessing, src)
-	GLOB.xeno_acid_turrets -= src
+	return ..()
 
 /obj/structure/resin/xeno_turret/process()
-	if(world.time > last_scan_time + scan_frequency)
+	if(world.time > last_scan_time + TURRET_SCAN_FREQUENCY)
 		awake = scan()
 		last_scan_time = world.time
-		message_admins("scan done : awake = [awake]")
 	if(awake)
 		set_hostile(get_target())
 		if (!hostile)
@@ -233,7 +226,6 @@
 		if(hostile != last_hostile)
 			set_last_hostile(hostile)
 			SEND_SIGNAL(src, COMSIG_AUTOMATIC_SHOOTER_START_SHOOTING_AT)
-		return
 
 ///Signal handler for hard del of hostile
 /obj/structure/resin/xeno_turret/proc/unset_hostile()
@@ -326,7 +318,7 @@
 
 ///Return TRUE if a possible target is near
 /obj/structure/resin/xeno_turret/proc/scan()
-	for (var/mob/living/carbon/human/nearby_human AS in cheap_get_humans_near(src, scan_range))
+	for (var/mob/living/carbon/human/nearby_human AS in cheap_get_humans_near(src, TURRET_SCAN_RANGE))
 		if(nearby_human.stat == DEAD)
 			continue
 		return TRUE
