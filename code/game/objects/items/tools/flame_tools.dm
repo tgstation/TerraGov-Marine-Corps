@@ -376,7 +376,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	desc = "a new type of cig developed recently to fend off toxic gasses, might still tire you."
 	icon_state = "anticigoff"
 	item_state = "anticigoff"
-	icon_on = "chemcigon"
+	icon_on = "anticigon"
 	smoketime = 30
 	chem_volume = 60
 	transquantity = 2 // one of each for the whole duration
@@ -387,7 +387,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	desc = "its got a big warning about clone damage, use as a last resort."
 	icon_state = "rrcigoff"
 	item_state = "rrcigoff"
-	icon_on = "chemcigon"
+	icon_on = "rrcigon"
 	smoketime = 10
 	transquantity = 1
 	list_reagents = list(/datum/reagent/medicine/russian_red = 10)  //same ammount as a pill
@@ -397,7 +397,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	desc = "its red tipped. and got bold letters that read(BICA)"
 	icon_state = "bicacigoff"
 	item_state = "bicacigoff"
-	icon_on = "chemcigon"
+	icon_on = "bicaigon"
 	smoketime = 30
 	transquantity = 5 // one of each for the whole duration
 	list_reagents = list(/datum/reagent/medicine/bicaridine = 15)
@@ -407,7 +407,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	desc = "its yellow tipped. and got bold letters that read(KELO)."
 	icon_state = "kelocigoff"
 	item_state = "kelocigoff"
-	icon_on = "chemcigon"
+	icon_on = "kelocigon"
 	smoketime = 30
 	transquantity = 5 // one of each for the whole duration
 	list_reagents = list(/datum/reagent/medicine/kelotane = 15)
@@ -417,7 +417,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	desc = "terragov opioid alternative, recent production is a bit dilluted, but still effective."
 	icon_state = "tramcigoff"
 	item_state = "tramcigoff"
-	icon_on = "chemcigon"
+	icon_on = "tramcigon"
 	smoketime = 60
 	chem_volume = 120
 	transquantity = 2 // one of each for the whole duration
