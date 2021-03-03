@@ -453,6 +453,7 @@
 	storage_slots = 3 //2 less than injectors yet more flexible options
 	can_hold = list(/obj/item/reagent_containers/hypospray)
 
+
 /obj/item/storage/pouch/hypospray/corps
 	name = "Corps hypospray pouch"
 	desc = "It can contain hyposprays and autoinjectors, this one has a Terragov corpsman logo on its back."
