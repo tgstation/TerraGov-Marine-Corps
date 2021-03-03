@@ -183,61 +183,79 @@
 	///What kind of spit it uses
 	var/datum/ammo/xeno/acid/heavy/ammo
 	///Range of the turret
-	var/range = 10
+	var/range = 7
 	///Target of the turret
 	var/mob/living/carbon/hostile
 	///Last target of the turret
 	var/mob/living/carbon/last_hostile
 	///Fire rate of the target in ticks
 	var/firerate = 5
+	///If true, the sentry will try to find a target to shoot on every second. If not, will do a scan a regular time interval
+	var/awake = FALSE
+	///The last time the sentry did a scan
+	var/last_scan_time
+	///The scan range
+	var/scan_range = 40
+	///The frequency of the scan
+	var/scan_frequency = 15 SECONDS
 
 /obj/structure/resin/xeno_turret/Initialize(mapload, hivenumber = XENO_HIVE_NORMAL)
 	. = ..()
 	ammo = GLOB.ammo_list[/datum/ammo/xeno/acid]
 	GLOB.xeno_acid_turrets += src
 	associated_hive = GLOB.hive_datums[hivenumber]
-	START_PROCESSING(SSslowprocess, src)
+	START_PROCESSING(SSprocessing, src)
 	AddComponent(/datum/component/automatedfire/xeno_turret_autofire, firerate)
 	RegisterSignal(src, COMSIG_AUTOMATIC_SHOOTER_SHOOT, .proc/shoot)
+	set_light(2, 2, LIGHT_COLOR_GREEN)
 
 /obj/structure/resin/xeno_turret/Destroy()
 	. = ..()
 	set_hostile(null)
 	set_last_hostile(null)
+	STOP_PROCESSING(SSprocessing, src)
 	GLOB.xeno_acid_turrets -= src
 
 /obj/structure/resin/xeno_turret/process()
-	set_hostile(get_target())
-	if (!hostile)
-		if(last_hostile)
-			set_last_hostile(null)
+	if(world.time > last_scan_time + scan_frequency)
+		awake = scan()
+		last_scan_time = world.time
+		message_admins("scan done : awake = [awake]")
+	if(awake)
+		set_hostile(get_target())
+		if (!hostile)
+			if(last_hostile)
+				set_last_hostile(null)
+			return
+		if(!TIMER_COOLDOWN_CHECK(src, COOLDOWN_XENO_TURRETS_ALERT))
+			associated_hive.xeno_message("<span class='xenoannounce'>Our [name] has detected a nearby hostile [hostile] at [get_area(hostile)]. [name] has [obj_integrity]/[max_integrity] health remaining.</span>", 2, FALSE, src, 'sound/voice/alien_help1.ogg', FALSE, null, /obj/screen/arrow/turret_attacking_arrow)
+			TIMER_COOLDOWN_START(src, COOLDOWN_XENO_TURRETS_ALERT, 20 SECONDS)
+		if(hostile != last_hostile)
+			set_last_hostile(hostile)
+			SEND_SIGNAL(src, COMSIG_AUTOMATIC_SHOOTER_START_SHOOTING_AT)
 		return
-	if(!TIMER_COOLDOWN_CHECK(src, COOLDOWN_XENO_TURRETS_ALERT))
-		associated_hive.xeno_message("<span class='xenoannounce'>Our [name] has detected a nearby hostile [hostile] at [get_area(hostile)]. [name] has [obj_integrity]/[max_integrity] health remaining.</span>", 2, FALSE, src, 'sound/voice/alien_help1.ogg', FALSE, null, /obj/screen/arrow/turret_attacking_arrow)
-		TIMER_COOLDOWN_START(src, COOLDOWN_XENO_TURRETS_ALERT, 20 SECONDS)
-	if(hostile != last_hostile)
-		set_last_hostile(hostile)
-		SEND_SIGNAL(src, COMSIG_AUTOMATIC_SHOOTER_START_SHOOTING_AT)
 
+///Signal handler for hard del of hostile
 /obj/structure/resin/xeno_turret/proc/unset_hostile()
 	SIGNAL_HANDLER
 	hostile = null
 
-/obj/structure/resin/xeno_turret/proc/unset_lasthostile()
+///Signal handler for hard del of last_hostile
+/obj/structure/resin/xeno_turret/proc/unset_last_hostile()
 	SIGNAL_HANDLER
 	last_hostile = null
 
+///Setter for hostile with hard del in mind
 /obj/structure/resin/xeno_turret/proc/set_hostile(_hostile)
-	if(hostile)
-		UnregisterSignal(hostile, COMSIG_PARENT_QDELETING)
-	hostile = _hostile
-	RegisterSignal(hostile, COMSIG_PARENT_QDELETING, .proc/unset_hostile)
+	if(hostile != _hostile)
+		hostile = _hostile
+		RegisterSignal(hostile, COMSIG_PARENT_QDELETING, .proc/unset_hostile)
 
+///Setter for last_hostile with hard del in mind
 /obj/structure/resin/xeno_turret/proc/set_last_hostile(_last_hostile)
 	if(last_hostile)
 		UnregisterSignal(last_hostile, COMSIG_PARENT_QDELETING)
 	last_hostile = _last_hostile
-	RegisterSignal(last_hostile, COMSIG_PARENT_QDELETING, .proc/unset_lasthostile)
 
 ///Look for the closest human in range and in light of sight. If no human is in range, will look for xenos of other hives
 /obj/structure/resin/xeno_turret/proc/get_target()
@@ -305,6 +323,20 @@
 		if(!blocked)
 			distance = buffer_distance
 			. = nearby_xeno
+
+///Return TRUE if a possible target is near
+/obj/structure/resin/xeno_turret/proc/scan()
+	for (var/mob/living/carbon/human/nearby_human AS in cheap_get_humans_near(src, scan_range))
+		if(nearby_human.stat == DEAD)
+			continue
+		return TRUE
+	for (var/mob/living/carbon/xenomorph/nearby_xeno AS in cheap_get_xenos_near(src, range))
+		if(associated_hive == nearby_xeno.hive) //Xenomorphs not in our hive will be attacked as well!
+			continue
+		if(nearby_xeno.stat == DEAD)
+			continue
+		return TRUE
+	return FALSE
 
 ///Signal handler to make the turret shoot at its target
 /obj/structure/resin/xeno_turret/proc/shoot()
