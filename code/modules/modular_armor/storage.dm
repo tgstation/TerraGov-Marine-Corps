@@ -71,7 +71,7 @@
 /** General storage */
 /obj/item/armor_module/storage/general
 	name = "General Purpose Storage module"
-	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Certainly not as specialised as any other storage modules, but definitely able to hold some larger things, like binoculars, maps, and motion detectors."
+	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Certainly not as specialised as any other storage modules, but definitely able to hold some small things, like binoculars, maps, and motion detectors. Able to hold magazines."
 	icon_state = "mod_general_bag"
 	storage_type =  /obj/item/storage/internal/modular/general
 	slowdown = 0.1
@@ -79,7 +79,7 @@
 /obj/item/storage/internal/modular/general
 	max_storage_space = 6
 	storage_slots = 2
-	max_w_class = WEIGHT_CLASS_NORMAL
+	max_w_class = WEIGHT_CLASS_SMALL
 
 	bypass_w_limit = list(
 		/obj/item/ammo_magazine/rifle,
