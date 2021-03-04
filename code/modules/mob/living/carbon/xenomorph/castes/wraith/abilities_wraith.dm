@@ -16,10 +16,21 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 
 /datum/action/xeno_action/place_warp_shadow/can_use_action(silent = FALSE, override_flags)
 	. = ..()
-	if(!check_warp_shadow_placement(get_turf(owner), owner)) //Check if our placement is legal
+
+	var/turf/T = get_turf(owner)
+
+	if(isclosedturf(T) || isspaceturf(T))
 		if(!silent)
 			to_chat(owner, "<span class='xenowarning'>We cannot create a warp shadow here!</span>")
 		return FALSE
+
+
+	for(var/obj/blocker in T) //
+		if(blocker.density && !(blocker.flags_atom & ON_BORDER)) //If we find a dense, non-border obj it's time to stop
+			if(!silent)
+				to_chat(owner, "<span class='xenowarning'>We cannot create a warp shadow here!</span>")
+			return FALSE
+
 
 /datum/action/xeno_action/place_warp_shadow/action_activate()
 	var/mob/living/carbon/xenomorph/wraith/ghost = owner
@@ -62,18 +73,6 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
 
-
-///Check Warp Shadow to stop Wraiths from placing a Warp Shadow or teleporting to one in a solid object with say Phase Shift; prevents them using exploiting say closed turfs as a shield by swapping positions with the Warp Shadow later
-/proc/check_warp_shadow_placement(turf/T, mob/owner)
-
-	if(isclosedturf(T) || isspaceturf(T))
-		return FALSE
-
-	for(var/obj/blocker in T) //
-		if(blocker.density && !(blocker.flags_atom & ON_BORDER)) //If we find a dense, non-border obj it's time to stop
-			return FALSE
-
-	return TRUE
 
 // ***************************************
 // *********** Hyperposition
@@ -184,44 +183,40 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 
 /datum/action/xeno_action/phase_shift/action_activate()
 	. = ..()
-	var/mob/living/carbon/xenomorph/wraith/ghost = owner
-	var/atom/movable/ghost_movable = owner
 
-	ghost.visible_message("<span class='warning'>[ghost.name] is becoming faint and translucent!</span>", \
+	owner.visible_message("<span class='warning'>[owner.name] is becoming faint and translucent!</span>", \
 	"<span class='xenodanger'>We begin to move out of phase with reality....</span>") //Fluff
 
-	ghost.do_jitter_animation(2000) //Animation
+	owner.add_filter("wraith_phase_shift_windup_1", 3, list("type" = "wave", 0, 0, size=rand()*2.5+0.5, offset=rand())) //Cool filter appear
+	owner.add_filter("wraith_phase_shift_windup_2", 3, list("type" = "wave", 0, 0, size=rand()*2.5+0.5, offset=rand())) //Cool filter appear
+	animate(owner.get_filter("wraith_phase_shift_windup_1"), x = 60*rand() - 30, y = 60*rand() - 30, size=rand()*2.5+0.5, offset=rand(), time = 0.25 SECONDS, loop = -1, flags=ANIMATION_PARALLEL)
+	animate(owner.get_filter("wraith_phase_shift_windup_2"), x = 60*rand() - 30, y = 60*rand() - 30, size=rand()*2.5+0.5, offset=rand(), time = 0.25 SECONDS, loop = -1, flags=ANIMATION_PARALLEL)
 
-	ghost.add_filter("wraith_phase_shift_windup_1", 3, list("type" = "wave", 0, 0, size=rand()*2.5+0.5, offset=rand())) //Cool filter appear
-	ghost.add_filter("wraith_phase_shift_windup_2", 3, list("type" = "wave", 0, 0, size=rand()*2.5+0.5, offset=rand())) //Cool filter appear
-	animate(ghost.get_filter("wraith_phase_shift_windup_1"), x = 60*rand() - 30, y = 60*rand() - 30, size=rand()*2.5+0.5, offset=rand(), time = 0.25 SECONDS, loop = -1, flags=ANIMATION_PARALLEL)
-	animate(ghost.get_filter("wraith_phase_shift_windup_2"), x = 60*rand() - 30, y = 60*rand() - 30, size=rand()*2.5+0.5, offset=rand(), time = 0.25 SECONDS, loop = -1, flags=ANIMATION_PARALLEL)
-
-	if(!do_after(ghost, WRAITH_PHASE_SHIFT_WINDUP, TRUE, ghost, BUSY_ICON_FRIENDLY)) //Channel time/wind up
-		ghost.visible_message("<span class='xenowarning'>[ghost]'s form abruptly consolidates, returning to normalcy.</span>", \
+	if(!do_after(owner, WRAITH_PHASE_SHIFT_WINDUP, TRUE, owner, BUSY_ICON_FRIENDLY)) //Channel time/wind up
+		owner.visible_message("<span class='xenowarning'>[owner]'s form abruptly consolidates, returning to normalcy.</span>", \
 		"<span class='xenodanger'>We abort our desynchronization.</span>")
-		ghost.remove_filter("wraith_phase_shift_windup_1")
-		ghost.remove_filter("wraith_phase_shift_windup_2")
+		owner.remove_filter("wraith_phase_shift_windup_1")
+		owner.remove_filter("wraith_phase_shift_windup_2")
 		return fail_activate()
 
-	ghost.remove_filter("wraith_phase_shift_windup_1")
-	ghost.remove_filter("wraith_phase_shift_windup_2")
+	owner.remove_filter("wraith_phase_shift_windup_1")
+	owner.remove_filter("wraith_phase_shift_windup_2")
 
 	playsound(owner, "sound/effects/ghost.ogg", 25, 0, 1)
 
 	addtimer(CALLBACK(src, .proc/phase_shift_warning), WRAITH_PHASE_SHIFT_DURATION * WRAITH_PHASE_SHIFT_DURATION_WARNING) //Warn them when Phase Shift is about to end
 	phase_shift_duration_timer_id = addtimer(CALLBACK(src, .proc/phase_shift_deactivate), WRAITH_PHASE_SHIFT_DURATION, TIMER_STOPPABLE)
-	ghost.add_filter("wraith_phase_shift", 4, list("type" = "blur", 5)) //Cool filter appear
-	ghost.stop_pulling() //We can't pull things while incorporeal
+	owner.add_filter("wraith_phase_shift", 4, list("type" = "blur", 5)) //Cool filter appear
+	owner.stop_pulling() //We can't pull things while incorporeal
 
-	ghost_movable.generic_canpass = FALSE //So incorporeality is actually checked for collision
-	ghost.status_flags = GODMODE | INCORPOREAL //Become temporarily invulnerable and incorporeal
-	ghost.resistance_flags = RESIST_ALL
-	ghost.density = FALSE
-	ghost.throwpass = TRUE
-	ghost.alpha = WRAITH_PHASE_SHIFT_ALPHA //Become translucent
+	owner.generic_canpass = FALSE //So incorporeality is actually checked for collision
+	owner.status_flags = GODMODE | INCORPOREAL //Become temporarily invulnerable and incorporeal
+	owner.resistance_flags = RESIST_ALL
+	owner.density = FALSE
+	owner.throwpass = TRUE
+	owner.alpha = WRAITH_PHASE_SHIFT_ALPHA //Become translucent
 
-	starting_turf = get_turf(ghost) //Get our starting turf so we can calculate the stun duration later.
+	starting_turf = get_turf(owner) //Get our starting turf so we can calculate the stun duration later.
 
 	GLOB.round_statistics.wraith_phase_shifts++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "wraith_phase_shifts") //Statistics
@@ -249,9 +244,8 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	phase_shift_active = FALSE //Flag phase shift as being off
 
 	var/mob/living/carbon/xenomorph/wraith/ghost = owner
-	var/atom/movable/ghost_movable = owner
 
-	ghost_movable.generic_canpass = initial(ghost_movable.generic_canpass)
+	ghost.generic_canpass = initial(ghost.generic_canpass)
 	ghost.status_flags = initial(ghost.status_flags) //Become merely mortal again
 	ghost.resistance_flags = initial(ghost.resistance_flags)
 	ghost.density = initial(ghost.density)

@@ -75,9 +75,6 @@
 	if(closed)
 		return TRUE
 
-	if(incorporeal_movement_check(mover)) //Incorporeal things move through most solid obstacles
-		return TRUE
-
 	if(CHECK_BITFIELD(mover.flags_pass, PASSSMALLSTRUCT))
 		return TRUE
 

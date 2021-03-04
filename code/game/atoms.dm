@@ -871,12 +871,3 @@ Proc for attack log creation, because really why not
 /atom/proc/reset_light()
 	turn_light(null, TRUE)
 
-// For determining if a mover is incorporeal and thus can move through most solid obstacles.
-/atom/proc/incorporeal_movement_check(atom/movable/mover)
-
-	if(ismob(mover))
-		var/mob/M = mover
-		if(M.status_flags & INCORPOREAL)
-			return TRUE
-
-	return FALSE
