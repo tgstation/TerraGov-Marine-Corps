@@ -875,7 +875,6 @@ and you're good to go.
 		playsound(user, fire_rattle, 60, FALSE)
 		return
 	playsound(user, fire_sound, 60, firing_sndfreq ? TRUE : FALSE, frequency = firing_sndfreq)
-	return
 
 
 /obj/item/weapon/gun/proc/apply_gun_modifiers(obj/projectile/projectile_to_fire, atom/target)
