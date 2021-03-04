@@ -490,7 +490,6 @@
 		/obj/item/reagent_containers/hypospray,
 		/obj/item/storage/syringe_case,
 		/obj/item/bodybag,
-		/obj/item/defibrillator,
 		/obj/item/roller,
 		/obj/item/tweezers,
 	)
