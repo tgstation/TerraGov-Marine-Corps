@@ -1126,7 +1126,8 @@
 		to_chat(owner, "<span class='xenowarning'>Someone used all the psych points while we were building!</span>")
 		return fail_activate()
 
-	new /obj/structure/resin/xeno_turret(A, X.hivenumber)
+	var/turf/T = get_turf(A)
+	new /obj/structure/resin/xeno_turret(T, X.hivenumber)
 
 	SSpoints.xeno_points_by_hive[X.hivenumber] -= psych_cost
 
