@@ -509,7 +509,7 @@
 	new /obj/item/reagent_containers/hypospray/advanced/combat_advanced(src)
 	new /obj/item/storage/syringe_case/corps(src)
 
-/obj/item/storage/pouch/medkit/medkit/Initialize()
+/obj/item/storage/pouch/medkit/medickit/Initialize()
 	. = ..()
 	new /obj/item/healthanalyzer(src)
 	new /obj/item/stack/medical/advanced/bruise_pack(src)
