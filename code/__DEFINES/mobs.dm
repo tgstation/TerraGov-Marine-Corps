@@ -418,6 +418,8 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 //Xeno Defines
 
+#define XENO_DEFAULT_ACID_PUDDLE_DAMAGE	14 //Standard damage dealt by acid puddles
+
 #define HIVE_CAN_HIJACK (1<<0)
 
 #define XENO_PULL_CHARGE_TIME 2 SECONDS
