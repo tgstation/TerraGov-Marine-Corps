@@ -1236,6 +1236,7 @@
 		return FALSE
 	if(HAS_TRAIT(victim, TRAIT_PSY_DRAINED))
 		to_chat(X, "<span class='warning'>There is no longer any life force in this creature!</span>")
+		return FALSE
 	if(!ishuman(victim))
 		if(!silent)
 			to_chat(X, "<span class='warning'>We can't drain something that is not human.</span>")
@@ -1246,7 +1247,7 @@
 		return FALSE
 	X.face_atom(victim) //Face towards the target so we don't look silly
 	X.visible_message("<span class='xenowarning'>\The [X] begins opening its mouth and extending a second jaw towards \the [victim].</span>", \
-	"<span class='danger'>We prepare our inner jaw for a finishing blow on \the [victim]!</span>", null, 20)
+	"<span class='danger'>We slowly drain \the [victim]'s life force!</span>", null, 20)
 	playsound(X, 'sound/magic/nightfall.ogg', 40)
 	if(!do_after(X, 10 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(X, /mob.proc/break_do_after_checks, list("health" = X.health))))
 		X.visible_message("<span class='xenowarning'>\The [X] retracts its inner jaw.</span>", \
@@ -1260,7 +1261,8 @@
 
 	if(HAS_TRAIT(victim, TRAIT_PSY_DRAINED))
 		to_chat(X, "<span class='warning'>Someone drained the life force of our victim before we could do it!</span>")
-
+		return
+	
 	playsound(X, 'sound/magic/end_of_psy_drain.ogg', 40)
 
 	X.visible_message("<span class='xenodanger'>\The [victim]'s life force is drained by \the [X]!</span>", \
