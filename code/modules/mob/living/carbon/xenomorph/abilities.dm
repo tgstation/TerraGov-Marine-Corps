@@ -1261,7 +1261,7 @@
 
 	if(HAS_TRAIT(victim, TRAIT_PSY_DRAINED))
 		to_chat(X, "<span class='warning'>Someone drained the life force of our victim before we could do it!</span>")
-		return
+		fail_activate()
 	
 	playsound(X, 'sound/magic/end_of_psy_drain.ogg', 40)
 
