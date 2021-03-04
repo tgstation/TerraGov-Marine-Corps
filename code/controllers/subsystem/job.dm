@@ -126,7 +126,6 @@ SUBSYSTEM_DEF(job)
 		player.assigned_squad = null
 	SetupOccupations()
 	unassigned.Cut()
-	return
 
 
 /** Proc DivideOccupations

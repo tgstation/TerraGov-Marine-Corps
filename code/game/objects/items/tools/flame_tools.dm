@@ -326,7 +326,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			reagents.trans_to(C, REAGENTS_METABOLISM)
 		else // else just remove some of the reagents
 			reagents.remove_any(REAGENTS_METABOLISM)
-	return
+
 
 
 /obj/item/clothing/mask/cigarette/attack_self(mob/user)
@@ -334,7 +334,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		user.visible_message("<span class='notice'>[user] calmly drops and treads on the lit [src], putting it out instantly.</span>")
 		playsound(src, 'sound/items/cig_snuff.ogg', 15, 1)
 		die()
-	. = ..()
+	return ..()
 
 /obj/item/clothing/mask/cigarette/attack(atom/target, mob/living/user)
 	if(!lit)
@@ -440,7 +440,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	if(smoketime <= 0)
 		to_chat(user, "<span class='notice'>You refill the pipe with tobacco.</span>")
 		smoketime = initial(smoketime)
-	return
+
 
 /obj/item/clothing/mask/cigarette/pipe/cobpipe
 	name = "corn cob pipe"
@@ -515,7 +515,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			turn_off(user, FALSE)
 	else
 		return ..()
-	return
 
 /obj/item/tool/lighter/proc/turn_off(mob/living/bearer, silent = TRUE)
 	if(heat)

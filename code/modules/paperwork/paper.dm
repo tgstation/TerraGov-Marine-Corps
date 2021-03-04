@@ -67,7 +67,7 @@
 			onclose(user, "[name]")
 	else
 		to_chat(user, "<span class='notice'>It is too far away to read.</span>")
-	return
+
 
 /obj/item/paper/verb/rename()
 	set name = "Rename paper"
@@ -77,7 +77,7 @@
 	var/n_name = stripped_input(usr, "What would you like to label the paper?", "Paper Labelling")
 	if((loc == usr && usr.stat == 0))
 		name = "[(n_name ? text("[n_name]") : "paper")]"
-	return
+
 
 
 /obj/item/paper/attack_ai(mob/living/silicon/ai/user as mob)
@@ -93,7 +93,7 @@
 		//Show scrambled paper
 		usr << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[stars(info)][stamps]</BODY></HTML>", "window=[name]")
 		onclose(usr, "[name]")
-	return
+
 
 /obj/item/paper/attack(mob/living/carbon/M, mob/living/carbon/user)
 	if(user.zone_selected == "eyes")

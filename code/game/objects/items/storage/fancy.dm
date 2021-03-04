@@ -147,7 +147,7 @@
 
 /obj/item/storage/fancy/cigarettes/update_icon()
 	icon_state = "[initial(icon_state)][contents.len]"
-	return
+
 
 /obj/item/storage/fancy/cigarettes/remove_from_storage(obj/item/W, atom/new_location)
 	var/obj/item/clothing/mask/cigarette/C = W
@@ -207,9 +207,9 @@
 	spawn_number = 7
 	icon_type = "cigar"
 
-/obj/item/storage/fancy/cigar/update_icon()
+/obj/item/storage/fancy/cigar/update_icon_state()
 	icon_state = "[initial(icon_state)][contents.len]"
-	return
+
 
 /obj/item/storage/fancy/cigar/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	if(!istype(M, /mob))

@@ -18,7 +18,7 @@
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	updateUsrDialog()
-	return
+
 
 /obj/machinery/sleep_console/ex_act(severity)
 	switch(severity)
@@ -375,7 +375,6 @@
 		icon_state = "sleeper_0-r"
 	else
 		icon_state = "sleeper_0"
-	return
 
 
 /obj/machinery/sleeper/proc/inject_chemical(mob/living/user as mob, chemical, amount)
@@ -385,7 +384,6 @@
 			to_chat(user, "<span class='notice'>Occupant now has [occupant.reagents.get_reagent_amount(chemical)] units of [available_chemicals[chemical]] in his/her bloodstream.</span>")
 			return
 	to_chat(user, "<span class='warning'>There's no occupant in the sleeper or the subject has too many chemicals!</span>")
-	return
 
 
 /obj/machinery/sleeper/proc/check(mob/living/user)
@@ -414,7 +412,7 @@
 			to_chat(user, "<span class='notice'>No Dialysis Output Beaker loaded.</span>")
 	else
 		to_chat(user, "<span class='notice'>There is no one inside!</span>")
-	return
+
 
 /obj/machinery/sleeper/verb/eject()
 	set name = "Eject Sleeper"

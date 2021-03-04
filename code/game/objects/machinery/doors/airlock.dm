@@ -173,7 +173,6 @@
 	else
 		icon_state = "door_open"
 
-	return
 
 /obj/machinery/door/airlock/do_animate(animation)
 	switch(animation)
@@ -196,7 +195,7 @@
 		if("deny")
 			if(density)
 				flick("door_deny", src)
-	return
+
 
 
 //Prying open doors
@@ -518,10 +517,10 @@
 
 
 /obj/machinery/door/airlock/proc/prison_open()
-	src.unlock()
-	src.open()
-	src.lock()
-	return
+	unlock()
+	open()
+	lock()
+
 
 
 /obj/machinery/door/airlock/proc/update_nearby_icons()

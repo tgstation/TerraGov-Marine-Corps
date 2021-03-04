@@ -122,7 +122,7 @@
 
 /mob/living/proc/get_ghost()
 	if(client) //Let's call up the correct ghost!
-		return
+		return null
 	for(var/g in GLOB.observer_list)
 		if(!g) //Observers hard del often so lets just be safe
 			continue
@@ -131,7 +131,7 @@
 			continue
 		if(ghost.client && ghost.can_reenter_corpse)
 			return ghost
-	return
+	return null
 
 
 /mob/living/carbon/human/proc/has_working_organs()

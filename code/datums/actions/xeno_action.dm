@@ -223,7 +223,7 @@
 	return ..()
 
 
-//the thing to do when the selected action ability is selected and triggered by middle_click
+///the thing to do when the selected action ability is selected and triggered by middle_click
 /datum/action/xeno_action/activable/proc/use_ability(atom/A)
 	return
 
