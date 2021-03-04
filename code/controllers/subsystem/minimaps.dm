@@ -118,12 +118,8 @@ SUBSYSTEM_DEF(minimaps)
 	SIGNAL_HANDLER
 	var/datum/minimap_updator/holder = updators_by_datum[target]
 	updators_by_datum -= target
-	LAZYREMOVE(update_targets[MINIMAP_STRING_XENO], holder)
-	LAZYREMOVE(update_targets[MINIMAP_STRING_MARINE], holder)
-	LAZYREMOVE(update_targets[MINIMAP_STRING_ALPHA], holder)
-	LAZYREMOVE(update_targets[MINIMAP_STRING_BRAVO], holder)
-	LAZYREMOVE(update_targets[MINIMAP_STRING_CHARLIE], holder)
-	LAZYREMOVE(update_targets[MINIMAP_STRING_DELTA], holder)
+	for(var/key in update_targets)
+		LAZYREMOVE(update_targets[key], holder)
 	update_targets_unsorted -= target
 
 /**
@@ -179,9 +175,9 @@ SUBSYSTEM_DEF(minimaps)
 		return
 	var/image/blip = image(icon, iconstate, pixel_x = MINIMAP_PIXEL_FROM_WORLD(target.x), pixel_y = MINIMAP_PIXEL_FROM_WORLD(target.y))
 	images_by_source[target] = blip
-	if(hud_flags & MINIMAP_FLAG_XENO)
-		minimaps_by_z["[zlevel]"].xeno_images[target] = blip
-		minimaps_by_z["[zlevel]"].xeno_images_raw += blip
+	if(hud_flags & MINIMAP_FLAG_XENO) //yes we use this chain & check, because we can't cycle trough bitfields, nor assign them to keys to be converted easily
+		minimaps_by_z["[zlevel]"].xeno_images[target] = blip //easiest fix would be to just make it a list but with the amount of things we're expected to add
+		minimaps_by_z["[zlevel]"].xeno_images_raw += blip //it's better on memory if we keep it a field
 	if(hud_flags & MINIMAP_FLAG_MARINE)
 		minimaps_by_z["[zlevel]"].marine_images[target] = blip
 		minimaps_by_z["[zlevel]"].marine_images_raw += blip
