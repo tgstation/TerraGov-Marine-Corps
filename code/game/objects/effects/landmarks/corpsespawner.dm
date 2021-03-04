@@ -53,6 +53,7 @@
 			M.internal_organs_by_name -= i
 			M.internal_organs -= O
 		M.chestburst = 2
+		ADD_TRAIT(M, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
 		M.update_burst()
 		//buckle to nest
 		var/obj/structure/bed/nest/victim_nest = locate() in get_turf(src)
