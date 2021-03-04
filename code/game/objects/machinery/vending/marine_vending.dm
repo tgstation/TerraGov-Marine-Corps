@@ -601,7 +601,6 @@
 		/obj/item/stack/medical/advanced/bruise_pack = 16,
 		/obj/item/stack/medical/advanced/ointment = 16,
 		/obj/item/stack/medical/splint = 8,
-		/obj/item/reagent_containers/glass/beaker = 8, //so medics can make SMALL mixes in their quarters
 		/obj/item/reagent_containers/glass/bottle/bicaridine = 4,
 		/obj/item/reagent_containers/glass/bottle/kelotane = 4,
 		/obj/item/reagent_containers/glass/bottle/tramadol = 4,
@@ -612,7 +611,7 @@
 		/obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus = 0,
 		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = 0,
 	)
-	contraband = list(/obj/item/reagent_containers/blood/OMinus = 1, /obj/item/reagent_containers/glass/beaker/large = 4) //if medics REALLY want to make mixes in here. we will get in game feedback
+	contraband = list(/obj/item/reagent_containers/blood/OMinus = 1)
 
 
 /obj/machinery/vending/marine_special
