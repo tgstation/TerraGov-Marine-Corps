@@ -206,11 +206,17 @@
 		var/datum/internal_organ/O
 		for(var/i in list("heart", "lungs", "liver", "kidneys", "appendix")) //Bruise all torso internal organs
 			O = H.internal_organs_by_name[i]
-			O.take_damage(O.min_bruised_damage, TRUE)
+
+			if(!H.mind && !H.client) //If we have no client or mind, permadeath time; remove the organs. Mainly for the NPC colonist bodies
+				H.internal_organs_by_name[i] -= i
+				H.internal_organs -= O
+			else
+				O.take_damage(O.min_bruised_damage, TRUE)
 
 		var/datum/limb/chest = H.get_limb("chest")
 		var/datum/wound/internal_bleeding/I = new (15) //Apply internal bleeding to chest
 		chest.wounds += I
+		chest.fracture()
 
 
 	victim.chestburst = 2
