@@ -1576,6 +1576,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 18
 	max_range = 8
 	bullet_color = COLOR_PALE_GREEN_GRAY
+	///Duration of the acid puddles
+	var/puddle_duration = 1 SECONDS //Lasts 1-3 seconds
+	///Damage dealt by acid puddles
+	var/puddle_acid_damage = XENO_DEFAULT_ACID_PUDDLE_DAMAGE
 
 /datum/ammo/xeno/acid/on_shield_block(mob/victim, obj/projectile/proj)
 	airburst(victim, proj)
@@ -1589,16 +1593,12 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	added_spit_delay = 8
 	spit_cost = 75
 	damage = 30
-	///Duration of the acid puddles
-	var/puddle_duration = 1 SECONDS //Lasts 1-3 seconds
-	///Damage dealt by acid puddles
-	var/puddle_acid_damage = XENO_DEFAULT_ACID_PUDDLE_DAMAGE
 
 /datum/ammo/xeno/acid/heavy/on_hit_mob(mob/M,obj/projectile/P)
 	var/turf/T = get_turf(M)
 	if(!T)
 		T = get_turf(P)
-	drop_nade(T, puddle_duration, puddle_acid_damage)
+	drop_nade(T)
 
 /datum/ammo/xeno/acid/heavy/on_hit_obj(obj/O,obj/projectile/P)
 	var/turf/T = get_turf(O)
@@ -1608,7 +1608,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	if(O.density && !(O.flags_atom & ON_BORDER))
 		T = get_turf(get_step(T, turn(P.dir, 180))) //If the object is dense and not a border object like barricades, we instead drop in the location just prior to the target
 
-	drop_nade(T, puddle_duration, puddle_acid_damage)
+	drop_nade(T)
 
 
 /datum/ammo/xeno/acid/heavy/on_hit_turf(turf/T,obj/projectile/P)
@@ -1618,16 +1618,17 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	if(isclosedturf(T))
 		T = get_turf(get_step(T, turn(P.dir, 180))) //If the turf is closed, we instead drop in the location just prior to the turf
 
-	drop_nade(T, puddle_duration, puddle_acid_damage)
+	drop_nade(T)
 
 /datum/ammo/xeno/acid/heavy/do_at_max_range(obj/projectile/P)
-	drop_nade(get_turf(P), puddle_duration, puddle_acid_damage)
+	drop_nade(get_turf(P))
 
 
-/datum/ammo/xeno/acid/drop_nade(turf/T, duration = 1 SECONDS, acid_damage = 14) //Leaves behind an acid pool; defaults to 1-3 seconds.
+/datum/ammo/xeno/acid/drop_nade(turf/T) //Leaves behind an acid pool; defaults to 1-3 seconds.
 	if(T.density)
 		return
-	new /obj/effect/xenomorph/spray(T, duration, acid_damage)
+
+	new /obj/effect/xenomorph/spray(T, puddle_duration, puddle_acid_damage)
 
 
 ///For the Spitter's Scatterspit ability

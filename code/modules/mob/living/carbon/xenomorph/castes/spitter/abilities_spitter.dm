@@ -112,7 +112,6 @@
 	cooldown_timer = 6 SECONDS
 
 /datum/action/xeno_action/activable/scatter_spit/use_ability(atom/target)
-
 	var/mob/living/carbon/xenomorph/X = owner
 
 	if(!do_after(X, 0.5 SECONDS, TRUE, target, BUSY_ICON_DANGER))
