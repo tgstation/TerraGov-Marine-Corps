@@ -490,7 +490,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/storage/belt/medicLifesaver = list(CAT_BEL, "Lifesaver medic belt", 0, "orange"),
 		/obj/item/storage/belt/medical = list(CAT_BEL, "Medical belt", 0, "black"),
 		/obj/item/storage/pouch/autoinjector/advanced/full = list(CAT_POU, "Advanced Autoinjector pouch", 0, "orange"),
-		/obj/item/storage/pouch/medickit/equippedcorpsman = list(CAT_POU, "Corps Medkit pouch", 0, "orange"),
+		/obj/item/storage/pouch/medkit/equippedcorpsman = list(CAT_POU, "Corps Medkit pouch", 0, "orange"),
 		/obj/item/helmet_module/welding = list(CAT_HEL, "Jaeger welding module", 0, "orange"),
 		/obj/item/helmet_module/binoculars =  list(CAT_HEL, "Jaeger binoculars module", 0, "orange"),
 		/obj/item/helmet_module/antenna = list(CAT_HEL, "Jaeger Antenna module", 0, "orange"),
@@ -1317,7 +1317,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 		/obj/item/roller,
 		/obj/item/tweezers,
 		/obj/item/reagent_containers/hypospray/advanced/oxycodone,
-		/obj/item/storage/pouch/medkit/medkit,
+		/obj/item/storage/pouch/medkit/medickit,
 	)
 
 /obj/effect/essentials_set/engi
