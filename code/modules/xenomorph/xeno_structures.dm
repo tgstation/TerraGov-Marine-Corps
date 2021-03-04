@@ -213,7 +213,25 @@
 	STOP_PROCESSING(SSprocessing, src)
 	return ..()
 
+/obj/structure/resin/xeno_turret/ex_act(severity)
+	switch(severity)
+		if(EXPLODE_DEVASTATE)
+			take_damage(1800)
+		if(EXPLODE_HEAVY)
+			take_damage(1400)
+		if(EXPLODE_LIGHT)
+			take_damage(400)
+
+/obj/structure/resin/flamer_fire_act()
+	take_damage(30, BURN, "fire")
+
+/obj/structure/resin/fire_act()
+	take_damage(30, BURN, "fire")
+
 /obj/structure/resin/xeno_turret/process()
+	//Turrets regen some HP, 5 per second
+	if(obj_integrity < max_integrity)
+		obj_integrity = min(obj_integrity + TURRET_HEALTH_REGEN, max_integrity)
 	if(world.time > last_scan_time + TURRET_SCAN_FREQUENCY)
 		awake = scan()
 		last_scan_time = world.time
