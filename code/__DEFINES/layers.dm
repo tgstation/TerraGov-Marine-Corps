@@ -174,12 +174,14 @@
 #define FULLSCREEN_IMPAIRED_LAYER 18.02 //visual impairment from wearing welding helmet, etc
 #define FULLSCREEN_DRUGGY_LAYER 18.03
 #define FULLSCREEN_BLURRY_LAYER 18.04
+#define FULLSCREEN_INFECTION_LAYER	18.041 //purple cloud
 #define FULLSCREEN_FLASH_LAYER 18.05 //flashed
 #define FULLSCREEN_DAMAGE_LAYER 18.1 //red circles when hurt
 #define FULLSCREEN_BLIND_LAYER 18.15 //unconscious
 #define FULLSCREEN_PAIN_LAYER	18.2 //pain flashes
 #define FULLSCREEN_CRIT_LAYER 18.25 //in critical
 #define FULLSCREEN_MACHINE_LAYER 18.3
+#define FULLSCREEN_INTRO_LAYER 18.4 //black screen when you spawn
 
 #define FULLSCREEN_PLANE 20
 

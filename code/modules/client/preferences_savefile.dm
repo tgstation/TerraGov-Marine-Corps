@@ -358,13 +358,13 @@
 
 	be_special		= sanitize_integer(be_special, NONE, MAX_BITFLAG, initial(be_special))
 
-	synthetic_name	= reject_bad_name(synthetic_name)
+	synthetic_name	= reject_bad_name(synthetic_name, TRUE)
 	synthetic_type	= sanitize_inlist(synthetic_type, SYNTH_TYPES, initial(synthetic_type))
 	xeno_name		= reject_bad_name(xeno_name)
 	ai_name			= reject_bad_name(ai_name, TRUE)
 
-	real_name		= reject_bad_name(real_name)
-	random_name		= sanitize_integer(random_name, FALSE, TRUE, initial(random_name))
+	real_name		= reject_bad_name(real_name, TRUE)
+	random_name		= sanitize_integer(random_name, TRUE, TRUE, initial(random_name))
 	gender			= sanitize_gender(gender)
 	age				= sanitize_integer(age, AGE_MIN, AGE_MAX, initial(age))
 	species			= sanitize_inlist(species, GLOB.all_species, initial(species))
@@ -441,12 +441,12 @@
 
 	be_special		= sanitize_integer(be_special, NONE, MAX_BITFLAG, initial(be_special))
 
-	synthetic_name	= reject_bad_name(synthetic_name)
+	synthetic_name	= reject_bad_name(synthetic_name, TRUE)
 	synthetic_type	= sanitize_inlist(synthetic_type, SYNTH_TYPES, initial(synthetic_type))
 	xeno_name		= reject_bad_name(xeno_name)
 	ai_name			= reject_bad_name(ai_name, TRUE)
 
-	real_name		= reject_bad_name(real_name)
+	real_name		= reject_bad_name(real_name, TRUE)
 	random_name		= sanitize_integer(random_name, FALSE, TRUE, initial(random_name))
 	gender			= sanitize_gender(gender)
 	age				= sanitize_integer(age, AGE_MIN, AGE_MAX, initial(age))

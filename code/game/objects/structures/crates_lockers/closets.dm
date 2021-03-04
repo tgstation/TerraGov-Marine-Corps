@@ -305,7 +305,7 @@
 			addtimer(VARSET_CALLBACK(src, lastbang, FALSE), 3 SECONDS)
 
 
-/obj/structure/closet/attack_paw(mob/living/carbon/monkey/user)
+/obj/structure/closet/attack_paw(mob/living/carbon/human/user)
 	return attack_hand(user)
 
 

@@ -106,7 +106,7 @@
 
 	var/obj/item/tool/weldingtool/welder = I
 
-	if(!machine_stat & DISABLED && durability == initial(durability))
+	if(!(machine_stat & DISABLED) && durability == initial(durability))
 		to_chat(user, "<span class='notice'>The [src] doesn't need welding!</span>")
 		return FALSE
 

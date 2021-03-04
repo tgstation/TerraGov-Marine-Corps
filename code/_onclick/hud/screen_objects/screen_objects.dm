@@ -783,9 +783,10 @@
 		transform = 0 //Reset and 0 out
 		transform = turn(transform, Get_Angle(tracker, target))
 
-/obj/screen/xeno_health_alert/Destroy()
+/obj/screen/arrow/Destroy()
 	STOP_PROCESSING(SSprocessing, src)
 	return ..()
+
 
 /obj/screen/arrow/leader_tracker_arrow
 	name = "hive leader tracker arrow"

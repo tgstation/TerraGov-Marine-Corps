@@ -31,7 +31,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	light_range = 2
 	light_power = 0.6
 	light_color = LIGHT_COLOR_FIRE
-	light_on = FALSE
 	var/wax = 800
 
 /obj/item/tool/candle/update_icon()
@@ -101,7 +100,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	light_range = 2
 	light_power = 0.6
 	light_color = LIGHT_COLOR_FIRE
-	light_on = FALSE
 	var/burnt = FALSE
 	var/smoketime = 5
 	w_class = WEIGHT_CLASS_TINY
@@ -316,7 +314,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		return
 
 	if(reagents && reagents.total_volume)	//	check if it has any reagents at all
-		if(iscarbon(loc) && (src == loc:wear_mask)) // if it's in the human/monkey mouth, transfer reagents to the mob
+		if(iscarbon(loc) && (src == loc:wear_mask)) // if it's in the human/monkey mouth, transfer reagents to the mob //TODO WHAT BAYCODER USED A : UNIRONICALLY
 			if(ishuman(loc))
 				var/mob/living/carbon/human/H = loc
 				if(H.species.species_flags & IS_SYNTHETIC)
@@ -471,7 +469,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	light_range = 2
 	light_power = 0.6
 	light_color = LIGHT_COLOR_FIRE
-	light_on = FALSE
 	w_class = WEIGHT_CLASS_TINY
 	throwforce = 4
 	flags_atom = CONDUCT

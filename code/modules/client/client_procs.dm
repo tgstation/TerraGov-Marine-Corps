@@ -106,8 +106,6 @@
 			return
 		if("vars")
 			return view_var_Topic(href, href_list, hsrc)
-		if("chat")
-			return chatOutput.Topic(href, href_list)
 		if("vote")
 			return SSvote.Topic(href, href_list)
 		if("codex")
@@ -132,7 +130,6 @@
 
 /client/New(TopicData)
 	var/tdata = TopicData //save this for later use
-	chatOutput = new /datum/chatOutput(src)
 	TopicData = null	//Prevent calls to client.Topic from connect
 
 	if(connection != "seeker" && connection != "web")	//Invalid connection type.
@@ -140,6 +137,9 @@
 
 	GLOB.clients += src
 	GLOB.directory[ckey] = src
+
+	// Instantiate tgui panel
+	tgui_panel = new(src)
 
 	GLOB.ahelp_tickets.ClientLogin(src)
 
@@ -213,7 +213,8 @@
 		set_macros()
 		update_movement_keys()
 
-	chatOutput.start() // Starts the chat
+	// Initialize tgui panel
+	tgui_panel.initialize()
 
 	if(byond_version < REQUIRED_CLIENT_MAJOR || (byond_build && byond_build < REQUIRED_CLIENT_MINOR))
 		//to_chat(src, "<span class='userdanger'>Your version of byond is severely out of date.</span>")

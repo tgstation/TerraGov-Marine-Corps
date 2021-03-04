@@ -93,7 +93,7 @@
 	. = ..()
 	if(!ishuman(AM))
 		return
-	
+
 	if(CHECK_MULTIPLE_BITFIELDS(AM.flags_pass, HOVERING))
 		return
 
@@ -262,7 +262,7 @@
 	new /obj/structure/mineral_door/resin/thick(oldloc)
 	return TRUE
 
-/obj/structure/mineral_door/resin/attack_paw(mob/living/carbon/monkey/user)
+/obj/structure/mineral_door/resin/attack_paw(mob/living/carbon/human/user)
 	if(user.a_intent == INTENT_HARM)
 		user.visible_message("<span class='xenowarning'>\The [user] claws at \the [src].</span>", \
 		"<span class='xenowarning'>You claw at \the [src].</span>")
@@ -650,7 +650,7 @@ TUNNEL
 
 /obj/structure/tunnel/Destroy()
 	var/drop_loc = get_turf(src)
-	for(var/atom/movable/thing as() in contents) //Empty the tunnel of contents
+	for(var/atom/movable/thing AS in contents) //Empty the tunnel of contents
 		thing.forceMove(drop_loc)
 
 	if(!QDELETED(creator))
@@ -717,6 +717,10 @@ TUNNEL
 		return FALSE
 
 	pick_a_tunnel(X)
+
+/obj/structure/tunnel/attack_larva(mob/living/carbon/xenomorph/larva/L) //So larvas can actually use tunnels
+	attack_alien(L)
+
 
 ///Here we pick a tunnel to go to, then travel to that tunnel and peep out, confirming whether or not we want to emerge or go to another tunnel.
 /obj/structure/tunnel/proc/pick_a_tunnel(mob/living/carbon/xenomorph/M)

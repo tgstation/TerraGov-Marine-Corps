@@ -49,12 +49,11 @@
 	number++
 	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY), .proc/start_maturing)
 	GLOB.xeno_resin_silos += src
-	associated_hive?.handle_silo_death_timer()
 	center_turf = get_step(src, NORTHEAST)
 	if(!istype(center_turf))
 		center_turf = loc
 
-	for(var/i in RANGE_TURFS(2, src))
+	for(var/i in RANGE_TURFS(XENO_SILO_DETECTION_RANGE, src))
 		RegisterSignal(i, COMSIG_ATOM_ENTERED, .proc/resin_silo_proxy_alert)
 
 	return INITIALIZE_HINT_LATELOAD
@@ -67,6 +66,7 @@
 	associated_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	if(associated_hive)
 		RegisterSignal(associated_hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK), .proc/is_burrowed_larva_host)
+		associated_hive.handle_silo_death_timer()
 	silo_area = get_area(src)
 
 /obj/structure/resin/silo/Destroy()
@@ -145,11 +145,8 @@
 		if(X.hive == associated_hive) //Trigger proxy alert only for hostile xenos
 			return
 
-	if(get_dist(loc, hostile) > 2) //Can only send alerts for those within 2 of us; so we don't have all silos sending alerts when one is proxy tripped
-		return
-
-	associated_hive.xeno_message("<span class='xenoannounce'>Our [name] has detected a nearby hostile [hostile] at [get_area(hostile)] (X: [hostile.x], Y: [hostile.y]). [name] has [obj_integrity]/[max_integrity] Health remaining.</span>", 2, FALSE, hostile, 'sound/voice/alien_help1.ogg')
-	COOLDOWN_START(src, silo_proxy_alert_cooldown, XENO_HEALTH_ALERT_COOLDOWN) //set the cooldown.
+	associated_hive.xeno_message("<span class='xenoannounce'>Our [name] has detected a nearby hostile [hostile] at [get_area(hostile)] (X: [hostile.x], Y: [hostile.y]).</span>", 2, FALSE, hostile, 'sound/voice/alien_help1.ogg', FALSE, null, /obj/screen/arrow/leader_tracker_arrow)
+	COOLDOWN_START(src, silo_proxy_alert_cooldown, XENO_SILO_DETECTION_COOLDOWN) //set the cooldown.
 
 ///Signal handler to tell the silo it can start maturing, so it adds it to the process if that's not the case
 /obj/structure/resin/silo/proc/start_maturing()

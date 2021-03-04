@@ -131,8 +131,7 @@
 		return FALSE //Only humans.
 	if(mob_to_stuff.stat != DEAD) //Only the dead for bodybags.
 		return FALSE
-	var/mob/living/carbon/human/human_to_stuff = mob_to_stuff
-	if(human_to_stuff.is_revivable() && (check_tod(human_to_stuff) || issynth(human_to_stuff)))
+	if(!HAS_TRAIT(mob_to_stuff, TRAIT_UNDEFIBBABLE) || issynth(mob_to_stuff))
 		return FALSE //We don't want to store those that can be revived.
 	return TRUE
 
@@ -302,8 +301,6 @@
 /obj/structure/closet/bodybag/cryobag/closet_special_handling(mob/living/mob_to_stuff) // overriding this
 	if(!ishuman(mob_to_stuff))
 		return FALSE //Humans only.
-	if(mob_to_stuff.stat == DEAD) // dead, nope
-		return FALSE
 	return TRUE
 
 

@@ -31,6 +31,7 @@
 		/obj/item/weapon/claymore,
 		/obj/item/storage/belt/gun,
 		/obj/item/storage/belt/knifepouch,
+		/obj/item/weapon/twohanded,
 	)
 	var/locate_cooldown = 0 //Cooldown for SL locator
 	var/list/armor_overlays
@@ -95,7 +96,7 @@
 	var/mob/living/carbon/human/H = user
 	if(H.wear_suit != src)
 		return
-	toggle_armor_light(user)
+	turn_light(user, !light_on)
 	return TRUE
 
 /obj/item/clothing/suit/storage/marine/item_action_slot_check(mob/user, slot)
@@ -446,16 +447,15 @@
 /obj/item/clothing/suit/storage/marine/imperial
 	name = "\improper Imperial Guard flak armour"
 	desc = "A cheap, mass produced armour worn by the Imperial Guard, which are also cheap and mass produced. You can make out what appears to be <i>Cadia stands</i> carved into the armour."
-	icon_state = "m_guardarmor"
-	item_state = "m_guardarmor"
+	icon_state = "guardarmor"
 	soft_armor = list("melee" = 75, "bullet" = 65, "laser" = 60, "energy" = 60, "bomb" = 50, "bio" = 0, "rad" = 0, "fire" = 60, "acid" = 60)
+	flags_item_map_variant = NONE
 
 /obj/item/clothing/suit/storage/marine/imperial/sergeant
 	// SL armour, better than flak, covers more
 	name = "\improper Imperial Guard sergeant armour"
 	desc = "A body armour that offers much better protection than the flak armour."
-	icon_state = "m_guardSLarmor"
-	item_state = "m_guardSLarmor"
+	icon_state = "guardSLarmor"
 	soft_armor = list("melee" = 85, "bullet" = 85, "laser" = 85, "energy" = 85, "bomb" = 85, "bio" = 25, "rad" = 25, "fire" = 85, "acid" = 85)
 	light_range = 6 // better light
 	pockets = /obj/item/storage/internal/suit/imperial
@@ -467,14 +467,12 @@
 /obj/item/clothing/suit/storage/marine/imperial/medicae
 	name = "\improper Imperial Guard medicae armour"
 	desc = "An armour worn by the medicae of the Imperial Guard."
-	icon_state = "m_guardmedicarmor"
-	item_state = "m_guardmedicarmor"
+	icon_state = "guardmedicarmor"
 
 /obj/item/clothing/suit/storage/marine/imperial/sergeant/veteran
 	name = "\improper Imperial Guard carapace armour"
 	desc = "A heavy full body armour that protects the wearer a lot more than the flak armour, also slows down considerably."
-	icon_state = "m_guardvetarmor"
-	item_state = "m_guardvetarmor"
+	icon_state = "guardvetarmor"
 	slowdown = SLOWDOWN_ARMOR_HEAVY
 	soft_armor = list("melee" = 90, "bullet" = 90, "laser" = 90, "energy" = 90, "bomb" = 90, "bio" = 30, "rad" = 30, "fire" = 90, "acid" = 90)
 
@@ -531,6 +529,7 @@
 		/obj/item/attachable/bayonetknife,
 		/obj/item/storage/belt/sparepouch,
 		/obj/item/storage/large_holster/machete,
+		/obj/item/weapon/twohanded,
 	)
 	flags_armor_features = ARMOR_LAMP_OVERLAY
 	flags_item = SYNTH_RESTRICTED
@@ -568,7 +567,7 @@
 	var/mob/living/carbon/human/H = user
 	if(H.wear_suit != src) return
 
-	toggle_armor_light(user)
+	turn_light(user, !light_on)
 	return 1
 
 /obj/item/clothing/suit/storage/faction/item_action_slot_check(mob/user, slot)
@@ -650,6 +649,7 @@
 	flags_item = SYNTH_RESTRICTED
 	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 30, "bomb" = 60, "bio" = 30, "rad" = 30, "fire" = 30, "acid" = 30)
 	allowed = list(
+		/obj/item/weapon/twohanded,
 		/obj/item/weapon/gun,
 		/obj/item/tank/emergency_oxygen,
 		/obj/item/flashlight,

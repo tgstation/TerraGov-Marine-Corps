@@ -345,8 +345,6 @@
 	if(rights & R_DBRANKS)
 		. += "[seperator]+DBRANKS"
 
-	return .
-
 
 /proc/ui_style2icon(ui_style)
 	switch(ui_style)

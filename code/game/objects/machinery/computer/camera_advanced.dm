@@ -321,10 +321,10 @@
 		var/obj/machinery/camera/C = i
 		var/list/tempnetwork = C.network & origin.networks
 		if(length(tempnetwork))
-			T["[C.c_tag][C.can_use() ? null : " (Deactivated)"]"] = C
+			T["[C.c_tag][C.can_use() ? "" : " (Deactivated)"]"] = C
 
 	playsound(origin, 'sound/machines/terminal_prompt.ogg', 25, 0)
-	var/camera = tgui_input_list(origin, "Choose which camera you want to view?", "Cameras", T)
+	var/camera = tgui_input_list(owner, "Choose which camera you want to view?", "Cameras", T)
 	var/obj/machinery/camera/C = T[camera]
 	playsound(src, "terminal_type", 25, 0)
 

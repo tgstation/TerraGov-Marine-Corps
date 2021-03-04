@@ -1041,7 +1041,7 @@
 		to_chat(owner, "<span class='xenowarning'>The hive doesn't have the necessary psychic points for you to do that!</span>")
 		return FALSE
 
-	for(var/obj/structure/resin/silo/silo as anything in GLOB.xeno_resin_silos)
+	for(var/obj/structure/resin/silo/silo AS in GLOB.xeno_resin_silos)
 		if(get_dist(silo, A) < 15)
 			to_chat(owner, "<span class='xenowarning'>Another silo is too close!</span>")
 			return FALSE
@@ -1119,6 +1119,8 @@
 	succeed_activate()
 
 	var/upgrade_amount = target.upgrade_stored * DRONE_SALVAGE_BIOMASS_SALVAGE_RATIO //We only recover a small portion of the target's upgrade and evo points.
+	if(target.upgrade == XENO_UPGRADE_THREE)
+		upgrade_amount = target.xeno_caste.upgrade_threshold * DRONE_SALVAGE_BIOMASS_SALVAGE_RATIO //Ancient xenos count as having maximum upgrade points
 	var/evo_amount = target.evolution_stored * DRONE_SALVAGE_BIOMASS_SALVAGE_RATIO
 
 	//Take all the plas-mar

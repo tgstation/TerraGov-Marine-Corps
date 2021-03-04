@@ -750,7 +750,7 @@
 
 /obj/machinery/power/apc/ui_act(action, list/params)
 	. = ..()
-	if(. || !can_use(usr, TRUE) || locked)
+	if(. || !can_use(usr, TRUE) || (locked && !usr.has_unlimited_silicon_privilege))
 		return
 	switch(action)
 		if("lock")
@@ -1065,7 +1065,6 @@
 /obj/machinery/power/apc/proc/break_lights()
 	for(var/obj/machinery/light/L in get_area(src))
 		L.broken()
-		L.on = FALSE
 		stoplag()
 
 

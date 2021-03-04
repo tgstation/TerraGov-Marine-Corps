@@ -199,7 +199,6 @@
 	initial_language_holder = /datum/language_holder/xeno
 	gib_chance = 5
 	light_system = MOVABLE_LIGHT
-	light_on = FALSE
 
 	var/hivenumber = XENO_HIVE_NORMAL
 
@@ -288,10 +287,6 @@
 	// Defender vars
 	var/fortify = 0
 	var/crest_defense = 0
-
-	// Hivelord vars
-	///Whether or not the Hivelord's healing infusion is active on this target.
-	var/infusion_active = 0
 
 	//Leader vars
 	var/leader_aura_strength = 0 //Pheromone strength inherited from Queen

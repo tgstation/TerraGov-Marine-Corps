@@ -39,13 +39,12 @@
 				qdel(src)
 
 
-/obj/machinery/optable/attack_paw(mob/living/carbon/monkey/user)
+/obj/machinery/optable/attack_paw(mob/living/carbon/human/user)
 	if (!( locate(/obj/machinery/optable, user.loc) ))
 		step(user, get_dir(user, src))
 		if (user.loc == src.loc)
 			user.layer = TURF_LAYER
-			visible_message("The monkey hides under the table!")
-	return
+			visible_message("The [user] hides under the table!")
 
 /obj/machinery/optable/examine(mob/user)
 	..()

@@ -90,12 +90,16 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 
 	var/procpath
 	if(targetselected && !hascall(target, procname))
-		to_chat(usr, "<font color='red'>Error: callproc(): type [target.type] has no [proctype] named [procname].</font>")
+		to_chat(usr,
+			type = MESSAGE_TYPE_DEBUG,
+			html = "<font color='red'>Error: callproc(): type [target.type] has no [proctype] named [procname].</font>",)
 		return
 	else if(!targetselected)
 		procpath = text2path("/[proctype]/[procname]")
 		if(!procpath)
-			to_chat(usr, "<font color='red'>Error: callproc(): proc [procname] does not exist. (Did you forget the /proc/ part?)</font>")
+			to_chat(usr,
+				type = MESSAGE_TYPE_DEBUG,
+				html = "<font color='red'>Error: callproc(): proc [procname] does not exist. (Did you forget the /proc/ part?)</font>")
 			return
 
 	var/list/lst = usr.client.holder.get_callproc_args()
@@ -104,7 +108,9 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 
 	if(targetselected)
 		if(!target)
-			to_chat(usr, "<font color='red'>Error: callproc(): owner of proc no longer exists.</font>")
+			to_chat(usr,
+				type = MESSAGE_TYPE_DEBUG,
+				html = "<font color='red'>Error: callproc(): owner of proc no longer exists.</font>")
 			return
 		log_admin("[key_name(usr)] called [target]'s [procname]() with [length(lst) ? "the arguments [list2params(lst)]" : "no arguments"].")
 		message_admins("[ADMIN_TPMONTY(usr)] called [target]'s [procname]() with [length(lst) ? "the arguments [list2params(lst)]" : "no arguments"].")
@@ -180,7 +186,9 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		return
 
 	if(!ispath(/mob) && !ispath(/obj))
-		to_chat(usr, "<span class = 'warning'>Only works for types of /obj or /mob.</span>")
+		to_chat(usr,
+			type = MESSAGE_TYPE_DEBUG,
+			html = "<span class = 'warning'>Only works for types of /obj or /mob.</span>")
 		return
 
 	var/hsbitem = input(usr, "Choose an object to delete.", "Delete:") as null|anything in typesof(chosen_deletion)

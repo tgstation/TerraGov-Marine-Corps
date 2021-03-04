@@ -361,6 +361,7 @@ GLOBAL_VAR(restart_counter)
 /world/proc/on_tickrate_change()
 	SStimer?.reset_buckets()
 	SSrunechat?.reset_buckets()
+	SSautomatedfire?.reset_buckets()
 
 #undef MAX_TOPIC_LEN
 #undef TOPIC_BANNED

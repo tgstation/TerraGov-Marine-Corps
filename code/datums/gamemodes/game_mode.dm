@@ -510,7 +510,7 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 		var/mob/living/carbon/human/H = i
 		if(!H.job)
 			continue
-		if(H.stat == DEAD && !H.is_revivable())
+		if(H.stat == DEAD && !H.has_working_organs())
 			continue
 		if(count_flags & COUNT_IGNORE_HUMAN_SSD && !H.client)
 			continue
@@ -612,7 +612,7 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 	if(instant_join)
 		return pick(available_xenos) //Just picks something at random.
 
-	var/mob/living/carbon/xenomorph/new_xeno = tgui_input_list(usr, null, "Available Xenomorphs", null,  available_xenos)
+	var/mob/living/carbon/xenomorph/new_xeno = tgui_input_list(usr, null, "Available Xenomorphs", available_xenos)
 	if(!istype(new_xeno) || !xeno_candidate?.client)
 		return FALSE
 
