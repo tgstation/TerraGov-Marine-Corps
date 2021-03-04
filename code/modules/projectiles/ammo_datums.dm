@@ -1609,6 +1609,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	spit_cost = 75
 	damage = 30
 
+/datum/ammo/xeno/acid/heavy/turret
+	name = "acid turret splash"
+	flags_ammo_behavior = AMMO_XENO|AMMO_EXPLOSIVE|AMMO_SKIPS_ALIENS
+
 /datum/ammo/xeno/acid/heavy/on_hit_mob(mob/M,obj/projectile/P)
 	var/turf/T = get_turf(M)
 	if(!T)

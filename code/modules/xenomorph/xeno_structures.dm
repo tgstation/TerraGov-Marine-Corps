@@ -178,13 +178,13 @@
 	desc = "A menacing looking construct of resin, it seems to be alive. It fires acid against intruders."
 	bound_width = 32
 	bound_height = 32
-	max_integrity = 600
+	max_integrity = 1800
 	layer =  ABOVE_MOB_LAYER
 	density = TRUE
 	///The hive it belongs to
 	var/datum/hive_status/associated_hive
 	///What kind of spit it uses
-	var/datum/ammo/xeno/acid/heavy/ammo
+	var/datum/ammo/ammo
 	///Range of the turret
 	var/range = 7
 	///Target of the turret
@@ -200,7 +200,7 @@
 
 /obj/structure/resin/xeno_turret/Initialize(mapload, hivenumber = XENO_HIVE_NORMAL)
 	. = ..()
-	ammo = GLOB.ammo_list[/datum/ammo/xeno/acid]
+	ammo = GLOB.ammo_list[/datum/ammo/xeno/acid/heavy/turret]
 	associated_hive = GLOB.hive_datums[hivenumber]
 	START_PROCESSING(SSprocessing, src)
 	AddComponent(/datum/component/automatedfire/xeno_turret_autofire, firerate)
