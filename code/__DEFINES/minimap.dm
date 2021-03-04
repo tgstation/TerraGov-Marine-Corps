@@ -1,12 +1,12 @@
 
 #define COMSIG_MOB_HUDMAP_TOGGLED "mob_hudmap_toggle"
-
+/*
 #define MINIMAP_STRING_XENO "xeno"
 #define MINIMAP_STRING_MARINE "marine"
 #define MINIMAP_STRING_ALPHA "alpha"
 #define MINIMAP_STRING_BRAVO "bravo"
 #define MINIMAP_STRING_CHARLIE "charlie"
-#define MINIMAP_STRING_DELTA "delta"
+#define MINIMAP_STRING_DELTA "delta"*/
 
 #define MINIMAP_FLAG_XENO (1<<0)
 #define MINIMAP_FLAG_MARINE (1<<1)
@@ -18,6 +18,8 @@
 
 ///Converts the overworld x and y to minimap x and y values
 #define MINIMAP_PIXEL_FROM_WORLD(val) (val*2-1)
+
+GLOBAL_LIST_INIT(all_minimap_flags, bitfield2list(MINIMAP_FLAG_ALL))
 
 #define MINIMAP_SOLID		"#ebe5e5ee"
 #define MINIMAP_DOOR		"#451e5eb8"

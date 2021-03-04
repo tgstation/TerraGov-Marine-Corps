@@ -1,7 +1,7 @@
 
 /**
  * Bespoke Element for mobs to access when they want to view a HUD of the map
- * Keep it bespoke so we have to update as few objects as possible
+ * Keep it bespoke so we have to update as few objects as possible in the subsystem
  */
 /datum/element/hud_map
 	element_flags = ELEMENT_BESPOKE
@@ -17,12 +17,12 @@
 	if(!ismob(target))
 		return ELEMENT_INCOMPATIBLE
 	. = ..()
+	mapz = ztarget
+	filter = filtertargets
 	RegisterSignal(target, COMSIG_MOVABLE_Z_CHANGED, .proc/change_map)
-	if(!SSminimaps.minimaps_by_z["[ztarget]"].hud_image)
+	if(!SSminimaps.minimaps_by_z["[ztarget]"] || !SSminimaps.minimaps_by_z["[ztarget]"].hud_image)
 		return
 	if(!map)
-		mapz = ztarget
-		filter = filtertargets
 		map = new(null, ztarget, filtertargets)
 	RegisterSignal(target, COMSIG_MOB_HUDMAP_TOGGLED, .proc/display_map_to)
 

@@ -10,6 +10,7 @@
  * actual updating of locations is handled by [/datum/controller/subsystem/minimaps/proc/on_move]
  * and zlevel changes are handled in [/datum/controller/subsystem/minimaps/proc/on_z_change]
  * tracking of the actual atoms you want to be drawn on is done by means of datums holding info pertaining to them with [/datum/hud_displays]
+ * There is a byond bug to be aware of when working with minimaps, see [/datum/hud_displays] and http://www.byond.com/forum/post/2661309
  */
 SUBSYSTEM_DEF(minimaps)
 	name = "Minimaps"
@@ -21,7 +22,7 @@ SUBSYSTEM_DEF(minimaps)
 	var/list/datum/hud_displays/minimaps_by_z = list()
 	///Assoc list of images we hold by their source
 	var/list/image/images_by_source = list()
-	///the update target datums, sorted by update type
+	///the update target datums, sorted by update flag type
 	var/list/update_targets = list()
 	///Nonassoc list of targets we want to be stripped of their overlays during the SS fire
 	var/list/atom/update_targets_unsorted = list()
@@ -73,18 +74,9 @@ SUBSYSTEM_DEF(minimaps)
 /datum/controller/subsystem/minimaps/fire(resumed)
 	for(var/iter=1 to length(update_targets_unsorted))
 		update_targets_unsorted[iter].overlays.Cut() //clear the old overlays, no we cant cache it because they wont update
-	for(var/datum/minimap_updator/xenoupdators AS in update_targets[MINIMAP_STRING_XENO])
-		xenoupdators.minimap.overlays = minimaps_by_z["[xenoupdators.ztarget]"].xeno_images_raw.Copy()	//special handling for the first one in queue for that speed
-	for(var/datum/minimap_updator/marineupdators AS in update_targets[MINIMAP_STRING_MARINE])
-		marineupdators.minimap.overlays += minimaps_by_z["[marineupdators.ztarget]"].marine_images_raw
-	for(var/datum/minimap_updator/alphaupdators AS in update_targets[MINIMAP_STRING_ALPHA])
-		alphaupdators.minimap.overlays += minimaps_by_z["[alphaupdators.ztarget]"].alpha_images_raw
-	for(var/datum/minimap_updator/bravoupdators AS in update_targets[MINIMAP_STRING_BRAVO])
-		bravoupdators.minimap.overlays += minimaps_by_z["[bravoupdators.ztarget]"].bravo_images_raw
-	for(var/datum/minimap_updator/charlieupdators AS in update_targets[MINIMAP_STRING_CHARLIE])
-		charlieupdators.minimap.overlays += minimaps_by_z["[charlieupdators.ztarget]"].charlie_images_raw
-	for(var/datum/minimap_updator/deltaupdators AS in update_targets[MINIMAP_STRING_DELTA])
-		deltaupdators.minimap.overlays += minimaps_by_z["[deltaupdators.ztarget]"].delta_images_raw
+	for(var/flag in update_targets)
+		for(var/datum/minimap_updator/updator AS in update_targets["[flag]"])
+			updator.minimap.overlays += minimaps_by_z["[updator.ztarget]"].images_raw["[flag]"]
 
 /**
  * Adds an atom to the processing updators that will have blips drawn on them
@@ -95,18 +87,8 @@ SUBSYSTEM_DEF(minimaps)
  */
 /datum/controller/subsystem/minimaps/proc/add_to_updaters(atom/target, flags, ztarget)
 	var/datum/minimap_updator/holder = new(target, ztarget)
-	if(flags & MINIMAP_FLAG_XENO)
-		LAZYADD(update_targets[MINIMAP_STRING_XENO], holder)
-	if(flags & MINIMAP_FLAG_MARINE)
-		LAZYADD(update_targets[MINIMAP_STRING_MARINE], holder)
-	if(flags & MINIMAP_FLAG_ALPHA)
-		LAZYADD(update_targets[MINIMAP_STRING_ALPHA], holder)
-	if(flags & MINIMAP_FLAG_BRAVO)
-		LAZYADD(update_targets[MINIMAP_STRING_BRAVO], holder)
-	if(flags & MINIMAP_FLAG_CHARLIE)
-		LAZYADD(update_targets[MINIMAP_STRING_CHARLIE], holder)
-	if(flags & MINIMAP_FLAG_DELTA)
-		LAZYADD(update_targets[MINIMAP_STRING_DELTA], holder)
+	for(var/flag in bitfield2list(flags))
+		LAZYADD(update_targets["[flag]"], holder)
 	updators_by_datum[target] = holder
 	update_targets_unsorted += target
 	RegisterSignal(target, COMSIG_PARENT_QDELETING, .proc/remove_updator)
@@ -127,22 +109,23 @@ SUBSYSTEM_DEF(minimaps)
  * The individual image trackers have a raw and a normal list
  * raw lists just store the images, while the normal ones are assoc list of [tracked_atom] = image
  * the raw lists are to speed up the Fire() of the subsystem so we dont have to filter through
+ * WARNING!
+ * There is a byond bug: http://www.byond.com/forum/post/2661309
+ * That that forces us to use a seperate list ref when accessing the lists of this datum
+ * Yea it hurts me too
  */
 /datum/hud_displays
 	///Actual icon of the drawn zlevel with all of it's atoms
 	var/icon/hud_image
-	var/list/xeno_images = list()
-	var/list/xeno_images_raw = list()
-	var/list/marine_images = list()
-	var/list/marine_images_raw = list()
-	var/list/alpha_images = list()
-	var/list/alpha_images_raw = list()
-	var/list/bravo_images = list()
-	var/list/bravo_images_raw = list()
-	var/list/charlie_images = list()
-	var/list/charlie_images_raw = list()
-	var/list/delta_images = list()
-	var/list/delta_images_raw = list()
+	///Assoc list of updating images list("[flag]" = list([source] = blip)
+	var/list/images_assoc = list()
+	var/list/images_raw = list()
+
+/datum/hud_displays/New()
+	..()
+	for(var/flag in GLOB.all_minimap_flags)
+		images_assoc["[flag]"] = list()
+		images_raw["[flag]"] = list()
 
 /**
  * Holder datum to ease updating of atoms to update
@@ -162,7 +145,7 @@ SUBSYSTEM_DEF(minimaps)
  * Adds an atom we want to track with blips to the subsystem
  * Arguments:
  * * target: atom we want to track
- * * zlevel: zlevel we want thhis atom to be tracked for
+ * * zlevel: zlevel we want this atom to be tracked for
  * * hud_flags: tracked HUDs we want this atom to be displayed on
  * * iconstate: iconstate for the blip we want to be used for this tracked atom
  * * icon: icon file we want to use for this blip, 'icons/UI_icons/map_blips.dmi' by efault
@@ -175,24 +158,10 @@ SUBSYSTEM_DEF(minimaps)
 		return
 	var/image/blip = image(icon, iconstate, pixel_x = MINIMAP_PIXEL_FROM_WORLD(target.x), pixel_y = MINIMAP_PIXEL_FROM_WORLD(target.y))
 	images_by_source[target] = blip
-	if(hud_flags & MINIMAP_FLAG_XENO) //yes we use this chain & check, because we can't cycle trough bitfields, nor assign them to keys to be converted easily
-		minimaps_by_z["[zlevel]"].xeno_images[target] = blip //easiest fix would be to just make it a list but with the amount of things we're expected to add
-		minimaps_by_z["[zlevel]"].xeno_images_raw += blip //it's better on memory if we keep it a field
-	if(hud_flags & MINIMAP_FLAG_MARINE)
-		minimaps_by_z["[zlevel]"].marine_images[target] = blip
-		minimaps_by_z["[zlevel]"].marine_images_raw += blip
-	if(hud_flags & MINIMAP_FLAG_ALPHA)
-		minimaps_by_z["[zlevel]"].alpha_images[target] = blip
-		minimaps_by_z["[zlevel]"].alpha_images_raw += blip
-	if(hud_flags & MINIMAP_FLAG_BRAVO)
-		minimaps_by_z["[zlevel]"].bravo_images[target] = blip
-		minimaps_by_z["[zlevel]"].bravo_images_raw += blip
-	if(hud_flags & MINIMAP_FLAG_CHARLIE)
-		minimaps_by_z["[zlevel]"].charlie_images[target] = blip
-		minimaps_by_z["[zlevel]"].charlie_images_raw += blip
-	if(hud_flags & MINIMAP_FLAG_DELTA)
-		minimaps_by_z["[zlevel]"].delta_images[target] = blip
-		minimaps_by_z["[zlevel]"].delta_images_raw += blip
+	for(var/flag in bitfield2list(hud_flags))
+		minimaps_by_z["[zlevel]"].images_assoc["[flag]"][target] = blip
+		var/ref = minimaps_by_z["[zlevel]"].images_raw["[flag]"] //what the fuck? you might be thinking, yea well this is a byond bug thanks
+		ref += blip //workaround see http://www.byond.com/forum/post/2661309
 	if(ismovableatom(target))
 		RegisterSignal(target, COMSIG_MOVABLE_Z_CHANGED, .proc/on_z_change)
 		RegisterSignal(target, COMSIG_MOVABLE_MOVED, .proc/on_move)
@@ -203,12 +172,9 @@ SUBSYSTEM_DEF(minimaps)
  * removes an image from raw tracked lists, invoked by callback
  */
 /datum/controller/subsystem/minimaps/proc/removeimage(image/blip, atom/target)
-	minimaps_by_z["[target.z]"].xeno_images_raw -= blip
-	minimaps_by_z["[target.z]"].marine_images_raw -= blip
-	minimaps_by_z["[target.z]"].alpha_images_raw -= blip
-	minimaps_by_z["[target.z]"].bravo_images_raw -= blip
-	minimaps_by_z["[target.z]"].charlie_images_raw -= blip
-	minimaps_by_z["[target.z]"].delta_images_raw -= blip
+	for(var/flag in GLOB.all_minimap_flags)
+		var/ref = minimaps_by_z["[target.z]"].images_raw["[flag]"]
+		ref -= blip // see above http://www.byond.com/forum/post/2661309
 	removal_cbs -= target
 
 /**
@@ -216,41 +182,18 @@ SUBSYSTEM_DEF(minimaps)
  */
 /datum/controller/subsystem/minimaps/proc/on_z_change(atom/movable/source, oldz, newz)
 	SIGNAL_HANDLER
-	if(minimaps_by_z["[oldz]"]?.xeno_images[source])
-		minimaps_by_z["[newz]"].xeno_images[source] = minimaps_by_z["[oldz]"].xeno_images[source]
-		minimaps_by_z["[oldz]"].xeno_images -= source
-		minimaps_by_z["[oldz]"].xeno_images_raw -= minimaps_by_z["[newz]"].xeno_images[source]
-		minimaps_by_z["[newz]"].xeno_images_raw += minimaps_by_z["[newz]"].xeno_images[source]
-
-	if(minimaps_by_z["[oldz]"]?.marine_images[source])
-		minimaps_by_z["[newz]"].marine_images[source] = minimaps_by_z["[oldz]"].marine_images[source]
-		minimaps_by_z["[oldz]"].marine_images -= source
-		minimaps_by_z["[oldz]"].marine_images_raw -= minimaps_by_z["[newz]"].marine_images[source]
-		minimaps_by_z["[newz]"].marine_images_raw += minimaps_by_z["[newz]"].marine_images[source]
-
-	if(minimaps_by_z["[oldz]"]?.alpha_images[source])
-		minimaps_by_z["[newz]"].alpha_images[source] = minimaps_by_z["[oldz]"].alpha_images[source]
-		minimaps_by_z["[oldz]"].alpha_images -= source
-		minimaps_by_z["[oldz]"].alpha_images_raw -= minimaps_by_z["[newz]"].alpha_images[source]
-		minimaps_by_z["[newz]"].alpha_images_raw += minimaps_by_z["[newz]"].alpha_images[source]
-
-	if(minimaps_by_z["[oldz]"]?.bravo_images[source])
-		minimaps_by_z["[newz]"].bravo_images[source] = minimaps_by_z["[oldz]"].bravo_images[source]
-		minimaps_by_z["[oldz]"].bravo_images -= source
-		minimaps_by_z["[oldz]"].bravo_images_raw -= minimaps_by_z["[newz]"].bravo_images[source]
-		minimaps_by_z["[newz]"].bravo_images_raw += minimaps_by_z["[newz]"].bravo_images[source]
-
-	if(minimaps_by_z["[oldz]"]?.charlie_images[source])
-		minimaps_by_z["[newz]"].charlie_images[source] = minimaps_by_z["[oldz]"].charlie_images[source]
-		minimaps_by_z["[oldz]"].charlie_images -= source
-		minimaps_by_z["[oldz]"].charlie_images_raw -= minimaps_by_z["[newz]"].charlie_images[source]
-		minimaps_by_z["[newz]"].charlie_images_raw += minimaps_by_z["[newz]"].charlie_images[source]
-
-	if(minimaps_by_z["[oldz]"]?.delta_images[source])
-		minimaps_by_z["[newz]"].delta_images[source] = minimaps_by_z["[oldz]"].delta_images[source]
-		minimaps_by_z["[oldz]"].delta_images -= source
-		minimaps_by_z["[oldz]"].delta_images_raw -= minimaps_by_z["[newz]"].delta_images[source]
-		minimaps_by_z["[newz]"].delta_images_raw += minimaps_by_z["[newz]"].delta_images[source]
+	for(var/flag in GLOB.all_minimap_flags)
+		if(!minimaps_by_z["[oldz]"].images_assoc["[flag]"][source])
+			continue
+		//see previous byond bug comments http://www.byond.com/forum/post/2661309
+		var/ref_old = minimaps_by_z["[oldz]"].images_assoc["[flag]"][source]
+		minimaps_by_z["[newz]"].images_assoc["[flag]"][source] = ref_old
+		var/rawold = minimaps_by_z["[oldz]"].images_raw["[flag]"]
+		var/rawnew = minimaps_by_z["[newz]"].images_raw["[flag]"]
+		rawold -= ref_old
+		rawnew += rawnew
+		var/anotherref = minimaps_by_z["[oldz]"].images_assoc["[flag]"]
+		anotherref -= source
 
 /**
  * Simple proc, updates overlay position on the map when a atom moves
@@ -266,12 +209,9 @@ SUBSYSTEM_DEF(minimaps)
 /datum/controller/subsystem/minimaps/proc/remove_marker(atom/source)
 	SIGNAL_HANDLER
 	UnregisterSignal(source, COMSIG_PARENT_QDELETING)
-	minimaps_by_z["[source.z]"].xeno_images -= source
-	minimaps_by_z["[source.z]"].marine_images -= source
-	minimaps_by_z["[source.z]"].alpha_images -= source
-	minimaps_by_z["[source.z]"].bravo_images -= source
-	minimaps_by_z["[source.z]"].charlie_images -= source
-	minimaps_by_z["[source.z]"].delta_images -= source
+	for(var/flag in GLOB.all_minimap_flags)
+		var/ref = minimaps_by_z["[source.z]"].images_assoc["[flag]"]
+		ref -=  source //see above
 	images_by_source -= source
 	removal_cbs[source].Invoke()
 	removal_cbs -= source
