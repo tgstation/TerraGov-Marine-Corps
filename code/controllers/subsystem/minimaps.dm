@@ -6,7 +6,7 @@
  * Minimaps are a low priority subsystem that fires relatively often
  * the Initialize proc for this subsystem draws the maps as one of the last initializing subsystems
  *
- * Fire() for this subsystem does actually updates anything, and purely just reapplies the overlays that it already tracks
+ * Fire() for this subsystem doens't actually updates anything, and purely just reapplies the overlays that it already tracks
  * actual updating of locations is handled by [/datum/controller/subsystem/minimaps/proc/on_move]
  * and zlevel changes are handled in [/datum/controller/subsystem/minimaps/proc/on_z_change]
  * tracking of the actual atoms you want to be drawn on is done by means of datums holding info pertaining to them with [/datum/hud_displays]
