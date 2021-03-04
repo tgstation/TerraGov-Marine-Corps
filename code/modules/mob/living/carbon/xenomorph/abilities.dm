@@ -1109,7 +1109,7 @@
 		to_chat(X, "<span class='warning'>We can only shape on weeds. We must find some resin before we start building!</span>")
 		return FALSE
 
-	if(!T.check_alien_construction(X, planned_building = X.selected_resin) || !T.check_disallow_alien_fortification(X))
+	if(!T.check_alien_construction(X, planned_building = /obj/structure/resin/xeno_turret) || !T.check_disallow_alien_fortification(X))
 		return FALSE
 
 	if(SSpoints.xeno_points_by_hive[X.hivenumber] < psych_cost)
