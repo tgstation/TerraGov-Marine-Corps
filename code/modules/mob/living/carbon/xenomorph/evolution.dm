@@ -296,6 +296,7 @@
 		return
 
 	new_xeno.upgrade_stored = upgrade_stored
+	//We upgrade the new xeno until it reaches ancient or doesn't have enough upgrade points stored to mature
 	while(new_xeno.upgrade_possible() && new_xeno.upgrade_stored >= new_xeno.xeno_caste.upgrade_threshold)
 		new_xeno.upgrade_xeno(new_xeno.upgrade_next(), TRUE)
 
