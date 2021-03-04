@@ -1055,7 +1055,7 @@
 /datum/reagent/medicine/ethylredoxrazine/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damage(2*effect_str, TOX)
 
-/datum/reagent/hypervene
+/datum/reagent/hypervene // this isn't under /medicine so things that purge /datum/reagent/medicine like neuro/larval don't purge it
 	name = "Hypervene"
 	description = "Quickly purges the body of toxin damage, radiation and all other chemicals. Causes significant pain."
 	color = "#19C832"
