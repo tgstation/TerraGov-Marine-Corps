@@ -249,6 +249,28 @@
 		set_last_hostile(hostile)
 		SEND_SIGNAL(src, COMSIG_AUTOMATIC_SHOOTER_START_SHOOTING_AT)
 
+/obj/structure/resin/xeno_turret/attackby(obj/item/I, mob/living/user, params)
+	if(I.flags_item & NOBLUDGEON || !isliving(user))
+		return attack_hand(user)
+
+	user.changeNext_move(I.attack_speed)
+	user.do_attack_animation(src, used_item = I)
+
+	var/damage = I.force
+	var/multiplier = 1
+	if(I.damtype == "fire") //Burn damage deals extra vs resin structures (mostly welders).
+		multiplier += 1
+
+	if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.do_actions)
+		var/obj/item/tool/pickaxe/plasmacutter/P = I
+		if(P.start_cut(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD))
+			multiplier += PLASMACUTTER_RESIN_MULTIPLIER
+			P.cut_apart(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD)
+
+	damage *= max(0, multiplier)
+	take_damage(damage)
+	playsound(src, "alien_resin_break", 25)
+
 ///Signal handler for hard del of hostile
 /obj/structure/resin/xeno_turret/proc/unset_hostile()
 	SIGNAL_HANDLER
