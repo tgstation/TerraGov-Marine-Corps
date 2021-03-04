@@ -1198,3 +1198,79 @@
 
 /datum/action/xeno_action/activable/rally_hive/hivemind //Halve the cooldown for Hiveminds as their relative omnipresence means they can actually make use of this lower cooldown.
 	cooldown_timer = 30 SECONDS
+
+//*********
+// Psy Drain
+//*********
+/datum/action/xeno_action/activable/psydrain
+	name = "Psy drain"
+	action_icon_state = "headbite"
+	mechanics_text = "Drain the victim of its life force to gain larva and psych points"
+	use_state_flags = XACT_USE_STAGGERED|XACT_USE_FORTIFIED|XACT_USE_CRESTED //can't use while staggered, defender fortified or crest down
+	keybind_signal = COMSIG_XENOABILITY_HEADBITE
+	plasma_cost = 100
+	///How much psy points it give
+	var/psy_points_reward = 60
+	///How much larva points it gives (8 points for one larva in distress)
+	var/larva_point_reward = 1
+
+/datum/action/xeno_action/activable/psydrain/can_use_ability(atom/A, silent = FALSE, override_flags)
+	. = ..() //do after checking the below stuff
+	if(!.)
+		return
+	if(!iscarbon(A))
+		return FALSE
+	var/mob/living/carbon/xenomorph/X = owner
+	var/mob/living/carbon/victim = A //target of ability
+	if(X.do_actions) //can't use if busy
+		return FALSE
+	if(!X.Adjacent(victim)) //checks if owner next to target
+		return FALSE
+	if(X.on_fire)
+		if(!silent)
+			to_chat(X, "<span class='warning'>We're too busy being on fire to do this!</span>")
+		return FALSE
+	if(victim.stat != DEAD)
+		if(!silent)
+			to_chat(X, "<span class='warning'>This creature is struggling too much for us to aim precisely.</span>")
+		return FALSE
+	if(HAS_TRAIT(victim, TRAIT_PSY_DRAINED))
+		to_chat(X, "<span class='warning'>There is no longer any life force in this creature!</span>")
+	if(!ishuman(victim))
+		if(!silent)
+			to_chat(X, "<span class='warning'>We can't drain something that is not human.</span>")
+		return FALSE
+	if(issynth(victim)) //checks if target is a synth
+		if(!silent)
+			to_chat(X, "<span class='warning'>This artificial construct has no life force to drain</span>")
+		return FALSE
+	X.face_atom(victim) //Face towards the target so we don't look silly
+	X.visible_message("<span class='xenowarning'>\The [X] begins opening its mouth and extending a second jaw towards \the [victim].</span>", \
+	"<span class='danger'>We prepare our inner jaw for a finishing blow on \the [victim]!</span>", null, 20)
+	playsound(X, 'sound/magic/nightfall.ogg', 40)
+	if(!do_after(X, 10 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(X, /mob.proc/break_do_after_checks, list("health" = X.health))))
+		X.visible_message("<span class='xenowarning'>\The [X] retracts its inner jaw.</span>", \
+		"<span class='danger'>We retract our inner jaw.</span>", null, 20)
+		return FALSE
+	succeed_activate() //dew it
+
+/datum/action/xeno_action/activable/psydrain/use_ability(mob/M)
+	var/mob/living/carbon/xenomorph/X = owner
+	var/mob/living/carbon/victim = M
+
+	if(HAS_TRAIT(victim, TRAIT_PSY_DRAINED))
+		to_chat(X, "<span class='warning'>Someone drained the life force of our victim before we could do it!</span>")
+
+	playsound(X, 'sound/magic/end_of_psy_drain.ogg', 40)
+
+	X.visible_message("<span class='xenodanger'>\The [victim]'s life force is drained by \the [X]!</span>", \
+	"<span class='xenodanger'>We suddenly feel \the [victim]'s life force streaming into us!</span>")
+
+	ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
+
+	SSpoints.xeno_points_by_hive[X.hivenumber] += psy_points_reward
+	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+	xeno_job.add_job_points(larva_point_reward)
+
+	log_combat(victim, owner, "was drained.")
+	log_game("[key_name(victim)] was drained at [AREACOORD(victim.loc)].")
