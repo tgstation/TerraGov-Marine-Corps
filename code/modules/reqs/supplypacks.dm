@@ -424,7 +424,7 @@ AMMO
 		/obj/item/cell/lasgun/tesla,
 		/obj/item/cell/lasgun/tesla,
 	)
-	cost = 30
+	cost = 10
 
 /datum/supply_packs/ammo/boxslug
 	name = "Slug Ammo Box"

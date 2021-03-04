@@ -45,9 +45,9 @@
 	flags_pass = PASSTABLE|PASSMOB|PASSGRILLE
 	var/slow_amt = 0.8
 	var/duration = 10 SECONDS
-	var/acid_damage = 14
+	var/acid_damage = XENO_DEFAULT_ACID_PUDDLE_DAMAGE
 
-/obj/effect/xenomorph/spray/Initialize(mapload, duration = 10 SECONDS, damage = 14) //Self-deletes
+/obj/effect/xenomorph/spray/Initialize(mapload, duration = 10 SECONDS, damage = XENO_DEFAULT_ACID_PUDDLE_DAMAGE) //Self-deletes
 	. = ..()
 	START_PROCESSING(SSprocessing, src)
 	QDEL_IN(src, duration + rand(0, 2 SECONDS))
