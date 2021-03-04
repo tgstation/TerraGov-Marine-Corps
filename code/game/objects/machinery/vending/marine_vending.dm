@@ -588,6 +588,7 @@
 		/obj/item/storage/pouch/magazine/large = 8,
 		/obj/item/storage/pouch/magazine/pistol/large = 8,
 		/obj/item/storage/pouch/pistol = 8,
+		/obj/item/storage/syringe_case = 16,
 		/obj/item/clothing/mask/gas = 4,
 		/obj/item/storage/syringe_case/combat = 4,  //these have the regular combat injectors so dont change it to adv without paying attention
 		/obj/item/storage/pill_bottle/bicaridine = 4,
