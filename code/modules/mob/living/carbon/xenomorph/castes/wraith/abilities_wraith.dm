@@ -143,7 +143,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	if(!can_use_action()) //Check if we can actually position swap again due to the wind up delay.
 		return fail_activate()
 
-	var/beacon_turf = get_turf(shadow)
+	var/turf/beacon_turf = get_turf(shadow)
 
 	shadow.forceMove(get_turf(owner)) //Move the beacon to where we are leaving
 	shadow.dir = owner.dir //Have it imitate our facing

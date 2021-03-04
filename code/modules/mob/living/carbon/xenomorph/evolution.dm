@@ -208,10 +208,6 @@
 			to_chat(src, "<span class='warning'>Something in this place is interfering with our link to the Hivemind. We are unable to evolve to be its manifestation!</span>")
 			return
 
-		if(isspacearea(get_area(src)))
-			to_chat(src, "<span class='warning'>We are unable to manifest the Hivemind in space!</span>")
-			return
-
 		var/turf/T = get_turf(src)
 
 		if(!T.check_alien_construction(src))

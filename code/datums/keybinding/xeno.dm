@@ -460,6 +460,7 @@
 	keybind_signal = COMSIG_XENOABILITY_HEALING_INFUSION
 
 //Wraith keybinds - BEGIN
+/*
 /datum/keybinding/xeno/place_warp_shadow
 	name = "place_warp_shadow"
 	full_name = "Wraith: Place Warp Shadow"
@@ -501,4 +502,5 @@
 	full_name = "Wraith: Recall"
 	description = "Recall a target from netherspace, ending Banish's effect."
 	keybind_signal = COMSIG_XENOABILITY_RECALL
+*/
 //Wraith keybinds - END
