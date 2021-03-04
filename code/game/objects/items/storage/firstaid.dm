@@ -439,7 +439,7 @@
 	pill_type_to_fill = /obj/item/reagent_containers/pill/zoom
 
 /obj/item/storage/pill_bottle/imialky
-	name = "imialk pill bottle"
+	name = "imialky pill bottle"
 	desc = "Contains pills with imidazoline and alkysine, that heal brain and eye damage."
 	icon_state = "pill_canister9"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/imialky
