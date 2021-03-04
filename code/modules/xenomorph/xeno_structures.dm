@@ -202,6 +202,7 @@
 	. = ..()
 	ammo = GLOB.ammo_list[/datum/ammo/xeno/acid/heavy/turret]
 	associated_hive = GLOB.hive_datums[hivenumber]
+	obj_integrity = 600
 	START_PROCESSING(SSprocessing, src)
 	AddComponent(/datum/component/automatedfire/xeno_turret_autofire, firerate)
 	RegisterSignal(src, COMSIG_AUTOMATIC_SHOOTER_SHOOT, .proc/shoot)
