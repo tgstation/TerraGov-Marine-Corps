@@ -1089,6 +1089,7 @@
 			to_chat(owner, "<span class='warning'>We need to get closer!.</span>")
 		return FALSE
 	var/turf/T = get_turf(A)
+	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/carbon/xenomorph/blocker = locate() in T
 	if(blocker && blocker != X && blocker.stat != DEAD)
 		to_chat(X, "<span class='warning'>Can't do that with [blocker] in the way!</span>")
@@ -1102,7 +1103,7 @@
 
 	for(var/obj/effect/forcefield/fog/F in range(1, X))
 		to_chat(X, "<span class='warning'>We can't build so close to the fog!</span>")
-		return FLASE
+		return FALSE
 
 	if(!alien_weeds)
 		to_chat(X, "<span class='warning'>We can only shape on weeds. We must find some resin before we start building!</span>")
@@ -1111,7 +1112,6 @@
 	if(!T.check_alien_construction(X, planned_building = X.selected_resin) || !T.check_disallow_alien_fortification(X))
 		return FALSE
 
-	var/mob/living/carbon/xenomorph/X = owner
 	if(SSpoints.xeno_points_by_hive[X.hivenumber] < psych_cost)
 		to_chat(owner, "<span class='xenowarning'>The hive doesn't have the necessary psychic points for you to do that!</span>")
 		return FALSE
