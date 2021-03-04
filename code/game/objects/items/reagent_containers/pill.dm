@@ -249,6 +249,6 @@
 	pill_id = 17
 
 /obj/item/reagent_containers/pill/iron
-	pill_desc = "An raw iron pill, terragov solution for all the bloodloss, not be confused by coins."
+	pill_desc = "An raw iron pill, terragov solution for all bloodloss, big and small, not be confused by coins."
 	list_reagents = list(/datum/reagent/iron = 15)
 	pill_id = 12
