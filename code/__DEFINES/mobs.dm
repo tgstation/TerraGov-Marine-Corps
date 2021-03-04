@@ -418,6 +418,8 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 //Xeno Defines
 
+#define XENO_DEFAULT_ACID_PUDDLE_DAMAGE	14 //Standard damage dealt by acid puddles
+
 #define HIVE_CAN_HIJACK (1<<0)
 
 #define XENO_PULL_CHARGE_TIME 2 SECONDS
@@ -442,6 +444,8 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define XENO_HEALTH_ALERT_POINTER_DURATION	6 SECONDS //How long the alert directional pointer lasts.
 #define XENO_RALLYING_POINTER_DURATION		15 SECONDS //How long the rally hive pointer lasts
 #define XENO_SILO_DAMAGE_POINTER_DURATION	10 SECONDS //How long the alert directional pointer lasts when silos are damaged
+#define XENO_SILO_DETECTION_COOLDOWN		1 MINUTES
+#define XENO_SILO_DETECTION_RANGE			10//How far silos can detect hostiles
 
 #define CANNOT_HOLD_EGGS 0
 #define CAN_HOLD_TWO_HANDS 1

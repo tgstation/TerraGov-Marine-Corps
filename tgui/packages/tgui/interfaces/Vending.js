@@ -2,7 +2,6 @@ import { useBackend, useLocalState } from '../backend';
 import { Button, Section, Box, LabeledList, ProgressBar, Modal, Divider } from '../components';
 import { decodeHtmlEntities } from 'common/string';
 import { Window } from '../layouts';
-import { LabeledListItem } from '../components/LabeledList';
 
 export const Vending = (props, context) => {
   const { act, data } = useBackend(context);
@@ -162,7 +161,7 @@ const ProductEntry = (props, context) => {
   ] = useLocalState(context, 'showDesc', null);
 
   return (
-    <LabeledListItem
+    <LabeledList.Item
       labelColor="white"
       buttons={
         <>
@@ -196,7 +195,7 @@ const ProductEntry = (props, context) => {
         <Button
           onClick={() => setShowDesc(prod_desc)}>?
         </Button>)}
-    </LabeledListItem>
+    </LabeledList.Item>
   );
 };
 

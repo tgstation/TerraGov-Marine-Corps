@@ -44,3 +44,6 @@
 //The weight of each statistics in the state calculator before shutters drop and shipside
 #define XENOS_LIFE_WEIGHT_PREGAME -300
 #define HUMAN_LIFE_WEIGHT_PREGAME 100
+
+//Minimum proportion of burrowed larvas compared to live xenos for the unbalance join detector to show up
+#define TOO_MUCH_BURROWED_PROPORTION 0.2

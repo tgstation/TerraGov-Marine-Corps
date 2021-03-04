@@ -1,11 +1,6 @@
 /atom/movable/proc/supply_export()
 	return 0
 
-
-/obj/structure/closet/crate/supply_export()
-	. = 3
-	SSpoints.supply_points += .
-
 /obj/structure/ore_box/phoron/supply_export()
 	. = 20
 	SSpoints.supply_points += .

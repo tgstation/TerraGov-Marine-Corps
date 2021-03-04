@@ -1,0 +1,4 @@
+author: "hyper2snyper"
+delete-after: True
+changes: 
+  - rscadd: "Gives the TL-102 HSG a health and ammo indicator like the Sentries have."
