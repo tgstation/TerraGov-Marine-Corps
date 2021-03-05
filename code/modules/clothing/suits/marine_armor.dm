@@ -123,10 +123,32 @@
 /obj/item/clothing/suit/storage/marine/harness
 	name = "\improper M3 pattern marine harness"
 	desc = "A standard Marine M3 Pattern Harness. No encumbrance and no protection."
-	icon_state = "10"
+	icon_state = "10_orange"
 	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 	slowdown = 0
 	flags_atom = NONE
+	flags_item_map_variant = NONE
+
+/// Colors the harness if clicked on by facepaint
+/obj/item/clothing/suit/storage/marine/harness/attackby(obj/item/I, mob/user, params)
+	
+	if(!istype(I, /obj/item/facepaint))
+		return pockets.attackby(I, user, params)
+	
+	var/obj/item/facepaint/paint = I
+	if(paint.uses < 1)
+		to_chat(user, "<span class='warning'>\the [paint] is out of color!</span>")
+		return TRUE
+
+	var/new_color = tgui_input_list(user, "Pick a color", "Pick color", list(
+		"orange", "snow", "grey"))
+	if(!new_color)
+		return
+	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+		return TRUE
+	
+	icon_state = "10_[new_color]"
+	paint.uses--
 
 /obj/item/clothing/suit/storage/marine/M3IS
 	name = "\improper M3-IS pattern marine armor"
@@ -269,11 +291,32 @@
 /obj/item/clothing/suit/storage/marine/pasvest
 	name = "\improper PAS-11 pattern armored vest"
 	desc = "A somewhat outdated but robust armored vest, still in use despite the rise of exoskeleton armor due to ease of use and manufacturing. Tougher than it looks. Use it to toggle the built-in flashlight."
-	icon_state = "2"
+	icon_state = "2_standard"
 	soft_armor = list("melee" = 40, "bullet" = 60, "laser" = 60, "energy" = 45, "bomb" = 45, "bio" = 45, "rad" = 45, "fire" = 45, "acid" = 50)
 	slowdown = 0.5 //a bit less
 	light_range = 6
+	flags_item_map_variant = NONE
 
+/// Colors the pasvest if clicked on by facepaint
+/obj/item/clothing/suit/storage/marine/pasvest/attackby(obj/item/I, mob/user, params)
+	
+	if(!istype(I, /obj/item/facepaint))
+		return pockets.attackby(I, user, params)
+	
+	var/obj/item/facepaint/paint = I
+	if(paint.uses < 1)
+		to_chat(user, "<span class='warning'>\the [paint] is out of color!</span>")
+		return TRUE
+
+	var/new_color = tgui_input_list(user, "Pick a color", "Pick color", list(
+		"standard", "snow", "black", "green"))
+	if(!new_color)
+		return
+	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+		return TRUE
+	
+	icon_state = "2_[new_color]"
+	paint.uses--
 
 //===========================SPECIALIST================================
 
