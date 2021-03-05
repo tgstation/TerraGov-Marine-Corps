@@ -1268,6 +1268,8 @@
 	X.visible_message("<span class='xenodanger'>\The [victim]'s life force is drained by \the [X]!</span>", \
 	"<span class='xenodanger'>We suddenly feel \the [victim]'s life force streaming into us!</span>")
 
+	victim.do_jitter_animation(2)
+
 	ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
 
 	SSpoints.xeno_points_by_hive[X.hivenumber] += psy_points_reward
