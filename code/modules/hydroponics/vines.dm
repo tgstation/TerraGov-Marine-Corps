@@ -251,7 +251,6 @@
 
 /obj/effect/plantsegment/flamer_fire_act()
 	qdel(src)
-	return
 
 /obj/effect/plant_controller
 

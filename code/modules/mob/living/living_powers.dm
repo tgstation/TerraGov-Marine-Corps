@@ -3,7 +3,7 @@
 	set desc = "Enter an air vent and crawl through the pipe system."
 	set category = "Abilities"
 	handle_ventcrawl()
-	return
+
 
 /mob/living/proc/hide()
 	set name = "Hide"

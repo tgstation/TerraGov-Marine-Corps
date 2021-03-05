@@ -44,7 +44,7 @@
 /obj/item/clothing/under/apply_accessories(image/standing)
 	if(hastie)
 		var/tie_state = hastie.item_state
-		if(!tie_state) 
+		if(!tie_state)
 			tie_state = hastie.icon_state
 		standing.overlays += image(icon = 'icons/mob/ties.dmi', icon_state = "[tie_state]")
 
@@ -52,7 +52,7 @@
 	. = ..()
 	if(rolled_sleeves && !inhands)
 		. += "_d"
-	return
+
 
 /obj/item/clothing/apply_blood(image/standing)
 	if(blood_overlay && blood_sprite_state)

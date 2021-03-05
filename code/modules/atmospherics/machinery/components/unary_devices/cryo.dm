@@ -155,7 +155,6 @@
 			radio.talk_into(src, "Patient [occupant] has been automatically released from [src] at: [get_area(occupant)]. [reason]", RADIO_CHANNEL_MEDICAL)
 	occupant = null
 	update_icon()
-	return
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/proc/turn_off()
 	on = FALSE
@@ -205,11 +204,10 @@
 			return
 		to_chat(usr, "<span class='notice'>Auto release sequence activated. You will be released when you have recovered.</span>")
 		autoeject = TRUE
-	else
-		if (usr.stat != CONSCIOUS)
-			return
-		go_out()
-	return
+		return
+	if (usr.stat != CONSCIOUS)
+		return
+	go_out()
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/examine(mob/user)
 	..()

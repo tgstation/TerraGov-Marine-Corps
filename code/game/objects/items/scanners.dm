@@ -302,7 +302,7 @@ REAGENT SCANNER
 		// Show pulse
 		var/pulse = H.handle_pulse()
 		dat += "\tPulse: <font color='[pulse == PULSE_THREADY || pulse == PULSE_NONE ? "red" : ""]'>[H.get_pulse(GETPULSE_TOOL)] bpm.</font>\n"
-		
+
 		if(H.has_working_organs())
 			//Chems that conflict with others:
 			var/synaptizine_amount = reagents_in_body[/datum/reagent/medicine/synaptizine]
@@ -448,7 +448,6 @@ REAGENT SCANNER
 		user << browse(dat, "window=handscanner;size=500x400")
 	else
 		user.show_message(dat, 1)
-	return
 
 /obj/item/healthanalyzer/verb/toggle_mode()
 	set name = "Switch Verbosity"
@@ -582,7 +581,6 @@ REAGENT SCANNER
 					recent_fail = 1
 		to_chat(user, "[dat]")
 		reagents.clear_reagents()
-	return
 
 
 /obj/item/mass_spectrometer/adv
@@ -603,7 +601,7 @@ REAGENT SCANNER
 	throw_speed = 4
 	throw_range = 20
 
-	var/details = 0
+	var/details = FALSE
 	var/recent_fail = 0
 
 /obj/item/reagent_scanner/afterattack(obj/O, mob/user as mob, proximity)
@@ -638,9 +636,7 @@ REAGENT SCANNER
 	else
 		to_chat(user, "<span class='notice'>No significant chemical agents found in [O].</span>")
 
-	return
-
 /obj/item/reagent_scanner/adv
 	name = "advanced reagent scanner"
 	icon_state = "adv_spectrometer"
-	details = 1
+	details = TRUE

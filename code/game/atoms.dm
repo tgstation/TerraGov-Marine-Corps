@@ -132,7 +132,7 @@ directive is properly returned.
 
 /atom/proc/Bumped(atom/movable/AM)
 	SEND_SIGNAL(src, COMSIG_ATOM_BUMPED, AM)
-	return
+
 
 ///Can the mover object pass this atom, while heading for the target turf
 /atom/proc/CanPass(atom/movable/mover, turf/target)
@@ -151,9 +151,8 @@ directive is properly returned.
 
 /atom/proc/CheckExit(atom/movable/mover, turf/target)
 	if(!density || !(flags_atom & ON_BORDER) || !(get_dir(mover.loc, target) & dir))
-		return 1
-	else
-		return 0
+		return TRUE
+	return FALSE
 
 
 // Convenience proc for reagents handling.
@@ -337,7 +336,6 @@ directive is properly returned.
 /atom/proc/hitby(atom/movable/AM)
 	if(density)
 		AM.set_throwing(FALSE)
-	return
 
 
 /atom/proc/GenerateTag()
@@ -839,7 +837,7 @@ Proc for attack log creation, because really why not
  * user: the mob actioning this
  * toggle_on: if TRUE, will try to turn ON the light. Opposite if FALSE
  * cooldown: how long until you can toggle the light on/off again
- * sparks: if a spark effect will be generated 
+ * sparks: if a spark effect will be generated
  * forced: if TRUE and toggle_on = FALSE, will cause the light to turn on in cooldown second
  * originated_turf: if not null, will check if the obj_turf is closer than distance_max to originated_turf, and the proc will return if not
  * distance_max: used to check if originated_turf is close to obj.loc

@@ -373,7 +373,7 @@
 	user.set_interaction(src)
 	ui_interact(user)
 
-	return
+
 
 /obj/machinery/marine_turret/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -803,7 +803,7 @@
 				sleep(2)
 			turn_off()
 	take_damage(25)
-	return
+
 
 /obj/machinery/marine_turret/ex_act(severity)
 	switch(severity)

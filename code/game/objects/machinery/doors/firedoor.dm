@@ -253,7 +253,6 @@
 		if(FIREDOOR_CLOSED)
 			nextstate = null
 			close()
-	return
 
 /obj/machinery/door/firedoor/close()
 	latetoggle()
@@ -275,7 +274,6 @@
 		if("closing")
 			flick("door_closing", src)
 	playsound(loc, 'sound/machines/emergency_shutter.ogg', 25)
-	return
 
 
 /obj/machinery/door/firedoor/update_icon()
@@ -296,7 +294,6 @@
 		icon_state = "door_open"
 		if(blocked)
 			overlays += "welded_open"
-	return
 
 
 /obj/machinery/door/firedoor/mainship

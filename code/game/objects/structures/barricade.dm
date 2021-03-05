@@ -265,7 +265,6 @@
 		return FALSE
 
 	setDir(turn(dir, 90))
-	return
 
 /obj/structure/barricade/verb/revrotate()
 	set name = "Rotate Barricade Clockwise"
@@ -277,7 +276,6 @@
 		return FALSE
 
 	setDir(turn(dir, 270))
-	return
 
 
 /*----------------------*/

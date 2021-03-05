@@ -29,7 +29,7 @@
 	else if (severity=="minor")
 		minor_alarms += zone
 	update_icon()
-	return
+
 
 
 /obj/machinery/computer/atmos_alert/proc/set_frequency(new_frequency)
@@ -64,7 +64,7 @@
 
 	else
 		icon_state = "alert:0"
-	return
+
 
 
 /obj/machinery/computer/atmos_alert/proc/return_text()
@@ -113,4 +113,4 @@
 				minor_alarms -= zone
 
 	update_icon()
-	return
+

@@ -121,7 +121,6 @@
 	if(control.alert_observers)
 		if (atom_of_interest)
 			notify_ghosts("[control.name] has an object of interest: [atom_of_interest]!", source=atom_of_interest, action=NOTIFY_ORBIT, header="Something's Interesting!")
-	return
 
 //Called when the tick is equal to the announce_when variable.
 //Allows you to announce before starting or vice versa.

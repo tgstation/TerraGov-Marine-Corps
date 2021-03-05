@@ -483,7 +483,7 @@
 		if(EXPLODE_LIGHT)
 			if (prob(50))
 				broken()
-	return
+
 
 //timed process
 //use power
