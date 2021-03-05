@@ -2214,7 +2214,7 @@
 	},
 /area/mainship/medical/lower_medical)
 "hJ" = (
-/obj/structure/sign/electricshock,
+/obj/structure/sign/safety/autodoc,
 /turf/closed/wall/mainship,
 /area/mainship/squads/general)
 "hK" = (
@@ -3934,6 +3934,10 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/port_hallway)
+"nq" = (
+/obj/structure/sign/goldenplaque,
+/turf/closed/wall/mainship,
+/area/mainship/squads/general)
 "nr" = (
 /obj/effect/landmark/start/job/shiptech,
 /obj/structure/bed/chair/office/dark{
@@ -5423,8 +5427,9 @@
 /turf/closed/wall/mainship/outer,
 /area/mainship/hallways/starboard_hallway)
 "sH" = (
-/obj/structure/sign/goldenplaque,
-/turf/closed/wall/mainship,
+/obj/machinery/light,
+/obj/structure/sign/prop1,
+/turf/open/floor/mainship,
 /area/mainship/squads/general)
 "sI" = (
 /obj/machinery/door/airlock/mainship/command/officer{
@@ -8548,7 +8553,7 @@
 	},
 /area/mainship/squads/general)
 "Cp" = (
-/obj/structure/sign/safety/autodoc,
+/obj/structure/sign/electricshock,
 /turf/closed/wall/mainship,
 /area/mainship/squads/general)
 "Cq" = (
@@ -49968,8 +49973,8 @@ sU
 EY
 Ir
 EY
-LF
-Bv
+sH
+qC
 sU
 EY
 jS
@@ -50220,14 +50225,14 @@ EV
 Sk
 OZ
 Sk
+hJ
 qC
-Cp
 Vb
 qC
 QO
 RR
+Cp
 qC
-hJ
 iF
 qC
 iF
@@ -51003,8 +51008,8 @@ jU
 QR
 jl
 MC
+nq
 qC
-sH
 Ah
 PR
 qC
