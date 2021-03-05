@@ -737,13 +737,13 @@
 
 /obj/item/weapon/gun/rifle/type71
 	name = "\improper Type 71 pulse rifle"
-	desc = "The primary rifle of the USL pirates, the Type 71 is a reliable rifle chambered in 7.62x39mm, firing in two round bursts to conserve ammunition. A newer model for surpression roles to comply with overmatch doctrines is in progress and only issued to a limited number of privates in the USL."
+	desc = "The primary rifle of the USL pirates, the Type 71 is a reliable rifle chambered in 7.62x39mm, firing in three round bursts to conserve ammunition. A newer model for surpression roles to comply with overmatch doctrines is in progress and only issued to a limited number of privates in the USL."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "type71"
 	item_state = "type71"
 	muzzleflash_iconstate = "muzzle_flash_medium"
 	caliber = "7.62x39mm" //codex
-	max_shells = 40 //codex
+	max_shells = 42 //codex
 	fire_sound = 'sound/weapons/guns/fire/type71.ogg'
 	unload_sound = 'sound/weapons/guns/interact/type71_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/type71_reload.ogg'
@@ -783,7 +783,7 @@
 	aim_speed_modifier = 2
 
 	fire_delay = 0.25 SECONDS
-	burst_amount = 2
+	burst_amount = 3
 	accuracy_mult = 1.1
 	accuracy_mult_unwielded = 0.8
 
