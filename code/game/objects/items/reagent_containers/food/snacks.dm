@@ -2648,8 +2648,8 @@
 		icon_state = "hotdog"
 
 /obj/item/reagent_containers/food/snacks/upp
-	name = "\improper UPP ration"
-	desc = "A sealed, freeze-dried, compressed package containing a single item of food. Commonplace in the UPP military, especially those units stationed on far-flung colonies. This one is stamped for consumption by the UPP's 'Smoldering Sons' battalion and was packaged in 2179."
+	name = "\improper USL ration"
+	desc = "A sealed, freeze-dried, compressed package containing a single item of food. Commonplace in the USL pirate band and even those who live on Mars, especially those stationed on far-flung colonies. This one is was packaged in 2415."
 	icon_state = "upp_ration"
 	bitesize = 2
 	package = TRUE

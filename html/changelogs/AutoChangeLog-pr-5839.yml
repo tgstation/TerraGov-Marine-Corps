@@ -1,0 +1,4 @@
+author: "Surrealaser"
+delete-after: True
+changes: 
+  - rscadd: "Spitters gain a new ability: Scatter Spit; discharges a buckshot spread blast of 6x 15 burn damage acid projectiles that leave short duration acid puddles behind."

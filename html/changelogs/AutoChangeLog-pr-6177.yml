@@ -1,5 +1,0 @@
-author: "SkeletalElite"
-delete-after: True
-changes: 
-  - bugfix: "Filled in a missing wall on the sulaco, made a light fixture not float."
-  - qol: "There is a little more space to stand in front of the public engi vendors on sulaco without taking up space in the hallway."
