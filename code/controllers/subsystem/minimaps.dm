@@ -125,8 +125,9 @@ SUBSYSTEM_DEF(minimaps)
 /datum/hud_displays
 	///Actual icon of the drawn zlevel with all of it's atoms
 	var/icon/hud_image
-	///Assoc list of updating images list("[flag]" = list([source] = blip)
+	///Assoc list of updating images; list("[flag]" = list([source] = blip)
 	var/list/images_assoc = list()
+	///Raw list containing updating images by flag; list("[flag]" = list(blip))
 	var/list/images_raw = list()
 
 /datum/hud_displays/New()
