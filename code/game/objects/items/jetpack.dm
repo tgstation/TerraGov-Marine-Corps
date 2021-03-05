@@ -86,7 +86,7 @@
 
 ///Make the user fly toward the target atom
 /obj/item/jetpack_marine/proc/use_jetpack(atom/A, mob/living/carbon/human/human_user)
-	if(!do_after(human_user, 0.25 SECONDS, FALSE, A, BUSY_ICON_GENERIC))
+	if(!do_after(user = human_user, delay = 0.3 SECONDS, needhand = FALSE, target = A, ignore_turf_checks = TRUE))
 		return
 	TIMER_COOLDOWN_START(src, COOLDOWN_JETPACK, JETPACK_COOLDOWN_TIME)
 	lit = TRUE
