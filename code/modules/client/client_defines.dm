@@ -35,9 +35,6 @@
 	var/mouse_down_icon = null
 	var/click_intercepted = FALSE //Check if current click was intercepted. Reset and return if TRUE. This is because there's no communication between Click(), MouseDown() and MouseUp().
 
-	//Sound related
-	var/played = FALSE
-
 	//Security related
 	var/list/topiclimiter
 	var/list/clicklimiter
