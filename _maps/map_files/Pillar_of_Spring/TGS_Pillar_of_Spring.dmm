@@ -3001,7 +3001,7 @@
 	dir = 1;
 	name = "\improper Rest and Relaxation Area"
 	},
-/turf/open/space/basic,
+/turf/open/floor/mainship,
 /area/mainship/living/cafeteria_starboard)
 "kp" = (
 /obj/structure/prop/mainship/hangar_stencil,
@@ -4616,7 +4616,6 @@
 /area/mainship/shipboard/firing_range)
 "pG" = (
 /obj/machinery/vending/marine_medic,
-/obj/item/storage/bible/booze,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "pH" = (
@@ -5119,7 +5118,6 @@
 /area/mainship/shipboard/weapon_room)
 "rF" = (
 /obj/machinery/vending/marine/cargo_ammo,
-/obj/item/storage/bible/booze,
 /turf/open/floor/mainship/red/full,
 /area/mainship/shipboard/firing_range)
 "rG" = (
@@ -9424,7 +9422,7 @@
 /area/mainship/medical/medical_science)
 "EM" = (
 /obj/structure/cable,
-/turf/open/space/basic,
+/turf/open/floor/mainship,
 /area/mainship/living/cafeteria_starboard)
 "EN" = (
 /obj/structure/bed,
@@ -13864,8 +13862,7 @@
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "Td" = (
-/obj/structure/sign/safety/cryogenic,
-/turf/closed/wall/mainship,
+/turf/open/floor/mainship,
 /area/mainship/living/cryo_cells)
 "Te" = (
 /turf/open/floor/mainship/red{
@@ -14975,6 +14972,7 @@
 /area/mainship/living/cryo_cells)
 "Yn" = (
 /obj/machinery/vending/uniform_supply,
+/obj/structure/sign/safety/cryogenic,
 /turf/open/floor/mainship/black/full,
 /area/mainship/living/cryo_cells)
 "Yo" = (
@@ -53562,17 +53560,17 @@ Mb
 CU
 SK
 Yn
-Td
+SK
 Zb
 VC
 SK
 Yn
-Td
+SK
 ey
 VC
 SK
 Yn
-Td
+SK
 ey
 VC
 SK
@@ -54077,7 +54075,7 @@ Ol
 SK
 ss
 Vh
-ey
+Td
 ey
 LH
 hb
