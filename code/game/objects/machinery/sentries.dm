@@ -373,7 +373,7 @@
 	user.set_interaction(src)
 	ui_interact(user)
 
-	return
+
 
 /obj/machinery/marine_turret/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -803,7 +803,7 @@
 				sleep(2)
 			turn_off()
 	take_damage(25)
-	return
+
 
 /obj/machinery/marine_turret/ex_act(severity)
 	switch(severity)
@@ -1006,7 +1006,7 @@
 	var/mob/living/M
 
 	for(M in oview(range, src))
-		if(M.stat == DEAD || (M.status_flags & INCORPOREAL)) //No dead, robots, or incorporeal.
+		if(M.stat == DEAD) //No dead, robots, or incorporeal.
 			continue
 		if(CHECK_BITFIELD(turret_flags, TURRET_SAFETY) && !isxeno(M)) //When safeties are on, Xenos only.
 			continue
@@ -1049,7 +1049,7 @@
 					if(S.opacity || S.density && S.throwpass == FALSE )
 						blocked = TRUE
 						break //LoF Broken; stop checking; we can't proceed further.
-			if(!blocked)
+			if(!blocked && !(M.status_flags & INCORPOREAL)) //Don't target incorporeals; we can't actually shoot them
 				targets += M
 
 	if(targets.len) . = pick(targets)

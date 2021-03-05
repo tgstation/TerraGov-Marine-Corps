@@ -71,9 +71,6 @@
 		: FALSE)
 #define HAS_TRAIT_NOT_FROM(target, trait, source) (target.status_traits ? (target.status_traits[trait] ? (length(target.status_traits[trait] - source) > 0) : FALSE) : FALSE)
 
-//Traits
-#define TRAIT_STASIS "stasis"
-
 // common trait
 #define TRAIT_GENERIC "generic"
 #define INNATE_TRAIT "innate"
@@ -89,6 +86,7 @@
 #define BUCKLE_TRAIT "buckle"
 #define THROW_TRAIT "throw"
 #define FORTIFY_TRAIT "fortify" //Defender fortify ability.
+#define TRAIT_STASIS	"stasis"//Subject to the stasis effect
 
 //mob traits
 #define TRAIT_KNOCKEDOUT		"knockedout" //Forces the user to stay unconscious.

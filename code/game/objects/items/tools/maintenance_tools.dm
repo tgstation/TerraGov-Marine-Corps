@@ -225,7 +225,7 @@
 		if(isliving(O))
 			var/mob/living/L = O
 			L.IgniteMob()
-	return
+
 
 
 /obj/item/tool/weldingtool/attack_self(mob/user as mob)
@@ -233,7 +233,7 @@
 		to_chat(user, "<span class='warning'>[src] can't be turned on while unsecured!</span>")
 		return
 	toggle()
-	return
+
 
 //Returns the amount of fuel in the welder
 /obj/item/tool/weldingtool/proc/get_fuel()

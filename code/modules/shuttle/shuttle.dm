@@ -45,14 +45,14 @@
 		WARNING("docking_port registered multiple times")
 		unregister()
 	registered = TRUE
-	return
+
 
 ///unregister from SSshuttles
 /obj/docking_port/proc/unregister()
 	if(!registered)
 		WARNING("docking_port unregistered multiple times")
 	registered = FALSE
-	return
+
 
 //these objects are indestructible
 /obj/docking_port/Destroy(force)
@@ -502,13 +502,13 @@
 // called on entering the igniting state
 /obj/docking_port/mobile/proc/on_ignition()
 	playsound(return_center_turf(), ignition_sound, 60, 0)
-	return
+
 
 /obj/docking_port/mobile/proc/on_prearrival()
 	if(destination)
 		playsound(destination.return_center_turf(), landing_sound, 60, 0)
 	playsound(return_center_turf(), landing_sound, 60, 0)
-	return
+
 
 /obj/docking_port/mobile/proc/on_crash()
 	return

@@ -491,7 +491,6 @@ if(selected_ability.target_flags & flagname){\
 */
 /mob/proc/CtrlShiftClickOn(atom/A)
 	A.CtrlShiftClick(src)
-	return
 
 
 /mob/proc/ShiftMiddleClickOn(atom/A)
@@ -504,7 +503,6 @@ if(selected_ability.target_flags & flagname){\
 
 /atom/proc/CtrlShiftClick(mob/user)
 	SEND_SIGNAL(src, COMSIG_CLICK_CTRL_SHIFT)
-	return
 
 
 /*
