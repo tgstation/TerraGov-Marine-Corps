@@ -47,11 +47,6 @@
 		core = null
 	return ..()
 
-/obj/flamer_fire/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
-	if(isxenohivemind(mover))
-		return FALSE
-
 /mob/living/carbon/xenomorph/hivemind/flamer_fire_act()
 	forceMove(get_turf(core))
 	to_chat(src, "<span class='xenonotice'>We were on top of fire, we got moved to our core.")
@@ -144,6 +139,11 @@
 /// Hiveminds specifically have no status hud element
 /mob/living/carbon/xenomorph/hivemind/med_hud_set_status()
 	return
+
+/obj/flamer_fire/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
+	if(isxenohivemind(mover))
+		return FALSE
 
 
 // =================

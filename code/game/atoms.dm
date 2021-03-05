@@ -137,8 +137,6 @@ directive is properly returned.
 ///Can the mover object pass this atom, while heading for the target turf
 /atom/proc/CanPass(atom/movable/mover, turf/target)
 	SHOULD_CALL_PARENT(TRUE)
-	if(mover.status_flags & INCORPOREAL)
-		return TRUE
 	. = CanAllowThrough(mover, target)
 	// This is cheaper than calling the proc every time since most things dont override CanPassThrough
 	if(!mover.generic_canpass)
@@ -149,11 +147,12 @@ directive is properly returned.
 	SHOULD_CALL_PARENT(TRUE)
 	return !density
 
+/// Returns true or false to allow the mover to move out of the atom
 /atom/proc/CheckExit(atom/movable/mover, turf/target)
-	if(!density || !(flags_atom & ON_BORDER) || !(get_dir(mover.loc, target) & dir))
+	SHOULD_CALL_PARENT(TRUE)
+	if(!density || !(flags_atom & ON_BORDER) || !(get_dir(mover.loc, target) & dir) || (mover.status_flags & INCORPOREAL))
 		return TRUE
 	return FALSE
-
 
 // Convenience proc for reagents handling.
 /atom/proc/is_open_container()
@@ -860,3 +859,4 @@ Proc for attack log creation, because really why not
 ///Turn on the light, should be called by a timer
 /atom/proc/reset_light()
 	turn_light(null, TRUE)
+
