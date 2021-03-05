@@ -200,7 +200,7 @@ SUBSYSTEM_DEF(minimaps)
 		var/rawold = minimaps_by_z["[oldz]"].images_raw["[flag]"]
 		var/rawnew = minimaps_by_z["[newz]"].images_raw["[flag]"]
 		rawold -= ref_old
-		rawnew += rawnew
+		rawnew += ref_old
 		var/anotherref = minimaps_by_z["[oldz]"].images_assoc["[flag]"]
 		anotherref -= source
 
