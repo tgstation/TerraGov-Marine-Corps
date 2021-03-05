@@ -11548,7 +11548,7 @@
 /area/mainship/command/cic)
 "KO" = (
 /obj/structure/window/framed/mainship,
-/turf/open/space/basic,
+/turf/open/floor/mainship,
 /area/mainship/living/cafeteria_starboard)
 "KS" = (
 /obj/item/trash/cigbutt{
@@ -13044,7 +13044,7 @@
 /area/mainship/hallways/hangar/droppod)
 "PR" = (
 /obj/structure/window/framed/mainship,
-/turf/open/space/basic,
+/turf/open/floor/mainship,
 /area/mainship/squads/general)
 "PS" = (
 /obj/structure/disposalpipe/segment{
