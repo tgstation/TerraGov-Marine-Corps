@@ -41,8 +41,6 @@ SUBSYSTEM_DEF(loopingsounds)
 			continue
 		ctime_timer.stop()
 
-
-	// Remove invoked client-time timers
 	if (next_looping_sound_index)
 		looping_sound_queue.Cut(1, next_looping_sound_index+1)
 		next_looping_sound_index = 0
