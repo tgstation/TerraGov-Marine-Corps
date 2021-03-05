@@ -32,7 +32,6 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
 		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
-		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
 	)
 
 /datum/job/terragov/squad/standard/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
@@ -102,7 +101,7 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 	display_order = JOB_DISPLAY_ORDER_SUQAD_ENGINEER
 	outfit = /datum/outfit/job/marine/engineer
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
-	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_REGULAR, /datum/job/terragov/squad/specialist = SPEC_POINTS_MEDIUM, /datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_MEDIUM)
+	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_REGULAR, /datum/job/terragov/squad/specialist = SPEC_POINTS_MEDIUM)
 
 /datum/job/terragov/squad/engineer/radio_help_message(mob/M)
 	. = ..()
@@ -171,7 +170,7 @@ Your squaddies will look to you when it comes to construction in the field of ba
 	display_order = JOB_DISPLAY_ORDER_SQUAD_CORPSMAN
 	outfit = /datum/outfit/job/marine/corpsman
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
-	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_REGULAR, /datum/job/terragov/squad/specialist = SPEC_POINTS_MEDIUM, /datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_MEDIUM)
+	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_REGULAR, /datum/job/terragov/squad/specialist = SPEC_POINTS_MEDIUM)
 
 /datum/job/terragov/squad/corpsman/radio_help_message(mob/M)
 	. = ..()
@@ -238,79 +237,6 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 		if(6001 to INFINITY) // 100 hrs
 			new_human.wear_id.paygrade = "E5"
 
-//Squad Smartgunner
-/datum/job/terragov/squad/smartgunner
-	title = SQUAD_SMARTGUNNER
-	paygrade = "E3"
-	comm_title = "SGnr"
-	total_positions = 4
-	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_SMARTPREP)
-	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_SMARTPREP, ACCESS_MARINE_DROPSHIP)
-	skills_type = /datum/skills/smartgunner
-	display_order = JOB_DISPLAY_ORDER_SQUAD_SMARTGUNNER
-	outfit = /datum/outfit/job/marine/smartgunner
-	job_flags = JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
-	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_REGULAR)
-	job_points_needed  = 10 //Redefined via config.
-
-/datum/job/terragov/squad/smartgunner/radio_help_message(mob/M)
-	. = ..()
-	to_chat(M, {"\nYou are the smartgunner. Your job is to provide heavy weapons support."})
-
-/datum/job/terragov/squad/smartgunner/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
-	. = ..()
-	if(!ishuman(new_mob))
-		return
-	var/mob/living/carbon/human/new_human = new_mob
-	var/playtime_mins = user?.client?.get_exp(title)
-	if(!playtime_mins || playtime_mins < 1 )
-		return
-	switch(playtime_mins)
-		if(0 to 1500) // starting
-			new_human.wear_id.paygrade = "E3"
-		if(1501 to 6000) // 25 hrs
-			new_human.wear_id.paygrade = "E4"
-		if(6001 to INFINITY) // 100 hrs
-			new_human.wear_id.paygrade = "E5"
-
-/datum/outfit/job/marine/smartgunner
-	name = SQUAD_SMARTGUNNER
-	jobtype = /datum/job/terragov/squad/smartgunner
-
-	id = /obj/item/card/id/dogtag
-	back = /obj/item/storage/backpack/marine/satchel
-
-/datum/outfit/job/marine/smartgunner/equipped
-	name = "Squad Smartgunner (Equipped)"
-
-	ears = /obj/item/radio/headset/mainship/marine
-	w_uniform = /obj/item/clothing/under/marine
-	wear_suit = /obj/item/clothing/suit/storage/marine/smartgunner
-	shoes = /obj/item/clothing/shoes/marine/full
-	gloves =/obj/item/clothing/gloves/marine
-	head = /obj/item/clothing/head/helmet/marine
-	l_store = /obj/item/storage/pouch/firstaid/full
-	suit_store = /obj/item/weapon/gun/rifle/standard_smartmachinegun
-	glasses = /obj/item/clothing/glasses/night/m56_goggles
-	r_hand = /obj/item/portable_vendor/marine/squadmarine/smartgunner
-
-/datum/outfit/job/marine/smartgunner/equipped/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
-
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_heavypistol, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_SUIT)
-
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar , SLOT_IN_HEAD)
-
-	H.equip_to_slot_or_del(new /obj/item/radio, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/standard_heavypistol, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_heavypistol, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_smartmachinegun, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_smartmachinegun, SLOT_IN_BACKPACK)
-
-
 //Squad Specialist
 /datum/job/terragov/squad/specialist
 	title = SQUAD_SPECIALIST
@@ -364,7 +290,6 @@ You can serve a variety of roles, so choose carefully."})
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
 		/datum/job/terragov/squad/specialist = SPEC_POINTS_HIGH,
-		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_HIGH,
 	)
 
 

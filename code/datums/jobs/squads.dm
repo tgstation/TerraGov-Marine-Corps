@@ -9,7 +9,6 @@
 		/datum/job/terragov/squad/standard = 0,
 		/datum/job/terragov/squad/engineer = 0,
 		/datum/job/terragov/squad/corpsman = 0,
-		/datum/job/terragov/squad/smartgunner = 0,
 		/datum/job/terragov/squad/specialist = 0,
 		/datum/job/terragov/squad/leader = 0)
 	var/max_positions = list(
