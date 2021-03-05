@@ -216,7 +216,9 @@
 	switch(stat)
 		if(DEAD)
 			simple_status_hud.icon_state = ""
-			infection_hud.icon_state = "huddead" //Xenos sense dead hosts, and no longer their larvas inside, which fall into stasis and no longer grow.
+			infection_hud.icon_state = "psy_drain"
+			if(HAS_TRAIT(src, TRAIT_PSY_DRAINED))
+				infection_hud.icon_state = "huddead"
 			if(HAS_TRAIT(src, TRAIT_UNDEFIBBABLE ))
 				status_hud.icon_state = "huddead"
 				return TRUE
