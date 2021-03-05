@@ -5391,6 +5391,10 @@
 /obj/effect/landmark/start/job/squadcorpsman,
 /turf/open/floor/mainship,
 /area/mainship/living/cryo_cells)
+"sO" = (
+/obj/effect/landmark/start/job/squadsmartgunner,
+/turf/open/floor/mainship,
+/area/mainship/living/cryo_cells)
 "sP" = (
 /obj/effect/landmark/start/job/squadleader,
 /turf/open/floor/mainship,
@@ -6257,6 +6261,7 @@
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
 "vz" = (
+/obj/effect/landmark/start/job/squadsmartgunner,
 /obj/machinery/light,
 /turf/open/floor/mainship,
 /area/mainship/living/cryo_cells)
@@ -49573,7 +49578,7 @@ pQ
 YD
 Ne
 KU
-sy
+sO
 sU
 sx
 sx
@@ -51115,7 +51120,7 @@ pQ
 rh
 Ne
 MC
-sy
+sO
 sU
 sx
 sx

@@ -369,6 +369,10 @@
 /obj/machinery/marine_selector/gear/medic,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
+"bv" = (
+/obj/machinery/marine_selector/clothes/smartgun,
+/turf/open/floor/mainship/mono,
+/area/shuttle/canterbury)
 "bw" = (
 /obj/machinery/vending/engivend,
 /turf/open/floor/mainship/orange/full,
@@ -388,6 +392,7 @@
 /turf/open/floor/mainship/red/full,
 /area/shuttle/canterbury)
 "bz" = (
+/obj/effect/landmark/start/job/crash/squadsmartgunner,
 /turf/open/floor/mainship/red/full,
 /area/shuttle/canterbury)
 "bA" = (
@@ -638,6 +643,7 @@
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 8
 	},
+/obj/effect/landmark/start/job/crash/squadsmartgunner,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "nM" = (
@@ -731,10 +737,12 @@
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 1
 	},
+/obj/effect/landmark/start/job/crash/squadsmartgunner,
 /obj/machinery/light,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "tX" = (
+/obj/effect/landmark/start/job/crash/squadsmartgunner,
 /obj/structure/window/reinforced{
 	dir = 8
 	},
@@ -767,6 +775,7 @@
 /area/shuttle/canterbury)
 "uZ" = (
 /obj/structure/bed/chair/dropship/passenger,
+/obj/effect/landmark/start/job/crash/squadsmartgunner,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "vF" = (
@@ -867,6 +876,7 @@
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 1
 	},
+/obj/effect/landmark/start/job/crash/squadsmartgunner,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "FZ" = (
@@ -888,6 +898,10 @@
 /obj/machinery/marine_turret,
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/canterbury)
+"JM" = (
+/obj/machinery/marine_selector/gear/smartgun,
+/turf/open/floor/mainship/mono,
+/area/shuttle/canterbury)
 "JN" = (
 /obj/machinery/light/small,
 /obj/machinery/cryopod,
@@ -904,6 +918,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/effect/landmark/start/job/crash/squadsmartgunner,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "Kk" = (
@@ -1672,7 +1687,7 @@ hc
 hc
 hc
 ab
-ac
+bv
 tX
 ul
 ab
@@ -1705,7 +1720,7 @@ bV
 bV
 bV
 ab
-ac
+JM
 bz
 ow
 ab
