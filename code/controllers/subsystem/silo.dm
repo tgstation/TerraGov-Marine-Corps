@@ -28,6 +28,3 @@ SUBSYSTEM_DEF(silo)
 	UnregisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY))
 	can_fire = TRUE
 	silos_do_mature = TRUE
-	for(var/job in SSjob.occupations)
-		var/datum/job/j = job
-		j.jobworth[/datum/job/xenomorph] = 0

@@ -102,12 +102,9 @@ SUBSYSTEM_DEF(job)
 		JobDebug("Successfuly assigned marine role to a squad. Player: [player.key], Job: [job.title], Squad: [player.assigned_squad]")
 	if(!latejoin)
 		unassigned -= player
-	if(job.job_category != JOB_CAT_XENO)
-		if(SSmonitor.gamestate == SHUTTERS_CLOSED)
-			SSpoints.xeno_points_by_hive[XENO_HIVE_NORMAL] += SILO_PRICE / 15
-		else
-			SSpoints.xeno_points_by_hive[XENO_HIVE_NORMAL] += SILO_PRICE / 45
-	job.occupy_job_positions(1)
+	if(job.job_category != JOB_CAT_XENO && !GLOB.joined_player_list.Find(player.ckey))
+		SSpoints.xeno_points_by_hive[XENO_HIVE_NORMAL] += SILO_PRICE / 15
+	job.occupy_job_positions(1, GLOB.joined_player_list.Find(player.ckey))
 	player.assigned_role = job
 	JobDebug("Player: [player] is now Job: [job.title], JCP:[job.current_positions], JPL:[job.total_positions]")
 	return TRUE
