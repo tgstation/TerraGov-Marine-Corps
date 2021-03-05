@@ -246,4 +246,4 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 //Xeno turrets define
 #define TURRET_SCAN_RANGE 40
 #define TURRET_SCAN_FREQUENCY 16 SECONDS
-#define TURRET_HEALTH_REGEN 20
+#define TURRET_HEALTH_REGEN 4

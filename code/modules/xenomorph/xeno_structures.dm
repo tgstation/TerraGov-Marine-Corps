@@ -209,6 +209,9 @@
 	set_light(2, 2, LIGHT_COLOR_GREEN)
 
 /obj/structure/resin/xeno_turret/Destroy()
+	var/datum/effect_system/smoke_spread/xeno/smoke = new /datum/effect_system/smoke_spread/xeno/acid(src)
+	smoke.set_up(1, get_turf(src))
+	smoke.start()
 	set_hostile(null)
 	set_last_hostile(null)
 	STOP_PROCESSING(SSobj, src)
@@ -229,10 +232,16 @@
 /obj/structure/resin/fire_act()
 	take_damage(30, BURN, "fire")
 
+/obj/structure/resin/update_overlays()
+	. = ..()
+	if(obj_integrity <= max_integrity / 2)
+		. += image('icons/Xeno/acidturret.dmi', src, "+turret_damage") 	
+
 /obj/structure/resin/xeno_turret/process()
 	//Turrets regen some HP, every 2 sec
 	if(obj_integrity < max_integrity)
 		obj_integrity = min(obj_integrity + TURRET_HEALTH_REGEN, max_integrity)
+		update_icon()
 	if(world.time > last_scan_time + TURRET_SCAN_FREQUENCY)
 		awake = scan()
 		last_scan_time = world.time
