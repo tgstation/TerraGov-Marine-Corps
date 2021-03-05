@@ -63,6 +63,10 @@ SUBSYSTEM_DEF(minimaps)
 	earlyadds = null //then clear them
 	return ..()
 
+/datum/controller/subsystem/minimaps/stat_entry(msg)
+	msg = "Upd:[length(update_targets_unsorted)] Mark: [length(removal_cbs)]"
+	return ..()
+
 /datum/controller/subsystem/minimaps/Recover()
 	minimaps_by_z = SSminimaps.minimaps_by_z
 	images_by_source = SSminimaps.images_by_source
@@ -72,11 +76,14 @@ SUBSYSTEM_DEF(minimaps)
 	updators_by_datum = SSminimaps.updators_by_datum
 
 /datum/controller/subsystem/minimaps/fire(resumed)
-	for(var/iter=1 to length(update_targets_unsorted))
-		update_targets_unsorted[iter].overlays.Cut() //clear the old overlays, no we cant cache it because they wont update
+	if(!resumed)
+		for(var/iter=1 to length(update_targets_unsorted))
+			update_targets_unsorted[iter].overlays.Cut() //clear all the old overlays, no we cant cache it because they wont update
 	for(var/flag in update_targets)
-		for(var/datum/minimap_updator/updator AS in update_targets["[flag]"])
-			updator.minimap.overlays += minimaps_by_z["[updator.ztarget]"].images_raw["[flag]"]
+		for(var/datum/minimap_updator/updator AS in update_targets[flag])
+			updator.minimap.overlays += minimaps_by_z["[updator.ztarget]"].images_raw[flag]
+		if(MC_TICK_CHECK)
+			return
 
 /**
  * Adds an atom to the processing updators that will have blips drawn on them

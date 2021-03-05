@@ -12,6 +12,8 @@
 	var/mapz = 0
 	///Minimap flags we are going to update for
 	var/filter = NONE
+	///Increment to clear the map when it's not in use anymore
+	var/active_users = 0
 
 /datum/element/hud_map/Attach(mob/target, ztarget, filtertargets)
 	if(!ismob(target))
@@ -24,6 +26,7 @@
 		return
 	if(!map)
 		map = new(null, ztarget, filtertargets)
+	active_users++
 	RegisterSignal(target, COMSIG_MOB_HUDMAP_TOGGLED, .proc/display_map_to)
 
 ///Displays the HUD display to the inputted mob source
@@ -51,6 +54,8 @@
 /datum/element/hud_map/Detach(datum/source, force)
 	. = ..()
 	UnregisterSignal(source, list(COMSIG_MOVABLE_Z_CHANGED,COMSIG_MOB_HUDMAP_TOGGLED))
+	if(!--active_users)
+		QDEL_NULL(map)
 
 
 /obj/screen/minimap
