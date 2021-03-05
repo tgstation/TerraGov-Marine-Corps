@@ -73,6 +73,10 @@
 	icon_state = "HM"
 	job = /datum/job/terragov/squad/corpsman
 
+/obj/effect/landmark/start/job/crash/squadsmartgunner
+	icon_state = "SGnr"
+	job = /datum/job/terragov/squad/smartgunner
+
 /obj/effect/landmark/start/job/crash/squadspecialist
 	icon_state = "Spec"
 	job = /datum/job/terragov/squad/specialist

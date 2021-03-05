@@ -261,6 +261,16 @@ A breacher kit with the least firepower, has a high capacity SMG and a machete f
 		list("T-35 Shotgun", 1, /obj/item/storage/box/squadmarine/corpsmant35, "white", "A kit containing a T-35 shotgun. Comes with a magnetic harness, its respective stock and an angled grip.")
 	)
 
+/obj/item/portable_vendor/marine/squadmarine/smartgunner
+	name = "\improper TerraGov Squad Smartgunner Storage Backpack"
+	desc = "A backpack-sized automated storage and retrieval system. Designed to efficiently store and selectively dispense large kits during immediate operations. Can only vend one kit per person. Has a tag saying that this backpack is only for Squad Smartgunners."
+	req_role = /datum/job/terragov/squad/smartgunner
+	listed_products = list(
+		list("MARINE WEAPONS", 0, null, null, null),
+		list("T-19 Machine Pistol", 1, /obj/item/storage/box/squadmarine/smartgunnert19, "white", "A kit containing a T-19 machine pistol and ammo."),
+		list("M4A3 Pistol", 1, /obj/item/storage/box/squadmarine/smartgunnerm4a3, "white", "A kit containing a M4A3 pistol and ammo.")
+	)
+
 /obj/item/portable_vendor/marine/squadmarine/specialist
 	name = "\improper TerraGov Squad Specialist Storage Backpack"
 	desc = "A backpack-sized automated storage and retrieval system. Designed to efficiently store and selectively dispense large kits during immediate operations. Can only vend one kit per person. Has a faded tag saying that this backpack is only for Squad Specialists, you wonder if you are either lucky or just disappointed."
