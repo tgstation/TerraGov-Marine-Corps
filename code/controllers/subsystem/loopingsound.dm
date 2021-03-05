@@ -3,7 +3,7 @@
 /**
  * # Looping sound Subsystem
  *
- * Maintains a clientside timer-like system to handle looping sounds.
+ * Maintains a clientside-timer-like system to handle looping sounds.
  * Looping sounds are binary inserted into [looping_sound_queue]
  * Which is then checked against REALTIMEOFDAY for when to fire [/datum/looping_sound/proc/sound_loop()]
  *
