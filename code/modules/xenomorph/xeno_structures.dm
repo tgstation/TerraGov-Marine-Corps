@@ -178,6 +178,7 @@
 	desc = "A menacing looking construct of resin, it seems to be alive. It fires acid against intruders."
 	bound_width = 32
 	bound_height = 32
+	obj_integrity = 600
 	max_integrity = 1800
 	layer =  ABOVE_MOB_LAYER
 	density = TRUE
@@ -202,8 +203,7 @@
 	. = ..()
 	ammo = GLOB.ammo_list[/datum/ammo/xeno/acid/heavy/turret]
 	associated_hive = GLOB.hive_datums[hivenumber]
-	obj_integrity = 600
-	START_PROCESSING(SSprocessing, src)
+	START_PROCESSING(SSobj, src)
 	AddComponent(/datum/component/automatedfire/xeno_turret_autofire, firerate)
 	RegisterSignal(src, COMSIG_AUTOMATIC_SHOOTER_SHOOT, .proc/shoot)
 	set_light(2, 2, LIGHT_COLOR_GREEN)
@@ -211,7 +211,7 @@
 /obj/structure/resin/xeno_turret/Destroy()
 	set_hostile(null)
 	set_last_hostile(null)
-	STOP_PROCESSING(SSprocessing, src)
+	STOP_PROCESSING(SSobj, src)
 	return ..()
 
 /obj/structure/resin/xeno_turret/ex_act(severity)
@@ -230,7 +230,7 @@
 	take_damage(30, BURN, "fire")
 
 /obj/structure/resin/xeno_turret/process()
-	//Turrets regen some HP, 5 per second
+	//Turrets regen some HP, every 2 sec
 	if(obj_integrity < max_integrity)
 		obj_integrity = min(obj_integrity + TURRET_HEALTH_REGEN, max_integrity)
 	if(world.time > last_scan_time + TURRET_SCAN_FREQUENCY)
