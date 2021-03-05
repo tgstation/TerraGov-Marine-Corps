@@ -165,7 +165,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	var/smoketime = 300
 	var/chem_volume = 30
 	var/list/list_reagents = list(/datum/reagent/nicotine = 15)
-	var/transquantity = 0.1 //default for a 30u filed to last all of its time. with chem
+	var/transquantity = 0.1 //the quantity that will be transmited each 2 seconds
 	flags_armor_protection = 0
 
 /obj/item/clothing/mask/cigarette/Initialize()
@@ -372,8 +372,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	qdel(src)
 
 /obj/item/clothing/mask/cigarette/antitox
-	name = "Neurokiller cig"
-	desc = "a new type of cig developed recently to fend off toxic gasses, might still tire you."
+	name = "Neurokiller cigarette"
+	desc = "A new type of cigarette, made to fend off toxic gasses, might still tire you."
 	icon_state = "anticigoff"
 	item_state = "anticigoff"
 	icon_on = "anticigon"
@@ -383,8 +383,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	list_reagents = list(/datum/reagent/medicine/ryetalyn = 30, /datum/reagent/water = 30)  //some water so it purges the rye too
 
 /obj/item/clothing/mask/cigarette/emergency
-	name = "красный русский"
-	desc = "its got a big warning about clone damage, use as a last resort."
+	name = "Red Comrade"
+	desc = "A red cigarrete. With some writings in it. Some of it is in russian, but,the Red Russian warning, is in indistinguishable."
 	icon_state = "rrcigoff"
 	item_state = "rrcigoff"
 	icon_on = "rrcigon"
@@ -394,7 +394,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/clothing/mask/cigarette/bica
 	name = "strawberry flavored cigarette"
-	desc = "its red tipped. and got bold letters that read(BICA)"
+	desc = "its red tipped. It got a single word in it (BICARIDINE)."
 	icon_state = "bicacigoff"
 	item_state = "bicacigoff"
 	icon_on = "bicaigon"
@@ -404,7 +404,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/clothing/mask/cigarette/kelo
 	name = "lemon flavored cigarette"
-	desc = "its yellow tipped. and got bold letters that read(KELO)."
+	desc = "its yellow tipped. It got a single word in it (KELOTANE)."
 	icon_state = "kelocigoff"
 	item_state = "kelocigoff"
 	icon_on = "kelocigon"
@@ -414,14 +414,14 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/clothing/mask/cigarette/tram
 	name = "poppy flavored cigarette"
-	desc = "terragov opioid alternative, recent production is a bit dilluted, but still effective."
+	desc = "terragov opioid alternative, dilluted in water to abide the law."
 	icon_state = "tramcigoff"
 	item_state = "tramcigoff"
 	icon_on = "tramcigon"
-	smoketime = 60
-	chem_volume = 120
+	smoketime = 15  //so half a minute
+	chem_volume = 60
 	transquantity = 2 // one of each for the whole duration
-	list_reagents = list(/datum/reagent/medicine/tramadol = 60, /datum/reagent/water = 60)
+	list_reagents = list(/datum/reagent/medicine/tramadol = 30, /datum/reagent/water = 30)
 
 ////////////
 // CIGARS //

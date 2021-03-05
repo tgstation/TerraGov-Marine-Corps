@@ -169,8 +169,8 @@
 		..()
 
 /obj/item/storage/fancy/chemrettes
-	name = "Chemrettes packet"
-	desc = "Terragov chem filled cigarettes, now with extra Flavors!."
+	name = "Chemrette packet"
+	desc = "Terragov, chem filled, cigarettes. Now with extra Flavors!."
 	icon = 'icons/obj/items/cigarettes.dmi'
 	icon_state = "chempacket"
 	item_state = "chempacket"
@@ -201,9 +201,8 @@
 	new /obj/item/clothing/mask/cigarette/emergency(src)
 	new /obj/item/tool/lighter(src)
 
-/obj/item/storage/fancy/chemrettes/update_icon()
+/obj/item/storage/fancy/chemrettes/update_icon_state()
 	icon_state = "[initial(icon_state)][contents.len]"
-	return
 
 /obj/item/storage/fancy/cigarettes/dromedaryco
 	name = "\improper Nanotrasen Gold packet"
