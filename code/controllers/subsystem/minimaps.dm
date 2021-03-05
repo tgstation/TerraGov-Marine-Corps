@@ -7,7 +7,7 @@
  * the Initialize proc for this subsystem draws the maps as one of the last initializing subsystems
  *
  * Fire() for this subsystem doens't actually updates anything, and purely just reapplies the overlays that it already tracks
- * actual updating of locations is handled by [/datum/controller/subsystem/minimaps/proc/on_move]
+ * actual updating of marker locations is handled by [/datum/controller/subsystem/minimaps/proc/on_move]
  * and zlevel changes are handled in [/datum/controller/subsystem/minimaps/proc/on_z_change]
  * tracking of the actual atoms you want to be drawn on is done by means of datums holding info pertaining to them with [/datum/hud_displays]
  * There is a byond bug to be aware of when working with minimaps, see [/datum/hud_displays] and http://www.byond.com/forum/post/2661309
@@ -105,6 +105,7 @@ SUBSYSTEM_DEF(minimaps)
  */
 /datum/controller/subsystem/minimaps/proc/remove_updator(atom/target)
 	SIGNAL_HANDLER
+	UnregisterSignal(target, COMSIG_PARENT_QDELETING)
 	var/datum/minimap_updator/holder = updators_by_datum[target]
 	updators_by_datum -= target
 	for(var/key in update_targets)
