@@ -211,6 +211,10 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 #define POD_DESC 3
 #define POD_NUMBER 4
 
+//For fob drone
+#define EJECT_PLASTEEL 0
+#define EJECT_METAL 1
+
 //Item sprite variants
 #define ITEM_JUNGLE_VARIANT	(1<<0)
 #define ITEM_ICE_VARIANT	(1<<1)

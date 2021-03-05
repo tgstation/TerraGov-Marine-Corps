@@ -37,8 +37,8 @@
 /obj/machinery/computer/camera_advanced/remote_fob/proc/disable_drone_creation()
 	SIGNAL_HANDLER
 	drone_creation_allowed = FALSE
-	eject_metal()
-	eject_plasteel()
+	eject_mat(EJECT_METAL)
+	eject_mat(EJECT_PLASTEEL)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_TRANSIT)
 
 
@@ -71,25 +71,24 @@
 	if(eyeobj.eye_initialized)
 		eyeobj.setLoc(get_turf(spawn_spot))
 
-///Eject all the metal from the fob drone console
-/obj/machinery/computer/camera_advanced/remote_fob/proc/eject_metal()
+///Eject all of the selected mat from the fob drone console
+/obj/machinery/computer/camera_advanced/remote_fob/proc/eject_mat(mattype)
 	flick("fobpc-eject", src)
-	var/obj/item/stack/sheet/metal/stack = /obj/item/stack/sheet/metal
 	var/turf/consolespot = get_turf(loc)
-	while(metal_remaining>0)
-		stack = new /obj/item/stack/sheet/metal(consolespot)
-		stack.amount = min(metal_remaining, 50)
-		metal_remaining -= stack.amount
-
-///Eject all the plasteel from the fob drone console
-/obj/machinery/computer/camera_advanced/remote_fob/proc/eject_plasteel()
-	flick("fobpc-eject", src)
-	var/obj/item/stack/sheet/plasteel/stack = /obj/item/stack/sheet/plasteel
-	var/turf/consolespot = get_turf(loc)
-	while(plasteel_remaining>0)
-		stack = new /obj/item/stack/sheet/plasteel(consolespot)
-		stack.amount = min(plasteel_remaining, 50)
-		plasteel_remaining -= stack.amount
+	switch(mattype)
+		if(EJECT_METAL)
+			var/obj/item/stack/sheet/metal/stack = /obj/item/stack/sheet/metal
+			while(metal_remaining>0)
+				stack = new /obj/item/stack/sheet/metal(consolespot)
+				stack.amount = min(metal_remaining, 50)
+				metal_remaining -= stack.amount
+			return
+		if(EJECT_PLASTEEL)
+			var/obj/item/stack/sheet/plasteel/stack = /obj/item/stack/sheet/plasteel
+			while(plasteel_remaining>0)
+				stack = new /obj/item/stack/sheet/plasteel(consolespot)
+				stack.amount = min(plasteel_remaining, 50)
+				plasteel_remaining -= stack.amount
 
 /obj/machinery/computer/camera_advanced/remote_fob/interact(mob/living/user)
 	if(machine_stat & (NOPOWER|BROKEN))

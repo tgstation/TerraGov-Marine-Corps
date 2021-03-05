@@ -170,7 +170,7 @@
 	if(console.metal_remaining <= 0)
 		to_chat(owner, "<span class='warning'>Nothing to eject.</span>")
 		return
-	console.eject_metal()
+	console.eject_mat(EJECT_METAL)
 	to_chat(owner, "<span class='notice'>Metal sheets ejected.</span>")
 	
 
@@ -185,7 +185,7 @@
 	if(console.plasteel_remaining <= 0)
 		to_chat(owner, "<span class='warning'>Nothing to eject.</span>")
 		return
-	console.eject_plasteel()
+	console.eject_mat(EJECT_PLASTEEL)
 	to_chat(owner, "<span class='notice'>Plasteel sheets ejected.</span>")
 
 
