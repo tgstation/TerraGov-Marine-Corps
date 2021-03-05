@@ -338,7 +338,7 @@ REAGENT SCANNER
 				if(reagents_in_body[/datum/reagent/iron] < 5)
 					iron = " or one dose of iron."
 				advice += "<span class='scanner'><b>Low Blood:</b> Administer or recommend consumption of food[iron]</span>\n"
-			if(overdosed && reagents_in_body[/datum/reagent/medicine/hypervene] < 3)
+			if(overdosed && reagents_in_body[/datum/reagent/hypervene] < 3)
 				advice += "<span class='scanner'><b>Overdose:</b> Administer one dose of hypervene or perform dialysis on patient via sleeper.</span>\n"
 			if(unknown_body)
 				advice += "<span class='scanner'><b>Shrapnel/Embedded Object(s):</b> Seek surgical remedy to remove embedded object(s).</span>\n"

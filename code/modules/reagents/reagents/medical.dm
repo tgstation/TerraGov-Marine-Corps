@@ -1055,7 +1055,7 @@
 /datum/reagent/medicine/ethylredoxrazine/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damage(2*effect_str, TOX)
 
-/datum/reagent/medicine/hypervene
+/datum/reagent/hypervene // this isn't under /medicine so things that purge /datum/reagent/medicine like neuro/larval don't purge it
 	name = "Hypervene"
 	description = "Quickly purges the body of toxin damage, radiation and all other chemicals. Causes significant pain."
 	color = "#19C832"
@@ -1068,19 +1068,19 @@
 	taste_description = "punishment"
 	taste_multi = 8
 
-/datum/reagent/medicine/hypervene/on_mob_life(mob/living/L, metabolism)
+/datum/reagent/hypervene/on_mob_life(mob/living/L, metabolism)
 	L.reagent_shock_modifier -= PAIN_REDUCTION_HEAVY //Significant pain while metabolized.
 	if(prob(5)) //causes vomiting
 		L.vomit()
 	return ..()
 
-/datum/reagent/medicine/hypervene/overdose_process(mob/living/L, metabolism)
+/datum/reagent/hypervene/overdose_process(mob/living/L, metabolism)
 	L.apply_damages(effect_str, effect_str)
 	if(prob(10)) //heavy vomiting
 		L.vomit()
 	L.reagent_shock_modifier -= PAIN_REDUCTION_VERY_HEAVY * 1.25//Massive pain.
 
-/datum/reagent/medicine/hypervene/overdose_crit_process(mob/living/L, metabolism)
+/datum/reagent/hypervene/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damages(2*effect_str, 2*effect_str)
 	if(prob(50)) //violent vomiting
 		L.vomit()
