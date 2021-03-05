@@ -948,8 +948,6 @@
 /obj/item/healthanalyzer,
 /obj/item/roller,
 /obj/item/roller,
-/obj/item/roller,
-/obj/item/roller,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "cQ" = (
@@ -1690,16 +1688,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/commandbunks)
-"fV" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 8
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/obj/structure/closet/crate/secure/construction/full,
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/hangar)
 "fW" = (
 /obj/effect/decal/warning_stripes/thin,
 /obj/effect/decal/warning_stripes/thin{
@@ -9350,6 +9338,13 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/stern_hallway)
+"Fd" = (
+/obj/structure/disposalpipe/segment{
+	dir = 8
+	},
+/obj/structure/closet/crate/secure/surgery/full,
+/turf/open/floor/mainship/sterile/dark,
+/area/mainship/medical/lower_medical)
 "Fg" = (
 /obj/machinery/light{
 	dir = 8
@@ -13034,6 +13029,10 @@
 	dir = 1
 	},
 /area/mainship/hallways/hangar)
+"QK" = (
+/obj/vehicle/powerloader,
+/turf/open/floor/mainship/mono,
+/area/mainship/engineering/engineering_workshop)
 "QM" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -13324,13 +13323,6 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/hangar)
-"RU" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 8
-	},
-/obj/structure/closet/crate/secure/surgery/full,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "RV" = (
@@ -14037,6 +14029,10 @@
 	dir = 5
 	},
 /area/space)
+"Vh" = (
+/obj/structure/closet/crate/secure/construction/full,
+/turf/open/floor/mainship/cargo,
+/area/mainship/engineering/engineering_workshop)
 "Vj" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -41053,7 +41049,7 @@ bd
 bd
 hv
 aY
-BD
+Fd
 dX
 hX
 ie
@@ -45129,8 +45125,8 @@ ZI
 CO
 Ex
 fx
-fV
-RU
+bp
+ao
 cg
 Nh
 az
@@ -48306,7 +48302,7 @@ OM
 zQ
 zX
 Ai
-Ax
+Vh
 Mb
 aO
 ad
@@ -48560,7 +48556,7 @@ zF
 JY
 Lk
 OM
-yx
+QK
 zX
 Ai
 Ax

@@ -528,7 +528,7 @@
 		/obj/item/reagent_containers/blood/BPlus = 5,
 		/obj/item/reagent_containers/blood/BMinus = 5,
 		/obj/item/reagent_containers/blood/OPlus = 5,
-		/obj/item/reagent_containers/blood/OMinus = 5,
+		/obj/item/reagent_containers/blood/OMinus = 3,
 		/obj/item/reagent_containers/blood/empty = 10,
 	)
 	contraband = list()
@@ -563,7 +563,7 @@
 		/obj/item/storage/backpack/marine/satchel/corpsman = 4,
 		/obj/item/encryptionkey/med = 4,
 		/obj/item/storage/belt/medical = 4,
-		/obj/item/bodybag/cryobag = 4,
+		/obj/item/bodybag/cryobag = 3,
 		/obj/item/healthanalyzer = 4,
 		/obj/item/clothing/glasses/hud/health = 4,
 		/obj/item/storage/firstaid/regular = 4,

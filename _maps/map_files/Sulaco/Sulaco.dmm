@@ -10079,7 +10079,8 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/table/mainship,
+/obj/structure/rack,
+/obj/item/reagent_containers/jerrycan,
 /turf/open/floor/prison,
 /area/sulaco/hangar)
 "bbV" = (
@@ -12387,8 +12388,6 @@
 /obj/item/roller,
 /obj/item/roller,
 /obj/item/roller,
-/obj/item/roller,
-/obj/item/roller,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
@@ -12678,6 +12677,12 @@
 	},
 /turf/open/floor/prison/whitegreen,
 /area/sulaco/research)
+"imT" = (
+/obj/structure/closet/crate/secure/surgery/full,
+/turf/open/floor/prison/whitegreen/corner{
+	dir = 4
+	},
+/area/sulaco/medbay/storage2)
 "inz" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/yellow/hidden{
@@ -13658,10 +13663,6 @@
 "lgl" = (
 /turf/closed/wall/mainship/gray,
 /area/shuttle/distress/arrive_2)
-"liO" = (
-/obj/structure/closet/crate/secure/construction/full,
-/turf/open/floor/prison,
-/area/sulaco/hangar)
 "ljR" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -14423,6 +14424,10 @@
 "mYf" = (
 /turf/open/floor/prison/red,
 /area/sulaco/hallway/central_hall3)
+"mYv" = (
+/obj/structure/closet/crate/secure/construction/full,
+/turf/open/floor/prison,
+/area/sulaco/maintenance/lower_maint)
 "mYD" = (
 /turf/open/floor/prison/whitegreen{
 	dir = 10
@@ -15766,10 +15771,6 @@
 /obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/plating,
 /area/sulaco/hub/bottom)
-"qmy" = (
-/obj/structure/closet/crate/secure/surgery/full,
-/turf/open/floor/prison,
-/area/sulaco/hangar)
 "qnI" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -17577,12 +17578,6 @@
 	},
 /turf/open/floor/plating,
 /area/sulaco/maintenance/south_solar_maint)
-"vfb" = (
-/obj/structure/rack,
-/obj/item/reagent_containers/jerrycan,
-/obj/item/reagent_containers/jerrycan,
-/turf/open/floor/prison,
-/area/sulaco/hangar)
 "vfc" = (
 /obj/structure/ship_ammo/rocket/widowmaker,
 /turf/open/floor/prison,
@@ -45046,7 +45041,7 @@ aax
 aaT
 abm
 aan
-vRI
+abG
 ada
 abG
 acS
@@ -49410,7 +49405,7 @@ aWG
 xKR
 aWG
 aaQ
-adR
+imT
 act
 acU
 adk
@@ -56603,12 +56598,12 @@ aUL
 aTs
 cdy
 cdy
-ezn
-smY
-sAO
+cdy
+cdy
+aTs
+cdy
+cdy
 qHl
-cdy
-cdy
 lGQ
 eEP
 aPN
@@ -56865,7 +56860,7 @@ cdy
 cdy
 cdy
 cdy
-cdy
+smY
 aZw
 aKP
 aWm
@@ -57115,14 +57110,14 @@ wHZ
 nNP
 aUp
 cdy
-vfb
-qmy
+cdy
+ezn
 osy
 osy
 jqF
 qnO
 nzZ
-liO
+sAO
 aZw
 aKP
 aWm
@@ -63791,7 +63786,7 @@ aaa
 nzi
 mDu
 aTM
-pWS
+mYv
 mRl
 tkV
 xVg
