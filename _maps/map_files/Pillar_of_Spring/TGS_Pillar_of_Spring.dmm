@@ -3934,10 +3934,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/port_hallway)
-"nq" = (
-/obj/structure/sign/goldenplaque,
-/turf/closed/wall/mainship,
-/area/mainship/squads/general)
 "nr" = (
 /obj/effect/landmark/start/job/shiptech,
 /obj/structure/bed/chair/office/dark{
@@ -7099,6 +7095,12 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/self_destruct)
+"xM" = (
+/obj/structure/sign/nosmoking_2,
+/turf/open/floor/mainship/black{
+	dir = 6
+	},
+/area/mainship/squads/general)
 "xN" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -11764,7 +11766,7 @@
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "LG" = (
-/obj/structure/sign/nosmoking_2,
+/obj/structure/sign/goldenplaque,
 /turf/closed/wall/mainship,
 /area/mainship/squads/general)
 "LH" = (
@@ -51008,7 +51010,7 @@ jU
 QR
 jl
 MC
-nq
+LG
 qC
 Ah
 PR
@@ -51782,8 +51784,8 @@ nE
 PW
 Ph
 nE
-PW
-LG
+xM
+qC
 sQ
 qC
 qC
