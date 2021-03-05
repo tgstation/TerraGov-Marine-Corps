@@ -23295,7 +23295,6 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/cryo_cells)
 "bte" = (
-/obj/effect/landmark/start/job/squadsmartgunner,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 10
 	},
@@ -25124,7 +25123,6 @@
 /area/mainship/living/cryo_cells)
 "bAS" = (
 /obj/effect/landmark/start/latejoin_cryo,
-/obj/effect/landmark/start/job/squadsmartgunner,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 5
 	},
@@ -25802,7 +25800,6 @@
 /area/mainship/living/cryo_cells)
 "bDL" = (
 /obj/effect/landmark/start/latejoin_cryo,
-/obj/effect/landmark/start/job/squadsmartgunner,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 6
 	},
@@ -27094,16 +27091,6 @@
 	},
 /turf/open/floor/mainship/emerald{
 	dir = 4
-	},
-/area/mainship/living/cryo_cells)
-"bJT" = (
-/obj/effect/landmark/start/latejoin_cryo,
-/obj/effect/landmark/start/job/squadsmartgunner,
-/obj/effect/decal/warning_stripes/thin{
-	dir = 5
-	},
-/turf/open/floor/mainship/blue{
-	dir = 8
 	},
 /area/mainship/living/cryo_cells)
 "bJU" = (
@@ -86034,7 +86021,7 @@ bEU
 bGp
 bHz
 bEU
-bJT
+bGp
 bKZ
 bMP
 bOb
