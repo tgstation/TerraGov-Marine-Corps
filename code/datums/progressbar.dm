@@ -31,7 +31,7 @@
 	if(!bar_tag)
 		return
 	bar = new bar_tag
-	bar.loc = target
+	bar.forceMove(target)
 	LAZYINITLIST(user.progressbars)
 	LAZYINITLIST(user.progressbars[bar.loc])
 	LAZYOR(user.progbar_towers, bar.loc)
