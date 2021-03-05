@@ -1,0 +1,4 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - balance: "Xenos gain larva and psych points everytime a marine spawn , even for very late joins. Doesn't work for respawn"
