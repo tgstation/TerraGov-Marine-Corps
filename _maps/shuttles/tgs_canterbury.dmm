@@ -766,6 +766,7 @@
 /area/shuttle/canterbury)
 "cQ" = (
 /obj/structure/bed/chair/dropship/passenger,
+/obj/effect/landmark/start/job/crash/squadsmartgunner,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "cR" = (
