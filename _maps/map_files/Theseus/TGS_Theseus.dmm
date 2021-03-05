@@ -16981,11 +16981,11 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/alpha)
 "aWK" = (
-/obj/machinery/vending/cola,
+/obj/machinery/marine_selector/clothes/smartgun/alpha,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/alpha)
 "aWL" = (
-/obj/machinery/vending/marineFood,
+/obj/machinery/marine_selector/gear/smartgun,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/alpha)
 "aWM" = (
@@ -17327,6 +17327,7 @@
 	},
 /area/mainship/squads/alpha)
 "aXX" = (
+/obj/machinery/door/airlock/mainship/marine/alpha/smart,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/alpha)
 "aXY" = (
@@ -19207,6 +19208,7 @@
 	},
 /area/mainship/squads/bravo)
 "bey" = (
+/obj/machinery/door/airlock/mainship/marine/bravo/smart,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/bravo)
 "bez" = (
@@ -19887,11 +19889,11 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/bravo)
 "bgI" = (
-/obj/machinery/vending/cola,
+/obj/machinery/marine_selector/clothes/smartgun/bravo,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/bravo)
 "bgJ" = (
-/obj/machinery/vending/marineFood,
+/obj/machinery/marine_selector/gear/smartgun,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/bravo)
 "bgK" = (
@@ -29984,11 +29986,11 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/charlie)
 "bUt" = (
-/obj/machinery/vending/marineFood,
+/obj/machinery/marine_selector/clothes/smartgun/charlie,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/charlie)
 "bUu" = (
-/obj/machinery/vending/cola,
+/obj/machinery/marine_selector/gear/smartgun,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/charlie)
 "bUv" = (
@@ -30816,6 +30818,7 @@
 	},
 /area/mainship/squads/charlie)
 "bWU" = (
+/obj/machinery/door/airlock/mainship/marine/charlie/smart,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/charlie)
 "bWV" = (
@@ -32631,7 +32634,8 @@
 	},
 /area/mainship/squads/delta)
 "cdz" = (
-/turf/open/floor/mainship,
+/obj/machinery/door/airlock/mainship/marine/delta/smart,
+/turf/open/floor/mainship/mono,
 /area/mainship/squads/delta)
 "cdA" = (
 /obj/machinery/door/airlock/mainship/marine/delta/medic,
@@ -32770,11 +32774,11 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/delta)
 "cee" = (
-/obj/machinery/vending/marineFood,
+/obj/machinery/marine_selector/clothes/smartgun/delta,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/delta)
 "cef" = (
-/obj/machinery/vending/cola,
+/obj/machinery/marine_selector/gear/smartgun,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/delta)
 "ceg" = (

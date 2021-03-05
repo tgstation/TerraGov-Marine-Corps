@@ -10488,7 +10488,7 @@
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "Ix" = (
-/obj/machinery/vending/marineFood,
+/obj/machinery/marine_selector/gear/smartgun,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "Iz" = (
@@ -11107,6 +11107,7 @@
 /area/mainship/shipboard/firing_range)
 "Kl" = (
 /obj/machinery/door/firedoor/mainship,
+/obj/machinery/door/airlock/mainship/marine/general/smart,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "Km" = (
@@ -13897,7 +13898,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "UD" = (
-/obj/machinery/vending/cola,
+/obj/machinery/marine_selector/clothes/smartgun,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "UE" = (
@@ -48288,10 +48289,10 @@ It
 th
 Wa
 qC
-Ix
+Wa
 It
 th
-Ix
+Wa
 qC
 sK
 FS

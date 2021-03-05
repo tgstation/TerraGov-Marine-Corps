@@ -6121,7 +6121,7 @@
 /turf/open/floor/prison,
 /area/sulaco/marine/bravo)
 "aCs" = (
-/obj/machinery/vending/cola,
+/obj/machinery/marine_selector/gear/smartgun,
 /turf/open/floor/prison,
 /area/sulaco/marine/delta)
 "aCt" = (
@@ -6239,9 +6239,21 @@
 	},
 /area/sulaco/engineering/engine)
 "aCN" = (
-/obj/machinery/vending/marineFood,
+/obj/machinery/marine_selector/clothes/smartgun/delta,
 /turf/open/floor/prison,
 /area/sulaco/marine/delta)
+"aCO" = (
+/obj/machinery/door/airlock/mainship/marine/delta/smart{
+	dir = 4
+	},
+/turf/open/floor/prison,
+/area/sulaco/marine/delta)
+"aCP" = (
+/obj/machinery/door/airlock/mainship/marine/alpha/smart{
+	dir = 4
+	},
+/turf/open/floor/prison,
+/area/sulaco/marine/alpha)
 "aCS" = (
 /obj/machinery/door/airlock/mainship/marine/charlie,
 /turf/open/floor/prison/darkpurple/full,
@@ -6360,7 +6372,7 @@
 /turf/closed/wall/mainship/gray/outer,
 /area/sulaco/marine/charlie)
 "aDA" = (
-/obj/machinery/vending/cola,
+/obj/machinery/marine_selector/gear/smartgun,
 /turf/open/floor/prison,
 /area/sulaco/marine/charlie)
 "aDB" = (
@@ -7926,7 +7938,7 @@
 /turf/open/floor/plating,
 /area/sulaco/hub/top)
 "aLC" = (
-/obj/machinery/vending/cola,
+/obj/machinery/marine_selector/gear/smartgun,
 /turf/open/floor/prison,
 /area/sulaco/marine/bravo)
 "aLD" = (
@@ -7965,7 +7977,7 @@
 /turf/open/floor/prison,
 /area/sulaco/hallway/central_hall3)
 "aLM" = (
-/obj/machinery/vending/marineFood,
+/obj/machinery/marine_selector/clothes/smartgun/charlie,
 /turf/open/floor/prison,
 /area/sulaco/marine/charlie)
 "aLN" = (
@@ -8068,6 +8080,12 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/marine/alpha)
+"aMo" = (
+/obj/machinery/door/airlock/mainship/marine/charlie/smart{
+	dir = 4
+	},
+/turf/open/floor/prison,
+/area/sulaco/marine/charlie)
 "aMp" = (
 /obj/machinery/marine_selector/clothes/engi/charlie,
 /turf/open/floor/prison/marked,
@@ -8081,7 +8099,7 @@
 /turf/open/floor/prison/marked,
 /area/sulaco/marine/alpha)
 "aMt" = (
-/obj/machinery/vending/cola,
+/obj/machinery/marine_selector/gear/smartgun,
 /turf/open/floor/prison,
 /area/sulaco/marine/alpha)
 "aMu" = (
@@ -8091,7 +8109,7 @@
 /turf/open/floor/prison,
 /area/sulaco/marine/alpha)
 "aMv" = (
-/obj/machinery/vending/marineFood,
+/obj/machinery/marine_selector/clothes/smartgun/bravo,
 /turf/open/floor/prison,
 /area/sulaco/marine/bravo)
 "aMw" = (
@@ -8113,8 +8131,14 @@
 	dir = 1
 	},
 /area/sulaco/command/eva)
+"aMz" = (
+/obj/machinery/door/airlock/mainship/marine/bravo/smart{
+	dir = 4
+	},
+/turf/open/floor/prison,
+/area/sulaco/marine/bravo)
 "aMB" = (
-/obj/machinery/vending/marineFood,
+/obj/machinery/marine_selector/clothes/smartgun/alpha,
 /turf/open/floor/prison,
 /area/sulaco/marine/alpha)
 "aMF" = (
@@ -34380,7 +34404,7 @@ aDH
 aDH
 aDH
 aDH
-aFY
+aCO
 aOH
 mDu
 qDO
@@ -36441,7 +36465,7 @@ aJS
 aJS
 aJS
 aJS
-aJV
+aMo
 aDz
 mDu
 qDO
@@ -38497,7 +38521,7 @@ aJX
 aJX
 aJX
 aJX
-aKa
+aMz
 aMF
 mDu
 qDO
@@ -40553,7 +40577,7 @@ aKb
 aKb
 aKb
 aKb
-aKK
+aCP
 aOX
 mDu
 qDO

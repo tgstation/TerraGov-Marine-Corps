@@ -495,6 +495,16 @@
 /obj/item/fuelCell/random,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
+"bD" = (
+/obj/effect/landmark/start/job/crash/squadsmartgunner,
+/obj/structure/window/reinforced/toughened{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/mainship/red,
+/area/shuttle/canterbury)
 "bE" = (
 /obj/machinery/door/window/northleft,
 /obj/structure/window/reinforced/toughened{
@@ -504,8 +514,8 @@
 /turf/open/floor/mainship/red,
 /area/shuttle/canterbury)
 "bF" = (
-/obj/machinery/marine_selector/clothes,
-/obj/structure/window/reinforced/toughened{
+/obj/machinery/marine_selector/clothes/smartgun,
+/obj/structure/window/reinforced{
 	dir = 8
 	},
 /turf/open/floor/mainship/red/full,
@@ -596,6 +606,14 @@
 /obj/machinery/vending/medical,
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
+"cc" = (
+/obj/machinery/door/window/northright,
+/obj/structure/window/reinforced/toughened{
+	dir = 4
+	},
+/obj/effect/landmark/start/job/crash/squadsmartgunner,
+/turf/open/floor/mainship/red,
+/area/shuttle/canterbury)
 "cd" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/surgical_tray,
@@ -691,9 +709,6 @@
 /area/shuttle/canterbury)
 "cw" = (
 /obj/machinery/marine_selector/gear/medic,
-/obj/structure/window/reinforced/toughened{
-	dir = 8
-	},
 /turf/open/floor/mainship/red/full,
 /area/shuttle/canterbury)
 "cy" = (
@@ -717,11 +732,8 @@
 /turf/open/floor/mainship/red/full,
 /area/shuttle/canterbury)
 "cE" = (
-/obj/structure/window/reinforced/toughened{
-	dir = 8
-	},
-/obj/machinery/marine_selector/clothes,
-/turf/open/floor/mainship/mono,
+/obj/machinery/marine_selector/gear/smartgun,
+/turf/open/floor/mainship/red/full,
 /area/shuttle/canterbury)
 "cF" = (
 /obj/structure/bed/chair/dropship/passenger,
@@ -1090,8 +1102,8 @@ bJ
 an
 cH
 aJ
-aD
-aD
+cK
+bD
 bF
 an
 an
@@ -1114,7 +1126,7 @@ br
 br
 aJ
 aD
-aD
+cc
 cE
 an
 cl
@@ -1138,7 +1150,7 @@ cK
 aJ
 aJ
 aJ
-bF
+cK
 an
 cm
 "}
