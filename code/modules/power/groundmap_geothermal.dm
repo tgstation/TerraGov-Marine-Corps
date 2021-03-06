@@ -22,7 +22,7 @@
 	///Hive it should be powering and whether it should be generating hive psycic points instead of power on process()
 	var/corrupted = XENO_HIVE_NORMAL
 	///Multiplicator factor for psych points output
-	var/corrupt_point_factor = 1
+	var/corrupt_point_factor = 0.3
 	///whether we wil allow these to be corrupted
 	var/is_corruptible = TRUE
 	///whether they should generate corruption if corrupted
@@ -297,7 +297,7 @@
 /obj/machinery/power/geothermal/bigred //used on big red
 	name = "\improper Reactor Turbine"
 	power_generation_max = 1e+6
-	corrupt_point_factor = 10
+	corrupt_point_factor = 3
 
 /obj/machinery/power/geothermal/reinforced
 	name = "\improper Reinforced Reactor Turbine"
