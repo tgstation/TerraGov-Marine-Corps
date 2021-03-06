@@ -1074,9 +1074,9 @@
 	plasma_cost = 150
 	cooldown_timer = 60 SECONDS
 	/// How long does it take to build
-	var/build_time = 5 SECONDS
+	var/build_time = 15 SECONDS
 	/// Pyschic point cost
-	var/psych_cost = 60
+	var/psych_cost = 100
 
 
 /datum/action/xeno_action/activable/build_turret/can_use_ability(atom/A, silent, override_flags)
