@@ -534,6 +534,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	playsound(banished_turf, 'sound/weapons/emitter2.ogg', 50, 1) //this isn't quiet
 
 	to_chat(ghost,"<span class='xenodanger'>We have banished [banishment_target] to nullspace for [duration * 0.1] seconds.</span>")
+	log_attack("[key_name(ghost)] has banished [banishment_target] for [duration * 0.1] seconds at [AREACOORD(banishment_target)]")
 
 	addtimer(CALLBACK(src, .proc/banish_warning), duration * 0.7) //Warn when Banish is about to end
 	banish_duration_timer_id = addtimer(CALLBACK(src, .proc/banish_deactivate), duration, TIMER_STOPPABLE) //store the timer ID
@@ -578,6 +579,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	"<span class='warning'>You suddenly reappear back in what you believe to be reality.</span>")
 
 	to_chat(owner, "<span class='highdanger'>Our target [banishment_target] has returned to reality at [AREACOORD_NO_Z(banishment_target)]</span>") //Always alert the Wraith
+	log_attack("[key_name(owner)] has unbanished [banishment_target] at [AREACOORD(banishment_target)]")
 
 
 	QDEL_NULL(portal) //Eliminate the Brazil portal if we need to
