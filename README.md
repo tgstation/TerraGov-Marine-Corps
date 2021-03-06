@@ -26,3 +26,5 @@ are licensed under CC-BY-NC-SA 3.0
 Sound added in PR https://github.com/tgstation/TerraGov-Marine-Corps/pull/5604 is taken from https://freesound.org/people/nicStage/sounds/127731/ (CC Attribution)
 
 The TGS DMAPI API is licensed as a subproject under the MIT license.
+
+![image](https://cdn.discordapp.com/attachments/432172520846655489/816256673424998420/unknown-148.png)
