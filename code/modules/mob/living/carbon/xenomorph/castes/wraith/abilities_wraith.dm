@@ -578,8 +578,8 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	banishment_target.visible_message("<span class='warning'>[banishment_target.name] abruptly reappears!</span>", \
 	"<span class='warning'>You suddenly reappear back in what you believe to be reality.</span>")
 
-	to_chat(owner, "<span class='highdanger'>Our target [banishment_target] has returned to reality at [AREACOORD_NO_Z(banishment_target)]</span>") //Always alert the Wraith
-	log_attack("[key_name(owner)] has unbanished [banishment_target] at [AREACOORD(banishment_target)]")
+	to_chat(owner, "<span class='highdanger'>Our target [key_name(banishment_target)] has returned to reality at [AREACOORD_NO_Z(banishment_target)]</span>") //Always alert the Wraith
+	log_attack("[key_name(owner)] has unbanished [key_name(banishment_target)] at [AREACOORD(banishment_target)]")
 
 
 	QDEL_NULL(portal) //Eliminate the Brazil portal if we need to
