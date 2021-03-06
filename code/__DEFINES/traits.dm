@@ -103,6 +103,7 @@
 #define TRAIT_NOPLASMAREGEN		"noplasmaregen"//xeno plasma wont recharge
 #define TRAIT_UNDEFIBBABLE 		"undefibbable"//human can't be revived
 #define TRAIT_HEALING_INFUSION	"healing_infusion"//greatly improves natural healing for xenos
+#define TRAIT_PSY_DRAINED		"psy_drained"//mob was drained of life force by a xenos
 
 // item traits
 #define TRAIT_T_RAY_VISIBLE		"t-ray-visible" // Visible on t-ray scanners if the atom/var/level == 1

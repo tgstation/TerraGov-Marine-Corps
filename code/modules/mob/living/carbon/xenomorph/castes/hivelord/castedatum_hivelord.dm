@@ -51,6 +51,7 @@
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/plant_weeds,
 		/datum/action/xeno_action/activable/healing_infusion,
 		/datum/action/xeno_action/place_acidwell,
