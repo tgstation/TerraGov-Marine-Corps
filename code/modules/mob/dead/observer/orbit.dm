@@ -1,5 +1,5 @@
 /datum/orbit_menu
-	var/auto_observe
+	var/auto_observe = FALSE
 	var/mob/dead/observer/owner
 
 /datum/orbit_menu/New(mob/dead/observer/new_owner)
