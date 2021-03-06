@@ -51,9 +51,9 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	playsound(T, 'sound/weapons/emitter.ogg', 25, 1)
 	QDEL_NULL(warp_shadow) //Delete the old warp shadow
 	warp_shadow = shadow //Set the new warp shadow
-	RegisterSignal(owner, COMSIG_MOB_DEATH, .proc/unset_warp_shadow) //Removes warp shadow on death
+	RegisterSignal(owner, COMSIG_MOB_DEATH, .proc/clean_warp_shadow) //Removes warp shadow on death
 	RegisterSignal(warp_shadow, COMSIG_PARENT_PREQDELETED, .proc/unset_warp_shadow) //For var clean up
-	RegisterSignal(owner, COMSIG_PARENT_PREQDELETED, .proc/unset_warp_shadow) //For var clean up
+	RegisterSignal(owner, COMSIG_PARENT_PREQDELETED, .proc/clean_warp_shadow) //For var clean up
 	warp_shadow.setDir(ghost.dir) //Have it imitate our facing
 	warp_shadow.pixel_x = ghost.pixel_x //Inherit pixel offsets
 	warp_shadow.pixel_y = ghost.pixel_y //Inherit pixel offsets
@@ -62,11 +62,21 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	succeed_activate()
 	add_cooldown()
 
-///Nulls out the warp shadow on death/deletion
+///Nulls out the warp shadow
 /datum/action/xeno_action/place_warp_shadow/proc/unset_warp_shadow()
 	SIGNAL_HANDLER
-	QDEL_NULL(warp_shadow) //remove the actual shadow
+	UnregisterSignal(warp_shadow, COMSIG_PARENT_PREQDELETED)
+	UnregisterSignal(owner, list(
+		COMSIG_MOB_DEATH,
+		COMSIG_PARENT_PREQDELETED,
+	))
+	warp_shadow = null //remove the actual shadow
 
+/// clean up when owner dies/deleted
+/datum/action/xeno_action/place_warp_shadow/proc/clean_warp_shadow()
+	SIGNAL_HANDLER
+	UnregisterSignal(warp_shadow, COMSIG_PARENT_PREQDELETED)
+	QDEL_NULL(warp_shadow)
 
 /datum/action/xeno_action/place_warp_shadow/on_cooldown_finish()
 	to_chat(owner, "<span class='xenonotice'>We are able to place another warp shadow.</span>")
