@@ -208,7 +208,7 @@
 			O = H.internal_organs_by_name[i]
 
 			if(!H.mind && !H.client) //If we have no client or mind, permadeath time; remove the organs. Mainly for the NPC colonist bodies
-				H.internal_organs_by_name[i] -= i
+				H.internal_organs_by_name -= i
 				H.internal_organs -= O
 			else
 				O.take_damage(O.min_bruised_damage, TRUE)
