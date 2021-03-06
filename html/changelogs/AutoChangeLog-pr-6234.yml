@@ -1,0 +1,5 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - rscadd: "Psy drain, an ability that all xenos have that allow them to get psych points and 1/8th of a larva from dead marines. A psy drained marine is NOT perma dead, this is not headbite"
+  - balance: "Silos get more expensive, to account for psy drain"
