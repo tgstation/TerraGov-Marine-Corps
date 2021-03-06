@@ -863,10 +863,10 @@ Proc for attack log creation, because really why not
 	turn_light(null, TRUE)
 
 /**
-  * Recursive getter method to return a list of all ghosts orbitting this atom
-  *
-  * This will work fine without manually passing arguments.
-  */
+ * Recursive getter method to return a list of all ghosts orbitting this atom
+ *
+ * This will work fine without manually passing arguments.
+ */
 /atom/proc/get_all_orbiters(list/processed, source = TRUE)
 	var/list/output = list()
 	if (!processed)
