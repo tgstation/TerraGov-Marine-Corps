@@ -73,6 +73,17 @@
 	else
 		return FLOOR(cell.charge / max(charge_cost, 1),1)
 
+// energy guns, however, do not use gun rattles.
+/obj/item/weapon/gun/energy/play_fire_sound(mob/user)
+	if(active_attachable && active_attachable.flags_attach_features & ATTACH_PROJECTILE)
+		if(active_attachable.fire_sound) //If we're firing from an attachment, use that noise instead.
+			playsound(user, active_attachable.fire_sound, 50)
+		return
+	if(flags_gun_features & GUN_SILENCED)
+		playsound(user, fire_sound, 25)
+		return
+	playsound(user, fire_sound, 60)
+
 
 /obj/item/weapon/gun/energy/taser
 	name = "taser gun"

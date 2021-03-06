@@ -105,6 +105,7 @@
 #define isxenodefiler(A) (istype(A, /mob/living/carbon/xenomorph/Defiler))
 #define isxenobull(A) (istype(A, /mob/living/carbon/xenomorph/bull))
 #define isxenohivemind(A) (istype(A, /mob/living/carbon/xenomorph/hivemind))
+#define isxenowraith(A) (istype(A, /mob/living/carbon/xenomorph/wraith))
 
 #define isresinsilo(A) (istype(A, /obj/structure/resin/silo))
 
@@ -214,6 +215,8 @@
 #define iscrashgamemode(O) (istype(O, /datum/game_mode/infestation/crash))
 
 #define isxenoresearcharea(A) (istype(A, /area/mainship/medical/medical_science))
+
+#define isspacearea(A) (istype(A, /area/space)) //Spacceeeee
 
 // Admin
 #define isaghost(mob) ( mob.key && mob.key[1] == "@" )

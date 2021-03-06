@@ -13,7 +13,7 @@
 	..()
 	overlays.Cut()
 	overlays += image('icons/obj/objects.dmi', src, "echair_over", MOB_LAYER + 1, dir)	//there's probably a better way of handling this, but eh. -Pete
-	return
+
 
 /obj/structure/bed/chair/e_chair/proc/use_power(amount, channel)
 	// special power handling
@@ -43,4 +43,3 @@
 		buckled_mob.adjustFireLoss(85)
 		buckled_mob.Stun(20 MINUTES)
 	visible_message("<span class='danger'>The electric chair went off!</span>", "<span class='danger'>You hear a deep sharp shock!</span>")
-	return

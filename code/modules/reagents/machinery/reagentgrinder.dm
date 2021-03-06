@@ -65,9 +65,9 @@
 	beaker = new /obj/item/reagent_containers/glass/beaker/large(src)
 
 
-/obj/machinery/reagentgrinder/update_icon()
+/obj/machinery/reagentgrinder/update_icon_state()
 	icon_state = "juicer"+num2text(!isnull(beaker))
-	return
+
 
 
 /obj/machinery/reagentgrinder/attackby(obj/item/I, mob/user, params)

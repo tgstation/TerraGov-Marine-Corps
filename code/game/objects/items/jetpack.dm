@@ -39,7 +39,7 @@
 /obj/item/jetpack_marine/equipped(mob/user, slot)
 	. = ..()
 	if(slot == SLOT_BACK)
-		RegisterSignal(user, COMSIG_MOB_CLICK_ALT_RIGHT, .proc/use_jetpack)
+		RegisterSignal(user, COMSIG_MOB_CLICK_ALT_RIGHT, .proc/can_use_jetpack)
 		var/datum/action/item_action/toggle/action = new(src)
 		action.give_action(user)
 
@@ -56,7 +56,7 @@
 		action.remove_selected_frame()
 		UnregisterSignal(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE)
 	else
-		RegisterSignal(user, COMSIG_MOB_MIDDLE_CLICK, .proc/use_jetpack)
+		RegisterSignal(user, COMSIG_MOB_MIDDLE_CLICK, .proc/can_use_jetpack)
 		action.add_selected_frame()
 		SEND_SIGNAL(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE, user)
 		RegisterSignal(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE, .proc/unselect)
@@ -84,11 +84,9 @@
 	update_icon()
 	human_user.update_inv_back()
 
-///Signal handler for alt click, when the user want to fly at an atom
-/obj/item/jetpack_marine/proc/use_jetpack(datum/source, atom/A)
-	SIGNAL_HANDLER
-	var/mob/living/carbon/human/human_user = usr
-	if (!can_use_jetpack(human_user))
+///Make the user fly toward the target atom
+/obj/item/jetpack_marine/proc/use_jetpack(atom/A, mob/living/carbon/human/human_user)
+	if(!do_after(user = human_user, delay = 0.3 SECONDS, needhand = FALSE, target = A, ignore_turf_checks = TRUE))
 		return
 	TIMER_COOLDOWN_START(src, COOLDOWN_JETPACK, JETPACK_COOLDOWN_TIME)
 	lit = TRUE
@@ -115,16 +113,18 @@
 			return 2
 
 ///Check if we can use the jetpack and give feedback to the users
-/obj/item/jetpack_marine/proc/can_use_jetpack(mob/living/carbon/human/human_user)
+/obj/item/jetpack_marine/proc/can_use_jetpack(datum/source, atom/A)
+	SIGNAL_HANDLER
+	var/mob/living/carbon/human/human_user = usr
 	if(human_user.incapacitated() || human_user.lying_angle)
-		return FALSE
+		return 
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_JETPACK))
 		to_chat(human_user,"<span class='warning'>You cannot use the jetpack yet!</span>")
-		return FALSE
+		return 
 	if(fuel_left < FUEL_USE)
 		to_chat(human_user,"<span class='warning'>The jetpack ran out of fuel!</span>")
-		return FALSE
-	return TRUE
+		return
+	INVOKE_ASYNC(src, .proc/use_jetpack, A, human_user)
 
 /obj/item/jetpack_marine/update_overlays()
 	. = ..()
