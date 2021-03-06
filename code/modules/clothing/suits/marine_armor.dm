@@ -31,6 +31,7 @@
 		/obj/item/weapon/claymore,
 		/obj/item/storage/belt/gun,
 		/obj/item/storage/belt/knifepouch,
+		/obj/item/weapon/twohanded,
 	)
 	var/locate_cooldown = 0 //Cooldown for SL locator
 	var/list/armor_overlays
@@ -569,6 +570,7 @@
 		/obj/item/attachable/bayonetknife,
 		/obj/item/storage/belt/sparepouch,
 		/obj/item/storage/large_holster/machete,
+		/obj/item/weapon/twohanded,
 	)
 	flags_armor_features = ARMOR_LAMP_OVERLAY
 	flags_item = SYNTH_RESTRICTED
@@ -699,6 +701,7 @@
 		/obj/item/storage/belt/sparepouch,
 		/obj/item/storage/large_holster/machete,
 		/obj/item/weapon/baseballbat,
+		/obj/item/weapon/twohanded,
 	)
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 
