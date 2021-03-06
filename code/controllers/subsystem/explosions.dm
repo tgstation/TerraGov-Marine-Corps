@@ -421,6 +421,11 @@ This way we'll be able to draw the explosion's expansion path without having to 
 				var/atom/movable/thing_to_throw = am
 				if(thing_to_throw.anchored || thing_to_throw.move_resist == INFINITY)
 					continue
+				if(isliving(thing_to_throw))
+					var/mob/living/living_thing_to_throw = thing_to_throw
+					if(living_thing_to_throw.status_flags & INCORPOREAL) //Incorporeal things don't care about your insipid kinetics
+						continue
+
 				for(var/throw_source in throw_turf[affected_turf])
 					thing_to_throw.throw_at(
 						get_ranged_target_turf(

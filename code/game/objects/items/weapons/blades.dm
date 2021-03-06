@@ -128,8 +128,11 @@
 	return TRUE
 
 /obj/item/weapon/claymore/harvester/attack(mob/living/M, mob/living/user)
-	if(!loaded_reagent)
+	if(!loaded_reagent) //Can't attack the incorporeal
 		return ..()
+
+	if(M.status_flags & INCORPOREAL || user.status_flags & INCORPOREAL) //Incorporeal beings cannot attack or be attacked
+		return FALSE
 
 	switch(loaded_reagent.type)
 		if(/datum/reagent/medicine/tramadol)

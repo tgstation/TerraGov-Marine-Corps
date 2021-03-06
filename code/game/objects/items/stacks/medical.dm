@@ -14,6 +14,9 @@
 		to_chat(user, "<span class='warning'>\The [src] cannot be applied to [M]!</span>")
 		return TRUE
 
+	if(M.status_flags & INCORPOREAL || user.status_flags & INCORPOREAL) //Incorporeal beings cannot attack or be attacked
+		return TRUE
+
 	if(!ishuman(user))
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return TRUE
