@@ -177,6 +177,9 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 
 
 /obj/machinery/vending/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(X.status_flags & INCORPOREAL)
+		return FALSE
+
 	if(tipped_level)
 		to_chat(X, "<span class='warning'>There's no reason to bother with that old piece of trash.</span>")
 		return FALSE

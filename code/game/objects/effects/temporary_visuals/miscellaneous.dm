@@ -139,3 +139,17 @@
 	icon = 'icons/obj/items/jetpack.dmi'
 	icon_state = "smoke"
 	duration = 1.2 SECONDS
+
+/obj/effect/temp_visual/blink_portal
+	name = "blink portal"
+	icon = 'icons/obj/objects.dmi'
+	icon_state = "anom"
+	layer = ABOVE_LYING_MOB_LAYER
+	duration = 0.5 SECONDS
+
+/obj/effect/temp_visual/banishment_portal
+	name = "banishment portal"
+	icon = 'icons/obj/objects.dmi'
+	icon_state = "bhole3"
+	layer = ABOVE_LYING_MOB_LAYER
+	duration = WRAITH_BANISH_BASE_DURATION+1 //So we don't delete our contents early

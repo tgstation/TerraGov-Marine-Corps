@@ -1,4 +1,0 @@
-author: "fernandos13"
-delete-after: True
-changes: 
-  - bugfix: "Fire Support key. no longer gives the command channel"

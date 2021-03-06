@@ -447,6 +447,9 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define XENO_SILO_DETECTION_COOLDOWN		1 MINUTES
 #define XENO_SILO_DETECTION_RANGE			10//How far silos can detect hostiles
 
+#define XENO_PARALYZE_NORMALIZATION_MULTIPLIER	5 //Multiplies an input to normalize xeno paralyze duration times.
+#define XENO_STUN_NORMALIZATION_MULTIPLIER		2 //Multiplies an input to normalize xeno stun duration times.
+
 #define CANNOT_HOLD_EGGS 0
 #define CAN_HOLD_TWO_HANDS 1
 #define CAN_HOLD_ONE_HAND 2
@@ -568,6 +571,32 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define RUNNER_EVASION_DURATION						2 SECONDS //How long Evasion lasts.
 #define RUNNER_EVASION_RUN_DELAY					0.5 SECONDS //If the time since the Runner last moved is equal to or greater than this, its Evasion ends.
 #define RUNNER_EVASION_COOLDOWN_REFRESH_THRESHOLD	120 //If we dodge this much damage times our streak count plus 1 while evading, refresh the cooldown of Evasion.
+
+//Wraith defines
+
+#define WRAITH_PLACE_WARP_BEACON_WINDUP					3 SECONDS
+#define WRAITH_PLACE_WARP_BEACON_FAIL_COOLDOWN_OVERRIDE	1 SECONDS //When we abort or fail to place a warp beacon, it goes on cooldown for awhile to prevent spam
+
+#define WRAITH_HYPERPOSITION_MIN_WINDUP			0.5 SECONDS
+#define WRAITH_HYPERPOSITION_MAX_WINDUP			5 SECONDS
+#define WRAITH_HYPERPOSITION_COOLDOWN_OVERRIDE	1 SECONDS //When we abort or fail to use hyperposition, it goes on cooldown to prevent spam
+
+#define WRAITH_PHASE_SHIFT_WINDUP			1 SECONDS
+#define WRAITH_PHASE_SHIFT_DURATION			5 SECONDS
+#define WRAITH_PHASE_SHIFT_DURATION_WARNING	0.7
+#define WRAITH_PHASE_SHIFT_ALPHA			128 //50% transparency
+
+#define WRAITH_BLINK_DRAG_NONFRIENDLY_MULTIPLIER	20 //The amount we multiply the cooldown by when we teleport while dragging a non-friendly target
+#define WRAITH_BLINK_DRAG_FRIENDLY_MULTIPLIER		4 //The amount we multiply the cooldown by when we teleport while dragging a friendly target
+#define WRAITH_BLINK_RANGE							3
+
+#define WRAITH_BANISH_BASE_DURATION					10 SECONDS
+#define WRAITH_BANISH_RANGE							3
+#define WRAITH_BANISH_NONFRIENDLY_LIVING_MULTIPLIER	0.5
+#define WRAITH_BANISH_VERY_SHORT_MULTIPLIER			0.3
+
+#define WRAITH_TELEPORT_DEBUFF_STACKS			1 //Stagger and slow stacks applied to adjacent living hostiles before/after a teleport
+
 
 //misc
 

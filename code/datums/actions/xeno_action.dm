@@ -136,9 +136,11 @@
 	return cooldown_timer
 
 
-/datum/action/xeno_action/proc/add_cooldown()
+/datum/action/xeno_action/proc/add_cooldown(cooldown_override = 0)
 	SIGNAL_HANDLER
 	var/cooldown_length = get_cooldown()
+	if(cooldown_override)
+		cooldown_length = cooldown_override
 	if(cooldown_id || !cooldown_length) // stop doubling up or waiting on zero
 		return
 	last_use = world.time
