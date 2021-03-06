@@ -1,0 +1,5 @@
+author: "Pariah919"
+delete-after: True
+changes: 
+  - rscdel: "Removed squad smartgunner"
+  - balance: "smartgunner disabled, smartguns useable by anyone"
