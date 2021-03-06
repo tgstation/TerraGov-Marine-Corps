@@ -207,6 +207,7 @@
 	AddComponent(/datum/component/automatedfire/xeno_turret_autofire, firerate)
 	RegisterSignal(src, COMSIG_AUTOMATIC_SHOOTER_SHOOT, .proc/shoot)
 	set_light(2, 2, LIGHT_COLOR_GREEN)
+	update_icon()
 
 /obj/structure/resin/xeno_turret/Destroy()
 	var/datum/effect_system/smoke_spread/xeno/smoke = new /datum/effect_system/smoke_spread/xeno/acid(src)
@@ -228,20 +229,25 @@
 
 /obj/structure/resin/flamer_fire_act()
 	take_damage(30, BURN, "fire")
+	ENABLE_BITFIELD(resistance_flags, ON_FIRE)
 
 /obj/structure/resin/fire_act()
 	take_damage(30, BURN, "fire")
+	ENABLE_BITFIELD(resistance_flags, ON_FIRE)
 
 /obj/structure/resin/update_overlays()
 	. = ..()
 	if(obj_integrity <= max_integrity / 2)
-		. += image('icons/Xeno/acidturret.dmi', src, "+turret_damage") 	
+		. += image('icons/Xeno/acidturret.dmi', src, "+turret_damage") 
+	if(CHECK_BITFIELD(resistance_flags, ON_FIRE))
+		. += image('icons/Xeno/acidturret.dmi', src, "+turret_on_fire") 
 
 /obj/structure/resin/xeno_turret/process()
 	//Turrets regen some HP, every 2 sec
 	if(obj_integrity < max_integrity)
 		obj_integrity = min(obj_integrity + TURRET_HEALTH_REGEN, max_integrity)
 		update_icon()
+		DISABLE_BITFIELD(resistance_flags, ON_FIRE)
 	if(world.time > last_scan_time + TURRET_SCAN_FREQUENCY)
 		awake = scan()
 		last_scan_time = world.time
