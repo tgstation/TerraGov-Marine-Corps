@@ -14,6 +14,11 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	/// This is the warp shadow that the Wraith creates with its Place Warp Shadow ability, and teleports to with Hyperposition
 	var/obj/effect/xenomorph/warp_shadow/warp_shadow
 
+/datum/action/xeno_action/place_warp_shadow/give_action(mob/living/carbon/xenomorph/X)
+	. = ..()
+	RegisterSignal(X, COMSIG_MOB_XENO_DEATH, .proc/unset_warp_shadow) //Removes warp shadow on death
+
+
 /datum/action/xeno_action/place_warp_shadow/can_use_action(silent = FALSE, override_flags)
 	. = ..()
 
@@ -51,9 +56,6 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	playsound(T, 'sound/weapons/emitter.ogg', 25, 1)
 	QDEL_NULL(warp_shadow) //Delete the old warp shadow
 	warp_shadow = shadow //Set the new warp shadow
-	RegisterSignal(owner, COMSIG_MOB_DEATH, .proc/unset_warp_shadow) //Removes warp shadow on death
-	RegisterSignal(warp_shadow, COMSIG_PARENT_PREQDELETED, .proc/unset_warp_shadow) //For var clean up
-	RegisterSignal(owner, COMSIG_PARENT_PREQDELETED, .proc/unset_warp_shadow) //For var clean up
 	warp_shadow.setDir(ghost.dir) //Have it imitate our facing
 	warp_shadow.pixel_x = ghost.pixel_x //Inherit pixel offsets
 	warp_shadow.pixel_y = ghost.pixel_y //Inherit pixel offsets
@@ -108,6 +110,12 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		if(!silent)
 			to_chat(owner, "<span class='xenodanger'>We can't teleport to our warp shadow while it's in space or a wall!</span>")
 		return FALSE
+
+	for(var/obj/blocker in T) //
+		if(blocker.density && !(blocker.flags_atom & ON_BORDER)) //If we find a dense, non-border obj it's time to stop
+			if(!silent)
+				to_chat(owner, "<span class='xenowarning'>We warp into a solid object!</span>")
+			return FALSE
 
 
 /datum/action/xeno_action/hyperposition/action_activate()
