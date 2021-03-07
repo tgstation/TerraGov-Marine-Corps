@@ -608,4 +608,4 @@
 	if(tox_loss > DEFILER_TRANSVITOX_CAP) //If toxin levels are already at their cap, cancel out
 		return
 
-	L.setToxLoss(max(tox_loss + min(L.getBruteLoss() * 0.15 * tox_cap_multiplier, damage * 0.15 * tox_cap_multiplier),tox_loss))  //Deal bonus tox damage equal to a % of the lesser of the damage taken or the target's brute damage; capped at 180.
+	L.setToxLoss(clamp(tox_loss + min(L.getBruteLoss() * 0.15 * tox_cap_multiplier, damage * 0.15 * tox_cap_multiplier), tox_loss, DEFILER_TRANSVITOX_CAP)) //Deal bonus tox damage equal to a % of the lesser of the damage taken or the target's brute damage; capped at DEFILER_TRANSVITOX_CAP.
