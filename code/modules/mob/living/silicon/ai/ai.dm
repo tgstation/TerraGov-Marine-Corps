@@ -44,12 +44,6 @@
 	var/datum/trackable/track
 	///Selected order to give to marine
 	var/datum/action/innate/order/current_order
-	///datum used when sending an attack order
-	var/datum/action/innate/order/attack_order/send_attack_order
-	///datum used when sending a retreat order
-	var/datum/action/innate/order/retreat_order/send_retreat_order
-	///datum used when sending a defend order
-	var/datum/action/innate/order/defend_order/send_defend_order
 
 
 /mob/living/silicon/ai/Initialize(mapload, ...)
@@ -79,11 +73,12 @@
 	var/datum/atom_hud/H = GLOB.huds[DATA_HUD_SQUAD]
 	H.add_hud_to(src)
 
-	RegisterSignal(src, COMSIG_MOB_CLICK_ALT, .proc/send_orders)
+	RegisterSignal(src, COMSIG_MOB_CLICK_ALT, .proc/send_order)
+	RegisterSignal(src, COMSIG_ORDER_SELECTED, .proc/set_order)
 
-	send_attack_order = new
-	send_defend_order = new
-	send_retreat_order = new
+	var/datum/action/innate/order/attack_order/send_attack_order = new
+	var/datum/action/innate/order/defend_order/send_defend_order = new
+	var/datum/action/innate/order/retreat_order/send_retreat_order = new
 	send_attack_order.target = src
 	send_attack_order.give_action(src)
 	send_defend_order.target = src
@@ -95,43 +90,21 @@
 	GLOB.ai_list -= src
 	QDEL_NULL(builtInCamera)
 	QDEL_NULL(track)
-	QDEL_NULL(send_attack_order)
-	QDEL_NULL(send_defend_order)
-	QDEL_NULL(send_retreat_order)
+	UnregisterSignal(src, COMSIG_ORDER_SELECTED)
+	UnregisterSignal(src, COMSIG_MOB_CLICK_ALT)
 	return ..()
 
 ///Print order visual to all marines squad hud and give them an arrow to follow the waypoint
-/mob/living/silicon/ai/proc/send_orders(datum/source, atom/object)
+/mob/living/silicon/ai/proc/send_order(datum/source, atom/target)
 	SIGNAL_HANDLER
-	var/turf/target_turf = get_turf(object)
-	if (!current_order)
-		to_chat(usr, "<span class='warning'>You didn't select any order!</span>")
-		return
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_CIC_ORDERS))
-		to_chat(usr, "<span class='warning'>Your last order was too recent.</span>")
-		return
-	TIMER_COOLDOWN_START(src, COOLDOWN_CIC_ORDERS, ORDER_COOLDOWN)
-	new current_order.visual_type(target_turf)
-	var/obj/screen/arrow/arrow_hud
-	var/datum/atom_hud/squad/squad_hud = GLOB.huds[DATA_HUD_SQUAD]
-	var/list/final_list = squad_hud.hudusers
-	final_list -= src //We don't want the eye to have an arrow, it's silly
+	if(!current_order)
+		to_chat(src, "<span class='warning'>Your have no order selected.</span>")
+	current_order.send_order(target)
 
-	for(var/hud_user in final_list)
-		if(!ishuman(hud_user))
-			continue
-		if(current_order.arrow_type)
-			arrow_hud = new current_order.arrow_type
-			arrow_hud.add_hud(hud_user, target_turf)
-		notify_marine(hud_user, target_turf)
-
-
-///Send a message and a sound to the marine if he is on the same z level as the turf
-/mob/living/silicon/ai/proc/notify_marine(mob/living/marine, turf/target_turf) ///Send an order to that specific marine if it's on the right z level
-	if(marine.z == target_turf.z)
-		marine.playsound_local(marine, "sound/effects/CIC_order.ogg", 10, 1)
-		to_chat(marine,"<span class='ordercic'>Command is urging you to [current_order.verb_name] [target_turf.loc.name]!</span>")
-
+///Set the current order
+/mob/living/silicon/ai/proc/set_order(datum/source, datum/action/innate/order/order)
+	SIGNAL_HANDLER
+	current_order = order
 
 /mob/living/silicon/ai/restrained(ignore_checks)
 	return FALSE

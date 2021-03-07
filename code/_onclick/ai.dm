@@ -65,6 +65,9 @@
 	if(modifiers["ctrl"])
 		CtrlClickOn(A)
 		return
+	if(modifiers["alt"]) // alt and alt-gr (rightalt)
+		AltClickOn(A)
+		return
 
 	if(world.time <= next_move)
 		return
