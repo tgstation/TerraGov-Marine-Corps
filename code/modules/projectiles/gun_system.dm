@@ -203,7 +203,6 @@
 		RegisterSignal(src, COMSIG_GUN_FIRE_RESET, .proc/reset_fire)
 		RegisterSignal(src, COMSIG_GUN_SET_BURSTING, .proc/set_bursting)
 		return ..()
-	SEND_SIGNAL(src, COMSIG_GUN_AUTO_FIRE_COMP_RESET)
 	if(gun_user)
 		UnregisterSignal(gun_user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG))
 		UnregisterSignal(src, list(COMSIG_GUN_MUST_FIRE, COMSIG_GUN_FIRE_RESET, COMSIG_GUN_SET_BURSTING))
@@ -211,7 +210,6 @@
 	return ..()
 
 /obj/item/weapon/gun/removed_from_inventory(mob/user)
-	SEND_SIGNAL(src, COMSIG_GUN_AUTO_FIRE_COMP_RESET)
 	if(!gun_user)
 		return
 	UnregisterSignal(gun_user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG))
@@ -542,7 +540,9 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	shots_fired = 0//Let's clean everything
 	target = null
 	windup_checked = WEAPON_WINDUP_NOT_CHECKED
-	akimbo_gun = null
+	if(akimbo_gun)
+		UnregisterSignal(akimbo_gun, COMSIG_PARENT_QDELETING)
+		akimbo_gun = null
 	dual_wield = FALSE
 
 ///Setter for the extra delay when bursting is done
@@ -650,7 +650,6 @@ and you're good to go.
 /obj/item/weapon/gun/proc/Fire()
 	SIGNAL_HANDLER
 	if(QDELETED(gun_user) || !ismob(gun_user) || !able_to_fire(gun_user) || !target)
-		SEND_SIGNAL(src, COMSIG_GUN_AUTO_FIRE_COMP_RESET)
 		return
 
 	//The gun should return the bullet that it already loaded from the end cycle of the last Fire().
@@ -658,7 +657,6 @@ and you're good to go.
 	in_chamber = null //Projectiles live and die fast. It's better to null the reference early so the GC can handle it immediately.
 	if(!projectile_to_fire) //If there is nothing to fire, click.
 		click_empty(gun_user)
-		SEND_SIGNAL(src, COMSIG_GUN_AUTO_FIRE_COMP_RESET)
 		return
 
 	if(shots_fired == 0 && !dual_wield)//We only check when starting to shoot
@@ -679,7 +677,6 @@ and you're good to go.
 	//Finally, make with the pew pew!
 	if(!istype(projectile_to_fire,/obj))
 		stack_trace("projectile malfunctioned while firing. User: [gun_user]")
-		SEND_SIGNAL(src, COMSIG_GUN_AUTO_FIRE_COMP_RESET)
 		return
 
 	
