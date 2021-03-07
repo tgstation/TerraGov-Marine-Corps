@@ -156,7 +156,7 @@
 	handle_starting_attachment()
 
 	setup_firemodes()
-	AddComponent(/datum/component/automatedfire/gun, fire_delay, burst_delay, burst_amount, gun_firemode) //This should go after handle_starting_attachment() and setup_firemodes() to get the proper values set.
+	AddComponent(/datum/component/automatedfire/autofire, fire_delay, burst_delay, burst_amount, gun_firemode) //This should go after handle_starting_attachment() and setup_firemodes() to get the proper values set.
 
 	muzzle_flash = new(src, muzzleflash_iconstate)
 
@@ -201,26 +201,26 @@
 		RegisterSignal(gun_user, COMSIG_MOB_MOUSEDRAG, .proc/change_target)
 		RegisterSignal(src, COMSIG_GUN_MUST_FIRE, .proc/Fire)
 		RegisterSignal(src, COMSIG_GUN_FIRE_RESET, .proc/reset_fire)
-	else
-		if(gun_user)
-			UnregisterSignal(gun_user, COMSIG_MOB_MOUSEDOWN, .proc/start_fire)
-			UnregisterSignal(gun_user, COMSIG_MOB_MOUSEUP, .proc/stop_fire)
-			UnregisterSignal(gun_user, COMSIG_MOB_MOUSEDRAG, .proc/change_target)
-			UnregisterSignal(src, COMSIG_GUN_MUST_FIRE, .proc/Fire)
-			UnregisterSignal(src, COMSIG_GUN_FIRE_RESET, .proc/reset_fire)
-			gun_user = null
-		SEND_SIGNAL(src, COMSIG_GUN_AUTO_FIRE_COMP_RESET)
+		RegisterSignal(src, COMSIG_GUN_SET_BURSTING, .proc/set_bursting)
+		RegisterSignal(src, COMSIG_GUN_SET_EXTRA_DELAY, .proc/set_extra_delay)
+		return ..()
+	SEND_SIGNAL(src, COMSIG_GUN_AUTO_FIRE_COMP_RESET)
+	if(gun_user)
+		UnregisterSignal(gun_user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG))
+		UnregisterSignal(src, list(COMSIG_GUN_MUST_FIRE, COMSIG_GUN_FIRE_RESET, COMSIG_GUN_SET_BURSTING, COMSIG_GUN_SET_EXTRA_DELAY))
+		gun_user = null	
 	return ..()
 
 /obj/item/weapon/gun/removed_from_inventory(mob/user)
-	if(gun_user)
-		UnregisterSignal(gun_user, COMSIG_MOB_MOUSEDOWN, .proc/start_fire)
-		UnregisterSignal(gun_user, COMSIG_MOB_MOUSEUP, .proc/stop_fire)
-		UnregisterSignal(gun_user, COMSIG_MOB_MOUSEDRAG, .proc/change_target)
-		UnregisterSignal(src, COMSIG_GUN_MUST_FIRE, .proc/Fire)
-		UnregisterSignal(src, COMSIG_GUN_FIRE_RESET, .proc/reset_fire)
-		gun_user = null
 	SEND_SIGNAL(src, COMSIG_GUN_AUTO_FIRE_COMP_RESET)
+	if(!gun_user)
+		return
+	UnregisterSignal(gun_user, COMSIG_MOB_MOUSEDOWN, .proc/start_fire)
+	UnregisterSignal(gun_user, COMSIG_MOB_MOUSEUP, .proc/stop_fire)
+	UnregisterSignal(gun_user, COMSIG_MOB_MOUSEDRAG, .proc/change_target)
+	UnregisterSignal(src, COMSIG_GUN_MUST_FIRE, .proc/Fire)
+	UnregisterSignal(src, COMSIG_GUN_FIRE_RESET, .proc/reset_fire)
+	gun_user = null
 
 /obj/item/weapon/gun/update_icon(mob/user)
 	if(!current_mag || current_mag.current_rounds <= 0)
@@ -549,6 +549,19 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	akimbo_gun = null
 	dual_wield = FALSE
 
+///Setter for the extra delay when bursting is done
+/obj/item/weapon/gun/proc/set_extra_delay(datum/source, _extra_delay)
+	SIGNAL_HANDLER
+	extra_delay = _extra_delay
+
+///Inform the gun if he is currently bursting, to prevent reloading
+/obj/item/weapon/gun/proc/set_bursting(datum/source, bursting)
+	SIGNAL_HANDLER
+	if(bursting)
+		ENABLE_BITFIELD(flags_gun_features, GUN_BURST_FIRING)
+		return
+	DISABLE_BITFIELD(flags_gun_features, GUN_BURST_FIRING)
+
 ///Update the target if you draged your mouse
 /obj/item/weapon/gun/proc/change_target(datum/source, atom/src_object, atom/over_object)
 	SIGNAL_HANDLER
@@ -658,6 +671,7 @@ and you're good to go.
 			if(!(OG.flags_gun_features & GUN_WIELDED_FIRING_ONLY) && OG.gun_skill_category == gun_skill_category)
 				akimbo_gun = OG
 				akimbo_gun.dual_wield = TRUE
+				RegisterSignal(akimbo_gun, COMSIG_PARENT_QDELETING, .proc/reset_akimbo_ref)
 			
 
 	apply_gun_modifiers(projectile_to_fire, target)
@@ -666,7 +680,7 @@ and you're good to go.
 	var/firing_angle = get_angle_with_scatter((gun_user || get_turf(src)), target, get_scatter(projectile_to_fire.scatter, gun_user), projectile_to_fire.p_x, projectile_to_fire.p_y)
 
 	//Finally, make with the pew pew!
-	if(!projectile_to_fire || !istype(projectile_to_fire,/obj))
+	if(!istype(projectile_to_fire,/obj))
 		stack_trace("projectile malfunctioned while firing. User: [gun_user]")
 		SEND_SIGNAL(src, COMSIG_GUN_AUTO_FIRE_COMP_RESET)
 		return
@@ -1122,13 +1136,6 @@ and you're good to go.
 			GB.current_gun = null
 			GB.update_gun_icon()
 
-
-/obj/item/weapon/gun/proc/on_gun_attachment_attach(obj/item/attachable/attached_gun/attaching)
-	active_attachable = attaching	
-
-/obj/item/weapon/gun/proc/on_gun_attachment_detach(obj/item/attachable/attached_gun/detaching)
-	active_attachable = null
-B
 /obj/item/weapon/gun/proc/do_fire_attachment()
 	if(!CHECK_BITFIELD(flags_item, WIELDED))
 		to_chat(gun_user, "<span class='warning'>[active_attachable] must be wielded to fire!</span>")
@@ -1142,3 +1149,8 @@ B
 		return
 	active_attachable.fire_attachment(target, src, gun_user) //Fire it.
 	last_fired = world.time
+
+///Protection against hard del
+/obj/item/weapon/gun/proc/reset_akimbo_ref()
+	SIGNAL_HANDLER
+	akimbo_gun = null

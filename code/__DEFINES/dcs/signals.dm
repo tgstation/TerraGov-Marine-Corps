@@ -254,6 +254,8 @@
 #define COMSIG_GUN_STOP_FIRE "gun_stop_fire"
 #define COMSIG_GUN_MUST_FIRE "gun_must_fire"
 	#define GUN_HAS_FIRED	(1<<0)
+#define COMSIG_GUN_SET_BURSTING "gun_set_bursting"
+#define COMSIG_GUN_SET_EXTRA_DELAY "gun_set_extra_delay"
 #define COMSIG_GUN_FIRE_MODE_TOGGLE "gun_firemode_toggle"		//from /obj/item/weapon/gun/verb/toggle_firemode()
 #define COMSIG_GUN_AUTOFIREDELAY_MODIFIED "gun_firedelay_modified"
 #define COMSIG_GUN_BURST_SHOTS_TO_FIRE_MODIFIED "gun_burstamount_modified"
@@ -613,3 +615,8 @@
 #define COMSIG_AUTOMATIC_SHOOTER_START_SHOOTING_AT "start_shooting_at"
 #define COMSIG_AUTOMATIC_SHOOTER_STOP_SHOOTING_AT "stop_shooting_at"
 #define COMSIG_AUTOMATIC_SHOOTER_SHOOT "shoot"
+
+//Signals for gun auto fire component
+#define COMSIG_GET_BURST_FIRE "get_burst_fire"
+	#define BURST_FIRING (1<<0)
+#define COMSIG_DISABLE_BURST_FIRE "disable_burst_fire"

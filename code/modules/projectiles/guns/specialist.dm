@@ -834,8 +834,8 @@
 		current_mag.loc = get_turf(src)
 		current_mag.update_icon()
 		current_mag = null
-	log_combat(gun_user, gun_user, "fired the [gun_user].")
-	log_explosion("[gun_user] fired the [gun_user] at [AREACOORD(loc)].")
+	log_combat(gun_user, gun_user, "fired the [src].")
+	log_explosion("[gun_user] fired the [src] at [AREACOORD(loc)].")
 
 ///Windup before shooting
 /obj/item/weapon/gun/launcher/rocket/proc/do_windup()

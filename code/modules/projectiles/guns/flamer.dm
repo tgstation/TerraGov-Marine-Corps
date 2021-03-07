@@ -546,14 +546,14 @@
 
 /obj/item/weapon/gun/flamer/marinestandard/Fire()
 	if(active_attachable && istype(active_attachable, /obj/item/attachable/hydro_cannon) && (world.time > last_use + 10))
-		INVOKE_ASYNC(src, .proc/flamer_extinguish, target, gun_user) //Fire it.
+		INVOKE_ASYNC(src, .proc/extinguish, target, gun_user) //Fire it.
 		water_count -=7//reagents is not updated in this proc, we need water_count for a updated HUD
 		last_fired = world.time
 		last_use = world.time
 		var/obj/screen/ammo/A = gun_user.hud_used.ammo
 		A.update_hud(gun_user)
 		return
-	if(gun_user.skills.getRating("firearms"))
+	if(gun_user.skills.getRating("firearms") < 0)
 		switch(windup_checked)
 			if(WEAPON_WINDUP_NOT_CHECKED)
 				INVOKE_ASYNC(src, .proc/do_windup)
@@ -569,10 +569,7 @@
 		windup_checked = WEAPON_WINDUP_NOT_CHECKED
 		return
 	windup_checked = WEAPON_WINDUP_CHECKED
-	Fire()
-
-/obj/item/weapon/gun/flamer/marinestandard/proc/flamer_extinguish(atom/target, mob/living/user)
-	extinguish(target,user)
+	Fire()	
 
 /obj/item/weapon/gun/flamer/marinestandard/afterattack(atom/target, mob/user)
 	. = ..()
