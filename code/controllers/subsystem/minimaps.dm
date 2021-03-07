@@ -172,7 +172,7 @@ SUBSYSTEM_DEF(minimaps)
 		var/ref = minimaps_by_z["[zlevel]"].images_raw["[flag]"] //what the fuck? you might be thinking, yea well this is a byond bug thanks
 		ref += blip //workaround see http://www.byond.com/forum/post/2661309
 	if(ismovableatom(target))
-		//RegisterSignal(target, COMSIG_MOVABLE_Z_CHANGED, .proc/on_z_change)
+		RegisterSignal(target, COMSIG_MOVABLE_Z_CHANGED, .proc/on_z_change)
 		RegisterSignal(target, COMSIG_MOVABLE_MOVED, .proc/on_move)
 	removal_cbs[target] = CALLBACK(src, .proc/removeimage, blip, target)
 	RegisterSignal(target, COMSIG_PARENT_QDELETING, .proc/remove_marker)
