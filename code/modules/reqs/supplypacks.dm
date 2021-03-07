@@ -158,7 +158,8 @@ OPERATIONS
 	cost = 10
 	containertype = null
 
-/datum/supply_packs/operations/ob_fuel
+/datum/supply_packs/operations/cas_voucher
+
 	name = "100 dropship fabricator points"
 	contains = list(/obj/item/dropship_points_voucher)
 	cost = 40
