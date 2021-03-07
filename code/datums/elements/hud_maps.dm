@@ -63,7 +63,7 @@
 	icon = null
 	icon_state = ""
 	layer = ABOVE_HUD_LAYER
-	screen_loc = "0,0"
+	screen_loc = "1,1"
 
 /obj/screen/minimap/Initialize(mapload, target, flags)
 	. = ..()

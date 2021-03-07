@@ -54,7 +54,7 @@ SUBSYSTEM_DEF(minimaps)
 				var/area/turfloc = location.loc
 				icon_gen.DrawBox(turfloc.minimap_color, xval, yval)
 		icon_gen.Scale(480*2,480*2) //scale it up x2 to make it easer to see
-		icon_gen.Crop(0, 0, MINIMAP_PIXEL_FROM_WORLD(world.maxx), MINIMAP_PIXEL_FROM_WORLD(world.maxy)) //then cut all the empty pixels
+		icon_gen.Crop(1, 1, min(icon_gen.Width(), 480), min(icon_gen.Height(), 480)) //then cut all the empty pixels
 		minimaps_by_z["[level]"].hud_image = icon_gen
 	initialized = TRUE
 
