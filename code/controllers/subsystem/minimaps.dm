@@ -196,7 +196,7 @@ SUBSYSTEM_DEF(minimaps)
 	if(!initialized)
 		earlyadds += CALLBACK(src, .proc/add_marker, target, zlevel, hud_flags, iconstate, icon)
 		return
-	var/image/blip = image(icon, iconstate, pixel_x = MINIMAP_PIXEL_FROM_WORLD(target.x), pixel_y = MINIMAP_PIXEL_FROM_WORLD(target.y))
+	var/image/blip = image(icon, iconstate, pixel_x = MINIMAP_PIXEL_FROM_WORLD(target.x) + minimaps_by_z["[zlevel]"].x_offset, pixel_y = MINIMAP_PIXEL_FROM_WORLD(target.y) + minimaps_by_z["[zlevel]"].y_offset)
 	images_by_source[target] = blip
 	for(var/flag in bitfield2list(hud_flags))
 		minimaps_by_z["[zlevel]"].images_assoc["[flag]"][target] = blip
@@ -240,8 +240,8 @@ SUBSYSTEM_DEF(minimaps)
  */
 /datum/controller/subsystem/minimaps/proc/on_move(atom/movable/source, oldloc)
 	SIGNAL_HANDLER
-	images_by_source[source].pixel_x = MINIMAP_PIXEL_FROM_WORLD(source.x)
-	images_by_source[source].pixel_y = MINIMAP_PIXEL_FROM_WORLD(source.y)
+	images_by_source[source].pixel_x = MINIMAP_PIXEL_FROM_WORLD(source.x) + minimaps_by_z["[source.z]"].x_offset
+	images_by_source[source].pixel_y = MINIMAP_PIXEL_FROM_WORLD(source.y) + minimaps_by_z["[source.z]"].y_offset
 
 /**
  * Removes an atom nd it's blip from the subsystem
