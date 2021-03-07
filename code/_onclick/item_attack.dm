@@ -87,8 +87,6 @@
 
 
 /mob/living/attacked_by(obj/item/I, mob/living/user, def_zone)
-	if(status_flags & INCORPOREAL) //We can't physically attack the incorporeal
-		return FALSE
 
 	var/message_verb = "attacked"
 	if(LAZYLEN(I.attack_verb))
@@ -150,7 +148,7 @@
 	if(SEND_SIGNAL(user, COMSIG_MOB_ITEM_ATTACK, M, src) & COMPONENT_ITEM_NO_ATTACK)
 		return FALSE
 
-	if(M.status_flags & INCORPOREAL) //Can't attack the incorporeal
+	if(M.status_flags & INCORPOREAL || user.status_flags & INCORPOREAL) //Can't attack the incorporeal
 		return FALSE
 
 	if(flags_item & NOBLUDGEON)

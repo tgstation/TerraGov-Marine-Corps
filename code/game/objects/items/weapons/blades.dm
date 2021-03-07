@@ -128,7 +128,7 @@
 	return TRUE
 
 /obj/item/weapon/claymore/harvester/attack(mob/living/M, mob/living/user)
-	if(!loaded_reagent) //Can't attack the incorporeal
+	if(!loaded_reagent)
 		return ..()
 
 	if(M.status_flags & INCORPOREAL || user.status_flags & INCORPOREAL) //Incorporeal beings cannot attack or be attacked
