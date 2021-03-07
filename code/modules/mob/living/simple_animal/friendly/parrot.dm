@@ -110,7 +110,7 @@
 /mob/living/simple_animal/parrot/radio(message, message_mode, list/spans, language) //literally copied from human/radio(), but there's no other way to do this. at least it's better than it used to be.
 	. = ..()
 	if(. != 0)
-		return .
+		return
 
 	switch(message_mode)
 		if(MODE_HEADSET)
@@ -237,7 +237,7 @@
 		handle_automated_speech(1) //assured speak/emote
 
 
-/mob/living/simple_animal/parrot/attack_paw(mob/living/carbon/monkey/user)
+/mob/living/simple_animal/parrot/attack_paw(mob/living/carbon/human/user)
 	return attack_hand(user)
 
 

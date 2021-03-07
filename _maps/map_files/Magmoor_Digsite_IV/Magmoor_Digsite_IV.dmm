@@ -6510,9 +6510,6 @@
 /obj/effect/alien/egg,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/west)
-"eUz" = (
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/space)
 "eUO" = (
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 9
@@ -69515,7 +69512,7 @@ lfG
 ebf
 lfG
 lfG
-eUz
+eEq
 izb
 izb
 izb

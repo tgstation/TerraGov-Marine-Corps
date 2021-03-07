@@ -66,7 +66,6 @@
 //what to show to the user that examines the weapon we're loaded on.
 /obj/structure/ship_ammo/proc/show_loaded_desc(mob/user)
 	to_chat(user, "It's loaded with \a [src].")
-	return
 
 /obj/structure/ship_ammo/proc/detonate_on(turf/impact, attackdir = NORTH)
 	return
@@ -127,7 +126,7 @@
 		strafed.ex_act(EXPLODE_LIGHT)
 		new /obj/effect/particle_effect/expl_particles(strafed)
 		new /obj/effect/temp_visual/heavyimpact(strafed)
-		for(var/atom/movable/AM as() in strafed)
+		for(var/atom/movable/AM AS in strafed)
 			AM.ex_act(EXPLODE_LIGHT)
 
 	if(length(strafelist))

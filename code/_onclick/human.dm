@@ -38,14 +38,14 @@
 	TIMER_COOLDOWN_START(src, COOLDOWN_CHEW, 7.5 SECONDS)
 
 
-/mob/living/carbon/human/UnarmedAttack(atom/A, proximity, params)
+/mob/living/carbon/human/UnarmedAttack(atom/A, proximity, list/modifiers)
 	if(lying_angle) //No attacks while laying down
 		return FALSE
 
 	var/obj/item/clothing/gloves/G = gloves // not typecast specifically enough in defines
 
 	// Special glove functions:
-	// If the gloves do anything, have them return 1 to stop
+	// If the gloves do anything, have them return TRUE to stop the touch
 	// normal attack_hand() here.
 	if(proximity && istype(G) && G.Touch(A, 1))
 		return
@@ -55,5 +55,12 @@
 		to_chat(src, "<span class='notice'>You try to move your [temp.display_name], but cannot!")
 		return
 
+	if(LAZYACCESS(modifiers, "right"))
+		A.attack_hand_alternate(src)
+		return
+
 	SEND_SIGNAL(src, COMSIG_HUMAN_MELEE_UNARMED_ATTACK, A)
+
+	if(species?.spec_unarmedattack(src, A)) //Because species like monkeys dont use attack hand
+		return
 	A.attack_hand(src)

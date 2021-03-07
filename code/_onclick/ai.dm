@@ -114,8 +114,10 @@
 /* Atom Procs */
 /atom/proc/AICtrlClick()
 	return
+
 /atom/proc/AIShiftClick()
 	return
+
 /atom/proc/AICtrlShiftClick()
 	return
 

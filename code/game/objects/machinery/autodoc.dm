@@ -861,7 +861,7 @@
 	if(!M)
 		return
 
-	else if(!ishuman(M)) // stop fucking monkeys and xenos being put in.
+	else if(!ishuman(M)) // stop fucking monkeys and xenos being put in. // MONKEEY IS FREE
 		to_chat(user, "<span class='notice'>[src] is compatible with humanoid anatomies only!</span>")
 		return
 

@@ -45,7 +45,7 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 	TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
 	update_icon()
 	to_chat(user, "The wires have been [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "exposed" : "unexposed"]")
-	return
+
 
 /obj/machinery/computer/navigation/Initialize() //need anything special?
 	. = ..()

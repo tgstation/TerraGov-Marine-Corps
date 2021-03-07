@@ -2,10 +2,17 @@ import { useBackend, useLocalState } from '../backend';
 import { Button, Section, Box, LabeledList, ProgressBar, Modal, Divider } from '../components';
 import { decodeHtmlEntities } from 'common/string';
 import { Window } from '../layouts';
-import { LabeledListItem } from '../components/LabeledList';
 
 export const Vending = (props, context) => {
   const { act, data } = useBackend(context);
+
+  const {
+    vendor_name,
+    currently_vending_name,
+    premium_length,
+    isshared,
+    extended,
+  } = data;
 
   const [
     showDesc,
@@ -19,7 +26,7 @@ export const Vending = (props, context) => {
 
   return (
     <Window
-      title="Vending Machine"
+      title={vendor_name || "Vending Machine"}
       width={500}
       height={600}>
       {showDesc ? (
@@ -30,40 +37,32 @@ export const Vending = (props, context) => {
             onClick={() => setShowDesc(null)} />
         </Modal>
       ) : (
-        data.currently_vending_name && (
+        currently_vending_name && (
           <Modal width="400px">
             <Buying />
           </Modal>
         )
       )}
-      <div>
-        <div
-          className="VendingWindow__header">
-          <Section
-            title="Select an item"
-            buttons={
-              <Button
-                icon="power-off"
-                selected={showEmpty}
-                onClick={() => setShowEmpty(!showEmpty)}>
-                Show sold-out items
-              </Button>
-            } />
-        </div>
-        <div className="VendingWindow__content">
-          <Window.Content scrollable>
-            <>
-              {(!!((data.premium_length > 0) || (data.isshared > 0))) && (
-                <Premium />
-              )}
-              {data.hidden_records.length > 0 && !!data.extended && (
-                <Hacked />
-              )}
-              <Products />
-            </>
-          </Window.Content>
-        </div>
-      </div>
+      <Window.Content scrollable>
+        <Section
+          title="Select an item"
+          buttons={
+            <Button
+              icon="power-off"
+              selected={showEmpty}
+              onClick={() => setShowEmpty(!showEmpty)}>
+              Show sold-out items
+            </Button>
+          }>
+          {(!!((premium_length > 0) || (isshared > 0))) && (
+            <Premium />
+          )}
+          {data.hidden_records.length > 0 && !!extended && (
+            <Hacked />
+          )}
+          <Products />
+        </Section>
+      </Window.Content>
     </Window>
   );
 };
@@ -162,7 +161,7 @@ const ProductEntry = (props, context) => {
   ] = useLocalState(context, 'showDesc', null);
 
   return (
-    <LabeledListItem
+    <LabeledList.Item
       labelColor="white"
       buttons={
         <>
@@ -196,7 +195,7 @@ const ProductEntry = (props, context) => {
         <Button
           onClick={() => setShowDesc(prod_desc)}>?
         </Button>)}
-    </LabeledListItem>
+    </LabeledList.Item>
   );
 };
 

@@ -2,7 +2,6 @@
 	parent_type = /datum // black magic
 	preload_rsc = PRELOAD_RSC // This is 0 so we can set it to an URL once the player logs in and have them download the resources from a different server.
 	view = WORLD_VIEW
-	var/datum/chatOutput/chatOutput //Goonchat holder
 	var/datum/tooltip/tooltips
 
 	//Admin related
@@ -35,9 +34,6 @@
 	var/mouse_up_icon = null
 	var/mouse_down_icon = null
 	var/click_intercepted = FALSE //Check if current click was intercepted. Reset and return if TRUE. This is because there's no communication between Click(), MouseDown() and MouseUp().
-
-	//Sound related
-	var/played = FALSE
 
 	//Security related
 	var/list/topiclimiter

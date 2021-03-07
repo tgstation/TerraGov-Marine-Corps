@@ -45,9 +45,9 @@
 	flags_pass = PASSTABLE|PASSMOB|PASSGRILLE
 	var/slow_amt = 0.8
 	var/duration = 10 SECONDS
-	var/acid_damage = 14
+	var/acid_damage = XENO_DEFAULT_ACID_PUDDLE_DAMAGE
 
-/obj/effect/xenomorph/spray/Initialize(mapload, duration = 10 SECONDS, damage = 14) //Self-deletes
+/obj/effect/xenomorph/spray/Initialize(mapload, duration = 10 SECONDS, damage = XENO_DEFAULT_ACID_PUDDLE_DAMAGE) //Self-deletes
 	. = ..()
 	START_PROCESSING(SSprocessing, src)
 	QDEL_IN(src, duration + rand(0, 2 SECONDS))
@@ -180,3 +180,18 @@
 		if(4) visible_message("<span class='xenowarning'>\The [acid_t]\s structure is being melted by the acid!</span>")
 		if(2) visible_message("<span class='xenowarning'>\The [acid_t] is struggling to withstand the acid!</span>")
 		if(0 to 1) visible_message("<span class='xenowarning'>\The [acid_t] begins to crumble under the acid!</span>")
+
+/obj/effect/xenomorph/warp_shadow
+	name = "warp shadow"
+	desc = "A strange rift in space and time. You probably shouldn't touch this."
+	icon = 'icons/Xeno/2x2_Xenos.dmi'
+	icon_state = "Wraith Walking"
+	color = COLOR_BLACK
+	alpha = 128 //Translucent
+	density = FALSE
+	opacity = FALSE
+	anchored = TRUE
+
+/obj/effect/xenomorph/warp_shadow/Initialize(mapload, target)
+	. = ..()
+	add_filter("wraith_warp_shadow", 4, list("type" = "blur", 5)) //Cool filter appear

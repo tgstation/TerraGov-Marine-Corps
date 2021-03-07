@@ -372,7 +372,7 @@
 /turf/open/floor/plating,
 /area/maintenance/apmaint)
 "bk" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/compound/n)
 "bl" = (
@@ -1330,7 +1330,7 @@
 /turf/closed/wall,
 /area/lv624/ground/compound/c)
 "fl" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/ground/grass/grass2,
 /area/vapor_processing/east_compound)
 "fm" = (
@@ -1342,7 +1342,7 @@
 /turf/closed/wall,
 /area/medical/medbay2)
 "fo" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/floor/grass,
 /area/vapor_processing/west_compound)
 "fq" = (
@@ -1897,7 +1897,7 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "hn" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/floor/grass,
 /area/lv624/ground/compound/c)
 "ho" = (
@@ -2001,7 +2001,7 @@
 /turf/open/floor/tile/green/whitegreen,
 /area/lv624/lazarus/medbay)
 "hJ" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/compound/c)
 "hK" = (
@@ -2846,7 +2846,7 @@
 /turf/closed/wall,
 /area/lv624/lazarus/comms)
 "kX" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/compound/sw)
 "kY" = (
@@ -2930,7 +2930,7 @@
 	},
 /area/lv624/lazarus/comms)
 "ls" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/floor/grass,
 /area/vapor_processing/south_compound)
 "lt" = (
@@ -3127,7 +3127,7 @@
 /turf/closed/wall,
 /area/lv624/lazarus/research)
 "mp" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/floor/grass,
 /area/lv624/ground/compound/se)
 "mq" = (
@@ -3302,7 +3302,7 @@
 /turf/open/floor,
 /area/lv624/lazarus/research)
 "nb" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/ground/grass/grass2,
 /area/vapor_processing/south_compound)
 "nc" = (
@@ -3744,7 +3744,7 @@
 /turf/open/floor/wood,
 /area/crew_quarters/sleep/bedrooms)
 "pd" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/compound/se)
 "pe" = (
@@ -4825,7 +4825,7 @@
 	},
 /area/lv624/lazarus/comms)
 "sG" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/grass,
 /area/vapor_processing/south_compound)

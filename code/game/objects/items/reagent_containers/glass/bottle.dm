@@ -186,7 +186,7 @@
 	desc = "A very small bottle. Contains Hypervene - A purge chem for flushing toxins. Causes pain and vomiting."
 	icon_state = "bottle3"
 	volume = 10
-	list_reagents = list(/datum/reagent/medicine/hypervene = 10)
+	list_reagents = list(/datum/reagent/hypervene = 10)
 
 /obj/item/reagent_containers/glass/bottle/tricordrazine
 	name = "\improper Tricordrazine bottle"

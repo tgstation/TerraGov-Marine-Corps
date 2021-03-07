@@ -31,7 +31,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	light_range = 2
 	light_power = 0.6
 	light_color = LIGHT_COLOR_FIRE
-	light_on = FALSE
 	var/wax = 800
 
 /obj/item/tool/candle/update_icon()
@@ -101,7 +100,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	light_range = 2
 	light_power = 0.6
 	light_color = LIGHT_COLOR_FIRE
-	light_on = FALSE
 	var/burnt = FALSE
 	var/smoketime = 5
 	w_class = WEIGHT_CLASS_TINY
@@ -158,7 +156,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	throw_speed = 0.5
 	item_state = "cigoff"
 	w_class = WEIGHT_CLASS_TINY
-	flags_armor_protection = 0
+	flags_armor_protection = NONE
 	var/lit = FALSE
 	var/icon_on = "cigon"  //Note - these are in masks.dmi not in cigarette.dmi
 	var/icon_off = "cigoff"
@@ -167,7 +165,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	var/smoketime = 300
 	var/chem_volume = 30
 	var/list/list_reagents = list(/datum/reagent/nicotine = 15)
-	flags_armor_protection = 0
+	flags_armor_protection = NONE
 
 /obj/item/clothing/mask/cigarette/Initialize()
 	. = ..()
@@ -316,7 +314,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		return
 
 	if(reagents && reagents.total_volume)	//	check if it has any reagents at all
-		if(iscarbon(loc) && (src == loc:wear_mask)) // if it's in the human/monkey mouth, transfer reagents to the mob
+		if(iscarbon(loc) && (src == loc:wear_mask)) // if it's in the human/monkey mouth, transfer reagents to the mob //TODO WHAT BAYCODER USED A : UNIRONICALLY
 			if(ishuman(loc))
 				var/mob/living/carbon/human/H = loc
 				if(H.species.species_flags & IS_SYNTHETIC)
@@ -328,7 +326,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			reagents.trans_to(C, REAGENTS_METABOLISM)
 		else // else just remove some of the reagents
 			reagents.remove_any(REAGENTS_METABOLISM)
-	return
+
 
 
 /obj/item/clothing/mask/cigarette/attack_self(mob/user)
@@ -336,7 +334,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		user.visible_message("<span class='notice'>[user] calmly drops and treads on the lit [src], putting it out instantly.</span>")
 		playsound(src, 'sound/items/cig_snuff.ogg', 15, 1)
 		die()
-	. = ..()
+	return ..()
 
 /obj/item/clothing/mask/cigarette/attack(atom/target, mob/living/user)
 	if(!lit)
@@ -442,7 +440,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	if(smoketime <= 0)
 		to_chat(user, "<span class='notice'>You refill the pipe with tobacco.</span>")
 		smoketime = initial(smoketime)
-	return
+
 
 /obj/item/clothing/mask/cigarette/pipe/cobpipe
 	name = "corn cob pipe"
@@ -471,7 +469,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	light_range = 2
 	light_power = 0.6
 	light_color = LIGHT_COLOR_FIRE
-	light_on = FALSE
 	w_class = WEIGHT_CLASS_TINY
 	throwforce = 4
 	flags_atom = CONDUCT
@@ -518,7 +515,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			turn_off(user, FALSE)
 	else
 		return ..()
-	return
 
 /obj/item/tool/lighter/proc/turn_off(mob/living/bearer, silent = TRUE)
 	if(heat)

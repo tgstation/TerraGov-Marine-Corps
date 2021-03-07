@@ -33,8 +33,8 @@
 //Items that use internal storage have the option of calling this to emulate default storage MouseDrop behaviour.
 //Returns 1 if the master item's parent's MouseDrop() should be called, 0 otherwise. It's strange, but no other way of
 //Doing it without the ability to call another proc's parent, really.
-/obj/item/storage/internal/proc/handle_mousedrop(mob/user as mob, obj/over_object as obj)
-	if(!ishuman(user) && !ismonkey(user)) //so monkeys can take off their backpacks -- Urist
+/obj/item/storage/internal/proc/handle_mousedrop(mob/user, obj/over_object)
+	if(!ishuman(user))
 		return FALSE
 
 	if(user.lying_angle || user.incapacitated()) //Can't use your inventory when lying
@@ -127,10 +127,10 @@
 	master_item.on_pocket_removal()
 
 
-//things to do when an item is inserted in the obj's internal pocket
+///things to do when an item is inserted in the obj's internal pocket
 /obj/item/proc/on_pocket_insertion()
 	return
 
-//things to do when an item is removed in the obj's internal pocket
+///things to do when an item is removed in the obj's internal pocket
 /obj/item/proc/on_pocket_removal()
 	return

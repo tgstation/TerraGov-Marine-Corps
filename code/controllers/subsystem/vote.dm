@@ -75,7 +75,6 @@ SUBSYSTEM_DEF(vote)
 		for(var/option in choices)
 			if(choices[option] == greatest_votes)
 				. += option
-	return .
 
 
 /datum/controller/subsystem/vote/proc/announce_result()
@@ -105,7 +104,6 @@ SUBSYSTEM_DEF(vote)
 	log_vote(text)
 	remove_action_buttons()
 	to_chat(world, "<br><font color='purple'>[text]</font>")
-	return .
 
 
 /datum/controller/subsystem/vote/proc/result()
@@ -140,8 +138,6 @@ SUBSYSTEM_DEF(vote)
 		else
 			to_chat(world, "<span style='boltnotice'>Notice:Restart vote will not restart the server automatically because there are active admins on.</span>")
 			message_admins("A restart vote has passed, but there are active admins on with +SERVER, so it has been canceled. If you wish, you may restart the server.")
-
-	return .
 
 
 /datum/controller/subsystem/vote/proc/submit_vote(vote)
@@ -298,7 +294,6 @@ SUBSYSTEM_DEF(vote)
 			. += "<li><a href='?_src_=vote;vote=custom'>Custom</a></li>"
 		. += "</ul><hr>"
 	. += "<a href='?_src_=vote;vote=close'>Close</a>"
-	return .
 
 
 /datum/controller/subsystem/vote/can_interact(mob/user)

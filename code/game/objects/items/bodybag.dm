@@ -131,8 +131,7 @@
 		return FALSE //Only humans.
 	if(mob_to_stuff.stat != DEAD) //Only the dead for bodybags.
 		return FALSE
-	var/mob/living/carbon/human/human_to_stuff = mob_to_stuff
-	if(human_to_stuff.is_revivable() && (check_tod(human_to_stuff) || issynth(human_to_stuff)))
+	if(!HAS_TRAIT(mob_to_stuff, TRAIT_UNDEFIBBABLE) || issynth(mob_to_stuff))
 		return FALSE //We don't want to store those that can be revived.
 	return TRUE
 
@@ -198,6 +197,8 @@
 
 
 /obj/structure/closet/bodybag/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(X.status_flags & INCORPOREAL)
+		return FALSE
 	if(opened)
 		return FALSE // stop xeno closing things
 	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
@@ -302,8 +303,6 @@
 /obj/structure/closet/bodybag/cryobag/closet_special_handling(mob/living/mob_to_stuff) // overriding this
 	if(!ishuman(mob_to_stuff))
 		return FALSE //Humans only.
-	if(mob_to_stuff.stat == DEAD) // dead, nope
-		return FALSE
 	return TRUE
 
 

@@ -37,7 +37,6 @@
 	light_range = 2
 	light_power = 2
 	light_color = COLOR_VERY_SOFT_YELLOW
-	light_on = FALSE
 
 	var/hitsound = null
 	var/datum/ammo/ammo //The ammo data which holds most of the actual info.
@@ -617,18 +616,18 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	return TRUE
 
 /obj/machinery/marine_turret/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
-	if(sentry_verify_iff(proj.projectile_iff))
-		proj.damage += proj.damage*proj.damage_marine_falloff
-		return FALSE
+	for(var/access_tag in proj.projectile_iff)
+		if(access_tag in iff_signal) //Checks IFF
+			proj.damage += proj.damage*proj.damage_marine_falloff
+			return FALSE
 	return src == proj.original_target
 
-///Checks to see whether IFF matches
-/obj/machinery/marine_turret/proc/sentry_verify_iff(list/unique_access)
-	for(var/access_tag in unique_access)
-		if(access_tag in iff_signal)
-			return TRUE
-
-	return FALSE
+/obj/machinery/standard_hmg/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
+	for(var/access_tag in proj.projectile_iff)
+		if(access_tag in iff_signal) //Checks IFF
+			proj.damage += proj.damage*proj.damage_marine_falloff
+			return FALSE
+	return src == proj.original_target
 
 /obj/machinery/door/poddoor/railing/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
 	return src == proj.original_target

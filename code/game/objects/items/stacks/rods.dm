@@ -77,4 +77,4 @@
 		to_chat(usr, "<span class='notice'>You assemble a grille</span>")
 		DISABLE_BITFIELD(obj_flags, IN_USE)
 		use(4)
-	return
+

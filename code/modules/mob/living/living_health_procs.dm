@@ -345,7 +345,9 @@
 		I.damage = 0
 
 	reagents.clear_reagents() //and clear all reagents in them
-	undefibbable = FALSE
+	REMOVE_TRAIT(src, TRAIT_UNDEFIBBABLE, TRAIT_UNDEFIBBABLE)
+	REMOVE_TRAIT(src, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
+	dead_ticks = 0
 	chestburst = 0
 	headbitten = FALSE
 	update_body()

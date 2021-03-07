@@ -34,6 +34,10 @@
 #define COMSIG_GLOB_DROPSHIP_TRANSIT "!dropship_transit"
 ///Sent when xenos launch a hijacked dropship
 #define COMSIG_GLOB_DROPSHIP_HIJACKED "!dropship_hijacked"
+///Sent when nightfall is casted
+#define COMSIG_GLOB_LIGHT_OFF "item_light_off"
+///Sent when the floodlight switch is powered
+#define COMSIG_GLOB_FLOODLIGHT_SWITCH "floodlight_switch_power_change"
 
 //////////////////////////////////////////////////////////////////
 
@@ -229,6 +233,8 @@
 #define COMSIG_ITEM_RIGHTCLICKON "item_rightclickon"					//from base of mob/living/carbon/human/RightClickOn(): (/atom, /mob)
 	#define COMPONENT_ITEM_CLICKON_BYPASS (1<<0)
 
+#define COMSIG_ITEM_HYDRO_CANNON_TOGGLED "hydro_cannon_toggled"
+
 #define COMSIG_NEW_REAGENT_ADD	"new_reagent_add"					//from add_reagent(): (/datum/reagent, amount); it is sent when a reagent gets added for the first time to a holder
 
 #define COMSIG_CLOTHING_MECHANICS_INFO "clothing_mechanics_info"	//from base of /obj/item/clothing/get_mechanics_info()
@@ -367,7 +373,6 @@
 
 #define COMSIG_XENOMORPH_GIBBING "xenomorph_gibbing"
 #define COMSIG_XENOMORPH_POSTEVOLVING "xenomorph_evolving"
-#define COMSIG_XENOMORPH_ABILITY_ON_PRE_UPGRADE "xenomorph_pre_upgrade"
 #define COMSIG_XENOMORPH_ABILITY_ON_UPGRADE "xenomorph_ability_on_upgrade"
 
 #define COMSIG_XENOMORPH_GRAB "xenomorph_grab"
@@ -410,6 +415,9 @@
 	#define COMPONENT_KEEP_THROWING (1<<0)
 #define COMSIG_XENO_PROJECTILE_HIT "xeno_projectile_hit"			///from [/mob/living/carbon/xenomorph/projectile_hit] called when a projectile hits a xeno but before confirmation of a hit (can miss due to inaccuracy/evasion)
 	#define COMPONENT_PROJECTILE_DODGE (1<<0)
+
+#define COMSIG_XENOMORPH_WRAITH_RECALL "xenomorph_wraith_recall"
+	#define COMPONENT_BANISH_TARGETS_EXIST (1<<0)
 
 //human signals
 #define COMSIG_CLICK_QUICKEQUIP "click_quickequip"
@@ -547,6 +555,7 @@
 #define COMSIG_XENOABILITY_PSYCHIC_FLING "xenoability_psychic_fling"
 #define COMSIG_XENOABILITY_PSYCHIC_CURE "xenoability_psychic_cure"
 #define COMSIG_XENOABILITY_UNRELENTING_FORCE "xenoability_unrelenting_force"
+//#define COMSIG_XENOABILITY_NIGHTFALL "xenoability_nightfall"
 
 #define COMSIG_XENOABILITY_RAVAGER_CHARGE "xenoability_ravager_charge"
 #define COMSIG_XENOABILITY_RAVAGE "xenoability_ravage"
@@ -564,6 +573,15 @@
 #define COMSIG_XENOABILITY_FLING "xenoability_fling"
 #define COMSIG_XENOABILITY_PUNCH "xenoability_punch"
 #define COMSIG_XENOABILITY_GRAPPLE_TOSS "xenoability_grapple_toss"
+
+#define COMSIG_XENOABILITY_PLACE_WARP_BEACON "xenoability_place_warp_shadow"
+#define COMSIG_XENOABILITY_HYPERPOSITION "xenoability_hyperposition"
+#define COMSIG_XENOABILITY_PHASE_SHIFT "xenoability_phase_shift"
+#define COMSIG_XENOABILITY_RESYNC "xenoability_resync"
+#define COMSIG_XENOABILITY_BLINK "xenoability_blink"
+#define COMSIG_XENOABILITY_BANISH "xenoability_banish"
+#define COMSIG_XENOABILITY_RECALL "xenoability_recall"
+
 
 // remote control signals
 #define COMSIG_REMOTECONTROL_TOGGLE "remotecontrol_toggle"
@@ -601,3 +619,8 @@
 
 //Signals for CIC orders
 #define COMSIG_ORDER_SELECTED "order_selected"
+
+//Signals for automatic fire at component
+#define COMSIG_AUTOMATIC_SHOOTER_START_SHOOTING_AT "start_shooting_at"
+#define COMSIG_AUTOMATIC_SHOOTER_STOP_SHOOTING_AT "stop_shooting_at"
+#define COMSIG_AUTOMATIC_SHOOTER_SHOOT "shoot"

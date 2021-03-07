@@ -48,7 +48,7 @@
 	component_parts += new /obj/item/cell/high
 	component_parts += new /obj/item/cell/high
 	component_parts += new /obj/item/cell/high
-	return
+
 
 
 /obj/machinery/power/smes/batteryrack/RefreshParts()
@@ -70,7 +70,8 @@
 
 /obj/machinery/power/smes/batteryrack/update_icon()
 	overlays.Cut()
-	if(machine_stat & BROKEN)	return
+	if(machine_stat & BROKEN)
+		return
 
 	if (outputting)
 		overlays += image('icons/obj/power.dmi', "gsmes_outputting")
@@ -80,7 +81,7 @@
 	var/clevel = chargedisplay()
 	if(clevel>0)
 		overlays += image('icons/obj/power.dmi', "gsmes_og[clevel]")
-	return
+
 
 
 /obj/machinery/power/smes/batteryrack/chargedisplay()

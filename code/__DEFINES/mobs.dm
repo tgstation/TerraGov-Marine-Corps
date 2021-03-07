@@ -82,8 +82,6 @@
 #define UNCONSCIOUS	1
 #define DEAD		2
 
-#define check_tod(H) ((!H.undefibbable && world.time <= H.timeofdeath + CONFIG_GET(number/revive_grace_period) + H.revive_grace_time))
-
 //Damage things
 //Way to waste perfectly good damagetype names (BRUTE) on this... If you were really worried about case sensitivity, you could have just used lowertext(damagetype) in the proc...
 #define BRUTE		"brute"
@@ -292,6 +290,9 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define LIMB_PRINTING_TIME 550
 #define LIMB_METAL_AMOUNT 125
 
+//How long it takes for a human to become undefibbable
+#define TIME_BEFORE_DNR 150 //In life ticks, multiply by 2 to have seconds
+
 
 //species_flags
 #define NO_BLOOD 				(1<<0)
@@ -313,18 +314,19 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define DETACHABLE_HEAD			(1<<16)
 #define USES_ALIEN_WEAPONS		(1<<17)
 #define NO_DAMAGE_OVERLAY		(1<<18)
+#define CAN_VENTCRAWL			(1<<19)
 //=================================================
 
 //Some on_mob_life() procs check for alien races.
 #define IS_HUMAN (1<<0)
-#define IS_MONKEY (1<<1)
-#define IS_XENO (1<<2)
-#define IS_VOX (1<<3)
-#define IS_SKRELL (1<<4)
-#define IS_UNATHI (1<<5)
-#define IS_HORROR (1<<6)
-#define IS_MOTH (1<<7)
-#define IS_SECTOID (1<<8)
+#define IS_XENO (1<<1)
+#define IS_VOX (1<<2)
+#define IS_SKRELL (1<<3)
+#define IS_UNATHI (1<<4)
+#define IS_HORROR (1<<5)
+#define IS_MOTH (1<<6)
+#define IS_SECTOID (1<<7)
+#define IS_MONKEY (1<<8)
 //=================================================
 
 //AFK status
@@ -416,6 +418,8 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 //Xeno Defines
 
+#define XENO_DEFAULT_ACID_PUDDLE_DAMAGE	14 //Standard damage dealt by acid puddles
+
 #define HIVE_CAN_HIJACK (1<<0)
 
 #define XENO_PULL_CHARGE_TIME 2 SECONDS
@@ -440,6 +444,11 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define XENO_HEALTH_ALERT_POINTER_DURATION	6 SECONDS //How long the alert directional pointer lasts.
 #define XENO_RALLYING_POINTER_DURATION		15 SECONDS //How long the rally hive pointer lasts
 #define XENO_SILO_DAMAGE_POINTER_DURATION	10 SECONDS //How long the alert directional pointer lasts when silos are damaged
+#define XENO_SILO_DETECTION_COOLDOWN		1 MINUTES
+#define XENO_SILO_DETECTION_RANGE			10//How far silos can detect hostiles
+
+#define XENO_PARALYZE_NORMALIZATION_MULTIPLIER	5 //Multiplies an input to normalize xeno paralyze duration times.
+#define XENO_STUN_NORMALIZATION_MULTIPLIER		2 //Multiplies an input to normalize xeno stun duration times.
 
 #define CANNOT_HOLD_EGGS 0
 #define CAN_HOLD_TWO_HANDS 1
@@ -541,7 +550,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define HIVELORD_TUNNEL_SET_LIMIT				8
 #define HIVELORD_HEAL_RANGE						3
 #define HIVELORD_HEALING_INFUSION_DURATION		60 SECONDS
-#define HIVELORD_HEALING_INFUSION_TICKS			5
+#define HIVELORD_HEALING_INFUSION_TICKS			10
 
 //Shrike defines
 
@@ -562,6 +571,32 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define RUNNER_EVASION_DURATION						2 SECONDS //How long Evasion lasts.
 #define RUNNER_EVASION_RUN_DELAY					0.5 SECONDS //If the time since the Runner last moved is equal to or greater than this, its Evasion ends.
 #define RUNNER_EVASION_COOLDOWN_REFRESH_THRESHOLD	120 //If we dodge this much damage times our streak count plus 1 while evading, refresh the cooldown of Evasion.
+
+//Wraith defines
+
+#define WRAITH_PLACE_WARP_BEACON_WINDUP					3 SECONDS
+#define WRAITH_PLACE_WARP_BEACON_FAIL_COOLDOWN_OVERRIDE	1 SECONDS //When we abort or fail to place a warp beacon, it goes on cooldown for awhile to prevent spam
+
+#define WRAITH_HYPERPOSITION_MIN_WINDUP			0.5 SECONDS
+#define WRAITH_HYPERPOSITION_MAX_WINDUP			5 SECONDS
+#define WRAITH_HYPERPOSITION_COOLDOWN_OVERRIDE	1 SECONDS //When we abort or fail to use hyperposition, it goes on cooldown to prevent spam
+
+#define WRAITH_PHASE_SHIFT_WINDUP			1 SECONDS
+#define WRAITH_PHASE_SHIFT_DURATION			5 SECONDS
+#define WRAITH_PHASE_SHIFT_DURATION_WARNING	0.7
+#define WRAITH_PHASE_SHIFT_ALPHA			128 //50% transparency
+
+#define WRAITH_BLINK_DRAG_NONFRIENDLY_MULTIPLIER	20 //The amount we multiply the cooldown by when we teleport while dragging a non-friendly target
+#define WRAITH_BLINK_DRAG_FRIENDLY_MULTIPLIER		4 //The amount we multiply the cooldown by when we teleport while dragging a friendly target
+#define WRAITH_BLINK_RANGE							3
+
+#define WRAITH_BANISH_BASE_DURATION					10 SECONDS
+#define WRAITH_BANISH_RANGE							3
+#define WRAITH_BANISH_NONFRIENDLY_LIVING_MULTIPLIER	0.5
+#define WRAITH_BANISH_VERY_SHORT_MULTIPLIER			0.3
+
+#define WRAITH_TELEPORT_DEBUFF_STACKS			1 //Stagger and slow stacks applied to adjacent living hostiles before/after a teleport
+
 
 //misc
 

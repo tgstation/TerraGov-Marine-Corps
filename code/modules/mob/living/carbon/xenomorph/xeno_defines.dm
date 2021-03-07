@@ -168,6 +168,21 @@
 	///Amount of leaders allowed
 	var/queen_leader_limit = 0
 
+	// *** Wraith Abilities *** //
+	//Banish - Values for the Wraith's Banish ability
+	///Base duration of Banish before modifiers
+	var/wraith_banish_base_duration = WRAITH_BANISH_BASE_DURATION
+	///Base range of Banish
+	var/wraith_banish_range = WRAITH_BANISH_RANGE
+
+	//Blink - Values for the Wraith's Blink ability
+	///Cooldown multiplier of Blink when used on non-friendlies
+	var/wraith_blink_drag_nonfriendly_living_multiplier = WRAITH_BLINK_DRAG_NONFRIENDLY_MULTIPLIER
+	///Cooldown multiplier of Blink when used on friendlies
+	var/wraith_blink_drag_friendly_multiplier = WRAITH_BLINK_DRAG_FRIENDLY_MULTIPLIER
+	///Base range of Blink
+	var/wraith_blink_range = WRAITH_BLINK_RANGE
+
 	///the 'abilities' available to a caste.
 	var/list/actions
 
@@ -199,7 +214,6 @@
 	initial_language_holder = /datum/language_holder/xeno
 	gib_chance = 5
 	light_system = MOVABLE_LIGHT
-	light_on = FALSE
 
 	var/hivenumber = XENO_HIVE_NORMAL
 
@@ -288,10 +302,6 @@
 	// Defender vars
 	var/fortify = 0
 	var/crest_defense = 0
-
-	// Hivelord vars
-	///Whether or not the Hivelord's healing infusion is active on this target.
-	var/infusion_active = 0
 
 	//Leader vars
 	var/leader_aura_strength = 0 //Pheromone strength inherited from Queen

@@ -177,6 +177,9 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 
 
 /obj/machinery/vending/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(X.status_flags & INCORPOREAL)
+		return FALSE
+
 	if(tipped_level)
 		to_chat(X, "<span class='warning'>There's no reason to bother with that old piece of trash.</span>")
 		return FALSE
@@ -216,7 +219,6 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 	density = FALSE
 	A.Turn(90)
 	transform = A
-	malfunction()
 
 /obj/machinery/vending/proc/flip_back()
 	icon_state = initial(icon_state)
@@ -224,7 +226,6 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 	density = TRUE
 	var/matrix/A = matrix()
 	transform = A
-	machine_stat &= ~BROKEN //Remove broken. MAGICAL REPAIRS
 
 /obj/machinery/vending/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -386,7 +387,30 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 
 	return TRUE
 
+/**
+ * Used only when vendor is tipped to put it back up
+ * Normal usage is in ui_interact
+ */
+/obj/machinery/vending/interact(mob/user)
+	. = ..()
+	if(.) // Handled by ui_interact
+		return
+	if(tipped_level != 2) // only fix when fully tipped
+		return
+
+	if(!iscarbon(user)) // AI can't heave remotely
+		return
+	user.visible_message("<span class='notice'> [user] begins to heave the vending machine back into place!</span>","<span class='notice'> You start heaving the vending machine back into place..</span>")
+	if(!do_after(user, 80, FALSE, src, BUSY_ICON_FRIENDLY))
+		return FALSE
+	user.visible_message("<span class='notice'> [user] rights the [src]!</span>","<span class='notice'> You right the [src]!</span>")
+	flip_back()
+	return TRUE
+
 /obj/machinery/vending/ui_interact(mob/user, datum/tgui/ui)
+	if(tipped_level != 0) // Don't show when tipped or being tipped
+		return
+
 	ui = SStgui.try_update_ui(user, src, ui)
 
 	if(!ui)
@@ -633,7 +657,7 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 	if (!message)
 		return
 
-	say("<span class='game say'><span class='name'>[src]</span> beeps, \"[message]\"</span>")
+	say(message)
 
 /obj/machinery/vending/update_icon()
 	if(machine_stat & BROKEN)

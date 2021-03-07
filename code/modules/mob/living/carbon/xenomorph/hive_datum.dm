@@ -506,7 +506,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	if(filter_list) //Filter out Xenos in the filter list if applicable
 		final_list -= filter_list
 
-	for(var/mob/living/carbon/xenomorph/X as() in final_list)
+	for(var/mob/living/carbon/xenomorph/X AS in final_list)
 
 		if(X.stat) // dead/crit cant hear
 			continue
@@ -727,7 +727,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	if(difference < 0)
 		if(xeno_job.total_positions < (-difference + xeno_job.current_positions))
 			xeno_job.set_job_positions(-difference + xeno_job.current_positions)
-	for(var/obj/structure/resin/silo/silo as() in GLOB.xeno_resin_silos)
+	for(var/obj/structure/resin/silo/silo AS in GLOB.xeno_resin_silos)
 		if(!is_ground_level(silo.z))
 			continue
 		qdel(silo)
@@ -817,6 +817,9 @@ to_chat will check for valid clients itself already so no need to double check f
 /mob/living/carbon/xenomorph/warrior/Corrupted
 	hivenumber = XENO_HIVE_CORRUPTED
 
+/mob/living/carbon/xenomorph/wraith/Corrupted
+	hivenumber = XENO_HIVE_CORRUPTED
+
 // ***************************************
 // *********** Misc Xenos
 // ***************************************
@@ -883,6 +886,9 @@ to_chat will check for valid clients itself already so no need to double check f
 /mob/living/carbon/xenomorph/warrior/Alpha
 	hivenumber = XENO_HIVE_ALPHA
 
+/mob/living/carbon/xenomorph/wraith/Alpha
+	hivenumber = XENO_HIVE_ALPHA
+
 /datum/hive_status/beta
 	name = "Beta"
 	hivenumber = XENO_HIVE_BETA
@@ -946,6 +952,9 @@ to_chat will check for valid clients itself already so no need to double check f
 /mob/living/carbon/xenomorph/warrior/Beta
 	hivenumber = XENO_HIVE_BETA
 
+/mob/living/carbon/xenomorph/wraith/Beta
+	hivenumber = XENO_HIVE_BETA
+
 /datum/hive_status/zeta
 	name = "Zeta"
 	hivenumber = XENO_HIVE_ZETA
@@ -1007,6 +1016,9 @@ to_chat will check for valid clients itself already so no need to double check f
 	hivenumber = XENO_HIVE_ZETA
 
 /mob/living/carbon/xenomorph/warrior/Zeta
+	hivenumber = XENO_HIVE_ZETA
+
+/mob/living/carbon/xenomorph/wraith/Zeta
 	hivenumber = XENO_HIVE_ZETA
 
 /datum/hive_status/admeme
@@ -1133,6 +1145,8 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/normal/handle_silo_death_timer()
 	if(!isdistress(SSticker.mode))
 		return
+	if(world.time < MINIMUM_TIME_SILO_LESS_COLLAPSE)
+		return
 	var/datum/game_mode/infestation/distress/D = SSticker.mode
 	if(D.round_stage != DISTRESS_MARINE_DEPLOYMENT)
 		if(D?.siloless_hive_timer)
@@ -1148,5 +1162,5 @@ to_chat will check for valid clients itself already so no need to double check f
 	if(D?.siloless_hive_timer)
 		return
 
-	xeno_message("<span class='xenoannounce'>A sudden tremor ripples through the hive... the last silo was destroyed! The hive will collapse if nothing is done</span>", 3, TRUE)
-	D.siloless_hive_timer = addtimer(CALLBACK(D, /datum/game_mode.proc/siloless_hive_collapse), 10 MINUTES, TIMER_STOPPABLE)
+	xeno_message("<span class='xenoannounce'>We don't have any silos! The hive will collapse if nothing is done</span>", 3, TRUE)
+	D.siloless_hive_timer = addtimer(CALLBACK(D, /datum/game_mode.proc/siloless_hive_collapse), 20 MINUTES, TIMER_STOPPABLE)

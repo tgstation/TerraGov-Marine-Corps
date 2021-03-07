@@ -85,7 +85,7 @@
 			else
 				mineral_produced = /obj/item/compactorebox/phoron
 		if(MINER_OVERCLOCKED)
-			required_ticks = 35
+			required_ticks = 60
 	miner_upgrade_type = upgrade.uptype
 	user.visible_message("<span class='notice'>[user] attaches the [miner_upgrade_type] to the [src]!</span>")
 	qdel(upgrade)
@@ -244,12 +244,14 @@
 	if(add_tick >= required_ticks)
 		stored_mineral += 1
 		add_tick = 0
-	if(stored_mineral >= 2)	//Stores 2 boxes worth of minerals
+	if(stored_mineral >= 8)	//Stores 8 boxes worth of minerals
 		stop_processing()
 	else
 		add_tick += 1
 
 /obj/machinery/miner/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(X.status_flags & INCORPOREAL) //Incorporeal xenos cannot attack physically.
+		return
 	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 	X.visible_message("<span class='danger'>[X] slashes \the [src]!</span>", \
 	"<span class='danger'>We slash \the [src]!</span>", null, 5)

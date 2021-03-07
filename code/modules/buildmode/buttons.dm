@@ -56,7 +56,7 @@
 
 /obj/screen/buildmode/bdir/update_icon()
 	dir = bd.build_dir
-	return
+
 
 
 /obj/screen/buildmode/bdir/Click()

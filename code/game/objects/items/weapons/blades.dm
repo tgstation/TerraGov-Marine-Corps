@@ -32,7 +32,6 @@
 
 	var/obj/item/reagent_containers/glass/beaker/vial/beaker = null
 	var/datum/reagent/loaded_reagent = null
-	var/effect_active = FALSE
 	var/list/loadable_reagents = list(
 		/datum/reagent/medicine/bicaridine,
 		/datum/reagent/medicine/tramadol,
@@ -83,16 +82,16 @@
 		to_chat(user, "<span class='rose'>The solution needs to be uniform and contain only a single type of reagent to be compatible.</span>")
 		return FALSE
 
-	if(beaker.reagents.total_volume && !istype(container.reagents.reagent_list[1].type, beaker.reagents.reagent_list[1].type))
-		to_chat(user, "<span class='rose'>[src]'s internal storage can contain only kind of solution at the same time. It currently contains <b>[beaker.reagents.reagent_list[1].name]</b></span>")
+	if(beaker.reagents.total_volume && (container.reagents.reagent_list[1].type != beaker.reagents.reagent_list[1].type))
+		to_chat(user, "<span class='rose'>[src]'s internal storage can contain only one kind of solution at the same time. It currently contains <b>[beaker.reagents.reagent_list[1].name]</b></span>")
 		return FALSE
 
 	if(!locate(container.reagents.reagent_list[1].type) in loadable_reagents)
 		to_chat(user, "<span class='rose'>This reagent is not compatible with the weapon's mechanism. Check the engraved symbols for further information.</span>")
 		return FALSE
 
-	if(container.reagents.total_volume < 10)
-		to_chat(user, "<span class='rose'>At least 10u of the substance is needed.</span>")
+	if(container.reagents.total_volume < 5)
+		to_chat(user, "<span class='rose'>At least 5u of the substance is needed.</span>")
 		return FALSE
 
 	if(beaker.reagents.total_volume >= 30)
@@ -103,19 +102,14 @@
 	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_BAR, null, PROGRESS_BRASS))
 		return FALSE
 
-	trans = container.reagents.trans_to(beaker, 40)
+	trans = container.reagents.trans_to(beaker, container.amount_per_transfer_from_this)
 	to_chat(user, "<span class='rose'>You load [trans]u into the internal system. It now holds [beaker.reagents.total_volume]u.</span>")
 	return TRUE
 
 /obj/item/weapon/claymore/harvester/unique_action(mob/user)
-	if(effect_active)
-		to_chat(user, "<span class='rose'>The blade is powered with [beaker.reagents.reagent_list[1]]. You can release the effect by stabbing a creature.</span>")
-		return FALSE
-
 	if(loaded_reagent)
-		effect_active = TRUE
-		to_chat(user, "<span class='rose'>You release the holding mechanism, empowering your next attack.</span>")
-		return TRUE
+		to_chat(user, "<span class='rose'>The blade is powered with [loaded_reagent.name]. You can release the effect by stabbing a creature.</span>")
+		return FALSE
 
 	if(beaker.reagents.total_volume < 10)
 		to_chat(user, "<span class='rose'>You don't have enough substance.</span>")
@@ -129,17 +123,15 @@
 		to_chat(user, "<span class='rose'>Due to the sudden movement, the safety machanism drains out the reagent back into the main storage.</span>")
 		return FALSE
 
+	loaded_reagent = beaker.reagents.reagent_list[1]
 	beaker.reagents.remove_any(10)
-	loaded_reagent = beaker.reagents.reagent_list[1].type
 	return TRUE
 
 /obj/item/weapon/claymore/harvester/attack(mob/living/M, mob/living/user)
-	if(!effect_active)
+	if(!loaded_reagent)
 		return ..()
 
-	effect_active = FALSE
-
-	switch(loaded_reagent)
+	switch(loaded_reagent.type)
 		if(/datum/reagent/medicine/tramadol)
 			M.apply_status_effect(/datum/status_effect/incapacitating/harvester_slowdown, 2 SECONDS)
 
@@ -154,7 +146,7 @@
 		if(/datum/reagent/medicine/bicaridine)
 			to_chat(user, "<span class='rose'>You prepare to stab [M]!</span>")
 			if(!do_after(user, 2 SECONDS, TRUE, M, BUSY_ICON_DANGER))
-				return TRUE
+				return FALSE
 			new /obj/effect/temp_visual/telekinesis(get_turf(M))
 			M.heal_overall_damage(10, 0, TRUE)
 			loaded_reagent = null
