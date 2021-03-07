@@ -1,0 +1,4 @@
+author: "SkeletalElite"
+delete-after: True
+changes: 
+  - bugfix: "Hypervene no longer remains in your system for an obscene amount of time"
