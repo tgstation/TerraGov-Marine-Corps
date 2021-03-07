@@ -472,8 +472,6 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	var/obj/effect/temp_visual/banishment_portal/portal = null
 	///The timer ID of any Banish currently active
 	var/banish_duration_timer_id
-	///Luminosity of the banished target
-	var/stored_luminosity
 
 /datum/action/xeno_action/activable/banish/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -508,8 +506,9 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	portal = new /obj/effect/temp_visual/banishment_portal(banished_turf)
 	banishment_target.forceMove(portal) //Banish the target to Brazil; yes he's going there
 	banishment_target.resistance_flags = RESIST_ALL
-	stored_luminosity = banishment_target.luminosity //Store the target's luminosity
-	banishment_target.luminosity = 0 //Zero out the target's lights
+	var/area/brazil = locate(/area/shadow_realm) in GLOB.sorted_areas
+	banishment_target.forceMove(SAFEPICK(get_area_turfs(brazil)))
+
 	if(isliving(A))
 		var/mob/living/stasis_target = banishment_target
 		stasis_target.apply_status_effect(/datum/status_effect/incapacitating/unconscious) //Force the target to KO
@@ -523,8 +522,11 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	animate(portal.get_filter("banish_portal_1"), x = 20*rand() - 10, y = 20*rand() - 10, time = 0.5 SECONDS, loop = -1, flags=ANIMATION_PARALLEL)
 	animate(portal.get_filter("banish_portal_2"), x = 20*rand() - 10, y = 20*rand() - 10, time = 0.5 SECONDS, loop = -1, flags=ANIMATION_PARALLEL)
 
+	var/cooldown_mod = 1
 	if(isliving(banishment_target) && !(banishment_target.issamexenohive(ghost))) //We halve the max duration for living non-allies
 		duration *= WRAITH_BANISH_NONFRIENDLY_LIVING_MULTIPLIER
+	else if (banishment_target.issamexenohive(ghost))
+		cooldown_mod = 0.6 //40% cooldown reduction if used on friendly targets.
 
 	else if(is_type_in_typecache(banishment_target, GLOB.wraith_banish_very_short_duration_list)) //Barricades should only be gone long enough to admit an infiltrator xeno or two; one way.
 		duration *= WRAITH_BANISH_VERY_SHORT_MULTIPLIER
@@ -540,7 +542,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	banish_duration_timer_id = addtimer(CALLBACK(src, .proc/banish_deactivate), duration, TIMER_STOPPABLE) //store the timer ID
 
 	succeed_activate()
-	add_cooldown()
+	add_cooldown(cooldown_timer * cooldown_mod)
 
 	GLOB.round_statistics.wraith_banishes++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "wraith_banishes") //Statistics
@@ -562,15 +564,14 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 
 	banishment_target.forceMove(get_turf(portal))
 	banishment_target.resistance_flags = initial(banishment_target.resistance_flags)
+	banishment_target.status_flags = initial(banishment_target.status_flags) //Remove stasis and temp invulerability
 	teleport_debuff_aoe(banishment_target) //Debuff/distortion when we reappear
 	banishment_target.add_filter("wraith_banishment_filter", 3, list("type" = "blur", 5)) //Cool filter appear
-	banishment_target.luminosity = stored_luminosity
 	addtimer(CALLBACK(banishment_target, /atom.proc/remove_filter, "wraith_banishment_filter"), 1 SECONDS) //1 sec blur duration
 
 	if(isliving(banishment_target))
 		var/mob/living/living_target = banishment_target
 		living_target = banishment_target
-		living_target.status_flags = initial(living_target.status_flags) //Remove stasis and temp invulerability
 		living_target.remove_status_effect(/datum/status_effect/incapacitating/unconscious) //Force the target to KO
 		living_target.notransform = initial(living_target.notransform)
 		living_target.clear_fullscreen("banish") //Remove the blind overlay
@@ -580,7 +581,6 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 
 	to_chat(owner, "<span class='highdanger'>Our target [banishment_target] has returned to reality at [AREACOORD_NO_Z(banishment_target)]</span>") //Always alert the Wraith
 	log_attack("[key_name(owner)] has unbanished [key_name(banishment_target)] at [AREACOORD(banishment_target)]")
-
 
 	QDEL_NULL(portal) //Eliminate the Brazil portal if we need to
 

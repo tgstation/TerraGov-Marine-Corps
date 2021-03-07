@@ -433,3 +433,11 @@
 	deconstructing = FALSE
 	playsound(src, 'sound/weapons/genhit.ogg', 50, TRUE)
 	ChangeTurf(/turf/open/lavaland/lava)
+
+/turf/open/safe_space
+	icon = 'icons/turf/space.dmi'
+	name = "phantom zone"
+	icon_state = "0"
+	can_bloody = FALSE
+	light_power = 0.25
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED

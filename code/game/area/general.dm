@@ -1379,3 +1379,9 @@
 /area/turret_protected/aisat
 	name = "Abandoned AI Satellite"
 	icon_state = "ai"
+
+///Used for the Wraith's Banish ability
+/area/shadow_realm
+	name = "\improper Brazil"
+	icon_state = "shadow_realm"
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
