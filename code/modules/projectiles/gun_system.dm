@@ -215,11 +215,8 @@
 	SEND_SIGNAL(src, COMSIG_GUN_AUTO_FIRE_COMP_RESET)
 	if(!gun_user)
 		return
-	UnregisterSignal(gun_user, COMSIG_MOB_MOUSEDOWN, .proc/start_fire)
-	UnregisterSignal(gun_user, COMSIG_MOB_MOUSEUP, .proc/stop_fire)
-	UnregisterSignal(gun_user, COMSIG_MOB_MOUSEDRAG, .proc/change_target)
-	UnregisterSignal(src, COMSIG_GUN_MUST_FIRE, .proc/Fire)
-	UnregisterSignal(src, COMSIG_GUN_FIRE_RESET, .proc/reset_fire)
+	UnregisterSignal(gun_user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG))
+	UnregisterSignal(src, list(COMSIG_GUN_MUST_FIRE, COMSIG_GUN_FIRE_RESET, COMSIG_GUN_SET_BURSTING, COMSIG_GUN_SET_EXTRA_DELAY))
 	gun_user = null
 
 /obj/item/weapon/gun/update_icon(mob/user)

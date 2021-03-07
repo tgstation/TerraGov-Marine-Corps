@@ -74,6 +74,7 @@
 		have_to_reset = TRUE
 		return
 	shooting = FALSE
+	shots_fired = 0
 
 ///Hard reset the autofire, happens when the shooter fall/is thrown, at the end of a burst or when it runs out of ammunition
 /datum/component/automatedfire/autofire/proc/hard_reset()
@@ -96,9 +97,9 @@
 				SEND_SIGNAL(parent, COMSIG_GUN_SET_BURSTING, FALSE)
 				bursting = FALSE
 				SEND_SIGNAL(parent, COMSIG_GUN_SET_EXTRA_DELAY, auto_fire_shot_delay * 1.5)
+				stop_firing()
 				if(have_to_reset)//We failed to reset because we were bursting, we do it now
 					SEND_SIGNAL(parent, COMSIG_GUN_FIRE_RESET)
-					shooting = FALSE
 				return
 			SEND_SIGNAL(parent, COMSIG_GUN_SET_BURSTING, TRUE)
 			bursting = TRUE
@@ -113,7 +114,7 @@
 				bursting = FALSE
 				if(have_to_reset)//We failed to reset because we were bursting, we do it now
 					SEND_SIGNAL(parent, COMSIG_GUN_FIRE_RESET)
-					shooting = FALSE
+					stop_firing()
 			else
 				SEND_SIGNAL(parent, COMSIG_GUN_SET_BURSTING, TRUE)
 				bursting = TRUE
