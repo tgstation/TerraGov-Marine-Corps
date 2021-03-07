@@ -25,7 +25,7 @@
 	///How many times we neeed to tick for a resource to be created, in this case this is 2* the specified amount
 	var/required_ticks = 70  //make one crate every 140 seconds
 	///The mineral type that's produced
-	var/mineral_value = 20
+	var/mineral_value = 15
 	///Health for the miner we use because changing obj_integrity is apparently bad
 	var/miner_integrity = 100
 	///Max health of the miner
@@ -40,7 +40,7 @@
 /obj/machinery/miner/damaged/platinum
 	name = "\improper Nanotrasen platinum Mining Well"
 	desc = "A Nanotrasen platinum drill with an internal export module. Produces even more valuable materials than it's phoron counterpart"
-	mineral_value = 40
+	mineral_value = 30
 
 /obj/machinery/miner/Initialize()
 	. = ..()
@@ -210,7 +210,7 @@
 		if(MINER_SMALL_DAMAGE)
 			to_chat(user, "<span class='info'>It's lightly damaged, and you can see some dents and loose piping.</span>\n<span class='info'>Use a wrench to repair it.</span>")
 		if(MINER_RUNNING)
-			to_chat(user, "<span class='info'>[src]'s storage module displays [stored_mineral] crates are ready to be deposited.</span>")
+			to_chat(user, "<span class='info'>[src]'s storage module displays [stored_mineral] crates are ready to be exported.</span>")
 
 /obj/machinery/miner/attack_hand(mob/living/user)
 	if(miner_status != MINER_RUNNING)
