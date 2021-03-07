@@ -10,7 +10,10 @@
 #define MINIMAP_FLAG_ALL (MINIMAP_FLAG_XENO|MINIMAP_FLAG_MARINE|MINIMAP_FLAG_ALPHA|MINIMAP_FLAG_BRAVO|MINIMAP_FLAG_CHARLIE|MINIMAP_FLAG_DELTA)
 
 ///Converts the overworld x and y to minimap x and y values
-#define MINIMAP_PIXEL_FROM_WORLD(val) (val*2-1)
+#define MINIMAP_PIXEL_FROM_WORLD(val) (val*2-3)
+
+//actual size of a users screen in pixels
+#define SCREEN_PIXEL_SIZE 480
 
 GLOBAL_LIST_INIT(all_minimap_flags, bitfield2list(MINIMAP_FLAG_ALL))
 

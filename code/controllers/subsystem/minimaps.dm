@@ -55,7 +55,34 @@ SUBSYSTEM_DEF(minimaps)
 				icon_gen.DrawBox(turfloc.minimap_color, xval, yval)
 		icon_gen.Scale(480*2,480*2) //scale it up x2 to make it easer to see
 		icon_gen.Crop(1, 1, min(icon_gen.Width(), 480), min(icon_gen.Height(), 480)) //then cut all the empty pixels
-		minimaps_by_z["[level]"].hud_image = icon_gen
+
+		//generation is done, now we need to center the icon to someones view, this can be left out if you like it ugly and will halve SSinit time
+		//calculate the offset of the icon
+		var/largest_x = 0
+		var/smallest_x = SCREEN_PIXEL_SIZE
+		var/largest_y = 0
+		var/smallest_y = SCREEN_PIXEL_SIZE
+		for(var/xval=1 to SCREEN_PIXEL_SIZE step 2) //step 2 is twice as fast :)
+			for(var/yval=1 to SCREEN_PIXEL_SIZE step 2) //keep in mind 1 wide giant straight lines will offset wierd but you shouldnt be mapping those anyway right???
+				if(!icon_gen.GetPixel(xval, yval))
+					continue
+				if(xval > largest_x)
+					largest_x = xval
+				else if(xval < smallest_x)
+					smallest_x = xval
+				if(yval > largest_y)
+					largest_y = yval
+				else if(yval < smallest_y)
+					smallest_y = yval
+
+		minimaps_by_z["[level]"].x_offset = FLOOR((SCREEN_PIXEL_SIZE-largest_x-smallest_x)/2, 1)
+		minimaps_by_z["[level]"].y_offset = FLOOR((SCREEN_PIXEL_SIZE-largest_y-smallest_y)/2, 1)
+
+		icon_gen.Shift(EAST, minimaps_by_z["[level]"].x_offset)
+		icon_gen.Shift(NORTH, minimaps_by_z["[level]"].y_offset)
+
+		minimaps_by_z["[level]"].hud_image = icon_gen //done making the image!
+
 	initialized = TRUE
 
 	for(var/i=1 to length(earlyadds)) //lateload icons
@@ -129,6 +156,10 @@ SUBSYSTEM_DEF(minimaps)
 	var/list/images_assoc = list()
 	///Raw list containing updating images by flag; list("[flag]" = list(blip))
 	var/list/images_raw = list()
+	///x offset of the actual icon to center it to screens
+	var/x_offset = 0
+	///y offset of the actual icons to keep it to screens
+	var/y_offset = 0
 
 /datum/hud_displays/New()
 	..()

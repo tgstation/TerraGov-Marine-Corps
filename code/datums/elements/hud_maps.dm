@@ -47,8 +47,13 @@
 /datum/element/hud_map/proc/change_map(mob/source, oldz, newz)
 	SIGNAL_HANDLER
 	UnregisterSignal(source, COMSIG_MOB_HUDMAP_TOGGLED)
+	/**
+	 * Wait why dont you use .?
+	 * YEA WELL IT CRASHES THE SERVER APPARENTLY THANKS BYOND
+	 */
 	//source.client?.screen -= map
-	source.client.screen -= map
+	if(source.client)
+		source.client.screen -= map
 	Detach(source)
 	source.AddElement(/datum/element/hud_map, newz, filter)
 
@@ -65,6 +70,7 @@
 	icon_state = ""
 	layer = ABOVE_HUD_LAYER
 	screen_loc = "1,1"
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/screen/minimap/Initialize(mapload, target, flags)
 	. = ..()
