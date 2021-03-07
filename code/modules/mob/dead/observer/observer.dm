@@ -803,6 +803,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 	do_observe(target)
 
+///makes the ghost see the target hud and sets the eye at the target.
 /mob/dead/observer/proc/do_observe(mob/target)
 	if(!client || !target || !istype(target))
 		return

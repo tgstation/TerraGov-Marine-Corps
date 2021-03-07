@@ -107,3 +107,7 @@
 	data["npcs"] = npcs
 
 	return data
+
+/datum/orbit_menu/ui_assets(mob/user)
+	. = ..() || list()
+	. += get_asset_datum(/datum/asset/simple/orbit)

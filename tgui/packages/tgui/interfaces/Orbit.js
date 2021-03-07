@@ -1,8 +1,8 @@
 import { createSearch, multiline } from 'common/string';
 import { useBackend, useLocalState } from '../backend';
+import { resolveAsset } from '../assets';
 import { Box, Button, Divider, Flex, Icon, Input, Section } from '../components';
 import { Window } from '../layouts';
-
 
 const PATTERN_NUMBER = / \(([0-9]+)\)$/;
 
@@ -66,9 +66,9 @@ const OrbitedButton = (props, context) => {
         <Box inline ml={1}>
           {"("}{thing.orbiters}{" "}
           <Box
-            // as="img"
-            // src={resolveAsset('ghost.png')}
-            // opacity={0.7}
+            as="img"
+            src={resolveAsset('ghost.png')}
+            opacity={0.7}
           />
           {")"}
         </Box>

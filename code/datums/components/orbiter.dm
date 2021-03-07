@@ -148,7 +148,6 @@
 
 /atom/movable/proc/stop_orbit(datum/component/orbiter/orbits)
 	orbit_target = null
-	return // We're just a simple hook
 
 /atom/proc/transfer_observers_to(atom/target)
 	if(!orbiters || !istype(target) || !get_turf(target) || target == src)

@@ -876,7 +876,6 @@ Proc for attack log creation, because really why not
 	if (!source)
 		output += src
 	processed += src
-	for (var/o in orbiters?.orbiters)
-		var/atom/atom_orbiter = o
+	for (var/atom/atom_orbiter AS in orbiters?.orbiters)
 		output += atom_orbiter.get_all_orbiters(processed, source = FALSE)
 	return output
