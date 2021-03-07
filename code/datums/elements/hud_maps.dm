@@ -21,7 +21,7 @@
 	. = ..()
 	mapz = ztarget
 	filter = filtertargets
-	//RegisterSignal(target, COMSIG_MOVABLE_Z_CHANGED, .proc/change_map)
+	RegisterSignal(target, COMSIG_MOVABLE_Z_CHANGED, .proc/change_map)
 	if(!SSminimaps.minimaps_by_z["[ztarget]"] || !SSminimaps.minimaps_by_z["[ztarget]"].hud_image)
 		return
 	if(!map)
@@ -47,7 +47,8 @@
 /datum/element/hud_map/proc/change_map(mob/source, oldz, newz)
 	SIGNAL_HANDLER
 	UnregisterSignal(source, COMSIG_MOB_HUDMAP_TOGGLED)
-	source.client?.screen -= map
+	//source.client?.screen -= map
+	source.client.screen -= map
 	Detach(source)
 	source.AddElement(/datum/element/hud_map, newz, filter)
 
