@@ -1,0 +1,6 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - balance: "AI can use fob drone"
+  - qol: "Fob drone is prefilled with mats, and you can put as many mats in it as you want"
+  - qol: "Mats are automaticly ejected when alamo leaves"
