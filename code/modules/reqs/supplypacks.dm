@@ -226,8 +226,8 @@ WEAPONS
 	cost = MINIGUN_PRICE
 
 /datum/supply_packs/weapons/smartgun
-	name = "T-29 Smart Machinegun kit"
-	contains = list(/obj/item/storage/box/t26_system)
+	name = "T-29 Smart Machinegun"
+	contains = list(/obj/item/weapon/gun/rifle/standard_smartmachinegun)
 	cost = 40
 
 /datum/supply_packs/weapons/flamethrower
