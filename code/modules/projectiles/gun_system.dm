@@ -202,12 +202,11 @@
 		RegisterSignal(src, COMSIG_GUN_MUST_FIRE, .proc/Fire)
 		RegisterSignal(src, COMSIG_GUN_FIRE_RESET, .proc/reset_fire)
 		RegisterSignal(src, COMSIG_GUN_SET_BURSTING, .proc/set_bursting)
-		RegisterSignal(src, COMSIG_GUN_SET_EXTRA_DELAY, .proc/set_extra_delay)
 		return ..()
 	SEND_SIGNAL(src, COMSIG_GUN_AUTO_FIRE_COMP_RESET)
 	if(gun_user)
 		UnregisterSignal(gun_user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG))
-		UnregisterSignal(src, list(COMSIG_GUN_MUST_FIRE, COMSIG_GUN_FIRE_RESET, COMSIG_GUN_SET_BURSTING, COMSIG_GUN_SET_EXTRA_DELAY))
+		UnregisterSignal(src, list(COMSIG_GUN_MUST_FIRE, COMSIG_GUN_FIRE_RESET, COMSIG_GUN_SET_BURSTING))
 		gun_user = null	
 	return ..()
 
@@ -216,7 +215,7 @@
 	if(!gun_user)
 		return
 	UnregisterSignal(gun_user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG))
-	UnregisterSignal(src, list(COMSIG_GUN_MUST_FIRE, COMSIG_GUN_FIRE_RESET, COMSIG_GUN_SET_BURSTING, COMSIG_GUN_SET_EXTRA_DELAY))
+	UnregisterSignal(src, list(COMSIG_GUN_MUST_FIRE, COMSIG_GUN_FIRE_RESET, COMSIG_GUN_SET_BURSTING))
 	gun_user = null
 
 /obj/item/weapon/gun/update_icon(mob/user)
@@ -558,6 +557,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		ENABLE_BITFIELD(flags_gun_features, GUN_BURST_FIRING)
 		return
 	DISABLE_BITFIELD(flags_gun_features, GUN_BURST_FIRING)
+	extra_delay = fire_delay * 1.5
 
 ///Update the target if you draged your mouse
 /obj/item/weapon/gun/proc/change_target(datum/source, atom/src_object, atom/over_object)
