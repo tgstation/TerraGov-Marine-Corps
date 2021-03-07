@@ -56,7 +56,6 @@ SUBSYSTEM_DEF(minimaps)
 		icon_gen.Scale(480*2,480*2) //scale it up x2 to make it easer to see
 		icon_gen.Crop(0, 0, MINIMAP_PIXEL_FROM_WORLD(world.maxx), MINIMAP_PIXEL_FROM_WORLD(world.maxy)) //then cut all the empty pixels
 		minimaps_by_z["[level]"].hud_image = icon_gen
-		message_staff("DEBUG: TARGET Width [icon_gen.Width()], height [icon_gen.Height()]")
 	initialized = TRUE
 
 	for(var/i=1 to length(earlyadds)) //lateload icons

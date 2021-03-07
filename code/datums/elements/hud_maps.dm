@@ -62,7 +62,8 @@
 	name = "Minimap"
 	icon = null
 	icon_state = ""
-	screen_loc = "3,3:-2"
+	layer = ABOVE_HUD_LAYER
+	screen_loc = "0,0"
 
 /obj/screen/minimap/Initialize(mapload, target, flags)
 	. = ..()
