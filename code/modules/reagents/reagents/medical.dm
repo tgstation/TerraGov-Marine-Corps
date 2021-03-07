@@ -1061,7 +1061,7 @@
 	color = "#19C832"
 	overdose_threshold = REAGENTS_OVERDOSE * 0.5
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL * 0.5
-	custom_metabolism = REAGENTS_METABOLISM * 0.05 //set to *5 when i fix this
+	custom_metabolism = REAGENTS_METABOLISM * 5
 	purge_list = list(/datum/reagent/medicine, /datum/reagent/toxin)
 	purge_rate = 5
 	scannable = TRUE
