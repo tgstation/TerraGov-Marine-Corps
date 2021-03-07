@@ -1,0 +1,4 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - balance: "No more siloless collapse timer before 13:00. If you didn't put a silo before that time, the timer will still show up even if you never lost any silos"
