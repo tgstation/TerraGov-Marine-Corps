@@ -156,7 +156,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	throw_speed = 0.5
 	item_state = "cigoff"
 	w_class = WEIGHT_CLASS_TINY
-	flags_armor_protection = 0
+	flags_armor_protection = NONE
 	var/lit = FALSE
 	var/icon_on = "cigon"  //Note - these are in masks.dmi not in cigarette.dmi
 	var/icon_off = "cigoff"
@@ -165,7 +165,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	var/smoketime = 300
 	var/chem_volume = 30
 	var/list/list_reagents = list(/datum/reagent/nicotine = 15)
-	flags_armor_protection = 0
+	flags_armor_protection = NONE
 
 /obj/item/clothing/mask/cigarette/Initialize()
 	. = ..()

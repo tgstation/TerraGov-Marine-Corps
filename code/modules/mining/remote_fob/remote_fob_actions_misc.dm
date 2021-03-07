@@ -159,43 +159,34 @@
 	turret = new /obj/machinery/marine_turret(buildplace)
 	turret.setDir(fobdrone.dir)
 
-/datum/action/innate/remote_fob/eject_metal
+/datum/action/innate/remote_fob/eject_metal_action
 	name = "Eject All Metal"
 	action_icon_state = "fobpc-eject_m"
 
-/datum/action/innate/remote_fob/eject_metal/Activate()
+/datum/action/innate/remote_fob/eject_metal_action/Activate()
 	. = ..()
 	if(.)
 		return
 	if(console.metal_remaining <= 0)
 		to_chat(owner, "<span class='warning'>Nothing to eject.</span>")
 		return
-	var/obj/item/stack/sheet/metal/stack = /obj/item/stack/sheet/metal
-	var/turf/consolespot = get_turf(console)
-	stack = new /obj/item/stack/sheet/metal(consolespot)
-	stack.amount = console.metal_remaining
-	console.metal_remaining = 0
-	to_chat(owner, "<span class='notice'>Ejected [stack.amount] metal sheets.</span>")
-	flick("fobpc-eject", console)
+	console.eject_mat(EJECT_METAL)
+	to_chat(owner, "<span class='notice'>Metal sheets ejected.</span>")
+	
 
-/datum/action/innate/remote_fob/eject_plasteel
+/datum/action/innate/remote_fob/eject_plasteel_action
 	name = "Eject All Plasteel"
 	action_icon_state = "fobpc-eject_p"
 
-/datum/action/innate/remote_fob/eject_plasteel/Activate()
+/datum/action/innate/remote_fob/eject_plasteel_action/Activate()
 	. = ..()
 	if(.)
 		return
 	if(console.plasteel_remaining <= 0)
 		to_chat(owner, "<span class='warning'>Nothing to eject.</span>")
 		return
-	flick("fobpc-eject", console)
-	var/obj/item/stack/sheet/plasteel/stack = /obj/item/stack/sheet/plasteel
-	var/turf/consolespot = get_turf(console)
-	stack = new /obj/item/stack/sheet/plasteel(consolespot)
-	stack.amount = console.plasteel_remaining
-	console.plasteel_remaining = 0
-	to_chat(owner, "<span class='notice'>Ejected [stack.amount] plasteel sheets.</span>")
+	console.eject_mat(EJECT_PLASTEEL)
+	to_chat(owner, "<span class='notice'>Plasteel sheets ejected.</span>")
 
 
 /obj/item/stack/voucher/sentry

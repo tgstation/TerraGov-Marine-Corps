@@ -9157,22 +9157,6 @@
 "aTt" = (
 /obj/structure/rack,
 /obj/item/storage/box/sentry,
-/obj/item/stack/sheet/plasteel/medium_stack,
-/obj/item/stack/sheet/plasteel/medium_stack,
-/obj/item/stack/sheet/metal/large_stack,
-/obj/item/stack/sheet/metal/large_stack,
-/obj/item/stack/sheet/metal{
-	amount = 50;
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/stack/sheet/metal{
-	amount = 50;
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/stack/sheet/metal/medium_stack,
-/obj/item/stack/sheet/metal/small_stack,
 /turf/open/floor/prison,
 /area/sulaco/hangar)
 "aTw" = (

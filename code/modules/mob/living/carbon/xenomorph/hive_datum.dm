@@ -1145,6 +1145,8 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/normal/handle_silo_death_timer()
 	if(!isdistress(SSticker.mode))
 		return
+	if(world.time < MINIMUM_TIME_SILO_LESS_COLLAPSE)
+		return
 	var/datum/game_mode/infestation/distress/D = SSticker.mode
 	if(D.round_stage != DISTRESS_MARINE_DEPLOYMENT)
 		if(D?.siloless_hive_timer)
@@ -1160,5 +1162,5 @@ to_chat will check for valid clients itself already so no need to double check f
 	if(D?.siloless_hive_timer)
 		return
 
-	xeno_message("<span class='xenoannounce'>A sudden tremor ripples through the hive... the last silo was destroyed! The hive will collapse if nothing is done</span>", 3, TRUE)
+	xeno_message("<span class='xenoannounce'>We don't have any silos! The hive will collapse if nothing is done</span>", 3, TRUE)
 	D.siloless_hive_timer = addtimer(CALLBACK(D, /datum/game_mode.proc/siloless_hive_collapse), 20 MINUTES, TIMER_STOPPABLE)

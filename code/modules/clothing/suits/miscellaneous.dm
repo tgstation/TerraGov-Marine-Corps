@@ -267,7 +267,7 @@
 
 //stripper
 /obj/item/clothing/under/stripper
-	flags_armor_protection = 0
+	flags_armor_protection = NONE
 
 /obj/item/clothing/under/stripper/stripper_pink
 	name = "pink swimsuit"
@@ -310,7 +310,7 @@
 //swimsuit
 /obj/item/clothing/under/swimsuit/
 	siemens_coefficient = 1
-	flags_armor_protection = 0
+	flags_armor_protection = NONE
 
 /obj/item/clothing/under/swimsuit/black
 	name = "black swimsuit"
