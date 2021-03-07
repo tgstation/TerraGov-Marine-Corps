@@ -4,7 +4,7 @@
  * Keep it bespoke so we have to update as few objects as possible in the subsystem
  */
 /datum/element/hud_map
-	element_flags = ELEMENT_BESPOKE
+	element_flags = ELEMENT_BESPOKE|ELEMENT_DETACH
 	id_arg_index = 2
 	///Minimap we're going to be displaying and accessing
 	var/obj/screen/minimap/map
