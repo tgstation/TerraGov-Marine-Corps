@@ -1069,7 +1069,7 @@
 /datum/action/xeno_action/activable/build_turret
 	name = "Secrete acid turret"
 	action_icon_state = "xeno_turret"
-	mechanics_text = "Creates a new xeno acid turret"
+	mechanics_text = "Creates a new xeno acid turret for 100 points"
 	ability_name = "secrete acid turret"
 	plasma_cost = 150
 	cooldown_timer = 60 SECONDS
@@ -1126,6 +1126,7 @@
 		to_chat(owner, "<span class='xenowarning'>Someone used all the psych points while we were building!</span>")
 		return fail_activate()
 
+	to_chat(owner, "<span class='xenowarning'>We build a new acid turret, consomming 100 psychic points in the process</span>")
 	new /obj/structure/resin/xeno_turret(get_turf(A), X.hivenumber)
 
 	SSpoints.xeno_points_by_hive[X.hivenumber] -= psych_cost
