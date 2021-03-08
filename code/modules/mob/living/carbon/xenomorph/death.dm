@@ -60,10 +60,7 @@
 	if(GetComponent(/datum/component/ai_controller))
 		gib()
 
-	for(var/mob/living/carbon/human/victim AS in stomach_contents)
-		REMOVE_TRAIT(victim, TRAIT_STASIS, TRAIT_STASIS)
-		LAZYREMOVE(stomach_contents, victim)
-		victim.forceMove(loc)
+	eject_victim()
 
 	to_chat(src,"<b><span class='deadsay'><p style='font-size:1.5em'><big>We have perished.</big><br><small>But it is not the end of us yet... wait until a newborn can rise in this world...</small></p></span></b>")
 

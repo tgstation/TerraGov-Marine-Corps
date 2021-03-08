@@ -672,13 +672,15 @@
 		return
 	adjust_slowdown(amount * XENO_SLOWDOWN_REGEN)
 
-/mob/living/carbon/xenomorph/proc/eject_cocoon()
+/mob/living/carbon/xenomorph/proc/eject_victim(make_cocoon = FALSE)
 	if(!LAZYLEN(stomach_contents))
-		CRASH("eject_cocoon was called with an empty belly")
-	to_chat(src, "<span class='xenowarning'>You regurgitate a fresh cocoon</span>")
-	playsound(src, "alien_resin_build", 25)
-	for(var/mob/living/carbon/human/victim AS in stomach_contents)
-		victim.dead_ticks = 0
+		return
+	var/mob/living/carbon/victim = stomach_contents[1]
+	LAZYREMOVE(stomach_contents, victim)
+	if(make_cocoon)
 		ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
-		new /obj/cocoon(loc, hivenumber, victim)
-		LAZYREMOVE(stomach_contents, victim)
+		new /obj/structure/cocoon(loc, hivenumber, victim)
+		return
+	victim.forceMove(loc)
+	REMOVE_TRAIT(victim, TRAIT_STASIS, TRAIT_STASIS)
+

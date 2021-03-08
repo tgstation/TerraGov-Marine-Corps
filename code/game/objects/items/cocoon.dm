@@ -1,4 +1,4 @@
-/obj/cocoon
+/obj/structure/cocoon
 	name = "cocoon"
 	desc = "A slimy looking cocoon, it is covered by weird resin and it is vibrating"
 	icon = 'icons/obj/cocoon.dmi'
@@ -21,7 +21,7 @@
 	var/nested = TRUE
 
 
-/obj/cocoon/Initialize(mapload, _hivenumber, mob/living/_victim)
+/obj/structure/cocoon/Initialize(mapload, _hivenumber, mob/living/_victim)
 	. = ..()
 	hivenumber =  _hivenumber
 	victim = _victim
@@ -32,18 +32,20 @@
 	addtimer(CALLBACK(src, .proc/release_victim), cocoon_life_time)
 	new /obj/effect/alien/weeds/node(loc)
 
-/obj/cocoon/process()
+/obj/structure/cocoon/process()
 	SSpoints.xeno_points_by_hive[hivenumber] += psych_points_output
 
-/obj/cocoon/Destroy()
-	if(victim)
+/obj/structure/cocoon/Destroy()
+	if(nested)
 		STOP_PROCESSING(SSslowprocess, src)
 		new /obj/structure/bed/nest(loc)
-		new /obj/cocoon/unnested(loc, hivenumber, victim)
+		new /obj/structure/cocoon/unnested(loc, hivenumber, victim)
 		victim = null
+	else
+		release_victim()
 	return ..()
 
-/obj/cocoon/proc/release_victim()
+/obj/structure/cocoon/proc/release_victim()
 	REMOVE_TRAIT(victim, TRAIT_STASIS, TRAIT_STASIS)
 	if(nested)
 		STOP_PROCESSING(SSslowprocess, src)
@@ -53,7 +55,7 @@
 	victim.setDir(NORTH)
 	victim = null
 
-/obj/cocoon/unnested
+/obj/structure/cocoon/unnested
 	name = "unnested cocoon"
 	desc = "A slimy looking cocoon. You think you can open it with a sharp item"
 	icon_state = "xeno_cocoon_unnested"
@@ -62,14 +64,14 @@
 	anchored = FALSE
 	nested = FALSE
 
-/obj/cocoon/unnested/attacked_by(obj/item/I, mob/living/user, def_zone)
+/obj/structure/cocoon/unnested/attacked_by(obj/item/I, mob/living/user, def_zone)
 	if(victim && I.sharp && do_after(user, 10 SECONDS, TRUE, src))
 		playsound(user, "sound/effects/cutting_cocoon.ogg")
 		release_victim()
-		update_icon_state()
+		update_icon()
 		obj_flags = CAN_BE_HIT
 
-/obj/cocoon/unnested/update_icon_state()
+/obj/structure/cocoon/unnested/update_icon()
 	if(victim)
 		icon_state = "xeno_cocoon_unnested"
 		return

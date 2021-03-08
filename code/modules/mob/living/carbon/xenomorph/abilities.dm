@@ -1273,30 +1273,30 @@
 	. = ..()
 	if(!.)
 		return
-	var/mob/living/carbon/xenomorph/X = owner
 	if(!ishuman(A) || issynth(A))
-		to_chat(X, "<span class='warning'>That wouldn't taste very good.</span>")
+		to_chat(owner, "<span class='warning'>That wouldn't taste very good.</span>")
 		return FALSE
 	var/mob/living/carbon/human/victim = A
-	if(X.do_actions) //can't use if busy
+	if(owner.do_actions) //can't use if busy
 		return FALSE
-	if(!X.Adjacent(victim)) //checks if owner next to target
-		return FALSE
-	if(X.on_fire)
-		if(!silent)
-			to_chat(X, "<span class='warning'>We're too busy being on fire to do this!</span>")
+	if(!owner.Adjacent(victim)) //checks if owner next to target
 		return FALSE
 	if(victim.stat != DEAD)
 		if(!silent)
-			to_chat(X, "<span class='warning'>This creature is struggling too much for us to devour it.</span>")
+			to_chat(owner, "<span class='warning'>This creature is struggling too much for us to devour it.</span>")
 		return FALSE
 	if(HAS_TRAIT(victim, TRAIT_PSY_DRAINED))
 		if(!silent)
-			to_chat(X, "<span class='warning'>There is no longer any life force in this creature!</span>")
+			to_chat(owner, "<span class='warning'>There is no longer any life force in this creature!</span>")
 		return FALSE
 	if(victim.buckled)
 		if(!silent)
-			to_chat(X, "<span class='warning'>[victim] is buckled to something.</span>")
+			to_chat(owner, "<span class='warning'>[victim] is buckled to something.</span>")
+		return FALSE
+	var/mob/living/carbon/xenomorph/X = owner
+	if(X.on_fire)
+		if(!silent)
+			to_chat(X, "<span class='warning'>We're too busy being on fire to do this!</span>")
 		return FALSE
 	if(LAZYLEN(X.stomach_contents)) //Only one thing in the stomach at a time, please
 		if(!silent)
@@ -1310,22 +1310,21 @@
 	X.visible_message("<span class='danger'>[X] starts to devour [victim]!</span>", \
 	"<span class='danger'>We start to devour [victim]!</span>", null, 5)
 
-	if(!do_after(X, 10 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(X, /mob.proc/break_do_after_checks, list("health" = X.health))))
-		to_chat(X, "<span class='warning'>We stop devouring \the [victim]. \He probably tasted gross anyways.</span>")
-		return FALSE
-
-	X.visible_message("<span class='warning'>[X] devours [victim]!</span>", \
-	"<span class='warning'>We devour [victim]!</span>", null, 5)
-
 	succeed_activate()
 
 /datum/action/xeno_action/activable/devour/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
-	if(HAS_TRAIT(A, TRAIT_PSY_DRAINED))
-		to_chat(X, "<span class='warning'>Someone drained the life force of our victim before we could devour it!</span>")
-		return fail_activate()
 	var/mob/living/carbon/human/victim = A
+	if(!do_after(X, 10 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, /mob.proc/break_do_after_checks, list("health" = X.health))))
+		to_chat(owner, "<span class='warning'>We stop devouring \the [victim]. \He probably tasted gross anyways.</span>")
+		return FALSE
+	owner.visible_message("<span class='warning'>[X] devours [victim]!</span>", \
+	"<span class='warning'>We devour [victim]!</span>", null, 5)
+	if(HAS_TRAIT(owner, TRAIT_PSY_DRAINED))
+		to_chat(owner, "<span class='warning'>Someone drained the life force of our victim before we could devour it!</span>")
+		return fail_activate()
 	LAZYADD(X.stomach_contents, victim)
 	victim.forceMove(X)
+	victim.dead_ticks = 0
 	ADD_TRAIT(victim, TRAIT_STASIS, TRAIT_STASIS)
-	addtimer(CALLBACK(X, /mob/living/carbon/xenomorph.proc/eject_cocoon, cocoon_production_time), cocoon_production_time)
+	addtimer(CALLBACK(X, /mob/living/carbon/xenomorph.proc/eject_victim, TRUE), cocoon_production_time)
