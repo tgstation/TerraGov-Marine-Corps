@@ -2819,6 +2819,10 @@
 "jU" = (
 /turf/open/floor/mainship/cargo,
 /area/mainship/squads/general)
+"jW" = (
+/obj/machinery/door_control/mainship/engineering/armory,
+/turf/closed/wall/mainship,
+/area/mainship/engineering/upper_engineering)
 "jX" = (
 /obj/structure/closet/l3closet/virology,
 /obj/machinery/light{
@@ -7848,7 +7852,7 @@
 /area/mainship/command/cic)
 "AG" = (
 /obj/effect/decal/warning_stripes/thin,
-/obj/machinery/door/poddoor/shutters/mainship/cic/armory{
+/obj/machinery/door/poddoor/shutters/mainship/engineering/armory{
 	dir = 2
 	},
 /turf/open/floor/plating/mainship,
@@ -45743,7 +45747,7 @@ uW
 OK
 wY
 OR
-OK
+jW
 yy
 zs
 yx
