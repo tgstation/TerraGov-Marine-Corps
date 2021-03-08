@@ -2761,6 +2761,7 @@
 /area/mainship/hull/lower_hull)
 "jo" = (
 /obj/machinery/light,
+/obj/structure/cable,
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 8
 	},
@@ -2868,6 +2869,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_hallway)
 "jK" = (
@@ -3541,6 +3543,13 @@
 /obj/structure/dropprop,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar/droppod)
+"lY" = (
+/obj/structure/cable,
+/obj/machinery/power/apc/mainship{
+	dir = 1
+	},
+/turf/open/floor/freezer,
+/area/mainship/living/cafeteria_starboard)
 "lZ" = (
 /obj/machinery/door/airlock/mainship/maint,
 /obj/structure/cable,
@@ -4144,6 +4153,12 @@
 /obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
+"oc" = (
+/obj/structure/cable,
+/turf/open/floor/mainship/black{
+	dir = 4
+	},
+/area/mainship/living/cafeteria_starboard)
 "od" = (
 /obj/machinery/bioprinter/stocked,
 /turf/open/floor/mainship/sterile/corner{
@@ -4799,6 +4814,10 @@
 "qr" = (
 /obj/structure/table/mainship,
 /obj/item/storage/bible/booze,
+/obj/machinery/power/apc/mainship{
+	dir = 4
+	},
+/obj/structure/cable,
 /turf/open/floor/mainship/black{
 	dir = 10
 	},
@@ -5459,13 +5478,10 @@
 	},
 /area/space)
 "sM" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/alarm,
-/obj/structure/cable,
-/turf/open/floor/mainship,
-/area/mainship/squads/general)
+/obj/machinery/cryopod/right,
+/obj/machinery/power/apc/mainship,
+/turf/open/floor/mainship/cargo,
+/area/mainship/living/cryo_cells)
 "sN" = (
 /obj/machinery/door/airlock/mainship/maint,
 /obj/structure/cable,
@@ -6146,6 +6162,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 8
 	},
@@ -6690,6 +6707,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 8
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 8
 	},
@@ -7039,6 +7057,7 @@
 /obj/machinery/firealarm{
 	dir = 1
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "xC" = (
@@ -7527,6 +7546,10 @@
 "zc" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/alarm{
+	dir = 1
 	},
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 8
@@ -9103,6 +9126,7 @@
 	dir = 8;
 	on = 1
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "DR" = (
@@ -10649,7 +10673,6 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/structure/cable,
 /obj/machinery/alarm,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
@@ -11145,6 +11168,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "JT" = (
@@ -11246,6 +11270,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "Kf" = (
@@ -11577,6 +11602,11 @@
 	dir = 8
 	},
 /area/mainship/living/cafeteria_starboard)
+"KT" = (
+/obj/effect/landmark/start/job/squadmarine,
+/obj/structure/cable,
+/turf/open/floor/mainship,
+/area/mainship/living/cryo_cells)
 "KW" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -12188,6 +12218,13 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)
+"MT" = (
+/obj/structure/cable,
+/obj/machinery/alarm{
+	dir = 1
+	},
+/turf/open/floor/mainship,
+/area/mainship/squads/general)
 "MU" = (
 /obj/machinery/firealarm,
 /turf/open/floor/mainship/mono,
@@ -12497,6 +12534,7 @@
 /area/mainship/hallways/hangar)
 "NM" = (
 /obj/item/trash/cigbutt,
+/obj/structure/cable,
 /turf/open/floor/mainship/black{
 	dir = 5
 	},
@@ -13277,6 +13315,7 @@
 /obj/machinery/firealarm{
 	dir = 1
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 8
 	},
@@ -13590,6 +13629,13 @@
 	dir = 4
 	},
 /area/mainship/hallways/hangar/droppod)
+"RR" = (
+/obj/machinery/alarm{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/mainship,
+/area/mainship/squads/general)
 "RS" = (
 /obj/machinery/landinglight/ds1/delaythree{
 	dir = 8
@@ -13718,7 +13764,7 @@
 /turf/closed/wall/mainship,
 /area/mainship/living/cryo_cells)
 "Sx" = (
-/obj/machinery/door/airlock/mainship/marine/general/smart,
+/obj/machinery/light,
 /obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
@@ -13920,6 +13966,7 @@
 /obj/structure/bed/chair{
 	dir = 8
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/black{
 	dir = 6
 	},
@@ -14536,9 +14583,6 @@
 "VW" = (
 /obj/machinery/power/apc/mainship,
 /obj/structure/cable,
-/obj/machinery/light{
-	dir = 1
-	},
 /turf/open/floor/mainship/black{
 	dir = 1
 	},
@@ -15142,6 +15186,11 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
+"Zb" = (
+/obj/machinery/door/airlock/mainship/marine/general/smart,
+/obj/structure/cable,
+/turf/open/floor/mainship,
+/area/mainship/squads/general)
 "Zc" = (
 /obj/effect/landmark/start/job/squadleader,
 /obj/effect/landmark/start/latejoin,
@@ -15195,6 +15244,10 @@
 "Zl" = (
 /turf/open/floor/mainship/black,
 /area/mainship/living/cafeteria_starboard)
+"Zm" = (
+/obj/structure/cable,
+/turf/open/floor/mainship/black/full,
+/area/mainship/squads/general)
 "Zo" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8
@@ -48670,7 +48723,7 @@ hm
 EY
 Wa
 qC
-sM
+sU
 PM
 qC
 jy
@@ -48917,15 +48970,15 @@ Zd
 qC
 ZS
 ob
-jl
-jl
-jl
+ob
+ob
+MT
 qC
 ZS
 ob
-jl
-jl
-jl
+ob
+ob
+MT
 qC
 Wa
 JR
@@ -49179,7 +49232,7 @@ EY
 jj
 qC
 UD
-It
+EY
 ES
 EY
 UD
@@ -49188,7 +49241,7 @@ ZS
 uP
 qC
 qC
-Sx
+sQ
 qC
 qC
 Qh
@@ -49429,14 +49482,14 @@ Ee
 Ee
 Ee
 qC
-Iu
-ob
+sU
+jl
 jj
 jl
 LF
 qC
 Iu
-ob
+jl
 UD
 jl
 LF
@@ -49445,7 +49498,7 @@ YD
 JR
 YD
 qC
-sM
+sU
 Wa
 YU
 Ke
@@ -49938,7 +49991,7 @@ ev
 ET
 kB
 NM
-FO
+oc
 Tw
 kj
 Eh
@@ -49956,7 +50009,7 @@ EY
 LF
 qC
 YD
-jl
+ob
 YD
 qC
 sU
@@ -50213,7 +50266,7 @@ iF
 PR
 Ux
 Sz
-EY
+It
 LF
 Ux
 EY
@@ -50470,13 +50523,13 @@ YY
 Co
 qC
 jY
-jl
+ob
 sx
 qC
 sU
 CN
 CN
-LF
+Sx
 Mb
 pk
 ue
@@ -50727,13 +50780,13 @@ jl
 MC
 qC
 sU
-EY
-jl
+It
+RR
 Bv
 xr
 jl
 jl
-EY
+It
 Mb
 jW
 uf
@@ -50990,7 +51043,7 @@ qC
 jl
 wf
 wf
-jl
+ob
 Mb
 Ie
 ug
@@ -51504,7 +51557,7 @@ qC
 jl
 wf
 wf
-jl
+ob
 Mb
 tE
 uh
@@ -51761,7 +51814,7 @@ qC
 sQ
 qC
 qC
-sQ
+Zb
 Mb
 tE
 ui
@@ -52018,7 +52071,7 @@ mR
 Wl
 Wl
 Wl
-Wl
+Zm
 Mb
 tD
 uj
@@ -52275,7 +52328,7 @@ Sk
 nK
 WI
 WI
-DY
+lY
 Ee
 NB
 Mb
@@ -54309,8 +54362,8 @@ Po
 Mb
 CU
 SK
-hb
-tf
+sM
+KT
 ey
 ey
 tf
