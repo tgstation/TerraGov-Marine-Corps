@@ -27,7 +27,6 @@
 	RegisterSignal(parent, COMSIG_GUN_BURST_SHOT_DELAY_MODIFIED, .proc/modify_burstfire_shot_delay)
 	RegisterSignal(parent, COMSIG_GUN_FIRE, .proc/initiate_shot)
 	RegisterSignal(parent, COMSIG_GUN_STOP_FIRE, .proc/stop_firing)
-	RegisterSignal(parent, COMSIG_GUN_AUTO_FIRE_COMP_RESET, .proc/hard_reset)
 	
 	auto_fire_shot_delay = _auto_fire_shot_delay
 	burstfire_shot_delay = _burstfire_shot_delay
@@ -76,16 +75,20 @@
 
 ///Hard reset the autofire, happens when the shooter fall/is thrown, at the end of a burst or when it runs out of ammunition
 /datum/component/automatedfire/autofire/proc/hard_reset()
-	SIGNAL_HANDLER
 	shots_fired = 0
 	have_to_reset = FALSE
-	bursting = FALSE
+	if(bursting)
+		bursting = FALSE
+		SEND_SIGNAL(parent, COMSIG_GUN_SET_BURSTING, FALSE)
 	if(shooting)
 		shooting = FALSE
 
 ///Ask the shooter to fire and schedule the next shot if need
 /datum/component/automatedfire/autofire/process_shot()
+	if(!shooting)
+		return
 	if(!SEND_SIGNAL(parent, COMSIG_GUN_MUST_FIRE) & GUN_HAS_FIRED)
+		hard_reset()
 		return
 	switch(fire_mode)
 		if(GUN_FIREMODE_BURSTFIRE)

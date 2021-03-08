@@ -1126,19 +1126,20 @@
 	if(windup_checked == WEAPON_WINDUP_NOT_CHECKED)
 		playsound(get_turf(src), 'sound/weapons/guns/fire/tank_minigun_start.ogg', 30)
 		INVOKE_ASYNC(src, .proc/do_windup)
-		return TRUE
+		return
 	else if (windup_checked == WEAPON_WINDUP_CHECKING)//We are already in windup, continue
-		return TRUE
-	return ..()
+		return
+	. = ..()
+	if(. != GUN_HAS_FIRED)
+		windup_checked = WEAPON_WINDUP_NOT_CHECKED
 
 /obj/item/weapon/gun/minigun/proc/do_windup()
 	windup_checked = WEAPON_WINDUP_CHECKING
-	if(!do_after(gun_user, 0.15 SECONDS, TRUE, src, BUSY_ICON_DANGER, BUSY_ICON_DANGER, ignore_turf_checks = TRUE))
+	if(!do_after(gun_user, 0.4 SECONDS, TRUE, src, BUSY_ICON_DANGER, BUSY_ICON_DANGER, ignore_turf_checks = TRUE))
 		windup_checked = WEAPON_WINDUP_NOT_CHECKED
 		return
 	windup_checked = WEAPON_WINDUP_CHECKED
-	if(!Fire())
-		windup_checked = WEAPON_WINDUP_NOT_CHECKED
+	SEND_SIGNAL(src, COMSIG_GUN_FIRE)
 
 /obj/item/weapon/gun/minigun/get_ammo_type()
 	if(!ammo)
