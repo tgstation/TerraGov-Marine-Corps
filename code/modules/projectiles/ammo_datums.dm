@@ -1610,6 +1610,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 30
 
 /datum/ammo/xeno/acid/heavy/turret
+	damage = 20
 	name = "acid turret splash"
 	flags_ammo_behavior = AMMO_XENO|AMMO_EXPLOSIVE|AMMO_SKIPS_ALIENS
 

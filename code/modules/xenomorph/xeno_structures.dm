@@ -179,7 +179,7 @@
 	bound_width = 32
 	bound_height = 32
 	obj_integrity = 600
-	max_integrity = 1800
+	max_integrity = 1200
 	layer =  ABOVE_MOB_LAYER
 	density = TRUE
 	///The hive it belongs to
@@ -189,20 +189,21 @@
 	///Range of the turret
 	var/range = 7
 	///Target of the turret
-	var/mob/living/carbon/hostile
+	var/mob/living/hostile
 	///Last target of the turret
-	var/mob/living/carbon/last_hostile
+	var/mob/living/last_hostile
+	///Potential list of targets found by scan
+	var/list/mob/living/potential_hostiles
 	///Fire rate of the target in ticks
 	var/firerate = 5
-	///If true, the sentry will try to find a target to shoot on every second. If not, will do a scan a regular time interval
-	var/awake = FALSE
 	///The last time the sentry did a scan
 	var/last_scan_time
 
 /obj/structure/resin/xeno_turret/Initialize(mapload, hivenumber = XENO_HIVE_NORMAL)
 	. = ..()
 	ammo = GLOB.ammo_list[/datum/ammo/xeno/acid/heavy/turret]
-	ammo.max_range = range
+	ammo.max_range = range + 2 //To prevent funny gamers to abuse the turrets that easily 
+	potential_hostiles = list()
 	associated_hive = GLOB.hive_datums[hivenumber]
 	START_PROCESSING(SSobj, src)
 	AddComponent(/datum/component/automatedfire/xeno_turret_autofire, firerate)
@@ -222,18 +223,18 @@
 /obj/structure/resin/xeno_turret/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			take_damage(1800)
+			take_damage(1200)
 		if(EXPLODE_HEAVY)
-			take_damage(1400)
+			take_damage(600)
 		if(EXPLODE_LIGHT)
-			take_damage(400)
+			take_damage(300)
 
 /obj/structure/resin/flamer_fire_act()
-	take_damage(30, BURN, "fire")
+	take_damage(25, BURN, "fire")
 	ENABLE_BITFIELD(resistance_flags, ON_FIRE)
 
 /obj/structure/resin/fire_act()
-	take_damage(30, BURN, "fire")
+	take_damage(25, BURN, "fire")
 	ENABLE_BITFIELD(resistance_flags, ON_FIRE)
 
 /obj/structure/resin/update_overlays()
@@ -250,9 +251,9 @@
 		update_icon()
 		DISABLE_BITFIELD(resistance_flags, ON_FIRE)
 	if(world.time > last_scan_time + TURRET_SCAN_FREQUENCY)
-		awake = scan()
+		scan()
 		last_scan_time = world.time
-	if(!awake)
+	if(!potential_hostiles.len)
 		return
 	set_hostile(get_target())
 	if (!hostile)
@@ -312,16 +313,16 @@
 
 ///Look for the closest human in range and in light of sight. If no human is in range, will look for xenos of other hives
 /obj/structure/resin/xeno_turret/proc/get_target()
-	var/distance = INFINITY
-	var/buffer_distance
+	var/distance = range + 0.5 //we add 0.5 so if a potential target is at range, it is accepted by the system
+	var/buffer_distance 
 	var/list/turf/path = list()
-	for (var/mob/living/carbon/human/nearby_human AS in cheap_get_humans_near(src, range))
-		if(nearby_human.stat == DEAD)
+	for (var/mob/living/nearby_hostile AS in potential_hostiles)
+		if(nearby_hostile.stat == DEAD)
 			continue
-		buffer_distance = get_dist(nearby_human, src)
+		buffer_distance = get_dist(nearby_hostile, src)
 		if (distance <= buffer_distance) //If we already found a target that's closer
 			continue
-		path = getline(src, nearby_human)
+		path = getline(src, nearby_hostile)
 		path -= get_turf(src)
 		if(!path.len) //Can't shoot if it's on the same turf
 			continue
@@ -342,54 +343,22 @@
 					break //LoF Broken; stop checking; we can't proceed further.
 		if(!blocked)
 			distance = buffer_distance
-			. = nearby_human
-	if(.)//We have found the closest human target, human takes priority on xenos for performance issue
-		return
-
-	for (var/mob/living/carbon/xenomorph/nearby_xeno AS in cheap_get_xenos_near(src, range))
-		if(associated_hive == nearby_xeno.hive) //Xenomorphs not in our hive will be attacked as well!
-			continue
-		if(nearby_xeno.stat == DEAD)
-			continue
-		buffer_distance = get_dist(nearby_xeno, src)
-		if (distance <= buffer_distance) //If we already found a target that's closer
-			continue
-		path = getline(src, nearby_xeno)
-		path -= get_turf(src)
-		if(!path.len) //Can't shoot if it's on the same turf
-			continue
-		var/blocked = FALSE
-		for(var/turf/T AS in path)
-			if(IS_OPAQUE_TURF(T) || T.density && T.throwpass == FALSE)
-				blocked = TRUE
-				break //LoF Broken; stop checking; we can't proceed further.
-
-			for(var/obj/machinery/MA in T)
-				if(MA.opacity || MA.density && MA.throwpass == FALSE)
-					blocked = TRUE
-					break //LoF Broken; stop checking; we can't proceed further.
-
-			for(var/obj/structure/S in T)
-				if(S.opacity || S.density && S.throwpass == FALSE )
-					blocked = TRUE
-					break //LoF Broken; stop checking; we can't proceed further.
-		if(!blocked)
-			distance = buffer_distance
-			. = nearby_xeno
+			. = nearby_hostile
 
 ///Return TRUE if a possible target is near
 /obj/structure/resin/xeno_turret/proc/scan()
+	potential_hostiles.Cut()
 	for (var/mob/living/carbon/human/nearby_human AS in cheap_get_humans_near(src, TURRET_SCAN_RANGE))
 		if(nearby_human.stat == DEAD)
 			continue
-		return TRUE
+		potential_hostiles += nearby_human
 	for (var/mob/living/carbon/xenomorph/nearby_xeno AS in cheap_get_xenos_near(src, range))
 		if(associated_hive == nearby_xeno.hive) //Xenomorphs not in our hive will be attacked as well!
 			continue
 		if(nearby_xeno.stat == DEAD)
 			continue
-		return TRUE
-	return FALSE
+		potential_hostiles += nearby_xeno
+	
 
 ///Signal handler to make the turret shoot at its target
 /obj/structure/resin/xeno_turret/proc/shoot()
