@@ -34,7 +34,6 @@
 		if("closing")
 			flick("pdoorc1", src)
 	playsound(loc, 'sound/machines/blastdoor.ogg', 25)
-	return
 
 /obj/machinery/door/poddoor/open
 	density = FALSE
@@ -226,7 +225,7 @@
 /obj/machinery/door/poddoor/timed_late/containment
 	name = "Containment shutters"
 	desc = "Safety shutters triggered by some kind of lockdown event."
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 	open_layer = UNDER_TURF_LAYER //No longer needs to be interacted with.
 	closed_layer = ABOVE_WINDOW_LAYER //Higher than usual, this is only around on the start of the round.
 

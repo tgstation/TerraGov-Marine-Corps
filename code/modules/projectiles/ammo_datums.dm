@@ -156,7 +156,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		if(bonus_projectiles_type)
 			new_proj.generate_bullet(GLOB.ammo_list[bonus_projectiles_type])
 			var/obj/item/weapon/gun/g = source
-			new_proj.damage *= g.damage_mult //Bonus or reduced damage based on damage modifiers on the gun.
+			if(source) //Check for the source so we don't runtime if we have bonus projectiles from a non-gun source like a Spitter
+				new_proj.damage *= g.damage_mult //Bonus or reduced damage based on damage modifiers on the gun.
 		else //If no bonus type is defined then the extra projectiles are the same as the main one.
 			new_proj.generate_bullet(src)
 		new_proj.accuracy = round(new_proj.accuracy * main_proj.accuracy/initial(main_proj.accuracy)) //if the gun changes the accuracy of the main projectile, it also affects the bonus ones.
@@ -1010,6 +1011,21 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	shrapnel_chance = 25
 	sundering = 2.5
 
+/datum/ammo/bullet/railgun
+	name = "railgun round"
+	hud_state = "alloy_spike"
+	icon_state 	= "blue_bullet"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
+	shell_speed = 4
+	max_range = 12
+	damage = 100
+	penetration = 70
+	sundering = 70
+	bullet_color = COLOR_PULSE_BLUE
+
+/datum/ammo/bullet/railgun/on_hit_mob(mob/M,obj/projectile/P)
+	staggerstun(M, P, weaken = 1, stagger = 3, slowdown = 2, knockback = 4)
+
 /*
 //================================================
 					Rocket Ammo
@@ -1575,6 +1591,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 18
 	max_range = 8
 	bullet_color = COLOR_PALE_GREEN_GRAY
+	///Duration of the acid puddles
+	var/puddle_duration = 1 SECONDS //Lasts 1-3 seconds
+	///Damage dealt by acid puddles
+	var/puddle_acid_damage = XENO_DEFAULT_ACID_PUDDLE_DAMAGE
 
 /datum/ammo/xeno/acid/on_shield_block(mob/victim, obj/projectile/proj)
 	airburst(victim, proj)
@@ -1588,6 +1608,11 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	added_spit_delay = 8
 	spit_cost = 75
 	damage = 30
+
+/datum/ammo/xeno/acid/heavy/turret
+	damage = 20
+	name = "acid turret splash"
+	flags_ammo_behavior = AMMO_XENO|AMMO_EXPLOSIVE|AMMO_SKIPS_ALIENS
 
 /datum/ammo/xeno/acid/heavy/on_hit_mob(mob/M,obj/projectile/P)
 	var/turf/T = get_turf(M)
@@ -1618,10 +1643,23 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/xeno/acid/heavy/do_at_max_range(obj/projectile/P)
 	drop_nade(get_turf(P))
 
-/datum/ammo/xeno/acid/drop_nade(turf/T) //Leaves behind a short lived acid pool; lasts for 1-3 seconds.
+
+/datum/ammo/xeno/acid/drop_nade(turf/T) //Leaves behind an acid pool; defaults to 1-3 seconds.
 	if(T.density)
 		return
-	new /obj/effect/xenomorph/spray(T, 10)
+
+	new /obj/effect/xenomorph/spray(T, puddle_duration, puddle_acid_damage)
+
+
+///For the Spitter's Scatterspit ability
+/datum/ammo/xeno/acid/heavy/scatter
+	damage = 15
+	flags_ammo_behavior = AMMO_XENO|AMMO_EXPLOSIVE|AMMO_SKIPS_ALIENS
+	bonus_projectiles_type = /datum/ammo/xeno/acid/heavy/scatter
+	bonus_projectiles_amount = 5
+	bonus_projectiles_scatter = 10
+	max_range = 7
+	puddle_duration = 2 SECONDS //Lasts 2-4 seconds
 
 /datum/ammo/xeno/boiler_gas
 	name = "glob of gas"

@@ -1,0 +1,5 @@
+author: "SkeletalElite"
+delete-after: True
+changes: 
+  - balance: "CAS rockets are faster and most are less expensive, mini rockets don't blind marines as much"
+  - balance: "Orbit level affects CAS less, both in terms of dropship point generation and fly time."

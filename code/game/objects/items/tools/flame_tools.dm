@@ -156,7 +156,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	throw_speed = 0.5
 	item_state = "cigoff"
 	w_class = WEIGHT_CLASS_TINY
-	flags_armor_protection = 0
+	flags_armor_protection = NONE
 	var/lit = FALSE
 	var/icon_on = "cigon"  //Note - these are in masks.dmi not in cigarette.dmi
 	var/icon_off = "cigoff"
@@ -167,7 +167,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	var/list/list_reagents = list(/datum/reagent/nicotine = 15)
 	/// the quantity that will be transmited each 2 seconds
 	var/transquantity = 0.1
-	flags_armor_protection = 0
+	flags_armor_protection = NONE
 
 /obj/item/clothing/mask/cigarette/Initialize()
 	. = ..()
@@ -328,7 +328,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			reagents.trans_to(C, transquantity)
 		else // else just remove some of the reagents
 			reagents.remove_any(REAGENTS_METABOLISM)
-	return
+
 
 
 /obj/item/clothing/mask/cigarette/attack_self(mob/user)
@@ -336,7 +336,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		user.visible_message("<span class='notice'>[user] calmly drops and treads on the lit [src], putting it out instantly.</span>")
 		playsound(src, 'sound/items/cig_snuff.ogg', 15, 1)
 		die()
-	. = ..()
+	return ..()
 
 /obj/item/clothing/mask/cigarette/attack(atom/target, mob/living/user)
 	if(!lit)
@@ -494,7 +494,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	if(smoketime <= 0)
 		to_chat(user, "<span class='notice'>You refill the pipe with tobacco.</span>")
 		smoketime = initial(smoketime)
-	return
+
 
 /obj/item/clothing/mask/cigarette/pipe/cobpipe
 	name = "corn cob pipe"
@@ -569,7 +569,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			turn_off(user, FALSE)
 	else
 		return ..()
-	return
 
 /obj/item/tool/lighter/proc/turn_off(mob/living/bearer, silent = TRUE)
 	if(heat)

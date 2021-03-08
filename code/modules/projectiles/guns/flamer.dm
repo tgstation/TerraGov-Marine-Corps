@@ -636,9 +636,10 @@
 	if(istype(M))
 		M.flamer_fire_crossed(burnlevel, firelevel)
 
-
 // override this proc to give different walking-over-fire effects
 /mob/living/proc/flamer_fire_crossed(burnlevel, firelevel, fire_mod = 1)
+	if(status_flags & (INCORPOREAL|GODMODE))
+		return FALSE
 	if(!CHECK_BITFIELD(flags_pass, PASSFIRE)) //Pass fire allow to cross fire without being ignited
 		adjust_fire_stacks(burnlevel) //Make it possible to light them on fire later.
 		IgniteMob()
@@ -718,11 +719,13 @@
 		A.flamer_fire_act(burnlevel, firelevel)
 
 	firelevel -= 2 //reduce the intensity by 2 per tick
-	return
+
 
 // override this proc to give different idling-on-fire effects
 /mob/living/flamer_fire_act(burnlevel, firelevel)
 	if(!burnlevel)
+		return
+	if(status_flags & (INCORPOREAL|GODMODE)) //Ignore incorporeal/invul targets
 		return
 	if(hard_armor.getRating("fire") >= 100)
 		to_chat(src, "<span class='warning'>Your suit protects you from most of the flames.</span>")

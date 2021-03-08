@@ -278,3 +278,15 @@ obj/item/ammo_magazine/rifle/m4ra/smart
 	w_class = WEIGHT_CLASS_NORMAL
 	gun_type = /obj/item/weapon/gun/minigun
 
+// railgun
+
+/obj/item/ammo_magazine/railgun
+	name = "railgun canister (rail projectile)"
+	desc = "A canister holding a projectile to be used inside a railgun."
+	caliber = "rail projectile"
+	icon_state = "railgun"
+	default_ammo = /datum/ammo/bullet/railgun
+	max_rounds = 1
+	reload_delay = 20 //Hard to reload.
+	w_class = WEIGHT_CLASS_NORMAL
+	gun_type = /obj/item/weapon/gun/rifle/railgun

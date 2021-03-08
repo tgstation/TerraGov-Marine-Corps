@@ -122,7 +122,7 @@
 
 /mob/living/proc/get_ghost()
 	if(client) //Let's call up the correct ghost!
-		return
+		return null
 	for(var/g in GLOB.observer_list)
 		if(!g) //Observers hard del often so lets just be safe
 			continue
@@ -131,7 +131,7 @@
 			continue
 		if(ghost.client && ghost.can_reenter_corpse)
 			return ghost
-	return
+	return null
 
 
 /mob/living/carbon/human/proc/has_working_organs()
@@ -264,6 +264,7 @@
 	user.visible_message("<span class='notice'>[icon2html(src, viewers(user))] \The [src] beeps: Defibrillation successful.</span>")
 	H.set_stat(UNCONSCIOUS)
 	H.emote("gasp")
+	H.chestburst = 0 //reset our chestburst state
 	H.regenerate_icons()
 	H.reload_fullscreens()
 	H.flash_act()
@@ -272,6 +273,7 @@
 	H.handle_regular_hud_updates()
 	H.updatehealth() //One more time, so it doesn't show the target as dead on HUDs
 	H.dead_ticks = 0 //We reset the DNR time
+	REMOVE_TRAIT(H, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
 	to_chat(H, "<span class='notice'>You suddenly feel a spark and your consciousness returns, dragging you back to the mortal plane.</span>")
 
 	notify_ghosts("<b>[user]</b> has brought <b>[H.name]</b> back to life!", source = H, action = NOTIFY_ORBIT)

@@ -73,8 +73,6 @@
 	else
 		timer_end()
 
-	return
-
 // open/closedoor checks if door_timer has power, if so it checks if the
 // linked door is open/closed (by density) then opens it/closes it.
 
@@ -138,8 +136,6 @@
 
 	if(timetoset <= 0)
 		timetoset = 0
-
-	return
 
 
 /obj/machinery/door_timer/interact(mob/user)
@@ -243,7 +239,7 @@
 		update_display(disp1, disp2)
 	else
 		if(maptext)	maptext = ""
-	return
+
 
 
 // Adds an icon in case the screen is broken/off, stolen from status_display.dm

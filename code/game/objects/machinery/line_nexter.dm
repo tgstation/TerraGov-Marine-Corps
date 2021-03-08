@@ -18,12 +18,12 @@
 	return
 
 /obj/machinery/line_nexter/CheckExit(atom/movable/O, turf/target)
+	. = ..()
 	if(iscarbon(O))
 		var/mob/living/carbon/C = O
 		if(C.pulledby)
 			if(!C.incapacitated() && target == locate(x-1,y,z))
-				return 0
-	return 1
+				return FALSE
 
 /obj/machinery/line_nexter/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()

@@ -1,5 +1,6 @@
 #define CONNECT "Connect"
 #define EXTRACT "Extract"
+#define LOAD "Load up"
 #define BOOST_CONFIG "Switch Boost"
 
 /**
@@ -39,6 +40,10 @@
 	var/obj/item/connected_weapon
 	///When was the effect activated. Used to activate negative effects after a certain amount of use
 	var/processing_start = 0
+	///Internal reagent storage used to store and automatically inject reagents into the wearer
+	var/obj/item/reagent_containers/glass/beaker/meds_beaker
+	///Whether the contents on the meds_beaker will be injected into the wearer when the system is turned on
+	var/automatic_meds_use = TRUE
 	///Image that gets added to the wearer's overlays and gets changed based on resource_storage_current
 	var/static/image/resource_overlay = image('icons/mob/hud.dmi', icon_state = "chemsuit_vis")
 	COOLDOWN_DECLARE(chemboost_activation_cooldown)
@@ -48,12 +53,14 @@
 		return COMPONENT_INCOMPATIBLE
 	update_boost(boost_tier1)
 	analyzer = new
+	meds_beaker = new
 
 /datum/component/chem_booster/Destroy(force, silent)
 	QDEL_NULL(configure_action)
 	QDEL_NULL(power_action)
 	QDEL_NULL(scan_action)
 	QDEL_NULL(analyzer)
+	QDEL_NULL(meds_beaker)
 	wearer = null
 	return ..()
 
@@ -84,6 +91,7 @@
 /datum/component/chem_booster/proc/examine(datum/source, mob/user)
 	SIGNAL_HANDLER
 	to_chat(user, "<span class='notice'>The chemical system currently holds [resource_storage_current]u of green blood. Its' enhancement level is set to [boost_amount+1].</span>")
+	show_meds_beaker_contents(user)
 
 ///Disables active functions and cleans up actions when the suit is unequipped
 /datum/component/chem_booster/proc/dropped(datum/source, mob/user)
@@ -94,6 +102,8 @@
 		on_off()
 	manage_weapon_connection()
 
+	if(!wearer)
+		return
 	configure_action.remove_action(wearer)
 	power_action.remove_action(wearer)
 	scan_action.remove_action(wearer)
@@ -136,7 +146,8 @@
 	var/list/radial_options = list(
 		CONNECT = image(icon = 'icons/mob/radial.dmi', icon_state = "cboost_connect"),
 		BOOST_CONFIG = image(icon = 'icons/mob/radial.dmi', icon_state = "[boost_icon]"),
-		EXTRACT = image(icon = 'icons/mob/radial.dmi', icon_state = "cboost_extract")
+		EXTRACT = image(icon = 'icons/mob/radial.dmi', icon_state = "cboost_extract"),
+		LOAD = image(icon = 'icons/mob/radial.dmi', icon_state = "cboost_load"),
 		)
 
 	var/choice = show_radial_menu(wearer, wearer, radial_options, null, 48, null, TRUE, TRUE)
@@ -154,6 +165,9 @@
 
 		if(EXTRACT)
 			extract(10)
+
+		if(LOAD)
+			load_up()
 
 ///Handles turning on/off the chem effect modufying function, along with the negative effects related to this
 /datum/component/chem_booster/proc/on_off(datum/source)
@@ -199,8 +213,11 @@
 	update_boost(boost_amount*2, FALSE)
 	power_action.action_icon_state = "cboost_on"
 	power_action.update_button_icon()
-	to_chat(wearer, "<span class='notice'>Commensing reagent injection.</span>")
 	playsound(get_turf(wearer), 'sound/effects/bubbles.ogg', 30, 1)
+	to_chat(wearer, "<span class='notice'>Commensing reagent injection.<b>[(automatic_meds_use && meds_beaker.reagents.total_volume) ? " Adding additional reagents." : ""]</b></span>")
+	if(automatic_meds_use)
+		show_meds_beaker_contents(wearer)
+		meds_beaker.reagents.trans_to(wearer, 60)
 
 ///Updates the boost amount of the suit and effect_str of reagents if component is on. "amount" is the final level you want to set the boost to.
 /datum/component/chem_booster/proc/update_boost(amount, update_boost_amount = TRUE)
@@ -330,6 +347,59 @@
 	held_item.reagents.add_reagent(/datum/reagent/virilyth, amount)
 	extract(volume)
 
+///Fills an internal beaker that gets injected into the wearer on suit activation
+/datum/component/chem_booster/proc/load_up()
+	if(wearer.do_actions)
+		return
+
+	var/obj/item/held_item = wearer.get_held_item()
+	if((!istype(held_item, /obj/item/reagent_containers) && !meds_beaker.reagents.total_volume) || istype(held_item, /obj/item/reagent_containers/pill))
+		to_chat(wearer, "<span class='warning'>You need to be holding a liquid container to fill up the system's reagent storage.</span>")
+		return
+
+	if(!istype(held_item, /obj/item/reagent_containers) && meds_beaker.reagents.total_volume)
+		var/pick = tgui_input_list(wearer, "Automatic reagent injection on system activate:", "Vali system", list("Yes", "No"))
+		if(pick == "Yes")
+			automatic_meds_use = TRUE
+		else if(pick == "No")
+			automatic_meds_use = FALSE
+		to_chat(wearer, "<span class='notice'>The chemical system will <b>[automatic_meds_use ? "inject" : "not inject"]</b> loaded reagets on activation.</span>")
+		return
+
+	var/obj/item/reagent_containers/held_beaker = held_item
+	if(!held_beaker.reagents.total_volume && !meds_beaker.reagents.total_volume)
+		to_chat(wearer, "<span class='notice'>Both the held reagent container and the system's reagent storage are empty.</span>")
+		return
+
+	if(!held_beaker.reagents.total_volume && meds_beaker.reagents.total_volume)
+		var/pick = tgui_input_list(wearer, "Unload internal reagent storage into held container:", "Vali system", list("Yes", "No"))
+		if(pick == "Yes")
+			if(!do_after(wearer, 0.5 SECONDS, TRUE, held_item, BUSY_ICON_FRIENDLY, null, PROGRESS_BRASS, ignore_turf_checks = TRUE))
+				return
+			meds_beaker.reagents.trans_to(held_beaker, 60)
+			show_meds_beaker_contents(wearer)
+		return
+
+	if(meds_beaker.reagents.total_volume >= meds_beaker.volume)
+		to_chat(wearer, "<span class='notice'>The system's reagent storage is full. You may consider unloading it if you want to load a different mix.</span>")
+		return
+
+	if(!do_after(wearer, 0.5 SECONDS, TRUE, held_item, BUSY_ICON_FRIENDLY, null, PROGRESS_BRASS, ignore_turf_checks = TRUE))
+		return
+
+	var/trans = held_beaker.reagents.trans_to(meds_beaker, held_beaker.amount_per_transfer_from_this)
+	to_chat(wearer, "<span class='notice'>You load [trans] units into the system's reagent storage.</span>")
+	show_meds_beaker_contents(wearer)
+
+///Shows the loaded reagents to the person examining the parent/wearer
+/datum/component/chem_booster/proc/show_meds_beaker_contents(mob/user)
+	if(!meds_beaker.reagents.total_volume)
+		to_chat(user, "<span class='notice'>The system's reagent storage is empty.</span>")
+		return
+	to_chat(user, "<span class='notice'>The system's reagent storage contains:</span>")
+	for(var/datum/reagent/R AS in meds_beaker.reagents.reagent_list)
+		to_chat(user, "<span class='rose'>[R.name] - [R.volume]u</span>")
+
 /datum/action/chem_booster/configure
 	name = "Configure Vali Chemical Enhancement"
 	action_icon = 'icons/mob/actions.dmi'
@@ -347,4 +417,5 @@
 
 #undef CONNECT
 #undef EXTRACT
+#undef LOAD
 #undef BOOST_CONFIG

@@ -73,6 +73,8 @@
 	var/chat_color_darkened
 	///HUD images that this mob can provide.
 	var/list/hud_possible
+	///Reference to atom being orbited
+	var/atom/orbit_target
 
 /*
 We actually care what this returns, since it can return different directives.
@@ -132,13 +134,11 @@ directive is properly returned.
 
 /atom/proc/Bumped(atom/movable/AM)
 	SEND_SIGNAL(src, COMSIG_ATOM_BUMPED, AM)
-	return
+
 
 ///Can the mover object pass this atom, while heading for the target turf
 /atom/proc/CanPass(atom/movable/mover, turf/target)
 	SHOULD_CALL_PARENT(TRUE)
-	if(mover.status_flags & INCORPOREAL)
-		return TRUE
 	. = CanAllowThrough(mover, target)
 	// This is cheaper than calling the proc every time since most things dont override CanPassThrough
 	if(!mover.generic_canpass)
@@ -149,12 +149,12 @@ directive is properly returned.
 	SHOULD_CALL_PARENT(TRUE)
 	return !density
 
+/// Returns true or false to allow the mover to move out of the atom
 /atom/proc/CheckExit(atom/movable/mover, turf/target)
-	if(!density || !(flags_atom & ON_BORDER) || !(get_dir(mover.loc, target) & dir))
-		return 1
-	else
-		return 0
-
+	SHOULD_CALL_PARENT(TRUE)
+	if(!density || !(flags_atom & ON_BORDER) || !(get_dir(mover.loc, target) & dir) || (mover.status_flags & INCORPOREAL))
+		return TRUE
+	return FALSE
 
 // Convenience proc for reagents handling.
 /atom/proc/is_open_container()
@@ -337,7 +337,6 @@ directive is properly returned.
 /atom/proc/hitby(atom/movable/AM)
 	if(density)
 		AM.set_throwing(FALSE)
-	return
 
 
 /atom/proc/GenerateTag()
@@ -839,11 +838,11 @@ Proc for attack log creation, because really why not
  * user: the mob actioning this
  * toggle_on: if TRUE, will try to turn ON the light. Opposite if FALSE
  * cooldown: how long until you can toggle the light on/off again
- * sparks: if a spark effect will be generated 
+ * sparks: if a spark effect will be generated
  * forced: if TRUE and toggle_on = FALSE, will cause the light to turn on in cooldown second
  * originated_turf: if not null, will check if the obj_turf is closer than distance_max to originated_turf, and the proc will return if not
  * distance_max: used to check if originated_turf is close to obj.loc
-*/	
+*/
 /atom/proc/turn_light(mob/user = null, toggle_on , cooldown = 1 SECONDS, sparks = FALSE, forced = FALSE, originated_turf = null, distance_max = 0)
 	if(originated_turf && (get_dist(originated_turf, loc)<= distance_max))
 		return OUT_OF_REACH
@@ -862,3 +861,21 @@ Proc for attack log creation, because really why not
 ///Turn on the light, should be called by a timer
 /atom/proc/reset_light()
 	turn_light(null, TRUE)
+
+/**
+ * Recursive getter method to return a list of all ghosts orbitting this atom
+ *
+ * This will work fine without manually passing arguments.
+ */
+/atom/proc/get_all_orbiters(list/processed, source = TRUE)
+	var/list/output = list()
+	if (!processed)
+		processed = list()
+	if (src in processed)
+		return output
+	if (!source)
+		output += src
+	processed += src
+	for (var/atom/atom_orbiter AS in orbiters?.orbiters)
+		output += atom_orbiter.get_all_orbiters(processed, source = FALSE)
+	return output

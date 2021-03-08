@@ -136,7 +136,7 @@ Code:
 	SSradio.remove_object(src, frequency)
 	frequency = new_frequency
 	radio_connection = SSradio.add_object(src, frequency, RADIO_SIGNALER)
-	return
+
 
 
 // Embedded signaller used in grenade construction.

@@ -6,9 +6,9 @@
 #define LIGHT_CAN_BE_SHUT 		(1<<3) // Is sensible to nightfall ability, and its light will be turned off
 
 //Fire and Acid stuff, for resistance_flags
-#define INDESTRUCTIBLE	(1<<0) //doesn't take damage
-#define UNACIDABLE		(1<<1) //immune to acid
-#define ON_FIRE			(1<<2) //currently on fire
-#define XENO_DAMAGEABLE	(1<<3) //xenos can damage this by slashing and spitting
+#define INDESTRUCTIBLE		(1<<0) //doesn't take damage
+#define UNACIDABLE			(1<<1) //immune to acid
+#define ON_FIRE				(1<<2) //currently on fire
+#define XENO_DAMAGEABLE		(1<<3) //xenos can damage this by slashing and spitting
 
 #define RESIST_ALL (UNACIDABLE|INDESTRUCTIBLE)

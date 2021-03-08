@@ -323,6 +323,8 @@
 			menuitem.Load_checked(src)
 
 
+	update_ambience_pref()
+
 	//This is down here because of the browse() calls in tooltip/New()
 	if(!tooltips && prefs.tooltips)
 		tooltips = new /datum/tooltip(src)
@@ -376,6 +378,7 @@
 	QDEL_LIST_ASSOC_VAL(char_render_holders)
 	QDEL_NULL(tooltips)
 	Master.UpdateTickRate()
+	SSambience.ambience_listening_clients -= src
 	..() //Even though we're going to be hard deleted there are still some things like signals that want to know the destroy is happening
 	return QDEL_HINT_HARDDEL_NOW
 
@@ -874,3 +877,12 @@ GLOBAL_VAR_INIT(automute_on, null)
 	if(holder)
 		holder.filteriffic = new /datum/filter_editor(in_atom)
 		holder.filteriffic.ui_interact(mob)
+
+///updates with the ambience preferrences of the user
+/client/proc/update_ambience_pref()
+	if(prefs.toggles_sound & SOUND_AMBIENCE)
+		if(SSambience.ambience_listening_clients[src] > world.time)
+			return // If already properly set we don't want to reset the timer.
+		SSambience.ambience_listening_clients[src] = world.time + 10 SECONDS //Just wait 10 seconds before the next one aight mate? cheers.
+	else
+		SSambience.ambience_listening_clients -= src

@@ -311,6 +311,7 @@
 		/obj/item/weapon/gun/smg/m25/elite,
 		/obj/item/weapon/gun/rifle/sniper/elite/xmas,
 		/obj/item/weapon/gun/rifle/sniper/antimaterial,
+		/obj/item/weapon/gun/rifle/railgun,
 		/obj/item/weapon/gun/rifle/sniper/svd,
 		/obj/item/weapon/gun/launcher/m81,
 		/obj/item/weapon/gun/rifle/standard_smartmachinegun,
