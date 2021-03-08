@@ -434,7 +434,9 @@
 	playsound(src, 'sound/weapons/genhit.ogg', 50, TRUE)
 	ChangeTurf(/turf/open/lavaland/lava)
 
-/turf/open/safe_space
+/turf/open/brazil_space
+	plane = PLANE_SPACE
+	layer = SPACE_LAYER
 	icon = 'icons/turf/space.dmi'
 	name = "phantom zone"
 	icon_state = "0"

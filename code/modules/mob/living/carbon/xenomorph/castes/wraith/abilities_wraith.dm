@@ -472,6 +472,8 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	var/obj/effect/temp_visual/banishment_portal/portal = null
 	///The timer ID of any Banish currently active
 	var/banish_duration_timer_id
+	///Phantom zone reserved area
+	var/datum/turf_reservation/reserved_area
 
 /datum/action/xeno_action/activable/banish/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -504,16 +506,18 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 
 	teleport_debuff_aoe(banishment_target) //Debuff when we disappear
 	portal = new /obj/effect/temp_visual/banishment_portal(banished_turf)
-	banishment_target.forceMove(portal) //Banish the target to Brazil; yes he's going there
 	banishment_target.resistance_flags = RESIST_ALL
-	var/area/brazil = locate(/area/shadow_realm) in GLOB.sorted_areas
-	banishment_target.forceMove(SAFEPICK(get_area_turfs(brazil)))
 
 	if(isliving(A))
 		var/mob/living/stasis_target = banishment_target
 		stasis_target.apply_status_effect(/datum/status_effect/incapacitating/unconscious) //Force the target to KO
 		stasis_target.notransform = TRUE //Stasis
 		stasis_target.overlay_fullscreen("banish", /obj/screen/fullscreen/blind) //Force the blind overlay
+
+	reserved_area = SSmapping.RequestBlockReservation(3,3, SSmapping.transit.z_value, /datum/turf_reservation/brazil)
+	var/turf/target_turf = pick(reserved_area.reserved_turfs)
+	new /area/arrival(target_turf) //So we don't get instagibbed from the space area
+	banishment_target.forceMove(target_turf)
 
 	var/duration = ghost.xeno_caste.wraith_banish_base_duration //Set the duration
 
@@ -563,6 +567,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		return
 
 	banishment_target.forceMove(get_turf(portal))
+	QDEL_NULL(reserved_area)
 	banishment_target.resistance_flags = initial(banishment_target.resistance_flags)
 	banishment_target.status_flags = initial(banishment_target.status_flags) //Remove stasis and temp invulerability
 	teleport_debuff_aoe(banishment_target) //Debuff/distortion when we reappear
