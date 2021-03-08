@@ -15,30 +15,6 @@
 	X.lay_down()
 	return succeed_activate()
 
-// Regurgitate
-/datum/action/xeno_action/regurgitate
-	name = "Regurgitate"
-	action_icon_state = "regurgitate"
-	mechanics_text = "Vomit whatever you have devoured."
-	use_state_flags = XACT_USE_STAGGERED|XACT_USE_FORTIFIED|XACT_USE_CRESTED
-	keybind_signal = COMSIG_XENOABILITY_REGURGITATE
-
-/datum/action/xeno_action/regurgitate/can_use_action(silent = FALSE, override_flags)
-	. = ..()
-	if(!.)
-		return FALSE
-	var/mob/living/carbon/xenomorph/devourer = owner
-	if(!LAZYLEN(devourer.stomach_contents))
-		if(!silent)
-			to_chat(devourer, "<span class='warning'>There's nothing in our stomach that needs regurgitating.</span>")
-		return FALSE
-
-/datum/action/xeno_action/regurgitate/action_activate()
-	var/mob/living/carbon/xenomorph/spewer = owner
-	spewer.empty_gut(TRUE)
-
-	return succeed_activate()
-
 //*********
 // Headbite
 //*********
@@ -1232,10 +1208,11 @@
 		return FALSE
 	if(victim.stat != DEAD)
 		if(!silent)
-			to_chat(X, "<span class='warning'>This creature is struggling too much for us to aim precisely.</span>")
+			to_chat(X, "<span class='warning'>This creature is struggling too much for us to drain its life force.</span>")
 		return FALSE
 	if(HAS_TRAIT(victim, TRAIT_PSY_DRAINED))
-		to_chat(X, "<span class='warning'>There is no longer any life force in this creature!</span>")
+		if(!silent)
+			to_chat(X, "<span class='warning'>There is no longer any life force in this creature!</span>")
 		return FALSE
 	if(!ishuman(victim))
 		if(!silent)
@@ -1278,3 +1255,77 @@
 
 	log_combat(victim, owner, "was drained.")
 	log_game("[key_name(victim)] was drained at [AREACOORD(victim.loc)].")
+
+/////////////////////////////////
+// Devour 
+/////////////////////////////////
+/datum/action/xeno_action/activable/devour
+	name = "Devour"
+	action_icon_state = "regurgitate"
+	mechanics_text = "Devour your victim to cocoon it in your belly. This cocoon will be automaticly ejected later, and until the marine inside it sill has life force it will give psychic point"
+	use_state_flags = XACT_USE_STAGGERED|XACT_USE_FORTIFIED|XACT_USE_CRESTED //can't use while staggered, defender fortified or crest down
+	keybind_signal = COMSIG_XENOABILITY_REGURGITATE
+	plasma_cost = 100
+	///In how much time the cocoon will be made
+	var/cocoon_production_time = 15 SECONDS
+
+/datum/action/xeno_action/activable/devour/can_use_ability(atom/A, silent, override_flags)
+	. = ..()
+	if(!.)
+		return
+	var/mob/living/carbon/xenomorph/X = owner
+	if(!ishuman(A) || issynth(A))
+		to_chat(X, "<span class='warning'>That wouldn't taste very good.</span>")
+		return FALSE
+	var/mob/living/carbon/human/victim = A
+	if(X.do_actions) //can't use if busy
+		return FALSE
+	if(!X.Adjacent(victim)) //checks if owner next to target
+		return FALSE
+	if(X.on_fire)
+		if(!silent)
+			to_chat(X, "<span class='warning'>We're too busy being on fire to do this!</span>")
+		return FALSE
+	if(victim.stat != DEAD)
+		if(!silent)
+			to_chat(X, "<span class='warning'>This creature is struggling too much for us to devour it.</span>")
+		return FALSE
+	if(HAS_TRAIT(victim, TRAIT_PSY_DRAINED))
+		if(!silent)
+			to_chat(X, "<span class='warning'>There is no longer any life force in this creature!</span>")
+		return FALSE
+	if(victim.buckled)
+		if(!silent)
+			to_chat(X, "<span class='warning'>[victim] is buckled to something.</span>")
+		return FALSE
+	if(LAZYLEN(X.stomach_contents)) //Only one thing in the stomach at a time, please
+		if(!silent)
+			to_chat(X, "<span class='warning'>We already have something in our stomach, there's no way that will fit.</span>")
+		return FALSE
+	for(var/obj/effect/forcefield/fog in range(1, X))
+		if(!silent)
+			to_chat(X, "<span class='warning'>We are too close to the fog.</span>")
+		return FALSE
+	X.face_atom(victim)
+	X.visible_message("<span class='danger'>[X] starts to devour [victim]!</span>", \
+	"<span class='danger'>We start to devour [victim]!</span>", null, 5)
+
+	if(!do_after(X, 10 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(X, /mob.proc/break_do_after_checks, list("health" = X.health))))
+		to_chat(X, "<span class='warning'>We stop devouring \the [victim]. \He probably tasted gross anyways.</span>")
+		return FALSE
+
+	X.visible_message("<span class='warning'>[X] devours [victim]!</span>", \
+	"<span class='warning'>We devour [victim]!</span>", null, 5)
+
+	succeed_activate()
+
+/datum/action/xeno_action/activable/devour/use_ability(atom/A)
+	var/mob/living/carbon/xenomorph/X = owner
+	if(HAS_TRAIT(A, TRAIT_PSY_DRAINED))
+		to_chat(X, "<span class='warning'>Someone drained the life force of our victim before we could devour it!</span>")
+		return fail_activate()
+	var/mob/living/carbon/human/victim = A
+	LAZYADD(X.stomach_contents, victim)
+	victim.forceMove(X)
+	ADD_TRAIT(victim, TRAIT_STASIS, TRAIT_STASIS)
+	addtimer(CALLBACK(X, /mob/living/carbon/xenomorph/proc/eject_cocoon, cocoon_production_time), cocoon_production_time)
