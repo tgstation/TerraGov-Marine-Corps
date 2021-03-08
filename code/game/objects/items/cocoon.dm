@@ -77,6 +77,3 @@
 		return
 	icon_state = "xeno_cocoon_open"
 	
-		
-
-	
