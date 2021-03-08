@@ -55,7 +55,7 @@
 
 /obj/cocoon/unnested
 	name = "unnested cocoon"
-	desc = "A slimy looking cocoon"
+	desc = "A slimy looking cocoon. You think you can open it with a sharp item"
 	icon_state = "xeno_cocoon_unnested"
 	layer = OBJ_LAYER
 	max_integrity = 400
