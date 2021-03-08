@@ -879,3 +879,88 @@ Proc for attack log creation, because really why not
 	for (var/atom/atom_orbiter AS in orbiters?.orbiters)
 		output += atom_orbiter.get_all_orbiters(processed, source = FALSE)
 	return output
+
+#if DM_VERSION >= 514
+/atom/var/list/particle_data
+
+/particles/snow
+	width = 500
+	height = 500
+	count = 2500
+	spawning = 20
+	bound1 = list(-1000, -300, -1000)
+	lifespan = generator("num", 15 SECONDS, 32 SECONDS, NORMAL_RAND)
+	fade = 5 SECONDS
+	position = generator("box", list(-300,250,0), list(300,300,75))
+	gravity = list(0, -1)
+	friction = 0.3
+	drift = generator("sphere", 0, 2)
+	icon = 'icons/particles/snowflake.dmi'
+	icon_state = list("snowflake_2" = 1, "snowflake_3" = 1, "snowflake_4" = 1, "snowflake_5" = 1)
+
+///Holder for particles  as we can only apply one per /atom/movable
+/atom/movable/particles_holder
+	name = "ERROR: PARTICLES HOLDER VISIBLE"
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+
+/atom/proc/erp()
+	add_particles("erp", 1, /particles/snow, 30 SECONDS)
+
+///Add particles by priority to an atom
+/atom/proc/add_particles(name, priority, type, duration)
+	if(isarea(src))
+		CRASH("Particles added to /area object")
+	LAZYINITLIST(particle_data)
+	var/atom/movable/particles_holder/holder = new
+	holder.particles = new type
+	//holder.layer = layer
+	src:vis_contents += holder
+	particle_data[name] = list("priority" = priority, "particles" = holder)
+	update_particles()
+	if(duration)//move this to a bucketed system once you remove the if dm version compile check
+		addtimer(CALLBACK(src, .proc/remove_particles, name), duration)
+
+///Sorts our filters by priority and reapplies them
+/atom/proc/update_particles()
+	for(var/particle in particle_data)
+		src:vis_contents -= particle_data[particle]["particles"]
+	particle_data = sortTim(particle_data, /proc/cmp_filter_data_priority, TRUE)
+	for(var/particle in particle_data)
+		src:vis_contents += particle_data[particle]["particles"]
+
+/atom/proc/change_particle_priority(name, new_priority)
+	if(!particle_data || !particle_data[name])
+		return
+
+	particle_data[name]["priority"] = new_priority
+	update_particles()
+
+/obj/item/update_particles()
+	. = ..()
+	for(var/datum/action/A AS in actions)
+		A.update_button_icon()
+
+///returns a filter in the managed filters list by name
+/atom/proc/get_particle_holder(name)
+	return particle_data?[name]?["particles"]
+
+///removes a filter from the atom
+/atom/proc/remove_particles(name_or_names)
+	if(!particle_data)
+		return
+	var/list/names = islist(name_or_names) ? name_or_names : list(name_or_names)
+
+	for(var/name in names)
+		if(particle_data[name])
+			src:vis_contents -= particle_data[name]["particles"]
+			particle_data -= name
+	update_particles()
+
+/atom/proc/clear_particles()
+	for(var/name in particle_data)
+		if(particle_data[name])
+			src:vis_contents -= particle_data[name]["particles"] // no need to qdel, it autogc's
+			particle_data -= name
+	UNSETEMPTY(particle_data)
+
+#endif
