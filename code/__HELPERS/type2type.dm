@@ -75,7 +75,7 @@
 		hex = text("0[]", hex)
 	return hex
 
-
+//TODO replace thise usage with the byond proc
 //Converts a string into a list by splitting the string at each delimiter found. (discarding the seperator)
 /proc/text2list(text, delimiter = "\n")
 	var/delim_len = length(delimiter)
