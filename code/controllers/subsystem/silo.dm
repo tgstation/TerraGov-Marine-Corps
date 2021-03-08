@@ -9,6 +9,8 @@ SUBSYSTEM_DEF(silo)
 	var/current_larva_spawn_rate = 0
 	///If the silos are maturing
 	var/silos_do_mature = FALSE
+	///How many psych points one corrupted generator gives
+	var/corrupted_gen_output
 
 
 /datum/controller/subsystem/silo/Initialize(timeofday)
@@ -21,6 +23,7 @@ SUBSYSTEM_DEF(silo)
 	for(var/obj/structure/resin/silo/silo AS in GLOB.xeno_resin_silos)
 		current_larva_spawn_rate += clamp(base_larva_spawn_rate * (1 + silo.maturity/(5400)), base_larva_spawn_rate, 2 * base_larva_spawn_rate)
 	xeno_job.add_job_points(current_larva_spawn_rate)
+	corrupted_gen_output = TGS_CLIENT_COUNT * BASE_PSYCH_POINT_OUTPUT
 
 ///Activate the subsystem when shutters open and remove the free spawning when marines are joining
 /datum/controller/subsystem/silo/proc/start_spawning()
