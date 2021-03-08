@@ -1,6 +1,0 @@
-author: "SplinterGP"
-delete-after: True
-changes: 
-  - qol: "ghost orbit menu now has an auto observe button, which allows you to see what the orbitted mob sees(atleast HUD's)"
-  - bugfix: "fixes ghost orbit menu not following certain things like larvas."
-  - code_imp: "orbit menu doens't autoupdate anymore to save perfomance, now has a refresh button"

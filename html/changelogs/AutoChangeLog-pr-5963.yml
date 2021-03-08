@@ -1,5 +1,0 @@
-author: "Surrealaser"
-delete-after: True
-changes: 
-  - code_imp: "Xeno hive alert code improved; can now visibly ping non-turf targets.
-tweak: Xeno health alert preferences made more intuitive."

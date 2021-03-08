@@ -1,4 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - balance: "Corrupted generators output scale with the players count. Also big nerf compared to previous output"
