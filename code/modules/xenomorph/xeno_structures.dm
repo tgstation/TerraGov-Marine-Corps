@@ -230,11 +230,11 @@
 			take_damage(300)
 
 /obj/structure/resin/flamer_fire_act()
-	take_damage(25, BURN, "fire")
+	take_damage(60, BURN, "fire")
 	ENABLE_BITFIELD(resistance_flags, ON_FIRE)
 
 /obj/structure/resin/fire_act()
-	take_damage(25, BURN, "fire")
+	take_damage(60, BURN, "fire")
 	ENABLE_BITFIELD(resistance_flags, ON_FIRE)
 
 /obj/structure/resin/update_overlays()
