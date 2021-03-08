@@ -414,7 +414,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/clothing/mask/cigarette/tram
 	name = "poppy flavored cigarette"
-	desc = "terragov opioid alternative, dilluted in water to abide the law."
+	desc = "TerraGov opioid alternative, diluted in water to skirt the 2112 Opioid Control act."
 	icon_state = "tramcigoff"
 	item_state = "tramcigoff"
 	icon_on = "tramcigon"
