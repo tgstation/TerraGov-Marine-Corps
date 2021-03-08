@@ -1213,6 +1213,8 @@
 	var/psy_points_reward = 60
 	///How much larva points it gives (8 points for one larva in distress)
 	var/larva_point_reward = 1
+	///How much clone damage it does 
+	var/clone_damage = 10
 
 /datum/action/xeno_action/activable/psydrain/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..() //do after checking the below stuff
@@ -1271,6 +1273,7 @@
 	victim.do_jitter_animation(2)
 
 	ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
+	victim.apply_damage(clone_damage, CLONE)
 
 	SSpoints.xeno_points_by_hive[X.hivenumber] += psy_points_reward
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
