@@ -179,7 +179,7 @@
 	bound_width = 32
 	bound_height = 32
 	obj_integrity = 600
-	max_integrity = 1200
+	max_integrity = 1500
 	layer =  ABOVE_MOB_LAYER
 	density = TRUE
 	///The hive it belongs to
@@ -223,9 +223,9 @@
 /obj/structure/resin/xeno_turret/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			take_damage(1200)
+			take_damage(1500)
 		if(EXPLODE_HEAVY)
-			take_damage(600)
+			take_damage(750)
 		if(EXPLODE_LIGHT)
 			take_damage(300)
 
