@@ -165,7 +165,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	var/smoketime = 300
 	var/chem_volume = 30
 	var/list/list_reagents = list(/datum/reagent/nicotine = 15)
-	var/transquantity = 0.1 //the quantity that will be transmited each 2 seconds
+	/// the quantity that will be transmited each 2 seconds
+	var/transquantity = 0.1
 	flags_armor_protection = 0
 
 /obj/item/clothing/mask/cigarette/Initialize()
