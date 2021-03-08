@@ -1210,9 +1210,9 @@
 	keybind_signal = COMSIG_XENOABILITY_HEADBITE
 	plasma_cost = 100
 	///How much psy points it give
-	var/psy_points_reward = 60
+	var/psy_points_reward = 30
 	///How much larva points it gives (8 points for one larva in distress)
-	var/larva_point_reward = 1
+	var/larva_point_reward = 1.4
 
 /datum/action/xeno_action/activable/psydrain/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..() //do after checking the below stuff
