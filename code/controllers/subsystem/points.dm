@@ -77,6 +77,11 @@ SUBSYSTEM_DEF(points)
 
 	supply_points += SUPPLY_POINT_RATE / (1 MINUTES / wait)
 
+/datum/controller/subsystem/points/proc/add_psy_points(hivenumber, amount)
+	if(!CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_PSY_POINTS))
+		return
+	xeno_points_by_hive[hivenumber] += amount
+
 /datum/controller/subsystem/points/proc/scale_supply_points(scale)
 	supply_points = round(supply_points * scale)
 /datum/controller/subsystem/points/proc/approve_request(datum/supply_order/O, mob/user)

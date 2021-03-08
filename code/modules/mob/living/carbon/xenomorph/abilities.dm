@@ -1271,8 +1271,8 @@
 	victim.do_jitter_animation(2)
 
 	ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
-
-	SSpoints.xeno_points_by_hive[X.hivenumber] += psy_points_reward
+	
+	SSpoints.add_psy_points(X.hivenumber, psy_points_reward)
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	xeno_job.add_job_points(larva_point_reward)
 
