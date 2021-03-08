@@ -88,7 +88,8 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 	if(length(mar) > 0)
 		dat += "<tr><th colspan=3>Marine Personnel</th></tr>"
 		for(var/j in list("Alpha","Bravo","Charlie", "Delta"))
-			dat += "<tr><th colspan=3>[j]</th></tr>"
+			if(length(squads[j]))
+				dat += "<tr><th colspan=3>[j]</th></tr>"
 			for(var/name in mar)
 				if(squads[name] == j)
 					dat += "<tr[even ? " class='alt'" : ""]><td>[mar[name]]</td><td>[name]</td><td>[isactive[name]]</td></tr>"
