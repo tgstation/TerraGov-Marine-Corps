@@ -67,7 +67,7 @@
 		playsound(user, "sound/effects/cutting_cocoon.ogg")
 		release_victim()
 		update_icon_state()
-		obj_flag = CAN_BE_HIT
+		obj_flags = CAN_BE_HIT
 
 /obj/cocoon/unnested/update_icon_state()
 	if(victim)

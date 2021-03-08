@@ -1328,4 +1328,4 @@
 	LAZYADD(X.stomach_contents, victim)
 	victim.forceMove(X)
 	ADD_TRAIT(victim, TRAIT_STASIS, TRAIT_STASIS)
-	addtimer(CALLBACK(X, /mob/living/carbon/xenomorph/proc/eject_cocoon, cocoon_production_time), cocoon_production_time)
+	addtimer(CALLBACK(X, /mob/living/carbon/xenomorph.proc/eject_cocoon, cocoon_production_time), cocoon_production_time)
