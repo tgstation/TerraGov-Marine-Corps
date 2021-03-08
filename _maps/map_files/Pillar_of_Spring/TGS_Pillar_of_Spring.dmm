@@ -4144,10 +4144,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
-"oc" = (
-/obj/structure/window/framed/mainship,
-/turf/closed/wall/mainship,
-/area/mainship/squads/general)
 "od" = (
 /obj/machinery/bioprinter/stocked,
 /turf/open/floor/mainship/sterile/corner{
@@ -11581,11 +11577,6 @@
 	dir = 8
 	},
 /area/mainship/living/cafeteria_starboard)
-"KT" = (
-/obj/machinery/door/airlock/mainship/maint,
-/obj/structure/cable,
-/turf/closed/wall/mainship,
-/area/mainship/hull/lower_hull)
 "KW" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -12197,12 +12188,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)
-"MT" = (
-/obj/machinery/door/airlock/mainship/maint{
-	dir = 2
-	},
-/turf/closed/wall/mainship,
-/area/mainship/hull/lower_hull)
 "MU" = (
 /obj/machinery/firealarm,
 /turf/open/floor/mainship/mono,
@@ -12621,7 +12606,7 @@
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 2
 	},
-/turf/closed/wall/mainship,
+/turf/open/floor/mainship/mono,
 /area/mainship/squads/general)
 "Os" = (
 /obj/machinery/vending/uniform_supply,
@@ -13605,10 +13590,6 @@
 	dir = 4
 	},
 /area/mainship/hallways/hangar/droppod)
-"RR" = (
-/obj/structure/window/framed/mainship,
-/turf/open/floor/plating,
-/area/mainship/squads/general)
 "RS" = (
 /obj/machinery/landinglight/ds1/delaythree{
 	dir = 8
@@ -15161,15 +15142,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
-"Zb" = (
-/obj/structure/cable,
-/obj/structure/cable,
-/obj/structure/cable,
-/obj/structure/cable,
-/turf/open/floor/mainship/cargo/arrow{
-	dir = 8
-	},
-/area/mainship/living/cryo_cells)
 "Zc" = (
 /obj/effect/landmark/start/job/squadleader,
 /obj/effect/landmark/start/latejoin,
@@ -50232,13 +50204,13 @@ qC
 Vb
 qC
 QO
-RR
+PR
 Cp
 qC
 iF
 qC
 iF
-oc
+PR
 Ux
 Sz
 EY
@@ -53048,7 +53020,7 @@ Mb
 Mb
 Mb
 Mb
-KT
+aL
 Mb
 sO
 Or
@@ -53568,7 +53540,7 @@ CU
 SK
 Yn
 SK
-Zb
+UY
 VC
 SK
 Yn
@@ -55362,7 +55334,7 @@ wV
 wV
 wV
 Pq
-MT
+dJ
 sP
 IY
 IY
