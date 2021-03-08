@@ -404,7 +404,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/clothing/mask/cigarette/kelo
 	name = "lemon flavored cigarette"
-	desc = "its yellow tipped. It got a single word in it (KELOTANE)."
+	desc = "Yellow tipped. has got a single word stamped on the side: \"(KELOTANE)\"."
 	icon_state = "kelocigoff"
 	item_state = "kelocigoff"
 	icon_on = "kelocigon"
