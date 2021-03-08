@@ -1,4 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes: 
-  - refactor: "Ambience will now play consistently rather only when walking a lot"
