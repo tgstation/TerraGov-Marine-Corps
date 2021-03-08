@@ -170,7 +170,7 @@
 
 /obj/item/storage/fancy/chemrettes
 	name = "Chemrette packet"
-	desc = "Terragov, chem filled, cigarettes. Now with extra Flavors!."
+	desc = "Terragov, chem filled, cigarettes. Now with extra Flavors!"
 	icon = 'icons/obj/items/cigarettes.dmi'
 	icon_state = "chempacket"
 	item_state = "chempacket"
