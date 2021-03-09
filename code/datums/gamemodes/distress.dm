@@ -300,7 +300,7 @@
 		CRASH("Xeno attempted prespawn revive while Monitor gamestate dissalowed it")
 	var/mob/living/carbon/xenomorph/xeno = dier
 	xeno.revive()
-	xeno.visible_message("<span class='warning'> [xeno] contorts as the space around it tears and consumes it!</span>", "<span class='xenodanger'>YOU IGNORANT CHILD! I will keep you in this world if I must, but at your expense!</span>")
+	xeno.visible_message("<span class='warning'>[xeno] contorts as the space around it tears and consumes it!</span>", "<span class='xenodanger'>YOU IGNORANT CHILD! I will keep you in this world if I must, but at your expense!</span>")
 	xeno.forceMove(pick(GLOB.xeno_resin_silo_turfs))
 	xeno.upgrade_stored /= 2
 	xeno.set_stagger(10)
