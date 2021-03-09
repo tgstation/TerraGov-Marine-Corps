@@ -672,6 +672,7 @@
 		return
 	adjust_slowdown(amount * XENO_SLOWDOWN_REGEN)
 
+///Eject the mob inside our belly, and putting it in a cocoon if needed
 /mob/living/carbon/xenomorph/proc/eject_victim(make_cocoon = FALSE)
 	if(!LAZYLEN(stomach_contents))
 		return

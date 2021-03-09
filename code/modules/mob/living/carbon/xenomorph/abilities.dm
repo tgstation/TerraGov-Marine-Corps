@@ -1323,7 +1323,7 @@
 	if(HAS_TRAIT(owner, TRAIT_PSY_DRAINED))
 		to_chat(owner, "<span class='warning'>Someone drained the life force of our victim before we could devour it!</span>")
 		return fail_activate()
-	to_chat(owner, "<span class='warning'>We will eject the cocoon in [cocoon_production_time] seconds!</span>")
+	to_chat(owner, "<span class='warning'>We will eject the cocoon in [cocoon_production_time / 10] seconds!</span>")
 	LAZYADD(X.stomach_contents, victim)
 	victim.forceMove(X)
 	victim.dead_ticks = 0

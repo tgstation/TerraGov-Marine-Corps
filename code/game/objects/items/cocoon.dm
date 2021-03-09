@@ -18,7 +18,7 @@
 	///How many psych points it is generating in 5 seconds
 	var/psych_points_output = 1
 	///If the cocoon should produce psych points
-	var/nested = TRUE
+	var/producing_points = TRUE
 
 
 /obj/structure/cocoon/Initialize(mapload, _hivenumber, mob/living/_victim)
@@ -26,7 +26,7 @@
 	hivenumber =  _hivenumber
 	victim = _victim
 	victim.forceMove(src)
-	if(!nested)
+	if(!producing_points)
 		return
 	START_PROCESSING(SSslowprocess, src)
 	addtimer(CALLBACK(src, .proc/release_victim), cocoon_life_time)
@@ -35,43 +35,45 @@
 /obj/structure/cocoon/process()
 	SSpoints.xeno_points_by_hive[hivenumber] += psych_points_output
 
-/obj/structure/cocoon/Destroy()
-	if(nested)
+/obj/structure/cocoon/take_damage(damage_amount, damage_type, damage_flag, effects, attack_dir, armour_penetration)
+	. = ..()
+	if(producing_points && obj_integrity < max_integrity / 2)
 		STOP_PROCESSING(SSslowprocess, src)
 		new /obj/structure/bed/nest(loc)
-		new /obj/structure/cocoon/unnested(loc, hivenumber, victim)
-		victim = null
-	else
+		producing_points = FALSE
+		update_icon()
+		anchored = FALSE
+
+/obj/structure/cocoon/obj_destruction(damage_amount, damage_type, damage_flag)
+	. = ..()
+	if(victim)
 		release_victim()
+
+/obj/structure/cocoon/Destroy()
+	victim = null
 	return ..()
 
+///Open the cocoon and move the victim out 
 /obj/structure/cocoon/proc/release_victim()
 	REMOVE_TRAIT(victim, TRAIT_STASIS, TRAIT_STASIS)
-	if(nested)
-		STOP_PROCESSING(SSslowprocess, src)
-		return
-	playsound(loc, "alien_resin_move", 25)
+	playsound(loc, "alien_resin_move", 35)
+	producing_points = FALSE
 	victim.forceMove(loc)
 	victim.setDir(NORTH)
 	victim = null
 
-/obj/structure/cocoon/unnested
-	name = "unnested cocoon"
-	desc = "A slimy looking cocoon. You think you can open it with a sharp item"
-	icon_state = "xeno_cocoon_unnested"
-	layer = OBJ_LAYER
-	max_integrity = 400
-	anchored = FALSE
-	nested = FALSE
-
-/obj/structure/cocoon/unnested/attacked_by(obj/item/I, mob/living/user, def_zone)
-	if(victim && I.sharp && do_after(user, 10 SECONDS, TRUE, src))
-		playsound(user, "sound/effects/cutting_cocoon.ogg")
+/obj/structure/cocoon/attacked_by(obj/item/I, mob/living/user, def_zone)
+	if(!producing_points && victim && I.sharp && do_after(user, 10 SECONDS, TRUE, src))
+		playsound(user, "sound/effects/cutting_cocoon.ogg", 30)
 		release_victim()
 		update_icon()
-		obj_flags = CAN_BE_HIT
+		return
+	return ..()
 
-/obj/structure/cocoon/unnested/update_icon()
+/obj/structure/cocoon/update_icon_state()
+	if(producing_points)
+		icon_state = "xeno_cocoon"
+		return
 	if(victim)
 		icon_state = "xeno_cocoon_unnested"
 		return
