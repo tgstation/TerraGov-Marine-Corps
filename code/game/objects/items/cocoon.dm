@@ -1,5 +1,5 @@
 /obj/structure/cocoon
-	name = "cocoon"
+	name = "resin cocoon"
 	desc = "A slimy looking cocoon, it is covered by weird resin and it is vibrating"
 	icon = 'icons/obj/cocoon.dmi'
 	icon_state = "xeno_cocoon"
