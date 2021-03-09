@@ -32,6 +32,9 @@
 	///Optimization for dynamic explosion block values, for things whose explosion block is dependent on certain conditions.
 	var/real_explosion_block
 
+	///Variable for colors to be used if the object is given the capability to be recolored using facepaint.
+	var/color_list = null
+
 /obj/Initialize()
 	. = ..()
 	if(islist(soft_armor))

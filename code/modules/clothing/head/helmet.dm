@@ -317,28 +317,13 @@
 /obj/item/clothing/head/helmet/marine/heavy
 	name = "\improper M10E pattern marine helmet"
 	desc = "A standard M10E Pattern Helmet. This is a modified version of the standard M10 helmet, offering an enclosed visor apparatus. It doesn't look to be any more protective damage wise."
-	icon_state = "heavyhelmet_standard"
+	icon_state = "heavyhelmet"
 	flags_item_map_variant = NONE
+	color_list = list("standard", "snow", "green", "grey")
 
-/// Colors the helmet if clicked on by facepaint
-/obj/item/clothing/suit/storage/marine/pasvest/attackby(obj/item/I, mob/user, params)
-	if(!istype(I, /obj/item/facepaint))
-		return pockets.attackby(I, user, params)
-	
-	var/obj/item/facepaint/paint = I
-	if(paint.uses < 1)
-		to_chat(user, "<span class='warning'>\the [paint] is out of color!</span>")
-		return TRUE
-
-	var/new_color = tgui_input_list(user, "Pick a color", "Pick color", list(
-		"standard", "snow", "green", "grey"))
-	if(!new_color)
-		return
-	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
-		return TRUE
-	
-	icon_state = "heavyhelmet_[new_color]"
-	paint.uses--
+/obj/item/clothing/head/helmet/marine/heavy/Initialize()
+	. = ..()
+	AddElement(/datum/element/color)
 
 /obj/item/clothing/head/helmet/marine/leader
 	name = "\improper M11 pattern leader helmet"
