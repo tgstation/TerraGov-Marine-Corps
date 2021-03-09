@@ -1,7 +1,7 @@
 /datum/component/automatedfire/autofire
 	///The current fire mode of the shooter
 	var/fire_mode
-	///Delay between two shot when in full auto
+	///Delay between two shots when in full auto
 	var/auto_fire_shot_delay
 	///Delay between two burst shots
 	var/burstfire_shot_delay
