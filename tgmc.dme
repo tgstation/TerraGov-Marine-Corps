@@ -304,6 +304,7 @@
 #include "code\datums\components\stamina_behavior.dm"
 #include "code\datums\components\suit_autodoc.dm"
 #include "code\datums\elements\_element.dm"
+#include "code\datums\elements\coloring.dm"
 #include "code\datums\elements\egrill_element.dm"
 #include "code\datums\elements\gestures.dm"
 #include "code\datums\elements\light_blocking.dm"
