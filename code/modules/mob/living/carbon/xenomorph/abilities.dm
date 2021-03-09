@@ -1316,7 +1316,7 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/carbon/human/victim = A
 	if(!do_after(X, 10 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, /mob.proc/break_do_after_checks, list("health" = X.health))))
-		to_chat(owner, "<span class='warning'>We stop devouring \the [victim]. \He probably tasted gross anyways.</span>")
+		to_chat(owner, "<span class='warning'>We stop devouring \the [victim]. They probably tasted gross anyways.</span>")
 		return FALSE
 	owner.visible_message("<span class='warning'>[X] devours [victim]!</span>", \
 	"<span class='warning'>We devour [victim]!</span>", null, 5)
