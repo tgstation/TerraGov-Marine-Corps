@@ -1062,6 +1062,77 @@
 
 	succeed_activate()
 
+////////////////////
+/// Build xeno turret
+///////////////////
+
+/datum/action/xeno_action/activable/build_turret
+	name = "Secrete acid turret"
+	action_icon_state = "xeno_turret"
+	mechanics_text = "Creates a new xeno acid turret for 100 points"
+	ability_name = "secrete acid turret"
+	plasma_cost = 150
+	cooldown_timer = 60 SECONDS
+	/// How long does it take to build
+	var/build_time = 15 SECONDS
+	/// Pyschic point cost
+	var/psych_cost = 100
+
+
+/datum/action/xeno_action/activable/build_turret/can_use_ability(atom/A, silent, override_flags)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if(!in_range(owner, A))
+		if(!silent)
+			to_chat(owner, "<span class='warning'>We need to get closer!.</span>")
+		return FALSE
+	var/turf/T = get_turf(A)
+	var/mob/living/carbon/xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/blocker = locate() in T
+	if(blocker && blocker != X && blocker.stat != DEAD)
+		to_chat(X, "<span class='warning'>Can't do that with [blocker] in the way!</span>")
+		return FALSE
+
+	if(!T.is_weedable())
+		to_chat(X, "<span class='warning'>We can't do that here.</span>")
+		return FALSE
+
+	var/obj/effect/alien/weeds/alien_weeds = locate() in T
+
+	for(var/obj/effect/forcefield/fog/F in range(1, X))
+		to_chat(X, "<span class='warning'>We can't build so close to the fog!</span>")
+		return FALSE
+
+	if(!alien_weeds)
+		to_chat(X, "<span class='warning'>We can only shape on weeds. We must find some resin before we start building!</span>")
+		return FALSE
+
+	if(!T.check_alien_construction(X, planned_building = /obj/structure/resin/xeno_turret) || !T.check_disallow_alien_fortification(X))
+		return FALSE
+
+	if(SSpoints.xeno_points_by_hive[X.hivenumber] < psych_cost)
+		to_chat(owner, "<span class='xenowarning'>The hive doesn't have the necessary psychic points for you to do that!</span>")
+		return FALSE
+
+/datum/action/xeno_action/activable/build_turret/use_ability(atom/A)
+	if(!do_after(owner, build_time, TRUE, A, BUSY_ICON_BUILD))
+		return fail_activate()
+
+	var/mob/living/carbon/xenomorph/X = owner
+
+	if(SSpoints.xeno_points_by_hive[X.hivenumber] < psych_cost)
+		to_chat(owner, "<span class='xenowarning'>Someone used all the psych points while we were building!</span>")
+		return fail_activate()
+
+	to_chat(owner, "<span class='xenowarning'>We build a new acid turret, spending 100 psychic points in the process</span>")
+	new /obj/structure/resin/xeno_turret(get_turf(A), X.hivenumber)
+
+	SSpoints.xeno_points_by_hive[X.hivenumber] -= psych_cost
+
+	succeed_activate()
+
 // Salvage Biomass
 /datum/action/xeno_action/activable/salvage_biomass
 	name = "Salvage Biomass"
@@ -1198,3 +1269,83 @@
 
 /datum/action/xeno_action/activable/rally_hive/hivemind //Halve the cooldown for Hiveminds as their relative omnipresence means they can actually make use of this lower cooldown.
 	cooldown_timer = 30 SECONDS
+
+//*********
+// Psy Drain
+//*********
+/datum/action/xeno_action/activable/psydrain
+	name = "Psy drain"
+	action_icon_state = "headbite"
+	mechanics_text = "Drain the victim of its life force to gain larva and psych points"
+	use_state_flags = XACT_USE_STAGGERED|XACT_USE_FORTIFIED|XACT_USE_CRESTED //can't use while staggered, defender fortified or crest down
+	keybind_signal = COMSIG_XENOABILITY_HEADBITE
+	plasma_cost = 100
+	///How much psy points it give
+	var/psy_points_reward = 60
+	///How much larva points it gives (8 points for one larva in distress)
+	var/larva_point_reward = 1
+
+/datum/action/xeno_action/activable/psydrain/can_use_ability(atom/A, silent = FALSE, override_flags)
+	. = ..() //do after checking the below stuff
+	if(!.)
+		return
+	if(!iscarbon(A))
+		return FALSE
+	var/mob/living/carbon/xenomorph/X = owner
+	var/mob/living/carbon/victim = A //target of ability
+	if(X.do_actions) //can't use if busy
+		return FALSE
+	if(!X.Adjacent(victim)) //checks if owner next to target
+		return FALSE
+	if(X.on_fire)
+		if(!silent)
+			to_chat(X, "<span class='warning'>We're too busy being on fire to do this!</span>")
+		return FALSE
+	if(victim.stat != DEAD)
+		if(!silent)
+			to_chat(X, "<span class='warning'>This creature is struggling too much for us to aim precisely.</span>")
+		return FALSE
+	if(HAS_TRAIT(victim, TRAIT_PSY_DRAINED))
+		to_chat(X, "<span class='warning'>There is no longer any life force in this creature!</span>")
+		return FALSE
+	if(!ishuman(victim))
+		if(!silent)
+			to_chat(X, "<span class='warning'>We can't drain something that is not human.</span>")
+		return FALSE
+	if(issynth(victim)) //checks if target is a synth
+		if(!silent)
+			to_chat(X, "<span class='warning'>This artificial construct has no life force to drain</span>")
+		return FALSE
+	X.face_atom(victim) //Face towards the target so we don't look silly
+	X.visible_message("<span class='xenowarning'>\The [X] begins opening its mouth and extending a second jaw towards \the [victim].</span>", \
+	"<span class='danger'>We slowly drain \the [victim]'s life force!</span>", null, 20)
+	playsound(X, 'sound/magic/nightfall.ogg', 40)
+	if(!do_after(X, 10 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(X, /mob.proc/break_do_after_checks, list("health" = X.health))))
+		X.visible_message("<span class='xenowarning'>\The [X] retracts its inner jaw.</span>", \
+		"<span class='danger'>We retract our inner jaw.</span>", null, 20)
+		return FALSE
+	succeed_activate() //dew it
+
+/datum/action/xeno_action/activable/psydrain/use_ability(mob/M)
+	var/mob/living/carbon/xenomorph/X = owner
+	var/mob/living/carbon/victim = M
+
+	if(HAS_TRAIT(victim, TRAIT_PSY_DRAINED))
+		to_chat(X, "<span class='warning'>Someone drained the life force of our victim before we could do it!</span>")
+		return fail_activate()
+	
+	playsound(X, 'sound/magic/end_of_psy_drain.ogg', 40)
+
+	X.visible_message("<span class='xenodanger'>\The [victim]'s life force is drained by \the [X]!</span>", \
+	"<span class='xenodanger'>We suddenly feel \the [victim]'s life force streaming into us!</span>")
+
+	victim.do_jitter_animation(2)
+
+	ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
+
+	SSpoints.xeno_points_by_hive[X.hivenumber] += psy_points_reward
+	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+	xeno_job.add_job_points(larva_point_reward)
+
+	log_combat(victim, owner, "was drained.")
+	log_game("[key_name(victim)] was drained at [AREACOORD(victim.loc)].")

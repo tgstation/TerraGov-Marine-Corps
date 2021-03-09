@@ -66,7 +66,6 @@
 //what to show to the user that examines the weapon we're loaded on.
 /obj/structure/ship_ammo/proc/show_loaded_desc(mob/user)
 	to_chat(user, "It's loaded with \a [src].")
-	return
 
 /obj/structure/ship_ammo/proc/detonate_on(turf/impact, attackdir = NORTH)
 	return
@@ -225,7 +224,7 @@
 	ammo_id = ""
 	bound_width = 64
 	bound_height = 32
-	travelling_time = 6 SECONDS
+	travelling_time = 4 SECONDS
 	point_cost = 0
 	ammo_type = CAS_MISSILE
 
@@ -238,9 +237,9 @@
 	name = "\improper AIM-224 'Widowmaker'"
 	desc = "The AIM-224 is the latest in air to air missile technology. Earning the nickname of 'Widowmaker' from various dropship pilots after improvements to its guidence warhead prevents it from being jammed leading to its high kill rate. Not well suited for ground bombardment, but its high velocity makes it reach its target quickly."
 	icon_state = "single"
-	travelling_time = 4 SECONDS //not powerful, but reaches target fast
+	travelling_time = 3 SECONDS //not powerful, but reaches target fast
 	ammo_id = ""
-	point_cost = 150
+	point_cost = 75
 
 /obj/structure/ship_ammo/rocket/widowmaker/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(3)
@@ -252,7 +251,7 @@
 	desc = "The AGM-227 missile is a mainstay of the overhauled dropship fleet against any mobile or armored ground targets. It's earned the nickname of 'Banshee' from the sudden wail that it emitts right before hitting a target. Useful to clear out large areas."
 	icon_state = "banshee"
 	ammo_id = "b"
-	point_cost = 175
+	point_cost = 150
 
 /obj/structure/ship_ammo/rocket/banshee/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(3)
@@ -277,7 +276,7 @@
 	desc = "The SM-17 'Fatty' is a cluster-bomb type ordnance that only requires laser-guidance when first launched."
 	icon_state = "fatty"
 	ammo_id = "f"
-	point_cost = 300
+	point_cost = 200
 
 /obj/structure/ship_ammo/rocket/fatty/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(2)
@@ -299,7 +298,7 @@
 	desc = "The XN-99 'Napalm' is an incendiary rocket used to turn specific targeted areas into giant balls of fire for a long time."
 	icon_state = "napalm"
 	ammo_id = "n"
-	point_cost = 350
+	point_cost = 200
 
 /obj/structure/ship_ammo/rocket/napalm/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(3)
@@ -322,14 +321,14 @@
 	ammo_count = 6
 	max_ammo_count = 6
 	ammo_name = "minirocket"
-	travelling_time = 6 SECONDS
+	travelling_time = 4 SECONDS
 	transferable_ammo = TRUE
 	point_cost = 100
 	ammo_type = CAS_MINI_ROCKET
 
 /obj/structure/ship_ammo/minirocket/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(2)
-	explosion(impact, 0, 2, 4, 5, adminlog = FALSE, small_animation = TRUE)//no messaging admin, that'd spam them.
+	explosion(impact, 0, 2, 4, 2, adminlog = FALSE, small_animation = TRUE)//no messaging admin, that'd spam them.
 	var/datum/effect_system/expl_particles/P = new
 	P.set_up(4, 0, impact)
 	P.start()

@@ -128,6 +128,8 @@
 
 //Mobs on Fire
 /mob/living/proc/IgniteMob()
+	if(status_flags & GODMODE) //Invulnerable mobs don't get ignited
+		return FALSE
 	if(!CHECK_BITFIELD(datum_flags, DF_ISPROCESSING))
 		return FALSE
 	if(fire_stacks > 0 && !on_fire)
@@ -186,6 +188,8 @@
 	return
 
 /mob/living/proc/adjust_fire_stacks(add_fire_stacks) //Adjusting the amount of fire_stacks we have on person
+	if(status_flags & GODMODE) //Invulnerable mobs don't get fire stacks
+		return
 	fire_stacks = clamp(fire_stacks + add_fire_stacks, -20, 20)
 	if(on_fire && fire_stacks <= 0)
 		ExtinguishMob()

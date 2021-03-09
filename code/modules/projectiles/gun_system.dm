@@ -27,6 +27,8 @@
 	///State for a fire animation if the gun has any
 	var/fire_animation = null
 	var/fire_sound 		= 'sound/weapons/guns/fire/gunshot.ogg'
+	///Does our gun have a unique empty mag sound? If so use instead of pitch shifting.
+	var/fire_rattle		= null
 	var/dry_fire_sound	= 'sound/weapons/guns/fire/empty.ogg'
 	var/unload_sound 	= 'sound/weapons/flipblade.ogg'
 	var/empty_sound 	= 'sound/weapons/guns/misc/empty_alarm.ogg'
@@ -717,6 +719,9 @@ and you're good to go.
 	if(gun_on_cooldown(user))
 		return ..()
 
+	if(M.status_flags & INCORPOREAL) //Can't attack the incorporeal
+		return ..()
+
 	if(M != user && user.a_intent == INTENT_HARM)
 		. = ..()
 		if(!.)
@@ -890,14 +895,19 @@ and you're good to go.
 
 
 /obj/item/weapon/gun/proc/play_fire_sound(mob/user)
+	//Guns with low ammo have their firing sound
+	var/firing_sndfreq = ((current_mag?.current_rounds / current_mag?.max_rounds) > 0.25) ? FALSE : 55000
 	if(active_attachable && active_attachable.flags_attach_features & ATTACH_PROJECTILE)
 		if(active_attachable.fire_sound) //If we're firing from an attachment, use that noise instead.
 			playsound(user, active_attachable.fire_sound, 50)
 		return
 	if(flags_gun_features & GUN_SILENCED)
-		playsound(user, fire_sound, 25)
+		playsound(user, fire_sound, 25, firing_sndfreq ? TRUE : FALSE, frequency = firing_sndfreq)
 		return
-	playsound(user, fire_sound, 60)
+	if(fire_rattle)
+		playsound(user, fire_rattle, 60, FALSE)
+		return
+	playsound(user, fire_sound, 60, firing_sndfreq ? TRUE : FALSE, frequency = firing_sndfreq)
 
 
 /obj/item/weapon/gun/proc/apply_gun_modifiers(obj/projectile/projectile_to_fire, atom/target)

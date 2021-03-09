@@ -491,7 +491,6 @@ if(selected_ability.target_flags & flagname){\
 */
 /mob/proc/CtrlShiftClickOn(atom/A)
 	A.CtrlShiftClick(src)
-	return
 
 
 /mob/proc/ShiftMiddleClickOn(atom/A)
@@ -504,7 +503,6 @@ if(selected_ability.target_flags & flagname){\
 
 /atom/proc/CtrlShiftClick(mob/user)
 	SEND_SIGNAL(src, COMSIG_CLICK_CTRL_SHIFT)
-	return
 
 
 /*
@@ -512,35 +510,6 @@ if(selected_ability.target_flags & flagname){\
 */
 /atom/proc/CtrlMiddleClickOn(atom/A)
 	SEND_SIGNAL(src, COMSIG_CLICK_CTRL_MIDDLE, A)
-
-
-// Simple helper to face what you clicked on, in case it should be needed in more than one place
-/mob/proc/face_atom(atom/A)
-	if(buckled || stat != CONSCIOUS || !A || !x || !y || !A.x || !A.y)
-		return
-	var/dx = A.x - x
-	var/dy = A.y - y
-	if(!dx && !dy) // Wall items are graphically shifted but on the floor
-		if(A.pixel_y > 16)
-			setDir(NORTH)
-		else if(A.pixel_y < -16)
-			setDir(SOUTH)
-		else if(A.pixel_x > 16)
-			setDir(EAST)
-		else if(A.pixel_x < -16)
-			setDir(WEST)
-		return
-
-	if(abs(dx) < abs(dy))
-		if(dy > 0)
-			setDir(NORTH)
-		else
-			setDir(SOUTH)
-	else
-		if(dx > 0)
-			setDir(EAST)
-		else
-			setDir(WEST)
 
 
 /obj/screen/proc/scale_to(x1,y1)

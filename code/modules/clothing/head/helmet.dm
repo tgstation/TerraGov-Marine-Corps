@@ -65,7 +65,7 @@
 	soft_armor = list("melee" = 80, "bullet" = 60, "laser" = 50, "energy" = 10, "bomb" = 25, "bio" = 10, "rad" = 0, "fire" = 10, "acid" = 10)
 	flags_inventory = COVEREYES
 	flags_inv_hide = HIDEEARS
-	flags_armor_protection = 0
+	flags_armor_protection = NONE
 	siemens_coefficient = 0.8
 	flags_item = SYNTH_RESTRICTED
 
@@ -82,7 +82,7 @@
 	icon_state = "policehelm"
 	flags_inventory = NONE
 	flags_inv_hide = NONE
-	flags_armor_protection = 0
+	flags_armor_protection = NONE
 
 /obj/item/clothing/head/helmet/hop
 	name = "crew resource's hat"
@@ -90,7 +90,7 @@
 	icon_state = "hopcap"
 	flags_inventory = NONE
 	flags_inv_hide = NONE
-	flags_armor_protection = 0
+	flags_armor_protection = NONE
 
 /obj/item/clothing/head/helmet/formalcaptain
 	name = "parade hat"
@@ -98,7 +98,7 @@
 	icon_state = "officercap"
 	flags_inventory = NONE
 	flags_inv_hide = NONE
-	flags_armor_protection = 0
+	flags_armor_protection = NONE
 
 /obj/item/clothing/head/helmet/swat
 	name = "\improper SWAT helmet"

@@ -459,3 +459,48 @@
 	description = "Imbues a target xeno with healing energy, restoring extra Sunder and Health once every 2 seconds up to 5 times whenever it regenerates normally. 60 second duration."
 	keybind_signal = COMSIG_XENOABILITY_HEALING_INFUSION
 
+//Wraith keybinds - BEGIN
+
+/datum/keybinding/xeno/place_warp_shadow
+	name = "place_warp_shadow"
+	full_name = "Wraith: Place Warp Shadow"
+	description = "Create a rift in space/time that you can swap locations with using the Hyperposition ability."
+	keybind_signal = COMSIG_XENOABILITY_PLACE_WARP_BEACON
+
+/datum/keybinding/xeno/hyperposition
+	name = "hyperposition"
+	full_name = "Wraith: Hyperposition"
+	description = "Swap locations with your warp shadow after a delay that scales with your distance from it."
+	keybind_signal = COMSIG_XENOABILITY_HYPERPOSITION
+
+/datum/keybinding/xeno/phase_shift
+	name = "phase_shift"
+	full_name = "Wraith: Phase Shift"
+	description = "Move out of phase with reality for a short duration after a short delay, gaining invulnerability and the ability to move through almost all physical obstacles. Can't move into space."
+	keybind_signal = COMSIG_XENOABILITY_PHASE_SHIFT
+
+/datum/keybinding/xeno/resync
+	name = "resync"
+	full_name = "Wraith: Resync"
+	description = "Resynchronize with reality, ending Phase Shift's effect."
+	keybind_signal = COMSIG_XENOABILITY_RESYNC
+
+/datum/keybinding/xeno/blink
+	name = "blink"
+	full_name = "Wraith: Blink"
+	description = "Teleport to a space a short distance away within line of sight. Can teleport mobs you're dragging with you at the cost of higher cooldown."
+	keybind_signal = COMSIG_XENOABILITY_BLINK
+
+/datum/keybinding/xeno/banish
+	name = "banish"
+	full_name = "Wraith: Banish"
+	description = "Banish a creature or object a short distance away within line of sight to null space. Can target oneself and allies. Can be manually cancelled with Recall."
+	keybind_signal = COMSIG_XENOABILITY_BANISH
+
+/datum/keybinding/xeno/recall
+	name = "recall"
+	full_name = "Wraith: Recall"
+	description = "Recall a target from netherspace, ending Banish's effect."
+	keybind_signal = COMSIG_XENOABILITY_RECALL
+
+//Wraith keybinds - END

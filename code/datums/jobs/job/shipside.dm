@@ -658,12 +658,11 @@ While the Corporate Liaison is not your boss, it would be wise to consult them o
 /datum/outfit/job/medical/researcher
 	name = MEDICAL_RESEARCHER
 	jobtype = /datum/job/terragov/medical/researcher
-
 	id = /obj/item/card/id
 	belt = /obj/item/storage/belt/medical
 	ears = /obj/item/radio/headset/mainship/doc
 	w_uniform = /obj/item/clothing/under/marine/officer/researcher
-	wear_suit = /obj/item/clothing/suit/storage/labcoat/researcher
+	wear_suit = /obj/item/clothing/suit/storage/labcoat/armored_coat
 	shoes = /obj/item/clothing/shoes/laceup
 	gloves = /obj/item/clothing/gloves/latex
 	glasses = /obj/item/clothing/glasses/hud/health

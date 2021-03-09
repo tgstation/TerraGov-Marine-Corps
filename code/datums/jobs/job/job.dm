@@ -187,13 +187,15 @@ GLOBAL_PROTECT(exp_specialmap)
 /datum/job/proc/get_special_name(client/preference_source)
 	return
 
-/datum/job/proc/occupy_job_positions(amount)
+/datum/job/proc/occupy_job_positions(amount, respawn = FALSE)
 	if(amount <= 0)
 		CRASH("free_job_positions() called with amount: [amount]")
 	current_positions += amount
 	for(var/index in jobworth)
 		var/datum/job/scaled_job = SSjob.GetJobType(index)
 		if(!(scaled_job in SSjob.active_joinable_occupations))
+			continue
+		if(isxenosjob(scaled_job) && respawn)
 			continue
 		scaled_job.add_job_points(jobworth[index])
 

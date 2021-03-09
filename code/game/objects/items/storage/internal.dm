@@ -127,10 +127,10 @@
 	master_item.on_pocket_removal()
 
 
-//things to do when an item is inserted in the obj's internal pocket
+///things to do when an item is inserted in the obj's internal pocket
 /obj/item/proc/on_pocket_insertion()
 	return
 
-//things to do when an item is removed in the obj's internal pocket
+///things to do when an item is removed in the obj's internal pocket
 /obj/item/proc/on_pocket_removal()
 	return
