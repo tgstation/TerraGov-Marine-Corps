@@ -1328,5 +1328,5 @@
 	victim.forceMove(X)
 	victim.dead_ticks = 0
 	ADD_TRAIT(victim, TRAIT_STASIS, TRAIT_STASIS)
-	addtimer(CALLBACK(X, /mob/living/carbon/xenomorph.proc/do_jitter_animation) cocoon_production_time - 2)
+	addtimer(CALLBACK(X, /mob/living/carbon/xenomorph.proc/do_jitter_animation), cocoon_production_time - 2)
 	addtimer(CALLBACK(X, /mob/living/carbon/xenomorph.proc/eject_victim, TRUE), cocoon_production_time)
