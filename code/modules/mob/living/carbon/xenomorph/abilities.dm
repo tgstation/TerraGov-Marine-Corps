@@ -1267,7 +1267,7 @@
 	keybind_signal = COMSIG_XENOABILITY_REGURGITATE
 	plasma_cost = 100
 	///In how much time the cocoon will be ejected
-	var/cocoon_production_time = 15 SECONDS
+	var/cocoon_production_time = 5 SECONDS
 
 /datum/action/xeno_action/activable/devour/can_use_ability(atom/A, silent, override_flags)
 	. = ..()
@@ -1323,8 +1323,10 @@
 	if(HAS_TRAIT(owner, TRAIT_PSY_DRAINED))
 		to_chat(owner, "<span class='warning'>Someone drained the life force of our victim before we could devour it!</span>")
 		return fail_activate()
+	to_chat(owner, "<span class='warning'>We will eject the cocoon in [cocoon_production_time] seconds!</span>")
 	LAZYADD(X.stomach_contents, victim)
 	victim.forceMove(X)
 	victim.dead_ticks = 0
 	ADD_TRAIT(victim, TRAIT_STASIS, TRAIT_STASIS)
+	addtimer(CALLBACK(X, /mob/living/carbon/xenomorph.proc/do_jitter_animation) cocoon_production_time - 2)
 	addtimer(CALLBACK(X, /mob/living/carbon/xenomorph.proc/eject_victim, TRUE), cocoon_production_time)

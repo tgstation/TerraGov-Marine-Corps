@@ -683,4 +683,3 @@
 		return
 	victim.forceMove(loc)
 	REMOVE_TRAIT(victim, TRAIT_STASIS, TRAIT_STASIS)
-
