@@ -56,6 +56,7 @@
 		release_victim()
 
 /obj/structure/cocoon/Destroy()
+	victim?.forceMove(loc)
 	victim = null
 	return ..()
 
