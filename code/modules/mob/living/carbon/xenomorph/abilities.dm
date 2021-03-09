@@ -1262,7 +1262,7 @@
 /datum/action/xeno_action/activable/devour
 	name = "Devour"
 	action_icon_state = "regurgitate"
-	mechanics_text = "Devour your victim to cocoon it in your belly. This cocoon will be automaticly ejected later, and until the marine inside it sill has life force it will give psychic point"
+	mechanics_text = "Devour your victim to cocoon it in your belly. This cocoon will automatically be ejected later, and while the marine inside it still has life force it will give psychic points."
 	use_state_flags = XACT_USE_STAGGERED|XACT_USE_FORTIFIED|XACT_USE_CRESTED //can't use while staggered, defender fortified or crest down
 	keybind_signal = COMSIG_XENOABILITY_REGURGITATE
 	plasma_cost = 100
