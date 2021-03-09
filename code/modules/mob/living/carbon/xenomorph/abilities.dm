@@ -1262,7 +1262,7 @@
 /datum/action/xeno_action/activable/devour
 	name = "Devour"
 	action_icon_state = "regurgitate"
-	mechanics_text = "Devour your victim to cocoon it in your belly. This cocoon will be automaticly ejected later, and until the marine inside it sill has life force it will give psychic point"
+	mechanics_text = "Devour your victim to cocoon it in your belly. This cocoon will automatically be ejected later, and while the marine inside it still has life force it will give psychic points."
 	use_state_flags = XACT_USE_STAGGERED|XACT_USE_FORTIFIED|XACT_USE_CRESTED //can't use while staggered, defender fortified or crest down
 	keybind_signal = COMSIG_XENOABILITY_REGURGITATE
 	plasma_cost = 100
@@ -1316,7 +1316,7 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/carbon/human/victim = A
 	if(!do_after(X, 10 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, /mob.proc/break_do_after_checks, list("health" = X.health))))
-		to_chat(owner, "<span class='warning'>We stop devouring \the [victim]. \He probably tasted gross anyways.</span>")
+		to_chat(owner, "<span class='warning'>We stop devouring \the [victim]. They probably tasted gross anyways.</span>")
 		return FALSE
 	owner.visible_message("<span class='warning'>[X] devours [victim]!</span>", \
 	"<span class='warning'>We devour [victim]!</span>", null, 5)
