@@ -2442,6 +2442,13 @@
 /obj/effect/turf_overlay/icerock,
 /turf/closed/ice_rock/corners,
 /area/ice_colony/exterior/surface/cliff)
+"ajQ" = (
+/obj/machinery/door_control{
+	name = "Storage Unit Control";
+	pixel_x = -24
+	},
+/turf/open/floor/plating/icefloor,
+/area/ice_colony/surface/requesitions)
 "ajR" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
@@ -41704,15 +41711,15 @@ abB
 acl
 acY
 abB
-abB
+ajQ
 ajo
 acY
 acH
-abB
+ajQ
 ajo
 acY
 abB
-abB
+ajQ
 ajo
 acY
 iYJ
