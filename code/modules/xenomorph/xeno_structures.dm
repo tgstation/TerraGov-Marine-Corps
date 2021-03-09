@@ -208,8 +208,14 @@
 	START_PROCESSING(SSobj, src)
 	AddComponent(/datum/component/automatedfire/xeno_turret_autofire, firerate)
 	RegisterSignal(src, COMSIG_AUTOMATIC_SHOOTER_SHOOT, .proc/shoot)
+	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, .proc/destroy_on_hijack)
 	set_light(2, 2, LIGHT_COLOR_GREEN)
 	update_icon()
+
+///Signal handler to delete the turret when the alamo is hijacked
+/obj/structure/resin/xeno_turret/proc/destroy_on_hijack()
+	SIGNAL_HANDLER
+	qdel(src)
 
 /obj/structure/resin/xeno_turret/Destroy()
 	var/datum/effect_system/smoke_spread/xeno/smoke = new /datum/effect_system/smoke_spread/xeno/acid(src)
@@ -218,6 +224,7 @@
 	set_hostile(null)
 	set_last_hostile(null)
 	STOP_PROCESSING(SSobj, src)
+	UnregisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED)
 	return ..()
 
 /obj/structure/resin/xeno_turret/ex_act(severity)
