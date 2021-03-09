@@ -28,6 +28,7 @@
 #define COMSIG_GLOB_MOB_LOGIN "!mob_login"
 #define COMSIG_GLOB_MOB_LOGOUT "!mob_logout"
 #define COMSIG_GLOB_MOB_DEATH "!mob_death"
+	#define DEATH_STOPPED (1<<0)
 
 
 /// Sent when a marine dropship enters transit level
@@ -621,3 +622,6 @@
 #define COMSIG_AUTOMATIC_SHOOTER_START_SHOOTING_AT "start_shooting_at"
 #define COMSIG_AUTOMATIC_SHOOTER_STOP_SHOOTING_AT "stop_shooting_at"
 #define COMSIG_AUTOMATIC_SHOOTER_SHOOT "shoot"
+
+///datum/controller/subsystem/monitor signals
+#define COMSIG_MONITOR_STATE_CHANGE "monitor_state_change"

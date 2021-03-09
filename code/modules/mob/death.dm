@@ -39,7 +39,8 @@
 			qdel(src)
 		return
 
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MOB_DEATH, src)
+	if(SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MOB_DEATH, src) & DEATH_STOPPED)
+		return
 	SEND_SIGNAL(src, COMSIG_MOB_DEATH, gibbing)
 	log_combat(src, src, "[deathmessage]")
 

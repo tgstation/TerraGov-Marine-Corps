@@ -28,6 +28,7 @@
 		/datum/job/terragov/squad/corpsman = 8,
 		/datum/job/terragov/squad/leader = 1,
 		/datum/job/terragov/squad/standard = -1,
+		/datum/job/survivor/rambo = 1,
 		/datum/job/xenomorph = 2,
 		/datum/job/xenomorph/queen = 1
 	)
@@ -73,6 +74,8 @@
 	scale_gear()
 	addtimer(CALLBACK(src, .proc/announce_bioscans, FALSE, 1), rand(30 SECONDS, 1 MINUTES)) //First scan shows no location but more precise numbers.
 	addtimer(CALLBACK(GLOB.hive_datums[XENO_HIVE_NORMAL], /datum/hive_status/proc/handle_silo_death_timer), MINIMUM_TIME_SILO_LESS_COLLAPSE)
+	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, .proc/on_preshutter_death)
+	RegisterSignal(SSmonitor, COMSIG_MONITOR_STATE_CHANGE, .proc/end_xeno_infspawns)
 
 /datum/game_mode/infestation/distress/proc/map_announce()
 	if(!SSmapping.configs[GROUND_MAP].announce_text)
@@ -286,3 +289,29 @@
 /datum/game_mode/infestation/distress/spawn_larva(mob/xeno_candidate, mob/living/carbon/xenomorph/mother)
 	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	return HS.spawn_larva(xeno_candidate, mother)
+
+///If a xeno dies before shutters open, teleport it to a silo turf and slap it on the wrist for dying
+/datum/game_mode/infestation/distress/proc/on_preshutter_death(datum/source, mob/living/dier)
+	SIGNAL_HANDLER
+	if(!isxeno(dier))
+		return
+	if(SSmonitor.gamestate != SHUTTERS_CLOSED) //just in case
+		end_xeno_infspawns()
+		CRASH("Xeno attempted prespawn revive while Monitor gamestate dissalowed it")
+	var/mob/living/carbon/xenomorph/xeno = dier
+	xeno.revive()
+	xeno.visible_message("<span class='warning'> [xeno] contorts as the space around it tears and consumes it!</span>", "<span class='xenodanger'>YOU IGNORANT CHILD! I will keep you in this world if I must, but at your expense!</span>")
+	xeno.forceMove(pick(GLOB.xeno_resin_silo_turfs))
+	xeno.upgrade_stored /= 2
+	xeno.set_stagger(10)
+	xeno.set_slowdown(10)
+	xeno.adjustBruteLoss(xeno.health_threshold_crit+1+xeno.maxHealth, TRUE)
+	return DEATH_STOPPED
+
+///Ends infinite free respawns for xenis
+/datum/game_mode/infestation/distress/proc/end_xeno_infspawns(datum/source, newstate)
+	SIGNAL_HANDLER
+	if(newstate == SHUTTERS_CLOSED)
+		return
+	UnregisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH)
+	UnregisterSignal(SSmonitor, COMSIG_MONITOR_STATE_CHANGE)
