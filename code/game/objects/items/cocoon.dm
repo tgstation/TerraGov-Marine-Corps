@@ -1,6 +1,6 @@
 /obj/structure/cocoon
 	name = "resin cocoon"
-	desc = "A slimy looking cocoon, it is covered by weird resin and it is vibrating"
+	desc = "A slimy-looking cocoon made out of resin. It is vibrating from the outside, yuck."
 	icon = 'icons/obj/cocoon.dmi'
 	icon_state = "xeno_cocoon"
 	density = FALSE
