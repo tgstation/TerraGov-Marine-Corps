@@ -23,6 +23,8 @@
 	var/launch_time = 10 SECONDS
 	var/launch_allowed = TRUE
 	var/datum/turf_reservation/reserved_area
+	///after the pod finishes it's travelhow long it spends falling
+	var/falltime = 0.6 SECONDS
 
 /obj/structure/droppod/Initialize()
 	. = ..()
@@ -180,12 +182,22 @@
 				to_chat(occupant, "<span class='warning'>[icon2html(src,occupant)] RECALCULATION FAILED!</span>")
 				targetturf = locate(target_x, target_y,2)
 			break
-	deadchat_broadcast(" has landed at [get_area(targetturf)]!", src, occupant)
-	explosion(targetturf,-1,-1,1,-1)
+
 	forceMove(targetturf)
+	pixel_y = 500
+	animate(src, pixel_y = initial(pixel_y), time = falltime, easing = LINEAR_EASING)
+	addtimer(CALLBACK(src, .proc/dodrop, targetturf, user), falltime)
+
+///Do the stuff when it "hits the ground"
+/obj/structure/droppod/proc/dodrop(turf/targetturf, mob/user)
+	deadchat_broadcast(" has landed at [get_area(targetturf)]!", src, occupant)
+	explosion(targetturf,-1,-1,2,-1)
 	playsound(targetturf, 'sound/effects/droppod_impact.ogg', 100)
 	QDEL_NULL(reserved_area)
-	sleep(7)//Dramatic effect
+	addtimer(CALLBACK(src, .proc/completedrop, user), 7) //dramatic effect
+
+///completes everything after a dramatic effect
+/obj/structure/droppod/proc/completedrop(mob/user)
 	icon_state = "singlepod_open"
 	drop_state = DROPPOD_LANDED
 	exitpod(user)
