@@ -97,8 +97,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	animate(src, pixel_y = 2, time = 10, loop = -1)
 
 	grant_all_languages()
-	var/datum/action/minimap/observer/mini = new
-	mini.give_action(src)
 	RegisterSignal(src, COMSIG_MOVABLE_Z_CHANGED, .proc/observer_z_changed)
 	LAZYADD(GLOB.observers_by_zlevel["[z]"], src)
 
