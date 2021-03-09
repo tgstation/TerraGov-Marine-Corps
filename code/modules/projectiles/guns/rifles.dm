@@ -618,7 +618,8 @@
 	aim_fire_delay = 0.18 SECONDS
 	aim_speed_modifier = 5
 
-	fire_delay = 0.18 SECONDS
+	fire_delay = 0.2 SECONDS
+	damage_mult = 1.1
 	burst_amount = 1
 	accuracy_mult_unwielded = 0.5
 	accuracy_mult = 1
@@ -670,7 +671,7 @@
 	aim_fire_delay = 0.1 SECONDS
 	aim_speed_modifier = 6
 
-	fire_delay = 0.165 SECONDS
+	fire_delay = 0.15 SECONDS
 	damage_falloff_mult = 0.25
 	burst_amount = 1
 	accuracy_mult_unwielded = 0.4
