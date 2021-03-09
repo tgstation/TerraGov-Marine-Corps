@@ -69,8 +69,10 @@
 	victim = null
 
 /obj/structure/cocoon/attacked_by(obj/item/I, mob/living/user, def_zone)
-	if(!producing_points && victim && I.sharp && do_after(user, 10 SECONDS, TRUE, src))
+	if(!producing_points && victim && I.sharp)
 		playsound(user, "sound/effects/cutting_cocoon.ogg", 30)
+		if(!do_after(user, 10 SECONDS, TRUE, src))
+			return
 		release_victim()
 		update_icon()
 		return
