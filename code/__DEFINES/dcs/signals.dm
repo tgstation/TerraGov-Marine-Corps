@@ -373,7 +373,6 @@
 
 #define COMSIG_XENOMORPH_GIBBING "xenomorph_gibbing"
 #define COMSIG_XENOMORPH_POSTEVOLVING "xenomorph_evolving"
-#define COMSIG_XENOMORPH_ABILITY_ON_PRE_UPGRADE "xenomorph_pre_upgrade"
 #define COMSIG_XENOMORPH_ABILITY_ON_UPGRADE "xenomorph_ability_on_upgrade"
 
 #define COMSIG_XENOMORPH_GRAB "xenomorph_grab"
@@ -416,6 +415,9 @@
 	#define COMPONENT_KEEP_THROWING (1<<0)
 #define COMSIG_XENO_PROJECTILE_HIT "xeno_projectile_hit"			///from [/mob/living/carbon/xenomorph/projectile_hit] called when a projectile hits a xeno but before confirmation of a hit (can miss due to inaccuracy/evasion)
 	#define COMPONENT_PROJECTILE_DODGE (1<<0)
+
+#define COMSIG_XENOMORPH_WRAITH_RECALL "xenomorph_wraith_recall"
+	#define COMPONENT_BANISH_TARGETS_EXIST (1<<0)
 
 //human signals
 #define COMSIG_CLICK_QUICKEQUIP "click_quickequip"
@@ -571,6 +573,15 @@
 #define COMSIG_XENOABILITY_FLING "xenoability_fling"
 #define COMSIG_XENOABILITY_PUNCH "xenoability_punch"
 #define COMSIG_XENOABILITY_GRAPPLE_TOSS "xenoability_grapple_toss"
+
+#define COMSIG_XENOABILITY_PLACE_WARP_BEACON "xenoability_place_warp_shadow"
+#define COMSIG_XENOABILITY_HYPERPOSITION "xenoability_hyperposition"
+#define COMSIG_XENOABILITY_PHASE_SHIFT "xenoability_phase_shift"
+#define COMSIG_XENOABILITY_RESYNC "xenoability_resync"
+#define COMSIG_XENOABILITY_BLINK "xenoability_blink"
+#define COMSIG_XENOABILITY_BANISH "xenoability_banish"
+#define COMSIG_XENOABILITY_RECALL "xenoability_recall"
+
 
 // remote control signals
 #define COMSIG_REMOTECONTROL_TOGGLE "remotecontrol_toggle"

@@ -153,6 +153,7 @@
 	icon_state = "cigs"
 	products = list(
 		/obj/item/storage/fancy/cigarettes/luckystars = 50,
+		/obj/item/storage/fancy/chemrettes = 30,
 		/obj/item/storage/box/matches = 15,
 		/obj/item/tool/lighter/random = 25,
 		/obj/item/tool/lighter/zippo = 10,

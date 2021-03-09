@@ -123,7 +123,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	///Whether to mute goonchat combat messages from others, such as when they are shot.
 	var/mute_others_combat_messages = FALSE
 	///Whether to mute xeno health alerts from when other xenos are badly hurt.
-	var/mute_xeno_health_alert_messages = FALSE
+	var/mute_xeno_health_alert_messages = TRUE
 
 	/// Chat on map
 	var/chat_on_map = TRUE
@@ -356,7 +356,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	dat += "<h2>Chat Message Settings:</h2>"
 	dat += "<b>Mute self combat messages:</b> <a href='?_src_=prefs;preference=mute_self_combat_messages'>[mute_self_combat_messages ? "Enabled" : "Disabled"]</a><br>"
 	dat += "<b>Mute others combat messages:</b> <a href='?_src_=prefs;preference=mute_others_combat_messages'>[mute_others_combat_messages ? "Enabled" : "Disabled"]</a><br>"
-	dat += "<b>Mute xeno health alert messages:</b> <a href='?_src_=prefs;preference=mute_xeno_health_alert_messages'>[mute_xeno_health_alert_messages ? "Enabled" : "Disabled"]</a><br>"
+	dat += "<b>Mute xeno health alert messages:</b> <a href='?_src_=prefs;preference=mute_xeno_health_alert_messages'>[mute_xeno_health_alert_messages ? "Yes" : "No"]</a><br>"
 
 	dat += "<h2>Runechat Settings:</h2>"
 	dat += "<b>Show Runechat Chat Bubbles:</b> <a href='?_src_=prefs;preference=chat_on_map'>[chat_on_map ? "Enabled" : "Disabled"]</a><br>"

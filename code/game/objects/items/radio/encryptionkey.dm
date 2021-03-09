@@ -32,7 +32,7 @@
 /obj/item/encryptionkey/cas
 	name = "\improper fire support specialist radio encryption key"
 	icon_state = "rob_cypherkey"
-	channels = list(RADIO_CHANNEL_CAS = TRUE, RADIO_CHANNEL_COMMAND = TRUE)
+	channels = list(RADIO_CHANNEL_CAS = TRUE)
 
 /obj/item/encryptionkey/mcom
 	name = "\improper Marine Command radio encryption key"

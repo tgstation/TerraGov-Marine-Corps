@@ -26,7 +26,6 @@
 		/datum/job/terragov/silicon/ai = 1,
 		/datum/job/terragov/squad/engineer = 8,
 		/datum/job/terragov/squad/corpsman = 8,
-		/datum/job/terragov/squad/smartgunner = 1,
 		/datum/job/terragov/squad/leader = 1,
 		/datum/job/terragov/squad/standard = -1,
 		/datum/job/xenomorph = 2,
@@ -72,22 +71,8 @@
 /datum/game_mode/infestation/distress/post_setup()
 	. = ..()
 	scale_gear()
-	var/silo_number
-	switch(TGS_CLIENT_COUNT)
-		if(0 to 20)
-			silo_number = 1
-		if(20 to 40)
-			silo_number = 2
-		if(40 to 60)
-			silo_number = 3
-		if(60 to 80)
-			silo_number = 4
-		if(80 to INFINITY)
-			silo_number = 5
-
-	SSpoints.xeno_points_by_hive[XENO_HIVE_NORMAL] = silo_number * SILO_PRICE
-
 	addtimer(CALLBACK(src, .proc/announce_bioscans, FALSE, 1), rand(30 SECONDS, 1 MINUTES)) //First scan shows no location but more precise numbers.
+	addtimer(CALLBACK(GLOB.hive_datums[XENO_HIVE_NORMAL], /datum/hive_status/proc/handle_silo_death_timer), MINIMUM_TIME_SILO_LESS_COLLAPSE)
 
 /datum/game_mode/infestation/distress/proc/map_announce()
 	if(!SSmapping.configs[GROUND_MAP].announce_text)

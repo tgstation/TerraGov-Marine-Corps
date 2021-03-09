@@ -860,6 +860,39 @@
 		return
 	set_glide_size(DELAY_TO_GLIDE_SIZE(cached_multiplicative_slowdown))
 
+///Change the direction of the atom to face the targeted atom
+/atom/movable/proc/face_atom(atom/A)
+	if(!A || !x || !y || !A.x || !A.y)
+		return
+	var/dx = A.x - x
+	var/dy = A.y - y
+	if(!dx && !dy) // Wall items are graphically shifted but on the floor
+		if(A.pixel_y > 16)
+			setDir(NORTH)
+		else if(A.pixel_y < -16)
+			setDir(SOUTH)
+		else if(A.pixel_x > 16)
+			setDir(EAST)
+		else if(A.pixel_x < -16)
+			setDir(WEST)
+		return
+
+	if(abs(dx) < abs(dy))
+		if(dy > 0)
+			setDir(NORTH)
+		else
+			setDir(SOUTH)
+	else
+		if(dx > 0)
+			setDir(EAST)
+		else
+			setDir(WEST)
+
+/mob/face_atom(atom/A)
+	if(buckled || stat != CONSCIOUS)
+		return
+	return ..()
+
 
 /atom/movable/vv_edit_var(var_name, var_value)
 	switch(var_name)
@@ -929,6 +962,9 @@
 /// Returns true or false to allow src to move through the blocker, mover has final say
 /atom/movable/proc/CanPassThrough(atom/blocker, turf/target, blocker_opinion)
 	SHOULD_CALL_PARENT(TRUE)
+	if(status_flags & INCORPOREAL) //Incorporeal can normally pass through anything
+		blocker_opinion = TRUE
+
 	return blocker_opinion
 
 ///returns FALSE if there isnt line of sight to target within view dist and TRUE if there is

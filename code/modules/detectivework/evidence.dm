@@ -72,7 +72,7 @@
 	I.loc = src
 	stored_item = I
 	w_class = I.w_class
-	return
+
 
 
 /obj/item/evidencebag/attack_self(mob/user as mob)
@@ -91,11 +91,11 @@
 	else
 		to_chat(user, "[src] is empty.")
 		icon_state = "evidenceobj"
-	return
+
 
 /obj/item/evidencebag/examine(mob/user)
-	..()
-	if (stored_item) stored_item.examine(user)
+	. = ..()
+	stored_item?.examine(user)
 
 /obj/item/storage/box/evidence
 	name = "evidence bag box"
