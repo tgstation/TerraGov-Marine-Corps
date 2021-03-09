@@ -296,7 +296,6 @@ can cause issues with ammo types getting mixed up during the burst.
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 21,"rail_x" = 15, "rail_y" = 22, "under_x" = 21, "under_y" = 16, "stock_x" = 21, "stock_y" = 16)
 
 	fire_delay = 2
-	burst_amount = 2
 	burst_delay = 2
 	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.85
