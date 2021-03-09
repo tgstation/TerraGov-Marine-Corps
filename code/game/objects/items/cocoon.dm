@@ -6,7 +6,7 @@
 	density = FALSE
 	layer = BELOW_OBJ_LAYER
 	hit_sound = 'sound/effects/alien_resin_break2.ogg'
-	max_integrity = 400
+	max_integrity = 800
 	anchored = TRUE
 	obj_flags = CAN_BE_HIT
 	///Which hive it belongs too
@@ -32,6 +32,11 @@
 	addtimer(CALLBACK(src, .proc/release_victim), cocoon_life_time)
 	new /obj/effect/alien/weeds/node(loc)
 
+/obj/structure/cocoon/examine(mob/user, distance, infix, suffix)
+	. = ..()
+	if(producing && victim && ishuman(user))
+		to_chat(user, "<span class='notice'>There is something inside it. You think you can open it with a sharp object</span>")
+
 /obj/structure/cocoon/process()
 	SSpoints.xeno_points_by_hive[hivenumber] += psych_points_output
 
@@ -39,6 +44,7 @@
 	. = ..()
 	if(producing_points && obj_integrity < max_integrity / 2)
 		STOP_PROCESSING(SSslowprocess, src)
+		playsound(loc, "alien_resin_move", 35)
 		new /obj/structure/bed/nest(loc)
 		producing_points = FALSE
 		update_icon()
