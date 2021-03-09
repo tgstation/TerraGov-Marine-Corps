@@ -34,7 +34,7 @@
 
 /obj/structure/cocoon/examine(mob/user, distance, infix, suffix)
 	. = ..()
-	if(producing && victim && ishuman(user))
+	if(producing_points && victim && ishuman(user))
 		to_chat(user, "<span class='notice'>There is something inside it. You think you can open it with a sharp object</span>")
 
 /obj/structure/cocoon/process()
