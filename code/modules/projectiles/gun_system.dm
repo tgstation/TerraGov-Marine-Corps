@@ -203,11 +203,11 @@
 		RegisterSignal(gun_user, COMSIG_MOB_MOUSEDRAG, .proc/change_target)
 		RegisterSignal(src, COMSIG_GUN_MUST_FIRE, .proc/Fire)
 		RegisterSignal(src, COMSIG_GUN_FIRE_RESET, .proc/reset_fire)
-		RegisterSignal(src, COMSIG_GUN_SET_BURSTING, .proc/set_bursting)
+		RegisterSignal(src, COMSIG_GUN_IS_BURSTING, .proc/set_bursting)
 		return ..()
 	if(gun_user)
 		UnregisterSignal(gun_user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG))
-		UnregisterSignal(src, list(COMSIG_GUN_MUST_FIRE, COMSIG_GUN_FIRE_RESET, COMSIG_GUN_SET_BURSTING))
+		UnregisterSignal(src, list(COMSIG_GUN_MUST_FIRE, COMSIG_GUN_FIRE_RESET, COMSIG_GUN_IS_BURSTING))
 		gun_user = null	
 	return ..()
 
@@ -215,7 +215,7 @@
 	if(!gun_user)
 		return
 	UnregisterSignal(gun_user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG))
-	UnregisterSignal(src, list(COMSIG_GUN_MUST_FIRE, COMSIG_GUN_FIRE_RESET, COMSIG_GUN_SET_BURSTING))
+	UnregisterSignal(src, list(COMSIG_GUN_MUST_FIRE, COMSIG_GUN_FIRE_RESET, COMSIG_GUN_IS_BURSTING))
 	gun_user = null
 
 /obj/item/weapon/gun/update_icon(mob/user)

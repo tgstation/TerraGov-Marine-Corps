@@ -5,6 +5,8 @@
 	var/auto_fire_shot_delay
 	///Delay between two burst shots
 	var/burstfire_shot_delay
+	///Delay between two volley of burst
+	var/auto_burst_fire_shot_delay
 	///How many bullets are fired in burst mode
 	var/burst_shots_to_fire
 	///Count the shots fired when bursting
@@ -12,7 +14,7 @@
 	///If the shooter is currently shooting
 	var/shooting = FALSE
 	///If TRUE, the shooter will reset its references at the end of the burst
-	var/have_to_reset = FALSE
+	var/have_to_reset_at_burst_end = FALSE
 	///If we are in a burst
 	var/bursting = FALSE
 
@@ -31,6 +33,7 @@
 	auto_fire_shot_delay = _auto_fire_shot_delay
 	burstfire_shot_delay = _burstfire_shot_delay
 	burst_shots_to_fire = _burst_shots_to_fire
+	auto_burst_fire_shot_delay = 3 * auto_fire_shot_delay
 	fire_mode = _fire_mode
 	
 ///Setter for fire mode
@@ -68,7 +71,7 @@
 		return
 	///We are burst firing, we can't clean the state now. We will do it when the burst is over
 	if(bursting)
-		have_to_reset = TRUE
+		have_to_reset_at_burst_end = TRUE
 		return
 	shooting = FALSE
 	shots_fired = 0
@@ -76,10 +79,10 @@
 ///Hard reset the autofire, happens when the shooter fall/is thrown, at the end of a burst or when it runs out of ammunition
 /datum/component/automatedfire/autofire/proc/hard_reset()
 	shots_fired = 0
-	have_to_reset = FALSE
+	have_to_reset_at_burst_end = FALSE
 	if(bursting)
 		bursting = FALSE
-		SEND_SIGNAL(parent, COMSIG_GUN_SET_BURSTING, FALSE)
+		SEND_SIGNAL(parent, COMSIG_GUN_IS_BURSTING, FALSE)
 	if(shooting)
 		shooting = FALSE
 
@@ -94,27 +97,27 @@
 		if(GUN_FIREMODE_BURSTFIRE)
 			shots_fired++
 			if(shots_fired == burst_shots_to_fire)
-				SEND_SIGNAL(parent, COMSIG_GUN_SET_BURSTING, FALSE)
+				SEND_SIGNAL(parent, COMSIG_GUN_IS_BURSTING, FALSE)
 				bursting = FALSE
 				stop_firing()
-				if(have_to_reset)//We failed to reset because we were bursting, we do it now
+				if(have_to_reset_at_burst_end)//We failed to reset because we were bursting, we do it now
 					SEND_SIGNAL(parent, COMSIG_GUN_FIRE_RESET)
 				return
-			SEND_SIGNAL(parent, COMSIG_GUN_SET_BURSTING, TRUE)
+			SEND_SIGNAL(parent, COMSIG_GUN_IS_BURSTING, TRUE)
 			bursting = TRUE
 			next_fire = world.time + burstfire_shot_delay
 		if(GUN_FIREMODE_AUTOBURST)
 			shots_fired++
 			if(shots_fired == burst_shots_to_fire)
-				next_fire = world.time + 3 * auto_fire_shot_delay
+				next_fire = world.time + auto_burst_fire_shot_delay
 				shots_fired = 0
-				SEND_SIGNAL(parent, COMSIG_GUN_SET_BURSTING, FALSE)
+				SEND_SIGNAL(parent, COMSIG_GUN_IS_BURSTING, FALSE)
 				bursting = FALSE
-				if(have_to_reset)//We failed to reset because we were bursting, we do it now
+				if(have_to_reset_at_burst_end)//We failed to reset because we were bursting, we do it now
 					SEND_SIGNAL(parent, COMSIG_GUN_FIRE_RESET)
 					stop_firing()
 			else
-				SEND_SIGNAL(parent, COMSIG_GUN_SET_BURSTING, TRUE)
+				SEND_SIGNAL(parent, COMSIG_GUN_IS_BURSTING, TRUE)
 				bursting = TRUE
 				next_fire = world.time + burstfire_shot_delay
 		if(GUN_FIREMODE_AUTOMATIC)
