@@ -16,3 +16,12 @@
 /obj/item/clothing/suit/storage/marine/harness/boomvest/CtrlClick(mob/user)
 	var/new_bomb_message = input(user, "Select Warcry", "Warcry", "") as text|null
 	bomb_message = new_bomb_message
+
+/obj/item/clothing/suit/storage/marine/harness/boomvest/ob_vest
+	name = "admeme oribital bombard vest"
+	desc = "ORBITAL BOMBARDMENTS MADE CONVENIENT AND SUICIDAL"
+
+/obj/item/clothing/suit/storage/marine/harness/boomvest/ob_vest/attack_self(mob/user)
+	user.say("ORBITAL BOMBARDMENT INBOUND!!")
+	explosion(loc, 15, 15, 15, 15, 15)
+	qdel(src)
