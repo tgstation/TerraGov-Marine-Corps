@@ -198,7 +198,6 @@
 	afterattack_alternate(target, user, TRUE, params) // TRUE: clicking something Adjacent
 
 /atom/proc/attackby_alternate(obj/item/I, mob/user, params)
-	SIGNAL_HANDLER_DOES_SLEEP
 	add_fingerprint(user, "attackby_alternate", I)
 	if(SEND_SIGNAL(src, COMSIG_PARENT_ATTACKBY_ALTERNATE, I, user, params) & COMPONENT_NO_AFTERATTACK)
 		return TRUE
