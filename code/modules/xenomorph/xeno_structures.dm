@@ -195,7 +195,7 @@
 	///Potential list of targets found by scan
 	var/list/mob/living/potential_hostiles
 	///Fire rate of the target in ticks
-	var/firerate = 15
+	var/firerate = 10
 	///The last time the sentry did a scan
 	var/last_scan_time
 
