@@ -148,8 +148,7 @@
 			UnarmedAttack(A, TRUE, modifiers)
 	else
 		if(W)
-			var/proximity = A.Adjacent(src)
-			if(proximity)
+			if(A.Adjacent(src))
 				W.melee_attack_chain(src, A, params, modifiers["right"])
 		else
 			if(A.Adjacent(src))
