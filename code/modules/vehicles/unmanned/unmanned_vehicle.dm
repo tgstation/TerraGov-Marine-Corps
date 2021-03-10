@@ -60,7 +60,7 @@
 	if(!istype(I, /obj/item/uav_turret) && !istype(I, /obj/item/explosive/plastique))
 		return
 	if(turret_type)
-		to_chat(user, "<span class='notice'>Theres already something attached!</span>")
+		to_chat(user, "<span class='notice'>There's already something attached!</span>")
 		return
 	if(istype(I, /obj/item/uav_turret))
 		var/obj/item/uav_turret/turret = I
