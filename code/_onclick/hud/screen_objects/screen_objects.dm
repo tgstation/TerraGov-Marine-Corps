@@ -773,19 +773,20 @@
 /obj/screen/arrow/Initialize() //Self-deletes
 	. = ..()
 	START_PROCESSING(SSprocessing, src)
-	QDEL_IN(src, duration)	
+	QDEL_IN(src, duration)
 
 /obj/screen/arrow/process() //We ping the target, revealing its direction with an arrow
-	if(target.z != tracker.z || get_dist(tracker, target) < 5 || tracker == target)
+	if(target.z != tracker.z || get_dist(tracker, target) < 2 || tracker == target)
 		alpha = 0
 	else
 		alpha = 128
 		transform = 0 //Reset and 0 out
 		transform = turn(transform, Get_Angle(tracker, target))
 
-/obj/screen/xeno_health_alert/Destroy()
+/obj/screen/arrow/Destroy()
 	STOP_PROCESSING(SSprocessing, src)
 	return ..()
+
 
 /obj/screen/arrow/leader_tracker_arrow
 	name = "hive leader tracker arrow"
@@ -795,6 +796,11 @@
 /obj/screen/arrow/silo_damaged_arrow
 	name = "Hive damaged tracker arrow"
 	icon_state = "Red_arrow"
+	duration = XENO_SILO_DAMAGE_POINTER_DURATION
+
+/obj/screen/arrow/turret_attacking_arrow
+	name = "Turret attacking arrow"
+	icon_state = "Green_arrow"
 	duration = XENO_SILO_DAMAGE_POINTER_DURATION
 
 /obj/screen/arrow/attack_order_arrow

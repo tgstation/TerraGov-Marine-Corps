@@ -387,6 +387,13 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 /datum/game_mode/proc/get_hivemind_collapse_countdown()
 	return
 
+///handles end of the round when no silo is left
+/datum/game_mode/proc/siloless_hive_collapse()
+	return
+
+///starts the timer to end the round when no silo is left
+/datum/game_mode/proc/get_siloless_collapse_countdown()
+	return
 
 /datum/game_mode/proc/announce_medal_awards()
 	if(!length(GLOB.medal_awards))
@@ -448,7 +455,10 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 		dat += "[GLOB.round_statistics.xeno_rally_hive] number of times xeno leaders rallied the hive."
 	if(GLOB.round_statistics.hivelord_healing_infusions)
 		dat += "[GLOB.round_statistics.hivelord_healing_infusions] number of times Hivelords used Healing Infusion."
-
+	if(GLOB.round_statistics.spitter_acid_sprays)
+		dat += "[GLOB.round_statistics.spitter_acid_sprays] number of times Spitters spewed an Acid Spray."
+	if(GLOB.round_statistics.spitter_scatter_spits)
+		dat += "[GLOB.round_statistics.spitter_scatter_spits] number of times Spitters horked up scatter spits."
 
 	var/output = jointext(dat, "<br>")
 	for(var/mob/player in GLOB.player_list)
@@ -473,7 +483,7 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 			if(isspaceturf(H.loc))
 				continue
 			num_humans++
-			if (is_mainship_level(z))//it's here so i can use it for monitor
+			if (is_mainship_level(z))
 				num_humans_ship++
 
 	for(var/z in z_levels)
@@ -503,7 +513,7 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 		var/mob/living/carbon/human/H = i
 		if(!H.job)
 			continue
-		if(H.stat == DEAD && !H.is_revivable())
+		if(H.stat == DEAD && !H.has_working_organs())
 			continue
 		if(count_flags & COUNT_IGNORE_HUMAN_SSD && !H.client)
 			continue
@@ -517,7 +527,7 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 	return FALSE
 
 /datum/game_mode/infestation/distress/is_xeno_in_forbidden_zone(mob/living/carbon/xenomorph/xeno)
-	if(round_stage == DISTRESS_DROPSHIP_CRASHED)
+	if(round_stage == DISTRESS_DROPSHIP_CRASHING)
 		return FALSE
 	if(isxenoresearcharea(get_area(xeno)))
 		return TRUE
@@ -605,7 +615,7 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 	if(instant_join)
 		return pick(available_xenos) //Just picks something at random.
 
-	var/mob/living/carbon/xenomorph/new_xeno = tgui_input_list(usr, null, "Available Xenomorphs", null,  available_xenos)
+	var/mob/living/carbon/xenomorph/new_xeno = tgui_input_list(usr, null, "Available Xenomorphs", available_xenos)
 	if(!istype(new_xeno) || !xeno_candidate?.client)
 		return FALSE
 

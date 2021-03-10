@@ -19,7 +19,7 @@
 			log_combat(S, src, "attacked")
 
 
-/mob/living/carbon/xenomorph/attack_paw(mob/living/carbon/monkey/user)
+/mob/living/carbon/xenomorph/attack_paw(mob/living/carbon/human/user)
 	. = ..()
 
 	switch(user.a_intent)
@@ -44,6 +44,9 @@
 		return
 
 	if(!ishuman(user))
+		return
+
+	if(status_flags & INCORPOREAL) //Incorporeal xenos cannot attack
 		return
 
 	var/mob/living/carbon/human/H = user
@@ -72,7 +75,7 @@
 			if(!attack.is_usable(H))
 				return FALSE
 
-			if(!H.melee_damage || !prob(H.melee_accuracy))
+			if(!H.melee_damage)
 				H.do_attack_animation(src)
 				playsound(loc, attack.miss_sound, 25, TRUE)
 				visible_message("<span class='danger'>[H] tried to [pick(attack.attack_verb)] [src]!</span>", null, null, 5)
@@ -87,6 +90,9 @@
 //Hot hot Aliens on Aliens action.
 //Actually just used for eating people.
 /mob/living/carbon/xenomorph/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(status_flags & INCORPOREAL) //Incorporeal xenos cannot attack
+		return
+
 	if(src == X)
 		return TRUE
 	if(isxenolarva(X)) //Larvas can't eat people

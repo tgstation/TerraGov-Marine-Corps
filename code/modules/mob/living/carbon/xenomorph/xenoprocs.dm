@@ -67,7 +67,7 @@
 ///Relays health and location data about resin silos belonging to the same hive as the input user
 /proc/resin_silo_status_output(mob/living/carbon/xenomorph/user, datum/hive_status/hive)
 	. = "<BR><b>List of Resin Silos:</b><BR><table cellspacing=4>" //Resin silo data
-	for(var/obj/structure/resin/silo/resin_silo as() in GLOB.xeno_resin_silos)
+	for(var/obj/structure/resin/silo/resin_silo AS in GLOB.xeno_resin_silos)
 		if(resin_silo.associated_hive == hive)
 
 			var/hp_color = "green"
@@ -145,6 +145,7 @@
 	dat += "<b>Tier 2: ([length(hive.xenos_by_tier[XENO_TIER_TWO])]/[hive.tier2_xeno_limit]) Sisters</b>[tier2counts]<BR>"
 	dat += "<b>Tier 1: [length(hive.xenos_by_tier[XENO_TIER_ONE])] Sisters</b>[tier1counts]<BR>"
 	dat += "<b>Larvas: [length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/larva])] Sisters<BR>"
+	dat += "<b>Psychic points : [SSpoints.xeno_points_by_hive[hive.hivenumber]]<BR>"
 	dat += "<b>Queen: [queen_text]<BR>"
 	dat += "<b>Hivemind: [hivemind_text]<BR>"
 	if(hive.hivenumber == XENO_HIVE_NORMAL)
@@ -153,6 +154,8 @@
 	dat += "<table cellspacing=4>"
 	dat += xenoinfo
 	dat += "</table>"
+	var/larva_generated = SSsilo.current_larva_spawn_rate/8
+	dat += "<b>Larvas generated in one minute: [larva_generated]<BR>"
 	dat += resin_silo_status_output(user, hive)
 
 	var/datum/browser/popup = new(user, "roundstatus", "<div align='center'>Hive Status</div>", 650, 650)
@@ -184,7 +187,7 @@
 		if(!check_state())
 			return
 		var/silo_number = href_list["track_silo_number"]
-		for(var/obj/structure/resin/silo/resin_silo as() in GLOB.xeno_resin_silos)
+		for(var/obj/structure/resin/silo/resin_silo AS in GLOB.xeno_resin_silos)
 			if(resin_silo.associated_hive == hive && num2text(resin_silo.number_silo) == silo_number)
 				tracked = resin_silo
 				to_chat(usr,"<span class='notice'> You will now track [resin_silo.name]</span>")
@@ -281,9 +284,13 @@
 		if(XENO_HIVE_NORMAL)
 			if(hive.hive_orders && hive.hive_orders != "")
 				stat("Hive Orders:", hive.hive_orders)
-			var/countdown = SSticker.mode?.get_hivemind_collapse_countdown()
-			if(countdown)
-				stat("<b>Orphan hivemind collapse timer:</b>", countdown)
+			var/hivemind_countdown = SSticker.mode?.get_hivemind_collapse_countdown()
+			if(hivemind_countdown)
+				stat("<b>Orphan hivemind collapse timer:</b>", hivemind_countdown)
+			var/siloless_countdown = SSticker.mode?.get_siloless_collapse_countdown()
+			if(siloless_countdown)
+				stat("<b>Orphan hivemind collapse timer:</b>", siloless_countdown)
+			
 		if(XENO_HIVE_CORRUPTED)
 			stat("Hive Orders:","Follow the instructions of our masters")
 
@@ -658,11 +665,6 @@
 
 
 /atom/proc/can_sting()
-	return FALSE
-
-/mob/living/carbon/monkey/can_sting()
-	if(stat != DEAD)
-		return TRUE
 	return FALSE
 
 /mob/living/carbon/human/can_sting()

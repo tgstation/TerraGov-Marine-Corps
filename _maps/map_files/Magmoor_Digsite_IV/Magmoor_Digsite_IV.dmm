@@ -30,6 +30,10 @@
 	dir = 4
 	},
 /area/magmoor/compound/northeast)
+"act" = (
+/obj/structure/resin/xeno_turret,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/magmoor/cave/north)
 "acH" = (
 /turf/closed/wall,
 /area/storage/testroom)
@@ -3448,6 +3452,10 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/stripesquare,
 /area/magmoor/mining/garage)
+"cQP" = (
+/obj/structure/resin/xeno_turret,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/magmoor/cave/northwest)
 "cQZ" = (
 /obj/structure/rack,
 /obj/item/tool/pickaxe/drill,
@@ -6510,9 +6518,6 @@
 /obj/effect/alien/egg,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/west)
-"eUz" = (
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/space)
 "eUO" = (
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 9
@@ -7633,6 +7638,10 @@
 	dir = 1
 	},
 /area/magmoor/compound/northeast)
+"fIc" = (
+/obj/structure/resin/xeno_turret,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/magmoor/cave/west)
 "fIf" = (
 /obj/structure/barricade/guardrail{
 	dir = 1
@@ -12490,6 +12499,10 @@
 	dir = 2
 	},
 /area/magmoor/medical/patient)
+"jpv" = (
+/obj/structure/resin/xeno_turret,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/magmoor/cave/northeast)
 "jpE" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -15737,6 +15750,10 @@
 	dir = 1
 	},
 /area/magmoor/security/storage)
+"lNt" = (
+/obj/structure/resin/xeno_turret,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/magmoor/cave/central)
 "lNw" = (
 /obj/structure/table/woodentable,
 /obj/effect/landmark/corpsespawner/colonist,
@@ -15920,6 +15937,10 @@
 /obj/structure/closet/walllocker/hydrant/extinguisher,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/east)
+"lYH" = (
+/obj/structure/resin/xeno_turret,
+/turf/open/floor/mainship/sterile/dark,
+/area/magmoor/research/containment)
 "lZd" = (
 /obj/structure/lattice,
 /turf/open/lavaland/lava/single/middle{
@@ -26633,6 +26654,12 @@
 	dir = 9
 	},
 /area/magmoor/compound/northwest)
+"tyC" = (
+/obj/structure/resin/xeno_turret,
+/turf/open/lavaland/basalt/cave/corner{
+	dir = 1
+	},
+/area/magmoor/cave/northeast)
 "tyL" = (
 /obj/effect/decal/cleanable/blood/drip,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -37822,7 +37849,7 @@ aum
 qlL
 bCo
 pGg
-pGg
+cQP
 pGg
 rwF
 rwF
@@ -38308,7 +38335,7 @@ kal
 tvK
 rwF
 rwF
-tvK
+fIc
 kal
 fHm
 kal
@@ -42471,7 +42498,7 @@ nqC
 pGg
 pGg
 rRl
-pGg
+cQP
 pGg
 cdN
 bid
@@ -52262,7 +52289,7 @@ qkn
 aMD
 ebU
 aMD
-aMD
+act
 aMD
 dTv
 dSS
@@ -55073,7 +55100,7 @@ vMR
 fcj
 vns
 vns
-vns
+lNt
 vns
 cUK
 cUK
@@ -57612,7 +57639,7 @@ aNx
 aNx
 aqg
 idd
-idd
+jpv
 idd
 idd
 jUo
@@ -62510,7 +62537,7 @@ utw
 cuI
 bax
 veX
-pbk
+tyC
 bNO
 bWx
 hVA
@@ -67161,7 +67188,7 @@ jUo
 jUo
 drL
 azI
-mmA
+lYH
 dWY
 mmA
 mmA
@@ -69515,7 +69542,7 @@ lfG
 ebf
 lfG
 lfG
-eUz
+eEq
 izb
 izb
 izb

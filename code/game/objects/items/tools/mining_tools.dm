@@ -96,7 +96,6 @@
 	light_range = 2
 	light_power = 0.6
 	light_color = LIGHT_COLOR_PURPLE
-	light_on = FALSE
 	var/cutting_sound = 'sound/items/welder2.ogg'
 	var/powered = FALSE
 	var/dirt_amt_per_dig = 5

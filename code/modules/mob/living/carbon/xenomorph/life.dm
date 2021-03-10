@@ -12,6 +12,9 @@
 
 	..()
 
+	if(notransform) //If we're in true stasis don't bother processing life
+		return
+
 	if(stat == DEAD) //Dead, nothing else to do but this.
 		if(plasma_stored && !(xeno_caste.caste_flags & CASTE_DECAY_PROOF))
 			handle_decay()
@@ -35,17 +38,6 @@
 	handle_living_plasma_updates()
 	update_action_button_icons()
 	update_icons()
-
-
-/mob/living/carbon/xenomorph/update_stat()
-	. = ..()
-	if(.)
-		return
-
-	//Deal with devoured things and people
-	if(LAZYLEN(stomach_contents) && world.time > devour_timer && !is_ventcrawling)
-		empty_gut()
-
 
 /mob/living/carbon/xenomorph/handle_status_effects()
 	. = ..()

@@ -67,7 +67,7 @@
 			onclose(user, "[name]")
 	else
 		to_chat(user, "<span class='notice'>It is too far away to read.</span>")
-	return
+
 
 /obj/item/paper/verb/rename()
 	set name = "Rename paper"
@@ -77,7 +77,7 @@
 	var/n_name = stripped_input(usr, "What would you like to label the paper?", "Paper Labelling")
 	if((loc == usr && usr.stat == 0))
 		name = "[(n_name ? text("[n_name]") : "paper")]"
-	return
+
 
 
 /obj/item/paper/attack_ai(mob/living/silicon/ai/user as mob)
@@ -93,7 +93,7 @@
 		//Show scrambled paper
 		usr << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[stars(info)][stamps]</BODY></HTML>", "window=[name]")
 		onclose(usr, "[name]")
-	return
+
 
 /obj/item/paper/attack(mob/living/carbon/M, mob/living/carbon/user)
 	if(user.zone_selected == "eyes")
@@ -434,3 +434,26 @@ then, for every time you included a field, increment fields. */
 
 /obj/item/paper/crumpled/bloody/csheet
 	info = "<b>Character Sheet</b>\n\nKorbath the Barbarian\nLevel 6 Barbarian\nHitpoints: 47/93\nSTR: 18\nDEX: 14\nCON: 16\nINT: 8\nWIS: 11\nCHA: 15\n\n<B>Inventory:</b>\nGreatsword +3 \nChain M--\n\n\nThe rest of the page is covered in smears of blood."
+
+/obj/item/paper/chemsystem
+	name = "Vali manual"
+	info = {"<b>How to use the Vali system</b><BR>
+	The Vali system uses green blood to empower reagents inside of your body.<BR>
+	Green blood is collected by attacking with a connected weapon.<BR>
+	<BR>
+	<b>Configurations menu:</b><BR>
+	From here you can configure the system.<BR>
+	> Connect - Connects/disconnects to/from the Vali system a system-compatible item you are holding.<BR>
+	> Extract - Fills the reagent container you are holding with 10u of green blood from the system's storage. Green blood can be used to duplicate bicaridine/kelotane/tramadol/dylovene.<BR>
+	> Switch boost - switches between the boost tiers that the system offers. Usually the stronger the boost, the more green blood is required for operation.<BR>
+	<BR>
+	<b>On-Off button</b><BR>
+	As the name implies, you switch the system's reagent boosting ability on or off with it.<BR>
+	> The system can stay on for 20 seconds before you get necrotized flesh from keeping it on.<BR>
+	<BR>
+	<b>Pre-loading reagents using the Load action in configurations</b><BR>
+	> 60u capacity<BR>
+	> Can't load pills.<BR>
+	> When you are holding a filled liquid holder, you can load its contents into the Vali system's reagent tank.<BR>
+	> When you are holding an empty liquid holder, you can empty the Vali's reagent tank into it.<BR>
+	> When you aren't holding a liquid holder, you can pick whether you would like the internal tank's reagents to be automatically injected on activation or not.<BR>"}

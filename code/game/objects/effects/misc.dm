@@ -101,7 +101,7 @@
 	return attack_hand(X)
 
 
-/obj/effect/forcefield/fog/attack_paw(mob/living/carbon/monkey/user)
+/obj/effect/forcefield/fog/attack_paw(mob/living/carbon/human/user)
 	return attack_hand(user)
 
 
@@ -115,15 +115,15 @@
 		return FALSE
 	if(isxeno(mover))
 		var/mob/living/carbon/xenomorph/moving_xeno = mover
-		for(var/tummy_resident in moving_xeno.stomach_contents)
+		for(var/tummy_resident in moving_xeno.stomach_contents)//Dead code, to be removed
 			if(ishuman(tummy_resident))
 				var/mob/living/carbon/human/H = tummy_resident
-				if(check_tod(H))
+				if(!HAS_TRAIT(H, TRAIT_UNDEFIBBABLE))
 					return FALSE
 		return TRUE
 	if(ishuman(mover) && !issynth(mover))
 		var/mob/living/carbon/human/H = mover
-		if(H.stat == DEAD && !check_tod(H)) // Allow pulled perma-dead humans to cross
+		if(HAS_TRAIT(H, TRAIT_UNDEFIBBABLE)) // Allow pulled perma-dead humans to cross
 			return TRUE
 	return FALSE
 

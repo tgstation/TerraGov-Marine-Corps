@@ -1,7 +1,6 @@
 import { useBackend, useLocalState } from '../backend';
 import { Button, Section, Box, ProgressBar, LabeledList, Modal } from '../components';
 import { Window } from '../layouts';
-import { LabeledListItem } from '../components/LabeledList';
 
 export const MarineSelector = (props, context) => {
   const { act, data } = useBackend(context);
@@ -48,47 +47,42 @@ export const MarineSelector = (props, context) => {
             onClick={() => setShowDesc(null)} />
         </Modal>
       )}
-      <div>
-        <div
-          className="VendingWindow__header">
-          <Section
-            title="Choose your equipment"
-            buttons={
-              <>
-                {!!show_points && (
-                  <ProgressBar
-                    width="100px"
-                    value={current_m_points / total_marine_points}
-                    ranges={{
-                      good: [0.67, Infinity],
-                      average: [0.33, 0.67],
-                      bad: [-Infinity, 0.33],
-                    }} >
-                    {current_m_points +"/"+ total_marine_points + " Points"}
-                  </ProgressBar>
-                )}
-                <Box inline width="4px" />
-                <Button
-                  icon="power-off"
-                  selected={showEmpty}
-                  onClick={() => setShowEmpty(!showEmpty)}>
-                  Show Empty Categories
-                </Button>
-              </>
-            } />
-        </div>
-        <div className="VendingWindow__content">
-          <Window.Content scrollable>
-            <Section>
-              {categories.map(category => (
-                <ItemCategory
-                  category={category}
-                  key={category.id} />
-              ))}
-            </Section>
-          </Window.Content>
-        </div>
-      </div>
+      <Window.Content scrollable>
+        <Section
+          title="Choose your equipment"
+          buttons={
+            <>
+              {!!show_points && (
+                <ProgressBar
+                  width="100px"
+                  value={current_m_points / total_marine_points}
+                  ranges={{
+                    good: [0.67, Infinity],
+                    average: [0.33, 0.67],
+                    bad: [-Infinity, 0.33],
+                  }} >
+                  {current_m_points +"/"+ total_marine_points + " Points"}
+                </ProgressBar>
+              )}
+              <Box inline width="4px" />
+              <Button
+                icon="power-off"
+                selected={showEmpty}
+                onClick={() => setShowEmpty(!showEmpty)}>
+                Show Empty Categories
+              </Button>
+            </>
+          }>
+          Make selections in each of the categories below to get equipped.
+          Surplus of some of the equipment found in this machine may be
+          found in surplus vendors nearby.
+        </Section>
+        {categories.map(category => (
+          <ItemCategory
+            category={category}
+            key={category.id} />
+        ))}
+      </Window.Content>
     </Window>
   );
 };
@@ -158,7 +152,7 @@ const ItemLine = (props, context) => {
   } = props;
 
   return (
-    <LabeledListItem
+    <LabeledList.Item
       key={id}
       buttons={
         <>
@@ -192,6 +186,6 @@ const ItemLine = (props, context) => {
         <Button onClick={() => setShowDesc(prod_desc)}>
           ?
         </Button>)}
-    </LabeledListItem>
+    </LabeledList.Item>
   );
 };

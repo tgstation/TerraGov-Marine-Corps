@@ -54,10 +54,9 @@
 		affected_mob = null
 		return PROCESS_KILL
 
-	if(affected_mob.stat == DEAD)
+	if(affected_mob.stat == DEAD)//DEAD CODE TO BE REMOVED
 		if(ishuman(affected_mob))
-			var/mob/living/carbon/human/H = affected_mob
-			if(check_tod(H)) //Can't be defibbed.
+			if(!HAS_TRAIT(affected_mob, TRAIT_UNDEFIBBABLE)) 
 				var/mob/living/carbon/xenomorph/larva/L = locate() in affected_mob
 				L?.initiate_burst(affected_mob)
 				return PROCESS_KILL
@@ -202,11 +201,22 @@
 
 	if(ishuman(victim))
 		var/mob/living/carbon/human/H = victim
+		H.apply_damage(200, BRUTE, H.get_limb("chest"), updating_health = TRUE) //lethal armor ignoring brute damage
 		var/datum/internal_organ/O
-		for(var/i in list("heart", "lungs")) //This removes (and later garbage collects) both organs. No heart means instant death.
+		for(var/i in list("heart", "lungs", "liver", "kidneys", "appendix")) //Bruise all torso internal organs
 			O = H.internal_organs_by_name[i]
-			H.internal_organs_by_name -= i
-			H.internal_organs -= O
+
+			if(!H.mind && !H.client) //If we have no client or mind, permadeath time; remove the organs. Mainly for the NPC colonist bodies
+				H.internal_organs_by_name -= i
+				H.internal_organs -= O
+			else
+				O.take_damage(O.min_bruised_damage, TRUE)
+
+		var/datum/limb/chest = H.get_limb("chest")
+		var/datum/wound/internal_bleeding/I = new (15) //Apply internal bleeding to chest
+		chest.wounds += I
+		chest.fracture()
+
 
 	victim.chestburst = 2
 	victim.update_burst()

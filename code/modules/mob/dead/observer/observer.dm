@@ -294,9 +294,12 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		if(status_value)
 			stat("Evacuation in:", status_value)
 		if(SSticker.mode)
-			status_value = SSticker.mode.get_hivemind_collapse_countdown()
-			if(status_value)
-				stat("<b>Orphan hivemind collapse timer:</b>", status_value)
+			var/rulerless_countdown = SSticker.mode.get_hivemind_collapse_countdown()
+			if(rulerless_countdown)
+				stat("<b>Orphan hivemind collapse timer:</b>", rulerless_countdown)
+			var/siloless_countdown = SSticker.mode.get_siloless_collapse_countdown()
+			if(siloless_countdown)
+				stat("<b>Silo less hive collapse timer:</b>", siloless_countdown)
 		if(GLOB.respawn_allowed)
 			status_value = (timeofdeath + GLOB.respawntime - world.time) * 0.1
 			if(status_value <= 0)
@@ -798,7 +801,11 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	if(!target)
 		return
 
-	if(!client)
+	do_observe(target)
+
+///makes the ghost see the target hud and sets the eye at the target.
+/mob/dead/observer/proc/do_observe(mob/target)
+	if(!client || !target || !istype(target))
 		return
 
 	client.eye = target

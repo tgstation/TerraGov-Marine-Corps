@@ -44,7 +44,7 @@
 // The actual gun itself.
 /obj/item/standard_hmg
 	name = "\improper TL-102 mounted heavy smartgun"
-	desc = "The TL-102 heavy machinegun, it's too heavy to be carried or to be operated without the tripod. IFF capable. No extra work required, just deploy it."
+	desc = "The TL-102 heavy machinegun, it's too heavy to be carried or to be operated without the tripod. IFF capable. No extra work required, just deploy it. Can be repaired with a blowtorch once deployed."
 	max_integrity = 300
 	w_class = WEIGHT_CLASS_HUGE
 	flags_equip_slot = ITEM_SLOT_BACK
@@ -72,7 +72,7 @@
 		icon_state = "turret_icon_e"
 	else
 		icon_state = "turret_icon"
-	return
+
 
 /obj/item/standard_hmg/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -152,7 +152,7 @@
 // The actual Machinegun itself, going to borrow some stuff from current sentry code to make sure it functions. Also because they're similiar.
 /obj/machinery/standard_hmg
 	name = "\improper TL-102 mounted heavy smartgun"
-	desc = "A deployed and mounted heavy smartgun, ready to rock. While it is capable of taking the same rounds as the smartmachinegun, it fires specialized tungsten rounds for increased armor penetration.\n<span class='notice'>Use (ctrl-click) to toggle burstfire.</span>"
+	desc = "A deployed and mounted heavy smartgun, ready to rock. While it is capable of taking the same rounds as the smartmachinegun, it fires specialized tungsten rounds for increased armor penetration. Can be repaired with a blowtorch. \n<span class='notice'>Use (ctrl-click) to toggle burstfire.</span>"
 	icon = 'icons/Marine/marine-hmg.dmi'
 	icon_state = "turret"
 	anchored = TRUE
@@ -162,6 +162,7 @@
 	use_power = 0
 	max_integrity = 300
 	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)
+	hud_possible = list(MACHINE_HEALTH_HUD, SENTRY_AMMO_HUD)
 	var/rounds = 0 //Have it be empty upon spawn.
 	var/rounds_max = 300
 	var/fire_delay = 2 //Gotta have rounds down quick. // Ren's changes
@@ -184,6 +185,11 @@
 	. = ..()
 	ammo = GLOB.ammo_list[ammo] //dunno how this works but just sliding this in from sentry-code.
 	update_icon()
+	prepare_huds() //Set up HUDS
+	for(var/datum/atom_hud/squad/sentry_status_hud in GLOB.huds) //Add to the squad HUD
+		sentry_status_hud.add_to_hud(src)
+	hud_set_machine_health()
+	hud_set_hsg_ammo()
 
 /obj/machinery/standard_hmg/Destroy() //Make sure we pick up our trash.
 	operator?.unset_interaction()
@@ -205,7 +211,7 @@
 		icon_state = "[icon_empty]"
 	else
 		icon_state = "[icon_full]"
-	return
+
 
 /obj/machinery/standard_hmg/attackby(obj/item/I, mob/user, params) //This will be how we take it apart.
 	. = ..()
@@ -241,6 +247,7 @@
 			D.current_rounds = rounds - (rounds_max - M.current_rounds)
 		rounds = min(rounds + M.current_rounds, rounds_max)
 		update_icon()
+		hud_set_hsg_ammo()
 		qdel(I)
 
 /obj/machinery/standard_hmg/welder_act(mob/living/user, obj/item/I)
@@ -282,6 +289,7 @@
 	user.visible_message("<span class='notice'>[user] repairs some damage on [src].</span>",
 	"<span class='notice'>You repair [src].</span>")
 	repair_damage(120)
+	hud_set_machine_health()
 	update_icon()
 	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
 	return TRUE
@@ -317,6 +325,10 @@
 	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_M56)
 	return ..()
 
+/obj/machinery/standard_hmg/take_damage(damage_amount, damage_type, damage_flag, effects, attack_dir, armour_penetration)
+	. = ..()
+	hud_set_machine_health()
+	
 
 /obj/machinery/standard_hmg/proc/load_into_chamber()
 	if(in_chamber)
@@ -365,6 +377,7 @@
 		return //No ammo.
 	if(last_fired)
 		return //still shooting.
+	hud_set_hsg_ammo()
 
 	if(!is_bursting)
 		last_fired = TRUE

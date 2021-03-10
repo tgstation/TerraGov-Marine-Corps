@@ -1,6 +1,8 @@
 // points per minute
-#define DROPSHIP_POINT_RATE 18 * (GLOB.current_orbit/3)
+#define DROPSHIP_POINT_RATE 18 * ((GLOB.current_orbit+3)/6)
 #define SUPPLY_POINT_RATE 2 * (GLOB.current_orbit/3)
+//How many psych point one gen gives per person on the server
+#define BASE_PSYCH_POINT_OUTPUT 0.002
 
 SUBSYSTEM_DEF(points)
 	name = "Points"
@@ -12,6 +14,8 @@ SUBSYSTEM_DEF(points)
 
 	var/dropship_points = 0
 	var/supply_points = 120
+	///Assoc list of xeno points: xeno_points_by_hive["hivenum"]
+	var/list/xeno_points_by_hive = list()
 
 	var/ordernum = 1					//order number given to next order
 
@@ -164,6 +168,10 @@ SUBSYSTEM_DEF(points)
 	var/list/ckey_shopping_cart = request_shopping_cart[user.ckey]
 	if(!length(ckey_shopping_cart))
 		return
+	if(NON_ASCII_CHECK(reason))
+		return
+	if(length(reason) > MAX_LENGTH_REQ_REASON)
+		reason = copytext(reason, 1, MAX_LENGTH_REQ_REASON)
 	var/list/datum/supply_order/orders = process_cart(user, ckey_shopping_cart)
 	for(var/i in 1 to length(orders))
 		orders[i].reason = reason

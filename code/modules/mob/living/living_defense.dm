@@ -128,6 +128,8 @@
 
 //Mobs on Fire
 /mob/living/proc/IgniteMob()
+	if(status_flags & GODMODE) //Invulnerable mobs don't get ignited
+		return FALSE
 	if(!CHECK_BITFIELD(datum_flags, DF_ISPROCESSING))
 		return FALSE
 	if(fire_stacks > 0 && !on_fire)
@@ -186,6 +188,8 @@
 	return
 
 /mob/living/proc/adjust_fire_stacks(add_fire_stacks) //Adjusting the amount of fire_stacks we have on person
+	if(status_flags & GODMODE) //Invulnerable mobs don't get fire stacks
+		return
 	fire_stacks = clamp(fire_stacks + add_fire_stacks, -20, 20)
 	if(on_fire && fire_stacks <= 0)
 		ExtinguishMob()
@@ -249,7 +253,9 @@
 	smoke_delay = FALSE
 
 /mob/living/proc/smoke_contact(obj/effect/particle_effect/smoke/S)
-	var/protection = max(1 - get_permeability_protection() * S.bio_protection)
+	var/protection = max(1 - get_permeability_protection() * S.bio_protection, 0)
+	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_EXTINGUISH))
+		ExtinguishMob()
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_BLISTERING))
 		adjustFireLoss(15 * protection)
 		to_chat(src, "<span class='danger'>It feels as if you've been dumped into an open fire!</span>")

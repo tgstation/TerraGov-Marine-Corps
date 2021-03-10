@@ -340,7 +340,7 @@
 
 	if(limb_status & LIMB_SPLINTED && damage > 5 && prob(50 + damage * 2.5)) //If they have it splinted, the splint won't hold.
 		remove_limb_flags(LIMB_SPLINTED)
-		to_chat(owner, "<span class='danger'>The splint on your [display_name] comes apart!</span>")
+		to_chat(owner, "<span class='userdanger'>The splint on your [display_name] comes apart!</span>")
 
 	// first check whether we can widen an existing wound
 	var/datum/wound/W

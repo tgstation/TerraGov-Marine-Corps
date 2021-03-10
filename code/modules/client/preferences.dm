@@ -83,6 +83,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/g_hair = 0
 	var/b_hair = 0
 
+	var/grad_style = "None"
+	var/r_grad = 0
+	var/g_grad = 0
+	var/b_grad = 0
+
 	//Facial hair
 	var/f_style = "Shaved"
 	var/r_facial = 0
@@ -118,7 +123,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	///Whether to mute goonchat combat messages from others, such as when they are shot.
 	var/mute_others_combat_messages = FALSE
 	///Whether to mute xeno health alerts from when other xenos are badly hurt.
-	var/mute_xeno_health_alert_messages = FALSE
+	var/mute_xeno_health_alert_messages = TRUE
 
 	/// Chat on map
 	var/chat_on_map = TRUE
@@ -248,6 +253,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	dat += "<br>"
 	dat += "<b>Hair:</b> <a href='?_src_=prefs;preference=hairstyle'>[h_style]</a> | <a href='?_src_=prefs;preference=haircolor'>Color</a> <font face='fixedsys' size='3' color='#[num2hex(r_hair, 2)][num2hex(g_hair, 2)][num2hex(b_hair, 2)]'><table style='display:inline;' bgcolor='#[num2hex(r_hair, 2)][num2hex(g_hair, 2)][num2hex(b_hair)]'><tr><td>__</td></tr></table></font> "
 	dat += "<br>"
+	dat += "<b>Gradient:</b> <a href='?_src_=prefs;preference=grad_style'>[grad_style]</a> <a href='?_src_=prefs;preference=grad_color'>Color</a> <font face='fixedsys' size='3' color='#[num2hex(r_grad, 2)][num2hex(g_grad, 2)][num2hex(b_grad, 2)]'><table style='display:inline;' bgcolor='#[num2hex(r_grad, 2)][num2hex(g_grad, 2)][num2hex(b_grad)]'><tr><td>__</td></tr></table></font>"
+	dat += "<br>"
 	dat += "<b>Facial Hair:</b> <a href='?_src_=prefs;preference=facialstyle'>[f_style]</a> | <a href='?_src_=prefs;preference=facialcolor'>Color</a> <font face='fixedsys' size='3' color='#[num2hex(r_facial, 2)][num2hex(g_facial, 2)][num2hex(b_facial, 2)]'><table  style='display:inline;' bgcolor='#[num2hex(r_facial, 2)][num2hex(g_facial, 2)][num2hex(b_facial)]'><tr><td>__</td></tr></table></font> "
 	dat += "<br>"
 	dat += "<b>Eye:</b> <a href='?_src_=prefs;preference=eyecolor'>Color</a> <font face='fixedsys' size='3' color='#[num2hex(r_eyes, 2)][num2hex(g_eyes, 2)][num2hex(b_eyes, 2)]'><table  style='display:inline;' bgcolor='#[num2hex(r_eyes, 2)][num2hex(g_eyes, 2)][num2hex(b_eyes)]'><tr><td>__</td></tr></table></font><br>"
@@ -349,7 +356,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	dat += "<h2>Chat Message Settings:</h2>"
 	dat += "<b>Mute self combat messages:</b> <a href='?_src_=prefs;preference=mute_self_combat_messages'>[mute_self_combat_messages ? "Enabled" : "Disabled"]</a><br>"
 	dat += "<b>Mute others combat messages:</b> <a href='?_src_=prefs;preference=mute_others_combat_messages'>[mute_others_combat_messages ? "Enabled" : "Disabled"]</a><br>"
-	dat += "<b>Mute xeno health alert messages:</b> <a href='?_src_=prefs;preference=mute_xeno_health_alert_messages'>[mute_xeno_health_alert_messages ? "Enabled" : "Disabled"]</a><br>"
+	dat += "<b>Mute xeno health alert messages:</b> <a href='?_src_=prefs;preference=mute_xeno_health_alert_messages'>[mute_xeno_health_alert_messages ? "Yes" : "No"]</a><br>"
 
 	dat += "<h2>Runechat Settings:</h2>"
 	dat += "<b>Show Runechat Chat Bubbles:</b> <a href='?_src_=prefs;preference=chat_on_map'>[chat_on_map ? "Enabled" : "Disabled"]</a><br>"
@@ -624,7 +631,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 		if("synth_name")
 			var/newname = input(user, "Choose your Synthetic's name:", "Synthetic Name")
-			newname = reject_bad_name(newname)
+			newname = reject_bad_name(newname, TRUE)
 			if(!newname)
 				to_chat(user, "<font color='red'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</font>")
 				return
@@ -660,7 +667,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 		if("name_real")
 			var/newname = input(user, "Choose your character's name:", "Character Name")
-			newname = reject_bad_name(newname)
+			newname = reject_bad_name(newname, TRUE)
 			if(!newname)
 				to_chat(user, "<font color='red'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</font>")
 				return
@@ -852,6 +859,28 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			g_hair = hex2num(copytext(new_color, 4, 6))
 			b_hair = hex2num(copytext(new_color, 6, 8))
 
+		if("grad_color")
+			var/new_grad = input(user, "Choose your character's secondary hair color:", "Gradient Color") as null|color
+			if(!new_grad)
+				return
+			r_grad = hex2num(copytext(new_grad, 2, 4))
+			g_grad = hex2num(copytext(new_grad, 4, 6))
+			b_grad = hex2num(copytext(new_grad, 6, 8))
+
+		if("grad_style")
+			var/list/valid_grads = list()
+			for(var/grad in GLOB.hair_gradients_list)
+				var/datum/sprite_accessory/S = GLOB.hair_gradients_list[grad]
+				if(!(species in S.species_allowed))
+					continue
+
+				valid_grads[grad] = GLOB.hair_gradients_list[grad]
+
+			var/new_grad_style = tgui_input_list(user, "Choose a color pattern for your hair:", "Character Preference", valid_grads)
+			if(!new_grad_style)
+				return
+			grad_style = new_grad_style
+
 		if("facialstyle")
 			var/list/valid_facialhairstyles = list()
 			for(var/facialhairstyle in GLOB.facial_hair_styles_list)
@@ -954,6 +983,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		if("flavor_text")
 			var/msg = stripped_input(user, "Give a physical description of your character.", "Flavor Text", sanitize(flavor_text))
 			if(!msg)
+				return
+			if(NON_ASCII_CHECK(msg))
 				return
 			flavor_text = msg
 

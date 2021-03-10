@@ -38,7 +38,7 @@
 
 
 /obj/machinery/proc/is_operational()
-	return !(machine_stat & (NOPOWER|BROKEN|MAINT))
+	return !(machine_stat & (NOPOWER|BROKEN|MAINT|DISABLED))
 
 
 /obj/machinery/deconstruct(disassembled = TRUE)
@@ -159,7 +159,7 @@
 	if(!is_operational())
 		return FALSE
 
-	if(iscarbon(usr) && (!in_range(src, usr) || !isturf(loc)))
+	if(iscarbon(user) && (!in_range(src, user) || !isturf(loc)))
 		return FALSE
 
 	if(ishuman(user))
@@ -175,6 +175,8 @@
 
 
 /obj/machinery/attack_ai(mob/living/silicon/ai/user)
+	if(!is_operational())
+		return FALSE
 	return interact(user)
 
 

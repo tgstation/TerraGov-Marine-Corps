@@ -56,11 +56,11 @@
 
 /obj/item/implant/deployitem/blade/put_in_slots()
 	. = ..()
-	playsound(implant_owner, 'sound/weapons/wristblades_on.ogg', 15, 0, 1)
+	playsound(implant_owner.loc, 'sound/weapons/wristblades_on.ogg', 15, TRUE)
 
 /obj/item/implant/deployitem/blade/fetch_item()
 	. = ..()
-	playsound(implant_owner, 'sound/weapons/wristblades_off.ogg', 15, 0, 1)
+	playsound(implant_owner.loc, 'sound/weapons/wristblades_off.ogg', 15, TRUE)
 
 /obj/item/weapon/mantisblade
 	name = "mantis arm blade"

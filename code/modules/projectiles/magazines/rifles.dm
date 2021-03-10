@@ -242,7 +242,7 @@
 	caliber = "7.62x39mm"
 	icon_state = "type_71"
 	default_ammo = /datum/ammo/bullet/rifle/ak47
-	max_rounds = 40
+	max_rounds = 42
 	gun_type = /obj/item/weapon/gun/rifle/type71
 
 //TX-16 AUTOMATIC SHOTGUN

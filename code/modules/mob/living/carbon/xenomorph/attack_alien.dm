@@ -17,6 +17,7 @@
 	return TRUE
 
 /mob/living/carbon/human/attack_alien_grab(mob/living/carbon/xenomorph/X)
+
 	if(check_shields(COMBAT_TOUCH_ATTACK, X.xeno_caste.tackle_damage, "melee"))
 		return ..()
 	X.visible_message("<span class='danger'>\The [X]'s grab is blocked by [src]'s shield!</span>",
@@ -26,24 +27,13 @@
 
 
 /mob/living/proc/attack_alien_disarm(mob/living/carbon/xenomorph/X, dam_bonus)
-	if(!prob(X.melee_accuracy))
-		X.do_attack_animation(src)
-		playsound(loc, 'sound/weapons/slashmiss.ogg', 25, TRUE)
-		X.visible_message("<span class='danger'>\The [X] shoves at [src], narroly missing!</span>",
-		"<span class='danger'>Our tackle against [src] narroly misses!</span>")
-		return FALSE
+
 	SEND_SIGNAL(src, COMSIG_LIVING_MELEE_ALIEN_DISARMED, X)
 	X.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
 	playsound(loc, 'sound/weapons/alien_knockdown.ogg', 25, TRUE)
 	X.visible_message("<span class='warning'>\The [X] shoves [src]!</span>",
 	"<span class='warning'>We shove [src]!</span>", null, 5)
 	return TRUE
-
-/mob/living/carbon/monkey/attack_alien_disarm(mob/living/carbon/xenomorph/X, dam_bonus)
-	. = ..()
-	if(!.)
-		return
-	Paralyze(16 SECONDS)
 
 /mob/living/proc/can_xeno_slash(mob/living/carbon/xenomorph/X)
 	if(CHECK_BITFIELD(X.xeno_caste.caste_flags, CASTE_IS_INTELLIGENT)) // intelligent ignore restrictions
@@ -95,13 +85,8 @@
 	return affecting
 
 /mob/living/proc/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
-	if(!can_xeno_slash(X))
-		return FALSE
 
-	if(!prob(X.melee_accuracy))
-		playsound(loc, 'sound/weapons/slashmiss.ogg', 25, TRUE)
-		X.visible_message("<span class='danger'>\The [X] slashes at [src], narroly missing!</span>",
-		"<span class='danger'>Our slash against [src] narroly misses!</span>")
+	if(!can_xeno_slash(X))
 		return FALSE
 
 	var/damage = X.xeno_caste.melee_damage
@@ -167,6 +152,7 @@
 	return TRUE
 
 /mob/living/silicon/attack_alien_disarm(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
+
 	if(stat == DEAD) //A bit of visual flavor for attacking Cyborgs. Sparks!
 		return FALSE
 	. = ..()
@@ -180,6 +166,7 @@
 	playsound(loc, "alien_claw_metal", 25, TRUE)
 
 /mob/living/silicon/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
+
 	if(stat == DEAD) //A bit of visual flavor for attacking Cyborgs. Sparks!
 		return FALSE
 	. = ..()
@@ -202,6 +189,7 @@
 
 
 /mob/living/carbon/human/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
+
 	if(stat == DEAD)
 		if(istype(wear_ear, /obj/item/radio/headset/mainship))
 			var/obj/item/radio/headset/mainship/cam_headset = wear_ear
@@ -229,6 +217,9 @@
 
 //Every other type of nonhuman mob //MARKER OVERRIDE
 /mob/living/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(X.status_flags & INCORPOREAL)
+		return FALSE
+
 	if (X.fortify)
 		return FALSE
 

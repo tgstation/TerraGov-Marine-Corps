@@ -1299,7 +1299,7 @@
 	icon_state = "monkeycube"
 	bitesize = 12
 	filling_color = "#ADAC7F"
-	var/monkey_type = /mob/living/carbon/monkey
+	var/monkey_type = /mob/living/carbon/human/species/monkey
 	list_reagents = list(/datum/reagent/consumable/nutriment = 10)
 	tastes = list("the jungle" = 1, "bananas" = 1)
 
@@ -1346,7 +1346,7 @@
 			surprise.embed_into(M, E)
 	else if (ismonkey(M))
 		M.visible_message("<span class='danger'>[M] suddenly tears in half!</span>")
-		var/mob/living/carbon/monkey/ook = new monkey_type(M.loc)
+		var/mob/living/carbon/human/species/monkey/ook = new monkey_type(M.loc)
 		ook.name = "malformed [ook.name]"
 		ook.transform *= 0.6
 		ook.add_mob_blood(M)
@@ -1370,26 +1370,27 @@
 
 /obj/item/reagent_containers/food/snacks/monkeycube/farwacube
 	name = "farwa cube"
-	monkey_type = /mob/living/carbon/monkey/tajara
+	monkey_type = /mob/living/carbon/human/species/monkey/farwa
+
 /obj/item/reagent_containers/food/snacks/monkeycube/wrapped/farwacube
 	name = "farwa cube"
-	monkey_type =/mob/living/carbon/monkey/tajara
+	monkey_type = /mob/living/carbon/human/species/monkey/farwa
 
 
 /obj/item/reagent_containers/food/snacks/monkeycube/stokcube
 	name = "stok cube"
-	monkey_type = /mob/living/carbon/monkey/unathi
+	monkey_type = /mob/living/carbon/human/species/monkey/stok
 /obj/item/reagent_containers/food/snacks/monkeycube/wrapped/stokcube
 	name = "stok cube"
-	monkey_type =/mob/living/carbon/monkey/unathi
+	monkey_type = /mob/living/carbon/human/species/monkey/stok
 
 
 /obj/item/reagent_containers/food/snacks/monkeycube/neaeracube
 	name = "neaera cube"
-	monkey_type = /mob/living/carbon/monkey/skrell
+	monkey_type = /mob/living/carbon/human/species/monkey/naera
 /obj/item/reagent_containers/food/snacks/monkeycube/wrapped/neaeracube
 	name = "neaera cube"
-	monkey_type =/mob/living/carbon/monkey/skrell
+	monkey_type = /mob/living/carbon/human/species/monkey/naera
 
 
 /obj/item/reagent_containers/food/snacks/spellburger
@@ -2647,8 +2648,8 @@
 		icon_state = "hotdog"
 
 /obj/item/reagent_containers/food/snacks/upp
-	name = "\improper UPP ration"
-	desc = "A sealed, freeze-dried, compressed package containing a single item of food. Commonplace in the UPP military, especially those units stationed on far-flung colonies. This one is stamped for consumption by the UPP's 'Smoldering Sons' battalion and was packaged in 2179."
+	name = "\improper USL ration"
+	desc = "A sealed, freeze-dried, compressed package containing a single item of food. Commonplace in the USL pirate band and even those who live on Mars, especially those stationed on far-flung colonies. This one is was packaged in 2415."
 	icon_state = "upp_ration"
 	bitesize = 2
 	package = TRUE
@@ -2805,20 +2806,20 @@
 	icon_state = "lollipop_stick"
 	item_state = "lollipop_stick"
 	flags_equip_slot = ITEM_SLOT_MASK
-	w_class = WEIGHT_CLASS_TINY	
+	w_class = WEIGHT_CLASS_TINY
 	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/sugar = 4)
-	tastes = list("candy" = 1)	
+	tastes = list("candy" = 1)
 	var/mutable_appearance/head
 	var/headcolor = rgb(0, 0, 0)
 	var/succ_int = 100
 	var/next_succ = 0
 	var/mob/living/carbon/human/owner
- 
+
 /obj/item/reagent_containers/food/snacks/lollipop/Initialize()
 	. = ..()
 	head = mutable_appearance('icons/obj/items/lollipop.dmi', "lollipop_head")
 	change_head_color(rgb(rand(0, 255), rand(0, 255), rand(0, 255)))
- 
+
 //makes lollipops actually wearable as masks and still edible the old fashioned way.
 /obj/item/reagent_containers/food/snacks/lollipop/proc/handle_reagents()
 	var/fraction = min(FOOD_METABOLISM/reagents.total_volume, 1)
@@ -2833,7 +2834,7 @@
 	if(!reagents)
 		stack_trace("lollipop processing without a reagents datum")
 		return PROCESS_KILL
-	if(owner.stat == DEAD)	
+	if(owner.stat == DEAD)
 		return PROCESS_KILL
 	if(!reagents.total_volume)
 		qdel(src)
@@ -2841,7 +2842,7 @@
 	if(next_succ <= world.time)
 		handle_reagents()
 		next_succ = world.time + succ_int
- 
+
 /obj/item/reagent_containers/food/snacks/lollipop/equipped(mob/user, slot)
 	. = ..()
 	if(!iscarbon(user))
@@ -2852,11 +2853,11 @@
 		return
 	owner = user
 	START_PROCESSING(SSobj, src)
- 
+
 /obj/item/reagent_containers/food/snacks/lollipop/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	return ..()
- 
+
 /obj/item/reagent_containers/food/snacks/lollipop/proc/change_head_color(C)
 	headcolor = C
 	cut_overlay(head)

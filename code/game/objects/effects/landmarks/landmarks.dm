@@ -207,6 +207,7 @@
 	icon_state = "weapon1"
 	weapon_list = list(
 		/obj/item/weapon/gun/energy/lasgun/M43/practice,
+		/obj/item/weapon/gun/energy/lasgun/tesla,
 		/obj/item/weapon/gun/flare,
 		/obj/item/weapon/gun/pistol/standard_pistol,
 		/obj/item/weapon/gun/pistol/standard_pocketpistol,
@@ -247,13 +248,13 @@
 	icon_state = "weapon2"
 	weapon_list = list(
 		/obj/item/weapon/gun/energy/lasgun/M43,
-		/obj/item/weapon/gun/energy/lasgun/M43/stripped,
 		/obj/item/weapon/gun/shotgun/pump/lever,
 		/obj/item/weapon/gun/pistol/g22/tranq,
 		/obj/item/weapon/gun/pistol/m1911/custom,
 		/obj/item/weapon/gun/revolver/mateba,
 		/obj/item/weapon/gun/revolver/mateba/notmarine,
 		/obj/item/weapon/gun/revolver/mateba/captain,
+		/obj/item/weapon/gun/smg/standard_machinepistol,
 		/obj/item/weapon/gun/smg/standard_smg,
 		/obj/item/weapon/gun/smg/m25,
 		/obj/item/weapon/gun/smg/mp7,
@@ -292,9 +293,12 @@
 		/obj/item/weapon/gun/energy/lasgun/lasrifle,
 		/obj/item/weapon/gun/shotgun/pump,
 		/obj/item/weapon/gun/shotgun/pump/t35,
+		/obj/item/weapon/gun/shotgun/combat,
 		/obj/item/weapon/gun/shotgun/combat/standardmarine,
 		/obj/item/weapon/gun/flamer,
 		/obj/item/weapon/gun/pistol/auto9,
+		/obj/item/weapon/gun/rifle/chambered,
+		/obj/item/weapon/gun/rifle/tx11,
 	)
 
 /obj/effect/landmark/weapon_spawn/tier4_weapon_spawn
@@ -307,6 +311,7 @@
 		/obj/item/weapon/gun/smg/m25/elite,
 		/obj/item/weapon/gun/rifle/sniper/elite/xmas,
 		/obj/item/weapon/gun/rifle/sniper/antimaterial,
+		/obj/item/weapon/gun/rifle/railgun,
 		/obj/item/weapon/gun/rifle/sniper/svd,
 		/obj/item/weapon/gun/launcher/m81,
 		/obj/item/weapon/gun/rifle/standard_smartmachinegun,
@@ -318,6 +323,7 @@
 		/obj/item/weapon/gun/shotgun/double,
 		/obj/item/weapon/gun/shotgun/double/sawn,
 		/obj/item/weapon/gun/flamer/marinestandard,
+		/obj/item/weapon/gun/rifle/standard_autosniper,
 		/obj/item/weapon/energy/axe,
 	)
 
