@@ -426,16 +426,12 @@
 			hugger.go_idle(TRUE)
 	addtimer(CALLBACK(src, .proc/Grow), rand(EGG_MIN_GROWTH_TIME, EGG_MAX_GROWTH_TIME))
 
-	var/list/turf/target_locations = filled_turfs(src, trigger_size, "circle", FALSE)
-	for(var/i in target_locations)
-		RegisterSignal(i, COMSIG_ATOM_ENTERED, .proc/egg_proximity)
-
 
 ///Triggers the egg when hostiles get too close
 /obj/effect/alien/egg/proc/egg_proximity(datum/source, atom/hostile)
 	SIGNAL_HANDLER
 
-	if(status != EGG_GROWN || status == (EGG_BURST|EGG_DESTROYED) ) //Don't bother if we're not grown or we're already burst/destroyed
+	if(status != EGG_GROWN) //Don't bother if we're not grown or we're already burst/destroyed
 		return
 
 	if(!COOLDOWN_CHECK(src, egg_proxy_trigger_cooldown)) //Proxy alert triggered too recently; abort
@@ -452,8 +448,7 @@
 		return
 
 	if(hugger_type && iscarbon(living_triggerer)) //If we have a hugger we then care about whether the target can be facehugged.
-		var/mob/living/carbon_triggerer = living_triggerer
-		if(!carbon_triggerer.can_be_facehugged(hugger))
+		if(!living_triggerer.can_be_facehugged(hugger))
 			return
 
 	if(get_dist(loc, hostile) > trigger_size) //Can only send alerts for those within 2 of us; so we don't have all silos sending alerts when one is proxy tripped
@@ -473,6 +468,10 @@
 /obj/effect/alien/egg/proc/Grow()
 	if(status == EGG_GROWING)
 		update_status(EGG_GROWN)
+
+	var/list/turf/target_locations = filled_turfs(src, trigger_size, "circle", FALSE)
+	for(var/i in target_locations)
+		RegisterSignal(i, COMSIG_ATOM_ENTERED, .proc/egg_proximity)
 
 /obj/effect/alien/egg/ex_act(severity)
 	Burst(TRUE)//any explosion destroys the egg.

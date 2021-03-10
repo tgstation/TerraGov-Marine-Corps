@@ -127,6 +127,9 @@
 
 	// *** Defiler Abilities *** //
 	var/list/available_reagents_define = list() //reagents available for select reagent
+	var/defiler_reagent_slash_count = 0
+	var/defiler_reagent_slash_inject_amount = 0
+	var/defiler_reagent_slash_duration = 0
 
 	// *** Warrior Abilities *** //
 	///speed increase afforded to the warrior caste when in 'agiility' mode. negative number means faster movement.

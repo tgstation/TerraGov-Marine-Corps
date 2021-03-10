@@ -59,6 +59,11 @@
 	aura_strength = 1.7 //Defilers aura begins at 1.7 and ends at 2.6. It's .1 better than a carrier at ancient.
 	aura_allowed = list("frenzy", "warding", "recovery")
 
+	//Reagent slash parameters
+	defiler_reagent_slash_count = 3
+	defiler_reagent_slash_inject_amount = 4
+	defiler_reagent_slash_duration = 4 SECONDS
+
 /datum/xeno_caste/defiler/young
 	upgrade_name = "Young"
 

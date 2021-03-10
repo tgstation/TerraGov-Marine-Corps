@@ -177,7 +177,7 @@
 
 /datum/action/xeno_action/activable/inject_egg_neurogas/on_cooldown_finish()
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
-	to_chat(owner, "<span class='xenodanger'>We feel our dorsal vents bristle with neurotoxic gas. We can use Emit Neurogas again.</span>")
+	to_chat(owner, "<span class='xenodanger'>We feel our injector vents fill with gaseous toxins. We can use Inject Gas again.</span>")
 	return ..()
 
 /datum/action/xeno_action/activable/inject_egg_neurogas/use_ability(atom/A)
@@ -193,11 +193,16 @@
 
 	X.visible_message("<span class='danger'>[X] starts injecting the egg with neurogas, killing the little one inside!</span>", \
 		"<span class='xenodanger'>We extend our stinger into the egg, filling it with gas, killing the little one inside!</span>")
+
 	if(!do_after(X, 2 SECONDS, TRUE, alien_egg, BUSY_ICON_HOSTILE))
 		X.visible_message("<span class='danger'>The stinger retracts from [X], leaving the egg and little one alive.</span>", \
 			"<span class='xenodanger'>Our stinger retracts, leaving the egg and little one alive.</span>")
 		return fail_activate()
 
+	X.visible_message("<span class='danger'>[X] finishes injecting the egg with neurogas, killing the little one inside!</span>", \
+		"<span class='xenodanger'>We finish filling the egg with gas, killing the little one inside!</span>")
+
+	playsound(alien_egg, 'sound/effects/smoke.ogg', 10)
 	succeed_activate()
 	add_cooldown()
 
@@ -275,8 +280,8 @@
 
 	RegisterSignal(X, COMSIG_XENOMORPH_ATTACK_LIVING, .proc/reagent_slash)
 
-	reagent_slash_count = DEFILER_REAGENT_SLASH_COUNT //Set the number of slashes
-	reagent_slash_duration_timer_id = addtimer(CALLBACK(src, .proc/reagent_slash_deactivate, X), DEFILER_REAGENT_SLASH_DURATION, TIMER_STOPPABLE) //Initiate the timer and set the timer ID for reference
+	reagent_slash_count = X.xeno_caste.defiler_reagent_slash_count //Set the number of slashes
+	reagent_slash_duration_timer_id = addtimer(CALLBACK(src, .proc/reagent_slash_deactivate, X), X.xeno_caste.defiler_reagent_slash_duration, TIMER_STOPPABLE) //Initiate the timer and set the timer ID for reference
 
 	to_chat(X, "<span class='xenodanger'>Our spines fill with virulent toxins!</span>") //Let the user know
 	X.playsound_local(X, 'sound/voice/alien_drool2.ogg', 25)
@@ -306,8 +311,8 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/carbon/carbon_target = target
 
-	carbon_target.reagents.add_reagent(X.selected_reagent, DEFILER_REAGENT_SLASH_INJECT_AMOUNT)
-	carbon_target.reagents.add_reagent(/datum/reagent/toxin/xeno_growthtoxin, DEFILER_REAGENT_SLASH_INJECT_AMOUNT, no_overdose = TRUE) //Inject larval growth without ODing
+	carbon_target.reagents.add_reagent(X.selected_reagent,  X.xeno_caste.defiler_reagent_slash_inject_amount)
+	carbon_target.reagents.add_reagent(/datum/reagent/toxin/xeno_growthtoxin,  X.xeno_caste.defiler_reagent_slash_inject_amount, no_overdose = TRUE) //Inject larval growth without ODing
 	playsound(carbon_target, 'sound/effects/spray3.ogg', 15, TRUE)
 	X.visible_message(carbon_target, "<span class='danger'>[carbon_target] is pricked by [X]'s spines!</span>")
 
