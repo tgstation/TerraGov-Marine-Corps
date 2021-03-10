@@ -476,7 +476,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "rifle_heavy"
 	damage = 20
 	penetration = 10
-	damage_falloff = 0.50
 
 /datum/ammo/bullet/rifle/m4ra
 	name = "A19 high velocity bullet"
