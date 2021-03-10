@@ -596,6 +596,7 @@
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/bipod,
+		/obj/item/attachable/angledgrip,
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/suppressor,
@@ -607,6 +608,9 @@
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/stock/t42stock,
 		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/attached_gun/grenade,
+		/obj/item/attachable/attached_gun/flamer,
+		/obj/item/attachable/attached_gun/shotgun,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
@@ -619,7 +623,6 @@
 	aim_speed_modifier = 5
 
 	fire_delay = 0.2 SECONDS
-	damage_mult = 1.1
 	burst_amount = 1
 	accuracy_mult_unwielded = 0.5
 	accuracy_mult = 1
