@@ -27,7 +27,7 @@
 	///State for a fire animation if the gun has any
 	var/fire_animation = null
 	var/fire_sound 		= 'sound/weapons/guns/fire/gunshot.ogg'
-	///Does our gun have a unique empty mag sound? If so use instead of pitch shifting.
+	///Does our gun have a unique sound when running out of ammo? If so, use this instead of pitch shifting.
 	var/fire_rattle		= null
 	var/dry_fire_sound	= 'sound/weapons/guns/fire/empty.ogg'
 	var/unload_sound 	= 'sound/weapons/flipblade.ogg'
@@ -873,7 +873,7 @@ and you're good to go.
 	if(flags_gun_features & GUN_SILENCED)
 		playsound(user, fire_sound, 25, firing_sndfreq ? TRUE : FALSE, frequency = firing_sndfreq)
 		return
-	if(fire_rattle)
+	if(firing_sndfreq && fire_rattle)
 		playsound(user, fire_rattle, 60, FALSE)
 		return
 	playsound(user, fire_sound, 60, firing_sndfreq ? TRUE : FALSE, frequency = firing_sndfreq)
