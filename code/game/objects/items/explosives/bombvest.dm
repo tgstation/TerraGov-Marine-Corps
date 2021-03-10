@@ -1,5 +1,5 @@
 /obj/item/clothing/suit/storage/marine/harness/boomvest
-	name = "\improper Tactical Explosive Vest"
+	name = "tactical explosive vest"
 	desc = "Obviously someone just strapped a bomb to a marine harness and called it tactical. The light has been removed, and its switch used as the detonator.<br><span class='notice'>Control-Click to set a warcry.</span> <span class='warning'>This harness has no light, toggling it will detonate the vest!</span>"
 	icon_state = "boom_vest"
 	flags_item_map_variant = NONE
