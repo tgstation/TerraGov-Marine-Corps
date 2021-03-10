@@ -76,7 +76,7 @@
 	GLOB.xeno_resin_silos -= src
 	if(associated_hive)
 		UnregisterSignal(associated_hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK))
-		
+
 		if(isdistress(SSticker.mode)) //Silo can only be destroy in distress mode, but this check can create bugs if new gamemodes are added.
 			var/datum/game_mode/infestation/distress/distress_mode
 			distress_mode = SSticker.mode
@@ -161,7 +161,7 @@
 	//Regenerate if we're at less than max integrity
 	if(obj_integrity < max_integrity)
 		obj_integrity = min(obj_integrity + 25, max_integrity) //Regen 5 HP per sec
-	
+
 	if(SSsilo.silos_do_mature)
 		maturity += 5
 
@@ -195,14 +195,14 @@
 	///Potential list of targets found by scan
 	var/list/mob/living/potential_hostiles
 	///Fire rate of the target in ticks
-	var/firerate = 5
+	var/firerate = 15
 	///The last time the sentry did a scan
 	var/last_scan_time
 
 /obj/structure/resin/xeno_turret/Initialize(mapload, hivenumber = XENO_HIVE_NORMAL)
 	. = ..()
 	ammo = GLOB.ammo_list[/datum/ammo/xeno/acid/heavy/turret]
-	ammo.max_range = range + 2 //To prevent funny gamers to abuse the turrets that easily 
+	ammo.max_range = range + 2 //To prevent funny gamers to abuse the turrets that easily
 	potential_hostiles = list()
 	associated_hive = GLOB.hive_datums[hivenumber]
 	START_PROCESSING(SSobj, src)
@@ -240,9 +240,9 @@
 /obj/structure/resin/update_overlays()
 	. = ..()
 	if(obj_integrity <= max_integrity / 2)
-		. += image('icons/Xeno/acidturret.dmi', src, "+turret_damage") 
+		. += image('icons/Xeno/acidturret.dmi', src, "+turret_damage")
 	if(CHECK_BITFIELD(resistance_flags, ON_FIRE))
-		. += image('icons/Xeno/acidturret.dmi', src, "+turret_on_fire") 
+		. += image('icons/Xeno/acidturret.dmi', src, "+turret_on_fire")
 
 /obj/structure/resin/xeno_turret/process()
 	//Turrets regen some HP, every 2 sec
@@ -314,7 +314,7 @@
 ///Look for the closest human in range and in light of sight. If no human is in range, will look for xenos of other hives
 /obj/structure/resin/xeno_turret/proc/get_target()
 	var/distance = range + 0.5 //we add 0.5 so if a potential target is at range, it is accepted by the system
-	var/buffer_distance 
+	var/buffer_distance
 	var/list/turf/path = list()
 	for (var/mob/living/nearby_hostile AS in potential_hostiles)
 		if(nearby_hostile.stat == DEAD)
@@ -358,7 +358,7 @@
 		if(nearby_xeno.stat == DEAD)
 			continue
 		potential_hostiles += nearby_xeno
-	
+
 
 ///Signal handler to make the turret shoot at its target
 /obj/structure/resin/xeno_turret/proc/shoot()
