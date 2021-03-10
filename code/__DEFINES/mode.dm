@@ -111,6 +111,8 @@
 #define COOLDOWN_COMM_MESSAGE 	1 MINUTES
 #define COOLDOWN_COMM_CENTRAL 	30 SECONDS
 
+#define SUPPLY_POINT_MARINE_SPAWN 5
+
 #define XENO_AFK_TIMER			5 MINUTES
 
 #define DEATHTIME_CHECK(M) ((world.time - M.timeofdeath) < GLOB.respawntime)
