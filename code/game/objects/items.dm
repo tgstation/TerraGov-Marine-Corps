@@ -14,10 +14,7 @@
 						//also useful for items with many icon_state values when you don't want to make an inhand sprite for each value.
 	var/force = 0
 	var/damtype = BRUTE
-	///Byond tick delay between left click attacks
 	var/attack_speed = 11
-	///Byond tick delay between right click alternate attacks
-	var/attack_speed_alternate = 11
 	var/list/attack_verb //Used in attackby() to say how something was attacked "[x] has been [z.attack_verb] by [y] with [z]"
 
 	var/sharp = FALSE		// whether this item cuts
