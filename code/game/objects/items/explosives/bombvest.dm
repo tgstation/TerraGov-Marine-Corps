@@ -9,7 +9,7 @@
 //boom
 /obj/item/clothing/suit/storage/marine/harness/boomvest/attack_self(mob/user)
 	user.say("[bomb_message]!!")
-	explosion(loc, 0, 4, 6, 5)
+	explosion(loc, 0, 4, 6, 5, 5)
 	qdel(src)
 
 //Gets a warcry to scream on Control Click
