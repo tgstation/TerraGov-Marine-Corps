@@ -29,7 +29,7 @@
 
 	for(var/i in get_turf(src))
 		var/atom/movable/onpad = i
-		if(!isxeno(onpad) && !istype(onpad,/obj/structure/ore_box) && !istype(onpad, /obj/item/alien_embryo) && !istype(onpad, /obj/item/compactorebox))
+		if(!isxeno(onpad) && !istype(onpad, /obj/item/alien_embryo))
 			continue
 		if(isxeno(onpad))
 			var/mob/living/carbon/xenomorph/sellxeno = onpad

@@ -1,4 +1,5 @@
 /datum/orbit_menu
+	var/auto_observe = FALSE
 	var/mob/dead/observer/owner
 
 /datum/orbit_menu/New(mob/dead/observer/new_owner)
@@ -19,15 +20,36 @@
 	. = ..()
 	if(.)
 		return
-
-	if (action == "orbit")
-		var/is_admin = check_other_rights(owner.client, R_ADMIN, FALSE)
-		var/list/pois = getpois(skip_mindless = !is_admin)
-		var/atom/movable/poi = pois[params["name"]]
-		if (poi != null)
+	switch(action)
+		if("orbit")
+			var/ref = params["ref"]
+			var/atom/movable/poi = locate(ref) in GLOB.mob_list
+			if (poi == null)
+				. = TRUE
+				return
 			owner.ManualFollow(poi)
+			owner.reset_perspective(null)
+			if(auto_observe)
+				owner.do_observe(poi)
+			. = TRUE
+		if("refresh")
+			update_static_data()
+			. = TRUE
+		if("toggle_observe")
+			auto_observe = !auto_observe
+			if(auto_observe && owner.orbit_target)
+				owner.do_observe(owner.orbit_target)
+			else
+				owner.reset_perspective(null)
+
+
 
 /datum/orbit_menu/ui_data(mob/user)
+	var/list/data = list()
+	data["auto_observe"] = auto_observe
+	return data
+
+/datum/orbit_menu/ui_static_data(mob/user)
 	var/list/data = list()
 
 	var/list/humans = list()
@@ -40,7 +62,7 @@
 	var/list/npcs = list()
 
 	var/is_admin = check_other_rights(user.client, R_ADMIN, FALSE)
-	var/list/pois = getpois(skip_mindless = !is_admin)
+	var/list/pois = getpois(skip_mindless = !is_admin, specify_dead_role = FALSE)
 	for (var/name in pois)
 		var/list/serialized = list()
 		serialized["name"] = name
@@ -53,8 +75,8 @@
 		if (!istype(M))
 			misc += list(serialized)
 			continue
-		
-		var/number_of_orbiters = M.orbiters?.orbiters?.len
+
+		var/number_of_orbiters = length(M.get_all_orbiters())
 		if (number_of_orbiters)
 			serialized["orbiters"] = number_of_orbiters
 
@@ -65,7 +87,7 @@
 		else if (M.mind == null)
 			npcs += list(serialized)
 		else if (isxeno(poi))
-			xenos += list(serialized)	
+			xenos += list(serialized)
 		else if(ishuman(poi))
 			var/mob/living/carbon/human/H = poi
 			if(ismarinejob(H.job))
@@ -85,3 +107,7 @@
 	data["npcs"] = npcs
 
 	return data
+
+/datum/orbit_menu/ui_assets(mob/user)
+	. = ..() || list()
+	. += get_asset_datum(/datum/asset/simple/orbit)

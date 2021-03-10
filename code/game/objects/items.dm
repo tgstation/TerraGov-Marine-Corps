@@ -247,7 +247,6 @@
 ///Called whenever an item is unequipped to a new loc (IE, not when the item ends up in the hands)
 /obj/item/proc/removed_from_inventory(mob/user)
 	SEND_SIGNAL(src, COMSIG_ITEM_REMOVED_INVENTORY, user)
-	return
 
 // called just as an item is picked up (loc is not yet changed)
 /obj/item/proc/pickup(mob/user)
@@ -278,17 +277,17 @@
 	return
 
 
-// called when this item is removed from a storage item, which is passed on as S. The loc variable is already set to the new destination before this is called.
+///called when this item is removed from a storage item, which is passed on as S. The loc variable is already set to the new destination before this is called.
 /obj/item/proc/on_exit_storage(obj/item/storage/S as obj)
 	return
 
 
-// called when this item is added into a storage item, which is passed on as S. The loc variable is already set to the storage item.
+///called when this item is added into a storage item, which is passed on as S. The loc variable is already set to the storage item.
 /obj/item/proc/on_enter_storage(obj/item/storage/S as obj)
 	return
 
 
-// called when "found" in pockets and storage items. Returns 1 if the search should end.
+///called when "found" in pockets and storage items. Returns 1 if the search should end.
 /obj/item/proc/on_found(mob/finder as mob)
 	return
 

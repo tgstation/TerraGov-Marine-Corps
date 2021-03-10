@@ -30,7 +30,7 @@
 		return
 	src.build(T)
 	use(1)
-	return
+
 */
 
 /obj/item/stack/tile/plasteel/proc/build(turf/S as turf)
@@ -40,4 +40,4 @@
 		S.ChangeTurf(/turf/open/floor/plating)
 //	var/turf/open/floor/W = S.ReplaceWithFloor()
 //	W.make_plating()
-	return
+

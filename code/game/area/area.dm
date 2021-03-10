@@ -52,6 +52,11 @@
 		'sound/ambience/ambigen5.ogg', 'sound/ambience/ambigen6.ogg', 'sound/ambience/ambigen7.ogg', 'sound/ambience/ambigen8.ogg',\
 		'sound/ambience/ambigen9.ogg', 'sound/ambience/ambigen10.ogg', 'sound/ambience/ambigen11.ogg', 'sound/ambience/ambigen12.ogg',\
 		'sound/ambience/ambigen14.ogg', 'sound/ambience/ambiatmos.ogg', 'sound/ambience/ambiatmos2.ogg')
+	///Used to decide what the minimum time between ambience is
+	var/min_ambience_cooldown = 40 SECONDS
+	///Used to decide what the maximum time between ambience is
+	var/max_ambience_cooldown = 120 SECONDS
+
 
 
 
@@ -109,30 +114,6 @@
 	set waitfor = FALSE
 	SEND_SIGNAL(src, COMSIG_AREA_ENTERED, AM)
 	SEND_SIGNAL(AM, COMSIG_ENTER_AREA, src) //The atom that enters the area
-	if(!isliving(AM))
-		return
-
-	var/mob/living/L = AM
-	if(!L.ckey)
-		return
-
-	if(!L.client || !(L.client.prefs.toggles_sound & SOUND_AMBIENCE))
-		return
-
-	if(!prob(35))
-		return
-
-	var/sound = pick(ambience)
-
-	if(!L.client.played)
-		SEND_SOUND(L, sound(sound, repeat = 0, wait = 0, volume = 25, channel = CHANNEL_AMBIENT))
-		L.client.played = TRUE
-		addtimer(CALLBACK(L.client, /client/proc/ResetAmbiencePlayed), 600)
-
-
-/client/proc/ResetAmbiencePlayed()
-	played = FALSE
-
 
 
 /area/Exited(atom/movable/M)

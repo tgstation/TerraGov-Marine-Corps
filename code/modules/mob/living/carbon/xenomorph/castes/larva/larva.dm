@@ -64,7 +64,7 @@
 		if(100 to INFINITY)
 			progress = "Mature "
 
-	name = "\improper [hive.prefix][progress]Larva ([nicknumber])"
+	name = "[hive.prefix][progress]Larva ([nicknumber])"
 
 	//Update linked data so they show up properly
 	real_name = name

@@ -102,6 +102,8 @@
 		on_off()
 	manage_weapon_connection()
 
+	if(!wearer)
+		return
 	configure_action.remove_action(wearer)
 	power_action.remove_action(wearer)
 	scan_action.remove_action(wearer)

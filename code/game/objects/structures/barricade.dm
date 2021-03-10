@@ -54,6 +54,7 @@
 
 
 /obj/structure/barricade/CheckExit(atom/movable/O, turf/target)
+	. = ..()
 	if(closed)
 		return TRUE
 
@@ -67,11 +68,6 @@
 		if(!allow_thrown_objs && !istype(O, /obj/projectile))
 			if(get_dir(loc, target) & dir)
 				return FALSE
-		return TRUE
-
-	if(get_dir(loc, target) & dir)
-		return FALSE
-	else
 		return TRUE
 
 /obj/structure/barricade/CanAllowThrough(atom/movable/mover, turf/target)
@@ -112,6 +108,9 @@
 	return attack_alien(user)
 
 /obj/structure/barricade/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(X.status_flags & INCORPOREAL)
+		return FALSE
+
 	if(is_wired)
 		X.visible_message("<span class='danger'>The barbed wire slices into [X]!</span>",
 		"<span class='danger'>The barbed wire slices into us!</span>", null, 5)
@@ -265,7 +264,6 @@
 		return FALSE
 
 	setDir(turn(dir, 90))
-	return
 
 /obj/structure/barricade/verb/revrotate()
 	set name = "Rotate Barricade Clockwise"
@@ -277,7 +275,6 @@
 		return FALSE
 
 	setDir(turn(dir, 270))
-	return
 
 
 /*----------------------*/

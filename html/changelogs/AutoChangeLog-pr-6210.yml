@@ -1,0 +1,5 @@
+author: "SkeletalElite"
+delete-after: True
+changes: 
+  - rscadd: "Miners now sell ore on their own, no crate dragging or export pad required."
+  - balance: "Phoron value from 20 to 15. Plat value from 40 to 30."

@@ -9,7 +9,7 @@
 	icon_state = "apron"
 	item_state = "apron"
 	blood_overlay_type = "armor"
-	flags_armor_protection = 0
+	flags_armor_protection = NONE
 	allowed = list (
 		/obj/item/reagent_containers/spray/plantbgone,
 		/obj/item/analyzer/plant_analyzer,
@@ -90,7 +90,7 @@
 	icon_state = "apronchef"
 	item_state = "apronchef"
 	blood_overlay_type = "armor"
-	flags_armor_protection = 0
+	flags_armor_protection = NONE
 
 //Security
 /obj/item/clothing/suit/security/navyofficer
@@ -289,4 +289,4 @@
 	icon = 'icons/obj/clothing/belts.dmi'
 	icon_state = "suspenders"
 	blood_overlay_type = "armor" //it's the less thing that I can put here
-	flags_armor_protection = 0
+	flags_armor_protection = NONE
