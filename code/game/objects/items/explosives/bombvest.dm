@@ -49,7 +49,7 @@
 		to_chat(activator, "Due to the rigging of this device, it can only be detonated while worn.")
 		return FALSE
 	activator.say("ORBITAL BOMBARDMENT INBOUND!!")
-	message_admins("[user] has detonated an Orbital Bombardment vest! Unga!")
-	log_game("[user] has detonated an Orbital Bombatdment vest! Unga!")
+	message_admins("[activator] has detonated an Orbital Bombardment vest! Unga!")
+	log_game("[activator] has detonated an Orbital Bombatdment vest! Unga!")
 	explosion(loc, 15, 15, 15, 15, 15)
 	qdel(src)
