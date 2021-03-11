@@ -344,7 +344,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/bayonet
 	name = "bayonet"
-	desc = "A sharp blade for mounting on a weapon. It can be used to stab manually on anything but harm intent. Messes up a guns balance causing it to become more inaccurate."
+	desc = "A sharp blade for mounting on a weapon. It can be used to stab manually on anything but harm intent. Slightly reduces the accuracy of the gun when mounted."
 	icon_state = "bayonet"
 	attach_icon = "bayonet_a"
 	force = 20
