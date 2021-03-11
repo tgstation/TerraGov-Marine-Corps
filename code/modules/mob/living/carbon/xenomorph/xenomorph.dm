@@ -217,6 +217,8 @@
 		return FALSE
 	if(!Adjacent(AM)) //Logic!
 		return FALSE
+	if(status_flags & INCORPOREAL || AM.status_flags & INCORPOREAL) //Incorporeal things can't grab or be grabbed.
+		return FALSE
 	var/mob/living/L = AM
 	if(L.buckled)
 		return FALSE //to stop xeno from pulling marines on roller beds.
