@@ -147,7 +147,7 @@
 
 /obj/item/armor_module/storage/medical
 	name = "Medical Storage module"
-	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Can hold a substantial variety of medical supplies and apparatus, but cannot hold as much a medkit could. Looks like it might slow you down a bit."
+	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Can hold a substantial variety of medical supplies and apparatus, but cannot hold as much as a medkit could. Looks like it might slow you down a bit."
 	icon_state = "mod_medic_bag"
 	storage_type =  /obj/item/storage/internal/modular/medical
 	slowdown = 0.1
