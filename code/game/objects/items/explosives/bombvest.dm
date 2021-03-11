@@ -38,7 +38,7 @@
 				return FALSE
 		bomb_message = new_bomb_message
 		to_chat(user, "Warcry set to: \"[bomb_message]\".")
-	. = ..()
+	return ..()
 
 /obj/item/clothing/suit/storage/marine/harness/boomvest/ob_vest
 	name = "admeme oribital bombard vest"
