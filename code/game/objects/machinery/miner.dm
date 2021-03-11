@@ -224,7 +224,7 @@
 	if(miner_status != MINER_RUNNING)
 		to_chat(user, "<span class='warning'>[src] is damaged!</span>")
 		return
-	if(miner_upgrade_type == "mining computer")
+	if(MINER_AUTOMATED)
 		to_chat(user, "<span class='warning'>[src] is automated!")
 		return
 	if(!stored_mineral)
@@ -243,7 +243,7 @@
 		stop_processing()
 		return
 	if(add_tick >= required_ticks)
-		if(miner_upgrade_type == "mining computer")
+		if(MINER_AUTOMATED)
 			SSpoints.supply_points += mineral_value
 			do_sparks(5, TRUE, src)
 			playsound(loc,'sound/effects/phasein.ogg', 50, FALSE)
