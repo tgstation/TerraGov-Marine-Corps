@@ -101,6 +101,7 @@
 	. = ..()
 	if(!istype(H, /obj/item/dropship_points_voucher))
 		return
-	to_chat(user, "<span class='notice'>You add 100 dropship points to \the [src].</span>")
-	SSpoints.dropship_points += 100
+	var/obj/item/dropship_points_voucher/voucher = H
+	to_chat(user, "<span class='notice'>You add [voucher.extra_points] dropship points to \the [src].</span>")
+	SSpoints.dropship_points += voucher.extra_points
 	qdel(H)
