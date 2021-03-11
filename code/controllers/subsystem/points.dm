@@ -79,6 +79,7 @@ SUBSYSTEM_DEF(points)
 
 	supply_points += SUPPLY_POINT_RATE / (1 MINUTES / wait)
 
+///Add amount of psy points to the selected hive only if the gamemode support psypoints
 /datum/controller/subsystem/points/proc/add_psy_points(hivenumber, amount)
 	if(!CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_PSY_POINTS))
 		return
