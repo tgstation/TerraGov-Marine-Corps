@@ -1,0 +1,4 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - rscadd: "Spawning a new silo will generate a tunnel north of it automaticly"
