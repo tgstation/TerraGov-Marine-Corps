@@ -1,5 +1,0 @@
-author: "XSlayer300"
-delete-after: True
-changes: 
-  - rscadd: "Added exclusive gun rattle sounds to the GPMG, DMR, battle rifle and sniper instead of sound-pitching them."
-  - rscdel: "Revolvers do not use rattling sounds as they do not make any mechanical sense, also for the case of some weapons."

@@ -1,4 +1,0 @@
-author: "Surrealaser"
-delete-after: True
-changes: 
-  - bugfix: "Incorporeal entities can no longer be attacked in melee, point blanked, grabbed, or shoved around by explosives."
