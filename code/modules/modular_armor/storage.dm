@@ -71,7 +71,7 @@
 /** General storage */
 /obj/item/armor_module/storage/general
 	name = "General Purpose Storage module"
-	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Certainly not as specialised as any other storage modules, but definitely able to hold some larger things, like binoculars, maps, and motion detectors."
+	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Certainly not as specialised as any other storage modules, but definitely able to hold some larger things, like binoculars, maps, and motion detectors. Looks like it might slow you down a bit."
 	icon_state = "mod_general_bag"
 	storage_type =  /obj/item/storage/internal/modular/general
 	slowdown = 0.1
@@ -111,7 +111,7 @@
 
 /obj/item/armor_module/storage/engineering
 	name = "Engineering Storage module"
-	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Can hold about as much as a tool belt, and sometimes small spools of things like barbed wire, or an entrenching tool. Looks like it might slow you down a bit."
+	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Can hold about as much as a tool pouch, and sometimes small spools of things like barbed wire, or an entrenching tool. Looks like it might slow you down a bit."
 	icon_state = "mod_engineer_bag"
 	storage_type =  /obj/item/storage/internal/modular/engineering
 	slowdown = 0.1
@@ -147,7 +147,7 @@
 
 /obj/item/armor_module/storage/medical
 	name = "Medical Storage module"
-	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Can hold a substantial variety of medical supplies and apparatus, but cannot hold much more than a medkit could. Looks like it might slow you down a bit."
+	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Can hold a substantial variety of medical supplies and apparatus, but cannot hold as much a medkit could. Looks like it might slow you down a bit."
 	icon_state = "mod_medic_bag"
 	storage_type =  /obj/item/storage/internal/modular/medical
 	slowdown = 0.1
