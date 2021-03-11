@@ -1,0 +1,4 @@
+author: "Surrealaser"
+delete-after: True
+changes: 
+  - bugfix: "Shared cooldown for Grapple Toss and Fling fixed so that using one doesn't cause the other to have an indefinite cooldown."
