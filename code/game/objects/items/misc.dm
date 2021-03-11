@@ -184,5 +184,5 @@
 	icon_state = "centcom"
 
 /obj/item/dropship_points_voucher/examine(mob/user)
-	..()
+	. = ..()
 	to_chat(user, "It contains [extra_points] points.")
