@@ -148,12 +148,11 @@
 /obj/item/dropship_points_voucher
 	name = "dropship fabricator voucher"
 	desc = "A small keycard stamped by a Terra Gov logo. It contains points you can redeem at a dropship fabricator. One use only."
-	///This is the number of points this thing has to give. 
-	var/extra_points = 100
 	icon = 'icons/obj/items/card.dmi'
 	icon_state = "centcom"
+	///This is the number of points this thing has to give. 
+	var/extra_points = 100
 
 /obj/item/dropship_points_voucher/examine(mob/user)
 	. = ..()
 	to_chat(user, "It contains [extra_points] points.")
-
