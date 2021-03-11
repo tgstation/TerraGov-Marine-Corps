@@ -5,6 +5,7 @@
 	flags_item_map_variant = NONE
 	flags_armor_features = NONE
 	var/bomb_message = null
+	var/list/bad_warcries = list("allahu ackbar", "allah", "ackbar")
 
 //Overwrites the parent function for activating a light. Instead it now detonates the bomb.
 /obj/item/clothing/suit/storage/marine/harness/boomvest/attack_self(mob/user)
@@ -26,7 +27,15 @@
 /obj/item/clothing/suit/storage/marine/harness/boomvest/CtrlClick(mob/user)
 	if(loc == user)
 		var/new_bomb_message = input(user, "Select Warcry", "Warcry", null) as text|null
+		new_bomb_message = sanitize(new_bomb_message)
+		var/regex/n
+		for(var/warcry in bad_warcries)
+			n = regex(warcry, "i")
+			if(findtext(new_bomb_message, n))
+				to_chat(user, "Come on, why can't you be original?")
+				return FALSE
 		bomb_message = new_bomb_message
+		to_chat(user, "Warcry set to: \"[bomb_message]\".")
 	. = ..()
 
 /obj/item/clothing/suit/storage/marine/harness/boomvest/ob_vest
