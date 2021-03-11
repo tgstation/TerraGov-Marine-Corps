@@ -173,7 +173,8 @@
 	icon_state = "t37"
 	item_state = "t37"
 	muzzleflash_iconstate = "muzzle_flash_medium"
-	fire_sound = "sound/weapons/guns/fire/DMR.ogg"
+	fire_sound = 'sound/weapons/guns/fire/DMR.ogg'
+	fire_rattle = 'sound/weapons/guns/fire/DMR_low.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
@@ -233,7 +234,8 @@
 	icon_state = "t64"
 	item_state = "t64"
 	muzzleflash_iconstate = "muzzle_flash_medium"
-	fire_sound = "sound/weapons/guns/fire/t64.ogg"
+	fire_sound = 'sound/weapons/guns/fire/t64.ogg'
+	fire_rattle = 'sound/weapons/guns/fire/t64_low.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
@@ -644,6 +646,7 @@
 	aim_slowdown = 1.2
 	wield_delay = 1.5 SECONDS
 	fire_sound =  'sound/weapons/guns/fire/GPMG.ogg'
+	fire_rattle =  'sound/weapons/guns/fire/GPMG_low.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
@@ -908,6 +911,7 @@
 	icon_state = "alien_rifle"
 	item_state = "alien_rifle"
 	fire_sound = 'sound/weapons/guns/fire/alienplasma.ogg'
+	fire_rattle = 'sound/weapons/guns/fire/alienplasma.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/vp70_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m4ra_reload.ogg'
@@ -950,6 +954,7 @@
 	icon_state = "tl127"
 	item_state = "tl127"
 	fire_sound = 'sound/weapons/guns/fire/tl127.ogg'
+	fire_rattle = 'sound/weapons/guns/fire/tl127_low.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
