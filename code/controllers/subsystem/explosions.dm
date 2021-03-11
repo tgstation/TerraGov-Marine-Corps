@@ -419,7 +419,7 @@ This way we'll be able to draw the explosion's expansion path without having to 
 				continue
 			for(var/am in affected_turf)
 				var/atom/movable/thing_to_throw = am
-				if(thing_to_throw.anchored || thing_to_throw.move_resist == INFINITY || thing_to_throw.status_flags & INCORPOREAL)
+				if(thing_to_throw.anchored || thing_to_throw.move_resist == INFINITY)
 					continue
 
 				for(var/throw_source in throw_turf[affected_turf])
