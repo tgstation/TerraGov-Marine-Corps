@@ -4,8 +4,10 @@
 	icon_state = "boom_vest"
 	flags_item_map_variant = NONE
 	flags_armor_features = NONE
-	var/bomb_message = null ///Warcry to yell upon detonation
-	var/list/bad_warcries = list("allahu ackbar", "allah", "ackbar") ///List of warcries that are not allowed.
+	///Warcry to yell upon detonation
+	var/bomb_message
+	///List of warcries that are not allowed.
+	var/list/bad_warcries = list("allahu ackbar", "allah", "ackbar")
 
 ///Overwrites the parent function for activating a light. Instead it now detonates the bomb.
 /obj/item/clothing/suit/storage/marine/harness/boomvest/attack_self(mob/user)
