@@ -150,6 +150,8 @@
 	else
 		to_chat(src, "<span class='notice'>You will no longer hear ambient sounds.</span>")
 		mob.stop_sound_channel(CHANNEL_AMBIENT)
+	usr.client.update_ambience_pref()
+
 
 
 /client/verb/toggle_special(role in BE_SPECIAL_FLAGS)

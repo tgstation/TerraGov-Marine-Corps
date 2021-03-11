@@ -496,7 +496,7 @@ to_chat will check for valid clients itself already so no need to double check f
 */
 
 ///Used for Hive Message alerts
-/datum/hive_status/proc/xeno_message(message = null, size = 3, force = FALSE, atom/target = null, sound = null, apply_preferences = FALSE, filter_list = null, arrow_type)
+/datum/hive_status/proc/xeno_message(message = null, size = 3, force = FALSE, atom/target = null, sound = null, apply_preferences = FALSE, filter_list = null, arrow_type = /obj/screen/arrow/leader_tracker_arrow)
 
 	if(!force && !can_xeno_message())
 		return
@@ -521,6 +521,7 @@ to_chat will check for valid clients itself already so no need to double check f
 			var/obj/screen/arrow/arrow_hud = new arrow_type
 			//Prepare the tracker object and set its parameters
 			arrow_hud.add_hud(X, target)
+			new /obj/effect/temp_visual/xenomorph/xeno_tracker_target(target, target) //Ping the source of our alert
 
 		to_chat(X, "<span class='xenodanger'><font size=[size]> [message]</font></span>")
 
@@ -732,7 +733,7 @@ to_chat will check for valid clients itself already so no need to double check f
 			continue
 		qdel(silo)
 
-	SSpoints.xeno_points_by_hive[hivenumber] = SILO_PRICE //Give a free silo when going shipside
+	SSpoints.xeno_points_by_hive[hivenumber] = SILO_PRICE + XENO_TURRET_PRICE //Give a free silo when going shipside and a turret
 
 	var/list/living_player_list = SSticker.mode.count_humans_and_xenos(count_flags = COUNT_IGNORE_HUMAN_SSD)
 	var/num_humans = living_player_list[1]
@@ -1059,6 +1060,9 @@ to_chat will check for valid clients itself already so no need to double check f
 /mob/living/carbon/xenomorph/get_xeno_hivenumber()
 	return hivenumber
 
+/obj/structure/resin/xeno_turret/get_xeno_hivenumber()
+	return associated_hive.hivenumber
+
 /datum/hive_status/ui_state(mob/user)
 	return GLOB.xeno_state
 
@@ -1145,6 +1149,8 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/normal/handle_silo_death_timer()
 	if(!isdistress(SSticker.mode))
 		return
+	if(world.time < MINIMUM_TIME_SILO_LESS_COLLAPSE)
+		return
 	var/datum/game_mode/infestation/distress/D = SSticker.mode
 	if(D.round_stage != DISTRESS_MARINE_DEPLOYMENT)
 		if(D?.siloless_hive_timer)
@@ -1160,5 +1166,5 @@ to_chat will check for valid clients itself already so no need to double check f
 	if(D?.siloless_hive_timer)
 		return
 
-	xeno_message("<span class='xenoannounce'>A sudden tremor ripples through the hive... the last silo was destroyed! The hive will collapse if nothing is done</span>", 3, TRUE)
+	xeno_message("<span class='xenoannounce'>We don't have any silos! The hive will collapse if nothing is done</span>", 3, TRUE)
 	D.siloless_hive_timer = addtimer(CALLBACK(D, /datum/game_mode.proc/siloless_hive_collapse), 20 MINUTES, TIMER_STOPPABLE)

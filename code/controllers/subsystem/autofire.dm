@@ -179,7 +179,6 @@ SUBSYSTEM_DEF(automatedfire)
 	SIGNAL_HANDLER
 	var/obj/projectile/newshot = new(loc)
 	newshot.generate_bullet(ammo)
-	newshot.permutated += src
 	newshot.fire_at(target, src, null, ammo.max_range, ammo.shell_speed)
 
 /datum/component/automatedfire/xeno_turret_autofire
@@ -210,7 +209,8 @@ SUBSYSTEM_DEF(automatedfire)
 	shooting = FALSE
 
 /datum/component/automatedfire/xeno_turret_autofire/process_shot()
-	if(!shooting)
+	//We check if the parent is not null, because the component could be scheduled to fire and then the turret is destroyed
+	if(!shooting || !parent)
 		return
 	SEND_SIGNAL(parent, COMSIG_AUTOMATIC_SHOOTER_SHOOT)
 	next_fire = world.time + shot_delay

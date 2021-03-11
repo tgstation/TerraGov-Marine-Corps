@@ -229,6 +229,12 @@
 	id = "tcomms"
 	req_one_access = list(ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_BRIDGE)
 
+/obj/machinery/door_control/mainship/engineering/armory
+	name = "Engineering Armory Lockdown"
+	id = "engi_armory"
+	req_one_access = list(ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_BRIDGE)
+
+
 /obj/machinery/door_control/mainship/corporate
 	name = "Privacy Shutters"
 	id = "cl_shutters"

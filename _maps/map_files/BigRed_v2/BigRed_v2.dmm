@@ -17209,9 +17209,6 @@
 	dir = 1
 	},
 /area/bigredv2/outside/sw)
-"buU" = (
-/turf/open/floor/plating,
-/area/bigredv2/outside/engineering)
 "buV" = (
 /obj/machinery/light,
 /turf/open/floor/plating,
@@ -17226,9 +17223,6 @@
 	dir = 10
 	},
 /area/bigredv2/outside/s)
-"bvf" = (
-/turf/open/floor/plating,
-/area/bigredv2/outside/engineering)
 "bvg" = (
 /obj/machinery/light{
 	dir = 4
@@ -17318,20 +17312,12 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
-"bvG" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating,
-/area/bigredv2/outside/engineering)
 "bvK" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/engineering/free_access{
 	dir = 1;
 	name = "\improper Power Substation"
 	},
-/turf/open/floor/plating,
-/area/bigredv2/outside/engineering)
-"bvM" = (
-/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering)
 "bvP" = (
@@ -20432,9 +20418,6 @@
 /obj/structure/largecrate/random,
 /turf/open/floor/marking/bot,
 /area/bigredv2/outside/nanotrasen_lab/inside)
-"kEZ" = (
-/turf/open/floor/plating,
-/area/bigredv2/outside/engineering)
 "kIY" = (
 /turf/open/floor/marking/asteroidwarning{
 	dir = 1
@@ -21083,6 +21066,10 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral/bigred,
 /area/bigredv2/caves/north)
+"qqG" = (
+/obj/structure/resin/xeno_turret,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/southwest)
 "qtI" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	on = 1
@@ -21335,6 +21322,10 @@
 	},
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/se)
+"sQi" = (
+/obj/structure/resin/xeno_turret,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/south)
 "sUd" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -21395,6 +21386,10 @@
 	dir = 8
 	},
 /area/shuttle/drop2/lz2)
+"ttW" = (
+/obj/structure/resin/xeno_turret,
+/turf/open/floor/plating/ground/mars/random/cave/rock,
+/area/bigredv2/caves/east)
 "ttZ" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral/bigred,
@@ -21503,6 +21498,10 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
+"uhF" = (
+/obj/structure/resin/xeno_turret,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/north)
 "uja" = (
 /obj/structure/window/framed/colony/reinforced/hull,
 /obj/docking_port/stationary/crashmode,
@@ -21634,6 +21633,10 @@
 "vwf" = (
 /turf/closed/mineral/bigred,
 /area/bigredv2/outside/space_port)
+"vyZ" = (
+/obj/structure/resin/xeno_turret,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/northeast)
 "vAP" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/asteroidfloor,
@@ -21707,6 +21710,10 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/mineral/bigred,
 /area/bigredv2/caves/northwest)
+"whf" = (
+/obj/structure/resin/xeno_turret,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/east)
 "wmv" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -25812,7 +25819,7 @@ tvk
 tvk
 liu
 dSm
-puQ
+qqG
 puQ
 puQ
 puQ
@@ -36196,7 +36203,7 @@ blb
 bln
 blJ
 bmm
-kEZ
+buD
 btZ
 bmm
 bmk
@@ -36211,18 +36218,18 @@ asY
 blJ
 bsP
 blJ
-kEZ
-bty
-btX
-kEZ
 buD
-buU
-bvf
 bty
 btX
-bvG
-bvM
-bvf
+buD
+buD
+buD
+buD
+bty
+btX
+bty
+bty
+buD
 blJ
 tvk
 tvk
@@ -36433,13 +36440,13 @@ btF
 btF
 btF
 btF
-kEZ
+buD
 bty
 bty
 bty
-kEZ
-kEZ
-kEZ
+buD
+buD
+buD
 blJ
 blJ
 tvk
@@ -36648,16 +36655,16 @@ blJ
 bty
 bty
 bty
-kEZ
+buD
 bmm
 bty
 bty
 bty
-kEZ
+buD
 bty
 bty
-kEZ
-kEZ
+buD
+buD
 blJ
 tvk
 tvk
@@ -36870,11 +36877,11 @@ bmm
 btz
 btz
 btz
-kEZ
+buD
 btz
 btz
 btz
-kEZ
+buD
 blJ
 blJ
 tvk
@@ -37087,12 +37094,12 @@ bmm
 btz
 btY
 btz
-kEZ
+buD
 btz
 btY
 btz
 buV
-kEZ
+buD
 blJ
 tvk
 puQ
@@ -37304,12 +37311,12 @@ bmm
 btz
 btz
 btz
-kEZ
+buD
 btz
 btz
 btz
-kEZ
-kEZ
+buD
+buD
 blJ
 tvk
 xEN
@@ -37521,12 +37528,12 @@ bmm
 btz
 btY
 btz
-kEZ
+buD
 btz
 btY
 btz
-kEZ
-kEZ
+buD
+buD
 blJ
 hqP
 xEN
@@ -37738,12 +37745,12 @@ bmm
 btz
 bvg
 btz
-kEZ
+buD
 btz
 btz
 btz
-kEZ
-kEZ
+buD
+buD
 blJ
 ajG
 ajG
@@ -37952,15 +37959,15 @@ btz
 btY
 btz
 bmm
-kEZ
+buD
 blJ
-kEZ
-kEZ
+buD
+buD
 btz
 btY
 btz
-kEZ
-kEZ
+buD
+buD
 blJ
 xEN
 ajG
@@ -38169,15 +38176,15 @@ btz
 btz
 btz
 bmm
-kEZ
+buD
 bvh
-kEZ
-kEZ
+buD
+buD
 btz
 btz
 btz
-kEZ
-kEZ
+buD
+buD
 blJ
 xEN
 xEN
@@ -38388,13 +38395,13 @@ btz
 bmm
 bmm
 bvi
-kEZ
+buD
 bvy
 btz
 btY
 btz
-kEZ
-kEZ
+buD
+buD
 blJ
 xEN
 xEN
@@ -38602,16 +38609,16 @@ atk
 btz
 btz
 btz
-kEZ
+buD
 mbT
 btZ
-kEZ
-kEZ
+buD
+buD
 btz
 btz
 btz
-kEZ
-kEZ
+buD
+buD
 blJ
 xEN
 xEN
@@ -38819,16 +38826,16 @@ atk
 btz
 btY
 btz
-kEZ
-kEZ
+buD
+buD
 blJ
-kEZ
-kEZ
+buD
+buD
 btz
 btY
 btz
-kEZ
-kEZ
+buD
+buD
 blJ
 xEN
 xEN
@@ -39036,16 +39043,16 @@ blJ
 btz
 btz
 btz
-kEZ
+buD
 btz
 bvj
 btz
-kEZ
+buD
 btz
 btz
 btz
-kEZ
-kEZ
+buD
+buD
 blJ
 xEN
 ajG
@@ -39253,16 +39260,16 @@ btz
 btz
 btY
 btz
-kEZ
+buD
 btz
 btY
 btz
-kEZ
+buD
 btz
 btY
 btz
-kEZ
-kEZ
+buD
+buD
 blJ
 xEN
 ajG
@@ -39470,16 +39477,16 @@ btz
 btz
 btz
 btz
-kEZ
+buD
 btz
 btz
 btz
-kEZ
+buD
 btz
 btz
 btz
-kEZ
-kEZ
+buD
+buD
 blJ
 xEN
 ajG
@@ -39687,16 +39694,16 @@ btz
 btz
 btY
 btz
-kEZ
+buD
 btz
 btY
 btz
-kEZ
+buD
 btz
 btY
 btz
 buV
-kEZ
+buD
 blJ
 xEN
 xEN
@@ -39725,7 +39732,7 @@ hqP
 hqP
 dGX
 xEN
-xEN
+sQi
 xEN
 vFJ
 vFJ
@@ -39904,15 +39911,15 @@ btz
 btz
 btz
 btz
-kEZ
+buD
 btz
 btz
 btz
-kEZ
+buD
 btz
 btz
 btz
-kEZ
+buD
 blJ
 blJ
 xEN
@@ -40117,19 +40124,19 @@ boO
 blJ
 blJ
 blJ
-kEZ
-kEZ
-kEZ
-kEZ
-kEZ
+buD
+buD
+buD
+buD
+buD
 buX
-kEZ
+buD
 bty
 bty
-kEZ
-kEZ
-kEZ
-kEZ
+buD
+buD
+buD
+buD
 blJ
 knF
 xEN
@@ -40334,18 +40341,18 @@ bsw
 bsO
 bth
 bsO
-kEZ
-kEZ
-kEZ
-kEZ
-kEZ
+buD
+buD
+buD
+buD
+buD
 bty
 bty
-kEZ
+buD
 bty
-kEZ
-kEZ
-kEZ
+buD
+buD
+buD
 blJ
 blJ
 bue
@@ -40551,18 +40558,18 @@ atb
 blJ
 bsP
 blJ
-kEZ
+buD
 bty
 btZ
-kEZ
 buD
-buU
-bvf
-kEZ
+buD
+buD
+buD
+buD
 btZ
 buD
-buU
-bvf
+buD
+buD
 blJ
 bue
 buv
@@ -50203,7 +50210,7 @@ qVr
 qVr
 qVr
 qoL
-xpB
+uhF
 xpB
 hEi
 xpB
@@ -51431,7 +51438,7 @@ owG
 iyn
 xWD
 vFJ
-xEN
+sQi
 xEN
 xEN
 xEN
@@ -56169,7 +56176,7 @@ tzo
 jCR
 jCR
 tzo
-tzo
+whf
 tzo
 yfA
 tzo
@@ -60301,7 +60308,7 @@ tzo
 tzo
 tzo
 tzo
-uMP
+ttW
 oOR
 uMP
 uMP
@@ -62695,7 +62702,7 @@ oOR
 oOR
 oOR
 tzo
-tzo
+whf
 eve
 eve
 eve
@@ -67199,7 +67206,7 @@ adZ
 ptP
 dnl
 vCh
-tzo
+whf
 tzo
 tzo
 xJh
@@ -67387,7 +67394,7 @@ uLR
 miv
 vCh
 vCh
-vCh
+vyZ
 vCh
 dnl
 dnl
@@ -67577,7 +67584,7 @@ vCh
 kKe
 vCh
 vCh
-vCh
+vyZ
 vCh
 dnl
 dnl
@@ -69162,7 +69169,7 @@ kNX
 tzo
 tzo
 tzo
-tzo
+whf
 oOR
 oOR
 aab

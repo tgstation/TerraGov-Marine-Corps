@@ -333,6 +333,7 @@
 	SIGNAL_HANDLER
 	shots_to_fire = new_amount
 
+
 // Gun procs.
 
 /obj/item/weapon/gun/proc/on_autofire_start(mob/living/shooter)

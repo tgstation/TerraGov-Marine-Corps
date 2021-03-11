@@ -21,8 +21,8 @@
 	var/cur_tick = 0 //Tick updater
 	///Hive it should be powering and whether it should be generating hive psycic points instead of power on process()
 	var/corrupted = XENO_HIVE_NORMAL
-	///how many points this generator will make per tick
-	var/corrupt_point_amount = 0.1
+	///Multiplicator factor for psych points output
+	var/corrupt_point_factor = 0.3
 	///whether we wil allow these to be corrupted
 	var/is_corruptible = TRUE
 	///whether they should generate corruption if corrupted
@@ -89,7 +89,7 @@
 
 /obj/machinery/power/geothermal/process()
 	if(corrupted && corruption_on)
-		SSpoints.xeno_points_by_hive["[corrupted]"] += corrupt_point_amount
+		SSpoints.add_psy_points("[corrupted]", SSsilo.corrupted_gen_output *corrupt_point_factor)
 		return
 	if(!is_on || buildstate || !anchored || !powernet) //Default logic checking
 		return PROCESS_KILL
@@ -297,7 +297,7 @@
 /obj/machinery/power/geothermal/bigred //used on big red
 	name = "\improper Reactor Turbine"
 	power_generation_max = 1e+6
-	corrupt_point_amount = 1
+	corrupt_point_factor = 3
 
 /obj/machinery/power/geothermal/reinforced
 	name = "\improper Reinforced Reactor Turbine"

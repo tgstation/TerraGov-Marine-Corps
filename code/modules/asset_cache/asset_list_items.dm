@@ -121,3 +121,8 @@
 		set waitfor = FALSE
 		var/datum/language/L = new path ()
 		L.get_icon()
+
+/datum/asset/simple/orbit
+	assets = list(
+		"ghost.png" = 'html/images/ghost.png'
+	)
