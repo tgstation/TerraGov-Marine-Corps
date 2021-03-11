@@ -99,7 +99,8 @@
 
 /obj/machinery/dropship_part_fabricator/attackby(obj/item/H, mob/user, params)
 	. = ..()
-	if(istype(H, /obj/item/dropship_points_voucher))
-		to_chat(user, "<span class='notice'>You add 100 dropship points to \the [src].</span>")
-		SSpoints.dropship_points += 100
-		qdel(H)
+	if(!istype(H, /obj/item/dropship_points_voucher))
+		return
+	to_chat(user, "<span class='notice'>You add 100 dropship points to \the [src].</span>")
+	SSpoints.dropship_points += 100
+	qdel(H)
