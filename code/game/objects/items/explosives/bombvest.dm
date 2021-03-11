@@ -4,18 +4,18 @@
 	icon_state = "boom_vest"
 	flags_item_map_variant = NONE
 	flags_armor_features = NONE
-	var/bomb_message = null
-	var/list/bad_warcries = list("allahu ackbar", "allah", "ackbar")
+	var/bomb_message = null ///Warcry to yell upon detonation
+	var/list/bad_warcries = list("allahu ackbar", "allah", "ackbar") ///List of warcries that are not allowed.
 
-//Overwrites the parent function for activating a light. Instead it now detonates the bomb.
+///Overwrites the parent function for activating a light. Instead it now detonates the bomb.
 /obj/item/clothing/suit/storage/marine/harness/boomvest/attack_self(mob/user)
 	var/mob/living/carbon/human/activator = user
 	if(activator.wear_suit != src)
 		to_chat(activator, "Due to the rigging of this device, it can only be detonated while worn.") //If you are going to use this, you have to accept death. No armor allowed.
 		return FALSE
-	if(bomb_message)
+	if(bomb_message) //Checks for a non null bomb message.
 		activator.say("[bomb_message]!!")
-		message_admins("[activator] has detonated an explosive vest with the warcry \"[bomb_message]\".")
+		message_admins("[activator] has detonated an explosive vest with the warcry \"[bomb_message]\".") //Incase disputes show up about marines killing themselves and others.
 		log_game("[activator] has detonated an explosive vest with the warcry \"[bomb_message].\"")
 	else
 		message_admins("[activator] has detonated an explosive vest with no warcry.")
@@ -23,7 +23,7 @@
 	explosion(loc, 0, 2, 6, 5, 5) 
 	qdel(src)
 
-//Gets a warcry to scream on Control Click
+///Gets a warcry to scream on Control Click, checks for non allowed warcries.
 /obj/item/clothing/suit/storage/marine/harness/boomvest/CtrlClick(mob/user)
 	if(loc == user)
 		var/new_bomb_message = input(user, "Select Warcry", "Warcry", null) as text|null
@@ -42,8 +42,13 @@
 	name = "admeme oribital bombard vest"
 	desc = "ORBITAL BOMBARDMENTS MADE CONVENIENT AND SUICIDAL"
 
+///Detonation proc for the OB vest.
 /obj/item/clothing/suit/storage/marine/harness/boomvest/ob_vest/attack_self(mob/user)
-	user.say("ORBITAL BOMBARDMENT INBOUND!!")
+	var/mob/living/carbon/human/activator = user
+	if(activator.wear_suit != src)
+		to_chat(activator, "Due to the rigging of this device, it can only be detonated while worn.")
+		return FALSE
+	activator.say("ORBITAL BOMBARDMENT INBOUND!!")
 	message_admins("[user] has detonated an Orbital Bombardment vest! Unga!")
 	log_game("[user] has detonated an Orbital Bombatdment vest! Unga!")
 	explosion(loc, 15, 15, 15, 15, 15)
