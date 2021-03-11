@@ -447,7 +447,7 @@
 	if(issamexenohive(hostile))
 		return
 
-	if(hugger_type && iscarbon(living_triggerer)) //If we have a hugger we then care about whether the target can be facehugged.
+	if(hugger_type) //If we have a hugger we then care about whether the target can be facehugged.
 		if(!living_triggerer.can_be_facehugged(hugger))
 			return
 
