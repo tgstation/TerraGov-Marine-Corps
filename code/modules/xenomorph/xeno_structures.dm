@@ -224,7 +224,6 @@
 	set_hostile(null)
 	set_last_hostile(null)
 	STOP_PROCESSING(SSobj, src)
-	UnregisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED)
 	return ..()
 
 /obj/structure/resin/xeno_turret/ex_act(severity)
