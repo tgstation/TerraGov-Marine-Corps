@@ -733,11 +733,11 @@
 	},
 /area/sulaco/medbay)
 "acq" = (
+/obj/structure/bed,
+/obj/item/bedsheet/medical,
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/structure/bed,
-/obj/item/bedsheet/medical,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
 	},
@@ -11226,6 +11226,9 @@
 /obj/machinery/landinglight/ds2/delayone{
 	dir = 4
 	},
+/obj/machinery/camera/autoname{
+	dir = 4
+	},
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
 "dFM" = (
@@ -13343,6 +13346,11 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison,
 /area/sulaco/maintenance/lower_maint)
+"kau" = (
+/obj/effect/decal/warning_stripes/thin,
+/obj/machinery/camera/autoname/mainship,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "kbs" = (
 /obj/effect/decal/cleanable/cobweb{
 	dir = 8
@@ -13370,6 +13378,18 @@
 "kee" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 10
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
+"keV" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/machinery/landinglight/ds2/delaythree{
+	dir = 8
+	},
+/obj/machinery/camera/autoname{
+	dir = 8
 	},
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
@@ -14914,6 +14934,18 @@
 	},
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
+"oiY" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/machinery/landinglight/ds2/delayone{
+	dir = 8
+	},
+/obj/machinery/camera/autoname{
+	dir = 8
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "ojL" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /turf/open/floor/plating,
@@ -15465,6 +15497,12 @@
 	dir = 4
 	},
 /area/sulaco/marine/alpha)
+"plO" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/prison/whitegreen/corner,
+/area/sulaco/medbay)
 "pmu" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
@@ -16009,6 +16047,13 @@
 /obj/machinery/power/apc/mainship,
 /turf/open/floor/prison,
 /area/mainship/living/pilotbunks)
+"qOd" = (
+/obj/structure/ship_ammo/minirocket/illumination,
+/obj/machinery/camera/autoname{
+	dir = 4
+	},
+/turf/open/floor/prison,
+/area/sulaco/hangar)
 "qPj" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1{
@@ -45684,7 +45729,7 @@ icY
 adm
 ade
 adB
-ade
+plO
 acJ
 aaJ
 sGG
@@ -46199,7 +46244,7 @@ adm
 ade
 kMl
 ade
-kMl
+adV
 aaJ
 sGG
 mDu
@@ -47978,7 +48023,7 @@ cpN
 lDT
 kut
 nqJ
-npi
+qOd
 jVN
 npi
 npi
@@ -51310,13 +51355,13 @@ qku
 kfN
 lsz
 gAc
-yiF
+keV
 jzD
 nUZ
 gAc
 sWN
 jzD
-nUZ
+oiY
 gAc
 yiF
 jzD
@@ -56715,7 +56760,7 @@ aRx
 aSk
 aPF
 aPF
-aPF
+tha
 bFa
 aTq
 cdy
@@ -56972,7 +57017,7 @@ aPZ
 aSl
 aPF
 aPF
-aPF
+gQS
 bFa
 cdy
 cdy
@@ -57473,7 +57518,7 @@ aaa
 nzi
 mDu
 bFa
-aQa
+kau
 aPZ
 aPZ
 aPZ
