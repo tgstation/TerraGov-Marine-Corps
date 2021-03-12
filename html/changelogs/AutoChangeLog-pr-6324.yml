@@ -1,0 +1,4 @@
+author: "TGCMbetcher"
+delete-after: True
+changes: 
+  - bugfix: "fixed some inaccurate gun attachment descriptions"
