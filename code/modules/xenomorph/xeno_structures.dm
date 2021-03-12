@@ -71,6 +71,11 @@
 		RegisterSignal(associated_hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK), .proc/is_burrowed_larva_host)
 		associated_hive.handle_silo_death_timer()
 	silo_area = get_area(src)
+	var/turf/tunnel_turf = get_step(center_turf, NORTH)
+	if(tunnel_turf.can_dig_xeno_tunnel())
+		var/obj/structure/tunnel/newt = new(tunnel_turf)
+		newt.tunnel_desc = "[get_area(newt)] (X: [newt.x], Y: [newt.y])"
+		newt.name += "[name]"
 
 /obj/structure/resin/silo/Destroy()
 	GLOB.xeno_resin_silos -= src
@@ -208,8 +213,14 @@
 	START_PROCESSING(SSobj, src)
 	AddComponent(/datum/component/automatedfire/xeno_turret_autofire, firerate)
 	RegisterSignal(src, COMSIG_AUTOMATIC_SHOOTER_SHOOT, .proc/shoot)
+	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, .proc/destroy_on_hijack)
 	set_light(2, 2, LIGHT_COLOR_GREEN)
 	update_icon()
+
+///Signal handler to delete the turret when the alamo is hijacked
+/obj/structure/resin/xeno_turret/proc/destroy_on_hijack()
+	SIGNAL_HANDLER
+	qdel(src)
 
 /obj/structure/resin/xeno_turret/Destroy()
 	var/datum/effect_system/smoke_spread/xeno/smoke = new /datum/effect_system/smoke_spread/xeno/acid(src)
@@ -370,4 +381,5 @@
 	var/obj/projectile/newshot = new(loc)
 	newshot.generate_bullet(ammo)
 	newshot.permutated += src
+	newshot.def_zone = pick(GLOB.base_miss_chance)
 	newshot.fire_at(hostile, src, null, ammo.max_range, ammo.shell_speed)

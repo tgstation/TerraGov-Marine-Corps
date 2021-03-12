@@ -225,6 +225,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	owner.density = FALSE
 	owner.throwpass = TRUE
 	owner.alpha = WRAITH_PHASE_SHIFT_ALPHA //Become translucent
+	owner.move_resist = INFINITY //Become immovable
 
 	starting_turf = get_turf(owner) //Get our starting turf so we can calculate the stun duration later.
 
@@ -262,6 +263,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	ghost.throwpass = initial(ghost.throwpass)
 	ghost.alpha = initial(ghost.alpha) //Become opaque
 	ghost.remove_filter("wraith_phase_shift") //Cool filter begone
+	ghost.move_resist = initial(ghost.move_resist)
 
 	playsound(owner, "sound/effects/phasein.ogg", 25, 0, 1)
 

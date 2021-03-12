@@ -49,19 +49,21 @@
 	///The visual effect we're attaching
 	var/image/holder
 
-/obj/effect/temp_visual/xenomorph/xeno_tracker_target/Destroy()
-	. = ..()
-	if(tracker_target && holder) //Check to avoid runtimes
-		tracker_target.overlays -= holder //remove the overlay
-	tracker_target = null //null the target var
-	QDEL_NULL(holder) //remove the holder and null the var
-
 /obj/effect/temp_visual/xenomorph/xeno_tracker_target/Initialize(mapload, atom/target)
 	. = ..()
 	prepare_huds()
 	for(var/datum/atom_hud/xeno_tactical/xeno_tac_hud in GLOB.huds) //Add to the xeno tachud
 		xeno_tac_hud.add_to_hud(src)
 	hud_set_xeno_tracker_target(target)
+
+/obj/effect/temp_visual/xenomorph/xeno_tracker_target/Destroy()
+	if(tracker_target && holder) //Check to avoid runtimes
+		tracker_target.overlays -= holder //remove the overlay
+	for(var/datum/atom_hud/xeno_tactical/xeno_tac_hud in GLOB.huds)
+		xeno_tac_hud.remove_from_hud(src)
+	tracker_target = null //null the target var
+	QDEL_NULL(holder) //remove the holder and null the var
+	return ..()
 
 /obj/effect/temp_visual/xenomorph/xeno_tracker_target/proc/hud_set_xeno_tracker_target(atom/target)
 	holder = hud_list[XENO_TACTICAL_HUD]

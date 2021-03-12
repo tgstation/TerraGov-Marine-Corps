@@ -132,14 +132,6 @@
 	keybind_signal = COMSIG_XENOABILITY_FLING
 	target_flags = XABB_MOB_TARGET
 
-/datum/action/xeno_action/activable/fling/give_action(mob/living/L)
-	. = ..()
-	RegisterSignal(owner, COMSIG_WARRIOR_USED_GRAPPLE_TOSS, .proc/add_cooldown) //Shared cooldown with Grapple Toss
-
-/datum/action/xeno_action/activable/fling/remove_action(mob/living/L)
-	UnregisterSignal(owner, COMSIG_WARRIOR_USED_GRAPPLE_TOSS)
-	return ..()
-
 /datum/action/xeno_action/activable/fling/on_cooldown_finish()
 	to_chat(owner, "<span class='xenodanger'>We gather enough strength to fling something again.</span>")
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
@@ -192,7 +184,9 @@
 	succeed_activate()
 	add_cooldown()
 
-	SEND_SIGNAL(owner, COMSIG_WARRIOR_USED_FLING)  //Shared cooldown with Grapple Toss
+	var/datum/action/xeno_action/toss = X.actions_by_path[/datum/action/xeno_action/activable/toss]
+	if(toss)
+		toss.add_cooldown()
 
 	if(isxeno(victim))
 		var/mob/living/carbon/xenomorph/x_victim = victim
@@ -226,15 +220,6 @@
 	cooldown_timer = 20 SECONDS //Shared cooldown with Fling
 	keybind_signal = COMSIG_XENOABILITY_GRAPPLE_TOSS
 	target_flags = XABB_TURF_TARGET
-
-
-/datum/action/xeno_action/activable/toss/give_action(mob/living/L)
-	. = ..()
-	RegisterSignal(owner, COMSIG_WARRIOR_USED_FLING, .proc/add_cooldown) //Shared cooldown with Fling
-
-/datum/action/xeno_action/activable/toss/remove_action(mob/living/L)
-	UnregisterSignal(owner, COMSIG_WARRIOR_USED_FLING)
-	return ..()
 
 /datum/action/xeno_action/activable/toss/on_cooldown_finish()
 	to_chat(owner, "<span class='xenodanger'>We gather enough strength to toss something again.</span>")
@@ -295,7 +280,9 @@
 	succeed_activate()
 	add_cooldown()
 
-	SEND_SIGNAL(owner, COMSIG_WARRIOR_USED_GRAPPLE_TOSS) //Shared cooldown with Fling
+	var/datum/action/xeno_action/fling = X.actions_by_path[/datum/action/xeno_action/activable/fling]
+	if(fling)
+		fling.add_cooldown()
 
 // ***************************************
 // *********** Punch
