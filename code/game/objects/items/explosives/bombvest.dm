@@ -29,7 +29,6 @@
 /obj/item/clothing/suit/storage/marine/harness/boomvest/CtrlClick(mob/user)
 	if(loc == user)
 		var/new_bomb_message = sanitize(input(user, "Select Warcry", "Warcry", null) as text|null)
-		new_bomb_message = sanitize(new_bomb_message)
 		for(var/warcry in bad_warcries)
 			if(findtext(new_bomb_message, regex(warcry, "i")))
 				to_chat(user, "Come on, why can't you be original?")
