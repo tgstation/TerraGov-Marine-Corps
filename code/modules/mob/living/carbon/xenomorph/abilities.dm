@@ -1318,11 +1318,11 @@
 	if(!do_after(X, 10 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, /mob.proc/break_do_after_checks, list("health" = X.health))))
 		to_chat(owner, "<span class='warning'>We stop devouring \the [victim]. They probably tasted gross anyways.</span>")
 		return FALSE
-	owner.visible_message("<span class='warning'>[X] devours [victim]!</span>", \
-	"<span class='warning'>We devour [victim]!</span>", null, 5)
-	if(HAS_TRAIT(owner, TRAIT_PSY_DRAINED))
+	if(HAS_TRAIT(victim, TRAIT_PSY_DRAINED))
 		to_chat(owner, "<span class='warning'>Someone drained the life force of our victim before we could devour it!</span>")
 		return fail_activate()
+	owner.visible_message("<span class='warning'>[X] devours [victim]!</span>", \
+	"<span class='warning'>We devour [victim]!</span>", null, 5)
 	to_chat(owner, "<span class='warning'>We will eject the cocoon in [cocoon_production_time / 10] seconds!</span>")
 	LAZYADD(X.stomach_contents, victim)
 	victim.forceMove(X)

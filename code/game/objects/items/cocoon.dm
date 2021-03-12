@@ -29,7 +29,7 @@
 	if(!producing_points)
 		return
 	START_PROCESSING(SSslowprocess, src)
-	addtimer(CALLBACK(src, .proc/release_victim), cocoon_life_time)
+	addtimer(CALLBACK(src, .proc/life_draining_over, TRUE), cocoon_life_time)
 	new /obj/effect/alien/weeds/node(loc)
 
 /obj/structure/cocoon/examine(mob/user, distance, infix, suffix)
@@ -43,28 +43,27 @@
 /obj/structure/cocoon/take_damage(damage_amount, damage_type, damage_flag, effects, attack_dir, armour_penetration)
 	. = ..()
 	if(producing_points && obj_integrity < max_integrity / 2)
-		STOP_PROCESSING(SSslowprocess, src)
-		playsound(loc, "alien_resin_move", 35)
-		new /obj/structure/bed/nest(loc)
-		producing_points = FALSE
-		update_icon()
-		anchored = FALSE
+		life_draining_over()
 
-/obj/structure/cocoon/obj_destruction(damage_amount, damage_type, damage_flag)
-	. = ..()
-	if(victim)
+/obj/structure/cocoon/proc/life_draining_over(must_release_victim = FALSE)
+	STOP_PROCESSING(SSslowprocess, src)
+	playsound(loc, "alien_resin_move", 35)
+	new /obj/structure/bed/nest(loc)
+	producing_points = FALSE
+	update_icon()
+	anchored = FALSE
+	if(must_release_victim)
 		release_victim()
 
 /obj/structure/cocoon/Destroy()
-	victim?.forceMove(loc)
-	victim = null
+	if(victim)
+		release_victim()
 	return ..()
 
 ///Open the cocoon and move the victim out 
 /obj/structure/cocoon/proc/release_victim()
 	REMOVE_TRAIT(victim, TRAIT_STASIS, TRAIT_STASIS)
 	playsound(loc, "alien_resin_move", 35)
-	producing_points = FALSE
 	victim.forceMove(loc)
 	victim.setDir(NORTH)
 	victim = null
