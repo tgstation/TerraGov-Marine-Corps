@@ -76,7 +76,7 @@
 			return
 		if(!I.sharp)
 			return
-		busy= TRUE
+		busy = TRUE
 		var/channel = SSsounds.random_available_channel()
 		playsound(user, "sound/effects/cutting_cocoon.ogg", 30, channel = channel)
 		if(!do_after(user, 10 SECONDS, TRUE, src))
