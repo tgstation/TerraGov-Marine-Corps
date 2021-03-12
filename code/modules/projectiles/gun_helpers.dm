@@ -937,9 +937,10 @@ should be alright.
 
 	if(user.do_actions)
 		return
-	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_BAR, ignore_turf_checks = TRUE))
-		to_chat(user, "<span class='warning'>Your concentration is interrupted!</b></span>")
-		return
+	if(!user.marksman_aura)
+		if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_BAR, ignore_turf_checks = TRUE))
+			to_chat(user, "<span class='warning'>Your concentration is interrupted!</b></span>")
+			return
 	if(!CHECK_BITFIELD(flags_item, WIELDED))
 		to_chat(user, "<span class='notice'>You need to wield your gun before aiming.</b></span>")
 		return

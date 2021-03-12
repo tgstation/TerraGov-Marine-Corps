@@ -131,7 +131,7 @@
 	//User itself, current loc, and user inventory
 	if(A in DirectAccess())
 		if(W)
-			W.melee_attack_chain(src, A, params)
+			W.melee_attack_chain(src, A, params, modifiers["right"])
 		else
 			UnarmedAttack(A, FALSE, modifiers)
 		return
@@ -143,17 +143,13 @@
 	//Standard reach turf to turf or reaching inside storage
 	if(CanReach(A, W))
 		if(W)
-			W.melee_attack_chain(src, A, params)
+			W.melee_attack_chain(src, A, params, modifiers["right"])
 		else
 			UnarmedAttack(A, TRUE, modifiers)
 	else
 		if(W)
-			var/attack
-			var/proximity = A.Adjacent(src)
-			if(proximity && A.attackby(W, src, params))
-				attack = TRUE
-			if(!attack)
-				W.afterattack(A, src, proximity, params)
+			if(A.Adjacent(src))
+				W.melee_attack_chain(src, A, params, modifiers["right"])
 		else
 			if(A.Adjacent(src))
 				A.attack_hand(src)

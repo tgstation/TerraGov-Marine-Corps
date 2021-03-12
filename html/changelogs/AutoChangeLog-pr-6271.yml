@@ -1,4 +1,0 @@
-author: "lbnesquik"
-delete-after: True
-changes: 
-  - bugfix: "Fixes a missing button for the armory shutters on PoS engineering."

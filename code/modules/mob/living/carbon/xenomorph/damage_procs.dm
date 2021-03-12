@@ -4,7 +4,7 @@
 	return ..()
 
 /mob/living/carbon/xenomorph/ex_act(severity)
-	if(status_flags & GODMODE)
+	if(status_flags & (INCORPOREAL|GODMODE))
 		return
 
 	if(severity < EXPLODE_LIGHT) //Actually means higher.
