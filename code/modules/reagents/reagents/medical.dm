@@ -1070,8 +1070,12 @@
 
 /datum/reagent/hypervene/on_mob_life(mob/living/L, metabolism)
 	L.reagent_shock_modifier -= PAIN_REDUCTION_HEAVY //Significant pain while metabolized.
-	if(prob(5)) //causes vomiting
+	L.adjustToxLoss(-effect_str*5) //Toxin damage gets rapidly purged
+
+	var/puke_probability = clamp(L.getToxLoss(), 5, 100) //Puke chance equal to current toxin damage; minimum 5%, max 100%.
+	if(prob(puke_probability)) //causes vomiting
 		L.vomit()
+
 	return ..()
 
 /datum/reagent/hypervene/overdose_process(mob/living/L, metabolism)

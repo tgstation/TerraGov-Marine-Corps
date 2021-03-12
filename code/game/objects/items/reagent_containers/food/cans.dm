@@ -36,7 +36,7 @@
 	desc = "Overpriced 'Spring' water. Bottled by Nanotrasen."
 	icon_state = "bottled_water"
 	center_of_mass = list("x"=15, "y"=8)
-	list_reagents = list(/datum/reagent/water = 30)
+	list_reagents = list(/datum/reagent/water = 60)
 
 /obj/item/reagent_containers/food/drinks/cans/beer
 	name = "can of beer"

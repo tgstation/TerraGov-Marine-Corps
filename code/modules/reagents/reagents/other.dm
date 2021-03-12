@@ -57,6 +57,7 @@
 
 
 /datum/reagent/water/on_mob_life(mob/living/L,metabolism)
+	L.adjustToxLoss(-effect_str*0.25)
 	switch(current_cycle)
 		if(4 to 5) //1 sip, starting at the end
 			L.adjustStaminaLoss(-2*effect_str)
