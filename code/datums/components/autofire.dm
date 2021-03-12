@@ -102,6 +102,7 @@
 				stop_firing()
 				if(have_to_reset_at_burst_end)//We failed to reset because we were bursting, we do it now
 					SEND_SIGNAL(parent, COMSIG_GUN_FIRE_RESET)
+					have_to_reset_at_burst_end = FALSE
 				return
 			SEND_SIGNAL(parent, COMSIG_GUN_IS_BURSTING, TRUE)
 			bursting = TRUE
@@ -116,6 +117,7 @@
 				if(have_to_reset_at_burst_end)//We failed to reset because we were bursting, we do it now
 					SEND_SIGNAL(parent, COMSIG_GUN_FIRE_RESET)
 					stop_firing()
+					have_to_reset_at_burst_end = FALSE
 			else
 				SEND_SIGNAL(parent, COMSIG_GUN_IS_BURSTING, TRUE)
 				bursting = TRUE
