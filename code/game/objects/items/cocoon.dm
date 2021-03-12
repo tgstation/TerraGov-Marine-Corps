@@ -19,6 +19,8 @@
 	var/psych_points_output = 1
 	///If the cocoon should produce psych points
 	var/producing_points = TRUE
+	///Standard busy check
+	var/busy = FALSE
 
 
 /obj/structure/cocoon/Initialize(mapload, _hivenumber, mob/living/_victim)
@@ -70,13 +72,20 @@
 
 /obj/structure/cocoon/attacked_by(obj/item/I, mob/living/user, def_zone)
 	if(!producing_points && victim)
+		if(busy)
+			return
 		if(!I.sharp)
 			return
-		playsound(user, "sound/effects/cutting_cocoon.ogg", 30)
+		busy= TRUE
+		var/channel = SSsounds.random_available_channel()
+		playsound(user, "sound/effects/cutting_cocoon.ogg", 30, channel = channel)
 		if(!do_after(user, 10 SECONDS, TRUE, src))
+			busy = FALSE
+			user.stop_sound_channel(channel)
 			return
 		release_victim()
 		update_icon()
+		busy = FALSE
 		return
 	return ..()
 
