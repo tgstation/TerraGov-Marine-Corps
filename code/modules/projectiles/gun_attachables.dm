@@ -1568,6 +1568,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	slot = "under"
 	pixel_shift_x = 20
 	recoil_mod = -1
+	scatter_mod = 5
 	accuracy_unwielded_mod = -0.1
 	scatter_unwielded_mod = 5
 

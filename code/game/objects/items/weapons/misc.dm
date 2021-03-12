@@ -88,6 +88,10 @@
 	if(!cell)
 		to_chat(user, "<span class='warning'>\The [src] can't operate without a source of power!</span>")
 		return
+
+	if(M.status_flags & INCORPOREAL || user.status_flags & INCORPOREAL) //Incorporeal beings cannot attack or be attacked
+		return
+
 	var/powerused = setting*100
 	if(powerused >= cell.charge)
 		to_chat(user, "<span class='warning'>\The [src]'s cell doesn't have enough power!</span>")
