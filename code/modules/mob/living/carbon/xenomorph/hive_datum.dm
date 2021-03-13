@@ -1187,7 +1187,7 @@ to_chat will check for valid clients itself already so no need to double check f
 		stored_larva--
 		INVOKE_ASYNC(src, .proc/try_to_give_larva, observer_in_queue)
 	for(var/i in 1 to LAZYLEN(candidate))
-		observer_in_queue =LAZYACCESS(candidate, i)
+		observer_in_queue = LAZYACCESS(candidate, i)
 		observer_in_queue.larva_position = i
 		
 ///Attempt to give a larva to the next in line, if not possible, free the xeno position and propose it to another candidate
