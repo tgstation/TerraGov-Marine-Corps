@@ -10,6 +10,9 @@ GLOBAL_LIST_INIT(blocked_remotebuild_objs, typecacheof(list(/obj/machinery/compu
 	icon_state = "drone"
 	use_static = FALSE
 	mouse_opacity = MOUSE_OPACITY_OPAQUE
+	light_system = MOVABLE_LIGHT
+	light_range = 5
+	light_power = 4
 
 	var/area/starting_area
 	var/turf/spawnloc
@@ -17,7 +20,7 @@ GLOBAL_LIST_INIT(blocked_remotebuild_objs, typecacheof(list(/obj/machinery/compu
 /mob/camera/aiEye/remote/fobdrone/Initialize()
 	. = ..()
 	starting_area = get_area(loc)
-	set_light(3)
+	set_light_on(TRUE)
 
 /mob/camera/aiEye/remote/fobdrone/Destroy()
 	starting_area = null
