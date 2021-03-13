@@ -1161,13 +1161,16 @@ to_chat will check for valid clients itself already so no need to double check f
 	D.siloless_hive_timer = addtimer(CALLBACK(D, /datum/game_mode.proc/siloless_hive_collapse), 20 MINUTES, TIMER_STOPPABLE)
 
 ///Add a mob to the candidate queue, the first mobs of the queue will have priority on new larva spots
-/datum/hive_status/normal/proc/add_to_larva_candidate_queue(mob/observer)
+/datum/hive_status/normal/proc/add_to_larva_candidate_queue(mob/dead/observer/observer)
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
 	if(stored_larva)
 		attempt_to_spawn_larva(observer)
 		return
+	if(candidate.Find(observer))
+		to_chat(observer, "<span class='warning'>You are already in queue!</span>")
 	candidate += observer
+	observer.larva_position = candidate.len
 	to_chat(observer, "<span class='warning'>There are no burrowed larvas. You are in position [candidate.len] to become a xeno</span>")
 
 ///Propose larvas until their is no more candidates, or no more burrowed
@@ -1182,6 +1185,8 @@ to_chat will check for valid clients itself already so no need to double check f
 		xeno_job.occupy_job_positions(1)
 		stored_larva--
 		try_to_give_larva(next_in_line)
+	for(var/i in 1 to candidate.len)
+		candidate[i].larva_position = i
 		
 ///Attempt to give a larva to the next in line, if not possible, free the xeno position and propose it to another candidate
 /datum/hive_status/normal/proc/try_to_give_larva(mob/next_in_line)
