@@ -613,7 +613,7 @@
 	sterile = TRUE
 	color = COLOR_DARK_ORANGE
 	combat_hugger = TRUE
-	impact_time = 0.5 SECONDS
+	impact_time = 1 SECONDS
 	activate_time = 2 SECONDS
 	jump_cooldown = 2 SECONDS
 
@@ -624,9 +624,9 @@
 	var/mob/living/victim = M
 	do_attack_animation(M)
 	var/armor_block = victim.run_armor_check(BODY_ZONE_CHEST, "bio")
-	victim.apply_damage(50, STAMINA, BODY_ZONE_CHEST, armor_block) //This should prevent sprinting
+	victim.apply_damage(100, STAMINA, BODY_ZONE_CHEST, armor_block) //This should prevent sprinting
 	victim.apply_damage(1, BRUTE, sharp = TRUE) //Token brute for the injection
-	victim.reagents.add_reagent(/datum/reagent/toxin/xeno_neurotoxin, 20, no_overdose = TRUE)
+	victim.reagents.add_reagent(/datum/reagent/toxin/xeno_neurotoxin, 10, no_overdose = TRUE)
 	playsound(victim, 'sound/effects/spray3.ogg', 25, 1)
 	victim.visible_message("<span class='danger'>[src] penetrates [victim] with its sharp probscius!</span>","<span class='danger'>[src] penetrates you with a sharp probscius before falling down!</span>")
 	leaping = FALSE
@@ -639,7 +639,7 @@
 	sterile = TRUE
 	color = COLOR_GREEN
 	combat_hugger = TRUE
-	impact_time = 0.5 SECONDS
+	impact_time = 1 SECONDS
 	activate_time = 2 SECONDS
 	jump_cooldown = 2 SECONDS
 
@@ -670,7 +670,7 @@
 	sterile = TRUE
 	color = COLOR_STRONG_VIOLET
 	combat_hugger = TRUE
-	impact_time = 0.5 SECONDS
+	impact_time = 1 SECONDS
 	activate_time = 2 SECONDS
 	jump_cooldown = 2 SECONDS
 
@@ -706,7 +706,7 @@
 	sterile = TRUE
 	color = COLOR_RED
 	combat_hugger = TRUE
-	impact_time = 0.5 SECONDS
+	impact_time = 1 SECONDS
 	activate_time = 2 SECONDS
 	jump_cooldown = 2 SECONDS
 
