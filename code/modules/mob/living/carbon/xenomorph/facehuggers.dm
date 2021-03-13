@@ -157,6 +157,8 @@
 		go_active(TRUE)
 
 /obj/item/clothing/mask/facehugger/proc/go_idle(hybernate = FALSE, no_activate = FALSE)
+	if(stat == DEAD)
+		return FALSE
 	deltimer(jumptimer)
 	deltimer(lifetimer)
 	lifetimer = null
@@ -174,14 +176,18 @@
 /obj/item/clothing/mask/facehugger/proc/go_active(unhybernate = FALSE)
 	if(unhybernate)
 		stasis = FALSE
-	if(stat == UNCONSCIOUS && !stasis)
-		stat = CONSCIOUS
-		lifetimer = addtimer(CALLBACK(src, .proc/check_lifecycle), FACEHUGGER_DEATH, TIMER_STOPPABLE|TIMER_UNIQUE)
-		jumptimer = addtimer(CALLBACK(src, .proc/leap_at_nearest_target), jump_cooldown, TIMER_STOPPABLE|TIMER_UNIQUE)
-		addtimer(CALLBACK(src, .proc/apply_danger_overlay), jump_cooldown * 0.5)
-		update_icon()
-		return TRUE
-	return FALSE
+		deltimer(lifetimer) //We're removing stasis so reset the death timer.
+		lifetimer = addtimer(CALLBACK(src, .proc/check_lifecycle), FACEHUGGER_DEATH, TIMER_STOPPABLE)
+
+	if(stasis || stat == DEAD) //If we're not in stasis or dead proceed
+		return FALSE
+
+	stat = CONSCIOUS
+	lifetimer = addtimer(CALLBACK(src, .proc/check_lifecycle), FACEHUGGER_DEATH, TIMER_STOPPABLE|TIMER_UNIQUE)
+	jumptimer = addtimer(CALLBACK(src, .proc/leap_at_nearest_target), jump_cooldown, TIMER_STOPPABLE|TIMER_UNIQUE)
+	addtimer(CALLBACK(src, .proc/apply_danger_overlay), jump_cooldown * 0.5)
+	update_icon()
+	return TRUE
 
 /obj/item/clothing/mask/facehugger/update_overlays()
 	. = ..()
@@ -242,12 +248,12 @@
 			return TRUE
 	return FALSE
 
-/obj/item/clothing/mask/facehugger/proc/leap_at_nearest_target(forced = FALSE)
+/obj/item/clothing/mask/facehugger/proc/leap_at_nearest_target()
 	if(!isturf(loc))
 		return
-	if(!forced)
-		if(throwing || !lifetimer)//theres only a lifetimer as long as the huggers conscious
-			return
+
+	if(stat != CONSCIOUS) //need to be active to leap
+		return
 
 	for(var/check_smoke in get_turf(src)) //Check for pacifying smoke
 		if(!istype(check_smoke, /obj/effect/particle_effect/smoke/xeno))
@@ -266,16 +272,12 @@
 			visible_message("<span class='warning'>\The scuttling [src] leaps at [M]!</span>", null, null, 4)
 			leaping = TRUE
 			throw_at(M, 4, 1)
-			break
+			return //We found a target and will jump towards it; cancel out. If we didn't find anything, continue and try again later
 		--i
 
 	remove_danger_overlay() //Remove the danger overlay
 	jumptimer = addtimer(CALLBACK(src, .proc/leap_at_nearest_target), jump_cooldown, TIMER_STOPPABLE|TIMER_UNIQUE)
 	addtimer(CALLBACK(src, .proc/apply_danger_overlay), jump_cooldown * 0.5)
-
-/obj/item/clothing/mask/facehugger/proc/fast_activate(unhybernate = FALSE)
-	if(go_active(unhybernate) && !throwing)
-		leap_at_nearest_target(TRUE)
 
 /obj/item/clothing/mask/facehugger/Crossed(atom/target)
 	. = ..()
@@ -311,25 +313,18 @@
 			return
 		else
 			step(src, REVERSE_DIR(dir)) //We want the hugger to bounce off if it hits a mob.
-			set_throwing(FALSE) //reset our state on collision
-			deltimer(jumptimer)
-			deltimer(lifetimer)
-			lifetimer = null
-			jumptimer = null
 			update_icon()
 			apply_danger_overlay()
-			lifetimer = addtimer(CALLBACK(src, .proc/check_lifecycle), FACEHUGGER_DEATH, TIMER_STOPPABLE|TIMER_UNIQUE)
+			deltimer(jumptimer)
 			jumptimer = addtimer(CALLBACK(src, .proc/leap_at_nearest_target), impact_time, TIMER_STOPPABLE|TIMER_UNIQUE)
 			return
 	else
-		for(var/mob/living/carbon/M in loc)
-			if(M.can_be_facehugged(src))
-				if(!Attach(M))
-					go_idle()
-				return
-		deltimer(jumptimer)
-		addtimer(CALLBACK(src, .proc/apply_danger_overlay), activate_time * 0.5)
-		jumptimer = addtimer(CALLBACK(src, .proc/fast_activate), activate_time, TIMER_STOPPABLE|TIMER_UNIQUE)
+		if(leaping)
+			for(var/mob/living/carbon/M in loc)
+				if(M.can_be_facehugged(src))
+					if(!Attach(M))
+						go_idle()
+					return
 	leaping = FALSE
 	go_idle(FALSE)
 
@@ -490,7 +485,7 @@
 		user.disable_lights(sparks = TRUE, silent = TRUE)
 		var/stamina_dmg = user.maxHealth * 2 + user.max_stamina_buffer
 		user.apply_damage(stamina_dmg, STAMINA) // complete winds the target
-		user.Unconscious(2 SECONDS) //THIS MIGHT NEED TWEAKS // still might! // tweaked it
+		user.Unconscious(2 SECONDS)
 	addtimer(VARSET_CALLBACK(src, flags_item, flags_item|NODROP), IMPREGNATION_TIME) // becomes stuck after min-impreg time
 	attached = TRUE
 	go_idle(FALSE, TRUE)
@@ -520,7 +515,7 @@
 			target.apply_damage(15, BRUTE, "head", updating_health = TRUE)
 
 
-/obj/item/clothing/mask/facehugger/proc/kill_hugger()
+/obj/item/clothing/mask/facehugger/proc/kill_hugger(melt_timer = 1 MINUTES)
 	reset_attach_status()
 
 	if(stat == DEAD)
@@ -539,7 +534,7 @@
 
 	layer = BELOW_MOB_LAYER //so dead hugger appears below live hugger if stacked on same tile.
 
-	addtimer(CALLBACK(src, .proc/melt_away), 1 MINUTES)
+	addtimer(CALLBACK(src, .proc/melt_away), melt_timer)
 
 /obj/item/clothing/mask/facehugger/proc/reset_attach_status(forcedrop = TRUE)
 	flags_item &= ~NODROP
@@ -580,10 +575,6 @@
 
 /obj/item/clothing/mask/facehugger/flamer_fire_act()
 	kill_hugger()
-
-/obj/item/clothing/mask/facehugger/dropped(mob/user)
-	. = ..()
-	go_idle()
 
 /obj/item/clothing/mask/facehugger/dropped(mob/user)
 	. = ..()
@@ -633,11 +624,12 @@
 	var/mob/living/victim = M
 	do_attack_animation(M)
 	var/armor_block = victim.run_armor_check(BODY_ZONE_CHEST, "bio")
-	victim.apply_damage(100, STAMINA, BODY_ZONE_CHEST, armor_block) //This should prevent sprinting
+	victim.apply_damage(50, STAMINA, BODY_ZONE_CHEST, armor_block) //This should prevent sprinting
 	victim.apply_damage(1, BRUTE, sharp = TRUE) //Token brute for the injection
 	victim.reagents.add_reagent(/datum/reagent/toxin/xeno_neurotoxin, 20, no_overdose = TRUE)
 	playsound(victim, 'sound/effects/spray3.ogg', 25, 1)
 	victim.visible_message("<span class='danger'>[src] penetrates [victim] with its sharp probscius!</span>","<span class='danger'>[src] penetrates you with a sharp probscius before falling down!</span>")
+	leaping = FALSE
 	go_idle() //We're a bit slow on the recovery
 	return TRUE
 
@@ -656,21 +648,20 @@
 		return FALSE
 
 	visible_message("<span class='danger'>[src] explodes into a smoking splatter of acid!</span>")
+	playsound(loc, 'sound/bullets/acid_impact1.ogg', 50, 1)
 
-	for(var/turf/acid_tile as() in RANGE_TURFS(1, loc))
+	for(var/turf/acid_tile AS in RANGE_TURFS(1, loc))
+		new /obj/effect/temp_visual/acid_splatter(acid_tile) //SFX
 		if(!locate(/obj/effect/xenomorph/spray) in acid_tile.contents)
 			new /obj/effect/xenomorph/spray(acid_tile, 6 SECONDS, 16)
+
 
 	var/datum/effect_system/smoke_spread/xeno/acid/light/A = new(get_turf(src)) //Spawn acid smoke
 	A.set_up(1,src)
 	A.start()
-	melt_away()
+	kill_hugger(0.5 SECONDS)
 
 	return TRUE
-
-/obj/item/clothing/mask/facehugger/acid/kill_hugger()
-	. = ..()
-	melt_away()
 
 
 /obj/item/clothing/mask/facehugger/resin
@@ -688,8 +679,9 @@
 		return FALSE
 
 	visible_message("<span class='danger'>[src] explodes into a mess of viscous resin!</span>")
+	playsound(loc, get_sfx("alien_resin_build"), 50, 1)
 
-	for(var/turf/sticky_tile as() in RANGE_TURFS(1, loc))
+	for(var/turf/sticky_tile AS in RANGE_TURFS(1, loc))
 		if(!locate(/obj/effect/xenomorph/spray) in sticky_tile.contents)
 			new /obj/effect/alien/resin/sticky/thin(sticky_tile)
 
@@ -699,18 +691,14 @@
 			continue
 
 		target.adjust_stagger(3)
-		target.add_slowdown(10)
+		target.add_slowdown(15)
 		armor_block = target.run_armor_check(BODY_ZONE_CHEST, "bio")
 		target.apply_damage(100, STAMINA, BODY_ZONE_CHEST, armor_block) //Small amount of stamina damage; meant to stop sprinting.
 
-	melt_away()
+	kill_hugger(0.5 SECONDS)
 
 	return TRUE
 
-
-/obj/item/clothing/mask/facehugger/resin/kill_hugger()
-	. = ..()
-	melt_away()
 
 /obj/item/clothing/mask/facehugger/slash
 	name = "clawed hugger"
@@ -735,6 +723,7 @@
 	var/armor_block = victim.run_armor_check(affecting, "melee")
 	victim.apply_damage(CARRIER_SLASH_HUGGER_DAMAGE, BRUTE, affecting, armor_block) //Crap base damage after armour...
 	victim.visible_message("<span class='danger'>[src] frantically claws at [victim]!</span>","<span class='danger'>[src] frantically claws at you!</span>")
+	leaping = FALSE
 	go_active() //Slashy boys recover *very* fast.
 	return TRUE
 
