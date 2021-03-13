@@ -1169,6 +1169,7 @@ to_chat will check for valid clients itself already so no need to double check f
 		return
 	if(candidate.Find(observer))
 		to_chat(observer, "<span class='warning'>You are already in queue!</span>")
+		return
 	candidate += observer
 	observer.larva_position = candidate.len
 	to_chat(observer, "<span class='warning'>There are no burrowed larvas. You are in position [candidate.len] to become a xeno</span>")
@@ -1184,14 +1185,14 @@ to_chat will check for valid clients itself already so no need to double check f
 		candidate.Cut(1,2)
 		xeno_job.occupy_job_positions(1)
 		stored_larva--
-		try_to_give_larva(next_in_line)
+		INVOKE_ASYNC(src, .proc/try_to_give_larva, next_in_line)
 	for(var/i in 1 to candidate.len)
 		candidate[i].larva_position = i
 		
 ///Attempt to give a larva to the next in line, if not possible, free the xeno position and propose it to another candidate
 /datum/hive_status/normal/proc/try_to_give_larva(mob/next_in_line)
-	set waitfor = FALSE
-	if(!attempt_to_spawn_larva(next_in_line, TRUE))
-		var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-		xeno_job.free_job_positions(1)
-		give_larva_to_next_in_queue()
+	if(attempt_to_spawn_larva(next_in_line, TRUE))
+		return
+	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+	xeno_job.free_job_positions(1)
+	give_larva_to_next_in_queue()

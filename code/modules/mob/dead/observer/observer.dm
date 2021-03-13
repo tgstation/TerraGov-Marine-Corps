@@ -50,7 +50,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	var/ghost_vision = TRUE
 	var/ghost_orbit = GHOST_ORBIT_CIRCLE
 	///Position in the larva queue
-	var/larva_position
+	var/larva_position = 0
 
 
 /mob/dead/observer/Initialize()
