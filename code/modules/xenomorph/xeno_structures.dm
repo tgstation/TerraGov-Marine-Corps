@@ -36,8 +36,6 @@
 	var/datum/hive_status/associated_hive
 	var/silo_area
 	var/number_silo
-	///How old this silo is in seconds
-	var/maturity = 0
 	COOLDOWN_DECLARE(silo_damage_alert_cooldown)
 	COOLDOWN_DECLARE(silo_proxy_alert_cooldown)
 
@@ -47,7 +45,6 @@
 	name = "[name] [number]"
 	number_silo = number
 	number++
-	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY), .proc/start_maturing)
 	GLOB.xeno_resin_silos += src
 	center_turf = get_step(src, NORTHEAST)
 	if(!istype(center_turf))
@@ -55,9 +52,6 @@
 
 	for(var/i in RANGE_TURFS(XENO_SILO_DETECTION_RANGE, src))
 		RegisterSignal(i, COMSIG_ATOM_ENTERED, .proc/resin_silo_proxy_alert)
-
-	if(SSsilo.silos_do_mature)
-		start_maturing()
 
 	return INITIALIZE_HINT_LATELOAD
 
@@ -74,7 +68,7 @@
 	var/turf/tunnel_turf = get_step(center_turf, NORTH)
 	if(tunnel_turf.can_dig_xeno_tunnel())
 		var/obj/structure/tunnel/newt = new(tunnel_turf)
-		newt.tunnel_desc = "[get_area(newt)] (X: [newt.x], Y: [newt.y])"
+		newt.tunnel_desc = " [get_area(newt)] (X: [newt.x], Y: [newt.y])"
 		newt.name += "[name]"
 
 /obj/structure/resin/silo/Destroy()
@@ -156,19 +150,11 @@
 	associated_hive.xeno_message("<span class='xenoannounce'>Our [name] has detected a nearby hostile [hostile] at [get_area(hostile)] (X: [hostile.x], Y: [hostile.y]).</span>", 2, FALSE, hostile, 'sound/voice/alien_help1.ogg', FALSE, null, /obj/screen/arrow/leader_tracker_arrow)
 	COOLDOWN_START(src, silo_proxy_alert_cooldown, XENO_SILO_DETECTION_COOLDOWN) //set the cooldown.
 
-///Signal handler to tell the silo it can start maturing, so it adds it to the process if that's not the case
-/obj/structure/resin/silo/proc/start_maturing()
-	SIGNAL_HANDLER
-	if(!CHECK_BITFIELD(datum_flags, DF_ISPROCESSING))
-		START_PROCESSING(SSslowprocess, src)
-
 /obj/structure/resin/silo/process()
 	//Regenerate if we're at less than max integrity
 	if(obj_integrity < max_integrity)
 		obj_integrity = min(obj_integrity + 25, max_integrity) //Regen 5 HP per sec
-	
-	if(SSsilo.silos_do_mature)
-		maturity += 5
+
 
 
 /obj/structure/resin/silo/proc/is_burrowed_larva_host(datum/source, list/mothers, list/silos)
