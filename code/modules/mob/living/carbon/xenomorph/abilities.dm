@@ -1057,7 +1057,7 @@
 		return fail_activate()
 
 	new /obj/structure/resin/silo (get_step(A, SOUTHWEST))
-
+	to_chat(owner, "<span class='notice'>We build a new silo for [psych_cost] psy points.</span>")
 	SSpoints.xeno_points_by_hive[X.hivenumber] -= psych_cost
 
 	succeed_activate()
