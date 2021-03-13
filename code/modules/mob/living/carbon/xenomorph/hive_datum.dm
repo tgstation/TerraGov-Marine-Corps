@@ -20,7 +20,7 @@
 	var/tier3_xeno_limit
 	var/tier2_xeno_limit
 	///Queue of all observer wanting to join xeno side
-	LAZYINITLIST(candidate)
+	var/list/mob/dead/observer/candidate
 
 // ***************************************
 // *********** Init
@@ -33,6 +33,7 @@
 	xenos_by_upgrade = list()
 	dead_xenos = list()
 	xenos_by_zlevel = list()
+	LAZYINITLIST(candidate)
 
 	for(var/t in subtypesof(/mob/living/carbon/xenomorph))
 		var/mob/living/carbon/xenomorph/X = t
@@ -1178,14 +1179,16 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/normal/proc/give_larva_to_next_in_queue()
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
+	var/mob/dead/observer/observer_in_queue
 	while(stored_larva > 0 && LAZYLEN(candidate))
-		var/mob/next_in_line = LAZYACCESS(candidate, 1)
+		observer_in_queue = LAZYACCESS(candidate, 1)
 		LAZYREMOVE(candidate, 1)
 		xeno_job.occupy_job_positions(1)
 		stored_larva--
-		INVOKE_ASYNC(src, .proc/try_to_give_larva, next_in_line)
+		INVOKE_ASYNC(src, .proc/try_to_give_larva, observer_in_queue)
 	for(var/i in 1 to LAZYLEN(candidate))
-		LAZYACCESS(candidate, i).larva_position = i
+		observer_in_queue =LAZYACCESS(candidate, i)
+		observer_in_queue.larva_position = i
 		
 ///Attempt to give a larva to the next in line, if not possible, free the xeno position and propose it to another candidate
 /datum/hive_status/normal/proc/try_to_give_larva(mob/next_in_line)
