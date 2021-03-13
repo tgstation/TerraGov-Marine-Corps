@@ -1182,7 +1182,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	var/mob/dead/observer/observer_in_queue
 	while(stored_larva > 0 && LAZYLEN(candidate))
 		observer_in_queue = LAZYACCESS(candidate, 1)
-		LAZYREMOVE(candidate, 1)
+		LAZYREMOVE(candidate, observer_in_queue)
 		xeno_job.occupy_job_positions(1)
 		stored_larva--
 		INVOKE_ASYNC(src, .proc/try_to_give_larva, observer_in_queue)
