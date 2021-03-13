@@ -388,7 +388,7 @@
 	plane = GAME_PLANE
 
 
-/turf/closed/brazil_space
+/turf/closed/banish_space //Brazil
 	plane = PLANE_SPACE
 	layer = SPACE_LAYER
 	icon = 'icons/turf/space.dmi'
