@@ -60,7 +60,7 @@
 	desc = "Some bags filled with sand. For now, just cumbersome, but soon to be used for fortifications."
 	singular_name = "sandbag"
 	icon_state = "sandbag_pile"
-	w_class = WEIGHT_CLASS_BULKY
+	w_class = WEIGHT_CLASS_NORMAL
 	force = 9.0
 	throwforce = 15.0
 	throw_speed = 5
@@ -105,8 +105,8 @@
 		return
 	user.visible_message("<span class='notice'>[user] starts assembling a sandbag barricade.</span>",
 	"<span class='notice'>You start assembling a sandbag barricade.</span>")
-
-	if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
+	var/building_time = 2 SECONDS *(1 - clamp(usr.skills.getRating("construction") * 0.10, 0 , 0.50))
+	if(!do_after(user, building_time, TRUE, src, BUSY_ICON_BUILD))
 		return
 	for(var/obj/O in user.loc) //Objects, we don't care about mobs. Turfs are checked elsewhere
 		if(O.density && (!(O.flags_atom & ON_BORDER) || O.dir == user.dir))
