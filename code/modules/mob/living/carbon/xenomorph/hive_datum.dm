@@ -1171,7 +1171,8 @@ to_chat will check for valid clients itself already so no need to double check f
 	candidate += observer
 	to_chat(observer, "<span class='warning'>There are no burrowed larvas. You are in position [candidate.len] to become a xeno</span>")
 
-/datum/hive_status/normal/proc/give_larva_next_in_queue()
+///Propose larvas until their is no more candidates, or no more burrowed
+/datum/hive_status/normal/proc/give_larva_to_next_in_queue()
 	if(!candidate.len)
 		return
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
@@ -1183,4 +1184,4 @@ to_chat will check for valid clients itself already so no need to double check f
 		stored_larva--
 		if(!attempt_to_spawn_larva(next_in_line, TRUE))
 			xeno_job.free_job_positions(1)
-			INVOKE_ASYNC(src, .proc/give_larva_next_in_queue)
+			INVOKE_ASYNC(src, .proc/give_larva_to_next_in_queue)
