@@ -16,7 +16,7 @@
 	///How much time the cocoon takes to deplete the life force of the marine
 	var/cocoon_life_time = 15 MINUTES
 	///How many psych points it is generating in 5 seconds
-	var/psych_points_output = 1
+	var/psych_points_output = 0.75
 	///If the cocoon should produce psych points
 	var/producing_points = TRUE
 	///Standard busy check
@@ -68,6 +68,7 @@
 	playsound(loc, "alien_resin_move", 35)
 	victim.forceMove(loc)
 	victim.setDir(NORTH)
+	victim.med_hud_set_status()
 	victim = null
 
 /obj/structure/cocoon/attacked_by(obj/item/I, mob/living/user, def_zone)
