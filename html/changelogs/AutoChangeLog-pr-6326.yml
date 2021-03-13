@@ -1,0 +1,4 @@
+author: "SkeletalElite"
+delete-after: True
+changes: 
+  - code_imp: "got rid of unused/obsolete compactor upgrade"
