@@ -1,5 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - balance: "Xenos keep their upgrade points when evolving, meaning that an ancient drone will evolve into an elder hivelord, and not a young one. They also keep points when regressing, which then can easily switch from one caste to another"
-  - balance: "Change how points from recycling a xeno are calculated, overall a T1 will give less and a ancient T3 will give way more"
