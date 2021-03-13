@@ -1,5 +1,7 @@
 /datum/game_mode/infestation
 
+/datum/game_mode/infestation/scale_roles()
+	
 	. = ..()
 	if(!.)
 		return
