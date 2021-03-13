@@ -76,6 +76,9 @@
 
 /datum/component/footstep/proc/play_humanstep()
 	SIGNAL_HANDLER
+	var/mob/living/carbon/human/H = parent
+	if (!CHECK_MULTIPLE_BITFIELDS(H.flags_pass, HOVERING))//We don't make step sounds when flying
+		return
 	var/turf/open/T = prepare_step()
 	if(!T)
 		return
@@ -85,9 +88,7 @@
 			TRUE,
 			GLOB.barefootstep[FOOTSTEP_RESIN][3] + e_range)
 		return
-	var/mob/living/carbon/human/H = parent
-
-	if(H.shoes) //are we wearing shoes
+	if(H.shoes) //are we wearing shoes 
 		playsound(T, pick(GLOB.shoefootstep[T.shoefootstep][1]),
 			GLOB.shoefootstep[T.shoefootstep][2] * volume,
 			TRUE,

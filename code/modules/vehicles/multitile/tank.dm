@@ -165,10 +165,10 @@
 //Must have the skills to do so
 /obj/vehicle/multitile/root/cm_armored/tank/handle_player_entrance(mob/living/carbon/M)
 	. = ..()
-	if(!. || !istype(M) || M.action_busy)
+	if(!. || !istype(M) || M.do_actions)
 		return
 
-	var/slot = input("Select a seat") in list("Driver", "Gunner")
+	var/slot = tgui_alert(M, "Select a seat", null, list("Driver", "Gunner"))
 	if(!Adjacent(M))
 		return
 
@@ -220,7 +220,7 @@
 		exit_tank(M, TRUE)
 		return
 
-	if(!M.action_busy)
+	if(!M.do_actions)
 		if(occupant_exiting)
 			to_chat(M, "<span class='notice'>Someone is already getting out of [src].</span>")
 			return

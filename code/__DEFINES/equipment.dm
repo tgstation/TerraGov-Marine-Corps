@@ -1,9 +1,12 @@
 //PASS FLAGS
-#define PASSTABLE	(1<<0)
-#define PASSGLASS	(1<<1)
-#define PASSGRILLE	(1<<2)
-#define PASSBLOB	(1<<3)
-#define PASSMOB		(1<<4)
+#define PASSTABLE		(1<<0)
+#define PASSGLASS		(1<<1)
+#define PASSGRILLE		(1<<2)
+#define PASSBLOB		(1<<3)
+#define PASSMOB			(1<<4)
+#define PASSSMALLSTRUCT (1<<5)
+#define PASSFIRE		(1<<6)
+#define HOVERING          (PASSTABLE|PASSMOB|PASSSMALLSTRUCT|PASSFIRE)
 
 //==========================================================================================
 
@@ -51,8 +54,9 @@
 #define BEING_REMOVED			(1<<6)	//Cuffs
 #define DOES_NOT_NEED_HANDS		(1<<7)	//Dont need hands to use it
 #define SYNTH_RESTRICTED		(1<<8)	//Prevents synths from wearing items with this flag
+#define IMPEDE_JETPACK 		(1<<9)  //Reduce the range of jetpack
+#define DRAINS_XENO				(1<<10)  //Enables the item to collect resource for chem_booster component
 //==========================================================================================
-
 
 //flags_inv_hide
 //Bit flags for the flags_inv_hide variable, which determine when a piece of clothing hides another. IE a helmet hiding glasses.
@@ -346,6 +350,40 @@
 	SLOT_IN_BELT,\
 	SLOT_IN_HEAD\
 	)
+
+#define SLOT_ALL list(\
+	SLOT_WEAR_ID,\
+	SLOT_EARS,\
+	SLOT_W_UNIFORM,\
+	SLOT_LEGS,\
+	SLOT_SHOES,\
+	SLOT_GLOVES,\
+	SLOT_BELT,\
+	SLOT_WEAR_SUIT,\
+	SLOT_GLASSES,\
+	SLOT_WEAR_MASK,\
+	SLOT_HEAD,\
+	SLOT_BACK,\
+	SLOT_L_STORE,\
+	SLOT_R_STORE,\
+	SLOT_ACCESSORY,\
+	SLOT_S_STORE,\
+	SLOT_L_HAND,\
+	SLOT_R_HAND,\
+	SLOT_HANDCUFFED,\
+	SLOT_IN_BOOT,\
+	SLOT_IN_BACKPACK,\
+	SLOT_IN_SUIT,\
+	SLOT_IN_ACCESSORY,\
+	SLOT_IN_HOLSTER,\
+	SLOT_IN_B_HOLSTER,\
+	SLOT_IN_S_HOLSTER,\
+	SLOT_IN_STORAGE,\
+	SLOT_IN_L_POUCH,\
+	SLOT_IN_R_POUCH,\
+	SLOT_IN_HEAD,\
+	SLOT_IN_BELT\
+)
 
 #define ITEM_NOT_EQUIPPED 0
 #define ITEM_EQUIPPED_CARRIED 1 //To hands, a storage or the likes.

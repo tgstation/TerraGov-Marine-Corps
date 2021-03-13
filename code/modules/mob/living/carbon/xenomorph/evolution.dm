@@ -43,7 +43,7 @@
 	for(var/type in tiers_to_pick_from)
 		var/datum/xeno_caste/available_caste = GLOB.xeno_caste_datums[type][XENO_UPGRADE_BASETYPE]
 		castes_to_pick += available_caste.caste_name
-	var/castepick = input("We are growing into a beautiful alien! It is time to choose a caste.") as null|anything in castes_to_pick
+	var/castepick = tgui_input_list(src, "We are growing into a beautiful alien! It is time to choose a caste.", null, castes_to_pick)
 	if(!castepick) //Changed my mind
 		return
 
@@ -115,7 +115,7 @@
 		for(var/type in xeno_caste.evolves_to)
 			var/datum/xeno_caste/Z = GLOB.xeno_caste_datums[type][XENO_UPGRADE_BASETYPE]
 			castes_to_pick += Z.caste_name
-		castepick = input("We are growing into a beautiful alien! It is time to choose a caste.") as null|anything in castes_to_pick
+		castepick = tgui_input_list(src, "We are growing into a beautiful alien! It is time to choose a caste.", null, castes_to_pick)
 		if(!castepick) //Changed my mind
 			return
 
@@ -215,6 +215,8 @@
 
 
 	else
+		if(new_caste_type == /mob/living/carbon/xenomorph/runner & CONFIG_GET(flag/roony))//If the fun config is set, every runner is a roony
+			new_caste_type = /mob/living/carbon/xenomorph/roony
 		var/potential_queens = length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/larva]) + length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/drone])
 
 		tierzeros = hive.get_total_tier_zeros()
@@ -298,8 +300,6 @@
 	for(var/obj/item/W in contents) //Drop stuff
 		dropItemToGround(W)
 
-	empty_gut(FALSE, TRUE)
-
 	if(mind)
 		mind.transfer_to(new_xeno)
 	else
@@ -344,6 +344,13 @@
 		if(hive.living_xeno_queen)
 			new_xeno.handle_xeno_leader_pheromones(hive.living_xeno_queen)
 		new_xeno.give_rally_hive_ability() //Give them back their rally hive ability
+
+	if(upgrade == XENO_UPGRADE_THREE)
+		switch(tier)
+			if(XENO_TIER_TWO)
+				SSmonitor.stats.ancient_T2--
+			if(XENO_TIER_THREE)
+				SSmonitor.stats.ancient_T3--
 
 	qdel(src)
 	INVOKE_ASYNC(new_xeno, /mob/living.proc/do_jitter_animation, 1000)

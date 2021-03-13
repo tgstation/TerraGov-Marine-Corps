@@ -111,13 +111,15 @@ MEDICAL_OFFICER, MEDICAL_RESEARCHER, SQUAD_LEADER, SQUAD_SPECIALIST, SQUAD_SMART
 #define CRYO_DELTA		"Delta Squad"
 
 
-#define XP_REQ_INTERMEDIATE 60
-#define XP_REQ_EXPERIENCED 180
+#define XP_REQ_UNSEASONED 60
+#define XP_REQ_INTERMEDIATE 180
+#define	XP_REQ_EXPERIENCED 600
+#define	XP_REQ_EXPERT 900 
 
 // how much a job is going to contribute towards burrowed larva. see config for points required to larva. old balance was 1 larva per 3 humans.
 #define LARVA_POINTS_SHIPSIDE 1
-#define LARVA_POINTS_SHIPSIDE_STRONG 2
-#define LARVA_POINTS_REGULAR 3
+#define LARVA_POINTS_SHIPSIDE_STRONG 1.5
+#define LARVA_POINTS_REGULAR 2.5
 #define LARVA_POINTS_STRONG 6
 
 #define SURVIVOR_POINTS_REGULAR 1

@@ -71,7 +71,6 @@
 	dat += "</table></center>"
 	user << browse("<html><head><title>[name]</title></head><body>[dat]</body></html>", "window=filingcabinet;size=350x300")
 
-	return
 
 /obj/structure/filingcabinet/Topic(href, href_list)
 	. = ..()

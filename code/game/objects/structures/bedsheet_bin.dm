@@ -126,7 +126,7 @@ LINEN BINS
 
 
 
-/obj/structure/bedsheetbin/attack_paw(mob/living/carbon/monkey/user)
+/obj/structure/bedsheetbin/attack_paw(mob/living/carbon/human/user)
 	return attack_hand(user)
 
 

@@ -10,9 +10,6 @@
 	layer = ABOVE_WINDOW_LAYER
 	pipe_flags = PIPING_ONE_PER_TURF|PIPING_DEFAULT_LAYER_ONLY
 
-	ui_x = 400
-	ui_y = 550
-
 	var/autoeject = FALSE
 	var/release_notice = FALSE
 
@@ -158,7 +155,6 @@
 			radio.talk_into(src, "Patient [occupant] has been automatically released from [src] at: [get_area(occupant)]. [reason]", RADIO_CHANNEL_MEDICAL)
 	occupant = null
 	update_icon()
-	return
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/proc/turn_off()
 	on = FALSE
@@ -208,11 +204,10 @@
 			return
 		to_chat(usr, "<span class='notice'>Auto release sequence activated. You will be released when you have recovered.</span>")
 		autoeject = TRUE
-	else
-		if (usr.stat != CONSCIOUS)
-			return
-		go_out()
-	return
+		return
+	if (usr.stat != CONSCIOUS)
+		return
+	go_out()
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/examine(mob/user)
 	..()
@@ -280,7 +275,7 @@
 	if(!M)
 		return
 
-	if(!ishuman(M)) // stop fucking monkeys and xenos being put in.
+	if(!ishuman(M))
 		to_chat(user, "<span class='notice'>\ [src] is compatible with humanoid anatomies only!</span>")
 		return
 
@@ -296,7 +291,7 @@
 	if (machine_stat & (NOPOWER|BROKEN))
 		to_chat(usr, "<span class='warning'>The cryo cell is not functioning.</span>")
 		return
-	if(!ishuman(M)) // stop fucking monkeys and xenos being put in.
+	if(!ishuman(M))
 		to_chat(usr, "<span class='notice'>\ [src] is compatible with humanoid anatomies only!</span>")
 		return
 	if (occupant)
@@ -346,12 +341,11 @@
 		return
 	ui_interact(user)
 
-/obj/machinery/atmospherics/components/unary/cryo_cell/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/atmospherics/components/unary/cryo_cell/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 
 	if(!ui)
-		ui = new(user, src, ui_key, "Cryo", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, "Cryo", name)
 		ui.open()
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/ui_data(mob/user)
@@ -400,8 +394,9 @@
 	data["beakerContents"] = beakerContents
 	return data
 
-/obj/machinery/atmospherics/components/unary/cryo_cell/ui_act(action, params)
-	if(..())
+/obj/machinery/atmospherics/components/unary/cryo_cell/ui_act(action, list/params)
+	. = ..()
+	if(.)
 		return
 	switch(action)
 		if("power")

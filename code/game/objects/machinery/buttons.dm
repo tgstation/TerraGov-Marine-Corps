@@ -86,7 +86,10 @@
 			openclose = M.density
 		else if(CHECK_BITFIELD(specialfunctions, DOOR_FLAG_OPEN_ONLY))
 			openclose = TRUE
-		INVOKE_ASYNC(M, openclose ? /obj/machinery/door/poddoor.proc/open : /obj/machinery/door/poddoor.proc/close)
+		if(openclose)
+			M.open()
+			continue
+		M.close()
 
 
 /obj/machinery/button/door/open_only
@@ -102,7 +105,9 @@
 	resistance_flags = RESIST_ALL
 	req_access = list(ACCESS_MARINE_DROPSHIP)
 
-
+/obj/machinery/button/door/open_only/landing_zone/pulsed()
+	. = ..()
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_OPEN_SHUTTERS_EARLY)
 
 /obj/machinery/button/door/open_only/landing_zone/lz2
 	id = "landing_zone_2"

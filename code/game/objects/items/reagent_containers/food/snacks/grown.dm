@@ -359,7 +359,7 @@
 	new/obj/effect/decal/cleanable/tomato_smudge(src.loc)
 	src.visible_message("<span class='notice'>The [src.name] has been squashed.</span>","<span class='moderate'>You hear a smack.</span>")
 	qdel(src)
-	return
+
 
 /obj/item/reagent_containers/food/snacks/grown/killertomato
 	name = "killer-tomato"
@@ -386,7 +386,7 @@
 	for(var/atom/A in get_turf(hit_atom))
 		src.reagents.reaction(A)
 	qdel(src)
-	return
+
 
 /obj/item/reagent_containers/food/snacks/grown/bluetomato
 	name = "blue-tomato"
@@ -404,7 +404,6 @@
 	for(var/atom/A in get_turf(hit_atom))
 		src.reagents.reaction(A)
 	qdel(src)
-	return
 
 /obj/item/reagent_containers/food/snacks/grown/bluetomato/Crossed(atom/movable/AM)
 	. = ..()
@@ -587,4 +586,4 @@
 	new/obj/effect/decal/cleanable/blood/oil(src.loc)
 	src.visible_message("<span class='notice'>The [src.name] has been squashed, causing a distortion in space-time.</span>","<span class='moderate'>You hear a splat and a crackle.</span>")
 	qdel(src)
-	return
+

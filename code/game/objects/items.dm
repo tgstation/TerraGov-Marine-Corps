@@ -14,7 +14,10 @@
 						//also useful for items with many icon_state values when you don't want to make an inhand sprite for each value.
 	var/force = 0
 	var/damtype = BRUTE
+	///Byond tick delay between left click attacks
 	var/attack_speed = 11
+	///Byond tick delay between right click alternate attacks
+	var/attack_speed_alternate = 11
 	var/list/attack_verb //Used in attackby() to say how something was attacked "[x] has been [z.attack_verb] by [y] with [z]"
 
 	var/sharp = FALSE		// whether this item cuts
@@ -244,6 +247,9 @@
 	if(flags_item & DELONDROP)
 		qdel(src)
 
+///Called whenever an item is unequipped to a new loc (IE, not when the item ends up in the hands)
+/obj/item/proc/removed_from_inventory(mob/user)
+	SEND_SIGNAL(src, COMSIG_ITEM_REMOVED_INVENTORY, user)
 
 // called just as an item is picked up (loc is not yet changed)
 /obj/item/proc/pickup(mob/user)
@@ -274,17 +280,17 @@
 	return
 
 
-// called when this item is removed from a storage item, which is passed on as S. The loc variable is already set to the new destination before this is called.
+///called when this item is removed from a storage item, which is passed on as S. The loc variable is already set to the new destination before this is called.
 /obj/item/proc/on_exit_storage(obj/item/storage/S as obj)
 	return
 
 
-// called when this item is added into a storage item, which is passed on as S. The loc variable is already set to the storage item.
+///called when this item is added into a storage item, which is passed on as S. The loc variable is already set to the storage item.
 /obj/item/proc/on_enter_storage(obj/item/storage/S as obj)
 	return
 
 
-// called when "found" in pockets and storage items. Returns 1 if the search should end.
+///called when "found" in pockets and storage items. Returns 1 if the search should end.
 /obj/item/proc/on_found(mob/finder as mob)
 	return
 
@@ -316,7 +322,7 @@
 		if(flags_armor_protection)
 			human_user.add_limb_armor(src)
 		if(slowdown)
-			human_user.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, slowdown)
+			human_user.add_movespeed_modifier(type, TRUE, 0, (flags_item & IMPEDE_JETPACK) ? SLOWDOWN_IMPEDE_JETPACK : NONE, TRUE, slowdown)
 
 
 ///Called when an item is removed from an equipment slot. The loc should still be in the unequipper.
@@ -365,254 +371,226 @@
 			to_chat(M, "<span class='notice'>[src] is stuck to our hand!</span>")
 		return FALSE
 
-	if(ishuman(M))
-		//START HUMAN
-		var/mob/living/carbon/human/H = M
-		var/list/mob_equip = list()
-		if(H.species.hud?.equip_slots)
-			mob_equip = H.species.hud.equip_slots
+	if(!ishuman(M))
+		return FALSE
+	//START HUMAN
+	var/mob/living/carbon/human/H = M
+	var/list/mob_equip = list()
+	if(H.species.hud?.equip_slots)
+		mob_equip = H.species.hud.equip_slots
 
-		if(H.species && !(slot in mob_equip))
+	if(H.species && !(slot in mob_equip))
+		return FALSE
+
+	if(issynth(H) && CHECK_BITFIELD(flags_item, SYNTH_RESTRICTED) && !CONFIG_GET(flag/allow_synthetic_gun_use))
+		to_chat(H, "<span class='warning'>Your programming prevents you from wearing this.</span>")
+		return FALSE
+
+	switch(slot)
+		if(SLOT_L_HAND)
+			if(H.l_hand)
+				return FALSE
+			return TRUE
+		if(SLOT_R_HAND)
+			if(H.r_hand)
+				return FALSE
+			return TRUE
+		if(SLOT_WEAR_MASK)
+			if(H.wear_mask)
+				return FALSE
+			if(!(flags_equip_slot & ITEM_SLOT_MASK))
+				return FALSE
+			return TRUE
+		if(SLOT_BACK)
+			if(H.back)
+				return FALSE
+			if(!(flags_equip_slot & ITEM_SLOT_BACK))
+				return FALSE
+			return TRUE
+		if(SLOT_WEAR_SUIT)
+			if(H.wear_suit)
+				return FALSE
+			if(!(flags_equip_slot & ITEM_SLOT_OCLOTHING))
+				return FALSE
+			return TRUE
+		if(SLOT_GLOVES)
+			if(H.gloves)
+				return FALSE
+			if(!(flags_equip_slot & ITEM_SLOT_GLOVES))
+				return FALSE
+			return TRUE
+		if(SLOT_SHOES)
+			if(H.shoes)
+				return FALSE
+			if(!(flags_equip_slot & ITEM_SLOT_FEET))
+				return FALSE
+			return TRUE
+		if(SLOT_BELT)
+			if(H.belt)
+				return FALSE
+			if(!H.w_uniform && (SLOT_W_UNIFORM in mob_equip))
+				if(warning)
+					to_chat(H, "<span class='warning'>You need a jumpsuit before you can attach this [name].</span>")
+				return FALSE
+			if(!(flags_equip_slot & ITEM_SLOT_BELT))
+				return FALSE
+			return TRUE
+		if(SLOT_GLASSES)
+			if(H.glasses)
+				return FALSE
+			if(!(flags_equip_slot & ITEM_SLOT_EYES))
+				return FALSE
+			return TRUE
+		if(SLOT_HEAD)
+			if(H.head)
+				return FALSE
+			if(!(flags_equip_slot & ITEM_SLOT_HEAD))
+				return FALSE
+			return TRUE
+		if(SLOT_EARS)
+			if(H.wear_ear)
+				return FALSE
+			if(!(flags_equip_slot & ITEM_SLOT_EARS))
+				return FALSE
+			return TRUE
+		if(SLOT_W_UNIFORM)
+			if(H.w_uniform)
+				return FALSE
+			if(!(flags_equip_slot & ITEM_SLOT_ICLOTHING))
+				return FALSE
+			return TRUE
+		if(SLOT_WEAR_ID)
+			if(H.wear_id)
+				return FALSE
+			if(!(flags_equip_slot & ITEM_SLOT_ID))
+				return FALSE
+			return TRUE
+		if(SLOT_L_STORE)
+			if(H.l_store)
+				return FALSE
+			if(!H.w_uniform && (SLOT_W_UNIFORM in mob_equip))
+				if(warning)
+					to_chat(H, "<span class='warning'>You need a jumpsuit before you can attach this [name].</span>")
+				return FALSE
+			if(flags_equip_slot & ITEM_SLOT_DENYPOCKET)
+				return FALSE
+			if(w_class <= 2 || (flags_equip_slot & ITEM_SLOT_POCKET))
+				return TRUE
+		if(SLOT_R_STORE)
+			if(H.r_store)
+				return FALSE
+			if(!H.w_uniform && (SLOT_W_UNIFORM in mob_equip))
+				if(warning)
+					to_chat(H, "<span class='warning'>You need a jumpsuit before you can attach this [name].</span>")
+				return FALSE
+			if(flags_equip_slot & ITEM_SLOT_DENYPOCKET)
+				return FALSE
+			if(w_class <= 2 || (flags_equip_slot & ITEM_SLOT_POCKET))
+				return TRUE
 			return FALSE
-
-		if(issynth(H) && CHECK_BITFIELD(flags_item, SYNTH_RESTRICTED) && !CONFIG_GET(flag/allow_synthetic_gun_use))
-			to_chat(H, "<span class='warning'>Your programming prevents you from wearing this.</span>")
+		if(SLOT_S_STORE)
+			if(H.s_store)
+				return FALSE
+			if(!H.wear_suit && (SLOT_WEAR_SUIT in mob_equip))
+				if(warning)
+					to_chat(H, "<span class='warning'>You need a suit before you can attach this [name].</span>")
+				return FALSE
+			if(!H.wear_suit.allowed)
+				if(warning)
+					to_chat(usr, "You somehow have a suit with no defined allowed items for suit storage, stop that.")
+				return FALSE
+			if(istype(src, /obj/item/tool/pen) || is_type_in_list(src, H.wear_suit.allowed) )
+				return TRUE
 			return FALSE
-
-		switch(slot)
-			if(SLOT_L_HAND)
-				if(H.l_hand)
-					return FALSE
-				return TRUE
-			if(SLOT_R_HAND)
-				if(H.r_hand)
-					return FALSE
-				return TRUE
-			if(SLOT_WEAR_MASK)
-				if(H.wear_mask)
-					return FALSE
-				if(!(flags_equip_slot & ITEM_SLOT_MASK))
-					return FALSE
-				return TRUE
-			if(SLOT_BACK)
-				if(H.back)
-					return FALSE
-				if(!(flags_equip_slot & ITEM_SLOT_BACK))
-					return FALSE
-				return TRUE
-			if(SLOT_WEAR_SUIT)
-				if(H.wear_suit)
-					return FALSE
-				if(!(flags_equip_slot & ITEM_SLOT_OCLOTHING))
-					return FALSE
-				return TRUE
-			if(SLOT_GLOVES)
-				if(H.gloves)
-					return FALSE
-				if(!(flags_equip_slot & ITEM_SLOT_GLOVES))
-					return FALSE
-				return TRUE
-			if(SLOT_SHOES)
-				if(H.shoes)
-					return FALSE
-				if(!(flags_equip_slot & ITEM_SLOT_FEET))
-					return FALSE
-				return TRUE
-			if(SLOT_BELT)
-				if(H.belt)
-					return FALSE
-				if(!H.w_uniform && (SLOT_W_UNIFORM in mob_equip))
-					if(warning)
-						to_chat(H, "<span class='warning'>You need a jumpsuit before you can attach this [name].</span>")
-					return FALSE
-				if(!(flags_equip_slot & ITEM_SLOT_BELT))
-					return FALSE
-				return TRUE
-			if(SLOT_GLASSES)
-				if(H.glasses)
-					return FALSE
-				if(!(flags_equip_slot & ITEM_SLOT_EYES))
-					return FALSE
-				return TRUE
-			if(SLOT_HEAD)
-				if(H.head)
-					return FALSE
-				if(!(flags_equip_slot & ITEM_SLOT_HEAD))
-					return FALSE
-				return TRUE
-			if(SLOT_EARS)
-				if(H.wear_ear)
-					return FALSE
-				if(!(flags_equip_slot & ITEM_SLOT_EARS))
-					return FALSE
-				return TRUE
-			if(SLOT_W_UNIFORM)
-				if(H.w_uniform)
-					return FALSE
-				if(!(flags_equip_slot & ITEM_SLOT_ICLOTHING))
-					return FALSE
-				return TRUE
-			if(SLOT_WEAR_ID)
-				if(H.wear_id)
-					return FALSE
-				if(!(flags_equip_slot & ITEM_SLOT_ID))
-					return FALSE
-				return TRUE
-			if(SLOT_L_STORE)
-				if(H.l_store)
-					return FALSE
-				if(!H.w_uniform && (SLOT_W_UNIFORM in mob_equip))
-					if(warning)
-						to_chat(H, "<span class='warning'>You need a jumpsuit before you can attach this [name].</span>")
-					return FALSE
-				if(flags_equip_slot & ITEM_SLOT_DENYPOCKET)
-					return FALSE
-				if(w_class <= 2 || (flags_equip_slot & ITEM_SLOT_POCKET))
-					return TRUE
-			if(SLOT_R_STORE)
-				if(H.r_store)
-					return FALSE
-				if(!H.w_uniform && (SLOT_W_UNIFORM in mob_equip))
-					if(warning)
-						to_chat(H, "<span class='warning'>You need a jumpsuit before you can attach this [name].</span>")
-					return FALSE
-				if(flags_equip_slot & ITEM_SLOT_DENYPOCKET)
-					return FALSE
-				if(w_class <= 2 || (flags_equip_slot & ITEM_SLOT_POCKET))
-					return TRUE
+		if(SLOT_HANDCUFFED)
+			if(H.handcuffed)
 				return FALSE
-			if(SLOT_S_STORE)
-				if(H.s_store)
-					return FALSE
-				if(!H.wear_suit && (SLOT_WEAR_SUIT in mob_equip))
-					if(warning)
-						to_chat(H, "<span class='warning'>You need a suit before you can attach this [name].</span>")
-					return FALSE
-				if(!H.wear_suit.allowed)
-					if(warning)
-						to_chat(usr, "You somehow have a suit with no defined allowed items for suit storage, stop that.")
-					return FALSE
-				if(istype(src, /obj/item/tool/pen) || is_type_in_list(src, H.wear_suit.allowed) )
-					return TRUE
+			if(!istype(src, /obj/item/restraints/handcuffs))
 				return FALSE
-			if(SLOT_HANDCUFFED)
-				if(H.handcuffed)
-					return FALSE
-				if(!istype(src, /obj/item/restraints/handcuffs))
-					return FALSE
-				return TRUE
-			if(SLOT_ACCESSORY)
-				if(!istype(src, /obj/item/clothing/tie))
-					return FALSE
-				var/obj/item/clothing/under/U = H.w_uniform
-				if(!U || U.hastie)
-					return FALSE
-				return TRUE
-			if(SLOT_IN_BACKPACK)
-				if (!H.back || !istype(H.back, /obj/item/storage/backpack))
-					return FALSE
-				var/obj/item/storage/backpack/B = H.back
-				if(w_class > B.max_w_class || !B.can_be_inserted(src, warning))
-					return FALSE
-				return TRUE
-			if(SLOT_IN_B_HOLSTER)
-				if(!H.back || !istype(H.back, /obj/item/storage/large_holster))
-					return FALSE
-				var/obj/item/storage/S = H.back
-				if(!S.can_be_inserted(src, warning))
-					return FALSE
-				return TRUE
-			if(SLOT_IN_BELT)
-				if(!H.belt || !istype(H.belt, /obj/item/storage/belt))
-					return FALSE
-				var/obj/item/storage/belt/S = H.belt
-				if(!S.can_be_inserted(src, warning))
-					return FALSE
-				return TRUE
-			if(SLOT_IN_HOLSTER)
-				if((H.belt && istype(H.belt,/obj/item/storage/large_holster)) || (H.belt && istype(H.belt,/obj/item/storage/belt/gun)))
-					var/obj/item/storage/S = H.belt
-					if(S.can_be_inserted(src, warning))
-						return TRUE
+			return TRUE
+		if(SLOT_ACCESSORY)
+			if(!istype(src, /obj/item/clothing/tie))
 				return FALSE
-			if(SLOT_IN_S_HOLSTER)
-				if((H.s_store && istype(H.s_store, /obj/item/storage/large_holster)) ||(H.s_store && istype(H.s_store,/obj/item/storage/belt/gun)))
-					var/obj/item/storage/S = H.s_store
-					if(S.can_be_inserted(src, warning))
-						return TRUE
+			var/obj/item/clothing/under/U = H.w_uniform
+			if(!U || U.hastie)
 				return FALSE
-			if(SLOT_IN_STORAGE)
-				if(!H.s_active)
-					return FALSE
-				var/obj/item/storage/S = H.s_active
+			return TRUE
+		if(SLOT_IN_BACKPACK)
+			if (!H.back || !istype(H.back, /obj/item/storage/backpack))
+				return FALSE
+			var/obj/item/storage/backpack/B = H.back
+			if(w_class > B.max_w_class || !B.can_be_inserted(src, warning))
+				return FALSE
+			return TRUE
+		if(SLOT_IN_B_HOLSTER)
+			if(!H.back || !istype(H.back, /obj/item/storage/large_holster))
+				return FALSE
+			var/obj/item/storage/S = H.back
+			if(!S.can_be_inserted(src, warning))
+				return FALSE
+			return TRUE
+		if(SLOT_IN_BELT)
+			if(!H.belt || !istype(H.belt, /obj/item/storage/belt))
+				return FALSE
+			var/obj/item/storage/belt/S = H.belt
+			if(!S.can_be_inserted(src, warning))
+				return FALSE
+			return TRUE
+		if(SLOT_IN_HOLSTER)
+			if((H.belt && istype(H.belt,/obj/item/storage/large_holster)) || (H.belt && istype(H.belt,/obj/item/storage/belt/gun)))
+				var/obj/item/storage/S = H.belt
 				if(S.can_be_inserted(src, warning))
 					return TRUE
-			if(SLOT_IN_L_POUCH)
-				if(!H.l_store || !istype(H.l_store, /obj/item/storage/pouch))
-					return FALSE
-				var/obj/item/storage/S = H.l_store
+			return FALSE
+		if(SLOT_IN_S_HOLSTER)
+			if((H.s_store && istype(H.s_store, /obj/item/storage/large_holster)) ||(H.s_store && istype(H.s_store,/obj/item/storage/belt/gun)))
+				var/obj/item/storage/S = H.s_store
 				if(S.can_be_inserted(src, warning))
 					return TRUE
-			if(SLOT_IN_R_POUCH)
-				if(!H.r_store || !istype(H.r_store, /obj/item/storage/pouch))
-					return FALSE
-				var/obj/item/storage/S = H.r_store
-				if(S.can_be_inserted(src, warning))
-					return TRUE
-			if(SLOT_IN_SUIT)
-				var/obj/item/clothing/suit/storage/S = H.wear_suit
-				if(!istype(S) || !S.pockets)
-					return FALSE
-				var/obj/item/storage/internal/T = S.pockets
-				if(T.can_be_inserted(src, warning))
-					return TRUE
-			if(SLOT_IN_HEAD)
-				var/obj/item/clothing/head/helmet/marine/S = H.head
-				if(!istype(S) || !S.pockets)
-					return FALSE
-				var/obj/item/storage/internal/T = S.pockets
-				if(T.can_be_inserted(src, warning))
-					return TRUE
-			if(SLOT_IN_ACCESSORY)
-				var/obj/item/clothing/under/U = H.w_uniform
-				if(!U?.hastie)
-					return FALSE
-				var/obj/item/clothing/tie/storage/T = U.hastie
-				if(!istype(T))
-					return FALSE
-				var/obj/item/storage/internal/S = T.hold
-				if(S.can_be_inserted(src, warning))
-					return TRUE
-		return FALSE //Unsupported slot
-		//END HUMAN
-
-	else if(ismonkey(M))
-		//START MONKEY
-		var/mob/living/carbon/monkey/MO = M
-		switch(slot)
-			if(SLOT_L_HAND)
-				if(MO.l_hand)
-					return FALSE
+			return FALSE
+		if(SLOT_IN_STORAGE)
+			if(!H.s_active)
+				return FALSE
+			var/obj/item/storage/S = H.s_active
+			if(S.can_be_inserted(src, warning))
 				return TRUE
-			if(SLOT_R_HAND)
-				if(MO.r_hand)
-					return FALSE
+		if(SLOT_IN_L_POUCH)
+			if(!H.l_store || !istype(H.l_store, /obj/item/storage/pouch))
+				return FALSE
+			var/obj/item/storage/S = H.l_store
+			if(S.can_be_inserted(src, warning))
 				return TRUE
-			if(SLOT_WEAR_MASK)
-				if(MO.wear_mask)
-					return FALSE
-				if( !(flags_equip_slot & ITEM_SLOT_MASK) )
-					return FALSE
+		if(SLOT_IN_R_POUCH)
+			if(!H.r_store || !istype(H.r_store, /obj/item/storage/pouch))
+				return FALSE
+			var/obj/item/storage/S = H.r_store
+			if(S.can_be_inserted(src, warning))
 				return TRUE
-			if(SLOT_BACK)
-				if(MO.back)
-					return FALSE
-				if( !(flags_equip_slot & ITEM_SLOT_BACK) )
-					return FALSE
+		if(SLOT_IN_SUIT)
+			var/obj/item/clothing/suit/storage/S = H.wear_suit
+			if(!istype(S) || !S.pockets)
+				return FALSE
+			var/obj/item/storage/internal/T = S.pockets
+			if(T.can_be_inserted(src, warning))
 				return TRUE
-		return FALSE //Unsupported slot
-
-		//END MONKEY
+		if(SLOT_IN_HEAD)
+			var/obj/item/clothing/head/helmet/marine/S = H.head
+			if(!istype(S) || !S.pockets)
+				return FALSE
+			var/obj/item/storage/internal/T = S.pockets
+			if(T.can_be_inserted(src, warning))
+				return TRUE
+		if(SLOT_IN_ACCESSORY)
+			var/obj/item/clothing/under/U = H.w_uniform
+			if(!U?.hastie)
+				return FALSE
+			var/obj/item/clothing/tie/storage/T = U.hastie
+			if(!istype(T))
+				return FALSE
+			var/obj/item/storage/internal/S = T.hold
+			if(S.can_be_inserted(src, warning))
+				return TRUE
+	return FALSE //Unsupported slot
 
 
 /obj/item/proc/update_item_sprites()
@@ -645,7 +623,7 @@
 	if(usr.get_active_held_item())
 		return
 
-	usr.UnarmedAttack(src)
+	usr.UnarmedAttack(src, TRUE)
 
 
 //This proc is executed when someone clicks the on-screen UI button. To make the UI button show, set the 'icon_action_button' to the icon_state of the image of the button in actions.dmi
@@ -795,7 +773,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 //This proc is here to prevent Xenomorphs from picking up objects (default attack_hand behaviour)
 //Note that this is overriden by every proc concerning a child of obj unless inherited
-/obj/item/attack_alien(mob/living/carbon/xenomorph/X)
+/obj/item/attack_alien(mob/living/carbon/xenomorph/X, isrightclick = FALSE)
 	return FALSE
 
 

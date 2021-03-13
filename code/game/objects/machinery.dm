@@ -22,9 +22,6 @@
 	var/obj/item/circuitboard/circuit // Circuit to be created and inserted when the machinery is created
 	var/mob/living/carbon/human/operator
 
-	var/ui_x	//For storing and overriding ui dimensions
-	var/ui_y
-
 /obj/machinery/Initialize()
 	. = ..()
 	GLOB.machines += src
@@ -41,7 +38,7 @@
 
 
 /obj/machinery/proc/is_operational()
-	return !(machine_stat & (NOPOWER|BROKEN|MAINT))
+	return !(machine_stat & (NOPOWER|BROKEN|MAINT|DISABLED))
 
 
 /obj/machinery/deconstruct(disassembled = TRUE)
@@ -162,7 +159,7 @@
 	if(!is_operational())
 		return FALSE
 
-	if(iscarbon(usr) && (!in_range(src, usr) || !isturf(loc)))
+	if(iscarbon(user) && (!in_range(src, user) || !isturf(loc)))
 		return FALSE
 
 	if(ishuman(user))
@@ -178,6 +175,8 @@
 
 
 /obj/machinery/attack_ai(mob/living/silicon/ai/user)
+	if(!is_operational())
+		return FALSE
 	return interact(user)
 
 

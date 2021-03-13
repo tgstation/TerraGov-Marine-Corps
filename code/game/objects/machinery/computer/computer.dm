@@ -101,12 +101,12 @@
 	return text
 
 /obj/machinery/computer/welder_act(mob/living/user, obj/item/I)
-	if(user.action_busy)
+	if(user.do_actions)
 		return FALSE
 
 	var/obj/item/tool/weldingtool/welder = I
 
-	if(!machine_stat & DISABLED && durability == initial(durability))
+	if(!(machine_stat & DISABLED) && durability == initial(durability))
 		to_chat(user, "<span class='notice'>The [src] doesn't need welding!</span>")
 		return FALSE
 
@@ -190,7 +190,10 @@
 		pick(playsound(src, 'sound/machines/computer_typing1.ogg', 5, 1), playsound(src, 'sound/machines/computer_typing2.ogg', 5, 1), playsound(src, 'sound/machines/computer_typing3.ogg', 5, 1))
 
 ///So Xenos can smash computers out of the way without actually breaking them
-/obj/machinery/computer/attack_alien(mob/living/carbon/xenomorph/X)
+/obj/machinery/computer/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(X.status_flags & INCORPOREAL)
+		return FALSE
+
 	if(resistance_flags & INDESTRUCTIBLE)
 		to_chat(X, "<span class='xenowarning'>We're unable to damage this!</span>")
 		return

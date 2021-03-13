@@ -1,6 +1,7 @@
-parser: babel-eslint
+root: true
+parser: '@typescript-eslint/parser'
 parserOptions:
-  ecmaVersion: 2019
+  ecmaVersion: 2020
   sourceType: module
   ecmaFeatures:
     jsx: true
@@ -8,6 +9,8 @@ env:
   es6: true
   browser: true
   node: true
+globals:
+  Byond: readonly
 plugins:
   - react
 settings:
@@ -112,7 +115,7 @@ rules:
   ## Require return statements to either always or never specify values
   # consistent-return: error
   ## Enforce consistent brace style for all control statements
-  curly: [error, all]
+  curly: [error, multi-line]
   ## Require default cases in switch statements
   # default-case: error
   ## Enforce default parameters to be last
@@ -277,7 +280,8 @@ rules:
   no-shadow-restricted-names: error
   ## Disallow the use of undeclared variables unless mentioned
   ## in /*global*/ comments
-  no-undef: error
+  ## NOTE: Pointless when TypeScript can check for this
+  # no-undef: error
   ## Disallow initializing variables to undefined
   no-undef-init: error
   ## Disallow the use of undefined as an identifier
@@ -372,6 +376,7 @@ rules:
     ignorePattern: '^(import\s.+\sfrom\s|.*require\()',
     ignoreUrls: true,
     ignoreRegExpLiterals: true,
+    ignoreStrings: true,
   }]
   ## Enforce a maximum number of lines per file
   # max-lines: error
@@ -388,7 +393,7 @@ rules:
   ## Enforce a particular style for multiline comments
   # multiline-comment-style: error
   ## Enforce newlines between operands of ternary expressions
-  multiline-ternary: [error, always-multiline]
+  # multiline-ternary: [error, always-multiline]
   ## Require constructor names to begin with a capital letter
   # new-cap: error
   ## Enforce or disallow parentheses when invoking a constructor with no
@@ -580,7 +585,7 @@ rules:
   ## Rule enforces consistent usage of destructuring assignment in component
   # react/destructuring-assignment: [error, always, { ignoreClassFields: true }]
   ## Prevent missing displayName in a React component definition
-  react/display-name: error
+  # react/display-name: error
   ## Forbid certain props on Components
   # react/forbid-component-props: error
   ## Forbid certain props on DOM Nodes
@@ -681,11 +686,11 @@ rules:
   ## expressions.
   # react/jsx-child-element-spacing: error
   ## Validate closing bracket location in JSX (fixable)
-  react/jsx-closing-bracket-location: [error, {
-    ## NOTE: Not really sure about enforcing this one
-    selfClosing: false,
-    nonEmpty: after-props,
-  }]
+  # react/jsx-closing-bracket-location: [error, {
+  #   ## NOTE: Not really sure about enforcing this one
+  #   selfClosing: false,
+  #   nonEmpty: after-props,
+  # }]
   ## Validate closing tag location in JSX (fixable)
   react/jsx-closing-tag-location: error
   ## Enforce or disallow newlines inside of curly braces in JSX attributes and

@@ -174,7 +174,7 @@ SUBSYSTEM_DEF(evacuation)
 	SEND_SOUND(world, S)
 
 	var/list/z_levels = list(SSmapping.levels_by_trait(ZTRAIT_MARINE_MAIN_SHIP))
-	var/ship_intact = TRUE
+	var/ship_intact = FALSE
 
 	var/f = SSmapping.levels_by_trait(ZTRAIT_MARINE_MAIN_SHIP)
 	if(f in z_levels)

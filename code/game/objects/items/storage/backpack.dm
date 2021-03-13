@@ -281,7 +281,7 @@
 
 /obj/item/storage/backpack/marine/corpsman
 	name = "\improper TGMC corpsman backpack"
-	desc = "The standard-issue backpack worn by TGMC corpsmen."
+	desc = "The standard-issue backpack worn by TGMC corpsmen. You can recharge defibrillators by plugging them in."
 	icon_state = "marinepackm"
 	var/obj/item/cell/high/cell //Starts with a high capacity energy cell.
 	var/icon_skin
@@ -465,7 +465,7 @@
 	camouflage()
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/proc/camouflage()
-	if (!usr || usr.incapacitated(TRUE))
+	if (usr.incapacitated(TRUE))
 		return
 
 	var/mob/living/carbon/human/M = usr
@@ -480,6 +480,10 @@
 		camo_off(usr)
 		return
 
+	if(SEND_SIGNAL(M, COMSIG_MOB_ENABLE_STEALTH) & STEALTH_ALREADY_ACTIVE)
+		to_chat(M, "<span class='warning'>You are already cloaked!</span>")
+		return FALSE
+
 	if (camo_cooldown_timer)
 		to_chat(M, "<span class='warning'>Your thermal cloak is still recalibrating! It will be ready in [(camo_cooldown_timer - world.time) * 0.1] seconds.")
 		return
@@ -488,6 +492,7 @@
 	camo_last_stealth = world.time
 	wearer = M
 
+	RegisterSignal(wearer, COMSIG_MOB_ENABLE_STEALTH, .proc/on_other_activate)
 	M.visible_message("[M] fades into thin air!", "<span class='notice'>You activate your cloak's camouflage.</span>")
 	playsound(M.loc,'sound/effects/cloak_scout_on.ogg', 15, 1)
 
@@ -522,6 +527,11 @@
 	return TRUE
 
 
+/obj/item/storage/backpack/marine/satchel/scout_cloak/proc/on_other_activate()
+	SIGNAL_HANDLER
+	return STEALTH_ALREADY_ACTIVE
+
+
 /obj/item/storage/backpack/marine/satchel/scout_cloak/proc/on_cloak()
 	if(wearer)
 		anim(wearer.loc,wearer,'icons/mob/mob.dmi',,"cloak",,wearer.dir)
@@ -531,6 +541,7 @@
 		anim(wearer.loc,wearer,'icons/mob/mob.dmi',,"uncloak",,wearer.dir)
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/proc/camo_off(mob/user)
+	UnregisterSignal(wearer, COMSIG_MOB_ENABLE_STEALTH)
 	if (!user)
 		camo_active = FALSE
 		wearer = null
@@ -753,39 +764,8 @@
 	..()
 
 /obj/item/storage/backpack/marine/engineerpack/examine(mob/user)
-	..()
+	. = ..()
 	to_chat(user, "[reagents.total_volume] units of fuel left!")
-
-// Pyrotechnician Spec backpack fuel tank
-/obj/item/storage/backpack/marine/engineerpack/flamethrower
-	name = "\improper TGMC Pyrotechnician fueltank"
-	desc = "A specialized fueltank worn by TGMC Pyrotechnicians for use with the M240-T incinerator unit. A small general storage compartment is installed."
-	icon_state = "flamethrower_tank"
-	worn_accessible = TRUE
-	max_fuel = 500
-
-
-/obj/item/storage/backpack/marine/engineerpack/flamethrower/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/ammo_magazine/flamer_tank))
-		var/obj/item/ammo_magazine/flamer_tank/FTL = I
-		if(FTL.default_ammo != /datum/ammo/flamethrower)
-			return ..()
-		if(FTL.max_rounds == FTL.current_rounds)
-			return ..()
-		if(reagents.total_volume <= 0)
-			to_chat(user, "<span class='warning'>You try to refill \the [FTL] but \the [src] fuel reserve is empty.</span>")
-			return ..()
-		var/fuel_refill = FTL.max_rounds - FTL.current_rounds
-		if(reagents.total_volume < fuel_refill)
-			fuel_refill = reagents.total_volume
-		reagents.remove_reagent(/datum/reagent/fuel, fuel_refill)
-		FTL.current_rounds = FTL.current_rounds + fuel_refill
-		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
-		to_chat(user, "<span class='notice'>You refill [FTL] with UT-Napthal Fuel as you place it inside of \the [src].</span>")
-		FTL.update_icon()
-
-	else
-		return ..()
 
 
 /obj/item/storage/backpack/lightpack

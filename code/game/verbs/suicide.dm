@@ -23,7 +23,7 @@
 		to_chat(src, "You're already committing suicide! Be patient!")
 		return
 
-	var/confirm = alert("Are you sure you want to commit suicide?", "Confirm Suicide", "Yes", "No")
+	var/confirm = tgui_alert(usr, "Are you sure you want to commit suicide?", "Confirm Suicide", list("Yes", "No"))
 
 	if(confirm == "Yes")
 		if(!canmove || restrained())	//just while I finish up the new 'fun' suiciding verb. This is to prevent metagaming via suicide
@@ -96,7 +96,7 @@
 		to_chat(src, "You're already committing suicide! Be patient!")
 		return
 
-	var/confirm = alert("Are you sure you want to commit suicide?", "Confirm Suicide", "Yes", "No")
+	var/confirm = tgui_alert(usr, "Are you sure you want to commit suicide?", "Confirm Suicide", list("Yes", "No"))
 
 	if(confirm == "Yes")
 		suiciding = 1
@@ -105,29 +105,3 @@
 			death()
 			suiciding = 0
 
-/mob/living/carbon/monkey/verb/suicide()
-	set hidden = 1
-
-	if (stat == 2)
-		to_chat(src, "You're already dead!")
-		return
-
-	if (!SSticker)
-		to_chat(src, "You can't commit suicide before the game starts!")
-		return
-
-	if (suiciding)
-		to_chat(src, "You're already committing suicide! Be patient!")
-		return
-
-	var/confirm = alert("Are you sure you want to commit suicide?", "Confirm Suicide", "Yes", "No")
-
-	if(confirm == "Yes")
-		if(!canmove || restrained())
-			to_chat(src, "You can't commit suicide whilst restrained! ((You can type Ghost instead however.))")
-			return
-		suiciding = 1
-		//instead of killing them instantly, just put them at -175 health and let 'em gasp for a while
-		visible_message("<span class='danger'>[src] is attempting to bite [p_their()] tongue. It looks like [p_theyre()] trying to commit suicide.</span>")
-		adjustOxyLoss(max(175- getToxLoss() - getFireLoss() - getBruteLoss() - getOxyLoss(), 0))
-		updatehealth()

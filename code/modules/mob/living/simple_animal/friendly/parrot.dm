@@ -110,7 +110,7 @@
 /mob/living/simple_animal/parrot/radio(message, message_mode, list/spans, language) //literally copied from human/radio(), but there's no other way to do this. at least it's better than it used to be.
 	. = ..()
 	if(. != 0)
-		return .
+		return
 
 	switch(message_mode)
 		if(MODE_HEADSET)
@@ -198,8 +198,8 @@
 								available_channels.Add(RADIO_TOKEN_ENGINEERING)
 							if(RADIO_CHANNEL_COMMAND)
 								available_channels.Add(RADIO_TOKEN_COMMAND)
-							if(RADIO_CHANNEL_POLICE)
-								available_channels.Add(RADIO_TOKEN_POLICE)
+							if(RADIO_CHANNEL_CAS)
+								available_channels.Add(RADIO_TOKEN_CAS)
 							if(RADIO_CHANNEL_MEDICAL)
 								available_channels.Add(RADIO_TOKEN_MEDICAL)
 							if(RADIO_CHANNEL_REQUISITIONS)
@@ -237,11 +237,11 @@
 		handle_automated_speech(1) //assured speak/emote
 
 
-/mob/living/simple_animal/parrot/attack_paw(mob/living/carbon/monkey/user)
+/mob/living/simple_animal/parrot/attack_paw(mob/living/carbon/human/user)
 	return attack_hand(user)
 
 
-/mob/living/simple_animal/parrot/attack_alien(mob/living/carbon/xenomorph/X)
+/mob/living/simple_animal/parrot/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	return attack_hand(X)
 
 

@@ -75,25 +75,24 @@ FLOOR SAFES
 	tumbler_1_pos -= 5
 	if(tumbler_1_pos < 0)
 		tumbler_1_pos = 50
-	return
 
 /obj/structure/safe/proc/increment()
 	tumbler_1_pos += 5
 	if(tumbler_1_pos > 50)
 		tumbler_1_pos = 0
-	return
+
 
 /obj/structure/safe/proc/decrement2()
 	tumbler_2_pos -= 5
 	if(tumbler_2_pos < 0)
 		tumbler_2_pos = 50
-	return
+
 
 /obj/structure/safe/proc/increment2()
 	tumbler_2_pos += 5
 	if(tumbler_2_pos > 50)
 		tumbler_2_pos = 0
-	return
+
 
 /obj/structure/safe/update_icon()
 	if(open)

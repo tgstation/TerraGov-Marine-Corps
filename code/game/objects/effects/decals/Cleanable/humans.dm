@@ -53,6 +53,8 @@
 		return
 	if(amount < 1)
 		return
+	if(CHECK_MULTIPLE_BITFIELDS(perp.flags_pass, HOVERING))
+		return
 
 	var/datum/limb/foot/l_foot = perp.get_limb("l_foot")
 	var/datum/limb/foot/r_foot = perp.get_limb("r_foot")

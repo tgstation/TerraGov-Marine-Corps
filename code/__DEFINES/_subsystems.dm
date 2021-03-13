@@ -1,7 +1,7 @@
 //Update this whenever the db schema changes
 //make sure you add an update to the schema_version stable in the db changelog
 #define DB_MAJOR_VERSION 2
-#define DB_MINOR_VERSION 0
+#define DB_MINOR_VERSION 1
 
 //Timing subsystem
 //Don't run if there is an identical unique timer active
@@ -57,6 +57,7 @@
 #define INIT_ORDER_INSTRUMENTS		17
 #define INIT_ORDER_CODEX 			15
 #define INIT_ORDER_EVENTS			14
+#define INIT_ORDER_MONITOR  		13
 #define INIT_ORDER_JOBS				12
 #define INIT_ORDER_TICKER			10
 #define INIT_ORDER_MAPPING			9
@@ -67,6 +68,7 @@
 #define INIT_ORDER_DEFAULT			0
 #define INIT_ORDER_AIR				-1
 #define INIT_ORDER_ASSETS			-4
+#define INIT_ORDER_SPAWNING_POOL    -5
 #define INIT_ORDER_OVERLAY			-6
 #define INIT_ORDER_STICKY_BAN		-10
 #define INIT_ORDER_LIGHTING			-20
@@ -79,12 +81,13 @@
 // If the subsystem isn't listed here it's either DEFAULT or PROCESS (if it's a processing subsystem child)
 
 #define FIRE_PRIORITY_ACTION_STATES 5
-#define FIRE_PRIORITY_PING			10
 #define FIRE_PRIORITY_IDLE_NPC		10
 #define FIRE_PRIORITY_SERVER_MAINT	10
+#define FIRE_PRIORITY_AMBIENCE		10
 #define FIRE_PRIORITY_WEED			11
 #define FIRE_PRIORITY_GARBAGE		15
 #define FIRE_PRIORITY_DIRECTION		19
+#define FIRE_PRIORITY_SPAWNING		20
 #define FIRE_PRIORITY_AIR			20
 #define FIRE_PRIORITY_NPC			20
 #define FIRE_PRIORITY_PROCESS		25
@@ -96,7 +99,9 @@
 #define FIRE_PRIORITY_TGUI			110
 #define FIRE_PRIORITY_TICKER		200
 #define FIRE_PRIORITY_CHAT			400
+#define FIRE_PRIORITY_LOOPINGSOUND	405
 #define FIRE_PRIORITY_RUNECHAT		410
+#define FIRE_PRIORITY_AUTOFIRE		450
 #define FIRE_PRIORITY_OVERLAYS		500
 #define FIRE_PRIORITY_EXPLOSIONS	666
 #define FIRE_PRIORITY_TIMER			700
@@ -116,7 +121,7 @@
 
 
 #define COMPILE_OVERLAYS(A)\
-	if (TRUE) {\
+	do {\
 		var/list/ad = A.add_overlays;\
 		var/list/rm = A.remove_overlays;\
 		var/list/po = A.priority_overlays;\
@@ -132,7 +137,8 @@
 			A.overlays |= po;\
 		}\
 		A.flags_atom &= ~OVERLAY_QUEUED;\
-	}
+	} while (FALSE)
+
 
 
 /// Explosion Subsystem subtasks

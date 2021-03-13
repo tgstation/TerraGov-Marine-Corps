@@ -75,9 +75,9 @@
 	accuracy_mult = 1.5
 	accuracy_mult_unwielded = 0.85
 	recoil_unwielded = 0
-	scatter = 15
+	scatter = 0
 	fire_delay = 0.2 SECONDS
-	scatter_unwielded = 0 //Made to be used one handed.
+	scatter_unwielded = 10 //Made to be used one handed.
 	aim_slowdown = 0.15
 	burst_amount = 5
 	movement_acc_penalty_mult = 0
@@ -96,6 +96,8 @@
 	flags_equip_slot = ITEM_SLOT_BACK
 	wield_delay = 0.5 SECONDS
 	force = 20
+	aim_speed_modifier = 0.4
+	aim_fire_delay = 0.2 SECONDS
 	current_mag = /obj/item/ammo_magazine/smg/standard_smg
 	type_of_casings = null
 	attachable_allowed = list(
@@ -117,7 +119,7 @@
 	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.8
 	scatter = 0
-	fire_delay = 0.165 SECONDS
+	fire_delay = 0.15 SECONDS
 	scatter_unwielded = 30
 	aim_slowdown = 0.25
 	burst_amount = 0
@@ -200,6 +202,9 @@
 	aim_slowdown = 0.4
 	scatter = 10
 
+/obj/item/weapon/gun/smg/m25/elite/pmc
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
+
 
 //-------------------------------------------------------
 //MP27, based on the grease gun
@@ -255,11 +260,6 @@
 	scatter_unwielded = 40
 	fire_delay = 0.15 SECONDS
 	aim_slowdown = 0.3
-
-
-/obj/item/weapon/gun/smg/skorpion/upp
-	icon_state = "skorpion_u"
-	item_state = "skorpion_u"
 
 //-------------------------------------------------------
 //PPSH //Based on the PPSh-41.

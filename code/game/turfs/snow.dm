@@ -15,6 +15,7 @@
 /turf/open/floor/plating/ground/snow/Initialize(mapload)
 	. = ..()
 	RegisterSignal(src, COMSIG_ATOM_ACIDSPRAY_ACT, .proc/acidspray_act)
+	update_icon(1,1) //Update icon and sides on start, but skip nearby check for turfs.
 
 // Melting snow
 /turf/open/floor/plating/ground/snow/fire_act(exposed_temperature, exposed_volume)
@@ -22,7 +23,10 @@
 	update_icon(1, 0)
 
 //Xenos digging up snow
-/turf/open/floor/plating/ground/snow/attack_alien(mob/living/carbon/xenomorph/M)
+/turf/open/floor/plating/ground/snow/attack_alien(mob/living/carbon/xenomorph/M, damage_amount = M.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(M.status_flags & INCORPOREAL)
+		return
+
 	if(M.a_intent == INTENT_GRAB)
 
 		if(!slayer)
@@ -69,12 +73,6 @@
 		L.set_light(2)
 		playsound(user, 'sound/weapons/genhit.ogg', 25, 1)
 
-
-
-//Update icon and sides on start, but skip nearby check for turfs.
-/turf/open/floor/plating/ground/snow/Initialize()
-	. = ..()
-	update_icon(1,1)
 
 /turf/open/floor/plating/ground/snow/Entered(atom/movable/AM)
 	if(slayer > 0)
@@ -149,15 +147,14 @@
 		if(EXPLODE_DEVASTATE)
 			if(slayer)
 				slayer = 0
-				update_icon(1, 0)
 		if(EXPLODE_HEAVY)
 			if(slayer && prob(60))
 				slayer = max(slayer - 2, 0)
-				update_icon(1, 0)
 		if(EXPLODE_LIGHT)
 			if(slayer && prob(20))
-				slayer -= 1
-				update_icon(1, 0)
+				slayer = max(slayer - 1, 0)
+
+	update_icon(1, 0)
 	return ..()
 
 //Fire act; fire now melts snow as it should; fire beats ice
@@ -168,11 +165,13 @@
 
 	switch(burnlevel)
 		if(1 to 10)
-			slayer--
+			slayer = max(0, slayer - 1)
 		if(11 to 24)
 			slayer = max(0, slayer - 2)
 		if(25 to INFINITY)
 			slayer = 0
+
+	update_icon(1, 0)
 
 /turf/open/floor/plating/ground/snow/proc/acidspray_act()
 	SIGNAL_HANDLER
@@ -180,7 +179,8 @@
 	if(!slayer) //Don't bother if there's no snow to melt or if there's no burn stacks
 		return
 
-	slayer-- //Melt a layer
+	slayer = max(0, slayer - 1) //Melt a layer
+	update_icon(1, 0)
 
 
 //SNOW LAYERS-----------------------------------//

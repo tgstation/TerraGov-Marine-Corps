@@ -147,7 +147,7 @@
 
 /obj/item/storage/fancy/cigarettes/update_icon()
 	icon_state = "[initial(icon_state)][contents.len]"
-	return
+
 
 /obj/item/storage/fancy/cigarettes/remove_from_storage(obj/item/W, atom/new_location)
 	var/obj/item/clothing/mask/cigarette/C = W
@@ -167,6 +167,42 @@
 			update_icon()
 	else
 		..()
+
+/obj/item/storage/fancy/chemrettes
+	name = "Chemrette packet"
+	desc = "Terragov, chem filled, cigarettes. Now with extra Flavors!"
+	icon = 'icons/obj/items/cigarettes.dmi'
+	icon_state = "chempacket"
+	item_state = "chempacket"
+	w_class = WEIGHT_CLASS_TINY
+	throwforce = 2
+	flags_equip_slot = ITEM_SLOT_BELT
+	max_storage_space = 25
+	storage_slots = 25
+	can_hold = list(
+		/obj/item/clothing/mask/cigarette,
+		/obj/item/tool/lighter,
+		/obj/item/storage/box/matches,
+	)
+	icon_type = "chempacket"
+
+/obj/item/storage/fancy/chemrettes/Initialize(mapload, ...)
+	. = ..()
+
+	for(var/i in 1 to 3)
+		new /obj/item/clothing/mask/cigarette/bica(src)
+	for(var/i in 1 to 3)
+		new /obj/item/clothing/mask/cigarette/kelo(src)
+	for(var/i in 1 to 5)
+		new /obj/item/clothing/mask/cigarette/tram(src)
+	for(var/i in 1 to 5)
+		new /obj/item/clothing/mask/cigarette/antitox(src)
+
+	new /obj/item/clothing/mask/cigarette/emergency(src)
+	new /obj/item/tool/lighter(src)
+
+/obj/item/storage/fancy/chemrettes/update_icon_state()
+	icon_state = "[initial(icon_state)][contents.len]"
 
 /obj/item/storage/fancy/cigarettes/dromedaryco
 	name = "\improper Nanotrasen Gold packet"
@@ -207,9 +243,9 @@
 	spawn_number = 7
 	icon_type = "cigar"
 
-/obj/item/storage/fancy/cigar/update_icon()
+/obj/item/storage/fancy/cigar/update_icon_state()
 	icon_state = "[initial(icon_state)][contents.len]"
-	return
+
 
 /obj/item/storage/fancy/cigar/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	if(!istype(M, /mob))

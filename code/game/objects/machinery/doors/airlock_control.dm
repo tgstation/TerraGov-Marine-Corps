@@ -109,12 +109,14 @@ obj/machinery/door/airlock/proc/send_status(var/bumped = 0)
 
 obj/machinery/door/airlock/open(surpress_send)
 	. = ..()
-	if(!surpress_send) send_status()
+	if(!surpress_send)
+		send_status()
 
 
 obj/machinery/door/airlock/close(surpress_send)
 	. = ..()
-	if(!surpress_send) send_status()
+	if(!surpress_send)
+		send_status()
 
 obj/machinery/door/airlock/proc/set_frequency(new_frequency)
 	SSradio.remove_object(src, frequency)
