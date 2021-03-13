@@ -3,8 +3,11 @@
 	desc = "The turret part of an unmanned vehicle."
 	icon = 'icons/obj/unmanned_vehicles.dmi'
 	icon_state = "light_cannon_obj"
+	///Turret type, used for assigning what we do on clicks
 	var/turret_type = TURRET_TYPE_LIGHT
+	///Ammo typepath we use when attached
 	var/ammo_type = /datum/ammo/bullet/smg
+	///This var must match the unmanned vehicles turret_pattern then be added 
 	var/turret_pattern = PATTERN_TRACKED
 
 
