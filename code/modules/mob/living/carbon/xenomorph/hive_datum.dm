@@ -579,7 +579,6 @@ to_chat will check for valid clients itself already so no need to double check f
 
 // This proc checks for available spawn points and offers a choice if there's more than one.
 /datum/hive_status/normal/proc/attempt_to_spawn_larva(mob/xeno_candidate, larva_already_reserved = FALSE)
-	set waitfor = FALSE
 	if(!xeno_candidate?.client)
 		return FALSE
 
@@ -1182,6 +1181,11 @@ to_chat will check for valid clients itself already so no need to double check f
 		candidate.Cut(1,2)
 		xeno_job.occupy_job_positions(1)
 		stored_larva--
-		if(!attempt_to_spawn_larva(next_in_line, TRUE))
-			xeno_job.free_job_positions(1)
-			INVOKE_ASYNC(src, .proc/give_larva_to_next_in_queue)
+		try_to_give_larva(next_in_line)
+		
+///Attempt to give a larva to the next in line, if not possible, free the xeno position and propose it to another candidate
+/datum/hive_status/normal/proc/try_to_give_larva(mob/next_in_line)
+	set waitfor = FALSE
+	if(!attempt_to_spawn_larva(next_in_line, TRUE))
+		xeno_job.free_job_positions(1)
+		give_larva_to_next_in_queue()
