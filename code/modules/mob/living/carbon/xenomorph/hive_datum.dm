@@ -1179,7 +1179,7 @@ to_chat will check for valid clients itself already so no need to double check f
 		return
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
-	while(stored_larva >= 1 && candidate.len)
+	while(stored_larva > 0 && candidate.len)
 		var/mob/next_in_line = candidate[1]
 		candidate.Cut(1,2)
 		xeno_job.occupy_job_positions(1)
