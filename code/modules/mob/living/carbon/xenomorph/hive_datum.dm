@@ -1187,5 +1187,6 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/normal/proc/try_to_give_larva(mob/next_in_line)
 	set waitfor = FALSE
 	if(!attempt_to_spawn_larva(next_in_line, TRUE))
+		var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 		xeno_job.free_job_positions(1)
 		give_larva_to_next_in_queue()
