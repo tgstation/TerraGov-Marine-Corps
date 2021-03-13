@@ -1267,7 +1267,7 @@
 	keybind_signal = COMSIG_XENOABILITY_REGURGITATE
 	plasma_cost = 100
 	///In how much time the cocoon will be ejected
-	var/cocoon_production_time = 5 SECONDS
+	var/cocoon_production_time = 2 SECONDS
 
 /datum/action/xeno_action/activable/devour/can_use_ability(atom/A, silent, override_flags)
 	. = ..()
