@@ -333,6 +333,7 @@
 	SIGNAL_HANDLER
 	shots_to_fire = new_amount
 
+
 // Gun procs.
 
 /obj/item/weapon/gun/proc/on_autofire_start(mob/living/shooter)
@@ -391,7 +392,7 @@
 	. = ..()
 	if(!.)
 		return
-	if(shooter.action_busy)
+	if(shooter.do_actions)
 		return FALSE
 	playsound(get_turf(src), 'sound/weapons/guns/fire/tank_minigun_start.ogg', 30)
 	if(!do_after(shooter, 0.4 SECONDS, TRUE, src, BUSY_ICON_DANGER, BUSY_ICON_DANGER, ignore_turf_checks = TRUE))

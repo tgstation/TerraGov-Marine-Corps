@@ -142,6 +142,11 @@
 	list_reagents = list(/datum/reagent/medicine/kelotane = 15)
 	pill_id = 5
 
+/obj/item/reagent_containers/pill/keloderm
+	pill_desc = "A keloderm pill. Heals burn damage at a higher rate than kelotane."
+	list_reagents = list(/datum/reagent/medicine/kelotane = 7.5, /datum/reagent/medicine/dermaline = 7.5)
+	pill_id = 5
+
 /obj/item/reagent_containers/pill/paracetamol
 	pill_desc = "A paracetamol pill. Painkiller for the ages."
 	list_reagents = list(/datum/reagent/medicine/paracetamol = 15)
@@ -179,7 +184,7 @@
 
 /obj/item/reagent_containers/pill/russian_red
 	pill_desc = "A Russian Red pill. A last-resort revival drug."
-	list_reagents = list(/datum/reagent/medicine/russianred = 10)
+	list_reagents = list(/datum/reagent/medicine/russian_red = 10)
 	pill_id = 15
 
 /obj/item/reagent_containers/pill/ryetalyn
@@ -207,6 +212,11 @@
 	list_reagents = list(/datum/reagent/medicine/bicaridine = 15)
 	pill_id = 19
 
+/obj/item/reagent_containers/pill/bicamera
+	pill_desc = "A bicamera pill. Heals brute damage at a higher rate than bicaridine."
+	list_reagents = list(/datum/reagent/medicine/meralyne = 7.5, /datum/reagent/medicine/bicaridine = 7.5)
+	pill_id = 19
+
 /obj/item/reagent_containers/pill/quickclot
 	pill_desc = "A quick-clot pill. Stabilizes internal bleeding temporarily."
 	list_reagents = list(/datum/reagent/medicine/quickclot = 10)
@@ -224,7 +234,7 @@
 
 /obj/item/reagent_containers/pill/hypervene
 	pill_desc = "A hypervene pill. A purge medication used to treat overdoses and rapidly remove toxins. Causes pain and vomiting."
-	list_reagents = list(/datum/reagent/medicine/hypervene = 12)
+	list_reagents = list(/datum/reagent/hypervene = 12)
 	pill_id = 14
 
 /obj/item/reagent_containers/pill/ultrazine

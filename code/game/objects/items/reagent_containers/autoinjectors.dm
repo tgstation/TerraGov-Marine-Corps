@@ -58,7 +58,7 @@
 	list_reagents = list(
 		/datum/reagent/medicine/meralyne = 5,
 		/datum/reagent/medicine/dermaline = 5,
-		/datum/reagent/medicine/oxycodone = 5,
+		/datum/reagent/medicine/tramadol = 5,
 	)
 
 /obj/item/reagent_containers/hypospray/autoinjector/quickclot
@@ -141,7 +141,7 @@
 	amount_per_transfer_from_this = 12
 	volume = 36
 	icon_state = "autoinjector-8" //TEMP
-	list_reagents = list(/datum/reagent/medicine/hypervene = 36)
+	list_reagents = list(/datum/reagent/hypervene = 36)
 
 /obj/item/reagent_containers/hypospray/autoinjector/hyperzine
 	name = "hyperzine autoinjector"

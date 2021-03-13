@@ -2,7 +2,7 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 	/obj/machinery/atmospherics/components/unary/vent_pump,
 	/obj/machinery/atmospherics/components/unary/vent_scrubber)))
 
-
+//todo refactor this into a trait
 /mob/proc/can_ventcrawl()
 	return FALSE
 
@@ -32,8 +32,8 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 		return pipe
 
 
-/mob/living/carbon/monkey/can_ventcrawl()
-	return TRUE
+/mob/living/carbon/human/can_ventcrawl()
+	return species.species_flags & CAN_VENTCRAWL
 
 /mob/living/simple_animal/mouse/can_ventcrawl()
 	return TRUE

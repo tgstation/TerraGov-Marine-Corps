@@ -336,7 +336,7 @@
 /obj/machinery/disposal/proc/pressurize()
 	if(disposal_pressure < SEND_PRESSURE)
 		disposal_pressure += 5
-	return
+
 
 //Perform a flush
 /obj/machinery/disposal/proc/flush()
@@ -372,13 +372,13 @@
 	if(mode == 2)	//If was ready,
 		mode = 1	//Switch to charging
 	update()
-	return
+
 
 //Called when area power changes
 /obj/machinery/disposal/power_change()
 	..()	//Do default setting/reset of stat NOPOWER bit
 	update()	//Update icon
-	return
+
 
 //Called when holder is expelled from a disposal, should usually only occur if the pipe network is modified
 /obj/machinery/disposal/proc/expel(obj/structure/disposalholder/H)
@@ -394,7 +394,8 @@
 
 		qdel(H)
 
-/obj/machinery/disposal/CanPass(atom/movable/mover, turf/target)
+/obj/machinery/disposal/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(istype(mover, /obj/item) && mover.throwing)
 		var/obj/item/I = mover
 		if(prob(75))

@@ -1,15 +1,10 @@
 /mob/living/carbon/Initialize()
 	. = ..()
-	RegisterSignal(src, COMSIG_CARBON_DEVOURED_BY_XENO, .proc/on_devour_by_xeno)
 	adjust_nutrition_speed(0)
-
 
 /mob/living/carbon/Destroy()
 	if(afk_status == MOB_RECENTLY_DISCONNECTED)
 		set_afk_status(MOB_DISCONNECTED)
-	if(isxeno(loc))
-		var/mob/living/carbon/xenomorph/devourer = loc
-		devourer.do_regurgitate(src)
 	QDEL_NULL(back)
 	QDEL_NULL(internal)
 	QDEL_NULL(handcuffed)
@@ -39,7 +34,7 @@
 		L.initiate_burst(src)
 
 
-/mob/living/carbon/attack_paw(mob/living/carbon/monkey/user)
+/mob/living/carbon/attack_paw(mob/living/carbon/human/user)
 	user.changeNext_move(CLICK_CD_MELEE) //Adds some lag to the 'attack'
 
 
@@ -49,8 +44,7 @@
 	if (shock_damage<1)
 		return 0
 
-	apply_damage(shock_damage, BURN, def_zone)
-	UPDATEHEALTH(src)
+	apply_damage(shock_damage, BURN, def_zone, updating_health = TRUE)
 
 	playsound(loc, "sparks", 25, TRUE)
 	if (shock_damage > 10)
@@ -125,7 +119,9 @@
 
 
 /mob/living/carbon/proc/do_vomit()
-	Stun(10 SECONDS)
+	adjust_stagger(3)
+	add_slowdown(3)
+
 	visible_message("<spawn class='warning'>[src] throws up!","<spawn class='warning'>You throw up!", null, 5)
 	playsound(loc, 'sound/effects/splat.ogg', 25, TRUE, 7)
 
@@ -307,7 +303,7 @@
 	if(IsSleeping())
 		to_chat(src, "<span class='warning'>You are already sleeping</span>")
 		return
-	if(alert(src,"You sure you want to sleep for a while?","Sleep","Yes","No") == "Yes")
+	if(tgui_alert(src, "You sure you want to sleep for a while?", "Sleep", list("Yes","No")) == "Yes")
 		SetSleeping(40 SECONDS) //Short nap
 
 
@@ -343,13 +339,13 @@
 	. -= "Update Icon"
 	.["Regenerate Icons"] = "?_src_=vars;[HrefToken()];regenerateicons=[REF(src)]"
 
-/mob/living/carbon/update_leader_tracking(mob/living/carbon/C)
+/mob/living/carbon/update_tracking(mob/living/carbon/C)
 	var/obj/screen/LL_dir = hud_used.SL_locator
 
 	if(C.z != src.z || get_dist(src, C) < 1 || src == C)
 		LL_dir.icon_state = ""
 	else
-		LL_dir.icon_state = "SL_locator"
+		LL_dir.icon_state = "Blue_arrow"
 		LL_dir.transform = 0 //Reset and 0 out
 		LL_dir.transform = turn(LL_dir.transform, Get_Angle(src, C))
 
@@ -450,8 +446,8 @@
 	. = ..()
 	if(!.)
 		return
-	log_admin("[key_name(src)] (Job: [job.title]) has been away for 15 minutes.")
-	message_admins("[ADMIN_TPMONTY(src)] (Job: [job.title]) has been away for 15 minutes.")
+	log_admin("[key_name(src)] (Job: [(job) ? job.title : "Unassigned"]) has been away for 15 minutes.")
+	message_admins("[ADMIN_TPMONTY(src)] (Job: [(job) ? job.title : "Unassigned"]) has been away for 15 minutes.")
 
 /mob/living/carbon/xenomorph/on_sdd_grace_period_end()
 	. = ..()
@@ -471,17 +467,6 @@
 	to_chat(src, "<span class='xenoannounce'>We are an old xenomorph re-awakened from slumber!</span>")
 	playsound_local(get_turf(src), 'sound/effects/xeno_newlarva.ogg')
 
-
-/mob/living/carbon/verb/middle_mousetoggle()
-	set name = "Toggle Middle/Shift Clicking"
-	set desc = "Toggles between using middle mouse click and shift click for selected ability use."
-	set category = "IC"
-
-	middle_mouse_toggle = !middle_mouse_toggle
-	if(!middle_mouse_toggle)
-		to_chat(src, "<span class='notice'>The selected special ability will now be activated with shift clicking.</span>")
-	else
-		to_chat(src, "<span class='notice'>The selected special ability will now be activated with middle mouse clicking.</span>")
 
 /mob/living/carbon/set_stat(new_stat)
 	. = ..()

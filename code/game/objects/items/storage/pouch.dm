@@ -57,6 +57,7 @@
 	. = ..()
 	new /obj/item/binoculars/tactical(src)
 	new /obj/item/megaphone(src)
+	new /obj/item/pinpointer/pool(src)
 
 
 /obj/item/storage/pouch/general/som
@@ -445,6 +446,28 @@
 	max_storage_space = 10
 	can_hold = list(/obj/item/reagent_containers/syringe)
 
+/obj/item/storage/pouch/hypospray
+	name = "hypospray pouch"
+	desc = "It can contain hyposprays and autoinjectors."
+	icon_state = "syringe"
+	storage_slots = 3 //2 less than injectors yet more flexible options
+	can_hold = list(/obj/item/reagent_containers/hypospray)
+
+
+/obj/item/storage/pouch/hypospray/corps
+	name = "Corps hypospray pouch"
+	desc = "It can contain hyposprays and autoinjectors, this one has a Terragov corpsman logo on its back."
+	icon_state = "syringe"
+	storage_slots = 4 //1 extra for corps
+	can_hold = list(/obj/item/reagent_containers/hypospray)
+
+/obj/item/storage/pouch/hypospray/corps/full/Initialize()   //literally the same stuff as the other pouch but instead of 4 combat AUTO injectors get 1 hypo of the mix
+	. = ..()
+	new /obj/item/reagent_containers/hypospray/advanced/combat_advanced(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine (src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus(src)
+
 // It really fits here more, but essentially a medkit in your pouch
 
 /obj/item/storage/pouch/medkit
@@ -470,12 +493,12 @@
 /obj/item/storage/pouch/medkit/full/Initialize()
 	. = ..()
 	new /obj/item/healthanalyzer(src)
-	new /obj/item/stack/medical/bruise_pack(src)
-	new /obj/item/stack/medical/ointment(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/tramadol(src)
+	new /obj/item/stack/medical/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/advanced/ointment(src)
+	new /obj/item/stack/medical/advanced/ointment(src)
 	new /obj/item/stack/medical/splint(src)
-	new /obj/item/storage/syringe_case/regular(src)
+	new /obj/item/stack/medical/splint(src)
 
 /obj/item/storage/pouch/medkit/equippedcorpsman/Initialize()
 	. = ..()

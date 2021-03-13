@@ -71,7 +71,7 @@
 		to_chat(user, "<span class='warning'>You can only deconstruct this by welding it down!</span>")
 
 	else if(iswelder(I))
-		if(user.action_busy)
+		if(user.do_actions)
 			return
 		var/obj/item/tool/weldingtool/WT = I
 
@@ -218,12 +218,12 @@
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	var/is_animating = 0
 
-/obj/structure/bed/chair/dropship/passenger/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
+/obj/structure/bed/chair/dropship/passenger/CanAllowThrough(atom/movable/mover, turf/target, height = 0, air_group = 0)
+	. = ..()
 	if(chair_state == DROPSHIP_CHAIR_UNFOLDED && istype(mover, /obj/vehicle/multitile) && !is_animating)
 		visible_message("<span class='danger'>[mover] slams into [src] and breaks it!</span>")
 		INVOKE_ASYNC(src, .proc/fold_down, TRUE)
 		return FALSE
-	return ..()
 
 /obj/structure/bed/chair/dropship/passenger/Initialize()
 	. = ..()
@@ -277,9 +277,11 @@
 		return
 	..()
 
-/obj/structure/bed/chair/dropship/passenger/attack_alien(mob/living/user)
+/obj/structure/bed/chair/dropship/passenger/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(X.status_flags & INCORPOREAL)
+		return FALSE
 	if(chair_state != DROPSHIP_CHAIR_BROKEN)
-		user.visible_message("<span class='warning'>[user] smashes \the [src], shearing the bolts!</span>",
+		X.visible_message("<span class='warning'>[X] smashes \the [src], shearing the bolts!</span>",
 		"<span class='warning'>We smash \the [src], shearing the bolts!</span>")
 		fold_down(1)
 

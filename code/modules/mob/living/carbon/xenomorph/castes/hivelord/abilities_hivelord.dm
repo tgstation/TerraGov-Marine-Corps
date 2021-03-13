@@ -1,3 +1,8 @@
+//Some debug variables. Uncomment in order to see the related debug messages. Helpful when testing out formulas.
+//#ifdef TESTING
+//	#define DEBUG_HIVELORD_ABILITIES
+//#endif
+
 // ***************************************
 // *********** Resin building
 // ***************************************
@@ -225,6 +230,9 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 			to_chat(owner, "<span class='warning'>We can only shape on weeds. We must find some resin before we start building!</span>")
 		return FALSE
 
+	if(!T.check_disallow_alien_fortification(owner, silent))
+		return FALSE
+
 	if(!T.check_alien_construction(owner, silent))
 		return FALSE
 
@@ -264,8 +272,77 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	succeed_activate()
 
 // ***************************************
-// *********** Acidic salve
+// *********** Healing Infusion
 // ***************************************
+/datum/action/xeno_action/activable/healing_infusion
+	name = "Healing Infusion"
+	action_icon_state = "healing_infusion"
+	mechanics_text = "Psychically infuses a friendly xeno with regenerative energies, greatly improving its natural healing. Doesn't work if the target can't naturally heal."
+	cooldown_timer = 5 SECONDS
+	plasma_cost = 200
+	keybind_signal = COMSIG_XENOABILITY_HEALING_INFUSION
+	var/heal_range = HIVELORD_HEAL_RANGE
 
-/datum/action/xeno_action/activable/psychic_cure/acidic_salve/hivelord
-	heal_range = HIVELORD_HEAL_RANGE
+/datum/action/xeno_action/activable/healing_infusion/can_use_ability(atom/target, silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return
+
+	if(!isxeno(target))
+		if(!silent)
+			to_chat(owner, "<span class='warning'>We can only target fellow sisters with [src]!</span>")
+		return FALSE
+	var/mob/living/carbon/xenomorph/patient = target
+
+	if(!CHECK_BITFIELD(use_state_flags|override_flags, XACT_IGNORE_DEAD_TARGET) && patient.stat == DEAD)
+		if(!silent)
+			to_chat(owner, "<span class='warning'>It's too late. This sister won't be coming back.</span>")
+		return FALSE
+
+	if(!check_distance(target, silent))
+		return FALSE
+
+	if(HAS_TRAIT(target, TRAIT_HEALING_INFUSION))
+		if(!silent)
+			to_chat(owner, "<span class='warning'>[patient] is already benefitting from [src]!</span>")
+		return FALSE
+
+
+/datum/action/xeno_action/activable/healing_infusion/proc/check_distance(atom/target, silent)
+	var/dist = get_dist(owner, target)
+	if(dist > heal_range)
+		if(!silent)
+			to_chat(owner, "<span class='warning'>Too far for our reach... We need to be [dist - heal_range] steps closer!</span>")
+		return FALSE
+	else if(!owner.line_of_sight(target))
+		if(!silent)
+			to_chat(owner, "<span class='warning'>We can't focus properly without a clear line of sight!</span>")
+		return FALSE
+	return TRUE
+
+
+/datum/action/xeno_action/activable/healing_infusion/use_ability(atom/target)
+	if(owner.do_actions)
+		return FALSE
+
+	owner.face_atom(target) //Face the target so we don't look stupid
+
+	owner.visible_message("<span class='xenodanger'>\the [owner] infuses [target] with mysterious energy!</span>", \
+	"<span class='xenodanger'>We empower [target] with our [src]!</span>")
+
+	playsound(target, 'sound/effects/magic.ogg', 25) //Cool SFX
+	playsound(owner, 'sound/effects/magic.ogg', 25) //Cool SFX
+	owner.beam(target, "medbeam", time = 1 SECONDS, maxdistance = 10)
+	new /obj/effect/temp_visual/telekinesis(get_turf(owner))
+	new /obj/effect/temp_visual/telekinesis(get_turf(target))
+	to_chat(target, "<span class='xenodanger'>Our wounds begin to knit and heal rapidly as [owner]'s healing energies infuse us.</span>") //Let the target know.
+
+	var/mob/living/carbon/xenomorph/patient = target
+
+	patient.apply_status_effect(/datum/status_effect/healing_infusion, HIVELORD_HEALING_INFUSION_DURATION, HIVELORD_HEALING_INFUSION_TICKS) //per debuffs.dm
+
+	succeed_activate()
+	add_cooldown()
+
+	GLOB.round_statistics.hivelord_healing_infusions++ //Statistics
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "hivelord_healing_infusions")

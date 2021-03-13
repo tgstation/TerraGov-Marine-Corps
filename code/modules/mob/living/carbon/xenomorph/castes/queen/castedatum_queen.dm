@@ -49,12 +49,12 @@
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/regurgitate,
-		/datum/action/xeno_action/activable/headbite,
+		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/plant_weeds,
 		/datum/action/xeno_action/choose_resin,
 		/datum/action/xeno_action/activable/secrete_resin,
 		/datum/action/xeno_action/activable/build_silo,
+		/datum/action/xeno_action/activable/build_turret,
 		/datum/action/xeno_action/place_acidwell,
 		/datum/action/xeno_action/lay_egg,
 		/datum/action/xeno_action/activable/larval_growth_sting,
@@ -64,7 +64,7 @@
 		/datum/action/xeno_action/psychic_whisper,
 		/datum/action/xeno_action/shift_spits,
 		/datum/action/xeno_action/activable/xeno_spit,
-		/datum/action/xeno_action/activable/psychic_cure/acidic_salve/hivelord,
+		/datum/action/xeno_action/activable/psychic_cure/acidic_salve/queen,
 		/datum/action/xeno_action/toggle_pheromones,
 		/datum/action/xeno_action/toggle_queen_zoom,
 		/datum/action/xeno_action/watch_xeno,
@@ -72,6 +72,8 @@
 		/datum/action/xeno_action/activable/queen_give_plasma,
 		/datum/action/xeno_action/queen_order,
 		/datum/action/xeno_action/deevolve,
+		/datum/action/xeno_action/activable/corrupt_generator,
+		/datum/action/xeno_action/activable/rally_hive,
 	)
 
 
@@ -97,7 +99,7 @@
 	max_health = 450
 
 	// *** Evolution *** //
-	upgrade_threshold = 500
+	upgrade_threshold = 850
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 55, "bullet" = 55, "laser" = 55, "energy" = 55, "bomb" = XENO_BOMB_RESIST_3, "bio" = 50, "rad" = 50, "fire" = 100, "acid" = 50)
@@ -133,7 +135,7 @@
 	max_health = 475
 
 	// *** Evolution *** //
-	upgrade_threshold = 1000
+	upgrade_threshold = 1850
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 60, "bullet" = 60, "laser" = 60, "energy" = 60, "bomb" = XENO_BOMB_RESIST_3, "bio" = 55, "rad" = 55, "fire" = 100, "acid" = 55)
@@ -169,7 +171,7 @@
 	max_health = 500
 
 	// *** Evolution *** //
-	upgrade_threshold = 1000
+	upgrade_threshold = 2850
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 65, "bullet" = 65, "laser" = 65, "energy" = 65, "bomb" = XENO_BOMB_RESIST_3, "bio" = 60, "rad" = 60, "fire" = 100, "acid" = 60)

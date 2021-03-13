@@ -1,16 +1,16 @@
-proc/isdeaf(A)
+/proc/isdeaf(A)
 	if(isliving(A))
 		var/mob/living/M = A
 		return M.ear_deaf || M.disabilities & DEAF
 	return FALSE
 
-proc/is_blind(A)
+/proc/is_blind(A)
 	if(isliving(A))
 		var/mob/living/M = A
 		return M.eye_blind
 	return FALSE
 
-proc/hasorgans(A)
+/proc/hasorgans(A)
 	return ishuman(A)
 
 /proc/hsl2rgb(h, s, l)
@@ -21,8 +21,6 @@ proc/hasorgans(A)
 /mob/proc/can_use_hands()
 	return
 
-/mob/proc/is_ready()
-	return client && !!mind
 
 /mob/proc/get_gender()
 	return gender
@@ -343,22 +341,13 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 	set name = "a-intent"
 	set hidden = 1
 
-	if(ismonkey(src))
-		switch(input)
-			if(INTENT_HELP)
-				a_intent = INTENT_HELP
-			if(INTENT_HARM)
-				a_intent = INTENT_HARM
-			if(INTENT_HOTKEY_RIGHT,INTENT_HOTKEY_LEFT)
-				a_intent = intent_numeric(intent_numeric(a_intent) - 3)
-	else
-		switch(input)
-			if(INTENT_HELP,INTENT_DISARM,INTENT_GRAB,INTENT_HARM)
-				a_intent = input
-			if(INTENT_HOTKEY_RIGHT)
-				a_intent = intent_numeric((intent_numeric(a_intent)+1) % 4)
-			if(INTENT_HOTKEY_LEFT)
-				a_intent = intent_numeric((intent_numeric(a_intent)+3) % 4)
+	switch(input)
+		if(INTENT_HELP,INTENT_DISARM,INTENT_GRAB,INTENT_HARM)
+			a_intent = input
+		if(INTENT_HOTKEY_RIGHT)
+			a_intent = intent_numeric((intent_numeric(a_intent)+1) % 4)
+		if(INTENT_HOTKEY_LEFT)
+			a_intent = intent_numeric((intent_numeric(a_intent)+3) % 4)
 
 
 	if(hud_used && hud_used.action_intent)
@@ -514,3 +503,10 @@ mob/proc/get_standard_bodytemperature()
 		return
 
 	active_item.unique_action(src)
+
+/mob/living/carbon/human/proc/do_activate_rail_attachment()
+	SIGNAL_HANDLER
+
+	var/obj/item/weapon/gun/active_gun = get_active_firearm(src)
+	active_gun?.toggle_rail_attachment()
+	return COMSIG_KB_ACTIVATED

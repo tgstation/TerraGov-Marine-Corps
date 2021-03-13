@@ -87,10 +87,10 @@
 		return
 
 
-/obj/machinery/door/CanPass(atom/movable/mover, turf/target)
+/obj/machinery/door/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
 		return !opacity
-	return !density
 
 /obj/machinery/door/proc/bumpopen(mob/user as mob)
 	if(operating)
@@ -106,8 +106,8 @@
 			flick("door_deny", src)
 
 
-/obj/machinery/door/attack_paw(mob/living/carbon/monkey/user)
-	return src.attack_hand(user)
+/obj/machinery/door/attack_paw(mob/living/carbon/human/user)
+	return attack_hand(user)
 
 
 /obj/machinery/door/attack_hand(mob/living/user)
@@ -189,7 +189,7 @@
 	if(!density)
 		return TRUE
 	if(operating > 0 || !loc)
-		return
+		return FALSE
 	if(!SSticker)
 		return FALSE
 	if(!operating)
@@ -201,7 +201,10 @@
 	for(var/t in fillers)
 		var/obj/effect/opacifier/O = t
 		O.set_opacity(FALSE)
-	sleep(openspeed)
+	addtimer(CALLBACK(src, .proc/finish_open), openspeed)
+	return TRUE
+
+/obj/machinery/door/proc/finish_open()
 	layer = open_layer
 	density = FALSE
 	update_icon()
@@ -212,20 +215,19 @@
 	if(autoclose)
 		addtimer(CALLBACK(src, .proc/autoclose), normalspeed ? 150 + openspeed : 5)
 
-	return TRUE
-
-
 /obj/machinery/door/proc/close()
 	if(density)
 		return TRUE
-	if(operating > 0 || !loc)
-		return
+	if(operating)
+		return FALSE
 	operating = TRUE
 
 	density = TRUE
 	layer = closed_layer
 	do_animate("closing")
-	sleep(openspeed)
+	addtimer(CALLBACK(src, .proc/finish_close), openspeed)
+
+/obj/machinery/door/proc/finish_close()
 	update_icon()
 	if(visible && !glass)
 		set_opacity(TRUE)	//caaaaarn!

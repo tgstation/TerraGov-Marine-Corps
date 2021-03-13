@@ -56,6 +56,32 @@
 		icon_state += "_empty"
 
 
+/obj/item/defibrillator/examine(mob/living/carbon/human/user)
+	. = ..()
+	maybe_message_recharge_hint(user)
+
+
+/**
+ * Message user with a hint to recharge defibrillator
+ * and how to do it if the battery is low.
+ * Arguments:
+ * user: user to message
+*/
+/obj/item/defibrillator/proc/maybe_message_recharge_hint(mob/living/carbon/human/user)
+	if(!dcell)
+		return
+
+	var/message
+	if(dcell.charge < charge_cost)
+		message = "The battery is empty."
+	else if(round(dcell.charge * 100 / dcell.maxcharge) <= 33)
+		message = "The battery is low."
+
+	if(!message)
+		return
+	to_chat(user, "<span class='notice'>[message] You can click-drag defibrillator on corpsman backpack to recharge it.</span>")
+
+
 /obj/item/defibrillator/attack_self(mob/living/carbon/human/user)
 	if(!istype(user))
 		return
@@ -96,25 +122,28 @@
 
 /mob/living/proc/get_ghost()
 	if(client) //Let's call up the correct ghost!
-		return
+		return null
 	for(var/g in GLOB.observer_list)
+		if(!g) //Observers hard del often so lets just be safe
+			continue
 		var/mob/dead/observer/ghost = g
 		if(ghost.mind.current != src)
 			continue
 		if(ghost.client && ghost.can_reenter_corpse)
 			return ghost
-	return
+	return null
 
 
-/mob/living/carbon/human/proc/is_revivable()
+/mob/living/carbon/human/proc/has_working_organs()
 	var/datum/internal_organ/heart/heart = internal_organs_by_name["heart"]
 
 	if(!heart || heart.is_broken() || !has_brain())
 		return FALSE
+
 	return TRUE
 
 /obj/item/defibrillator/attack(mob/living/carbon/human/H, mob/living/carbon/human/user)
-	if(user.action_busy) //Currently deffibing
+	if(user.do_actions) //Currently deffibing
 		return
 
 	if(defib_cooldown > world.time) //Both for pulling the paddles out (2 seconds) and shocking (1 second)
@@ -143,12 +172,13 @@
 		return
 	if(dcell.charge <= charge_cost)
 		user.visible_message("<span class='warning'>[icon2html(src, viewers(user))] \The [src] buzzes: Internal battery depleted. Cannot analyze nor administer shock.</span>")
+		maybe_message_recharge_hint(user)
 		return
 	if(H.stat != DEAD)
 		user.visible_message("<span class='warning'>[icon2html(src, viewers(user))] \The [src] buzzes: Vital signs detected. Aborting.</span>")
 		return
 
-	if(!H.is_revivable())
+	if(!H.has_working_organs())
 		user.visible_message("<span class='warning'>[icon2html(src, viewers(user))] \The [src] buzzes: Patient's general condition does not allow reviving.</span>")
 		return
 
@@ -156,7 +186,7 @@
 		user.visible_message("<span class='warning'>[icon2html(src, viewers(user))] \The [src] buzzes: Paddles registering >100,000 ohms, Possible cause: Suit or Armor interferring.</span>")
 		return
 
-	if((!check_tod(H) && !issynth(H)) || H.suiciding) //synthetic species have no expiration date
+	if((HAS_TRAIT(H, TRAIT_UNDEFIBBABLE ) && !issynth(H)) || H.suiciding) //synthetic species have no expiration date
 		user.visible_message("<span class='warning'>[icon2html(src, viewers(user))] \The [src] buzzes: Patient is braindead.</span>")
 		return
 
@@ -195,11 +225,11 @@
 	if(!issynth(H) && heart && prob(25))
 		heart.take_damage(5) //Allow the defibrilator to possibly worsen heart damage. Still rare enough to just be the "clone damage" of the defib
 
-	if(!H.is_revivable())
+	if(!H.has_working_organs())
 		user.visible_message("<span class='warning'>[icon2html(src, viewers(user))] \The [src] buzzes: Defibrillation failed. Patient's general condition does not allow reviving.</span>")
 		return
 
-	if((!check_tod(H) && !issynth(H)) || H.suiciding) //synthetic species have no expiration date
+	if((HAS_TRAIT(H, TRAIT_UNDEFIBBABLE ) && !issynth(H)) || H.suiciding) //synthetic species have no expiration date
 		user.visible_message("<span class='warning'>[icon2html(src, viewers(user))] \The [src] buzzes: Patient's brain has decayed too much.</span>")
 		return
 
@@ -234,6 +264,7 @@
 	user.visible_message("<span class='notice'>[icon2html(src, viewers(user))] \The [src] beeps: Defibrillation successful.</span>")
 	H.set_stat(UNCONSCIOUS)
 	H.emote("gasp")
+	H.chestburst = 0 //reset our chestburst state
 	H.regenerate_icons()
 	H.reload_fullscreens()
 	H.flash_act()
@@ -241,6 +272,8 @@
 	H.apply_effect(10, PARALYZE)
 	H.handle_regular_hud_updates()
 	H.updatehealth() //One more time, so it doesn't show the target as dead on HUDs
+	H.dead_ticks = 0 //We reset the DNR time
+	REMOVE_TRAIT(H, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
 	to_chat(H, "<span class='notice'>You suddenly feel a spark and your consciousness returns, dragging you back to the mortal plane.</span>")
 
 	notify_ghosts("<b>[user]</b> has brought <b>[H.name]</b> back to life!", source = H, action = NOTIFY_ORBIT)

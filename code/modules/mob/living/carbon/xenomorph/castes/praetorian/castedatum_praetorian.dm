@@ -52,8 +52,7 @@
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/regurgitate,
-		/datum/action/xeno_action/activable/headbite,
+		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/place_acidwell,
 		/datum/action/xeno_action/activable/corrosive_acid,
 		/datum/action/xeno_action/shift_spits,
@@ -86,7 +85,7 @@
 	max_health = 320
 
 	// *** Evolution *** //
-	upgrade_threshold = 500
+	upgrade_threshold = 750
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 35, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = XENO_BOMB_RESIST_0, "bio" = 33, "rad" = 33, "fire" = 40, "acid" = 33)
@@ -94,7 +93,7 @@
 	// *** Ranged Attack *** //
 	spit_delay = 1.2 SECONDS
 	spit_types = list(/datum/ammo/xeno/toxin/heavy/upgrade1, /datum/ammo/xeno/acid/heavy)
-	
+
 	acid_spray_damage_on_hit = 39
 	acid_spray_structure_damage = 53
 
@@ -123,7 +122,7 @@
 	max_health = 340
 
 	// *** Evolution *** //
-	upgrade_threshold = 1000
+	upgrade_threshold = 1750
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 40, "bullet" = 45, "laser" = 45, "energy" = 45, "bomb" = XENO_BOMB_RESIST_0, "bio" = 35, "rad" = 35, "fire" = 45, "acid" = 35)
@@ -131,7 +130,7 @@
 	// *** Ranged Attack *** //
 	spit_delay = 1.1 SECONDS
 	spit_types = list(/datum/ammo/xeno/toxin/heavy/upgrade2, /datum/ammo/xeno/acid/heavy)
-	
+
 	acid_spray_damage_on_hit = 43
 	acid_spray_structure_damage = 61
 
@@ -159,6 +158,9 @@
 
 	// *** Health *** //
 	max_health = 360
+
+	// *** Evolution *** //
+	upgrade_threshold = 2750
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 45, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = XENO_BOMB_RESIST_0, "bio" = 38, "rad" = 38, "fire" = 50, "acid" = 38)

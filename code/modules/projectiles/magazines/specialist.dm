@@ -3,26 +3,26 @@
 //Keyword rifles. They are subtype of rifles, but still contained here as a specialist weapon.
 
 /obj/item/ammo_magazine/sniper
-	name = "\improper M42A marksman magazine (10x28mm)"
-	desc = "A magazine of sniper rifle ammo."
+	name = "\improper T-26 magazine (10x28mm)"
+	desc = "A magazine of antimaterial rifle ammo."
 	caliber = "10x28mm"
-	icon_state = "m42a"
+	icon_state = "t26"
 	w_class = WEIGHT_CLASS_NORMAL
 	max_rounds = 15
 	default_ammo = /datum/ammo/bullet/sniper
-	gun_type = /obj/item/weapon/gun/rifle/sniper/M42A
+	gun_type = /obj/item/weapon/gun/rifle/sniper/antimaterial
 	reload_delay = 3
 
 
 /obj/item/ammo_magazine/sniper/incendiary
-	name = "\improper M42A incendiary magazine (10x28mm)"
+	name = "\improper T-26 incendiary magazine (10x28mm)"
 	default_ammo = /datum/ammo/bullet/sniper/incendiary
-	icon_state = "m42a_inc"
+	icon_state = "t26_inc"
 
 /obj/item/ammo_magazine/sniper/flak
-	name = "\improper M42A flak magazine (10x28mm)"
+	name = "\improper T-26 flak magazine (10x28mm)"
 	default_ammo = /datum/ammo/bullet/sniper/flak
-	icon_state = "m42a_flak"
+	icon_state = "t26_flak"
 
 
 //M42C magazine
@@ -220,6 +220,31 @@ obj/item/ammo_magazine/rifle/m4ra/smart
 	current_rounds = 0
 	reload_delay = 30
 
+
+//-------------------------------------------------------
+//one use rpg
+
+/obj/item/ammo_magazine/rocket/oneuse
+	name = "\improper 68mm high-explosive shell"
+	desc = "A rocket used to reload a one use rocket once returned to an armory."
+	caliber = "rocket"
+	icon_state = "rocket"
+	w_class = WEIGHT_CLASS_BULKY
+	max_rounds = 1
+	default_ammo = /datum/ammo/rocket/oneuse
+	gun_type = /obj/item/weapon/gun/launcher/rocket/oneuse
+	flags_magazine = NONE
+	reload_delay = 30
+
+/obj/item/ammo_magazine/internal/launcher/rocket/oneuse
+	name = "\improper 67mm internal tube"
+	desc = "The internal tube of a one use rpg."
+	caliber = "rocket"
+	default_ammo = /datum/ammo/rocket/recoilless
+	max_rounds = 1
+	current_rounds = 0
+	reload_delay = 30
+
 //-------------------------------------------------------
 //M5 RPG'S MEAN FUCKING COUSIN
 
@@ -253,3 +278,15 @@ obj/item/ammo_magazine/rifle/m4ra/smart
 	w_class = WEIGHT_CLASS_NORMAL
 	gun_type = /obj/item/weapon/gun/minigun
 
+// railgun
+
+/obj/item/ammo_magazine/railgun
+	name = "railgun canister (rail projectile)"
+	desc = "A canister holding a projectile to be used inside a railgun."
+	caliber = "rail projectile"
+	icon_state = "railgun"
+	default_ammo = /datum/ammo/bullet/railgun
+	max_rounds = 1
+	reload_delay = 20 //Hard to reload.
+	w_class = WEIGHT_CLASS_NORMAL
+	gun_type = /obj/item/weapon/gun/rifle/railgun

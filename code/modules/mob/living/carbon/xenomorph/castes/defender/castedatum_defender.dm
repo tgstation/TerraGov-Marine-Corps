@@ -48,8 +48,7 @@
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/regurgitate,
-		/datum/action/xeno_action/activable/headbite,
+		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/toggle_crest_defense,
 		/datum/action/xeno_action/fortify,
 		/datum/action/xeno_action/activable/forward_charge,
@@ -81,7 +80,7 @@
 	max_health = 280
 
 	// *** Evolution *** //
-	upgrade_threshold = 120
+	upgrade_threshold = 180
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 33, "bullet" = 33, "laser" = 28, "energy" = 25, "bomb" = XENO_BOMB_RESIST_2, "bio" = 25, "rad" = 25, "fire" = 33, "acid" = 25)
@@ -113,7 +112,7 @@
 	max_health = 300
 
 	// *** Evolution *** //
-	upgrade_threshold = 240
+	upgrade_threshold = 420
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 35, "bullet" = 35, "laser" = 30, "energy" = 28, "bomb" = XENO_BOMB_RESIST_2, "bio" = 28, "rad" = 28, "fire" = 35, "acid" = 28)
@@ -146,7 +145,7 @@
 	max_health = 320
 
 	// *** Evolution *** //
-	upgrade_threshold = 240
+	upgrade_threshold = 660
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = XENO_BOMB_RESIST_2, "bio" = 30, "rad" = 30, "fire" = 40, "acid" = 30)

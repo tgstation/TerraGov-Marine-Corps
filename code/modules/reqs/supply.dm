@@ -271,8 +271,6 @@ GLOBAL_LIST_EMPTY_TYPED(exports_types, /datum/supply_export)
 /datum/supply_ui
 	interaction_flags = INTERACT_MACHINE_TGUI
 	var/atom/source_object
-	var/ui_x = 900
-	var/ui_y = 700
 	var/tgui_name = "Cargo"
 
 /datum/supply_ui/New(atom/source_object)
@@ -290,12 +288,11 @@ GLOBAL_LIST_EMPTY_TYPED(exports_types, /datum/supply_export)
 		return FALSE
 	return TRUE
 
-/datum/supply_ui/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/datum/supply_ui/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 
 	if(!ui)
-		ui = new(user, src, ui_key, tgui_name, source_object.name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, tgui_name, source_object.name)
 		ui.open()
 
 /datum/supply_ui/ui_static_data(mob/user)
@@ -399,7 +396,8 @@ GLOBAL_LIST_EMPTY_TYPED(exports_types, /datum/supply_export)
 	return SSpoints.shopping_cart
 
 /datum/supply_ui/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	switch(action)
 		if("cart")
@@ -532,7 +530,8 @@ GLOBAL_LIST_EMPTY_TYPED(exports_types, /datum/supply_export)
 		.["shopping_list"][SP.type] = list("count" = SSpoints.request_shopping_cart[user.ckey][SP.type])
 
 /datum/supply_ui/requests/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
-	if(..())
+	. = ..()
+	if(.)
 		return TRUE
 	switch(action)
 		if("submitrequest")

@@ -73,11 +73,10 @@
 	opened = TRUE
 
 
-/obj/structure/closet/CanPass(atom/movable/mover, turf/target)
+/obj/structure/closet/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(wall_mounted)
 		return TRUE
-	else
-		return !density
 
 /obj/structure/closet/proc/can_open(mob/living/user)
 	if(welded || locked)
@@ -186,19 +185,22 @@
 		dump_contents()
 		qdel(src)
 
-/obj/structure/closet/attack_alien(mob/living/carbon/xenomorph/M)
-	if(M.a_intent == INTENT_HARM && !CHECK_BITFIELD(resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
-		M.do_attack_animation(src, ATTACK_EFFECT_SMASH)
+/obj/structure/closet/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(X.status_flags & INCORPOREAL)
+		return FALSE
+
+	if(X.a_intent == INTENT_HARM && !CHECK_BITFIELD(resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
+		X.do_attack_animation(src, ATTACK_EFFECT_SMASH)
 		if(!opened && prob(70))
 			break_open()
-			M.visible_message("<span class='danger'>\The [M] smashes \the [src] open!</span>", \
+			X.visible_message("<span class='danger'>\The [X] smashes \the [src] open!</span>", \
 			"<span class='danger'>We smash \the [src] open!</span>", null, 5)
 		else
-			M.visible_message("<span class='danger'>\The [M] smashes \the [src]!</span>", \
+			X.visible_message("<span class='danger'>\The [X] smashes \the [src]!</span>", \
 			"<span class='danger'>We smash \the [src]!</span>", null, 5)
-		SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_CLOSET)
+		SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_CLOSET)
 	else if(!opened)
-		return attack_paw(M)
+		return attack_paw(X)
 
 /obj/structure/closet/attackby(obj/item/I, mob/user, params)
 	if(user in src)
@@ -306,7 +308,7 @@
 			addtimer(VARSET_CALLBACK(src, lastbang, FALSE), 3 SECONDS)
 
 
-/obj/structure/closet/attack_paw(mob/living/carbon/monkey/user)
+/obj/structure/closet/attack_paw(mob/living/carbon/human/user)
 	return attack_hand(user)
 
 
@@ -350,7 +352,7 @@
 	if(!welded && !locked)
 		open()
 		return FALSE
-	if(user.action_busy) //Already resisting or doing something like it.
+	if(user.do_actions) //Already resisting or doing something like it.
 		return FALSE
 	if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_RESIST))
 		return FALSE

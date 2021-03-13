@@ -287,7 +287,13 @@
 	for(var/i in 1 to 7)
 		new /obj/item/light_bulb/bulb(src)
 
-
+/obj/item/storage/box/trampop
+	name = "box of Tram-pops"
+	desc = "Maybe if you behave the doctor will reward you with one."
+	icon_state = "trampop"
+	spawn_type = /obj/item/reagent_containers/food/snacks/lollipop/tramadol
+	spawn_number = 14
+	w_class = WEIGHT_CLASS_SMALL
 
 
 
@@ -307,6 +313,14 @@
 	icon_state = initial(icon_state)
 	if(!length(contents))
 		icon_state += "_e"
+
+/obj/item/storage/box/explosive_mines/large
+	name = "\improper M20 mine box"
+	desc = "A large secure box holding anti-personel proximity mines."
+	icon_state = "minebox"
+	max_storage_space = 20
+	spawn_type = /obj/item/explosive/mine
+	spawn_number = 10
 
 /obj/item/storage/box/explosive_mines/pmc
 	name = "\improper M20P mine box"
@@ -329,6 +343,7 @@
 /obj/item/storage/box/m94/cas
 	name = "\improper M50 CFDP signal pack"
 	desc = "A packet of seven M40 CFPD signal Flares. Used to mark locations for fire support. Can be launched from an underslung grenade launcher."
+	icon_state = "m50"
 	spawn_type = /obj/item/explosive/grenade/flare/cas
 
 

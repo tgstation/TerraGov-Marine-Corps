@@ -26,9 +26,15 @@
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/gyro,
 		/obj/item/attachable/burstfire_assembly,
+		/obj/item/attachable/lace,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
+	actions_types = list(/datum/action/item_action/aim_mode) // all pistols can aim mode
+	aim_speed_modifier = 0.65
+	scatter = 0
+	scatter_unwielded = 0
+
 
 /obj/item/weapon/gun/pistol/unique_action(mob/user)
 	return cock(user)
@@ -54,7 +60,7 @@
 	icon_state = "tp14"
 	item_state = "tp14"
 	caliber = "9x19mm Parabellum" //codex
-	max_shells = 14 //codex
+	max_shells = 21 //codex
 	fire_sound = 'sound/weapons/guns/fire/tp14.ogg'
 	reload_sound = 'sound/weapons/guns/interact/tp14_reload.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/standard_pistol
@@ -65,7 +71,9 @@
 	accuracy_mult = 1.1
 	accuracy_mult_unwielded = 0.95
 	scatter = -5
-	scatter_unwielded = 10
+	scatter_unwielded = 0
+	recoil = -2
+	recoil_unwielded = -2
 
 //-------------------------------------------------------
 //RT-3 pistol
@@ -84,7 +92,7 @@
 
 	fire_delay = 0.2 SECONDS
 	accuracy_mult = 1.15
-	scatter = 10
+	scatter = 0
 
 //-------------------------------------------------------
 // TP-23 service pistol
@@ -95,7 +103,7 @@
 	icon_state = "tp23"
 	item_state = "tp23"
 	caliber = ".45 ACP" //codex
-	max_shells = 11 //codex
+	max_shells = 14 //codex
 	fire_sound = 'sound/weapons/guns/fire/tp23.ogg'
 	unload_sound = 'sound/weapons/guns/interact/colt_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/colt_reload.ogg'
@@ -108,15 +116,17 @@
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/lace,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
-	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 22,"rail_x" = 13, "rail_y" = 24, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
 
-	fire_delay = 0.2 SECONDS
+	fire_delay = 0.175 SECONDS
 	accuracy_mult = 1.20 //Has a forced laser sight.
 	accuracy_mult_unwielded = 0.95
-	recoil_unwielded = 1
+	recoil = -2
+	recoil_unwielded = -2
 
 //-------------------------------------------------------
 //M1911
@@ -135,11 +145,12 @@
 	current_mag = /obj/item/ammo_magazine/pistol/m1911
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 21,"rail_x" = 17, "rail_y" = 22, "under_x" = 21, "under_y" = 15, "stock_x" = 21, "stock_y" = 17)
 
-	fire_delay = 0.2 SECONDS
+	fire_delay = 0.175 SECONDS
 	accuracy_mult = 1.05
 	accuracy_mult_unwielded = 0.85
 	damage_mult = 1.15
-	recoil_unwielded = 2
+	recoil = -2
+	recoil_unwielded = -1
 
 /obj/item/weapon/gun/pistol/m1911/custom
 	name = "\improper M1911A1 custom pistol"
@@ -151,6 +162,7 @@
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/quickfire,
+		/obj/item/attachable/lace,
 	)
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 12, "rail_y" = 22, "under_x" = 21, "under_y" = 15, "stock_x" = 21, "stock_y" = 17)
@@ -158,13 +170,13 @@
 	fire_delay = 0.15 SECONDS
 
 //-------------------------------------------------------
-//Beretta 92FS, the gun McClane carries around in Die Hard. Very similar to the service pistol, all around.
+//G-22. Blocc
 
-/obj/item/weapon/gun/pistol/b92fs
-	name = "\improper Beretta 92FS pistol"
-	desc = "A popular police firearm in the 20th century, often employed by hardboiled cops while confronting terrorists. A classic of its time, chambered in 9x19mm."
-	icon_state = "b92fs"
-	item_state = "b92fs"
+/obj/item/weapon/gun/pistol/g22
+	name = "\improper G-22 pistol"
+	desc = "A popular police firearm in the modern day. Chambered in 9x19mm."
+	icon_state = "g22"
+	item_state = "g22"
 	caliber = "9x19mm Parabellum" //codex
 	max_shells = 15 //codex
 	fire_sound = 'sound/weapons/guns/fire/beretta.ogg'
@@ -172,44 +184,22 @@
 	unload_sound = 'sound/weapons/guns/interact/beretta_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/beretta_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/beretta_cocked.ogg'
-	current_mag = /obj/item/ammo_magazine/pistol/b92fs
+	current_mag = /obj/item/ammo_magazine/pistol/g22
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
-
-	fire_delay = 0.2 SECONDS
-
-/obj/item/weapon/gun/pistol/b92fs/raffica
-	name = "\improper Beretta 93R pistol"
-	desc = "A variant of a classic pistol, modified to allow for bursts. It is fitted with a vertical foregrip at the front end of the trigger guard to provide better stability when firing."
-	icon_state = "b93r"
-	item_state = "b93r"
-	caliber = "9x19mm Parabellum" //codex
-	max_shells = 20 //codex
-	current_mag = /obj/item/ammo_magazine/pistol/b93r
-	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 21, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
-	attachable_allowed = list(
-		/obj/item/attachable/suppressor,
-		/obj/item/attachable/reddot,
-		/obj/item/attachable/flashlight,
-		/obj/item/attachable/compensator,
-		/obj/item/attachable/extended_barrel,
-		/obj/item/attachable/heavy_barrel,
-		/obj/item/attachable/quickfire,
-	)
-
-	fire_delay = 0.2 SECONDS
 	burst_amount = 3
 	accuracy_mult = 1.15
-	scatter_unwielded = 25
+	scatter_unwielded = 0
 	aim_slowdown = 0.2
+	fire_delay = 0.2 SECONDS
 
-/obj/item/weapon/gun/pistol/b92fs/M9
-	name = "\improper M9 custom pistol"
+/obj/item/weapon/gun/pistol/g22/tranq
+	name = "\improper G-22 custom pistol"
 	desc = "A 20th century military firearm customized for special forces use, fires tranq darts to take down enemies nonlethally. It does not seem to accept any other attachments."
-	icon_state = "b92fs"
-	item_state = "b92fs"
+	icon_state = "g22"
+	item_state = "g22"
 	caliber = "9x19mm tranquilizer" //codex
 	max_shells = 12 //codex
-	current_mag =/obj/item/ammo_magazine/pistol/b92fstranq
+	current_mag =/obj/item/ammo_magazine/pistol/g22tranq
 	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 21, "under_x" = 21, "under_y" = 15, "stock_x" = 21, "stock_y" = 17)
 	starting_attachment_types = list(
 		/obj/item/attachable/lasersight,
@@ -248,6 +238,7 @@
 		/obj/item/attachable/quickfire,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/compensator,
+		/obj/item/attachable/lace,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
@@ -256,8 +247,10 @@
 	fire_delay = 0.7 SECONDS
 	scatter_unwielded = 25
 	damage_mult = 1.2
-	recoil = 2
-	recoil_unwielded = 4
+	recoil = 1
+	recoil_unwielded = 2
+	scatter = 5
+	scatter_unwielded = 10
 
 /obj/item/weapon/gun/pistol/heavy/gold
 	name = "\improper Desert Eagle custom pistol"
@@ -269,7 +262,7 @@
 
 /obj/item/weapon/gun/pistol/c99
 	name = "\improper Korovin PK-9 pistol"
-	desc = "An updated variant of an old eastern design, dating back to from the 20th century. Features an integrated silencer, and chambered in the razor small .22 rounds. This one is loaded with the more common .22 hollowpoint rounds and appears to be a mercenary version."
+	desc = "An updated variant of an old handgun design, Features an integrated silencer, and chambered in the razor small .22 rounds. This one is loaded with the more common .22 hollowpoint rounds and appears to be a mercenary version."
 	icon_state = "pk9"
 	item_state = "pk9"
 	caliber = ".22 LR" //codex
@@ -285,6 +278,7 @@
 		/obj/item/attachable/quickfire,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/burstfire_assembly,
+		/obj/item/attachable/lace,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
@@ -295,21 +289,12 @@
 	fire_delay = 0.175 SECONDS
 	accuracy_mult = 1.65
 	accuracy_mult_unwielded = 1.5
-	scatter = 5
+	scatter = 0
 	scatter_unwielded = 10
 	damage_mult = 1.3
 	aim_slowdown = 0.1
 
-/obj/item/weapon/gun/pistol/c99/russian
-	icon_state = "pk9r"
-	item_state = "pk9r"
-
-/obj/item/weapon/gun/pistol/c99/upp
-	desc = "An updated variant of an old eastern design, dating back to from the 20th century. Features an integrated silencer, and chambered in the razor small .22 rounds. This one is loaded with the more common .22 hollowpoint rounds and appears to be a USL model."
-	icon_state = "pk9u"
-	item_state = "pk9u"
-
-/obj/item/weapon/gun/pistol/c99/upp/tranq
+/obj/item/weapon/gun/pistol/c99/tranq
 	desc = "An updated variant of an old eastern design, dating back to from the 20th century. Features an integrated silencer, and chambered in the razor small .22 rounds. This one is usually loaded with special low-recoil .22 dart rounds, which act as a dangerous tranquilizer."
 	current_mag = /obj/item/ammo_magazine/pistol/c99t
 
@@ -334,6 +319,7 @@
 		/obj/item/attachable/quickfire,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/burstfire_assembly,
+		/obj/item/attachable/lace,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
@@ -359,6 +345,7 @@
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/lace,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
@@ -371,6 +358,7 @@
 	accuracy_mult_unwielded = 1
 	scatter = -10
 	scatter_unwielded = -5
+	aim_speed_modifier = 0
 
 
 //-------------------------------------------------------
@@ -394,10 +382,11 @@
 
 	fire_delay = 1 SECONDS
 	damage_mult = 1.5
-	recoil = 2
-	recoil_unwielded = 3
+	recoil = 1
+	recoil_unwielded = 2
 	accuracy_mult = 1.5
-	scatter = 10
+	scatter = 0
+	scatter_unwielded = 15
 
 //-------------------------------------------------------
 //VP70
@@ -425,18 +414,21 @@
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/burstfire_assembly,
+		/obj/item/attachable/lace,
 	)
 
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 22,"rail_x" = 19, "rail_y" = 23, "under_x" = 21, "under_y" = 16, "stock_x" = 11, "stock_y" = 10)
 
-	fire_delay = 0.25 SECONDS
+	fire_delay = 0.2 SECONDS
+	burst_delay = 0.1 SECONDS
 	burst_amount = 3
 	accuracy_mult = 1.2
 	accuracy_mult_unwielded = 0.95
-	recoil_unwielded = 2
+	recoil = 0
 	aim_slowdown = 0.2
 	scatter = 5
+	scatter_unwielded = 15
 
 
 //-------------------------------------------------------
@@ -552,4 +544,5 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 		/obj/item/attachable/attached_gun/shotgun,
 		/obj/item/attachable/scope,
 		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/lace,
 	)

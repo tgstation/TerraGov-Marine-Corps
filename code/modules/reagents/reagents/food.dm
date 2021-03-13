@@ -17,7 +17,7 @@
 	current_cycle++
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
-		C.adjust_nutrition(nutriment_factor * REM)
+		C.adjust_nutrition(nutriment_factor*0.5*effect_str)
 	if(adj_temp)
 		L.adjust_bodytemperature(adj_temp * TEMPERATURE_DAMAGE_COEFFICIENT, (adj_temp < 0 ? targ_temp : INFINITY), (adj_temp > 0 ? 0 : targ_temp))
 	holder.remove_reagent(type, custom_metabolism)
@@ -398,10 +398,10 @@
 
 /datum/reagent/consumable/honey/on_mob_life(mob/living/L, metabolism)
 	L.reagents.add_reagent(/datum/reagent/consumable/sugar,3)
-	L.adjustBruteLoss(-0,5 * REM)
-	L.adjustFireLoss(-0,5 * REM)
-	L.adjustOxyLoss(-0,5 * REM)
-	L.adjustToxLoss(-0,5 * REM)
+	L.adjustBruteLoss(-0.25*effect_str)
+	L.adjustFireLoss(-0.25*effect_str)
+	L.adjustOxyLoss(-0.25*effect_str)
+	L.adjustToxLoss(-0.25*effect_str)
 	return ..()
 
 /datum/reagent/consumable/larvajelly
@@ -413,9 +413,9 @@
 	taste_description = "burning"
 
 /datum/reagent/consumable/larvajelly/on_mob_life(mob/living/L, metabolism)
-	L.adjustBruteLoss(-REM)
-	L.adjustFireLoss(2*REM)
-	L.adjustToxLoss(2*REM)
+	L.adjustBruteLoss(-0.5*effect_str)
+	L.adjustFireLoss(effect_str)
+	L.adjustToxLoss(effect_str)
 	return ..()
 
 /datum/reagent/consumable/larvajellyprepared
@@ -427,7 +427,7 @@
 	taste_description = "victory"
 
 /datum/reagent/consumable/larvajellyprepared/on_mob_life(mob/living/L, metabolism)
-	L.adjustBruteLoss(-REM)
+	L.adjustBruteLoss(-0.5*effect_str)
 	return ..()
 
 

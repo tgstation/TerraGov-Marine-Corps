@@ -13,7 +13,7 @@
 	throw_speed = 1
 	throw_range = 4
 	w_class = WEIGHT_CLASS_BULKY
-	interaction_flags = INTERACT_OBJ_NANO
+	interaction_flags = INTERACT_OBJ_UI
 
 	var/req_role //to be compared with job.type to only allow those to use that machine.
 	var/points = 40
@@ -60,12 +60,10 @@
 
 	return TRUE
 
-/obj/item/portable_vendor/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
-
+/obj/item/portable_vendor/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "PortableVendor", name, 600, 700, master_ui, state)
+		ui = new(user, src, "PortableVendor", name)
 		ui.open()
 
 /obj/item/portable_vendor/ui_data(mob/user)
@@ -97,8 +95,9 @@
 	)
 	return data
 
-/obj/item/portable_vendor/ui_act(action, params)
-	if(..())
+/obj/item/portable_vendor/ui_act(action, list/params)
+	. = ..()
+	if(.)
 		return
 	switch(action)
 		if("vend")
@@ -279,7 +278,7 @@ A breacher kit with the least firepower, has a high capacity SMG and a machete f
 	listed_products = list(
 		list("SPECIALIST KITS", 0, null, null, null),
 		list("Demolitionist (RPG, T-19 MP)", 1, /obj/item/storage/box/squadmarine/demolitionist, "white", "A kit specializing in explosives."),
-		list("Sniper (M42A Scoped Rifle, 88 Mod 4 Pistol)", 1, /obj/item/storage/box/squadmarine/sniper, "white", "A kit specializing in long-ranged dispatch."),
+		list("Sniper (Antimaterial Scoped Rifle, 88 Mod 4 Pistol)", 1, /obj/item/storage/box/squadmarine/sniper, "white", "A kit specializing in long-ranged dispatch."),
 		list("Scout (M4RA Battle Rifle, 88 Mod 4 Pistol)", 1, /obj/item/storage/box/squadmarine/scout, "white", "A kit specializing in area scouting."),
 		list("Tracker (MBX900 Lever-Action Shotgun, M1911 Pistol)", 1, /obj/item/storage/box/squadmarine/tracker, "white", "A kit specializing in chasing enemy targets."),
 		list("Pyrotechician (TL-84 Flamethrower, T-19 MP)", 1, /obj/item/storage/box/squadmarine/pyro, "white", "A kit specializing in firey area denial."),

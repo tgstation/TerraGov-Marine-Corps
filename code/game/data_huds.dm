@@ -19,12 +19,6 @@
 		hud.add_to_hud(src)
 
 
-/mob/living/carbon/monkey/add_to_all_mob_huds()
-	for(var/h in GLOB.huds)
-		var/datum/atom_hud/hud = h
-		hud.add_to_hud(src)
-
-
 /mob/living/carbon/xenomorph/add_to_all_mob_huds()
 	for(var/h in GLOB.huds)
 		if(!istype(h, /datum/atom_hud/xeno))
@@ -43,13 +37,6 @@
 			continue
 		var/datum/atom_hud/hud = h
 		hud.remove_from_hud(src)
-
-
-/mob/living/carbon/monkey/remove_from_all_mob_huds()
-	for(var/h in GLOB.huds)
-		var/datum/atom_hud/hud = h
-		hud.add_to_hud(src)
-
 
 /mob/living/carbon/xenomorph/remove_from_all_mob_huds()
 	for(var/h in GLOB.huds)
@@ -109,7 +96,7 @@
 
 //medical hud used by ghosts
 /datum/atom_hud/medical/observer
-	hud_icons = list(HEALTH_HUD, XENO_EMBRYO_HUD, XENO_REAGENT_HUD, STATUS_HUD)
+	hud_icons = list(HEALTH_HUD, XENO_EMBRYO_HUD, XENO_REAGENT_HUD, STATUS_HUD, MACHINE_HEALTH_HUD, SENTRY_AMMO_HUD)
 
 
 /datum/atom_hud/medical/pain
@@ -191,20 +178,6 @@
 	hud_set_pheromone()
 
 
-/mob/living/carbon/monkey/med_hud_set_status()
-	var/image/holder = hud_list[XENO_EMBRYO_HUD]
-	if(status_flags & XENO_HOST)
-		var/obj/item/alien_embryo/E = locate(/obj/item/alien_embryo) in src
-		if(E)
-			holder.icon_state = "infected[E.stage]"
-		else if(locate(/mob/living/carbon/xenomorph/larva) in src)
-			holder.icon_state = "infected5"
-	else if(stat == DEAD)
-		holder.icon_state = "huddead"
-	else
-		holder.icon_state = ""
-
-
 /mob/living/carbon/human/med_hud_set_status()
 	var/image/status_hud = hud_list[STATUS_HUD] //Status for med-hud.
 	var/image/infection_hud = hud_list[XENO_EMBRYO_HUD] //State of the xeno embryo.
@@ -243,8 +216,10 @@
 	switch(stat)
 		if(DEAD)
 			simple_status_hud.icon_state = ""
-			infection_hud.icon_state = "huddead" //Xenos sense dead hosts, and no longer their larvas inside, which fall into stasis and no longer grow.
-			if(undefibbable)
+			infection_hud.icon_state = "huddead"
+			if(!HAS_TRAIT(src, TRAIT_PSY_DRAINED))
+				infection_hud.icon_state = "psy_drain"
+			if(HAS_TRAIT(src, TRAIT_UNDEFIBBABLE ))
 				status_hud.icon_state = "huddead"
 				return TRUE
 			if(!client)
@@ -256,12 +231,14 @@
 				else
 					status_hud.icon_state = "huddead"
 					return TRUE
-			var/stage = 1
-			var/death_decay_time = world.time - timeofdeath - revive_grace_time
-			if(death_decay_time > (CONFIG_GET(number/revive_grace_period) * 0.8))
-				stage = 3
-			else if(death_decay_time > (CONFIG_GET(number/revive_grace_period) * 0.4))
-				stage = 2
+			var/stage
+			switch(dead_ticks)
+				if(0 to 0.4 * TIME_BEFORE_DNR)
+					stage = 1
+				if(0.4 * TIME_BEFORE_DNR to 0.8 * TIME_BEFORE_DNR)
+					stage = 2
+				if(0.8 * TIME_BEFORE_DNR to INFINITY)
+					stage = 3
 			status_hud.icon_state = "huddeaddefib[stage]"
 			return TRUE
 		if(UNCONSCIOUS)
@@ -339,9 +316,9 @@
 /datum/atom_hud/xeno_reagents
 	hud_icons = list(XENO_REAGENT_HUD)
 
-///hud component for revealing tunnels to xenos
-/datum/atom_hud/xeno_tunnels
-	hud_icons = list(XENO_TUNNEL_HUD)
+///hud component for revealing tactical elements to xenos
+/datum/atom_hud/xeno_tactical
+	hud_icons = list(XENO_TACTICAL_HUD)
 
 //Xeno status hud, for xenos
 /datum/atom_hud/xeno
@@ -455,14 +432,14 @@
 
 
 /datum/atom_hud/squad
-	hud_icons = list(SQUAD_HUD)
+	hud_icons = list(SQUAD_HUD, MACHINE_HEALTH_HUD, SENTRY_AMMO_HUD)
 
 
-/mob/proc/hud_set_squad()
+/mob/proc/hud_set_job()
 	return
 
 
-/mob/living/carbon/human/hud_set_squad()
+/mob/living/carbon/human/hud_set_job()
 	var/image/holder = hud_list[SQUAD_HUD]
 	holder.icon_state = ""
 	holder.overlays.Cut()
@@ -484,7 +461,7 @@
 			holder.overlays += IMG2
 
 	else if(job.job_flags & JOB_FLAG_PROVIDES_SQUAD_HUD)
-		holder.icon_state = "hudmarine [job.title]"
+		holder.overlays += image('icons/mob/hud.dmi', src, "hudmarine [job.title]")
 
 	hud_list[SQUAD_HUD] = holder
 
@@ -518,3 +495,46 @@
 
 	hud_list[ORDER_HUD] = holder
 
+///Makes sentry health visible
+/obj/machinery/proc/hud_set_machine_health()
+	var/image/holder = hud_list[MACHINE_HEALTH_HUD]
+
+	if(!holder)
+		return
+
+	if(obj_integrity < 1)
+		holder.icon_state = "xenohealth0"
+		return
+
+	var/amount = round(obj_integrity * 100 / max_integrity, 10)
+	if(!amount)
+		amount = 1 //don't want the 'zero health' icon when we still have 4% of our health
+	holder.icon_state = "xenohealth[amount]"
+
+///Makes sentry ammo visible
+/obj/machinery/marine_turret/proc/hud_set_sentry_ammo()
+	var/image/holder = hud_list[SENTRY_AMMO_HUD]
+
+	if(!holder)
+		return
+
+	if(!rounds)
+		holder.icon_state = "plasma0"
+		return
+
+	var/amount = round(rounds * 100 / rounds_max, 10)
+	holder.icon_state = "plasma[amount]"
+
+///Makes tl-102 ammo visible
+/obj/machinery/standard_hmg/proc/hud_set_hsg_ammo()
+	var/image/holder = hud_list[SENTRY_AMMO_HUD]
+
+	if(!holder)
+		return
+
+	if(!rounds)
+		holder.icon_state = "plasma0"
+		return
+	
+	var/amount = round(rounds * 100 / rounds_max, 10)
+	holder.icon_state = "plasma[amount]"

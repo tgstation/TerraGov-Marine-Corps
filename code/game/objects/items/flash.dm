@@ -82,8 +82,6 @@
 
 		user.visible_message("<span class='notice'>[user] fails to blind [M] with the flash!</span>")
 
-	return
-
 
 
 
@@ -119,17 +117,12 @@
 	//flick("flash2", src)
 
 	for(var/mob/living/carbon/human/M in oviewers(3, null))
-		if(prob(50))
-			if (locate(/obj/item/cloaking_device, M))
-				for(var/obj/item/cloaking_device/S in M)
-					S.active = 0
-					S.icon_state = "shield0"
 		M.flash_act()
 
-	return
 
 /obj/item/flash/emp_act(severity)
-	if(broken)	return
+	if(broken)
+		return
 	flash_recharge()
 	switch(times_used)
 		if(0 to 5)

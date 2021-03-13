@@ -33,7 +33,7 @@ SUBSYSTEM_DEF(weeds)
 			pending -= T
 			continue
 
-		if (!T.is_weedable() || istype(T.loc, /area/arrival))
+		if (!T.is_weedable())
 			pending -= T
 			continue
 

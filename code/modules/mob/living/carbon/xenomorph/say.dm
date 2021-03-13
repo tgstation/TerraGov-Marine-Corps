@@ -5,7 +5,7 @@
 	This is also paired with [/mob/living/carbon/xenomorph/hivemind_end]
 */
 /mob/living/carbon/xenomorph/proc/hivemind_start()
-	return "<span class='game say hivemind [queen_chosen_lead?"xenoleader":""]'>Hivemind, <span class='name'>[name]</span>"
+	return "<span class='hivemind [queen_chosen_lead?"xenoleader":""]'>Hivemind, <span class='name'>[name]</span>"
 
 /**
 	Called to create the suffix for xeno hivemind messages
@@ -17,13 +17,13 @@
 
 
 /mob/living/carbon/xenomorph/queen/hivemind_start()
-	return "<span class='game say hivemind xenoqueen'>Hivemind, <span class='name'>[name]</span>"
+	return "<span class='hivemind xenoqueen'>Hivemind, <span class='name'>[name]</span>"
 
 /mob/living/carbon/xenomorph/shrike/hivemind_start()
-	return "<span class='game say hivemind xenoshrike'>Hivemind, <span class='name'>[name]</span>"
+	return "<span class='hivemind xenoshrike'>Hivemind, <span class='name'>[name]</span>"
 
 /mob/living/carbon/xenomorph/hivemind/hivemind_start()
-	return "<span class='game say hivemind xenohivemind'><span class='name'>The Hivemind</span>"
+	return "<span class='hivemind xenohivemind'><span class='name'>The Hivemind</span>"
 
 
 /mob/living/carbon/xenomorph/proc/render_hivemind_message(message)

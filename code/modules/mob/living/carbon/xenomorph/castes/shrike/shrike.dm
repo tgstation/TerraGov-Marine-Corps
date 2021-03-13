@@ -19,7 +19,7 @@
 	var/shrike_flags = SHRIKE_FLAG_PAIN_HUD_ON
 	inherent_verbs = list(
 		/mob/living/carbon/xenomorph/proc/vent_crawl,
-		/mob/living/carbon/xenomorph/proc/calldown_dropship,
+		/mob/living/carbon/xenomorph/proc/hijack,
 	)
 
 // ***************************************

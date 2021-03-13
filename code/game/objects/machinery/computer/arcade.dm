@@ -168,12 +168,12 @@
 		src.gameover = 1
 		src.temp = "GAME OVER"
 
-	src.blocked = 0
-	return
+	blocked = 0
+
 
 
 /obj/machinery/computer/arcade/emp_act(severity)
-	if(machine_stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN|DISABLED))
 		..(severity)
 		return
 	var/empprize = null

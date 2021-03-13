@@ -26,7 +26,7 @@
 			// Spawn some hostile syndicate critters
 
 	qdel(src)
-	return
+
 
 /obj/item/explosive/grenade/spawnergrenade/spesscarp
 	name = "carp delivery grenade"

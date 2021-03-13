@@ -1,4 +1,5 @@
 #define WARHEAD_FLY_TIME 1 SECONDS
+#define RG_FLY_TIME 1 SECONDS
 #define WARHEAD_FALLING_SOUND_RANGE 15
 
 /obj/structure/orbital_cannon
@@ -351,7 +352,7 @@
 	to_chat(user, "Moving this will require some sort of lifter.")
 
 
-/obj/structure/ob_ammo/obj_destruction(damage_flag)
+/obj/structure/ob_ammo/obj_destruction(damage_amount, damage_type, damage_flag)
 	explosion(loc, light_impact_range = 2, flash_range = 3, flame_range = 2, small_animation = TRUE)
 	return ..()
 
@@ -362,7 +363,12 @@
 
 
 /obj/structure/ob_ammo/warhead/proc/warhead_impact(turf/target, inaccuracy_amt = 0)
+	SHOULD_CALL_PARENT(TRUE)
+	SSmonitor.stats.OB_available--
 
+/obj/structure/ob_ammo/warhead/Initialize()
+	. = ..()
+	SSmonitor.stats.OB_available++
 
 /obj/structure/ob_ammo/warhead/explosive
 	name = "\improper HE orbital warhead"
@@ -370,7 +376,8 @@
 	icon_state = "ob_warhead_1"
 
 /obj/structure/ob_ammo/warhead/explosive/warhead_impact(turf/target, inaccuracy_amt = 0)
-	explosion(target, 6 - inaccuracy_amt, 10 - inaccuracy_amt, 15 - inaccuracy_amt, 11 - inaccuracy_amt)
+	. = ..()
+	explosion(target, 15 - inaccuracy_amt, 15 - inaccuracy_amt, 15 - inaccuracy_amt, 15 - inaccuracy_amt)
 
 
 
@@ -381,6 +388,7 @@
 
 
 /obj/structure/ob_ammo/warhead/incendiary/warhead_impact(turf/target, inaccuracy_amt = 0)
+	. = ..()
 	var/range_num = max(15 - inaccuracy_amt, 12)
 	flame_radius(range_num, target,	burn_intensity = 36, burn_duration = 40, colour = "blue")
 
@@ -392,7 +400,7 @@
 
 /obj/structure/ob_ammo/warhead/cluster/warhead_impact(turf/target, inaccuracy_amt = 0)
 	set waitfor = FALSE
-
+	. = ..()
 	var/range_num = max(9 - inaccuracy_amt, 6)
 	var/list/turf_list = list()
 	for(var/turf/T in range(range_num, target))
@@ -410,6 +418,7 @@
 	var/datum/effect_system/smoke_spread/plasmaloss/smoke
 
 /obj/structure/ob_ammo/warhead/plasmaloss/warhead_impact(turf/target, inaccuracy_amt = 0)
+	. = ..()
 	smoke = new(src)
 	smoke.set_up(25, target, 3 SECONDS)//Vape nation
 	smoke.start()
@@ -534,18 +543,17 @@
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	var/cannon_busy = FALSE
 	var/last_firing = 0 //stores the last time it was fired to check when we can fire again
-	var/obj/structure/ship_ammo/heavygun/highvelocity/rail_gun_ammo
+	var/obj/structure/ship_ammo/heavygun/railgun/rail_gun_ammo
 
 /obj/structure/ship_rail_gun/Initialize()
 	. = ..()
 	if(!GLOB.marine_main_ship.rail_gun)
 		GLOB.marine_main_ship.rail_gun = src
-	rail_gun_ammo = new /obj/structure/ship_ammo/heavygun/highvelocity(src)
+	rail_gun_ammo = new /obj/structure/ship_ammo/heavygun/railgun(src)
 	rail_gun_ammo.max_ammo_count = 8000 //200 uses or 15 full minutes of firing.
 	rail_gun_ammo.ammo_count = 8000
 
 /obj/structure/ship_rail_gun/proc/fire_rail_gun(turf/T, mob/user)
-	set waitfor = 0
 	if(cannon_busy)
 		return
 	if(!rail_gun_ammo?.ammo_count)
@@ -557,7 +565,9 @@
 	playsound(loc, 'sound/weapons/guns/fire/tank_smokelauncher.ogg', 70, 1)
 	playsound(loc, 'sound/weapons/guns/fire/pred_plasma_shot.ogg', 70, 1)
 	var/turf/target = locate(T.x + pick(-2,2), T.y + pick(-2,2), T.z)
-	sleep(15)
-	rail_gun_ammo.detonate_on(target)
 	rail_gun_ammo.ammo_count = max(0, rail_gun_ammo.ammo_count - rail_gun_ammo.ammo_used_per_firing)
+	addtimer(CALLBACK(src, /obj/structure/ship_rail_gun/proc/impact_rail_gun, target), 2 SECONDS + (RG_FLY_TIME * (GLOB.current_orbit/3)))	
+		
+/obj/structure/ship_rail_gun/proc/impact_rail_gun(turf/T)
+	rail_gun_ammo.detonate_on(T)
 	cannon_busy = FALSE

@@ -158,7 +158,7 @@
 /turf/closed/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.action_busy)
+	if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.do_actions)
 		var/obj/item/tool/pickaxe/plasmacutter/P = I
 		if(!ismineralturf(src) && !istype(src, /turf/closed/gm/dense) && !istype(src, /turf/closed/glass) && !istype(src, /turf/closed/desertdamrockwall) && !istype(src, /turf/closed/brock))
 			to_chat(user, "<span class='warning'>[P] can't cut through this!</span>")
@@ -211,7 +211,7 @@
 /turf/closed/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.action_busy)
+	if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.do_actions)
 		var/obj/item/tool/pickaxe/plasmacutter/P = I
 		if(!ismineralturf(src) && !istype(src, /turf/closed/gm/dense) && !istype(src, /turf/closed/ice) && !istype(src, /turf/closed/desertdamrockwall) && !istype(src, /turf/closed/brock))
 			to_chat(user, "<span class='warning'>[P] can't cut through this!</span>")

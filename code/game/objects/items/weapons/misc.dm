@@ -41,7 +41,7 @@
 	item_state = "powerfist"
 	flags_equip_slot = ITEM_SLOT_BELT
 	force = 10
-	attack_verb = list("hits", "rams", "power-fists")
+	attack_verb = list("smashed", "rammed", "power-fisted")
 	var/obj/item/cell/cell
 	///the higher the power level the harder it hits
 	var/setting = 1
@@ -88,6 +88,10 @@
 	if(!cell)
 		to_chat(user, "<span class='warning'>\The [src] can't operate without a source of power!</span>")
 		return
+
+	if(M.status_flags & INCORPOREAL || user.status_flags & INCORPOREAL) //Incorporeal beings cannot attack or be attacked
+		return
+
 	var/powerused = 370 * setting * setting
 	if(powerused > cell.charge)
 		to_chat(user, "<span class='warning'>\The [src]'s cell doesn't have enough power!</span>")

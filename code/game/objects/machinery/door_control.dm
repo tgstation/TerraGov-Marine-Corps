@@ -19,6 +19,9 @@
 	idle_power_usage = 2
 	active_power_usage = 4
 
+/obj/machinery/door_control/unmeltable
+	resistance_flags = RESIST_ALL
+
 /obj/machinery/door_control/ai
 	name = "AI Lockdown"
 
@@ -44,9 +47,9 @@
 		if(D.id_tag == src.id)
 			if(specialfunctions & OPEN)
 				if (D.density)
-					INVOKE_ASYNC(D, /obj/machinery/door.proc/open)
+					D.open()
 				else
-					INVOKE_ASYNC(D, /obj/machinery/door.proc/close)
+					D.close()
 			if(desiredstate == 1)
 				if(specialfunctions & IDSCAN)
 					D.aiDisabledIdScanner = 1
@@ -71,9 +74,9 @@
 	for(var/obj/machinery/door/poddoor/M in GLOB.machines)
 		if(M.id == id)
 			if(M.density)
-				INVOKE_ASYNC(M, /obj/machinery/door/.proc/open)
+				M.open()
 			else
-				INVOKE_ASYNC(M, /obj/machinery/door/.proc/close)
+				M.close()
 
 /obj/machinery/door_control/attack_hand(mob/living/user)
 	. = ..()
@@ -143,18 +146,18 @@
 
 	use_power(active_power_usage)
 
-	active = 1
+	active = TRUE
 	icon_state = "launcheract"
 
 	for(var/obj/machinery/door/poddoor/M in GLOB.machines)
-		if(M.id == src.id)
-			INVOKE_ASYNC(M, /obj/machinery/door.proc/open)
+		if(M.id == id)
+			M.open()
 
 	sleep(50)
 
 	for(var/obj/machinery/door/poddoor/M in GLOB.machines)
-		if(M.id == src.id)
-			INVOKE_ASYNC(M, /obj/machinery/door.proc/close)
+		if(M.id == id)
+			M.close()
 
 	icon_state = "launcherbtt"
 	active = 0
@@ -225,6 +228,12 @@
 	name = "Telecommunications Entrance"
 	id = "tcomms"
 	req_one_access = list(ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_BRIDGE)
+
+/obj/machinery/door_control/mainship/engineering/armory
+	name = "Engineering Armory Lockdown"
+	id = "engi_armory"
+	req_one_access = list(ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_BRIDGE)
+
 
 /obj/machinery/door_control/mainship/corporate
 	name = "Privacy Shutters"

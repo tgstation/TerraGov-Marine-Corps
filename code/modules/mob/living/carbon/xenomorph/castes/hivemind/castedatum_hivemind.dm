@@ -51,6 +51,7 @@
 		/datum/action/xeno_action/return_to_core,
 		/datum/action/xeno_action/plant_weeds/slow,
 		/datum/action/xeno_action/psychic_whisper,
+		/datum/action/xeno_action/activable/rally_hive/hivemind,
 	)
 
 /datum/xeno_caste/hivemind/young
@@ -67,7 +68,7 @@
 	plasma_gain = 45 // This is 3 weed every 10 secs.
 
 	// *** Evolution *** //
-	upgrade_threshold = 500
+	upgrade_threshold = 800
 
 	// *** Abilities *** //
 	actions = list(
@@ -75,6 +76,7 @@
 		/datum/action/xeno_action/plant_weeds/slow,
 		/datum/action/xeno_action/psychic_whisper,
 		/datum/action/xeno_action/activable/psychic_cure,
+		/datum/action/xeno_action/activable/rally_hive/hivemind,
 	)
 
 
@@ -90,7 +92,7 @@
 	max_health = 1000
 
 	// *** Evolution *** //
-	upgrade_threshold = 700
+	upgrade_threshold = 1500
 
 	// *** Abilities *** //
 	actions = list(
@@ -99,6 +101,7 @@
 		/datum/action/xeno_action/psychic_whisper,
 		/datum/action/xeno_action/activable/psychic_cure,
 		/datum/action/xeno_action/toggle_pheromones,
+		/datum/action/xeno_action/activable/rally_hive/hivemind,
 	)
 
 /datum/xeno_caste/hivemind/ancient
@@ -114,7 +117,7 @@
 	max_health = 1000
 
 	// *** Evolution *** //
-	upgrade_threshold = 1000
+	upgrade_threshold = 2500
 
 	// *** Abilities *** //
 	actions = list(
@@ -125,4 +128,5 @@
 		/datum/action/xeno_action/choose_resin,
 		/datum/action/xeno_action/toggle_pheromones,
 		/datum/action/xeno_action/activable/secrete_resin/slow,
+		/datum/action/xeno_action/activable/rally_hive/hivemind,
 	)

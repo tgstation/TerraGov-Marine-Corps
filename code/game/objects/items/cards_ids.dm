@@ -15,6 +15,7 @@
 	name = "card"
 	desc = "Does card things."
 	icon = 'icons/obj/items/card.dmi'
+	item_state_worn = TRUE
 	w_class = WEIGHT_CLASS_TINY
 	var/associated_account_number = 0
 
@@ -35,10 +36,9 @@
 	set src in usr
 
 	if (t)
-		src.name = text("data disk- '[]'", t)
+		name = text("data disk- '[]'", t)
 	else
-		src.name = "data disk"
-	return
+		name = "data disk"
 
 /obj/item/card/data/clown
 	name = "\proper the coordinates to clown planet"
@@ -123,7 +123,6 @@
 
 	to_chat(usr, "[icon2html(src, usr)] [name]: The current assignment on the card is [assignment].")
 	to_chat(usr, "The blood type on the card is [blood_type].")
-	return
 
 
 /obj/item/card/id/silver
@@ -176,7 +175,7 @@
 
 		if(!registered_user) registered_user = user  //
 
-		switch(alert("Would you like to display the ID, or retitle it?","Choose.","Rename","Show"))
+		switch(tgui_alert(user, "Would you like to display the ID, or retitle it?", "Choose.", list("Rename","Show")))
 			if("Rename")
 				var/newname = stripped_input(user, "What name would you like to put on this card?", "Agent card name", ishuman(user) ? user.real_name : user.name, max_length = 26)
 				if(!newname || newname == "Unknown" || newname == "floor" || newname == "wall" || newname == "r-wall") //Same as mob/new_player/prefrences.dm

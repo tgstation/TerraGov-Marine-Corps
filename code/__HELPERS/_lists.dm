@@ -13,6 +13,9 @@
 #define reverseList(L) reverseRange(L.Copy())
 #define LAZYADDASSOC(L, K, V) if(!L) { L = list(); } L[K] += list(V);
 #define LAZYREMOVEASSOC(L, K, V) if(L) { if(L[K]) { L[K] -= V; if(!length(L[K])) L -= K; } if(!length(L)) L = null; }
+#define LAZYACCESSASSOC(L, I, K) L ? L[I] ? L[I][K] ? L[I][K] : null : null : null
+#define LAZYINCREMENT(L, K) if(!L) { L = list(); } L[K]++;
+#define LAZYDECREMENT(L, K) if(L) { if(L[K]) { L[K]--; if(!L[K]) L -= K; } if(!length(L)) L = null; }
 
 //Checks for specific types in specifically structured (Assoc "type" = TRUE) lists ('typecaches')
 #define is_type_in_typecache(A, L) (A && length(L) && L[(ispath(A) ? A : A:type)])

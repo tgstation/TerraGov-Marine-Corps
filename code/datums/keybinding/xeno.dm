@@ -407,48 +407,100 @@
 
 /datum/keybinding/xeno/evasion
 	name = "evasion"
-	full_name = "Evasion"
+	full_name = "Runner: Evasion"
 	description = "Take evasive action, forcing non-friendly projectiles that would hit you to miss so long as you keep moving."
 	keybind_signal = COMSIG_XENOABILITY_EVASION
 
 /datum/keybinding/xeno/toggle_agility
 	name = "toggle_agility"
 	full_name = "Warrior: Toggle Agility"
-	description = ""
+	description = "Toggles Agility mode. While in Agility mode, you move much more quickly but can't use abilities and your armor is greatly reduced."
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_AGILITY
 
 /datum/keybinding/xeno/lunge
 	name = "lunge"
 	full_name = "Warrior: Lunge"
-	description = ""
+	description = "Charges towards a target, then neckgrabs them if they're adjacent to you. Stuns on upon grabbing for 1 second."
 	keybind_signal = COMSIG_XENOABILITY_LUNGE
 
 /datum/keybinding/xeno/fling
 	name = "fling"
 	full_name = "Warrior: Fling"
-	description = ""
+	description = "Quickly flings a target 4 tiles away and inflicts a short stun. Shared cooldown with Grapple Toss."
 	keybind_signal = COMSIG_XENOABILITY_FLING
-/*
+
 /datum/keybinding/xeno/grapple_toss
 	name = "grapple_toss"
 	full_name = "Warrior: Grapple Toss"
-	description = ""
+	description = "Throw a target you're grabbing up to 5 tiles away. Inflicts a short stun and stagger and slow stacks. Shared cooldown with Fling."
 	keybind_signal = COMSIG_XENOABILITY_GRAPPLE_TOSS
-*/
+
 /datum/keybinding/xeno/punch
 	name = "punch"
 	full_name = "Warrior: Punch"
-	description = ""
+	description = "Punch a hostile creature, a structure or piece of machinery. Damage and status durations are doubled vs creatures you are grabbing. Damage is quadrupled vs structures and machinery."
 	keybind_signal = COMSIG_XENOABILITY_PUNCH
-
-/datum/keybinding/xeno/psychic_choke
-	name = "psychic_choke"
-	full_name = "Psychic Choke (Unused)"
-	description = ""
-	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_CHOKE
 
 /datum/keybinding/xeno/inject_egg_neurogas
 	name = "inject_egg_neurogas"
 	full_name = "Inject Egg (Neurogas)"
 	description = "Inject an egg with neurogas, killing the little one inside"
 	keybind_signal = COMSIG_XENOABILITY_INJECT_EGG_NEUROGAS
+
+/datum/keybinding/xeno/rally_hive
+	name = "rally_hive"
+	full_name = "Rally Hive"
+	description = "Rallies the hive to a target location."
+	keybind_signal = COMSIG_XENOABILITY_RALLY_HIVE
+
+/datum/keybinding/xeno/healing_infusion
+	name = "healing_infusion"
+	full_name = "Hivelord: Healing Infusion"
+	description = "Imbues a target xeno with healing energy, restoring extra Sunder and Health once every 2 seconds up to 5 times whenever it regenerates normally. 60 second duration."
+	keybind_signal = COMSIG_XENOABILITY_HEALING_INFUSION
+
+//Wraith keybinds - BEGIN
+
+/datum/keybinding/xeno/place_warp_shadow
+	name = "place_warp_shadow"
+	full_name = "Wraith: Place Warp Shadow"
+	description = "Create a rift in space/time that you can swap locations with using the Hyperposition ability."
+	keybind_signal = COMSIG_XENOABILITY_PLACE_WARP_BEACON
+
+/datum/keybinding/xeno/hyperposition
+	name = "hyperposition"
+	full_name = "Wraith: Hyperposition"
+	description = "Swap locations with your warp shadow after a delay that scales with your distance from it."
+	keybind_signal = COMSIG_XENOABILITY_HYPERPOSITION
+
+/datum/keybinding/xeno/phase_shift
+	name = "phase_shift"
+	full_name = "Wraith: Phase Shift"
+	description = "Move out of phase with reality for a short duration after a short delay, gaining invulnerability and the ability to move through almost all physical obstacles. Can't move into space."
+	keybind_signal = COMSIG_XENOABILITY_PHASE_SHIFT
+
+/datum/keybinding/xeno/resync
+	name = "resync"
+	full_name = "Wraith: Resync"
+	description = "Resynchronize with reality, ending Phase Shift's effect."
+	keybind_signal = COMSIG_XENOABILITY_RESYNC
+
+/datum/keybinding/xeno/blink
+	name = "blink"
+	full_name = "Wraith: Blink"
+	description = "Teleport to a space a short distance away within line of sight. Can teleport mobs you're dragging with you at the cost of higher cooldown."
+	keybind_signal = COMSIG_XENOABILITY_BLINK
+
+/datum/keybinding/xeno/banish
+	name = "banish"
+	full_name = "Wraith: Banish"
+	description = "Banish a creature or object a short distance away within line of sight to null space. Can target oneself and allies. Can be manually cancelled with Recall."
+	keybind_signal = COMSIG_XENOABILITY_BANISH
+
+/datum/keybinding/xeno/recall
+	name = "recall"
+	full_name = "Wraith: Recall"
+	description = "Recall a target from netherspace, ending Banish's effect."
+	keybind_signal = COMSIG_XENOABILITY_RECALL
+
+//Wraith keybinds - END

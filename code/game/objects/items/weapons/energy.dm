@@ -93,7 +93,6 @@
 		H.update_inv_l_hand(0)
 		H.update_inv_r_hand()
 
-	return
 
 
 /obj/item/weapon/energy/sword/pirate

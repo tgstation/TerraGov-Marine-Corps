@@ -187,11 +187,16 @@
 	character.g_hair = g_hair
 	character.b_hair = b_hair
 
+	character.r_grad	= r_grad
+	character.g_grad	= g_grad
+	character.b_grad	= b_grad
+
 	character.r_facial = r_facial
 	character.g_facial = g_facial
 	character.b_facial = b_facial
 
 	character.h_style = h_style
+	character.grad_style= grad_style
 	character.f_style = f_style
 
 	character.citizenship = citizenship
@@ -208,7 +213,7 @@
 
 /datum/preferences/proc/random_character()
 	gender = pick(MALE, FEMALE)
-	var/datum/species/S = GLOB.all_species[DEFAULT_SPECIES]
+	var/datum/species/S = GLOB.all_species[species]
 	real_name = S.random_name(gender)
 	age = rand(AGE_MIN, AGE_MAX)
 	h_style = pick("Crewcut", "Bald", "Short Hair")

@@ -25,3 +25,17 @@
 	full_name = "Perform unique action"
 	description = ""
 	keybind_signal = COMSIG_KB_UNIQUEACTION
+
+/datum/keybinding/human/rail_attachment
+	hotkey_keys = list("F")
+	name = "rail_attachment"
+	full_name = "Activate Rail attachment"
+	description = ""
+	keybind_signal = COMSIG_KB_RAILATTACHMENT
+
+/datum/keybinding/human/toggle_aim_mode
+	hotkey_keys = list("6")
+	name = "toggle_aim_mode"
+	full_name = "Toggle aim mode"
+	description = ""
+	keybind_signal = COMSIG_KB_AIMMODE

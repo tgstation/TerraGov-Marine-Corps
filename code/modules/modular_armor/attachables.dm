@@ -2,7 +2,12 @@
 	Modular armor attachments
 
 	These are utilty attachments that equip into module slots on modular armor
+
 */
+
+/obj/item/armor_module/attachable
+	icon = 'icons/mob/modular/modular_armor_modules.dmi'
+
 /obj/item/armor_module/attachable/can_attach(mob/living/user, obj/item/clothing/suit/modular/parent, silent = FALSE)
 	. = ..()
 	if(!.)
@@ -32,7 +37,7 @@
 	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Substantially increases the power output of the Jaeger Combat Exoskeleton's mounted flashlight. Slows you down minorly."
 	icon_state = "mod_lamp_icon"
 	item_state = "mod_lamp"
-	slowdown = 0.2
+	slowdown = 0
 	var/power_boost = 5 /// The boost to armor shoulder light
 
 /obj/item/armor_module/attachable/better_shoulder_lamp/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
@@ -46,7 +51,8 @@
 /obj/item/armor_module/attachable/better_shoulder_lamp/mark1
 	name = "\improper Mark 1 Baldur Light Amplification System"
 	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Substantially increases the power output of the Jaeger Combat Exoskeleton's mounted flashlight. Slows you down minorly."
-	power_boost = 3 /// The boost to armor shoulder light
+	power_boost = 4 /// The boost to armor shoulder light
+	slowdown = 0.1
 
 /** Mini autodoc module */
 /obj/item/armor_module/attachable/valkyrie_autodoc
@@ -179,4 +185,38 @@
 /obj/item/armor_module/attachable/hlin_explosive_armor/do_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	parent.soft_armor = parent.soft_armor.detachArmor(soft_armor)
 	parent.slowdown -= slowdown
+	return ..()
+
+/** Extra armor module */
+/obj/item/armor_module/attachable/ballistic_armor
+	name = "\improper Ballistic Armor Reinforcement"
+	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. A substantial amount of additional armor plating designed to fit inside some of the vulnerable portions of the Jaeger Combat Exoskeleton conventional armor patterns against bullets and nothing else. Will definitely impact mobility."
+	icon_state = "mod_ff_icon"
+	item_state = "mod_ff"
+	soft_armor = list("melee" = 0, "bullet" = 40, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	slowdown = 0.2
+
+/obj/item/armor_module/attachable/ballistic_armor/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
+	. = ..()
+	parent.soft_armor = parent.soft_armor.attachArmor(soft_armor)
+	parent.slowdown += slowdown
+
+/obj/item/armor_module/attachable/ballistic_armor/do_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
+	parent.soft_armor = parent.soft_armor.detachArmor(soft_armor)
+	parent.slowdown -= slowdown
+	return ..()
+
+/obj/item/armor_module/attachable/chemsystem
+	name = "Vali chemical enhancement module"
+	desc = "A module that enhances the strength of reagents in the body. Requires a special substance, gathered from xenomorph lifeforms, to function.\nThis substance needs to be gathered using an applicable wepon or tool."
+	icon_state = "mod_chemsystem_icon"
+	item_state = "mod_chemsystem"
+
+/obj/item/armor_module/attachable/chemsystem/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
+	. = ..()
+	parent.AddComponent(/datum/component/chem_booster)
+
+/obj/item/armor_module/attachable/chemsystem/do_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
+	var/datum/component/chem_booster/chemsystem = parent.GetComponent(/datum/component/chem_booster)
+	chemsystem.RemoveComponent()
 	return ..()
