@@ -280,7 +280,7 @@
 
 /datum/game_mode/infestation/distress/attempt_to_join_as_larva(mob/xeno_candidate)
 	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
-	return HS.attempt_to_spawn_larva(xeno_candidate)
+	return HS.add_to_larva_candidate_queue(xeno_candidate)
 
 
 /datum/game_mode/infestation/distress/spawn_larva(mob/xeno_candidate, mob/living/carbon/xenomorph/mother)
