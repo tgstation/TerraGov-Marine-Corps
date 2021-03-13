@@ -475,6 +475,10 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	///Phantom zone reserved area
 	var/datum/turf_reservation/reserved_area
 
+/datum/action/xeno_action/activable/banish/Destroy()
+	. = ..()
+	QDEL_NULL(reserved_area) //clean up
+
 /datum/action/xeno_action/activable/banish/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 
@@ -514,7 +518,11 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		stasis_target.notransform = TRUE //Stasis
 		stasis_target.overlay_fullscreen("banish", /obj/screen/fullscreen/blind) //Force the blind overlay
 
-	reserved_area = SSmapping.RequestBlockReservation(3,3, SSmapping.transit.z_value, /datum/turf_reservation/brazil)
+	if(!reserved_area) //If we don't have a reserved area, set one
+		reserved_area = SSmapping.RequestBlockReservation(3,3, SSmapping.transit.z_value, /datum/turf_reservation/brazil)
+	if(!reserved_area) //If we *still* don't have a reserved area we've got a problem
+		CRASH("failed to reserve an area for [owner]'s Banish.")
+
 	var/turf/target_turf = pick(reserved_area.reserved_turfs)
 	new /area/arrival(target_turf) //So we don't get instagibbed from the space area
 	banishment_target.forceMove(target_turf)
@@ -567,7 +575,6 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		return
 
 	banishment_target.forceMove(get_turf(portal))
-	QDEL_NULL(reserved_area)
 	banishment_target.resistance_flags = initial(banishment_target.resistance_flags)
 	banishment_target.status_flags = initial(banishment_target.status_flags) //Remove stasis and temp invulerability
 	teleport_debuff_aoe(banishment_target) //Debuff/distortion when we reappear

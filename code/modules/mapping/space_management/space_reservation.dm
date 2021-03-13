@@ -14,7 +14,7 @@
 	turf_type = /turf/open/space/transit
 
 /datum/turf_reservation/brazil
-	turf_type = /turf/open/brazil_space
+	turf_type = /turf/closed/brazil_space
 
 /datum/turf_reservation/proc/Release()
 	var/v = reserved_turfs.Copy()
