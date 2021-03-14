@@ -754,7 +754,8 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE_STRONG,
 		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
-		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,)
+		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
+	)
 
 
 /datum/job/terragov/silicon/synthetic/get_special_name(client/preference_source)
