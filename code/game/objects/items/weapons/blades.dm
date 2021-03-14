@@ -151,7 +151,7 @@
 			if(!do_after(user, 2 SECONDS, TRUE, M, BUSY_ICON_DANGER))
 				return FALSE
 			new /obj/effect/temp_visual/telekinesis(get_turf(M))
-			M.heal_overall_damage(10, 0, TRUE)
+			M.heal_overall_damage(25, 0, TRUE)
 			loaded_reagent = null
 			return FALSE
 
