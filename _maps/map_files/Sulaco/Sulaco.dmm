@@ -528,9 +528,6 @@
 /obj/structure/sign/directions/science{
 	dir = 1
 	},
-/obj/machinery/camera/autoname{
-	dir = 1
-	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
@@ -11195,6 +11192,12 @@
 	},
 /turf/open/floor/wood,
 /area/sulaco/liaison)
+"daG" = (
+/obj/machinery/camera/autoname{
+	dir = 8
+	},
+/turf/open/floor/prison/whitegreen/corner,
+/area/sulaco/medbay/west)
 "dbH" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 8
@@ -12180,9 +12183,7 @@
 /area/sulaco/medbay/west)
 "fYC" = (
 /obj/machinery/iv_drip,
-/obj/machinery/camera/autoname{
-	dir = 1
-	},
+/obj/machinery/camera/autoname,
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/west)
 "gbY" = (
@@ -44609,7 +44610,7 @@ leD
 qxQ
 aam
 abE
-abG
+daG
 abY
 acm
 acy
