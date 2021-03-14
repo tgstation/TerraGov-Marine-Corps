@@ -36,7 +36,7 @@
 
 /obj/item/weapon/powerfist
 	name = "powerfist"
-	desc = "A metal gauntlet with a energy-powered fist to throw back enemies. Altclick to clamp it around your hand, use it to change power settings and screwdriver to pop out the cell."
+	desc = "A metal gauntlet with a energy-powered fist to throw back enemies. Altclick to clamp it around your hand, use it to change power settings and screwdriver to pop out the cell. It is compatible with <b>TX-73 lasrifle batteries</b>."
 	icon_state = "powerfist"
 	item_state = "powerfist"
 	flags_equip_slot = ITEM_SLOT_BELT
@@ -92,7 +92,8 @@
 	if(M.status_flags & INCORPOREAL || user.status_flags & INCORPOREAL) //Incorporeal beings cannot attack or be attacked
 		return
 
-	var/powerused = 370 * setting * setting
+	var/powerused = 50 * setting
+	var/punch_damage = force * setting
 	if(powerused > cell.charge)
 		to_chat(user, "<span class='warning'>\The [src]'s cell doesn't have enough power!</span>")
 		M.apply_damage((force/5), BRUTE)
@@ -100,7 +101,6 @@
 		M.visible_message("<span class='danger'>[user]'s powerfist lets out a dull thunk as they punch [M.name]!</span>", \
 			"<span class='userdanger'>[user] punches you!</span>")
 		return
-	M.apply_damage(force * setting, BRUTE) // Extra damage on top of hitting with obj force
 	M.visible_message("<span class='danger'>[user]'s powerfist shudders as they punch [M.name], flinging [(M.mob_size >= MOB_SIZE_BIG) ? "themself" : "them"] away!</span>", \
 		"<span class='userdanger'>[user]'s punch flings [(M.mob_size >= MOB_SIZE_BIG) ? "them" : "you"] backwards!</span>")
 	playsound(loc, 'sound/weapons/energy_blast.ogg', 50, TRUE)
@@ -110,19 +110,24 @@
 		throw_range = 1
 
 	if(M.mob_size >= MOB_SIZE_BIG) // Hitting big xenos causes the user to be thrown instead
-		M.apply_damage(force * setting, BRUTE) // Also double ouchies
+		punch_damage *= 2
 		to_chat(user, "<span class='userdanger'>[M.name] is so massive the impact force hits twice as hard!</span>")
 		var/atom/self_throw_target = get_edge_target_turf(user, get_dir(M, user))
 		user.throw_at(self_throw_target, throw_range, 0.5 + (setting / 2))
+		shake_camera(M, 2, 1)
+		M.apply_effects(weaken = 1)
+		M.adjust_stagger(1)
+		M.add_slowdown(0.5)
 	else
 		var/atom/throw_target = get_edge_target_turf(M, get_dir(src, get_step_away(M, src)))
 		M.throw_at(throw_target, throw_range, 0.5 + (setting / 2))
 
+	M.apply_damage(punch_damage, BRUTE) // Extra damage on top of hitting with obj force
 	cell.charge -= powerused
 	return ..()
 
 /obj/item/weapon/powerfist/attackby(obj/item/I, mob/user, params)
-	if(!istype(I, /obj/item/cell))
+	if(!istype(I, /obj/item/cell/lasgun/lasrifle))
 		return ..()
 	if(cell)
 		to_chat(user, "<span class='warning'>There already is a cell installed!</span>")
