@@ -9,39 +9,19 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
-"f" = (
-/turf/template_noop,
-/area/template_noop)
-"g" = (
-/obj/structure/bed/chair/dropship/passenger{
-	dir = 8
-	},
-/turf/open/shuttle/dropship/floor,
-/area/shuttle/minidropship)
 "h" = (
-/obj/structure/bed/chair/dropship/passenger{
-	dir = 4
-	},
-/turf/open/shuttle/dropship/floor,
-/area/shuttle/minidropship)
-"i" = (
-/obj/machinery/light,
-/turf/open/shuttle/blackfloor,
-/area/shuttle/minidropship)
-"l" = (
-/obj/structure/bed/chair/dropship/passenger{
-	dir = 8
-	},
-/obj/machinery/vending/nanomed{
-	dir = 8
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/shuttle/dropship/floor,
+/obj/structure/bed/chair/dropship/passenger,
+/turf/open/floor/mainship_hull,
 /area/shuttle/minidropship)
 "o" = (
 /turf/closed/wall/mainship/outer,
+/area/shuttle/minidropship)
+"p" = (
+/obj/structure/bed/chair/dropship/passenger,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/mainship_hull,
 /area/shuttle/minidropship)
 "q" = (
 /obj/machinery/door/poddoor/mainship/open{
@@ -54,42 +34,38 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "r" = (
-/obj/structure/shuttle/engine/propulsion/burst/left,
-/turf/open/floor/podhatch/floor,
+/turf/open/floor/mainship_hull,
 /area/shuttle/minidropship)
 "s" = (
-/obj/machinery/door/poddoor/mainship/open{
-	id = "minidropship_podlock"
-	},
-/obj/machinery/door/poddoor/shutters/transit,
-/turf/open/floor/mainship/mono,
-/area/shuttle/minidropship)
-"u" = (
-/obj/effect/attach_point/weapon/minidropship{
+/obj/structure/bed/chair/dropship/passenger,
+/obj/machinery/light{
 	dir = 8
 	},
-/turf/closed/wall/mainship/outer,
+/turf/open/floor/mainship_hull,
 /area/shuttle/minidropship)
 "z" = (
-/obj/machinery/computer/dropship_weapons/minidropship,
-/turf/open/shuttle/blackfloor,
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/obj/machinery/light,
+/turf/open/floor/mainship_hull,
 /area/shuttle/minidropship)
 "A" = (
-/obj/structure/window/framed/mainship/hull,
-/turf/open/floor/mainship/mono,
+/turf/template_noop,
 /area/shuttle/minidropship)
 "F" = (
 /obj/docking_port/mobile/marine_dropship/minidropship,
-/turf/open/shuttle/dropship/grating,
+/turf/open/floor/mainship_hull,
 /area/shuttle/minidropship)
 "L" = (
-/obj/machinery/computer/shuttle/minidropship,
-/turf/open/shuttle/blackfloor,
+/obj/structure/window/framed/mainship/hull,
+/turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "N" = (
 /obj/structure/bed/chair/dropship/pilot{
 	dir = 1
 	},
+/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship,
 /turf/open/shuttle/blackfloor,
 /area/shuttle/minidropship)
 "O" = (
@@ -99,116 +75,103 @@
 	},
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/minidropship)
-"S" = (
-/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship,
-/turf/open/shuttle/blackfloor,
+"R" = (
+/obj/structure/shuttle/engine/propulsion/burst/left,
+/turf/open/floor/podhatch/floor,
 /area/shuttle/minidropship)
-"T" = (
+"S" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 8
 	},
+/obj/machinery/light,
+/turf/open/floor/mainship_hull,
+/area/shuttle/minidropship)
+"T" = (
 /obj/machinery/door_control{
 	id = "minidropship_podlock";
 	name = "outer door-control";
 	pixel_y = 32
 	},
-/turf/open/shuttle/dropship/floor,
+/obj/structure/bed/chair/dropship/passenger,
+/turf/open/floor/mainship_hull,
 /area/shuttle/minidropship)
 "U" = (
-/obj/effect/attach_point/weapon/minidropship{
-	dir = 4
+/obj/machinery/door/poddoor/mainship/open{
+	id = "minidropship_podlock"
 	},
-/turf/closed/wall/mainship/outer,
-/area/shuttle/minidropship)
-"X" = (
-/obj/structure/bed/chair/dropship/passenger{
-	dir = 4
-	},
-/obj/machinery/vending/nanomed{
-	dir = 4
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/shuttle/dropship/floor,
+/obj/machinery/door/poddoor/shutters/transit,
+/turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "Y" = (
 /turf/open/shuttle/dropship/grating,
 /area/shuttle/minidropship)
 
 (1,1,1) = {"
-f
-f
-o
-r
-f
-f
-u
-o
-a
-"}
-(2,1,1) = {"
-o
+A
 A
 o
 o
-s
-s
+U
+U
 o
+R
+"}
+(2,1,1) = {"
+A
+A
 o
+s
+r
+r
+z
 o
 "}
 (3,1,1) = {"
-A
-S
-i
+o
+L
 o
 h
-h
-X
-h
+r
+Y
+r
 q
 "}
 (4,1,1) = {"
-A
 L
 N
 O
 F
 Y
 c
-Y
+r
 q
 "}
 (5,1,1) = {"
-A
-z
-i
+o
+L
 o
 T
-g
-l
-g
+r
+Y
+r
 q
 "}
 (6,1,1) = {"
-o
+A
 A
 o
-o
-s
-s
-o
-o
+p
+r
+r
+S
 o
 "}
 (7,1,1) = {"
-f
-f
+A
+A
 o
-a
-f
-f
+o
+U
 U
 o
 a

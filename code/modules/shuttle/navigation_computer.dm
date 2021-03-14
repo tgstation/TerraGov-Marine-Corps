@@ -5,8 +5,12 @@
 
 	/// Action of rotating the shuttle around its center
 	var/datum/action/innate/shuttledocker_rotate/rotate_action = new
-	/// Action of placing the shuttle custom landing zone
-	var/datum/action/innate/shuttledocker_place/place_action = new
+	/// Action of landing to a custom zone
+	var/datum/action/innate/shuttledocker_land/land_action = new
+	/// Action of landing the dropship back to mainship
+	var/datum/action/innate/shuttledocker_back_to_ship/return_to_ship_action = new
+	/// Action of sending the dropship in the atmosphere
+	var/datum/action/innate/shuttledocker_take_off/take_off_action = new
 	/// The id of the shuttle linked to this console
 	var/shuttleId = ""
 	/// The id of the custom docking port placed by this console
@@ -19,6 +23,8 @@
 	var/obj/docking_port/stationary/my_port
 	/// The mobile docking port of the connected shuttle
 	var/obj/docking_port/mobile/shuttle_port
+	/// The id of the stationary docking port on the ship
+	var/origin_port_id = ""
 	/// Traits forbided for custom docking
 	var/list/locked_traits = list(ZTRAIT_RESERVED, ZTRAIT_CENTCOM)
 	/// Dimensions of the viewport when using this console
@@ -37,6 +43,8 @@
 	var/turf/designating_target_loc
 	/// The console is unusable when jammed
 	var/jammed = FALSE
+	///The flying state of the shuttle
+	var/fly_state = SHUTTLE_ON_SHIP
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/Initialize(mapload)
 	. = ..()
@@ -55,6 +63,7 @@
 		if(jumpto_ports[S.id])
 			z_lock |= S.z
 	whitelist_turfs = typecacheof(whitelist_turfs)
+	RegisterSignal(shuttle_port, COMSIG_SHUTTLE_SETMODE, .proc/give_actions)
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/Destroy()
 	. = ..()
@@ -81,18 +90,36 @@
 	..()
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/give_actions(mob/living/user)
-	if(jumpto_ports.len)
-		jump_action = new /datum/action/innate/camera_jump/shuttle_docker
-	..()
-	if(rotate_action)
-		rotate_action.target = user
-		rotate_action.give_action(user)
-		actions += rotate_action
+	if(!user)
+		if(!current_user)
+			return
+		user = current_user
+	
+	if(off_action)
+		off_action.target = user
+		off_action.give_action(user)
+		actions |= off_action
 
-	if(place_action)
-		place_action.target = user
-		place_action.give_action(user)
-		actions += place_action
+	if(fly_state == SHUTTLE_IN_ATMOSPHERE)
+		if(rotate_action)
+			rotate_action.target = user
+			rotate_action.give_action(user)
+			actions |= rotate_action
+
+		if(land_action)
+			land_action.target = user
+			land_action.give_action(user)
+			actions |= land_action
+		if(return_to_ship_action)
+			return_to_ship_action.target = user
+			return_to_ship_action.give_action(user)
+			actions += return_to_ship_action
+		return
+	
+	if(take_off_action)
+		take_off_action.target = user
+		take_off_action.give_action(user)
+		actions |= take_off_action		
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/CreateEye()
 	shuttle_port = SSshuttle.getShuttle(shuttleId)
@@ -327,8 +354,8 @@
 	console.checkLandingSpot()
 
 /mob/camera/aiEye/remote/shuttle_docker/update_remote_sight(mob/living/user)
-	user.sight = BLIND|SEE_TURFS
-	user.lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
+	user.see_in_dark = 6
+	user.lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
 	user.sync_lighting_plane_alpha()
 	return TRUE
 
@@ -345,18 +372,49 @@
 	var/obj/machinery/computer/camera_advanced/shuttle_docker/origin = remote_eye.origin
 	origin.rotateLandingSpot()
 
-/datum/action/innate/shuttledocker_place
-	name = "Place"
+/datum/action/innate/shuttledocker_land
+	name = "Land"
 	action_icon = 'icons/mecha/actions_mecha.dmi'
-	action_icon_state = "mech_zoom_off"
+	action_icon_state = "land"
 
-/datum/action/innate/shuttledocker_place/Activate()
+/datum/action/innate/shuttledocker_land/Activate()
 	if(QDELETED(target) || !isliving(target))
 		return
 	var/mob/living/C = target
 	var/mob/camera/aiEye/remote/remote_eye = C.remote_control
 	var/obj/machinery/computer/camera_advanced/shuttle_docker/origin = remote_eye.origin
-	origin.placeLandingSpot(target)
+	if(!origin.placeLandingSpot(target))
+		return
+	SSshuttle.moveShuttle(origin.shuttleId, origin.my_port.id, TRUE)
+
+
+/datum/action/innate/shuttledocker_take_off
+	name = "Take off"
+	action_icon = 'icons/mecha/actions_mecha.dmi'
+	action_icon_state = "take_off"
+
+/datum/action/innate/shuttledocker_take_off/Activate()
+	if(QDELETED(target) || !isliving(target))
+		return
+	var/mob/living/C = target
+	var/mob/camera/aiEye/remote/remote_eye = C.remote_control
+	var/obj/machinery/computer/camera_advanced/shuttle_docker/origin = remote_eye.origin
+	SSshuttle.moveShuttleToTransit(origin.shuttleId, TRUE)
+
+/datum/action/innate/shuttledocker_back_to_ship
+	name = "Return to ship"
+	action_icon = 'icons/mecha/actions_mecha.dmi'
+	action_icon_state = "return_to_ship"
+
+/datum/action/innate/shuttledocker_back_to_ship/Activate()
+	if(QDELETED(target) || !isliving(target))
+		return
+	var/mob/living/C = target
+	var/mob/camera/aiEye/remote/remote_eye = C.remote_control
+	var/obj/machinery/computer/camera_advanced/shuttle_docker/origin = remote_eye.origin
+	if(!origin.origin_port_id)
+		return
+	SSshuttle.moveShuttle(origin.shuttleId, origin.origin_port_id, TRUE)
 
 /datum/action/innate/camera_jump/shuttle_docker
 	name = "Jump to Location"

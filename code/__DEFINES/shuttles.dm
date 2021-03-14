@@ -81,3 +81,9 @@
 //Shuttle defaults
 #define SHUTTLE_DEFAULT_SHUTTLE_AREA_TYPE /area/shuttle
 #define SHUTTLE_DEFAULT_UNDERLYING_AREA /area/space
+
+//Shuttle flying state
+#define SHUTTLE_ON_SHIP "on_ship"
+#define SHUTTLE_IN_SPACE "in_space"
+#define SHUTTLE_IN_ATMOSPHERE "in_atmosphere"
+#define SHUTTLE_ON_GROUND "on_ground"

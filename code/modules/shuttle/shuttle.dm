@@ -505,6 +505,8 @@
 
 
 /obj/docking_port/mobile/proc/on_prearrival()
+	if(destination.loc == previous.loc)
+		return
 	if(destination)
 		playsound(destination.return_center_turf(), landing_sound, 60, 0)
 	playsound(return_center_turf(), landing_sound, 60, 0)

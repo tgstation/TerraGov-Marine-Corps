@@ -9,15 +9,16 @@
 	dwidth = 0
 	dheight = 0
 	width = 7
-	height = 9
-	callTime = 15 SECONDS
-	rechargeTime = 3 MINUTES
+	height = 8
+	callTime = 5 SECONDS
+	rechargeTime = 1 MINUTES
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship
 	name = "Tadpole navigation computer"
 	desc = "Used to designate a precise transit location for the Tadpole."
-	icon_state = "maptable"
+	icon_state = "shuttlecomputer"
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	density = FALSE
 	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LEADER)
 	shuttleId = "minidropship"
 	lock_override = CAMERA_LOCK_GROUND
@@ -25,18 +26,4 @@
 	view_range = "26x26"
 	x_offset = 0
 	y_offset = 0
-	designate_time = 100
-
-// No lockable side or rear doors
-/obj/machinery/computer/shuttle/minidropship
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
-	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LEADER)
-	shuttleId = "minidropship"
-	possible_destinations = "minidropship;minidropship_custom"
-
-/obj/machinery/computer/dropship_weapons/minidropship
-	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = "cameras"
-	name = "\improper 'Tadpole' weapons controls"
-	shuttle_tag = "minidropship"
-	req_access = list(ACCESS_MARINE_DROPSHIP)
+	origin_port_id = "minidropship"

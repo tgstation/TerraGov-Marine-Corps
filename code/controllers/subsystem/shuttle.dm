@@ -131,12 +131,19 @@ SUBSYSTEM_DEF(shuttle)
 
 	return moveShuttleToDock(shuttleId, D, timed)
 
+/datum/controller/subsystem/shuttle/proc/moveShuttleToTransit(shuttleId, timed)
+	var/obj/docking_port/mobile/M = getShuttle(shuttleId)
+	var/obj/docking_port/stationary/D = generate_transit_dock(M)
+	if(!D)
+		return
+	moveShuttleToDock(shuttleId, D, timed)
+
 /datum/controller/subsystem/shuttle/proc/moveShuttleToDock(shuttleId, obj/docking_port/stationary/D, timed)
 	var/obj/docking_port/mobile/M = getShuttle(shuttleId)
-
 	if(!M)
 		return 1
 	if(timed)
+		M.use_ripples = !(M.destination.loc == M.previous.loc)
 		if(M.request(D))
 			return 2
 	else
