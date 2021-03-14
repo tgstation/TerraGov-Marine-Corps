@@ -143,7 +143,6 @@ SUBSYSTEM_DEF(shuttle)
 	if(!M)
 		return 1
 	if(timed)
-		M.use_ripples = !(M.destination.loc == M.previous.loc)
 		if(M.request(D))
 			return 2
 	else

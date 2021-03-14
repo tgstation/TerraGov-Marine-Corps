@@ -43,8 +43,12 @@
 	var/turf/designating_target_loc
 	/// The console is unusable when jammed
 	var/jammed = FALSE
-	///The flying state of the shuttle
+	/// The current flying state of the shuttle
 	var/fly_state = SHUTTLE_ON_SHIP
+	/// The next flying state of the shuttle
+	var/next_fly_state = SHUTTLE_ON_SHIP
+	/// If the next destination is a transit
+	var/to_transit = TRUE
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/Initialize(mapload)
 	. = ..()
@@ -63,7 +67,6 @@
 		if(jumpto_ports[S.id])
 			z_lock |= S.z
 	whitelist_turfs = typecacheof(whitelist_turfs)
-	RegisterSignal(shuttle_port, COMSIG_SHUTTLE_SETMODE, .proc/give_actions)
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/Destroy()
 	. = ..()
@@ -89,6 +92,13 @@
 		return
 	..()
 
+/obj/machinery/computer/camera_advanced/shuttle_docker/proc/shuttle_arrived()
+	if(to_transit)
+		to_transit = FALSE
+		return
+	fly_state = next_fly_state
+	give_actions()
+
 /obj/machinery/computer/camera_advanced/shuttle_docker/give_actions(mob/living/user)
 	if(!user)
 		if(!current_user)
@@ -110,6 +120,7 @@
 			land_action.target = user
 			land_action.give_action(user)
 			actions |= land_action
+		
 		if(return_to_ship_action)
 			return_to_ship_action.target = user
 			return_to_ship_action.give_action(user)
@@ -126,7 +137,7 @@
 	if(QDELETED(shuttle_port))
 		shuttle_port = null
 		return
-
+	shuttle_port.shuttle = src
 	eyeobj = new /mob/camera/aiEye/remote/shuttle_docker(null, src)
 	var/mob/camera/aiEye/remote/shuttle_docker/the_eye = eyeobj
 	the_eye.setDir(shuttle_port.dir)
@@ -399,6 +410,8 @@
 	var/mob/living/C = target
 	var/mob/camera/aiEye/remote/remote_eye = C.remote_control
 	var/obj/machinery/computer/camera_advanced/shuttle_docker/origin = remote_eye.origin
+	origin.to_transit = TRUE
+	origin.next_fly_state = SHUTTLE_IN_ATMOSPHERE
 	SSshuttle.moveShuttleToTransit(origin.shuttleId, TRUE)
 
 /datum/action/innate/shuttledocker_back_to_ship

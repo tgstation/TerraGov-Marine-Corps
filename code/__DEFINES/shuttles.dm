@@ -84,6 +84,5 @@
 
 //Shuttle flying state
 #define SHUTTLE_ON_SHIP "on_ship"
-#define SHUTTLE_IN_SPACE "in_space"
 #define SHUTTLE_IN_ATMOSPHERE "in_atmosphere"
 #define SHUTTLE_ON_GROUND "on_ground"
