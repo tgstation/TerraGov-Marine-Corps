@@ -105,7 +105,7 @@
 		return
 	user.visible_message("<span class='notice'>[user] starts assembling a sandbag barricade.</span>",
 	"<span class='notice'>You start assembling a sandbag barricade.</span>")
-	var/building_time = 2 SECONDS *(1 - clamp(usr.skills.getRating("construction") * 0.10, 0 , 0.50))
+	var/building_time = 2 SECONDS *(1 - clamp(user.skills.getRating("construction") * 0.10, 0 , 0.50))
 	if(!do_after(user, building_time, TRUE, src, BUSY_ICON_BUILD))
 		return
 	for(var/obj/O in user.loc) //Objects, we don't care about mobs. Turfs are checked elsewhere
