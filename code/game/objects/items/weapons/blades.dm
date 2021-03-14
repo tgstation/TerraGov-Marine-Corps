@@ -111,7 +111,7 @@
 		to_chat(user, "<span class='rose'>The blade is powered with [loaded_reagent.name]. You can release the effect by stabbing a creature.</span>")
 		return FALSE
 
-	if(beaker.reagents.total_volume < 10)
+	if(beaker.reagents.total_volume < 5)
 		to_chat(user, "<span class='rose'>You don't have enough substance.</span>")
 		return FALSE
 
@@ -124,7 +124,7 @@
 		return FALSE
 
 	loaded_reagent = beaker.reagents.reagent_list[1]
-	beaker.reagents.remove_any(10)
+	beaker.reagents.remove_any(5)
 	return TRUE
 
 /obj/item/weapon/claymore/harvester/attack(mob/living/M, mob/living/user)
@@ -136,22 +136,25 @@
 
 	switch(loaded_reagent.type)
 		if(/datum/reagent/medicine/tramadol)
-			M.apply_status_effect(/datum/status_effect/incapacitating/harvester_slowdown, 2 SECONDS)
+			M.apply_damage(force*0.6, BRUTE, user.zone_selected)
+			M.apply_status_effect(/datum/status_effect/incapacitating/harvester_slowdown, 1 SECONDS)
 
 		if(/datum/reagent/medicine/kelotane)
-			var/turf/target = get_turf(M)
-			target.ignite()
 			var/list/cone_turfs = generate_cone(user, 2, 1, 91, Get_Angle(user, M.loc))
 			for(var/X in cone_turfs)
 				var/turf/T = X
-				T.ignite()
+				for(var/mob/living/C in T)
+					C.flamer_fire_act(10)
+					C.apply_damage(20, BURN, user.zone_selected, C.get_soft_armor("fire", user.zone_selected))
+					if(C.IgniteMob())
+						C.visible_message("<span class='danger'>[C] bursts into flames!</span>","[isxeno(C)?"<span class='xenodanger'>":"<span class='highdanger'>"]You burst into flames!</span>")
 
 		if(/datum/reagent/medicine/bicaridine)
 			to_chat(user, "<span class='rose'>You prepare to stab [M]!</span>")
 			if(!do_after(user, 2 SECONDS, TRUE, M, BUSY_ICON_DANGER))
 				return FALSE
 			new /obj/effect/temp_visual/telekinesis(get_turf(M))
-			M.heal_overall_damage(25, 0, TRUE)
+			M.heal_overall_damage(12.5, 0, TRUE)
 			loaded_reagent = null
 			return FALSE
 
