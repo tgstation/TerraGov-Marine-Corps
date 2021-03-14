@@ -94,7 +94,7 @@ Godspeed, captain! And remember, you are not above the law."})
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
-		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 	)
 
 /datum/job/terragov/command/fieldcommander/after_spawn(mob/living/L, mob/M, latejoin)
