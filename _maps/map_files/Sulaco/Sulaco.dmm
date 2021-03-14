@@ -2897,9 +2897,6 @@
 /turf/open/floor/prison,
 /area/sulaco/cargo/office)
 "anI" = (
-/obj/machinery/camera/autoname{
-	dir = 4
-	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 4
@@ -16073,6 +16070,12 @@
 "pLJ" = (
 /turf/closed/wall/mainship/gray/outer,
 /area/sulaco/bridge/office)
+"pLQ" = (
+/obj/machinery/camera/autoname{
+	dir = 4
+	},
+/turf/open/floor/prison/marked,
+/area/sulaco/hallway/central_hall)
 "pLR" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
@@ -42436,7 +42439,7 @@ mDu
 aYZ
 apB
 asn
-asn
+pLQ
 anI
 aoh
 awI
