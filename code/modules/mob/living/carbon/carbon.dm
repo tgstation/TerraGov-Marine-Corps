@@ -475,6 +475,12 @@
 	if(stat == UNCONSCIOUS)
 		blind_eyes(1)
 		disabilities |= DEAF
+		if(ishuman(src)) //registers signal for xeno critdragging
+			var/mob/living/carbon/human/human = src
+			RegisterSignal(human, COMSIG_MOVABLE_PULL_MOVED, /mob/living/carbon/human.proc/oncritdrag)
 	else if(. == UNCONSCIOUS)
 		adjust_blindness(-1)
 		disabilities &= ~DEAF
+		if(ishuman(src)) //unregisters signal for xeno critdragging
+			var/mob/living/carbon/human/human = src
+			UnregisterSignal(human, COMSIG_MOVABLE_PULL_MOVED)
