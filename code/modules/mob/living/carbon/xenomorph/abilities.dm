@@ -1328,7 +1328,7 @@
 	victim.forceMove(X)
 	X.do_jitter_animation()
 	if(!do_after(X, cocoon_production_time, FALSE, null, BUSY_ICON_DANGER))
-		to_chat(owner, "<span class='warning'>We moved too soon and we will have to devour our victim again.</span>")
+		to_chat(owner, "<span class='warning'>We moved too soon and we will have to devour our victim again!</span>")
 		X.eject_victim(FALSE)
 		return fail_activate()
 	victim.dead_ticks = 0
