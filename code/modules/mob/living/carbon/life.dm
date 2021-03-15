@@ -46,7 +46,7 @@
 				
 /mob/living/carbon/human/proc/oncritdrag() //critdragging function, used in signals
 	if(isxeno(pulledby))
-		adjustOxyLoss(5)
+		adjustOxyLoss(5) //take 5 oxy damage per tile dragged
 
 /mob/living/carbon/update_stat()
 	. = ..()
