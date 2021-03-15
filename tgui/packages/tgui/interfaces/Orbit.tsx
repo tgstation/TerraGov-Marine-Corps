@@ -112,8 +112,7 @@ const OrbitedButton = (
 };
 
 export const Orbit = (props: any, context: any) => {
-  const { act } = useBackend(context);
-  const { data } = useBackend<OrbitData>(context);
+  const { act, data } = useBackend<OrbitData>(context);
   const {
     humans,
     marines,
