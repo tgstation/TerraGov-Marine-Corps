@@ -1,0 +1,4 @@
+author: "2whatever2"
+delete-after: True
+changes: 
+  - balance: "Incendiary OB now drops a 17 tile WP smoke that lasts for half the duration of the OB (flame_duration 40, warcrime 20)"
