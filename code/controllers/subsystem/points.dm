@@ -12,7 +12,7 @@ SUBSYSTEM_DEF(points)
 
 	wait = 10 SECONDS
 
-	var/dropship_points = 0
+	var/dropship_points = 2275			// hey imagine a drone except they are sleeping on your couch and ur jacket is kind of under them with the blankets do you wake em up"
 	var/supply_points = 120
 	///Assoc list of xeno points: xeno_points_by_hive["hivenum"]
 	var/list/xeno_points_by_hive = list()

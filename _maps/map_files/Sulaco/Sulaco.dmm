@@ -1821,10 +1821,6 @@
 	dir = 4
 	},
 /area/sulaco/engineering/atmos)
-"agb" = (
-/obj/structure/dropship_equipment/weapon/minirocket_pod,
-/turf/open/floor/prison,
-/area/sulaco/hangar)
 "agm" = (
 /obj/machinery/vending/engivend{
 	req_access = null
@@ -8250,10 +8246,6 @@
 "aMF" = (
 /turf/closed/wall/mainship/gray/outer,
 /area/sulaco/marine/bravo)
-"aMP" = (
-/obj/structure/dropship_equipment/weapon/heavygun,
-/turf/open/floor/prison,
-/area/sulaco/hangar)
 "aMR" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/prison,
@@ -10891,10 +10883,6 @@
 	dir = 9
 	},
 /area/sulaco/research)
-"cpN" = (
-/obj/structure/ship_ammo/heavygun,
-/turf/open/floor/prison,
-/area/sulaco/hangar)
 "crv" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
@@ -13581,7 +13569,6 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/structure/ship_ammo/minirocket/illumination,
 /turf/open/floor/prison,
 /area/sulaco/hangar)
 "jWd" = (
@@ -13770,10 +13757,6 @@
 	dir = 8
 	},
 /turf/open/floor/prison/bright_clean,
-/area/sulaco/hangar)
-"kut" = (
-/obj/structure/ship_ammo/minirocket,
-/turf/open/floor/prison,
 /area/sulaco/hangar)
 "kuz" = (
 /obj/machinery/camera/autoname,
@@ -14928,15 +14911,6 @@
 /obj/machinery/firealarm,
 /turf/open/floor/mainship/ai,
 /area/sulaco/command/ai)
-"npi" = (
-/obj/structure/ship_ammo/minirocket/illumination,
-/turf/open/floor/prison,
-/area/sulaco/hangar)
-"nqJ" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/ship_ammo/minirocket,
-/turf/open/floor/prison,
-/area/sulaco/hangar)
 "nrN" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1{
@@ -15075,7 +15049,6 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/structure/ship_ammo/heavygun,
 /turf/open/floor/prison,
 /area/sulaco/hangar)
 "nOO" = (
@@ -16403,7 +16376,6 @@
 /turf/open/floor/prison,
 /area/mainship/living/pilotbunks)
 "qOd" = (
-/obj/structure/ship_ammo/minirocket/illumination,
 /obj/machinery/camera/autoname{
 	dir = 4
 	},
@@ -18055,7 +18027,6 @@
 /area/sulaco/hallway/lower_main_hall)
 "uXj" = (
 /obj/machinery/camera/autoname,
-/obj/structure/ship_ammo/rocket/banshee,
 /turf/open/floor/prison,
 /area/sulaco/hangar)
 "uXn" = (
@@ -18121,10 +18092,6 @@
 /obj/structure/rack,
 /obj/item/reagent_containers/jerrycan,
 /obj/item/reagent_containers/jerrycan,
-/turf/open/floor/prison,
-/area/sulaco/hangar)
-"vfc" = (
-/obj/structure/ship_ammo/rocket/widowmaker,
 /turf/open/floor/prison,
 /area/sulaco/hangar)
 "vgl" = (
@@ -48445,18 +48412,18 @@ bFa
 bFa
 aQa
 cdy
-aMP
 cdy
-agb
+cdy
+cdy
 nOM
-cpN
+cdy
 lDT
-kut
-nqJ
+cdy
+aaO
 qOd
-jVN
-npi
-npi
+nOM
+cdy
+cdy
 aSl
 aPY
 aWG
@@ -50752,7 +50719,7 @@ aaa
 nzi
 mDu
 bFa
-vfc
+cdy
 rpN
 gyp
 aPZ
