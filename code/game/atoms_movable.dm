@@ -279,7 +279,6 @@
 
 /atom/movable/proc/Moved(atom/oldloc, direction, Forced = FALSE)
 	SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, oldloc, direction, Forced)
-	var/mob/living/carbon/human/H = src
 	if(pulledby)
 		SEND_SIGNAL(src, COMSIG_MOVABLE_PULL_MOVED, oldloc, direction, Forced)
 	for(var/thing in light_sources) // Cycle through the light sources on this atom and tell them to update.
