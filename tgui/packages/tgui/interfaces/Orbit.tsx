@@ -7,8 +7,9 @@ import { Window } from '../layouts';
 
 const PATTERN_NUMBER = / \(([0-9]+)\)$/;
 
-const searchFor = (searchText: string) =>
-  createSearch(searchText, (thing: { name: string}) => thing.name);
+const searchFor = (searchText: string) => {
+  return createSearch(searchText, (thing: { name: string}) => thing.name);
+};
 
 const compareNumberedText = (
   a: { name: string },
@@ -49,7 +50,7 @@ interface OrbitData {
   ghosts: OrbitList[],
   misc: OrbitList[],
   npcs: OrbitList[],
-  auto_observe: BooleanLike
+  auto_observe: BooleanLike,
 }
 
 const BasicSection = (
@@ -118,11 +119,11 @@ export const Orbit = (context: any) => {
     marines,
     survivors,
     xenos,
-    auto_observe,
     dead,
     ghosts,
     misc,
     npcs,
+    auto_observe,
   } = data;
 
   const [searchText, setSearchText] = useLocalState(context, "searchText", "");
