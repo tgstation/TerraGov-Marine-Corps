@@ -1267,7 +1267,7 @@
 	keybind_signal = COMSIG_XENOABILITY_REGURGITATE
 	plasma_cost = 100
 	///In how much time the cocoon will be ejected
-	var/cocoon_production_time = 2 SECONDS
+	var/cocoon_production_time = 5 SECONDS
 
 /datum/action/xeno_action/activable/devour/can_use_ability(atom/A, silent, override_flags)
 	. = ..()
@@ -1317,16 +1317,20 @@
 	var/mob/living/carbon/human/victim = A
 	if(!do_after(X, 10 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, /mob.proc/break_do_after_checks, list("health" = X.health))))
 		to_chat(owner, "<span class='warning'>We stop devouring \the [victim]. They probably tasted gross anyways.</span>")
-		return FALSE
+		return fail_activate()
 	if(HAS_TRAIT(victim, TRAIT_PSY_DRAINED))
 		to_chat(owner, "<span class='warning'>Someone drained the life force of our victim before we could devour it!</span>")
 		return fail_activate()
 	owner.visible_message("<span class='warning'>[X] devours [victim]!</span>", \
 	"<span class='warning'>We devour [victim]!</span>", null, 5)
-	to_chat(owner, "<span class='warning'>We will eject the cocoon in [cocoon_production_time / 10] seconds!</span>")
+	to_chat(owner, "<span class='warning'>We will eject the cocoon in [cocoon_production_time / 10] seconds! Do not move until it is done.</span>")
 	LAZYADD(X.stomach_contents, victim)
 	victim.forceMove(X)
+	X.do_jitter_animation()
+	if(!do_after(X, cocoon_production_time, FALSE, null, BUSY_ICON_DANGER))
+		to_chat(owner, "<span class='warning'>We moved too soon and we will have to devour our victim again.</span>")
+		X.eject_victim(FALSE)
+		return fail_activate()
 	victim.dead_ticks = 0
 	ADD_TRAIT(victim, TRAIT_STASIS, TRAIT_STASIS)
-	addtimer(CALLBACK(X, /mob/living/carbon/xenomorph.proc/do_jitter_animation), cocoon_production_time - 2)
-	addtimer(CALLBACK(X, /mob/living/carbon/xenomorph.proc/eject_victim, TRUE), cocoon_production_time)
+	X.eject_victim(TRUE)
