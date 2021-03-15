@@ -67,6 +67,7 @@
 		if(jumpto_ports[S.id])
 			z_lock |= S.z
 	whitelist_turfs = typecacheof(whitelist_turfs)
+	set_light(3,3)
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/Destroy()
 	. = ..()
@@ -95,6 +96,8 @@
 /obj/machinery/computer/camera_advanced/shuttle_docker/proc/shuttle_arrived()
 	if(to_transit)
 		to_transit = FALSE
+		return
+	if(fly_state == next_fly_state)
 		return
 	fly_state = next_fly_state
 	give_actions()
@@ -421,6 +424,7 @@
 	if(!origin.placeLandingSpot(target))
 		return
 	origin.next_fly_state = SHUTTLE_ON_GROUND
+	remote_eye.canmove = FALSE
 	SSshuttle.moveShuttleQuickToDock(origin.shuttleId, origin.my_port.id)
 
 
@@ -435,7 +439,8 @@
 	var/mob/living/C = target
 	var/mob/camera/aiEye/remote/remote_eye = C.remote_control
 	var/obj/machinery/computer/camera_advanced/shuttle_docker/origin = remote_eye.origin
-	origin.to_transit = TRUE
+	if(origin.fly_state == SHUTTLE_ON_GROUND)
+		origin.to_transit = TRUE
 	origin.next_fly_state = SHUTTLE_IN_ATMOSPHERE
 	SSshuttle.moveShuttleToTransit(origin.shuttleId, TRUE)
 
