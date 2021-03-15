@@ -36,12 +36,13 @@ const compareNumberedText = (
   return aName.localeCompare(bName);
 };
 
-interface OrbitList {
+type OrbitList = {
   name: string,
   ref: string,
   orbiters: number,
 }
-interface OrbitData {
+
+type OrbitData = {
   humans: OrbitList[],
   marines: OrbitList[],
   survivors: OrbitList[],
@@ -53,14 +54,18 @@ interface OrbitData {
   auto_observe: BooleanLike,
 }
 
-const BasicSection = (
-  props: {
-    searchText: string,
-    source: OrbitList[],
-    title: string,
-  },
-  context: any
-) => {
+type BasicSectionProps = {
+  searchText: string,
+  source: OrbitList[],
+  title: string,
+}
+
+type OrbitedButtonProps = {
+  color: string,
+  thing: OrbitList,
+}
+
+const BasicSection = (props: BasicSectionProps, context: any) => {
   const { act } = useBackend(context);
   const { searchText, source, title } = props;
   const things = source.filter(searchFor(searchText));
@@ -79,13 +84,7 @@ const BasicSection = (
   );
 };
 
-const OrbitedButton = (
-  props: {
-    color: string;
-    thing: OrbitList;
-  },
-  context
-) => {
+const OrbitedButton = (props: OrbitedButtonProps, context: any) => {
   const { act } = useBackend(context);
   const { color, thing } = props;
 
@@ -111,7 +110,7 @@ const OrbitedButton = (
   );
 };
 
-export const Orbit = (props, context) => {
+export const Orbit = (props: any, context: any) => {
   const { act, data } = useBackend<OrbitData>(context);
   const {
     humans,
