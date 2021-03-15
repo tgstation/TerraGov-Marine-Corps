@@ -138,6 +138,16 @@ SUBSYSTEM_DEF(shuttle)
 		return
 	moveShuttleToDock(shuttleId, D, timed)
 
+/datum/controller/subsystem/shuttle/proc/moveShuttleQuickToDock(shuttleId, dockId)
+	var/obj/docking_port/stationary/D = getDock(dockId)
+	if(!D)
+		return
+	var/obj/docking_port/mobile/M = getShuttle(shuttleId)
+	if(!M)
+		return
+	M.set_mode(SHUTTLE_CALL)
+	moveShuttleToDock(shuttleId, D, TRUE)
+
 /datum/controller/subsystem/shuttle/proc/moveShuttleToDock(shuttleId, obj/docking_port/stationary/D, timed)
 	var/obj/docking_port/mobile/M = getShuttle(shuttleId)
 	if(!M)

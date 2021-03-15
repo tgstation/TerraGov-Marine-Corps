@@ -255,6 +255,8 @@
 
 
 /mob/camera/aiEye/remote/relaymove(mob/user, direct)
+	if(!canmove)
+		return
 	var/initial = initial(sprint)
 	var/max_sprint = 50
 

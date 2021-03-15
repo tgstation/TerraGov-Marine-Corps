@@ -27,3 +27,15 @@
 	x_offset = 0
 	y_offset = 0
 	origin_port_id = "minidropship"
+	/// Amount of fuel remaining to hover
+	var/fuel_left = 120
+
+/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/Initialize(mapload)
+	. = ..()
+	start_processing()
+
+/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/process()
+	if(fly_state == SHUTTLE_IN_ATMOSPHERE)
+		fuel_left--
+		if(fuel_left <= 0)
+			return_to_ship_action.Activate()

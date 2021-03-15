@@ -98,28 +98,45 @@
 		return
 	fly_state = next_fly_state
 	give_actions()
+	if(fly_state == SHUTTLE_IN_ATMOSPHERE)
+		eyeobj.canmove = TRUE
+		return
+	eyeobj.canmove = FALSE
+
+/obj/machinery/computer/camera_advanced/shuttle_docker/give_eye_control(mob/user)
+	. = ..()
+	if(fly_state == SHUTTLE_IN_ATMOSPHERE)
+		eyeobj.canmove = TRUE
+		return
+	eyeobj.canmove = FALSE
+
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/give_actions(mob/living/user)
 	if(!user)
 		if(!current_user)
 			return
 		user = current_user
+
+	for(var/V in actions)
+		var/datum/action/A = V
+		A.remove_action(user)
+	actions.Cut()
 	
 	if(off_action)
 		off_action.target = user
 		off_action.give_action(user)
-		actions |= off_action
+		actions += off_action
 
 	if(fly_state == SHUTTLE_IN_ATMOSPHERE)
 		if(rotate_action)
 			rotate_action.target = user
 			rotate_action.give_action(user)
-			actions |= rotate_action
+			actions += rotate_action
 
 		if(land_action)
 			land_action.target = user
 			land_action.give_action(user)
-			actions |= land_action
+			actions += land_action
 		
 		if(return_to_ship_action)
 			return_to_ship_action.target = user
@@ -130,7 +147,7 @@
 	if(take_off_action)
 		take_off_action.target = user
 		take_off_action.give_action(user)
-		actions |= take_off_action		
+		actions += take_off_action		
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/CreateEye()
 	shuttle_port = SSshuttle.getShuttle(shuttleId)
@@ -365,6 +382,13 @@
 	console.checkLandingSpot()
 
 /mob/camera/aiEye/remote/shuttle_docker/update_remote_sight(mob/living/user)
+	var/obj/machinery/computer/camera_advanced/shuttle_docker/shuttle = origin
+	if(shuttle.fly_state == SHUTTLE_ON_SHIP)
+		user.see_in_dark = FALSE
+		user.sight = BLIND|SEE_TURFS
+		user.lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
+		user.sync_lighting_plane_alpha()
+		return TRUE
 	user.see_in_dark = 6
 	user.lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
 	user.sync_lighting_plane_alpha()
@@ -396,7 +420,8 @@
 	var/obj/machinery/computer/camera_advanced/shuttle_docker/origin = remote_eye.origin
 	if(!origin.placeLandingSpot(target))
 		return
-	SSshuttle.moveShuttle(origin.shuttleId, origin.my_port.id, TRUE)
+	origin.next_fly_state = SHUTTLE_ON_GROUND
+	SSshuttle.moveShuttleQuickToDock(origin.shuttleId, origin.my_port.id)
 
 
 /datum/action/innate/shuttledocker_take_off
@@ -425,6 +450,8 @@
 	var/mob/living/C = target
 	var/mob/camera/aiEye/remote/remote_eye = C.remote_control
 	var/obj/machinery/computer/camera_advanced/shuttle_docker/origin = remote_eye.origin
+	origin.to_transit = TRUE
+	origin.next_fly_state = SHUTTLE_ON_SHIP
 	if(!origin.origin_port_id)
 		return
 	SSshuttle.moveShuttle(origin.shuttleId, origin.origin_port_id, TRUE)

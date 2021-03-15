@@ -52,7 +52,7 @@
 /area/shuttle/minidropship)
 "A" = (
 /turf/template_noop,
-/area/shuttle/minidropship)
+/area)
 "F" = (
 /obj/docking_port/mobile/marine_dropship/minidropship,
 /turf/open/floor/mainship_hull,
