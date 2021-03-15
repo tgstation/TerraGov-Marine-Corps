@@ -528,9 +528,6 @@
 /obj/structure/sign/directions/science{
 	dir = 1
 	},
-/obj/machinery/camera/autoname{
-	dir = 1
-	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
@@ -2900,9 +2897,6 @@
 /turf/open/floor/prison,
 /area/sulaco/cargo/office)
 "anI" = (
-/obj/machinery/camera/autoname{
-	dir = 4
-	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 4
@@ -11195,6 +11189,12 @@
 	},
 /turf/open/floor/wood,
 /area/sulaco/liaison)
+"daG" = (
+/obj/machinery/camera/autoname{
+	dir = 8
+	},
+/turf/open/floor/prison/whitegreen/corner,
+/area/sulaco/medbay/west)
 "dbH" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 8
@@ -12180,9 +12180,7 @@
 /area/sulaco/medbay/west)
 "fYC" = (
 /obj/machinery/iv_drip,
-/obj/machinery/camera/autoname{
-	dir = 1
-	},
+/obj/machinery/camera/autoname,
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/west)
 "gbY" = (
@@ -16072,6 +16070,12 @@
 "pLJ" = (
 /turf/closed/wall/mainship/gray/outer,
 /area/sulaco/bridge/office)
+"pLQ" = (
+/obj/machinery/camera/autoname{
+	dir = 4
+	},
+/turf/open/floor/prison/marked,
+/area/sulaco/hallway/central_hall)
 "pLR" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
@@ -42435,7 +42439,7 @@ mDu
 aYZ
 apB
 asn
-asn
+pLQ
 anI
 aoh
 awI
@@ -44609,7 +44613,7 @@ leD
 qxQ
 aam
 abE
-abG
+daG
 abY
 acm
 acy
