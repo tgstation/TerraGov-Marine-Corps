@@ -126,7 +126,7 @@
 
 #define COUNT_IGNORE_ALIVE_SSD (COUNT_IGNORE_HUMAN_SSD|COUNT_IGNORE_XENO_SSD)
 
-#define SILO_PRICE 1500
+#define SILO_PRICE 1200
 #define XENO_TURRET_PRICE 150
 
 //The minimum round time before siloless timer can start (13:00)
