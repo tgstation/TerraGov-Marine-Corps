@@ -1,0 +1,4 @@
+author: "Walarks"
+delete-after: True
+changes: 
+  - balance: "changed pools collapse timer from 20 minutes to 10 minutes"
