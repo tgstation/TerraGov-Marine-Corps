@@ -43,7 +43,10 @@
 				hud_used.healths.icon_state = "health5"
 			else
 				hud_used.healths.icon_state = "health6"
-
+				
+/mob/living/carbon/human/proc/oncritdrag() //critdragging function, used in signals
+	if(isxeno(pulledby))
+		adjustOxyLoss(5)
 
 /mob/living/carbon/update_stat()
 	. = ..()
