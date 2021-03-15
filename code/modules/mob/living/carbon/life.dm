@@ -43,8 +43,10 @@
 				hud_used.healths.icon_state = "health5"
 			else
 				hud_used.healths.icon_state = "health6"
-				
-/mob/living/carbon/human/proc/oncritdrag() //critdragging function, used in signals
+
+//damages humans by 5 oxy when dragged by a xeno, called on COMSIG_MOVABLE_PULL_MOVED
+/mob/living/carbon/human/proc/oncritdrag() 
+	SIGNAL_HANDLER
 	if(isxeno(pulledby))
 		adjustOxyLoss(5) //take 5 oxy damage per tile dragged
 
