@@ -1,0 +1,4 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - balance: "silos no longer mature. base output is 0.5 instead of 0.4"
