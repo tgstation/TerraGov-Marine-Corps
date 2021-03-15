@@ -1,18 +1,14 @@
+import { BooleanLike } from 'common/react';
 import { createSearch, multiline } from 'common/string';
 import { useBackend, useLocalState } from '../backend';
 import { resolveAsset } from '../assets';
 import { Box, Button, Divider, Flex, Icon, Input, Section } from '../components';
 import { Window } from '../layouts';
-import { BooleanLike } from 'common/react';
 
 const PATTERN_NUMBER = / \(([0-9]+)\)$/;
 
 const searchFor = (searchText: string) =>
-  createSearch(searchText, (thing: OrbitList) => {
-    return thing.name;
-  });
-
-const compareString = (a: string, b: string): any => a < b ? -1 : a > b;
+  createSearch(searchText, (thing: { name: string}) => thing.name);
 
 const compareNumberedText = (
   a: { name: string },
@@ -36,7 +32,7 @@ const compareNumberedText = (
     return aNumber - bNumber;
   }
 
-  return compareString(aName, bName);
+  return aName.localeCompare(bName);
 };
 
 interface OrbitList {
@@ -261,7 +257,7 @@ export const Orbit = (context: any) => {
         />
 
         <BasicSection
-          title="dead"
+          title="Dead"
           source={dead}
           searchText={searchText}
         />
