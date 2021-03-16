@@ -453,12 +453,17 @@
 /datum/reagent/toxin/xeno_neurotoxin/on_mob_life(mob/living/L, metabolism)
 	var/power
 	switch(current_cycle)
-		if(1 to 20)
-			power = ((15-(current_cycle*0.35)*effect_str))  //will start strong and grow weaker as stamina depleets
-			L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_LIGHT //some pain for benos pleasure
+		if(1 to 30)
+			if(stamina_loss < 0)
+				power = ((8-(current_cycle*0.27)*effect_str))  //will start strong at 8 and grow weaker as stamina depleets
+				L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_LIGHT //some pain for benos pleasure
+				return
 
-		if(46 to INFINITY)
-			power = (((current_cycle*0.35)-15)*effect_str) //will start to pick up again. if not treated
+			power = 1 //if marine is already in orange levels of stamina hold on a bit
+			L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT //the pain also picks up if you get here
+
+		if(31 to INFINITY)
+			power = (((current_cycle*0.27)-8)*effect_str) //will start to pick up again, and rather quick since you will already be in orange
 			L.reagent_pain_modifier -= PAIN_REDUCTION_HEAVY //only cause REAL pain. if your in it for a long ass time
 			L.adjustToxLoss(0.2)
 			L.jitter(8) //Shows that things are *really* bad
