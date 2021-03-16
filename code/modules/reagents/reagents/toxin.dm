@@ -442,7 +442,7 @@
 	description = "A debilitating nerve toxin. Impedes motor control in high doses. Causes progressive loss of mobility over time."
 	reagent_state = LIQUID
 	color = "#CF3600" // rgb: 207, 54, 0
-	custom_metabolism = REAGENTS_METABOLISM * 2
+	custom_metabolism = REAGENTS_METABOLISM * 4
 	purge_list = list(/datum/reagent/medicine)
 	purge_rate = 0.2 //same as metabolism rate, effictevelly halving the use of drugs while not really purgin it all at once
 	overdose_threshold = 10000 //Overdosing for neuro is a lie
@@ -454,18 +454,17 @@
 	var/power
 	switch(current_cycle)
 		if(1 to 20)
-			power = (8*effect_str) //While stamina loss is going, stamina regen apparently doesn't happen, so I can keep this smaller.
-			L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_LIGHT
-			L.jitter(2)
-		if(21 to 45)
-			power = (4*effect_str)
-			L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
-			L.jitter(4) //Shows that things are bad
+			power = ((15-(current_cycle*0.35)*effect_str))  //will start strong and grow weaker as stamina depleets
+			L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_LIGHT //some pain for benos pleasure
+
 		if(46 to INFINITY)
-			power = (2*effect_str)
-			L.reagent_pain_modifier -= PAIN_REDUCTION_HEAVY //only cause pain. if your in it for a long ass time
+			power = (((current_cycle*0.35)-15)*effect_str) //will start to pick up again. if not treated
+			L.reagent_pain_modifier -= PAIN_REDUCTION_HEAVY //only cause REAL pain. if your in it for a long ass time
+			L.adjustToxLoss(0.2)
 			L.jitter(8) //Shows that things are *really* bad
 
+
+	L.jitter(current_cycle*0.17) //so it get worst overtime letting you know how bad you are
 	L.stuttering = max(L.stuttering, 1)
 	L.adjustStaminaLoss(min(power, max(0, stamina_loss_limit - L.staminaloss)))   //the power decreases over time since you will already have lots most of the stamina
 
