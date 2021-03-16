@@ -1335,7 +1335,7 @@
 	if(HAS_TRAIT(victim, TRAIT_PSY_DRAINED))
 		to_chat(X, "<span class='warning'>Someone drained the life force of our victim before we could do it!</span>")
 		return fail_activate()
-	
+
 	playsound(X, 'sound/magic/end_of_psy_drain.ogg', 40)
 
 	X.visible_message("<span class='xenodanger'>\The [victim]'s life force is drained by \the [X]!</span>", \
@@ -1344,7 +1344,7 @@
 	victim.do_jitter_animation(2)
 
 	ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
-	
+
 	SSpoints.add_psy_points(X.hivenumber, psy_points_reward)
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	xeno_job.add_job_points(larva_point_reward)
