@@ -3,6 +3,11 @@
 /obj/structure/shuttle/engine/propulsion/burst/right,
 /turf/open/floor/podhatch/floor,
 /area/shuttle/minidropship)
+"b" = (
+/turf/closed/wall/sulaco/hull{
+	icon_state = "metal4_old"
+	},
+/area/shuttle/minidropship)
 "c" = (
 /obj/effect/attach_point/crew_weapon/minidropship{
 	dir = 2
@@ -23,8 +28,15 @@
 /obj/structure/bed/chair/dropship/passenger,
 /turf/open/floor/mainship_hull,
 /area/shuttle/minidropship)
+"m" = (
+/turf/closed/wall/sulaco/hull{
+	icon_state = "metal6_old"
+	},
+/area/shuttle/minidropship)
 "o" = (
-/turf/closed/wall/mainship/outer,
+/turf/closed/wall/sulaco/hull{
+	icon_state = "metal"
+	},
 /area/shuttle/minidropship)
 "p" = (
 /obj/structure/bed/chair/dropship/passenger,
@@ -59,6 +71,17 @@
 	},
 /turf/open/floor/mainship_hull,
 /area/shuttle/minidropship)
+"t" = (
+/obj/structure/window/framed/mainship/spaceworthy{
+	icon_state = "col_window12"
+	},
+/turf/open/space/basic,
+/area/shuttle/minidropship)
+"x" = (
+/turf/closed/wall/sulaco/hull{
+	icon_state = "metal10_old"
+	},
+/area/shuttle/minidropship)
 "z" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 4
@@ -69,6 +92,17 @@
 "A" = (
 /turf/template_noop,
 /area)
+"B" = (
+/turf/closed/wall/sulaco/hull{
+	icon_state = "metal8_old"
+	},
+/area/shuttle/minidropship)
+"C" = (
+/obj/structure/window/framed/mainship/spaceworthy{
+	icon_state = "col_window6"
+	},
+/turf/open/space/basic,
+/area/shuttle/minidropship)
 "E" = (
 /obj/machinery/door/poddoor/mainship/open{
 	dir = 2;
@@ -84,9 +118,17 @@
 /obj/docking_port/mobile/marine_dropship/minidropship,
 /turf/open/floor/mainship_hull,
 /area/shuttle/minidropship)
+"I" = (
+/obj/structure/window/framed/mainship/spaceworthy{
+	icon_state = "col_window10"
+	},
+/turf/open/space/basic,
+/area/shuttle/minidropship)
 "L" = (
-/obj/structure/window/framed/mainship/hull,
-/turf/open/floor/mainship/mono,
+/obj/structure/window/framed/mainship/spaceworthy{
+	icon_state = "col_window1"
+	},
+/turf/open/space/basic,
 /area/shuttle/minidropship)
 "N" = (
 /obj/structure/bed/chair/dropship/pilot{
@@ -132,24 +174,34 @@
 	},
 /turf/open/shuttle/dropship/three,
 /area/shuttle/minidropship)
+"V" = (
+/turf/closed/wall/sulaco/hull{
+	icon_state = "metal0_old"
+	},
+/area/shuttle/minidropship)
 "Y" = (
 /turf/open/shuttle/dropship/grating,
+/area/shuttle/minidropship)
+"Z" = (
+/turf/closed/wall/sulaco/hull{
+	icon_state = "metal12_old"
+	},
 /area/shuttle/minidropship)
 
 (1,1,1) = {"
 A
 A
-o
+m
 o
 U
 U
-o
+V
 R
 "}
 (2,1,1) = {"
 A
 A
-o
+Z
 s
 r
 r
@@ -157,9 +209,9 @@ z
 o
 "}
 (3,1,1) = {"
-o
+C
 L
-o
+B
 h
 r
 Y
@@ -167,7 +219,7 @@ r
 q
 "}
 (4,1,1) = {"
-L
+t
 N
 O
 F
@@ -177,9 +229,9 @@ r
 E
 "}
 (5,1,1) = {"
-o
+I
 L
-o
+b
 T
 r
 Y
@@ -189,7 +241,7 @@ q
 (6,1,1) = {"
 A
 A
-o
+Z
 p
 r
 r
@@ -199,10 +251,10 @@ o
 (7,1,1) = {"
 A
 A
-o
+x
 o
 g
 g
-o
+V
 a
 "}
