@@ -457,10 +457,9 @@
 			if(L.staminaloss < 100)
 				power = ((8-(current_cycle*0.27)*effect_str))  //will start strong at 8 and grow weaker as stamina depleets
 				L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_LIGHT //some pain for benos pleasure
-				return
-
-			power = 0.1 //if marine is already in orange levels of stamina hold on a bit
-			L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT //the pain also picks up if you get here
+			else
+				power = 0.1 //if marine is already in orange levels of stamina hold on a bit
+				L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT //the pain also picks up if you get here
 
 		if(31 to INFINITY)
 			power = (((current_cycle*0.27)-8)*effect_str) //will start to pick up again, and rather quick since you will already be in orange
