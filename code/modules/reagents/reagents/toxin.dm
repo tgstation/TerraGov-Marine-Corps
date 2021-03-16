@@ -444,8 +444,8 @@
 	color = "#CF3600" // rgb: 207, 54, 0
 	custom_metabolism = REAGENTS_METABOLISM * 2
 	purge_list = list(/datum/reagent/medicine)
-	purge_rate = 1
-	overdose_threshold = 10000 //Overdosing for neuro is what happens when you run out of stamina to avoid its oxy and toxin damage
+	purge_rate = 0.2 //same as metabolism rate, effictevelly halving the use of drugs while not really purgin it all at once
+	overdose_threshold = 10000 //Overdosing for neuro is a lie
 	scannable = TRUE
 	toxpwr = 0
 
@@ -454,28 +454,23 @@
 	var/power
 	switch(current_cycle)
 		if(1 to 20)
-			power = (2*effect_str) //While stamina loss is going, stamina regen apparently doesn't happen, so I can keep this smaller.
-			L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
+			power = (8*effect_str) //While stamina loss is going, stamina regen apparently doesn't happen, so I can keep this smaller.
+			L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_LIGHT
+			L.jitter(2)
 		if(21 to 45)
-			power = (6*effect_str)
-			L.reagent_pain_modifier -= PAIN_REDUCTION_HEAVY
+			power = (4*effect_str)
+			L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
 			L.jitter(4) //Shows that things are bad
 		if(46 to INFINITY)
-			power = (15*effect_str)
-			L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_HEAVY
+			power = (2*effect_str)
+			L.reagent_pain_modifier -= PAIN_REDUCTION_HEAVY //only cause pain. if your in it for a long ass time
 			L.jitter(8) //Shows that things are *really* bad
 
-	//Apply stamina damage, then apply any 'excess' stamina damage beyond our maximum as tox and oxy damage
-	var/stamina_loss_limit = L.maxHealth * 2
-	L.adjustStaminaLoss(min(power, max(0, stamina_loss_limit - L.staminaloss))) //If we're under our stamina_loss limit, apply the difference between our limit and current stamina damage or power, whichever's less
-
-	var/stamina_excess_damage = (L.staminaloss + power) - stamina_loss_limit
-	if(stamina_excess_damage > 0) //If we exceed maxHealth * 2 stamina damage, apply any excess as toxloss and oxyloss
-		L.adjustToxLoss(stamina_excess_damage * 0.5)
-		L.adjustOxyLoss(stamina_excess_damage * 0.5)
-		L.Losebreath(2) //So the oxy loss actually means something.
-
 	L.stuttering = max(L.stuttering, 1)
+	L.adjustStaminaLoss(min(power, max(0, stamina_loss_limit - L.staminaloss)))   //the power decreases over time since you will already have lots most of the stamina
+
+	if(prob(25))
+		to_chat(L, "<span class='warning'>You feel the fatigue building up.</span>")
 
 	if(current_cycle < 21) //Additional effects at higher cycles
 		return ..()
