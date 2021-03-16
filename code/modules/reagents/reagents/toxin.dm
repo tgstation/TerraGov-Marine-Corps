@@ -454,7 +454,7 @@
 	var/power
 	switch(current_cycle)
 		if(1 to 30)
-			if(L.stamina_loss < 100)
+			if(L.staminaloss < 100)
 				power = ((8-(current_cycle*0.27)*effect_str))  //will start strong at 8 and grow weaker as stamina depleets
 				L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_LIGHT //some pain for benos pleasure
 				return
