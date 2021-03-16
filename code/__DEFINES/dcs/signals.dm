@@ -591,6 +591,8 @@
 #define COMSIG_XENOABILITY_BANISH "xenoability_banish"
 #define COMSIG_XENOABILITY_RECALL "xenoability_recall"
 
+#define COMSIG_XENOABILITY_SCATTER_SPIT "xenoability_scatter_spit"
+
 
 // remote control signals
 #define COMSIG_REMOTECONTROL_TOGGLE "remotecontrol_toggle"

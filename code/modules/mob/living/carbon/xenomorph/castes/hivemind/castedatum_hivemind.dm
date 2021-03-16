@@ -68,7 +68,7 @@
 	plasma_gain = 45 // This is 3 weed every 10 secs.
 
 	// *** Evolution *** //
-	upgrade_threshold = 500
+	upgrade_threshold = 800
 
 	// *** Abilities *** //
 	actions = list(
@@ -92,7 +92,7 @@
 	max_health = 1000
 
 	// *** Evolution *** //
-	upgrade_threshold = 700
+	upgrade_threshold = 1500
 
 	// *** Abilities *** //
 	actions = list(
@@ -117,7 +117,7 @@
 	max_health = 1000
 
 	// *** Evolution *** //
-	upgrade_threshold = 1000
+	upgrade_threshold = 2500
 
 	// *** Abilities *** //
 	actions = list(

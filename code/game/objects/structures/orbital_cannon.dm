@@ -391,7 +391,9 @@
 	. = ..()
 	var/range_num = max(15 - inaccuracy_amt, 12)
 	flame_radius(range_num, target,	burn_intensity = 36, burn_duration = 40, colour = "blue")
-
+	var/datum/effect_system/smoke_spread/phosphorus/warcrime = new
+	warcrime.set_up(17, target, 20)
+	warcrime.start()
 
 /obj/structure/ob_ammo/warhead/cluster
 	name = "\improper Cluster orbital warhead"
@@ -566,8 +568,8 @@
 	playsound(loc, 'sound/weapons/guns/fire/pred_plasma_shot.ogg', 70, 1)
 	var/turf/target = locate(T.x + pick(-2,2), T.y + pick(-2,2), T.z)
 	rail_gun_ammo.ammo_count = max(0, rail_gun_ammo.ammo_count - rail_gun_ammo.ammo_used_per_firing)
-	addtimer(CALLBACK(src, /obj/structure/ship_rail_gun/proc/impact_rail_gun, target), 2 SECONDS + (RG_FLY_TIME * (GLOB.current_orbit/3)))	
-		
+	addtimer(CALLBACK(src, /obj/structure/ship_rail_gun/proc/impact_rail_gun, target), 2 SECONDS + (RG_FLY_TIME * (GLOB.current_orbit/3)))
+
 /obj/structure/ship_rail_gun/proc/impact_rail_gun(turf/T)
 	rail_gun_ammo.detonate_on(T)
 	cannon_busy = FALSE
