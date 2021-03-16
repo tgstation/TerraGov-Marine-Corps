@@ -5999,7 +5999,7 @@
 /area/mainship/hull/lower_hull)
 "uj" = (
 /obj/machinery/conveyor_switch{
-	id = "lower_garbage"
+	id = "garbage"
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
@@ -50812,7 +50812,7 @@ jl
 jl
 It
 Mb
-jW
+tD
 uf
 Mb
 tA

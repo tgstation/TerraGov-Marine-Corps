@@ -129,10 +129,10 @@
 		return TRUE
 	if(!num_xenos)
 		if(round_stage == DISTRESS_DROPSHIP_CRASHING)
-			message_admins("Round finished: [MODE_INFESTATION_X_MINOR]") //xenos hijacked the shuttle and won groundside but died on the ship, minor victory
-			round_finished = MODE_INFESTATION_X_MINOR
+			message_admins("Round finished: [MODE_INFESTATION_X_MINOR]") //marines lost the ground operation but managed to wipe out Xenos on the ship at a greater cost, minor victory
+			round_finished = MODE_INFESTATION_M_MINOR
 			return TRUE
-		message_admins("Round finished: [MODE_INFESTATION_M_MAJOR]") //marines win big or go home
+		message_admins("Round finished: [MODE_INFESTATION_M_MAJOR]") //marines win big
 		round_finished = MODE_INFESTATION_M_MAJOR
 		return TRUE
 	if(round_stage == DISTRESS_DROPSHIP_CRASHING && !num_humans_ship)
@@ -247,7 +247,7 @@
 	if(round_finished)
 		return
 	if(round_stage == DISTRESS_DROPSHIP_CRASHING)
-		round_finished = MODE_INFESTATION_M_MINOR
+		round_finished = MODE_INFESTATION_X_MINOR
 		return
 	round_finished = MODE_INFESTATION_M_MAJOR
 
