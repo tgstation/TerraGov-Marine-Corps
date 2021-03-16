@@ -15,8 +15,7 @@
 	name = "Tadpole navigation computer"
 	desc = "Used to designate a precise transit location for the Tadpole."
 	icon_state = "shuttlecomputer"
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
-	density = FALSE
+	resistance_flags = INDESTRUCTIBLE
 	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LEADER)
 	shuttleId = "minidropship"
 	lock_override = CAMERA_LOCK_GROUND
