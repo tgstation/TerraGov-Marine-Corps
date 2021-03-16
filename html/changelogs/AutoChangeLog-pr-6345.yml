@@ -1,5 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - balance: "Silo price up from 900 to 1200"
-  - qol: "Feedback message when you build a silo so you know its price"
