@@ -11,7 +11,6 @@
 	width = 7
 	height = 8
 	callTime = 5 SECONDS
-	rechargeTime = 1 MINUTES
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship
 	name = "Tadpole navigation computer"
