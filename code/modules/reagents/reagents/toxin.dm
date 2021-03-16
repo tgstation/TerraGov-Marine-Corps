@@ -442,9 +442,9 @@
 	description = "A debilitating nerve toxin. Impedes motor control in high doses. Causes progressive loss of mobility over time."
 	reagent_state = LIQUID
 	color = "#CF3600" // rgb: 207, 54, 0
-	custom_metabolism = REAGENTS_METABOLISM * 4
+	custom_metabolism = REAGENTS_METABOLISM * 2
 	purge_list = list(/datum/reagent/medicine)
-	purge_rate = 0.2 //same as metabolism rate, effictevelly halving the use of drugs while not really purgin it all at once
+	purge_rate = 1 //same as metabolism rate, effictevelly halving the use of drugs while not really purgin it all at once
 	overdose_threshold = 10000 //Overdosing for neuro is a lie
 	scannable = TRUE
 	toxpwr = 0
@@ -466,6 +466,8 @@
 
 	L.jitter(current_cycle*0.17) //so it get worst overtime letting you know how bad you are
 	L.stuttering = max(L.stuttering, 1)
+
+	var/stamina_loss_limit = L.maxHealth * 2
 	L.adjustStaminaLoss(min(power, max(0, stamina_loss_limit - L.staminaloss)))   //the power decreases over time since you will already have lots most of the stamina
 
 	if(prob(25))
