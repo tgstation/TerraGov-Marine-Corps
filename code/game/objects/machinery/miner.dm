@@ -225,7 +225,7 @@
 		to_chat(user, "<span class='warning'>[src] is damaged!</span>")
 		return
 	if(miner_upgrade_type == MINER_AUTOMATED)
-		to_chat(user, "<span class='warning'>[src] is automated!"</span>)
+		to_chat(user, "<span class='warning'>[src] is automated!</span>")
 		return
 	if(!stored_mineral)
 		to_chat(user, "<span class='warning'>[src] is not ready to produce a shipment yet!</span>")
