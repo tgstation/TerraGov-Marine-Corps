@@ -10,7 +10,6 @@
 	dheight = 0
 	width = 7
 	height = 8
-	callTime = 5 SECONDS
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship
 	name = "Tadpole navigation computer"
@@ -27,7 +26,9 @@
 	y_offset = 0
 	origin_port_id = "minidropship"
 	/// Amount of fuel remaining to hover
-	var/fuel_left = 120
+	var/fuel_left = 100
+	/// The maximum fuel the dropship can hold
+	var/max_fuel = 100
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/Initialize(mapload)
 	. = ..()
@@ -37,4 +38,9 @@
 	if(fly_state == SHUTTLE_IN_ATMOSPHERE)
 		fuel_left--
 		if(fuel_left <= 0)
-			return_to_ship_action.Activate()
+			to_transit = TRUE
+			next_fly_state = SHUTTLE_ON_SHIP
+			SSshuttle.moveShuttle(shuttleId, origin_port_id, TRUE)
+		return
+	if(fly_state == SHUTTLE_ON_SHIP && fuel_left < max_fuel)
+		fuel_left++

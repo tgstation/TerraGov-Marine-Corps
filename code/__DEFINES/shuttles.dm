@@ -86,3 +86,8 @@
 #define SHUTTLE_ON_SHIP "on_ship"
 #define SHUTTLE_IN_ATMOSPHERE "in_atmosphere"
 #define SHUTTLE_ON_GROUND "on_ground"
+
+//Call time of shuttle
+#define SHUTTLE_LANDING_CALLTIME 0 SECONDS
+#define SHUTTLE_TAKEOFF_SHIP_CALLTIME 20 SECONDS
+#define SHUTTLE_TAKEOFF_GROUND_CALLTIME 2 SECONDS

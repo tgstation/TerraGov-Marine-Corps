@@ -423,6 +423,7 @@
 	var/obj/machinery/computer/camera_advanced/shuttle_docker/origin = remote_eye.origin
 	if(!origin.placeLandingSpot(target))
 		return
+	origin.shuttle_port.callTime = SHUTTLE_LANDING_CALLTIME
 	origin.next_fly_state = SHUTTLE_ON_GROUND
 	remote_eye.canmove = FALSE
 	SSshuttle.moveShuttleQuickToDock(origin.shuttleId, origin.my_port.id)
@@ -441,6 +442,9 @@
 	var/obj/machinery/computer/camera_advanced/shuttle_docker/origin = remote_eye.origin
 	if(origin.fly_state == SHUTTLE_ON_GROUND)
 		origin.to_transit = TRUE
+		origin.shuttle_port.callTime = SHUTTLE_TAKEOFF_GROUND_CALLTIME
+	else
+		origin.shuttle_port.callTime = SHUTTLE_TAKEOFF_SHIP_CALLTIME
 	origin.next_fly_state = SHUTTLE_IN_ATMOSPHERE
 	SSshuttle.moveShuttleToTransit(origin.shuttleId, TRUE)
 
