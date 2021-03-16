@@ -1,18 +1,16 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
 /obj/structure/shuttle/engine/propulsion/burst/right,
-/turf/open/floor/podhatch/floor,
+/turf/open/shuttle/dropship/three,
 /area/shuttle/minidropship)
 "b" = (
-/turf/closed/wall/sulaco/hull{
-	icon_state = "metal4_old"
+/obj/structure/window/framed/mainship/spaceworthy{
+	icon_state = "col_window10"
 	},
+/turf/open/floor/mainship_hull,
 /area/shuttle/minidropship)
 "c" = (
-/obj/effect/attach_point/crew_weapon/minidropship{
-	dir = 2
-	},
-/turf/open/floor/plating/plating_catwalk,
+/turf/template_noop,
 /area/shuttle/minidropship)
 "g" = (
 /obj/machinery/door/poddoor/mainship/open{
@@ -25,27 +23,15 @@
 /turf/open/shuttle/dropship/three,
 /area/shuttle/minidropship)
 "h" = (
-/obj/structure/bed/chair/dropship/passenger,
+/obj/structure/window/framed/mainship/spaceworthy{
+	icon_state = "col_window1"
+	},
 /turf/open/floor/mainship_hull,
+/area/shuttle/minidropship)
+"k" = (
+/turf/open/shuttle/dropship/grating,
 /area/shuttle/minidropship)
 "m" = (
-/turf/closed/wall/sulaco/hull{
-	icon_state = "metal6_old"
-	},
-/area/shuttle/minidropship)
-"o" = (
-/turf/closed/wall/sulaco/hull{
-	icon_state = "metal"
-	},
-/area/shuttle/minidropship)
-"p" = (
-/obj/structure/bed/chair/dropship/passenger,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/mainship_hull,
-/area/shuttle/minidropship)
-"q" = (
 /obj/machinery/door/poddoor/mainship/open{
 	dir = 2;
 	id = "minidropship_podlock"
@@ -61,49 +47,35 @@
 	},
 /turf/open/shuttle/dropship/five,
 /area/shuttle/minidropship)
+"n" = (
+/obj/structure/bed/chair/dropship/pilot{
+	dir = 1
+	},
+/turf/open/floor/mainship_hull,
+/area/shuttle/minidropship)
+"p" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/turf/open/floor/mainship_hull,
+/area/shuttle/minidropship)
 "r" = (
 /turf/open/floor/mainship_hull,
 /area/shuttle/minidropship)
 "s" = (
-/obj/structure/bed/chair/dropship/passenger,
-/obj/machinery/light{
-	dir = 8
+/obj/structure/window/framed/mainship/spaceworthy{
+	icon_state = "col_window6"
 	},
 /turf/open/floor/mainship_hull,
 /area/shuttle/minidropship)
 "t" = (
-/obj/structure/window/framed/mainship/spaceworthy{
-	icon_state = "col_window12"
-	},
-/turf/open/space/basic,
-/area/shuttle/minidropship)
-"x" = (
-/turf/closed/wall/sulaco/hull{
-	icon_state = "metal10_old"
-	},
-/area/shuttle/minidropship)
-"z" = (
 /obj/structure/bed/chair/dropship/passenger{
-	dir = 4
+	dir = 8
 	},
 /obj/machinery/light,
 /turf/open/floor/mainship_hull,
 /area/shuttle/minidropship)
-"A" = (
-/turf/template_noop,
-/area)
-"B" = (
-/turf/closed/wall/sulaco/hull{
-	icon_state = "metal8_old"
-	},
-/area/shuttle/minidropship)
-"C" = (
-/obj/structure/window/framed/mainship/spaceworthy{
-	icon_state = "col_window6"
-	},
-/turf/open/space/basic,
-/area/shuttle/minidropship)
-"E" = (
+"v" = (
 /obj/machinery/door/poddoor/mainship/open{
 	dir = 2;
 	id = "minidropship_podlock"
@@ -114,54 +86,64 @@
 /obj/structure/barricade/plasteel,
 /turf/open/shuttle/dropship/five,
 /area/shuttle/minidropship)
-"F" = (
-/obj/docking_port/mobile/marine_dropship/minidropship,
-/turf/open/floor/mainship_hull,
-/area/shuttle/minidropship)
-"I" = (
-/obj/structure/window/framed/mainship/spaceworthy{
-	icon_state = "col_window10"
-	},
-/turf/open/space/basic,
-/area/shuttle/minidropship)
-"L" = (
-/obj/structure/window/framed/mainship/spaceworthy{
-	icon_state = "col_window1"
-	},
-/turf/open/space/basic,
-/area/shuttle/minidropship)
-"N" = (
-/obj/structure/bed/chair/dropship/pilot{
-	dir = 1
-	},
-/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship,
-/turf/open/shuttle/blackfloor,
-/area/shuttle/minidropship)
-"O" = (
-/obj/machinery/door/airlock/mainship/command/canterbury{
-	dir = 1;
-	name = "\improper Command Cockpit"
-	},
-/turf/open/shuttle/dropship/floor,
-/area/shuttle/minidropship)
-"R" = (
-/obj/structure/shuttle/engine/propulsion/burst/left,
-/turf/open/floor/podhatch/floor,
-/area/shuttle/minidropship)
-"S" = (
+"B" = (
 /obj/structure/bed/chair/dropship/passenger{
-	dir = 8
+	dir = 4
 	},
 /obj/machinery/light,
 /turf/open/floor/mainship_hull,
 /area/shuttle/minidropship)
-"T" = (
+"E" = (
+/turf/template_noop,
+/area/space)
+"F" = (
+/obj/docking_port/mobile/marine_dropship/minidropship,
+/turf/open/shuttle/dropship/grating,
+/area/shuttle/minidropship)
+"K" = (
 /obj/machinery/door_control{
 	id = "minidropship_podlock";
 	name = "outer door-control";
 	pixel_y = 32
 	},
-/obj/structure/bed/chair/dropship/passenger,
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/turf/open/floor/mainship_hull,
+/area/shuttle/minidropship)
+"L" = (
+/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship,
+/turf/open/floor/mainship_hull,
+/area/shuttle/minidropship)
+"N" = (
+/obj/structure/window/framed/mainship/spaceworthy{
+	icon_state = "col_window12"
+	},
+/turf/open/floor/mainship_hull,
+/area/shuttle/minidropship)
+"O" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/mainship_hull,
+/area/shuttle/minidropship)
+"R" = (
+/obj/structure/shuttle/engine/propulsion/burst/left,
+/turf/open/shuttle/dropship/three,
+/area/shuttle/minidropship)
+"S" = (
+/turf/closed/wall/mainship/outer/reinforced,
+/area/shuttle/minidropship)
+"T" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/open/floor/mainship_hull,
 /area/shuttle/minidropship)
 "U" = (
@@ -174,87 +156,87 @@
 	},
 /turf/open/shuttle/dropship/three,
 /area/shuttle/minidropship)
-"V" = (
-/turf/closed/wall/sulaco/hull{
-	icon_state = "metal0_old"
-	},
-/area/shuttle/minidropship)
 "Y" = (
-/turf/open/shuttle/dropship/grating,
-/area/shuttle/minidropship)
-"Z" = (
-/turf/closed/wall/sulaco/hull{
-	icon_state = "metal12_old"
+/obj/effect/attach_point/crew_weapon/minidropship{
+	dir = 2
 	},
+/turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 
 (1,1,1) = {"
-A
-A
-m
-o
+E
+E
+c
+S
 U
 U
-V
+U
+S
 R
 "}
 (2,1,1) = {"
-A
-A
-Z
-s
+E
+c
+S
+S
+O
 r
-r
-z
-o
+B
+S
+a
 "}
 (3,1,1) = {"
-C
-L
-B
+s
 h
+S
+p
 r
-Y
+k
 r
-q
+m
+E
 "}
 (4,1,1) = {"
-t
 N
-O
+L
+n
+r
 F
 Y
-c
 r
+v
 E
 "}
 (5,1,1) = {"
-I
-L
 b
-T
+h
+S
+K
 r
-Y
+k
 r
-q
+m
+E
 "}
 (6,1,1) = {"
-A
-A
-Z
-p
-r
-r
+E
+c
 S
-o
+S
+T
+r
+t
+S
+R
 "}
 (7,1,1) = {"
-A
-A
-x
-o
+E
+E
+c
+S
 g
 g
-V
+g
+S
 a
 "}

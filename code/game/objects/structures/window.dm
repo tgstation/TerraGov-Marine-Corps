@@ -395,6 +395,8 @@
 	name = "cockpit window"
 	desc = "A very tough looking glass window with a special rod matrice, made to be space worthy"
 	max_integrity = 500
+	icon_state = "gray_window0_frame"
+	basestate = "gray_window"
 
 /obj/structure/window/framed/mainship/spaceworthy/Initialize()
 	. = ..()
