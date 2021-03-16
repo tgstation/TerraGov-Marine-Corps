@@ -523,7 +523,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		if(!reserved_area) //If we *still* don't have a reserved area we've got a problem
 			CRASH("failed to reserve an area for [owner]'s Banish.")
 
-	var/turf/target_turf = pick(reserved_area.reserved_turfs)
+	var/turf/target_turf = reserved_area.reserved_turfs[5]
 	new /area/arrival(target_turf) //So we don't get instagibbed from the space area
 	banishment_target.forceMove(target_turf)
 
