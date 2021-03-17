@@ -1,0 +1,5 @@
+author: "Surrealaser"
+delete-after: True
+changes: 
+  - bugfix: "Banish now physically teleports things to Brazil, thus addressing corner case issues with things like CAS flares and explosives."
+  - balance: "Banish cooldown reduced when used on friendly targets/self by 40% from 20 seconds to 12 seconds, allowing it to be more readily used defensively."
