@@ -1,6 +1,6 @@
 /obj/structure/cocoon
 	name = "resin cocoon"
-	desc = "A slimy-looking cocoon made out of resin. It is vibrating from the outside, yuck."
+	desc = "A slimy-looking cocoon made out of resin. It is vibrating."
 	icon = 'icons/obj/cocoon.dmi'
 	icon_state = "xeno_cocoon"
 	density = FALSE
@@ -32,6 +32,7 @@
 		return
 	START_PROCESSING(SSslowprocess, src)
 	addtimer(CALLBACK(src, .proc/life_draining_over, TRUE), cocoon_life_time)
+	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, .proc/life_draining_over)
 	new /obj/effect/alien/weeds/node(loc)
 
 /obj/structure/cocoon/examine(mob/user, distance, infix, suffix)
@@ -48,6 +49,7 @@
 		life_draining_over()
 
 /obj/structure/cocoon/proc/life_draining_over(must_release_victim = FALSE)
+	SIGNAL_HANDLER
 	STOP_PROCESSING(SSslowprocess, src)
 	playsound(loc, "alien_resin_move", 35)
 	new /obj/structure/bed/nest(loc)
