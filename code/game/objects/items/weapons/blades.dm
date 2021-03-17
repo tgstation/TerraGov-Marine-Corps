@@ -65,11 +65,11 @@
 
 /obj/item/weapon/claymore/harvester/attackby(obj/item/I, mob/user)
 	if(user.do_actions)
-		return FALSE
+		return TRUE
 
 	if(istype(I, /obj/item/reagent_containers/pill))
 		to_chat(user, "<span class='rose'>[I] isn't compatible with [src].</span>")
-		return FALSE
+		return TRUE
 
 	var/trans
 	var/obj/item/reagent_containers/container = I
@@ -80,27 +80,27 @@
 
 	if(length(container.reagents.reagent_list) > 1)
 		to_chat(user, "<span class='rose'>The solution needs to be uniform and contain only a single type of reagent to be compatible.</span>")
-		return FALSE
+		return TRUE
 
 	if(beaker.reagents.total_volume && (container.reagents.reagent_list[1].type != beaker.reagents.reagent_list[1].type))
 		to_chat(user, "<span class='rose'>[src]'s internal storage can contain only one kind of solution at the same time. It currently contains <b>[beaker.reagents.reagent_list[1].name]</b></span>")
-		return FALSE
+		return TRUE
 
 	if(!locate(container.reagents.reagent_list[1].type) in loadable_reagents)
 		to_chat(user, "<span class='rose'>This reagent is not compatible with the weapon's mechanism. Check the engraved symbols for further information.</span>")
-		return FALSE
+		return TRUE
 
 	if(container.reagents.total_volume < 5)
 		to_chat(user, "<span class='rose'>At least 5u of the substance is needed.</span>")
-		return FALSE
+		return TRUE
 
 	if(beaker.reagents.total_volume >= 30)
 		to_chat(user, "<span class='rose'>The internal storage is full.</span>")
-		return FALSE
+		return TRUE
 
 	to_chat(user, "<span class='notice'>You begin filling up the [src] with [container.reagents.reagent_list[1]].</span>")
 	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_BAR, null, PROGRESS_BRASS))
-		return FALSE
+		return TRUE
 
 	trans = container.reagents.trans_to(beaker, container.amount_per_transfer_from_this)
 	to_chat(user, "<span class='rose'>You load [trans]u into the internal system. It now holds [beaker.reagents.total_volume]u.</span>")
@@ -150,11 +150,15 @@
 						C.visible_message("<span class='danger'>[C] bursts into flames!</span>","[isxeno(C)?"<span class='xenodanger'>":"<span class='highdanger'>"]You burst into flames!</span>")
 
 		if(/datum/reagent/medicine/bicaridine)
-			to_chat(user, "<span class='rose'>You prepare to stab [M]!</span>")
-			if(!do_after(user, 2 SECONDS, TRUE, M, BUSY_ICON_DANGER))
-				return FALSE
+			if(isxeno(M))
+				return ..()
+			to_chat(user, "<span class='rose'>You prepare to stab <b>[M != user ? "[M]" : "yourself"]</b>!</span>")
 			new /obj/effect/temp_visual/telekinesis(get_turf(M))
-			M.heal_overall_damage(12.5, 0, TRUE)
+			if((M != user) && do_after(user, 2 SECONDS, TRUE, M, BUSY_ICON_DANGER))
+				M.heal_overall_damage(12.5, 0, TRUE)
+			else
+				M.adjustStaminaLoss(-30)
+				M.heal_overall_damage(6, 0, TRUE)
 			loaded_reagent = null
 			return FALSE
 
