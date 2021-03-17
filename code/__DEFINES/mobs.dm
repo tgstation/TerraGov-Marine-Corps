@@ -563,7 +563,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 #define DRONE_SALVAGE_BIOMASS_WINDUP		5 SECONDS //Delay before the target is salvaged
 #define DRONE_SALVAGE_BIOMASS_RANGE			1
-#define DRONE_SALVAGE_BIOMASS_SALVAGE_RATIO	0.2 //Percentile of stored upgrade and evolution salvaged from the target
+#define DRONE_SALVAGE_BIOMASS_SALVAGE_RATIO	0.1 //Percentile of stored upgrade and evolution salvaged from the target
 #define DRONE_SALVAGE_COOLDOWN				60 SECONDS //Can only salvage one corpse per 60 seconds; try not to die *too* quickly.
 #define DRONE_SALVAGE_UPGRADE_FILTER_LIST	list(XENO_UPGRADE_THREE, XENO_UPGRADE_INVALID)
 #define DRONE_SALVAGE_EVOLUTION_FILTER_LIST	list(XENO_TIER_ZERO, XENO_TIER_THREE, XENO_TIER_FOUR)

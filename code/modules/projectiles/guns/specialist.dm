@@ -473,6 +473,7 @@
 	force = 5.0
 	wield_delay = 0.6 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/grenadelauncher.ogg'
+	fire_rattle = 'sound/weapons/guns/fire/grenadelauncher.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/m92_cocked.ogg'
 	var/list/grenades = list()
 	var/max_grenades = 6
@@ -615,6 +616,7 @@
 	force = 5.0
 	wield_delay = 1 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/underbarrel_grenadelauncher.ogg'
+	fire_rattle = 'sound/weapons/guns/fire/underbarrel_grenadelauncher.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/m92_cocked.ogg'
 	aim_slowdown = 1.2
 	general_codex_key = "explosive weapons"
@@ -651,6 +653,7 @@
 	force = 5.0
 	wield_delay = 0.2 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/grenadelauncher.ogg'
+	fire_rattle = 'sound/weapons/guns/fire/grenadelauncher.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/m92_cocked.ogg'
 	aim_slowdown = 1
 	gun_skill_category = GUN_SKILL_FIREARMS
@@ -1141,6 +1144,7 @@ obj/item/weapon/gun/minigun/Fire(atom/target, mob/living/user, params, reflex = 
 	max_shells = 1 //codex
 	caliber = "rail projectile"
 	fire_sound = 'sound/weapons/guns/fire/railgun.ogg'
+	fire_rattle = 'sound/weapons/guns/fire/railgun.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/sniper_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/sniper_reload.ogg'

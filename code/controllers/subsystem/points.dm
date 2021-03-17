@@ -1,5 +1,5 @@
 // points per minute
-#define DROPSHIP_POINT_RATE 18 * (GLOB.current_orbit/3)
+#define DROPSHIP_POINT_RATE 18 * ((GLOB.current_orbit+3)/6)
 #define SUPPLY_POINT_RATE 2 * (GLOB.current_orbit/3)
 //How many psych point one gen gives per person on the server
 #define BASE_PSYCH_POINT_OUTPUT 0.002
@@ -78,6 +78,12 @@ SUBSYSTEM_DEF(points)
 	dropship_points += DROPSHIP_POINT_RATE / (1 MINUTES / wait)
 
 	supply_points += SUPPLY_POINT_RATE / (1 MINUTES / wait)
+
+///Add amount of psy points to the selected hive only if the gamemode support psypoints
+/datum/controller/subsystem/points/proc/add_psy_points(hivenumber, amount)
+	if(!CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_PSY_POINTS))
+		return
+	xeno_points_by_hive[hivenumber] += amount
 
 /datum/controller/subsystem/points/proc/scale_supply_points(scale)
 	supply_points = round(supply_points * scale)

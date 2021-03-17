@@ -1033,6 +1033,77 @@
 		return fail_activate()
 
 	new /obj/structure/resin/silo (get_step(A, SOUTHWEST))
+	to_chat(owner, "<span class='notice'>We build a new silo for [psych_cost] psy points.</span>")
+	SSpoints.xeno_points_by_hive[X.hivenumber] -= psych_cost
+
+	succeed_activate()
+
+////////////////////
+/// Build xeno turret
+///////////////////
+
+/datum/action/xeno_action/activable/build_turret
+	name = "Secrete acid turret"
+	action_icon_state = "xeno_turret"
+	mechanics_text = "Creates a new xeno acid turret for 100 points"
+	ability_name = "secrete acid turret"
+	plasma_cost = 150
+	cooldown_timer = 60 SECONDS
+	/// How long does it take to build
+	var/build_time = 15 SECONDS
+	/// Pyschic point cost
+	var/psych_cost = XENO_TURRET_PRICE
+
+
+/datum/action/xeno_action/activable/build_turret/can_use_ability(atom/A, silent, override_flags)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if(!in_range(owner, A))
+		if(!silent)
+			to_chat(owner, "<span class='warning'>We need to get closer!.</span>")
+		return FALSE
+	var/turf/T = get_turf(A)
+	var/mob/living/carbon/xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/blocker = locate() in T
+	if(blocker && blocker != X && blocker.stat != DEAD)
+		to_chat(X, "<span class='warning'>Can't do that with [blocker] in the way!</span>")
+		return FALSE
+
+	if(!T.is_weedable())
+		to_chat(X, "<span class='warning'>We can't do that here.</span>")
+		return FALSE
+
+	var/obj/effect/alien/weeds/alien_weeds = locate() in T
+
+	for(var/obj/effect/forcefield/fog/F in range(1, X))
+		to_chat(X, "<span class='warning'>We can't build so close to the fog!</span>")
+		return FALSE
+
+	if(!alien_weeds)
+		to_chat(X, "<span class='warning'>We can only shape on weeds. We must find some resin before we start building!</span>")
+		return FALSE
+
+	if(!T.check_alien_construction(X, planned_building = /obj/structure/resin/xeno_turret) || !T.check_disallow_alien_fortification(X))
+		return FALSE
+
+	if(SSpoints.xeno_points_by_hive[X.hivenumber] < psych_cost)
+		to_chat(owner, "<span class='xenowarning'>The hive doesn't have the necessary psychic points for you to do that!</span>")
+		return FALSE
+
+/datum/action/xeno_action/activable/build_turret/use_ability(atom/A)
+	if(!do_after(owner, build_time, TRUE, A, BUSY_ICON_BUILD))
+		return fail_activate()
+
+	var/mob/living/carbon/xenomorph/X = owner
+
+	if(SSpoints.xeno_points_by_hive[X.hivenumber] < psych_cost)
+		to_chat(owner, "<span class='xenowarning'>Someone used all the psych points while we were building!</span>")
+		return fail_activate()
+
+	to_chat(owner, "<span class='xenowarning'>We build a new acid turret, spending 100 psychic points in the process</span>")
+	new /obj/structure/resin/xeno_turret(get_turf(A), X.hivenumber)
 
 	SSpoints.xeno_points_by_hive[X.hivenumber] -= psych_cost
 
@@ -1225,10 +1296,12 @@
 	X.face_atom(victim) //Face towards the target so we don't look silly
 	X.visible_message("<span class='xenowarning'>\The [X] begins opening its mouth and extending a second jaw towards \the [victim].</span>", \
 	"<span class='danger'>We slowly drain \the [victim]'s life force!</span>", null, 20)
-	playsound(X, 'sound/magic/nightfall.ogg', 40)
+	var/channel = SSsounds.random_available_channel()
+	playsound(X, 'sound/magic/nightfall.ogg', 40, channel = channel)
 	if(!do_after(X, 10 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(X, /mob.proc/break_do_after_checks, list("health" = X.health))))
 		X.visible_message("<span class='xenowarning'>\The [X] retracts its inner jaw.</span>", \
 		"<span class='danger'>We retract our inner jaw.</span>", null, 20)
+		X.stop_sound_channel(channel)
 		return FALSE
 	succeed_activate() //dew it
 
@@ -1248,8 +1321,8 @@
 	victim.do_jitter_animation(2)
 
 	ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
-
-	SSpoints.xeno_points_by_hive[X.hivenumber] += psy_points_reward
+	
+	SSpoints.add_psy_points(X.hivenumber, psy_points_reward)
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	xeno_job.add_job_points(larva_point_reward)
 

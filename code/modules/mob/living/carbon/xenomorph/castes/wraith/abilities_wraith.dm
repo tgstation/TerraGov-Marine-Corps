@@ -225,6 +225,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	owner.density = FALSE
 	owner.throwpass = TRUE
 	owner.alpha = WRAITH_PHASE_SHIFT_ALPHA //Become translucent
+	owner.move_resist = INFINITY //Become immovable
 
 	starting_turf = get_turf(owner) //Get our starting turf so we can calculate the stun duration later.
 
@@ -262,6 +263,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	ghost.throwpass = initial(ghost.throwpass)
 	ghost.alpha = initial(ghost.alpha) //Become opaque
 	ghost.remove_filter("wraith_phase_shift") //Cool filter begone
+	ghost.move_resist = initial(ghost.move_resist)
 
 	playsound(owner, "sound/effects/phasein.ogg", 25, 0, 1)
 
@@ -534,6 +536,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	playsound(banished_turf, 'sound/weapons/emitter2.ogg', 50, 1) //this isn't quiet
 
 	to_chat(ghost,"<span class='xenodanger'>We have banished [banishment_target] to nullspace for [duration * 0.1] seconds.</span>")
+	log_attack("[key_name(ghost)] has banished [key_name(banishment_target)] for [duration * 0.1] seconds at [AREACOORD(banishment_target)]")
 
 	addtimer(CALLBACK(src, .proc/banish_warning), duration * 0.7) //Warn when Banish is about to end
 	banish_duration_timer_id = addtimer(CALLBACK(src, .proc/banish_deactivate), duration, TIMER_STOPPABLE) //store the timer ID
@@ -578,6 +581,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	"<span class='warning'>You suddenly reappear back in what you believe to be reality.</span>")
 
 	to_chat(owner, "<span class='highdanger'>Our target [banishment_target] has returned to reality at [AREACOORD_NO_Z(banishment_target)]</span>") //Always alert the Wraith
+	log_attack("[key_name(owner)] has unbanished [key_name(banishment_target)] at [AREACOORD(banishment_target)]")
 
 
 	QDEL_NULL(portal) //Eliminate the Brazil portal if we need to

@@ -145,6 +145,7 @@ Contains most of the procs that are called when a mob is attacked by something
 
 //Returns 1 if the attack hit, 0 if it missed.
 /mob/living/carbon/human/attacked_by(obj/item/I, mob/living/user, def_zone)
+
 	var/target_zone
 
 	if(user == src) // Attacking yourself can't miss
