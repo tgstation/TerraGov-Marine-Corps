@@ -1,0 +1,4 @@
+author: "SplinterGP"
+delete-after: True
+changes: 
+  - balance: "neurotoxin from neurospit doens't purge medicine anymore, all other neurotoxin sources remains same."
