@@ -481,7 +481,7 @@
 			
 /mob/living/carbon/human/set_stat(new_stat) //registers/unregisters critdragging signals
 	. = ..()
-	if(stat == UNCONSCIOUS)
+	if(new_stat == UNCONSCIOUS)
 		RegisterSignal(src, COMSIG_MOVABLE_PULL_MOVED, /mob/living/carbon/human.proc/oncritdrag)
 		return
 	if(. == UNCONSCIOUS)
