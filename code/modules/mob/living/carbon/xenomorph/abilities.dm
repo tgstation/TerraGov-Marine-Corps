@@ -563,7 +563,7 @@
 /datum/action/xeno_action/shift_spits
 	name = "Toggle Spit Type"
 	action_icon_state = "shift_spit_neurotoxin"
-	mechanics_text = "Switch from neurotoxin to acid spit."
+	mechanics_text = "Switch from transvitox to acid spit."
 	use_state_flags = XACT_USE_STAGGERED|XACT_USE_NOTTURF|XACT_USE_BUSY
 	keybind_signal = COMSIG_XENOABILITY_SHIFT_SPITS
 
@@ -808,7 +808,7 @@
 /datum/action/xeno_action/activable/xeno_spit
 	name = "Xeno Spit"
 	action_icon_state = "xeno_spit"
-	mechanics_text = "Spit neurotoxin or acid at your target up to 7 tiles away."
+	mechanics_text = "Spit transvitox or acid at your target up to 7 tiles away."
 	ability_name = "xeno spit"
 	keybind_signal = COMSIG_XENOABILITY_XENO_SPIT
 	plasma_cost = 10
@@ -829,7 +829,7 @@
 
 /datum/action/xeno_action/activable/xeno_spit/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner
-	to_chat(X, "<span class='notice'>We feel our neurotoxin glands swell with ichor. We can spit again.</span>")
+	to_chat(X, "<span class='notice'>We feel our toxin glands swell with ichor. We can spit again.</span>")
 	return ..()
 
 /datum/action/xeno_action/activable/xeno_spit/use_ability(atom/A)

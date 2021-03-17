@@ -339,6 +339,9 @@ datum/effect_system/smoke_spread/tactical
 /datum/effect_system/smoke_spread/xeno/neuro/light
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/neuro/light
 
+/datum/effect_system/smoke_spread/xeno/transvitox
+	smoke_type = /obj/effect/particle_effect/smoke/xeno/transvitox
+
 /////////////////////////////////////////////
 // Chem smoke
 /////////////////////////////////////////////

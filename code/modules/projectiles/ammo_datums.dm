@@ -1389,7 +1389,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/smoke_range
 
 /datum/ammo/xeno/toxin
-	name = "neurotoxic spit"
+	name = "transvitox spit"
 	flags_ammo_behavior = AMMO_XENO|AMMO_EXPLOSIVE|AMMO_SKIPS_ALIENS
 	spit_cost = 50
 	added_spit_delay = 5
@@ -1407,7 +1407,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 ///Set up the list of reagents the spit transfers upon impact
 /datum/ammo/xeno/toxin/proc/set_reagents()
-	spit_reagents = list(/datum/reagent/toxin/xeno_neurotoxin/light = reagent_transfer_amount)
+	spit_reagents = list(/datum/reagent/toxin/xeno_transvitox = reagent_transfer_amount)
 
 /datum/ammo/xeno/toxin/on_hit_mob(mob/living/carbon/C, obj/projectile/P)
 	drop_neuro_smoke(get_turf(C))
@@ -1453,7 +1453,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	drop_neuro_smoke(get_turf(P))
 
 /datum/ammo/xeno/toxin/set_smoke()
-	smoke_system = new /datum/effect_system/smoke_spread/xeno/neuro/light()
+	smoke_system = new /datum/effect_system/smoke_spread/xeno/transvitox()
 
 /datum/ammo/xeno/toxin/proc/drop_neuro_smoke(turf/T)
 	if(T.density)
@@ -1478,7 +1478,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 
 /datum/ammo/xeno/toxin/medium //Queen
-	name = "neurotoxic spatter"
+	name = "transvitox spatter"
 	added_spit_delay = 10
 	spit_cost = 75
 	damage = 35
@@ -1499,7 +1499,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 
 /datum/ammo/xeno/toxin/heavy //Praetorian
-	name = "neurotoxic splash"
+	name = "transvitox splash"
 	added_spit_delay = 15
 	spit_cost = 100
 	damage = 40
