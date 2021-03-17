@@ -316,6 +316,9 @@
 			update_icon()
 			apply_danger_overlay()
 			deltimer(jumptimer)
+			if(!issamexenohive(M))
+				M.adjust_stagger(3) //Apply stagger and slowdown so the carrier doesn't have to suicide when going for direct hugger hits.
+				M.add_slowdown(3)
 			jumptimer = addtimer(CALLBACK(src, .proc/leap_at_nearest_target), impact_time, TIMER_STOPPABLE|TIMER_UNIQUE)
 			return
 	else
