@@ -1,0 +1,4 @@
+author: "SkeletalElite"
+delete-after: True
+changes: 
+  - rscadd: "New miner upgrade that automates the miner."
