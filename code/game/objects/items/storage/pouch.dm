@@ -631,6 +631,7 @@
 		/obj/item/stack/cable_coil,
 		/obj/item/tool/shovel/etool,
 		/obj/item/stack/sandbags_empty,
+		/obj/item/stack/sandbags,
 	)
 
 /obj/item/storage/pouch/construction/full/Initialize()
