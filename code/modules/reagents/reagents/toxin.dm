@@ -449,6 +449,12 @@
 	scannable = TRUE
 	toxpwr = 0
 
+/datum/reagent/toxin/xeno_neurotoxin/light
+	name = "Light Neurotoxin"
+	description = "A debilitating nerve toxin. Impedes motor control in high doses. Causes progressive loss of mobility over time. This one seems to be weaker enough to not remove other chemicals."
+	purge_list = null
+	purge_rate = 0
+
 
 /datum/reagent/toxin/xeno_neurotoxin/on_mob_life(mob/living/L, metabolism)
 	var/power
