@@ -54,6 +54,8 @@
 	var/combat_hugger = FALSE
 	///When TRUE hugger is about to jump
 	var/about_to_jump = FALSE
+	///Time to become active after moving into the facehugger's space.
+	var/proximity_time = 0.5 SECONDS
 
 
 /obj/item/clothing/mask/facehugger/Initialize(mapload, input_hivenumber)
@@ -183,6 +185,7 @@
 		return FALSE
 
 	stat = CONSCIOUS
+	remove_danger_overlay() //Remove the danger overlay
 	lifetimer = addtimer(CALLBACK(src, .proc/check_lifecycle), FACEHUGGER_DEATH, TIMER_STOPPABLE|TIMER_UNIQUE)
 	jumptimer = addtimer(CALLBACK(src, .proc/leap_at_nearest_target), jump_cooldown, TIMER_STOPPABLE|TIMER_UNIQUE)
 	addtimer(CALLBACK(src, .proc/apply_danger_overlay), jump_cooldown * 0.5)
@@ -243,8 +246,9 @@
 	if(iscarbon(AM))
 		var/mob/living/carbon/M = AM
 		if(M.can_be_facehugged(src))
-			if(!Attach(M))
-				go_idle()
+			apply_danger_overlay()
+			deltimer(jumptimer)
+			jumptimer = addtimer(CALLBACK(src, .proc/leap_at_nearest_target), proximity_time, TIMER_STOPPABLE|TIMER_UNIQUE) //Walking into a hugger causes it to attack quickly.
 			return TRUE
 	return FALSE
 
@@ -281,12 +285,12 @@
 
 /obj/item/clothing/mask/facehugger/Crossed(atom/target)
 	. = ..()
-	if(stat == CONSCIOUS)
+	if(stat == CONSCIOUS  && !issamexenohive(target))
 		HasProximity(target)
 
 /obj/item/clothing/mask/facehugger/Uncross(atom/movable/AM)
 	. = ..()
-	if(. && stat == CONSCIOUS && isxeno(AM)) //shuffle hug prevention, if a xeno steps off go_idle()
+	if(. && stat == CONSCIOUS && issamexenohive(AM)) //shuffle hug prevention, if a xeno steps off go_idle()
 		go_idle()
 
 /obj/item/clothing/mask/facehugger/on_found(mob/finder)
@@ -316,10 +320,13 @@
 			update_icon()
 			apply_danger_overlay()
 			deltimer(jumptimer)
-			if(!issamexenohive(M))
+			if(!issamexenohive(M)) //If the target is not friendly, stagger and slow it, and activate faster.
 				M.adjust_stagger(3) //Apply stagger and slowdown so the carrier doesn't have to suicide when going for direct hugger hits.
 				M.add_slowdown(3)
-			jumptimer = addtimer(CALLBACK(src, .proc/leap_at_nearest_target), impact_time, TIMER_STOPPABLE|TIMER_UNIQUE)
+				jumptimer = addtimer(CALLBACK(src, .proc/leap_at_nearest_target), impact_time, TIMER_STOPPABLE|TIMER_UNIQUE)
+				return
+
+			jumptimer = addtimer(CALLBACK(src, .proc/leap_at_nearest_target), activate_time, TIMER_STOPPABLE|TIMER_UNIQUE)
 			return
 	else
 		if(leaping)
