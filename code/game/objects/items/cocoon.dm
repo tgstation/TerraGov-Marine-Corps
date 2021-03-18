@@ -16,7 +16,7 @@
 	///How much time the cocoon takes to deplete the life force of the marine
 	var/cocoon_life_time = 15 MINUTES
 	///How many psych points it is generating every 5 seconds
-	var/psych_points_output = 1
+	var/psych_points_output = 0.75
 	///If the cocoon should produce psych points
 	var/producing_points = TRUE
 	///Standard busy check
@@ -41,7 +41,7 @@
 		to_chat(user, "<span class='notice'>There is something inside it. You think you can open it with a sharp object</span>")
 
 /obj/structure/cocoon/process()
-	SSpoints.xeno_points_by_hive[hivenumber] += psych_points_output
+	SSpoints.add_psy_points(hivenumber, psych_points_output)
 
 /obj/structure/cocoon/take_damage(damage_amount, damage_type, damage_flag, effects, attack_dir, armour_penetration)
 	. = ..()
