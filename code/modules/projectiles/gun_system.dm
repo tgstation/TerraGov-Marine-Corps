@@ -76,7 +76,7 @@
 	var/burst_amount 	= 1						//How many shots can the weapon shoot in burst? Anything less than 2 and you cannot toggle burst.
 	var/burst_delay 	= 0.1 SECONDS			//The delay in between shots. Lower = less delay = faster.
 	var/extra_delay		= 0						//When burst-firing, this number is extra time before the weapon can fire again. Depends on number of rounds fired.
-	
+
 
 	//Slowdowns
 	var/aim_slowdown	= 0						//Self explanatory. How much does aiming (wielding the gun) slow you
@@ -515,19 +515,35 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		return
 	if(QDELETED(object))
 		return
-	if(!istype(object, /obj/screen))
-		target = object
-		var/list/modifiers = params2list(params)
-		if(modifiers["right"] || modifiers["middle"] || modifiers["shift"])
-			if(active_attachable?.flags_attach_features & ATTACH_WEAPON)
-				do_fire_attachment()
+	if(istype(object, /obj/screen))
+		return
+	set_target(object)
+	var/list/modifiers = params2list(params)
+	if(modifiers["right"] || modifiers["middle"] || modifiers["shift"])
+		if(active_attachable?.flags_attach_features & ATTACH_WEAPON)
+			do_fire_attachment()
+		return
+	if(gun_firemode == GUN_FIREMODE_SEMIAUTO)
+		if(!Fire() || windup_checked == WEAPON_WINDUP_CHECKING)
 			return
-		if(gun_firemode == GUN_FIREMODE_SEMIAUTO)
-			if(!Fire() || windup_checked == WEAPON_WINDUP_CHECKING)
-				return
-			reset_fire()
-			return
-		SEND_SIGNAL(src, COMSIG_GUN_FIRE)
+		reset_fire()
+		return
+	SEND_SIGNAL(src, COMSIG_GUN_FIRE)
+
+///Set the target and take care of hard delete
+/obj/item/weapon/gun/proc/set_target(atom/object)
+	if(object == target)
+		return
+	if(target)
+		UnregisterSignal(target, COMSIG_PARENT_QDELETING)
+	target = object
+	if(target)
+		RegisterSignal(target, COMSIG_PARENT_QDELETING, .proc/clean_target)
+
+///Set the target to null to avoid hard delete
+/obj/item/weapon/gun/proc/clean_target()
+	SIGNAL_HANDLER
+	target = null
 
 ///Reset variables used in firing and remove the gun from the autofire system
 /obj/item/weapon/gun/proc/stop_fire()
@@ -540,7 +556,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 /obj/item/weapon/gun/proc/reset_fire()
 	SIGNAL_HANDLER
 	shots_fired = 0//Let's clean everything
-	target = null
+	set_target(null)
 	windup_checked = WEAPON_WINDUP_NOT_CHECKED
 	if(akimbo_gun)
 		UnregisterSignal(akimbo_gun, COMSIG_PARENT_QDELETING)
@@ -567,7 +583,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	if(get_dist(over_object, gun_user) == 0)
 		return
 	if(!istype(over_object, /obj/screen))
-		target = over_object
+		et_target(over_object)
 	gun_user.face_atom(target)
 
 /*
@@ -677,7 +693,7 @@ and you're good to go.
 	var/firing_angle = get_angle_with_scatter((gun_user || get_turf(src)), target, get_scatter(projectile_to_fire.scatter, gun_user), projectile_to_fire.p_x, projectile_to_fire.p_y)
 
 	//Finally, make with the pew pew!
-	if(!istype(projectile_to_fire,/obj))
+	if(!isobj(projectile_to_fire))
 		stack_trace("projectile malfunctioned while firing. User: [gun_user]")
 		return
 
@@ -692,7 +708,7 @@ and you're good to go.
 	projectile_to_fire.fire_at(target, gun_user, src, projectile_to_fire.ammo.max_range, projectile_to_fire.ammo.shell_speed, firing_angle)
 	//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 	if(akimbo_gun)
-		akimbo_gun.target = target
+		akimbo_gun.set_target(target)
 		INVOKE_ASYNC(akimbo_gun, .proc/Fire)
 	shots_fired++
 
@@ -728,7 +744,7 @@ and you're good to go.
 			return
 
 		if(!active_attachable && gun_firemode == GUN_FIREMODE_BURSTFIRE && burst_amount > 1)
-			target = M
+			set_target(M)
 			SEND_SIGNAL(src, COMSIG_GUN_FIRE)
 			return TRUE
 
