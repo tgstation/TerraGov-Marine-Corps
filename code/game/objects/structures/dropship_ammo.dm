@@ -28,7 +28,8 @@
 	var/point_cost = 0 //how many points it costs to build this with the fabricator, set to 0 if unbuildable.
 	///Type of ammo
 	var/ammo_type
-	var/Penetrate_Cave = FALSE
+	///The boolean that determines if a CAS projectile of that ammo type can go into caves
+	var/penetrate_cave = FALSE
 
 
 	attackby(obj/item/I, mob/user)
@@ -238,7 +239,7 @@
 	icon_state = "cavebuster"
 	ammo_id = ""
 	travelling_time = 3 SECONDS //slower but deadly accurate, even if laser guidance is stopped mid-travel.
-	Penetrate_Cave = TRUE
+	penetrate_cave = TRUE
 	point_cost = 200
 
 /obj/structure/ship_ammo/rocket/cavebuster/detonate_on(turf/impact, attackdir = NORTH)
