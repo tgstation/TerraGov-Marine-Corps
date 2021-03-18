@@ -64,7 +64,6 @@
 			if(prob(20))
 				to_chat(src, "<span class='danger'>[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb", "You feel like you could die any moment now")]!</span>")
 		if(150 to INFINITY)
-			if(shock_stage == 150 && !lying_angle) emote("me", 1, "can no longer stand, collapsing!")
 			blur_eyes(2)
 			stuttering = max(stuttering, 5)
 			adjust_stagger(12, FALSE, 12)
@@ -73,5 +72,7 @@
 				to_chat(src, "<span class='danger'>[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb", "You feel like you could die any moment now")]!</span>")
 			if(!COOLDOWN_CHECK(src, last_shock_effect)) //Check to see if we're on cooldown
 				return
+			if(!lying_angle)
+				emote("me", 1, "can no longer stand, collapsing!")
 			Paralyze(1 SECONDS)
 			COOLDOWN_START(src, last_shock_effect, LIVING_SHOCK_EFFECT_COOLDOWN) //set the cooldown.

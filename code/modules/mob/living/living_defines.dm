@@ -127,6 +127,3 @@
 
 	/// This is the cooldown on suffering additional effects for when we exhaust all stamina
 	COOLDOWN_DECLARE(last_stamina_exhaustion)
-
-	/// This is the cooldown on suffering additional effects for when shock gets high
-	COOLDOWN_DECLARE(last_shock_effect)
