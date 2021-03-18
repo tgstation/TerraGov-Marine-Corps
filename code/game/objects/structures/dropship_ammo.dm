@@ -238,7 +238,6 @@
 	icon_state = "cavebuster"
 	ammo_id = ""
 	travelling_time = 3 SECONDS //slower but deadly accurate, even if laser guidance is stopped mid-travel.
-	point_cost = 300
 	Penetrate_Cave = TRUE
 	point_cost = 200
 
