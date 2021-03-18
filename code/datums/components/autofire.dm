@@ -83,8 +83,7 @@
 	if(bursting)
 		bursting = FALSE
 		SEND_SIGNAL(parent, COMSIG_GUN_IS_BURSTING, FALSE)
-	if(shooting)
-		shooting = FALSE
+	shooting = FALSE
 
 ///Ask the shooter to fire and schedule the next shot if need
 /datum/component/automatedfire/autofire/process_shot()
