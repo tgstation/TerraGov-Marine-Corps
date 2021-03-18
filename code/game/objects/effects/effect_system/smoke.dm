@@ -208,7 +208,7 @@
 /////////////////////////////////////////////
 
 /obj/effect/particle_effect/smoke/tactical
-	alpha = 110
+	alpha = 40
 	opacity = FALSE
 	smoke_traits = SMOKE_CAMO
 
