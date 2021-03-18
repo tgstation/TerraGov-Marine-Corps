@@ -1340,7 +1340,7 @@
 	keybind_signal = COMSIG_XENOABILITY_REGURGITATE
 	plasma_cost = 100
 	///In how much time the cocoon will be ejected
-	var/cocoon_production_time = 5 SECONDS
+	var/cocoon_production_time = 3 SECONDS
 
 /datum/action/xeno_action/activable/devour/can_use_ability(atom/A, silent, override_flags)
 	. = ..()
@@ -1388,8 +1388,11 @@
 /datum/action/xeno_action/activable/devour/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/carbon/human/victim = A
-	if(!do_after(X, 10 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, /mob.proc/break_do_after_checks, list("health" = X.health))))
+	var/channel = SSsounds.random_available_channel()
+	playsound(X, 'sound/vore/struggle.ogg', 40, channel = channel)		
+	if(!do_after(X, 7 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, /mob.proc/break_do_after_checks, list("health" = X.health))))
 		to_chat(owner, "<span class='warning'>We stop devouring \the [victim]. They probably tasted gross anyways.</span>")
+		X.stop_sound_channel(channel)
 		return fail_activate()
 	if(HAS_TRAIT(victim, TRAIT_PSY_DRAINED))
 		to_chat(owner, "<span class='warning'>Someone drained the life force of our victim before we could devour it!</span>")
@@ -1400,9 +1403,12 @@
 	LAZYADD(X.stomach_contents, victim)
 	victim.forceMove(X)
 	X.do_jitter_animation()
+	channel = SSsounds.random_available_channel()
+	playsound(X, 'sound/vore/escape.ogg', 40, channel = channel)	
 	if(!do_after(X, cocoon_production_time, FALSE, null, BUSY_ICON_DANGER))
 		to_chat(owner, "<span class='warning'>We moved too soon and we will have to devour our victim again!</span>")
 		X.eject_victim(FALSE)
+		X.stop_sound_channel(channel)
 		return fail_activate()
 	victim.dead_ticks = 0
 	ADD_TRAIT(victim, TRAIT_STASIS, TRAIT_STASIS)
