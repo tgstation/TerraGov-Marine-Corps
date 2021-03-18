@@ -511,7 +511,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		return
 	if(gun_user.in_throw_mode)
 		return
-	if(get_dist(object, gun_user) <= 1) //Dealt with by attack code
+	if(get_dist(object, gun_user) < 0) //Dealt with by attack code
 		return
 	if(QDELETED(object))
 		return
