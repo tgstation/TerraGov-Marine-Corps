@@ -583,7 +583,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	if(get_dist(over_object, gun_user) == 0)
 		return
 	if(!istype(over_object, /obj/screen))
-		et_target(over_object)
+		set_target(over_object)
 	gun_user.face_atom(target)
 
 /*

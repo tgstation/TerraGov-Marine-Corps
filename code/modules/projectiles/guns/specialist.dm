@@ -1136,6 +1136,7 @@
 	if(. != GUN_HAS_FIRED)
 		windup_checked = WEAPON_WINDUP_NOT_CHECKED
 
+///Windup before firing
 /obj/item/weapon/gun/minigun/proc/do_windup()
 	windup_checked = WEAPON_WINDUP_CHECKING
 	if(!do_after(gun_user, 0.4 SECONDS, TRUE, src, BUSY_ICON_DANGER, BUSY_ICON_DANGER, ignore_turf_checks = TRUE))
