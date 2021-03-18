@@ -308,13 +308,11 @@
 		return
 	if(!GLOB.cameranet.checkTurfVis(get_turf_pixel(target)))
 		return
-	if(!active_weapon)
-		to_chat(source, "<span class='warning'>No active weapon selected!</span>")
-		return
 	var/area/A = get_area(target)
 	if(A.ceiling >= CEILING_DEEP_UNDERGROUND)
-		to_chat(source, "<span class='warning'>That target is too deep underground!</span>")
-		return
+		if(!active_weapon.ammo_equipped.Penetrate_Cave == TRUE)
+			to_chat(source, "<span class='warning'>That target is too deep underground!</span>")
+			return
 	if(active_weapon.ammo_equipped?.ammo_count <= 0)
 		to_chat(source, "<span class='warning'>No ammo remaining!</span>")
 		return

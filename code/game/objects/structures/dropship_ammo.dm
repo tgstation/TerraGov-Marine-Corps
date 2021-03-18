@@ -28,6 +28,7 @@
 	var/point_cost = 0 //how many points it costs to build this with the fabricator, set to 0 if unbuildable.
 	///Type of ammo
 	var/ammo_type
+	var/Penetrate_Cave = FALSE
 
 
 	attackby(obj/item/I, mob/user)
@@ -231,6 +232,19 @@
 /obj/structure/ship_ammo/rocket/detonate_on(turf/impact, attackdir = NORTH)
 	qdel(src)
 
+/obj/structure/ship_ammo/rocket/cavebuster
+	name = "\improper GBU-1172 'Penetrator'"
+	desc = "The GBU-1172 'Penetrator' is a joint TGMC-NT Prototype. It is used to destroy and kill bunkers. It is designed to puncture the top steel plating of bunkers and detonate a mild, slightly radioactive charge into the plating, shattering it. Goes straight through mountains. Use at your own risk. NT-TGMC JOINT PROJECTS GROUP A is not liable for any Marine or PMC injuries when using this weapon. Use with Caution."
+	icon_state = "cavebuster"
+	ammo_id = ""
+	travelling_time = 3 SECONDS //slower but deadly accurate, even if laser guidance is stopped mid-travel.
+	point_cost = 300
+	Penetrate_Cave = TRUE
+
+/obj/structure/ship_ammo/rocket/cavebuster/detonate_on(turf/impact, attackdir = NORTH)
+	impact.ceiling_debris_check(3)
+	explosion(impact, 2, 4, 7)
+	qdel(src)
 
 //this one is air-to-air only
 /obj/structure/ship_ammo/rocket/widowmaker
