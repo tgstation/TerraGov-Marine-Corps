@@ -83,9 +83,10 @@
 #define SHUTTLE_DEFAULT_UNDERLYING_AREA /area/space
 
 //Shuttle flying state
-#define SHUTTLE_ON_SHIP "on_ship"
-#define SHUTTLE_IN_ATMOSPHERE "in_atmosphere"
-#define SHUTTLE_ON_GROUND "on_ground"
+#define SHUTTLE_ON_SHIP "on ship"
+#define SHUTTLE_IN_SPACE "in space"
+#define SHUTTLE_IN_ATMOSPHERE "in atmosphere"
+#define SHUTTLE_ON_GROUND "on ground"
 
 //Call time of shuttle
 #define SHUTTLE_LANDING_CALLTIME 0 SECONDS

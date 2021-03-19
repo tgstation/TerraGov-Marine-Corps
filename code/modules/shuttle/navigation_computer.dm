@@ -7,10 +7,6 @@
 	var/datum/action/innate/shuttledocker_rotate/rotate_action = new
 	/// Action of landing to a custom zone
 	var/datum/action/innate/shuttledocker_land/land_action = new
-	/// Action of landing the dropship back to mainship
-	var/datum/action/innate/shuttledocker_back_to_ship/return_to_ship_action = new
-	/// Action of sending the dropship in the atmosphere
-	var/datum/action/innate/shuttledocker_take_off/take_off_action = new
 	/// The id of the shuttle linked to this console
 	var/shuttleId = ""
 	/// The id of the custom docking port placed by this console
@@ -47,8 +43,12 @@
 	var/fly_state = SHUTTLE_ON_SHIP
 	/// The next flying state of the shuttle
 	var/next_fly_state = SHUTTLE_ON_SHIP
+	/// The flying state we will have when reaching our destination
+	var/destination_fly_state = SHUTTLE_ON_SHIP
 	/// If the next destination is a transit
 	var/to_transit = TRUE
+	/// The user of the ui
+	var/mob/living/ui_user
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/Initialize(mapload)
 	. = ..()
@@ -94,25 +94,21 @@
 	..()
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/proc/shuttle_arrived()
-	if(to_transit)
-		to_transit = FALSE
-		return
 	if(fly_state == next_fly_state)
 		return
 	fly_state = next_fly_state
+	if(to_transit)
+		to_transit = FALSE
+		next_fly_state = destination_fly_state
+		return
 	give_actions()
 	if(fly_state == SHUTTLE_IN_ATMOSPHERE)
-		eyeobj.canmove = TRUE
+		open_prompt = TRUE
+		open_prompt(ui_user)
 		return
-	eyeobj.canmove = FALSE
-
-/obj/machinery/computer/camera_advanced/shuttle_docker/give_eye_control(mob/user)
-	. = ..()
-	if(fly_state == SHUTTLE_IN_ATMOSPHERE)
-		eyeobj.canmove = TRUE
-		return
-	eyeobj.canmove = FALSE
-
+	open_prompt = FALSE
+	remove_eye_control(ui_user)
+	
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/give_actions(mob/living/user)
 	if(!user)
@@ -130,27 +126,18 @@
 		off_action.give_action(user)
 		actions += off_action
 
-	if(fly_state == SHUTTLE_IN_ATMOSPHERE)
-		if(rotate_action)
-			rotate_action.target = user
-			rotate_action.give_action(user)
-			actions += rotate_action
-
-		if(land_action)
-			land_action.target = user
-			land_action.give_action(user)
-			actions += land_action
-		
-		if(return_to_ship_action)
-			return_to_ship_action.target = user
-			return_to_ship_action.give_action(user)
-			actions += return_to_ship_action
+	if(fly_state != SHUTTLE_IN_ATMOSPHERE)
 		return
 	
-	if(take_off_action)
-		take_off_action.target = user
-		take_off_action.give_action(user)
-		actions += take_off_action		
+	if(rotate_action)
+		rotate_action.target = user
+		rotate_action.give_action(user)
+		actions += rotate_action
+
+	if(land_action)
+		land_action.target = user
+		land_action.give_action(user)
+		actions += land_action
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/CreateEye()
 	shuttle_port = SSshuttle.getShuttle(shuttleId)
@@ -425,45 +412,7 @@
 		return
 	origin.shuttle_port.callTime = SHUTTLE_LANDING_CALLTIME
 	origin.next_fly_state = SHUTTLE_ON_GROUND
-	remote_eye.canmove = FALSE
 	SSshuttle.moveShuttleQuickToDock(origin.shuttleId, origin.my_port.id)
-
-
-/datum/action/innate/shuttledocker_take_off
-	name = "Take off"
-	action_icon = 'icons/mecha/actions_mecha.dmi'
-	action_icon_state = "take_off"
-
-/datum/action/innate/shuttledocker_take_off/Activate()
-	if(QDELETED(target) || !isliving(target))
-		return
-	var/mob/living/C = target
-	var/mob/camera/aiEye/remote/remote_eye = C.remote_control
-	var/obj/machinery/computer/camera_advanced/shuttle_docker/origin = remote_eye.origin
-	if(origin.fly_state == SHUTTLE_ON_GROUND)
-		origin.to_transit = TRUE
-		origin.shuttle_port.callTime = SHUTTLE_TAKEOFF_GROUND_CALLTIME
-	else
-		origin.shuttle_port.callTime = SHUTTLE_TAKEOFF_SHIP_CALLTIME
-	origin.next_fly_state = SHUTTLE_IN_ATMOSPHERE
-	SSshuttle.moveShuttleToTransit(origin.shuttleId, TRUE)
-
-/datum/action/innate/shuttledocker_back_to_ship
-	name = "Return to ship"
-	action_icon = 'icons/mecha/actions_mecha.dmi'
-	action_icon_state = "return_to_ship"
-
-/datum/action/innate/shuttledocker_back_to_ship/Activate()
-	if(QDELETED(target) || !isliving(target))
-		return
-	var/mob/living/C = target
-	var/mob/camera/aiEye/remote/remote_eye = C.remote_control
-	var/obj/machinery/computer/camera_advanced/shuttle_docker/origin = remote_eye.origin
-	origin.to_transit = TRUE
-	origin.next_fly_state = SHUTTLE_ON_SHIP
-	if(!origin.origin_port_id)
-		return
-	SSshuttle.moveShuttle(origin.shuttleId, origin.origin_port_id, TRUE)
 
 /datum/action/innate/camera_jump/shuttle_docker
 	name = "Jump to Location"
