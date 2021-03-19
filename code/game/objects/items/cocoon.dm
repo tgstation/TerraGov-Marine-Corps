@@ -17,8 +17,6 @@
 	var/cocoon_life_time = 15 MINUTES
 	///How many psych points it is generating every 5 seconds
 	var/psych_points_output = 0.75
-	///If the cocoon should produce psych points
-	var/producing_points = TRUE
 	///Standard busy check
 	var/busy = FALSE
 
@@ -28,8 +26,6 @@
 	hivenumber =  _hivenumber
 	victim = _victim
 	victim.forceMove(src)
-	if(!producing_points)
-		return
 	START_PROCESSING(SSslowprocess, src)
 	addtimer(CALLBACK(src, .proc/life_draining_over, TRUE), cocoon_life_time)
 	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, .proc/life_draining_over)
@@ -37,7 +33,7 @@
 
 /obj/structure/cocoon/examine(mob/user, distance, infix, suffix)
 	. = ..()
-	if(producing_points && victim && ishuman(user))
+	if(anchored && victim && ishuman(user))
 		to_chat(user, "<span class='notice'>There is something inside it. You think you can open it with a sharp object</span>")
 
 /obj/structure/cocoon/process()
@@ -45,19 +41,25 @@
 
 /obj/structure/cocoon/take_damage(damage_amount, damage_type, damage_flag, effects, attack_dir, armour_penetration)
 	. = ..()
-	if(producing_points && obj_integrity < max_integrity / 2)
-		life_draining_over()
+	if(anchored && obj_integrity < max_integrity / 2)
+		unanchor_from_nest()
 
+///Allow the cocoon to be opened and dragged
+/obj/structure/cocoon/proc/unanchor_from_nest()
+	new /obj/structure/bed/nest(loc)
+	anchored = FALSE
+	update_icon()
+	playsound(loc, "alien_resin_move", 35)
+
+///Stop producing points and release the victim if needed
 /obj/structure/cocoon/proc/life_draining_over(must_release_victim = FALSE)
 	SIGNAL_HANDLER
 	STOP_PROCESSING(SSslowprocess, src)
-	playsound(loc, "alien_resin_move", 35)
-	new /obj/structure/bed/nest(loc)
-	producing_points = FALSE
-	update_icon()
-	anchored = FALSE
+	if(anchored)
+		unanchor_from_nest()
 	if(must_release_victim)
 		release_victim()
+	update_icon()
 
 /obj/structure/cocoon/Destroy()
 	if(victim)
@@ -74,7 +76,7 @@
 	victim = null
 
 /obj/structure/cocoon/attacked_by(obj/item/I, mob/living/user, def_zone)
-	if(!producing_points && victim)
+	if(!anchored && victim)
 		if(busy)
 			return
 		if(!I.sharp)
@@ -93,7 +95,7 @@
 	return ..()
 
 /obj/structure/cocoon/update_icon_state()
-	if(producing_points)
+	if(anchored)
 		icon_state = "xeno_cocoon"
 		return
 	if(victim)
