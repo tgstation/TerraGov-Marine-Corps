@@ -349,6 +349,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	dat += "<h2>Game Settings:</h2>"
 	dat += "<b>Window Flashing:</b> <a href='?_src_=prefs;preference=windowflashing'>[windowflashing ? "Yes" : "No"]</a><br>"
 	dat += "<b>Focus chat:</b> <a href='?_src_=prefs;preference=focus_chat'>[(focus_chat) ? "Enabled" : "Disabled"]</a><br>"
+	dat += "<b>TGUI Window Mode:</b> <a href='?_src_=prefs;preference=tgui_fancy'>[(tgui_fancy) ? "Fancy (default)" : "Compatible (slower)"]</a><br>"
+	dat += "<b>TGUI Window Placement:</b> <a href='?_src_=prefs;preference=tgui_lock'>[(tgui_lock) ? "Primary monitor" : "Free (default)"]</a><br>"
 	dat += "<b>Tooltips:</b> <a href='?_src_=prefs;preference=tooltips'>[(tooltips) ? "Shown" : "Hidden"]</a><br>"
 	dat += "<b>FPS:</b> <a href='?_src_=prefs;preference=clientfps'>[clientfps]</a><br>"
 	dat += "<b>Fit Viewport:</b> <a href='?_src_=prefs;preference=auto_fit_viewport'>[auto_fit_viewport ? "Auto" : "Manual"]</a><br>"
@@ -990,6 +992,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 		if("windowflashing")
 			windowflashing = !windowflashing
+
+		if("tgui_fancy")
+			tgui_fancy = !tgui_fancy
+
+		if("tgui_lock")
+			tgui_lock = !tgui_lock
 
 		if("auto_fit_viewport")
 			auto_fit_viewport = !auto_fit_viewport

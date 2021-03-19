@@ -459,6 +459,13 @@
 	description = "Imbues a target xeno with healing energy, restoring extra Sunder and Health once every 2 seconds up to 5 times whenever it regenerates normally. 60 second duration."
 	keybind_signal = COMSIG_XENOABILITY_HEALING_INFUSION
 
+/datum/keybinding/xeno/scatter_spit
+	name = "scatter_spit"
+	full_name = "Spitter: Scatter Spit"
+	description = "Fires a scattershot of 6 acid globules which create acid puddles on impact or at the end of their range."
+	keybind_signal = COMSIG_XENOABILITY_SCATTER_SPIT
+
+
 //Wraith keybinds - BEGIN
 
 /datum/keybinding/xeno/place_warp_shadow
