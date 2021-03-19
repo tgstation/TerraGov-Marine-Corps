@@ -253,6 +253,8 @@ SUBSYSTEM_DEF(minimaps)
  */
 /datum/controller/subsystem/minimaps/proc/remove_marker(atom/source)
 	SIGNAL_HANDLER
+	if(!removal_cbs[source]) //already removed
+		return
 	UnregisterSignal(source, list(COMSIG_PARENT_QDELETING, COMSIG_MOVABLE_MOVED, COMSIG_MOVABLE_Z_CHANGED))
 	for(var/flag in GLOB.all_minimap_flags)
 		var/ref = minimaps_by_z["[source.z]"].images_assoc["[flag]"]
