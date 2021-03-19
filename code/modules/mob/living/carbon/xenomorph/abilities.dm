@@ -1057,7 +1057,7 @@
 		return fail_activate()
 
 	new /obj/structure/resin/silo (get_step(A, SOUTHWEST))
-
+	to_chat(owner, "<span class='notice'>We build a new silo for [psych_cost] psy points.</span>")
 	SSpoints.xeno_points_by_hive[X.hivenumber] -= psych_cost
 
 	succeed_activate()
@@ -1076,7 +1076,7 @@
 	/// How long does it take to build
 	var/build_time = 15 SECONDS
 	/// Pyschic point cost
-	var/psych_cost = 100
+	var/psych_cost = XENO_TURRET_PRICE
 
 
 /datum/action/xeno_action/activable/build_turret/can_use_ability(atom/A, silent, override_flags)
@@ -1319,10 +1319,12 @@
 	X.face_atom(victim) //Face towards the target so we don't look silly
 	X.visible_message("<span class='xenowarning'>\The [X] begins opening its mouth and extending a second jaw towards \the [victim].</span>", \
 	"<span class='danger'>We slowly drain \the [victim]'s life force!</span>", null, 20)
-	playsound(X, 'sound/magic/nightfall.ogg', 40)
+	var/channel = SSsounds.random_available_channel()
+	playsound(X, 'sound/magic/nightfall.ogg', 40, channel = channel)
 	if(!do_after(X, 10 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(X, /mob.proc/break_do_after_checks, list("health" = X.health))))
 		X.visible_message("<span class='xenowarning'>\The [X] retracts its inner jaw.</span>", \
 		"<span class='danger'>We retract our inner jaw.</span>", null, 20)
+		X.stop_sound_channel(channel)
 		return FALSE
 	succeed_activate() //dew it
 
@@ -1333,7 +1335,7 @@
 	if(HAS_TRAIT(victim, TRAIT_PSY_DRAINED))
 		to_chat(X, "<span class='warning'>Someone drained the life force of our victim before we could do it!</span>")
 		return fail_activate()
-	
+
 	playsound(X, 'sound/magic/end_of_psy_drain.ogg', 40)
 
 	X.visible_message("<span class='xenodanger'>\The [victim]'s life force is drained by \the [X]!</span>", \
@@ -1343,7 +1345,7 @@
 
 	ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
 
-	SSpoints.xeno_points_by_hive[X.hivenumber] += psy_points_reward
+	SSpoints.add_psy_points(X.hivenumber, psy_points_reward)
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	xeno_job.add_job_points(larva_point_reward)
 

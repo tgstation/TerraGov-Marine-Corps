@@ -733,7 +733,7 @@ to_chat will check for valid clients itself already so no need to double check f
 			continue
 		qdel(silo)
 
-	SSpoints.xeno_points_by_hive[hivenumber] = SILO_PRICE //Give a free silo when going shipside
+	SSpoints.xeno_points_by_hive[hivenumber] = SILO_PRICE + XENO_TURRET_PRICE //Give a free silo when going shipside and a turret
 
 	var/list/living_player_list = SSticker.mode.count_humans_and_xenos(count_flags = COUNT_IGNORE_HUMAN_SSD)
 	var/num_humans = living_player_list[1]
@@ -1060,6 +1060,9 @@ to_chat will check for valid clients itself already so no need to double check f
 /mob/living/carbon/xenomorph/get_xeno_hivenumber()
 	return hivenumber
 
+/obj/structure/resin/xeno_turret/get_xeno_hivenumber()
+	return associated_hive.hivenumber
+
 /datum/hive_status/ui_state(mob/user)
 	return GLOB.xeno_state
 
@@ -1164,4 +1167,4 @@ to_chat will check for valid clients itself already so no need to double check f
 		return
 
 	xeno_message("<span class='xenoannounce'>We don't have any silos! The hive will collapse if nothing is done</span>", 3, TRUE)
-	D.siloless_hive_timer = addtimer(CALLBACK(D, /datum/game_mode.proc/siloless_hive_collapse), 20 MINUTES, TIMER_STOPPABLE)
+	D.siloless_hive_timer = addtimer(CALLBACK(D, /datum/game_mode.proc/siloless_hive_collapse), 10 MINUTES, TIMER_STOPPABLE)

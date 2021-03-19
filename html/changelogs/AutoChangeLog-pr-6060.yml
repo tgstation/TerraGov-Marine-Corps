@@ -1,6 +1,0 @@
-author: "Bravemole & Ciel (sprites)"
-delete-after: True
-changes: 
-  - rscadd: "Xeno turrets. They start at 600 health points and will mature up to 1500. They have a range of 7, rapid fire of acid prae. They are especially weak against nades (4 to kill), sadar rockets (one shot), and fire (1 minute to completly burn, that's 2 incend nades). Deal 20 raw burn damage per spit"
-  - rscadd: "Xeno turrets placed at strategic locations in all major maps (except prison)"
-  - rscadd: "Queen, Shrike and Hivelord can build them for 100 points"

@@ -42,6 +42,7 @@
 #define MODE_LZ_SHUTTERS		(1<<6)
 #define MODE_XENO_SPAWN_PROTECT	(1<<7)
 #define MODE_XENO_RULER			(1<<8)
+#define MODE_PSY_POINTS			(1<<9)
 
 #define MODE_LANDMARK_RANDOM_ITEMS			(1<<0)
 #define MODE_LANDMARK_SPAWN_XENO_TUNNELS	(1<<1)
@@ -125,7 +126,8 @@
 
 #define COUNT_IGNORE_ALIVE_SSD (COUNT_IGNORE_HUMAN_SSD|COUNT_IGNORE_XENO_SSD)
 
-#define SILO_PRICE 900
+#define SILO_PRICE 1200
+#define XENO_TURRET_PRICE 150
 
 //The minimum round time before siloless timer can start (13:00)
 #define MINIMUM_TIME_SILO_LESS_COLLAPSE 36000 

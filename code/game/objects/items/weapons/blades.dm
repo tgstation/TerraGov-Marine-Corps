@@ -131,6 +131,9 @@
 	if(!loaded_reagent)
 		return ..()
 
+	if(M.status_flags & INCORPOREAL || user.status_flags & INCORPOREAL) //Incorporeal beings cannot attack or be attacked
+		return FALSE
+
 	switch(loaded_reagent.type)
 		if(/datum/reagent/medicine/tramadol)
 			M.apply_status_effect(/datum/status_effect/incapacitating/harvester_slowdown, 2 SECONDS)

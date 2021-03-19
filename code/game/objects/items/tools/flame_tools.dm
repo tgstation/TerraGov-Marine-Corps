@@ -165,6 +165,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	var/smoketime = 300
 	var/chem_volume = 30
 	var/list/list_reagents = list(/datum/reagent/nicotine = 15)
+	/// the quantity that will be transmited each 2 seconds
+	var/transquantity = 0.1
 	flags_armor_protection = NONE
 
 /obj/item/clothing/mask/cigarette/Initialize()
@@ -323,7 +325,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 			if(prob(15)) // so it's not an instarape in case of acid
 				reagents.reaction(C, INGEST)
-			reagents.trans_to(C, REAGENTS_METABOLISM)
+			reagents.trans_to(C, transquantity)
 		else // else just remove some of the reagents
 			reagents.remove_any(REAGENTS_METABOLISM)
 
@@ -369,6 +371,58 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		M.update_inv_wear_mask()
 	STOP_PROCESSING(SSobj, src)
 	qdel(src)
+
+/obj/item/clothing/mask/cigarette/antitox
+	name = "Neurokiller cigarette"
+	desc = "A new type of cigarette, made to fend off toxic gasses, might still tire you."
+	icon_state = "anticigoff"
+	item_state = "anticigoff"
+	icon_on = "anticigon"
+	smoketime = 30
+	chem_volume = 60
+	transquantity = 2 // one of each for the whole duration
+	list_reagents = list(/datum/reagent/medicine/ryetalyn = 30, /datum/reagent/water = 30)  //some water so it purges the rye too
+
+/obj/item/clothing/mask/cigarette/emergency
+	name = "Red Comrade"
+	desc = "A red cigarrete. With some writings in it. Some of it is in russian, but,the Red Russian warning, is in indistinguishable."
+	icon_state = "rrcigoff"
+	item_state = "rrcigoff"
+	icon_on = "rrcigon"
+	smoketime = 10
+	transquantity = 1
+	list_reagents = list(/datum/reagent/medicine/russian_red = 10)  //same ammount as a pill
+
+/obj/item/clothing/mask/cigarette/bica
+	name = "strawberry flavored cigarette"
+	desc = "Red tipped. Has got a single word stamped on the side: \"(BICARDINE)\"."
+	icon_state = "bicacigoff"
+	item_state = "bicacigoff"
+	icon_on = "bicaigon"
+	smoketime = 30
+	transquantity = 5 // one of each for the whole duration
+	list_reagents = list(/datum/reagent/medicine/bicaridine = 15)
+
+/obj/item/clothing/mask/cigarette/kelo
+	name = "lemon flavored cigarette"
+	desc = "Yellow tipped. has got a single word stamped on the side: \"(KELOTANE)\"."
+	icon_state = "kelocigoff"
+	item_state = "kelocigoff"
+	icon_on = "kelocigon"
+	smoketime = 30
+	transquantity = 5 // one of each for the whole duration
+	list_reagents = list(/datum/reagent/medicine/kelotane = 15)
+
+/obj/item/clothing/mask/cigarette/tram
+	name = "poppy flavored cigarette"
+	desc = "TerraGov opioid alternative, diluted in water to skirt the 2112 Opioid Control act."
+	icon_state = "tramcigoff"
+	item_state = "tramcigoff"
+	icon_on = "tramcigon"
+	smoketime = 15  //so half a minute
+	chem_volume = 60
+	transquantity = 2 // one of each for the whole duration
+	list_reagents = list(/datum/reagent/medicine/tramadol = 30, /datum/reagent/water = 30)
 
 ////////////
 // CIGARS //
