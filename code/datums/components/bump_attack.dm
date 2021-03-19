@@ -2,60 +2,63 @@
 	var/active = TRUE
 	var/bump_action_path
 	var/datum/action/bump_attack_toggle/toggle_action
-	var/mob/living/bumper
 
-
-/datum/component/bump_attack/Initialize()
+/datum/component/bump_attack/Initialize(enabled = TRUE, has_button = TRUE)
 	. = ..()
 	if(!isliving(parent))
 		return COMPONENT_INCOMPATIBLE
-	bumper = parent
-	if(ishuman(bumper))
+	if(ishuman(parent))
+		RegisterSignal(parent, COMSIG_ITEM_TOGGLE_BUMP_ATTACK, .proc/living_activation_toggle)
 		bump_action_path = .proc/human_bump_action
-	else if(isxeno(bumper))
+	else if(isxeno(parent))
 		bump_action_path = .proc/xeno_bump_action
 	else
 		bump_action_path = .proc/living_bump_action
-	if(active)
-		RegisterSignal(bumper, COMSIG_MOVABLE_BUMP, bump_action_path)
-	var/toggle_path
-	toggle_path = .proc/living_activation_toggle
-	toggle_action = new()
-	toggle_action.give_action(bumper)
-	toggle_action.update_button_icon(active)
-	RegisterSignal(toggle_action, COMSIG_ACTION_TRIGGER, toggle_path)
+	if(has_button)
+		toggle_action = new()
+		toggle_action.give_action(parent)
+		toggle_action.update_button_icon(active)
+		RegisterSignal(toggle_action, COMSIG_ACTION_TRIGGER, .proc/living_activation_toggle)
+	living_activation_toggle(enabled)
 
 /datum/component/bump_attack/Destroy(force, silent)
-	if(active)
-		UnregisterSignal(bumper, COMSIG_MOVABLE_BUMP)
 	QDEL_NULL(toggle_action)
-	bumper = null
 	return ..()
 
 
-/datum/component/bump_attack/proc/living_activation_toggle(datum/source)
-	active = !active
+/datum/component/bump_attack/proc/living_activation_toggle(datum/source, should_enable)
+	if(should_enable == active)
+		return
+	var/mob/living/bumper = parent
 	to_chat(bumper, "<span class='notice'>You will now [active ? "attack" : "push"] enemies who are in your way.</span>")
-	if(active)
+	if(toggle_action)
+		toggle_action.update_button_icon(should_enable)
+	if(should_enable)
+		active = TRUE
 		RegisterSignal(bumper, COMSIG_MOVABLE_BUMP, bump_action_path)
-	else
-		UnregisterSignal(bumper, COMSIG_MOVABLE_BUMP)
-	toggle_action.update_button_icon(active)
+		return
+
+	var/obj/item/held_item = bumper.get_inactive_held_item()
+	if(held_item && held_item.flags_item & CAN_BUMP_ATTACK)
+		return
+	active = FALSE
+	UnregisterSignal(bumper, COMSIG_MOVABLE_BUMP)
 
 
 /datum/component/bump_attack/proc/living_bump_action_checks(atom/target)
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_BUMP_ATTACK))
 		return NONE
+	var/mob/living/bumper = parent
 	if(!isliving(target) || bumper.throwing || bumper.incapacitated())
 		return NONE
 
 
 /datum/component/bump_attack/proc/carbon_bump_action_checks(atom/target)
-	var/mob/living/carbon/attacker = bumper
+	var/mob/living/carbon/bumper = parent
 	. = living_bump_action_checks(target)
 	if(!isnull(.))
 		return
-	switch(attacker.a_intent)
+	switch(bumper.a_intent)
 		if(INTENT_HELP, INTENT_GRAB)
 			return NONE
 
@@ -71,28 +74,30 @@
 	SIGNAL_HANDLER
 	INVOKE_ASYNC(src, .proc/human_bump_action_checks, source, target)
 
+///Handles human pre-bump attack checks
 /datum/component/bump_attack/proc/human_bump_action_checks(datum/source, atom/target)
-	var/mob/living/carbon/human/attacker = bumper
+	var/mob/living/carbon/human/bumper = parent
 	. = carbon_bump_action_checks(target)
 	if(!isnull(.))
 		return
 	var/mob/living/living_target = target
-	if(attacker.faction == living_target.faction)
+	if(bumper.faction == living_target.faction)
 		return //FF
 	return human_do_bump_action(target)
 
 /datum/component/bump_attack/proc/xeno_bump_action(datum/source, atom/target)
 	SIGNAL_HANDLER
-	var/mob/living/carbon/xenomorph/attacker = bumper
+	var/mob/living/carbon/xenomorph/bumper = parent
 	. = carbon_bump_action_checks(target)
 	if(!isnull(.))
 		return
-	if(attacker.issamexenohive(target))
+	if(bumper.issamexenohive(target))
 		return //No more nibbling.
 	return living_do_bump_action(target)
 
 
 /datum/component/bump_attack/proc/living_do_bump_action(atom/target)
+	var/mob/living/bumper = parent
 	if(bumper.next_move > world.time)
 		return COMPONENT_BUMP_RESOLVED //We don't want to push people while on attack cooldown.
 	bumper.UnarmedAttack(target, TRUE)
@@ -101,7 +106,9 @@
 	TIMER_COOLDOWN_START(src, COOLDOWN_BUMP_ATTACK, CLICK_CD_MELEE)
 	return COMPONENT_BUMP_RESOLVED
 
+///Handles human bump attacks
 /datum/component/bump_attack/proc/human_do_bump_action(atom/target)
+	var/mob/living/bumper = parent
 	if(bumper.next_move > world.time)
 		return COMPONENT_BUMP_RESOLVED //We don't want to push people while on attack cooldown.
 	var/obj/item/held_item = bumper.get_active_held_item()
@@ -109,7 +116,7 @@
 		bumper.UnarmedAttack(target, TRUE)
 	else if(held_item.flags_item & CAN_BUMP_ATTACK)
 		held_item.melee_attack_chain(bumper, target)
-	else
+	else //disables pushing overall if you have bump attacks on, so you don't accidentally misplace your enemy when switching to an item that can't bump attack
 		return COMPONENT_BUMP_RESOLVED
 	TIMER_COOLDOWN_START(src, COOLDOWN_BUMP_ATTACK, CLICK_CD_MELEE)
 	return COMPONENT_BUMP_RESOLVED

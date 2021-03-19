@@ -176,7 +176,7 @@
 		return
 
 	force = force_wielded
-	flags_item |= CAN_BUMP_ATTACK
+	toggle_item_bump_attack(user, TRUE)
 
 /obj/item/weapon/claymore/harvester/unwield(mob/user)
 	. = ..()
@@ -184,7 +184,7 @@
 		return FALSE
 
 	force = initial(force)
-	flags_item &= ~CAN_BUMP_ATTACK
+	toggle_item_bump_attack(user, FALSE)
 	return TRUE
 
 /obj/item/weapon/claymore/harvester/update_item_state(mob/user)
