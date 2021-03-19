@@ -278,9 +278,9 @@
 		return "[(eta / 60) % 60]:[add_leading(num2text(eta % 60), 2, "0")]"
 
 
-/datum/game_mode/infestation/distress/attempt_to_join_as_larva(mob/xeno_candidate)
+/datum/game_mode/infestation/distress/attempt_to_join_as_larva(mob/dead/observer/observer)
 	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
-	return HS.attempt_to_spawn_larva(xeno_candidate)
+	return HS.add_to_larva_candidate_queue(observer)
 
 
 /datum/game_mode/infestation/distress/spawn_larva(mob/xeno_candidate, mob/living/carbon/xenomorph/mother)

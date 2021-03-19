@@ -1234,6 +1234,17 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 20
 	bullet_color = COLOR_TESLA_BLUE
 
+
+/datum/ammo/energy/droidblast
+	name = "energetic plasma bolt"
+	icon_state = "pulse2"
+	hud_state = "pulse"
+	damage = 45
+	max_range = 40
+	penetration = 50
+	sundering = 20
+	bullet_color = COLOR_PULSE_BLUE
+
 /datum/ammo/energy/lasgun
 	name = "laser bolt"
 	icon_state = "laser"

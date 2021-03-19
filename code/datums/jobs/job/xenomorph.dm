@@ -20,6 +20,13 @@
 	parent.show_character_previews(image('icons/Xeno/1x1_Xenos.dmi', icon_state = "Bloody Larva", dir = SOUTH))
 	return TRUE
 
+/datum/job/xenomorph/add_job_positions(amount)
+	. = ..()
+	if(!.)
+		return
+	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
+	HS.give_larva_to_next_in_queue()
+
 /datum/job/xenomorph/queen
 	title = ROLE_XENO_QUEEN
 	req_admin_notify = TRUE
