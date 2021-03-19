@@ -28,8 +28,9 @@
 	force = 60
 	attack_speed = 12
 	w_class = WEIGHT_CLASS_BULKY
-	flags_item = DRAINS_XENO
+	flags_item = DRAINS_XENO|TWOHANDED
 
+	var/force_wielded = 40
 	var/obj/item/reagent_containers/glass/beaker/vial/beaker = null
 	var/datum/reagent/loaded_reagent = null
 	var/list/loadable_reagents = list(
@@ -157,6 +158,49 @@
 
 	loaded_reagent = null
 	return ..()
+
+/obj/item/weapon/claymore/harvester/attack_self(mob/user)
+	. = ..()
+	if(flags_item & WIELDED)
+		unwield(user)
+	else
+		wield(user)
+
+/obj/item/weapon/claymore/harvester/wield(mob/user)
+	. = ..()
+	if(!.)
+		return
+	if(user.do_actions)
+		return
+	if(!do_after(user, 0.5 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY, null, PROGRESS_BRASS, ignore_turf_checks = TRUE))
+		return
+
+	force = force_wielded
+	flags_item |= CAN_BUMP_ATTACK
+
+/obj/item/weapon/claymore/harvester/unwield(mob/user)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	force = initial(force)
+	flags_item &= ~CAN_BUMP_ATTACK
+	return TRUE
+
+/obj/item/weapon/claymore/harvester/update_item_state(mob/user)
+	return //this is needed so there doesn't need to be a copy of the same sprite for wielded harvester
+
+/obj/item/weapon/claymore/harvester/mob_can_equip(mob/user)
+	unwield(user)
+	return ..()
+
+/obj/item/weapon/claymore/harvester/dropped(mob/user)
+	. = ..()
+	unwield(user)
+
+/obj/item/weapon/claymore/harvester/pickup(mob/user)
+	. = ..()
+	unwield(user)
 
 /obj/item/weapon/claymore/mercsword
 	name = "combat sword"
