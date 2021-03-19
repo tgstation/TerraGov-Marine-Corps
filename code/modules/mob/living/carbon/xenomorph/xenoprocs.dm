@@ -31,9 +31,10 @@
 
 	for(var/obj/structure/tunnel/T in GLOB.xeno_tunnels)
 		if(T.creator.hive == hive)
-			dat += "<b>[T.name]</b> located at: <b><font color=green>([T.tunnel_desc])</b></font><BR>"
+			var/distance = get_dist(user, T)
+			dat += "<b>[T.name]</b> located at: <b><font color=green>([T.tunnel_desc][distance > 0 ? " <b>Distance: [distance])</b>" : ""]</b></font><BR>"
 
-	var/datum/browser/popup = new(user, "roundstatus", "<div align='center'>Tunnel List</div>", 600, 600)
+	var/datum/browser/popup = new(user, "tunnelstatus", "<div align='center'>Tunnel List</div>", 600, 600)
 	popup.set_content(dat)
 	popup.open(FALSE)
 
@@ -57,9 +58,11 @@
 			if(0 to 0.33)
 				hp_color = "red"
 
+		var/distance = get_dist(user, X)
+
 		xenoinfo += " <b><font color=[hp_color]>Health: ([X.health]/[X.maxHealth])</font></b>"
 
-		xenoinfo += " <b><font color=green>([AREACOORD_NO_Z(X)])</b></td></tr>"
+		xenoinfo += " <b><font color=green>([AREACOORD_NO_Z(X)][distance > 0 ? " <b>Distance: [distance]</b>" : ""])</font></b></td></tr>"
 
 	return xenoinfo
 
