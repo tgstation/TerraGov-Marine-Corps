@@ -103,12 +103,17 @@ SUBSYSTEM_DEF(minimaps)
 	updators_by_datum = SSminimaps.updators_by_datum
 
 /datum/controller/subsystem/minimaps/fire(resumed)
-	if(!resumed)
+	if(!resumed) //on first iteration clear all overlays
 		for(var/iter=1 to length(update_targets_unsorted))
 			update_targets_unsorted[iter].overlays.Cut() //clear all the old overlays, no we cant cache it because they wont update
+	var/static/lastflag = NONE
 	for(var/flag in update_targets)
+		var/flagnum = text2num(flag)
+		if(resumed && (flagnum < lastflag)) //under high load update in chunks
+			continue
 		for(var/datum/minimap_updator/updator AS in update_targets[flag])
 			updator.minimap.overlays += minimaps_by_z["[updator.ztarget]"].images_raw[flag]
+		lastflag = flagnum
 		if(MC_TICK_CHECK)
 			return
 

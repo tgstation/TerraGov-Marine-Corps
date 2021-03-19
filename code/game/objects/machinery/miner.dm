@@ -6,6 +6,8 @@
 #define MINER_RESISTANT	"reinforced components"
 #define MINER_OVERCLOCKED "high-efficiency drill"
 
+#define PHORON_CRATE_SELL_AMOUNT 15
+#define PLATINUM_CRATE_SELL_AMOUNT 30
 
 ///Resource generator that produces a certain material that can be repaired by marines and attacked by xenos, Intended as an objective for marines to play towards to get more req gear
 /obj/machinery/miner
@@ -25,7 +27,7 @@
 	///How many times we neeed to tick for a resource to be created, in this case this is 2* the specified amount
 	var/required_ticks = 70  //make one crate every 140 seconds
 	///The mineral type that's produced
-	var/mineral_value = 15
+	var/mineral_value = PHORON_CRATE_SELL_AMOUNT
 	///Health for the miner we use because changing obj_integrity is apparently bad
 	var/miner_integrity = 100
 	///Max health of the miner
@@ -40,11 +42,11 @@
 /obj/machinery/miner/damaged/platinum
 	name = "\improper Nanotrasen platinum Mining Well"
 	desc = "A Nanotrasen platinum drill with an internal export module. Produces even more valuable materials than it's phoron counterpart"
-	mineral_value = 30
+	mineral_value = PLATINUM_CRATE_SELL_AMOUNT
 
 /obj/machinery/miner/Initialize()
 	. = ..()
-	SSminimaps.add_marker(src, z, hud_flags = MINIMAP_FLAG_ALL, iconstate = "miner_[mineral_produced == /obj/structure/ore_box/platinum ? "platinum" : "phoron"]")
+	SSminimaps.add_marker(src, z, hud_flags = MINIMAP_FLAG_ALL, iconstate = "miner_[mineral_value >= PLATINUM_CRATE_SELL_AMOUNT ? "platinum" : "phoron"]")
 	start_processing()
 
 /obj/machinery/miner/update_icon()
@@ -57,6 +59,7 @@
 			icon_state = "mining_drill_[miner_upgrade_type]"
 		if(MINER_DESTROYED)
 			icon_state = "mining_drill_error_[miner_upgrade_type]"
+
 /// Called whenever someone attacks the miner with a object which is considered a upgrade.The object needs to have a uptype var.
 /obj/machinery/miner/proc/attempt_upgrade(obj/item/minerupgrade/upgrade, mob/user, params)
 	if(miner_upgrade_type)
@@ -94,7 +97,6 @@
 
 /obj/machinery/miner/attackby(obj/item/I,mob/user,params)
 	. = ..()
-
 	if(istype(I, /obj/item/minerupgrade))
 		var/obj/item/minerupgrade/upgrade = I
 		if(!(miner_status == MINER_RUNNING))

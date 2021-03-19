@@ -254,6 +254,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	INVOKE_NEXT_TICK(src, .proc/update_minimap_icon, mini) //Mobs are spawned inside nullspace sometimes so this is to avoid that hijinks
 
 /obj/item/radio/headset/mainship/proc/update_minimap_icon(datum/action/minimap/mini)
+	SSminimaps.remove_marker(wearer)
 	if(!wearer.job || !wearer.job.minimap_icon)
 		return
 	if(wearer.assigned_squad)
