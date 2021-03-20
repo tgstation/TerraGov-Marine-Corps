@@ -23,16 +23,31 @@
 	view_range = "26x26"
 	x_offset = 0
 	y_offset = 0
-	origin_port_id = "minidropship"
 	open_prompt = FALSE
+	/// Action of landing to a custom zone
+	var/datum/action/innate/shuttledocker_land/land_action = new
 	/// Amount of fuel remaining to hover
 	var/fuel_left = 60
 	/// The maximum fuel the dropship can hold
 	var/fuel_max = 60
+	/// The current flying state of the shuttle
+	var/fly_state = SHUTTLE_ON_SHIP
+	/// The next flying state of the shuttle
+	var/next_fly_state = SHUTTLE_ON_SHIP
+	/// The flying state we will have when reaching our destination
+	var/destination_fly_state = SHUTTLE_ON_SHIP
+	/// If the next destination is a transit
+	var/to_transit = TRUE
+		/// The id of the stationary docking port on the ship
+	var/origin_port_id = "minidropship"
+	/// The user of the ui
+	var/mob/living/ui_user
+
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/Initialize(mapload)
 	. = ..()
 	start_processing()
+	set_light(3,3)
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/process()
 	if(fly_state == SHUTTLE_IN_ATMOSPHERE)
@@ -42,6 +57,49 @@
 		return
 	if(fly_state == SHUTTLE_ON_SHIP && fuel_left < fuel_max)
 		fuel_left++
+
+/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/give_actions(mob/living/user)
+	if(!user)
+		if(!current_user)
+			return
+		user = current_user
+
+	for(var/V in actions)
+		var/datum/action/A = V
+		A.remove_action(user)
+	actions.Cut()
+	
+	if(off_action)
+		off_action.target = user
+		off_action.give_action(user)
+		actions += off_action
+
+	if(fly_state != SHUTTLE_IN_ATMOSPHERE)
+		return
+	
+	if(rotate_action)
+		rotate_action.target = user
+		rotate_action.give_action(user)
+		actions += rotate_action
+
+	if(land_action)
+		land_action.target = user
+		land_action.give_action(user)
+		actions += land_action
+
+/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/shuttle_arrived()
+	if(fly_state == next_fly_state)
+		return
+	fly_state = next_fly_state
+	if(to_transit)
+		to_transit = FALSE
+		next_fly_state = destination_fly_state
+		return
+	give_actions()
+	if(fly_state == SHUTTLE_IN_ATMOSPHERE)
+		open_prompt = TRUE
+		open_prompt(ui_user)
+		return
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/proc/take_off()
 	shuttle_port = SSshuttle.getShuttle(shuttleId)
@@ -96,4 +154,22 @@
 			take_off()
 		if("return_to_ship")
 			return_to_ship()
-	
+
+/datum/action/innate/shuttledocker_land
+	name = "Land"
+	action_icon = 'icons/mecha/actions_mecha.dmi'
+	action_icon_state = "land"
+
+/datum/action/innate/shuttledocker_land/Activate()
+	if(QDELETED(target) || !isliving(target))
+		return
+	var/mob/living/C = target
+	var/mob/camera/aiEye/remote/remote_eye = C.remote_control
+	var/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/origin = remote_eye.origin
+	if(!origin.placeLandingSpot(target))
+		return
+	origin.shuttle_port.callTime = SHUTTLE_LANDING_CALLTIME
+	origin.next_fly_state = SHUTTLE_ON_GROUND
+	origin.open_prompt = FALSE
+	origin.remove_eye_control(origin.ui_user)
+	SSshuttle.moveShuttleQuickToDock(origin.shuttleId, origin.my_port.id)
