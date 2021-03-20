@@ -175,7 +175,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 
 	playsound(T, 'sound/weapons/pierce.ogg', 25, 1)
 
-
+	newt.hivenumber = X.hive //Set our structure's hive
 	newt.creator = X
 
 	X.tunnels.Add(newt)
