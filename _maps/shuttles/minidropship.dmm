@@ -9,9 +9,6 @@
 	},
 /turf/open/floor/mainship_hull,
 /area/shuttle/minidropship)
-"c" = (
-/turf/template_noop,
-/area/shuttle/minidropship)
 "g" = (
 /obj/machinery/door/poddoor/mainship/open{
 	id = "minidropship_podlock"
@@ -30,22 +27,6 @@
 /area/shuttle/minidropship)
 "k" = (
 /turf/open/shuttle/dropship/grating,
-/area/shuttle/minidropship)
-"m" = (
-/obj/machinery/door/poddoor/mainship/open{
-	dir = 2;
-	id = "minidropship_podlock"
-	},
-/obj/machinery/door/poddoor/shutters/transit{
-	dir = 2
-	},
-/obj/structure/barricade/plasteel{
-	dir = 1
-	},
-/obj/structure/barricade/metal{
-	icon_state = "+explosive_upgrade_0"
-	},
-/turf/open/shuttle/dropship/five,
 /area/shuttle/minidropship)
 "n" = (
 /obj/structure/bed/chair/dropship/pilot{
@@ -126,7 +107,7 @@
 	dir = 4
 	},
 /obj/machinery/light{
-	dir = 8
+	dir = 1
 	},
 /turf/open/floor/mainship_hull,
 /area/shuttle/minidropship)
@@ -142,7 +123,7 @@
 	dir = 8
 	},
 /obj/machinery/light{
-	dir = 4
+	dir = 1
 	},
 /turf/open/floor/mainship_hull,
 /area/shuttle/minidropship)
@@ -166,7 +147,7 @@
 (1,1,1) = {"
 E
 E
-c
+E
 S
 U
 U
@@ -176,7 +157,7 @@ R
 "}
 (2,1,1) = {"
 E
-c
+E
 S
 S
 O
@@ -193,7 +174,7 @@ p
 r
 k
 r
-m
+v
 E
 "}
 (4,1,1) = {"
@@ -215,12 +196,12 @@ K
 r
 k
 r
-m
+v
 E
 "}
 (6,1,1) = {"
 E
-c
+E
 S
 S
 T
@@ -232,7 +213,7 @@ R
 (7,1,1) = {"
 E
 E
-c
+E
 S
 g
 g

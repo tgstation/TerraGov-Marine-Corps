@@ -7,8 +7,9 @@ export const Minidropship = (_props, context) => {
 
   return (
     <Window
-    width={350}
-    height={350}>
+      width={220}
+      height={230}
+      title={"Navigation"}>
       <Window.Content scrollable>
         <Section title={`Fly state - ${data.fly_state}`}>
           <Button
@@ -22,12 +23,12 @@ export const Minidropship = (_props, context) => {
         </Section>
         <Section title={`Fuel left - ${data.fuel_left}/${data.fuel_max}`}>
           <ProgressBar
-          ranges={{
-          good: [0.50, Infinity],
-          average: [0.25, 0.50],
-          bad: [-Infinity, 0.25],
-          }}
-          value={data.fuel_left/data.fuel_max} />
+            ranges={{
+              good: [0.50, Infinity],
+              average: [0.25, 0.50],
+              bad: [-Infinity, 0.25],
+            }}
+            value={data.fuel_left/data.fuel_max} />
         </Section>
       </Window.Content>
     </Window>

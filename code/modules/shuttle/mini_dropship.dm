@@ -15,7 +15,6 @@
 	name = "Tadpole navigation computer"
 	desc = "Used to designate a precise transit location for the Tadpole."
 	icon_state = "shuttlecomputer"
-	resistance_flags = INDESTRUCTIBLE
 	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LEADER)
 	interaction_flags = INTERACT_MACHINE_TGUI
 	shuttleId = "minidropship"
@@ -27,9 +26,9 @@
 	origin_port_id = "minidropship"
 	open_prompt = FALSE
 	/// Amount of fuel remaining to hover
-	var/fuel_left = 100
+	var/fuel_left = 60
 	/// The maximum fuel the dropship can hold
-	var/fuel_max = 100
+	var/fuel_max = 60
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/Initialize(mapload)
 	. = ..()
@@ -48,10 +47,10 @@
 	shuttle_port = SSshuttle.getShuttle(shuttleId)
 	shuttle_port.shuttle = src
 	if(fly_state == SHUTTLE_ON_GROUND)
-		to_transit = TRUE
 		next_fly_state = SHUTTLE_IN_ATMOSPHERE
 		shuttle_port.callTime = SHUTTLE_TAKEOFF_GROUND_CALLTIME
 	else
+		to_transit = TRUE
 		shuttle_port.callTime = SHUTTLE_TAKEOFF_SHIP_CALLTIME
 		next_fly_state = SHUTTLE_IN_SPACE
 		destination_fly_state = SHUTTLE_IN_ATMOSPHERE
@@ -65,6 +64,8 @@
 	destination_fly_state = SHUTTLE_ON_SHIP
 	if(!origin_port_id)
 		return
+	open_prompt = FALSE
+	remove_eye_control(ui_user)
 	SSshuttle.moveShuttle(shuttleId, origin_port_id, TRUE)
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/ui_state(mob/user)
@@ -85,7 +86,7 @@
 	.["fuel_left"] = fuel_left
 	.["fuel_max"] = fuel_max
 	.["fly_state"] = fly_state
-	.["take_off_locked"] = (fly_state == SHUTTLE_IN_ATMOSPHERE || next_fly_state == SHUTTLE_IN_ATMOSPHERE)
+	.["take_off_locked"] = !(fly_state == SHUTTLE_ON_GROUND || fly_state == SHUTTLE_ON_SHIP)
 	.["return_to_ship_locked"] = (fly_state != SHUTTLE_IN_ATMOSPHERE)
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)

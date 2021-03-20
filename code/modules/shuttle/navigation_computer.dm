@@ -106,8 +106,6 @@
 		open_prompt = TRUE
 		open_prompt(ui_user)
 		return
-	open_prompt = FALSE
-	remove_eye_control(ui_user)
 	
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/give_actions(mob/living/user)
@@ -412,6 +410,8 @@
 		return
 	origin.shuttle_port.callTime = SHUTTLE_LANDING_CALLTIME
 	origin.next_fly_state = SHUTTLE_ON_GROUND
+	origin.open_prompt = FALSE
+	origin.remove_eye_control(origin.ui_user)
 	SSshuttle.moveShuttleQuickToDock(origin.shuttleId, origin.my_port.id)
 
 /datum/action/innate/camera_jump/shuttle_docker
