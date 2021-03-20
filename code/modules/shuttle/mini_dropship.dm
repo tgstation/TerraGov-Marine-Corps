@@ -16,7 +16,9 @@
 	desc = "Used to designate a precise transit location for the Tadpole."
 	icon_state = "shuttlecomputer"
 	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LEADER)
+	density = FALSE
 	interaction_flags = INTERACT_MACHINE_TGUI
+	resistance_flags = RESIST_ALL
 	shuttleId = "minidropship"
 	lock_override = CAMERA_LOCK_GROUND
 	shuttlePortId = "minidropship_custom"
@@ -115,9 +117,9 @@
 ///The action of taking off and sending the shuttle to the atmosphere
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/proc/take_off()
 	shuttle_port = SSshuttle.getShuttle(shuttleId)
-	if(!(shuttle_port.shuttle_flags & GAMEMODE_IMMUNE) && world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
+	/*if(!(shuttle_port.shuttle_flags & GAMEMODE_IMMUNE) && world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
 		to_chat(ui_user, "<span class='warning'>The engines are still refueling.</span>")
-		return
+		return*/
 	shuttle_port.shuttle = src
 	if(fly_state == SHUTTLE_ON_GROUND)
 		next_fly_state = SHUTTLE_IN_ATMOSPHERE
@@ -187,4 +189,5 @@
 	origin.next_fly_state = SHUTTLE_ON_GROUND
 	origin.open_prompt = FALSE
 	origin.remove_eye_control(origin.ui_user)
-	SSshuttle.moveShuttleQuickToDock(origin.shuttleId, origin.my_port.id)
+	origin.shuttle_port.set_mode(SHUTTLE_CALL)
+	SSshuttle.moveShuttleToDock(origin.shuttleId, origin.my_port)
