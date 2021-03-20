@@ -50,7 +50,7 @@
 	set_light(3,3)
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/process()
-	if(fly_state == SHUTTLE_IN_ATMOSPHERE)
+	if(fly_state == SHUTTLE_IN_ATMOSPHERE && destination_fly_state != SHUTTLE_ON_SHIP)
 		fuel_left--
 		if(fuel_left <= 0)
 			return_to_ship()
@@ -98,7 +98,8 @@
 	give_actions()
 	if(fly_state == SHUTTLE_IN_ATMOSPHERE)
 		open_prompt = TRUE
-		open_prompt(ui_user)
+		if(ui_user?.Adjacent(src))
+			open_prompt(ui_user)
 		return
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/proc/take_off()
@@ -127,7 +128,7 @@
 	SSshuttle.moveShuttle(shuttleId, origin_port_id, TRUE)
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/ui_state(mob/user)
-	return GLOB.always_state
+	return GLOB.dropship_state
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/ui_interact(mob/user, datum/tgui/ui)
 	. = ..()
