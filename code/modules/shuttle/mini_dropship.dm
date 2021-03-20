@@ -43,7 +43,6 @@
 	/// The user of the ui
 	var/mob/living/ui_user
 
-
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/Initialize(mapload)
 	. = ..()
 	start_processing()
@@ -105,6 +104,7 @@
 			open_prompt(ui_user)
 		return
 
+///Change the icons of the space turf in the transit
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/proc/set_transit_turf(in_atmos = FALSE)
 	var/turf_type = in_atmos ? /turf/open/space/transit/atmos : /turf/open/space/transit
 	var/former_type = in_atmos ? /turf/open/space/transit : /turf/open/space/transit/atmos
@@ -115,9 +115,9 @@
 ///The action of taking off and sending the shuttle to the atmosphere
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/proc/take_off()
 	shuttle_port = SSshuttle.getShuttle(shuttleId)
-	/*if(!(shuttle_port.shuttle_flags & GAMEMODE_IMMUNE) && world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
+	if(!(shuttle_port.shuttle_flags & GAMEMODE_IMMUNE) && world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
 		to_chat(ui_user, "<span class='warning'>The engines are still refueling.</span>")
-		return*/
+		return
 	shuttle_port.shuttle = src
 	if(fly_state == SHUTTLE_ON_GROUND)
 		next_fly_state = SHUTTLE_IN_ATMOSPHERE
