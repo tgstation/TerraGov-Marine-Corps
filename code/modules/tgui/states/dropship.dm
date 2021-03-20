@@ -1,7 +1,7 @@
 /**
  * tgui state: dropship_state
  *
- * Checks that the src_object is in the user's hands.
+ * Checks that the user is next to the src object
  */
 
 GLOBAL_DATUM_INIT(dropship_state, /datum/ui_state/dropship_state, new)

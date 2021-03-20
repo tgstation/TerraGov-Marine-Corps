@@ -80,6 +80,7 @@
 		return
 	..()
 
+///Change the fly state of the shuttle, called when a new shuttle port is reached
 /obj/machinery/computer/camera_advanced/shuttle_docker/proc/shuttle_arrived()
 	return
 

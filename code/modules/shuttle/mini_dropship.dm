@@ -9,7 +9,7 @@
 	dwidth = 0
 	dheight = 0
 	width = 7
-	height = 8
+	height = 9
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship
 	name = "Tadpole navigation computer"
@@ -38,7 +38,7 @@
 	var/destination_fly_state = SHUTTLE_ON_SHIP
 	/// If the next destination is a transit
 	var/to_transit = TRUE
-		/// The id of the stationary docking port on the ship
+	/// The id of the stationary docking port on the ship
 	var/origin_port_id = "minidropship"
 	/// The user of the ui
 	var/mob/living/ui_user
@@ -102,6 +102,7 @@
 			open_prompt(ui_user)
 		return
 
+///The action of taking off and sending the shuttle to the atmosphere
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/proc/take_off()
 	shuttle_port = SSshuttle.getShuttle(shuttleId)
 	shuttle_port.shuttle = src
@@ -115,6 +116,7 @@
 		destination_fly_state = SHUTTLE_IN_ATMOSPHERE
 	SSshuttle.moveShuttleToTransit(shuttleId, TRUE)
 
+///The action of sending the shuttle back to its shuttle port on main ship
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/proc/return_to_ship()
 	shuttle_port = SSshuttle.getShuttle(shuttleId)
 	shuttle_port.shuttle = src
@@ -140,7 +142,6 @@
 		ui.open()
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/ui_data(mob/user)
-	. = ..()
 	. = list()
 	.["fuel_left"] = fuel_left
 	.["fuel_max"] = fuel_max
