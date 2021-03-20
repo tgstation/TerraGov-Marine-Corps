@@ -91,23 +91,33 @@
 	if(fly_state == next_fly_state)
 		return
 	fly_state = next_fly_state
+	if(fly_state == SHUTTLE_IN_SPACE)
+		set_transit_turf(FALSE)
 	if(to_transit)
 		to_transit = FALSE
 		next_fly_state = destination_fly_state
 		return
 	give_actions()
 	if(fly_state == SHUTTLE_IN_ATMOSPHERE)
+		set_transit_turf(TRUE)
 		open_prompt = TRUE
 		if(ui_user?.Adjacent(src))
 			open_prompt(ui_user)
 		return
 
+/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/proc/set_transit_turf(in_atmos = FALSE)
+	var/turf_type = in_atmos ? /turf/open/space/transit/atmos : /turf/open/space/transit
+	var/former_type = in_atmos ? /turf/open/space/transit : /turf/open/space/transit/atmos
+	for(var/turf/T AS in shuttle_port.assigned_transit.reserved_area.reserved_turfs)
+		if(istype(T, former_type))
+			T.ChangeTurf(turf_type, turf_type)
+
 ///The action of taking off and sending the shuttle to the atmosphere
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/proc/take_off()
 	shuttle_port = SSshuttle.getShuttle(shuttleId)
-	if(!(shuttle_port.shuttle_flags & GAMEMODE_IMMUNE) && world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
+	/*if(!(shuttle_port.shuttle_flags & GAMEMODE_IMMUNE) && world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
 		to_chat(ui_user, "<span class='warning'>The engines are still refueling.</span>")
-		return
+		return*/
 	shuttle_port.shuttle = src
 	if(fly_state == SHUTTLE_ON_GROUND)
 		next_fly_state = SHUTTLE_IN_ATMOSPHERE
