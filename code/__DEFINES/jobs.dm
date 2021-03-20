@@ -115,7 +115,7 @@ MEDICAL_OFFICER, MEDICAL_RESEARCHER, SQUAD_LEADER, SQUAD_SPECIALIST, SQUAD_SMART
 #define XP_REQ_UNSEASONED 60
 #define XP_REQ_INTERMEDIATE 180
 #define	XP_REQ_EXPERIENCED 600
-#define	XP_REQ_EXPERT 900 
+#define	XP_REQ_EXPERT 900
 
 // how much a job is going to contribute towards burrowed larva. see config for points required to larva. old balance was 1 larva per 3 humans.
 #define LARVA_POINTS_SHIPSIDE 1
@@ -131,5 +131,6 @@ MEDICAL_OFFICER, MEDICAL_RESEARCHER, SQUAD_LEADER, SQUAD_SPECIALIST, SQUAD_SMART
 #define SMARTIE_POINTS_MEDIUM 2
 #define SPEC_POINTS_HIGH 3
 #define SMARTIE_POINTS_HIGH 3
+#define SYNTH_POINTS_REGULAR 1
 
 #define SQUAD_MAX_POSITIONS(total_positions) CEILING(total_positions / length(SSjob.active_squads), 1)
