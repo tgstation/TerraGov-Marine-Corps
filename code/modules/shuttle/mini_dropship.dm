@@ -49,6 +49,11 @@
 	. = ..()
 	start_processing()
 	set_light(3,3)
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/LateInitialize()
+	. = ..()
+	shuttle_port = SSshuttle.getShuttle(shuttleId)
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/process()
 	if(fly_state == SHUTTLE_IN_ATMOSPHERE && destination_fly_state != SHUTTLE_ON_SHIP)
@@ -161,8 +166,8 @@
 	.["fuel_left"] = fuel_left
 	.["fuel_max"] = fuel_max
 	.["fly_state"] = fly_state
-	.["take_off_locked"] = !(fly_state == SHUTTLE_ON_GROUND || fly_state == SHUTTLE_ON_SHIP)
-	.["return_to_ship_locked"] = (fly_state != SHUTTLE_IN_ATMOSPHERE)
+	.["take_off_locked"] = ( !(fly_state == SHUTTLE_ON_GROUND || fly_state == SHUTTLE_ON_SHIP) || shuttle_port?.mode == SHUTTLE_IDLE)
+	.["return_to_ship_locked"] = (fly_state != SHUTTLE_IN_ATMOSPHERE || shuttle_port?.mode == SHUTTLE_IDLE)
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
@@ -189,4 +194,5 @@
 	origin.next_fly_state = SHUTTLE_ON_GROUND
 	origin.open_prompt = FALSE
 	origin.remove_eye_control(origin.ui_user)
-	SSshuttle.moveShuttleQuickToDock(origin.shuttleId, origin.my_port.id)
+	origin.shuttle_port.set_mode(SHUTTLE_CALL)
+	SSshuttle.moveShuttleToDock(origin.shuttleId, origin.my_port, TRUE)
