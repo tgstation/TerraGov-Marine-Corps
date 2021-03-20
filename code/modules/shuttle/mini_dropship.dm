@@ -189,5 +189,4 @@
 	origin.next_fly_state = SHUTTLE_ON_GROUND
 	origin.open_prompt = FALSE
 	origin.remove_eye_control(origin.ui_user)
-	origin.shuttle_port.set_mode(SHUTTLE_CALL)
-	SSshuttle.moveShuttleToDock(origin.shuttleId, origin.my_port)
+	SSshuttle.moveShuttleQuickToDock(origin.shuttleId, origin.my_port.id)
