@@ -92,7 +92,7 @@
 	if(M.status_flags & INCORPOREAL || user.status_flags & INCORPOREAL) //Incorporeal beings cannot attack or be attacked
 		return
 
-	var/powerused = setting*100
+	var/powerused = setting * 30
 	if(powerused >= cell.charge)
 		to_chat(user, "<span class='warning'>\The [src]'s cell doesn't have enough power!</span>")
 		M.apply_damage((force/5), BRUTE)
@@ -106,27 +106,21 @@
 	playsound(loc, 'sound/weapons/energy_blast.ogg', 50, TRUE)
 	playsound(loc, 'sound/weapons/genhit2.ogg', 50, TRUE)
 	var/atom/throw_target = get_edge_target_turf(M, get_dir(src, get_step_away(M, src)))
-	M.throw_at(throw_target, 5 * setting, 0.5 + (setting / 2))
+	var/throw_distance = setting * LERP(5 , 2, M.mob_size / MOB_SIZE_BIG) 
+	M.throw_at(throw_target, throw_distance, 0.5 + (setting / 2))
 	cell.charge -= powerused
 	return ..()
 
 /obj/item/weapon/powerfist/attackby(obj/item/I, mob/user, params)
-	if(!istype(I, /obj/item/cell))
+	if(!istype(I, /obj/item/cell/lasgun))
 		return ..()
 	if(cell)
-		to_chat(user, "<span class='warning'>There already is a cell installed!</span>")
-		return
+		unload(user)
 	user.transferItemToLoc(I,src)
 	cell = I
 	to_chat(user, "<span class='notice'>You insert the [I] into the [src].</span>")
 
-/obj/item/weapon/powerfist/screwdriver_act(mob/living/user, obj/item/I)
-	if(..())
-		return TRUE
-	if(!cell)
-		to_chat(user, "<span class='notice'>There is no cell installed!</span>")
-		return TRUE
+/obj/item/weapon/powerfist/proc/unload(mob/user)
 	user.dropItemToGround(cell)
 	cell = null
-	to_chat(user, "<span class='notice'>You pop open the cover and remove the cell.</span>")
-	return TRUE
+	playsound(user, 'sound/weapons/guns/interact/rifle_reload.ogg', 25, TRUE)
