@@ -185,12 +185,12 @@
 	C.visible_message("<span class='warning'>[C] trips on [src]!</span>",\
 						"<span class='danger'>You trip on [src]!</span>")
 	C.Paralyze(4 SECONDS)
-	xeno_message("<span class='xenoannounce'>A facehugger trap at [AREACOORD_NO_Z(src)] has been triggered!</span>", 2, hugger.hivenumber,  FALSE, get_turf(src), 'sound/voice/alien_distantroar_3.ogg', FALSE, null, /obj/screen/arrow/leader_tracker_arrow) //Follow the trend of hive wide alerts for important events
+	xeno_message("A facehugger trap at [AREACOORD_NO_Z(src)] has been triggered!", "xenoannounce", 5, hugger.hivenumber,  FALSE, get_turf(src), 'sound/voice/alien_talk2.ogg', FALSE, null, /obj/screen/arrow/attack_order_arrow, COLOR_ORANGE, TRUE) //Follow the trend of hive wide alerts for important events
 	drop_hugger()
 
 /obj/effect/alien/resin/trap/proc/drop_hugger()
 	hugger.forceMove(loc)
-	hugger.go_active(TRUE) //Removes stasis
+	hugger.go_active(TRUE, TRUE) //Removes stasis
 	icon_state = "trap0"
 	visible_message("<span class='warning'>[hugger] gets out of [src]!</span>")
 	hugger = null
@@ -654,7 +654,7 @@ TUNNEL
 	if(!QDELETED(creator))
 		to_chat(creator, "<span class='xenoannounce'>You sense your [name] at [tunnel_desc] has been destroyed!</span>") //Alert creator
 
-	xeno_message("<span class='xenoannounce'>Hive tunnel [name] at [tunnel_desc] has been destroyed!</span>", 2, creator.hivenumber) //Also alert hive because tunnels matter.
+	xeno_message("Hive tunnel [name] at [tunnel_desc] has been destroyed!", "xenoannounce", 5, creator.hivenumber) //Also alert hive because tunnels matter.
 
 	GLOB.xeno_tunnels -= src
 	if(creator)

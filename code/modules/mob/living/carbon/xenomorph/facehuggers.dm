@@ -161,36 +161,86 @@
 /obj/item/clothing/mask/facehugger/proc/go_idle(hybernate = FALSE, no_activate = FALSE)
 	if(stat == DEAD)
 		return FALSE
-	deltimer(jumptimer)
-	deltimer(lifetimer)
-	lifetimer = null
+	deltimer(jumptimer) //Clear jump timers
 	jumptimer = null
 	remove_danger_overlay() //Remove the danger overlay
 	if(stat == CONSCIOUS)
 		stat = UNCONSCIOUS
 		update_icon()
-	if(hybernate)
+	if(hybernate) //If we're hybernating we're going into stasis; we no longer have a death timer
 		stasis = TRUE
-		lifecycle = initial(lifecycle)
+		deltimer(lifetimer)
+		lifetimer = null
 	else if(!attached && !(stasis || no_activate))
 		addtimer(CALLBACK(src, .proc/go_active), activate_time)
+		lifetimer = addtimer(CALLBACK(src, .proc/check_lifecycle), FACEHUGGER_DEATH, TIMER_STOPPABLE|TIMER_UNIQUE)
 
-/obj/item/clothing/mask/facehugger/proc/go_active(unhybernate = FALSE)
+///Resets the life timer for the facehugger
+/obj/item/clothing/mask/facehugger/proc/reset_life_timer()
+	deltimer(lifetimer)
+	lifetimer = null
+	lifetimer = addtimer(CALLBACK(src, .proc/check_lifecycle), FACEHUGGER_DEATH, TIMER_STOPPABLE|TIMER_UNIQUE)
+
+/obj/item/clothing/mask/facehugger/proc/go_active(unhybernate = FALSE, reset_life_timer = FALSE)
 	if(unhybernate)
 		stasis = FALSE
-		deltimer(lifetimer) //We're removing stasis so reset the death timer.
-		lifetimer = addtimer(CALLBACK(src, .proc/check_lifecycle), FACEHUGGER_DEATH, TIMER_STOPPABLE)
 
 	if(stasis || stat == DEAD) //If we're not in stasis or dead proceed
 		return FALSE
 
+	if(reset_life_timer) //Generally only used if we directly go to active mode, such as in the case of a hugger trap trigger
+		reset_life_timer()
+
 	stat = CONSCIOUS
 	remove_danger_overlay() //Remove the danger overlay
-	lifetimer = addtimer(CALLBACK(src, .proc/check_lifecycle), FACEHUGGER_DEATH, TIMER_STOPPABLE|TIMER_UNIQUE)
-	jumptimer = addtimer(CALLBACK(src, .proc/leap_at_nearest_target), jump_cooldown, TIMER_STOPPABLE|TIMER_UNIQUE)
-	addtimer(CALLBACK(src, .proc/apply_danger_overlay), jump_cooldown * 0.5)
+	pre_leap() //Go into the universal leap set up proc
 	update_icon()
 	return TRUE
+
+
+///Called before we leap
+/obj/item/clothing/mask/facehugger/proc/pre_leap(activation_time = jump_cooldown)
+	message_admins("pre_leap, activation_time: [jump_cooldown]")
+	jumptimer = addtimer(CALLBACK(src, .proc/leap_at_nearest_target), activation_time, TIMER_STOPPABLE|TIMER_UNIQUE)
+	if(activation_time >= 2 SECONDS) //If activation timer is equal to or greater than two seconds, we trigger the danger overlay at 1 second, otherwise we do so immediately.
+		message_admins("pre_leap, 1 second alert")
+		addtimer(CALLBACK(src, .proc/apply_danger_overlay), 1 SECONDS)
+		return
+	apply_danger_overlay()
+	message_admins("pre_leap, immediate alert")
+
+
+/obj/item/clothing/mask/facehugger/proc/leap_at_nearest_target()
+	message_admins("leap_at_nearest_target")
+	if(!isturf(loc))
+		return
+
+	if(stat != CONSCIOUS) //need to be active to leap
+		return
+
+	for(var/check_smoke in get_turf(src)) //Check for pacifying smoke
+		if(!istype(check_smoke, /obj/effect/particle_effect/smoke/xeno))
+			continue
+
+		var/obj/effect/particle_effect/smoke/xeno/xeno_smoke = check_smoke
+		if(CHECK_BITFIELD(xeno_smoke.smoke_traits, SMOKE_HUGGER_PACIFY)) //Cancel out and make the hugger go idle if we have the xeno pacify tag
+			go_idle()
+			return
+
+	var/i = 10//So if we have a pile of dead bodies around, it doesn't scan everything, just ten iterations.
+	for(var/mob/living/carbon/M in view(4,src))
+		if(!i)
+			break
+		if(M.can_be_facehugged(src))
+			visible_message("<span class='warning'>\The scuttling [src] leaps at [M]!</span>", null, null, 4)
+			leaping = TRUE
+			throw_at(M, 4, 1)
+			return //We found a target and will jump towards it; cancel out. If we didn't find anything, continue and try again later
+		--i
+
+	remove_danger_overlay() //Remove the danger overlay
+	pre_leap() //Go into the universal leap set up proc
+
 
 /obj/item/clothing/mask/facehugger/update_overlays()
 	. = ..()
@@ -214,6 +264,9 @@
 	update_overlays()
 
 /obj/item/clothing/mask/facehugger/proc/check_lifecycle()
+
+	if(stasis || stat == DEAD) //We don't care about this while in stasis or if we're dead
+		return FALSE
 
 	if(sterile && !combat_hugger) //We are now useless; time to die.
 		kill_hugger()
@@ -246,42 +299,9 @@
 	if(iscarbon(AM))
 		var/mob/living/carbon/M = AM
 		if(M.can_be_facehugged(src))
-			apply_danger_overlay()
-			deltimer(jumptimer)
-			jumptimer = addtimer(CALLBACK(src, .proc/leap_at_nearest_target), proximity_time, TIMER_STOPPABLE|TIMER_UNIQUE) //Walking into a hugger causes it to attack quickly.
+			pre_leap(proximity_time) //Go into the universal leap set up proc
 			return TRUE
 	return FALSE
-
-/obj/item/clothing/mask/facehugger/proc/leap_at_nearest_target()
-	if(!isturf(loc))
-		return
-
-	if(stat != CONSCIOUS) //need to be active to leap
-		return
-
-	for(var/check_smoke in get_turf(src)) //Check for pacifying smoke
-		if(!istype(check_smoke, /obj/effect/particle_effect/smoke/xeno))
-			continue
-
-		var/obj/effect/particle_effect/smoke/xeno/xeno_smoke = check_smoke
-		if(CHECK_BITFIELD(xeno_smoke.smoke_traits, SMOKE_HUGGER_PACIFY)) //Cancel out and make the hugger go idle if we have the xeno pacify tag
-			go_idle()
-			return
-
-	var/i = 10//So if we have a pile of dead bodies around, it doesn't scan everything, just ten iterations.
-	for(var/mob/living/carbon/M in view(4,src))
-		if(!i)
-			break
-		if(M.can_be_facehugged(src))
-			visible_message("<span class='warning'>\The scuttling [src] leaps at [M]!</span>", null, null, 4)
-			leaping = TRUE
-			throw_at(M, 4, 1)
-			return //We found a target and will jump towards it; cancel out. If we didn't find anything, continue and try again later
-		--i
-
-	remove_danger_overlay() //Remove the danger overlay
-	jumptimer = addtimer(CALLBACK(src, .proc/leap_at_nearest_target), jump_cooldown, TIMER_STOPPABLE|TIMER_UNIQUE)
-	addtimer(CALLBACK(src, .proc/apply_danger_overlay), jump_cooldown * 0.5)
 
 /obj/item/clothing/mask/facehugger/Crossed(atom/target)
 	. = ..()
@@ -302,8 +322,6 @@
 /obj/item/clothing/mask/facehugger/throw_at(atom/target, range, speed)
 	. = ..()
 	update_icon()
-	if(jumptimer)
-		jumptimer = addtimer(CALLBACK(src, .proc/leap_at_nearest_target), jump_cooldown, TIMER_STOPPABLE|TIMER_UNIQUE)
 
 /obj/item/clothing/mask/facehugger/throw_impact(atom/hit_atom, speed)
 	. = ..()
@@ -318,15 +336,13 @@
 		else
 			step(src, REVERSE_DIR(dir)) //We want the hugger to bounce off if it hits a mob.
 			update_icon()
-			apply_danger_overlay()
-			deltimer(jumptimer)
 			if(!issamexenohive(M)) //If the target is not friendly, stagger and slow it, and activate faster.
 				M.adjust_stagger(3) //Apply stagger and slowdown so the carrier doesn't have to suicide when going for direct hugger hits.
 				M.add_slowdown(3)
-				jumptimer = addtimer(CALLBACK(src, .proc/leap_at_nearest_target), impact_time, TIMER_STOPPABLE|TIMER_UNIQUE)
+				pre_leap(impact_time) //Go into the universal leap set up proc
 				return
 
-			jumptimer = addtimer(CALLBACK(src, .proc/leap_at_nearest_target), activate_time, TIMER_STOPPABLE|TIMER_UNIQUE)
+			pre_leap(activate_time) //Go into the universal leap set up proc
 			return
 	else
 		if(leaping)
@@ -623,7 +639,7 @@
 	sterile = TRUE
 	color = COLOR_DARK_ORANGE
 	combat_hugger = TRUE
-	impact_time = 1 SECONDS
+	impact_time = 1.3 SECONDS
 	activate_time = 2 SECONDS
 	jump_cooldown = 2 SECONDS
 
@@ -649,7 +665,7 @@
 	sterile = TRUE
 	color = COLOR_GREEN
 	combat_hugger = TRUE
-	impact_time = 1 SECONDS
+	impact_time = 1.3 SECONDS
 	activate_time = 2 SECONDS
 	jump_cooldown = 2 SECONDS
 
@@ -680,7 +696,7 @@
 	sterile = TRUE
 	color = COLOR_STRONG_VIOLET
 	combat_hugger = TRUE
-	impact_time = 1 SECONDS
+	impact_time = 1.3 SECONDS
 	activate_time = 2 SECONDS
 	jump_cooldown = 2 SECONDS
 
@@ -716,7 +732,7 @@
 	sterile = TRUE
 	color = COLOR_RED
 	combat_hugger = TRUE
-	impact_time = 1 SECONDS
+	impact_time = 1.3 SECONDS
 	activate_time = 2 SECONDS
 	jump_cooldown = 2 SECONDS
 
