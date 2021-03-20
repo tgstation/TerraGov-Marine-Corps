@@ -138,13 +138,6 @@
 	icon_state = "mining_drill_overclockeddisplay"
 	uptype = "high-efficiency drill"
 
-
-/obj/item/minerupgrade/compactor
-	name = "crystalizer module"
-	desc = "A bulky module meant to replace the normal crystalizer in mining wells, used to compress boxes for easy carrying."
-	icon_state = "mining_drill_compactordisplay"
-	uptype = "upgraded crystalizer module"
-
 /obj/item/dropship_points_voucher
 	name = "dropship fabricator voucher"
 	desc = "A small keycard stamped by a Terra Gov logo. It contains points you can redeem at a dropship fabricator. One use only."
@@ -156,3 +149,9 @@
 /obj/item/dropship_points_voucher/examine(mob/user)
 	. = ..()
 	to_chat(user, "It contains [extra_points] points.")
+
+/obj/item/minerupgrade/automatic
+	name = "mining computer"
+	desc = "A small computer that can automate mining wells, reducing the need for oversight."
+	icon_state = "mining_drill_automaticdisplay"
+	uptype = "mining computer"

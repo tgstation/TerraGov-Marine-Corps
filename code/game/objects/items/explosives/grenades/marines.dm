@@ -82,7 +82,7 @@
 
 /obj/item/explosive/grenade/frag/stick/prime()
 	explosion(loc, light_impact_range = 4, small_animation = TRUE)
-	del(src)
+	qdel(src)
 
 
 /obj/item/explosive/grenade/frag/upp
@@ -98,7 +98,7 @@
 
 /obj/item/explosive/grenade/frag/upp/prime()
 	explosion(loc, light_impact_range = 4, small_animation = TRUE)
-	del(src)
+	qdel(src)
 
 
 /obj/item/explosive/grenade/frag/sectoid

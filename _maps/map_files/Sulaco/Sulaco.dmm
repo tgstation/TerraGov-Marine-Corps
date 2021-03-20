@@ -528,9 +528,6 @@
 /obj/structure/sign/directions/science{
 	dir = 1
 	},
-/obj/machinery/camera/autoname{
-	dir = 1
-	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
@@ -2900,9 +2897,6 @@
 /turf/open/floor/prison,
 /area/sulaco/cargo/office)
 "anI" = (
-/obj/machinery/camera/autoname{
-	dir = 4
-	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 4
@@ -7404,8 +7398,9 @@
 /turf/open/floor/prison,
 /area/sulaco/hallway/central_hall3)
 "aIt" = (
-/turf/closed/wall/mainship/gray/outer,
-/area/sulaco/engineering)
+/obj/machinery/recharge_station,
+/turf/open/floor/prison,
+/area/sulaco/engineering/engine)
 "aIv" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -11195,6 +11190,12 @@
 	},
 /turf/open/floor/wood,
 /area/sulaco/liaison)
+"daG" = (
+/obj/machinery/camera/autoname{
+	dir = 8
+	},
+/turf/open/floor/prison/whitegreen/corner,
+/area/sulaco/medbay/west)
 "dbH" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 8
@@ -11625,6 +11626,10 @@
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/mainship/living/pilotbunks)
+"euc" = (
+/obj/machinery/door/airlock/mainship/marine/general,
+/turf/open/floor/plating/platebotc,
+/area/sulaco/engineering/engine)
 "eul" = (
 /obj/structure/window/framed/mainship/gray/toughened,
 /obj/machinery/door/poddoor/shutters/mainship/req/ro{
@@ -12180,9 +12185,7 @@
 /area/sulaco/medbay/west)
 "fYC" = (
 /obj/machinery/iv_drip,
-/obj/machinery/camera/autoname{
-	dir = 1
-	},
+/obj/machinery/camera/autoname,
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/west)
 "gbY" = (
@@ -12270,6 +12273,9 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/machinery/camera/autoname{
 	dir = 4
+	},
+/obj/machinery/light/small{
+	dir = 8
 	},
 /turf/open/floor/prison,
 /area/sulaco/engineering/engine)
@@ -12737,6 +12743,12 @@
 	dir = 8
 	},
 /area/sulaco/medbay/west)
+"hJw" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/prison,
+/area/sulaco/engineering/engine)
 "hKz" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
@@ -14913,6 +14925,10 @@
 /obj/docking_port/stationary/marine_dropship/crash_target,
 /turf/closed/wall/mainship/gray,
 /area/sulaco/bridge/quarters)
+"nml" = (
+/obj/effect/landmark/start/job/synthetic,
+/turf/open/floor/prison,
+/area/sulaco/engineering/engine)
 "nmW" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -15240,11 +15256,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
 "oiA" = (
-/obj/effect/landmark/start/job/synthetic,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/obj/machinery/firealarm{
-	dir = 4
-	},
 /turf/open/floor/prison,
 /area/sulaco/engineering/engine)
 "oiN" = (
@@ -16072,6 +16084,12 @@
 "pLJ" = (
 /turf/closed/wall/mainship/gray/outer,
 /area/sulaco/bridge/office)
+"pLQ" = (
+/obj/machinery/camera/autoname{
+	dir = 4
+	},
+/turf/open/floor/prison/marked,
+/area/sulaco/hallway/central_hall)
 "pLR" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
@@ -16361,11 +16379,10 @@
 /turf/open/floor/prison,
 /area/sulaco/hallway/central_hall3)
 "qJW" = (
-/obj/machinery/light/small{
+/obj/machinery/firealarm{
 	dir = 4
 	},
-/obj/machinery/recharge_station,
-/turf/open/floor/prison,
+/turf/closed/wall/mainship/gray,
 /area/sulaco/engineering/engine)
 "qKm" = (
 /obj/docking_port/stationary/marine_dropship/cas,
@@ -17132,7 +17149,6 @@
 /turf/open/floor/prison/plate,
 /area/sulaco/cargo)
 "sxx" = (
-/obj/machinery/marine_selector/clothes/synth,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 8
 	},
@@ -18737,6 +18753,10 @@
 	},
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
+"wLG" = (
+/obj/machinery/marine_selector/clothes/synth,
+/turf/open/floor/prison,
+/area/sulaco/engineering/engine)
 "wMn" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 5
@@ -42435,7 +42455,7 @@ mDu
 aYZ
 apB
 asn
-asn
+pLQ
 anI
 aoh
 awI
@@ -44609,7 +44629,7 @@ leD
 qxQ
 aam
 abE
-abG
+daG
 abY
 acm
 acy
@@ -62747,7 +62767,7 @@ eZL
 eoD
 tAS
 tAS
-tAS
+qJW
 tAS
 tAS
 avU
@@ -63261,7 +63281,7 @@ eck
 avU
 tAS
 sxx
-qJW
+aFr
 mBB
 tAS
 avU
@@ -63516,12 +63536,12 @@ iSb
 iSb
 aAy
 ayD
-apl
-qMX
-qMX
-qMX
-apl
-apl
+tAS
+aFr
+nml
+wLG
+tAS
+tAS
 aYX
 aHL
 tzU
@@ -63773,12 +63793,12 @@ iSb
 oOw
 alu
 tDT
+iSb
 aIt
-mDu
-mDu
-mDu
-mDu
-apl
+hJw
+aFr
+tAS
+tAS
 aJo
 aKg
 mNH
@@ -64030,12 +64050,12 @@ hDD
 rjt
 bCk
 aBW
-aIt
-apl
-qMX
-qMX
-qMX
-apl
+iSb
+tAS
+tAS
+euc
+tAS
+tAS
 aJp
 aKh
 bKl

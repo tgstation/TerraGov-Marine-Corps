@@ -1234,6 +1234,17 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 20
 	bullet_color = COLOR_TESLA_BLUE
 
+
+/datum/ammo/energy/droidblast
+	name = "energetic plasma bolt"
+	icon_state = "pulse2"
+	hud_state = "pulse"
+	damage = 45
+	max_range = 40
+	penetration = 50
+	sundering = 20
+	bullet_color = COLOR_PULSE_BLUE
+
 /datum/ammo/energy/lasgun
 	name = "laser bolt"
 	icon_state = "laser"
@@ -1407,7 +1418,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 ///Set up the list of reagents the spit transfers upon impact
 /datum/ammo/xeno/toxin/proc/set_reagents()
-	spit_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = reagent_transfer_amount)
+	spit_reagents = list(/datum/reagent/toxin/xeno_neurotoxin/light = reagent_transfer_amount)
 
 /datum/ammo/xeno/toxin/on_hit_mob(mob/living/carbon/C, obj/projectile/P)
 	drop_neuro_smoke(get_turf(C))

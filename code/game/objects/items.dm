@@ -351,7 +351,7 @@
 /obj/item/proc/item_action_slot_check(mob/user, slot)
 	return TRUE
 
-// Anything unique the item can do, like pumping a shotgun, spin or whatever.
+///Anything unique the item can do, like pumping a shotgun, spin or whatever.
 /obj/item/proc/unique_action(mob/user)
 	return FALSE
 

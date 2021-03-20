@@ -778,7 +778,7 @@
 		return
 	visible_message("<span class='notice'>[src] starts lifting [target] onto [p_their()] back...</span>",
 	"<span class='notice'>You start to lift [target] onto your back...</span>")
-	var/delay = 1 SECONDS + LERP(0 SECONDS, 4 SECONDS, skills.getPercent("medical", SKILL_MEDICAL_MASTER))
+	var/delay = 5 SECONDS - LERP(0 SECONDS, 4 SECONDS, skills.getPercent("medical", SKILL_MEDICAL_MASTER))
 	if(!do_mob(src, target, delay, target_display = BUSY_ICON_HOSTILE))
 		visible_message("<span class='warning'>[src] fails to fireman carry [target]!</span>")
 		return
@@ -992,7 +992,7 @@
 			if(S.turn_light(src, FALSE, 0, FALSE, forced))
 				light_off++
 		for(var/obj/item/clothing/head/hardhat/H in contents)
-			H.turn_light(src, FALSE, 0,FALSE, forced)				  
+			H.turn_light(src, FALSE, 0,FALSE, forced)
 			light_off++
 		for(var/obj/item/flashlight/L in contents)
 			if(istype(L, /obj/item/flashlight/flare))
@@ -1049,7 +1049,7 @@
 				to_chat(src, "<span class='notice'>Your sources of light short out.</span>")
 				return
 			to_chat(src, "<span class='notice'>Your source of light shorts out.</span>")
-		
+
 
 
 /mob/living/carbon/human/proc/randomize_appearance()
