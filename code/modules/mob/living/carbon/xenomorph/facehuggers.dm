@@ -200,18 +200,13 @@
 
 ///Called before we leap
 /obj/item/clothing/mask/facehugger/proc/pre_leap(activation_time = jump_cooldown)
-	message_admins("pre_leap, activation_time: [jump_cooldown]")
 	jumptimer = addtimer(CALLBACK(src, .proc/leap_at_nearest_target), activation_time, TIMER_STOPPABLE|TIMER_UNIQUE)
 	if(activation_time >= 2 SECONDS) //If activation timer is equal to or greater than two seconds, we trigger the danger overlay at 1 second, otherwise we do so immediately.
-		message_admins("pre_leap, 1 second alert")
 		addtimer(CALLBACK(src, .proc/apply_danger_overlay), 1 SECONDS)
 		return
 	apply_danger_overlay()
-	message_admins("pre_leap, immediate alert")
-
 
 /obj/item/clothing/mask/facehugger/proc/leap_at_nearest_target()
-	message_admins("leap_at_nearest_target")
 	if(!isturf(loc))
 		return
 
