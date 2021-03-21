@@ -584,7 +584,7 @@ to_chat will check for valid clients itself already so no need to double check f
 		return FALSE
 	
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	if((xeno_job.total_positions - xeno_job.current_positions) > 0)
+	if((xeno_job.total_positions - xeno_job.current_positions) < 0)
 		return FALSE
 
 	var/list/possible_mothers = list()
