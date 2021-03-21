@@ -1227,11 +1227,12 @@
 	"<span class='danger'>We slowly drain \the [victim]'s life force!</span>", null, 20)
 	var/channel = SSsounds.random_available_channel()
 	playsound(X, 'sound/magic/nightfall.ogg', 40, channel = channel)
-	if(!do_after(X, 10 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(X, /mob.proc/break_do_after_checks, list("health" = X.health))))
+	if(!do_after(X, 5 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(X, /mob.proc/break_do_after_checks, list("health" = X.health))))
 		X.visible_message("<span class='xenowarning'>\The [X] retracts its inner jaw.</span>", \
 		"<span class='danger'>We retract our inner jaw.</span>", null, 20)
 		X.stop_sound_channel(channel)
 		return FALSE
+	X.stop_sound_channel(channel)
 	succeed_activate() //dew it
 
 /datum/action/xeno_action/activable/psydrain/use_ability(mob/M)
