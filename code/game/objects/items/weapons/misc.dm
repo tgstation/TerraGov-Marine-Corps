@@ -120,6 +120,7 @@
 	cell = I
 	to_chat(user, "<span class='notice'>You insert the [I] into the [src].</span>")
 
+/// Remove the cell from the powerfist
 /obj/item/weapon/powerfist/proc/unload(mob/user)
 	user.dropItemToGround(cell)
 	cell = null
