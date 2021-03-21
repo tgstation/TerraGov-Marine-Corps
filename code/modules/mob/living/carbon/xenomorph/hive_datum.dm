@@ -583,6 +583,9 @@ to_chat will check for valid clients itself already so no need to double check f
 	if(!xeno_candidate?.client)
 		return FALSE
 
+	if((xeno_job.total_positions - xeno_job.current_positions) > 0)
+		return FALSE
+
 	var/list/possible_mothers = list()
 	var/list/possible_silos = list()
 	SEND_SIGNAL(src, COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, possible_mothers, possible_silos) //List variable passed by reference, and hopefully populated.
@@ -1165,7 +1168,7 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/normal/proc/add_to_larva_candidate_queue(mob/dead/observer/observer)
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
-	if(stored_larva)
+	if(stored_larva > 0)
 		attempt_to_spawn_larva(observer)
 		return
 	if(LAZYFIND(candidate, observer))
