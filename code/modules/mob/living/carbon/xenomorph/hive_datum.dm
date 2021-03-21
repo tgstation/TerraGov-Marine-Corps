@@ -582,7 +582,8 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/normal/proc/attempt_to_spawn_larva(mob/xeno_candidate, larva_already_reserved = FALSE)
 	if(!xeno_candidate?.client)
 		return FALSE
-
+	
+	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	if((xeno_job.total_positions - xeno_job.current_positions) > 0)
 		return FALSE
 
