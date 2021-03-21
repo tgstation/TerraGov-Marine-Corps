@@ -1172,6 +1172,7 @@ to_chat will check for valid clients itself already so no need to double check f
 		to_chat(observer, "<span class='warning'>You are already in queue!</span>")
 		return
 	LAZYADD(candidate, observer)
+	RegisterSignal(observer, COMSIG_PARENT_QDELETING, .proc/clean_observer)
 	observer.larva_position =  LAZYLEN(candidate)
 	to_chat(observer, "<span class='warning'>There are no burrowed larvas. You are in position [observer.larva_position] to become a xeno</span>")
 
@@ -1183,13 +1184,19 @@ to_chat will check for valid clients itself already so no need to double check f
 	while(stored_larva > 0 && LAZYLEN(candidate))
 		observer_in_queue = LAZYACCESS(candidate, 1)
 		LAZYREMOVE(candidate, observer_in_queue)
+		UnregisterSignal(observer, COMSIG_PARENT_QDELETING)
 		xeno_job.occupy_job_positions(1)
 		stored_larva--
 		INVOKE_ASYNC(src, .proc/try_to_give_larva, observer_in_queue)
 	for(var/i in 1 to LAZYLEN(candidate))
 		observer_in_queue = LAZYACCESS(candidate, i)
 		observer_in_queue.larva_position = i
-		
+
+/// Remove ref to avoid hard del and null error
+/datum/hive_status/normal/proc/clean_observer(datum/source)
+	SIGNAL_HANDLER
+	LAZYREMOVE(candidate, source)
+
 ///Attempt to give a larva to the next in line, if not possible, free the xeno position and propose it to another candidate
 /datum/hive_status/normal/proc/try_to_give_larva(mob/next_in_line)
 	if(attempt_to_spawn_larva(next_in_line, TRUE))
