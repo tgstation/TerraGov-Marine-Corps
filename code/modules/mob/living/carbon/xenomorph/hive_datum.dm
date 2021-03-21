@@ -1169,7 +1169,7 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/normal/proc/add_to_larva_candidate_queue(mob/dead/observer/observer)
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
-	if(stored_larva > 0)
+	if(stored_larva > 0 && !LAZYLEN(candidate))
 		attempt_to_spawn_larva(observer)
 		return
 	if(LAZYFIND(candidate, observer))
