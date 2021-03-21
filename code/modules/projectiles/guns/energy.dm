@@ -473,6 +473,9 @@
 	)
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 34, "muzzle_y" = 14,"rail_x" = 18, "rail_y" = 18, "under_x" = 23, "under_y" = 10, "stock_x" = 22, "stock_y" = 12)
+	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_fire_delay = 0.5 SECONDS
+	aim_speed_modifier = 3
 
 	accuracy_mult_unwielded = 0.5 //Heavy and unwieldy; you don't one hand this.
 	scatter_unwielded = 100 //Heavy and unwieldy; you don't one hand this.
