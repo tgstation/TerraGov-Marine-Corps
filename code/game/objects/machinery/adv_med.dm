@@ -31,7 +31,7 @@
 	go_out()
 
 /obj/machinery/bodyscanner/proc/move_inside_wrapper(mob/living/M, mob/user)
-	if (M.stat != CONSCIOUS || !(ishuman(M) || ismonkey(M)))
+	if (M.stat != CONSCIOUS || !ishuman(M))
 		return
 	if (occupant)
 		to_chat(user, "<span class='boldnotice'>The scanner is already occupied!</span>")
@@ -70,7 +70,6 @@
 	occupant.forceMove(loc)
 	occupant = null
 	icon_state = "body_scanner_0"
-	return
 
 /obj/machinery/bodyscanner/attack_hand(mob/living/user)
 	. = ..()
@@ -127,8 +126,6 @@
 			for(var/atom/movable/A as mob|obj in src)
 				A.loc = src.loc
 				ex_act(severity)
-				//Foreach goto(35)
-			//SN src = null
 			qdel(src)
 			return
 		if(EXPLODE_HEAVY)
@@ -136,21 +133,15 @@
 				for(var/atom/movable/A as mob|obj in src)
 					A.loc = src.loc
 					ex_act(severity)
-					//Foreach goto(108)
-				//SN src = null
 				qdel(src)
 				return
 		if(EXPLODE_LIGHT)
-			if (prob(25))
-				for(var/atom/movable/A as mob|obj in src)
-					A.loc = src.loc
-					ex_act(severity)
-					//Foreach goto(181)
-				//SN src = null
-				qdel(src)
+			if(!prob(75))
 				return
-		else
-	return
+			for(var/atom/movable/A as mob|obj in src)
+				A.loc = src.loc
+				ex_act(severity)
+			qdel(src)
 
 /obj/machinery/body_scanconsole/ex_act(severity)
 
@@ -171,7 +162,6 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 3
 	var/obj/machinery/bodyscanner/connected
-	var/known_implants = list(/obj/item/implant/neurostim)
 	var/delete
 	var/temphtml
 
@@ -211,7 +201,7 @@
 	var/dat
 	if(connected?.occupant) //Is something connected?
 		var/mob/living/carbon/human/H = connected.occupant
-		dat = med_scan(H, dat, known_implants)
+		dat = med_scan(H, dat, GLOB.known_implants)
 	else
 		dat = "<font color='red'> Error: No Body Scanner connected.</font>"
 

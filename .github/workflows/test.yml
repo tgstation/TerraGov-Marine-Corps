@@ -8,7 +8,7 @@ on:
     - master
 jobs:
   run_linters:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
       - name: Setup cache
@@ -22,7 +22,7 @@ jobs:
           bash tools/ci/install_build_tools.sh
           bash tools/ci/install_spaceman_dmm.sh dreamchecker
           sudo apt install pcregrep
-          pip3 install -r tools/mapmerge2/requirements.txt
+          tools/bootstrap/python -c ''
       - name: Run Linters
         run: |
           bash tools/ci/check_filedirs.sh tgmc.dme
@@ -31,7 +31,8 @@ jobs:
           find . -name "*.json" -not -path "*/node_modules/*" -print0 | xargs -0 python3 ./tools/json_verifier.py
           bash tools/ci/build_tgui.sh
           bash tools/ci/check_grep.sh
-          python3 tools/mapmerge2/dmi.py --test
+          tools/bootstrap/python -m dmi.test
+          tools/bootstrap/python -m mapmerge2.dmm_test
           ~/dreamchecker > ${GITHUB_WORKSPACE}/output-annotations.txt 2>&1
       - name: Annotate Lints
         uses: yogstation13/DreamAnnotate@v1
@@ -39,7 +40,7 @@ jobs:
         with:
           outputFile: output-annotations.txt
   compile_all_maps:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
       - name: Setup cache
@@ -54,7 +55,7 @@ jobs:
           python3 tools/ci/template_dm_generator.py
           bash tools/ci/dm.sh -DCIBUILDING -DCITESTING -DALL_MAPS tgmc.dme
   run_all_tests:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     services:
       mysql:
         image: mysql:latest
@@ -81,7 +82,7 @@ jobs:
         run: |
           sudo dpkg --add-architecture i386
           sudo apt update
-          sudo apt install libssl1.1:i386
+          sudo apt install -o APT::Immediate-Configure=false libssl1.1:i386
           bash tools/ci/install_rust_g.sh
       - name: Compile and run tests
         run: |

@@ -19,7 +19,7 @@
 		if(is_ventcrawling)
 			return FALSE
 		set_resting(TRUE, FALSE)
-	else if(action_busy)
+	else if(do_actions)
 		to_chat(src, "<span class='warning'>You are still in the process of standing up.</span>")
 		return
 	else if(do_mob(src, src, 2 SECONDS, ignore_flags = (IGNORE_LOC_CHANGE|IGNORE_HAND)))
@@ -61,7 +61,7 @@
 		ghostize(TRUE)
 		return
 
-	if(alert(src, "Are you sure you want to ghost?\n(You are alive. If you ghost, you won't be able to return to your body. You can't change your mind so choose wisely!)", "Ghost", "Yes", "No") != "Yes")
+	if(tgui_alert(src, "Are you sure you want to ghost?\n(You are alive. If you ghost, you won't be able to return to your body. You can't change your mind so choose wisely!)", "Ghost", list("Yes", "No")) != "Yes")
 		return
 
 	set_resting(TRUE)

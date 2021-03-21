@@ -116,38 +116,6 @@
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "ectoplasm"
 
-
-/obj/item/compactorebox
-	name = "compressed ore box"
-	desc = "A heavy and pretty solid box, filled to the brim with ore"
-	icon = 'icons/obj/items/items.dmi'
-	icon_state = "phoronbox_compact"
-	item_state = "phoronbox_compact"
-	max_integrity = 20
-	w_class = WEIGHT_CLASS_HUGE
-	flags_item = TWOHANDED
-	force = 5
-	throw_range = 3
-	throwforce = 15 // Heavy box. heavy damage.
-
-/obj/item/compactorebox/pickup(mob/user)
-	. = ..()
-	wield(user)
-
-/obj/item/compactorebox/dropped(mob/user)
-	. = ..()
-	unwield(user)
-
-/obj/item/compactorebox/phoron
-	name = "compressed phoron box"
-	desc = "A heavy and pretty solid box, filled to the brim with compressed phoron crystals."
-
-/obj/item/compactorebox/platinum
-	name = "compressed platinum box"
-	desc = "A very heavy and solid box, filled with pure titanium."
-	icon_state = "platinumbox_compact"
-	item_state = "platinumbox_comact"
-
 /obj/item/minerupgrade
 	name = "miner upgrade"
 	desc = "Subtype item, should not exist."
@@ -170,8 +138,20 @@
 	icon_state = "mining_drill_overclockeddisplay"
 	uptype = "high-efficiency drill"
 
-/obj/item/minerupgrade/compactor
-	name = "crystalizer module"
-	desc = "A bulky module meant to replace the normal crystalizer in mining wells, used to compress boxes for easy carrying."
-	icon_state = "mining_drill_compactordisplay"
-	uptype = "upgraded crystalizer module"
+/obj/item/dropship_points_voucher
+	name = "dropship fabricator voucher"
+	desc = "A small keycard stamped by a Terra Gov logo. It contains points you can redeem at a dropship fabricator. One use only."
+	icon = 'icons/obj/items/card.dmi'
+	icon_state = "centcom"
+	///This is the number of points this thing has to give. 
+	var/extra_points = 100
+
+/obj/item/dropship_points_voucher/examine(mob/user)
+	. = ..()
+	to_chat(user, "It contains [extra_points] points.")
+
+/obj/item/minerupgrade/automatic
+	name = "mining computer"
+	desc = "A small computer that can automate mining wells, reducing the need for oversight."
+	icon_state = "mining_drill_automaticdisplay"
+	uptype = "mining computer"

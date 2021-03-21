@@ -199,7 +199,7 @@
 
 		if(S.brute_dam && welding)
 			if(issynth(H) && M == user)
-				if(user.action_busy || !do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+				if(user.do_actions || !do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 					return
 			S.heal_limb_damage(15, robo_repair = TRUE, updating_health = TRUE)
 			H.UpdateDamageIcon()
@@ -225,7 +225,7 @@
 		if(isliving(O))
 			var/mob/living/L = O
 			L.IgniteMob()
-	return
+
 
 
 /obj/item/tool/weldingtool/attack_self(mob/user as mob)
@@ -233,7 +233,7 @@
 		to_chat(user, "<span class='warning'>[src] can't be turned on while unsecured!</span>")
 		return
 	toggle()
-	return
+
 
 //Returns the amount of fuel in the welder
 /obj/item/tool/weldingtool/proc/get_fuel()

@@ -61,7 +61,7 @@ GLOBAL_LIST_EMPTY(surgery_steps)
 			H.bloody_hands(target, 0)
 		if(blood_level > 1)
 			H.bloody_body(target, 0)
-	return
+
 
 //Does stuff to end the step, which is normally print a message + do whatever this step changes
 /datum/surgery_step/proc/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
@@ -115,7 +115,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 		return 0
 	if(user.a_intent == INTENT_HARM) //Check for Hippocratic Oath
 		return 0
-	if(user.action_busy) //already doing an action
+	if(user.do_actions) //already doing an action
 		return 1
 	if(user.skills.getRating("surgery") < SKILL_SURGERY_PROFESSIONAL)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to operate [M].</span>",

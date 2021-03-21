@@ -50,12 +50,10 @@
 			return
 	else if(ishuman(user) && user.hallucination > 50 && prob(10) && !operating)
 		var/mob/living/carbon/human/H = user
-		if(H.gloves)
+		if(!H.gloves || H.gloves.siemens_coefficient)
 			to_chat(H, "<span class='danger'>You feel a powerful shock course through your body!</span>")
-			var/obj/item/clothing/gloves/G = H.gloves
-			if(G.siemens_coefficient)//not insulated
-				H.adjustStaminaLoss(200)
-				return
+			H.adjustStaminaLoss(200)
+			return
 	return ..(user)
 
 /obj/machinery/door/airlock/bumpopen(mob/living/simple_animal/user as mob)
@@ -175,7 +173,6 @@
 	else
 		icon_state = "door_open"
 
-	return
 
 /obj/machinery/door/airlock/do_animate(animation)
 	switch(animation)
@@ -198,47 +195,50 @@
 		if("deny")
 			if(density)
 				flick("door_deny", src)
-	return
+
 
 
 //Prying open doors
-/obj/machinery/door/airlock/attack_alien(mob/living/carbon/xenomorph/M)
-	var/turf/cur_loc = M.loc
+/obj/machinery/door/airlock/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(X.status_flags & INCORPOREAL)
+		return FALSE
+
+	var/turf/cur_loc = X.loc
 	if(isElectrified())
-		if(shock(M, 70))
+		if(shock(X, 70))
 			return
 	if(locked)
-		to_chat(M, "<span class='warning'>\The [src] is bolted down tight.</span>")
+		to_chat(X, "<span class='warning'>\The [src] is bolted down tight.</span>")
 		return FALSE
 	if(welded)
-		to_chat(M, "<span class='warning'>\The [src] is welded shut.</span>")
+		to_chat(X, "<span class='warning'>\The [src] is welded shut.</span>")
 		return FALSE
 	if(!istype(cur_loc))
 		return FALSE //Some basic logic here
 	if(!density)
-		to_chat(M, "<span class='warning'>\The [src] is already open!</span>")
+		to_chat(X, "<span class='warning'>\The [src] is already open!</span>")
 		return FALSE
 
-	if(M.action_busy)
+	if(X.do_actions)
 		return FALSE
 
 	playsound(loc, 'sound/effects/metal_creaking.ogg', 25, 1)
 
 	if(hasPower())
-		M.visible_message("<span class='warning'>\The [M] digs into \the [src] and begins to pry it open.</span>", \
+		X.visible_message("<span class='warning'>\The [X] digs into \the [src] and begins to pry it open.</span>", \
 		"<span class='warning'>We dig into \the [src] and begin to pry it open.</span>", null, 5)
-		if(!do_after(M, 4 SECONDS, FALSE, src, BUSY_ICON_HOSTILE) && !M.lying_angle)
+		if(!do_after(X, 4 SECONDS, FALSE, src, BUSY_ICON_HOSTILE) && !X.lying_angle)
 			return FALSE
 	if(locked)
-		to_chat(M, "<span class='warning'>\The [src] is bolted down tight.</span>")
+		to_chat(X, "<span class='warning'>\The [src] is bolted down tight.</span>")
 		return FALSE
 	if(welded)
-		to_chat(M, "<span class='warning'>\The [src] is welded shut.</span>")
+		to_chat(X, "<span class='warning'>\The [src] is welded shut.</span>")
 		return FALSE
 
 	if(density) //Make sure it's still closed
-		open(1)
-		M.visible_message("<span class='danger'>\The [M] pries \the [src] open.</span>", \
+		open(TRUE)
+		X.visible_message("<span class='danger'>\The [X] pries \the [src] open.</span>", \
 			"<span class='danger'>We pry \the [src] open.</span>", null, 5)
 
 /obj/machinery/door/airlock/attack_larva(mob/living/carbon/xenomorph/larva/M)
@@ -441,8 +441,8 @@
 		src.closeOther.close()
 	return ..()
 
-/obj/machinery/door/airlock/close(forced=0)
-	if(operating || welded || locked || !loc)
+/obj/machinery/door/airlock/close(forced = FALSE)
+	if(operating || welded || locked)
 		return
 	if(!forced)
 		if(!hasPower() || wires.is_cut(WIRE_BOLTS))
@@ -464,7 +464,7 @@
 				var/mob/living/carbon/C = M
 				var/datum/species/S = C.species
 				if(S?.species_flags & NO_PAIN)
-					M.emote("pain")
+					INVOKE_ASYNC(M, /mob/living.proc/emote, "pain")
 			var/turf/location = src.loc
 			if(istype(location, /turf))
 				location.add_mob_blood(M)
@@ -477,20 +477,20 @@
 		playsound(src.loc, 'sound/machines/airlock.ogg', 25, 0)
 	for(var/turf/turf in locs)
 		var/obj/structure/window/killthis = (locate(/obj/structure/window) in turf)
-		if(killthis)
-			killthis.ex_act(2)//Smashin windows
-	..()
-	return
+		killthis?.ex_act(2)//Smashin windows
+	return ..()
 
-/obj/machinery/door/airlock/proc/lock(forced=0)
-	if (operating || src.locked) return
+/obj/machinery/door/airlock/proc/lock(forced = FALSE)
+	if (operating || locked)
+		return
 
-	src.locked = 1
+	locked = TRUE
 	audible_message("You hear a click from the bottom of the door.", null, 1)
 	update_icon()
 
 /obj/machinery/door/airlock/proc/unlock(forced=0)
-	if (operating || !src.locked) return
+	if (operating || !locked)
+		return
 
 	if(forced || hasPower()) //only can raise bolts if power's on
 		src.locked = 0
@@ -520,10 +520,10 @@
 
 
 /obj/machinery/door/airlock/proc/prison_open()
-	src.unlock()
-	src.open()
-	src.lock()
-	return
+	unlock()
+	open()
+	lock()
+
 
 
 /obj/machinery/door/airlock/proc/update_nearby_icons()

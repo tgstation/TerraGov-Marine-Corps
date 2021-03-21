@@ -57,6 +57,7 @@
 	. = ..()
 	new /obj/item/binoculars/tactical(src)
 	new /obj/item/megaphone(src)
+	new /obj/item/pinpointer/pool(src)
 
 
 /obj/item/storage/pouch/general/som
@@ -444,7 +445,7 @@
 	storage_slots = 5
 	max_storage_space = 10
 	can_hold = list(/obj/item/reagent_containers/syringe)
-	
+
 /obj/item/storage/pouch/hypospray
 	name = "hypospray pouch"
 	desc = "It can contain hyposprays and autoinjectors."
@@ -492,12 +493,12 @@
 /obj/item/storage/pouch/medkit/full/Initialize()
 	. = ..()
 	new /obj/item/healthanalyzer(src)
-	new /obj/item/stack/medical/bruise_pack(src)
-	new /obj/item/stack/medical/ointment(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/tramadol(src)
+	new /obj/item/stack/medical/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/advanced/ointment(src)
+	new /obj/item/stack/medical/advanced/ointment(src)
 	new /obj/item/stack/medical/splint(src)
-	new /obj/item/storage/syringe_case/regular(src)
+	new /obj/item/stack/medical/splint(src)
 
 /obj/item/storage/pouch/medkit/equippedcorpsman/Initialize()
 	. = ..()
@@ -630,6 +631,7 @@
 		/obj/item/stack/cable_coil,
 		/obj/item/tool/shovel/etool,
 		/obj/item/stack/sandbags_empty,
+		/obj/item/stack/sandbags,
 	)
 
 /obj/item/storage/pouch/construction/full/Initialize()

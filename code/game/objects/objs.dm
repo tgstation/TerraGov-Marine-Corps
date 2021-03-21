@@ -66,6 +66,7 @@
 		else
 			req_one_access = GLOB.all_req_one_access[txt_access]
 
+
 /obj/Destroy()
 	hard_armor = null
 	soft_armor = null
@@ -130,7 +131,7 @@
 	return
 
 
-/obj/attack_paw(mob/living/carbon/monkey/user)
+/obj/attack_paw(mob/living/carbon/human/user)
 	if(buckle_flags & CAN_BUCKLE)
 		return attack_hand(user)
 	return ..()

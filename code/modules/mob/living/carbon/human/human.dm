@@ -34,6 +34,7 @@
 
 	randomize_appearance()
 
+	RegisterSignal(src, COMSIG_ATOM_ACIDSPRAY_ACT, .proc/acid_spray_crossed)
 	RegisterSignal(src, list(COMSIG_KB_QUICKEQUIP, COMSIG_CLICK_QUICKEQUIP), .proc/do_quick_equip)
 	RegisterSignal(src, COMSIG_KB_HOLSTER, .proc/do_holster)
 	RegisterSignal(src, COMSIG_KB_UNIQUEACTION, .proc/do_unique_action)
@@ -147,8 +148,8 @@
 	to_chat(world, "DEBUG EX_ACT: armor: [armor * 100], b_loss: [b_loss], f_loss: [f_loss]")
 	#endif
 
-	take_overall_damage(b_loss, f_loss, armor * 100)
-	UPDATEHEALTH(src)
+	take_overall_damage(b_loss, f_loss, armor * 100, updating_health = TRUE)
+
 
 /mob/living/carbon/human/attack_animal(mob/living/M as mob)
 	if(M.melee_damage == 0)
@@ -162,9 +163,7 @@
 		var/dam_zone = pick("chest", "l_hand", "r_hand", "l_leg", "r_leg")
 		var/datum/limb/affecting = get_limb(ran_zone(dam_zone))
 		var/armor = run_armor_check(affecting, "melee")
-		if(apply_damage(damage, BRUTE, affecting, armor))
-			UPDATEHEALTH(src)
-
+		apply_damage(damage, BRUTE, affecting, armor, updating_health = TRUE)
 
 /mob/living/carbon/human/show_inv(mob/living/user)
 	var/obj/item/clothing/under/suit
@@ -239,10 +238,9 @@
 //gets paygrade from ID
 //paygrade is a user's actual rank, as defined on their ID.  size 1 returns an abbreviation, size 0 returns the full rank name, the third input is used to override what is returned if no paygrade is assigned.
 /mob/living/carbon/human/get_paygrade(size = 1)
-	if(species.show_paygrade)
-		var/obj/item/card/id/id = wear_id
-		if(istype(id))
-			return get_paygrades(id.paygrade, size, gender)
+	var/obj/item/card/id/id = wear_id
+	if(istype(id))
+		return get_paygrades(id.paygrade, size, gender)
 	return ""
 
 
@@ -342,7 +340,7 @@
 						to_chat(usr, "<span class='warning'>Someone's already taken [src]'s information tag.</span>")
 					return
 			//police skill lets you strip multiple items from someone at once.
-			if(!usr.action_busy || usr.skills.getRating("police") >= SKILL_POLICE_MP)
+			if(!usr.do_actions || usr.skills.getRating("police") >= SKILL_POLICE_MP)
 				var/obj/item/what = get_item_by_slot(slot)
 				if(what)
 					usr.stripPanelUnequip(what,src,slot)
@@ -352,7 +350,7 @@
 
 	if(href_list["pockets"])
 
-		if(!usr.action_busy)
+		if(!usr.do_actions)
 			var/obj/item/place_item = usr.get_active_held_item() // Item to place in the pocket, if it's empty
 
 			var/placing = FALSE
@@ -390,7 +388,7 @@
 
 	if(href_list["internal"])
 
-		if(!usr.action_busy)
+		if(!usr.do_actions)
 			log_combat(usr, src, "attempted to toggle internals")
 			if(internal)
 				usr.visible_message("<span class='danger'>[usr] is trying to disable [src]'s internals</span>", null, null, 3)
@@ -424,7 +422,7 @@
 
 	if(href_list["splints"])
 
-		if(!usr.action_busy)
+		if(!usr.do_actions)
 			var/count = 0
 			for(var/X in limbs)
 				var/datum/limb/E = X
@@ -445,7 +443,7 @@
 						new /obj/item/stack/medical/splint(loc, limbcount)
 
 	if(href_list["tie"])
-		if(!usr.action_busy)
+		if(!usr.do_actions)
 			if(w_uniform && istype(w_uniform, /obj/item/clothing/under))
 				var/obj/item/clothing/under/U = w_uniform
 				if(U.hastie)
@@ -459,7 +457,7 @@
 								U.remove_accessory(usr)
 
 	if(href_list["sensor"])
-		if(!usr.action_busy)
+		if(!usr.do_actions)
 
 			log_combat(usr, src, "attempted to toggle sensors")
 			var/obj/item/clothing/under/U = w_uniform
@@ -483,7 +481,7 @@
 				var/obj/item/card/id/ID = get_idcard()
 				if(ID && (ID.rank in GLOB.jobs_marines))//still a marine, with an ID.
 					if(assigned_squad == H.assigned_squad) //still same squad
-						var/newfireteam = input(usr, "Assign this marine to a fireteam.", "Fire Team Assignment") as null|anything in list("None", "Fire Team 1", "Fire Team 2", "Fire Team 3")
+						var/newfireteam = tgui_input_list(usr, "Assign this marine to a fireteam.", "Fire Team Assignment", list("None", "Fire Team 1", "Fire Team 2", "Fire Team 3"))
 						if(H.incapacitated() || get_dist(H, src) > 7 || !hasHUD(H,"squadleader")) return
 						ID = get_idcard()
 						if(ID && (ID.rank in GLOB.jobs_marines))//still a marine with an ID
@@ -494,7 +492,7 @@
 									if("Fire Team 2") ID.assigned_fireteam = 2
 									if("Fire Team 3") ID.assigned_fireteam = 3
 									else return
-								hud_set_squad()
+								hud_set_job()
 
 
 	if (href_list["criminal"])
@@ -517,10 +515,10 @@
 						for (var/datum/data/record/R in GLOB.datacore.security)
 							if (R.fields["id"] == E.fields["id"])
 
-								var/setcriminal = input(usr, "Specify a new criminal status for this person.", "Security HUD", R.fields["criminal"]) in list("None", "*Arrest*", "Incarcerated", "Released", "Cancel")
+								var/setcriminal = tgui_input_list(usr, "Specify a new criminal status for this person.", "Security HUD", list("None", "*Arrest*", "Incarcerated", "Released"))
 
 								if(hasHUD(usr, "security"))
-									if(setcriminal != "Cancel")
+									if(setcriminal)
 										R.fields["criminal"] = setcriminal
 										modified = 1
 										sec_hud_set_security_status()
@@ -622,17 +620,16 @@
 					for (var/datum/data/record/R in GLOB.datacore.general)
 						if (R.fields["id"] == E.fields["id"])
 
-							var/setmedical = input(usr, "Specify a new medical status for this person.", "Medical HUD", R.fields["p_stat"]) in list("*SSD*", "*Deceased*", "Physically Unfit", "Active", "Disabled", "Cancel")
+							var/setmedical = tgui_input_list(usr, "Specify a new medical status for this person.", "Medical HUD", list("*SSD*", "*Deceased*", "Physically Unfit", "Active", "Disabled"))
 
 							if(hasHUD(usr,"medical"))
-								if(setmedical != "Cancel")
+								if(setmedical)
 									R.fields["p_stat"] = setmedical
 									modified = 1
 
-									spawn()
-										if(istype(usr,/mob/living/carbon/human))
-											var/mob/living/carbon/human/U = usr
-											U.handle_regular_hud_updates()
+									if(istype(usr,/mob/living/carbon/human))
+										var/mob/living/carbon/human/U = usr
+										U.handle_regular_hud_updates()
 
 			if(!modified)
 				to_chat(usr, "<span class='warning'>Unable to locate a data core entry for this person.</span>")
@@ -719,7 +716,7 @@
 		if(!species?.count_human)
 			to_chat(usr, "<span class='warning'>Triage holocards only works on organic humanoid entities.</span>")
 			return
-		var/newcolor = input("Choose a triage holo card to add to the patient:", "Triage holo card", null, null) in list("black", "red", "orange", "none")
+		var/newcolor = tgui_input_list(usr, "Choose a triage holo card to add to the patient:", "Triage holo card", list("black", "red", "orange", "none"))
 		if(!newcolor)
 			return
 		if(get_dist(usr, src) > 7)
@@ -761,13 +758,13 @@
 
 
 /mob/living/carbon/human/proc/fireman_carry_grabbed()
-	SIGNAL_HANDLER_DOES_SLEEP
+	SIGNAL_HANDLER
 	var/mob/living/grabbed = pulling
 	if(!istype(grabbed))
 		return NONE
-	if(/*grab_state >= GRAB_AGGRESSIVE &&*/ stat == CONSCIOUS && can_be_firemanned(grabbed))
+	if(stat == CONSCIOUS && can_be_firemanned(grabbed))
 		//If you dragged them to you and you're aggressively grabbing try to fireman carry them
-		fireman_carry(grabbed)
+		INVOKE_ASYNC(src, .proc/fireman_carry, grabbed)
 		return COMSIG_GRAB_SUCCESSFUL_SELF_ATTACK
 	return NONE
 
@@ -781,7 +778,7 @@
 		return
 	visible_message("<span class='notice'>[src] starts lifting [target] onto [p_their()] back...</span>",
 	"<span class='notice'>You start to lift [target] onto your back...</span>")
-	var/delay = 1 SECONDS + LERP(0 SECONDS, 4 SECONDS, skills.getPercent("medical", SKILL_MEDICAL_MASTER))
+	var/delay = 5 SECONDS - LERP(0 SECONDS, 4 SECONDS, skills.getPercent("medical", SKILL_MEDICAL_MASTER))
 	if(!do_mob(src, target, delay, target_display = BUSY_ICON_HOSTILE))
 		visible_message("<span class='warning'>[src] fails to fireman carry [target]!</span>")
 		return
@@ -968,6 +965,7 @@
 		setStaminaLoss(-max_stamina_buffer)
 
 	add_movespeed_modifier(MOVESPEED_ID_SPECIES, TRUE, 0, NONE, TRUE, species.slowdown)
+	species.on_species_gain(src, oldspecies) //todo move most of the stuff in this proc to here
 	return TRUE
 
 
@@ -977,7 +975,7 @@
 /mob/living/carbon/human/slip(slip_source_name, stun_level, weaken_level, run_only, override_noslip, slide_steps)
 	if(shoes && !override_noslip) // && (shoes.flags_inventory & NOSLIPPING)) // no more slipping if you have shoes on. -spookydonut
 		return FALSE
-	. = ..()
+	return ..()
 
 /mob/living/carbon/human/smokecloak_on()
 	var/obj/item/storage/backpack/marine/satchel/scout_cloak/S = back
@@ -985,26 +983,28 @@
 		return FALSE
 	return ..()
 
-/mob/living/carbon/human/disable_lights(armor = TRUE, guns = TRUE, flares = TRUE, misc = TRUE, sparks = FALSE, silent = FALSE)
-	if(sparks)
-		var/datum/effect_system/spark_spread/spark_system = new
-		spark_system.set_up(5, 0, src)
-		spark_system.attach(src)
-		spark_system.start(src)
-
+/mob/living/carbon/human/disable_lights(clothing = TRUE, guns = TRUE, flares = TRUE, misc = TRUE, sparks = FALSE, silent = FALSE, forced = FALSE)
 	var/light_off = 0
 	var/goes_out = 0
-	if(armor)
+	if(clothing)
 		if(istype(wear_suit, /obj/item/clothing/suit))
 			var/obj/item/clothing/suit/S = wear_suit
-			S.turn_off_light(src)
+			if(S.turn_light(src, FALSE, 0, FALSE, forced))
+				light_off++
+		for(var/obj/item/clothing/head/hardhat/H in contents)
+			H.turn_light(src, FALSE, 0,FALSE, forced)
 			light_off++
+		for(var/obj/item/flashlight/L in contents)
+			if(istype(L, /obj/item/flashlight/flare))
+				continue
+			if(L.turn_light(src, FALSE, 0, FALSE, forced))
+				light_off++
 	if(guns)
 		for(var/obj/item/weapon/gun/lit_gun in contents)
 			if(!isattachmentflashlight(lit_gun.rail))
 				continue
 			var/obj/item/attachable/flashlight/lit_rail_flashlight = lit_gun.rail
-			lit_rail_flashlight.activate_attachment(turn_off = TRUE)
+			lit_rail_flashlight.turn_light(src, FALSE, 0, FALSE, forced)
 			light_off++
 	if(flares)
 		for(var/obj/item/flashlight/flare/F in contents)
@@ -1016,14 +1016,6 @@
 				goes_out++
 			FL.turn_off(src)
 	if(misc)
-		for(var/obj/item/clothing/head/hardhat/H in contents)
-			H.turn_off()
-			light_off++
-		for(var/obj/item/flashlight/L in contents)
-			if(istype(L, /obj/item/flashlight/flare))
-				continue
-			if(L.turn_off_light(src))
-				light_off++
 		for(var/obj/item/tool/weldingtool/W in contents)
 			if(W.isOn())
 				W.toggle()
@@ -1037,20 +1029,27 @@
 		for(var/obj/item/tool/lighter/Z in contents)
 			if(Z.turn_off(src))
 				goes_out++
+	if(sparks && light_off)
+		var/datum/effect_system/spark_spread/spark_system = new
+		spark_system.set_up(5, 0, src)
+		spark_system.attach(src)
+		spark_system.start(src)
 	if(!silent)
 		if(goes_out && light_off)
 			to_chat(src, "<span class='notice'>Your sources of light short and fizzle out.</span>")
-		else if(goes_out)
+			return
+		if(goes_out)
 			if(goes_out > 1)
 				to_chat(src, "<span class='notice'>Your sources of light fizzle out.</span>")
-			else
-				to_chat(src, "<span class='notice'>Your source of light fizzles out.</span>")
-		else if(light_off)
+				return
+			to_chat(src, "<span class='notice'>Your source of light fizzles out.</span>")
+			return
+		if(light_off)
 			if(light_off > 1)
 				to_chat(src, "<span class='notice'>Your sources of light short out.</span>")
-			else
-				to_chat(src, "<span class='notice'>Your sources of light shorts out.</span>")
-		return TRUE
+				return
+			to_chat(src, "<span class='notice'>Your source of light shorts out.</span>")
+
 
 
 /mob/living/carbon/human/proc/randomize_appearance()

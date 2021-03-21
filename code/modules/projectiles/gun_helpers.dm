@@ -89,8 +89,8 @@
 			//						   	  \\
 //----------------------------------------------------------
 
-/obj/item/weapon/gun/AltClick(mob/user)
-	toggle_gun_safety()
+/obj/item/weapon/gun/attack_hand_alternate(mob/user)
+	return toggle_gun_safety()
 
 
 /obj/item/weapon/gun/mob_can_equip(mob/user)
@@ -437,27 +437,30 @@ should be alright.
 					//				   \\
 //----------------------------------------------------------
 
-/obj/item/weapon/gun/verb/field_strip()
+/mob/living/carbon/human/verb/field_strip()
 	set category = "Weapons"
 	set name = "Field Strip Weapon"
 	set desc = "Remove all attachables from a weapon."
-	set src = usr.contents //We want to make sure one is picked at random, hence it's not in a list.
 
 	var/obj/item/weapon/gun/G = get_active_firearm(usr)
-
 	if(!G)
 		return
+	G.field_strip()
 
-	src = G
 
-	if(usr.action_busy)
+/obj/item/weapon/gun/verb/field_strip()
+	set category = null
+	set name = "Field Strip (Weapon)"
+	set desc = "Remove all attachables from a weapon."
+
+	if(usr.do_actions)
 		return
 
 	if(zoom)
 		to_chat(usr, "<span class='warning'>You cannot conceviably do that while looking down \the [src]'s scope!</span>")
 		return
 
-	if(G.overcharge == TRUE)
+	if(overcharge)
 		to_chat(usr, "[icon2html(src, usr)] You need to disable overcharge mode to remove attachments.")
 		return
 
@@ -484,7 +487,7 @@ should be alright.
 	if(possible_attachments.len == 1)
 		A = possible_attachments[1]
 	else
-		A = input("Which attachment to remove?") as null|anything in possible_attachments
+		A = tgui_input_list(usr, "Which attachment to remove?", null, possible_attachments)
 
 	if(!A)
 		return
@@ -492,7 +495,7 @@ should be alright.
 	if(get_active_firearm(usr) != src)//dropped the gun
 		return
 
-	if(usr.action_busy)
+	if(usr.do_actions)
 		return
 
 	if(zoom)
@@ -544,74 +547,87 @@ should be alright.
 	user.update_action_buttons()
 
 
-/obj/item/weapon/gun/verb/toggle_autofire()
+/mob/living/carbon/human/verb/toggle_autofire()
 	set category = "Weapons"
 	set name = "Toggle Auto Fire"
 	set desc = "Toggle automatic firemode, if the gun has it."
-	set src = usr.contents
-
-	var/obj/item/weapon/gun/automatic_gun = get_active_firearm(usr)
-	if(!automatic_gun)
-		return
-	automatic_gun.do_toggle_automatic(usr)
-
-
-/obj/item/weapon/gun/proc/do_toggle_automatic(mob/user)
-	var/new_firemode
-	switch(gun_firemode)
-		if(GUN_FIREMODE_SEMIAUTO)
-			new_firemode = GUN_FIREMODE_AUTOMATIC
-		if(GUN_FIREMODE_BURSTFIRE)
-			new_firemode = GUN_FIREMODE_AUTOBURST
-		if(GUN_FIREMODE_AUTOMATIC)
-			new_firemode = GUN_FIREMODE_SEMIAUTO
-		if(GUN_FIREMODE_AUTOBURST)
-			new_firemode = GUN_FIREMODE_BURSTFIRE
-	if(!(new_firemode in gun_firemode_list))
-		to_chat(user, "<span class='warning'>[src] lacks a [new_firemode]!</span>")
-		return
-	do_toggle_firemode(user, new_firemode)
-
-
-/obj/item/weapon/gun/verb/toggle_burstfire()
-	set category = "Weapons"
-	set name = "Toggle Burst Fire"
-	set desc = "Toggle burst firemode, if the gun has it."
-	set src = usr.contents
-
-	var/obj/item/weapon/gun/automatic_gun = get_active_firearm(usr)
-	if(!automatic_gun)
-		return
-	automatic_gun.do_toggle_burst(usr)
-
-
-/obj/item/weapon/gun/proc/do_toggle_burst(mob/user)
-	var/new_firemode
-	switch(gun_firemode)
-		if(GUN_FIREMODE_SEMIAUTO)
-			new_firemode = GUN_FIREMODE_BURSTFIRE
-		if(GUN_FIREMODE_BURSTFIRE)
-			new_firemode = GUN_FIREMODE_SEMIAUTO
-		if(GUN_FIREMODE_AUTOMATIC)
-			new_firemode = GUN_FIREMODE_AUTOBURST
-		if(GUN_FIREMODE_AUTOBURST)
-			new_firemode = GUN_FIREMODE_AUTOMATIC
-	if(!(new_firemode in gun_firemode_list))
-		to_chat(user, "<span class='warning'>[src] lacks a [new_firemode]!</span>")
-		return
-	do_toggle_firemode(user, new_firemode)
-
-
-/obj/item/weapon/gun/verb/toggle_firemode()
-	set category = "Weapons"
-	set name = "Toggle Fire Mode"
-	set desc = "Toggle between fire modes, if the gun has more than has one."
-	set src = usr.contents
 
 	var/obj/item/weapon/gun/G = get_active_firearm(usr)
 	if(!G)
 		return
-	G.do_toggle_firemode(usr)
+	G.toggle_autofire()
+
+
+/obj/item/weapon/gun/verb/toggle_autofire()
+	set category = null
+	set name = "Toggle Auto Fire (Weapon)"
+	set desc = "Toggle automatic firemode, if the gun has it."
+
+	var/new_firemode
+	switch(gun_firemode)
+		if(GUN_FIREMODE_SEMIAUTO)
+			new_firemode = GUN_FIREMODE_AUTOMATIC
+		if(GUN_FIREMODE_BURSTFIRE)
+			new_firemode = GUN_FIREMODE_AUTOBURST
+		if(GUN_FIREMODE_AUTOMATIC)
+			new_firemode = GUN_FIREMODE_SEMIAUTO
+		if(GUN_FIREMODE_AUTOBURST)
+			new_firemode = GUN_FIREMODE_BURSTFIRE
+	if(!(new_firemode in gun_firemode_list))
+		to_chat(usr, "<span class='warning'>[src] lacks a [new_firemode]!</span>")
+		return
+	do_toggle_firemode(usr, new_firemode)
+
+
+/mob/living/carbon/human/verb/toggle_burstfire()
+	set category = "Weapons"
+	set name = "Toggle Burst Fire"
+	set desc = "Toggle burst firemode, if the gun has it."
+
+	var/obj/item/weapon/gun/G = get_active_firearm(usr)
+	if(!G)
+		return
+	G.toggle_burstfire()
+
+
+/obj/item/weapon/gun/verb/toggle_burstfire()
+	set category = null
+	set name = "Toggle Burst Fire (Weapon)"
+	set desc = "Toggle burst firemode, if the gun has it."
+
+	var/new_firemode
+	switch(gun_firemode)
+		if(GUN_FIREMODE_SEMIAUTO)
+			new_firemode = GUN_FIREMODE_BURSTFIRE
+		if(GUN_FIREMODE_BURSTFIRE)
+			new_firemode = GUN_FIREMODE_SEMIAUTO
+		if(GUN_FIREMODE_AUTOMATIC)
+			new_firemode = GUN_FIREMODE_AUTOBURST
+		if(GUN_FIREMODE_AUTOBURST)
+			new_firemode = GUN_FIREMODE_AUTOMATIC
+	if(!(new_firemode in gun_firemode_list))
+		to_chat(usr, "<span class='warning'>[src] lacks a [new_firemode]!</span>")
+		return
+	do_toggle_firemode(usr, new_firemode)
+
+
+/mob/living/carbon/human/verb/toggle_firemode()
+	set category = "Weapons"
+	set name = "Toggle Fire Mode"
+	set desc = "Toggle between fire modes, if the gun has more than has one."
+
+	var/obj/item/weapon/gun/G = get_active_firearm(usr)
+	if(!G)
+		return
+	G.toggle_firemode()
+
+
+/obj/item/weapon/gun/verb/toggle_firemode()
+	set category = null
+	set name = "Toggle Fire Mode (Weapon)"
+	set desc = "Toggle between fire modes, if the gun has more than has one."
+
+	do_toggle_firemode(usr)
 
 
 /obj/item/weapon/gun/proc/do_toggle_firemode(mob/user, new_firemode)
@@ -710,63 +726,82 @@ should be alright.
 	ammo_diff = initial(ammo_diff)
 
 
-/obj/item/weapon/gun/verb/empty_mag()
+/mob/living/carbon/human/verb/empty_mag()
 	set category = "Weapons"
 	set name = "Unload Weapon"
 	set desc = "Removes the magazine from your current gun and drops it on the ground, or clears the chamber if your gun is already empty."
-	set src = usr.contents
 
 	var/obj/item/weapon/gun/G = get_active_firearm(usr)
 	if(!G)
 		return
-	src = G
+	G.empty_mag()
+
+
+/obj/item/weapon/gun/verb/empty_mag()
+	set category = null
+	set name = "Unload Weapon (Weapon)"
+	set desc = "Removes the magazine from your current gun and drops it on the ground, or clears the chamber if your gun is already empty."
 
 	unload(usr,,1) //We want to drop the mag on the ground.
 
-/obj/item/weapon/gun/verb/use_unique_action()
+
+/mob/living/carbon/human/verb/use_unique_action()
 	set category = "Weapons"
 	set name = "Unique Action"
 	set desc = "Use anything unique your firearm is capable of. Includes pumping a shotgun or spinning a revolver."
-	set src = usr.contents
 
 	var/obj/item/weapon/gun/G = get_active_firearm(usr)
 	if(!G)
 		return
-	src = G
+	G.use_unique_action()
+
+
+/obj/item/weapon/gun/verb/use_unique_action()
+	set category = null
+	set name = "Unique Action (Weapon)"
+	set desc = "Use anything unique your firearm is capable of. Includes pumping a shotgun or spinning a revolver."
 
 	unique_action(usr)
 
 
-/obj/item/weapon/gun/verb/toggle_gun_safety()
+/mob/living/carbon/human/verb/toggle_gun_safety()
 	set category = "Weapons"
 	set name = "Toggle Gun Safety"
 	set desc = "Toggle the safety of the held gun."
-	set src = usr.contents //We want to make sure one is picked at random, hence it's not in a list.
 
 	var/obj/item/weapon/gun/G = get_active_firearm(usr)
 	if(!G)
 		return
-	src = G
+	G.toggle_gun_safety()
+
+
+/obj/item/weapon/gun/verb/toggle_gun_safety()
+	set category = null
+	set name = "Toggle Gun Safety (Weapon)"
+	set desc = "Toggle the safety of the held gun."
 
 	to_chat(usr, "<span class='notice'>You toggle the safety [flags_gun_features & GUN_TRIGGER_SAFETY ? "<b>off</b>" : "<b>on</b>"].</span>")
 	playsound(usr, 'sound/weapons/guns/interact/selector.ogg', 15, 1)
 	flags_gun_features ^= GUN_TRIGGER_SAFETY
 
 
-/obj/item/weapon/gun/verb/activate_attachment_verb()
+/mob/living/carbon/human/verb/activate_attachment_verb()
 	set category = "Weapons"
 	set name = "Load From Attachment"
 	set desc = "Load from a gun attachment, such as a mounted grenade launcher, shotgun, or flamethrower."
-	set src = usr.contents
 
 	var/obj/item/weapon/gun/G = get_active_firearm(usr)
 	if(!G)
 		return
-	src = G
+	G.activate_attachment_verb()
 
-	var/obj/item/attachable/A
 
-	var/usable_attachments[] = list() //Basic list of attachments to compare later.
+/obj/item/weapon/gun/verb/activate_attachment_verb()
+	set category = null
+	set name = "Load From Attachment (Weapon)"
+	set desc = "Load from a gun attachment, such as a mounted grenade launcher, shotgun, or flamethrower."
+
+	var/list/usable_attachments = list()
 // rail attachment use the button to toggle flashlight instead.
 //	if(rail && (rail.flags_attach_features & ATTACH_ACTIVATION) )
 //		usable_attachments += rail
@@ -780,44 +815,52 @@ should be alright.
 	if(!usable_attachments.len) //No usable attachments.
 		to_chat(usr, "<span class='warning'>[src] does not have any usable attachment!</span>")
 		return
-
-	if(usable_attachments.len == 1) //Activates the only attachment if there is only one.
+	var/obj/item/attachable/A
+	if(usable_attachments.len == 1)
 		A = usable_attachments[1]
 	else
-		A = input("Which attachment to activate?") as null|anything in usable_attachments
-		if(!A || A.loc != src)
-			return
-	if(A)
-		A.ui_action_click(usr, null, src)
+		A = tgui_input_list(usr, "Which attachment to activate?", null, usable_attachments)
+
+	if(!A)
+		return
+	A.ui_action_click(usr, null, src)
 
 
-/obj/item/weapon/gun/verb/toggle_rail_attachment()
+/mob/living/carbon/human/verb/toggle_rail_attachment()
 	set category = "Weapons"
 	set name = "Toggle Rail Attachment"
 	set desc = "Uses the rail attachement currently attached to the gun."
-	set src = usr.contents
 
 	var/obj/item/weapon/gun/G = get_active_firearm(usr)
 	if(!G)
 		return
+	G.toggle_rail_attachment()
 
-	if(!G.rail)
+/obj/item/weapon/gun/verb/toggle_rail_attachment()
+	set category = null
+	set name = "Toggle Rail Attachment (Weapon)"
+	set desc = "Uses the rail attachement currently attached to the gun."
+
+	if(!src.rail)
 		to_chat(usr, "<span class='warning'>[src] does not have any usable rail attachment!</span>")
 		return
+	src.rail.activate_attachment(usr)
 
-	G.rail.activate_attachment(usr)
-
-
-/obj/item/weapon/gun/verb/toggle_ammo_hud()
+/mob/living/carbon/human/verb/toggle_ammo_hud()
 	set category = "Weapons"
 	set name = "Toggle Ammo HUD"
 	set desc = "Toggles the Ammo HUD for this weapon."
-	set src = usr.contents
 
 	var/obj/item/weapon/gun/G = get_active_firearm(usr)
 	if(!G)
 		return
-	src = G
+	G.toggle_ammo_hud()
+
+
+/obj/item/weapon/gun/verb/toggle_ammo_hud()
+	set category = null
+	set name = "Toggle Ammo HUD (Weapon)"
+	set desc = "Toggles the Ammo HUD for this weapon."
 
 	hud_enabled = !hud_enabled
 	var/obj/screen/ammo/A = usr.hud_used.ammo
@@ -892,11 +935,12 @@ should be alright.
 		return
 	to_chat(user, "<span class='notice'>You steady your breathing...</b></span>")
 
-	if(user.action_busy)
+	if(user.do_actions)
 		return
-	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_BAR, ignore_turf_checks = TRUE))
-		to_chat(user, "<span class='warning'>Your concentration is interrupted!</b></span>")
-		return
+	if(!user.marksman_aura)
+		if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_BAR, ignore_turf_checks = TRUE))
+			to_chat(user, "<span class='warning'>Your concentration is interrupted!</b></span>")
+			return
 	if(!CHECK_BITFIELD(flags_item, WIELDED))
 		to_chat(user, "<span class='notice'>You need to wield your gun before aiming.</b></span>")
 		return

@@ -44,8 +44,7 @@
 			M.Paralyze(20)
 		else
 			M.Stun(20) //Otherwise we just get stunned.
-		M.apply_damage(damage, STAMINA) //Armour ignoring Stamina
-		UPDATEHEALTH(M)
+		M.apply_damage(damage, STAMINA, updating_health = TRUE) //Armour ignoring Stamina
 
 /datum/action/xeno_action/activable/stomp/ai_should_start_consider()
 	return TRUE
@@ -146,8 +145,7 @@
 		var/damage = toss_distance * 5
 
 		L.take_overall_damage_armored(damage, BRUTE, "melee")
-		L.apply_damage(damage, STAMINA) //...But decent armour ignoring Stamina
-		UPDATEHEALTH(L)
+		L.apply_damage(damage, STAMINA, updating_health = TRUE) //...But decent armour ignoring Stamina
 		shake_camera(L, 2, 2)
 		playsound(L,pick('sound/weapons/alien_claw_block.ogg','sound/weapons/alien_bite2.ogg'), 50, 1)
 

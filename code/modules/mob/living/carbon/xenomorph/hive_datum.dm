@@ -19,6 +19,8 @@
 	var/list/list/xenos_by_zlevel
 	var/tier3_xeno_limit
 	var/tier2_xeno_limit
+	///Queue of all observer wanting to join xeno side
+	var/list/mob/dead/observer/candidate
 
 // ***************************************
 // *********** Init
@@ -31,6 +33,7 @@
 	xenos_by_upgrade = list()
 	dead_xenos = list()
 	xenos_by_zlevel = list()
+	LAZYINITLIST(candidate)
 
 	for(var/t in subtypesof(/mob/living/carbon/xenomorph))
 		var/mob/living/carbon/xenomorph/X = t
@@ -41,6 +44,8 @@
 
 	for(var/upgrade in GLOB.xenoupgradetiers)
 		xenos_by_upgrade[upgrade] = list()
+
+	SSdirection.set_leader(hivenumber, null)
 
 
 // ***************************************
@@ -314,7 +319,7 @@
 	X.queen_chosen_lead = FALSE
 
 	if(!isxenoshrike(X) && !isxenoqueen(X) && !isxenohivemind(X)) //These innately have the Rally Hive ability
-		X.xeno_caste.actions -= /datum/action/xeno_action/activable/rally_hive
+		X.remove_rally_hive_ability()
 
 /datum/hive_status/proc/update_leader_pheromones() // helper function to easily trigger an update of leader pheromones
 	for(var/i in xeno_leader_list)
@@ -449,7 +454,7 @@
 
 
 /datum/hive_status/normal/check_ruler()
-	if(!SSticker?.mode || !(SSticker.mode.flags_round_type & MODE_XENO_RULER))
+	if(!(SSticker.mode?.flags_round_type & MODE_XENO_RULER))
 		return TRUE
 	return living_xeno_ruler
 
@@ -494,7 +499,7 @@ to_chat will check for valid clients itself already so no need to double check f
 */
 
 ///Used for Hive Message alerts
-/datum/hive_status/proc/xeno_message(message = null, size = 3, force = FALSE, atom/target = null, sound = null, apply_preferences = FALSE, filter_list = null)
+/datum/hive_status/proc/xeno_message(message = null, size = 3, force = FALSE, atom/target = null, sound = null, apply_preferences = FALSE, filter_list = null, arrow_type = /obj/screen/arrow/leader_tracker_arrow)
 
 	if(!force && !can_xeno_message())
 		return
@@ -504,7 +509,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	if(filter_list) //Filter out Xenos in the filter list if applicable
 		final_list -= filter_list
 
-	for(var/mob/living/carbon/xenomorph/X as() in final_list)
+	for(var/mob/living/carbon/xenomorph/X AS in final_list)
 
 		if(X.stat) // dead/crit cant hear
 			continue
@@ -516,9 +521,10 @@ to_chat will check for valid clients itself already so no need to double check f
 			X.playsound_local(X, sound, max(size * 20, 60), 0, 1)
 
 		if(target) //Apply tracker arrow to point to the subject of the message if applicable
-			var/obj/screen/xeno_tracker_arrow/arrow = new /obj/screen/xeno_tracker_arrow //Prepare the tracker object and set its parameters
-			arrow.add_hud(X, target)
-			new /obj/effect/temp_visual/xenomorph/xeno_tracker_target(target) //Ping the source of our alert
+			var/obj/screen/arrow/arrow_hud = new arrow_type
+			//Prepare the tracker object and set its parameters
+			arrow_hud.add_hud(X, target)
+			new /obj/effect/temp_visual/xenomorph/xeno_tracker_target(target, target) //Ping the source of our alert
 
 		to_chat(X, "<span class='xenodanger'><font size=[size]> [message]</font></span>")
 
@@ -541,7 +547,7 @@ to_chat will check for valid clients itself already so no need to double check f
 
 
 /datum/hive_status/normal/handle_ruler_timer()
-	if(!isdistress(SSticker?.mode))
+	if(!isdistress(SSticker.mode))
 		return
 	var/datum/game_mode/infestation/distress/D = SSticker.mode
 
@@ -573,14 +579,8 @@ to_chat will check for valid clients itself already so no need to double check f
 
 
 // This proc checks for available spawn points and offers a choice if there's more than one.
-/datum/hive_status/normal/proc/attempt_to_spawn_larva(mob/xeno_candidate)
+/datum/hive_status/normal/proc/attempt_to_spawn_larva(mob/xeno_candidate, larva_already_reserved = FALSE)
 	if(!xeno_candidate?.client)
-		return FALSE
-
-	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
-	if(!stored_larva)
-		to_chat(xeno_candidate, "<span class='warning'>There are no burrowed larvas.</span>")
 		return FALSE
 
 	var/list/possible_mothers = list()
@@ -589,14 +589,14 @@ to_chat will check for valid clients itself already so no need to double check f
 
 	if(!length(possible_mothers))
 		if(length(possible_silos))
-			return attempt_to_spawn_larva_in_silo(xeno_candidate, possible_silos)
+			return attempt_to_spawn_larva_in_silo(xeno_candidate, possible_silos, larva_already_reserved)
 		else
 			to_chat(xeno_candidate, "<span class='warning'>There are no places currently available to receive new larvas.</span>")
 			return FALSE
 
 	var/mob/living/carbon/xenomorph/chosen_mother
 	if(length(possible_mothers) > 1)
-		chosen_mother = input("Available Mothers") as null|anything in possible_mothers
+		chosen_mother = tgui_input_list(xeno_candidate, "Available Mothers", null, possible_mothers)
 	else
 		chosen_mother = possible_mothers[1]
 
@@ -605,22 +605,22 @@ to_chat will check for valid clients itself already so no need to double check f
 
 	if(!isnewplayer(xeno_candidate) && XENODEATHTIME_CHECK(xeno_candidate))
 		if(check_other_rights(xeno_candidate.client, R_ADMIN, FALSE))
-			if(alert(xeno_candidate, "You wouldn't normally qualify for this respawn. Are you sure you want to bypass it with your admin powers?", "Bypass Respawn", "Yes", "No") != "Yes")
+			if(tgui_alert(xeno_candidate, "You wouldn't normally qualify for this respawn. Are you sure you want to bypass it with your admin powers?", "Bypass Respawn", list("Yes", "No")) != "Yes")
 				XENODEATHTIME_MESSAGE(xeno_candidate)
 				return FALSE
 		else
 			XENODEATHTIME_MESSAGE(xeno_candidate)
 			return FALSE
 
-	return spawn_larva(xeno_candidate, chosen_mother)
+	return spawn_larva(xeno_candidate, chosen_mother, larva_already_reserved)
 
 
-/datum/hive_status/normal/proc/attempt_to_spawn_larva_in_silo(mob/xeno_candidate, possible_silos)
+/datum/hive_status/normal/proc/attempt_to_spawn_larva_in_silo(mob/xeno_candidate, possible_silos, larva_already_reserved = FALSE)
 	var/obj/structure/resin/silo/chosen_silo
 	if(length(possible_silos) > 1)
-		chosen_silo = input("Available Egg Silos") as null|anything in possible_silos
+		chosen_silo = tgui_input_list(xeno_candidate, "Available Egg Silos", "Spawn location", possible_silos)
 		xeno_candidate.forceMove(chosen_silo)
-		var/double_check = input(xeno_candidate, "Spawn here?", "Spawn location") as null|anything in list("Yes","Pick another silo")
+		var/double_check = tgui_alert(xeno_candidate, "Spawn here?", "Spawn location", list("Yes","Pick another silo"))
 		if(double_check == "Pick another silo")
 			return attempt_to_spawn_larva_in_silo(xeno_candidate, possible_silos)
 		else if(double_check != "Yes")
@@ -633,23 +633,17 @@ to_chat will check for valid clients itself already so no need to double check f
 
 	if(!isnewplayer(xeno_candidate) && XENODEATHTIME_CHECK(xeno_candidate))
 		if(check_other_rights(xeno_candidate.client, R_ADMIN, FALSE))
-			if(alert(xeno_candidate, "You wouldn't normally qualify for this respawn. Are you sure you want to bypass it with your admin powers?", "Bypass Respawn", "Yes", "No") != "Yes")
+			if(tgui_alert(xeno_candidate, "You wouldn't normally qualify for this respawn. Are you sure you want to bypass it with your admin powers?", "Bypass Respawn", list("Yes", "No")) != "Yes")
 				XENODEATHTIME_MESSAGE(xeno_candidate)
 				return FALSE
 		else
 			XENODEATHTIME_MESSAGE(xeno_candidate)
 			return FALSE
 
-	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
-	if(!stored_larva)
-		to_chat(xeno_candidate, "<span class='warning'>There are no longer burrowed larvas available.</span>")
-		return FALSE
-
-	return do_spawn_larva(xeno_candidate, chosen_silo.loc)
+	return do_spawn_larva(xeno_candidate, chosen_silo.loc, larva_already_reserved)
 
 
-/datum/hive_status/normal/proc/spawn_larva(mob/xeno_candidate, mob/living/carbon/xenomorph/mother)
+/datum/hive_status/normal/proc/spawn_larva(mob/xeno_candidate, mob/living/carbon/xenomorph/mother, larva_already_reserved = FALSE)
 	if(!xeno_candidate?.mind)
 		return FALSE
 
@@ -657,11 +651,12 @@ to_chat will check for valid clients itself already so no need to double check f
 		to_chat(xeno_candidate, "<span class='warning'>Something went awry with mom. Can't spawn at the moment.</span>")
 		return FALSE
 
-	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
-	if(!stored_larva)
-		to_chat(xeno_candidate, "<span class='warning'>There are no longer burrowed larvas available.</span>")
-		return FALSE
+	if(!larva_already_reserved)
+		var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+		var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
+		if(!stored_larva)
+			to_chat(xeno_candidate, "<span class='warning'>There are no longer burrowed larvas available.</span>")
+			return FALSE
 
 	var/list/possible_mothers = list()
 	SEND_SIGNAL(src, COMSIG_HIVE_XENO_MOTHER_CHECK, possible_mothers) //List variable passed by reference, and hopefully populated.
@@ -669,10 +664,10 @@ to_chat will check for valid clients itself already so no need to double check f
 	if(!(mother in possible_mothers))
 		to_chat(xeno_candidate, "<span class='warning'>This mother is not in a state to receive us.</span>")
 		return FALSE
-	return do_spawn_larva(xeno_candidate, get_turf(mother))
+	return do_spawn_larva(xeno_candidate, get_turf(mother), larva_already_reserved)
 
 
-/datum/hive_status/normal/proc/do_spawn_larva(mob/xeno_candidate, turf/spawn_point)
+/datum/hive_status/normal/proc/do_spawn_larva(mob/xeno_candidate, turf/spawn_point, larva_already_reserved = FALSE)
 	if(is_banned_from(xeno_candidate.ckey, ROLE_XENOMORPH))
 		to_chat(xeno_candidate, "<span class='warning'>You are jobbaned from the [ROLE_XENOMORPH] role.</span>")
 		return FALSE
@@ -687,19 +682,20 @@ to_chat will check for valid clients itself already so no need to double check f
 	xeno_candidate.mind.transfer_to(new_xeno, TRUE)
 	new_xeno.playsound_local(new_xeno, 'sound/effects/xeno_newlarva.ogg')
 	to_chat(new_xeno, "<span class='xenoannounce'>We are a xenomorph larva awakened from slumber!</span>")
-	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	xeno_job.occupy_job_positions(1)
-
+	if(!larva_already_reserved)
+		var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+		xeno_job.occupy_job_positions(1)
 	return new_xeno
 
 
 /datum/hive_status/normal/on_shuttle_hijack(obj/docking_port/mobile/marine_dropship/hijacked_ship)
+	handle_silo_death_timer()
 	xeno_message("Our Ruler has commanded the metal bird to depart for the metal hive in the sky! Run and board it to avoid a cruel death!")
 	RegisterSignal(hijacked_ship, COMSIG_SHUTTLE_SETMODE, .proc/on_hijack_depart)
 
 
 /datum/hive_status/normal/proc/on_hijack_depart(datum/source, new_mode)
-	SIGNAL_HANDLER_DOES_SLEEP
+	SIGNAL_HANDLER
 	if(new_mode != SHUTTLE_CALL)
 		return
 	UnregisterSignal(source, COMSIG_SHUTTLE_SETMODE)
@@ -715,7 +711,7 @@ to_chat will check for valid clients itself already so no need to double check f
 			continue
 		if(!is_ground_level(boarder.z))
 			continue
-		boarder.gib()
+		INVOKE_ASYNC(boarder, /mob/living.proc/gib)
 		left_behind++
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	if(left_behind)
@@ -724,12 +720,16 @@ to_chat will check for valid clients itself already so no need to double check f
 	if(difference < 0)
 		if(xeno_job.total_positions < (-difference + xeno_job.current_positions))
 			xeno_job.set_job_positions(-difference + xeno_job.current_positions)
-	for(var/obj/structure/resin/silo/silo as() in GLOB.xeno_resin_silos)
-		if(isalamoarea(get_area(silo)))
-			continue
+	for(var/obj/structure/resin/silo/silo AS in GLOB.xeno_resin_silos)
 		if(!is_ground_level(silo.z))
 			continue
 		qdel(silo)
+
+	SSpoints.xeno_points_by_hive[hivenumber] = SILO_PRICE + XENO_TURRET_PRICE //Give a free silo when going shipside and a turret
+
+	var/list/living_player_list = SSticker.mode.count_humans_and_xenos(count_flags = COUNT_IGNORE_HUMAN_SSD)
+	var/num_humans = living_player_list[1]
+	SSsilo.base_larva_spawn_rate = 0.2 * num_humans //That mean that one silo give 1 larva every minute for 40 marines
 
 
 // ***************************************
@@ -810,6 +810,9 @@ to_chat will check for valid clients itself already so no need to double check f
 /mob/living/carbon/xenomorph/warrior/Corrupted
 	hivenumber = XENO_HIVE_CORRUPTED
 
+/mob/living/carbon/xenomorph/wraith/Corrupted
+	hivenumber = XENO_HIVE_CORRUPTED
+
 // ***************************************
 // *********** Misc Xenos
 // ***************************************
@@ -876,6 +879,9 @@ to_chat will check for valid clients itself already so no need to double check f
 /mob/living/carbon/xenomorph/warrior/Alpha
 	hivenumber = XENO_HIVE_ALPHA
 
+/mob/living/carbon/xenomorph/wraith/Alpha
+	hivenumber = XENO_HIVE_ALPHA
+
 /datum/hive_status/beta
 	name = "Beta"
 	hivenumber = XENO_HIVE_BETA
@@ -937,6 +943,9 @@ to_chat will check for valid clients itself already so no need to double check f
 	hivenumber = XENO_HIVE_BETA
 
 /mob/living/carbon/xenomorph/warrior/Beta
+	hivenumber = XENO_HIVE_BETA
+
+/mob/living/carbon/xenomorph/wraith/Beta
 	hivenumber = XENO_HIVE_BETA
 
 /datum/hive_status/zeta
@@ -1002,6 +1011,9 @@ to_chat will check for valid clients itself already so no need to double check f
 /mob/living/carbon/xenomorph/warrior/Zeta
 	hivenumber = XENO_HIVE_ZETA
 
+/mob/living/carbon/xenomorph/wraith/Zeta
+	hivenumber = XENO_HIVE_ZETA
+
 /datum/hive_status/admeme
 	name = "Admeme"
 	hivenumber = XENO_HIVE_ADMEME
@@ -1040,15 +1052,21 @@ to_chat will check for valid clients itself already so no need to double check f
 /mob/living/carbon/xenomorph/get_xeno_hivenumber()
 	return hivenumber
 
+/obj/structure/resin/xeno_turret/get_xeno_hivenumber()
+	return associated_hive.hivenumber
+
+/datum/hive_status/ui_state(mob/user)
+	return GLOB.xeno_state
+
 /// Controls the evolution UI
-/datum/hive_status/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.xeno_state)
+/datum/hive_status/ui_interact(mob/user, datum/tgui/ui)
 	// Xeno only screen
 	if(!isxeno(user))
 		return
 
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "HiveEvolveScreen", "Xenomorph Evolution", 400, 750, master_ui, state)
+		ui = new(user, src, "HiveEvolveScreen")
 		ui.open()
 
 /// Static data provided once when the ui is opened
@@ -1099,8 +1117,9 @@ to_chat will check for valid clients itself already so no need to double check f
 	)
 
 /// Handles actuually evolving
-/datum/hive_status/ui_act(action, params)
-	if(..())
+/datum/hive_status/ui_act(action, list/params)
+	. = ..()
+	if(.)
 		return
 
 	var/mob/living/carbon/xenomorph/xeno = usr
@@ -1109,8 +1128,72 @@ to_chat will check for valid clients itself already so no need to double check f
 			SStgui.close_user_uis(usr, src, "main")
 			var/datum/xeno_caste/caste = GLOB.xeno_caste_datums[text2path(params["path"])][XENO_UPGRADE_BASETYPE]
 			xeno.do_evolve(caste.caste_type_path, caste.display_name) // All the checks for can or can't are handled inside do_evolve
-			return
+			return TRUE
 
 /datum/hive_status/proc/update_tier_limits()
 	tier3_xeno_limit = max(length(xenos_by_tier[XENO_TIER_THREE]),FLOOR((length(xenos_by_tier[XENO_TIER_ZERO])+length(xenos_by_tier[XENO_TIER_ONE])+length(xenos_by_tier[XENO_TIER_TWO]))/3+1,1))
 	tier2_xeno_limit = max(length(xenos_by_tier[XENO_TIER_TWO]),length(xenos_by_tier[XENO_TIER_ZERO]) + length(xenos_by_tier[XENO_TIER_ONE])+1 - length(xenos_by_tier[XENO_TIER_THREE]))
+
+///Handles the timer when all silos are destroyed
+/datum/hive_status/proc/handle_silo_death_timer()
+	return
+
+/datum/hive_status/normal/handle_silo_death_timer()
+	if(!isdistress(SSticker.mode))
+		return
+	if(world.time < MINIMUM_TIME_SILO_LESS_COLLAPSE)
+		return
+	var/datum/game_mode/infestation/distress/D = SSticker.mode
+	if(D.round_stage != DISTRESS_MARINE_DEPLOYMENT)
+		if(D?.siloless_hive_timer)
+			deltimer(D.siloless_hive_timer)
+			D.siloless_hive_timer = null
+		return
+	if(GLOB.xeno_resin_silos.len)
+		if(D?.siloless_hive_timer)
+			deltimer(D.siloless_hive_timer)
+			D.siloless_hive_timer = null
+		return
+
+	if(D?.siloless_hive_timer)
+		return
+
+	xeno_message("<span class='xenoannounce'>We don't have any silos! The hive will collapse if nothing is done</span>", 3, TRUE)
+	D.siloless_hive_timer = addtimer(CALLBACK(D, /datum/game_mode.proc/siloless_hive_collapse), 10 MINUTES, TIMER_STOPPABLE)
+
+///Add a mob to the candidate queue, the first mobs of the queue will have priority on new larva spots
+/datum/hive_status/normal/proc/add_to_larva_candidate_queue(mob/dead/observer/observer)
+	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
+	if(stored_larva)
+		attempt_to_spawn_larva(observer)
+		return
+	if(LAZYFIND(candidate, observer))
+		to_chat(observer, "<span class='warning'>You are already in queue!</span>")
+		return
+	LAZYADD(candidate, observer)
+	observer.larva_position =  LAZYLEN(candidate)
+	to_chat(observer, "<span class='warning'>There are no burrowed larvas. You are in position [observer.larva_position] to become a xeno</span>")
+
+///Propose larvas until their is no more candidates, or no more burrowed
+/datum/hive_status/normal/proc/give_larva_to_next_in_queue()
+	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
+	var/mob/dead/observer/observer_in_queue
+	while(stored_larva > 0 && LAZYLEN(candidate))
+		observer_in_queue = LAZYACCESS(candidate, 1)
+		LAZYREMOVE(candidate, observer_in_queue)
+		xeno_job.occupy_job_positions(1)
+		stored_larva--
+		INVOKE_ASYNC(src, .proc/try_to_give_larva, observer_in_queue)
+	for(var/i in 1 to LAZYLEN(candidate))
+		observer_in_queue = LAZYACCESS(candidate, i)
+		observer_in_queue.larva_position = i
+		
+///Attempt to give a larva to the next in line, if not possible, free the xeno position and propose it to another candidate
+/datum/hive_status/normal/proc/try_to_give_larva(mob/next_in_line)
+	if(attempt_to_spawn_larva(next_in_line, TRUE))
+		return
+	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+	xeno_job.free_job_positions(1)
+	give_larva_to_next_in_queue()

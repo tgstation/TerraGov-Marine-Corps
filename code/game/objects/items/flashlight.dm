@@ -10,44 +10,36 @@
 	materials = list(/datum/material/metal = 50, /datum/material/glass = 20)
 	actions_types = list(/datum/action/item_action)
 	light_system = MOVABLE_LIGHT
-	light_on = FALSE
 	light_range = 5
 	light_power = 3 //luminosity when on
 	var/raillight_compatible = TRUE //Can this be turned into a rail light ?
 	var/activation_sound = 'sound/items/flashlight.ogg'
 
-/obj/item/flashlight/Initialize()
+/obj/item/flashlight/turn_light(mob/user, toggle_on)
 	. = ..()
-	if(light_on)
-		update_brightness()
-
-
-/obj/item/flashlight/proc/update_brightness(mob/user = null)
+	if(. != CHECKS_PASSED)
+		return
 	if(!user && ismob(loc))
 		user = loc
-	if(!light_on)
+	set_light_on(toggle_on)
+	update_action_button_icons()
+	update_icon()
+	
+/obj/item/flashlight/update_icon()
+	. = ..()
+	if(light_on)
 		icon_state = "[initial(icon_state)]-on"
-		set_light_on(TRUE)
 	else
 		icon_state = initial(icon_state)
-		set_light_on(FALSE)
+
 
 /obj/item/flashlight/attack_self(mob/user)
 	if(!isturf(user.loc))
 		to_chat(user, "You cannot turn the light on while in [user.loc].")
 		return FALSE
-	if(activation_sound)
+	if(activation_sound && (turn_light(user, !light_on) != STILL_ON_COOLDOWN))
 		playsound(get_turf(src), activation_sound, 15, 1)
-	update_brightness()
-	update_action_button_icons()
 	return TRUE
-
-/obj/item/flashlight/proc/turn_off_light(mob/bearer)
-	if(light_on)
-		update_brightness(bearer)
-		update_action_button_icons()
-		return TRUE
-	return FALSE
 
 /obj/item/flashlight/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -70,8 +62,8 @@
 		qdel(src) //Delete da old flashlight
 
 
-/obj/item/flashlight/attack(mob/living/M as mob, mob/living/user as mob)
-	if(light_on && user.zone_selected == "eyes")
+/obj/item/flashlight/attack(mob/living/M, mob/living/user)
+	if(light_on && user.zone_selected == BODY_ZONE_PRECISE_EYES)
 
 		if((user.getBrainLoss() >= 60) && prob(50))	//too dumb to use flashlight properly
 			return ..()	//just hit them in the head
@@ -91,7 +83,7 @@
 		user.visible_message("<span class='notice'>[user] directs [src] to [M]'s eyes.</span>", \
 							"<span class='notice'>You direct [src] to [M]'s eyes.</span>")
 
-		if(ishuman(M) || ismonkey(M))	//robots and aliens are unaffected
+		if(ishuman(M))	//robots and aliens are unaffected
 			var/mob/living/carbon/C = M
 			if(C.stat == DEAD || C.disabilities & BLIND)	//mob is dead or fully blind
 				to_chat(user, "<span class='notice'>[C] pupils does not react to the light!</span>")
@@ -160,10 +152,12 @@
 	if(!usr.stat)
 		attack_self(usr)
 
-/obj/item/flashlight/lamp/attack_alien(mob/living/carbon/xenomorph/xeno_attacker)
-	xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_SMASH)
+/obj/item/flashlight/lamp/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(X.status_flags & INCORPOREAL)
+		return FALSE
+	X.do_attack_animation(src, ATTACK_EFFECT_SMASH)
 	playsound(loc, 'sound/effects/metalhit.ogg', 20, TRUE)
-	xeno_attacker.visible_message("<span class='danger'>\The [xeno_attacker] smashes [src]!</span>", \
+	X.visible_message("<span class='danger'>\The [X] smashes [src]!</span>", \
 	"<span class='danger'>We smash [src]!</span>", null, 5)
 	deconstruct(FALSE)
 
@@ -186,18 +180,18 @@
 	. = ..()
 	fuel = rand(800, 1000) // Sorry for changing this so much but I keep under-estimating how long X number of ticks last in seconds.
 
-/obj/item/flashlight/flare/proc/turn_off()
+/obj/item/flashlight/flare/turn_light(mob/user, toggle_on)
+	. = ..()
+	if(toggle_on)
+		return
 	fuel = 0 //Flares are one way; if you turn them off, you're snuffing them out.
-	light_on = TRUE
 	heat = 0
 	force = initial(force)
 	damtype = initial(damtype)
-	if(ismob(loc))
-		var/mob/U = loc
-		update_brightness(U)
-	else
-		update_brightness(null)
 	icon_state = "[initial(icon_state)]-empty"
+
+/obj/item/flashlight/flare/proc/turn_off()
+	turn_light(null, FALSE, 0, FALSE, TRUE)
 
 /obj/item/flashlight/flare/attack_self(mob/user)
 
@@ -224,7 +218,7 @@
 	. = ..()
 	light_on = TRUE
 	heat = 1500
-	update_brightness()
+	turn_light(null, TRUE)
 	force = on_damage
 	damtype = "fire"
 	addtimer(CALLBACK(src, .proc/turn_off), fuel)

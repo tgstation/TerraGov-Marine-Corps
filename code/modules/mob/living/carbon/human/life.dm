@@ -7,6 +7,9 @@
 	//update the current life tick, can be used to e.g. only do something every 4 ticks
 	life_tick++
 
+	if(notransform)
+		return
+
 	if(!HAS_TRAIT(src, TRAIT_STASIS))
 		if(stat != DEAD)
 
@@ -29,11 +32,11 @@
 			species.handle_unique_behavior(src)
 
 		else //Dead
-			if(!undefibbable && timeofdeath && life_tick > 5 && life_tick % 2 == 0)
-				if(timeofdeath < 5 || !check_tod(src) || !is_revivable())	//We are dead beyond revival, or we're junk mobs spawned like the clowns on the clown shuttle
-					set_undefibbable()
-				else
-					med_hud_set_status()
+			dead_ticks ++
+			if(dead_ticks > TIME_BEFORE_DNR)
+				set_undefibbable()
+			else
+				med_hud_set_status()
 
 	stabilize_body_temperature() //Body temperature adjusts itself (self-regulation) (even when dead)
 
@@ -42,7 +45,8 @@
 
 
 /mob/living/carbon/human/proc/set_undefibbable()
-	undefibbable = TRUE
+	ADD_TRAIT(src, TRAIT_UNDEFIBBABLE , TRAIT_UNDEFIBBABLE)
+	ADD_TRAIT(src, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
 	SSmobs.stop_processing(src) //Last round of processing.
 
 	if(CHECK_BITFIELD(status_flags, XENO_HOST))

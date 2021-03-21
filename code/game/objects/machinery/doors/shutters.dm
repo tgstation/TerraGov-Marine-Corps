@@ -212,6 +212,11 @@
 	id = "cic_armory"
 	icon_state = "shutter1"
 
+/obj/machinery/door/poddoor/shutters/mainship/engineering/armory
+	name = "\improper Engineering Armory Shutters"
+	id = "engi_armory"
+	icon_state = "shutter1"
+
 /obj/machinery/door/poddoor/shutters/mainship/corporate
 	name = "\improper Privacy Shutters"
 	id = "cl_shutters"

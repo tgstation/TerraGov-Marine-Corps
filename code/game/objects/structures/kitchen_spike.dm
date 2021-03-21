@@ -19,7 +19,7 @@
 		if(!istype(G, /obj/item/grab))
 			return
 		if(ismonkey(G.grabbed_thing))
-			var/mob/living/carbon/monkey/M = G.grabbed_thing
+			var/mob/living/carbon/human/species/monkey/M = G.grabbed_thing
 			if(!occupied)
 				icon_state = "spikebloody"
 				occupied = 1

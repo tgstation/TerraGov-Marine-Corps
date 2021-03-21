@@ -74,7 +74,7 @@
 
 
 /obj/machinery/computer/camera_advanced/check_eye(mob/living/user)
-	if(machine_stat & (NOPOWER|BROKEN) || user.incapacitated(TRUE))
+	if(machine_stat & (NOPOWER|BROKEN|DISABLED) || user.incapacitated(TRUE))
 		user.unset_interaction()
 	if(isAI(user))
 		return
@@ -160,7 +160,6 @@
 	user.remote_control = eyeobj
 	user.reset_perspective(eyeobj)
 	eyeobj.setLoc(eyeobj.loc)
-
 
 /obj/machinery/computer/camera_advanced/proc/track(mob/living/target)
 	if(!istype(target))
@@ -322,10 +321,10 @@
 		var/obj/machinery/camera/C = i
 		var/list/tempnetwork = C.network & origin.networks
 		if(length(tempnetwork))
-			T["[C.c_tag][C.can_use() ? null : " (Deactivated)"]"] = C
+			T["[C.c_tag][C.can_use() ? "" : " (Deactivated)"]"] = C
 
 	playsound(origin, 'sound/machines/terminal_prompt.ogg', 25, 0)
-	var/camera = input("Choose which camera you want to view?", "Cameras") as null|anything in T
+	var/camera = tgui_input_list(owner, "Choose which camera you want to view?", "Cameras", T)
 	var/obj/machinery/camera/C = T[camera]
 	playsound(src, "terminal_type", 25, 0)
 
