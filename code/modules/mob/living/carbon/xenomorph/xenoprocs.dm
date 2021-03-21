@@ -18,7 +18,7 @@
 
 	dat += "<b>List of Hive Tunnels:</b><BR>"
 
-	for(var/obj/structure/tunnel/T in GLOB.xeno_tunnels)
+	for(var/obj/structure/tunnel/T AS in GLOB.xeno_tunnels)
 		if(user.issamexenohive(T))
 			var/distance = get_dist(user, T)
 			dat += "<b>[T.name]</b> located at: <b><font color=green>([T.tunnel_desc][distance > 0 ? " <b>Distance: [distance])</b>" : ""]</b></font><BR>"
