@@ -1019,12 +1019,20 @@
 	plasma_cost = 150
 	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN_SILO
 	cooldown_timer = 60 SECONDS
-
+	/// If we are building a small silo
+	var/build_small_silo = FALSE
 	/// How long does it take to build
 	var/build_time = 10 SECONDS
 	/// Pyschic point cost
 	var/psych_cost = SILO_PRICE
 
+/datum/action/xeno_action/activable/build_silo/action_activate()
+	var/mob/living/carbon/xenomorph/X = owner
+	if(X.selected_ability == src)
+		build_small_silo = !build_small_silo
+		var/silo_type = build_small_silo ? "small" : "regular"
+		to_chat(X, "<span class ='notice'> You will now build a [silo_type] silo </span>")
+	. = ..()
 
 /datum/action/xeno_action/activable/build_silo/can_use_ability(atom/A, silent, override_flags)
 	. = ..()
@@ -1037,7 +1045,8 @@
 		return FALSE
 
 	var/mob/living/carbon/xenomorph/X = owner
-	if(SSpoints.xeno_points_by_hive[X.hivenumber] < psych_cost)
+	var/final_psych_cost = psych_cost * (build_small_silo ? 0.5 : 1)
+	if(SSpoints.xeno_points_by_hive[X.hivenumber] < final_psych_cost)
 		to_chat(owner, "<span class='xenowarning'>The hive doesn't have the necessary psychic points for you to do that!</span>")
 		return FALSE
 
@@ -1051,16 +1060,19 @@
 		return fail_activate()
 
 	var/mob/living/carbon/xenomorph/X = owner
-
-	if(SSpoints.xeno_points_by_hive[X.hivenumber] < psych_cost)
+	var/final_psych_cost = psych_cost * build_small_silo ? 0.5 : 1
+	if(SSpoints.xeno_points_by_hive[X.hivenumber] < final_psych_cost)
 		to_chat(owner, "<span class='xenowarning'>Someone used all the psych points while we were building!</span>")
 		return fail_activate()
-
-	new /obj/structure/resin/silo (get_step(A, SOUTHWEST))
-	to_chat(owner, "<span class='notice'>We build a new silo for [psych_cost] psy points.</span>")
-	SSpoints.xeno_points_by_hive[X.hivenumber] -= psych_cost
-
+	
+	to_chat(owner, "<span class='notice'>We build a new silo for [final_psych_cost] psy points.</span>")
+	SSpoints.xeno_points_by_hive[X.hivenumber] -= final_psych_cost
 	succeed_activate()
+	if(build_small_silo)
+		new /obj/structure/resin/silo/small_silo (get_step(A, SOUTHWEST))
+		return
+	new /obj/structure/resin/silo (get_step(A, SOUTHWEST))
+
 
 ////////////////////
 /// Build xeno turret
