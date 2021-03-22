@@ -543,7 +543,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	if(target)
 		RegisterSignal(target, COMSIG_PARENT_QDELETING, .proc/clean_target)
 
-///Set the target to null to avoid hard delete
+///Set the target to it's turf, so we keep shooting even when it was qdeled
 /obj/item/weapon/gun/proc/clean_target()
 	SIGNAL_HANDLER
 	target = get_turf(target)
