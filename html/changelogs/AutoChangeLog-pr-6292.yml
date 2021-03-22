@@ -1,0 +1,4 @@
+author: "Vondiech"
+delete-after: True
+changes: 
+  - bugfix: "Transit shutters can no longer be triggered by any buttons on shipside or groundside that has its ID set to null"
