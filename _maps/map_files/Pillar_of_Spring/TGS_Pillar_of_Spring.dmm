@@ -65,12 +65,13 @@
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "am" = (
+/obj/structure/closet/secure_closet/engineering_personal,
+/obj/item/storage/backpack/marine/engineerpack,
 /obj/machinery/camera/autoname/mainship{
-	dir = 1
+	dir = 8
 	},
-/obj/structure/ship_ammo/minirocket/illumination,
 /turf/open/floor/mainship/cargo,
-/area/mainship/hallways/hangar)
+/area/mainship/engineering/upper_engineering)
 "an" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -108,6 +109,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
+/obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship/sterile/plain,
 /area/mainship/hallways/hangar)
 "av" = (
@@ -305,6 +307,7 @@
 	dir = 4
 	},
 /obj/item/reagent_containers/jerrycan,
+/obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship/sterile/plain,
 /area/mainship/hallways/hangar)
 "bj" = (
@@ -3463,6 +3466,15 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
+"lw" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/shipboard/weapon_room)
 "lx" = (
 /obj/structure/prop/mainship/mapping_computer,
 /turf/open/floor/mainship/blue{
@@ -3895,6 +3907,7 @@
 /area/mainship/living/pilotbunks)
 "mV" = (
 /obj/machinery/telecomms/server/presets/charlie,
+/obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
 "mW" = (
@@ -8397,6 +8410,12 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
+"Br" = (
+/obj/machinery/camera/autoname/mainship{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "Bs" = (
 /obj/structure/target_stake,
 /turf/open/floor/plating/mainship,
@@ -8659,6 +8678,9 @@
 "Ce" = (
 /obj/machinery/power/monitor/grid,
 /obj/structure/cable,
+/obj/machinery/camera/autoname/mainship{
+	dir = 8
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/lower_engine_monitoring)
 "Cf" = (
@@ -11282,6 +11304,9 @@
 /obj/structure/ob_ammo/ob_fuel,
 /obj/structure/ob_ammo/ob_fuel,
 /obj/structure/ob_ammo/ob_fuel,
+/obj/machinery/camera/autoname/mainship{
+	dir = 8
+	},
 /turf/open/floor/mainship/red{
 	dir = 5
 	},
@@ -13201,6 +13226,14 @@
 	dir = 9
 	},
 /area/mainship/squads/general)
+"Ps" = (
+/obj/structure/cable,
+/obj/structure/disposalpipe/segment,
+/obj/machinery/camera/autoname/mainship{
+	dir = 8
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hull/lower_hull)
 "Pt" = (
 /obj/structure/cable,
 /obj/machinery/vending/nanomed,
@@ -15159,6 +15192,20 @@
 /obj/item/ashtray/glass,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
+"Xr" = (
+/obj/structure/cable,
+/obj/structure/disposalpipe/segment,
+/obj/machinery/camera/autoname/mainship{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hull/lower_hull)
+"Xs" = (
+/obj/machinery/camera/autoname/mainship{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "Xt" = (
 /obj/machinery/door/airlock/mainship/maint,
 /obj/structure/disposalpipe/segment{
@@ -15217,6 +15264,12 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
+"XC" = (
+/obj/machinery/camera/autoname/mainship{
+	dir = 8
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/engineering/upper_engineering)
 "XD" = (
 /turf/closed/wall/mainship,
 /area/mainship/medical/medical_science)
@@ -15224,6 +15277,12 @@
 /obj/structure/closet/crate/alpha,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
+"XG" = (
+/obj/machinery/camera/autoname/mainship{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/aft_hallway)
 "XI" = (
 /obj/effect/decal/siding{
 	dir = 9
@@ -15403,6 +15462,14 @@
 /obj/structure/prop/mainship/name_stencil,
 /turf/open/floor/mainship_hull,
 /area/space)
+"Yw" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable,
+/obj/machinery/camera/autoname/mainship{
+	dir = 4
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hull/lower_hull)
 "Yx" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/black/corner,
@@ -15454,6 +15521,9 @@
 /turf/open/floor/mainship,
 /area/mainship/living/cryo_cells)
 "YI" = (
+/obj/machinery/camera/autoname/mainship{
+	dir = 8
+	},
 /turf/open/floor/mainship/cargo,
 /area/mainship/hull/lower_hull)
 "YJ" = (
@@ -37031,7 +37101,7 @@ un
 Tu
 Bh
 Zh
-vP
+lw
 ye
 vP
 OI
@@ -38810,7 +38880,7 @@ ad
 Pp
 CL
 CL
-CL
+Xr
 CL
 td
 El
@@ -38820,7 +38890,7 @@ td
 td
 td
 td
-td
+Ps
 Ec
 fu
 fu
@@ -39572,7 +39642,7 @@ pz
 ir
 Mb
 TX
-IY
+Yw
 td
 td
 El
@@ -44391,7 +44461,7 @@ rc
 ad
 ap
 ml
-ap
+Xs
 ap
 ap
 ap
@@ -44400,7 +44470,7 @@ ap
 ap
 ap
 ml
-ap
+Xs
 fm
 ap
 eB
@@ -45674,7 +45744,7 @@ aa
 Tm
 rc
 ad
-ca
+am
 bh
 bh
 bh
@@ -45981,7 +46051,7 @@ gd
 gd
 gd
 AB
-gd
+XG
 gd
 gd
 FB
@@ -46961,7 +47031,7 @@ rc
 ad
 ap
 NL
-ap
+Br
 ap
 ap
 ap
@@ -46970,7 +47040,7 @@ ap
 ap
 ap
 NL
-ap
+Br
 fm
 ap
 ap
@@ -47573,7 +47643,7 @@ Kv
 FM
 OK
 xb
-xJ
+XC
 OK
 fy
 zs
@@ -48343,7 +48413,7 @@ uW
 Kv
 uW
 OK
-xc
+am
 us
 ya
 yx
@@ -48762,7 +48832,7 @@ aa
 Tm
 rc
 ad
-am
+al
 al
 at
 av
@@ -49572,7 +49642,7 @@ jz
 MN
 MP
 MQ
-gd
+XG
 FB
 gd
 gd
@@ -49593,7 +49663,7 @@ jy
 jy
 AR
 jy
-jy
+BG
 jy
 qC
 jj
