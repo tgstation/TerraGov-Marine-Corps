@@ -4806,6 +4806,15 @@
 	dir = 8
 	},
 /area/mainship/squads/general)
+"qc" = (
+/obj/machinery/door/firedoor/mainship{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/stairs/rampbottom{
+	dir = 1
+	},
+/area/mainship/hull/lower_hull)
 "qd" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -42849,7 +42858,7 @@ RQ
 iG
 Ry
 SV
-La
+qc
 aW
 ci
 af
