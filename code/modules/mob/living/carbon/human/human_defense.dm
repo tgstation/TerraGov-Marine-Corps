@@ -139,20 +139,9 @@ Contains most of the procs that are called when a mob is attacked by something
 /mob/living/carbon/human/effect_smoke(obj/effect/particle_effect/smoke/S)
 	. = ..()
 	if(!.)
-		if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CAMO))
-			smokecloak_off()
 		return
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CAMO))
 		smokecloak_on()
-	if(smoke_delay)
-		return FALSE
-	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO) && (stat == DEAD || isnestedhost(src)))
-		return FALSE
-	smoke_delay = TRUE
-	addtimer(CALLBACK(src, .proc/remove_smoke_delay), 10)
-
-/mob/living/carbon/human/proc/remove_smoke_delay()
-	smoke_delay = FALSE
 
 /mob/living/carbon/human/inhale_smoke(obj/effect/particle_effect/smoke/S)
 	. = ..()
