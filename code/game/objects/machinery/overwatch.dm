@@ -899,7 +899,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		to_chat(user, "<span class='warning'>Your have no order selected.</span>")
 	current_order.send_order(target)
 
-///Set the current order
+///Setter for the current order
 /obj/machinery/computer/camera_advanced/overwatch/proc/set_order(datum/source, datum/action/innate/order/order)
 	SIGNAL_HANDLER
 	current_order = order
