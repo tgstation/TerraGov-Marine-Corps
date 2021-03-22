@@ -70,9 +70,8 @@
 			return
 		user = current_user
 
-	for(var/V in actions)
-		var/datum/action/A = V
-		A.remove_action(user)
+	for(var/datum/action/action_from_shuttle_docker AS in actions)
+		action_from_shuttle_docker.remove_action(user)
 	actions.Cut()
 	
 	if(off_action)
@@ -104,12 +103,13 @@
 		next_fly_state = destination_fly_state
 		return
 	give_actions()
-	if(fly_state == SHUTTLE_IN_ATMOSPHERE)
-		set_transit_turf(TRUE)
-		open_prompt = TRUE
-		if(ui_user?.Adjacent(src))
-			open_prompt(ui_user)
+	if(fly_state != SHUTTLE_IN_ATMOSPHERE)
 		return
+	set_transit_turf(TRUE)
+	open_prompt = TRUE
+	if(ui_user?.Adjacent(src))
+		open_prompt(ui_user)
+
 
 ///Change the icons of the space turf in the transit
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/proc/set_transit_turf(in_atmos = FALSE)
