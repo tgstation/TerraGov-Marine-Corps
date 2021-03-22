@@ -1,0 +1,4 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - balance: "Psy drain will now take 5 seconds instead of 10 seconds"
