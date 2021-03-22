@@ -127,6 +127,9 @@
 	return FALSE
 
 /mob/living/carbon/xenomorph/hivemind/AltClickOn(atom/A)
+	if(istype(A, /obj/structure/mineral_door/resin))
+		var/obj/structure/mineral_door/resin/door = A
+		door.TryToSwitchState(src)
 	return FALSE
 
 /mob/living/carbon/xenomorph/hivemind/a_intent_change()
