@@ -34,7 +34,8 @@
 	add_selected_frame()
 	SEND_SIGNAL(owner, COMSIG_ORDER_SELECTED, src)
 	RegisterSignal(owner, COMSIG_ORDER_SELECTED, .proc/Deactivate_signal_handler)
-	
+
+/// Signal handler for deactivating the order	
 /datum/action/innate/order/proc/Deactivate_signal_handler()
 	SIGNAL_HANDLER
 	Deactivate()
@@ -52,11 +53,10 @@
 		return
 	TIMER_COOLDOWN_START(owner, COOLDOWN_CIC_ORDERS, ORDER_COOLDOWN)
 	new visual_type(target_turf)
-	var/obj/screen/arrow/arrow_hud
 	var/datum/atom_hud/squad/squad_hud = GLOB.huds[DATA_HUD_SQUAD]
 	var/list/final_list = squad_hud.hudusers
 	final_list -= owner //We don't want the eye to have an arrow, it's silly
-
+	var/obj/screen/arrow/arrow_hud
 	for(var/hud_user in final_list)
 		if(!ishuman(hud_user))
 			continue

@@ -891,6 +891,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	dat += "<br><A href='?src=\ref[src];operation=back'>{Back}</a>"
 	return dat
 
+///Print order visual to all marines squad hud and give them an arrow to follow the waypoint
 /obj/machinery/computer/camera_advanced/overwatch/proc/send_order(datum/source, atom/target)
 	SIGNAL_HANDLER
 	if(!current_order)
