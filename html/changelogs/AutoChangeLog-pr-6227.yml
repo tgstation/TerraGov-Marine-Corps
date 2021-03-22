@@ -1,0 +1,4 @@
+author: "Surrealaser"
+delete-after: True
+changes: 
+  - code_imp: "RNG hard stuns from traumatic shock have been replaced with slowdown and stagger stacks."
