@@ -248,8 +248,8 @@
 	icon = 'icons/Xeno/Effects.dmi'
 	hardness = 1.5
 	layer = RESIN_STRUCTURE_LAYER
-	max_integrity = 80
-	var/close_delay = 60 SECONDS
+	max_integrity = 150
+	var/close_delay = 20 SECONDS
 
 	tiles_with = list(/turf/closed, /obj/structure/mineral_door/resin)
 
@@ -316,7 +316,6 @@
 	isSwitchingStates = TRUE
 	playsound(loc, "alien_resin_move", 25)
 	flick("[mineralType]opening",src)
-	sleep(0.7 SECONDS)
 	density = FALSE
 	opacity = FALSE
 	state = 1

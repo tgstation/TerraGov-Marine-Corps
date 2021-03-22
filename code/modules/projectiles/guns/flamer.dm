@@ -261,7 +261,7 @@
 
 		var/blocked = FALSE
 		for(var/obj/O in T)
-			if(O.density && !O.throwpass && !(O.flags_atom & ON_BORDER))
+			if(O.density && !O.throwpass && !(O.flags_atom & ON_BORDER) && !istype(O, /obj/structure/mineral_door/resin))
 				blocked = TRUE
 				break
 
