@@ -56,7 +56,6 @@
 		/datum/action/xeno_action/activable/build_silo,
 		/datum/action/xeno_action/activable/build_turret,
 		/datum/action/xeno_action/place_acidwell,
-		/datum/action/xeno_action/lay_egg,
 		/datum/action/xeno_action/activable/larval_growth_sting,
 		/datum/action/xeno_action/call_of_the_burrowed,
 		/datum/action/xeno_action/activable/screech,
