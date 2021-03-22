@@ -112,13 +112,26 @@
 	return ..()
 
 /obj/item/weapon/powerfist/attackby(obj/item/I, mob/user, params)
-	if(!istype(I, /obj/item/cell/lasgun))
+	if(!istype(I, /obj/item/cell))
 		return ..()
+	if(!istype(I, /obj/item/cell/lasgun))
+		to_chat(user, "<span = warning>The powerfist only accept lasgun cell!</span>")
+		return
 	if(cell)
 		unload(user)
 	user.transferItemToLoc(I,src)
 	cell = I
 	to_chat(user, "<span class='notice'>You insert the [I] into the [src].</span>")
+
+/obj/item/weapon/powerfist/screwdriver_act(mob/living/user, obj/item/I)
+	if(..())
+		return TRUE
+	if(!cell)
+		to_chat(user, "<span class='notice'>There is no cell installed!</span>")
+		return TRUE
+	unload(user)
+	to_chat(user, "<span class='notice'>You pop open the cover and remove the cell.</span>")
+	return TRUE
 
 /// Remove the cell from the powerfist
 /obj/item/weapon/powerfist/proc/unload(mob/user)
