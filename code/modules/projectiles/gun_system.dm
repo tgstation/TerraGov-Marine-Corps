@@ -125,8 +125,6 @@
 	var/dual_wield = FALSE
 	///Used if a weapon need windup before firing
 	var/windup_checked = WEAPON_WINDUP_NOT_CHECKED
-	///Used to fire the gun in inactive hands in akimbo
-	var/obj/item/weapon/gun/akimbo_gun
 
 
 //----------------------------------------------------------
@@ -507,8 +505,10 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	SIGNAL_HANDLER
 	if(gun_on_cooldown(gun_user))
 		return
-	if((gun_user.hand && gun_user.r_hand == src) || (!gun_user.hand && gun_user.l_hand == src))
+	if(gun_user.hand && !isgun(gun_user.l_hand) || !gun_user.hand && !isgun(gun_user.r_hand)) // If the object in our active hand is not a gun, abort
 		return
+	if(gun_user.hand && isgun(gun_user.r_hand) || !gun_user.hand && isgun(gun_user.l_hand)) // If we have a gun in our inactive hand too, both guns get innacuracy maluses
+		dual_wield = TRUE
 	if(gun_user.in_throw_mode)
 		return
 	if(gun_user.Adjacent(object)) //Dealt with by attack code
@@ -561,9 +561,6 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	shots_fired = 0//Let's clean everything
 	set_target(null)
 	windup_checked = WEAPON_WINDUP_NOT_CHECKED
-	if(akimbo_gun)
-		UnregisterSignal(akimbo_gun, COMSIG_PARENT_QDELETING)
-		akimbo_gun = null
 	dual_wield = FALSE
 
 ///Setter for the extra delay when bursting is done
@@ -678,16 +675,6 @@ and you're good to go.
 		click_empty(gun_user)
 		return
 
-	if(shots_fired == 0 && !dual_wield)//We only check when starting to shoot
-		var/obj/item/IH = gun_user.get_inactive_held_item()
-		if(istype(IH, /obj/item/weapon/gun))
-			var/obj/item/weapon/gun/OG = IH
-			if(!(OG.flags_gun_features & GUN_WIELDED_FIRING_ONLY) && OG.gun_skill_category == gun_skill_category)
-				akimbo_gun = OG
-				akimbo_gun.dual_wield = TRUE
-				RegisterSignal(akimbo_gun, COMSIG_PARENT_QDELETING, .proc/reset_akimbo_ref)
-			
-
 	apply_gun_modifiers(projectile_to_fire, target)
 	setup_bullet_accuracy(projectile_to_fire, gun_user, shots_fired, dual_wield) //User can be passed as null.
 		
@@ -708,9 +695,7 @@ and you're good to go.
 	//vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
 	projectile_to_fire.fire_at(target, gun_user, src, projectile_to_fire.ammo.max_range, projectile_to_fire.ammo.shell_speed, firing_angle)
 	//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-	if(akimbo_gun)
-		akimbo_gun.set_target(target)
-		INVOKE_ASYNC(akimbo_gun, .proc/Fire)
+
 	shots_fired++
 
 	if(fire_animation) //Fires gun firing animation if it has any. ex: rotating barrel
@@ -1170,8 +1155,3 @@ and you're good to go.
 		return
 	active_attachable.fire_attachment(target, src, gun_user) //Fire it.
 	last_fired = world.time
-
-///Protection against hard del
-/obj/item/weapon/gun/proc/reset_akimbo_ref()
-	SIGNAL_HANDLER
-	akimbo_gun = null
