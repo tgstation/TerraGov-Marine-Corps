@@ -232,21 +232,10 @@
 /mob/living/effect_smoke(obj/effect/particle_effect/smoke/S)
 	. = ..()
 	if(!.)
-		if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CAMO) && ishuman(src))
-			smokecloak_off()
 		return
-	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CAMO) && ishuman(src))
-		smokecloak_on()
-	if(smoke_delay)
-		return FALSE
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO) && (stat == DEAD || isnestedhost(src)))
 		return FALSE
-	smoke_delay = TRUE
-	addtimer(CALLBACK(src, .proc/remove_smoke_delay), 10)
 	smoke_contact(S)
-
-/mob/living/proc/remove_smoke_delay()
-	smoke_delay = FALSE
 
 /mob/living/proc/smoke_contact(obj/effect/particle_effect/smoke/S)
 	var/protection = max(1 - get_permeability_protection() * S.bio_protection)
