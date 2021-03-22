@@ -1,0 +1,5 @@
+author: "Surrealaser"
+delete-after: True
+changes: 
+  - bugfix: "Fixes bug with scatterspit projectiles going too far."
+  - balance: "Scatterspit max range increased to 8 tiles."
