@@ -115,7 +115,7 @@
 	if(!istype(I, /obj/item/cell))
 		return ..()
 	if(!istype(I, /obj/item/cell/lasgun))
-		to_chat(user, "<span = warning>The powerfist only accept lasgun cell!</span>")
+		to_chat(user, "<span = 'warning'>The powerfist only accepts lasgun cell!</span>")
 		return
 	if(cell)
 		unload(user)
