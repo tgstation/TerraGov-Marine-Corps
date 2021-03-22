@@ -422,7 +422,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/armor_module/storage/general = list(CAT_MOD, "General Purpose Storage Module", 0, "black"),
 		/obj/item/armor_module/storage/engineering = list(CAT_MOD, "Engineering Storage Module", 0, "black"),
 		/obj/item/storage/pouch/shotgun = list(CAT_POU, "Shotgun shell pouch", 0, "black"),
-		/obj/item/storage/pouch/construction/full = list(CAT_POU, "Construction pouch", 0, "orange"),
+		/obj/item/storage/pouch/construction = list(CAT_POU, "Construction pouch", 0, "orange"),
 		/obj/item/storage/pouch/explosive = list(CAT_POU, "Explosive pouch", 0, "black"),
 		/obj/item/storage/pouch/tools/full = list(CAT_POU, "Tools pouch", 0, "black"),
 		/obj/item/storage/pouch/grenade/slightlyfull = list(CAT_POU, "Grenade pouch (grenades included)", 0,"black"),
