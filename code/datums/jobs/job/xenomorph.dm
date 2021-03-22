@@ -12,7 +12,7 @@
 	return /mob/living/carbon/xenomorph/larva
 
 /datum/job/xenomorph/add_job_points(amount, origin = MARINE_SPAWN_ORIGIN)
-	. = ..(amount)
+	. = ..()
 	SSblackbox.record_feedback("tally", "round_statistics", 0.125 * amount, origin)
 
 /datum/job/xenomorph/radio_help_message(mob/M)
