@@ -143,11 +143,11 @@
 			var/list/cone_turfs = generate_cone(user, 2, 1, 91, Get_Angle(user, M.loc))
 			for(var/X in cone_turfs)
 				var/turf/T = X
-				for(var/mob/living/C in T)
-					C.flamer_fire_act(10)
-					C.apply_damage(20, BURN, user.zone_selected, C.get_soft_armor("fire", user.zone_selected))
-					if(C.IgniteMob())
-						C.visible_message("<span class='danger'>[C] bursts into flames!</span>","[isxeno(C)?"<span class='xenodanger'>":"<span class='highdanger'>"]You burst into flames!</span>")
+				for(var/mob/living/victim in T)
+					victim.flamer_fire_act(10)
+					victim.apply_damage(max(0, 20 - 20*victim.hard_armor.getRating("fire")), BURN, user.zone_selected, victim.get_soft_armor("fire", user.zone_selected))
+					if(victim.IgniteMob())
+						victim.visible_message("<span class='danger'>[victim] bursts into flames!</span>","[isxeno(victim)?"<span class='xenodanger'>":"<span class='highdanger'>"]You burst into flames!</span>")
 
 		if(/datum/reagent/medicine/bicaridine)
 			if(isxeno(M))
