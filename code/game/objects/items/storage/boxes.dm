@@ -407,7 +407,7 @@
 /obj/item/storage/box/nade_box/razor_burn
 	name = "\improper RB grenade box"
 	desc = "A secure box holding 20 razor burn grenades. Used for quick flank coverage."
-	icon_state = "nade_train"
+	icon_state = "nade_razorburn"
 	storage_slots = 15
 	max_storage_space = 30
 	spawn_number = 15
