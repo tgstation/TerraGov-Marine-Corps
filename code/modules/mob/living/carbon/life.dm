@@ -44,11 +44,11 @@
 			else
 				hud_used.healths.icon_state = "health6"
 
-///damages humans by 5 oxy when dragged by a xeno, called on COMSIG_MOVABLE_PULL_MOVED
+///gives humans oxy when dragged by a xeno, called on COMSIG_MOVABLE_PULL_MOVED
 /mob/living/carbon/human/proc/oncritdrag() 
 	SIGNAL_HANDLER
 	if(isxeno(pulledby))
-		adjustOxyLoss(5) //take 5 oxy damage per tile dragged
+		adjustOxyLoss(3) //take oxy damage per tile dragged
 
 /mob/living/carbon/update_stat()
 	. = ..()
