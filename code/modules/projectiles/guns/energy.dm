@@ -478,16 +478,16 @@
 	scatter_unwielded = 100 //Heavy and unwieldy; you don't one hand this.
 	damage_falloff_mult = 0.25
 	fire_delay = 3
-	var/mode_index = 1
 	var/static/list/datum/lasrifle/base/mode_list = list(
-		/datum/lasrifle/base/standard,
-		/datum/lasrifle/base/disabler,
-		/datum/lasrifle/base/overcharge,
-		/datum/lasrifle/base/heat,
-		/datum/lasrifle/base/spread,
+		"Standard" = /datum/lasrifle/base/standard,
+		"Disabler" = /datum/lasrifle/base/disabler,
+		"Overcharge" = /datum/lasrifle/base/overcharge,
+		"Heat" = /datum/lasrifle/base/heat,
+		"Spread" = /datum/lasrifle/base/spread,
 	)
 
 /datum/lasrifle/base
+	var/icon = 'icons/Marine/gun64.dmi'
 	var/charge_cost = 0
 	var/ammo = null
 	var/fire_delay = 0
@@ -545,27 +545,30 @@
 	if(!user)
 		CRASH("switch_modes called with no user.")
 
-	if (!do_after(user, 0.4 SECONDS, FALSE, user))
-		to_chat(user, "<span class ='warning'>You fumble the Lasrifle's charge mode.</span>")
+	var/list/available_modes = list()
+	for(var/mode in mode_list)
+		available_modes += list("[mode]" = image(icon = initial(mode_list[mode].icon), icon_state = initial(mode_list[mode].icon_state)))
+
+	var/datum/lasrifle/base/choice = mode_list[show_radial_menu(user, user, available_modes, null, 48)]
+	if(!choice)
 		return
 
-	mode_index = WRAP(mode_index + 1, 1, length(mode_list)+1)
 
 	playsound(user, 'sound/weapons/emitter.ogg', 5, FALSE, 2)
-	charge_cost = initial(mode_list[mode_index].charge_cost)
-	ammo = GLOB.ammo_list[initial(mode_list[mode_index].ammo)]
-	fire_delay = initial(mode_list[mode_index].fire_delay)
-	fire_sound = initial(mode_list[mode_index].fire_sound)
+	charge_cost = initial(choice.charge_cost)
+	ammo = GLOB.ammo_list[initial(choice.ammo)]
+	fire_delay = initial(choice.fire_delay)
+	fire_sound = initial(choice.fire_sound)
 
-	if(initial(mode_list[mode_index].fire_mode) != GUN_FIREMODE_SEMIAUTO)
-		SEND_SIGNAL(src, COMSIG_GUN_FIREMODE_TOGGLE, initial(mode_list[mode_index].fire_mode), user.client)
+	if(initial(choice.fire_mode) != GUN_FIREMODE_SEMIAUTO)
+		SEND_SIGNAL(src, COMSIG_GUN_FIREMODE_TOGGLE, initial(choice.fire_mode), user.client)
 	else
 		SEND_SIGNAL(src, COMSIG_GUN_FIREMODE_TOGGLE, GUN_FIREMODE_SEMIAUTO, user.client)
 
-	base_gun_icon = initial(mode_list[mode_index].icon_state)
+	base_gun_icon = initial(choice.icon_state)
 	update_icon()
 
-	to_chat(user, initial(mode_list[mode_index].message_to_user))
+	to_chat(user, initial(choice.message_to_user))
 
 	var/obj/screen/ammo/A = user.hud_used.ammo //The ammo HUD
 	A.update_hud(user)
