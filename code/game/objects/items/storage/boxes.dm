@@ -404,6 +404,15 @@
 	spawn_number = 15
 	spawn_type = /obj/item/explosive/grenade/phosphorus
 
+/obj/item/storage/box/nade_box/razor_burn
+	name = "\improper RB grenade box"
+	desc = "A secure box holding 20 razor burn grenades. Used for quick flank coverage."
+	icon_state = "nade_train"
+	storage_slots = 15
+	max_storage_space = 30
+	spawn_number = 15
+	spawn_type = /obj/item/explosive/grenade/chem_grenade/razorburn_smol
+
 /obj/item/storage/box/nade_box/plasma_drain_gas
 	name = "\improper M40-T gas grenade box"
 	desc = "A secure box holding 25 M40-T gas grenades. 100% safe to use around masked marines."
