@@ -235,7 +235,7 @@
 
 /obj/structure/ship_ammo/rocket/cavebuster
 	name = "\improper GBU-1172 'Penetrator'"
-	desc = "The GBU-1172 'Penetrator' is a joint TGMC-NT Prototype. It is used to destroy and kill bunkers. It is designed to puncture the top steel plating of bunkers and detonate a mild, slightly radioactive charge into the plating, shattering it. Goes straight through mountains. Use at your own risk. NT-TGMC JOINT PROJECTS GROUP A is not liable for any Marine or PMC injuries when using this weapon. Use with Caution."
+	desc = "The GBU-1172 'Penetrator' is a joint TGMC-NT prototype missile. It is used to destroy bunkers as well as very fortified positions such as caves. It is designed to puncture the top steel plating of bunkers and detonate a mild, slightly radioactive charge into the plating, shattering it. Use at your own risk. NT-TGMC Joint Project Group A is not liable for any TGMC personnel injured when using this weapon. "
 	icon_state = "cavebuster"
 	ammo_id = ""
 	travelling_time = 3 SECONDS //slower but deadly accurate, even if laser guidance is stopped mid-travel.
