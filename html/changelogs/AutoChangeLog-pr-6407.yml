@@ -1,4 +1,0 @@
-author: "lbnesquik"
-delete-after: True
-changes: 
-  - qol: "Adds a shortcut for the AI to turn on & off fire alarms using shift & Ctrl click."
