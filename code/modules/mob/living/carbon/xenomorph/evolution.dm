@@ -160,7 +160,7 @@
 
 		var/datum/job/xenojob = SSjob.GetJobType(/datum/job/xenomorph/queen)
 		if(xenojob.required_playtime_remaining(client))
-			to_chat(src, "<span class='warning'>[get_exp_format(xenojob.required_playtime_remaining(client))] as [xenojob.get_exp_req_type()] required to play queen</span>")
+			to_chat(src, "<span class='warning'>[get_exp_format(xenojob.required_playtime_remaining(client))] as [xenojob.get_exp_req_type()] required to play the queen role.</span>")
 			return
 		
 		if(hive.living_xeno_queen)
