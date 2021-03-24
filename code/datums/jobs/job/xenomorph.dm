@@ -11,6 +11,10 @@
 /datum/job/xenomorph/return_spawn_type(datum/preferences/prefs)
 	return /mob/living/carbon/xenomorph/larva
 
+/datum/job/xenomorph/add_job_points(amount, origin = MARINE_SPAWN_ORIGIN)
+	. = ..()
+	SSblackbox.record_feedback("tally", "round_statistics", 0.125 * amount, origin)
+
 /datum/job/xenomorph/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, "<b>Your job is to spread the hive and protect the Hive Leader. If there's no Hive Leader, you can become the Shrike or Queen yourself by evolving into a drone.</b><br>\

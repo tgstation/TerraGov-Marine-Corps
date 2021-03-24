@@ -1253,7 +1253,7 @@
 
 	SSpoints.add_psy_points(X.hivenumber, psy_points_reward)
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	xeno_job.add_job_points(larva_point_reward)
+	xeno_job.add_job_points(larva_point_reward, PSY_DRAIN_ORIGIN)
 
 	log_combat(victim, owner, "was drained.")
 	log_game("[key_name(victim)] was drained at [AREACOORD(victim.loc)].")
