@@ -1,0 +1,4 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - admin: "Queen time role is time locked (10 hours)"
