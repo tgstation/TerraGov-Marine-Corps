@@ -1,7 +1,7 @@
 
 //CELLS here
 /obj/item/tool/geltool/gell  //Gell a CELL but GELL
-	name = "Gell classic"
+	name = "Gell classic vial"
 	desc = "A vial used to transport and store medical gel, NOT EDIBLE."
 	icon_state = "gell"
 	item_state = "gell"
