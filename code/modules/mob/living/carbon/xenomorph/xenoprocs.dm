@@ -562,30 +562,24 @@
 
 // this mess will be fixed by obj damage refactor
 /atom/proc/acid_spray_act(mob/living/carbon/xenomorph/X)
-	return TRUE
+	return FALSE
 
 /obj/structure/acid_spray_act(mob/living/carbon/xenomorph/X)
-	if(!is_type_in_typecache(src, GLOB.acid_spray_hit))
-		return TRUE // normal density flag
-	take_damage(X.xeno_caste.acid_spray_structure_damage, "acid", "acid")
-	return TRUE // normal density flag
+	if(is_type_in_typecache(src, GLOB.acid_spray_hit))
+		take_damage(X.xeno_caste.acid_spray_structure_damage, "acid", "acid")
+	return density // normal density flag
 
 /obj/structure/razorwire/acid_spray_act(mob/living/carbon/xenomorph/X)
 	. = ..()
 	return FALSE // not normal density flag
 
-/obj/vehicle/multitile/root/cm_armored/acid_spray_act(mob/living/carbon/xenomorph/X)
-	take_damage_type(X.xeno_caste.acid_spray_structure_damage, "acid", src)
-	healthcheck()
-	return TRUE
-
 /mob/living/carbon/acid_spray_act(mob/living/carbon/xenomorph/X)
 	ExtinguishMob()
 	if(isnestedhost(src))
-		return
+		return FALSE
 
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ACID))
-		return
+		return FALSE
 	TIMER_COOLDOWN_START(src, COOLDOWN_ACID, 2 SECONDS)
 
 	if(isxenopraetorian(X))
@@ -596,6 +590,7 @@
 	var/damage = X.xeno_caste.acid_spray_damage_on_hit
 	apply_acid_spray_damage(damage, armor_block)
 	to_chat(src, "<span class='xenodanger'>\The [X] showers you in corrosive acid!</span>")
+	return FALSE
 
 /mob/living/carbon/proc/apply_acid_spray_damage(damage, armor_block)
 	apply_damage(damage, BURN, null, armor_block, updating_health = TRUE)
