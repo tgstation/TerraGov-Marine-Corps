@@ -128,7 +128,7 @@
 // TOOLS down here
 /obj/item/tool/geltool/gadget/kitprinter
 	name = "Synthetic trauma kit"
-	desc = "A tool that utilizes gel. to act as brute or a burn advanced kit. it has a lever to toggle its mode"
+	desc = "A tool that utilizes gel. to act as brute or a burn advanced kit. It has a lever to toggle its mode"
 	icon_state = "synthkitbrute"
 	item_state = "synthkitbrute"
 	var/brute = TRUE
@@ -159,7 +159,7 @@
 /obj/item/tool/geltool/gadget/kitprinter/examine(mob/user)
 	..()
 	if(cell)
-		to_chat(user, "the gel gauge measures. <b>Gel quantity: [cell.gelquantity]/[cell.gelcapacity]</b>")
+		to_chat(user, "The gel gauge measures: [cell.gelquantity]/[cell.gelcapacity]</b>")
 	else
 		to_chat(user, "<span class='warning'>It does not have a gel vial in it!</span>")
 
