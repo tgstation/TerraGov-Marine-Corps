@@ -1353,8 +1353,9 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 		/obj/item/roller/medevac,
 		/obj/item/medevac_beacon,
 		/obj/item/whistle,
-		/obj/item/radio,
 		/obj/item/motiondetector,
+		/obj/item/clothing/suit/modular,
+		/obj/item/facepaint/green,
 	)
 
 /obj/effect/essentials_set/synth
