@@ -89,7 +89,7 @@
 
 /obj/item/tool/geltool/gadget/proc/gel_use(M = 1)  //change the M if you want to further modify the efficient of a specific procedure
 	cell.gelquantity -= gelefficiency * M
-	usr.visible_message(,"<span class='notice'>the [src] used up [gelefficiency * M] gel in this procedure [cell.gelquantity] left.</span>")
+	usr.visible_message(,"<span class='notice'>The [src] used up [gelefficiency * M] gel in this procedure. [cell.gelquantity] left.</span>")
 
 /obj/item/tool/geltool/gadget/attack_hand(mob/living/user)
 	if(user.get_inactive_held_item() != src)
