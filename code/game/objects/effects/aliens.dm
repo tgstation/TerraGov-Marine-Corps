@@ -48,13 +48,16 @@
 	var/acid_damage = XENO_DEFAULT_ACID_PUDDLE_DAMAGE
 	/// World.time when it was initialized
 	var/creation_time
+	/// Who created that spray
+	var/mob/xeno_owner
 
-/obj/effect/xenomorph/spray/Initialize(mapload, duration = 10 SECONDS, damage = XENO_DEFAULT_ACID_PUDDLE_DAMAGE) //Self-deletes
+/obj/effect/xenomorph/spray/Initialize(mapload, duration = 10 SECONDS, damage = XENO_DEFAULT_ACID_PUDDLE_DAMAGE, mob/living/_xeno_owner) //Self-deletes
 	. = ..()
 	START_PROCESSING(SSprocessing, src)
 	QDEL_IN(src, duration + rand(0, 2 SECONDS))
 	acid_damage = damage
 	creation_time = world.time
+	xeno_owner = _xeno_owner
 
 /obj/effect/xenomorph/spray/Destroy()
 	STOP_PROCESSING(SSprocessing, src)
@@ -74,9 +77,7 @@
 		return
 	
 	if(world.time <= acid_spray.creation_time + 5) //To prevent being able to walk "over" acid sprays
-		take_overall_damage_armored(acid_damage, BURN, "acid", updating_health = TRUE)
-		emote("scream")
-		Paralyze(20)
+		acid_spray_act(acid_spray.xeno_owner)
 		return
 
 	TIMER_COOLDOWN_START(src, COOLDOWN_ACID, 1 SECONDS)
