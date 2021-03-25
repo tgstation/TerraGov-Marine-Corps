@@ -63,7 +63,7 @@
 
 //define for its TOOLs
 /obj/item/tool/geltool/gadget
-	name = "Medical gel based tool"
+	name = "medical gel-based tool"
 	desc = "You shouldn't be holding this! give to high command and let them know how you got it."
 	icon_state = "synthkitoff"
 	item_state = "synthkitoff"
