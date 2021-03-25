@@ -73,7 +73,7 @@
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ACID))
 		return
 	
-	if(world.time <= acid_spray.creation_time + 3) //To prevent being able to walk "over" acid sprays
+	if(world.time <= acid_spray.creation_time + 5) //To prevent being able to walk "over" acid sprays
 		Paralyze(20)
 
 	TIMER_COOLDOWN_START(src, COOLDOWN_ACID, 1 SECONDS)
