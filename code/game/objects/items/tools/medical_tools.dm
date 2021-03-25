@@ -59,7 +59,7 @@
 	gelquantity = gelcapacity
 	playsound(loc, 'sound/machines/hydraulics_1.ogg', 5, 1)
 	playsound(loc, 'sound/machines/switch.ogg', 50, 1)
-	to_chat(user, "<span class='warning'>You refill the [src]!</span>")
+	to_chat(user, "<span class='notice'>You refill the [src]!</span>")
 	update_icon()
 
 //define for its TOOLs
@@ -102,7 +102,7 @@
 	cell = null
 	playsound(user, 'sound/machines/click.ogg', 25, 1, 5)
 	playsound(user, 'sound/weapons/guns/interact/flamethrower_unload.ogg', 12, 2, 5)
-	to_chat(user, "<span class='notice'>You remove the Gell from [src].</span>")
+	to_chat(user, "<span class='notice'>You remove the Gell vial from [src].</span>")
 	update_icon(user)
 	return TRUE
 
@@ -113,9 +113,9 @@
 		if(!user.drop_held_item())
 			return
 		I.forceMove(src)
-		var/replace_install = "You replace the gell in [src]"
+		var/replace_install = "You replace the Gell vial in [src]."
 		if(!cell)
-			replace_install = "You install a gell in [src]"
+			replace_install = "You install a Gell vial in [src]."
 		else
 			cell.update_icon()
 			user.put_in_hands(cell)
@@ -127,8 +127,8 @@
 
 // TOOLS down here
 /obj/item/tool/geltool/gadget/kitprinter
-	name = "Synthetic trauma kit"
-	desc = "A tool that utilizes gel. to act as brute or a burn advanced kit. It has a lever to toggle its mode"
+	name = "synthetic trauma kit"
+	desc = "A tool that utilizes gel. to act as brute or a burn advanced kit. it have a level to toggle its mode"
 	icon_state = "synthkitbrute"
 	item_state = "synthkitbrute"
 	var/brute = TRUE
@@ -172,8 +172,8 @@
 		playsound(loc, 'sound/machines/computer_typing1.ogg', 5)
 		playsound(loc, 'sound/machines/terminal_on.ogg', 15)  //maybe placehold. maybe it will be left as this. but sure its better than a bland click
 		if(!silent && user)
-			user.visible_message("<span class='notice'>[user] turns [src] burn mode.</span>",
-		"<span class='notice'>You switch [src] lever to Burn.<b>Gel gauge reads: [cell.gelquantity]/[cell.gelcapacity]</b></span>")
+			user.visible_message("<span class='notice'>[user] turns [src] to burn mode.</span>",
+		"<span class='notice'>You switch [src] lever to burn mode. <b>Gel gauge reads: [cell.gelquantity]/[cell.gelcapacity]</b></span>")
 		update_kitprinter()
 		return
 
@@ -182,8 +182,8 @@
 		playsound(loc, 'sound/machines/computer_typing1.ogg', 15)
 		playsound(loc, 'sound/machines/terminal_on.ogg', 5 , 1) //maybe placehold. maybe it will be left as this. but sure its better than a bland click
 		if(!silent && user)
-			user.visible_message("<span class='notice'>[user] turns [src] burn mode.</span>",
-		"<span class='notice'>You switch [src] lever to Brute.<b>Gel gauge reads: [cell.gelquantity]/[cell.gelcapacity]</b></span>")
+			user.visible_message("<span class='notice'>[user] turns [src] to brute mode.</span>",
+		"<span class='notice'>You switch [src] lever to brute mode. <b>Gel gauge reads: [cell.gelquantity]/[cell.gelcapacity]</b></span>")
 		update_kitprinter()
 		return
 
