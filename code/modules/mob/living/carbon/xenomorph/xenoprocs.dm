@@ -588,7 +588,7 @@
 
 	var/armor_block = run_armor_check(BODY_ZONE_CHEST, "acid")
 	var/damage = X.xeno_caste.acid_spray_damage_on_hit
-	apply_acid_spray_damage(damage, armor_block)
+	INVOKE_ASYNC(src, .proc/apply_acid_spray_damage, damage, armor_block)
 	to_chat(src, "<span class='xenodanger'>\The [X] showers you in corrosive acid!</span>")
 	return FALSE
 
