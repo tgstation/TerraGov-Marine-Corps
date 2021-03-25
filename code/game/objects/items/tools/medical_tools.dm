@@ -23,22 +23,24 @@
 /obj/item/tool/geltool/gell/attack(mob/living/M, mob/living/user)
 	if(M != user)
 		return ..()
-
+	if(gelquantity => 35)
 	user.visible_message("[user] sucks on \the [src].",
 	"You suck on \the [src].")
-	gelquantity -= 28 //let them do it till the puke
+	gelquantity -= 35 // 8 sucks should suffice them without killing them
 
-	playsound(loc, 'sound/voice/alien_drool2.ogg', 25, 1)
-	playsound(loc, 'sound/voice/skeleton_warcry.ogg', 15,1,1)
+	playsound(loc, 'sound/voice/alien_drool2.ogg', 30, 1)
+	playsound(loc, 'sound/voice/skeleton_warcry.ogg', 10,1,1)
 	M.adjustFireLoss(10) // add a little bit of Burn damage
 	M.adjustToxLoss(5) // and tox for good measure
 	M.disabilities |= MUTE
 	addtimer(VARSET_CALLBACK(M, disabilities, M.disabilities & ~MUTE), 30 SECONDS)
 	to_chat(user, "you feel a acid taste in your mouth, as your lips tighten up</span>")
+	update_icon()
 
 /obj/item/tool/geltool/gell/examine(mob/user)
 	..()
 	to_chat(user, "the gel gauge measures. <b>Gel quantity: [gelquantity]/[gelcapacity]</b>")
+	update_icon()
 
 /obj/item/tool/geltool/gell/update_icon()
 	..()
