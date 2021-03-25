@@ -11,7 +11,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/tool/geltool/gell/small
-	name = "Gell tiny"
+	name = "Gell tiny vial"
 	desc = "A vial used to transport and store medical gel, NOT EDIBLE."
 	icon_state = "gelltiny"
 	item_state = "gelltiny"
