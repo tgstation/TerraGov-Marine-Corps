@@ -182,7 +182,7 @@
 		playsound(loc, 'sound/machines/computer_typing1.ogg', 15)
 		playsound(loc, 'sound/machines/terminal_on.ogg', 5 , 1) //maybe placehold. maybe it will be left as this. but sure its better than a bland click
 		if(!silent && user)
-			user.visible_message("<span class='notice'>[user] turns [src] burn mode.</span>",
+			user.visible_message("<span class='notice'>[user] turns [src] to brute mode.</span>",
 		"<span class='notice'>You switch [src] lever to Brute.<b>Gel gauge reads: [cell.gelquantity]/[cell.gelcapacity]</b></span>")
 		update_kitprinter()
 		return
