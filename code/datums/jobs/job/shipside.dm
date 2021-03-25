@@ -133,7 +133,7 @@ Make the TGMC proud!"})
 	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer/exec
 	wear_suit = /obj/item/clothing/suit/storage/marine/pasvest
-	shoes = /obj/item/clothing/shoes/marine
+	shoes = /obj/item/clothing/shoes/marine/full
 	gloves = /obj/item/clothing/gloves/marine/officer
 	head = /obj/item/clothing/head/tgmcberet/fc
 	r_store = /obj/item/storage/pouch/general/large/command
@@ -190,7 +190,7 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	belt = /obj/item/storage/belt/gun/m4a3/officer
 	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer/bridge
-	shoes = /obj/item/clothing/shoes/marine
+	shoes = /obj/item/clothing/shoes/marine/full
 	head = /obj/item/clothing/head/tgmccap/ro
 	r_store = /obj/item/storage/pouch/general/large
 	l_store = /obj/item/binoculars/tactical
@@ -250,7 +250,7 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer/pilot
 	wear_suit = /obj/item/clothing/suit/armor/vest/pilot
-	shoes = /obj/item/clothing/shoes/marine
+	shoes = /obj/item/clothing/shoes/marine/full
 	gloves = /obj/item/clothing/gloves/yellow
 	glasses = /obj/item/clothing/glasses/sunglasses/aviator
 	head = /obj/item/clothing/head/helmet/marine/pilot
@@ -364,7 +364,7 @@ You are also next in the chain of command, should the bridge crew fall in the li
 	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer/ce
 	wear_suit = /obj/item/clothing/suit/storage/marine/MP
-	shoes = /obj/item/clothing/shoes/marine
+	shoes = /obj/item/clothing/shoes/marine/full
 	glasses = /obj/item/clothing/glasses/welding/superior
 	gloves = /obj/item/clothing/gloves/yellow
 	head = /obj/item/clothing/head/beret/marine/techofficer
@@ -425,7 +425,7 @@ requisitions line and later on to be ready to send supplies for marines who are 
 	ears = /obj/item/radio/headset/mainship/st
 	w_uniform = /obj/item/clothing/under/marine/officer/engi
 	wear_suit = /obj/item/clothing/suit/storage/marine/M3P/tech
-	shoes = /obj/item/clothing/shoes/marine
+	shoes = /obj/item/clothing/shoes/marine/full
 	gloves = /obj/item/clothing/gloves/yellow
 	glasses = /obj/item/clothing/glasses/welding/flipped
 	head = /obj/item/clothing/head/tgmccap/req
@@ -497,7 +497,7 @@ A happy ship is a well-functioning ship."})
 	w_uniform = /obj/item/clothing/under/rank/ro_suit
 	wear_suit = /obj/item/clothing/suit/storage/marine/MP
 	suit_store = /obj/item/weapon/gun/energy/taser
-	shoes = /obj/item/clothing/shoes/marine
+	shoes = /obj/item/clothing/shoes/marine/full
 	gloves = /obj/item/clothing/gloves/yellow
 	head = /obj/item/clothing/head/tgmccap/req
 	r_store = /obj/item/storage/pouch/general/large
