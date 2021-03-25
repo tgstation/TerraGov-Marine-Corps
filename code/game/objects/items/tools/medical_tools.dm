@@ -59,7 +59,7 @@
 	gelquantity = gelcapacity
 	playsound(loc, 'sound/machines/hydraulics_1.ogg', 5, 1)
 	playsound(loc, 'sound/machines/switch.ogg', 50, 1)
-	to_chat(user, "<span class='warning'>You refill the [src]!</span>")
+	to_chat(user, "<span class='notice'>You refill the [src]!</span>")
 	update_icon()
 
 //define for its TOOLs
