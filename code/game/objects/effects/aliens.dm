@@ -46,12 +46,15 @@
 	var/slow_amt = 0.8
 	var/duration = 10 SECONDS
 	var/acid_damage = XENO_DEFAULT_ACID_PUDDLE_DAMAGE
+	/// World.time when it was initialized
+	var/creation_time
 
 /obj/effect/xenomorph/spray/Initialize(mapload, duration = 10 SECONDS, damage = XENO_DEFAULT_ACID_PUDDLE_DAMAGE) //Self-deletes
 	. = ..()
 	START_PROCESSING(SSprocessing, src)
 	QDEL_IN(src, duration + rand(0, 2 SECONDS))
 	acid_damage = damage
+	creation_time = world.time
 
 /obj/effect/xenomorph/spray/Destroy()
 	STOP_PROCESSING(SSprocessing, src)
@@ -69,6 +72,9 @@
 	
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ACID))
 		return
+	
+	if(world.time <= acid_spray.creation_time + 3) //To prevent being able to walk "over" acid sprays
+		Paralyze(20)
 
 	TIMER_COOLDOWN_START(src, COOLDOWN_ACID, 1 SECONDS)
 	if(HAS_TRAIT(src, TRAIT_FLOORED))
