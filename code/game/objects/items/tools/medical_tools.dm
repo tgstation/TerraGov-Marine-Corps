@@ -23,7 +23,8 @@
 /obj/item/tool/geltool/gell/attack(mob/living/M, mob/living/user)
 	if(M != user)
 		return ..()
-	if(gelquantity >= 35)
+	if(gelquantity < 35)
+		return
 	user.visible_message("[user] sucks on \the [src].",
 	"You suck on \the [src].")
 	gelquantity -= 35 // 8 sucks should suffice them without killing them
