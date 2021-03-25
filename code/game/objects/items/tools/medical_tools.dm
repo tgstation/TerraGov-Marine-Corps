@@ -28,6 +28,8 @@
 	"You suck on \the [src].")
 	gelquantity -= 28 //let them do it till the puke
 
+	playsound(loc, 'sound/voice/alien_drool2.ogg', 25, 1)
+	playsound(loc, 'sound/voice/skeleton_warcry.ogg', 15,1,1)
 	M.adjustFireLoss(10) // add a little bit of Burn damage
 	M.adjustToxLoss(5) // and tox for good measure
 	M.disabilities |= MUTE
