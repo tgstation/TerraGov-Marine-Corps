@@ -256,6 +256,7 @@
 		/obj/item/stack/medical/ointment = 2,
 		/obj/item/healthanalyzer = 1,
 		/obj/item/stack/medical/splint = 1,
+		/obj/item/tool/geltool/gell/small = 1,
 	)
 	contraband = list(
 		/obj/item/reagent_containers/hypospray/autoinjector/combat = 0,

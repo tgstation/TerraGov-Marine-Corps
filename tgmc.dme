@@ -648,6 +648,7 @@
 #include "code\game\objects\items\tools\hydro_tools.dm"
 #include "code\game\objects\items\tools\kitchen_tools.dm"
 #include "code\game\objects\items\tools\maintenance_tools.dm"
+#include "code\game\objects\items\tools\medical_tools.dm"
 #include "code\game\objects\items\tools\mining_tools.dm"
 #include "code\game\objects\items\tools\misc_tools.dm"
 #include "code\game\objects\items\tools\policetape.dm"

@@ -17,10 +17,11 @@
 #define MARINE_CAN_BUY_WEBBING		(1 << 15)
 #define MARINE_CAN_BUY_MODULE		(1 << 16)
 #define MARINE_CAN_BUY_ARMORMOD		(1 << 17)
+#define MARINE_CAN_BUY_GADGET		(1 << 18)
 
 
 
-#define MARINE_CAN_BUY_ALL			((1 << 18) - 1)
+#define MARINE_CAN_BUY_ALL			((1 << 19) - 1)
 
 #define MARINE_TOTAL_BUY_POINTS		45
 
@@ -39,6 +40,7 @@
 #define CAT_ATT "GUN ATTACHMENTS"
 #define CAT_MOD "JAEGER STORAGE MODULES"
 #define CAT_ARMMOD "JAEGER ARMOR MODULES"
+#define CAT_GADGET "SPECIAL GADGET"
 
 #define CAT_MEDSUP "MEDICAL SUPPLIES"
 #define CAT_ENGSUP "ENGINEERING SUPPLIES"
@@ -65,6 +67,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		CAT_MAS = list(MARINE_CAN_BUY_MASK),
 		CAT_ATT = list(MARINE_CAN_BUY_ATTACHMENT,MARINE_CAN_BUY_ATTACHMENT2),
 		CAT_ESS = list(MARINE_CAN_BUY_ESSENTIALS),
+		CAT_GADGET = list(MARINE_CAN_BUY_GADGET),
 		CAT_MEDSUP = null,
 		CAT_ENGSUP = null,
 		CAT_LEDSUP = null,
@@ -1014,6 +1017,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/attachable/stock/t19stock  = list(CAT_ATT, "T-19 machine pistol stock", 0, "black"),
 		/obj/item/attachable/gyro = list(CAT_ATT, "gyroscopic stabilizer", 0, "black"),
 		/obj/item/attachable/heavy_barrel = list(CAT_ATT, "barrel charger", 0, "black"),
+		/obj/item/tool/geltool/gadget/kitprinter = list(CAT_GADGET, "Kit Printer", 0, "black"),
 	)
 
 

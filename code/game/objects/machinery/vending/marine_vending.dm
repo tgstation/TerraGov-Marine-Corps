@@ -521,6 +521,8 @@
 		/obj/item/stack/medical/splint = 4,
 		/obj/item/healthanalyzer = 3,
 		/obj/item/bodybag/cryobag = 2,
+		/obj/item/tool/geltool/gell/small = 16, //for all medics
+
 	)
 
 	contraband = list(

@@ -595,6 +595,7 @@
 		/obj/item/bodybag,
 		/obj/item/roller,
 		/obj/item/clothing/glasses/hud/health,
+		/obj/item/tool/geltool,
 	)
 
 /obj/item/clothing/tie/storage/knifeharness
