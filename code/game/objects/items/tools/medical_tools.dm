@@ -115,7 +115,7 @@
 		I.forceMove(src)
 		var/replace_install = "You replace the Gell vial in [src]."
 		if(!cell)
-			replace_install = "You install a gell in [src]"
+			replace_install = "You install a Gell vial in [src]."
 		else
 			cell.update_icon()
 			user.put_in_hands(cell)
