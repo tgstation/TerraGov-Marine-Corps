@@ -113,7 +113,7 @@
 		if(!user.drop_held_item())
 			return
 		I.forceMove(src)
-		var/replace_install = "You replace the gell in [src]"
+		var/replace_install = "You replace the Gell vial in [src]."
 		if(!cell)
 			replace_install = "You install a gell in [src]"
 		else
