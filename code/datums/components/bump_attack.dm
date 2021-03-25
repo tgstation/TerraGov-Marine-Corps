@@ -1,6 +1,9 @@
 /datum/component/bump_attack
-	var/active = TRUE
+	///Whether the component is active
+	var/active
+	///The proc to register with COMSIG_MOVABLE_BUMP, based on what kind of mob the component is on
 	var/bump_action_path
+	///Action used to turn bump attack on/off manually
 	var/datum/action/bump_attack_toggle/toggle_action
 
 /datum/component/bump_attack/Initialize(enabled = TRUE, has_button = TRUE)
@@ -19,14 +22,14 @@
 		toggle_action.give_action(parent)
 		toggle_action.update_button_icon(active)
 		RegisterSignal(toggle_action, COMSIG_ACTION_TRIGGER, .proc/living_activation_toggle)
-	living_activation_toggle(enabled)
+	living_activation_toggle(should_enable = enabled)
 
 /datum/component/bump_attack/Destroy(force, silent)
 	QDEL_NULL(toggle_action)
 	return ..()
 
 
-/datum/component/bump_attack/proc/living_activation_toggle(datum/source, should_enable)
+/datum/component/bump_attack/proc/living_activation_toggle(datum/source, should_enable = !active)
 	if(should_enable == active)
 		return
 	var/mob/living/bumper = parent
@@ -119,4 +122,6 @@
 	else //disables pushing overall if you have bump attacks on, so you don't accidentally misplace your enemy when switching to an item that can't bump attack
 		return COMPONENT_BUMP_RESOLVED
 	TIMER_COOLDOWN_START(src, COOLDOWN_BUMP_ATTACK, CLICK_CD_MELEE)
+	GLOB.round_statistics.human_bump_attacks++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "human_bump_attacks")
 	return COMPONENT_BUMP_RESOLVED
