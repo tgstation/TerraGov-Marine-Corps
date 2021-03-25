@@ -1,8 +1,8 @@
 
 //CELLS here
 /obj/item/tool/geltool/gell  //Gell a CELL but GELL
-	name = "Classic Gell"
-	desc = "A vial used to transport and store medical gel."
+	name = "Gell classic"
+	desc = "A vial used to transport and store medical gel, NOT EDIBLE."
 	icon_state = "gell"
 	item_state = "gell"
 	icon = 'icons/obj/items/geltools.dmi'
@@ -11,13 +11,28 @@
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/tool/geltool/gell/small
-	name = "Small Gell"
-	desc = "A vial used to transport and store medical gel."
+	name = "Gell tiny"
+	desc = "A vial used to transport and store medical gel, NOT EDIBLE."
 	icon_state = "gelltiny"
 	item_state = "gelltiny"
 	gelcapacity = 280
 	gelquantity = 280
 	w_class = WEIGHT_CLASS_TINY
+
+
+/obj/item/tool/geltool/gell/attack(mob/living/M, mob/living/user)
+	if(M != user)
+		return ..()
+
+	user.visible_message("[user] sucks on \the [src].",
+	"You suck on \the [src].")
+	gelquantity -= 28 //let them do it till the puke
+
+	M.adjustFireLoss(10) // add a little bit of Burn damage
+	M.adjustToxLoss(5) // and tox for good measure
+	M.disabilities |= MUTE
+	addtimer(VARSET_CALLBACK(M, disabilities, M.disabilities & ~MUTE), 30 SECONDS)
+	to_chat(user, "you feel a acid taste in your mouth, as your lips tighten up</span>")
 
 /obj/item/tool/geltool/gell/examine(mob/user)
 	..()
