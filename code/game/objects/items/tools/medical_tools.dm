@@ -102,7 +102,7 @@
 	cell = null
 	playsound(user, 'sound/machines/click.ogg', 25, 1, 5)
 	playsound(user, 'sound/weapons/guns/interact/flamethrower_unload.ogg', 12, 2, 5)
-	to_chat(user, "<span class='notice'>You remove the Gell from [src].</span>")
+	to_chat(user, "<span class='notice'>You remove the Gell vial from [src].</span>")
 	update_icon(user)
 	return TRUE
 
