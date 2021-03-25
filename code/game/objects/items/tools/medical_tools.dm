@@ -128,7 +128,7 @@
 // TOOLS down here
 /obj/item/tool/geltool/gadget/kitprinter
 	name = "Synthetic trauma kit"
-	desc = "A tool that utilizes gel. to act as brute or a burn advanced kit. it have a level to toggle its mode"
+	desc = "A tool that utilizes gel. to act as brute or a burn advanced kit. it has a lever to toggle its mode"
 	icon_state = "synthkitbrute"
 	item_state = "synthkitbrute"
 	var/brute = TRUE
