@@ -74,6 +74,8 @@
 		return
 	
 	if(world.time <= acid_spray.creation_time + 5) //To prevent being able to walk "over" acid sprays
+		take_overall_damage_armored(damage, BURN, "acid", updating_health = TRUE)
+		emote("scream")
 		Paralyze(20)
 
 	TIMER_COOLDOWN_START(src, COOLDOWN_ACID, 1 SECONDS)
