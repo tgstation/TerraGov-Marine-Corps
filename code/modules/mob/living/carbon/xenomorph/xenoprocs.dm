@@ -562,7 +562,7 @@
 
 // this mess will be fixed by obj damage refactor
 /atom/proc/acid_spray_act(mob/living/carbon/xenomorph/X)
-	return FALSE
+	return
 
 /obj/structure/acid_spray_act(mob/living/carbon/xenomorph/X)
 	if(is_type_in_typecache(src, GLOB.acid_spray_hit))
