@@ -1,7 +1,7 @@
 
 //CELLS here
 /obj/item/tool/geltool/gell  //Gell a CELL but GELL
-	name = "Gell container"
+	name = "Classic Gell"
 	desc = "A vial used to transport and store medical gel."
 	icon_state = "gell"
 	item_state = "gell"
@@ -11,7 +11,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/tool/geltool/gell/small
-	name = "Gell container"
+	name = "Small Gell"
 	desc = "A vial used to transport and store medical gel."
 	icon_state = "gelltiny"
 	item_state = "gelltiny"
