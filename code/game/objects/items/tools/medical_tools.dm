@@ -34,7 +34,7 @@
 	M.adjustToxLoss(5) // and tox for good measure
 	M.disabilities |= MUTE
 	addtimer(VARSET_CALLBACK(M, disabilities, M.disabilities & ~MUTE), 30 SECONDS)
-	to_chat(user, "You feel an acidic taste on you mouth as your lips tighten up.</span>")
+	to_chat(user, "<span class='warning'>You feel an acidic taste on you mouth as your lips tighten up!</span>")
 	update_icon()
 
 /obj/item/tool/geltool/gell/examine(mob/user)
