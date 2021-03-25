@@ -39,7 +39,7 @@
 
 /obj/item/tool/geltool/gell/examine(mob/user)
 	..()
-	to_chat(user, "the gel gauge measures. <b>Gel quantity: [gelquantity]/[gelcapacity]</b>")
+	to_chat(user, "<b>The gel gauge measures: [gelquantity]/[gelcapacity]</b>")
 	update_icon()
 
 /obj/item/tool/geltool/gell/update_icon()
