@@ -183,7 +183,7 @@
 		playsound(loc, 'sound/machines/terminal_on.ogg', 5 , 1) //maybe placehold. maybe it will be left as this. but sure its better than a bland click
 		if(!silent && user)
 			user.visible_message("<span class='notice'>[user] turns [src] to brute mode.</span>",
-		"<span class='notice'>You switch [src] lever to Brute.<b>Gel gauge reads: [cell.gelquantity]/[cell.gelcapacity]</b></span>")
+		"<span class='notice'>You switch [src] lever to brute mode. <b>Gel gauge reads: [cell.gelquantity]/[cell.gelcapacity]</b></span>")
 		update_kitprinter()
 		return
 
