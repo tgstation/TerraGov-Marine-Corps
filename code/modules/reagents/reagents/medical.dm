@@ -473,6 +473,7 @@
 	custom_metabolism = REAGENTS_METABOLISM
 	overdose_threshold = REAGENTS_OVERDOSE/2
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/2
+	scannable = TRUE
 
 /datum/reagent/medicine/arithrazine/on_mob_life(mob/living/L)
 	L.adjustToxLoss(-0.5*effect_str)
