@@ -643,7 +643,7 @@ TUNNEL
 
 	max_integrity = 140
 	var/mob/living/carbon/xenomorph/hivelord/creator = null
-
+	///Hive number of the structure; defaults to standard.
 	var/hivenumber = XENO_HIVE_NORMAL
 	hud_possible = list(XENO_TACTICAL_HUD)
 
