@@ -1196,7 +1196,7 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/proc/try_to_give_larva(mob/dead/observer/next_in_line)
 	next_in_line.larva_position = 0
 	if(attempt_to_spawn_larva(next_in_line, TRUE))
-		to_chat(next_in_line, "<span class = 'warning'>You failed to qualify to become a larva, you must join the queue again</span>")
+		to_chat(next_in_line, "<span class='warning'>You failed to qualify to become a larva, you must join the queue again.</span>")
 		return
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	xeno_job.free_job_positions(1)
