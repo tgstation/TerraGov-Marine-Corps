@@ -1199,7 +1199,7 @@ to_chat will check for valid clients itself already so no need to double check f
 		observer_in_queue.larva_position = i
 
 /// Remove ref to avoid hard del and null error
-/datum/hive_status/normal/proc/clean_observer(datum/source)
+/datum/hive_status/proc/clean_observer(datum/source)
 	SIGNAL_HANDLER
 	LAZYREMOVE(candidate, source)
 
