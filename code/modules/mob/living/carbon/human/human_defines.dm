@@ -132,3 +132,6 @@
 	var/revive_grace_time = 0
 
 	COOLDOWN_DECLARE(xeno_push_delay)
+
+	/// This is the cooldown on suffering additional effects for when shock gets high
+	COOLDOWN_DECLARE(last_shock_effect)

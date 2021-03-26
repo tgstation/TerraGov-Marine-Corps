@@ -976,6 +976,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 
 		/obj/item/storage/pill_bottle/bicamera = list(CAT_MEDSUP, "BicaMera pills", 30, "orange"),
 		/obj/item/storage/pill_bottle/keloderm = list(CAT_MEDSUP, "KeloDerm pills", 30, "orange"),
+		/obj/item/storage/backpack/lightpack = list(CAT_MEDSUP, "Combat Backpack", 15, "orange"),
 		/obj/item/storage/pill_bottle/paracetamol = list(CAT_MEDSUP, "Paracetamol pills", 8, "orange"),
 		/obj/item/storage/pill_bottle/bicaridine = list(CAT_MEDSUP, "Bicaridine pills", 8, "black"),
 		/obj/item/storage/pill_bottle/kelotane = list(CAT_MEDSUP, "Kelotane pills", 8, "black"),

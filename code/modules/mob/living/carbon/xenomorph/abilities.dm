@@ -191,7 +191,6 @@
 	keybind_signal = COMSIG_XENOABILITY_CHOOSE_RESIN
 	var/list/buildable_structures = list(
 		/turf/closed/wall/resin/regenerating,
-		/obj/structure/bed/nest,
 		/obj/effect/alien/resin/sticky,
 		/obj/structure/mineral_door/resin)
 
@@ -1239,11 +1238,12 @@
 	"<span class='danger'>We slowly drain \the [victim]'s life force!</span>", null, 20)
 	var/channel = SSsounds.random_available_channel()
 	playsound(X, 'sound/magic/nightfall.ogg', 40, channel = channel)
-	if(!do_after(X, 10 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(X, /mob.proc/break_do_after_checks, list("health" = X.health))))
+	if(!do_after(X, 5 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(X, /mob.proc/break_do_after_checks, list("health" = X.health))))
 		X.visible_message("<span class='xenowarning'>\The [X] retracts its inner jaw.</span>", \
 		"<span class='danger'>We retract our inner jaw.</span>", null, 20)
 		X.stop_sound_channel(channel)
 		return FALSE
+	X.stop_sound_channel(channel)
 	succeed_activate() //dew it
 
 /datum/action/xeno_action/activable/psydrain/use_ability(mob/M)
@@ -1265,7 +1265,7 @@
 
 	SSpoints.add_psy_points(X.hivenumber, psy_points_reward)
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	xeno_job.add_job_points(larva_point_reward)
+	xeno_job.add_job_points(larva_point_reward, PSY_DRAIN_ORIGIN)
 
 	log_combat(victim, owner, "was drained.")
 	log_game("[key_name(victim)] was drained at [AREACOORD(victim.loc)].")
