@@ -128,7 +128,7 @@
 	newspit.permutated += X
 	newspit.def_zone = X.get_limbzone_target()
 
-	newspit.fire_at(target, X, null)
+	newspit.fire_at(target, X, null, newspit.ammo.max_range)
 
 	succeed_activate()
 	add_cooldown()

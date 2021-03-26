@@ -67,8 +67,8 @@
 		if(turret_pattern != turret.turret_pattern)
 			to_chat(user, "<span class='notice'>You can't attach that type of turret!</span>")
 			return
-	user.visible_message("<span class='notice'>You start to attach [I] to [src].</span>",
-	"<span class='notice'>[user] starts to attach [I] to [src].</span>")
+	user.visible_message("<span class='notice'>[user] starts to attach [I] to [src].</span>",
+	"<span class='notice'>You start to attach [I] to [src].</span>")
 	if(!do_after(user, 3 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 		return
 	if(istype(I, /obj/item/uav_turret))
@@ -77,8 +77,8 @@
 		ammo = GLOB.ammo_list[turret.ammo_type]
 	else if(istype(I, /obj/item/explosive/plastique))
 		turret_type = TURRET_TYPE_EXPLOSIVE
-	user.visible_message("<span class='notice'>You attach [I] to [src].</span>",
-	"<span class='notice'>[user] attaches [I] to [src].</span>")
+	user.visible_message("<span class='notice'>[user] attaches [I] to [src].</span>",
+	"<span class='notice'>You attach [I] to [src].</span>")
 	update_icon()
 	SEND_SIGNAL(src, COMSIG_UNMANNED_TURRET_UPDATED, turret_type)
 	qdel(I)

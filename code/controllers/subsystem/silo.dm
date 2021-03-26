@@ -20,7 +20,7 @@ SUBSYSTEM_DEF(silo)
 	current_larva_spawn_rate = 0
 	for(var/obj/structure/resin/silo/silo AS in GLOB.xeno_resin_silos)
 		current_larva_spawn_rate += base_larva_spawn_rate
-	xeno_job.add_job_points(current_larva_spawn_rate)
+	xeno_job.add_job_points(current_larva_spawn_rate, SILO_ORIGIN)
 	corrupted_gen_output = TGS_CLIENT_COUNT * BASE_PSYCH_POINT_OUTPUT
 
 ///Activate the subsystem when shutters open and remove the free spawning when marines are joining

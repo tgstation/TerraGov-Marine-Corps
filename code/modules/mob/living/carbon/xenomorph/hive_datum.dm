@@ -582,6 +582,10 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/proc/attempt_to_spawn_larva(mob/xeno_candidate, larva_already_reserved = FALSE)
 	if(!xeno_candidate?.client)
 		return FALSE
+	
+	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+	if((xeno_job.total_positions - xeno_job.current_positions) < 0)
+		return FALSE
 
 	var/list/possible_mothers = list()
 	var/list/possible_silos = list()
@@ -1165,13 +1169,14 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/proc/add_to_larva_candidate_queue(mob/dead/observer/observer)
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
-	if(stored_larva && length(GLOB.xeno_resin_silos))
+	if(stored_larva > 0 && !LAZYLEN(candidate) && length(GLOB.xeno_resin_silos))
 		attempt_to_spawn_larva(observer)
 		return
 	if(LAZYFIND(candidate, observer))
 		to_chat(observer, "<span class='warning'>You are already in queue!</span>")
 		return
 	LAZYADD(candidate, observer)
+	RegisterSignal(observer, COMSIG_PARENT_QDELETING, .proc/clean_observer)
 	observer.larva_position =  LAZYLEN(candidate)
 	to_chat(observer, "<span class='warning'>There are no burrowed larvas or no silos. You are in position [observer.larva_position] to become a xeno</span>")
 
@@ -1185,13 +1190,19 @@ to_chat will check for valid clients itself already so no need to double check f
 	while(stored_larva > 0 && LAZYLEN(candidate))
 		observer_in_queue = LAZYACCESS(candidate, 1)
 		LAZYREMOVE(candidate, observer_in_queue)
+		UnregisterSignal(observer_in_queue, COMSIG_PARENT_QDELETING)
 		xeno_job.occupy_job_positions(1)
 		stored_larva--
 		INVOKE_ASYNC(src, .proc/try_to_give_larva, observer_in_queue)
 	for(var/i in 1 to LAZYLEN(candidate))
 		observer_in_queue = LAZYACCESS(candidate, i)
 		observer_in_queue.larva_position = i
-		
+
+/// Remove ref to avoid hard del and null error
+/datum/hive_status/normal/proc/clean_observer(datum/source)
+	SIGNAL_HANDLER
+	LAZYREMOVE(candidate, source)
+
 ///Attempt to give a larva to the next in line, if not possible, free the xeno position and propose it to another candidate
 /datum/hive_status/proc/try_to_give_larva(mob/dead/observer/next_in_line)
 	next_in_line.larva_position = 0
