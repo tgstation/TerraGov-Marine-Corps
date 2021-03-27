@@ -555,13 +555,10 @@
 	charge_cost = initial(mode_list[mode_index].charge_cost)
 	ammo = GLOB.ammo_list[initial(mode_list[mode_index].ammo)]
 	fire_delay = initial(mode_list[mode_index].fire_delay)
+	SEND_SIGNAL(src, COMSIG_GUN_AUTOFIREDELAY_MODIFIED, fire_delay)
 	fire_sound = initial(mode_list[mode_index].fire_sound)
-	var/fire_mode
-	if(initial(mode_list[mode_index].fire_mode) != GUN_FIREMODE_SEMIAUTO)
-		fire_mode = initial(mode_list[mode_index].fire_mode)
-	else
-		fire_mode = GUN_FIREMODE_SEMIAUTO
-	SEND_SIGNAL(src, COMSIG_GUN_FIRE_MODE_TOGGLE, fire_mode)
+	gun_firemode = initial(mode_list[mode_index].fire_mode)
+	SEND_SIGNAL(src, COMSIG_GUN_FIRE_MODE_TOGGLE, gun_firemode)
 	base_gun_icon = initial(mode_list[mode_index].icon_state)
 	update_icon()
 
