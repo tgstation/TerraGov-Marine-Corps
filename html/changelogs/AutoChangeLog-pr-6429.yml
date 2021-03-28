@@ -1,0 +1,5 @@
+author: "Swagile"
+delete-after: True
+changes: 
+  - rscdel: "Removes redundant radio to lessen clutter from FC essential kit."
+  - bugfix: "Fixed FC vendor not having jaeger exo or facepaint; comes in essential commander kit now."
