@@ -72,7 +72,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	switch(facing)
 		if(NORTH, SOUTH, EAST, WEST)
 			do_acid_cone_spray(get_step(owner.loc, facing), range, facing, CONE_PART_MIDDLE|CONE_PART_LEFT|CONE_PART_RIGHT, owner)
-		if(NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
+		if(NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST) //Carefull, this is not perfectly symetrical when range != 4
 			do_acid_cone_spray(get_step(owner.loc, facing), range, facing, CONE_PART_MIDDLE_DIAG, owner)
 			do_acid_cone_spray(get_step(owner.loc, facing), range + 1, facing, CONE_PART_DIAG_LEFT|CONE_PART_DIAG_RIGHT, owner)
 	
@@ -84,6 +84,8 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		return
 	var/is_blocked = FALSE
 	for (var/obj/O in T)
+		if(is_type_in_typecache(O, GLOB.acid_spray_hit))
+			O.acid_spray_act(owner)
 		if(!O.CanPass(source_spray, get_turf(source_spray)))
 			is_blocked = TRUE
 	if(is_blocked)
@@ -115,4 +117,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		do_acid_cone_spray(get_step(current_turf, turn(facing, -45)), distance_left - 1, turn(facing, -45), CONE_PART_MIDDLE, spray, owner)
 	if(CHECK_BITFIELD(direction_flag, CONE_PART_MIDDLE_DIAG))
 		do_acid_cone_spray(next_normal_turf, distance_left - 1, facing, CONE_PART_DIAG_LEFT|CONE_PART_DIAG_RIGHT, spray, owner)
-		do_acid_cone_spray(next_normal_turf, distance_left - 2, facing, CONE_PART_MIDDLE, spray, owner)
+		if(distance_left <= 5)
+			do_acid_cone_spray(next_normal_turf, distance_left - 2, facing, CONE_PART_MIDDLE, spray, owner)
+		else
+			do_acid_cone_spray(next_normal_turf, distance_left - 1, facing, CONE_PART_MIDDLE_DIAG, spray, owner)
