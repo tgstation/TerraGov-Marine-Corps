@@ -2705,10 +2705,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/lavaland/security/nuke)
-"xa" = (
-/turf/open/floor/plating/dmg3,
-/turf/open/floor/plating/dmg2,
-/area/lavaland/cave/central)
 "xb" = (
 /turf/open/floor/plating,
 /area/lavaland/cave/south)
@@ -3396,10 +3392,6 @@
 	dir = 8
 	},
 /area/lavaland/security/storage)
-"Co" = (
-/turf/open/floor/plating/dmg1,
-/turf/open/floor/plating/dmg2,
-/area/lavaland/cave/central)
 "Cp" = (
 /obj/machinery/light{
 	dir = 8
@@ -4259,10 +4251,6 @@
 "JM" = (
 /obj/machinery/miner/damaged,
 /turf/open/lavaland/basalt,
-/area/lavaland/cave/central)
-"JO" = (
-/turf/open/lavaland/basalt,
-/turf/open/floor/plating/dmg2,
 /area/lavaland/cave/central)
 "JR" = (
 /obj/structure/barricade/metal,
@@ -5562,10 +5550,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/asteroidfloor,
 /area/lavaland/misc/westarmory)
-"Wb" = (
-/turf/open/floor/plating/mainship,
-/turf/open/floor/plating/dmg2,
-/area/lavaland/misc/crashed)
 "Wg" = (
 /obj/structure/closet/bombclosetsecurity,
 /turf/open/floor/tile/white,
@@ -5793,7 +5777,6 @@
 /turf/open/floor/tile/white,
 /area/lavaland/medical/chemistry)
 "Yd" = (
-/turf/open/floor/plating/dmg1,
 /turf/open/floor/plating/dmg2,
 /area/lavaland/misc/stationed)
 "Yg" = (
@@ -31621,7 +31604,7 @@ tY
 fw
 qo
 qo
-JO
+Qb
 Bw
 Qb
 Qb
@@ -31880,7 +31863,7 @@ YL
 GO
 GO
 Ra
-Co
+MJ
 Qb
 Qb
 GO
@@ -32138,7 +32121,7 @@ GO
 qo
 NT
 MJ
-Co
+MJ
 Qb
 Qb
 GO
@@ -32395,8 +32378,8 @@ GO
 qo
 NT
 qo
-Co
-Co
+MJ
+MJ
 Qb
 Qb
 Cp
@@ -32910,7 +32893,7 @@ qo
 NT
 qo
 MJ
-xa
+wl
 Qb
 Qb
 Qb
@@ -33168,7 +33151,7 @@ NT
 qo
 wl
 MJ
-xa
+wl
 wl
 Qb
 Qb
@@ -33940,7 +33923,7 @@ qo
 qo
 qo
 wl
-xa
+wl
 Qb
 Qb
 Qb
@@ -34710,7 +34693,7 @@ YL
 GO
 GO
 MJ
-xa
+wl
 Qb
 Qb
 GO
@@ -36557,7 +36540,7 @@ ld
 TJ
 Ht
 rg
-Wb
+dJ
 Xc
 Yy
 Yy
