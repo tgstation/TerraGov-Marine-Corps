@@ -1,5 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - qol: "You are warned when you failed to qualify to get a larva and were ejected from the queue (because of you respawn timer, for exemple)"
-  - qol: "The queue take into account when there is no silos, and will propose larvas only when silos and larva are present"

@@ -1,4 +1,0 @@
-author: "Swagile"
-delete-after: True
-changes: 
-  - qol: "Certain roles that used to have empty combat boots, such as FC and CSE, now start with a boot knife in them on spawn."

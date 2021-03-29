@@ -1,4 +1,0 @@
-author: "TGCMbetcher"
-delete-after: True
-changes: 
-  - qol: "Swaps arith for hyro in injectors"
