@@ -6323,6 +6323,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/effect/landmark/start/job/fieldcommander,
 /turf/open/floor/carpet{
 	dir = 5;
 	icon_state = "carpetside"
@@ -6408,9 +6409,7 @@
 	},
 /area/mainship/living/numbertwobunks)
 "vi" = (
-/obj/structure/bed,
-/obj/item/bedsheet/hop,
-/obj/effect/landmark/start/job/fieldcommander,
+/obj/machinery/vending/marine,
 /turf/open/floor/carpet{
 	dir = 6;
 	icon_state = "carpetside"
