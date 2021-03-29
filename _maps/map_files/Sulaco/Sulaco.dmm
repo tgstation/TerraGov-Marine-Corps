@@ -35,7 +35,6 @@
 "aag" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
-/obj/structure/cable,
 /turf/closed/wall/mainship/gray,
 /area/sulaco/research)
 "aah" = (
@@ -676,10 +675,6 @@
 	dir = 8
 	},
 /area/sulaco/medbay/west)
-"acd" = (
-/obj/structure/cable,
-/turf/closed/wall/mainship/white,
-/area/sulaco/medbay/west)
 "ace" = (
 /obj/structure/target_stake,
 /turf/open/floor/prison/red{
@@ -729,9 +724,7 @@
 "aco" = (
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1,
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
-	dir = 5
-	},
+/obj/machinery/atmospherics/pipe/manifold/yellow/hidden,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
@@ -793,6 +786,7 @@
 /obj/machinery/door/firedoor/mainship,
 /obj/structure/cable,
 /obj/machinery/door/firedoor,
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
@@ -1034,19 +1028,13 @@
 	dir = 4
 	},
 /obj/machinery/door/firedoor,
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 4
+	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
 /area/sulaco/medbay/west)
-"adm" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
-	dir = 4
-	},
-/turf/open/floor/prison/whitegreen/corner{
-	dir = 1
-	},
-/area/sulaco/medbay)
 "adn" = (
 /turf/closed/wall/mainship/gray/outer,
 /area/sulaco/engineering/ce)
@@ -1106,15 +1094,6 @@
 /obj/structure/window/framed/mainship/gray/toughened/hull,
 /turf/open/floor/plating/platebotc,
 /area/sulaco/bridge)
-"adA" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
-	dir = 4
-	},
-/turf/open/floor/prison/whitegreen/corner{
-	dir = 4
-	},
-/area/sulaco/medbay)
 "adB" = (
 /obj/machinery/bodyscanner{
 	dir = 8
@@ -1318,6 +1297,7 @@
 /turf/closed/wall/mainship/gray,
 /area/sulaco/engineering/ce)
 "aei" = (
+/obj/structure/cable,
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/research)
 "aej" = (
@@ -2622,7 +2602,6 @@
 "alQ" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
-/obj/structure/cable,
 /turf/open/floor/prison/whitegreen{
 	dir = 6
 	},
@@ -2989,7 +2968,6 @@
 	},
 /area/sulaco/bridge)
 "aol" = (
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor/prison,
@@ -11923,7 +11901,6 @@
 /obj/machinery/door/airlock/mainship/engineering/CSEoffice{
 	dir = 2
 	},
-/obj/structure/cable,
 /obj/machinery/door/firedoor,
 /turf/open/floor/plating,
 /area/sulaco/engineering/ce)
@@ -12251,13 +12228,13 @@
 /turf/open/floor/plating,
 /area/sulaco/bridge/office)
 "fVN" = (
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 10
 	},
+/obj/structure/cable,
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/research)
 "fVO" = (
@@ -13988,6 +13965,18 @@
 /obj/structure/lattice,
 /turf/open/space/basic,
 /area/space)
+"kDU" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 5
+	},
+/turf/open/floor/prison/whitegreen/corner{
+	dir = 1
+	},
+/area/sulaco/medbay/west)
 "kJu" = (
 /obj/structure/prop/mainship/mission_planning_system{
 	desc = "This gathers all information about the Self-Destruct and pools it into one repository.";
@@ -14742,6 +14731,18 @@
 	dir = 4
 	},
 /area/sulaco/cargo)
+"mtC" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 4
+	},
+/turf/open/floor/prison/whitegreen/corner{
+	dir = 1
+	},
+/area/sulaco/medbay/west)
 "mvt" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plating,
@@ -14766,7 +14767,6 @@
 /turf/open/floor/prison,
 /area/sulaco/telecomms/office)
 "mzl" = (
-/obj/structure/cable,
 /obj/structure/table/reinforced,
 /obj/item/storage/firstaid/adv,
 /obj/item/reagent_containers/spray/surgery,
@@ -14866,6 +14866,7 @@
 /area/mainship/command/self_destruct)
 "mHi" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
+/obj/structure/cable,
 /turf/open/floor/prison,
 /area/sulaco/hallway/central_hall)
 "mHk" = (
@@ -15366,6 +15367,13 @@
 	},
 /turf/open/floor/prison,
 /area/mainship/living/pilotbunks)
+"nWY" = (
+/obj/machinery/door/firedoor,
+/obj/structure/cable,
+/turf/open/floor/prison/whitegreen{
+	dir = 6
+	},
+/area/sulaco/research)
 "nZF" = (
 /obj/structure/cable,
 /turf/closed/wall/mainship/gray/outer,
@@ -15409,6 +15417,7 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 5
 	},
+/obj/structure/cable,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
@@ -15748,7 +15757,6 @@
 	},
 /area/sulaco/research)
 "oIW" = (
-/obj/structure/cable,
 /obj/structure/table/reinforced,
 /obj/item/storage/firstaid/adv,
 /obj/item/reagent_containers/spray/surgery,
@@ -17785,6 +17793,7 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/research)
 "tvk" = (
@@ -18002,6 +18011,11 @@
 /obj/structure/dropship_equipment/sentry_holder,
 /turf/open/floor/prison,
 /area/sulaco/hangar)
+"ucW" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/turf/open/floor/prison/whitegreen/corner,
+/area/sulaco/medbay/west)
 "ueP" = (
 /obj/structure/barricade/metal{
 	dir = 4
@@ -18136,6 +18150,18 @@
 /obj/structure/sign/nosmoking_1,
 /turf/closed/wall/mainship/gray,
 /area/sulaco/engineering)
+"uBG" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 4
+	},
+/turf/open/floor/prison/whitegreen/corner{
+	dir = 4
+	},
+/area/sulaco/medbay/west)
 "uBX" = (
 /turf/open/floor/prison/marked,
 /area/sulaco/hangar/one)
@@ -44417,7 +44443,7 @@ aam
 aam
 aam
 abN
-acd
+aam
 aam
 vRI
 ada
@@ -44933,8 +44959,8 @@ abG
 abY
 acm
 acy
-acz
-ada
+ucW
+kDU
 oxv
 aam
 aam
@@ -45191,7 +45217,7 @@ acf
 aan
 aan
 acj
-acX
+uBG
 abD
 acP
 acZ
@@ -45448,7 +45474,7 @@ aci
 abk
 aan
 acu
-ada
+mtC
 acz
 cSG
 adJ
@@ -45578,7 +45604,7 @@ coO
 sgq
 ofF
 aei
-aVO
+nWY
 mHi
 apF
 arc
@@ -45705,7 +45731,7 @@ abi
 abl
 aan
 hQQ
-acX
+uBG
 abD
 acP
 adb
@@ -45962,7 +45988,7 @@ aaT
 abm
 aan
 vRI
-ada
+mtC
 abG
 acS
 adG
@@ -46476,7 +46502,7 @@ ajG
 ais
 aaJ
 icY
-adm
+lbq
 ade
 adB
 plO
@@ -46733,7 +46759,7 @@ wAz
 adf
 abv
 adf
-adA
+esb
 adf
 adH
 adf
@@ -46990,7 +47016,7 @@ lrT
 aeX
 tzN
 ade
-adm
+lbq
 ade
 kMl
 ade
@@ -47247,7 +47273,7 @@ hNA
 oXn
 aaJ
 adU
-adA
+esb
 adf
 vtC
 adf
@@ -47504,7 +47530,7 @@ oxz
 afc
 odq
 ade
-adm
+lbq
 ade
 gXI
 ade
@@ -47761,7 +47787,7 @@ hNA
 afk
 abw
 adf
-adA
+esb
 adf
 wAz
 adf

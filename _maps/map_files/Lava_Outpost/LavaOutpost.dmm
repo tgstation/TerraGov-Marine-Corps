@@ -493,6 +493,12 @@
 	},
 /turf/open/lavaland/lava/lpiece,
 /area/lavaland/cave/north)
+"ej" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/bar,
+/area/lavaland/civilian/cook)
 "el" = (
 /obj/machinery/light,
 /turf/open/floor/tile/brown/full,
@@ -1000,6 +1006,11 @@
 	},
 /turf/open/floor/tile/bar,
 /area/lavaland/civilian/cook)
+"iO" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/tile/dark2,
+/area/lavaland/civilian)
 "iS" = (
 /obj/machinery/light{
 	dir = 4
@@ -1245,9 +1256,7 @@
 /turf/open/floor/tile/bar,
 /area/lavaland/civilian/cook)
 "kJ" = (
-/obj/machinery/atmospherics/pipe/manifold/green/hidden{
-	dir = 4
-	},
+/obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /turf/open/floor/tile/bar,
 /area/lavaland/civilian/cook)
 "kK" = (
@@ -1256,6 +1265,9 @@
 /area/lavaland/security)
 "kL" = (
 /obj/machinery/vending/coffee,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
 /turf/open/floor/tile/bar,
 /area/lavaland/civilian/cook)
 "kN" = (
@@ -1266,6 +1278,9 @@
 /area/lavaland/security/nuke)
 "kO" = (
 /obj/structure/kitchenspike,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
 /turf/open/floor/tile/bar,
 /area/lavaland/civilian/cook)
 "kR" = (
@@ -1428,11 +1443,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/lavaland/medical/cmo)
-"mm" = (
-/obj/structure/table/reinforced,
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor/tile/bar,
-/area/lavaland/civilian/cook)
 "mn" = (
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 6
@@ -1469,6 +1479,7 @@
 	name = "\improper Kitchen"
 	},
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/bar,
 /area/lavaland/civilian/cook)
 "mB" = (
@@ -2073,6 +2084,7 @@
 /obj/structure/table,
 /obj/structure/cable,
 /obj/effect/spawner/random/toolbox,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark2,
 /area/lavaland/civilian)
 "rG" = (
@@ -28984,12 +28996,12 @@ hJ
 iU
 jF
 kJ
-mm
-pS
-pS
-rq
-sz
-uI
+lH
+le
+le
+rp
+sp
+uG
 le
 jL
 zM
@@ -29240,7 +29252,7 @@ gT
 ih
 iU
 jx
-jx
+ej
 lH
 le
 le
@@ -30011,13 +30023,13 @@ gT
 io
 jd
 iU
-iU
+iN
 mA
-pV
-pV
+iO
+iO
 rF
-sp
-uG
+sz
+uI
 le
 jL
 Aa
