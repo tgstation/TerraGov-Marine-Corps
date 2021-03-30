@@ -35,7 +35,7 @@
 /datum/element/windowshutter/cokpitshutters/spawn_shutter(datum/source)
 	UnregisterSignal(source, ELEMENT_CLOSE_SHUTTER_LINKED)
 	for(var/direction in GLOB.cardinals)
-		for(var/obj/structure/window/W in get_step(source,direction) )
+		for(var/obj/structure/window/W in get_step(source,direction))
 			SEND_SIGNAL(W, ELEMENT_CLOSE_SHUTTER_LINKED)
 	var/obj/machinery/door/poddoor/shutters/tadpole_cockpit/P = new(get_turf(source))
 	P.density = TRUE
