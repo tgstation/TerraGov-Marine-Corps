@@ -7,12 +7,12 @@
 	flags_atom = NOJAUNT_1 //This line goes out to every wizard that ever managed to escape the den. I'm sorry.
 	explosion_block = INFINITY
 	///The number of icon state available
-	var/available_icon_state = 15
+	var/available_icon_state_amounts = 15
 
 /turf/open/space/transit/atmos
 	name = "\proper high atmosphere"
 	baseturfs = /turf/open/space/transit/atmos
-	available_icon_state = 4
+	available_icon_state_amounts = 4
 
 //Overwrite because we dont want people building rods in space.
 /turf/open/space/transit/attackby(obj/item/I, mob/user, params)
@@ -90,27 +90,27 @@
 	transform = turn(matrix(), get_transit_angle(src))
 
 /turf/open/space/transit/update_icon_state()
-	icon_state = "speedspace_ns_[get_transit_state(src, available_icon_state)]"
+	icon_state = "speedspace_ns_[get_transit_state(src, available_icon_state_amounts)]"
 
 /turf/open/space/transit/atmos/update_icon_state()
-	icon_state = "cloud_[get_transit_state(src, available_icon_state)]"
+	icon_state = "cloud_[get_transit_state(src, available_icon_state_amounts)]"
 
-/proc/get_transit_state(turf/T, available_icon_state)
-	var/p = round(available_icon_state / 2)
+/proc/get_transit_state(turf/T, available_icon_state_amounts)
+	var/p = round(available_icon_state_amounts / 2)
 	. = 1
 	switch(T.dir)
 		if(NORTH)
-			. = ((-p*T.x+T.y) % available_icon_state) + 1
+			. = ((-p*T.x+T.y) % available_icon_state_amounts) + 1
 			if(. < 1)
-				. += available_icon_state
+				. += available_icon_state_amounts
 		if(EAST)
-			. = ((T.x+p*T.y) % available_icon_state) + 1
+			. = ((T.x+p*T.y) % available_icon_state_amounts) + 1
 		if(WEST)
-			. = ((T.x-p*T.y) % available_icon_state) + 1
+			. = ((T.x-p*T.y) % available_icon_state_amounts) + 1
 			if(. < 1)
-				. += available_icon_state
+				. += available_icon_state_amounts
 		else
-			. = ((p*T.x+T.y) % available_icon_state) + 1
+			. = ((p*T.x+T.y) % available_icon_state_amounts) + 1
 
 /proc/get_transit_angle(turf/T)
 	. = 0

@@ -358,7 +358,7 @@
 	var/shuttle_flags = NONE
 
 	///Reference of the shuttle docker holding the mobile docking port
-	var/obj/machinery/computer/camera_advanced/shuttle_docker/shuttle
+	var/obj/machinery/computer/camera_advanced/shuttle_docker/shuttle_computer
 
 /obj/docking_port/mobile/register()
 	. = ..()

@@ -9,15 +9,11 @@
 	},
 /turf/open/floor/mainship_hull,
 /area/shuttle/minidropship)
-"g" = (
-/obj/machinery/door/poddoor/mainship/open{
-	id = "minidropship_podlock"
-	},
-/obj/machinery/door/poddoor/shutters/transit,
+"e" = (
 /obj/structure/barricade/plasteel{
 	dir = 4
 	},
-/turf/open/shuttle/dropship/three,
+/turf/open/floor/mainship_hull,
 /area/shuttle/minidropship)
 "h" = (
 /obj/structure/window/framed/mainship/spaceworthy{
@@ -51,9 +47,12 @@
 /area/shuttle/minidropship)
 "t" = (
 /obj/structure/bed/chair/dropship/passenger{
-	dir = 8
+	dir = 1
 	},
 /obj/machinery/light,
+/obj/structure/barricade/plasteel{
+	dir = 4
+	},
 /turf/open/floor/mainship_hull,
 /area/shuttle/minidropship)
 "v" = (
@@ -69,9 +68,12 @@
 /area/shuttle/minidropship)
 "B" = (
 /obj/structure/bed/chair/dropship/passenger{
-	dir = 4
+	dir = 1
 	},
 /obj/machinery/light,
+/obj/structure/barricade/plasteel{
+	dir = 8
+	},
 /turf/open/floor/mainship_hull,
 /area/shuttle/minidropship)
 "E" = (
@@ -80,6 +82,16 @@
 "F" = (
 /obj/docking_port/mobile/marine_dropship/minidropship,
 /turf/open/shuttle/dropship/grating,
+/area/shuttle/minidropship)
+"H" = (
+/obj/structure/barricade/plasteel{
+	dir = 8
+	},
+/turf/open/floor/mainship_hull,
+/area/shuttle/minidropship)
+"I" = (
+/obj/effect/attach_point/weapon/minidropship,
+/turf/closed/wall/mainship/outer/reinforced,
 /area/shuttle/minidropship)
 "K" = (
 /obj/machinery/door_control{
@@ -103,11 +115,12 @@
 /turf/open/floor/mainship_hull,
 /area/shuttle/minidropship)
 "O" = (
-/obj/structure/bed/chair/dropship/passenger{
-	dir = 4
-	},
+/obj/structure/bed/chair/dropship/passenger,
 /obj/machinery/light{
 	dir = 1
+	},
+/obj/structure/barricade/plasteel{
+	dir = 8
 	},
 /turf/open/floor/mainship_hull,
 /area/shuttle/minidropship)
@@ -119,11 +132,12 @@
 /turf/closed/wall/mainship/outer/reinforced,
 /area/shuttle/minidropship)
 "T" = (
-/obj/structure/bed/chair/dropship/passenger{
-	dir = 8
-	},
+/obj/structure/bed/chair/dropship/passenger,
 /obj/machinery/light{
 	dir = 1
+	},
+/obj/structure/barricade/plasteel{
+	dir = 4
 	},
 /turf/open/floor/mainship_hull,
 /area/shuttle/minidropship)
@@ -132,9 +146,6 @@
 	id = "minidropship_podlock"
 	},
 /obj/machinery/door/poddoor/shutters/transit,
-/obj/structure/barricade/plasteel{
-	dir = 8
-	},
 /turf/open/shuttle/dropship/three,
 /area/shuttle/minidropship)
 "Y" = (
@@ -158,10 +169,10 @@ R
 (2,1,1) = {"
 E
 E
-S
+I
 S
 O
-r
+H
 B
 S
 a
@@ -202,10 +213,10 @@ E
 (6,1,1) = {"
 E
 E
-S
+I
 S
 T
-r
+e
 t
 S
 R
@@ -215,9 +226,9 @@ E
 E
 E
 S
-g
-g
-g
+U
+U
+U
 S
 a
 "}

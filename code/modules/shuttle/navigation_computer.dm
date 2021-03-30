@@ -103,7 +103,7 @@
 	if(QDELETED(shuttle_port))
 		shuttle_port = null
 		return
-	shuttle_port.shuttle = src
+	shuttle_port.shuttle_computer = src
 	eyeobj = new /mob/camera/aiEye/remote/shuttle_docker(null, src)
 	var/mob/camera/aiEye/remote/shuttle_docker/the_eye = eyeobj
 	the_eye.setDir(shuttle_port.dir)

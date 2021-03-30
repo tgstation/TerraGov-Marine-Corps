@@ -4,7 +4,7 @@
 
 	if(new_dock.get_docked() == src)
 		remove_ripples()
-		shuttle?.shuttle_arrived()
+		shuttle_computer?.shuttle_arrived()
 		return DOCKING_SUCCESS
 
 	if(!force)
@@ -106,7 +106,7 @@
 
 	// remove any stragglers just in case, and clear the list
 	remove_ripples()
-	shuttle?.shuttle_arrived()
+	shuttle_computer?.shuttle_arrived()
 	return DOCKING_SUCCESS
 
 /obj/docking_port/mobile/proc/preflight_check(list/old_turfs, list/new_turfs, list/areas_to_move, rotation)
