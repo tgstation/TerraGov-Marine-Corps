@@ -980,7 +980,7 @@
 	dir = 4
 	},
 /obj/machinery/camera/autoname/mainship{
-	dir = 4
+	dir = 8
 	},
 /turf/open/floor/mainship/sterile/plain,
 /area/mainship/hallways/hangar)
@@ -2039,9 +2039,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/command/cic)
 "ha" = (
-/obj/machinery/camera/autoname/mainship{
-	dir = 1
-	},
+/obj/machinery/camera/autoname/mainship,
 /obj/item/radio/intercom/general,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -2420,7 +2418,7 @@
 	dir = 8
 	},
 /obj/machinery/camera/autoname/mainship{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/mainship/sterile/plain,
 /area/mainship/hallways/hangar)
@@ -3464,12 +3462,10 @@
 /area/mainship/command/cic)
 "ly" = (
 /obj/structure/window/framed/mainship/requisitions,
-/obj/machinery/door/poddoor/shutters/mainship/req/ro{
-	dir = 2
-	},
 /obj/structure/sign/ROsign{
 	dir = 1
 	},
+/obj/machinery/door/poddoor/shutters/mainship/req/ro,
 /turf/open/floor/plating,
 /area/mainship/squads/req)
 "lz" = (
@@ -3556,12 +3552,6 @@
 	dir = 8
 	},
 /area/mainship/hallways/hangar)
-"lN" = (
-/obj/machinery/camera/autoname/mainship{
-	dir = 8
-	},
-/turf/closed/wall/mainship/research/containment/wall/west,
-/area/mainship/medical/medical_science)
 "lO" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -4463,6 +4453,9 @@
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/command/self_destruct)
 "oN" = (
+/obj/machinery/camera/autoname/mainship{
+	dir = 4
+	},
 /turf/open/floor/mainship/research/containment/floor2{
 	dir = 8
 	},
@@ -5394,9 +5387,7 @@
 "se" = (
 /obj/structure/closet/secure_closet/engineering_personal,
 /obj/item/storage/backpack/marine/engineerpack,
-/obj/machinery/camera/autoname/mainship{
-	dir = 8
-	},
+/obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "sf" = (
@@ -5733,7 +5724,9 @@
 /turf/open/floor/mainship,
 /area/mainship/living/cryo_cells)
 "tg" = (
-/obj/machinery/camera/autoname/mainship,
+/obj/machinery/camera/autoname/mainship{
+	dir = 1
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/briefing)
 "th" = (
@@ -10716,7 +10709,7 @@
 "HR" = (
 /obj/effect/landmark/start/job/squadsmartgunner,
 /obj/machinery/camera/autoname/mainship{
-	dir = 1
+	dir = 8
 	},
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 8
@@ -12657,7 +12650,7 @@
 "Nu" = (
 /obj/effect/landmark/start/job/squadengineer,
 /obj/machinery/camera/autoname/mainship{
-	dir = 1
+	dir = 8
 	},
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 8
@@ -14264,6 +14257,11 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
+"Tb" = (
+/obj/structure/window/framed/mainship/requisitions,
+/obj/machinery/door/poddoor/shutters/mainship/req/ro,
+/turf/open/floor/plating,
+/area/mainship/squads/req)
 "Te" = (
 /turf/open/floor/mainship/red{
 	dir = 4
@@ -14584,7 +14582,7 @@
 /area/space)
 "Uv" = (
 /obj/machinery/camera/autoname/mainship{
-	dir = 4
+	dir = 1
 	},
 /obj/machinery/vending/attachments,
 /turf/open/floor/mainship/red/full,
@@ -15072,7 +15070,7 @@
 "Wo" = (
 /obj/effect/landmark/start/job/squadmarine,
 /obj/machinery/camera/autoname/mainship{
-	dir = 1
+	dir = 8
 	},
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 8
@@ -39683,7 +39681,7 @@ Mb
 ir
 iu
 iO
-lN
+iO
 iO
 pz
 ir
@@ -46349,8 +46347,8 @@ kz
 Dz
 Dz
 qG
-de
-de
+Tb
+Tb
 qG
 qG
 qG
@@ -48920,21 +48918,21 @@ kM
 kM
 qG
 ly
-de
-de
-de
+Tb
+Tb
+Tb
 qG
 qG
 NY
 qG
-de
-de
+Tb
+Tb
 YX
-de
-de
-de
-de
-de
+Tb
+Tb
+Tb
+Tb
+Tb
 qG
 qG
 qG

@@ -9768,11 +9768,6 @@
 	dir = 8
 	},
 /area/shuttle/drop2/lz2)
-"aVt" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/compound/c)
 "aVu" = (
 /obj/machinery/shower{
 	dir = 8
@@ -16599,8 +16594,10 @@
 	},
 /area/lv624/ground/jungle4)
 "vqo" = (
-/obj/structure/cable/multilayer,
-/turf/open/floor/plating,
+/obj/structure/cable/multilayer{
+	cable_layer = 3
+	},
+/turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
 "vrA" = (
 /obj/structure/mineral_door/resin,
@@ -16793,6 +16790,14 @@
 	},
 /turf/closed/gm/dense,
 /area/lv624/lazarus/quartstorage/outdoors)
+"wQI" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 8;
+	on = 1
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle6)
 "wVw" = (
 /obj/structure/jungle/vines,
 /turf/open/ground/grass,
@@ -27789,7 +27794,7 @@ avd
 avd
 aOj
 axR
-atK
+wQI
 axR
 kir
 avx
@@ -33714,7 +33719,7 @@ upF
 aOi
 aOi
 aOi
-aVt
+aQP
 aMm
 aWG
 aXh

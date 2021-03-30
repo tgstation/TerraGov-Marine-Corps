@@ -1574,10 +1574,6 @@
 "agr" = (
 /turf/closed/wall/r_wall,
 /area/ice_colony/surface/substation/smes)
-"ags" = (
-/obj/structure/cable,
-/turf/closed/wall/r_wall,
-/area/ice_colony/surface/substation/smes)
 "agt" = (
 /obj/structure/rack,
 /obj/item/storage/toolbox/electrical,
@@ -1721,11 +1717,6 @@
 	dir = 1
 	},
 /area/ice_colony/surface/substation/smes)
-"aha" = (
-/turf/open/floor/tile/dark/yellow2{
-	dir = 5
-	},
-/area/ice_colony/surface/substation/smes)
 "ahb" = (
 /turf/closed/ice_rock/singlePart{
 	dir = 6
@@ -1733,8 +1724,9 @@
 /area/ice_colony/exterior/surface/valley/north)
 "ahc" = (
 /obj/structure/cable,
+/obj/machinery/power/terminal,
 /turf/open/floor/tile/dark/yellow2{
-	dir = 9
+	dir = 1
 	},
 /area/ice_colony/surface/substation/smes)
 "ahe" = (
@@ -1828,15 +1820,14 @@
 /area/ice_colony/exterior/surface/landing_pad2)
 "ahC" = (
 /obj/machinery/space_heater,
+/obj/structure/cable,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 4
 	},
 /area/ice_colony/surface/substation/smes)
 "ahD" = (
 /obj/structure/cable,
-/obj/machinery/power/terminal{
-	dir = 4
-	},
+/obj/machinery/power/smes/buildable/empty/dist,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 8
 	},
@@ -1936,12 +1927,6 @@
 	dir = 10
 	},
 /area/ice_colony/surface/engineering/generator)
-"ahZ" = (
-/obj/machinery/light,
-/obj/structure/reagent_dispensers/fueltank,
-/obj/structure/cable,
-/turf/open/floor/tile/dark2,
-/area/ice_colony/surface/engineering/generator)
 "aic" = (
 /turf/open/floor/tile/dark/yellow2/corner{
 	dir = 4
@@ -2024,17 +2009,12 @@
 	},
 /area/ice_colony/surface/substation/smes)
 "ait" = (
-/obj/structure/cable,
 /obj/structure/window/framed/colony,
 /turf/open/floor/plating,
 /area/ice_colony/surface/substation/smes)
 "aiu" = (
 /obj/machinery/light{
 	dir = 8
-	},
-/obj/structure/cable,
-/obj/machinery/power/terminal{
-	dir = 4
 	},
 /turf/open/floor/tile/dark/yellow2{
 	dir = 8
@@ -2082,6 +2062,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 8
 	},
@@ -2092,6 +2073,9 @@
 	},
 /area/ice_colony/surface/substation/smes)
 "aiF" = (
+/obj/structure/table/reinforced,
+/obj/item/cell/high,
+/obj/item/cell/high,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 10
 	},
@@ -2106,14 +2090,13 @@
 /turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/underground/caves/ice_w)
 "aiI" = (
+/obj/structure/cable,
 /obj/machinery/power/smes/buildable/empty/dist,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/substation/smes)
 "aiK" = (
 /obj/structure/cable,
-/obj/machinery/power/terminal{
-	dir = 8
-	},
+/obj/machinery/power/smes/buildable/empty/dist,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 4
 	},
@@ -2238,6 +2221,8 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/substation/smes)
 "aje" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/toolbox/emergency,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 6
 	},
@@ -2497,9 +2482,6 @@
 "ake" = (
 /obj/structure/table/reinforced,
 /obj/effect/spawner/random/bomb_supply,
-/obj/item/storage/toolbox/emergency,
-/obj/item/cell/high,
-/obj/item/cell/high,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 5
 	},
@@ -31478,6 +31460,11 @@
 	},
 /turf/closed/ice_rock/southWall,
 /area/ice_colony/exterior/surface/cliff)
+"edA" = (
+/obj/structure/cable,
+/obj/structure/window/framed/colony/reinforced,
+/turf/open/floor/plating,
+/area/ice_colony/surface/engineering)
 "eeu" = (
 /obj/effect/alien/egg,
 /turf/open/floor/plating/ground/ice,
@@ -31517,6 +31504,10 @@
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/cliff)
+"eyy" = (
+/obj/effect/landmark/start/job/survivor,
+/turf/open/floor/tile/dark/yellow2,
+/area/ice_colony/surface/substation/smes)
 "eAK" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -33198,6 +33189,15 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice,
 /area/ice_colony/exterior/underground/caves/open)
+"saf" = (
+/obj/machinery/door/airlock/mainship/engineering/free_access{
+	name = "\improper Colony Power Substation SMES"
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/dark/yellow2{
+	dir = 1
+	},
+/area/ice_colony/surface/substation/smes)
 "sfm" = (
 /turf/closed/ice/end{
 	dir = 1
@@ -33294,6 +33294,12 @@
 "sQr" = (
 /turf/open/floor/plating/icefloor/warnplate,
 /area/ice_colony/exterior/surface/landing_pad2)
+"sUO" = (
+/obj/structure/reagent_dispensers/fueltank,
+/turf/open/floor/tile/dark/yellow2{
+	dir = 8
+	},
+/area/ice_colony/surface/engineering/generator)
 "sXK" = (
 /obj/effect/alien/egg,
 /turf/open/floor/plating,
@@ -33426,12 +33432,6 @@
 	dir = 4
 	},
 /area/ice_colony/surface/engineering/generator)
-"ujh" = (
-/obj/effect/landmark/start/job/survivor,
-/turf/open/floor/tile/dark/yellow2{
-	dir = 1
-	},
-/area/ice_colony/surface/substation/smes)
 "uur" = (
 /obj/effect/turf_underlay/icefloor,
 /turf/closed/ice/thin/end{
@@ -33731,6 +33731,10 @@
 	},
 /turf/open/floor/tile/dark,
 /area/ice_colony/exterior/surface/landing_pad2)
+"xhb" = (
+/obj/machinery/light,
+/turf/open/floor/tile/dark2,
+/area/ice_colony/surface/engineering/generator)
 "xix" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -33764,6 +33768,7 @@
 /area/ice_colony/exterior/surface/valley/northwest)
 "xom" = (
 /obj/structure/cable,
+/obj/machinery/power/terminal,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 5
 	},
@@ -71473,7 +71478,7 @@ adS
 afR
 adS
 aeM
-adS
+sUO
 ahY
 acT
 ajy
@@ -71731,7 +71736,7 @@ afS
 afi
 ufE
 aeP
-ahZ
+aeP
 ahp
 afI
 ahW
@@ -71988,7 +71993,7 @@ afT
 adC
 iQV
 aeM
-aeM
+xhb
 acT
 ajA
 ajF
@@ -72248,7 +72253,7 @@ aej
 adC
 aeh
 aeI
-aiz
+edA
 aeI
 aij
 aij
@@ -75073,8 +75078,8 @@ adj
 adj
 adj
 adj
-aij
-aij
+amG
+amG
 amn
 aij
 aij
@@ -75329,10 +75334,10 @@ adj
 adj
 agr
 agr
-ags
+agr
 gqs
-ags
-ags
+agr
+agr
 agr
 agr
 aij
@@ -76869,7 +76874,7 @@ acR
 adj
 adj
 agr
-aha
+ahy
 ahC
 ais
 aiE
@@ -77126,7 +77131,7 @@ abn
 adk
 adj
 agr
-ahw
+saf
 ahw
 ait
 ahw
@@ -77640,9 +77645,9 @@ aae
 aaR
 abn
 agr
-ahy
+ahc
 aiI
-aiI
+ain
 ajc
 ajE
 akd
@@ -77897,12 +77902,12 @@ aae
 aaC
 aaC
 agr
-ahy
+ahc
 aiI
-aiI
-aks
+ahx
+eyy
 ahw
-ujh
+akc
 akt
 akJ
 ahw
@@ -78156,7 +78161,7 @@ aaG
 agr
 xom
 aiK
-aiK
+aiE
 aje
 ahw
 ake

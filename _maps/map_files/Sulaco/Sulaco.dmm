@@ -2259,7 +2259,9 @@
 	},
 /area/sulaco/medbay)
 "ajQ" = (
-/obj/machinery/camera/autoname,
+/obj/machinery/camera/autoname{
+	dir = 8
+	},
 /obj/machinery/computer/crew,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
@@ -6119,7 +6121,7 @@
 /obj/item/clothing/suit/armor/bulletproof,
 /obj/item/clothing/suit/armor/bulletproof,
 /obj/machinery/camera/autoname{
-	dir = 4
+	dir = 1
 	},
 /turf/open/floor/prison/red/full{
 	dir = 1
@@ -37005,7 +37007,7 @@ cod
 aJV
 aLb
 aJS
-aJV
+cod
 aDT
 aJS
 cod
@@ -39061,7 +39063,7 @@ aKa
 aKa
 aLd
 aJX
-aKa
+jvW
 aMS
 aJX
 jvW
@@ -41117,7 +41119,7 @@ kuz
 aKK
 aLf
 aKb
-aKK
+kuz
 aPf
 aKb
 kuz

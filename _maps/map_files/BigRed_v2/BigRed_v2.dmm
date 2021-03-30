@@ -10767,6 +10767,7 @@
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	name = "\improper Lambda Lab Virology Quarantine"
 	},
+/obj/structure/cable,
 /turf/open/floor/marking/delivery,
 /area/bigredv2/caves/lambda_lab)
 "aMY" = (
@@ -16242,6 +16243,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "bpJ" = (
@@ -16258,7 +16260,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "bpM" = (
@@ -20969,10 +20970,6 @@
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/dorms)
-"pHg" = (
-/obj/structure/cable,
-/turf/closed/wall/r_wall,
-/area/bigredv2/outside/engineering)
 "pJO" = (
 /obj/structure/mineral_door/resin,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -21634,11 +21631,6 @@
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/nw)
-"uUK" = (
-/obj/machinery/atmospherics/components/unary/vent_pump,
-/obj/structure/cable,
-/turf/open/floor,
-/area/bigredv2/outside/engineering)
 "uWF" = (
 /obj/machinery/miner/damaged,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -34957,7 +34949,7 @@ blb
 blb
 aZr
 blJ
-ekm
+bmi
 bmk
 bmk
 bmk
@@ -35174,7 +35166,7 @@ aZO
 blb
 aZr
 blJ
-sbU
+bnu
 bmQ
 bmQ
 bnR
@@ -35391,7 +35383,7 @@ aZO
 blb
 aZs
 blJ
-pHg
+blJ
 blJ
 blJ
 blJ
@@ -36696,8 +36688,8 @@ blJ
 ekm
 bmi
 bmi
-ekm
-ekm
+bmi
+bmi
 bom
 bmk
 bpE
@@ -36913,9 +36905,9 @@ blJ
 ekm
 ekm
 bmi
-ekm
 bmi
-bmg
+bmi
+bom
 bmY
 bmi
 bmi
@@ -37130,9 +37122,9 @@ blJ
 bmi
 ekm
 bmi
-ekm
 bmi
-bmg
+bmi
+bom
 bmY
 bmi
 bqi
@@ -37347,8 +37339,8 @@ blJ
 bmo
 ekm
 bmi
-uUK
-dcQ
+bnW
+bop
 dcQ
 bpk
 bpG
@@ -38002,7 +37994,7 @@ bmg
 bmi
 bmr
 bmk
-bor
+ePH
 brN
 bmk
 brn
@@ -38870,7 +38862,7 @@ bmr
 bmq
 bmY
 bpl
-ePH
+bor
 bmg
 bmk
 brp
@@ -39087,7 +39079,7 @@ bom
 ekm
 boT
 bpm
-ePH
+bor
 bsM
 bmk
 bmk
@@ -39304,7 +39296,7 @@ boa
 ekm
 bmY
 bmi
-ePH
+bor
 bmg
 bmi
 bmi
