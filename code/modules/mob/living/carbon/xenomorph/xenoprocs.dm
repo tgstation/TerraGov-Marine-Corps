@@ -673,7 +673,7 @@
 	adjust_slowdown(amount * XENO_SLOWDOWN_REGEN)
 
 ///Eject the mob inside our belly, and putting it in a cocoon if needed
-/mob/living/carbon/xenomorph/proc/eject_victim(make_cocoon = FALSE)
+/mob/living/carbon/xenomorph/proc/eject_victim(make_cocoon = FALSE, turf/eject_location = loc)
 	if(!LAZYLEN(stomach_contents))
 		return
 	var/mob/living/carbon/victim = stomach_contents[1]
@@ -682,5 +682,5 @@
 		ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
 		new /obj/structure/cocoon(loc, hivenumber, victim)
 		return
-	victim.forceMove(loc)
+	victim.forceMove(eject_location)
 	REMOVE_TRAIT(victim, TRAIT_STASIS, TRAIT_STASIS)
