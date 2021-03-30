@@ -293,7 +293,7 @@
 
 //---CRUSHER END---//
 //============//
-//---BOILER START---//
+//---GORGER START---//
 
 /mob/living/carbon/xenomorph/gorger/mature
 	upgrade = XENO_UPGRADE_ONE
@@ -303,6 +303,10 @@
 
 /mob/living/carbon/xenomorph/gorger/ancient
 	upgrade = XENO_UPGRADE_THREE
+
+//---GORGER END---//
+//============//
+//---BOILER START---//
 
 /mob/living/carbon/xenomorph/boiler/mature
 	upgrade = XENO_UPGRADE_ONE
