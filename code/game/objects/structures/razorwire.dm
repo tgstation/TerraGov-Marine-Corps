@@ -56,8 +56,7 @@
 	var/armor_block = null
 	var/def_zone = ran_zone()
 	armor_block = M.run_armor_check(def_zone, "melee")
-	M.apply_damage(rand(RAZORWIRE_BASE_DAMAGE * 0.8, RAZORWIRE_BASE_DAMAGE * 1.2), BRUTE, def_zone, armor_block, TRUE)
-	UPDATEHEALTH(M)
+	M.apply_damage(RAZORWIRE_BASE_DAMAGE, BRUTE, def_zone, armor_block, TRUE, updating_health = TRUE)
 	razorwire_tangle(M)
 
 
@@ -96,8 +95,7 @@
 	playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, TRUE)
 	var/def_zone = ran_zone()
 	var/armor_block = entangled.run_armor_check(def_zone, "melee")
-	entangled.apply_damage(RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MIN_DAMAGE_MULT_MED, BRUTE, def_zone, armor_block, TRUE) //Apply damage as we tear free
-	UPDATEHEALTH(entangled)
+	entangled.apply_damage(RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MIN_DAMAGE_MULT_MED, BRUTE, def_zone, armor_block, TRUE, updating_health = TRUE) //Apply damage as we tear free
 	return TRUE
 
 
@@ -157,8 +155,7 @@
 
 		var/armor_block = null
 		var/def_zone = ran_zone()
-		M.apply_damage(rand(RAZORWIRE_BASE_DAMAGE * 0.8, RAZORWIRE_BASE_DAMAGE * 1.2), BRUTE, def_zone, armor_block, TRUE)
-		UPDATEHEALTH(M)
+		M.apply_damage(RAZORWIRE_BASE_DAMAGE, BRUTE, def_zone, armor_block, TRUE, updating_health = TRUE)
 		user.visible_message("<span class='danger'>[user] spartas [M]'s into [src]!</span>",
 		"<span class='danger'>You sparta [M]'s against [src]!</span>")
 		log_combat(user, M, "spartaed", "", "against \the [src]")
@@ -184,11 +181,13 @@
 	deconstruct(TRUE)
 	return TRUE
 
-/obj/structure/razorwire/attack_alien(mob/living/carbon/xenomorph/M)
-	M.apply_damage(rand(RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MAX_DAMAGE_MULT_LOW, RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MIN_DAMAGE_MULT_MED)) //About a third as damaging as actually entering
-	UPDATEHEALTH(M)
+/obj/structure/razorwire/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(X.status_flags & INCORPOREAL)
+		return FALSE
+
+	X.apply_damage(RAZORWIRE_BASE_DAMAGE * 0.7, updating_health = TRUE) //About a third as damaging as actually entering
 	update_icon()
-	SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_RAZORWIRE)
+	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_RAZORWIRE)
 	return ..()
 
 /obj/structure/razorwire/ex_act(severity)
@@ -204,7 +203,8 @@
 	update_icon()
 
 
-/obj/structure/razorwire/CanPass(atom/movable/mover, turf/target)
+/obj/structure/razorwire/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGRILLE))
 		return TRUE
 	if(mover.throwing && istype(mover,/obj/item))

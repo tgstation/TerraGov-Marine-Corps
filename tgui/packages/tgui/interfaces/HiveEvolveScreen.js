@@ -1,5 +1,5 @@
 import { useBackend } from '../backend';
-import { Button, Flex, Section, ProgressBar, Collapsible, LabeledList } from '../components';
+import { Button, Section, ProgressBar, Collapsible } from '../components';
 import { Window } from '../layouts';
 
 
@@ -59,7 +59,10 @@ export const HiveEvolveScreen = (props, context) => {
   const evolvesInto = Object.values(evolves_to);
 
   return (
-    <Window resizable>
+    <Window
+      title="Xenomorph Evolution"
+      width={400}
+      height={750}>
       <Window.Content scrollable>
         <Section title="Current Evolution">
           <CasteView

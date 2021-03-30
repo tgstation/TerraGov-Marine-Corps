@@ -86,6 +86,10 @@
 	icon = 'icons/Marine/casship.dmi'
 	icon_state = "15"
 
+/obj/effect/attach_point/weapon/minidropship
+	ship_tag = "minidropship"
+	icon_state = "equip_base"
+
 /obj/effect/attach_point/crew_weapon
 	name = "rear attach point"
 	base_category = DROPSHIP_CREW_WEAPON
@@ -96,6 +100,8 @@
 /obj/effect/attach_point/crew_weapon/dropship2
 	ship_tag = "normandy"
 
+/obj/effect/attach_point/crew_weapon/minidropship
+	ship_tag = "minidropship"
 
 /obj/effect/attach_point/electronics
 	name = "electronic system attach point"
@@ -161,6 +167,8 @@
 	var/screen_mode = 0
 	///how many points it costs to build this with the fabricator, set to 0 if unbuildable.
 	var/point_cost = 0
+	///what kind of ammo this uses if any
+	var/ammo_type_used
 
 /obj/structure/dropship_equipment/Destroy()
 	QDEL_NULL(ammo_equipped)
@@ -174,6 +182,7 @@
 		if(linked_console?.selected_equipment == src)
 			linked_console.selected_equipment = null
 		linked_console = null
+	ammo_type_used = null
 	return ..()
 
 /obj/structure/dropship_equipment/attackby(obj/item/I, mob/user, params)
@@ -186,7 +195,7 @@
 		if(((!dropship_equipment_flags & IS_NOT_REMOVABLE) && !ship_base) || !(dropship_equipment_flags & USES_AMMO) || ammo_equipped || !istype(clamp.loaded, /obj/structure/ship_ammo))
 			return FALSE
 		var/obj/structure/ship_ammo/clamp_ammo = clamp.loaded
-		if(istype(type, clamp_ammo.equipment_type))
+		if(istype(type, clamp_ammo.equipment_type) || clamp_ammo.ammo_type != ammo_type_used) //Incompatible ammo
 			to_chat(user, "<span class='warning'>[clamp_ammo] doesn't fit in [src].</span>")
 			return FALSE
 		playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
@@ -362,6 +371,8 @@
 /obj/structure/dropship_equipment/sentry_holder/proc/deploy_sentry()
 	if(!deployed_turret)
 		return
+	setDir(ship_base.dir)
+	deployed_turret.setDir(dir)
 	playsound(loc, 'sound/machines/hydraulics_1.ogg', 40, 1)
 	deployment_cooldown = world.time + 50
 	ENABLE_BITFIELD(deployed_turret.turret_flags, TURRET_ON)
@@ -642,49 +653,34 @@
 		ammo_equipped.ammo_count = max(ammo_equipped.ammo_count-ammo_equipped.ammo_used_per_firing, 0)
 	update_icon()
 
-/obj/structure/dropship_equipment/weapon/proc/open_fire(obj/selected_target)
-	set waitfor = 0
+/obj/structure/dropship_equipment/weapon/proc/open_fire(obj/selected_target, attackdir)
 	var/turf/target_turf = get_turf(selected_target)
 	if(firing_sound)
 		playsound(loc, firing_sound, 70, 1)
 	var/obj/structure/ship_ammo/SA = ammo_equipped //necessary because we nullify ammo_equipped when firing big rockets
-	var/ammo_max_inaccuracy = SA.max_inaccuracy
-	var/ammo_accuracy_range = SA.accuracy_range
-	var/ammo_travelling_time = SA.travelling_time //how long the rockets/bullets take to reach the ground target.
+	var/ammo_travelling_time = SA.travelling_time * ((GLOB.current_orbit+3)/6) //how long the rockets/bullets take to reach the ground target.
 	var/ammo_warn_sound = SA.warning_sound
 	deplete_ammo()
 	COOLDOWN_START(src, last_fired, firing_delay)
 	if(linked_shuttle)
 		for(var/obj/structure/dropship_equipment/electronics/targeting_system/TS in linked_shuttle.equipments)
-			ammo_accuracy_range = max(ammo_accuracy_range-2, 0) //targeting system increase accuracy and reduce travelling time.
-			ammo_max_inaccuracy = max(ammo_max_inaccuracy -3, 1)
-			ammo_travelling_time = max(ammo_travelling_time - 20, 10)
+			ammo_travelling_time = max(ammo_travelling_time - 2 SECONDS, 1 SECONDS) //targeting system reduces travelling time
 			break
 
-	if(ammo_travelling_time)
-		var/total_seconds = max(round(ammo_travelling_time/10),1)
-		for(var/i = 0 to total_seconds)
-			sleep(10)
-			if(!selected_target || !selected_target.loc)//if laser disappeared before we reached the target,
-				ammo_accuracy_range = min(ammo_accuracy_range + 1, ammo_max_inaccuracy) //accuracy decreases
-
-	var/list/possible_turfs = list()
-	for(var/turf/TU in range(ammo_accuracy_range, target_turf))
-		possible_turfs += TU
-	var/turf/impact = pick(possible_turfs)
 	if(ammo_warn_sound)
-		playsound(impact, ammo_warn_sound, 70, 1)
-	new /obj/effect/overlay/temp/blinking_laser (impact)
-	sleep(10)
-	SA.detonate_on(impact)
+		playsound(target_turf, ammo_warn_sound, 70, 1)
+	var/obj/effect/overlay/blinking_laser/laser = new (target_turf)
+	addtimer(CALLBACK(SA, /obj/structure/ship_ammo.proc/detonate_on, target_turf, attackdir), ammo_travelling_time)
+	addtimer(CALLBACK(GLOBAL_PROC, .proc/qdel, laser), ammo_travelling_time)
 
 /obj/structure/dropship_equipment/weapon/heavygun
 	name = "\improper GAU-21 30mm cannon"
 	desc = "A dismounted GAU-21 'Rattler' 30mm rotary cannon. It seems to be missing its feed links and has exposed connection wires. Capable of firing 5200 rounds a minute, feared by many for its power. Earned the nickname 'Rattler' from the vibrations it would cause on dropships in its inital production run."
 	icon_state = "30mm_cannon"
-	firing_sound = 'sound/effects/cannon30.ogg'
+	firing_sound = 'sound/weapons/gunship_chaingun.ogg'
 	point_cost = 400
 	dropship_equipment_flags = USES_AMMO|IS_WEAPON|IS_INTERACTABLE
+	ammo_type_used = CAS_30MM
 
 /obj/structure/dropship_equipment/weapon/heavygun/update_icon()
 	if(ammo_equipped)
@@ -707,9 +703,10 @@
 	name = "rocket pod"
 	icon_state = "rocket_pod"
 	desc = "A rocket pod weapon system capable of launching a single laser-guided rocket. Moving this will require some sort of lifter."
-	firing_sound = 'sound/weapons/guns/fire/flare_explode.ogg'
+	firing_sound = 'sound/weapons/gunship_rocket.ogg'
 	firing_delay = 5
 	point_cost = 600
+	ammo_type_used = CAS_MISSILE
 
 /obj/structure/dropship_equipment/weapon/rocket_pod/deplete_ammo()
 	ammo_equipped = null //nothing left to empty after firing
@@ -730,9 +727,10 @@
 	icon_state = "minirocket_pod"
 	desc = "A mini rocket pod capable of launching six laser-guided mini rockets. Moving this will require some sort of lifter."
 	icon = 'icons/Marine/mainship_props64.dmi'
-	firing_sound = 'sound/weapons/guns/fire/flare_explode.ogg'
+	firing_sound = 'sound/weapons/gunship_rocketpod.ogg'
 	firing_delay = 10 //1 seconds
 	point_cost = 600
+	ammo_type_used = CAS_MINI_ROCKET
 
 /obj/structure/dropship_equipment/weapon/minirocket_pod/update_icon()
 	if(ammo_equipped && ammo_equipped.ammo_count)
@@ -753,10 +751,11 @@
 	icon_state = "laser_beam"
 	desc = "State of the art technology recently acquired by the TGMC, it fires a battery-fed pulsed laser beam at near lightspeed setting on fire everything it touches. Moving this will require some sort of lifter."
 	icon = 'icons/Marine/mainship_props64.dmi'
-	firing_sound = 'sound/effects/phasein.ogg'
+	firing_sound = 'sound/weapons/gunship_laser.ogg'
 	firing_delay = 50 //5 seconds
 	point_cost = 500
 	dropship_equipment_flags = USES_AMMO|IS_WEAPON|IS_INTERACTABLE
+	ammo_type_used = CAS_LASER_BATTERY
 
 /obj/structure/dropship_equipment/weapon/laser_beam_gun/update_icon()
 	if(ammo_equipped && ammo_equipped.ammo_count)
@@ -774,7 +773,7 @@
 	icon_state = "launch_bay"
 	desc = "A launch bay to drop special ordnance. Fits inside the dropship's crew weapon emplacement. Moving this will require some sort of lifter."
 	icon = 'icons/Marine/mainship_props.dmi'
-	firing_sound = 'sound/weapons/guns/fire/flare_explode.ogg'
+	firing_sound = 'sound/weapons/guns/fire/gunshot.ogg'
 	firing_delay = 10 //1 seconds
 	equip_category = DROPSHIP_CREW_WEAPON //fits inside the central spot of the dropship
 	point_cost = 0
@@ -799,14 +798,17 @@
 	equip_category = DROPSHIP_CREW_WEAPON
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "table2-idle"
-	point_cost = 300
+	point_cost = 100
 	var/obj/machinery/optable/deployed_table
 
 /obj/structure/dropship_equipment/operatingtable/Initialize()
 	. = ..()
 	if(!deployed_table)
 		deployed_table = new(src)
-		RegisterSignal(deployed_table, COMSIG_PARENT_ATTACKBY, /atom/.proc/attackby)//if something (like a powerloader) clicks on the deployed thing relay it
+		RegisterSignal(deployed_table, COMSIG_PARENT_ATTACKBY, .proc/attackby_wrapper)//if something (like a powerloader) clicks on the deployed thing relay it
+
+/obj/structure/dropship_equipment/operatingtable/proc/attackby_wrapper(datum/source, obj/item/I, mob/user, params)
+	attackby(I, user, params)
 
 /obj/structure/dropship_equipment/operatingtable/examine(mob/user)
 	. = ..()
@@ -889,7 +891,7 @@
 		to_chat(user, "<span class='warning'>No active medevac stretcher detected.</span>")
 		return
 
-	var/stretcher_choice = input("Which emitting stretcher would you like to link with?", "Available stretchers") as null|anything in possible_stretchers
+	var/stretcher_choice = tgui_input_list(user, "Which emitting stretcher would you like to link with?", "Available stretchers", possible_stretchers)
 	if(!stretcher_choice)
 		return
 

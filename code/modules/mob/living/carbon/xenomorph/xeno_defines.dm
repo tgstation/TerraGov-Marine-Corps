@@ -37,6 +37,7 @@
 
 	// *** Speed *** //
 	var/speed = 1
+	var/weeds_speed_mod = -0.4
 
 	// *** Regeneration Delay ***//
 	///Time after you take damage before a xenomorph can regen.
@@ -106,14 +107,26 @@
 	///amount of time between pounce ability uses
 	var/pounce_delay = 4 SECONDS
 
+	// *** Acid spray *** //
 	///Number of tiles of the acid spray cone extends outward to. Not recommended to go beyond 4.
 	var/acid_spray_range = 0
+	///How long the acid spray stays on floor before it deletes itself, should be higher than 0 to avoid runtimes with timers.
+	var/acid_spray_duration = 1
+	///The damage acid spray causes on hit.
+	var/acid_spray_damage_on_hit = 0
+	///The damage acid spray causes over time.
+	var/acid_spray_damage = 0
+	///The damage acid spray causes to structure.
+	var/acid_spray_structure_damage = 0
 
 	// *** Pheromones *** //
 	///The strength of our aura. Zero means we can't emit one
 	var/aura_strength = 0
 	///The 'types' of pheremones a xenomorph caste can emit.
 	var/aura_allowed = list("frenzy", "warding", "recovery") //"Evolving" removed for the time being
+
+	// *** Defiler Abilities *** //
+	var/list/available_reagents_define = list() //reagents available for select reagent
 
 	// *** Warrior Abilities *** //
 	///speed increase afforded to the warrior caste when in 'agiility' mode. negative number means faster movement.
@@ -145,9 +158,30 @@
 	///amount of slowdown to apply when the crest defense is active. trading defense for speed. Positive numbers makes it slower.
 	var/crest_defense_slowdown = 0
 
+	// *** Crusher Abilities *** //
+	///The damage the stomp causes, counts armor
+	var/stomp_damage = 0
+	///How many tiles the Crest toss ability throws the victim.
+	var/crest_toss_distance = 0
+
 	// *** Queen Abilities *** //
 	///Amount of leaders allowed
 	var/queen_leader_limit = 0
+
+	// *** Wraith Abilities *** //
+	//Banish - Values for the Wraith's Banish ability
+	///Base duration of Banish before modifiers
+	var/wraith_banish_base_duration = WRAITH_BANISH_BASE_DURATION
+	///Base range of Banish
+	var/wraith_banish_range = WRAITH_BANISH_RANGE
+
+	//Blink - Values for the Wraith's Blink ability
+	///Cooldown multiplier of Blink when used on non-friendlies
+	var/wraith_blink_drag_nonfriendly_living_multiplier = WRAITH_BLINK_DRAG_NONFRIENDLY_MULTIPLIER
+	///Cooldown multiplier of Blink when used on friendlies
+	var/wraith_blink_drag_friendly_multiplier = WRAITH_BLINK_DRAG_FRIENDLY_MULTIPLIER
+	///Base range of Blink
+	var/wraith_blink_range = WRAITH_BLINK_RANGE
 
 	///the 'abilities' available to a caste.
 	var/list/actions
@@ -171,6 +205,7 @@
 	see_in_dark = 8
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	sight = SEE_SELF|SEE_OBJS|SEE_TURFS|SEE_MOBS
+	appearance_flags = TILE_BOUND|PIXEL_SCALE|KEEP_TOGETHER
 	see_infrared = TRUE
 	hud_type = /datum/hud/alien
 	hud_possible = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD, ARMOR_SUNDER_HUD)
@@ -178,6 +213,7 @@
 	faction = FACTION_XENO
 	initial_language_holder = /datum/language_holder/xeno
 	gib_chance = 5
+	light_system = MOVABLE_LIGHT
 
 	var/hivenumber = XENO_HIVE_NORMAL
 
@@ -198,7 +234,6 @@
 	var/time_of_birth
 
 	var/list/stomach_contents
-	var/devour_timer = 0
 
 	var/evolution_stored = 0 //How much evolution they have stored
 
@@ -235,6 +270,7 @@
 	var/list/datum/action/xeno_abilities = list()
 	var/datum/action/xeno_action/activable/selected_ability
 	var/selected_resin = /obj/structure/bed/nest //which resin structure to build when we secrete resin
+	var/selected_reagent = /datum/reagent/toxin/xeno_hemodile //which reagent to slash with using reagent slash
 
 	//Naming variables
 	var/nicknumber = 0 //The number/name after the xeno type. Saved right here so it transfers between castes.
@@ -287,3 +323,8 @@
 	var/notice_delay = 20 //2 second between notices
 
 	var/fire_luminosity = 0 //Luminosity of the current fire while burning
+
+	///The xenos/silo currently tracked by the xeno_tracker arrow
+	var/tracked
+
+	COOLDOWN_DECLARE(xeno_health_alert_cooldown)

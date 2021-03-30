@@ -1,7 +1,7 @@
-#define NEST_RESIST_TIME 1 MINUTES
+#define NEST_RESIST_TIME 2.5 SECONDS
 #define NEST_UNBUCKLED_COOLDOWN 5 SECONDS
 
-//Alium nests. Essentially beds with an unbuckle delay that only aliums can buckle mobs to.
+///Alium nests. Essentially beds with an unbuckle delay that only aliums can buckle mobs to.
 /obj/structure/bed/nest
 	name = "alien nest"
 	desc = "It's a gruesome pile of thick, sticky resin shaped like a nest."
@@ -12,7 +12,6 @@
 	buildstacktype = null //can't be disassembled and doesn't drop anything when destroyed
 	resistance_flags = UNACIDABLE|XENO_DAMAGEABLE
 	max_integrity = 100
-	var/on_fire = 0
 	var/resisting_time = 0
 	layer = RESIN_STRUCTURE_LAYER
 
@@ -33,7 +32,7 @@
 		M.forceMove(loc)
 
 
-/obj/structure/bed/nest/attack_alien(mob/living/carbon/xenomorph/X)
+/obj/structure/bed/nest/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(X.a_intent != INTENT_HARM)
 		return attack_hand(X)
 	return ..()
@@ -60,7 +59,7 @@
 	user.visible_message("<span class='warning'>[user] pins [buckling_mob] into [src], preparing the securing resin.</span>",
 	"<span class='warning'>[user] pins [buckling_mob] into [src], preparing the securing resin.</span>")
 
-	if(!do_mob(user, buckling_mob, 1.5 SECONDS, BUSY_ICON_HOSTILE))
+	if(!do_mob(user, buckling_mob, 1 SECONDS, BUSY_ICON_HOSTILE))
 		return FALSE
 	if(QDELETED(src))
 		return FALSE
@@ -133,12 +132,10 @@
 	DISABLE_BITFIELD(buckled_mob.restrained_flags, RESTRAINED_XENO_NEST)
 
 
-/obj/structure/bed/nest/update_icon()
-	overlays.Cut()
-	if(on_fire)
-		overlays += "alien_fire"
+/obj/structure/bed/nest/update_overlays()
+	. = ..()
 	if(LAZYLEN(buckled_mobs))
-		overlays += image("icon_state" = "nest_overlay", "layer" = LYING_MOB_LAYER + 0.1)
+		. += image("icon_state" = "nest_overlay", "layer" = LYING_MOB_LAYER + 0.1)
 
 
 /obj/structure/bed/nest/flamer_fire_act()
@@ -147,8 +144,8 @@
 /obj/structure/bed/nest/fire_act()
 	take_damage(50, BURN, "fire")
 
-/obj/structure/bed/nest/attack_alien(mob/living/carbon/xenomorph/M)
-	SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_NEST)
+/obj/structure/bed/nest/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_NEST)
 	return ..()
 
 

@@ -103,13 +103,6 @@
 					continue
 				statpanel(listed_turf.name, null, A)
 
-
-/mob/proc/prepare_huds()
-	hud_list = new
-	for(var/hud in hud_possible) //Providing huds.
-		hud_list[hud] = image('icons/mob/hud.dmi', src, "")
-
-
 /mob/proc/show_message(msg, type, alt_msg, alt_type)
 	if(!client)
 		return
@@ -274,10 +267,10 @@
 //This is a SAFE proc. Use this instead of equip_to_splot()!
 //set del_on_fail to have it delete W if it fails to equip
 //unset redraw_mob to prevent the mob from being redrawn at the end.
-/mob/proc/equip_to_slot_if_possible(obj/item/W, slot, ignore_delay = TRUE, del_on_fail = FALSE, warning = TRUE, redraw_mob = TRUE, permanent = FALSE)
+/mob/proc/equip_to_slot_if_possible(obj/item/W, slot, ignore_delay = TRUE, del_on_fail = FALSE, warning = TRUE, redraw_mob = TRUE, permanent = FALSE, override_nodrop = FALSE)
 	if(!istype(W))
 		return FALSE
-	if(!W.mob_can_equip(src, slot, warning))
+	if(!W.mob_can_equip(src, slot, warning, override_nodrop))
 		if(del_on_fail)
 			qdel(W)
 			return FALSE
@@ -291,9 +284,7 @@
 		equip_to_slot(W, slot, redraw_mob) //This proc should not ever fail.
 		if(permanent)
 			W.flags_item |= NODROP
-			//This will unzoom and unwield items -without- triggering lights.
-		if(W.zoom)
-			W.zoom(src)
+			//This will unwield items -without- triggering lights.
 		if(CHECK_BITFIELD(W.flags_item, TWOHANDED))
 			W.unwield(src)
 		return TRUE
@@ -301,9 +292,7 @@
 		equip_to_slot(W, slot, redraw_mob) //This proc should not ever fail.
 		if(permanent)
 			W.flags_item |= NODROP
-		//This will unzoom and unwield items -without- triggering lights.
-		if(W.zoom)
-			W.zoom(src)
+		//This will unwield items -without- triggering lights.
 		if(CHECK_BITFIELD(W.flags_item, TWOHANDED))
 			W.unwield(src)
 		return TRUE
@@ -313,9 +302,9 @@
 /mob/proc/equip_to_slot(obj/item/W as obj, slot)
 	return
 
-//This is just a commonly used configuration for the equip_to_slot_if_possible() proc, used to equip people when the rounds starts and when events happen and such.
-/mob/proc/equip_to_slot_or_del(obj/item/W, slot, permanent = FALSE)
-	return equip_to_slot_if_possible(W, slot, TRUE, TRUE, FALSE, FALSE, permanent)
+///This is just a commonly used configuration for the equip_to_slot_if_possible() proc, used to equip people when the rounds starts and when events happen and such.
+/mob/proc/equip_to_slot_or_del(obj/item/W, slot, permanent = FALSE, override_nodrop = FALSE)
+	return equip_to_slot_if_possible(W, slot, TRUE, TRUE, FALSE, FALSE, permanent, override_nodrop)
 
 
 /mob/proc/equip_to_appropriate_slot(obj/item/W, ignore_delay = TRUE)
@@ -437,10 +426,10 @@
 
 
 /**
-  * Handle the result of a click drag onto this mob
-  *
-  * For mobs this just shows the inventory
-  */
+ * Handle the result of a click drag onto this mob
+ *
+ * For mobs this just shows the inventory
+ */
 /mob/MouseDrop_T(atom/dropping, atom/user)
 	. = ..()
 	if(.)
@@ -458,7 +447,7 @@
 
 
 /mob/living/start_pulling(atom/movable/AM, suppress_message = FALSE)
-	if(QDELETED(AM) || QDELETED(usr) || src == AM || !isturf(loc) || !Adjacent(AM))	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
+	if(QDELETED(AM) || QDELETED(usr) || src == AM || !isturf(loc) || !Adjacent(AM) || status_flags & INCORPOREAL)	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
 		return FALSE
 
 	if(!AM.can_be_pulled(src))
@@ -536,12 +525,12 @@
 	return TRUE
 
 /**
-  * Buckle to another mob
-  *
-  * You can buckle on mobs if you're next to them since most are dense
-  *
-  * Turns you to face the other mob too
-  */
+ * Buckle to another mob
+ *
+ * You can buckle on mobs if you're next to them since most are dense
+ *
+ * Turns you to face the other mob too
+ */
 /mob/buckle_mob(mob/living/buckling_mob, force = FALSE, check_loc = TRUE, lying_buckle = FALSE, hands_needed = 0, target_hands_needed = 0, silent)
 	if(buckling_mob.buckled)
 		return FALSE
@@ -602,11 +591,11 @@
 
 
 /proc/is_species(A, species_datum)
-	. = FALSE
 	if(ishuman(A))
 		var/mob/living/carbon/human/H = A
 		if(istype(H.species, species_datum))
-			. = TRUE
+			return TRUE
+	return FALSE
 
 /mob/proc/get_species()
 	return ""
@@ -802,16 +791,6 @@
 	return TRUE
 
 
-/mob/Moved(atom/oldloc, direction)
-	if(client && (client.view != WORLD_VIEW || client.pixel_x || client.pixel_y))
-		for(var/obj/item/item in contents)
-			if(item.zoom)
-				item.zoom(src)
-				click_intercept = null
-				break
-	return ..()
-
-
 /mob/proc/update_joined_player_list(newname, oldname)
 	if(newname == oldname)
 		return
@@ -883,7 +862,7 @@
 	if(grab_state == GRAB_PASSIVE)
 		remove_movespeed_modifier(MOVESPEED_ID_MOB_GRAB_STATE)
 	else if(. == GRAB_PASSIVE)
-		add_movespeed_modifier(MOVESPEED_ID_MOB_GRAB_STATE, TRUE, 100, NONE, TRUE, grab_state * 3)
+		add_movespeed_modifier(MOVESPEED_ID_MOB_GRAB_STATE, TRUE, 100, NONE, TRUE, BASE_GRAB_SLOWDOWN) //We cap this at 3 so we don't get utterly insane slowdowns for neck and other grabs.
 
 /mob/set_throwing(new_throwing)
 	. = ..()

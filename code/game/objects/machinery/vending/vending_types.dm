@@ -153,6 +153,7 @@
 	icon_state = "cigs"
 	products = list(
 		/obj/item/storage/fancy/cigarettes/luckystars = 50,
+		/obj/item/storage/fancy/chemrettes = 30,
 		/obj/item/storage/box/matches = 15,
 		/obj/item/tool/lighter/random = 25,
 		/obj/item/tool/lighter/zippo = 10,
@@ -197,8 +198,9 @@
 		/obj/item/clothing/glasses/hud/health = 2,
 		/obj/item/storage/belt/medical = 2,
 		/obj/item/defibrillator = 2,
-		/obj/item/reagent_containers/hypospray/autoinjector/quickclot = 5,
+		/obj/item/reagent_containers/hypospray/autoinjector/quickclotplus = 5,
 		/obj/item/reagent_containers/hypospray/autoinjector/dexalinplus = 5,
+		/obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus = 5,
 		/obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin =3,
 		/obj/item/reagent_containers/hypospray/autoinjector/inaprovaline = 5,
 		/obj/item/reagent_containers/hypospray/autoinjector/hypervene = 5,

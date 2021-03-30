@@ -39,34 +39,35 @@
 	var/list/content_watchers = list() //list of mobs currently seeing the storage's contents
 
 /obj/item/storage/MouseDrop(obj/over_object as obj)
-	if(ishuman(usr) || ismonkey(usr)) //so monkeys can take off their backpacks -- Urist
+	if(!ishuman(usr))
+		return
 
-		if(usr.lying_angle)
-			return
+	if(usr.lying_angle)
+		return
 
-		if(istype(usr.loc, /obj/vehicle/multitile/root/cm_armored)) // stops inventory actions in a mech/tank
-			return
+	if(istype(usr.loc, /obj/vehicle/multitile/root/cm_armored)) // stops inventory actions in a mech/tank
+		return
 
-		if(over_object == usr && Adjacent(usr)) // this must come before the screen objects only block
-			open(usr)
-			return
+	if(over_object == usr && Adjacent(usr)) // this must come before the screen objects only block
+		open(usr)
+		return
 
-		if(!istype(over_object, /obj/screen))
-			return ..()
+	if(!istype(over_object, /obj/screen))
+		return ..()
 
-		//Makes sure that the storage is equipped, so that we can't drag it into our hand from miles away.
-		//There's got to be a better way of doing this.
-		if(loc != usr || (loc && loc.loc == usr))
-			return
+	//Makes sure that the storage is equipped, so that we can't drag it into our hand from miles away.
+	//There's got to be a better way of doing this.
+	if(loc != usr || (loc && loc.loc == usr))
+		return
 
-		if(!usr.restrained() && !usr.stat)
-			switch(over_object.name)
-				if("r_hand")
-					usr.dropItemToGround(src)
-					usr.put_in_r_hand(src)
-				if("l_hand")
-					usr.dropItemToGround(src)
-					usr.put_in_l_hand(src)
+	if(!usr.restrained() && !usr.stat)
+		switch(over_object.name)
+			if("r_hand")
+				usr.dropItemToGround(src)
+				usr.put_in_r_hand(src)
+			if("l_hand")
+				usr.dropItemToGround(src)
+				usr.put_in_l_hand(src)
 
 /obj/item/storage/proc/return_inv()
 
@@ -107,7 +108,7 @@
 
 	user.s_active = src
 	content_watchers |= user
-	return
+
 
 /obj/item/storage/proc/hide_from(mob/user as mob)
 
@@ -122,7 +123,7 @@
 	if(user.s_active == src)
 		user.s_active = null
 	content_watchers -= user
-	return
+
 
 /obj/item/storage/proc/can_see_content()
 	var/list/lookers = list()
@@ -248,8 +249,8 @@
 		O.layer = ABOVE_HUD_LAYER
 		O.plane = ABOVE_HUD_PLANE
 
-	src.closer.screen_loc = "4:[storage_width+19],2:16"
-	return
+	closer.screen_loc = "4:[storage_width+19],2:16"
+
 
 
 /obj/screen/storage/Click(location, control, params)
@@ -328,7 +329,6 @@
 		if (adjusted_contents > 7)
 			row_num = round((adjusted_contents-1) / 7) // 7 is the maximum allowed width.
 		slot_orient_objs(row_num, col_count, numbered_contents)
-	return
 
 //This proc return 1 if the item can be picked up and 0 if it can't.
 //Set the warning to stop it from printing messages

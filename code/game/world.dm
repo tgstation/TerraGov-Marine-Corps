@@ -8,13 +8,15 @@ GLOBAL_VAR(restart_counter)
 //This happens after the Master subsystem new(s) (it's a global datum)
 //So subsystems globals exist, but are not initialised
 /world/New()
-	var/extools = world.GetConfig("env", "EXTOOLS_DLL") || "./byond-extools.dll"
+#ifdef USE_EXTOOLS
+	var/extools = world.GetConfig("env", "EXTOOLS_DLL") || (world.system_type == MS_WINDOWS ? "./byond-extools.dll" : "./libbyond-extools.so")
 	if(fexists(extools))
 		call(extools, "maptick_initialize")()
-	enable_debugger()
 #ifdef REFERENCE_TRACKING
 	enable_reference_tracking()
 #endif
+#endif
+	enable_debugger()
 
 	log_world("World loaded at [time_stamp()]!")
 
@@ -37,6 +39,7 @@ GLOBAL_VAR(restart_counter)
 	SSdbcore.CheckSchemaVersion()
 	SSdbcore.SetRoundID()
 	SetupLogs()
+	load_poll_data()
 
 	LoadVerbs(/datum/verbs/menu)
 	if(CONFIG_GET(flag/usewhitelist))
@@ -60,7 +63,7 @@ GLOBAL_VAR(restart_counter)
 
 	update_status()
 
-	world.tick_lag = CONFIG_GET(number/ticklag)
+	change_tick_lag(CONFIG_GET(number/ticklag))
 
 	#ifdef UNIT_TESTS
 	HandleTestRun()
@@ -79,7 +82,7 @@ GLOBAL_VAR(restart_counter)
 #else
 	cb = VARSET_CALLBACK(SSticker, force_ending, TRUE)
 #endif
-	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, /proc/addtimer, cb, 10 SECONDS))
+	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, /proc/_addtimer, cb, 10 SECONDS))
 
 /world/proc/SetupLogs()
 	var/override_dir = params[OVERRIDE_LOG_DIRECTORY_PARAMETER]
@@ -335,7 +338,6 @@ GLOBAL_VAR(restart_counter)
 	else
 		hub_password = "SORRYNOPASSWORD"
 
-
 /world/proc/change_fps(new_value = 20)
 	if(new_value <= 0)
 		CRASH("change_fps() called with [new_value] new_value.")
@@ -343,8 +345,23 @@ GLOBAL_VAR(restart_counter)
 		return //No change required.
 
 	fps = new_value
+	on_tickrate_change()
 
+
+/world/proc/change_tick_lag(new_value = 0.5)
+	if(new_value <= 0)
+		CRASH("change_tick_lag() called with [new_value] new_value.")
+	if(tick_lag == new_value)
+		return //No change required.
+
+	tick_lag = new_value
+	on_tickrate_change()
+
+
+/world/proc/on_tickrate_change()
 	SStimer?.reset_buckets()
+	SSrunechat?.reset_buckets()
+	SSautomatedfire?.reset_buckets()
 
 #undef MAX_TOPIC_LEN
 #undef TOPIC_BANNED

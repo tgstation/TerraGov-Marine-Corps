@@ -16,7 +16,7 @@
 	buckle_lying = 90
 	throwpass = TRUE
 	resistance_flags = XENO_DAMAGEABLE
-	max_integrity = 100
+	max_integrity = 40
 	resistance_flags = XENO_DAMAGEABLE
 	hit_sound = 'sound/effects/metalhit.ogg'
 	var/buildstacktype = /obj/item/stack/sheet/metal
@@ -56,6 +56,10 @@ obj/structure/bed/Destroy()
 		density = FALSE
 	update_icon()
 
+	if(isliving(buckled_mob)) //Properly update whether we're lying or not
+		var/mob/living/unbuckled_target = buckled_mob
+		if(HAS_TRAIT(unbuckled_target, TRAIT_FLOORED))
+			unbuckled_target.set_lying_angle(pick(90, 270))
 
 //Unsafe proc
 /obj/structure/bed/proc/buckle_bodybag(obj/structure/closet/bodybag/B, mob/user)
@@ -111,10 +115,10 @@ obj/structure/bed/Destroy()
 	forceMove(buckled_bodybag.loc)
 	return FALSE
 
-/obj/structure/bed/roller/CanPass(atom/movable/mover, turf/target)
+/obj/structure/bed/roller/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(mover == buckled_bodybag)
 		return TRUE
-	return ..()
 
 /obj/structure/bed/MouseDrop_T(atom/dropping, mob/user)
 	if(accepts_bodybag && !buckled_bodybag && !LAZYLEN(buckled_mobs) && istype(dropping,/obj/structure/closet/bodybag) && ishuman(user))
@@ -162,8 +166,8 @@ obj/structure/bed/Destroy()
 					new buildstacktype (loc, buildstackamount)
 				qdel(src)
 
-/obj/structure/bed/attack_alien(mob/living/carbon/xenomorph/M)
-	SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_BED)
+/obj/structure/bed/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_BED)
 	return ..()
 
 /obj/structure/bed/attackby(obj/item/I, mob/user, params)
@@ -188,10 +192,10 @@ obj/structure/bed/Destroy()
 		return TRUE
 
 
-/obj/structure/bed/CanPass(atom/movable/mover, turf/target)
+/obj/structure/bed/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
 		return TRUE
-	. = ..()
 
 /obj/structure/bed/alien
 	icon_state = "abed"
@@ -317,11 +321,13 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	. = ..()
 	radio = new(src)
 
-/obj/structure/bed/medevac_stretcher/attack_alien(mob/living/carbon/xenomorph/xeno_attacker)
+/obj/structure/bed/medevac_stretcher/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(X.status_flags & INCORPOREAL)
+		return FALSE
 	if(buckled_bodybag)
 		unbuckle_bodybag()
 	for(var/m in buckled_mobs)
-		user_unbuckle_mob(m, xeno_attacker, TRUE)
+		user_unbuckle_mob(m, X, TRUE)
 
 /obj/structure/bed/medevac_stretcher/Destroy()
 	QDEL_NULL(radio)
@@ -445,6 +451,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 
 
 /obj/structure/bed/medevac_stretcher/proc/medevac_teleport(mob/user)
+	UnregisterSignal(src, COMSIG_MOVABLE_UNBUCKLE)
 	if(!linked_beacon || !linked_beacon.check_power() || !linked_beacon.planted) //Beacon has to be planted in a powered area.
 		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
 		visible_message("<span class='warning'>[src]'s safeties kick in before displacement as it fails to detect a powered, linked, and planted medvac beacon.</span>")
@@ -463,7 +470,6 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 		visible_message("<span class='warning'>[src]'s bluespace engine aborts displacement, being unable to detect an appropriate evacuee.</span>")
 		return
 
-	UnregisterSignal(src, COMSIG_MOVABLE_UNBUCKLE)
 	visible_message("<span class='notice'><b>[M] vanishes in a flash of sparks as [src]'s bluespace engine generates its displacement field.</b></span>")
 	if(buckled_bodybag)
 		var/obj/structure/closet/bodybag/teleported_bodybag = buckled_bodybag

@@ -115,29 +115,32 @@
 		return ..()
 	return FALSE
 
-/obj/machinery/door/firedoor/attack_alien(mob/living/carbon/xenomorph/M)
-	var/turf/cur_loc = M.loc
+/obj/machinery/door/firedoor/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(X.status_flags & INCORPOREAL)
+		return FALSE
+
+	var/turf/cur_loc = X.loc
 	if(blocked)
-		to_chat(M, "<span class='warning'>\The [src] is welded shut.</span>")
+		to_chat(X, "<span class='warning'>\The [src] is welded shut.</span>")
 		return FALSE
 	if(!istype(cur_loc))
 		return FALSE //Some basic logic here
 	if(!density)
-		to_chat(M, "<span class='warning'>\The [src] is already open!</span>")
+		to_chat(X, "<span class='warning'>\The [src] is already open!</span>")
 		return FALSE
 
-	playsound(src.loc, 'sound/effects/metal_creaking.ogg', 25, 1)
-	M.visible_message("<span class='warning'>\The [M] digs into \the [src] and begins to pry it open.</span>", \
+	playsound(loc, 'sound/effects/metal_creaking.ogg', 25, 1)
+	X.visible_message("<span class='warning'>\The [X] digs into \the [src] and begins to pry it open.</span>", \
 	"<span class='warning'>We dig into \the [src] and begin to pry it open.</span>", null, 5)
 
-	if(do_after(M, 30, FALSE, src, BUSY_ICON_BUILD))
+	if(do_after(X, 30, FALSE, src, BUSY_ICON_BUILD))
 		if(blocked)
-			to_chat(M, "<span class='warning'>\The [src] is welded shut.</span>")
+			to_chat(X, "<span class='warning'>\The [src] is welded shut.</span>")
 			return FALSE
 		if(density) //Make sure it's still closed
 			spawn(0)
 				open(1)
-				M.visible_message("<span class='danger'>\The [M] pries \the [src] open.</span>", \
+				X.visible_message("<span class='danger'>\The [X] pries \the [src] open.</span>", \
 				"<span class='danger'>We pry \the [src] open.</span>", null, 5)
 
 /obj/machinery/door/firedoor/attack_hand(mob/living/user)
@@ -156,9 +159,9 @@
 		if(A.flags_alarm_state & ALARM_WARNING_FIRE || A.air_doors_activated)
 			alarmed = TRUE
 
-	var/answer = alert(user, "Would you like to [density ? "open" : "close"] this [src.name]?[ alarmed && density ? "\nNote that by doing so, you acknowledge any damages from opening this\n[src.name] as being your own fault, and you will be held accountable under the law." : ""]",\
-	"\The [src]", "Yes, [density ? "open" : "close"]", "No")
-	if(answer == "No")
+	var/answer = tgui_alert(user, "Would you like to [density ? "open" : "close"] this [src.name]?[ alarmed && density ? "\nNote that by doing so, you acknowledge any damages from opening this\n[src.name] as being your own fault, and you will be held accountable under the law." : ""]",\
+	"\The [src]", list("Yes, [density ? "open" : "close"]", "No"))
+	if(answer == "No" || !answer)
 		return
 	if(user.incapacitated() || (!user.canmove && !isAI(user)) || (get_dist(src, user) > 1  && !isAI(user)))
 		to_chat(user, "Sorry, you must remain able bodied and close to \the [src] in order to use it.")
@@ -181,9 +184,9 @@
 			// Accountability!
 			users_to_open |= user.name
 			needs_to_close = TRUE
-		INVOKE_ASYNC(src, .proc/open)
+		open()
 	else
-		INVOKE_ASYNC(src, .proc/close)
+		close()
 
 	if(needs_to_close)
 		spawn(50)
@@ -253,7 +256,6 @@
 		if(FIREDOOR_CLOSED)
 			nextstate = null
 			close()
-	return
 
 /obj/machinery/door/firedoor/close()
 	latetoggle()
@@ -275,7 +277,6 @@
 		if("closing")
 			flick("door_closing", src)
 	playsound(loc, 'sound/machines/emergency_shutter.ogg', 25)
-	return
 
 
 /obj/machinery/door/firedoor/update_icon()
@@ -296,7 +297,6 @@
 		icon_state = "door_open"
 		if(blocked)
 			overlays += "welded_open"
-	return
 
 
 /obj/machinery/door/firedoor/mainship
@@ -323,19 +323,14 @@
 	density = TRUE
 
 
-/obj/machinery/door/firedoor/border_only/CanPass(atom/movable/mover, turf/target)
+/obj/machinery/door/firedoor/border_only/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
-		return TRUE
-	if(get_dir(loc, target) == dir) //Make sure looking at appropriate border
-		return !density
-	else
 		return TRUE
 
 
-/obj/machinery/door/firedoor/border_only/CheckExit(atom/movable/mover as mob|obj, turf/target)
+/obj/machinery/door/firedoor/border_only/CheckExit(atom/movable/mover, turf/target)
+	. = ..()
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
 		return TRUE
-	if(get_dir(loc, target) == dir)
-		return !density
-	else
-		return TRUE
+

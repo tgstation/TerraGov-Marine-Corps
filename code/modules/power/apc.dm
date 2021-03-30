@@ -76,9 +76,6 @@
 	var/global/list/status_overlays_environ
 	var/obj/item/circuitboard/apc/electronics = null
 
-	ui_x = 450
-	ui_y = 460
-
 /obj/machinery/power/apc/connect_to_network()
 	//Override because the APC does not directly connect to the network; it goes through a terminal.
 	//The terminal is what the power computer looks for anyway.
@@ -312,11 +309,16 @@
 /obj/machinery/power/apc/proc/queue_icon_update()
 	updating_icon = TRUE
 
-/obj/machinery/power/apc/attack_alien(mob/living/carbon/xenomorph/M)
-	M.do_attack_animation(src, ATTACK_EFFECT_CLAW)
-	M.visible_message("<span class='danger'>[M] slashes \the [src]!</span>", \
-	"<span class='danger'>We slash \the [src]!</span>", null, 5)
-	playsound(loc, "alien_claw_metal", 25, 1)
+/obj/machinery/power/apc/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(X.status_flags & INCORPOREAL)
+		return FALSE
+
+	if(effects)
+		X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
+		X.visible_message("<span class='danger'>[X] slashes \the [src]!</span>", \
+		"<span class='danger'>We slash \the [src]!</span>", null, 5)
+		playsound(loc, "alien_claw_metal", 25, 1)
+
 	var/allcut = wires.is_all_cut()
 
 	if(beenhit >= pick(3, 4) && !CHECK_BITFIELD(machine_stat, PANEL_OPEN))
@@ -677,12 +679,11 @@
 
 
 
-/obj/machinery/power/apc/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/power/apc/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 
 	if(!ui)
-		ui = new(user, src, ui_key, "Apc", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, "Apc", name)
 		ui.open()
 
 /obj/machinery/power/apc/ui_data(mob/user)
@@ -750,8 +751,9 @@
 		return FALSE
 	return TRUE
 
-/obj/machinery/power/apc/ui_act(action, params)
-	if(..() || !can_use(usr, TRUE) || locked)
+/obj/machinery/power/apc/ui_act(action, list/params)
+	. = ..()
+	if(. || !can_use(usr, TRUE) || (locked && !usr.has_unlimited_silicon_privilege))
 		return
 	switch(action)
 		if("lock")
@@ -1066,7 +1068,6 @@
 /obj/machinery/power/apc/proc/break_lights()
 	for(var/obj/machinery/light/L in get_area(src))
 		L.broken()
-		L.on = FALSE
 		stoplag()
 
 

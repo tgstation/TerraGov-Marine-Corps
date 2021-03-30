@@ -14,6 +14,7 @@
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "riot"
 	max_integrity = 200
+	flags_item = IMPEDE_JETPACK
 	flags_equip_slot = ITEM_SLOT_BACK
 	force = 5
 	throwforce = 5
@@ -69,7 +70,7 @@
 
 
 /obj/item/weapon/shield/riot/welder_act(mob/living/user, obj/item/I)
-	if(user.action_busy)
+	if(user.do_actions)
 		return FALSE
 
 	var/obj/item/tool/weldingtool/WT = I
@@ -133,7 +134,7 @@
 	flags_equip_slot = ITEM_SLOT_BACK
 	max_integrity = 300
 	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 0, "energy" = 100, "bomb" = 30, "bio" = 100, "rad" = 100, "fire" = 0, "acid" = 35)
-	hard_armor = list("melee" = 0, "bullet" = 5, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	hard_armor = list("melee" = 5, "bullet" = 5, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 	force = 20
 	slowdown = 0.2
 

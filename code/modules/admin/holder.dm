@@ -11,8 +11,15 @@
 
 	var/href_token
 
-	var/deadmined
+	///Reference to filteriffic tgui holder datum
+	var/datum/filter_editor/filteriffic
+
+	///Whether this admin is currently deadminned or not
+	var/deadmined = FALSE
+	///Whether this admin has ghost interaction enabled
 	var/ghost_interact = FALSE
+	///Whether this admin is invisiminning
+	var/invisimined = FALSE
 
 
 /datum/admins/New(datum/admin_rank/R, ckey, protected)
@@ -441,8 +448,8 @@ GLOBAL_PROTECT(admin_verbs_server)
 
 /world/proc/AVpermissions()
 	return list(
-	/datum/admins/proc/permissions_panel,
-	/datum/admins/proc/create_poll
+	/client/proc/edit_admin_permissions,
+	/client/proc/poll_panel,
 	)
 GLOBAL_LIST_INIT(admin_verbs_permissions, world.AVpermissions())
 GLOBAL_PROTECT(admin_verbs_permissions)
@@ -535,18 +542,22 @@ GLOBAL_PROTECT(admin_verbs_spawn)
 
 
 /proc/message_admins(msg)
-	msg = "<span class='admin'><span class='prefix'>ADMIN LOG:</span> <span class='message linkify'>[msg]</span></span>"
+	msg = "<span class=\"admin\"><span class=\"prefix\">ADMIN LOG:</span> <span class=\"message linkify\">[msg]</span></span>"
 	for(var/client/C in GLOB.admins)
 		if(check_other_rights(C, R_ADMIN, FALSE))
-			to_chat(C, msg)
+			to_chat(C,
+				type = MESSAGE_TYPE_ADMINLOG,
+				html = msg)
+
 
 
 /proc/message_staff(msg)
-	msg = "<span class='admin'><span class='prefix'>STAFF LOG:</span> <span class='message linkify'>[msg]</span></span>"
+	msg = "<span class=\"admin\"><span class=\"prefix\">STAFF LOG:</span> <span class=\"message linkify\">[msg]</span></span>"
 	for(var/client/C in GLOB.admins)
 		if(check_other_rights(C, R_ADMIN, FALSE) || is_mentor(C))
-			to_chat(C, msg)
-
+			to_chat(C,
+				type = MESSAGE_TYPE_STAFFLOG,
+				html = msg)
 
 /proc/msg_admin_ff(msg)
 	msg = "<span class='admin'><span class='prefix'>ATTACK:</span> <span class='green linkify'>[msg]</span></span>"
@@ -554,7 +565,9 @@ GLOBAL_PROTECT(admin_verbs_spawn)
 		if(!check_other_rights(C, R_ADMIN, FALSE))
 			continue
 		if((C.prefs.toggles_chat & CHAT_FFATTACKLOGS) || ((SSticker.current_state == GAME_STATE_FINISHED) && (C.prefs.toggles_chat & CHAT_ENDROUNDLOGS)))
-			to_chat(C, msg)
+			to_chat(C,
+				type = MESSAGE_TYPE_ATTACKLOG,
+				html = msg)
 
 
 /client/proc/find_stealth_key(txt)

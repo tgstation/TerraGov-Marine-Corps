@@ -4913,8 +4913,8 @@
 "AY" = (
 /obj/structure/rack,
 /obj/effect/decal/cleanable/dirt,
-/obj/item/weapon/gun/rifle/ak47/carbine,
-/obj/item/weapon/gun/rifle/ak47/carbine,
+/obj/item/weapon/gun/rifle/ak47,
+/obj/item/weapon/gun/rifle/ak47,
 /obj/item/ammo_magazine/rifle/ak47,
 /obj/item/ammo_magazine/rifle/ak47,
 /obj/item/ammo_magazine/rifle/ak47,
@@ -6664,7 +6664,6 @@
 /obj/item/ammo_magazine/pistol/vp70,
 /obj/item/ammo_magazine/pistol/vp70,
 /obj/item/ammo_magazine/pistol/vp70,
-/obj/item/attachable/stock/vp70,
 /obj/item/attachable/burstfire_assembly,
 /obj/item/attachable/heavy_barrel,
 /obj/item/attachable/reddot,
@@ -7047,7 +7046,6 @@
 	},
 /area/outpost/engineering/hallway)
 "MG" = (
-/obj/machinery/computer/turbine_computer,
 /turf/open/floor/plating,
 /area/outpost/engineering/engine)
 "MH" = (

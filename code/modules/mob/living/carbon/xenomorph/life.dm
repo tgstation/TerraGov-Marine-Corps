@@ -12,6 +12,9 @@
 
 	..()
 
+	if(notransform) //If we're in true stasis don't bother processing life
+		return
+
 	if(stat == DEAD) //Dead, nothing else to do but this.
 		if(plasma_stored && !(xeno_caste.caste_flags & CASTE_DECAY_PROOF))
 			handle_decay()
@@ -29,26 +32,12 @@
 		update_evolving()
 		handle_aura_emiter()
 
-	var/sunder_recov = xeno_caste.sunder_recover * -1
-	if(resting)
-		sunder_recov -= 0.5
-	adjust_sunder(sunder_recov)
 	handle_aura_receiver()
+	handle_living_sunder_updates()
 	handle_living_health_updates()
 	handle_living_plasma_updates()
 	update_action_button_icons()
 	update_icons()
-
-
-/mob/living/carbon/xenomorph/update_stat()
-	. = ..()
-	if(.)
-		return
-
-	//Deal with devoured things and people
-	if(LAZYLEN(stomach_contents) && world.time > devour_timer && !is_ventcrawling)
-		empty_gut()
-
 
 /mob/living/carbon/xenomorph/handle_status_effects()
 	. = ..()
@@ -67,7 +56,7 @@
 	if(health < 0)
 		handle_critical_health_updates()
 		return
-	if(health >= maxHealth || xeno_caste.hardcore || on_fire) //can't regenerate.
+	if((health >= maxHealth) || xeno_caste.hardcore || on_fire) //can't regenerate.
 		updatehealth() //Update health-related stats, like health itself (using brute and fireloss), health HUD and status.
 		return
 	var/turf/T = loc
@@ -84,6 +73,27 @@
 		else
 			heal_wounds(XENO_STANDING_HEAL * ruler_healing_penalty, TRUE) //Major healing nerf if standing.
 	updatehealth()
+
+///Handles sunder modification/recovery during life.dm for xenos
+/mob/living/carbon/xenomorph/proc/handle_living_sunder_updates()
+
+	if(!sunder || on_fire) //No sunder, no problem; or we're on fire and can't regenerate.
+		return
+
+	var/sunder_recov = xeno_caste.sunder_recover * -0.5 //Baseline
+
+	if(resting) //Resting doubles sunder recovery
+		sunder_recov *= 2
+
+	if(locate(/obj/effect/alien/weeds) in loc) //Weeds double sunder recovery
+		sunder_recov *= 2
+
+	if(recovery_aura)
+		sunder_recov *= 1 + recovery_aura * 0.1 //10% bonus per rank of recovery aura
+
+	SEND_SIGNAL(src, COMSIG_XENOMORPH_SUNDER_REGEN, src)
+
+	adjust_sunder(sunder_recov)
 
 /mob/living/carbon/xenomorph/proc/handle_critical_health_updates()
 	var/turf/T = loc
@@ -106,6 +116,9 @@
 			regen_power = min(regen_power + xeno_caste.regen_ramp_amount*20,1)
 		amount *= regen_power
 	amount *= multiplier
+
+	SEND_SIGNAL(src, COMSIG_XENOMORPH_HEALTH_REGEN, src)
+
 	adjustBruteLoss(-amount)
 	adjustFireLoss(-amount)
 

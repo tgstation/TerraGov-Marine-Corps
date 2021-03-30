@@ -61,7 +61,7 @@ GLOBAL_LIST_EMPTY(surgery_steps)
 			H.bloody_hands(target, 0)
 		if(blood_level > 1)
 			H.bloody_body(target, 0)
-	return
+
 
 //Does stuff to end the step, which is normally print a message + do whatever this step changes
 /datum/surgery_step/proc/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
@@ -115,7 +115,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 		return 0
 	if(user.a_intent == INTENT_HARM) //Check for Hippocratic Oath
 		return 0
-	if(user.action_busy) //already doing an action
+	if(user.do_actions) //already doing an action
 		return 1
 	if(user.skills.getRating("surgery") < SKILL_SURGERY_PROFESSIONAL)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to operate [M].</span>",
@@ -168,7 +168,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 				var/step_duration = max(0.5 SECONDS, rand(S.min_duration, S.max_duration) - 1 SECONDS * user.skills.getRating("surgery"))
 
 				//Multiply tool success rate with multipler
-				if(do_mob(user, M, step_duration, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL, extra_checks = CALLBACK(user, /mob/proc/break_do_after_checks, null, null, user.zone_selected)) && prob(S.tool_quality(tool) * CLAMP01(multipler)))
+				if(do_mob(user, M, step_duration, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL, extra_checks = CALLBACK(user, /mob.proc/break_do_after_checks, null, null, user.zone_selected)) && prob(S.tool_quality(tool) * CLAMP01(multipler)))
 					if(S.can_use(user, M, user.zone_selected, tool, affected, TRUE)) //to check nothing changed during the do_mob
 						S.end_step(user, M, user.zone_selected, tool, affected) //Finish successfully
 

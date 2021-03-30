@@ -31,6 +31,7 @@
 			usr.put_in_hands(cell)
 			playsound(src,'sound/machines/click.ogg', 25, 1)
 			to_chat(usr, "You take out the [cell] out of the [src].")
+			cell.update_icon()
 			set_cell(null)
 		else
 			to_chat(usr, "There is no cell in the [src].")
@@ -58,8 +59,8 @@
 			to_chat(user, "There already is a power cell in the [src].")
 			return
 
-		cell = C
-		C.forceMove(src)
+		user.transferItemToLoc(C, src)
+		set_cell(C)
 		visible_message("[user] puts a new power cell in the [src].")
 		to_chat(user, "You put a new cell in the [src] containing [cell.charge] charge.")
 		playsound(src,'sound/machines/click.ogg', 25, 1)
@@ -152,21 +153,21 @@
 	name = "\improper RPL-Y Cargo Loader Hydraulic Claw"
 	icon_state = "loader_clamp"
 	force = 20
-	flags_item = ITEM_ABSTRACT //to prevent placing the item on a table/closet.
-								//We're controlling the clamp but the item isn't really in our hand.
+	// ITEM_ABSTRACT to prevent placing the item on a table/closet.
+	// DELONDROP to prevent giving the clamp to others.
+	flags_item = ITEM_ABSTRACT|DELONDROP
 	var/obj/vehicle/powerloader/linked_powerloader
 	var/obj/loaded
 
+
 /obj/item/powerloader_clamp/dropped(mob/user)
+	// Don't call ..() so it's not deleted
+	// We actually store the clamps in powerloader
 	if(!linked_powerloader)
 		qdel(src)
 		return
 	forceMove(linked_powerloader)
-	for(var/m in linked_powerloader.buckled_mobs)
-		if(m != user)
-			continue
-		linked_powerloader.unbuckle_mob(user) //drop a clamp, you auto unbuckle from the powerloader.
-		break
+	linked_powerloader.unbuckle_mob(user)
 
 
 /obj/item/powerloader_clamp/attack(mob/living/victim, mob/living/user, def_zone)

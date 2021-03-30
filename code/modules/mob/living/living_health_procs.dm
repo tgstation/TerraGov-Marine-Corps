@@ -59,7 +59,14 @@
 /mob/living/proc/adjustStaminaLoss(amount, update = TRUE, feedback = TRUE)
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
-	staminaloss = clamp(staminaloss + amount, -max_stamina_buffer, maxHealth * 2)
+
+	var/stamina_loss_adjustment = staminaloss + amount
+	var/health_limit = maxHealth * 2
+	if(stamina_loss_adjustment > health_limit) //If we exceed maxHealth * 2 stamina damage, apply any excess as oxyloss
+		adjustOxyLoss(stamina_loss_adjustment - health_limit)
+
+	staminaloss = clamp(stamina_loss_adjustment, -max_stamina_buffer, health_limit)
+
 	if(amount > 0)
 		last_staminaloss_dmg = world.time
 	if(update)
@@ -73,13 +80,18 @@
 		updateStamina(feedback)
 
 /mob/living/proc/updateStamina(feedback = TRUE)
-	if(staminaloss < max(health * 1.5,0))
+	if(staminaloss < max(health * 1.5,0) || !(COOLDOWN_CHECK(src, last_stamina_exhaustion))) //If we're on cooldown for stamina exhaustion, don't bother
 		return
-	if(!IsParalyzed())
-		if(feedback)
-			visible_message("<span class='warning'>\The [src] slumps to the ground, too weak to continue fighting.</span>",
-				"<span class='warning'>You slump to the ground, you're too exhausted to keep going...</span>")
-	Paralyze(80)
+
+	if(feedback)
+		visible_message("<span class='warning'>\The [src] slumps to the ground, too weak to continue fighting.</span>",
+			"<span class='warning'>You slump to the ground, you're too exhausted to keep going...</span>")
+
+	ParalyzeNoChain(1 SECONDS) //Short stun
+	adjust_stagger(STAMINA_EXHAUSTION_DEBUFF_STACKS)
+	add_slowdown(STAMINA_EXHAUSTION_DEBUFF_STACKS)
+	adjust_blurriness(STAMINA_EXHAUSTION_DEBUFF_STACKS)
+	COOLDOWN_START(src, last_stamina_exhaustion, LIVING_STAMINA_EXHAUSTION_COOLDOWN) //set the cooldown.
 
 
 /mob/living/carbon/human/updateStamina(feedback = TRUE)
@@ -128,9 +140,6 @@
 
 /mob/living/proc/setMaxHealth(newMaxHealth)
 	maxHealth = newMaxHealth
-
-mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
-	return
 
 /mob/living/proc/Losebreath(amount, forced = FALSE)
 	return
@@ -211,6 +220,13 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 		updatehealth()
 	return TRUE
 
+/// This proc causes damage evenly on a human mob limbs, accounting individual limb armor, if used on livings will just call take_overall_damage().
+/mob/living/proc/take_overall_damage_armored(damage, damagetype, armortype, sharp = FALSE, edge = FALSE, updating_health = FALSE) //This proc is overrided on humans, otherwise it just applies some damage and checks armor on chest if not human.
+	if(damagetype == BRUTE)
+		return take_overall_damage(damage, 0, run_armor_check(BODY_ZONE_CHEST, armortype), sharp, edge, updating_health)
+	if(damagetype == BURN)
+		return take_overall_damage(0, damage, run_armor_check(BODY_ZONE_CHEST, armortype), sharp, edge, updating_health)
+	return FALSE
 
 /mob/living/proc/restore_all_organs()
 	return
@@ -291,7 +307,6 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 
 /mob/living/carbon/revive()
 	set_nutrition(400)
-	setHalLoss(0)
 	setTraumatic_Shock(0)
 	setShock_Stage(0)
 	drunkenness = 0
@@ -330,7 +345,9 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 		I.damage = 0
 
 	reagents.clear_reagents() //and clear all reagents in them
-	undefibbable = FALSE
+	REMOVE_TRAIT(src, TRAIT_UNDEFIBBABLE, TRAIT_UNDEFIBBABLE)
+	REMOVE_TRAIT(src, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
+	dead_ticks = 0
 	chestburst = 0
 	headbitten = FALSE
 	update_body()

@@ -13,6 +13,9 @@
 /datum/turf_reservation/transit
 	turf_type = /turf/open/space/transit
 
+/datum/turf_reservation/banish
+	turf_type = /turf/closed/banish_space
+
 /datum/turf_reservation/proc/Release()
 	var/v = reserved_turfs.Copy()
 	for(var/i in reserved_turfs)
@@ -71,6 +74,6 @@
 	LAZYADD(SSmapping.turf_reservations, src)
 
 /datum/turf_reservation/Destroy()
-	Release()
+	INVOKE_ASYNC(src, .proc/Release)
 	LAZYREMOVE(SSmapping.turf_reservations, src)
 	return ..()

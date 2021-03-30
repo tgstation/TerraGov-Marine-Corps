@@ -40,15 +40,9 @@
 	/obj/item/clothing/shoes/jackboots)
 
 
-/obj/effect/landmark/itemspawner/nyangirl
-	items_to_spawn = list(\
-	/obj/item/clothing/under/schoolgirl,\
-	/obj/item/clothing/head/kitty)
-
-
 /obj/effect/landmark/itemspawner/maid
 	items_to_spawn = list(\
-	/obj/item/clothing/under/blackskirt,\
+	/obj/item/clothing/under/color/black,\
 	/obj/item/clothing/head/rabbitears,\
 	/obj/item/clothing/glasses/sunglasses/blindfold)
 

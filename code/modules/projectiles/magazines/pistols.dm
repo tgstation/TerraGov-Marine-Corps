@@ -7,24 +7,34 @@
 	desc = "A pistol magazine."
 	caliber = "9x19mm Parabellum"
 	icon_state = "tp14"
-	max_rounds = 14
+	max_rounds = 21
 	w_class = WEIGHT_CLASS_SMALL
 	default_ammo = /datum/ammo/bullet/pistol
 	gun_type = /obj/item/weapon/gun/pistol/standard_pistol
 
+/obj/item/ammo_magazine/box9mm
+	name = "packet of 9mm"
+	desc = "A packet containing 70 rounds of 9mm."
+	caliber = "9x19mm Parabellum"
+	icon_state = "box_9mm"
+	current_rounds = 70
+	max_rounds = 70
+	w_class = WEIGHT_CLASS_SMALL
+	default_ammo = /datum/ammo/bullet/pistol
+
 
 //-------------------------------------------------------
-//M4A3 PISTOL
+//RT-3 PISTOL
 
 /obj/item/ammo_magazine/pistol
-	name = "\improper M4A3 magazine (9mm)"
+	name = "\improper RT-3 magazine (9mm)"
 	desc = "A pistol magazine."
 	caliber = "9x19mm Parabellum"
 	icon_state = "m4a3"
 	max_rounds = 14
 	w_class = WEIGHT_CLASS_SMALL
 	default_ammo = /datum/ammo/bullet/pistol
-	gun_type = /obj/item/weapon/gun/pistol/m4a3
+	gun_type = /obj/item/weapon/gun/pistol/rt3
 
 /obj/item/ammo_magazine/pistol/hp
 	name = "\improper M4A3 hollowpoint magazine (9mm)"
@@ -45,8 +55,6 @@
 	name = "\improper M4A3 extended magazine (9mm)"
 	max_rounds = 24
 	icon_state = "m4a3_ext"
-	bonus_overlay = "m4a3_ex"
-
 
 //-------------------------------------------------------
 //M1911
@@ -55,13 +63,13 @@
 	name = "\improper M1911 magazine (.45)"
 	default_ammo = /datum/ammo/bullet/pistol/heavy
 	caliber = ".45 ACP"
-	icon_state = ".45"
+	icon_state = "1911"
 	max_rounds = 10
 	gun_type = /obj/item/weapon/gun/pistol/m1911
 
 /obj/item/ammo_magazine/acp
-	name = "box of .45 ACP"
-	icon_state = "box45" //With thanks to Eris
+	name = "packet of .45 ACP"
+	icon_state = "box_45acp"
 	default_ammo = /datum/ammo/bullet/pistol/heavy
 	caliber = ".45 ACP"
 	current_rounds = 50
@@ -76,36 +84,28 @@
 	default_ammo = /datum/ammo/bullet/pistol/heavy
 	caliber = ".45 ACP"
 	icon_state = ".45"
-	max_rounds = 11
+	max_rounds = 14
 	gun_type = /obj/item/weapon/gun/pistol/standard_heavypistol
 
 
 //-------------------------------------------------------
 //Beretta 92FS, the gun McClane carries around in Die Hard. Very similar to the service pistol, all around.
 
-/obj/item/ammo_magazine/pistol/b92fs
-	name = "\improper Beretta 92FS magazine (9mm)"
+/obj/item/ammo_magazine/pistol/g22
+	name = "\improper G-22 magazine (9mm)"
 	caliber = "9x19mm Parabellum"
-	icon_state = "beretta"
+	icon_state = "g22"
 	max_rounds = 15
 	default_ammo = /datum/ammo/bullet/pistol
-	gun_type = /obj/item/weapon/gun/pistol/b92fs
+	gun_type = /obj/item/weapon/gun/pistol/g22
 
-/obj/item/ammo_magazine/pistol/b93r
-	name = "\improper Beretta 93R magazine (9mm)"
-	caliber = "9x19mm Parabellum"
-	icon_state = "beretta"
-	max_rounds = 20
-	default_ammo = /datum/ammo/bullet/pistol
-	gun_type = /obj/item/weapon/gun/pistol/b92fs/raffica
-
-/obj/item/ammo_magazine/pistol/b92fstranq
-	name = "\improper M9 tranq magazine (9mm)"
+/obj/item/ammo_magazine/pistol/g22tranq
+	name = "\improper G22 tranq magazine (9mm)"
 	caliber = "9x19mm tranquilizer"
-	icon_state = "beretta"
+	icon_state = "g22"
 	max_rounds = 12
 	default_ammo = /datum/ammo/bullet/pistol/tranq
-	gun_type = /obj/item/weapon/gun/pistol/b92fs/M9
+	gun_type = /obj/item/weapon/gun/pistol/g22/tranq
 
 
 //-------------------------------------------------------
@@ -139,19 +139,6 @@
 	icon_state = "pk-9"
 	max_rounds = 12
 	gun_type = /obj/item/weapon/gun/pistol/c99
-
-
-//-------------------------------------------------------
-//KT-42 //Inspired by the .44 Auto Mag pistol
-
-/obj/item/ammo_magazine/pistol/automatic
-	name = "\improper KT-42 magazine (.44)"
-	default_ammo = /datum/ammo/bullet/pistol/heavy
-	caliber = ".44 magnum"
-	icon_state = "kt42"
-	max_rounds = 7
-	gun_type = /obj/item/weapon/gun/pistol/kt42
-
 
 //-------------------------------------------------------
 //PIZZACHIMP PROTECTION

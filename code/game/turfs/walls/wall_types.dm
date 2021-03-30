@@ -149,6 +149,9 @@
 	icon_state = "chigusa0"
 	walltype = "chigusa"
 
+/turf/closed/wall/desert/invincible
+	resistance_flags = RESIST_ALL
+
 /turf/closed/wall/desert/handle_icon_junction(junction)
 	if (!walltype)
 		return
@@ -276,7 +279,7 @@
 /turf/closed/wall/indestructible/splashscreen/New()
 	..()
 	if(icon_state == "title_painting1")
-		icon_state = "title_painting[rand(1,11)]"
+		icon_state = "title_painting[rand(0,13)]"
 
 /turf/closed/wall/indestructible/other
 	icon_state = "r_wall"

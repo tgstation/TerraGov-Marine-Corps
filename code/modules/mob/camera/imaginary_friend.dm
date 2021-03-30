@@ -51,7 +51,7 @@
 	name = client.prefs.real_name
 	real_name = name
 	gender = client.prefs.gender
-	var/outfit_choice = input("Choose your appearance:", "[src]") as anything in outfit_choices
+	var/outfit_choice = tgui_input_list(usr, "Choose your appearance:", "[src]", outfit_choices)
 	human_image = get_flat_human_icon(null, SSjob.GetJobType(outfit_choice), client.prefs)
 
 

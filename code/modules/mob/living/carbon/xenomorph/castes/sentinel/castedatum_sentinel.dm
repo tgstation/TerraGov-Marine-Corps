@@ -37,14 +37,14 @@
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.3 SECONDS
-	spit_types = list(/datum/ammo/xeno/toxin)
+	spit_types = list(/datum/ammo/xeno/toxin, /datum/ammo/xeno/acid)
 
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/regurgitate,
-		/datum/action/xeno_action/activable/headbite,
+		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/activable/corrosive_acid/drone,
+		/datum/action/xeno_action/shift_spits,
 		/datum/action/xeno_action/activable/xeno_spit,
 		/datum/action/xeno_action/activable/neurotox_sting,
 	)
@@ -74,14 +74,14 @@
 	max_health = 250
 
 	// *** Evolution *** //
-	upgrade_threshold = 120
+	upgrade_threshold = 180
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = XENO_BOMB_RESIST_0, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 20)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.3 SECONDS
-	spit_types = list(/datum/ammo/xeno/toxin/upgrade1)
+	spit_types = list(/datum/ammo/xeno/toxin/upgrade1, /datum/ammo/xeno/acid)
 
 /datum/xeno_caste/sentinel/elder
 	upgrade_name = "Elder"
@@ -106,14 +106,14 @@
 	max_health = 275
 
 	// *** Evolution *** //
-	upgrade_threshold = 240
+	upgrade_threshold = 420
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 23, "bullet" = 23, "laser" = 23, "energy" = 23, "bomb" = XENO_BOMB_RESIST_0, "bio" = 23, "rad" = 23, "fire" = 23, "acid" = 23)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.3 SECONDS
-	spit_types = list(/datum/ammo/xeno/toxin/upgrade2)
+	spit_types = list(/datum/ammo/xeno/toxin/upgrade2, /datum/ammo/xeno/acid)
 
 /datum/xeno_caste/sentinel/ancient
 	upgrade_name = "Ancient"
@@ -138,12 +138,12 @@
 	max_health = 300
 
 	// *** Evolution *** //
-	upgrade_threshold = 240
+	upgrade_threshold = 660
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 26, "bullet" = 26, "laser" = 26, "energy" = 26, "bomb" = XENO_BOMB_RESIST_0, "bio" = 25, "rad" = 25, "fire" = 26, "acid" = 25)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.3 SECONDS
-	spit_types = list(/datum/ammo/xeno/toxin/upgrade3)
+	spit_types = list(/datum/ammo/xeno/toxin/upgrade3, /datum/ammo/xeno/acid)
 

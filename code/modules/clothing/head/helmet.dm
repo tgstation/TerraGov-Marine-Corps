@@ -65,7 +65,7 @@
 	soft_armor = list("melee" = 80, "bullet" = 60, "laser" = 50, "energy" = 10, "bomb" = 25, "bio" = 10, "rad" = 0, "fire" = 10, "acid" = 10)
 	flags_inventory = COVEREYES
 	flags_inv_hide = HIDEEARS
-	flags_armor_protection = 0
+	flags_armor_protection = NONE
 	siemens_coefficient = 0.8
 	flags_item = SYNTH_RESTRICTED
 
@@ -82,7 +82,7 @@
 	icon_state = "policehelm"
 	flags_inventory = NONE
 	flags_inv_hide = NONE
-	flags_armor_protection = 0
+	flags_armor_protection = NONE
 
 /obj/item/clothing/head/helmet/hop
 	name = "crew resource's hat"
@@ -90,7 +90,7 @@
 	icon_state = "hopcap"
 	flags_inventory = NONE
 	flags_inv_hide = NONE
-	flags_armor_protection = 0
+	flags_armor_protection = NONE
 
 /obj/item/clothing/head/helmet/formalcaptain
 	name = "parade hat"
@@ -98,7 +98,7 @@
 	icon_state = "officercap"
 	flags_inventory = NONE
 	flags_inv_hide = NONE
-	flags_armor_protection = 0
+	flags_armor_protection = NONE
 
 /obj/item/clothing/head/helmet/swat
 	name = "\improper SWAT helmet"
@@ -191,11 +191,14 @@
 	name = "\improper M10 pattern marine helmet"
 	desc = "A standard M10 Pattern Helmet. It reads on the label, 'The difference between an open-casket and closed-casket funeral. Wear on head for best results.'."
 	icon = 'icons/obj/clothing/cm_hats.dmi'
-	sprite_sheet_id = 1
+	item_icons = list(
+		slot_head_str = 'icons/mob/head_1.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
 	icon_state = "helmet"
 	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
 	max_integrity = 5
-	var/helmet_overlays[]
+	var/list/helmet_overlays
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS
 	var/flags_marine_helmet = HELMET_GARB_OVERLAY|HELMET_DAMAGE_OVERLAY|HELMET_STORE_GARB
@@ -216,7 +219,9 @@
 						/obj/item/reagent_containers/food/snacks/enrg_bar = "helmet_snack_eat",
 						/obj/item/reagent_containers/food/snacks/packaged_burrito = "helmet_snack_burrito",
 						/obj/item/clothing/glasses/mgoggles = "goggles",
-						/obj/item/clothing/glasses/mgoggles/prescription = "goggles")
+						/obj/item/clothing/glasses/mgoggles/prescription = "goggles",
+						/obj/item/clothing/glasses/hud/medgoggles = "goggles",
+						/obj/item/clothing/glasses/hud/medgoggles/prescription = "goggles")
 
 /obj/item/storage/internal/marinehelmet
 	storage_slots = 2
@@ -279,6 +284,14 @@
 	if(ismob(loc))
 		var/mob/M = loc
 		M.update_inv_head()
+
+/obj/item/clothing/head/helmet/marine/apply_custom(image/standing)
+	var/image/I
+	for(var/i in helmet_overlays)
+		I = helmet_overlays[i]
+		if(I)
+			I = image('icons/mob/helmet_garb.dmi',src,I.icon_state)
+			standing.overlays += I
 
 
 /obj/item/clothing/head/helmet/marine/proc/add_hugger_damage() //This is called in XenoFacehuggers.dm to first add the overlay and set the var.
@@ -371,7 +384,7 @@
 	name = "\improper M30 tactical helmet"
 	desc = "The M30 tactical helmet has an left eyepiece filter used to filter tactical data. It is used by pilots in the TGN. This one is in gunmetal blue."
 	icon_state = "helmetp2"
-	soft_armor = list("melee" = 65, "bullet" = 65, "laser" = 35, "energy" = 45, "bomb" = 30, "bio" = 45, "rad" = 15, "fire" = 45, "acid" = 45)
+	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS|HIDETOPHAIR
@@ -531,7 +544,10 @@ obj/item/clothing/head/helmet/marine/pilot/green
 	name = "\improper UM4 helmet"
 	desc = "A skirted helmet designed for use with the UM/UH system."
 	icon = 'icons/obj/clothing/cm_hats.dmi'
-	sprite_sheet_id = 1
+	item_icons = list(
+		slot_head_str = 'icons/mob/head_1.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
 	icon_state = "upp_helmet1"
 	flags_item = SYNTH_RESTRICTED
 	soft_armor = list("melee" = 70, "bullet" = 55, "laser" = 40, "energy" = 35, "bomb" = 35, "bio" = 5, "rad" = 5, "fire" = 35, "acid" = 35)
@@ -540,7 +556,10 @@ obj/item/clothing/head/helmet/marine/pilot/green
 /obj/item/clothing/head/helmet/UPP/heavy
 	name = "\improper UH7 helmet"
 	icon = 'icons/obj/clothing/cm_hats.dmi'
-	sprite_sheet_id = 1
+	item_icons = list(
+		slot_head_str = 'icons/mob/head_1.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
 	icon_state = "upp_helmet_heavy"
 	soft_armor = list("melee" = 90, "bullet" = 85, "laser" = 60, "energy" = 65, "bomb" = 85, "bio" = 5, "rad" = 5, "fire" = 65, "acid" = 65)
 	resistance_flags = UNACIDABLE
@@ -554,7 +573,10 @@ obj/item/clothing/head/helmet/marine/pilot/green
 	name = "specialist head-rag"
 	desc = "A hat worn by heavy-weapons operators to block sweat."
 	icon = 'icons/obj/clothing/cm_hats.dmi'
-	sprite_sheet_id = 1
+	item_icons = list(
+		slot_head_str = 'icons/mob/head_1.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
 	icon_state = "spec"
 	soft_armor = list("melee" = 35, "bullet" = 35, "laser" = 35, "energy" = 15, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 15, "acid" = 15)
 	flags_inventory = BLOCKSHARPOBJ
@@ -564,7 +586,10 @@ obj/item/clothing/head/helmet/marine/pilot/green
 	name = "durag"
 	desc = "Good for keeping sweat out of your eyes"
 	icon = 'icons/obj/clothing/cm_hats.dmi'
-	sprite_sheet_id = 1
+	item_icons = list(
+		slot_head_str = 'icons/mob/head_1.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
 	icon_state = "durag"
 	soft_armor = list("melee" = 35, "bullet" = 35, "laser" = 35, "energy" = 15, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 15, "acid" = 15)
 	flags_inventory = BLOCKSHARPOBJ

@@ -33,7 +33,7 @@
 
 				if (bloodDNA && !locate(/obj/structure) in contents)
 					src.AddTracks(/obj/effect/decal/cleanable/blood/tracks/footprints,bloodDNA,H.dir,0,bloodcolor) // Coming
-					var/turf/from = get_step(H,reverse_direction(H.dir))
+					var/turf/from = get_step(H,REVERSE_DIR(H.dir))
 					if(istype(from) && from)
 						from.AddTracks(/obj/effect/decal/cleanable/blood/tracks/footprints,bloodDNA,0,H.dir,bloodcolor) // Going
 
@@ -168,6 +168,12 @@
 	mediumxenofootstep = FOOTSTEP_WATER
 	heavyxenofootstep = FOOTSTEP_WATER
 
+/turf/open/beach/sea/Entered(atom/movable/AM, atom/oldloc)
+	. = ..()
+	if(isliving(AM))
+		to_chat(AM, "<span class='danger'>The cold vacuum instantly freezes you, maybe this was a bad idea?</span>")
+		var/mob/living/spaceman = AM
+		spaceman.adjustFireLoss(666) //Really bad idea, spessman.
 
 //Nostromo turfs
 
@@ -191,7 +197,7 @@
 	icon = 'icons/turf/shuttle.dmi'
 	allow_construction = FALSE
 	shoefootstep = FOOTSTEP_PLATING
-	barefootstep = FOOTSTEP_PLATING
+	barefootstep = FOOTSTEP_HARD
 	mediumxenofootstep = FOOTSTEP_PLATING
 
 
@@ -220,6 +226,10 @@
 
 /turf/open/shuttle/dropship/eight
 	icon_state = "rasputin8"
+
+/turf/open/shuttle/dropship/grating
+	icon = 'icons/turf/elevator.dmi'
+	icon_state = "floor_grating"
 
 //not really plating, just the look
 /turf/open/shuttle/plating
@@ -337,13 +347,15 @@
 
 		else if (isliving(thing))
 			var/mob/living/L = thing
+
 			if(L.stat == DEAD)
 				continue
 
 			if(!L.on_fire || L.getFireLoss() <= 200)
 				L.take_overall_damage(null, 20, clamp(L.getarmor(null, "fire"), 0, 80))
-				L.adjust_fire_stacks(20)
-				L.IgniteMob()
+				if(!CHECK_BITFIELD(L.flags_pass, PASSFIRE))//Pass fire allow to cross lava without igniting
+					L.adjust_fire_stacks(20)
+					L.IgniteMob()
 				. = 1
 
 /turf/open/lavaland/lava/attackby(obj/item/C, mob/user, params)
@@ -407,13 +419,15 @@
 /turf/open/lavaland/catwalk/built
 	var/deconstructing = FALSE
 
-/turf/open/lavaland/catwalk/built/attack_alien(mob/living/carbon/xenomorph/M)
-	if(M.a_intent != INTENT_HARM)
+/turf/open/lavaland/catwalk/built/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(X.status_flags & INCORPOREAL)
+		return
+	if(X.a_intent != INTENT_HARM)
 		return
 	if(deconstructing)
 		return
 	deconstructing = TRUE
-	if(!do_after(M, 10 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+	if(!do_after(X, 10 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 		deconstructing = FALSE
 		return
 	deconstructing = FALSE

@@ -207,7 +207,7 @@ SUBSYSTEM_DEF(explosions)
 	for(var/obj/blocking_object in epicenter)
 		if(!blocking_object.density)
 			continue
-			current_exp_block += ( (blocking_object.explosion_block == EXPLOSION_BLOCK_PROC) ? blocking_object.GetExplosionBlock(0) : blocking_object.explosion_block ) //0 is the result of get_dir between two atoms on the same tile.
+		current_exp_block += ( (blocking_object.explosion_block == EXPLOSION_BLOCK_PROC) ? blocking_object.GetExplosionBlock(0) : blocking_object.explosion_block ) //0 is the result of get_dir between two atoms on the same tile.
 
 	var/list/turfs_by_dist = list()
 	turfs_by_dist[epicenter] = current_exp_block
@@ -421,6 +421,7 @@ This way we'll be able to draw the explosion's expansion path without having to 
 				var/atom/movable/thing_to_throw = am
 				if(thing_to_throw.anchored || thing_to_throw.move_resist == INFINITY)
 					continue
+
 				for(var/throw_source in throw_turf[affected_turf])
 					thing_to_throw.throw_at(
 						get_ranged_target_turf(

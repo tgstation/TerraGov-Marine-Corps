@@ -40,12 +40,6 @@
 #define SEC_LEVEL_RED	2
 #define SEC_LEVEL_DELTA	3
 
-//Alarm levels.
-#define ALARM_WARNING_FIRE 	1
-#define ALARM_WARNING_ATMOS	2
-#define ALARM_WARNING_EVAC	4
-#define ALARM_WARNING_READY	8
-#define ALARM_WARNING_DOWN	16
 
 //some arbitrary defines to be used by self-pruning global lists. (see master_controller)
 #define PROCESS_KILL 26	//Used to trigger removal from a processing list
@@ -87,7 +81,7 @@
 // Default preferences
 #define DEFAULT_SPECIES "Human"
 
-#define GAME_YEAR 2415
+#define GAME_YEAR (text2num(time2text(world.realtime, "YYYY")) + 395)
 
 
 #define MAX_MESSAGE_LEN 1024
@@ -97,9 +91,8 @@
 #define MAX_BROADCAST_LEN 512
 
 
-// Is something in the IC chat filter? This is config dependent.
-#define CHAT_FILTER_CHECK(T) (config.ic_filter_regex && findtext(T, config.ic_filter_regex))
-
+/// Is something in the IC chat filter? This is config dependent.
+#define CHAT_FILTER_CHECK(text) (config.ic_filter_regex && findtext(text, config.ic_filter_regex))
 
 //for whether AI eyes see static, and whether it is mouse-opaque or not
 #define USE_STATIC_NONE			0

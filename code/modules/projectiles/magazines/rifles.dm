@@ -45,7 +45,7 @@
 	icon_state = "t18"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle
-	max_rounds = 32
+	max_rounds = 36
 	gun_type = /obj/item/weapon/gun/rifle/standard_carbine
 
 //-------------------------------------------------------
@@ -60,6 +60,16 @@
 	default_ammo = /datum/ammo/bullet/rifle
 	max_rounds = 50
 	gun_type = /obj/item/weapon/gun/rifle/standard_assaultrifle
+
+/obj/item/ammo_magazine/box10x24mm
+	name = "box of 10x24mm"
+	desc = "A box containing 150 rounds of 10x24mm caseless.."
+	caliber = "10x24mm caseless"
+	icon_state = "box_10x24mm"
+	w_class = WEIGHT_CLASS_NORMAL
+	default_ammo = /datum/ammo/bullet/rifle
+	current_rounds = 150
+	max_rounds = 150
 
 //-------------------------------------------------------
 //T37 DMR
@@ -107,12 +117,22 @@
 	max_rounds = 20
 	gun_type = /obj/item/weapon/gun/rifle/standard_br
 
+/obj/item/ammo_magazine/box10x27mm
+	name = "box of 10x27mm"
+	desc = "A box containing 100 rounds of 10x27mm caseless.."
+	caliber = "10x27mm caseless"
+	icon_state = "box_10x27mm"
+	w_class = WEIGHT_CLASS_NORMAL
+	default_ammo = /datum/ammo/bullet/rifle/standard_dmr
+	current_rounds = 100
+	max_rounds = 100
+
 //-------------------------------------------------------
 //M41A TRUE AND ORIGINAL
 
 /obj/item/ammo_magazine/rifle/m41a
-	name = "\improper M41A magazine (10x24mm)"
-	desc = "A semi-rectangular box of rounds for the original M41A Pulse Rifle."
+	name = "\improper HK-11 magazine (10x24mm)"
+	desc = "A semi-rectangular box of rounds for the HK-11 Pulse Rifle."
 	icon_state = "m41a"
 	max_rounds = 95
 	gun_type = /obj/item/weapon/gun/rifle/m41a
@@ -190,6 +210,16 @@
 	gun_type = /obj/item/weapon/gun/rifle/standard_gpmg
 	reload_delay = 3 SECONDS
 
+/obj/item/ammo_magazine/box10x26mm
+	name = "packet of 10x26mm"
+	desc = "A packet containing 100 rounds of 10x26mm caseless.."
+	icon_state = "box_10x26mm"
+	caliber = "10x26mm caseless"
+	default_ammo = /datum/ammo/bullet/rifle/machinegun
+	w_class = WEIGHT_CLASS_SMALL
+	current_rounds = 100
+	max_rounds = 100
+
 //-------------------------------------------------------
 //M412L1 HEAVY PULSE RIFLE
 
@@ -212,39 +242,8 @@
 	caliber = "7.62x39mm"
 	icon_state = "type_71"
 	default_ammo = /datum/ammo/bullet/rifle/ak47
-	max_rounds = 40
+	max_rounds = 42
 	gun_type = /obj/item/weapon/gun/rifle/type71
-
-
-//-------------------------------------------------------
-//SX-16 AUTOMATIC SHOTGUN (makes more sense for it to be a rifle)
-
-/obj/item/ammo_magazine/rifle/sx16_buckshot
-	name = "\improper SX-16 buckshot magazine (16 gauge)"
-	desc = "A magazine of 16 gauge buckshot, for the SX-16."
-	caliber = "16 gauge"
-	icon_state = "sx16_buckshot"
-	default_ammo = /datum/ammo/bullet/shotgun/sx16_buckshot
-	max_rounds = 15
-	gun_type = /obj/item/weapon/gun/rifle/sx16
-
-/obj/item/ammo_magazine/rifle/sx16_flechette
-	name = "\improper SX-16 flechette magazine (16 gauge)"
-	desc = "A magazine of 16 gauge flechette rounds, for the SX-16."
-	caliber = "16 gauge"
-	icon_state = "sx16_flechette"
-	default_ammo = /datum/ammo/bullet/shotgun/sx16_flechette
-	max_rounds = 15
-	gun_type = /obj/item/weapon/gun/rifle/sx16
-
-/obj/item/ammo_magazine/rifle/sx16_slug
-	name = "\improper SX-16 slug magazine (16 gauge)"
-	desc = "A magazine of 16 gauge slugs, for the SX-16."
-	caliber = "16 gauge"
-	icon_state = "sx16_slug"
-	default_ammo = /datum/ammo/bullet/shotgun/sx16_slug
-	max_rounds = 15
-	gun_type = /obj/item/weapon/gun/rifle/sx16
 
 //TX-16 AUTOMATIC SHOTGUN
 
@@ -314,3 +313,14 @@
 	default_ammo = /datum/ammo/bullet/sniper/auto
 	max_rounds = 12
 	gun_type = /obj/item/weapon/gun/rifle/standard_autosniper
+
+//-------------------------------------------------------
+//G-11, TX-11
+/obj/item/ammo_magazine/rifle/tx11
+	name = "\improper TX-11 combat rifle magazine"
+	desc = "A magazine filled with 4.92×34mm rifle rounds for the TX-11."
+	caliber = "4.92x34mm caseless"
+	icon_state = "tx11"
+	default_ammo = /datum/ammo/bullet/rifle/hv
+	max_rounds = 70
+	gun_type = /obj/item/weapon/gun/rifle/tx11

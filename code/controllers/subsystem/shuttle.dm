@@ -12,6 +12,11 @@ SUBSYSTEM_DEF(shuttle)
 	var/list/stationary = list()
 	var/list/transit = list()
 
+	/// For ID generation
+	var/list/assoc_mobile = list()
+	/// For ID generation
+	var/list/assoc_stationary = list()
+
 	var/list/escape_pods = list()
 	var/list/ert_shuttles = list()
 	var/list/dropships = list()
@@ -482,11 +487,13 @@ SUBSYSTEM_DEF(shuttle)
 		preview_shuttle.jumpToNullSpace()
 	preview_shuttle = null
 
+/datum/controller/subsystem/shuttle/ui_state(mob/user)
+	return GLOB.admin_state
 
-/datum/controller/subsystem/shuttle/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.admin_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/datum/controller/subsystem/shuttle/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "ShuttleManipulator", name, 800, 600, master_ui, state)
+		ui = new(user, src, "ShuttleManipulator", name)
 		ui.open()
 
 
@@ -557,8 +564,9 @@ SUBSYSTEM_DEF(shuttle)
 
 	return data
 
-/datum/controller/subsystem/shuttle/ui_act(action, params)
-	if(..())
+/datum/controller/subsystem/shuttle/ui_act(action, list/params)
+	. = ..()
+	if(.)
 		return
 
 	var/mob/user = usr

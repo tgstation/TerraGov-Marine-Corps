@@ -19,6 +19,7 @@
 	var/bio_protection = 1 // how unefficient its effects are against protected target from 0 to 1.
 	var/datum/effect_system/smoke_spread/cloud // for associated chemical smokes.
 	var/fraction = 0.2
+	var/smoke_can_spread_through = FALSE
 
 	//Remove this bit to use the old smoke
 	icon = 'icons/effects/96x96.dmi'
@@ -145,9 +146,9 @@
 
 //proc to check if smoke can expand to another turf
 /obj/effect/particle_effect/smoke/proc/check_airblock(turf/T)
-	var/obj/effect/particle_effect/smoke/foundsmoke = locate() in T //Don't spread smoke where there's already smoke!
-	if(foundsmoke)
-		return TRUE
+	for(var/obj/effect/particle_effect/smoke/foundsmoke in T)
+		if(istype(foundsmoke, src) || !foundsmoke?.smoke_can_spread_through) //Don't spread smoke through itself or, unless specified, through other smokes.
+			return TRUE
 	for(var/atom/movable/M in T)
 		if(!M.CanPass(src, T))
 			return TRUE
@@ -269,7 +270,33 @@
 //Xeno neurotox smoke.
 /obj/effect/particle_effect/smoke/xeno/neuro
 	color = "#ffbf58" //Mustard orange?
+	smoke_traits = SMOKE_XENO|SMOKE_XENO_NEURO|SMOKE_GASP|SMOKE_COUGH|SMOKE_EXTINGUISH
+
+///Xeno neurotox smoke for Defilers; doesn't extinguish
+/obj/effect/particle_effect/smoke/xeno/neuro/medium
+	color = "#ffbf58" //Mustard orange?
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_NEURO|SMOKE_GASP|SMOKE_COUGH
+
+///Xeno neurotox smoke for neurospit; doesn't extinguish or blind
+/obj/effect/particle_effect/smoke/xeno/neuro/light
+	alpha = 60
+	opacity = FALSE
+	smoke_can_spread_through = TRUE
+	smoke_traits = SMOKE_XENO|SMOKE_XENO_NEURO|SMOKE_GASP|SMOKE_COUGH|SMOKE_NEURO_LIGHT //Light neuro smoke doesn't extinguish
+
+/obj/effect/particle_effect/smoke/xeno/hemodile
+	alpha = 40
+	opacity = FALSE
+	smoke_can_spread_through = TRUE
+	color = "#0287A1"
+	smoke_traits = SMOKE_XENO|SMOKE_XENO_HEMODILE|SMOKE_GASP
+
+/obj/effect/particle_effect/smoke/xeno/transvitox
+	alpha = 60
+	opacity = FALSE
+	smoke_can_spread_through = TRUE
+	color = "#C0FF94"
+	smoke_traits = SMOKE_XENO|SMOKE_XENO_TRANSVITOX|SMOKE_COUGH
 
 /////////////////////////////////////////////
 // Smoke spreads
@@ -305,6 +332,12 @@ datum/effect_system/smoke_spread/tactical
 
 /datum/effect_system/smoke_spread/xeno/neuro
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/neuro
+
+/datum/effect_system/smoke_spread/xeno/neuro/medium
+	smoke_type = /obj/effect/particle_effect/smoke/xeno/neuro/medium
+
+/datum/effect_system/smoke_spread/xeno/neuro/light
+	smoke_type = /obj/effect/particle_effect/smoke/xeno/neuro/light
 
 /////////////////////////////////////////////
 // Chem smoke

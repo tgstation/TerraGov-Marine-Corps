@@ -51,7 +51,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	var/recycletime = 120
 	var/long_range_cooldown = 2
-	var/iff_signal = ACCESS_IFF_MARINE
+	var/list/iff_signal = list(ACCESS_IFF_MARINE)
 	var/detect_friendlies = TRUE
 	var/detect_revivable = TRUE
 	var/detect_fubar = TRUE
@@ -145,7 +145,7 @@
 			var/mob/living/carbon/human/H = M
 			if(H.get_target_lock(iff_signal)) //device checks for IFF data and status
 				if(M.stat == DEAD)
-					if(H.is_revivable() && H.get_ghost())
+					if(H.has_working_organs() && H.get_ghost())
 						if(detect_revivable)
 							status = MOTION_DETECTOR_DEAD //Dead, but revivable.
 						else
@@ -274,7 +274,7 @@
 /obj/item/motiondetector/pmc
 	name = "motion detector (PMC)"
 	desc = "A device that detects hostile movement. Hostiles appear as red blips. Friendlies with the correct IFF signature appear as green, and their bodies as blue, unrevivable bodies as dark blue. It has a mode selection interface. This one has been modified for use by the NT PMC forces."
-	iff_signal = ACCESS_IFF_PMC
+	iff_signal = list(ACCESS_IFF_PMC)
 
 
 /obj/item/motiondetector/Topic(href, href_list)

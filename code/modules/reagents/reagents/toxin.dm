@@ -14,7 +14,7 @@
 
 /datum/reagent/toxin/on_mob_life(mob/living/L, metabolism)
 	if(toxpwr)
-		L.adjustToxLoss(toxpwr*REM)
+		L.adjustToxLoss(toxpwr*0.5*effect_str)
 	return ..()
 
 /datum/reagent/toxin/hptoxin
@@ -32,7 +32,7 @@
 	taste_description = "alchemy"
 
 /datum/reagent/toxin/sdtoxin/on_mob_life(mob/living/L, metabolism)
-	L.adjustOxyLoss(2*REM)
+	L.adjustOxyLoss(effect_str)
 	return ..()
 
 
@@ -62,7 +62,7 @@
 	toxpwr = 3
 
 /datum/reagent/toxin/phoron/on_mob_life(mob/living/L, metabolism)
-	holder.remove_reagent(/datum/reagent/medicine/inaprovaline, 2*REM)
+	holder.remove_reagent(/datum/reagent/medicine/inaprovaline, effect_str)
 	return ..()
 
 /datum/reagent/toxin/lexorin
@@ -76,7 +76,7 @@
 
 /datum/reagent/toxin/lexorin/on_mob_life(mob/living/L, metabolism)
 	if(prob(33))
-		L.take_limb_damage(REM, 0)
+		L.take_limb_damage(0.5*effect_str, 0)
 	L.adjustOxyLoss(3)
 	if(prob(20))
 		L.emote("gasp")
@@ -96,7 +96,7 @@
 	custom_metabolism = REAGENTS_METABOLISM * 2
 
 /datum/reagent/toxin/cyanide/on_mob_life(mob/living/L, metabolism)
-	L.adjustOxyLoss(4*REM)
+	L.adjustOxyLoss(2*effect_str)
 	if(current_cycle > 10)
 		L.Sleeping(40)
 	return ..()
@@ -128,7 +128,7 @@
 	return ..()
 
 /datum/reagent/toxin/zombiepowder/on_mob_life(mob/living/L, metabolism)
-	L.adjustOxyLoss(0.5*REM)
+	L.adjustOxyLoss(0.25*effect_str)
 	L.Paralyze(20 SECONDS)
 	return ..()
 
@@ -268,7 +268,7 @@
 			L.Sleeping(10 SECONDS)
 		if(61 to INFINITY)
 			L.Sleeping(10 SECONDS)
-			L.adjustToxLoss((current_cycle/2 - 50)*REM)
+			L.adjustToxLoss((current_cycle/4 - 25)*effect_str)
 	return ..()
 
 /datum/reagent/toxin/chloralhydrate/overdose_process(mob/living/L, metabolism)
@@ -332,7 +332,7 @@
 			L.Sleeping(10 SECONDS)
 		if(51 to INFINITY)
 			L.Sleeping(10 SECONDS)
-			L.adjustToxLoss((current_cycle - 50)*REM)
+			L.adjustToxLoss((current_cycle/2 - 25)*effect_str)
 	return ..()
 
 /datum/reagent/toxin/plasticide
@@ -355,7 +355,7 @@
 	taste_description = "acid"
 
 /datum/reagent/toxin/acid/on_mob_life(mob/living/L, metabolism)
-	L.take_limb_damage(0, REM)
+	L.take_limb_damage(0, 0.5*effect_str)
 	return ..()
 
 /datum/reagent/toxin/acid/reaction_mob(mob/living/L, method = TOUCH, volume, metabolism, show_message = TRUE, touch_protection = 0)
@@ -393,18 +393,6 @@
 					to_chat(H, "<span class='danger'>Your glasses melts away!</span>")
 				qdel(H.glasses)
 				H.update_inv_glasses(0)
-
-	else if(ismonkey(L))
-		var/mob/living/carbon/monkey/MK = L
-		if(MK.wear_mask)
-			if(!CHECK_BITFIELD(MK.wear_mask.resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
-				if(show_message)
-					to_chat(MK, "<span class='danger'>Your mask melts away but protects you from the acid!</span>")
-				qdel(MK.wear_mask)
-				MK.update_inv_wear_mask(0)
-			else if(show_message)
-				to_chat(MK, "<span class='warning'>Your mask protects you from the acid.</span>")
-			return
 
 	if(!isxeno(L))
 		if(ishuman(L) && volume >= 10)
@@ -445,7 +433,7 @@
 	color = "#535E66" // rgb: 83, 94, 102
 
 /datum/reagent/toxin/nanites/on_mob_life(mob/living/L, metabolism)
-	L.apply_damages(10*REM, 6*REM, 6*REM) //DO NOT DRINK THIS. Seriously!
+	L.apply_damages(5*effect_str, 3*effect_str, 3*effect_str) //DO NOT DRINK THIS. Seriously!
 	L.blood_volume -= 10
 	return ..()
 
@@ -457,36 +445,55 @@
 	custom_metabolism = REAGENTS_METABOLISM * 2
 	purge_list = list(/datum/reagent/medicine)
 	purge_rate = 1
-	overdose_threshold = REAGENTS_OVERDOSE
-	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL * 1.2 //make this a little more forgiving in light of the lethality
+	overdose_threshold = 10000 //Overdosing for neuro is what happens when you run out of stamina to avoid its oxy and toxin damage
 	scannable = TRUE
 	toxpwr = 0
 
+/datum/reagent/toxin/xeno_neurotoxin/light
+	name = "Light Neurotoxin"
+	description = "A debilitating nerve toxin. Impedes motor control in high doses. Causes progressive loss of mobility over time. This one seems to be weaker enough to not remove other chemicals."
+	purge_list = null
+	purge_rate = 0
+
 
 /datum/reagent/toxin/xeno_neurotoxin/on_mob_life(mob/living/L, metabolism)
+	var/power
 	switch(current_cycle)
 		if(1 to 20)
-			L.adjustStaminaLoss(4*REM) //While stamina loss is going, stamina regen apparently doesn't happen, so I can keep this smaller.
+			power = (2*effect_str) //While stamina loss is going, stamina regen apparently doesn't happen, so I can keep this smaller.
 			L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
 		if(21 to 45)
-			L.adjustStaminaLoss(12*REM)
+			power = (6*effect_str)
 			L.reagent_pain_modifier -= PAIN_REDUCTION_HEAVY
+			L.jitter(4) //Shows that things are bad
 		if(46 to INFINITY)
-			L.adjustStaminaLoss(30*REM)
+			power = (15*effect_str)
 			L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_HEAVY
-	L.adjust_drugginess(1.1)
+			L.jitter(8) //Shows that things are *really* bad
+
+	//Apply stamina damage, then apply any 'excess' stamina damage beyond our maximum as tox and oxy damage
+	var/stamina_loss_limit = L.maxHealth * 2
+	L.adjustStaminaLoss(min(power, max(0, stamina_loss_limit - L.staminaloss))) //If we're under our stamina_loss limit, apply the difference between our limit and current stamina damage or power, whichever's less
+
+	var/stamina_excess_damage = (L.staminaloss + power) - stamina_loss_limit
+	if(stamina_excess_damage > 0) //If we exceed maxHealth * 2 stamina damage, apply any excess as toxloss and oxyloss
+		L.adjustToxLoss(stamina_excess_damage * 0.5)
+		L.adjustOxyLoss(stamina_excess_damage * 0.5)
+		L.Losebreath(2) //So the oxy loss actually means something.
+
 	L.stuttering = max(L.stuttering, 1)
+
+	if(current_cycle < 21) //Additional effects at higher cycles
+		return ..()
+
+	L.adjust_drugginess(1.1) //Move this to stage 2 and 3 so it's not so obnoxious
+
+	if(L.eye_blurry < 30) //So we don't have the visual acuity of Mister Magoo forever
+		L.adjust_blurriness(1.3)
+
+
 	return ..()
 
-
-/datum/reagent/toxin/xeno_neurotoxin/overdose_process(mob/living/L, metabolism)
-	L.adjustToxLoss(REM) //Overdose starts applying toxin and oxygen damage. Long-term overdose will kill the host.
-	L.adjustOxyLoss(REM)
-	L.jitter(4) //Lets Xenos know they're ODing and should probably stop.
-
-
-/datum/reagent/toxin/xeno_neurotoxin/overdose_crit_process(mob/living/L, metabolism)
-	L.Losebreath(1) //Can't breathe; for punishing the bullies
 
 /datum/reagent/toxin/xeno_growthtoxin
 	name = "Larval Accelerant"
@@ -501,14 +508,6 @@
 	scannable = TRUE
 
 /datum/reagent/toxin/xeno_growthtoxin/on_mob_life(mob/living/L)
-	var/target_temp = L.get_standard_bodytemperature()
-	if(L.getBruteLoss() || L.getFireLoss())
-		L.heal_limb_damage(REM, REM)
-	if(L.getToxLoss())
-		L.adjustToxLoss(-REM)
-	if(L.bodytemperature > target_temp)
-		L.adjust_bodytemperature(-20 * TEMPERATURE_DAMAGE_COEFFICIENT, target_temp)
-	L.reagent_pain_modifier += PAIN_REDUCTION_VERY_HEAVY
 	L.jitter(1) //So unga know to get treated
 	return ..()
 
@@ -518,3 +517,62 @@
 
 /datum/reagent/toxin/xeno_growthtoxin/overdose_crit_process(mob/living/L, metabolism)
 	L.Losebreath(2)
+
+/datum/reagent/toxin/xeno_hemodile //slows by 25% and 50% based on base movement speed of marine with shoes on and deals an additional 20% of damage received as stamina damage
+	name = "Hemodile"
+	description = "A stamina draining toxin. Causes increased stamina loss and slower movement."
+	reagent_state = LIQUID
+	color = "#602CFF"
+	custom_metabolism = 0.4
+	overdose_threshold = 10000
+	scannable = TRUE
+	toxpwr = 0
+
+/datum/reagent/toxin/xeno_hemodile/on_mob_add(mob/living/L, metabolism, affecting)
+	RegisterSignal(L, COMSIG_HUMAN_DAMAGE_TAKEN, .proc/hemodile_human_damage_taken)
+
+/datum/reagent/toxin/xeno_hemodile/on_mob_life(mob/living/L, metabolism)
+	if(prob(25))
+		to_chat(L, "<span class='warning'>You feel your legs tense up.</span>")
+	if(!L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
+		L.add_movespeed_modifier(MOVESPEED_ID_XENO_HEMODILE, TRUE, 0, NONE, TRUE, 1)
+	else
+		L.add_movespeed_modifier(MOVESPEED_ID_XENO_HEMODILE, TRUE, 0, NONE, TRUE, 3)
+	return ..()
+
+/datum/reagent/toxin/xeno_hemodile/proc/hemodile_human_damage_taken(mob/living/L, damage)
+	SIGNAL_HANDLER
+	L.adjustStaminaLoss(damage*0.2)
+
+/datum/reagent/toxin/xeno_hemodile/on_mob_delete(mob/living/L, metabolism)
+	L.remove_movespeed_modifier(MOVESPEED_ID_XENO_HEMODILE)
+
+/datum/reagent/toxin/xeno_transvitox //when damage is received, converts brute/burn equal to 50% of damage received to tox damage
+	name = "Transvitox"
+	description = "Heals brute and burn wounds, while producing toxins."
+	reagent_state = LIQUID
+	color = "#94FF00"
+	custom_metabolism = 0.4
+	overdose_threshold = 10000
+	scannable = TRUE
+	toxpwr = 0
+
+/datum/reagent/toxin/xeno_transvitox/on_mob_add(mob/living/L, metabolism, affecting)
+	RegisterSignal(L, COMSIG_HUMAN_DAMAGE_TAKEN, .proc/transvitox_human_damage_taken)
+
+/datum/reagent/toxin/xeno_transvitox/on_mob_life(mob/living/L, metabolism)
+	if(prob(25))
+		to_chat(L, "<span class='warning'>You notice being strangely revitalised.</span>")
+	return ..()
+
+/datum/reagent/toxin/xeno_transvitox/proc/transvitox_human_damage_taken(mob/living/L, damage)
+	SIGNAL_HANDLER
+	var/dam = min(damage*0.4, 45 - L.getToxLoss()) // hard caps damage conversion to not exceed 45 tox
+	if((L.getBruteLoss() + L.getFireLoss()) < dam)
+		return
+	L.adjustToxLoss(dam)
+	var/healed_brute = min(dam, L.getBruteLoss())
+	L.heal_limb_damage(healed_brute)
+	if(!L.getFireLoss())
+		return
+	L.heal_limb_damage(0, dam - healed_brute)

@@ -4,13 +4,6 @@
 
 
 // status values shared between lighting fixtures and items
-#define LIGHT_OK 0
-#define LIGHT_EMPTY 1
-#define LIGHT_BROKEN 2
-#define LIGHT_BURNED 3
-
-
-
 /obj/machinery/light_construct
 	name = "light fixture frame"
 	desc = "A light fixture under construction."
@@ -140,8 +133,6 @@
 	idle_power_usage = 2
 	active_power_usage = 20
 	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
-	var/on = FALSE
-	var/on_gs = FALSE
 	var/brightness = 8			// luminosity when on, also used in power calculation
 	var/bulb_power = 1			// basically the alpha of the emitted light source
 	var/bulb_colour = COLOR_WHITE
@@ -210,14 +201,7 @@
 
 /obj/machinery/light/LateInitialize()
 	var/area/A = get_area(src)
-	seton(A.lightswitch && A.power_light)
-
-
-/obj/machinery/light/Destroy()
-	var/area/A = get_area(src)
-	if(A)
-		on = FALSE
-	return ..()
+	turn_light(null, (A.lightswitch && A.power_light))
 
 /obj/machinery/light/proc/is_broken()
 	if(status == LIGHT_BROKEN)
@@ -225,27 +209,20 @@
 	return FALSE
 
 /obj/machinery/light/update_icon()
-
 	switch(status)		// set icon_states
-		if(LIGHT_OK)
-			icon_state = "[base_state][on]"
+		if(LIGHT_OK, LIGHT_DISABLED)
+			icon_state = "[base_state][light_on]"
 		if(LIGHT_EMPTY)
 			icon_state = "[base_state]-empty"
-			on = FALSE
 		if(LIGHT_BURNED)
 			icon_state = "[base_state]-burned"
-			on = FALSE
 		if(LIGHT_BROKEN)
 			icon_state = "[base_state]-broken"
-			on = FALSE
 	return
 
 // update the icon_state and luminosity of the light depending on its state
 /obj/machinery/light/proc/update(trigger = TRUE)
-	switch(status)
-		if(LIGHT_BROKEN, LIGHT_BURNED, LIGHT_EMPTY)
-			on = FALSE
-	if(on)
+	if(status == LIGHT_OK)
 		var/BR = brightness
 		var/PO = bulb_power
 		var/CO = bulb_colour
@@ -268,15 +245,16 @@
 		set_light(0)
 
 	active_power_usage = (luminosity * 10)
-	if(on != on_gs)
-		on_gs = on
 	update_icon()
-
 
 // attempt to set the light's on/off status
 // will not switch on if broken/burned/empty
-/obj/machinery/light/proc/seton(s)
-	on = (s && status == LIGHT_OK)
+/obj/machinery/light/turn_light(mob/user, toggle_on)
+	if ((status != LIGHT_DISABLED) & (status != LIGHT_OK)) //Can't turn a broken light
+		return
+	. = ..()
+	if(!toggle_on)
+		status = LIGHT_DISABLED
 	update()
 
 // examine verb
@@ -284,7 +262,7 @@
 	..()
 	switch(status)
 		if(LIGHT_OK)
-			to_chat(user, "It is turned [on? "on" : "off"].")
+			to_chat(user, "It is turned [light_on? "on" : "off"].")
 		if(LIGHT_EMPTY)
 			to_chat(user, "The [fitting] has been removed.")
 		if(LIGHT_BURNED)
@@ -322,7 +300,6 @@
 		switchcount = L.switchcount
 		rigged = L.rigged
 		brightness = L.brightness
-		on = has_power()
 		update()
 
 		if(!user.temporarilyRemoveItemFromInventory(L))
@@ -330,7 +307,7 @@
 
 		qdel(L)
 
-		if(on && rigged)
+		if(light_on && rigged)
 			explode()
 
 	else if(status != LIGHT_BROKEN && status != LIGHT_EMPTY)
@@ -339,7 +316,7 @@
 			return
 
 		visible_message("[user] smashed the light!", "You hit the light, and it smashes!")
-		if(on && (I.flags_atom & CONDUCT) && prob(12))
+		if(light_on && (I.flags_atom & CONDUCT) && prob(12))
 			electrocute_mob(user, get_area(src), src, 0.3)
 		broken()
 
@@ -381,15 +358,13 @@
 		return
 	flickering = TRUE
 	spawn(0)
-		if(on && status == LIGHT_OK)
+		if(light_on && status == LIGHT_OK)
 			for(var/i = 0; i < amount; i++)
 				if(status != LIGHT_OK)
 					break
-				on = !on
-				update(0)
+				update(FALSE)
 				sleep(rand(5, 15))
-			on = (status == LIGHT_OK)
-			update(0)
+			update(FALSE)
 		flickering = FALSE
 
 // ai attack - make lights flicker, because why not
@@ -399,11 +374,13 @@
 
 
 //Xenos smashing lights
-/obj/machinery/light/attack_alien(mob/living/carbon/xenomorph/M)
+/obj/machinery/light/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(X.status_flags & INCORPOREAL)
+		return
 	if(status == 2) //Ignore if broken.
 		return FALSE
-	M.do_attack_animation(src, ATTACK_EFFECT_SMASH)
-	M.visible_message("<span class='danger'>\The [M] smashes [src]!</span>", \
+	X.do_attack_animation(src, ATTACK_EFFECT_SMASH)
+	X.visible_message("<span class='danger'>\The [X] smashes [src]!</span>", \
 	"<span class='danger'>We smash [src]!</span>", null, 5)
 	broken() //Smashola!
 
@@ -426,7 +403,7 @@
 			return
 
 	// make it burn hands if not wearing fire-insulated gloves
-	if(on)
+	if(light_on)
 		var/prot = 0
 		var/mob/living/carbon/human/H = user
 
@@ -485,7 +462,6 @@
 		return
 	status = LIGHT_OK
 	brightness = initial(brightness)
-	on = TRUE
 	update()
 
 // explosion effect
@@ -502,7 +478,7 @@
 		if(EXPLODE_LIGHT)
 			if (prob(50))
 				broken()
-	return
+
 
 //timed process
 //use power
@@ -517,7 +493,7 @@
 // called when area power state changes
 /obj/machinery/light/power_change()
 	var/area/A = get_area(src)
-	seton(A.lightswitch && A.power_light)
+	turn_light(null, (A.lightswitch && A.power_light))
 
 // called when on fire
 

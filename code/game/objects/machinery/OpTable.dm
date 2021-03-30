@@ -39,13 +39,14 @@
 				qdel(src)
 
 
-/obj/machinery/optable/attack_paw(mob/living/carbon/monkey/user)
-	if (!( locate(/obj/machinery/optable, user.loc) ))
-		step(user, get_dir(user, src))
-		if (user.loc == src.loc)
-			user.layer = TURF_LAYER
-			visible_message("The monkey hides under the table!")
-	return
+/obj/machinery/optable/attack_paw(mob/living/carbon/human/user)
+	if(locate(/obj/machinery/optable, user.loc))
+		return
+	step(user, get_dir(user, src))
+	if(user.loc == loc)
+		user.layer = TURF_LAYER
+		visible_message("The monkey hides under the table!")
+
 
 /obj/machinery/optable/examine(mob/user)
 	..()
@@ -68,6 +69,9 @@
 	if(!ishuman(buckling_mob))
 		return FALSE
 	if(buckling_mob == user)
+		return FALSE
+	if(!ishuman(user)) //xenos buckling humans into op tables and applying anesthetic masks? no way.
+		to_chat(user, "<span class='xenowarning'>We don't have the manual dexterity to do this.</span>")
 		return FALSE
 	if(buckling_mob != victim)
 		to_chat(user, "<span class='warning'>Lay the patient on the table first!</span>")
@@ -118,7 +122,8 @@
 	return ..()
 
 
-/obj/machinery/optable/CanPass(atom/movable/mover, turf/target)
+/obj/machinery/optable/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
 		return 1
 	else

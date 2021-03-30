@@ -42,6 +42,7 @@
 #define MODE_LZ_SHUTTERS		(1<<6)
 #define MODE_XENO_SPAWN_PROTECT	(1<<7)
 #define MODE_XENO_RULER			(1<<8)
+#define MODE_PSY_POINTS			(1<<9)
 
 #define MODE_LANDMARK_RANDOM_ITEMS			(1<<0)
 #define MODE_LANDMARK_SPAWN_XENO_TUNNELS	(1<<1)
@@ -85,7 +86,7 @@
 				list(/obj/item/weapon/gun/smg/mp7, /obj/item/ammo_magazine/smg/mp7),\
 				list(/obj/item/weapon/gun/shotgun/double/sawn, /obj/item/ammo_magazine/handful/buckshot),\
 				list(/obj/item/weapon/gun/smg/uzi, /obj/item/ammo_magazine/smg/uzi),\
-				list(/obj/item/weapon/gun/smg/mp5, /obj/item/ammo_magazine/smg/mp5),\
+				list(/obj/item/weapon/gun/smg/m25, /obj/item/ammo_magazine/smg/m25),\
 				list(/obj/item/weapon/gun/rifle/m16, /obj/item/ammo_magazine/rifle/m16),\
 				list(/obj/item/weapon/gun/shotgun/pump/bolt, /obj/item/ammo_magazine/rifle/bolt),\
 				list(/obj/item/weapon/gun/shotgun/pump/lever, /obj/item/ammo_magazine/magnum))
@@ -124,3 +125,9 @@
 #define COUNT_IGNORE_XENO_SPECIAL_AREA	(1<<2)
 
 #define COUNT_IGNORE_ALIVE_SSD (COUNT_IGNORE_HUMAN_SSD|COUNT_IGNORE_XENO_SSD)
+
+#define SILO_PRICE 1200
+#define XENO_TURRET_PRICE 150
+
+//The minimum round time before siloless timer can start (13:00)
+#define MINIMUM_TIME_SILO_LESS_COLLAPSE 36000 

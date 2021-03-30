@@ -1,4 +1,3 @@
-import { Fragment } from 'inferno';
 import { useBackend } from '../backend';
 import { Box, Button, LabeledList, NoticeBox, Section } from '../components';
 import { Window } from '../layouts';
@@ -7,7 +6,9 @@ export const MarineDropship = (props, context) => {
   const { act, data } = useBackend(context);
 
   return (
-    <Window>
+    <Window
+      width={500}
+      height={600}>
       <Window.Content scrollable>
         {!data.hijack_state ? (
           <NoticeBox>
@@ -42,7 +43,7 @@ const NormalOperation = (props, context) => {
     },
   ];
   return (
-    <Fragment>
+    <>
       <Section title="Ship Status">
         {data.ship_status}
       </Section>
@@ -87,7 +88,7 @@ const NormalOperation = (props, context) => {
           ))}
         </LabeledList>
       </Section>
-    </Fragment>
+    </>
   );
 };
 

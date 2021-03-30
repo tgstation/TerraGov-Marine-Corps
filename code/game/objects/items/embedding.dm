@@ -116,7 +116,7 @@
 
 
 /datum/limb/proc/process_embedded(obj/item/embedded)
-	if(limb_status & (LIMB_SPLINTED|LIMB_STABILIZED) || (owner.m_intent == MOVE_INTENT_WALK && !owner.pulledby))
+	if(limb_status & (LIMB_SPLINTED|LIMB_STABILIZED))
 		return
 	if(!prob(embedded.embedding.embed_process_chance))
 		return
@@ -157,7 +157,7 @@
 
 	user.next_move = world.time + 2 SECONDS
 
-	if(user.action_busy)
+	if(user.do_actions)
 		return
 
 	if(user.stat != CONSCIOUS)
@@ -183,7 +183,7 @@
 	if(!length(valid_objects))
 		CRASH("yank_out_object called for empty valid_objects, lenght of embedded_objects is [length(embedded_objects)]")
 
-	var/obj/item/selection = input("What do you want to yank out?", "Embedded objects") in valid_objects
+	var/obj/item/selection = tgui_input_list(user, "What do you want to yank out?", "Embedded objects", valid_objects)
 
 	if(user.get_active_held_item())
 		to_chat(user, "<span class='warning'>You need an empty hand for this!</span>")

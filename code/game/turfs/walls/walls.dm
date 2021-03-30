@@ -98,11 +98,13 @@
 	..()
 
 
-/turf/closed/wall/attack_alien(mob/living/carbon/xenomorph/user)
-	if(acided_hole && user.mob_size == MOB_SIZE_BIG)
-		acided_hole.expand_hole(user)
+/turf/closed/wall/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(X.status_flags & INCORPOREAL)
+		return
+	if(acided_hole && (X.mob_size == MOB_SIZE_BIG || X.xeno_caste.caste_flags & CASTE_IS_STRONG)) //Strong and/or big xenos can tear open acided walls
+		acided_hole.expand_hole(X)
 	else
-		. = ..()
+		return ..()
 
 
 
@@ -281,7 +283,7 @@
 			take_damage(rand(0, 250))
 
 //Interactions
-/turf/closed/wall/attack_paw(mob/living/carbon/monkey/user)
+/turf/closed/wall/attack_paw(mob/living/carbon/human/user)
 	return attack_hand(user)
 
 
@@ -341,7 +343,7 @@
 	else if(resistance_flags & INDESTRUCTIBLE)
 		to_chat(user, "<span class='warning'>[src] is much too tough for you to do anything to it with [I]</span>.")
 
-	else if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.action_busy)
+	else if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.do_actions)
 		var/obj/item/tool/pickaxe/plasmacutter/P = I
 		if(!P.start_cut(user, name, src))
 			return

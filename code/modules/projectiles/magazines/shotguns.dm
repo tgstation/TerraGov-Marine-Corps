@@ -41,6 +41,12 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 	icon_state = "beanbag"
 	default_ammo = /datum/ammo/bullet/shotgun/beanbag
 
+/obj/item/ammo_magazine/shotgun/tracker
+	name = "box of 12 gauge tracker shells"
+	desc = "A box filled with tracker shotgun shells. 12 Gauge."
+	icon_state = "tracking"
+	default_ammo = /datum/ammo/bullet/shotgun/tracker
+
 /obj/item/ammo_magazine/rifle/bolt
 	name = "box of 7.62x54mmR rifle rounds"
 	desc = "A box filled with rifle bullets."
@@ -95,9 +101,6 @@ also doesn't really matter. You can only reload them with handfuls.
 
 /obj/item/ammo_magazine/internal/shotgun/pump/CMB
 	max_rounds = 8
-
-/obj/item/ammo_magazine/internal/shotgun/pump/ksg
-	max_rounds = 12
 
 /obj/item/ammo_magazine/internal/shotgun/pump/bolt
 	name = "internal magazine"

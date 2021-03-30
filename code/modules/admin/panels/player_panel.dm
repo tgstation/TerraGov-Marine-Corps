@@ -318,7 +318,7 @@
 		dat += "<tr><td>[(M.key ? "[M.key]" : "No Key")]</td>"
 		dat += "<td><a href='?priv_msg=[M.ckey]'>[M.name]</a></td>"
 		if(isAI(M))
-			dat += "<td>aI</td>"
+			dat += "<td>AI</td>"
 		else if(ishuman(M))
 			dat += "<td>[M.real_name]</td>"
 		else if(istype(M, /mob/new_player))
@@ -454,7 +454,6 @@
 		<a href='?src=[ref];transform=larva;mob=[REF(M)]'>Larva</a>
 		<br> Alien Tier 1:
 		<a href='?src=[ref];transform=runner;mob=[REF(M)]'>Runner</a> |
-		<a href='?src=[ref];transform=panther;mob=[REF(M)]'>Panther</a> |
 		<a href='?src=[ref];transform=drone;mob=[REF(M)]'>Drone</a> |
 		<a href='?src=[ref];transform=sentinel;mob=[REF(M)]'>Sentinel</a> |
 		<a href='?src=[ref];transform=defender;mob=[REF(M)]'>Defender</a>

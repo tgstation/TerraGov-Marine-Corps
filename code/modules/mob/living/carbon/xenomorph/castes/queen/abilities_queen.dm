@@ -44,6 +44,11 @@
 	if(!input)
 		return
 
+	if(CHAT_FILTER_CHECK(input))
+		to_chat(src, "<span class='warning'>That announcement contained a word prohibited in IC chat! Consider reviewing the server rules.\n<span replaceRegex='show_filtered_ic_chat'>\"[input]\"</span></span>")
+		SSblackbox.record_feedback(FEEDBACK_TALLY, "ic_blocked_words", 1, lowertext(config.ic_filter_regex.match))
+		return FALSE
+
 	var/queensWord = "<br><h2 class='alert'>The words of the queen reverberate in your head...</h2>"
 	queensWord += "<br><span class='alert'>[input]</span><br>"
 
@@ -89,7 +94,7 @@
 
 	pslash_delay = TRUE
 
-	var/choice = input("Choose which level of slashing hosts to permit to your hive.","Harming") as null|anything in list("Allowed", "Restricted - Less Damage", "Forbidden")
+	var/choice = tgui_input_list(src, "Choose which level of slashing hosts to permit to your hive.","Harming", list("Allowed", "Restricted - Less Damage", "Forbidden"))
 
 	if(choice == "Allowed")
 		to_chat(src, "<span class='xenonotice'>We allow slashing.</span>")
@@ -200,7 +205,7 @@
 				if(!silent)
 					to_chat(owner, "<span class='xenowarning'>The host and child are still alive!</span>")
 				return FALSE
-			else if(istype(H) && !check_tod(H)) //Dead, but the host can still hatch, possibly.
+			else if(istype(H) && !HAS_TRAIT(H, TRAIT_UNDEFIBBABLE )) //Dead code
 				if(!silent)
 					to_chat(owner, "<span class='xenowarning'>The child may still hatch! Not yet!</span>")
 				return FALSE
@@ -271,7 +276,7 @@
 	if(QDELETED(selected_xeno))
 		var/list/possible_xenos = X.hive.get_watchable_xenos()
 
-		selected_xeno = input(X, "Target", "Watch which xenomorph?") as null|anything in possible_xenos
+		selected_xeno = tgui_input_list(X, "Target", "Watch which xenomorph?", possible_xenos)
 		if(QDELETED(selected_xeno) || selected_xeno == X.observed_xeno || selected_xeno.stat == DEAD || is_centcom_level(selected_xeno.z) || !X.check_state())
 			if(!X.observed_xeno)
 				return
@@ -287,6 +292,7 @@
 	if(old_xeno)
 		stop_overwatch(FALSE)
 	watcher.observed_xeno = target
+	target.hud_set_queen_overwatch()
 	watcher.reset_perspective()
 	RegisterSignal(target, COMSIG_HIVE_XENO_DEATH, .proc/on_xeno_death)
 	RegisterSignal(target, list(COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED), .proc/on_xeno_evolution)
@@ -308,8 +314,8 @@
 
 
 /datum/action/xeno_action/watch_xeno/proc/on_list_xeno_selection(datum/source, mob/living/carbon/xenomorph/selected_xeno)
-	SIGNAL_HANDLER_DOES_SLEEP
-	select_xeno(selected_xeno)
+	SIGNAL_HANDLER
+	INVOKE_ASYNC(src, .proc/select_xeno, selected_xeno)
 
 /datum/action/xeno_action/watch_xeno/proc/on_xeno_evolution(datum/source, mob/living/carbon/xenomorph/new_xeno)
 	SIGNAL_HANDLER
@@ -359,7 +365,7 @@
 
 /datum/action/xeno_action/toggle_queen_zoom/action_activate()
 	var/mob/living/carbon/xenomorph/queen/xeno = owner
-	if(xeno.action_busy)
+	if(xeno.do_actions)
 		return
 	if(xeno.is_zoomed)
 		zoom_xeno_out(xeno.observed_xeno ? FALSE : TRUE)
@@ -417,7 +423,7 @@
 	if(QDELETED(selected_xeno))
 		var/list/possible_xenos = xeno_ruler.hive.get_leaderable_xenos()
 
-		selected_xeno = input(xeno_ruler, "Target", "Watch which xenomorph?") as null|anything in possible_xenos
+		selected_xeno = tgui_input_list(xeno_ruler, "Target", "Watch which xenomorph?", possible_xenos)
 		if(QDELETED(selected_xeno) || selected_xeno.stat == DEAD || is_centcom_level(selected_xeno.z) || !xeno_ruler.check_state())
 			return
 
@@ -459,10 +465,11 @@
 	if(feedback)
 		to_chat(xeno_ruler, "<span class='xenonotice'>We've selected [selected_xeno] as a Hive Leader.</span>")
 		to_chat(selected_xeno, "<span class='xenoannounce'>[xeno_ruler] has selected us as a Hive Leader. The other Xenomorphs must listen to us. We will also act as a beacon for the Queen's pheromones.</span>")
+
 	xeno_ruler.hive.add_leader(selected_xeno)
 	selected_xeno.hud_set_queen_overwatch()
 	selected_xeno.handle_xeno_leader_pheromones(xeno_ruler)
-
+	notify_ghosts("\ [xeno_ruler] has designated [selected_xeno] as a Hive Leader", source = selected_xeno, action = NOTIFY_ORBIT)
 
 // ***************************************
 // *********** Queen heal
@@ -632,8 +639,8 @@
 
 	var/datum/xeno_caste/new_caste = GLOB.xeno_caste_datums[T.xeno_caste.deevolves_to][XENO_UPGRADE_ZERO]
 
-	var/confirm = alert(X, "Are you sure you want to deevolve [T] from [T.xeno_caste.caste_name] to [new_caste.caste_name]?", , "Yes", "No")
-	if(confirm == "No")
+	var/confirm = tgui_alert(X, "Are you sure you want to deevolve [T] from [T.xeno_caste.caste_name] to [new_caste.caste_name]?", null, list("Yes", "No"))
+	if(confirm != "Yes")
 		return
 
 	var/reason = stripped_input(X, "Provide a reason for deevolving this xenomorph, [T]")
@@ -670,8 +677,6 @@
 	for(var/obj/item/W in T.contents) //Drop stuff
 		T.dropItemToGround(W)
 
-	T.empty_gut(FALSE, TRUE)
-
 	if(T.mind)
 		T.mind.transfer_to(new_xeno)
 	else
@@ -686,7 +691,6 @@
 		H.add_hud_to(new_xeno) //keep our mobhud choice
 		new_xeno.xeno_mobhud = TRUE
 
-	new_xeno.middle_mouse_toggle = T.middle_mouse_toggle //Keep our toggle state
 	new_xeno.visible_message("<span class='xenodanger'>A [new_xeno.xeno_caste.caste_name] emerges from the husk of \the [T].</span>", \
 	"<span class='xenodanger'>[X] makes us regress into our previous form.</span>")
 
@@ -706,3 +710,33 @@
 	SSblackbox.record_feedback("tally", "round_statistics", -1, "total_xenos_created")
 	qdel(T)
 	X.use_plasma(600)
+
+/datum/action/xeno_action/activable/corrupt_generator
+	name = "Corrupt generator"
+	action_icon_state = "tunnel"
+	mechanics_text = "Corrupt a generator to begin increasing the psycic energy of the hive."
+	plasma_cost = 200
+	//keybind_signal = COMSIG_XENOABILITY_CORRUPT_GENERATOR
+
+/datum/action/xeno_action/activable/corrupt_generator/can_use_ability(atom/A, silent, override_flags)
+	. = ..()
+	if(!.)
+		return
+	if(!istype(A, /obj/machinery/power/geothermal))
+		if(!silent)
+			to_chat(owner, "<span class='warning'>You can only use this ability on generators!</span>")
+		return FALSE
+	var/obj/machinery/power/geothermal/gen = A
+	if(!gen.is_corruptible)
+		if(!silent)
+			to_chat(owner, "<span class='warning'>[A] is reinforced and cannot be corrupted!</span>")
+		return FALSE
+
+/datum/action/xeno_action/activable/corrupt_generator/use_ability(atom/A)
+	var/obj/machinery/power/geothermal/gen = A
+	if(!do_after(owner, 10 SECONDS, TRUE, gen, BUSY_ICON_HOSTILE))
+		return fail_activate()
+	var/mob/living/carbon/xenomorph/X = owner
+	gen.corrupt(X.hivenumber)
+	to_chat(owner, "<span class='notice'>You have corrupted [A]</span>")
+	succeed_activate()

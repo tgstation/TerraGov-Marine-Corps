@@ -168,7 +168,7 @@
 	target.UpdateDamageIcon()
 
 	//Prepare mind datum
-	if(B.brainmob.mind)
+	if(B.brainmob?.mind)
 		B.brainmob.mind.transfer_to(target)
 
 	//Deal with the head item properly

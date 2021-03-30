@@ -14,7 +14,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	RADIO_KEY_BRAVO = RADIO_CHANNEL_BRAVO,
 	RADIO_KEY_CHARLIE = RADIO_CHANNEL_CHARLIE,
 	RADIO_KEY_DELTA = RADIO_CHANNEL_DELTA,
-	RADIO_KEY_POLICE = RADIO_CHANNEL_POLICE,
+	RADIO_KEY_CAS = RADIO_CHANNEL_CAS,
 	RADIO_KEY_REQUISITIONS = RADIO_CHANNEL_REQUISITIONS,
 ))
 
@@ -250,8 +250,8 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 		return lowertext(message[1 + length(key)])
 
 /mob/living/proc/get_message_language(message)
-	if(message[1] == ",")
-		var/key = message[1 + length(message[1])]
+	if(length(message) >= 2 && message[1] == ",")
+		var/key = message[2]
 		for(var/ld in GLOB.all_languages)
 			var/datum/language/LD = ld
 			if(initial(LD.key) == key)
@@ -265,6 +265,11 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 
 	if(slurring)
 		message = slur(message)
+
+		// check for and apply punctuation
+	var/end = copytext(message, length(message))
+	if(!(end in list("!", ".", "?", ":", "\"", "-")))
+		message += "."
 
 	message = capitalize(message)
 

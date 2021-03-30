@@ -49,6 +49,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	var/ghost_orderhud = FALSE
 	var/ghost_vision = TRUE
 	var/ghost_orbit = GHOST_ORBIT_CIRCLE
+	///Position in the larva queue
+	var/larva_position = 0
 
 
 /mob/dead/observer/Initialize()
@@ -97,6 +99,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	animate(src, pixel_y = 2, time = 10, loop = -1)
 
 	grant_all_languages()
+	RegisterSignal(src, COMSIG_MOVABLE_Z_CHANGED, .proc/observer_z_changed)
+	LAZYADD(GLOB.observers_by_zlevel["[z]"], src)
 
 	return ..()
 
@@ -111,9 +115,17 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	updateallghostimages()
 
 	QDEL_NULL(orbit_menu)
+	GLOB.observer_list -= src //"wait isnt this done in logout?" Yes it is but because this is clients thats unreliable so we do it again here
+
+	LAZYREMOVE(GLOB.observers_by_zlevel["[z]"], src)
+	UnregisterSignal(src, COMSIG_MOVABLE_Z_CHANGED)
 
 	return ..()
 
+/mob/dead/observer/proc/observer_z_changed(datum/source, old_z, new_z)
+	SIGNAL_HANDLER
+	LAZYREMOVE(GLOB.observers_by_zlevel["[old_z]"], src)
+	LAZYADD(GLOB.observers_by_zlevel["[new_z]"], src)
 
 /mob/dead/observer/update_icon(new_form)
 	if(client) //We update our preferences in case they changed right before update_icon was called.
@@ -186,7 +198,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			return
 		var/mob/dead/observer/ghost = usr
 
-		switch(alert(ghost, "What would you like to do?", "Burrowed larva source available", "Join as Larva", "Cancel"))
+		switch(tgui_alert(ghost, "What would you like to do?", "Burrowed larva source available", list("Join as Larva", "Cancel"), 0))
 			if("Join as Larva")
 				SSticker.mode.attempt_to_join_as_larva(ghost)
 		return
@@ -195,11 +207,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		if(!client?.prefs)
 			return
 		client.prefs.process_link(src, href_list)
-
-
-/mob/dead/CanPass(atom/movable/mover, turf/target)
-	return TRUE
-
 
 /mob/proc/ghostize(can_reenter_corpse = TRUE)
 	if(!key || isaghost(src))
@@ -289,9 +296,12 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		if(status_value)
 			stat("Evacuation in:", status_value)
 		if(SSticker.mode)
-			status_value = SSticker.mode.get_hivemind_collapse_countdown()
-			if(status_value)
-				stat("<b>Orphan hivemind collapse timer:</b>", status_value)
+			var/rulerless_countdown = SSticker.mode.get_hivemind_collapse_countdown()
+			if(rulerless_countdown)
+				stat("<b>Orphan hivemind collapse timer:</b>", rulerless_countdown)
+			var/siloless_countdown = SSticker.mode.get_siloless_collapse_countdown()
+			if(siloless_countdown)
+				stat("<b>Silo less hive collapse timer:</b>", siloless_countdown)
 		if(GLOB.respawn_allowed)
 			status_value = (timeofdeath + GLOB.respawntime - world.time) * 0.1
 			if(status_value <= 0)
@@ -304,6 +314,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 					stat("Xeno respawn timer:", "<b>READY</b>")
 				else
 					stat("Xeno respawn timer:", "[(status_value / 60) % 60]:[add_leading(num2text(status_value % 60), 2, "0")]")
+				if(larva_position)
+					stat("Position in larva candidate queue: ", "[larva_position]")
 				var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 				var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
 				if(stored_larva)
@@ -345,7 +357,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	if(!client?.prefs)
 		return
 
-	var/hud_choice = input("Choose a HUD to toggle", "Toggle HUD") as null|anything in list("Medical HUD", "Security HUD", "Squad HUD", "Xeno Status HUD", "Order HUD")
+	var/hud_choice = tgui_input_list(usr, "Choose a HUD to toggle", "Toggle HUD", list("Medical HUD", "Security HUD", "Squad HUD", "Xeno Status HUD", "Order HUD"))
 
 	var/datum/atom_hud/H
 	switch(hud_choice)
@@ -425,7 +437,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		to_chat(usr, "<span class='warning'>There are no ghosts at the moment.</span>")
 		return
 
-	var/selected = input("Please select a Ghost:", "Follow Ghost") as null|anything in observers
+	var/selected = tgui_input_list(usr, "Please select a Ghost:", "Follow Ghost", observers)
 	if(!selected)
 		return
 
@@ -474,7 +486,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		return
 
 
-	var/selected = input("Please select a Xeno:", "Follow Xeno") as null|anything in xenos
+	var/selected = tgui_input_list(usr, "Please select a Xeno:", "Follow Xeno", xenos)
 	if(!selected)
 		return
 
@@ -529,7 +541,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		to_chat(usr, "<span class='warning'>There are no living humans at the moment.</span>")
 		return
 
-	var/selected = input("Please select a Living Human:", "Follow Living Human") as null|anything in humans
+	var/selected = tgui_input_list(usr, "Please select a Living Human:", "Follow Living Human", humans)
 	if(!selected)
 		return
 
@@ -565,7 +577,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		to_chat(usr, "<span class='warning'>There are no dead mobs at the moment.</span>")
 		return
 
-	var/selected = input("Please select a Dead Mob:", "Follow Dead") as null|anything in dead
+	var/selected = tgui_input_list(usr, "Please select a Dead Mob:", "Follow Dead", dead)
 	if(!selected)
 		return
 
@@ -590,7 +602,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		to_chat(src, "<span class='warning'>There are currently no mobs being offered.</span>")
 		return
 
-	var/mob/living/L = input("Choose which mob you want to take over.", "Offered Mob") as null|anything in sortNames(GLOB.offered_mob_list)
+	var/mob/living/L = tgui_input_list(usr, "Choose which mob you want to take over.", "Offered Mob", sortNames(GLOB.offered_mob_list))
 	if(isnull(L))
 		return
 
@@ -598,7 +610,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		to_chat(src, "<span class='warning'>Mob already taken.</span>")
 		return
 
-	switch(alert("Take over mob named: [L.real_name][L.job ? " | Job: [L.job]" : ""]", "Offered Mob", "Yes", "No", "Follow"))
+	switch(tgui_alert(usr, "Take over mob named: [L.real_name][L.job ? " | Job: [L.job]" : ""]", "Offered Mob", list("Yes", "No", "Follow")))
 		if("Yes")
 			L.take_over(src)
 		if("Follow")
@@ -773,7 +785,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		to_chat(src, "<span class='warning'>You are jobbaned from the [ROLE_XENOMORPH] role.</span>")
 		return
 
-	var/choice = alert("Would you like to join as a larva or as a xeno?", "Join as Xeno", "Xeno", "Larva", "Cancel")
+	var/choice = tgui_alert(usr, "Would you like to join as a larva or as a xeno?", "Join as Xeno", list("Xeno", "Larva", "Cancel"), 0)
 	switch(choice)
 		if("Xeno")
 			var/mob/new_xeno = SSticker.mode.attempt_to_join_as_xeno(src)
@@ -789,11 +801,15 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 	reset_perspective(null)
 
-	var/mob/target = input("Please select a mob:", "Observe", null, null) as null|anything in GLOB.mob_list
+	var/mob/target = tgui_input_list(usr, "Please select a mob:", "Observe", GLOB.mob_list)
 	if(!target)
 		return
 
-	if(!client)
+	do_observe(target)
+
+///makes the ghost see the target hud and sets the eye at the target.
+/mob/dead/observer/proc/do_observe(mob/target)
+	if(!client || !target || !istype(target))
 		return
 
 	client.eye = target
@@ -813,7 +829,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	set name = "Do Not Revive"
 	set desc = "Noone will be able to revive you."
 
-	if(can_reenter_corpse && alert("Are you sure? You won't be able to get revived.", "Confirmation", "Yes", "No") == "Yes")
+	if(can_reenter_corpse && tgui_alert(usr, "Are you sure? You won't be able to get revived.", "Confirmation", list("Yes", "No")) == "Yes")
 		can_reenter_corpse = FALSE
 		to_chat(usr, "<span class='notice'>You can no longer be revived.</span>")
 		mind.current.med_hud_set_status()

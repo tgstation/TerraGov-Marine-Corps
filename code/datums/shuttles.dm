@@ -116,6 +116,10 @@
 	shuttle_id = "casplane"
 	name = "Condor Jet"
 
+/datum/map_template/shuttle/minidropship
+	shuttle_id = "minidropship"
+	name = "Tadpole Drop Shuttle"
+
 /datum/map_template/shuttle/escape_pod
 	shuttle_id = "escape_pod"
 	name = "Escape Pod"

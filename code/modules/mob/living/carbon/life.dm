@@ -3,14 +3,15 @@
 	set invisibility = 0
 	set background = 1
 
-	if(stat != DEAD) //Chemicals in body and some other stuff.
+	if(notransform || stat == DEAD) //If we're dead or set to notransform don't bother processing life
+		return
 
-		if((life_tick % CARBON_BREATH_DELAY == 0) || failed_last_breath) //First, resolve location and get a breath
-			breathe() //Only try to take a breath every 2 ticks, unless suffocating
+	if((life_tick % CARBON_BREATH_DELAY == 0) || failed_last_breath) //First, resolve location and get a breath
+		breathe() //Only try to take a breath every 2 ticks, unless suffocating
 
-		else if(isobj(loc))//Still give containing object the chance to interact
-			var/obj/location_as_object = loc
-			location_as_object.handle_internal_lifeform(src)
+	else if(isobj(loc))//Still give containing object the chance to interact
+		var/obj/location_as_object = loc
+		location_as_object.handle_internal_lifeform(src)
 
 	. = ..()
 
@@ -94,8 +95,6 @@
 		handle_hallucinations()
 
 
-	if(halloss)
-		halloss_recovery()
 
 	if(staminaloss > -max_stamina_buffer)
 		handle_staminaloss()
@@ -166,23 +165,7 @@
 			reagent_shock_modifier += PAIN_REDUCTION_HEAVY
 
 	handle_stagger()
-	handle_slowdown()
 	handle_disabilities()
-
-
-/mob/living/carbon/proc/handle_stagger()
-	if(stagger)
-		adjust_stagger(-1)
-	return stagger
-
-/mob/living/carbon/adjust_stagger(amount)
-	stagger = max(stagger + amount,0)
-	return stagger
-
-/mob/living/carbon/proc/handle_slowdown()
-	if(slowdown)
-		adjust_slowdown(-STANDARD_SLOWDOWN_REGEN)
-	return slowdown
 
 /mob/living/carbon/proc/breathe()
 	if(!need_breathe())

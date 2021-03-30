@@ -62,6 +62,7 @@
 #define ADMIN_TPMONTY(user) "[key_name_admin(user)] [ADMIN_TPMONTY_NONAME(user)]"
 #define COORD(src) "[src ? "([src.x],[src.y],[src.z])" : "nonexistent location"]"
 #define AREACOORD(src) "[src ? "[get_area_name(src, TRUE)] ([src.x], [src.y], [src.z])" : "nonexistent location"]"
+#define AREACOORD_NO_Z(src) "[src ? "[get_area_name(src, TRUE)] (X: [src.x], Y: [src.y])" : "nonexistent location"]"
 #define ADMIN_COORDJMP(src) "[src ? "[COORD(src)] [ADMIN_JMP(src)]" : "nonexistent location"]"
 #define ADMIN_VERBOSEJMP(src) "[src ? "[AREACOORD(src)] [ADMIN_JMP(src)]" : "nonexistent location"]"
 #define ADMIN_INDIVIDUALLOG(user) "(<a href='?_src_=holder;[HrefToken(TRUE)];individuallog=[REF(user)]'>LOGS</a>)"
@@ -78,6 +79,8 @@
 #define SPAM_TRIGGER_AUTOMUTE	10	//Number of messages required per the time period before the spam-prevention will automute you
 #define SPAM_TRIGGER_WEIGHT_WARNING 2.5 //The weight required per the time period before the spam-prevention will warn you
 #define SPAM_TRIGGER_WEIGHT_AUTOMUTE 4 //The weight required per the time period before the spam-prevention will automute you
+
+#define MAX_LENGTH_REQ_REASON 250
 
 ///Max length of a keypress command before it's considered to be a forged packet/bogus command
 #define MAX_KEYPRESS_COMMANDLENGTH 16

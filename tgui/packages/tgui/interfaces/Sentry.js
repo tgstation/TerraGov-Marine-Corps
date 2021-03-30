@@ -1,13 +1,14 @@
-import { Fragment } from 'inferno';
 import { useBackend } from '../backend';
-import { Button, LabeledList, Section, Box, TitleBar, ProgressBar } from '../components';
+import { Button, LabeledList, Section, Box, ProgressBar } from '../components';
 import { Window } from '../layouts';
 
 export const Sentry = (props, context) => {
   const { act, data } = useBackend(context);
 
   return (
-    <Window>
+    <Window
+      width={360}
+      height={320}>
       <Window.Content>
         <Section title={data.name}
           buttons={
@@ -66,7 +67,7 @@ export const Sentry = (props, context) => {
               label="Burst Fire" />
             <LabeledList.Item
               buttons={
-                <Fragment>
+                <>
                   <Button
                     onClick={() => act('burstup')}
                     icon="plus"
@@ -76,7 +77,7 @@ export const Sentry = (props, context) => {
                     onClick={() => act('burstdown')}
                     icon="minus"
                     disabled={!data.is_on} />
-                </Fragment>
+                </>
               }
               label="Burst Count" />
             <LabeledList.Item

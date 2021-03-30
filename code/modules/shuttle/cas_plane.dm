@@ -21,10 +21,6 @@
 	var/mob/living/carbon/human/occupant
 	///Animated cockpit /image overlay, 96x96
 	var/image/cockpit
-	///Ui size in x
-	var/ui_x = 600
-	///UI size in y
-	var/ui_y = 500
 
 /obj/structure/caspart/caschair/Initialize()
 	. = ..()
@@ -83,12 +79,14 @@
 			interact(occupant)
 			RegisterSignal(occupant, COMSIG_LIVING_DO_RESIST, /atom/movable.proc/resisted_against)
 			set_cockpit_overlay("cockpit_closing")
-			sleep(7)
-			set_cockpit_overlay("cockpit_closed")
+			addtimer(CALLBACK(src, .proc/set_cockpit_overlay, "cockpit_closed"), 7)
 
 /obj/structure/caspart/caschair/attackby(obj/item/I, mob/user, params)
 	if(!istype(I, /obj/item/reagent_containers/jerrycan))
 		return ..()
+	if(owner.state == PLANE_STATE_FLYING)
+		to_chat(user, "<span class='warning'>You can't refuel mid-air!</span>")
+		return
 	var/obj/item/reagent_containers/jerrycan/gascan = I
 	if(gascan.reagents.total_volume == 0)
 		to_chat(user, "<span class='warning'>Out of fuel!</span>")
@@ -117,8 +115,7 @@
 		if(!do_after(occupant, 2 SECONDS, TRUE, src))
 			return
 		set_cockpit_overlay("cockpit_opening")
-		sleep(7)
-	set_cockpit_overlay("cockpit_open")
+		addtimer(CALLBACK(src, .proc/set_cockpit_overlay, "cockpit_open"), 7)
 	UnregisterSignal(occupant, COMSIG_LIVING_DO_RESIST)
 	occupant.unset_interaction()
 	occupant.forceMove(loc)
@@ -149,6 +146,8 @@
 
 	///What state our plane is in, i.e can we launch/do we have to deploy stairs etc
 	var/state = PLANE_STATE_DEACTIVATED
+	///Direction we will use for attacks while in combat mode
+	var/attackdir = NORTH
 	///List of engine tiles so we can track them for overlays
 	var/list/engines = list()
 	///Chair that handles all the ui and click stuff
@@ -180,6 +179,9 @@
 		to_chat(chair.occupant, "<span class='warning'>Out of fuel, landing.</span>")
 		SSshuttle.moveShuttle(id, "casplane", TRUE)
 		end_cas_mission(chair.occupant)
+	if (fuel_left <= 0)
+		fuel_left = 0
+		turn_off_engines()
 
 
 /obj/docking_port/mobile/marine_dropship/casplane/on_ignition()
@@ -257,11 +259,11 @@
 	if(eyeobj.eye_user)
 		to_chat(user, "<span class='warning'>CAS mode is already in-use!</span>")
 		return
-	if(!length(GLOB.active_laser_targets))
+	if(!length(GLOB.active_cas_targets))
 		to_chat(user, "<span class='warning'>No active laser targets detected!</span>")
 		return
 	to_chat(user, "<span class='warning'>Laser targets detected, routing to target.</span>")
-	var/input = input(user, "Select a CAS target", "CAS targetting") as null|anything in GLOB.active_laser_targets
+	var/input = tgui_input_list(user, "Select a CAS target", "CAS targetting", GLOB.active_cas_targets)
 	if(!input)
 		return
 	give_eye_control(user)
@@ -319,14 +321,13 @@
 	if(!COOLDOWN_CHECK(active_weapon, last_fired))
 		to_chat(source, "<span class='warning'>[active_weapon] just fired, wait for it to cool down.</span>")
 		return
-	active_weapon.open_fire(target)
+	active_weapon.open_fire(target, attackdir)
 
-/obj/structure/caspart/caschair/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/structure/caspart/caschair/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 
 	if(!ui)
-		ui = new(user, src, ui_key, "MarineCasship", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, "MarineCasship", name)
 		ui.open()
 
 /obj/structure/caspart/caschair/ui_data(mob/user)
@@ -342,6 +343,7 @@
 	.["fuel_left"] = fuel_left
 	.["fuel_max"] = fuel_max
 	.["ship_status"] = getStatusText()
+	.["attackdir"] = uppertext(dir2text(attackdir))
 	var/element_nbr = 1
 	.["all_weapons"] = list()
 	for(var/i in equipments)
@@ -350,7 +352,7 @@
 		if(weapon == active_weapon)
 			.["active_weapon_tag"] = element_nbr
 		element_nbr++
-	.["active_lasers"] = length(GLOB.active_laser_targets)
+	.["active_lasers"] = length(GLOB.active_cas_targets)
 	.["active_weapon_name"] = null
 	.["active_weapon_ammo"] = null
 	.["active_weapon_max_ammo"] = null
@@ -411,6 +413,9 @@
 					owner.turn_on_engines()
 				if(PLANE_STATE_PREPARED)
 					owner.turn_off_engines()
+		if("cycle_attackdir")
+			owner.attackdir = turn(owner.attackdir, 90)
+			. = TRUE
 
 
 

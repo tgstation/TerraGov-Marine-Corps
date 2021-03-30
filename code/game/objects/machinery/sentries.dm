@@ -2,8 +2,8 @@
 //They are built in stages, and only engineers have access to them.
 
 /obj/item/ammo_magazine/sentry
-	name = "M30 box magazine (10x28mm Caseless)"
-	desc = "A box of 500 10x28mm caseless rounds for the UA 571-C Sentry Gun. Just feed it into the sentry gun's ammo port when its ammo is depleted."
+	name = "\improper M30 box magazine (10x28mm Caseless)"
+	desc = "A box of 500 10x28mm caseless rounds for the UA 571-C sentry gun. Just feed it into the sentry gun's ammo port when its ammo is depleted."
 	w_class = WEIGHT_CLASS_BULKY
 	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "ammo_can"
@@ -217,7 +217,7 @@
 
 /obj/machinery/marine_turret
 	name = "\improper UA 571-C sentry gun"
-	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an M30 Autocannon and a 500-round drum magazine."
+	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with a M30 autocannon and a 500-round drum magazine."
 	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "sentry_base"
 	anchored = TRUE
@@ -226,8 +226,9 @@
 	layer = ABOVE_MOB_LAYER //So you can't hide it under corpses
 	use_power = 0
 	req_one_access = list(ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_ENGPREP, ACCESS_MARINE_LEADER)
-	var/turret_flags = TURRET_HAS_CAMERA|TURRET_SAFETY
-	var/iff_signal = ACCESS_IFF_MARINE
+	hud_possible = list(MACHINE_HEALTH_HUD, SENTRY_AMMO_HUD)
+	var/turret_flags = TURRET_HAS_CAMERA|TURRET_SAFETY|TURRET_ALERTS
+	var/list/iff_signal = list(ACCESS_IFF_MARINE)
 	var/rounds = 500
 	var/rounds_max = 500
 	var/burst_size = 5
@@ -239,7 +240,8 @@
 	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 100, "rad" = 0, "fire" = 80, "acid" = 50)
 	machine_stat = 0 //Used just like mob.stat
 	var/datum/effect_system/spark_spread/spark_system //The spark system, used for generating... sparks?
-	var/obj/item/cell/cell = null
+	var/obj/item/cell/cell
+	var/initial_cell_type = /obj/item/cell/high
 	var/obj/machinery/camera/camera
 	var/fire_delay = 3
 	var/burst_delay = 5
@@ -256,13 +258,17 @@
 	var/magazine_type = /obj/item/ammo_magazine/sentry
 	var/obj/item/radio/radio
 
-	ui_x = 360
-	ui_y = 320
-
 /obj/machinery/marine_turret/examine(mob/user)
 	. = ..()
+	if(isxeno(user))
+		to_chat(user, "<span class='warning'>There's many strange numbers and indicators on this device we don't understand.</span>")
+		return
+
 	var/list/details = list()
+
 	if(CHECK_BITFIELD(turret_flags, TURRET_ON))
+		details +=("Its diagnostic display reads <b>([obj_integrity]/[max_integrity])</b> integrity.</br>")
+		details +=("Its ammo counter reads <b>([rounds]/[rounds_max])</b>.</br>")
 		details +=("It's turned on.</br>")
 
 	if(CHECK_BITFIELD(turret_flags, TURRET_SAFETY))
@@ -291,7 +297,8 @@
 	spark_system = new /datum/effect_system/spark_spread
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
-	cell = new /obj/item/cell/high(src)
+	if(initial_cell_type)
+		cell = new initial_cell_type(src)
 	if(CHECK_BITFIELD(turret_flags, TURRET_HAS_CAMERA))
 		camera = new (src)
 		camera.network = list("military")
@@ -301,7 +308,22 @@
 	ammo = GLOB.ammo_list[ammo]
 	update_icon()
 	GLOB.marine_turrets += src
+	prepare_huds() //Set up HUDS
+	for(var/datum/atom_hud/squad/sentry_status_hud in GLOB.huds) //Add to the squad HUD
+		sentry_status_hud.add_to_hud(src)
+	hud_set_machine_health()
+	hud_set_sentry_ammo()
 
+/obj/machinery/marine_turret/proc/turn_off() //We turn the turret off
+	if(!CHECK_BITFIELD(turret_flags, TURRET_ON)) //We're already off
+		return
+	visible_message("<span class='notice'>The [name] powers down and goes silent.</span>")
+	DISABLE_BITFIELD(turret_flags, TURRET_ON)
+	target = null
+	alert_list = list()
+	set_light(0)
+	update_icon()
+	stop_processing()
 
 /obj/machinery/marine_turret/Destroy() //Clear these for safety's sake.
 	QDEL_NULL(radio)
@@ -312,6 +334,10 @@
 	alert_list = list()
 	stop_processing()
 	GLOB.marine_turrets -= src
+	. = ..()
+
+/obj/machinery/marine_turret/obj_destruction(damage_amount, damage_type, damage_flag)
+	sentry_alert(SENTRY_ALERT_DESTROYED)
 	. = ..()
 
 /obj/machinery/marine_turret/attack_hand(mob/living/user)
@@ -347,14 +373,13 @@
 	user.set_interaction(src)
 	ui_interact(user)
 
-	return
 
-/obj/machinery/marine_turret/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+
+/obj/machinery/marine_turret/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 
 	if(!ui)
-		ui = new(user, src, ui_key, "Sentry", "Sentry Gun", ui_x, ui_y, master_ui, state)
+		ui = new(user, src, "Sentry", "Sentry Gun")
 		ui.open()
 
 /obj/machinery/marine_turret/ui_data(mob/user)
@@ -378,8 +403,9 @@
 		"mini" = istype(src, /obj/machinery/marine_turret/mini)
 	)
 
-/obj/machinery/marine_turret/ui_act(action, params)
-	if(..())
+/obj/machinery/marine_turret/ui_act(action, list/params)
+	. = ..()
+	if(.)
 		return
 
 	var/mob/living/carbon/human/user = usr
@@ -470,18 +496,16 @@
 				visible_message("<span class='notice'>The [name] buzzes in a monotone voice: 'Default systems initiated'.</span>'")
 				target = null
 				ENABLE_BITFIELD(turret_flags, TURRET_ON)
-				set_light(7)
+				set_light(SENTRY_LIGHT_POWER)
 				if(!camera && CHECK_BITFIELD(turret_flags, TURRET_HAS_CAMERA))
 					camera = new /obj/machinery/camera(src)
 					camera.network = list("military")
 					camera.c_tag = src.name
 				update_icon()
 			else
-				DISABLE_BITFIELD(turret_flags, TURRET_ON)
 				user.visible_message("<span class='notice'>[user] deactivates [src].</span>",
 				"<span class='notice'>You deactivate [src].</span>")
-				visible_message("<span class='notice'>The [name] powers down and goes silent.</span>")
-				update_icon()
+				turn_off()
 			. = TRUE
 
 		if("toggle_alert")
@@ -547,9 +571,8 @@
 		//Unsecure
 		if(anchored)
 			if(CHECK_BITFIELD(turret_flags, TURRET_ON))
-				DISABLE_BITFIELD(turret_flags, TURRET_ON)
 				to_chat(user, "<span class='warning'>You depower [src] to unanchor it safely.</span>")
-				update_icon()
+				turn_off()
 
 			user.visible_message("<span class='notice'>[user] begins unanchoring [src] from the ground.</span>",
 			"<span class='notice'>You begin unanchoring [src] from the ground.</span>")
@@ -581,8 +604,7 @@
 
 		if(CHECK_BITFIELD(turret_flags, TURRET_ON))
 			to_chat(user, "<span class='warning'>You deactivate [src] to prevent its motors from interfering with your rotation.</span>")
-			DISABLE_BITFIELD(turret_flags, TURRET_ON)
-			update_icon()
+			turn_off()
 
 		playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 		user.visible_message("<span class='notice'>[user] rotates [src].</span>",
@@ -617,6 +639,7 @@
 		user.visible_message("<span class='notice'>[user] repairs [src].</span>",
 		"<span class='notice'>You repair [src].</span>")
 		repair_damage(50)
+		hud_set_machine_health() //Update our HUD health
 		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 
 	else if(iscrowbar(I))
@@ -626,12 +649,12 @@
 			return
 
 		if(!cell)
+			to_chat(user, "<span class='warning'>There's no power cell to remove!</span>")
 			return
 
 		if(CHECK_BITFIELD(turret_flags, TURRET_ON))
-			DISABLE_BITFIELD(turret_flags, TURRET_ON)
 			to_chat(user, "<span class='warning'>You depower [src] to safely remove the battery.</span>")
-			update_icon()
+			turn_off()
 
 		user.visible_message("<span class='notice'>[user] begins removing [src]'s [cell.name].</span>",
 		"<span class='notice'>You begin removing [src]'s [cell.name].</span>")
@@ -643,6 +666,7 @@
 		"<span class='notice'>You remove [src]'s [cell.name].</span>")
 		playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 		user.put_in_hands(cell)
+		cell.update_icon()
 		cell = null
 		update_icon()
 
@@ -667,7 +691,7 @@
 		if(user.skills.getRating("heavy_weapons") < SKILL_HEAVY_WEAPONS_TRAINED)
 			user.visible_message("<span class='notice'>[user] begins fumbling about, swapping a new [I] into [src].</span>",
 			"<span class='notice'>You begin fumbling about, swapping a new [I] into [src].</span>")
-			if(user.action_busy)
+			if(user.do_actions)
 				return
 			if(!do_after(user, work_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
@@ -682,58 +706,48 @@
 			var/obj/item/ammo_magazine/S = new magazine_type(user.loc)
 			S.current_rounds = rounds
 		rounds = min(M.current_rounds, rounds_max)
+		hud_set_sentry_ammo()
 		qdel(I)
 
 
-/obj/machinery/marine_turret/update_icon()
-	var/image/battery_green = image('icons/Marine/sentry.dmi', src, "sentry_batt_green")
-	var/image/battery_yellow = image('icons/Marine/sentry.dmi', src, "sentry_batt_yellow")
-	var/image/battery_orange = image('icons/Marine/sentry.dmi', src, "sentry_batt_orange")
-	var/image/battery_red = image('icons/Marine/sentry.dmi', src, "sentry_batt_red")
-	var/image/battery_black = image('icons/Marine/sentry.dmi', src, "sentry_batt_black")
-	var/image/active = image('icons/Marine/sentry.dmi', src, "sentry_active")
-	var/image/ammo_full = image('icons/Marine/sentry.dmi', src, "sentry_ammo")
-	var/image/ammo_empty = image('icons/Marine/sentry.dmi', src, "sentry_ammo_empty")
-
-	overlays.Cut()
+/obj/machinery/marine_turret/update_icon_state()
 	if(machine_stat && obj_integrity > 0) //Knocked over
-		DISABLE_BITFIELD(turret_flags, TURRET_ON)
 		density = FALSE
 		icon_state = "sentry_fallen"
+		turn_off()
 		stop_processing()
 		return
-	else
-		density = initial(density)
-		icon_state = "sentry_base"
+	density = initial(density)
+	icon_state = "sentry_base"
 
+
+/obj/machinery/marine_turret/update_overlays()
+	. = ..()
 	if(rounds)
-		overlays += ammo_full
+		. += image('icons/Marine/sentry.dmi', src, "sentry_ammo")
 	else
-		overlays += ammo_empty
+		. += image('icons/Marine/sentry.dmi', src, "sentry_ammo_empty")
 
 	if(!cell || cell.charge <= 0)
-		DISABLE_BITFIELD(turret_flags, TURRET_ON)
-		stop_processing()
-		overlays += battery_black
+		turn_off()
+		. += image('icons/Marine/sentry.dmi', src, "sentry_batt_black")
 		return
 
 	switch(CEILING(((cell.charge / max(cell.maxcharge, 1)) * 100), 25))
 		if(100)
-			overlays += battery_green
+			. += image('icons/Marine/sentry.dmi', src, "sentry_batt_green")
 		if(75)
-			overlays += battery_yellow
+			. += image('icons/Marine/sentry.dmi', src, "sentry_batt_yellow")
 		if(50)
-			overlays += battery_orange
+			. += image('icons/Marine/sentry.dmi', src, "sentry_batt_orange")
 		if(25)
-			overlays += battery_red
+			. += image('icons/Marine/sentry.dmi', src, "sentry_batt_red")
 
 	if(CHECK_BITFIELD(turret_flags, TURRET_ON))
 		start_processing()
-		overlays += active
-
+		. += image('icons/Marine/sentry.dmi', src, "sentry_active")
 	else
 		stop_processing()
-
 
 /obj/machinery/marine_turret/deconstruct(disassembled = TRUE)
 	if(!disassembled)
@@ -743,11 +757,6 @@
 
 
 /obj/machinery/marine_turret/take_damage(dam)
-	if(dam > 0) //We don't report repairs.
-		if(CHECK_BITFIELD(turret_flags, TURRET_ON) && CHECK_BITFIELD(turret_flags, TURRET_ALERTS) && (world.time > (last_damage_alert + SENTRY_DAMAGE_ALERT_DELAY) || obj_integrity <= 0) ) //Alert friendlies
-			sentry_alert(SENTRY_ALERT_DAMAGE)
-			last_damage_alert = world.time
-
 	if(!machine_stat && dam > 0 && !CHECK_BITFIELD(turret_flags, TURRET_IMMOBILE))
 		if(prob(10))
 			spark_system.start()
@@ -757,7 +766,13 @@
 			if(CHECK_BITFIELD(turret_flags, TURRET_ALERTS) && CHECK_BITFIELD(turret_flags, TURRET_ON))
 				sentry_alert(SENTRY_ALERT_FALLEN)
 
-	return ..()
+	..()
+
+	if(dam > 0 && CHECK_BITFIELD(turret_flags, TURRET_ON) && CHECK_BITFIELD(turret_flags, TURRET_ALERTS) && (world.time > (last_damage_alert + SENTRY_DAMAGE_ALERT_DELAY))) //Alert friendlies
+		sentry_alert(SENTRY_ALERT_DAMAGE)
+		last_damage_alert = world.time
+
+	hud_set_machine_health() //Update our HUD health
 
 
 /obj/machinery/marine_turret/proc/check_power(power)
@@ -769,9 +784,8 @@
 		cell.charge = 0
 		sentry_alert(SENTRY_ALERT_BATTERY)
 		visible_message("<span class='warning'>[src] emits a low power warning and immediately shuts down!</span>")
-		playsound(loc, 'sound/weapons/guns/misc/smg_empty_alarm.ogg', 50, 1)
-		set_light(0)
-		update_icon()
+		playsound(loc, 'sound/weapons/guns/misc/empty_alarm.ogg', 50, 1)
+		turn_off()
 		return FALSE
 
 	cell.charge -= power
@@ -787,10 +801,9 @@
 			for(var/i in 1 to 6)
 				setDir(pick(NORTH, SOUTH, EAST, WEST))
 				sleep(2)
-			DISABLE_BITFIELD(turret_flags, TURRET_ON)
+			turn_off()
 	take_damage(25)
-	update_icon()
-	return
+
 
 /obj/machinery/marine_turret/ex_act(severity)
 	switch(severity)
@@ -802,7 +815,7 @@
 			take_damage(rand(30, 100))
 
 
-/obj/machinery/marine_turret/attack_alien(mob/living/carbon/xenomorph/X)
+/obj/machinery/marine_turret/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_SENTRY)
 	return ..()
 
@@ -814,6 +827,7 @@
 		return
 
 	if(!CHECK_BITFIELD(turret_flags, TURRET_ON) || machine_stat == 1 || !cell)
+		turn_off()
 		return
 
 	if(!check_power(2))
@@ -940,9 +954,10 @@
 	proj_to_fire.original_target = target
 	proj_to_fire.setDir(dir)
 	proj_to_fire.def_zone = pick("chest", "chest", "chest", "head")
+	proj_to_fire.projectile_iff = iff_signal
 
 	//Shoot at the thing
-	playsound(loc, 'sound/weapons/guns/fire/rifle.ogg', 75, TRUE)
+	playsound(loc, 'sound/weapons/guns/fire/smg_heavy.ogg', 75, TRUE)
 
 	proj_to_fire.fire_at(target, src, null, ammo.max_range, ammo.shell_speed)
 	if(target)
@@ -951,19 +966,21 @@
 	rounds--
 	if(rounds == 0)
 		visible_message("<span class='warning'>The [name] beeps steadily and its ammo light blinks red.</span>")
-		playsound(loc, 'sound/weapons/guns/misc/smg_empty_alarm.ogg', 50, FALSE)
+		playsound(loc, 'sound/weapons/guns/misc/empty_alarm.ogg', 50, FALSE)
 		if(CHECK_BITFIELD(turret_flags, TURRET_ALERTS))
 			sentry_alert(SENTRY_ALERT_AMMO)
 
+	hud_set_sentry_ammo()
 	return TRUE
 
-//Mostly taken from gun code.
 /obj/machinery/marine_turret/proc/muzzle_flash(angle)
 	if(isnull(angle)) return
 
-	set_light(muzzle_flash_lum)
-	spawn(10)
-		set_light(0)
+	var/prev_light = light_power
+	if(light_power <= muzzle_flash_lum)
+		set_light_range(muzzle_flash_lum)
+		set_light_color(COLOR_VERY_SOFT_YELLOW)
+		addtimer(CALLBACK(src, .proc/reset_light_range, prev_light), 1 SECONDS)
 
 	if(prob(65))
 		var/layer = MOB_LAYER - 0.1
@@ -975,6 +992,12 @@
 		I.transform = rotate
 		flick_overlay_view(I, src, 3)
 
+/obj/machinery/marine_turret/proc/reset_light_range(lightrange)
+	set_light_range(initial(light_power))
+	set_light_color(initial(light_color))
+	if(CHECK_BITFIELD(turret_flags, TURRET_ON))
+		set_light(SENTRY_LIGHT_POWER)
+
 /obj/machinery/marine_turret/proc/get_target()
 	var/list/targets = list()
 
@@ -983,7 +1006,7 @@
 	var/mob/living/M
 
 	for(M in oview(range, src))
-		if(M.stat == DEAD || (M.status_flags & INCORPOREAL)) //No dead, robots, or incorporeal.
+		if(M.stat == DEAD) //No dead, robots, or incorporeal.
 			continue
 		if(CHECK_BITFIELD(turret_flags, TURRET_SAFETY) && !isxeno(M)) //When safeties are on, Xenos only.
 			continue
@@ -1004,7 +1027,6 @@
 			path -= get_turf(src)
 			if(CHECK_BITFIELD(turret_flags, TURRET_ALERTS)) //They're within our field of detection and thus can trigger the alarm
 				if(world.time > (last_alert + SENTRY_ALERT_DELAY) || !(M in alert_list)) //if we're not on cooldown or the target isn't in the list, sound the alarm
-					playsound(loc, 'sound/machines/warning-buzzer.ogg', 50, FALSE)
 					sentry_alert(SENTRY_ALERT_HOSTILE, M)
 					alert_list.Add(M)
 					last_alert = world.time
@@ -1027,7 +1049,7 @@
 					if(S.opacity || S.density && S.throwpass == FALSE )
 						blocked = TRUE
 						break //LoF Broken; stop checking; we can't proceed further.
-			if(!blocked)
+			if(!blocked && !(M.status_flags & INCORPOREAL)) //Don't target incorporeals; we can't actually shoot them
 				targets += M
 
 	if(targets.len) . = pick(targets)
@@ -1040,19 +1062,16 @@
 	turret_flags = TURRET_HAS_CAMERA|TURRET_ON|TURRET_BURSTFIRE|TURRET_IMMOBILE|TURRET_SAFETY
 	rounds_max = 50000
 	icon_state = "sentry_base"
+	initial_cell_type = /obj/item/cell/super
 
 /obj/machinery/marine_turret/premade/Initialize()
 	. = ..()
-	qdel(cell)
-	cell = null
-	var/obj/item/cell/super/H = new(src) //Better cells in these ones.
-	cell = H
 	rounds = 50000
 
 /obj/machinery/marine_turret/premade/dumb
 	name = "\improper Modified UA 571-C sentry gun"
 	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an M30 Autocannon and a 500-round drum magazine. This one's IFF system has been disabled, and it will open fire on any targets within range."
-	iff_signal = 0
+	iff_signal = null
 	ammo = /datum/ammo/bullet/turret/dumb
 	magazine_type = /obj/item/ammo_magazine/sentry/premade/dumb
 	rounds_max = 500
@@ -1080,14 +1099,12 @@
 		visible_message("[src] buzzes in a monotone: 'Default systems initiated.'")
 		target = null
 		ENABLE_BITFIELD(turret_flags, TURRET_ON)
-		set_light(7)
+		set_light(SENTRY_LIGHT_POWER)
 		update_icon()
 	else
-		DISABLE_BITFIELD(turret_flags, TURRET_ON)
 		user.visible_message("<span class='notice'>[user] deactivates [src].</span>",
 		"<span class='notice'>You deactivate [src].</span>")
-		visible_message("<span class='notice'>The [name] powers down and goes silent.</span>")
-		update_icon()
+		turn_off()
 
 /obj/machinery/marine_turret/premade/dumb/hostile
 	name = "malfunctioning UA 571-C sentry gun"
@@ -1156,27 +1173,26 @@
 	var/notice
 	switch(alert_code)
 		if(SENTRY_ALERT_AMMO)
-			notice = "<b>ALERT! [src]'s ammo depleted at: [get_area(src)]. Coordinates: (X: [x], Y: [y]).</b>"
+			notice = "<b>ALERT! [src]'s ammo depleted at: [AREACOORD_NO_Z(src)].</b>"
 		if(SENTRY_ALERT_HOSTILE)
-			notice = "<b>ALERT! [src] detected Hostile/Unknown: [M.name] at: [get_area(M)]. Coordinates: (X: [M.x], Y: [M.y]).</b>"
+			notice = "<b>ALERT! [src] detected Hostile/Unknown: [M.name] at: [AREACOORD_NO_Z(src)].</b>"
 		if(SENTRY_ALERT_FALLEN)
-			notice = "<b>ALERT! [src] has been knocked over at: [get_area(src)]. Coordinates: (X: [x], Y: [y]).</b>"
+			notice = "<b>ALERT! [src] has been knocked over at: [AREACOORD_NO_Z(src)].</b>"
 		if(SENTRY_ALERT_DAMAGE)
-			var/percent = max(0, (obj_integrity / max(1, max_integrity)) * 100)
-			if(percent)
-				notice = "<b>ALERT! [src] at: [get_area(src)] has taken damage. Coordinates: (X: [x], Y: [y]). Remaining Structural Integrity: [percent]%</b>"
-			else
-				notice = "<b>ALERT! [src] at: [get_area(src)], Coordinates: (X: [x], Y: [y]) has been destroyed.</b>"
+			notice = "<b>ALERT! [src] has taken damage at: [AREACOORD_NO_Z(src)]. Remaining Structural Integrity: ([obj_integrity]/[max_integrity])[obj_integrity < 50 ? " CONDITION CRITICAL!!" : ""]</b>"
+		if(SENTRY_ALERT_DESTROYED)
+			notice = "<b>ALERT! [src] at: [AREACOORD_NO_Z(src)] has been destroyed!</b>"
 		if(SENTRY_ALERT_BATTERY)
-			notice = "<b>ALERT! [src]'s battery depleted at: [get_area(src)]. Coordinates: (X: [x], Y: [y]).</b>"
+			notice = "<b>ALERT! [src]'s battery depleted at: [AREACOORD_NO_Z(src)].</b>"
+
+	playsound(loc, 'sound/machines/warning-buzzer.ogg', 50, FALSE)
 	radio.talk_into(src, "[notice]", FREQ_COMMON)
 
 /obj/machinery/marine_turret/mini
-	name = "\improper UA-580 Point Defense Sentry"
+	name = "\improper UA-580 point defense sentry"
 	desc = "A deployable, automated turret with AI targeting capabilities. This is a lightweight portable model meant for rapid deployment and point defense. Armed with an light, high velocity machine gun and a 500-round drum magazine."
 	icon = 'icons/Marine/miniturret.dmi'
 	icon_state = "minisentry_on"
-	cell = /obj/item/cell/high
 	anchored = FALSE
 	turret_flags = TURRET_HAS_CAMERA|TURRET_BURSTFIRE|TURRET_SAFETY
 	burst_size = 3
@@ -1190,6 +1206,7 @@
 	work_time = 10 //significantly faster than the big sentry
 	ammo = /datum/ammo/bullet/turret/mini //Similar to M25 AP rounds.
 	magazine_type = /obj/item/ammo_magazine/minisentry
+	initial_cell_type = null
 
 /obj/item/storage/box/sentry/Initialize(mapload, ...)
 	. = ..()
@@ -1209,41 +1226,38 @@
 
 	if(CHECK_BITFIELD(turret_flags, TURRET_ON))
 		to_chat(user, "<span class='warning'>You depower [src] to facilitate its retrieval.</span>")
-		DISABLE_BITFIELD(turret_flags, TURRET_ON)
-		update_icon()
+		turn_off()
 
 	user.visible_message("<span class='notice'>[user] begins to fold up and retrieve [src].</span>",
 	"<span class='notice'>You begin to fold up and retrieve [src].</span>")
 	if(!do_after(user, work_time * 3, TRUE, src, BUSY_ICON_BUILD) || CHECK_BITFIELD(turret_flags, TURRET_ON) || anchored)
 		return
 	to_chat(user, "<span class='notice'>You fold up and retrieve [src].</span>")
-	var/obj/item/marine_turret/mini/P = new(loc)
+	var/obj/item/marine_turret/mini/P = new(user.loc)
 	user.put_in_hands(P)
 	P.obj_integrity = obj_integrity
 	P.rounds = rounds
-	P.cell_charge = cell.charge
+	if(cell)
+		cell.forceMove(P)
+		P.cell = cell
+
+	cell = null
 	qdel(src)
 
 /obj/machinery/marine_turret/mini/update_icon()
 	if(machine_stat && obj_integrity > 0) //Knocked over
-		DISABLE_BITFIELD(turret_flags, TURRET_ON)
 		density = FALSE
 		icon_state = "minisentry_fallen"
-		stop_processing()
 		return
 	else
 		icon_state = "minisentry_off"
 		density = initial(density)
 
 	if(!cell)
-		DISABLE_BITFIELD(turret_flags, TURRET_ON)
-		stop_processing()
 		icon_state = "minisentry_nobat"
 		return
 
 	if(cell.charge <= 0)
-		DISABLE_BITFIELD(turret_flags, TURRET_ON)
-		stop_processing()
 		icon_state = "minisentry_nobat"
 		return
 
@@ -1256,19 +1270,18 @@
 
 	else
 		icon_state = "minisentry_off"
-		stop_processing()
 
 
 /obj/item/marine_turret/mini
-	name = "\improper UA-580 Point Defense Sentry (Folded)"
+	name = "\improper UA-580 point defense sentry (folded)"
 	desc = "A deployable, automated turret with AI targeting capabilities. This is a lightweight portable model meant for rapid deployment and point defense. Armed with an light, high velocity machine gun and a 500-round drum magazine. It is currently folded up."
 	icon = 'icons/Marine/miniturret.dmi'
 	icon_state = "minisentry_packed"
 	item_state = "minisentry_packed"
 	w_class = WEIGHT_CLASS_BULKY
-	max_integrity = 200 //We keep track of this when folding up the sentry.
+	max_integrity = 100
 	var/rounds = 500
-	var/cell_charge = 10000
+	var/obj/item/cell/cell
 	flags_equip_slot = ITEM_SLOT_BACK
 
 /obj/item/marine_turret/mini/attack_self(mob/user) //click the sentry to deploy it.
@@ -1290,13 +1303,17 @@
 		M.obj_integrity = obj_integrity
 		M.anchored = TRUE
 		M.rounds = rounds
-		M.cell.charge = cell_charge
+		if(cell) //Inherit the power cell of the source item if any
+			cell.forceMove(M)
+			M.cell = cell
+
+		cell = null
 		M.activate_turret()
 		qdel(src)
 
 /obj/item/ammo_magazine/minisentry
-	name = "M30 box magazine (10x20mm Caseless)"
-	desc = "A box of 500 10x20mm caseless rounds for the UA-580 Point Defense Sentry. Just feed it into the sentry gun's ammo port when its ammo is depleted."
+	name = "\improper M30 box magazine (10x20mm Caseless)"
+	desc = "A box of 500 10x20mm caseless rounds for the UA-580 point defense sentry. Just feed it into the sentry gun's ammo port when its ammo is depleted."
 	w_class = WEIGHT_CLASS_NORMAL
 	icon_state = "ua580"
 	flags_magazine = NONE //can't be refilled or emptied by hand
@@ -1320,17 +1337,23 @@
 
 /obj/item/storage/box/minisentry/Initialize(mapload, ...)
 	. = ..()
-	new /obj/item/marine_turret/mini(src) //gun itself
+	var/obj/item/marine_turret/mini/sentry = new /obj/item/marine_turret/mini(src) //gun itself
 	new /obj/item/tool/wrench(src) //wrench to hold it down into the ground
 	new /obj/item/tool/screwdriver(src) //screw the gun onto the post.
 	new /obj/item/ammo_magazine/minisentry(src)
+	var/obj/item/cell/new_cell = new /obj/item/cell/high(sentry) //give it the cell here
+	sentry.cell = new_cell
 
 /obj/machinery/marine_turret/proc/activate_turret()
 	if(!anchored)
 		return FALSE
+	if(!cell)
+		return FALSE
+	if(!cell.charge)
+		return FALSE
 	target = null
 	ENABLE_BITFIELD(turret_flags, TURRET_ON)
-	set_light(7)
+	set_light(SENTRY_LIGHT_POWER)
 	if(!camera && CHECK_BITFIELD(turret_flags, TURRET_HAS_CAMERA))
 		camera = new /obj/machinery/camera(src)
 		camera.network = list("military")

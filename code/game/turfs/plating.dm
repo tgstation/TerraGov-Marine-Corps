@@ -5,7 +5,7 @@
 	floor_tile = null
 	intact_tile = FALSE
 	shoefootstep = FOOTSTEP_PLATING
-	barefootstep = FOOTSTEP_PLATING
+	barefootstep = FOOTSTEP_HARD
 	mediumxenofootstep = FOOTSTEP_PLATING
 
 /turf/open/floor/plating/mainship

@@ -127,6 +127,9 @@
 
 
 /obj/item/weapon/baton/attack(mob/M, mob/user)
+	if(M.status_flags & INCORPOREAL || user.status_flags & INCORPOREAL) //Incorporeal beings cannot attack or be attacked
+		return
+
 	if(has_user_lock && user.skills.getRating("police") < SKILL_POLICE_MP)
 		to_chat(user, "<span class='warning'>You don't seem to know how to use [src]...</span>")
 		return

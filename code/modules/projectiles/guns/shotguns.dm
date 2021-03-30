@@ -189,38 +189,6 @@ can cause issues with ammo types getting mixed up during the burst.
 		return in_chamber ? (current_mag.current_rounds + 1) : current_mag.current_rounds
 
 //-------------------------------------------------------
-//GENERIC MERC SHOTGUN //Not really based on anything.
-
-/obj/item/weapon/gun/shotgun/merc
-	name = "custom built shotgun"
-	desc = "A cobbled-together pile of scrap and alien wood. Point end towards things you want to die. Has a burst fire feature, as if it needed it."
-	flags_equip_slot = ITEM_SLOT_BACK
-	icon_state = "cshotgun"
-	item_state = "cshotgun"
-	max_shells = 5 //codex
-	fire_sound = 'sound/weapons/guns/fire/shotgun_automatic.ogg'
-	current_mag = /obj/item/ammo_magazine/internal/shotgun/merc
-	attachable_allowed = list(/obj/item/attachable/compensator)
-
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_SHOTGUN_CHAMBER|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
-	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 17, "under_y" = 14, "stock_x" = 17, "stock_y" = 14)
-
-	fire_delay = 10
-	burst_amount = 2
-	burst_delay = 0.5 SECONDS
-	accuracy_mult = 0.8
-	accuracy_mult_unwielded = 0.5
-	scatter = 20
-	scatter_unwielded = 40
-	recoil = 2
-	recoil_unwielded = 4
-
-
-/obj/item/weapon/gun/shotgun/merc/examine_ammo_count(mob/user)
-	if(in_chamber)
-		to_chat(user, "It has a chambered round.")
-
-//-------------------------------------------------------
 //TACTICAL SHOTGUN
 
 /obj/item/weapon/gun/shotgun/combat
@@ -249,7 +217,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	accuracy_mult_unwielded = 0.5 //you need to wield this gun for any kind of accuracy
 	scatter = 20
 	scatter_unwielded = 40
-	damage_mult = 0.75  //normalizing gun for vendors; damage reduced by 25% to compensate for faster fire rate; still higher DPS than M37.
+	damage_mult = 0.75  //normalizing gun for vendors; damage reduced by 25% to compensate for faster fire rate; still higher DPS than T-32.
 	recoil = 2
 	recoil_unwielded = 4
 
@@ -328,7 +296,6 @@ can cause issues with ammo types getting mixed up during the burst.
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 21,"rail_x" = 15, "rail_y" = 22, "under_x" = 21, "under_y" = 16, "stock_x" = 21, "stock_y" = 16)
 
 	fire_delay = 2
-	burst_amount = 2
 	burst_delay = 2
 	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.85
@@ -473,11 +440,11 @@ can cause issues with ammo types getting mixed up during the burst.
 //Shotguns in this category will need to be pumped each shot.
 
 /obj/item/weapon/gun/shotgun/pump
-	name = "\improper M37A2 pump shotgun"
-	desc = "An Armat Battlefield Systems classic design, the M37A2 combines close-range firepower with long term reliability. Requires a pump, which is a Unique Action."
+	name = "\improper V10 pump shotgun"
+	desc = "A classic design, using the outdated shotgun frame. The V10 combines close-range firepower with long term reliability.\n<b>Requires a pump, which is the Unique Action key.</b>"
 	flags_equip_slot = ITEM_SLOT_BACK
-	icon_state = "m37"
-	item_state = "m37"
+	icon_state = "v10"
+	item_state = "v10"
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump
 	fire_sound = 'sound/weapons/guns/fire/shotgun.ogg'
 	max_shells = 9
@@ -504,7 +471,6 @@ can cause issues with ammo types getting mixed up during the burst.
 		/obj/item/attachable/stock/shotgun,
 	)
 
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 10, "rail_y" = 21, "under_x" = 20, "under_y" = 14, "stock_x" = 20, "stock_y" = 14)
 
 	fire_delay = 20
@@ -597,10 +563,11 @@ can cause issues with ammo types getting mixed up during the burst.
 	return ..()
 
 //-------------------------------------------------------
-//Based off of the Benelli M3
+//A shotgun, how quaint.
 /obj/item/weapon/gun/shotgun/pump/cmb
 	name = "\improper Paladin-12 pump shotgun"
-	desc = "A nine-round pump action shotgun. A sporterized version of a classic shotgun used for hunting, home defence and police work, modified and used by Nanotrasen security."
+	desc = "A nine-round pump action shotgun. A shotgun used for hunting, home defence and police work, many versions of it exist and are used by just about anyone."
+	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "pal12"
 	item_state = "pal12"
 	fire_sound = 'sound/weapons/guns/fire/shotgun_cmb.ogg'
@@ -616,7 +583,10 @@ can cause issues with ammo types getting mixed up during the burst.
 		/obj/item/attachable/magnetic_harness,
 	)
 	flags_item_map_variant = NONE
-	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 16,"rail_x" = 14, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 17)
+	attachable_offset = list("muzzle_x" = 38, "muzzle_y" = 19,"rail_x" = 14, "rail_y" = 19, "under_x" = 37, "under_y" = 16, "stock_x" = 15, "stock_y" = 14)
+	starting_attachment_types = list(
+		/obj/item/attachable/stock/irremoveable/pal12,
+	)
 
 	fire_delay = 15
 	damage_mult = 0.75
@@ -628,50 +598,15 @@ can cause issues with ammo types getting mixed up during the burst.
 	recoil_unwielded = 0
 	pump_delay = 12
 
-//-------------------------------------------------------
-//Based off of the KSG
-/obj/item/weapon/gun/shotgun/pump/ksg
-	name = "\improper Kronos pump shotgun"
-	desc = "A peculiarly designed pump shotgun, featuring a massive magazine well, a compact bullpup design and military attachment compatablity. This pump shotgun is issued for counter-terrorist units and unlicensed private military contractors."
-	icon_state = "ksg"
-	item_state = "ksg"
-	fire_sound = 'sound/weapons/guns/fire/shotgun_small.ogg'
-	reload_sound = 'sound/weapons/guns/interact/shotgun_ksg_insert.ogg'
-	pump_sound = 'sound/weapons/guns/interact/shotgun_ksg_pump.ogg'
-	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump/CMB
-	attachable_allowed = list(
-		/obj/item/attachable/reddot,
-		/obj/item/attachable/verticalgrip,
-		/obj/item/attachable/angledgrip,
-		/obj/item/attachable/gyro,
-		/obj/item/attachable/flashlight,
-		/obj/item/attachable/extended_barrel,
-		/obj/item/attachable/compensator,
-		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/attached_gun/flamer,
-		/obj/item/attachable/attached_gun/shotgun,
-	)
-	flags_item_map_variant = NONE
-	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 18,"rail_x" = 10, "rail_y" = 20, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 17)
-
-	fire_delay = 24
-	accuracy_mult = 1.30
-	accuracy_mult_unwielded = 1
-	scatter = 15
-	scatter_unwielded = 40
-	recoil = 2
-	recoil_unwielded = 4
-	pump_delay = 12
-
 //------------------------------------------------------
 //A hacky bolt action rifle. in here for the "pump" or bolt working action.
 
 /obj/item/weapon/gun/shotgun/pump/bolt
 	name = "\improper Mosin Nagant rifle"
 	desc = "A mosin nagant rifle, even just looking at it you can feel the cosmoline already. Commonly known by its slang, \"Moist Nugget\", by downbrained colonists and outlaws."
+	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "mosin"
-	item_state = "mosin" //thank you Alterist
-	pump_animation = "mosin_pump"
+	item_state = "mosin"
 	fire_sound = 'sound/weapons/guns/fire/mosin.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	reload_sound = 'sound/weapons/guns/interact/mosin_reload.ogg'
@@ -687,23 +622,25 @@ can cause issues with ammo types getting mixed up during the burst.
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/bayonetknife,
 		/obj/item/attachable/scope,
+		/obj/item/attachable/scope/mosin,
 		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/bayonet,
 	)
 	flags_item_map_variant = NONE
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER
-	attachable_offset = list("muzzle_x" = 50, "muzzle_y" = 21,"rail_x" = 8, "rail_y" = 21, "under_x" = 37, "under_y" = 16, "stock_x" = 20, "stock_y" = 14)
+	attachable_offset = list("muzzle_x" = 37, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 15, "stock_y" = 12)
 	starting_attachment_types = list(
-		/obj/item/attachable/scope,
-		/obj/item/attachable/mosinbarrel,
+		/obj/item/attachable/scope/mosin,
 		/obj/item/attachable/stock/mosin,
 	)
+	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_fire_delay = 1
 
 	fire_delay = 17.5
-	accuracy_mult = 1.4
+	accuracy_mult = 1.45
 	accuracy_mult_unwielded = 0.7
-	scatter = -10
+	scatter = -25
 	scatter_unwielded = 40
 	recoil = 0
 	recoil_unwielded = 4
@@ -735,11 +672,11 @@ can cause issues with ammo types getting mixed up during the burst.
 	name = "lever action rifle"
 	desc = "A .44 magnum lever action rifle with side loading port. It has a low fire rate, but it packs quite a punch in hunting."
 	icon_state = "mares_leg"
-	item_state = "mares_leg" //With thanks to D4n0w4r https://youtu.be/PV4uWGGb4xM
-	fire_sound = 'sound/weapons/guns/fire/revolver.ogg'//I like how this one sounds.
+	item_state = "mbx900"
+	fire_sound = 'sound/weapons/guns/fire/leveraction.ogg'//I like how this one sounds.
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	reload_sound = 'sound/weapons/guns/interact/mosin_reload.ogg'
-	caliber = ".44 magnum" //codex
+	caliber = ".44 Magnum" //codex
 	load_method = SINGLE_CASING //codex
 	max_shells = 10 //codex
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump/lever
@@ -785,7 +722,7 @@ can cause issues with ammo types getting mixed up during the burst.
 
 /obj/item/weapon/gun/shotgun/pump/lever/mbx900
 	name = "\improper MBX-900 lever action shotgun"
-	desc = "A .410 bore lever action shotgun that fires as fast as you can operate the lever. An adopted shotgun in the wake of the SX-16 automatic shotgun replacing the MIC ZX-76 assault shotgun for use in standard-issue TGMC specialist inventory. Now it's fielded in lesser numbers and in requisitions due to its devastating and extremely reliable design."
+	desc = "A .410 bore lever action shotgun that fires nearly as fast as you can operate the lever. Renowed due to its devastating and extremely reliable design."
 	icon_state = "mbx900"
 	item_state = "mbx900"
 	fire_sound = 'sound/weapons/guns/fire/shotgun_light.ogg'//I like how this one sounds.
@@ -822,15 +759,15 @@ can cause issues with ammo types getting mixed up during the burst.
 
 	flags_item_map_variant = NONE
 
-	fire_delay = 6
+	fire_delay = 0.6 SECONDS
 	accuracy_mult = 1.4
-	pump_delay = 2
+	pump_delay = 0.2 SECONDS
 
 //------------------------------------------------------
 //T-35 Pump shotgun
 /obj/item/weapon/gun/shotgun/pump/t35
 	name = "\improper T-35 pump shotgun"
-	desc = "The Terran Armories T-35 is the shotgun used by the TerraGov Marine Corps. It's used as a close quarters tool when someone wants something more suited for close range than most people, or as an odd sidearm on your back for emergencies. Uses 12 gauge shells."
+	desc = "The Terran Armories T-35 is the shotgun used by the TerraGov Marine Corps. It's used as a close quarters tool when someone wants something more suited for close range than most people, or as an odd sidearm on your back for emergencies. Uses 12 gauge shells.\n<b>Requires a pump, which is the Unique Action key.</b>"
 	flags_equip_slot = ITEM_SLOT_BACK
 	icon_state = "t35"
 	item_state = "t35"

@@ -23,7 +23,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/ui_style_color = "#ffffff"
 	var/ui_style_alpha = 230
 	var/tgui_fancy = TRUE
-	var/tgui_lock = TRUE
+	var/tgui_lock = FALSE
 	var/toggles_deadchat = TOGGLES_DEADCHAT_DEFAULT
 	var/toggles_chat = TOGGLES_CHAT_DEFAULT
 	var/toggles_sound = TOGGLES_SOUND_DEFAULT
@@ -43,6 +43,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	// Custom Keybindings
 	var/list/key_bindings = null
+
+	///Saves chemical recipes based on client so they persist through games
+	var/list/chem_macros = list()
 
 	//Synthetic specific preferences
 	var/synthetic_name = "David"
@@ -80,6 +83,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/g_hair = 0
 	var/b_hair = 0
 
+	var/grad_style = "None"
+	var/r_grad = 0
+	var/g_grad = 0
+	var/b_grad = 0
+
 	//Facial hair
 	var/f_style = "Shaved"
 	var/r_facial = 0
@@ -114,6 +122,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/mute_self_combat_messages = FALSE
 	///Whether to mute goonchat combat messages from others, such as when they are shot.
 	var/mute_others_combat_messages = FALSE
+	///Whether to mute xeno health alerts from when other xenos are badly hurt.
+	var/mute_xeno_health_alert_messages = TRUE
 
 	/// Chat on map
 	var/chat_on_map = TRUE
@@ -243,6 +253,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	dat += "<br>"
 	dat += "<b>Hair:</b> <a href='?_src_=prefs;preference=hairstyle'>[h_style]</a> | <a href='?_src_=prefs;preference=haircolor'>Color</a> <font face='fixedsys' size='3' color='#[num2hex(r_hair, 2)][num2hex(g_hair, 2)][num2hex(b_hair, 2)]'><table style='display:inline;' bgcolor='#[num2hex(r_hair, 2)][num2hex(g_hair, 2)][num2hex(b_hair)]'><tr><td>__</td></tr></table></font> "
 	dat += "<br>"
+	dat += "<b>Gradient:</b> <a href='?_src_=prefs;preference=grad_style'>[grad_style]</a> <a href='?_src_=prefs;preference=grad_color'>Color</a> <font face='fixedsys' size='3' color='#[num2hex(r_grad, 2)][num2hex(g_grad, 2)][num2hex(b_grad, 2)]'><table style='display:inline;' bgcolor='#[num2hex(r_grad, 2)][num2hex(g_grad, 2)][num2hex(b_grad)]'><tr><td>__</td></tr></table></font>"
+	dat += "<br>"
 	dat += "<b>Facial Hair:</b> <a href='?_src_=prefs;preference=facialstyle'>[f_style]</a> | <a href='?_src_=prefs;preference=facialcolor'>Color</a> <font face='fixedsys' size='3' color='#[num2hex(r_facial, 2)][num2hex(g_facial, 2)][num2hex(b_facial, 2)]'><table  style='display:inline;' bgcolor='#[num2hex(r_facial, 2)][num2hex(g_facial, 2)][num2hex(b_facial)]'><tr><td>__</td></tr></table></font> "
 	dat += "<br>"
 	dat += "<b>Eye:</b> <a href='?_src_=prefs;preference=eyecolor'>Color</a> <font face='fixedsys' size='3' color='#[num2hex(r_eyes, 2)][num2hex(g_eyes, 2)][num2hex(b_eyes, 2)]'><table  style='display:inline;' bgcolor='#[num2hex(r_eyes, 2)][num2hex(g_eyes, 2)][num2hex(b_eyes)]'><tr><td>__</td></tr></table></font><br>"
@@ -337,6 +349,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	dat += "<h2>Game Settings:</h2>"
 	dat += "<b>Window Flashing:</b> <a href='?_src_=prefs;preference=windowflashing'>[windowflashing ? "Yes" : "No"]</a><br>"
 	dat += "<b>Focus chat:</b> <a href='?_src_=prefs;preference=focus_chat'>[(focus_chat) ? "Enabled" : "Disabled"]</a><br>"
+	dat += "<b>TGUI Window Mode:</b> <a href='?_src_=prefs;preference=tgui_fancy'>[(tgui_fancy) ? "Fancy (default)" : "Compatible (slower)"]</a><br>"
+	dat += "<b>TGUI Window Placement:</b> <a href='?_src_=prefs;preference=tgui_lock'>[(tgui_lock) ? "Primary monitor" : "Free (default)"]</a><br>"
 	dat += "<b>Tooltips:</b> <a href='?_src_=prefs;preference=tooltips'>[(tooltips) ? "Shown" : "Hidden"]</a><br>"
 	dat += "<b>FPS:</b> <a href='?_src_=prefs;preference=clientfps'>[clientfps]</a><br>"
 	dat += "<b>Fit Viewport:</b> <a href='?_src_=prefs;preference=auto_fit_viewport'>[auto_fit_viewport ? "Auto" : "Manual"]</a><br>"
@@ -344,6 +358,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	dat += "<h2>Chat Message Settings:</h2>"
 	dat += "<b>Mute self combat messages:</b> <a href='?_src_=prefs;preference=mute_self_combat_messages'>[mute_self_combat_messages ? "Enabled" : "Disabled"]</a><br>"
 	dat += "<b>Mute others combat messages:</b> <a href='?_src_=prefs;preference=mute_others_combat_messages'>[mute_others_combat_messages ? "Enabled" : "Disabled"]</a><br>"
+	dat += "<b>Mute xeno health alert messages:</b> <a href='?_src_=prefs;preference=mute_xeno_health_alert_messages'>[mute_xeno_health_alert_messages ? "Yes" : "No"]</a><br>"
 
 	dat += "<h2>Runechat Settings:</h2>"
 	dat += "<b>Show Runechat Chat Bubbles:</b> <a href='?_src_=prefs;preference=chat_on_map'>[chat_on_map ? "Enabled" : "Disabled"]</a><br>"
@@ -618,14 +633,14 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 		if("synth_name")
 			var/newname = input(user, "Choose your Synthetic's name:", "Synthetic Name")
-			newname = reject_bad_name(newname)
+			newname = reject_bad_name(newname, TRUE)
 			if(!newname)
 				to_chat(user, "<font color='red'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</font>")
 				return
 			synthetic_name = newname
 
 		if("synth_type")
-			var/new_synth_type = input(user, "Choose your model of synthetic:", "Synthetic Model") as null|anything in SYNTH_TYPES
+			var/new_synth_type = tgui_input_list(user, "Choose your model of synthetic:", "Synthetic Model", SYNTH_TYPES)
 			if(!new_synth_type)
 				return
 			synthetic_type = new_synth_type
@@ -654,7 +669,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 		if("name_real")
 			var/newname = input(user, "Choose your character's name:", "Character Name")
-			newname = reject_bad_name(newname)
+			newname = reject_bad_name(newname, TRUE)
 			if(!newname)
 				to_chat(user, "<font color='red'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</font>")
 				return
@@ -686,19 +701,19 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				underwear = 1
 
 		if("ethnicity")
-			var/new_ethnicity = input(user, "Choose your character's ethnicity:", "Ethnicity") as null|anything in GLOB.ethnicities_list
+			var/new_ethnicity = tgui_input_list(user, "Choose your character's ethnicity:", "Ethnicity", GLOB.ethnicities_list)
 			if(!new_ethnicity)
 				return
 			ethnicity = new_ethnicity
 
 		if("species")
-			var/new_species = input(user, "Choose your species:", "Species") as null|anything in GLOB.all_species[DEFAULT_SPECIES]
+			var/new_species = tgui_input_list(user, "Choose your species:", "Species", GLOB.roundstart_species)
 			if(!new_species)
 				return
 			species = new_species
 
 		if("body_type")
-			var/new_body_type = input(user, "Choose your character's body type:", "Body Type") as null|anything in GLOB.body_types_list
+			var/new_body_type = tgui_input_list(user, "Choose your character's body type:", "Body Type", GLOB.body_types_list)
 			if(!new_body_type)
 				return
 			body_type = new_body_type
@@ -709,7 +724,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		if("moth_wings")
 			if(species != "Moth")
 				return
-			var/new_wings = input(user, "Choose your character's wings: ", "Moth Wings") as null|anything in (GLOB.moth_wings_list - "Burnt Off")
+			var/new_wings = tgui_input_list(user, "Choose your character's wings: ", "Moth Wings", GLOB.moth_wings_list)
 			if(!new_wings)
 				return
 			moth_wings = new_wings
@@ -752,25 +767,25 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			else
 				underwear_options = GLOB.underwear_f
 
-			var/new_underwear = input(user, "Choose your character's underwear:", "Underwear")  as null|anything in underwear_options
+			var/new_underwear = tgui_input_list(user, "Choose your character's underwear:", "Underwear", underwear_options)
 			if(!new_underwear)
 				return
 			underwear = underwear_options.Find(new_underwear)
 
 		if("undershirt")
-			var/new_undershirt = input(user, "Choose your character's undershirt:", "Undershirt") as null|anything in GLOB.undershirt_t
+			var/new_undershirt = tgui_input_list(user, "Choose your character's undershirt:", "Undershirt", GLOB.undershirt_t)
 			if(!new_undershirt)
 				return
 			undershirt = GLOB.undershirt_t.Find(new_undershirt)
 
 		if("backpack")
-			var/new_backpack = input(user, "Choose your character's style of a backpack:", "Backpack Style")  as null|anything in GLOB.backpacklist
+			var/new_backpack = tgui_input_list(user, "Choose your character's style of a backpack:", "Backpack Style", GLOB.backpacklist)
 			if(!new_backpack)
 				return
 			backpack = GLOB.backpacklist.Find(new_backpack)
 
 		if("loadoutadd")
-			var/choice = input(user, "Select gear to add: ", "Custom Loadout") as null|anything in GLOB.gear_datums
+			var/choice = tgui_input_list(user, "Select gear to add: ", "Custom Loadout", GLOB.gear_datums)
 			if(!choice)
 				return
 
@@ -806,7 +821,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				gear = list()
 
 		if("ui")
-			var/choice = input(user, "Please choose an UI style.", "UI Style") as null|anything in UI_STYLES
+			var/choice = tgui_input_list(user, "Please choose an UI style.", "UI Style", UI_STYLES)
 			if(!choice)
 				return
 			ui_style = choice
@@ -833,7 +848,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				valid_hairstyles[hairstyle] = GLOB.hair_styles_list[hairstyle]
 
-			var/new_h_style = input(user, "Choose your character's hair style:", "Hair Style")  as null|anything in valid_hairstyles
+			var/new_h_style = tgui_input_list(user, "Choose your character's hair style:", "Hair Style", valid_hairstyles)
 			if(!new_h_style)
 				return
 			h_style = new_h_style
@@ -846,6 +861,28 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			g_hair = hex2num(copytext(new_color, 4, 6))
 			b_hair = hex2num(copytext(new_color, 6, 8))
 
+		if("grad_color")
+			var/new_grad = input(user, "Choose your character's secondary hair color:", "Gradient Color") as null|color
+			if(!new_grad)
+				return
+			r_grad = hex2num(copytext(new_grad, 2, 4))
+			g_grad = hex2num(copytext(new_grad, 4, 6))
+			b_grad = hex2num(copytext(new_grad, 6, 8))
+
+		if("grad_style")
+			var/list/valid_grads = list()
+			for(var/grad in GLOB.hair_gradients_list)
+				var/datum/sprite_accessory/S = GLOB.hair_gradients_list[grad]
+				if(!(species in S.species_allowed))
+					continue
+
+				valid_grads[grad] = GLOB.hair_gradients_list[grad]
+
+			var/new_grad_style = tgui_input_list(user, "Choose a color pattern for your hair:", "Character Preference", valid_grads)
+			if(!new_grad_style)
+				return
+			grad_style = new_grad_style
+
 		if("facialstyle")
 			var/list/valid_facialhairstyles = list()
 			for(var/facialhairstyle in GLOB.facial_hair_styles_list)
@@ -857,7 +894,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				valid_facialhairstyles[facialhairstyle] = GLOB.facial_hair_styles_list[facialhairstyle]
 
-			var/new_f_style = input(user, "Choose your character's facial-hair style:", "Facial Hair Style")  as null|anything in (valid_facialhairstyles + "Shaved")
+			var/new_f_style = tgui_input_list(user, "Choose your character's facial-hair style:", "Facial Hair Style", valid_facialhairstyles + "Shaved")
 			if(!new_f_style)
 				return
 			f_style = new_f_style
@@ -879,25 +916,25 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			b_eyes = hex2num(copytext(eyecolor, 6, 8))
 
 		if("citizenship")
-			var/choice = input(user, "Please choose your current citizenship.") as null|anything in CITIZENSHIP_CHOICES
+			var/choice = tgui_input_list(user, "Please choose your current citizenship.", null,CITIZENSHIP_CHOICES)
 			if(!choice)
 				return
 			citizenship = choice
 
 		if("religion")
-			var/choice = input(user, "Please choose a religion.") as null|anything in RELIGION_CHOICES
+			var/choice = tgui_input_list(user, "Please choose a religion.", null,RELIGION_CHOICES)
 			if(!choice)
 				return
 			religion = choice
 
 		if("corporation")
-			var/new_relation = input(user, "Choose your relation to the Nanotrasen company that will appear on background checks.", "Nanotrasen Relation")  as null|anything in CORP_RELATIONS
+			var/new_relation = tgui_input_list(user, "Choose your relation to the Nanotrasen company that will appear on background checks.", "Nanotrasen Relation", CORP_RELATIONS)
 			if(!new_relation)
 				return
 			nanotrasen_relation = new_relation
 
 		if("squad")
-			var/new_squad = input(user, "Choose your preferred squad.", "Preferred Squad") as null|anything in SELECTABLE_SQUADS
+			var/new_squad = tgui_input_list(user, "Choose your preferred squad.", "Preferred Squad", SELECTABLE_SQUADS)
 			if(!new_squad)
 				return
 			preferred_squad = new_squad
@@ -949,10 +986,18 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			var/msg = stripped_input(user, "Give a physical description of your character.", "Flavor Text", sanitize(flavor_text))
 			if(!msg)
 				return
+			if(NON_ASCII_CHECK(msg))
+				return
 			flavor_text = msg
 
 		if("windowflashing")
 			windowflashing = !windowflashing
+
+		if("tgui_fancy")
+			tgui_fancy = !tgui_fancy
+
+		if("tgui_lock")
+			tgui_lock = !tgui_lock
 
 		if("auto_fit_viewport")
 			auto_fit_viewport = !auto_fit_viewport
@@ -979,6 +1024,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 		if("mute_others_combat_messages")
 			mute_others_combat_messages = !mute_others_combat_messages
+
+		if("mute_xeno_health_alert_messages")
+			mute_xeno_health_alert_messages = !mute_xeno_health_alert_messages
 
 		if("chat_on_map")
 			chat_on_map = !chat_on_map
@@ -1067,8 +1115,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			user << browse(null, "window=keybindings")
 
 		if("keybindings_reset")
-			var/choice = tgalert(usr, "Would you prefer 'hotkey' or 'classic' defaults?", "Setup keybindings", "Hotkey", "Classic", "Cancel")
-			if (choice == "Cancel")
+			var/choice = tgui_alert(usr, "Would you prefer 'hotkey' or 'classic' defaults?", "Setup keybindings", list("Hotkey", "Classic", "Cancel"))
+			if (!choice || choice == "Cancel")
 				ShowKeybindings(user)
 				return
 			focus_chat = (choice == "Classic")

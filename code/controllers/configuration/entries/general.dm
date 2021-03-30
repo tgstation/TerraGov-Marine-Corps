@@ -207,6 +207,11 @@ Voting
 	integer = FALSE
 	min_val = 0
 
+/datum/config_entry/number/maximum_clients_for_gamemode_vote
+	config_entry_value = 40
+	integer = TRUE
+	min_val = 0
+
 /*
 Master controller and performance related.
 */
@@ -345,6 +350,8 @@ The default value assumes youtube-dl is in your system PATH
 
 /datum/config_entry/string/panic_server_name
 
+///living time in minutes that a player needs to pass the panic bunker
+/datum/config_entry/number/panic_bunker_living
 
 /datum/config_entry/string/panic_server_name/ValidateAndSet(str_val)
 	return str_val != "\[Put the name here\]" && ..()
@@ -360,6 +367,7 @@ The default value assumes youtube-dl is in your system PATH
 /datum/config_entry/string/panic_bunker_message
 	config_entry_value = "Sorry but the server is currently not accepting connections from never before seen players."
 
+/datum/config_entry/flag/check_randomizer
 
 /datum/config_entry/string/default_view
 	config_entry_value = "15x15"

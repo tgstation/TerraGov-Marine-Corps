@@ -7,8 +7,6 @@
 	density = TRUE
 	anchored = FALSE
 	use_power = NO_POWER_USE
-	ui_x = 450
-	ui_y = 340
 
 	var/active = FALSE
 	var/power_gen = 5000
@@ -28,9 +26,6 @@
 /obj/machinery/power/port_gen/should_have_node()
 	return anchored
 
-///obj/machinery/power/port_gen/should_have_node()
-//	return anchored
-
 /obj/machinery/power/port_gen/connect_to_network()
 	if(!anchored)
 		return FALSE
@@ -49,6 +44,7 @@
 	return
 
 /obj/machinery/power/port_gen/proc/TogglePower()
+	SEND_SIGNAL(src, COMSIG_PORTGEN_POWER_TOGGLE, !active)
 	if(active)
 		active = FALSE
 		update_icon()
@@ -70,6 +66,7 @@
 		if(powernet)
 			add_avail(power_gen * power_output)
 		UseFuel()
+		SEND_SIGNAL(src, COMSIG_PORTGEN_PROCESS)
 	else
 		handleInactive()
 
@@ -226,11 +223,10 @@
 /obj/machinery/power/port_gen/pacman/attack_paw(mob/user)
 	interact(user)
 
-/obj/machinery/power/port_gen/pacman/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-												datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/power/port_gen/pacman/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "PortableGenerator", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, "PortableGenerator", name)
 		ui.open()
 
 /obj/machinery/power/port_gen/pacman/ui_data()
@@ -250,8 +246,9 @@
 	data["current_heat"] = current_heat
 	. =  data
 
-/obj/machinery/power/port_gen/pacman/ui_act(action, params)
-	if(..())
+/obj/machinery/power/port_gen/pacman/ui_act(action, list/params)
+	. = ..()
+	if(.)
 		return
 	switch(action)
 		if("toggle_power")
@@ -296,3 +293,16 @@
 
 /obj/machinery/power/port_gen/pacman/mrs/overheat()
 	explosion(loc, 4, small_animation = TRUE)
+
+/obj/machinery/power/port_gen/pacman/mobile_power
+	name = "\improper A.D.V.P.A.C.M.A.N.-type portable generator"
+
+/obj/machinery/power/port_gen/pacman/mobile_power/Initialize()
+	. = ..()
+	AddComponent(/datum/component/mobile_power, active, 10)
+
+/obj/machinery/power/port_gen/pacman/mobile_power/connect_to_network()
+	return FALSE // Don't connect this to networks to stop it doubling up
+
+/obj/machinery/power/port_gen/pacman/mobile_power/should_have_node()
+	return FALSE // Works by magic

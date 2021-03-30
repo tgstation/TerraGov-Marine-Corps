@@ -33,11 +33,11 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
 
 
 /**
-  *These automatically generate marine bodies based on a timer.
-  *These hold the body until taken by a ghost where they "burst" from the vat.
-  *
-  *The vat then needs to be repaired and refilled with biomass.
-  */
+ *These automatically generate marine bodies based on a timer.
+ *These hold the body until taken by a ghost where they "burst" from the vat.
+ *
+ *The vat then needs to be repaired and refilled with biomass.
+ */
 /obj/machinery/cloning_console/vats
 	name = "Clone Vats Console"
 	icon = 'icons/obj/machines/cryogenics.dmi'

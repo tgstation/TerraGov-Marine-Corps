@@ -19,6 +19,9 @@
 	load_method = SINGLE_CASING|SPEEDLOADER //codex
 	type_of_casings = "bullet"
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER
+	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_speed_modifier = 0.75
+	aim_fire_delay = 0.25 SECONDS
 	wield_delay = 0.2 SECONDS //If you modify your revolver to be two-handed, it will still be fast to aim
 	gun_skill_category = GUN_SKILL_PISTOLS
 
@@ -223,9 +226,7 @@
 	if(!istype(G))
 		return
 
-	src = G
-
-	if(usr.action_busy)
+	if(usr.do_actions)
 		return
 
 	if(zoom)
@@ -316,12 +317,23 @@
 /obj/item/weapon/gun/revolver/get_ammo_count()
 	return current_mag ? current_mag.current_rounds : 0
 
+// revolvers do not make any sense when they have a rattle sound, so this is ignored.
+/obj/item/weapon/gun/revolver/play_fire_sound(mob/user)
+	if(active_attachable && active_attachable.flags_attach_features & ATTACH_PROJECTILE)
+		if(active_attachable.fire_sound) //If we're firing from an attachment, use that noise instead.
+			playsound(user, active_attachable.fire_sound, 50)
+		return
+	if(flags_gun_features & GUN_SILENCED)
+		playsound(user, fire_sound, 25)
+		return
+	playsound(user, fire_sound, 60)
+
 //-------------------------------------------------------
 //TP-44 COMBAT REVOLVER
 
 /obj/item/weapon/gun/revolver/standard_revolver
 	name = "\improper TP-44 combat revolver"
-	desc = "The TP-44, Produced by Terran Armories. A sturdy and hard hitting firearm that loads .44 Magnum rounds. Holds 7 rounds in the cylinder. Due to the nature of the weapon, its rate of fire doesn’t quite match the output of other guns, but does hit much harder."
+	desc = "The TP-44 standard combat revolver, produced by Terran Armories. A sturdy and hard hitting firearm that loads .44 Magnum rounds. Holds 7 rounds in the cylinder. Due to the nature of the weapon, its rate of fire doesn’t quite match the output of other guns, but does hit much harder."
 	icon_state = "tp44"
 	item_state = "tp44"
 	caliber = ".44 Magnum" //codex
@@ -337,9 +349,10 @@
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/lasersight,
+		/obj/item/attachable/lace,
 	)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 13, "rail_y" = 23, "under_x" = 22, "under_y" = 14, "stock_x" = 22, "stock_y" = 19)
-	fire_delay = 0.3
+	fire_delay = 0.15 SECONDS
 	accuracy_mult_unwielded = 0.85
 	accuracy_mult = 1
 	scatter_unwielded = 15
@@ -371,6 +384,7 @@
 		/obj/item/attachable/scope,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/lace,
 	)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 22,"rail_x" = 17, "rail_y" = 22, "under_x" = 22, "under_y" = 17, "stock_x" = 22, "stock_y" = 19)
 
@@ -392,6 +406,7 @@
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/lace,
 	)
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 21,"rail_x" = 14, "rail_y" = 23, "under_x" = 24, "under_y" = 19, "stock_x" = 24, "stock_y" = 19)
 
@@ -421,6 +436,7 @@
 		/obj/item/attachable/scope,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/lace,
 	)
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 19,"rail_x" = 12, "rail_y" = 21, "under_x" = 20, "under_y" = 15, "stock_x" = 20, "stock_y" = 15)
 
@@ -453,10 +469,12 @@
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/compensator,
+		/obj/item/attachable/lace,
 	)
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 18,"rail_x" = 16, "rail_y" = 21, "under_x" = 22, "under_y" = 15, "stock_x" = 22, "stock_y" = 15)
 
 	fire_delay = 0.2 SECONDS
+	aim_fire_delay = 0.3 SECONDS
 	recoil = 0
 	accuracy_mult = 1.1
 	scatter = 10
@@ -484,7 +502,7 @@
 	item_state = "cmb"
 	caliber = ".357 Magnum" //codex
 	max_shells = 6 //codex
-	fire_sound = 'sound/weapons/guns/fire/revolver_small.ogg'
+	fire_sound = 'sound/weapons/guns/fire/revolver_light.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/revolver/cmb
 	force = 12
 	attachable_allowed = list(
@@ -494,6 +512,7 @@
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/quickfire,
 		/obj/item/attachable/compensator,
+		/obj/item/attachable/lace,
 	)
 	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 22,"rail_x" = 11, "rail_y" = 25, "under_x" = 20, "under_y" = 18, "stock_x" = 20, "stock_y" = 18)
 

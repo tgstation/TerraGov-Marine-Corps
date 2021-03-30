@@ -48,31 +48,32 @@ FIRE ALARM
 
 	update_icon()
 
-/obj/machinery/firealarm/update_icon()
-	overlays.Cut()
-	icon_state = "fire1"
+/obj/machinery/firealarm/update_icon_state()
+	. = ..()
+	var/area/A = get_area(src)
+	icon_state = "fire[!CHECK_BITFIELD(A.flags_alarm_state, ALARM_WARNING_FIRE)]"
 
+/obj/machinery/firealarm/update_overlays()
+	. = ..()
 	if(wiresexposed || (machine_stat & BROKEN))
-		overlays += image(icon, "fire_ob[buildstage]")
+		. += image(icon, "fire_ob[buildstage]")
 		return
+	if(CHECK_BITFIELD(machine_stat, NOPOWER))
+		return
+	. += image(icon, "fire_o[(is_mainship_level(z)) ? GLOB.marine_main_ship.get_security_level() : "green"]")
+	var/area/A = get_area(src)
+	if(A.flags_alarm_state & ALARM_WARNING_FIRE)
+		. += image(icon, "fire_o1")
 
-	if(!(machine_stat & NOPOWER))
-		var/alert = (is_mainship_level(z)) ? GLOB.marine_main_ship.get_security_level() : "green"
-		overlays += image(icon, "fire_o[alert]")
-		var/area/A = get_area(src)
-		if(A?.flags_alarm_state & ALARM_WARNING_FIRE)
-			icon_state = "fire0"
-			overlays += image(icon, "fire_o1")
 
 /obj/machinery/firealarm/fire_act(temperature, volume)
-	if(src.detecting)
-		if(temperature > T0C+200)
-			src.alarm()			// added check of detector status here
-	return
+	if(detecting && (temperature > T0C+200))
+		alarm()			// added check of detector status here
 
 /obj/machinery/firealarm/emp_act(severity)
-	if(prob(50/severity)) alarm()
-	..()
+	if(prob(50/severity))
+		alarm()
+	return ..()
 
 /obj/machinery/firealarm/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -204,7 +205,6 @@ FIRE ALARM
 	var/area/A = get_area(src)
 	A?.firereset()
 	update_icon()
-	return
 
 /obj/machinery/firealarm/proc/alarm()
 	if (!working)
@@ -213,4 +213,4 @@ FIRE ALARM
 	A?.firealert()
 	update_icon()
 	//playsound(src.loc, 'sound/ambience/signal.ogg', 50, 0)
-	return
+

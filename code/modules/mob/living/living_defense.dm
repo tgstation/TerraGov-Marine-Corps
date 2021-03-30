@@ -24,7 +24,6 @@
 
 	Arguments
 		stun_amount {int} applied as Stun and Paralyze
-		agony_amount {int} dealt as HALLOSS damage to the def_zone
 		def_zone {enum} which body part to target
 */
 /mob/living/proc/stun_effect_act(stun_amount, agony_amount, def_zone)
@@ -40,7 +39,6 @@
 		apply_effect(EYE_BLUR, stun_amount)
 
 	if(agony_amount)
-		apply_damage(agony_amount, HALLOSS, def_zone)
 		apply_effect(STUTTER, agony_amount/10)
 		apply_effect(EYE_BLUR, agony_amount/10)
 
@@ -130,6 +128,8 @@
 
 //Mobs on Fire
 /mob/living/proc/IgniteMob()
+	if(status_flags & GODMODE) //Invulnerable mobs don't get ignited
+		return FALSE
 	if(!CHECK_BITFIELD(datum_flags, DF_ISPROCESSING))
 		return FALSE
 	if(fire_stacks > 0 && !on_fire)
@@ -151,8 +151,9 @@
 		return
 	var/fire_light = min(fire_stacks,5)
 	if(fire_light > fire_luminosity) // light up xenos if new light source thats bigger hits them
-		set_light_range(fire_light) //update range
-		set_light_color(LIGHT_COLOR_LAVA)
+		if(fire_light < light_range)
+			set_light_range(fire_light) //update range
+		set_light_color(BlendRGB(light_color, LIGHT_COLOR_LAVA))
 		fire_luminosity = fire_light
 		set_light_on(TRUE) //And activate it
 	var/obj/item/clothing/mask/facehugger/F = get_active_held_item()
@@ -187,6 +188,8 @@
 	return
 
 /mob/living/proc/adjust_fire_stacks(add_fire_stacks) //Adjusting the amount of fire_stacks we have on person
+	if(status_flags & GODMODE) //Invulnerable mobs don't get fire stacks
+		return
 	fire_stacks = clamp(fire_stacks + add_fire_stacks, -20, 20)
 	if(on_fire && fire_stacks <= 0)
 		ExtinguishMob()
@@ -250,7 +253,9 @@
 	smoke_delay = FALSE
 
 /mob/living/proc/smoke_contact(obj/effect/particle_effect/smoke/S)
-	var/protection = max(1 - get_permeability_protection() * S.bio_protection)
+	var/protection = max(1 - get_permeability_protection() * S.bio_protection, 0)
+	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_EXTINGUISH))
+		ExtinguishMob()
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_BLISTERING))
 		adjustFireLoss(15 * protection)
 		to_chat(src, "<span class='danger'>It feels as if you've been dumped into an open fire!</span>")

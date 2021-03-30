@@ -1,16 +1,16 @@
-proc/isdeaf(A)
+/proc/isdeaf(A)
 	if(isliving(A))
 		var/mob/living/M = A
 		return M.ear_deaf || M.disabilities & DEAF
 	return FALSE
 
-proc/is_blind(A)
+/proc/is_blind(A)
 	if(isliving(A))
 		var/mob/living/M = A
 		return M.eye_blind
 	return FALSE
 
-proc/hasorgans(A)
+/proc/hasorgans(A)
 	return ishuman(A)
 
 /proc/hsl2rgb(h, s, l)
@@ -21,8 +21,6 @@ proc/hasorgans(A)
 /mob/proc/can_use_hands()
 	return
 
-/mob/proc/is_ready()
-	return client && !!mind
 
 /mob/proc/get_gender()
 	return gender
@@ -128,13 +126,13 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 
 
 /**
-  * Convert random parts of a passed in message to stars
-  *
-  * * phrase - the string to convert
-  * * probability - probability any character gets changed
-  *
-  * This proc is dangerously laggy, avoid it or die
-  */
+ * Convert random parts of a passed in message to stars
+ *
+ * * phrase - the string to convert
+ * * probability - probability any character gets changed
+ *
+ * This proc is dangerously laggy, avoid it or die
+ */
 /proc/stars(phrase, probability = 25)
 	if(probability <= 0)
 		return phrase
@@ -151,8 +149,8 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 	return sanitize(.)
 
 /**
-  * Makes you speak like you're drunk
-  */
+ * Makes you speak like you're drunk
+ */
 /proc/slur(phrase)
 	phrase = html_decode(phrase)
 	var/leng = length(phrase)
@@ -254,10 +252,10 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 
 
 /**
-  * Turn text into complete gibberish!
-  *
-  * text is the inputted message, replace_characters will cause original letters to be replaced and chance are the odds that a character gets modified.
-  */
+ * Turn text into complete gibberish!
+ *
+ * text is the inputted message, replace_characters will cause original letters to be replaced and chance are the odds that a character gets modified.
+ */
 /proc/Gibberish(text, replace_characters = FALSE, chance = 50)
 	text = html_decode(text)
 	. = ""
@@ -343,22 +341,13 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 	set name = "a-intent"
 	set hidden = 1
 
-	if(ismonkey(src))
-		switch(input)
-			if(INTENT_HELP)
-				a_intent = INTENT_HELP
-			if(INTENT_HARM)
-				a_intent = INTENT_HARM
-			if(INTENT_HOTKEY_RIGHT,INTENT_HOTKEY_LEFT)
-				a_intent = intent_numeric(intent_numeric(a_intent) - 3)
-	else
-		switch(input)
-			if(INTENT_HELP,INTENT_DISARM,INTENT_GRAB,INTENT_HARM)
-				a_intent = input
-			if(INTENT_HOTKEY_RIGHT)
-				a_intent = intent_numeric((intent_numeric(a_intent)+1) % 4)
-			if(INTENT_HOTKEY_LEFT)
-				a_intent = intent_numeric((intent_numeric(a_intent)+3) % 4)
+	switch(input)
+		if(INTENT_HELP,INTENT_DISARM,INTENT_GRAB,INTENT_HARM)
+			a_intent = input
+		if(INTENT_HOTKEY_RIGHT)
+			a_intent = intent_numeric((intent_numeric(a_intent)+1) % 4)
+		if(INTENT_HOTKEY_LEFT)
+			a_intent = intent_numeric((intent_numeric(a_intent)+3) % 4)
 
 
 	if(hud_used && hud_used.action_intent)
@@ -493,11 +482,11 @@ mob/proc/get_standard_bodytemperature()
 		notify_ghost(O, message, ghost_sound, enter_link, enter_text, source, alert_overlay, action, flashwindow, ignore_mapload, ignore_key, header, notify_volume, extra_large)
 
 /**
-  * Get the list of keywords for policy config
-  *
-  * This gets the type, mind assigned roles and antag datums as a list, these are later used
-  * to send the user relevant headadmin policy config
-  */
+ * Get the list of keywords for policy config
+ *
+ * This gets the type, mind assigned roles and antag datums as a list, these are later used
+ * to send the user relevant headadmin policy config
+ */
 /mob/proc/get_policy_keywords()
 	. = list("[type]")
 
@@ -514,3 +503,10 @@ mob/proc/get_standard_bodytemperature()
 		return
 
 	active_item.unique_action(src)
+
+/mob/living/carbon/human/proc/do_activate_rail_attachment()
+	SIGNAL_HANDLER
+
+	var/obj/item/weapon/gun/active_gun = get_active_firearm(src)
+	active_gun?.toggle_rail_attachment()
+	return COMSIG_KB_ACTIVATED

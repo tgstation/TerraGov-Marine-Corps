@@ -89,7 +89,7 @@
 			sql += ", "
 		sql += "commit_hash = '[GLOB.revdata.originmastercommit]'"
 	if(sql)
-		var/datum/DBQuery/query_round_game_mode = SSdbcore.NewQuery("UPDATE [format_table_name("round")] SET [sql] WHERE id = [GLOB.round_id]")
+		var/datum/db_query/query_round_game_mode = SSdbcore.NewQuery("UPDATE [format_table_name("round")] SET [sql] WHERE id = :roundid", list("roundid" = GLOB.round_id))
 		query_round_game_mode.Execute()
 		qdel(query_round_game_mode)
 
@@ -106,8 +106,6 @@
 		var/mob/new_player/player = i
 		if(player.ready)
 			player.create_character()
-		else
-			player.new_player_panel()
 		CHECK_TICK
 
 
@@ -389,6 +387,13 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 /datum/game_mode/proc/get_hivemind_collapse_countdown()
 	return
 
+///handles end of the round when no silo is left
+/datum/game_mode/proc/siloless_hive_collapse()
+	return
+
+///starts the timer to end the round when no silo is left
+/datum/game_mode/proc/get_siloless_collapse_countdown()
+	return
 
 /datum/game_mode/proc/announce_medal_awards()
 	if(!length(GLOB.medal_awards))
@@ -432,20 +437,26 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 		dat += "[GLOB.round_statistics.carrier_traps] hidey holes for huggers were made."
 	if(GLOB.round_statistics.sentinel_neurotoxin_stings)
 		dat += "[GLOB.round_statistics.sentinel_neurotoxin_stings] number of times Sentinels stung."
-	if(GLOB.round_statistics.drone_salvage_plasma)
-		dat += "[GLOB.round_statistics.drone_salvage_plasma] number of times Drones salvaged corpses."
-	if(GLOB.round_statistics.panther_neurotoxin_stings)
-		dat += "[GLOB.round_statistics.panther_neurotoxin_stings] number of times Panthers stung."
 	if(GLOB.round_statistics.defiler_defiler_stings)
 		dat += "[GLOB.round_statistics.defiler_defiler_stings] number of times Defilers stung."
 	if(GLOB.round_statistics.defiler_neurogas_uses)
 		dat += "[GLOB.round_statistics.defiler_neurogas_uses] number of times Defilers vented neurogas."
+	if(GLOB.round_statistics.defiler_reagent_slashes)
+		dat += "[GLOB.round_statistics.defiler_reagent_slashes] number of times Defilers struck an enemy with their reagent slash."
 	if(GLOB.round_statistics.xeno_unarmed_attacks && GLOB.round_statistics.xeno_bump_attacks)
 		dat += "[GLOB.round_statistics.xeno_bump_attacks] bump attacks, which made up [(GLOB.round_statistics.xeno_bump_attacks / GLOB.round_statistics.xeno_unarmed_attacks) * 100]% of all attacks ([GLOB.round_statistics.xeno_unarmed_attacks])."
 	if(GLOB.round_statistics.xeno_headbites)
 		dat += "[GLOB.round_statistics.xeno_headbites] number of times victims headbitten."
 	if(GLOB.round_statistics.xeno_silo_corpses)
 		dat += "[GLOB.round_statistics.xeno_silo_corpses] number of corpses fed to resin silos."
+	if(GLOB.round_statistics.xeno_rally_hive)
+		dat += "[GLOB.round_statistics.xeno_rally_hive] number of times xeno leaders rallied the hive."
+	if(GLOB.round_statistics.hivelord_healing_infusions)
+		dat += "[GLOB.round_statistics.hivelord_healing_infusions] number of times Hivelords used Healing Infusion."
+	if(GLOB.round_statistics.spitter_acid_sprays)
+		dat += "[GLOB.round_statistics.spitter_acid_sprays] number of times Spitters spewed an Acid Spray."
+	if(GLOB.round_statistics.spitter_scatter_spits)
+		dat += "[GLOB.round_statistics.spitter_scatter_spits] number of times Spitters horked up scatter spits."
 
 	var/output = jointext(dat, "<br>")
 	for(var/mob/player in GLOB.player_list)
@@ -455,6 +466,7 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 
 /datum/game_mode/proc/count_humans_and_xenos(list/z_levels = SSmapping.levels_by_any_trait(list(ZTRAIT_MARINE_MAIN_SHIP, ZTRAIT_GROUND, ZTRAIT_RESERVED)), count_flags)
 	var/num_humans = 0
+	var/num_humans_ship = 0
 	var/num_xenos = 0
 
 	for(var/z in z_levels)
@@ -469,6 +481,8 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 			if(isspaceturf(H.loc))
 				continue
 			num_humans++
+			if (is_mainship_level(z))
+				num_humans_ship++
 
 	for(var/z in z_levels)
 		for(var/i in GLOB.hive_datums[XENO_HIVE_NORMAL].xenos_by_zlevel["[z]"])
@@ -488,7 +502,7 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 
 			num_xenos++
 
-	return list(num_humans, num_xenos)
+	return list(num_humans, num_xenos, num_humans_ship)
 
 /datum/game_mode/proc/get_total_joblarvaworth(list/z_levels = SSmapping.levels_by_any_trait(list(ZTRAIT_MARINE_MAIN_SHIP, ZTRAIT_GROUND, ZTRAIT_RESERVED)), count_flags)
 	. = 0
@@ -497,7 +511,7 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 		var/mob/living/carbon/human/H = i
 		if(!H.job)
 			continue
-		if(H.stat == DEAD && !H.is_revivable())
+		if(H.stat == DEAD && !H.has_working_organs())
 			continue
 		if(count_flags & COUNT_IGNORE_HUMAN_SSD && !H.client)
 			continue
@@ -511,7 +525,7 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 	return FALSE
 
 /datum/game_mode/infestation/distress/is_xeno_in_forbidden_zone(mob/living/carbon/xenomorph/xeno)
-	if(round_stage == DISTRESS_DROPSHIP_CRASHED)
+	if(round_stage == DISTRESS_DROPSHIP_CRASHING)
 		return FALSE
 	if(isxenoresearcharea(get_area(xeno)))
 		return TRUE
@@ -526,50 +540,6 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 	for(var/i in GLOB.fog_blockers)
 		qdel(i)
 		stoplag(1)
-
-
-/datum/game_mode/proc/mode_new_player_panel(mob/new_player/NP)
-
-	var/output = "<div align='center'>"
-	output += "<br><i>You are part of the <b>TerraGov Marine Corps</b>, a military branch of the TerraGov council.</i>"
-	output +="<hr>"
-	output += "<p><a href='byond://?src=[REF(NP)];lobby_choice=show_preferences'>Setup Character</A> | <a href='byond://?src=[REF(NP)];lobby_choice=lore'>Background</A><br><br><a href='byond://?src=[REF(NP)];lobby_choice=observe'>Observe</A></p>"
-	output +="<hr>"
-	output += "<center><p>Current character: <b>[NP.client ? NP.client.prefs.real_name : "Unknown User"]</b></p>"
-
-	if(SSticker.current_state <= GAME_STATE_PREGAME)
-		output += "<p>\[ [NP.ready? "<b>Ready</b>":"<a href='byond://?src=\ref[src];lobby_choice=ready'>Ready</a>"] | [NP.ready? "<a href='byond://?src=[REF(NP)];lobby_choice=ready'>Not Ready</a>":"<b>Not Ready</b>"] \]</p>"
-	else
-		output += "<a href='byond://?src=[REF(NP)];lobby_choice=manifest'>View the Crew Manifest</A><br>"
-		output += "<p><a href='byond://?src=[REF(NP)];lobby_choice=late_join'>Join the Game!</A></p>"
-
-	output += append_player_votes_link(NP)
-
-	output += "</div>"
-
-	var/datum/browser/popup = new(NP, "playersetup", "<div align='center'>Welcome to TGMC[SSmapping?.configs ? " - [SSmapping.configs[SHIP_MAP].map_name]" : ""]</div>", 300, 375)
-	popup.set_window_options("can_close=0")
-	popup.set_content(output)
-	popup.open(FALSE)
-
-	return TRUE
-
-/datum/game_mode/proc/append_player_votes_link(mob/new_player/NP)
-	if(QDELETED(NP) || IsGuestKey(NP.key) || !SSdbcore.IsConnected())
-		return "" // append nothing
-
-	var/isadmin = check_rights(R_ADMIN, FALSE)
-	var/newpoll = FALSE
-	var/datum/DBQuery/query_get_new_polls = SSdbcore.NewQuery("SELECT id FROM [format_table_name("poll_question")] WHERE [(isadmin ? "" : "adminonly = false AND")] Now() BETWEEN starttime AND endtime AND id NOT IN (SELECT pollid FROM [format_table_name("poll_vote")] WHERE ckey = \"[sanitizeSQL(NP.ckey)]\") AND id NOT IN (SELECT pollid FROM [format_table_name("poll_textreply")] WHERE ckey = \"[sanitizeSQL(NP.ckey)]\")")
-	if(query_get_new_polls.Execute())
-		if(query_get_new_polls.NextRow())
-			newpoll = TRUE
-	qdel(query_get_new_polls)
-
-	if(newpoll)
-		return "<p><b><a href='byond://?src=[REF(NP)];showpoll=1'>Show Player Polls</A> (NEW!)</b></p>"
-	else
-		return "<p><a href='byond://?src=[REF(NP)];showpoll=1'>Show Player Polls</A></p>"
 
 
 /datum/game_mode/proc/CanLateSpawn(mob/new_player/NP, datum/job/job)
@@ -643,7 +613,7 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 	if(instant_join)
 		return pick(available_xenos) //Just picks something at random.
 
-	var/mob/living/carbon/xenomorph/new_xeno = input("Available Xenomorphs") as null|anything in available_xenos
+	var/mob/living/carbon/xenomorph/new_xeno = tgui_input_list(usr, null, "Available Xenomorphs", available_xenos)
 	if(!istype(new_xeno) || !xeno_candidate?.client)
 		return FALSE
 
@@ -657,7 +627,7 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 
 	if(XENODEATHTIME_CHECK(xeno_candidate))
 		if(check_other_rights(xeno_candidate.client, R_ADMIN, FALSE))
-			if(alert(xeno_candidate, "You wouldn't normally qualify for this respawn. Are you sure you want to bypass it with your admin powers?", "Bypass Respawn", "Yes", "No") != "Yes")
+			if(tgui_alert(xeno_candidate, "You wouldn't normally qualify for this respawn. Are you sure you want to bypass it with your admin powers?", "Bypass Respawn", list("Yes", "No")) != "Yes")
 				XENODEATHTIME_MESSAGE(xeno_candidate)
 				return FALSE
 		else

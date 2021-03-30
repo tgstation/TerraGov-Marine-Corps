@@ -41,7 +41,7 @@
 	safety = !safety
 	icon_state = "[sprite_name][!safety]"
 	to_chat(user, "The safety is [safety ? "on" : "off"].")
-	return
+
 
 /obj/item/tool/extinguisher/afterattack(atom/target, mob/user, flag)
 	//TODO; Add support for reagents in water.
@@ -60,4 +60,3 @@
 	extinguish(target, user)
 	last_use = world.time
 
-	return

@@ -41,6 +41,7 @@ As a human, wear a helmet. It prevents decapitation.
 As a human, you can dual-wield two weapons to fire both at them at the same time. This will increase spread and decrease accuracy however.
 As a human, if you are trained enough to do so, you can tactical reload by drag-clicking the magazine to the weapon in your active hand.
 As a human, when you are already infected, facehuggers will ignore you. But you still need medical attention regardless.
+As a human, please try not to aim for the head. It benefits more for the xenomorphs as they will not take more damage on the head and when you commit friendly-fire to someone, you might break their head instead. Aim for the center of mass!
 Not being ready at the start of the round means xenos get more burrowed larva, and that you don't get to play as quickly.
 As a combat marine, you can vend seperate Jaeger Pattern armor pieces and modules for your XM-02 Combat Exoskeleton inside a Surplus Equipment Vendor. It is a modular piece of equipment after all.
 As a combat marine, you can practice using your weapons on the Firing Range, which is only available at the Sulaco or at the Thesus.

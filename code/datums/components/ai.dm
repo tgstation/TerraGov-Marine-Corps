@@ -6,10 +6,10 @@ The main purpose of this is to handle cleanup and setting up the initial ai beha
 */
 
 /**
-  * An absolute hardcap on the # of instances of /datum/component/ai_controller that can exist.
-  * Should a ai component get initialized while there's already enough instances of said thing, it will deny the initialization of the component but NOT the mob it's being attached to.
-  * This is mainly here because admins keep on spamming AI without caring for the server's ability to handle hundreds/thousands of AI.
-  */
+ * An absolute hardcap on the # of instances of /datum/component/ai_controller that can exist.
+ * Should a ai component get initialized while there's already enough instances of said thing, it will deny the initialization of the component but NOT the mob it's being attached to.
+ * This is mainly here because admins keep on spamming AI without caring for the server's ability to handle hundreds/thousands of AI.
+ */
 #define AI_INSTANCE_HARDCAP 100
 
 //The most basic of AI; can pathfind to a turf and path around objects in it's path if needed to
@@ -23,7 +23,7 @@ The main purpose of this is to handle cleanup and setting up the initial ai beha
 		message_admins("Notice: An AI controller was initialized but because there's already too many AI controllers existing, the initialization was canceled.")
 		return COMPONENT_INCOMPATIBLE
 
-	if(!ismob(parent)) //Requires a mob as the element action states needed to be apply depend on several mob defines like cached_multiplicative_slowdown or action_busy
+	if(!ismob(parent)) //Requires a mob as the element action states needed to be apply depend on several mob defines like cached_multiplicative_slowdown or do_actions
 		stack_trace("An AI controller was initialized on a parent that isn't compatible with the ai component. Parent type: [parent.type]")
 		return COMPONENT_INCOMPATIBLE
 	if(isnull(behavior_type))

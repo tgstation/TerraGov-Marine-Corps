@@ -7,7 +7,7 @@
 	desc = "A rectangular metallic frame sitting on four legs with a back panel. Designed to fit the sitting position, more or less comfortably."
 	icon_state = "chair"
 	buckle_lying = 0
-	max_integrity = 100
+	max_integrity = 20
 	var/propelled = 0 //Check for fire-extinguisher-driven chairs
 
 
@@ -26,6 +26,10 @@
 
 /obj/structure/bed/chair/post_buckle_mob(mob/buckling_mob)
 	. = ..()
+	if(isliving(buckling_mob)) //Properly update whether we're lying or not; no more people lying on chairs; ridiculous
+		var/mob/living/buckled_target = buckling_mob
+		buckled_target.set_lying_angle(0)
+
 	handle_layer()
 
 /obj/structure/bed/chair/post_unbuckle_mob(mob/buckled_mob)
@@ -67,7 +71,7 @@
 		to_chat(user, "<span class='warning'>You can only deconstruct this by welding it down!</span>")
 
 	else if(iswelder(I))
-		if(user.action_busy)
+		if(user.do_actions)
 			return
 		var/obj/item/tool/weldingtool/WT = I
 
@@ -158,33 +162,34 @@
 	drag_delay = 1 //Pulling something on wheels is easy
 
 /obj/structure/bed/chair/office/Bump(atom/A)
-	..()
+	. = ..()
 	if(!LAZYLEN(buckled_mobs))
 		return
 
-	if(propelled)
-		var/mob/living/occupant = buckled_mobs[1]
-		unbuckle_mob(occupant)
+	if(!propelled)
+		return
+	var/mob/living/occupant = buckled_mobs[1]
+	unbuckle_mob(occupant)
 
-		var/def_zone = ran_zone()
-		var/blocked = occupant.run_armor_check(def_zone, "melee")
-		occupant.throw_at(A, 3, propelled)
-		occupant.apply_effect(6, STUN, blocked)
-		occupant.apply_effect(6, WEAKEN, blocked)
-		occupant.apply_effect(6, STUTTER, blocked)
-		occupant.apply_damage(10, BRUTE, def_zone, blocked)
-		UPDATEHEALTH(occupant)
-		playsound(src.loc, 'sound/weapons/punch1.ogg', 25, 1)
-		if(isliving(A))
-			var/mob/living/victim = A
-			def_zone = ran_zone()
-			blocked = victim.run_armor_check(def_zone, "melee")
-			victim.apply_effect(6, STUN, blocked)
-			victim.apply_effect(6, WEAKEN, blocked)
-			victim.apply_effect(6, STUTTER, blocked)
-			victim.apply_damage(10, BRUTE, def_zone, blocked)
-			UPDATEHEALTH(victim)
-		occupant.visible_message("<span class='danger'>[occupant] crashed into \the [A]!</span>")
+	var/def_zone = ran_zone()
+	var/blocked = occupant.run_armor_check(def_zone, "melee")
+	occupant.throw_at(A, 3, propelled)
+	occupant.apply_effect(6, STUN, blocked)
+	occupant.apply_effect(6, WEAKEN, blocked)
+	occupant.apply_effect(6, STUTTER, blocked)
+	occupant.apply_damage(10, BRUTE, def_zone, blocked)
+	UPDATEHEALTH(occupant)
+	playsound(src.loc, 'sound/weapons/punch1.ogg', 25, 1)
+	if(isliving(A))
+		var/mob/living/victim = A
+		def_zone = ran_zone()
+		blocked = victim.run_armor_check(def_zone, "melee")
+		victim.apply_effect(6, STUN, blocked)
+		victim.apply_effect(6, WEAKEN, blocked)
+		victim.apply_effect(6, STUTTER, blocked)
+		victim.apply_damage(10, BRUTE, def_zone, blocked)
+		UPDATEHEALTH(victim)
+	occupant.visible_message("<span class='danger'>[occupant] crashed into \the [A]!</span>")
 
 /obj/structure/bed/chair/office/light
 	icon_state = "officechair_white"
@@ -213,12 +218,12 @@
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	var/is_animating = 0
 
-/obj/structure/bed/chair/dropship/passenger/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
+/obj/structure/bed/chair/dropship/passenger/CanAllowThrough(atom/movable/mover, turf/target, height = 0, air_group = 0)
+	. = ..()
 	if(chair_state == DROPSHIP_CHAIR_UNFOLDED && istype(mover, /obj/vehicle/multitile) && !is_animating)
 		visible_message("<span class='danger'>[mover] slams into [src] and breaks it!</span>")
 		INVOKE_ASYNC(src, .proc/fold_down, TRUE)
 		return FALSE
-	return ..()
 
 /obj/structure/bed/chair/dropship/passenger/Initialize()
 	. = ..()
@@ -272,9 +277,11 @@
 		return
 	..()
 
-/obj/structure/bed/chair/dropship/passenger/attack_alien(mob/living/user)
+/obj/structure/bed/chair/dropship/passenger/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(X.status_flags & INCORPOREAL)
+		return FALSE
 	if(chair_state != DROPSHIP_CHAIR_BROKEN)
-		user.visible_message("<span class='warning'>[user] smashes \the [src], shearing the bolts!</span>",
+		X.visible_message("<span class='warning'>[X] smashes \the [src], shearing the bolts!</span>",
 		"<span class='warning'>We smash \the [src], shearing the bolts!</span>")
 		fold_down(1)
 

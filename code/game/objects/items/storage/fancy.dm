@@ -103,11 +103,11 @@
 	new /obj/item/toy/crayon/purple(src)
 	update_icon()
 
-/obj/item/storage/fancy/crayons/update_icon()
-	overlays = list() //resets list
-	overlays += image('icons/obj/items/crayons.dmi',"crayonbox")
+/obj/item/storage/fancy/crayons/update_overlays()
+	. = ..()
+	. += image('icons/obj/items/crayons.dmi',"crayonbox")
 	for(var/obj/item/toy/crayon/crayon in contents)
-		overlays += image('icons/obj/items/crayons.dmi',crayon.colourName)
+		. += image('icons/obj/items/crayons.dmi',crayon.colourName)
 
 /obj/item/storage/fancy/crayons/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -147,7 +147,7 @@
 
 /obj/item/storage/fancy/cigarettes/update_icon()
 	icon_state = "[initial(icon_state)][contents.len]"
-	return
+
 
 /obj/item/storage/fancy/cigarettes/remove_from_storage(obj/item/W, atom/new_location)
 	var/obj/item/clothing/mask/cigarette/C = W
@@ -167,6 +167,42 @@
 			update_icon()
 	else
 		..()
+
+/obj/item/storage/fancy/chemrettes
+	name = "Chemrette packet"
+	desc = "Terragov, chem filled, cigarettes. Now with extra Flavors!"
+	icon = 'icons/obj/items/cigarettes.dmi'
+	icon_state = "chempacket"
+	item_state = "chempacket"
+	w_class = WEIGHT_CLASS_TINY
+	throwforce = 2
+	flags_equip_slot = ITEM_SLOT_BELT
+	max_storage_space = 25
+	storage_slots = 25
+	can_hold = list(
+		/obj/item/clothing/mask/cigarette,
+		/obj/item/tool/lighter,
+		/obj/item/storage/box/matches,
+	)
+	icon_type = "chempacket"
+
+/obj/item/storage/fancy/chemrettes/Initialize(mapload, ...)
+	. = ..()
+
+	for(var/i in 1 to 3)
+		new /obj/item/clothing/mask/cigarette/bica(src)
+	for(var/i in 1 to 3)
+		new /obj/item/clothing/mask/cigarette/kelo(src)
+	for(var/i in 1 to 5)
+		new /obj/item/clothing/mask/cigarette/tram(src)
+	for(var/i in 1 to 5)
+		new /obj/item/clothing/mask/cigarette/antitox(src)
+
+	new /obj/item/clothing/mask/cigarette/emergency(src)
+	new /obj/item/tool/lighter(src)
+
+/obj/item/storage/fancy/chemrettes/update_icon_state()
+	icon_state = "[initial(icon_state)][contents.len]"
 
 /obj/item/storage/fancy/cigarettes/dromedaryco
 	name = "\improper Nanotrasen Gold packet"
@@ -207,9 +243,9 @@
 	spawn_number = 7
 	icon_type = "cigar"
 
-/obj/item/storage/fancy/cigar/update_icon()
+/obj/item/storage/fancy/cigar/update_icon_state()
 	icon_state = "[initial(icon_state)][contents.len]"
-	return
+
 
 /obj/item/storage/fancy/cigar/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	if(!istype(M, /mob))
@@ -258,16 +294,16 @@
 	update_icon()
 
 /obj/item/storage/lockbox/vials/update_icon(itemremoved = 0)
-	var/total_contents = src.contents.len - itemremoved
-	src.icon_state = "vialbox[total_contents]"
-	src.overlays.Cut()
+	icon_state = "vialbox[length(contents)-itemremoved]"
+
+/obj/item/storage/lockbox/vials/update_overlays()
+	. = ..()
 	if (!broken)
-		overlays += image(icon, src, "led[locked]")
+		. += image(icon, src, "led[locked]")
 		if(locked)
-			overlays += image(icon, src, "cover")
+			. += image(icon, src, "cover")
 	else
-		overlays += image(icon, src, "ledb")
-	return
+		. += image(icon, src, "ledb")
 
 /obj/item/storage/lockbox/vials/attackby(obj/item/I, mob/user, params)
 	. = ..()

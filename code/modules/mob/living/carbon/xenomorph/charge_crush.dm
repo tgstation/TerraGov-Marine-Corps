@@ -208,7 +208,7 @@
 						continue
 					charger.visible_message("<span class='danger'>[charger] runs [victim] over!</span>",
 						"<span class='danger'>We run [victim] over!</span>", null, 5)
-					victim.take_overall_damage(CHARGE_SPEED(src) * 10, blocked = victim.run_armor_check("chest", "melee"))
+					victim.take_overall_damage_armored(CHARGE_SPEED(src) * 10, BRUTE, "melee")
 					animation_flash_color(victim)
 			if(CHARGE_BULL, CHARGE_BULL_HEADBUTT, CHARGE_BULL_GORE) //Xeno Bull
 				if(MODULUS(valid_steps_taken, 4) == 0)
@@ -268,7 +268,6 @@
 
 	if(isliving(crushed))
 		var/mob/living/crushed_living = crushed
-
 		playsound(crushed_living.loc, crush_sound, 25, 1)
 		if(crushed_living.buckled)
 			crushed_living.buckled.unbuckle_mob(crushed_living)
@@ -276,7 +275,7 @@
 
 		if(precrush > 0)
 			log_combat(charger, crushed_living, "xeno charged")
-			crushed_living.apply_damage(precrush, BRUTE, "chest", updating_health = TRUE) //There is a chance to do enough damage here to gib certain mobs. Better update immediately.
+			crushed_living.apply_damage(precrush, BRUTE, BODY_ZONE_CHEST, crushed_living.run_armor_check(BODY_ZONE_CHEST, "melee"), updating_health = TRUE) //There is a chance to do enough damage here to gib certain mobs. Better update immediately.
 			if(QDELETED(crushed_living))
 				charger.visible_message("<span class='danger'>[charger] anihilates [preserved_name]!</span>",
 				"<span class='xenodanger'>We anihilate [preserved_name]!</span>")
@@ -288,7 +287,7 @@
 		var/obj/crushed_obj = crushed
 		playsound(crushed_obj.loc, "punch", 25, 1)
 		var/crushed_behavior = crushed_obj.crushed_special_behavior()
-		crushed_obj.take_damage(precrush)
+		crushed_obj.take_damage(precrush, BRUTE, "melee")
 		if(QDELETED(crushed_obj))
 			charger.visible_message("<span class='danger'>[charger] crushes [preserved_name]!</span>",
 			"<span class='xenodanger'>We crush [preserved_name]!</span>")
@@ -478,8 +477,7 @@
 	charger.visible_message("<span class='danger'>The barbed wire slices into [charger]!</span>",
 	"<span class='danger'>The barbed wire slices into you!</span>", null, 5)
 	charger.Paralyze(0.5 SECONDS)
-	charger.apply_damage(RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MIN_DAMAGE_MULT_MED, BRUTE, ran_zone(), 0, TRUE) //Armor is being ignored here.
-	UPDATEHEALTH(charger)
+	charger.apply_damage(RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MIN_DAMAGE_MULT_MED, BRUTE, ran_zone(), 0, TRUE, updating_health = TRUE) //Armor is being ignored here.
 	playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
 	update_icon()
 	return PRECRUSH_ENTANGLED //Let's return this so that the charger may enter the turf in where it's entangled, if it survived the wounds without gibbing.
@@ -550,7 +548,7 @@
 		if(CHARGE_BULL_GORE)
 			if(world.time > charge_datum.next_special_attack)
 				charge_datum.next_special_attack = world.time + 2 SECONDS
-				INVOKE_ASYNC(src, /atom/.proc/attack_alien, charger,  0, "chest", FALSE, FALSE, FALSE, INTENT_HARM) //Free gore attack.
+				INVOKE_ASYNC(src, /atom/.proc/attack_alien, charger,  0, BODY_ZONE_CHEST, FALSE, FALSE, FALSE, INTENT_HARM) //Free gore attack.
 				emote_gored()
 				var/turf/destination = get_step(loc, charger.dir)
 				if(destination)

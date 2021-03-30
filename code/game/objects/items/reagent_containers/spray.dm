@@ -88,7 +88,7 @@
 	set category = "Object"
 	set src in usr
 
-	if (alert(usr, "Are you sure you want to empty that?", "Empty Bottle:", "Yes", "No") != "Yes")
+	if (tgui_alert(usr, "Are you sure you want to empty that?", "Empty Bottle:", list("Yes", "No")) != "Yes")
 		return
 	if(isturf(usr.loc))
 		to_chat(usr, "<span class='notice'>You empty \the [src] onto the floor.</span>")
@@ -198,7 +198,6 @@
 				sleep(2)
 			qdel(D)
 
-	return
 
 // Plant-B-Gone
 /obj/item/reagent_containers/spray/plantbgone // -- Skie

@@ -21,13 +21,13 @@
 		. += T
 
 /**
-  * Get a bounding box of a list of atoms.
-  *
-  * Arguments:
-  * - atoms - List of atoms. Can accept output of view() and range() procs.
-  *
-  * Returns: list(x1, y1, x2, y2)
-  */
+ * Get a bounding box of a list of atoms.
+ *
+ * Arguments:
+ * - atoms - List of atoms. Can accept output of view() and range() procs.
+ *
+ * Returns: list(x1, y1, x2, y2)
+ */
 /proc/get_bbox_of_atoms(list/atoms)
 	var/list/list_x = list()
 	var/list/list_y = list()
@@ -78,7 +78,6 @@
 				// Ghostship is magic: Ghosts can hear radio chatter from anywhere
 				if(speaker_coverage[ear] || (isobserver(M) && M.client?.prefs?.toggles_chat & CHAT_GHOSTRADIO))
 					. |= M		// Since we're already looping through mobs, why bother using |= ? This only slows things down.
-	return .
 
 
 // Same as above but for alien candidates.
@@ -93,7 +92,7 @@
 
 		if(O.client.prefs.be_special & BE_ALIEN_UNREVIVABLE && !(O.client.prefs.be_special & BE_ALIEN) && ishuman(O.mind.current))
 			var/mob/living/carbon/human/H = O.mind.current
-			if(check_tod(H))
+			if(!HAS_TRAIT(H, TRAIT_UNDEFIBBABLE ))
 				continue
 
 		//AFK players cannot be drafted
@@ -154,14 +153,11 @@
 
 // Like view but bypasses luminosity check
 /proc/get_hear(range, atom/source)
-
 	var/lum = source.luminosity
 	source.luminosity = 6
 
-	var/list/heard = view(range, source)
+	. = view(range, source)
 	source.luminosity = lum
-
-	return heard
 
 /proc/get_active_player_count(alive_check = FALSE, afk_check = FALSE, faction_check = FALSE, faction = FACTION_NEUTRAL)
 	// Get active players who are playing in the round

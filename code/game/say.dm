@@ -6,7 +6,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	"[FREQ_IMPERIAL]" = "impradio",
 	"[FREQ_COMMAND]" = "comradio",
 	"[FREQ_AI]" = "airadio",
-	"[FREQ_POLICE]" = "secradio",
+	"[FREQ_CAS]" = "casradio",
 	"[FREQ_ENGINEERING]" = "engradio",
 	"[FREQ_MEDICAL]" = "medradio",
 	"[FREQ_REQUISITIONS]" = "supradio"
@@ -208,32 +208,27 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	return "0"
 
 
+
 /proc/get_hearers_in_view(R, atom/source)
 	// Returns a list of hearers in view(R) from source (ignoring luminosity). Used in saycode.
 	var/turf/T = get_turf(source)
-	. = list()
 
-	if(!T)
-		return
-
-	var/list/processing_list = list()
 	if (R == 0) // if the range is zero, we know exactly where to look for, we can skip view
-		processing_list += T.contents // We can shave off one iteration by assuming turfs cannot hear
+		. = T.contents.Copy() // We can shave off one iteration by assuming turfs cannot hear
 	else  // A variation of get_hear inlined here to take advantage of the compiler's fastpath for obj/mob in view
+		. = list()
 		var/lum = T.luminosity
 		T.luminosity = 6 // This is the maximum luminosity
 		for(var/mob/M in view(R, T))
-			processing_list += M
+			. += M
 		for(var/obj/O in view(R, T))
-			processing_list += O
+			. += O
 		T.luminosity = lum
 
-	while(processing_list.len) // recursive_hear_check inlined here
-		var/atom/A = processing_list[1]
-		. += A
-		processing_list.Cut(1, 2)
-		processing_list += A.contents
-
+	var/i = 0
+	while(i < length(.)) // recursive_hear_check inlined here
+		var/atom/A = .[++i]
+		. += A.contents
 
 /atom/movable/proc/GetVoice()
 	return "[src]"	//Returns the atom's name, prepended with 'The' if it's not a proper noun

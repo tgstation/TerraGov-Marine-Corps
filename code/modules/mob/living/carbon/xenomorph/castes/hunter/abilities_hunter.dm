@@ -194,7 +194,7 @@
 
 	cancel_stealth()
 
-/datum/action/xeno_action/stealth/proc/sneak_attack_disarm(datum/source, mob/living/target, tackle_pain, list/pain_mod)
+/datum/action/xeno_action/stealth/proc/sneak_attack_disarm(datum/source, mob/living/target, damage, list/damage_mod, list/armor_mod)
 	SIGNAL_HANDLER
 	if(!stealth || !can_sneak_attack)
 		return
@@ -202,16 +202,14 @@
 	var/staggerslow_stacks = 2
 	var/flavour
 	if(owner.m_intent == MOVE_INTENT_RUN && ( owner.last_move_intent > (world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY) ) ) //Allows us to slash while running... but only if we've been stationary for awhile
-		pain_mod += (0.75 * tackle_pain)
 		flavour = "vicious"
 	else
-		pain_mod += (2.5 * tackle_pain)
+		armor_mod += HUNTER_SNEAK_SLASH_ARMOR_PEN
 		staggerslow_stacks *= 2
 		flavour = "deadly"
 
 	owner.visible_message("<span class='danger'>\The [owner] strikes [target] with [flavour] precision!</span>", \
 	"<span class='danger'>We strike [target] with [flavour] precision!</span>")
-	target.ParalyzeNoChain(1.5 SECONDS)
 	target.adjust_stagger(staggerslow_stacks)
 	target.add_slowdown(staggerslow_stacks)
 
