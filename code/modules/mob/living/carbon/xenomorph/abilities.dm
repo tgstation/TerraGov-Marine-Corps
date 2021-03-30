@@ -1031,7 +1031,7 @@
 		build_small_silo = !build_small_silo
 		var/silo_type = build_small_silo ? "small" : "regular"
 		to_chat(X, "<span class ='notice'> You will now build a [silo_type] silo </span>")
-	. = ..()
+	return ..()
 
 /datum/action/xeno_action/activable/build_silo/can_use_ability(atom/A, silent, override_flags)
 	. = ..()
