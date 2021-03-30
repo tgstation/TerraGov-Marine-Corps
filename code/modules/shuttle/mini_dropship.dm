@@ -10,6 +10,7 @@
 	dheight = 0
 	width = 7
 	height = 9
+	rechargeTime = 30 SECONDS
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship
 	name = "Tadpole navigation computer"
@@ -179,7 +180,7 @@
 	.["fuel_max"] = fuel_max
 	.["fly_state"] = fly_state
 	.["take_off_locked"] = ( !(fly_state == SHUTTLE_ON_GROUND || fly_state == SHUTTLE_ON_SHIP) || shuttle_port?.mode != SHUTTLE_IDLE)
-	.["return_to_ship_locked"] = (fly_state != SHUTTLE_IN_ATMOSPHERE)
+	.["return_to_ship_locked"] = (fly_state != SHUTTLE_IN_ATMOSPHERE || shuttle_port?.mode != SHUTTLE_IDLE)
 	var/obj/docking_port/mobile/marine_dropship/shuttle = shuttle_port
 	.["equipment_data"] = list()
 	var/element_nbr = 1
@@ -211,6 +212,8 @@
 	var/mob/C = target
 	var/mob/camera/aiEye/remote/remote_eye = C.remote_control
 	var/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/origin = remote_eye.origin
+	if(origin.shuttle_port.mode != SHUTTLE_IDLE)
+		return
 	if(!origin.placeLandingSpot(target))
 		return
 	origin.shuttle_port.callTime = SHUTTLE_LANDING_CALLTIME
