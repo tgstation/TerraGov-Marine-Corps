@@ -12904,9 +12904,6 @@
 	dir = 1
 	},
 /area/sulaco/medbay)
-"gXS" = (
-/turf/open/floor/plating,
-/area/space)
 "gYP" = (
 /obj/structure/dropship_equipment/mg_holder,
 /turf/open/floor/prison,
@@ -48116,7 +48113,7 @@ aaa
 nzi
 mDu
 aYZ
-gXS
+aaW
 aaW
 aRh
 aSp
