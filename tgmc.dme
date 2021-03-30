@@ -374,6 +374,7 @@
 #include "code\datums\keybinding\xeno.dm"
 #include "code\datums\looping_sounds\_looping_sound.dm"
 #include "code\datums\looping_sounds\machinery_sounds.dm"
+#include "code\datums\looping_sounds\shuttle_sounds.dm"
 #include "code\datums\looping_sounds\weather_sounds.dm"
 #include "code\datums\status_effects\debuffs.dm"
 #include "code\datums\status_effects\gun_skill.dm"

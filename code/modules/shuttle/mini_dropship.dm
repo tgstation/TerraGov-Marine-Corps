@@ -44,12 +44,15 @@
 	var/origin_port_id = "minidropship"
 	/// The user of the ui
 	var/mob/living/ui_user
+	/// Sound loop when the shuttle is hovering in atmosphere
+	var/datum/looping_sound/shuttle_still_flight/shuttle_still_sound
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/Initialize(mapload)
 	. = ..()
 	start_processing()
 	set_light(3,3)
 	land_action = new
+	shuttle_still_sound = new(list(src), FALSE)
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/LateInitialize()
@@ -105,9 +108,11 @@
 		return
 	give_actions()
 	if(fly_state != SHUTTLE_IN_ATMOSPHERE)
+		shuttle_still_sound.stop()
 		return
 	set_transit_turf(TRUE)
 	open_prompt = TRUE
+	shuttle_still_sound.start()
 	if(ui_user?.Adjacent(src))
 		open_prompt(ui_user)
 
@@ -173,8 +178,8 @@
 	.["fuel_left"] = fuel_left
 	.["fuel_max"] = fuel_max
 	.["fly_state"] = fly_state
-	.["take_off_locked"] = ( !(fly_state == SHUTTLE_ON_GROUND || fly_state == SHUTTLE_ON_SHIP) || shuttle_port?.mode == SHUTTLE_IDLE)
-	.["return_to_ship_locked"] = (fly_state != SHUTTLE_IN_ATMOSPHERE || shuttle_port?.mode == SHUTTLE_IDLE)
+	.["take_off_locked"] = ( !(fly_state == SHUTTLE_ON_GROUND || fly_state == SHUTTLE_ON_SHIP) || shuttle_port?.mode != SHUTTLE_IDLE)
+	.["return_to_ship_locked"] = (fly_state != SHUTTLE_IN_ATMOSPHERE)
 	var/obj/docking_port/mobile/marine_dropship/shuttle = shuttle_port
 	.["equipment_data"] = list()
 	var/element_nbr = 1
