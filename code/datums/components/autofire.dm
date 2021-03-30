@@ -89,6 +89,8 @@
 /datum/component/automatedfire/autofire/process_shot()
 	if(!shooting)
 		return
+	if(next_fire > world.time)//This mean duplication somwhere, we abort now
+		return
 	if(!SEND_SIGNAL(parent, COMSIG_GUN_MUST_FIRE) & GUN_HAS_FIRED)
 		hard_reset()
 		return
