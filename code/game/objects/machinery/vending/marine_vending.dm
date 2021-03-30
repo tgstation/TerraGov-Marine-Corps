@@ -172,44 +172,56 @@
 	desc = "A automated rack hooked up to a small supply of various firearms and explosives."
 	wrenchable = FALSE
 	products = list(
-		/obj/item/weapon/gun/pistol/standard_pistol = 10,
-		/obj/item/weapon/gun/revolver/standard_revolver = 10,
-		/obj/item/weapon/gun/pistol/standard_heavypistol = 10,
-		/obj/item/weapon/gun/pistol/vp70 = 10,
-		/obj/item/weapon/gun/smg/ppsh = 5,
-		/obj/item/weapon/gun/smg/standard_smg = 10,
-		/obj/item/weapon/gun/smg/standard_machinepistol = 10,
-		/obj/item/weapon/gun/rifle/standard_carbine = 10,
-		/obj/item/weapon/gun/rifle/standard_assaultrifle = 10,
-		/obj/item/weapon/gun/rifle/standard_lmg = 10,
-		/obj/item/weapon/gun/rifle/standard_gpmg = 10,
-		/obj/item/weapon/gun/rifle/standard_dmr = 10,
-		/obj/item/weapon/gun/rifle/standard_br = 10,
-		/obj/item/weapon/gun/energy/lasgun/lasrifle = 10,
-		/obj/item/weapon/gun/rifle/chambered = 10,
-		/obj/item/weapon/gun/shotgun/pump/t35 = 10,
-		/obj/item/weapon/gun/shotgun/combat/standardmarine = 10,
-		/obj/item/weapon/gun/rifle/standard_autoshotgun = 10,
-		/obj/item/weapon/gun/launcher/m92/standardmarine = 10,
-		/obj/item/weapon/gun/launcher/m81 = 15,
-		/obj/item/weapon/gun/pistol/standard_pocketpistol = 20,
-		/obj/item/storage/belt/gun/ts34/full = 5,
-		/obj/item/weapon/gun/shotgun/pump/cmb = 5,
-		/obj/item/weapon/gun/shotgun/pump/bolt = 5,
-		/obj/item/weapon/gun/rifle/tx11 = 20,
-		/obj/item/weapon/gun/flamer/marinestandard = 2,
-		/obj/item/explosive/mine = 5,
-		/obj/item/explosive/grenade/frag/m15 = 25,
-		/obj/item/explosive/grenade/incendiary = 25,
-		/obj/item/explosive/grenade/drainbomb = 5,
-		/obj/item/explosive/grenade/cloakbomb = 25,
-		/obj/item/storage/box/m94 = 30,
-		/obj/item/storage/box/m94/cas = 10,
-		/obj/item/storage/box/recoilless_system = 1,
-		/obj/item/weapon/shield/riot/marine = 3,
+		"Rifles" = list(
+			/obj/item/weapon/gun/rifle/standard_carbine = 10,
+			/obj/item/weapon/gun/rifle/standard_assaultrifle = 10,
+			/obj/item/weapon/gun/rifle/tx11 = 20,
+			/obj/item/weapon/gun/energy/lasgun/lasrifle = 10,
+			/obj/item/weapon/gun/rifle/standard_lmg = 10,
+		),
+		"SMGs" = list(
+			/obj/item/weapon/gun/smg/ppsh = 5,
+			/obj/item/weapon/gun/smg/standard_smg = 10,
+			/obj/item/weapon/gun/smg/standard_machinepistol = 10,
+		),
+		"Marksman Rifles" = list(
+			/obj/item/weapon/gun/rifle/standard_dmr = 10,
+			/obj/item/weapon/gun/rifle/standard_br = 10,
+			/obj/item/weapon/gun/rifle/chambered = 10,
+			/obj/item/weapon/gun/shotgun/pump/bolt = 5,
+		),
+		"Shotguns" = list(
+			/obj/item/weapon/gun/shotgun/pump/t35 = 10,
+			/obj/item/weapon/gun/shotgun/combat/standardmarine = 10,
+			/obj/item/weapon/gun/rifle/standard_autoshotgun = 10,
+			/obj/item/storage/belt/gun/ts34/full = 5,
+			/obj/item/weapon/gun/shotgun/pump/cmb = 5,
+		),
+		"Sidearms" = list(
+			/obj/item/weapon/gun/pistol/standard_pistol = 10,
+			/obj/item/weapon/gun/revolver/standard_revolver = 10,
+			/obj/item/weapon/gun/pistol/standard_heavypistol = 10,
+			/obj/item/weapon/gun/pistol/vp70 = 10,
+		),
+		"Explosives" = list(
+			/obj/item/explosive/mine = 5,
+			/obj/item/explosive/grenade/frag/m15 = 25,
+			/obj/item/explosive/grenade/incendiary = 25,
+			/obj/item/explosive/grenade/drainbomb = 5,
+			/obj/item/explosive/grenade/cloakbomb = 25,
+			/obj/item/storage/box/m94 = 30,
+			/obj/item/storage/box/m94/cas = 10,
+		),
+		"Especialized" = list(
+			/obj/item/weapon/gun/rifle/standard_gpmg = 10,
+			/obj/item/weapon/gun/launcher/m92/standardmarine = 10,
+			/obj/item/weapon/gun/launcher/m81 = 15,
+			/obj/item/weapon/gun/flamer/marinestandard = 2,
+			/obj/item/storage/box/recoilless_system = 1,
+			/obj/item/weapon/shield/riot/marine = 3,
+		),
 	)
 
-	premium = list()
 	contraband = list(/obj/item/explosive/grenade/smokebomb = 25)
 
 
@@ -301,7 +313,6 @@
 		/obj/item/ammo_magazine/box10x26mm = 50,
 		/obj/item/ammo_magazine/box10x27mm = 50,
 	)
-	premium = list()
 
 
 /obj/machinery/vending/marine/cargo_ammo/select_gamemode_equipment(gamemode)
@@ -363,9 +374,6 @@
 		/obj/item/cell/lasgun/lasrifle/highcap = 2,
 	)
 
-	contraband =   list()
-
-	premium = list()
 
 	prices = list()
 
@@ -409,9 +417,9 @@
 		stock(I, user)
 
 /obj/machinery/vending/lasgun/stock(obj/item/item_to_stock, mob/user, recharge = FALSE)
-	var/datum/data/vending_product/R //Let's try with a new datum.
+	var/datum/vending_product/R //Let's try with a new datum.
 	//More accurate comparison between absolute paths.
-	for(R in (product_records + hidden_records + coin_records))
+	for(R in (product_records + hidden_records + coin_records ))
 		if(item_to_stock.type == R.product_path && !istype(item_to_stock,/obj/item/storage)) //Nice try, specialists/engis
 			if(istype(item_to_stock, /obj/item/cell/lasgun) && recharge)
 				if(!recharge_lasguncell(item_to_stock, user))
@@ -552,7 +560,7 @@
 	. = ..()
 	var/temp_list[] = productlist
 	var/obj/item/reagent_containers/blood/temp_path
-	var/datum/data/vending_product/R
+	var/datum/vending_product/R
 	var/blood_type
 	for(R in (product_records + hidden_records + coin_records))
 		if(R.product_path in temp_list)
