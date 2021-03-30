@@ -833,6 +833,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 	listed_products = list(
 		/obj/effect/essentials_set/synth = list(CAT_ESS, "Essential synthetic set", 0, "white"),
 		/obj/item/clothing/under/marine = list(CAT_STD, "TGMC marine uniform", 0, "black"),
+		/obj/item/clothing/under/marine/skirt = list(CAT_STD, "TGMC marine skirt", 0, "black"),
 		/obj/item/clothing/under/rank/medical/blue = list(CAT_STD, "Medical scrubs (blue)", 0, "black"),
 		/obj/item/clothing/under/rank/medical/green = list(CAT_STD, "Medical scrubs (green)", 0, "black"),
 		/obj/item/clothing/under/rank/medical/purple = list(CAT_STD, "Medical scrubs (purple)", 0, "black"),
@@ -1199,6 +1200,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 /obj/effect/essentials_set/basic
 	spawned_gear_list = list(
 		/obj/item/clothing/under/marine,
+		/obj/item/clothing/under/marine/skirt,
 		/obj/item/clothing/shoes/marine/full,
 		/obj/item/storage/box/MRE,
 	)
@@ -1206,6 +1208,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 /obj/effect/essentials_set/basicmodular
 	spawned_gear_list = list(
 		/obj/item/clothing/under/marine/jaeger,
+		/obj/item/clothing/under/marine/jaeger/underskirt,
 		/obj/item/clothing/suit/modular,
 		/obj/item/clothing/shoes/marine/full,
 		/obj/item/storage/box/MRE,
@@ -1215,6 +1218,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 /obj/effect/essentials_set/basic_smartgunner
 	spawned_gear_list = list(
 		/obj/item/clothing/under/marine,
+		/obj/item/clothing/under/marine/skirt,
 		/obj/item/clothing/shoes/marine/full,
 		/obj/item/storage/box/MRE,
 	)
@@ -1222,6 +1226,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 /obj/effect/essentials_set/basic_smartgunnermodular
 	spawned_gear_list = list(
 		/obj/item/clothing/under/marine/jaeger,
+		/obj/item/clothing/under/marine/jaeger/underskirt,
 		/obj/item/clothing/suit/modular,
 		/obj/item/clothing/shoes/marine/full,
 		/obj/item/storage/box/MRE,
@@ -1231,6 +1236,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 /obj/effect/essentials_set/basic_specialist
 	spawned_gear_list = list(
 		/obj/item/clothing/under/marine,
+		/obj/item/clothing/under/marine/skirt,
 		/obj/item/clothing/shoes/marine/full,
 		/obj/item/storage/box/MRE,
 	)
@@ -1241,6 +1247,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 		/obj/item/clothing/head/helmet/marine/leader,
 		/obj/item/clothing/glasses/hud/health,
 		/obj/item/clothing/under/marine,
+		/obj/item/clothing/under/marine/skirt,
 		/obj/item/clothing/shoes/marine/full,
 		/obj/item/storage/box/MRE,
 	)
@@ -1251,6 +1258,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 		/obj/item/clothing/head/helmet/marine/leader,
 		/obj/item/clothing/glasses/hud/health,
 		/obj/item/clothing/under/marine,
+		/obj/item/clothing/under/marine/skirt,
 		/obj/item/clothing/shoes/marine/full,
 		/obj/item/storage/box/MRE,
 	)
@@ -1258,6 +1266,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 /obj/effect/essentials_set/basic_squadleadermodular
 	spawned_gear_list = list(
 		/obj/item/clothing/under/marine/jaeger,
+		/obj/item/clothing/under/marine/jaeger/underskirt,
 		/obj/item/clothing/suit/modular,
 		/obj/item/clothing/head/helmet/marine/leader,
 		/obj/item/clothing/glasses/hud/health,
@@ -1271,6 +1280,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 		/obj/item/clothing/head/helmet/marine/corpsman,
 		/obj/item/clothing/glasses/hud/health,
 		/obj/item/clothing/under/marine/corpsman,
+		/obj/item/clothing/under/marine/skirt,
 		/obj/item/clothing/shoes/marine/full,
 		/obj/item/storage/box/MRE,
 	)
@@ -1278,6 +1288,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 /obj/effect/essentials_set/basic_medicmodular
 	spawned_gear_list = list(
 		/obj/item/clothing/under/marine/jaeger,
+		/obj/item/clothing/under/marine/jaeger/underskirt,
 		/obj/item/clothing/suit/modular,
 		/obj/item/clothing/head/helmet/marine/corpsman,
 		/obj/item/clothing/glasses/hud/health,
@@ -1291,6 +1302,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 		/obj/item/clothing/head/helmet/marine/tech,
 		/obj/item/clothing/glasses/welding,
 		/obj/item/clothing/under/marine/engineer,
+		/obj/item/clothing/under/marine/skirt,
 		/obj/item/clothing/shoes/marine/full,
 		/obj/item/storage/box/MRE,
 		/obj/item/clothing/gloves/marine/insulated,
@@ -1299,6 +1311,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 /obj/effect/essentials_set/basic_engineermodular
 	spawned_gear_list = list(
 		/obj/item/clothing/under/marine/jaeger,
+		/obj/item/clothing/under/marine/jaeger/underskirt,
 		/obj/item/clothing/suit/modular,
 		/obj/item/clothing/head/helmet/marine/tech,
 		/obj/item/clothing/glasses/welding,
@@ -1377,6 +1390,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 	spawned_gear_list = list(
 		/obj/item/clothing/head/modular/marine,
 		/obj/item/clothing/head/modular/marine/infantry,
+		/obj/item/armor_module/armor/chest/marine/skirt,
 		/obj/item/armor_module/armor/chest/marine,
 		/obj/item/armor_module/armor/arms/marine,
 		/obj/item/armor_module/armor/legs/marine,

@@ -823,6 +823,7 @@
 		/obj/item/armor_module/armor/chest/marine/skirmisher = 20,
 		/obj/item/armor_module/armor/chest/marine/skirmisher/scout = 20,
 		/obj/item/armor_module/armor/chest/marine = 20,
+		/obj/item/armor_module/armor/chest/marine/skirt = 20,
 		/obj/item/armor_module/armor/chest/marine/eva = 20,
 		/obj/item/armor_module/armor/chest/marine/assault = 20,
 		/obj/item/armor_module/armor/chest/marine/assault/eod = 20,
@@ -867,8 +868,10 @@
 	products = list(
 		/obj/item/storage/large_holster/machete/full = 10,
 		/obj/item/clothing/shoes/marine = 20,
+		/obj/item/clothing/under/marine/skirt = 20,
 		/obj/item/clothing/under/marine/standard = 20,
 		/obj/item/clothing/under/marine/jaeger = 30,
+		/obj/item/clothing/under/marine/jaeger/underskirt = 30,
 		/obj/item/storage/backpack/marine/standard = 10,
 		/obj/item/storage/backpack/marine/satchel = 10,
 		/obj/item/tool/weldpack/marinestandard = 10,

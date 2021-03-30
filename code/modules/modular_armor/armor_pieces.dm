@@ -35,7 +35,7 @@
 	if(paint.uses < 1)
 		to_chat(user, "<span class='warning'>\the [paint] is out of color!</span>")
 		return TRUE
-	
+
 
 	var/new_color = tgui_input_list(user, "Pick a color", "Pick color", list(
 		"black", "snow", "desert", "gray", "brown", "red", "blue", "yellow", "green", "aqua", "purple", "orange"))
@@ -122,6 +122,11 @@
 	name = "\improper Jaeger Pattern Heavy EOD chestplates"
 	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides high protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a EOD armor piece."
 	icon_state = "eod_chest"
+
+/obj/item/armor_module/armor/chest/marine/skirt //I have no need to explain myself here
+	name = "\improper Jaeger Pattern Medium Skirt chestplates"
+	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides minor protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a 'Chinese Cartoon' armor piece."
+	icon_state = "skirt_chest"
 
 // Legs pieces
 /obj/item/armor_module/armor/legs

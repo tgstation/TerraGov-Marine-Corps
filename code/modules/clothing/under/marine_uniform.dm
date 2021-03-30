@@ -10,6 +10,11 @@
 	rollable_sleeves = TRUE
 	has_sensor = 2
 
+/obj/item/clothing/under/marine/skirt //Yes i'm doing this for april fools and you can't stop me
+	name = "\improper TGMC skirt"
+	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented marine skirt. You suspect that this would make you look cuter than the others."
+	icon_state = "marine_skirt"
+
 /obj/item/clothing/under/marine/standard
 	flags_item_map_variant = null
 
@@ -34,6 +39,10 @@
 	has_sensor = 2
 	flags_item_map_variant = null
 
+/obj/item/clothing/under/marine/jaeger/underskirt
+	name = "\improper TGMC jaeger underskirt"
+	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented marine uniform. You suspect that this would make you look cuter than the others."
+	icon_state = "marine_underskirt"
 
 /obj/item/clothing/under/marine/sniper
 	name = "\improper TGMC sniper snow uniform"
