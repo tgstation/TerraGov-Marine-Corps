@@ -16594,9 +16594,7 @@
 	},
 /area/lv624/ground/jungle4)
 "vqo" = (
-/obj/structure/cable/multilayer{
-	cable_layer = 3
-	},
+/obj/structure/cable/multilayer/layer12,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
 "vrA" = (
