@@ -62,3 +62,13 @@
 	name = "rugged hard hat"
 	desc = "A piece of headgear used in dangerous working conditions to protect the head. Comes with a built-in flashlight. Looks rather robust."
 	soft_armor = list("melee" = 50, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = 50, "bio" = 40, "rad" = 0, "fire" = 50, "acid" = 50)
+
+//April fools. Same stats as the default M10 helmet with same light range as the PAS vest
+/obj/item/clothing/head/hardhat/sec
+	name = "helmet"
+	desc = "The inside has 'property of nanotrasen' etched into it."
+	icon_state = "hardhat1_sec"
+	hardhat_color = "sec"
+	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
+	max_integrity = 5
+	light_range = 6

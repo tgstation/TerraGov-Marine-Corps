@@ -348,6 +348,13 @@
 	icon_state = "commendation"
 	fields = 5
 
+/obj/item/paper/greytide
+	name = "Contractual obligation"
+	info = "Welcome, new employee of the official nanotrasen greytide initiative!\nBy reading this you are now contractually obligated to go down to the planet and kill every last beno that is in the way of our profit.\nThe reward of such undertaking is a 30% donk-soft coupon that is gonna expire in less than 30 minutes.\nBe swift and agile because you and every other employee will need to share the same coupon.\n\nThat is all,\nNow get to work."
+
+/obj/item/paper/toolboxstrap
+	name = "Ancient(tm) special announcement"
+	info = "The toolbox you own is imbued with a special power allowing you to firmly hold the toolbox in place.\nNaaah, i'm just fucking with you.\nJust tighten your grip on the toolbox and it won't fall."
 /obj/item/paper/commendation/update_icon() //it looks fancy and we want it to stay fancy.
 	return
 /*Let this be a lesson about pre-made forms.

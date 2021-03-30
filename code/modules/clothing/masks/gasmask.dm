@@ -16,6 +16,13 @@
 	var/gas_filter_strength = 1			//For gas mask filters
 	var/list/filtered_gases = list(/datum/reagent/toxin/phoron, "sleeping_agent", "carbon_dioxide")
 
+//April fools
+/obj/item/clothing/mask/gas/old
+	name = "gas mask"
+	icon_state = "gas_old"
+	item_state = "gas_old"
+	desc = "A replica for sure, but can instill fear onto your foes."
+
 /obj/item/clothing/mask/gas/tactical
 	name = "Tactical gas mask"
 	icon_state = "gas_alt_tactical"

@@ -185,3 +185,40 @@
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/impact, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap, SLOT_IN_BACKPACK)
+
+//April fools - PMC toolboxers united
+
+
+/datum/job/pmc/greytider
+	title = "NT Greytider"
+	paygrade = "PMC1"
+	outfit = /datum/outfit/job/pmc/greytider
+
+
+/datum/outfit/job/pmc/greytider
+	name = "PMC Standard"
+	jobtype = /datum/job/pmc/greytider
+
+	id = /obj/item/card/id/silver
+	belt = /obj/item/weapon/claymore/toolbox/nodrop
+	ears = /obj/item/radio/headset/mainship/greytide
+	w_uniform = /obj/item/clothing/under/color/grey/armored
+	shoes = /obj/item/clothing/shoes/marine/jackboots
+	wear_suit = /obj/item/clothing/suit/armor/vest/sec
+	gloves = /obj/item/clothing/gloves/marine/insulated/old
+	head = /obj/item/clothing/head/hardhat/sec
+	mask = /obj/item/clothing/mask/gas/old
+	suit_store = /obj/item/weapon/shield/riot/marine/greytide
+	r_store = /obj/item/paper/toolboxstrap
+	l_store = /obj/item/storage/pouch/medkit/equippedcorpsman
+	back = /obj/item/storage/backpack
+
+
+/datum/outfit/job/pmc/greytider/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+
+	H.equip_to_slot_or_del(new /obj/item/radio, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/sliceable/meatbread, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/megaphone, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/clothing/glasses/hud/health, SLOT_IN_BACKPACK)

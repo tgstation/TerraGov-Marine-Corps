@@ -22,6 +22,13 @@
 	desc = "Insulated marine tactical gloves that protect against electrical shocks."
 	siemens_coefficient = 0
 
+/obj/item/clothing/gloves/marine/insulated/old
+	name = "insulated gloves"
+	desc = "No tider is whole without these."
+	icon_state = "yellow"
+	item_state = "ygloves"
+	siemens_coefficient = 0
+
 /obj/item/clothing/gloves/marine/officer
 	name = "officer gloves"
 	desc = "Shiny and impressive. They look expensive."

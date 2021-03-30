@@ -45,6 +45,13 @@
 		/obj/item/storage/large_holster/machete
 	)
 
+/obj/item/clothing/suit/armor/vest/sec
+	name = "armored vest"
+	desc = "Rightfully acquired property."
+	allowed = list (
+		/obj/item/weapon/claymore/toolbox,
+		/obj/item/weapon/shield/riot/marine/greytide
+	)
 
 /obj/item/clothing/suit/armor/vest/pilot
 	name = "\improper M70 flak jacket"
