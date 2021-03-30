@@ -46,8 +46,6 @@
 	var/slow_amt = 0.8
 	var/duration = 10 SECONDS
 	var/acid_damage = XENO_DEFAULT_ACID_PUDDLE_DAMAGE
-	/// World.time when it was initialized
-	var/creation_time
 	/// Who created that spray
 	var/mob/xeno_owner
 
@@ -56,17 +54,22 @@
 	START_PROCESSING(SSprocessing, src)
 	QDEL_IN(src, duration + rand(0, 2 SECONDS))
 	acid_damage = damage
-	creation_time = world.time
 	xeno_owner = _xeno_owner
+	RegisterSignal(xeno_owner, COMSIG_PARENT_QDELETING, .proc/clean_mob_owner)
+	TIMER_COOLDOWN_START(src, COOLDOWN_PARALYSE_ACID, 5)
 
 /obj/effect/xenomorph/spray/Destroy()
 	STOP_PROCESSING(SSprocessing, src)
+	xeno_owner = null
 	return ..()
 
 /obj/effect/xenomorph/spray/Crossed(atom/movable/AM)
 	. = ..()
 	SEND_SIGNAL(AM, COMSIG_ATOM_ACIDSPRAY_ACT, src, acid_damage, slow_amt)
 
+/obj/effect/xenomorph/spray/proc/clean_mob_owner()
+	UnregisterSignal(xeno_owner, COMSIG_PARENT_QDELETING)
+	xeno_owner = null
 
 /mob/living/carbon/human/proc/acid_spray_crossed(datum/source, obj/effect/xenomorph/spray/acid_spray, acid_damage, slow_amt)
 	SIGNAL_HANDLER
@@ -76,7 +79,7 @@
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ACID))
 		return
 	
-	if(world.time <= acid_spray.creation_time + 5) //To prevent being able to walk "over" acid sprays
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_PARALYSE_ACID)) //To prevent being able to walk "over" acid sprays
 		acid_spray_act(acid_spray.xeno_owner)
 		return
 

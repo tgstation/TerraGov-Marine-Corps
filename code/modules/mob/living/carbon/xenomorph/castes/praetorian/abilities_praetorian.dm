@@ -95,7 +95,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	
 	var/obj/effect/xenomorph/spray/spray = new(T, xeno_owner.xeno_caste.acid_spray_duration, xeno_owner.xeno_caste.acid_spray_damage, src)
 	var/turf/next_normal_turf = get_step(T, facing)
-	for (var/atom/A AS in T)
+	for (var/atom/movable/A AS in T)
 		A.acid_spray_act(owner)
 		if((A.density && !A.throwpass && !(A.flags_atom & ON_BORDER)) || !A.CheckExit(source_spray, next_normal_turf))
 			is_blocked = TRUE
@@ -117,7 +117,4 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		do_acid_cone_spray(get_step(current_turf, turn(facing, -45)), distance_left - 1, turn(facing, -45), CONE_PART_MIDDLE, spray, owner)
 	if(CHECK_BITFIELD(direction_flag, CONE_PART_MIDDLE_DIAG))
 		do_acid_cone_spray(next_normal_turf, distance_left - 1, facing, CONE_PART_DIAG_LEFT|CONE_PART_DIAG_RIGHT, spray, owner)
-		if(distance_left <= 5)
-			do_acid_cone_spray(next_normal_turf, distance_left - 2, facing, CONE_PART_MIDDLE, spray, owner)
-		else
-			do_acid_cone_spray(next_normal_turf, distance_left - 1, facing, CONE_PART_MIDDLE_DIAG, spray, owner)
+		do_acid_cone_spray(next_normal_turf, distance_left - 2, facing, (distance_left < 5) ? CONE_PART_MIDDLE : CONE_PART_MIDDLE_DIAG, spray, owner)
