@@ -1626,9 +1626,7 @@
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
-/area/crew_quarters/heads/cmo{
-	name = "Chief Medical Officer's Office"
-	})
+/area/sulaco/medbay/cmo)
 "aeG" = (
 /obj/structure/table/mainship,
 /obj/effect/spawner/random/toolbox,
@@ -1668,9 +1666,7 @@
 /obj/machinery/door/firedoor/mainship,
 /obj/machinery/door/poddoor/shutters/opened/medbay,
 /turf/open/floor/prison/whitegreen/corner,
-/area/crew_quarters/heads/cmo{
-	name = "Chief Medical Officer's Office"
-	})
+/area/sulaco/medbay/cmo)
 "aeL" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 4
@@ -1691,9 +1687,7 @@
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
-/area/crew_quarters/heads/cmo{
-	name = "Chief Medical Officer's Office"
-	})
+/area/sulaco/medbay/cmo)
 "aeO" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship{
@@ -1735,9 +1729,7 @@
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
 	},
-/area/crew_quarters/heads/cmo{
-	name = "Chief Medical Officer's Office"
-	})
+/area/sulaco/medbay/cmo)
 "aeV" = (
 /obj/machinery/power/monitor,
 /obj/structure/cable,
@@ -1933,9 +1925,7 @@
 /obj/machinery/door/firedoor,
 /obj/structure/cable,
 /turf/open/floor/prison/whitegreen/corner,
-/area/crew_quarters/heads/cmo{
-	name = "Chief Medical Officer's Office"
-	})
+/area/sulaco/medbay/cmo)
 "agA" = (
 /obj/machinery/vending/nanomed,
 /turf/closed/wall/mainship/gray/outer,
@@ -2052,9 +2042,7 @@
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
-/area/crew_quarters/heads/cmo{
-	name = "Chief Medical Officer's Office"
-	})
+/area/sulaco/medbay/cmo)
 "ahJ" = (
 /obj/effect/decal/warning_stripes/thick{
 	dir = 8
@@ -2164,9 +2152,7 @@
 /obj/machinery/holopad,
 /obj/structure/cable,
 /turf/open/floor/prison/whitegreen/corner,
-/area/crew_quarters/heads/cmo{
-	name = "Chief Medical Officer's Office"
-	})
+/area/sulaco/medbay/cmo)
 "aip" = (
 /turf/open/floor/prison/red{
 	dir = 8
@@ -2361,18 +2347,14 @@
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
-/area/crew_quarters/heads/cmo{
-	name = "Chief Medical Officer's Office"
-	})
+/area/sulaco/medbay/cmo)
 "ajQ" = (
 /obj/machinery/camera/autoname,
 /obj/machinery/computer/crew,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
-/area/crew_quarters/heads/cmo{
-	name = "Chief Medical Officer's Office"
-	})
+/area/sulaco/medbay/cmo)
 "ajV" = (
 /obj/structure/table/mainship,
 /obj/item/cane,
@@ -2592,9 +2574,7 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor/plating/plating_catwalk/prison,
-/area/sulaco/liaison/quarters{
-	name = "Sulaco Requistion's Prep"
-	})
+/area/sulaco/cargo/prep)
 "aln" = (
 /obj/structure/cable,
 /turf/open/floor/prison,
@@ -2658,9 +2638,7 @@
 /area/sulaco/engineering)
 "alx" = (
 /turf/open/floor/prison/red,
-/area/sulaco/liaison/quarters{
-	name = "Sulaco Requistion's Prep"
-	})
+/area/sulaco/cargo/prep)
 "aly" = (
 /obj/machinery/portable_atmospherics/canister/empty,
 /turf/open/floor/prison/yellow{
@@ -2752,9 +2730,7 @@
 	pixel_y = 19
 	},
 /turf/open/floor/prison/marked,
-/area/sulaco/liaison/quarters{
-	name = "Sulaco Requistion's Prep"
-	})
+/area/sulaco/cargo/prep)
 "ame" = (
 /obj/structure/table/mainship,
 /obj/item/flashlight/flare,
@@ -2811,12 +2787,6 @@
 /obj/effect/decal/warning_stripes/thick,
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cryosleep)
-"amo" = (
-/obj/machinery/vending/attachments,
-/turf/open/floor/prison,
-/area/sulaco/liaison/quarters{
-	name = "Sulaco Requistion's Prep"
-	})
 "amp" = (
 /obj/machinery/light,
 /obj/structure/mirror{
@@ -2844,9 +2814,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /turf/open/floor/prison,
-/area/sulaco/liaison/quarters{
-	name = "Sulaco Requistion's Prep"
-	})
+/area/sulaco/cargo/prep)
 "amI" = (
 /obj/machinery/power/apc/mainship,
 /obj/structure/cable,
@@ -2882,9 +2850,7 @@
 	},
 /obj/machinery/computer/ordercomp,
 /turf/open/floor/prison,
-/area/sulaco/liaison/quarters{
-	name = "Sulaco Requistion's Prep"
-	})
+/area/sulaco/cargo/prep)
 "ane" = (
 /obj/machinery/vending/nanomed,
 /turf/open/floor/prison/sterilewhite,
@@ -3002,9 +2968,7 @@
 /obj/item/tool/screwdriver,
 /obj/item/tool/screwdriver,
 /turf/open/floor/prison,
-/area/sulaco/liaison/quarters{
-	name = "Sulaco Requistion's Prep"
-	})
+/area/sulaco/cargo/prep)
 "anK" = (
 /obj/structure/cable,
 /obj/structure/cable,
@@ -3015,9 +2979,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating/plating_catwalk/prison,
-/area/sulaco/liaison/quarters{
-	name = "Sulaco Requistion's Prep"
-	})
+/area/sulaco/cargo/prep)
 "anO" = (
 /obj/machinery/vending/engivend,
 /turf/open/floor/prison/darkyellow/full,
@@ -3203,9 +3165,7 @@
 	dir = 4
 	},
 /turf/open/floor/prison/marked,
-/area/sulaco/liaison/quarters{
-	name = "Sulaco Requistion's Prep"
-	})
+/area/sulaco/cargo/prep)
 "aoM" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
@@ -3217,9 +3177,7 @@
 /turf/open/floor/prison/red{
 	dir = 1
 	},
-/area/sulaco/liaison/quarters{
-	name = "Sulaco Requistion's Prep"
-	})
+/area/sulaco/cargo/prep)
 "aoN" = (
 /turf/open/floor/plating/mainship,
 /area/sulaco/engineering/engine)
@@ -3266,9 +3224,7 @@
 /turf/open/floor/prison/red{
 	dir = 1
 	},
-/area/sulaco/liaison/quarters{
-	name = "Sulaco Requistion's Prep"
-	})
+/area/sulaco/cargo/prep)
 "aoZ" = (
 /obj/structure/table/mainship,
 /obj/item/storage/box/tgmc_mre,
@@ -3305,9 +3261,7 @@
 	dir = 4
 	},
 /turf/open/floor/prison/red,
-/area/sulaco/liaison/quarters{
-	name = "Sulaco Requistion's Prep"
-	})
+/area/sulaco/cargo/prep)
 "apl" = (
 /turf/closed/wall/mainship/gray/outer,
 /area/sulaco/engineering/engine)
@@ -3889,9 +3843,7 @@
 /turf/open/floor/prison/arrow{
 	dir = 1
 	},
-/area/sulaco/liaison/quarters{
-	name = "Sulaco Requistion's Prep"
-	})
+/area/sulaco/cargo/prep)
 "arH" = (
 /obj/machinery/door/poddoor/open/port,
 /obj/machinery/door/airlock/mainship/generic,
@@ -4419,9 +4371,7 @@
 /turf/open/floor/prison/red{
 	dir = 1
 	},
-/area/sulaco/liaison/quarters{
-	name = "Sulaco Requistion's Prep"
-	})
+/area/sulaco/cargo/prep)
 "atV" = (
 /turf/open/floor/prison/arrow{
 	dir = 1
@@ -9857,7 +9807,7 @@
 	},
 /obj/machinery/door/firedoor,
 /turf/open/floor/prison,
-/area/sulaco/hallway/lower_main_hall)
+/area/sulaco/maintenance/lower_maint2)
 "aWh" = (
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint)
@@ -10378,8 +10328,8 @@
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_main_hall)
 "baT" = (
-/turf/open/floor/plating,
-/area/sulaco/hallway/lower_main_hall)
+/turf/closed/wall/mainship/gray/outer,
+/area/sulaco/cargo)
 "baW" = (
 /obj/machinery/holopad,
 /turf/open/floor/prison,
@@ -10640,7 +10590,7 @@
 /obj/effect/decal/cleanable/cobweb2,
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plating,
-/area/sulaco/hallway/lower_main_hall)
+/area/sulaco/maintenance/lower_maint2)
 "bdY" = (
 /obj/machinery/light{
 	dir = 8
@@ -10662,7 +10612,7 @@
 "bef" = (
 /obj/machinery/light/small,
 /turf/open/floor/plating,
-/area/sulaco/hallway/lower_main_hall)
+/area/sulaco/maintenance/lower_maint2)
 "ben" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 4
@@ -10800,9 +10750,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/firedoor,
 /turf/open/floor/prison,
-/area/sulaco/liaison/quarters{
-	name = "Sulaco Requistion's Prep"
-	})
+/area/sulaco/cargo/prep)
 "bks" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -10865,9 +10813,7 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor/plating/plating_catwalk/prison,
-/area/sulaco/liaison/quarters{
-	name = "Sulaco Requistion's Prep"
-	})
+/area/sulaco/cargo/prep)
 "byI" = (
 /obj/structure/cable,
 /obj/effect/decal/warning_stripes/thin{
@@ -10955,9 +10901,7 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/machinery/door/firedoor,
 /turf/open/floor/plating/plating_catwalk/prison,
-/area/sulaco/liaison/quarters{
-	name = "Sulaco Requistion's Prep"
-	})
+/area/sulaco/cargo/prep)
 "bKR" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
@@ -11121,9 +11065,7 @@
 "cjh" = (
 /obj/machinery/vending/marine/cargo_guns,
 /turf/open/floor/prison,
-/area/sulaco/liaison/quarters{
-	name = "Sulaco Requistion's Prep"
-	})
+/area/sulaco/cargo/prep)
 "ckf" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
@@ -11870,9 +11812,7 @@
 /turf/open/floor/prison/red/corner{
 	dir = 1
 	},
-/area/sulaco/liaison/quarters{
-	name = "Sulaco Requistion's Prep"
-	})
+/area/sulaco/cargo/prep)
 "ebp" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -11898,9 +11838,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet/crate/ammo,
 /turf/open/floor/prison,
-/area/sulaco/liaison/quarters{
-	name = "Sulaco Requistion's Prep"
-	})
+/area/sulaco/cargo/prep)
 "edm" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1,
@@ -11919,9 +11857,7 @@
 	pixel_y = 1
 	},
 /turf/closed/wall/mainship/white,
-/area/crew_quarters/heads/cmo{
-	name = "Chief Medical Officer's Office"
-	})
+/area/sulaco/medbay/cmo)
 "ehA" = (
 /obj/structure/rack,
 /obj/item/tool/crowbar/red,
@@ -12559,9 +12495,7 @@
 /area/sulaco/bridge/office)
 "fVo" = (
 /turf/closed/wall/mainship/white,
-/area/crew_quarters/heads/cmo{
-	name = "Chief Medical Officer's Office"
-	})
+/area/sulaco/medbay/cmo)
 "fVN" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
@@ -12948,9 +12882,7 @@
 /obj/structure/table/mainship,
 /obj/item/book/manual/medical_diagnostics_manual,
 /turf/open/floor/prison/whitegreen/corner,
-/area/crew_quarters/heads/cmo{
-	name = "Chief Medical Officer's Office"
-	})
+/area/sulaco/medbay/cmo)
 "gXd" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
@@ -13122,9 +13054,7 @@
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
-/area/crew_quarters/heads/cmo{
-	name = "Chief Medical Officer's Office"
-	})
+/area/sulaco/medbay/cmo)
 "hxW" = (
 /obj/structure/supply_drop/delta,
 /turf/open/floor/prison/plate,
@@ -13208,9 +13138,7 @@
 /area/sulaco/medbay/storage2)
 "hKB" = (
 /turf/open/floor/prison/red/corner,
-/area/sulaco/liaison/quarters{
-	name = "Sulaco Requistion's Prep"
-	})
+/area/sulaco/cargo/prep)
 "hKJ" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 6
@@ -13365,7 +13293,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/sulaco/hallway/lower_main_hall)
+/area/sulaco/maintenance/lower_maint2)
 "hYX" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/camera/autoname{
@@ -13501,9 +13429,7 @@
 "ipz" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor/prison/red,
-/area/sulaco/liaison/quarters{
-	name = "Sulaco Requistion's Prep"
-	})
+/area/sulaco/cargo/prep)
 "ipF" = (
 /obj/effect/decal/siding{
 	dir = 6
@@ -13751,9 +13677,7 @@
 "iOh" = (
 /obj/machinery/door/firedoor,
 /turf/open/floor/prison,
-/area/sulaco/liaison/quarters{
-	name = "Sulaco Requistion's Prep"
-	})
+/area/sulaco/cargo/prep)
 "iRd" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
@@ -14019,9 +13943,7 @@
 "jCJ" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor/prison,
-/area/sulaco/liaison/quarters{
-	name = "Sulaco Requistion's Prep"
-	})
+/area/sulaco/cargo/prep)
 "jDL" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 8
@@ -14081,9 +14003,7 @@
 "jPn" = (
 /obj/machinery/vending/shared_vending/marine_engi,
 /turf/open/floor/prison,
-/area/sulaco/liaison/quarters{
-	name = "Sulaco Requistion's Prep"
-	})
+/area/sulaco/cargo/prep)
 "jPq" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 4
@@ -14120,9 +14040,7 @@
 /turf/open/floor/prison/red{
 	dir = 1
 	},
-/area/sulaco/liaison/quarters{
-	name = "Sulaco Requistion's Prep"
-	})
+/area/sulaco/cargo/prep)
 "jUS" = (
 /obj/structure/bed/chair,
 /obj/structure/cable,
@@ -14227,9 +14145,7 @@
 "kbH" = (
 /obj/structure/closet/crate/weapon,
 /turf/open/floor/prison,
-/area/sulaco/liaison/quarters{
-	name = "Sulaco Requistion's Prep"
-	})
+/area/sulaco/cargo/prep)
 "kcn" = (
 /obj/machinery/computer3/server/rack,
 /obj/machinery/light/small{
@@ -14827,9 +14743,7 @@
 "lvm" = (
 /obj/machinery/vending/uniform_supply,
 /turf/open/floor/prison,
-/area/sulaco/liaison/quarters{
-	name = "Sulaco Requistion's Prep"
-	})
+/area/sulaco/cargo/prep)
 "lwx" = (
 /obj/effect/decal/cleanable/blood/oil,
 /obj/machinery/door/firedoor,
@@ -15142,9 +15056,7 @@
 "mdt" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/red,
-/area/sulaco/liaison/quarters{
-	name = "Sulaco Requistion's Prep"
-	})
+/area/sulaco/cargo/prep)
 "mfo" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 5
@@ -15247,9 +15159,7 @@
 /turf/open/floor/prison/red{
 	dir = 4
 	},
-/area/sulaco/liaison/quarters{
-	name = "Sulaco Requistion's Prep"
-	})
+/area/sulaco/cargo/prep)
 "mvt" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plating,
@@ -15564,7 +15474,7 @@
 "ncj" = (
 /obj/structure/musician/piano,
 /turf/open/floor/plating,
-/area/sulaco/hallway/lower_main_hall)
+/area/sulaco/maintenance/lower_maint2)
 "ncn" = (
 /obj/structure/bed/chair,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
@@ -15935,9 +15845,7 @@
 "ocn" = (
 /obj/structure/window/framed/mainship/gray,
 /turf/open/floor/plating/platebotc,
-/area/sulaco/liaison/quarters{
-	name = "Sulaco Requistion's Prep"
-	})
+/area/sulaco/cargo/prep)
 "odq" = (
 /obj/structure/window/framed/mainship/white,
 /obj/machinery/door/poddoor/shutters/opened/medbay{
@@ -16130,9 +16038,7 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor/prison,
-/area/sulaco/liaison/quarters{
-	name = "Sulaco Requistion's Prep"
-	})
+/area/sulaco/cargo/prep)
 "ovl" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 4
@@ -16479,9 +16385,7 @@
 	dir = 8
 	},
 /turf/open/floor/prison/red,
-/area/sulaco/liaison/quarters{
-	name = "Sulaco Requistion's Prep"
-	})
+/area/sulaco/cargo/prep)
 "oVU" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 9
@@ -16644,9 +16548,7 @@
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
 	},
-/area/crew_quarters/heads/cmo{
-	name = "Chief Medical Officer's Office"
-	})
+/area/sulaco/medbay/cmo)
 "pmu" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
@@ -16751,9 +16653,7 @@
 /turf/open/floor/prison/red{
 	dir = 1
 	},
-/area/sulaco/liaison/quarters{
-	name = "Sulaco Requistion's Prep"
-	})
+/area/sulaco/cargo/prep)
 "pwN" = (
 /obj/machinery/alarm{
 	dir = 1
@@ -17134,9 +17034,7 @@
 	name = "modfied holopad"
 	},
 /turf/open/floor/prison/red/corner,
-/area/sulaco/liaison/quarters{
-	name = "Sulaco Requistion's Prep"
-	})
+/area/sulaco/cargo/prep)
 "qyF" = (
 /obj/machinery/door/airlock/external,
 /turf/open/floor/prison,
@@ -17214,9 +17112,7 @@
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
 	},
-/area/crew_quarters/heads/cmo{
-	name = "Chief Medical Officer's Office"
-	})
+/area/sulaco/medbay/cmo)
 "qJW" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -17335,9 +17231,7 @@
 /turf/open/floor/prison/red/corner{
 	dir = 1
 	},
-/area/sulaco/liaison/quarters{
-	name = "Sulaco Requistion's Prep"
-	})
+/area/sulaco/cargo/prep)
 "qWq" = (
 /obj/structure/closet/walllocker/emerglocker,
 /obj/structure/closet/secure_closet/staff_officer,
@@ -17531,9 +17425,7 @@
 /turf/open/floor/prison/red{
 	dir = 1
 	},
-/area/sulaco/liaison/quarters{
-	name = "Sulaco Requistion's Prep"
-	})
+/area/sulaco/cargo/prep)
 "rpk" = (
 /turf/open/floor/prison/blue{
 	dir = 4
@@ -17608,8 +17500,9 @@
 /turf/open/floor/prison,
 /area/sulaco/hallway/central_hall3)
 "rzl" = (
-/turf/closed/wall/mainship/gray/outer,
-/area/sulaco/cargo)
+/obj/machinery/vending/attachments,
+/turf/open/floor/prison,
+/area/sulaco/cargo/prep)
 "rzq" = (
 /turf/open/floor/prison,
 /area/sulaco/engineering/atmos)
@@ -17656,9 +17549,7 @@
 /turf/open/floor/prison/red{
 	dir = 1
 	},
-/area/sulaco/liaison/quarters{
-	name = "Sulaco Requistion's Prep"
-	})
+/area/sulaco/cargo/prep)
 "rFM" = (
 /obj/structure/droppod,
 /obj/structure/dropprop,
@@ -17762,9 +17653,7 @@
 "rQp" = (
 /obj/machinery/vending/marine/cargo_ammo,
 /turf/open/floor/prison,
-/area/sulaco/liaison/quarters{
-	name = "Sulaco Requistion's Prep"
-	})
+/area/sulaco/cargo/prep)
 "rQB" = (
 /obj/machinery/alarm{
 	dir = 4
@@ -17832,9 +17721,7 @@
 /area/sulaco/hallway/central_hall)
 "sbT" = (
 /turf/closed/wall/mainship/gray,
-/area/sulaco/liaison/quarters{
-	name = "Sulaco Requistion's Prep"
-	})
+/area/sulaco/cargo/prep)
 "scr" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -18090,9 +17977,7 @@
 /turf/open/floor/prison/red{
 	dir = 1
 	},
-/area/sulaco/liaison/quarters{
-	name = "Sulaco Requistion's Prep"
-	})
+/area/sulaco/cargo/prep)
 "szr" = (
 /obj/structure/bed,
 /obj/effect/landmark/start/job/pilotofficer,
@@ -18164,9 +18049,7 @@
 /obj/item/tool/hand_labeler,
 /obj/item/tool/hand_labeler,
 /turf/open/floor/prison,
-/area/sulaco/liaison/quarters{
-	name = "Sulaco Requistion's Prep"
-	})
+/area/sulaco/cargo/prep)
 "sIy" = (
 /obj/effect/decal/siding{
 	dir = 5
@@ -18214,10 +18097,6 @@
 /obj/structure/window/framed/mainship/gray/toughened/hull,
 /turf/open/floor/plating/platebotc,
 /area/sulaco/marine/delta)
-"sMg" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating,
-/area/sulaco/hallway/lower_main_hall)
 "sML" = (
 /obj/structure/prop/mainship/mission_planning_system{
 	desc = "This gathers all information about the Self-Destruct and pools it into one repository.";
@@ -18368,12 +18247,6 @@
 	dir = 9
 	},
 /area/sulaco/research)
-"tbp" = (
-/obj/effect/decal/cleanable/cobweb{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/sulaco/hallway/lower_main_hall)
 "tbJ" = (
 /turf/closed/wall/mainship/gray,
 /area/sulaco/bridge)
@@ -18689,9 +18562,7 @@
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
 	},
-/area/crew_quarters/heads/cmo{
-	name = "Chief Medical Officer's Office"
-	})
+/area/sulaco/medbay/cmo)
 "tPQ" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
@@ -18784,9 +18655,7 @@
 	dir = 4
 	},
 /turf/open/floor/prison/marked,
-/area/sulaco/liaison/quarters{
-	name = "Sulaco Requistion's Prep"
-	})
+/area/sulaco/cargo/prep)
 "ufs" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -18810,9 +18679,7 @@
 	dir = 4
 	},
 /turf/open/floor/prison,
-/area/sulaco/liaison/quarters{
-	name = "Sulaco Requistion's Prep"
-	})
+/area/sulaco/cargo/prep)
 "uiN" = (
 /obj/structure/cable,
 /obj/structure/bed/stool{
@@ -19438,14 +19305,10 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/plating_catwalk/prison,
-/area/sulaco/liaison/quarters{
-	name = "Sulaco Requistion's Prep"
-	})
+/area/sulaco/cargo/prep)
 "vSd" = (
 /turf/open/floor/prison,
-/area/sulaco/liaison/quarters{
-	name = "Sulaco Requistion's Prep"
-	})
+/area/sulaco/cargo/prep)
 "vTd" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -19552,9 +19415,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/roomba,
 /turf/open/floor/prison/red,
-/area/sulaco/liaison/quarters{
-	name = "Sulaco Requistion's Prep"
-	})
+/area/sulaco/cargo/prep)
 "wie" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -20155,9 +20016,7 @@
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
 	},
-/area/crew_quarters/heads/cmo{
-	name = "Chief Medical Officer's Office"
-	})
+/area/sulaco/medbay/cmo)
 "xzG" = (
 /turf/open/floor/plating,
 /area/sulaco/cap_office)
@@ -20386,9 +20245,7 @@
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
-/area/crew_quarters/heads/cmo{
-	name = "Chief Medical Officer's Office"
-	})
+/area/sulaco/medbay/cmo)
 "yiZ" = (
 /turf/closed/wall/mainship/gray,
 /area/mainship/command/self_destruct)
@@ -42967,7 +42824,7 @@ aaa
 aaa
 nzi
 mDu
-rzl
+baT
 eKx
 bfC
 aeR
@@ -43738,7 +43595,7 @@ aaa
 aaa
 nzi
 mDu
-rzl
+baT
 aaN
 fCm
 lsj
@@ -44509,7 +44366,7 @@ aaa
 aaa
 nzi
 mDu
-rzl
+baT
 qZW
 fCm
 mhY
@@ -45280,7 +45137,7 @@ aaa
 aaa
 nzi
 mDu
-rzl
+baT
 aaN
 fCm
 abf
@@ -46051,7 +45908,7 @@ aaa
 aaa
 nzi
 mDu
-rzl
+baT
 eKx
 bPM
 bPM
@@ -46308,7 +46165,7 @@ aaa
 aaa
 nzi
 mDu
-rzl
+baT
 lpY
 lpY
 wKj
@@ -46580,10 +46437,10 @@ vRR
 sPk
 uOd
 alx
-amo
+rzl
 aoM
 alx
-amo
+rzl
 jSM
 ocn
 aWG
@@ -52249,10 +52106,10 @@ baQ
 caP
 bcs
 bcT
-aVY
+aQh
 ncj
-sMg
-aPQ
+sws
+aPg
 mDu
 mDu
 wFA
@@ -52507,9 +52364,9 @@ hID
 aWG
 pQL
 aWg
-baT
-baT
-aPQ
+aQw
+aQw
+aPg
 mDu
 qDO
 aaa
@@ -52763,10 +52620,10 @@ pQL
 piC
 pQL
 bcU
-aVY
+aQh
 bdP
 hYB
-aPQ
+aPg
 mDu
 qDO
 aaa
@@ -53020,10 +52877,10 @@ baS
 cNl
 pQL
 rHI
-aVY
-aVY
+aQh
+aQh
 bef
-aPQ
+aPg
 mDu
 mDu
 wRO
@@ -53277,10 +53134,10 @@ cqb
 aWG
 aWG
 uNQ
-aVY
-sMg
-tbp
-aPQ
+aQh
+sws
+kbs
+aPg
 mDu
 mDu
 mDu
