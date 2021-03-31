@@ -75,14 +75,6 @@
 	default_ammo = /datum/ammo/bullet/rifle/tx8/impact
 	gun_type = /obj/item/weapon/gun/rifle/tx8
 
-obj/item/ammo_magazine/rifle/tx8/smart
-	name = "\improper high velocity smart magazine (10x28mm)"
-	desc = "A magazine of overpressuered high velocity smart rounds for use in the TX-8 battle rifle. The TX-8 battle rifle is the only gun that can chamber these rounds."
-	icon_state = "tx8_iff"
-	default_ammo = /datum/ammo/bullet/rifle/tx8/smart
-	gun_type = /obj/item/weapon/gun/rifle/tx8
-
-
 //-------------------------------------------------------
 //SMARTGUN
 /obj/item/ammo_magazine/internal/smartgun

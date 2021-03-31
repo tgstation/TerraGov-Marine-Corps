@@ -494,23 +494,18 @@ AMMO
 	cost = 10
 
 /datum/supply_packs/ammo/scout_regular
-	name = "tx8 scout magazine"
+	name = "TX-8 scout magazine"
 	contains = list(/obj/item/ammo_magazine/rifle/tx8)
 	cost = 5
 
 /datum/supply_packs/ammo/scout_impact
-	name = "tx8 scout impact magazine"
+	name = "TX-8 impact magazine"
 	contains = list(/obj/item/ammo_magazine/rifle/tx8/impact)
 	cost = 7
 
 /datum/supply_packs/ammo/scout_incendiary
-	name = "tx8 scout incendiary magazine"
+	name = "TX-8 scout incendiary magazine"
 	contains = list(/obj/item/ammo_magazine/rifle/tx8/incendiary)
-	cost = 7
-
-/datum/supply_packs/ammo/scout_smart
-	name = "tx8 scout smart magazine"
-	contains = list(/obj/item/ammo_magazine/rifle/tx8/smart)
 	cost = 7
 
 /datum/supply_packs/ammo/autosniper_regular
