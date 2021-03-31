@@ -4927,10 +4927,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/living/starboard_garden)
-"xt" = (
-/obj/effect/landmark/start/job/tankcrewman,
-/turf/open/floor/mainship/green,
-/area/mainship/living/basketball)
 "xu" = (
 /turf/open/floor/mainship/red{
 	dir = 6
@@ -36925,7 +36921,7 @@ HW
 HW
 If
 HD
-xt
+HJ
 Iy
 aU
 IE
@@ -37933,7 +37929,7 @@ HW
 HW
 If
 HD
-xt
+HJ
 Iy
 pZ
 IL
