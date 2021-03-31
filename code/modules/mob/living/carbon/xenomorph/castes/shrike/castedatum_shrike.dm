@@ -45,6 +45,8 @@
 	aura_strength = 2 //The Shrike's aura is decent.
 	aura_allowed = list("frenzy", "warding", "recovery")
 
+	can_corrupt_gene = TRUE
+
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,

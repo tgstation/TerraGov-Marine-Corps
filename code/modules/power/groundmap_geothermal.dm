@@ -137,16 +137,13 @@
 
 /obj/machinery/power/geothermal/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	. = ..()
-	if(isxenoqueen(X)||isxenoshrike(X))
-		if(!is_corruptible)
-			to_chat(X, "<span class='warning'>[src] is reinforced and cannot be corrupted!</span>")
-		else
-			to_chat(X, "<span class='notice'>You start to corrupt [src]</span>")
-			if(!do_after(X, 10 SECONDS, TRUE, src, BUSY_ICON_HOSTILE))
-				return
-			corrupt(X.hivenumber)
-			to_chat(X, "<span class='notice'>You have corrupted [src]</span>")
+	if(X.xeno_caste.can_corrupt_gene && is_corruptible)
+		to_chat(X, "<span class='notice'>You start to corrupt [src]</span>")
+		if(!do_after(X, 10 SECONDS, TRUE, src, BUSY_ICON_HOSTILE))
 			return
+		corrupt(X.hivenumber)
+		to_chat(X, "<span class='notice'>You have corrupted [src]</span>")
+		return
 	if(buildstate)
 		return
 	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)

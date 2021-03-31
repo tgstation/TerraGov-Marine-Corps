@@ -47,6 +47,8 @@
 	// *** Queen Abilities *** //
 	queen_leader_limit = 2 //Amount of leaders allowed
 
+	can_corrupt_gene = TRUE
+
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/activable/psydrain,
