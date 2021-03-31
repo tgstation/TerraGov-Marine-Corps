@@ -80,8 +80,6 @@
 
 
 /obj/item/weapon/gun/flamer/Fire()
-	set waitfor = 0
-
 	if(!able_to_fire(gun_user))
 		return
 
