@@ -425,6 +425,12 @@
 	damage_mult = 1.5
 	scatter = 0
 
+/obj/item/weapon/gun/rifle/m412/elite/sfoc
+	name = "\improper M412E TERRACOM battle rifle"
+	desc = "An \"Elite\" modification of the M412 pulse rifle series, given to special operation units. It has been given a stock and a longer barrel with an integrated silencer, with a red skull stenciled on the body for some reason."
+	starting_attachment_types = list(/obj/item/attachable/suppressor/unremovable, /obj/item/attachable/attached_gun/grenade, /obj/item/attachable/stock/irremoveable/rifle, /obj/item/attachable/magnetic_harness)
+	damage_mult = 1.0 // No BC
+
 
 //-------------------------------------------------------
 //HK-11
@@ -468,6 +474,25 @@
 	scatter = -10
 	fire_delay = 0.2 SECONDS
 
+/obj/item/weapon/gun/rifle/m41a/sfoc
+	name = "\improper HK-11 TERRACOM modular pulse rifle"
+	desc = "A heavily modifed HK-11 issued to first-class TerraGov personnel and elite operators, featuring an integrated silencer and many refined parts. Uses 10x24mm caseless ammunition."
+	fire_sound = "sound/weapons/guns/fire/m412.ogg"
+	aim_slowdown = 0.4
+	attachable_allowed = list(
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/suppressor/unremovable/invisible,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/scope,
+	)
+	starting_attachment_types = list(/obj/item/attachable/suppressor/unremovable/invisible, /obj/item/attachable/stock/irremoveable/m41a, /obj/item/attachable/attached_gun/grenade/unremovable/invisible)
+
+	burst_amount = 5
+	burst_delay = 0.13 SECONDS
+	fire_delay = 0.15 SECONDS
 
 
 //-------------------------------------------------------
@@ -786,6 +811,33 @@
 	scatter = 15
 	scatter_unwielded = 80
 	recoil_unwielded = 5
+
+/obj/item/weapon/gun/rifle/m412l1_hpr/sfoc
+	name = "\improper M412L4 TERRACOM SAW"
+	desc = "A large weapon capable of laying down supressing fire, based on the M412 pulse rifle platform. This one has been heavily modified to fit TerraGov's operator standards. Uses 10x24mm caseless ammunition."
+	aim_slowdown = 0.6
+	wield_delay = 1.7 SECONDS
+	attachable_allowed = list(
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/bipod,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/scope,
+		/obj/item/attachable/scope/marine,
+		/obj/item/attachable/scope/mini,
+	)
+
+	starting_attachment_types = list(/obj/item/attachable/suppressor/unremovable, /obj/item/attachable/stock/irremoveable/rifle, /obj/item/attachable/angledgrip, /obj/item/attachable/reddot)
+
+	fire_delay = 0.15 SECONDS
+	burst_amount = 5
+	burst_delay = 0.1 SECONDS
+	accuracy_mult_unwielded = 0.4
+	accuracy_mult = 1.05
+	scatter = 20
 
 
 //-------------------------------------------------------
@@ -1160,3 +1212,13 @@
 	scatter = -10
 	scatter_unwielded = 30
 	aim_slowdown = 0.45
+
+/obj/item/weapon/gun/rifle/tx11/sfoc
+	name = "\improper TX-11 TERRACOM combat rifle"
+	desc = "The TX-11 is the former standard issue rifle of the TGMC. This version of the rifle is issued to fit TerraGov High Command's demmands for an elite variant of an assault rifle. It is known for its large magazine size and great burst fire, but rather awkward to use, especially during combat. It uses 4.92×34mm caseless HV ammunition."
+	wield_delay = 0.60 SECONDS
+	starting_attachment_types = list(/obj/item/attachable/suppressor/unremovable/invisible, /obj/item/attachable/stock/irremoveable/tx11, /obj/item/attachable/scope/mini/tx11)
+
+	fire_delay = 0.17 SECONDS
+	burst_amount = 3
+	burst_delay = 0.03 SECONDS

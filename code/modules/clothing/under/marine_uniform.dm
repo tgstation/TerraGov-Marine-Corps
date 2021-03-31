@@ -148,10 +148,11 @@
 	icon_state = "research_jumpsuit"
 
 /obj/item/clothing/under/whites
-	name = "\improper SoM dress uniform"
-	desc = "A standard-issue freedom fighter dress uniform. The starch in the fabric chafes a small amount but it pales in comparison to the pride you feel when you first put it on during graduation from boot camp. doesn't seem to fit perfectly around the waist though."
+	name = "\improper TGMC dress uniform"
+	desc = "How did this rejected piece of crap appear in these vendors!?"
 	siemens_coefficient = 0.9
-	icon_state = "marine_whites" //with thanks to Manezinho
+	icon_state = "marine_whites"
+	soft_armor = list("melee" = -10, "bullet" = -30, "laser" = -30, "energy" = -30, "bomb" = 0, "bio" = 0, "rad" = 5, "fire" = 0, "acid" = 0) // seriously, no one wears these.
 	rollable_sleeves = FALSE
 
 /*=========================RESPONDERS================================*/
@@ -360,7 +361,7 @@
 	name = "\improper TGMC formal uniform"
 	desc = "A heavily modified marine uniform. Seems to have more care and wear on it."
 	icon_state = "marine_formal"
-	item_state = "m_BO_jumpsuit"
+	item_state = "marine_undersuit"
 
 /obj/item/clothing/under/sectoid
 	name = "psionic field"

@@ -852,12 +852,12 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	else
 		dat += "<b>Squad Overwatch:</b> <font color=red>NONE</font><br>"
 	dat += "----------------------<br>"
-	dat += "<b>[leader_count ? "Squad Leader Deployed":"<font color='red'>No Squad Leader Deployed!</font>"]</b><br>"
+	dat += "<b>[leader_count ? "Cell Leader Deployed":"<font color='red'>No Cell Leader Deployed!</font>"]</b><br>"
 	dat += "<b>Squad Specialists: [spec_count] Deployed | Squad Smartgunners: [smart_count] Deployed</b><br>"
-	dat += "<b>Squad Corpsmen: [medic_count] Deployed | Squad Engineers: [engi_count] Deployed</b><br>"
-	dat += "<b>Squad Marines: [marine_count] Deployed</b><br>"
+	dat += "<b>Cell Medic: [medic_count] Deployed | Cell Greasemonkies: [engi_count] Deployed</b><br>"
+	dat += "<b>Cell Regulars: [marine_count] Deployed</b><br>"
 	dat += "<b>Total: [current_squad.get_total_members()] Deployed</b><br>"
-	dat += "<b>Marines alive: [living_count]</b><br><br>"
+	dat += "<b>Brothers alive: [living_count]</b><br><br>"
 	dat += "<table border='1' style='width:100%' align='center'><tr>"
 	dat += "<th>Name</th><th>Role</th><th>State</th><th>Location</th><th>SL Distance</th></tr>"
 	if(!living_marines_sorting)

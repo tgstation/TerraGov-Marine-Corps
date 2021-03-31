@@ -245,7 +245,7 @@
 	supplies = list(/obj/item/frame/table = 10, /obj/item/frame/rack = 10)
 
 /obj/structure/largecrate/supply/supplies/mre
-	name = "\improper TGMC MRE crate (x50)"
+	name = "\improper SoM MRE crate (x50)"
 	desc = "A supply crate containing fifty TGMC MRE packets."
 	supplies = list(/obj/item/storage/box/MRE = 50)
 

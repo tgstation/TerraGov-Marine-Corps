@@ -791,8 +791,7 @@
 		/obj/item/tool/weldpack/marinestandard = 10,
 		/obj/item/clothing/gloves/marine = 20,
 		/obj/item/clothing/head/slouch = 40,
-		/obj/item/clothing/glasses/mgoggles = 10,
-		/obj/item/clothing/glasses/mgoggles/prescription = 10,
+		/obj/item/clothing/head/strawhat = 40,
 		/obj/item/radio/headset/mainship/marine/generic = 20,
 		/obj/item/encryptionkey/cas = 10,
 		/obj/item/clothing/mask/rebreather/scarf = 10,
@@ -841,10 +840,7 @@
 		/obj/item/clothing/tie/storage/webbing = 10,
 		/obj/item/clothing/tie/holster = 10,
 		/obj/item/flashlight/combat = 10,
-		/obj/item/clothing/under/whites = 50,
-		/obj/item/clothing/head/white_dress = 50,
-		/obj/item/clothing/shoes/white = 50,
-		/obj/item/clothing/gloves/white = 50,
+		/obj/item/clothing/under/whites = 1,
 		/obj/item/instrument/violin = 2,
 		/obj/item/instrument/piano_synth = 2,
 		/obj/item/instrument/banjo = 2,
@@ -869,7 +865,7 @@
 	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_CARGO)
 	product_ads = "Hey! You! Stop looking like a turtle and start looking like a TRUE soldier!;Dress whites, fresh off the ironing board!;Why kill in armor when you can kill in style?;These uniforms are so sharp you'd cut yourself just looking at them!"
 	products = list(
-		/obj/item/clothing/under/whites = 50,
+		/obj/item/clothing/under/whites = 1,
 		/obj/item/clothing/head/white_dress = 50,
 		/obj/item/clothing/shoes/white = 50,
 		/obj/item/clothing/gloves/white = 50,

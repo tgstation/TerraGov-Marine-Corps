@@ -1,6 +1,6 @@
 /datum/emergency_call/xenomorphs_corrupted
 	name = "Xenomorphs (Corrupted Hive)"
-	probability = 0
+	probability = 10
 	auto_shuttle_launch = TRUE
 	spawn_type = null
 

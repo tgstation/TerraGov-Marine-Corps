@@ -148,7 +148,7 @@
 	icon_state = "barcardine_trash"
 
 /obj/item/trash/mre
-	name = "\improper crumbled TGMC MRE"
-	desc = "It has done its part for the TGMC. Have you?"
+	name = "\improper crumbled SoM MRE"
+	desc = "It has done its part for the SoM. Have you?"
 	icon = 'icons/obj/items/trash.dmi'
 	icon_state = "mealpackempty"

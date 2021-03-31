@@ -1,7 +1,7 @@
 /datum/job/som
 	access = ALL_ANTAGONIST_ACCESS
 	minimal_access = ALL_ANTAGONIST_ACCESS
-	skills_type = /datum/skills/crafty
+	skills_type = /datum/skills/commando
 	faction = FACTION_SOM
 
 
@@ -13,7 +13,7 @@
 
 //SOM Standard
 /datum/job/som/standard
-	title = "SOM Standard"
+	title = "SFOC-E Operator"
 	paygrade = "SOM1"
 	outfit = /datum/outfit/job/som/standard
 
@@ -22,7 +22,7 @@
 
 
 /datum/outfit/job/som/standard
-	name = "SOM Standard"
+	name = "SFOC-E Operator"
 	jobtype = /datum/job/som/standard
 
 	id = /obj/item/card/id/dogtag/som
@@ -33,13 +33,13 @@
 	wear_suit = /obj/item/clothing/suit/storage/marine/som
 	gloves = /obj/item/clothing/gloves/marine/som
 	head = /obj/item/clothing/head/helmet/marine/som
-	suit_store = /obj/item/weapon/gun/rifle/ak47
-	r_store = /obj/item/storage/pouch/general/som
+	suit_store = /obj/item/weapon/gun/rifle/tx11/sfoc
+	r_store = /obj/item/storage/pouch/firstaid/som/full
 	l_store = /obj/item/storage/pouch/pistol
 	back = /obj/item/storage/backpack/lightpack/som
 
 /datum/outfit/job/som/standard/hvh
-	name = "SOM Standard (HvH)"
+	name = "SFOC-E Operator (HvH)"
 
 	wear_suit = /obj/item/clothing/suit/storage/marine/som/hvh
 	r_store = /obj/item/storage/pouch/firstaid/som/full
@@ -47,39 +47,37 @@
 
 /datum/outfit/job/som/standard/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag/stick, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag/stick, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/impact, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/impact, SLOT_IN_SUIT)
 
 	H.equip_to_slot_or_del(new /obj/item/radio, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/upp, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary/molotov, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary/molotov, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/phosphorus, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/phosphorus, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/stack/medical/bruise_pack, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/stack/medical/splint, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/tramadol, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/revolver/upp, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/revolver/upp, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/revolver/upp, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/m1911, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/m1911, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/m1911, SLOT_IN_BACKPACK)
 
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/tramadol, SLOT_IN_HEAD)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine, SLOT_IN_HEAD)
 
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ak47, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ak47, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ak47, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ak47, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ak47, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx11, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx11, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx11, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx11, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx11, SLOT_IN_BELT)
 
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/revolver/upp, SLOT_IN_L_POUCH)
-
-	H.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/zoom, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/m1911, SLOT_IN_L_POUCH)
 
 
 //SOM Medic
 /datum/job/som/medic
-	title = "SOM Medic"
+	title = "SFOC-E Terra Intimidator"
 	paygrade = "SOM2"
 	skills_type = /datum/skills/combat_medic/crafty
 	outfit = /datum/outfit/job/som/medic
@@ -89,7 +87,7 @@
 
 
 /datum/outfit/job/som/medic
-	name = "SOM Medic"
+	name = "SFOC-E Terra Intimidator"
 	jobtype = /datum/job/som/medic
 
 	id = /obj/item/card/id/dogtag/som
@@ -101,13 +99,13 @@
 	gloves = /obj/item/clothing/gloves/marine/som
 	head = /obj/item/clothing/head/helmet/marine/som
 	glasses = /obj/item/clothing/glasses/hud/health
-	suit_store = /obj/item/weapon/gun/rifle/famas
+	suit_store = /obj/item/weapon/gun/rifle/m41a/sfoc
 	r_store = /obj/item/storage/pouch/firstaid/som/full
 	l_store = /obj/item/storage/pouch/general/large
 	back = /obj/item/storage/backpack/lightpack/som
 
 /datum/outfit/job/som/medic/hvh
-	name = "SOM Medic (HvH)"
+	name = "SFOC-E Terra Intimidator (HvH)"
 
 	wear_suit = /obj/item/clothing/suit/storage/marine/som/hvh
 
@@ -119,13 +117,13 @@
 
 	H.equip_to_slot_or_del(new /obj/item/defibrillator, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/healthanalyzer, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/radio, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/cloakbomb, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/famas, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/famas, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/famas, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/famas, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/m41a, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/m41a, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/m41a, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/m41a, SLOT_IN_BACKPACK)
 
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/tramadol, SLOT_IN_HEAD)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine, SLOT_IN_HEAD)
@@ -137,7 +135,7 @@
 
 //SOM Veteran
 /datum/job/som/veteran
-	title = "SOM Veteran"
+	title = "SFOC-E Terra Dominator"
 	paygrade = "SOM3"
 	outfit = /datum/outfit/job/som/veteran
 
@@ -146,11 +144,11 @@
 
 
 /datum/outfit/job/som/veteran
-	name = "SOM Veteran"
+	name = "SFOC-E Terra Dominator"
 	jobtype = /datum/job/som/veteran
 
 	id = /obj/item/card/id/dogtag/som
-	belt = /obj/item/storage/belt/marine/som
+	belt = /obj/item/belt_harness/marine
 	ears = /obj/item/radio/headset/distress/som
 	w_uniform = /obj/item/clothing/under/som/veteran
 	shoes = /obj/item/clothing/shoes/marine/som
@@ -158,39 +156,31 @@
 	gloves = /obj/item/clothing/gloves/marine/som/veteran
 	head = /obj/item/clothing/head/helmet/marine/som/veteran
 	glasses = /obj/item/clothing/glasses/hud/health
-	suit_store = /obj/item/weapon/gun/rifle/m16/somvet
+	suit_store = /obj/item/weapon/gun/rifle/m412l1_hpr/sfoc
 	r_store = /obj/item/storage/pouch/general/large
 	l_store = /obj/item/storage/pouch/firstaid/som/full
 	back = /obj/item/storage/backpack/lightpack/som
 
 /datum/outfit/job/som/veteran/hvh
-	name = "SOM Veteran (HvH)"
+	name = "SFOC-E Terra Dominator (HvH)"
 
 	wear_suit = /obj/item/clothing/suit/storage/marine/som/veteran/hvh
 
 
 /datum/outfit/job/som/veteran/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag/stick, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag/stick, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/cloakbomb, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag/m15, SLOT_IN_SUIT)
 
 	H.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/small_stack, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/radio, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary/molotov, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary/molotov, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/highpower, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag/m15, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/highpower, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/highpower, SLOT_IN_BACKPACK)
-
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/m16, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/m16, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/m16, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/m16, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/m16, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/phosphorus, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/phosphorus, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/m412l1_hpr, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/m412l1_hpr, SLOT_IN_BACKPACK)
 
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/tramadol, SLOT_IN_HEAD)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine, SLOT_IN_HEAD)
@@ -203,7 +193,7 @@
 
 //SOM Leader
 /datum/job/som/leader
-	title = "SOM Leader"
+	title = "SFOC-E Terra Elite"
 	paygrade = "SOM3"
 	outfit = /datum/outfit/job/som/leader
 
@@ -212,7 +202,7 @@
 
 
 /datum/outfit/job/som/leader
-	name = "SOM Leader"
+	name = "SFOC-E Terra Elite"
 	jobtype = /datum/job/som/leader
 
 	id = /obj/item/card/id/dogtag/som
@@ -224,21 +214,21 @@
 	gloves = /obj/item/clothing/gloves/marine/som/veteran
 	head = /obj/item/clothing/head/helmet/marine/som/leader
 	glasses = /obj/item/clothing/glasses/hud/health
-	suit_store = /obj/item/weapon/gun/rifle/m16
+	suit_store = /obj/item/weapon/gun/rifle/m412/elite/sfoc
 	r_store = /obj/item/storage/pouch/pistol
 	l_store = /obj/item/storage/pouch/firstaid/som/full
 	back = /obj/item/storage/backpack/lightpack/som
 
 /datum/outfit/job/som/leader/hvh
-	name = "SOM Leader (HvH)"
+	name = "SFOC-E Terra Elite (HvH)"
 
 	wear_suit = /obj/item/clothing/suit/storage/marine/som/leader/hvh
 
 
 /datum/outfit/job/som/leader/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag/stick, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag/stick, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/impact, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/impact, SLOT_IN_SUIT)
 
 	H.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/small_stack, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
@@ -246,18 +236,18 @@
 	H.equip_to_slot_or_del(new /obj/item/radio, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary/molotov, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary/molotov, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/phosphorus, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/phosphorus, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/binoculars, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/highpower, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/highpower, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/highpower, SLOT_IN_BACKPACK)
 
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/m16, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/m16, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/m16, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/m16, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/m16, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap, SLOT_IN_BELT)
 
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_HEAD)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_HEAD)

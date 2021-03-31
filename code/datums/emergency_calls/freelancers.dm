@@ -8,7 +8,7 @@
 	to_chat(H, "<B>However, due to [pick("a famine", "a poverty", "a disease outbreak", "a small-scale disaster", "an uprising", "a mutiny", "the unbearable conditions", "the bad state", "the harsh opinion")] in your colony, you abandoned her. You were then hired by [pick("your cousin, who is a freelancer", "some freelancers", "a group of freelancers", "a squad of ex-military freelancers", "your long-lived companion, who is a freelancer")] to be part of a freelance mercenary group.</b>")
 	to_chat(H, "")
 	to_chat(H, "<B>Today, a TGMC vessel, [SSmapping.configs[SHIP_MAP].map_name], has sent out a distress signal on the orbit of [SSmapping.configs[GROUND_MAP].map_name]. You hope you can come back alive to get your pay!</b>")
-	to_chat(H, "<B>Ensure they are not destroyed. Collect payment as long as you remain alive.</b>")
+	to_chat(H, "<B>You already recieved your payment thanks to Nanotrasen, your main goal to eliminate any Sons of Mars around the ship!</b>")
 
 
 /datum/emergency_call/freelancers/create_member(datum/mind/M)

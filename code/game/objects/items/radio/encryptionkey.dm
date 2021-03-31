@@ -106,7 +106,7 @@
 
 
 /obj/item/encryptionkey/som
-	name = "\improper Sons of Mars encryption key"
+	name = "\improper TerraGOv encryption key"
 	channels = list(RADIO_CHANNEL_SOM = TRUE)
 	independent = TRUE
 

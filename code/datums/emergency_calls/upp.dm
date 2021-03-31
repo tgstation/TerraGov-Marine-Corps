@@ -1,6 +1,6 @@
 /datum/emergency_call/upp
 	name = "USL Pirate Band"
-	probability = 0
+	probability = 25
 	shuttle_id = "distress_upp"
 	spawn_type = /mob/living/carbon/human/species/moth
 
@@ -11,7 +11,7 @@
 	to_chat(H, "<B>You come from a long line of [pick(50;"pirates", 25;"renegades", 25;"rogue soldiers")] and quickly joined the local band to improve your living conditions.</B>")
 	to_chat(H, "")
 	to_chat(H, "<B>Today, a TGMC vessel, [SSmapping.configs[SHIP_MAP].map_name], has sent out a distress signal on the orbit of [SSmapping.configs[GROUND_MAP].map_name]. Your USL assault pirate warband heads out and your stealing begins!</b>")
-	to_chat(H, "<B>Eliminate the TGMC force if necessary. Do not harm the civilians unless they attack you first.</B>")
+	to_chat(H, "<B>Assist the Sons of Mars forces if necessary. Do not harm the civilians unless they attack you first.</B>")
 	to_chat(H, "<span class='notice'>You speak in a language that humans cannot understand, only you and your fellow pirates can.<br>Type in <b>\",0 <text>\" in the say verb</b> to speak in Galactic Common.<br>Type in <b>\";,0 <text>\" in the say verb</b> to commincate the radio in Galactic Common.</span>")
 
 
