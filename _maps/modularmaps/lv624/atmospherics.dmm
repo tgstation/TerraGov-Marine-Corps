@@ -112,14 +112,6 @@
 "iN" = (
 /turf/closed/wall,
 /area/lv624/lazarus/atmos)
-"jB" = (
-/obj/machinery/door/airlock/mainship/engineering/free_access{
-	dir = 1;
-	name = "\improper Atmospherics Condenser"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/tile/dark,
-/area/lv624/lazarus/atmos)
 "jW" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -224,6 +216,7 @@
 "ut" = (
 /obj/effect/decal/cleanable/blood/drip,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/atmos)
 "vn" = (
@@ -472,10 +465,6 @@
 	dir = 4
 	},
 /area/lv624/lazarus/atmos)
-"My" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/tile/dark,
-/area/lv624/lazarus/atmos)
 "MA" = (
 /obj/machinery/light,
 /obj/effect/decal/warning_stripes/thin{
@@ -506,6 +495,11 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
+/area/lv624/lazarus/atmos)
+"Ps" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
+/turf/open/floor/tile/dark/brown2,
 /area/lv624/lazarus/atmos)
 "PD" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -571,6 +565,7 @@
 "Ub" = (
 /obj/effect/decal/cleanable/blood,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/atmos)
 "UH" = (
@@ -749,13 +744,13 @@ UH
 lX
 "}
 (8,1,1) = {"
-jB
-SU
+dr
+Ps
 Ub
-My
+kc
 ut
-My
-My
+kc
+kc
 Hy
 xV
 IT
