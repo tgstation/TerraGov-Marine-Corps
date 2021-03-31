@@ -189,7 +189,7 @@ GLOBAL_PROTECT(exp_specialmap)
 
 /datum/job/proc/occupy_job_positions(amount, respawn = FALSE)
 	if(amount <= 0)
-		CRASH("free_job_positions() called with amount: [amount]")
+		CRASH("occupy_job_positions() called with amount: [amount]")
 	current_positions += amount
 	for(var/index in jobworth)
 		var/datum/job/scaled_job = SSjob.GetJobType(index)
