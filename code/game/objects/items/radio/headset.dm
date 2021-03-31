@@ -330,6 +330,11 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 	updateUsrDialog()
 
+//April fools - Old headset icon for greytiders
+/obj/item/radio/headset/mainship/greytide
+	name = "security bowman headset"
+	desc = "A cheap replica of the widely sought after bowman headsets."
+	icon_state = "sec_headset_alt"
 
 /obj/item/radio/headset/mainship/st
 	name = "technician radio headset"

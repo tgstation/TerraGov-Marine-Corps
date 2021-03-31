@@ -304,6 +304,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 	listed_products = list(
 		/obj/effect/essentials_set/basic = list(CAT_STD, "Standard Kit", 0, "white"),
 		/obj/effect/essentials_set/basicmodular = list(CAT_STD, "Essential Jaeger Kit", 0, "white"),
+		/obj/effect/essentials_set/greytide = list(CAT_STD, "Nanotrasen Employee Starter Kit", 0, "white"),
 		/obj/effect/essentials_set/modular/skirmisher = list(CAT_AMR, "Light Skirmisher Jaeger kit", 0, "orange"),
 		/obj/effect/essentials_set/modular/infantry = list(CAT_AMR, "Medium Infantry Jaeger kit", 0, "orange"),
 		/obj/effect/essentials_set/modular/eva = list(CAT_AMR, "Medium EVA Jaeger kit", 0, "orange"),
@@ -400,6 +401,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 	listed_products = list(
 		/obj/effect/essentials_set/basic_engineer = list(CAT_STD, "Standard kit", 0, "white"),
 		/obj/effect/essentials_set/basic_engineermodular = list(CAT_STD, "Essential Jaeger Kit", 0, "white"),
+		/obj/effect/essentials_set/engineergreytide = list(CAT_STD, "Nanotrasen Employee Starter Kit", 0, "white"),
 		/obj/effect/essentials_set/modular/skirmisher = list(CAT_AMR, "Light Skirmisher Jaeger kit", 0, "orange"),
 		/obj/effect/essentials_set/modular/scout = list(CAT_AMR, "Light Scout Jaeger kit", 0, "orange"),
 		/obj/effect/essentials_set/modular/infantry = list(CAT_AMR, "Medium Infantry Jaeger kit", 0, "orange"),
@@ -473,6 +475,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 	listed_products = list(
 		/obj/effect/essentials_set/basic_medic = list(CAT_STD, "Standard kit", 0, "white"),
 		/obj/effect/essentials_set/basic_medicmodular = list(CAT_STD, "Essential Jaeger Kit", 0, "white"),
+		/obj/effect/essentials_set/medicgreytide = list(CAT_STD, "Nanotrasen Employee Starter Kit", 0, "white"),
 		/obj/effect/essentials_set/modular/skirmisher = list(CAT_AMR, "Light Skirmisher Jaeger kit", 0, "orange"),
 		/obj/effect/essentials_set/modular/scout = list(CAT_AMR, "Light Scout Jaeger kit", 0, "orange"),
 		/obj/effect/essentials_set/modular/infantry = list(CAT_AMR, "Medium Infantry Jaeger kit", 0, "orange"),
@@ -690,6 +693,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 	listed_products = list(
 		/obj/effect/essentials_set/basic_squadleader = list(CAT_STD, "Standard kit (vest included)", 0, "white"),
 		/obj/effect/essentials_set/basic_squadleadermodular = list(CAT_STD, "Essential Jaeger Kit", 0, "white"),
+		/obj/effect/essentials_set/squadleadergreytide = list(CAT_STD, "Nanotrasen Employee Starter Kit", 0, "white"),
 		/obj/effect/essentials_set/modular/skirmisher = list(CAT_AMR, "Light Skirmisher Jaeger kit", 0, "black"),
 		/obj/effect/essentials_set/modular/scout = list(CAT_AMR, "Light Scout Jaeger kit", 0, "orange"),
 		/obj/effect/essentials_set/modular/infantry = list(CAT_AMR, "Medium Infantry Jaeger kit", 0, "black"),
@@ -1213,6 +1217,76 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 		/obj/item/clothing/shoes/marine/full,
 		/obj/item/storage/box/MRE,
 		/obj/item/facepaint/green,
+	)
+
+//April fools - greytide equipment (All items are mostly just reskins of widely available items)
+//Two toolboxes (actually machetes)
+/obj/effect/essentials_set/greytide
+	spawned_gear_list = list(
+		/obj/item/clothing/under/color/grey/armored,
+		/obj/item/clothing/shoes/marine/jackboots,
+		/obj/item/clothing/mask/gas/old,
+		/obj/item/clothing/glasses/sunglasses/sechud,
+		/obj/item/clothing/head/hardhat/sec,
+		/obj/item/clothing/gloves/marine/insulated/old,
+		/obj/item/clothing/suit/armor/vest/sec,
+		/obj/item/weapon/claymore/toolbox,
+		/obj/item/weapon/claymore/toolbox,
+		/obj/item/megaphone,
+		/obj/item/storage/backpack,
+		/obj/item/radio/headset/mainship/greytide,
+		/obj/item/paper/greytide,
+	)
+
+/obj/effect/essentials_set/engineergreytide
+	spawned_gear_list = list(
+		/obj/item/clothing/under/color/grey/armored,
+		/obj/item/clothing/shoes/marine/jackboots,
+		/obj/item/clothing/mask/gas/old,
+		/obj/item/clothing/glasses/welding,
+		/obj/item/clothing/head/hardhat/sec,
+		/obj/item/clothing/gloves/marine/insulated/old,
+		/obj/item/clothing/suit/armor/vest/sec,
+		/obj/item/weapon/claymore/toolbox,
+		/obj/item/weapon/claymore/toolbox,
+		/obj/item/megaphone,
+		/obj/item/storage/backpack,
+		/obj/item/radio/headset/mainship/greytide,
+		/obj/item/paper/greytide,
+	)
+
+/obj/effect/essentials_set/medicgreytide
+	spawned_gear_list = list(
+		/obj/item/clothing/under/color/grey/armored,
+		/obj/item/clothing/shoes/marine/jackboots,
+		/obj/item/clothing/mask/gas/old,
+		/obj/item/clothing/glasses/hud/health,
+		/obj/item/clothing/head/hardhat/sec,
+		/obj/item/clothing/gloves/marine/insulated/old,
+		/obj/item/clothing/suit/armor/vest/sec,
+		/obj/item/weapon/claymore/toolbox,
+		/obj/item/weapon/claymore/toolbox,
+		/obj/item/megaphone,
+		/obj/item/storage/backpack,
+		/obj/item/radio/headset/mainship/greytide,
+		/obj/item/paper/greytide,
+	)
+
+/obj/effect/essentials_set/squadleadergreytide
+	spawned_gear_list = list(
+		/obj/item/clothing/under/color/grey/armored,
+		/obj/item/clothing/shoes/marine/jackboots,
+		/obj/item/clothing/mask/gas/old,
+		/obj/item/clothing/glasses/hud/health,
+		/obj/item/clothing/head/hardhat/sec,
+		/obj/item/clothing/gloves/marine/insulated/old,
+		/obj/item/clothing/suit/armor/vest/sec,
+		/obj/item/weapon/claymore/toolbox,
+		/obj/item/weapon/claymore/toolbox,
+		/obj/item/megaphone,
+		/obj/item/storage/backpack,
+		/obj/item/radio/headset/mainship/greytide,
+		/obj/item/paper/greytide,
 	)
 
 /obj/effect/essentials_set/basic_smartgunner

@@ -28,6 +28,16 @@
 	icon_state = "grey"
 	item_state = "gy_suit"
 
+//Same stats as the TGMC uniform
+/obj/item/clothing/under/color/grey/armored
+	name = "grey jumpsuit"
+	desc = "Flow with the tide. Has cardboard sewed into the inner layer."
+	icon_state = "grey"
+	item_state = "gy_suit"
+	has_sensor = 2
+	rollable_sleeves = FALSE
+	soft_armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = 5, "bio" = 5, "rad" = 5, "fire" = 5, "acid" = 5)
+
 /obj/item/clothing/under/color/orange
 	name = "orange jumpsuit"
 	desc = "It's standardised prisoner-wear. Its suit sensors are stuck in the \"Fully On\" position."

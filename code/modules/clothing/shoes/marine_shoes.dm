@@ -14,6 +14,12 @@
 	siemens_coefficient = 0.7
 	var/obj/item/storage/internal/pockets = /obj/item/storage/internal/shoes/boot_knife
 
+/obj/item/clothing/shoes/marine/jackboots
+	name = "jackboots"
+	desc = "Security combat boots for combat scenarios or combat situations. All combat, all the time."
+	icon_state = "jackboots"
+	item_state = "jackboots"
+
 /obj/item/storage/internal/shoes/boot_knife
 	max_storage_space = 3
 	storage_slots = 1

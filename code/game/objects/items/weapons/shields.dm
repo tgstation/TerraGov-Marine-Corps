@@ -151,6 +151,12 @@
 	else
 		to_chat(user, "<span class='notice'>You loosen the strap of [src] around your hand!</span>")
 
+//April fools - ERT riot shields
+/obj/item/weapon/shield/riot/marine/greytide
+	name = "riot shield"
+	desc = "Okay yeah that was stolen from the armory.\nAlt-click to tighten the strap."
+	icon_state = "riot"
+
 /obj/item/weapon/shield/energy
 	name = "energy combat shield"
 	desc = "A shield capable of stopping most projectile and melee attacks. It can be retracted, expanded, and stored anywhere."

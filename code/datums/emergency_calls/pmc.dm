@@ -52,3 +52,41 @@
 	var/datum/job/J = SSjob.GetJobType(/datum/job/pmc/standard)
 	H.apply_assigned_role_to_spawn(J)
 	to_chat(H, "<p style='font-size:1.5em'><span class='notice'>You are a private military contractor assigned to this team to respond to the TGMC distress signal sent out nearby. Assist your team and protect NT's interests whenever possible!</span></p>")
+
+//April fools - greytide ERT
+
+/datum/emergency_call/greytide
+	name = "NT Greytide Escalation Squad"
+	probability = 50 //Only one day so let them greytide
+	shuttle_id = "distress_pmc"
+
+
+/datum/emergency_call/greytide/print_backstory(mob/living/carbon/human/H)
+	to_chat(H, "<B>After leaving space station 13 in irreparable disarray, you decided to join the ranks of the official greytide department of Nanotrasen.</b>")
+	to_chat(H, "<B>Working there has proven to be [pick(50;"very", 20;"somewhat", 5;"astoundingly")] satisfying for you.</b>")
+	to_chat(H, "<B>While you are employed, you tested the security forces of countless station and successfully trashed each and every station you came across.</b>")
+	to_chat(H, "")
+	to_chat(H, "<B>Today, a TGMC vessel, [SSmapping.configs[SHIP_MAP].map_name], has sent out a distress signal on the orbit of [SSmapping.configs[GROUND_MAP].map_name]. Your time is running short, get your shuttle launching!</b>")
+	to_chat(H, "<B>Make sure all enemies onboard are properly horizontal before beginning to trash the station in it's entirety.</b>")
+	to_chat(H, "<B>You have been blessed with a special toolbox for the job. Use it wisely and it shall reward you with unrivaled robustness.</b>")
+
+
+/datum/emergency_call/greytide/create_member(datum/mind/M)
+	. = ..()
+	if(!.)
+		return
+
+	var/mob/original = M.current
+	var/mob/living/carbon/human/H = .
+
+	M.transfer_to(H, TRUE)
+	H.fully_replace_character_name(M.name, H.real_name)
+
+	if(original)
+		qdel(original)
+
+	print_backstory(H)
+
+	var/datum/job/J = SSjob.GetJobType(/datum/job/pmc/greytider)
+	H.apply_assigned_role_to_spawn(J)
+	to_chat(H, "<p style='font-size:1.5em'><span class='notice'>You are a greytider! Shove and bonk, until it is horizontal! You are friendly to the TGMC forces.</span></p>")

@@ -181,6 +181,35 @@
 	attack_speed = 12
 	w_class = WEIGHT_CLASS_BULKY
 
+//April fools toolbox. Same state of the machete but a seperate item because it shouldn't go into the machete scabbard.
+/obj/item/weapon/claymore/toolbox
+	name = "Ancient Toolbox"
+	desc = "A relic of the past, forged millenia ago by the council of greyshirts. What seemed once lost in the great greytide hunt is now residing within your grasp. Shove and bonk, until it is horizontal.\nUpon further inspection, you notice the inside of the toolbox to be filled with solid lead."
+	icon_state = "toolbox"
+	item_state = "toolbox"
+	force = 60
+	attack_speed = 12
+	w_class = WEIGHT_CLASS_BULKY
+	attack_verb = list("robusted", "horizontals", "tides")
+
+//Used by ERT
+/obj/item/weapon/claymore/toolbox/nodrop
+	name = "Super Ancient Toolbox"
+	desc = "A relic of the past, forged millenia ago by the council of greyshirts. What seemed once lost in the great greytide hunt is now residing within your grasp. Shove and bonk, until it is horizontal.\nUpon further inspection, you notice the inside of the toolbox to be filled with solid lead.\nAlt-Click to tighten your grip on the toolbox!"
+
+/obj/item/weapon/claymore/toolbox/nodrop/AltClick(mob/user)
+	if(!can_interact(user))
+		return ..()
+	if(!ishuman(user))
+		return ..()
+	if(!(user.l_hand == src || user.r_hand == src))
+		return ..()
+	TOGGLE_BITFIELD(flags_item, NODROP)
+	if(CHECK_BITFIELD(flags_item, NODROP))
+		to_chat(user, "<span class='warning'>You tighten your grip around the [src]!</span>")
+	else
+		to_chat(user, "<span class='notice'>You loosen your grip around the [src]!</span>")
+
 //FC's sword.
 
 /obj/item/weapon/claymore/mercsword/officersword
