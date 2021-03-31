@@ -487,7 +487,6 @@
 	)
 
 /datum/lasrifle/base
-	var/icon = 'icons/Marine/gun64.dmi'
 	var/charge_cost = 0
 	var/ammo = null
 	var/fire_delay = 0
@@ -495,6 +494,8 @@
 	var/message_to_user = ""
 	var/fire_mode = GUN_FIREMODE_SEMIAUTO
 	var/icon_state = "tx73"
+	var/radial_icon = 'icons/mob/radial.dmi'
+	var/radial_icon_state = "laser"
 
 /datum/lasrifle/base/standard
 	charge_cost = 20
@@ -513,6 +514,7 @@
 	message_to_user = "You set the Lasrifle's charge mode to disabler fire."
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	icon_state = "tx73_auto"
+	radial_icon_state = "laser_disabler"
 
 /datum/lasrifle/base/overcharge
 	charge_cost = 80
@@ -521,6 +523,7 @@
 	fire_sound = 'sound/weapons/guns/fire/plasma_precision_3.ogg'
 	message_to_user = "You set the Lasrifle's charge mode to overcharge."
 	icon_state = "tx73_overcharge"
+	radial_icon_state = "laser_overcharge"
 
 /datum/lasrifle/base/heat
 	charge_cost = 80
@@ -529,6 +532,7 @@
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
 	message_to_user = "You set the Lasrifle's charge mode to wave heat."
 	icon_state = "tx73_heat"
+	radial_icon_state = "laser_heat"
 
 /datum/lasrifle/base/spread
 	charge_cost = 80
@@ -537,6 +541,7 @@
 	fire_sound = 'sound/weapons/guns/fire/laser_rifle_2.ogg'
 	message_to_user = "You set the Lasrifle's charge mode to spread."
 	icon_state = "tx73_spread"
+	radial_icon_state = "laser_spread"
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/unique_action(mob/user)
 	return switch_modes(user)
@@ -547,9 +552,9 @@
 
 	var/list/available_modes = list()
 	for(var/mode in mode_list)
-		available_modes += list("[mode]" = image(icon = initial(mode_list[mode].icon), icon_state = initial(mode_list[mode].icon_state)))
+		available_modes += list("[mode]" = image(icon = initial(mode_list[mode].radial_icon), icon_state = initial(mode_list[mode].radial_icon_state)))
 
-	var/datum/lasrifle/base/choice = mode_list[show_radial_menu(user, user, available_modes, null, 48)]
+	var/datum/lasrifle/base/choice = mode_list[show_radial_menu(user, user, available_modes, null, 64, tooltips = TRUE)]
 	if(!choice)
 		return
 
