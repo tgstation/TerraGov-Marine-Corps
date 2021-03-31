@@ -493,12 +493,6 @@
 	},
 /turf/open/lavaland/lava/lpiece,
 /area/lavaland/cave/north)
-"ej" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/tile/bar,
-/area/lavaland/civilian/cook)
 "el" = (
 /obj/machinery/light,
 /turf/open/floor/tile/brown/full,
@@ -1006,11 +1000,6 @@
 	},
 /turf/open/floor/tile/bar,
 /area/lavaland/civilian/cook)
-"iO" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor/tile/dark2,
-/area/lavaland/civilian)
 "iS" = (
 /obj/machinery/light{
 	dir = 4
@@ -1256,7 +1245,9 @@
 /turf/open/floor/tile/bar,
 /area/lavaland/civilian/cook)
 "kJ" = (
-/obj/machinery/atmospherics/pipe/manifold/green/hidden,
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 4
+	},
 /turf/open/floor/tile/bar,
 /area/lavaland/civilian/cook)
 "kK" = (
@@ -1265,9 +1256,6 @@
 /area/lavaland/security)
 "kL" = (
 /obj/machinery/vending/coffee,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
 /turf/open/floor/tile/bar,
 /area/lavaland/civilian/cook)
 "kN" = (
@@ -1278,9 +1266,6 @@
 /area/lavaland/security/nuke)
 "kO" = (
 /obj/structure/kitchenspike,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
 /turf/open/floor/tile/bar,
 /area/lavaland/civilian/cook)
 "kR" = (
@@ -1443,6 +1428,11 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/lavaland/medical/cmo)
+"mm" = (
+/obj/structure/table/reinforced,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/tile/bar,
+/area/lavaland/civilian/cook)
 "mn" = (
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 6
@@ -1479,7 +1469,6 @@
 	name = "\improper Kitchen"
 	},
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/bar,
 /area/lavaland/civilian/cook)
 "mB" = (
@@ -2084,7 +2073,6 @@
 /obj/structure/table,
 /obj/structure/cable,
 /obj/effect/spawner/random/toolbox,
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark2,
 /area/lavaland/civilian)
 "rG" = (
@@ -2705,6 +2693,10 @@
 	},
 /turf/open/floor/tile/dark,
 /area/lavaland/security/nuke)
+"xa" = (
+/turf/open/floor/plating/dmg3,
+/turf/open/floor/plating/dmg2,
+/area/lavaland/cave/central)
 "xb" = (
 /turf/open/floor/plating,
 /area/lavaland/cave/south)
@@ -3392,6 +3384,10 @@
 	dir = 8
 	},
 /area/lavaland/security/storage)
+"Co" = (
+/turf/open/floor/plating/dmg1,
+/turf/open/floor/plating/dmg2,
+/area/lavaland/cave/central)
 "Cp" = (
 /obj/machinery/light{
 	dir = 8
@@ -4251,6 +4247,10 @@
 "JM" = (
 /obj/machinery/miner/damaged,
 /turf/open/lavaland/basalt,
+/area/lavaland/cave/central)
+"JO" = (
+/turf/open/lavaland/basalt,
+/turf/open/floor/plating/dmg2,
 /area/lavaland/cave/central)
 "JR" = (
 /obj/structure/barricade/metal,
@@ -5550,6 +5550,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating/asteroidfloor,
 /area/lavaland/misc/westarmory)
+"Wb" = (
+/turf/open/floor/plating/mainship,
+/turf/open/floor/plating/dmg2,
+/area/lavaland/misc/crashed)
 "Wg" = (
 /obj/structure/closet/bombclosetsecurity,
 /turf/open/floor/tile/white,
@@ -5777,6 +5781,7 @@
 /turf/open/floor/tile/white,
 /area/lavaland/medical/chemistry)
 "Yd" = (
+/turf/open/floor/plating/dmg1,
 /turf/open/floor/plating/dmg2,
 /area/lavaland/misc/stationed)
 "Yg" = (
@@ -28979,12 +28984,12 @@ hJ
 iU
 jF
 kJ
-lH
-le
-le
-rp
-sp
-uG
+mm
+pS
+pS
+rq
+sz
+uI
 le
 jL
 zM
@@ -29235,7 +29240,7 @@ gT
 ih
 iU
 jx
-ej
+jx
 lH
 le
 le
@@ -30006,13 +30011,13 @@ gT
 io
 jd
 iU
-iN
+iU
 mA
-iO
-iO
+pV
+pV
 rF
-sz
-uI
+sp
+uG
 le
 jL
 Aa
@@ -31604,7 +31609,7 @@ tY
 fw
 qo
 qo
-Qb
+JO
 Bw
 Qb
 Qb
@@ -31863,7 +31868,7 @@ YL
 GO
 GO
 Ra
-MJ
+Co
 Qb
 Qb
 GO
@@ -32121,7 +32126,7 @@ GO
 qo
 NT
 MJ
-MJ
+Co
 Qb
 Qb
 GO
@@ -32378,8 +32383,8 @@ GO
 qo
 NT
 qo
-MJ
-MJ
+Co
+Co
 Qb
 Qb
 Cp
@@ -32893,7 +32898,7 @@ qo
 NT
 qo
 MJ
-wl
+xa
 Qb
 Qb
 Qb
@@ -33151,7 +33156,7 @@ NT
 qo
 wl
 MJ
-wl
+xa
 wl
 Qb
 Qb
@@ -33923,7 +33928,7 @@ qo
 qo
 qo
 wl
-wl
+xa
 Qb
 Qb
 Qb
@@ -34693,7 +34698,7 @@ YL
 GO
 GO
 MJ
-wl
+xa
 Qb
 Qb
 GO
@@ -36540,7 +36545,7 @@ ld
 TJ
 Ht
 rg
-dJ
+Wb
 Xc
 Yy
 Yy

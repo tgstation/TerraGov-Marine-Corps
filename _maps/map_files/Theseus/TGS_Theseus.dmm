@@ -134,6 +134,7 @@
 /area/mainship/hull/upper_hull)
 "aaF" = (
 /obj/machinery/vending/nanomed,
+/obj/structure/cable,
 /obj/docking_port/stationary/marine_dropship/crash_target,
 /turf/open/floor/mainship/blue{
 	dir = 1
@@ -192,6 +193,14 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar/droppod)
+"aaQ" = (
+/obj/machinery/camera/autoname/mainship{
+	dir = 1
+	},
+/obj/structure/droppod,
+/obj/structure/dropprop,
+/turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar/droppod)
 "aaR" = (
 /obj/machinery/door/poddoor/mainship{
@@ -672,6 +681,14 @@
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/starboard_garden)
+"acm" = (
+/obj/structure/cable,
+/obj/machinery/firealarm,
+/turf/open/floor/mainship{
+	dir = 1;
+	icon_state = "silver"
+	},
+/area/mainship/command/cic)
 "acn" = (
 /obj/machinery/alarm,
 /turf/open/floor/mainship/orange{
@@ -706,6 +723,7 @@
 /area/mainship/command/cic)
 "acr" = (
 /obj/structure/table/mainship,
+/obj/structure/cable,
 /obj/item/ashtray/glass,
 /turf/open/floor/carpet,
 /area/mainship/living/officer_rnr)
@@ -931,10 +949,15 @@
 /obj/machinery/firealarm,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/brig)
+"adc" = (
+/obj/structure/table/mainship,
+/obj/structure/cable,
+/obj/item/trash/cigbutt,
+/turf/open/floor/carpet,
+/area/mainship/living/officer_rnr)
 "add" = (
 /obj/structure/table/mainship,
 /obj/item/folder/black,
-/obj/structure/cable,
 /turf/open/floor/carpet,
 /area/mainship/living/officer_rnr)
 "ade" = (
@@ -1648,6 +1671,7 @@
 /area/mainship/shipboard/chief_mp_office)
 "afm" = (
 /obj/machinery/firealarm,
+/obj/structure/cable,
 /turf/open/floor/mainship/blue{
 	dir = 1
 	},
@@ -4237,10 +4261,10 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/structure/cable,
-/obj/structure/disposalpipe/junction/flipped{
+/obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/stern_hallway)
 "aml" = (
@@ -4786,12 +4810,20 @@
 /turf/open/floor/mainship/blue/full,
 /area/mainship/command/cic)
 "anW" = (
+/obj/structure/cable,
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
 "anX" = (
 /obj/machinery/vending/engineering,
 /turf/open/floor/mainship/orange/full,
+/area/mainship/command/cic)
+"anY" = (
+/obj/structure/cable,
+/turf/open/floor/mainship{
+	dir = 1;
+	icon_state = "silver"
+	},
 /area/mainship/command/cic)
 "aoa" = (
 /obj/machinery/light{
@@ -4819,6 +4851,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship{
 	dir = 1;
 	icon_state = "silver"
@@ -4826,6 +4859,7 @@
 /area/mainship/command/cic)
 "aoe" = (
 /obj/machinery/vending/nanomed,
+/obj/structure/cable,
 /turf/open/floor/mainship{
 	dir = 1;
 	icon_state = "silver"
@@ -4839,6 +4873,7 @@
 	},
 /area/mainship/command/cic)
 "aog" = (
+/obj/structure/cable,
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship{
 	dir = 1;
@@ -4922,6 +4957,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/sterile/side{
 	dir = 6
 	},
@@ -4937,6 +4973,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/medical_science)
 "aow" = (
@@ -4946,6 +4983,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/medical_science)
 "aox" = (
@@ -4955,6 +4993,7 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 2
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/sterile/side{
 	dir = 10
 	},
@@ -5714,7 +5753,6 @@
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
 	},
-/obj/structure/cable,
 /turf/open/floor/mainship/sterile/plain,
 /area/mainship/command/cic)
 "aqW" = (
@@ -5887,6 +5925,13 @@
 	dir = 8
 	},
 /area/mainship/squads/req)
+"aru" = (
+/obj/structure/cable,
+/turf/open/floor/mainship{
+	dir = 4;
+	icon_state = "silver"
+	},
+/area/mainship/command/cic)
 "arv" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -6292,6 +6337,7 @@
 /turf/open/floor/mainship/red,
 /area/mainship/shipboard/brig)
 "asH" = (
+/obj/structure/cable,
 /obj/structure/noticeboard{
 	pixel_y = 32
 	},
@@ -6504,6 +6550,7 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)
 "atn" = (
@@ -6542,6 +6589,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship{
 	dir = 1;
 	icon_state = "greencorner"
@@ -7021,7 +7069,6 @@
 	dir = 8
 	},
 /obj/structure/flora/pottedplant/twentyone,
-/obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "auG" = (
@@ -7189,6 +7236,13 @@
 	dir = 1
 	},
 /area/mainship/medical/chemistry)
+"ava" = (
+/obj/structure/cable,
+/turf/open/floor/mainship{
+	dir = 8;
+	icon_state = "greencorner"
+	},
+/area/mainship/hallways/aft_hallway)
 "avb" = (
 /turf/open/floor/mainship{
 	dir = 4;
@@ -7326,6 +7380,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/structure/cable,
 /obj/machinery/door/firedoor/mainship,
 /obj/machinery/holosign/surgery{
 	id = "eorsign"
@@ -7410,7 +7465,6 @@
 /area/mainship/command/telecomms)
 "avE" = (
 /obj/machinery/telecomms/server/presets/charlie,
-/obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
 "avF" = (
@@ -7689,6 +7743,13 @@
 	dir = 8
 	},
 /area/mainship/living/numbertwobunks)
+"aww" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/mainship/stripesquare,
+/area/mainship/command/cic)
 "awx" = (
 /obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/plating/mainship,
@@ -8115,6 +8176,11 @@
 	dir = 1
 	},
 /area/mainship/medical/lower_medical)
+"axP" = (
+/obj/structure/window/framed/mainship,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/mainship/command/cic)
 "axQ" = (
 /turf/open/floor/mainship/terragov/west{
 	dir = 9
@@ -8130,7 +8196,7 @@
 	},
 /obj/machinery/computer/shuttle/shuttle_control/dropship1,
 /turf/open/floor/plating/mainship,
-/area/mainship/command/cic)
+/area/mainship/hallways/aft_hallway)
 "axS" = (
 /obj/structure/window/reinforced/toughened{
 	dir = 1
@@ -8223,19 +8289,40 @@
 	icon_state = "silver"
 	},
 /area/mainship/hallways/aft_hallway)
+"ayc" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/mainship/stripesquare,
+/area/mainship/hallways/aft_hallway)
+"ayd" = (
+/obj/structure/cable,
+/turf/open/floor/mainship{
+	dir = 8;
+	icon_state = "silver"
+	},
+/area/mainship/hallways/aft_hallway)
+"aye" = (
+/obj/structure/cable,
+/turf/open/floor/mainship/blue{
+	dir = 1
+	},
+/area/mainship/hallways/aft_hallway)
 "ayf" = (
 /obj/structure/noticeboard,
 /turf/closed/wall/mainship,
 /area/mainship/command/corporateliaison)
 "ayg" = (
-/obj/structure/disposalpipe/segment,
 /obj/structure/cable,
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/mainship,
 /area/mainship/hallways/aft_hallway)
 "ayh" = (
 /obj/machinery/door_control/mainship/corporate{
 	pixel_y = 30
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/blue{
 	dir = 1
 	},
@@ -8279,6 +8366,14 @@
 	dir = 4
 	},
 /area/mainship/medical/operating_room_three)
+"ayp" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 8;
+	on = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/mainship/sterile/dark,
+/area/mainship/medical/medical_science)
 "ayq" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/crew,
@@ -8478,7 +8573,9 @@
 /obj/item/clipboard,
 /obj/item/cell/high,
 /obj/item/clothing/glasses/welding,
-/obj/machinery/camera/autoname/mainship,
+/obj/machinery/camera/autoname/mainship{
+	dir = 1
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/upper_engineering)
 "ayR" = (
@@ -8492,21 +8589,18 @@
 /obj/machinery/door/airlock/mainship/engineering{
 	name = "\improper Engineering Hallway"
 	},
-/obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/upper_engineering)
 "ayT" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 6
 	},
-/obj/structure/cable,
 /turf/open/floor/mainship/orange{
 	dir = 1
 	},
 /area/mainship/engineering/upper_engineering)
 "ayU" = (
 /obj/effect/decal/warning_stripes/thin,
-/obj/structure/cable,
 /turf/open/floor/mainship/orange{
 	dir = 1
 	},
@@ -8516,7 +8610,6 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 10
 	},
-/obj/structure/cable,
 /turf/open/floor/mainship/orange{
 	dir = 1
 	},
@@ -8562,10 +8655,10 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/upper_engineering)
 "azd" = (
+/obj/structure/cable,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 10
 	},
-/obj/structure/cable,
 /turf/open/floor/mainship{
 	dir = 4;
 	icon_state = "orangecorner"
@@ -8715,6 +8808,18 @@
 /obj/machinery/vending/cigarette,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
+"azz" = (
+/obj/machinery/door/poddoor/mainship{
+	density = 0;
+	icon_state = "pdoor0";
+	id = "CIC Lockdown";
+	name = "\improper Combat Information Center Blast Door";
+	opacity = 0
+	},
+/obj/structure/cable,
+/obj/machinery/door/firedoor/mainship,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/aft_hallway)
 "azA" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -8758,7 +8863,6 @@
 /area/mainship/command/cic)
 "azD" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
-/obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
 "azE" = (
@@ -9174,16 +9278,17 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
 	},
+/obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/engineering/upper_engineering)
 "aAE" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 4
 	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
 	},
-/obj/structure/cable,
 /turf/open/floor/mainship{
 	dir = 4;
 	icon_state = "orangecorner"
@@ -9196,24 +9301,25 @@
 /obj/machinery/door/firedoor/mainship{
 	dir = 8
 	},
+/obj/structure/cable,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/upper_engineering)
 "aAG" = (
+/obj/structure/cable,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
-/obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/engineering/upper_engineering)
 "aAH" = (
+/obj/structure/cable,
 /obj/structure/disposalpipe/junction/flipped{
 	dir = 8
 	},
@@ -9226,6 +9332,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -9235,6 +9342,7 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 2
 	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
 	},
@@ -9287,16 +9395,17 @@
 /obj/machinery/door/airlock/mainship/engineering{
 	name = "\improper Engineering Engine Monitoring"
 	},
-/obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/upper_engineering)
 "aAS" = (
+/obj/structure/cable,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/upper_engineering)
 "aAU" = (
+/obj/structure/cable,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -9547,7 +9656,6 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
 "aBE" = (
@@ -9644,6 +9752,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/sterile/side{
 	dir = 6
 	},
@@ -9657,6 +9766,7 @@
 	dir = 2;
 	name = "Research Wing"
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
 	},
@@ -9665,6 +9775,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/sterile/side{
 	dir = 10
 	},
@@ -9680,6 +9791,7 @@
 	dir = 4
 	},
 /obj/structure/bed/chair/office/dark,
+/obj/structure/cable,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/medical_science)
 "aBZ" = (
@@ -9694,6 +9806,7 @@
 /obj/machinery/door/airlock/mainship/research{
 	name = "\improper Research Pens"
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/medical_science)
 "aCa" = (
@@ -9701,6 +9814,7 @@
 	dir = 9
 	},
 /obj/machinery/light,
+/obj/structure/cable,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/medical_science)
 "aCb" = (
@@ -9711,6 +9825,7 @@
 /obj/machinery/door/airlock/mainship/research{
 	name = "\improper Research Pens"
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/medical_science)
 "aCc" = (
@@ -9838,8 +9953,8 @@
 /area/mainship/engineering/upper_engineering)
 "aCw" = (
 /obj/structure/disposalpipe/segment,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship{
 	dir = 8;
 	icon_state = "orangecorner"
@@ -9847,43 +9962,43 @@
 /area/mainship/engineering/upper_engineering)
 "aCx" = (
 /obj/structure/disposalpipe/segment,
-/obj/structure/cable,
 /turf/open/floor/mainship/orange,
 /area/mainship/engineering/upper_engineering)
 "aCy" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 1
 	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 8
 	},
-/obj/structure/cable,
 /turf/open/floor/mainship{
 	dir = 8;
 	icon_state = "orangecorner"
 	},
 /area/mainship/engineering/upper_engineering)
 "aCz" = (
+/obj/structure/cable,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/structure/cable,
 /turf/open/floor/mainship/orange/corner,
 /area/mainship/engineering/upper_engineering)
 "aCA" = (
+/obj/structure/cable,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/structure/cable,
 /turf/open/floor/mainship/orange,
 /area/mainship/engineering/upper_engineering)
 "aCB" = (
+/obj/structure/cable,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -9893,10 +10008,10 @@
 /obj/machinery/door/airlock/mainship/engineering{
 	name = "\improper Engineering Hallway"
 	},
-/obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/upper_engineering)
 "aCD" = (
+/obj/structure/cable,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -9906,10 +10021,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/structure/cable,
 /turf/open/floor/mainship/orange,
 /area/mainship/engineering/upper_engineering)
 "aCE" = (
+/obj/structure/cable,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -9919,10 +10034,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/structure/cable,
 /turf/open/floor/mainship/orange,
 /area/mainship/engineering/upper_engineering)
 "aCF" = (
+/obj/structure/cable,
 /obj/structure/disposalpipe/junction{
 	dir = 8
 	},
@@ -9932,17 +10047,16 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
 	},
-/obj/structure/cable,
 /turf/open/floor/mainship{
 	dir = 8;
 	icon_state = "orangecorner"
 	},
 /area/mainship/engineering/upper_engineering)
 "aCG" = (
+/obj/structure/cable,
 /obj/structure/disposalpipe/segment/corner{
 	dir = 2
 	},
-/obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/engineering/upper_engineering)
 "aCH" = (
@@ -9962,6 +10076,12 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
+/area/mainship/engineering/upper_engineering)
+"aCL" = (
+/obj/structure/cable,
+/turf/open/floor/mainship/orange{
+	dir = 4
+	},
 /area/mainship/engineering/upper_engineering)
 "aCM" = (
 /turf/open/floor/mainship/cargo/arrow{
@@ -10326,8 +10446,8 @@
 /obj/machinery/door/firedoor/mainship{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/upper_engineering)
 "aDJ" = (
@@ -10441,6 +10561,7 @@
 /turf/open/floor/mainship/blue,
 /area/mainship/living/pilotbunks)
 "aEc" = (
+/obj/structure/cable,
 /turf/open/floor/mainship/orange{
 	dir = 6
 	},
@@ -10570,7 +10691,6 @@
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/sterile/plain,
 /area/mainship/shipboard/brig)
 "aEp" = (
@@ -10724,7 +10844,6 @@
 	opacity = 0
 	},
 /obj/machinery/door/firedoor/mainship,
-/obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/aft_hallway)
 "aED" = (
@@ -10882,9 +11001,6 @@
 /area/mainship/command/telecomms)
 "aFc" = (
 /obj/machinery/telecomms/server/presets/engineering,
-/obj/machinery/camera/autoname/mainship{
-	dir = 1
-	},
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
 "aFd" = (
@@ -10911,10 +11027,10 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 1
 	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
 	},
-/obj/structure/cable,
 /turf/open/floor/mainship{
 	dir = 4;
 	icon_state = "orangecorner"
@@ -10924,11 +11040,24 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/structure/cable,
 /obj/structure/bed/chair,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/turf/open/floor/mainship/orange{
+	dir = 1
+	},
+/area/mainship/engineering/upper_engineering)
+"aFj" = (
 /obj/structure/cable,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/bed/chair,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
 /turf/open/floor/mainship/orange{
 	dir = 1
 	},
@@ -10937,10 +11066,10 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 8
 	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
 	},
-/obj/structure/cable,
 /turf/open/floor/mainship{
 	dir = 1;
 	icon_state = "orangecorner"
@@ -11062,9 +11191,6 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 9
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9
 	},
 /turf/open/floor/mainship/sterile/plain,
@@ -11293,7 +11419,6 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/structure/cable,
 /turf/open/floor/mainship/sterile/plain,
 /area/mainship/command/cic)
 "aGd" = (
@@ -11336,6 +11461,10 @@
 /turf/open/floor/mainship/cargo,
 /area/mainship/squads/charlie)
 "aGi" = (
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/living/captain_mess)
+"aGj" = (
+/obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/captain_mess)
 "aGk" = (
@@ -11767,9 +11896,6 @@
 	dir = 10
 	},
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 10
-	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/shipboard/brig)
 "aHu" = (
@@ -11857,7 +11983,6 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 8
 	},
-/obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
 "aHF" = (
@@ -12181,6 +12306,18 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/brig)
+"aIx" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/command/cic)
 "aIy" = (
 /obj/structure/closet/secure_closet/brig{
 	id = "Cell 1";
@@ -12220,7 +12357,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/structure/cable,
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/command/cic)
 "aID" = (
@@ -12338,6 +12474,7 @@
 	dir = 2;
 	name = "Freezer"
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/living/captain_mess)
 "aIW" = (
@@ -12542,6 +12679,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/upper_engineering)
 "aJD" = (
+/obj/structure/cable,
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/plating/mainship/striped{
 	dir = 8
@@ -12601,6 +12739,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/self_destruct)
 "aJN" = (
+/obj/structure/cable,
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
 	},
@@ -12656,7 +12795,6 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/structure/cable,
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/aft_hallway)
 "aJV" = (
@@ -12669,7 +12807,6 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/structure/cable,
 /turf/open/floor/mainship{
 	dir = 8;
 	icon_state = "silver"
@@ -13256,7 +13393,9 @@
 	name = "Brig Hallway Flash";
 	range = 3
 	},
-/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 1
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/shipboard/brig_cells)
 "aLq" = (
@@ -13496,6 +13635,13 @@
 	dir = 1
 	},
 /area/mainship/hallways/aft_hallway)
+"aLW" = (
+/obj/effect/landmark/start/job/squadspecialist,
+/obj/machinery/camera/autoname/mainship{
+	dir = 4
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/living/cryo_cells)
 "aLX" = (
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship/mono,
@@ -13554,6 +13700,7 @@
 /obj/machinery/status_display{
 	pixel_y = 30
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/blue{
 	dir = 1
 	},
@@ -13649,6 +13796,7 @@
 /area/mainship/squads/charlie)
 "aMs" = (
 /obj/item/radio/intercom/general,
+/obj/structure/cable,
 /turf/open/floor/mainship/blue{
 	dir = 1
 	},
@@ -13802,7 +13950,6 @@
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
 	},
-/obj/structure/cable,
 /turf/open/floor/mainship/sterile/plain,
 /area/mainship/command/cic)
 "aMK" = (
@@ -13819,7 +13966,6 @@
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
 	},
-/obj/structure/cable,
 /turf/open/floor/mainship/sterile/plain,
 /area/mainship/command/cic)
 "aMM" = (
@@ -13912,7 +14058,6 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/aft_hallway)
 "aMY" = (
@@ -14193,6 +14338,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/sterile/plain,
 /area/mainship/command/cic)
 "aNF" = (
@@ -14209,12 +14355,14 @@
 	dir = 2;
 	name = "\improper Officer's Cafeteria"
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/living/captain_mess)
 "aNH" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/wood,
 /area/mainship/living/captain_mess)
 "aNI" = (
@@ -14415,6 +14563,13 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/wood,
 /area/mainship/living/captain_mess)
+"aOc" = (
+/obj/structure/cable,
+/turf/open/floor/mainship{
+	dir = 1;
+	icon_state = "bluecorner"
+	},
+/area/mainship/hallways/aft_hallway)
 "aOd" = (
 /turf/open/floor/mainship/red/corner{
 	dir = 8
@@ -14593,6 +14748,13 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/prison/kitchen,
 /area/mainship/living/captain_mess)
+"aOG" = (
+/obj/structure/cable,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hull/upper_hull)
 "aOH" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
@@ -14644,7 +14806,6 @@
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
 	},
-/obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
 "aOO" = (
@@ -14772,6 +14933,12 @@
 	},
 /turf/open/floor/mainship/research,
 /area/mainship/command/airoom)
+"aPd" = (
+/obj/structure/cable,
+/turf/open/floor/mainship/green{
+	dir = 4
+	},
+/area/mainship/hallways/aft_hallway)
 "aPe" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/mainship,
@@ -15050,6 +15217,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship{
 	dir = 8;
 	icon_state = "silver"
@@ -15096,6 +15264,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "aPY" = (
@@ -15108,6 +15277,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/command/cic)
 "aPZ" = (
@@ -15120,7 +15290,6 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/command/cic)
 "aQa" = (
@@ -15138,7 +15307,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/brig_cells)
 "aQc" = (
-/obj/structure/cable,
 /turf/open/floor/mainship/red/corner,
 /area/mainship/command/cic)
 "aQd" = (
@@ -15630,6 +15798,12 @@
 /obj/effect/spawner/random/tool,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/port_atmos)
+"aRE" = (
+/obj/machinery/camera/autoname/mainship{
+	dir = 4
+	},
+/turf/open/floor/mainship/tcomms,
+/area/mainship/command/telecomms)
 "aRF" = (
 /obj/machinery/portable_atmospherics/pump,
 /turf/open/floor/mainship/cargo,
@@ -15726,6 +15900,11 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/starboard_point_defense)
+"aRU" = (
+/obj/machinery/door/firedoor/mainship,
+/obj/structure/cable,
+/turf/open/floor/mainship/stripesquare,
+/area/mainship/hallways/aft_hallway)
 "aRV" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
@@ -16119,7 +16298,6 @@
 "aTd" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/command/cic)
 "aTe" = (
@@ -16332,6 +16510,11 @@
 /obj/item/storage/briefcase/inflatable,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/repair_bay)
+"aTF" = (
+/obj/structure/cable,
+/obj/machinery/light/small,
+/turf/open/floor/mainship/mono,
+/area/mainship/hull/upper_hull)
 "aTG" = (
 /obj/machinery/vending/lasgun,
 /turf/open/floor/mainship/blue,
@@ -19405,6 +19588,7 @@
 /area/mainship/living/cafeteria_starboard)
 "bfN" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/cable,
 /obj/machinery/holopad,
 /turf/open/floor/mainship/red{
 	dir = 4
@@ -20519,6 +20703,7 @@
 	id = "cl_shutters";
 	name = "\improper Privacy Shutters"
 	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/disposalpipe/segment,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/mainship/mono,
@@ -21414,6 +21599,12 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/weapon_room)
+"bmr" = (
+/obj/structure/cable,
+/obj/structure/droppod,
+/obj/structure/dropprop,
+/turf/open/floor/mainship/cargo,
+/area/mainship/hallways/hangar/droppod)
 "bmt" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -21605,6 +21796,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/sterile/plain,
 /area/mainship/living/captain_mess)
 "bnq" = (
@@ -21643,6 +21835,7 @@
 	dir = 4
 	},
 /obj/machinery/holopad,
+/obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
 "bnx" = (
@@ -21818,6 +22011,7 @@
 /area/mainship/hallways/hangar)
 "bod" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
+/obj/structure/cable,
 /obj/structure/droppod,
 /obj/structure/dropprop,
 /turf/open/floor/mainship/cargo,
@@ -23320,6 +23514,7 @@
 /obj/machinery/door/airlock/mainship/medical/glass/chemistry{
 	dir = 2
 	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/chemistry)
 "bus" = (
@@ -23926,6 +24121,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/engineering/engine_core)
 "bwK" = (
+/obj/structure/cable,
 /turf/open/floor/plating/mainship/striped{
 	dir = 4
 	},
@@ -23940,6 +24136,7 @@
 	},
 /area/mainship/medical/chemistry)
 "bwO" = (
+/obj/structure/cable,
 /turf/open/floor/plating/mainship/striped{
 	dir = 8
 	},
@@ -24780,6 +24977,7 @@
 	pixel_x = -5;
 	pixel_y = -5
 	},
+/obj/structure/cable,
 /obj/item/storage/box/gloves{
 	pixel_x = 5;
 	pixel_y = 5
@@ -24837,6 +25035,7 @@
 /area/mainship/living/briefing)
 "bAB" = (
 /obj/machinery/door/window/secure/northright/bridge,
+/obj/structure/cable,
 /turf/open/floor/mainship{
 	dir = 4;
 	icon_state = "silvercorner"
@@ -24999,6 +25198,7 @@
 	},
 /area/mainship/engineering/lower_engine_monitoring)
 "bBh" = (
+/obj/structure/cable,
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 1
 	},
@@ -25011,6 +25211,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 1
 	},
@@ -25066,6 +25267,13 @@
 	dir = 4
 	},
 /area/mainship/medical/lower_medical)
+"bBD" = (
+/obj/machinery/vending/MarineMed/Blood,
+/obj/structure/cable,
+/turf/open/floor/mainship/sterile/side{
+	dir = 1
+	},
+/area/mainship/medical/lower_medical)
 "bBG" = (
 /obj/machinery/vending/MarineMed/Blood,
 /turf/open/floor/mainship/sterile/side{
@@ -25119,6 +25327,7 @@
 	pixel_x = 32;
 	pixel_y = 27
 	},
+/obj/structure/cable,
 /obj/machinery/holopad,
 /turf/open/floor/mainship,
 /area/mainship/living/briefing)
@@ -25686,12 +25895,14 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/engineering/engine_core)
 "bEc" = (
+/obj/structure/cable,
 /turf/open/floor/mainship/cargo/arrow,
 /area/mainship/engineering/engine_core)
 "bEe" = (
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/cargo/arrow,
 /area/mainship/engineering/engine_core)
 "bEf" = (
@@ -26490,8 +26701,10 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 9
+	},
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /turf/open/floor/mainship{
 	dir = 1;
 	icon_state = "orangecorner"
@@ -26500,9 +26713,6 @@
 "bHP" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 10
 	},
 /turf/open/floor/mainship{
 	dir = 4;
@@ -26514,6 +26724,21 @@
 /obj/item/lightreplacer,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/lower_engine_monitoring)
+"bHV" = (
+/obj/machinery/camera/autoname/mainship{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
+"bHX" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/mainship/blue{
+	dir = 1
+	},
+/area/mainship/hallways/aft_hallway)
 "bIg" = (
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
@@ -26537,6 +26762,7 @@
 	},
 /area/mainship/medical/lower_medical)
 "bIp" = (
+/obj/structure/cable,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/door/firedoor/mainship{
@@ -26780,10 +27006,6 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/surgery_hallway)
-"bJx" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/engineering/lower_engine_monitoring)
 "bJz" = (
 /obj/machinery/bodyscanner,
 /turf/open/floor/mainship/sterile/side{
@@ -26932,7 +27154,6 @@
 "bKd" = (
 /obj/structure/bed/chair/office/light,
 /obj/effect/landmark/start/job/shiptech,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/orange,
 /area/mainship/engineering/lower_engine_monitoring)
 "bKe" = (
@@ -26983,18 +27204,23 @@
 /area/mainship/hallways/hangar)
 "bKm" = (
 /obj/machinery/light,
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
+	},
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
 "bKn" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 10
 	},
-/obj/machinery/camera/autoname/mainship{
-	dir = 1
-	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar/droppod)
+"bKo" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
+	},
+/turf/open/floor/plating,
+/area/mainship/hallways/hangar)
 "bKz" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
@@ -27071,6 +27297,12 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/mainship/hull/lower_hull)
+"bKM" = (
+/obj/structure/cable,
+/turf/open/floor/mainship/green{
+	dir = 8
+	},
+/area/mainship/hallways/aft_hallway)
 "bKN" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
@@ -27374,7 +27606,9 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "bLA" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
+	},
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
@@ -28301,7 +28535,9 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/lower_engineering)
 "bPO" = (
-/obj/effect/decal/warning_stripes/thin,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
+	},
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
@@ -29919,9 +30155,6 @@
 /obj/machinery/door/airlock/mainship/generic{
 	name = "\improper Tanker Quarters"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/tankerbunks)
 "bVa" = (
@@ -31497,7 +31730,6 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_umbilical)
 "caj" = (
@@ -31809,6 +32041,9 @@
 /turf/open/floor/mainship/cargo,
 /area/mainship/squads/delta)
 "cbz" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /obj/machinery/door/airlock/mainship/maint{
 	name = "\improper Shuttle Hanger"
 	},
@@ -32628,6 +32863,7 @@
 /area/mainship/hull/lower_hull)
 "ceu" = (
 /obj/machinery/door/airlock/mainship/maint,
+/obj/structure/cable,
 /obj/machinery/door/poddoor/shutters/mainship{
 	id = "laddersoutheast";
 	name = "\improper South East Ladders Shutters"
@@ -33378,9 +33614,6 @@
 	dir = 1
 	},
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 9
-	},
 /turf/open/floor/mainship/sterile/plain,
 /area/mainship/command/cic)
 "cha" = (
@@ -33502,6 +33735,7 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 2
 	},
+/obj/structure/cable,
 /turf/open/floor/prison/kitchen,
 /area/mainship/living/captain_mess)
 "chr" = (
@@ -33837,12 +34071,14 @@
 "ciG" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
 "ciI" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 1
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship{
 	dir = 8;
 	icon_state = "silvercorner"
@@ -34459,10 +34695,6 @@
 	dir = 1
 	},
 /area/mainship/medical/medical_science)
-"cvw" = (
-/obj/machinery/holopad,
-/turf/open/floor/mainship/sterile/dark,
-/area/mainship/medical/medical_science)
 "cBn" = (
 /obj/structure/cable,
 /obj/machinery/light/small{
@@ -34684,6 +34916,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/starboard_garden)
 "dTN" = (
+/obj/structure/cable,
 /obj/machinery/holopad,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
@@ -34744,14 +34977,14 @@
 /turf/open/floor/plating/mainship,
 /area/mainship/shipboard/starboard_point_defense)
 "eoj" = (
+/obj/structure/disposalpipe/junction/flipped{
+	dir = 4
+	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/aft_hallway)
 "esi" = (
@@ -34836,6 +35069,12 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/orange{
 	dir = 4
+	},
+/area/mainship/hallways/stern_hallway)
+"eRg" = (
+/obj/structure/cable,
+/turf/open/floor/mainship/red{
+	dir = 1
 	},
 /area/mainship/hallways/stern_hallway)
 "eRE" = (
@@ -34996,6 +35235,7 @@
 	},
 /area/mainship/living/briefing)
 "fUZ" = (
+/obj/structure/cable,
 /obj/machinery/holopad,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/cafeteria_port)
@@ -35041,6 +35281,7 @@
 /area/mainship/shipboard/weapon_room)
 "gec" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/cable,
 /turf/open/floor/mainship/red{
 	dir = 4
 	},
@@ -35177,6 +35418,11 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
+"gVe" = (
+/obj/structure/cable,
+/obj/machinery/light/small,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hull/upper_hull)
 "haf" = (
 /obj/machinery/holopad,
 /turf/open/floor/mainship/mono,
@@ -35332,12 +35578,6 @@
 	},
 /turf/open/floor/mainship_hull,
 /area/space)
-"hFN" = (
-/obj/structure/table/mainship,
-/obj/item/trash/cigbutt,
-/obj/structure/cable,
-/turf/open/floor/carpet,
-/area/mainship/living/officer_rnr)
 "hFS" = (
 /obj/machinery/door/airlock/mainship/maint,
 /obj/structure/cable,
@@ -35346,6 +35586,24 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/port_point_defense)
+"hIb" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/mainship/red{
+	dir = 1
+	},
+/area/mainship/hallways/stern_hallway)
+"hIs" = (
+/obj/structure/cable,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/mainship/red{
+	dir = 1
+	},
+/area/mainship/hallways/stern_hallway)
 "hKL" = (
 /obj/structure/janitorialcart,
 /obj/machinery/light/small,
@@ -35483,14 +35741,6 @@
 "iuZ" = (
 /turf/open/floor/mainship/research,
 /area/mainship/command/airoom)
-"iwH" = (
-/obj/structure/cable,
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/mainship{
-	dir = 4;
-	icon_state = "orangecorner"
-	},
-/area/mainship/hallways/stern_hallway)
 "iwM" = (
 /obj/machinery/door/poddoor/railing/opened,
 /turf/open/floor/plating/plating_catwalk,
@@ -35781,6 +36031,10 @@
 /obj/machinery/door/firedoor/mainship,
 /turf/open/floor/plating,
 /area/mainship/squads/req)
+"kgL" = (
+/obj/structure/cable,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/living/briefing)
 "kjP" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
@@ -35849,6 +36103,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/captain_mess)
 "kWh" = (
@@ -35876,10 +36131,6 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/squads/req)
-"lfi" = (
-/obj/structure/cable,
-/turf/open/floor/mainship/orange,
-/area/mainship/engineering/upper_engineering)
 "lhN" = (
 /turf/open/floor/prison/rampbottom,
 /area/mainship/shipboard/brig_cells)
@@ -35931,6 +36182,10 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship/stripesquare,
+/area/mainship/hallways/stern_hallway)
+"lph" = (
+/obj/structure/cable,
+/turf/open/floor/mainship/orange/corner,
 /area/mainship/hallways/stern_hallway)
 "lsi" = (
 /obj/structure/cable,
@@ -36081,6 +36336,7 @@
 /turf/open/floor/mainship/cargo/arrow,
 /area/mainship/squads/req)
 "muc" = (
+/obj/structure/cable,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
@@ -36159,6 +36415,13 @@
 	icon_state = "sterile_green_corner"
 	},
 /area/mainship/medical/medical_science)
+"mLL" = (
+/obj/machinery/light,
+/obj/structure/cable,
+/turf/open/floor/mainship{
+	icon_state = "silver"
+	},
+/area/mainship/command/cic)
 "mOA" = (
 /turf/open/floor/prison/rampbottom,
 /area/mainship/command/corporateliaison)
@@ -36379,6 +36642,7 @@
 	},
 /area/mainship/engineering/upper_engineering)
 "ovo" = (
+/obj/structure/cable,
 /obj/machinery/holopad,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)
@@ -36454,6 +36718,11 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/living/briefing)
+"oTf" = (
+/obj/machinery/door/firedoor/mainship,
+/obj/structure/cable,
+/turf/open/floor/mainship/stripesquare,
+/area/mainship/hallways/stern_hallway)
 "oTr" = (
 /turf/open/floor/carpet{
 	dir = 8;
@@ -36539,10 +36808,15 @@
 /turf/open/floor/mainship/ai,
 /area/mainship/command/airoom)
 "psm" = (
+/obj/structure/cable,
 /turf/open/floor/mainship/terragov/west{
 	dir = 4
 	},
 /area/mainship/command/cic)
+"ptw" = (
+/obj/structure/cable,
+/turf/open/floor/mainship/red/corner,
+/area/mainship/hallways/stern_hallway)
 "ptF" = (
 /obj/structure/platform{
 	dir = 1
@@ -36609,13 +36883,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/shipboard/weapon_room)
-"pHM" = (
-/obj/structure/cable,
-/turf/open/floor/mainship{
-	dir = 8;
-	icon_state = "silvercorner"
-	},
-/area/mainship/command/cic)
 "pIv" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -36625,6 +36892,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "pJd" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/door/poddoor/railing/opened{
 	dir = 8
 	},
@@ -37112,6 +37380,12 @@
 	dir = 4
 	},
 /area/mainship/hallways/hangar)
+"sTf" = (
+/obj/structure/cable,
+/turf/open/floor/mainship/orange{
+	dir = 5
+	},
+/area/mainship/engineering/upper_engineering)
 "sUb" = (
 /obj/docking_port/stationary/marine_dropship/crash_target,
 /turf/open/floor/mainship/mono,
@@ -37213,6 +37487,7 @@
 	},
 /area/mainship/squads/req)
 "tHB" = (
+/obj/structure/cable,
 /turf/open/floor/mainship/terragov/west{
 	dir = 5
 	},
@@ -37388,6 +37663,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
+"uCy" = (
+/obj/structure/cable,
+/turf/open/floor/mainship/mono,
+/area/mainship/command/corporateliaison)
 "uCE" = (
 /obj/machinery/light{
 	dir = 8
@@ -37501,6 +37780,15 @@
 	dir = 1
 	},
 /area/mainship/living/numbertwobunks)
+"vlu" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/stairs/rampbottom{
+	dir = 1
+	},
+/area/mainship/living/briefing)
 "vqs" = (
 /obj/machinery/vending/armor_supply,
 /turf/open/floor/mainship,
@@ -37675,6 +37963,10 @@
 	dir = 6
 	},
 /area/mainship/living/numbertwobunks)
+"wiI" = (
+/obj/structure/cable,
+/turf/open/floor/mainship,
+/area/mainship/living/briefing)
 "woW" = (
 /obj/structure/table/mainship,
 /obj/item/reagent_containers/jerrycan,
@@ -37712,10 +38004,10 @@
 /obj/machinery/alarm{
 	dir = 8
 	},
-/obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "wxo" = (
+/obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship{
 	dir = 4;
@@ -37792,6 +38084,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/commandbunks)
 "xaP" = (
+/obj/structure/cable,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 9
 	},
@@ -37827,8 +38120,16 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/disposalpipe/segment,
+/obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
+"xjQ" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/mainship/sterile/dark,
+/area/mainship/medical/medical_science)
 "xjZ" = (
 /obj/structure/window/framed/mainship/white,
 /turf/open/space/basic,
@@ -37852,6 +38153,7 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/cable,
 /turf/open/floor/mainship{
 	dir = 8;
 	icon_state = "silvercorner"
@@ -37883,12 +38185,6 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/living/briefing)
-"xAd" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/hull/upper_hull)
 "xGM" = (
 /turf/closed/wall/mainship/nosmooth,
 /area/mainship/engineering/upper_engineering)
@@ -37899,6 +38195,7 @@
 	},
 /area/mainship/shipboard/ex_firing_range)
 "xNg" = (
+/obj/structure/cable,
 /obj/machinery/holopad,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/engineering/upper_engineering)
@@ -37910,6 +38207,13 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_hallway)
+"xSm" = (
+/obj/machinery/camera/autoname/mainship{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/mainship/mono,
+/area/mainship/living/briefing)
 "xVA" = (
 /obj/machinery/light{
 	dir = 8
@@ -47190,7 +47494,7 @@ blA
 blA
 blA
 blA
-cko
+bKo
 bKl
 aaa
 aaa
@@ -47447,7 +47751,7 @@ blA
 blA
 blA
 blA
-cko
+bKo
 bKl
 aaa
 aaa
@@ -47704,7 +48008,7 @@ blA
 blA
 blA
 blA
-cko
+bKo
 bKl
 aaa
 aaa
@@ -47939,8 +48243,8 @@ aaa
 aaa
 bjy
 byG
-byG
-byG
+bmr
+bmr
 bod
 bqc
 brW
@@ -47961,7 +48265,7 @@ blA
 bJe
 blA
 blA
-cko
+bKo
 bKl
 aaa
 aaa
@@ -48218,7 +48522,7 @@ blA
 blA
 blA
 blA
-cko
+bKo
 bKl
 aaa
 aaa
@@ -48475,7 +48779,7 @@ blA
 blA
 blA
 blA
-cko
+bKo
 bKl
 aaa
 aaa
@@ -48732,7 +49036,7 @@ blA
 blA
 blA
 blA
-cko
+bKo
 bKl
 aaa
 aaa
@@ -49228,7 +49532,7 @@ byG
 byG
 byG
 byG
-byG
+aaQ
 blt
 cjz
 chL
@@ -49497,7 +49801,7 @@ cjP
 cjP
 aaW
 bgb
-aaJ
+bHV
 bbQ
 bbQ
 bbQ
@@ -49613,15 +49917,15 @@ aai
 aai
 aai
 anH
-acq
-arp
-arp
-arp
-arp
-arp
-arp
+alk
+als
+als
+als
+als
+als
+als
 aqV
-arp
+als
 aLq
 aMK
 aFH
@@ -49889,7 +50193,7 @@ arm
 arm
 aPG
 cgO
-aRp
+ciD
 aiE
 bqr
 ciN
@@ -50127,7 +50431,7 @@ afX
 abs
 aap
 aFA
-ciD
+aRp
 amH
 amH
 amH
@@ -50640,7 +50944,7 @@ abR
 abR
 abR
 abR
-ajQ
+anY
 aln
 amH
 anV
@@ -50660,7 +50964,7 @@ aIH
 aOI
 amH
 cfF
-alm
+aln
 aap
 aai
 aai
@@ -50917,7 +51221,7 @@ aII
 aKf
 amH
 cfF
-alm
+aln
 aap
 chC
 aap
@@ -51174,7 +51478,7 @@ apn
 aKg
 amH
 ahx
-alm
+aln
 aap
 aPN
 aap
@@ -51431,7 +51735,7 @@ amH
 amH
 amH
 cfF
-aNB
+mLL
 aap
 aii
 aoF
@@ -51668,7 +51972,7 @@ acG
 acG
 ahu
 abR
-ajQ
+anY
 aln
 amH
 atd
@@ -51925,7 +52229,7 @@ awi
 awi
 lNO
 abR
-ajQ
+anY
 aln
 amH
 atg
@@ -52182,7 +52486,7 @@ amH
 amH
 amH
 amH
-ajQ
+anY
 aln
 amH
 adm
@@ -52953,7 +53257,7 @@ amH
 lKi
 als
 mIw
-ajQ
+anY
 aln
 amH
 aoc
@@ -53210,7 +53514,7 @@ amH
 amH
 amH
 amH
-ajQ
+anY
 arp
 amH
 apu
@@ -53467,7 +53771,7 @@ adq
 agd
 akb
 adq
-ajQ
+anY
 arp
 amH
 amH
@@ -53981,7 +54285,7 @@ adq
 agf
 adq
 adq
-ajQ
+anY
 aln
 amH
 aof
@@ -54238,7 +54542,7 @@ afc
 kym
 aho
 adq
-ajQ
+anY
 aln
 amH
 atb
@@ -54495,7 +54799,7 @@ adq
 agh
 ahp
 adq
-ajQ
+anY
 aln
 amH
 auT
@@ -54752,7 +55056,7 @@ adq
 adq
 adq
 adq
-adm
+acm
 aln
 amH
 axK
@@ -55009,7 +55313,7 @@ knx
 acS
 ahv
 adq
-ajQ
+anY
 aln
 amH
 adr
@@ -55539,8 +55843,8 @@ aDd
 afY
 aPV
 aPY
-als
-ajU
+arp
+amN
 aPW
 cgR
 ciG
@@ -56038,7 +56342,7 @@ acP
 abX
 adq
 aog
-aln
+alm
 amH
 amH
 amH
@@ -56057,7 +56361,7 @@ amH
 amH
 amH
 cgU
-aNB
+mLL
 sby
 chP
 aQO
@@ -56294,8 +56598,8 @@ afg
 acP
 aiu
 adq
-ajQ
-pHM
+anY
+alr
 alj
 alj
 aob
@@ -56314,7 +56618,7 @@ aob
 alj
 alj
 cgW
-alm
+aln
 sby
 chP
 aPU
@@ -56551,15 +56855,15 @@ afg
 acP
 aiy
 adq
-ajQ
-arp
-arp
-arp
+anY
+als
+als
+als
 aqV
-arp
-acq
+als
+alk
 aMJ
-amN
+ajU
 azD
 aHE
 aBD
@@ -56808,17 +57112,17 @@ afg
 acP
 aiz
 adq
-ajQ
-alk
-alk
-alk
-aob
-nDN
-nDN
-nDN
-nDN
-als
-azA
+anY
+acq
+acq
+acq
+axP
+aru
+aru
+aru
+aru
+arp
+aIx
 als
 nDN
 nDN
@@ -57074,7 +57378,7 @@ aCR
 aEp
 awt
 azO
-aBE
+aww
 aIC
 aBE
 afG
@@ -57331,7 +57635,7 @@ ahA
 ahA
 ahA
 ahA
-aFu
+azz
 aEC
 aFu
 aar
@@ -57588,7 +57892,7 @@ arv
 ake
 aTo
 ahA
-aya
+ayc
 aJU
 aya
 aDh
@@ -57845,7 +58149,7 @@ arv
 ovo
 aSk
 aMF
-ayb
+ayd
 aJV
 ayb
 aDh
@@ -58099,10 +58403,10 @@ akd
 akd
 apz
 arv
-ake
+uCy
 aSl
 aMF
-ajc
+aye
 aMX
 aBF
 aDi
@@ -58356,10 +58660,10 @@ akd
 aol
 apA
 akd
-ake
+uCy
 ake
 ayf
-ajf
+bHX
 aMX
 aBG
 aar
@@ -59655,7 +59959,7 @@ aNZ
 aKx
 bqs
 ciB
-chm
+aKy
 aOD
 aQe
 aag
@@ -59906,13 +60210,13 @@ azR
 ann
 aDk
 aEN
-aGi
-aGi
+aGj
+aGj
 aIV
-chm
-chm
-chm
-chm
+aKy
+aKy
+aKy
+aKy
 aOE
 aQd
 hhR
@@ -60158,12 +60462,12 @@ ahA
 ahA
 avg
 ahA
-ajc
+aye
 azR
 aPF
 aDk
 aEO
-aGi
+aGj
 aHI
 aDk
 aKz
@@ -60415,12 +60719,12 @@ arz
 ake
 ake
 ahA
-ajg
+aOc
 azR
 aBH
 aap
 aap
-aOx
+unv
 aap
 aap
 aap
@@ -60672,21 +60976,21 @@ arA
 apB
 avh
 ahA
-ahG
+aPd
 azU
 afx
 aap
 acg
-acg
-acg
-abs
-abs
-abs
-abs
-abs
-acv
-abs
-acg
+aal
+aal
+aaj
+aaj
+aaj
+aaj
+aaj
+aOG
+aaj
+aal
 aai
 aag
 aag
@@ -60929,7 +61233,7 @@ ahA
 ahA
 ahA
 ahA
-aja
+aRU
 alN
 aja
 aap
@@ -60943,7 +61247,7 @@ aap
 aap
 aap
 aap
-acg
+aal
 aai
 aag
 aag
@@ -61178,15 +61482,15 @@ aal
 qOH
 jzF
 alv
-aas
-aas
-aiR
-aas
-aas
-aas
+alv
+alv
+jzF
+alv
+alv
+alv
 atr
-adB
-agp
+ava
+bKM
 azV
 agp
 aiR
@@ -61200,7 +61504,7 @@ aas
 aas
 adB
 aap
-acg
+aal
 aai
 aag
 aag
@@ -61457,7 +61761,7 @@ tIh
 aNM
 adB
 aap
-abs
+aaj
 aai
 aag
 aag
@@ -61714,7 +62018,7 @@ alw
 hjx
 adB
 aap
-tQY
+gVe
 aai
 aag
 aag
@@ -61971,7 +62275,7 @@ alw
 aNN
 adB
 aap
-abs
+aaj
 aai
 aag
 aag
@@ -62228,7 +62532,7 @@ alw
 hjx
 aQj
 aap
-acg
+aal
 aai
 aag
 aag
@@ -62485,7 +62789,7 @@ alw
 hjx
 aOJ
 aap
-acg
+aal
 aai
 aag
 aag
@@ -62742,7 +63046,7 @@ alw
 hjx
 adB
 aap
-abs
+aaj
 aai
 aag
 aag
@@ -62999,7 +63303,7 @@ alw
 hjx
 adB
 aap
-tQY
+gVe
 aai
 aag
 aag
@@ -63256,7 +63560,7 @@ alw
 hjx
 aas
 aap
-abs
+aaj
 aai
 aag
 aag
@@ -63513,7 +63817,7 @@ aMS
 hjx
 aas
 aap
-acg
+aal
 aai
 aag
 aag
@@ -63770,7 +64074,7 @@ alw
 hjx
 aas
 aap
-acg
+aal
 aai
 aag
 aag
@@ -64027,7 +64331,7 @@ alw
 ahy
 aas
 aap
-abs
+aaj
 aai
 aag
 aag
@@ -64146,7 +64450,7 @@ aIZ
 boF
 aIZ
 aIZ
-aIZ
+oYg
 aIZ
 bMa
 bNw
@@ -64284,7 +64588,7 @@ aMS
 hjx
 aas
 aap
-tQY
+gVe
 aai
 aag
 aag
@@ -64541,7 +64845,7 @@ alw
 hjx
 aas
 aap
-abs
+aaj
 aai
 aag
 aag
@@ -64798,7 +65102,7 @@ alw
 aNP
 adB
 aap
-acg
+aal
 aai
 aag
 aag
@@ -65055,7 +65359,7 @@ alw
 ahI
 aQj
 aap
-acg
+aal
 aai
 aai
 aai
@@ -65312,13 +65616,13 @@ alw
 hjx
 aas
 aap
-acg
-abs
-abs
-abs
-acg
-acg
-ajA
+aal
+aaj
+aaj
+aaj
+aal
+aal
+aTF
 aai
 aag
 aag
@@ -65575,7 +65879,7 @@ aap
 aap
 aap
 aap
-abs
+aaj
 aai
 aag
 aag
@@ -65832,7 +66136,7 @@ aRQ
 aSi
 aSH
 aap
-abs
+aaj
 aai
 aag
 aag
@@ -65939,7 +66243,7 @@ auZ
 bxz
 byZ
 aJa
-bBG
+bBD
 oYg
 bDi
 aIZ
@@ -66089,7 +66393,7 @@ aea
 aea
 ciu
 aap
-abs
+aaj
 aai
 aai
 aai
@@ -66346,11 +66650,11 @@ aeb
 aeb
 civ
 aaq
-acg
-acg
-acg
-acg
-acg
+aal
+aal
+aal
+aal
+aal
 aai
 aag
 aag
@@ -66607,7 +66911,7 @@ abs
 abs
 abs
 abs
-tQY
+aUn
 aai
 aag
 aag
@@ -66864,7 +67168,7 @@ vHb
 bXl
 vHb
 vHb
-abs
+aaj
 aai
 aag
 aag
@@ -67121,7 +67425,7 @@ aVh
 cic
 ciy
 vHb
-abs
+aaj
 aai
 aag
 aag
@@ -67378,7 +67682,7 @@ cfn
 aQS
 ciz
 vHb
-abs
+aaj
 aai
 aag
 aag
@@ -67635,7 +67939,7 @@ cfo
 cic
 ciA
 vHb
-abs
+aaj
 aai
 aag
 aag
@@ -67892,7 +68196,7 @@ vHb
 chv
 vHb
 vHb
-abs
+aaj
 aai
 aag
 aag
@@ -68149,7 +68453,7 @@ aiV
 aRt
 cft
 vHb
-abs
+aaj
 aai
 aag
 aag
@@ -68406,7 +68710,7 @@ aQS
 aRt
 cfu
 vHb
-abs
+aaj
 aai
 aag
 aag
@@ -68497,7 +68801,7 @@ bci
 baL
 bik
 blX
-blN
+bjM
 blX
 blP
 boE
@@ -68633,7 +68937,7 @@ ajc
 akv
 alz
 ane
-aoy
+ayp
 mxt
 ayq
 aSx
@@ -68663,7 +68967,7 @@ lYB
 xHM
 cfv
 vHb
-abs
+aaj
 aai
 aag
 aag
@@ -68890,7 +69194,7 @@ ajc
 akt
 alz
 anf
-aoz
+fDG
 aoz
 aoz
 aoz
@@ -68920,7 +69224,7 @@ aQi
 cfH
 aQi
 vHb
-abs
+aaj
 aai
 aag
 aag
@@ -69147,7 +69451,7 @@ ajc
 akt
 alz
 qfP
-aoz
+fDG
 xOC
 arL
 xOC
@@ -69155,7 +69459,7 @@ aoz
 xjZ
 anc
 aoz
-aBX
+xjQ
 aDy
 aEX
 aGD
@@ -69177,7 +69481,7 @@ kyc
 aQS
 cfw
 vHb
-tQY
+aUn
 aai
 aag
 aag
@@ -69404,7 +69708,7 @@ ajc
 akv
 alz
 anh
-aoz
+fDG
 xOC
 alz
 anf
@@ -69434,7 +69738,7 @@ aiI
 aQS
 cfx
 vHb
-acg
+aal
 aai
 aag
 aag
@@ -69669,7 +69973,7 @@ aoz
 xjZ
 wta
 aoz
-aBX
+xjQ
 aDA
 aEX
 aGF
@@ -69691,7 +69995,7 @@ aQS
 aQS
 cfy
 vHb
-acg
+aal
 aai
 aag
 aag
@@ -69926,7 +70230,7 @@ uQd
 alz
 dhy
 aoz
-aBX
+xjQ
 aDB
 alz
 aGG
@@ -69948,7 +70252,7 @@ aUb
 aQS
 aUc
 vHb
-acg
+aal
 aai
 aag
 aag
@@ -70183,7 +70487,7 @@ xOC
 alz
 mKV
 awE
-aBX
+xjQ
 aDC
 alz
 agj
@@ -70205,7 +70509,7 @@ aOX
 aQS
 cfA
 vHb
-abs
+aaj
 aai
 aag
 aag
@@ -70462,7 +70766,7 @@ vHb
 chw
 vHb
 vHb
-abs
+aaj
 aai
 aag
 aag
@@ -70697,7 +71001,7 @@ acg
 alz
 aoz
 aAf
-aBX
+xjQ
 alz
 acg
 aoH
@@ -70719,7 +71023,7 @@ bxp
 aQS
 eso
 vHb
-abs
+aaj
 aai
 aag
 aag
@@ -70976,7 +71280,7 @@ bFQ
 aQS
 ciS
 vHb
-abs
+aaj
 aai
 aag
 aag
@@ -71211,7 +71515,7 @@ abs
 alz
 aSs
 aAh
-aoz
+fDG
 alz
 abs
 aoH
@@ -71233,7 +71537,7 @@ bPX
 cic
 cfD
 vHb
-abs
+aaj
 aai
 aag
 aag
@@ -71450,8 +71754,8 @@ aap
 abx
 fSg
 acr
-adE
-acs
+adc
+adD
 qEm
 hXu
 afu
@@ -71490,7 +71794,7 @@ eso
 cic
 cfE
 vHb
-abs
+aaj
 aai
 aag
 aag
@@ -71706,9 +72010,9 @@ aaj
 aap
 aby
 aee
-adD
+acs
 add
-hFN
+adE
 lIQ
 afs
 agz
@@ -71725,7 +72029,7 @@ alz
 alz
 aoz
 aAi
-aoz
+fDG
 alz
 alz
 abs
@@ -71747,7 +72051,7 @@ vHb
 bYA
 vHb
 vHb
-abs
+aaj
 aai
 aag
 aag
@@ -71982,7 +72286,7 @@ alz
 awD
 aoz
 aoz
-aoz
+fDG
 aDD
 alz
 alz
@@ -72004,7 +72308,7 @@ aQS
 aQS
 cic
 vHb
-abs
+aaj
 aai
 aag
 aag
@@ -72101,13 +72405,13 @@ blf
 bnv
 lEm
 atl
-acB
-bpb
-bpb
-bpb
-qfC
+xSm
+lEm
+lEm
+lEm
+vlu
 bAB
-bqV
+wiI
 bDt
 dJE
 bpb
@@ -72238,8 +72542,8 @@ atB
 avw
 atx
 aoz
-cvw
-aoz
+jwV
+fDG
 aDE
 avw
 aGI
@@ -72261,7 +72565,7 @@ aTP
 aTP
 aSY
 vHb
-abs
+aaj
 aai
 aag
 aag
@@ -72364,7 +72668,7 @@ fjk
 bqV
 ilx
 bAC
-bBL
+kgL
 bDu
 ptF
 bqV
@@ -72518,7 +72822,7 @@ aap
 aap
 aap
 aap
-tQY
+aUn
 aai
 aai
 aai
@@ -72621,7 +72925,7 @@ bxS
 bxS
 uFv
 bAC
-bBL
+kgL
 bDu
 dEc
 bHk
@@ -72775,12 +73079,12 @@ aTQ
 abs
 abs
 abs
-abs
-abs
-acg
-acg
-xAd
-abs
+aaj
+aaj
+aal
+aal
+acE
+aaj
 aai
 aaa
 aaa
@@ -72878,7 +73182,7 @@ bxS
 bxS
 uFv
 bAC
-bqV
+wiI
 bDu
 dEc
 bHk
@@ -73037,7 +73341,7 @@ aap
 aap
 aap
 aap
-abs
+aaj
 aai
 aaa
 aaa
@@ -73294,7 +73598,7 @@ aaE
 aaE
 aaE
 aap
-abs
+aaj
 aai
 aaa
 aaa
@@ -73551,7 +73855,7 @@ aaE
 aaE
 aaE
 aap
-abs
+aaj
 aai
 aaf
 aaf
@@ -73808,7 +74112,7 @@ aaE
 aaE
 aaE
 aap
-abs
+aaj
 aai
 aai
 aai
@@ -74065,10 +74369,10 @@ aba
 aaE
 aaE
 aap
-abs
-abs
-abs
-tQY
+aaj
+aaj
+aaj
+aUn
 aai
 aag
 aag
@@ -74193,7 +74497,7 @@ bUk
 aVs
 aVG
 ceo
-ceA
+cal
 aVu
 aVs
 aVs
@@ -74325,7 +74629,7 @@ aap
 aap
 aap
 aap
-acg
+aal
 aai
 aag
 aag
@@ -74582,7 +74886,7 @@ aVc
 afA
 afA
 aai
-acg
+aal
 aai
 aag
 aag
@@ -74839,7 +75143,7 @@ aTC
 aVf
 aiT
 aaq
-acg
+aal
 aai
 aag
 aag
@@ -75096,7 +75400,7 @@ aaC
 afB
 aat
 aap
-acg
+aal
 aai
 aag
 aag
@@ -75353,7 +75657,7 @@ aar
 ajd
 aVe
 aap
-abs
+aaj
 aai
 aag
 aag
@@ -75610,7 +75914,7 @@ aap
 aap
 aap
 aap
-abs
+aaj
 aai
 aag
 aag
@@ -75864,10 +76168,10 @@ aaE
 aaE
 aaE
 aap
-abs
-abs
-abs
-abs
+aaj
+aaj
+aaj
+aaj
 aai
 aag
 aag
@@ -76121,7 +76425,7 @@ aaE
 aaE
 aaE
 aap
-tQY
+aUn
 aai
 aai
 aai
@@ -76378,7 +76682,7 @@ aaE
 aaE
 aaE
 aap
-abs
+aaj
 aai
 aag
 aag
@@ -76635,7 +76939,7 @@ aap
 aap
 aap
 aap
-abs
+aaj
 aai
 aag
 aag
@@ -76880,19 +77184,19 @@ aQp
 acG
 aRC
 abR
-abs
-abs
-abs
-abs
-acv
-abs
-acg
-acg
-acg
-abs
-abs
-abs
-abs
+aaj
+aaj
+aaj
+aaj
+aaD
+aaj
+aal
+aal
+aal
+aaj
+aaj
+aaj
+aaj
 aai
 aag
 aah
@@ -77137,7 +77441,7 @@ aQq
 aRd
 acG
 abR
-abs
+aaj
 aai
 aai
 aai
@@ -77394,7 +77698,7 @@ abR
 abR
 abR
 abR
-abs
+aaj
 aai
 aag
 aag
@@ -77651,7 +77955,7 @@ aQr
 aQr
 aRD
 aOg
-abs
+aaj
 aai
 aag
 aag
@@ -77908,7 +78212,7 @@ aQs
 aQs
 aSW
 aOg
-acg
+aal
 aai
 aag
 aag
@@ -78165,7 +78469,7 @@ aQs
 aQs
 aRF
 aOg
-ajA
+aUZ
 aai
 aai
 aag
@@ -78422,8 +78726,8 @@ aQt
 aRe
 aRe
 aOg
-acg
-abs
+aal
+aaj
 aai
 aag
 aag
@@ -78680,7 +78984,7 @@ aPt
 aPt
 aPt
 aPt
-abs
+aaj
 aai
 aag
 aag
@@ -78937,7 +79241,7 @@ sXm
 aQG
 aQG
 aPt
-abs
+aaj
 aai
 aag
 aag
@@ -79194,7 +79498,7 @@ aRf
 aRG
 aRW
 aPt
-abs
+aaj
 aai
 aag
 aag
@@ -79301,8 +79605,8 @@ gEh
 lEo
 tEQ
 qhO
-byd
-byd
+qhO
+qhO
 haf
 byd
 byd
@@ -79451,7 +79755,7 @@ aPt
 aPt
 aPt
 aPt
-abs
+aaj
 aai
 aag
 aag
@@ -79554,7 +79858,7 @@ xek
 bnG
 bpu
 bGh
-gEh
+buH
 gas
 bwf
 buH
@@ -79708,7 +80012,7 @@ sXm
 aRH
 aRH
 aPt
-abs
+aaj
 aai
 aag
 aag
@@ -79948,7 +80252,7 @@ arS
 avC
 awL
 ayD
-avH
+aRE
 aCk
 awL
 aFa
@@ -79965,7 +80269,7 @@ aRf
 aRI
 aRX
 aPt
-abs
+aaj
 aai
 aag
 aag
@@ -80222,7 +80526,7 @@ aPt
 aPt
 aPt
 aPt
-abs
+aaj
 aai
 aag
 aag
@@ -80478,8 +80782,8 @@ aQB
 aRg
 aRJ
 aOg
-acg
-abs
+aal
+aaj
 aai
 aag
 aag
@@ -80735,7 +81039,7 @@ aQC
 aQs
 aRK
 aRY
-acg
+aal
 aai
 aai
 aag
@@ -80992,7 +81296,7 @@ aQD
 aRh
 aRL
 aOg
-ajA
+aUZ
 aai
 aag
 aag
@@ -81249,7 +81553,7 @@ aQE
 sXm
 aQE
 aPt
-abs
+aaj
 aai
 aag
 aag
@@ -81506,7 +81810,7 @@ aQF
 aQG
 aRM
 aPt
-abs
+aaj
 aai
 aag
 aag
@@ -81763,7 +82067,7 @@ aQG
 aRi
 aQG
 aPt
-abs
+aaj
 aai
 aag
 aag
@@ -82020,7 +82324,7 @@ aQH
 aQH
 aPt
 aPt
-abs
+aaj
 aai
 aag
 aag
@@ -82276,8 +82580,8 @@ aPu
 aQI
 aQI
 aai
-abs
-abs
+aaj
+aaj
 aai
 aag
 aag
@@ -82533,7 +82837,7 @@ aPu
 aai
 aai
 aai
-abs
+aaj
 aai
 aai
 aag
@@ -82790,7 +83094,7 @@ aPv
 aap
 abs
 acg
-acg
+aal
 aai
 aag
 aag
@@ -83047,7 +83351,7 @@ aPw
 aap
 ajC
 acg
-acg
+aal
 aai
 aag
 aag
@@ -83279,7 +83583,7 @@ acg
 aaj
 aiq
 ajz
-iwH
+akP
 amk
 anu
 aoK
@@ -83418,12 +83722,12 @@ bpH
 bCa
 bpH
 bzu
-aLt
+bpN
 ayA
 bnI
 btc
 brr
-bpF
+aLW
 bnI
 blY
 bRa
@@ -83812,7 +84116,7 @@ aoM
 aoM
 aoM
 ahn
-ant
+lph
 aOj
 aPx
 aap
@@ -84069,7 +84373,7 @@ aIh
 aJs
 aoM
 amm
-amm
+oTf
 aap
 aap
 aap
@@ -84326,7 +84630,7 @@ asc
 atP
 aoN
 aoK
-ant
+lph
 aap
 aaj
 aaj
@@ -84584,7 +84888,7 @@ aEa
 aLa
 akP
 anC
-asu
+aaq
 aaj
 aai
 aai
@@ -84842,7 +85146,7 @@ aoM
 akM
 amo
 aap
-acg
+aal
 aai
 aag
 aag
@@ -85099,7 +85403,7 @@ aoM
 akL
 aRP
 aap
-aPy
+adM
 aai
 aag
 aag
@@ -85348,7 +85652,7 @@ ayN
 xNg
 atO
 awP
-aFi
+aFj
 asc
 asc
 aJv
@@ -85356,7 +85660,7 @@ aoM
 akL
 amo
 aap
-acg
+aal
 aai
 aag
 aag
@@ -85605,7 +85909,7 @@ ayO
 aAD
 atO
 awP
-aFi
+aFj
 aAP
 awY
 aJw
@@ -85613,7 +85917,7 @@ aoM
 akL
 amo
 aap
-abs
+aaj
 aai
 aag
 aag
@@ -85744,7 +86048,7 @@ bQF
 bRp
 bRV
 bSW
-bUI
+bSW
 fUZ
 bUI
 bYg
@@ -85870,7 +86174,7 @@ aoM
 akL
 ant
 aap
-abs
+aaj
 aai
 aag
 aag
@@ -86127,7 +86431,7 @@ aoM
 akL
 ant
 aap
-abs
+aaj
 aai
 aag
 aag
@@ -86374,7 +86678,7 @@ avP
 awU
 aKO
 aAG
-lfi
+atO
 aDJ
 aoM
 aGR
@@ -86384,7 +86688,7 @@ aoM
 akL
 anA
 aap
-acg
+aal
 aai
 aag
 aag
@@ -86641,7 +86945,7 @@ aoM
 akL
 aMj
 aaq
-ajA
+aUZ
 aai
 aag
 aag
@@ -86886,9 +87190,9 @@ aoM
 aoM
 aoM
 afj
-auf
+ayN
 aAI
-lfi
+atO
 aDL
 aoM
 aGV
@@ -86898,7 +87202,7 @@ aoM
 akL
 ant
 aap
-acg
+aal
 aai
 aag
 aag
@@ -87143,7 +87447,7 @@ asi
 atS
 aoM
 awX
-auf
+ayN
 aAJ
 aCy
 aDM
@@ -87155,7 +87459,7 @@ aoM
 akL
 amo
 aap
-abs
+aaj
 aai
 aag
 aag
@@ -87400,7 +87704,7 @@ asj
 atT
 aoM
 aqg
-ayW
+aqd
 ayM
 aCz
 awY
@@ -87412,7 +87716,7 @@ aoM
 akL
 aNp
 aap
-abs
+aaj
 aai
 aag
 aag
@@ -87657,7 +87961,7 @@ ask
 atU
 avQ
 aqd
-ayX
+ayM
 asc
 aCA
 aDN
@@ -87669,7 +87973,7 @@ aoM
 akL
 amo
 aap
-abs
+aaj
 aai
 aag
 aag
@@ -87914,7 +88218,7 @@ ask
 atU
 avQ
 awY
-ayY
+axg
 asc
 aCA
 aDO
@@ -87926,7 +88230,7 @@ aoM
 akM
 ant
 aap
-acg
+aal
 aai
 aag
 aag
@@ -88171,7 +88475,7 @@ asl
 atV
 aoM
 awZ
-auf
+ayN
 asc
 aCA
 aDP
@@ -88183,7 +88487,7 @@ aoM
 akL
 amo
 aap
-aPy
+adM
 aai
 aag
 aag
@@ -88428,7 +88732,7 @@ asm
 atW
 aoM
 ayQ
-auf
+ayN
 ayM
 aCA
 aDQ
@@ -88440,7 +88744,7 @@ aoM
 akL
 amo
 aap
-acg
+aal
 aai
 aag
 aag
@@ -88697,7 +89001,7 @@ aoM
 akL
 amo
 aap
-abs
+aaj
 aai
 aag
 aag
@@ -88942,7 +89246,7 @@ asn
 ieY
 aoP
 axb
-auf
+ayN
 asf
 aCA
 aDR
@@ -88954,7 +89258,7 @@ aoM
 akL
 ant
 aap
-abs
+aaj
 aai
 aag
 aag
@@ -89211,7 +89515,7 @@ aoM
 akL
 ant
 aap
-abs
+aaj
 aai
 aag
 aag
@@ -89468,7 +89772,7 @@ aoM
 akL
 ant
 aap
-acg
+aal
 aai
 aag
 aag
@@ -89725,7 +90029,7 @@ aoM
 akL
 amo
 aap
-ajA
+aUZ
 aai
 aag
 aag
@@ -89971,7 +90275,7 @@ aua
 avS
 axf
 ayW
-asc
+aAO
 aCG
 aDU
 aFn
@@ -89982,7 +90286,7 @@ aoM
 akL
 aNp
 aap
-acg
+aal
 aai
 aag
 aag
@@ -90229,7 +90533,7 @@ aoP
 axg
 ayX
 asc
-ayX
+ayM
 nlp
 aAK
 aHf
@@ -90239,7 +90543,7 @@ aoM
 akL
 aNq
 aap
-abs
+aaj
 aai
 aag
 aag
@@ -90486,7 +90790,7 @@ aoP
 afk
 ayY
 aSR
-aEa
+aAP
 aDV
 aoM
 aHg
@@ -90496,7 +90800,7 @@ aoM
 akL
 ant
 aap
-abs
+aaj
 aai
 aag
 aag
@@ -90753,7 +91057,7 @@ aoM
 amm
 amm
 aap
-abs
+aaj
 aai
 aag
 aag
@@ -91001,8 +91305,8 @@ asf
 aza
 muc
 vMb
-asf
-asf
+axf
+axf
 qeO
 aoM
 aJJ
@@ -91010,7 +91314,7 @@ aoQ
 aJK
 aMj
 aap
-acg
+aal
 aai
 aag
 aag
@@ -91258,16 +91562,16 @@ axi
 azb
 cix
 aCJ
-aHf
-asc
+vXM
+aAO
 sPH
 aoM
-aoS
-amo
-amo
-aLb
-aaq
-acg
+eRg
+anC
+anC
+ptw
+asu
+aal
 aap
 aag
 aag
@@ -91515,11 +91819,11 @@ axi
 azb
 fhA
 aCJ
-aHf
-asc
+vXM
+aAO
 aKH
 aoM
-aoT
+hIb
 aLb
 amy
 aLe
@@ -91772,11 +92076,11 @@ vXM
 azb
 fhA
 aCJ
-aHf
-aAP
+vXM
+aEa
 uwI
 aoM
-aoS
+eRg
 aRw
 aai
 aai
@@ -92029,11 +92333,11 @@ awY
 azd
 aAS
 xaP
-aAP
+aEa
 aEc
 aoM
 aoM
-aoS
+eRg
 aLc
 aai
 aag
@@ -92286,11 +92590,11 @@ axj
 auf
 vXM
 vXM
-lfi
+atO
 aFo
 aoM
 aIr
-aoS
+eRg
 aLc
 aai
 aag
@@ -92540,14 +92844,14 @@ asu
 aal
 aoM
 axj
-ayP
+sTf
 aAU
-awY
+aCL
 aEc
 aFp
 aoM
 aIs
-aoS
+eRg
 aLc
 aai
 aag
@@ -92672,7 +92976,7 @@ bDW
 bzG
 bGy
 bHP
-bJx
+bDW
 bKd
 bLq
 aVs
@@ -92804,7 +93108,7 @@ xGM
 xGM
 xGM
 xGM
-hyp
+hIs
 luI
 aai
 aag
@@ -93061,7 +93365,7 @@ rGG
 rGG
 rGG
 rGG
-rGG
+lsi
 rGG
 aai
 aag
@@ -93312,13 +93616,13 @@ avV
 avV
 avV
 avV
-aMj
-aMj
-aMj
-aMj
-aMj
-aMj
-aMj
+avV
+avV
+avV
+avV
+avV
+avV
+avV
 aLd
 aai
 aag
@@ -94722,9 +95026,9 @@ bvd
 bCd
 bCd
 bCd
-bBi
+bvd
 bCz
-bBi
+bvd
 bCd
 bCd
 bCd
@@ -95493,9 +95797,9 @@ bvd
 bxQ
 bxQ
 bxQ
-bBi
+bvd
 bCz
-bBi
+bvd
 bxQ
 bxQ
 bxQ
@@ -96264,9 +96568,9 @@ brQ
 bxQ
 bxQ
 bxQ
-bBi
+bvd
 bCz
-bBi
+bvd
 bxQ
 bxQ
 bxQ
@@ -96521,9 +96825,9 @@ brQ
 bxQ
 bxQ
 bxQ
-bvd
-bEb
-bvd
+bBi
+bCz
+bBi
 bxQ
 bxQ
 bxQ
@@ -97029,7 +97333,7 @@ aaa
 aaa
 aaa
 aVk
-bag
+brq
 brq
 brQ
 brQ
@@ -97043,7 +97347,7 @@ brQ
 brQ
 brQ
 brq
-bag
+brq
 aVk
 aaa
 aaa

@@ -989,6 +989,10 @@
 	dir = 10
 	},
 /area/outpost/yard/north)
+"fJ" = (
+/obj/structure/cable,
+/turf/open/floor/tile/dark,
+/area/outpost/brig/armoury)
 "fK" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1
@@ -3020,6 +3024,7 @@
 /area/outpost/hallway/south_west)
 "qh" = (
 /obj/machinery/autodoc,
+/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/outpost/medbay)
 "qi" = (
@@ -3027,6 +3032,13 @@
 	dir = 8
 	},
 /area/outpost/hallway/central)
+"qj" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/outpost/brig/armoury)
 "qk" = (
 /turf/open/floor/tile/dark/brown2{
 	dir = 1
@@ -6734,7 +6746,6 @@
 /turf/open/floor/tile/dark,
 /area/outpost/engineering)
 "KW" = (
-/obj/structure/cable,
 /turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
@@ -6786,7 +6797,6 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/structure/cable,
 /turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
@@ -7676,6 +7686,7 @@
 /area/outpost/medbay/chemistry)
 "PQ" = (
 /obj/machinery/optable,
+/obj/structure/cable,
 /obj/item/tank/anesthetic,
 /obj/item/clothing/mask/breath/medical,
 /obj/effect/decal/cleanable/blood,
@@ -8269,7 +8280,6 @@
 /area/outpost/lz2)
 "SO" = (
 /obj/machinery/computer/intel_computer,
-/obj/structure/cable,
 /turf/open/floor/tile/dark/red2,
 /area/outpost/medbay/security)
 "SS" = (
@@ -9693,6 +9703,9 @@
 	dir = 8
 	},
 /area/outpost/engineering)
+"ZY" = (
+/turf/open/floor/plating,
+/area/outpost/engineering/engine)
 "ZZ" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -35994,19 +36007,19 @@ Cy
 Cy
 Cy
 DX
-MG
+ZY
 sk
 xG
 gK
 Eq
 MU
 ih
-MG
-MG
-MG
-MG
-MG
-MG
+ZY
+ZY
+ZY
+ZY
+ZY
+ZY
 DX
 Zc
 Zc
@@ -36264,7 +36277,7 @@ sk
 CU
 DC
 CU
-MG
+ZY
 DX
 DX
 DX
@@ -36510,21 +36523,21 @@ Sz
 Db
 DX
 DX
-MG
+ZY
 sk
 xG
 gK
 KI
 MU
-MG
-MG
+ZY
+ZY
 sk
-MG
+ZY
 DX
-MG
-MG
-MG
-MG
+ZY
+ZY
+ZY
+ZY
 DX
 Zc
 Zc
@@ -36770,19 +36783,19 @@ wR
 DX
 RA
 sk
-MG
+ZY
 FJ
-MG
+ZY
 MU
-MG
+ZY
 CU
 sk
-MG
+ZY
 rH
-MG
-MG
+ZY
+ZY
 CU
-MG
+ZY
 DX
 Zc
 Zc
@@ -37029,18 +37042,18 @@ cR
 fg
 dl
 fE
-MG
-MG
+ZY
+ZY
 MU
-MG
+ZY
 CU
 sk
 sk
 cw
-MG
-MG
+ZY
+ZY
 CU
-MG
+ZY
 DX
 LU
 LU
@@ -37287,18 +37300,18 @@ DX
 RA
 oE
 aJ
-MG
-MG
+ZY
+ZY
 MU
-MG
+ZY
 CU
-MG
-MG
+ZY
+ZY
 od
-MG
-MG
+ZY
+ZY
 CU
-MG
+ZY
 DX
 LU
 LU
@@ -37543,20 +37556,20 @@ Db
 DX
 DX
 Dh
-MG
-MG
+ZY
+ZY
 aJ
-MG
+ZY
 MU
-MG
-MG
-MG
-MG
+ZY
+ZY
+ZY
+ZY
 DX
-MG
-MG
-MG
-MG
+ZY
+ZY
+ZY
+ZY
 DX
 LU
 LU
@@ -37801,18 +37814,18 @@ uf
 uf
 DX
 ob
-MG
+ZY
 jI
 lX
-MG
+ZY
 JG
-MG
-MG
-MG
+ZY
+ZY
+ZY
 CU
 ps
 CU
-MG
+ZY
 DX
 DX
 DX
@@ -37998,8 +38011,8 @@ cg
 cg
 lp
 iz
-cp
-vt
+fJ
+qj
 AY
 lp
 op
@@ -38059,18 +38072,18 @@ uf
 uf
 DX
 MG
-MG
+ZY
 eQ
 OI
 GS
 MU
 pN
-MG
-MG
-MG
-MG
-MG
-MG
+ZY
+ZY
+ZY
+ZY
+ZY
+ZY
 DX
 LU
 LU

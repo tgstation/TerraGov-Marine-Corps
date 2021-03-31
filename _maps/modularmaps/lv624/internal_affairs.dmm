@@ -46,7 +46,6 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 8
 	},
-/obj/structure/cable,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 8
 	},
@@ -71,7 +70,6 @@
 	id = "corporate_blast";
 	name = "\improper Corporate Dome Blast Door"
 	},
-/obj/structure/cable,
 /turf/open/floor/plating,
 /area/lv624/lazarus/internal_affairs)
 "gU" = (
@@ -98,7 +96,7 @@
 /area/lv624/lazarus/internal_affairs)
 "if" = (
 /obj/item/flashlight,
-/obj/item/ammo_magazine/smg/mp7,
+/obj/item/ammo_magazine/smg/mp5,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
 	},
@@ -208,7 +206,6 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/structure/cable,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 1
 	},
@@ -231,7 +228,6 @@
 /area/lv624/lazarus/internal_affairs)
 "yr" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
-/obj/structure/cable,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 1
 	},
@@ -250,6 +246,12 @@
 	dir = 1
 	},
 /turf/open/floor/tile/blue/whiteblue,
+/area/lv624/lazarus/internal_affairs)
+"zZ" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 1
+	},
 /area/lv624/lazarus/internal_affairs)
 "Au" = (
 /obj/machinery/vending/snack,
@@ -274,7 +276,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
 	},
-/obj/structure/cable,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 8
 	},
@@ -430,7 +431,7 @@
 /turf/open/floor/tile/blue/whitebluefull,
 /area/lv624/lazarus/internal_affairs)
 "Nr" = (
-/obj/item/weapon/gun/smg/mp7,
+/obj/item/weapon/gun/smg/mp5,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 4
 	},
@@ -738,11 +739,11 @@ Vu
 "}
 (8,1,1) = {"
 fA
-Ge
+zZ
 tF
-Ge
-Ge
-Ge
+zZ
+zZ
+zZ
 yr
 dG
 KD

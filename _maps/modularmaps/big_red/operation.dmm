@@ -1086,6 +1086,14 @@
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
+"WV" = (
+/obj/structure/table,
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 4;
+	on = 1
+	},
+/turf/open/floor/carpet,
+/area/bigredv2/outside/admin_building)
 "Xb" = (
 /obj/structure/table/woodentable,
 /turf/open/floor/wood,
@@ -1258,7 +1266,7 @@ Yz
 TV
 Li
 TV
-TV
+WV
 ZJ
 GT
 BN

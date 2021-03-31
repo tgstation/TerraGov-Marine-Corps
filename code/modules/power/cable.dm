@@ -709,12 +709,4 @@ GLOBAL_LIST(hub_radial_layer_list)
 	to_chat(user, "<span class='warning'>You pust reset button.</span>")
 	addtimer(CALLBACK(src, .proc/Reload), 10, TIMER_UNIQUE) //spam protect
 
-//Multilayer combinations so avoid linter issues in the future
-/obj/structure/cable/multilayer/layer12
-	cable_layer = CABLE_LAYER_1 | CABLE_LAYER_2
 
-/obj/structure/cable/multilayer/layer13
-	cable_layer = CABLE_LAYER_1 | CABLE_LAYER_3
-
-/obj/structure/cable/multilayer/layer23
-	cable_layer = CABLE_LAYER_2 | CABLE_LAYER_3
