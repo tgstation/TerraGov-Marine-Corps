@@ -792,13 +792,12 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.selected_ability != src)
 		return ..()
-	. = ..()
 	for(var/i in 1 to X.xeno_caste.spit_types.len)
 		if(X.ammo == GLOB.ammo_list[X.xeno_caste.spit_types[i]])
 			if(i == X.xeno_caste.spit_types.len)
 				X.ammo = GLOB.ammo_list[X.xeno_caste.spit_types[1]]
-			else
-				X.ammo = GLOB.ammo_list[X.xeno_caste.spit_types[i+1]]
+				break
+			X.ammo = GLOB.ammo_list[X.xeno_caste.spit_types[i+1]]
 			break
 	to_chat(X, "<span class='notice'>We will now spit [X.ammo.name] ([X.ammo.spit_cost] plasma).</span>")
 	update_button_icon()
