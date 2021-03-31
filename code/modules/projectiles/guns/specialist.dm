@@ -1133,7 +1133,7 @@
 	else if (windup_checked == WEAPON_WINDUP_CHECKING)//We are already in windup, continue
 		return
 	. = ..()
-	if(. != GUN_HAS_FIRED)
+	if(!.)
 		windup_checked = WEAPON_WINDUP_NOT_CHECKED
 
 ///Windup before firing

@@ -156,7 +156,7 @@
 	handle_starting_attachment()
 
 	setup_firemodes()
-	AddComponent(/datum/component/automatedfire/autofire, fire_delay, burst_delay, burst_amount, gun_firemode) //This should go after handle_starting_attachment() and setup_firemodes() to get the proper values set.
+	AddComponent(/datum/component/automatedfire/autofire, fire_delay, burst_delay, burst_amount, gun_firemode, CALLBACK(src, .proc/set_bursting), CALLBACK(src, .proc/reset_fire), CALLBACK(src, .proc/Fire)) //This should go after handle_starting_attachment() and setup_firemodes() to get the proper values set.
 
 	muzzle_flash = new(src, muzzleflash_iconstate)
 
@@ -196,16 +196,12 @@
 	unwield(user)
 	if(ishandslot(slot))
 		gun_user = user
-		RegisterSignal(gun_user, COMSIG_MOB_MOUSEDOWN, .proc/start_fire)
+		RegisterSignal(gun_user, COMSIG_MOB_MOUSEDOWN, .proc/start_fire) //All of this should and will be put inside an aiming component
 		RegisterSignal(gun_user, COMSIG_MOB_MOUSEUP, .proc/stop_fire)
 		RegisterSignal(gun_user, COMSIG_MOB_MOUSEDRAG, .proc/change_target)
-		RegisterSignal(src, COMSIG_GUN_MUST_FIRE, .proc/Fire)
-		RegisterSignal(src, COMSIG_GUN_FIRE_RESET, .proc/reset_fire)
-		RegisterSignal(src, COMSIG_GUN_IS_BURSTING, .proc/set_bursting)
 		return ..()
 	if(gun_user)
 		UnregisterSignal(gun_user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG))
-		UnregisterSignal(src, list(COMSIG_GUN_MUST_FIRE, COMSIG_GUN_FIRE_RESET, COMSIG_GUN_IS_BURSTING))
 		gun_user = null	
 	return ..()
 
@@ -213,7 +209,6 @@
 	if(!gun_user)
 		return
 	UnregisterSignal(gun_user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG))
-	UnregisterSignal(src, list(COMSIG_GUN_MUST_FIRE, COMSIG_GUN_FIRE_RESET, COMSIG_GUN_IS_BURSTING))
 	gun_user = null
 
 /obj/item/weapon/gun/update_icon(mob/user)
@@ -557,7 +552,6 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 
 ///Clean all references 
 /obj/item/weapon/gun/proc/reset_fire()
-	SIGNAL_HANDLER
 	shots_fired = 0//Let's clean everything
 	set_target(null)
 	windup_checked = WEAPON_WINDUP_NOT_CHECKED
@@ -570,7 +564,6 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 
 ///Inform the gun if he is currently bursting, to prevent reloading
 /obj/item/weapon/gun/proc/set_bursting(datum/source, bursting)
-	SIGNAL_HANDLER
 	if(bursting)
 		ENABLE_BITFIELD(flags_gun_features, GUN_BURST_FIRING)
 		return
@@ -664,7 +657,6 @@ and you're good to go.
 //----------------------------------------------------------
 
 /obj/item/weapon/gun/proc/Fire()
-	SIGNAL_HANDLER
 	if(QDELETED(gun_user) || !ismob(gun_user) || !able_to_fire(gun_user) || !target)
 		return
 
@@ -709,7 +701,7 @@ and you're good to go.
 	var/obj/screen/ammo/A = gun_user.hud_used.ammo //The ammo HUD
 	A.update_hud(gun_user)
 
-	return GUN_HAS_FIRED
+	return TRUE
 
 /obj/item/weapon/gun/attack(mob/living/M, mob/living/user, def_zone)
 	if(!CHECK_BITFIELD(flags_gun_features, GUN_CAN_POINTBLANK)) // If it can't point blank, you can't suicide and such.
