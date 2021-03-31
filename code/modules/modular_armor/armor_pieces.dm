@@ -94,6 +94,20 @@
 	soft_armor = list("melee" = 15, "bullet" = 20, "laser" = 20, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 15)
 	slowdown = 0.3
 
+/obj/item/armor_module/armor/chest/som/medium
+	name = "\improper Venandi S12 Pattern Medium chestplates"
+	desc = "Designed for use with the Venandi Combat Exoskeleton. It provides moderate protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Infantry armor piece."
+	icon_state = "som_chest"
+	soft_armor = list("melee" = 15, "bullet" = 20, "laser" = 20, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 15)
+	slowdown = 0.3
+
+/obj/item/armor_module/armor/chest/som/heavy
+	name = "\improper Venandi S13 Pattern Heavy chestplates"
+	desc = "Designed for use with the Venandi Combat Exoskeleton. It provides high protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Infantry armor piece."
+	icon_state = "somheavy_chest"
+	soft_armor = list("melee" = 20, "bullet" = 25, "laser" = 25, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 20)
+	slowdown = 0.5
+
 /obj/item/armor_module/armor/chest/marine/skirmisher
 	name = "\improper Venandi Pattern Light Skirmisher chestplates"
 	desc = "Designed for use with the Venandi Combat Exoskeleton. It provides minor protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Skirmisher armor piece."

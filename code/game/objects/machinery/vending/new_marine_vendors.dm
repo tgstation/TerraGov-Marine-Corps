@@ -37,8 +37,8 @@
 #define CAT_BEL "BELT"
 #define CAT_MAS "MASKS"
 #define CAT_ATT "GUN ATTACHMENTS"
-#define CAT_MOD "JAEGER STORAGE MODULES"
-#define CAT_ARMMOD "JAEGER ARMOR MODULES"
+#define CAT_MOD "VENANDI STORAGE MODULES"
+#define CAT_ARMMOD "VENANDI ARMOR MODULES"
 
 #define CAT_MEDSUP "MEDICAL SUPPLIES"
 #define CAT_ENGSUP "ENGINEERING SUPPLIES"
@@ -614,12 +614,8 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 
 	listed_products = list(
 		/obj/effect/essentials_set/basic_squadleadermodular = list(CAT_STD, "Essential Venandi Kit", 0, "white"),
-		/obj/effect/essentials_set/modular/skirmisher = list(CAT_AMR, "Light Skirmisher Venandi kit", 0, "black"),
-		/obj/effect/essentials_set/modular/scout = list(CAT_AMR, "Light Scout Venandi kit", 0, "orange"),
-		/obj/effect/essentials_set/modular/infantry = list(CAT_AMR, "Medium Infantry Venandi kit", 0, "black"),
-		/obj/effect/essentials_set/modular/eva = list(CAT_AMR, "Medium EVA Venandi kit", 0, "black"),
-		/obj/effect/essentials_set/modular/assault = list(CAT_AMR, "Heavy Assault Venandi kit", 0, "black"),
-		/obj/effect/essentials_set/modular/eod = list(CAT_AMR, "Heavy EOD Venandi kit", 0, "black"),
+		/obj/effect/essentials_set/modular/som = list(CAT_AMR, "Medium S12 Venandi kit", 0, "black"),
+		/obj/effect/essentials_set/modular/somheavy = list(CAT_AMR, "Heavy S13 Venandi kit", 0, "orange"),
 		/obj/item/storage/backpack/marine/satchel = list(CAT_BAK, "Satchel", 0, "black"),
 		/obj/item/storage/backpack/marine/standard = list(CAT_BAK, "Backpack", 0, "black"),
 		/obj/item/storage/large_holster/machete/full = list(CAT_BAK, "Machete scabbard", 0, "black"),
@@ -1286,6 +1282,20 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 		/obj/item/armor_module/armor/chest/marine,
 		/obj/item/armor_module/armor/arms/marine,
 		/obj/item/armor_module/armor/legs/marine,
+	)
+
+/obj/effect/essentials_set/modular/som
+	desc = "A set of medium S12 pattern Venandi armor, including an exoskeleton, helmet, and armor plates."
+	spawned_gear_list = list(
+		/obj/item/clothing/head/helmet/marine/leader,
+		/obj/item/armor_module/armor/chest/som/medium,
+	)
+
+/obj/effect/essentials_set/modular/somheavy
+	desc = "A set of heavy S13 pattern Venandi armor, including an exoskeleton, helmet, and armor plates."
+	spawned_gear_list = list(
+		/obj/item/clothing/head/helmet/marine/leader,
+		/obj/item/armor_module/armor/chest/som/heavy,
 	)
 
 /obj/effect/essentials_set/modular/eva

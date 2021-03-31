@@ -819,6 +819,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	desc = "A classic design, using the outdated shotgun frame. This one is a SoM clone of the V10 shotgun, except it is all tuned up.\n<b>Requires a pump, which is the Unique Action key.</b>"
 	icon_state = "v10"
 	item_state = "v10"
+	pump_animation = "v10"
 	fire_sound = 'sound/weapons/guns/fire/shotgun_cmb.ogg'
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,

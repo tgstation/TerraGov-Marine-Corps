@@ -273,7 +273,7 @@
 
 /obj/item/clothing/suit/storage/marine/pasvest
 	name = "\improper S12 hauberk"
-	desc = "A somewhat outdated but robust armored vest, still in use despite the rise of exoskeleton armor due to ease of use and manufacturing. Tougher than it looks. Use it to toggle the built-in flashlight."
+	desc = "A heavily modified piece of mining equipment for general purpose combat use. Use it to toggle the built-in flashlight."
 	icon_state = "som_armor"
 	item_state = "som_armor"
 	soft_armor = list("melee" = 40, "bullet" = 60, "laser" = 60, "energy" = 45, "bomb" = 45, "bio" = 45, "rad" = 45, "fire" = 45, "acid" = 50)
