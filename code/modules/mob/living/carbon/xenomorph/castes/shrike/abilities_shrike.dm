@@ -28,14 +28,8 @@
 	"<span class='xenodanger'>We call forth the larvas to rise from their slumber!</span>")
 
 	var/datum/hive_status/normal/shrike_hive = caller.hive
-	for(var/i in 1 to stored_larva)
-		var/mob/M = get_alien_candidate()
-		if(!M)
-			break
-		shrike_hive.spawn_larva(M, src)
 
 	if(stored_larva)
-		RegisterSignal(shrike_hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK), .proc/is_burrowed_larva_host)
 		notify_ghosts("\The <b>[caller]</b> is calling for the burrowed larvas to wake up!", enter_link = "join_larva=1", enter_text = "Join as Larva", source = caller, action = NOTIFY_JOIN_AS_LARVA)
 		addtimer(CALLBACK(src, .proc/calling_larvas_end, caller), CALLING_BURROWED_DURATION)
 
