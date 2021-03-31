@@ -1,5 +1,0 @@
-author: "TheOneAndMightyRed(redory), Alterist"
-delete-after: True
-changes: 
-  - bugfix: "Powernets, Disposalnets and Atmosnets on most maps."
-  - bugfix: "Some camera dirs."
