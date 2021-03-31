@@ -490,7 +490,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sundering = 10
 
 /datum/ammo/bullet/rifle/tx8/incendiary
-	name = "A19 high velocity incendiary bullet"
+	name = "high velocity incendiary bullet"
 	hud_state = "hivelo_fire"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY|AMMO_SUNDERING
 	damage = 25
@@ -499,7 +499,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sundering = 2.5
 
 /datum/ammo/bullet/rifle/tx8/impact
-	name = "A19 high velocity impact bullet"
+	name = "high velocity impact bullet"
 	hud_state = "hivelo_impact"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	damage = 25
@@ -508,14 +508,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/bullet/rifle/tx8/impact/on_hit_mob(mob/M, obj/projectile/P)
 	staggerstun(M, P, max_range = 40, stagger = 2, slowdown = 3.5, knockback = 1)
-
-/datum/ammo/bullet/rifle/tx8/smart
-	name = "A19 high velocity smart bullet"
-	hud_state = "hivelo_iff"
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
-	damage = 30
-	penetration = 20
-	sundering = 3
 
 /datum/ammo/bullet/rifle/ak47
 	name = "heavy rifle bullet"

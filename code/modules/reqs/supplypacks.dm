@@ -207,8 +207,8 @@ WEAPONS
 	contains = list(/obj/item/weapon/gun/rifle/railgun)
 	cost = 130
 
-/datum/supply_packs/weapons/specscouttx8
-	name = "Scout Specialist kit (tx8)"
+/datum/supply_packs/weapons/tx8
+	name = "TX-8 Scout Rifle"
 	contains = list(/obj/item/weapon/gun/rifle/tx8)
 	cost = 80
 

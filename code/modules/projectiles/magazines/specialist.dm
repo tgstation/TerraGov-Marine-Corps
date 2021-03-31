@@ -57,7 +57,7 @@
 	icon_state = "tx8"
 	caliber = "10x28mm caseless"
 	default_ammo = /datum/ammo/bullet/rifle/tx8
-	max_rounds = 20
+	max_rounds = 25
 	gun_type = /obj/item/weapon/gun/rifle/tx8
 
 /obj/item/ammo_magazine/rifle/tx8/incendiary
@@ -66,7 +66,6 @@
 	caliber = "10x28mm caseless"
 	icon_state = "tx8_incend"
 	default_ammo = /datum/ammo/bullet/rifle/tx8/incendiary
-	max_rounds = 20
 	gun_type = /obj/item/weapon/gun/rifle/tx8
 
 /obj/item/ammo_magazine/rifle/tx8/impact
@@ -74,7 +73,6 @@
 	desc = "A magazine of overpressuered high velocity impact rounds for use in the TX-8 battle rifle. The TX-8 battle rifle is the only gun that can chamber these rounds."
 	icon_state = "tx8_impact"
 	default_ammo = /datum/ammo/bullet/rifle/tx8/impact
-	max_rounds = 20
 	gun_type = /obj/item/weapon/gun/rifle/tx8
 
 obj/item/ammo_magazine/rifle/tx8/smart
@@ -82,7 +80,6 @@ obj/item/ammo_magazine/rifle/tx8/smart
 	desc = "A magazine of overpressuered high velocity smart rounds for use in the TX-8 battle rifle. The TX-8 battle rifle is the only gun that can chamber these rounds."
 	icon_state = "tx8_iff"
 	default_ammo = /datum/ammo/bullet/rifle/tx8/smart
-	max_rounds = 20
 	gun_type = /obj/item/weapon/gun/rifle/tx8
 
 
