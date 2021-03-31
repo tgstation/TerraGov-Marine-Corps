@@ -263,52 +263,6 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 	back = /obj/item/storage/backpack/marine/satchel
 
 
-//Tank Crewmen
-/datum/job/terragov/command/tank_crew
-	title = TANK_CREWMAN
-	paygrade = "E7"
-	comm_title = "TC"
-	total_positions = 0
-	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_TANK)
-	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_TANK, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_MEDBAY)
-	skills_type = /datum/skills/tank_crew
-	display_order = JOB_DISPLAY_ORDER_TANK_CREWMAN
-	outfit = /datum/outfit/job/command/tank_crew
-	exp_requirements = XP_REQ_UNSEASONED
-	exp_type = EXP_TYPE_REGULAR_ALL
-	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
-	jobworth = list(
-		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
-		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
-		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
-		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
-	)
-
-
-/datum/job/terragov/command/tank_crew/radio_help_message(mob/M)
-	. = ..()
-	to_chat(M, {"Your job is to operate and maintain the ship's armored vehicles.
-Your authority is limited to your own vehicle, but you are next in line on the field, after the field commander.
-You could use STs help to repair and replace hardpoints."})
-
-
-
-/datum/outfit/job/command/tank_crew
-	name = TANK_CREWMAN
-	jobtype = /datum/job/terragov/command/tank_crew
-
-	id = /obj/item/card/id/silver
-	belt = /obj/item/storage/belt/gun/m4a3/vp70
-	ears = /obj/item/radio/headset/mainship/mcom
-	w_uniform = /obj/item/clothing/under/marine/officer/tanker
-	wear_suit = /obj/item/clothing/suit/storage/marine/M3P/tanker
-	shoes = /obj/item/clothing/shoes/marine
-	gloves = /obj/item/clothing/gloves/yellow
-	head = /obj/item/clothing/head/helmet/marine/tanker
-	r_store = /obj/item/storage/pouch/general/large
-	back = /obj/item/storage/backpack/marine/satchel
-
-
 /datum/job/terragov/engineering
 	job_category = JOB_CAT_ENGINEERING
 	selection_color = "#fff5cc"
