@@ -27,8 +27,6 @@
 	caller.visible_message("<span class='xenowarning'>A strange buzzing hum starts to emanate from \the [caller]!</span>", \
 	"<span class='xenodanger'>We call forth the larvas to rise from their slumber!</span>")
 
-	var/datum/hive_status/normal/shrike_hive = caller.hive
-
 	if(stored_larva)
 		notify_ghosts("\The <b>[caller]</b> is calling for the burrowed larvas to wake up!", enter_link = "join_larva=1", enter_text = "Join as Larva", source = caller, action = NOTIFY_JOIN_AS_LARVA)
 		addtimer(CALLBACK(src, .proc/calling_larvas_end, caller), CALLING_BURROWED_DURATION)
