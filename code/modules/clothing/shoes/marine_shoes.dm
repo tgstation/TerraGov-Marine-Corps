@@ -1,10 +1,10 @@
 
 
 /obj/item/clothing/shoes/marine
-	name = "marine combat boots"
-	desc = "Standard issue combat boots for combat scenarios or combat situations. All combat, all the time."
-	icon_state = "marine"
-	item_state = "marine"
+	name = "\improper S11 combat shoes"
+	desc = "Shoes with origins dating back to the old mining colonies."
+	icon_state = "som"
+	item_state = "som"
 	flags_armor_protection = FEET
 	soft_armor = list("melee" = 30, "bullet" = 20, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 0, "fire" = 10, "acid" = 25)
 	flags_cold_protection = FEET
@@ -84,7 +84,7 @@
 	siemens_coefficient = 0.6
 
 /obj/item/clothing/shoes/marinechief/captain
-	name = "captain's shoes"
+	name = "old man's shoes"
 	desc = "Has special soles for better trampling those underneath."
 
 /obj/item/clothing/shoes/marinechief/sa
@@ -131,10 +131,10 @@
 
 
 /obj/item/clothing/shoes/marine/som
-	name = "\improper S11 combat shoes"
-	desc = "Shoes with origins dating back to the old mining colonies."
-	icon_state = "som"
-	item_state = "som"
+	name = "\improper marine combat boots"
+	desc = "Standard issue combat boots."
+	icon_state = "marine"
+	item_state = "marine"
 	soft_armor = list("melee" = 30, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 30, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 25)
 
 

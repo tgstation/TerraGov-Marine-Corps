@@ -45,16 +45,16 @@
 		/obj/item/storage/large_holster/machete
 	)
 
-
 /obj/item/clothing/suit/armor/vest/pilot
-	name = "\improper M70 flak jacket"
-	desc = "A flak jacket used by dropship pilots to protect themselves while flying in the cockpit. Excels in protecting the wearer against high-velocity solid projectiles."
-	icon = 'icons/obj/clothing/cm_suits.dmi'
-	icon_state = "pilot"
+	name = "\improper airman mining spacesuit"
+	desc = "A standard space suit for mining purposes. It is heavily modified to protect the user from dying horribly."
+	icon = 'icons/obj/clothing/suits.dmi'
+	icon_state = "engspace_suit"
+	item_state = "engspace_suit"
 	item_icons = list(
-		slot_wear_suit_str = 'icons/mob/suit_1.dmi',
-		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi')
+		slot_wear_suit_str = 'icons/mob/suit_0.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_0.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_0.dmi')
 	blood_overlay_type = "armor"
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
 	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET

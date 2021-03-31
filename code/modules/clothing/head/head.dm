@@ -13,7 +13,7 @@
 		M.update_inv_head()
 
 /obj/item/clothing/head/tgmcbandanna
-	name = "\improper TGMC bandanna"
+	name = "\improper bandanna"
 	desc = "Typically worn by heavy-weapon operators, mercenaries and scouts, the bandanna serves as a lightweight and comfortable hat. Comes in two stylish colors."
 	icon = 'icons/obj/clothing/cm_hats.dmi'
 	item_icons = list(
@@ -29,7 +29,7 @@
 
 
 /obj/item/clothing/head/beanie
-	name = "\improper TGMC beanie"
+	name = "\improper beanie"
 	desc = "A standard military beanie, often worn by non-combat military personnel and support crews, though the occasional one finds its way to the front line. Popular due to being comfortable and snug."
 	icon = 'icons/obj/clothing/cm_hats.dmi'
 	item_icons = list(
@@ -42,8 +42,8 @@
 
 
 /obj/item/clothing/head/tgmcberet
-	name = "\improper TGMC beret"
-	desc = "A hat typically worn by the field-officers of the TGMC. Occasionally they find their way down the ranks into the hands of squad-leaders and decorated grunts."
+	name = "\improper beret"
+	desc = "A hat typically worn by the field-officers. Occasionally they find their way down the ranks into the hands of squad-leaders and decorated grunts."
 	icon = 'icons/obj/clothing/cm_hats.dmi'
 	item_icons = list(
 		slot_head_str = 'icons/mob/head_1.dmi',
@@ -54,8 +54,8 @@
 	flags_item_map_variant = NONE
 
 /obj/item/clothing/head/tgmcberet/tan
-	icon_state = "berettan"
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
+	icon_state = "beret_badge"
+	flags_item_map_variant = NONE
 
 /obj/item/clothing/head/tgmcberet/red
 	icon_state = "beretred"
@@ -81,15 +81,15 @@
 	flags_item_map_variant = NONE
 
 /obj/item/clothing/head/tgmcberet/fc
-	name = "\improper Field Commander beret"
-	desc = "A beret with the field commander insignia emblazoned on it. It commands loyalty and bravery in all who gaze upon it."
-	icon_state = "beretfc"
+	name = "\improper cell leader beret"
+	desc = "A beret with the cell leader insignia emblazoned on it. It commands loyalty and bravery in all who gaze upon it."
+	icon_state = "beretred"
 	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 10, "bio" = 5, "rad" = 0, "fire" = 50, "acid" = 50)
 	flags_item_map_variant = NONE
 
 
 /obj/item/clothing/head/tgmccap
-	name = "\improper TGMC cap"
+	name = "\improper cap"
 	desc = "A casual cap occasionally worn by Squad-leaders and Combat-Engineers. While it has limited combat functionality, some prefer to wear it instead of the standard issue helmet."
 	icon_state = "cap"
 	icon = 'icons/obj/clothing/cm_hats.dmi'
@@ -124,14 +124,14 @@
 
 
 /obj/item/clothing/head/tgmccap/ro
-	name = "\improper TGMC officer cap"
-	desc = "A hat usually worn by officers in the TGMC. While it has limited combat functionality, some prefer to wear it instead of the standard issue helmet."
+	name = "\improper cell cap"
+	desc = "A hat usually worn by officers. While it has limited combat functionality, some prefer to wear it instead of the standard issue helmet."
 	icon_state = "rocap"
 
 /obj/item/clothing/head/tgmccap/req
-	name = "\improper TGMC requisition cap"
+	name = "\improper requisition beret"
 	desc = "It's a fancy hat for a not-so-fancy military supply clerk."
-	icon_state = "cargocap"
+	icon_state = "beretred2"
 	flags_item_map_variant = null
 
 
@@ -143,15 +143,15 @@
 	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 10, "bio" = 5, "rad" = 0, "fire" = 5, "acid" = 5)
 
 /obj/item/clothing/head/slouch
-	name = "\improper TGMC slouch hat"
-	desc = "A nice slouch hat worn by some TGMC troopers while on planets with hot weather, or just for style. While it has limited combat functionality, some prefer to wear it instead of the standard issue helmet."
+	name = "\improper slouch hat"
+	desc = "A nice slouch hat worn by some troopers while on planets with hot weather, or just for style. While it has limited combat functionality, some prefer to wear it instead of the standard issue helmet."
 	icon_state = "slouch_hat"
 	icon = 'icons/obj/clothing/cm_hats.dmi'
 	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 10, "bio" = 5, "rad" = 0, "fire" = 5, "acid" = 5)
 
 /obj/item/clothing/head/headband
-	name = "\improper TGMC headband"
-	desc = "A rag typically worn by the less-orthodox weapons operators in the TGMC. While it offers no protection, it is certainly comfortable to wear compared to the standard helmet. Comes in two stylish colors."
+	name = "\improper headband"
+	desc = "A rag typically worn by the less-orthodox weapons operators. While it offers no protection, it is certainly comfortable to wear compared to the standard helmet. Comes in two stylish colors."
 	icon = 'icons/obj/clothing/cm_hats.dmi'
 	item_icons = list(
 		slot_head_str = 'icons/mob/head_1.dmi',
@@ -174,7 +174,7 @@
 
 
 /obj/item/clothing/head/headset
-	name = "\improper TGMC headset"
+	name = "\improper headset"
 	desc = "A headset typically found in use by radio-operators and officers. This one appears to be malfunctioning."
 	icon_state = "headset"
 	icon = 'icons/obj/clothing/cm_hats.dmi'
@@ -193,19 +193,19 @@
 //Berets have armor, so they have their own category. PMC caps are helmets, so they're in helmets.dm.
 
 /obj/item/clothing/head/beret/marine
-	name = "marine officer beret"
-	desc = "A beret with the TGMC insignia emblazoned on it. It radiates respect and authority."
+	name = "cell beret"
+	desc = "A beret with an insignia emblazoned on it. It radiates respect and authority."
 	icon_state = "hosberet"
 	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 10, "bio" = 5, "rad" = 0, "fire" = 5, "acid" = 5)
 	flags_inventory = BLOCKSHARPOBJ
 
 /obj/item/clothing/head/beret/marine/captain
-	name = "captain's beret"
+	name = "old man's beret"
 	desc = "A beret with the captain insignia emblazoned on it. Wearer may suffer the heavy weight of responsibility upon his head and shoulders."
 	icon_state = "centcomcaptain"
 
 /obj/item/clothing/head/beret/marine/chiefofficer
-	name = "chief officer beret"
+	name = "cell officer beret"
 	desc = "A beret with the lieutenant-commander insignia emblazoned on it. It emits a dark aura and may corrupt the soul."
 	icon_state = "hosberet"
 
@@ -214,12 +214,12 @@
 	desc = "A beret with the Spatial Agent insignia on it."
 
 /obj/item/clothing/head/beret/marine/techofficer
-	name = "technical officer beret"
+	name = "cell officer beret"
 	desc = "A beret with the lieutenant insignia emblazoned on it. There's something inexplicably efficient about it..."
 	icon_state = "e_beret_badge"
 
 /obj/item/clothing/head/beret/marine/logisticsofficer
-	name = "logistics officer beret"
+	name = "cell officer beret"
 	desc = "A beret with the lieutenant insignia emblazoned on it. It inspires a feeling of respect."
 	icon_state = "hosberet"
 

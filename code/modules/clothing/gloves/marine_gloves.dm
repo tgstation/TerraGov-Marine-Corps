@@ -4,10 +4,10 @@
 //marine gloves
 
 /obj/item/clothing/gloves/marine
-	name = "marine combat gloves"
-	desc = "Standard issue marine tactical gloves. It reads: 'knit by Marine Widows Association'."
-	icon_state = "gloves_marine"
-	item_state = "gloves_marine"
+	name = "\improper SoM combat gloves"
+	desc = "Gloves with origins dating back to the old mining colonies."
+	icon_state = "som"
+	item_state = "som"
 	siemens_coefficient = 0.6
 	permeability_coefficient = 0.05
 	flags_cold_protection = HANDS
@@ -18,7 +18,7 @@
 	soft_armor = list("melee" = 30, "bullet" = 20, "laser" = 15, "energy" = 20, "bomb" = 20, "bio" = 10, "rad" = 10, "fire" = 20, "acid" = 20)
 
 /obj/item/clothing/gloves/marine/insulated
-	name = "insulated marine combat gloves"
+	name = "insulated SoM combat gloves"
 	desc = "Insulated marine tactical gloves that protect against electrical shocks."
 	siemens_coefficient = 0
 
@@ -47,10 +47,10 @@
 	permeability_coefficient = 0.01
 
 /obj/item/clothing/gloves/marine/techofficer/captain
-	name = "captain's gloves"
+	name = "old man's gloves"
 	desc = "You may like these gloves, but THEY think you are unworthy of them."
-	icon_state = "captain"
-	item_state = "egloves"
+	icon_state = "som_veteran"
+	item_state = "som_veteran"
 
 /obj/item/clothing/gloves/marine/specialist
 	name = "\improper B18 defensive gauntlets"
@@ -80,18 +80,18 @@
 
 
 /obj/item/clothing/gloves/marine/som
-	name = "\improper SoM gloves"
-	desc = "Gloves with origins dating back to the old mining colonies."
-	icon_state = "som"
-	item_state = "som"
+	name = "marine combat gloves"
+	desc = "Standard issue marine tactical gloves. It reads: 'knit by Marine Widows Association'."
+	icon_state = "gloves_marine"
+	item_state = "gloves_marine"
 	soft_armor = list("melee" = 30, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 30, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 15)
 
 
 /obj/item/clothing/gloves/marine/som/veteran
-	name = "\improper SoM veteran gloves"
-	desc = "Gloves with origins dating back to the old mining colonies. Seem to have more care and wear on them."
-	icon_state = "som_veteran"
-	item_state = "som_veteran"
+	name = "marine defensive gauntlets"
+	desc = "A pair of heavily armored gloves. It reads: 'knit by Marine Widows Association'."
+	icon_state = "gloves_marine"
+	item_state = "gloves_marine"
 	soft_armor = list("melee" = 35, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 30, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 25)
 
 /obj/item/clothing/gloves/marine/commissar

@@ -42,7 +42,7 @@
 	time_to_unequip = 2 SECONDS
 	time_to_equip = 2 SECONDS
 	pockets = /obj/item/storage/internal/suit/marine
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
+	flags_item_map_variant = NONE
 
 /obj/item/storage/internal/suit/marine
 	bypass_w_limit = list(
@@ -165,9 +165,15 @@
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT)
 
 /obj/item/clothing/suit/storage/marine/M3P/tech
-	name = "\improper PAS-09 pattern technician armor"
-	desc = "A somewhat outdated but robust armored vest, still in use despite the rise of exoskeleton armor due to ease of use and manufacturing. It offers more protection against the exotic dangers that technicians face."
-	icon_state = "tanker"
+	name = "\improper mining spacesuit"
+	desc = "A standard space suit for mining purposes. It is heavily modified to protect the user from dying horribly."
+	icon = 'icons/obj/clothing/suits.dmi'
+	icon_state = "engspace_suit"
+	item_icons = list(
+		slot_wear_suit_str = 'icons/mob/suit_0.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_0.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_0.dmi')
+	item_state = "engspace_suit"
 	soft_armor = list("melee" = 40, "bullet" = 55, "laser" = 60, "energy" = 45, "bomb" = 60, "bio" = 45, "rad" = 45, "fire" = 45, "acid" = 65)
 	flags_item_map_variant = NONE
 
@@ -187,9 +193,10 @@
 	max_w_class = 3
 
 /obj/item/clothing/suit/storage/marine/MP
-	name = "\improper PAS-N2 pattern MA armor"
-	desc = "A standard TerraGov Navy N2 Personal Armor System. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."
-	icon_state = "mp"
+	icon_state = "som_armor_leader"
+	item_state = "som_armor_leader"
+	name = "\improper S13 hauberk"
+	desc = "A heavily modified piece of mining equipment for general purpose combat use."
 	soft_armor = list("melee" = 40, "bullet" = 60, "laser" = 60, "energy" = 45, "bomb" = 45, "bio" = 45, "rad" = 45, "fire" = 45, "acid" = 50)
 	slowdown = 0.5
 	flags_item_map_variant = NONE
@@ -225,9 +232,6 @@
 	soft_armor = list("melee" = 40, "bullet" = 65, "laser" = 60, "energy" = 45, "bomb" = 45, "bio" = 45, "rad" = 45, "fire" = 45, "acid" = 50)
 
 /obj/item/clothing/suit/storage/marine/MP/RO
-	icon_state = "officer"
-	name = "\improper PAS-N3 pattern officer armor"
-	desc = "A well-crafted suit of a Navy Personal Armor System typically found in the hands of higher-ranking officers. Useful for letting your men know who is in charge when taking to the field."
 
 /obj/item/clothing/suit/storage/marine/smartgunner
 	name = "M26 combat harness"
@@ -268,9 +272,10 @@
 // MARINE PAS-11 vests, the new armor. It is basically equivalent to a modular armor with general storage on it.
 
 /obj/item/clothing/suit/storage/marine/pasvest
-	name = "\improper PAS-11 pattern armored vest"
+	name = "\improper S12 hauberk"
 	desc = "A somewhat outdated but robust armored vest, still in use despite the rise of exoskeleton armor due to ease of use and manufacturing. Tougher than it looks. Use it to toggle the built-in flashlight."
-	icon_state = "2"
+	icon_state = "som_armor"
+	item_state = "som_armor"
 	soft_armor = list("melee" = 40, "bullet" = 60, "laser" = 60, "energy" = 45, "bomb" = 45, "bio" = 45, "rad" = 45, "fire" = 45, "acid" = 50)
 	slowdown = 0.5 //a bit less
 	light_range = 6
@@ -280,9 +285,9 @@
 
 
 /obj/item/clothing/suit/storage/marine/specialist
-	name = "\improper B18 defensive armor"
+	name = "\improper S12 defensive hauberk"
 	desc = "A heavy, rugged set of armor plates for when you really, really need to not die horribly. Slows you down though.\nHas an automated diagnostics and medical system for keeping its wearer alive."
-	icon_state = "xarmor"
+	icon_state = "som_armor_veteran"
 	soft_armor = list("melee" = 65, "bullet" = 75, "laser" = 75, "energy" = 80, "bomb" = 80, "bio" = 65, "rad" = 20, "fire" = 80, "acid" = 65)
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
@@ -302,9 +307,9 @@
 	SSmonitor.stats.b18_in_use -= src
 
 /obj/item/clothing/suit/storage/marine/B17
-	name = "\improper B17 defensive armor"
-	desc = "The older brother of the B18. Practically an armored EOD suit made for use by close quarter explosive experts."
-	icon_state = "grenadier"
+	name = "\improper S11 defensive hauberk"
+	desc = "The older brother of the S12 defensive hauberk. Practically an armored EOD suit made for use by close quarter explosive experts."
+	icon_state = "som_armor_veteran"
 	soft_armor = list("melee" = 65, "bullet" = 70, "laser" = 45, "energy" = 50, "bomb" = 100, "bio" = 50, "rad" = 20, "fire" = 70, "acid" = 60)
 	max_heat_protection_temperature = HEAVYARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
@@ -753,13 +758,13 @@
 	)
 
 /obj/item/clothing/suit/storage/marine/som
-	name = "\improper S12 hauberk"
-	desc = "A heavily modified piece of mining equipment remade for general purpose combat use. It's light but practically gives no armor."
-	icon_state = "som_armor"
-	item_state = "som_armor"
+	name = "\improper PAS-11 NA pattern armored vest"
+	desc = "A somewhat outdated but robust armored vest, still in use despite the rise of exoskeleton armor due to ease of use and manufacturing. Tougher than it looks. Use it to toggle the built-in flashlight."
+	icon_state = "k_2"
+	icon_state = "k_2"
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
-	soft_armor = list("melee" = 50, "bullet" = 55, "laser" = 55, "energy" = 55, "bomb" = 55, "bio" = 55, "rad" = 55, "fire" = 55, "acid" = 55)
+	soft_armor = list("melee" = 50, "bullet" = 60, "laser" = 60, "energy" = 55, "bomb" = 55, "bio" = 55, "rad" = 55, "fire" = 55, "acid" = 55)
 	flags_item_map_variant = NONE
 
 
@@ -769,13 +774,12 @@
 
 
 /obj/item/clothing/suit/storage/marine/som/veteran
-	name = "\improper S12 combat Hauberk"
-	desc = "A heavily modified piece of mining equipment remade for general purpose combat use. Seems to have been modifed much further than other pieces like it. Heavier but tougher because of it."
-	icon_state = "som_armor_veteran"
-	item_state = "som_armor_veteran"
-	slowdown = SLOWDOWN_ARMOR_HEAVY
+	name = "\improper Jaeger XM-02 infantry exoskeleton"
+	desc = "Designed to mount a variety of modular armor components and support systems. It comes installed with light-plating and a shoulder lamp. This cannot be interchanged with parts."
+	icon_state = "jaeger_fullset"
+	slowdown = SLOWDOWN_ARMOR_MEDIUM
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
-	soft_armor = list("melee" = 65, "bullet" = 70, "laser" = 70, "energy" = 55, "bomb" = 55, "bio" = 55, "rad" = 55, "fire" = 55, "acid" = 60)
+	soft_armor = list("melee" = 65, "bullet" = 80, "laser" = 80, "energy" = 65, "bomb" = 60, "bio" = 60, "rad" = 60, "fire" = 60, "acid" = 70)
 
 // Modified version of the armor for HvH combat. Stats are based on heavy armor with mark 2 tyr.
 /obj/item/clothing/suit/storage/marine/som/veteran/hvh
@@ -783,13 +787,12 @@
 
 
 /obj/item/clothing/suit/storage/marine/som/leader
-	name = "\improper S13 leader hauberk"
-	desc = "A heavily modified modified piece of mining equipment remade for general purpose combat use. Modified extensively than other pieces like it but heavier because of it."
-	icon_state = "som_armor_leader"
-	item_state = "som_armor_leader"
+	name = "\improper Jaeger XM-02 assault exoskeleton"
+	desc = "Designed to mount a variety of modular armor components and support systems. It comes installed with light-plating and a shoulder lamp. This cannot be interchanged with parts."
+	icon_state = "jaeger_leader_fullset"
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
-	soft_armor = list("melee" = 55, "bullet" = 50, "laser" = 40, "energy" = 55, "bomb" = 55, "bio" = 55, "rad" = 55, "fire" = 55, "acid" = 60)
+	soft_armor = list("melee" = 65, "bullet" = 80, "laser" = 80, "energy" = 60, "bomb" = 60, "bio" = 60, "rad" = 60, "fire" = 60, "acid" = 65)
 
 /// Modified version of the armor for HvH combat. Stats are based on medium armor with mark 2 tyr.
 /obj/item/clothing/suit/storage/marine/som/leader/hvh

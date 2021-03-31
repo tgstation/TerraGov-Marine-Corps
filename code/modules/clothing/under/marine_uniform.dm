@@ -2,51 +2,55 @@
 
 
 /obj/item/clothing/under/marine
-	name = "\improper TGMC uniform"
-	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented marine uniform. You suspect it's not as robust-proof as advertised."
+	name = "\improper SoM uniform"
+	desc = "A heavily modified mining uniform based off the ones used by mining colonies."
 	siemens_coefficient = 0.9
-	icon_state = "marine_jumpsuit"
+	icon_state = "som_uniform"
+	item_state = "som_uniform"
 	soft_armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = 5, "bio" = 5, "rad" = 5, "fire" = 5, "acid" = 5)
-	rollable_sleeves = TRUE
+	rollable_sleeves = FALSE
 	has_sensor = 2
 
 /obj/item/clothing/under/marine/standard
 	flags_item_map_variant = null
 
 /obj/item/clothing/under/marine/corpsman
-	name = "\improper TGMC corpsman fatigues"
-	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented combat corpsman fatigues. You suspect it's not as robust-proof as advertised."
-	icon_state = "marine_medic"
+	name = "\improper SoM medical uniform"
+	desc = "A heavily modified mining uniform based off the ones used by mining colonies. Has medical markings."
+	icon_state = "som_uniform_medic"
+	item_state = "som_uniform_medic"
 
 
 /obj/item/clothing/under/marine/engineer
-	name = "\improper TGMC engineer fatigues"
-	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented combat engineer fatigues. You suspect it's not as robust-proof as advertised."
-	icon_state = "marine_engineer"
+	name = "\improper SoM engineer uniform"
+	desc = "A heavily modified mining uniform based off the ones used by mining colonies. Seems to have more care and wear on it."
+	icon_state = "som_uniform_veteran"
+	item_state = "som_uniform_veteran"
 
 
 /obj/item/clothing/under/marine/jaeger
-	name = "\improper TGMC jaeger undersuit"
-	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented marine uniform. You suspect it's not as robust-proof as advertised."
+	name = "\improper SoM Venandi undersuit"
+	desc = "A heavily modified mining uniform based off the ones used by mining colonies. Seems to have more care and wear on it."
 	siemens_coefficient = 0.9
-	icon_state = "marine_undersuit"
+	icon_state = "som_uniform_leader"
+	item_state = "som_uniform_leader"
 	rollable_sleeves = FALSE
 	has_sensor = 2
 	flags_item_map_variant = null
 
 
 /obj/item/clothing/under/marine/sniper
-	name = "\improper TGMC sniper snow uniform"
+	name = "\improper SoM sniper snow uniform"
 	icon_state = "s_marine_sniper"
 	item_state = "s_marine_sniper"
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	rollable_sleeves = FALSE
 
 /obj/item/clothing/under/marine/tanker
-	name = "\improper TGMC tanker uniform"
+	name = "\improper SoM tanker uniform"
 	icon_state = "marine_tanker"
 	rollable_sleeves = FALSE
-	flags_item_map_variant = (ITEM_ICE_VARIANT|ITEM_ICE_PROTECTION)
+	flags_item_map_variant = null
 
 /obj/item/clothing/under/marine/mp
 	name = "military police uniform"
@@ -55,19 +59,19 @@
 	rollable_sleeves = FALSE
 
 /obj/item/clothing/under/marine/officer
-	name = "marine officer uniform"
+	name = "freedom fighter officer uniform"
 	desc = "A kevlar-weaved, hazmat-tested, EMF-augmented, yet extra-soft and extra-light officer uniform. You suspect it's not as extra-fancy as advertised."
 	icon_state = "officertanclothes"
 	item_state = "officertanclothes"
 
 /obj/item/clothing/under/marine/officer/warden
-	name = "marine officer uniform"
+	name = "freedom fighter officer uniform"
 	desc = "A kevlar-weaved, hazmat-tested, EMF-augmented, yet extra-soft and extra-light officer uniform. You suspect it's not as extra-fancy as advertised."
 	icon_state = "wardentanclothes"
 	item_state = "wardentanclothes"
 
 /obj/item/clothing/under/marine/officer/hos
-	name = "marine officer uniform"
+	name = "freedom fighter officer uniform"
 	desc = "A kevlar-weaved, hazmat-tested, EMF-augmented, yet extra-soft and extra-light officer uniform. You suspect it's not as extra-fancy as advertised."
 	icon_state = "hostanclothes"
 	item_state = "hostanclothes"
@@ -84,14 +88,14 @@
 	icon_state = "johnny"
 
 /obj/item/clothing/under/marine/officer/logistics
-	name = "marine officer uniform"
+	name = "freedom fighter officer uniform"
 	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented uniform worn by logistics officers of the TGMC. Do the corps proud."
 	icon_state = "BO_jumpsuit"
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
+	flags_item_map_variant = null
 
 /obj/item/clothing/under/marine/officer/pilot
-	name = "pilot officer flightsuit"
-	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented, survival-friendly pilot flightsuit. Fly the marines onwards to glory."
+	name = "airman flightsuit"
+	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented, survival-friendly pilot flightsuit. Fly the freedom fighters onwards to glory."
 	icon_state = "pilot_flightsuit"
 	flags_cold_protection = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	flags_item_map_variant = null
@@ -100,25 +104,25 @@
 	name = "tank crewman officer uniform"
 	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented fatigues worth of a tankman. Do the corps proud."
 	icon_state = "marine_tanker"
-	flags_item_map_variant = (ITEM_ICE_VARIANT)
+	flags_item_map_variant = null
 
 /obj/item/clothing/under/marine/officer/bridge
-	name = "staff officer uniform"
+	name = "cell officer uniform"
 	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented staff officer uniform. Do the navy proud."
-	icon_state = "BO_jumpsuit"
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
+	icon_state = "WO_jumpsuit"
+	flags_item_map_variant = null
 
 /obj/item/clothing/under/marine/officer/exec
-	name = "field commander uniform"
+	name = "cell leader uniform"
 	desc = "A special-issue, kevlar-weaved, hazmat-tested, EMF-augmented worn by a field-grade officer of the TGMC. You suspect it's not as robust-proof as advertised."
-	icon_state = "XO_jumpsuit"
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
+	icon_state = "hosred"
+	flags_item_map_variant = null
 
 /obj/item/clothing/under/marine/officer/command
-	name = "captain uniform"
-	desc = "A special-issue, well-ironed, kevlar-weaved, hazmat-tested, EMF-augmented uniform worth of a TerraGov Naval Captain. Even looking at it the wrong way could result in being court-martialed."
-	icon_state = "CO_jumpsuit"
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
+	name = "old man uniform"
+	desc = "A special-issue, well-ironed, kevlar-weaved, hazmat-tested, EMF-augmented uniform. Even looking at it the wrong way could result in being court-martialed."
+	icon_state = "mercenary_heavy_uniform"
+	flags_item_map_variant = null
 
 /obj/item/clothing/under/marine/officer/admiral
 	name = "admiral uniform"
@@ -126,16 +130,16 @@
 	item_state = "admiral_jumpsuit"
 
 /obj/item/clothing/under/marine/officer/ce
-	name = "chief ship engineer uniform"
+	name = "chieftain ship technician uniform"
 	desc = "An engine-friendly, kevlar-weaved, hazmat-tested, EMF-augmented ship engineer uniform. You suspect it's not as robust-proof as advertised."
 	soft_armor = list("melee" = 5, "bullet" = 5, "laser" = 25, "energy" = 5, "bomb" = 5, "bio" = 5, "rad" = 25, "fire" = 5, "acid" = 5)
-	icon_state = "EC_jumpsuit"
+	icon_state = "securitywhite"
 
 /obj/item/clothing/under/marine/officer/engi
-	name = "engineer uniform"
+	name = "technician uniform"
 	desc = "An engine-friendly, kevlar-weaved, hazmat-tested, EMF-augmented chief ship engineer uniform. You suspect it's not as robust-proof as advertised."
 	soft_armor = list("melee" = 5, "bullet" = 5, "laser" = 15, "energy" = 5, "bomb" = 5, "bio" = 5, "rad" = 10, "fire" = 5, "acid" = 5)
-	icon_state = "E_jumpsuit"
+	icon_state = "securityred"
 
 /obj/item/clothing/under/marine/officer/researcher
 	name = "researcher clothes"
@@ -144,8 +148,8 @@
 	icon_state = "research_jumpsuit"
 
 /obj/item/clothing/under/whites
-	name = "\improper TGMC dress uniform"
-	desc = "A standard-issue Marine dress uniform. The starch in the fabric chafes a small amount but it pales in comparison to the pride you feel when you first put it on during graduation from boot camp. doesn't seem to fit perfectly around the waist though."
+	name = "\improper SoM dress uniform"
+	desc = "A standard-issue freedom fighter dress uniform. The starch in the fabric chafes a small amount but it pales in comparison to the pride you feel when you first put it on during graduation from boot camp. doesn't seem to fit perfectly around the waist though."
 	siemens_coefficient = 0.9
 	icon_state = "marine_whites" //with thanks to Manezinho
 	rollable_sleeves = FALSE
@@ -314,49 +318,49 @@
 /obj/item/clothing/under/rank/ro_suit
 	name = "requisition officer suit"
 	desc = "A nicely-fitting, kevlar-weaved, hazmat-tested, EMF-augmented requisition officer suit. You suspect it's not as robust-proof as advertised."
-	icon_state = "RO_jumpsuit"
+	icon_state = "merc_jumpsuit2"
 	rollable_sleeves = FALSE
 
 /obj/item/clothing/under/rank/synthetic
-	name = "\improper TGMC Support Uniform"
+	name = "\improper synthethic-grade uniform"
 	desc = "A simple uniform made for Synthetic crewmembers."
-	icon_state = "rdalt"
+	icon_state = "som_uniform_veteran"
 	rollable_sleeves = FALSE
 
 /obj/item/clothing/under/rank/marine_cmo
-	name = "marine chief medical officer jumpsuit"
+	name = "chief medical officer jumpsuit"
 	desc = "It's made of a special fiber that provides minor protection against biohazards."
-	icon_state = "marine_cmo"
+	icon_state = "wardenwhite"
 	rollable_sleeves = FALSE
 
 
 /obj/item/clothing/under/som
-	name = "\improper SoM uniform"
-	desc = "A heavily modified mining uniform based off the ones used by mining colonies."
-	icon_state = "som_uniform"
-	item_state = "som_uniform"
+	name = "\improper TGMC uniform"
+	desc = "A heavily modified marine uniform."
+	icon_state = "marine_jumpsuit"
+	item_state = "marine_jumpsuit"
 	has_sensor = FALSE
 
 
 /obj/item/clothing/under/som/medic
-	name = "\improper SoM medical uniform"
-	desc = "A heavily modified mining uniform based off the ones used by mining colonies. Has medical markings."
-	icon_state = "som_uniform_medic"
-	item_state = "som_uniform_medic"
+	name = "\improper TGMC medical uniform"
+	desc = "A heavily modified marine uniform. Has medical markings."
+	icon_state = "marine_medic"
+	item_state = "marine_medic"
 
 
 /obj/item/clothing/under/som/veteran
-	name = "\improper SoM veteran uniform"
-	desc = "A heavily modified mining uniform based off the ones used by mining colonies. Seems to have more care and wear on it."
-	icon_state = "som_uniform_veteran"
-	item_state = "som_uniform_veteran"
+	name = "\improper TGMC veteran undersuit"
+	desc = "A heavily modified undersuit, meant for the Jaeger series of exosuits."
+	icon_state = "marine_undersuit"
+	item_state = "marine_undersuit"
 
 
 /obj/item/clothing/under/som/leader
-	name = "\improper SoM leader uniform"
-	desc = "A heavily modified mining uniform based off the ones used by mining colonies. Seems to have more care and wear on it."
-	icon_state = "som_uniform_leader"
-	item_state = "som_uniform_leader"
+	name = "\improper TGMC formal uniform"
+	desc = "A heavily modified marine uniform. Seems to have more care and wear on it."
+	icon_state = "marine_formal"
+	item_state = "m_BO_jumpsuit"
 
 /obj/item/clothing/under/sectoid
 	name = "psionic field"

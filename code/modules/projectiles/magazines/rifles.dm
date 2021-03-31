@@ -71,6 +71,11 @@
 	current_rounds = 150
 	max_rounds = 150
 
+/obj/item/ammo_magazine/rifle/standard_assaultrifle/som
+	name = "\improper AKS-2347 magazine (10x24mm)"
+	icon_state = "ak47"
+	gun_type = /obj/item/weapon/gun/rifle/standard_assaultrifle/som
+
 //-------------------------------------------------------
 //T37 DMR
 
@@ -126,6 +131,11 @@
 	default_ammo = /datum/ammo/bullet/rifle/standard_dmr
 	current_rounds = 100
 	max_rounds = 100
+
+/obj/item/ammo_magazine/rifle/standard_br/som
+	name = "\improper FN-AR Model 964 magazine (10x27mm)"
+	icon_state = "m16"
+	gun_type = /obj/item/weapon/gun/rifle/standard_br/som
 
 //-------------------------------------------------------
 //M41A TRUE AND ORIGINAL

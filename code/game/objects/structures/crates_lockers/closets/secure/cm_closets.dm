@@ -277,7 +277,7 @@
 	new /obj/item/clothing/gloves/white(src)
 	new /obj/item/clothing/under/whites(src)
 	new /obj/item/clothing/head/white_dress(src)
-	new /obj/item/storage/backpack/marine/satchel/captain_cloak(src)
+	new /obj/item/storage/backpack/marine/satchel/captain_cloak_red(src)
 
 /obj/structure/closet/secure_closet/securecom
 	name = "captain's secure box"
@@ -300,19 +300,9 @@
 	icon_off = "secure_closed_staff"
 
 /obj/structure/closet/secure_closet/staff_officer/PopulateContents()
-	new /obj/item/clothing/head/tgmcberet(src)
-	new /obj/item/clothing/head/tgmcberet/tan(src)
 	new /obj/item/clothing/head/tgmccap/ro(src)
-	new /obj/item/clothing/under/marine/officer/bridge(src)
 	new /obj/item/clothing/shoes/marine(src)
-	new /obj/item/clothing/suit/storage/marine/MP/RO(src)
-	new /obj/item/clothing/suit/storage/marine/MP/RO(src)
-	new /obj/item/storage/belt/marine(src)
-	new /obj/item/clothing/shoes/white(src)
-	new /obj/item/clothing/gloves/white(src)
-	new /obj/item/clothing/under/whites(src)
-	new /obj/item/clothing/head/white_dress(src)
-	new /obj/item/storage/backpack/marine/satchel/officer_cloak(src)
+	new /obj/item/storage/backpack/marine/satchel/officer_cloak_red(src)
 
 /obj/structure/closet/secure_closet/pilot_officer
 	name = "pilot officer's locker"

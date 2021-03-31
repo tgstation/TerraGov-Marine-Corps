@@ -10,7 +10,7 @@
 
 */
 /obj/item/clothing/suit/modular
-	name = "Jaeger XM-02 combat exoskeleton"
+	name = "Venandi XM-02 combat exoskeleton"
 	desc = "Designed to mount a variety of modular armor components and support systems. It comes installed with light-plating and a shoulder lamp. Mount armor pieces to it by clicking on the frame with the components. Use a crowbar to remove armor pieces, use a screwdriver to remove armor attachments."
 	icon = 'icons/mob/modular/modular_armor.dmi'
 	icon_state = "underarmor_icon"
@@ -324,8 +324,8 @@
 
 /** Core helmet module */
 /obj/item/clothing/head/modular
-	name = "Jaeger Pattern Helmet"
-	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points."
+	name = "Venandi Pattern Helmet"
+	desc = "Usually paired with the Venandi Combat Exoskeleton. Can mount utility functions on the helmet hard points."
 	icon = 'icons/mob/modular/modular_helmet_icon.dmi'
 	icon_state = "medium_helmet"
 	item_icons = list(slot_head_str = 'icons/mob/modular/modular_helmet.dmi')
@@ -471,43 +471,43 @@
 	update_overlays()
 
 /obj/item/clothing/head/modular/marine
-	name = "Jaeger Pattern Infantry Helmet"
-	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Infantry markings."
+	name = "Venandi Pattern Infantry Helmet"
+	desc = "Usually paired with the Venandi Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Infantry markings."
 	icon_state = "infantry_helmet"
 	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
 	accuracy_mod = 0
 
 /obj/item/clothing/head/modular/marine/skirmisher
-	name = "Jaeger Pattern Skirmisher Helmet"
-	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Skirmisher markings."
+	name = "Venandi Pattern Skirmisher Helmet"
+	desc = "Usually paired with the Venandi Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Skirmisher markings."
 	icon_state = "skirmisher_helmet"
 
 /obj/item/clothing/head/modular/marine/assault
-	name = "Jaeger Pattern Assault Helmet"
-	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Assault markings."
+	name = "Venandi Pattern Assault Helmet"
+	desc = "Usually paired with the Venandi Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Assault markings."
 	icon_state = "assault_helmet"
 
 /obj/item/clothing/head/modular/marine/eva
-	name = "Jaeger Pattern EVA Helmet"
-	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has EVA markings."
+	name = "Venandi Pattern EVA Helmet"
+	desc = "Usually paired with the Venandi Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has EVA markings."
 	icon_state = "eva_helmet"
 
 /obj/item/clothing/head/modular/marine/eva/skull
-	name = "Jaeger Pattern EVA Skull Helmet"
-	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has EVA markings and a skull on the visor."
+	name = "Venandi Pattern EVA Skull Helmet"
+	desc = "Usually paired with the Venandi Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has EVA markings and a skull on the visor."
 	icon_state = "eva_skull_helmet"
 
 /obj/item/clothing/head/modular/marine/eod
-	name = "Jaeger Pattern EOD Helmet"
-	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has EOD markings"
+	name = "Venandi Pattern EOD Helmet"
+	desc = "Usually paired with the Venandi Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has EOD markings"
 	icon_state = "eod_helmet"
 
 /obj/item/clothing/head/modular/marine/scout
-	name = "Jaeger Pattern Scout Helmet"
-	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Scout markings"
+	name = "Venandi Pattern Scout Helmet"
+	desc = "Usually paired with the Venandi Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Scout markings"
 	icon_state = "scout_helmet"
 
 /obj/item/clothing/head/modular/marine/infantry
-	name = "Jaeger Pattern Infantry-Open Helmet"
-	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Infantry markings and no visor."
+	name = "Venandi Pattern Infantry-Open Helmet"
+	desc = "Usually paired with the Venandi Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Infantry markings and no visor."
 	icon_state = "infantryopen_helmet"

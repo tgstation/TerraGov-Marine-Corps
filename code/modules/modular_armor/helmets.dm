@@ -2,7 +2,7 @@
 /** Helmet attachments */
 /obj/item/helmet_module/welding
 	name = "Welding Helmet Module"
-	desc = "Designed for mounting on a Jaeger Helmet. When attached, this module can be flipped up or down to function as a welding mask."
+	desc = "Designed for mounting on a Venandi Helmet. When attached, this module can be flipped up or down to function as a welding mask."
 	icon_state = "welding_head_obj"
 	item_state = "welding_head_inactive"
 	module_type = ARMOR_MODULE_TOGGLE
@@ -42,7 +42,7 @@
 
 /obj/item/helmet_module/attachable/mimir_environment_protection
 	name = "Mark 2 Mimir Environmental Helmet System"
-	desc = "Designed for mounting on a Jaeger Helmet. When attached, this system provides substantial resistance to environmental hazards, such as gases, acidic elements, and radiological exposure. Best paired with the Mimir Environmental Resistance System. Will impact mobility when attached."
+	desc = "Designed for mounting on a Venandi Helmet. When attached, this system provides substantial resistance to environmental hazards, such as gases, acidic elements, and radiological exposure. Best paired with the Mimir Environmental Resistance System. Will impact mobility when attached."
 	icon_state = "mimir_head_obj"
 	item_state = "mimir_head"
 	soft_armor = list("bio" = 20, "rad" = 50, "acid" = 20)
@@ -67,14 +67,14 @@
 
 /obj/item/helmet_module/attachable/mimir_environment_protection/mark1 //gas protection
 	name = "Mark 1 Mimir Environmental Helmet System"
-	desc = "Designed for mounting on a Jaeger Helmet. When attached, this system provides substantial resistance to environmental hazards, such as gases and radiological exposure. This older version has no acidic resistance. Best paired with the Mimir Environmental Resistance System and a gas mask."
+	desc = "Designed for mounting on a Venandi Helmet. When attached, this system provides substantial resistance to environmental hazards, such as gases and radiological exposure. This older version has no acidic resistance. Best paired with the Mimir Environmental Resistance System and a gas mask."
 	icon_state = "mimir_head_obj"
 	item_state = "mimir_head"
 	soft_armor = null
 
 /obj/item/helmet_module/binoculars
 	name = "Binocular Helmet Module"
-	desc = "Designed for mounting on a Jaeger Helmet. When attached, can be flipped down to view into the distance."
+	desc = "Designed for mounting on a Venandi Helmet. When attached, can be flipped down to view into the distance."
 	icon_state = "binocular_head_obj"
 	item_state = "binocular_head_inactive"
 	module_type = ARMOR_MODULE_TOGGLE
@@ -102,12 +102,12 @@
 	RegisterSignal(src, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED), .proc/zoom_item_turnoff)
 
 /obj/item/helmet_module/binoculars/onunzoom(mob/living/user)
-	UnregisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_MOB_MOUSEDOWN))	
+	UnregisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_MOB_MOUSEDOWN))
 	UnregisterSignal(src, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED))
 
 /obj/item/helmet_module/antenna
 	name = "Antenna helmet module"
-	desc = "Designed for mounting on a Jaeger Helmet. When attached, this module is able to provide quick readuts of the users coordinates."
+	desc = "Designed for mounting on a Venandi Helmet. When attached, this module is able to provide quick readuts of the users coordinates."
 	icon_state = "antenna_head_obj"
 	item_state = "antenna_head"
 	module_type = ARMOR_MODULE_TOGGLE
