@@ -83,9 +83,6 @@
 	///whether or not a caste can hold eggs, and either 1 or 2 eggs at a time.
 	var/can_hold_eggs = CANNOT_HOLD_EGGS
 
-	///whether or not a caste can corrupt a generator
-	var/can_corrupt_gene = FALSE
-
 	// *** Defense *** //
 	var/list/soft_armor
 	var/list/hard_armor

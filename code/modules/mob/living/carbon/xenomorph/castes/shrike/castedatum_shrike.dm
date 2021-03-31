@@ -34,7 +34,7 @@
 	deevolves_to = /mob/living/carbon/xenomorph/drone
 
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_IS_INTELLIGENT|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
+	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_IS_INTELLIGENT|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_CORRUPT_GENE
 
 	can_hold_eggs = CAN_HOLD_TWO_HANDS
 
@@ -44,8 +44,6 @@
 	// *** Pheromones *** //
 	aura_strength = 2 //The Shrike's aura is decent.
 	aura_allowed = list("frenzy", "warding", "recovery")
-
-	can_corrupt_gene = TRUE
 
 	// *** Abilities *** //
 	actions = list(

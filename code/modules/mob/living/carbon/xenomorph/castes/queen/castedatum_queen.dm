@@ -29,7 +29,7 @@
 	upgrade_threshold = 350
 
 	// *** Flags *** //
-	caste_flags = CASTE_IS_INTELLIGENT|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_HIDE_IN_STATUS|CASTE_CAN_HOLD_JELLY
+	caste_flags = CASTE_IS_INTELLIGENT|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_HIDE_IN_STATUS|CASTE_CAN_HOLD_JELLY|CASTE_CAN_CORRUPT_GENE
 
 	can_hold_eggs = CAN_HOLD_TWO_HANDS
 
@@ -46,8 +46,6 @@
 
 	// *** Queen Abilities *** //
 	queen_leader_limit = 2 //Amount of leaders allowed
-
-	can_corrupt_gene = TRUE
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
