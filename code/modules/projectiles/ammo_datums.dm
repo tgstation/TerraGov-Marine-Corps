@@ -477,7 +477,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 20
 	penetration = 10
 
-/datum/ammo/bullet/rifle/m4ra
+/datum/ammo/bullet/rifle/tx8
 	name = "A19 high velocity bullet"
 	hud_state = "hivelo"
 	hud_state_empty = "hivelo_empty"
@@ -489,7 +489,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 20
 	sundering = 10
 
-/datum/ammo/bullet/rifle/m4ra/incendiary
+/datum/ammo/bullet/rifle/tx8/incendiary
 	name = "A19 high velocity incendiary bullet"
 	hud_state = "hivelo_fire"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY|AMMO_SUNDERING
@@ -498,7 +498,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 20
 	sundering = 2.5
 
-/datum/ammo/bullet/rifle/m4ra/impact
+/datum/ammo/bullet/rifle/tx8/impact
 	name = "A19 high velocity impact bullet"
 	hud_state = "hivelo_impact"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
@@ -506,10 +506,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 45
 	sundering = 5
 
-/datum/ammo/bullet/rifle/m4ra/impact/on_hit_mob(mob/M, obj/projectile/P)
+/datum/ammo/bullet/rifle/tx8/impact/on_hit_mob(mob/M, obj/projectile/P)
 	staggerstun(M, P, max_range = 40, stagger = 2, slowdown = 3.5, knockback = 1)
 
-/datum/ammo/bullet/rifle/m4ra/smart
+/datum/ammo/bullet/rifle/tx8/smart
 	name = "A19 high velocity smart bullet"
 	hud_state = "hivelo_iff"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING

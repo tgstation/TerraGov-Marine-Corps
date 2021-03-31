@@ -232,8 +232,8 @@
 	icon_state = "large_ammo_mag"
 	storage_slots = 3
 
-/obj/item/storage/pouch/magazine/large/m4rafull
-	fill_type = /obj/item/ammo_magazine/rifle/m4ra
+/obj/item/storage/pouch/magazine/large/tx8full
+	fill_type = /obj/item/ammo_magazine/rifle/tx8
 	fill_number = 3
 
 /obj/item/storage/pouch/magazine/large/t19full

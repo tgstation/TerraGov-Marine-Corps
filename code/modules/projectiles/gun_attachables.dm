@@ -794,7 +794,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	icon_state = "tx11scope"
 	attach_icon = "tx11scope"
 
-/obj/item/attachable/scope/mini/m4ra
+/obj/item/attachable/scope/mini/tx8
 	name = "T-45 rail scope"
 	aim_speed_mod = 0
 	attach_icon = "none"

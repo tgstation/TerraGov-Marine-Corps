@@ -207,9 +207,9 @@ WEAPONS
 	contains = list(/obj/item/weapon/gun/rifle/railgun)
 	cost = 130
 
-/datum/supply_packs/weapons/specscoutm4ra
-	name = "Scout Specialist kit (M4RA)"
-	contains = list(/obj/item/weapon/gun/rifle/m4ra)
+/datum/supply_packs/weapons/specscouttx8
+	name = "Scout Specialist kit (tx8)"
+	contains = list(/obj/item/weapon/gun/rifle/tx8)
 	cost = 80
 
 /datum/supply_packs/weapons/specdemo
@@ -494,23 +494,23 @@ AMMO
 	cost = 10
 
 /datum/supply_packs/ammo/scout_regular
-	name = "M4RA scout magazine"
-	contains = list(/obj/item/ammo_magazine/rifle/m4ra)
+	name = "tx8 scout magazine"
+	contains = list(/obj/item/ammo_magazine/rifle/tx8)
 	cost = 5
 
 /datum/supply_packs/ammo/scout_impact
-	name = "M4RA scout impact magazine"
-	contains = list(/obj/item/ammo_magazine/rifle/m4ra/impact)
+	name = "tx8 scout impact magazine"
+	contains = list(/obj/item/ammo_magazine/rifle/tx8/impact)
 	cost = 7
 
 /datum/supply_packs/ammo/scout_incendiary
-	name = "M4RA scout incendiary magazine"
-	contains = list(/obj/item/ammo_magazine/rifle/m4ra/incendiary)
+	name = "tx8 scout incendiary magazine"
+	contains = list(/obj/item/ammo_magazine/rifle/tx8/incendiary)
 	cost = 7
 
 /datum/supply_packs/ammo/scout_smart
-	name = "M4RA scout smart magazine"
-	contains = list(/obj/item/ammo_magazine/rifle/m4ra/smart)
+	name = "tx8 scout smart magazine"
+	contains = list(/obj/item/ammo_magazine/rifle/tx8/smart)
 	cost = 7
 
 /datum/supply_packs/ammo/autosniper_regular
