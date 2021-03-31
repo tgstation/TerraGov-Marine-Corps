@@ -36,6 +36,12 @@
 	blood_overlay_type = "armor"
 	permeability_coefficient = 0.8
 	flags_armor_protection = CHEST
+	flags_atom = CONDUCT
+	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
+	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
+	flags_heat_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
+	min_cold_protection_temperature = ARMOR_MIN_COLD_PROTECTION_TEMPERATURE
+	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
 	soft_armor = list("melee" = 20, "bullet" = 30, "laser" = 25, "energy" = 10, "bomb" = 15, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 10)
 	allowed = list (
 		/obj/item/flashlight,
@@ -45,9 +51,15 @@
 		/obj/item/storage/large_holster/machete
 	)
 
+//April Fools - same stats as the PAS-11
 /obj/item/clothing/suit/armor/vest/sec
 	name = "armored vest"
 	desc = "Rightfully acquired property."
+	soft_armor = list("melee" = 40, "bullet" = 60, "laser" = 60, "energy" = 45, "bomb" = 45, "bio" = 45, "rad" = 45, "fire" = 45, "acid" = 50)
+	slowdown = 0.5 //a bit less
+	light_range = 6
+	siemens_coefficient = 0.7
+	permeability_coefficient = 0.8
 	allowed = list (
 		/obj/item/weapon/claymore/toolbox,
 		/obj/item/weapon/shield/riot/marine/greytide

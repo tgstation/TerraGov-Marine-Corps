@@ -57,7 +57,7 @@
 
 /datum/emergency_call/greytide
 	name = "NT Greytide Escalation Squad"
-	probability = 80 //Only one day so let them greytide
+	probability = 50 //Only one day so let them greytide
 	shuttle_id = "distress_pmc"
 
 
