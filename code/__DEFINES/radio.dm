@@ -2,7 +2,7 @@
 
 //say based modes like binary are in living/say.dm
 
-#define RADIO_CHANNEL_COMMON "Common"
+#define RADIO_CHANNEL_COMMON "Sons of Mars"
 #define RADIO_KEY_COMMON ";"
 
 #define RADIO_CHANNEL_REQUISITIONS "Requisitions"
@@ -47,7 +47,7 @@
 #define RADIO_CHANNEL_USL "USL"
 #define RADIO_CHANNEL_DEATHSQUAD "Deathsquad"
 #define RADIO_CHANNEL_IMPERIAL "Imperial"
-#define RADIO_CHANNEL_SOM "Sons of Mars"
+#define RADIO_CHANNEL_SOM "TERRACOM"
 #define RADIO_CHANNEL_SECTOID "Alien"
 #define RADIO_CHANNEL_ECHO "Echo"
 #define RADIO_CHANNEL_DS1 "Alamo"

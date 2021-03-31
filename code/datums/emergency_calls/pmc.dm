@@ -1,6 +1,6 @@
 /datum/emergency_call/pmc
 	name = "NT Private Military Contractor Squad"
-	probability = 25
+	probability = 10
 	shuttle_id = "distress_pmc"
 
 
@@ -11,7 +11,7 @@
 	to_chat(H, "")
 	to_chat(H, "<B>Today, a TGMC vessel, [SSmapping.configs[SHIP_MAP].map_name], has sent out a distress signal on the orbit of [SSmapping.configs[GROUND_MAP].map_name]. Your time is running short, get your shuttle launching!</b>")
 	to_chat(H, "<B>Make sure the Corporate Liaison is safe.</b>")
-	to_chat(H, "<B>If there is no Liaison, eliminate the threat and cooperate with the Captain before returning back home.</b>")
+	to_chat(H, "<B>If there is no Liaison, eliminate any threat (including the Sons of Mars) before returning back home.</b>")
 
 
 /datum/emergency_call/pmc/create_member(datum/mind/M)

@@ -188,14 +188,14 @@
 
 
 /obj/item/clothing/head/helmet/marine
-	name = "\improper M10 pattern marine helmet"
-	desc = "A standard M10 Pattern Helmet. It reads on the label, 'The difference between an open-casket and closed-casket funeral. Wear on head for best results.'."
+	name = "\improper S6 combat helmet"
+	desc = "A helmet with origns of heavily modified head protection used back in the mining colonies. Protection from threats is bad but it's better than nothing."
 	icon = 'icons/obj/clothing/cm_hats.dmi'
 	item_icons = list(
 		slot_head_str = 'icons/mob/head_1.dmi',
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
 		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
-	icon_state = "helmet"
+	icon_state = "som_helmet"
 	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
 	max_integrity = 5
 	var/list/helmet_overlays
@@ -303,52 +303,55 @@
 
 
 /obj/item/clothing/head/helmet/marine/standard
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT|ITEM_ICE_PROTECTION)
+	flags_item_map_variant = null
 
 /obj/item/clothing/head/helmet/marine/tech
-	name = "\improper M10 technician helmet"
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT|ITEM_ICE_PROTECTION)
+	flags_item_map_variant = null
 
 
 /obj/item/clothing/head/helmet/marine/corpsman
-	name = "\improper M10 corpsman helmet"
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT|ITEM_ICE_PROTECTION)
+	flags_item_map_variant = null
 
 /obj/item/clothing/head/helmet/marine/heavy
-	name = "\improper M10E pattern marine helmet"
-	desc = "A standard M10E Pattern Helmet. This is a modified version of the standard M10 helmet, offering an enclosed visor apparatus. It doesn't look to be any more protective damage wise."
-	icon_state = "heavyhelmet"
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT|ITEM_ICE_PROTECTION)
+	name = "\improper S7 combat helmet"
+	desc = "A helmet of origins off of heavily modified helmets used back in the mining colonies. Seems to have extensive modification."
+	icon_state = "som_helmet_veteran"
+	item_state = "som_helmet_veteran"
+	flags_item_map_variant = null
 
 /obj/item/clothing/head/helmet/marine/leader
-	name = "\improper M11 pattern leader helmet"
-	desc = "A slightly fancier helmet for marine leaders. This one has cushioning to project your fragile brain."
+	name = "\improper S8 combat helmet"
+	desc = "A helmet of origins off of heavily modified helmets used back in the mining colonies."
+	icon_state = "som_helmet_leader"
+	item_state = "som_helmet_leader"
 	soft_armor = list("melee" = 75, "bullet" = 65, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT|ITEM_ICE_PROTECTION)
+	flags_item_map_variant = null
 
 
 /obj/item/clothing/head/helmet/marine/specialist
-	name = "\improper B18 helmet"
-	desc = "The B18 Helmet that goes along with the B18 Defensive Armor. It's heavy, reinforced, and protects more of the face."
-	icon_state = "minigunner_helmet"
+	name = "\improper S7 combat helmet"
+	desc = "A helmet of origins off of heavily modified helmets used back in the mining colonies. Seems to have extensive modification."
+	icon_state = "som_helmet_veteran"
+	item_state = "som_helmet_veteran"
 	soft_armor = list("melee" = 65, "bullet" = 80, "laser" = 75, "energy" = 65, "bomb" = 70, "bio" = 65, "rad" = 15, "fire" = 65, "acid" = 65)
 	flags_inv_hide = HIDEALLHAIR|HIDEEARS
 	flags_item = SYNTH_RESTRICTED
 	resistance_flags = UNACIDABLE
 	anti_hug = 6
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT|ITEM_ICE_PROTECTION)
+	flags_item_map_variant = null
 
 /obj/item/clothing/head/helmet/marine/grenadier
-	name = "\improper B17 helmet"
-	desc = "A heavy duty helmet created to complement the B17 marine armor. Practically explosive proof. Unless you stand next to a nuke or something like that."
-	icon_state = "grenadier_helmet"
+	name = "\improper S7 combat helmet"
+	desc = "A helmet of origins off of heavily modified helmets used back in the mining colonies. Seems to have extensive modification."
+	icon_state = "som_helmet_veteran"
+	item_state = "som_helmet_veteran"
 	soft_armor = list("melee" = 60, "bullet" = 70, "laser" = 60, "energy" = 65, "bomb" = 100, "bio" = 60, "rad" = 15, "fire" = 65, "acid" = 60)
 	flags_inv_hide = HIDEALLHAIR|HIDEEARS
 	max_heat_protection_temperature = HEAVYARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
 	resistance_flags = UNACIDABLE
 	flags_item = SYNTH_RESTRICTED
 	anti_hug = 4
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT|ITEM_ICE_PROTECTION)
+	flags_item_map_variant = null
 
 /obj/item/clothing/head/helmet/marine/scout
 	name = "\improper M3-S helmet"
@@ -381,9 +384,14 @@
 
 
 /obj/item/clothing/head/helmet/marine/pilot
-	name = "\improper M30 tactical helmet"
-	desc = "The M30 tactical helmet has an left eyepiece filter used to filter tactical data. It is used by pilots in the TGN. This one is in gunmetal blue."
-	icon_state = "helmetp2"
+	name = "\improper space mining helmet"
+	desc = "It is used by space pilots."
+	icon = 'icons/obj/clothing/hats.dmi'
+	icon_state = "syndicate-helm-black-red"
+	item_icons = list(
+		slot_head_str = 'icons/mob/head_0.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_0.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_0.dmi',)
 	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	flags_inventory = BLOCKSHARPOBJ
@@ -392,8 +400,8 @@
 	flags_item_map_variant = null
 
 obj/item/clothing/head/helmet/marine/pilot/green
-	name = "\improper M30 tactical helmet"
-	desc = "The M30 tactical helmet has an left eyepiece filter used to filter tactical data. It is used by pilots in the TGN. This one is in green."
+	name = "\improper space mining helmet"
+	desc = "It is used by space pilots."
 	icon_state = "helmetp"
 
 
@@ -631,10 +639,10 @@ obj/item/clothing/head/helmet/marine/pilot/green
 
 
 /obj/item/clothing/head/helmet/marine/som
-	name = "\improper S6 combat helmet"
-	desc = "A helmet with origns of heavily modified head protection used back in the mining colonies. Protection from threats is bad but it's better than nothing."
-	icon_state = "som_helmet"
-	item_state = "som_helmet"
+	name = "\improper M10E pattern marine helmet"
+	desc = "A standard M10E Pattern Helmet. This is a modified version of the standard M10 helmet, offering an enclosed visor apparatus. It doesn't look to be any more protective damage wise."
+	icon_state = "k_heavyhelmet"
+	item_state = "k_heavyhelmet"
 	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	flags_inventory = BLOCKSHARPOBJ
@@ -643,18 +651,18 @@ obj/item/clothing/head/helmet/marine/pilot/green
 
 
 /obj/item/clothing/head/helmet/marine/som/veteran
-	name = "\improper S7 combat helmet"
-	desc = "A helmet of origins off of heavily modified helmets used back in the mining colonies. Seems to have extensive modification."
-	icon_state = "som_helmet_veteran"
-	item_state = "som_helmet_veteran"
+	name = "\improper Jaeger modified Infantry helmet"
+	desc = "A modified version of the Jaeger Infantry helmet, with a white skull imprinted on its visor."
+	icon_state = "jaeger_helmet"
+	item_state = "jaeger_helmet"
 	soft_armor = list("melee" = 65, "bullet" = 65, "laser" = 65, "energy" = 35, "bomb" = 30, "bio" = 50, "rad" = 20, "fire" = 35, "acid" = 50)
 
 
 /obj/item/clothing/head/helmet/marine/som/leader
-	name = "\improper S8 combat helmet"
-	desc = "A helmet of origins off of heavily modified helmets used back in the mining colonies."
-	icon_state = "som_helmet_leader"
-	item_state = "som_helmet_leader"
+	name = "\improper Jaeger modified Assault helmet"
+	desc = "A modified version of the Jaeger Assault helmet, with the EVA frame and skull visor."
+	icon_state = "jaeger_leader_helmet"
+	item_state = "jaeger_leader_helmet"
 	soft_armor = list("melee" = 55, "bullet" = 65, "laser" = 65, "energy" = 30, "bomb" = 20, "bio" = 50, "rad" = 15, "fire" = 30, "acid" = 50)
 
 /obj/item/clothing/head/helmet/sectoid

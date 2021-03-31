@@ -1,7 +1,7 @@
 /datum/job/terragov/command
 	job_category = JOB_CAT_COMMAND
 	selection_color = "#ddddff"
-	supervisors = "the acting captain"
+	supervisors = "the acting chief"
 	exp_type_department = EXP_TYPE_COMMAND
 
 
@@ -10,8 +10,8 @@
 	title = CAPTAIN
 	req_admin_notify = TRUE
 	paygrade = "O6"
-	comm_title = "CPT"
-	supervisors = "TGMC high command"
+	comm_title = "OpCHF"
+	supervisors = "Sons of Mars command center"
 	selection_color = "#ccccff"
 	total_positions = 1
 	skills_type = /datum/skills/captain
@@ -35,13 +35,13 @@
 
 /datum/job/terragov/command/captain/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"As the captain of the [SSmapping.configs[SHIP_MAP].map_name] you are held by higher standard and are expected to act competently.
-While you may support Nanotrasen, you report to the TGMC High Command, not the corporate office.
+	to_chat(M, {"As the chief of the [SSmapping.configs[SHIP_MAP].map_name] you are held by higher standard and are expected to act competently.
+You report to the Sons of Mars command center, not to anyone else.
 Your primary task is the safety of the ship and her crew, and ensuring the survival and success of the marines.
-Your first order of business should be briefing the marines on the mission they are about to undertake.
+Your first order of business should be briefing the fighters on the mission they are about to undertake.
 You should not be voluntarily leaving your vessel under any circumstances. A captain goes down with their ship.
 If you require any help, use <b>mentorhelp</b> to ask mentors about what you're supposed to do.
-Godspeed, captain! And remember, you are not above the law."})
+Godspeed, chief! And remember, you are not above the law."})
 
 
 /datum/outfit/job/command/captain
@@ -54,7 +54,7 @@ Godspeed, captain! And remember, you are not above the law."})
 	w_uniform = /obj/item/clothing/under/marine/officer/command
 	shoes = /obj/item/clothing/shoes/marinechief/captain
 	gloves = /obj/item/clothing/gloves/marine/techofficer/captain
-	head = /obj/item/clothing/head/tgmcberet/tan
+	head = /obj/item/clothing/head/tgmcberet/fc
 	r_store = /obj/item/storage/pouch/general/large/command
 	l_store = /obj/item/hud_tablet/leadership
 	back = /obj/item/storage/backpack/marine/satchel
@@ -80,7 +80,7 @@ Godspeed, captain! And remember, you are not above the law."})
 	title = FIELD_COMMANDER
 	req_admin_notify = TRUE
 	paygrade = "O3"
-	comm_title = "FCDR"
+	comm_title = "FLDR"
 	total_positions = 1
 	skills_type = /datum/skills/FO
 	access = ALL_MARINE_ACCESS
@@ -104,10 +104,10 @@ Godspeed, captain! And remember, you are not above the law."})
 
 /datum/job/terragov/command/fieldcommander/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"You are charged with overseeing the operation on the ground, and are the highest-ranked deployed marine.
+	to_chat(M, {"You are charged with overseeing the operation on the ground, and are the highest-ranked deployed freedom fighter.
 Your duties are to ensure marines hold when ordered, and push when they are cowering behind barricades.
 Do not ask your men to do anything you would not do side by side with them.
-Make the TGMC proud!"})
+Free Mars!"})
 
 /datum/job/terragov/command/fieldcommander/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
@@ -134,7 +134,7 @@ Make the TGMC proud!"})
 	belt = /obj/item/storage/large_holster/officer/full
 	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer/exec
-	wear_suit = /obj/item/clothing/suit/storage/marine/pasvest
+	wear_suit = /obj/item/clothing/suit/storage/marine/MP
 	shoes = /obj/item/clothing/shoes/marine/full
 	gloves = /obj/item/clothing/gloves/marine/officer
 	head = /obj/item/clothing/head/tgmcberet/fc
@@ -148,7 +148,7 @@ Make the TGMC proud!"})
 /datum/job/terragov/command/staffofficer
 	title = STAFF_OFFICER
 	paygrade = "O4"
-	comm_title = "SO"
+	comm_title = "CO"
 	total_positions = 4
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_BRIG, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA)
 	minimal_access = ALL_MARINE_ACCESS
@@ -168,8 +168,8 @@ Make the TGMC proud!"})
 
 /datum/job/terragov/command/staffofficer/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"Your job is to monitor the marines, man the CIC, and listen to your superior officers.
-You are in charge of logistics and the overwatch system. You are also in line to take command after the captain."})
+	to_chat(M, {"Your job is to monitor the fighters, man the CIC, and listen to your superior officers.
+You are in charge of logistics and the overwatch system. You are also in line to take command after the chief."})
 
 /datum/job/terragov/command/staffofficer/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
@@ -204,7 +204,7 @@ You are in charge of logistics and the overwatch system. You are also in line to
 /datum/job/terragov/command/pilot
 	title = PILOT_OFFICER
 	paygrade = "WO"
-	comm_title = "PO"
+	comm_title = "AMan"
 	total_positions = 2
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_PILOT)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_PILOT, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_MEDBAY)
@@ -241,7 +241,7 @@ You are in charge of logistics and the overwatch system. You are also in line to
 /datum/job/terragov/command/pilot/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"Your job is to fly, protect, and maintain the ship's dropship.
-While you are a warrant officer, your authority is limited to the dropship, where you have authority over the enlisted personnel.
+While you are an airman, your authority is limited to the dropship, where you have authority over the enlisted personnel.
 If you are not piloting, there is an autopilot fallback for command, but don't leave the dropship without reason."})
 
 
@@ -312,7 +312,7 @@ You could use STs help to repair and replace hardpoints."})
 /datum/job/terragov/engineering
 	job_category = JOB_CAT_ENGINEERING
 	selection_color = "#fff5cc"
-	supervisors = "the acting captain"
+	supervisors = "the acting chief"
 	exp_type_department = EXP_TYPE_ENGINEERING
 
 
@@ -320,7 +320,7 @@ You could use STs help to repair and replace hardpoints."})
 /datum/job/terragov/engineering/chief
 	title = CHIEF_SHIP_ENGINEER
 	paygrade = "O2"
-	comm_title = "CSE"
+	comm_title = "CST"
 	selection_color = "#ffeeaa"
 	total_positions = 1
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_BRIDGE, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_PREP)
@@ -382,10 +382,10 @@ You are also next in the chain of command, should the bridge crew fall in the li
 //Ship Engineer
 /datum/job/terragov/engineering/tech
 	title = SHIP_TECH
-	comm_title = "ST"
+	comm_title = "OT"
 	paygrade = "PO3"
 	total_positions = 5
-	supervisors = "the chief ship engineer and the requisitions officer"
+	supervisors = "the chief ship technician and the supply officer"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CARGO, ACCESS_CIVILIAN_ENGINEERING)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_CARGO, ACCESS_CIVILIAN_ENGINEERING)
 	skills_type = /datum/skills/ST
@@ -443,7 +443,7 @@ requisitions line and later on to be ready to send supplies for marines who are 
 /datum/job/terragov/requisitions
 	job_category = JOB_CAT_REQUISITIONS
 	selection_color = "#BAAFD9"
-	supervisors = "the acting captain"
+	supervisors = "the acting chief"
 	exp_type_department = EXP_TYPE_REQUISITIONS
 
 
@@ -452,7 +452,7 @@ requisitions line and later on to be ready to send supplies for marines who are 
 	title = REQUISITIONS_OFFICER
 	req_admin_notify = TRUE
 	paygrade = "CPO"
-	comm_title = "RO"
+	comm_title = "SO"
 	selection_color = "#9990B2"
 	total_positions = 1
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_PREP, ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA)
@@ -491,7 +491,7 @@ requisitions line and later on to be ready to send supplies for marines who are 
 /datum/job/terragov/requisitions/officer/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"Your job is to dispense supplies to the marines, including weapon attachments.
-While you may request paperwork for supplies, do not go out of your way to screw with marines, unless you want to get deposed.
+While you may request paperwork for supplies, do not go out of your way to screw with fighters, unless you want to get deposed.
 A happy ship is a well-functioning ship."})
 
 
@@ -522,9 +522,9 @@ A happy ship is a well-functioning ship."})
 	title = CHIEF_MEDICAL_OFFICER
 	req_admin_notify = TRUE
 	comm_title = "CMO"
-	paygrade = "O3"
+	paygrade = "C"
 	total_positions = 1
-	supervisors = "the acting captain"
+	supervisors = "the acting chief"
 	selection_color = "#99FF99"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_CMO, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_CHEMISTRY)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CMO, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS)
@@ -546,7 +546,7 @@ A happy ship is a well-functioning ship."})
 	. = ..()
 	to_chat(M, {"You are the chief medical officer aboard the [SSmapping.configs[SHIP_MAP].map_name], navy officer and supervisor to the medical department.
 You have final authority over the medical department, medications, and treatments.
-Make sure that the doctors and nurses are doing their jobs and keeping the marines healthy and strong."})
+Make sure that the doctors and nurses are doing their jobs and keeping the fighters healthy and strong."})
 
 
 /datum/outfit/job/medical/professor
@@ -575,8 +575,8 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 //Medical Officer
 /datum/job/terragov/medical/medicalofficer
 	title = MEDICAL_OFFICER
-	comm_title = "MO"
-	paygrade = "O1"
+	comm_title = "Surg"
+	paygrade = "C"
 	total_positions = 6
 	supervisors = "the chief medical officer"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY)
@@ -611,7 +611,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 /datum/job/terragov/medical/medicalofficer/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"You are a military doctor stationed aboard the [SSmapping.configs[SHIP_MAP].map_name].
-You are tasked with keeping the marines healthy and strong, usually in the form of surgery.
+You are tasked with keeping the fighters healthy and strong, usually in the form of surgery.
 You are also an expert when it comes to medication and treatment. If you do not know what you are doing, <b>mentorhelp</b> so a mentor can assist you."})
 
 
@@ -641,9 +641,9 @@ You are also an expert when it comes to medication and treatment. If you do not 
 /datum/job/terragov/medical/researcher
 	title = MEDICAL_RESEARCHER
 	comm_title = "Rsr"
-	paygrade = "CD"
+	paygrade = "C"
 	total_positions = 2
-	supervisors = "the NT corporate office"
+	supervisors = "the chief medical officer"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CHEMISTRY)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP)
 	skills_type = /datum/skills/doctor
@@ -660,10 +660,9 @@ You are also an expert when it comes to medication and treatment. If you do not 
 
 /datum/job/terragov/medical/researcher/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"You are a civilian, working for the Nanotrasen Corporation, and are not subject to the military chain of command.
+	to_chat(M, {"You are a civilian, working for the Sons of Mars, and are not subject to the military chain of command.
 You are tasked with researching and developing new medical treatments, weapons, conducting xenomorph studies, and learning new things.
-Your role involves some roleplaying and gimmickry, but you can perform the function of a regular doctor.
-While the Corporate Liaison is not your boss, it would be wise to consult them on your findings or ask to use their NT fax machine."})
+Your role involves some roleplaying and gimmickry, but you can perform the function of a regular doctor."})
 
 
 /datum/outfit/job/medical/researcher
@@ -712,10 +711,10 @@ While the Corporate Liaison is not your boss, it would be wise to consult them o
 
 /datum/job/terragov/civilian/liaison/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"As a representative of Nanotrasen Corporation you are expected to stay professional and loyal to the corporation at all times.
-You are not required to follow military orders; however, you cannot give military orders.
-Your primary job is to observe and report back your findings to Nanotrasen. Follow regular game rules unless told otherwise by your superiors.
-Use your office fax machine to communicate with corporate headquarters or to acquire new directives. You may not receive anything back (especially if the game staff is absent or otherwise busy), and this is normal."})
+	to_chat(M, {"As a hostage taken by the SoM, you are expected to stay professional and loyal to your captors at all times.
+You are not required to follow their rules; however, you are treated like every other prisoner.
+Your primary job is to observe and report back your findings to Nanotrasen. Follow regular game rules unless told otherwise by your superiors. Wait for your rescue, if available.
+Use your office fax machine to discreetly communicate with corporate headquarters or to acquire new directives. You may not receive anything back (especially if the game staff is absent or otherwise busy), and this is normal."})
 
 
 /datum/outfit/job/civilian/liaison
@@ -740,7 +739,7 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 	req_admin_notify = TRUE
 	comm_title = "Syn"
 	paygrade = "Mk.I"
-	supervisors = "the acting captain"
+	supervisors = "the acting chief"
 	total_positions = 1
 	skills_type = /datum/skills/synthetic
 	access = ALL_ACCESS
@@ -789,7 +788,7 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 
 /datum/job/terragov/silicon/synthetic/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"Your primary job is to support and assist all TGMC departments and personnel on-board.
+	to_chat(M, {"Your primary job is to support and assist all SoM departments and personnel on-board.
 In addition, being a Synthetic gives you knowledge in every field and specialization possible on-board the ship."})
 
 
@@ -839,8 +838,8 @@ In addition, being a Synthetic gives you knowledge in every field and specializa
 
 /datum/job/terragov/silicon/ai/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"Your primary job is to support and assist all TGMC departments and personnel on-board.
-However, your vision is limited through cameras from the ship or to marines groundside.
+	to_chat(M, {"Your primary job is to support and assist all SoM departments and personnel on-board.
+However, your vision is limited through cameras from the ship or to fighters groundside.
 Recon any threats and report findings at various communication channels.
 If you require any help, use <b>mentorhelp</b> to ask mentors about what you're supposed to do."})
 

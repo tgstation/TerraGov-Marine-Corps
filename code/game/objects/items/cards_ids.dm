@@ -232,18 +232,18 @@
 
 
 /obj/item/card/id/dogtag
-	name = "dog tag"
-	desc = "A marine dog tag."
-	icon_state = "dogtag"
-	item_state = "dogtag"
-	var/dogtag_taken = FALSE
-
-
-/obj/item/card/id/dogtag/som
 	name = "\improper Sons of Mars dogtag"
 	desc = "Used by the Sons of Mars."
 	icon_state = "dogtag_som"
 	item_state = "dogtag_som"
+	var/dogtag_taken = FALSE
+
+
+/obj/item/card/id/dogtag/som
+	name = "dog tag"
+	desc = "A marine dog tag."
+	icon_state = "dogtag"
+	item_state = "dogtag"
 
 
 /obj/item/card/id/dogtag/examine(mob/user)

@@ -87,10 +87,10 @@
 	new /obj/item/t_scanner(src)
 
 /obj/item/storage/belt/medical
-	name = "\improper M276 pattern medical storage rig"
-	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is a less common configuration, designed to transport medical supplies, and light ammunitions."
-	icon_state = "medicalbelt"
-	item_state = "medical"
+	name = "\improper S17 storage rig"
+	desc = "A belt with heavy origins from the belt used by paramedics and doctors in the old mining colonies."
+	icon_state = "sparepouch_u"
+	item_state = "sparepouch_u"
 	storage_slots = 14 //can hold 2 "rows" of very limited medical equipment and ammo.
 	max_w_class = 3
 	max_storage_space = 29
@@ -141,10 +141,10 @@
 
 
 /obj/item/storage/belt/combatLifesaver
-	name = "\improper M276 pattern lifesaver bag"
-	desc = "The M276 is the standard load-bearing equipment of the TGMC. This configuration mounts a duffel bag filled with a range of injectors and light medical supplies and is common among medics."
-	icon_state = "medicalbag"
-	item_state = "medicbag"
+	name = "\improper S17 lifesaver bag"
+	desc = "A belt with heavy origins from the belt used by paramedics and doctors in the old mining colonies."
+	icon_state = "medicbag_som"
+	item_state = "medicbag_som"
 	storage_slots = 21 //can hold 3 "rows" of very limited medical equipment, but it *should* give a decent boost to squad medics.
 	max_storage_space = 42
 	max_w_class = 2
@@ -158,6 +158,7 @@
 		/obj/item/storage/pill_bottle/packet,
 		/obj/item/stack/medical,
 	)
+
 
 /obj/item/storage/belt/combatLifesaver/Initialize()  //The belt, with all it's magic inside!
 	. = ..()
@@ -184,10 +185,10 @@
 	new /obj/item/reagent_containers/hypospray/autoinjector/hypervene(src)
 
 /obj/item/storage/belt/medicLifesaver
-	name = "\improper M276 pattern lifesaver medic bag"
-	desc = "The M276 is the standard load-bearing equipment of the TGMC. This configuration mounts a duffel bag filled with a range of injectors and light medical supplies and is common among medics."
-	icon_state = "medicalbag"
-	item_state = "medicbag"
+	name = "\improper S17 lifesaver bag"
+	desc = "A belt with heavy origins from the belt used by paramedics and doctors in the old mining colonies."
+	icon_state = "medicbag_som"
+	item_state = "medicbag_som"
 	storage_slots = 21 //can hold 3 "rows" of very limited medical equipment, but it *should* give a decent boost to squad medics.
 	max_storage_space = 42
 	max_w_class = 2
@@ -234,10 +235,10 @@
 
 
 /obj/item/storage/belt/combatLifesaver/som
-	name = "\improper S17 lifesaver bag"
-	desc = "A belt with heavy origins from the belt used by paramedics and doctors in the old mining colonies."
-	icon_state = "medicbag_som"
-	item_state = "medicbag_som"
+	name = "\improper M276 pattern lifesaver bag"
+	desc = "The M276 is the standard load-bearing equipment of the TGMC. This configuration mounts a duffel bag filled with a range of injectors and light medical supplies and is common among medics."
+	icon_state = "medicalbag"
+	item_state = "medicbag"
 
 
 /obj/item/storage/belt/security
@@ -299,10 +300,10 @@
 
 
 /obj/item/storage/belt/marine
-	name = "\improper M276 pattern ammo load rig"
-	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is the standard variant designed for bulk ammunition-carrying operations."
-	icon_state = "marinebelt"
-	item_state = "marinebelt"
+	name = "\improper S18 ammo belt"
+	desc = "A belt with origins traced to the M276 ammo belt and some old colony security."
+	icon_state = "som_belt"
+	item_state = "som_belt"
 	w_class = WEIGHT_CLASS_BULKY
 	storage_slots = 5
 	max_w_class = 3
@@ -381,10 +382,10 @@
 
 
 /obj/item/storage/belt/marine/som
-	name = "\improper S18 ammo belt"
-	desc = "A belt with origins traced to the M276 ammo belt and some old colony security."
-	icon_state = "som_belt"
-	item_state = "som_belt"
+	name = "\improper M276 pattern ammo load rig"
+	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is the standard variant designed for bulk ammunition-carrying operations."
+	icon_state = "marinebelt"
+	item_state = "marinebelt"
 
 /obj/item/storage/belt/marine/sectoid
 	name = "\improper strange ammo belt"
@@ -409,8 +410,8 @@
 /obj/item/storage/belt/shotgun
 	name = "\improper shotgun shell load rig"
 	desc = "An ammunition belt designed to hold shotgun shells or individual bullets."
-	icon_state = "shotgunbelt"
-	item_state = "shotgunbelt"
+	icon_state = "medicbag_som"
+	item_state = "medicbag_som"
 	w_class = WEIGHT_CLASS_BULKY
 	storage_slots = 14
 	max_w_class = 2
@@ -473,8 +474,8 @@
 /obj/item/storage/belt/grenade
 	name="\improper M276 pattern M40 HEDP rig"
 	desc="The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is designed to carry bulk quantities of M40 HEDP Grenades."
-	icon_state="grenadebelt" // temp
-	item_state="grenadebelt"
+	icon_state="upp_belt" // temp
+	item_state="upp_belt"
 	w_class = WEIGHT_CLASS_BULKY
 	storage_slots = 9
 	max_w_class = 3
@@ -537,8 +538,8 @@
 /obj/item/storage/belt/gun
 	name = "pistol belt"
 	desc = "A belt-holster assembly that allows one to hold a pistol and two magazines."
-	icon_state = "m4a3_holster"
-	item_state = "m4a3_holster"
+	icon_state = "som_belt_pistol"
+	item_state = "som_belt_pistol"
 	use_sound = null
 	w_class = WEIGHT_CLASS_BULKY
 	storage_slots = 7
@@ -617,12 +618,13 @@
 	return TRUE
 
 /obj/item/storage/belt/gun/m4a3
-	name = "\improper M4A3 holster rig"
-	desc = "The M4A3 is a common holster belt. It consists of a modular belt with various clips. This version has a holster assembly that allows one to carry a handgun. It also contains side pouches that can store 9mm or .45 magazines."
+	name = "\improper S19 holster rig"
+	desc = "A belt with origins to old colony security holster rigs."
 	can_hold = list(
 		/obj/item/weapon/gun/pistol,
 		/obj/item/ammo_magazine/pistol,
 	)
+
 
 /obj/item/storage/belt/gun/m4a3/full/Initialize()
 	. = ..()
@@ -681,14 +683,14 @@
 
 
 /obj/item/storage/belt/gun/m4a3/som
-	name = "\improper S19 holster rig"
-	desc = "A belt with origins to old colony security holster rigs."
-	icon_state = "som_belt_pistol"
-	item_state = "som_belt_pistol"
+	name = "\improper M4A3 holster rig"
+	desc = "The M4A3 is a common holster belt. It consists of a modular belt with various clips. This version has a holster assembly that allows one to carry a handgun. It also contains side pouches that can store 9mm or .45 magazines."
+	icon_state = "m4a3_holster"
+	item_state = "m4a3_holster"
 
 /obj/item/storage/belt/gun/stand
-	name = "\improper M276 pattern M4A3 holster rig"
-	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version has a holster assembly that allows one to carry the M4A3 comfortably secure. It also contains side pouches that can store 9mm or .45 magazines."
+	name = "\improper S19 holster rig"
+	desc = "A belt with origins to old colony security holster rigs."
 	can_hold = list(
 		/obj/item/weapon/gun/pistol,
 		/obj/item/ammo_magazine/pistol,
@@ -696,15 +698,15 @@
 
 /obj/item/storage/belt/gun/pistol/standard_pistol
 	name = "\improper T457 pattern pistol holster rig"
-	desc = "The T457 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips."
-	icon_state = "tp14_holster"
-	item_state = "tp14_holster"
+	desc = "The T457 is the standard load-bearing equipment. It consists of a modular belt with various clips."
+	icon_state = "korovin_holster"
+	item_state = "korovin_holster"
 
 /obj/item/storage/belt/gun/revolver/standard_revolver
 	name = "\improper T457 pattern revolver holster rig"
-	desc = "The T457 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips."
-	icon_state = "tp44_holster"
-	item_state = "tp44_holster"
+	desc = "The T457 is the standard load-bearing equipment. It consists of a modular belt with various clips."
+	icon_state = "m44_holster"
+	item_state = "m44_holster"
 	can_hold = list(
 		/obj/item/weapon/gun/revolver,
 		/obj/item/ammo_magazine/revolver,
@@ -712,7 +714,7 @@
 
 /obj/item/storage/belt/gun/m44
 	name = "\improper M276 pattern M44 holster rig"
-	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is for the M44 magnum revolver, along with three pouches for speedloaders."
+	desc = "The M276 is the standard load-bearing equipment. It consists of a modular belt with various clips. This version is for the M44 magnum revolver, along with three pouches for speedloaders."
 	icon_state = "m44_holster"
 	item_state = "m44_holster"
 	can_hold = list(

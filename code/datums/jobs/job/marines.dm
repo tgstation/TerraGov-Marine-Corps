@@ -14,15 +14,20 @@
 	var/mob/living/carbon/human/human_spawn = C
 	if(!human_spawn.assigned_squad)
 		CRASH("after_spawn called for a marine without an assigned_squad")
-	to_chat(M, {"\nYou have been assigned to: <b><font size=3 color=[human_spawn.assigned_squad.color]>[lowertext(human_spawn.assigned_squad.name)] squad</font></b>.
-Make your way to the cafeteria for some post-cryosleep chow, and then get equipped in your squad's prep room."})
+	to_chat(M, {"\nYou have been assigned to: <b><font size=3 color=[human_spawn.assigned_squad.color]>[lowertext(human_spawn.assigned_squad.name)] cell</font></b>.
+Make your way to the cafeteria for some post-cryosleep chow, and then get equipped in your celll's prep room."})
+
+/datum/outfit/job/marine/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.undershirt = 6
+	H.regenerate_icons()
 
 
 //Squad Marine
 /datum/job/terragov/squad/standard
 	title = SQUAD_MARINE
 	paygrade = "E1"
-	comm_title = "Mar"
+	comm_title = "Ftr"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_DROPSHIP)
 	display_order = JOB_DISPLAY_ORDER_SQUAD_MARINE
@@ -58,8 +63,8 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 
 /datum/job/terragov/squad/standard/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"\nYou are a rank-and-file soldier of the TGMC, and that is your strength.
-What you lack alone, you gain standing shoulder to shoulder with the men and women of the corps. Ooh-rah!"})
+	to_chat(M, {"\nYou are a rank-and-file freedom fighter of the SoM, and that is your strength.
+What you lack alone, you gain standing shoulder to shoulder with the men and women of the force. Free Mars!"})
 
 
 /datum/outfit/job/marine/standard
@@ -95,7 +100,7 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 /datum/job/terragov/squad/engineer
 	title = SQUAD_ENGINEER
 	paygrade = "E3"
-	comm_title = "Eng"
+	comm_title = "GrMk"
 	total_positions = 12
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_ENGPREP, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_REMOTEBUILD, ACCESS_MARINE_ENGINEERING)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_ENGPREP, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_REMOTEBUILD, ACCESS_MARINE_ENGINEERING)
@@ -108,7 +113,7 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 /datum/job/terragov/squad/engineer/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"\nYou have the equipment and skill to build fortifications, reroute power lines, and bunker down.
-Your squaddies will look to you when it comes to construction in the field of battle."})
+Your fighters will look to you when it comes to construction in the field of battle."})
 
 
 /datum/outfit/job/marine/engineer
@@ -176,7 +181,7 @@ Your squaddies will look to you when it comes to construction in the field of ba
 
 /datum/job/terragov/squad/corpsman/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"\nYou must tend the wounds of your squad mates and make sure they are healthy and active.
+	to_chat(M, {"\nYou must tend the wounds of your brothers and sisters and make sure they are healthy and active.
 You may not be a fully-fledged doctor, but you stand between life and death when it matters."})
 
 /datum/outfit/job/marine/corpsman
@@ -351,7 +356,7 @@ You can serve a variety of roles, so choose carefully."})
 	title = SQUAD_LEADER
 	req_admin_notify = TRUE
 	paygrade = "E5"
-	comm_title = "SL"
+	comm_title = "Ldr"
 	total_positions = 4
 	supervisors = "the acting field commander"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP)
@@ -446,7 +451,7 @@ You are also in charge of communicating with command and letting them know about
 /datum/job/terragov/squad/vatgrown
 	title = SQUAD_MARINE
 	paygrade = "VM"
-	comm_title = "Mar"
+	comm_title = "Ftr"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_DROPSHIP)
 	display_order = JOB_DISPLAY_ORDER_SQUAD_MARINE

@@ -216,7 +216,7 @@
 		playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 
 /obj/machinery/marine_turret
-	name = "\improper UA 571-C sentry gun"
+	name = "hacked UA 571-C sentry gun"
 	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with a M30 autocannon and a 500-round drum magazine."
 	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "sentry_base"
@@ -1189,7 +1189,7 @@
 	radio.talk_into(src, "[notice]", FREQ_COMMON)
 
 /obj/machinery/marine_turret/mini
-	name = "\improper UA-580 point defense sentry"
+	name = "hacked UA-580 point defense sentry"
 	desc = "A deployable, automated turret with AI targeting capabilities. This is a lightweight portable model meant for rapid deployment and point defense. Armed with an light, high velocity machine gun and a 500-round drum magazine."
 	icon = 'icons/Marine/miniturret.dmi'
 	icon_state = "minisentry_on"

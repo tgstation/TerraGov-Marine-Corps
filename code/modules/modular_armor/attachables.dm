@@ -34,7 +34,7 @@
 /** Shoulder lamp strength module */
 /obj/item/armor_module/attachable/better_shoulder_lamp
 	name = "\improper Mark 2 Baldur Light Amplification System"
-	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Substantially increases the power output of the Jaeger Combat Exoskeleton's mounted flashlight. Slows you down minorly."
+	desc = "Designed for mounting on the Venandi Combat Exoskeleton. Substantially increases the power output of the Venandi Combat Exoskeleton's mounted flashlight. Slows you down minorly."
 	icon_state = "mod_lamp_icon"
 	item_state = "mod_lamp"
 	slowdown = 0
@@ -50,14 +50,14 @@
 
 /obj/item/armor_module/attachable/better_shoulder_lamp/mark1
 	name = "\improper Mark 1 Baldur Light Amplification System"
-	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Substantially increases the power output of the Jaeger Combat Exoskeleton's mounted flashlight. Slows you down minorly."
+	desc = "Designed for mounting on the Venandi Combat Exoskeleton. Substantially increases the power output of the Venandi Combat Exoskeleton's mounted flashlight. Slows you down minorly."
 	power_boost = 4 /// The boost to armor shoulder light
 	slowdown = 0.1
 
 /** Mini autodoc module */
 /obj/item/armor_module/attachable/valkyrie_autodoc
 	name = "\improper Valkyrie Automedical Armor System"
-	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Has a variety of chemicals it can inject, as well as automatically securing the bones and body of the wearer, to minimize the impact of broken bones or mangled limbs in the field. Will definitely impact mobility."
+	desc = "Designed for mounting on the Venandi Combat Exoskeleton. Has a variety of chemicals it can inject, as well as automatically securing the bones and body of the wearer, to minimize the impact of broken bones or mangled limbs in the field. Will definitely impact mobility."
 	icon_state = "mod_autodoc_icon"
 	item_state = "mod_autodoc"
 	slowdown = 0.25
@@ -83,7 +83,7 @@
 /** Fire poof module */
 /obj/item/armor_module/attachable/fire_proof
 	name = "\improper Surt Pyrotechnical Insulation System"
-	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Providing a near immunity to being bathed in flames, and amazing flame retardant qualities, this is every pyromaniacs' first stop to survival. Will impact mobility somewhat."
+	desc = "Designed for mounting on the Venandi Combat Exoskeleton. Providing a near immunity to being bathed in flames, and amazing flame retardant qualities, this is every pyromaniacs' first stop to survival. Will impact mobility somewhat."
 	icon_state = "mod_fire_icon"
 	item_state = "mod_fire"
 	hard_armor = list("fire" = 200)
@@ -107,7 +107,7 @@
 /** Extra armor module */
 /obj/item/armor_module/attachable/tyr_extra_armor
 	name = "\improper Mark 2 Tyr Armor Reinforcement"
-	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. A substantial amount of additional armor plating designed to fit inside some of the vulnerable portions of the Jaeger Combat Exoskeleton conventional armor patterns. Will definitely impact mobility."
+	desc = "Designed for mounting on the Venandi Combat Exoskeleton. A substantial amount of additional armor plating designed to fit inside some of the vulnerable portions of the Venandi Combat Exoskeleton conventional armor patterns. Will definitely impact mobility."
 	icon_state = "mod_armor_icon"
 	item_state = "mod_armor"
 	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 15, "bio" = 15, "rad" = 15, "fire" = 15, "acid" = 15)
@@ -125,7 +125,7 @@
 
 /obj/item/armor_module/attachable/tyr_extra_armor/mark1
 	name = "\improper Mark 1 Tyr Armor Reinforcement"
-	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. A substantial amount of additional armor plating designed to fit inside some of the vulnerable portions of the Jaeger Combat Exoskeleton conventional armor patterns. This older version has worse protection. Will definitely impact mobility."
+	desc = "Designed for mounting on the Venandi Combat Exoskeleton. A substantial amount of additional armor plating designed to fit inside some of the vulnerable portions of the Venandi Combat Exoskeleton conventional armor patterns. This older version has worse protection. Will definitely impact mobility."
 	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
 	slowdown = 0.4
 
@@ -133,7 +133,7 @@
 /** Environment protecttion module */
 /obj/item/armor_module/attachable/mimir_environment_protection
 	name = "\improper Mark 2 Mimir Environmental Resistance System"
-	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. When activated, this system provides substantial resistance to environmental hazards, such as gases, and radiological exposure. This newer version provides resistance to acid. Best paired with the Mimir Environmental Helmet System and a gas mask. Will impact mobility." // Add the toggable thing to the description when you are done, okay? ~XS300
+	desc = "Designed for mounting on the Venandi Combat Exoskeleton. When activated, this system provides substantial resistance to environmental hazards, such as gases, and radiological exposure. This newer version provides resistance to acid. Best paired with the Mimir Environmental Helmet System and a gas mask. Will impact mobility." // Add the toggable thing to the description when you are done, okay? ~XS300
 	icon_state = "mod_biohazard_icon"
 	item_state = "mod_biohazard"
 	soft_armor = list("bio" = 20, "rad" = 50, "acid" = 20)
@@ -162,7 +162,7 @@
 // The mark 1 version, made to protect you from just gas.
 /obj/item/armor_module/attachable/mimir_environment_protection/mark1
 	name = "\improper Mark 1 Mimir Environmental Resistance System"
-	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. When activated, this system provides substantial resistance to environmental hazards, such as gases and radiological exposure. This older version provides no protection to acid. Best paired with the Mimir Environmental Helmet System. Will impact mobility." // Add the toggable thing to the description when you are done, okay? ~XS300
+	desc = "Designed for mounting on the Venandi Combat Exoskeleton. When activated, this system provides substantial resistance to environmental hazards, such as gases and radiological exposure. This older version provides no protection to acid. Best paired with the Mimir Environmental Helmet System. Will impact mobility." // Add the toggable thing to the description when you are done, okay? ~XS300
 	icon_state = "mod_biohazard_icon"
 	item_state = "mod_biohazard"
 	soft_armor = list("bio" = 0, "rad" = 10, "acid" = 0) //None, nada. This is made to protect you from gas and nothing else.
@@ -171,7 +171,7 @@
 
 /obj/item/armor_module/attachable/hlin_explosive_armor
 	name = "Hlin Explosive Compensation Module"
-	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Uses a complex set of armor plating and compensation to lessen the effect of explosions, at the cost of making the user slower."
+	desc = "Designed for mounting on the Venandi Combat Exoskeleton. Uses a complex set of armor plating and compensation to lessen the effect of explosions, at the cost of making the user slower."
 	icon_state = "mod_boomimmune_icon"
 	item_state = "mod_boomimmune"
 	soft_armor = list("bomb" = 95)
@@ -190,7 +190,7 @@
 /** Extra armor module */
 /obj/item/armor_module/attachable/ballistic_armor
 	name = "\improper Ballistic Armor Reinforcement"
-	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. A substantial amount of additional armor plating designed to fit inside some of the vulnerable portions of the Jaeger Combat Exoskeleton conventional armor patterns against bullets and nothing else. Will definitely impact mobility."
+	desc = "Designed for mounting on the Venandi Combat Exoskeleton. A substantial amount of additional armor plating designed to fit inside some of the vulnerable portions of the Venandi Combat Exoskeleton conventional armor patterns against bullets and nothing else. Will definitely impact mobility."
 	icon_state = "mod_ff_icon"
 	item_state = "mod_ff"
 	soft_armor = list("melee" = 0, "bullet" = 40, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)

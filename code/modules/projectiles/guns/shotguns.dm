@@ -813,3 +813,28 @@ can cause issues with ammo types getting mixed up during the burst.
 /obj/item/weapon/gun/shotgun/pump/t35/nonstandard
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump/buckshot
 	starting_attachment_types = list(/obj/item/attachable/stock/t35stock, /obj/item/attachable/angledgrip, /obj/item/attachable/magnetic_harness)
+
+/obj/item/weapon/gun/shotgun/pump/t35/som
+	name = "\improper S42 pump shotgun"
+	desc = "A classic design, using the outdated shotgun frame. This one is a SoM clone of the V10 shotgun, except it is all tuned up.\n<b>Requires a pump, which is the Unique Action key.</b>"
+	icon_state = "v10"
+	item_state = "v10"
+	pump_animation = "v10"
+	fire_sound = 'sound/weapons/guns/fire/shotgun_cmb.ogg'
+	attachable_allowed = list(
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/attached_gun/flamer,
+		/obj/item/attachable/attached_gun/shotgun,
+		/obj/item/attachable/stock/shotgun,
+	)
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 10, "rail_y" = 21, "under_x" = 20, "under_y" = 14, "stock_x" = 20, "stock_y" = 14)

@@ -88,39 +88,53 @@
 
 
 /obj/item/armor_module/armor/chest/marine
-	name = "\improper Jaeger Pattern Medium Infantry chestplates"
-	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides moderate protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Infantry armor piece."
+	name = "\improper Venandi Pattern Medium Infantry chestplates"
+	desc = "Designed for use with the Venandi Combat Exoskeleton. It provides moderate protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Infantry armor piece."
 	icon_state = "infantry_chest"
 	soft_armor = list("melee" = 15, "bullet" = 20, "laser" = 20, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 15)
 	slowdown = 0.3
 
+/obj/item/armor_module/armor/chest/som/medium
+	name = "\improper Venandi S12 Pattern Medium chestplates"
+	desc = "Designed for use with the Venandi Combat Exoskeleton. It provides moderate protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Infantry armor piece."
+	icon_state = "som_chest"
+	soft_armor = list("melee" = 15, "bullet" = 20, "laser" = 20, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 15)
+	slowdown = 0.3
+
+/obj/item/armor_module/armor/chest/som/heavy
+	name = "\improper Venandi S13 Pattern Heavy chestplates"
+	desc = "Designed for use with the Venandi Combat Exoskeleton. It provides high protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Infantry armor piece."
+	icon_state = "somheavy_chest"
+	soft_armor = list("melee" = 20, "bullet" = 25, "laser" = 25, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 20)
+	slowdown = 0.5
+
 /obj/item/armor_module/armor/chest/marine/skirmisher
-	name = "\improper Jaeger Pattern Light Skirmisher chestplates"
-	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides minor protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Skirmisher armor piece."
+	name = "\improper Venandi Pattern Light Skirmisher chestplates"
+	desc = "Designed for use with the Venandi Combat Exoskeleton. It provides minor protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Skirmisher armor piece."
 	icon_state = "skirmisher_chest"
 	soft_armor = list("melee" = 10, "bullet" = 15, "laser" = 15, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
 	slowdown = 0.1
 
 /obj/item/armor_module/armor/chest/marine/skirmisher/scout
-	name = "\improper Jaeger Pattern Light Scout chestplates"
-	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides minor protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Scout armor piece."
+	name = "\improper Venandi Pattern Light Scout chestplates"
+	desc = "Designed for use with the Venandi Combat Exoskeleton. It provides minor protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Scout armor piece."
 	icon_state = "scout_chest"
 
 /obj/item/armor_module/armor/chest/marine/assault
-	name = "\improper Jaeger Pattern Heavy Assault chestplates"
-	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides high protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Assault armor piece."
+	name = "\improper Venandi Pattern Heavy Assault chestplates"
+	desc = "Designed for use with the Venandi Combat Exoskeleton. It provides high protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Assault armor piece."
 	icon_state = "assault_chest"
 	soft_armor = list("melee" = 20, "bullet" = 25, "laser" = 25, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 20)
 	slowdown = 0.5
 
 /obj/item/armor_module/armor/chest/marine/eva //Medium armor alt look
-	name = "\improper Jaeger Pattern Medium EVA chestplates"
-	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides moderate protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a EVA armor piece."
+	name = "\improper Venandi Pattern Medium EVA chestplates"
+	desc = "Designed for use with the Venandi Combat Exoskeleton. It provides moderate protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a EVA armor piece."
 	icon_state = "eva_chest"
 
 /obj/item/armor_module/armor/chest/marine/assault/eod //Heavy armor alt look
-	name = "\improper Jaeger Pattern Heavy EOD chestplates"
-	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides high protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a EOD armor piece."
+	name = "\improper Venandi Pattern Heavy EOD chestplates"
+	desc = "Designed for use with the Venandi Combat Exoskeleton. It provides high protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a EOD armor piece."
 	icon_state = "eod_chest"
 
 /obj/item/armor_module/armor/chest/marine/skirt //I have no need to explain myself here
@@ -151,35 +165,35 @@
 	return ..()
 
 /obj/item/armor_module/armor/legs/marine
-	name = "\improper Jaeger Pattern Infantry leg plates"
-	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Infantry armor piece."
+	name = "\improper Venandi Pattern Infantry leg plates"
+	desc = "Designed for use with the Venandi Combat Exoskeleton. It provides protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Infantry armor piece."
 	icon_state = "infantry_legs"
 	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
 	slowdown = 0.1
 
 /obj/item/armor_module/armor/legs/marine/skirmisher
-	name = "\improper Jaeger Pattern Skirmisher leg plates"
-	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Skirmisher armor piece."
+	name = "\improper Venandi Pattern Skirmisher leg plates"
+	desc = "Designed for use with the Venandi Combat Exoskeleton. It provides protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Skirmisher armor piece."
 	icon_state = "skirmisher_legs"
 
 /obj/item/armor_module/armor/legs/marine/scout
-	name = "\improper Jaeger Pattern Scout leg plates"
-	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Scout armor piece."
+	name = "\improper Venandi Pattern Scout leg plates"
+	desc = "Designed for use with the Venandi Combat Exoskeleton. It provides protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Scout armor piece."
 	icon_state = "scout_legs"
 
 /obj/item/armor_module/armor/legs/marine/assault
-	name = "\improper Jaeger Pattern Assault leg plates"
-	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Assault armor piece."
+	name = "\improper Venandi Pattern Assault leg plates"
+	desc = "Designed for use with the Venandi Combat Exoskeleton. It provides protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Assault armor piece."
 	icon_state = "assault_legs"
 
 /obj/item/armor_module/armor/legs/marine/eva
-	name = "\improper Jaeger Pattern EVA leg plates"
-	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a EVA armor piece."
+	name = "\improper Venandi Pattern EVA leg plates"
+	desc = "Designed for use with the Venandi Combat Exoskeleton. It provides protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a EVA armor piece."
 	icon_state = "eva_legs"
 
 /obj/item/armor_module/armor/legs/marine/eod
-	name = "\improper Jaeger Pattern EOD leg plates"
-	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a EOD armor piece."
+	name = "\improper Venandi Pattern EOD leg plates"
+	desc = "Designed for use with the Venandi Combat Exoskeleton. It provides protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a EOD armor piece."
 	icon_state = "eod_legs"
 
 /** Arms pieces */
@@ -205,33 +219,33 @@
 	return ..()
 
 /obj/item/armor_module/armor/arms/marine
-	name = "\improper Jaeger Pattern Infantry arm plates"
-	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Infantry armor piece."
+	name = "\improper Venandi Pattern Infantry arm plates"
+	desc = "Designed for use with the Venandi Combat Exoskeleton. It provides protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Infantry armor piece."
 	icon_state = "infantry_arms"
 	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
 	slowdown = 0.1
 
 /obj/item/armor_module/armor/arms/marine/skirmisher
-	name = "\improper Jaeger Pattern Skirmisher arm plates"
-	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides protection and encumbrance  when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Skirmisher armor piece."
+	name = "\improper Venandi Pattern Skirmisher arm plates"
+	desc = "Designed for use with the Venandi Combat Exoskeleton. It provides protection and encumbrance  when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Skirmisher armor piece."
 	icon_state = "skirmisher_arms"
 
 /obj/item/armor_module/armor/arms/marine/scout
-	name = "\improper Jaeger Pattern Scout arm plates"
-	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides protection and encumbrance  when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Scout armor piece."
+	name = "\improper Venandi Pattern Scout arm plates"
+	desc = "Designed for use with the Venandi Combat Exoskeleton. It provides protection and encumbrance  when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Scout armor piece."
 	icon_state = "scout_arms"
 
 /obj/item/armor_module/armor/arms/marine/assault
-	name = "\improper Jaeger Pattern Assault arm plates"
-	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Assault armor piece."
+	name = "\improper Venandi Pattern Assault arm plates"
+	desc = "Designed for use with the Venandi Combat Exoskeleton. It provides protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Assault armor piece."
 	icon_state = "assault_arms"
 
 /obj/item/armor_module/armor/arms/marine/eva
-	name = "\improper Jaeger Pattern EVA arm plates"
-	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a EVA armor piece."
+	name = "\improper Venandi Pattern EVA arm plates"
+	desc = "Designed for use with the Venandi Combat Exoskeleton. It provides protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a EVA armor piece."
 	icon_state = "eva_arms"
 
 /obj/item/armor_module/armor/arms/marine/eod
-	name = "\improper Jaeger Pattern EOD arm plates"
-	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a EOD armor piece."
+	name = "\improper Venandi Pattern EOD arm plates"
+	desc = "Designed for use with the Venandi Combat Exoskeleton. It provides protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a EOD armor piece."
 	icon_state = "eod_arms"

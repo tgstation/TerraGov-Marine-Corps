@@ -226,23 +226,23 @@
 		if("NT")
 			. = size ? (gender == FEMALE ? "Ms. " : "Mr. ") : "Junior Executive"
 		if("E1")
-			. = size ? "PVT " : "Private"
+			. = size ? "IRREG " : "Irregular"
 		if("E2")
-			. = size ? "PFC " : "Private First Class"
+			. = size ? "REG " : "Regular"
 		if("E3")
-			. = size ? "LCPL " : "Lance Corporal"
+			. = size ? "STD " : "Standard"
 		if("E3E")
-			. = size ? "SCPL " : "Section Corporal" //Anachronistic if we're going by common US ranks, above E3 but below E4.
+			. = size ? "VET " : "Veteran" //Anachronistic if we're going by common US ranks, above E3 but below E4.
 		if("E4")
-			. = size ? "CPL " : "Corporal"
+			. = size ? "ADT " : "Adept"
 		if("E5")
-			. = size ? "SGT " : "Sergeant"
+			. = size ? "SSD " : "Seasoned"
 		if("E6")
-			. = size ? "SSGT " : "Staff Sergeant"
+			. = size ? "VET " : "Veteran"
 		if("E7")
-			. = size ? "GYSGT " : "Gunnery Sergeant"
+			. = size ? "CHVET " : "Chief Veteran"
 		if("E8")
-			. = size ? "MSGT " : "Master Sergeant"
+			. = size ? "CHVET " : "Chief Veteran"
 		if("E8E")
 			. = size ? "FSGT " : "First Sergeant"
 		if("E9")
@@ -250,21 +250,21 @@
 		if("E9E")
 			. = size ? "CSGM " : "Command Sergeant Major"
 		if("O1")
-			. = size ? "ENS " : "Ensign"
+			. = size ? "CAMAN " : "Chief Airman"
 		if("O2")
-			. = size ? "LTJG " : "Lieutenant Junior Grade"
+			. = size ? "ACE " : "Ace"
 		if("O3")
-			. = size ? "LT " : "Lieutenant"
+			. = size ? "EXPT " : "Expert"
 		if("O4")
-			. = size ? "LCDR " : "Lieutenant Commander"
+			. = size ? "CHVET " : "Chief Veteran"
 		if("O5")
-			. = size ? "CDR " : "Commander"
+			. = size ? "CHVET " : "Chief Veteran"
 		if("O6")
-			. = size ? "CPT " : "Captain"
+			. = size ? "CHF " : "Chief"
 		if("O7")
-			. = size ? "COMM " : "Commodore"
+			. = size ? "CHF " : "Chief"
 		if("O8")
-			. = size ? "RADM " : "Rear Admiral"
+			. = size ? "CFCPT " : "Chief Captain"
 		if("O9")
 			. = size ? "VADM " : "Vice Admiral"
 		if("10")
@@ -272,21 +272,21 @@
 		if("11")
 			. = size ? "FADM " : "Fleet Admiral"
 		if("WO")
-			. = size ? "WO " : "Warrant Officer"
+			. = size ? "ARMAN " : "Airman"
 		if("CWO")
-			. = size ? "CWO " : "Chief Warrant Officer"
+			. = size ? "VAMAN " : "Veteran Airman"
 		if("PO3")
-			. = size ? "PO3 " : "Petty Officer Third Class"
+			. = size ? "ACE " : "Ace"
 		if("PO2")
-			. = size ? "PO2 " : "Petty Officer Second Class"
+			. = size ? "EXPT " : "Expert"
 		if("PO1")
-			. = size ? "PO1 " : "Petty Officer First Class"
+			. = size ? "EXPT " : "Expert"
 		if("CPO")
-			. = size ? "CPO " : "Chief Petty Officer"
+			. = size ? "CHVET " : "Chief Veteran"
 		if("MO4")
-			. = size ? "MAJ " : "Major"
+			. = size ? "EXPT " : "Expert"
 		if("MO5")
-			. = size ? "LtCol " : "Lieutenant Colonel"
+			. = size ? "ETCHF " : "Expert Chief"
 		if("UPP1")
 			. = size ? "UGNR " : "USL Gunner"
 		if("UPP2")
@@ -328,13 +328,13 @@
 		if("CLF3")
 			. = size ? "CLF " : "CLF Leader"
 		if("SOM1")
-			. = size ? "SOM " : "SOM Standard"
+			. = size ? "SGT " : "SFOC-T Navy Operator"
 		if("SOM2")
-			. = size ? "SOM " : "SOM Medic"
+			. = size ? "SSGT " : "SFOC-T Navy Intimidator"
 		if("SOM3")
-			. = size ? "SOM " : "SOM Veteran"
+			. = size ? "FSGT " : "SFOC-T Navy Dominator"
 		if("SOM4")
-			. = size ? "SOM " : "SOM Leader"
+			. = size ? "MSGT " : "SFOC-T Navy Elite"
 		if("MRC1")
 			. = size ? "MERC " : "MERC Heavy"
 		if("MRC2")
@@ -342,7 +342,7 @@
 		if("MRC3")
 			. = size ? "MERC " : "MERC Engineer"
 		if("VM")
-			. = size ? "VAT " : "VatGrown Marine"
+			. = size ? "VAT " : "VatGrown Irregular"
 		if("Mk.III")
 			. = size ? "Mk.III " : "Mark III"
 		if("Mk.II")

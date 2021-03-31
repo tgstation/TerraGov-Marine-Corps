@@ -1234,7 +1234,7 @@ SUPPLIES
 	containertype = /obj/structure/closet/crate/supply
 
 /datum/supply_packs/supplies/mre
-	name = "TGMC MRE crate"
+	name = "SoM MRE crate"
 	notes = "Contains 4 MREs"
 	contains = list(/obj/item/storage/box/MRE)
 	cost = 1

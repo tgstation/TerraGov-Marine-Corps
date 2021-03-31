@@ -426,7 +426,7 @@
 
 
 /obj/item/storage/box/MRE
-	name = "\improper TGMC MRE"
+	name = "\improper SoM MRE"
 	desc = "Meal Ready-to-Eat, meant to be consumed in the field, and has an expiration that is two decades past a marine's average combat life expectancy."
 	icon_state = "mealpack"
 	w_class = WEIGHT_CLASS_SMALL
