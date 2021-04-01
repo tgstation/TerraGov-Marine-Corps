@@ -590,12 +590,34 @@ to_chat will check for valid clients itself already so no need to double check f
 	var/list/possible_mothers = list()
 	var/list/possible_silos = list()
 	SEND_SIGNAL(src, COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, possible_mothers, possible_silos) //List variable passed by reference, and hopefully populated.
-
-	if(length(possible_silos))
-		return attempt_to_spawn_larva_in_silo(xeno_candidate, possible_silos, larva_already_reserved)
 	
-	to_chat(xeno_candidate, "<span class='warning'>There are no places currently available to receive new larvas.</span>")
-	return FALSE
+	if(!length(possible_mothers))
+		if(length(possible_silos))
+			return attempt_to_spawn_larva_in_silo(xeno_candidate, possible_silos, larva_already_reserved)
+		else
+			to_chat(xeno_candidate, "<span class='warning'>There are no places currently available to receive new larvas.</span>")
+			return FALSE
+
+	var/mob/living/carbon/xenomorph/chosen_mother
+	if(length(possible_mothers) > 1)
+		chosen_mother = tgui_input_list(xeno_candidate, "Available Mothers", null, possible_mothers)
+	else
+		chosen_mother = possible_mothers[1]
+
+	if(QDELETED(chosen_mother) || !xeno_candidate?.client)
+		return FALSE
+
+	if(!isnewplayer(xeno_candidate) && XENODEATHTIME_CHECK(xeno_candidate))
+		if(check_other_rights(xeno_candidate.client, R_ADMIN, FALSE))
+			if(tgui_alert(xeno_candidate, "You wouldn't normally qualify for this respawn. Are you sure you want to bypass it with your admin powers?", "Bypass Respawn", list("Yes", "No")) != "Yes")
+				XENODEATHTIME_MESSAGE(xeno_candidate)
+				return FALSE
+		else
+			XENODEATHTIME_MESSAGE(xeno_candidate)
+			return FALSE
+
+	return spawn_larva(xeno_candidate, chosen_mother, larva_already_reserved)
+
 
 /datum/hive_status/proc/attempt_to_spawn_larva_in_silo(mob/xeno_candidate, possible_silos, larva_already_reserved = FALSE)
 	var/obj/structure/resin/silo/chosen_silo
