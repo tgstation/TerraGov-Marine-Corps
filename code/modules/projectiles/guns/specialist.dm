@@ -286,7 +286,7 @@
 
 /obj/item/weapon/gun/rifle/tx8
 	name = "\improper TX-8 scout rifle"
-	desc ="The TX-8 is a light specialized scout rifle, mostly used by light infantry and scouts. It's designed to be useable at all ranges due to the compact size it is also very adaptable to different situations due to the ability to use different ammo types.  takes specialized overpressured 10x28mm rounds."
+	desc ="The TX-8 is a light specialized scout rifle, mostly used by light infantry and scouts. It's designed to be useable at all ranges by being very adaptable to different situations due to the ability to use different ammo types. Has IFF.  Takes specialized overpressured 10x28mm rounds."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "tx8"
 	item_state = "tx8"
@@ -328,9 +328,6 @@
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
 	gun_skill_category = GUN_SKILL_FIREARMS
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
-	actions_types = list(/datum/action/item_action/aim_mode)
-	aim_fire_delay = 0.4 SECONDS
-	aim_speed_modifier = 2
 
 	fire_delay = 0.4 SECONDS
 	burst_amount = 1
