@@ -479,8 +479,6 @@
 
 
 /obj/item/toy/beach_ball/basketball/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
-	if(!CONFIG_GET(flag/fun_allowed))
-		return FALSE
 	attack_hand(X)
 
 
