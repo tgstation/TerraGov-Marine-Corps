@@ -1078,6 +1078,7 @@
 	desc = "A six barreled rotary machine gun, The ultimate in man-portable firepower, capable of laying down high velocity armor piercing rounds this thing will no doubt pack a punch."
 	icon_state = "minigun"
 	item_state = "minigun"
+	icon = 'icons/Marine/gun64.dmi'
 	max_shells = 500 //codex
 	caliber = "7.62x51mm" //codex
 	load_method = MAGAZINE //codex
