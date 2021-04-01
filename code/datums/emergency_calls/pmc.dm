@@ -89,4 +89,4 @@
 
 	var/datum/job/J = SSjob.GetJobType(/datum/job/pmc/greytider)
 	H.apply_assigned_role_to_spawn(J)
-	to_chat(H, "<p style='font-size:1.5em'><span class='notice'>You are a greytider! Shove and bonk, until it is horizontal! You are friendly to the TGMC forces.</span></p>")
+	to_chat(H, "<p style='font-size:1.5em'><span class='notice'>You are a greytider! Shove and bonk, until it is horizontal! You are friendly to the SoM forces.</span></p>")
