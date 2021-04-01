@@ -562,13 +562,8 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	dual_wield = FALSE
 	gun_user.client.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
 
-///Setter for the extra delay when bursting is done
-/obj/item/weapon/gun/proc/set_extra_delay(datum/source, _extra_delay)
-	SIGNAL_HANDLER
-	extra_delay = _extra_delay
-
 ///Inform the gun if he is currently bursting, to prevent reloading
-/obj/item/weapon/gun/proc/set_bursting(datum/source, bursting)
+/obj/item/weapon/gun/proc/set_bursting(bursting)
 	if(bursting)
 		ENABLE_BITFIELD(flags_gun_features, GUN_BURST_FIRING)
 		return
