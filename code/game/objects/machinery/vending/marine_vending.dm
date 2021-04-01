@@ -119,7 +119,6 @@
 	wrenchable = FALSE
 	req_one_access = list(ACCESS_MARINE_CARGO, ACCESS_MARINE_LOGISTICS)
 	products = list(
-		/obj/item/storage/box/ammo = 30,
 		/obj/item/storage/box/nade_box = 2,
 		/obj/item/storage/box/nade_box/HIDP = 2,
 		/obj/item/storage/box/nade_box/M15 = 2,
@@ -300,6 +299,7 @@
 		/obj/item/ammo_magazine/box10x24mm = 50,
 		/obj/item/ammo_magazine/box10x26mm = 50,
 		/obj/item/ammo_magazine/box10x27mm = 50,
+		/obj/item/storage/box/ammo = 15,
 	)
 	premium = list()
 

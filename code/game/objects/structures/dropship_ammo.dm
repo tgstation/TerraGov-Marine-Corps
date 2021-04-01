@@ -236,7 +236,7 @@
 /obj/structure/ship_ammo/rocket/widowmaker
 	name = "\improper AIM-224 'Widowmaker'"
 	desc = "The AIM-224 is the latest in air to air missile technology. Earning the nickname of 'Widowmaker' from various dropship pilots after improvements to its guidence warhead prevents it from being jammed leading to its high kill rate. Not well suited for ground bombardment, but its high velocity makes it reach its target quickly."
-	icon_state = "single"
+	icon_state = "widowmaker"
 	travelling_time = 3 SECONDS //not powerful, but reaches target fast
 	ammo_id = ""
 	point_cost = 75
@@ -261,7 +261,7 @@
 /obj/structure/ship_ammo/rocket/keeper
 	name = "\improper GBU-67 'Keeper II'"
 	desc = "The GBU-67 'Keeper II' is the latest in a generation of laser guided weaponry that spans all the way back to the 20th century. Earning its nickname from a shortening of 'Peacekeeper' which comes from the program that developed its guidance system and the various uses of it during peacekeeping conflicts. Its payload is designed to devastate armored targets."
-	icon_state = "paveway"
+	icon_state = "keeper"
 	ammo_id = "k"
 	point_cost = 300
 

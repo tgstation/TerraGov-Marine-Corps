@@ -131,31 +131,31 @@ OPERATIONS
 /datum/supply_packs/operations/warhead_cluster
 	name = "Cluster orbital warhead"
 	contains = list(/obj/structure/ob_ammo/warhead/cluster)
-	cost = 40
+	cost = 20
 	containertype = null
 
 /datum/supply_packs/operations/warhead_explosive
 	name = "HE orbital warhead"
 	contains = list(/obj/structure/ob_ammo/warhead/explosive)
-	cost = 40
+	cost = 30
 	containertype = null
 
 /datum/supply_packs/operations/warhead_incendiary
 	name = "Incendiary orbital warhead"
 	contains = list(/obj/structure/ob_ammo/warhead/incendiary)
-	cost = 40
+	cost = 20
 	containertype = null
 
 /datum/supply_packs/operations/warhead_plasmaloss
 	name = "Plasma draining orbital warhead"
 	contains = list(/obj/structure/ob_ammo/warhead/plasmaloss)
-	cost = 25
+	cost = 15
 	containertype = null
 
 /datum/supply_packs/operations/ob_fuel
 	name = "Solid fuel"
 	contains = list(/obj/structure/ob_ammo/ob_fuel)
-	cost = 10
+	cost = 5
 	containertype = null
 
 /datum/supply_packs/operations/cas_voucher

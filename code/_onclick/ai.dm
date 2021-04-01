@@ -171,6 +171,17 @@
 		return
 	toggle_breaker(usr)
 
+/* Firealarm */
+/obj/machinery/firealarm/AICtrlClick(mob/living/silicon/ai/user) // turn on the fire alarm
+	if(z != user.z)
+		return
+	alarm()
+
+/obj/machinery/firealarm/AICtrlShiftClick(mob/living/silicon/ai/user) // turn off the fire alarm
+	if(z != user.z)
+		return
+	reset()
+
 
 //
 // Override TurfAdjacent for AltClicking
