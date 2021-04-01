@@ -1087,7 +1087,6 @@
 /obj/item/weapon/gun/minigun
 	name = "\improper T-100 Minigun"
 	desc = "A six barreled rotary machine gun, The ultimate in man-portable firepower, capable of laying down high velocity armor piercing rounds this thing will no doubt pack a punch."
-	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "minigun"
 	item_state = "minigun"
 	max_shells = 500 //codex
