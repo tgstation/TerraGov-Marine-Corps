@@ -7,7 +7,7 @@
 	///Warcry to yell upon detonation
 	var/bomb_message
 	///List of warcries that are not allowed.
-	var/list/bad_warcries = list("allahu ackbar", "allah", "ackbar")
+	var/bad_warcries_regex = "allahu ackbar|allah|ackbar"
 
 ///Overwrites the parent function for activating a light. Instead it now detonates the bomb.
 /obj/item/clothing/suit/storage/marine/harness/boomvest/attack_self(mob/user)
@@ -27,14 +27,17 @@
 
 ///Gets a warcry to scream on Control Click, checks for non allowed warcries.
 /obj/item/clothing/suit/storage/marine/harness/boomvest/CtrlClick(mob/user)
-	if(loc == user)
-		var/new_bomb_message = sanitize(input(user, "Select Warcry", "Warcry", null) as text|null)
-		for(var/warcry in bad_warcries)
-			if(findtext(new_bomb_message, regex(warcry, "i")))
-				to_chat(user, "Come on, why can't you be original?")
-				return FALSE
-		bomb_message = new_bomb_message
-		to_chat(user, "Warcry set to: \"[bomb_message]\".")
+	if(loc != user)
+		return ..()
+	var/new_bomb_message = stripped_input(user, "Select Warcry", "Warcry", null, 50)
+	if(CHAT_FILTER_CHECK(new_bomb_message))
+		to_chat(user, "This warcry is prohibited from IC chat.")
+		return FALSE
+	if(findtext(new_bomb_message, regex(bad_warcries_regex, "i")))
+		to_chat(user, "This warcry is prohibited from IC chat.")
+		return FALSE
+	bomb_message = new_bomb_message
+	to_chat(user, "Warcry set to: \"[bomb_message]\".")
 	return ..()
 
 /obj/item/clothing/suit/storage/marine/harness/boomvest/ob_vest
