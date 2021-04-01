@@ -202,6 +202,7 @@
 		return ..()
 	if(gun_user)
 		UnregisterSignal(gun_user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG))
+		gun_user.client.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
 		gun_user = null	
 	return ..()
 
@@ -209,6 +210,7 @@
 	if(!gun_user)
 		return
 	UnregisterSignal(gun_user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG))
+	gun_user.client.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
 	gun_user = null
 
 /obj/item/weapon/gun/update_icon(mob/user)
