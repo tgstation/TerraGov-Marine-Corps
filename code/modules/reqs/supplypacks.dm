@@ -205,12 +205,12 @@ WEAPONS
 /datum/supply_packs/weapons/railgun
 	name = "TX-220 Railgun"
 	contains = list(/obj/item/weapon/gun/rifle/railgun)
-	cost = 130
+	cost = 75
 
-/datum/supply_packs/weapons/tx8
-	name = "TX-8 Scout Rifle"
-	contains = list(/obj/item/weapon/gun/rifle/tx8)
-	cost = 80
+/datum/supply_packs/weapons/specscoutm4ra
+	name = "Scout Specialist kit (M4RA)"
+	contains = list(/obj/item/weapon/gun/rifle/m4ra)
+	cost = 50
 
 /datum/supply_packs/weapons/specdemo
 	name = "Demolitionist Specialist kit"
@@ -225,7 +225,7 @@ WEAPONS
 /datum/supply_packs/weapons/antimaterial
 	name = "T-26 Antimaterial rifle kit"
 	contains = list(/obj/item/weapon/gun/rifle/sniper/antimaterial)
-	cost = 120
+	cost = 70
 
 /datum/supply_packs/weapons/specminigun
 	name = "MIC-A7 Vindicator Minigun"
@@ -265,6 +265,12 @@ WEAPONS
 	notes = "Contains 5 mines"
 	contains = list(/obj/item/storage/box/explosive_mines)
 	cost = 15
+
+/datum/supply_packs/weapons/explosives_razor
+	name = "RB grenade box crate"
+	notes = "Containers 20 razor burns"
+	contains = list(/obj/item/storage/box/nade_box/razor_burn)
+	cost = 50
 
 /datum/supply_packs/weapons/explosives_hedp
 	name = "M40 HEDP high explosive grenade box crate"
@@ -494,18 +500,23 @@ AMMO
 	cost = 10
 
 /datum/supply_packs/ammo/scout_regular
-	name = "TX-8 scout magazine"
-	contains = list(/obj/item/ammo_magazine/rifle/tx8)
+	name = "M4RA scout magazine"
+	contains = list(/obj/item/ammo_magazine/rifle/m4ra)
 	cost = 5
 
 /datum/supply_packs/ammo/scout_impact
-	name = "TX-8 impact magazine"
-	contains = list(/obj/item/ammo_magazine/rifle/tx8/impact)
+	name = "M4RA scout impact magazine"
+	contains = list(/obj/item/ammo_magazine/rifle/m4ra/impact)
 	cost = 7
 
 /datum/supply_packs/ammo/scout_incendiary
-	name = "TX-8 scout incendiary magazine"
-	contains = list(/obj/item/ammo_magazine/rifle/tx8/incendiary)
+	name = "M4RA scout incendiary magazine"
+	contains = list(/obj/item/ammo_magazine/rifle/m4ra/incendiary)
+	cost = 7
+
+/datum/supply_packs/ammo/scout_smart
+	name = "M4RA scout smart magazine"
+	contains = list(/obj/item/ammo_magazine/rifle/m4ra/smart)
 	cost = 7
 
 /datum/supply_packs/ammo/autosniper_regular
@@ -516,12 +527,12 @@ AMMO
 /datum/supply_packs/ammo/antimaterial
 	name = "T-26 magazine"
 	contains = list(/obj/item/ammo_magazine/sniper)
-	cost = 10
+	cost = 5
 
 /datum/supply_packs/ammo/railgun
 	name = "Railgun round"
 	contains = list(/obj/item/ammo_magazine/railgun)
-	cost = 4
+	cost = 3
 
 /datum/supply_packs/ammo/shotguntracker
 	name = "12 Gauge Tracker Shells"

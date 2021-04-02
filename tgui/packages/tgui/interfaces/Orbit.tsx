@@ -1,3 +1,4 @@
+import { BooleanLike } from 'common/react';
 import { createSearch, multiline } from 'common/string';
 import { useBackend, useLocalState } from '../backend';
 import { resolveAsset } from '../assets';
@@ -6,11 +7,14 @@ import { Window } from '../layouts';
 
 const PATTERN_NUMBER = / \(([0-9]+)\)$/;
 
-const searchFor = searchText => createSearch(searchText, thing => thing.name);
+const searchFor = (searchText: string) => {
+  return createSearch(searchText, (thing: { name: string}) => thing.name);
+};
 
-const compareString = (a, b) => a < b ? -1 : a > b;
-
-const compareNumberedText = (a, b) => {
+const compareNumberedText = (
+  a: { name: string },
+  b: { name: string },
+) => {
   const aName = a.name;
   const bName = b.name;
 
@@ -29,17 +33,46 @@ const compareNumberedText = (a, b) => {
     return aNumber - bNumber;
   }
 
-  return compareString(aName, bName);
+  return aName.localeCompare(bName);
 };
 
-const BasicSection = (props, context) => {
+type OrbitList = {
+  name: string,
+  ref: string,
+  orbiters: number,
+}
+
+type OrbitData = {
+  humans: OrbitList[],
+  marines: OrbitList[],
+  survivors: OrbitList[],
+  xenos: OrbitList[],
+  dead: OrbitList[],
+  ghosts: OrbitList[],
+  misc: OrbitList[],
+  npcs: OrbitList[],
+  auto_observe: BooleanLike,
+}
+
+type BasicSectionProps = {
+  searchText: string,
+  source: OrbitList[],
+  title: string,
+}
+
+type OrbitedButtonProps = {
+  color: string,
+  thing: OrbitList,
+}
+
+const BasicSection = (props: BasicSectionProps, context: any) => {
   const { act } = useBackend(context);
   const { searchText, source, title } = props;
   const things = source.filter(searchFor(searchText));
   things.sort(compareNumberedText);
   return source.length > 0 && (
     <Section title={`${title} - (${source.length})`}>
-      {things.map(thing => (
+      {things.map((thing: OrbitList) => (
         <Button
           key={thing.name}
           content={thing.name}
@@ -51,7 +84,7 @@ const BasicSection = (props, context) => {
   );
 };
 
-const OrbitedButton = (props, context) => {
+const OrbitedButton = (props: OrbitedButtonProps, context: any) => {
   const { act } = useBackend(context);
   const { color, thing } = props;
 
@@ -77,23 +110,23 @@ const OrbitedButton = (props, context) => {
   );
 };
 
-export const Orbit = (props, context) => {
-  const { act, data } = useBackend(context);
+export const Orbit = (props: any, context: any) => {
+  const { act, data } = useBackend<OrbitData>(context);
   const {
     humans,
     marines,
     survivors,
     xenos,
-    auto_observe,
     dead,
     ghosts,
     misc,
     npcs,
+    auto_observe,
   } = data;
 
   const [searchText, setSearchText] = useLocalState(context, "searchText", "");
 
-  const orbitMostRelevant = searchText => {
+  const orbitMostRelevant = (searchText: string) => {
     for (const source of [
       humans,
       marines,
@@ -129,8 +162,8 @@ export const Orbit = (props, context) => {
                 autoFocus
                 fluid
                 value={searchText}
-                onInput={(_, value) => setSearchText(value)}
-                onEnter={(_, value) => orbitMostRelevant(value)} />
+                onInput={(_: any, value: string) => setSearchText(value)}
+                onEnter={(_: any, value: string) => orbitMostRelevant(value)} />
             </Flex.Item>
             <Flex.Item>
               <Divider vertical />
@@ -219,6 +252,12 @@ export const Orbit = (props, context) => {
         <BasicSection
           title="NPCs"
           source={npcs}
+          searchText={searchText}
+        />
+
+        <BasicSection
+          title="Dead"
+          source={dead}
           searchText={searchText}
         />
 

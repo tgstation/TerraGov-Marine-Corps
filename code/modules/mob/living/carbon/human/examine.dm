@@ -531,6 +531,9 @@
 
 	msg += "[flavor_text]<br>"
 
+	if(has_status_effect(STATUS_EFFECT_ADMINSLEEP))
+		msg += "<span class='highdanger'><B>This player has been slept by staff.</B>\n</span>"
+
 	msg += "*---------*</span>"
 
 	to_chat(user, msg)
