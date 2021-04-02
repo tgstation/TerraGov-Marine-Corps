@@ -34,7 +34,6 @@
 	// *** Flags *** //
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_VENT_CRAWL
 
-	can_hold_eggs = CAN_HOLD_ONE_HAND
 	// *** Defense *** //
 	soft_armor = list("melee" = 30, "bullet" = 25, "laser" = 15, "energy" = 30, "bomb" = XENO_BOMB_RESIST_0, "bio" = 30, "rad" = 30, "fire" = 25, "acid" = 30)
 
