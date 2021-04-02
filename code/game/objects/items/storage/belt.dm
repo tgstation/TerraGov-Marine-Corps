@@ -111,6 +111,7 @@
 		/obj/item/clothing/gloves/latex,
 		/obj/item/storage/syringe_case,
 		/obj/item/ammo_magazine/pistol,
+		/obj/item/ammo_magazine/smg/
 		/obj/item/ammo_magazine/revolver,
 		/obj/item/ammo_magazine/handful,
 		/obj/item/flashlight/flare,
