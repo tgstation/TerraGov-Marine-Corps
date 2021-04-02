@@ -2284,12 +2284,6 @@
 	dir = 4
 	},
 /area/lv624/ground/river2)
-"akR" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/cable,
-/obj/effect/alien/weeds/node,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/compound/sw)
 "akT" = (
 /obj/structure/jungle/vines,
 /obj/structure/jungle/plantbot1/alien,
@@ -3112,7 +3106,6 @@
 /obj/structure/barricade/wooden{
 	dir = 4
 	},
-/obj/effect/alien/weeds/node,
 /turf/open/floor/wood,
 /area/lv624/ground/ruin)
 "anY" = (
@@ -5352,7 +5345,6 @@
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
 	name = "\improper Hydroponics Dome"
 	},
-/obj/effect/alien/weeds/node,
 /turf/open/floor/tile/green/greentaupe{
 	dir = 1
 	},
@@ -5462,7 +5454,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/alien/weeds/node,
 /turf/open/floor/tile/green/greentaupe{
 	dir = 1
 	},
@@ -11790,7 +11781,6 @@
 /obj/structure/flora/grass/both,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
-/obj/effect/alien/weeds/node,
 /turf/open/floor/grass,
 /area/lv624/lazarus/main_hall)
 "bgU" = (
@@ -15454,12 +15444,6 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/indestructible/mineral,
 /area/lv624/ground/caves/west1)
-"jnF" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/cable,
-/obj/effect/alien/weeds/node,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/lazarus/quartstorage/outdoors)
 "jqE" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8;
@@ -16636,10 +16620,6 @@
 	dir = 4
 	},
 /area/lv624/ground/jungle3)
-"qYJ" = (
-/obj/effect/alien/weeds/node,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/compound/ne)
 "qZa" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -16884,6 +16864,10 @@
 	dir = 4
 	},
 /area/shuttle/drop2/lz2)
+"sDV" = (
+/obj/effect/alien/weeds/node,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle1)
 "sED" = (
 /obj/structure/lazarus_sign,
 /turf/open/floor/plating/ground/dirtgrassborder,
@@ -17264,10 +17248,6 @@
 	dir = 4
 	},
 /area/shuttle/drop1/lz1)
-"vzO" = (
-/obj/effect/alien/weeds/node,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/jungle4)
 "vAw" = (
 /obj/effect/decal/warning_stripes/thin,
 /obj/effect/alien/weeds/node,
@@ -17292,13 +17272,6 @@
 /obj/structure/window_frame/colony,
 /turf/open/floor/plating,
 /area/lv624/ground/jungle9)
-"vEO" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 8
-	},
-/obj/effect/alien/weeds/node,
-/turf/open/floor,
-/area/lv624/ground/river2)
 "vEP" = (
 /obj/item/frame/table,
 /obj/effect/alien/weeds/node,
@@ -17521,6 +17494,12 @@
 /obj/effect/alien/weeds/node,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
+"xfC" = (
+/obj/effect/alien/weeds/node,
+/turf/open/floor/tile/green/whitegreencorner{
+	dir = 8
+	},
+/area/lv624/lazarus/main_hall)
 "xib" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral,
@@ -17561,6 +17540,13 @@
 /obj/structure/jungle/vines,
 /turf/closed/gm/dense,
 /area/lv624/ground/jungle3)
+"xBg" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/effect/alien/weeds/node,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/compound/sw)
 "xCo" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/dirt,
@@ -22806,7 +22792,7 @@ wlI
 axR
 wNe
 wNe
-vzO
+wNe
 wNe
 wNe
 vpP
@@ -24052,7 +24038,7 @@ avq
 aIZ
 avq
 axR
-wlI
+axR
 axR
 xVM
 xVM
@@ -24250,9 +24236,9 @@ xVM
 xVM
 mos
 tqW
-nAc
-vDD
 aZl
+vDD
+nAc
 aZl
 nAc
 aZl
@@ -24791,7 +24777,7 @@ aEy
 leX
 aEy
 aZl
-beX
+xBg
 aZl
 blb
 fRf
@@ -25149,7 +25135,7 @@ aES
 aFD
 bcD
 aZl
-nAc
+aZl
 aZl
 aZl
 bdu
@@ -26209,7 +26195,7 @@ pNb
 aPS
 aLt
 aMm
-kHl
+usu
 aMm
 aLt
 aPS
@@ -26366,7 +26352,7 @@ auJ
 axQ
 aCr
 ayo
-wlI
+axR
 axR
 aXH
 aXH
@@ -26567,7 +26553,7 @@ aPS
 aPS
 aLs
 aMm
-usu
+kHl
 aMm
 aOY
 pNb
@@ -26721,8 +26707,8 @@ wlI
 ayo
 aAG
 aBg
-axR
 wlI
+axR
 axR
 axR
 aXH
@@ -27128,7 +27114,7 @@ rTb
 rTb
 rTb
 xmL
-akR
+xmL
 xmL
 xmL
 qnO
@@ -27278,7 +27264,7 @@ aXH
 aXH
 aXH
 aMm
-stw
+bfQ
 aMm
 aMm
 aMm
@@ -28730,7 +28716,7 @@ kvA
 aEx
 bgH
 aZl
-pZX
+bcA
 aZl
 beo
 aFB
@@ -32503,7 +32489,7 @@ bcD
 blb
 aZl
 aZl
-nAc
+aZl
 aZl
 cnD
 bpG
@@ -33498,7 +33484,7 @@ aoE
 aji
 aji
 aji
-vEO
+aji
 aji
 aji
 aji
@@ -35672,7 +35658,7 @@ axm
 awP
 aBz
 avZ
-aAb
+ffi
 aAb
 aDC
 aAb
@@ -36043,7 +36029,7 @@ aET
 aET
 aGk
 aJB
-sWJ
+aEx
 aLa
 aHT
 aET
@@ -36211,7 +36197,7 @@ avE
 avZ
 aAb
 aAb
-ohD
+aDC
 aAb
 aEz
 aET
@@ -36919,7 +36905,7 @@ arW
 arW
 arY
 atQ
-gJp
+arl
 aro
 aEh
 aEh
@@ -38732,7 +38718,7 @@ aKw
 aKw
 aLP
 aME
-nGf
+aNz
 aNC
 aNz
 aME
@@ -39068,7 +39054,7 @@ atX
 atX
 arY
 avA
-gJp
+arl
 aEh
 aEh
 aEh
@@ -39117,7 +39103,7 @@ aWQ
 beF
 aRI
 aRI
-aRI
+xfC
 aRI
 aRI
 aRI
@@ -40154,7 +40140,7 @@ arY
 arW
 aFa
 aDc
-qYJ
+aDc
 aDc
 aEZ
 aHZ
@@ -42531,7 +42517,7 @@ bdh
 bdi
 biN
 boZ
-boY
+sDV
 bpU
 bkk
 bdh
@@ -43197,7 +43183,7 @@ aEi
 aCG
 aCG
 aCG
-aCG
+dpa
 aEi
 aEi
 azJ
@@ -43245,7 +43231,7 @@ bdh
 bhQ
 bdi
 biM
-boY
+sDV
 bpS
 blC
 bdh
@@ -43430,7 +43416,7 @@ bkk
 bdh
 biM
 boY
-boY
+sDV
 bkk
 bdi
 bdk
@@ -43554,11 +43540,11 @@ arY
 aAo
 aCG
 aCd
-dpa
+aCG
 aCd
 azJ
 aAk
-jXK
+aAk
 aHs
 aJG
 aJH
@@ -44063,8 +44049,8 @@ apm
 aoO
 aqN
 aqg
-aro
-arV
+arl
+arp
 arW
 asW
 arW
@@ -44241,9 +44227,9 @@ aoO
 aoO
 aoO
 aqf
-aro
-arV
-arW
+arl
+arl
+arp
 arW
 arY
 atl
@@ -44420,9 +44406,9 @@ aoO
 aqN
 aqw
 aqg
-arp
-arW
-arY
+arl
+arl
+avl
 atl
 arW
 atl
@@ -44598,9 +44584,9 @@ aoO
 aoO
 aqf
 mcB
-asU
-arV
-arW
+aus
+gJp
+arl
 atl
 atl
 atl
@@ -44777,9 +44763,9 @@ aoO
 aqN
 aqg
 arp
-arW
-arW
-arY
+atQ
+arl
+auT
 atl
 atl
 atl
@@ -44956,10 +44942,10 @@ aqN
 aqg
 aos
 aot
-ask
-auc
-aoY
-aoY
+aqk
+apP
+apP
+apV
 aoY
 anr
 anr
@@ -45000,7 +44986,7 @@ puV
 aAk
 aAk
 eHq
-aAk
+jXK
 xnH
 lYR
 aSB
@@ -45136,9 +45122,9 @@ aos
 aot
 ask
 anO
+apP
+apP
 aud
-auB
-auB
 apK
 anr
 anr
@@ -45156,9 +45142,9 @@ ayj
 ayj
 azO
 ayj
-aAT
-aBC
 eEp
+aBC
+aAT
 aAT
 aDm
 puV
@@ -45177,7 +45163,7 @@ puV
 puV
 puV
 iVB
-jnF
+iVB
 rOB
 blN
 fyU
@@ -45489,7 +45475,7 @@ apo
 ajB
 aqN
 aqg
-aps
+asD
 aot
 aqk
 anN
@@ -47476,7 +47462,7 @@ anr
 aoY
 aoY
 aqZ
-apP
+fsZ
 aAT
 aDP
 azP
