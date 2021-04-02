@@ -1246,16 +1246,6 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 		/obj/item/storage/box/MRE,
 	)
 
-/obj/effect/essentials_set/basic_commander
-	spawned_gear_list = list(
-		/obj/item/clothing/suit/storage/marine/pasvest,
-		/obj/item/clothing/head/helmet/marine/leader,
-		/obj/item/clothing/glasses/hud/health,
-		/obj/item/clothing/under/marine,
-		/obj/item/clothing/shoes/marine/full,
-		/obj/item/storage/box/MRE,
-	)
-
 /obj/effect/essentials_set/basic_squadleadermodular
 	spawned_gear_list = list(
 		/obj/item/clothing/under/marine/jaeger,
@@ -1273,6 +1263,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 		/obj/item/clothing/glasses/hud/health,
 		/obj/item/clothing/under/marine/corpsman,
 		/obj/item/clothing/shoes/marine/full,
+		/obj/item/clothing/head/helmet/marine/corpsman,
 		/obj/item/storage/box/MRE,
 	)
 
@@ -1280,7 +1271,6 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 	spawned_gear_list = list(
 		/obj/item/clothing/under/marine/jaeger,
 		/obj/item/clothing/suit/modular,
-		/obj/item/clothing/head/helmet/marine/corpsman,
 		/obj/item/clothing/glasses/hud/health,
 		/obj/item/clothing/shoes/marine/full,
 		/obj/item/storage/box/MRE,
@@ -1301,12 +1291,21 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 	spawned_gear_list = list(
 		/obj/item/clothing/under/marine/jaeger,
 		/obj/item/clothing/suit/modular,
-		/obj/item/clothing/head/helmet/marine/tech,
 		/obj/item/clothing/glasses/welding,
 		/obj/item/clothing/shoes/marine/full,
 		/obj/item/storage/box/MRE,
 		/obj/item/clothing/gloves/marine/insulated,
 		/obj/item/facepaint/green,
+	)
+
+/obj/effect/essentials_set/basic_commander
+	spawned_gear_list = list(
+		/obj/item/clothing/suit/storage/marine/pasvest,
+		/obj/item/clothing/head/helmet/marine/leader,
+		/obj/item/clothing/glasses/hud/health,
+		/obj/item/clothing/under/marine,
+		/obj/item/clothing/shoes/marine/full,
+		/obj/item/storage/box/MRE,
 	)
 
 /obj/effect/essentials_set/medic
