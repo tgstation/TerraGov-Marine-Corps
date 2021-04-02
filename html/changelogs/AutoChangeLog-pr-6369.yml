@@ -1,0 +1,6 @@
+author: "BlackFira"
+delete-after: True
+changes: 
+  - balance: "Armored lab coat weight 0.3 -> 0.2"
+  - balance: "Armored lab coat coverage increased to full body -head"
+  - balance: "Armored lab coat soft melee protection 35% -> 30%"
