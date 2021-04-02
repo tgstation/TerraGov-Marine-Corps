@@ -67,6 +67,7 @@
 	. = ..()
 	SEND_SIGNAL(AM, COMSIG_ATOM_ACIDSPRAY_ACT, src, acid_damage, slow_amt)
 
+/// Set xeno_owner to null to avoid hard del
 /obj/effect/xenomorph/spray/proc/clean_mob_owner()
 	UnregisterSignal(xeno_owner, COMSIG_PARENT_QDELETING)
 	xeno_owner = null
