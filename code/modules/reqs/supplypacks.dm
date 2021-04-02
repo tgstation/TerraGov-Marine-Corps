@@ -670,7 +670,7 @@ ARMOR
 	contains = list(
 		/obj/item/clothing/suit/storage/marine/specialist,
 		/obj/item/clothing/head/helmet/marine/specialist,
-		/obj/item/clothing/gloves/marine/specialist
+		/obj/item/clothing/gloves/marine/specialist,
 	)
 	cost = B18_PRICE
 
