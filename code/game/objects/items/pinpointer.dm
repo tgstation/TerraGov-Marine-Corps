@@ -86,9 +86,28 @@
 		to_chat(user, "Extreme danger.  Arming signal detected.   Time remaining: [bomb.timeleft]")
 
 /obj/item/pinpointer/pool
-	name = "pool pinpointer"
-	desc = "A pinpointer able to detect the psychic energy emmaning from spawning pools"
+	name = "silo pinpointer"
+	desc = "A pinpointer able to detect the psychic energy emmaning from silos"
 
 /obj/item/pinpointer/pool/Initialize()
 	. = ..()
 	tracked_list = GLOB.xeno_resin_silos
+
+/obj/item/pinpointer/pool/process()
+	if(!target)
+		icon_state = "pinonnull"
+		active = FALSE
+		return
+
+	setDir(get_dir(src, target))
+	switch(get_dist(src, target))
+		if(0)
+			icon_state = "pinondirect"
+		if(1 to 8)
+			icon_state = "pinonclose"
+		if(9 to 16)
+			icon_state = "pinonmedium"
+		if(16 to 35)
+			icon_state = "pinonfar"
+		if(36 to INFINITY)
+			icon_state = "pinonnull"
