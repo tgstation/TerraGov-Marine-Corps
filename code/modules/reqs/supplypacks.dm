@@ -266,6 +266,12 @@ WEAPONS
 	contains = list(/obj/item/storage/box/explosive_mines)
 	cost = 15
 
+/datum/supply_packs/weapons/explosives_razor
+	name = "RB grenade box crate"
+	notes = "Containers 20 razor burns"
+	contains = list(/obj/item/storage/box/nade_box/razor_burn)
+	cost = 50
+
 /datum/supply_packs/weapons/explosives_hedp
 	name = "M40 HEDP high explosive grenade box crate"
 	notes = "Contains 25 grenades"
