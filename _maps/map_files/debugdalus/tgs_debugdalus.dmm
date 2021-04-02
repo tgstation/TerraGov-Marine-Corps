@@ -416,10 +416,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/living/port_garden)
-"aby" = (
-/obj/effect/landmark/start/job/tankcrewman,
-/turf/open/floor/mainship,
-/area/mainship/hallways/exoarmor)
 "abz" = (
 /obj/structure/ship_ammo/rocket/widowmaker,
 /turf/open/floor/mainship,
@@ -5586,7 +5582,7 @@ aaa
 aaa
 aea
 abn
-aby
+adG
 adG
 adG
 aea
@@ -5646,7 +5642,7 @@ aaa
 aaa
 aea
 adG
-aby
+adG
 adG
 abU
 abU

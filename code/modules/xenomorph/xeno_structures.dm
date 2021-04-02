@@ -32,6 +32,8 @@
 	bound_width = 96
 	bound_height = 96
 	max_integrity = 1000
+	///How many larva points one silo produce in one minute
+	var/larva_spawn_rate = 0.5
 	var/turf/center_turf
 	var/datum/hive_status/associated_hive
 	var/silo_area
@@ -163,6 +165,12 @@
 	SIGNAL_HANDLER
 	if(associated_hive)
 		silos += src
+
+/obj/structure/resin/silo/small_silo
+	name = "small resin silo"
+	icon_state = "weed_silo"
+	max_integrity = 500
+	larva_spawn_rate = 0.25
 
 /obj/structure/resin/xeno_turret
 	icon = 'icons/Xeno/acidturret.dmi'
