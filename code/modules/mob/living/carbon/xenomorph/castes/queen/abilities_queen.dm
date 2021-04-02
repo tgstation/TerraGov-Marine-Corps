@@ -425,7 +425,7 @@
 		var/list/possible_xenos = xeno_ruler.hive.get_leaderable_xenos()
 
 		selected_xeno = tgui_input_list(xeno_ruler, "Target", "Watch which xenomorph?", possible_xenos)
-		if(QDELETED(selected_xeno) || selected_xeno.stat == DEAD || is_centcom_level(selected_xeno.z) || !xeno_ruler.check_state())
+		if(QDELETED(selected_xeno) || selected_xeno.stat == DEAD || is_centcom_level(selected_xeno.z))
 			return
 
 	if(selected_xeno.queen_chosen_lead)
@@ -615,8 +615,6 @@
 
 /datum/action/xeno_action/deevolve/action_activate()
 	var/mob/living/carbon/xenomorph/queen/X = owner
-	if(!X.check_state())
-		return
 	if(!X.observed_xeno)
 		to_chat(X, "<span class='warning'>We must overwatch the xeno we want to de-evolve.</span>")
 		return

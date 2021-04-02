@@ -782,6 +782,7 @@
 	mechanics_text = "Spit neurotoxin or acid at your target up to 7 tiles away."
 	ability_name = "xeno spit"
 	keybind_signal = COMSIG_XENOABILITY_XENO_SPIT
+	use_state_flags = XACT_USE_LYING
 	plasma_cost = 10
 
 /datum/action/xeno_action/activable/xeno_spit/update_button_icon()
@@ -808,6 +809,8 @@
 	if(!.)
 		return FALSE
 	var/mob/living/carbon/xenomorph/X = owner
+	if(!X.check_state())
+		return FALSE
 	if(X.ammo?.spit_cost > X.plasma_stored)
 		if(!silent)
 			to_chat(X, "<span class='warning'>We need [X.ammo?.spit_cost - X.plasma_stored] more plasma!</span>")
