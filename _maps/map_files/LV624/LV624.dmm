@@ -16998,11 +16998,6 @@
 /obj/structure/catwalk,
 /turf/open/ground/river,
 /area/lv624/ground/sand8)
-"tJm" = (
-/obj/effect/alien/weeds/node,
-/obj/effect/alien/weeds/node,
-/turf/closed/gm/dense,
-/area/lv624/ground/jungle7)
 "tOe" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/effect/alien/weeds/node,
@@ -44073,7 +44068,7 @@ atl
 atl
 atl
 fxk
-tJm
+atl
 atl
 atl
 atl
