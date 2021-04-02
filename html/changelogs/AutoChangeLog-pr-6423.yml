@@ -1,0 +1,5 @@
+author: "Swagile"
+delete-after: True
+changes: 
+  - rscadd: "Razor burn grenade boxes."
+  - rscadd: "Razor burn grenade boxes to req for 50 points."
