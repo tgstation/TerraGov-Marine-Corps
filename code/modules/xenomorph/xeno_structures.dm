@@ -52,9 +52,6 @@
 	if(!istype(center_turf))
 		center_turf = loc
 
-	for(var/i in RANGE_TURFS(XENO_SILO_DETECTION_RANGE, src))
-		RegisterSignal(i, COMSIG_ATOM_ENTERED, .proc/resin_silo_proxy_alert)
-
 	return INITIALIZE_HINT_LATELOAD
 
 
@@ -132,33 +129,11 @@
 	associated_hive.xeno_message("<span class='xenoannounce'>Our [name] at [AREACOORD_NO_Z(src)] is under attack! It has [obj_integrity]/[max_integrity] Health remaining.</span>", 2, FALSE, src, 'sound/voice/alien_help1.ogg',FALSE, null, /obj/screen/arrow/silo_damaged_arrow)
 	COOLDOWN_START(src, silo_damage_alert_cooldown, XENO_SILO_HEALTH_ALERT_COOLDOWN) //set the cooldown.
 
-///Alerts the Hive when hostiles get too close to their resin silo
-/obj/structure/resin/silo/proc/resin_silo_proxy_alert(datum/source, atom/hostile)
-	SIGNAL_HANDLER
-
-	if(!COOLDOWN_CHECK(src, silo_proxy_alert_cooldown)) //Proxy alert triggered too recently; abort
-		return
-
-	if(!isliving(hostile))
-		return
-
-	var/mob/living/living_triggerer = hostile
-	if(living_triggerer.stat == DEAD) //We don't care about the dead
-		return
-
-	if(isxeno(hostile))
-		var/mob/living/carbon/xenomorph/X = hostile
-		if(X.hive == associated_hive) //Trigger proxy alert only for hostile xenos
-			return
-
-	associated_hive.xeno_message("<span class='xenoannounce'>Our [name] has detected a nearby hostile [hostile] at [get_area(hostile)] (X: [hostile.x], Y: [hostile.y]).</span>", 2, FALSE, hostile, 'sound/voice/alien_help1.ogg', FALSE, null, /obj/screen/arrow/leader_tracker_arrow)
-	COOLDOWN_START(src, silo_proxy_alert_cooldown, XENO_SILO_DETECTION_COOLDOWN) //set the cooldown.
 
 /obj/structure/resin/silo/process()
 	//Regenerate if we're at less than max integrity
 	if(obj_integrity < max_integrity)
 		obj_integrity = min(obj_integrity + 25, max_integrity) //Regen 5 HP per sec
-
 
 
 /obj/structure/resin/silo/proc/is_burrowed_larva_host(datum/source, list/mothers, list/silos)
