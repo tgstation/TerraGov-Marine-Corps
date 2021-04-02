@@ -784,8 +784,12 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 			new_human.wear_id.paygrade = "Mk.I"
 		if(601 to 3000) // 10 to 50 hrs
 			new_human.wear_id.paygrade = "Mk.II"
-		if(3001 to INFINITY) // more than 50 hrs
+		if(3001 to 6000) // 50 to 100 hrs
 			new_human.wear_id.paygrade = "Mk.III"
+                if(6001 to 18000) // 100 yo 300 hrs
+			new_human.wear_id.paygrade = "Mk.IV"
+                if(18001 to INFINITY) // more than 300 hrs
+			new_human.wear_id.paygrade = "Mk.V"
 
 /datum/job/terragov/silicon/synthetic/radio_help_message(mob/M)
 	. = ..()
