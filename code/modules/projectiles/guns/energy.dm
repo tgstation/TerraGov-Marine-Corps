@@ -487,14 +487,23 @@
 	)
 
 /datum/lasrifle/base
+	///how much power the gun uses on this mode when shot.
 	var/charge_cost = 0
+	///the ammo datum this mode is.
 	var/ammo = null
+	///how long it takes between each shot of that mode, same as gun fire delay.
 	var/fire_delay = 0
+	///The gun firing sound of this mode.
 	var/fire_sound = null
+	///What message it sends to the user when you switch to this mode.
 	var/message_to_user = ""
+	///Used to change the gun firemode, like automatic, semi-automatic and burst.
 	var/fire_mode = GUN_FIREMODE_SEMIAUTO
+	///what to change the gun icon_state to when switching to this mode.
 	var/icon_state = "tx73"
+	///Which icon file the radial menu will use.
 	var/radial_icon = 'icons/mob/radial.dmi'
+	///The icon state the radial menu will use.
 	var/radial_icon_state = "laser"
 
 /datum/lasrifle/base/standard
