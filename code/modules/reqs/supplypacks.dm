@@ -205,12 +205,12 @@ WEAPONS
 /datum/supply_packs/weapons/railgun
 	name = "TX-220 Railgun"
 	contains = list(/obj/item/weapon/gun/rifle/railgun)
-	cost = 130
+	cost = 75
 
 /datum/supply_packs/weapons/specscoutm4ra
 	name = "Scout Specialist kit (M4RA)"
 	contains = list(/obj/item/weapon/gun/rifle/m4ra)
-	cost = 80
+	cost = 50
 
 /datum/supply_packs/weapons/specdemo
 	name = "Demolitionist Specialist kit"
@@ -225,7 +225,7 @@ WEAPONS
 /datum/supply_packs/weapons/antimaterial
 	name = "T-26 Antimaterial rifle kit"
 	contains = list(/obj/item/weapon/gun/rifle/sniper/antimaterial)
-	cost = 120
+	cost = 70
 
 /datum/supply_packs/weapons/specminigun
 	name = "MIC-A7 Vindicator Minigun"
@@ -527,12 +527,12 @@ AMMO
 /datum/supply_packs/ammo/antimaterial
 	name = "T-26 magazine"
 	contains = list(/obj/item/ammo_magazine/sniper)
-	cost = 10
+	cost = 5
 
 /datum/supply_packs/ammo/railgun
 	name = "Railgun round"
 	contains = list(/obj/item/ammo_magazine/railgun)
-	cost = 4
+	cost = 3
 
 /datum/supply_packs/ammo/shotguntracker
 	name = "12 Gauge Tracker Shells"
