@@ -61,6 +61,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	mechanics_text = "Move faster on resin."
 	plasma_cost = 50
 	keybind_signal = COMSIG_XENOABILITY_RESIN_WALKER
+	use_state_flags = XACT_USE_LYING
 	var/speed_activated = FALSE
 	var/speed_bonus_active = FALSE
 
@@ -207,6 +208,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	plasma_transfer_amount = PLASMA_TRANSFER_AMOUNT * 4
 	transfer_delay = 0.5 SECONDS
 	max_range = 7
+	use_state_flags = XACT_USE_LYING
 
 
 /datum/action/xeno_action/place_jelly_pod
@@ -257,6 +259,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	plasma_cost = 100
 	cooldown_timer = 1 MINUTES
 	keybind_signal = COMSIG_XENOABILITY_CREATE_JELLY
+	use_state_flags = XACT_USE_LYING
 
 /datum/action/xeno_action/create_jelly/can_use_action(silent = FALSE, override_flags)
 	. = ..()
@@ -281,6 +284,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	cooldown_timer = 12.5 SECONDS
 	plasma_cost = 200
 	keybind_signal = COMSIG_XENOABILITY_HEALING_INFUSION
+	use_state_flags = XACT_USE_LYING
 	var/heal_range = HIVELORD_HEAL_RANGE
 
 /datum/action/xeno_action/activable/healing_infusion/can_use_ability(atom/target, silent = FALSE, override_flags)

@@ -9,6 +9,7 @@
 	plasma_cost = 400
 	cooldown_timer = 2 MINUTES
 	keybind_signal = COMSIG_XENOABILITY_CALL_OF_THE_BURROWED
+	use_state_flags = XACT_USE_LYING
 
 
 /datum/action/xeno_action/call_of_the_burrowed/action_activate()
