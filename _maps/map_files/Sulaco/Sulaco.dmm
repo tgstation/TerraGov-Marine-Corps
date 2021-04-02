@@ -10993,14 +10993,13 @@
 "bXW" = (
 /obj/machinery/light/small,
 /obj/structure/table/mainship,
-/obj/item/clothing/glasses/meson,
-/obj/item/clothing/glasses/meson{
-	pixel_x = -7;
-	pixel_y = 5
-	},
 /obj/item/stack/cable_coil{
 	pixel_x = 10;
 	pixel_y = 8
+	},
+/obj/item/stack/cable_coil{
+	pixel_x = 3;
+	pixel_y = 3
 	},
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_main_hall)
