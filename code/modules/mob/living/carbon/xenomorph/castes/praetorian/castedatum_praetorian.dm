@@ -173,4 +173,3 @@
 
 	// *** Pheromones *** //
 	aura_strength = 4.5
-
