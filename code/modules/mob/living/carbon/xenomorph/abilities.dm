@@ -556,35 +556,6 @@
 	X.recurring_injection(A, /datum/reagent/toxin/xeno_growthtoxin, XENO_LARVAL_CHANNEL_TIME, XENO_LARVAL_AMOUNT_RECURRING)
 
 // ***************************************
-// *********** Spitter-y abilities
-// ***************************************
-// Shift Spits
-/datum/action/xeno_action/shift_spits
-	name = "Toggle Spit Type"
-	action_icon_state = "shift_spit_neurotoxin"
-	mechanics_text = "Switch from neurotoxin to acid spit."
-	use_state_flags = XACT_USE_STAGGERED|XACT_USE_NOTTURF|XACT_USE_BUSY
-	keybind_signal = COMSIG_XENOABILITY_SHIFT_SPITS
-
-/datum/action/xeno_action/shift_spits/update_button_icon()
-	var/mob/living/carbon/xenomorph/X = owner
-	button.overlays.Cut()
-	button.overlays += image('icons/mob/actions.dmi', button, "shift_spit_[X.ammo.icon_state]")
-
-/datum/action/xeno_action/shift_spits/action_activate()
-	var/mob/living/carbon/xenomorph/X = owner
-	for(var/i in 1 to X.xeno_caste.spit_types.len)
-		if(X.ammo == GLOB.ammo_list[X.xeno_caste.spit_types[i]])
-			if(i == X.xeno_caste.spit_types.len)
-				X.ammo = GLOB.ammo_list[X.xeno_caste.spit_types[1]]
-			else
-				X.ammo = GLOB.ammo_list[X.xeno_caste.spit_types[i+1]]
-			break
-	to_chat(X, "<span class='notice'>We will now spit [X.ammo.name] ([X.ammo.spit_cost] plasma).</span>")
-	update_button_icon()
-
-
-// ***************************************
 // *********** Corrosive Acid
 // ***************************************
 
@@ -806,11 +777,30 @@
 
 /datum/action/xeno_action/activable/xeno_spit
 	name = "Xeno Spit"
-	action_icon_state = "xeno_spit"
+	action_icon_state = "shift_spit_neurotoxin"
 	mechanics_text = "Spit neurotoxin or acid at your target up to 7 tiles away."
 	ability_name = "xeno spit"
 	keybind_signal = COMSIG_XENOABILITY_XENO_SPIT
 	plasma_cost = 10
+
+/datum/action/xeno_action/activable/xeno_spit/update_button_icon()
+	var/mob/living/carbon/xenomorph/X = owner
+	button.overlays.Cut()
+	button.overlays += image('icons/mob/actions.dmi', button, "shift_spit_[X.ammo.icon_state]")
+
+/datum/action/xeno_action/activable/xeno_spit/action_activate()
+	var/mob/living/carbon/xenomorph/X = owner
+	if(X.selected_ability != src)
+		return ..()
+	for(var/i in 1 to X.xeno_caste.spit_types.len)
+		if(X.ammo == GLOB.ammo_list[X.xeno_caste.spit_types[i]])
+			if(i == X.xeno_caste.spit_types.len)
+				X.ammo = GLOB.ammo_list[X.xeno_caste.spit_types[1]]
+				break
+			X.ammo = GLOB.ammo_list[X.xeno_caste.spit_types[i+1]]
+			break
+	to_chat(X, "<span class='notice'>We will now spit [X.ammo.name] ([X.ammo.spit_cost] plasma).</span>")
+	update_button_icon()
 
 /datum/action/xeno_action/activable/xeno_spit/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
