@@ -119,6 +119,11 @@
 	name = "retreat order"
 	icon_state_on = "retreat"
 
+/obj/effect/temp_visual/order/rally_order
+	name = "rally order"
+	icon_state_on = "rally"
+	duration = RALLY_ORDER_DURATION
+
 ///Set visuals for the hud
 /obj/effect/temp_visual/order/proc/set_visuals()
 	var/image/holder = hud_list[SQUAD_HUD]

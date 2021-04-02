@@ -1,4 +1,5 @@
 /datum/action/innate/order
+	background_icon_state = "template2"
 	///the word used to describe the action when notifying marines
 	var/verb_name
 	///the type of arrow used in the order
@@ -8,7 +9,6 @@
 
 /datum/action/innate/order/attack_order
 	name = "Send Attack Order"
-	background_icon_state = "template2"
 	action_icon_state = "attack"
 	verb_name = "attack the enemy at"
 	arrow_type = /obj/screen/arrow/attack_order_arrow
@@ -16,7 +16,6 @@
 
 /datum/action/innate/order/defend_order
 	name = "Send Defend Order"
-	background_icon_state = "template2"
 	action_icon_state = "defend"
 	verb_name = "defend our position in"
 	arrow_type = /obj/screen/arrow/defend_order_arrow
@@ -24,11 +23,32 @@
 
 /datum/action/innate/order/retreat_order
 	name = "Send Retreat Order"
-	background_icon_state = "template2"
 	action_icon_state = "retreat"
 	verb_name = "retreat from"
 	visual_type = /obj/effect/temp_visual/order/retreat_order
 
+/datum/action/innate/order/rally_order
+	name = "Send Rally Order"
+	action_icon_state = "rally"
+	verb_name = "rally to"
+	arrow_type = /obj/screen/arrow/rally_order_arrow
+	visual_type = /obj/effect/temp_visual/order/rally_order
+	///What skill is needed to have this action
+	var/skill_name = "leadership"
+	///What minimum level in that skill is needed to have that action
+	var/skill_min = SKILL_LEAD_EXPERT
+
+/datum/action/innate/order/rally_order/should_show()
+	return can_use_action()
+	
+/datum/action/innate/order/rally_order/can_use_action()
+	return owner.skills.getRating(skill_name) >= skill_min
+
+/datum/action/innate/order/rally_order/action_activate()
+	if(!can_use_action())
+		return
+	send_order(owner)
+	
 /datum/action/innate/order/Activate()
 	active = TRUE
 	add_selected_frame()
@@ -52,7 +72,8 @@
 		to_chat(owner, "<span class='warning'>Your last order was too recent.</span>")
 		return
 	TIMER_COOLDOWN_START(owner, COOLDOWN_CIC_ORDERS, ORDER_COOLDOWN)
-	new visual_type(target_turf)
+	if(visual_type)
+		new visual_type(target_turf)
 	var/datum/atom_hud/squad/squad_hud = GLOB.huds[DATA_HUD_SQUAD]
 	var/list/final_list = squad_hud.hudusers
 	final_list -= owner //We don't want the eye to have an arrow, it's silly
@@ -68,6 +89,6 @@
 ///Send a message and a sound to the marine if he is on the same z level as the turf
 /datum/action/innate/order/proc/notify_marine(mob/living/marine, turf/target_turf) ///Send an order to that specific marine if it's on the right z level
 	if(marine.z == target_turf.z)
-		marine.playsound_local(marine, "sound/effects/CIC_order.ogg", 10, 1)
+		marine.playsound_local(marine, "sound/effects/CIC_order.ogg", 20, 1)
 		to_chat(marine,"<span class='ordercic'>Command is urging you to [verb_name] [target_turf.loc.name]!</span>")
 
