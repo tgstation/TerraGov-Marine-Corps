@@ -52,6 +52,6 @@
 		return FALSE
 	activator.say("ORBITAL BOMBARDMENT INBOUND!!")
 	message_admins("[activator] has detonated an Orbital Bombardment vest! Unga!")
-	log_game("[activator] has detonated an Orbital Bombatdment vest! Unga!")
+	log_game("[activator] has detonated an Orbital Bombardment vest! Unga!")
 	explosion(loc, 15, 15, 15, 15, 15)
 	qdel(src)
