@@ -131,6 +131,7 @@
 	plasma_cost = 75
 	mechanics_text = "Plant a weed node (purple sac) on your tile."
 	keybind_signal = COMSIG_XENOABILITY_DROP_WEEDS
+	use_state_flags = XACT_USE_LYING
 
 
 /datum/action/xeno_action/plant_weeds/action_activate()
