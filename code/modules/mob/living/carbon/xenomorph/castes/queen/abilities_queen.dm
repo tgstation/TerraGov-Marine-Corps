@@ -122,6 +122,7 @@
 	cooldown_timer = 100 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	keybind_signal = COMSIG_XENOABILITY_SCREECH
+	use_state_flags = XACT_USE_LYING
 
 /datum/action/xeno_action/activable/screech/on_cooldown_finish()
 	to_chat(owner, "<span class='warning'>We feel our throat muscles vibrate. We are ready to screech again.</span>")
@@ -244,10 +245,11 @@
 /datum/action/xeno_action/watch_xeno
 	name = "Watch Xenomorph"
 	action_icon_state = "watch_xeno"
-	mechanics_text = "See from the target Xenomorphs vision."
+	mechanics_text = "See from the target Xenomorphs vision. Cntrl middle click to stop observing"
 	plasma_cost = 0
 	keybind_signal = COMSIG_XENOABILITY_WATCH_XENO
 	var/overwatch_active = FALSE
+	use_state_flags = XACT_USE_LYING
 
 
 /datum/action/xeno_action/watch_xeno/give_action(mob/living/L)
@@ -277,7 +279,7 @@
 		var/list/possible_xenos = X.hive.get_watchable_xenos()
 
 		selected_xeno = tgui_input_list(X, "Target", "Watch which xenomorph?", possible_xenos)
-		if(QDELETED(selected_xeno) || selected_xeno == X.observed_xeno || selected_xeno.stat == DEAD || is_centcom_level(selected_xeno.z) || !X.check_state())
+		if(QDELETED(selected_xeno) || selected_xeno == X.observed_xeno || selected_xeno.stat == DEAD || is_centcom_level(selected_xeno.z))
 			if(!X.observed_xeno)
 				return
 			stop_overwatch()
@@ -406,12 +408,11 @@
 	mechanics_text = "Make a target Xenomorph a leader."
 	plasma_cost = 0
 	keybind_signal = COMSIG_XENOABILITY_XENO_LEADERS
+	use_state_flags = XACT_USE_LYING
 
 
 /datum/action/xeno_action/set_xeno_lead/action_activate()
 	var/mob/living/carbon/xenomorph/queen/X = owner
-	if(!X.check_state())
-		return
 	if(!X.hive)
 		return
 
@@ -530,6 +531,7 @@
 	plasma_cost = 150
 	cooldown_timer = 8 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_QUEEN_GIVE_PLASMA
+	use_state_flags = XACT_USE_LYING
 
 
 /datum/action/xeno_action/activable/queen_give_plasma/can_use_ability(atom/target, silent = FALSE, override_flags)
@@ -575,6 +577,7 @@
 	action_icon_state = "queen_order"
 	plasma_cost = 100
 	keybind_signal = COMSIG_XENOABILITY_QUEEN_GIVE_ORDER
+	use_state_flags = XACT_USE_LYING
 
 /datum/action/xeno_action/queen_order/action_activate()
 	var/mob/living/carbon/xenomorph/queen/X = owner
@@ -608,6 +611,7 @@
 	mechanics_text = "De-evolve a target Xenomorph of Tier 2 or higher to the next lowest tier."
 	plasma_cost = 600
 	keybind_signal = COMSIG_XENOABILITY_DEEVOLVE
+	use_state_flags = XACT_USE_LYING
 
 /datum/action/xeno_action/deevolve/action_activate()
 	var/mob/living/carbon/xenomorph/queen/X = owner
