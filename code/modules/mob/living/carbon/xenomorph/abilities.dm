@@ -1049,7 +1049,7 @@
 		return fail_activate()
 
 	var/mob/living/carbon/xenomorph/X = owner
-	var/final_psych_cost = psych_cost * build_small_silo ? 0.5 : 1
+	var/final_psych_cost = psych_cost * (build_small_silo ? 0.5 : 1)
 	if(SSpoints.xeno_points_by_hive[X.hivenumber] < final_psych_cost)
 		to_chat(owner, "<span class='xenowarning'>Someone used all the psych points while we were building!</span>")
 		return fail_activate()
