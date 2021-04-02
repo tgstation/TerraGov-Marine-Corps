@@ -420,7 +420,7 @@
 	name = "metal barricade"
 	desc = "A sturdy and easily assembled barricade made of metal plates, often used for quick fortifications. Use a blowtorch to repair."
 	icon_state = "metal_0"
-	max_integrity = 400
+	max_integrity = 200
 	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 80, "acid" = 40)
 	coverage = 128
 	stack_type = /obj/item/stack/sheet/metal
@@ -515,10 +515,16 @@
 	switch(choice)
 		if(CADE_TYPE_BOMB)
 			soft_armor = soft_armor.modifyRating(bomb = 50)
+			max_integrity = 400
+			obj_integrity = 400
 		if(CADE_TYPE_MELEE)
 			soft_armor = soft_armor.modifyRating(melee = 30, bullet = 30)
+			max_integrity = 300
+			obj_integrity = 300
 		if(CADE_TYPE_ACID)
 			soft_armor = soft_armor.modifyRating(bio = 0, acid = 20)
+			max_integrity = 300
+			obj_integrity = 300
 
 	barricade_upgrade_type = choice
 
