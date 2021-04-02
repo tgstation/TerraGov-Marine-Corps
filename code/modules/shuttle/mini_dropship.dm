@@ -10,7 +10,7 @@
 	dheight = 0
 	width = 7
 	height = 9
-	rechargeTime = 30 SECONDS
+	rechargeTime = 0
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship
 	name = "Tadpole navigation computer"
@@ -45,15 +45,12 @@
 	var/origin_port_id = "minidropship"
 	/// The user of the ui
 	var/mob/living/ui_user
-	/// Sound loop when the shuttle is hovering in atmosphere
-	var/datum/looping_sound/shuttle_still_flight/shuttle_still_sound
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/Initialize(mapload)
 	..()
 	start_processing()
 	set_light(3,3)
 	land_action = new
-	shuttle_still_sound = new(list(src), FALSE)
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/LateInitialize()
@@ -102,25 +99,18 @@
 		return
 	fly_state = next_fly_state
 	if(fly_state == SHUTTLE_IN_SPACE)
-		set_transit_turf(FALSE)
+		shuttle_port.assigned_transit.reserved_area.set_turf_type(/turf/open/space/transit)
 	if(to_transit)
 		to_transit = FALSE
 		next_fly_state = destination_fly_state
 		return
 	give_actions()
 	if(fly_state != SHUTTLE_IN_ATMOSPHERE)
-		shuttle_still_sound.stop()
 		return
-	set_transit_turf(TRUE)
+	shuttle_port.assigned_transit.reserved_area.set_turf_type(/turf/open/space/transit/atmos)
 	open_prompt = TRUE
-	shuttle_still_sound.start()
 	if(ui_user?.Adjacent(src))
 		open_prompt(ui_user)
-
-
-///Change the icons of the space turf in the transit
-/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/proc/set_transit_turf(in_atmos = FALSE)
-	shuttle_port.assigned_transit.reserved_area.set_turf_type(in_atmos ? /turf/open/space/transit/atmos : /turf/open/space/transit)
 
 
 ///The action of taking off and sending the shuttle to the atmosphere
@@ -168,6 +158,7 @@
 		ui = new(user, src, "Minidropship", name)
 		ui.open()
 
+/// Set ui_user to null to prevent hard del
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/proc/clean_ui_user()
 	UnregisterSignal(ui_user, COMSIG_PARENT_QDELETING)
 	ui_user = null

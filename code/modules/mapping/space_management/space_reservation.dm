@@ -70,6 +70,7 @@
 	src.height = height
 	return TRUE
 
+///Change the turf type of all tiles that are belonging to the turf reservation
 /datum/turf_reservation/proc/set_turf_type(new_turf_type)
 	for(var/turf/T AS in reserved_turfs)
 		if(istype(T, turf_type))
