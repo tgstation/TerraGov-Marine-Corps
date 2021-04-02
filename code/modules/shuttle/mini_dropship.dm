@@ -49,7 +49,7 @@
 	var/datum/looping_sound/shuttle_still_flight/shuttle_still_sound
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/Initialize(mapload)
-	. = ..()
+	..()
 	start_processing()
 	set_light(3,3)
 	land_action = new
