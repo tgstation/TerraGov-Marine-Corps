@@ -1,0 +1,5 @@
+author: "Walarks"
+delete-after: True
+changes: 
+  - balance: "cloak grenades cloak only marines instead of marines and xenos, decreased alpha by ~70%"
+  - balance: "cut cloak grenade supplies in half"
