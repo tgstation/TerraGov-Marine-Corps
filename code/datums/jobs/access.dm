@@ -349,9 +349,9 @@
 			. = size ? "Mk.II " : "Mark II"
 		if("Mk.I")
 			. = size ? "Mk.I " : "Mark I"
-    if("Mk.IV")
+     if("Mk.IV")
 			. = size ? "Mk.IV " : "Mark IV"
-    if("Mk.V")
+     if("Mk.V")
 			. = size ? "Mk.V " : "Mark V"
 		else
 			. = paygrade + " " //custom paygrade
