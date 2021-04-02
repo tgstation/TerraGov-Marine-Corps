@@ -295,8 +295,7 @@
 /obj/effect/decal/warning_stripes/thin,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4;
-	step_x = 0;
-	step_y = 0
+	
 	},
 /obj/effect/landmark/deathmatch,
 /turf/open/floor/wood,
