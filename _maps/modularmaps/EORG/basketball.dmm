@@ -497,11 +497,6 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/deathmatch)
-"ha" = (
-/turf/open/floor/wood{
-	density = 1
-	},
-/area/deathmatch)
 "it" = (
 /obj/machinery/light,
 /turf/open/floor/mainship,
@@ -614,15 +609,6 @@
 "uB" = (
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/plating/plating_catwalk,
-/area/deathmatch)
-"vq" = (
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	name = "Blocker"
-	},
-/turf/open/floor/mainship/mono{
-	density = 1
-	},
 /area/deathmatch)
 "wK" = (
 /obj/machinery/disposal,
@@ -944,9 +930,7 @@
 	desc = "You can't get in. Heh.";
 	name = "Blocker"
 	},
-/turf/open/floor/mainship/mono{
-	density = 1
-	},
+/turf/open/floor/mainship/mono,
 /area/space)
 "Wi" = (
 /obj/effect/landmark/deathmatch,
@@ -1817,7 +1801,7 @@ aa
 IC
 "}
 (18,1,1) = {"
-vq
+NH
 Qz
 al
 eo
@@ -1865,7 +1849,7 @@ Qz
 VY
 "}
 (19,1,1) = {"
-vq
+NH
 NH
 eo
 eo
@@ -1961,7 +1945,7 @@ aa
 IC
 "}
 (21,1,1) = {"
-vq
+NH
 Qz
 al
 eo
@@ -2009,7 +1993,7 @@ Qz
 VY
 "}
 (22,1,1) = {"
-vq
+NH
 NH
 eo
 eo
@@ -2105,7 +2089,7 @@ aa
 IC
 "}
 (24,1,1) = {"
-vq
+NH
 Qz
 eo
 eo
@@ -2153,7 +2137,7 @@ Qz
 VY
 "}
 (25,1,1) = {"
-vq
+NH
 NH
 al
 eo
@@ -2249,7 +2233,7 @@ aa
 IC
 "}
 (27,1,1) = {"
-vq
+NH
 Qz
 eo
 eo
@@ -2297,7 +2281,7 @@ Qz
 VY
 "}
 (28,1,1) = {"
-vq
+NH
 NH
 al
 eo
@@ -2630,7 +2614,7 @@ Xx
 WF
 WF
 aa
-ha
+eo
 "}
 (35,1,1) = {"
 aa
@@ -2678,7 +2662,7 @@ bb
 Hf
 pV
 WF
-ha
+eo
 "}
 (36,1,1) = {"
 aa
@@ -2726,7 +2710,7 @@ Tx
 Tx
 QG
 WF
-ha
+eo
 "}
 (37,1,1) = {"
 aa
@@ -2774,7 +2758,7 @@ et
 Tx
 bb
 WF
-ha
+eo
 "}
 (38,1,1) = {"
 aa
@@ -2822,7 +2806,7 @@ Tx
 Tx
 Sj
 WF
-ha
+eo
 "}
 (39,1,1) = {"
 aa
@@ -2870,7 +2854,7 @@ bb
 fe
 Vy
 WF
-ha
+eo
 "}
 (40,1,1) = {"
 aa
@@ -2918,7 +2902,7 @@ cd
 WF
 WF
 aa
-ha
+eo
 "}
 (41,1,1) = {"
 aa
