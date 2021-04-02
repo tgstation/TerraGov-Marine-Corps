@@ -1,5 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - balance: "Power fist throw distance is now linear with the mob size"
-  - balance: "Powerfist only takes now lasgun battery as power source. That mean 3 times less punch per battery overall. You can change the battery just by clicking on the powerfist with a full one, no need for screwdriver"

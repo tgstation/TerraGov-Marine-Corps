@@ -1,7 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - code_imp: "Acid spray cone code no longer uses sleep."
-  - refactor: "Cone spray use recursive code, which mean blocking the middle row will not block the other part of the cone. In short, collisions are more consistent"
-  - rscadd: "Praetorian can spray diagonally"
-  - bugfix: "You can no longer avoid acid spray by running towards the caster. Works for boiler, prae and spitter"

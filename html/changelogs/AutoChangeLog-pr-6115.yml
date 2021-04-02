@@ -1,6 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - code_imp: "CIC orders are way more generic"
-  - rscadd: "AI can use CIC orders. Alt click to send one
-remove: Ai can now longer electify doors with alt click"
