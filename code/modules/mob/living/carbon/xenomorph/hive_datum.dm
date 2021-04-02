@@ -561,8 +561,6 @@ to_chat will check for valid clients itself already so no need to double check f
 		return
 
 	var/timer_length = 5 MINUTES
-	if(length(xenos_by_typepath[/mob/living/carbon/xenomorph/larva]) || length(xenos_by_typepath[/mob/living/carbon/xenomorph/drone]))
-		timer_length = 2.5 MINUTES
 
 	D.orphan_hive_timer = addtimer(CALLBACK(D, /datum/game_mode.proc/orphan_hivemind_collapse), timer_length, TIMER_STOPPABLE)
 
