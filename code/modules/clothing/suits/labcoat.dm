@@ -195,9 +195,9 @@
 	desc = "A sturdy labcoat to protect frontline reserchers"
 	icon_state = "armored_coat"
 	item_state = "armored_coat"
-	flags_armor_protection = CHEST|ARMS
-	soft_armor = list("melee" = 35, "bullet" = 30, "laser" = 20, "energy" = 30, "bomb" = 25, "bio" = 30, "rad" = 0, "fire" = 20, "acid" = 30)
-	slowdown = 0.3
+	flags_armor_protection = CHEST|GROIN|ARMS|LEGS
+	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 30, "bomb" = 25, "bio" = 30, "rad" = 0, "fire" = 20, "acid" = 30)
+	slowdown = 0.2
 
 /obj/item/clothing/suit/storage/snow_suit
 	name = "snow suit"

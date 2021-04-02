@@ -136,6 +136,13 @@ Contains most of the procs that are called when a mob is attacked by something
 			return TRUE
 	return ..()
 
+/mob/living/carbon/human/effect_smoke(obj/effect/particle_effect/smoke/S)
+	. = ..()
+	if(!.)
+		return
+	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CAMO))
+		smokecloak_on()
+
 /mob/living/carbon/human/inhale_smoke(obj/effect/particle_effect/smoke/S)
 	. = ..()
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_BLISTERING) && species.has_organ["lungs"])

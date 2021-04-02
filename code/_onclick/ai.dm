@@ -62,11 +62,11 @@
 	if(modifiers["shift"])
 		ShiftClickOn(A)
 		return
-	if(modifiers["alt"]) // alt and alt-gr (rightalt)
-		AltClickOn(A)
-		return
 	if(modifiers["ctrl"])
 		CtrlClickOn(A)
+		return
+	if(modifiers["alt"]) // alt and alt-gr (rightalt)
+		AltClickOn(A)
 		return
 
 	if(world.time <= next_move)
@@ -105,10 +105,6 @@
 /mob/living/silicon/ai/CtrlClickOn(atom/A)
 	A.AICtrlClick(src)
 
-/mob/living/silicon/ai/AltClickOn(atom/A)
-	A.AIAltClick(src)
-
-
 /*
 	The following criminally helpful code is just the previous code cleaned up;
 	I have no idea why it was in atoms.dm instead of respective files.
@@ -119,23 +115,11 @@
 /atom/proc/AICtrlClick()
 	return
 
-/atom/proc/AIAltClick(mob/living/silicon/ai/user)
-	AltClick(user)
-
 /atom/proc/AIShiftClick()
 	return
 
 /atom/proc/AICtrlShiftClick()
 	return
-
-
-/* Holopads */
-/obj/machinery/holopad/AIAltClick(mob/living/silicon/ai/user)
-	if(z != user.z)
-		return
-
-	hangup_all_calls()
-
 
 /* Airlocks */
 /obj/machinery/door/airlock/AICtrlClick(mob/living/silicon/ai/user) // Bolts doors
@@ -146,17 +130,6 @@
 		bolt_raise(usr)
 	else if(hasPower())
 		bolt_drop(usr)
-
-
-/obj/machinery/door/airlock/AIAltClick(mob/living/silicon/ai/user) // Eletrifies doors.
-	if(z != user.z)
-		return
-
-	if(!secondsElectrified)
-		shock_perm(usr)
-	else
-		shock_restore(usr)
-
 
 /obj/machinery/door/airlock/AIShiftClick(mob/living/silicon/ai/user)  // Opens and closes doors!
 	if(z != user.z)
@@ -170,6 +143,17 @@
 	if(z != user.z)
 		return
 	toggle_breaker(usr)
+
+/* Firealarm */
+/obj/machinery/firealarm/AICtrlClick(mob/living/silicon/ai/user) // turn on the fire alarm
+	if(z != user.z)
+		return
+	alarm()
+
+/obj/machinery/firealarm/AICtrlShiftClick(mob/living/silicon/ai/user) // turn off the fire alarm
+	if(z != user.z)
+		return
+	reset()
 
 
 //

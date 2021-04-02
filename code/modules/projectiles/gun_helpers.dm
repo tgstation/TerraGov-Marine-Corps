@@ -89,8 +89,8 @@
 			//						   	  \\
 //----------------------------------------------------------
 
-/obj/item/weapon/gun/RightClick(mob/user)
-	toggle_gun_safety()
+/obj/item/weapon/gun/attack_hand_alternate(mob/user)
+	return toggle_gun_safety()
 
 
 /obj/item/weapon/gun/mob_can_equip(mob/user)

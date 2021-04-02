@@ -416,6 +416,11 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define STAMINA_EXHAUSTION_DEBUFF_STACKS	6 //Amount of slow and stagger stacks applied on stamina exhaustion events
 
 
+//Shock defines
+
+#define LIVING_SHOCK_EFFECT_COOLDOWN	10 SECONDS
+
+
 //Xeno Defines
 
 #define XENO_DEFAULT_ACID_PUDDLE_DAMAGE	14 //Standard damage dealt by acid puddles
