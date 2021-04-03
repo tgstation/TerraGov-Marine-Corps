@@ -29,7 +29,7 @@
 	upgrade_threshold = 350
 
 	// *** Flags *** //
-	caste_flags = CASTE_IS_INTELLIGENT|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_HIDE_IN_STATUS|CASTE_CAN_HOLD_JELLY
+	caste_flags = CASTE_IS_INTELLIGENT|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_HIDE_IN_STATUS|CASTE_CAN_HOLD_JELLY|CASTE_CAN_CORRUPT_GENERATOR
 
 	can_hold_eggs = CAN_HOLD_TWO_HANDS
 
@@ -70,7 +70,6 @@
 		/datum/action/xeno_action/activable/queen_give_plasma,
 		/datum/action/xeno_action/queen_order,
 		/datum/action/xeno_action/deevolve,
-		/datum/action/xeno_action/activable/corrupt_generator,
 		/datum/action/xeno_action/activable/rally_hive,
 	)
 
