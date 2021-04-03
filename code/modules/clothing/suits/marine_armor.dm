@@ -283,7 +283,7 @@
 	name = "\improper B18 defensive armor"
 	desc = "A heavy, rugged set of armor plates for when you really, really need to not die horribly. Slows you down though.\nHas an automated diagnostics and medical system for keeping its wearer alive."
 	icon_state = "xarmor"
-	soft_armor = list("melee" = 75, "bullet" = 75, "laser" = 75, "energy" = 80, "bomb" = 80, "bio" = 65, "rad" = 20, "fire" = 80, "acid" = 65)
+	soft_armor = list("melee" = 70, "bullet" = 75, "laser" = 75, "energy" = 80, "bomb" = 80, "bio" = 65, "rad" = 20, "fire" = 80, "acid" = 65)
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 	flags_heat_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
