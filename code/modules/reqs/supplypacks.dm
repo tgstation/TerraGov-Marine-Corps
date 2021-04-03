@@ -102,7 +102,7 @@ OPERATIONS
 /datum/supply_packs/operations/exportpad
 	name = "ASRS Bluespace Export Point"
 	contains = list(/obj/machinery/exportpad)
-	cost = 50
+	cost = 25
 
 /datum/supply_packs/operations/alpha
 	name = "Alpha Supply Crate"
