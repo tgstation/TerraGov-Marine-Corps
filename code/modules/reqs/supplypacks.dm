@@ -1293,10 +1293,25 @@ Imports
 	contains = list(/obj/item/weapon/gun/rifle/m412)
 	cost = 15
 
+/datum/supply_packs/imports/m412/elite
+	name = "M412 Elite Pulse Rifle"
+	contains = list(/obj/item/weapon/gun/rifle/m412/elite)
+	cost = 60
+
 /datum/supply_packs/imports/m41a2/ammo
 	name = "M412 Pulse Rifle Ammo"
 	contains = list(/obj/item/ammo_magazine/rifle)
 	cost = 5
+
+/datum/supply_packs/imports/m412/ammo/ap
+    name = "M412 AP Magazine"
+	contains = list(/obj/item/ammo_magazine/rifle/ap)
+	cost = 15
+
+/datums/supply_packs/imports/m412/ammo/incendiary
+	name = "M412 Incen Magazine"
+	contains = list(/obj/item/ammo_magazine/rifle/incendiary)
+	cost = 15
 
 /datum/supply_packs/imports/m412l1
 	name = "M412L1 Heavy Pulse Rifle"
