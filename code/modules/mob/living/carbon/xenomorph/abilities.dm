@@ -1075,7 +1075,7 @@
 	plasma_cost = 150
 	cooldown_timer = 60 SECONDS
 	/// How long does it take to build
-	var/build_time = 15 SECONDS
+	var/build_time = 5 SECONDS
 	/// Pyschic point cost
 	var/psych_cost = XENO_TURRET_PRICE
 

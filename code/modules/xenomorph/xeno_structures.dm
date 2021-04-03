@@ -179,8 +179,8 @@
 	desc = "A menacing looking construct of resin, it seems to be alive. It fires acid against intruders."
 	bound_width = 32
 	bound_height = 32
-	obj_integrity = 600
-	max_integrity = 1500
+	obj_integrity = 400
+	max_integrity = 800
 	layer =  ABOVE_MOB_LAYER
 	density = TRUE
 	///The hive it belongs to
@@ -231,18 +231,18 @@
 /obj/structure/resin/xeno_turret/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			take_damage(1500)
+			take_damage(800)
 		if(EXPLODE_HEAVY)
-			take_damage(750)
+			take_damage(400)
 		if(EXPLODE_LIGHT)
-			take_damage(300)
+			take_damage(200)
 
-/obj/structure/resin/flamer_fire_act()
-	take_damage(60, BURN, "fire")
+/obj/structure/resin/xeno_turret/flamer_fire_act()
+	take_damage(40, BURN, "fire")
 	ENABLE_BITFIELD(resistance_flags, ON_FIRE)
 
-/obj/structure/resin/fire_act()
-	take_damage(60, BURN, "fire")
+/obj/structure/resin/xeno_turret/fire_act()
+	take_damage(40, BURN, "fire")
 	ENABLE_BITFIELD(resistance_flags, ON_FIRE)
 
 /obj/structure/resin/update_overlays()
@@ -270,7 +270,7 @@
 		return
 	if(!TIMER_COOLDOWN_CHECK(src, COOLDOWN_XENO_TURRETS_ALERT))
 		associated_hive.xeno_message("<span class='xenoannounce'>Our [name] is attacking a nearby hostile [hostile] at [get_area(hostile)] (X: [hostile.x], Y: [hostile.y]).</span>", 2, FALSE, hostile, 'sound/voice/alien_help1.ogg', FALSE, null, /obj/screen/arrow/turret_attacking_arrow)
-		TIMER_COOLDOWN_START(src, COOLDOWN_XENO_TURRETS_ALERT, 20 SECONDS)
+		TIMER_COOLDOWN_START(src, COOLDOWN_XENO_TURRETS_ALERT, 60 SECONDS)
 	if(hostile != last_hostile)
 		set_last_hostile(hostile)
 		SEND_SIGNAL(src, COMSIG_AUTOMATIC_SHOOTER_START_SHOOTING_AT)
