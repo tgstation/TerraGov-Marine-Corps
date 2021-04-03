@@ -560,7 +560,6 @@ to_chat will check for valid clients itself already so no need to double check f
 	if(D.orphan_hive_timer)
 		return
 
-	var/timer_length = 5 MINUTES
 
 	D.orphan_hive_timer = addtimer(CALLBACK(D, /datum/game_mode.proc/orphan_hivemind_collapse), timer_length, TIMER_STOPPABLE)
 
