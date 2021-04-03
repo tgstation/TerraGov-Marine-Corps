@@ -71,10 +71,10 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	owner.setDir(facing)
 	switch(facing)
 		if(NORTH, SOUTH, EAST, WEST)
-			do_acid_cone_spray(get_step(owner.loc, facing), range, facing, CONE_PART_MIDDLE|CONE_PART_LEFT|CONE_PART_RIGHT, owner)
-		if(NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST) //Carefull, this is not perfectly symetrical when range != 4
-			do_acid_cone_spray(get_step(owner.loc, facing), range, facing, CONE_PART_MIDDLE_DIAG, owner)
-			do_acid_cone_spray(get_step(owner.loc, facing), range + 1, facing, CONE_PART_DIAG_LEFT|CONE_PART_DIAG_RIGHT, owner)
+			do_acid_cone_spray(owner.loc, range, facing, CONE_PART_MIDDLE|CONE_PART_LEFT|CONE_PART_RIGHT, owner)
+		if(NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
+			do_acid_cone_spray(owner.loc, range, facing, CONE_PART_MIDDLE_DIAG, owner)
+			do_acid_cone_spray(owner.loc, range + 1, facing, CONE_PART_DIAG_LEFT|CONE_PART_DIAG_RIGHT, owner)
 	
 ///Check if it's possible to create a spray, and if yes, check if the spray must continue
 /datum/action/xeno_action/activable/spray_acid/cone/proc/do_acid_cone_spray(turf/T, distance_left, facing, direction_flag, source_spray)
@@ -97,10 +97,10 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	var/turf/next_normal_turf = get_step(T, facing)
 	for (var/atom/movable/A AS in T)
 		A.acid_spray_act(owner)
-		if((A.density && !A.throwpass && !(A.flags_atom & ON_BORDER)) || !A.CheckExit(source_spray, next_normal_turf))
+		if(((A.density && !A.throwpass && !(A.flags_atom & ON_BORDER)) || !A.CheckExit(source_spray, next_normal_turf)) && !isxeno(A))
 			is_blocked = TRUE
 	if(!is_blocked)
-		addtimer(CALLBACK(src, .proc/continue_acid_cone_spray, T, next_normal_turf, distance_left, facing, direction_flag, spray), 3)
+		addtimer(CALLBACK(src, .proc/continue_acid_cone_spray, T, next_normal_turf, distance_left, facing, direction_flag, spray), 2)
 	
 
 ///Call the next steps of the cone spray, 
