@@ -331,7 +331,7 @@
 	name = "\improper B18 helmet"
 	desc = "The B18 Helmet that goes along with the B18 Defensive Armor. It's heavy, reinforced, and protects more of the face."
 	icon_state = "minigunner_helmet"
-	soft_armor = list("melee" = 80, "bullet" = 80, "laser" = 75, "energy" = 65, "bomb" = 70, "bio" = 65, "rad" = 15, "fire" = 65, "acid" = 65)
+	soft_armor = list("melee" = 75, "bullet" = 80, "laser" = 75, "energy" = 65, "bomb" = 70, "bio" = 65, "rad" = 15, "fire" = 65, "acid" = 65)
 	flags_inv_hide = HIDEALLHAIR|HIDEEARS
 	flags_item = SYNTH_RESTRICTED
 	resistance_flags = UNACIDABLE
