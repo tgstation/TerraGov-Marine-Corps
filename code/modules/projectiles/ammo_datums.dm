@@ -887,8 +887,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "sniper_supersonic"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	accuracy = 40
-	damage = 150
-	sundering = 75
+	damage = 100
+	sundering = 50
 
 /datum/ammo/bullet/sniper/pfc
 	name = "high caliber rifle bullet"
