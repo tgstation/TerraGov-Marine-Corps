@@ -273,7 +273,7 @@ obj/item/ammo_magazine/rifle/m4ra/smart
 	caliber = "7.62x51mm"
 	icon_state = "minigun"
 	default_ammo = /datum/ammo/bullet/minigun
-	max_rounds = 300
+	max_rounds = 400
 	reload_delay = 50 //Hard to reload.
 	w_class = WEIGHT_CLASS_NORMAL
 	gun_type = /obj/item/weapon/gun/minigun

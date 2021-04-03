@@ -1008,7 +1008,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accurate_range = 5
 	damage = 25
 	penetration = 15
-	shrapnel_chance = 25
+	shrapnel_chance = 5
 	sundering = 2.5
 
 /datum/ammo/bullet/railgun
