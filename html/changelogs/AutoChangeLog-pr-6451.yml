@@ -1,0 +1,4 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - qol: "You can corrupt a generator as queen or shrike by clicking on it. Corrupt generators ability is gone"
