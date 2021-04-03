@@ -834,6 +834,8 @@ and you're good to go.
 //----------------------------------------------------------
 
 /obj/item/weapon/gun/proc/able_to_fire(mob/user)
+	if(user.stat != CONSCIOUS || user.lying_angle)
+		return
 	if(!user.dextrous)
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return FALSE
