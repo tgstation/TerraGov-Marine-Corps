@@ -416,6 +416,11 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define STAMINA_EXHAUSTION_DEBUFF_STACKS	6 //Amount of slow and stagger stacks applied on stamina exhaustion events
 
 
+//Shock defines
+
+#define LIVING_SHOCK_EFFECT_COOLDOWN	10 SECONDS
+
+
 //Xeno Defines
 
 #define XENO_DEFAULT_ACID_PUDDLE_DAMAGE	14 //Standard damage dealt by acid puddles
@@ -560,13 +565,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define SHRIKE_HEAL_RANGE 			3
 
 //Drone defines
-
-#define DRONE_SALVAGE_BIOMASS_WINDUP		5 SECONDS //Delay before the target is salvaged
-#define DRONE_SALVAGE_BIOMASS_RANGE			1
-#define DRONE_SALVAGE_BIOMASS_SALVAGE_RATIO	0.1 //Percentile of stored upgrade and evolution salvaged from the target
-#define DRONE_SALVAGE_COOLDOWN				60 SECONDS //Can only salvage one corpse per 60 seconds; try not to die *too* quickly.
-#define DRONE_SALVAGE_UPGRADE_FILTER_LIST	list(XENO_UPGRADE_THREE, XENO_UPGRADE_INVALID)
-#define DRONE_SALVAGE_EVOLUTION_FILTER_LIST	list(XENO_TIER_ZERO, XENO_TIER_THREE, XENO_TIER_FOUR)
 
 //Runner defines
 #define RUNNER_EVASION_DURATION						2 SECONDS //How long Evasion lasts.

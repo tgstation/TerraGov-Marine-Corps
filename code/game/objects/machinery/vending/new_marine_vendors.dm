@@ -976,6 +976,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 
 		/obj/item/storage/pill_bottle/bicamera = list(CAT_MEDSUP, "BicaMera pills", 30, "orange"),
 		/obj/item/storage/pill_bottle/keloderm = list(CAT_MEDSUP, "KeloDerm pills", 30, "orange"),
+		/obj/item/storage/backpack/lightpack = list(CAT_MEDSUP, "Combat Backpack", 15, "orange"),
 		/obj/item/storage/pill_bottle/paracetamol = list(CAT_MEDSUP, "Paracetamol pills", 8, "orange"),
 		/obj/item/storage/pill_bottle/bicaridine = list(CAT_MEDSUP, "Bicaridine pills", 8, "black"),
 		/obj/item/storage/pill_bottle/kelotane = list(CAT_MEDSUP, "Kelotane pills", 8, "black"),
@@ -1353,8 +1354,9 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 		/obj/item/roller/medevac,
 		/obj/item/medevac_beacon,
 		/obj/item/whistle,
-		/obj/item/radio,
 		/obj/item/motiondetector,
+		/obj/item/clothing/suit/modular,
+		/obj/item/facepaint/green,
 	)
 
 /obj/effect/essentials_set/synth

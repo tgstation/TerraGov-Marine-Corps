@@ -26,6 +26,7 @@
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 	)
 	minimap_icon = "captain"
 
@@ -94,6 +95,7 @@ Godspeed, captain! And remember, you are not above the law."})
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 	)
 	minimap_icon = "fieldcommander"
 
@@ -135,7 +137,7 @@ Make the TGMC proud!"})
 	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer/exec
 	wear_suit = /obj/item/clothing/suit/storage/marine/pasvest
-	shoes = /obj/item/clothing/shoes/marine
+	shoes = /obj/item/clothing/shoes/marine/full
 	gloves = /obj/item/clothing/gloves/marine/officer
 	head = /obj/item/clothing/head/tgmcberet/fc
 	r_store = /obj/item/storage/pouch/general/large/command
@@ -162,6 +164,7 @@ Make the TGMC proud!"})
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 	)
 	minimap_icon = "staffofficer"
 
@@ -192,7 +195,7 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	belt = /obj/item/storage/belt/gun/m4a3/officer
 	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer/bridge
-	shoes = /obj/item/clothing/shoes/marine
+	shoes = /obj/item/clothing/shoes/marine/full
 	head = /obj/item/clothing/head/tgmccap/ro
 	r_store = /obj/item/storage/pouch/general/large
 	l_store = /obj/item/binoculars/tactical
@@ -216,6 +219,7 @@ You are in charge of logistics and the overwatch system. You are also in line to
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE_STRONG,
 		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 	)
 
 /datum/job/terragov/command/pilot/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
@@ -252,7 +256,7 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer/pilot
 	wear_suit = /obj/item/clothing/suit/armor/vest/pilot
-	shoes = /obj/item/clothing/shoes/marine
+	shoes = /obj/item/clothing/shoes/marine/full
 	gloves = /obj/item/clothing/gloves/yellow
 	glasses = /obj/item/clothing/glasses/sunglasses/aviator
 	head = /obj/item/clothing/head/helmet/marine/pilot
@@ -279,6 +283,7 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
 		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 	)
 
 
@@ -332,6 +337,7 @@ You could use STs help to repair and replace hardpoints."})
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 	)
 	minimap_icon = "cse"
 
@@ -367,7 +373,7 @@ You are also next in the chain of command, should the bridge crew fall in the li
 	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer/ce
 	wear_suit = /obj/item/clothing/suit/storage/marine/MP
-	shoes = /obj/item/clothing/shoes/marine
+	shoes = /obj/item/clothing/shoes/marine/full
 	glasses = /obj/item/clothing/glasses/welding/superior
 	gloves = /obj/item/clothing/gloves/yellow
 	head = /obj/item/clothing/head/beret/marine/techofficer
@@ -393,6 +399,7 @@ You are also next in the chain of command, should the bridge crew fall in the li
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 	)
 
 /datum/job/terragov/engineering/tech/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
@@ -428,7 +435,7 @@ requisitions line and later on to be ready to send supplies for marines who are 
 	ears = /obj/item/radio/headset/mainship/st
 	w_uniform = /obj/item/clothing/under/marine/officer/engi
 	wear_suit = /obj/item/clothing/suit/storage/marine/M3P/tech
-	shoes = /obj/item/clothing/shoes/marine
+	shoes = /obj/item/clothing/shoes/marine/full
 	gloves = /obj/item/clothing/gloves/yellow
 	glasses = /obj/item/clothing/glasses/welding/flipped
 	head = /obj/item/clothing/head/tgmccap/req
@@ -463,6 +470,7 @@ requisitions line and later on to be ready to send supplies for marines who are 
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 	)
 
 /datum/job/terragov/requisitions/officer/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
@@ -500,7 +508,7 @@ A happy ship is a well-functioning ship."})
 	w_uniform = /obj/item/clothing/under/rank/ro_suit
 	wear_suit = /obj/item/clothing/suit/storage/marine/MP
 	suit_store = /obj/item/weapon/gun/energy/taser
-	shoes = /obj/item/clothing/shoes/marine
+	shoes = /obj/item/clothing/shoes/marine/full
 	gloves = /obj/item/clothing/gloves/yellow
 	head = /obj/item/clothing/head/tgmccap/req
 	r_store = /obj/item/storage/pouch/general/large
@@ -533,6 +541,7 @@ A happy ship is a well-functioning ship."})
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 	)
 
 
@@ -583,6 +592,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 	)
 
 /datum/job/terragov/medical/medicalofficer/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
@@ -647,6 +657,7 @@ You are also an expert when it comes to medication and treatment. If you do not 
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 	)
 
 
@@ -698,6 +709,7 @@ While the Corporate Liaison is not your boss, it would be wise to consult them o
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 	)
 
 
@@ -741,6 +753,7 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 	exp_requirements = XP_REQ_EXPERIENCED
 	exp_type = EXP_TYPE_REGULAR_ALL
 	job_flags = JOB_FLAG_SPECIALNAME|JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_ISCOMMAND|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD
+	job_points_needed = 40
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE_STRONG,
 		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
@@ -816,6 +829,7 @@ In addition, being a Synthetic gives you knowledge in every field and specializa
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 	)
 
 
