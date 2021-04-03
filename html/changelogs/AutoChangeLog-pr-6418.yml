@@ -1,5 +1,0 @@
-author: "SplinterGP"
-delete-after: True
-changes: 
-  - qol: "lasergun mode changing now uses a radial menu."
-  - balance: "delay for switching modes on the lasergun removed."
