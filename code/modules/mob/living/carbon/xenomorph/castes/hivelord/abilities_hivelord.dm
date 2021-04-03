@@ -208,7 +208,6 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	plasma_transfer_amount = PLASMA_TRANSFER_AMOUNT * 4
 	transfer_delay = 0.5 SECONDS
 	max_range = 7
-	use_state_flags = XACT_USE_LYING
 
 
 /datum/action/xeno_action/place_jelly_pod

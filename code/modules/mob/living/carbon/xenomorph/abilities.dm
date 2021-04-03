@@ -449,7 +449,6 @@
 	var/transfer_delay = 2 SECONDS
 	var/max_range = 2
 	keybind_signal = COMSIG_XENOABILITY_TRANSFER_PLASMA
-	use_state_flags = XACT_USE_LYING
 
 /datum/action/xeno_action/activable/transfer_plasma/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
