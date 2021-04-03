@@ -1,0 +1,11 @@
+author: "Surrealaser"
+delete-after: True
+changes: 
+  - rscadd: "Added Neuro Huggers, Clawed Huggers, Resin Huggers, and Acid Huggers; Carrier can now select between hugger types.
+tweak: Facehugger stun time reduced from 6 seconds to 1 second.
+tweak: Huggers now signify when they're about to attack with an overlay."
+  - refactor: "Carrier hugger storage code refactored."
+  - refactor: "Xeno announcements refactored; new parameter, distance added. Redundant spans removed."
+  - bugfix: "Hugger throw impact behaviour improved and made consistent."
+  - bugfix: "Opaque xeno smoke now reliably stops huggers from attacking."
+  - code_imp: "Cleaned up/improved hugger code in general"
