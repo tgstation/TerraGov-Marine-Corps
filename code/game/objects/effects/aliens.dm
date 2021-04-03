@@ -56,7 +56,7 @@
 	acid_damage = damage
 	xeno_owner = _xeno_owner
 	RegisterSignal(xeno_owner, COMSIG_PARENT_QDELETING, .proc/clean_mob_owner)
-	TIMER_COOLDOWN_START(src, COOLDOWN_PARALYSE_ACID, 5)
+	TIMER_COOLDOWN_START(src, COOLDOWN_PARALYSE_ACID, 10)
 
 /obj/effect/xenomorph/spray/Destroy()
 	STOP_PROCESSING(SSprocessing, src)
