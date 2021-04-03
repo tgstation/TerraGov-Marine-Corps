@@ -567,7 +567,7 @@ AMMO
 /datum/supply_packs/ammo/smartmachinegun
 	name = "T-29 smartmachinegun ammo"
 	contains = list(/obj/item/ammo_magazine/standard_smartmachinegun)
-	cost = 5
+	cost = 10
 
 /datum/supply_packs/ammo/sentry
 	name = "UA 571-C sentry ammunition"
