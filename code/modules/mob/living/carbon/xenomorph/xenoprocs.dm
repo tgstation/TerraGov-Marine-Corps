@@ -301,6 +301,13 @@
 		return 0
 	return 1
 
+///A simple handler for checking your state. Will ignore if the xeno is lying down
+/mob/living/carbon/xenomorph/proc/check_concious_state()
+	if(incapacitated() || buckled)
+		to_chat(src, "<span class='warning'>We cannot do this in our current state.</span>")
+		return FALSE
+	return TRUE
+
 //Checks your plasma levels and gives a handy message.
 /mob/living/carbon/xenomorph/proc/check_plasma(value, silent = FALSE)
 	if(stat)

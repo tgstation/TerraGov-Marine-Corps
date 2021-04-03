@@ -259,7 +259,6 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	plasma_cost = 100
 	cooldown_timer = 1 MINUTES
 	keybind_signal = COMSIG_XENOABILITY_CREATE_JELLY
-	use_state_flags = XACT_USE_LYING
 
 /datum/action/xeno_action/create_jelly/can_use_action(silent = FALSE, override_flags)
 	. = ..()

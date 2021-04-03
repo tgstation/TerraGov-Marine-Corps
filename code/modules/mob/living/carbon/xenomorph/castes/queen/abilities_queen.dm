@@ -122,7 +122,6 @@
 	cooldown_timer = 100 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	keybind_signal = COMSIG_XENOABILITY_SCREECH
-	use_state_flags = XACT_USE_LYING
 
 /datum/action/xeno_action/activable/screech/on_cooldown_finish()
 	to_chat(owner, "<span class='warning'>We feel our throat muscles vibrate. We are ready to screech again.</span>")
@@ -267,6 +266,11 @@
 
 
 /datum/action/xeno_action/watch_xeno/action_activate()
+	if(overwatch_active)
+		stop_overwatch()
+		remove_selected_frame()
+		return
+	add_selected_frame()
 	select_xeno()
 
 
@@ -581,7 +585,7 @@
 
 /datum/action/xeno_action/queen_order/action_activate()
 	var/mob/living/carbon/xenomorph/queen/X = owner
-	if(!X.check_state())
+	if(!X.check_concious_state())
 		return
 	if(X.observed_xeno)
 		var/mob/living/carbon/xenomorph/target = X.observed_xeno
@@ -650,7 +654,7 @@
 		to_chat(X, "<span class='xenowarning'>You must provide a reason for deevolving [T].</span>")
 		return
 
-	if(!X.check_state() || !X.check_plasma(600) || X.observed_xeno != T)
+	if(!X.check_concious_state() || !X.check_plasma(600) || X.observed_xeno != T)
 		return
 
 	if(T.is_ventcrawling)
