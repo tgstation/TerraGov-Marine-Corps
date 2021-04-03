@@ -244,7 +244,7 @@
 /datum/action/xeno_action/watch_xeno
 	name = "Watch Xenomorph"
 	action_icon_state = "watch_xeno"
-	mechanics_text = "See from the target Xenomorphs vision. Cntrl middle click to stop observing"
+	mechanics_text = "See from the target Xenomorphs vision. Click again the ability to stop observing"
 	plasma_cost = 0
 	keybind_signal = COMSIG_XENOABILITY_WATCH_XENO
 	var/overwatch_active = FALSE
@@ -304,6 +304,7 @@
 	RegisterSignal(target, list(COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED), .proc/on_xeno_evolution)
 	RegisterSignal(watcher, COMSIG_MOVABLE_MOVED, .proc/on_movement)
 	overwatch_active = TRUE
+	to_chat(owner, "<span class='notice'>Click again on overwatch ability button to stop overwatching</span>")
 
 
 /datum/action/xeno_action/watch_xeno/proc/stop_overwatch(do_reset_perspective = TRUE)
