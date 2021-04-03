@@ -1,3 +1,12 @@
+//List of huggie types
+GLOBAL_LIST_INIT(hugger_type_list, typecacheof(list(
+		/obj/item/clothing/mask/facehugger/larval,
+		/obj/item/clothing/mask/facehugger/slash,
+		/obj/item/clothing/mask/facehugger/neuro,
+		/obj/item/clothing/mask/facehugger/acid,
+		/obj/item/clothing/mask/facehugger/resin,
+		)))
+
 // ***************************************
 // *********** Hugger throw
 // ***************************************
@@ -36,20 +45,15 @@
 	var/obj/item/clothing/mask/facehugger/F = X.get_active_held_item()
 	if(!F) //empty active hand
 		//if no hugger in active hand, we take one from our storage
-		if(!length(X.huggers))
+		if(!X.huggers)
 			to_chat(X, "<span class='warning'>We don't have any facehuggers to use!</span>")
 			return fail_activate()
-		F = pick_n_take(X.huggers)
+
+		F = new X.selected_hugger_type(get_turf(X), X.hivenumber)
+		X.huggers--
+
 		X.put_in_active_hand(F)
-		to_chat(X, "<span class='xenonotice'>We grab one of the facehuggers in our storage. Now sheltering: [X.huggers.len] / [X.xeno_caste.huggers_max].</span>")
-		if(istype(A, /turf/open) || istype(A, /mob/living/) || istype(A, /obj/effect/alien/weeds) || istype(A, /obj/effect/alien/resin))
-			X.dropItemToGround(F)
-			playsound(X, 'sound/effects/throw.ogg', 30, 1)
-			F.throw_at(A, CARRIER_HUGGER_THROW_DISTANCE, CARRIER_HUGGER_THROW_SPEED)
-			X.visible_message("<span class='xenowarning'>\The [X] throws something towards \the [A]!</span>", \
-			"<span class='xenowarning'>We throw a facehugger towards \the [A]!</span>")
-		add_cooldown()
-		return succeed_activate()
+		to_chat(X, "<span class='xenonotice'>We grab one of the facehuggers in our storage. Now sheltering: [X.huggers] / [X.xeno_caste.huggers_max].</span>")
 
 	if(!istype(F)) //something else in our hand
 		to_chat(X, "<span class='warning'>We need a facehugger in our hand to throw one!</span>")
@@ -57,27 +61,27 @@
 
 	if(!cooldown_id)
 		X.dropItemToGround(F)
-		F.go_active(TRUE)
 		playsound(X, 'sound/effects/throw.ogg', 30, TRUE)
 		F.throw_at(A, CARRIER_HUGGER_THROW_DISTANCE, CARRIER_HUGGER_THROW_SPEED)
+		F.stat = CONSCIOUS //Hugger is conscious
+		F.leaping = FALSE //Hugger is not leaping
 		X.visible_message("<span class='xenowarning'>\The [X] throws something towards \the [A]!</span>", \
 		"<span class='xenowarning'>We throw a facehugger towards \the [A]!</span>")
 		add_cooldown()
 		return succeed_activate()
 
 /mob/living/carbon/xenomorph/carrier/proc/store_hugger(obj/item/clothing/mask/facehugger/F, message = TRUE, forced = FALSE)
-	if(huggers.len < xeno_caste.huggers_max)
+	if(huggers < xeno_caste.huggers_max)
 		if(F.stat == DEAD && !forced)
-			to_chat(src, "<span class='notice'>This young one has already expired, we cannot shelter it.</span>")
+			to_chat(src, "<span class='notice'>This young one has already expired, we cannot salvage it.</span>")
 			return
-		transferItemToLoc(F, src)
-		if(!F.stasis)
-			F.go_idle(TRUE)
-		huggers.Add(F)
+		F.kill_hugger()
+		huggers++
 		if(message)
-			to_chat(src, "<span class='notice'>We store the facehugger and carry it for safekeeping. Now sheltering: [huggers.len] / [xeno_caste.huggers_max].</span>")
+			playsound(src, 'sound/voice/alien_drool2.ogg', 50, 0, 1)
+			to_chat(src, "<span class='notice'>We salvage this young one's biomass to produce another. Now sheltering: [huggers] / [xeno_caste.huggers_max].</span>")
 	else if(message)
-		to_chat(src, "<span class='warning'>We can't carry more facehuggers on ourselves.</span>")
+		to_chat(src, "<span class='warning'>We can't carry any more facehuggers!</span>")
 
 // ***************************************
 // *********** Retrieve egg
@@ -175,7 +179,7 @@
 	playsound(T, "alien_resin_build", 25)
 	GLOB.round_statistics.carrier_traps++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "carrier_traps")
-	new /obj/effect/alien/resin/trap(T, owner)
+	new /obj/effect/alien/resin/trap(T)
 	to_chat(owner, "<span class='xenonotice'>We place a hugger trap on the weeds, it still needs a facehugger.</span>")
 
 // ***************************************
@@ -191,7 +195,7 @@
 
 /datum/action/xeno_action/spawn_hugger/on_cooldown_finish()
 	to_chat(owner, "<span class='xenodanger'>We can now spawn another young one.</span>")
-	playsound(owner, 'sound/effects/xeno_newlarva.ogg', 50, 0, 1)
+	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
 
 /datum/action/xeno_action/spawn_hugger/can_use_action(silent = FALSE, override_flags)
@@ -199,7 +203,7 @@
 	if(!.)
 		return FALSE
 	var/mob/living/carbon/xenomorph/carrier/X = owner
-	if(X.huggers.len >= X.xeno_caste.huggers_max)
+	if(X.huggers >= X.xeno_caste.huggers_max)
 		if(!silent)
 			to_chat(X, "<span class='xenowarning'>We can't host any more young ones!</span>")
 		return FALSE
@@ -207,11 +211,45 @@
 /datum/action/xeno_action/spawn_hugger/action_activate()
 	var/mob/living/carbon/xenomorph/carrier/X = owner
 
-	var/obj/item/clothing/mask/facehugger/stasis/F = new
-	F.hivenumber = X.hivenumber
-	X.store_hugger(F, FALSE, TRUE) //Add it to our cache
-	to_chat(X, "<span class='xenowarning'>We spawn a young one via the miracle of asexual internal reproduction, adding it to our stores. Now sheltering: [length(X.huggers)] / [X.xeno_caste.huggers_max].</span>")
+	X.huggers++
+	to_chat(X, "<span class='xenowarning'>We spawn a young one via the miracle of asexual internal reproduction, adding it to our stores. Now sheltering: [X.huggers] / [X.xeno_caste.huggers_max].</span>")
 	playsound(X, 'sound/voice/alien_drool2.ogg', 50, 0, 1)
 	succeed_activate()
 	add_cooldown()
 
+
+// ***************************************
+// *********** Choose Hugger Type
+// ***************************************
+// Choose Hugger Type
+/datum/action/xeno_action/choose_hugger_type
+	name = "Choose Hugger Type"
+	action_icon_state = "facehugger"
+	mechanics_text = "Selects which hugger type you will build with the Spawn Hugger ability."
+	//keybind_signal = COMSIG_XENOABILITY_CHOOSE_RESIN
+
+/datum/action/xeno_action/choose_hugger_type/give_action(mob/living/L)
+	. = ..()
+	var/mob/living/carbon/xenomorph/X = owner
+	X.selected_hugger_type = GLOB.hugger_type_list[1] //Set our default
+	update_button_icon() //Update immediately to get our default
+
+/datum/action/xeno_action/choose_hugger_type/update_button_icon()
+	var/mob/living/carbon/xenomorph/X = owner
+	var/atom/A = X.selected_hugger_type
+	button.overlays.Cut()
+	button.overlays += image('icons/mob/actions.dmi', button, initial(A.name))
+	return ..()
+
+/datum/action/xeno_action/choose_hugger_type/action_activate()
+	var/mob/living/carbon/xenomorph/X = owner
+	var/i = GLOB.hugger_type_list.Find(X.selected_hugger_type)
+	if(length(GLOB.hugger_type_list) == i)
+		X.selected_hugger_type = GLOB.hugger_type_list[1]
+	else
+		X.selected_hugger_type = GLOB.hugger_type_list[i+1]
+
+	var/atom/A = X.selected_hugger_type
+	to_chat(X, "<span class='notice'>We will now spawn <b>[initial(A.name)]\s</b> when using the Spawn Hugger ability.</span>")
+	update_button_icon()
+	return succeed_activate()
