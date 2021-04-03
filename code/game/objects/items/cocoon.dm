@@ -14,9 +14,9 @@
 	///What is inside the cocoon
 	var/mob/living/victim
 	///How much time the cocoon takes to deplete the life force of the marine
-	var/cocoon_life_time = 15 MINUTES
+	var/cocoon_life_time = 10 MINUTES
 	///How many psych points it is generating every 5 seconds
-	var/psych_points_output = 0.75
+	var/psych_points_output = 1.2
 	///Standard busy check
 	var/busy = FALSE
 
