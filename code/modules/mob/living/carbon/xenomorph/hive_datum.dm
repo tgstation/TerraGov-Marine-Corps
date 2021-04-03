@@ -1193,12 +1193,13 @@ to_chat will check for valid clients itself already so no need to double check f
 	if(!length(possible_mothers) && !length(possible_silos))
 		return
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
+	var/stored_larva = round(xeno_job.total_positions - xeno_job.current_positions)
 	var/slot_occupied = min(stored_larva, LAZYLEN(candidate))
-	if(slot_occupied <= 0)
+	if(slot_occupied < 1)
 		return
 	var/slot_really_taken = 0
-	xeno_job.occupy_job_positions(slot_occupied)
+	if(!xeno_job.occupy_job_positions(slot_occupied))
+		return
 	var/mob/dead/observer/observer_in_queue
 	while(stored_larva > 0 && LAZYLEN(candidate))
 		observer_in_queue = LAZYACCESS(candidate, 1)
