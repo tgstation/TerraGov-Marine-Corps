@@ -74,9 +74,7 @@ Godspeed, captain! And remember, you are not above the law."})
 			new_human.wear_id.paygrade = "O7"
 		if(7501 to 15000) //125 hrs
 			new_human.wear_id.paygrade = "O8"
-		if(15001 to 30000) //250 hrs
-			new_human.wear_id.paygrade = "O9"
-		if(30001 to 60000) //500 hrs
+		if(15001 to 60000) //250 hrs
 			new_human.wear_id.paygrade = "10"
 		if(60001 to INFINITY) //1000 hrs
 			new_human.wear_id.paygrade = "11"
