@@ -228,7 +228,7 @@
 	if(update_boost_amount)
 		boost_amount += amount
 		to_chat(wearer, "<span class='notice'>Power set to [boost_amount+1].</span>")
-	resource_drain_amount = boost_amount*(4 + boost_amount)
+	resource_drain_amount = boost_amount*(3 + boost_amount)
 	message_admins("resource drain amount > [resource_drain_amount]")
 
 ///Used to scan the person
