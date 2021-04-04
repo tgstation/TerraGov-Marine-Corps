@@ -28,12 +28,12 @@
 	var/obj/item/healthanalyzer/integrated/analyzer
 	///Determines whether the suit is on
 	var/boost_on = FALSE
-	///Stores the value with which effect_mult is modified
+	///Stores the current effect strength
 	var/boost_amount = 0
 	///Normal boost
 	var/boost_tier1 = 1
 	///Overcharged boost
-	var/boost_tier2 = 3
+	var/boost_tier2 = 2
 	///Boost icon, image cycles between 2 states
 	var/boost_icon = "cboost_t1"
 	///Item connected to the system
@@ -130,6 +130,9 @@
 		on_off()
 	update_resource(-resource_drain_amount)
 
+	wearer.heal_limb_damage(4*boost_amount, 4*boost_amount)
+	if(connected_weapon)
+		wearer.adjustStaminaLoss(-7*((20 - (world.time - processing_start)/10)/20)) //stamina gain scales inversely with passed time, becoming negative after 20 seconds
 	if(world.time - processing_start > 12 SECONDS && world.time - processing_start < 15 SECONDS)
 		wearer.overlay_fullscreen("degeneration", /obj/screen/fullscreen/infection, 1)
 		to_chat(wearer, "<span class='highdanger'>WARNING: You have [(200 - (world.time - processing_start))/10] seconds before necrotic tissue forms on your limbs.</span>")
@@ -169,9 +172,11 @@
 		if(LOAD)
 			load_up()
 
-///Handles turning on/off the chem effect modufying function, along with the negative effects related to this
+///Handles turning on/off the processing part of the component, along with the negative effects related to this
 /datum/component/chem_booster/proc/on_off(datum/source)
 	if(boost_on)
+		if(world.time < processing_start + 2 SECONDS) // no accidental cancellation from spamming the action
+			return
 		STOP_PROCESSING(SSobj, src)
 
 		wearer.clear_fullscreen("degeneration")
@@ -179,7 +184,7 @@
 		if(necrotized_counter >= 1)
 			for(var/X in shuffle(wearer.limbs))
 				var/datum/limb/L = X
-				if(L.limb_status & LIMB_NECROTIZED)
+				if(L.germ_level < 600)
 					continue
 				to_chat(wearer, "<span class='warning'>You can feel the life force in your [L.display_name] draining away...</span>")
 				L.germ_level += INFECTION_LEVEL_THREE + 50
@@ -187,7 +192,6 @@
 				if(necrotized_counter < 1)
 					break
 
-		UnregisterSignal(wearer.reagents, COMSIG_NEW_REAGENT_ADD)
 		UnregisterSignal(wearer, COMSIG_MOB_DEATH, .proc/on_off)
 		update_boost(0, FALSE)
 		power_action.action_icon_state = "cboost_off"
@@ -208,7 +212,6 @@
 	boost_on = TRUE
 	processing_start = world.time
 	START_PROCESSING(SSobj, src)
-	RegisterSignal(wearer.reagents, COMSIG_NEW_REAGENT_ADD, .proc/late_add_chem)
 	RegisterSignal(wearer, COMSIG_MOB_DEATH, .proc/on_off)
 	update_boost(boost_amount*2, FALSE)
 	power_action.action_icon_state = "cboost_on"
@@ -217,29 +220,15 @@
 	to_chat(wearer, "<span class='notice'>Commensing reagent injection.<b>[(automatic_meds_use && meds_beaker.reagents.total_volume) ? " Adding additional reagents." : ""]</b></span>")
 	if(automatic_meds_use)
 		show_meds_beaker_contents(wearer)
-		meds_beaker.reagents.trans_to(wearer, 60)
+		meds_beaker.reagents.trans_to(wearer, 30)
 
 ///Updates the boost amount of the suit and effect_str of reagents if component is on. "amount" is the final level you want to set the boost to.
 /datum/component/chem_booster/proc/update_boost(amount, update_boost_amount = TRUE)
 	amount -= boost_amount
 	if(update_boost_amount)
 		boost_amount += amount
-		to_chat(wearer, "<span class='notice'>Reagent effectiveness set to [boost_amount+1].</span>")
-	resource_drain_amount = boost_amount*4
-	if(boost_on)
-		for(var/X in wearer.reagents.reagent_list)
-			var/datum/reagent/R = X
-			R.effect_str += amount
-
-///Updates the effect_str of chems that enter the body while the component is on
-/datum/component/chem_booster/proc/late_add_chem(datum/source, datum/reagent/added_chem, amount)
-	SIGNAL_HANDLER
-	for(var/X in wearer.reagents.reagent_list)
-		if(!istype(X, added_chem))
-			continue
-		var/datum/reagent/R = X
-		R.effect_str += boost_amount
-		break
+		to_chat(wearer, "<span class='notice'>Power set to [boost_amount+1].</span>")
+	resource_drain_amount = (boost_amount^2)*4
 
 ///Used to scan the person
 /datum/component/chem_booster/proc/scan_user(datum/source)
@@ -266,7 +255,7 @@
 
 	wearer.add_movespeed_modifier(MOVESPEED_ID_CHEM_CONNECT, TRUE, 0, NONE, TRUE, 4)
 	to_chat(wearer, "<span class='notice'>You begin connecting the [held_item] to the storage tank.</span>")
-	if(!do_after(wearer, 2 SECONDS, TRUE, held_item, BUSY_ICON_FRIENDLY, null, PROGRESS_BRASS, ignore_turf_checks = TRUE))
+	if(!do_after(wearer, 1 SECONDS, TRUE, held_item, BUSY_ICON_FRIENDLY, null, PROGRESS_BRASS, ignore_turf_checks = TRUE))
 		wearer.remove_movespeed_modifier(MOVESPEED_ID_CHEM_CONNECT)
 		to_chat(wearer, "<span class='warning'>You are interrupted.</span>")
 		return
@@ -309,6 +298,8 @@
 /datum/component/chem_booster/proc/update_resource(amount)
 	var/amount_added = min(resource_storage_max - resource_storage_current, amount)
 	resource_storage_current = max(resource_storage_current + amount_added, 0)
+	message_admins("current resource > [resource_storage_current]")
+	message_admins("update amount > [amount]")
 	wearer.overlays -= resource_overlay
 	resource_overlay.alpha = resource_storage_current/resource_storage_max*255
 	wearer.overlays += resource_overlay
@@ -376,7 +367,7 @@
 		if(pick == "Yes")
 			if(!do_after(wearer, 0.5 SECONDS, TRUE, held_item, BUSY_ICON_FRIENDLY, null, PROGRESS_BRASS, ignore_turf_checks = TRUE))
 				return
-			meds_beaker.reagents.trans_to(held_beaker, 60)
+			meds_beaker.reagents.trans_to(held_beaker, 30)
 			show_meds_beaker_contents(wearer)
 		return
 
