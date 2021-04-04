@@ -22,12 +22,13 @@
 	var/spawn_type = /mob/living/carbon/human
 	///The base probability of that ERT spawning, it is changing with monitor state
 	var/base_probability = 0
-	/**How the current_weight change with the monitor state. A big positive number will make the current weight go down drasticly when marines are winning
+	/**
+	 * How the current_weight change with the monitor state. A big positive number will make the current weight go down drasticly when marines are winning
 	 * A small negative number will make the current weight get smaller when xenos are winning. 
 	 * All effects are symetric (if it goes down when marine are winning, it will go up when xeno are winning)
-	 * if the allignement_factor factor is 0, it will proc a specific case
+	 * if the alignement_factor factor is 0, it will proc a specific case
 	 */
-	var/allignement_factor = 0
+	var/alignement_factor = 0
 
 /datum/game_mode/proc/initialize_emergency_calls()
 	if(length(all_calls)) //It's already been set up.
@@ -55,12 +56,13 @@
 
 	return pickweight(calls_weighted)
 
-/** Return a new current_weight using the base probability, the allignement factor of the ERT and the monitor state
+/**
+ * Return a new current_weight using the base probability, the Alignement factor of the ERT and the monitor state
  * monitor_state : the normalised state of the monitor. If it's equal to -1, monitor is barely in its MARINE_LOSING state. 
  * A +2.5 value mean we are beyond the XENO_DELAYING state, aka marines have crushed the xenos
  */
 /datum/emergency_call/proc/get_actualised_weight(monitor_state)
-	var/probability_direction = (monitor_state * allignement_factor)
+	var/probability_direction = (monitor_state * alignement_factor)
 	var/actualised_weight = base_probability
 	if(probability_direction >= 0)
 		actualised_weight *= (1+probability_direction)

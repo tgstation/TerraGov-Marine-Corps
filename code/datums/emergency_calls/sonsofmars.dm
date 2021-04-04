@@ -2,7 +2,7 @@
 /datum/emergency_call/som
 	name = "Sons of Mars Squad"
 	base_probability = 26
-	allignement_factor = 0
+	alignement_factor = 0
 
 
 /datum/emergency_call/som/print_backstory(mob/living/carbon/human/H)

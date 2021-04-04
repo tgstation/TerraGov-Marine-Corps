@@ -222,12 +222,16 @@
 
 				var/admin_response = admin_approval("<span color='prefix'>DISTRESS:</span> [ADMIN_TPMONTY(usr)] has called a Distress Beacon that was received by [E.name]. Humans: [AllMarines], Xenos: [AllXenos].",
 					user_message = "<span class='boldnotice'>A distress beacon will launch in 60 seconds unless High Command responds otherwise.</span>",
+					options = list("approve" = "approve", "deny" = "deny", "deny without annoncing" = "deny without annoncing"),
 					user = usr, admin_sound = sound('sound/effects/sos-morse-code.ogg', channel = CHANNEL_ADMIN))
 				just_called = FALSE
 				cooldown_request = world.time
 				if(admin_response == "deny")
 					SSticker.mode.distress_cancelled = TRUE
 					priority_announce("The distress signal has been blocked, the launch tubes are now recalibrating.", "Distress Beacon")
+					return FALSE
+				if(admin_response =="deny without annoncing")
+					SSticker.mode.distress_cancelled = TRUE
 					return FALSE
 				if(SSticker.mode.on_distress_cooldown || SSticker.mode.waiting_for_candidates)
 					return FALSE
