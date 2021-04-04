@@ -1,7 +1,7 @@
 /datum/emergency_call/pmc
 	name = "NT Private Military Contractor Squad"
 	base_probability = 11
-	allignement_factor = -20
+	allignement_factor = -4
 	shuttle_id = "distress_pmc"
 
 

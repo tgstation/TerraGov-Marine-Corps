@@ -51,7 +51,7 @@
 	for(var/datum/emergency_call/E in all_calls) //Loop through all potential candidates
 		if(E.base_probability <= 0)
 			continue
-		calls_weighted[E] = E.actualised_weight(normalised_monitor_state)
+		calls_weighted[E] = E.get_actualised_weight(normalised_monitor_state)
 
 	return pickweight(calls_weighted)
 
@@ -59,10 +59,15 @@
  * monitor_state : the normalised state of the monitor. If it's equal to -1, monitor is barely in its MARINE_LOSING state. 
  * A +2.5 value mean we are beyond the XENO_DELAYING state, aka marines have crushed the xenos
  */
-/datum/emergency_call/proc/actualised_weight(monitor_state)
-	var/prout = max(base_probability + monitor_state * allignement_factor, 0)
-	message_admins("[name] has a weight of [prout]")
-	return prout
+/datum/emergency_call/proc/get_actualised_weight(monitor_state)
+	var/probability_direction = (monitor_state * allignement_factor)
+	var/actualised_weight = base_probability
+	if(probability_direction >= 0)
+		actualised_weight *= (1+probability_direction)
+	else
+		actualised_weight /= (1-probability_direction)
+	message_admins("[name] has a weight of [actualised_weight]")
+	return actualised_weight
 
 /datum/emergency_call/proc/show_join_message()
 	if(!mob_max || !SSticker?.mode) //Not a joinable distress call.

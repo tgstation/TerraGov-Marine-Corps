@@ -3,7 +3,7 @@
 	base_probability = 11
 	auto_shuttle_launch = TRUE
 	spawn_type = null
-	allignement_factor = 10
+	allignement_factor = 4
 
 
 /datum/emergency_call/xenomorphs/print_backstory(mob/living/carbon/xenomorph/X)
