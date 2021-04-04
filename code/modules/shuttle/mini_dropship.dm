@@ -54,7 +54,6 @@
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/LateInitialize()
-	. = ..()
 	shuttle_port = SSshuttle.getShuttle(shuttleId)
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/process()
@@ -194,6 +193,7 @@
 			var/obj/structure/dropship_equipment/E = shuttle.equipments[base_tag]
 			E.linked_console = src
 			E.equipment_interact(usr)
+
 /datum/action/innate/shuttledocker_land
 	name = "Land"
 	action_icon = 'icons/mecha/actions_mecha.dmi'
