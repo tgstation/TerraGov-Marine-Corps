@@ -477,6 +477,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CASTE_ACID_BLOOD (1<<13) //The acid blood effect which damages humans near xenos that take damage
 #define CASTE_CAN_HOLD_JELLY (1<<14)//whether we can hold fireproof jelly in our hands
 #define CASTE_IS_STRONG (1<<15)//can tear open acided walls without being big
+#define CASTE_CAN_CORRUPT_GENERATOR (1<<16) //Can corrupt a generator
 
 //Charge-Crush
 #define CHARGE_OFF			0
@@ -523,8 +524,9 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CRUSHER_CHARGE_TANK_MULTI		100
 
 //carrier defines
-#define CARRIER_HUGGER_THROW_SPEED 2
-#define CARRIER_HUGGER_THROW_DISTANCE 5
+#define CARRIER_HUGGER_THROW_SPEED			2
+#define CARRIER_HUGGER_THROW_DISTANCE		5
+#define CARRIER_SLASH_HUGGER_DAMAGE			23
 
 //Defiler defines
 #define DEFILER_GAS_CHANNEL_TIME				0.5 SECONDS

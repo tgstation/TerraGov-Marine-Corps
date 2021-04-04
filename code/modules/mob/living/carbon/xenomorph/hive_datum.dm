@@ -381,10 +381,10 @@
 	if(SSticker.current_state == GAME_STATE_FINISHED || SSticker.current_state == GAME_STATE_SETTING_UP)
 		announce = FALSE
 	if(announce)
-		xeno_message("<span class='xenoannounce'>A sudden tremor ripples through the hive... \the [ruler] has been slain! Vengeance!</span>", 3, TRUE)
+		xeno_message("A sudden tremor ripples through the hive... \the [ruler] has been slain! Vengeance!", "xenoannounce", 6, TRUE)
 	if(slashing_allowed != XENO_SLASHING_ALLOWED)
 		if(announce)
-			xeno_message("<span class='xenoannounce'>The slashing of hosts is now permitted.</span>", 2, TRUE)
+			xeno_message("The slashing of hosts is now permitted.", "xenoannounce", 5, TRUE)
 		slashing_allowed = XENO_SLASHING_ALLOWED
 	notify_ghosts("\The <b>[ruler]</b> has been slain!", source = ruler, action = NOTIFY_JUMP)
 	update_ruler()
@@ -418,7 +418,7 @@
 		return //Succession failed.
 
 	if(announce)
-		xeno_message("<span class='xenoannounce'>\A [successor] has risen to lead the Hive! Rejoice!</span>", 3)
+		xeno_message("\A [successor] has risen to lead the Hive! Rejoice!", "xenoannounce", 6)
 		notify_ghosts("\The [successor] has risen to lead the Hive!", source = successor, action = NOTIFY_ORBIT)
 
 
@@ -445,7 +445,7 @@
 
 // safe for use by gamemode code, this allows per hive overrides
 /datum/hive_status/proc/end_queen_death_timer()
-	xeno_message("The Hive is ready for a new ruler to evolve.", 3, TRUE)
+	xeno_message("The Hive is ready for a new ruler to evolve.", "xenoannounce", 6, TRUE)
 	xeno_queen_timer = null
 
 
@@ -499,7 +499,7 @@ to_chat will check for valid clients itself already so no need to double check f
 */
 
 ///Used for Hive Message alerts
-/datum/hive_status/proc/xeno_message(message = null, size = 3, force = FALSE, atom/target = null, sound = null, apply_preferences = FALSE, filter_list = null, arrow_type = /obj/screen/arrow/leader_tracker_arrow)
+/datum/hive_status/proc/xeno_message(message = null, span_class = "xenoannounce", size = 5, force = FALSE, atom/target = null, sound = null, apply_preferences = FALSE, filter_list = null, arrow_type = /obj/screen/arrow/leader_tracker_arrow, arrow_color, report_distance)
 
 	if(!force && !can_xeno_message())
 		return
@@ -524,9 +524,15 @@ to_chat will check for valid clients itself already so no need to double check f
 			var/obj/screen/arrow/arrow_hud = new arrow_type
 			//Prepare the tracker object and set its parameters
 			arrow_hud.add_hud(X, target)
+			if(arrow_color) //Set the arrow to our custom colour if applicable
+				arrow_hud.color = arrow_color
 			new /obj/effect/temp_visual/xenomorph/xeno_tracker_target(target, target) //Ping the source of our alert
 
-		to_chat(X, "<span class='xenodanger'><font size=[size]> [message]</font></span>")
+		if(report_distance)
+			var/distance = get_dist(X, target)
+			message += " Distance: [distance]"
+
+		to_chat(X, "<span class='[span_class]'><font size=[size]> [message]</font></span>")
 
 // This is to simplify the process of talking in hivemind, this will invoke the receive proc of all xenos in this hive
 /datum/hive_status/proc/hive_mind_message(mob/living/carbon/xenomorph/sender, message)
@@ -560,11 +566,8 @@ to_chat will check for valid clients itself already so no need to double check f
 	if(D.orphan_hive_timer)
 		return
 
-	var/timer_length = 5 MINUTES
-	if(length(xenos_by_typepath[/mob/living/carbon/xenomorph/larva]) || length(xenos_by_typepath[/mob/living/carbon/xenomorph/drone]))
-		timer_length = 2.5 MINUTES
 
-	D.orphan_hive_timer = addtimer(CALLBACK(D, /datum/game_mode.proc/orphan_hivemind_collapse), timer_length, TIMER_STOPPABLE)
+	D.orphan_hive_timer = addtimer(CALLBACK(D, /datum/game_mode.proc/orphan_hivemind_collapse), 5 MINUTES, TIMER_STOPPABLE)
 
 
 /datum/hive_status/normal/burrow_larva(mob/living/carbon/xenomorph/larva/L)
@@ -1162,7 +1165,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	if(D?.siloless_hive_timer)
 		return
 
-	xeno_message("<span class='xenoannounce'>We don't have any silos! The hive will collapse if nothing is done</span>", 3, TRUE)
+	xeno_message("We don't have any silos! The hive will collapse if nothing is done", "xenoannounce", 6, TRUE)
 	D.siloless_hive_timer = addtimer(CALLBACK(D, /datum/game_mode.proc/siloless_hive_collapse), 10 MINUTES, TIMER_STOPPABLE)
 
 ///Add a mob to the candidate queue, the first mobs of the queue will have priority on new larva spots
