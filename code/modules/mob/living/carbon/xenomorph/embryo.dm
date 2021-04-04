@@ -164,6 +164,7 @@
 		return
 
 	victim.chestburst = 1
+	ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
 	to_chat(src, "<span class='danger'>We start bursting out of [victim]'s chest!</span>")
 
 	victim.Unconscious(40 SECONDS)

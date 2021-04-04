@@ -52,10 +52,10 @@
 	LT = image("icon" = 'icons/obj/items/projectiles.dmi',"icon_state" = "sniper_laser", "layer" =-LASER_LAYER)
 	integrated_laze = new(src)
 
-/obj/item/weapon/gun/rifle/sniper/antimaterial/Fire(atom/target, mob/living/user, params, reflex = 0, dual_wield)
-	if(!able_to_fire(user))
+/obj/item/weapon/gun/rifle/sniper/antimaterial/Fire()
+	if(!able_to_fire(gun_user))
 		return
-	if(gun_on_cooldown(user))
+	if(gun_on_cooldown(gun_user))
 		return
 	if(targetmarker_primed)
 		if(!iscarbon(target))
@@ -63,7 +63,7 @@
 		if(laser_target)
 			deactivate_laser_target()
 		if(target.apply_laser())
-			activate_laser_target(target, user)
+			activate_laser_target(target, gun_user)
 		return
 	if(!QDELETED(laser_target))
 		target = laser_target
@@ -815,24 +815,19 @@
 	QDEL_NULL(smoke)
 	return ..()
 
-/obj/item/weapon/gun/launcher/rocket/Fire(atom/target, mob/living/user, params, reflex = 0, dual_wield)
-	if(!able_to_fire(user) || user.do_actions)
+/obj/item/weapon/gun/launcher/rocket/Fire()
+	if(!able_to_fire(gun_user) || gun_user.do_actions)
 		return
 
-	if(gun_on_cooldown(user))
+	if(gun_on_cooldown(gun_user))
 		return
 
-	var/delay = 0.1 SECONDS
-	if(has_attachment(/obj/item/attachable/scope/mini))
-		delay += 0.2 SECONDS
-
-	if(user.skills.getRating("firearms") < 0)
-		delay += 0.6 SECONDS
-
-	if(!do_after(user, delay, TRUE, src, BUSY_ICON_DANGER)) //slight wind up
-		return
-
-	playsound(loc,'sound/weapons/guns/fire/launcher.ogg', 50, TRUE)
+	if(windup_checked == WEAPON_WINDUP_NOT_CHECKED)
+		INVOKE_ASYNC(src, .proc/do_windup)
+		return TRUE
+	else if (windup_checked == WEAPON_WINDUP_CHECKING)//We are already in windup, abort
+		return TRUE
+	
 	. = ..()
 
 
@@ -842,9 +837,27 @@
 		current_mag.loc = get_turf(src)
 		current_mag.update_icon()
 		current_mag = null
+	log_combat(gun_user, gun_user, "fired the [src].")
+	log_explosion("[gun_user] fired the [src] at [AREACOORD(loc)].")
 
-	log_combat(usr, usr, "fired the [src].")
-	log_explosion("[usr] fired the [src] at [AREACOORD(loc)].")
+///Windup before shooting
+/obj/item/weapon/gun/launcher/rocket/proc/do_windup()
+	windup_checked = WEAPON_WINDUP_CHECKING
+	var/delay = 0.1 SECONDS
+	if(has_attachment(/obj/item/attachable/scope/mini))
+		delay += 0.2 SECONDS
+
+	if(gun_user.skills.getRating("firearms") < 0)
+		delay += 0.6 SECONDS
+
+	if(!do_after(gun_user, delay, TRUE, src, BUSY_ICON_DANGER)) //slight wind up
+		windup_checked = WEAPON_WINDUP_NOT_CHECKED
+		return
+	windup_checked = WEAPON_WINDUP_CHECKED
+	if(Fire())
+		playsound(loc,'sound/weapons/guns/fire/launcher.ogg', 50, TRUE)
+		return
+	windup_checked = WEAPON_WINDUP_NOT_CHECKED
 
 
 /obj/item/weapon/gun/launcher/rocket/examine_ammo_count(mob/user)
@@ -1112,12 +1125,25 @@
 	SSmonitor.stats.miniguns_in_use -= src
 
 //This is a minigun not a chaingun.
-obj/item/weapon/gun/minigun/Fire(atom/target, mob/living/user, params, reflex = FALSE, dual_wield)
-	playsound(get_turf(src), 'sound/weapons/guns/fire/tank_minigun_start.ogg', 30)
-	if(!do_after(user, 0.15 SECONDS, TRUE, src, BUSY_ICON_DANGER, BUSY_ICON_DANGER, ignore_turf_checks = TRUE))
+/obj/item/weapon/gun/minigun/Fire()
+	if(windup_checked == WEAPON_WINDUP_NOT_CHECKED)
+		playsound(get_turf(src), 'sound/weapons/guns/fire/tank_minigun_start.ogg', 30)
+		INVOKE_ASYNC(src, .proc/do_windup)
 		return
-	return ..()
+	else if (windup_checked == WEAPON_WINDUP_CHECKING)//We are already in windup, continue
+		return
+	. = ..()
+	if(!.)
+		windup_checked = WEAPON_WINDUP_NOT_CHECKED
 
+///Windup before firing
+/obj/item/weapon/gun/minigun/proc/do_windup()
+	windup_checked = WEAPON_WINDUP_CHECKING
+	if(!do_after(gun_user, 0.4 SECONDS, TRUE, src, BUSY_ICON_DANGER, BUSY_ICON_DANGER, ignore_turf_checks = TRUE))
+		windup_checked = WEAPON_WINDUP_NOT_CHECKED
+		return
+	windup_checked = WEAPON_WINDUP_CHECKED
+	SEND_SIGNAL(src, COMSIG_GUN_FIRE)
 
 /obj/item/weapon/gun/minigun/get_ammo_type()
 	if(!ammo)

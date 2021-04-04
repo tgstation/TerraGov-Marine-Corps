@@ -416,42 +416,6 @@
 	set_throwing(FALSE) //Resert throwing since something was hit.
 	return ..() //Do the parent otherwise, for turfs.
 
-
-//Bleuugh
-
-/mob/living/carbon/xenomorph/proc/empty_gut(warning = FALSE, content_cleanup = FALSE)
-	if(warning)
-		if(LAZYLEN(stomach_contents))
-			visible_message("<span class='xenowarning'>\The [src] hurls out the contents of their stomach!</span>", \
-			"<span class='xenowarning'>We hurl out the contents of our stomach!</span>", null, 5)
-		else
-			to_chat(src, "<span class='warning'>There is nothing to regurgitate.</span>")
-
-	for(var/i in stomach_contents)
-		do_regurgitate(i)
-
-	if(content_cleanup)
-		for(var/x in contents) //Get rid of anything that may be stuck inside us as well
-			var/atom/movable/stowaway = x
-			stowaway.forceMove(get_turf(src))
-			stack_trace("[stowaway] found in [src]'s contents. It shouldn't have ended there.")
-
-
-/mob/living/carbon/xenomorph/proc/do_devour(mob/living/carbon/prey)
-	LAZYADD(stomach_contents, prey)
-	prey.Paralyze(12 MINUTES)
-	prey.adjust_tinttotal(TINT_BLIND)
-	prey.forceMove(src)
-	SEND_SIGNAL(prey, COMSIG_CARBON_DEVOURED_BY_XENO)
-
-
-/mob/living/carbon/xenomorph/proc/do_regurgitate(mob/living/carbon/prey)
-	LAZYREMOVE(stomach_contents, prey)
-	prey.forceMove(get_turf(src))
-	prey.adjust_tinttotal(-TINT_BLIND)
-	SEND_SIGNAL(prey, COMSIG_MOVABLE_RELEASED_FROM_STOMACH, src)
-
-
 /mob/living/carbon/xenomorph/proc/toggle_nightvision(new_lighting_alpha)
 	if(!new_lighting_alpha)
 		switch(lighting_alpha)
@@ -707,3 +671,16 @@
 	if(is_charging >= CHARGE_ON) //If we're charging we're immune to slowdown.
 		return
 	adjust_slowdown(amount * XENO_SLOWDOWN_REGEN)
+
+///Eject the mob inside our belly, and putting it in a cocoon if needed
+/mob/living/carbon/xenomorph/proc/eject_victim(make_cocoon = FALSE, turf/eject_location = loc)
+	if(!LAZYLEN(stomach_contents))
+		return
+	var/mob/living/carbon/victim = stomach_contents[1]
+	LAZYREMOVE(stomach_contents, victim)
+	if(make_cocoon)
+		ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
+		new /obj/structure/cocoon(loc, hivenumber, victim)
+		return
+	victim.forceMove(eject_location)
+	REMOVE_TRAIT(victim, TRAIT_STASIS, TRAIT_STASIS)

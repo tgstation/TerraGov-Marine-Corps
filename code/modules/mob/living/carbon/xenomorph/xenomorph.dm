@@ -223,9 +223,6 @@
 	if(L.buckled)
 		return FALSE //to stop xeno from pulling marines on roller beds.
 	if(ishuman(L))
-		if(L.stat == UNCONSCIOUS && !bypass_crit_delay)
-			if(!do_mob(src, L , XENO_PULL_CHARGE_TIME, BUSY_ICON_HOSTILE))
-				return FALSE
 		if(L.stat == DEAD) //Can't drag dead human bodies
 			to_chat(usr,"<span class='xenowarning'>This looks gross, better not touch it</span>")
 			return FALSE

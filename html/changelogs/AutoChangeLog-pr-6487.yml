@@ -1,0 +1,5 @@
+author: "InterroLouis"
+delete-after: True
+changes: 
+  - balance: "Same tile screech does a bit more stamina damage."
+  - bugfix: "Screech stamina damage no longer reversed."

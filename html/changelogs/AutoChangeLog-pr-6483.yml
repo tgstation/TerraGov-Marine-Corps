@@ -1,0 +1,7 @@
+author: "Swagile"
+delete-after: True
+changes: 
+  - rscadd: "B18 gauntlets to B18 req crate."
+  - balance: "B17 and B18 rebalanced; 70 melee for chest, 75 melee for helmet on both armor sets."
+  - balance: "B18 and B17 now have 0.55 slowdown, making it only 0.05 slower than PAS."
+  - balance: "In return, B18 is now 120 points from 100 points, and B17 is 80 points from 60."
