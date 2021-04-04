@@ -133,7 +133,6 @@
 	wearer.heal_limb_damage(6*boost_amount, 6*boost_amount)
 	if(connected_weapon && world.time - processing_start < 20 SECONDS)
 		wearer.adjustStaminaLoss(-7*((20 - (world.time - processing_start)/10)/20)) //stamina gain scales inversely with passed time, up to 20 seconds
-		message_admins("stamina regenned > [-7*((20 - (world.time - processing_start)/10)/20)]")
 	if(world.time - processing_start > 12 SECONDS && world.time - processing_start < 15 SECONDS)
 		wearer.overlay_fullscreen("degeneration", /obj/screen/fullscreen/infection, 1)
 		to_chat(wearer, "<span class='highdanger'>WARNING: You have [(200 - (world.time - processing_start))/10] seconds before necrotic tissue forms on your limbs.</span>")
@@ -230,7 +229,6 @@
 		boost_amount += amount
 		to_chat(wearer, "<span class='notice'>Power set to [boost_amount+1].</span>")
 	resource_drain_amount = boost_amount*(3 + boost_amount)
-	message_admins("resource drain amount > [resource_drain_amount]")
 
 ///Used to scan the person
 /datum/component/chem_booster/proc/scan_user(datum/source)
