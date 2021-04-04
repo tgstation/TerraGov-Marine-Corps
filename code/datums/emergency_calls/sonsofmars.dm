@@ -1,7 +1,8 @@
 //Sons of Mars
 /datum/emergency_call/som
 	name = "Sons of Mars Squad"
-	probability = 20
+	base_probability = 26
+	allignement_factor = 0
 
 
 /datum/emergency_call/som/print_backstory(mob/living/carbon/human/H)
@@ -56,7 +57,7 @@
 
 /datum/emergency_call/som/hvh
 	name = "Sons of Mars Squad (Human vs. Human)"
-	probability = 0
+	base_probability = 0
 
 /datum/emergency_call/som/hvh/create_member(datum/mind/M)
 	. = ..()
