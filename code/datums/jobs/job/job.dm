@@ -198,6 +198,7 @@ GLOBAL_PROTECT(exp_specialmap)
 		if(isxenosjob(scaled_job) && respawn)
 			continue
 		scaled_job.add_job_points(jobworth[index])
+	return TRUE
 
 /datum/job/proc/free_job_positions(amount)
 	if(amount <= 0)
