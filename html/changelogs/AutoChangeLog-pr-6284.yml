@@ -1,0 +1,7 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - rscadd: "Devour and cocoon, a new ability for queen, shrike, hivelord, drone, carrier and defiler. Devour a marine bodies that was not psy drain and you will eject it in a cocoon 5 seconds later. For 10 minutes or until marines manage to break it, you will get 1.2 points every 5 seconds. Marines inside the cocoon are in statis, which mean their DNR timer stays at zero, and that for 10 minutes"
+  - code_imp: "Remove some dead code from former devour and regurgitate code"
+  - spellcheck: "Some typo in psy drain code"
+  - bugfix: "Make the \"sharp\" bayonetknife really sharp, so you can use it to break cocoon"
