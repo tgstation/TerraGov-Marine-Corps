@@ -1,0 +1,5 @@
+author: "Walarks"
+delete-after: True
+changes: 
+  - balance: "changed harvester effects cost from 10u to 5u. Kelotane effect now ignites all mobs in the cone, dealing additional fire damage, without leaving fire tiles. Tramadol effect deals 60% bonus damage that ignores armor, but the slow lasts 1s instead of 2s. Bicaridine effect heals 12.5 brute instead of 10 brute. If you target yourself, it instantly restores 6 brute and 30 stamina."
+  - qol: "failing to fill the harvester no longer makes you lose reagents from the liquid container, this wasn't an intended thing"
