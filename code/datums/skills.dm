@@ -288,12 +288,12 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 
 /datum/skills/CMO
 	name = "CMO"
-	cqc = SKILL_CQC_WEAK
-	firearms = SKILL_FIREARMS_UNTRAINED
+	cqc = SKILL_CQC_TRAINED
+	firearms = SKILL_FIREARMS_TRAINED
 	leadership = SKILL_LEAD_TRAINED
 	medical = SKILL_MEDICAL_EXPERT
 	surgery = SKILL_SURGERY_EXPERT
-	melee_weapons = SKILL_MELEE_WEAK
+	melee_weapons = SKILL_MELEE_DEFAULT
 	police = SKILL_POLICE_MP
 
 /datum/skills/ai
