@@ -361,6 +361,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	accuracy_mod = -0.05
 	accuracy_unwielded_mod = -0.1
 	size_mod = 1
+	sharp = IS_SHARP_ITEM_ACCURATE
 
 /obj/item/attachable/bayonet/attackby(obj/item/I, mob/user)
 	. = ..()
@@ -396,6 +397,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	accuracy_mod = -0.05
 	accuracy_unwielded_mod = -0.1
 	size_mod = 1
+	sharp = IS_SHARP_ITEM_ACCURATE
 
 /obj/item/attachable/bayonetknife/Initialize()
 	. = ..()
@@ -1227,17 +1229,17 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/attached_gun/activate_attachment(mob/living/user, turn_off)
 	if(master_gun.active_attachable == src)
-		if(user)
-			to_chat(user, "<span class='notice'>You are no longer using [src].</span>")
-			UnregisterSignal(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE)
-		master_gun.on_gun_attachment_detach(null, src)
+		if(master_gun.gun_user)
+			to_chat(master_gun.gun_user, "<span class='notice'>You are no longer using [src].</span>")
+			UnregisterSignal(master_gun.gun_user, COMSIG_ITEM_EXCLUSIVE_TOGGLE)
+		master_gun.active_attachable = null
 		icon_state = initial(icon_state)
 	else if(!turn_off)
 		if(user)
 			to_chat(user, "<span class='notice'>You are now using [src].</span>")
 			SEND_SIGNAL(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE, user)
 			RegisterSignal(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE, .proc/deactivate)
-		master_gun.on_gun_attachment_attach(src)
+		master_gun.active_attachable = src
 		icon_state += "-on"
 
 	for(var/X in master_gun.actions)

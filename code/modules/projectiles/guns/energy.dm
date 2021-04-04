@@ -569,15 +569,17 @@
 
 
 	playsound(user, 'sound/weapons/emitter.ogg', 5, FALSE, 2)
+
+	
+	gun_firemode = initial(choice.fire_mode)
+
+	
 	charge_cost = initial(choice.charge_cost)
 	ammo = GLOB.ammo_list[initial(choice.ammo)]
 	fire_delay = initial(choice.fire_delay)
 	fire_sound = initial(choice.fire_sound)
-
-	if(initial(choice.fire_mode) != GUN_FIREMODE_SEMIAUTO)
-		SEND_SIGNAL(src, COMSIG_GUN_FIREMODE_TOGGLE, initial(choice.fire_mode), user.client)
-	else
-		SEND_SIGNAL(src, COMSIG_GUN_FIREMODE_TOGGLE, GUN_FIREMODE_SEMIAUTO, user.client)
+	SEND_SIGNAL(src, COMSIG_GUN_AUTOFIREDELAY_MODIFIED, fire_delay)
+	SEND_SIGNAL(src, COMSIG_GUN_FIRE_MODE_TOGGLE, initial(choice.fire_mode), user.client)
 
 	base_gun_icon = initial(choice.icon_state)
 	update_icon()

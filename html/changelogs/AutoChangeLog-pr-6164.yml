@@ -1,0 +1,10 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - refactor: "Autofire use bucket system"
+  - refactor: "Gun system use signals and callbacks"
+  - refactor: "Firing in akimbo now respect ROF and fire mode of each gun, and applies innacuracy maluses on both gun rather than only one"
+  - refactor: "Burstfire is no longer using sleep"
+  - bugfix: "Masterkey shotgun was runtiming when running out of ammunition"
+  - bugfix: "Burst fire assembly now works"
+  - bugfix: "You can no longer shoot while laying down or unconcious (sorry marine turrets)"
