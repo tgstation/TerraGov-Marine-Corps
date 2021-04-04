@@ -228,7 +228,8 @@
 	if(update_boost_amount)
 		boost_amount += amount
 		to_chat(wearer, "<span class='notice'>Power set to [boost_amount+1].</span>")
-	resource_drain_amount = (boost_amount^2)*4
+	resource_drain_amount = boost_amount*(4 + boost_amount)
+	message_admins("resource drain amount > [resource_drain_amount]")
 
 ///Used to scan the person
 /datum/component/chem_booster/proc/scan_user(datum/source)
@@ -298,8 +299,6 @@
 /datum/component/chem_booster/proc/update_resource(amount)
 	var/amount_added = min(resource_storage_max - resource_storage_current, amount)
 	resource_storage_current = max(resource_storage_current + amount_added, 0)
-	message_admins("current resource > [resource_storage_current]")
-	message_admins("update amount > [amount]")
 	wearer.overlays -= resource_overlay
 	resource_overlay.alpha = resource_storage_current/resource_storage_max*255
 	wearer.overlays += resource_overlay
