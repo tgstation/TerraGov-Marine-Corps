@@ -236,6 +236,7 @@
 				if(SSticker.mode.on_distress_cooldown || SSticker.mode.waiting_for_candidates)
 					return FALSE
 				SSticker.mode.activate_distress(E)
+				E.base_probability = 0
 				return TRUE
 			state = STATE_DISTRESS
 
