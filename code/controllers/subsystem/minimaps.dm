@@ -248,6 +248,8 @@ SUBSYSTEM_DEF(minimaps)
  */
 /datum/controller/subsystem/minimaps/proc/on_move(atom/movable/source, oldloc)
 	SIGNAL_HANDLER
+	if(!source.z)
+		return //this can happen legitimately when you go into pipes, it shouldnt but thats how it is
 	images_by_source[source].pixel_x = MINIMAP_PIXEL_FROM_WORLD(source.x) + minimaps_by_z["[source.z]"].x_offset
 	images_by_source[source].pixel_y = MINIMAP_PIXEL_FROM_WORLD(source.y) + minimaps_by_z["[source.z]"].y_offset
 
