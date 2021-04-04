@@ -65,11 +65,9 @@
 	var/probability_direction = (monitor_state * alignement_factor)
 	var/actualised_weight = base_probability
 	if(probability_direction >= 0)
-		actualised_weight *= (1+probability_direction)
-	else
-		actualised_weight /= (1-probability_direction)
-	message_admins("[name] has a weight of [actualised_weight]")
-	return actualised_weight
+		return base_probability * (1+probability_direction)
+	return base_probability / (1-probability_direction)
+
 
 /datum/emergency_call/proc/show_join_message()
 	if(!mob_max || !SSticker?.mode) //Not a joinable distress call.
