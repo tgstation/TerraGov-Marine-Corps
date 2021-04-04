@@ -138,7 +138,13 @@
 
 /obj/machinery/power/geothermal/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	. = ..()
-	// Can't damage a broken generator
+	if(CHECK_BITFIELD(X.xeno_caste.caste_flags, CASTE_CAN_CORRUPT_GENERATOR) && is_corruptible)
+		to_chat(X, "<span class='notice'>You start to corrupt [src]</span>")
+		if(!do_after(X, 10 SECONDS, TRUE, src, BUSY_ICON_HOSTILE))
+			return
+		corrupt(X.hivenumber)
+		to_chat(X, "<span class='notice'>You have corrupted [src]</span>")
+		return
 	if(buildstate)
 		return
 	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
@@ -146,7 +152,6 @@
 	X.visible_message("<span class='danger'>\The [X] slashes at \the [src], tearing at it's components!</span>",
 		"<span class='danger'>We start slashing at \the [src], tearing at it's components!</span>")
 	fail_rate += 5 // 5% fail rate every attack
-
 
 /obj/machinery/power/geothermal/attack_hand(mob/living/user)
 	. = ..()

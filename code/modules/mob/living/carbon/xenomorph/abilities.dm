@@ -556,35 +556,6 @@
 	X.recurring_injection(A, /datum/reagent/toxin/xeno_growthtoxin, XENO_LARVAL_CHANNEL_TIME, XENO_LARVAL_AMOUNT_RECURRING)
 
 // ***************************************
-// *********** Spitter-y abilities
-// ***************************************
-// Shift Spits
-/datum/action/xeno_action/shift_spits
-	name = "Toggle Spit Type"
-	action_icon_state = "shift_spit_neurotoxin"
-	mechanics_text = "Switch from neurotoxin to acid spit."
-	use_state_flags = XACT_USE_STAGGERED|XACT_USE_NOTTURF|XACT_USE_BUSY
-	keybind_signal = COMSIG_XENOABILITY_SHIFT_SPITS
-
-/datum/action/xeno_action/shift_spits/update_button_icon()
-	var/mob/living/carbon/xenomorph/X = owner
-	button.overlays.Cut()
-	button.overlays += image('icons/mob/actions.dmi', button, "shift_spit_[X.ammo.icon_state]")
-
-/datum/action/xeno_action/shift_spits/action_activate()
-	var/mob/living/carbon/xenomorph/X = owner
-	for(var/i in 1 to X.xeno_caste.spit_types.len)
-		if(X.ammo == GLOB.ammo_list[X.xeno_caste.spit_types[i]])
-			if(i == X.xeno_caste.spit_types.len)
-				X.ammo = GLOB.ammo_list[X.xeno_caste.spit_types[1]]
-			else
-				X.ammo = GLOB.ammo_list[X.xeno_caste.spit_types[i+1]]
-			break
-	to_chat(X, "<span class='notice'>We will now spit [X.ammo.name] ([X.ammo.spit_cost] plasma).</span>")
-	update_button_icon()
-
-
-// ***************************************
 // *********** Corrosive Acid
 // ***************************************
 
@@ -806,11 +777,30 @@
 
 /datum/action/xeno_action/activable/xeno_spit
 	name = "Xeno Spit"
-	action_icon_state = "xeno_spit"
+	action_icon_state = "shift_spit_neurotoxin"
 	mechanics_text = "Spit neurotoxin or acid at your target up to 7 tiles away."
 	ability_name = "xeno spit"
 	keybind_signal = COMSIG_XENOABILITY_XENO_SPIT
 	plasma_cost = 10
+
+/datum/action/xeno_action/activable/xeno_spit/update_button_icon()
+	var/mob/living/carbon/xenomorph/X = owner
+	button.overlays.Cut()
+	button.overlays += image('icons/mob/actions.dmi', button, "shift_spit_[X.ammo.icon_state]")
+
+/datum/action/xeno_action/activable/xeno_spit/action_activate()
+	var/mob/living/carbon/xenomorph/X = owner
+	if(X.selected_ability != src)
+		return ..()
+	for(var/i in 1 to X.xeno_caste.spit_types.len)
+		if(X.ammo == GLOB.ammo_list[X.xeno_caste.spit_types[i]])
+			if(i == X.xeno_caste.spit_types.len)
+				X.ammo = GLOB.ammo_list[X.xeno_caste.spit_types[1]]
+				break
+			X.ammo = GLOB.ammo_list[X.xeno_caste.spit_types[i+1]]
+			break
+	to_chat(X, "<span class='notice'>We will now spit [X.ammo.name] ([X.ammo.spit_cost] plasma).</span>")
+	update_button_icon()
 
 /datum/action/xeno_action/activable/xeno_spit/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -1018,12 +1008,20 @@
 	plasma_cost = 150
 	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN_SILO
 	cooldown_timer = 60 SECONDS
-
+	/// If we are building a small silo
+	var/build_small_silo = FALSE
 	/// How long does it take to build
 	var/build_time = 10 SECONDS
 	/// Pyschic point cost
 	var/psych_cost = SILO_PRICE
 
+/datum/action/xeno_action/activable/build_silo/action_activate()
+	var/mob/living/carbon/xenomorph/X = owner
+	if(X.selected_ability == src)
+		build_small_silo = !build_small_silo
+		var/silo_type = build_small_silo ? "small" : "regular"
+		to_chat(X, "<span class ='notice'> You will now build a [silo_type] silo </span>")
+	return ..()
 
 /datum/action/xeno_action/activable/build_silo/can_use_ability(atom/A, silent, override_flags)
 	. = ..()
@@ -1036,7 +1034,8 @@
 		return FALSE
 
 	var/mob/living/carbon/xenomorph/X = owner
-	if(SSpoints.xeno_points_by_hive[X.hivenumber] < psych_cost)
+	var/final_psych_cost = psych_cost * (build_small_silo ? 0.5 : 1)
+	if(SSpoints.xeno_points_by_hive[X.hivenumber] < final_psych_cost)
 		to_chat(owner, "<span class='xenowarning'>The hive doesn't have the necessary psychic points for you to do that!</span>")
 		return FALSE
 
@@ -1050,16 +1049,19 @@
 		return fail_activate()
 
 	var/mob/living/carbon/xenomorph/X = owner
-
-	if(SSpoints.xeno_points_by_hive[X.hivenumber] < psych_cost)
+	var/final_psych_cost = psych_cost * (build_small_silo ? 0.5 : 1)
+	if(SSpoints.xeno_points_by_hive[X.hivenumber] < final_psych_cost)
 		to_chat(owner, "<span class='xenowarning'>Someone used all the psych points while we were building!</span>")
 		return fail_activate()
-
-	new /obj/structure/resin/silo (get_step(A, SOUTHWEST))
-	to_chat(owner, "<span class='notice'>We build a new silo for [psych_cost] psy points.</span>")
-	SSpoints.xeno_points_by_hive[X.hivenumber] -= psych_cost
-
+	
+	to_chat(owner, "<span class='notice'>We build a new silo for [final_psych_cost] psy points.</span>")
+	SSpoints.xeno_points_by_hive[X.hivenumber] -= final_psych_cost
 	succeed_activate()
+	if(build_small_silo)
+		new /obj/structure/resin/silo/small_silo (get_step(A, SOUTHWEST))
+		return
+	new /obj/structure/resin/silo (get_step(A, SOUTHWEST))
+
 
 ////////////////////
 /// Build xeno turret
@@ -1151,7 +1153,7 @@
 
 	var/mob/living/carbon/xenomorph/X = owner
 
-	xeno_message("<span class='xenoannounce'>Our leader [X] is rallying the hive to [AREACOORD_NO_Z(X.loc)]!</span>", 3, X.hivenumber, FALSE, X, 'sound/voice/alien_distantroar_3.ogg',TRUE,null,/obj/screen/arrow/leader_tracker_arrow)
+	xeno_message("Our leader [X] is rallying the hive to [AREACOORD_NO_Z(X.loc)]!", "xenoannounce", 6, X.hivenumber, FALSE, X, 'sound/voice/alien_distantroar_3.ogg',TRUE,null,/obj/screen/arrow/leader_tracker_arrow)
 	notify_ghosts("\ [X] is rallying the hive to [AREACOORD_NO_Z(X.loc)]!", source = X, action = NOTIFY_JUMP)
 
 	succeed_activate()
