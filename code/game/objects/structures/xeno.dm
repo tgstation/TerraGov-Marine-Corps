@@ -316,19 +316,18 @@
 	isSwitchingStates = TRUE
 	playsound(loc, "alien_resin_move", 25)
 	flick("[mineralType]opening",src)
-	sleep(2)
+	addtimer(CALLBACK(src, .proc/do_open), 2)
+
+/obj/structure/mineral_door/resin/proc/do_open()
 	density = FALSE
 	opacity = FALSE
 	state = 1
 	update_icon()
 	isSwitchingStates = 0
-
-	spawn(close_delay)
-		if(!isSwitchingStates && state == 1)
-			Close()
+	addtimer(CALLBACK(src, .proc/Close), close_delay)
 
 /obj/structure/mineral_door/resin/Close()
-	if(!state || !loc)
+	if(!state || !loc ||isSwitchingStates)
 		return //already closed
 	//Can't close if someone is blocking it
 	for(var/turf/turf in locs)
