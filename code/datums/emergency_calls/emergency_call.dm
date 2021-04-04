@@ -63,7 +63,6 @@
  */
 /datum/emergency_call/proc/get_actualised_weight(monitor_state)
 	var/probability_direction = (monitor_state * alignement_factor)
-	var/actualised_weight = base_probability
 	if(probability_direction >= 0)
 		return base_probability * (1+probability_direction)
 	return base_probability / (1-probability_direction)
