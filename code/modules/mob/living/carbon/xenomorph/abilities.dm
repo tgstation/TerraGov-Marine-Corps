@@ -191,7 +191,6 @@
 	keybind_signal = COMSIG_XENOABILITY_CHOOSE_RESIN
 	var/list/buildable_structures = list(
 		/turf/closed/wall/resin/regenerating,
-		/obj/structure/bed/nest,
 		/obj/effect/alien/resin/sticky,
 		/obj/structure/mineral_door/resin)
 
@@ -557,35 +556,6 @@
 	X.recurring_injection(A, /datum/reagent/toxin/xeno_growthtoxin, XENO_LARVAL_CHANNEL_TIME, XENO_LARVAL_AMOUNT_RECURRING)
 
 // ***************************************
-// *********** Spitter-y abilities
-// ***************************************
-// Shift Spits
-/datum/action/xeno_action/shift_spits
-	name = "Toggle Spit Type"
-	action_icon_state = "shift_spit_neurotoxin"
-	mechanics_text = "Switch from neurotoxin to acid spit."
-	use_state_flags = XACT_USE_STAGGERED|XACT_USE_NOTTURF|XACT_USE_BUSY
-	keybind_signal = COMSIG_XENOABILITY_SHIFT_SPITS
-
-/datum/action/xeno_action/shift_spits/update_button_icon()
-	var/mob/living/carbon/xenomorph/X = owner
-	button.overlays.Cut()
-	button.overlays += image('icons/mob/actions.dmi', button, "shift_spit_[X.ammo.icon_state]")
-
-/datum/action/xeno_action/shift_spits/action_activate()
-	var/mob/living/carbon/xenomorph/X = owner
-	for(var/i in 1 to X.xeno_caste.spit_types.len)
-		if(X.ammo == GLOB.ammo_list[X.xeno_caste.spit_types[i]])
-			if(i == X.xeno_caste.spit_types.len)
-				X.ammo = GLOB.ammo_list[X.xeno_caste.spit_types[1]]
-			else
-				X.ammo = GLOB.ammo_list[X.xeno_caste.spit_types[i+1]]
-			break
-	to_chat(X, "<span class='notice'>We will now spit [X.ammo.name] ([X.ammo.spit_cost] plasma).</span>")
-	update_button_icon()
-
-
-// ***************************************
 // *********** Corrosive Acid
 // ***************************************
 
@@ -807,11 +777,30 @@
 
 /datum/action/xeno_action/activable/xeno_spit
 	name = "Xeno Spit"
-	action_icon_state = "xeno_spit"
+	action_icon_state = "shift_spit_neurotoxin"
 	mechanics_text = "Spit neurotoxin or acid at your target up to 7 tiles away."
 	ability_name = "xeno spit"
 	keybind_signal = COMSIG_XENOABILITY_XENO_SPIT
 	plasma_cost = 10
+
+/datum/action/xeno_action/activable/xeno_spit/update_button_icon()
+	var/mob/living/carbon/xenomorph/X = owner
+	button.overlays.Cut()
+	button.overlays += image('icons/mob/actions.dmi', button, "shift_spit_[X.ammo.icon_state]")
+
+/datum/action/xeno_action/activable/xeno_spit/action_activate()
+	var/mob/living/carbon/xenomorph/X = owner
+	if(X.selected_ability != src)
+		return ..()
+	for(var/i in 1 to X.xeno_caste.spit_types.len)
+		if(X.ammo == GLOB.ammo_list[X.xeno_caste.spit_types[i]])
+			if(i == X.xeno_caste.spit_types.len)
+				X.ammo = GLOB.ammo_list[X.xeno_caste.spit_types[1]]
+				break
+			X.ammo = GLOB.ammo_list[X.xeno_caste.spit_types[i+1]]
+			break
+	to_chat(X, "<span class='notice'>We will now spit [X.ammo.name] ([X.ammo.spit_cost] plasma).</span>")
+	update_button_icon()
 
 /datum/action/xeno_action/activable/xeno_spit/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -1019,12 +1008,20 @@
 	plasma_cost = 150
 	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN_SILO
 	cooldown_timer = 60 SECONDS
-
+	/// If we are building a small silo
+	var/build_small_silo = FALSE
 	/// How long does it take to build
 	var/build_time = 10 SECONDS
 	/// Pyschic point cost
 	var/psych_cost = SILO_PRICE
 
+/datum/action/xeno_action/activable/build_silo/action_activate()
+	var/mob/living/carbon/xenomorph/X = owner
+	if(X.selected_ability == src)
+		build_small_silo = !build_small_silo
+		var/silo_type = build_small_silo ? "small" : "regular"
+		to_chat(X, "<span class ='notice'> You will now build a [silo_type] silo </span>")
+	return ..()
 
 /datum/action/xeno_action/activable/build_silo/can_use_ability(atom/A, silent, override_flags)
 	. = ..()
@@ -1037,7 +1034,8 @@
 		return FALSE
 
 	var/mob/living/carbon/xenomorph/X = owner
-	if(SSpoints.xeno_points_by_hive[X.hivenumber] < psych_cost)
+	var/final_psych_cost = psych_cost * (build_small_silo ? 0.5 : 1)
+	if(SSpoints.xeno_points_by_hive[X.hivenumber] < final_psych_cost)
 		to_chat(owner, "<span class='xenowarning'>The hive doesn't have the necessary psychic points for you to do that!</span>")
 		return FALSE
 
@@ -1051,16 +1049,19 @@
 		return fail_activate()
 
 	var/mob/living/carbon/xenomorph/X = owner
-
-	if(SSpoints.xeno_points_by_hive[X.hivenumber] < psych_cost)
+	var/final_psych_cost = psych_cost * (build_small_silo ? 0.5 : 1)
+	if(SSpoints.xeno_points_by_hive[X.hivenumber] < final_psych_cost)
 		to_chat(owner, "<span class='xenowarning'>Someone used all the psych points while we were building!</span>")
 		return fail_activate()
-
+	
+	to_chat(owner, "<span class='notice'>We build a new silo for [final_psych_cost] psy points.</span>")
+	SSpoints.xeno_points_by_hive[X.hivenumber] -= final_psych_cost
+	succeed_activate()
+	if(build_small_silo)
+		new /obj/structure/resin/silo/small_silo (get_step(A, SOUTHWEST))
+		return
 	new /obj/structure/resin/silo (get_step(A, SOUTHWEST))
 
-	SSpoints.xeno_points_by_hive[X.hivenumber] -= psych_cost
-
-	succeed_activate()
 
 ////////////////////
 /// Build xeno turret
@@ -1133,100 +1134,6 @@
 
 	succeed_activate()
 
-// Salvage Biomass
-/datum/action/xeno_action/activable/salvage_biomass
-	name = "Salvage Biomass"
-	action_icon_state = "salvage_plasma"
-	ability_name = "salvage biomass"
-	keybind_signal = COMSIG_XENOABILITY_SALVAGE_PLASMA
-	cooldown_timer = DRONE_SALVAGE_COOLDOWN
-
-/datum/action/xeno_action/activable/salvage_biomass/on_cooldown_finish()
-	owner.playsound_local(owner, 'sound/voice/alien_drool1.ogg', 25, 0, 1)
-	to_chat(owner, "<span class='notice'>We are ready to salvage xeno biomass again.</span>")
-	return ..()
-
-/datum/action/xeno_action/activable/salvage_biomass/can_use_ability(atom/A, silent = FALSE, override_flags)
-	. = ..()
-	if(!.)
-		return FALSE
-
-	var/mob/living/carbon/xenomorph/X = owner
-	if(!isxeno(A))
-		to_chat(X, "<span class='xenowarning'>We can only salvage the biomass of deceased xenomorphs!</span>")
-		return FALSE
-
-	var/mob/living/carbon/xenomorph/target = A
-
-	if(target.stat != DEAD)
-		to_chat(X, "<span class='xenowarning'>We can't salvage the biomass of living sisters!</span>")
-		return FALSE
-
-	var/distance = get_dist(X, target)
-	if(distance > DRONE_SALVAGE_BIOMASS_RANGE)
-		to_chat(X, "<span class='xenowarning'>We need to be [distance -  DRONE_SALVAGE_BIOMASS_RANGE] tiles closer to [target].</span>")
-		return FALSE
-
-
-/datum/action/xeno_action/activable/salvage_biomass/use_ability(atom/A)
-
-	var/mob/living/carbon/xenomorph/X = owner
-	var/mob/living/carbon/xenomorph/target = A
-
-
-	X.face_atom(target) //Face the target so we don't look like an ass
-	to_chat(X, "<span class='xenowarning'>We begin to salvage the biomass of [target]...</span>")
-	playsound(X, pick('sound/voice/alien_drool1.ogg','sound/voice/alien_drool2.ogg'), 25)
-
-	if(!do_after(X, DRONE_SALVAGE_BIOMASS_WINDUP, TRUE, target, BUSY_ICON_FRIENDLY)) //Wind up
-		return fail_activate()
-
-
-	X.face_atom(target) //Face the target so we don't look like an ass
-
-	if(!can_use_ability(target, FALSE, XACT_IGNORE_PLASMA)) //Check to make sure the target hasn't gone anywhere/been exploded/etc
-		return fail_activate()
-
-	succeed_activate()
-
-	var/upgrade_amount = target.upgrade_stored * DRONE_SALVAGE_BIOMASS_SALVAGE_RATIO //We only recover a small portion of the target's upgrade and evo points.
-	if(target.upgrade == XENO_UPGRADE_THREE)
-		upgrade_amount = target.xeno_caste.upgrade_threshold * DRONE_SALVAGE_BIOMASS_SALVAGE_RATIO //Ancient xenos count as having maximum upgrade points
-	var/evo_amount = target.evolution_stored * DRONE_SALVAGE_BIOMASS_SALVAGE_RATIO
-
-	//Take all the plas-mar
-	X.gain_plasma(target.plasma_stored)
-
-	//Distribute the upgrade and evo points the target had to the hive:
-	var/list/list_of_upgrade_xenos = list()
-	var/list/list_of_evolve_xenos = list()
-
-	for(var/mob/living/carbon/xenomorph/filter in X.hive.get_all_xenos())
-		if(!(filter.upgrade in DRONE_SALVAGE_UPGRADE_FILTER_LIST)) //Only Xenos who can use the salvage get it; filter them
-			list_of_upgrade_xenos += filter
-		if(!(filter.tier in DRONE_SALVAGE_EVOLUTION_FILTER_LIST) && (filter.evolution_stored < filter.xeno_caste.evolution_threshold))
-			list_of_evolve_xenos += filter
-
-	if(length(list_of_upgrade_xenos))
-		upgrade_amount /= length(list_of_upgrade_xenos) //get the amount distributed to each xeno; protect against dividing by 0
-		for(var/mob/living/carbon/xenomorph/beneficiary in list_of_upgrade_xenos) //Distribute the upgrade salvage to those who can use it
-			beneficiary.upgrade_stored += upgrade_amount
-
-	if(length(list_of_evolve_xenos))
-		evo_amount /= length(list_of_evolve_xenos)
-		for(var/mob/living/carbon/xenomorph/beneficiary in list_of_evolve_xenos) //Distribute the evolve salvage to those who can use it
-			beneficiary.evolution_stored = min(beneficiary.xeno_caste.evolution_threshold, beneficiary.evolution_stored + evo_amount) //Prevents janky overflow
-
-	playsound(target, 'sound/effects/alien_egg_burst.ogg', 25)
-	X.hive.xeno_message("[target]'s remains were salvaged by [X], recovering [upgrade_amount] upgrade points for [length(list_of_upgrade_xenos)] sisters and [evo_amount] evolution points for [length(list_of_evolve_xenos) ] sisters.") //Notify hive and give credit to the good boy drone
-	X.visible_message("<span class='xenowarning'>\ [X] gruesomely absorbs and devours the remains of [target]!</span>", \
-	"<span class='xenowarning'>We messily devour the remains of [target], absorbing [target.plasma_stored] plasma and distributing our deceased sister's essence throughout the hive. We now have [X.plasma_stored]/[X.xeno_caste.plasma_max] plasma stored.</span>") //Narrative description.
-
-	target.gib() //Destroy the corpse
-
-	GLOB.round_statistics.drone_salvage_biomass++ //Statistic incrementation
-	SSblackbox.record_feedback("tally", "round_statistics", 1, "drone_salvage_biomass")
-
 /////////////////////////////////////////////////////////////////////////////////////////////
 
 ////////////////////
@@ -1246,7 +1153,7 @@
 
 	var/mob/living/carbon/xenomorph/X = owner
 
-	xeno_message("<span class='xenoannounce'>Our leader [X] is rallying the hive to [AREACOORD_NO_Z(X.loc)]!</span>", 3, X.hivenumber, FALSE, X, 'sound/voice/alien_distantroar_3.ogg',TRUE,null,/obj/screen/arrow/leader_tracker_arrow)
+	xeno_message("Our leader [X] is rallying the hive to [AREACOORD_NO_Z(X.loc)]!", "xenoannounce", 6, X.hivenumber, FALSE, X, 'sound/voice/alien_distantroar_3.ogg',TRUE,null,/obj/screen/arrow/leader_tracker_arrow)
 	notify_ghosts("\ [X] is rallying the hive to [AREACOORD_NO_Z(X.loc)]!", source = X, action = NOTIFY_JUMP)
 
 	succeed_activate()
@@ -1319,11 +1226,14 @@
 	X.face_atom(victim) //Face towards the target so we don't look silly
 	X.visible_message("<span class='xenowarning'>\The [X] begins opening its mouth and extending a second jaw towards \the [victim].</span>", \
 	"<span class='danger'>We slowly drain \the [victim]'s life force!</span>", null, 20)
-	playsound(X, 'sound/magic/nightfall.ogg', 40)
-	if(!do_after(X, 10 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(X, /mob.proc/break_do_after_checks, list("health" = X.health))))
+	var/channel = SSsounds.random_available_channel()
+	playsound(X, 'sound/magic/nightfall.ogg', 40, channel = channel)
+	if(!do_after(X, 5 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(X, /mob.proc/break_do_after_checks, list("health" = X.health))))
 		X.visible_message("<span class='xenowarning'>\The [X] retracts its inner jaw.</span>", \
 		"<span class='danger'>We retract our inner jaw.</span>", null, 20)
+		X.stop_sound_channel(channel)
 		return FALSE
+	X.stop_sound_channel(channel)
 	succeed_activate() //dew it
 
 /datum/action/xeno_action/activable/psydrain/use_ability(mob/M)
@@ -1333,7 +1243,7 @@
 	if(HAS_TRAIT(victim, TRAIT_PSY_DRAINED))
 		to_chat(X, "<span class='warning'>Someone drained the life force of our victim before we could do it!</span>")
 		return fail_activate()
-	
+
 	playsound(X, 'sound/magic/end_of_psy_drain.ogg', 40)
 
 	X.visible_message("<span class='xenodanger'>\The [victim]'s life force is drained by \the [X]!</span>", \
@@ -1342,10 +1252,10 @@
 	victim.do_jitter_animation(2)
 
 	ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
-	
+
 	SSpoints.add_psy_points(X.hivenumber, psy_points_reward)
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	xeno_job.add_job_points(larva_point_reward)
+	xeno_job.add_job_points(larva_point_reward, PSY_DRAIN_ORIGIN)
 
 	log_combat(victim, owner, "was drained.")
 	log_game("[key_name(victim)] was drained at [AREACOORD(victim.loc)].")

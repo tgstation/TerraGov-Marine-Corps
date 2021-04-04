@@ -74,7 +74,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 				to_chat(target, "<span class='highdanger'>The blast knocks you off your feet!</span>")
 		step_away(victim, proj)
 
-/datum/ammo/proc/staggerstun(mob/victim, obj/projectile/proj, max_range = 5, stun = 0, weaken = 0, stagger = 0, slowdown = 0, knockback = 0, shake = TRUE, soft_size_threshold = 3, hard_size_threshold = 2)
+/datum/ammo/proc/staggerstun(mob/victim, obj/projectile/proj, max_range = 5, stun = 0, weaken = 0, stagger = 0, slowdown = 0, knockback = 0, shake = 1, soft_size_threshold = 3, hard_size_threshold = 2)
 	if(!victim || victim == proj.firer)
 		CRASH("staggerstun called [victim ? "without a mob target" : "while the mob target was the firer"]")
 	if(!isliving(victim))
@@ -325,7 +325,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sundering = 3
 
 /datum/ammo/bullet/revolver/on_hit_mob(mob/M,obj/projectile/P)
-	staggerstun(M, P, stagger = 1, slowdown = 0.5, knockback = 1)
+	staggerstun(M, P, stagger = 1, slowdown = 0.5, knockback = 1, shake = 0.5)
 
 /datum/ammo/bullet/revolver/small
 	name = "small revolver bullet"
@@ -569,7 +569,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sundering = 7
 
 /datum/ammo/bullet/shotgun/slug/on_hit_mob(mob/M,obj/projectile/P)
-	staggerstun(M, P, weaken = 1, stagger = 2, knockback = 1)
+	staggerstun(M, P, weaken = 1, stagger = 2, knockback = 1, slowdown = 2)
 
 
 /datum/ammo/bullet/shotgun/beanbag
@@ -1234,6 +1234,17 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 20
 	bullet_color = COLOR_TESLA_BLUE
 
+
+/datum/ammo/energy/droidblast
+	name = "energetic plasma bolt"
+	icon_state = "pulse2"
+	hud_state = "pulse"
+	damage = 45
+	max_range = 40
+	penetration = 50
+	sundering = 20
+	bullet_color = COLOR_PULSE_BLUE
+
 /datum/ammo/energy/lasgun
 	name = "laser bolt"
 	icon_state = "laser"
@@ -1407,7 +1418,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 ///Set up the list of reagents the spit transfers upon impact
 /datum/ammo/xeno/toxin/proc/set_reagents()
-	spit_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = reagent_transfer_amount)
+	spit_reagents = list(/datum/reagent/toxin/xeno_neurotoxin/light = reagent_transfer_amount)
 
 /datum/ammo/xeno/toxin/on_hit_mob(mob/living/carbon/C, obj/projectile/P)
 	drop_neuro_smoke(get_turf(C))
@@ -1657,7 +1668,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	bonus_projectiles_type = /datum/ammo/xeno/acid/heavy/scatter
 	bonus_projectiles_amount = 5
 	bonus_projectiles_scatter = 10
-	max_range = 7
+	max_range = 8
 	puddle_duration = 2 SECONDS //Lasts 2-4 seconds
 
 /datum/ammo/xeno/boiler_gas

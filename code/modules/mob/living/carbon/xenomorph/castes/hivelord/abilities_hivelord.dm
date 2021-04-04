@@ -188,7 +188,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	newt.tunnel_desc = "[get_area(newt)] (X: [newt.x], Y: [newt.y])"
 	newt.name += " [msg]"
 
-	xeno_message("<span class='xenoannounce'>[X.name] has built a new tunnel named [newt.name] at [newt.tunnel_desc]!</span>", 2, X.hivenumber)
+	xeno_message("[X.name] has built a new tunnel named [newt.name] at [newt.tunnel_desc]!", "xenoannounce", 5, X.hivenumber)
 
 	if(LAZYLEN(X.tunnels) > HIVELORD_TUNNEL_SET_LIMIT) //if we exceed the limit, delete the oldest tunnel set.
 		var/obj/structure/tunnel/old_tunnel = X.tunnels[1]
@@ -278,7 +278,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	name = "Healing Infusion"
 	action_icon_state = "healing_infusion"
 	mechanics_text = "Psychically infuses a friendly xeno with regenerative energies, greatly improving its natural healing. Doesn't work if the target can't naturally heal."
-	cooldown_timer = 5 SECONDS
+	cooldown_timer = 12.5 SECONDS
 	plasma_cost = 200
 	keybind_signal = COMSIG_XENOABILITY_HEALING_INFUSION
 	var/heal_range = HIVELORD_HEAL_RANGE

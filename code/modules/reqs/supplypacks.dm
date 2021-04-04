@@ -131,31 +131,31 @@ OPERATIONS
 /datum/supply_packs/operations/warhead_cluster
 	name = "Cluster orbital warhead"
 	contains = list(/obj/structure/ob_ammo/warhead/cluster)
-	cost = 40
+	cost = 20
 	containertype = null
 
 /datum/supply_packs/operations/warhead_explosive
 	name = "HE orbital warhead"
 	contains = list(/obj/structure/ob_ammo/warhead/explosive)
-	cost = 40
+	cost = 30
 	containertype = null
 
 /datum/supply_packs/operations/warhead_incendiary
 	name = "Incendiary orbital warhead"
 	contains = list(/obj/structure/ob_ammo/warhead/incendiary)
-	cost = 40
+	cost = 20
 	containertype = null
 
 /datum/supply_packs/operations/warhead_plasmaloss
 	name = "Plasma draining orbital warhead"
 	contains = list(/obj/structure/ob_ammo/warhead/plasmaloss)
-	cost = 25
+	cost = 15
 	containertype = null
 
 /datum/supply_packs/operations/ob_fuel
 	name = "Solid fuel"
 	contains = list(/obj/structure/ob_ammo/ob_fuel)
-	cost = 10
+	cost = 5
 	containertype = null
 
 /datum/supply_packs/operations/cas_voucher
@@ -175,12 +175,12 @@ WEAPONS
 /datum/supply_packs/weapons/sentry
 	name = "UA 571-C Base Defense Sentry"
 	contains = list(/obj/item/storage/box/sentry)
-	cost = 100
+	cost = 60
 
 /datum/supply_packs/weapons/minisentry
 	name = "UA-580 Portable Sentry"
 	contains = list(/obj/item/storage/box/minisentry)
-	cost = 40
+	cost = 30
 
 /datum/supply_packs/weapons/m56d_emplacement
 	name = "TL-102 Mounted Heavy Smartgun"
@@ -205,12 +205,12 @@ WEAPONS
 /datum/supply_packs/weapons/railgun
 	name = "TX-220 Railgun"
 	contains = list(/obj/item/weapon/gun/rifle/railgun)
-	cost = 130
+	cost = 75
 
 /datum/supply_packs/weapons/specscoutm4ra
 	name = "Scout Specialist kit (M4RA)"
 	contains = list(/obj/item/weapon/gun/rifle/m4ra)
-	cost = 80
+	cost = 50
 
 /datum/supply_packs/weapons/specdemo
 	name = "Demolitionist Specialist kit"
@@ -225,7 +225,7 @@ WEAPONS
 /datum/supply_packs/weapons/antimaterial
 	name = "T-26 Antimaterial rifle kit"
 	contains = list(/obj/item/weapon/gun/rifle/sniper/antimaterial)
-	cost = 120
+	cost = 70
 
 /datum/supply_packs/weapons/specminigun
 	name = "MIC-A7 Vindicator Minigun"
@@ -265,6 +265,12 @@ WEAPONS
 	notes = "Contains 5 mines"
 	contains = list(/obj/item/storage/box/explosive_mines)
 	cost = 15
+
+/datum/supply_packs/weapons/explosives_razor
+	name = "RB grenade box crate"
+	notes = "Containers 20 razor burns"
+	contains = list(/obj/item/storage/box/nade_box/razor_burn)
+	cost = 50
 
 /datum/supply_packs/weapons/explosives_hedp
 	name = "M40 HEDP high explosive grenade box crate"
@@ -521,12 +527,12 @@ AMMO
 /datum/supply_packs/ammo/antimaterial
 	name = "T-26 magazine"
 	contains = list(/obj/item/ammo_magazine/sniper)
-	cost = 10
+	cost = 5
 
 /datum/supply_packs/ammo/railgun
 	name = "Railgun round"
 	contains = list(/obj/item/ammo_magazine/railgun)
-	cost = 4
+	cost = 3
 
 /datum/supply_packs/ammo/shotguntracker
 	name = "12 Gauge Tracker Shells"

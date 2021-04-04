@@ -55,7 +55,6 @@
 		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/place_acidwell,
 		/datum/action/xeno_action/activable/corrosive_acid,
-		/datum/action/xeno_action/shift_spits,
 		/datum/action/xeno_action/activable/xeno_spit,
 		/datum/action/xeno_action/activable/spray_acid/cone,
 		/datum/action/xeno_action/toggle_pheromones,
@@ -85,7 +84,7 @@
 	max_health = 320
 
 	// *** Evolution *** //
-	upgrade_threshold = 500
+	upgrade_threshold = 750
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 35, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = XENO_BOMB_RESIST_0, "bio" = 33, "rad" = 33, "fire" = 40, "acid" = 33)
@@ -122,7 +121,7 @@
 	max_health = 340
 
 	// *** Evolution *** //
-	upgrade_threshold = 1000
+	upgrade_threshold = 1750
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 40, "bullet" = 45, "laser" = 45, "energy" = 45, "bomb" = XENO_BOMB_RESIST_0, "bio" = 35, "rad" = 35, "fire" = 45, "acid" = 35)
@@ -160,7 +159,7 @@
 	max_health = 360
 
 	// *** Evolution *** //
-	upgrade_threshold = 1000
+	upgrade_threshold = 2750
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 45, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = XENO_BOMB_RESIST_0, "bio" = 38, "rad" = 38, "fire" = 50, "acid" = 38)
@@ -174,4 +173,3 @@
 
 	// *** Pheromones *** //
 	aura_strength = 4.5
-

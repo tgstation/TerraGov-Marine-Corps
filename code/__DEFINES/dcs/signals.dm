@@ -590,6 +590,8 @@
 #define COMSIG_XENOABILITY_BANISH "xenoability_banish"
 #define COMSIG_XENOABILITY_RECALL "xenoability_recall"
 
+#define COMSIG_XENOABILITY_SCATTER_SPIT "xenoability_scatter_spit"
+
 
 // remote control signals
 #define COMSIG_REMOTECONTROL_TOGGLE "remotecontrol_toggle"
@@ -624,6 +626,9 @@
 // /datum/action signals
 #define COMSIG_ACTION_TRIGGER "action_trigger"                        //from base of datum/action/proc/Trigger(): (datum/action)
 	#define COMPONENT_ACTION_BLOCK_TRIGGER (1<<0)
+
+//Signals for CIC orders
+#define COMSIG_ORDER_SELECTED "order_selected"
 
 //Signals for automatic fire at component
 #define COMSIG_AUTOMATIC_SHOOTER_START_SHOOTING_AT "start_shooting_at"

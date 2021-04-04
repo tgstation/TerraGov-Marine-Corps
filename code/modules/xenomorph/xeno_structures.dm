@@ -32,12 +32,12 @@
 	bound_width = 96
 	bound_height = 96
 	max_integrity = 1000
+	///How many larva points one silo produce in one minute
+	var/larva_spawn_rate = 0.5
 	var/turf/center_turf
 	var/datum/hive_status/associated_hive
 	var/silo_area
 	var/number_silo
-	///How old this silo is in seconds
-	var/maturity = 0
 	COOLDOWN_DECLARE(silo_damage_alert_cooldown)
 	COOLDOWN_DECLARE(silo_proxy_alert_cooldown)
 
@@ -47,7 +47,6 @@
 	name = "[name] [number]"
 	number_silo = number
 	number++
-	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY), .proc/start_maturing)
 	GLOB.xeno_resin_silos += src
 	center_turf = get_step(src, NORTHEAST)
 	if(!istype(center_turf))
@@ -55,9 +54,6 @@
 
 	for(var/i in RANGE_TURFS(XENO_SILO_DETECTION_RANGE, src))
 		RegisterSignal(i, COMSIG_ATOM_ENTERED, .proc/resin_silo_proxy_alert)
-
-	if(SSsilo.silos_do_mature)
-		start_maturing()
 
 	return INITIALIZE_HINT_LATELOAD
 
@@ -68,25 +64,27 @@
 		new /obj/effect/alien/weeds/node(center_turf)
 	associated_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	if(associated_hive)
+		if(length(GLOB.xeno_resin_silos) == 1)
+			associated_hive.give_larva_to_next_in_queue()
 		RegisterSignal(associated_hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK), .proc/is_burrowed_larva_host)
 		associated_hive.handle_silo_death_timer()
 	silo_area = get_area(src)
 	var/turf/tunnel_turf = get_step(center_turf, NORTH)
 	if(tunnel_turf.can_dig_xeno_tunnel())
 		var/obj/structure/tunnel/newt = new(tunnel_turf)
-		newt.tunnel_desc = "[get_area(newt)] (X: [newt.x], Y: [newt.y])"
+		newt.tunnel_desc = " [get_area(newt)] (X: [newt.x], Y: [newt.y])"
 		newt.name += "[name]"
 
 /obj/structure/resin/silo/Destroy()
 	GLOB.xeno_resin_silos -= src
 	if(associated_hive)
 		UnregisterSignal(associated_hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK))
-		
+
 		if(isdistress(SSticker.mode)) //Silo can only be destroy in distress mode, but this check can create bugs if new gamemodes are added.
 			var/datum/game_mode/infestation/distress/distress_mode
 			distress_mode = SSticker.mode
 			if (!(distress_mode.round_stage == DISTRESS_DROPSHIP_CRASHING))//No need to notify the xenos shipside
-				associated_hive.xeno_message("<span class='xenoannounce'>A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!</span>", 2, FALSE,src.loc, 'sound/voice/alien_help2.ogg',FALSE , null, /obj/screen/arrow/silo_damaged_arrow)
+				associated_hive.xeno_message("A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!", "xenoannounce", 5, FALSE,src.loc, 'sound/voice/alien_help2.ogg',FALSE , null, /obj/screen/arrow/silo_damaged_arrow)
 				associated_hive.handle_silo_death_timer()
 				associated_hive = null
 				notify_ghosts("\ A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!", source = get_turf(src), action = NOTIFY_JUMP)
@@ -131,7 +129,7 @@
 	if(!COOLDOWN_CHECK(src, silo_damage_alert_cooldown))
 		return
 
-	associated_hive.xeno_message("<span class='xenoannounce'>Our [name] at [AREACOORD_NO_Z(src)] is under attack! It has [obj_integrity]/[max_integrity] Health remaining.</span>", 2, FALSE, src, 'sound/voice/alien_help1.ogg',FALSE, null, /obj/screen/arrow/silo_damaged_arrow)
+	associated_hive.xeno_message("Our [name] at [AREACOORD_NO_Z(src)] is under attack! It has [obj_integrity]/[max_integrity] Health remaining.", "xenoannounce", 5, FALSE, src, 'sound/voice/alien_help1.ogg',FALSE, null, /obj/screen/arrow/silo_damaged_arrow)
 	COOLDOWN_START(src, silo_damage_alert_cooldown, XENO_SILO_HEALTH_ALERT_COOLDOWN) //set the cooldown.
 
 ///Alerts the Hive when hostiles get too close to their resin silo
@@ -153,28 +151,26 @@
 		if(X.hive == associated_hive) //Trigger proxy alert only for hostile xenos
 			return
 
-	associated_hive.xeno_message("<span class='xenoannounce'>Our [name] has detected a nearby hostile [hostile] at [get_area(hostile)] (X: [hostile.x], Y: [hostile.y]).</span>", 2, FALSE, hostile, 'sound/voice/alien_help1.ogg', FALSE, null, /obj/screen/arrow/leader_tracker_arrow)
+	associated_hive.xeno_message("Our [name] has detected a nearby hostile [hostile] at [get_area(hostile)] (X: [hostile.x], Y: [hostile.y]).", "xenoannounce", 5, FALSE, hostile, 'sound/voice/alien_help1.ogg', FALSE, null, /obj/screen/arrow/leader_tracker_arrow)
 	COOLDOWN_START(src, silo_proxy_alert_cooldown, XENO_SILO_DETECTION_COOLDOWN) //set the cooldown.
-
-///Signal handler to tell the silo it can start maturing, so it adds it to the process if that's not the case
-/obj/structure/resin/silo/proc/start_maturing()
-	SIGNAL_HANDLER
-	if(!CHECK_BITFIELD(datum_flags, DF_ISPROCESSING))
-		START_PROCESSING(SSslowprocess, src)
 
 /obj/structure/resin/silo/process()
 	//Regenerate if we're at less than max integrity
 	if(obj_integrity < max_integrity)
 		obj_integrity = min(obj_integrity + 25, max_integrity) //Regen 5 HP per sec
-	
-	if(SSsilo.silos_do_mature)
-		maturity += 5
+
 
 
 /obj/structure/resin/silo/proc/is_burrowed_larva_host(datum/source, list/mothers, list/silos)
 	SIGNAL_HANDLER
 	if(associated_hive)
 		silos += src
+
+/obj/structure/resin/silo/small_silo
+	name = "small resin silo"
+	icon_state = "weed_silo"
+	max_integrity = 500
+	larva_spawn_rate = 0.25
 
 /obj/structure/resin/xeno_turret
 	icon = 'icons/Xeno/acidturret.dmi'
@@ -229,6 +225,7 @@
 	set_hostile(null)
 	set_last_hostile(null)
 	STOP_PROCESSING(SSobj, src)
+	playsound(loc,'sound/effects/xeno_turret_death.ogg', 70)
 	return ..()
 
 /obj/structure/resin/xeno_turret/ex_act(severity)
@@ -272,7 +269,7 @@
 			set_last_hostile(null)
 		return
 	if(!TIMER_COOLDOWN_CHECK(src, COOLDOWN_XENO_TURRETS_ALERT))
-		associated_hive.xeno_message("<span class='xenoannounce'>Our [name] is attacking a nearby hostile [hostile] at [get_area(hostile)] (X: [hostile.x], Y: [hostile.y]).</span>", 2, FALSE, hostile, 'sound/voice/alien_help1.ogg', FALSE, null, /obj/screen/arrow/turret_attacking_arrow)
+		associated_hive.xeno_message("Our [name] is attacking a nearby hostile [hostile] at [get_area(hostile)] (X: [hostile.x], Y: [hostile.y]).", "xenoannounce", 5, FALSE, hostile, 'sound/voice/alien_help1.ogg', FALSE, null, /obj/screen/arrow/turret_attacking_arrow)
 		TIMER_COOLDOWN_START(src, COOLDOWN_XENO_TURRETS_ALERT, 20 SECONDS)
 	if(hostile != last_hostile)
 		set_last_hostile(hostile)

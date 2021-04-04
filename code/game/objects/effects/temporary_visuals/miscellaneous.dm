@@ -153,3 +153,9 @@
 	icon_state = "bhole3"
 	layer = ABOVE_LYING_MOB_LAYER
 	duration = WRAITH_BANISH_BASE_DURATION+1 //So we don't delete our contents early
+
+/obj/effect/temp_visual/acid_splatter
+	name = "acid_splatter"
+	icon = 'icons/Xeno/Effects.dmi'
+	icon_state = "splatter"
+	duration = 0.8 SECONDS

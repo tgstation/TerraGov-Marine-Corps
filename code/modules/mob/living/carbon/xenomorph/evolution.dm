@@ -158,6 +158,11 @@
 			to_chat(src, "<span class='warning'>You are jobbanned from the Queen role.</span>")
 			return
 
+		var/datum/job/xenojob = SSjob.GetJobType(/datum/job/xenomorph/queen)
+		if(xenojob.required_playtime_remaining(client))
+			to_chat(src, "<span class='warning'>[get_exp_format(xenojob.required_playtime_remaining(client))] as [xenojob.get_exp_req_type()] required to play the queen role.</span>")
+			return
+		
 		if(hive.living_xeno_queen)
 			to_chat(src, "<span class='warning'>There already is a living Queen.</span>")
 			return
@@ -295,6 +300,11 @@
 			qdel(new_xeno)
 		return
 
+	new_xeno.upgrade_stored = upgrade_stored
+	//We upgrade the new xeno until it reaches ancient or doesn't have enough upgrade points stored to mature
+	while(new_xeno.upgrade_possible() && new_xeno.upgrade_stored >= new_xeno.xeno_caste.upgrade_threshold)
+		new_xeno.upgrade_xeno(new_xeno.upgrade_next(), TRUE)
+
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_EVOLVED, new_xeno)
 
 	for(var/obj/item/W in contents) //Drop stuff
@@ -352,6 +362,9 @@
 			if(XENO_TIER_THREE)
 				SSmonitor.stats.ancient_T3--
 
+	new_xeno.upgrade_stored = upgrade_stored
+	while(new_xeno.upgrade_possible() && new_xeno.upgrade_stored >= new_xeno.xeno_caste.upgrade_threshold)
+		new_xeno.upgrade_xeno(new_xeno.upgrade_next(), TRUE)
 	qdel(src)
 	INVOKE_ASYNC(new_xeno, /mob/living.proc/do_jitter_animation, 1000)
 

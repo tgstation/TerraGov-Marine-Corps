@@ -346,7 +346,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/bayonet
 	name = "bayonet"
-	desc = "A sharp blade for mounting on a weapon. It can be used to stab manually on anything but harm intent."
+	desc = "A sharp blade for mounting on a weapon. It can be used to stab manually on anything but harm intent. Slightly reduces the accuracy of the gun when mounted."
 	icon_state = "bayonet"
 	attach_icon = "bayonet_a"
 	force = 20
@@ -416,7 +416,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/heavy_barrel
 	name = "barrel charger"
-	desc = "A fitted barrel extender that goes on the muzzle, with a small shaped charge that propels a bullet much faster.\nGreatly increases projectile damage and increases projectile speed at the cost of accuracy and firing speed."
+	desc = "A fitted barrel extender that goes on the muzzle, with a small shaped charge that propels a bullet much faster.\nGreatly increases projectile damage at the cost of accuracy and scatter."
 	slot = "muzzle"
 	icon_state = "hbarrel"
 	attach_icon = "hbarrel_a"
@@ -1590,7 +1590,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/lasersight
 	name = "laser sight"
-	desc = "A laser sight placed under the barrel. Significantly increases one-handed accuracy and significantly reduces movement penalties to accuracy."
+	desc = "A laser sight placed under the barrel. Significantly increases one-handed accuracy and significantly reduces unwielded penalties to accuracy."
 	icon_state = "lasersight"
 	attach_icon = "lasersight_a"
 	slot = "under"
@@ -1602,7 +1602,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/bipod
 	name = "bipod"
-	desc = "A simple set of telescopic poles to keep a weapon stabilized during firing. \nGreatly increases accuracy and reduces recoil when properly placed, but also increases weapon size."
+	desc = "A simple set of telescopic poles to keep a weapon stabilized during firing. \nGreatly increases accuracy and reduces recoil and scatter when properly placed, but also increases weapon size."
 	icon_state = "bipod"
 	attach_icon = "bipod_a"
 	slot = "under"

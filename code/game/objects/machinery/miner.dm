@@ -2,7 +2,7 @@
 #define MINER_SMALL_DAMAGE	1
 #define MINER_MEDIUM_DAMAGE	2
 #define MINER_DESTROYED	3
-
+#define MINER_AUTOMATED "mining computer"
 #define MINER_RESISTANT	"reinforced components"
 #define MINER_OVERCLOCKED "high-efficiency drill"
 
@@ -77,6 +77,14 @@
 			miner_integrity = 300
 		if(MINER_OVERCLOCKED)
 			required_ticks = 60
+		if(MINER_AUTOMATED)
+			if(stored_mineral)
+				SSpoints.supply_points += mineral_value * stored_mineral
+				do_sparks(5, TRUE, src)
+				playsound(loc,'sound/effects/phasein.ogg', 50, FALSE)
+				say("Ore shipment has been sold for [mineral_value * stored_mineral] points.")
+				stored_mineral = 0
+				start_processing()
 	miner_upgrade_type = upgrade.uptype
 	user.visible_message("<span class='notice'>[user] attaches the [miner_upgrade_type] to the [src]!</span>")
 	qdel(upgrade)
@@ -216,7 +224,9 @@
 	if(miner_status != MINER_RUNNING)
 		to_chat(user, "<span class='warning'>[src] is damaged!</span>")
 		return
-
+	if(miner_upgrade_type == MINER_AUTOMATED)
+		to_chat(user, "<span class='warning'>[src] is automated!</span>")
+		return
 	if(!stored_mineral)
 		to_chat(user, "<span class='warning'>[src] is not ready to produce a shipment yet!</span>")
 		return
@@ -233,6 +243,13 @@
 		stop_processing()
 		return
 	if(add_tick >= required_ticks)
+		if(miner_upgrade_type == MINER_AUTOMATED)
+			SSpoints.supply_points += mineral_value
+			do_sparks(5, TRUE, src)
+			playsound(loc,'sound/effects/phasein.ogg', 50, FALSE)
+			say("Ore shipment has been sold for [mineral_value] points.")
+			add_tick = 0
+			return
 		stored_mineral += 1
 		add_tick = 0
 	if(stored_mineral >= 8)	//Stores 8 boxes worth of minerals
