@@ -130,9 +130,10 @@
 		on_off()
 	update_resource(-resource_drain_amount)
 
-	wearer.heal_limb_damage(4*boost_amount, 4*boost_amount)
-	if(connected_weapon)
-		wearer.adjustStaminaLoss(-7*((20 - (world.time - processing_start)/10)/20)) //stamina gain scales inversely with passed time, becoming negative after 20 seconds
+	wearer.heal_limb_damage(6*boost_amount, 6*boost_amount)
+	if(connected_weapon && world.time - processing_start < 20 SECONDS)
+		wearer.adjustStaminaLoss(-7*((20 - (world.time - processing_start)/10)/20)) //stamina gain scales inversely with passed time, up to 20 seconds
+		message_admins("stamina regenned > [-7*((20 - (world.time - processing_start)/10)/20)]")
 	if(world.time - processing_start > 12 SECONDS && world.time - processing_start < 15 SECONDS)
 		wearer.overlay_fullscreen("degeneration", /obj/screen/fullscreen/infection, 1)
 		to_chat(wearer, "<span class='highdanger'>WARNING: You have [(200 - (world.time - processing_start))/10] seconds before necrotic tissue forms on your limbs.</span>")
@@ -184,10 +185,10 @@
 		if(necrotized_counter >= 1)
 			for(var/X in shuffle(wearer.limbs))
 				var/datum/limb/L = X
-				if(L.germ_level < 600)
+				if(L.germ_level > 700)
 					continue
 				to_chat(wearer, "<span class='warning'>You can feel the life force in your [L.display_name] draining away...</span>")
-				L.germ_level += INFECTION_LEVEL_THREE + 50
+				L.germ_level += max(INFECTION_LEVEL_THREE + 50 - L.germ_level, 200)
 				necrotized_counter -= 1
 				if(necrotized_counter < 1)
 					break
