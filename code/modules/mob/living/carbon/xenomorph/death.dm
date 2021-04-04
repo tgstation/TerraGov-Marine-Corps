@@ -69,7 +69,7 @@
 	if(is_centcom_level(z))
 		return
 	var/area/A = get_area(src)
-	xeno_message("Hive: \The [src] has <b>died</b>[A? " at [A]":""]!", 3, hivenumber)
+	xeno_message("Hive: \The [src] has <b>died</b>[A? " at [A]":""]!", "xenoannounce", 5, hivenumber)
 
 /mob/living/carbon/xenomorph/gib()
 
