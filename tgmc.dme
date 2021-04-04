@@ -498,6 +498,7 @@
 #include "code\game\objects\items\bodybag.dm"
 #include "code\game\objects\items\cards_ids.dm"
 #include "code\game\objects\items\cloaking.dm"
+#include "code\game\objects\items\cocoon.dm"
 #include "code\game\objects\items\coins.dm"
 #include "code\game\objects\items\cosmetics.dm"
 #include "code\game\objects\items\debugger.dm"

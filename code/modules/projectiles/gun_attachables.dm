@@ -361,6 +361,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	accuracy_mod = -0.05
 	accuracy_unwielded_mod = -0.1
 	size_mod = 1
+	sharp = IS_SHARP_ITEM_ACCURATE
 
 /obj/item/attachable/bayonet/attackby(obj/item/I, mob/user)
 	. = ..()
@@ -396,6 +397,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	accuracy_mod = -0.05
 	accuracy_unwielded_mod = -0.1
 	size_mod = 1
+	sharp = IS_SHARP_ITEM_ACCURATE
 
 /obj/item/attachable/bayonetknife/Initialize()
 	. = ..()
