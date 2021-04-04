@@ -1,5 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - bugfix: "Prae acid spray back to normal"
-  - balance: "Fresh acid (from acid spray) stun when you walk on it, acid is considered fresh for 1 second rather than 0.5 previously"
