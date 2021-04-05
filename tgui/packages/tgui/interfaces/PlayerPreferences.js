@@ -420,15 +420,14 @@ const CharacterCustomization = (props, context) => {
 };
 
 const ProfilePicture = (props, context) => {
-  const { act, data, config } = useBackend(context);
+  const { data } = useBackend(context);
+  const { mapRef } = data;
   return (
     <ByondUi
       style={{ width: '400px', height: '100px' }}
       params={{
-        id: 'player_pref_map',
-        parent: config.window,
+        id: mapRef,
         type: 'map',
-        zoom: 3,
       }}
     />
   );

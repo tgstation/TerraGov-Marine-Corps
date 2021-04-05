@@ -98,7 +98,6 @@ export class TextArea extends Component {
           e.target.selectionEnd = s +1;
         }
       }
-
       if (onKeyDown) {
         onKeyDown(e, e.target.value);
       }
@@ -181,10 +180,8 @@ export class TextArea extends Component {
           'TextArea',
           fluid && 'TextArea--fluid',
           className,
-
         ])}
         {...rest}>
-
         <textarea
           value={this.getValue()}
           ref={this.textareaRef}

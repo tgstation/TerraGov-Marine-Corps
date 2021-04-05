@@ -186,6 +186,7 @@
 			desc = kb.description,
 			category = kb.category,
 		))
+	.["mapRef"] = "player_pref_map"
 
 
 /datum/preferences/ui_act(action, list/params)
