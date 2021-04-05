@@ -211,7 +211,7 @@
 			/obj/item/storage/box/m94 = 30,
 			/obj/item/storage/box/m94/cas = 10,
 		),
-		"Especialized" = list(
+		"Specialized" = list(
 			/obj/item/weapon/gun/rifle/standard_gpmg = 10,
 			/obj/item/weapon/gun/launcher/m92/standardmarine = 10,
 			/obj/item/weapon/gun/launcher/m81 = 15,
