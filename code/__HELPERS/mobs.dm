@@ -44,8 +44,7 @@
 
 
 /proc/get_playable_species()
-	var/list/playable_species = GLOB.roundstart_species
-	return playable_species
+	return GLOB.roundstart_species
 
 
 /proc/do_mob(mob/user, mob/target, delay = 30, user_display, target_display, prog_bar = PROGRESS_GENERIC, ignore_flags = NONE, datum/callback/extra_checks)

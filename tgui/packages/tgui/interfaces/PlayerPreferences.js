@@ -55,7 +55,7 @@ export const PlayerPreferences = (props, context) => {
   ));
 
   return (
-    <Window resizable
+    <Window
       width={1140}
       height={650}>
       <Window.Content scrollable>
