@@ -30,7 +30,7 @@
 		"age" = age,
 		"gender" = gender,
 		"ethnicity" = ethnicity,
-		"species" = species,
+		"species" = species || "Human", //Sometimes species is null on creation of random char
 		"body_type" = body_type,
 		"good_eyesight" = good_eyesight,
 		"h_style" = h_style,
@@ -231,7 +231,7 @@
 				return
 			synthetic_name = newValue
 
-		if("synth_type")
+		if("synthetic_type")
 			var/new_synth_type = params["newValue"]
 			if(!(new_synth_type in SYNTH_TYPES))
 				return

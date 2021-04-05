@@ -470,7 +470,7 @@ requisitions line and later on to be ready to send supplies for marines who are 
 		<b>You answer to the</b> acting Command Staff<br /><br />
 		<b>Unlock Requirement</b>: Starting Role<br /><br />
 		<b>Gamemode Availability</b>: Distress<br /><br /><br />
-		<b>Duty</b>: Prodive the crew with supplies. Manage the supply of points
+		Requisition supplies to the battlefield. Ensure that the marines are reparing miners for more points. Supply the marines with deluxe equipment to ensure success.
 	"}
 
 /datum/job/terragov/requisitions/officer/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
@@ -543,6 +543,13 @@ A happy ship is a well-functioning ship."})
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 	)
+	html_description = {"
+		<b>Difficulty</b>: Hard<br /><br />
+		<b>You answer to the</b> acting Command Staff<br /><br />
+		<b>Unlock Requirement</b>: Starting Role<br /><br />
+		<b>Gamemode Availability</b>: Crash, Distress<br /><br /><br />
+		<b>Duty</b>: Communicate and lead your fellow medical officers (if available), supervise the medical department. Coordinate and teach fellow medical officers and corpsmen what they’re doing for treating an injury. Be the sole doctor in the Canterbury.
+	"}
 
 
 /datum/job/terragov/medical/professor/radio_help_message(mob/M)

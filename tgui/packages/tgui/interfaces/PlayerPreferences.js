@@ -446,7 +446,6 @@ const TextFieldPreference = (props, context) => {
       <Input
         placeholder={data[value] || ''}
         value={data[value] || value}
-        onFocus={() => onFocus && onFocus()}
         onChange={(e, newValue) =>
           !onFocus && handler(action || value, { newValue })}
       />

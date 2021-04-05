@@ -28,9 +28,6 @@ export class Input extends Component {
       if (!editing) {
         this.setEditing(true);
       }
-      if (onFocus) {
-        onFocus(e);
-      }
       if (onInput) {
         onInput(e, e.target.value);
       }

@@ -7,12 +7,15 @@
  */
 
 
-import { classes, isFalsy } from 'common/react';
+import { classes, canRender } from 'common/react';
 import { Component, createRef } from 'inferno';
 import { Box } from './Box';
 
 
 const toInputValue = value => {
+  if (!canRender(value)) {
+    return '';
+  }
   return value;
 };
 
