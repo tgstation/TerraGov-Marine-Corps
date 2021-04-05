@@ -23,16 +23,6 @@ export class Dropdown extends Component {
     };
   }
 
-  static getDerivedStateFromProps(nextProps, currentState) {
-    if (currentState.selected === nextProps.selected) {
-      return null;
-    }
-    return {
-      selected: nextProps.selected,
-      open: currentState.open,
-    };
-  }
-
   componentWillUnmount() {
     window.removeEventListener('click', this.handleClick);
   }
@@ -97,7 +87,7 @@ export class Dropdown extends Component {
 
     const menu = this.state.open ? (
       <div
-        ref={ref => { this.menuRef = ref; }}
+        ref={menu => { this.menuRef = menu; }}
         tabIndex="-1"
         style={{
           'width': width,
