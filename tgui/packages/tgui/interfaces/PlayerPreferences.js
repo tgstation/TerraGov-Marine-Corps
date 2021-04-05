@@ -1,18 +1,6 @@
 import { useBackend, useLocalState } from '../backend';
 import {
-  Button,
-  Input,
-  Section,
-  Flex,
-  Tabs,
-  LabeledList,
-  Dropdown,
-  TextArea,
-  Box,
-  Grid,
-  Modal,
-  ColorBox,
-  ByondUi,
+  Button, Input, Section, Flex, Tabs, LabeledList, Dropdown, TextArea, Box, Grid, Modal, ColorBox, ByondUi,
 } from '../components';
 import { Window } from '../layouts';
 import { logger } from '../logging';

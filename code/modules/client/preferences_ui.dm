@@ -60,7 +60,7 @@
 		"undershirt" = undershirt,
 		"underwear" = underwear,
 		"backpack" = backpack,
-		"gear" = gear,
+		"gear" = gear || list(),
 
 		// Job prefs
 		"job_preferences" = job_preferences,
