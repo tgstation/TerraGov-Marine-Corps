@@ -564,13 +564,6 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	surgery = SKILL_SURGERY_AMATEUR
 	melee_weapons = SKILL_MELEE_SUPER
 
-/datum/skills/tank_crew
-	name = "Tank Crew"
-	large_vehicle = SKILL_LARGE_VEHICLE_TRAINED
-	powerloader = SKILL_POWERLOADER_DABBLING
-	leadership = SKILL_LEAD_TRAINED
-	engineer = SKILL_ENGINEER_METAL
-
 /datum/skills/spatial_agent
 	name = "Spatial Agent"
 	engineer = SKILL_ENGINEER_MASTER

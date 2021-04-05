@@ -119,7 +119,6 @@
 	wrenchable = FALSE
 	req_one_access = list(ACCESS_MARINE_CARGO, ACCESS_MARINE_LOGISTICS)
 	products = list(
-		/obj/item/storage/box/ammo = 30,
 		/obj/item/storage/box/nade_box = 2,
 		/obj/item/storage/box/nade_box/HIDP = 2,
 		/obj/item/storage/box/nade_box/M15 = 2,
@@ -172,6 +171,7 @@
 	desc = "A automated rack hooked up to a small supply of various firearms and explosives."
 	wrenchable = FALSE
 	products = list(
+<<<<<<< HEAD
 		"Rifles" = list(
 			/obj/item/weapon/gun/rifle/standard_carbine = 10,
 			/obj/item/weapon/gun/rifle/standard_assaultrifle = 10,
@@ -220,6 +220,43 @@
 			/obj/item/storage/box/recoilless_system = 1,
 			/obj/item/weapon/shield/riot/marine = 3,
 		),
+=======
+		/obj/item/weapon/gun/pistol/standard_pistol = 10,
+		/obj/item/weapon/gun/revolver/standard_revolver = 10,
+		/obj/item/weapon/gun/pistol/standard_heavypistol = 10,
+		/obj/item/weapon/gun/pistol/vp70 = 10,
+		/obj/item/weapon/gun/smg/ppsh = 5,
+		/obj/item/weapon/gun/smg/standard_smg = 10,
+		/obj/item/weapon/gun/smg/standard_machinepistol = 10,
+		/obj/item/weapon/gun/rifle/standard_carbine = 10,
+		/obj/item/weapon/gun/rifle/standard_assaultrifle = 10,
+		/obj/item/weapon/gun/rifle/standard_lmg = 10,
+		/obj/item/weapon/gun/rifle/standard_gpmg = 10,
+		/obj/item/weapon/gun/rifle/standard_dmr = 10,
+		/obj/item/weapon/gun/rifle/standard_br = 10,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle = 10,
+		/obj/item/weapon/gun/rifle/chambered = 10,
+		/obj/item/weapon/gun/shotgun/pump/t35 = 10,
+		/obj/item/weapon/gun/shotgun/combat/standardmarine = 10,
+		/obj/item/weapon/gun/rifle/standard_autoshotgun = 10,
+		/obj/item/weapon/gun/launcher/m92/standardmarine = 10,
+		/obj/item/weapon/gun/launcher/m81 = 15,
+		/obj/item/weapon/gun/pistol/standard_pocketpistol = 20,
+		/obj/item/storage/belt/gun/ts34/full = 5,
+		/obj/item/weapon/gun/shotgun/pump/cmb = 5,
+		/obj/item/weapon/gun/shotgun/pump/bolt = 5,
+		/obj/item/weapon/gun/rifle/tx11 = 20,
+		/obj/item/weapon/gun/flamer/marinestandard = 2,
+		/obj/item/explosive/mine = 5,
+		/obj/item/explosive/grenade/frag/m15 = 25,
+		/obj/item/explosive/grenade/incendiary = 25,
+		/obj/item/explosive/grenade/drainbomb = 5,
+		/obj/item/explosive/grenade/cloakbomb = 12,
+		/obj/item/storage/box/m94 = 30,
+		/obj/item/storage/box/m94/cas = 10,
+		/obj/item/storage/box/recoilless_system = 1,
+		/obj/item/weapon/shield/riot/marine = 3,
+>>>>>>> tgstation/master
 	)
 
 	contraband = list(/obj/item/explosive/grenade/smokebomb = 25)
@@ -312,6 +349,7 @@
 		/obj/item/ammo_magazine/box10x24mm = 50,
 		/obj/item/ammo_magazine/box10x26mm = 50,
 		/obj/item/ammo_magazine/box10x27mm = 50,
+		/obj/item/storage/box/ammo = 15,
 	)
 
 

@@ -32,6 +32,8 @@
 	bound_width = 96
 	bound_height = 96
 	max_integrity = 1000
+	///How many larva points one silo produce in one minute
+	var/larva_spawn_rate = 0.5
 	var/turf/center_turf
 	var/datum/hive_status/associated_hive
 	var/silo_area
@@ -62,6 +64,8 @@
 		new /obj/effect/alien/weeds/node(center_turf)
 	associated_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	if(associated_hive)
+		if(length(GLOB.xeno_resin_silos) == 1)
+			associated_hive.give_larva_to_next_in_queue()
 		RegisterSignal(associated_hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK), .proc/is_burrowed_larva_host)
 		associated_hive.handle_silo_death_timer()
 	silo_area = get_area(src)
@@ -161,6 +165,12 @@
 	SIGNAL_HANDLER
 	if(associated_hive)
 		silos += src
+
+/obj/structure/resin/silo/small_silo
+	name = "small resin silo"
+	icon_state = "weed_silo"
+	max_integrity = 500
+	larva_spawn_rate = 0.25
 
 /obj/structure/resin/xeno_turret
 	icon = 'icons/Xeno/acidturret.dmi'
