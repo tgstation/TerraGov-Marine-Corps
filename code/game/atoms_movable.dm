@@ -281,9 +281,13 @@
 	SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, oldloc, direction, Forced)
 	if(pulledby)
 		SEND_SIGNAL(src, COMSIG_MOVABLE_PULL_MOVED, oldloc, direction, Forced)
-	for(var/thing in light_sources) // Cycle through the light sources on this atom and tell them to update.
-		var/datum/light_source/L = thing
-		L.source_atom.update_light()
+	//Cycle through the light sources on this atom and tell them to update.
+	for(var/datum/dynamic_light_source/light AS in hybrid_light_sources)
+		light.source_atom.update_light()
+		if(!isturf(loc))
+			light.find_containing_atom()
+	for(var/datum/static_light_source/L AS in static_light_sources) // Cycle through the light sources on this atom and tell them to update.
+		L.source_atom.static_update_light() //tivi todo
 	return TRUE
 
 
@@ -952,7 +956,7 @@
 		ENABLE_BITFIELD(flags_pass, HOVERING)
 		return
 	DISABLE_BITFIELD(flags_pass, HOVERING)
-	
+
 
 /atom/movable/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()

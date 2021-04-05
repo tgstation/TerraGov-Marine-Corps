@@ -101,7 +101,7 @@
 /area/ai_multicam_room
 	name = "AI Multicam Room"
 	icon_state = "ai_camera_room"
-	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
+	static_lighting = FALSE
 	ambience = list()
 
 

@@ -130,10 +130,12 @@
 	anchored = TRUE
 	layer = FLY_LAYER
 	use_power = ACTIVE_POWER_USE
+	light_power = 7
+	light_range = 9
 	idle_power_usage = 2
 	active_power_usage = 20
 	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
-	var/brightness = 8			// luminosity when on, also used in power calculation
+	var/brightness = 8			// power usage when on todo o a rename on this
 	var/bulb_power = 1			// basically the alpha of the emitted light source
 	var/bulb_colour = COLOR_WHITE
 	var/status = LIGHT_OK		// LIGHT_OK, _EMPTY, _BURNED or _BROKEN
@@ -152,6 +154,7 @@
 	base_state = "bulb"
 	fitting = "bulb"
 	brightness = 4
+	light_power = 5
 	desc = "A small lighting fixture."
 	light_type = /obj/item/light_bulb/bulb
 
@@ -159,6 +162,8 @@
 	name = "spotlight"
 	fitting = "large tube"
 	light_type = /obj/item/light_bulb/tube/large
+	light_power = 9
+	light_range = 12
 	brightness = 12
 
 /obj/machinery/light/built/Initialize()
@@ -218,7 +223,7 @@
 			icon_state = "[base_state]-burned"
 		if(LIGHT_BROKEN)
 			icon_state = "[base_state]-broken"
-	return
+
 
 // update the icon_state and luminosity of the light depending on its state
 /obj/machinery/light/proc/update(trigger = TRUE)

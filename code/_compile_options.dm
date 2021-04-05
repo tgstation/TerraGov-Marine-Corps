@@ -71,3 +71,5 @@
 #ifdef CITESTING
 #define TESTING
 #endif
+
+#define SHADOW_DEBUG

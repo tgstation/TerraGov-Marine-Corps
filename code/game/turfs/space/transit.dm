@@ -3,7 +3,6 @@
 	icon_state = "black"
 	dir = SOUTH
 	baseturfs = /turf/open/space/transit
-	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED //Different from /tg/
 	flags_atom = NOJAUNT_1 //This line goes out to every wizard that ever managed to escape the den. I'm sorry.
 	explosion_block = INFINITY
 

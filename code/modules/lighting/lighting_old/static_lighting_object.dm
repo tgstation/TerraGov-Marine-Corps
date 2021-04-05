@@ -1,4 +1,4 @@
-/atom/movable/lighting_object
+/atom/movable/static_lighting_object
 	name          = ""
 
 	anchored      = TRUE
@@ -8,37 +8,34 @@
 	color            = LIGHTING_BASE_MATRIX
 	plane            = LIGHTING_PLANE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	layer            = LIGHTING_LAYER
+	layer            = BACKGROUND_LAYER + LIGHTING_PRIMARY_LAYER
 	invisibility     = INVISIBILITY_LIGHTING
 
 	var/needs_update = FALSE
 	var/turf/myturf
 
-
-/atom/movable/lighting_object/Initialize(mapload)
+/atom/movable/static_lighting_object/Initialize(mapload)
 	. = ..()
 	verbs.Cut()
 
 	myturf = loc
-	if(myturf.lighting_object)
-		qdel(myturf.lighting_object, force = TRUE)
-	myturf.lighting_object = src
-	myturf.luminosity = 0
+
+	if(myturf.static_lighting_object)
+		qdel(myturf.static_lighting_object, force = TRUE)
+	myturf.static_lighting_object = src
 
 	needs_update = TRUE
-	SSlighting.objects_queue += src
+	GLOB.lighting_update_objects += src
 
-
-/atom/movable/lighting_object/Destroy(force)
-	if(force)
-		SSlighting.objects_queue -= src
-		if(loc != myturf)
+/atom/movable/static_lighting_object/Destroy(force)
+	if (force)
+		GLOB.lighting_update_objects     -= src
+		if (loc != myturf)
 			var/turf/oldturf = get_turf(myturf)
 			var/turf/newturf = get_turf(loc)
 			stack_trace("A lighting object was qdeleted with a different loc then it is suppose to have ([COORD(oldturf)] -> [COORD(newturf)])")
-		if(isturf(myturf))
-			myturf.lighting_object = null
-			myturf.luminosity = 1
+		if (isturf(myturf))
+			myturf.static_lighting_object = null
 		myturf = null
 
 		return ..()
@@ -46,10 +43,9 @@
 	else
 		return QDEL_HINT_LETMELIVE
 
-
-/atom/movable/lighting_object/proc/update()
-	if(loc != myturf)
-		if(loc)
+/atom/movable/static_lighting_object/proc/update()
+	if (loc != myturf)
+		if (loc)
 			var/turf/oldturf = get_turf(myturf)
 			var/turf/newturf = get_turf(loc)
 			warning("A lighting object realised it's loc had changed in update() ([myturf]\[[myturf ? myturf.type : "null"]]([COORD(oldturf)]) -> [loc]\[[ loc ? loc.type : "null"]]([COORD(newturf)]))!")
@@ -66,14 +62,14 @@
 	// Including with these comments.
 
 	// See LIGHTING_CORNER_DIAGONAL in lighting_corner.dm for why these values are what they are.
-	var/static/datum/lighting_corner/dummy/dummy_lighting_corner = new
+	var/static/datum/static_lighting_corner/dummy/dummy_lighting_corner = new
 
-	var/list/corners = myturf.corners
-	var/datum/lighting_corner/cr = dummy_lighting_corner
-	var/datum/lighting_corner/cg = dummy_lighting_corner
-	var/datum/lighting_corner/cb = dummy_lighting_corner
-	var/datum/lighting_corner/ca = dummy_lighting_corner
-	if(corners) //done this way for speed
+	var/list/corners = myturf.legacy_corners
+	var/datum/static_lighting_corner/cr = dummy_lighting_corner
+	var/datum/static_lighting_corner/cg = dummy_lighting_corner
+	var/datum/static_lighting_corner/cb = dummy_lighting_corner
+	var/datum/static_lighting_corner/ca = dummy_lighting_corner
+	if (corners) //done this way for speed
 		cr = corners[3] || dummy_lighting_corner
 		cg = corners[2] || dummy_lighting_corner
 		cb = corners[4] || dummy_lighting_corner
@@ -100,7 +96,7 @@
 	#if LIGHTING_SOFT_THRESHOLD != 0
 	var/set_luminosity = max > LIGHTING_SOFT_THRESHOLD
 	#else
-	// Because of floating points™?, it won't even be a flat 0.
+	// Because of floating points�?, it won't even be a flat 0.
 	// This number is mostly arbitrary.
 	var/set_luminosity = max > 1e-6
 	#endif
@@ -122,19 +118,25 @@
 			00, 00, 00, 01
 		)
 
-	luminosity = set_luminosity
-
+	//We are luminous
+	var/area/A = myturf.loc
+	if(set_luminosity)
+		myturf.luminosity = TRUE
+	//We are not lit by legacy light OR new light.
+	else if(!LAZYLEN(myturf.lights_affecting) && !A.base_lighting_alpha)
+		myturf.luminosity = FALSE
 
 // Variety of overrides so the overlays don't get affected by weird things.
-/atom/movable/lighting_object/ex_act(severity)
+
+/atom/movable/static_lighting_object/ex_act(severity)
 	return
 
-
-/atom/movable/lighting_object/onTransitZ()
+/atom/movable/static_lighting_object/onTransitZ()
 	return
-
 
 // Override here to prevent things accidentally moving around overlays.
-/atom/movable/lighting_object/forceMove(atom/destination, harderforce = FALSE)
-	if(harderforce)
-		return ..()
+/atom/movable/static_lighting_object/forceMove(atom/destination)
+	return
+
+/atom/movable/static_lighting_object/onShuttleMove()
+	return FALSE

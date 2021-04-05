@@ -7,11 +7,18 @@
 	anchored = TRUE
 	density = TRUE
 	move_delay = 8
+	light_system = HYBRID_LIGHT
+	light_power = 8
+	light_range = 0
+	light_color = LIGHT_COLOR_ORANGE
+	light_mask_type = /atom/movable/lighting_mask/rotating
+	light_pixel_y = 10
 	max_integrity = 200
 	vehicle_flags = VEHICLE_MUST_TURN
 	move_sounds = list('sound/mecha/powerloader_step.ogg', 'sound/mecha/powerloader_step2.ogg')
 	change_dir_sounds = list('sound/mecha/powerloader_turn.ogg', 'sound/mecha/powerloader_turn2.ogg')
 	var/panel_open = FALSE
+	var/light_range_on = 4
 
 
 /obj/vehicle/powerloader/Initialize()
@@ -78,6 +85,7 @@
 		return FALSE
 	if(user == buckled_mob)
 		playsound(loc, 'sound/mecha/powerloader_unbuckle.ogg', 25)
+		set_light(0)
 		return ..()
 	buckled_mob.visible_message(
 		"<span class='warning'>[user] tries to move [buckled_mob] out of [src].</span>",
@@ -90,6 +98,7 @@
 	. = ..()
 	if(.)
 		playsound(loc, 'sound/mecha/powerloader_unbuckle.ogg', 25)
+		set_light(0)
 
 
 /obj/vehicle/powerloader/post_buckle_mob(mob/buckling_mob)
@@ -107,6 +116,7 @@
 	if(clamp_equipped != 2)
 		unbuckle_mob(buckling_mob) //can't use the powerloader without both clamps equipped
 		stack_trace("[src] buckled [buckling_mob] with clamp_equipped as [clamp_equipped]")
+	set_light(light_range_on)
 
 /obj/vehicle/powerloader/post_unbuckle_mob(mob/buckled_mob)
 	. = ..()

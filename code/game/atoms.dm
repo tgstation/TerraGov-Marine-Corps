@@ -48,8 +48,8 @@
 
 	//light stuff
 
-	///Light systems, both shouldn't be active at the same time.
-	var/light_system = STATIC_LIGHT
+	///Light systems, only one of the three should be active at the same time.
+	var/light_system = HYBRID_LIGHT//STATIC_LIGHT
 	///Range of the light in tiles. Zero means no light.
 	var/light_range = 0
 	///Intensity of the light. The stronger, the less shadows you will see on the lit area.
@@ -59,9 +59,18 @@
 	///Boolean variable for toggleable lights. Has no effect without the proper light_system, light_range and light_power values.
 	var/light_on = FALSE
 	///Our light source. Don't fuck with this directly unless you have a good reason!
-	var/tmp/datum/light_source/light
+	var/tmp/datum/dynamic_light_source/light
 	///Any light sources that are "inside" of us, for example, if src here was a mob that's carrying a flashlight, that flashlight's light source would be part of this list.
-	var/tmp/list/light_sources
+	var/tmp/list/hybrid_light_sources
+
+	//Values should avoid being close to -16, 16, -48, 48 etc.
+	//Best keep them within 10 units of a multiple of 32, as when the light is closer to a wall, the probability
+	//that a shadow extends to opposite corners of the light mask square is increased, resulting in more shadow
+	//overlays.
+	var/light_pixel_x
+	var/light_pixel_y
+	///typepath for dynamic light sources
+	var/light_mask_type = null
 
 	// popup chat messages
 
@@ -630,7 +639,7 @@ Proc for attack log creation, because really why not
 		stack_trace("Warning: [src]([type]) initialized multiple times!")
 	flags_atom |= INITIALIZED
 
-	if(light_system == STATIC_LIGHT && light_power && light_range)
+	if(light_system != MOVABLE_LIGHT && light_power && light_range)
 		update_light()
 	if(loc)
 		SEND_SIGNAL(loc, COMSIG_ATOM_INITIALIZED_ON, src) //required since spawning something doesn't call Move hence it doesn't call Entered.
@@ -789,23 +798,6 @@ Proc for attack log creation, because really why not
 		return
 
 	add_fingerprint(usr, "topic")
-
-
-/atom/vv_edit_var(var_name, var_value)
-	switch(var_name)
-		if("light_range")
-			set_light(l_range = var_value)
-			return TRUE
-
-		if("light_power")
-			set_light(l_power = var_value)
-			return TRUE
-
-		if("light_color")
-			set_light(l_color = var_value)
-			return TRUE
-
-	return ..()
 
 
 /atom/can_interact(mob/user)

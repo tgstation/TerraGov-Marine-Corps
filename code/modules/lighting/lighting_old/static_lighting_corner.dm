@@ -5,10 +5,10 @@
 // This list is what the code that assigns corners listens to, the order in this list is the order in which corners are added to the /turf/corners list.
 GLOBAL_LIST_INIT(LIGHTING_CORNER_DIAGONAL, list(NORTHEAST, SOUTHEAST, SOUTHWEST, NORTHWEST))
 
-/datum/lighting_corner
+/datum/static_lighting_corner
 	var/list/turf/masters
-	var/list/datum/light_source/affecting // Light sources affecting us.
-	var/active                            = FALSE  // TRUE if one of our masters has dynamic lighting.
+	var/list/datum/static_light_source/affecting // Light sources affecting us.
+	var/active = FALSE  // TRUE if one of our masters has dynamic lighting.
 
 	var/x     = 0
 	var/y     = 0
@@ -25,8 +25,7 @@ GLOBAL_LIST_INIT(LIGHTING_CORNER_DIAGONAL, list(NORTHEAST, SOUTHEAST, SOUTHWEST,
 	var/cache_b  = LIGHTING_SOFT_THRESHOLD
 	var/cache_mx = 0
 
-
-/datum/lighting_corner/New(turf/new_turf, diagonal)
+/datum/static_lighting_corner/New(var/turf/new_turf, var/diagonal)
 	. = ..()
 	masters = list()
 	masters[new_turf] = turn(diagonal, 180)
@@ -46,74 +45,71 @@ GLOBAL_LIST_INIT(LIGHTING_CORNER_DIAGONAL, list(NORTHEAST, SOUTHEAST, SOUTHWEST,
 
 	// Diagonal one is easy.
 	T = get_step(new_turf, diagonal)
-	if(T) // In case we're on the map's border.
-		if(!T.corners)
-			T.corners = list(null, null, null, null)
+	if (T) // In case we're on the map's border.
+		if (!T.legacy_corners)
+			T.legacy_corners = list(null, null, null, null)
 
 		masters[T]   = diagonal
-		i            = GLOB.LIGHTING_CORNER_DIAGONAL.Find(turn(diagonal, 180))
-		T.corners[i] = src
+		i = GLOB.LIGHTING_CORNER_DIAGONAL.Find(turn(diagonal, 180))
+		T.legacy_corners[i] = src
 
 	// Now the horizontal one.
 	T = get_step(new_turf, horizontal)
-	if(T) // Ditto.
-		if(!T.corners)
-			T.corners = list(null, null, null, null)
+	if (T) // Ditto.
+		if (!T.legacy_corners)
+			T.legacy_corners = list(null, null, null, null)
 
 		masters[T]   = ((T.x > x) ? EAST : WEST) | ((T.y > y) ? NORTH : SOUTH) // Get the dir based on coordinates.
 		i            = GLOB.LIGHTING_CORNER_DIAGONAL.Find(turn(masters[T], 180))
-		T.corners[i] = src
+		T.legacy_corners[i] = src
 
 	// And finally the vertical one.
 	T = get_step(new_turf, vertical)
-	if(T)
-		if(!T.corners)
-			T.corners = list(null, null, null, null)
+	if (T)
+		if (!T.legacy_corners)
+			T.legacy_corners = list(null, null, null, null)
 
 		masters[T]   = ((T.x > x) ? EAST : WEST) | ((T.y > y) ? NORTH : SOUTH) // Get the dir based on coordinates.
 		i            = GLOB.LIGHTING_CORNER_DIAGONAL.Find(turn(masters[T], 180))
-		T.corners[i] = src
+		T.legacy_corners[i] = src
 
 	update_active()
 
-
-/datum/lighting_corner/proc/update_active()
+/datum/static_lighting_corner/proc/update_active()
 	active = FALSE
 	var/turf/T
 	var/thing
 	for (thing in masters)
 		T = thing
-		if (T.lighting_object)
+		if (T.static_lighting_object)
 			active = TRUE
-			return
-
 
 // God that was a mess, now to do the rest of the corner code! Hooray!
-/datum/lighting_corner/proc/update_lumcount(delta_r, delta_g, delta_b)
-	if(!(delta_r || delta_g || delta_b)) // 0 is falsey ok
+/datum/static_lighting_corner/proc/update_lumcount(var/delta_r, var/delta_g, var/delta_b)
+
+	if (!(delta_r || delta_g || delta_b)) // 0 is falsey ok
 		return
 
 	lum_r += delta_r
 	lum_g += delta_g
 	lum_b += delta_b
 
-	if(!needs_update)
+	if (!needs_update)
 		needs_update = TRUE
-		SSlighting.corners_queue += src
+		GLOB.lighting_update_corners += src
 
-
-/datum/lighting_corner/proc/update_objects()
-	// Cache these values ahead of time so 4 individual lighting objects don't all calculate them individually.
+/datum/static_lighting_corner/proc/update_objects()
+	// Cache these values a head of time so 4 individual lighting objects don't all calculate them individually.
 	var/lum_r = src.lum_r
 	var/lum_g = src.lum_g
 	var/lum_b = src.lum_b
 	var/mx = max(lum_r, lum_g, lum_b) // Scale it so one of them is the strongest lum, if it is above 1.
 	. = 1 // factor
-	if(mx > 1)
+	if (mx > 1)
 		. = 1 / mx
 
 	#if LIGHTING_SOFT_THRESHOLD != 0
-	else if(mx < LIGHTING_SOFT_THRESHOLD)
+	else if (mx < LIGHTING_SOFT_THRESHOLD)
 		. = 0 // 0 means soft lighting.
 
 	cache_r  = round(lum_r * ., LIGHTING_ROUND_VALUE) || LIGHTING_SOFT_THRESHOLD
@@ -126,21 +122,21 @@ GLOBAL_LIST_INIT(LIGHTING_CORNER_DIAGONAL, list(NORTHEAST, SOUTHEAST, SOUTHWEST,
 	#endif
 	cache_mx = round(mx, LIGHTING_ROUND_VALUE)
 
-	for(var/TT in masters)
+	for (var/TT in masters)
 		var/turf/T = TT
-		if(T.lighting_object && !T.lighting_object.needs_update)
-			T.lighting_object.needs_update = TRUE
-			SSlighting.objects_queue += T.lighting_object
+		if (T.static_lighting_object && !T.static_lighting_object.needs_update)
+			T.static_lighting_object.needs_update = TRUE
+			GLOB.lighting_update_objects += T.static_lighting_object
 
 
-/datum/lighting_corner/dummy/New()
+/datum/static_lighting_corner/dummy/New()
 	return
 
 
-/datum/lighting_corner/Destroy(force)
-	if(!force)
+/datum/static_lighting_corner/Destroy(var/force)
+	if (!force)
 		return QDEL_HINT_LETMELIVE
 
-	stack_trace("qdel called on a lighting corner.")
+	stack_trace("Ok, Look, /tg/, I need you to find whatever fucker decided to call qdel on a fucking lighting corner, then tell him very nicely and politely that he is 100% retarded and needs his head checked. Thanks. Send them my regards by the way.")
 
 	return ..()
