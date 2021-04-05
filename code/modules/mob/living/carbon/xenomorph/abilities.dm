@@ -424,6 +424,7 @@
 	var/transfer_delay = 2 SECONDS
 	var/max_range = 2
 	keybind_signal = COMSIG_XENOABILITY_TRANSFER_PLASMA
+	target_flags = XABB_XENO_TARGET
 
 /datum/action/xeno_action/activable/transfer_plasma/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -487,7 +488,7 @@
 	plasma_cost = 150
 	cooldown_timer = 12 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_LARVAL_GROWTH_STING
-	target_flags = XABB_MOB_TARGET
+	target_flags = XABB_HUMAN_TARGET
 
 /datum/action/xeno_action/activable/larval_growth_sting/on_cooldown_finish()
 	playsound(owner.loc, 'sound/voice/alien_drool1.ogg', 50, 1)
@@ -758,6 +759,7 @@
 	ability_name = "xeno spit"
 	keybind_signal = COMSIG_XENOABILITY_XENO_SPIT
 	plasma_cost = 10
+	target_flags = XABB_MOB_TARGET
 
 /datum/action/xeno_action/activable/xeno_spit/update_button_icon()
 	var/mob/living/carbon/xenomorph/X = owner
@@ -860,6 +862,7 @@
 	cooldown_timer = 12 SECONDS
 	plasma_cost = 150
 	keybind_signal = COMSIG_XENOABILITY_NEUROTOX_STING
+	target_flags = XABB_HUMAN_TARGET
 
 /datum/action/xeno_action/activable/neurotox_sting/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -907,6 +910,7 @@
 	name = "Psychic Whisper"
 	action_icon_state = "psychic_whisper"
 	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_WHISPER
+	target_flags = XABB_HUMAN_TARGET
 
 
 /datum/action/xeno_action/psychic_whisper/action_activate()
@@ -1163,6 +1167,7 @@
 	use_state_flags = XACT_USE_STAGGERED|XACT_USE_FORTIFIED|XACT_USE_CRESTED //can't use while staggered, defender fortified or crest down
 	keybind_signal = COMSIG_XENOABILITY_HEADBITE
 	plasma_cost = 100
+	target_flags = XABB_HUMAN_TARGET
 	///How much psy points it give
 	var/psy_points_reward = 60
 	///How much larva points it gives (8 points for one larva in distress)
@@ -1247,6 +1252,7 @@
 	use_state_flags = XACT_USE_STAGGERED|XACT_USE_FORTIFIED|XACT_USE_CRESTED //can't use while staggered, defender fortified or crest down
 	keybind_signal = COMSIG_XENOABILITY_REGURGITATE
 	plasma_cost = 100
+	target_flags = XABB_HUMAN_TARGET
 	///In how much time the cocoon will be ejected
 	var/cocoon_production_time = 3 SECONDS
 

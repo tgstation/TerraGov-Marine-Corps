@@ -9,6 +9,7 @@
 	ability_name = "defiler sting"
 	plasma_cost = 150
 	cooldown_timer = 20 SECONDS
+	target_flags = XABB_HUMAN_TARGET
 
 /datum/action/xeno_action/activable/larval_growth_sting/defiler/on_cooldown_finish()
 	playsound(owner.loc, 'sound/voice/alien_drool1.ogg', 50, 1)

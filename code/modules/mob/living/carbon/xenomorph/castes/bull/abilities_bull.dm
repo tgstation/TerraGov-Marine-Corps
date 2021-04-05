@@ -8,6 +8,7 @@
 	ability_name = "plow charge"
 	keybind_signal = COMSIG_XENOABILITY_BULLCHARGE
 	var/new_charge_type = CHARGE_BULL
+	target_flags = XABB_HUMAN_TARGET
 
 
 /datum/action/xeno_action/activable/action_activate()
@@ -29,6 +30,7 @@
 	ability_name = "headbutt charge"
 	keybind_signal = COMSIG_XENOABILITY_BULLHEADBUTT
 	new_charge_type = CHARGE_BULL_HEADBUTT
+	target_flags = XABB_MOB_TARGET
 
 
 /datum/action/xeno_action/activable/bull_charge/gore
