@@ -83,7 +83,7 @@ MEDICAL_OFFICER, MEDICAL_RESEARCHER, SQUAD_LEADER, SQUAD_SPECIALIST, SQUAD_SMART
 
 
 #define ROLE_XENOMORPH "Xenomorph"
-#define ROLE_XENO_QUEEN "Xeno Queen"
+#define ROLE_XENO_QUEEN "Hive Leader"
 #define ROLE_ERT "Emergency Response Team"
 
 
