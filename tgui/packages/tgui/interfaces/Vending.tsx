@@ -13,7 +13,7 @@ type VendingData = {
   coin_records: VendingRecord[],
   tabs: string[],
   stock: VendingStock,
-  currently_vending: VendingRecord,
+  currently_vending: VendingRecord | null,
   extended: BooleanLike,
   isshared: BooleanLike,
   coin: string,
@@ -58,7 +58,7 @@ export const Vending = (props, context) => {
   const [
     selectedTab,
     setSelectedTab,
-  ] = useLocalState(context, 'selectedTab', tabs.length ? tabs[1] : null);
+  ] = useLocalState(context, 'selectedTab', tabs.length ? tabs[0] : null);
 
   return (
     <Window
@@ -104,6 +104,7 @@ export const Vending = (props, context) => {
                   );
                 })}
               </Tabs>
+              <Divider />
             </Section>
           ))}
           {(!!((coin_records.length > 0) || (isshared > 0))) && (
@@ -170,20 +171,14 @@ const Premium = (props, context) => {
         && (
           <LabeledList>
             {coin_records.map(coin_record => {
-              const {
-                product_color,
-                product_name,
-                prod_desc,
-                ref,
-              } = coin_record;
               return (
                 <ProductEntry
-                  stock={stock[product_name]}
-                  key={product_name}
-                  product_color={product_color}
-                  product_name={product_name}
-                  prod_desc={prod_desc}
-                  prod_ref={ref} />
+                  stock={stock[coin_record.product_name]}
+                  key={coin_record.product_name}
+                  product_color={coin_record.product_color}
+                  product_name={coin_record.product_name}
+                  prod_desc={coin_record.prod_desc}
+                  prod_ref={coin_record.ref} />
               );
             })}
           </LabeledList>
@@ -238,7 +233,9 @@ const ProductEntry = (props: VendingProductEntryProps, context) => {
           </ProgressBar>
           <Box inline width="4px" />
           <Button
-            selected={currently_vending.product_name === product_name}
+            selected={currently_vending && (
+              currently_vending.product_name === product_name
+            )}
             onClick={() => act(
               'vend',
               { vend: prod_ref })}
@@ -270,20 +267,14 @@ const Hacked = (props, context) => {
     <Section title="$*FD!!F">
       <LabeledList>
         {hidden_records.map(hidden_record => {
-          const {
-            product_color,
-            product_name,
-            prod_desc,
-            ref,
-          } = hidden_record;
           return (
             <ProductEntry
-              stock={stock[product_name]}
-              key={product_name}
-              product_color={product_color}
-              product_name={product_name}
-              prod_desc={prod_desc}
-              prod_ref={ref} />
+              stock={stock[hidden_record.product_name]}
+              key={hidden_record.product_name}
+              product_color={hidden_record.product_color}
+              product_name={hidden_record.product_name}
+              prod_desc={hidden_record.prod_desc}
+              prod_ref={hidden_record.ref} />
           );
         })}
       </LabeledList>
@@ -294,20 +285,21 @@ const Hacked = (props, context) => {
 const Products = (props, context) => {
   const { act, data } = useBackend<VendingData>(context);
 
-  const [
-    showEmpty,
-    setShowEmpty,
-  ] = useLocalState(context, 'showEmpty', false);
+  const {
+    displayed_records,
+    stock,
+    tabs,
+  } = data;
 
   const [
     selectedTab,
     setSelectedTab,
-  ] = useLocalState(context, 'selectedTab', null);
+  ] = useLocalState(context, 'selectedTab', tabs.length ? tabs[0] : null);
 
-  const {
-    displayed_records,
-    stock,
-  } = data;
+  const [
+    showEmpty,
+    setShowEmpty,
+  ] = useLocalState(context, 'showEmpty', false);
 
   return (
     <Section>
@@ -318,21 +310,15 @@ const Products = (props, context) => {
           displayed_records
             .filter(record => !record.tab || record.tab === selectedTab)
             .map(display_record => {
-              const {
-                product_color,
-                product_name,
-                prod_desc,
-                ref,
-              } = display_record;
               return (
-                ((showEmpty || !!stock[product_name]) && (
+                ((showEmpty || !!stock[display_record.product_name]) && (
                   <ProductEntry
-                    stock={stock[product_name]}
-                    key={product_name}
-                    product_color={product_color}
-                    product_name={product_name}
-                    prod_desc={prod_desc}
-                    prod_ref={ref} />
+                    stock={stock[display_record.product_name]}
+                    key={display_record.product_name}
+                    product_color={display_record.product_color}
+                    product_name={display_record.product_name}
+                    prod_desc={display_record.prod_desc}
+                    prod_ref={display_record.ref} />
                 ))
               );
             })
