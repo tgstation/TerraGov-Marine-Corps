@@ -245,7 +245,7 @@
 	take_damage(40, BURN, "fire")
 	ENABLE_BITFIELD(resistance_flags, ON_FIRE)
 
-/obj/structure/resin/update_overlays()
+/obj/structure/resin/xeno_turret/update_overlays()
 	. = ..()
 	if(obj_integrity <= max_integrity / 2)
 		. += image('icons/Xeno/acidturret.dmi', src, "+turret_damage") 
@@ -325,7 +325,7 @@
 	var/buffer_distance 
 	var/list/turf/path = list()
 	for (var/mob/living/nearby_hostile AS in potential_hostiles)
-		if(nearby_hostile.stat == DEAD)
+		if(nearby_hostile.stat != CONSCIOUS)
 			continue
 		buffer_distance = get_dist(nearby_hostile, src)
 		if (distance <= buffer_distance) //If we already found a target that's closer
@@ -373,6 +373,10 @@
 	SIGNAL_HANDLER
 	if(!hostile)
 		SEND_SIGNAL(src, COMSIG_AUTOMATIC_SHOOTER_STOP_SHOOTING_AT)
+		return
+	if(hostile.stat != CONSCIOUS)
+		set_hostile(get_target())
+		shoot()
 		return
 	face_atom(hostile)
 	var/obj/projectile/newshot = new(loc)
