@@ -437,6 +437,8 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 		dat += "[GLOB.round_statistics.carrier_traps] hidey holes for huggers were made."
 	if(GLOB.round_statistics.sentinel_neurotoxin_stings)
 		dat += "[GLOB.round_statistics.sentinel_neurotoxin_stings] number of times Sentinels stung."
+	if(GLOB.round_statistics.drone_salvage_biomass)
+		dat += "[GLOB.round_statistics.drone_salvage_biomass] number of times Drones salvaged biomass from corpses."
 	if(GLOB.round_statistics.defiler_defiler_stings)
 		dat += "[GLOB.round_statistics.defiler_defiler_stings] number of times Defilers stung."
 	if(GLOB.round_statistics.defiler_neurogas_uses)
