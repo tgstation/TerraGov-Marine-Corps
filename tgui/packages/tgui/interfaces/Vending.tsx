@@ -3,7 +3,6 @@ import { Button, Section, Box, LabeledList, ProgressBar, Modal, Divider, Tabs } 
 import { decodeHtmlEntities } from 'common/string';
 import { Window } from '../layouts';
 import { BooleanLike } from 'common/react';
-import { type } from 'node:os';
 
 
 type VendingData = {
