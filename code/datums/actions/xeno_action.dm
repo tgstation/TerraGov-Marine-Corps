@@ -212,7 +212,6 @@
 	if(can_use_action(FALSE, NONE, TRUE)) // just for selecting
 		action_activate()
 
-
 /datum/action/xeno_action/activable/proc/deselect()
 	var/mob/living/carbon/xenomorph/X = owner
 	remove_selected_frame()
