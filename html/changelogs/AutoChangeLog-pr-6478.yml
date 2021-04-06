@@ -1,0 +1,5 @@
+author: "Alterist"
+delete-after: True
+changes: 
+  - rscdel: "No more regular helmets for medics, engies, and leaders when they choose jaeger loadout."
+  - qol: "Cleanup and organizes marine vending file"
