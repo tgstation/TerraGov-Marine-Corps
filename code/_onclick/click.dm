@@ -561,7 +561,7 @@ if(selected_ability.target_flags & flagname){\
 	. = TRUE
 
 /obj/screen/click_catcher/MouseMove(location, control, params)//This allow to catch mouse drag on click catcher, aka black tiles
-	. = ..()
+	return
 
 
 /* MouseWheelOn */
