@@ -282,48 +282,57 @@
 
 
 
-//M4RA marksman rifle
+//Based off the XM-8. TX-8 rifle
 
-/obj/item/weapon/gun/rifle/m4ra
-	name = "\improper T-45 battle rifle"
-	desc ="The T-45 is a light specialized battle rifle, mostly used by light infantry and scouts. It's designed to be useable at all ranges due to the compact size it is also very adaptable to different situations due to the ability to use specialized ammo. An experimental, requisitions-only design, takes specialized 'A19' 10x28mm rounds."
-	icon_state = "m4ra"
-	item_state = "m4ra"
-	max_shells = 20 //codex
+/obj/item/weapon/gun/rifle/tx8
+	name = "\improper TX-8 scout rifle"
+	desc ="The TX-8 is a light specialized scout rifle, mostly used by light infantry and scouts. It's designed to be useable at all ranges by being very adaptable to different situations due to the ability to use different ammo types. Has IFF.  Takes specialized overpressured 10x28mm rounds."
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "tx8"
+	item_state = "tx8"
+	max_shells = 25 //codex
 	muzzleflash_iconstate = "muzzle_flash_medium"
 	caliber = "10x28mm caseless" //codex
 	fire_sound = 'sound/weapons/guns/fire/t64.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m4ra_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m4ra_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/m4ra_cocked.ogg'
-	current_mag = /obj/item/ammo_magazine/rifle/m4ra
+	current_mag = /obj/item/ammo_magazine/rifle/tx8
 	force = 16
-	aim_slowdown = 0.35
+	aim_slowdown = 0.45
 	attachable_allowed = list(
-		/obj/item/attachable/suppressor,
-		/obj/item/attachable/extended_barrel,
-		/obj/item/attachable/compensator,
+		/obj/item/attachable/reddot,
 		/obj/item/attachable/verticalgrip,
-		/obj/item/attachable/angledgrip,
-		/obj/item/attachable/bipod,
 		/obj/item/attachable/lasersight,
-		/obj/item/attachable/attached_gun/flamer,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/bipod,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/scope,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/attached_gun/grenade,
+		/obj/item/attachable/attached_gun/flamer,
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/attached_gun/shotgun,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	gun_iff_signal = list(ACCESS_IFF_MARINE)
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
 	gun_skill_category = GUN_SKILL_FIREARMS
-	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
-	starting_attachment_types = list(/obj/item/attachable/scope/mini/m4ra, /obj/item/attachable/stock/rifle/marksman)
-	actions_types = list(/datum/action/item_action/aim_mode)
-	aim_fire_delay = 0.2 SECONDS
-	aim_speed_modifier = 2
+	attachable_offset = list("muzzle_x" = 44, "muzzle_y" = 18,"rail_x" = 16, "rail_y" = 25, "under_x" = 27, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
 
-	fire_delay = 0.45 SECONDS
+
+	fire_delay = 0.4 SECONDS
 	burst_amount = 1
-	accuracy_mult = 1.75
+	accuracy_mult = 1.4
 	scatter = -15
 	recoil = 2
 
