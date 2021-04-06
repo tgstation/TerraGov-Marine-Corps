@@ -144,6 +144,7 @@
 	plasma_cost = 300
 	keybind_flags = XACT_KEYBIND_USE_ABILITY | XACT_IGNORE_SELECTED_ABILITY
 	keybind_signal = COMSIG_XENOABILITY_UNRELENTING_FORCE
+	alternate_keybind_signal = COMSIG_XENOABILITY_UNRELENTING_FORCE_SELECT
 
 
 /datum/action/xeno_action/activable/unrelenting_force/on_cooldown_finish()

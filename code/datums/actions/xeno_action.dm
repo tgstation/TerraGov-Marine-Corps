@@ -172,10 +172,16 @@
 
 
 /datum/action/xeno_action/activable
+	///Alternative keybind signal, that will always select the ability, even ignoring keybind flag
+	var/alternate_keybind_signal
 
 /datum/action/xeno_action/activable/New()
 	. = ..()
 
+/datum/action/xeno_action/activable/give_action(mob/living/L)
+	. = ..()
+	if(alternate_keybind_signal)
+		RegisterSignal(L, alternate_keybind_signal, .proc/action_activate)
 
 /datum/action/xeno_action/activable/Destroy()
 	var/mob/living/carbon/xenomorph/X = owner
@@ -183,6 +189,14 @@
 		deselect()
 	return ..()
 
+/datum/action/xeno_action/activable/action_activate()
+	SIGNAL_HANDLER
+	var/mob/living/carbon/xenomorph/X = owner
+	if(X.selected_ability == src)
+		return
+	if(X.selected_ability)
+		X.selected_ability.deselect()
+	select()
 
 /datum/action/xeno_action/activable/keybind_activation()
 	. = COMSIG_KB_ACTIVATED
@@ -193,6 +207,7 @@
 
 	if(can_use_action(FALSE, NONE, TRUE)) // just for selecting
 		action_activate()
+
 
 /datum/action/xeno_action/activable/proc/deselect()
 	var/mob/living/carbon/xenomorph/X = owner
