@@ -191,9 +191,9 @@
 	ability_name = "secrete resin"
 	plasma_cost = 75
 	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN
-  ///Minimum time to build a resin structure
+	///Minimum time to build a resin structure
 	var/base_wait = 1 SECONDS
-  ///Multiplicator factor to add to the building time, depends on the health of the structure built
+	///Multiplicator factor to add to the building time, depends on the health of the structure built
 	var/scaling_wait = 1 SECONDS
 	///List of buildable structures
 	var/list/buildable_structures = list(
