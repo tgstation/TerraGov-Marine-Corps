@@ -159,47 +159,46 @@
 	to_chat(hiveminde, "<span class='xenonotice'>We can't plant a node without weeds nearby, we've been moved back to our core.</span>")
 	return fail_activate()
 
-// Choose Resin
-/datum/action/xeno_action/choose_resin
-	name = "Choose Resin Structure"
+// Secrete Resin
+/datum/action/xeno_action/activable/secrete_resin
+	name = "Secrete Resin"
 	action_icon_state = "resin wall"
-	mechanics_text = "Selects which structure you will build with the (secrete resin) ability."
-	keybind_signal = COMSIG_XENOABILITY_CHOOSE_RESIN
+	mechanics_text = "Builds whatever resin you selected"
+	ability_name = "secrete resin"
+	plasma_cost = 75
+	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN
+	///Minimum time to build a resin structure
+	var/base_wait = 1 SECONDS
+	///Multiplicator factor to add to the building time, depends on the health of the structure built
+	var/scaling_wait = 1 SECONDS
+	///List of buildable structures
 	var/list/buildable_structures = list(
 		/turf/closed/wall/resin/regenerating,
 		/obj/effect/alien/resin/sticky,
 		/obj/structure/mineral_door/resin)
 
-/datum/action/xeno_action/choose_resin/update_button_icon()
+/datum/action/xeno_action/activable/secrete_resin/update_button_icon()
 	var/mob/living/carbon/xenomorph/X = owner
 	var/atom/A = X.selected_resin
 	button.overlays.Cut()
 	button.overlays += image('icons/mob/actions.dmi', button, initial(A.name))
 	return ..()
 
-/datum/action/xeno_action/choose_resin/action_activate()
+/datum/action/xeno_action/activable/secrete_resin/action_activate()
+	
 	var/mob/living/carbon/xenomorph/X = owner
+	if(X.selected_ability != src)
+		return ..()
+	. = ..()
 	var/i = buildable_structures.Find(X.selected_resin)
 	if(length(buildable_structures) == i)
 		X.selected_resin = buildable_structures[1]
 	else
 		X.selected_resin = buildable_structures[i+1]
-
 	var/atom/A = X.selected_resin
 	to_chat(X, "<span class='notice'>We will now build <b>[initial(A.name)]\s</b> when secreting resin.</span>")
 	update_button_icon()
-	return succeed_activate()
-
-// Secrete Resin
-/datum/action/xeno_action/activable/secrete_resin
-	name = "Secrete Resin"
-	action_icon_state = "secrete_resin"
-	mechanics_text = "Builds whatever you’ve selected with (choose resin structure) on your tile."
-	ability_name = "secrete resin"
-	plasma_cost = 75
-	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN
-	var/base_wait = 1 SECONDS
-	var/scaling_wait = 1 SECONDS
+	
 
 /datum/action/xeno_action/activable/secrete_resin/use_ability(atom/A)
 	build_resin(get_turf(owner))

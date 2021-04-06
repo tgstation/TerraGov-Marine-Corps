@@ -796,13 +796,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	icon_state = "tx11scope"
 	attach_icon = "tx11scope"
 
-/obj/item/attachable/scope/mini/m4ra
-	name = "T-45 rail scope"
-	aim_speed_mod = 0
-	attach_icon = "none"
-	desc = "A rail mounted zoom sight scope specialized for the T-45 Battle Rifle . Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
-	flags_attach_features = ATTACH_ACTIVATION
-
 /obj/item/attachable/scope/antimaterial
 	name = "antimaterial rail scope"
 	attach_icon = "none"
@@ -955,12 +948,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	attach_icon = "riflestock_a"
 	pixel_shift_x = 32
 	pixel_shift_y = 13
-
-/obj/item/attachable/stock/rifle/marksman
-	name = "\improper T-45 marksman stock"
-	icon_state = "m4markstock"
-	attach_icon = "m4markstock"
-	flags_attach_features = NONE
 
 /obj/item/attachable/stock/sx16
 	name = "\improper SX-16 stock"
