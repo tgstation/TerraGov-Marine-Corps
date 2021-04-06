@@ -45,7 +45,7 @@
 
 /datum/action/innate/order/rally_order/action_activate()
 	if(send_order(owner))
-		var/message = pick(";TO ME MY MEN", ";REGROUP TO ME!", ";FOLLOW MY LEAD!", ";RALLY ON ME!", ";FORWARD!")
+		var/message = pick(";TO ME MY MEN!", ";REGROUP TO ME!", ";FOLLOW MY LEAD!", ";RALLY ON ME!", ";FORWARD!")
 		owner.say(message)
 	
 /datum/action/innate/order/Activate()
@@ -91,4 +91,3 @@
 	if(marine.z == target.z)
 		marine.playsound_local(marine, "sound/effects/CIC_order.ogg", 20, 1)
 		to_chat(marine,"<span class='ordercic'>Command is urging you to [verb_name] [target.loc.name]!</span>")
-
