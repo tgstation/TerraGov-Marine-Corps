@@ -181,13 +181,18 @@
 /datum/action/xeno_action/activable/give_action(mob/living/L)
 	. = ..()
 	if(alternate_keybind_signal)
-		RegisterSignal(L, alternate_keybind_signal, .proc/action_activate)
+		RegisterSignal(L, alternate_keybind_signal, .proc/select_action)
 
 /datum/action/xeno_action/activable/Destroy()
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.selected_ability == src)
 		deselect()
 	return ..()
+
+///Wrapper proc to activate the action and not having sleep issues
+/datum/action/xeno_action/activable/proc/select_action()
+	SIGNAL_HANDLER
+	INVOKE_ASYNC(src, .proc/action_activate)
 
 /datum/action/xeno_action/activable/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
