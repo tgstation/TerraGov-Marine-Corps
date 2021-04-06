@@ -171,6 +171,12 @@ const CharacterCustomization = (props, context) => {
                 rightLabel={'Female'}
                 action={'toggle_gender'}
               />
+              <SelectFieldPreference
+                label={'Hair style'}
+                value={'h_style'}
+                action={'hairstyle'}
+                options={'hairstyles'}
+              />
               <TextFieldPreference
                 label={'Hair Color'}
                 value={rgbToHex(data.r_hair, data.g_hair, data.b_hair)}
@@ -186,10 +192,24 @@ const CharacterCustomization = (props, context) => {
                 }
               />
               <SelectFieldPreference
-                label={'Hair style'}
-                value={'h_style'}
-                action={'hairstyle'}
-                options={'hairstyles'}
+                label={'Hair gradient style'}
+                value={'grad_style'}
+                action={'grad_style'}
+                options={'hairgradient'}
+              />
+              <TextFieldPreference
+                label={'Gradient Color'}
+                value={rgbToHex(data.r_grad, data.g_grad, data.b_grad)}
+                noAction
+                extra={
+                  <>
+                    <ColorBox
+                      color={rgbToHex(data.r_grad, data.g_grad, data.b_grad)}
+                      mr={1}
+                    />
+                    <Button icon="edit" onClick={() => act('grad_color')} />
+                  </>
+                }
               />
               <TextFieldPreference
                 label={'Eye Color'}

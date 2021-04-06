@@ -37,6 +37,10 @@
 		"r_hair" = r_hair,
 		"g_hair" = g_hair,
 		"b_hair" = b_hair,
+		"grad_style" = grad_style,
+		"r_grad" = r_grad,
+		"g_grad" = g_grad,
+		"b_grad" = b_grad,
 		"f_style" = f_style,
 		"r_facial" = r_facial,
 		"g_facial" = g_facial,
@@ -134,6 +138,7 @@
 		),
 		"hairstyles" = GLOB.hair_styles_list,
 		"facialhair" = GLOB.facial_hair_styles_list,
+		"hairgradient" = GLOB.hair_gradients_list,
 		"genders" = list(
 			"NEUTER",
 			"MALE",
@@ -422,6 +427,28 @@
 			r_hair = hex2num(copytext(new_color, 2, 4))
 			g_hair = hex2num(copytext(new_color, 4, 6))
 			b_hair = hex2num(copytext(new_color, 6, 8))
+
+		if("grad_color")
+			var/new_grad = input(user, "Choose your character's secondary hair color:", "Gradient Color") as null|color
+			if(!new_grad)
+				return
+			r_grad = hex2num(copytext(new_grad, 2, 4))
+			g_grad = hex2num(copytext(new_grad, 4, 6))
+			b_grad = hex2num(copytext(new_grad, 6, 8))
+
+		if("grad_style")
+			var/list/valid_grads = list()
+			for(var/grad in GLOB.hair_gradients_list)
+				var/datum/sprite_accessory/S = GLOB.hair_gradients_list[grad]
+				if(!(species in S.species_allowed))
+					continue
+
+				valid_grads[grad] = GLOB.hair_gradients_list[grad]
+
+			var/new_grad_style = params["newValue"]
+			if(!(new_grad_style in valid_grads))
+				return
+			grad_style = new_grad_style
 
 		if("facialstyle")
 			var/list/valid_facialhairstyles = list()
