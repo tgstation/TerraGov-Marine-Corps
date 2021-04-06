@@ -1,0 +1,5 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - bugfix: "Nests are really gone now"
+  - qol: "Select resin and build resin buttons are merged"
