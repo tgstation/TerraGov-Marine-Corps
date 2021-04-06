@@ -60,6 +60,7 @@
 	return TRUE
 
 /datum/action/proc/action_activate()
+	SIGNAL_HANDLER
 	if(SEND_SIGNAL(src, COMSIG_ACTION_TRIGGER) & COMPONENT_ACTION_BLOCK_TRIGGER)
 		return FALSE
 	return TRUE
