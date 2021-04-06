@@ -321,6 +321,12 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_UNRELENTING_FORCE
 
+/datum/keybinding/xeno/unrelenting_force_select
+	name = "unrelenting_force_select"
+	full_name = "Shrike: Select Unrelenting Force"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_UNRELENTING_FORCE_SELECT
+
 /datum/keybinding/xeno/psychic_heal
 	name = "psychic_cure"
 	full_name = "Shrike: Psychic Cure"
