@@ -195,8 +195,8 @@
 	if(X.selected_ability == src)
 		return
 	if(X.selected_ability)
-		X.selected_ability.deselect()
-	select()
+		INVOKE_ASYNC(X.selected_ability, .proc/deselect)
+	INVOKE_ASYNC(src, .proc/select)
 
 /datum/action/xeno_action/activable/keybind_activation()
 	. = COMSIG_KB_ACTIVATED
