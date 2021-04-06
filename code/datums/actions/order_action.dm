@@ -52,6 +52,8 @@
 		to_chat(owner, "<span class='warning'>Your last order was too recent.</span>")
 		return
 	TIMER_COOLDOWN_START(owner, COOLDOWN_CIC_ORDERS, ORDER_COOLDOWN)
+	to_chat(owner ,"<span class='ordercic'>You ordered marines to [verb_name] [target_turf.loc.name]!</span>")
+	owner.playsound_local(owner, "sound/effects/CIC_order.ogg", 10, 1)
 	new visual_type(target_turf)
 	var/datum/atom_hud/squad/squad_hud = GLOB.huds[DATA_HUD_SQUAD]
 	var/list/final_list = squad_hud.hudusers

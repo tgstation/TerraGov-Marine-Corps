@@ -100,7 +100,9 @@
 	SIGNAL_HANDLER
 	if(!current_order)
 		to_chat(src, "<span class='warning'>Your have no order selected.</span>")
+		return
 	current_order.send_order(target)
+
 
 ///Set the current order
 /mob/living/silicon/ai/proc/set_order(datum/source, datum/action/innate/order/order)
