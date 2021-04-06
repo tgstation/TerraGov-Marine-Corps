@@ -1,0 +1,5 @@
+author: "Surrealaser"
+delete-after: True
+changes: 
+  - code_imp: "Distance data is now included for Hive and Tunnel status lists."
+  - bugfix: "Should fix a bug that stopped Tunnel lists from being openable."
