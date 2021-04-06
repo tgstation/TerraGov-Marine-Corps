@@ -11,7 +11,7 @@ SUBSYSTEM_DEF(silo)
 	var/corrupted_gen_output
 
 /datum/controller/subsystem/silo/Initialize(timeofday)
-	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY), .proc/start_spawning)
+	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_TADPOLE_LAUNCHED), .proc/start_spawning)
 	return ..()
 
 /datum/controller/subsystem/silo/fire(resumed = 0)
@@ -25,5 +25,5 @@ SUBSYSTEM_DEF(silo)
 ///Activate the subsystem when shutters open and remove the free spawning when marines are joining
 /datum/controller/subsystem/silo/proc/start_spawning()
 	SIGNAL_HANDLER
-	UnregisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY))
+	UnregisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_TADPOLE_LAUNCHED))
 	can_fire = TRUE

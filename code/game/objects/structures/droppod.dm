@@ -22,6 +22,8 @@
 	var/drop_state = DROPPOD_READY
 	var/launch_time = 10 SECONDS
 	var/launch_allowed = TRUE
+	///If true, you can launch the droppod before drop pod delay
+	var/operation_started = FALSE
 	var/datum/turf_reservation/reserved_area
 	///after the pod finishes it's travelhow long it spends falling
 	var/falltime = 0.6 SECONDS
@@ -29,11 +31,19 @@
 /obj/structure/droppod/Initialize()
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, .proc/disable_launching)
+	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_TADPOLE_LAUNCHED), .proc/allow_drop)
 	GLOB.droppod_list += src
 
 /obj/structure/droppod/proc/disable_launching()
+	SIGNAL_HANDLER
 	launch_allowed = FALSE
 	UnregisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED)
+
+///Allow this droppod to ignore dropdelay
+/obj/structure/droppod/proc/allow_drop()
+	SIGNAL_HANDLER
+	operation_started = TRUE
+	UnregisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_TADPOLE_LAUNCHED))
 
 /obj/structure/droppod/Destroy()
 	. = ..()
@@ -139,7 +149,7 @@
 /obj/structure/droppod/proc/launchpod(mob/user)
 	if(!occupant)
 		return
-	if(world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock + DROPPOD_DEPLOY_DELAY)
+	if(!operation_started && world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock + DROPPOD_DEPLOY_DELAY)
 		to_chat(user, "<span class='notice'>Unable to launch, the ship has not yet reached the combat area.</span>")
 		return
 	if(!launch_allowed)
