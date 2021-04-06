@@ -630,12 +630,16 @@ TUNNEL
 	resistance_flags = UNACIDABLE
 	layer = RESIN_STRUCTURE_LAYER
 
-	var/tunnel_desc = "" //description added by the hivelord.
-
 	max_integrity = 140
-	var/mob/living/carbon/xenomorph/hivelord/creator = null
 
 	hud_possible = list(XENO_TACTICAL_HUD)
+
+	var/tunnel_desc = "" //description added by the hivelord.
+	var/mob/living/carbon/xenomorph/hivelord/creator = null
+
+	///Hive number of the structure; defaults to standard.
+	var/hivenumber = XENO_HIVE_NORMAL
+
 
 
 /obj/structure/tunnel/Initialize(mapload)

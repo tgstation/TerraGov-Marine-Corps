@@ -1059,6 +1059,9 @@ to_chat will check for valid clients itself already so no need to double check f
 /mob/living/carbon/xenomorph/get_xeno_hivenumber()
 	return hivenumber
 
+/obj/structure/tunnel/get_xeno_hivenumber()
+	return hivenumber
+
 /obj/structure/resin/xeno_turret/get_xeno_hivenumber()
 	return associated_hive.hivenumber
 
