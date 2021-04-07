@@ -369,6 +369,8 @@
 		/obj/item/ammo_magazine/sentry,
 		/obj/item/ammo_magazine/minisentry,
 		/obj/item/marine_turret/mini,
+		/obj/item/mortal_shell,
+		/obj/item/mortar_kit,
 		/obj/item/stack/razorwire,
 		/obj/item/stack/sandbags,
 	)
