@@ -557,7 +557,6 @@
 		/obj/item/weapon/gun/pistol,
 		/obj/item/ammo_magazine/pistol,
 	)
-	var/reload_on = FALSE
 
 /obj/item/storage/belt/gun/Destroy()
 	if(gun_underlay)
@@ -620,8 +619,15 @@
 			return FALSE
 	return TRUE
 
-/obj/item/storage/belt/gun/attackby(obj/item/I, mob/user, params)
-	if(!istype(I, /obj/item/weapon/gun/pistol) || !reload_on)
+//This deliniates between belt/gun/pistol and belt/gun/revolver
+/obj/item/storage/belt/gun/pistol
+	name = "generic pistol belt"
+	desc = "A pistol belt that is not a revolver belt"
+	icon_state = "m4a3_holster"
+	item_state = "m4a3_holster"
+
+/obj/item/storage/belt/gun/pistol/attackby_alternate(obj/item/I, mob/user, params)
+	if(!istype(I, /obj/item/weapon/gun/pistol))
 		return ..()
 	var/obj/item/weapon/gun/pistol/gun = I
 	if(gun.current_mag)
@@ -634,24 +640,11 @@
 			orient2hud()
 			return
 
-/obj/item/storage/belt/gun/examine(mob/user, distance, infix, suffix)
+/obj/item/storage/belt/gun/pistol/examine(mob/user, distance, infix, suffix)
 	. = ..()
-	to_chat(user, "<span class='notice'>Control-Click to toggle \'Tactical Reload Mode\'. While on, clicking on the belt with an empty pistol will perform a reload with the ammo inside.</span>")
-	if(!reload_on)
-		to_chat(user, "<span class='notice'>Reload mode is OFF</span>")
-	if(reload_on)
-		to_chat(user, "<span class='notice'>Reload mode is ON</span>")
+	to_chat(user, "<span class='notice'>To perform a reload with the amunition inside, disable right click and right click on the belt with an empty pistol.</span>")
 
-/obj/item/storage/belt/gun/CtrlClick(mob/user)
-	if(src.loc != user)
-		return ..()
-	reload_on = !reload_on
-	if(!reload_on)
-		to_chat(user, "<span class='notice'>You toggle the reload mode OFF.</span>")
-	if(reload_on)
-		to_chat(user, "<span class='notice'>You toggle the reload mode ON.</span>")
-
-/obj/item/storage/belt/gun/m4a3
+/obj/item/storage/belt/gun/pistol/m4a3
 	name = "\improper M4A3 holster rig"
 	desc = "The M4A3 is a common holster belt. It consists of a modular belt with various clips. This version has a holster assembly that allows one to carry a handgun. It also contains side pouches that can store 9mm or .45 magazines."
 	can_hold = list(
@@ -659,7 +652,7 @@
 		/obj/item/ammo_magazine/pistol,
 	)
 
-/obj/item/storage/belt/gun/m4a3/full/Initialize()
+/obj/item/storage/belt/gun/pistol/m4a3/full/Initialize()
 	. = ..()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/rt3(src)
 	new /obj/item/ammo_magazine/pistol/ap(src)
@@ -670,7 +663,7 @@
 	new /obj/item/ammo_magazine/pistol/extended(src)
 	new_gun.on_enter_storage(src)
 
-/obj/item/storage/belt/gun/m4a3/officer/Initialize()
+/obj/item/storage/belt/gun/pistol/m4a3/officer/Initialize()
 	. = ..()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/rt3(src)
 	new /obj/item/ammo_magazine/pistol/hp(src)
@@ -681,7 +674,7 @@
 	new /obj/item/ammo_magazine/pistol/ap(src)
 	new_gun.on_enter_storage(src)
 
-/obj/item/storage/belt/gun/m4a3/fieldcommander/Initialize()
+/obj/item/storage/belt/gun/pistol/m4a3/fieldcommander/Initialize()
 	. = ..()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/m1911/custom(src)
 	new /obj/item/ammo_magazine/pistol/m1911(src)
@@ -692,7 +685,7 @@
 	new /obj/item/ammo_magazine/pistol/m1911(src)
 	new_gun.on_enter_storage(src)
 
-/obj/item/storage/belt/gun/m4a3/vp70/Initialize()
+/obj/item/storage/belt/gun/pistol/m4a3/vp70/Initialize()
 	. = ..()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/vp70(src)
 	new /obj/item/ammo_magazine/pistol/vp70(src)
@@ -703,7 +696,7 @@
 	new /obj/item/ammo_magazine/pistol/vp70(src)
 	new_gun.on_enter_storage(src)
 
-/obj/item/storage/belt/gun/m4a3/vp78/Initialize()
+/obj/item/storage/belt/gun/pistol/m4a3/vp78/Initialize()
 	. = ..()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/vp78(src)
 	new /obj/item/ammo_magazine/pistol/vp78(src)
@@ -715,13 +708,13 @@
 	new_gun.on_enter_storage(src)
 
 
-/obj/item/storage/belt/gun/m4a3/som
+/obj/item/storage/belt/gun/pistol/m4a3/som
 	name = "\improper S19 holster rig"
 	desc = "A belt with origins to old colony security holster rigs."
 	icon_state = "som_belt_pistol"
 	item_state = "som_belt_pistol"
 
-/obj/item/storage/belt/gun/stand
+/obj/item/storage/belt/gun/pistol/stand
 	name = "\improper M276 pattern M4A3 holster rig"
 	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version has a holster assembly that allows one to carry the M4A3 comfortably secure. It also contains side pouches that can store 9mm or .45 magazines."
 	can_hold = list(

@@ -676,7 +676,7 @@
 	new /obj/item/clothing/suit/storage/marine/M3HB(src)
 	new /obj/item/clothing/head/helmet/marine/heavy(src)
 	new /obj/item/weapon/gun/rifle/standard_lmg/autorifleman(src)
-	new /obj/item/storage/belt/gun/m4a3/full(src)
+	new /obj/item/storage/belt/gun/pistol/m4a3/full(src)
 	new /obj/item/storage/pouch/flare/full(src)
 	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
 	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
@@ -872,7 +872,7 @@
 
 /obj/item/storage/box/squadmarine/smartgunnerm4a3/Initialize(mapload, ...)
 	. = ..()
-	new /obj/item/storage/belt/gun/m4a3/full(src)
+	new /obj/item/storage/belt/gun/pistol/m4a3/full(src)
 	new /obj/item/storage/pouch/magazine/pistol/large/full(src)
 	new /obj/item/clothing/tie/storage/brown_vest(src)
 	new /obj/item/ammo_magazine/pistol(src)
