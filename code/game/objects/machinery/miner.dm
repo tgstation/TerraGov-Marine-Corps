@@ -2,6 +2,10 @@
 #define MINER_SMALL_DAMAGE	1
 #define MINER_MEDIUM_DAMAGE	2
 #define MINER_DESTROYED	3
+#define MINER_LIGHT_RUNNING 8
+#define MINER_LIGHT_SDAMAGE 4
+#define MINER_LIGHT_MDAMAGE 2
+#define MINER_LIGHT_DESTROYED 0
 #define MINER_AUTOMATED "mining computer"
 #define MINER_RESISTANT	"reinforced components"
 #define MINER_OVERCLOCKED "high-efficiency drill"
@@ -56,16 +60,16 @@
 	switch(miner_status)
 		if(MINER_RUNNING)
 			icon_state = "mining_drill_active_[miner_upgrade_type]"
-			set_light(8)
+			set_light(MINER_LIGHT_RUNNING)
 		if(MINER_SMALL_DAMAGE)
 			icon_state = "mining_drill_braced_[miner_upgrade_type]"
-			set_light(4)
+			set_light(MINER_LIGHT_SDAMAGE)
 		if(MINER_MEDIUM_DAMAGE)
 			icon_state = "mining_drill_[miner_upgrade_type]"
-			set_light(2)
+			set_light(MINER_LIGHT_MDAMAGE)
 		if(MINER_DESTROYED)
 			icon_state = "mining_drill_error_[miner_upgrade_type]"
-			set_light(brightness_on)
+			set_light(MINER_LIGHT_DESTROYED)
 /// Called whenever someone attacks the miner with a object which is considered a upgrade.The object needs to have a uptype var.
 /obj/machinery/miner/proc/attempt_upgrade(obj/item/minerupgrade/upgrade, mob/user, params)
 	if(miner_upgrade_type)
