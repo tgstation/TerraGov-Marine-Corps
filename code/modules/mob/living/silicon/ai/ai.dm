@@ -103,7 +103,6 @@
 		return
 	current_order.send_order(target)
 
-
 ///Set the current order
 /mob/living/silicon/ai/proc/set_order(datum/source, datum/action/innate/order/order)
 	SIGNAL_HANDLER
