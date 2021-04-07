@@ -57,6 +57,13 @@ const VoteOptions = (props, context) => {
                     {allow_vote_groundmap ? "Enabled" : "Disabled"}
                   </Button.Checkbox>
                 )}
+                <Button
+                  disabled={!upper_admin || !allow_vote_groundmap}
+                  onClick={() => act("groundmap")}>
+                  Ground Map
+                </Button>
+              </Stack.Item>
+              <Stack.Item>
                 {!!upper_admin && (
                   <Button.Checkbox
                     mr={!allow_vote_shipmap ? 1 : 1.6}
@@ -67,14 +74,9 @@ const VoteOptions = (props, context) => {
                   </Button.Checkbox>
                 )}
                 <Button
-                  disabled={!upper_admin || !allow_vote_groundmap}
-                  onClick={() => act("groundmap")}>
-                  Map
-                </Button>
-                <Button
                   disabled={!upper_admin || !allow_vote_shipmap}
                   onClick={() => act("shipmap")}>
-                  Map
+                  Ship Map
                 </Button>
               </Stack.Item>
               <Stack.Item>
