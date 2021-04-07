@@ -117,9 +117,9 @@
 ///The action of taking off and sending the shuttle to the atmosphere
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/proc/take_off()
 	shuttle_port = SSshuttle.getShuttle(shuttleId)
-	/*if(!(shuttle_port.shuttle_flags & GAMEMODE_IMMUNE) && world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
+	if(!(shuttle_port.shuttle_flags & GAMEMODE_IMMUNE) && world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
 		to_chat(ui_user, "<span class='warning'>The engines are still refueling.</span>")
-		return*/
+		return
 	shuttle_port.shuttle_computer = src
 	SEND_GLOBAL_SIGNAL(COMSIG_TADPOLE_LAUNCHED)
 	if(fly_state == SHUTTLE_ON_GROUND)
@@ -166,6 +166,7 @@
 	s2.set_up(3, 1, src)
 	s2.start()
 	damaged = TRUE
+	remove_eye_control(ui_user)
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/ui_state(mob/user)
 	return GLOB.dropship_state
