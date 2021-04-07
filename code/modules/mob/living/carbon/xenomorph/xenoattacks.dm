@@ -132,7 +132,7 @@
 				return TRUE
 			// copypasted from attack_alien.dm
 			//From this point, we are certain a full attack will go out. Calculate damage and modifiers
-					var/damage = M.xeno_caste.melee_damage * M.xeno_melee_damage_modifier
+			var/damage = X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier
 
 			//Somehow we will deal no damage on this attack
 			if(!damage)
