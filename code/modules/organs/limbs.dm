@@ -1140,7 +1140,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	name = "l_arm"
 	display_name = "left arm"
 	icon_name = "l_arm"
-	max_damage = 100
+	max_damage = 125
 	min_broken_damage = 50
 	body_part = ARM_LEFT
 	cover_index = 7
@@ -1163,7 +1163,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	name = "r_arm"
 	display_name = "right arm"
 	icon_name = "r_arm"
-	max_damage = 100
+	max_damage = 125
 	min_broken_damage = 50
 	body_part = ARM_RIGHT
 	cover_index = 7

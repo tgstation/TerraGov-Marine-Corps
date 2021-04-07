@@ -124,7 +124,7 @@
 		/obj/item/storage/box/nade_box/M15 = 2,
 		/obj/item/storage/box/nade_box/plasma_drain_gas = 1,
 		/obj/item/ammo_magazine/rifle/autosniper = 3,
-		/obj/item/ammo_magazine/rifle/m4ra = 3,
+		/obj/item/ammo_magazine/rifle/tx8 = 3,
 		/obj/item/ammo_magazine/rocket/sadar = 3,
 		/obj/item/ammo_magazine/minigun = 2,
 		/obj/item/ammo_magazine/shotgun/mbx900 = 2,

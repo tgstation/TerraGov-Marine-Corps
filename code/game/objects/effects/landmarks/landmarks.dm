@@ -316,7 +316,7 @@
 		/obj/item/weapon/gun/launcher/m81,
 		/obj/item/weapon/gun/rifle/standard_smartmachinegun,
 		/obj/item/weapon/gun/rifle/sectoid_rifle,
-		/obj/item/weapon/gun/rifle/m4ra,
+		/obj/item/weapon/gun/rifle/tx8,
 		/obj/item/weapon/gun/shotgun/pump/bolt,
 		/obj/item/weapon/gun/shotgun/pump/lever/mbx900,
 		/obj/item/weapon/gun/shotgun/pump/cmb,
