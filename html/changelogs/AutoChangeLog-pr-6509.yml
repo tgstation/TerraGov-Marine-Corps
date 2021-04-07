@@ -1,0 +1,5 @@
+author: "Swagile"
+delete-after: True
+changes: 
+  - balance: "Robo limbs now malfunction at a proper threshold, and do it at a lower probability than fleshy limbs."
+  - balance: "Robo limbs take more punishment; from 0.66 reduction to 0.50 reduction to brute and burn damage."
