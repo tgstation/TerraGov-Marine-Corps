@@ -32,6 +32,12 @@
 	var/max_miner_integrity = 100
 	///What type of upgrade it has installed , used to change the icon of the miner.
 	var/miner_upgrade_type
+	//Brightness of the miner
+	var/brightness_on = 0
+
+/obj/machinery/miner/Initialize()
+	. = ..()
+	set_light(brightness_on)
 
 /obj/machinery/miner/damaged	//mapping and all that shebang
 	miner_status = MINER_DESTROYED
@@ -50,12 +56,16 @@
 	switch(miner_status)
 		if(MINER_RUNNING)
 			icon_state = "mining_drill_active_[miner_upgrade_type]"
+			set_light(8)
 		if(MINER_SMALL_DAMAGE)
 			icon_state = "mining_drill_braced_[miner_upgrade_type]"
+			set_light(4)
 		if(MINER_MEDIUM_DAMAGE)
 			icon_state = "mining_drill_[miner_upgrade_type]"
+			set_light(2)
 		if(MINER_DESTROYED)
 			icon_state = "mining_drill_error_[miner_upgrade_type]"
+			set_light(brightness_on)
 /// Called whenever someone attacks the miner with a object which is considered a upgrade.The object needs to have a uptype var.
 /obj/machinery/miner/proc/attempt_upgrade(obj/item/minerupgrade/upgrade, mob/user, params)
 	if(miner_upgrade_type)
