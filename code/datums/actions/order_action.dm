@@ -70,7 +70,7 @@
 		to_chat(owner, "<span class='warning'>Your last order was too recent.</span>")
 		return FALSE
 	TIMER_COOLDOWN_START(owner, COOLDOWN_CIC_ORDERS, ORDER_COOLDOWN)
-	to_chat(owner ,"<span class='ordercic'>You ordered marines to [verb_name] [target_turf.loc.name]!</span>")
+	to_chat(owner ,"<span class='ordercic'>You ordered marines to [verb_name] [target.loc.name]!</span>")
 	owner.playsound_local(owner, "sound/effects/CIC_order.ogg", 10, 1)
 	if(visual_type)
 		target = get_turf(target)
