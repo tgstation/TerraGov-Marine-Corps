@@ -231,18 +231,18 @@
 /obj/structure/resin/xeno_turret/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			take_damage(800)
+			take_damage(1000)
 		if(EXPLODE_HEAVY)
-			take_damage(400)
+			take_damage(500)
 		if(EXPLODE_LIGHT)
-			take_damage(200)
+			take_damage(350)
 
 /obj/structure/resin/xeno_turret/flamer_fire_act()
-	take_damage(40, BURN, "fire")
+	take_damage(50, BURN, "fire")
 	ENABLE_BITFIELD(resistance_flags, ON_FIRE)
 
 /obj/structure/resin/xeno_turret/fire_act()
-	take_damage(40, BURN, "fire")
+	take_damage(50, BURN, "fire")
 	ENABLE_BITFIELD(resistance_flags, ON_FIRE)
 
 /obj/structure/resin/xeno_turret/update_overlays()
