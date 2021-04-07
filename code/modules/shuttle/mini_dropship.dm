@@ -45,6 +45,8 @@
 	var/origin_port_id = "minidropship"
 	/// The user of the ui
 	var/mob/living/ui_user
+	/// If the shuttle is producing lights while hovering
+	var/projector_on = FALSE
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/Initialize(mapload)
 	..()
@@ -96,6 +98,7 @@
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/shuttle_arrived()
 	if(fly_state == next_fly_state)
 		return
+	eyeobj?.set_light_on(projector_on && (fly_state == SHUTTLE_IN_ATMOSPHERE))
 	fly_state = next_fly_state
 	if(fly_state == SHUTTLE_IN_SPACE)
 		shuttle_port.assigned_transit.reserved_area.set_turf_type(/turf/open/space/transit)
@@ -115,9 +118,9 @@
 ///The action of taking off and sending the shuttle to the atmosphere
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/proc/take_off()
 	shuttle_port = SSshuttle.getShuttle(shuttleId)
-	if(!(shuttle_port.shuttle_flags & GAMEMODE_IMMUNE) && world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
+	/*if(!(shuttle_port.shuttle_flags & GAMEMODE_IMMUNE) && world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
 		to_chat(ui_user, "<span class='warning'>The engines are still refueling.</span>")
-		return
+		return*/
 	shuttle_port.shuttle_computer = src
 	SEND_GLOBAL_SIGNAL(COMSIG_TADPOLE_LAUNCHED)
 	if(fly_state == SHUTTLE_ON_GROUND)
@@ -172,6 +175,7 @@
 	.["fly_state"] = fly_state
 	.["take_off_locked"] = ( !(fly_state == SHUTTLE_ON_GROUND || fly_state == SHUTTLE_ON_SHIP) || shuttle_port?.mode != SHUTTLE_IDLE)
 	.["return_to_ship_locked"] = (fly_state != SHUTTLE_IN_ATMOSPHERE || shuttle_port?.mode != SHUTTLE_IDLE)
+	.["turn_on_projector_locked"] = (fly_state != SHUTTLE_IN_ATMOSPHERE || shuttle_port?.mode != SHUTTLE_IDLE || TIMER_COOLDOWN_CHECK(src, COOLDOWN_PROJECTOR_LIGHT))
 	var/obj/docking_port/mobile/marine_dropship/shuttle = shuttle_port
 	.["equipment_data"] = list()
 	var/element_nbr = 1
@@ -188,6 +192,10 @@
 			take_off()
 		if("return_to_ship")
 			return_to_ship()
+		if("turn_projector")
+			projector_on = !projector_on
+			eyeobj?.set_light_on(projector_on && (fly_state == SHUTTLE_IN_ATMOSPHERE))
+			TIMER_COOLDOWN_START(src, COOLDOWN_PROJECTOR_LIGHT, 1 SECONDS)
 		if("equip_interact")
 			var/base_tag = text2num(params["equip_interact"])
 			var/obj/docking_port/mobile/marine_dropship/shuttle = shuttle_port
@@ -206,7 +214,11 @@
 	var/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/origin = remote_eye.origin
 	if(origin.shuttle_port.mode != SHUTTLE_IDLE)
 		return
+	if(origin.fuel_left <= 10)
+		to_chat(owner, "<span class='warning'>You won't have enough fuel to land and then come back to ship!</span>")
+		return
 	if(!origin.placeLandingSpot(target))
+		to_chat(owner, "<span class='warning'>You cannot land here.</span>")
 		return
 	origin.shuttle_port.callTime = SHUTTLE_LANDING_CALLTIME
 	origin.next_fly_state = SHUTTLE_ON_GROUND

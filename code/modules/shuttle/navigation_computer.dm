@@ -239,6 +239,25 @@
 	y_offset = -Tmp
 	checkLandingSpot()
 
+/// Checks if the currently hovered area is accessible by the shuttle
+/obj/machinery/computer/camera_advanced/shuttle_docker/proc/checkHoveringSpot(turf/next_turf)
+	if(!next_turf)
+		return
+	var/mob/camera/aiEye/remote/shuttle_docker/the_eye = eyeobj
+	var/list/image_cache = the_eye.placement_images
+	for(var/i in 1 to image_cache.len)
+		var/image/I = image_cache[i]
+		var/list/coords = image_cache[I]
+		var/turf/T = locate(next_turf.x + coords[1], next_turf.y + coords[2], next_turf.z)
+		var/area/A = get_area(T)
+		if(!A)
+			return FALSE
+		if(A.ceiling == CEILING_NONE || A.ceiling == CEILING_GLASS || A.ceiling ==CEILING_METAL)
+			continue
+		return FALSE
+	return TRUE
+
+
 /// Checks if the currently hovered area is a valid landing spot
 /obj/machinery/computer/camera_advanced/shuttle_docker/proc/checkLandingSpot()
 	var/mob/camera/aiEye/remote/shuttle_docker/the_eye = eyeobj
@@ -256,6 +275,10 @@
 		var/image/I = image_cache[i]
 		var/list/coords = image_cache[I]
 		var/turf/T = locate(eyeturf.x + coords[1], eyeturf.y + coords[2], eyeturf.z)
+		for(var/obj/O in T)
+			if(istype(0, /obj/machinery/power/geothermal))//This is not generic, but appart from generators, what needs to be protected from crushing?
+				. = SHUTTLE_DOCKER_BLOCKED
+				break
 		I.loc = T
 		switch(checkLandingTurf(T, overlappers))
 			if(SHUTTLE_DOCKER_LANDING_CLEAR)
@@ -324,6 +347,13 @@
 /mob/camera/aiEye/remote/shuttle_docker/Initialize(mapload, obj/machinery/computer/camera_advanced/origin)
 	src.origin = origin
 	return ..()
+
+/mob/camera/aiEye/remote/shuttle_docker/relaymove(mob/user, direct)
+	var/turf/T = get_turf(get_step(src, direct))
+	var/obj/machinery/computer/camera_advanced/shuttle_docker/console = origin
+	if(!console.checkHoveringSpot(T))
+		return
+	setLoc(T)
 
 /mob/camera/aiEye/remote/shuttle_docker/setLoc(T)
 	..()
