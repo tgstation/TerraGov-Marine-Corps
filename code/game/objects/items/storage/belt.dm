@@ -557,6 +557,7 @@
 		/obj/item/weapon/gun/pistol,
 		/obj/item/ammo_magazine/pistol,
 	)
+	var/reload_on = FALSE
 
 /obj/item/storage/belt/gun/Destroy()
 	if(gun_underlay)
@@ -618,6 +619,37 @@
 				to_chat(usr, "<span class='warning'>[src] can't hold any more magazines.</span>")
 			return FALSE
 	return TRUE
+
+/obj/item/storage/belt/gun/attackby(obj/item/I, mob/user, params)
+	if(!istype(I, /obj/item/weapon/gun/pistol) || !reload_on)
+		return ..()
+	var/obj/item/weapon/gun/pistol/gun = I
+	if(gun.current_mag)
+		return ..()
+	for(var/obj/item/ammo_magazine/mag in contents) 
+		if(!istype(gun, mag.gun_type))
+			continue
+		else
+			gun.reload(user, mag)
+			orient2hud()
+			return
+
+/obj/item/storage/belt/gun/examine(mob/user, distance, infix, suffix)
+	. = ..()
+	to_chat(user, "<span class='notice'>Control-Click to toggle \'Tactical Reload Mode\'. While on, clicking on the belt with an empty pistol will perform a reload with the ammo inside.</span>")
+	if(!reload_on)
+		to_chat(user, "<span class='notice'>Reload mode is OFF</span>")
+	if(reload_on)
+		to_chat(user, "<span class='notice'>Reload mode is ON</span>")
+
+/obj/item/storage/belt/gun/CtrlClick(mob/user)
+	if(src.loc != user)
+		return ..()
+	reload_on = !reload_on
+	if(!reload_on)
+		to_chat(user, "<span class='notice'>You toggle the reload mode OFF.</span>")
+	if(reload_on)
+		to_chat(user, "<span class='notice'>You toggle the reload mode ON.</span>")
 
 /obj/item/storage/belt/gun/m4a3
 	name = "\improper M4A3 holster rig"
