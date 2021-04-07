@@ -74,7 +74,6 @@ export class ByondUi extends Component {
   constructor(props) {
     super(props);
     this.containerRef = createRef();
-    this.onRender = props.onRender;
     this.byondUiElement = createByondUiElement(props.params?.id);
     this.handleResize = debounce(() => {
       this.forceUpdate();
@@ -102,9 +101,6 @@ export class ByondUi extends Component {
     window.addEventListener('resize', this.handleResize);
     this.componentDidUpdate();
     this.handleResize();
-    if (this.onRender && typeof this.onRender === 'function') {
-      this.onRender();
-    }
   }
 
   componentDidUpdate() {
