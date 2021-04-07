@@ -276,7 +276,7 @@
 		var/list/coords = image_cache[I]
 		var/turf/T = locate(eyeturf.x + coords[1], eyeturf.y + coords[2], eyeturf.z)
 		for(var/obj/O in T)
-			if(istype(0, /obj/machinery/power/geothermal))//This is not generic, but appart from generators, what needs to be protected from crushing?
+			if(CHECK_BITFIELD(O.resistance_flags, INDESTRUCTIBLE))
 				. = SHUTTLE_DOCKER_BLOCKED
 				break
 		I.loc = T
@@ -361,7 +361,7 @@
 	console.checkLandingSpot()
 
 /mob/camera/aiEye/remote/shuttle_docker/update_remote_sight(mob/living/user)
-	user.see_in_dark = 5
+	user.see_in_dark = 8
 	user.lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
 	user.sync_lighting_plane_alpha()
 	return TRUE

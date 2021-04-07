@@ -196,9 +196,6 @@
 /mob/camera/aiEye/remote
 	name = "Inactive Camera Eye"
 	ai_detector_visible = FALSE
-	light_power = 5
-	light_range = 6 //Used only by mini dropship
-	light_system = MOVABLE_LIGHT
 	var/sprint = 5
 	var/cooldown = 0
 	var/acceleration = FALSE

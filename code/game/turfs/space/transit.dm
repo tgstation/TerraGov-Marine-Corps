@@ -12,7 +12,7 @@
 /turf/open/space/transit/atmos
 	name = "\proper high atmosphere"
 	baseturfs = /turf/open/space/transit/atmos
-	available_icon_state_amounts = 4
+	available_icon_state_amounts = 8
 
 //Overwrite because we dont want people building rods in space.
 /turf/open/space/transit/attackby(obj/item/I, mob/user, params)
@@ -93,7 +93,7 @@
 	icon_state = "speedspace_ns_[get_transit_state(src, available_icon_state_amounts)]"
 
 /turf/open/space/transit/atmos/update_icon_state()
-	icon_state = "cloud_[get_transit_state(src, available_icon_state_amounts)]"
+	icon_state = "Cloud_[get_transit_state(src, available_icon_state_amounts)]"
 
 /proc/get_transit_state(turf/T, available_icon_state_amounts)
 	var/p = round(available_icon_state_amounts / 2)

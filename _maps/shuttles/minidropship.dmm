@@ -21,9 +21,6 @@
 	},
 /turf/open/floor/mainship_hull,
 /area/shuttle/minidropship)
-"k" = (
-/turf/open/shuttle/dropship/grating,
-/area/shuttle/minidropship)
 "n" = (
 /obj/structure/bed/chair/dropship/pilot{
 	dir = 1
@@ -81,7 +78,7 @@
 /area/space)
 "F" = (
 /obj/docking_port/mobile/marine_dropship/minidropship,
-/turf/open/shuttle/dropship/grating,
+/turf/open/floor/mainship_hull,
 /area/shuttle/minidropship)
 "H" = (
 /obj/structure/barricade/plasteel{
@@ -148,11 +145,17 @@
 /obj/machinery/door/poddoor/shutters/transit,
 /turf/open/shuttle/dropship/three,
 /area/shuttle/minidropship)
+"W" = (
+/obj/effect/attach_point/weapon/minidropship/pointing_west,
+/turf/closed/wall/mainship/outer/reinforced,
+/area/shuttle/minidropship)
 "Y" = (
-/obj/effect/attach_point/crew_weapon/minidropship{
-	dir = 2
-	},
+/obj/effect/attach_point/crew_weapon/minidropship,
 /turf/open/floor/plating/plating_catwalk,
+/area/shuttle/minidropship)
+"Z" = (
+/obj/effect/attach_point/weapon/minidropship/pointing_east,
+/turf/closed/wall/mainship/outer/reinforced,
 /area/shuttle/minidropship)
 
 (1,1,1) = {"
@@ -163,7 +166,7 @@ S
 U
 U
 U
-S
+W
 R
 "}
 (2,1,1) = {"
@@ -183,7 +186,7 @@ h
 S
 p
 r
-k
+r
 r
 v
 E
@@ -205,7 +208,7 @@ h
 S
 K
 r
-k
+r
 r
 v
 E
@@ -229,6 +232,6 @@ S
 U
 U
 U
-S
+Z
 a
 "}
