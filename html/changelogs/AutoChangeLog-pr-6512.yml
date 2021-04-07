@@ -1,5 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - bugfix: "Ai order no longer runtime that much"
-  - qol: "When sending an order as CIC or AI, you have feedback on what you've done"
