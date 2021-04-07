@@ -1,0 +1,4 @@
+author: "XSlayer300"
+delete-after: True
+changes: 
+  - bugfix: "Fixed HvH variants of ERT that will despawn automatically after spawning."

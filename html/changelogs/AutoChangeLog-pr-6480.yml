@@ -1,0 +1,6 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - rscadd: "Rally order for SL, FC, captain and SO"
+  - balance: "Change leading skill for SL (from 2 to 3) and for CE (from 4 to 2)"
+  - qol: "Order text are bigger, and the sound is louder. Marines are blind and deaf"

@@ -72,8 +72,8 @@
 	var/turf/tunnel_turf = get_step(center_turf, NORTH)
 	if(tunnel_turf.can_dig_xeno_tunnel())
 		var/obj/structure/tunnel/newt = new(tunnel_turf)
-		newt.tunnel_desc = " [get_area(newt)] (X: [newt.x], Y: [newt.y])"
-		newt.name += "[name]"
+		newt.tunnel_desc = "[AREACOORD_NO_Z(newt)]"
+		newt.name += " [name]"
 
 /obj/structure/resin/silo/Destroy()
 	GLOB.xeno_resin_silos -= src
