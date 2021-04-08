@@ -13,7 +13,7 @@ export const Vote = (props, context) => {
   }
 
   return (
-    <Window resizable title={windowTitle} width={400} height={500}>
+    <Window title={windowTitle} width={400} height={500}>
       <Window.Content>
         <Stack fill vertical>
           {!!lower_admin && (
