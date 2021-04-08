@@ -60,6 +60,7 @@
 
 /datum/emergency_call/upp/hvh
 	name = "USL Pirate Band (Human vs. Human)"
+	base_probability = 0
 
 /datum/emergency_call/upp/hvh/create_member(datum/mind/M)
 	. = ..()
