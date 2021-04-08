@@ -22,7 +22,6 @@ export const Minidropship = (_props, context) => {
             onClick={() => act('return_to_ship')} />
           <Button
             content="Toggle night vision mode"
-            disabled={data.return_to_ship_locked} // Same logic
             onClick={() => act('toggle_nvg')} />
         </Section>
         <Section title={`Fuel left - ${data.fuel_left}/${data.fuel_max}`}>
