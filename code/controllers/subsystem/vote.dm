@@ -225,9 +225,7 @@ SUBSYSTEM_DEF(vote)
 						continue
 					if(VM.config_max_users || VM.config_min_users)
 						var/players = length(GLOB.clients)
-						if(players > VM.config_max_users)
-							continue
-						if(players < VM.config_min_users)
+						if(players > VM.config_max_users || players < VM.config_min_users)
 							continue
 					maps += VM.map_name
 					shuffle_inplace(maps)
