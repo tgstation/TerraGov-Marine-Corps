@@ -275,10 +275,6 @@
 		var/image/I = image_cache[i]
 		var/list/coords = image_cache[I]
 		var/turf/T = locate(eyeturf.x + coords[1], eyeturf.y + coords[2], eyeturf.z)
-		for(var/obj/O in T)
-			if(CHECK_BITFIELD(O.resistance_flags, INDESTRUCTIBLE))
-				. = SHUTTLE_DOCKER_BLOCKED
-				break
 		I.loc = T
 		switch(checkLandingTurf(T, overlappers))
 			if(SHUTTLE_DOCKER_LANDING_CLEAR)
@@ -309,6 +305,10 @@
 		hidden_turf_info = SSshuttle.hidden_shuttle_turfs[T]
 		if(hidden_turf_info)
 			. = SHUTTLE_DOCKER_BLOCKED_BY_HIDDEN_PORT
+
+	for(var/obj/O in T)
+		if(CHECK_BITFIELD(O.resistance_flags, DROPSHIP_IMMUNE))
+			return SHUTTLE_DOCKER_BLOCKED
 
 	if(length(whitelist_turfs))
 		var/turf_type = hidden_turf_info ? hidden_turf_info[2] : T.type
