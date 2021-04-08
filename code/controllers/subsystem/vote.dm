@@ -6,15 +6,23 @@ SUBSYSTEM_DEF(vote)
 
 	runlevels = RUNLEVEL_LOBBY | RUNLEVELS_DEFAULT
 
+	/// Available choices in the vote
 	var/list/choices = list()
+	/// What choice each player took, if any
 	var/list/choice_by_ckey = list()
-	var/list/generated_actions = list()
+	/// Who started the vote
 	var/initiator
+	/// On what subject the vote is about
 	var/mode
+	/// The question that will be asked
 	var/question
+	/// When the vote was started
 	var/started_time
+	/// How long till the vote is resolved
 	var/time_remaining
+	/// Who already voted
 	var/list/voted = list()
+	/// Who can vote
 	var/list/voting = list()
 
 // Called by master_controller
@@ -27,6 +35,7 @@ SUBSYSTEM_DEF(vote)
 		SStgui.close_uis(src)
 		reset()
 
+/// Stop the current vote and reset everything
 /datum/controller/subsystem/vote/proc/reset()
 	choices.Cut()
 	choice_by_ckey.Cut()
@@ -39,6 +48,8 @@ SUBSYSTEM_DEF(vote)
 
 	remove_action_buttons()
 
+
+/// Tally the results and give the winner
 /datum/controller/subsystem/vote/proc/get_result()
 	//get the highest number of votes
 	var/greatest_votes = 0
@@ -72,6 +83,8 @@ SUBSYSTEM_DEF(vote)
 			if(choices[option] == greatest_votes)
 				. += option
 
+
+/// Announce the votes tally to everyone
 /datum/controller/subsystem/vote/proc/announce_result()
 	var/list/winners = get_result()
 	var/text
@@ -100,6 +113,8 @@ SUBSYSTEM_DEF(vote)
 	remove_action_buttons()
 	to_chat(world, "\n<font color='purple'>[text]</font>")
 
+
+/// Apply the result of the vote if it's possible
 /datum/controller/subsystem/vote/proc/result()
 	. = announce_result()
 	var/restart = FALSE
@@ -136,6 +151,8 @@ SUBSYSTEM_DEF(vote)
 
 	return .
 
+
+/// Register the vote of one player
 /datum/controller/subsystem/vote/proc/submit_vote(vote)
 	if(!mode)
 		return FALSE
@@ -152,6 +169,7 @@ SUBSYSTEM_DEF(vote)
 	choices[choices[vote]]++
 	return vote
 
+/// Start the vote, and prepare the choices to send to everyone
 /datum/controller/subsystem/vote/proc/initiate_vote(vote_type, initiator_key)
 	//Server is still intializing.
 	if(!Master.current_runlevel)
@@ -253,12 +271,15 @@ SUBSYSTEM_DEF(vote)
 		ui = new(user, src, "Vote")
 		ui.open()
 
+/datum/controller/subsystem/vote/ui_static_data(mob/user)
+	. = ..()
+	.["allow_vote_groundmap"] = CONFIG_GET(flag/allow_vote_groundmap)
+	.["allow_vote_shipmap"] = CONFIG_GET(flag/allow_vote_shipmap)
+	.["allow_vote_mode"] = CONFIG_GET(flag/allow_vote_mode)
+	.["allow_vote_restart"] = CONFIG_GET(flag/allow_vote_restart)
+
 /datum/controller/subsystem/vote/ui_data(mob/user)
 	var/list/data = list(
-		"allow_vote_groundmap" = CONFIG_GET(flag/allow_vote_groundmap),
-		"allow_vote_shipmap" = CONFIG_GET(flag/allow_vote_shipmap),
-		"allow_vote_mode" = CONFIG_GET(flag/allow_vote_mode),
-		"allow_vote_restart" = CONFIG_GET(flag/allow_vote_restart),
 		"choices" = list(),
 		"lower_admin" = !!user.client?.holder,
 		"mode" = mode,
@@ -299,15 +320,19 @@ SUBSYSTEM_DEF(vote)
 		if("toggle_restart")
 			if(usr.client.holder && upper_admin)
 				CONFIG_SET(flag/allow_vote_restart, !CONFIG_GET(flag/allow_vote_restart))
+				update_static_data()
 		if("toggle_gamemode")
 			if(usr.client.holder && upper_admin)
 				CONFIG_SET(flag/allow_vote_mode, !CONFIG_GET(flag/allow_vote_mode))
+				update_static_data()
 		if("toggle_groundmap")
 			if(usr.client.holder && upper_admin)
 				CONFIG_SET(flag/allow_vote_groundmap, !CONFIG_GET(flag/allow_vote_groundmap))
+				update_static_data()
 		if("toggle_shipmap")
 			if(usr.client.holder && upper_admin)
 				CONFIG_SET(flag/allow_vote_shipmap, !CONFIG_GET(flag/allow_vote_shipmap))
+				update_static_data()
 		if("restart")
 			if(CONFIG_GET(flag/allow_vote_restart) || usr.client.holder)
 				initiate_vote("restart",usr.key)
