@@ -19,18 +19,22 @@ export const PlayerPreferences = (props, context) => {
       CurrentTab = CharacterCustomization;
       affectsSave = true;
       break;
-    case 2:
-      CurrentTab = GearCustomization;
+    case 2: 
+      CurrentTab = BackgroundInformation;
       affectsSave = true;
       break;
     case 3:
-      CurrentTab = JobPreferences;
+      CurrentTab = GearCustomization;
       affectsSave = true;
       break;
     case 4:
-      CurrentTab = GameSettings;
+      CurrentTab = JobPreferences;
+      affectsSave = true;
       break;
     case 5:
+      CurrentTab = GameSettings;
+      break;
+    case 6:
       CurrentTab = KeybindSetting;
       break;
     case 99:
@@ -78,7 +82,7 @@ export const PlayerPreferences = (props, context) => {
   );
 };
 
-const CharacterCustomization = (props, context) => {
+const BackgroundInformation = (props, context) => {
   const { act, data, config } = useBackend(context);
   const [characterDesc, setCharacterDesc] = useLocalState(
     context,
@@ -105,6 +109,147 @@ const CharacterCustomization = (props, context) => {
     'exploitsDesc' + data.slot,
     data.exploit_record
   );
+  return (
+    <Section title="Background information">
+      <Section
+        title="Character Description"
+        buttons={
+          <Box>
+            <Button
+              icon="save"
+              disabled={characterDesc === data.flavor_text}
+              onClick={() => act('flavor_text', { characterDesc })}>
+              Save
+            </Button>
+            <Button
+              icon="times"
+              onClick={() => setCharacterDesc(data.flavor_text)}>
+              Reset
+            </Button>
+          </Box>
+        }>
+        <TextArea
+          key="character"
+          height="100px"
+          value={characterDesc}
+          onChange={(e, value) => setCharacterDesc(value)}
+        />
+      </Section>
+
+      <Grid>
+        <Grid.Column>
+          <Section
+            title="Medical Records"
+            buttons={
+              <Box>
+                <Button
+                  icon="save"
+                  disabled={medicalDesc === data.med_record}
+                  onClick={() => act('med_record', { medicalDesc })}>
+                  Save
+                </Button>
+                <Button
+                  icon="times"
+                  onClick={() => setMedicalDesc(data.med_record)}>
+                  Reset
+                </Button>
+              </Box>
+            }>
+            <TextArea
+              height="100px"
+              maxLength={1024}
+              value={medicalDesc}
+              onChange={(e, value) => setMedicalDesc(value)}
+            />
+          </Section>
+        </Grid.Column>
+        <Grid.Column>
+          <Section
+            title="Employment Records"
+            buttons={
+              <Box>
+                <Button
+                  icon="save"
+                  disabled={employmentDesc === data.gen_record}
+                  onClick={() => act('gen_record', { employmentDesc })}>
+                  Save
+                </Button>
+                <Button
+                  icon="times"
+                  onClick={() => setEmploymentDesc(data.gen_record)}>
+                  Reset
+                </Button>
+              </Box>
+            }>
+            <TextArea
+              height="100px"
+              maxLength={1024}
+              value={employmentDesc}
+              onChange={(e, value) => setEmploymentDesc(value)}
+            />
+          </Section>
+        </Grid.Column>
+      </Grid>
+      <Grid>
+        <Grid.Column>
+          <Section
+            title="Security Records"
+            buttons={
+              <Box>
+                <Button
+                  icon="save"
+                  disabled={securityDesc === data.sec_record}
+                  onClick={() => act('sec_record', { securityDesc })}>
+                  Save
+                </Button>
+                <Button
+                  icon="times"
+                  onClick={() => setSecurityDesc(data.sec_record)}>
+                  Reset
+                </Button>
+              </Box>
+            }>
+            <TextArea
+              height="100px"
+              maxLength={1024}
+              value={securityDesc}
+              onChange={(e, value) => setSecurityDesc(value)}
+            />
+          </Section>
+        </Grid.Column>
+        <Grid.Column>
+          <Section
+            title="Exploit Records"
+            buttons={
+              <Box>
+                <Button
+                  icon="save"
+                  disabled={exploitsDesc === data.exploit_record}
+                  onClick={() => act('exploit_record', { exploitsDesc })}>
+                  Save
+                </Button>
+                <Button
+                  icon="times"
+                  onClick={() => setExploitsDesc(data.exploit_record)}>
+                  Reset
+                </Button>
+              </Box>
+            }>
+            <TextArea
+              height="100px"
+              maxLength={1024}
+              value={exploitsDesc}
+              onChange={(e, value) => setExploitsDesc(value)}
+            />
+          </Section>
+        </Grid.Column>
+      </Grid>
+    </Section>
+  );
+};   
+
+const CharacterCustomization = (props, context) => {
+  const { act, data, config } = useBackend(context);
 
   const rgbToHex = (red, green, blue) => {
     const convert = comp => {
@@ -299,141 +444,6 @@ const CharacterCustomization = (props, context) => {
             </LabeledList>
           </Flex.Item>
         </Flex>
-      </Section>
-      <Section title="Background information">
-        <Section
-          title="Character Description"
-          buttons={
-            <Box>
-              <Button
-                icon="save"
-                disabled={characterDesc === data.flavor_text}
-                onClick={() => act('flavor_text', { characterDesc })}>
-                Save
-              </Button>
-              <Button
-                icon="times"
-                onClick={() => setCharacterDesc(data.flavor_text)}>
-                Reset
-              </Button>
-            </Box>
-          }>
-          <TextArea
-            key="character"
-            height="100px"
-            value={characterDesc}
-            onChange={(e, value) => setCharacterDesc(value)}
-          />
-        </Section>
-
-        <Grid>
-          <Grid.Column>
-            <Section
-              title="Medical Records"
-              buttons={
-                <Box>
-                  <Button
-                    icon="save"
-                    disabled={medicalDesc === data.med_record}
-                    onClick={() => act('med_record', { medicalDesc })}>
-                    Save
-                  </Button>
-                  <Button
-                    icon="times"
-                    onClick={() => setMedicalDesc(data.med_record)}>
-                    Reset
-                  </Button>
-                </Box>
-              }>
-              <TextArea
-                height="100px"
-                maxLength={1024}
-                value={medicalDesc}
-                onChange={(e, value) => setMedicalDesc(value)}
-              />
-            </Section>
-          </Grid.Column>
-          <Grid.Column>
-            <Section
-              title="Employment Records"
-              buttons={
-                <Box>
-                  <Button
-                    icon="save"
-                    disabled={employmentDesc === data.gen_record}
-                    onClick={() => act('gen_record', { employmentDesc })}>
-                    Save
-                  </Button>
-                  <Button
-                    icon="times"
-                    onClick={() => setEmploymentDesc(data.gen_record)}>
-                    Reset
-                  </Button>
-                </Box>
-              }>
-              <TextArea
-                height="100px"
-                maxLength={1024}
-                value={employmentDesc}
-                onChange={(e, value) => setEmploymentDesc(value)}
-              />
-            </Section>
-          </Grid.Column>
-        </Grid>
-        <Grid>
-          <Grid.Column>
-            <Section
-              title="Security Records"
-              buttons={
-                <Box>
-                  <Button
-                    icon="save"
-                    disabled={securityDesc === data.sec_record}
-                    onClick={() => act('sec_record', { securityDesc })}>
-                    Save
-                  </Button>
-                  <Button
-                    icon="times"
-                    onClick={() => setSecurityDesc(data.sec_record)}>
-                    Reset
-                  </Button>
-                </Box>
-              }>
-              <TextArea
-                height="100px"
-                maxLength={1024}
-                value={securityDesc}
-                onChange={(e, value) => setSecurityDesc(value)}
-              />
-            </Section>
-          </Grid.Column>
-          <Grid.Column>
-            <Section
-              title="Exploit Records"
-              buttons={
-                <Box>
-                  <Button
-                    icon="save"
-                    disabled={exploitsDesc === data.exploit_record}
-                    onClick={() => act('exploit_record', { exploitsDesc })}>
-                    Save
-                  </Button>
-                  <Button
-                    icon="times"
-                    onClick={() => setExploitsDesc(data.exploit_record)}>
-                    Reset
-                  </Button>
-                </Box>
-              }>
-              <TextArea
-                height="100px"
-                maxLength={1024}
-                value={exploitsDesc}
-                onChange={(e, value) => setExploitsDesc(value)}
-              />
-            </Section>
-          </Grid.Column>
-        </Grid>
       </Section>
     </>
   );
@@ -1076,16 +1086,19 @@ const NavigationSelector = (props, context) => {
       <Tabs.Tab selected={tabIndex === 1} onClick={() => onTabChange(1)}>
         Character Customization
       </Tabs.Tab>
-      <Tabs.Tab selected={tabIndex === 2} onClick={() => onTabChange(2)}>
+      <Tabs.Tab selected={tabIndex === 3} onClick={() => onTabChange(2)}>
+        Background Information
+      </Tabs.Tab>
+      <Tabs.Tab selected={tabIndex === 3} onClick={() => onTabChange(2)}>
         Gear Customization
       </Tabs.Tab>
-      <Tabs.Tab selected={tabIndex === 3} onClick={() => onTabChange(3)}>
+      <Tabs.Tab selected={tabIndex === 4} onClick={() => onTabChange(3)}>
         Job Preferences
       </Tabs.Tab>
-      <Tabs.Tab selected={tabIndex === 4} onClick={() => onTabChange(4)}>
+      <Tabs.Tab selected={tabIndex === 5} onClick={() => onTabChange(4)}>
         Game Settings
       </Tabs.Tab>
-      <Tabs.Tab selected={tabIndex === 5} onClick={() => onTabChange(5)}>
+      <Tabs.Tab selected={tabIndex === 6} onClick={() => onTabChange(5)}>
         Keybindings
       </Tabs.Tab>
       {DEBUG_ENABLED && (
