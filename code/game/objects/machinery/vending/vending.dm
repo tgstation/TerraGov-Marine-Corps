@@ -3,12 +3,19 @@
 #define CAT_COIN   2
 
 /datum/vending_product
+	///Name of the product
 	var/product_name = "generic"
+	///Path of the item this product makes
 	var/atom/product_path = null
+	///How much of this product there is
 	var/amount = 0
+	///The price of this product if any.
 	var/price = 0
+	///What color it stays on the vend button, considering just nuking this.
 	var/display_color = "white"
+	///What category it belongs to, Normal, contraband or coin.
 	var/category = CAT_NORMAL
+	///Incase its a tabbed vendor what tab this belongs to.
 	var/tab
 
 /datum/vending_product/New(name, atom/typepath, product_amount, product_price, product_display_color, category = CAT_NORMAL, tab)
@@ -44,46 +51,100 @@
 	idle_power_usage = 10
 	active_power_usage = 100
 	interaction_flags = INTERACT_MACHINE_TGUI
+	wrenchable = TRUE
 
-	var/active = TRUE //No sales pitches if off!
-	var/vend_ready = TRUE //Are we ready to vend?? Is it time??
-	var/vend_delay = 10 //How long does it take to vend?
-	var/datum/vending_product/currently_vending = null // A /datum/vending_product instance of what we're paying for right now.
+	///Whether this vendor is active or not.
+	var/active = TRUE
+	///If the vendor is ready to vend.
+	var/vend_ready = TRUE
+	///How long it takes to vend an item, vend_ready is false during that.
+	var/vend_delay = 10
+	/// A /datum/vending_product instance of what we're paying for right now.
+	var/datum/vending_product/currently_vending = null
+	///If this vendor uses a global list for items.
+	var/isshared = FALSE
 
-	// To be filled out at compile time
-	var/list/products	= list() // For each, use the following pattern:
-	var/list/contraband	= list() // list(/type/path = amount,/type/path2 = amount2)
+	/*These are lazylists that are made null after they're used, their use is solely to fill the inventory of the vendor on Init.
+	They use the following pattern in case if it doenst pertain to a tab:
+	list(
+		/type/path = amount,
+		/type/path2 = amount2,
+	)
+	if you want the item to pertain to a tab you use:
+	list(
+		"Tab1" = list(
+			/type/path = amount.
+			/type/path2 = amount2,
+		),
+		"Tab2" = list(
+			/type/path3 = amount3,
+			/type/path4 = amount4,
+		)
+	)
+	*/
+	/// Normal products that are always available on the vendor.
+	var/list/products = list()
+	/// Contraband products that are only available on vendor when hacked.
+	var/list/contraband = list()
+	/// Premium products that are only available when using a coin to pay for it.
 	var/list/premium = list()
-	var/list/prices     = list() // Prices for each item, list(/type/path = price), items not in the list don't have a price.
+	/// Prices for each item, list(/type/path = price), items not in the list don't have a price.
+	var/list/prices = list()
 
-	var/product_slogans = "" //String of slogans separated by semicolons, optional
-	var/product_ads = "" //String of small ad messages in the vending screen - random chance
+	/// String of slogans separated by semicolons, optional
+	var/product_slogans = ""
+	///String of small ad messages in the vending screen - random chance
+	var/product_ads = ""
+
+	//These are where the vendor holds their item info with /datum/vending_product
+
+	///list of /datum/vedning_product's that are always available on the vendor
 	var/list/product_records = list()
+	///list of /datum/vedning_product's that are available when vendor is hacked.
 	var/list/hidden_records = list()
+	///list of /datum/vedning_product's that are available on the vendor when a coin is used.
 	var/list/coin_records = list()
+
 	var/list/slogan_list = list()
-	var/list/small_ads = list() // small ad messages in the vending screen - random chance of popping up whenever you open it
-	var/vend_reply //Thank you for shopping!
+	/// small ad messages in the vending screen - random chance of popping up whenever you open it
+	var/list/small_ads = list()
+	///Message spoken by the vending machine when a item is vended
+	var/vend_reply
+	///When was last time we spoke when vending
 	var/last_reply = 0
-	var/last_slogan = 0 //When did we last pitch?
-	var/slogan_delay = 600 //How long until we can pitch again?
-	var/icon_vend //Icon_state when vending!
-	var/icon_deny //Icon_state when vending!
-	var/seconds_electrified = 0 //Shock customers like an airlock.
-	var/shoot_inventory = FALSE //Fire items at customers! We're broken!
-	var/shut_up = FALSE //Stop spouting those godawful pitches!
-	var/extended_inventory = FALSE //can we access the hidden inventory?
+	///Last time we spoke our slogan
+	var/last_slogan = 0
+	//The interval between slogans.
+	var/slogan_delay = 600
+	///Icon state when successfuly vending
+	var/icon_vend
+	///Icon state when failing to vend, be it by no access or money.
+	var/icon_deny
+	///how many time we have left electrified
+	var/seconds_electrified = 0
+	///If we should fire items at customers! We're broken!
+	var/shoot_inventory = FALSE
+	///If true the machine won't be speaking slogans randomly. Stop spouting those godawful pitches!
+	var/shut_up = FALSE
+	///If the vending machine is hacked, makes the items on contraband list available.
+	var/extended_inventory = FALSE
+	///Whatever coin we have inside, should totally be replaced by something else.
 	var/obj/item/coin/coin
+	///What type of token we support.
 	var/tokensupport = TOKEN_GENERAL
 
-	var/check_accounts = 0		// 1 = requires PIN and checks accounts.  0 = You slide an ID, it vends, SPACE COMMUNISM!
+	/// 1 = requires PIN and checks accounts.  0 = You slide an ID, it vends, SPACE COMMUNISM!
+	var/check_accounts = 0
+	///Current cash card.
 	var/obj/item/spacecash/ewallet/ewallet
+	///How much tipped we are.
 	var/tipped_level = 0
-	var/hacking_safety = FALSE //1 = Will never shoot inventory or allow all access
-	wrenchable = TRUE
-	var/isshared = FALSE
+	///Stops the machine from being hacked to shoot inventory or allow all access
+	var/hacking_safety = FALSE
+
 	var/scan_id = TRUE
 
+	/// How much damage we can take before tipping over.
 	var/knockdown_threshold = 100
 
 
@@ -97,10 +158,17 @@
 	// so if slogantime is 10 minutes, it will say it at somewhere between 10 and 20 minutes after the machine is crated.
 	last_slogan = world.time + rand(0, slogan_delay)
 
-	build_inventory(products)
-		//Add hidden inventory
-	build_inventory(contraband, CAT_HIDDEN)
-	build_inventory(premium, CAT_COIN)
+	if(isshared)
+		build_shared_inventory(products)
+		build_shared_inventory(contraband, CAT_HIDDEN)
+		build_shared_inventory(premium, CAT_COIN)
+	else
+		build_inventory(products)
+		build_inventory(contraband, CAT_HIDDEN)
+		build_inventory(premium, CAT_COIN)
+	premium = null
+	products = null
+	contraband = null
 	start_processing()
 	return INITIALIZE_HINT_LATELOAD
 
@@ -154,37 +222,45 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 	/obj/item/storage/pouch/firstaid
 )))
 
+/obj/machinery/vending/proc/build_shared_inventory(list/productlist, category = CAT_NORMAL)
+	var/list/globallist = GLOB.vending_records
+	var/list/locallist = product_records
+	if(category == CAT_HIDDEN)
+		locallist = hidden_records
+		globallist = GLOB.vending_hidden_records
+	if(category == CAT_COIN)
+		locallist = coin_records
+		globallist = GLOB.vending_coin_records
+	if(globallist[type])
+		locallist = globallist[type]
+		return
+
+	build_inventory(productlist, category = category)
+	LAZYADD(globallist[type], locallist)
+	locallist = globallist[type]
+
 /obj/machinery/vending/proc/build_inventory(list/productlist, category = CAT_NORMAL)
-	//It's a tabbed vendor
-	if(length(productlist))
-		var/productlistindex = productlist[1]
-		if(islist(productlist[productlistindex]))
-			for(var/tab in productlist)
-				for(var/typepath in productlist[tab])
-					var/amount = productlist[tab][typepath]
-					if(isnull(amount))
-						amount = 1
-					var/datum/vending_product/record = new(typepath = typepath, product_amount = amount, product_price = prices[typepath], category = category, tab = tab)
-					if(category == CAT_HIDDEN)
-						hidden_records += record
-					else if(category == CAT_COIN)
-						coin_records += record
-					else
-						product_records += record
-			return
+	var/list/recordlist = product_records
+	if(category == CAT_HIDDEN)
+		recordlist = hidden_records
+	if(category == CAT_COIN)
+		recordlist = coin_records
 
-	for(var/typepath in productlist)
-		var/amount = productlist[typepath]
-		if(isnull(amount))
-			amount = 1
-
-		var/datum/vending_product/record = new(typepath = typepath, product_amount = amount, product_price = prices[typepath], category = category)
-		if(category == CAT_HIDDEN)
-			hidden_records += record
-		else if(category == CAT_COIN)
-			coin_records += record
+	for(var/entry in productlist)
+		//if this is true then it's a tabbed vendor.
+		if(islist(productlist[entry]))
+			for(var/typepath in productlist[entry])
+				var/amount = productlist[entry][typepath]
+				if(isnull(amount))
+					amount = 1
+				var/datum/vending_product/record = new(typepath = typepath, product_amount = amount, product_price = prices[typepath], category = category, tab = entry)
+				recordlist += record
 		else
-			product_records += record
+			var/amount = productlist[entry]
+			if(isnull(amount))
+				amount = 1
+			var/datum/vending_product/record = new(typepath = entry, product_amount = amount, product_price = prices[entry], category = category)
+			recordlist += record
 
 /obj/machinery/vending/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(X.status_flags & INCORPOREAL)
@@ -409,17 +485,22 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 	.["coin_records"] = list()
 	.["tabs"] = list()
 
-	for(var/datum/vending_product/R in product_records)
+	for(var/datum/vending_product/R AS in product_records)
 		if(R.tab && !(R.tab in .["tabs"]))
 			.["tabs"] += R.tab
 		.["displayed_records"] += list(make_record_data(R))
 
-	for(var/datum/vending_product/R in hidden_records)
+	for(var/datum/vending_product/R AS in hidden_records)
+		if(R.tab && !(R.tab in .["tabs"]))
+			.["tabs"] += R.tab
 		.["hidden_records"] += list(make_record_data(R))
 
-	for(var/datum/vending_product/R in coin_records)
+	for(var/datum/vending_product/R AS in coin_records)
+		if(R.tab && !(R.tab in .["tabs"]))
+			.["tabs"] += R.tab
 		.["coin_records"] += list(make_record_data(R))
 
+///Makes TGUI data from a /datum/vending_product
 /obj/machinery/vending/proc/make_record_data(datum/vending_product/R)
 	if(!R)
 		return
@@ -436,7 +517,7 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 	. = list()
 	.["stock"] = list()
 
-	for(var/datum/vending_product/R in product_records + hidden_records)
+	for(var/datum/vending_product/R AS in product_records + hidden_records + coin_records)
 		.["stock"][R.product_name] = R.amount
 
 	.["currently_vending"] = make_record_data(currently_vending)

@@ -417,9 +417,8 @@
 		stock(I, user)
 
 /obj/machinery/vending/lasgun/stock(obj/item/item_to_stock, mob/user, recharge = FALSE)
-	var/datum/vending_product/R //Let's try with a new datum.
 	//More accurate comparison between absolute paths.
-	for(R in (product_records + hidden_records + coin_records ))
+	for(var/datum/vending_product/R AS in (product_records + hidden_records + coin_records ))
 		if(item_to_stock.type == R.product_path && !istype(item_to_stock,/obj/item/storage)) //Nice try, specialists/engis
 			if(istype(item_to_stock, /obj/item/cell/lasgun) && recharge)
 				if(!recharge_lasguncell(item_to_stock, user))
@@ -556,7 +555,7 @@
 	)
 	contraband = list()
 
-/obj/machinery/vending/MarineMed/Blood/build_inventory(productlist[])
+/obj/machinery/vending/MarineMed/Blood/build_inventory(productlist[], category)
 	. = ..()
 	var/temp_list[] = productlist
 	var/obj/item/reagent_containers/blood/temp_path
@@ -642,18 +641,18 @@
 	icon_deny = "specialist-deny"
 	wrenchable = FALSE
 	tokensupport = TOKEN_SPEC
+	isshared = TRUE
 
-	products = list(/obj/item/coin/marine/specialist = 1)
-	contraband = list()
-	premium = list()
-	shared = list(
+	products = list(
 		/obj/item/storage/box/spec/demolitionist = 1,
 		/obj/item/storage/box/spec/heavy_grenadier = 1,
 		/obj/item/storage/box/spec/sniper = 1,
 		/obj/item/storage/box/spec/scout = 1,
 		/obj/item/storage/box/spec/pyro = 1,
-		/obj/item/storage/box/spec/tracker = 1,
-	)
+		/obj/item/storage/box/spec/tracker = 1,)
+	contraband = list()
+	premium = list()
+
 	prices = list()
 
 
@@ -666,14 +665,16 @@
 	icon_deny = "engiprep-deny"
 	wrenchable = FALSE
 	tokensupport = TOKEN_ENGI
+	isshared = TRUE
 
-	contraband = list(/obj/item/cell/super = 1)
-
-	shared = list(
+	products = list(
 		/obj/structure/closet/crate/mortar_ammo/mortar_kit = 1,
 		/obj/item/storage/box/sentry = 3,
 		/obj/item/storage/box/standard_hmg = 1,
 	)
+
+	contraband = list(/obj/item/cell/super = 1)
+
 	prices = list()
 
 
