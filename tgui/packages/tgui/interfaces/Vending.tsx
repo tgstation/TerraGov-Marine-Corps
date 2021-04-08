@@ -148,43 +148,7 @@ const Buying = (props, context) => {
   );
 };
 
-const Premium = (props, context) => {
-  const { act, data } = useBackend<VendingData>(context);
 
-  const {
-    coin_records,
-    stock,
-    coin,
-  } = data;
-
-  return (
-    <Section
-      title={"Coin slot: "+(coin ? coin : "No coin inserted")}
-      buttons={coin && (
-        <Button
-          icon="donate"
-          onClick={() => act("remove_coin")}>
-          Remove
-        </Button>)}>
-      {!!coin
-        && (
-          <LabeledList>
-            {coin_records.map(coin_record => {
-              return (
-                <ProductEntry
-                  stock={stock[coin_record.product_name]}
-                  key={coin_record.product_name}
-                  product_color={coin_record.product_color}
-                  product_name={coin_record.product_name}
-                  prod_desc={coin_record.prod_desc}
-                  prod_ref={coin_record.ref} />
-              );
-            })}
-          </LabeledList>
-        )}
-    </Section>
-  );
-};
 
 
 type VendingProductEntryProps = {
@@ -254,32 +218,6 @@ const ProductEntry = (props: VendingProductEntryProps, context) => {
   );
 };
 
-const Hacked = (props, context) => {
-  const { act, data } = useBackend<VendingData>(context);
-
-  const {
-    hidden_records,
-    stock,
-  } = data;
-
-  return (
-    <Section title="$*FD!!F">
-      <LabeledList>
-        {hidden_records.map(hidden_record => {
-          return (
-            <ProductEntry
-              stock={stock[hidden_record.product_name]}
-              key={hidden_record.product_name}
-              product_color={hidden_record.product_color}
-              product_name={hidden_record.product_name}
-              prod_desc={hidden_record.prod_desc}
-              prod_ref={hidden_record.ref} />
-          );
-        })}
-      </LabeledList>
-    </Section>
-  );
-};
 
 const Products = (props, context) => {
   const { act, data } = useBackend<VendingData>(context);
@@ -323,6 +261,88 @@ const Products = (props, context) => {
             })
         )}
       </LabeledList>
+    </Section>
+  );
+};
+
+const Hacked = (props, context) => {
+  const { act, data } = useBackend<VendingData>(context);
+
+  const {
+    hidden_records,
+    stock,
+    tabs,
+  } = data;
+
+  const [
+    selectedTab,
+    setSelectedTab,
+  ] = useLocalState(context, 'selectedTab', tabs.length ? tabs[0] : null);
+
+  return (
+    <Section title="$*FD!!F">
+      <LabeledList>
+        {hidden_records
+          .filter(record => !record.tab || record.tab === selectedTab)
+          .map(hidden_record => {
+            return (
+              <ProductEntry
+                stock={stock[hidden_record.product_name]}
+                key={hidden_record.product_name}
+                product_color={hidden_record.product_color}
+                product_name={hidden_record.product_name}
+                prod_desc={hidden_record.prod_desc}
+                prod_ref={hidden_record.ref} />
+            );
+          })}
+      </LabeledList>
+    </Section>
+  );
+};
+
+
+const Premium = (props, context) => {
+  const { act, data } = useBackend<VendingData>(context);
+
+  const {
+    coin_records,
+    stock,
+    coin,
+    tabs,
+  } = data;
+
+  const [
+    selectedTab,
+    setSelectedTab,
+  ] = useLocalState(context, 'selectedTab', tabs.length ? tabs[0] : null);
+
+  return (
+    <Section
+      title={"Coin slot: "+(coin ? coin : "No coin inserted")}
+      buttons={coin && (
+        <Button
+          icon="donate"
+          onClick={() => act("remove_coin")}>
+          Remove
+        </Button>)}>
+      {!!coin
+        && (
+          <LabeledList>
+            {coin_records
+              .filter(record => !record.tab || record.tab === selectedTab)
+              .map(coin_record => {
+                return (
+                  <ProductEntry
+                    stock={stock[coin_record.product_name]}
+                    key={coin_record.product_name}
+                    product_color={coin_record.product_color}
+                    product_name={coin_record.product_name}
+                    prod_desc={coin_record.prod_desc}
+                    prod_ref={coin_record.ref} />
+                );
+              })}
+          </LabeledList>
+        )}
     </Section>
   );
 };
