@@ -318,6 +318,7 @@
 	flick("[mineralType]opening",src)
 	addtimer(CALLBACK(src, .proc/do_open), 2)
 
+///Change the icon and density of the door
 /obj/structure/mineral_door/resin/proc/do_open()
 	density = FALSE
 	opacity = FALSE
@@ -332,13 +333,15 @@
 	//Can't close if someone is blocking it
 	for(var/turf/turf in locs)
 		if(locate(/mob/living) in turf)
-			spawn (close_delay)
-				Close()
+			addtimer(CALLBACK(src, .proc/Close), close_delay)
 			return
 	isSwitchingStates = TRUE
 	playsound(loc, "alien_resin_move", 25)
 	flick("[mineralType]closing",src)
-	sleep(10)
+	addtimer(CALLBACK(src, .proc/do_close), 1 SECONDS)
+
+/// Change the icon and density of the door
+/obj/structure/mineral_door/resin/proc/do_close()
 	density = TRUE
 	opacity = TRUE
 	state = 0
