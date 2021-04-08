@@ -453,6 +453,8 @@
 	ammo_diff = null
 	cell_type = /obj/item/cell/lasgun/lasrifle
 	charge_cost = 20
+	gun_firemode = GUN_FIREMODE_AUTOMATIC
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)//Lasrifle has special behavior for fire mode, be carefull
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
@@ -477,7 +479,7 @@
 	accuracy_mult_unwielded = 0.5 //Heavy and unwieldy; you don't one hand this.
 	scatter_unwielded = 100 //Heavy and unwieldy; you don't one hand this.
 	damage_falloff_mult = 0.25
-	fire_delay = 3
+	fire_delay = 2
 	var/static/list/datum/lasrifle/base/mode_list = list(
 		"Standard" = /datum/lasrifle/base/standard,
 		"Disabler" = /datum/lasrifle/base/disabler,
