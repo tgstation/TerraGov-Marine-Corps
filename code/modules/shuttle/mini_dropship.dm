@@ -27,12 +27,13 @@
 	x_offset = 0
 	y_offset = 0
 	open_prompt = FALSE
+	nvg_vision_mode = TRUE
 	/// Action of landing to a custom zone
 	var/datum/action/innate/shuttledocker_land/land_action
 	/// Amount of fuel remaining to hover
-	var/fuel_left = 80
+	var/fuel_left = 120
 	/// The maximum fuel the dropship can hold
-	var/fuel_max = 80
+	var/fuel_max = 120
 	/// The current flying state of the shuttle
 	var/fly_state = SHUTTLE_ON_SHIP
 	/// The next flying state of the shuttle
@@ -64,8 +65,8 @@
 		if(fuel_left <= 0)
 			return_to_ship()
 		return
-	if(fly_state == SHUTTLE_ON_SHIP && fuel_left < fuel_max)
-		fuel_left++
+	if(fly_state == SHUTTLE_ON_SHIP && fuel_left < fuel_max && destination_fly_state != SHUTTLE_IN_ATMOSPHERE)
+		fuel_left ++
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/give_actions(mob/living/user)
 	if(!user)
@@ -116,9 +117,12 @@
 ///The action of taking off and sending the shuttle to the atmosphere
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/proc/take_off()
 	shuttle_port = SSshuttle.getShuttle(shuttleId)
-	/*if(!(shuttle_port.shuttle_flags & GAMEMODE_IMMUNE) && world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
+	if(!(shuttle_port.shuttle_flags & GAMEMODE_IMMUNE) && world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
+		to_chat(ui_user, "<span class='warning'>The mothership is too far away from the theatre of operation, we cannot take off.</span>")
+		return
+	if(fuel_left <= 25)
 		to_chat(ui_user, "<span class='warning'>The engines are still refueling.</span>")
-		return*/
+		return
 	shuttle_port.shuttle_computer = src
 	SEND_GLOBAL_SIGNAL(COMSIG_TADPOLE_LAUNCHED)
 	if(fly_state == SHUTTLE_ON_GROUND)
@@ -130,6 +134,7 @@
 		next_fly_state = SHUTTLE_IN_SPACE
 		destination_fly_state = SHUTTLE_IN_ATMOSPHERE
 	SSshuttle.moveShuttleToTransit(shuttleId, TRUE)
+	fuel_left -= 20
 
 ///The action of sending the shuttle back to its shuttle port on main ship
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/proc/return_to_ship()
@@ -143,6 +148,13 @@
 	open_prompt = FALSE
 	remove_eye_control(ui_user)
 	SSshuttle.moveShuttle(shuttleId, origin_port_id, TRUE)
+
+/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/proc/toggle_nvg()
+	if(!checkHoveringSpot(eyeobj.loc))
+		to_chat(ui_user, "<span class='warning'>Can not toggle night vision mode in caves</span>")
+		return
+	nvg_vision_mode = !nvg_vision_mode
+	eyeobj.update_remote_sight(ui_user)
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
 	. = ..()
@@ -181,6 +193,9 @@
 		RegisterSignal(ui_user, COMSIG_PARENT_QDELETING, .proc/clean_ui_user)
 		ui = new(user, src, "Minidropship", name)
 		ui.open()
+/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/ui_close(mob/user)
+	. = ..()
+	remove_eye_control(ui_user)
 
 /// Set ui_user to null to prevent hard del
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/proc/clean_ui_user()
@@ -212,6 +227,8 @@
 			take_off()
 		if("return_to_ship")
 			return_to_ship()
+		if("toggle_nvg")
+			toggle_nvg()
 		if("equip_interact")
 			var/base_tag = text2num(params["equip_interact"])
 			var/obj/docking_port/mobile/marine_dropship/shuttle = shuttle_port
@@ -229,8 +246,9 @@
 	var/mob/camera/aiEye/remote/remote_eye = C.remote_control
 	var/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/origin = remote_eye.origin
 	if(origin.shuttle_port.mode != SHUTTLE_IDLE)
+		to_chat(owner, "<span class='warning'>The shuttle is not ready to land yet!</span>")
 		return
-	if(origin.fuel_left <= 10)
+	if(origin.fuel_left <= 35)
 		to_chat(owner, "<span class='warning'>You won't have enough fuel to land and then come back to ship!</span>")
 		return
 	if(!origin.placeLandingSpot(target))

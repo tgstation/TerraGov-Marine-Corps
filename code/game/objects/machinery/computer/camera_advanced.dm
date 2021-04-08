@@ -54,6 +54,8 @@
 /obj/machinery/computer/camera_advanced/remove_eye_control(mob/living/user)
 	if(!user)
 		return
+	if(!eyeobj)
+		return
 	for(var/V in actions)
 		var/datum/action/A = V
 		A.remove_action(user)

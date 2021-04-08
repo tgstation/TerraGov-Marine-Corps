@@ -14,7 +14,9 @@ GLOBAL_DATUM_INIT(dropship_state, /datum/ui_state/dropship_state, new)
 /mob/living/dropship_can_use_topic(src_object)
 	. = shared_ui_interaction(src_object)
 	if(. > UI_CLOSE && loc) //must not be in nullspace.
-		. = min(., shared_living_ui_distance(src_object))
+		var/dist = get_dist(src_object, src)
+		if(dist > 1)
+			return UI_CLOSE
 
 /mob/proc/dropship_can_use_topic(src_object)
 	return UI_CLOSE

@@ -37,6 +37,8 @@
 	var/turf/designating_target_loc
 	/// The console is unusable when jammed
 	var/jammed = FALSE
+	/// If the user wants to see with night vision on
+	var/nvg_vision_mode = FALSE
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/Initialize(mapload)
 	. = ..()
@@ -137,7 +139,7 @@
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/remove_eye_control(mob/living/user)
 	. = ..()
-	if(QDELETED(user) || !user.client)
+	if(QDELETED(user) || !user.client || !eyeobj)
 		return
 	var/mob/camera/aiEye/remote/shuttle_docker/the_eye = eyeobj
 	var/list/to_remove = list()
@@ -343,6 +345,8 @@
 	use_static = USE_STATIC_NONE
 	var/list/placement_images = list()
 	var/list/placed_images = list()
+	/// If it is possible to have night vision, if false the user will get turf vision
+	var/nvg_vision_possible = TRUE
 
 /mob/camera/aiEye/remote/shuttle_docker/Initialize(mapload, obj/machinery/computer/camera_advanced/origin)
 	src.origin = origin
@@ -351,8 +355,9 @@
 /mob/camera/aiEye/remote/shuttle_docker/relaymove(mob/user, direct)
 	var/turf/T = get_turf(get_step(src, direct))
 	var/obj/machinery/computer/camera_advanced/shuttle_docker/console = origin
-	if(!console.checkHoveringSpot(T))
-		return
+	if(console.checkHoveringSpot(T) != nvg_vision_possible) //Cannot see in caves
+		nvg_vision_possible = !nvg_vision_possible
+		update_remote_sight(user)
 	setLoc(T)
 
 /mob/camera/aiEye/remote/shuttle_docker/setLoc(T)
@@ -361,8 +366,16 @@
 	console.checkLandingSpot()
 
 /mob/camera/aiEye/remote/shuttle_docker/update_remote_sight(mob/living/user)
-	user.see_in_dark = 8
-	user.lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
+	var/obj/machinery/computer/camera_advanced/shuttle_docker/console = origin
+	if(nvg_vision_possible && console.nvg_vision_mode)
+		user.see_in_dark = 6
+		user.sight = 0
+		user.lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
+		user.sync_lighting_plane_alpha()
+		return TRUE
+	user.see_in_dark = 0
+	user.sight = BLIND|SEE_TURFS
+	user.lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
 	user.sync_lighting_plane_alpha()
 	return TRUE
 

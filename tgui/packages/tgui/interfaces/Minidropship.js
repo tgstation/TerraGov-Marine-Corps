@@ -8,7 +8,7 @@ export const Minidropship = (_props, context) => {
   return (
     <Window
       width={220}
-      height={320}
+      height={340}
       title={"Navigation"}>
       <Window.Content scrollable>
         <Section title={`Fly state - ${data.fly_state}`}>
@@ -20,6 +20,10 @@ export const Minidropship = (_props, context) => {
             content="Return to ship"
             disabled={data.return_to_ship_locked}
             onClick={() => act('return_to_ship')} />
+          <Button
+            content="Toggle night vision mode"
+            disabled={data.return_to_ship_locked} // Same logic
+            onClick={() => act('toggle_nvg')} />
         </Section>
         <Section title={`Fuel left - ${data.fuel_left}/${data.fuel_max}`}>
           <ProgressBar
