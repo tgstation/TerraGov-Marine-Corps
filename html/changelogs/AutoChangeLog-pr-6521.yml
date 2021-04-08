@@ -1,0 +1,5 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - rscadd: "TGUI vote panel"
+  - rscadd: "User can change vote"

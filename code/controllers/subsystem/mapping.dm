@@ -28,6 +28,11 @@ SUBSYSTEM_DEF(mapping)
 	var/datum/space_level/transit
 	var/num_of_res_levels = 1
 
+	///If true, non-admin players will not be able to initiate a vote to change groundmap
+	var/groundmap_voted = FALSE
+	///If true, non-admin players will not be able to initiate a vote to change shipmap
+	var/shipmap_voted = FALSE
+
 //dlete dis once #39770 is resolved
 /datum/controller/subsystem/mapping/proc/HACK_LoadMapConfig()
 	if(!configs)

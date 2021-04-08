@@ -190,6 +190,10 @@ Voting
 
 /datum/config_entry/flag/allow_vote_mode
 
+/datum/config_entry/flag/allow_vote_groundmap
+
+/datum/config_entry/flag/allow_vote_shipmap
+
 /datum/config_entry/flag/default_no_vote
 
 /datum/config_entry/flag/no_dead_vote
