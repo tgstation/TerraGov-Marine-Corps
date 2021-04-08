@@ -808,12 +808,13 @@
 	icon_state = "Attack_arrow"
 	duration = ORDER_DURATION
 
-/obj/screen/arrow/regroup_order_arrow
+/obj/screen/arrow/rally_order_arrow
 	name = "Rally order arrow"
-	icon_state = "Regroup_arrow"
-	duration = ORDER_DURATION
+	icon_state = "Rally_arrow"
+	duration = RALLY_ORDER_DURATION
 
 /obj/screen/arrow/defend_order_arrow
 	name = "Defend order arrow"
 	icon_state = "Defend_arrow"
 	duration = ORDER_DURATION
+

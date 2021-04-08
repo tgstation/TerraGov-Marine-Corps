@@ -177,7 +177,6 @@
 #define COMSIG_MOVABLE_UNCROSS "movable_uncross"				//from base of atom/movable/Uncross(): (/atom/movable)
 	#define COMPONENT_MOVABLE_BLOCK_UNCROSS (1<<0)
 #define COMSIG_MOVABLE_UNCROSSED "movable_uncrossed"            //from base of atom/movable/Uncrossed(): (/atom/movable)
-#define COMSIG_MOVABLE_RELEASED_FROM_STOMACH "movable_released_from_stomach" //from base of mob/living/carbon/xenomorph/proc/empty_gut(): (prey, predator)
 #define COMSIG_MOVABLE_CLOSET_DUMPED "movable_closet_dumped"
 #define COMSIG_MOVABLE_PREBUMP_TURF "movable_prebump_turf"
 #define COMSIG_MOVABLE_PREBUMP_MOVABLE "movable_prebump_movable"
@@ -257,13 +256,11 @@
 
 // /obj/item/weapon/gun signals
 #define COMSIG_GUN_FIRE "gun_fire"
-	#define COMPONENT_GUN_FIRED (1<<0)
-#define COMSIG_GUN_AUTOFIRE "gun_autofire"
-#define COMSIG_GUN_CLICKEMPTY "gun_clickempty"
-#define COMSIG_GUN_FIREMODE_TOGGLE "gun_firemode_toggle"		//from /obj/item/weapon/gun/verb/toggle_firemode()
-#define COMSIG_GUN_FIREDELAY_MODIFIED "gun_firedelay_modified"
-#define COMSIG_GUN_BURSTDELAY_MODIFIED "gun_burstdelay_modified"
-#define COMSIG_GUN_BURSTAMOUNT_MODIFIED "gun_burstamount_modified"
+#define COMSIG_GUN_STOP_FIRE "gun_stop_fire"
+#define COMSIG_GUN_FIRE_MODE_TOGGLE "gun_firemode_toggle"		//from /obj/item/weapon/gun/verb/toggle_firemode()
+#define COMSIG_GUN_AUTOFIREDELAY_MODIFIED "gun_firedelay_modified"
+#define COMSIG_GUN_BURST_SHOTS_TO_FIRE_MODIFIED "gun_burstamount_modified"
+#define COMSIG_GUN_BURST_SHOT_DELAY_MODIFIED "gun_burstdelay_modified"
 
 // /obj/item/clothing signals
 #define COMSIG_SHOES_STEP_ACTION "shoes_step_action"			//from base of obj/item/clothing/shoes/proc/step_action(): ()
@@ -282,6 +279,7 @@
 #define COMSIG_MOB_REVIVE "mob_revive"							//from base of mob/on_revive(): ()
 #define COMSIG_MOB_MOUSEDOWN "mob_mousedown"					//from /client/MouseDown(): (atom/object, turf/location, control, params)
 #define COMSIG_MOB_MOUSEUP "mob_mouseup"						//from /client/MouseUp(): (atom/object, turf/location, control, params)
+#define COMSIG_MOB_MOUSEDRAG "mob_mousedrag"				//from /client/MouseDrag(): (atom/src_object, atom/over_object, turf/src_location, turf/over_location, src_control, over_control, params)
 #define COMSIG_MOB_CLICKON "mob_clickon"						//from base of mob/clickon(): (atom/A, params)
 #define COMSIG_MOB_MIDDLE_CLICK "mob_middle_click"				//from base of mob/MiddleClickOn(): (atom/A)
 #define COMSIG_MOB_CLICK_SHIFT "mob_click_shift"				//from base of mob/ShiftClickOn(): (atom/A)
@@ -342,7 +340,6 @@
 #define COMSIG_LIVING_WEEDS_ADJACENT_REMOVED "living_weeds_adjacent_removed"	///from obj/effect/alien/weeds/Destroy()
 
 //mob/living/carbon signals
-#define COMSIG_CARBON_DEVOURED_BY_XENO "carbon_devoured_by_xeno"
 #define COMSIG_CARBON_SWAPPED_HANDS "carbon_swapped_hands"
 #define COMSIG_CARBON_SETAFKSTATUS "carbon_setafkstatus"		//from base of /mob/living/set_afk_status(): (new_status, afk_timer)
 
@@ -636,3 +633,8 @@
 #define COMSIG_AUTOMATIC_SHOOTER_START_SHOOTING_AT "start_shooting_at"
 #define COMSIG_AUTOMATIC_SHOOTER_STOP_SHOOTING_AT "stop_shooting_at"
 #define COMSIG_AUTOMATIC_SHOOTER_SHOOT "shoot"
+
+//Signals for gun auto fire component
+#define COMSIG_GET_BURST_FIRE "get_burst_fire"
+	#define BURST_FIRING (1<<0)
+#define COMSIG_DISABLE_BURST_FIRE "disable_burst_fire"

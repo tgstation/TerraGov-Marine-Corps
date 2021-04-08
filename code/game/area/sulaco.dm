@@ -23,6 +23,10 @@
 	name = "Sulaco Bridge Maintenance"
 	icon_state = "maintcentral"
 
+/area/sulaco/medbay/cmo
+	name = "Sulaco Chief Medical Officer's Office"
+	icon_state = "head_quarters"
+
 /area/sulaco/medbay
 	name = "Sulaco Medbay"
 	icon_state = "medbay"
@@ -120,9 +124,17 @@
 	name = "Sulaco Main Cargo Bay"
 	icon_state = "quartstorage"
 
+/area/sulaco/cargo
+	name = "Sulaco Main Cargo Bay"
+	icon_state = "quartstorage"
+
 /area/sulaco/cargo/office
 	name = "Sulaco Cargo Office"
 	icon_state = "quartoffice"
+
+/area/sulaco/cargo/prep
+	name = "Sulaco Prep Area"
+	icon_state = "red"
 
 /area/sulaco/supply/station
 	name = "Sulaco Supply Station"

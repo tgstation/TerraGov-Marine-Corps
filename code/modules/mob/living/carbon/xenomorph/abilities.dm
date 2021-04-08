@@ -15,30 +15,6 @@
 	X.lay_down()
 	return succeed_activate()
 
-// Regurgitate
-/datum/action/xeno_action/regurgitate
-	name = "Regurgitate"
-	action_icon_state = "regurgitate"
-	mechanics_text = "Vomit whatever you have devoured."
-	use_state_flags = XACT_USE_STAGGERED|XACT_USE_FORTIFIED|XACT_USE_CRESTED
-	keybind_signal = COMSIG_XENOABILITY_REGURGITATE
-
-/datum/action/xeno_action/regurgitate/can_use_action(silent = FALSE, override_flags)
-	. = ..()
-	if(!.)
-		return FALSE
-	var/mob/living/carbon/xenomorph/devourer = owner
-	if(!LAZYLEN(devourer.stomach_contents))
-		if(!silent)
-			to_chat(devourer, "<span class='warning'>There's nothing in our stomach that needs regurgitating.</span>")
-		return FALSE
-
-/datum/action/xeno_action/regurgitate/action_activate()
-	var/mob/living/carbon/xenomorph/spewer = owner
-	spewer.empty_gut(TRUE)
-
-	return succeed_activate()
-
 //*********
 // Headbite
 //*********
@@ -183,47 +159,46 @@
 	to_chat(hiveminde, "<span class='xenonotice'>We can't plant a node without weeds nearby, we've been moved back to our core.</span>")
 	return fail_activate()
 
-// Choose Resin
-/datum/action/xeno_action/choose_resin
-	name = "Choose Resin Structure"
+// Secrete Resin
+/datum/action/xeno_action/activable/secrete_resin
+	name = "Secrete Resin"
 	action_icon_state = "resin wall"
-	mechanics_text = "Selects which structure you will build with the (secrete resin) ability."
-	keybind_signal = COMSIG_XENOABILITY_CHOOSE_RESIN
+	mechanics_text = "Builds whatever resin you selected"
+	ability_name = "secrete resin"
+	plasma_cost = 75
+	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN
+	///Minimum time to build a resin structure
+	var/base_wait = 1 SECONDS
+	///Multiplicator factor to add to the building time, depends on the health of the structure built
+	var/scaling_wait = 1 SECONDS
+	///List of buildable structures
 	var/list/buildable_structures = list(
 		/turf/closed/wall/resin/regenerating,
 		/obj/effect/alien/resin/sticky,
 		/obj/structure/mineral_door/resin)
 
-/datum/action/xeno_action/choose_resin/update_button_icon()
+/datum/action/xeno_action/activable/secrete_resin/update_button_icon()
 	var/mob/living/carbon/xenomorph/X = owner
 	var/atom/A = X.selected_resin
 	button.overlays.Cut()
 	button.overlays += image('icons/mob/actions.dmi', button, initial(A.name))
 	return ..()
 
-/datum/action/xeno_action/choose_resin/action_activate()
+/datum/action/xeno_action/activable/secrete_resin/action_activate()
+	
 	var/mob/living/carbon/xenomorph/X = owner
+	if(X.selected_ability != src)
+		return ..()
+	. = ..()
 	var/i = buildable_structures.Find(X.selected_resin)
 	if(length(buildable_structures) == i)
 		X.selected_resin = buildable_structures[1]
 	else
 		X.selected_resin = buildable_structures[i+1]
-
 	var/atom/A = X.selected_resin
 	to_chat(X, "<span class='notice'>We will now build <b>[initial(A.name)]\s</b> when secreting resin.</span>")
 	update_button_icon()
-	return succeed_activate()
-
-// Secrete Resin
-/datum/action/xeno_action/activable/secrete_resin
-	name = "Secrete Resin"
-	action_icon_state = "secrete_resin"
-	mechanics_text = "Builds whatever you’ve selected with (choose resin structure) on your tile."
-	ability_name = "secrete resin"
-	plasma_cost = 75
-	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN
-	var/base_wait = 1 SECONDS
-	var/scaling_wait = 1 SECONDS
+	
 
 /datum/action/xeno_action/activable/secrete_resin/use_ability(atom/A)
 	build_resin(get_turf(owner))
@@ -1153,7 +1128,7 @@
 
 	var/mob/living/carbon/xenomorph/X = owner
 
-	xeno_message("<span class='xenoannounce'>Our leader [X] is rallying the hive to [AREACOORD_NO_Z(X.loc)]!</span>", 3, X.hivenumber, FALSE, X, 'sound/voice/alien_distantroar_3.ogg',TRUE,null,/obj/screen/arrow/leader_tracker_arrow)
+	xeno_message("Our leader [X] is rallying the hive to [AREACOORD_NO_Z(X.loc)]!", "xenoannounce", 6, X.hivenumber, FALSE, X, 'sound/voice/alien_distantroar_3.ogg',TRUE,null,/obj/screen/arrow/leader_tracker_arrow)
 	notify_ghosts("\ [X] is rallying the hive to [AREACOORD_NO_Z(X.loc)]!", source = X, action = NOTIFY_JUMP)
 
 	succeed_activate()
@@ -1210,10 +1185,11 @@
 		return FALSE
 	if(victim.stat != DEAD)
 		if(!silent)
-			to_chat(X, "<span class='warning'>This creature is struggling too much for us to aim precisely.</span>")
+			to_chat(X, "<span class='warning'>This creature is struggling too much for us to drain its life force.</span>")
 		return FALSE
 	if(HAS_TRAIT(victim, TRAIT_PSY_DRAINED))
-		to_chat(X, "<span class='warning'>There is no longer any life force in this creature!</span>")
+		if(!silent)
+			to_chat(X, "<span class='warning'>There is no longer any life force in this creature!</span>")
 		return FALSE
 	if(!ishuman(victim))
 		if(!silent)
@@ -1259,3 +1235,89 @@
 
 	log_combat(victim, owner, "was drained.")
 	log_game("[key_name(victim)] was drained at [AREACOORD(victim.loc)].")
+
+/////////////////////////////////
+// Devour 
+/////////////////////////////////
+/datum/action/xeno_action/activable/devour
+	name = "Cocoon"
+	action_icon_state = "regurgitate"
+	mechanics_text = "Devour your victim to cocoon it in your belly. This cocoon will automatically be ejected later, and while the marine inside it still has life force it will give psychic points."
+	use_state_flags = XACT_USE_STAGGERED|XACT_USE_FORTIFIED|XACT_USE_CRESTED //can't use while staggered, defender fortified or crest down
+	keybind_signal = COMSIG_XENOABILITY_REGURGITATE
+	plasma_cost = 100
+	///In how much time the cocoon will be ejected
+	var/cocoon_production_time = 3 SECONDS
+
+/datum/action/xeno_action/activable/devour/can_use_ability(atom/A, silent, override_flags)
+	. = ..()
+	if(!.)
+		return
+	if(!ishuman(A) || issynth(A))
+		to_chat(owner, "<span class='warning'>That wouldn't taste very good.</span>")
+		return FALSE
+	var/mob/living/carbon/human/victim = A
+	if(owner.do_actions) //can't use if busy
+		return FALSE
+	if(!owner.Adjacent(victim)) //checks if owner next to target
+		return FALSE
+	if(victim.stat != DEAD)
+		if(!silent)
+			to_chat(owner, "<span class='warning'>This creature is struggling too much for us to devour it.</span>")
+		return FALSE
+	if(HAS_TRAIT(victim, TRAIT_PSY_DRAINED))
+		if(!silent)
+			to_chat(owner, "<span class='warning'>There is no longer any life force in this creature!</span>")
+		return FALSE
+	if(victim.buckled)
+		if(!silent)
+			to_chat(owner, "<span class='warning'>[victim] is buckled to something.</span>")
+		return FALSE
+	var/mob/living/carbon/xenomorph/X = owner
+	if(X.on_fire)
+		if(!silent)
+			to_chat(X, "<span class='warning'>We're too busy being on fire to do this!</span>")
+		return FALSE
+	if(LAZYLEN(X.stomach_contents)) //Only one thing in the stomach at a time, please
+		if(!silent)
+			to_chat(X, "<span class='warning'>We already have something in our stomach, there's no way that will fit.</span>")
+		return FALSE
+	for(var/obj/effect/forcefield/fog in range(1, X))
+		if(!silent)
+			to_chat(X, "<span class='warning'>We are too close to the fog.</span>")
+		return FALSE
+	X.face_atom(victim)
+	X.visible_message("<span class='danger'>[X] starts to devour [victim]!</span>", \
+	"<span class='danger'>We start to devour [victim]!</span>", null, 5)
+
+	succeed_activate()
+
+/datum/action/xeno_action/activable/devour/use_ability(atom/A)
+	var/mob/living/carbon/xenomorph/X = owner
+	var/mob/living/carbon/human/victim = A
+	var/channel = SSsounds.random_available_channel()
+	playsound(X, 'sound/vore/struggle.ogg', 40, channel = channel)		
+	if(!do_after(X, 7 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, /mob.proc/break_do_after_checks, list("health" = X.health))))
+		to_chat(owner, "<span class='warning'>We stop devouring \the [victim]. They probably tasted gross anyways.</span>")
+		X.stop_sound_channel(channel)
+		return fail_activate()
+	if(HAS_TRAIT(victim, TRAIT_PSY_DRAINED))
+		to_chat(owner, "<span class='warning'>Someone drained the life force of our victim before we could devour it!</span>")
+		return fail_activate()
+	owner.visible_message("<span class='warning'>[X] devours [victim]!</span>", \
+	"<span class='warning'>We devour [victim]!</span>", null, 5)
+	to_chat(owner, "<span class='warning'>We will eject the cocoon in [cocoon_production_time / 10] seconds! Do not move until it is done.</span>")
+	LAZYADD(X.stomach_contents, victim)
+	var/turf/starting_turf = get_turf(victim)
+	victim.forceMove(X)
+	X.do_jitter_animation()
+	channel = SSsounds.random_available_channel()
+	playsound(X, 'sound/vore/escape.ogg', 40, channel = channel)	
+	if(!do_after(X, cocoon_production_time, FALSE, null, BUSY_ICON_DANGER))
+		to_chat(owner, "<span class='warning'>We moved too soon and we will have to devour our victim again!</span>")
+		X.eject_victim(FALSE, starting_turf)
+		X.stop_sound_channel(channel)
+		return fail_activate()
+	victim.dead_ticks = 0
+	ADD_TRAIT(victim, TRAIT_STASIS, TRAIT_STASIS)
+	X.eject_victim(TRUE, starting_turf)
