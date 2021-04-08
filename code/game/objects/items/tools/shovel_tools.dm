@@ -188,7 +188,7 @@
 	"<span class='notice'>You begin to sharpen the [src] with the [I].</span>")
 	if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY))
 		return
-	sharp = TRUE
+	sharp = IS_SHARP_ITEM_SIMPLE
 	name = "sharpened " + name
 	force = 60
 	update_icon()
