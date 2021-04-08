@@ -111,8 +111,7 @@
 	shuttle_port.assigned_transit.reserved_area.set_turf_type(/turf/open/space/transit/atmos)
 	open_prompt = TRUE
 	if(ui_user?.Adjacent(src))
-		open_prompt(ui_user)
-
+		open_prompt(ui_user, GLOB.minidropship_start_loc)
 
 ///The action of taking off and sending the shuttle to the atmosphere
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/proc/take_off()

@@ -27080,6 +27080,10 @@
 /obj/machinery/power/geothermal,
 /turf/open/floor/plating,
 /area/magmoor/engi/power)
+"tQR" = (
+/obj/effect/landmark/dropship_start_location,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/magmoor/compound)
 "tRV" = (
 /obj/structure/lattice,
 /turf/open/lavaland/lava/single/middle{
@@ -52797,7 +52801,7 @@ qPY
 naI
 uYU
 bhT
-bhT
+tQR
 bhT
 mDe
 hkW

@@ -108,7 +108,7 @@
 		open_prompt(user)
 
 
-/obj/machinery/computer/camera_advanced/proc/open_prompt(mob/user)
+/obj/machinery/computer/camera_advanced/proc/open_prompt(mob/user, premade_camera_location)
 	if(current_user)
 		to_chat(user, "The console is already in use!")
 		return
@@ -122,6 +122,11 @@
 		CreateEye()
 
 	if(!eyeobj.eye_initialized)
+		if(premade_camera_location)
+			eyeobj.eye_initialized = TRUE
+			give_eye_control(L)
+			eyeobj.setLoc(premade_camera_location)
+			return
 		var/camera_location
 		var/turf/myturf = get_turf(src)
 		if(eyeobj.use_static != USE_STATIC_NONE)

@@ -23,6 +23,16 @@
 	},
 /turf/open/floor/mainship_hull,
 /area/shuttle/minidropship)
+"i" = (
+/turf/open/floor/mainship/orange/corner{
+	dir = 1
+	},
+/area/shuttle/minidropship)
+"j" = (
+/turf/open/floor/mainship/orange/corner{
+	dir = 4
+	},
+/area/shuttle/minidropship)
 "n" = (
 /obj/structure/bed/chair/dropship/pilot{
 	dir = 1
@@ -137,7 +147,7 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/orange{
-	dir = 8
+	dir = 9
 	},
 /area/shuttle/minidropship)
 "R" = (
@@ -156,7 +166,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/orange{
-	dir = 4
+	dir = 5
 	},
 /area/shuttle/minidropship)
 "U" = (
@@ -209,7 +219,7 @@ s
 h
 S
 p
-V
+i
 V
 r
 v
@@ -231,7 +241,7 @@ b
 h
 S
 K
-V
+j
 V
 r
 v

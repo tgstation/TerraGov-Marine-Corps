@@ -15,7 +15,7 @@
 	density = TRUE
 	icon_state = "mining_drill_active"
 	anchored = TRUE
-	resistance_flags = INDESTRUCTIBLE
+	resistance_flags = INDESTRUCTIBLE | DROPSHIP_IMMUNE
 	///How many sheets of material we have stored
 	var/stored_mineral = 0
 	///Current status of the miner

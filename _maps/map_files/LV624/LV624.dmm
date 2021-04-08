@@ -7825,6 +7825,12 @@
 	dir = 4
 	},
 /area/lv624/ground/jungle5)
+"aLY" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/landmark/dropship_start_location,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/compound/c)
 "aMa" = (
 /obj/structure/flora/ausbushes/stalkybush,
 /turf/open/ground/river,
@@ -29596,7 +29602,7 @@ aMm
 aQQ
 aOi
 aOi
-aOi
+aLY
 aOi
 aOi
 aOi

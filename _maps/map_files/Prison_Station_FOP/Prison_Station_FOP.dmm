@@ -44250,6 +44250,11 @@
 	dir = 8
 	},
 /area/prison/hangar/main)
+"xKT" = (
+/obj/effect/decal/cleanable/blood/gibs,
+/obj/effect/landmark/dropship_start_location,
+/turf/open/floor/prison/bright_clean/two,
+/area/prison/yard)
 "xKV" = (
 /obj/structure/window/framed/prison/reinforced/hull,
 /turf/open/beach/sea,
@@ -81754,7 +81759,7 @@ aHp
 aWR
 hwj
 bjj
-bny
+xKT
 bgQ
 bpG
 bgQ
