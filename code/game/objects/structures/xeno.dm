@@ -630,12 +630,16 @@ TUNNEL
 	resistance_flags = UNACIDABLE
 	layer = RESIN_STRUCTURE_LAYER
 
-	var/tunnel_desc = "" //description added by the hivelord.
-
 	max_integrity = 140
-	var/mob/living/carbon/xenomorph/hivelord/creator = null
 
 	hud_possible = list(XENO_TACTICAL_HUD)
+
+	var/tunnel_desc = "" //description added by the hivelord.
+	var/mob/living/carbon/xenomorph/hivelord/creator = null
+
+	///Hive number of the structure; defaults to standard.
+	var/hivenumber = XENO_HIVE_NORMAL
+
 
 
 /obj/structure/tunnel/Initialize(mapload)
@@ -715,6 +719,10 @@ TUNNEL
 
 	if(length(GLOB.xeno_tunnels) < 2)
 		to_chat(X, "<span class='warning'>There are no other tunnels in the network!</span>")
+		return FALSE
+
+	if(LAZYLEN(X.stomach_contents))
+		to_chat(X, "<span class='warning'>We cannot take a tunnel with a victim in our belly!</span>")
 		return FALSE
 
 	pick_a_tunnel(X)
