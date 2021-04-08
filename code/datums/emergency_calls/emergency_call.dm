@@ -49,12 +49,16 @@
 /datum/game_mode/proc/get_random_call()
 	var/normalised_monitor_state = SSmonitor.current_points / XENOS_LOSING_THRESHOLD
 	var/list/calls_weighted = list()
+	var/total_weight = 0
 	for(var/datum/emergency_call/E in all_calls) //Loop through all potential candidates
 		if(E.base_probability <= 0)
 			continue
-		calls_weighted[E] = E.get_actualised_weight(normalised_monitor_state)
-
-	return pickweight(calls_weighted)
+		var/weight = E.get_actualised_weight(normalised_monitor_state)
+		calls_weighted[E] = weight
+		total_weight += weight
+	var/datum/emergency_call/chosen = pickweight(calls_weighted)
+	message_admins("[chosen.name] was randomly picked from all emergency calls possible with a probability of [(calls_weighted[chosen] / total_weight) * 100]")
+	return chosen
 
 /**
  * Return a new current_weight using the base probability, the Alignement factor of the ERT and the monitor state
