@@ -1183,7 +1183,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	bullet_color = COLOR_VIVID_YELLOW
 	
 /datum/ammo/energy/taser/on_hit_mob(mob/M,obj/projectile/P)
-	staggerstun(M, P, weaken = 10)
+	staggerstun(M, P, stun = 10)
 
 /datum/ammo/energy/tesla
 	name = "energy ball"
