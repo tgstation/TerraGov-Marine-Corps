@@ -22,6 +22,19 @@
 	w_class = WEIGHT_CLASS_SMALL
 	default_ammo = /datum/ammo/bullet/pistol
 
+//-------------------------------------------------------
+//TX-7 Plasma Pistol
+/obj/item/ammo_magazine/pistol/plasma_pistol
+	name = "\improper TX-7 Plasma Cell"
+	desc = "A plasma cell for the TX-7 Plasma Pistol"
+	caliber = "Ionized Plasma Bolt"
+	icon_state = "tx7"
+	max_rounds = 10
+	w_class = WEIGHT_CLASS_SMALL
+	default_ammo = /datum/ammo/energy/plasma_pistol
+	gun_type = /obj/item/weapon/gun/pistol/plasma_pistol
+
+
 
 //-------------------------------------------------------
 //RT-3 PISTOL

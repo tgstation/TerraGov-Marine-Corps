@@ -76,6 +76,47 @@
 	recoil_unwielded = -2
 
 //-------------------------------------------------------
+//TX-7 Plasma Pistol
+/obj/item/weapon/gun/pistol/plasma_pistol
+	name = "\improper TX-7 Plasma Pistol"
+	desc = "An expiramental weapon. Designed to set the terrain it is fired at on fire so as to remove flammable obstacles and clear out dug in enemies from some range."
+	icon_state = "tx7"
+	item_state = "tx7"
+	caliber = "Ionized Plasma Bolt"
+	max_shots = 10
+	reload_sound = 'sound/weapons/guns/interact/tp14_reload.ogg'
+	fire_sound = 'sound/weapons/guns/fire/laser.ogg'
+	current_mag = /obj/item/ammo_magazine/pistol/plasma_pistol
+	type_of_casings = null
+
+	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 20,"rail_x" = 13, "rail_y" = 23, "under_x" = 19, "under_y" = 13, "stock_x" = 21, "stock_y" = 17)
+	attachable_allowed = list(
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/burstfire_assembly,
+		/obj/item/attachable/lace,
+		/obj/item/attachable/scope/marine
+	)
+
+	muzzleflash_iconstate = "muzzle_flash_laser"
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ENERGY|GUN_AMMO_COUNTER
+	actions_types = list()
+	wield_delay = 0.5 SECONDS
+	muzzle_flash_color = COLOR_GREEN
+
+	fire_delay = 1.5 SECONDS
+	accuracy_mult = 1.1
+	accuracy_mult_unwielded = 0.95
+	scatter = -1
+	scatter_unwielded = 0
+	recoil = -2
+	recoil_unwielded = -2
+
+
+//-------------------------------------------------------
 //RT-3 pistol
 
 /obj/item/weapon/gun/pistol/rt3
