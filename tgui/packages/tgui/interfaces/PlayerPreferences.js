@@ -1086,19 +1086,19 @@ const NavigationSelector = (props, context) => {
       <Tabs.Tab selected={tabIndex === 1} onClick={() => onTabChange(1)}>
         Character Customization
       </Tabs.Tab>
-      <Tabs.Tab selected={tabIndex === 3} onClick={() => onTabChange(2)}>
+      <Tabs.Tab selected={tabIndex === 2} onClick={() => onTabChange(2)}>
         Background Information
       </Tabs.Tab>
-      <Tabs.Tab selected={tabIndex === 3} onClick={() => onTabChange(2)}>
+      <Tabs.Tab selected={tabIndex === 3} onClick={() => onTabChange(3)}>
         Gear Customization
       </Tabs.Tab>
-      <Tabs.Tab selected={tabIndex === 4} onClick={() => onTabChange(3)}>
+      <Tabs.Tab selected={tabIndex === 4} onClick={() => onTabChange(4)}>
         Job Preferences
       </Tabs.Tab>
-      <Tabs.Tab selected={tabIndex === 5} onClick={() => onTabChange(4)}>
+      <Tabs.Tab selected={tabIndex === 5} onClick={() => onTabChange(5)}>
         Game Settings
       </Tabs.Tab>
-      <Tabs.Tab selected={tabIndex === 6} onClick={() => onTabChange(5)}>
+      <Tabs.Tab selected={tabIndex === 6} onClick={() => onTabChange(6)}>
         Keybindings
       </Tabs.Tab>
       {DEBUG_ENABLED && (
