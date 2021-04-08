@@ -191,6 +191,7 @@
 
 /area/prison/maintenance/residential/ne
 	name = "Northeast Civilian Residences Maintenance"
+	droppodable = FALSE
 
 /area/prison/maintenance/residential/sw
 	name = "Southwest Civilian Residences Maintenance"

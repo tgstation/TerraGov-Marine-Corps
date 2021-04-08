@@ -41,6 +41,8 @@
 	var/fake_zlevel
 	///Is this area considered inside or outside
 	var/outside = TRUE
+	///Can you use this area to droppod?
+	var/droppodable = TRUE
 
 	var/flags_area = NONE
 	///Cameras in this area

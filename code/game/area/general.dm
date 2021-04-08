@@ -9,6 +9,7 @@
 	ambience = list('sound/ambience/ambispace.ogg')
 	temperature = TCMB
 	pressure = 0
+	droppodable = FALSE
 
 /area/space/Entered(atom/movable/AM, atom/oldloc)
 	. = ..()
@@ -1293,6 +1294,7 @@
 	requires_power = 0
 	name = "Abandoned Test Room"
 	icon_state = "storage"
+	droppodable = FALSE
 
 //DJSTATION
 

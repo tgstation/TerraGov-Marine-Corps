@@ -21,6 +21,7 @@
 	name = "Magmoor Central Fissure"
 	ceiling = CEILING_NONE
 	outside = TRUE
+	droppodable = FALSE
 //Caves
 
 /area/magmoor/cave/
