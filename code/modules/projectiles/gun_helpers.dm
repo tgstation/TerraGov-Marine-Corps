@@ -653,7 +653,7 @@ should be alright.
 		to_chat(user, "<span class='notice'>[icon2html(src, user)] You switch to <b>[gun_firemode]</b>.</span>")
 		user.update_action_buttons()
 
-	SEND_SIGNAL(src, COMSIG_GUN_FIREMODE_TOGGLE, gun_firemode, user.client)
+	SEND_SIGNAL(src, COMSIG_GUN_FIRE_MODE_TOGGLE, gun_firemode)
 
 
 /obj/item/weapon/gun/proc/add_firemode(added_firemode, mob/user)
@@ -883,15 +883,15 @@ should be alright.
 
 /obj/item/weapon/gun/proc/modify_fire_delay(value, mob/user)
 	fire_delay += value
-	SEND_SIGNAL(src, COMSIG_GUN_FIREDELAY_MODIFIED, fire_delay)
+	SEND_SIGNAL(src, COMSIG_GUN_AUTOFIREDELAY_MODIFIED, fire_delay)
 
 /obj/item/weapon/gun/proc/modify_burst_delay(value, mob/user)
 	burst_delay += value
-	SEND_SIGNAL(src, COMSIG_GUN_BURSTDELAY_MODIFIED, fire_delay)
+	SEND_SIGNAL(src, COMSIG_GUN_BURST_SHOT_DELAY_MODIFIED, burst_delay)
 
 /obj/item/weapon/gun/proc/modify_burst_amount(value, mob/user)
 	burst_amount += value
-	SEND_SIGNAL(src, COMSIG_GUN_BURSTAMOUNT_MODIFIED, fire_delay)
+	SEND_SIGNAL(src, COMSIG_GUN_BURST_SHOTS_TO_FIRE_MODIFIED, burst_amount)
 
 	if(burst_amount < 2)
 		if(GUN_FIREMODE_BURSTFIRE in gun_firemode_list)

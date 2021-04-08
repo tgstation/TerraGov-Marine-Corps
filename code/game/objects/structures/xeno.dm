@@ -128,13 +128,12 @@
 	max_integrity = 5
 	layer = RESIN_STRUCTURE_LAYER
 	var/obj/item/clothing/mask/facehugger/hugger = null
-	var/mob/living/linked_carrier //The carrier that placed us.
 
-/obj/effect/alien/resin/trap/Initialize(mapload, mob/living/builder)
+/obj/effect/alien/resin/trap/Initialize(mapload)
 	. = ..()
-	if(builder)
-		linked_carrier = builder
 	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, .proc/shuttle_crush)
+	RegisterSignal(src, COMSIG_MOVABLE_CROSSED_BY, .proc/trigger_hugger_trap) //Set up the trap signal on our turf
+
 
 /obj/effect/alien/resin/trap/obj_destruction(damage_amount, damage_type, damage_flag)
 	if(damage_amount && hugger && loc)
@@ -174,25 +173,24 @@
 		icon_state = "trap0"
 	..()
 
-/obj/effect/alien/resin/trap/HasProximity(atom/movable/AM)
+///Triggers the hugger trap
+/obj/effect/alien/resin/trap/proc/trigger_hugger_trap(datum/source, atom/movable/AM, oldloc)
+	SIGNAL_HANDLER
 	if(!iscarbon(AM) || !hugger)
 		return
 	var/mob/living/carbon/C = AM
-	if(C.can_be_facehugged(hugger))
-		playsound(src, "alien_resin_break", 25)
-		C.visible_message("<span class='warning'>[C] trips on [src]!</span>",\
+	if(!C.can_be_facehugged(hugger))
+		return
+	playsound(src, "alien_resin_break", 25)
+	C.visible_message("<span class='warning'>[C] trips on [src]!</span>",\
 						"<span class='danger'>You trip on [src]!</span>")
-		C.Paralyze(40)
-		if(!QDELETED(linked_carrier) && linked_carrier.stat == CONSCIOUS && linked_carrier.z == z)
-			var/area/A = get_area(src)
-			if(A)
-				to_chat(linked_carrier, "<span class='xenoannounce'>You sense one of your traps at [A.name] has been triggered!</span>")
-		drop_hugger()
+	C.Paralyze(4 SECONDS)
+	xeno_message("A facehugger trap at [AREACOORD_NO_Z(src)] has been triggered!", "xenoannounce", 5, hugger.hivenumber,  FALSE, get_turf(src), 'sound/voice/alien_talk2.ogg', FALSE, null, /obj/screen/arrow/attack_order_arrow, COLOR_ORANGE, TRUE) //Follow the trend of hive wide alerts for important events
+	drop_hugger()
 
 /obj/effect/alien/resin/trap/proc/drop_hugger()
 	hugger.forceMove(loc)
-	hugger.stasis = FALSE
-	addtimer(CALLBACK(hugger, /obj/item/clothing/mask/facehugger.proc/fast_activate), 1.5 SECONDS)
+	hugger.go_active(TRUE, TRUE) //Removes stasis
 	icon_state = "trap0"
 	visible_message("<span class='warning'>[hugger] gets out of [src]!</span>")
 	hugger = null
@@ -233,13 +231,6 @@
 		hugger = FH
 		icon_state = "trap1"
 		to_chat(user, "<span class='xenonotice'>You place a facehugger in [src].</span>")
-
-
-/obj/effect/alien/resin/trap/Crossed(atom/A)
-	. = ..()
-	if(iscarbon(A))
-		HasProximity(A)
-
 
 //Resin Doors
 /obj/structure/mineral_door/resin
@@ -639,12 +630,16 @@ TUNNEL
 	resistance_flags = UNACIDABLE
 	layer = RESIN_STRUCTURE_LAYER
 
-	var/tunnel_desc = "" //description added by the hivelord.
-
 	max_integrity = 140
-	var/mob/living/carbon/xenomorph/hivelord/creator = null
 
 	hud_possible = list(XENO_TACTICAL_HUD)
+
+	var/tunnel_desc = "" //description added by the hivelord.
+	var/mob/living/carbon/xenomorph/hivelord/creator = null
+
+	///Hive number of the structure; defaults to standard.
+	var/hivenumber = XENO_HIVE_NORMAL
+
 
 
 /obj/structure/tunnel/Initialize(mapload)
@@ -663,7 +658,7 @@ TUNNEL
 	if(!QDELETED(creator))
 		to_chat(creator, "<span class='xenoannounce'>You sense your [name] at [tunnel_desc] has been destroyed!</span>") //Alert creator
 
-	xeno_message("<span class='xenoannounce'>Hive tunnel [name] at [tunnel_desc] has been destroyed!</span>", 2, creator.hivenumber) //Also alert hive because tunnels matter.
+	xeno_message("Hive tunnel [name] at [tunnel_desc] has been destroyed!", "xenoannounce", 5, creator.hivenumber) //Also alert hive because tunnels matter.
 
 	GLOB.xeno_tunnels -= src
 	if(creator)
@@ -724,6 +719,10 @@ TUNNEL
 
 	if(length(GLOB.xeno_tunnels) < 2)
 		to_chat(X, "<span class='warning'>There are no other tunnels in the network!</span>")
+		return FALSE
+
+	if(LAZYLEN(X.stomach_contents))
+		to_chat(X, "<span class='warning'>We cannot take a tunnel with a victim in our belly!</span>")
 		return FALSE
 
 	pick_a_tunnel(X)

@@ -16,6 +16,7 @@
 
 	// *** Speed *** //
 	speed = -0.8
+	weeds_speed_mod = -0.1
 
 	// *** Plasma *** //
 	plasma_max = 750
@@ -52,8 +53,8 @@
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/activable/psydrain,
+		/datum/action/xeno_action/activable/devour,
 		/datum/action/xeno_action/plant_weeds,
-		/datum/action/xeno_action/choose_resin,
 		/datum/action/xeno_action/activable/secrete_resin,
 		/datum/action/xeno_action/activable/psychic_cure/acidic_salve,
 		/datum/action/xeno_action/activable/transfer_plasma/drone,

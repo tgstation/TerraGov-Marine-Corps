@@ -572,6 +572,10 @@
 			has_obstacle = TRUE
 			break
 
+		if(istype(O, /obj/structure/cocoon))
+			has_obstacle = TRUE
+			break
+		
 		if(O.density && !(O.flags_atom & ON_BORDER))
 			has_obstacle = TRUE
 			break

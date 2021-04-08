@@ -136,6 +136,13 @@ Contains most of the procs that are called when a mob is attacked by something
 			return TRUE
 	return ..()
 
+/mob/living/carbon/human/effect_smoke(obj/effect/particle_effect/smoke/S)
+	. = ..()
+	if(!.)
+		return
+	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CAMO))
+		smokecloak_on()
+
 /mob/living/carbon/human/inhale_smoke(obj/effect/particle_effect/smoke/S)
 	. = ..()
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_BLISTERING) && species.has_organ["lungs"])
@@ -407,8 +414,8 @@ Contains most of the procs that are called when a mob is attacked by something
 	var/reduce_prot_aura = protection_aura * 0.1
 
 	var/reduction = max(min(1, reduce_within_sight - reduce_prot_aura), 0.1) // Capped at 90% reduction
-	var/stamina_damage = LERP(60, 130, dist_pct) * reduction //Max 130 beside Queen, 60 at the edge
-	var/stun_duration = (LERP(0.4, 1, dist_pct) * reduction) * 20 //Max 1.5 beside Queen, 0.4 at the edge.
+	var/stamina_damage = LERP(140, 70, dist_pct) * reduction //Max 140 under Queen, 130 beside Queen, 70 at the edge. Reduction of 10 per tile distance from Queen.
+	var/stun_duration = (LERP(1, 0.4, dist_pct) * reduction) * 20 //Max 1.5 beside Queen, 0.4 at the edge.
 
 	to_chat(src, "<span class='danger'>An ear-splitting guttural roar tears through your mind and makes your world convulse!</span>")
 	Stun(stun_duration)
