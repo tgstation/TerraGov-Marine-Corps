@@ -346,7 +346,7 @@ You can serve a variety of roles, so choose carefully."})
 	back = /obj/item/storage/backpack/marine/satchel
 	head = /obj/item/clothing/head/helmet/specrag
 
-/datum/outfit/job/marine/specialist/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
+/datum/job/terragov/squad/specialist/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
 	if(!ishuman(new_mob))
 		return
