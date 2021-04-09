@@ -194,7 +194,7 @@
 	.["mapRef"] = "player_pref_map"
 
 
-/datum/preferences/ui_act(action, list/params)
+/datum/preferences/ui_act(action, list/params, datum/tgui/ui)
 	. = ..()
 	if(.)
 		return
@@ -210,6 +210,7 @@
 
 		if("random")
 			randomize_appearance_for()
+			save_character()
 
 		if("name_real")
 			var/newValue = params["newValue"]
@@ -238,10 +239,9 @@
 			synthetic_name = newValue
 
 		if("synthetic_type")
-			var/new_synth_type = params["newValue"]
-			if(!(new_synth_type in SYNTH_TYPES))
-				return
-			synthetic_type = new_synth_type
+			var/choice = tgui_input_list(ui.user, "What kind of synthetic do you want to play with?", "Synthetic type choice", SYNTH_TYPES)
+			if(choice)
+				ethnicity = choice
 
 		if("xeno_name")
 			var/newValue = params["newValue"]
@@ -282,34 +282,22 @@
 
 
 		if("ethnicity")
-			var/new_ethnicity = params["newValue"]
-			if(!(new_ethnicity in GLOB.ethnicities_list))
-				return
-			ethnicity = new_ethnicity
+			var/choice = tgui_input_list(ui.user, "What ethnicity do you want to play with?", "Ethnicity choice", GLOB.ethnicities_list)
+			if(choice)
+				ethnicity = choice
 
 		if("species")
-			var/new_species = params["newValue"]
-			if(!(new_species in get_playable_species()))
-				return
-			species = new_species
-
-
+			var/choice = tgui_input_list(ui.user, "What species do you want to play with?", "Species choice", get_playable_species())
+			if(choice)
+				species = choice
+		
 		if("body_type")
-			var/new_body_type = params["newValue"]
-			if(!(new_body_type in GLOB.body_types_list))
-				return
-			body_type = new_body_type
+			var/choice = tgui_input_list(ui.user, "What body type do you want?", "Body type choice", GLOB.body_types_list)
+			if(choice)
+				body_type = choice
 
 		if("toggle_eyesight")
 			good_eyesight = !good_eyesight
-
-		if("moth_wings")
-			if(species != "Moth")
-				return
-			var/new_wings = params["newValue"]
-			if(!(new_wings in (GLOB.moth_wings_list - "Burnt Off")))
-				return
-			moth_wings = new_wings
 
 		if("be_special")
 			var/flag = text2num(params["flag"])
@@ -388,10 +376,9 @@
 				gear = list()
 
 		if("ui")
-			var/choice = params["newValue"]
-			if(!(choice in  UI_STYLES))
-				return
-			ui_style = choice
+			var/choice = tgui_input_list(ui.user, "What UI style do you want?", "UI style choice", UI_STYLES)
+			if(choice)
+				ui_style = choice
 
 		if("uicolor")
 			var/ui_style_color_new = input(user, "Choose your UI color, dark colors are not recommended!", "UI Color") as null|color
@@ -414,11 +401,9 @@
 					continue
 
 				valid_hairstyles[hairstyle] = GLOB.hair_styles_list[hairstyle]
-
-			var/new_h_style = params["newValue"]
-			if(!(new_h_style in valid_hairstyles))
-				return
-			h_style = new_h_style
+			var/choice = tgui_input_list(ui.user, "What hair style do you want?", "Hair style choice", valid_hairstyles)
+			if(choice)
+				h_style = choice
 
 		if("haircolor")
 			var/new_color = input(user, "Choose your character's hair colour:", "Hair Color") as null|color
@@ -445,12 +430,11 @@
 
 				valid_grads[grad] = GLOB.hair_gradients_list[grad]
 
-			var/new_grad_style = params["newValue"]
-			if(!(new_grad_style in valid_grads))
-				return
-			grad_style = new_grad_style
+			var/choice = tgui_input_list(ui.user, "What hair grad style do you want?", "Hair grad style choice", valid_grads)
+			if(choice)
+				grad_style = choice
 
-		if("facialstyle")
+		if("facial_style")
 			var/list/valid_facialhairstyles = list()
 			for(var/facialhairstyle in GLOB.facial_hair_styles_list)
 				var/datum/sprite_accessory/S = GLOB.facial_hair_styles_list[facialhairstyle]
@@ -461,10 +445,9 @@
 
 				valid_facialhairstyles[facialhairstyle] = GLOB.facial_hair_styles_list[facialhairstyle]
 
-			var/new_f_style = params["newValue"]
-			if(!(new_f_style in (valid_facialhairstyles + "Shaved")))
-				return
-			f_style = new_f_style
+			var/choice = tgui_input_list(ui.user, "What facial hair style do you want?", "Facial hair style choice", valid_facialhairstyles)
+			if(choice)
+				f_style = choice
 
 		if("facialcolor")
 			var/facial_color = input(user, "Choose your character's facial-hair colour:", "Facial Hair Color") as null|color
@@ -483,22 +466,19 @@
 			b_eyes = hex2num(copytext(eyecolor, 6, 8))
 
 		if("citizenship")
-			var/choice = params["newValue"]
-			if(!(choice in CITIZENSHIP_CHOICES))
-				return
-			citizenship = choice
+			var/choice = tgui_input_list(ui.user, "What nationality should you have?", "Nationality choice", CITIZENSHIP_CHOICES)
+			if(choice)
+				citizenship = choice
 
 		if("religion")
-			var/choice = params["newValue"]
-			if(!(choice in RELIGION_CHOICES))
-				return
-			religion = choice
+			var/choice = tgui_input_list(ui.user, "What gods do you worship to?", "Religion choice", RELIGION_CHOICES)
+			if(choice)
+				religion = choice
 
 		if("corporation")
-			var/new_relation = params["newValue"]
-			if(!(new_relation in CORP_RELATIONS))
-				return
-			nanotrasen_relation = new_relation
+			var/choice = tgui_input_list(ui.user, "How loyal are you to the corporation?", "Corporation choice", CORP_RELATIONS)
+			if(choice)
+				nanotrasen_relation = choice
 
 		if("squad")
 			var/new_squad = params["newValue"]
@@ -666,4 +646,5 @@
 	save_preferences()
 	save_character()
 	update_preview_icon()
+	ui_interact(user, ui)
 	return TRUE

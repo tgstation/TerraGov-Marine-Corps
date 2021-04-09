@@ -300,7 +300,7 @@ const CharacterCustomization = (props, context) => {
         title="Body"
         buttons={
           <Button color="bad" icon="power-off" onClick={() => act('random')}>
-            Randomize appearance
+            Randomize everything
           </Button>
         }>
         <Flex>
@@ -320,7 +320,6 @@ const CharacterCustomization = (props, context) => {
                 label={'Hair style'}
                 value={'h_style'}
                 action={'hairstyle'}
-                options={'hairstyles'}
               />
               <TextFieldPreference
                 label={'Hair Color'}
@@ -340,7 +339,6 @@ const CharacterCustomization = (props, context) => {
                 label={'Hair gradient style'}
                 value={'grad_style'}
                 action={'grad_style'}
-                options={'hairgradient'}
               />
               <TextFieldPreference
                 label={'Gradient Color'}
@@ -380,8 +378,7 @@ const CharacterCustomization = (props, context) => {
               <SelectFieldPreference
                 label={'Facial hair'}
                 value={'f_style'}
-                action={'facialstyle'}
-                options={'facialhair'}
+                action={'facial_style'}
               />
               <TextFieldPreference
                 label={'Facial Hair Color'}
@@ -404,7 +401,7 @@ const CharacterCustomization = (props, context) => {
               <SelectFieldPreference
                 label={'Body type'}
                 value={'body_type'}
-                options={'bodytypes'}
+                action={'body_type'}
               />
             </LabeledList>
           </Flex.Item>
@@ -413,33 +410,32 @@ const CharacterCustomization = (props, context) => {
               <SelectFieldPreference
                 label={'Species'}
                 value={'species'}
-                options={'all_species'}
+                action={'species'}
               />
               <SelectFieldPreference
                 label={'Synth type'}
                 value={'synthetic_type'}
-                options={'synth_types'}
+                action={'synthetic_type'}
               />
               <SelectFieldPreference
                 label={'Ethnicity'}
                 value={'ethnicity'}
-                options={'ethnicities'}
+                action={'ethnicity'}
               />
               <SelectFieldPreference
                 label={'Citizenship'}
                 value={'citizenship'}
-                options={'citizenships'}
+                action={'citizenship'}
               />
               <SelectFieldPreference
                 label={'Religion'}
                 value={'religion'}
-                options={'religions'}
+                action={'religion'}
               />
               <SelectFieldPreference
                 label={'Corporate Relations'}
                 value={'nanotrasen_relation'}
-                action={'corporation'}
-                options={'corporate_relations'}
+                action={'nanotrasen_relation'}
               />
             </LabeledList>
           </Flex.Item>
@@ -482,24 +478,17 @@ const TextFieldPreference = (props, context) => {
     </LabeledList.Item>
   );
 };
+
 const SelectFieldPreference = (props, context) => {
   const { act, data, config } = useBackend(context);
-  const { label, value, options, action } = props;
+  const { label, value, action } = props;
   const itemLabel = label || value;
-  let parsedOptions = Object.values(data[options] || options);
-  if (Array.isArray(options)) {
-    parsedOptions = options;
-  } else if (typeof data[options] === 'object') {
-    parsedOptions = Object.values(data[options]);
-  }
 
   return (
     <LabeledList.Item label={itemLabel}>
-      <Dropdown
-        width="95%"
-        options={parsedOptions}
-        selected={data[value]}
-        onSelected={newValue => act(action || value, { newValue })}
+      <Button
+        content={data[value]}
+        onClick={() => act(action)} 
       />
     </LabeledList.Item>
   );
@@ -861,7 +850,6 @@ const GameSettings = (props, context) => {
               <SelectFieldPreference
                 label={'UI Style'}
                 value={'ui_style'}
-                options={'ui_styles'}
                 action={'ui'}
               />
               <TextFieldPreference
