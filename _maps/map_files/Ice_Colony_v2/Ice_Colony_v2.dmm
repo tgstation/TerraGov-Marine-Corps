@@ -14938,10 +14938,6 @@
 	dir = 5
 	},
 /area/ice_colony/exterior/surface/landing_pad)
-"aYJ" = (
-/obj/structure/fence,
-/turf/open/floor/plating/ground/ice,
-/area/ice_colony/exterior/surface/landing_pad_external)
 "aYK" = (
 /turf/closed/ice/straight{
 	dir = 4
@@ -76708,7 +76704,7 @@ awL
 awL
 awL
 nlt
-aYJ
+aUP
 aUP
 aUP
 aUP
@@ -76965,7 +76961,7 @@ awL
 awL
 awL
 nlt
-aYJ
+aUP
 aUP
 aUP
 aUP
@@ -77222,7 +77218,7 @@ awL
 awL
 awL
 nlt
-aYJ
+aUP
 aUP
 aUP
 aUP
@@ -77479,7 +77475,7 @@ awL
 awL
 awL
 nlt
-aYJ
+aUP
 aUP
 aUP
 aUP
@@ -77736,7 +77732,7 @@ awL
 awL
 awL
 nlt
-aYJ
+aUP
 aUP
 aZr
 baC
@@ -77993,7 +77989,7 @@ awL
 sGc
 sGc
 nlt
-aYJ
+aUP
 aUP
 aUP
 aYa
@@ -78250,7 +78246,7 @@ awf
 mpH
 acv
 abN
-aYJ
+aUP
 aUP
 aUP
 aUP
@@ -82101,7 +82097,7 @@ awL
 awL
 awL
 nlt
-aMt
+awL
 aUP
 aWp
 bmg
@@ -82358,7 +82354,7 @@ azG
 azG
 awL
 nlt
-aMt
+awL
 aUP
 aUP
 aUP
@@ -82615,10 +82611,10 @@ awx
 azG
 awL
 nlt
-aMt
-aMt
-aMt
-aMt
+awL
+awL
+awL
+awL
 aaC
 aUP
 aUP
