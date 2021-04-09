@@ -269,7 +269,7 @@
 
 	var/list/datum/action/xeno_abilities = list()
 	var/datum/action/xeno_action/activable/selected_ability
-	var/selected_resin = /obj/structure/bed/nest //which resin structure to build when we secrete resin
+	var/selected_resin = /turf/closed/wall/resin/regenerating //which resin structure to build when we secrete resin
 	var/selected_reagent = /datum/reagent/toxin/xeno_hemodile //which reagent to slash with using reagent slash
 
 	//Naming variables
@@ -314,6 +314,9 @@
 	// *** Ravager vars *** //
 	var/ignore_pain = FALSE // when true the rav will not go into crit or take crit damage.
 	var/ignore_pain_state = 0 // how far "dead" the rav has got while ignoring pain.
+
+	// *** Carrier vars *** //
+	var/selected_hugger_type = /obj/item/clothing/mask/facehugger
 
 	//Notification spam controls
 	var/recent_notice = 0

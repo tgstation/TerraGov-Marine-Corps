@@ -16519,6 +16519,7 @@
 	},
 /turf/open/floor/mainship/ai,
 /area/sulaco/command/ai)
+<<<<<<< HEAD
 "plC" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
@@ -16530,6 +16531,8 @@
 	dir = 4
 	},
 /area/sulaco/marine/alpha)
+=======
+>>>>>>> dcacbff1750d07c273fb8761a6c39d1bd92271e2
 "plO" = (
 /obj/machinery/light{
 	dir = 8
@@ -42342,7 +42345,7 @@ aYN
 aYV
 aKd
 aKM
-plC
+aKM
 aLG
 nrh
 aNd
