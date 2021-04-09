@@ -1779,7 +1779,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "flame"
 	hud_state_empty = "flame_empty"
 	damage_type = BURN
-	flags_ammo_behavior = AMMO_INCENDIARY|AMMO_IGNORE_ARMOR|AMMO_FLAME
+	flags_ammo_behavior = AMMO_INCENDIARY|AMMO_FLAME
 	armor_type = "fire"
 	max_range = 6
 	damage = 50
