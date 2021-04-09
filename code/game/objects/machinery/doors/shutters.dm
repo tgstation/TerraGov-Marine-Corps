@@ -113,6 +113,7 @@
 	desc = "Safety shutters to prevent dangerous depressurization during flight"
 	icon = 'icons/obj/doors/mainship/blastdoors_shutters.dmi'
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	id = "ghhjmugggggtgggbg" // do not have any button or thing have an ID assigned to this, it is a very bad idea.
 
 
 /obj/machinery/door/poddoor/shutters/mainship/open
@@ -210,6 +211,11 @@
 /obj/machinery/door/poddoor/shutters/mainship/cic/armory
 	name = "\improper Armory Shutters"
 	id = "cic_armory"
+	icon_state = "shutter1"
+
+/obj/machinery/door/poddoor/shutters/mainship/engineering/armory
+	name = "\improper Engineering Armory Shutters"
+	id = "engi_armory"
 	icon_state = "shutter1"
 
 /obj/machinery/door/poddoor/shutters/mainship/corporate

@@ -47,11 +47,6 @@
 		core = null
 	return ..()
 
-/obj/flamer_fire/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
-	if(isxenohivemind(mover))
-		return FALSE
-
 /mob/living/carbon/xenomorph/hivemind/flamer_fire_act()
 	forceMove(get_turf(core))
 	to_chat(src, "<span class='xenonotice'>We were on top of fire, we got moved to our core.")
@@ -132,6 +127,13 @@
 	return FALSE
 
 /mob/living/carbon/xenomorph/hivemind/AltClickOn(atom/A)
+	if(istype(A, /obj/structure/mineral_door/resin))
+		if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_HIVEMIND_DOOR))
+			to_chat(src, "<span class='xenonotice'>You manipulated a door too recently, wait a bit more!</span>")
+			return
+		TIMER_COOLDOWN_START(src, COOLDOWN_HIVEMIND_DOOR, 5 SECONDS)
+		var/obj/structure/mineral_door/resin/door = A
+		door.TryToSwitchState(src)
 	return FALSE
 
 /mob/living/carbon/xenomorph/hivemind/a_intent_change()
@@ -144,6 +146,11 @@
 /// Hiveminds specifically have no status hud element
 /mob/living/carbon/xenomorph/hivemind/med_hud_set_status()
 	return
+
+/obj/flamer_fire/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
+	if(isxenohivemind(mover))
+		return FALSE
 
 
 // =================
@@ -165,7 +172,7 @@
 		return ..()
 	parent.playsound_local(parent, get_sfx("alien_help"), 30, TRUE)
 	to_chat(parent, "<span class='xenohighdanger'>Your core has been destroyed!</span>")
-	xeno_message("<span class='xenoannounce'>A sudden tremor ripples through the hive... \the [parent] has been slain!</span>", 2, parent.hivenumber)
+	xeno_message("A sudden tremor ripples through the hive... \the [parent] has been slain!", "xenoannounce", 5, parent.hivenumber)
 	parent.ghostize()
 	if(!QDELETED(parent))
 		QDEL_NULL(parent)

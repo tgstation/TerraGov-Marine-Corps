@@ -119,13 +119,12 @@
 	wrenchable = FALSE
 	req_one_access = list(ACCESS_MARINE_CARGO, ACCESS_MARINE_LOGISTICS)
 	products = list(
-		/obj/item/storage/box/ammo = 30,
 		/obj/item/storage/box/nade_box = 2,
 		/obj/item/storage/box/nade_box/HIDP = 2,
 		/obj/item/storage/box/nade_box/M15 = 2,
 		/obj/item/storage/box/nade_box/plasma_drain_gas = 1,
 		/obj/item/ammo_magazine/rifle/autosniper = 3,
-		/obj/item/ammo_magazine/rifle/m4ra = 3,
+		/obj/item/ammo_magazine/rifle/tx8 = 3,
 		/obj/item/ammo_magazine/rocket/sadar = 3,
 		/obj/item/ammo_magazine/minigun = 2,
 		/obj/item/ammo_magazine/shotgun/mbx900 = 2,
@@ -202,7 +201,7 @@
 		/obj/item/explosive/grenade/frag/m15 = 25,
 		/obj/item/explosive/grenade/incendiary = 25,
 		/obj/item/explosive/grenade/drainbomb = 5,
-		/obj/item/explosive/grenade/cloakbomb = 25,
+		/obj/item/explosive/grenade/cloakbomb = 12,
 		/obj/item/storage/box/m94 = 30,
 		/obj/item/storage/box/m94/cas = 10,
 		/obj/item/storage/box/recoilless_system = 1,
@@ -300,6 +299,7 @@
 		/obj/item/ammo_magazine/box10x24mm = 50,
 		/obj/item/ammo_magazine/box10x26mm = 50,
 		/obj/item/ammo_magazine/box10x27mm = 50,
+		/obj/item/storage/box/ammo = 15,
 	)
 	premium = list()
 

@@ -24,6 +24,9 @@
 
 //Xenos digging up snow
 /turf/open/floor/plating/ground/snow/attack_alien(mob/living/carbon/xenomorph/M, damage_amount = M.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(M.status_flags & INCORPOREAL)
+		return
+
 	if(M.a_intent == INTENT_GRAB)
 
 		if(!slayer)

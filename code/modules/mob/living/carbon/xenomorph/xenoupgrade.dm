@@ -1,13 +1,13 @@
 
-/mob/living/carbon/xenomorph/proc/upgrade_xeno(newlevel)
+/mob/living/carbon/xenomorph/proc/upgrade_xeno(newlevel, silent = FALSE)
 	if(!(newlevel in (GLOB.xenoupgradetiers - XENO_UPGRADE_BASETYPE - XENO_UPGRADE_INVALID)))
 		return // smelly badmins
 	hive.upgrade_xeno(src, upgrade, newlevel)
 	upgrade = newlevel
-	upgrade_stored = 0
-	visible_message("<span class='xenonotice'>\The [src] begins to twist and contort.</span>", \
-	"<span class='xenonotice'>We begin to twist and contort.</span>")
-	do_jitter_animation(1000)
+	if(!silent)
+		visible_message("<span class='xenonotice'>\The [src] begins to twist and contort.</span>", \
+		"<span class='xenonotice'>We begin to twist and contort.</span>")
+		do_jitter_animation(1000)
 	set_datum()
 	var/selected_ability_type = selected_ability?.type
 
@@ -36,11 +36,13 @@
 	switch(upgrade)
 		//FIRST UPGRADE
 		if(XENO_UPGRADE_ONE)
-			to_chat(src, "<span class='xenodanger'>We feel a bit stronger.</span>")
+			if(!silent)
+				to_chat(src, "<span class='xenodanger'>We feel a bit stronger.</span>")
 
 		//SECOND UPGRADE
 		if(XENO_UPGRADE_TWO)
-			to_chat(src, "<span class='xenodanger'>We feel a whole lot stronger.</span>")
+			if(!silent)
+				to_chat(src, "<span class='xenodanger'>We feel a whole lot stronger.</span>")
 			switch(tier)
 				if(XENO_TIER_TWO)
 					SSmonitor.stats.elder_T2++
@@ -51,7 +53,8 @@
 
 		//FINAL UPGRADE
 		if(XENO_UPGRADE_THREE)
-			to_chat(src, "<span class='xenoannounce'>[xeno_caste.ancient_message]</span>")
+			if(!silent)
+				to_chat(src, "<span class='xenoannounce'>[xeno_caste.ancient_message]</span>")
 			switch(tier)
 				if(XENO_TIER_TWO)
 					SSmonitor.stats.ancient_T2++
@@ -355,3 +358,12 @@
 
 //----SHRIKE END----//
 //============//
+
+/mob/living/carbon/xenomorph/wraith/mature
+	upgrade = XENO_UPGRADE_ONE
+
+/mob/living/carbon/xenomorph/wraith/elder
+	upgrade = XENO_UPGRADE_TWO
+
+/mob/living/carbon/xenomorph/wraith/ancient
+	upgrade = XENO_UPGRADE_THREE

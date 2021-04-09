@@ -61,7 +61,7 @@ GLOBAL_LIST_EMPTY(surgery_steps)
 			H.bloody_hands(target, 0)
 		if(blood_level > 1)
 			H.bloody_body(target, 0)
-	return
+
 
 //Does stuff to end the step, which is normally print a message + do whatever this step changes
 /datum/surgery_step/proc/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)

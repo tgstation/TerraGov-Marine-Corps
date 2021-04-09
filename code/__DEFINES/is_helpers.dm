@@ -105,6 +105,7 @@
 #define isxenodefiler(A) (istype(A, /mob/living/carbon/xenomorph/Defiler))
 #define isxenobull(A) (istype(A, /mob/living/carbon/xenomorph/bull))
 #define isxenohivemind(A) (istype(A, /mob/living/carbon/xenomorph/hivemind))
+#define isxenowraith(A) (istype(A, /mob/living/carbon/xenomorph/wraith))
 
 #define isresinsilo(A) (istype(A, /obj/structure/resin/silo))
 
@@ -215,6 +216,8 @@
 
 #define isxenoresearcharea(A) (istype(A, /area/mainship/medical/medical_science))
 
+#define isspacearea(A) (istype(A, /area/space)) //Spacceeeee
+
 // Admin
 #define isaghost(mob) ( mob.key && mob.key[1] == "@" )
 #define isclientedaghost(living) (isaghost(living) && GLOB.directory[copytext_char(living.ckey, 2)] && living.get_ghost())
@@ -226,3 +229,6 @@
 // Xeno hives
 #define isnormalhive(hive) (istype(hive, /datum/hive_status/normal))
 #define isxenohive(A) ((A == XENO_HIVE_NONE) || (A == XENO_HIVE_NORMAL) || (A == XENO_HIVE_CORRUPTED) || (A == XENO_HIVE_ALPHA) || (A == XENO_HIVE_BETA) || (A == XENO_HIVE_ZETA) || (A == XENO_HIVE_ADMEME))
+
+// Slot helpers
+#define ishandslot(A) ((A == SLOT_L_HAND) || (A == SLOT_R_HAND))

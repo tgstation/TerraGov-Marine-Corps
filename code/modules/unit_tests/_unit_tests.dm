@@ -38,6 +38,7 @@
 #define UNIT_TEST_SKIPPED 2
 
 #include "bespoke_id.dm"
+#include "binary_insert.dm"
 #include "component_tests.dm"
 #include "initialize_sanity.dm"
 #include "keybinding_init.dm"

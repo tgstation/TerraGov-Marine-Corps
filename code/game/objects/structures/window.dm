@@ -77,14 +77,9 @@
 		return TRUE
 
 /obj/structure/window/CheckExit(atom/movable/mover, turf/target)
+	. = ..()
 	if(CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
 		return TRUE
-	if(is_full_window()) //Can always leave from a full window.
-		return TRUE
-	if(get_dir(loc, target) == dir)
-		return !density
-	return TRUE
-
 
 /obj/structure/window/attack_hand(mob/living/user)
 	. = ..()

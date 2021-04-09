@@ -90,11 +90,13 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 
 /obj/machinery/computer/camera_advanced/overwatch/give_eye_control(mob/user)
 	. = ..()
-	RegisterSignal(user, COMSIG_MOB_CLICK_SHIFT, .proc/send_orders)
+	RegisterSignal(user, COMSIG_MOB_CLICK_SHIFT, .proc/send_order)
+	RegisterSignal(user, COMSIG_ORDER_SELECTED, .proc/set_order)
 
 /obj/machinery/computer/camera_advanced/overwatch/remove_eye_control(mob/living/user)
 	. = ..()
 	UnregisterSignal(user, COMSIG_MOB_CLICK_SHIFT)
+	UnregisterSignal(user, COMSIG_ORDER_SELECTED)
 
 /obj/machinery/computer/camera_advanced/overwatch/can_interact(mob/user)
 	. = ..()
@@ -890,86 +892,17 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	return dat
 
 ///Print order visual to all marines squad hud and give them an arrow to follow the waypoint
-/obj/machinery/computer/camera_advanced/overwatch/proc/send_orders(datum/source, atom/object)
+/obj/machinery/computer/camera_advanced/overwatch/proc/send_order(datum/source, atom/target)
 	SIGNAL_HANDLER
-	var/turf/target_turf = get_turf(object)
-	if (!current_order)
-		to_chat(usr, "<span class='warning'>You didn't select any order!</span>")
-		return
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_CIC_ORDERS))
-		to_chat(usr, "<span class='warning'>Your last order was too recent.</span>")
-		return
-	TIMER_COOLDOWN_START(src, COOLDOWN_CIC_ORDERS, ORDER_COOLDOWN)
-	new current_order.visual_type(target_turf)
-	var/obj/screen/arrow/arrow_hud
-	var/datum/atom_hud/squad/squad_hud = GLOB.huds[DATA_HUD_SQUAD]
-	var/list/final_list = squad_hud.hudusers
-	final_list -= current_user //We don't want the eye to have an arrow, it's silly
+	if(!current_order)
+		var/mob/user = source
+		to_chat(user, "<span class='warning'>Your have no order selected.</span>")
+	current_order.send_order(target)
 
-	for(var/hud_user in final_list)
-		if(!ishuman(hud_user))
-			continue
-		if(current_order.arrow_type)
-			arrow_hud = new current_order.arrow_type
-			arrow_hud.add_hud(hud_user, target_turf)
-		notify_marine(hud_user, target_turf)
-
-///Send a message and a sound to the marine if he is on the same z level as the turf
-/obj/machinery/computer/camera_advanced/overwatch/proc/notify_marine(mob/living/marine, turf/target_turf) ///Send an order to that specific marine if it's on the right z level
-	if(marine.z == target_turf.z)
-		marine.playsound_local(marine, "sound/effects/CIC_order.ogg", 10, 1)
-		to_chat(marine,"<span class='ordercic'>Command is urging you to [current_order.verb_name] [target_turf.loc.name]!</span>")
-
-/datum/action/innate/order
-	///the word used to describe the action when notifying marines
-	var/verb_name
-	///the type of arrow used in the order
-	var/arrow_type
-	///the type of the visual added on the ground
-	var/visual_type
-
-/datum/action/innate/order/attack_order
-	name = "Send Attack Order"
-	background_icon_state = "template2"
-	action_icon_state = "attack"
-	verb_name = "attack the enemy at"
-	arrow_type = /obj/screen/arrow/attack_order_arrow
-	visual_type = /obj/effect/temp_visual/order/attack_order
-
-/datum/action/innate/order/defend_order
-	name = "Send Defend Order"
-	background_icon_state = "template2"
-	action_icon_state = "defend"
-	verb_name = "defend our position in"
-	arrow_type = /obj/screen/arrow/defend_order_arrow
-	visual_type = /obj/effect/temp_visual/order/defend_order
-
-/datum/action/innate/order/retreat_order
-	name = "Send Retreat Order"
-	background_icon_state = "template2"
-	action_icon_state = "retreat"
-	verb_name = "retreat from"
-	visual_type = /obj/effect/temp_visual/order/retreat_order
-
-///Set the order as selected on the overwatch console
-/datum/action/innate/order/proc/set_selected_order()
-	var/mob/living/C = target
-	var/mob/camera/aiEye/remote/remote_eye = C.remote_control
-	var/obj/machinery/computer/camera_advanced/overwatch/console = remote_eye.origin
-	console.current_order?.remove_selected_frame()
-	if(console.current_order != src)
-		console.current_order = src
-		add_selected_frame()
-		return
-	console.current_order = null
-
-/datum/action/innate/order/Activate()
-	active = TRUE
-	set_selected_order()
-
-/datum/action/innate/order/Deactivate()
-	active = FALSE
-	set_selected_order()
+///Setter for the current order
+/obj/machinery/computer/camera_advanced/overwatch/proc/set_order(datum/source, datum/action/innate/order/order)
+	SIGNAL_HANDLER
+	current_order = order
 
 #undef OW_MAIN
 #undef OW_MONITOR

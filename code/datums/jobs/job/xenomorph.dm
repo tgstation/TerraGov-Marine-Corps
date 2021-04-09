@@ -11,6 +11,10 @@
 /datum/job/xenomorph/return_spawn_type(datum/preferences/prefs)
 	return /mob/living/carbon/xenomorph/larva
 
+/datum/job/xenomorph/add_job_points(amount, origin = MARINE_SPAWN_ORIGIN)
+	. = ..()
+	SSblackbox.record_feedback("tally", "round_statistics", 0.125 * amount, origin)
+
 /datum/job/xenomorph/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, "<b>Your job is to spread the hive and protect the Hive Leader. If there's no Hive Leader, you can become the Shrike or Queen yourself by evolving into a drone.</b><br>\
@@ -20,12 +24,20 @@
 	parent.show_character_previews(image('icons/Xeno/1x1_Xenos.dmi', icon_state = "Bloody Larva", dir = SOUTH))
 	return TRUE
 
+/datum/job/xenomorph/add_job_positions(amount)
+	. = ..()
+	if(!.)
+		return
+	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
+	HS.give_larva_to_next_in_queue()
+
 /datum/job/xenomorph/queen
 	title = ROLE_XENO_QUEEN
 	req_admin_notify = TRUE
 	supervisors = "Queen mother"
 	selection_color = "#8972AA"
 	display_order = JOB_DISPLAY_ORDER_XENO_QUEEN
+	exp_requirements = XP_REQ_EXPERIENCED
 	job_flags = JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_NOHEADSET|JOB_FLAG_OVERRIDELATEJOINSPAWN|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_HIDE_CURRENT_POSITIONS
 	jobworth = list(/datum/job/survivor/rambo = SURVIVOR_POINTS_REGULAR)
 

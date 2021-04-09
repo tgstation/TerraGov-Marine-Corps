@@ -119,6 +119,11 @@
 	name = "retreat order"
 	icon_state_on = "retreat"
 
+/obj/effect/temp_visual/order/rally_order
+	name = "rally order"
+	icon_state_on = "rally"
+	duration = RALLY_ORDER_DURATION
+
 ///Set visuals for the hud
 /obj/effect/temp_visual/order/proc/set_visuals()
 	var/image/holder = hud_list[SQUAD_HUD]
@@ -139,3 +144,23 @@
 	icon = 'icons/obj/items/jetpack.dmi'
 	icon_state = "smoke"
 	duration = 1.2 SECONDS
+
+/obj/effect/temp_visual/blink_portal
+	name = "blink portal"
+	icon = 'icons/obj/objects.dmi'
+	icon_state = "anom"
+	layer = ABOVE_LYING_MOB_LAYER
+	duration = 0.5 SECONDS
+
+/obj/effect/temp_visual/banishment_portal
+	name = "banishment portal"
+	icon = 'icons/obj/objects.dmi'
+	icon_state = "bhole3"
+	layer = ABOVE_LYING_MOB_LAYER
+	duration = WRAITH_BANISH_BASE_DURATION+1 //So we don't delete our contents early
+
+/obj/effect/temp_visual/acid_splatter
+	name = "acid_splatter"
+	icon = 'icons/Xeno/Effects.dmi'
+	icon_state = "splatter"
+	duration = 0.8 SECONDS

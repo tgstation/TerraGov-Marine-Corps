@@ -94,8 +94,7 @@
 
 	if (usr.stat != 0)
 		return
-	src.go_out()
-	return
+	go_out()
 
 /obj/machinery/gibber/proc/go_out()
 	if (!src.occupant)
@@ -108,7 +107,7 @@
 	src.occupant.loc = src.loc
 	src.occupant = null
 	update_icon()
-	return
+
 
 
 /obj/machinery/gibber/proc/startgibbing(mob/user as mob)

@@ -416,7 +416,14 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define STAMINA_EXHAUSTION_DEBUFF_STACKS	6 //Amount of slow and stagger stacks applied on stamina exhaustion events
 
 
+//Shock defines
+
+#define LIVING_SHOCK_EFFECT_COOLDOWN	10 SECONDS
+
+
 //Xeno Defines
+
+#define XENO_DEFAULT_ACID_PUDDLE_DAMAGE	14 //Standard damage dealt by acid puddles
 
 #define HIVE_CAN_HIJACK (1<<0)
 
@@ -436,12 +443,18 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define XENO_NEURO_AMOUNT_RECURRING			10
 #define XENO_NEURO_CHANNEL_TIME				1.5 SECONDS
 
-#define XENO_HEALTH_ALERT_TRIGGER_PERCENT	0.33 //If a xeno is damaged while its current hit points are less than this percent of its maximum, we send out an alert to the hive
-#define XENO_HEALTH_ALERT_TRIGGER_THRESHOLD	100 //If a xeno is damaged while its current hit points are less than this amount, we send out an alert to the hive
-#define XENO_HEALTH_ALERT_COOLDOWN			30 SECONDS //The cooldown on these xeno damage alerts
+#define XENO_HEALTH_ALERT_TRIGGER_PERCENT	0.25 //If a xeno is damaged while its current hit points are less than this percent of its maximum, we send out an alert to the hive
+#define XENO_HEALTH_ALERT_TRIGGER_THRESHOLD	50 //If a xeno is damaged while its current hit points are less than this amount, we send out an alert to the hive
+#define XENO_HEALTH_ALERT_COOLDOWN			60 SECONDS //The cooldown on these xeno damage alerts
+#define XENO_SILO_HEALTH_ALERT_COOLDOWN		30 SECONDS //The cooldown on these xeno damage alerts
 #define XENO_HEALTH_ALERT_POINTER_DURATION	6 SECONDS //How long the alert directional pointer lasts.
 #define XENO_RALLYING_POINTER_DURATION		15 SECONDS //How long the rally hive pointer lasts
 #define XENO_SILO_DAMAGE_POINTER_DURATION	10 SECONDS //How long the alert directional pointer lasts when silos are damaged
+#define XENO_SILO_DETECTION_COOLDOWN		1 MINUTES
+#define XENO_SILO_DETECTION_RANGE			10//How far silos can detect hostiles
+
+#define XENO_PARALYZE_NORMALIZATION_MULTIPLIER	5 //Multiplies an input to normalize xeno paralyze duration times.
+#define XENO_STUN_NORMALIZATION_MULTIPLIER		2 //Multiplies an input to normalize xeno stun duration times.
 
 #define CANNOT_HOLD_EGGS 0
 #define CAN_HOLD_TWO_HANDS 1
@@ -464,6 +477,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CASTE_ACID_BLOOD (1<<13) //The acid blood effect which damages humans near xenos that take damage
 #define CASTE_CAN_HOLD_JELLY (1<<14)//whether we can hold fireproof jelly in our hands
 #define CASTE_IS_STRONG (1<<15)//can tear open acided walls without being big
+#define CASTE_CAN_CORRUPT_GENERATOR (1<<16) //Can corrupt a generator
 
 //Charge-Crush
 #define CHARGE_OFF			0
@@ -510,8 +524,9 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CRUSHER_CHARGE_TANK_MULTI		100
 
 //carrier defines
-#define CARRIER_HUGGER_THROW_SPEED 2
-#define CARRIER_HUGGER_THROW_DISTANCE 5
+#define CARRIER_HUGGER_THROW_SPEED			2
+#define CARRIER_HUGGER_THROW_DISTANCE		5
+#define CARRIER_SLASH_HUGGER_DAMAGE			23
 
 //Defiler defines
 #define DEFILER_GAS_CHANNEL_TIME				0.5 SECONDS
@@ -553,17 +568,36 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 //Drone defines
 
-#define DRONE_SALVAGE_BIOMASS_WINDUP		5 SECONDS //Delay before the target is salvaged
-#define DRONE_SALVAGE_BIOMASS_RANGE			1
-#define DRONE_SALVAGE_BIOMASS_SALVAGE_RATIO	0.2 //Percentile of stored upgrade and evolution salvaged from the target
-#define DRONE_SALVAGE_COOLDOWN				60 SECONDS //Can only salvage one corpse per 60 seconds; try not to die *too* quickly.
-#define DRONE_SALVAGE_UPGRADE_FILTER_LIST	list(XENO_UPGRADE_THREE, XENO_UPGRADE_INVALID)
-#define DRONE_SALVAGE_EVOLUTION_FILTER_LIST	list(XENO_TIER_ZERO, XENO_TIER_THREE, XENO_TIER_FOUR)
-
 //Runner defines
 #define RUNNER_EVASION_DURATION						2 SECONDS //How long Evasion lasts.
 #define RUNNER_EVASION_RUN_DELAY					0.5 SECONDS //If the time since the Runner last moved is equal to or greater than this, its Evasion ends.
 #define RUNNER_EVASION_COOLDOWN_REFRESH_THRESHOLD	120 //If we dodge this much damage times our streak count plus 1 while evading, refresh the cooldown of Evasion.
+
+//Wraith defines
+
+#define WRAITH_PLACE_WARP_BEACON_WINDUP					3 SECONDS
+#define WRAITH_PLACE_WARP_BEACON_FAIL_COOLDOWN_OVERRIDE	1 SECONDS //When we abort or fail to place a warp beacon, it goes on cooldown for awhile to prevent spam
+
+#define WRAITH_HYPERPOSITION_MIN_WINDUP			0.5 SECONDS
+#define WRAITH_HYPERPOSITION_MAX_WINDUP			5 SECONDS
+#define WRAITH_HYPERPOSITION_COOLDOWN_OVERRIDE	1 SECONDS //When we abort or fail to use hyperposition, it goes on cooldown to prevent spam
+
+#define WRAITH_PHASE_SHIFT_WINDUP			1 SECONDS
+#define WRAITH_PHASE_SHIFT_DURATION			5 SECONDS
+#define WRAITH_PHASE_SHIFT_DURATION_WARNING	0.7
+#define WRAITH_PHASE_SHIFT_ALPHA			128 //50% transparency
+
+#define WRAITH_BLINK_DRAG_NONFRIENDLY_MULTIPLIER	20 //The amount we multiply the cooldown by when we teleport while dragging a non-friendly target
+#define WRAITH_BLINK_DRAG_FRIENDLY_MULTIPLIER		4 //The amount we multiply the cooldown by when we teleport while dragging a friendly target
+#define WRAITH_BLINK_RANGE							3
+
+#define WRAITH_BANISH_BASE_DURATION					10 SECONDS
+#define WRAITH_BANISH_RANGE							3
+#define WRAITH_BANISH_NONFRIENDLY_LIVING_MULTIPLIER	0.5
+#define WRAITH_BANISH_VERY_SHORT_MULTIPLIER			0.3
+
+#define WRAITH_TELEPORT_DEBUFF_STACKS			1 //Stagger and slow stacks applied to adjacent living hostiles before/after a teleport
+
 
 //misc
 

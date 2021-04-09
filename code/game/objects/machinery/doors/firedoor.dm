@@ -116,6 +116,9 @@
 	return FALSE
 
 /obj/machinery/door/firedoor/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(X.status_flags & INCORPOREAL)
+		return FALSE
+
 	var/turf/cur_loc = X.loc
 	if(blocked)
 		to_chat(X, "<span class='warning'>\The [src] is welded shut.</span>")
@@ -253,7 +256,6 @@
 		if(FIREDOOR_CLOSED)
 			nextstate = null
 			close()
-	return
 
 /obj/machinery/door/firedoor/close()
 	latetoggle()
@@ -275,7 +277,6 @@
 		if("closing")
 			flick("door_closing", src)
 	playsound(loc, 'sound/machines/emergency_shutter.ogg', 25)
-	return
 
 
 /obj/machinery/door/firedoor/update_icon()
@@ -296,7 +297,6 @@
 		icon_state = "door_open"
 		if(blocked)
 			overlays += "welded_open"
-	return
 
 
 /obj/machinery/door/firedoor/mainship
@@ -329,10 +329,8 @@
 		return TRUE
 
 
-/obj/machinery/door/firedoor/border_only/CheckExit(atom/movable/mover as mob|obj, turf/target)
+/obj/machinery/door/firedoor/border_only/CheckExit(atom/movable/mover, turf/target)
+	. = ..()
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
 		return TRUE
-	if(get_dir(loc, target) == dir)
-		return !density
-	else
-		return TRUE
+
