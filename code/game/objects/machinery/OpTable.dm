@@ -147,11 +147,10 @@
 		var/mob/living/carbon/human/M = locate(/mob/living/carbon/human, loc)
 		if(M.lying_angle)
 			victim = M
-			icon_state = M.handle_pulse() ? "table2-active" : "table2-idle"
 			return 1
 	victim = null
 	stop_processing()
-	icon_state = "table2-idle"
+	update_icon_state()
 	return 0
 
 /obj/machinery/optable/process()
@@ -169,9 +168,7 @@
 		var/mob/living/carbon/human/H = C
 		victim = H
 		start_processing()
-		icon_state = H.handle_pulse() ? "table2-active" : "table2-idle"
-	else
-		icon_state = "table2-idle"
+	update_icon_state()
 
 /obj/machinery/optable/verb/climb_on()
 	set name = "Climb On Table"
@@ -230,3 +227,37 @@
 		return 0
 
 	return 1
+
+/obj/machinery/optable/update_icon_state() //This is to simplify and clean some above code.
+	. = ..()
+	if(!victim)
+		icon_state = initial(icon_state)
+		return
+	if(victim.handle_pulse())
+		icon_state = initial(icon_state) + "-active"
+	icon_state = initial(icon_state)
+
+
+/obj/machinery/optable/rollerop
+	name = "portable surgery table"
+	desc = "A roller bed in surgery table mode. It is unmovable yet capable of all regular surgery table operations. Use a wrench to return it to a portable state."
+	icon = 'icons/obj/rollerbed.dmi' 
+	icon_state = "roller_surge"
+	use_power = NO_POWER_USE
+	var/rollertype = /obj/structure/bed/roller
+
+/obj/machinery/optable/rollerop/attackby(obj/item/I, mob/user, params)
+	if(iswrench(I))
+		if(victim)
+			to_chat(user, "<span class='notice'>You cannot configure the [src] to roller bed with [victim] still buckled.</span>")
+			return
+		if(anes_tank)
+			to_chat(user, "<span class='notice'>You cannot configure the [src] to roller bed with the [anes_tank] still attached.</span>")
+			return
+		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+		new rollertype(loc)
+		qdel(src)
+		return
+	. = ..()
+	
+

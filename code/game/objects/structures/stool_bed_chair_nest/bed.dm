@@ -210,7 +210,7 @@ obj/structure/bed/Destroy()
 */
 /obj/structure/bed/roller
 	name = "roller bed"
-	desc = "A basic cushioned leather board resting on a small frame. Not very comfortable at all, but allows the patient to rest lying down while moved to another location rapidly."
+	desc = "A basic cushioned leather board resting on a small frame. Not very comfortable at all, but allows the patient to rest lying down while moved to another location rapidly. Use a wrench on it to convert it into a surgery table."
 	icon = 'icons/obj/rollerbed.dmi'
 	icon_state = "roller_down"
 	anchored = FALSE
@@ -220,11 +220,24 @@ obj/structure/bed/Destroy()
 	foldabletype = /obj/item/roller
 	accepts_bodybag = TRUE
 	base_bed_icon = "roller"
+	buildstacktype = null
+	var/optype = /obj/machinery/optable/rollerop
 
+/obj/structure/bed/roller/attackby(obj/item/I, mob/user, params)
+	if(iswrench(I))
+		if(buckled_bodybag || buckled_mobs)
+			to_chat(user, "<span class='notice'>You cannot configure the [src] to surgery mode while something is buckled to it.</span>")
+			return
+		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+		visible_message("<span class='notice'>[user] wrenches the [src] into surgery configuration.</span>", "<span class='notice'>You wrench the [src] into surgery configuration.</span>")
+		new optype(loc)
+		qdel(src)
+		return
+	. = ..()
 
 /obj/item/roller
 	name = "roller bed"
-	desc = "A collapsed roller bed that can be carried around."
+	desc = "A collapsed roller bed that can be carried around. Once deployed, use a wrench on it to convert it into a surgery table."
 	icon = 'icons/obj/rollerbed.dmi'
 	icon_state = "folded"
 	w_class = WEIGHT_CLASS_SMALL //Fits in a backpack
