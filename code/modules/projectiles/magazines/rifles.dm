@@ -104,7 +104,7 @@
 	icon_state = "t64"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle/standard_dmr
-	max_rounds = 25
+	max_rounds = 40
 	gun_type = /obj/item/weapon/gun/rifle/standard_br
 
 /obj/item/ammo_magazine/rifle/standard_br/incendiary
@@ -114,7 +114,7 @@
 	icon_state = "t64_incin"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle/standard_dmr/incendiary
-	max_rounds = 20
+	max_rounds = 35
 	gun_type = /obj/item/weapon/gun/rifle/standard_br
 
 /obj/item/ammo_magazine/box10x27mm
