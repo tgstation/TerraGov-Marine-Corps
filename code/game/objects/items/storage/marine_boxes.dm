@@ -395,8 +395,6 @@
 
 /obj/item/storage/box/spec/scout/Initialize(mapload, ...)
 	. = ..()
-	new /obj/item/clothing/suit/storage/marine/M3S(src)
-	new /obj/item/clothing/head/helmet/marine/scout(src)
 	new /obj/item/clothing/glasses/night/tx8(src)
 	new /obj/item/ammo_magazine/rifle/tx8(src)
 	new /obj/item/ammo_magazine/rifle/tx8(src)
