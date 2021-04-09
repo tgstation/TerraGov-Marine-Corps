@@ -195,7 +195,6 @@
 
 /obj/item/storage/box/m42c_system/Initialize(mapload, ...)
 	. = ..()
-	new /obj/item/clothing/suit/storage/marine/sniper(src)
 	new /obj/item/clothing/head/helmet/marine/sniper(src)
 	new /obj/item/clothing/glasses/night/m42_night_goggles(src)
 	new /obj/item/ammo_magazine/sniper(src)
@@ -227,7 +226,6 @@
 
 /obj/item/storage/box/m42c_system_Jungle/Initialize(mapload, ...)
 	. = ..()
-	new /obj/item/clothing/suit/storage/marine/sniper/jungle(src)
 	new /obj/item/clothing/head/helmet/marine/sniper(src)
 	new /obj/item/clothing/glasses/m42_goggles(src)
 	new /obj/item/clothing/head/helmet/durag/jungle(src)
@@ -468,8 +466,6 @@
 /obj/item/storage/box/spec/tracker/Initialize(mapload, ...)
 	. = ..()
 
-	new /obj/item/clothing/suit/storage/marine/M3S(src)
-	new /obj/item/clothing/head/helmet/marine/scout(src)
 	new /obj/item/clothing/glasses/thermal/m64_thermal_goggles(src)
 	new /obj/item/weapon/gun/shotgun/pump/lever/mbx900(src)
 	new /obj/item/ammo_magazine/shotgun/mbx900/(src)
@@ -502,8 +498,7 @@
 
 /obj/item/storage/box/spec/pyro/Initialize(mapload, ...)
 	. = ..()
-	new /obj/item/clothing/suit/storage/marine/M35(src)
-	new /obj/item/clothing/head/helmet/marine/pyro(src)
+	new /obj/item/armor_module/attachable/fire_proof(src)
 	new /obj/item/clothing/shoes/marine/pyro(src)
 	new /obj/item/ammo_magazine/flamer_tank/backtank(src)
 	new /obj/item/weapon/gun/flamer/marinestandard(src)

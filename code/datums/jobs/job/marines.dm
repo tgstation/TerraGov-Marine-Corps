@@ -316,7 +316,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 /datum/job/terragov/squad/specialist
 	title = SQUAD_SPECIALIST
 	req_admin_notify = TRUE
-	paygrade = "E4" // Dead
+	paygrade = "E4"
 	comm_title = "Spec"
 	total_positions = 0
 	max_positions = 0
@@ -327,7 +327,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	outfit = /datum/outfit/job/marine/specialist
 	exp_requirements = XP_REQ_UNSEASONED
 	exp_type = EXP_TYPE_REGULAR_ALL
-	job_flags = JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
 	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_STRONG)
 	job_points_needed  = 10 //Redefined via config.
 
@@ -345,6 +345,25 @@ You can serve a variety of roles, so choose carefully."})
 	id = /obj/item/card/id/dogtag
 	back = /obj/item/storage/backpack/marine/satchel
 	head = /obj/item/clothing/head/helmet/specrag
+
+/datum/outfit/job/marine/specialist/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
+	. = ..()
+	if(!ishuman(new_mob))
+		return
+	var/mob/living/carbon/human/new_human = new_mob
+	var/playtime_mins = user?.client?.get_exp(title)
+	if(!playtime_mins || playtime_mins < 1 )
+		return
+	switch(playtime_mins)
+		if(0 to 600) // starting
+			new_human.wear_id.paygrade = "E4"
+		if(601 to 6000) // 10hrs
+			new_human.wear_id.paygrade = "E5"
+		if(6001 to 18000) // 100 hrs
+			new_human.wear_id.paygrade = "E6"
+		if(18001 to 60000) // 300 hrs
+			new_human.wear_id.paygrade = "E7"
+
 
 //Squad Leader
 /datum/job/terragov/squad/leader
