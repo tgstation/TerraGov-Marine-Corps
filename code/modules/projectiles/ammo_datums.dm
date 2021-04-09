@@ -1371,9 +1371,12 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 	bullet_color = COLOR_VIBRANT_LIME
 
-	var/heat = 12 ///Fire burn time
-	var/burn = 6 ///Fire damage
-	var/f_color = "green" ///Fire color
+	///Fire burn time
+	var/heat = 12 
+	///Fire damage
+	var/burn = 6
+	///Fire color
+	var/f_color = "green" 
 
 /datum/ammo/energy/plasma_pistol/on_hit_turf(turf/T, obj/projectile/proj)
 	if(!istype(T))
