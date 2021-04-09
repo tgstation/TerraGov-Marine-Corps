@@ -198,21 +198,11 @@
 		var/datum/limb/head/synthhead = victim.get_limb("head")
 		if(synthhead.limb_status & LIMB_DESTROYED)
 			return FALSE
-	if(locate(/obj/item/alien_embryo) in victim) //Maybe they ate it??
-		var/mob/living/carbon/human/H = victim
-		if(CHECK_BITFIELD(H.status_flags, XENO_HOST))
-			if(victim.stat != DEAD) //Not dead yet.
-				if(!silent)
-					to_chat(owner, "<span class='xenowarning'>The host and child are still alive!</span>")
-				return FALSE
-			else if(istype(H) && !HAS_TRAIT(H, TRAIT_UNDEFIBBABLE )) //Dead code
-				if(!silent)
-					to_chat(owner, "<span class='xenowarning'>The child may still hatch! Not yet!</span>")
-				return FALSE
 	if(owner.issamexenohive(victim))
 		if(!silent)
 			to_chat(owner, "<span class='warning'>We can't bring ourselves to harm a fellow sister to this magnitude.</span>")
 		return FALSE
+	return TRUE
 
 /datum/action/xeno_action/activable/gut/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/queen/X = owner
@@ -222,20 +212,11 @@
 
 	TIMER_COOLDOWN_START(X, COOLDOWN_GUT, 5 SECONDS)
 
-	X.visible_message("<span class='xenowarning'>\The [X] begins slowly lifting \the [victim] into the air.</span>", \
-	"<span class='xenowarning'>We begin focusing our anger as we slowly lift \the [victim] into the air.</span>")
-	if(!do_mob(X, victim, 80, BUSY_ICON_DANGER, BUSY_ICON_DANGER))
-		return fail_activate()
-	if(!can_use_ability(victim,TRUE,XACT_IGNORE_PLASMA))
-		return fail_activate()
-	if(victim.loc != X.loc)
-		return fail_activate()
 	X.visible_message("<span class='xenodanger'>\The [X] viciously smashes and wrenches \the [victim] apart!</span>", \
 	"<span class='xenodanger'>We suddenly unleash pure anger on \the [victim], instantly wrenching [victim.p_them()] apart!</span>")
 	X.emote("roar")
 	log_combat(victim, X, "gibbed")
 	victim.gib() //Splut
-	X.stop_pulling()
 
 
 // ***************************************
