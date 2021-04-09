@@ -16,6 +16,7 @@
 
 	//Preferences related
 	var/datum/preferences/prefs 	= null
+	var/datum/loadout_maker/maker   = null
 	var/inprefs = FALSE
 
 

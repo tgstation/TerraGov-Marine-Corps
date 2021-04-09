@@ -1,5 +1,4 @@
 import { range } from "common/collections";
-import { BooleanLike } from "common/react";
 import { resolveAsset } from "../assets";
 import { useBackend } from "../backend";
 import { Box, Button, Icon, Stack } from "../components";
@@ -22,7 +21,6 @@ const SLOTS: Record<
     displayName: string;
     gridSpot: GridSpotKey;
     image?: string;
-    additionalComponent?: JSX.Element;
   }
 > = {
   eyes: {
@@ -209,8 +207,6 @@ export const SlotSelector = (props, context) => {
                           <Box style={{ position: "relative" }}>
                             {content}
                           </Box>
-
-                          {slot.additionalComponent}
                         </Button>
                       </Box>
                     </Stack.Item>
