@@ -89,8 +89,8 @@
 			//						   	  \\
 //----------------------------------------------------------
 
-/obj/item/weapon/gun/RightClick(mob/user)
-	toggle_gun_safety()
+/obj/item/weapon/gun/attack_hand_alternate(mob/user)
+	return toggle_gun_safety()
 
 
 /obj/item/weapon/gun/mob_can_equip(mob/user)
@@ -653,7 +653,7 @@ should be alright.
 		to_chat(user, "<span class='notice'>[icon2html(src, user)] You switch to <b>[gun_firemode]</b>.</span>")
 		user.update_action_buttons()
 
-	SEND_SIGNAL(src, COMSIG_GUN_FIREMODE_TOGGLE, gun_firemode, user.client)
+	SEND_SIGNAL(src, COMSIG_GUN_FIRE_MODE_TOGGLE, gun_firemode)
 
 
 /obj/item/weapon/gun/proc/add_firemode(added_firemode, mob/user)
@@ -883,15 +883,15 @@ should be alright.
 
 /obj/item/weapon/gun/proc/modify_fire_delay(value, mob/user)
 	fire_delay += value
-	SEND_SIGNAL(src, COMSIG_GUN_FIREDELAY_MODIFIED, fire_delay)
+	SEND_SIGNAL(src, COMSIG_GUN_AUTOFIREDELAY_MODIFIED, fire_delay)
 
 /obj/item/weapon/gun/proc/modify_burst_delay(value, mob/user)
 	burst_delay += value
-	SEND_SIGNAL(src, COMSIG_GUN_BURSTDELAY_MODIFIED, fire_delay)
+	SEND_SIGNAL(src, COMSIG_GUN_BURST_SHOT_DELAY_MODIFIED, burst_delay)
 
 /obj/item/weapon/gun/proc/modify_burst_amount(value, mob/user)
 	burst_amount += value
-	SEND_SIGNAL(src, COMSIG_GUN_BURSTAMOUNT_MODIFIED, fire_delay)
+	SEND_SIGNAL(src, COMSIG_GUN_BURST_SHOTS_TO_FIRE_MODIFIED, burst_amount)
 
 	if(burst_amount < 2)
 		if(GUN_FIREMODE_BURSTFIRE in gun_firemode_list)
@@ -937,9 +937,10 @@ should be alright.
 
 	if(user.do_actions)
 		return
-	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_BAR, ignore_turf_checks = TRUE))
-		to_chat(user, "<span class='warning'>Your concentration is interrupted!</b></span>")
-		return
+	if(!user.marksman_aura)
+		if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_BAR, ignore_turf_checks = TRUE))
+			to_chat(user, "<span class='warning'>Your concentration is interrupted!</b></span>")
+			return
 	if(!CHECK_BITFIELD(flags_item, WIELDED))
 		to_chat(user, "<span class='notice'>You need to wield your gun before aiming.</b></span>")
 		return

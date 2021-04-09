@@ -6,7 +6,7 @@
 	name = "Distress Signal"
 	config_tag = "Distress Signal"
 	required_players = 2
-	flags_round_type = MODE_INFESTATION|MODE_LZ_SHUTTERS|MODE_XENO_RULER
+	flags_round_type = MODE_INFESTATION|MODE_LZ_SHUTTERS|MODE_XENO_RULER|MODE_PSY_POINTS
 	flags_landmarks = MODE_LANDMARK_SPAWN_XENO_TUNNELS|MODE_LANDMARK_SPAWN_MAP_ITEM
 	round_end_states = list(MODE_INFESTATION_X_MAJOR, MODE_INFESTATION_M_MAJOR, MODE_INFESTATION_X_MINOR, MODE_INFESTATION_M_MINOR, MODE_INFESTATION_DRAW_DEATH)
 
@@ -26,7 +26,6 @@
 		/datum/job/terragov/silicon/ai = 1,
 		/datum/job/terragov/squad/engineer = 8,
 		/datum/job/terragov/squad/corpsman = 8,
-		/datum/job/terragov/squad/smartgunner = 1,
 		/datum/job/terragov/squad/leader = 1,
 		/datum/job/terragov/squad/standard = -1,
 		/datum/job/xenomorph = 2,
@@ -72,22 +71,8 @@
 /datum/game_mode/infestation/distress/post_setup()
 	. = ..()
 	scale_gear()
-	var/silo_number
-	switch(TGS_CLIENT_COUNT)
-		if(0 to 20)
-			silo_number = 1
-		if(20 to 40)
-			silo_number = 2
-		if(40 to 60)
-			silo_number = 3
-		if(60 to 80)
-			silo_number = 4
-		if(80 to INFINITY)
-			silo_number = 5
-
-	SSpoints.xeno_points_by_hive[XENO_HIVE_NORMAL] = silo_number * SILO_PRICE
-
 	addtimer(CALLBACK(src, .proc/announce_bioscans, FALSE, 1), rand(30 SECONDS, 1 MINUTES)) //First scan shows no location but more precise numbers.
+	addtimer(CALLBACK(GLOB.hive_datums[XENO_HIVE_NORMAL], /datum/hive_status/proc/handle_silo_death_timer), MINIMUM_TIME_SILO_LESS_COLLAPSE)
 
 /datum/game_mode/infestation/distress/proc/map_announce()
 	if(!SSmapping.configs[GROUND_MAP].announce_text)
@@ -144,10 +129,10 @@
 		return TRUE
 	if(!num_xenos)
 		if(round_stage == DISTRESS_DROPSHIP_CRASHING)
-			message_admins("Round finished: [MODE_INFESTATION_X_MINOR]") //xenos hijacked the shuttle and won groundside but died on the ship, minor victory
-			round_finished = MODE_INFESTATION_X_MINOR
+			message_admins("Round finished: [MODE_INFESTATION_X_MINOR]") //marines lost the ground operation but managed to wipe out Xenos on the ship at a greater cost, minor victory
+			round_finished = MODE_INFESTATION_M_MINOR
 			return TRUE
-		message_admins("Round finished: [MODE_INFESTATION_M_MAJOR]") //marines win big or go home
+		message_admins("Round finished: [MODE_INFESTATION_M_MAJOR]") //marines win big
 		round_finished = MODE_INFESTATION_M_MAJOR
 		return TRUE
 	if(round_stage == DISTRESS_DROPSHIP_CRASHING && !num_humans_ship)
@@ -262,7 +247,7 @@
 	if(round_finished)
 		return
 	if(round_stage == DISTRESS_DROPSHIP_CRASHING)
-		round_finished = MODE_INFESTATION_M_MINOR
+		round_finished = MODE_INFESTATION_X_MINOR
 		return
 	round_finished = MODE_INFESTATION_M_MAJOR
 
@@ -293,9 +278,9 @@
 		return "[(eta / 60) % 60]:[add_leading(num2text(eta % 60), 2, "0")]"
 
 
-/datum/game_mode/infestation/distress/attempt_to_join_as_larva(mob/xeno_candidate)
+/datum/game_mode/infestation/distress/attempt_to_join_as_larva(mob/dead/observer/observer)
 	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
-	return HS.attempt_to_spawn_larva(xeno_candidate)
+	return HS.add_to_larva_candidate_queue(observer)
 
 
 /datum/game_mode/infestation/distress/spawn_larva(mob/xeno_candidate, mob/living/carbon/xenomorph/mother)

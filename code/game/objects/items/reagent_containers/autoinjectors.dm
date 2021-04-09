@@ -141,7 +141,7 @@
 	amount_per_transfer_from_this = 12
 	volume = 36
 	icon_state = "autoinjector-8" //TEMP
-	list_reagents = list(/datum/reagent/medicine/hypervene = 36)
+	list_reagents = list(/datum/reagent/hypervene = 36)
 
 /obj/item/reagent_containers/hypospray/autoinjector/hyperzine
 	name = "hyperzine autoinjector"
@@ -173,7 +173,7 @@
 	icon_state = "autoinjector-1"
 	list_reagents = list(
 		/datum/reagent/medicine/synaptizine = 3,
-		/datum/reagent/medicine/arithrazine = 6,
+		/datum/reagent/medicine/hyronalin = 6,
 	)
 
 /obj/item/reagent_containers/hypospray/autoinjector/synaptizine_expired
@@ -184,7 +184,7 @@
 	icon_state = "autoinjector-1"
 	list_reagents = list(
 		/datum/reagent/medicine/synaptizine = 3,
-		/datum/reagent/medicine/arithrazine = 3,
+		/datum/reagent/medicine/hyronalin = 3,
 	)
 
 /obj/item/reagent_containers/hypospray/autoinjector/neuraline
@@ -203,7 +203,7 @@
 	icon_state = "autoinjector-8"
 	list_reagents = list(
 		/datum/reagent/medicine/peridaxon_plus = 3,
-		/datum/reagent/medicine/arithrazine = 6,
+		/datum/reagent/medicine/hyronalin = 6,
 	)
 
 /obj/item/reagent_containers/hypospray/autoinjector/roulettium

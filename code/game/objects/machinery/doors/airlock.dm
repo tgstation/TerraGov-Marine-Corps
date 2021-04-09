@@ -173,7 +173,6 @@
 	else
 		icon_state = "door_open"
 
-	return
 
 /obj/machinery/door/airlock/do_animate(animation)
 	switch(animation)
@@ -196,11 +195,14 @@
 		if("deny")
 			if(density)
 				flick("door_deny", src)
-	return
+
 
 
 //Prying open doors
 /obj/machinery/door/airlock/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(X.status_flags & INCORPOREAL)
+		return FALSE
+
 	var/turf/cur_loc = X.loc
 	if(isElectrified())
 		if(shock(X, 70))
@@ -518,10 +520,10 @@
 
 
 /obj/machinery/door/airlock/proc/prison_open()
-	src.unlock()
-	src.open()
-	src.lock()
-	return
+	unlock()
+	open()
+	lock()
+
 
 
 /obj/machinery/door/airlock/proc/update_nearby_icons()

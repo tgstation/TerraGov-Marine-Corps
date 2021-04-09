@@ -60,6 +60,8 @@
 		else
 			middragtime = 0
 			middragatom = null
+	if(SEND_SIGNAL(mob, COMSIG_MOB_MOUSEDRAG, src_object, over_object, src_location, over_location, src_control, over_control, params) & COMSIG_MOB_CLICK_CANCELED)
+		return
 	SEND_SIGNAL(src, COMSIG_CLIENT_MOUSEDRAG, src_object, over_object, src_location, over_location, src_control, over_control, params)
 
 /client/MouseDrop(src_object, over_object, src_location, over_location, src_control, over_control, params)

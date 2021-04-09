@@ -1,13 +1,14 @@
 /mob/living/proc/Life()
-	if(stat != DEAD)
+	if(stat == DEAD || notransform) //If we're dead or notransform don't bother processing life
+		return
 
-		handle_status_effects() //all special effects, stun, knockdown, jitteryness, hallucination, sleeping, etc
+	handle_status_effects() //all special effects, stun, knockdown, jitteryness, hallucination, sleeping, etc
 
-		handle_regular_hud_updates()
+	handle_regular_hud_updates()
 
-		handle_organs()
+	handle_organs()
 
-		updatehealth()
+	updatehealth()
 
 
 //this updates all special effects: knockdown, druggy, stuttering, etc..
@@ -104,6 +105,7 @@
 
 
 /mob/proc/get_contents()
+	return
 
 
 //Recursive function to find everything a mob is holding.
@@ -429,17 +431,17 @@
  * range : how far the mob will be thrown, in tile
  * speed : how fast will it fly
  */
-/mob/living/proc/fly_at(atom/target, range, speed, hovering_time) 
+/mob/living/proc/fly_at(atom/target, range, speed, hovering_time)
 	addtimer(CALLBACK(src,.proc/end_flying, layer), hovering_time)
 	layer = FLY_LAYER
 	set_flying(TRUE)
 	throw_at(target, range, speed, null, 0, TRUE)
-			
+
 ///remove flying flags and reset the sprite layer
 /mob/living/proc/end_flying(init_layer)
 	set_flying(FALSE)
 	layer = init_layer
-	
+
 /mob/living/proc/offer_mob()
 	GLOB.offered_mob_list += src
 	notify_ghosts("<span class='boldnotice'>A mob is being offered! Name: [name][job ? " Job: [job.title]" : ""] </span>", enter_link = "claim=[REF(src)]", source = src, action = NOTIFY_ORBIT)
@@ -489,13 +491,12 @@
 
 	alpha = 5 // bah, let's make it better, it's a disposable device anyway
 
-	if(!isxeno(src)||!isanimal(src))
-		var/datum/atom_hud/security/SA = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
-		SA.remove_from_hud(src)
-		var/datum/atom_hud/xeno_infection/XI = GLOB.huds[DATA_HUD_XENO_INFECTION]
-		XI.remove_from_hud(src)
-		var/datum/atom_hud/xeno_reagents/RE = GLOB.huds[DATA_HUD_XENO_REAGENTS]
-		RE.remove_from_hud(src)
+	var/datum/atom_hud/security/SA = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
+	SA.remove_from_hud(src)
+	var/datum/atom_hud/xeno_infection/XI = GLOB.huds[DATA_HUD_XENO_INFECTION]
+	XI.remove_from_hud(src)
+	var/datum/atom_hud/xeno_reagents/RE = GLOB.huds[DATA_HUD_XENO_REAGENTS]
+	RE.remove_from_hud(src)
 
 	smokecloaked = TRUE
 
@@ -506,13 +507,12 @@
 
 	alpha = initial(alpha)
 
-	if(!isxeno(src)|| !isanimal(src))
-		var/datum/atom_hud/security/SA = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
-		SA.add_to_hud(src)
-		var/datum/atom_hud/xeno_infection/XI = GLOB.huds[DATA_HUD_XENO_INFECTION]
-		XI.add_to_hud(src)
-		var/datum/atom_hud/xeno_reagents/RE = GLOB.huds[DATA_HUD_XENO_REAGENTS]
-		RE.add_to_hud(src)
+	var/datum/atom_hud/security/SA = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
+	SA.add_to_hud(src)
+	var/datum/atom_hud/xeno_infection/XI = GLOB.huds[DATA_HUD_XENO_INFECTION]
+	XI.add_to_hud(src)
+	var/datum/atom_hud/xeno_reagents/RE = GLOB.huds[DATA_HUD_XENO_REAGENTS]
+	RE.add_to_hud(src)
 
 	smokecloaked = FALSE
 

@@ -21,8 +21,8 @@
 	var/cur_tick = 0 //Tick updater
 	///Hive it should be powering and whether it should be generating hive psycic points instead of power on process()
 	var/corrupted = XENO_HIVE_NORMAL
-	///how many points this generator will make per tick
-	var/corrupt_point_amount = 0.1
+	///Multiplicator factor for psych points output
+	var/corrupt_point_factor = 0.3
 	///whether we wil allow these to be corrupted
 	var/is_corruptible = TRUE
 	///whether they should generate corruption if corrupted
@@ -89,7 +89,7 @@
 
 /obj/machinery/power/geothermal/process()
 	if(corrupted && corruption_on)
-		SSpoints.xeno_points_by_hive["[corrupted]"] += corrupt_point_amount
+		SSpoints.add_psy_points("[corrupted]", SSsilo.corrupted_gen_output *corrupt_point_factor)
 		return
 	if(!is_on || buildstate || !anchored || !powernet) //Default logic checking
 		return PROCESS_KILL
@@ -137,7 +137,13 @@
 
 /obj/machinery/power/geothermal/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	. = ..()
-	// Can't damage a broken generator
+	if(CHECK_BITFIELD(X.xeno_caste.caste_flags, CASTE_CAN_CORRUPT_GENERATOR) && is_corruptible)
+		to_chat(X, "<span class='notice'>You start to corrupt [src]</span>")
+		if(!do_after(X, 10 SECONDS, TRUE, src, BUSY_ICON_HOSTILE))
+			return
+		corrupt(X.hivenumber)
+		to_chat(X, "<span class='notice'>You have corrupted [src]</span>")
+		return
 	if(buildstate)
 		return
 	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
@@ -145,7 +151,6 @@
 	X.visible_message("<span class='danger'>\The [X] slashes at \the [src], tearing at it's components!</span>",
 		"<span class='danger'>We start slashing at \the [src], tearing at it's components!</span>")
 	fail_rate += 5 // 5% fail rate every attack
-
 
 /obj/machinery/power/geothermal/attack_hand(mob/living/user)
 	. = ..()
@@ -297,7 +302,7 @@
 /obj/machinery/power/geothermal/bigred //used on big red
 	name = "\improper Reactor Turbine"
 	power_generation_max = 1e+6
-	corrupt_point_amount = 1
+	corrupt_point_factor = 3
 
 /obj/machinery/power/geothermal/reinforced
 	name = "\improper Reinforced Reactor Turbine"

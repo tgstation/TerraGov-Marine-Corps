@@ -45,22 +45,32 @@
 	flags_pass = PASSTABLE|PASSMOB|PASSGRILLE
 	var/slow_amt = 0.8
 	var/duration = 10 SECONDS
-	var/acid_damage = 14
+	var/acid_damage = XENO_DEFAULT_ACID_PUDDLE_DAMAGE
+	/// Who created that spray
+	var/mob/xeno_owner
 
-/obj/effect/xenomorph/spray/Initialize(mapload, duration = 10 SECONDS, damage = 14) //Self-deletes
+/obj/effect/xenomorph/spray/Initialize(mapload, duration = 10 SECONDS, damage = XENO_DEFAULT_ACID_PUDDLE_DAMAGE, mob/living/_xeno_owner) //Self-deletes
 	. = ..()
 	START_PROCESSING(SSprocessing, src)
 	QDEL_IN(src, duration + rand(0, 2 SECONDS))
 	acid_damage = damage
+	xeno_owner = _xeno_owner
+	RegisterSignal(xeno_owner, COMSIG_PARENT_QDELETING, .proc/clean_mob_owner)
+	TIMER_COOLDOWN_START(src, COOLDOWN_PARALYSE_ACID, 1 SECONDS)
 
 /obj/effect/xenomorph/spray/Destroy()
 	STOP_PROCESSING(SSprocessing, src)
+	xeno_owner = null
 	return ..()
 
 /obj/effect/xenomorph/spray/Crossed(atom/movable/AM)
 	. = ..()
 	SEND_SIGNAL(AM, COMSIG_ATOM_ACIDSPRAY_ACT, src, acid_damage, slow_amt)
 
+/// Set xeno_owner to null to avoid hard del
+/obj/effect/xenomorph/spray/proc/clean_mob_owner()
+	UnregisterSignal(xeno_owner, COMSIG_PARENT_QDELETING)
+	xeno_owner = null
 
 /mob/living/carbon/human/proc/acid_spray_crossed(datum/source, obj/effect/xenomorph/spray/acid_spray, acid_damage, slow_amt)
 	SIGNAL_HANDLER
@@ -68,6 +78,10 @@
 		return
 	
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ACID))
+		return
+	
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_PARALYSE_ACID)) //To prevent being able to walk "over" acid sprays
+		acid_spray_act(acid_spray.xeno_owner)
 		return
 
 	TIMER_COOLDOWN_START(src, COOLDOWN_ACID, 1 SECONDS)
@@ -180,3 +194,18 @@
 		if(4) visible_message("<span class='xenowarning'>\The [acid_t]\s structure is being melted by the acid!</span>")
 		if(2) visible_message("<span class='xenowarning'>\The [acid_t] is struggling to withstand the acid!</span>")
 		if(0 to 1) visible_message("<span class='xenowarning'>\The [acid_t] begins to crumble under the acid!</span>")
+
+/obj/effect/xenomorph/warp_shadow
+	name = "warp shadow"
+	desc = "A strange rift in space and time. You probably shouldn't touch this."
+	icon = 'icons/Xeno/2x2_Xenos.dmi'
+	icon_state = "Wraith Walking"
+	color = COLOR_BLACK
+	alpha = 128 //Translucent
+	density = FALSE
+	opacity = FALSE
+	anchored = TRUE
+
+/obj/effect/xenomorph/warp_shadow/Initialize(mapload, target)
+	. = ..()
+	add_filter("wraith_warp_shadow", 4, list("type" = "blur", 5)) //Cool filter appear

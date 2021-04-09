@@ -346,7 +346,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/bayonet
 	name = "bayonet"
-	desc = "A sharp blade for mounting on a weapon. It can be used to stab manually on anything but harm intent."
+	desc = "A sharp blade for mounting on a weapon. It can be used to stab manually on anything but harm intent. Slightly reduces the accuracy of the gun when mounted."
 	icon_state = "bayonet"
 	attach_icon = "bayonet_a"
 	force = 20
@@ -361,6 +361,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	accuracy_mod = -0.05
 	accuracy_unwielded_mod = -0.1
 	size_mod = 1
+	sharp = IS_SHARP_ITEM_ACCURATE
 
 /obj/item/attachable/bayonet/attackby(obj/item/I, mob/user)
 	. = ..()
@@ -396,6 +397,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	accuracy_mod = -0.05
 	accuracy_unwielded_mod = -0.1
 	size_mod = 1
+	sharp = IS_SHARP_ITEM_ACCURATE
 
 /obj/item/attachable/bayonetknife/Initialize()
 	. = ..()
@@ -416,7 +418,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/heavy_barrel
 	name = "barrel charger"
-	desc = "A fitted barrel extender that goes on the muzzle, with a small shaped charge that propels a bullet much faster.\nGreatly increases projectile damage and increases projectile speed at the cost of accuracy and firing speed."
+	desc = "A fitted barrel extender that goes on the muzzle, with a small shaped charge that propels a bullet much faster.\nGreatly increases projectile damage at the cost of accuracy and scatter."
 	slot = "muzzle"
 	icon_state = "hbarrel"
 	attach_icon = "hbarrel_a"
@@ -609,10 +611,10 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/flashlight/turn_light(mob/user, toggle_on)
 	. = ..()
-	
+
 	if(. != CHECKS_PASSED)
 		return
-	
+
 	if(ismob(master_gun.loc) && !user)
 		user = master_gun.loc
 	if(!toggle_on & light_on)
@@ -638,7 +640,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	for(var/X in master_gun.actions)
 		var/datum/action/A = X
 		A.update_button_icon()
-	
+
 
 /obj/item/attachable/flashlight/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -794,13 +796,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	icon_state = "tx11scope"
 	attach_icon = "tx11scope"
 
-/obj/item/attachable/scope/mini/m4ra
-	name = "T-45 rail scope"
-	aim_speed_mod = 0
-	attach_icon = "none"
-	desc = "A rail mounted zoom sight scope specialized for the T-45 Battle Rifle . Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
-	flags_attach_features = ATTACH_ACTIVATION
-
 /obj/item/attachable/scope/antimaterial
 	name = "antimaterial rail scope"
 	attach_icon = "none"
@@ -953,12 +948,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	attach_icon = "riflestock_a"
 	pixel_shift_x = 32
 	pixel_shift_y = 13
-
-/obj/item/attachable/stock/rifle/marksman
-	name = "\improper T-45 marksman stock"
-	icon_state = "m4markstock"
-	attach_icon = "m4markstock"
-	flags_attach_features = NONE
 
 /obj/item/attachable/stock/sx16
 	name = "\improper SX-16 stock"
@@ -1227,17 +1216,17 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/attached_gun/activate_attachment(mob/living/user, turn_off)
 	if(master_gun.active_attachable == src)
-		if(user)
-			to_chat(user, "<span class='notice'>You are no longer using [src].</span>")
-			UnregisterSignal(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE)
-		master_gun.on_gun_attachment_detach(null, src)
+		if(master_gun.gun_user)
+			to_chat(master_gun.gun_user, "<span class='notice'>You are no longer using [src].</span>")
+			UnregisterSignal(master_gun.gun_user, COMSIG_ITEM_EXCLUSIVE_TOGGLE)
+		master_gun.active_attachable = null
 		icon_state = initial(icon_state)
 	else if(!turn_off)
 		if(user)
 			to_chat(user, "<span class='notice'>You are now using [src].</span>")
 			SEND_SIGNAL(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE, user)
 			RegisterSignal(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE, .proc/deactivate)
-		master_gun.on_gun_attachment_attach(src)
+		master_gun.active_attachable = src
 		icon_state += "-on"
 
 	for(var/X in master_gun.actions)
@@ -1568,6 +1557,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	slot = "under"
 	pixel_shift_x = 20
 	recoil_mod = -1
+	scatter_mod = 5
 	accuracy_unwielded_mod = -0.1
 	scatter_unwielded_mod = 5
 
@@ -1589,7 +1579,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/lasersight
 	name = "laser sight"
-	desc = "A laser sight placed under the barrel. Significantly increases one-handed accuracy and significantly reduces movement penalties to accuracy."
+	desc = "A laser sight placed under the barrel. Significantly increases one-handed accuracy and significantly reduces unwielded penalties to accuracy."
 	icon_state = "lasersight"
 	attach_icon = "lasersight_a"
 	slot = "under"
@@ -1601,7 +1591,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/bipod
 	name = "bipod"
-	desc = "A simple set of telescopic poles to keep a weapon stabilized during firing. \nGreatly increases accuracy and reduces recoil when properly placed, but also increases weapon size."
+	desc = "A simple set of telescopic poles to keep a weapon stabilized during firing. \nGreatly increases accuracy and reduces recoil and scatter when properly placed, but also increases weapon size."
 	icon_state = "bipod"
 	attach_icon = "bipod_a"
 	slot = "under"
@@ -1750,7 +1740,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	attach_icon = ""
 	slot = "under"
 	flags_attach_features = ATTACH_ACTIVATION|ATTACH_UTILITY|GUN_ALLOW_SYNTHETIC
-	attachment_action_type = /datum/action/item_action/toggle
+	attachment_action_type = /datum/action/item_action/toggle_hydro
 
 /obj/item/attachable/hydro_cannon/activate_attachment(mob/living/user, turn_off)
 	if(master_gun.active_attachable == src)

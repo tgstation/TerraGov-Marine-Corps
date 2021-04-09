@@ -164,6 +164,7 @@
 		return
 
 	victim.chestburst = 1
+	ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
 	to_chat(src, "<span class='danger'>We start bursting out of [victim]'s chest!</span>")
 
 	victim.Unconscious(40 SECONDS)
@@ -201,11 +202,22 @@
 
 	if(ishuman(victim))
 		var/mob/living/carbon/human/H = victim
+		H.apply_damage(200, BRUTE, H.get_limb("chest"), updating_health = TRUE) //lethal armor ignoring brute damage
 		var/datum/internal_organ/O
-		for(var/i in list("heart", "lungs")) //This removes (and later garbage collects) both organs. No heart means instant death.
+		for(var/i in list("heart", "lungs", "liver", "kidneys", "appendix")) //Bruise all torso internal organs
 			O = H.internal_organs_by_name[i]
-			H.internal_organs_by_name -= i
-			H.internal_organs -= O
+
+			if(!H.mind && !H.client) //If we have no client or mind, permadeath time; remove the organs. Mainly for the NPC colonist bodies
+				H.internal_organs_by_name -= i
+				H.internal_organs -= O
+			else
+				O.take_damage(O.min_bruised_damage, TRUE)
+
+		var/datum/limb/chest = H.get_limb("chest")
+		var/datum/wound/internal_bleeding/I = new (15) //Apply internal bleeding to chest
+		chest.wounds += I
+		chest.fracture()
+
 
 	victim.chestburst = 2
 	victim.update_burst()

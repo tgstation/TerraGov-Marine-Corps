@@ -335,7 +335,6 @@
 				if (reagents.total_volume >= reagents.maximum_volume && mode==SYRINGE_INJECT)
 					mode = SYRINGE_DRAW
 					update_icon()
-	return
 
 
 /obj/item/reagent_containers/syringe/ld50_syringe/update_icon()
