@@ -28,6 +28,7 @@
 		/datum/job/terragov/squad/corpsman = 8,
 		/datum/job/terragov/squad/leader = 1,
 		/datum/job/terragov/squad/standard = -1,
+		/datum/job/survivor/rambo = 1,
 		/datum/job/xenomorph = 2,
 		/datum/job/xenomorph/queen = 1
 	)
