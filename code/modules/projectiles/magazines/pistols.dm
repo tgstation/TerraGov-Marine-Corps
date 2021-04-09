@@ -26,7 +26,7 @@
 //TX-7 Plasma Pistol
 /obj/item/ammo_magazine/pistol/plasma_pistol
 	name = "\improper TX-7 plasma cell"
-	desc = "A plasma cell for the TX-7 Plasma Pistol"
+	desc = "An energy cell for the TX-7 plasma pistol."
 	caliber = "Ionized Plasma Bolt"
 	icon_state = "tx7"
 	max_rounds = 10
