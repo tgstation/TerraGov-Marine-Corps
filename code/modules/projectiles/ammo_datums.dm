@@ -1367,12 +1367,12 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 50
 	sundering = 5
 
-	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_SUNDERING
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_SUNDERING|AMMO_EXPLOSIVE
 
 	bullet_color = COLOR_VIBRANT_LIME
 
-	var/heat = 9
-	var/burn = 9
+	var/heat = 12
+	var/burn = 6
 	var/f_color = "green"
 
 /datum/ammo/energy/plasma_pistol/on_hit_turf(turf/T, obj/projectile/proj)
