@@ -1052,7 +1052,7 @@
 		return 0
 
 	if(victim.protection_aura)
-		damage = round(damage * ((15 - victim.protection_aura) / 15))
+		damage = round(damage * ((10 - victim.protection_aura) / 10))
 
 	var/datum/limb/organ = null
 	if(isorgan(def_zone))
