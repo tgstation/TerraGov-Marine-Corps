@@ -108,14 +108,18 @@
 	muzzle_flash_color = COLOR_GREEN
 
 	fire_delay = 1.5 SECONDS
-	accuracy_mult = 1.1
-	accuracy_mult_unwielded = 0.95
+	accuracy_mult = 0.8
+	accuracy_mult_unwielded = 0.35
 	scatter = -1
-	scatter_unwielded = 0
+	scatter_unwielded = 2
 	recoil = -2
 	recoil_unwielded = -2
 
-
+/obj/item/weapon/gun/pistol/plasma_pistol/wh40k
+	name = "\improper Gaurdsman\'s plasma pistol"
+	desc = "FOR THE EMPEROR!"
+	icon_state = "tx7w"
+	item_state = "tx7"
 //-------------------------------------------------------
 //RT-3 pistol
 

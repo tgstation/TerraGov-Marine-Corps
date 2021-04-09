@@ -1364,8 +1364,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "laser_sniper"
 	damage = 20
 	max_range = 40
-	penetration = 50
-	sundering = 5
+	penetration = 5
+	sundering = 1
 
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_SUNDERING|AMMO_EXPLOSIVE
 
