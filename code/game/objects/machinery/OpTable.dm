@@ -258,6 +258,5 @@
 		new rollertype(loc)
 		qdel(src)
 		return
-	. = ..()
+	return ..()
 	
-
