@@ -1,0 +1,4 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - balance: "The cas laser can no longer be hidden below an object or a mob"
