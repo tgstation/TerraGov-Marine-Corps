@@ -2,7 +2,7 @@
 	name = "Operating Table"
 	desc = "Used for advanced medical procedures."
 	icon = 'icons/obj/surgery.dmi'
-	icon_state = "table2-idle"
+	icon_state = "table2"
 	density = TRUE
 	layer = TABLE_LAYER
 	anchored = TRUE
@@ -147,10 +147,11 @@
 		var/mob/living/carbon/human/M = locate(/mob/living/carbon/human, loc)
 		if(M.lying_angle)
 			victim = M
+			update_icon_state()
 			return 1
 	victim = null
-	stop_processing()
 	update_icon_state()
+	stop_processing()
 	return 0
 
 /obj/machinery/optable/process()
@@ -168,7 +169,6 @@
 		var/mob/living/carbon/human/H = C
 		victim = H
 		start_processing()
-	update_icon_state()
 
 /obj/machinery/optable/verb/climb_on()
 	set name = "Climb On Table"
@@ -229,14 +229,11 @@
 	return 1
 
 /obj/machinery/optable/update_icon_state() //This is to simplify and clean some above code.
-	. = ..()
-	if(!victim)
-		icon_state = initial(icon_state)
-		return
-	if(victim.handle_pulse())
+	if(victim?.handle_pulse())
 		icon_state = initial(icon_state) + "-active"
+		return
 	icon_state = initial(icon_state)
-
+	return ..()
 
 /obj/machinery/optable/rollerop
 	name = "portable surgery table"
@@ -244,7 +241,8 @@
 	icon = 'icons/obj/rollerbed.dmi' 
 	icon_state = "roller_surge"
 	use_power = NO_POWER_USE
-	var/rollertype = /obj/structure/bed/roller ///Type of roller bed that src transforms into upon disassembly with wrench
+	///Type of roller bed that src transforms into upon disassembly with wrench
+	var/rollertype = /obj/structure/bed/roller 
 
 /obj/machinery/optable/rollerop/attackby(obj/item/I, mob/user, params)
 	if(iswrench(I))
