@@ -1208,13 +1208,16 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	icon_state = "stun"
 	hud_state = "taser"
 	hud_state_empty = "battery_empty"
-	damage = 120
-	penetration = 0
+	damage = 10
+	penetration = 100
 	damage_type = STAMINA
-	flags_ammo_behavior = AMMO_ENERGY
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_SKIPS_ALIENS
 	max_range = 15
 	accurate_range = 10
 	bullet_color = COLOR_VIVID_YELLOW
+	
+/datum/ammo/energy/taser/on_hit_mob(mob/M,obj/projectile/P)
+	staggerstun(M, P, stun = 10)
 
 /datum/ammo/energy/tesla
 	name = "energy ball"
