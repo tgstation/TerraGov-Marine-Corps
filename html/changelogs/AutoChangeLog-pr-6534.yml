@@ -1,6 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - bugfix: "Can no longer vote for any map"
-  - bugfix: "Admins have access to a readable list of voters"
-  - bugfix: "Voting buttons change in real time"
