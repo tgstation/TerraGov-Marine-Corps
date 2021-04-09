@@ -78,7 +78,7 @@
 //-------------------------------------------------------
 //TX-7 Plasma Pistol
 /obj/item/weapon/gun/pistol/plasma_pistol
-	name = "\improper TX-7 Plasma Pistol"
+	name = "\improper TX-7 plasma pistol"
 	desc = "An experimental weapon. Designed to set the terrain it is fired at on fire so as to remove flammable obstacles and clear out dug in enemies from some range."
 	icon_state = "tx7"
 	item_state = "tx7"
