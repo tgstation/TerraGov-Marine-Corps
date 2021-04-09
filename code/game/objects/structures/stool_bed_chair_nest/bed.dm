@@ -221,7 +221,7 @@ obj/structure/bed/Destroy()
 	accepts_bodybag = TRUE
 	base_bed_icon = "roller"
 	buildstacktype = null
-	var/optype = /obj/machinery/optable/rollerop
+	var/optype = /obj/machinery/optable/rollerop //Type of Operation Table src transforms into upon wrenching.
 
 /obj/structure/bed/roller/attackby(obj/item/I, mob/user, params)
 	if(iswrench(I))

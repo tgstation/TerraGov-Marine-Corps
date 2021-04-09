@@ -244,7 +244,7 @@
 	icon = 'icons/obj/rollerbed.dmi' 
 	icon_state = "roller_surge"
 	use_power = NO_POWER_USE
-	var/rollertype = /obj/structure/bed/roller
+	var/rollertype = /obj/structure/bed/roller ///Type of roller bed that src transforms into upon disassembly with wrench
 
 /obj/machinery/optable/rollerop/attackby(obj/item/I, mob/user, params)
 	if(iswrench(I))
