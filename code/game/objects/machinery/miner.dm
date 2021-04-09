@@ -36,12 +36,6 @@
 	var/max_miner_integrity = 100
 	///What type of upgrade it has installed , used to change the icon of the miner.
 	var/miner_upgrade_type
-	//Brightness of the miner
-	var/brightness_on = 0
-
-/obj/machinery/miner/Initialize()
-	. = ..()
-	set_light(brightness_on)
 
 /obj/machinery/miner/damaged	//mapping and all that shebang
 	miner_status = MINER_DESTROYED
