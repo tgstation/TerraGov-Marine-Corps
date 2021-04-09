@@ -102,6 +102,8 @@
 	name = "AI Multicam Room"
 	icon_state = "ai_camera_room"
 	static_lighting = FALSE
+	base_lighting_alpha = 255
+	base_lighting_color = LIGHT_COLOR_WHITE
 	ambience = list()
 
 

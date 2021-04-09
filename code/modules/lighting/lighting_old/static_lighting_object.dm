@@ -19,7 +19,6 @@
 	verbs.Cut()
 
 	myturf = loc
-
 	if(myturf.static_lighting_object)
 		qdel(myturf.static_lighting_object, force = TRUE)
 	myturf.static_lighting_object = src
@@ -64,7 +63,7 @@
 	// See LIGHTING_CORNER_DIAGONAL in lighting_corner.dm for why these values are what they are.
 	var/static/datum/static_lighting_corner/dummy/dummy_lighting_corner = new
 
-	var/list/corners = myturf.legacy_corners
+	var/list/corners = myturf.static_lighting_corners
 	var/datum/static_lighting_corner/cr = dummy_lighting_corner
 	var/datum/static_lighting_corner/cg = dummy_lighting_corner
 	var/datum/static_lighting_corner/cb = dummy_lighting_corner
@@ -122,8 +121,8 @@
 	var/area/A = myturf.loc
 	if(set_luminosity)
 		myturf.luminosity = TRUE
-	//We are not lit by legacy light OR new light.
-	else if(!LAZYLEN(myturf.lights_affecting) && !A.base_lighting_alpha)
+	//We are not lit by static light OR dynamic light.
+	else if(!LAZYLEN(myturf.hybrid_lights_affecting) && !A.base_lighting_alpha)
 		myturf.luminosity = FALSE
 
 // Variety of overrides so the overlays don't get affected by weird things.

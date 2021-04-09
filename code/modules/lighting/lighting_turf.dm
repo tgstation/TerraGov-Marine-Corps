@@ -1,31 +1,33 @@
-//Estimates the light power based on the alpha of the light and the range.
-//Assumes a linear fallout at (0, alpha/255) to (range, 0)
+///Estimates the light power based on the alpha of the light and the range.
+///Assumes a linear fallout at (0, alpha/255) to (range, 0)
+///Used for lightig mask lumcount calculations
 #define LIGHT_POWER_ESTIMATION(alpha, range, distance) max((alpha * (range - distance)) / (255 * range), 0)
 
 /turf
-	var/tmp/list/atom/movable/lighting_mask/lights_affecting
+	///hybrid lights affecting this turf
+	var/tmp/list/atom/movable/lighting_mask/hybrid_lights_affecting
 
 /turf/Destroy(force)
-	if(lights_affecting)
-		for(var/atom/movable/lighting_mask/mask AS in lights_affecting)
+	if(hybrid_lights_affecting)
+		for(var/atom/movable/lighting_mask/mask AS in hybrid_lights_affecting)
 			LAZYREMOVE(mask.affecting_turfs, src)
-		lights_affecting.Cut()
+		hybrid_lights_affecting.Cut()
 	return ..()
 
 /// Causes any affecting light sources to be queued for a visibility update, for example a door got opened.
 /turf/proc/reconsider_lights()
 	//Consider static lights
-	for(var/datum/static_light_source/light AS in legacy_affecting_lights)
+	for(var/datum/static_light_source/light AS in static_affecting_lights)
 		light.vis_update()
 
 	//consider dynamic lights
-	for(var/atom/movable/lighting_mask/mask AS in lights_affecting)
+	for(var/atom/movable/lighting_mask/mask AS in hybrid_lights_affecting)
 		mask.calculate_lighting_shadows()
 
-// Used to get a scaled lumcount. //tivi todo
+///Used to get a scaled lumcount.
 /turf/proc/get_lumcount()
-	var/lums = legacy_get_lumcount()
-	for(var/atom/movable/lighting_mask/mask AS in lights_affecting)
+	var/lums = static_get_lumcount()
+	for(var/atom/movable/lighting_mask/mask AS in hybrid_lights_affecting)
 		if(mask.blend_mode == BLEND_ADD)
 			lums += LIGHT_POWER_ESTIMATION(mask.alpha, mask.radius, get_dist(src, get_turf(mask.attached_atom)))
 		else

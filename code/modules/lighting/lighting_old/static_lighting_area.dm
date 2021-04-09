@@ -1,4 +1,5 @@
 /area
+	///Whether this area allows static lighting and thus loads the lighting objects
 	var/static_lighting = TRUE
 
 //Non legacy lighting areas.
@@ -7,3 +8,5 @@
 
 /area/space
 	static_lighting = FALSE
+	base_lighting_alpha = 255
+	base_lighting_color = LIGHT_COLOR_WHITE

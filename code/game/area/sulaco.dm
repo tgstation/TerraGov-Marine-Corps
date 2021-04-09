@@ -77,6 +77,8 @@
 	requires_power = 1
 	always_unpowered = 1
 	static_lighting = FALSE
+	base_lighting_alpha = 255
+	base_lighting_color = LIGHT_COLOR_WHITE
 
 /area/sulaco/solar/south
 	icon_state = "panelsA"

@@ -380,7 +380,6 @@
 	name = "Powered"
 	icon_state = "selfdestruct"
 	requires_power = FALSE
-	static_lighting = TRUE
 
 /area/mainship/hallways/hangar/droppod
 	name = "Drop Pod Bay"

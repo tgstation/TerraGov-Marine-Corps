@@ -120,7 +120,7 @@
 	fixture_type = "bulb"
 	sheets_refunded = 1
 
-// the standard tube light fixture
+/// the standard tube light fixture
 /obj/machinery/light
 	name = "light fixture"
 	icon = 'icons/obj/lighting.dmi'
@@ -130,14 +130,14 @@
 	anchored = TRUE
 	layer = FLY_LAYER
 	use_power = ACTIVE_POWER_USE
-	light_power = 7
-	light_range = 9
 	idle_power_usage = 2
 	active_power_usage = 20
 	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
-	var/brightness = 8			// power usage when on todo o a rename on this
-	var/bulb_power = 1			// basically the alpha of the emitted light source
+	light_system = HYBRID_LIGHT//STATIC_LIGHT
+	var/brightness = 1			// power usage and light range when on
+	var/bulb_power = 1			// basically the light_power of the emitted light source
 	var/bulb_colour = COLOR_WHITE
+
 	var/status = LIGHT_OK		// LIGHT_OK, _EMPTY, _BURNED or _BROKEN
 	var/flickering = FALSE
 	var/light_type = /obj/item/light_bulb/tube		// the type of light item

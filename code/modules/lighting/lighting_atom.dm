@@ -123,6 +123,7 @@
 				set_light_color(var_value)
 			datum_flags |= DF_VAR_EDITED
 			return TRUE
+	return ..()
 
 
 /atom/proc/flash_lighting_fx(

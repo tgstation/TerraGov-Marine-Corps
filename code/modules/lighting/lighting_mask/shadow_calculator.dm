@@ -46,8 +46,8 @@
 	if(affecting_turfs)
 		for(var/turf/thing AS in affecting_turfs)
 			var/area/A = thing.loc
-			LAZYREMOVE(thing.lights_affecting, src)
-			if(!LAZYLEN(thing.lights_affecting) && !LAZYLEN(thing.legacy_affecting_lights) && !A.base_lighting_alpha)
+			LAZYREMOVE(thing.hybrid_lights_affecting, src)
+			if(!LAZYLEN(thing.hybrid_lights_affecting) && !LAZYLEN(thing.static_affecting_lights) && !A.base_lighting_alpha)
 				thing.luminosity = 0
 		affecting_turfs = null
 	//Cut the shadows. Since they are overlays they will be deleted when cut from overlays probably.
@@ -56,11 +56,11 @@
 
 /atom/movable/lighting_mask/proc/link_turf_to_light(turf/T)
 	LAZYOR(affecting_turfs, T)
-	LAZYOR(T.lights_affecting, src)
+	LAZYOR(T.hybrid_lights_affecting, src)
 
 /atom/movable/lighting_mask/proc/unlink_turf_from_light(turf/T)
 	LAZYREMOVE(affecting_turfs, T)
-	LAZYREMOVE(T.lights_affecting, src)
+	LAZYREMOVE(T.hybrid_lights_affecting, src)
 
 //Returns a list of matrices corresponding to the matrices that should be applied to triangles of
 //coordinates (0,0),(1,0),(0,1) to create a triangcalculate_shadows_matricesle that respresents the shadows
@@ -106,11 +106,11 @@
 
 	//Reset the list
 	if(islist(affecting_turfs))
-		for(var/turf/T as() in affecting_turfs)
-			LAZYREMOVE(T?.lights_affecting, src)
+		for(var/turf/T AS in affecting_turfs)
+			LAZYREMOVE(T?.hybrid_lights_affecting, src)
 			//The turf is no longer affected by any lights, make it non-luminous.
 			var/area/A = T.loc
-			if(T?.luminosity && !LAZYLEN(T.lights_affecting) && !LAZYLEN(T.legacy_affecting_lights) && !A.base_lighting_alpha)
+			if(T?.luminosity && !LAZYLEN(T.hybrid_lights_affecting) && !LAZYLEN(T.static_affecting_lights) && !A.base_lighting_alpha)
 				T.luminosity = FALSE
 
 	//Clear the list
@@ -203,21 +203,34 @@
 			shadow.icon = LIGHTING_ICON_BIG
 			shadow.icon_state = "triangle"
 			shadow.layer = layer + 1
-			shadow.blend_mode = BLEND_DEFAULT
 			shadow.color = "#000"
-			shadow.alpha = 255
 			shadow.transform = M
+			shadow.alpha = 255
 
 			DO_SOMETHING_IF_DEBUGGING_SHADOWS(MA_vars_time += TICK_USAGE_TO_MS(temp_timer))
 			DO_SOMETHING_IF_DEBUGGING_SHADOWS(temp_timer = TICK_USAGE)
 
 			LAZYADD(shadows, shadow)
-			overlays += shadow
+			overlays_to_add += shadow
 
 			DO_SOMETHING_IF_DEBUGGING_SHADOWS(overlays_add_time += TICK_USAGE_TO_MS(temp_timer))
 			DO_SOMETHING_IF_DEBUGGING_SHADOWS(temp_timer = TICK_USAGE)
 
-	overlays += overlays_to_add
+	DO_SOMETHING_IF_DEBUGGING_SHADOWS(var/mergetime = TICK_USAGE)
+	if(GLOB.toggle)
+		var/static/atom/movable/lighting_mask/dud = new
+		dud.icon_state = null
+		dud.overlays += overlays_to_add
+		var/mutable_appearance/MA = new()
+		MA.appearance = dud.appearance
+		MA.layer = layer + 1
+		overlays += MA
+		dud.overlays.Cut()
+	else
+		overlays += overlays_to_add
+	DO_SOMETHING_IF_DEBUGGING_SHADOWS(var/mergetimereal = TICK_USAGE_TO_MS(mergetime))
+
+
 	DO_SOMETHING_IF_DEBUGGING_SHADOWS(log_game("total_coordgroup_time: [total_coordgroup_time]ms"))
 	DO_SOMETHING_IF_DEBUGGING_SHADOWS(log_game("total_cornergroup_time: [total_cornergroup_time]ms"))
 	DO_SOMETHING_IF_DEBUGGING_SHADOWS(log_game("triangle_time calculation: [triangle_time]ms"))
@@ -227,7 +240,10 @@
 	DO_SOMETHING_IF_DEBUGGING_SHADOWS(log_game("MA_new_time: [MA_new_time]"))
 	DO_SOMETHING_IF_DEBUGGING_SHADOWS(log_game("MA_vars_time: [MA_vars_time]"))
 	DO_SOMETHING_IF_DEBUGGING_SHADOWS(log_game("overlays_add_time: [overlays_add_time]"))
+	DO_SOMETHING_IF_DEBUGGING_SHADOWS(log_game("merge_overlays_time: [mergetimereal]ms"))
 	DO_SOMETHING_IF_DEBUGGING_SHADOWS(log_game("[TICK_USAGE_TO_MS(timer)]ms to process total."))
+
+GLOBAL_VAR_INIT(toggle, TRUE)
 
 //Converts a triangle into a matrix that can be applied to a standardized triangle
 //to make it represent the points.

@@ -52,8 +52,8 @@
 	var/dynamic_lumcount = 0
 	///List of light sources affecting this turf.
 	var/tmp/list/datum/dynamic_light_source/affecting_lights
-	///Our lighting object.
-	var/tmp/atom/movable/static_lighting_objectstatic_lighting_object
+	///Our lighting object. //tivi todo dupe?
+	var/tmp/atom/movable/static_lighting_object/static_lighting_object
 	var/tmp/list/datum/static_lighting_corner/corners
 
 	///Which directions does this turf block the vision of, taking into account both the turf's opacity and the movable opacity_sources.
@@ -263,11 +263,11 @@
 		return new path(src)
 
 	//Legacy lighting
-	var/old_affecting_lights = legacy_affecting_lights
+	var/old_affecting_lights = static_affecting_lights
 	var/old_lighting_object = static_lighting_object
-	var/old_corners = legacy_corners
+	var/old_corners = static_lighting_corners
 	//New lighting
-	var/list/old_lights_affecting = lights_affecting?.Copy()
+	var/list/old_hybrid_lights_affecting = hybrid_lights_affecting?.Copy()
 	var/old_directional_opacity = directional_opacity
 
 	var/list/old_baseturfs = baseturfs
@@ -293,15 +293,15 @@
 	if(!(flags & CHANGETURF_DEFER_CHANGE))
 		W.AfterChange(flags)
 
-	W.lights_affecting = old_lights_affecting
+	W.hybrid_lights_affecting = old_hybrid_lights_affecting
 
 	//Legacy Update
 	if(SSlighting.initialized)
 		recalculate_directional_opacity()
 
 		W.static_lighting_object = old_lighting_object
-		W.legacy_affecting_lights = old_affecting_lights
-		W.legacy_corners = old_corners
+		W.static_affecting_lights = old_affecting_lights
+		W.static_lighting_corners = old_corners
 
 		var/area/A = loc
 
@@ -310,9 +310,9 @@
 		else if(!A.static_lighting && old_lighting_object)
 			W.static_lighting_clear_overlay()
 
-	//Since the old turf was removed from lights_affecting, readd the new turf here
-	if(W.lights_affecting)
-		for(var/atom/movable/lighting_mask/mask AS in W.lights_affecting)
+	//Since the old turf was removed from hybrid_lights_affecting, readd the new turf here
+	if(W.hybrid_lights_affecting)
+		for(var/atom/movable/lighting_mask/mask AS in W.hybrid_lights_affecting)
 			LAZYADD(mask.affecting_turfs, W)
 
 	if(W.directional_opacity != old_directional_opacity)

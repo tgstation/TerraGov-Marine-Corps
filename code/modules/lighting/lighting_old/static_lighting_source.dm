@@ -144,7 +144,7 @@
 	var/thing
 	for (thing in affecting_turfs)
 		var/turf/T = thing
-		LAZYREMOVE(T.legacy_affecting_lights, src)
+		LAZYREMOVE(T.static_affecting_lights, src)
 
 	affecting_turfs = null
 
@@ -236,8 +236,8 @@
 				continue
 			if(!T.opacity)
 				if(!T.lighting_corners_initialised)
-					T.legacy_generate_missing_corners()
-				for(thing in T.legacy_corners)
+					T.static_generate_missing_corners()
+				for(thing in T.static_lighting_corners)
 					C = thing
 					corners[C] = 0
 			turfs += T
@@ -248,13 +248,13 @@
 	affecting_turfs += L
 	for (thing in L)
 		T = thing
-		LAZYADD(T.legacy_affecting_lights, src)
+		LAZYADD(T.static_affecting_lights, src)
 
 	L = affecting_turfs - turfs // Now-gone turfs, remove us from the affecting lights.
 	affecting_turfs -= L
 	for (thing in L)
 		T = thing
-		LAZYREMOVE(T.legacy_affecting_lights, src)
+		LAZYREMOVE(T.static_affecting_lights, src)
 
 	LAZYINITLIST(effect_str)
 	if (needs_update == LIGHTING_VIS_UPDATE)

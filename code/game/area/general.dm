@@ -3,7 +3,7 @@
 	requires_power = 1
 	always_unpowered = 1
 	base_lighting_alpha = 255
-	base_lighting = COLOR_WHITE
+	base_lighting_color = COLOR_WHITE
 	power_light = 0
 	power_equip = 0
 	power_environ = 0
@@ -41,7 +41,6 @@
 
 /area/shuttle //DO NOT TURN THE dynamic_lighting STUFF ON FOR SHUTTLES. IT BREAKS THINGS.
 	requires_power = 0
-	static_lighting = FALSE
 	outside = FALSE
 
 /area/shuttle/arrival
@@ -221,7 +220,8 @@
 	icon_state = "start"
 	requires_power = 0
 	static_lighting = FALSE
-
+	base_lighting_alpha = 255
+	base_lighting_color = LIGHT_COLOR_WHITE
 
 /area/syndicate_mothership
 	name = "Abandoned Syndicate Base"
@@ -260,7 +260,8 @@
 	name = "Abandoned Thunderdome"
 	icon_state = "thunder"
 	requires_power = FALSE
-	static_lighting = FALSE
+	base_lighting_alpha = 255
+	base_lighting_color = LIGHT_COLOR_WHITE
 
 
 /area/tdome/tdome1
@@ -287,7 +288,7 @@
 	name = "End of Round Deathmatch Arena"
 	icon_state = "green"
 	base_lighting_alpha = 255
-	base_lighting = LIGHT_COLOR_WHITE
+	base_lighting_color = LIGHT_COLOR_WHITE
 	requires_power = 0
 
 
@@ -725,6 +726,8 @@
 	name = "Abandoned Holodeck"
 	icon_state = "Holodeck"
 	static_lighting = FALSE
+	base_lighting_alpha = 255
+	base_lighting_color = LIGHT_COLOR_WHITE
 
 /area/holodeck/alphadeck
 	name = "Abandoned Holodeck Alpha"
@@ -864,6 +867,7 @@
 	requires_power = 1
 	always_unpowered = 1
 	static_lighting = FALSE
+	base_lighting_alpha = 255
 
 	auxport
 		name = "Abandoned Fore Port Solar Array"

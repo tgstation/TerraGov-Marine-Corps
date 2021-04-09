@@ -1,9 +1,8 @@
 /turf
 	var/tmp/lighting_corners_initialised = FALSE
 
-	var/tmp/list/datum/static_light_source/legacy_affecting_lights       // List of light sources affecting this turf.
-	var/tmp/atom/movable/static_lighting_object/static_lighting_object // Our lighting object.
-	var/tmp/list/datum/static_lighting_corner/legacy_corners
+	var/tmp/list/datum/static_light_source/static_affecting_lights       // List of light sources affecting this turf. //tivi todo unneeded?
+	var/tmp/list/datum/static_lighting_corner/static_lighting_corners
 
 /turf/proc/static_lighting_clear_overlay()
 	if (static_lighting_object)
@@ -11,7 +10,7 @@
 
 	var/datum/static_lighting_corner/C
 	var/thing
-	for (thing in legacy_corners)
+	for (thing in static_lighting_corners)
 		if(!thing)
 			continue
 		C = thing
@@ -26,13 +25,13 @@
 		return
 
 	if (!lighting_corners_initialised)
-		legacy_generate_missing_corners()
+		static_generate_missing_corners()
 
 	new/atom/movable/static_lighting_object(src)
 
 	var/datum/static_lighting_corner/C
 	var/datum/static_light_source/S
-	for(var/thing in legacy_corners)
+	for(var/thing in static_lighting_corners)
 		if(!thing)
 			continue
 		C = thing
@@ -43,14 +42,14 @@
 			C.active = TRUE
 
 // Used to get a scaled lumcount.
-/turf/proc/legacy_get_lumcount(var/minlum = 0, var/maxlum = 1)
+/turf/proc/static_get_lumcount(var/minlum = 0, var/maxlum = 1)
 	if (!static_lighting_object)
 		return 0
 
 	var/totallums = 0
 	var/thing
 	var/datum/static_lighting_corner/L
-	for (thing in legacy_corners)
+	for (thing in static_lighting_corners)
 		if(!thing)
 			continue
 		L = thing
@@ -66,7 +65,7 @@
 // Soft lighting being the threshold at which point the overlay considers
 // itself as too dark to allow sight and see_in_dark becomes useful.
 // So basically if this returns true the tile is unlit black.
-/turf/proc/legacy_is_softly_lit()
+/turf/proc/static_is_softly_lit()
 	if (!static_lighting_object)
 		return FALSE
 
@@ -85,25 +84,25 @@
 	if(new_area.lighting_effect)
 		add_overlay(new_area.lighting_effect)
 
-/turf/proc/legacy_get_corners()
+/turf/proc/static_get_corners()
 	if (!lighting_corners_initialised)
-		legacy_generate_missing_corners()
+		static_generate_missing_corners()
 	if(opacity)
 		return null // Since this proc gets used in a for loop, null won't be looped though.
 
-	return legacy_corners
+	return static_lighting_corners
 
-/turf/proc/legacy_generate_missing_corners()
+/turf/proc/static_generate_missing_corners()
 	var/area/A = loc
-	if (!A.static_lighting && !static_light_sources)
+	if(!A.static_lighting && !static_light_sources)
 		return
 	lighting_corners_initialised = TRUE
-	if (!legacy_corners)
-		legacy_corners = list(null, null, null, null)
+	if(!static_lighting_corners)
+		static_lighting_corners = list(null, null, null, null)
 
 	for(var/i = 1 to 4)
-		if (legacy_corners[i]) // Already have a corner on this direction.
+		if(static_lighting_corners[i]) // Already have a corner on this direction.
 			continue
 
-		legacy_corners[i] = new/datum/static_lighting_corner(src, GLOB.LIGHTING_CORNER_DIAGONAL[i])
+		static_lighting_corners[i] = new/datum/static_lighting_corner(src, GLOB.LIGHTING_CORNER_DIAGONAL[i])
 

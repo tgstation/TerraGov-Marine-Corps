@@ -2,11 +2,11 @@
 	name = ""
 	anchored = TRUE
 	appearance_flags = NONE	//Removes TILE_BOUND meaning that the lighting mask will be visible even if the source turf is not.
-	glide_size = INFINITY
 	var/atom/movable/lighting_mask/held_mask
 
 /obj/effect/lighting_mask_holder/proc/assign_mask(atom/movable/lighting_mask/mask)
 	vis_contents += mask
+	//add_overlay(mask)
 	held_mask = mask
 	mask.mask_holder = src
 
@@ -16,7 +16,8 @@
 //to stop rendering when it is out of view, and to do this we simple need to know the bounds
 //of the mask (including shadow) and the bounds of the mask without the shadow.
 /obj/effect/lighting_mask_holder/proc/update_matrix(actual_bound_top, actual_bound_bottom, actual_bound_left, actual_bound_right, radius)
-	transform = matrix()
+	//transform = matrix() tivi todo
+	//transform = actual_bound_top
 
 /obj/effect/lighting_mask_holder/Destroy(force)
 	QDEL_NULL(held_mask)

@@ -13,43 +13,43 @@
 	layer = LIGHTING_SECONDARY_LAYER
 	invisibility = INVISIBILITY_LIGHTING
 	blend_mode = BLEND_ADD
-	appearance_flags = KEEP_TOGETHER | RESET_TRANSFORM
+	appearance_flags = KEEP_TOGETHER// | RESET_TRANSFORM
 	move_resist = INFINITY
 
 
 	var/current_angle = 0
 
-	//The radius of the mask
+	///The radius of the mask
 	var/radius = 0
 
-	//The atom that we are attached to
-	var/atom/attached_atom = null
+	///The atom that we are attached to
+	var/atom/attached_atom
 
-	//Tracker var for the holder
+	///Referecnce to the holder /obj/effect
 	var/obj/effect/lighting_mask_holder/mask_holder
 
-	//Tracker var for tracking init dupe requests
+	///Prevents us from registering for update twice before SSlighting init
 	var/awaiting_update = FALSE
+	///Set to true if you want the light to rotate with the owner
 	var/is_directional = FALSE
-	var/must_rotate_with_owner = FALSE
 
 /atom/movable/lighting_mask/Destroy()
-	//Delete the holder object
 	mask_holder = null
-	//Remove reference to the atom we are attached to
 	attached_atom = null
-	//Continue with deletiib
 	return ..()
 
-/atom/movable/lighting_mask/proc/set_radius(radius, transform_time = 0)
+/atom/movable/lighting_mask/Initialize(mapload, ...)
+	. = ..()
+	//add_filter("dd", 1, outline_filter(2, COLOR_RED, OUTLINE_SHARP))
+
+/atom/movable/lighting_mask/proc/set_radius(new_radius, transform_time = 0)
 	//Update our matrix
-	var/matrix/M = get_matrix(radius)
+	var/matrix/M = get_matrix(new_radius)
 	apply_matrix(M, transform_time)
-	//Set the radius variable
-	src.radius = radius
-	//Calculate shadows
+	radius = new_radius
+	//then recalculate and redraw
 	calculate_lighting_shadows()
-	//Update our holders thing
+	//Update our holders  layer thing
 	mask_holder.update_matrix(M)
 
 /atom/movable/lighting_mask/proc/apply_matrix(matrix/M, transform_time = 0)
@@ -117,22 +117,20 @@
 		alpha = ALPHA_TO_INTENSITY(-intensity)
 		blend_mode = BLEND_SUBTRACT
 
-///The holder atom turned, spin the mask if it's needed
+///The holder atom turned, spins the mask if it's needed
 /atom/movable/lighting_mask/proc/rotate_mask_on_holder_turn(new_direction)
 	rotate(dir2angle(new_direction) - 180)
 
-//Flicker
-
+//Flickering lighting mask
 /atom/movable/lighting_mask/flicker
 	icon_state = "light_flicker"
 
-///Conical Light
+///Conical Light mask
 /atom/movable/lighting_mask/conical
 	icon_state = "light_conical"
 	is_directional = TRUE
-	must_rotate_with_owner = TRUE
 
-//Rotating Light
+///Rotating Light mask
 
 /atom/movable/lighting_mask/rotating
 	icon_state = "light_rotating-1"

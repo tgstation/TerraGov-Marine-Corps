@@ -25,13 +25,13 @@ GLOBAL_LIST_INIT(LIGHTING_CORNER_DIAGONAL, list(NORTHEAST, SOUTHEAST, SOUTHWEST,
 	var/cache_b  = LIGHTING_SOFT_THRESHOLD
 	var/cache_mx = 0
 
-/datum/static_lighting_corner/New(var/turf/new_turf, var/diagonal)
+/datum/static_lighting_corner/New(turf/new_turf, diagonal)
 	. = ..()
 	masters = list()
 	masters[new_turf] = turn(diagonal, 180)
 	z = new_turf.z
 
-	var/vertical   = diagonal & ~(diagonal - 1) // The horizontal directions (4 and 8) are bigger than the vertical ones (1 and 2), so we can reliably say the lsb is the horizontal direction.
+	var/vertical = diagonal & ~(diagonal - 1) // The horizontal directions (4 and 8) are bigger than the vertical ones (1 and 2), so we can reliably say the lsb is the horizontal direction.
 	var/horizontal = diagonal & ~vertical       // Now that we know the horizontal one we can get the vertical one.
 
 	x = new_turf.x + (horizontal == EAST  ? 0.5 : -0.5)
@@ -45,33 +45,33 @@ GLOBAL_LIST_INIT(LIGHTING_CORNER_DIAGONAL, list(NORTHEAST, SOUTHEAST, SOUTHWEST,
 
 	// Diagonal one is easy.
 	T = get_step(new_turf, diagonal)
-	if (T) // In case we're on the map's border.
-		if (!T.legacy_corners)
-			T.legacy_corners = list(null, null, null, null)
+	if(T) // In case we're on the map's border.
+		if(!T.static_lighting_corners)
+			T.static_lighting_corners = list(null, null, null, null)
 
 		masters[T]   = diagonal
 		i = GLOB.LIGHTING_CORNER_DIAGONAL.Find(turn(diagonal, 180))
-		T.legacy_corners[i] = src
+		T.static_lighting_corners[i] = src
 
 	// Now the horizontal one.
 	T = get_step(new_turf, horizontal)
-	if (T) // Ditto.
-		if (!T.legacy_corners)
-			T.legacy_corners = list(null, null, null, null)
+	if(T) // Ditto.
+		if (!T.static_lighting_corners)
+			T.static_lighting_corners = list(null, null, null, null)
 
 		masters[T]   = ((T.x > x) ? EAST : WEST) | ((T.y > y) ? NORTH : SOUTH) // Get the dir based on coordinates.
 		i            = GLOB.LIGHTING_CORNER_DIAGONAL.Find(turn(masters[T], 180))
-		T.legacy_corners[i] = src
+		T.static_lighting_corners[i] = src
 
 	// And finally the vertical one.
 	T = get_step(new_turf, vertical)
 	if (T)
-		if (!T.legacy_corners)
-			T.legacy_corners = list(null, null, null, null)
+		if (!T.static_lighting_corners)
+			T.static_lighting_corners = list(null, null, null, null)
 
 		masters[T]   = ((T.x > x) ? EAST : WEST) | ((T.y > y) ? NORTH : SOUTH) // Get the dir based on coordinates.
 		i            = GLOB.LIGHTING_CORNER_DIAGONAL.Find(turn(masters[T], 180))
-		T.legacy_corners[i] = src
+		T.static_lighting_corners[i] = src
 
 	update_active()
 
@@ -87,14 +87,14 @@ GLOBAL_LIST_INIT(LIGHTING_CORNER_DIAGONAL, list(NORTHEAST, SOUTHEAST, SOUTHWEST,
 // God that was a mess, now to do the rest of the corner code! Hooray!
 /datum/static_lighting_corner/proc/update_lumcount(var/delta_r, var/delta_g, var/delta_b)
 
-	if (!(delta_r || delta_g || delta_b)) // 0 is falsey ok
+	if(!(delta_r || delta_g || delta_b)) // 0 is falsey ok
 		return
 
 	lum_r += delta_r
 	lum_g += delta_g
 	lum_b += delta_b
 
-	if (!needs_update)
+	if(!needs_update)
 		needs_update = TRUE
 		GLOB.lighting_update_corners += src
 
@@ -122,8 +122,7 @@ GLOBAL_LIST_INIT(LIGHTING_CORNER_DIAGONAL, list(NORTHEAST, SOUTHEAST, SOUTHWEST,
 	#endif
 	cache_mx = round(mx, LIGHTING_ROUND_VALUE)
 
-	for (var/TT in masters)
-		var/turf/T = TT
+	for(var/turf/T AS in masters)
 		if (T.static_lighting_object && !T.static_lighting_object.needs_update)
 			T.static_lighting_object.needs_update = TRUE
 			GLOB.lighting_update_objects += T.static_lighting_object

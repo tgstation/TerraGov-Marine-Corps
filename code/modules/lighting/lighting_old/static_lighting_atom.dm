@@ -1,8 +1,11 @@
 
 /atom
-	var/tmp/datum/static_light_source/static_light // Our light source. Don't fuck with this directly unless you have a good reason!
-	var/tmp/list/static_light_sources       // Any light sources that are "inside" of us, for example, if src here was a mob that's carrying a flashlight, that flashlight's light source would be part of this list.
+	///The light source, datum. Dont fuck with this directly
+	var/tmp/datum/static_light_source/static_light
+	///Static light sources currently attached to this atom, this includes ones owned by atoms inside this atom
+	var/tmp/list/static_light_sources
 
+///Pretty simple, just updates static lights on this atom
 /atom/proc/static_update_light()
 	set waitfor = FALSE
 	if (QDELETED(src))

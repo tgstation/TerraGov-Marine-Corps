@@ -567,7 +567,7 @@
 		windup_checked = WEAPON_WINDUP_NOT_CHECKED
 		return
 	windup_checked = WEAPON_WINDUP_CHECKED
-	Fire()	
+	Fire()
 
 /obj/item/weapon/gun/flamer/marinestandard/afterattack(atom/target, mob/user)
 	. = ..()
@@ -610,8 +610,10 @@
 	icon = 'icons/effects/fire.dmi'
 	icon_state = "red_2"
 	layer = BELOW_OBJ_LAYER
-	light_system = MOVABLE_LIGHT
+	light_system = HYBRID_LIGHT
+	light_mask_type = /atom/movable/lighting_mask/flicker
 	light_on = TRUE
+	light_range = 3
 	light_power = 3
 	light_color = LIGHT_COLOR_LAVA
 	var/firelevel = 12 //Tracks how much "fire" there is. Basically the timer of how long the fire burns
