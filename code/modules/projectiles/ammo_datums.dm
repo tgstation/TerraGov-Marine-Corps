@@ -1365,15 +1365,15 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 20
 	max_range = 40
 	penetration = 5
-	sundering = 1
+	sundering = 0
 
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_SUNDERING|AMMO_EXPLOSIVE
 
 	bullet_color = COLOR_VIBRANT_LIME
 
-	var/heat = 12
-	var/burn = 6
-	var/f_color = "green"
+	var/heat = 12 ///Fire burn time
+	var/burn = 6 ///Fire damage
+	var/f_color = "green" ///Fire color
 
 /datum/ammo/energy/plasma_pistol/on_hit_turf(turf/T, obj/projectile/proj)
 	if(!istype(T))
@@ -1386,7 +1386,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		T = get_turf(proj)
 	T.ignite(heat, burn, f_color)
 
-/datum/ammo/energy/plasma_pistol/on_hit_obj(obj/O, obj/projectile/proj) //Special effects when hitting objects.
+/datum/ammo/energy/plasma_pistol/on_hit_obj(obj/O, obj/projectile/proj)
 	var/turf/T = get_turf(O)
 	if(!T)
 		T = get_turf(proj)

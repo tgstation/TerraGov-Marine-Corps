@@ -79,13 +79,13 @@
 //TX-7 Plasma Pistol
 /obj/item/weapon/gun/pistol/plasma_pistol
 	name = "\improper TX-7 plasma pistol"
-	desc = "An experimental weapon. Designed to set the terrain it is fired at on fire so as to remove flammable obstacles and clear out dug in enemies from some range."
+	desc = "An experimental weapon designed to set the terrain and targets on fire. It hums wiht power as magnetic fields coil round each other."
 	icon_state = "tx7"
 	item_state = "tx7"
 	caliber = "Ionized Plasma Bolt"
 	max_shots = 10
 	reload_sound = 'sound/weapons/guns/interact/tp14_reload.ogg'
-	fire_sound = 'sound/weapons/guns/fire/laser.ogg'
+	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/plasma_pistol
 	type_of_casings = null
 
@@ -96,7 +96,6 @@
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/gyro,
-		/obj/item/attachable/burstfire_assembly,
 		/obj/item/attachable/lace,
 		/obj/item/attachable/scope/marine,
 	)
