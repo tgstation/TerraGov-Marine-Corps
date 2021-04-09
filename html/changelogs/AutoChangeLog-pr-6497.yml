@@ -1,5 +1,0 @@
-author: "Walarks"
-delete-after: True
-changes: 
-  - balance: "vali now heals 6/12 brute/burn instead of boosting reagents and provides stamina regen if you have a connected weapon. Reduced reagent storage from 60u to 30u. Weapon takes 1s to connect instead of 2s."
-  - bugfix: "vali checks for germ level instead of necrotized limb flag since the negatives associated with necrotized limbs are based on germ levels"
