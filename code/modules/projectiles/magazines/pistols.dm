@@ -25,7 +25,7 @@
 //-------------------------------------------------------
 //TX-7 Plasma Pistol
 /obj/item/ammo_magazine/pistol/plasma_pistol
-	name = "\improper TX-7 Plasma Cell"
+	name = "\improper TX-7 plasma cell"
 	desc = "A plasma cell for the TX-7 Plasma Pistol"
 	caliber = "Ionized Plasma Bolt"
 	icon_state = "tx7"
@@ -241,4 +241,3 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	icon_state = "c70"
 	max_rounds = 300
 	gun_type = /obj/item/weapon/gun/pistol/chimp
-
