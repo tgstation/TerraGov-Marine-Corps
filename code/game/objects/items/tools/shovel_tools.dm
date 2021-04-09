@@ -155,10 +155,13 @@
 	dirt_amt_per_dig = 5
 	shovelspeed = 20
 
-/obj/item/tool/shovel/etool/update_icon()
-	if(folded) icon_state = "etool_c"
-	else if(sharp) icon_state = "etool_s"
-	else icon_state = "etool"
+/obj/item/tool/shovel/etool/update_icon_state()
+	if(folded)
+		icon_state = "etool_c"
+	else if(sharp) 
+		icon_state = "etool_s"
+	else
+		icon_state = "etool"
 	..()
 
 
@@ -197,5 +200,4 @@
 	. = ..()
 	if(sharp)
 		to_chat(user, "<span class='notice'> This one has been sharpened and can no longer be folded.</span>")
-
 
