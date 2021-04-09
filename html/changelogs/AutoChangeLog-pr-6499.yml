@@ -1,0 +1,4 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - qol: "You can aim at black tiles while shooting"
