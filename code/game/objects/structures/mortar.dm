@@ -260,6 +260,10 @@
 	"<span class='notice'>You undeploy [src].")
 	playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
 	new /obj/item/mortar_kit(loc)
+	for(var/obj/item/binoculars/tactical/binoc in linked_binocs)
+		binoc.linked_mortar = null
+		if(istype(binoc.loc, /mob))
+			to_chat(binoc.loc, "<span class='notice'>[binoc]\'s linked mortar has been disassembled.</span>")
 	qdel(src)
 
 
