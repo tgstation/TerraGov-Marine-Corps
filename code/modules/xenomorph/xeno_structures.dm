@@ -38,6 +38,8 @@
 	var/datum/hive_status/associated_hive
 	var/silo_area
 	var/number_silo
+	///If false, this is a small silo and will give less points when destroyed
+	var/regular_silo = TRUE
 	COOLDOWN_DECLARE(silo_damage_alert_cooldown)
 	COOLDOWN_DECLARE(silo_proxy_alert_cooldown)
 
@@ -88,6 +90,7 @@
 				associated_hive.handle_silo_death_timer()
 				associated_hive = null
 				notify_ghosts("\ A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!", source = get_turf(src), action = NOTIFY_JUMP)
+				SSpoints.supply_points += (regular_silo ? 1 : 0.5) * SILO_REWARD 
 
 	for(var/i in contents)
 		var/atom/movable/AM = i
@@ -171,6 +174,7 @@
 	icon_state = "weed_silo"
 	max_integrity = 500
 	larva_spawn_rate = 0.25
+	regular_silo = FALSE
 
 /obj/structure/resin/xeno_turret
 	icon = 'icons/Xeno/acidturret.dmi'
