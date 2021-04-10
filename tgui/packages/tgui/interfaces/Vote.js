@@ -108,7 +108,7 @@ const VoteOptions = (props, context) => {
                     color="red"
                     checked={!!allow_vote_groundmap}
                     onClick={() => act("toggle_groundmap")}>
-                    {allow_vote_groundmap ? "Enabled" : "Disabled"}
+                    Groundmap vote {allow_vote_groundmap ? "Enabled" : "Disabled"}
                   </Button.Checkbox>
                 )}
               </Stack.Item>
@@ -119,7 +119,7 @@ const VoteOptions = (props, context) => {
                     color="red"
                     checked={!!allow_vote_shipmap}
                     onClick={() => act("toggle_shipmap")}>
-                    {allow_vote_shipmap ? "Enabled" : "Disabled"}
+                    Shipmap vote {allow_vote_shipmap ? "Enabled" : "Disabled"}
                   </Button.Checkbox>
                 )}
               </Stack.Item>
@@ -130,7 +130,7 @@ const VoteOptions = (props, context) => {
                     color="red"
                     checked={!!allow_vote_restart}
                     onClick={() => act("toggle_restart")}>
-                    {allow_vote_restart ? "Enabled" : "Disabled"}
+                    Restart vote {allow_vote_restart ? "Enabled" : "Disabled"}
                   </Button.Checkbox>
                 )}
               </Stack.Item>
@@ -141,7 +141,7 @@ const VoteOptions = (props, context) => {
                     color="red"
                     checked={!!allow_vote_mode}
                     onClick={() => act("toggle_gamemode")}>
-                    {allow_vote_mode ? "Enabled" : "Disabled"}
+                    Gamemode vote {allow_vote_mode ? "Enabled" : "Disabled"}
                   </Button.Checkbox>
                 )}
               </Stack.Item>
