@@ -196,6 +196,7 @@
 		/obj/item/storage/belt/gun/ts34/full = 5,
 		/obj/item/weapon/gun/shotgun/pump/cmb = 5,
 		/obj/item/weapon/gun/shotgun/pump/bolt = 5,
+		/obj/item/weapon/gun/shotgun/combat = 5,
 		/obj/item/weapon/gun/flamer/marinestandard = 2,
 		/obj/item/explosive/mine = 5,
 		/obj/item/explosive/grenade/frag/m15 = 25,
