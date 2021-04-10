@@ -152,7 +152,9 @@
 
 /obj/machinery/vending/marine/cargo_supply/Initialize()
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_SG_KIT_ADDED, .proc/add_SG_kit)
+	if(!GLOB.req_vendor)
+		RegisterSignal(SSdcs, COMSIG_SG_KIT_ADDED, .proc/add_SG_kit)
+		GLOB.req_vendor = src
 
 /// Add a sg kit to that vendor
 /obj/machinery/vending/marine/cargo_supply/proc/add_SG_kit(datum/source, amount_added)

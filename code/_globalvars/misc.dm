@@ -31,3 +31,6 @@ GLOBAL_PROTECT(polls)
 ///All poll option datums of running polls
 GLOBAL_LIST_EMPTY(poll_options)
 GLOBAL_PROTECT(poll_options)
+
+///Insure that there is only one req vendor on the map receiving the free sg, to prevent mappers adding two and creating sg fraud
+GLOBAL_VAR_INIT(req_vendor, null)
