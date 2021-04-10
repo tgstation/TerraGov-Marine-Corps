@@ -31689,6 +31689,11 @@
 /obj/effect/alien/weeds/node,
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/central)
+"gkO" = (
+/obj/effect/turf_underlay/icefloor,
+/obj/structure/fence,
+/turf/closed/ice/thin/single,
+/area/ice_colony/exterior/surface/valley/southeast)
 "gly" = (
 /obj/effect/turf_underlay/icefloor,
 /obj/effect/alien/weeds/node,
@@ -32632,6 +32637,11 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice,
 /area/ice_colony/underground/maintenance/east)
+"nLv" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
+/obj/structure/fence,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/exterior/surface/valley/southeast)
 "nLw" = (
 /obj/machinery/computer/intel_computer,
 /turf/open/floor/tile/dark/yellow2{
@@ -76702,7 +76712,7 @@ abN
 awL
 awL
 awL
-awL
+aMt
 nlt
 aUP
 aUP
@@ -76959,7 +76969,7 @@ aEC
 awL
 awL
 awL
-awL
+aMt
 nlt
 aUP
 aUP
@@ -77216,7 +77226,7 @@ awL
 awL
 awL
 awL
-awL
+aMt
 nlt
 aUP
 aUP
@@ -77473,7 +77483,7 @@ awL
 awL
 awL
 awL
-awL
+aMt
 nlt
 aUP
 aUP
@@ -77730,7 +77740,7 @@ awL
 awL
 awL
 awL
-awL
+aMt
 nlt
 aUP
 aUP
@@ -77987,7 +77997,7 @@ awL
 awL
 awL
 sGc
-sGc
+nLv
 nlt
 aUP
 aUP
@@ -82095,7 +82105,7 @@ azG
 azG
 awL
 awL
-awL
+aMt
 nlt
 awL
 aUP
@@ -82352,7 +82362,7 @@ awx
 azG
 azG
 azG
-awL
+aMt
 nlt
 awL
 aUP
@@ -82609,7 +82619,7 @@ awx
 awx
 awx
 azG
-awL
+aMt
 nlt
 awL
 awL
@@ -82866,7 +82876,7 @@ awx
 awx
 awx
 azG
-azG
+aus
 nlt
 sGc
 sGc
@@ -83123,11 +83133,11 @@ awx
 awx
 awx
 azG
-awL
-awL
-awL
-awL
-auW
+aMt
+aMt
+aMt
+aMt
+gkO
 aaU
 gtM
 aar
