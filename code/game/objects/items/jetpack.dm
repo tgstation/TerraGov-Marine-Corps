@@ -1,6 +1,6 @@
 #define FUEL_USE 5
-#define FUEL_INDICATOR_FULL 80
-#define FUEL_INDICATOR_HALF_FULL 50
+#define FUEL_INDICATOR_FULL 35
+#define FUEL_INDICATOR_HALF_FULL 20
 #define JETPACK_COOLDOWN_TIME 10 SECONDS
 
 /obj/item/jetpack_marine
@@ -10,10 +10,11 @@
 	icon_state = "jetpack_marine"
 	w_class = WEIGHT_CLASS_BULKY
 	flags_equip_slot = ITEM_SLOT_BACK
+	obj_flags = CAN_BE_HIT|IGNORE_INTENT
 	///maximum amount of fuel in the jetpack
-	var/fuel_max = 100
+	var/fuel_max = 50
 	///current amount of fuel in the jetpack
-	var/fuel_left = 100
+	var/fuel_left = 50
 	///threshold to change the jetpack fuel indicator
 	var/fuel_indicator = FUEL_INDICATOR_FULL
 	///How quick you will fly (warning, it rounds up to the nearest integer)
@@ -165,12 +166,30 @@
 	var/obj/structure/reagent_dispensers/fueltank/FT = target
 	if(FT.reagents.total_volume == 0)
 		to_chat(user, "<span class='warning'>Out of fuel!</span>")
-		return ..()
+		return
 
 	var/fuel_transfer_amount = min(FT.reagents.total_volume, (fuel_max - fuel_left))
 	FT.reagents.remove_reagent(/datum/reagent/fuel, fuel_transfer_amount)
 	fuel_left += fuel_transfer_amount
-	fuel_indicator = 40
+	fuel_indicator = FUEL_INDICATOR_FULL
+	change_fuel_indicator()
 	update_icon()
 	playsound(loc, 'sound/effects/refill.ogg', 30, 1, 3)
 	to_chat(user, "<span class='notice'>You refill [src] with [target].</span>")
+
+/obj/item/jetpack_marine/attacked_by(obj/item/I, mob/living/user, def_zone)
+	if(!istype(I, /obj/item/ammo_magazine/flamer_tank))
+		return 
+	var/obj/item/ammo_magazine/flamer_tank/FT = I
+	if(FT.current_rounds == 0)
+		to_chat(user, "<span class='warning'>Out of fuel!</span>")
+		return
+
+	var/fuel_transfer_amount = min(FT.current_rounds, (fuel_max - fuel_left))
+	FT.current_rounds -= fuel_transfer_amount
+	fuel_left += fuel_transfer_amount
+	fuel_indicator = FUEL_INDICATOR_FULL
+	change_fuel_indicator()
+	playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
+	to_chat(user, "<span class='notice'>You refill [src] with [I].</span>")
+	update_icon()	

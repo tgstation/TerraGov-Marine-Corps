@@ -59,7 +59,7 @@
 	if(.)
 		return TRUE
 
-	if(user.a_intent != INTENT_HARM)
+	if(user.a_intent != INTENT_HARM && (!obj_flags & IGNORE_INTENT))
 		return
 
 	if(obj_flags & CAN_BE_HIT)
