@@ -53,6 +53,8 @@ GLOBAL_PROTECT(exp_specialmap)
 	var/job_flags = NONE
 
 	var/list/jobworth = list() //Associative list of indexes increased when someone joins as this job.
+	//Associative list of signals when someone joins as this job. This will increase the amount of buyable item in a vendor
+	var/list/objectworth = list()
 
 /datum/job/New()
 	if(outfit)
@@ -198,6 +200,8 @@ GLOBAL_PROTECT(exp_specialmap)
 		if(isxenosjob(scaled_job) && respawn)
 			continue
 		scaled_job.add_job_points(jobworth[index])
+	for(var/indexobject in objectworth)
+		SEND_GLOBAL_SIGNAL(indexobject, objectworth[indexobject])
 
 /datum/job/proc/free_job_positions(amount)
 	if(amount <= 0)

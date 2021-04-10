@@ -145,7 +145,24 @@
 		/obj/item/ammobox/standard_rifle = 2,
 		/obj/item/ammobox/standard_dmr = 2,
 		/obj/item/ammobox/standard_lmg = 2,
+		/obj/item/storage/box/t26_system = 0,
 	)
+	/// The current amount of sg point in the vendor. If it goes over an certain threshold, a sg kit is added
+	var/SG_points = 0
+
+/obj/machinery/vending/marine/cargo_supply/Initialize()
+	. = ..()
+	RegisterSignal(SSdcs, COMSIG_SG_KIT_ADDED, .proc/add_SG_kit)
+
+/// Add a sg kit to that vendor
+/obj/machinery/vending/marine/cargo_supply/proc/add_SG_kit(datum/source, amount_added)
+	SIGNAL_HANDLER
+	SG_points += max(0, amount_added)
+	while(SG_points >= SMARTIE_POINTS_NEEDED)
+		SG_points -= SMARTIE_POINTS_NEEDED
+		for(var/datum/data/vending_product/record AS in product_records)
+			if(record.product_path == /obj/item/storage/box/t26_system)
+				record.amount ++ 
 
 /// HvH version of the vending machine, containing no ammo for spec weapons and restricted ones
 /obj/machinery/vending/marine/cargo_supply/hvh

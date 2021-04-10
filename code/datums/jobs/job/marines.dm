@@ -32,9 +32,9 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
 		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
-		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 	)
+	objectworth = list(COMSIG_SG_KIT_ADDED = SMARTIE_POINTS_REGULAR)
 
 /datum/job/terragov/squad/standard/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
@@ -103,7 +103,8 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 	display_order = JOB_DISPLAY_ORDER_SUQAD_ENGINEER
 	outfit = /datum/outfit/job/marine/engineer
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
-	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_REGULAR, /datum/job/terragov/squad/specialist = SPEC_POINTS_MEDIUM, /datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_MEDIUM, /datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR)
+	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_REGULAR, /datum/job/terragov/squad/specialist = SPEC_POINTS_MEDIUM, /datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR)
+	objectworth = list(COMSIG_SG_KIT_ADDED = SMARTIE_POINTS_MEDIUM)
 
 /datum/job/terragov/squad/engineer/radio_help_message(mob/M)
 	. = ..()
@@ -172,7 +173,8 @@ Your squaddies will look to you when it comes to construction in the field of ba
 	display_order = JOB_DISPLAY_ORDER_SQUAD_CORPSMAN
 	outfit = /datum/outfit/job/marine/corpsman
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
-	jobworth = list(/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR, /datum/job/xenomorph = LARVA_POINTS_REGULAR, /datum/job/terragov/squad/specialist = SPEC_POINTS_MEDIUM, /datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_MEDIUM)
+	jobworth = list(/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR, /datum/job/xenomorph = LARVA_POINTS_REGULAR, /datum/job/terragov/squad/specialist = SPEC_POINTS_MEDIUM)
+	objectworth = list(COMSIG_SG_KIT_ADDED = SMARTIE_POINTS_MEDIUM)
 
 /datum/job/terragov/squad/corpsman/radio_help_message(mob/M)
 	. = ..()
@@ -365,9 +367,9 @@ You can serve a variety of roles, so choose carefully."})
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
 		/datum/job/terragov/squad/specialist = SPEC_POINTS_HIGH,
-		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_HIGH,
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 	)
+	objectworth = list(COMSIG_SG_KIT_ADDED = SMARTIE_POINTS_HIGH)
 
 
 /datum/job/terragov/squad/leader/radio_help_message(mob/M)

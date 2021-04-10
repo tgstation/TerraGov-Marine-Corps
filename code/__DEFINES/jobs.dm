@@ -124,11 +124,9 @@ MEDICAL_OFFICER, MEDICAL_RESEARCHER, SQUAD_LEADER, SQUAD_SPECIALIST, SQUAD_SMART
 #define SURVIVOR_POINTS_REGULAR 1
 
 #define SPEC_POINTS_REGULAR 1
-#define SMARTIE_POINTS_REGULAR 1
 #define SPEC_POINTS_MEDIUM 2
-#define SMARTIE_POINTS_MEDIUM 2
 #define SPEC_POINTS_HIGH 3
-#define SMARTIE_POINTS_HIGH 3
+
 #define SYNTH_POINTS_REGULAR 1
 
 #define MARINE_SPAWN_ORIGIN "xenos from marine spawn"
@@ -136,3 +134,10 @@ MEDICAL_OFFICER, MEDICAL_RESEARCHER, SQUAD_LEADER, SQUAD_SPECIALIST, SQUAD_SMART
 #define SILO_ORIGIN "xenos from silo generation"
 
 #define SQUAD_MAX_POSITIONS(total_positions) CEILING(total_positions / length(SSjob.active_squads), 1)
+
+///how much a job is going to contribute towards free sg kits.
+#define SMARTIE_POINTS_REGULAR 1
+#define SMARTIE_POINTS_MEDIUM 2
+#define SMARTIE_POINTS_HIGH 3
+
+#define SMARTIE_POINTS_NEEDED 10
