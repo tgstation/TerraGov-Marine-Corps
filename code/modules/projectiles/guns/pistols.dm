@@ -113,7 +113,7 @@
 	recoil = -2
 	recoil_unwielded = -2
 
-/obj/item/weapon/gun/pistol/plasma_pistol/gaurdsman
+/obj/item/weapon/gun/pistol/plasma_pistol/guardsman
 	name = "\improper Gaurdsman\'s plasma pistol"
 	desc = "FOR THE EMPEROR!"
 	icon_state = "tx7w"
