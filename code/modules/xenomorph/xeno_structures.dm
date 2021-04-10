@@ -91,7 +91,7 @@
 				associated_hive = null
 				notify_ghosts("\ A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!", source = get_turf(src), action = NOTIFY_JUMP)
 				SSpoints.supply_points += (regular_silo ? 1 : 0.5) * SILO_REWARD 
-				priority_announce("Elimination of the target confirmed. Additional supply points granted to the operation. [length(GLOB.xeno_resin_silos)] silos remaining.", "Target destroyed", sound = 'sound/AI/code_green.ogg')
+				priority_announce("Elimination of one target confirmed. Additional supply points granted to the operation. [length(GLOB.xeno_resin_silos)] silos remaining.", "Target destroyed", sound = 'sound/AI/bioscan.ogg')
 
 	for(var/i in contents)
 		var/atom/movable/AM = i
