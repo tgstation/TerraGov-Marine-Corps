@@ -19,6 +19,7 @@
 #define MODE_RAILGUN 1
 #define MODE_ORBITAL 2
 #define MODE_RANGE_FINDER 3
+#define MODE_MORTAR 4
 
 /obj/item/binoculars/tactical
 	name = "tactical binoculars"
@@ -33,6 +34,8 @@
 	var/turf/current_turf // The target turf, used for OBs
 	///Last stored turf targetted by rangefinders
 	var/turf/targetturf
+	///Linked mortar for remote targeting.
+	var/obj/structure/mortar/linked_mortar
 
 /obj/item/binoculars/tactical/Initialize()
 	. = ..()
@@ -52,6 +55,14 @@
 			to_chat(usr, "<span class='notice'>They are currently set to railgun targeting mode.</span>")
 		if(MODE_ORBITAL)
 			to_chat(usr, "<span class='notice'>They are currently set to orbital bombardment mode.</span>")
+		if(MODE_MORTAR)
+			to_chat(usr, "<span class='notice'>They are currently set to mortar targeting mode.</span>")
+	if(mode != MODE_MORTAR & !changable)
+		return
+	if(linked_mortar)
+		to_chat(usr, "<span class='notice'>They are currently linked to a mortar.</span>")
+	else
+		to_chat(usr, "<span class='notice'>They are not linked to a mortar.</span>")
 
 /obj/item/binoculars/tactical/Destroy()
 	if(laser)
@@ -135,7 +146,7 @@
 		to_chat(user, "These binoculars only have one mode.")
 		return
 	mode += 1
-	if(mode > MODE_ORBITAL)
+	if(mode > MODE_MORTAR)
 		mode = MODE_CAS
 	switch(mode)
 		if(MODE_CAS)
@@ -144,6 +155,8 @@
 			to_chat(user, "<span class='notice'>You switch [src] to railgun targeting mode.</span>")
 		if(MODE_ORBITAL)
 			to_chat(user, "<span class='notice'>You switch [src] to orbital bombardment targeting mode.</span>")
+		if(MODE_MORTAR)
+			to_chat(user, "<span class='notice'>You switch [src] to mortar targeting mode.</span>")
 	update_icon()
 	playsound(user, 'sound/items/binoculars.ogg', 15, 1)
 
@@ -199,6 +212,15 @@
 	if(user.do_actions)
 		return
 	playsound(src, 'sound/effects/nightvision.ogg', 35)
+	if(mode == MODE_MORTAR)
+		if(!linked_mortar)
+			to_chat(user, "<span class='notice'>No linked mortar found.</span>")
+			return
+		targetturf = TU
+		to_chat(user, "<span class='notice'>COORDINATES TARGETED: LONGITUDE [targetturf.x]. LATITUDE [targetturf.y].</span>")
+		playsound(src, 'sound/effects/binoctarget.ogg', 35)
+		linked_mortar.recieve_target(TU,src,user)
+		return
 	if(mode != MODE_RANGE_FINDER)
 		to_chat(user, "<span class='notice'>INITIATING LASER TARGETING. Stand still.</span>")
 		if(!do_after(user, max(1.5 SECONDS, target_acquisition_delay - (2.5 SECONDS * user.skills.getRating("leadership"))), TRUE, TU, BUSY_ICON_GENERIC) || world.time < laser_cooldown || laser)
@@ -285,7 +307,14 @@
 	changable = 0
 	mode = MODE_RANGE_FINDER
 
+/obj/item/binoculars/tactical/mortar
+	name = "mortar range-finder"
+	desc = "A pair of binoculars designed to shell enemy positions with a linked mortar. Use on mortar to link it. Shift+Click to get coordinates or Ctrl+Click to target a linked mortar."
+	changable = FALSE
+	mode = MODE_MORTAR
+
 #undef MODE_CAS
 #undef MODE_RANGE_FINDER
 #undef MODE_RAILGUN
 #undef MODE_ORBITAL
+#undef MODE_MORTAR

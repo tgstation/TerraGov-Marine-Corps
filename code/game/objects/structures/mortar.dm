@@ -198,6 +198,22 @@
 		addtimer(CALLBACK(GLOBAL_PROC, .proc/playsound, T, 'sound/weapons/guns/misc/mortar_travel.ogg', 50, 1), travel_time)
 		addtimer(CALLBACK(src, .proc/detonate_shell, T, mortar_shell), travel_time + 45)//This should always be 45 ticks!
 
+	if(istype(I, /obj/item/binoculars/tactical))
+		var/obj/item/binoculars/tactical/binocs = I
+		if(istype(binocs,/obj/item/binoculars/tactical/range))
+			to_chat(user, "<span class='notice'>You cannot link the [I] to the [src]</span>")
+			return
+		binocs.linked_mortar = src
+		to_chat(user, "<span class='notice'>You link the mortar to the [I] allowing for remote targeting</span>")
+		playsound(src, 'sound/effects/binoctarget.ogg', 35)
+
+/obj/structure/mortar/proc/recieve_target(turf/T, obj/item/binoculars/tactical/binocs, mob/user)
+	coords["targ_x"] = T.x
+	coords["targ_y"] = T.y
+	say("Remote targeting set by [user]. COORDINATES: X:[coords["targ_x"]] Y:[coords["targ_y"]] OFFSET: X:[coords["dial_x"]] Y:[coords["dial_y"]]")
+	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+
+
 /obj/structure/mortar/proc/detonate_shell(turf/target, obj/item/mortal_shell/mortar_shell)
 	target.ceiling_debris_check(2)
 	mortar_shell.detonate(target)
@@ -416,7 +432,7 @@
 	new /obj/item/mortal_shell/smoke(src)
 	new /obj/item/encryptionkey/engi(src)
 	new /obj/item/encryptionkey/engi(src)
-	new /obj/item/binoculars/tactical/range(src)
+	new /obj/item/binoculars/tactical/mortar(src)
 	new /obj/item/encryptionkey/cas(src)
 	new /obj/item/encryptionkey/cas(src)
 	new /obj/item/encryptionkey/cas(src)
