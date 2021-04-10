@@ -164,7 +164,8 @@
 		SG_points -= SMARTIE_POINTS_NEEDED
 		for(var/datum/data/vending_product/record AS in product_records)
 			if(record.product_path == /obj/item/storage/box/t26_system)
-				record.amount ++ 
+				record.amount++ 
+				visible_message("<span class='notice'>New SG kit available</span>")
 
 /// HvH version of the vending machine, containing no ammo for spec weapons and restricted ones
 /obj/machinery/vending/marine/cargo_supply/hvh
