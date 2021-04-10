@@ -91,6 +91,7 @@
 				associated_hive = null
 				notify_ghosts("\ A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!", source = get_turf(src), action = NOTIFY_JUMP)
 				SSpoints.supply_points += (regular_silo ? 1 : 0.5) * SILO_REWARD 
+				priority_announce("Elimination of the target confirmed. Additional supply points granted to the operation. [length(GLOB.xeno_resin_silos)] silos remaining.", "Target destroyed", sound = 'sound/AI/code_green.ogg')
 
 	for(var/i in contents)
 		var/atom/movable/AM = i
@@ -161,7 +162,6 @@
 	//Regenerate if we're at less than max integrity
 	if(obj_integrity < max_integrity)
 		obj_integrity = min(obj_integrity + 25, max_integrity) //Regen 5 HP per sec
-
 
 
 /obj/structure/resin/silo/proc/is_burrowed_larva_host(datum/source, list/mothers, list/silos)
