@@ -1110,7 +1110,7 @@
 
 	SSpoints.xeno_points_by_hive[X.hivenumber] -= psych_cost
 	log_game("[owner] built a turret in get_area(A), spending [psych_cost] psy points in the process")
-	xeno_message("[X.name] has built a new turret get_area(A)!", "xenoannounce", 5, X.hivenumber)
+	xeno_message("[X.name] has built a new turret at [get_area(A)]!", "xenoannounce", 5, X.hivenumber)
 
 	succeed_activate()
 
