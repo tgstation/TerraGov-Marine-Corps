@@ -1372,26 +1372,24 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	///Fire burn time
 	var/heat = 12 
 	///Fire damage
-	var/burn = 6
+	var/burn_damage = 6
 	///Fire color
-	var/f_color = "green" 
+	var/fire_color = "green" 
 
 /datum/ammo/energy/plasma_pistol/on_hit_turf(turf/T, obj/projectile/proj)
-	if(!istype(T))
-		return
-	T.ignite(heat, burn, f_color)
+	T.ignite(heat, burn_damage, fire_color)
 
 /datum/ammo/energy/plasma_pistol/on_hit_mob(mob/M, obj/projectile/proj)
 	var/turf/T = get_turf(M)
 	if(!T)
 		T = get_turf(proj)
-	T.ignite(heat, burn, f_color)
+	T.ignite(heat, burn_damage, fire_color)
 
 /datum/ammo/energy/plasma_pistol/on_hit_obj(obj/O, obj/projectile/proj)
 	var/turf/T = get_turf(O)
 	if(!T)
 		T = get_turf(proj)
-	T.ignite(heat, burn, f_color)
+	T.ignite(heat, burn_damage, fire_color)
 
 /*
 //================================================
