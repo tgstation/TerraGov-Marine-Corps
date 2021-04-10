@@ -52,7 +52,7 @@
 	var/dynamic_lumcount = 0
 	///List of light sources affecting this turf.
 	var/tmp/list/datum/dynamic_light_source/affecting_lights
-	///Our lighting object. //tivi todo dupe?
+	///Our lighting object.
 	var/tmp/atom/movable/static_lighting_object/static_lighting_object
 	var/tmp/list/datum/static_lighting_corner/corners
 
@@ -262,11 +262,11 @@
 	if(flags & CHANGETURF_SKIP)
 		return new path(src)
 
-	//Legacy lighting
+	//static lighting
 	var/old_affecting_lights = static_affecting_lights
 	var/old_lighting_object = static_lighting_object
 	var/old_corners = static_lighting_corners
-	//New lighting
+	//hybrid lighting
 	var/list/old_hybrid_lights_affecting = hybrid_lights_affecting?.Copy()
 	var/old_directional_opacity = directional_opacity
 
@@ -295,7 +295,7 @@
 
 	W.hybrid_lights_affecting = old_hybrid_lights_affecting
 
-	//Legacy Update
+	//static Update
 	if(SSlighting.initialized)
 		recalculate_directional_opacity()
 

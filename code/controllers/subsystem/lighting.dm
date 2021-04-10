@@ -13,9 +13,9 @@ SUBSYSTEM_DEF(lighting)
 /datum/controller/subsystem/lighting/Initialize(timeofday)
 	started = TRUE
 	if(!initialized)
-		//Handle legacy lightnig
-		create_all_lighting_objects()
-		//Handle fancy lighting
+		//Handle static lightnig
+		//create_all_lighting_objects()
+		//Handle hybrid lighting
 		to_chat(world, "<span class='boldannounce'>Generating shadows on [sources_that_need_updating.len] light sources.</span>")
 		var/timer = TICK_USAGE
 		for(var/atom/movable/lighting_mask/mask AS in sources_that_need_updating)

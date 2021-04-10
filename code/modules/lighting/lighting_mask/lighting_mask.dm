@@ -1,9 +1,10 @@
+///Lighting mask sprite radius in tiles
 #define LIGHTING_MASK_RADIUS 4
+///Lighting mask sprite diameter in pixels
 #define LIGHTING_MASK_SPRITE_SIZE LIGHTING_MASK_RADIUS * 64
 
 /atom/movable/lighting_mask
 	name = ""
-
 	icon = LIGHTING_ICON_BIG
 	icon_state  = "light_big"
 
@@ -13,24 +14,24 @@
 	layer = LIGHTING_SECONDARY_LAYER
 	invisibility = INVISIBILITY_LIGHTING
 	blend_mode = BLEND_ADD
-	appearance_flags = KEEP_TOGETHER// | RESET_TRANSFORM
+	appearance_flags = KEEP_TOGETHER|RESET_TRANSFORM
 	move_resist = INFINITY
 
-
+	///The current angle the item is pointing at
 	var/current_angle = 0
 
-	///The radius of the mask
+	///The radius of illumination of the mask
 	var/radius = 0
 
-	///The atom that we are attached to
+	///The atom that we are attached to, does not need hard del protection as we are deleted with it
 	var/atom/attached_atom
 
-	///Referecnce to the holder /obj/effect
+	///Reference to the holder /obj/effect
 	var/obj/effect/lighting_mask_holder/mask_holder
 
 	///Prevents us from registering for update twice before SSlighting init
 	var/awaiting_update = FALSE
-	///Set to true if you want the light to rotate with the owner
+	///Set to TRUE if you want the light to rotate with the owner
 	var/is_directional = FALSE
 
 /atom/movable/lighting_mask/Destroy()
@@ -38,69 +39,71 @@
 	attached_atom = null
 	return ..()
 
-/atom/movable/lighting_mask/Initialize(mapload, ...)
-	. = ..()
-	//add_filter("dd", 1, outline_filter(2, COLOR_RED, OUTLINE_SHARP))
-
+///Sets the radius of the mask, and updates everything that needs to be updated
 /atom/movable/lighting_mask/proc/set_radius(new_radius, transform_time = 0)
 	//Update our matrix
-	var/matrix/M = get_matrix(new_radius)
-	apply_matrix(M, transform_time)
+	var/matrix/new_size_matrix = get_matrix(new_radius)
+	apply_matrix(new_size_matrix, transform_time)
 	radius = new_radius
 	//then recalculate and redraw
 	calculate_lighting_shadows()
-	//Update our holders  layer thing
-	mask_holder.update_matrix(M)
 
-/atom/movable/lighting_mask/proc/apply_matrix(matrix/M, transform_time = 0)
+///if you want the matrix to grow or shrink, you can do that using this proc when applyng it
+/atom/movable/lighting_mask/proc/apply_matrix(matrix/to_apply, transform_time = 0)
 	if(transform_time)
-		animate(src, transform = M, time = transform_time)
+		animate(src, transform = to_apply, time = transform_time)
 	else
-		transform = M
+		transform = to_apply
 
+///Creates a matrix for the lighting mak to use
 /atom/movable/lighting_mask/proc/get_matrix(radius = 1)
-	var/matrix/M = new()
+	var/matrix/new_size_matrix = new()
 	//Scale
 	// - Scale to the appropriate radius
-	M.Scale(radius / LIGHTING_MASK_RADIUS)
+	new_size_matrix.Scale(radius / LIGHTING_MASK_RADIUS)
 	//Translate
 	// - Center the overlay image
 	// - Ok so apparently translate is affected by the scale we already did huh.
 	// ^ Future me here, its because it works as translate then scale since its backwards.
 	// ^ ^ Future future me here, it totally shouldnt since the translation component of a matrix is independant to the scale component.
-	M.Translate(-128 + 16)
+	new_size_matrix.Translate(-128 + 16)
 	//Adjust for pixel offsets
 	var/invert_offsets = attached_atom.dir & (NORTH | EAST)
 	var/left_or_right = attached_atom.dir & (EAST | WEST)
 	var/offset_x = (left_or_right ? attached_atom.light_pixel_y : attached_atom.light_pixel_x) * (invert_offsets ? -1 : 1)
 	var/offset_y = (left_or_right ? attached_atom.light_pixel_x : attached_atom.light_pixel_y) * (invert_offsets ? -1 : 1)
-	M.Translate(offset_x, offset_y)
+	new_size_matrix.Translate(offset_x, offset_y)
 	if(is_directional)
 		//Rotate
 		// - Rotate (Directional lights)
-		M.Turn(current_angle)
-	return M
-
-#define ROTATION_PARTS_PER_DECISECOND 1
+		new_size_matrix.Turn(current_angle)
+	return new_size_matrix
 
 ///Rotates the light source to angle degrees.
 /atom/movable/lighting_mask/proc/rotate(angle = 0)
 	//Converting our transform is pretty simple.
-	var/matrix/M = matrix()
-	M.Turn(angle - current_angle)
-	M *= transform
-	//Overlays are in nullspace while applied, meaning their transform cannot be changed.
+	var/matrix/rotated_matrix = matrix()
+	rotated_matrix.Turn(angle - current_angle)
+	rotated_matrix *= transform
+	//Overlays cannot be edited while applied, meaning their transform cannot be changed.
 	//Disconnect the shadows from the overlay, apply the transform and then reapply them as an overlay.
 	//Oh also since the matrix is really weird standard rotation matrices wont work here.
 	overlays.Cut()
 	//Disconnect from parent matrix, become a global position
 	for(var/mutable_appearance/shadow AS in shadows)	//Mutable appearances are children of icon
 		shadow.transform *= transform
-		shadow.transform /= M
+		shadow.transform /= rotated_matrix
 	//Apply our matrix
-	transform = M
-	//Readd the shadow overlays.
-	overlays += shadows
+	transform = rotated_matrix
+
+	//Readd the shadow overlays using overlay merging to update them.
+	var/static/atom/movable/lighting_mask/template/dud = new
+	dud.overlays += shadows
+	var/static/mutable_appearance/overlay_merger = new()
+	overlay_merger.appearance = dud.appearance
+	overlays += overlay_merger
+	dud.overlays.Cut()
+
 	//Now we are facing this direction
 	current_angle = angle
 
@@ -121,7 +124,12 @@
 /atom/movable/lighting_mask/proc/rotate_mask_on_holder_turn(new_direction)
 	rotate(dir2angle(new_direction) - 180)
 
-//Flickering lighting mask
+///This is the template mask used for overlay merging, DO NOT TOUCH THIS FOR NO REASON
+/atom/movable/lighting_mask/template
+	icon_state = null
+	blend_mode = BLEND_DEFAULT
+
+///Flickering lighting mask
 /atom/movable/lighting_mask/flicker
 	icon_state = "light_flicker"
 
@@ -131,7 +139,6 @@
 	is_directional = TRUE
 
 ///Rotating Light mask
-
 /atom/movable/lighting_mask/rotating
 	icon_state = "light_rotating-1"
 
@@ -139,20 +146,9 @@
 	. = ..()
 	icon_state = "light_rotating-[rand(1, 3)]"
 
-/*
-//Client light
-//It just works
-/atom/movable/lighting_mask/personal_light
-	var/mob/owner
-
-/atom/movable/lighting_mask/personal_light/proc/give_owner(mob/_owner)
-	owner = _owner
-	var/image/blank = image(loc = src)
-	blank.override = TRUE
-	remove_alt_appearance("nightvision")
-	add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/allbutone, "nightvision", blank, owner)
-*/
-
+///rotating light mask, but only pointing in one direction
+/atom/movable/lighting_mask/rotating_conical
+	icon_state = "light_conical_rotating"
 
 /atom/movable/lighting_mask/ex_act(severity, target)
 	return
@@ -161,3 +157,4 @@
 	return
 
 #undef LIGHTING_MASK_SPRITE_SIZE
+#undef LIGHTING_MASK_RADIUS

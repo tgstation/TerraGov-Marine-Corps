@@ -6,9 +6,10 @@ SUBSYSTEM_DEF(evacuation)
 	var/pod_cooldown
 	var/evac_time
 	var/evac_status = EVACUATION_STATUS_STANDING_BY
+	var/list/alarm_lights = list()
 
 	var/obj/machinery/self_destruct/console/dest_master
-	var/dest_rods[]
+	var/list/dest_rods
 	var/dest_cooldown
 	var/dest_index = 1
 	var/dest_status = NUKE_EXPLOSION_INACTIVE
@@ -21,7 +22,7 @@ SUBSYSTEM_DEF(evacuation)
 	if(!dest_master)
 		stack_trace("SSevacuation: Could not find dest_master.")
 		return FALSE
-	dest_rods = new
+	dest_rods = list()
 	for(var/obj/machinery/self_destruct/rod/I in dest_master.loc.loc)
 		dest_rods += I
 	if(!length(dest_rods))
@@ -128,6 +129,8 @@ SUBSYSTEM_DEF(evacuation)
 	dest_status = NUKE_EXPLOSION_ACTIVE
 	dest_master.toggle()
 	GLOB.marine_main_ship.set_security_level(SEC_LEVEL_DELTA)
+	for(var/obj/machinery/floor_warn_light/self_destruct/light AS in alarm_lights)
+		light.enable()
 	return TRUE
 
 
@@ -152,6 +155,8 @@ SUBSYSTEM_DEF(evacuation)
 	priority_announce("The emergency destruct system has been deactivated.", "Priority Alert", sound = 'sound/AI/selfdestruct_deactivated.ogg')
 	if(evac_status == EVACUATION_STATUS_STANDING_BY)
 		GLOB.marine_main_ship.set_security_level(SEC_LEVEL_RED, TRUE)
+	for(var/obj/machinery/floor_warn_light/self_destruct/light AS in alarm_lights)
+		light.disable()
 	return TRUE
 
 

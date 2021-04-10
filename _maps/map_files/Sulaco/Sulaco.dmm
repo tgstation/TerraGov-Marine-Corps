@@ -12948,6 +12948,13 @@
 	dir = 4
 	},
 /area/space)
+"heL" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/machinery/floor_warn_light/self_destruct,
+/turf/open/floor/mainship/tcomms,
+/area/mainship/command/self_destruct)
 "hff" = (
 /obj/effect/decal/cleanable/cobweb{
 	dir = 1
@@ -13801,6 +13808,10 @@
 	},
 /turf/open/floor/plating,
 /area/sulaco/hub/bottom)
+"jgt" = (
+/obj/machinery/floor_warn_light/self_destruct,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "jhf" = (
 /obj/structure/table/mainship,
 /obj/item/reagent_containers/glass/beaker/biomass,
@@ -14847,6 +14858,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 6
 	},
+/obj/machinery/floor_warn_light/self_destruct,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
 "lHY" = (
@@ -19770,6 +19782,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 9
 	},
+/obj/machinery/floor_warn_light/self_destruct,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
 "wTC" = (
@@ -20108,6 +20121,10 @@
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/sulaco/briefing)
+"xSF" = (
+/obj/machinery/floor_warn_light/self_destruct,
+/turf/open/floor/prison/bright_clean,
+/area/mainship/command/self_destruct)
 "xTi" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 4
@@ -58011,11 +58028,11 @@ aRQ
 aPF
 sKM
 aPF
-aPF
+jgt
 bbh
 aRQ
 gHU
-aPF
+jgt
 aPF
 aPF
 bFa
@@ -58527,7 +58544,7 @@ aWh
 aWh
 aZw
 aKP
-aWm
+xSF
 aWm
 aZw
 aWh
@@ -62382,7 +62399,7 @@ feu
 cEU
 vaH
 hhn
-mFc
+heL
 ibr
 vaH
 nLo

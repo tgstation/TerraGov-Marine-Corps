@@ -287,7 +287,7 @@
 		if(!isturf(loc))
 			light.find_containing_atom()
 	for(var/datum/static_light_source/L AS in static_light_sources) // Cycle through the light sources on this atom and tell them to update.
-		L.source_atom.static_update_light() //tivi todo
+		L.source_atom.static_update_light()
 	return TRUE
 
 

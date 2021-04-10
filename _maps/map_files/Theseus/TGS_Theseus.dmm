@@ -5553,6 +5553,7 @@
 /area/mainship/hallways/stern_hallway)
 "aqy" = (
 /obj/structure/cable,
+/obj/machinery/floor_warn_light/self_destruct,
 /turf/open/floor/mainship/red/corner{
 	dir = 8
 	},
@@ -21433,6 +21434,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
+"bmC" = (
+/obj/machinery/floor_warn_light/self_destruct,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/stern_hallway)
 "bmD" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -34458,6 +34463,10 @@
 	dir = 1
 	},
 /area/mainship/medical/medical_science)
+"cui" = (
+/obj/machinery/floor_warn_light/self_destruct,
+/turf/open/floor/mainship/tcomms,
+/area/mainship/command/self_destruct)
 "cvw" = (
 /obj/machinery/holopad,
 /turf/open/floor/mainship/sterile/dark,
@@ -36808,6 +36817,10 @@
 /obj/machinery/light,
 /turf/open/floor/mainship/blue/corner,
 /area/mainship/hallways/aft_hallway)
+"qBO" = (
+/obj/machinery/floor_warn_light/self_destruct,
+/turf/open/floor/mainship,
+/area/mainship/command/self_destruct)
 "qCc" = (
 /obj/structure/bed/chair/comfy/black{
 	dir = 4
@@ -37205,6 +37218,11 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/shipboard/port_point_defense)
+"tzl" = (
+/obj/structure/cable,
+/obj/machinery/floor_warn_light/self_destruct,
+/turf/open/floor/mainship,
+/area/mainship/command/self_destruct)
 "tEQ" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/green{
@@ -37758,6 +37776,12 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
+"wTJ" = (
+/obj/machinery/floor_warn_light/self_destruct,
+/turf/open/floor/mainship/red{
+	dir = 1
+	},
+/area/mainship/hallways/stern_hallway)
 "wVS" = (
 /obj/structure/bed/chair/wood/wings{
 	dir = 4
@@ -92289,7 +92313,7 @@ lfi
 aFo
 aoM
 aIr
-aoS
+wTJ
 aLc
 aai
 aag
@@ -93565,12 +93589,12 @@ aoS
 amo
 amo
 amo
-amo
+bmC
 amo
 azf
 aMj
 aCM
-amo
+bmC
 amo
 amo
 amo
@@ -94596,7 +94620,7 @@ aoY
 aoY
 asv
 afp
-aAY
+qBO
 aCN
 asv
 aoY
@@ -96395,7 +96419,7 @@ aui
 avX
 awa
 awa
-auo
+tzl
 awa
 awa
 avX
@@ -98451,7 +98475,7 @@ aAY
 nfT
 axr
 awa
-awa
+cui
 awa
 axr
 nUy

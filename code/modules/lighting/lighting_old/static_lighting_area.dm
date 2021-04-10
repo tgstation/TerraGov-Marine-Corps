@@ -2,9 +2,9 @@
 	///Whether this area allows static lighting and thus loads the lighting objects
 	var/static_lighting = TRUE
 
-//Non legacy lighting areas.
-//Any lighting area that wont support static legacy lights.
-//These areas will not have corners generated.
+//Non static lighting areas.
+//Any lighting area that wont support static lights.
+//These areas will NOT have corners generated.
 
 /area/space
 	static_lighting = FALSE

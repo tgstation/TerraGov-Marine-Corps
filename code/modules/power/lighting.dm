@@ -135,17 +135,17 @@
 	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
 	light_system = HYBRID_LIGHT//STATIC_LIGHT
 	var/brightness = 1			// power usage and light range when on
-	var/bulb_power = 1			// basically the light_power of the emitted light source
+	var/bulb_power = 4			// basically the light_power of the emitted light source
 	var/bulb_colour = COLOR_WHITE
 
 	var/status = LIGHT_OK		// LIGHT_OK, _EMPTY, _BURNED or _BROKEN
 	var/flickering = FALSE
 	var/light_type = /obj/item/light_bulb/tube		// the type of light item
 	var/fitting = "tube"
-	var/switchcount = 0			// count of number of times switched on/off
-								// this is used to calc the probability the light burns out
-
-	var/rigged = FALSE				// true if rigged to explode
+	///count of number of times switched on/off. this is used to calc the probability the light burns out
+	var/switchcount = 0
+	/// true if rigged to explode
+	var/rigged = FALSE
 
 // the smaller bulb light fixture
 
@@ -154,7 +154,7 @@
 	base_state = "bulb"
 	fitting = "bulb"
 	brightness = 4
-	light_power = 5
+	light_power = 3
 	desc = "A small lighting fixture."
 	light_type = /obj/item/light_bulb/bulb
 
@@ -164,7 +164,7 @@
 	light_type = /obj/item/light_bulb/tube/large
 	light_power = 9
 	light_range = 12
-	brightness = 12
+	brightness = 6
 
 /obj/machinery/light/built/Initialize()
 	. = ..()
@@ -183,11 +183,11 @@
 
 	switch(fitting)
 		if("tube")
-			brightness = 8
+			brightness = 5
 			if(prob(2))
 				broken(TRUE)
 		if("bulb")
-			brightness = 4
+			brightness = 3
 			if(prob(5))
 				broken(TRUE)
 
@@ -225,7 +225,7 @@
 			icon_state = "[base_state]-broken"
 
 
-// update the icon_state and luminosity of the light depending on its state
+///update the icon_state and luminosity of the light depending on its state
 /obj/machinery/light/proc/update(trigger = TRUE)
 	if(status == LIGHT_OK)
 		var/BR = brightness
@@ -693,3 +693,38 @@
 /obj/machinery/landinglight/ds2/delaythree/turn_on()
 	icon_state = "landingstripe3"
 	set_light(2)
+
+/obj/machinery/floor_warn_light
+	name = "alarm light"
+	desc = "If this is on you should probably be running!"
+	icon = 'icons/obj/lighting.dmi'
+	icon_state = "rotating_alarm"
+	light_system = HYBRID_LIGHT
+	light_color = LIGHT_COLOR_RED
+	light_mask_type = /atom/movable/lighting_mask/rotating_conical
+	light_power = 6
+	light_range = 4
+
+/obj/machinery/floor_warn_light/self_destruct
+	name = "self destruct alarm light"
+	icon_state = "rotating_alarm_off"
+	light_power = 0
+	light_range = 0
+
+/obj/machinery/floor_warn_light/self_destruct/Initialize()
+	. = ..()
+	SSevacuation.alarm_lights += src
+
+/obj/machinery/floor_warn_light/self_destruct/Destroy()
+	. = ..()
+	SSevacuation.alarm_lights -= src
+
+///Enables the alarm lights and makes them start flashing
+/obj/machinery/floor_warn_light/self_destruct/proc/enable()
+	icon_state = "rotating_alarm"
+	set_light(4,6)
+
+///Disables the alarm lights and makes them stop flashing
+/obj/machinery/floor_warn_light/self_destruct/proc/disable()
+	icon_state = initial(icon_state)
+	set_light(0,0)

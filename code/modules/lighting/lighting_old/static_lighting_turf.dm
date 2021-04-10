@@ -1,7 +1,7 @@
 /turf
 	var/tmp/lighting_corners_initialised = FALSE
 
-	var/tmp/list/datum/static_light_source/static_affecting_lights       // List of light sources affecting this turf. //tivi todo unneeded?
+	var/tmp/list/datum/static_light_source/static_affecting_lights       // List of light sources affecting this turf.
 	var/tmp/list/datum/static_lighting_corner/static_lighting_corners
 
 /turf/proc/static_lighting_clear_overlay()
@@ -9,14 +9,13 @@
 		qdel(static_lighting_object, TRUE)
 
 	var/datum/static_lighting_corner/C
-	var/thing
-	for (thing in static_lighting_corners)
+	for (var/thing in static_lighting_corners)
 		if(!thing)
 			continue
 		C = thing
 		C.update_active()
 
-// Builds a lighting object for us, but only if our area is dynamic.
+/// Builds a lighting object for us, but only if our area is dynamic.
 /turf/proc/static_lighting_build_overlay(area/A = loc)
 	if(static_lighting_object)
 		qdel(static_lighting_object, force=TRUE) //Shitty fix for lighting objects persisting after death

@@ -822,6 +822,12 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
+"cx" = (
+/obj/machinery/floor_warn_light/self_destruct,
+/turf/open/floor/mainship/black{
+	dir = 9
+	},
+/area/mainship/command/self_destruct)
 "cy" = (
 /obj/machinery/bodyscanner{
 	dir = 8
@@ -4527,14 +4533,6 @@
 /obj/structure/sign/evac,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_hallway)
-"oZ" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/turf/open/floor/mainship/black{
-	dir = 8
-	},
-/area/mainship/command/self_destruct)
 "pb" = (
 /obj/structure/cable,
 /obj/machinery/light{
@@ -14787,6 +14785,10 @@
 /obj/effect/landmark/start/job/squadcorpsman,
 /turf/open/floor/mainship,
 /area/mainship/living/cryo_cells)
+"Vh" = (
+/obj/machinery/floor_warn_light/self_destruct,
+/turf/open/floor/mainship/black/full,
+/area/mainship/command/self_destruct)
 "Vj" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -15132,6 +15134,12 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
+"WE" = (
+/obj/machinery/floor_warn_light/self_destruct,
+/turf/open/floor/mainship/black{
+	dir = 8
+	},
+/area/mainship/command/self_destruct)
 "WH" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -49996,11 +50004,11 @@ uJ
 DE
 uJ
 bk
-eE
+cx
 Xg
 Xg
-oZ
 Xg
+WE
 gF
 bk
 Qe
@@ -51798,7 +51806,7 @@ oM
 eZ
 fG
 wo
-dh
+Vh
 eZ
 fG
 wo
@@ -52826,7 +52834,7 @@ bk
 TL
 Sf
 Sf
-dg
+Sf
 Sf
 Sf
 Wv
@@ -53340,7 +53348,7 @@ bk
 eZ
 fG
 wo
-dh
+Vh
 eZ
 fG
 wo
@@ -54882,7 +54890,7 @@ bk
 eZ
 fG
 wo
-dh
+Vh
 eZ
 fG
 wo

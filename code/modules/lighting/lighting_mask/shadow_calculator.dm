@@ -3,8 +3,10 @@
 //1024 = 32,16,8
 #define LIGHTING_SHADOW_TEX_SIZE 8
 
+///Eyeball number for radius based offsets do not touch
 #define RADIUS_BASED_OFFSET 3.5
 
+///Inserts a coord list into a grouped list
 #define COORD_LIST_ADD(listtoadd, x, y) \
 	if(islist(listtoadd["[x]"])) { \
 		var/list/_L = listtoadd["[x]"]; \
@@ -14,6 +16,7 @@
 	}
 
 #ifdef SHADOW_DEBUG
+///Color coded atom debug, note will break when theres planetside lgihting
 #define DEBUG_HIGHLIGHT(x, y, colour) \
 	do { \
 		var/turf/T = locate(x, y, 3); \
@@ -21,7 +24,8 @@
 			T.color = colour; \
 		}\
 	} while (FALSE)
-//For debugging use when we want to know if a turf is being affected multiple
+
+//For debugging use when we want to know if a turf is being affected multiple times
 //#define DEBUG_HIGHLIGHT(x, y, colour) do{var/turf/T=locate(x,y,2);if(T){switch(T.color){if("#ff0000"){T.color = "#00ff00"}if("#00ff00"){T.color="#0000ff"}else{T.color="#ff0000"}}}}while(0)
 #define DO_SOMETHING_IF_DEBUGGING_SHADOWS(something) something
 #else
@@ -30,7 +34,9 @@
 #endif
 
 /atom/movable/lighting_mask
+	///Turfs that are being affected by this mask, this is for the sake of luminosity
 	var/list/turf/affecting_turfs
+	///list of mutable appearance shadows
 	var/list/mutable_appearance/shadows
 	var/times_calculated = 0
 
@@ -50,7 +56,7 @@
 			if(!LAZYLEN(thing.hybrid_lights_affecting) && !LAZYLEN(thing.static_affecting_lights) && !A.base_lighting_alpha)
 				thing.luminosity = 0
 		affecting_turfs = null
-	//Cut the shadows. Since they are overlays they will be deleted when cut from overlays probably.
+	//Cut the shadows. Since they are overlays they will be deleted when cut from overlays.
 	LAZYCLEARLIST(shadows)
 	return ..()
 
@@ -62,9 +68,11 @@
 	LAZYREMOVE(affecting_turfs, T)
 	LAZYREMOVE(T.hybrid_lights_affecting, src)
 
-//Returns a list of matrices corresponding to the matrices that should be applied to triangles of
-//coordinates (0,0),(1,0),(0,1) to create a triangcalculate_shadows_matricesle that respresents the shadows
-//takes in the old turf to smoothly animate shadow movement
+/**
+ * Returns a list of matrices corresponding to the matrices that should be applied to triangles of
+ * coordinates (0,0),(1,0),(0,1) to create a triangcalculate_shadows_matricesle that respresents the shadows
+ * takes in the old turf to smoothly animate shadow movement
+ */
 /atom/movable/lighting_mask/proc/calculate_lighting_shadows()
 	//Check to make sure lighting is actually started
 	//If not count the amount of duplicate requests created.
@@ -133,7 +141,7 @@
 		if(!is_on_closed_turf)
 			if(thing == our_turf)
 				continue
-		if(thing.opacity)
+		if(thing.directional_opacity)
 			//At this point we no longer care about
 			//the atom itself, only the position values
 			COORD_LIST_ADD(opaque_atoms_in_view, thing.x, thing.y)
@@ -185,12 +193,12 @@
 		DO_SOMETHING_IF_DEBUGGING_SHADOWS(temp_timer = TICK_USAGE)
 
 		for(var/triangle in triangles)
-			var/matrix/M = triangle_to_matrix(triangle)
+			var/matrix/triangle_matrix = triangle_to_matrix(triangle)
 
 			DO_SOMETHING_IF_DEBUGGING_SHADOWS(triangle_to_matrix_time += TICK_USAGE_TO_MS(temp_timer))
 			DO_SOMETHING_IF_DEBUGGING_SHADOWS(temp_timer = TICK_USAGE)
 
-			M /= transform
+			triangle_matrix /= transform
 
 			DO_SOMETHING_IF_DEBUGGING_SHADOWS(matrix_division_time += TICK_USAGE_TO_MS(temp_timer))
 			DO_SOMETHING_IF_DEBUGGING_SHADOWS(temp_timer = TICK_USAGE)
@@ -202,10 +210,10 @@
 
 			shadow.icon = LIGHTING_ICON_BIG
 			shadow.icon_state = "triangle"
-			shadow.layer = layer + 1
+			//shadow.layer = layer + 1
 			shadow.color = "#000"
-			shadow.transform = M
-			shadow.alpha = 255
+			shadow.transform = triangle_matrix
+			//shadow.alpha = 255
 
 			DO_SOMETHING_IF_DEBUGGING_SHADOWS(MA_vars_time += TICK_USAGE_TO_MS(temp_timer))
 			DO_SOMETHING_IF_DEBUGGING_SHADOWS(temp_timer = TICK_USAGE)
@@ -216,18 +224,15 @@
 			DO_SOMETHING_IF_DEBUGGING_SHADOWS(overlays_add_time += TICK_USAGE_TO_MS(temp_timer))
 			DO_SOMETHING_IF_DEBUGGING_SHADOWS(temp_timer = TICK_USAGE)
 
+	//Put the overlays onto a dud object and copy the appearance to merge them
+	//Doesnt impact maptick, AND means much faster render times
 	DO_SOMETHING_IF_DEBUGGING_SHADOWS(var/mergetime = TICK_USAGE)
-	if(GLOB.toggle)
-		var/static/atom/movable/lighting_mask/dud = new
-		dud.icon_state = null
-		dud.overlays += overlays_to_add
-		var/mutable_appearance/MA = new()
-		MA.appearance = dud.appearance
-		MA.layer = layer + 1
-		overlays += MA
-		dud.overlays.Cut()
-	else
-		overlays += overlays_to_add
+	var/static/atom/movable/lighting_mask/template/dud = new
+	dud.overlays += overlays_to_add
+	var/static/mutable_appearance/overlay_merger = new()
+	overlay_merger.appearance = dud.appearance
+	overlays += overlay_merger
+	dud.overlays.Cut()
 	DO_SOMETHING_IF_DEBUGGING_SHADOWS(var/mergetimereal = TICK_USAGE_TO_MS(mergetime))
 
 
@@ -243,11 +248,9 @@
 	DO_SOMETHING_IF_DEBUGGING_SHADOWS(log_game("merge_overlays_time: [mergetimereal]ms"))
 	DO_SOMETHING_IF_DEBUGGING_SHADOWS(log_game("[TICK_USAGE_TO_MS(timer)]ms to process total."))
 
-GLOBAL_VAR_INIT(toggle, TRUE)
-
-//Converts a triangle into a matrix that can be applied to a standardized triangle
-//to make it represent the points.
-//Note: Ignores translation because
+///Converts a triangle into a matrix that can be applied to a standardized triangle
+///to make it represent the points.
+///Note: Ignores translation because
 /atom/movable/lighting_mask/proc/triangle_to_matrix(list/triangle)
 	//We need the world position raw, if we use the calculated position then the pixel values will cancel.
 	var/turf/our_turf = get_turf(attached_atom)
@@ -296,12 +299,14 @@ GLOBAL_VAR_INIT(toggle, TRUE)
 	//log_game("[M.c], [M.f], 1")
 	return M
 
-//Basically takes the 2-4 corners, extends them and then generates triangle coordinates representing shadows
-//Input: list(list(list(x, y), list(x, y)))
-// Layer 1: Lines
-// Layer 2: Vertex
-// Layer 3: X/Y value
-//OUTPUT: The same thing but with 3 lists embedded rather than 2 because they are triangles not lines now.
+/**
+ * Basically takes the 2-4 corners, extends them and then generates triangle coordinates representing shadows
+ * Input: list(list(list(x, y), list(x, y)))
+ * Layer 1: Lines
+ * Layer 2: Vertex
+ * Layer 3: X/Y value
+ * OUTPUT: The same thing but with 3 lists embedded rather than 2 because they are triangles not lines now.
+ */
 /atom/movable/lighting_mask/proc/calculate_triangle_vertices(list/cornergroup)
 	var/shadow_radius = max(radius + 1, 3)
 	//Get the origin poin's
@@ -310,7 +315,7 @@ GLOBAL_VAR_INIT(toggle, TRUE)
 	//The output
 	. = list()
 	//Every line has 2 triangles innit
-	for(var/list/line in cornergroup)
+	for(var/list/line AS in cornergroup)
 		//Get the corner vertices
 		var/vertex1 = line[1]
 		var/vertex2 = line[2]
@@ -481,11 +486,13 @@ GLOBAL_VAR_INIT(toggle, TRUE)
 				lines_to_add += list(list(current_left_vertex, current_right_vertex))
 		. += lines_to_add
 
-//Converts the corners into the 3 (or 2) valid points
-//For example if a wall is top right of the source, the bottom left wall corner
-//can be removed otherwise the wall itself will be in the shadow.
-//Input: list(list(x1, y1), list(x2, y2))
-//Output: list(list(list(x, y), list(x, y))) <-- 2 coordinates that form a line
+/**
+ * Converts the corners into the 3 (or 2) valid points
+ * For example if a wall is top right of the source, the bottom left wall corner
+ * can be removed otherwise the wall itself will be in the shadow.
+ * Input: list(list(x1, y1), list(x2, y2))
+ * Output: list(list(list(x, y), list(x, y))) <-- 2 coordinates that form a line
+ */
 /atom/movable/lighting_mask/proc/get_corners_from_coords(list/coordgroup)
 	//Get the raw numbers
 	var/xlow = coordgroup[1][1]
@@ -607,10 +614,10 @@ GLOBAL_VAR_INIT(toggle, TRUE)
 			list(highest + 0.5, first[2] + 0.5)
 		)
 
-//Groups things into vertical and horizontal lines.
-//Input: All atoms ungrouped list(atom1, atom2, atom3)
-//Output: List(List(Group), list(group2), ... , list(groupN))
-//Output: List(List(atom1, atom2), list(atom3, atom4...), ... , list(atom))
+///Groups things into vertical and horizontal lines.
+///Input: All atoms ungrouped list(atom1, atom2, atom3)
+///Output: List(List(Group), list(group2), ... , list(groupN))
+///Output: List(List(atom1, atom2), list(atom3, atom4...), ... , list(atom))
 /atom/movable/lighting_mask/proc/group_atoms(list/ungrouped_things)
 	. = list()
 	//Ungrouped things comes in as
@@ -665,6 +672,7 @@ GLOBAL_VAR_INIT(toggle, TRUE)
 			pointer = next
 		. += list(group)
 
+///gets a line from a x and y, to the offset x and y of length radius
 /proc/extend_line_to_radius(delta_x, delta_y, radius, offset_x, offset_y)
 	if(abs(delta_x) < abs(delta_y))
 		//top or bottom
