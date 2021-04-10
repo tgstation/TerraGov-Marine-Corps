@@ -41,6 +41,7 @@
 		/obj/item/cell/lasgun/lasrifle = 20,
 		/obj/item/weapon/gun/shotgun/pump/t35 = 10,
 		/obj/item/weapon/gun/shotgun/combat/standardmarine = 10,
+		/obj/item/weapon/gun/shotgun/combat = 5,
 		/obj/item/ammo_magazine/shotgun = 10,
 		/obj/item/ammo_magazine/shotgun/buckshot = 10,
 		/obj/item/ammo_magazine/shotgun/flechette = 10,
