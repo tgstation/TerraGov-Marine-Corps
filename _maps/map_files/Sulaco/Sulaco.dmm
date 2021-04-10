@@ -16531,17 +16531,6 @@
 	},
 /turf/open/floor/mainship/ai,
 /area/sulaco/command/ai)
-"plC" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/turf/open/floor/prison/red{
-	dir = 4
-	},
-/area/sulaco/marine/alpha)
 "plO" = (
 /obj/machinery/light{
 	dir = 8
@@ -42359,7 +42348,7 @@ aYN
 aYV
 aKd
 aKM
-plC
+aKM
 aLG
 nrh
 aNd

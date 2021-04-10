@@ -573,8 +573,12 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 ///Update the target if you draged your mouse
 /obj/item/weapon/gun/proc/change_target(datum/source, atom/src_object, atom/over_object, turf/src_location, turf/over_location, src_control, over_control, params)
 	SIGNAL_HANDLER
-	if(!istype(over_object, /obj/screen))
-		set_target(over_object)
+	if(istype(over_object, /obj/screen))
+		if(!istype(over_object, /obj/screen/click_catcher))
+			return
+		var/list/modifiers = params2list(params)
+		over_object = params2turf(modifiers["screen-loc"], get_turf(gun_user), gun_user.client)
+	set_target(over_object)
 	gun_user.face_atom(target)
 
 /*
