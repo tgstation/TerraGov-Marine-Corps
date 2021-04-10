@@ -157,7 +157,7 @@
 
 	effect_str = null
 
-/datum/static_light_source/proc/recalc_corner(var/datum/static_lighting_corner/C)
+/datum/static_light_source/proc/recalc_corner(datum/static_lighting_corner/C)
 	LAZYINITLIST(effect_str)
 	if (effect_str[C]) // Already have one.
 		REMOVE_CORNER(C)

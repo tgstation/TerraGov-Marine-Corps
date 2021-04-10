@@ -41,7 +41,7 @@
 			C.active = TRUE
 
 // Used to get a scaled lumcount.
-/turf/proc/static_get_lumcount(var/minlum = 0, var/maxlum = 1)
+/turf/proc/static_get_lumcount(minlum = 0, maxlum = 1)
 	if (!static_lighting_object)
 		return 0
 
@@ -70,7 +70,7 @@
 
 	return !static_lighting_object.luminosity
 
-/turf/proc/change_area(var/area/old_area, var/area/new_area)
+/turf/proc/change_area(area/old_area, area/new_area)
 	if(SSlighting.initialized)
 		if (new_area.static_lighting != old_area.static_lighting)
 			if (new_area.static_lighting)

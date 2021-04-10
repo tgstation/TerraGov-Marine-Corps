@@ -85,7 +85,7 @@ GLOBAL_LIST_INIT(LIGHTING_CORNER_DIAGONAL, list(NORTHEAST, SOUTHEAST, SOUTHWEST,
 			active = TRUE
 
 // God that was a mess, now to do the rest of the corner code! Hooray!
-/datum/static_lighting_corner/proc/update_lumcount(var/delta_r, var/delta_g, var/delta_b)
+/datum/static_lighting_corner/proc/update_lumcount(delta_r, delta_g, delta_b)
 
 	if(!(delta_r || delta_g || delta_b)) // 0 is falsey ok
 		return
@@ -132,7 +132,7 @@ GLOBAL_LIST_INIT(LIGHTING_CORNER_DIAGONAL, list(NORTHEAST, SOUTHEAST, SOUTHWEST,
 	return
 
 
-/datum/static_lighting_corner/Destroy(var/force)
+/datum/static_lighting_corner/Destroy(force)
 	if (!force)
 		return QDEL_HINT_LETMELIVE
 
