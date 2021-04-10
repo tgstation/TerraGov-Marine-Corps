@@ -1,4 +1,6 @@
 #define FUEL_USE 5
+#define FUEL_INDICATOR_FULL 80
+#define FUEL_INDICATOR_HALF_FULL 50
 #define JETPACK_COOLDOWN_TIME 10 SECONDS
 
 /obj/item/jetpack_marine
@@ -9,11 +11,11 @@
 	w_class = WEIGHT_CLASS_BULKY
 	flags_equip_slot = ITEM_SLOT_BACK
 	///maximum amount of fuel in the jetpack
-	var/fuel_max = 60
+	var/fuel_max = 100
 	///current amount of fuel in the jetpack
-	var/fuel_left = 60
+	var/fuel_left = 100
 	///threshold to change the jetpack fuel indicator
-	var/fuel_indicator = 40
+	var/fuel_indicator = FUEL_INDICATOR_FULL
 	///How quick you will fly (warning, it rounds up to the nearest integer)
 	var/speed = 1
 	///How long the jetpack allows you to fly over things
@@ -129,9 +131,9 @@
 /obj/item/jetpack_marine/update_overlays()
 	. = ..()
 	switch(fuel_indicator)
-		if(40)
+		if(FUEL_INDICATOR_FULL)
 			. += image('icons/obj/items/jetpack.dmi', src, "+jetpackfull")
-		if(20)
+		if(FUEL_INDICATOR_HALF_FULL)
 			. += image('icons/obj/items/jetpack.dmi', src, "+jetpackhalffull")
 		if(FUEL_USE)
 			. += image('icons/obj/items/jetpack.dmi', src, "+jetpackalmostempty")
@@ -146,8 +148,11 @@
 /obj/item/jetpack_marine/proc/change_fuel_indicator()
 	if(fuel_left-fuel_indicator > 0)
 		return
-	if (fuel_left >= 20)
-		fuel_indicator = 20
+	if (fuel_left >= FUEL_INDICATOR_FULL)
+		fuel_indicator = FUEL_INDICATOR_FULL
+		return
+	if (fuel_left >= FUEL_INDICATOR_HALF_FULL)
+		fuel_indicator = FUEL_INDICATOR_HALF_FULL
 		return
 	if (fuel_left >= FUEL_USE)
 		fuel_indicator = FUEL_USE
