@@ -25,6 +25,8 @@
 	var/firing = 0 //Used for deconstruction and aiming sanity
 	var/fixed = 0 //If set to 1, can't unanchor and move the mortar, used for map spawns and WO
 
+	var/list/linked_binocs = list(/obj/item/binoculars/tactical)
+
 /obj/structure/mortar/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
@@ -203,6 +205,14 @@
 		if(istype(binocs,/obj/item/binoculars/tactical/range))
 			to_chat(user, "<span class='notice'>You cannot link the [I] to the [src]</span>")
 			return
+		for(var/obj/item/binoculars/tactical/binoc2 in linked_binocs)
+			if(binoc2 == binocs)
+				to_chat(user, "<span class='notice'>You unlink the [binocs] from [src].</span>")
+				binocs.linked_mortar = null
+				linked_binocs.Remove(binoc2)
+				return
+
+		linked_binocs.Add(binocs)
 		binocs.linked_mortar = src
 		to_chat(user, "<span class='notice'>You link the mortar to the [I] allowing for remote targeting</span>")
 		playsound(src, 'sound/effects/binoctarget.ogg', 35)
@@ -213,6 +223,12 @@
 	say("Remote targeting set by [user]. COORDINATES: X:[coords["targ_x"]] Y:[coords["targ_y"]] OFFSET: X:[coords["dial_x"]] Y:[coords["dial_y"]]")
 	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 
+/obj/structure/mortar/obj_destruction(damage_amount, damage_type, damage_flag)
+	for(var/obj/item/binoculars/tactical/binoc in linked_binocs)
+		binoc.linked_mortar = null
+		if(istype(binoc.loc, /mob))
+			to_chat(binoc.loc, "<span class='notice'>[binoc]\'s linked mortar has been destroyed.</span>")
+	. = ..()
 
 /obj/structure/mortar/proc/detonate_shell(turf/target, obj/item/mortal_shell/mortar_shell)
 	target.ceiling_debris_check(2)
