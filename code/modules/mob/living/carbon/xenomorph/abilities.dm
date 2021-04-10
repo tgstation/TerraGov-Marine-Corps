@@ -1031,14 +1031,14 @@
 	
 	to_chat(owner, "<span class='notice'>We build a new silo for [final_psych_cost] psy points.</span>")
 	SSpoints.xeno_points_by_hive[X.hivenumber] -= final_psych_cost
-	log_game("[owner] has built a silo in [AREACOORD_NO_Z(A)], spending [final_psych_cost] psy points in the process")
+	log_game("[owner] has built a silo in [AREACOORD(A)], spending [final_psych_cost] psy points in the process")
 	succeed_activate()
 	if(build_small_silo)
 		new /obj/structure/resin/silo/small_silo (get_step(A, SOUTHWEST))
-		xeno_message("[X.name] has built a small silo at [AREACOORD_NO_Z(A)]!", "xenoannounce", 5, X.hivenumber)
+		xeno_message("[X.name] has built a small silo at [get_area(A)]!", "xenoannounce", 5, X.hivenumber)
 		return
 	new /obj/structure/resin/silo (get_step(A, SOUTHWEST))
-	xeno_message("[X.name] has built a silo at [AREACOORD_NO_Z(A)]!", "xenoannounce", 5, X.hivenumber)
+	xeno_message("[X.name] has built a silo at [get_area(A)]!", "xenoannounce", 5, X.hivenumber)
 
 
 ////////////////////
@@ -1109,8 +1109,8 @@
 	new /obj/structure/resin/xeno_turret(get_turf(A), X.hivenumber)
 
 	SSpoints.xeno_points_by_hive[X.hivenumber] -= psych_cost
-	log_game("[owner] built a turret in [AREACOORD_NO_Z(A)], spending [psych_cost] psy points in the process")
-	xeno_message("[X.name] has built a new turret at [AREACOORD_NO_Z(A)]!", "xenoannounce", 5, X.hivenumber)
+	log_game("[owner] built a turret in [AREACOORD(A)], spending [psych_cost] psy points in the process")
+	xeno_message("[X.name] has built a new turret at [get_area(A)]!", "xenoannounce", 5, X.hivenumber)
 
 	succeed_activate()
 
