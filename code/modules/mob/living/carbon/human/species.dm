@@ -165,7 +165,13 @@
 	if(H.zone_selected == "head")
 		H.visible_message("<span class='notice'>[H] pats [target] on the head.</span>", \
 					"<span class='notice'>You pat [target] on the head.</span>", null, 4)
-	else
+	if(H.zone_selected == "l_hand")
+		H.visible_message("<span class='notice'>[H] holds [target] 's left hand.</span>", \
+					"<span class='notice'>You hold [target]'s left hand.</span>", null, 4)
+	if (H.zone_selected == "r_hand")
+		H.visible_message("<span class='notice'>[H] holds [target] 's right hand.</span>", \
+					"<span class='notice'>You hold [target]'s right hand.</span>", null, 4)
+	if(H.zone_selected == "chest")
 		H.visible_message("<span class='notice'>[H] hugs [target] to make [target.p_them()] feel better!</span>", \
 					"<span class='notice'>You hug [target] to make [target.p_them()] feel better!</span>", null, 4)
 
