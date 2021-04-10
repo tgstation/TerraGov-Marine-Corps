@@ -1366,9 +1366,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 40
 	penetration = 5
 	sundering = 0
-
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_SUNDERING|AMMO_EXPLOSIVE
-
 	bullet_color = COLOR_VIBRANT_LIME
 
 	///Fire burn time
