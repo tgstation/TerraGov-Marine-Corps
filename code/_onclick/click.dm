@@ -560,6 +560,9 @@ if(selected_ability.target_flags & flagname){\
 			T.Click(location, control, list2params(modifiers))
 	. = TRUE
 
+/obj/screen/click_catcher/MouseMove(location, control, params)//This allow to catch mouse drag on click catcher, aka black tiles
+	return
+
 
 /* MouseWheelOn */
 /mob/proc/MouseWheelOn(atom/A, delta_x, delta_y, params)

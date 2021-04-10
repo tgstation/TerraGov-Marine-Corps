@@ -1,4 +1,0 @@
-author: "XSlayer300"
-delete-after: True
-changes: 
-  - qol: "Metal/Plasteel sheets and barbed wire now have the NOBLUDGEON flag, which prevents accidentally damaging the cades while hitting them on harm intent. This also means you cannot attack anyone with it anymore, not like it really matters..."
