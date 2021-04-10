@@ -333,10 +333,6 @@
 		return FALSE
 	if(latejoin && !job.special_check_latejoin(client))
 		return FALSE
-	if(isxenosjob(job))
-		var/datum/hive_status/normal/HN = GLOB.hive_datums[XENO_HIVE_NORMAL]
-		if(LAZYLEN(HN.candidate))//Players waiting in alien candidate queue have priority
-			return FALSE
 	return TRUE
 
 /mob/new_player/proc/try_to_observe()
