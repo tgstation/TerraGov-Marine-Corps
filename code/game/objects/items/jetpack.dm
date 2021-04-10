@@ -12,9 +12,9 @@
 	flags_equip_slot = ITEM_SLOT_BACK
 	obj_flags = CAN_BE_HIT|IGNORE_INTENT
 	///maximum amount of fuel in the jetpack
-	var/fuel_max = 50
+	var/fuel_max = 75
 	///current amount of fuel in the jetpack
-	var/fuel_left = 50
+	var/fuel_left = 75
 	///threshold to change the jetpack fuel indicator
 	var/fuel_indicator = FUEL_INDICATOR_FULL
 	///How quick you will fly (warning, it rounds up to the nearest integer)
