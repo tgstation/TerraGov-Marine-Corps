@@ -72,4 +72,4 @@
 #define TESTING
 #endif
 
-#define SHADOW_DEBUG
+//#define SHADOW_DEBUG
