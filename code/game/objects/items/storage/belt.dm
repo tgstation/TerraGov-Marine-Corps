@@ -546,7 +546,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	storage_slots = 7
 	max_storage_space = 15
-	max_w_class = 3
+	max_w_class = 4
 	var/holds_guns_now = 0 //Generic variable to determine if the holster already holds a gun.
 	var/holds_guns_max = 1 //How many guns can it hold? I think this can be any thing from 1 to whatever. Should calculate properly.
 	var/obj/item/weapon/gun/current_gun //The gun it holds, used for referencing later so we can update the icon.
@@ -632,7 +632,7 @@
 	var/obj/item/weapon/gun/pistol/gun = I
 	if(gun.current_mag)
 		return ..()
-	for(var/obj/item/ammo_magazine/mag in contents) 
+	for(var/obj/item/ammo_magazine/mag in contents)
 		if(!istype(gun, mag.gun_type))
 			continue
 		gun.reload(user, mag)

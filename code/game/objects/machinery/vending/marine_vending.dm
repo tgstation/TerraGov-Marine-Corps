@@ -923,7 +923,7 @@
 		/obj/item/clothing/tie/storage/brown_vest = 10,
 		/obj/item/clothing/tie/storage/white_vest/medic = 10,
 		/obj/item/clothing/tie/storage/webbing = 10,
-		/obj/item/clothing/tie/holster = 10,
+		/obj/item/clothing/tie/storage/holster = 10,
 		/obj/item/flashlight/combat = 10,
 		/obj/item/clothing/under/whites = 50,
 		/obj/item/clothing/head/white_dress = 50,

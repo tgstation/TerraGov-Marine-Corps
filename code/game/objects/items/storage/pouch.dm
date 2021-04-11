@@ -188,7 +188,7 @@
 	name = "sidearm pouch"
 	desc = "It can contain a pistol or revolver. Useful for emergencies."
 	icon_state = "pistol"
-	max_w_class = 3
+	max_w_class = 4
 	can_hold = list(
 		/obj/item/weapon/gun/pistol,
 		/obj/item/weapon/gun/revolver,
