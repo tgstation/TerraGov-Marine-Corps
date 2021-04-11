@@ -165,10 +165,10 @@
 	if(H.zone_selected == "head")
 		H.visible_message("<span class='notice'>[H] pats [target] on the head.</span>", \
 					"<span class='notice'>You pat [target] on the head.</span>", null, 4)
-	else if(H.zone_selected == "l_hand")
+	else if(H.zone_selected == "l_hand" && CONFIG_GET(flag/fun_allowed))
 		H.visible_message("<span class='notice'>[H] holds [target] 's left hand.</span>", \
 					"<span class='notice'>You hold [target]'s left hand.</span>", null, 4)
-	else if (H.zone_selected == "r_hand")
+	else if (H.zone_selected == "r_hand" && CONFIG_GET(flag/fun_allowed))
 		H.visible_message("<span class='notice'>[H] holds [target] 's right hand.</span>", \
 					"<span class='notice'>You hold [target]'s right hand.</span>", null, 4)
 	else
