@@ -79,7 +79,7 @@
 //TX-7 Plasma Pistol
 /obj/item/weapon/gun/pistol/plasma_pistol
 	name = "\improper TX-7 plasma pistol"
-	desc = "An experimental weapon designed to set the terrain and targets on fire. It hums wiht power as magnetic fields coil round each other."
+	desc = "An experimental weapon designed to set the terrain and targets on fire. It hums with power as magnetic fields coil round each other."
 	icon_state = "tx7"
 	item_state = "tx7"
 	caliber = "Ionized Plasma Bolt"
