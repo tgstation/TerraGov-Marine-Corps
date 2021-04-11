@@ -66,7 +66,7 @@ const SLOTS: Record<
   },
 
   suit_storage: {
-    displayName: "suit storage item",
+    displayName: "armor storage item",
     gridSpot: getGridSpotKey([4, 0]),
     image: "inventory-suit_storage.png",
   },
@@ -104,13 +104,20 @@ type SlotItem =
 
 type SlotData = {
   items: Record<keyof typeof SLOTS, SlotItem>;
-  name: string;
 };
 
 export const LoadoutSelector = (props : any, context : any) => {
   const { act, data } = useBackend<SlotData>(context);
 
+  const {
+    items,
+  } = data;
+
   const gridSpots = new Map<GridSpotKey, string>();
+  
+  for (const key of Object.keys(items)) {
+    gridSpots.set(SLOTS[key].gridSpot, key);
+  }
 
   return (
     <Window 

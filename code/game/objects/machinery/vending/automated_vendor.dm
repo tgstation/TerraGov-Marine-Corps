@@ -44,3 +44,24 @@
 	if(!ui)
 		ui = new(user, src, "LoadoutSelector", name)
 		ui.open()
+
+/obj/machinery/automated_vendor/ui_data(mob/user)
+	var/list/data = list()
+	var/list/items = list()
+	for (var/item_slot_key in GLOB.item_slot_list)
+		var/datum/item_slot/item_slot_datum = GLOB.item_slot_list[item_slot_key]
+
+		var/list/result
+
+		var/obj/item/item = user.get_item_by_slot(item_slot_datum.item_slot)
+		if (isnull(item))
+			items[item_slot_key] = result
+			continue
+
+		LAZYINITLIST(result)
+
+		result["icon"] = icon2base64(icon(item.icon, item.icon_state))
+		result["name"] = item.name
+
+		items[item_slot_key] = result
+	data["items"] = items
