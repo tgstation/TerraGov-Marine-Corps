@@ -625,7 +625,6 @@
 	desc = "A pistol belt that is not a revolver belt"
 	icon_state = "m4a3_holster"
 	item_state = "m4a3_holster"
-	var/test
 
 /obj/item/storage/belt/gun/pistol/attackby_alternate(obj/item/I, mob/user, params)
 	if(!istype(I, /obj/item/weapon/gun/pistol))
