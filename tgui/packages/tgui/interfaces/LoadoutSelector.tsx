@@ -107,13 +107,10 @@ type SlotData = {
   name: string;
 };
 
-export const SlotSelector = (props : any, context : any) => {
+export const LoadoutSelector = (props : any, context : any) => {
   const { act, data } = useBackend<SlotData>(context);
 
   const gridSpots = new Map<GridSpotKey, string>();
-  for (const key of Object.keys(data.items)) {
-    gridSpots.set(SLOTS[key].gridSpot, key);
-  }
 
   return (
     <Window 

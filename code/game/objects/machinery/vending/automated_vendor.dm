@@ -42,5 +42,5 @@
 	ui = SStgui.try_update_ui(user, src, ui)
 
 	if(!ui)
-		ui = new(user, src, "SlotSelector", name)
+		ui = new(user, src, "LoadoutSelector", name)
 		ui.open()
