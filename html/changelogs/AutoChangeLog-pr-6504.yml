@@ -1,0 +1,5 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - balance: "Hitting the turf where the target is will automaticly redirect your ability on the target. This works for most xeno ability"
+  - code_imp: "Remove unused targeting flags"
