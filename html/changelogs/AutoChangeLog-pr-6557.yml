@@ -1,0 +1,5 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - qol: "Xeno message is sent to the hive when silos/turrets are built"
+  - admin: "Psy points spent are now saved in game log"
