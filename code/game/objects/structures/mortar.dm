@@ -24,7 +24,7 @@
 	var/busy = 0
 	var/firing = 0 //Used for deconstruction and aiming sanity
 	var/fixed = 0 //If set to 1, can't unanchor and move the mortar, used for map spawns and WO
-
+	///List of linked binocs for use in unlinking them.
 	var/list/linked_binocs = list(/obj/item/binoculars/tactical)
 
 /obj/structure/mortar/attack_hand(mob/living/user)
@@ -202,16 +202,12 @@
 
 	if(istype(I, /obj/item/binoculars/tactical))
 		var/obj/item/binoculars/tactical/binocs = I
-		if(istype(binocs,/obj/item/binoculars/tactical/range))
-			to_chat(user, "<span class='notice'>You cannot link the [I] to the [src]</span>")
-			return
 		for(var/obj/item/binoculars/tactical/binoc2 in linked_binocs)
 			if(binoc2 == binocs)
 				to_chat(user, "<span class='notice'>You unlink the [binocs] from [src].</span>")
 				binocs.linked_mortar = null
 				linked_binocs.Remove(binoc2)
 				return
-
 		linked_binocs.Add(binocs)
 		binocs.linked_mortar = src
 		to_chat(user, "<span class='notice'>You link the mortar to the [I] allowing for remote targeting</span>")
@@ -226,8 +222,9 @@
 /obj/structure/mortar/obj_destruction(damage_amount, damage_type, damage_flag)
 	for(var/obj/item/binoculars/tactical/binoc in linked_binocs)
 		binoc.linked_mortar = null
-		if(istype(binoc.loc, /mob))
-			to_chat(binoc.loc, "<span class='notice'>[binoc]\'s linked mortar has been destroyed.</span>")
+		var/mob/holder = locate(/mob) in get_turf(binoc)
+		if(holder)
+			to_chat(holder, "<span class='notice'>[binoc]\'s linked mortar has been destroyed.</span>")
 	. = ..()
 
 /obj/structure/mortar/proc/detonate_shell(turf/target, obj/item/mortal_shell/mortar_shell)
@@ -262,8 +259,9 @@
 	new /obj/item/mortar_kit(loc)
 	for(var/obj/item/binoculars/tactical/binoc in linked_binocs)
 		binoc.linked_mortar = null
-		if(istype(binoc.loc, /mob))
-			to_chat(binoc.loc, "<span class='notice'>[binoc]\'s linked mortar has been disassembled.</span>")
+		var/mob/holder = locate(/mob) in get_turf(binoc)
+		if(holder)
+			to_chat(holder, "<span class='notice'>[binoc]\'s linked mortar has been disassembled.</span>")
 	qdel(src)
 
 
@@ -452,7 +450,7 @@
 	new /obj/item/mortal_shell/smoke(src)
 	new /obj/item/encryptionkey/engi(src)
 	new /obj/item/encryptionkey/engi(src)
-	new /obj/item/binoculars/tactical/mortar(src)
+	new /obj/item/binoculars/tactical/range(src)
 	new /obj/item/encryptionkey/cas(src)
 	new /obj/item/encryptionkey/cas(src)
 	new /obj/item/encryptionkey/cas(src)

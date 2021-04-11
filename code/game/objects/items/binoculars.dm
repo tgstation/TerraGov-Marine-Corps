@@ -15,11 +15,10 @@
 /obj/item/binoculars/attack_self(mob/user)
 	zoom(user, 11, 12)
 
-#define MODE_CAS 1
-#define MODE_RAILGUN 2
-#define MODE_ORBITAL 3
-#define MODE_RANGE_FINDER 4
-#define MODE_MORTAR 5
+#define MODE_CAS 0
+#define MODE_RAILGUN 1
+#define MODE_ORBITAL 2
+#define MODE_RANGE_FINDER 3 //Also mortar targetting mode
 
 /obj/item/binoculars/tactical
 	name = "tactical binoculars"
@@ -29,7 +28,6 @@
 	var/obj/effect/overlay/temp/laser_target/laser
 	var/target_acquisition_delay = 100 //10 seconds
 	var/mode = 0
-	var/list/modes = list(MODE_CAS,MODE_RAILGUN,MODE_ORBITAL,MODE_RANGE_FINDER,MODE_MORTAR)
 	var/changable = TRUE //If set to FALSE, you can't toggle the mode between CAS and coordinate finding
 	var/ob_fired = FALSE // If the user has fired the OB
 	var/turf/current_turf // The target turf, used for OBs
@@ -56,14 +54,11 @@
 			to_chat(usr, "<span class='notice'>They are currently set to railgun targeting mode.</span>")
 		if(MODE_ORBITAL)
 			to_chat(usr, "<span class='notice'>They are currently set to orbital bombardment mode.</span>")
-		if(MODE_MORTAR)
-			to_chat(usr, "<span class='notice'>They are currently set to mortar targeting mode.</span>")
-	if(!modes.Find(MODE_MORTAR))
-		return
+	to_chat(usr, "<span class='notice'>Use on mortar to link it for remote targeting.</span>")
 	if(linked_mortar)
 		to_chat(usr, "<span class='notice'>They are currently linked to a mortar.</span>")
-	else
-		to_chat(usr, "<span class='notice'>They are not linked to a mortar.</span>")
+		return
+	to_chat(usr, "<span class='notice'>They are not linked to a mortar.</span>")
 
 /obj/item/binoculars/tactical/Destroy()
 	if(laser)
@@ -146,10 +141,9 @@
 	if(!changable)
 		to_chat(user, "These binoculars only have one mode.")
 		return
-	var/n_mode = modes.Find(mode)
-	mode = modes[n_mode + 1]
-	if(mode > modes.len)
-		mode = modes[1]
+	mode += 1
+	if(mode > MODE_RANGE_FINDER)
+		mode = MODE_CAS
 	switch(mode)
 		if(MODE_CAS)
 			to_chat(user, "<span class='notice'>You switch [src] to CAS marking mode.</span>")
@@ -157,8 +151,8 @@
 			to_chat(user, "<span class='notice'>You switch [src] to railgun targeting mode.</span>")
 		if(MODE_ORBITAL)
 			to_chat(user, "<span class='notice'>You switch [src] to orbital bombardment targeting mode.</span>")
-		if(MODE_MORTAR)
-			to_chat(user, "<span class='notice'>You switch [src] to mortar targeting mode.</span>")
+		if(MODE_RANGE_FINDER)
+			to_chat(user, "<span class='notice'>You switch [src] to range finding mode.</span>")
 	update_icon()
 	playsound(user, 'sound/items/binoculars.ogg', 15, 1)
 
@@ -213,15 +207,6 @@
 		return
 	if(user.do_actions)
 		return
-	if(mode == MODE_MORTAR)
-		if(!linked_mortar)
-			to_chat(user, "<span class='notice'>No linked mortar found.</span>")
-			return
-		targetturf = TU
-		to_chat(user, "<span class='notice'>COORDINATES TARGETED: LONGITUDE [targetturf.x]. LATITUDE [targetturf.y].</span>")
-		playsound(src, 'sound/effects/binoctarget.ogg', 35)
-		linked_mortar.recieve_target(TU,src,user)
-		return
 	playsound(src, 'sound/effects/nightvision.ogg', 35)
 	if(mode != MODE_RANGE_FINDER)
 		to_chat(user, "<span class='notice'>INITIATING LASER TARGETING. Stand still.</span>")
@@ -238,9 +223,14 @@
 					QDEL_NULL(laser)
 					break
 		if(MODE_RANGE_FINDER)
+			if(!linked_mortar)
+				to_chat(user, "<span class='notice'>No linked mortar found.</span>")
+				return
 			targetturf = TU
-			to_chat(user, "<span class='notice'>COORDINATES: LONGITUDE [targetturf.x]. LATITUDE [targetturf.y].</span>")
+			to_chat(user, "<span class='notice'>COORDINATES TARGETED: LONGITUDE [targetturf.x]. LATITUDE [targetturf.y].</span>")
 			playsound(src, 'sound/effects/binoctarget.ogg', 35)
+			linked_mortar.recieve_target(TU,src,user)
+			return
 		if(MODE_RAILGUN)
 			to_chat(user, "<span class='notice'>ACQUIRING TARGET. RAILGUN TRIANGULATING. DON'T MOVE.</span>")
 			if((GLOB.marine_main_ship?.rail_gun?.last_firing + 120 SECONDS) > world.time)
@@ -305,23 +295,11 @@
 //For events
 /obj/item/binoculars/tactical/range
 	name = "range-finder"
-	desc = "A pair of binoculars designed to find coordinates. Shift+Click or Ctrl+Click to get coordinates when using"
+	desc = "A pair of binoculars designed to find coordinates. Shift+Click or Ctrl+Click to get coordinates when using."
 	changable = 0
 	mode = MODE_RANGE_FINDER
-
-/obj/item/binoculars/tactical/mortar
-	name = "mortar range-finder"
-	desc = "A pair of binoculars designed to shell enemy positions with a linked mortar. Use on mortar to link it. Shift+Click to get coordinates or Ctrl+Click to target a linked mortar."
-	mode = MODE_MORTAR
-	modes = list(MODE_RANGE_FINDER,MODE_MORTAR)
-
-/obj/item/binoculars/tactical/test
-	name = "test"
-	desc = ""
-	modes = list(MODE_RANGE_FINDER, MODE_RAILGUN, MODE_MORTAR)
 
 #undef MODE_CAS
 #undef MODE_RANGE_FINDER
 #undef MODE_RAILGUN
 #undef MODE_ORBITAL
-#undef MODE_MORTAR
