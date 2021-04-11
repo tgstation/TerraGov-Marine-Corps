@@ -19,7 +19,6 @@
 /atom/Click(location, control, params)
 	if(flags_atom & INITIALIZED)
 		SEND_SIGNAL(src, COMSIG_CLICK, location, control, params, usr)
-		usr.ClickOn(src, location, params)
 
 
 /atom/DblClick(location, control, params)
@@ -45,116 +44,110 @@
  * * item/afterattack(atom, user, adjacent, params) - used both ranged and adjacent when not handled by attackby
  * * mob/RangedAttack(atom, params) - used only ranged, only used for tk and laser eyes but could be changed
  */
-/mob/proc/ClickOn(atom/A, location, params)
-
+/mob/proc/ClickOn(datum/source, atom/target, location, params)
+	SIGNAL_HANDLER
 	if(world.time <= next_click)
 		return
 	next_click = world.time + 1
 
-	if(check_click_intercept(params, A))
+	if(check_click_intercept(params, target))
 		return
 
 	if(notransform)
 		return
 
-	if(SEND_SIGNAL(src, COMSIG_MOB_CLICKON, A, params) & COMSIG_MOB_CLICK_CANCELED)
+	if(SEND_SIGNAL(src, COMSIG_MOB_CLICKON, target, params) & COMSIG_MOB_CLICK_CANCELED)
 		return
 
 	var/list/modifiers = params2list(params)
-	if(isnull(location) && A.plane == CLICKCATCHER_PLANE) //Checks if the intended target is in deep darkness and adjusts A based on params.
-		A = params2turf(modifiers["screen-loc"], get_turf(client.eye), client)
-		modifiers["icon-x"] = num2text(ABS_PIXEL_TO_REL(text2num(modifiers["icon-x"])))
-		modifiers["icon-y"] = num2text(ABS_PIXEL_TO_REL(text2num(modifiers["icon-y"])))
-		params = list2params(modifiers)
+	if(istype(target, /obj/screen))
+		return
 
 	if(modifiers["shift"] && modifiers["middle"])
-		ShiftMiddleClickOn(A)
+		INVOKE_ASYNC(src, .proc/ShiftMiddleClickOn, target)
 		return
 	if(modifiers["shift"] && modifiers["ctrl"])
-		CtrlShiftClickOn(A)
+		INVOKE_ASYNC(src, .proc/CtrlShiftClickOn, target)
 		return
 	if(modifiers["ctrl"] && modifiers["middle"])
-		CtrlMiddleClickOn(A)
+		INVOKE_ASYNC(src, /atom/proc/CtrlMiddleClickOn, target)
 		return
-	if(modifiers["middle"] && MiddleClickOn(A))
+	if(modifiers["middle"] && MiddleClickOn(target))
 		return
 	if(modifiers["shift"] && modifiers["right"])
-		ShiftRightClickOn(A)
+		INVOKE_ASYNC(src, .proc/ShiftRightClickOn, target)
 		return
-	if(modifiers["shift"] && ShiftClickOn(A))
+	if(modifiers["shift"] && ShiftClickOn(target))
 		return
 	if(modifiers["alt"] && modifiers["right"])
-		AltRightClickOn(A)
+		INVOKE_ASYNC(src, .proc/AltRightClickOn, target)
 		return
-	if(modifiers["alt"] && AltClickOn(A))
+	if(modifiers["alt"] && AltClickOn(target))
 		return
 	if(modifiers["ctrl"])
-		CtrlClickOn(A)
+		INVOKE_ASYNC(src, .proc/CtrlClickOn, target)
 		return
-	if(modifiers["right"] && RightClickOn(A))
+	if(modifiers["right"] && RightClickOn(target))
 		return
 
 	if(incapacitated(TRUE))
 		return
 
-	face_atom(A)
+	face_atom(target)
 
 	if(next_move > world.time)
 		return
 
-	if(!modifiers["catcher"] && A.IsObscured())
-		return
-
-	if(istype(loc, /obj/vehicle/multitile/root/cm_armored))
-		var/obj/vehicle/multitile/root/cm_armored/N = loc
-		N.click_action(A, src, params)
+	if(!modifiers["catcher"] && target.IsObscured())
 		return
 
 	if(restrained())
 		changeNext_move(CLICK_CD_HANDCUFFED)
-		RestrainedClickOn(A)
+		INVOKE_ASYNC(src, .proc/RestrainedClickOn, target)
 		return
 
 	if(in_throw_mode)
-		throw_item(A)
+		INVOKE_ASYNC(src, .proc/throw_item, target)
 		return
 
-	var/obj/item/W = get_active_held_item()
+	var/obj/item/held_item = get_active_held_item()
 
-	if(W == A)
-		W.attack_self(src)
+	if(held_item == target)
+		INVOKE_ASYNC(held_item, /obj/item/proc/attack_self, src)
 		update_inv_l_hand()
 		update_inv_r_hand()
 		return
 
 	//These are always reachable.
 	//User itself, current loc, and user inventory
-	if(A in DirectAccess())
-		if(W)
-			W.melee_attack_chain(src, A, params, modifiers["right"])
-		else
-			UnarmedAttack(A, FALSE, modifiers)
+	if(target in DirectAccess())
+		if(held_item)
+			INVOKE_ASYNC(held_item, /obj/item/proc/melee_attack_chain, src, target, params, modifiers["right"])
+			return
+		INVOKE_ASYNC(src, .proc/UnarmedAttack, target, FALSE, modifiers)
 		return
 
 	//Can't reach anything else in lockers or other weirdness
 	if(!loc.AllowClick())
 		return
 
-	//Standard reach turf to turf or reaching inside storage
-	if(CanReach(A, W))
-		if(W)
-			W.melee_attack_chain(src, A, params, modifiers["right"])
-		else
-			UnarmedAttack(A, TRUE, modifiers)
-	else
-		if(W)
-			var/proximity = A.Adjacent(src)
-			if(!proximity || !A.attackby(W, src, params))
-				W.afterattack(A, src, proximity, params)
-		else
-			if(A.Adjacent(src))
-				A.attack_hand(src)
-			RangedAttack(A, params)
+	if(CanReach(target, held_item))
+		if(held_item)
+			INVOKE_ASYNC(held_item, /obj/item/proc/melee_attack_chain, src, target, params, modifiers["right"])
+			return
+		INVOKE_ASYNC(src, .proc/UnarmedAttack, target, TRUE, modifiers)
+		return
+	
+	if(held_item)
+		var/proximity = target.Adjacent(src)
+		if(!proximity || !target.attackby(held_item, src, params))
+			INVOKE_ASYNC(held_item, /obj/item/proc/afterattack, target, src, proximity, params)
+		return
+	
+	if(target.Adjacent(src))
+		INVOKE_ASYNC(target, /atom/proc/attack_hand, src)
+	INVOKE_ASYNC(src, .proc/RangedAttack, target, params)
+	
 
 
 /atom/movable/proc/CanReach(atom/ultimate_target, obj/item/tool, view_only = FALSE)

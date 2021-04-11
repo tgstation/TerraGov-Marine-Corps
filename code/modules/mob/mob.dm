@@ -37,6 +37,7 @@
 		stack_trace("Invalid type [skills.type] found in .skills during /mob Initialize()")
 	update_config_movespeed()
 	update_movespeed(TRUE)
+	RegisterSignal(src, COMSIG_MOB_MOUSEDOWN, .proc/ClickOn)
 
 
 /mob/Stat()
