@@ -281,7 +281,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	cooldown_timer = 12.5 SECONDS
 	plasma_cost = 200
 	keybind_signal = COMSIG_XENOABILITY_HEALING_INFUSION
-	target_flags = XABB_XENO_TARGET
+	target_flags = XABB_MOB_TARGET
 	var/heal_range = HIVELORD_HEAL_RANGE
 
 /datum/action/xeno_action/activable/healing_infusion/can_use_ability(atom/target, silent = FALSE, override_flags)

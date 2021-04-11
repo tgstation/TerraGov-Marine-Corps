@@ -8,7 +8,7 @@
 	ability_name = "plow charge"
 	keybind_signal = COMSIG_XENOABILITY_BULLCHARGE
 	var/new_charge_type = CHARGE_BULL
-	target_flags = XABB_HUMAN_TARGET
+	target_flags = XABB_MOB_TARGET
 
 
 /datum/action/xeno_action/activable/action_activate()
