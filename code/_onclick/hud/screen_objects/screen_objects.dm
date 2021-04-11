@@ -773,6 +773,7 @@
 
 ///Stop the arrow to avoid runtime and hard del
 /obj/screen/arrow/proc/kill_arrow()
+	SIGNAL_HANDLER
 	qdel(src)
 
 /obj/screen/arrow/Initialize() //Self-deletes
@@ -824,4 +825,3 @@
 	name = "Defend order arrow"
 	icon_state = "Defend_arrow"
 	duration = ORDER_DURATION
-
