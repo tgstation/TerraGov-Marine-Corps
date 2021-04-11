@@ -7685,9 +7685,10 @@
 /turf/open/floor/plating/ground/dirt,
 /area/prison/cellblock/maxsec/south)
 "ayN" = (
-/obj/structure/window/framed/prison/reinforced/hull,
-/turf/open/floor/plating,
-/area/prison/medbay)
+/turf/open/ground/desertdam/river/clean/shallow_edge{
+	dir = 4
+	},
+/area/space)
 "ayO" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 4
@@ -11806,9 +11807,11 @@
 /turf/open/floor/plating,
 /area/prison/hallway/central)
 "aKU" = (
-/obj/structure/window/framed/prison/reinforced/hull,
-/turf/open/floor/plating,
-/area/prison/hallway/central)
+/obj/structure/lattice,
+/turf/open/ground/desertdam/river/clean/shallow_edge{
+	dir = 4
+	},
+/area/space)
 "aKW" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/drained,
@@ -16756,7 +16759,7 @@
 /turf/open/floor/prison/green/full,
 /area/prison/cellblock/lowsec/nw)
 "bak" = (
-/turf/closed/wall/r_wall/prison_unmeltable,
+/turf/closed/wall/r_wall/prison,
 /area/prison/cellblock/lowsec/nw)
 "bal" = (
 /turf/open/floor/prison/rampbottom{
@@ -16771,7 +16774,7 @@
 	},
 /area/prison/yard)
 "ban" = (
-/turf/closed/wall/r_wall/prison_unmeltable,
+/turf/closed/wall/r_wall/prison,
 /area/prison/cellblock/lowsec/ne)
 "bao" = (
 /obj/machinery/vending/cigarette/colony,
@@ -17097,9 +17100,8 @@
 	},
 /area/prison/cellblock/lowsec/nw)
 "bbp" = (
-/obj/structure/window/framed/prison/reinforced/hull,
-/turf/open/floor/plating,
-/area/prison/yard)
+/turf/open/ground/river,
+/area/prison/hallway/central)
 "bbq" = (
 /obj/structure/table/reinforced,
 /obj/item/tool/pen{
@@ -22137,7 +22139,7 @@
 /turf/open/floor/prison/green,
 /area/prison/hallway/central)
 "bqp" = (
-/turf/closed/wall/r_wall/prison_unmeltable,
+/turf/closed/wall/r_wall/prison,
 /area/prison/cellblock/lowsec/sw)
 "bqq" = (
 /obj/effect/decal/cleanable/blood,
@@ -22145,7 +22147,7 @@
 /turf/open/floor/prison/bright_clean/two,
 /area/prison/yard)
 "bqr" = (
-/turf/closed/wall/r_wall/prison_unmeltable,
+/turf/closed/wall/r_wall/prison,
 /area/prison/cellblock/lowsec/se)
 "bqs" = (
 /turf/closed/wall/prison,
@@ -29672,7 +29674,7 @@
 /turf/closed/wall/r_wall/prison_unmeltable,
 /area/prison/storage/medsec)
 "bOA" = (
-/obj/structure/window/framed/prison/reinforced/hull,
+/obj/structure/window/framed/prison/reinforced,
 /turf/open/floor/plating,
 /area/prison/storage/medsec)
 "bOB" = (
@@ -41431,6 +41433,11 @@
 /obj/structure/cable,
 /turf/open/floor/prison/plate,
 /area/prison/cellblock/highsec/north/south)
+"eSE" = (
+/turf/open/ground/coast{
+	dir = 1
+	},
+/area/prison/hallway/central)
 "eUt" = (
 /obj/machinery/computer/intel_computer,
 /turf/open/floor/prison/blue{
@@ -41795,6 +41802,10 @@
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/access/north)
+"gQs" = (
+/obj/structure/lattice,
+/turf/open/ground/river,
+/area/prison/yard)
 "gSk" = (
 /obj/machinery/button/door/open_only/landing_zone{
 	dir = 1
@@ -41893,6 +41904,9 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/prison/bright_clean/two,
 /area/prison/yard)
+"hyt" = (
+/turf/open/ground/river,
+/area/prison/yard)
 "hyA" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -41937,6 +41951,9 @@
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/nw)
+"hQI" = (
+/turf/open/ground/river,
+/area/prison/maintenance/residential/se)
 "hXd" = (
 /turf/open/floor/wood/broken,
 /area/prison/library)
@@ -42080,6 +42097,9 @@
 /obj/item/stack/rods,
 /turf/open/beach/sea,
 /area/space)
+"iNU" = (
+/turf/open/floor/plating/ground/dirt,
+/area/prison/hallway/central)
 "iOM" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -42760,6 +42780,11 @@
 	dir = 1
 	},
 /area/space)
+"ngU" = (
+/turf/open/ground/coast{
+	dir = 5
+	},
+/area/prison/hallway/central)
 "nie" = (
 /turf/open/floor/plating,
 /area/prison/residential/central)
@@ -43073,6 +43098,11 @@
 /obj/effect/alien/weeds/node,
 /turf/open/floor/prison/sterilewhite,
 /area/prison/research/secret/biolab)
+"pjO" = (
+/turf/open/ground/coast{
+	dir = 4
+	},
+/area/prison/hallway/central)
 "pkD" = (
 /obj/structure/grille,
 /turf/open/floor/plating,
@@ -43555,7 +43585,7 @@
 /area/prison/research/secret/biolab)
 "shF" = (
 /turf/open/ground/desertdam/river/clean/shallow_edge,
-/area/space)
+/area/prison/hallway/central)
 "sjr" = (
 /obj/machinery/miner/damaged,
 /turf/open/floor/prison/red,
@@ -44087,6 +44117,9 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/wall/prison,
 /area/prison/security/monitoring/lowsec/sw)
+"vGa" = (
+/turf/closed/wall/r_wall/prison,
+/area/prison/yard)
 "vGN" = (
 /turf/open/ground/coast/corner{
 	dir = 8
@@ -56450,11 +56483,11 @@ aWr
 buA
 bvq
 aWr
-qHj
-qHj
-qHj
-qHj
-qHj
+hQI
+hQI
+hQI
+hQI
+hQI
 bzv
 bxy
 bzu
@@ -56707,11 +56740,11 @@ bkU
 aWI
 btX
 aWr
-qHj
-qHj
-qHj
-qHj
-qHj
+hQI
+hQI
+hQI
+hQI
+hQI
 bzv
 byp
 bzu
@@ -56964,7 +56997,7 @@ aWr
 buB
 bvs
 aWr
-qHj
+hQI
 bzv
 bzv
 bzv
@@ -57221,7 +57254,7 @@ aWr
 aWr
 aWr
 aWr
-qHj
+hQI
 bzv
 bzt
 bDp
@@ -57478,7 +57511,7 @@ aWq
 aXG
 aWq
 bga
-qHj
+hQI
 bzv
 bxy
 bzu
@@ -57735,7 +57768,7 @@ aYR
 vue
 aWy
 bga
-qHj
+hQI
 bzv
 bxy
 bzu
@@ -57992,7 +58025,7 @@ aYQ
 aXv
 aWo
 bga
-qHj
+hQI
 bzv
 bxK
 bzu
@@ -69484,15 +69517,15 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-adO
-aab
-aab
+ayN
+ayN
+ayN
+ayN
+ayN
+ayN
+aKU
+ayN
+ayN
 aqq
 anQ
 arv
@@ -69745,11 +69778,11 @@ uHe
 lAV
 lAV
 lAV
-ngQ
-aab
-adO
-aab
-aab
+lAV
+lAV
+uKj
+lAV
+lAV
 aqq
 aac
 arw
@@ -70002,11 +70035,11 @@ eiY
 kYV
 kYV
 kYV
-eur
-ngQ
-adO
-aab
-aab
+kYV
+kYV
+oLt
+kYV
+kYV
 aqq
 aqS
 arx
@@ -70260,7 +70293,7 @@ bWl
 kYV
 bWl
 kYV
-eur
+kYV
 akF
 akF
 akF
@@ -74941,10 +74974,10 @@ aKN
 aKP
 aKP
 aKN
-aKU
-aKU
-aKU
-aKU
+aKT
+aKT
+aKT
+aKT
 aKN
 aPu
 aKP
@@ -75198,10 +75231,10 @@ aKO
 aKO
 baU
 aKN
-aKU
-aab
-aab
-aKU
+aKT
+bbp
+bbp
+aKT
 aAR
 bkm
 aTD
@@ -75455,10 +75488,10 @@ aKP
 aKP
 aUD
 aKN
-aKU
-aab
-aab
-aKU
+aKT
+bbp
+bbp
+aKT
 aKN
 aPu
 aKP
@@ -75712,10 +75745,10 @@ aAR
 aKP
 aUD
 aKN
-aKU
-aKU
-aKU
-aKU
+aKT
+aKT
+aKT
+aKT
 aKN
 aPu
 aKP
@@ -79043,30 +79076,30 @@ aWN
 aPA
 aZk
 bak
-aab
-aab
-aab
-aab
-adO
-aab
-aab
-aab
-adO
-bbp
+hyt
+hyt
+hyt
+hyt
+gQs
+hyt
+hyt
+hyt
+gQs
+bfx
 aWR
 aHt
 boA
 aWR
-bbp
-adO
-aab
-aab
-aab
-adO
-aab
-aab
-aab
-aab
+bfx
+gQs
+hyt
+hyt
+hyt
+gQs
+hyt
+hyt
+hyt
+hyt
 bqp
 bsG
 bxP
@@ -79300,30 +79333,30 @@ aWO
 aPC
 aNY
 bak
-aab
-aab
-aab
-aab
-adO
-bbp
-bbp
-bbp
-bbp
-bcj
+hyt
+hyt
+hyt
+hyt
+gQs
+bfx
+bfx
+bfx
+bfx
+vGa
 bmz
 vEU
 krU
 vEU
-bcj
-bbp
-bbp
-bbp
-bbp
-adO
-aab
-aab
-aab
-aab
+vGa
+bfx
+bfx
+bfx
+bfx
+gQs
+hyt
+hyt
+hyt
+hyt
 bqp
 byK
 brg
@@ -79557,12 +79590,12 @@ aNp
 aNp
 aNp
 bak
-aab
-aab
-aab
-aab
-bbp
-bbp
+hyt
+hyt
+hyt
+hyt
+bfx
+bfx
 aWR
 aWR
 aWR
@@ -79575,12 +79608,12 @@ bli
 aWR
 aHt
 aWR
-bbp
-bbp
-aab
-aab
-aab
-aab
+bfx
+bfx
+hyt
+hyt
+hyt
+hyt
 bqp
 bql
 bql
@@ -79814,11 +79847,11 @@ aWN
 aPA
 aNX
 bak
-aab
-aab
-aab
-bbp
-bbp
+hyt
+hyt
+hyt
+bfx
+bfx
 aWR
 aHp
 aWR
@@ -79833,11 +79866,11 @@ biH
 aWR
 aWR
 aWR
-bbp
-bbp
-aab
-aab
-aab
+bfx
+bfx
+hyt
+hyt
+hyt
 bqp
 buR
 bxP
@@ -80071,10 +80104,10 @@ aWP
 aPC
 aZl
 bak
-aab
-adO
-bbp
-bbp
+hyt
+gQs
+bfx
+bfx
 bft
 aTR
 bgQ
@@ -80091,10 +80124,10 @@ bgQ
 bdt
 bgQ
 bft
-bbp
-bbp
-adO
-adO
+bfx
+bfx
+gQs
+gQs
 bqp
 brR
 brg
@@ -80328,9 +80361,9 @@ aNp
 aNp
 aNp
 bak
-aab
-bbp
-bbp
+hyt
+bfx
+bfx
 aHp
 bfu
 bgR
@@ -80349,9 +80382,9 @@ aWR
 bgR
 bfu
 aHt
-bbp
-bbp
-aab
+bfx
+bfx
+hyt
 bqp
 bql
 bql
@@ -80585,8 +80618,8 @@ aWN
 aYi
 aZk
 bak
-aab
-bbp
+hyt
+bfx
 aWR
 aWR
 bfu
@@ -80607,8 +80640,8 @@ bgm
 bfu
 aWR
 aWR
-bbp
-aab
+bfx
+hyt
 bqp
 bsG
 bsF
@@ -80842,8 +80875,8 @@ aWQ
 aPC
 aPC
 bak
-aab
-bbp
+hyt
+bfx
 aHp
 aWR
 bfu
@@ -80864,8 +80897,8 @@ bgm
 bfu
 aHp
 aHp
-bbp
-aab
+bfx
+hyt
 bqp
 btM
 brg
@@ -81099,8 +81132,8 @@ aNp
 aYj
 aYh
 bak
-adO
-bbp
+gQs
+bfx
 aWR
 bdU
 bfv
@@ -81121,8 +81154,8 @@ bgT
 bfv
 biH
 aWR
-bbp
-adO
+bfx
+gQs
 bqp
 bwe
 brg
@@ -81356,8 +81389,8 @@ aNp
 aNp
 aNp
 bak
-bbp
-bcj
+bfx
+vGa
 aWR
 bcL
 bfw
@@ -81378,8 +81411,8 @@ aWR
 bfw
 bju
 bvT
-bcj
-bbp
+vGa
+bfx
 bqp
 bql
 bql
@@ -81597,10 +81630,10 @@ apt
 aHV
 apt
 apt
-aKU
-aKU
-aKU
-aKU
+aKT
+aKT
+aKT
+aKT
 aKN
 aLB
 aKP
@@ -81649,11 +81682,11 @@ aKP
 aKP
 aLs
 aKN
-aKU
-aKU
-aKU
-aKU
-bOz
+aKT
+aKT
+aKT
+aKT
+bPL
 bPQ
 bPQ
 bQx
@@ -81853,11 +81886,11 @@ aFu
 aGG
 aqv
 aIZ
-ayN
-aab
-aab
-aab
-aKU
+aFx
+bbp
+bbp
+bbp
+aKT
 aKN
 aLB
 aKP
@@ -81906,10 +81939,10 @@ aKP
 aKP
 aLs
 aKN
-aKU
+aKT
 shF
-iQZ
-kYV
+eSE
+iNU
 bOA
 bPR
 bHI
@@ -82110,11 +82143,11 @@ apM
 aqY
 aHW
 aJa
-ayN
-aab
-aab
-aab
-aKU
+aFx
+bbp
+bbp
+bbp
+aKT
 aKN
 aMd
 aQX
@@ -82163,10 +82196,10 @@ aQX
 aQX
 brj
 aKN
-aKU
+aKT
 shF
-ped
-yfM
+ngU
+pjO
 bOA
 bPS
 bRr
@@ -82368,10 +82401,10 @@ aGH
 aHX
 aJb
 apt
-aKU
-aKU
-aKU
-aKU
+aKT
+aKT
+aKT
+aKT
 aKN
 aLB
 aKP
@@ -82420,10 +82453,10 @@ bnE
 aKP
 aLs
 aKN
-aKU
-aKU
-aKU
-aKU
+aKT
+aKT
+aKT
+aKT
 bOz
 bPQ
 bPQ
@@ -82641,8 +82674,8 @@ aNq
 aNq
 aNq
 ban
-bbp
-bcj
+bfx
+vGa
 aWR
 bcL
 bfw
@@ -82663,8 +82696,8 @@ aWR
 bfw
 bju
 bvT
-bcj
-bbp
+vGa
+bfx
 bqr
 bqs
 bqs
@@ -82898,8 +82931,8 @@ aNq
 aYk
 aZo
 ban
-adO
-bbp
+gQs
+bfx
 aWR
 bdY
 bfy
@@ -82920,8 +82953,8 @@ bgV
 bfy
 bkt
 aHt
-bbp
-adO
+bfx
+gQs
 bqr
 byO
 brl
@@ -83155,8 +83188,8 @@ aWU
 aHj
 aYl
 ban
-aab
-bbp
+hyt
+bfx
 aWR
 aHp
 bfu
@@ -83177,8 +83210,8 @@ bgm
 bfu
 aWR
 aHp
-bbp
-aab
+bfx
+hyt
 bqr
 byP
 brl
@@ -83412,8 +83445,8 @@ aWV
 aPE
 aOe
 ban
-aab
-bbp
+hyt
+bfx
 aHt
 aWR
 bfu
@@ -83434,8 +83467,8 @@ bgm
 bfu
 aHt
 aWR
-bbp
-aab
+bfx
+hyt
 bqr
 bsK
 brU
@@ -83669,9 +83702,9 @@ aNq
 aNq
 aNq
 ban
-aab
-bbp
-bbp
+hyt
+bfx
+bfx
 aWR
 bfu
 bgW
@@ -83690,9 +83723,9 @@ aWR
 bgW
 bfu
 aWR
-bbp
-bbp
-aab
+bfx
+bfx
+hyt
 bqr
 bqs
 bqs
@@ -83926,10 +83959,10 @@ aWW
 aYl
 aZh
 ban
-adO
-adO
-bbp
-bbp
+gQs
+gQs
+bfx
+bfx
 bfz
 bgQ
 bgQ
@@ -83946,10 +83979,10 @@ bdt
 bgQ
 bgQ
 bfz
-bbp
-bbp
-adO
-adO
+bfx
+bfx
+gQs
+gQs
 bqr
 blQ
 bzV
@@ -84183,11 +84216,11 @@ aFH
 aYm
 aOe
 ban
-aab
-aab
-aab
-bbp
-bbp
+hyt
+hyt
+hyt
+bfx
+bfx
 aWR
 aHt
 aWR
@@ -84202,11 +84235,11 @@ bkt
 aWR
 aWR
 aWR
-bbp
-bbp
-aab
-aab
-aab
+bfx
+bfx
+hyt
+hyt
+hyt
 bqr
 bsK
 bzW
@@ -84440,12 +84473,12 @@ aNq
 aNq
 aNq
 ban
-aab
-aab
-aab
-aab
-bbp
-bbp
+hyt
+hyt
+hyt
+hyt
+bfx
+bfx
 aWR
 aWR
 aWR
@@ -84458,12 +84491,12 @@ aWR
 aWR
 aHt
 aWR
-bbp
-bbp
-aab
-aab
-aab
-aab
+bfx
+bfx
+hyt
+hyt
+hyt
+hyt
 bqr
 bqs
 bqs
@@ -84697,30 +84730,30 @@ aWW
 aHj
 aNZ
 ban
-aab
-aab
-aab
-aab
-adO
-bbp
-bbp
-bbp
-bbp
-bcj
+hyt
+hyt
+hyt
+hyt
+gQs
+bfx
+bfx
+bfx
+bfx
+vGa
 bck
 bck
 boD
 bpI
 bcj
-bbp
-bbp
-bbp
-bbp
-adO
-aab
-aab
-aab
-aab
+bfx
+bfx
+bfx
+bfx
+gQs
+hyt
+hyt
+hyt
+hyt
 bqr
 blQ
 brl
@@ -84954,30 +84987,30 @@ aWV
 aYm
 aOe
 ban
-aab
-aab
-aab
-aab
-adO
-aab
-aab
-aab
-adO
-bbp
+hyt
+hyt
+hyt
+hyt
+gQs
+hyt
+hyt
+hyt
+gQs
+bfx
 aIv
 aYV
 boG
 aYV
-bbp
-adO
-aab
-aab
-aab
-adO
-aab
-aab
-aab
-aab
+bfx
+gQs
+hyt
+hyt
+hyt
+gQs
+hyt
+hyt
+hyt
+hyt
 bqr
 bsK
 bzW
@@ -88305,10 +88338,10 @@ aKN
 aKP
 aPu
 aKN
-aKU
-aKU
-aKU
-aKU
+aKT
+aKT
+aKT
+aKT
 aKN
 aUD
 aKP
@@ -88562,10 +88595,10 @@ aKP
 aKP
 aPu
 aKN
-aKU
-aab
-aab
-aKU
+aKT
+bbp
+bbp
+aKT
 aKN
 aUD
 aKP
@@ -88819,10 +88852,10 @@ bah
 aTD
 aMe
 aOj
-aKU
-aab
-aab
-aKU
+aKT
+bbp
+bbp
+aKT
 aKN
 beB
 aKO
@@ -89076,10 +89109,10 @@ aPu
 aKN
 bcq
 aKN
-aKU
-aab
-aab
-aKU
+aKT
+bbp
+bbp
+aKT
 aOj
 aKN
 bcq
@@ -89333,10 +89366,10 @@ bhN
 bgZ
 bsY
 bnF
-aKa
-aKa
-aKa
-aKa
+bsY
+bsY
+bsY
+bsY
 aKN
 aKN
 aVS
@@ -89593,7 +89626,7 @@ aUZ
 boe
 boH
 bpR
-aKa
+bsY
 aKN
 aKN
 aVS
