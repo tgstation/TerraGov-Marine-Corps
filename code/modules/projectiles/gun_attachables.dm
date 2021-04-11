@@ -1691,6 +1691,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	slot = "muzzle" //so you cannot have this and RC at once aka balance
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION
 	attachment_action_type = /datum/action/item_action/toggle
+	size_mod = 1
 
 /obj/item/attachable/lace/activate_attachment(mob/living/user, turn_off)
 	if(lace_deployed)
