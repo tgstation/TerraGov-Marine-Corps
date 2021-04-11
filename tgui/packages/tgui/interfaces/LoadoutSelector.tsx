@@ -107,7 +107,7 @@ type SlotData = {
   name: string;
 };
 
-export const SlotSelector = (props, context) => {
+export const SlotSelector = (props : any, context : any) => {
   const { act, data } = useBackend<SlotData>(context);
 
   const gridSpots = new Map<GridSpotKey, string>();
@@ -116,7 +116,10 @@ export const SlotSelector = (props, context) => {
   }
 
   return (
-    <Window title={`Slot selector`} width={400} height={400}>
+    <Window 
+      title="Slot selector"
+      width={400} 
+      height={400}>
       <Window.Content>
         <Stack fill vertical>
           {range(0, ROWS).map(row => (
@@ -125,7 +128,6 @@ export const SlotSelector = (props, context) => {
                 {range(0, COLUMNS).map(column => {
                   const key = getGridSpotKey([row, column]);
                   const keyAtSpot = gridSpots.get(key);
-
                   if (!keyAtSpot) {
                     return (
                       <Stack.Item
@@ -203,7 +205,6 @@ export const SlotSelector = (props, context) => {
                               }}
                             />
                           )}
-
                           <Box style={{ position: "relative" }}>
                             {content}
                           </Box>
