@@ -1,0 +1,4 @@
+author: "SkeletalElite"
+delete-after: True
+changes: 
+  - bugfix: "Wraith can't phase into ice colony LZ1 through a gap in the shutters"
