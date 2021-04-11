@@ -14938,10 +14938,6 @@
 	dir = 5
 	},
 /area/ice_colony/exterior/surface/landing_pad)
-"aYJ" = (
-/obj/structure/fence,
-/turf/open/floor/plating/ground/ice,
-/area/ice_colony/exterior/surface/landing_pad_external)
 "aYK" = (
 /turf/closed/ice/straight{
 	dir = 4
@@ -31693,6 +31689,11 @@
 /obj/effect/alien/weeds/node,
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/central)
+"gkO" = (
+/obj/effect/turf_underlay/icefloor,
+/obj/structure/fence,
+/turf/closed/ice/thin/single,
+/area/ice_colony/exterior/surface/valley/southeast)
 "gly" = (
 /obj/effect/turf_underlay/icefloor,
 /obj/effect/alien/weeds/node,
@@ -32636,6 +32637,11 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice,
 /area/ice_colony/underground/maintenance/east)
+"nLv" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
+/obj/structure/fence,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/exterior/surface/valley/southeast)
 "nLw" = (
 /obj/machinery/computer/intel_computer,
 /turf/open/floor/tile/dark/yellow2{
@@ -76706,9 +76712,9 @@ abN
 awL
 awL
 awL
-awL
+aMt
 nlt
-aYJ
+aUP
 aUP
 aUP
 aUP
@@ -76963,9 +76969,9 @@ aEC
 awL
 awL
 awL
-awL
+aMt
 nlt
-aYJ
+aUP
 aUP
 aUP
 aUP
@@ -77220,9 +77226,9 @@ awL
 awL
 awL
 awL
-awL
+aMt
 nlt
-aYJ
+aUP
 aUP
 aUP
 aUP
@@ -77477,9 +77483,9 @@ awL
 awL
 awL
 awL
-awL
+aMt
 nlt
-aYJ
+aUP
 aUP
 aUP
 aUP
@@ -77734,9 +77740,9 @@ awL
 awL
 awL
 awL
-awL
+aMt
 nlt
-aYJ
+aUP
 aUP
 aZr
 baC
@@ -77991,9 +77997,9 @@ awL
 awL
 awL
 sGc
-sGc
+nLv
 nlt
-aYJ
+aUP
 aUP
 aUP
 aYa
@@ -78250,7 +78256,7 @@ awf
 mpH
 acv
 abN
-aYJ
+aUP
 aUP
 aUP
 aUP
@@ -82099,9 +82105,9 @@ azG
 azG
 awL
 awL
-awL
-nlt
 aMt
+nlt
+awL
 aUP
 aWp
 bmg
@@ -82356,9 +82362,9 @@ awx
 azG
 azG
 azG
-awL
-nlt
 aMt
+nlt
+awL
 aUP
 aUP
 aUP
@@ -82613,12 +82619,12 @@ awx
 awx
 awx
 azG
-awL
+aMt
 nlt
-aMt
-aMt
-aMt
-aMt
+awL
+awL
+awL
+awL
 aaC
 aUP
 aUP
@@ -82870,7 +82876,7 @@ awx
 awx
 awx
 azG
-azG
+aus
 nlt
 sGc
 sGc
@@ -83127,11 +83133,11 @@ awx
 awx
 awx
 azG
-awL
-awL
-awL
-awL
-auW
+aMt
+aMt
+aMt
+aMt
+gkO
 aaU
 gtM
 aar
