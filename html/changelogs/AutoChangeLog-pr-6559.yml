@@ -1,5 +1,0 @@
-author: "Alterist"
-delete-after: True
-changes: 
-  - balance: "water around central dome on prison are now accessible"
-  - bugfix: "fixed the pocket of space localized entirely within prison station that was killing marines/xenos"
