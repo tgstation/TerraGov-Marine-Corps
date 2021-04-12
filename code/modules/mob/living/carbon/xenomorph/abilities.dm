@@ -1173,9 +1173,9 @@
 	plasma_cost = 100
 	target_flags = XABB_MOB_TARGET
 	///How much psy points it give
-	var/psy_points_reward = 60
+	var/psy_points_reward = 40
 	///How much larva points it gives (8 points for one larva in distress)
-	var/larva_point_reward = 1.5
+	var/larva_point_reward = 1
 
 /datum/action/xeno_action/activable/psydrain/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..() //do after checking the below stuff
