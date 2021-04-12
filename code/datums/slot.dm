@@ -3,7 +3,6 @@ GLOBAL_LIST_INIT(item_slot_list, create_item_slot_list(list(
 	/datum/item_slot/back,
 	/datum/item_slot/mask,
 	/datum/item_slot/eyes,
-	/datum/item_slot/ears,
 	/datum/item_slot/jumpsuit,
 	/datum/item_slot/armor,
 	/datum/item_slot/gloves,
@@ -18,7 +17,6 @@ GLOBAL_LIST_INIT(item_slot_list, create_item_slot_list(list(
 #define ITEM_SLOT_KEY_BACK "back"
 #define ITEM_SLOT_KEY_MASK "mask"
 #define ITEM_SLOT_KEY_EYES "eyes"
-#define ITEM_SLOT_KEY_EARS "ears"
 #define ITEM_SLOT_KEY_JUMPSUIT "jumpsuit"
 #define ITEM_SLOT_KEY_ARMOR "armor"
 #define ITEM_SLOT_KEY_GLOVES "gloves"
@@ -59,11 +57,7 @@ GLOBAL_LIST_INIT(item_slot_list, create_item_slot_list(list(
 
 /datum/item_slot/eyes
 	key = ITEM_SLOT_KEY_EYES
-	item_slot = ITEM_SLOT_EYES
-
-/datum/item_slot/ears
-	key = ITEM_SLOT_KEY_EARS
-	item_slot = SLOT_EARS
+	item_slot = SLOT_GLASSES
 
 /datum/item_slot/jumpsuit
 	key = ITEM_SLOT_KEY_JUMPSUIT
@@ -75,11 +69,11 @@ GLOBAL_LIST_INIT(item_slot_list, create_item_slot_list(list(
 
 /datum/item_slot/gloves
 	key = ITEM_SLOT_KEY_GLOVES
-	item_slot = ITEM_SLOT_GLOVES
+	item_slot = SLOT_GLOVES
 
 /datum/item_slot/feet
 	key = ITEM_SLOT_KEY_FEET
-	item_slot = ITEM_SLOT_FEET
+	item_slot = SLOT_SHOES
 
 /datum/item_slot/armor_storage
 	key = ITEM_SLOT_KEY_ARMOR_STORAGE
@@ -87,7 +81,7 @@ GLOBAL_LIST_INIT(item_slot_list, create_item_slot_list(list(
 
 /datum/item_slot/belt
 	key = ITEM_SLOT_KEY_BELT
-	item_slot = ITEM_SLOT_BELT
+	item_slot = SLOT_BELT
 
 /datum/item_slot/pocket/left
 	key = ITEM_SLOT_KEY_LPOCKET

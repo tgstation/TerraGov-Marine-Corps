@@ -38,6 +38,11 @@
 
 	return TRUE
 
+/obj/machinery/automated_vendor/ui_assets(mob/user)
+	return list(
+		get_asset_datum(/datum/asset/simple/inventory),
+	)
+
 /obj/machinery/automated_vendor/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 
@@ -65,3 +70,4 @@
 
 		items[item_slot_key] = result
 	data["items"] = items
+	return data

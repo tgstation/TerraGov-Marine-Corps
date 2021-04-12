@@ -3,6 +3,7 @@ import { resolveAsset } from "../assets";
 import { useBackend } from "../backend";
 import { Box, Button, Icon, Stack } from "../components";
 import { Window } from "../layouts";
+import { createLogger } from '../logging';
 
 const ROWS = 5;
 const COLUMNS = 6;
@@ -25,73 +26,73 @@ const SLOTS: Record<
 > = {
   eyes: {
     displayName: "eyewear",
-    gridSpot: getGridSpotKey([0, 1]),
+    gridSpot: getGridSpotKey([0, 0]),
     image: "inventory-glasses.png",
   },
 
   head: {
     displayName: "headwear",
-    gridSpot: getGridSpotKey([0, 2]),
+    gridSpot: getGridSpotKey([0, 1]),
     image: "inventory-head.png",
   },
 
   mask: {
     displayName: "mask",
-    gridSpot: getGridSpotKey([1, 2]),
+    gridSpot: getGridSpotKey([0, 2]),
     image: "inventory-mask.png",
   },
 
   jumpsuit: {
     displayName: "uniform",
-    gridSpot: getGridSpotKey([2, 1]),
+    gridSpot: getGridSpotKey([1, 0]),
     image: "inventory-uniform.png",
   },
 
   armor: {
     displayName: "armor",
-    gridSpot: getGridSpotKey([2, 2]),
+    gridSpot: getGridSpotKey([1, 1]),
     image: "inventory-suit.png",
   },
 
   gloves: {
     displayName: "gloves",
-    gridSpot: getGridSpotKey([2, 3]),
+    gridSpot: getGridSpotKey([1, 2]),
     image: "inventory-gloves.png",
   },
 
   shoes: {
     displayName: "shoes",
-    gridSpot: getGridSpotKey([3, 2]),
+    gridSpot: getGridSpotKey([2, 1]),
     image: "inventory-shoes.png",
   },
 
-  suit_storage: {
+  armor_storage: {
     displayName: "armor storage item",
-    gridSpot: getGridSpotKey([4, 0]),
+    gridSpot: getGridSpotKey([2, 2]),
     image: "inventory-suit_storage.png",
   },
 
   belt: {
     displayName: "belt",
-    gridSpot: getGridSpotKey([4, 2]),
+    gridSpot: getGridSpotKey([2, 0]),
     image: "inventory-belt.png",
   },
 
   back: {
     displayName: "backpack",
-    gridSpot: getGridSpotKey([4, 3]),
+    gridSpot: getGridSpotKey([3, 2]),
     image: "inventory-back.png",
   },
 
   left_pocket: {
     displayName: "left pocket",
-    gridSpot: getGridSpotKey([4, 4]),
+    gridSpot: getGridSpotKey([3, 3]),
     image: "inventory-pocket.png",
   },
 
   right_pocket: {
     displayName: "right pocket",
-    gridSpot: getGridSpotKey([4, 5]),
+    gridSpot: getGridSpotKey([3, 4]),
     image: "inventory-pocket.png",
   },
 };
@@ -112,6 +113,8 @@ export const LoadoutSelector = (props : any, context : any) => {
   const {
     items,
   } = data;
+
+  const logger = createLogger('loadout');
 
   const gridSpots = new Map<GridSpotKey, string>();
   
