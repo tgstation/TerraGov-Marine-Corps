@@ -59,7 +59,8 @@
 	var/movement_boost = 0
 
 	/* This list contains the vali stat increases that correspond to each reagent
-	 * They go in the order - brute_heal_amp, burn_heal_amp, tox_heal, stamina_regen_amp, movement_boost
+	 * They go in the order:
+	 * brute_heal_amp, burn_heal_amp, tox_heal, stamina_regen_amp, movement_boost, min required volume
 	 */
 	var/list/reagent_stats = list(
 		/datum/reagent/medicine/bicaridine = list(0.1, 0, 0, 0, 0, 5),
@@ -254,7 +255,7 @@
 	amount -= boost_amount
 	if(update_boost_amount)
 		boost_amount += amount
-		to_chat(wearer, "<span class='notice'>Power set to [boost_amount+1].</span>")
+		to_chat(wearer, "<span class='notice'>Power set to [boost_amount].</span>")
 	resource_drain_amount = boost_amount*(3 + boost_amount)
 
 ///Handles Vali stat boosts and any other potential buffs on activation/deactivation
@@ -271,6 +272,9 @@
 	for(var/datum/reagent/R AS in wearer.reagents.reagent_list)
 		if(!LAZYACCESS(reagent_stats, R.type))
 			continue
+		if(R.volume < reagent_stats[R.type][6])
+			continue
+
 		brute_heal_amp += reagent_stats[R.type][1]
 		burn_heal_amp += reagent_stats[R.type][2]
 		tox_heal += reagent_stats[R.type][3]
