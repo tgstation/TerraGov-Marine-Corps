@@ -590,7 +590,6 @@ to_chat will check for valid clients itself already so no need to double check f
 	var/list/possible_mothers = list()
 	var/list/possible_silos = list()
 	SEND_SIGNAL(src, COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, possible_mothers, possible_silos) //List variable passed by reference, and hopefully populated.
-	
 	if(!length(possible_mothers))
 		if(length(possible_silos))
 			return attempt_to_spawn_larva_in_silo(xeno_candidate, possible_silos, larva_already_reserved)
