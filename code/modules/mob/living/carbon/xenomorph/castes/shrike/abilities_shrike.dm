@@ -63,6 +63,7 @@
 	cooldown_timer = 12 SECONDS
 	plasma_cost = 100
 	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_FLING
+	target_flags = XABB_MOB_TARGET
 
 
 /datum/action/xeno_action/activable/psychic_fling/on_cooldown_finish()
@@ -221,6 +222,7 @@
 	plasma_cost = 200
 	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_CURE
 	var/heal_range = SHRIKE_HEAL_RANGE
+	target_flags = XABB_MOB_TARGET
 
 
 /datum/action/xeno_action/activable/psychic_cure/on_cooldown_finish()
