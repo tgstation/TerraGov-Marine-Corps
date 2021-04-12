@@ -1362,7 +1362,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "ionized plasma bolt"
 	icon_state = "overchargedlaser"
 	hud_state = "laser_sniper"
-	damage = 200
+	damage = 50
 	max_range = 40
 	penetration = 5
 	sundering = 0
