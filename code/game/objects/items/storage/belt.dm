@@ -633,9 +633,7 @@
 	for(var/obj/item/ammo_magazine/mag in contents) 
 		if(!istype(gun, mag.gun_type))
 			continue
-		if(user.l_hand && user.r_hand)
-			gun.tactical_reload(mag, user)
-		else if (gun.current_mag)
+		if(user.l_hand && user.r_hand || gun.current_mag)
 			gun.tactical_reload(mag, user)
 		else 
 			gun.reload(user, mag)
