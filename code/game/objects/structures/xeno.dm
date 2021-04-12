@@ -328,7 +328,7 @@
 	addtimer(CALLBACK(src, .proc/Close), close_delay)
 
 /obj/structure/mineral_door/resin/Close()
-	if(!state || !loc ||isSwitchingStates)
+	if(!state || !loc || isSwitchingStates)
 		return //already closed
 	//Can't close if someone is blocking it
 	for(var/turf/turf in locs)
