@@ -96,7 +96,6 @@
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/gyro,
 		/obj/item/attachable/lace,
-		/obj/item/attachable/scope/marine,
 	)
 
 	muzzleflash_iconstate = "muzzle_flash_laser"
@@ -113,13 +112,11 @@
 	recoil = -2
 	recoil_unwielded = -2
 
-/obj/item/weapon/gun/pistol/plasma_pistol/Initialize(mapload, spawn_empty)
-	. = ..()
-	if(prob(1))
-		name = "\improper Guardsman\'s plasma pistol"
-		desc = "FOR THE EMPEROR!"
-		icon_state = "tx7w"
-		item_state = "tx7"
+/obj/item/weapon/gun/pistol/plasma_pistol/guardsman_pistol
+	name = "\improper Guardsman\'s plasma pistol"
+	desc = "FOR THE EMPEROR!"
+	icon_state = "tx7w"
+	item_state = "tx7"
 
 //-------------------------------------------------------
 //RT-3 pistol
