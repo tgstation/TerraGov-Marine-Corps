@@ -913,11 +913,8 @@
 	name = "Psychic Whisper"
 	action_icon_state = "psychic_whisper"
 	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_WHISPER
-<<<<<<< HEAD
 	use_state_flags = XACT_USE_LYING
-=======
 	target_flags = XABB_MOB_TARGET
->>>>>>> master
 
 
 /datum/action/xeno_action/psychic_whisper/action_activate()

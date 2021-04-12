@@ -536,11 +536,8 @@
 	plasma_cost = 150
 	cooldown_timer = 8 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_QUEEN_GIVE_PLASMA
-<<<<<<< HEAD
 	use_state_flags = XACT_USE_LYING
-=======
 	target_flags = XABB_MOB_TARGET
->>>>>>> master
 
 
 /datum/action/xeno_action/activable/queen_give_plasma/can_use_ability(atom/target, silent = FALSE, override_flags)
