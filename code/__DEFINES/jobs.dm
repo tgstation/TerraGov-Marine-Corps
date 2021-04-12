@@ -133,6 +133,7 @@ MEDICAL_OFFICER, MEDICAL_RESEARCHER, SQUAD_LEADER, SQUAD_SPECIALIST, SQUAD_SMART
 
 #define MARINE_SPAWN_ORIGIN "xenos from marine spawn"
 #define PSY_DRAIN_ORIGIN "xenos from psy drained bodies"
+#define COCOON_ORIGIN "xenos from cocooned bodies"
 #define SILO_ORIGIN "xenos from silo generation"
 
 #define SQUAD_MAX_POSITIONS(total_positions) CEILING(total_positions / length(SSjob.active_squads), 1)

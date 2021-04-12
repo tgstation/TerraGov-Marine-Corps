@@ -115,6 +115,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/list/exp = list()
 	var/list/menuoptions = list()
 
+	///Automated vendor saved loadout list. Assoc list
+	var/list/loadout_list
+
 	// Hud tooltip
 	var/tooltips = TRUE
 

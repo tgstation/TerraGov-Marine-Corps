@@ -15,8 +15,10 @@
 	var/mob/living/victim
 	///How much time the cocoon takes to deplete the life force of the marine
 	var/cocoon_life_time = 10 MINUTES
-	///How many psych points it is generating every 5 seconds
+	///How many psych points it is generating every 5 seconds (84 in total)
 	var/psych_points_output = 0.7
+	///How many larva points it gives when the timer is over
+	var/larva_points_reward = 1.5
 	///Standard busy check
 	var/busy = FALSE
 
@@ -58,6 +60,8 @@
 	if(anchored)
 		unanchor_from_nest()
 	if(must_release_victim)
+		var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+		xeno_job.add_job_points(larva_points_reward, COCOON_ORIGIN)
 		release_victim()
 	update_icon()
 
