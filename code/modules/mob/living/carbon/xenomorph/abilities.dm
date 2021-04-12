@@ -1171,12 +1171,9 @@
 	use_state_flags = XACT_USE_STAGGERED|XACT_USE_FORTIFIED|XACT_USE_CRESTED //can't use while staggered, defender fortified or crest down
 	keybind_signal = COMSIG_XENOABILITY_HEADBITE
 	plasma_cost = 100
-<<<<<<< HEAD
-=======
 	target_flags = XABB_MOB_TARGET
 	///How much psy points it give
 	var/psy_points_reward = 60
->>>>>>> master
 	///How much larva points it gives (8 points for one larva in distress)
 	var/larva_point_reward = 1.5
 
