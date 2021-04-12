@@ -1,14 +1,15 @@
 import { range } from "common/collections";
 import { resolveAsset } from "../assets";
 import { useBackend } from "../backend";
-import { Box, Button, Icon, Stack } from "../components";
+import { Box, Button, Icon, Section, Stack } from "../components";
 import { Window } from "../layouts";
 import { createLogger } from '../logging';
 
 const ROWS = 4;
 const COLUMNS = 3;
 
-const BUTTON_DIMENSIONS = "50px";
+const BUTTON_DIMENSION_WIDTH = "40px";
+const BUTTON_DIMENSION_HEIGHT = "30px";
 
 type GridSpotKey = string;
 
@@ -107,20 +108,111 @@ type SlotData = {
   items: Record<keyof typeof SLOTS, SlotItem>;
 };
 
-export const LoadoutSelector = (props : any, context : any) => {
+const SlotSelector = (props, context) => {
   const { act, data } = useBackend<SlotData>(context);
 
   const {
     items,
   } = data;
 
-  const logger = createLogger('loadout');
-
   const gridSpots = new Map<GridSpotKey, string>();
   
   for (const key of Object.keys(items)) {
     gridSpots.set(SLOTS[key].gridSpot, key);
   }
+  return (
+    <Section title="Slot Selector">
+      <Stack fill vertical>
+        {range(0, ROWS).map(row => (
+          <Stack.Item key={row}>
+            <Stack fill>
+              {range(0, COLUMNS).map(column => {
+                const key = getGridSpotKey([row, column]);
+                const keyAtSpot = gridSpots.get(key);
+
+                const item = data.items[keyAtSpot];
+                const slot = SLOTS[keyAtSpot];
+
+                let tooltip;
+
+                if ("name" in item) {
+                  tooltip = item.name;
+                }
+                else {
+                  tooltip = slot.displayName;
+                }
+
+                return (
+                  <Stack.Item
+                    key={key}
+                    style={{
+                      width: BUTTON_DIMENSION_WIDTH,
+                      height: BUTTON_DIMENSION_HEIGHT,
+                    }}
+                  >
+                    <Box
+                      style={{
+                        position: "relative",
+                        width: "100%",
+                        height: "100%",
+                      }}
+                    >
+                      <Button
+                        onClick={() => {
+                          act("chose", {
+                            key: keyAtSpot,
+                          });
+                        }}
+                        tooltip={tooltip}
+                      >
+                        {slot.image && (
+                          <Box
+                            as="img"
+                            src={resolveAsset(slot.image)}
+                            opacity={0.7}
+                            style={{
+                              position: "absolute",
+                              width: "32px",
+                              height: "32px",
+                              left: "50%",
+                              top: "50%",
+                              transform:
+                                "translateX(-50%) translateY(-50%) scale(0.8)",
+                            }}
+                          />
+                        )}
+                        <Box style={{ 
+                          position: "relative",
+                          width: "30px",
+                          height: "30px",
+                        }}>
+                          <Box
+                            as="img"
+                            src={`data:image/jpeg;base64,${item.icon}`}
+                            height="100%"
+                            width="100%"
+                            style={{
+                              "-ms-interpolation-mode": "nearest-neighbor",
+                              "vertical-align": "middle",
+                              position: "relative",
+                            }}
+                          />
+                        </Box>
+                      </Button>
+                    </Box>
+                  </Stack.Item>
+                );
+              })}
+            </Stack>
+          </Stack.Item>
+        ))}
+      </Stack>
+    </Section>
+  );
+};
+
+export const LoadoutSelector = (props, context) => {
+  const { act, data } = useBackend<SlotData>(context);
 
   return (
     <Window 
@@ -128,91 +220,7 @@ export const LoadoutSelector = (props : any, context : any) => {
       width={300} 
       height={300}>
       <Window.Content>
-        <Stack fill vertical>
-          {range(0, ROWS).map(row => (
-            <Stack.Item key={row}>
-              <Stack fill>
-                {range(0, COLUMNS).map(column => {
-                  const key = getGridSpotKey([row, column]);
-                  const keyAtSpot = gridSpots.get(key);
-
-                  const item = data.items[keyAtSpot];
-                  const slot = SLOTS[keyAtSpot];
-
-                  let content;
-                  let tooltip;
-
-                  if (item === null) {
-                    tooltip = slot.displayName;
-                  } else if ("name" in item) {
-                    content = (
-                      <Box
-                        as="img"
-                        src={`data:image/jpeg;base64,${item.icon}`}
-                        height="100%"
-                        width="100%"
-                        style={{
-                          "-ms-interpolation-mode": "nearest-neighbor",
-                          "vertical-align": "middle",
-                          position: "relative",
-                        }}
-                      />
-                    );
-
-                    tooltip = item.name;
-                  }
-
-                  return (
-                    <Stack.Item
-                      key={key}
-                      style={{
-                        width: BUTTON_DIMENSIONS,
-                        height: BUTTON_DIMENSIONS,
-                      }}
-                    >
-                      <Box
-                        style={{
-                          position: "relative",
-                          width: "100%",
-                          height: "100%",
-                        }}
-                      >
-                        <Button
-                          onClick={() => {
-                            act("chose", {
-                              key: keyAtSpot,
-                            });
-                          }}
-                          tooltip={tooltip}
-                        >
-                          {slot.image && (
-                            <Box
-                              as="img"
-                              src={resolveAsset(slot.image)}
-                              opacity={0.7}
-                              style={{
-                                position: "absolute",
-                                width: "32px",
-                                height: "32px",
-                                left: "50%",
-                                top: "50%",
-                                transform:
-                                  "translateX(-50%) translateY(-50%) scale(0.8)",
-                              }}
-                            />
-                          )}
-                          <Box style={{ position: "relative" }}>
-                            {content}
-                          </Box>
-                        </Button>
-                      </Box>
-                    </Stack.Item>
-                  );
-                })}
-              </Stack>
-            </Stack.Item>
-          ))}
-        </Stack>
+        <SlotSelector />
       </Window.Content>
     </Window>
   );

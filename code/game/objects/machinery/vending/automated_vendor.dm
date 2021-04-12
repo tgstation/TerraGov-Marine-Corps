@@ -56,14 +56,13 @@
 	for (var/item_slot_key in GLOB.item_slot_list)
 		var/datum/item_slot/item_slot_datum = GLOB.item_slot_list[item_slot_key]
 
-		var/list/result
+		var/list/result = list()
 
 		var/obj/item/item = user.get_item_by_slot(item_slot_datum.item_slot)
 		if (isnull(item))
+			result["icon"] = icon2base64(icon("icons/misc/empty.dmi", "empty"))
 			items[item_slot_key] = result
 			continue
-
-		LAZYINITLIST(result)
 
 		result["icon"] = icon2base64(icon(item.icon, item.icon_state))
 		result["name"] = item.name
