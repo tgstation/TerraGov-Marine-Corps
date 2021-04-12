@@ -1,3 +1,6 @@
+
+
+
 GLOBAL_LIST_INIT(item_slot_list, create_item_slot_list(list(
 	/datum/item_slot/head,
 	/datum/item_slot/back,
