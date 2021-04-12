@@ -100,6 +100,7 @@
 	SIGNAL_HANDLER
 	if(!current_order)
 		to_chat(src, "<span class='warning'>Your have no order selected.</span>")
+		return
 	current_order.send_order(target)
 
 ///Set the current order
