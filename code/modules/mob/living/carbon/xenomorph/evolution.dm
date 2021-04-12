@@ -105,6 +105,10 @@
 		to_chat(src, "<span class='warning'>We cannot evolve while in this stance.</span>")
 		return
 
+	if(LAZYLEN(stomach_contents))
+		to_chat(src, "<span class='warning'>We cannot evolve with a belly full.</span>")
+		return
+
 	var/new_caste_type
 	var/castepick
 	if(caste_type)

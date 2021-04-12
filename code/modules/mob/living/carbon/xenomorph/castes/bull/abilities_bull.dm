@@ -30,7 +30,6 @@
 	keybind_signal = COMSIG_XENOABILITY_BULLHEADBUTT
 	new_charge_type = CHARGE_BULL_HEADBUTT
 
-
 /datum/action/xeno_action/activable/bull_charge/gore
 	name = "Gore Charge"
 	action_icon_state = "bull_gore"

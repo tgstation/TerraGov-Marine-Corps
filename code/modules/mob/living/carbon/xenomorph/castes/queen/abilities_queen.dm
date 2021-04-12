@@ -20,7 +20,7 @@
 	var/txt = stripped_input(src, "Set the hive's orders to what? Leave blank to clear it.", "Hive Orders")
 
 	if(txt)
-		xeno_message("<B>The Queen has given a new order. Check Status panel for details.</B>",3,hivenumber)
+		xeno_message("<B>The Queen has given a new order. Check Status panel for details.</B>", "xenoannounce", 6,hivenumber)
 		hive.hive_orders = txt
 	else
 		hive.hive_orders = ""
@@ -536,7 +536,11 @@
 	plasma_cost = 150
 	cooldown_timer = 8 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_QUEEN_GIVE_PLASMA
+<<<<<<< HEAD
 	use_state_flags = XACT_USE_LYING
+=======
+	target_flags = XABB_MOB_TARGET
+>>>>>>> master
 
 
 /datum/action/xeno_action/activable/queen_give_plasma/can_use_ability(atom/target, silent = FALSE, override_flags)
@@ -717,33 +721,3 @@
 	SSblackbox.record_feedback("tally", "round_statistics", -1, "total_xenos_created")
 	qdel(T)
 	X.use_plasma(600)
-
-/datum/action/xeno_action/activable/corrupt_generator
-	name = "Corrupt generator"
-	action_icon_state = "tunnel"
-	mechanics_text = "Corrupt a generator to begin increasing the psycic energy of the hive."
-	plasma_cost = 200
-	//keybind_signal = COMSIG_XENOABILITY_CORRUPT_GENERATOR
-
-/datum/action/xeno_action/activable/corrupt_generator/can_use_ability(atom/A, silent, override_flags)
-	. = ..()
-	if(!.)
-		return
-	if(!istype(A, /obj/machinery/power/geothermal))
-		if(!silent)
-			to_chat(owner, "<span class='warning'>You can only use this ability on generators!</span>")
-		return FALSE
-	var/obj/machinery/power/geothermal/gen = A
-	if(!gen.is_corruptible)
-		if(!silent)
-			to_chat(owner, "<span class='warning'>[A] is reinforced and cannot be corrupted!</span>")
-		return FALSE
-
-/datum/action/xeno_action/activable/corrupt_generator/use_ability(atom/A)
-	var/obj/machinery/power/geothermal/gen = A
-	if(!do_after(owner, 10 SECONDS, TRUE, gen, BUSY_ICON_HOSTILE))
-		return fail_activate()
-	var/mob/living/carbon/xenomorph/X = owner
-	gen.corrupt(X.hivenumber)
-	to_chat(owner, "<span class='notice'>You have corrupted [A]</span>")
-	succeed_activate()

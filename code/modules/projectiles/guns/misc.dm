@@ -131,11 +131,11 @@
 		icon_state = base_gun_icon + "_e"
 
 
-/obj/item/weapon/gun/syringe/Fire(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, params, reflex = 0)
+/obj/item/weapon/gun/syringe/Fire()
 	if(syringes.len)
-		INVOKE_ASYNC(src, .proc/fire_syringe, target, user)
+		INVOKE_ASYNC(src, .proc/fire_syringe, target, gun_user)
 	else
-		to_chat(usr, "<span class='warning'>[src] is empty.</span>")
+		to_chat(gun_user, "<span class='warning'>[src] is empty.</span>")
 
 /obj/item/weapon/gun/syringe/proc/fire_syringe(atom/target, mob/user)
 	if (locate (/obj/structure/table, src.loc))

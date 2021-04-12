@@ -6,16 +6,13 @@
 // ***************************************
 // *********** Resin building
 // ***************************************
-/datum/action/xeno_action/choose_resin/hivelord
+/datum/action/xeno_action/activable/secrete_resin/hivelord
+	plasma_cost = 100
 	buildable_structures = list(
 		/turf/closed/wall/resin/regenerating/thick,
-		/obj/structure/bed/nest,
 		/obj/effect/alien/resin/sticky,
 		/obj/structure/mineral_door/resin/thick,
 	)
-
-/datum/action/xeno_action/activable/secrete_resin/hivelord
-	plasma_cost = 100
 
 GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	/turf/closed/wall/resin,
@@ -27,30 +24,6 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 		return ..()
 
 	return build_resin(get_turf(A)) // TODO: (psykzz)
-
-	// if(!is_type_in_typecache(A, GLOB.thickenable_resin))
-	// 	return build_resin(get_turf(A))
-
-	// if(istype(A, /turf/closed/wall/resin))
-	// 	var/turf/closed/wall/resin/WR = A
-	// 	var/oldname = WR.name
-	// 	if(WR.thicken())
-	// 		owner.visible_message("<span class='xenonotice'>\The [owner] regurgitates a thick substance and thickens [oldname].</span>","<span class='xenonotice'>You regurgitate some resin and thicken [oldname].</span>", null, 5)
-	// 		playsound(owner.loc, "alien_resin_build", 25)
-	// 		return succeed_activate()
-	// 	to_chat(owner, "<span class='xenowarning'>[WR] can't be made thicker.</span>")
-	// 	return fail_activate()
-
-	// if(istype(A, /obj/structure/mineral_door/resin))
-	// 	var/obj/structure/mineral_door/resin/DR = A
-	// 	var/oldname = DR.name
-	// 	if(DR.thicken())
-	// 		owner.visible_message("<span class='xenonotice'>\The [owner] regurgitates a thick substance and thickens [oldname].</span>", "<span class='xenonotice'>We regurgitate some resin and thicken [oldname].</span>", null, 5)
-	// 		playsound(owner.loc, "alien_resin_build", 25)
-	// 		return succeed_activate()
-	// 	to_chat(owner, "<span class='xenowarning'>[DR] can't be made thicker.</span>")
-	// 	return fail_activate()
-	// return fail_activate() //will never be reached but failsafe
 
 // ***************************************
 // *********** Resin walker
@@ -176,7 +149,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 
 	playsound(T, 'sound/weapons/pierce.ogg', 25, 1)
 
-
+	newt.hivenumber = X.hive //Set our structure's hive
 	newt.creator = X
 
 	X.tunnels.Add(newt)
@@ -189,7 +162,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	newt.tunnel_desc = "[get_area(newt)] (X: [newt.x], Y: [newt.y])"
 	newt.name += " [msg]"
 
-	xeno_message("<span class='xenoannounce'>[X.name] has built a new tunnel named [newt.name] at [newt.tunnel_desc]!</span>", 2, X.hivenumber)
+	xeno_message("[X.name] has built a new tunnel named [newt.name] at [newt.tunnel_desc]!", "xenoannounce", 5, X.hivenumber)
 
 	if(LAZYLEN(X.tunnels) > HIVELORD_TUNNEL_SET_LIMIT) //if we exceed the limit, delete the oldest tunnel set.
 		var/obj/structure/tunnel/old_tunnel = X.tunnels[1]
@@ -283,6 +256,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	plasma_cost = 200
 	keybind_signal = COMSIG_XENOABILITY_HEALING_INFUSION
 	use_state_flags = XACT_USE_LYING
+	target_flags = XABB_MOB_TARGET
 	var/heal_range = HIVELORD_HEAL_RANGE
 
 /datum/action/xeno_action/activable/healing_infusion/can_use_ability(atom/target, silent = FALSE, override_flags)

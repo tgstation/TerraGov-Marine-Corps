@@ -165,6 +165,12 @@
 	if(H.zone_selected == "head")
 		H.visible_message("<span class='notice'>[H] pats [target] on the head.</span>", \
 					"<span class='notice'>You pat [target] on the head.</span>", null, 4)
+	else if(H.zone_selected == "l_hand" && CONFIG_GET(flag/fun_allowed))
+		H.visible_message("<span class='notice'>[H] holds [target] 's left hand.</span>", \
+					"<span class='notice'>You hold [target]'s left hand.</span>", null, 4)
+	else if (H.zone_selected == "r_hand" && CONFIG_GET(flag/fun_allowed))
+		H.visible_message("<span class='notice'>[H] holds [target] 's right hand.</span>", \
+					"<span class='notice'>You hold [target]'s right hand.</span>", null, 4)
 	else
 		H.visible_message("<span class='notice'>[H] hugs [target] to make [target.p_them()] feel better!</span>", \
 					"<span class='notice'>You hug [target] to make [target.p_them()] feel better!</span>", null, 4)
@@ -1052,7 +1058,7 @@
 		return 0
 
 	if(victim.protection_aura)
-		damage = round(damage * ((15 - victim.protection_aura) / 15))
+		damage = round(damage * ((10 - victim.protection_aura) / 10))
 
 	var/datum/limb/organ = null
 	if(isorgan(def_zone))
