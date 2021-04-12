@@ -1,0 +1,6 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - balance: "probability of each ERT depends on the state of the game. IE, if xenos are losing shipside there is more chance than an XRT is called rather than a PMC one"
+  - balance: "Each ERT can be called only once (unless admin interaction)"
+  - admin: "Admin can deny an ERT without annoncing if they want. They can then use distress beacon verb to send another ERT if they wish to"
