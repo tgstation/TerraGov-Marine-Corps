@@ -69,7 +69,7 @@
 		/datum/reagent/medicine/meralyne = list(0.2, 0, 0, 0, 0, 5),
 		/datum/reagent/medicine/dermaline = list(0, 0.2, 0, 0, 0, 5),
 		/datum/reagent/medicine/dylovene = list(0, 0, 0.5, 0, 0, 5),
-		/datum/reagent/medicine/synaptizine = list(0, 0, 1, 0.1, 0, 5),
+		/datum/reagent/medicine/synaptizine = list(0, 0, 1, 0.1, 0, 3),
 		/datum/reagent/medicine/neuraline = list(1, 1, -3, 0, -0.4, 2),
 	)
 
