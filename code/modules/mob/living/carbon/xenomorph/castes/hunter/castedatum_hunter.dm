@@ -18,7 +18,8 @@
 	tackle_damage = 28
 
 	// *** Speed *** //
-	speed = -1.2
+	speed = -1.1
+	weeds_speed_mod = -0.1
 
 	// *** Plasma *** //
 	plasma_max = 100
@@ -67,7 +68,7 @@
 	tackle_damage = 28
 
 	// *** Speed *** //
-	speed = -1.3
+	speed = -1.2
 
 	// *** Plasma *** //
 	plasma_max = 150
@@ -97,7 +98,7 @@
 	tackle_damage = 32
 
 	// *** Speed *** //
-	speed = -1.4
+	speed = -1.3
 
 	// *** Plasma *** //
 	plasma_max = 200
@@ -128,7 +129,7 @@
 	tackle_damage = 32
 
 	// *** Speed *** //
-	speed = -1.5
+	speed = -1.4
 
 	// *** Plasma *** //
 	plasma_max = 200
