@@ -113,11 +113,14 @@
 	recoil = -2
 	recoil_unwielded = -2
 
-/obj/item/weapon/gun/pistol/plasma_pistol/guardsman
-	name = "\improper Gaurdsman\'s plasma pistol"
-	desc = "FOR THE EMPEROR!"
-	icon_state = "tx7w"
-	item_state = "tx7"
+/obj/item/weapon/gun/pistol/plasma_pistol/Initialize(mapload, spawn_empty)
+	. = ..()
+	if(prob(0.1))
+		name = "\improper Guardsman\'s plasma pistol"
+		desc = "FOR THE EMPEROR!"
+		icon_state = "tx7w"
+		item_state = "tx7"
+
 //-------------------------------------------------------
 //RT-3 pistol
 
