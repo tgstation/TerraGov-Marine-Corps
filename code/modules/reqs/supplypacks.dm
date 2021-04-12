@@ -761,7 +761,6 @@ ARMOR
 /datum/supply_packs/armor/modular/attachments/mixed
 	name = "Jaeger experimental mark 2 modules"
 	contains = list(
-		/obj/item/armor_module/attachable/valkyrie_autodoc,
 		/obj/item/armor_module/attachable/fire_proof,
 		/obj/item/armor_module/attachable/tyr_extra_armor,
 		/obj/item/armor_module/attachable/mimir_environment_protection,
@@ -776,13 +775,6 @@ ARMOR
 		/obj/item/armor_module/attachable/better_shoulder_lamp,
 	)
 	cost = 10
-
-/datum/supply_packs/armor/modular/attachments/valkyrie_autodoc
-	name = "Jaeger valkyrie modules"
-	contains = list(
-		/obj/item/armor_module/attachable/valkyrie_autodoc,
-	)
-	cost = 12
 
 /datum/supply_packs/armor/modular/attachments/fire_proof
 	name = "Jaeger surt modules"
