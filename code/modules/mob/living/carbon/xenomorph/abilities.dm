@@ -423,6 +423,7 @@
 	var/transfer_delay = 2 SECONDS
 	var/max_range = 2
 	keybind_signal = COMSIG_XENOABILITY_TRANSFER_PLASMA
+	target_flags = XABB_MOB_TARGET
 
 /datum/action/xeno_action/activable/transfer_plasma/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -757,6 +758,7 @@
 	ability_name = "xeno spit"
 	keybind_signal = COMSIG_XENOABILITY_XENO_SPIT
 	plasma_cost = 10
+	target_flags = XABB_MOB_TARGET
 
 /datum/action/xeno_action/activable/xeno_spit/update_button_icon()
 	var/mob/living/carbon/xenomorph/X = owner
@@ -859,6 +861,7 @@
 	cooldown_timer = 12 SECONDS
 	plasma_cost = 150
 	keybind_signal = COMSIG_XENOABILITY_NEUROTOX_STING
+	target_flags = XABB_MOB_TARGET
 
 /datum/action/xeno_action/activable/neurotox_sting/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -906,6 +909,7 @@
 	name = "Psychic Whisper"
 	action_icon_state = "psychic_whisper"
 	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_WHISPER
+	target_flags = XABB_MOB_TARGET
 
 
 /datum/action/xeno_action/psychic_whisper/action_activate()
@@ -1031,11 +1035,14 @@
 	
 	to_chat(owner, "<span class='notice'>We build a new silo for [final_psych_cost] psy points.</span>")
 	SSpoints.xeno_points_by_hive[X.hivenumber] -= final_psych_cost
+	log_game("[owner] has built a silo in [AREACOORD(A)], spending [final_psych_cost] psy points in the process")
 	succeed_activate()
 	if(build_small_silo)
 		new /obj/structure/resin/silo/small_silo (get_step(A, SOUTHWEST))
+		xeno_message("[X.name] has built a small silo at [get_area(A)]!", "xenoannounce", 5, X.hivenumber)
 		return
 	new /obj/structure/resin/silo (get_step(A, SOUTHWEST))
+	xeno_message("[X.name] has built a silo at [get_area(A)]!", "xenoannounce", 5, X.hivenumber)
 
 
 ////////////////////
@@ -1106,6 +1113,8 @@
 	new /obj/structure/resin/xeno_turret(get_turf(A), X.hivenumber)
 
 	SSpoints.xeno_points_by_hive[X.hivenumber] -= psych_cost
+	log_game("[owner] built a turret in [AREACOORD(A)], spending [psych_cost] psy points in the process")
+	xeno_message("[X.name] has built a new turret at [get_area(A)]!", "xenoannounce", 5, X.hivenumber)
 
 	succeed_activate()
 
@@ -1162,6 +1171,7 @@
 	use_state_flags = XACT_USE_STAGGERED|XACT_USE_FORTIFIED|XACT_USE_CRESTED //can't use while staggered, defender fortified or crest down
 	keybind_signal = COMSIG_XENOABILITY_HEADBITE
 	plasma_cost = 100
+	target_flags = XABB_MOB_TARGET
 	///How much psy points it give
 	var/psy_points_reward = 60
 	///How much larva points it gives (8 points for one larva in distress)
@@ -1246,6 +1256,7 @@
 	use_state_flags = XACT_USE_STAGGERED|XACT_USE_FORTIFIED|XACT_USE_CRESTED //can't use while staggered, defender fortified or crest down
 	keybind_signal = COMSIG_XENOABILITY_REGURGITATE
 	plasma_cost = 100
+	target_flags = XABB_MOB_TARGET
 	///In how much time the cocoon will be ejected
 	var/cocoon_production_time = 3 SECONDS
 

@@ -1,4 +1,0 @@
-author: "XSlayer300"
-delete-after: True
-changes: 
-  - qol: "Clicking yourself with the fire extinguisher while on HELP intent and with the safety off will extinguish yourself instead of bashing."

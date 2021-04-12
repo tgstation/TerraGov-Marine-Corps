@@ -14938,10 +14938,6 @@
 	dir = 5
 	},
 /area/ice_colony/exterior/surface/landing_pad)
-"aYJ" = (
-/obj/structure/fence,
-/turf/open/floor/plating/ground/ice,
-/area/ice_colony/exterior/surface/landing_pad_external)
 "aYK" = (
 /turf/closed/ice/straight{
 	dir = 4
@@ -32146,10 +32142,6 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice_rock/corners,
 /area/ice_colony/exterior/surface/cliff)
-"jGA" = (
-/obj/effect/landmark/dropship_start_location,
-/turf/open/floor/plating/ground/snow/layer0,
-/area/ice_colony/exterior/surface/clearing/north)
 "jKs" = (
 /obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/snow/layer1,
@@ -32163,6 +32155,11 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice_rock/southWall,
 /area/ice_colony/exterior/surface/cliff)
+"jPa" = (
+/obj/effect/turf_underlay/icefloor,
+/obj/structure/fence,
+/turf/closed/ice/thin/single,
+/area/ice_colony/exterior/surface/valley/southeast)
 "jPw" = (
 /obj/machinery/miner/damaged,
 /turf/open/floor/plating/ground/snow/layer2,
@@ -32910,6 +32907,11 @@
 	dir = 10
 	},
 /area/ice_colony/exterior/surface/landing_pad)
+"pVD" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
+/obj/structure/fence,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/exterior/surface/valley/southeast)
 "pYj" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/r_wall,
@@ -33354,6 +33356,10 @@
 	dir = 9
 	},
 /area/ice_colony/exterior/surface/cliff)
+"toL" = (
+/obj/effect/landmark/dropship_start_location,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/ice_colony/exterior/surface/clearing/north)
 "tto" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/ice_rock/corners,
@@ -43449,7 +43455,7 @@ aaa
 aaa
 aaa
 bSw
-aaG
+iII
 iII
 vrh
 vrh
@@ -52243,7 +52249,7 @@ anu
 ahj
 akF
 akF
-jGA
+toL
 akF
 aij
 akF
@@ -76710,9 +76716,9 @@ abN
 awL
 awL
 awL
-awL
+aMt
 nlt
-aYJ
+aUP
 aUP
 aUP
 aUP
@@ -76967,9 +76973,9 @@ aEC
 awL
 awL
 awL
-awL
+aMt
 nlt
-aYJ
+aUP
 aUP
 aUP
 aUP
@@ -77224,9 +77230,9 @@ awL
 awL
 awL
 awL
-awL
+aMt
 nlt
-aYJ
+aUP
 aUP
 aUP
 aUP
@@ -77481,9 +77487,9 @@ awL
 awL
 awL
 awL
-awL
+aMt
 nlt
-aYJ
+aUP
 aUP
 aUP
 aUP
@@ -77738,9 +77744,9 @@ awL
 awL
 awL
 awL
-awL
+aMt
 nlt
-aYJ
+aUP
 aUP
 aZr
 baC
@@ -77995,9 +78001,9 @@ awL
 awL
 awL
 sGc
-sGc
+pVD
 nlt
-aYJ
+aUP
 aUP
 aUP
 aYa
@@ -78254,7 +78260,7 @@ awf
 mpH
 acv
 abN
-aYJ
+aUP
 aUP
 aUP
 aUP
@@ -82103,9 +82109,9 @@ azG
 azG
 awL
 awL
-awL
-nlt
 aMt
+nlt
+awL
 aUP
 aWp
 bmg
@@ -82360,9 +82366,9 @@ awx
 azG
 azG
 azG
-awL
-nlt
 aMt
+nlt
+awL
 aUP
 aUP
 aUP
@@ -82617,12 +82623,12 @@ awx
 awx
 awx
 azG
-awL
+aMt
 nlt
-aMt
-aMt
-aMt
-aMt
+awL
+awL
+awL
+awL
 aaC
 aUP
 aUP
@@ -82874,7 +82880,7 @@ awx
 awx
 awx
 azG
-azG
+aus
 nlt
 sGc
 sGc
@@ -83131,11 +83137,11 @@ awx
 awx
 awx
 azG
-awL
-awL
-awL
-awL
-auW
+aMt
+aMt
+aMt
+aMt
+jPa
 aaU
 gtM
 aar
