@@ -185,7 +185,7 @@
 	return ..()
 
 /datum/action/xeno_action/activable/secrete_resin/action_activate()
-	
+
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.selected_ability != src)
 		return ..()
@@ -198,7 +198,7 @@
 	var/atom/A = X.selected_resin
 	to_chat(X, "<span class='notice'>We will now build <b>[initial(A.name)]\s</b> when secreting resin.</span>")
 	update_button_icon()
-	
+
 
 /datum/action/xeno_action/activable/secrete_resin/use_ability(atom/A)
 	build_resin(get_turf(owner))
@@ -946,7 +946,7 @@
 /datum/action/xeno_action/lay_egg
 	name = "Lay Egg"
 	action_icon_state = "lay_egg"
-	plasma_cost = 400
+	plasma_cost = 200
 	cooldown_timer = 12 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_LAY_EGG
 
@@ -1032,7 +1032,7 @@
 	if(SSpoints.xeno_points_by_hive[X.hivenumber] < final_psych_cost)
 		to_chat(owner, "<span class='xenowarning'>Someone used all the psych points while we were building!</span>")
 		return fail_activate()
-	
+
 	to_chat(owner, "<span class='notice'>We build a new silo for [final_psych_cost] psy points.</span>")
 	SSpoints.xeno_points_by_hive[X.hivenumber] -= final_psych_cost
 	log_game("[owner] has built a silo in [AREACOORD(A)], spending [final_psych_cost] psy points in the process")
@@ -1247,7 +1247,7 @@
 	log_game("[key_name(victim)] was drained at [AREACOORD(victim.loc)].")
 
 /////////////////////////////////
-// Devour 
+// Devour
 /////////////////////////////////
 /datum/action/xeno_action/activable/devour
 	name = "Cocoon"
@@ -1307,7 +1307,7 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/carbon/human/victim = A
 	var/channel = SSsounds.random_available_channel()
-	playsound(X, 'sound/vore/struggle.ogg', 40, channel = channel)		
+	playsound(X, 'sound/vore/struggle.ogg', 40, channel = channel)
 	if(!do_after(X, 7 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, /mob.proc/break_do_after_checks, list("health" = X.health))))
 		to_chat(owner, "<span class='warning'>We stop devouring \the [victim]. They probably tasted gross anyways.</span>")
 		X.stop_sound_channel(channel)
@@ -1323,7 +1323,7 @@
 	victim.forceMove(X)
 	X.do_jitter_animation()
 	channel = SSsounds.random_available_channel()
-	playsound(X, 'sound/vore/escape.ogg', 40, channel = channel)	
+	playsound(X, 'sound/vore/escape.ogg', 40, channel = channel)
 	if(!do_after(X, cocoon_production_time, FALSE, null, BUSY_ICON_DANGER))
 		to_chat(owner, "<span class='warning'>We moved too soon and we will have to devour our victim again!</span>")
 		X.eject_victim(FALSE, starting_turf)
