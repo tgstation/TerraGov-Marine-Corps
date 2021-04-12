@@ -47,6 +47,30 @@
 	///Image that gets added to the wearer's overlays and gets changed based on resource_storage_current
 	var/static/image/resource_overlay = image('icons/mob/hud.dmi', icon_state = "chemsuit_vis")
 	COOLDOWN_DECLARE(chemboost_activation_cooldown)
+	///Vali brute healing is multiplied by this
+	var/brute_heal_amp = 1
+	///Vali burn healing is multiplied by this
+	var/burn_heal_amp = 1
+	///Vali toxin healing is multiplied by this
+	var/tox_heal = 0
+	///Vali stamina regen is multiplied by this
+	var/stamina_regen_amp = 1
+	///Vali movement speed buff is this value
+	var/movement_boost = 0
+
+	/* This list contains the vali stat increases that correspond to each reagent
+	 * They go in the order - brute_heal_amp, burn_heal_amp, tox_heal, stamina_regen_amp, movement_boost
+	 */
+	var/list/reagent_stats = list(
+		/datum/reagent/medicine/bicaridine = list(0.1, 0, 0, 0, 0, 5),
+		/datum/reagent/medicine/kelotane = list(0, 0.1, 0, 0, 0, 5),
+		/datum/reagent/medicine/paracetamol = list(0, 0, 0, 0.2, -0.2, 5),
+		/datum/reagent/medicine/meralyne = list(0.2, 0, 0, 0, 0, 5),
+		/datum/reagent/medicine/dermaline = list(0, 0.2, 0, 0, 0, 5),
+		/datum/reagent/medicine/dylovene = list(0, 0, 0.5, 0, 0, 5),
+		/datum/reagent/medicine/synaptizine = list(0, 0, 1, 0.1, 0, 5),
+		/datum/reagent/medicine/neuraline = list(1, 1, -3, 0, -0.4, 2),
+	)
 
 /datum/component/chem_booster/Initialize()
 	if(!isitem(parent))
@@ -130,9 +154,10 @@
 		on_off()
 	update_resource(-resource_drain_amount)
 
-	wearer.heal_limb_damage(6*boost_amount, 6*boost_amount)
+	wearer.adjustToxLoss(-tox_heal*boost_amount)
+	wearer.heal_limb_damage(6*boost_amount*brute_heal_amp, 6*boost_amount*brute_heal_amp)
 	if(connected_weapon && world.time - processing_start < 20 SECONDS)
-		wearer.adjustStaminaLoss(-7*((20 - (world.time - processing_start)/10)/20)) //stamina gain scales inversely with passed time, up to 20 seconds
+		wearer.adjustStaminaLoss(-7*stamina_regen_amp*((20 - (world.time - processing_start)/10)/20)) //stamina gain scales inversely with passed time, up to 20 seconds
 	if(world.time - processing_start > 12 SECONDS && world.time - processing_start < 15 SECONDS)
 		wearer.overlay_fullscreen("degeneration", /obj/screen/fullscreen/infection, 1)
 		to_chat(wearer, "<span class='highdanger'>WARNING: You have [(200 - (world.time - processing_start))/10] seconds before necrotic tissue forms on your limbs.</span>")
@@ -199,6 +224,7 @@
 		boost_on = FALSE
 		to_chat(wearer, "<span class='warning'>Halting reagent injection.</span>")
 		COOLDOWN_START(src, chemboost_activation_cooldown, 10 SECONDS)
+		setup_bonus_effects()
 		return
 
 	if(!COOLDOWN_CHECK(src, chemboost_activation_cooldown))
@@ -221,6 +247,7 @@
 	if(automatic_meds_use)
 		show_meds_beaker_contents(wearer)
 		meds_beaker.reagents.trans_to(wearer, 30)
+	setup_bonus_effects()
 
 ///Updates the boost amount of the suit and effect_str of reagents if component is on. "amount" is the final level you want to set the boost to.
 /datum/component/chem_booster/proc/update_boost(amount, update_boost_amount = TRUE)
@@ -229,6 +256,32 @@
 		boost_amount += amount
 		to_chat(wearer, "<span class='notice'>Power set to [boost_amount+1].</span>")
 	resource_drain_amount = boost_amount*(3 + boost_amount)
+
+///Handles Vali stat boosts and any other potential buffs on activation/deactivation
+/datum/component/chem_booster/proc/setup_bonus_effects()
+	if(!boost_on)
+		brute_heal_amp = initial(brute_heal_amp)
+		burn_heal_amp = initial(burn_heal_amp)
+		tox_heal = initial(tox_heal)
+		stamina_regen_amp = initial(stamina_regen_amp)
+		wearer.remove_movespeed_modifier(MOVESPEED_ID_VALI_BOOST)
+		movement_boost = initial(movement_boost)
+		return
+
+	for(var/datum/reagent/R AS in wearer.reagents.reagent_list)
+		if(!LAZYACCESS(reagent_stats, R.type))
+			continue
+		brute_heal_amp += reagent_stats[R.type][1]
+		burn_heal_amp += reagent_stats[R.type][2]
+		tox_heal += reagent_stats[R.type][3]
+		stamina_regen_amp += reagent_stats[R.type][4]
+		movement_boost += reagent_stats[R.type][5]
+
+	if(movement_boost)
+		var/item_slowdown = wearer.additive_flagged_slowdown(SLOWDOWN_IMPEDE_JETPACK)
+		if(item_slowdown)
+			movement_boost += min(movement_boost/item_slowdown, item_slowdown)
+		wearer.add_movespeed_modifier(MOVESPEED_ID_VALI_BOOST, TRUE, 0, NONE, TRUE, movement_boost)
 
 ///Used to scan the person
 /datum/component/chem_booster/proc/scan_user(datum/source)
