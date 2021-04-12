@@ -5,8 +5,8 @@ import { Box, Button, Icon, Stack } from "../components";
 import { Window } from "../layouts";
 import { createLogger } from '../logging';
 
-const ROWS = 5;
-const COLUMNS = 6;
+const ROWS = 4;
+const COLUMNS = 3;
 
 const BUTTON_DIMENSIONS = "50px";
 
@@ -60,6 +60,12 @@ const SLOTS: Record<
     image: "inventory-gloves.png",
   },
 
+  belt: {
+    displayName: "belt",
+    gridSpot: getGridSpotKey([2, 0]),
+    image: "inventory-belt.png",
+  },
+
   shoes: {
     displayName: "shoes",
     gridSpot: getGridSpotKey([2, 1]),
@@ -72,27 +78,21 @@ const SLOTS: Record<
     image: "inventory-suit_storage.png",
   },
 
-  belt: {
-    displayName: "belt",
-    gridSpot: getGridSpotKey([2, 0]),
-    image: "inventory-belt.png",
-  },
-
   back: {
     displayName: "backpack",
-    gridSpot: getGridSpotKey([3, 2]),
+    gridSpot: getGridSpotKey([3, 0]),
     image: "inventory-back.png",
   },
 
   left_pocket: {
     displayName: "left pocket",
-    gridSpot: getGridSpotKey([3, 3]),
+    gridSpot: getGridSpotKey([3, 1]),
     image: "inventory-pocket.png",
   },
 
   right_pocket: {
     displayName: "right pocket",
-    gridSpot: getGridSpotKey([3, 4]),
+    gridSpot: getGridSpotKey([3, 2]),
     image: "inventory-pocket.png",
   },
 };
@@ -125,8 +125,8 @@ export const LoadoutSelector = (props : any, context : any) => {
   return (
     <Window 
       title="Slot selector"
-      width={400} 
-      height={400}>
+      width={300} 
+      height={300}>
       <Window.Content>
         <Stack fill vertical>
           {range(0, ROWS).map(row => (
@@ -135,17 +135,6 @@ export const LoadoutSelector = (props : any, context : any) => {
                 {range(0, COLUMNS).map(column => {
                   const key = getGridSpotKey([row, column]);
                   const keyAtSpot = gridSpots.get(key);
-                  if (!keyAtSpot) {
-                    return (
-                      <Stack.Item
-                        key={key}
-                        style={{
-                          width: BUTTON_DIMENSIONS,
-                          height: BUTTON_DIMENSIONS,
-                        }}
-                      />
-                    );
-                  }
 
                   const item = data.items[keyAtSpot];
                   const slot = SLOTS[keyAtSpot];
@@ -156,7 +145,6 @@ export const LoadoutSelector = (props : any, context : any) => {
                   if (item === null) {
                     tooltip = slot.displayName;
                   } else if ("name" in item) {
-
                     content = (
                       <Box
                         as="img"
@@ -166,6 +154,7 @@ export const LoadoutSelector = (props : any, context : any) => {
                         style={{
                           "-ms-interpolation-mode": "nearest-neighbor",
                           "vertical-align": "middle",
+                          position: "relative",
                         }}
                       />
                     );
