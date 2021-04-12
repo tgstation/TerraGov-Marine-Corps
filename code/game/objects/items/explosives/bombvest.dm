@@ -12,6 +12,9 @@
 ///Overwrites the parent function for activating a light. Instead it now detonates the bomb.
 /obj/item/clothing/suit/storage/marine/harness/boomvest/attack_self(mob/user)
 	var/mob/living/carbon/human/activator = user
+	if(issynth(activator) && !CONFIG_GET(flag/allow_synthetic_gun_use))
+		to_chat(user, "<span class='warning'>Your programming restricts operating explosive devices.</span>")
+		return TRUE
 	if(activator.wear_suit != src)
 		to_chat(activator, "Due to the rigging of this device, it can only be detonated while worn.") //If you are going to use this, you have to accept death. No armor allowed.
 		return FALSE
