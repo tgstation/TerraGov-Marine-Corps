@@ -1362,7 +1362,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "ionized plasma bolt"
 	icon_state = "overchargedlaser"
 	hud_state = "laser_sniper"
-	damage = 20
+	damage = 200
 	max_range = 40
 	penetration = 5
 	sundering = 0
@@ -1372,7 +1372,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	///Fire burn time
 	var/heat = 12 
 	///Fire damage
-	var/burn_damage = 6
+	var/burn_damage = 9
 	///Fire color
 	var/fire_color = "green" 
 
