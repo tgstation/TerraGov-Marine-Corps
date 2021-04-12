@@ -462,14 +462,12 @@ then, for every time you included a field, increment fields. */
 	name = "Brass Note"
 	icon = 'icons/obj/items/paper.dmi'
 	icon_state = "brassplate"
-	info = {"...Gur Rzvarapr fcbxr nzbatfg uvf sbyybjref va gur sbhy cynvaf bs gur nfura jbeyq jvgu juvpu gurl ynvq gurve urnqf, <BR>
-	naq ol gur jvyy bs gur Vzzbegny Whfgvpne, naq gur gbbyf bs gur zvtugl Nezbere, <BR>
-	gurl pbafgehpgrq n gbby fb inyvnag naq cbjreshy gung gur qrivyvfu ubhaqf bs Ane'fvr pbhyq qb anhtug ohg dhnxr nzbatfg gurzfryirf nf gur Oenff Tniry chevsvrq gur jbeyq nebhaq vg."}
+	info = {"...Gur Rzvarapr fcbxr nzbatfg uvf sbyybjref va gur sbhy cynvaf bs gur nfura jbeyq jvgu juvpu gurl ynvq gurve urnqf, naq ol gur jvyy bs gur Vzzbegny Whfgvpne, naq gur gbbyf bs gur zvtugl Nezbere, gurl pbafgehpgrq n gbby fb inyvnag naq cbjreshy gung gur qrivyvfu ubhaqf bs Ane'fvr pbhyq qb anhtug ohg dhnxr nzbatfg gurzfryirf nf gur Oenff Tniry chevsvrq gur jbeyq nebhaq vg."}
 
 /obj/item/paper/xenofinance
 	name = "To T. Jackson"
-	info = {"Boss, I know i'm the one who handles this place's finances, but are you KIDDING ME? Have you not even looked at the things we're importing? Why are we buying so much relating to our <BR>
-	science department? How much can you even research down here? And is that a Laser Rifle in the bank statements? And don't think I didn't notice you almost doubled our mining staff! Not to mention how our general security has been replaced by these Weston-Yamada guys. <BR>
+	info = {"Boss, I know i'm the one who handles this place's finances, but are you KIDDING ME? Have you not even looked at the things we're importing? Why are we buying so much relating to our science department? <BR>
+	How much can you even research down here? And don't think I didn't notice you almost doubled our mining staff! Not to mention how our general security has been replaced by these new PMCs. <BR>
 	We had to build an entire second dormitory for all these new workers! You NEED to have a look at our balance, because if we don't make some changes soon, this place is going under! - F. Arrek"}
 
 /obj/item/paper/xenoresearch1
@@ -481,7 +479,7 @@ then, for every time you included a field, increment fields. */
 /obj/item/paper/xenoresearch2
 	name = "Project X^2.I, 2"
 	info = {"This is, again, Dr. Evan Reiker of the X^2 project. The Site Manager has forced us to drop our other projects and focus on growing full specimens. <BR>
-	We've tried to reason with him about it, however he just thinks that these new Weston-Yamada PMCs can handle any potential breaches. He doesn't understand the full capability of these creatures. <BR>
+	We've tried to reason with him about it, however he just thinks that these new PMCs can handle any potential breaches. He doesn't understand the full capability of these creatures. <BR>
 	We're pressing on and trying to do it as safely as possible. On the bright side, it has helped us learn more about the species, including potentially psychic aspects regarding their leader castes. Atleast we're getting more funding."}
 
 /obj/item/paper/xenoresearch3
