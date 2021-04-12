@@ -1073,7 +1073,7 @@ MEDICAL
 	name = "lemoline"
 	notes = "Contains 1 bottle of lemoline with 10 units."
 	contains = list(/obj/item/reagent_containers/glass/bottle/lemoline)
-	cost = 50
+	cost = 25
 
 /datum/supply_packs/medical/advancedKits
 	name = "Advanced medical packs"
