@@ -8,8 +8,8 @@ import { createLogger } from '../logging';
 const ROWS = 4;
 const COLUMNS = 3;
 
-const BUTTON_DIMENSION_WIDTH = "40px";
-const BUTTON_DIMENSION_HEIGHT = "30px";
+const BUTTON_DIMENSION_WIDTH = "70px";
+const BUTTON_DIMENSION_HEIGHT = "70px";
 
 type GridSpotKey = string;
 
@@ -172,8 +172,8 @@ const SlotSelector = (props, context) => {
                             opacity={0.7}
                             style={{
                               position: "absolute",
-                              width: "32px",
-                              height: "32px",
+                              width: "65px",
+                              height: "65px",
                               left: "50%",
                               top: "50%",
                               transform:
@@ -183,8 +183,8 @@ const SlotSelector = (props, context) => {
                         )}
                         <Box style={{ 
                           position: "relative",
-                          width: "30px",
-                          height: "30px",
+                          width: "60px",
+                          height: "60px",
                         }}>
                           <Box
                             as="img"

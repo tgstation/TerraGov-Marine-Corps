@@ -30,7 +30,7 @@ GLOBAL_LIST_INIT(item_slot_list, create_item_slot_list(list(
 #define ITEM_SLOT_KEY_RPOCKET "right_pocket"
 
 
-/// Creates an assoc list of keys to /datum/strippable_item
+/// Creates an assoc list of keys to /datum/item_slot
 /proc/create_item_slot_list(types)
 	var/list/item_slot_list = list()
 

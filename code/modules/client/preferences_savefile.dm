@@ -151,6 +151,9 @@
 	READ_FILE(S["max_chat_length"], max_chat_length)
 	READ_FILE(S["see_chat_non_mob"], see_chat_non_mob)
 	READ_FILE(S["see_rc_emotes"], see_rc_emotes)
+	READ_FILE(S["loadouts_list"], loadouts_list)
+	READ_FILE(S["loadout_name"], loadout_name)
+	
 
 
 	//try to fix any outdated data if necessary
@@ -193,6 +196,9 @@
 	max_chat_length		= sanitize_integer(max_chat_length, 1, CHAT_MESSAGE_MAX_LENGTH, initial(max_chat_length))
 	see_chat_non_mob	= sanitize_integer(see_chat_non_mob, FALSE, TRUE, initial(see_chat_non_mob))
 	see_rc_emotes	= sanitize_integer(see_rc_emotes, FALSE, TRUE, initial(see_rc_emotes))
+
+	loadouts_list = sanitize_loadout_list(loadouts_list)
+	loadout_name = sanitize_text(loadout_name, "Default")
 
 	return TRUE
 
@@ -249,6 +255,10 @@
 	see_chat_non_mob	= sanitize_integer(see_chat_non_mob, FALSE, TRUE, initial(see_chat_non_mob))
 	see_rc_emotes	= sanitize_integer(see_rc_emotes, FALSE, TRUE, initial(see_rc_emotes))
 
+	//Loadout maker
+	loadouts_list = sanitize_loadout_list(loadouts_list)
+	loadout_name = sanitize_text(loadout_name, "Default")
+
 	WRITE_FILE(S["default_slot"], default_slot)
 	WRITE_FILE(S["lastchangelog"], lastchangelog)
 	WRITE_FILE(S["ooccolor"], ooccolor)
@@ -285,6 +295,8 @@
 	WRITE_FILE(S["max_chat_length"], max_chat_length)
 	WRITE_FILE(S["see_chat_non_mob"], see_chat_non_mob)
 	WRITE_FILE(S["see_rc_emotes"], see_rc_emotes)
+	WRITE_FILE(S["loadouts_list"], loadouts_list)
+	WRITE_FILE(S["loadout_name"], loadout_name)
 
 	return TRUE
 

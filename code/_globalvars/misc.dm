@@ -31,3 +31,6 @@ GLOBAL_PROTECT(polls)
 ///All poll option datums of running polls
 GLOBAL_LIST_EMPTY(poll_options)
 GLOBAL_PROTECT(poll_options)
+
+///A default loadout list
+GLOBAL_VAR_INIT(default_loadout, create_empty_loadout())

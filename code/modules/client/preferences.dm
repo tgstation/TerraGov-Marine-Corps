@@ -134,6 +134,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	var/auto_fit_viewport = TRUE
 
+	///List of all loadouts currently saved
+	var/list/loadouts_list
+	///The last selected loadout name
+	var/loadout_name = ""
+
 
 /datum/preferences/New(client/C)
 	if(!istype(C))
@@ -151,6 +156,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	menuoptions = list()
 	key_bindings = deepCopyList(GLOB.hotkey_keybinding_list_by_key) // give them default keybinds and update their movement keys
 	C.update_movement_keys(src)
+	loadout_name = "Default"
+	loadouts_list = list()
+	loadouts_list[loadout_name] = GLOB.default_loadout
 
 
 /datum/preferences/can_interact(mob/user)

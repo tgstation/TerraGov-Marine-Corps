@@ -14,12 +14,17 @@
  * item_slot where the item should be added
  */
 /datum/loadout/proc/add_item(obj/item/item_added, datum/item_slot/slot)
-	if(can_equip_to_slot(item_added, slot.item_slot))
+	if(can_equip_to_slot(item_added, slot))
 		item_list[slot] = item_added
 		return TRUE
 
-/datum/loadout/proc/can_equip_to_slot(obj/item/item_added, slot)
-	switch(slot)
+///Empty a slot of the loadout
+/datum/loadout/proc/empty_slot(datum/item_slot/slot)
+	item_list[slot] = null
+
+///Check if the item can go to the specified slot
+/datum/loadout/proc/can_equip_to_slot(obj/item/item_added, datum/item_slot/slot)
+	switch(slot.item_slot)
 		if(SLOT_WEAR_MASK)
 			if(!(item_added.flags_equip_slot & ITEM_SLOT_MASK))
 				return FALSE
@@ -82,3 +87,12 @@
 				return TRUE
 			return FALSE
 	return FALSE //Unsupported slot
+
+///Return a new empty loayout
+/proc/create_empty_loadout(name = "Default")
+	var/datum/loadout/empty = new
+	empty.name = name
+	empty.item_list = list()
+	empty.item_list[ITEM_SLOT_KEY_JUMPSUIT] = new /obj/item/clothing/under/marine/standard
+	empty.item_list[ITEM_SLOT_KEY_FEET] = new /obj/item/clothing/shoes/marine
+	return empty

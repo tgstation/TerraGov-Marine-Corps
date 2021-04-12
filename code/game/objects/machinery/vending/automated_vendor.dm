@@ -53,12 +53,12 @@
 /obj/machinery/automated_vendor/ui_data(mob/user)
 	var/list/data = list()
 	var/list/items = list()
+	var/list/loadouts_list = user.client.prefs.loadouts_list
+	var/datum/loadout/current_loadout = loadouts_list[user.client.prefs.loadout_name]
 	for (var/item_slot_key in GLOB.item_slot_list)
-		var/datum/item_slot/item_slot_datum = GLOB.item_slot_list[item_slot_key]
-
 		var/list/result = list()
 
-		var/obj/item/item = user.get_item_by_slot(item_slot_datum.item_slot)
+		var/obj/item/item = current_loadout.item_list[item_slot_key]
 		if (isnull(item))
 			result["icon"] = icon2base64(icon("icons/misc/empty.dmi", "empty"))
 			items[item_slot_key] = result

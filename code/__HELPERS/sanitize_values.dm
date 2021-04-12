@@ -103,3 +103,11 @@
 		return crunch + repeat_string(desired_format, "0")
 
 	return crunch + .
+
+
+/proc/sanitize_loadout_list(value)
+	if(length(value))
+		return value
+	var/list/loadout_list_default = list()
+	loadout_list_default["Default"] = GLOB.default_loadout
+	return loadout_list_default
