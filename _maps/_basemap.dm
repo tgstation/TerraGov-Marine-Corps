@@ -1,0 +1,27 @@
+//#define LOWMEMORYMODE //uncomment this to load centcom and runtime station and thats it.
+
+#include "map_files\generic\Admin_Level.dmm"
+
+#ifndef LOWMEMORYMODE
+	#ifdef ALL_MAPS
+		#include "map_files\BigRed_v2\BigRed_v2.dmm"
+		#include "map_files\Debugdalus\TGS_Debugdalus.dmm"
+		#include "map_files\Ice_Colony_v2\Ice_Colony_v2.dmm"
+		#include "map_files\LV624\LV624.dmm"
+		#include "map_files\Prison_Station_FOP\Prison_Station_FOP.dmm"
+		#include "map_files\Theseus\TGS_Theseus.dmm"
+		#include "map_files\Vapor_Processing\Vapor_Processing.dmm"
+		#include "map_files\Sulaco\Sulaco.dmm"
+		#include "map_files\Pillar_of_Spring\TGS_Pillar_of_Spring.dmm"
+		#include "map_files\icy_caves\icy_caves.dmm"
+		#include "map_files\desert\desert.dmm"
+		#include "map_files\MarineHQ\MarineHQ.dmm"
+		#include "map_files\Sulaco\Sulaco.dmm"
+		#include "map_files\Research_Outpost\Research_Outpost.dmm"
+		#include "map_files\Barrenquilla_Mining\Barrenquilla_Mining_Facility.dmm"
+		#include "map_files\Magmoor_Digsite_IV\Magmoor_Digsite_IV.dmm"
+		#ifdef CIBUILDING
+			#include "templates.dm"
+		#endif
+	#endif
+#endif
