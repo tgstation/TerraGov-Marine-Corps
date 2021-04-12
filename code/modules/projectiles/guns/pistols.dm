@@ -115,7 +115,7 @@
 
 /obj/item/weapon/gun/pistol/plasma_pistol/Initialize(mapload, spawn_empty)
 	. = ..()
-	if(prob(0.1))
+	if(prob(1))
 		name = "\improper Guardsman\'s plasma pistol"
 		desc = "FOR THE EMPEROR!"
 		icon_state = "tx7w"
