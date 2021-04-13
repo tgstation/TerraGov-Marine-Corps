@@ -41,7 +41,6 @@
 	gas_transfer_coefficient = 1
 
 	actions_types = list(/datum/action/item_action/toggle)
-	item_representation_type = /datum/item_representation/modular_armor
 
 	/// Attachment slots for chest armor
 	var/obj/item/armor_module/armor/slot_chest

@@ -21,8 +21,6 @@
 	light_range = 0
 	light_color = COLOR_WHITE
 
-	item_representation_type = /datum/item_representation/gun
-
 	var/atom/movable/vis_obj/effect/muzzle_flash/muzzle_flash
 	var/muzzleflash_iconstate
 	var/muzzle_flash_lum = 3 //muzzle flash brightness
