@@ -158,7 +158,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	C.update_movement_keys(src)
 	loadout_name = "Default"
 	loadouts_list = list()
-	loadouts_list[loadout_name] = GLOB.default_loadout
+	loadouts_list[loadout_name] = create_empty_loadout()
 
 
 /datum/preferences/can_interact(mob/user)

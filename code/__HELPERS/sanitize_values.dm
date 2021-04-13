@@ -109,5 +109,5 @@
 	if(length(value))
 		return value
 	var/list/loadout_list_default = list()
-	loadout_list_default["Default"] = GLOB.default_loadout
+	loadout_list_default["Default"] = create_empty_loadout()
 	return loadout_list_default

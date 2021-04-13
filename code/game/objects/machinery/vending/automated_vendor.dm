@@ -55,7 +55,7 @@
 	var/list/items = list()
 	var/list/loadouts_list = user.client.prefs.loadouts_list
 	var/datum/loadout/current_loadout = loadouts_list[user.client.prefs.loadout_name]
-	for (var/item_slot_key in GLOB.item_slot_list)
+	for (var/item_slot_key in GLOB.visible_item_slot_list)
 		var/list/result = list()
 
 		var/obj/item/item = current_loadout.item_list[item_slot_key]

@@ -101,6 +101,9 @@
 
 	var/active = FALSE
 
+	///What kind of item representation would fit the best with that item
+	var/item_representation_type = /datum/item_representation
+
 
 /obj/item/Initialize()
 	. = ..()

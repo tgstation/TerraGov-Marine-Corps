@@ -10,6 +10,8 @@
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "mod_is_bag"
 
+	item_representation_type = /datum/item_representation/storage
+
 	/// Internal storage type
 	var/storage_type = /obj/item/storage/internal/modular
 

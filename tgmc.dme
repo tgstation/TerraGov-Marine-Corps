@@ -288,7 +288,7 @@
 #include "code\datums\actions\rightclick_toggle.dm"
 #include "code\datums\actions\skill.dm"
 #include "code\datums\actions\xeno_action.dm"
-#include "code\datums\automated_vendor\item_slot.dm"
+#include "code\datums\automated_vendor\item_representation.dm"
 #include "code\datums\automated_vendor\loadout.dm"
 #include "code\datums\components\_component.dm"
 #include "code\datums\components\ai.dm"

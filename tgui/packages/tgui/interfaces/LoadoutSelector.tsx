@@ -25,73 +25,73 @@ const SLOTS: Record<
     image?: string;
   }
 > = {
-  eyes: {
+  slot_glasses: {
     displayName: "eyewear",
     gridSpot: getGridSpotKey([0, 0]),
     image: "inventory-glasses.png",
   },
 
-  head: {
+  slot_head: {
     displayName: "headwear",
     gridSpot: getGridSpotKey([0, 1]),
     image: "inventory-head.png",
   },
 
-  mask: {
+  slot_wear_mask: {
     displayName: "mask",
     gridSpot: getGridSpotKey([0, 2]),
     image: "inventory-mask.png",
   },
 
-  jumpsuit: {
+  slot_w_uniform: {
     displayName: "uniform",
     gridSpot: getGridSpotKey([1, 0]),
     image: "inventory-uniform.png",
   },
 
-  armor: {
+  slot_suit: {
     displayName: "armor",
     gridSpot: getGridSpotKey([1, 1]),
     image: "inventory-suit.png",
   },
 
-  gloves: {
+  slot_gloves: {
     displayName: "gloves",
     gridSpot: getGridSpotKey([1, 2]),
     image: "inventory-gloves.png",
   },
 
-  belt: {
+  slot_belt: {
     displayName: "belt",
     gridSpot: getGridSpotKey([2, 0]),
     image: "inventory-belt.png",
   },
 
-  shoes: {
+  slot_shoes: {
     displayName: "shoes",
     gridSpot: getGridSpotKey([2, 1]),
     image: "inventory-shoes.png",
   },
 
-  armor_storage: {
+  slot_s_store: {
     displayName: "armor storage item",
     gridSpot: getGridSpotKey([2, 2]),
     image: "inventory-suit_storage.png",
   },
 
-  back: {
-    displayName: "backpack",
+  slot_back: {
+    displayName: "back",
     gridSpot: getGridSpotKey([3, 0]),
     image: "inventory-back.png",
   },
 
-  left_pocket: {
+  slot_l_store: {
     displayName: "left pocket",
     gridSpot: getGridSpotKey([3, 1]),
     image: "inventory-pocket.png",
   },
 
-  right_pocket: {
+  slot_r_store: {
     displayName: "right pocket",
     gridSpot: getGridSpotKey([3, 2]),
     image: "inventory-pocket.png",
@@ -114,10 +114,13 @@ const SlotSelector = (props, context) => {
   const {
     items,
   } = data;
+  
+  const logger = createLogger('LoadoutSelector');
 
   const gridSpots = new Map<GridSpotKey, string>();
   
   for (const key of Object.keys(items)) {
+    logger.log('key', key);
     gridSpots.set(SLOTS[key].gridSpot, key);
   }
   return (
