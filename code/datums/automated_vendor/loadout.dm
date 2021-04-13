@@ -14,7 +14,6 @@ GLOBAL_LIST_INIT(visible_item_slot_list, list(
 	slot_r_store_str,
 ))
 
-
 /datum/loadout
 	///Name of the loadout
 	var/name = ""
