@@ -313,8 +313,3 @@ GLOBAL_PROTECT(exp_specialmap)
 
 /datum/job/proc/handle_special_preview(client/parent)
 	return FALSE
-
-/datum/job/xenomorph/occupy_job_positions(amount, respawn)
-	if((total_positions - current_positions - amount) < 0)//Bad, really bad
-		return FALSE
-	return ..()
