@@ -54,7 +54,7 @@
 			to_chat(usr, "<span class='notice'>They are currently set to railgun targeting mode.</span>")
 		if(MODE_ORBITAL)
 			to_chat(usr, "<span class='notice'>They are currently set to orbital bombardment mode.</span>")
-	to_chat(usr, "<span class='notice'>Use on mortar to link it for remote targeting.</span>")
+	to_chat(usr, "<span class='notice'>Use on a mortar to link it for remote targeting.</span>")
 	if(linked_mortar)
 		to_chat(usr, "<span class='notice'>They are currently linked to a mortar.</span>")
 		return
