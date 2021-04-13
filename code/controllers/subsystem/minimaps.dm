@@ -103,22 +103,23 @@ SUBSYSTEM_DEF(minimaps)
 	updators_by_datum = SSminimaps.updators_by_datum
 
 /datum/controller/subsystem/minimaps/fire(resumed)
-	var/static/lastflagnum = NONE
-	if(lastflagnum == -1) //on first iteration clear all overlays
+	var/static/iteration = 0
+	if(!iteration) //on first iteration clear all overlays
 		for(var/iter=1 to length(update_targets_unsorted))
 			update_targets_unsorted[iter].overlays.Cut() //clear all the old overlays, no we cant cache it because they wont update
 	//checks last fired flag to make sure under high load that things are performed in stages
+	var/depthcount = 0
 	for(var/flag in update_targets)
-		var/flagnum = text2num(flag)
-		if(resumed && (flagnum < lastflagnum)) //under high load update in chunks
+		if(depthcount < iteration) //under high load update in chunks
+			depthcount++
 			continue
 		for(var/datum/minimap_updator/updator AS in update_targets[flag])
 			updator.minimap.overlays += minimaps_by_z["[updator.ztarget]"].images_raw[flag]
-		lastflagnum = flagnum
-		if(lastflagnum == text2num(update_targets[length(update_targets)]))
-			lastflagnum = -1 //last one processed, loop around
+		depthcount++
+		iteration++
 		if(MC_TICK_CHECK)
 			return
+	iteration = 0
 
 /**
  * Adds an atom to the processing updators that will have blips drawn on them
