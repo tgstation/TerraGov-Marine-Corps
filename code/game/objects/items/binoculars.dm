@@ -286,6 +286,21 @@
 	message_admins("[ADMIN_TPMONTY(user)] fired an orbital bombardment in [ADMIN_VERBOSEJMP(current_turf)].")
 	QDEL_NULL(laser)
 
+///Sets or unsets the binocs linked mortar.
+/obj/item/binoculars/tactical/proc/set_mortar(mortar)
+	if(linked_mortar)
+		linked_mortar = null
+		UnregisterSignal(linked_mortar, COMSIG_PARENT_QDELETING)
+		return FALSE
+	linked_mortar = mortar
+	RegisterSignal(linked_mortar, COMSIG_PARENT_QDELETING, .proc/clean_refs)
+	return TRUE
+
+///Proc called when linked_mortar is deleted.
+/obj/item/binoculars/tactical/proc/clean_refs()
+	linked_mortar = null
+	to_chat(usr, "<span class='notice'>NOTICE: [src] has lost connection with its linked mortar.</span>")
+
 /obj/item/binoculars/tactical/scout
 	name = "scout tactical binoculars"
 	desc = "A modified version of tactical binoculars with an advanced laser targeting function. Ctrl+Click to target something."
