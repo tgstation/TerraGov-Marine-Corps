@@ -22,7 +22,7 @@
 	attachable_allowed = list( //give it some flexibility.
 						/obj/item/attachable/flashlight,
 						/obj/item/attachable/magnetic_harness)
-	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_AMMO_COUNTER|GUN_WIELDED_STABLE_FIRING_ONLY
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
 	attachable_offset = list("rail_x" = 12, "rail_y" = 23)
 	fire_delay = 4
