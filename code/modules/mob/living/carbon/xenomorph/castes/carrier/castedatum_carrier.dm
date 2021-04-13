@@ -56,6 +56,7 @@
 		/datum/action/xeno_action/activable/devour,
 		/datum/action/xeno_action/plant_weeds,
 		/datum/action/xeno_action/activable/throw_hugger,
+		/datum/action/xeno_action/lay_egg,
 		/datum/action/xeno_action/activable/retrieve_egg,
 		/datum/action/xeno_action/place_trap,
 		/datum/action/xeno_action/spawn_hugger,

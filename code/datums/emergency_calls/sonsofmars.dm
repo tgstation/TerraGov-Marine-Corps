@@ -1,7 +1,8 @@
 //Sons of Mars
 /datum/emergency_call/som
 	name = "Sons of Mars Squad"
-	probability = 20
+	base_probability = 26
+	alignement_factor = 0
 
 
 /datum/emergency_call/som/print_backstory(mob/living/carbon/human/H)
@@ -54,11 +55,20 @@
 
 // HvH version:
 
-/datum/emergency_call/som/hvh
+/datum/emergency_call/somhvh
 	name = "Sons of Mars Squad (Human vs. Human)"
-	probability = 0
+	base_probability = 0
 
-/datum/emergency_call/som/hvh/create_member(datum/mind/M)
+/datum/emergency_call/somhvh/print_backstory(mob/living/carbon/human/H)
+	to_chat(H, "<B>You [pick("grew up in the mines working in horrible conditions until signing up to", "were part of a poor family until you decided to leave to join", "were born on a colony on Mars to a family of several brothers and sisters before leaving to", "worked at horrible conditions in the mines until deciding to leave to join")] the Sons of Mars (SoM).</b>")
+	to_chat(H, "<B>As part of the Big-3 included in the Independent Colonial Confederation (ICC), the SoM, formed in 2180, is a heavily industrialized group with the standing army of approx. 200,000 enlisted or trained members.</b>")
+	to_chat(H, "<B>The SoM rebels were able to overpower the Space Authority, discovering an engine capable of Faster Than Light travel, but the Space Authority Marine Corps succeeded in prevented them from stealing the engine. Currently, the SoM have the biggest ICC fleet outside of the Sol system.</b>")
+	to_chat(H, "")
+	to_chat(H, "<B>Today, a TGMC vessel, [SSmapping.configs[SHIP_MAP].map_name], has sent out a distress signal on the orbit of [SSmapping.configs[GROUND_MAP].map_name]. This is our chance to attack without being intercepted!</b>")
+	to_chat(H, "<B>Eliminate the TGMC, take no prisoners. Get back what it was once lost.</B>")
+
+
+/datum/emergency_call/somhvh/create_member(datum/mind/M)
 	. = ..()
 	if(!.)
 		return

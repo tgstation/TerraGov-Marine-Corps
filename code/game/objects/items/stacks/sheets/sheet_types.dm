@@ -70,6 +70,7 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	desc = "Sheets made out of metal. It has been dubbed Metal Sheets."
 	singular_name = "metal sheet"
 	icon_state = "sheet-metal"
+	flags_item = NOBLUDGEON
 	materials = list(/datum/material/metal = 4000)
 	throwforce = 14.0
 	flags_atom = CONDUCT
@@ -105,6 +106,7 @@ GLOBAL_LIST_INIT(plasteel_recipes, list ( \
 	desc = "This sheet is an alloy of iron and phoron."
 	icon_state = "sheet-plasteel"
 	item_state = "sheet-metal"
+	flags_item = NOBLUDGEON
 	materials = list(/datum/material/metal = 7500)
 	throwforce = 15.0
 	flags_atom = CONDUCT
