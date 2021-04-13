@@ -5,19 +5,27 @@
  */
 /datum/item_representation
 	/// Name of the object, identical to the name of the object it represents
-	var/name = ""
+	var/name
 	/// The type of the object represented, to allow us to create the object when needed
 	var/item_type
+	/// The contents in that item
+	var/contents
+	/// The icon of the object
+	var/icon
+	/// The icon state of the object
+	var/icon_state
 
 /// Initiate the item_representation with the necessary vars from the item
-/datum/item_representation/proc/copy_vars_from_item(obj/item/item)
-	name = item.name
-	item_type = item.type
+/datum/item_representation/proc/copy_vars_from_item_type(item_type = /obj/item)
+	var/obj/item/item = item_type
+	name = initial(item.name)
+	icon = initial(item.icon)
+	icon_state = initial(item.icon_state)
 
 /// Will create a new item, and copy all the vars saved in the item representation to the newly created item
 /datum/item_representation/proc/instantiate_object()
 	var/obj/item/item = new item_type
-	item.name = name
+	item.contents = contents
 	return item
 
 /**
@@ -34,13 +42,6 @@
 	/// Stock attachement representation
 	var/datum/item_representation/stock
 
-/datum/item_representation/gun/copy_vars_from_item(obj/item/weapon/gun/gun)
-	..()
-	muzzle = gun.muzzle
-	rail = gun.rail
-	under = gun.rail
-	stock = gun.stock
-
 /datum/item_representation/gun/instantiate_object()
 	var/obj/item/weapon/gun/gun = ..()
 	gun.muzzle = muzzle
@@ -48,23 +49,6 @@
 	gun.under = under
 	gun.stock = stock
 	return gun
-
-/**
- * Allow to representate an item which we want to save its internal storage
- * Unlike all other child of /datum/item_representation ,any item can be represented by /datum/item_representation/storage
- */
-/datum/item_representation/storage
-	/// A list of datum/item_representation stored in that item
-	var/list/contents
-
-/datum/item_representation/storage/copy_vars_from_item(obj/item/storage)
-	..()
-	contents = storage.contents
-
-/datum/item_representation/storage/instantiate_object()
-	var/obj/item/storage = ..() //We don't need to cast more than necessary here, all atoms have content
-	storage.contents = contents
-	return storage
 
 /**
  * Allow to representate a jaeger modular armor with its module
@@ -80,15 +64,7 @@
 	/// What modules are installed
 	var/list/datum/item_representation/installed_modules
 	/// What storage is installed
-	var/datum/item_representation/storage/installed_storage
-
-/datum/item_representation/modular_armor/copy_vars_from_item(obj/item/clothing/suit/modular/modular_armor)
-	..()
-	slot_chest = modular_armor.slot_chest
-	slot_arms = modular_armor.slot_arms
-	slot_legs = modular_armor.slot_legs
-	installed_modules = modular_armor.installed_modules
-	installed_storage = modular_armor.installed_storage
+	var/datum/item_representation/installed_storage
 
 /datum/item_representation/modular_armor/instantiate_object()
 	var/obj/item/clothing/suit/modular/modular_armor = ..()
@@ -98,3 +74,11 @@
 	modular_armor.installed_modules = installed_modules
 	modular_armor.installed_storage = installed_storage
 	return modular_armor
+	
+///Return wich type of item_representation should representate any item_type
+/proc/item_representation_type(item_type)
+	if(ispath(item_type, /obj/item/weapon/gun))
+		return /datum/item_representation/gun
+	if(ispath(item_type, /obj/item/clothing/suit/modular))
+		return /datum/item_representation/modular_armor
+	return /datum/item_representation

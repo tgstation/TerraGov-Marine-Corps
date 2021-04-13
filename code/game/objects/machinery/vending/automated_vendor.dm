@@ -58,7 +58,7 @@
 	for (var/item_slot_key in GLOB.visible_item_slot_list)
 		var/list/result = list()
 
-		var/obj/item/item = current_loadout.item_list[item_slot_key]
+		var/datum/item_representation/item = current_loadout.item_list[item_slot_key]
 		if (isnull(item))
 			result["icon"] = icon2base64(icon("icons/misc/empty.dmi", "empty"))
 			items[item_slot_key] = result
