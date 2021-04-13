@@ -1,0 +1,4 @@
+author: "2whatever2"
+delete-after: True
+changes: 
+  - balance: "Lowers tesla shell speed (2 to 0.1), lowers drain, and plasma regen disable (30 to 20), and increases the slow telsagun has (0.5 to 2)"
