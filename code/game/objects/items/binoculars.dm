@@ -27,7 +27,7 @@
 	var/cooldown_duration = 200 //20 seconds
 	var/obj/effect/overlay/temp/laser_target/laser
 	var/target_acquisition_delay = 100 //10 seconds
-	var/mode = 0
+	var/mode = 0  //Able to be switched between modes, 0 for cas laser, 1 for finding coordinates, 2 for directing railgun, 3 for orbital bombardment, 4 for range finding and mortar targeting.
 	var/changable = TRUE //If set to FALSE, you can't toggle the mode between CAS and coordinate finding
 	var/ob_fired = FALSE // If the user has fired the OB
 	var/turf/current_turf // The target turf, used for OBs
