@@ -237,7 +237,6 @@ should be alright.
 
 ///This performs a tactical reload with src using new_magazine to load the gun.
 /obj/item/weapon/gun/proc/tactical_reload(obj/item/ammo_magazine/new_magazine, mob/living/carbon/human/user)
-	var/obj/item/ammo_magazine/M = new_magazine
 	if(!istype(user) || user.incapacitated(TRUE))
 		return
 	if(src != user.r_hand && src != user.l_hand)
@@ -250,19 +249,19 @@ should be alright.
 	if(!user.skills.getRating("firearms"))
 		to_chat(user, "<span class='warning'>You don't know how to do tactical reloads.</span>")
 		return
-	if(!istype(src, M.gun_type))
+	if(!istype(src, new_magazine.gun_type))
 		return
 	if(current_mag)
 		unload(user,0,1)
 		to_chat(user, "<span class='notice'>You start a tactical reload.</span>")
 	var/tac_reload_time = max(0.5 SECONDS, 1.5 SECONDS - user.skills.getRating("firearms") * 5)
-	if(do_after(user,tac_reload_time, TRUE, M) && loc == user)
-		if(istype(M.loc, /obj/item/storage))
-			var/obj/item/storage/S = M.loc
-			S.remove_from_storage(M, get_turf(user))
-			return
-		user.put_in_any_hand_if_possible(M)
-		reload(user, M)
+	if(do_after(user,tac_reload_time, TRUE, new_magazine) && loc == user)
+		return
+	if(istype(new_magazine.loc, /obj/item/storage))
+		var/obj/item/storage/S = new_magazine.loc
+		S.remove_from_storage(new_magazine, get_turf(user))
+	user.put_in_any_hand_if_possible(new_magazine)
+	reload(user, new_magazine)
 
 //----------------------------------------------------------
 				//						 \\
