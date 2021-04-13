@@ -241,8 +241,8 @@
 	force = 40
 	w_class = WEIGHT_CLASS_BULKY
 	flags_equip_slot = ITEM_SLOT_BACK
-	force_wielded = 75
-	throwforce = 75
+	force_wielded = 100
+	throwforce = 100
 	throw_speed = 3
 	reach = 2
 	edge = 1
