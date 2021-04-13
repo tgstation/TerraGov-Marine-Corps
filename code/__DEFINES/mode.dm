@@ -129,5 +129,5 @@
 #define SILO_PRICE 1200
 #define XENO_TURRET_PRICE 150
 
-//The minimum round time before siloless timer can start (13:00)
-#define MINIMUM_TIME_SILO_LESS_COLLAPSE 36000 
+//The minimum round time before siloless timer can start (12:33)
+#define MINIMUM_TIME_SILO_LESS_COLLAPSE 18000 
