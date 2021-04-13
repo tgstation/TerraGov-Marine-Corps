@@ -18,7 +18,7 @@
 #define MODE_CAS 0
 #define MODE_RAILGUN 1
 #define MODE_ORBITAL 2
-#define MODE_RANGE_FINDER 3 //Also mortar targetting mode
+#define MODE_RANGE_FINDER 3
 
 /obj/item/binoculars/tactical
 	name = "tactical binoculars"
