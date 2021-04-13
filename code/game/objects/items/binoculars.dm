@@ -289,8 +289,9 @@
 ///Sets or unsets the binocs linked mortar.
 /obj/item/binoculars/tactical/proc/set_mortar(mortar)
 	if(linked_mortar)
-		linked_mortar = null
 		UnregisterSignal(linked_mortar, COMSIG_PARENT_QDELETING)
+	if(linked_mortar == mortar)
+		linked_mortar = null
 		return FALSE
 	linked_mortar = mortar
 	RegisterSignal(linked_mortar, COMSIG_PARENT_QDELETING, .proc/clean_refs)
@@ -298,6 +299,7 @@
 
 ///Proc called when linked_mortar is deleted.
 /obj/item/binoculars/tactical/proc/clean_refs()
+	SIGNAL_HANDLER
 	linked_mortar = null
 	to_chat(usr, "<span class='notice'>NOTICE: [src] has lost connection with its linked mortar.</span>")
 
