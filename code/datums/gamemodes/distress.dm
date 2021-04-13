@@ -205,6 +205,7 @@
 	announce_xenomorphs()
 	announce_medal_awards()
 	announce_round_stats()
+	addtimer(CALLBACK(SSvote, /datum/controller/subsystem/vote/proc/automatic_vote), 1 MINUTES)
 
 
 /datum/game_mode/infestation/distress/scale_roles(initial_players_assigned)
