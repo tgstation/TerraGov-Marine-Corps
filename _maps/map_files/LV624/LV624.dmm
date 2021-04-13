@@ -14495,9 +14495,6 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west2)
-"iUk" = (
-/turf/open/space/basic,
-/area/lv624/lazarus/kitchen)
 "iXy" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/plating/ground/dirtgrassborder{
@@ -39727,7 +39724,7 @@ bgq
 bgW
 bfy
 biy
-iUk
+biy
 bjV
 bdV
 blx
