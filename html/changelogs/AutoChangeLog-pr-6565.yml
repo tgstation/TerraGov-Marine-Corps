@@ -1,0 +1,4 @@
+author: "hyper2snyper"
+delete-after: True
+changes: 
+  - balance: "Now if your hands are full, or there is a magazine in your gun, Pistol Belt reloading will instead perform a \"Tactical Reload\""
