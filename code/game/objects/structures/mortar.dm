@@ -202,9 +202,9 @@
 		var/obj/item/binoculars/tactical/binocs = I
 		playsound(src, 'sound/effects/binoctarget.ogg', 35)
 		if(binocs.set_mortar(src))
-			to_chat(user, "<span class='notice'>You link the mortar to the [I] allowing for remote targeting</span>")
+			to_chat(user, "<span class='notice'>You link the mortar to the [b] allowing for remote targeting</span>")
 			return
-		to_chat(user, "<span class='notice'>You unlink the mortar from the [I].")
+		to_chat(user, "<span class='notice'>You disconnect the [binocs] from their linked mortar.")
 
 ///Proc called by tactical binoculars to send targeting information.
 /obj/structure/mortar/proc/recieve_target(turf/T, binocs, mob/user)
