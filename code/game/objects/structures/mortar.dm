@@ -202,7 +202,7 @@
 		var/obj/item/binoculars/tactical/binocs = I
 		playsound(src, 'sound/effects/binoctarget.ogg', 35)
 		if(binocs.set_mortar(src))
-			to_chat(user, "<span class='notice'>You link the mortar to the [b] allowing for remote targeting</span>")
+			to_chat(user, "<span class='notice'>You link the mortar to the [binocs] allowing for remote targeting</span>")
 			return
 		to_chat(user, "<span class='notice'>You disconnect the [binocs] from their linked mortar.")
 
