@@ -30,8 +30,6 @@
 	density = TRUE
 	pixel_x = -16
 	max_integrity = 500
-	layer = ABOVE_FLY_LAYER
-	resistance_flags = DROPSHIP_IMMUNE
 	var/log_amount = 10
 
 /obj/structure/flora/tree/Initialize()
