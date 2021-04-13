@@ -250,18 +250,19 @@ should be alright.
 	if(!user.skills.getRating("firearms"))
 		to_chat(user, "<span class='warning'>You don't know how to do tactical reloads.</span>")
 		return
-	if(istype(src, M.gun_type))
-		if(current_mag)
-			unload(user,0,1)
-			to_chat(user, "<span class='notice'>You start a tactical reload.</span>")
-		var/tac_reload_time = max(0.5 SECONDS, 1.5 SECONDS - user.skills.getRating("firearms") * 5)
-		if(do_after(user,tac_reload_time, TRUE, M) && loc == user)
-			if(istype(M.loc, /obj/item/storage))
-				var/obj/item/storage/S = M.loc
-				S.remove_from_storage(M, get_turf(user))
-				return
-			user.put_in_any_hand_if_possible(M)
-			reload(user, M)
+	if(!istype(src, M.gun_type))
+		return
+	if(current_mag)
+		unload(user,0,1)
+		to_chat(user, "<span class='notice'>You start a tactical reload.</span>")
+	var/tac_reload_time = max(0.5 SECONDS, 1.5 SECONDS - user.skills.getRating("firearms") * 5)
+	if(do_after(user,tac_reload_time, TRUE, M) && loc == user)
+		if(istype(M.loc, /obj/item/storage))
+			var/obj/item/storage/S = M.loc
+			S.remove_from_storage(M, get_turf(user))
+			return
+		user.put_in_any_hand_if_possible(M)
+		reload(user, M)
 
 //----------------------------------------------------------
 				//						 \\
