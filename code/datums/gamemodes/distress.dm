@@ -26,6 +26,7 @@
 		/datum/job/terragov/silicon/ai = 1,
 		/datum/job/terragov/squad/engineer = 8,
 		/datum/job/terragov/squad/corpsman = 8,
+		/datum/job/terragov/squad/smartgunner = 1,
 		/datum/job/terragov/squad/leader = 1,
 		/datum/job/terragov/squad/standard = -1,
 		/datum/job/xenomorph = 2,
@@ -204,6 +205,7 @@
 	announce_xenomorphs()
 	announce_medal_awards()
 	announce_round_stats()
+	addtimer(CALLBACK(SSvote, /datum/controller/subsystem/vote/proc/automatic_vote), 1 MINUTES)
 
 
 /datum/game_mode/infestation/distress/scale_roles(initial_players_assigned)

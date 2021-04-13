@@ -16,24 +16,14 @@
 /proc/check_tunnel_list(mob/user) //Creates a handy list of all xeno tunnels
 	var/dat = "<br>"
 
-	var/datum/hive_status/hive
-	if(isxeno(user))
-		var/mob/living/carbon/xenomorph/xeno_user = user
-		if(xeno_user.hive)
-			hive = xeno_user.hive
-	else
-		hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
-
-	if(!hive)
-		CRASH("couldnt find a hive in check_tunnel_list")
-
 	dat += "<b>List of Hive Tunnels:</b><BR>"
 
-	for(var/obj/structure/tunnel/T in GLOB.xeno_tunnels)
-		if(T.creator.hive == hive)
-			dat += "<b>[T.name]</b> located at: <b><font color=green>([T.tunnel_desc])</b></font><BR>"
+	for(var/obj/structure/tunnel/T AS in GLOB.xeno_tunnels)
+		if(user.issamexenohive(T))
+			var/distance = get_dist(user, T)
+			dat += "<b>[T.name]</b> located at: <b><font color=green>([T.tunnel_desc][distance > 0 ? " <b>Distance: [distance])</b>" : ""]</b></font><BR>"
 
-	var/datum/browser/popup = new(user, "roundstatus", "<div align='center'>Tunnel List</div>", 600, 600)
+	var/datum/browser/popup = new(user, "tunnelstatus", "<div align='center'>Tunnel List</div>", 600, 600)
 	popup.set_content(dat)
 	popup.open(FALSE)
 
@@ -57,9 +47,11 @@
 			if(0 to 0.33)
 				hp_color = "red"
 
+		var/distance = get_dist(user, X)
+
 		xenoinfo += " <b><font color=[hp_color]>Health: ([X.health]/[X.maxHealth])</font></b>"
 
-		xenoinfo += " <b><font color=green>([AREACOORD_NO_Z(X)])</b></td></tr>"
+		xenoinfo += " <b><font color=green>([AREACOORD_NO_Z(X)][distance > 0 ? " <b>Distance: [distance]</b>" : ""])</font></b></td></tr>"
 
 	return xenoinfo
 
@@ -194,7 +186,7 @@
 				break
 
 ///Send a message to all xenos. Force forces the message whether or not the hivemind is intact. Target is an atom that is pointed out to the hive. Filter list is a list of xenos we don't message.
-/proc/xeno_message(message = null, size = 3, hivenumber = XENO_HIVE_NORMAL, force = FALSE, atom/target = null, sound = null, apply_preferences = FALSE, filter_list = null, arrow_type)
+/proc/xeno_message(message = null, span_class = "xenoannounce", size = 5, hivenumber = XENO_HIVE_NORMAL, force = FALSE, atom/target = null, sound = null, apply_preferences = FALSE, filter_list = null, arrow_type, arrow_color, report_distance = FALSE)
 	if(!message)
 		return
 
@@ -202,7 +194,7 @@
 		CRASH("xeno_message called with invalid hivenumber")
 
 	var/datum/hive_status/HS = GLOB.hive_datums[hivenumber]
-	HS.xeno_message(message, size, force, target, sound, apply_preferences, filter_list, arrow_type)
+	HS.xeno_message(message, span_class, size, force, target, sound, apply_preferences, filter_list, arrow_type, arrow_color, report_distance)
 
 /mob/living/carbon/xenomorph/proc/upgrade_possible()
 	return (upgrade != XENO_UPGRADE_INVALID && upgrade != XENO_UPGRADE_THREE)
@@ -300,6 +292,13 @@
 		to_chat(src, "<span class='warning'>We cannot do this in our current state.</span>")
 		return 0
 	return 1
+
+///A simple handler for checking your state. Will ignore if the xeno is lying down
+/mob/living/carbon/xenomorph/proc/check_concious_state()
+	if(incapacitated() || buckled)
+		to_chat(src, "<span class='warning'>We cannot do this in our current state.</span>")
+		return FALSE
+	return TRUE
 
 //Checks your plasma levels and gives a handy message.
 /mob/living/carbon/xenomorph/proc/check_plasma(value, silent = FALSE)
@@ -415,42 +414,6 @@
 	SEND_SIGNAL(src, COMSIG_XENO_NONE_THROW_HIT)
 	set_throwing(FALSE) //Resert throwing since something was hit.
 	return ..() //Do the parent otherwise, for turfs.
-
-
-//Bleuugh
-
-/mob/living/carbon/xenomorph/proc/empty_gut(warning = FALSE, content_cleanup = FALSE)
-	if(warning)
-		if(LAZYLEN(stomach_contents))
-			visible_message("<span class='xenowarning'>\The [src] hurls out the contents of their stomach!</span>", \
-			"<span class='xenowarning'>We hurl out the contents of our stomach!</span>", null, 5)
-		else
-			to_chat(src, "<span class='warning'>There is nothing to regurgitate.</span>")
-
-	for(var/i in stomach_contents)
-		do_regurgitate(i)
-
-	if(content_cleanup)
-		for(var/x in contents) //Get rid of anything that may be stuck inside us as well
-			var/atom/movable/stowaway = x
-			stowaway.forceMove(get_turf(src))
-			stack_trace("[stowaway] found in [src]'s contents. It shouldn't have ended there.")
-
-
-/mob/living/carbon/xenomorph/proc/do_devour(mob/living/carbon/prey)
-	LAZYADD(stomach_contents, prey)
-	prey.Paralyze(12 MINUTES)
-	prey.adjust_tinttotal(TINT_BLIND)
-	prey.forceMove(src)
-	SEND_SIGNAL(prey, COMSIG_CARBON_DEVOURED_BY_XENO)
-
-
-/mob/living/carbon/xenomorph/proc/do_regurgitate(mob/living/carbon/prey)
-	LAZYREMOVE(stomach_contents, prey)
-	prey.forceMove(get_turf(src))
-	prey.adjust_tinttotal(-TINT_BLIND)
-	SEND_SIGNAL(prey, COMSIG_MOVABLE_RELEASED_FROM_STOMACH, src)
-
 
 /mob/living/carbon/xenomorph/proc/toggle_nightvision(new_lighting_alpha)
 	if(!new_lighting_alpha)
@@ -707,3 +670,16 @@
 	if(is_charging >= CHARGE_ON) //If we're charging we're immune to slowdown.
 		return
 	adjust_slowdown(amount * XENO_SLOWDOWN_REGEN)
+
+///Eject the mob inside our belly, and putting it in a cocoon if needed
+/mob/living/carbon/xenomorph/proc/eject_victim(make_cocoon = FALSE, turf/eject_location = loc)
+	if(!LAZYLEN(stomach_contents))
+		return
+	var/mob/living/carbon/victim = stomach_contents[1]
+	LAZYREMOVE(stomach_contents, victim)
+	if(make_cocoon)
+		ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
+		new /obj/structure/cocoon(loc, hivenumber, victim)
+		return
+	victim.forceMove(eject_location)
+	REMOVE_TRAIT(victim, TRAIT_STASIS, TRAIT_STASIS)

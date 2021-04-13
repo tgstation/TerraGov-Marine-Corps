@@ -474,7 +474,8 @@ GLOBAL_PROTECT(admin_verbs_sound)
 /world/proc/AVspawn()
 	return list(
 	/datum/admins/proc/spawn_atom,
-	/client/proc/get_togglebuildmode
+	/client/proc/get_togglebuildmode,
+	/client/proc/mass_replace,
 	)
 GLOBAL_LIST_INIT(admin_verbs_spawn, world.AVspawn())
 GLOBAL_PROTECT(admin_verbs_spawn)

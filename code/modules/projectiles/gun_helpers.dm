@@ -232,34 +232,36 @@ should be alright.
 //tactical reloads
 /obj/item/weapon/gun/MouseDrop_T(atom/dropping, mob/living/carbon/human/user)
 	if(istype(dropping, /obj/item/ammo_magazine))
-		var/obj/item/ammo_magazine/AM = dropping
-		if(!istype(user) || user.incapacitated(TRUE))
-			return
-		if(src != user.r_hand && src != user.l_hand)
-			to_chat(user, "<span class='warning'>[src] must be in your hand to do that.</span>")
-			return
-		if(flags_gun_features & GUN_INTERNAL_MAG)
-			to_chat(user, "<span class='warning'>Can't do tactical reloads with [src].</span>")
-			return
-		//no tactical reload for the untrained.
-		if(!user.skills.getRating("firearms"))
-			to_chat(user, "<span class='warning'>You don't know how to do tactical reloads.</span>")
-			return
-		if(istype(src, AM.gun_type))
-			if(current_mag)
-				unload(user,0,1)
-				to_chat(user, "<span class='notice'>You start a tactical reload.</span>")
-			var/tac_reload_time = max(0.5 SECONDS, 1.5 SECONDS - user.skills.getRating("firearms") * 5)
-			if(do_after(user,tac_reload_time, TRUE, AM) && loc == user)
-				if(istype(AM.loc, /obj/item/storage))
-					var/obj/item/storage/S = AM.loc
-					S.remove_from_storage(AM, get_turf(user))
-				user.put_in_any_hand_if_possible(AM)
-				reload(user, AM)
-	else
-		..()
+		tactical_reload(dropping,user)
+	return ..()
 
-
+///This performs a tactical reload with src using new_magazine to load the gun.
+/obj/item/weapon/gun/proc/tactical_reload(obj/item/ammo_magazine/new_magazine, mob/living/carbon/human/user)
+	if(!istype(user) || user.incapacitated(TRUE))
+		return
+	if(src != user.r_hand && src != user.l_hand)
+		to_chat(user, "<span class='warning'>[src] must be in your hand to do that.</span>")
+		return
+	if(flags_gun_features & GUN_INTERNAL_MAG)
+		to_chat(user, "<span class='warning'>Can't do tactical reloads with [src].</span>")
+		return
+	//no tactical reload for the untrained.
+	if(!user.skills.getRating("firearms"))
+		to_chat(user, "<span class='warning'>You don't know how to do tactical reloads.</span>")
+		return
+	if(!istype(src, new_magazine.gun_type))
+		return
+	if(current_mag)
+		unload(user,0,1)
+		to_chat(user, "<span class='notice'>You start a tactical reload.</span>")
+	var/tac_reload_time = max(0.5 SECONDS, 1.5 SECONDS - user.skills.getRating("firearms") * 5)
+	if(do_after(user,tac_reload_time, TRUE, new_magazine) && loc == user)
+		return
+	if(istype(new_magazine.loc, /obj/item/storage))
+		var/obj/item/storage/S = new_magazine.loc
+		S.remove_from_storage(new_magazine, get_turf(user))
+	user.put_in_any_hand_if_possible(new_magazine)
+	reload(user, new_magazine)
 
 //----------------------------------------------------------
 				//						 \\
@@ -653,7 +655,7 @@ should be alright.
 		to_chat(user, "<span class='notice'>[icon2html(src, user)] You switch to <b>[gun_firemode]</b>.</span>")
 		user.update_action_buttons()
 
-	SEND_SIGNAL(src, COMSIG_GUN_FIREMODE_TOGGLE, gun_firemode, user.client)
+	SEND_SIGNAL(src, COMSIG_GUN_FIRE_MODE_TOGGLE, gun_firemode)
 
 
 /obj/item/weapon/gun/proc/add_firemode(added_firemode, mob/user)
@@ -883,15 +885,15 @@ should be alright.
 
 /obj/item/weapon/gun/proc/modify_fire_delay(value, mob/user)
 	fire_delay += value
-	SEND_SIGNAL(src, COMSIG_GUN_FIREDELAY_MODIFIED, fire_delay)
+	SEND_SIGNAL(src, COMSIG_GUN_AUTOFIREDELAY_MODIFIED, fire_delay)
 
 /obj/item/weapon/gun/proc/modify_burst_delay(value, mob/user)
 	burst_delay += value
-	SEND_SIGNAL(src, COMSIG_GUN_BURSTDELAY_MODIFIED, fire_delay)
+	SEND_SIGNAL(src, COMSIG_GUN_BURST_SHOT_DELAY_MODIFIED, burst_delay)
 
 /obj/item/weapon/gun/proc/modify_burst_amount(value, mob/user)
 	burst_amount += value
-	SEND_SIGNAL(src, COMSIG_GUN_BURSTAMOUNT_MODIFIED, fire_delay)
+	SEND_SIGNAL(src, COMSIG_GUN_BURST_SHOTS_TO_FIRE_MODIFIED, burst_amount)
 
 	if(burst_amount < 2)
 		if(GUN_FIREMODE_BURSTFIRE in gun_firemode_list)

@@ -134,7 +134,7 @@
 		/obj/item/weapon/gun/,
 		/obj/item/flashlight,
 		/obj/item/storage/large_holster/machete,
-		/obj/item/storage/belt/gun/m4a3,
+		/obj/item/storage/belt/gun/pistol/m4a3,
 		/obj/item/storage/belt/gun/m44,
 	)
 
