@@ -129,7 +129,7 @@
 /datum/component/chem_booster/proc/setup_reagent_info()
 	reagent_info = "<b>Vali Reagent Information:</b><br>"
 	for(var/entry in reagent_stats)
-		reagent_info += "<span style= 'color:[GLOB.chemical_reagents_list[entry].color]'><b>[reagent_stats[entry][NAME]]: </b></span>"
+		reagent_info += "<span style= 'color:[initial(GLOB.chemical_reagents_list[entry].color)]'><b>[reagent_stats[entry][NAME]]: </b></span>"
 		if(reagent_stats[entry][REQ])
 			reagent_info += "required [reagent_stats[entry][REQ]]u<br>"
 		if(reagent_stats[entry][BRUTE_AMP])
