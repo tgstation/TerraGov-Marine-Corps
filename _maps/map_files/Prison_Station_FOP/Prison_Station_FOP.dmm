@@ -22086,13 +22086,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/prison/darkred/full,
 /area/prison/security/monitoring/highsec)
-"bqi" = (
-/obj/structure/cable,
-/obj/item/shard,
-/obj/item/stack/rods,
-/obj/structure/window_frame/colony,
-/turf/open/floor/plating,
-/area/prison/security/monitoring/highsec)
 "bqj" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 4
@@ -41182,9 +41175,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/nw)
-"cRD" = (
-/turf/open/beach/sea,
-/area/prison/cellblock/maxsec/south)
 "cRI" = (
 /obj/effect/decal/woodsiding{
 	dir = 8
@@ -43691,9 +43681,7 @@
 /turf/open/floor/plating,
 /area/prison/maintenance/hangar_barracks)
 "sTZ" = (
-/turf/open/ground/desertdam/river/clean/shallow_edge{
-	dir = 4
-	},
+/turf/open/ground/river,
 /area/prison/cellblock/maxsec/south)
 "sWQ" = (
 /obj/machinery/light/small,
@@ -65212,7 +65200,7 @@ bkw
 aYY
 bnw
 boM
-bqi
+bdC
 bqR
 bab
 bsv
@@ -72360,9 +72348,9 @@ amZ
 anE
 aoz
 xhO
-cRD
-cRD
-cRD
+sTZ
+sTZ
+sTZ
 xhO
 amT
 akV
@@ -76892,7 +76880,7 @@ aab
 aab
 acD
 aab
-acD
+aab
 aab
 aab
 aab
