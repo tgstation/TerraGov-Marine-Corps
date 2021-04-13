@@ -96,6 +96,7 @@
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/gyro,
 		/obj/item/attachable/lace,
+		/obj/item/attachable/scope/marine,
 	)
 
 	muzzleflash_iconstate = "muzzle_flash_laser"
