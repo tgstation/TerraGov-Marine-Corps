@@ -233,7 +233,7 @@ should be alright.
 /obj/item/weapon/gun/MouseDrop_T(atom/dropping, mob/living/carbon/human/user)
 	if(istype(dropping, /obj/item/ammo_magazine))
 		tactical_reload(dropping,user)
-	return..()
+	return ..()
 
 ///This performs a tactical reload with src using new_magazine to load the gun.
 /obj/item/weapon/gun/proc/tactical_reload(obj/item/ammo_magazine/new_magazine, mob/living/carbon/human/user)
