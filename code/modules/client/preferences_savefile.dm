@@ -560,6 +560,36 @@
 
 	return TRUE
 
+/datum/preferences/proc/save_loadouts_list()
+	if(!path)
+		return FALSE
+	if(!fexists(path))
+		return FALSE
+	var/savefile/S = new /savefile(path)
+	if(!S)
+		return FALSE
+	loadouts_list = sanitize_loadout_list(loadouts_list)
+	var/json_loadouts = jatum_serialize(loadouts_list)
+	S.cd = "/loadouts"
+	WRITE_FILE(S["loadouts_list"], json_loadouts)
+	return TRUE
+
+/datum/preferences/proc/load_loadouts_list()
+	if(!path)
+		return FALSE
+	if(!fexists(path))
+		return FALSE
+	var/savefile/S = new /savefile(path)
+	if(!S)
+		return FALSE
+	var/json_loadouts
+	READ_FILE(S["loadouts_list"], json_loadouts)
+	if(!json_loadouts)
+		return FALSE
+	loadouts_list = jatum_deserialize(json_loadouts)
+	loadouts_list = sanitize_loadout_list(loadouts_list)
+	return TRUE
+
 
 /datum/preferences/proc/save()
 	return (save_preferences() && save_character())

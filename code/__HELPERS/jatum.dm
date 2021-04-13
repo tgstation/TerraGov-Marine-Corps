@@ -14,7 +14,7 @@
  *
  * * value - The var to serialize.
  */
-/world/proc/jatum_serialize(value)
+/proc/jatum_serialize(value)
 	var/list/json_structure
 	try
 		json_structure = _jatum_serialize_value(value, list())
@@ -26,7 +26,7 @@
 		"content" = json_structure
 	))
 
-/world/proc/_jatum_serialize_value(value, list/seen_references)
+/proc/_jatum_serialize_value(value, list/seen_references)
 	if(isnull(value))
 		return null
 
@@ -139,7 +139,7 @@
  *
  * * json - The JSON to deserialize.
  */
-/world/proc/jatum_deserialize(json)
+/proc/jatum_deserialize(json)
 	if(!istext(json))
 		CRASH("Non-text passed!")
 
@@ -159,7 +159,7 @@
 	catch(var/exception/e)
 		CRASH(e)
 
-/world/proc/_jatum_deserialize_value(list/structure, list/active_references)
+/proc/_jatum_deserialize_value(list/structure, list/active_references)
 	if(!structure)
 		return null
 

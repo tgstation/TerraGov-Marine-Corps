@@ -101,6 +101,9 @@
 
 	var/active = FALSE
 
+	///What type of item_representation should it used in the loadout_maker
+	var/item_representation_type = /datum/item_representation
+
 
 /obj/item/Initialize()
 	. = ..()

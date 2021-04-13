@@ -20,7 +20,7 @@ GLOBAL_LIST_INIT(visible_item_slot_list, list(
 	/** 
 	 * Assoc list of all items composing this loadout
 	 * the key of each item is a slot key 
-	 * each item of the list is a obj/item
+	 * each item of the list is a datum/item_representation
 	 */
 	var/list/item_list
 

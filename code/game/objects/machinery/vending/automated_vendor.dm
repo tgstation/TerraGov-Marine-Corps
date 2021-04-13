@@ -70,3 +70,6 @@
 		items[item_slot_key] = result
 	data["items"] = items
 	return data
+
+/obj/machinery/automated_vendor/ui_close(mob/user)
+	user.client.prefs.save_loadouts_list()
