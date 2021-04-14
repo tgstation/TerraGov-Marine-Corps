@@ -1,3 +1,8 @@
+#define MARINE_LOADOUT "marine loadout"
+#define ENGIE_LOADOUT "engie loadout"
+#define MEDIC_LOADOUT "medic loadout"
+#define LEADER_LOADOUT "leader loadout"
+
 //List of all visible and accessible slot on loadouts
 GLOBAL_LIST_INIT(visible_item_slot_list, list(
 	slot_head_str,
@@ -17,6 +22,8 @@ GLOBAL_LIST_INIT(visible_item_slot_list, list(
 /datum/loadout
 	///Name of the loadout
 	var/name = ""
+	///The job associated with the loadout
+	var/job = MARINE_LOADOUT
 	/** 
 	 * Assoc list of all items composing this loadout
 	 * the key of each item is a slot key 

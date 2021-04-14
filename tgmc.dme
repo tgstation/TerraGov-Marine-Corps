@@ -291,6 +291,7 @@
 #include "code\datums\actions\xeno_action.dm"
 #include "code\datums\automated_vendor\item_representation.dm"
 #include "code\datums\automated_vendor\loadout.dm"
+#include "code\datums\automated_vendor\loadout_manager.dm"
 #include "code\datums\components\_component.dm"
 #include "code\datums\components\ai.dm"
 #include "code\datums\components\autofire.dm"

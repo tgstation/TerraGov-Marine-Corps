@@ -237,14 +237,14 @@ const LoadoutNavigator = (props, context) => {
   );
 };
 
-export const LoadoutSelector = (props, context) => {
+export const LoadoutMaker = (props, context) => {
   const { act, data } = useBackend<SlotData>(context);
 
   return (
     <Window 
       title="Loadout Maker"
-      width={300} 
-      height={300}>
+      width={900} 
+      height={600}>
       <Window.Content>
         <Stack fill vertical>
           <SlotSelector />
