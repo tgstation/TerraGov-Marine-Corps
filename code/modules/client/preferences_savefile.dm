@@ -582,12 +582,14 @@
 	var/savefile/S = new /savefile(path)
 	if(!S)
 		return FALSE
-	var/json_loadouts
+	S.cd = "/loadouts"
+	var/json_loadouts = ""
 	READ_FILE(S["loadouts_list"], json_loadouts)
 	if(!json_loadouts)
 		return FALSE
 	loadouts_list = jatum_deserialize(json_loadouts)
 	loadouts_list = sanitize_loadout_list(loadouts_list)
+	current_loadout_name = loadouts_list[1]
 	return TRUE
 
 

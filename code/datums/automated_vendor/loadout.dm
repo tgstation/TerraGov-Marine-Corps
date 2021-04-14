@@ -110,6 +110,21 @@ GLOBAL_LIST_INIT(visible_item_slot_list, list(
 			return FALSE
 	return FALSE //Unsupported slot
 
+/**
+ * This will equipe the mob with all items of the loadout.
+ * If a slot is already full, or an item doesn't fit the slot, the item will fall on the ground
+ * user : the mob to dress
+ * source : The turf where all rejected items will fall
+ */
+/datum/loadout/proc/equip_mob(mob/user, turf/source)
+	var/obj/item/item
+	for(var/slot_key in GLOB.visible_item_slot_list)
+		if(!item_list[slot_key])
+			continue
+		item = get_item_from_item_representation(item_list[slot_key])
+		if(!user.equip_to_slot_if_possible(item, GLOB.slot_str_to_slot[slot_key], warning = FALSE))
+			item.forceMove(source)
+
 ///Return a new empty loayout
 /proc/create_empty_loadout(name = "Default")
 	var/datum/loadout/default = new

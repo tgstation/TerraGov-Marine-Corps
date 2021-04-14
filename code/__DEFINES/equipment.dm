@@ -206,6 +206,28 @@
 #define slot_r_store_str    "slot_r_store"
 #define slot_tie_str		"slot_tie"
 
+//Correspondance between slot strings and slot numbers
+GLOBAL_LIST_INIT(slot_str_to_slot, list(
+	"slot_back" = 12,
+	"slot_l_hand" = 17,
+	"slot_r_hand" = 18,
+	"slot_w_uniform" = 3,
+	"slot_head" = 11,
+	"slot_suit" = 8,
+	"slot_ear" = 2,
+	"slot_belt" = 7,
+	"slot_shoes" = 5,
+	"slot_wear_mask" = 10,
+	"slot_handcuffed" = 19,
+	"slot_wear_id" = 1,
+	"slot_gloves" = 6,
+	"slot_glasses" = 9,
+	"slot_s_store" = 16,
+	"slot_l_store" = 13,
+	"slot_r_store" = 14,
+	"slot_tie" = 15,
+))
+
 //I hate that this has to exist
 /proc/slotdefine2slotbit(slotdefine) //Keep this up to date with the value of SLOT BITMASKS and SLOTS (the two define sections above)
 	. = 0

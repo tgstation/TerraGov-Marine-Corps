@@ -137,7 +137,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	///List of all datum/loadout currently saved
 	var/list/loadouts_list
 	///The last selected loadout name
-	var/loadout_name = ""
+	var/current_loadout_name = ""
 
 
 /datum/preferences/New(client/C)
@@ -149,9 +149,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	if(!IsGuestKey(C.key))
 		load_path(C.ckey)
 		if(!load_loadouts_list())
-			loadout_name = "Default"
+			current_loadout_name = "Default"
 			loadouts_list = list()
-			loadouts_list[loadout_name] = create_empty_loadout()
+			loadouts_list[current_loadout_name] = create_empty_loadout()
+			save_loadouts_list()
 		if(load_preferences() && load_character())
 			return
 

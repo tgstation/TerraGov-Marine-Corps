@@ -162,7 +162,7 @@ const SlotSelector = (props, context) => {
                     >
                       <Button
                         onClick={() => {
-                          act("chose", {
+                          act("selectSlot", {
                             key: keyAtSpot,
                           });
                         }}
@@ -214,16 +214,42 @@ const SlotSelector = (props, context) => {
   );
 };
 
+const LoadoutNavigator = (props, context) => {
+  const { act, data } = useBackend<SlotData>(context);
+
+  return (
+    <Section title="Loadout Navigator">
+      <Stack fill horizontal>
+        <Button
+          onClick={() => act("newLoadout")}>
+          New Loadout
+        </Button>
+        <Button
+          onClick={() => act("changeLoadout")}>
+          Select another Loadout
+        </Button>
+        <Button
+          onClick={() => act("equipLoadout")}>
+          Equip Loadout
+        </Button>
+      </Stack>
+    </Section>
+  );
+};
+
 export const LoadoutSelector = (props, context) => {
   const { act, data } = useBackend<SlotData>(context);
 
   return (
     <Window 
-      title="Slot selector"
+      title="Loadout Maker"
       width={300} 
       height={300}>
       <Window.Content>
-        <SlotSelector />
+        <Stack fill vertical>
+          <SlotSelector />
+          <LoadoutNavigator /> 
+        </Stack>
       </Window.Content>
     </Window>
   );

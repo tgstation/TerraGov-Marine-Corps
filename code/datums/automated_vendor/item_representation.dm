@@ -4,23 +4,14 @@
  * This also allow to save loadout with jatum, because it doesn't accept obj/item
  */
 /datum/item_representation
-	/// Name of the object, identical to the name of the object it represents
-	var/name
 	/// The type of the object represented, to allow us to create the object when needed
 	var/item_type
 	/// The contents in that item
-	var/contents
-	/// The icon of the object
-	var/icon
-	/// The icon state of the object
-	var/icon_state
+	var/contents = list()
 
 /// Initiate the item_representation with the necessary vars from the item
-/datum/item_representation/proc/copy_vars_from_item_type(item_type = /obj/item)
-	var/obj/item/item = item_type
-	name = initial(item.name)
-	icon = initial(item.icon)
-	icon_state = initial(item.icon_state)
+/datum/item_representation/proc/copy_vars_from_item_type(_item_type = /obj/item)
+	item_type = _item_type
 
 /// Will create a new item, and copy all the vars saved in the item representation to the newly created item
 /datum/item_representation/proc/instantiate_object()
@@ -82,3 +73,13 @@
 	if(ispath(item_type, /obj/item/clothing/suit/modular))
 		return /datum/item_representation/modular_armor
 	return /datum/item_representation
+
+///Instantiate the objected linked to the given item_representation
+/proc/get_item_from_item_representation(datum/item_representation/item_representation) //Probably a better way of doing this
+	if(istype(item_representation, /datum/item_representation/modular_armor))
+		var/datum/item_representation/modular_armor/casted = item_representation
+		return casted.instantiate_object()
+	if(istype(item_representation, /datum/item_representation/gun))
+		var/datum/item_representation/gun/casted = item_representation
+		return casted.instantiate_object()
+	return item_representation.instantiate_object()

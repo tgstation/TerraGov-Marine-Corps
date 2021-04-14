@@ -13,6 +13,8 @@
 	idle_power_usage = 60
 	active_power_usage = 3000
 
+	var/current_loadout_items_data = list()
+
 /obj/machinery/automated_vendor/update_icon()
 	if(is_operational())
 		icon_state = initial(icon_state)
@@ -43,7 +45,26 @@
 		get_asset_datum(/datum/asset/simple/inventory),
 	)
 
+/obj/machinery/automated_vendor/proc/prepare_items_data(mob/user)
+	var/list/loadouts_list = user.client.prefs.loadouts_list
+	var/datum/loadout/current_loadout = loadouts_list[user.client.prefs.current_loadout_name]
+	for (var/item_slot_key in GLOB.visible_item_slot_list)
+		var/list/result = list()
+
+		var/datum/item_representation/item = current_loadout.item_list[item_slot_key]
+		if (isnull(item))
+			result["icon"] = icon2base64(icon("icons/misc/empty.dmi", "empty"))
+			current_loadout_items_data[item_slot_key] = result
+			continue
+
+		var/obj/item/item_type = item.item_type
+		result["icon"] = icon2base64(icon(initial(item_type.icon), initial(item_type.icon_state)))
+		result["name"] = initial(item_type.name)
+
+		current_loadout_items_data[item_slot_key] = result
+
 /obj/machinery/automated_vendor/ui_interact(mob/user, datum/tgui/ui)
+	prepare_items_data(user)
 	ui = SStgui.try_update_ui(user, src, ui)
 
 	if(!ui)
@@ -52,24 +73,17 @@
 
 /obj/machinery/automated_vendor/ui_data(mob/user)
 	var/list/data = list()
-	var/list/items = list()
-	var/list/loadouts_list = user.client.prefs.loadouts_list
-	var/datum/loadout/current_loadout = loadouts_list[user.client.prefs.loadout_name]
-	for (var/item_slot_key in GLOB.visible_item_slot_list)
-		var/list/result = list()
-
-		var/datum/item_representation/item = current_loadout.item_list[item_slot_key]
-		if (isnull(item))
-			result["icon"] = icon2base64(icon("icons/misc/empty.dmi", "empty"))
-			items[item_slot_key] = result
-			continue
-
-		result["icon"] = icon2base64(icon(item.icon, item.icon_state))
-		result["name"] = item.name
-
-		items[item_slot_key] = result
-	data["items"] = items
+	
+	data["items"] = current_loadout_items_data
 	return data
+
+/obj/machinery/automated_vendor/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
+	switch(action)
+		if("equipLoadout")
+			var/datum/loadout/current_loadout = ui.user.client.prefs.loadouts_list[ui.user.client.prefs.current_loadout_name]
+			current_loadout.equip_mob(ui.user, loc)
+	
 
 /obj/machinery/automated_vendor/ui_close(mob/user)
 	user.client.prefs.save_loadouts_list()

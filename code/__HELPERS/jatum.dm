@@ -111,7 +111,8 @@
 		|| istype(value, /mutable_appearance)\
 		|| istype(value, /client)\
 		|| istype(value, /database))
-		return null
+		CRASH("Incompatible type for JATUM: [value]([ref])")
+
 
 	// Confirmed /datum type
 	var/datum/D = value
