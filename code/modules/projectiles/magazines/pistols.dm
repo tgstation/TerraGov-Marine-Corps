@@ -33,8 +33,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	default_ammo = /datum/ammo/energy/plasma_pistol
 	gun_type = /obj/item/weapon/gun/pistol/plasma_pistol
-
-
+	flags_magazine = NONE
 
 //-------------------------------------------------------
 //RT-3 PISTOL
