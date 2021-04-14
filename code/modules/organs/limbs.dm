@@ -1058,7 +1058,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		to_chat(user, "<span class='warning'>There's nothing there to splint!</span>")
 		return FALSE
 
-	if(limb_status & LIMB_SPLINTED)
+	if(limb_status & LIMB_SPLINTED && applied_stacks <= splint_stacks)
 		to_chat(user, "<span class='warning'>This limb is already splinted!</span>")
 		return FALSE
 
