@@ -340,7 +340,7 @@
 		wounds += I
 		owner.custom_pain("You feel something rip in your [display_name]!", 1)
 
-	if(limb_status & LIMB_SPLINTED && damage > 5 && prob(50 + damage * 2.5)) //If they have it splinted, the splint won't hold.
+	if(limb_status & LIMB_SPLINTED && damage > 10) //If they have it splinted and no splint stacks, the splint won't hold.
 		if(splint_stacks <= 0)
 			remove_limb_flags(LIMB_SPLINTED)
 			to_chat(owner, "<span class='userdanger'>The splint on your [display_name] comes apart!</span>")
