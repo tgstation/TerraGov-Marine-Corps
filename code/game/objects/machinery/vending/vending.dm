@@ -64,7 +64,7 @@
 	///If this vendor uses a global list for items.
 	var/isshared = FALSE
 
-	/*These are lazylists that are made null after they're used, their use is solely to fill the inventory of the vendor on Init.
+	/*These are lists that are made null after they're used, their use is solely to fill the inventory of the vendor on Init.
 	They use the following pattern in case if it doenst pertain to a tab:
 	list(
 		/type/path = amount,
