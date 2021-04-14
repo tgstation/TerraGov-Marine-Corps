@@ -738,7 +738,7 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 
 //Oh no we're malfunctioning!  Dump out some product and break.
 /obj/machinery/vending/proc/malfunction()
-	for(var/datum/vending_product/R in src.product_records)
+	for(var/datum/vending_product/R AS in product_records)
 		if (R.amount <= 0) //Try to use a record that actually has something to dump.
 			continue
 		var/dump_path = R.product_path
