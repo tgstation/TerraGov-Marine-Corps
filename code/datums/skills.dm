@@ -686,3 +686,4 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 /datum/skills/marine
 	name = "Squad Marine"
 	medical = SKILL_MEDICAL_PRACTICED
+
