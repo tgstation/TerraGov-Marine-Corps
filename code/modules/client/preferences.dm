@@ -148,11 +148,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	if(!IsGuestKey(C.key))
 		load_path(C.ckey)
-		if(!load_loadouts_list())
-			current_loadout_name = "Default"
-			loadouts_list = list()
-			loadouts_list[current_loadout_name] = create_empty_loadout()
-			save_loadouts_list()
+		//if(!load_loadouts_list())
+		loadouts_list = sanitize_loadout_list(null)
+		save_loadouts_list()
 		if(load_preferences() && load_character())
 			return
 
@@ -161,6 +159,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	menuoptions = list()
 	key_bindings = deepCopyList(GLOB.hotkey_keybinding_list_by_key) // give them default keybinds and update their movement keys
 	C.update_movement_keys(src)
+	loadouts_list = sanitize_loadout_list(null)
 
 
 /datum/preferences/can_interact(mob/user)

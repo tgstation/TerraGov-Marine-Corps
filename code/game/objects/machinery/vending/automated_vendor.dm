@@ -12,8 +12,12 @@
 
 	idle_power_usage = 60
 	active_power_usage = 3000
-	var/datum/loadout_manager
+	var/datum/loadout_manager/loadout_manager
 	var/current_loadout_items_data = list()
+
+/obj/machinery/automated_vendor/Initialize()
+	. = ..()
+	loadout_manager = new
 
 /obj/machinery/automated_vendor/update_icon()
 	if(is_operational())
@@ -67,7 +71,7 @@
 	ui = SStgui.try_update_ui(user, src, ui)
 
 	if(!ui)
-		ui = new(user, src, "LoadoutSelector", name)
+		ui = new(user, src, "LoadoutMaker", name)
 		ui.open()
 
 /obj/machinery/automated_vendor/ui_data(mob/user)
@@ -82,7 +86,9 @@
 		if("equipLoadout")
 			var/datum/loadout/current_loadout = ui.user.client.prefs.loadouts_list[ui.user.client.prefs.current_loadout_name]
 			current_loadout.equip_mob(ui.user, loc)
+		if("selectLoadout")
+			loadout_manager.ui_interact(ui.user)
 	
 
 /obj/machinery/automated_vendor/ui_close(mob/user)
-	user.client.prefs.save_loadouts_list()
+	user.client?.prefs.save_loadouts_list()

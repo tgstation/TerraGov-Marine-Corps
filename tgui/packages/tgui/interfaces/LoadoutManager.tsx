@@ -1,15 +1,22 @@
 import { useBackend, useLocalState } from "../backend";
 import { Stack, Button, Section, LabeledList, Divider, Tabs } from "../components";
 import { Window } from "../layouts";
+import { createLogger } from "../logging";
 
 type Loadout =
   {
     name: string;
+    job: string;
   }
 
 type LoadoutListData = 
   {
     loadout_list: Loadout[];
+  };
+
+type LoadoutManagerData = 
+  {
+    loadout_lists : LoadoutListData[];
   };
 
 type TabData = 
@@ -21,7 +28,8 @@ type TabData =
 const LoadoutItem = (props : Loadout, context) => { 
   const { act } = useBackend(context);
   const {
-    name
+    name,
+    job,
   } = props;
 
   return (
@@ -29,17 +37,17 @@ const LoadoutItem = (props : Loadout, context) => {
       labelColor="white"
       label={name}>
       <Button
-        onClick={() => act('SelectLoadout',{ loadout_name: name })}>
+        onClick={() => act('SelectLoadout', { loadout_name: name, loadout_job: job })}>
         Select Loadout
       </Button>
-  </LabeledList.Item>
+    </LabeledList.Item>
   );
 };
 
 const LoadoutList = (props : LoadoutListData, context) => {
-	const { loadout_list } = props;
+  const { loadout_list } = props;
   
-	return (
+  return (
     <Stack.Item>
       <Section height={8} fill scrollable>
         {loadout_list.map(loadout => {
@@ -52,34 +60,37 @@ const LoadoutList = (props : LoadoutListData, context) => {
 
 const JobTabs = (props : TabData, context) => {
   const { tabIndex, setTabIndex } = props;
-  return(
+  return (
     <Section>
       <Tabs>
-        <Tabs.Tab selected={tabIndex === 'marine'} onClick={() => setTabIndex('marine')}>
+        <Tabs.Tab selected={tabIndex === "marine"} onClick={() => setTabIndex("marine")}>
           Marine
         </Tabs.Tab>
-        <Tabs.Tab selected={tabIndex === 'engineer'} onClick={() => setTabIndex('engineer')}>
+        <Tabs.Tab selected={tabIndex === "engineer"} onClick={() => setTabIndex("engineer")}>
           Engineer
         </Tabs.Tab>
-        <Tabs.Tab selected={tabIndex === 'medic'} onClick={() => setTabIndex('medic')}>
+        <Tabs.Tab selected={tabIndex === "medic"} onClick={() => setTabIndex("medic")}>
           Medic
         </Tabs.Tab>
-        <Tabs.Tab selected={tabIndex === 'medic'} onClick={() => setTabIndex('medic')}>
+        <Tabs.Tab selected={tabIndex === "smartgunner"} onClick={() => setTabIndex("smartgunner")}>
+          SmartGunner
+        </Tabs.Tab>
+        <Tabs.Tab selected={tabIndex === "leader"} onClick={() => setTabIndex("leader")}>
           Squad Leader
         </Tabs.Tab>
       </Tabs>
     </Section>
   );
-}
+};
 
 export const LoadoutManager = (props, context) => {
-  const { data } = useBackend<LoadoutListData>(context);
-	const { loadout_list } = data;
+  const { data } = useBackend<LoadoutManagerData>(context);
+  const { loadout_lists } = data;
 
   const [
     tabIndex,
     setTabIndex,
-  ] = useLocalState(context, 'tabIndex', 'marine');
+  ] = useLocalState(context, 'tabIndex', "marine");
 
   return ( 
     <Window 
@@ -88,13 +99,10 @@ export const LoadoutManager = (props, context) => {
       height={600}>
       <Window.Content>
         <Stack fill vertical>
-          <JobTabs tabIndex = {tabIndex} setTabIndex = {setTabIndex}/>
-          <Divider></Divider>
-          <LoadoutList loadout_list={loadout_list} /> 
+          <JobTabs tabIndex={tabIndex} setTabIndex={setTabIndex} />
+          <LoadoutList loadout_list={loadout_lists[tabIndex]} /> 
         </Stack>
       </Window.Content>
     </Window>
-  )
-
-}
-
+  );
+};

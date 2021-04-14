@@ -221,11 +221,7 @@ const LoadoutNavigator = (props, context) => {
     <Section title="Loadout Navigator">
       <Stack fill horizontal>
         <Button
-          onClick={() => act("newLoadout")}>
-          New Loadout
-        </Button>
-        <Button
-          onClick={() => act("changeLoadout")}>
+          onClick={() => act("selectLoadout")}>
           Select another Loadout
         </Button>
         <Button
