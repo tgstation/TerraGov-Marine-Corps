@@ -1,12 +1,12 @@
 #define DISTRESS_MARINE_DEPLOYMENT 0
-#define DISTRESS_DROPSHIP_CRASHED 1
-#define DISTRESS_MARINE_RETREAT 2
+#define DISTRESS_DROPSHIP_CRASHING 1
+#define DISTRESS_DROPSHIP_CAPTURED_XENOS 2
 
 /datum/game_mode/infestation/distress
 	name = "Distress Signal"
 	config_tag = "Distress Signal"
 	required_players = 2
-	flags_round_type = MODE_INFESTATION|MODE_LZ_SHUTTERS|MODE_XENO_RULER
+	flags_round_type = MODE_INFESTATION|MODE_LZ_SHUTTERS|MODE_XENO_RULER|MODE_PSY_POINTS
 	flags_landmarks = MODE_LANDMARK_SPAWN_XENO_TUNNELS|MODE_LANDMARK_SPAWN_MAP_ITEM
 	round_end_states = list(MODE_INFESTATION_X_MAJOR, MODE_INFESTATION_M_MAJOR, MODE_INFESTATION_X_MINOR, MODE_INFESTATION_M_MINOR, MODE_INFESTATION_DRAW_DEATH)
 
@@ -29,7 +29,6 @@
 		/datum/job/terragov/squad/smartgunner = 1,
 		/datum/job/terragov/squad/leader = 1,
 		/datum/job/terragov/squad/standard = -1,
-		/datum/job/survivor/rambo = 1,
 		/datum/job/xenomorph = 2,
 		/datum/job/xenomorph/queen = 1
 	)
@@ -39,6 +38,7 @@
 	var/bioscan_current_interval = 45 MINUTES
 	var/bioscan_ongoing_interval = 20 MINUTES
 	var/orphan_hive_timer
+	var/siloless_hive_timer
 
 
 /datum/game_mode/infestation/distress/announce()
@@ -72,10 +72,8 @@
 /datum/game_mode/infestation/distress/post_setup()
 	. = ..()
 	scale_gear()
-	for(var/i in GLOB.xeno_resin_silo_turfs)
-		new /obj/structure/resin/silo(i)
-
 	addtimer(CALLBACK(src, .proc/announce_bioscans, FALSE, 1), rand(30 SECONDS, 1 MINUTES)) //First scan shows no location but more precise numbers.
+	addtimer(CALLBACK(GLOB.hive_datums[XENO_HIVE_NORMAL], /datum/hive_status/proc/handle_silo_death_timer), MINIMUM_TIME_SILO_LESS_COLLAPSE)
 
 /datum/game_mode/infestation/distress/proc/map_announce()
 	if(!SSmapping.configs[GROUND_MAP].announce_text)
@@ -110,13 +108,14 @@
 	var/living_player_list[] = count_humans_and_xenos(count_flags = COUNT_IGNORE_ALIVE_SSD|COUNT_IGNORE_XENO_SPECIAL_AREA)
 	var/num_humans = living_player_list[1]
 	var/num_xenos = living_player_list[2]
+	var/num_humans_ship = living_player_list[3]
 
 	if(SSevacuation.dest_status == NUKE_EXPLOSION_FINISHED)
 		message_admins("Round finished: [MODE_GENERIC_DRAW_NUKE]") //ship blows, no one wins
 		round_finished = MODE_GENERIC_DRAW_NUKE
 		return TRUE
 
-	if(round_stage == DISTRESS_MARINE_RETREAT)
+	if(round_stage == DISTRESS_DROPSHIP_CAPTURED_XENOS)
 		message_admins("Round finished: [MODE_INFESTATION_X_MINOR]")
 		round_finished = MODE_INFESTATION_X_MINOR
 		return TRUE
@@ -126,20 +125,20 @@
 			message_admins("Round finished: [MODE_INFESTATION_DRAW_DEATH]") //everyone died at the same time, no one wins
 			round_finished = MODE_INFESTATION_DRAW_DEATH
 			return TRUE
-		if(round_stage == DISTRESS_DROPSHIP_CRASHED)
-			message_admins("Round finished: [MODE_INFESTATION_X_MAJOR]") //xenos wiped our marines, xeno major victory
-			round_finished = MODE_INFESTATION_X_MAJOR
-			return TRUE
 		message_admins("Round finished: [MODE_INFESTATION_X_MAJOR]") //xenos wiped out ALL the marines without hijacking, xeno major victory
 		round_finished = MODE_INFESTATION_X_MAJOR
 		return TRUE
 	if(!num_xenos)
-		if(round_stage == DISTRESS_DROPSHIP_CRASHED)
-			message_admins("Round finished: [MODE_INFESTATION_X_MINOR]") //xenos hijacked the shuttle and won groundside but died on the ship, minor victory
-			round_finished = MODE_INFESTATION_X_MINOR
+		if(round_stage == DISTRESS_DROPSHIP_CRASHING)
+			message_admins("Round finished: [MODE_INFESTATION_X_MINOR]") //marines lost the ground operation but managed to wipe out Xenos on the ship at a greater cost, minor victory
+			round_finished = MODE_INFESTATION_M_MINOR
 			return TRUE
-		message_admins("Round finished: [MODE_INFESTATION_M_MAJOR]") //marines win big or go home
+		message_admins("Round finished: [MODE_INFESTATION_M_MAJOR]") //marines win big
 		round_finished = MODE_INFESTATION_M_MAJOR
+		return TRUE
+	if(round_stage == DISTRESS_DROPSHIP_CRASHING && !num_humans_ship)
+		message_admins("Round finished: [MODE_INFESTATION_X_MAJOR]") //xenos wiped our marines, xeno major victory
+		round_finished = MODE_INFESTATION_X_MAJOR
 		return TRUE
 	return FALSE
 
@@ -206,6 +205,7 @@
 	announce_xenomorphs()
 	announce_medal_awards()
 	announce_round_stats()
+	addtimer(CALLBACK(SSvote, /datum/controller/subsystem/vote/proc/automatic_vote), 1 MINUTES)
 
 
 /datum/game_mode/infestation/distress/scale_roles(initial_players_assigned)
@@ -243,40 +243,13 @@
 	to_chat(world, dat)
 
 
-/datum/game_mode/infestation/distress/mode_new_player_panel(mob/new_player/NP)
-
-	var/output = "<div align='center'>"
-	output += "<br><i>You are part of the <b>TerraGov Marine Corps</b>, a military branch of the TerraGov council.</i>"
-	output +="<hr>"
-	output += "<p><a href='byond://?src=[REF(NP)];lobby_choice=show_preferences'>Setup Character</A> | <a href='byond://?src=[REF(NP)];lobby_choice=lore'>Background</A><br><br><a href='byond://?src=[REF(NP)];lobby_choice=observe'>Observe</A></p>"
-	output +="<hr>"
-	output += "<center><p>Current character: <b>[NP.client ? NP.client.prefs.real_name : "Unknown User"]</b></p></center>"
-
-	if(SSticker.current_state <= GAME_STATE_PREGAME)
-		output += "<p>\[ [NP.ready? "<b>Ready</b>":"<a href='byond://?src=\ref[src];lobby_choice=ready'>Ready</a>"] | [NP.ready? "<a href='byond://?src=[REF(NP)];lobby_choice=ready'>Not Ready</a>":"<b>Not Ready</b>"] \]</p>"
-	else
-		output += "<a href='byond://?src=[REF(NP)];lobby_choice=manifest'>View the Crew Manifest</A><br>"
-		output += "<p><a href='byond://?src=[REF(NP)];lobby_choice=late_join'>Join the Game!</A></p>"
-
-	output += NP.playerpolls()
-
-	output += "</div>"
-
-	var/datum/browser/popup = new(NP, "playersetup", "<div align='center'>Welcome to TGMC[SSmapping?.configs ? " - [SSmapping.configs[SHIP_MAP].map_name]" : ""]</div>", 300, 375)
-	popup.set_window_options("can_close=0")
-	popup.set_content(output)
-	popup.open(FALSE)
-
-	return TRUE
-
-
 /datum/game_mode/infestation/distress/orphan_hivemind_collapse()
 	if(!(flags_round_type & MODE_INFESTATION))
 		return
 	if(round_finished)
 		return
-	if(round_stage == DISTRESS_DROPSHIP_CRASHED)
-		round_finished = MODE_INFESTATION_M_MINOR
+	if(round_stage == DISTRESS_DROPSHIP_CRASHING)
+		round_finished = MODE_INFESTATION_X_MINOR
 		return
 	round_finished = MODE_INFESTATION_M_MAJOR
 
@@ -289,9 +262,27 @@
 		return "[(eta / 60) % 60]:[add_leading(num2text(eta % 60), 2, "0")]"
 
 
-/datum/game_mode/infestation/distress/attempt_to_join_as_larva(mob/xeno_candidate)
+/datum/game_mode/infestation/distress/siloless_hive_collapse()
+	if(!(flags_round_type & MODE_INFESTATION))
+		return
+	if(round_finished)
+		return
+	if(round_stage == DISTRESS_DROPSHIP_CRASHING)
+		return
+	round_finished = MODE_INFESTATION_M_MAJOR
+
+
+/datum/game_mode/infestation/distress/get_siloless_collapse_countdown()
+	if(!siloless_hive_timer)
+		return 0
+	var/eta = timeleft(siloless_hive_timer) * 0.1
+	if(eta > 0)
+		return "[(eta / 60) % 60]:[add_leading(num2text(eta % 60), 2, "0")]"
+
+
+/datum/game_mode/infestation/distress/attempt_to_join_as_larva(mob/dead/observer/observer)
 	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
-	return HS.attempt_to_spawn_larva(xeno_candidate)
+	return HS.add_to_larva_candidate_queue(observer)
 
 
 /datum/game_mode/infestation/distress/spawn_larva(mob/xeno_candidate, mob/living/carbon/xenomorph/mother)

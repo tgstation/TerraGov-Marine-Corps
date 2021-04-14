@@ -11,14 +11,15 @@
 	wound_type = "hunter" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 23
+	melee_damage = 20
 	attack_delay = 7
 
 	// *** Tackle *** //
 	tackle_damage = 28
 
 	// *** Speed *** //
-	speed = -1.2
+	speed = -1.1
+	weeds_speed_mod = -0.1
 
 	// *** Plasma *** //
 	plasma_max = 100
@@ -47,8 +48,7 @@
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/regurgitate,
-		/datum/action/xeno_action/activable/headbite,
+		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/activable/haunt,
 		/datum/action/xeno_action/activable/pounce/hunter,
 		/datum/action/xeno_action/stealth,
@@ -68,7 +68,7 @@
 	tackle_damage = 28
 
 	// *** Speed *** //
-	speed = -1.3
+	speed = -1.2
 
 	// *** Plasma *** //
 	plasma_max = 150
@@ -78,7 +78,7 @@
 	max_health = 250
 
 	// *** Evolution *** //
-	upgrade_threshold = 240
+	upgrade_threshold = 360
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = XENO_BOMB_RESIST_0, "bio" = 15, "rad" = 15, "fire" = 20, "acid" = 15)
@@ -92,13 +92,13 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 26
+	melee_damage = 23
 
 	// *** Tackle *** //
 	tackle_damage = 32
 
 	// *** Speed *** //
-	speed = -1.4
+	speed = -1.3
 
 	// *** Plasma *** //
 	plasma_max = 200
@@ -108,7 +108,7 @@
 	max_health = 270
 
 	// *** Evolution *** //
-	upgrade_threshold = 480
+	upgrade_threshold = 840
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 25, "bullet" = 25, "laser" = 25, "energy" = 25, "bomb" = XENO_BOMB_RESIST_0, "bio" = 18, "rad" = 18, "fire" = 25, "acid" = 18)
@@ -123,13 +123,13 @@
 	ancient_message = "We are the epitome of the hunter. Few can stand against us in open combat."
 
 	// *** Melee Attacks *** //
-	melee_damage = 26
+	melee_damage = 23
 
 	// *** Tackle *** //
 	tackle_damage = 32
 
 	// *** Speed *** //
-	speed = -1.5
+	speed = -1.4
 
 	// *** Plasma *** //
 	plasma_max = 200
@@ -139,7 +139,7 @@
 	max_health = 290
 
 	// *** Evolution *** //
-	upgrade_threshold = 480
+	upgrade_threshold = 1320
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = XENO_BOMB_RESIST_0, "bio" = 18, "rad" = 18, "fire" = 30, "acid" = 18)

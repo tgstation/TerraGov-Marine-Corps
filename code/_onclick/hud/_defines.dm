@@ -29,14 +29,6 @@
 #define ui_storage1 "WEST+8:18,1:5"
 #define ui_storage2 "WEST+9:20,1:5"
 
-#define ui_inv1 "WEST+5:16,1:5"			//borgs
-#define ui_inv2 "WEST+6:16,1:5"			//borgs
-#define ui_inv3 "WEST+7:16,1:5"			//borgs
-#define ui_borg_store "WEST+8:16,1:5"	//borgs
-
-#define ui_monkey_mask "WEST+4:14,1:5"	//monkey
-#define ui_monkey_back "WEST+5:14,1:5"	//monkey
-
 //Lower right, persistant menu
 #define ui_dropbutton "EAST-4:22,1:5"
 #define ui_drop_throw "EAST-1:28,SOUTH+1:7"

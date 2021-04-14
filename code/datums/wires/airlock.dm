@@ -55,9 +55,9 @@
 		if(WIRE_OPEN)
 			if(!A.requiresID() || A.check_access(null))
 				if(A.density)
-					INVOKE_ASYNC(A, /obj/machinery/door/airlock.proc/open)
+					A.open()
 				else
-					INVOKE_ASYNC(A, /obj/machinery/door/airlock.proc/close)
+					A.close()
 		if(WIRE_BOLTS) // Pulse to toggle bolts (but only raise if power is on).
 			if(!A.locked)
 				A.lock()

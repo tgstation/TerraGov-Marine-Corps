@@ -6,9 +6,12 @@
 	var/grinder_datum = /datum/reagent/consumable/larvajelly //good ol cookin
 	var/grinder_amount = 5
 	var/mob/living/affected_mob
-	var/stage = 0 //The stage of the bursts, with worsening effects.
-	var/counter = 0 //How developed the embryo is, if it ages up highly enough it has a chance to burst.
-	var/larva_autoburst_countdown = 20 //How long before the larva is kicked out.
+	///The stage of the bursts, with worsening effects.
+	var/stage = 0
+	///How developed the embryo is, if it ages up highly enough it has a chance to burst.
+	var/counter = 0
+	///How long before the larva is kicked out, * SSobj wait
+	var/larva_autoburst_countdown = 20
 	var/hivenumber = XENO_HIVE_NORMAL
 	var/admin = FALSE
 
@@ -40,35 +43,29 @@
 
 /obj/item/alien_embryo/process()
 	if(!affected_mob)
-		STOP_PROCESSING(SSobj, src)
 		qdel(src)
-		return FALSE
+		return PROCESS_KILL
 
 	if(loc != affected_mob)
 		affected_mob.status_flags &= ~(XENO_HOST)
-		STOP_PROCESSING(SSobj, src)
 		if(iscarbon(affected_mob))
 			var/mob/living/carbon/C = affected_mob
 			C.med_hud_set_status()
 		affected_mob = null
-		return FALSE
+		return PROCESS_KILL
 
-	if(affected_mob.stat == DEAD)
+	if(affected_mob.stat == DEAD)//DEAD CODE TO BE REMOVED
 		if(ishuman(affected_mob))
-			var/mob/living/carbon/human/H = affected_mob
-			if(check_tod(H)) //Can't be defibbed.
+			if(!HAS_TRAIT(affected_mob, TRAIT_UNDEFIBBABLE)) 
 				var/mob/living/carbon/xenomorph/larva/L = locate() in affected_mob
 				L?.initiate_burst(affected_mob)
-				STOP_PROCESSING(SSobj, src)
-				return FALSE
-		else
-			var/mob/living/carbon/xenomorph/larva/L = locate() in affected_mob
-			L?.initiate_burst(affected_mob)
-			STOP_PROCESSING(SSobj, src)
-			return FALSE
+				return PROCESS_KILL
+		var/mob/living/carbon/xenomorph/larva/L = locate() in affected_mob
+		L?.initiate_burst(affected_mob)
+		return PROCESS_KILL
 
 	if(HAS_TRAIT(affected_mob, TRAIT_STASIS))
-		return FALSE //If they are in cryo, bag or cell, the embryo won't grow.
+		return //If they are in cryo, bag or cell, the embryo won't grow.
 
 	process_growth()
 
@@ -156,7 +153,6 @@
 	//If we have a candidate, transfer it over.
 	if(picked)
 		picked.mind.transfer_to(new_xeno, TRUE)
-
 		to_chat(new_xeno, "<span class='xenoannounce'>We are a xenomorph larva inside a host! Move to burst out of it!</span>")
 		new_xeno << sound('sound/effects/xeno_newlarva.ogg')
 
@@ -168,6 +164,7 @@
 		return
 
 	victim.chestburst = 1
+	ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
 	to_chat(src, "<span class='danger'>We start bursting out of [victim]'s chest!</span>")
 
 	victim.Unconscious(40 SECONDS)
@@ -205,11 +202,22 @@
 
 	if(ishuman(victim))
 		var/mob/living/carbon/human/H = victim
+		H.apply_damage(200, BRUTE, H.get_limb("chest"), updating_health = TRUE) //lethal armor ignoring brute damage
 		var/datum/internal_organ/O
-		for(var/i in list("heart", "lungs")) //This removes (and later garbage collects) both organs. No heart means instant death.
+		for(var/i in list("heart", "lungs", "liver", "kidneys", "appendix")) //Bruise all torso internal organs
 			O = H.internal_organs_by_name[i]
-			H.internal_organs_by_name -= i
-			H.internal_organs -= O
+
+			if(!H.mind && !H.client) //If we have no client or mind, permadeath time; remove the organs. Mainly for the NPC colonist bodies
+				H.internal_organs_by_name -= i
+				H.internal_organs -= O
+			else
+				O.take_damage(O.min_bruised_damage, TRUE)
+
+		var/datum/limb/chest = H.get_limb("chest")
+		var/datum/wound/internal_bleeding/I = new (15) //Apply internal bleeding to chest
+		chest.wounds += I
+		chest.fracture()
+
 
 	victim.chestburst = 2
 	victim.update_burst()

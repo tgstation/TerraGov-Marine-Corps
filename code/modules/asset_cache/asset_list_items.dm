@@ -1,15 +1,23 @@
 //DEFINITIONS FOR ASSET DATUMS START HERE.
 
-/datum/asset/simple/tgui
-	legacy = TRUE
+/datum/asset/simple/tgui_common
+	keep_local_name = TRUE
 	assets = list(
-		"tgui.bundle.js" = 'tgui/packages/tgui/public/tgui.bundle.js',
-		"tgui.bundle.css" = 'tgui/packages/tgui/public/tgui.bundle.css',
+		"tgui-common.bundle.js" = 'tgui/public/tgui-common.bundle.js',
 	)
-/datum/asset/group/tgui
-	children = list(
-		/datum/asset/simple/tgui,
-		/datum/asset/simple/namespaced/fontawesome,
+
+/datum/asset/simple/tgui
+	keep_local_name = TRUE
+	assets = list(
+		"tgui.bundle.js" = 'tgui/public/tgui.bundle.js',
+		"tgui.bundle.css" = 'tgui/public/tgui.bundle.css',
+	)
+
+/datum/asset/simple/tgui_panel
+	keep_local_name = TRUE
+	assets = list(
+		"tgui-panel.bundle.js" = 'tgui/public/tgui-panel.bundle.js',
+		"tgui-panel.bundle.css" = 'tgui/public/tgui-panel.bundle.css',
 	)
 
 /datum/asset/simple/namespaced/changelog
@@ -51,7 +59,7 @@
 /datum/asset/simple/jquery
 	legacy = TRUE
 	assets = list(
-		"jquery.min.js"            = 'code/modules/goonchat/jquery.min.js',
+		"jquery.min.js" = 'html/jquery.min.js',
 	)
 
 /datum/asset/simple/namespaced/fontawesome
@@ -65,23 +73,6 @@
 	)
 	parents = list("font-awesome.css" = 'html/font-awesome/css/all.min.css')
 
-
-/datum/asset/simple/namespaced/goonchat
-	legacy = TRUE
-	assets = list(
-		"json2.min.js"             = 'code/modules/goonchat/json2.min.js',
-		"browserOutput.js"         = 'code/modules/goonchat/browserOutput.js',
-		"fontawesome-webfont.eot"  = 'code/modules/goonchat/fonts/fontawesome-webfont.eot',
-		"fontawesome-webfont.svg"  = 'code/modules/goonchat/fonts/fontawesome-webfont.svg',
-		"fontawesome-webfont.ttf"  = 'code/modules/goonchat/fonts/fontawesome-webfont.ttf',
-		"fontawesome-webfont.woff" = 'code/modules/goonchat/fonts/fontawesome-webfont.woff',
-		"goonchatfont-awesome.css" = 'code/modules/goonchat/font-awesome.css',
-		"browserOutput.css"	       = 'code/modules/goonchat/browserOutput.css',
-		"browserOutput_white.css"  = 'code/modules/goonchat/browserOutput_white.css',
-	)
-	parents = list(
-		//this list intentionally left empty (parent namespaced assets can't be referred to by name, only by generated url, and goonchat isn't smart enough for that. yet)
-	)
 
 /datum/asset/spritesheet/chat
 	name = "chat"
@@ -98,14 +89,6 @@
 			var/icon_state = initial(L.icon_state)
 			Insert("language-[icon_state]", icon, icon_state=icon_state)
 	..()
-
-/datum/asset/group/goonchat
-	children = list(
-		/datum/asset/simple/jquery,
-		/datum/asset/simple/namespaced/goonchat,
-		/datum/asset/spritesheet/chat,
-		/datum/asset/simple/namespaced/fontawesome,
-	)
 
 /datum/asset/simple/namespaced/common
 	assets = list("padlock.png"	= 'html/images/padlock.png')
@@ -138,3 +121,8 @@
 		set waitfor = FALSE
 		var/datum/language/L = new path ()
 		L.get_icon()
+
+/datum/asset/simple/orbit
+	assets = list(
+		"ghost.png" = 'html/images/ghost.png'
+	)

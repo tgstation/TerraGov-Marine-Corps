@@ -181,7 +181,7 @@
 		It should be noted that the user will need to be aware and at the ready before discharging them."
 
 /datum/codex_entry/sniper_rifle
-	associated_paths = list(/obj/item/weapon/gun/rifle/sniper/M42A)
+	associated_paths = list(/obj/item/weapon/gun/rifle/sniper/antimaterial)
 	lore_text = "A rather strange gun in the TGMC's arsenal. The M42A \"Express\" originally was born out of it's younger brother the M42. Made by the same \
 	company who eventually went on to design the M56 smartgun system. Which the M42As specialized scope eventually adopted a modified IFF system similar to it's cousin the smartgun. <br><br>\
 	It was at first marketed to PMCs and civilians as an expensive accurate long range rifle but it failed due to the lack of need for such a thing for PMCs and the wide variety of options \
@@ -191,7 +191,7 @@
 	Though high unit cost didn't allow it to be more widely adopted it was eventually decided that it would meet limited adoption for Marksmen and be designated the T-26."
 
 /datum/codex_entry/battle_rifle
-	associated_paths = list(/obj/item/weapon/gun/rifle/m4ra)
+	associated_paths = list(/obj/item/weapon/gun/rifle/tx8)
 	lore_text = "The M45A was born from a commission order from the TGMC to the company which made the M42A and M56 smartgun systems. <br><br>\
 	The reason for this commission order resulted from complaints from light infantry and scout units about the poor accuracy of the new T-26 \
 	carbine at longer ranges and the large size of the T-29 making close combat uncomfortable eventually reached the higher ups, who kept getting \

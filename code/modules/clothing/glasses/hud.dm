@@ -60,19 +60,52 @@
 
 /obj/item/clothing/glasses/hud/health
 	name = "\improper HealthMate HUD"
-	desc = "A heads-up display that scans the humans in view and provides accurate data about their health status."
+	desc = "A heads-up display that scans the humans in view and provides accurate data about their health status. The projector can be attached to compatable eyewear."
 	icon_state = "healthhud"
 	deactive_state = "degoggles_med"
-	flags_armor_protection = 0
-	toggleable = 1
+	flags_armor_protection = NONE
+	toggleable = TRUE
 	hud_type = DATA_HUD_MEDICAL_ADVANCED
 	actions_types = list(/datum/action/item_action/toggle)
+	prescription = TRUE
 
-/obj/item/clothing/glasses/hud/health/eyepatch
+/obj/item/clothing/glasses/hud/medgoggles
+	name = "\improper HealthMate ballistic goggles"
+	desc = "Standard issue TGMC goggles. This pair has been fitted with an internal HealthMate HUD projector."
+	icon_state = "medgoggles"
+	item_state = "medgoggles"
+	deactive_state = "degoggles_medgoggles"
+	toggleable = TRUE
+	hud_type = DATA_HUD_MEDICAL_ADVANCED
+	actions_types = list(/datum/action/item_action/toggle)
+	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 0, "energy" = 15, "bomb" = 35, "bio" = 10, "rad" = 10, "fire" = 30, "acid" = 30)
+	flags_equip_slot = ITEM_SLOT_EYES
+	goggles = TRUE
+
+/obj/item/clothing/glasses/hud/medgoggles/prescription
+	name = "\improper HealthMate prescription ballistic goggles"
+	desc = "Standard issue TGMC prescription goggles. This pair has been fitted with an internal HealthMate HUD projector."
+	prescription = TRUE
+
+/obj/item/clothing/glasses/hud/medpatch
 	name = "\improper Medpatch HUD"
 	desc = "A heads-up display that scans the humans in view and provides accurate data about their health status. For the disabled and/or edgy Corpsman."
 	icon_state = "medpatchhud"
 	deactive_state = "degoggles_medpatch"
+	toggleable = TRUE
+	hud_type = DATA_HUD_MEDICAL_ADVANCED
+	actions_types = list(/datum/action/item_action/toggle)
+
+/obj/item/clothing/glasses/hud/medglasses
+	name = "\improper HealthMate regulation prescription glasses"
+	desc = "Standard issue TGMC Regulation Prescription Glasses. This pair has been fitted with an internal HealthMate HUD projector."
+	icon_state = "medglasses"
+	item_state = "medglasses"
+	deactive_state = "degoggles_medglasses"
+	prescription = TRUE
+	toggleable = TRUE
+	hud_type = DATA_HUD_MEDICAL_ADVANCED
+	actions_types = list(/datum/action/item_action/toggle)
 
 /obj/item/clothing/glasses/hud/security
 	name = "\improper PatrolMate HUD"
@@ -80,7 +113,7 @@
 	icon_state = "securityhud"
 	deactive_state = "degoggles_sec"
 	toggleable = 1
-	flags_armor_protection = 0
+	flags_armor_protection = NONE
 	hud_type = DATA_HUD_SECURITY_ADVANCED
 	actions_types = list(/datum/action/item_action/toggle)
 	var/global/list/jobs[0]
@@ -99,7 +132,7 @@
 	desc = "A heads-up display that scans any nearby xenomorph's data."
 	icon_state = "securityhud"
 	deactive_state = "degoggles_sec"
-	flags_armor_protection = 0
+	flags_armor_protection = NONE
 	toggleable = TRUE
 	hud_type = DATA_HUD_XENO_STATUS
 	actions_types = list(/datum/action/item_action/toggle)

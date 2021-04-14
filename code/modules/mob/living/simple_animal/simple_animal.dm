@@ -203,9 +203,6 @@
 
 		if(INTENT_HARM, INTENT_DISARM)
 			user.do_attack_animation(src)
-			if(!prob(user.melee_accuracy))
-				user.visible_message("<span class='danger'>[user] misses [src]!</span>", null, null, 5)
-				return FALSE
 			user.do_attack_animation(src, ATTACK_EFFECT_KICK)
 			visible_message("<span class='danger'>[user] [response_harm] [src]!</span>",
 			"<span class='userdanger'>[user] [response_harm] [src]!</span>")
@@ -216,7 +213,7 @@
 			return TRUE
 
 
-/mob/living/simple_animal/attack_alien(mob/living/carbon/xenomorph/X)
+/mob/living/simple_animal/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	. = ..()
 	if(!.)
 		return

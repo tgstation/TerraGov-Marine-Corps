@@ -31,17 +31,17 @@
 	name = "Toggle Bombard Type"
 	action_icon_state = "toggle_bomb0"
 	mechanics_text = "Switches Boiler Bombard type between Corrosive Acid and Neurotoxin."
-	use_state_flags = XACT_USE_BUSY
+	use_state_flags = XACT_USE_BUSY|XACT_USE_LYING
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_BOMB
 
 /datum/action/xeno_action/toggle_bomb/can_use_action(silent = FALSE, override_flags)
 	. = ..()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
 	if((X.corrosive_ammo + X.neuro_ammo) >= X.xeno_caste.max_ammo)
-		if((X.ammo.type == /datum/ammo/xeno/boiler_gas/corrosive && X.neuro_ammo==0) || (X.ammo.type == /datum/ammo/xeno/boiler_gas && X.corrosive_ammo==0))	
+		if((X.ammo.type == /datum/ammo/xeno/boiler_gas/corrosive && X.neuro_ammo==0) || (X.ammo.type == /datum/ammo/xeno/boiler_gas && X.corrosive_ammo==0))
 			if (!silent)
 				to_chat(X, "<span class='warning'>We won't be able to carry this kind of globule</span>")
-			return FALSE	
+			return FALSE
 
 /datum/action/xeno_action/toggle_bomb/action_activate()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
@@ -71,7 +71,7 @@
 	action_icon_state = "toggle_bomb0" //to be changed
 	mechanics_text = "Creates a Boiler Bombard of the type currently selected."
 	plasma_cost = 200
-	use_state_flags = XACT_USE_BUSY
+	use_state_flags = XACT_USE_BUSY|XACT_USE_LYING
 	keybind_signal = COMSIG_XENOABILITY_CREATE_BOMB
 
 /datum/action/xeno_action/create_boiler_bomb/action_activate()
@@ -156,9 +156,9 @@
 
 
 /datum/action/xeno_action/activable/bombard/proc/on_ranged_attack(mob/living/carbon/xenomorph/X, atom/A, params)
-	SIGNAL_HANDLER_DOES_SLEEP
+	SIGNAL_HANDLER
 	if(can_use_ability(A))
-		use_ability(A)
+		INVOKE_ASYNC(src, .proc/use_ability, A)
 
 
 /mob/living/carbon/xenomorph/boiler/Moved(atom/OldLoc,Dir)
@@ -195,16 +195,7 @@
 
 /datum/action/xeno_action/activable/bombard/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/boiler/X = owner
-	var/turf/T = get_turf(A)
-	var/offset_x = rand(-1, 1)
-	var/offset_y = rand(-1, 1)
-
-	if(prob(30))
-		offset_x = 0
-	if(prob(30))
-		offset_y = 0
-
-	var/turf/target = locate(T.x + offset_x, T.y + offset_y, T.z)
+	var/turf/target = get_turf(A)
 
 	if(!istype(target))
 		return

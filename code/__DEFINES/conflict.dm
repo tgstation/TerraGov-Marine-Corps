@@ -52,6 +52,8 @@
 #define AMMO_BALLISTIC			(1<<11)
 #define AMMO_SUNDERING			(1<<12)
 #define AMMO_CHAINING			(1<<13)
+#define AMMO_SENTRY				(1<<14) //Used to identify ammo from sentry guns and other automated sources
+#define AMMO_FLAME				(1<<15) //Used to identify flamethrower projectiles and similar projectiles
 
 //Gun defines for gun related thing. More in the projectile folder.
 //flags_gun_features
@@ -138,6 +140,9 @@
 #define SMOKE_XENO_HEMODILE (1<<12)
 #define SMOKE_XENO_TRANSVITOX (1<<13)
 #define SMOKE_CHEM			(1<<14)
+#define SMOKE_EXTINGUISH	(1<<15) //Extinguishes fires and mobs that are on fire
+#define SMOKE_NEURO_LIGHT	(1<<16) //Effectively a sub-flag of Neuro; precludes higher impact effects
+#define SMOKE_HUGGER_PACIFY	(1<<17) //Smoke that pacifies huggers in its area; mainly used for vision blocking smoke
 
 //Incapacitated
 #define INCAPACITATED_IGNORE_RESTRAINED (1<<0)

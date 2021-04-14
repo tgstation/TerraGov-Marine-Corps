@@ -53,6 +53,7 @@
 			M.internal_organs_by_name -= i
 			M.internal_organs -= O
 		M.chestburst = 2
+		ADD_TRAIT(M, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
 		M.update_burst()
 		//buckle to nest
 		var/obj/structure/bed/nest/victim_nest = locate() in get_turf(src)
@@ -287,7 +288,7 @@
 	corpseshoes = /obj/item/clothing/shoes/jackboots
 	corpsesuit = /obj/item/clothing/suit/armor/vest/security
 	corpseback = /obj/item/storage/backpack/satchel
-	corpsebelt = /obj/item/storage/belt/gun/m4a3/vp70
+	corpsebelt = /obj/item/storage/belt/gun/pistol/m4a3/vp70
 	corpsegloves = /obj/item/clothing/gloves/marine/veteran/PMC
 	corpsehelmet = /obj/item/clothing/head/helmet/marine/veteran/PMC
 	corpsemask = /obj/item/clothing/mask/gas/PMC/damaged

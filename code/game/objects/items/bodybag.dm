@@ -131,8 +131,7 @@
 		return FALSE //Only humans.
 	if(mob_to_stuff.stat != DEAD) //Only the dead for bodybags.
 		return FALSE
-	var/mob/living/carbon/human/human_to_stuff = mob_to_stuff
-	if(human_to_stuff.is_revivable() && (check_tod(human_to_stuff) || issynth(human_to_stuff)))
+	if(!HAS_TRAIT(mob_to_stuff, TRAIT_UNDEFIBBABLE) || issynth(mob_to_stuff))
 		return FALSE //We don't want to store those that can be revived.
 	return TRUE
 
@@ -197,12 +196,14 @@
 		icon_state = icon_opened
 
 
-/obj/structure/closet/bodybag/attack_alien(mob/living/carbon/xenomorph/xeno)
+/obj/structure/closet/bodybag/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(X.status_flags & INCORPOREAL)
+		return FALSE
 	if(opened)
 		return FALSE // stop xeno closing things
-	xeno.do_attack_animation(src, ATTACK_EFFECT_CLAW)
+	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 	open()
-	xeno.visible_message("<span class='danger'>\The [xeno] slashes \the [src] open!</span>", \
+	X.visible_message("<span class='danger'>\The [X] slashes \the [src] open!</span>", \
 		"<span class='danger'>We slash \the [src] open!</span>", null, 5)
 	return TRUE
 
@@ -232,16 +233,12 @@
 			visible_message("<span class='danger'>\The shockwave blows [name] apart!</span>")
 			qdel(src) //blown apart
 
-/obj/structure/closet/bodybag/proc/acidspray_act()
-	SIGNAL_HANDLER
+/obj/structure/closet/bodybag/proc/acidspray_act(datum/source, obj/effect/xenomorph/spray/acid_puddle)
 	if(!opened && bodybag_occupant)
-		var/obj/effect/xenomorph/spray/S = locate() in range(0, src) //get the acid Hans
-		if(!S) //Sanity
-			return
 
 		if(ishuman(bodybag_occupant))
 			var/mob/living/carbon/human/H = bodybag_occupant
-			INVOKE_ASYNC(H, /mob/living/carbon/human.proc/acid_spray_crossed, S.slow_amt) //tarp isn't acid proof; pass it on to the occupant
+			SEND_SIGNAL(H, COMSIG_ATOM_ACIDSPRAY_ACT, src, acid_puddle.acid_damage, acid_puddle.slow_amt) //tarp isn't acid proof; pass it on to the occupant
 
 		to_chat(bodybag_occupant, "<span class='danger'>The sizzling acid forces us out of [name]!</span>")
 		open() //Get out
@@ -306,8 +303,6 @@
 /obj/structure/closet/bodybag/cryobag/closet_special_handling(mob/living/mob_to_stuff) // overriding this
 	if(!ishuman(mob_to_stuff))
 		return FALSE //Humans only.
-	if(mob_to_stuff.stat == DEAD) // dead, nope
-		return FALSE
 	return TRUE
 
 

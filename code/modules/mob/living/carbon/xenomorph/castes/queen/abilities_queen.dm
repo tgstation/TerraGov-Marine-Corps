@@ -20,7 +20,7 @@
 	var/txt = stripped_input(src, "Set the hive's orders to what? Leave blank to clear it.", "Hive Orders")
 
 	if(txt)
-		xeno_message("<B>The Queen has given a new order. Check Status panel for details.</B>",3,hivenumber)
+		xeno_message("<B>The Queen has given a new order. Check Status panel for details.</B>", "xenoannounce", 6,hivenumber)
 		hive.hive_orders = txt
 	else
 		hive.hive_orders = ""
@@ -43,6 +43,11 @@
 	var/input = stripped_multiline_input(src, "This message will be broadcast throughout the hive.", "Word of the Queen", "")
 	if(!input)
 		return
+
+	if(CHAT_FILTER_CHECK(input))
+		to_chat(src, "<span class='warning'>That announcement contained a word prohibited in IC chat! Consider reviewing the server rules.\n<span replaceRegex='show_filtered_ic_chat'>\"[input]\"</span></span>")
+		SSblackbox.record_feedback(FEEDBACK_TALLY, "ic_blocked_words", 1, lowertext(config.ic_filter_regex.match))
+		return FALSE
 
 	var/queensWord = "<br><h2 class='alert'>The words of the queen reverberate in your head...</h2>"
 	queensWord += "<br><span class='alert'>[input]</span><br>"
@@ -89,7 +94,7 @@
 
 	pslash_delay = TRUE
 
-	var/choice = input("Choose which level of slashing hosts to permit to your hive.","Harming") as null|anything in list("Allowed", "Restricted - Less Damage", "Forbidden")
+	var/choice = tgui_input_list(src, "Choose which level of slashing hosts to permit to your hive.","Harming", list("Allowed", "Restricted - Less Damage", "Forbidden"))
 
 	if(choice == "Allowed")
 		to_chat(src, "<span class='xenonotice'>We allow slashing.</span>")
@@ -200,7 +205,7 @@
 				if(!silent)
 					to_chat(owner, "<span class='xenowarning'>The host and child are still alive!</span>")
 				return FALSE
-			else if(istype(H) && !check_tod(H)) //Dead, but the host can still hatch, possibly.
+			else if(istype(H) && !HAS_TRAIT(H, TRAIT_UNDEFIBBABLE )) //Dead code
 				if(!silent)
 					to_chat(owner, "<span class='xenowarning'>The child may still hatch! Not yet!</span>")
 				return FALSE
@@ -239,10 +244,11 @@
 /datum/action/xeno_action/watch_xeno
 	name = "Watch Xenomorph"
 	action_icon_state = "watch_xeno"
-	mechanics_text = "See from the target Xenomorphs vision."
+	mechanics_text = "See from the target Xenomorphs vision. Click again the ability to stop observing"
 	plasma_cost = 0
 	keybind_signal = COMSIG_XENOABILITY_WATCH_XENO
 	var/overwatch_active = FALSE
+	use_state_flags = XACT_USE_LYING
 
 
 /datum/action/xeno_action/watch_xeno/give_action(mob/living/L)
@@ -260,6 +266,11 @@
 
 
 /datum/action/xeno_action/watch_xeno/action_activate()
+	if(overwatch_active)
+		stop_overwatch()
+		remove_selected_frame()
+		return
+	add_selected_frame()
 	select_xeno()
 
 
@@ -271,8 +282,8 @@
 	if(QDELETED(selected_xeno))
 		var/list/possible_xenos = X.hive.get_watchable_xenos()
 
-		selected_xeno = input(X, "Target", "Watch which xenomorph?") as null|anything in possible_xenos
-		if(QDELETED(selected_xeno) || selected_xeno == X.observed_xeno || selected_xeno.stat == DEAD || is_centcom_level(selected_xeno.z) || !X.check_state())
+		selected_xeno = tgui_input_list(X, "Target", "Watch which xenomorph?", possible_xenos)
+		if(QDELETED(selected_xeno) || selected_xeno == X.observed_xeno || selected_xeno.stat == DEAD || is_centcom_level(selected_xeno.z))
 			if(!X.observed_xeno)
 				return
 			stop_overwatch()
@@ -293,6 +304,7 @@
 	RegisterSignal(target, list(COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED), .proc/on_xeno_evolution)
 	RegisterSignal(watcher, COMSIG_MOVABLE_MOVED, .proc/on_movement)
 	overwatch_active = TRUE
+	to_chat(owner, "<span class='notice'>Click again on overwatch ability button to stop overwatching</span>")
 
 
 /datum/action/xeno_action/watch_xeno/proc/stop_overwatch(do_reset_perspective = TRUE)
@@ -309,8 +321,8 @@
 
 
 /datum/action/xeno_action/watch_xeno/proc/on_list_xeno_selection(datum/source, mob/living/carbon/xenomorph/selected_xeno)
-	SIGNAL_HANDLER_DOES_SLEEP
-	select_xeno(selected_xeno)
+	SIGNAL_HANDLER
+	INVOKE_ASYNC(src, .proc/select_xeno, selected_xeno)
 
 /datum/action/xeno_action/watch_xeno/proc/on_xeno_evolution(datum/source, mob/living/carbon/xenomorph/new_xeno)
 	SIGNAL_HANDLER
@@ -360,7 +372,7 @@
 
 /datum/action/xeno_action/toggle_queen_zoom/action_activate()
 	var/mob/living/carbon/xenomorph/queen/xeno = owner
-	if(xeno.action_busy)
+	if(xeno.do_actions)
 		return
 	if(xeno.is_zoomed)
 		zoom_xeno_out(xeno.observed_xeno ? FALSE : TRUE)
@@ -401,12 +413,11 @@
 	mechanics_text = "Make a target Xenomorph a leader."
 	plasma_cost = 0
 	keybind_signal = COMSIG_XENOABILITY_XENO_LEADERS
+	use_state_flags = XACT_USE_LYING
 
 
 /datum/action/xeno_action/set_xeno_lead/action_activate()
 	var/mob/living/carbon/xenomorph/queen/X = owner
-	if(!X.check_state())
-		return
 	if(!X.hive)
 		return
 
@@ -418,8 +429,8 @@
 	if(QDELETED(selected_xeno))
 		var/list/possible_xenos = xeno_ruler.hive.get_leaderable_xenos()
 
-		selected_xeno = input(xeno_ruler, "Target", "Watch which xenomorph?") as null|anything in possible_xenos
-		if(QDELETED(selected_xeno) || selected_xeno.stat == DEAD || is_centcom_level(selected_xeno.z) || !xeno_ruler.check_state())
+		selected_xeno = tgui_input_list(xeno_ruler, "Target", "Watch which xenomorph?", possible_xenos)
+		if(QDELETED(selected_xeno) || selected_xeno.stat == DEAD || is_centcom_level(selected_xeno.z))
 			return
 
 	if(selected_xeno.queen_chosen_lead)
@@ -525,6 +536,8 @@
 	plasma_cost = 150
 	cooldown_timer = 8 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_QUEEN_GIVE_PLASMA
+	use_state_flags = XACT_USE_LYING
+	target_flags = XABB_MOB_TARGET
 
 
 /datum/action/xeno_action/activable/queen_give_plasma/can_use_ability(atom/target, silent = FALSE, override_flags)
@@ -570,10 +583,11 @@
 	action_icon_state = "queen_order"
 	plasma_cost = 100
 	keybind_signal = COMSIG_XENOABILITY_QUEEN_GIVE_ORDER
+	use_state_flags = XACT_USE_LYING
 
 /datum/action/xeno_action/queen_order/action_activate()
 	var/mob/living/carbon/xenomorph/queen/X = owner
-	if(!X.check_state())
+	if(!X.check_concious_state())
 		return
 	if(X.observed_xeno)
 		var/mob/living/carbon/xenomorph/target = X.observed_xeno
@@ -603,11 +617,10 @@
 	mechanics_text = "De-evolve a target Xenomorph of Tier 2 or higher to the next lowest tier."
 	plasma_cost = 600
 	keybind_signal = COMSIG_XENOABILITY_DEEVOLVE
+	use_state_flags = XACT_USE_LYING
 
 /datum/action/xeno_action/deevolve/action_activate()
 	var/mob/living/carbon/xenomorph/queen/X = owner
-	if(!X.check_state())
-		return
 	if(!X.observed_xeno)
 		to_chat(X, "<span class='warning'>We must overwatch the xeno we want to de-evolve.</span>")
 		return
@@ -634,8 +647,8 @@
 
 	var/datum/xeno_caste/new_caste = GLOB.xeno_caste_datums[T.xeno_caste.deevolves_to][XENO_UPGRADE_ZERO]
 
-	var/confirm = alert(X, "Are you sure you want to deevolve [T] from [T.xeno_caste.caste_name] to [new_caste.caste_name]?", , "Yes", "No")
-	if(confirm == "No")
+	var/confirm = tgui_alert(X, "Are you sure you want to deevolve [T] from [T.xeno_caste.caste_name] to [new_caste.caste_name]?", null, list("Yes", "No"))
+	if(confirm != "Yes")
 		return
 
 	var/reason = stripped_input(X, "Provide a reason for deevolving this xenomorph, [T]")
@@ -643,7 +656,7 @@
 		to_chat(X, "<span class='xenowarning'>You must provide a reason for deevolving [T].</span>")
 		return
 
-	if(!X.check_state() || !X.check_plasma(600) || X.observed_xeno != T)
+	if(!X.check_concious_state() || !X.check_plasma(600) || X.observed_xeno != T)
 		return
 
 	if(T.is_ventcrawling)
@@ -671,8 +684,6 @@
 
 	for(var/obj/item/W in T.contents) //Drop stuff
 		T.dropItemToGround(W)
-
-	T.empty_gut(FALSE, TRUE)
 
 	if(T.mind)
 		T.mind.transfer_to(new_xeno)

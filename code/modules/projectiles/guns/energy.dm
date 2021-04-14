@@ -73,6 +73,17 @@
 	else
 		return FLOOR(cell.charge / max(charge_cost, 1),1)
 
+// energy guns, however, do not use gun rattles.
+/obj/item/weapon/gun/energy/play_fire_sound(mob/user)
+	if(active_attachable && active_attachable.flags_attach_features & ATTACH_PROJECTILE)
+		if(active_attachable.fire_sound) //If we're firing from an attachment, use that noise instead.
+			playsound(user, active_attachable.fire_sound, 50)
+		return
+	if(flags_gun_features & GUN_SILENCED)
+		playsound(user, fire_sound, 25)
+		return
+	playsound(user, fire_sound, 60)
+
 
 /obj/item/weapon/gun/energy/taser
 	name = "taser gun"
@@ -127,6 +138,7 @@
 	aim_slowdown = 0.75
 	wield_delay = 1 SECONDS
 	gun_skill_category = GUN_SKILL_RIFLES
+	muzzle_flash_color = COLOR_LASER_RED
 
 	fire_delay = 3
 	accuracy_mult = 1.5
@@ -135,23 +147,18 @@
 	damage_falloff_mult = 0.5
 
 /obj/item/weapon/gun/energy/lasgun/tesla
-	name = "\improper Energy Rifle"
-	desc = "A wieldy rifle that fires balls of elecricity that shock all those near them. Handle only with insulated clothing. Reloaded with power cells."
+	name = "\improper M43-T tesla shock rifle"
+	desc = "A prototype TGMC energy rifle that fires balls of elecricity that shock all those near them, it is meant to drain the plasma of unidentified creatures from within, limiting their abilities. Handle only with insulated clothing. Reloaded with power cells."
 	icon_state = "m43"
 	item_state = "m43"
 	fire_sound = 'sound/weapons/guns/fire/tesla.ogg'
 	ammo = /datum/ammo/energy/tesla
 	cell_type = /obj/item/cell/lasgun/tesla
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_ENERGY|GUN_AMMO_COUNTER
-	aim_slowdown = 0.75
-	wield_delay = 1 SECONDS
-	gun_skill_category = GUN_SKILL_RIFLES
+	muzzle_flash_color = COLOR_TESLA_BLUE
 
 	charge_cost = 500
 	fire_delay = 4 SECONDS
-	accuracy_mult = 1.5
-	accuracy_mult_unwielded = 0.6
-	damage_falloff_mult = 0.5
 
 //-------------------------------------------------------
 //M43 Sunfury Lasgun MK1
@@ -402,6 +409,7 @@
 	muzzleflash_iconstate = "muzzle_flash_pulse"
 	cell_type = /obj/item/cell/lasgun/pulse
 	charge_cost = ENERGY_STANDARD_AMMO_COST
+	muzzle_flash_color = COLOR_PULSE_BLUE
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 15, "stock_x" = 22, "stock_y" = 12)
@@ -423,6 +431,7 @@
 	cell_type = /obj/item/cell/lasgun/M43/practice
 	attachable_allowed = list()
 	starting_attachment_types = list(/obj/item/attachable/stock/lasgun/practice)
+	muzzle_flash_color = COLOR_DISABLER_BLUE
 
 	damage_falloff_mult = 1
 	fire_delay = 0.33 SECONDS
@@ -444,6 +453,8 @@
 	ammo_diff = null
 	cell_type = /obj/item/cell/lasgun/lasrifle
 	charge_cost = 20
+	gun_firemode = GUN_FIREMODE_AUTOMATIC
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)//Lasrifle has special behavior for fire mode, be carefull
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
@@ -468,24 +479,34 @@
 	accuracy_mult_unwielded = 0.5 //Heavy and unwieldy; you don't one hand this.
 	scatter_unwielded = 100 //Heavy and unwieldy; you don't one hand this.
 	damage_falloff_mult = 0.25
-	fire_delay = 3
-	var/mode_index = 1
+	fire_delay = 2
 	var/static/list/datum/lasrifle/base/mode_list = list(
-		/datum/lasrifle/base/standard,
-		/datum/lasrifle/base/disabler,
-		/datum/lasrifle/base/overcharge,
-		/datum/lasrifle/base/heat,
-		/datum/lasrifle/base/spread,
+		"Standard" = /datum/lasrifle/base/standard,
+		"Disabler" = /datum/lasrifle/base/disabler,
+		"Overcharge" = /datum/lasrifle/base/overcharge,
+		"Heat" = /datum/lasrifle/base/heat,
+		"Spread" = /datum/lasrifle/base/spread,
 	)
 
 /datum/lasrifle/base
+	///how much power the gun uses on this mode when shot.
 	var/charge_cost = 0
+	///the ammo datum this mode is.
 	var/ammo = null
+	///how long it takes between each shot of that mode, same as gun fire delay.
 	var/fire_delay = 0
+	///The gun firing sound of this mode.
 	var/fire_sound = null
+	///What message it sends to the user when you switch to this mode.
 	var/message_to_user = ""
+	///Used to change the gun firemode, like automatic, semi-automatic and burst.
 	var/fire_mode = GUN_FIREMODE_SEMIAUTO
+	///what to change the gun icon_state to when switching to this mode.
 	var/icon_state = "tx73"
+	///Which icon file the radial menu will use.
+	var/radial_icon = 'icons/mob/radial.dmi'
+	///The icon state the radial menu will use.
+	var/radial_icon_state = "laser"
 
 /datum/lasrifle/base/standard
 	charge_cost = 20
@@ -504,6 +525,7 @@
 	message_to_user = "You set the Lasrifle's charge mode to disabler fire."
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	icon_state = "tx73_auto"
+	radial_icon_state = "laser_disabler"
 
 /datum/lasrifle/base/overcharge
 	charge_cost = 80
@@ -512,6 +534,7 @@
 	fire_sound = 'sound/weapons/guns/fire/plasma_precision_3.ogg'
 	message_to_user = "You set the Lasrifle's charge mode to overcharge."
 	icon_state = "tx73_overcharge"
+	radial_icon_state = "laser_overcharge"
 
 /datum/lasrifle/base/heat
 	charge_cost = 80
@@ -520,6 +543,7 @@
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
 	message_to_user = "You set the Lasrifle's charge mode to wave heat."
 	icon_state = "tx73_heat"
+	radial_icon_state = "laser_heat"
 
 /datum/lasrifle/base/spread
 	charge_cost = 80
@@ -528,6 +552,7 @@
 	fire_sound = 'sound/weapons/guns/fire/laser_rifle_2.ogg'
 	message_to_user = "You set the Lasrifle's charge mode to spread."
 	icon_state = "tx73_spread"
+	radial_icon_state = "laser_spread"
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/unique_action(mob/user)
 	return switch_modes(user)
@@ -536,27 +561,32 @@
 	if(!user)
 		CRASH("switch_modes called with no user.")
 
-	if (!do_after(user, 0.4 SECONDS, FALSE, user))
-		to_chat(user, "<span class ='warning'>You fumble the Lasrifle's charge mode.</span>")
+	var/list/available_modes = list()
+	for(var/mode in mode_list)
+		available_modes += list("[mode]" = image(icon = initial(mode_list[mode].radial_icon), icon_state = initial(mode_list[mode].radial_icon_state)))
+
+	var/datum/lasrifle/base/choice = mode_list[show_radial_menu(user, user, available_modes, null, 64, tooltips = TRUE)]
+	if(!choice)
 		return
 
-	mode_index = WRAP(mode_index + 1, 1, length(mode_list)+1)
 
 	playsound(user, 'sound/weapons/emitter.ogg', 5, FALSE, 2)
-	charge_cost = initial(mode_list[mode_index].charge_cost)
-	ammo = GLOB.ammo_list[initial(mode_list[mode_index].ammo)]
-	fire_delay = initial(mode_list[mode_index].fire_delay)
-	fire_sound = initial(mode_list[mode_index].fire_sound)
 
-	if(initial(mode_list[mode_index].fire_mode) != GUN_FIREMODE_SEMIAUTO)
-		SEND_SIGNAL(src, COMSIG_GUN_FIREMODE_TOGGLE, initial(mode_list[mode_index].fire_mode), user.client)
-	else
-		SEND_SIGNAL(src, COMSIG_GUN_FIREMODE_TOGGLE, GUN_FIREMODE_SEMIAUTO, user.client)
+	
+	gun_firemode = initial(choice.fire_mode)
 
-	base_gun_icon = initial(mode_list[mode_index].icon_state)
+	
+	charge_cost = initial(choice.charge_cost)
+	ammo = GLOB.ammo_list[initial(choice.ammo)]
+	fire_delay = initial(choice.fire_delay)
+	fire_sound = initial(choice.fire_sound)
+	SEND_SIGNAL(src, COMSIG_GUN_AUTOFIREDELAY_MODIFIED, fire_delay)
+	SEND_SIGNAL(src, COMSIG_GUN_FIRE_MODE_TOGGLE, initial(choice.fire_mode), user.client)
+
+	base_gun_icon = initial(choice.icon_state)
 	update_icon()
 
-	to_chat(user, initial(mode_list[mode_index].message_to_user))
+	to_chat(user, initial(choice.message_to_user))
 
 	var/obj/screen/ammo/A = user.hud_used.ammo //The ammo HUD
 	A.update_hud(user)

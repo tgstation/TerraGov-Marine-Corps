@@ -168,6 +168,21 @@
 	///Amount of leaders allowed
 	var/queen_leader_limit = 0
 
+	// *** Wraith Abilities *** //
+	//Banish - Values for the Wraith's Banish ability
+	///Base duration of Banish before modifiers
+	var/wraith_banish_base_duration = WRAITH_BANISH_BASE_DURATION
+	///Base range of Banish
+	var/wraith_banish_range = WRAITH_BANISH_RANGE
+
+	//Blink - Values for the Wraith's Blink ability
+	///Cooldown multiplier of Blink when used on non-friendlies
+	var/wraith_blink_drag_nonfriendly_living_multiplier = WRAITH_BLINK_DRAG_NONFRIENDLY_MULTIPLIER
+	///Cooldown multiplier of Blink when used on friendlies
+	var/wraith_blink_drag_friendly_multiplier = WRAITH_BLINK_DRAG_FRIENDLY_MULTIPLIER
+	///Base range of Blink
+	var/wraith_blink_range = WRAITH_BLINK_RANGE
+
 	///the 'abilities' available to a caste.
 	var/list/actions
 
@@ -199,7 +214,6 @@
 	initial_language_holder = /datum/language_holder/xeno
 	gib_chance = 5
 	light_system = MOVABLE_LIGHT
-	light_on = FALSE
 
 	var/hivenumber = XENO_HIVE_NORMAL
 
@@ -220,7 +234,6 @@
 	var/time_of_birth
 
 	var/list/stomach_contents
-	var/devour_timer = 0
 
 	var/evolution_stored = 0 //How much evolution they have stored
 
@@ -256,7 +269,7 @@
 
 	var/list/datum/action/xeno_abilities = list()
 	var/datum/action/xeno_action/activable/selected_ability
-	var/selected_resin = /obj/structure/bed/nest //which resin structure to build when we secrete resin
+	var/selected_resin = /turf/closed/wall/resin/regenerating //which resin structure to build when we secrete resin
 	var/selected_reagent = /datum/reagent/toxin/xeno_hemodile //which reagent to slash with using reagent slash
 
 	//Naming variables
@@ -297,17 +310,21 @@
 	//Runner vars
 	var/savage = FALSE
 	var/savage_used = FALSE
-	///Defines how much projectile damage evasion can still absorb
-	var/evasion_stacks = 0
 
 	// *** Ravager vars *** //
 	var/ignore_pain = FALSE // when true the rav will not go into crit or take crit damage.
 	var/ignore_pain_state = 0 // how far "dead" the rav has got while ignoring pain.
+
+	// *** Carrier vars *** //
+	var/selected_hugger_type = /obj/item/clothing/mask/facehugger
 
 	//Notification spam controls
 	var/recent_notice = 0
 	var/notice_delay = 20 //2 second between notices
 
 	var/fire_luminosity = 0 //Luminosity of the current fire while burning
+
+	///The xenos/silo currently tracked by the xeno_tracker arrow
+	var/tracked
 
 	COOLDOWN_DECLARE(xeno_health_alert_cooldown)

@@ -989,10 +989,6 @@
 	dir = 10
 	},
 /area/outpost/yard/north)
-"fJ" = (
-/obj/structure/cable,
-/turf/open/floor/tile/dark,
-/area/outpost/brig/armoury)
 "fK" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1
@@ -3024,7 +3020,6 @@
 /area/outpost/hallway/south_west)
 "qh" = (
 /obj/machinery/autodoc,
-/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/outpost/medbay)
 "qi" = (
@@ -3032,13 +3027,6 @@
 	dir = 8
 	},
 /area/outpost/hallway/central)
-"qj" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/tile/dark,
-/area/outpost/brig/armoury)
 "qk" = (
 /turf/open/floor/tile/dark/brown2{
 	dir = 1
@@ -4913,8 +4901,8 @@
 "AY" = (
 /obj/structure/rack,
 /obj/effect/decal/cleanable/dirt,
-/obj/item/weapon/gun/rifle/ak47/carbine,
-/obj/item/weapon/gun/rifle/ak47/carbine,
+/obj/item/weapon/gun/rifle/ak47,
+/obj/item/weapon/gun/rifle/ak47,
 /obj/item/ammo_magazine/rifle/ak47,
 /obj/item/ammo_magazine/rifle/ak47,
 /obj/item/ammo_magazine/rifle/ak47,
@@ -6746,6 +6734,7 @@
 /turf/open/floor/tile/dark,
 /area/outpost/engineering)
 "KW" = (
+/obj/structure/cable,
 /turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
@@ -6797,6 +6786,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
@@ -7046,7 +7036,6 @@
 	},
 /area/outpost/engineering/hallway)
 "MG" = (
-/obj/machinery/computer/turbine_computer,
 /turf/open/floor/plating,
 /area/outpost/engineering/engine)
 "MH" = (
@@ -7687,7 +7676,6 @@
 /area/outpost/medbay/chemistry)
 "PQ" = (
 /obj/machinery/optable,
-/obj/structure/cable,
 /obj/item/tank/anesthetic,
 /obj/item/clothing/mask/breath/medical,
 /obj/effect/decal/cleanable/blood,
@@ -8281,6 +8269,7 @@
 /area/outpost/lz2)
 "SO" = (
 /obj/machinery/computer/intel_computer,
+/obj/structure/cable,
 /turf/open/floor/tile/dark/red2,
 /area/outpost/medbay/security)
 "SS" = (
@@ -9704,9 +9693,6 @@
 	dir = 8
 	},
 /area/outpost/engineering)
-"ZY" = (
-/turf/open/floor/plating,
-/area/outpost/engineering/engine)
 "ZZ" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -36008,19 +35994,19 @@ Cy
 Cy
 Cy
 DX
-ZY
+MG
 sk
 xG
 gK
 Eq
 MU
 ih
-ZY
-ZY
-ZY
-ZY
-ZY
-ZY
+MG
+MG
+MG
+MG
+MG
+MG
 DX
 Zc
 Zc
@@ -36278,7 +36264,7 @@ sk
 CU
 DC
 CU
-ZY
+MG
 DX
 DX
 DX
@@ -36524,21 +36510,21 @@ Sz
 Db
 DX
 DX
-ZY
+MG
 sk
 xG
 gK
 KI
 MU
-ZY
-ZY
+MG
+MG
 sk
-ZY
+MG
 DX
-ZY
-ZY
-ZY
-ZY
+MG
+MG
+MG
+MG
 DX
 Zc
 Zc
@@ -36784,19 +36770,19 @@ wR
 DX
 RA
 sk
-ZY
+MG
 FJ
-ZY
+MG
 MU
-ZY
+MG
 CU
 sk
-ZY
+MG
 rH
-ZY
-ZY
+MG
+MG
 CU
-ZY
+MG
 DX
 Zc
 Zc
@@ -37043,18 +37029,18 @@ cR
 fg
 dl
 fE
-ZY
-ZY
+MG
+MG
 MU
-ZY
+MG
 CU
 sk
 sk
 cw
-ZY
-ZY
+MG
+MG
 CU
-ZY
+MG
 DX
 LU
 LU
@@ -37301,18 +37287,18 @@ DX
 RA
 oE
 aJ
-ZY
-ZY
+MG
+MG
 MU
-ZY
+MG
 CU
-ZY
-ZY
+MG
+MG
 od
-ZY
-ZY
+MG
+MG
 CU
-ZY
+MG
 DX
 LU
 LU
@@ -37557,20 +37543,20 @@ Db
 DX
 DX
 Dh
-ZY
-ZY
+MG
+MG
 aJ
-ZY
+MG
 MU
-ZY
-ZY
-ZY
-ZY
+MG
+MG
+MG
+MG
 DX
-ZY
-ZY
-ZY
-ZY
+MG
+MG
+MG
+MG
 DX
 LU
 LU
@@ -37815,18 +37801,18 @@ uf
 uf
 DX
 ob
-ZY
+MG
 jI
 lX
-ZY
+MG
 JG
-ZY
-ZY
-ZY
+MG
+MG
+MG
 CU
 ps
 CU
-ZY
+MG
 DX
 DX
 DX
@@ -38012,8 +37998,8 @@ cg
 cg
 lp
 iz
-fJ
-qj
+cp
+vt
 AY
 lp
 op
@@ -38073,18 +38059,18 @@ uf
 uf
 DX
 MG
-ZY
+MG
 eQ
 OI
 GS
 MU
 pN
-ZY
-ZY
-ZY
-ZY
-ZY
-ZY
+MG
+MG
+MG
+MG
+MG
+MG
 DX
 LU
 LU

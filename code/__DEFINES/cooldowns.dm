@@ -25,6 +25,14 @@
 #define COOLDOWN_CPR		"CPR"
 #define COOLDOWN_IV_PING	"iv_ping"
 #define COOLDOWN_RACK_BOLT	"rack_bolt"
+#define COOLDOWN_LIGHT "cooldown_light"
+#define COOLDOWN_JETPACK "jetpack"
+#define COOLDOWN_CIC_ORDERS "cic_orders"
+#define COOLDOWN_CLOAK_IMPLANT "cloak_implant"
+#define COOLDOWN_DRONE_CLOAK "drone_cloak"
+#define COOLDOWN_XENO_TURRETS_ALERT "xeno_turrets_alert"
+#define COOLDOWN_HIVEMIND_DOOR "hivemind_manipulate_door"
+#define COOLDOWN_PARALYSE_ACID "acid_spray_paralyse"
 
 //// COOLDOWN SYSTEMS
 /*

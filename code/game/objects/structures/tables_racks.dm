@@ -208,6 +208,7 @@
 	. = ..()
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
 		return TRUE
+
 	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
 	if(S?.climbable && !(S.flags_atom & ON_BORDER) && climbable && isliving(mover)) //Climbable non-border objects allow you to universally climb over others
 		return TRUE
@@ -219,15 +220,9 @@
 
 
 /obj/structure/table/CheckExit(atom/movable/mover, turf/target)
+	. = ..()
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
 		return TRUE
-	if(flipped)
-		if(get_dir(loc, target) & dir)
-			return !density
-		else
-			return TRUE
-	return TRUE
-
 
 //Flipping tables, nothing more, nothing less
 /obj/structure/table/MouseDrop(over_object, src_location, over_location)
@@ -247,7 +242,7 @@
 	if(I.loc != loc)
 		step(I, get_dir(I, src))
 
-/obj/structure/table/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0)
+/obj/structure/table/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_TABLE)
 	return ..()
 
@@ -289,8 +284,7 @@
 
 			if(prob(15))
 				M.Paralyze(10 SECONDS)
-			M.apply_damage(8, BRUTE, "head")
-			UPDATEHEALTH(M)
+			M.apply_damage(8, BRUTE, "head", updating_health = TRUE)
 			user.visible_message("<span class='danger'>[user] slams [M]'s face against [src]!</span>",
 			"<span class='danger'>You slam [M]'s face against [src]!</span>")
 			log_combat(user, M, "slammed", "", "against \the [src]")
@@ -595,7 +589,7 @@
 	if(I.loc != loc)
 		step(I, get_dir(I, src))
 
-/obj/structure/rack/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0)
+/obj/structure/rack/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_RACK)
 	return ..()
 

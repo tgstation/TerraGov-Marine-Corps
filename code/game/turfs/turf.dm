@@ -154,6 +154,8 @@
 		if(i == mover || i == mover.loc) // Multi tile objects and moving out of other objects
 			continue
 		var/atom/movable/thing = i
+		if(CHECK_MULTIPLE_BITFIELDS(thing.flags_pass, HOVERING))
+			continue
 		if(thing.Cross(mover))
 			continue
 		var/signalreturn = SEND_SIGNAL(mover, COMSIG_MOVABLE_PREBUMP_MOVABLE, thing)
@@ -570,6 +572,10 @@
 			has_obstacle = TRUE
 			break
 
+		if(istype(O, /obj/structure/cocoon))
+			has_obstacle = TRUE
+			break
+		
 		if(O.density && !(O.flags_atom & ON_BORDER))
 			has_obstacle = TRUE
 			break

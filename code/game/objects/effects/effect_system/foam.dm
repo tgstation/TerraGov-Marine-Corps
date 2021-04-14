@@ -40,7 +40,7 @@
 		if(metal == RAZOR_FOAM)
 			var/turf/mystery_turf = get_turf(loc)
 			if(!isopenturf(mystery_turf))
-				return FALSE
+				return
 
 			var/turf/open/T = mystery_turf
 			if(T.allow_construction) //No loopholes.

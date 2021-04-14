@@ -19,13 +19,14 @@
 	minimal_access = ALL_MARINE_ACCESS
 	display_order = JOB_DISPLAY_ORDER_CAPTAIN
 	outfit = /datum/outfit/job/command/captain
-	exp_requirements = XP_REQ_EXPERIENCED
+	exp_requirements = XP_REQ_EXPERT
 	exp_type = EXP_TYPE_REGULAR_ALL
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_ISCOMMAND|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 	)
 
 /datum/job/terragov/command/captain/announce(mob/living/announced_mob)
@@ -93,6 +94,7 @@ Godspeed, captain! And remember, you are not above the law."})
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 	)
 
 /datum/job/terragov/command/fieldcommander/after_spawn(mob/living/L, mob/M, latejoin)
@@ -133,13 +135,13 @@ Make the TGMC proud!"})
 	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer/exec
 	wear_suit = /obj/item/clothing/suit/storage/marine/pasvest
-	shoes = /obj/item/clothing/shoes/marine
+	shoes = /obj/item/clothing/shoes/marine/full
 	gloves = /obj/item/clothing/gloves/marine/officer
 	head = /obj/item/clothing/head/tgmcberet/fc
 	r_store = /obj/item/storage/pouch/general/large/command
 	l_store = /obj/item/hud_tablet/fieldcommand
 	back = /obj/item/storage/backpack/marine/satchel
-	suit_store = /obj/item/storage/belt/gun/m4a3/fieldcommander/
+	suit_store = /obj/item/storage/belt/gun/pistol/m4a3/fieldcommander/
 
 
 //Staff Officer
@@ -160,6 +162,7 @@ Make the TGMC proud!"})
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 	)
 
 
@@ -187,10 +190,10 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	jobtype = /datum/job/terragov/command/staffofficer
 
 	id = /obj/item/card/id/silver
-	belt = /obj/item/storage/belt/gun/m4a3/officer
+	belt = /obj/item/storage/belt/gun/pistol/m4a3/officer
 	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer/bridge
-	shoes = /obj/item/clothing/shoes/marine
+	shoes = /obj/item/clothing/shoes/marine/full
 	head = /obj/item/clothing/head/tgmccap/ro
 	r_store = /obj/item/storage/pouch/general/large
 	l_store = /obj/item/binoculars/tactical
@@ -208,11 +211,13 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	skills_type = /datum/skills/pilot
 	display_order = JOB_DISPLAY_ORDER_PILOT_OFFICER
 	outfit = /datum/outfit/job/command/pilot
+	exp_requirements = XP_REQ_INTERMEDIATE
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE_STRONG,
 		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 	)
 
 /datum/job/terragov/command/pilot/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
@@ -245,61 +250,16 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 	jobtype = /datum/job/terragov/command/pilot
 
 	id = /obj/item/card/id/silver
-	belt = /obj/item/storage/belt/gun/m4a3/vp70
+	belt = /obj/item/storage/belt/gun/pistol/m4a3/vp70
 	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer/pilot
 	wear_suit = /obj/item/clothing/suit/armor/vest/pilot
-	shoes = /obj/item/clothing/shoes/marine
+	shoes = /obj/item/clothing/shoes/marine/full
 	gloves = /obj/item/clothing/gloves/yellow
 	glasses = /obj/item/clothing/glasses/sunglasses/aviator
 	head = /obj/item/clothing/head/helmet/marine/pilot
 	r_store = /obj/item/storage/pouch/general/large
 	l_store = /obj/item/hud_tablet/pilot
-	back = /obj/item/storage/backpack/marine/satchel
-
-
-//Tank Crewmen
-/datum/job/terragov/command/tank_crew
-	title = TANK_CREWMAN
-	paygrade = "E7"
-	comm_title = "TC"
-	total_positions = 0
-	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_TANK)
-	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_TANK, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_MEDBAY)
-	skills_type = /datum/skills/tank_crew
-	display_order = JOB_DISPLAY_ORDER_TANK_CREWMAN
-	outfit = /datum/outfit/job/command/tank_crew
-	exp_requirements = XP_REQ_INTERMEDIATE
-	exp_type = EXP_TYPE_REGULAR_ALL
-	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
-	jobworth = list(
-		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
-		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
-		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
-	)
-
-
-/datum/job/terragov/command/tank_crew/radio_help_message(mob/M)
-	. = ..()
-	to_chat(M, {"Your job is to operate and maintain the ship's armored vehicles.
-Your authority is limited to your own vehicle, but you are next in line on the field, after the field commander.
-You could use STs help to repair and replace hardpoints."})
-
-
-
-/datum/outfit/job/command/tank_crew
-	name = TANK_CREWMAN
-	jobtype = /datum/job/terragov/command/tank_crew
-
-	id = /obj/item/card/id/silver
-	belt = /obj/item/storage/belt/gun/m4a3/vp70
-	ears = /obj/item/radio/headset/mainship/mcom
-	w_uniform = /obj/item/clothing/under/marine/officer/tanker
-	wear_suit = /obj/item/clothing/suit/storage/marine/M3P/tanker
-	shoes = /obj/item/clothing/shoes/marine
-	gloves = /obj/item/clothing/gloves/yellow
-	head = /obj/item/clothing/head/helmet/marine/tanker
-	r_store = /obj/item/storage/pouch/general/large
 	back = /obj/item/storage/backpack/marine/satchel
 
 
@@ -322,13 +282,14 @@ You could use STs help to repair and replace hardpoints."})
 	skills_type = /datum/skills/CE
 	display_order = JOB_DISPLAY_ORDER_CHIEF_ENGINEER
 	outfit = /datum/outfit/job/engineering/chief
-	exp_requirements = XP_REQ_INTERMEDIATE
+	exp_requirements = XP_REQ_EXPERIENCED
 	exp_type = EXP_TYPE_REGULAR_ALL
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_ISCOMMAND|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 	)
 
 /datum/job/terragov/engineering/chief/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
@@ -363,7 +324,7 @@ You are also next in the chain of command, should the bridge crew fall in the li
 	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer/ce
 	wear_suit = /obj/item/clothing/suit/storage/marine/MP
-	shoes = /obj/item/clothing/shoes/marine
+	shoes = /obj/item/clothing/shoes/marine/full
 	glasses = /obj/item/clothing/glasses/welding/superior
 	gloves = /obj/item/clothing/gloves/yellow
 	head = /obj/item/clothing/head/beret/marine/techofficer
@@ -389,6 +350,7 @@ You are also next in the chain of command, should the bridge crew fall in the li
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 	)
 
 /datum/job/terragov/engineering/tech/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
@@ -424,7 +386,7 @@ requisitions line and later on to be ready to send supplies for marines who are 
 	ears = /obj/item/radio/headset/mainship/st
 	w_uniform = /obj/item/clothing/under/marine/officer/engi
 	wear_suit = /obj/item/clothing/suit/storage/marine/M3P/tech
-	shoes = /obj/item/clothing/shoes/marine
+	shoes = /obj/item/clothing/shoes/marine/full
 	gloves = /obj/item/clothing/gloves/yellow
 	glasses = /obj/item/clothing/glasses/welding/flipped
 	head = /obj/item/clothing/head/tgmccap/req
@@ -452,13 +414,14 @@ requisitions line and later on to be ready to send supplies for marines who are 
 	skills_type = /datum/skills/RO
 	display_order = JOB_DISPLAY_ORDER_REQUISITIONS_OFFICER
 	outfit = /datum/outfit/job/requisitions/officer
-	exp_requirements = XP_REQ_INTERMEDIATE
+	exp_requirements = XP_REQ_UNSEASONED
 	exp_type = EXP_TYPE_REGULAR_ALL
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_ISCOMMAND|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 	)
 
 /datum/job/terragov/requisitions/officer/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
@@ -496,7 +459,7 @@ A happy ship is a well-functioning ship."})
 	w_uniform = /obj/item/clothing/under/rank/ro_suit
 	wear_suit = /obj/item/clothing/suit/storage/marine/MP
 	suit_store = /obj/item/weapon/gun/energy/taser
-	shoes = /obj/item/clothing/shoes/marine
+	shoes = /obj/item/clothing/shoes/marine/full
 	gloves = /obj/item/clothing/gloves/yellow
 	head = /obj/item/clothing/head/tgmccap/req
 	r_store = /obj/item/storage/pouch/general/large
@@ -522,13 +485,14 @@ A happy ship is a well-functioning ship."})
 	skills_type = /datum/skills/CMO
 	display_order = JOB_DISPLAY_ORDER_CHIEF_MEDICAL_OFFICER
 	outfit = /datum/outfit/job/medical/professor
-	exp_requirements = XP_REQ_INTERMEDIATE
+	exp_requirements = XP_REQ_EXPERIENCED
 	exp_type = EXP_TYPE_REGULAR_ALL
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_ISCOMMAND|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 	)
 
 
@@ -579,7 +543,24 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 	)
+
+/datum/job/terragov/medical/medicalofficer/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
+	. = ..()
+	if(!ishuman(new_mob))
+		return
+	var/mob/living/carbon/human/new_human = new_mob
+	var/playtime_mins = user?.client?.get_exp(title)
+	if(!playtime_mins || playtime_mins < 1 )
+		return
+	switch(playtime_mins)
+		if(0 to 1500) // starting
+			new_human.wear_id.paygrade = "O1"
+		if(1501 to 3000) // 25 hrs
+			new_human.wear_id.paygrade = "O2"
+		if(3001 to INFINITY) // 50 hrs
+			new_human.wear_id.paygrade = "O3"
 
 /datum/job/terragov/medical/medicalofficer/radio_help_message(mob/M)
 	. = ..()
@@ -627,6 +608,7 @@ You are also an expert when it comes to medication and treatment. If you do not 
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 	)
 
 
@@ -641,12 +623,11 @@ While the Corporate Liaison is not your boss, it would be wise to consult them o
 /datum/outfit/job/medical/researcher
 	name = MEDICAL_RESEARCHER
 	jobtype = /datum/job/terragov/medical/researcher
-
 	id = /obj/item/card/id
 	belt = /obj/item/storage/belt/medical
 	ears = /obj/item/radio/headset/mainship/doc
 	w_uniform = /obj/item/clothing/under/marine/officer/researcher
-	wear_suit = /obj/item/clothing/suit/storage/labcoat/researcher
+	wear_suit = /obj/item/clothing/suit/storage/labcoat/armored_coat
 	shoes = /obj/item/clothing/shoes/laceup
 	gloves = /obj/item/clothing/gloves/latex
 	glasses = /obj/item/clothing/glasses/hud/health
@@ -679,6 +660,7 @@ While the Corporate Liaison is not your boss, it would be wise to consult them o
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 	)
 
 
@@ -711,6 +693,7 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 	title = SYNTHETIC
 	req_admin_notify = TRUE
 	comm_title = "Syn"
+	paygrade = "Mk.I"
 	supervisors = "the acting captain"
 	total_positions = 1
 	skills_type = /datum/skills/synthetic
@@ -721,6 +704,7 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 	exp_requirements = XP_REQ_EXPERIENCED
 	exp_type = EXP_TYPE_REGULAR_ALL
 	job_flags = JOB_FLAG_SPECIALNAME|JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_ISCOMMAND|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD
+	job_points_needed = 40
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE_STRONG,
 		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
@@ -740,6 +724,22 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 	if(prefs && prefs.synthetic_type == "Early Synthetic")
 		return /datum/skills/early_synthetic
 	return ..()
+
+/datum/job/terragov/silicon/synthetic/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
+	. = ..()
+	if(!ishuman(new_mob))
+		return
+	var/mob/living/carbon/human/new_human = new_mob
+	var/playtime_mins = user?.client?.get_exp(title)
+	if(!playtime_mins || playtime_mins < 1 )
+		return
+	switch(playtime_mins)
+		if(0 to 600) //up to 10 hours
+			new_human.wear_id.paygrade = "Mk.I"
+		if(601 to 3000) // 10 to 50 hrs
+			new_human.wear_id.paygrade = "Mk.II"
+		if(3001 to INFINITY) // more than 50 hrs
+			new_human.wear_id.paygrade = "Mk.III"
 
 /datum/job/terragov/silicon/synthetic/radio_help_message(mob/M)
 	. = ..()
@@ -770,7 +770,7 @@ In addition, being a Synthetic gives you knowledge in every field and specializa
 	total_positions = 1
 	selection_color = "#92c255"
 	supervisors = "your laws and the human crew"
-	exp_requirements = XP_REQ_EXPERIENCED
+	exp_requirements = XP_REQ_INTERMEDIATE
 	exp_type = EXP_TYPE_REGULAR_ALL
 	exp_type_department = EXP_TYPE_SILICON
 	display_order = JOB_DISPLAY_ORDER_AI
@@ -780,6 +780,7 @@ In addition, being a Synthetic gives you knowledge in every field and specializa
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 	)
 
 

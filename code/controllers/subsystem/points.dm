@@ -1,17 +1,21 @@
 // points per minute
-#define DROPSHIP_POINT_RATE 18 * (GLOB.current_orbit/3)
+#define DROPSHIP_POINT_RATE 18 * ((GLOB.current_orbit+3)/6)
 #define SUPPLY_POINT_RATE 2 * (GLOB.current_orbit/3)
+//How many psych point one gen gives per person on the server
+#define BASE_PSYCH_POINT_OUTPUT 0.002
 
 SUBSYSTEM_DEF(points)
 	name = "Points"
 
 	priority = FIRE_PRIORITY_POINTS
-	flags = SS_KEEP_TIMING | SS_NO_TICK_CHECK
+	flags = SS_KEEP_TIMING
 
 	wait = 10 SECONDS
 
 	var/dropship_points = 0
-	var/supply_points = 120
+	var/supply_points = 0
+	///Assoc list of xeno points: xeno_points_by_hive["hivenum"]
+	var/list/xeno_points_by_hive = list()
 
 	var/ordernum = 1					//order number given to next order
 
@@ -74,6 +78,12 @@ SUBSYSTEM_DEF(points)
 	dropship_points += DROPSHIP_POINT_RATE / (1 MINUTES / wait)
 
 	supply_points += SUPPLY_POINT_RATE / (1 MINUTES / wait)
+
+///Add amount of psy points to the selected hive only if the gamemode support psypoints
+/datum/controller/subsystem/points/proc/add_psy_points(hivenumber, amount)
+	if(!CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_PSY_POINTS))
+		return
+	xeno_points_by_hive[hivenumber] += amount
 
 /datum/controller/subsystem/points/proc/scale_supply_points(scale)
 	supply_points = round(supply_points * scale)
@@ -164,6 +174,10 @@ SUBSYSTEM_DEF(points)
 	var/list/ckey_shopping_cart = request_shopping_cart[user.ckey]
 	if(!length(ckey_shopping_cart))
 		return
+	if(NON_ASCII_CHECK(reason))
+		return
+	if(length(reason) > MAX_LENGTH_REQ_REASON)
+		reason = copytext(reason, 1, MAX_LENGTH_REQ_REASON)
 	var/list/datum/supply_order/orders = process_cart(user, ckey_shopping_cart)
 	for(var/i in 1 to length(orders))
 		orders[i].reason = reason

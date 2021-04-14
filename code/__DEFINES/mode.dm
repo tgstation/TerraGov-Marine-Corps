@@ -42,6 +42,7 @@
 #define MODE_LZ_SHUTTERS		(1<<6)
 #define MODE_XENO_SPAWN_PROTECT	(1<<7)
 #define MODE_XENO_RULER			(1<<8)
+#define MODE_PSY_POINTS			(1<<9)
 
 #define MODE_LANDMARK_RANDOM_ITEMS			(1<<0)
 #define MODE_LANDMARK_SPAWN_XENO_TUNNELS	(1<<1)
@@ -52,7 +53,6 @@
 #define MODE_INFESTATION_X_MINOR		"Xenomorph Minor Victory"
 #define MODE_INFESTATION_M_MINOR		"Marine Minor Victory"
 #define MODE_INFESTATION_DRAW_DEATH		"DRAW: Mutual Annihilation"
-#define MODE_INFESTATION_DRAW_RETREAT	"DRAW: Marine Retreat"
 
 #define MODE_BATTLEFIELD_NT_MAJOR		"NT PMC Major Success"
 #define MODE_BATTLEFIELD_M_MAJOR		"Marine Major Success"
@@ -112,6 +112,8 @@
 #define COOLDOWN_COMM_MESSAGE 	1 MINUTES
 #define COOLDOWN_COMM_CENTRAL 	30 SECONDS
 
+#define SUPPLY_POINT_MARINE_SPAWN 2.5
+
 #define XENO_AFK_TIMER			5 MINUTES
 
 #define DEATHTIME_CHECK(M) ((world.time - M.timeofdeath) < GLOB.respawntime)
@@ -125,3 +127,9 @@
 #define COUNT_IGNORE_XENO_SPECIAL_AREA	(1<<2)
 
 #define COUNT_IGNORE_ALIVE_SSD (COUNT_IGNORE_HUMAN_SSD|COUNT_IGNORE_XENO_SSD)
+
+#define SILO_PRICE 1200
+#define XENO_TURRET_PRICE 150
+
+//The minimum round time before siloless timer can start (13:00)
+#define MINIMUM_TIME_SILO_LESS_COLLAPSE 36000 

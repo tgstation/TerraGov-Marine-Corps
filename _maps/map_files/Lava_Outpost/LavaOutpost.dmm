@@ -493,6 +493,12 @@
 	},
 /turf/open/lavaland/lava/lpiece,
 /area/lavaland/cave/north)
+"ej" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/bar,
+/area/lavaland/civilian/cook)
 "el" = (
 /obj/machinery/light,
 /turf/open/floor/tile/brown/full,
@@ -1000,6 +1006,11 @@
 	},
 /turf/open/floor/tile/bar,
 /area/lavaland/civilian/cook)
+"iO" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/tile/dark2,
+/area/lavaland/civilian)
 "iS" = (
 /obj/machinery/light{
 	dir = 4
@@ -1245,9 +1256,7 @@
 /turf/open/floor/tile/bar,
 /area/lavaland/civilian/cook)
 "kJ" = (
-/obj/machinery/atmospherics/pipe/manifold/green/hidden{
-	dir = 4
-	},
+/obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /turf/open/floor/tile/bar,
 /area/lavaland/civilian/cook)
 "kK" = (
@@ -1256,6 +1265,9 @@
 /area/lavaland/security)
 "kL" = (
 /obj/machinery/vending/coffee,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
 /turf/open/floor/tile/bar,
 /area/lavaland/civilian/cook)
 "kN" = (
@@ -1266,6 +1278,9 @@
 /area/lavaland/security/nuke)
 "kO" = (
 /obj/structure/kitchenspike,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
 /turf/open/floor/tile/bar,
 /area/lavaland/civilian/cook)
 "kR" = (
@@ -1277,9 +1292,9 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/item/weapon/gun/pistol/b92fs,
-/obj/item/weapon/gun/pistol/b92fs,
-/obj/item/weapon/gun/pistol/b92fs,
+/obj/item/weapon/gun/pistol/g22,
+/obj/item/weapon/gun/pistol/g22,
+/obj/item/weapon/gun/pistol/g22,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -1428,11 +1443,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/lavaland/medical/cmo)
-"mm" = (
-/obj/structure/table/reinforced,
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor/tile/bar,
-/area/lavaland/civilian/cook)
 "mn" = (
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 6
@@ -1469,6 +1479,7 @@
 	name = "\improper Kitchen"
 	},
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/bar,
 /area/lavaland/civilian/cook)
 "mB" = (
@@ -2073,6 +2084,7 @@
 /obj/structure/table,
 /obj/structure/cable,
 /obj/effect/spawner/random/toolbox,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark2,
 /area/lavaland/civilian)
 "rG" = (
@@ -2693,10 +2705,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/lavaland/security/nuke)
-"xa" = (
-/turf/open/floor/plating/dmg3,
-/turf/open/floor/plating/dmg2,
-/area/lavaland/cave/central)
 "xb" = (
 /turf/open/floor/plating,
 /area/lavaland/cave/south)
@@ -3384,10 +3392,6 @@
 	dir = 8
 	},
 /area/lavaland/security/storage)
-"Co" = (
-/turf/open/floor/plating/dmg1,
-/turf/open/floor/plating/dmg2,
-/area/lavaland/cave/central)
 "Cp" = (
 /obj/machinery/light{
 	dir = 8
@@ -3757,8 +3761,8 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/item/weapon/gun/rifle/ak47/carbine,
-/obj/item/weapon/gun/rifle/ak47/carbine,
+/obj/item/weapon/gun/rifle/ak47,
+/obj/item/weapon/gun/rifle/ak47,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
@@ -3848,12 +3852,12 @@
 /area/lavaland/engie/one)
 "Gh" = (
 /obj/structure/rack,
-/obj/item/ammo_magazine/pistol/b92fs,
-/obj/item/ammo_magazine/pistol/b92fs,
-/obj/item/ammo_magazine/pistol/b92fs,
-/obj/item/ammo_magazine/pistol/b92fs,
-/obj/item/ammo_magazine/pistol/b92fs,
-/obj/item/ammo_magazine/pistol/b92fs,
+/obj/item/ammo_magazine/pistol/g22,
+/obj/item/ammo_magazine/pistol/g22,
+/obj/item/ammo_magazine/pistol/g22,
+/obj/item/ammo_magazine/pistol/g22,
+/obj/item/ammo_magazine/pistol/g22,
+/obj/item/ammo_magazine/pistol/g22,
 /turf/open/floor/plating/platebot,
 /area/lavaland/security/nuke)
 "Gi" = (
@@ -4247,10 +4251,6 @@
 "JM" = (
 /obj/machinery/miner/damaged,
 /turf/open/lavaland/basalt,
-/area/lavaland/cave/central)
-"JO" = (
-/turf/open/lavaland/basalt,
-/turf/open/floor/plating/dmg2,
 /area/lavaland/cave/central)
 "JR" = (
 /obj/structure/barricade/metal,
@@ -5550,10 +5550,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/asteroidfloor,
 /area/lavaland/misc/westarmory)
-"Wb" = (
-/turf/open/floor/plating/mainship,
-/turf/open/floor/plating/dmg2,
-/area/lavaland/misc/crashed)
 "Wg" = (
 /obj/structure/closet/bombclosetsecurity,
 /turf/open/floor/tile/white,
@@ -5781,7 +5777,6 @@
 /turf/open/floor/tile/white,
 /area/lavaland/medical/chemistry)
 "Yd" = (
-/turf/open/floor/plating/dmg1,
 /turf/open/floor/plating/dmg2,
 /area/lavaland/misc/stationed)
 "Yg" = (
@@ -28984,12 +28979,12 @@ hJ
 iU
 jF
 kJ
-mm
-pS
-pS
-rq
-sz
-uI
+lH
+le
+le
+rp
+sp
+uG
 le
 jL
 zM
@@ -29240,7 +29235,7 @@ gT
 ih
 iU
 jx
-jx
+ej
 lH
 le
 le
@@ -30011,13 +30006,13 @@ gT
 io
 jd
 iU
-iU
+iN
 mA
-pV
-pV
+iO
+iO
 rF
-sp
-uG
+sz
+uI
 le
 jL
 Aa
@@ -31609,7 +31604,7 @@ tY
 fw
 qo
 qo
-JO
+Qb
 Bw
 Qb
 Qb
@@ -31868,7 +31863,7 @@ YL
 GO
 GO
 Ra
-Co
+MJ
 Qb
 Qb
 GO
@@ -32126,7 +32121,7 @@ GO
 qo
 NT
 MJ
-Co
+MJ
 Qb
 Qb
 GO
@@ -32383,8 +32378,8 @@ GO
 qo
 NT
 qo
-Co
-Co
+MJ
+MJ
 Qb
 Qb
 Cp
@@ -32898,7 +32893,7 @@ qo
 NT
 qo
 MJ
-xa
+wl
 Qb
 Qb
 Qb
@@ -33156,7 +33151,7 @@ NT
 qo
 wl
 MJ
-xa
+wl
 wl
 Qb
 Qb
@@ -33928,7 +33923,7 @@ qo
 qo
 qo
 wl
-xa
+wl
 Qb
 Qb
 Qb
@@ -34698,7 +34693,7 @@ YL
 GO
 GO
 MJ
-xa
+wl
 Qb
 Qb
 GO
@@ -36545,7 +36540,7 @@ ld
 TJ
 Ht
 rg
-Wb
+dJ
 Xc
 Yy
 Yy

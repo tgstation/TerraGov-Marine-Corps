@@ -9,6 +9,7 @@
 
 	status_flags = GODMODE | INCORPOREAL
 	resistance_flags = RESIST_ALL
+	flags_pass = PASSFIRE //to prevent hivemind eye to catch fire when crossing lava
 	density = FALSE
 	throwpass = TRUE
 
@@ -45,11 +46,6 @@
 	else
 		core = null
 	return ..()
-
-/obj/flamer_fire/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
-	if(isxenohivemind(mover))
-		return FALSE
 
 /mob/living/carbon/xenomorph/hivemind/flamer_fire_act()
 	forceMove(get_turf(core))
@@ -131,6 +127,13 @@
 	return FALSE
 
 /mob/living/carbon/xenomorph/hivemind/AltClickOn(atom/A)
+	if(istype(A, /obj/structure/mineral_door/resin))
+		if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_HIVEMIND_DOOR))
+			to_chat(src, "<span class='xenonotice'>You manipulated a door too recently, wait a bit more!</span>")
+			return
+		TIMER_COOLDOWN_START(src, COOLDOWN_HIVEMIND_DOOR, 5 SECONDS)
+		var/obj/structure/mineral_door/resin/door = A
+		door.TryToSwitchState(src)
 	return FALSE
 
 /mob/living/carbon/xenomorph/hivemind/a_intent_change()
@@ -143,6 +146,11 @@
 /// Hiveminds specifically have no status hud element
 /mob/living/carbon/xenomorph/hivemind/med_hud_set_status()
 	return
+
+/obj/flamer_fire/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
+	if(isxenohivemind(mover))
+		return FALSE
 
 
 // =================
@@ -164,7 +172,7 @@
 		return ..()
 	parent.playsound_local(parent, get_sfx("alien_help"), 30, TRUE)
 	to_chat(parent, "<span class='xenohighdanger'>Your core has been destroyed!</span>")
-	xeno_message("<span class='xenoannounce'>A sudden tremor ripples through the hive... \the [parent] has been slain!</span>", 2, parent.hivenumber)
+	xeno_message("A sudden tremor ripples through the hive... \the [parent] has been slain!", "xenoannounce", 5, parent.hivenumber)
 	parent.ghostize()
 	if(!QDELETED(parent))
 		QDEL_NULL(parent)
@@ -174,9 +182,9 @@
 
 //hivemind cores
 
-/obj/effect/alien/hivemindcore/attack_alien(mob/living/carbon/xenomorph/X)
+/obj/effect/alien/hivemindcore/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(isxenoqueen(X))
-		var/choice = alert(X, "Are you sure you want to destroy the hivemind?", "Destroy hivemind", "Yes", "Cancel")
+		var/choice = tgui_alert(X, "Are you sure you want to destroy the hivemind?", "Destroy hivemind", list("Yes", "Cancel"))
 		if(choice == "Yes")
 			deconstruct(FALSE)
 			return

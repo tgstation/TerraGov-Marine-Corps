@@ -4,7 +4,7 @@
 	return ..()
 
 /mob/living/carbon/xenomorph/ex_act(severity)
-	if(status_flags & GODMODE)
+	if(status_flags & (INCORPOREAL|GODMODE))
 		return
 
 	if(severity < EXPLODE_LIGHT) //Actually means higher.
@@ -89,9 +89,8 @@
 					adjust_stagger(4)
 					add_slowdown(4)
 
-	apply_damage(b_loss, BRUTE)
-	apply_damage(f_loss, BURN)
-	UPDATEHEALTH(src)
+	apply_damage(b_loss, BRUTE, updating_health = TRUE)
+	apply_damage(f_loss, BURN, updating_health = TRUE)
 
 
 /mob/living/carbon/xenomorph/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE)
@@ -154,10 +153,10 @@
 		if(X == src) //We don't need an alert about ourself.
 			filter_list += X //Add the xeno to the filter list
 
-		if(!(X.client.prefs.mute_xeno_health_alert_messages)) //Build the filter list; people who opted not to receive health alert messages
+		if(X.client.prefs.mute_xeno_health_alert_messages) //Build the filter list; people who opted not to receive health alert messages
 			filter_list += X //Add the xeno to the filter list
 
-	xeno_message("<span class='xenoannounce'>Our sister [name] is badly hurt with ([health]/[maxHealth]) health remaining at [get_area(src)] (X: [x], Y: [y])!</span>", 2, hivenumber, FALSE, src, 'sound/voice/alien_help1.ogg', TRUE, filter_list)
+	xeno_message("Our sister [name] is badly hurt with <font color='red'>([health]/[maxHealth])</font> health remaining at [AREACOORD_NO_Z(src)]!", "xenoannounce", 5, hivenumber, FALSE, src, 'sound/voice/alien_help1.ogg', TRUE, filter_list, /obj/screen/arrow/silo_damaged_arrow)
 	COOLDOWN_START(src, xeno_health_alert_cooldown, XENO_HEALTH_ALERT_COOLDOWN) //set the cooldown.
 
 	return damage

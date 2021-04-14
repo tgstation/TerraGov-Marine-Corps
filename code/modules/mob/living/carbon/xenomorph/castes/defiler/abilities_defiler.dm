@@ -9,6 +9,7 @@
 	ability_name = "defiler sting"
 	plasma_cost = 150
 	cooldown_timer = 20 SECONDS
+	target_flags = XABB_MOB_TARGET
 
 /datum/action/xeno_action/activable/larval_growth_sting/defiler/on_cooldown_finish()
 	playsound(owner.loc, 'sound/voice/alien_drool1.ogg', 50, 1)
@@ -35,8 +36,7 @@
 	to_chat(X, "<span class='xenodanger'>Our stinger successfully implants a larva into the host.</span>")
 	to_chat(C, "<span class='danger'>You feel horrible pain as something large is forcefully implanted in your thorax.</span>")
 	C.apply_damage(100, STAMINA)
-	C.apply_damage(10, BRUTE, "chest")
-	UPDATEHEALTH(C)
+	C.apply_damage(10, BRUTE, "chest", updating_health = TRUE)
 	C.emote("scream")
 	GLOB.round_statistics.defiler_defiler_stings++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "defiler_defiler_stings")
@@ -98,14 +98,14 @@
 	var/mob/living/carbon/xenomorph/Defiler/X = owner
 	set waitfor = FALSE
 	var/smoke_range = 2
-	var/datum/effect_system/smoke_spread/xeno/neuro/N = new(X)
+	var/datum/effect_system/smoke_spread/xeno/neuro/medium/N = new(X)
 	N.strength = 1
 	if(X.selected_reagent == /datum/reagent/toxin/xeno_hemodile)
 		N.smoke_type = /obj/effect/particle_effect/smoke/xeno/hemodile
 		smoke_range = 3
 	else if(X.selected_reagent == /datum/reagent/toxin/xeno_transvitox)
 		N.smoke_type = /obj/effect/particle_effect/smoke/xeno/transvitox
-		N.strength = -0.75
+		N.strength = 0.75
 		smoke_range = 4
 	while(count)
 		if(X.stagger) //If we got staggered, return
@@ -178,7 +178,7 @@
 	name = "Select Reagent"
 	action_icon_state = "select_reagent0"
 	mechanics_text = "Selects which reagent to use for reagent slash and noxious gas. Hemodile slows by 25%, increased to 50% with neurotoxin present, and deals 20% of damage received as stamina damage. Transvitox converts brute/burn damage to toxin based on 40% of damage received up to 45 toxin on target, upon reaching which causes a stun. Neurotoxin deals increasing stamina damage the longer it remains in the victim's system and prevents stamina regeneration."
-	use_state_flags = XACT_USE_BUSY
+	use_state_flags = XACT_USE_BUSY|XACT_USE_LYING
 	keybind_signal = COMSIG_XENOABILITY_SELECT_REAGENT
 	var/list_position
 
@@ -205,49 +205,73 @@
 // ***************************************
 // *********** Reagent slash
 // ***************************************
-/datum/action/xeno_action/activable/reagent_slash
+/datum/action/xeno_action/reagent_slash
 	name = "Reagent Slash"
 	action_icon_state = "reagent_slash"
-	mechanics_text = "Deals damage 4 times over 3.6s and injects 3u of selected reagent per slash. Can move while slashing."
+	mechanics_text = "For a short duration the next 3 slashes made will inject a small amount of selected toxin."
 	ability_name = "reagent slash"
 	cooldown_timer = 6 SECONDS
 	plasma_cost = 100
 	keybind_signal = COMSIG_XENOABILITY_REAGENT_SLASH
 	target_flags = XABB_MOB_TARGET
+	///How many remaining reagent slashes the Defiler has
+	var/reagent_slash_count = 0
+	///Timer ID for the Reagent Slashes timer; we reference this to delete the timer if the effect lapses before the timer does
+	var/reagent_slash_duration_timer_id
 
-/datum/action/xeno_action/activable/reagent_slash/can_use_ability(atom/A, silent = FALSE, override_flags)
+
+/datum/action/xeno_action/reagent_slash/action_activate()
 	. = ..()
-	if(!.)
-		return
-	if(get_dist(owner, A) > 1)
-		to_chat(owner, "<span class='warning'>We need to be next to our prey.</span>")
-		return FALSE
-	if(!A.can_sting())
-		to_chat(owner, "<span class='warning'>Our slash won't affect this target!</span>")
-		return FALSE
-	return TRUE
-
-/datum/action/xeno_action/activable/reagent_slash/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
+
+	RegisterSignal(X, COMSIG_XENOMORPH_ATTACK_LIVING, .proc/reagent_slash)
+
+	reagent_slash_count = DEFILER_REAGENT_SLASH_COUNT //Set the number of slashes
+	reagent_slash_duration_timer_id = addtimer(CALLBACK(src, .proc/reagent_slash_deactivate, X), DEFILER_REAGENT_SLASH_DURATION, TIMER_STOPPABLE) //Initiate the timer and set the timer ID for reference
+
+	to_chat(X, "<span class='xenodanger'>Our spines fill with virulent toxins!</span>") //Let the user know
+	X.playsound_local(X, 'sound/voice/alien_drool2.ogg', 25)
+
 	succeed_activate()
-	slash_action(A, X.selected_reagent, DEFILER_REAGENT_SLASH_DELAY, DEFILER_REAGENT_SLASH_U_AMOUNT, DEFILER_REAGENT_SLASH_COUNT)
 	add_cooldown()
 
-/datum/action/xeno_action/activable/reagent_slash/proc/slash_action(mob/living/carbon/C, toxin = /datum/reagent/toxin/xeno_neurotoxin, channel_time = 1 SECONDS, transfer_amount = 4, count = 3)
+///Called when the duration of reagent slash lapses
+/datum/action/xeno_action/reagent_slash/proc/reagent_slash_deactivate(mob/living/carbon/xenomorph/X)
+	UnregisterSignal(X, COMSIG_XENOMORPH_ATTACK_LIVING) //unregister the signals; party's over
+
+	reagent_slash_count = 0 //Zero out vars
+	deltimer(reagent_slash_duration_timer_id) //delete the timer so we don't have mismatch issues, and so we don't potentially try to deactivate the ability twice
+	reagent_slash_duration_timer_id = null
+
+	to_chat(X, "<span class='xenodanger'>We are no longer benefitting from [src].</span>") //Let the user know
+	X.playsound_local(X, 'sound/voice/hiss5.ogg', 25)
+
+
+///Called when we slash while reagent slash is active
+/datum/action/xeno_action/reagent_slash/proc/reagent_slash(datum/source, mob/living/target, damage, list/damage_mod, list/armor_mod)
+	SIGNAL_HANDLER
+
+	if(!target?.can_sting()) //We only care about targets that we can actually sting
+		return
+
 	var/mob/living/carbon/xenomorph/X = owner
-	var/datum/limb/affecting = X.zone_selected
-	var/i = 1
-	do
-		if(get_dist(X, C) > 1)
-			to_chat(X, "<span class='warning'>We need to be closer to [C].</span>")
-			return
-		if(X.stagger)
-			return
-		X.face_atom(C)
-		C.reagents.add_reagent(toxin, transfer_amount)
-		playsound(C, "alien_claw_flesh", 25, TRUE)
-		playsound(C, 'sound/effects/spray3.ogg', 15, TRUE)
-		C.attack_alien_harm(X, dam_bonus = -17, set_location = affecting, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null) //dam_bonus influences slash amount using attack damage as a base, it's low because you can slash while the effect is going on
-		X.visible_message(C, "<span class='danger'>The [X] swipes at [C]!</span>")
-		X.do_attack_animation(C)
-	while(i++ < count && do_after(X, channel_time, TRUE, null, BUSY_ICON_HOSTILE, ignore_turf_checks = TRUE))
+	var/mob/living/carbon/carbon_target = target
+
+	carbon_target.reagents.add_reagent(X.selected_reagent, DEFILER_REAGENT_SLASH_INJECT_AMOUNT)
+	carbon_target.reagents.add_reagent(/datum/reagent/toxin/xeno_growthtoxin, DEFILER_REAGENT_SLASH_INJECT_AMOUNT, no_overdose = TRUE) //Inject larval growth without ODing
+	playsound(carbon_target, 'sound/effects/spray3.ogg', 15, TRUE)
+	X.visible_message(carbon_target, "<span class='danger'>[carbon_target] is pricked by [X]'s spines!</span>")
+
+	GLOB.round_statistics.defiler_reagent_slashes++ //Statistics
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "defiler_reagent_slashes")
+
+	reagent_slash_count-- //Decrement the reagent slash count
+
+	if(!reagent_slash_count) //Deactivate if we have no reagent slashes remaining
+		reagent_slash_deactivate(X)
+
+
+/datum/action/xeno_action/reagent_slash/on_cooldown_finish()
+	to_chat(owner, "<span class='xenodanger'>We are able to infuse our spines with toxins again.</span>")
+	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
+	return ..()

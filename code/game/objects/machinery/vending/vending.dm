@@ -66,9 +66,6 @@
 
 	var/knockdown_threshold = 100
 
-	ui_x = 500
-	ui_y = 600
-
 
 /obj/machinery/vending/Initialize(mapload, ...)
 	. = ..()
@@ -179,35 +176,38 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 		R.product_name = initial(temp_path.name)
 
 
-/obj/machinery/vending/attack_alien(mob/living/carbon/xenomorph/M)
-	if(tipped_level)
-		to_chat(M, "<span class='warning'>There's no reason to bother with that old piece of trash.</span>")
+/obj/machinery/vending/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(X.status_flags & INCORPOREAL)
 		return FALSE
 
-	if(M.a_intent == INTENT_HARM)
-		M.do_attack_animation(src, ATTACK_EFFECT_SMASH)
-		if(prob(M.xeno_caste.melee_damage))
+	if(tipped_level)
+		to_chat(X, "<span class='warning'>There's no reason to bother with that old piece of trash.</span>")
+		return FALSE
+
+	if(X.a_intent == INTENT_HARM)
+		X.do_attack_animation(src, ATTACK_EFFECT_SMASH)
+		if(prob(X.xeno_caste.melee_damage))
 			playsound(loc, 'sound/effects/metalhit.ogg', 25, 1)
-			M.visible_message("<span class='danger'>\The [M] smashes \the [src] beyond recognition!</span>", \
+			X.visible_message("<span class='danger'>\The [X] smashes \the [src] beyond recognition!</span>", \
 			"<span class='danger'>We enter a frenzy and smash \the [src] apart!</span>", null, 5)
 			malfunction()
 			return TRUE
 		else
-			M.visible_message("<span class='danger'>[M] slashes \the [src]!</span>", \
+			X.visible_message("<span class='danger'>[X] slashes \the [src]!</span>", \
 			"<span class='danger'>We slash \the [src]!</span>", null, 5)
 			playsound(loc, 'sound/effects/metalhit.ogg', 25, 1)
 		return TRUE
 
-	M.visible_message("<span class='warning'>\The [M] begins to lean against \the [src].</span>", \
+	X.visible_message("<span class='warning'>\The [X] begins to lean against \the [src].</span>", \
 	"<span class='warning'>You begin to lean against \the [src].</span>", null, 5)
 	tipped_level = 1
-	var/shove_time = 100
-	if(M.mob_size == MOB_SIZE_BIG)
-		shove_time = 50
-	if(istype(M,/mob/living/carbon/xenomorph/crusher))
-		shove_time = 15
-	if(do_after(M, shove_time, FALSE, src, BUSY_ICON_HOSTILE))
-		M.visible_message("<span class='danger'>\The [M] knocks \the [src] down!</span>", \
+	var/shove_time = 1 SECONDS
+	if(X.mob_size == MOB_SIZE_BIG)
+		shove_time = 5 SECONDS
+	if(istype(X,/mob/living/carbon/xenomorph/crusher))
+		shove_time = 1.5 SECONDS
+	if(do_after(X, shove_time, FALSE, src, BUSY_ICON_HOSTILE))
+		X.visible_message("<span class='danger'>\The [X] knocks \the [src] down!</span>", \
 		"<span class='danger'>You knock \the [src] down!</span>", null, 5)
 		tip_over()
 	else
@@ -219,7 +219,6 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 	density = FALSE
 	A.Turn(90)
 	transform = A
-	malfunction()
 
 /obj/machinery/vending/proc/flip_back()
 	icon_state = initial(icon_state)
@@ -227,7 +226,6 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 	density = TRUE
 	var/matrix/A = matrix()
 	transform = A
-	machine_stat &= ~BROKEN //Remove broken. MAGICAL REPAIRS
 
 /obj/machinery/vending/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -389,12 +387,34 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 
 	return TRUE
 
-/obj/machinery/vending/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/**
+ * Used only when vendor is tipped to put it back up
+ * Normal usage is in ui_interact
+ */
+/obj/machinery/vending/interact(mob/user)
+	. = ..()
+	if(.) // Handled by ui_interact
+		return
+	if(tipped_level != 2) // only fix when fully tipped
+		return
+
+	if(!iscarbon(user)) // AI can't heave remotely
+		return
+	user.visible_message("<span class='notice'> [user] begins to heave the vending machine back into place!</span>","<span class='notice'> You start heaving the vending machine back into place..</span>")
+	if(!do_after(user, 80, FALSE, src, BUSY_ICON_FRIENDLY))
+		return FALSE
+	user.visible_message("<span class='notice'> [user] rights the [src]!</span>","<span class='notice'> You right the [src]!</span>")
+	flip_back()
+	return TRUE
+
+/obj/machinery/vending/ui_interact(mob/user, datum/tgui/ui)
+	if(tipped_level != 0) // Don't show when tipped or being tipped
+		return
+
+	ui = SStgui.try_update_ui(user, src, ui)
 
 	if(!ui)
-		ui = new(user, src, ui_key, "Vending", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, "Vending", name)
 		ui.open()
 
 /obj/machinery/vending/ui_static_data(mob/user)
@@ -434,8 +454,9 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 	.["coin"] = coin ? coin.name : null
 	.["isshared"] = isshared
 
-/obj/machinery/vending/ui_act(action, params)
-	if(..())
+/obj/machinery/vending/ui_act(action, list/params)
+	. = ..()
+	if(.)
 		return
 	switch(action)
 		if("remove_coin")
@@ -636,7 +657,7 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 	if (!message)
 		return
 
-	say("<span class='game say'><span class='name'>[src]</span> beeps, \"[message]\"</span>")
+	say(message)
 
 /obj/machinery/vending/update_icon()
 	if(machine_stat & BROKEN)

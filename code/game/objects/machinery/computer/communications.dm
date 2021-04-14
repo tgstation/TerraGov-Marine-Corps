@@ -105,6 +105,11 @@
 				if(!input || !(usr in view(1,src)) || authenticated != 2 || world.time < cooldown_message + COOLDOWN_COMM_MESSAGE)
 					return FALSE
 
+				if(CHAT_FILTER_CHECK(input))
+					to_chat(usr, "<span class='warning'>That announcement contained a word prohibited in IC chat! Consider reviewing the server rules.\n<span replaceRegex='show_filtered_ic_chat'>\"[input]\"</span></span>")
+					SSblackbox.record_feedback(FEEDBACK_TALLY, "ic_blocked_words", 1, lowertext(config.ic_filter_regex.match))
+					return FALSE
+
 				priority_announce(input, type = ANNOUNCEMENT_COMMAND)
 				message_admins("[ADMIN_TPMONTY(usr)] has just sent a command announcement")
 				log_game("[key_name(usr)] has just sent a command announcement.")
@@ -213,16 +218,11 @@
 				SSticker.mode.distress_cancelled = FALSE
 				just_called = TRUE
 
-				var/list/valid_calls = list("Deny" = "deny", "Random" = "random") // default options
-				for(var/datum/emergency_call/E in SSticker.mode.all_calls) //Loop through all potential candidates
-					if(E.probability < 1) //Those that are meant to be admin-only
-						continue
+				var/datum/emergency_call/E = SSticker.mode.get_random_call()
 
-					valid_calls += list(E.name = E)
-
-				var/admin_response = admin_approval("<span color='prefix'>DISTRESS:</span> [ADMIN_TPMONTY(usr)] has called a Distress Beacon. Humans: [AllMarines], Xenos: [AllXenos].",
-					options = valid_calls, default_option = "random",
+				var/admin_response = admin_approval("<span color='prefix'>DISTRESS:</span> [ADMIN_TPMONTY(usr)] has called a Distress Beacon that was received by [E.name]. Humans: [AllMarines], Xenos: [AllXenos].",
 					user_message = "<span class='boldnotice'>A distress beacon will launch in 60 seconds unless High Command responds otherwise.</span>",
+					options = list("approve" = "approve", "deny" = "deny", "deny without annoncing" = "deny without annoncing"),
 					user = usr, admin_sound = sound('sound/effects/sos-morse-code.ogg', channel = CHANNEL_ADMIN))
 				just_called = FALSE
 				cooldown_request = world.time
@@ -230,18 +230,15 @@
 					SSticker.mode.distress_cancelled = TRUE
 					priority_announce("The distress signal has been blocked, the launch tubes are now recalibrating.", "Distress Beacon")
 					return FALSE
-				else if(SSticker.mode.on_distress_cooldown || SSticker.mode.waiting_for_candidates)
+				if(admin_response =="deny without annoncing")
+					SSticker.mode.distress_cancelled = TRUE
 					return FALSE
-				else
-					var/chosen_call = admin_response
-
-					if(chosen_call == "random")
-						SSticker.mode.activate_distress()
-					else
-						SSticker.mode.activate_distress(chosen_call)
-					return TRUE
-			else
-				state = STATE_DISTRESS
+				if(SSticker.mode.on_distress_cooldown || SSticker.mode.waiting_for_candidates)
+					return FALSE
+				SSticker.mode.activate_distress(E)
+				E.base_probability = 0
+				return TRUE
+			state = STATE_DISTRESS
 
 		if("messagelist")
 			currmsg = 0

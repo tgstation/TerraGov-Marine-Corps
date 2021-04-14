@@ -5,7 +5,7 @@ SUBSYSTEM_DEF(shuttle)
 	name = "Shuttle"
 	wait = 10
 	init_order = INIT_ORDER_SHUTTLE
-	flags = SS_KEEP_TIMING|SS_NO_TICK_CHECK
+	flags = SS_KEEP_TIMING
 	runlevels = RUNLEVEL_SETUP | RUNLEVEL_GAME
 
 	var/list/mobile = list()
@@ -487,11 +487,13 @@ SUBSYSTEM_DEF(shuttle)
 		preview_shuttle.jumpToNullSpace()
 	preview_shuttle = null
 
+/datum/controller/subsystem/shuttle/ui_state(mob/user)
+	return GLOB.admin_state
 
-/datum/controller/subsystem/shuttle/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.admin_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/datum/controller/subsystem/shuttle/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "ShuttleManipulator", name, 800, 600, master_ui, state)
+		ui = new(user, src, "ShuttleManipulator", name)
 		ui.open()
 
 
@@ -562,8 +564,9 @@ SUBSYSTEM_DEF(shuttle)
 
 	return data
 
-/datum/controller/subsystem/shuttle/ui_act(action, params)
-	if(..())
+/datum/controller/subsystem/shuttle/ui_act(action, list/params)
+	. = ..()
+	if(.)
 		return
 
 	var/mob/user = usr

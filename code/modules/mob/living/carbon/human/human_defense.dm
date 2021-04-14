@@ -136,6 +136,13 @@ Contains most of the procs that are called when a mob is attacked by something
 			return TRUE
 	return ..()
 
+/mob/living/carbon/human/effect_smoke(obj/effect/particle_effect/smoke/S)
+	. = ..()
+	if(!.)
+		return
+	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CAMO))
+		smokecloak_on()
+
 /mob/living/carbon/human/inhale_smoke(obj/effect/particle_effect/smoke/S)
 	. = ..()
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_BLISTERING) && species.has_organ["lungs"])
@@ -145,6 +152,7 @@ Contains most of the procs that are called when a mob is attacked by something
 
 //Returns 1 if the attack hit, 0 if it missed.
 /mob/living/carbon/human/attacked_by(obj/item/I, mob/living/user, def_zone)
+
 	var/target_zone
 
 	if(user == src) // Attacking yourself can't miss
@@ -195,8 +203,7 @@ Contains most of the procs that are called when a mob is attacked by something
 
 	user.do_attack_animation(src, used_item = I)
 
-	apply_damage(damage, I.damtype, affecting, armor, weapon_sharp, weapon_edge)
-	UPDATEHEALTH(src)
+	apply_damage(damage, I.damtype, affecting, armor, weapon_sharp, weapon_edge, updating_health = TRUE)
 
 	var/list/hit_report = list("(RAW DMG: [damage])")
 
@@ -330,9 +337,7 @@ Contains most of the procs that are called when a mob is attacked by something
 
 	visible_message("<span class='warning'>[src] has been hit in the [affecting.display_name] by \the [thrown_item].</span>", null, null, 5)
 
-	apply_damage(throw_damage, dtype, zone, armor, is_sharp(thrown_item), has_edge(thrown_item))
-
-	UPDATEHEALTH(src)
+	apply_damage(throw_damage, dtype, zone, armor, is_sharp(thrown_item), has_edge(thrown_item), updating_health = TRUE)
 
 	var/list/hit_report = list("(RAW DMG: [throw_damage])")
 
@@ -409,14 +414,13 @@ Contains most of the procs that are called when a mob is attacked by something
 	var/reduce_prot_aura = protection_aura * 0.1
 
 	var/reduction = max(min(1, reduce_within_sight - reduce_prot_aura), 0.1) // Capped at 90% reduction
-	var/stamina_damage = LERP(60, 130, dist_pct) * reduction //Max 130 beside Queen, 60 at the edge
-	var/stun_duration = (LERP(0.4, 1, dist_pct) * reduction) * 20 //Max 1.5 beside Queen, 0.4 at the edge.
+	var/stamina_damage = LERP(140, 70, dist_pct) * reduction //Max 140 under Queen, 130 beside Queen, 70 at the edge. Reduction of 10 per tile distance from Queen.
+	var/stun_duration = (LERP(1, 0.4, dist_pct) * reduction) * 20 //Max 1.5 beside Queen, 0.4 at the edge.
 
 	to_chat(src, "<span class='danger'>An ear-splitting guttural roar tears through your mind and makes your world convulse!</span>")
 	Stun(stun_duration)
 	Paralyze(stun_duration)
-	apply_damage(stamina_damage, STAMINA)
-	UPDATEHEALTH(src)
+	apply_damage(stamina_damage, STAMINA, updating_health = TRUE)
 	if(!ear_deaf)
 		adjust_ear_damage(deaf = stun_duration)  //Deafens them temporarily
 	//Perception distorting effects of the psychic scream

@@ -54,7 +54,11 @@
 
 
 /obj/structure/barricade/CheckExit(atom/movable/O, turf/target)
+	. = ..()
 	if(closed)
+		return TRUE
+
+	if(CHECK_BITFIELD(O.flags_pass, PASSSMALLSTRUCT))
 		return TRUE
 
 	if(O.throwing)
@@ -66,14 +70,12 @@
 				return FALSE
 		return TRUE
 
-	if(get_dir(loc, target) & dir)
-		return FALSE
-	else
-		return TRUE
-
 /obj/structure/barricade/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
 	if(closed)
+		return TRUE
+
+	if(CHECK_BITFIELD(mover.flags_pass, PASSSMALLSTRUCT))
 		return TRUE
 
 	if(mover?.throwing)
@@ -102,15 +104,18 @@
 	else
 		return TRUE
 
-/obj/structure/barricade/attack_animal(mob/user as mob)
+/obj/structure/barricade/attack_animal(mob/user)
 	return attack_alien(user)
 
-/obj/structure/barricade/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0)
+/obj/structure/barricade/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(X.status_flags & INCORPOREAL)
+		return FALSE
+
 	if(is_wired)
 		X.visible_message("<span class='danger'>The barbed wire slices into [X]!</span>",
 		"<span class='danger'>The barbed wire slices into us!</span>", null, 5)
-		X.apply_damage(10)
-		UPDATEHEALTH(X)
+		X.apply_damage(10, updating_health = TRUE)
+
 	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_BARRICADE)
 	return ..()
 
@@ -148,7 +153,7 @@
 	update_icon()
 
 /obj/structure/barricade/wirecutter_act(mob/living/user, obj/item/I)
-	if(!is_wired || user.action_busy)
+	if(!is_wired || user.do_actions)
 		return FALSE
 
 	user.visible_message("<span class='notice'>[user] begin removing the barbed wire on [src].</span>",
@@ -259,7 +264,6 @@
 		return FALSE
 
 	setDir(turn(dir, 90))
-	return
 
 /obj/structure/barricade/verb/revrotate()
 	set name = "Rotate Barricade Clockwise"
@@ -271,7 +275,6 @@
 		return FALSE
 
 	setDir(turn(dir, 270))
-	return
 
 
 /*----------------------*/
@@ -307,7 +310,7 @@
 		if(ET.folded)
 			return
 
-		if(user.action_busy)
+		if(user.do_actions)
 			to_chat(user, "<span class='warning'> You are already shoveling!</span>")
 			return
 
@@ -539,7 +542,7 @@
 	to_chat(user, "<span class='info'>It is [barricade_upgrade_type ? "upgraded with [barricade_upgrade_type]" : "not upgraded"].</span>")
 
 /obj/structure/barricade/metal/welder_act(mob/living/user, obj/item/I)
-	if(user.action_busy)
+	if(user.do_actions)
 		return FALSE
 
 	var/obj/item/tool/weldingtool/WT = I
@@ -590,7 +593,7 @@
 
 
 /obj/structure/barricade/metal/screwdriver_act(mob/living/user, obj/item/I)
-	if(user.action_busy)
+	if(user.do_actions)
 		return FALSE
 	switch(build_state)
 		if(BARRICADE_METAL_ANCHORED) //Protection panel removed step. Screwdriver to put the panel back, wrench to unsecure the anchor bolts
@@ -630,7 +633,7 @@
 
 
 /obj/structure/barricade/metal/wrench_act(mob/living/user, obj/item/I)
-	if(user.action_busy)
+	if(user.do_actions)
 		return FALSE
 	switch(build_state)
 		if(BARRICADE_METAL_ANCHORED) //Protection panel removed step. Screwdriver to put the panel back, wrench to unsecure the anchor bolts
@@ -691,7 +694,7 @@
 
 
 /obj/structure/barricade/metal/crowbar_act(mob/living/user, obj/item/I)
-	if(user.action_busy)
+	if(user.do_actions)
 		return FALSE
 	switch(build_state)
 		if(BARRICADE_METAL_LOOSE) //Anchor bolts loosened step. Apply crowbar to unseat the panel and take apart the whole thing. Apply wrench to resecure anchor bolts
@@ -890,7 +893,7 @@
 		update_icon()
 		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 
-	if(user.action_busy) // you can only build one cade at once but repair multiple at once
+	if(user.do_actions) // you can only build one cade at once but repair multiple at once
 		return
 
 	switch(build_state)
@@ -1065,7 +1068,7 @@
 	name = "sandbag barricade"
 	desc = "A bunch of bags filled with sand, stacked into a small wall. Surprisingly sturdy, albeit labour intensive to set up. Trusted to do the job since 1914."
 	icon_state = "sandbag_0"
-	max_integrity = 400
+	max_integrity = 300
 	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 80, "acid" = 40)
 	coverage = 128
 	stack_type = /obj/item/stack/sandbags

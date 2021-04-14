@@ -14,10 +14,10 @@
 	var/module_type = ARMOR_MODULE_PASSIVE
 
 
-/obj/item/helmet_module/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+/obj/item/helmet_module/afterattack(atom/target, mob/user, has_proximity, click_parameters)
 	. = ..()
 
-	if(!proximity_flag)
+	if(!has_proximity)
 		return
 	if(QDELETED(user) || user.stat != CONSCIOUS)
 		return
@@ -29,7 +29,7 @@
 
 	do_attach(user, parent)
 
-/** Called when the module is added to the armor */
+/// Called when the module is added to the armor
 /obj/item/helmet_module/proc/do_attach(mob/living/user, obj/item/clothing/head/modular/parent)
 	user.dropItemToGround(src)
 	forceMove(parent)
