@@ -149,6 +149,8 @@ GLOBAL_LIST_INIT(visible_item_slot_list, list(
 	loadouts_list[MARINE_LOADOUT]["Default"] = create_empty_loadout()
 	loadouts_list[MARINE_LOADOUT]["Default2"] = create_empty_loadout()
 	loadouts_list[ENGIE_LOADOUT]["Default"] = create_empty_loadout()
+	loadouts_list[ENGIE_LOADOUT]["Dqsdqsdqt"] = create_empty_loadout()
+	loadouts_list[ENGIE_LOADOUT]["dsqff"] = create_empty_loadout()
 	loadouts_list[MEDIC_LOADOUT]["Default"] = create_empty_loadout()
 	loadouts_list[SMARTGUNNER_LOADOUT]["Default"] = create_empty_loadout()
 	loadouts_list[LEADER_LOADOUT]["Default"] = create_empty_loadout()

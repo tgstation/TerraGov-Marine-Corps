@@ -12,12 +12,8 @@
 
 	idle_power_usage = 60
 	active_power_usage = 3000
-	var/datum/loadout_manager/loadout_manager
 	var/current_loadout_items_data = list()
 
-/obj/machinery/automated_vendor/Initialize()
-	. = ..()
-	loadout_manager = new
 
 /obj/machinery/automated_vendor/update_icon()
 	if(is_operational())
@@ -53,7 +49,7 @@
 	for (var/item_slot_key in GLOB.visible_item_slot_list)
 		var/list/result = list()
 
-		var/datum/item_representation/item = loadout_manager.current_loadout.item_list[item_slot_key]
+		var/datum/item_representation/item = user.client.prefs.loadout_manager.current_loadout.item_list[item_slot_key]
 		if (isnull(item))
 			result["icon"] = icon2base64(icon("icons/misc/empty.dmi", "empty"))
 			current_loadout_items_data[item_slot_key] = result
@@ -66,7 +62,6 @@
 		current_loadout_items_data[item_slot_key] = result
 
 /obj/machinery/automated_vendor/ui_interact(mob/user, datum/tgui/ui)
-	loadout_manager.load_loadouts(user.client)
 	prepare_items_data(user)
 	ui = SStgui.try_update_ui(user, src, ui)
 
@@ -84,11 +79,8 @@
 	. = ..()
 	switch(action)
 		if("equipLoadout")
-			var/datum/loadout/current_loadout = ui.user.client.prefs.loadouts_list[ui.user.client.prefs.current_loadout_name]
-			current_loadout.equip_mob(ui.user, loc)
+			ui.user.client.prefs.loadout_manager.current_loadout.equip_mob(ui.user, loc)
 		if("selectLoadout")
-			loadout_manager.ui_interact(ui.user)
+			ui.user.client.prefs.loadout_manager.ui_interact(ui.user)
 	
 
-/obj/machinery/automated_vendor/ui_close(mob/user)
-	user.client?.prefs.save_loadouts_list()

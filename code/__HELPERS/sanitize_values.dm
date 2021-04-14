@@ -104,7 +104,8 @@
 
 	return crunch + .
 
-/proc/sanitize_loadout_list(value)
-	if(length(value))
+/proc/sanitize_loadout_manager(value)
+	if(value)
 		return value
-	return create_default_loadout_list()
+	var/datum/loadout_manager/manager = new
+	return manager

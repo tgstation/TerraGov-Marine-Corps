@@ -560,7 +560,7 @@
 
 	return TRUE
 
-/datum/preferences/proc/save_loadouts_list()
+/datum/preferences/proc/save_loadout_manager()
 	if(!path)
 		return FALSE
 	if(!fexists(path))
@@ -568,13 +568,13 @@
 	var/savefile/S = new /savefile(path)
 	if(!S)
 		return FALSE
-	loadouts_list = sanitize_loadout_list(loadouts_list)
-	var/json_loadouts = jatum_serialize(loadouts_list)
+	loadout_manager = sanitize_loadout_manager(loadout_manager)
+	var/json_loadout_manager = jatum_serialize(loadout_manager)
 	S.cd = "/loadouts"
-	WRITE_FILE(S["loadouts_list"], json_loadouts)
+	WRITE_FILE(S["loadouts_manager"], json_loadout_manager)
 	return TRUE
 
-/datum/preferences/proc/load_loadouts_list()
+/datum/preferences/proc/load_loadout_manager()
 	if(!path)
 		return FALSE
 	if(!fexists(path))
@@ -583,13 +583,12 @@
 	if(!S)
 		return FALSE
 	S.cd = "/loadouts"
-	var/json_loadouts = ""
-	READ_FILE(S["loadouts_list"], json_loadouts)
-	if(!json_loadouts)
+	var/json_loadout_manager = ""
+	READ_FILE(S["loadouts_manager"], json_loadout_manager)
+	if(!json_loadout_manager)
 		return FALSE
-	loadouts_list = jatum_deserialize(json_loadouts)
-	loadouts_list = sanitize_loadout_list(loadouts_list)
-	current_loadout_name = loadouts_list[1]
+	loadout_manager = jatum_deserialize(json_loadout_manager)
+	loadout_manager = sanitize_loadout_manager(loadout_manager)
 	return TRUE
 
 

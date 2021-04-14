@@ -9,20 +9,20 @@ type Loadout =
     job: string;
   }
 
+type LoadoutManagerData = 
+  {
+    loadout_list: Loadout[];
+    job_type: string;
+  };
+
 type LoadoutListData = 
   {
     loadout_list: Loadout[];
   };
 
-type LoadoutManagerData = 
-  {
-    loadout_lists : LoadoutListData[];
-  };
-
 type TabData = 
   {
-    tabIndex : string;
-    setTabIndex : any;
+    job_type: string;
   }
 
 const LoadoutItem = (props : Loadout, context) => { 
@@ -51,7 +51,7 @@ const LoadoutList = (props : LoadoutListData, context) => {
     <Stack.Item>
       <Section height={8} fill scrollable>
         {loadout_list.map(loadout => {
-          return LoadoutItem(loadout, context);
+          <LoadoutItem name={loadout.name} job={loadout.job} />;
         })}
       </Section>
     </Stack.Item>
@@ -59,23 +59,24 @@ const LoadoutList = (props : LoadoutListData, context) => {
 };
 
 const JobTabs = (props : TabData, context) => {
-  const { tabIndex, setTabIndex } = props;
+  const { job_type } = props;
+  const { act } = useBackend(context);
   return (
     <Section>
       <Tabs>
-        <Tabs.Tab selected={tabIndex === "marine"} onClick={() => setTabIndex("marine")}>
+        <Tabs.Tab selected={job_type === "marine"} onClick={() => act("SelectJobType", { job_type: "marine" })}>
           Marine
         </Tabs.Tab>
-        <Tabs.Tab selected={tabIndex === "engineer"} onClick={() => setTabIndex("engineer")}>
+        <Tabs.Tab selected={job_type === "engie"} onClick={() => act("SelectJobType", { job_type: "engie" })}>
           Engineer
         </Tabs.Tab>
-        <Tabs.Tab selected={tabIndex === "medic"} onClick={() => setTabIndex("medic")}>
+        <Tabs.Tab selected={job_type === "medic"} onClick={() => act("SelectJobType", { job_type: "medic" })}>
           Medic
         </Tabs.Tab>
-        <Tabs.Tab selected={tabIndex === "smartgunner"} onClick={() => setTabIndex("smartgunner")}>
+        <Tabs.Tab selected={job_type === "smartgunner"} onClick={() => act("SelectJobType", { job_type: "smartgunner" })}>
           SmartGunner
         </Tabs.Tab>
-        <Tabs.Tab selected={tabIndex === "leader"} onClick={() => setTabIndex("leader")}>
+        <Tabs.Tab selected={job_type === "leader"} onClick={() => act("SelectJobType", { job_type: "leader" })}>
           Squad Leader
         </Tabs.Tab>
       </Tabs>
@@ -85,12 +86,7 @@ const JobTabs = (props : TabData, context) => {
 
 export const LoadoutManager = (props, context) => {
   const { data } = useBackend<LoadoutManagerData>(context);
-  const { loadout_lists } = data;
-
-  const [
-    tabIndex,
-    setTabIndex,
-  ] = useLocalState(context, 'tabIndex', "marine");
+  const { loadout_list, job_type } = data;
 
   return ( 
     <Window 
@@ -99,8 +95,8 @@ export const LoadoutManager = (props, context) => {
       height={600}>
       <Window.Content>
         <Stack fill vertical>
-          <JobTabs tabIndex={tabIndex} setTabIndex={setTabIndex} />
-          <LoadoutList loadout_list={loadout_lists[tabIndex]} /> 
+          <JobTabs job_type={job_type} />
+          <LoadoutList loadout_list={loadout_list} /> 
         </Stack>
       </Window.Content>
     </Window>

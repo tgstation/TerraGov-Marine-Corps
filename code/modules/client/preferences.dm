@@ -134,10 +134,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	var/auto_fit_viewport = TRUE
 
-	///List of all datum/loadout currently saved
-	var/list/loadouts_list
-	///The last selected loadout name
-	var/current_loadout_name = ""
+	///The loadout manager
+	var/datum/loadout_manager/loadout_manager
 
 
 /datum/preferences/New(client/C)
@@ -148,9 +146,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	if(!IsGuestKey(C.key))
 		load_path(C.ckey)
-		//if(!load_loadouts_list())
-		loadouts_list = sanitize_loadout_list(null)
-		save_loadouts_list()
+		if(!load_loadout_manager())
+			loadout_manager = new 
+			loadout_manager.generate_default()
 		if(load_preferences() && load_character())
 			return
 
@@ -159,7 +157,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	menuoptions = list()
 	key_bindings = deepCopyList(GLOB.hotkey_keybinding_list_by_key) // give them default keybinds and update their movement keys
 	C.update_movement_keys(src)
-	loadouts_list = sanitize_loadout_list(null)
+	loadout_manager = new 
+	loadout_manager.generate_default()
 
 
 /datum/preferences/can_interact(mob/user)
