@@ -2,14 +2,19 @@
 				EXTERNAL ORGANS
 ****************************************************/
 /datum/limb
+	///Actual name of the limb
 	var/name = "limb"
 	var/icon_name = null
 	var/body_part = null
+	///Whether the icon created for this limb is LEFT, RIGHT or 0. Currently utilised for legs and feet
 	var/icon_position = 0
 	var/damage_state = "00"
+	///brute damage this limb has taken as a part
 	var/brute_dam = 0
+	///burn damage this limb has taken as a part
 	var/burn_dam = 0
-	var/max_damage = 0 //The threshold before that limb gets destroyed
+	///Max damage the limb can take before being destroyed
+	var/max_damage = 0
 	var/max_size = 0
 	var/last_dam = -1
 	var/supported = FALSE
@@ -21,16 +26,15 @@
 	var/list/wounds = list()
 	var/number_wounds = 0 // cache the number of wounds, which is NOT wounds.len!
 
-	var/tmp/perma_injury = 0
-
 	var/min_broken_damage = 30
 
 	var/datum/limb/parent
 	var/list/datum/limb/children
 
-	// Internal organs of this body part
+	///List of Internal organs of this body part
 	var/list/datum/internal_organ/internal_organs
 
+	/// Message that displays when you feel pain from this limb
 	var/damage_msg = "<span class='warning'> You feel an intense pain</span>"
 	var/broken_description
 
@@ -40,21 +44,26 @@
 	var/necro_surgery_stage = 0
 	var/cavity = 0
 
-	var/in_surgery_op = FALSE //whether someone is currently doing a surgery step to this limb
+	///Whether someone is currently doing surgery on this limb
+	var/in_surgery_op = FALSE
 	var/surgery_organ //name of the organ currently being surgically worked on (detach/remove/etc)
 
 	var/encased       // Needs to be opened with a saw to access the organs.
 
 	var/obj/item/hidden = null
+	///[/obj/item/implant] Implants contained within this specific limb
 	var/list/implants = list()
 
-	// how often wounds should be updated, a higher number means less often
+	///how often wounds should be updated, a higher number means less often
 	var/wound_update_accuracy = 1
 	var/limb_status = NONE //limb status flags
 
+	///Human owner mob of this limb
 	var/mob/living/carbon/human/owner = null
-	var/vital //Lose a vital limb, die immediately.
-	var/germ_level = 0		// INTERNAL germs inside the organ, this is BAD if it's greater than INFECTION_LEVEL_ONE
+	///Whether this limb is vital, if true you die on losing it (todo make a flag)
+	var/vital = FALSE
+	///INTERNAL germs inside the organ, this is BAD if it's greater than INFECTION_LEVEL_ONE
+	var/germ_level = 0
 
 	///What % of the body does this limb cover. Make sure that the sum is always 100.
 	var/cover_index = 0
@@ -86,8 +95,6 @@
 	return icon('icons/mob/human.dmi',"blank")
 */
 
-/datum/limb/process()
-		return 0
 
 //Germs
 /datum/limb/proc/handle_antibiotics()
@@ -162,8 +169,8 @@
 			brute *= owner.species.brute_mod
 			burn *= owner.species.burn_mod
 		else
-			brute *= 0.66 //~2/3 damage for ROBOLIMBS
-			burn *= 0.66 //~2/3 damage for ROBOLIMBS
+			brute *= 0.50 // half damage for ROBOLIMBS
+			burn *= 0.50 // half damage for ROBOLIMBS
 
 	//High brute damage or sharp objects may damage internal organs
 	if(internal_organs && ((sharp && brute >= 10) || brute >= 20) && prob(5))
@@ -228,7 +235,7 @@
 
 
 	//Sync the organ's damage with its wounds
-	src.update_damages()
+	update_damages()
 
 	//If limb took enough damage, try to cut or tear it off
 
@@ -270,7 +277,6 @@
 	if(internal)
 		remove_limb_flags(LIMB_BROKEN | LIMB_SPLINTED | LIMB_STABILIZED)
 		add_limb_flags(LIMB_REPAIRED)
-		perma_injury = 0
 
 	//Sync the organ's damage with its wounds
 	update_damages()
@@ -280,13 +286,12 @@
 	var/result = update_icon()
 	return result
 
-/*
-This function completely restores a damaged organ to perfect condition.
-*/
+/**
+ * This proc completely restores a damaged organ to perfect condition.
+ */
 /datum/limb/proc/rejuvenate(updating_health = FALSE, updating_icon = FALSE)
 	damage_state = "00"
 	remove_limb_flags(LIMB_BROKEN | LIMB_BLEEDING | LIMB_SPLINTED | LIMB_STABILIZED | LIMB_AMPUTATED | LIMB_DESTROYED | LIMB_NECROTIZED | LIMB_MUTATED | LIMB_REPAIRED)
-	perma_injury = 0
 	brute_dam = 0
 	burn_dam = 0
 	germ_level = 0
@@ -322,7 +327,8 @@ This function completely restores a damaged organ to perfect condition.
 
 
 /datum/limb/proc/createwound(type = CUT, damage)
-	if(!damage) return
+	if(!damage)
+		return
 
 	//moved this before the open_wound check so that having many small wounds for example doesn't somehow protect you from taking internal damage (because of the return)
 	//Possibly trigger an internal wound, too.
@@ -334,16 +340,17 @@ This function completely restores a damaged organ to perfect condition.
 
 	if(limb_status & LIMB_SPLINTED && damage > 5 && prob(50 + damage * 2.5)) //If they have it splinted, the splint won't hold.
 		remove_limb_flags(LIMB_SPLINTED)
-		to_chat(owner, "<span class='danger'>The splint on your [display_name] comes apart!</span>")
+		to_chat(owner, "<span class='userdanger'>The splint on your [display_name] comes apart!</span>")
 
 	// first check whether we can widen an existing wound
 	var/datum/wound/W
 	if(wounds.len > 0 && prob(max(50+(number_wounds-1)*10,90)))
 		if((type == CUT || type == BRUISE) && damage >= 5)
 			//we need to make sure that the wound we are going to worsen is compatible with the type of damage...
-			var/compatible_wounds[] = new
+			var/list/compatible_wounds = list()
 			for(W in wounds)
-				if(W.can_worsen(type, damage)) compatible_wounds += W
+				if(W.can_worsen(type, damage))
+					compatible_wounds += W
 
 			if(compatible_wounds.len)
 				W = pick(compatible_wounds)
@@ -401,8 +408,6 @@ This function completely restores a damaged organ to perfect condition.
 	//Bone fractures
 	if(CONFIG_GET(flag/bones_can_break) && brute_dam > min_broken_damage * CONFIG_GET(number/organ_health_multiplier) && !(limb_status & LIMB_ROBOT))
 		fracture()
-	if(!(limb_status & LIMB_BROKEN))
-		perma_injury = 0
 
 	//Infections
 	update_germs()
@@ -948,7 +953,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 	add_limb_flags(LIMB_BROKEN)
 	remove_limb_flags(LIMB_REPAIRED)
 	broken_description = pick("broken","fracture","hairline fracture")
-	perma_injury = brute_dam
 
 	// Fractures have a chance of getting you out of restraints
 	if (prob(25))
@@ -977,7 +981,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	owner.update_body()
 
 /datum/limb/proc/get_damage()	//returns total damage
-	return max(brute_dam + burn_dam - perma_injury, perma_injury)	//could use health?
+	return brute_dam + burn_dam	//could use health?
 
 /datum/limb/proc/has_infected_wound()
 	for(var/datum/wound/W in wounds)
@@ -1021,7 +1025,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	return ((limb_status & LIMB_BROKEN) && !(limb_status & LIMB_SPLINTED) && !(limb_status & LIMB_STABILIZED))
 
 /datum/limb/proc/is_malfunctioning()
-	return ((limb_status & LIMB_ROBOT) && prob(brute_dam + burn_dam))
+	return ((limb_status & LIMB_ROBOT) && (get_damage() > min_broken_damage))
 
 //for arms and hands
 /datum/limb/proc/process_grasp(obj/item/c_hand, hand_name)
@@ -1034,7 +1038,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			var/emote_scream = pick("screams in pain and", "lets out a sharp cry and", "cries out and")
 			owner.emote("me", 1, "[(owner.species && owner.species.species_flags & NO_PAIN) ? "" : emote_scream ] drops what they were holding in their [hand_name]!")
 	if(is_malfunctioning())
-		if(prob(10))
+		if(prob(5))
 			owner.dropItemToGround(c_hand)
 			owner.emote("me", 1, "drops what they were holding, their [hand_name] malfunctioning!")
 			new /datum/effect_system/spark_spread(owner, owner, 5, 0, TRUE, 1 SECONDS)
@@ -1057,8 +1061,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 	var/text1 = "<span class='warning'>[user] finishes applying [S] to [target]'s [display_name].</span>"
 	var/text2 = "<span class='notice'>You finish applying [S] to [target]'s [display_name].</span>"
 
-	if(target == user) //If self splinting, multiply delay by 4
-		delay *= 4
+	if(target == user) //If self splinting, multiply delay by 2
+		delay *= 2
 		text1 = "<span class='warning'>[user] successfully applies [S] to their [display_name].</span>"
 		text2 = "<span class='notice'>You successfully apply [S] to your [display_name].</span>"
 
@@ -1136,7 +1140,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	name = "l_arm"
 	display_name = "left arm"
 	icon_name = "l_arm"
-	max_damage = 100
+	max_damage = 125
 	min_broken_damage = 50
 	body_part = ARM_LEFT
 	cover_index = 7
@@ -1159,7 +1163,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	name = "r_arm"
 	display_name = "right arm"
 	icon_name = "r_arm"
-	max_damage = 100
+	max_damage = 125
 	min_broken_damage = 50
 	body_part = ARM_RIGHT
 	cover_index = 7

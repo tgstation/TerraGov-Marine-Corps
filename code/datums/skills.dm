@@ -266,6 +266,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	construction = SKILL_CONSTRUCTION_ADVANCED
 	leadership = SKILL_LEAD_BEGINNER
 	powerloader = SKILL_POWERLOADER_DABBLING
+	medical = SKILL_MEDICAL_PRACTICED
 
 /datum/skills/combat_medic
 	name = "Combat Medic"
@@ -414,8 +415,8 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	cqc = SKILL_CQC_TRAINED
 	construction = SKILL_CONSTRUCTION_PLASTEEL
 	engineer = SKILL_ENGINEER_PLASTEEL
-	leadership = SKILL_LEAD_TRAINED
-	medical = SKILL_MEDICAL_NOVICE
+	leadership = SKILL_LEAD_EXPERT
+	medical = SKILL_MEDICAL_PRACTICED
 	surgery = SKILL_SURGERY_AMATEUR
 
 /datum/skills/SL/upp
@@ -465,6 +466,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	name = SQUAD_SMARTGUNNER
 	smartgun = SKILL_SMART_TRAINED
 	leadership = SKILL_LEAD_BEGINNER
+	medical = SKILL_MEDICAL_PRACTICED
 
 /datum/skills/smartgunner/pmc
 	name = "PMC Smartgunner"
@@ -563,13 +565,6 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	medical = SKILL_MEDICAL_NOVICE
 	surgery = SKILL_SURGERY_AMATEUR
 	melee_weapons = SKILL_MELEE_SUPER
-
-/datum/skills/tank_crew
-	name = "Tank Crew"
-	large_vehicle = SKILL_LARGE_VEHICLE_TRAINED
-	powerloader = SKILL_POWERLOADER_DABBLING
-	leadership = SKILL_LEAD_TRAINED
-	engineer = SKILL_ENGINEER_METAL
 
 /datum/skills/spatial_agent
 	name = "Spatial Agent"
@@ -687,3 +682,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	name = "Skeleton"
 	cqc = SKILL_CQC_TRAINED
 	melee_weapons = SKILL_MELEE_TRAINED
+
+/datum/skills/marine
+	name = "Squad Marine"
+	medical = SKILL_MEDICAL_PRACTICED
