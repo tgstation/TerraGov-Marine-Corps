@@ -278,6 +278,7 @@
 	icon_state = "splint"
 	amount = 5
 	max_amount = 5
+	var/applied_splint_stacks = 1
 
 
 /obj/item/stack/medical/splint/attack(mob/living/carbon/M, mob/user)
@@ -314,5 +315,5 @@
 			user.visible_message("<span class='warning'>[user] starts to apply [src] to their [limb].</span>",
 			"<span class='notice'>You start to apply [src] to your [limb], hold still.</span>")
 
-		if(affecting.apply_splints(src, user, M)) // Referenced in external organ helpers.
+		if(affecting.apply_splints(src, applied_splint_stacks, user, M)) // Referenced in external organ helpers.
 			use(1)

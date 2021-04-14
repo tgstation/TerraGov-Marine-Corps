@@ -18,6 +18,8 @@
 	var/max_size = 0
 	var/last_dam = -1
 	var/supported = FALSE
+	///How many instances of damage the limb can take before its splints fall off
+	var/splint_stacks = 0
 
 	var/datum/armor/soft_armor
 	var/datum/armor/hard_armor
@@ -339,8 +341,11 @@
 		owner.custom_pain("You feel something rip in your [display_name]!", 1)
 
 	if(limb_status & LIMB_SPLINTED && damage > 5 && prob(50 + damage * 2.5)) //If they have it splinted, the splint won't hold.
-		remove_limb_flags(LIMB_SPLINTED)
-		to_chat(owner, "<span class='userdanger'>The splint on your [display_name] comes apart!</span>")
+		if(splint_stacks <= 0)
+			remove_limb_flags(LIMB_SPLINTED)
+			to_chat(owner, "<span class='userdanger'>The splint on your [display_name] comes apart!</span>")
+		else
+			splint_stacks -= 1
 
 	// first check whether we can widen an existing wound
 	var/datum/wound/W
@@ -1044,7 +1049,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			new /datum/effect_system/spark_spread(owner, owner, 5, 0, TRUE, 1 SECONDS)
 
 
-/datum/limb/proc/apply_splints(obj/item/stack/medical/splint/S, mob/living/user, mob/living/carbon/human/target)
+/datum/limb/proc/apply_splints(obj/item/stack/medical/splint/S, applied_stacks, mob/living/user, mob/living/carbon/human/target)
 
 	if(!istype(user))
 		return
@@ -1074,6 +1079,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		"[text1]",
 		"[text2]")
 		add_limb_flags(LIMB_SPLINTED)
+		splint_stacks = max(splint_stacks, applied_stacks)
 		return TRUE
 
 
