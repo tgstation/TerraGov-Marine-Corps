@@ -198,13 +198,14 @@
 		addtimer(CALLBACK(GLOBAL_PROC, .proc/playsound, T, 'sound/weapons/guns/misc/mortar_travel.ogg', 50, 1), travel_time)
 		addtimer(CALLBACK(src, .proc/detonate_shell, T, mortar_shell), travel_time + 45)//This should always be 45 ticks!
 
-	if(istype(I, /obj/item/binoculars/tactical))
-		var/obj/item/binoculars/tactical/binocs = I
-		playsound(src, 'sound/effects/binoctarget.ogg', 35)
-		if(binocs.set_mortar(src))
-			to_chat(user, "<span class='notice'>You link the mortar to the [binocs] allowing for remote targeting.</span>")
-			return
-		to_chat(user, "<span class='notice'>You disconnect the [binocs] from their linked mortar.")
+	if(!istype(I, /obj/item/binoculars/tactical))
+		return
+	var/obj/item/binoculars/tactical/binocs = I
+	playsound(src, 'sound/effects/binoctarget.ogg', 35)
+	if(binocs.set_mortar(src))
+		to_chat(user, "<span class='notice'>You link the mortar to the [binocs] allowing for remote targeting.</span>")
+		return
+	to_chat(user, "<span class='notice'>You disconnect the [binocs] from their linked mortar.")
 
 ///Proc called by tactical binoculars to send targeting information.
 /obj/structure/mortar/proc/recieve_target(turf/T, binocs, mob/user)
