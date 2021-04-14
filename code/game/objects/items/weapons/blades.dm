@@ -30,6 +30,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	flags_item = DRAINS_XENO
 
+	var/force_wielded = 40
 	var/obj/item/reagent_containers/glass/beaker/vial/beaker = null
 	var/datum/reagent/loaded_reagent = null
 	var/list/loadable_reagents = list(
@@ -62,6 +63,14 @@
 /obj/item/weapon/claymore/harvester/Initialize()
 	. = .. ()
 	beaker = new /obj/item/reagent_containers/glass/beaker/vial
+
+/obj/item/weapon/claymore/harvester/equipped(mob/user, slot)
+	. = ..()
+	toggle_item_bump_attack(user, TRUE)
+
+/obj/item/weapon/claymore/harvester/dropped(mob/user)
+	. = ..()
+	toggle_item_bump_attack(user, FALSE)
 
 /obj/item/weapon/claymore/harvester/attackby(obj/item/I, mob/user)
 	if(user.do_actions)
