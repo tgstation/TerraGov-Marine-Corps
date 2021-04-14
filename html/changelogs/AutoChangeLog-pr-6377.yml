@@ -1,4 +1,0 @@
-author: "Walarks"
-delete-after: True
-changes: 
-  - rscadd: "added bump attack component to humans, added bump attack compatibility to wielded harvester and unarmed"
