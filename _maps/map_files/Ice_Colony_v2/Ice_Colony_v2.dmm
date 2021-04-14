@@ -31689,6 +31689,11 @@
 /obj/effect/alien/weeds/node,
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/central)
+"gkO" = (
+/obj/effect/turf_underlay/icefloor,
+/obj/structure/fence,
+/turf/closed/ice/thin/single,
+/area/ice_colony/exterior/surface/valley/southeast)
 "gly" = (
 /obj/effect/turf_underlay/icefloor,
 /obj/effect/alien/weeds/node,
@@ -32637,6 +32642,11 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice,
 /area/ice_colony/underground/maintenance/east)
+"nLv" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
+/obj/structure/fence,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/exterior/surface/valley/southeast)
 "nLw" = (
 /obj/machinery/computer/intel_computer,
 /turf/open/floor/tile/dark/yellow2{
@@ -77997,7 +78007,7 @@ awL
 awL
 awL
 sGc
-qRC
+nLv
 nlt
 aUP
 aUP
@@ -83137,7 +83147,7 @@ aMt
 aMt
 aMt
 aMt
-jwc
+gkO
 aaU
 gtM
 aar
