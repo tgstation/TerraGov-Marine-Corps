@@ -50,9 +50,11 @@ const LoadoutList = (props : LoadoutListData, context) => {
   return (
     <Stack.Item>
       <Section height={8} fill scrollable>
-        {loadout_list.map(loadout => {
-          <LoadoutItem name={loadout.name} job={loadout.job} />;
-        })}
+        <LabeledList>
+          {loadout_list.map(loadout => {
+            <LoadoutItem name={loadout.name} job={loadout.job} />;
+          })}
+        </LabeledList>
       </Section>
     </Stack.Item>
   );
