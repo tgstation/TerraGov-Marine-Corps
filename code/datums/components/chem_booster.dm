@@ -2,7 +2,7 @@
 #define EXTRACT "Extract"
 #define LOAD "Load up"
 #define BOOST_CONFIG "Switch Boost"
-#define VALI_INFO "vali_information"
+#define VALI_INFO "Information"
 
 #define BRUTE_AMP "brute_amp"
 #define BURN_AMP "burn_amp"
@@ -209,7 +209,7 @@
 		BOOST_CONFIG = image(icon = 'icons/mob/radial.dmi', icon_state = "[boost_icon]"),
 		EXTRACT = image(icon = 'icons/mob/radial.dmi', icon_state = "cboost_extract"),
 		LOAD = image(icon = 'icons/mob/radial.dmi', icon_state = "cboost_load"),
-		VALI_INFO = image(icon = 'icons/mob/radial.dmi', icon_state = ""),
+		VALI_INFO = image(icon = 'icons/mob/radial.dmi', icon_state = "cboost_info"),
 		)
 
 	var/choice = show_radial_menu(wearer, wearer, radial_options, null, 48, null, TRUE, TRUE)
