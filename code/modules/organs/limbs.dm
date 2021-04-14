@@ -338,7 +338,7 @@
 		wounds += I
 		owner.custom_pain("You feel something rip in your [display_name]!", 1)
 
-	if(limb_status & LIMB_SPLINTED && damage > 5 && prob(50 + damage * 2.5)) //If they have it splinted, the splint won't hold.
+	if(limb_status & LIMB_SPLINTED && get_damage() > 40) //If they have it splinted, and the damage is 30 or above brute, burn, or brute + burn, the splint won't hold.
 		remove_limb_flags(LIMB_SPLINTED)
 		to_chat(owner, "<span class='userdanger'>The splint on your [display_name] comes apart!</span>")
 
@@ -1062,7 +1062,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	var/text2 = "<span class='notice'>You finish applying [S] to [target]'s [display_name].</span>"
 
 	if(target == user) //If self splinting, multiply delay by 4
-		delay *= 4
+		delay *= 2
 		text1 = "<span class='warning'>[user] successfully applies [S] to their [display_name].</span>"
 		text2 = "<span class='notice'>You successfully apply [S] to your [display_name].</span>"
 

@@ -276,8 +276,8 @@
 	name = "medical splints"
 	singular_name = "medical splint"
 	icon_state = "splint"
-	amount = 5
-	max_amount = 5
+	amount = 10
+	max_amount = 10
 
 
 /obj/item/stack/medical/splint/attack(mob/living/carbon/M, mob/user)

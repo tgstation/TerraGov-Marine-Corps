@@ -83,7 +83,7 @@ REAGENT SCANNER
 		return
 	if(user.skills.getRating("medical") < skill_threshold)
 		to_chat(user, "<span class='warning'>You start fumbling around with [src]...</span>")
-		var/fduration = max(SKILL_TASK_AVERAGE - (1 SECONDS * user.skills.getRating("medical")), 0)
+		var/fduration = max(SKILL_TASK_EASY - (1 SECONDS * user.skills.getRating("medical")), 0)
 		if(!do_mob(user, M, fduration, BUSY_ICON_UNSKILLED))
 			return
 	if(isxeno(M))
