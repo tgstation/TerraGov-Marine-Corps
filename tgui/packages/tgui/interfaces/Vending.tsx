@@ -1,5 +1,5 @@
 import { useBackend, useLocalState } from '../backend';
-import { Button, Section, Box, LabeledList, ProgressBar, Modal, Divider, Tabs } from '../components';
+import { Button, Section, Box, LabeledList, ProgressBar, Modal, Divider, Tabs, Stack, Flex } from '../components';
 import { decodeHtmlEntities } from 'common/string';
 import { Window } from '../layouts';
 import { BooleanLike } from 'common/react';
@@ -90,20 +90,28 @@ export const Vending = (props, context) => {
             </Button>
           }>
           {(tabs.length > 0 && (
-            <Section>
-              <Tabs
-                fluid
-                textAlign="center">
-                {tabs.map(tabname => {
-                  return (
-                    <Tabs.Tab
-                      key={tabname}
-                      selected={tabname === selectedTab}
-                      onClick={() => setSelectedTab(tabname)}>
-                      {tabname}
-                    </Tabs.Tab>
-                  );
-                })}
+            <Section
+              lineHeight={1.75}
+              textAlign="center">
+              <Tabs>
+                <Stack
+                  inline
+                  wrap="wrap">
+                  {tabs.map(tabname => {
+                    return (
+                      <Stack.Item
+                        m={0.5}
+                        grow={tabname.length}
+                        key={tabname}>
+                        <Tabs.Tab
+                          selected={tabname === selectedTab}
+                          onClick={() => setSelectedTab(tabname)}>
+                          {tabname}
+                        </Tabs.Tab>
+                      </Stack.Item>
+                    );
+                  })}
+                </Stack>
               </Tabs>
               <Divider />
             </Section>

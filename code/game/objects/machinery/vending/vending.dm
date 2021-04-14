@@ -193,8 +193,6 @@
 			if(prob(25))
 				INVOKE_ASYNC(src, .proc/malfunction)
 
-/obj/machinery/vending/proc/select_gamemode_equipment(gamemode)
-	return
 
 GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 	/obj/item/ammo_magazine/pistol/standard_pistol,
