@@ -184,7 +184,7 @@
 			/obj/item/weapon/gun/smg/standard_smg = 10,
 			/obj/item/weapon/gun/smg/standard_machinepistol = 10,
 		),
-		"Marksman Rifles" = list(
+		"Marksman" = list(
 			/obj/item/weapon/gun/rifle/standard_dmr = 10,
 			/obj/item/weapon/gun/rifle/standard_br = 10,
 			/obj/item/weapon/gun/rifle/chambered = 10,

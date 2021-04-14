@@ -91,7 +91,9 @@ export const Vending = (props, context) => {
           }>
           {(tabs.length > 0 && (
             <Section>
-              <Tabs>
+              <Tabs
+                fluid
+                textAlign="center">
                 {tabs.map(tabname => {
                   return (
                     <Tabs.Tab
@@ -106,7 +108,7 @@ export const Vending = (props, context) => {
               <Divider />
             </Section>
           ))}
-          {(!!((coin_records.length > 0) || (isshared > 0))) && (
+          {!!(coin_records.length > 0) && (
             <Premium />
           )}
           {hidden_records.length > 0 && !!extended && (

@@ -159,13 +159,13 @@
 	last_slogan = world.time + rand(0, slogan_delay)
 
 	if(isshared)
-		build_shared_inventory(products)
-		build_shared_inventory(contraband, CAT_HIDDEN)
-		build_shared_inventory(premium, CAT_COIN)
+		build_shared_inventory()
 	else
 		build_inventory(products)
 		build_inventory(contraband, CAT_HIDDEN)
 		build_inventory(premium, CAT_COIN)
+
+	// we won't use these anymore so we can just null them
 	premium = null
 	products = null
 	contraband = null
@@ -222,22 +222,25 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 	/obj/item/storage/pouch/firstaid
 )))
 
-/obj/machinery/vending/proc/build_shared_inventory(list/productlist, category = CAT_NORMAL)
-	var/list/globallist = GLOB.vending_records
-	var/list/locallist = product_records
-	if(category == CAT_HIDDEN)
-		locallist = hidden_records
-		globallist = GLOB.vending_hidden_records
-	if(category == CAT_COIN)
-		locallist = coin_records
-		globallist = GLOB.vending_coin_records
-	if(globallist[type])
-		locallist = globallist[type]
-		return
+/obj/machinery/vending/proc/build_shared_inventory()
+	if(!GLOB.vending_records[type])
+		build_inventory(products)
+		GLOB.vending_records[type] = product_records
+	else
+		product_records = GLOB.vending_records[type]
 
-	build_inventory(productlist, category = category)
-	LAZYADD(globallist[type], locallist)
-	locallist = globallist[type]
+	if(!GLOB.vending_hidden_records[type])
+		build_inventory(contraband, CAT_HIDDEN)
+		GLOB.vending_hidden_records[type] = hidden_records
+	else
+		hidden_records = GLOB.vending_hidden_records[type]
+
+	if(!GLOB.vending_coin_records[type])
+		build_inventory(premium, CAT_COIN)
+		GLOB.vending_coin_records[type] = coin_records
+	else
+		coin_records = GLOB.vending_coin_records[type]
+
 
 /obj/machinery/vending/proc/build_inventory(list/productlist, category = CAT_NORMAL)
 	var/list/recordlist = product_records
@@ -247,7 +250,7 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 		recordlist = coin_records
 
 	for(var/entry in productlist)
-		//if this is true then it's a tabbed vendor.
+		//if this is true then this is supposed to be tab dependant.
 		if(islist(productlist[entry]))
 			for(var/typepath in productlist[entry])
 				var/amount = productlist[entry][typepath]
