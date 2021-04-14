@@ -651,8 +651,9 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 
 /obj/machinery/vending/proc/stock(obj/item/item_to_stock, mob/user, recharge = FALSE)
 	//More accurate comparison between absolute paths.
-	for(var/iter in (product_records + hidden_records + coin_records))
-		var/datum/vending_product/R = iter //Let's try with a new datum.
+	var/list/locallist = list()
+	locallist.Insert(product_records + hidden_records + coin_records) // this supposedly adds just the datums on a locallist so it aint nested in assocs.
+	for(var/datum/vending_product/R AS in locallist)
 		if(item_to_stock.type != R.product_path || istype(item_to_stock, /obj/item/storage)) //Nice try, specialists/engis
 			continue
 		if(istype(item_to_stock, /obj/item/weapon/gun))
@@ -760,7 +761,7 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 	if(!target)
 		return FALSE
 
-	for(var/datum/vending_product/R in product_records)
+	for(var/datum/vending_product/R AS in product_records)
 		if (R.amount <= 0) //Try to use a record that actually has something to dump.
 			continue
 		var/dump_path = R.product_path
