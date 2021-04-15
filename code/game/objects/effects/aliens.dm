@@ -52,7 +52,7 @@
 /obj/effect/xenomorph/spray/Initialize(mapload, duration = 10 SECONDS, damage = XENO_DEFAULT_ACID_PUDDLE_DAMAGE, mob/living/_xeno_owner) //Self-deletes
 	. = ..()
 	START_PROCESSING(SSprocessing, src)
-	QDEL_IN(src, duration + rand(0, 80 SECONDS))
+	QDEL_IN(src, duration + rand(0, 2 SECONDS))
 	acid_damage = damage
 	xeno_owner = _xeno_owner
 	RegisterSignal(xeno_owner, COMSIG_PARENT_QDELETING, .proc/clean_mob_owner)
