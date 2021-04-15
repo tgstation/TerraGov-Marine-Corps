@@ -322,9 +322,8 @@
 		X.remove_rally_hive_ability()
 
 /datum/hive_status/proc/update_leader_pheromones() // helper function to easily trigger an update of leader pheromones
-	for(var/i in xeno_leader_list)
-		var/mob/living/carbon/xenomorph/X = i
-		X.handle_xeno_leader_pheromones(living_xeno_queen)
+	for(var/mob/living/carbon/xenomorph/leader AS in xeno_leader_list)
+		leader.handle_xeno_leader_pheromones(living_xeno_queen)
 
 // ***************************************
 // *********** Status changes
@@ -471,8 +470,7 @@
 	living_xeno_queen = null
 	if(!xeno_queen_timer)
 		xeno_queen_timer = addtimer(CALLBACK(src, .proc/end_queen_death_timer), QUEEN_DEATH_TIMER, TIMER_STOPPABLE)
-	for(var/mob/living/carbon/xenomorph/leader AS in xeno_leader_list)
-		leader.handle_xeno_leader_pheromones(living_xeno_queen)
+	update_leader_pheromones()
 
 /mob/living/carbon/xenomorph/larva/proc/burrow()
 	if(ckey && client)
