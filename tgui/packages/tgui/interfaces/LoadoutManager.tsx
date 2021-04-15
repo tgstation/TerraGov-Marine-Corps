@@ -5,27 +5,25 @@ import { createLogger } from "../logging";
 
 type Loadout =
   {
-    name: string;
-    job: string;
-    key: number;
+    key: string,
+    job: string,
   }
 
 type LoadoutManagerData = 
   {
-    loadout_list: Loadout[];
-    job: string;
+    loadout_list: Loadout[],
+    job: string,
   };
 
 type TabData = 
   {
-    job: string;
-    setJob: any;
+    job: string,
+    setJob: any,
   }
 
 const LoadoutItem = (props : Loadout, context) => { 
   const { act } = useBackend(context);
   const {
-    name,
     job,
     key,
   } = props;
@@ -33,10 +31,10 @@ const LoadoutItem = (props : Loadout, context) => {
   return (
     <LabeledList.Item
       labelColor="white"
-      label={name}>
+      label={key}>
       <Button
-        onClick={() => act('SelectLoadout', { loadout_name: name, loadout_job: job })}>
-        Select Loadout
+        onClick={() => act('SelectLoadout', { loadout_name: key, loadout_job: job })}>
+        Sadness
       </Button>
     </LabeledList.Item>
   );
@@ -48,14 +46,14 @@ const LoadoutList = (props : LoadoutManagerData, context) => {
     <Stack.Item>
       <Section height={8} fill scrollable>
         <LabeledList>
-          {loadout_list.filter(loadout => loadout.job === job).map(loadout => {
-            return (
-              <LoadoutItem 
-                name={loadout.name} 
-                job={loadout.job}
-                key={loadout.key} />
-            );
-          })}
+          {loadout_list
+            .map(loadout_visible => {
+              return (
+                <LoadoutItem 
+                  key={loadout_visible.key} 
+                  job={loadout_visible.job} />
+              );
+            })}
         </LabeledList>
       </Section>
     </Stack.Item>
