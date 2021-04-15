@@ -9,7 +9,6 @@
 	var/mob_min = 1
 	var/dispatch_message = "An encrypted signal has been received from a nearby vessel. Stand by." //Message displayed to marines once the signal is finalized.
 	var/objectives = "" //Objectives to display to the members.
-	var/probability = 0 //So we can give different ERTs a different probability.
 	var/list/datum/mind/members = list() //Currently-joined members.
 	var/list/datum/mind/candidates = list() //Potential candidates for enlisting.
 	var/mob/living/carbon/leader = null
@@ -21,6 +20,15 @@
 	var/candidate_timer
 	var/cooldown_timer
 	var/spawn_type = /mob/living/carbon/human
+	///The base probability of that ERT spawning, it is changing with monitor state
+	var/base_probability = 0
+	/**
+	 * How the current_weight change with the monitor state. A big positive number will make the current weight go down drasticly when marines are winning
+	 * A small negative number will make the current weight get smaller when xenos are winning. 
+	 * All effects are symetric (if it goes down when marine are winning, it will go up when xeno are winning)
+	 * if the alignement_factor factor is 0, it will proc a specific case
+	 */
+	var/alignement_factor = 0
 
 /datum/game_mode/proc/initialize_emergency_calls()
 	if(length(all_calls)) //It's already been set up.
@@ -39,23 +47,30 @@
 
 //Randomizes and chooses a call datum.
 /datum/game_mode/proc/get_random_call()
-	var/datum/emergency_call/chosen_call
-	var/list/valid_calls = list()
-
+	var/normalised_monitor_state = SSmonitor.current_points / XENOS_LOSING_THRESHOLD
+	var/list/calls_weighted = list()
+	var/total_weight = 0
 	for(var/datum/emergency_call/E in all_calls) //Loop through all potential candidates
-		if(E.probability < 1) //Those that are meant to be admin-only
+		if(E.base_probability <= 0)
 			continue
+		var/weight = E.get_actualised_weight(normalised_monitor_state)
+		calls_weighted[E] = weight
+		total_weight += weight
+	var/datum/emergency_call/chosen = pickweight(calls_weighted)
+	message_admins("[chosen.name] was randomly picked from all emergency calls possible with a probability of [(calls_weighted[chosen] / total_weight) * 100]")
+	return chosen
 
-		valid_calls.Add(E)
+/**
+ * Return a new current_weight using the base probability, the Alignement factor of the ERT and the monitor state
+ * monitor_state : the normalised state of the monitor. If it's equal to -1, monitor is barely in its MARINE_LOSING state. 
+ * A +2.5 value mean we are beyond the XENO_DELAYING state, aka marines have crushed the xenos
+ */
+/datum/emergency_call/proc/get_actualised_weight(monitor_state)
+	var/probability_direction = (monitor_state * alignement_factor)
+	if(probability_direction >= 0)
+		return base_probability * (1+probability_direction)
+	return base_probability / (1-probability_direction)
 
-		if(prob(E.probability))
-			chosen_call = E
-			break
-
-	if(!istype(chosen_call))
-		chosen_call = pick(valid_calls)
-
-	return chosen_call
 
 /datum/emergency_call/proc/show_join_message()
 	if(!mob_max || !SSticker?.mode) //Not a joinable distress call.

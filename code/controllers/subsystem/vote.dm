@@ -179,9 +179,10 @@ SUBSYSTEM_DEF(vote)
 		to_chat(usr, "<span class='warning'>Cannot start vote, server is not done initializing.</span>")
 		return FALSE
 	var/lower_admin = FALSE
-	var/ckey = ckey(initiator_key)
-	if(GLOB.admin_datums[ckey])
-		lower_admin = TRUE
+	if(initiator_key)
+		var/ckey = ckey(initiator_key)
+		if(GLOB.admin_datums[ckey])
+			lower_admin = TRUE
 
 	if(!mode)
 		if(started_time)
@@ -251,7 +252,7 @@ SUBSYSTEM_DEF(vote)
 		mode = vote_type
 		initiator = initiator_key
 		started_time = world.time
-		var/text = "[capitalize(mode)] vote started by [initiator]."
+		var/text = "[capitalize(mode)] vote started by [initiator ? initiator : "server"]."
 		if(mode == "custom")
 			text += "<br>[question]"
 		log_vote(text)
@@ -274,6 +275,11 @@ SUBSYSTEM_DEF(vote)
 	set category = "OOC"
 	set name = "Vote"
 	SSvote.ui_interact(usr)
+
+///Starts the automatic map vote at the end of each round
+/datum/controller/subsystem/vote/proc/automatic_vote()
+	initiate_vote("groundmap")
+	addtimer(CALLBACK(src, .proc/initiate_vote, "shipmap"), 70 SECONDS)
 
 /datum/controller/subsystem/vote/ui_state()
 	return GLOB.always_state

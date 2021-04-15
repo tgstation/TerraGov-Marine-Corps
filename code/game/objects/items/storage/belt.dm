@@ -630,12 +630,13 @@
 	if(!istype(I, /obj/item/weapon/gun/pistol))
 		return ..()
 	var/obj/item/weapon/gun/pistol/gun = I
-	if(gun.current_mag)
-		return ..()
 	for(var/obj/item/ammo_magazine/mag in contents) 
 		if(!istype(gun, mag.gun_type))
 			continue
-		gun.reload(user, mag)
+		if(user.l_hand && user.r_hand || gun.current_mag)
+			gun.tactical_reload(mag, user)
+		else 
+			gun.reload(user, mag)
 		orient2hud()
 		return
 

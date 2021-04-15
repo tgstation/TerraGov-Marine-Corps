@@ -764,11 +764,17 @@
 /obj/screen/arrow/proc/add_hud(mob/living/carbon/tracker_input, atom/target_input)
 	if(!tracker_input?.client)
 		return
-
 	tracker = tracker_input
 	target = target_input
 	tracker.client.screen += src
+	RegisterSignal(tracker, COMSIG_PARENT_QDELETING, .proc/kill_arrow)
+	RegisterSignal(target, COMSIG_PARENT_QDELETING, .proc/kill_arrow)
 	process() //Ping immediately after parameters have been set
+
+///Stop the arrow to avoid runtime and hard del
+/obj/screen/arrow/proc/kill_arrow()
+	SIGNAL_HANDLER
+	qdel(src)
 
 /obj/screen/arrow/Initialize() //Self-deletes
 	. = ..()
@@ -784,6 +790,8 @@
 		transform = turn(transform, Get_Angle(tracker, target))
 
 /obj/screen/arrow/Destroy()
+	target = null
+	tracker = null
 	STOP_PROCESSING(SSprocessing, src)
 	return ..()
 
@@ -817,4 +825,3 @@
 	name = "Defend order arrow"
 	icon_state = "Defend_arrow"
 	duration = ORDER_DURATION
-
