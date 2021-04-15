@@ -452,6 +452,9 @@
 /obj/machinery/computer/orbital_cannon_console/ex_act()
 	return
 
+if(isobserver(user))
+		user.visible_message("your a ghost. you shouldn't be touching that")
+		return
 
 /obj/machinery/computer/orbital_cannon_console/interact(mob/user)
 	. = ..()
@@ -461,11 +464,11 @@
 	if(!allowed(user))
 		return
 
+
 	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use the console.</span>",
 		"<span class='notice'>You fumble around figuring out how to use the console.</span>")
-		if(user.skills.getRating("Ghost") < SKILL_ENGINEER_ENGI)
-		user.visible_message("your a ghost. nice")
+		
 		var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return
