@@ -301,8 +301,6 @@
 		burn_heal_amp = initial(burn_heal_amp)
 		tox_heal = initial(tox_heal)
 		stamina_regen_amp = initial(stamina_regen_amp)
-		wearer.remove_movespeed_modifier(MOVESPEED_ID_VALI_BOOST)
-		movement_boost = initial(movement_boost)
 		return
 
 	for(var/datum/reagent/R AS in wearer.reagents.reagent_list)
@@ -315,13 +313,6 @@
 		burn_heal_amp += reagent_stats[R.type][BURN_AMP]
 		tox_heal += reagent_stats[R.type][TOX_HEAL]
 		stamina_regen_amp += reagent_stats[R.type][STAM_REG_AMP]
-		movement_boost += reagent_stats[R.type][SPEED_BOOST]
-
-	if(movement_boost)
-		var/item_slowdown = wearer.additive_flagged_slowdown(SLOWDOWN_IMPEDE_JETPACK)
-		if(item_slowdown)
-			movement_boost += min(movement_boost/item_slowdown, item_slowdown)
-		wearer.add_movespeed_modifier(MOVESPEED_ID_VALI_BOOST, TRUE, 0, NONE, TRUE, movement_boost)
 
 ///Used to scan the person
 /datum/component/chem_booster/proc/scan_user(datum/source)
