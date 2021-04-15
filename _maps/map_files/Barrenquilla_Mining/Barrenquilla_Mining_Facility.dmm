@@ -1,10 +1,4 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"aa" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
-	dir = 1
-	},
-/turf/closed/brock,
-/area/shuttle/drop1/lz1)
 "ab" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/brock,
@@ -64,7 +58,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 8
 	},
-/turf/open/lavaland/basalt,
+/turf/open/floor/plating,
 /area/shuttle/drop2/lz2)
 "ao" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
@@ -924,7 +918,7 @@
 /area/barren/misc/clocknuke)
 "et" = (
 /obj/structure/window/framed/colony/reinforced/tinted,
-/turf/closed/brock,
+/turf/open/floor/tile/purple,
 /area/barren/misc/alienstorage)
 "eu" = (
 /turf/open/lavaland/lava/lpiece{
@@ -1964,8 +1958,8 @@
 /turf/open/floor/plating/dmg2,
 /area/barren/cave/central)
 "jk" = (
-/obj/machinery/door/airlock/mainship/research/locked/free_access,
 /obj/structure/cable,
+/obj/machinery/door/airlock/colony/research,
 /turf/open/floor/prison/sterilewhite,
 /area/barren/medical/research)
 "jl" = (
@@ -1983,7 +1977,7 @@
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 8
 	},
-/turf/closed/brock,
+/turf/open/space/basic,
 /area/shuttle/drop1/lz1)
 "jo" = (
 /obj/item/lightstick/red/anchored,
@@ -2029,7 +2023,7 @@
 /turf/open/floor/tile/dark,
 /area/shuttle/drop2/lz2)
 "jC" = (
-/obj/machinery/door/airlock/mainship/research/locked/free_access,
+/obj/machinery/door/airlock/colony/research,
 /turf/open/floor/prison/sterilewhite,
 /area/barren/medical/research)
 "jE" = (
@@ -2210,7 +2204,9 @@
 /area/shuttle/drop1/lz1)
 "kp" = (
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor/medbay,
-/turf/open/lavaland/basalt,
+/turf/open/floor/tile/bar{
+	name = "medical"
+	},
 /area/barren/medical)
 "kq" = (
 /obj/item/paper/crumpled,
@@ -2834,7 +2830,7 @@
 /obj/structure/cable,
 /obj/structure/window/framed/colony,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/space/basic,
+/turf/open/floor/plating,
 /area/bigredv2/outside/general_offices)
 "nk" = (
 /obj/structure/closet/crate/freezer,
@@ -3285,8 +3281,8 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood/writing,
-/turf/open/floor/tile/blue/whiteblue{
-	dir = 4
+/turf/open/floor/tile/bar{
+	name = "medical"
 	},
 /area/barren/medical)
 "pE" = (
@@ -3332,7 +3328,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 1
 	},
-/turf/open/space/basic,
+/turf/open/floor/plating,
 /area/shuttle/drop2/lz2)
 "pQ" = (
 /obj/structure/table,
@@ -3372,8 +3368,8 @@
 "qb" = (
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor/medbay,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/tile/blue/whiteblue{
-	dir = 8
+/turf/open/floor/tile/bar{
+	name = "medical"
 	},
 /area/barren/medical)
 "qc" = (
@@ -4266,8 +4262,8 @@
 /turf/open/floor/prison/bright_clean/two,
 /area/barren/security)
 "uK" = (
-/obj/machinery/door/airlock/mainship/research/locked/free_access,
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/airlock/colony/research,
 /turf/open/floor/tile/purple,
 /area/barren/medical/research)
 "uN" = (
@@ -5995,7 +5991,7 @@
 	dir = 1
 	},
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
-/turf/open/space/basic,
+/turf/open/floor/plating,
 /area/shuttle/drop2/lz2)
 "Eh" = (
 /obj/structure/filingcabinet,
@@ -6232,10 +6228,11 @@
 /turf/open/lavaland/basalt,
 /area/barren/cave/southeast)
 "Fk" = (
-/obj/structure/cable,
-/obj/item/organ/xenos/acidgland,
-/turf/open/lavaland/catwalk,
-/area/barren/cave/south)
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 1
+	},
+/turf/open/space/basic,
+/area/shuttle/drop1/lz1)
 "Fm" = (
 /obj/structure/window/framed/colony,
 /turf/open/floor/tile/bar{
@@ -7184,7 +7181,7 @@
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 2
 	},
-/turf/open/lavaland/basalt,
+/turf/open/floor/plating,
 /area/shuttle/drop2/lz2)
 "JV" = (
 /turf/open/floor/prison/kitchen,
@@ -7204,10 +7201,6 @@
 	},
 /turf/open/lavaland/basalt,
 /area/barren/cave/west)
-"Kb" = (
-/obj/item/organ/xenos/plasmavessel,
-/turf/open/lavaland/basalt,
-/area/barren/cave/central)
 "Kc" = (
 /obj/structure/bed/chair/comfy/beige{
 	dir = 4
@@ -7576,7 +7569,7 @@
 "Ma" = (
 /obj/structure/window/framed/colony,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/space/basic,
+/turf/open/floor/plating,
 /area/bigredv2/outside/general_offices)
 "Mc" = (
 /obj/structure/cargo_container/horizontal{
@@ -9526,7 +9519,7 @@
 /turf/open/floor/freezer,
 /area/barren/cave/north)
 "WW" = (
-/obj/machinery/door/airlock/mainship/research/locked/free_access,
+/obj/machinery/door/airlock/colony/research,
 /turf/open/floor/freezer,
 /area/barren/medical/research)
 "Xa" = (
@@ -36960,7 +36953,7 @@ Yy
 Yy
 Rq
 Rq
-Fk
+Wu
 Wu
 Wu
 Rq
@@ -37467,7 +37460,7 @@ Ra
 Hj
 Eu
 Eu
-Kb
+Qb
 Qb
 Qb
 Yy
@@ -40505,7 +40498,7 @@ aZ
 Qb
 Qb
 Qb
-jH
+DF
 yA
 DU
 FP
@@ -48443,11 +48436,11 @@ sa
 sa
 ko
 ko
-ab
-ac
+ko
+ko
 ac
 OQ
-ac
+ko
 ac
 wu
 ko
@@ -49739,7 +49732,7 @@ Pw
 yL
 Pw
 gf
-aa
+iG
 pr
 OD
 OD
@@ -50253,7 +50246,7 @@ Pw
 fN
 Pw
 Pw
-aa
+Fk
 OD
 OD
 OD
@@ -50510,7 +50503,7 @@ Pw
 mY
 Pw
 Pw
-ag
+iG
 OD
 OD
 OD
@@ -50771,7 +50764,7 @@ Sr
 OD
 OD
 OD
-pr
+OD
 OD
 OD
 OD
@@ -51281,7 +51274,7 @@ Pw
 Pw
 Pw
 Jv
-aa
+iG
 OD
 OD
 OD
@@ -51795,7 +51788,7 @@ Pw
 Cq
 Pw
 Hs
-aa
+iG
 sa
 sa
 sa
