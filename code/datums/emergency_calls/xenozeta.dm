@@ -1,6 +1,6 @@
 /datum/emergency_call/xenomorphs_zeta
 	name = "Xenomorphs (Zeta Hive)"
-	probability = 0
+	base_probability = 0
 	auto_shuttle_launch = TRUE
 	spawn_type = null
 

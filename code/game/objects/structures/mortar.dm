@@ -242,7 +242,7 @@
 	icon = 'icons/Marine/mortar.dmi'
 	icon_state = "mortar_m402_carry"
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
-	w_class = WEIGHT_CLASS_HUGE //No dumping this in a backpack. Carry it, fatso
+	w_class = WEIGHT_CLASS_BULKY //No dumping this in most backpacks. Carry it, fatso
 
 
 /obj/item/mortar_kit/attack_self(mob/user)
@@ -270,7 +270,7 @@
 	desc = "An unlabeled 80mm mortar shell, probably a casing."
 	icon = 'icons/Marine/mortar.dmi'
 	icon_state = "mortar_ammo_cas"
-	w_class = WEIGHT_CLASS_HUGE
+	w_class = WEIGHT_CLASS_BULKY
 	flags_atom = CONDUCT
 
 /obj/item/mortal_shell/proc/detonate(turf/T)
