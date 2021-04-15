@@ -1,4 +1,0 @@
-author: "SplinterGP"
-delete-after: True
-changes: 
-  - qol: "Swapped OK/Cancel buttons in tgui list input, so that it stays consistent with Windows UI guidelines (was Cancel/OK before)."
