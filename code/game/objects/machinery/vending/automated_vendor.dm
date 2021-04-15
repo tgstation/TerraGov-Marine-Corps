@@ -13,6 +13,7 @@
 	idle_power_usage = 60
 	active_power_usage = 3000
 	var/current_loadout_items_data = list()
+	var/datum/loadout/current_loadout
 
 
 /obj/machinery/automated_vendor/update_icon()
@@ -46,10 +47,11 @@
 	)
 
 /obj/machinery/automated_vendor/proc/prepare_items_data(mob/user)
+	current_loadout = user.client.prefs.loadout_manager.get_current_loadout()
 	for (var/item_slot_key in GLOB.visible_item_slot_list)
 		var/list/result = list()
 
-		var/datum/item_representation/item = user.client.prefs.loadout_manager.current_loadout.item_list[item_slot_key]
+		var/datum/item_representation/item = current_loadout.item_list[item_slot_key]
 		if (isnull(item))
 			result["icon"] = icon2base64(icon("icons/misc/empty.dmi", "empty"))
 			current_loadout_items_data[item_slot_key] = result

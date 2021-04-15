@@ -146,9 +146,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	if(!IsGuestKey(C.key))
 		load_path(C.ckey)
-		if(!load_loadout_manager())
-			loadout_manager = new 
-			loadout_manager.generate_default()
+		//if(!load_loadout_manager())
+		loadout_manager = new 
 		if(load_preferences() && load_character())
 			return
 
@@ -157,8 +156,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	menuoptions = list()
 	key_bindings = deepCopyList(GLOB.hotkey_keybinding_list_by_key) // give them default keybinds and update their movement keys
 	C.update_movement_keys(src)
-	loadout_manager = new 
-	loadout_manager.generate_default()
+	loadout_manager = new
 
 
 /datum/preferences/can_interact(mob/user)

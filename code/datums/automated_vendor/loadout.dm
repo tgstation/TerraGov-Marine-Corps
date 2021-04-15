@@ -19,6 +19,8 @@ GLOBAL_LIST_INIT(visible_item_slot_list, list(
 	var/name = ""
 	///The job associated with the loadout
 	var/job = MARINE_LOADOUT
+	/// Identifiant of that loadout
+	var/key = ""
 	/** 
 	 * Assoc list of all items composing this loadout
 	 * the key of each item is a slot key 
@@ -128,27 +130,11 @@ GLOBAL_LIST_INIT(visible_item_slot_list, list(
 			item.forceMove(source)
 
 ///Return a new empty loayout
-/proc/create_empty_loadout(name = "Default")
+/proc/create_empty_loadout(name = "Default", job = MARINE_LOADOUT)
 	var/datum/loadout/default = new
 	default.name = name
+	default.job = job
+	default.key = name + "-" + job
 	default.item_list = list()
 	default.add_item(/obj/item/clothing/under/marine/standard ,slot_w_uniform_str)
 	return default
-
-/proc/create_empty_loadout_list()
-	var/list/loadouts_list = list()
-	loadouts_list[MARINE_LOADOUT] = list()
-	loadouts_list[ENGIE_LOADOUT] = list()
-	loadouts_list[MEDIC_LOADOUT] = list()
-	loadouts_list[SMARTGUNNER_LOADOUT] = list()
-	loadouts_list[LEADER_LOADOUT] = list()
-	return loadouts_list
-
-/proc/create_default_loadout_list()
-	var/list/loadouts_list = create_empty_loadout_list()
-	loadouts_list[MARINE_LOADOUT]["Default"] = create_empty_loadout()
-	loadouts_list[ENGIE_LOADOUT]["Default"] = create_empty_loadout()
-	loadouts_list[MEDIC_LOADOUT]["Default"] = create_empty_loadout()
-	loadouts_list[SMARTGUNNER_LOADOUT]["Default"] = create_empty_loadout()
-	loadouts_list[LEADER_LOADOUT]["Default"] = create_empty_loadout()
-	return loadouts_list
