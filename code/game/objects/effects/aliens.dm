@@ -52,7 +52,7 @@
 /obj/effect/xenomorph/spray/Initialize(mapload, duration = 10 SECONDS, damage = XENO_DEFAULT_ACID_PUDDLE_DAMAGE, mob/living/_xeno_owner) //Self-deletes
 	. = ..()
 	START_PROCESSING(SSprocessing, src)
-	QDEL_IN(src, duration + rand(0, 2 SECONDS))
+	QDEL_IN(src, duration + rand(0, 80 SECONDS))
 	acid_damage = damage
 	xeno_owner = _xeno_owner
 	RegisterSignal(xeno_owner, COMSIG_PARENT_QDELETING, .proc/clean_mob_owner)
@@ -63,7 +63,7 @@
 	xeno_owner = null
 	return ..()
 
-/obj/effect/xenomorph/spray/Crossed(atom/movable/AM)
+/obj/effect/xenomorph/spray/Entered(atom/movable/AM, atom/oldloc)
 	. = ..()
 	SEND_SIGNAL(AM, COMSIG_ATOM_ACIDSPRAY_ACT, src, acid_damage, slow_amt)
 
@@ -72,7 +72,7 @@
 	UnregisterSignal(xeno_owner, COMSIG_PARENT_QDELETING)
 	xeno_owner = null
 
-/mob/living/carbon/human/proc/acid_spray_crossed(datum/source, obj/effect/xenomorph/spray/acid_spray, acid_damage, slow_amt)
+/mob/living/carbon/human/proc/acid_spray_entered(datum/source, obj/effect/xenomorph/spray/acid_spray, acid_damage, slow_amt)
 	SIGNAL_HANDLER
 	if(CHECK_MULTIPLE_BITFIELDS(flags_pass, HOVERING))
 		return
