@@ -301,7 +301,7 @@
 /obj/item/binoculars/tactical/proc/clean_refs()
 	SIGNAL_HANDLER
 	linked_mortar = null
-	say("NOTICE: [src] has lost connection with its linked mortar.")
+	say("NOTICE: connection lost with linked mortar.")
 
 /obj/item/binoculars/tactical/scout
 	name = "scout tactical binoculars"
