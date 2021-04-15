@@ -471,7 +471,10 @@
 	living_xeno_queen = null
 	if(!xeno_queen_timer)
 		xeno_queen_timer = addtimer(CALLBACK(src, .proc/end_queen_death_timer), QUEEN_DEATH_TIMER, TIMER_STOPPABLE)
-
+	for(var/mob/living/carbon/xenomorph/leader AS in xeno_leader_list)
+		remove_leader(leader)
+		leader.handle_xeno_leader_pheromones(living_xeno_queen)
+		leader.hud_set_queen_overwatch()
 
 /mob/living/carbon/xenomorph/larva/proc/burrow()
 	if(ckey && client)
@@ -585,7 +588,7 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/proc/attempt_to_spawn_larva(mob/xeno_candidate, larva_already_reserved = FALSE)
 	if(!xeno_candidate?.client)
 		return FALSE
-	
+
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	if((xeno_job.total_positions - xeno_job.current_positions) < 0)
 		return FALSE
