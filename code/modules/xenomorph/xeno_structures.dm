@@ -33,7 +33,7 @@
 	bound_height = 96
 	max_integrity = 1000
 	///How many larva points one silo produce in one minute
-	var/larva_spawn_rate = 0.5
+	var/larva_spawn_rate = 0.45
 	var/turf/center_turf
 	var/datum/hive_status/associated_hive
 	var/silo_area
