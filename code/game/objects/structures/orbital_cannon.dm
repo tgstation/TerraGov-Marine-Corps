@@ -452,9 +452,7 @@
 /obj/machinery/computer/orbital_cannon_console/ex_act()
 	return
 
-	if(isobserver(user))
-		user.visible_message("your a ghost. you shouldn't be touching that")
-		return
+
 
 /obj/machinery/computer/orbital_cannon_console/interact(mob/user)
 	. = ..()
@@ -464,17 +462,7 @@
 	if(!allowed(user))
 		return
 
-
-	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
-		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use the console.</span>",
-		"<span class='notice'>You fumble around figuring out how to use the console.</span>")
-		
-		var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
-		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
-			return
-
-	var/dat
-	if(!GLOB.marine_main_ship?.orbital_cannon)
+if(!GLOB.marine_main_ship?.orbital_cannon)
 		dat += "No Orbital Cannon System Detected!<BR>"
 	else if(!GLOB.marine_main_ship.orbital_cannon.tray)
 		dat += "Orbital Cannon System Tray is missing!<BR>"
@@ -506,6 +494,17 @@
 			dat += "<BR><A href='?src=\ref[src];check_req=1'><font size=3>Check Fuel Requirements</font></A><BR>"
 
 		dat += "<HR><BR><A href='?src=\ref[src];close=1'><font size=3>Close</font></A><BR>"
+
+dat += "<HR><BR><A href='?src=\ref[src];close=1'><font size=3>Close</font></A><BR>"
+	if(isobserver(user))
+	popup.open()
+	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
+		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use the console.</span>",
+		"<span class='notice'>You fumble around figuring out how to use the console.</span>")
+
+		var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
+		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+			return
 
 
 	var/datum/browser/popup = new(user, "orbital_console", "<div align='center'>Orbital Cannon System Control Console</div>", 500, 350)
