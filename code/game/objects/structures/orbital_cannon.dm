@@ -495,7 +495,7 @@ if(!GLOB.marine_main_ship?.orbital_cannon)
 
 		dat += "<HR><BR><A href='?src=\ref[src];close=1'><font size=3>Close</font></A><BR>"
 
-dat += "<HR><BR><A href='?src=\ref[src];close=1'><font size=3>Close</font></A><BR>"
+	dat += "<HR><BR><A href='?src=\ref[src];close=1'><font size=3>Close</font></A><BR>"
 	if(isobserver(user))
 	popup.open()
 	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
