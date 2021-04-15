@@ -387,14 +387,6 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 /datum/game_mode/proc/get_hivemind_collapse_countdown()
 	return
 
-///handles end of the round when no silo is left
-/datum/game_mode/proc/siloless_hive_collapse()
-	return
-
-///starts the timer to end the round when no silo is left
-/datum/game_mode/proc/get_siloless_collapse_countdown()
-	return
-
 /datum/game_mode/proc/announce_medal_awards()
 	if(!length(GLOB.medal_awards))
 		return

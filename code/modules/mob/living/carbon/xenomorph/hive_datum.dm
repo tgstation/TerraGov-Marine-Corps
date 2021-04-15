@@ -1144,33 +1144,6 @@ to_chat will check for valid clients itself already so no need to double check f
 	tier3_xeno_limit = max(length(xenos_by_tier[XENO_TIER_THREE]),FLOOR((length(xenos_by_tier[XENO_TIER_ZERO])+length(xenos_by_tier[XENO_TIER_ONE])+length(xenos_by_tier[XENO_TIER_TWO]))/3+1,1))
 	tier2_xeno_limit = max(length(xenos_by_tier[XENO_TIER_TWO]),length(xenos_by_tier[XENO_TIER_ZERO]) + length(xenos_by_tier[XENO_TIER_ONE])+1 - length(xenos_by_tier[XENO_TIER_THREE]))
 
-///Handles the timer when all silos are destroyed
-/datum/hive_status/proc/handle_silo_death_timer()
-	return
-
-/datum/hive_status/normal/handle_silo_death_timer()
-	if(!isdistress(SSticker.mode))
-		return
-	if(world.time < MINIMUM_TIME_SILO_LESS_COLLAPSE)
-		return
-	var/datum/game_mode/infestation/distress/D = SSticker.mode
-	if(D.round_stage != DISTRESS_MARINE_DEPLOYMENT)
-		if(D?.siloless_hive_timer)
-			deltimer(D.siloless_hive_timer)
-			D.siloless_hive_timer = null
-		return
-	if(GLOB.xeno_resin_silos.len)
-		if(D?.siloless_hive_timer)
-			deltimer(D.siloless_hive_timer)
-			D.siloless_hive_timer = null
-		return
-
-	if(D?.siloless_hive_timer)
-		return
-
-	xeno_message("We don't have any silos! The hive will collapse if nothing is done", "xenoannounce", 6, TRUE)
-	D.siloless_hive_timer = addtimer(CALLBACK(D, /datum/game_mode.proc/siloless_hive_collapse), 5 MINUTES, TIMER_STOPPABLE)
-
 ///Add a mob to the candidate queue, the first mobs of the queue will have priority on new larva spots
 /datum/hive_status/proc/add_to_larva_candidate_queue(mob/dead/observer/observer)
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)

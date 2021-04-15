@@ -67,7 +67,6 @@
 		if(length(GLOB.xeno_resin_silos) == 1)
 			associated_hive.give_larva_to_next_in_queue()
 		RegisterSignal(associated_hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK), .proc/is_burrowed_larva_host)
-		associated_hive.handle_silo_death_timer()
 	silo_area = get_area(src)
 	var/turf/tunnel_turf = get_step(center_turf, NORTH)
 	if(tunnel_turf.can_dig_xeno_tunnel())
@@ -85,7 +84,6 @@
 			distress_mode = SSticker.mode
 			if (!(distress_mode.round_stage == DISTRESS_DROPSHIP_CRASHING))//No need to notify the xenos shipside
 				associated_hive.xeno_message("A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!", "xenoannounce", 5, FALSE,src.loc, 'sound/voice/alien_help2.ogg',FALSE , null, /obj/screen/arrow/silo_damaged_arrow)
-				associated_hive.handle_silo_death_timer()
 				associated_hive = null
 				notify_ghosts("\ A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!", source = get_turf(src), action = NOTIFY_JUMP)
 

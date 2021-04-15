@@ -38,7 +38,6 @@
 	var/bioscan_current_interval = 45 MINUTES
 	var/bioscan_ongoing_interval = 20 MINUTES
 	var/orphan_hive_timer
-	var/siloless_hive_timer
 
 
 /datum/game_mode/infestation/distress/announce()
@@ -261,23 +260,6 @@
 	if(eta > 0)
 		return "[(eta / 60) % 60]:[add_leading(num2text(eta % 60), 2, "0")]"
 
-
-/datum/game_mode/infestation/distress/siloless_hive_collapse()
-	if(!(flags_round_type & MODE_INFESTATION))
-		return
-	if(round_finished)
-		return
-	if(round_stage == DISTRESS_DROPSHIP_CRASHING)
-		return
-	round_finished = MODE_INFESTATION_M_MAJOR
-
-
-/datum/game_mode/infestation/distress/get_siloless_collapse_countdown()
-	if(!siloless_hive_timer)
-		return 0
-	var/eta = timeleft(siloless_hive_timer) * 0.1
-	if(eta > 0)
-		return "[(eta / 60) % 60]:[add_leading(num2text(eta % 60), 2, "0")]"
 
 
 /datum/game_mode/infestation/distress/attempt_to_join_as_larva(mob/dead/observer/observer)
