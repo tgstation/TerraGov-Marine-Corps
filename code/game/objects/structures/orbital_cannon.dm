@@ -464,6 +464,8 @@
 	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use the console.</span>",
 		"<span class='notice'>You fumble around figuring out how to use the console.</span>")
+		if(user.skills.getRating("Ghost") < SKILL_ENGINEER_ENGI)
+		user.visible_message("your a ghost. nice")
 		var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return
