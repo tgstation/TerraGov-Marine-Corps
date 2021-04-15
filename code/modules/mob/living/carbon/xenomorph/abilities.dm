@@ -1177,7 +1177,6 @@
 	use_state_flags = XACT_USE_STAGGERED|XACT_USE_FORTIFIED|XACT_USE_CRESTED //can't use while staggered, defender fortified or crest down
 	keybind_signal = COMSIG_XENOABILITY_HEADBITE
 	plasma_cost = 100
-	target_flags = XABB_MOB_TARGET
 	///How much psy points it give
 	var/psy_points_reward = 60
 	///How much larva points it gives (8 points for one larva in distress)
@@ -1262,7 +1261,6 @@
 	use_state_flags = XACT_USE_STAGGERED|XACT_USE_FORTIFIED|XACT_USE_CRESTED //can't use while staggered, defender fortified or crest down
 	keybind_signal = COMSIG_XENOABILITY_REGURGITATE
 	plasma_cost = 100
-	target_flags = XABB_MOB_TARGET
 	///In how much time the cocoon will be ejected
 	var/cocoon_production_time = 3 SECONDS
 
