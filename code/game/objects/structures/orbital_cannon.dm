@@ -452,7 +452,7 @@
 /obj/machinery/computer/orbital_cannon_console/ex_act()
 	return
 
-if(isobserver(user))
+	if(isobserver(user))
 		user.visible_message("your a ghost. you shouldn't be touching that")
 		return
 
