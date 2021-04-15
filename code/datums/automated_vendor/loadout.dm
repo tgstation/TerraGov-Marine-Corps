@@ -19,8 +19,6 @@ GLOBAL_LIST_INIT(visible_item_slot_list, list(
 	var/name = ""
 	///The job associated with the loadout
 	var/job = MARINE_LOADOUT
-	/// Identifiant of that loadout
-	var/key = ""
 	/** 
 	 * Assoc list of all items composing this loadout
 	 * the key of each item is a slot key 
@@ -34,12 +32,13 @@ GLOBAL_LIST_INIT(visible_item_slot_list, list(
  * item_slot where the item should be added
  */
 /datum/loadout/proc/add_item(item_type, slot)
-	if(can_equip_to_slot(item_type, slot))
-		var/item_representation_type = item_representation_type(item_type)
-		var/datum/item_representation/item_representation = new item_representation_type
-		item_representation.copy_vars_from_item_type(item_type)
-		item_list[slot] = item_representation
-		return TRUE
+	if(!can_equip_to_slot(item_type, slot))
+		return FALSE
+	var/item_representation_type = item_representation_type(item_type)
+	var/datum/item_representation/item_representation = new item_representation_type
+	item_representation.copy_vars_from_item_type(item_type)
+	item_list[slot] = item_representation
+	return TRUE
 
 ///Empty a slot of the loadout
 /datum/loadout/proc/empty_slot(slot)
@@ -134,7 +133,6 @@ GLOBAL_LIST_INIT(visible_item_slot_list, list(
 	var/datum/loadout/default = new
 	default.name = name
 	default.job = job
-	default.key = name + "-" + job
 	default.item_list = list()
 	default.add_item(/obj/item/clothing/under/marine/standard ,slot_w_uniform_str)
 	return default

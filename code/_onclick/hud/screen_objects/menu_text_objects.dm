@@ -92,13 +92,6 @@
 	. = ..()
 	hud.mymob.client?.prefs.ShowChoices(hud.mymob)
 
-/obj/screen/text/lobby/clickable/loadout_selector
-	maptext = "<span class=menutext>Make loadout</span>"
-
-/obj/screen/text/lobby/clickable/loadout_selector/Click()
-	. = ..()
-	
-
 
 /obj/screen/text/lobby/clickable/join_game
 	maptext = "<span class=menutext>Join Game</span>"
