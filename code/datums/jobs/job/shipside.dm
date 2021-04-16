@@ -222,7 +222,7 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	)
 
 /datum/job/terragov/command/pilot/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
-	.=..()
+	. = ..()
 	if(!ishuman(new_mob))
 		return
 	var/mob/living/carbon/human/new_human = new_mob
