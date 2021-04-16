@@ -803,6 +803,7 @@ However, your vision is limited through cameras from the ship or to the marines 
 Recon any threats and report findings to various communication channels.
 If you require any help, use <b>mentorhelp</b> to ask mentors about what you're supposed to do."})
 
+
 /datum/job/terragov/silicon/ai/announce(mob/living/announced_mob)
 	. = ..()
 	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, .proc/minor_announce, "[announced_mob] has been downloaded to an empty bluespace-networked AI core at [AREACOORD(announced_mob)]."))
