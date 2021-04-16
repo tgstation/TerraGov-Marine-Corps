@@ -19,9 +19,9 @@ GLOBAL_LIST_INIT(visible_item_slot_list, list(
 	var/name = ""
 	///The job associated with the loadout
 	var/job = MARINE_LOADOUT
-	/** 
+	/**
 	 * Assoc list of all items composing this loadout
-	 * the key of each item is a slot key 
+	 * the key of each item is a slot key
 	 * each item of the list is a datum/item_representation
 	 */
 	var/list/item_list
@@ -127,6 +127,12 @@ GLOBAL_LIST_INIT(visible_item_slot_list, list(
 		item = get_item_from_item_representation(item_list[slot_key])
 		if(!user.equip_to_slot_if_possible(item, GLOB.slot_str_to_slot[slot_key], warning = FALSE))
 			item.forceMove(source)
+
+/**
+ * This will read all items on the mob, and if the item is supported by the loadout maker, will save it in the corresponding slot
+ * An item is supported if it's path
+/datum/loadout/proc/save_mob_loadout(mob/user)
+
 
 ///Return a new empty loayout
 /proc/create_empty_loadout(name = "Default", job = MARINE_LOADOUT)

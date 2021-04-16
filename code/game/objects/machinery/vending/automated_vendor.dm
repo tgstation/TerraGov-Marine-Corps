@@ -73,7 +73,7 @@
 
 /obj/machinery/automated_vendor/ui_data(mob/user)
 	var/list/data = list()
-	
+
 	data["items"] = current_loadout_items_data
 	return data
 
@@ -82,7 +82,4 @@
 	switch(action)
 		if("equipLoadout")
 			ui.user.client.prefs.loadout_manager.current_loadout.equip_mob(ui.user, loc)
-		if("selectLoadout")
-			ui.user.client.prefs.loadout_manager.ui_interact(ui.user)
-	
 
