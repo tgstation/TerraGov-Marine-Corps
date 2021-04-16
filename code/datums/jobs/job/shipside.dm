@@ -75,7 +75,6 @@ Godspeed, captain! And remember, you are not above the law."})
 		if(7501 to INFINITY)// 125hrs
 			new_human.wear_id.paygrade = "O8"
 
-
 //Field Commander
 /datum/job/terragov/command/fieldcommander
 	title = FIELD_COMMANDER
@@ -165,6 +164,7 @@ Make the TGMC proud!"})
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 	)
+
 
 /datum/job/terragov/command/staffofficer/radio_help_message(mob/M)
 	. = ..()
