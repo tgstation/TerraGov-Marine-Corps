@@ -132,7 +132,6 @@
 			),
 			"undershirt" = GLOB.undershirt_t,
 			"backpack" = GLOB.backpacklist,
-			"loadout" = GLOB.gear_datums
 		),
 		"hairstyles" = GLOB.hair_styles_list,
 		"facialhair" = GLOB.facial_hair_styles_list,
@@ -287,7 +286,7 @@
 			var/choice = tgui_input_list(ui.user, "What species do you want to play with?", "Species choice", get_playable_species())
 			if(choice)
 				species = choice
-		
+
 		if("body_type")
 			var/choice = tgui_input_list(ui.user, "What body type do you want?", "Body type choice", GLOB.body_types_list)
 			if(choice)

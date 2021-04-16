@@ -1,17 +1,166 @@
+import { BooleanLike } from 'common/react';
 import { useBackend, useLocalState } from '../backend';
-import {
-  Button, Input, Section, Flex, Tabs, LabeledList, TextArea,
-  Box, Grid, Modal, ColorBox, ByondUi,
-} from '../components';
+import { Button, Input, Section, Flex, Tabs, LabeledList, TextArea, Box, Grid, Modal, ColorBox, ByondUi } from '../components';
 import { Window } from '../layouts';
 
 const DEBUG_ENABLED = false;
 
+type PlayerPreferencesData = {
+  is_admin: BooleanLike,
+  slot: number,
+  real_name: string,
+  random_name: BooleanLike,
+  synthetic_name: string,
+  synthetic_type: string,
+  xeno_name: string,
+  ai_name: string,
+  age: number,
+  gender: string,
+  ethnicity: string,
+  species: string,
+  body_type: string,
+  good_eyesight: BooleanLike,
+  h_style: string,
+  r_hair: number,
+  g_hair: number,
+  b_hair: number,
+  grad_style: string,
+  r_grad: number,
+  g_grad: number,
+  b_grad: number,
+  f_style: string,
+	r_facial: number,
+	g_facial: number,
+	b_facial: number,
+  r_eyes: number,
+  g_eyes: number,
+  b_eyes: number,
+  citizenship: string,
+  religion: string,
+  nanotrasen_relation: string,
+  flavor_text: string,
+  med_record: string,
+  gen_record: string,
+  sec_record: string,
+  exploit_record: string,
+  underwear: number,
+  undershirt: number,
+  backpack: number,
+  gear: string[],
+  job_preferences: AssocStringNumber,
+  preferred_squad: string,
+  alternate_option: number,
+  special_occupation: number,
+  ui_style: number,
+  ui_style_color: string,
+  ui_style_alpha: number,
+  windowflashing: BooleanLike,
+  auto_fit_viewport: BooleanLike,
+  focus_chat: BooleanLike,
+  clientfps: number,
+  chat_on_map: BooleanLike,
+  max_chat_length: number,
+  see_chat_non_mob: BooleanLike,
+  see_rc_emotes: BooleanLike,
+  mute_others_combat_messages: BooleanLike,
+  mute_self_combat_messages: BooleanLike,
+  show_typing: BooleanLike,
+  tooltips: BooleanLike,
+  key_bindings: AssocStringStringArray,
+  save_slot_names: AssocStringString,
+  synth_types: string[],
+  bodytypes: string[],
+  ethnicities: string[],
+  citizenships: string[],
+  religions: string[],
+  corporate_relations: string[],
+  squads: string[]
+  clothing: ClothingTypeList,
+  genders: string[],
+  overflow_job: string[],
+  ui_styles: string[],
+  gearsets: GearSets,
+  jobs: JobsList,
+  special_occupations: SpecialOccupations,
+  all_keybindings: AllKeybindingsList,
+  mapRef: string,
+}
+
+type AssocStringNumber = {
+  [ key:string ]: number
+}
+
+type KeybindingsData = {
+  name: string,
+  display_name: string,
+  desc: string,
+  category: string,
+}
+
+type AllKeybindingsList = {
+  [ key: string ]: KeybindingsData[],
+}
+
+type ClothingTypeList = {
+  underwear: UnderWearTypes
+  undershirt: string[],
+  backpack: string[],
+
+}
+type UnderWearTypes = {
+  male: string[]
+  female: string[]
+}
+
+type SpecialOccupations = {
+  'Latejoin Xenomorph': number,
+  'Xenomorph when unrevivable': number,
+  'End of Round Deathmatch': number,
+  'Prefer Squad over Role': number,
+}
+
+type AssocStringString = {
+  [ key: string ]: string
+}
+
+type AssocStringStringArray = {
+  [ key: string ]: string[]
+}
+
+type GearSets = {
+  [ key: string ]: GearDatum
+}
+type GearDatum = {
+  name: string,
+  cost: number,
+  slot: number,
+}
+
+type JobsList = {
+  [ key: string ]: JobDatum,
+}
+
+type JobDatum = {
+  color: string,
+  description: string,
+  banned: BooleanLike,
+  playtime_req: number,
+  account_age_req: BooleanLike,
+  flags: FlagsList
+}
+
+type FlagsList = {
+  bold: BooleanLike,
+}
+
 export const PlayerPreferences = (props, context) => {
-  const { act, data, config } = useBackend(context);
+  const { act, data, config } = useBackend<PlayerPreferencesData>(context);
   const [tabIndex, setTabIndex] = useLocalState(context, 'selectedTabIndex', 1);
 
-  const { save_slot_names, slot } = data;
+  const {
+    save_slot_names,
+    slot,
+  } = data;
 
   let affectsSave = false;
   let CurrentTab = CharacterCustomization;
@@ -20,7 +169,7 @@ export const PlayerPreferences = (props, context) => {
       CurrentTab = CharacterCustomization;
       affectsSave = true;
       break;
-    case 2: 
+    case 2:
       CurrentTab = BackgroundInformation;
       affectsSave = true;
       break;
@@ -84,11 +233,16 @@ export const PlayerPreferences = (props, context) => {
 };
 
 const BackgroundInformation = (props, context) => {
-  const { act, data, config } = useBackend(context);
-  const { 
-    slot, flavor_text, med_record, gen_record, sec_record,
+  const { act, data, config } = useBackend<PlayerPreferencesData>(context);
+  const {
+    slot,
+    flavor_text,
+    med_record,
+    gen_record,
+    sec_record,
     exploit_record,
   } = data;
+
   const [characterDesc, setCharacterDesc] = useLocalState(
     context,
     'characterDesc' + slot,
@@ -251,13 +405,24 @@ const BackgroundInformation = (props, context) => {
       </Grid>
     </Section>
   );
-};   
+};
 
 const CharacterCustomization = (props, context) => {
-  const { act, data, config } = useBackend(context);
-  const { 
-    random_name, r_hair, g_hair, b_hair, r_grad, g_grad, b_grad,
-    r_eyes, g_eyes, b_eyes, r_facial, g_facial, b_facial,
+  const { act, data, config } = useBackend<PlayerPreferencesData>(context);
+  const {
+    random_name,
+    r_hair,
+    g_hair,
+    b_hair,
+    r_grad,
+    g_grad,
+    b_grad,
+    r_eyes,
+    g_eyes,
+    b_eyes,
+    r_facial,
+    g_facial,
+    b_facial,
   } = data;
 
   const rgbToHex = (red, green, blue) => {
@@ -455,7 +620,7 @@ const CharacterCustomization = (props, context) => {
 };
 
 const ProfilePicture = (props, context) => {
-  const { data } = useBackend(context);
+  const { data } = useBackend<PlayerPreferencesData>(context);
   const { mapRef } = data;
   return (
     <ByondUi
@@ -469,8 +634,15 @@ const ProfilePicture = (props, context) => {
 };
 
 const TextFieldPreference = (props, context) => {
-  const { act, data, config } = useBackend(context);
-  const { label, value, action, extra, onFocus, noAction } = props;
+  const { act, data, config } = useBackend<PlayerPreferencesData>(context);
+  const {
+    label,
+    value,
+    action,
+    extra,
+    onFocus,
+    noAction,
+  } = props;
   const itemLabel = label || value;
 
   const handler = noAction ? () => {} : act;
@@ -489,22 +661,26 @@ const TextFieldPreference = (props, context) => {
 };
 
 const SelectFieldPreference = (props, context) => {
-  const { act, data, config } = useBackend(context);
-  const { label, value, action } = props;
+  const { act, data, config } = useBackend<PlayerPreferencesData>(context);
+  const {
+    label,
+    value,
+    action,
+  } = props;
   const itemLabel = label || value;
 
   return (
     <LabeledList.Item label={itemLabel}>
       <Button
         content={data[value]}
-        onClick={() => act(action)} 
+        onClick={() => act(action)}
       />
     </LabeledList.Item>
   );
 };
 
 const ToggleFieldPreference = (props, context) => {
-  const { act, data, config } = useBackend(context);
+  const { act, data, config } = useBackend<PlayerPreferencesData>(context);
   const {
     label,
     value,
@@ -538,8 +714,8 @@ const ToggleFieldPreference = (props, context) => {
 };
 
 const JobPreferences = (props, context) => {
-  const { act, data, config } = useBackend(context);
-  const { 
+  const { act, data, config } = useBackend<PlayerPreferencesData>(context);
+  const {
     alternate_option, squads, preferred_squad, overflow_job,
     special_occupations, special_occupation,
   } = data;
@@ -691,7 +867,7 @@ const JobPreferences = (props, context) => {
 };
 
 const JobPreference = (props, context) => {
-  const { act, data, config } = useBackend(context);
+  const { act, data, config } = useBackend<PlayerPreferencesData>(context);
   const { jobs, job_preferences } = data;
   const { job, setShownDescription } = props;
   const jobData = jobs[job];
@@ -752,7 +928,7 @@ const JobPreference = (props, context) => {
 };
 
 const GameSettings = (props, context) => {
-  const { act, data, config } = useBackend(context);
+  const { act, data, config } = useBackend<PlayerPreferencesData>(context);
   const { ui_style_color } = data;
   return (
     <Section title="Game Settings">
@@ -892,13 +1068,28 @@ const GameSettings = (props, context) => {
   );
 };
 
-const KeybindSetting = (props, context) => {
-  const { act, data, config } = useBackend(context);
-  const { all_keybindings, is_admin } = data;
-  const [capture, setCapture] = useLocalState(context, `setCapture`, false);
-  const [filter, setFilter] = useLocalState(context, `keybind-filter`, false);
+type KeybindSettingCapture = {
+  name: string,
+  key: string,
+}
 
-  const filterSearch = kb =>
+const KeybindSetting = (props, context) => {
+  const { act, data, config } = useBackend<PlayerPreferencesData>(context);
+  const {
+    all_keybindings,
+    is_admin,
+  } = data;
+
+  const [
+    capture,
+    setCapture,
+  ] = useLocalState<KeybindSettingCapture>(context, `setCapture`, null);
+  const [
+    filter,
+    setFilter,
+  ] = useLocalState<string>(context, `keybind-filter`, null);
+
+  const filterSearch = (kb:KeybindingsData) =>
     !filter // If we don't have a filter, don't filter
       ? true // Show everything
       : kb
@@ -916,12 +1107,14 @@ const KeybindSetting = (props, context) => {
   );
 
   return (
-    <Section title="Keybindings" buttons={resetButton}>
+    <Section
+      title="Keybindings"
+      buttons={resetButton}>
       {capture && (
         <CaptureKeybinding
           kbName={capture.name}
           currentKey={capture.key}
-          onClose={() => setCapture(false)}
+          onClose={() => setCapture(null)}
         />
       )}
       <Box>
@@ -1020,7 +1213,7 @@ const KeybindSetting = (props, context) => {
 };
 
 const KeybindingPreference = (props, context) => {
-  const { act, data, config } = useBackend(context);
+  const { act, data, config } = useBackend<PlayerPreferencesData>(context);
   const { key_bindings } = data;
   const { keybind, setCapture } = props;
   const current = key_bindings[keybind.name];
@@ -1116,11 +1309,16 @@ const NavigationSelector = (props, context) => {
 };
 
 const GearCustomization = (props, context) => {
-  const { act, data, config } = useBackend(context);
+  const { act, data, config } = useBackend<PlayerPreferencesData>(context);
 
-  const { 
-    gearsets, gear, clothing, underwear, undershirt,
-    backpack, gender,
+  const {
+    gearsets,
+    gear,
+    clothing,
+    underwear,
+    undershirt,
+    backpack,
+    gender,
   } = data;
 
   const slotMapping = {
@@ -1293,7 +1491,7 @@ const GearCustomization = (props, context) => {
 // };
 
 const DebugPanel = (props, context) => {
-  const { act, data, config } = useBackend(context);
+  const { act, data, config } = useBackend<PlayerPreferencesData>(context);
   return (
     <div>
       <Section title="act">{JSON.stringify(act, null, 2)}</Section>
