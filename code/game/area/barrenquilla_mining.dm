@@ -8,6 +8,11 @@
 
 //Caves
 
+/area/barren/cave
+	name = "Caves"
+	ambience = list('sound/ambience/ambicave.ogg', 'sound/ambience/ambilava1.ogg', 'sound/ambience/ambilava2.ogg', 'sound/ambience/ambilava3.ogg')
+	ceiling = CEILING_NONE
+
 /area/barren/cave/central
 	name = "Central Caves"
 	icon_state = "lava_cave_c"
