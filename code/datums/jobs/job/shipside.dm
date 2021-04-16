@@ -26,8 +26,7 @@
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
-		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
-	)
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR)
 
 /datum/job/terragov/command/captain/announce(mob/living/announced_mob)
 	. = ..()
@@ -38,8 +37,7 @@
 	to_chat(M, {"As the captain of the [SSmapping.configs[SHIP_MAP].map_name] you are held by higher standard and are expected to act competently.
 While you may support Nanotrasen, you report to the TGMC High Command, not the corporate office.
 Your primary task is the safety of the ship and her crew, and ensuring the survival and success of the marines.
-Your first order of business should be briefing the marines on the mission they are about to undertake.
-You should not be voluntarily leaving your vessel under any circumstances. A captain goes down with their ship.
+Your first order of business should be briefing the marines on the mission they are about to undertake. You should not be voluntarily leaving your vessel under any circumstances. A captain goes down with their ship.
 If you require any help, use <b>mentorhelp</b> to ask mentors about what you're supposed to do.
 Godspeed, captain! And remember, you are not above the law."})
 
@@ -65,7 +63,7 @@ Godspeed, captain! And remember, you are not above the law."})
 		return
 	var/mob/living/carbon/human/new_human = new_mob
 	var/playtime_mins = user?.client?.get_exp(title)
-	if(!playtime_mins || playtime_mins < 1 )
+	if(!playtime_mins || playtime_mins < 1)
 		return
 	switch(playtime_mins)
 		if(0 to 1500) // starting
@@ -74,6 +72,7 @@ Godspeed, captain! And remember, you are not above the law."})
 			new_human.wear_id.paygrade = "O7"
 		if(7501 to INFINITY)// 125 hrs
 			new_human.wear_id.paygrade = "O8"
+
 
 //Field Commander
 /datum/job/terragov/command/fieldcommander
@@ -109,13 +108,13 @@ Your duties are to ensure marines hold when ordered, and push when they are cowe
 Do not ask your men to do anything you would not do side by side with them.
 Make the TGMC proud!"})
 
-/datum/job/terragov/command/fieldcommander/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
-	. = ..()
+/datum/job/terragov/command/fieldcommander/after_spawn(mob/living/new_mob, mob/user, latejoin = FALSE)
+	.=..()
 	if(!ishuman(new_mob))
 		return
 	var/mob/living/carbon/human/new_human = new_mob
 	var/playtime_mins = user?.client?.get_exp(title)
-	if(!playtime_mins || playtime_mins < 1 )
+	if(!playtime_mins || playtime_mins < 1)
 		return
 	switch(playtime_mins)
 		if(0 to 1500) // starting
@@ -162,28 +161,27 @@ Make the TGMC proud!"})
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
-		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
-	)
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR)
 
-
-/datum/job/terragov/command/staffofficer/radio_help_message(mob/M)
-	. = ..()
-	to_chat(M, {"Your job is to monitor the marines, man the CIC, and listen to your superior officers.
-You are in charge of logistics and the overwatch system. You are also in line to take command after the captain."})
-
-/datum/job/terragov/command/staffofficer/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
-	. = ..()
+/datum/job/terragov/command/staffofficer/after_spawn(mob/living/new_mob, mob/user, latejoin = FALSE)
+	.=..()
 	if(!ishuman(new_mob))
 		return
 	var/mob/living/carbon/human/new_human = new_mob
 	var/playtime_mins = user?.client?.get_exp(title)
-	if(!playtime_mins || playtime_mins < 1 )
+	if(!playtime_mins || playtime_mins < 1)
 		return
 	switch(playtime_mins)
 		if(0 to 3000) // starting
 			new_human.wear_id.paygrade = "O4"
 		if(3001 to INFINITY)// 50 hrs
 			new_human.wear_id.paygrade = "O5"
+
+/datum/job/terragov/command/staffofficer/radio_help_message(mob/M)
+	. = ..()
+	to_chat(M, {"Your job is to monitor the marines, man the CIC, and listen to your superior officers.
+You are in charge of logistics and the overwatch system. You are also in line to take command after the captain."})
+
 
 /datum/outfit/job/command/staffofficer
 	name = STAFF_OFFICER
@@ -218,8 +216,7 @@ You are in charge of logistics and the overwatch system. You are also in line to
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE_STRONG,
 		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
-		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
-	)
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR)
 
 
 /datum/job/terragov/command/pilot/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
@@ -228,14 +225,14 @@ You are in charge of logistics and the overwatch system. You are also in line to
 		return
 	var/mob/living/carbon/human/new_human = new_mob
 	var/playtime_mins = user?.client?.get_exp(title)
-	if(!playtime_mins || playtime_mins < 1 )
+	if(!playtime_mins || playtime_mins < 1)
 		return
 	switch(playtime_mins)
 		if(0 to 600) // starting
 			new_human.wear_id.paygrade = "WO"
-		if(601 to 3000) // 10 hrs
+		if(601 to 3000) // 10hrs
 			new_human.wear_id.paygrade = "CWO"
-		if(3001 to 6000) // 50 hrs
+		if(3001 to 6000) // 50hrs
 			new_human.wear_id.paygrade = "O1"
 		if(6001 to INFINITY)// 100 hrs
 			new_human.wear_id.paygrade = "O2"
@@ -280,7 +277,7 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 	selection_color = "#ffeeaa"
 	total_positions = 1
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_BRIDGE, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_PREP)
-	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_BRIDGE, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_RO, ACCESS_MARINE_MEDBAY)
+	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_BRIDGE, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_PREP, ACCESS_MARINE_RO, ACCESS_MARINE_MEDBAY)
 	skills_type = /datum/skills/CE
 	display_order = JOB_DISPLAY_ORDER_CHIEF_ENGINEER
 	outfit = /datum/outfit/job/engineering/chief
@@ -291,8 +288,7 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
-		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
-	)
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR)
 
 
 /datum/job/terragov/engineering/chief/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
@@ -301,7 +297,7 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 		return
 	var/mob/living/carbon/human/new_human = new_mob
 	var/playtime_mins = user?.client?.get_exp(title)
-	if(!playtime_mins || playtime_mins < 1 )
+	if(!playtime_mins || playtime_mins < 1)
 		return
 	switch(playtime_mins)
 		if(0 to 1500) // starting
@@ -353,8 +349,7 @@ You are also next in the chain of command, should the bridge crew fall in the li
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
-		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
-	)
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR)
 
 
 /datum/job/command/engineering/tech/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
@@ -363,14 +358,14 @@ You are also next in the chain of command, should the bridge crew fall in the li
 		return
 	var/mob/living/carbon/human/new_human = new_mob
 	var/playtime_mins = user?.client?.get_exp(title)
-	if(!playtime_mins || playtime_mins < 1 )
+	if(!playtime_mins || playtime_mins < 1)
 		return
 	switch(playtime_mins)
 		if(0 to 600) // starting
 			new_human.wear_id.paygrade = "PO3"
-		if(601 to 3000) // 10 hrs
+		if(601 to 3000) // 10hrs
 			new_human.wear_id.paygrade = "PO2"
-		if(3001 to 6000) // 50 hrs
+		if(3001 to 6000) // 50hrs
 			new_human.wear_id.paygrade = "PO1"
 		if(6001 to INFINITY)// 100 hrs
 			new_human.wear_id.paygrade = "CPO"
@@ -425,8 +420,7 @@ requisitions line and later on to be ready to send supplies for marines who are 
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
-		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
-	)
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR)
 
 
 /datum/job/terragov/requisitions/officer/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
@@ -435,7 +429,7 @@ requisitions line and later on to be ready to send supplies for marines who are 
 		return
 	var/mob/living/carbon/human/new_human = new_mob
 	var/playtime_mins = user?.client?.get_exp(title)
-	if(!playtime_mins || playtime_mins < 1 )
+	if(!playtime_mins || playtime_mins < 1)
 		return
 	switch(playtime_mins)
 		if(0 to 600) // starting
@@ -497,8 +491,7 @@ A happy ship is a well-functioning ship."})
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
-		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
-	)
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR)
 
 
 /datum/job/terragov/medical/professor/radio_help_message(mob/M)
@@ -528,8 +521,8 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 	back = /obj/item/storage/backpack/marine/satchel
 
 /datum/outfit/job/medical/professor/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/tweezers, SLOT_IN_BACKPACK)
+	.=..()
+	H.equip_to_slot_or_del(new/obj/item/tweezers, SLOT_IN_BACKPACK)
 
 //Medical Officer
 /datum/job/terragov/medical/medicalofficer
@@ -548,16 +541,15 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
-		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
-	)
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR)
 
-/datum/job/terragov/medical/medicalofficer/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
-	. = ..()
+/datum/job/terragov/engineering/chief/after_spawn(mob/living/new_mob, mob/user, latejoin = FALSE)
+	.=..()
 	if(!ishuman(new_mob))
 		return
 	var/mob/living/carbon/human/new_human = new_mob
 	var/playtime_mins = user?.client?.get_exp(title)
-	if(!playtime_mins || playtime_mins < 1 )
+	if(!playtime_mins || playtime_mins < 1)
 		return
 	switch(playtime_mins)
 		if(0 to 1500) // starting
@@ -592,8 +584,8 @@ You are also an expert when it comes to medication and treatment. If you do not 
 	back = /obj/item/storage/backpack/marine/satchel
 
 /datum/outfit/job/medical/medicalofficer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/tweezers, SLOT_IN_BACKPACK)
+	.=..()
+	H.equip_to_slot_or_del(new/obj/item/tweezers, SLOT_IN_BACKPACK)
 
 
 //Researcher
@@ -613,8 +605,7 @@ You are also an expert when it comes to medication and treatment. If you do not 
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
-		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
-	)
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR)
 
 
 /datum/job/terragov/medical/researcher/radio_help_message(mob/M)
@@ -665,8 +656,7 @@ While the Corporate Liaison is not your boss, it would be wise to consult them o
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
-		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
-	)
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR)
 
 
 /datum/job/terragov/civilian/liaison/radio_help_message(mob/M)
@@ -709,12 +699,10 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 	exp_requirements = XP_REQ_EXPERIENCED
 	exp_type = EXP_TYPE_REGULAR_ALL
 	job_flags = JOB_FLAG_SPECIALNAME|JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_ISCOMMAND|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD
-	job_points_needed = 40
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE_STRONG,
 		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
-		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
-	)
+		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR)
 
 
 /datum/job/terragov/silicon/synthetic/get_special_name(client/preference_source)
@@ -730,13 +718,13 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 		return /datum/skills/early_synthetic
 	return ..()
 
-/datum/job/terragov/silicon/synthetic/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
-	. = ..()
+/datum/job/terragov/engineering/chief/after_spawn(mob/living/new_mob, mob/user, latejoin = FALSE)
+	.=..()
 	if(!ishuman(new_mob))
 		return
 	var/mob/living/carbon/human/new_human = new_mob
 	var/playtime_mins = user?.client?.get_exp(title)
-	if(!playtime_mins || playtime_mins < 1 )
+	if(!playtime_mins || playtime_mins < 1)
 		return
 	switch(playtime_mins)
 		if(0 to 600) // starting
@@ -779,14 +767,13 @@ In addition, being a Synthetic gives you knowledge in every field and specializa
 	exp_type = EXP_TYPE_REGULAR_ALL
 	exp_type_department = EXP_TYPE_SILICON
 	display_order = JOB_DISPLAY_ORDER_AI
-	skills_type = /datum/skills/ai
+	skills_type = datum/skills/ai
 	job_flags = JOB_FLAG_SPECIALNAME|JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_OVERRIDELATEJOINSPAWN|JOB_FLAG_ISCOMMAND|JOB_FLAG_BOLD_NAME_ON_SELECTION
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
-		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
-	)
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR)
 
 
 /datum/job/terragov/silicon/ai/get_special_name(client/preference_source)
@@ -797,12 +784,11 @@ In addition, being a Synthetic gives you knowledge in every field and specializa
 	return /mob/living/silicon/ai
 
 /datum/job/terragov/silicon/ai/radio_help_message(mob/M)
-	. = ..()
+	.=..()
 	to_chat(M, {"Your primary job is to support and assist all TGMC departments and personnel on-board.
 However, your vision is limited through cameras from the ship or to the marines groundside.
 Recon any threats and report findings to various communication channels.
 If you require any help, use <b>mentorhelp</b> to ask mentors about what you're supposed to do."})
-
 
 /datum/job/terragov/silicon/ai/announce(mob/living/announced_mob)
 	. = ..()
