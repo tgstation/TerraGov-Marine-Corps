@@ -405,7 +405,7 @@ requisitions line and later on to be ready to send supplies for marines who are 
 	selection_color = "#9990B2"
 	total_positions = 1
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_PREP, ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA)
-	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_PREP, ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE LOGISTICS)
+	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_PREP, ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS)
 	skills_type = /datum/skills/RO
 	display_order = JOB_DISPLAY_ORDER_REQUISITIONS_OFFICER
 	outfit = /datum/outfit/job/requisitions/officer
@@ -517,7 +517,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 
 /datum/outfit/job/medical/professor/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	.=..()
-	H.equip_to_slot_or_del(new/obje/item/tweezers, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new/obj/item/tweezers, SLOT_IN_BACKPACK)
 
 //Medical Officer
 /datum/job/terragov/medical/medicalofficer
@@ -575,12 +575,12 @@ You are also an expert when it comes to medication and treatment. If you do not 
 	mask = /obj/item/clothing/mask/surgical
 	head = /obj/item/clothing/head/surgery/green
 	r_store = /obj/item/storage/pouch/medkit/full
-	l_store = /obj/item/storage/pouch/autoinjecotr/advanced/full
+	l_store = /obj/item/storage/pouch/autoinjector/advanced/full
 	back = /obj/item/storage/backpack/marine/satchel
 
 /datum/outfit/job/medical/medicalofficer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	.=..()
-	H.equip_to_slot_or_del(new/obje/item/tweezers, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new/obj/item/tweezers, SLOT_IN_BACKPACK)
 
 
 //Researcher
@@ -780,7 +780,7 @@ In addition, being a Synthetic gives you knowledge in every field and specializa
 
 /datum/job/terragov/silicon/ai/radio_help_message(mob/M)
 	.=..()
-	to_chat9M, {"Your primary job is to support and assist all TGMC departments and personnel on-board.
+	to_chat(M, {"Your primary job is to support and assist all TGMC departments and personnel on-board.
 However, your vision is limited through cameras from the ship or to the marines groundside.
 Recon any threats and report findings to various communication channels.
 If you require any help, use <b>mentorhelp</b> to ask the mentors about what you're supposed to do."})
