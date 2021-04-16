@@ -58,11 +58,11 @@ Godspeed, captain! And remember, you are not above the law."})
 	back = /obj/item/storage/backpack/marine/satchel
 
 /datum/job/terragov/command/captain/after_spawn(mob/living/new_mob, mob/user, latejoin)
-	.=..()
+	. = ..()
 	if(!ishuman(new_mob))
 		return
 	var/mob/living/carbon/human/new_human = new_mob
-	var/playtime = user?.client?.get_exp(title)
+	var/playtime_mins = user?.client?.get_exp(title)
 	if(!playtime_mins || playtime_mins < 1)
 		return
 	switch(playtime_mins)
@@ -112,7 +112,7 @@ Make the TGMC proud!"})
 	if(!ishuman(new_mob))
 		return
 	var/mob/living/carbon/human/new_human = new_mob
-	var/playtime = user?.client?.get_exp(title)
+	var/playtime_mins = user?.client?.get_exp(title)
 	if(!playtime_mins || playtime_mins < 1)
 		return
 	switch(playtime_mins)
@@ -167,7 +167,7 @@ Make the TGMC proud!"})
 	if(!ishuman(new_mob))
 		return
 	var/mob/living/carbon/human/new_human = new_mob
-	var/playtime = user?.client?.get_exp(title)
+	var/playtime_mins = user?.client?.get_exp(title)
 	if(!playtime_mins || playtime_mins < 1)
 		return
 	switch(playtime_mins)
@@ -222,7 +222,7 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	if(!ishuman(new_mob))
 		return
 	var/mob/living/carbon/human/new_human = new_mob
-	var/playtime = user?.client?.get_exp(title)
+	var/playtime_mins = user?.client?.get_exp(title)
 	if(!playtime_mins || playtime_mins < 1)
 		return
 	switch(playtime_mins)
@@ -293,7 +293,7 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 	if(!ishuman(new_mob))
 		return
 	var/mob/living/carbon/human/new_human = new_mob
-	var/playtime = user?.client?.get_exp(title)
+	var/playtime_mins = user?.client?.get_exp(title)
 	if(!playtime_mins || playtime_mins < 1)
 		return
 	switch(playtime_mins)
@@ -353,7 +353,7 @@ You are also next in the chain of command, should the bridge crew fall in the li
 	if(!ishuman(new_mob))
 		return
 	var/mob/living/carbon/human/new_human = new_mob
-	var/playtime = user?.client?.get_exp(title)
+	var/playtime_mins = user?.client?.get_exp(title)
 	if(!playtime_mins || playtime_mins < 1)
 		return
 	switch(playtime_mins)
@@ -423,7 +423,7 @@ requisitions line and later on to be ready to send supplies for marines who are 
 	if(!ishuman(new_mob))
 		return
 	var/mob/living/carbon/human/new_human = new_mob
-	var/playtime = user?.client?.get_exp(title)
+	var/playtime_mins = user?.client?.get_exp(title)
 	if(!playtime_mins || playtime_mins < 1)
 		return
 	switch(playtime_mins)
@@ -543,7 +543,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 	if(!ishuman(new_mob))
 		return
 	var/mob/living/carbon/human/new_human = new_mob
-	var/playtime = user?.client?.get_exp(title)
+	var/playtime_mins = user?.client?.get_exp(title)
 	if(!playtime_mins || playtime_mins < 1)
 		return
 	switch(playtime_mins)
@@ -718,7 +718,7 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 	if(!ishuman(new_mob))
 		return
 	var/mob/living/carbon/human/new_human = new_mob
-	var/playtime = user?.client?.get_exp(title)
+	var/playtime_mins = user?.client?.get_exp(title)
 	if(!playtime_mins || playtime_mins < 1)
 		return
 	switch(playtime_mins)
