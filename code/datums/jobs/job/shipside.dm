@@ -110,13 +110,13 @@ Your duties are to ensure marines hold when ordered, and push when they are cowe
 Do not ask your men to do anything you would not do side by side with them.
 Make the TGMC proud!"})
 
-/datum/job/terragov/command/fieldcommander/after_spawn(mob/living/new_mob, mob/user, latejoin = FALSE)
+/datum/job/terragov/command/fieldcommander/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
 	if(!ishuman(new_mob))
 		return
 	var/mob/living/carbon/human/new_human = new_mob
 	var/playtime_mins = user?.client?.get_exp(title)
-	if(!playtime_mins || playtime_mins < 1)
+	if(!playtime_mins || playtime_mins < 1 )
 		return
 	switch(playtime_mins)
 		if(0 to 1500) // starting
@@ -166,25 +166,26 @@ Make the TGMC proud!"})
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 	)
 
+/datum/job/terragov/command/staffofficer/radio_help_message(mob/M)
+	. = ..()
+	to_chat(M, {"Your job is to monitor the marines, man the CIC, and listen to your superior officers.
+You are in charge of logistics and the overwatch system. You are also in line to take command after the captain."})
+
+/datum/job/terragov/command/staffofficer/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
+
 /datum/job/terragov/command/staffofficer/after_spawn(mob/living/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
 	if(!ishuman(new_mob))
 		return
 	var/mob/living/carbon/human/new_human = new_mob
 	var/playtime_mins = user?.client?.get_exp(title)
-	if(!playtime_mins || playtime_mins < 1)
+	if(!playtime_mins || playtime_mins < 1 )
 		return
 	switch(playtime_mins)
 		if(0 to 3000) // starting
 			new_human.wear_id.paygrade = "O4"
 		if(3001 to INFINITY)// 50hrs
 			new_human.wear_id.paygrade = "O5"
-
-/datum/job/terragov/command/staffofficer/radio_help_message(mob/M)
-	. = ..()
-	to_chat(M, {"Your job is to monitor the marines, man the CIC, and listen to your superior officers.
-You are in charge of logistics and the overwatch system. You are also in line to take command after the captain."})
-
 
 /datum/outfit/job/command/staffofficer
 	name = STAFF_OFFICER
