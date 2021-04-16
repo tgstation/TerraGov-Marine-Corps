@@ -72,7 +72,7 @@ Godspeed, captain! And remember, you are not above the law."})
 			new_human.wear_id.paygrade = "O6"
 		if(1501 to 7500) // 25 hrs
 			new_human.wear_id.paygrade = "O7"
-		if(7501 to INFINITY)// 125 hrs
+		if(7501 to INFINITY) // 125 hrs
 			new_human.wear_id.paygrade = "O8"
 
 //Field Commander
@@ -122,7 +122,7 @@ Make the TGMC proud!"})
 			new_human.wear_id.paygrade = "O3"
 		if(1501 to 7500) // 25 hrs
 			new_human.wear_id.paygrade = "MO4"
-		if(7501 to INFINITY)// 125 hrs
+		if(7501 to INFINITY) // 125 hrs
 			new_human.wear_id.paygrade = "MO5"
 
 
@@ -182,7 +182,7 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	switch(playtime_mins)
 		if(0 to 3000) // starting
 			new_human.wear_id.paygrade = "O4"
-		if(3001 to INFINITY)// 50 hrs
+		if(3001 to INFINITY) // 50 hrs
 			new_human.wear_id.paygrade = "O5"
 
 /datum/outfit/job/command/staffofficer
@@ -237,7 +237,7 @@ You are in charge of logistics and the overwatch system. You are also in line to
 			new_human.wear_id.paygrade = "CWO"
 		if(3001 to 6000) // 50 hrs
 			new_human.wear_id.paygrade = "O1"
-		if(6001 to INFINITY)// 100 hrs
+		if(6001 to INFINITY) // 100 hrs
 			new_human.wear_id.paygrade = "O2"
 
 /datum/job/terragov/command/pilot/radio_help_message(mob/M)
@@ -308,7 +308,7 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 			new_human.wear_id.paygrade = "O2"
 		if(1501 to 7500) // 25 hrs
 			new_human.wear_id.paygrade = "O3"
-		if(7501 to INFINITY)// 125 hrs
+		if(7501 to INFINITY) // 125 hrs
 			new_human.wear_id.paygrade = "O4"
 
 /datum/job/terragov/engineering/chief/radio_help_message(mob/M)
@@ -372,7 +372,7 @@ You are also next in the chain of command, should the bridge crew fall in the li
 			new_human.wear_id.paygrade = "PO2"
 		if(3001 to 6000) // 50 hrs
 			new_human.wear_id.paygrade = "PO1"
-		if(6001 to INFINITY)// 100 hrs
+		if(6001 to INFINITY) // 100 hrs
 			new_human.wear_id.paygrade = "CPO"
 
 /datum/job/terragov/engineering/tech/radio_help_message(mob/M)
@@ -444,7 +444,7 @@ requisitions line and later on to be ready to send supplies for marines who are 
 			new_human.wear_id.paygrade = "WO"
 		if(3001 to 6000) // 50 hrs
 			new_human.wear_id.paygrade = "CWO"
-		if(6001 to INFINITY)// 100 hrs
+		if(6001 to INFINITY) // 100 hrs
 			new_human.wear_id.paygrade = "O1"
 
 /datum/job/terragov/requisitions/officer/radio_help_message(mob/M)
@@ -564,7 +564,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 			new_human.wear_id.paygrade = "O1"
 		if(1501 to 7500) // 25 hrs
 			new_human.wear_id.paygrade = "O2"
-		if(7501 to INFINITY)// 125 hrs
+		if(7501 to INFINITY) // 125 hrs
 			new_human.wear_id.paygrade = "O3"
 
 /datum/job/terragov/medical/medicalofficer/radio_help_message(mob/M)
@@ -743,7 +743,7 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 			new_human.wear_id.paygrade = "Mk.I"
 		if(601 to 3000) // 10 to 50 hrs
 			new_human.wear_id.paygrade = "Mk.II"
-		if(3001 to INFINITY)// more than 50 hrs
+		if(3001 to INFINITY) // more than 50 hrs
 			new_human.wear_id.paygrade = "Mk.III"
 
 /datum/job/terragov/silicon/synthetic/radio_help_message(mob/M)
