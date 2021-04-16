@@ -306,9 +306,9 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 	switch(playtime_mins)
 		if(0 to 1500) // starting
 			new_human.wear_id.paygrade = "O2"
-		if(1501 to 7500) // 25 hrs
+		if(1501 to 6000) // 25 hrs
 			new_human.wear_id.paygrade = "O3"
-		if(7501 to INFINITY) // 125 hrs
+		if(6001 to INFINITY) // 50 hrs
 			new_human.wear_id.paygrade = "O4"
 
 /datum/job/terragov/engineering/chief/radio_help_message(mob/M)
@@ -440,9 +440,9 @@ requisitions line and later on to be ready to send supplies for marines who are 
 	switch(playtime_mins)
 		if(0 to 600) // starting
 			new_human.wear_id.paygrade = "CPO"
-		if(601 to 3000) // 10 hrs
+		if(601 to 1500) // 10 hrs
 			new_human.wear_id.paygrade = "WO"
-		if(3001 to 6000) // 50 hrs
+		if(1501 to 6000) // 50 hrs
 			new_human.wear_id.paygrade = "CWO"
 		if(6001 to INFINITY) // 100 hrs
 			new_human.wear_id.paygrade = "O1"
@@ -562,9 +562,9 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 	switch(playtime_mins)
 		if(0 to 1500) // starting
 			new_human.wear_id.paygrade = "O1"
-		if(1501 to 7500) // 25 hrs
+		if(1501 to 3000) // 25 hrs
 			new_human.wear_id.paygrade = "O2"
-		if(7501 to INFINITY) // 125 hrs
+		if(3001 to INFINITY) // 125 hrs
 			new_human.wear_id.paygrade = "O3"
 
 /datum/job/terragov/medical/medicalofficer/radio_help_message(mob/M)
@@ -739,7 +739,7 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 	if(!playtime_mins || playtime_mins < 1 )
 		return
 	switch(playtime_mins)
-		if(0 to 600) // starting
+		if(0 to 600) // up to 10 hours
 			new_human.wear_id.paygrade = "Mk.I"
 		if(601 to 3000) // 10 to 50 hrs
 			new_human.wear_id.paygrade = "Mk.II"
@@ -799,7 +799,7 @@ In addition, being a Synthetic gives you knowledge in every field and specializa
 /datum/job/terragov/silicon/ai/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"Your primary job is to support and assist all TGMC departments and personnel on-board.
-However, your vision is limited through cameras from the ship or to the marines groundside.
+However, your vision is limited through cameras from the ship or to marines groundside.
 Recon any threats and report findings to various communication channels.
 If you require any help, use <b>mentorhelp</b> to ask mentors about what you're supposed to do."})
 
