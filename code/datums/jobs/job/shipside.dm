@@ -26,7 +26,8 @@
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
-		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR)
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
+	)
 
 /datum/job/terragov/command/captain/announce(mob/living/announced_mob)
 	. = ..()
@@ -37,7 +38,8 @@
 	to_chat(M, {"As the captain of the [SSmapping.configs[SHIP_MAP].map_name] you are held by higher standard and are expected to act competently.
 While you may support Nanotrasen, you report to the TGMC High Command, not the corporate office.
 Your primary task is the safety of the ship and her crew, and ensuring the survival and success of the marines.
-Your first order of business should be briefing the marines on the mission they are about to undertake. You should not be voluntarily leaving your vessel under any circumstances. A captain goes down with their ship.
+Your first order of business should be briefing the marines on the mission they are about to undertake.
+You should not be voluntarily leaving your vessel under any circumstances. A captain goes down with their ship.
 If you require any help, use <b>mentorhelp</b> to ask mentors about what you're supposed to do.
 Godspeed, captain! And remember, you are not above the law."})
 
@@ -63,7 +65,7 @@ Godspeed, captain! And remember, you are not above the law."})
 		return
 	var/mob/living/carbon/human/new_human = new_mob
 	var/playtime_mins = user?.client?.get_exp(title)
-	if(!playtime_mins || playtime_mins < 1)
+	if(!playtime_mins || playtime_mins < 1 )
 		return
 	switch(playtime_mins)
 		if(0 to 1500) // starting
@@ -93,7 +95,8 @@ Godspeed, captain! And remember, you are not above the law."})
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 	 	/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 	 	/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
-	 	/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR)
+	 	/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
+	)
 
 /datum/job/terragov/command/fieldcommander/after_spawn(mob/living/L, mob/M, latejoin)
 	. = ..()
@@ -160,7 +163,8 @@ Make the TGMC proud!"})
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
-		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR)
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
+	)
 
 /datum/job/terragov/command/staffofficer/after_spawn(mob/living/new_mob, mob/user, latejoin = FALSE)
 	.=..()
@@ -215,8 +219,8 @@ You are in charge of logistics and the overwatch system. You are also in line to
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE_STRONG,
 		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
-		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR)
-
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
+	)
 /datum/job/terragov/command/pilot/after_spawn(mob/living/new_mob, mob/user, latejoin = FALSE)
 	.=..()
 	if(!ishuman(new_mob))
@@ -286,8 +290,8 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
-		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR)
-
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
+	)
 /datum/job/terragov/engineering/chief/after_spawn(mob/living/new_mob, mob/user, latejoin = FALSE)
 	.=..()
 	if(!ishuman(new_mob))
@@ -346,8 +350,8 @@ You are also next in the chain of command, should the bridge crew fall in the li
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
-		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR)
-
+		//datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
+	)
 /datum/job/command/engineering/tech/after_spawn(mob/living/new_mob, mob/user, latejoin = FALSE)
 	.=..()
 	if(!ishuman(new_mob))
@@ -416,8 +420,8 @@ requisitions line and later on to be ready to send supplies for marines who are 
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
-		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR)
-
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
+	)
 /datum/job/command/engineering/tech/after_spawn(mob/living/new_mob, mob/user, latejoin = FALSE)
 	.=..()
 	if(!ishuman(new_mob))
@@ -486,8 +490,8 @@ A happy ship is a well-functioning ship."})
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
-		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR)
-
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
+	)
 
 /datum/job/terragov/medical/professor/radio_help_message(mob/M)
 	. = ..()
@@ -536,8 +540,8 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
-		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR)
-
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
+	)
 /datum/job/terragov/engineering/chief/after_spawn(mob/living/new_mob, mob/user, latejoin = FALSE)
 	.=..()
 	if(!ishuman(new_mob))
@@ -600,8 +604,8 @@ You are also an expert when it comes to medication and treatment. If you do not 
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
-		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR)
-
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
+	)
 
 /datum/job/terragov/medical/researcher/radio_help_message(mob/M)
 	. = ..()
@@ -651,8 +655,8 @@ While the Corporate Liaison is not your boss, it would be wise to consult them o
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
-		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR)
-
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
+	)
 
 /datum/job/terragov/civilian/liaison/radio_help_message(mob/M)
 	. = ..()
@@ -697,7 +701,8 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE_STRONG,
 		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
-		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR)
+		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
+	)
 
 
 /datum/job/terragov/silicon/synthetic/get_special_name(client/preference_source)
@@ -768,8 +773,8 @@ In addition, being a Synthetic gives you knowledge in every field and specializa
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
-		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR)
-
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
+	)
 
 /datum/job/terragov/silicon/ai/get_special_name(client/preference_source)
 	return preference_source.prefs.ai_name

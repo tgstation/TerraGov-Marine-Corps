@@ -297,7 +297,6 @@
 		/obj/item/hailer,
 		/obj/item/storage/large_holster/machete,
 		/obj/item/storage/belt/gun)
-	max_storage_space = 6
 
 //===========================SPECIALIST================================
 
