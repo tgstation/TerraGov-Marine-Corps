@@ -781,6 +781,7 @@ In addition, being a Synthetic gives you knowledge in every field and specializa
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 	)
 
+
 /datum/job/terragov/silicon/ai/get_special_name(client/preference_source)
 	return preference_source.prefs.ai_name
 
@@ -793,7 +794,7 @@ In addition, being a Synthetic gives you knowledge in every field and specializa
 	to_chat(M, {"Your primary job is to support and assist all TGMC departments and personnel on-board.
 However, your vision is limited through cameras from the ship or to the marines groundside.
 Recon any threats and report findings to various communication channels.
-If you require any help, use <b>mentorhelp</b> to ask the mentors about what you're supposed to do."})
+If you require any help, use <b>mentorhelp</b> to ask mentors about what you're supposed to do."})
 
 /datum/job/terragov/silicon/ai/announce(mob/living/announced_mob)
 	. = ..()
