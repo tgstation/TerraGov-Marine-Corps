@@ -38,6 +38,8 @@
 	var/datum/hive_status/associated_hive
 	var/silo_area
 	var/number_silo
+	///If killing the silo should not alert the hive
+	var/silent = FALSE
 	COOLDOWN_DECLARE(silo_damage_alert_cooldown)
 	COOLDOWN_DECLARE(silo_proxy_alert_cooldown)
 
@@ -49,6 +51,7 @@
 	number++
 	GLOB.xeno_resin_silos += src
 	center_turf = get_step(src, NORTHEAST)
+	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, .proc/destroy_silently)
 	if(!istype(center_turf))
 		center_turf = loc
 
@@ -80,14 +83,11 @@
 	if(associated_hive)
 		UnregisterSignal(associated_hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK))
 
-		if(isdistress(SSticker.mode)) //Silo can only be destroy in distress mode, but this check can create bugs if new gamemodes are added.
-			var/datum/game_mode/infestation/distress/distress_mode
-			distress_mode = SSticker.mode
-			if (!(distress_mode.round_stage == DISTRESS_DROPSHIP_CRASHING))//No need to notify the xenos shipside
-				associated_hive.xeno_message("A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!", "xenoannounce", 5, FALSE,src.loc, 'sound/voice/alien_help2.ogg',FALSE , null, /obj/screen/arrow/silo_damaged_arrow)
-				associated_hive.handle_silo_death_timer()
-				associated_hive = null
-				notify_ghosts("\ A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!", source = get_turf(src), action = NOTIFY_JUMP)
+		if (!(silent))//No need to notify the xenos shipside
+			associated_hive.xeno_message("A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!", "xenoannounce", 5, FALSE,src.loc, 'sound/voice/alien_help2.ogg',FALSE , null, /obj/screen/arrow/silo_damaged_arrow)
+			associated_hive.handle_silo_death_timer()
+			associated_hive = null
+			notify_ghosts("\ A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!", source = get_turf(src), action = NOTIFY_JUMP)
 
 	for(var/i in contents)
 		var/atom/movable/AM = i
@@ -159,7 +159,11 @@
 	if(obj_integrity < max_integrity)
 		obj_integrity = min(obj_integrity + 25, max_integrity) //Regen 5 HP per sec
 
-
+///Signal handler to get rid of the silo without any alert
+/obj/structure/resin/silo/proc/destroy_silently()
+	SIGNAL_HANDLER
+	silent = TRUE
+	qdel(src)
 
 /obj/structure/resin/silo/proc/is_burrowed_larva_host(datum/source, list/mothers, list/silos)
 	SIGNAL_HANDLER
@@ -171,6 +175,106 @@
 	icon_state = "weed_silo"
 	max_integrity = 500
 	larva_spawn_rate = 0.25
+
+
+/obj/structure/resin/giant_worm
+	name = "giant worm"
+	desc = "A giant burrowing worm created with the remains of a silo" //Need better name and desc
+	/// Where is the center turf of this multitile object
+	var/turf/center_turf
+	///Which hive does this item belong too. Will always be regular hive
+	var/datum/hive_status/associated_hive
+	/// The other part of this giant worm
+	var/obj/structure/resin/giant_worm/exit
+	/// The targeted turf where the head of the worm will appear
+	var/turf/target
+	/// The eye object used to target the exit
+	var/mob/camera/aiEye/remote/burrower/camera
+	/// What mob is actually targeting the exit turf
+	var/mob/current_user
+	/// Which part of the worm is this
+	var/tail = TRUE
+	/// The action 
+	
+/obj/structure/resin/giant_worm/Initialize()
+	associated_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
+
+///Digging is starting, we enter end game mode
+/obj/structure/resin/giant_worm/proc/start_digging()
+	message_admins("A giant worm started digging at [AREACOORD(src)]")
+	priority_announce("Sismic signal detected. An unknow object is burrowing into your direction") //Could use better name
+	for(var/obj/structure/resin/silo/silo AS in GLOB.xeno_resin_silos)
+		silo.destroy_silently()
+	SSpoints.xeno_points_by_hive[associated_hive.number] = 0
+
+/obj/structure/resin/giant_worm/attack_alien(mob/living/carbon/xenomorph/X)
+	if(!(X.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT))
+		return 
+	createEye()
+	give_eye_control(X)
+
+
+/obj/structure/resin/giant_worm/proc/createEye()
+	eyeobj = new /mob/camera/aiEye/remote/burrower(null, src)
+	for(var/x_off in -1 to 1)
+		for(var/y_off in -1 to 1)
+			var/image/I = image('icons/effects/alphacolors.dmi', origin, "red")
+			I.loc = locate(loc.x + x_off, loc.y + y_off, loc.z)
+			I.layer = ABOVE_NORMAL_TURF_LAYER
+			I.plane = 0
+			I.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+			the_eye.placement_images[I] = list(x_off, y_off)
+
+
+/obj/structure/resin/giant_worm/proc/give_eye_control(mob/user)
+	give_actions(user)
+	current_user = user
+	eyeobj.eye_user = user
+	user.remote_control = eyeobj
+	user.reset_perspective(eyeobj)
+	eyeobj.setLoc(loc)
+	var/list/to_add = list()
+	to_add += the_eye.placement_images
+	to_add += the_eye.placed_images
+	user.client.images += to_add
+
+/obj/structure/resin/giant_worm/proc/remove_eye_control(mob/user)
+	for(var/V in actions)
+		var/datum/action/A = V
+		A.remove_action(user)
+	actions.Cut()
+	for(var/V in eyeobj.visibleCameraChunks)
+		var/datum/camerachunk/C = V
+		C.remove(eyeobj)
+	if(user.client)
+		user.reset_perspective(null)
+		if(eyeobj.visible_icon && user.client)
+			user.client.images -= eyeobj.user_image
+	eyeobj.eye_user = null
+	user.remote_control = null
+
+	current_user = null
+	user.unset_interaction()
+
+	var/list/to_remove = list()
+	to_remove += the_eye.placement_images
+	to_remove += the_eye.placed_images
+	user.client.images -= to_remove
+
+
+
+
+
+/mob/camera/aiEye/remote/burrower
+	name = "burrower camera"
+	visible_icon = FALSE
+	use_static = USE_STATIC_NONE
+	var/list/placement_images = list()
+	var/list/placed_images = list()
+
+/mob/camera/aiEye/remote/burrower_camera/update_remote_sight(mob/living/user)
+	user.sight = BLIND|SEE_TURFS
+	return TRUE
 
 /obj/structure/resin/xeno_turret
 	icon = 'icons/Xeno/acidturret.dmi'
