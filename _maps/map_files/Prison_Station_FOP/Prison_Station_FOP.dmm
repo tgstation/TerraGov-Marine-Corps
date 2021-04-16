@@ -181,11 +181,6 @@
 	},
 /turf/open/floor/prison,
 /area/prison/security/monitoring/highsec)
-"aaN" = (
-/turf/open/ground/coast{
-	dir = 8
-	},
-/area/prison/cellblock/maxsec/south)
 "acD" = (
 /obj/effect/step_trigger/teleporter/random{
 	name = "tele_space";
@@ -41274,10 +41269,6 @@
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/nw)
-"dEE" = (
-/obj/effect/alien/weeds/node,
-/turf/open/floor/prison/darkred/full,
-/area/prison/cellblock/maxsec/south)
 "dNd" = (
 /turf/open/ground/coast{
 	dir = 6
@@ -41328,20 +41319,10 @@
 	},
 /turf/open/ground/grass,
 /area/prison/residential/central)
-"eaW" = (
-/turf/open/ground/coast{
-	dir = 5
-	},
-/area/prison/hallway/central)
 "ecN" = (
 /obj/machinery/vending/cola,
 /turf/open/floor/prison/darkyellow/full,
 /area/prison/hallway/engineering)
-"eez" = (
-/turf/open/ground/coast{
-	dir = 4
-	},
-/area/prison/cellblock/maxsec/south)
 "ehd" = (
 /turf/open/ground/coast/corner2{
 	dir = 4
@@ -41498,11 +41479,6 @@
 	dir = 1
 	},
 /area/prison/security/checkpoint/highsec/n)
-"fjW" = (
-/turf/open/ground/desertdam/river/clean/shallow_edge{
-	dir = 4
-	},
-/area/prison/cellblock/maxsec/south)
 "fkw" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -41516,12 +41492,6 @@
 	},
 /turf/open/floor/plating,
 /area/prison/maintenance/research_medbay)
-"fla" = (
-/obj/structure/lattice,
-/turf/open/ground/desertdam/river/clean/shallow_edge{
-	dir = 4
-	},
-/area/space)
 "foA" = (
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -41619,10 +41589,6 @@
 	},
 /turf/open/floor/prison,
 /area/prison/execution)
-"fTn" = (
-/obj/structure/lattice,
-/turf/open/ground/river,
-/area/prison/maintenance/residential/nw)
 "fUu" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 2;
@@ -41822,9 +41788,6 @@
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating,
 /area/prison/cellblock/mediumsec/south)
-"gMl" = (
-/turf/open/ground/river,
-/area/prison/maintenance/residential/nw)
 "gPc" = (
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/plating,
@@ -41875,11 +41838,6 @@
 /obj/structure/window/framed/prison/reinforced/hull,
 /turf/open/floor/plating,
 /area/prison/hangar/civilian)
-"heB" = (
-/turf/open/ground/coast{
-	dir = 4
-	},
-/area/prison/hallway/central)
 "hfI" = (
 /obj/effect/landmark/corpsespawner/prisoner,
 /obj/effect/decal/cleanable/blood,
@@ -41950,10 +41908,6 @@
 /obj/effect/alien/weeds/node,
 /turf/open/floor/prison/darkpurple,
 /area/prison/research/secret/containment)
-"hDf" = (
-/obj/structure/lattice,
-/turf/open/floor/plating/ground/dirt,
-/area/prison/cellblock/maxsec/south)
 "hDh" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /turf/open/floor/prison/darkred/full,
@@ -42106,9 +42060,6 @@
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/prison,
 /area/prison/research/secret/dissection)
-"iEw" = (
-/turf/open/ground/river,
-/area/prison/yard)
 "iFe" = (
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating,
@@ -42508,9 +42459,6 @@
 /obj/effect/alien/weeds/node,
 /turf/open/floor/prison/darkred/full,
 /area/prison/security/monitoring/maxsec/panopticon)
-"kTN" = (
-/turf/open/beach/sea,
-/area/prison/maintenance/residential/nw)
 "kWF" = (
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/prison/plate,
@@ -42519,11 +42467,6 @@
 /obj/effect/alien/weeds/node,
 /turf/open/floor/carpet,
 /area/prison/residential/south)
-"kYe" = (
-/turf/open/ground/coast{
-	dir = 1
-	},
-/area/prison/hallway/central)
 "kYV" = (
 /turf/open/floor/plating/ground/dirt,
 /area/space)
@@ -42609,9 +42552,6 @@
 	dir = 8
 	},
 /area/space)
-"lDY" = (
-/turf/closed/wall/r_wall/prison,
-/area/prison/yard)
 "lOX" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9
@@ -42732,9 +42672,6 @@
 	dir = 1
 	},
 /area/prison/maintenance/residential/sw)
-"mLr" = (
-/turf/open/ground/coast,
-/area/prison/cellblock/maxsec/south)
 "mMl" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -42909,10 +42846,6 @@
 	},
 /turf/open/floor/plating,
 /area/prison/maintenance/hangar_barracks)
-"nNU" = (
-/obj/structure/lattice,
-/turf/open/ground/river,
-/area/prison/yard)
 "nOc" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -43073,9 +43006,6 @@
 /obj/effect/landmark/start/job/xenomorph,
 /turf/open/floor/plating,
 /area/prison/research/secret/biolab)
-"oAO" = (
-/turf/open/floor/plating/ground/dirt,
-/area/prison/hallway/central)
 "oGc" = (
 /obj/effect/alien/weeds/node,
 /turf/open/floor/prison/darkpurple,
@@ -43357,22 +43287,6 @@
 	},
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/nw)
-"qjG" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/machinery/door/airlock/mainship/security/glass/free_access{
-	name = "Cell Access"
-	},
-/turf/open/floor/prison/darkred/full,
-/area/prison/security/checkpoint/maxsec)
-"qjQ" = (
-/turf/open/ground/river,
-/area/prison/hallway/central)
 "qjX" = (
 /obj/machinery/miner/damaged,
 /turf/open/floor/prison/bright_clean/two,
@@ -43381,9 +43295,6 @@
 /obj/machinery/vending/snack,
 /turf/open/floor/prison/bright_clean/two,
 /area/prison/residential/north)
-"qpY" = (
-/turf/open/floor/plating/ground/dirt,
-/area/prison/cellblock/maxsec/north)
 "qqc" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/wall/r_wall/prison_unmeltable,
@@ -43510,16 +43421,6 @@
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/prison/plate,
 /area/prison/recreation/highsec/s)
-"rlS" = (
-/obj/machinery/door/airlock/mainship/security/glass/free_access{
-	name = "Maximum-Security Suspended Cellblock"
-	},
-/turf/open/floor/prison/darkred/full,
-/area/prison/security/checkpoint/maxsec)
-"rmB" = (
-/obj/structure/lattice,
-/turf/open/beach/sea,
-/area/prison/maintenance/residential/nw)
 "rnW" = (
 /obj/machinery/light{
 	dir = 1
@@ -43716,10 +43617,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/prison/maintenance/hangar_barracks)
-"swd" = (
-/obj/structure/lattice,
-/turf/open/floor/plating/ground/dirt,
-/area/prison/cellblock/maxsec/north)
 "swP" = (
 /obj/machinery/door/airlock/mainship/secure/open/free_access{
 	name = "Solitary Confinement"
@@ -43893,9 +43790,6 @@
 /obj/item/clothing/head/beret/sec/warden,
 /turf/open/floor/carpet,
 /area/prison/command/quarters)
-"tGD" = (
-/turf/open/ground/river,
-/area/space)
 "tGN" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -44296,9 +44190,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/prison/darkyellow,
 /area/prison/hangar/civilian)
-"wjj" = (
-/turf/open/beach/sea,
-/area/prison/cellblock/maxsec/south)
 "wmW" = (
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/carpet,
@@ -44453,9 +44344,6 @@
 	dir = 8
 	},
 /area/prison/security/monitoring/maxsec/panopticon)
-"xqz" = (
-/turf/open/floor/plating,
-/area/prison/residential/central)
 "xrp" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 4
@@ -44468,9 +44356,6 @@
 	dir = 8
 	},
 /area/prison/cellblock/mediumsec/south)
-"xwe" = (
-/turf/open/floor/plating/ground/dirt,
-/area/prison/cellblock/maxsec/south)
 "xwA" = (
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/prison,
@@ -44517,9 +44402,6 @@
 /obj/structure/window/framed/prison/reinforced/hull,
 /turf/open/beach/sea,
 /area/prison/command/quarters)
-"xRn" = (
-/turf/open/ground/river,
-/area/prison/maintenance/residential/se)
 "xRA" = (
 /obj/structure/flora/pottedplant/ten,
 /turf/open/floor/wood,

@@ -32111,11 +32111,6 @@
 	dir = 4
 	},
 /area/ice_colony/underground/maintenance/east)
-"jwc" = (
-/obj/effect/turf_underlay/icefloor,
-/obj/structure/fence,
-/turf/closed/ice/thin/single,
-/area/ice_colony/exterior/surface/valley/southeast)
 "jyB" = (
 /obj/effect/turf_underlay/icefloor,
 /obj/effect/landmark/lv624/fog_blocker,
@@ -33065,11 +33060,6 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/ice_rock/corners,
 /area/ice_colony/exterior/surface/cliff)
-"qRC" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
-/obj/structure/fence,
-/turf/open/floor/plating/ground/ice,
-/area/ice_colony/exterior/surface/valley/southeast)
 "qUJ" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/ice/junction{
