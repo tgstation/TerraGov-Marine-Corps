@@ -90,7 +90,7 @@
 /obj/item/clothing/head/tgmcberet/captain
 	name = "\improper Commanding Officer beret"
 	desc = "A beret with the Captain insignia emblazoned on it. It commands loyalty and bravery in all who gaze upon it."
-	icon_state = "beretfc"
+	icon_state = "beretcap"
 	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 10, "bio" = 5, "rad" = 0, "fire" = 50, "acid" = 50)
 	flags_item_map_variant = NONE
 
