@@ -159,8 +159,7 @@
 		)
 
 	.["jobs"] = list()
-	for(var/j in SSjob.joinable_occupations)
-		var/datum/job/job = j
+	for(var/datum/job/job AS in SSjob.joinable_occupations)
 		var/rank = job.title
 		.["jobs"][rank] = list(
 			"color" = job.selection_color,
