@@ -1,18 +1,24 @@
 import { useBackend, useLocalState } from "../backend";
-import { Stack, Button, Section, LabeledList, Divider, Tabs } from "../components";
+import { Stack, Button, Section, LabeledList, Divider, Tabs, Box } from "../components";
 import { Window } from "../layouts";
 import { createLogger } from "../logging";
 
 type Loadout =
   {
-    key: string,
+    name: string,
+    job: string,
+  }
+
+
+type LoadoutListData = 
+  {
+    loadout_list: Loadout[],
     job: string,
   }
 
 type LoadoutManagerData = 
   {
     loadout_list: Loadout[],
-    job: string,
   };
 
 type TabData = 
@@ -25,22 +31,25 @@ const LoadoutItem = (props : Loadout, context) => {
   const { act } = useBackend(context);
   const {
     job,
-    key,
+    name,
   } = props;
 
   return (
     <LabeledList.Item
       labelColor="white"
-      label={key}>
+      label={name}>
+      <Box>
+
+      </Box>
       <Button
-        onClick={() => act('SelectLoadout', { loadout_name: key, loadout_job: job })}>
+        onClick={() => act('SelectLoadout', { loadout_name: name, loadout_job: job })}>
         Sadness
       </Button>
     </LabeledList.Item>
   );
 };
 
-const LoadoutList = (props : LoadoutManagerData, context) => {
+const LoadoutList = (props : LoadoutListData, context) => {
   const { loadout_list, job } = props;
   return (
     <Stack.Item>
@@ -50,7 +59,8 @@ const LoadoutList = (props : LoadoutManagerData, context) => {
             .map(loadout_visible => {
               return (
                 <LoadoutItem 
-                  key={loadout_visible.key} 
+                  key={loadout_visible.name}
+                  name={loadout_visible.name}
                   job={loadout_visible.job} />
               );
             })}
