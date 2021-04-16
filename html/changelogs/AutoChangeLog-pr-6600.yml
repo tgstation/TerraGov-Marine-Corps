@@ -1,0 +1,4 @@
+author: "TheOneAndMightyRed"
+delete-after: True
+changes: 
+  - qol: "You can now click a stack of magazines with the ammo box to fill the ammo box with."
