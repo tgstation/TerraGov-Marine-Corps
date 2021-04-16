@@ -111,7 +111,7 @@ Do not ask your men to do anything you would not do side by side with them.
 Make the TGMC proud!"})
 
 /datum/job/terragov/command/fieldcommander/after_spawn(mob/living/new_mob, mob/user, latejoin = FALSE)
-	.=..()
+	. = ..()
 	if(!ishuman(new_mob))
 		return
 	var/mob/living/carbon/human/new_human = new_mob
@@ -167,7 +167,7 @@ Make the TGMC proud!"})
 	)
 
 /datum/job/terragov/command/staffofficer/after_spawn(mob/living/new_mob, mob/user, latejoin = FALSE)
-	.=..()
+	. = ..()
 	if(!ishuman(new_mob))
 		return
 	var/mob/living/carbon/human/new_human = new_mob
@@ -293,7 +293,7 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 	)
 /datum/job/terragov/engineering/chief/after_spawn(mob/living/new_mob, mob/user, latejoin = FALSE)
-	.=..()
+	. = ..()
 	if(!ishuman(new_mob))
 		return
 	var/mob/living/carbon/human/new_human = new_mob
@@ -353,7 +353,7 @@ You are also next in the chain of command, should the bridge crew fall in the li
 		//datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 	)
 /datum/job/command/engineering/tech/after_spawn(mob/living/new_mob, mob/user, latejoin = FALSE)
-	.=..()
+	. = ..()
 	if(!ishuman(new_mob))
 		return
 	var/mob/living/carbon/human/new_human = new_mob
@@ -423,7 +423,7 @@ requisitions line and later on to be ready to send supplies for marines who are 
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 	)
 /datum/job/command/engineering/tech/after_spawn(mob/living/new_mob, mob/user, latejoin = FALSE)
-	.=..()
+	. = ..()
 	if(!ishuman(new_mob))
 		return
 	var/mob/living/carbon/human/new_human = new_mob
@@ -520,7 +520,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 	back = /obj/item/storage/backpack/marine/satchel
 
 /datum/outfit/job/medical/professor/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	.=..()
+	. = ..()
 	H.equip_to_slot_or_del(new/obj/item/tweezers, SLOT_IN_BACKPACK)
 
 //Medical Officer
@@ -543,7 +543,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 	)
 /datum/job/terragov/engineering/chief/after_spawn(mob/living/new_mob, mob/user, latejoin = FALSE)
-	.=..()
+	. = ..()
 	if(!ishuman(new_mob))
 		return
 	var/mob/living/carbon/human/new_human = new_mob
@@ -583,7 +583,7 @@ You are also an expert when it comes to medication and treatment. If you do not 
 	back = /obj/item/storage/backpack/marine/satchel
 
 /datum/outfit/job/medical/medicalofficer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	.=..()
+	. = ..()
 	H.equip_to_slot_or_del(new/obj/item/tweezers, SLOT_IN_BACKPACK)
 
 
@@ -719,7 +719,7 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 	return ..()
 
 /datum/job/terragov/engineering/chief/after_spawn(mob/living/new_mob, mob/user, latejoin = FALSE)
-	.=..()
+	. = ..()
 	if(!ishuman(new_mob))
 		return
 	var/mob/living/carbon/human/new_human = new_mob
@@ -784,7 +784,7 @@ In addition, being a Synthetic gives you knowledge in every field and specializa
 	return /mob/living/silicon/ai
 
 /datum/job/terragov/silicon/ai/radio_help_message(mob/M)
-	.=..()
+	. = ..()
 	to_chat(M, {"Your primary job is to support and assist all TGMC departments and personnel on-board.
 However, your vision is limited through cameras from the ship or to the marines groundside.
 Recon any threats and report findings to various communication channels.
