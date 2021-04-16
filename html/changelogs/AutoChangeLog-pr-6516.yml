@@ -1,0 +1,4 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - qol: "Ravage and Shrike Screech can be selected with a new keybind, and then used with shift/middle/right click"
