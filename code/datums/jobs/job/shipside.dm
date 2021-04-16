@@ -221,6 +221,7 @@ You are in charge of logistics and the overwatch system. You are also in line to
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 	)
 
+
 /datum/job/terragov/command/pilot/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
 	if(!ishuman(new_mob))
@@ -292,6 +293,8 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 	)
+
+
 /datum/job/terragov/engineering/chief/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
 	if(!ishuman(new_mob))
@@ -352,6 +355,8 @@ You are also next in the chain of command, should the bridge crew fall in the li
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 	)
+
+
 /datum/job/command/engineering/tech/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
 	if(!ishuman(new_mob))
@@ -422,6 +427,8 @@ requisitions line and later on to be ready to send supplies for marines who are 
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 	)
+
+
 /datum/job/terragov/requisitions/officer/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
 	if(!ishuman(new_mob))
