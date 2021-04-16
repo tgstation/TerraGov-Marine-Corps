@@ -1,4 +1,3 @@
-import { BooleanLike } from 'common/react';
 import { useBackend, useLocalState } from '../backend';
 import { Button, Input, Section, Flex, Tabs, LabeledList, TextArea, Box, Grid, Modal, ColorBox, ByondUi } from '../components';
 import { Window } from '../layouts';
@@ -6,10 +5,10 @@ import { Window } from '../layouts';
 const DEBUG_ENABLED = false;
 
 type PlayerPreferencesData = {
-  is_admin: BooleanLike,
+  is_admin: number,
   slot: number,
   real_name: string,
-  random_name: BooleanLike,
+  random_name: number,
   synthetic_name: string,
   synthetic_type: string,
   xeno_name: string,
@@ -19,7 +18,7 @@ type PlayerPreferencesData = {
   ethnicity: string,
   species: string,
   body_type: string,
-  good_eyesight: BooleanLike,
+  good_eyesight: number,
   h_style: string,
   r_hair: number,
   g_hair: number,
@@ -54,18 +53,18 @@ type PlayerPreferencesData = {
   ui_style: number,
   ui_style_color: string,
   ui_style_alpha: number,
-  windowflashing: BooleanLike,
-  auto_fit_viewport: BooleanLike,
-  focus_chat: BooleanLike,
+  windowflashing: number,
+  auto_fit_viewport: number,
+  focus_chat: number,
   clientfps: number,
-  chat_on_map: BooleanLike,
+  chat_on_map: number,
   max_chat_length: number,
-  see_chat_non_mob: BooleanLike,
-  see_rc_emotes: BooleanLike,
-  mute_others_combat_messages: BooleanLike,
-  mute_self_combat_messages: BooleanLike,
-  show_typing: BooleanLike,
-  tooltips: BooleanLike,
+  see_chat_non_mob: number,
+  see_rc_emotes: number,
+  mute_others_combat_messages: number,
+  mute_self_combat_messages: number,
+  show_typing: number,
+  tooltips: number,
   key_bindings: AssocStringStringArray,
   save_slot_names: AssocStringString,
   synth_types: string[],
@@ -143,14 +142,14 @@ type JobsList = {
 type JobDatum = {
   color: string,
   description: string,
-  banned: BooleanLike,
+  banned: number,
   playtime_req: number,
-  account_age_req: BooleanLike,
+  account_age_req: number,
   flags: FlagsList
 }
 
 type FlagsList = {
-  bold: BooleanLike,
+  bold: number,
 }
 
 export const PlayerPreferences = (props, context) => {
