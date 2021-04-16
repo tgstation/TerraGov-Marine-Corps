@@ -443,7 +443,7 @@ const CharacterCustomization = (props, context) => {
                 action={'name_real'}
                 value={'real_name'}
                 extra={
-                  <span>
+                  <Box as="span">
                     <Button onClick={() => act('randomize_name')}>
                       Randomize
                     </Button>
