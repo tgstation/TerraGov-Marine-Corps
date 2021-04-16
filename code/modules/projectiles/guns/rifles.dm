@@ -180,7 +180,7 @@
 	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
 	caliber = "10x27mm caseless" //codex
 	aim_slowdown = 0.75
-	wield_delay = 1 SECONDS
+	wield_delay = 0.8 SECONDS
 	force = 20
 	max_shells = 10 //codex
 	current_mag = /obj/item/ammo_magazine/rifle/standard_dmr
@@ -213,7 +213,7 @@
 	attachable_offset = list("muzzle_x" = 48, "muzzle_y" = 21,"rail_x" = 21, "rail_y" = 24, "under_x" = 31, "under_y" = 15, "stock_x" = 14, "stock_y" = 10)
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.2 SECONDS
-	aim_speed_modifier = 3
+	aim_speed_modifier = 2
 
 	fire_delay = 0.8 SECONDS
 	accuracy_mult = 1.25
@@ -862,7 +862,7 @@
 
 /obj/item/weapon/gun/rifle/standard_smartmachinegun
 	name = "\improper T-29 smart machine gun"
-	desc = "The T-29 is the TGMC's current standard IFF-capable medium machine gun. It's known for its ability to lay down heavy fire support very well. It is generally used when someone wants to hold a position or provide fire support. It cannot turn off IFF. It uses 10x26mm ammunition."
+	desc = "The T-29 is the TGMC's current standard IFF-capable medium machine gun. It's known for its ability to lay down heavy fire support very well. It is generally used when someone wants to hold a position or provide fire support. Requires special training and it cannot turn off IFF. It uses 10x26mm ammunition."
 	icon_state = "t29"
 	item_state = "t29"
 	caliber = "10x26mm caseless" //codex
@@ -889,6 +889,7 @@
 	gun_iff_signal = list(ACCESS_IFF_MARINE)
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
 	starting_attachment_types = list(/obj/item/attachable/stock/t29stock, /obj/item/attachable/t29barrel)
+	gun_skill_category = GUN_SKILL_SMARTGUN //Uses SG skill for the penalties.
 	attachable_offset = list("muzzle_x" = 42, "muzzle_y" = 17,"rail_x" = 15, "rail_y" = 21, "under_x" = 24, "under_y" = 14, "stock_x" = 12, "stock_y" = 13)
 	fire_delay = 0.25 SECONDS
 	burst_amount = 0

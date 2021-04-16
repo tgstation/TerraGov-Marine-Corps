@@ -91,8 +91,6 @@
 		"show_typing" = show_typing,
 
 		"tooltips" = tooltips,
-
-		"key_bindings" = key_bindings,
 	)
 	.["key_bindings"] = list()
 	for(var/key in key_bindings)

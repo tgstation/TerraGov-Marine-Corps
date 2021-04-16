@@ -1,0 +1,6 @@
+author: "Walarks"
+delete-after: True
+changes: 
+  - rscadd: "Added vali boost support for bicaridine, kelotane, dylovene, meralyne, dermaline, paracetamol, neuraline and synaptizine"
+  - rscadd: "Added a radial button with information about each reagent's effects"
+  - qol: "changed boost tier change text to correspond to new boost system"

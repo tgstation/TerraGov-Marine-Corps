@@ -1225,6 +1225,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "taser"
 	hud_state_empty = "battery_empty"
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_CHAINING
+	shell_speed = 0.1
 	damage = 20
 	penetration = 20
 	bullet_color = COLOR_TESLA_BLUE

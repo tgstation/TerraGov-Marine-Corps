@@ -17,6 +17,7 @@
 	plasma_cost = 150
 	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_CURE
 	heal_range = DRONE_HEAL_RANGE
+	target_flags = XABB_MOB_TARGET
 
 /datum/action/xeno_action/activable/psychic_cure/acidic_salve/use_ability(atom/target)
 	if(owner.do_actions)

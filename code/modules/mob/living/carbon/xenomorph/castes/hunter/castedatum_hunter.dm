@@ -11,14 +11,15 @@
 	wound_type = "hunter" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 23
+	melee_damage = 20
 	attack_delay = 7
 
 	// *** Tackle *** //
 	tackle_damage = 28
 
 	// *** Speed *** //
-	speed = -1.2
+	speed = -1.1
+	weeds_speed_mod = -0.1
 
 	// *** Plasma *** //
 	plasma_max = 100
@@ -67,7 +68,7 @@
 	tackle_damage = 28
 
 	// *** Speed *** //
-	speed = -1.3
+	speed = -1.2
 
 	// *** Plasma *** //
 	plasma_max = 150
@@ -91,13 +92,13 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 26
+	melee_damage = 23
 
 	// *** Tackle *** //
 	tackle_damage = 32
 
 	// *** Speed *** //
-	speed = -1.4
+	speed = -1.3
 
 	// *** Plasma *** //
 	plasma_max = 200
@@ -122,13 +123,13 @@
 	ancient_message = "We are the epitome of the hunter. Few can stand against us in open combat."
 
 	// *** Melee Attacks *** //
-	melee_damage = 26
+	melee_damage = 23
 
 	// *** Tackle *** //
 	tackle_damage = 32
 
 	// *** Speed *** //
-	speed = -1.5
+	speed = -1.4
 
 	// *** Plasma *** //
 	plasma_max = 200

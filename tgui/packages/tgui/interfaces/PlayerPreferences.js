@@ -1,16 +1,17 @@
 import { useBackend, useLocalState } from '../backend';
 import {
-  Button, Input, Section, Flex, Tabs, LabeledList, Dropdown, TextArea,
+  Button, Input, Section, Flex, Tabs, LabeledList, TextArea,
   Box, Grid, Modal, ColorBox, ByondUi,
 } from '../components';
 import { Window } from '../layouts';
-import { logger } from '../logging';
 
 const DEBUG_ENABLED = false;
 
 export const PlayerPreferences = (props, context) => {
   const { act, data, config } = useBackend(context);
   const [tabIndex, setTabIndex] = useLocalState(context, 'selectedTabIndex', 1);
+
+  const { save_slot_names, slot } = data;
 
   let affectsSave = false;
   let CurrentTab = CharacterCustomization;
@@ -45,14 +46,14 @@ export const PlayerPreferences = (props, context) => {
 
   // I dont like this shit, but it doesn't matter in the end
   // i'd rather massage the data in js than byond.
-  const slotNames = Object.values(data.save_slot_names).map(
+  const slotNames = Object.values(save_slot_names).map(
     name => name.split(' ')[0]
   );
 
   const saveSlots = new Array(10).fill(1).map((_, idx) => (
     <Button
       key={idx + 1}
-      selected={idx + 1 === data.slot}
+      selected={idx + 1 === slot}
       onClick={() => act('changeslot', { changeslot: idx + 1 })}>
       {slotNames[idx] || `Character ${idx + 1}`}
     </Button>
@@ -84,30 +85,34 @@ export const PlayerPreferences = (props, context) => {
 
 const BackgroundInformation = (props, context) => {
   const { act, data, config } = useBackend(context);
+  const { 
+    slot, flavor_text, med_record, gen_record, sec_record,
+    exploit_record,
+  } = data;
   const [characterDesc, setCharacterDesc] = useLocalState(
     context,
-    'characterDesc' + data.slot,
-    data.flavor_text
+    'characterDesc' + slot,
+    flavor_text
   );
   const [medicalDesc, setMedicalDesc] = useLocalState(
     context,
-    'medicalDesc' + data.slot,
-    data.med_record
+    'medicalDesc' + slot,
+    med_record
   );
   const [employmentDesc, setEmploymentDesc] = useLocalState(
     context,
-    'employmentDesc' + data.slot,
-    data.gen_record
+    'employmentDesc' + slot,
+    gen_record
   );
   const [securityDesc, setSecurityDesc] = useLocalState(
     context,
-    'securityDesc' + data.slot,
-    data.sec_record
+    'securityDesc' + slot,
+    sec_record
   );
   const [exploitsDesc, setExploitsDesc] = useLocalState(
     context,
-    'exploitsDesc' + data.slot,
-    data.exploit_record
+    'exploitsDesc' + slot,
+    exploit_record
   );
   return (
     <Section title="Background information">
@@ -117,13 +122,13 @@ const BackgroundInformation = (props, context) => {
           <Box>
             <Button
               icon="save"
-              disabled={characterDesc === data.flavor_text}
+              disabled={characterDesc === flavor_text}
               onClick={() => act('flavor_text', { characterDesc })}>
               Save
             </Button>
             <Button
               icon="times"
-              onClick={() => setCharacterDesc(data.flavor_text)}>
+              onClick={() => setCharacterDesc(flavor_text)}>
               Reset
             </Button>
           </Box>
@@ -144,13 +149,13 @@ const BackgroundInformation = (props, context) => {
               <Box>
                 <Button
                   icon="save"
-                  disabled={medicalDesc === data.med_record}
+                  disabled={medicalDesc === med_record}
                   onClick={() => act('med_record', { medicalDesc })}>
                   Save
                 </Button>
                 <Button
                   icon="times"
-                  onClick={() => setMedicalDesc(data.med_record)}>
+                  onClick={() => setMedicalDesc(med_record)}>
                   Reset
                 </Button>
               </Box>
@@ -170,13 +175,13 @@ const BackgroundInformation = (props, context) => {
               <Box>
                 <Button
                   icon="save"
-                  disabled={employmentDesc === data.gen_record}
+                  disabled={employmentDesc === gen_record}
                   onClick={() => act('gen_record', { employmentDesc })}>
                   Save
                 </Button>
                 <Button
                   icon="times"
-                  onClick={() => setEmploymentDesc(data.gen_record)}>
+                  onClick={() => setEmploymentDesc(gen_record)}>
                   Reset
                 </Button>
               </Box>
@@ -198,13 +203,13 @@ const BackgroundInformation = (props, context) => {
               <Box>
                 <Button
                   icon="save"
-                  disabled={securityDesc === data.sec_record}
+                  disabled={securityDesc === sec_record}
                   onClick={() => act('sec_record', { securityDesc })}>
                   Save
                 </Button>
                 <Button
                   icon="times"
-                  onClick={() => setSecurityDesc(data.sec_record)}>
+                  onClick={() => setSecurityDesc(sec_record)}>
                   Reset
                 </Button>
               </Box>
@@ -224,13 +229,13 @@ const BackgroundInformation = (props, context) => {
               <Box>
                 <Button
                   icon="save"
-                  disabled={exploitsDesc === data.exploit_record}
+                  disabled={exploitsDesc === exploit_record}
                   onClick={() => act('exploit_record', { exploitsDesc })}>
                   Save
                 </Button>
                 <Button
                   icon="times"
-                  onClick={() => setExploitsDesc(data.exploit_record)}>
+                  onClick={() => setExploitsDesc(exploit_record)}>
                   Reset
                 </Button>
               </Box>
@@ -250,6 +255,10 @@ const BackgroundInformation = (props, context) => {
 
 const CharacterCustomization = (props, context) => {
   const { act, data, config } = useBackend(context);
+  const { 
+    random_name, r_hair, g_hair, b_hair, r_grad, g_grad, b_grad,
+    r_eyes, g_eyes, b_eyes, r_facial, g_facial, b_facial,
+  } = data;
 
   const rgbToHex = (red, green, blue) => {
     const convert = comp => {
@@ -277,7 +286,7 @@ const CharacterCustomization = (props, context) => {
                     <Button.Checkbox
                       inline
                       content="Always Random"
-                      checked={data.random_name === 1}
+                      checked={random_name === 1}
                       onClick={() => act('toggle_always_random')}
                     />
                   </span>
@@ -323,12 +332,12 @@ const CharacterCustomization = (props, context) => {
               />
               <TextFieldPreference
                 label={'Hair Color'}
-                value={rgbToHex(data.r_hair, data.g_hair, data.b_hair)}
+                value={rgbToHex(r_hair, g_hair, b_hair)}
                 noAction
                 extra={
                   <>
                     <ColorBox
-                      color={rgbToHex(data.r_hair, data.g_hair, data.b_hair)}
+                      color={rgbToHex(r_hair, g_hair, b_hair)}
                       mr={1}
                     />
                     <Button icon="edit" onClick={() => act('haircolor')} />
@@ -342,12 +351,12 @@ const CharacterCustomization = (props, context) => {
               />
               <TextFieldPreference
                 label={'Gradient Color'}
-                value={rgbToHex(data.r_grad, data.g_grad, data.b_grad)}
+                value={rgbToHex(r_grad, g_grad, b_grad)}
                 noAction
                 extra={
                   <>
                     <ColorBox
-                      color={rgbToHex(data.r_grad, data.g_grad, data.b_grad)}
+                      color={rgbToHex(r_grad, g_grad, b_grad)}
                       mr={1}
                     />
                     <Button icon="edit" onClick={() => act('grad_color')} />
@@ -356,12 +365,12 @@ const CharacterCustomization = (props, context) => {
               />
               <TextFieldPreference
                 label={'Eye Color'}
-                value={rgbToHex(data.r_eyes, data.g_eyes, data.b_eyes)}
+                value={rgbToHex(r_eyes, g_eyes, b_eyes)}
                 noAction
                 extra={
                   <>
                     <ColorBox
-                      color={rgbToHex(data.r_eyes, data.g_eyes, data.b_eyes)}
+                      color={rgbToHex(r_eyes, g_eyes, b_eyes)}
                       mr={1}
                     />
                     <Button icon="edit" onClick={() => act('eyecolor')} />
@@ -382,15 +391,15 @@ const CharacterCustomization = (props, context) => {
               />
               <TextFieldPreference
                 label={'Facial Hair Color'}
-                value={rgbToHex(data.r_facial, data.g_facial, data.b_facial)}
+                value={rgbToHex(r_facial, g_facial, b_facial)}
                 noAction
                 extra={
                   <>
                     <ColorBox
                       color={rgbToHex(
-                        data.r_facial,
-                        data.g_facial,
-                        data.b_facial
+                        r_facial,
+                        g_facial,
+                        b_facial
                       )}
                       mr={1}
                     />
@@ -530,6 +539,10 @@ const ToggleFieldPreference = (props, context) => {
 
 const JobPreferences = (props, context) => {
   const { act, data, config } = useBackend(context);
+  const { 
+    alternate_option, squads, preferred_squad, overflow_job,
+    special_occupations, special_occupation,
+  } = data;
   const [shownDescription, setShownDescription] = useLocalState(
     context,
     'shown-desc',
@@ -620,49 +633,49 @@ const JobPreferences = (props, context) => {
                 <Button.Checkbox
                   inline
                   content={'Take a random job'}
-                  checked={data.alternate_option === 0}
+                  checked={alternate_option === 0}
                   onClick={() => act('jobalternative', { newValue: 0 })}
                 />
                 <Button.Checkbox
                   inline
-                  content={`Spawn as ${data.overflow_job}`}
-                  checked={data.alternate_option === 1}
+                  content={`Spawn as ${overflow_job}`}
+                  checked={alternate_option === 1}
                   onClick={() => act('jobalternative', { newValue: 1 })}
                 />
                 <Button.Checkbox
                   inline
                   content={'Return to lobby'}
-                  checked={data.alternate_option === 2}
+                  checked={alternate_option === 2}
                   onClick={() => act('jobalternative', { newValue: 2 })}
                 />
               </Flex.Item>
               <Flex.Item>
                 <h4>Preferred Squad</h4>
-                {Object.values(data.squads).map(squad => (
+                {Object.values(squads).map(squad => (
                   <Button.Checkbox
                     key={squad}
                     inline
                     content={squad}
-                    checked={data.preferred_squad === squad}
+                    checked={preferred_squad === squad}
                     onClick={() => act('squad', { newValue: squad })}
                   />
                 ))}
               </Flex.Item>
               <Flex.Item>
                 <h4>Occupational choices</h4>
-                {Object.keys(data.special_occupations).map((special, idx) => (
+                {Object.keys(special_occupations).map((special, idx) => (
                   <>
                     <Button.Checkbox
-                      key={data.special_occupations[special]}
+                      key={special_occupations[special]}
                       inline
                       content={special}
                       checked={
-                        data.special_occupation
-                        & data.special_occupations[special]
+                        special_occupation
+                        & special_occupations[special]
                       }
                       onClick={() =>
                         act('be_special', {
-                          flag: data.special_occupations[special],
+                          flag: special_occupations[special],
                         })}
                     />
                     {idx === 1 && <br />}
@@ -679,9 +692,10 @@ const JobPreferences = (props, context) => {
 
 const JobPreference = (props, context) => {
   const { act, data, config } = useBackend(context);
+  const { jobs, job_preferences } = data;
   const { job, setShownDescription } = props;
-  const jobData = data.jobs[job];
-  const preference = data.job_preferences[job];
+  const jobData = jobs[job];
+  const preference = job_preferences[job];
 
   if (jobData.banned) {
     return (
@@ -739,6 +753,7 @@ const JobPreference = (props, context) => {
 
 const GameSettings = (props, context) => {
   const { act, data, config } = useBackend(context);
+  const { ui_style_color } = data;
   return (
     <Section title="Game Settings">
       <Grid>
@@ -858,7 +873,7 @@ const GameSettings = (props, context) => {
                 noAction
                 extra={
                   <>
-                    <ColorBox color={data.ui_style_color} mr={1} />
+                    <ColorBox color={ui_style_color} mr={1} />
                     <Button icon="edit" onClick={() => act('uicolor')} />
                   </>
                 }
@@ -879,6 +894,7 @@ const GameSettings = (props, context) => {
 
 const KeybindSetting = (props, context) => {
   const { act, data, config } = useBackend(context);
+  const { all_keybindings, is_admin } = data;
   const [capture, setCapture] = useLocalState(context, `setCapture`, false);
   const [filter, setFilter] = useLocalState(context, `keybind-filter`, false);
 
@@ -914,7 +930,7 @@ const KeybindSetting = (props, context) => {
       <Grid>
         <Grid.Column>
           <Section title="Main">
-            {data.all_keybindings['MOVEMENT']?.filter(filterSearch).map(kb => (
+            {all_keybindings['MOVEMENT']?.filter(filterSearch).map(kb => (
               <KeybindingPreference
                 key={kb.name}
                 keybind={kb}
@@ -922,7 +938,7 @@ const KeybindSetting = (props, context) => {
               />
             ))}
 
-            {data.all_keybindings['MOB']?.filter(filterSearch).map(kb => (
+            {all_keybindings['MOB']?.filter(filterSearch).map(kb => (
               <KeybindingPreference
                 key={kb.name}
                 keybind={kb}
@@ -930,7 +946,7 @@ const KeybindSetting = (props, context) => {
               />
             ))}
 
-            {data.all_keybindings['CLIENT']?.filter(filterSearch).map(kb => (
+            {all_keybindings['CLIENT']?.filter(filterSearch).map(kb => (
               <KeybindingPreference
                 key={kb.name}
                 keybind={kb}
@@ -938,7 +954,7 @@ const KeybindSetting = (props, context) => {
               />
             ))}
 
-            {data.all_keybindings['LIVING']?.filter(filterSearch).map(kb => (
+            {all_keybindings['LIVING']?.filter(filterSearch).map(kb => (
               <KeybindingPreference
                 key={kb.name}
                 keybind={kb}
@@ -946,7 +962,7 @@ const KeybindSetting = (props, context) => {
               />
             ))}
 
-            {data.all_keybindings['CARBON']?.filter(filterSearch).map(kb => (
+            {all_keybindings['CARBON']?.filter(filterSearch).map(kb => (
               <KeybindingPreference
                 key={kb.name}
                 keybind={kb}
@@ -954,7 +970,7 @@ const KeybindSetting = (props, context) => {
               />
             ))}
 
-            {data.all_keybindings['MISC']?.filter(filterSearch).map(kb => (
+            {all_keybindings['MISC']?.filter(filterSearch).map(kb => (
               <KeybindingPreference
                 key={kb.name}
                 keybind={kb}
@@ -962,9 +978,9 @@ const KeybindSetting = (props, context) => {
               />
             ))}
           </Section>
-          {data.is_admin && (
+          {is_admin && (
             <Section title="Administration (admin only)">
-              {data.all_keybindings['ADMIN']?.filter(filterSearch).map(kb => (
+              {all_keybindings['ADMIN']?.filter(filterSearch).map(kb => (
                 <KeybindingPreference
                   key={kb.name}
                   keybind={kb}
@@ -979,7 +995,7 @@ const KeybindSetting = (props, context) => {
             <LabeledList.Item>
               <h3>Human</h3>
             </LabeledList.Item>
-            {data.all_keybindings['HUMAN']?.filter(filterSearch).map(kb => (
+            {all_keybindings['HUMAN']?.filter(filterSearch).map(kb => (
               <KeybindingPreference
                 key={kb.name}
                 keybind={kb}
@@ -989,7 +1005,7 @@ const KeybindSetting = (props, context) => {
             <LabeledList.Item>
               <h3>Xenomorph</h3>
             </LabeledList.Item>
-            {data.all_keybindings['XENO']?.filter(filterSearch).map(kb => (
+            {all_keybindings['XENO']?.filter(filterSearch).map(kb => (
               <KeybindingPreference
                 key={kb.name}
                 keybind={kb}
@@ -1005,8 +1021,9 @@ const KeybindSetting = (props, context) => {
 
 const KeybindingPreference = (props, context) => {
   const { act, data, config } = useBackend(context);
+  const { key_bindings } = data;
   const { keybind, setCapture } = props;
-  const current = data.key_bindings[keybind.name];
+  const current = key_bindings[keybind.name];
   return (
     <LabeledList.Item label={keybind.display_name}>
       {current && (current.map(key => (
@@ -1101,6 +1118,11 @@ const NavigationSelector = (props, context) => {
 const GearCustomization = (props, context) => {
   const { act, data, config } = useBackend(context);
 
+  const { 
+    gearsets, gear, clothing, underwear, undershirt,
+    backpack, gender,
+  } = data;
+
   const slotMapping = {
     11: 'Head',
     9: 'Eyewear',
@@ -1108,16 +1130,16 @@ const GearCustomization = (props, context) => {
   };
 
   const bySlot = {};
-  for (const item in data.gearsets) {
-    const gear = data.gearsets[item];
+  for (const item in gearsets) {
+    const gear = gearsets[item];
     if (!bySlot[slotMapping[gear.slot]]) {
       bySlot[slotMapping[gear.slot]] = [];
     }
     bySlot[slotMapping[gear.slot]].push(gear);
   }
 
-  const currentPoints = data.gear.reduce((total, name) =>
-    total + data.gearsets[name].cost, 0);
+  const currentPoints = gear.reduce((total, name) =>
+    total + gearsets[name].cost, 0);
 
   return (
     <Section title="Custom Gear" buttons={
@@ -1144,8 +1166,8 @@ const GearCustomization = (props, context) => {
                   <Button.Checkbox
                     inline
                     content={'Equipped'}
-                    checked={data.gear.includes(item.name)}
-                    onClick={() => data.gear.includes(item.name)
+                    checked={gear.includes(item.name)}
+                    onClick={() => gear.includes(item.name)
                       ? act('loadoutremove', { gear: item.name })
                       : act('loadoutadd', { gear: item.name })}
                   />
@@ -1165,8 +1187,8 @@ const GearCustomization = (props, context) => {
                   <Button.Checkbox
                     inline
                     content={'Equipped'}
-                    checked={data.gear.includes(item.name)}
-                    onClick={() => data.gear.includes(item.name)
+                    checked={gear.includes(item.name)}
+                    onClick={() => gear.includes(item.name)
                       ? act('loadoutremove', { gear: item.name })
                       : act('loadoutadd', { gear: item.name })}
                   />
@@ -1187,8 +1209,8 @@ const GearCustomization = (props, context) => {
                   <Button.Checkbox
                     inline
                     content={'Equipped'}
-                    checked={data.gear.includes(item.name)}
-                    onClick={() => data.gear.includes(item.name)
+                    checked={gear.includes(item.name)}
+                    onClick={() => gear.includes(item.name)
                       ? act('loadoutremove', { gear: item.name })
                       : act('loadoutadd', { gear: item.name })}
                   />
@@ -1200,12 +1222,12 @@ const GearCustomization = (props, context) => {
         <Grid.Column>
           <Section title={'Undershirt (select one)'}>
             <LabeledList>
-              {data.clothing['undershirt'].map((item, idx) => (
+              {clothing['undershirt'].map((item, idx) => (
                 <LabeledList.Item key={item} label={item}>
                   <Button.Checkbox
                     inline
                     content={'Equipped'}
-                    checked={(data.undershirt - 1) === idx}
+                    checked={(undershirt - 1) === idx}
                     onClick={() => act('undershirt', { newValue: item })}
                   />
                 </LabeledList.Item>
@@ -1218,12 +1240,12 @@ const GearCustomization = (props, context) => {
         <Grid.Column>
           <Section title={'Underwear (select one)'}>
             <LabeledList>
-              {data.clothing['underwear'][data.gender].map((item, idx) => (
+              {clothing['underwear'][gender].map((item, idx) => (
                 <LabeledList.Item key={item} label={item}>
                   <Button.Checkbox
                     inline
                     content={'Equipped'}
-                    checked={(data.underwear - 1) === idx}
+                    checked={(underwear - 1) === idx}
                     onClick={() => act('underwear', { newValue: item })}
                   />
                 </LabeledList.Item>
@@ -1234,12 +1256,12 @@ const GearCustomization = (props, context) => {
         <Grid.Column>
           <Section title={'Backpack (select one)'}>
             <LabeledList>
-              {data.clothing['backpack'].map((item, idx) => (
+              {clothing['backpack'].map((item, idx) => (
                 <LabeledList.Item key={item} label={item}>
                   <Button.Checkbox
                     inline
                     content={'Equipped'}
-                    checked={(data.backpack - 1) === idx}
+                    checked={(backpack - 1) === idx}
                     onClick={() => act('backpack', { newValue: item })}
                   />
                 </LabeledList.Item>

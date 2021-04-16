@@ -233,8 +233,8 @@ WEAPONS
 	cost = MINIGUN_PRICE
 
 /datum/supply_packs/weapons/smartgun
-	name = "T-29 Smart Machinegun kit"
-	contains = list(/obj/item/storage/box/t26_system)
+	name = "T-29 Smart Machinegun"
+	contains = list(/obj/item/weapon/gun/rifle/standard_smartmachinegun)
 	cost = 40
 
 /datum/supply_packs/weapons/flamethrower
@@ -1073,7 +1073,7 @@ MEDICAL
 	name = "lemoline"
 	notes = "Contains 1 bottle of lemoline with 10 units."
 	contains = list(/obj/item/reagent_containers/glass/bottle/lemoline)
-	cost = 50
+	cost = 25
 
 /datum/supply_packs/medical/advancedKits
 	name = "Advanced medical packs"
