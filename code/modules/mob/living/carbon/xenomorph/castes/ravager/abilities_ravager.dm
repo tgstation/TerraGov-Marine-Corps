@@ -89,6 +89,7 @@
 	cooldown_timer = 6 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY | XACT_IGNORE_SELECTED_ABILITY
 	keybind_signal = COMSIG_XENOABILITY_RAVAGE
+	alternate_keybind_signal = COMSIG_XENOABILITY_RAVAGE_SELECT
 
 /datum/action/xeno_action/activable/ravage/on_cooldown_finish()
 	to_chat(owner, "<span class='xenodanger'>We gather enough strength to Ravage again.</span>")

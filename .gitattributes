@@ -28,8 +28,8 @@ html/changelog.html merge=union
 # tgui
 *.js text eol=lf
 *.scss text eol=lf
-*.css text eol=lf
-*.html text eol=lf
+*.cjs text eol=lf
+*.ps1 text eol=lf
 
 # definitely don't convert these
 *.dmi binary
