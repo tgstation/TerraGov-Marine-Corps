@@ -1215,7 +1215,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 15
 	accurate_range = 10
 	bullet_color = COLOR_VIVID_YELLOW
-	
+
 /datum/ammo/energy/taser/on_hit_mob(mob/M,obj/projectile/P)
 	staggerstun(M, P, stun = 10)
 
@@ -1624,17 +1624,17 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/turf/T = get_turf(M)
 	if(!T)
 		T = get_turf(P)
-	for (var/A in T)		
-		if(istype(A, /obj/flamer_fire))
-			var/obj/flamer_fire/FF = A
+	for (var/atom in T)
+		if(istype(atom, /obj/flamer_fire))
+			var/obj/flamer_fire/FF = atom
 			if(FF.firelevel > 20)
 				FF.firelevel -= 20
 				FF.updateicon()
 				continue
-			qdel(A)
+			qdel(atom)
 			continue
-		if(istype(A, /mob/living))
-			var/mob/living/target = A
+		if(istype(atom, /mob/living))
+			var/mob/living/target = atom
 			target.ExtinguishMob()
 	drop_nade(T)
 
@@ -1646,17 +1646,17 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	if(O.density && !(O.flags_atom & ON_BORDER))
 		T = get_turf(get_step(T, turn(P.dir, 180))) //If the object is dense and not a border object like barricades, we instead drop in the location just prior to the target
 
-	for (var/A in T)		
-		if(istype(A, /obj/flamer_fire))
-			var/obj/flamer_fire/FF = A
+	for (var/atom in T)
+		if(istype(atom, /obj/flamer_fire))
+			var/obj/flamer_fire/FF = atom
 			if(FF.firelevel > 20)
 				FF.firelevel -= 20
 				FF.updateicon()
 				continue
-			qdel(A)
+			qdel(atom)
 			continue
-		if(istype(A, /mob/living))
-			var/mob/living/target = A
+		if(istype(atom, /mob/living))
+			var/mob/living/target = atom
 			target.ExtinguishMob()
 
 	drop_nade(T)
@@ -1667,17 +1667,17 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		T = get_turf(P)
 	if(isclosedturf(T))
 		T = get_turf(get_step(T, turn(P.dir, 180))) //If the turf is closed, we instead drop in the location just prior to the turf
-	for (var/A in T)		
-		if(istype(A, /obj/flamer_fire))
-			var/obj/flamer_fire/FF = A
+	for (var/atom in T)
+		if(istype(atom, /obj/flamer_fire))
+			var/obj/flamer_fire/FF = atom
 			if(FF.firelevel > 20)
 				FF.firelevel -= 20
 				FF.updateicon()
-			else
-				qdel(A)
+				continue
+			qdel(atom)
 			continue
-		if(istype(A, /mob/living))
-			var/mob/living/target = A
+		if(istype(atom, /mob/living))
+			var/mob/living/target = atom
 			target.ExtinguishMob()
 	drop_nade(T)
 
