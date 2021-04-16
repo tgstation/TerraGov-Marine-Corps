@@ -181,7 +181,7 @@
 	name = "Crashed Ship"
 	icon_state = "lava_misc_crashed"
 
-/area/barren/misc/clocknuke
+/area/barren/misc/clocknuke //This'll come into play later
 	name = "The Brass Gavel"
 	icon_state = "lava_clock_nuke"
 	outside = FALSE
