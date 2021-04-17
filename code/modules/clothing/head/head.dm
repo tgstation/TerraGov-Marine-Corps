@@ -80,6 +80,13 @@
 	soft_armor = list("melee" = 15, "bullet" = 50, "laser" = 50, "energy" = 15, "bomb" = 50, "bio" = 5, "rad" = 0, "fire" = 50, "acid" = 5)
 	flags_item_map_variant = NONE
 
+/obj/item/clothing/head/tgmcberet/bridge
+	name = "\improper Staff Officer beret"
+	desc = "A beret with the Officer Corps insignia emblazoned on it. It commands loyalty and bravery in all who gaze upon it."
+	icon_state = "beretbridge"
+	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 10, "bio" = 5, "rad" = 0, "fire" = 50, "acid" = 50)
+	flags_item_map_variant = NONE
+
 /obj/item/clothing/head/tgmcberet/fc
 	name = "\improper Field Commander beret"
 	desc = "A beret with the field commander insignia emblazoned on it. It commands loyalty and bravery in all who gaze upon it."
@@ -133,7 +140,7 @@
 	name = "\improper TGMC officer cap"
 	desc = "A hat usually worn by officers in the TGMC. While it has limited combat functionality, some prefer to wear it instead of the standard issue helmet."
 	icon_state = "rocap"
-	soft_armor = list("melee" = 35, "bullet" = 35, "laser" = 35, "energy" = 35, "bomb" = 35, "bio" = 5, "rad" = 0, "fire" = 35, "acid" = 35)
+	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 10, "bio" = 5, "rad" = 0, "fire" = 50, "acid" = 50)
 	flags_item_map_variant = NONE
 
 /obj/item/clothing/head/tgmccap/req
