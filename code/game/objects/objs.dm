@@ -151,6 +151,9 @@
 	. = ..()
 	ENABLE_BITFIELD(obj_flags, IN_USE)
 
+/obj/proc/remove_eye_control(mob/living/user)
+	return
+
 /mob/proc/unset_machine()
 	if(machine)
 		machine.on_unset_machine(src)

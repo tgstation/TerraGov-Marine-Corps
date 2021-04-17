@@ -200,7 +200,7 @@
 	var/cooldown = 0
 	var/acceleration = FALSE
 	var/mob/living/eye_user = null
-	var/obj/machinery/origin
+	var/obj/origin
 	var/eye_initialized = 0
 	var/visible_icon = 0
 	var/image/user_image = null

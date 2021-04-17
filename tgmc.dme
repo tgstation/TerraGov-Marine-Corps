@@ -1608,6 +1608,7 @@
 #include "code\modules\vehicles\unmanned\unmanned_turrets.dm"
 #include "code\modules\vehicles\unmanned\unmanned_vehicle.dm"
 #include "code\modules\vehicles\unmanned\unmanned_vehicle_remote.dm"
+#include "code\modules\xenomorph\giant_worm.dm"
 #include "code\modules\xenomorph\xeno_structures.dm"
 #include "interface\interface.dm"
 #include "interface\menu.dm"
