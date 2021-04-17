@@ -15,9 +15,11 @@
 	/// The targeted turf where the head of the worm will appear
 	var/turf/target
 	/// The eye object used to target the exit
-	var/mob/camera/aiEye/remote/burrower/eye
+	var/mob/camera/aiEye/remote/burrower_camera/eye
 	/// What mob is actually targeting the exit turf
 	var/mob/current_user
+	/// The list of turf that will not entrave the exit
+	var/list/whitelist_turfs = list(/turf/open/ground, /turf/open/floor)
 	/// Which part of the worm is this
 	var/tail = TRUE
 	/// The actions gave to the user when controling the worm
@@ -36,7 +38,7 @@
 	actions = list()
 
 ///Digging is starting, we enter end game mode
-/obj/structure/resin/giant_worm/proc/start_digging()
+/obj/structure/resin/giant_worm/proc/start_digging(turf_target)
 	message_admins("A giant worm started digging at [AREACOORD(src)]")
 	priority_announce("Sismic signal detected. An unknow object is burrowing into your direction") //Could use better name
 	for(var/obj/structure/resin/silo/silo AS in GLOB.xeno_resin_silos)
@@ -48,10 +50,11 @@
 		return 
 	createEye()
 	give_eye_control(X)
+	
 
 
 /obj/structure/resin/giant_worm/proc/createEye()
-	eye = new /mob/camera/aiEye/remote/burrower(null, src)
+	eye = new /mob/camera/aiEye/remote/burrower_camera(null, src)
 	eye.origin = src
 	for(var/x_off in -1 to 1)
 		for(var/y_off in -1 to 1)
@@ -87,6 +90,7 @@
 	to_add += eye.placed_images
 	user.client.images += to_add
 	user.client.eye = eye
+	user.update_sight()
 
 /obj/structure/resin/giant_worm/remove_eye_control(mob/user)
 	for(var/V in actions)
@@ -102,6 +106,7 @@
 			user.client.images -= eye.user_image
 	eye.eye_user = null
 	user.remote_control = null
+	user.reset_perspective(eye)
 	user.loc = loc
 	current_user = null
 	user.unset_interaction()
@@ -109,7 +114,7 @@
 	to_remove += eye.placement_images
 	to_remove += eye.placed_images
 	user.client.images -= to_remove
-	user.client.eye = null
+	user.client.eye = user
 	user.update_sight()
 
 /obj/structure/resin/giant_worm/proc/checkExitSpot()
@@ -121,14 +126,17 @@
 		var/list/coords = image_cache[I]
 		var/turf/T = locate(eyeturf.x + coords[1], eyeturf.y + coords[2], eyeturf.z)
 		I.loc = T
-		if(!CHECK_BITFIELD(T.resistance_flags, UNACIDABLE))
-			I.icon_state = "green"
-			continue
-		I.icon_state = "red"
-		. = FALSE
+		var/skip = FALSE
+		for(var/type in whitelist_turfs)
+			if(ispath(T.type, type))
+				I.icon_state = "green"
+				skip = TRUE
+		if(!skip)
+			I.icon_state = "red"
+			. = FALSE
 
 
-/mob/camera/aiEye/remote/burrower
+/mob/camera/aiEye/remote/burrower_camera
 	name = "burrower camera"
 	visible_icon = FALSE
 	use_static = USE_STATIC_NONE
@@ -136,7 +144,7 @@
 	var/list/placed_images = list()
 
 
-/mob/camera/aiEye/remote/burrower/setLoc(T)
+/mob/camera/aiEye/remote/burrower_camera/setLoc(T)
 	..()
 	var/obj/structure/resin/giant_worm/worm = origin
 	worm?.checkExitSpot()
@@ -152,19 +160,20 @@
 
 /datum/action/innate/leave_worm/Activate()
 	var/mob/living/C = target
-	var/mob/camera/aiEye/remote/burrower/eye = C.remote_control
+	var/mob/camera/aiEye/remote/burrower_camera/eye = C.remote_control
 	var/obj/structure/resin/giant_worm/worm = eye.origin
 	worm.remove_eye_control(target)
 
 /datum/action/innate/select_exit_location
-	name = "Chose exit location"
+	name = "Start digging"
 	background_icon_state = "template2"
 	action_icon_state = "camera_off" //Need icon
 
 /datum/action/innate/select_exit_location/Activate()
 	var/mob/living/C = target
-	var/mob/camera/aiEye/remote/burrower/eye = C.remote_control
+	var/mob/camera/aiEye/remote/burrower_camera/eye = C.remote_control
 	var/obj/structure/resin/giant_worm/worm = eye.origin
 	if(!worm.checkExitSpot())
 		to_chat(target, "<span class='warning'>The worm head will not fit here")
-		worm.target = get_turf(eye)
+		return
+	worm.target = get_turf(eye)

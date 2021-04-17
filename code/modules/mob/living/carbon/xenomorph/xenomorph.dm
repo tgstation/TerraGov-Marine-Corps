@@ -380,3 +380,24 @@
 		if(DEAD, CONSCIOUS)
 			if(. == UNCONSCIOUS)
 				see_in_dark = xeno_caste.conscious_see_in_dark
+
+/mob/living/carbon/xenomorph/update_sight()
+	if(!client)
+		return
+
+	if(client.eye != src)
+		var/atom/A = client.eye
+		if(A.update_remote_sight(src)) //returns 1 if we override all other sight updates.
+			return
+
+	switch(lighting_alpha)
+		if(LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE, LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE, LIGHTING_PLANE_ALPHA_INVISIBLE)
+			ENABLE_BITFIELD(sight, SEE_MOBS)
+			ENABLE_BITFIELD(sight, SEE_OBJS)
+			ENABLE_BITFIELD(sight, SEE_TURFS)
+		if(LIGHTING_PLANE_ALPHA_NV_TRAIT)
+			ENABLE_BITFIELD(sight, SEE_MOBS)
+			DISABLE_BITFIELD(sight, SEE_OBJS)
+			DISABLE_BITFIELD(sight, SEE_TURFS)
+	return ..()
+	
