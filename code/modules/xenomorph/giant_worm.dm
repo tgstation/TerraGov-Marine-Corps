@@ -86,6 +86,7 @@
 	to_add += eye.placement_images
 	to_add += eye.placed_images
 	user.client.images += to_add
+	user.client.eye = eye
 
 /obj/structure/resin/giant_worm/remove_eye_control(mob/user)
 	for(var/V in actions)
@@ -108,6 +109,8 @@
 	to_remove += eye.placement_images
 	to_remove += eye.placed_images
 	user.client.images -= to_remove
+	user.client.eye = null
+	user.update_sight()
 
 /obj/structure/resin/giant_worm/proc/checkExitSpot()
 	var/turf/eyeturf = get_turf(eye)
@@ -118,7 +121,7 @@
 		var/list/coords = image_cache[I]
 		var/turf/T = locate(eyeturf.x + coords[1], eyeturf.y + coords[2], eyeturf.z)
 		I.loc = T
-		if(CHECK_BITFIELD(T.resistance_flags, UNACIDABLE))
+		if(!CHECK_BITFIELD(T.resistance_flags, UNACIDABLE))
 			I.icon_state = "green"
 			continue
 		I.icon_state = "red"
@@ -136,7 +139,7 @@
 /mob/camera/aiEye/remote/burrower/setLoc(T)
 	..()
 	var/obj/structure/resin/giant_worm/worm = origin
-	worm.checkLandingSpot()
+	worm?.checkExitSpot()
 
 /mob/camera/aiEye/remote/burrower_camera/update_remote_sight(mob/living/user)
 	user.sight = BLIND|SEE_TURFS
@@ -162,4 +165,6 @@
 	var/mob/living/C = target
 	var/mob/camera/aiEye/remote/burrower/eye = C.remote_control
 	var/obj/structure/resin/giant_worm/worm = eye.origin
-	worm.remove_eye_control(target)
+	if(!worm.checkExitSpot())
+		to_chat(target, "<span class='warning'>The worm head will not fit here")
+		worm.target = get_turf(eye)

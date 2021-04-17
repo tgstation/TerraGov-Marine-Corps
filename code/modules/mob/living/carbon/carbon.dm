@@ -370,33 +370,15 @@
 			continue
 		equip_to_slot_or_del(new G.path, SLOT_IN_BACKPACK)
 
-
-
 /mob/living/carbon/human/update_sight()
-	if(!client)
+	. = ..()
+	if(. == FALSE)
 		return
-
-	if(stat == DEAD)
-		sight = (SEE_TURFS|SEE_MOBS|SEE_OBJS)
-		see_in_dark = 8
-		see_invisible = SEE_INVISIBLE_OBSERVER
-		return
-
-	sight = initial(sight)
-	lighting_alpha = initial(lighting_alpha)
-	see_in_dark = species.darksight
-	see_invisible = initial(see_invisible)
-
 	if(species)
 		if(species.lighting_alpha)
 			lighting_alpha = initial(species.lighting_alpha)
 		if(species.see_in_dark)
 			see_in_dark = initial(species.see_in_dark)
-
-	if(client.eye != src)
-		var/atom/A = client.eye
-		if(A.update_remote_sight(src)) //returns 1 if we override all other sight updates.
-			return
 
 	if(glasses)
 		var/obj/item/clothing/glasses/G = glasses
