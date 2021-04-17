@@ -297,7 +297,7 @@
 		/obj/item/storage/belt/sparepouch,
 		/obj/item/hailer,
 		/obj/item/storage/large_holster/machete,
-		/obj/item/storage/belt/gun
+		/obj/item/storage/belt/gun,
 	)
 
 //===========================SPECIALIST================================

@@ -19,7 +19,7 @@
 	item_icons = list(
 		slot_head_str = 'icons/mob/head_1.dmi',
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi')
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
 	icon_state = "band"
 	flags_inv_hide = NONE
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
@@ -35,7 +35,7 @@
 	item_icons = list(
 		slot_head_str = 'icons/mob/head_1.dmi',
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi')
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
 	icon_state = "beanie_cargo"
 	flags_inv_hide = HIDETOPHAIR
 	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 10, "bio" = 5, "rad" = 0, "fire" = 5, "acid" = 5)
@@ -48,7 +48,7 @@
 	item_icons = list(
 		slot_head_str = 'icons/mob/head_1.dmi',
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi')
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
 	icon_state = "beret"
 	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 10, "bio" = 5, "rad" = 0, "fire" = 5, "acid" = 5)
 	flags_item_map_variant = NONE
@@ -102,7 +102,7 @@
 	item_icons = list(
 		slot_head_str = 'icons/mob/head_1.dmi',
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi')
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
 	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 10, "bio" = 5, "rad" = 0, "fire" = 5, "acid" = 5)
 	var/flipped_cap = FALSE
 	var/base_cap_icon
@@ -189,7 +189,7 @@
 	item_icons = list(
 		slot_head_str = 'icons/mob/head_1.dmi',
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi')
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
 
 /obj/item/clothing/head/cmo
 	name = "\improper Chief Medical hat"
@@ -279,7 +279,7 @@
 	item_icons = list(
 		slot_head_str = 'icons/mob/head_1.dmi',
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi')
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
 	siemens_coefficient = 2.0
 	//anti_hug = 2
 	flags_armor_protection = HEAD
@@ -301,7 +301,7 @@
 	item_icons = list(
 		slot_head_str = 'icons/mob/head_1.dmi',
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi')
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
 	icon_state = "freelancer_helmet"
 	siemens_coefficient = 2.0
 	flags_armor_protection = HEAD
@@ -323,7 +323,7 @@
 	item_icons = list(
 		slot_head_str = 'icons/mob/head_1.dmi',
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi')
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
 	icon_state = "rebel_hood"
 	siemens_coefficient = 2.0
 	flags_armor_protection = HEAD|CHEST
@@ -352,7 +352,7 @@
 	item_icons = list(
 		slot_head_str = 'icons/mob/head_1.dmi',
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi')
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
 	icon = 'icons/obj/clothing/cm_hats.dmi'
 	icon_state = "commissar_cap"
 	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = 15, "bio" = 10, "rad" = 0, "fire" = 20, "acid" = 20)
@@ -364,7 +364,7 @@
 	item_icons = list(
 		slot_head_str = 'icons/mob/head_1.dmi',
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi')
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
 	icon = 'icons/obj/clothing/cm_hats.dmi'
 	icon_state = "straw_hat"
 	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = 15, "bio" = 10, "rad" = 0, "fire" = 20, "acid" = 20)
