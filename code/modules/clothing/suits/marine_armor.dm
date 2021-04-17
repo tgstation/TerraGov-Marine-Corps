@@ -282,7 +282,8 @@
 	flags_armor_protection = CHEST|GROIN|ARMS
 	soft_armor = list("melee" = 50, "bullet" = 55, "laser" = 55, "energy" = 20, "bomb" = 25, "bio" = 40, "rad" = 10, "fire" = 20, "acid" = 45)
 	flags_item_map_variant = NONE
-	allowed = list(/obj/item/weapon/gun,
+	allowed = list(
+		/obj/item/weapon/gun,
 		/obj/item/tank/emergency_oxygen,
 		/obj/item/flashlight,
 		/obj/item/ammo_magazine/,

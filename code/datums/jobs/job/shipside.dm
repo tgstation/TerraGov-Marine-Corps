@@ -92,9 +92,9 @@ Godspeed, captain! And remember, you are not above the law."})
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_ISCOMMAND|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
-	 	/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
-	 	/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
-	 	/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
+		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
+		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 	)
 
 /datum/job/terragov/command/fieldcommander/after_spawn(mob/living/L, mob/M, latejoin)
