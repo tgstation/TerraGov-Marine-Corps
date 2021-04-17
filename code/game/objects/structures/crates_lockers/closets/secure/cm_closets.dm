@@ -300,8 +300,7 @@
 	icon_off = "secure_closed_staff"
 
 /obj/structure/closet/secure_closet/staff_officer/PopulateContents()
-	new /obj/item/clothing/head/tgmcberet(src)
-	new /obj/item/clothing/head/tgmcberet/tan(src)
+	new /obj/item/clothing/head/tgmcberet/bridge(src)
 	new /obj/item/clothing/head/tgmccap/ro(src)
 	new /obj/item/clothing/under/marine/officer/bridge(src)
 	new /obj/item/clothing/shoes/marine(src)
