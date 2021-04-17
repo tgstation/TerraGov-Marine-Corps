@@ -164,7 +164,7 @@
 	item_icons = list(
 		slot_head_str = 'icons/mob/head_1.dmi',
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi')
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
 	icon_state = "headband"
 
 /obj/item/clothing/head/headband/red
@@ -231,7 +231,7 @@
 	desc = "A beret with the lieutenant insignia emblazoned on it. It inspires a feeling of respect."
 	icon_state = "hosberet"
 
-/*==========================PROTECTIVE===============================
+/*=========================PROTECTIVE===============================
 =======================================================================*/
 
 /obj/item/clothing/head/ushanka
