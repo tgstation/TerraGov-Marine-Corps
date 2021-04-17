@@ -109,6 +109,21 @@
 	to_remove += eye.placed_images
 	user.client.images -= to_remove
 
+/obj/structure/resin/giant_worm/proc/checkExitSpot()
+	var/turf/eyeturf = get_turf(eye)
+	. = TRUE
+	var/list/image_cache = eye.placement_images
+	for(var/i in 1 to image_cache.len)
+		var/image/I = image_cache[i]
+		var/list/coords = image_cache[I]
+		var/turf/T = locate(eyeturf.x + coords[1], eyeturf.y + coords[2], eyeturf.z)
+		I.loc = T
+		if(CHECK_BITFIELD(T.resistance_flags, UNACIDABLE))
+			I.icon_state = "green"
+			continue
+		I.icon_state = "red"
+		. = FALSE
+
 
 /mob/camera/aiEye/remote/burrower
 	name = "burrower camera"
@@ -116,6 +131,12 @@
 	use_static = USE_STATIC_NONE
 	var/list/placement_images = list()
 	var/list/placed_images = list()
+
+
+/mob/camera/aiEye/remote/burrower/setLoc(T)
+	..()
+	var/obj/structure/resin/giant_worm/worm = origin
+	worm.checkLandingSpot()
 
 /mob/camera/aiEye/remote/burrower_camera/update_remote_sight(mob/living/user)
 	user.sight = BLIND|SEE_TURFS
