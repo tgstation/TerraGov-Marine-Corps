@@ -50,7 +50,6 @@
 		return 
 	createEye()
 	give_eye_control(X)
-	
 
 
 /obj/structure/resin/giant_worm/proc/createEye()
@@ -176,4 +175,5 @@
 	if(!worm.checkExitSpot())
 		to_chat(target, "<span class='warning'>The worm head will not fit here")
 		return
-	worm.target = get_turf(eye)
+	worm.start_digging(eye.turf)
+	worm.remove_eye_control(C)
