@@ -279,7 +279,7 @@ SUBSYSTEM_DEF(vote)
 ///Starts the automatic map vote at the end of each round
 /datum/controller/subsystem/vote/proc/automatic_vote()
 	initiate_vote("groundmap")
-	addtimer(CALLBACK(src, .proc/initiate_vote, "shipmap"), 70 SECONDS)
+	addtimer(CALLBACK(src, .proc/initiate_vote, "shipmap"), 65 SECONDS)
 
 /datum/controller/subsystem/vote/ui_state()
 	return GLOB.always_state
