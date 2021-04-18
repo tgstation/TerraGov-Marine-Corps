@@ -81,8 +81,8 @@
 	aim_slowdown = 0.15
 	burst_amount = 5
 	movement_acc_penalty_mult = 0
-	upper_akimbo_accuracy = 50
-	lower_akimbo_accuracy = 30
+	upper_akimbo_accuracy = 5
+	lower_akimbo_accuracy = 3
 
 //-------------------------------------------------------
 // War is hell. Not glorious.

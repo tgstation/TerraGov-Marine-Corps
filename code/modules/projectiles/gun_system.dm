@@ -127,9 +127,9 @@
 	var/windup_checked = WEAPON_WINDUP_NOT_CHECKED
 
 	///determines upper accuracy modifier in akimbo
-	var/upper_akimbo_accuracy = 20
+	var/upper_akimbo_accuracy = 2
 	///determines lower accuracy modifier in akimbo
-	var/lower_akimbo_accuracy = 10
+	var/lower_akimbo_accuracy = 1
 
 //----------------------------------------------------------
 				//				    \\
@@ -941,7 +941,7 @@ and you're good to go.
 		gun_accuracy_mult = max(0.1, gun_accuracy_mult * burst_accuracy_mult)
 
 	if(dual_wield) //akimbo firing gives terrible accuracy
-		gun_scatter +=  10*rand(upper_akimbo_accuracy, lower_akimbo_accuracy)
+		gun_scatter += 10*rand(upper_akimbo_accuracy, lower_akimbo_accuracy)
 
 	if(user)
 		// Apply any skill-based bonuses to accuracy
