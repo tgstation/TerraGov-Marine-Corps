@@ -1,0 +1,4 @@
+author: "Walarks"
+delete-after: True
+changes: 
+  - balance: "removes item slowdown scalability from vali speed buff, changed Paracetamol buff from -0.2 to -0.1 and Neuraline buff from -0.4 to -0.3."
