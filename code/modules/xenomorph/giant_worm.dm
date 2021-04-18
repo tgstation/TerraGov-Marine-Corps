@@ -37,11 +37,11 @@
 	chose_head_location = new
 	actions = list()
 	center_turf = get_step(src, NORTHEAST)
-	xeno_giant_worms += src
+	GLOB.xeno_giant_worms += src
 
 /obj/structure/resin/giant_worm/Destroy()
 	. = ..()
-	xeno_giant_worms -= src
+	GLOB.xeno_giant_worms -= src
 	associated_hive.handle_silo_death_timer()
 	for(var/mob/living/carbon/xenomorph/xeno AS in src)
 		xeno.forceMove(center_turf)
@@ -136,8 +136,8 @@
 		chose_head_location.give_action(user)
 		actions += chose_head_location
 
-/// Set the remote control of the user
-/obj/structure/resin/giant_worm/give_eye_control(mob/user)
+/// Set the remote control variable of the user
+/obj/structure/resin/giant_worm/proc/give_eye_control(mob/user)
 	user.loc = src
 	give_actions(user)
 	current_user = user

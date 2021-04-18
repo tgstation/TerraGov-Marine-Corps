@@ -24,7 +24,6 @@
 //The differente gamestate
 #define SHUTTERS_CLOSED "shutters closed"
 #define GROUNDSIDE		"groundside"
-#define XENO_END_GAME	"endgame"
 #define SHIPSIDE 		"shipside"
 
 //The weight of each statistics in the state calculator when GROUNDSIDE

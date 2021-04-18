@@ -1051,6 +1051,44 @@
 
 
 ////////////////////
+/// Build giant worm
+///////////////////
+/datum/action/xeno_action/activable/build_giant_worm
+	name = "Transform to giant worm"
+	action_icon_state = "resin_silo"
+	mechanics_text = "Transform a silo into a giant burrower worm. Will destroy all our silo and reset our psych points reserve"
+	ability_name = "create giant worm"
+	plasma_cost = 150
+	cooldown_timer = 60 SECONDS
+	/// How long does it take to build
+	var/build_time = 10 SECONDS
+
+/datum/action/xeno_action/activable/build_giant_worm/can_use_ability(atom/A, silent, override_flags)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if(!in_range(owner, A))
+		if(!silent)
+			to_chat(owner, "<span class='warning'>We need to get closer!</span>")
+		return FALSE
+
+	if(!istype(A, /obj/structure/resin/silo))
+		if(!silent)
+			to_chat(owner, "<span class='warning'>We need to target a silo to be able to transform it!</span>")
+		return FALSE
+
+/datum/action/xeno_action/activable/build_giant_worm/use_ability(atom/A)
+	to_chat(owner, "<span class='notice'>We start the process of transforming this silo into a giant worm, which will also destroy all other silos.</span>")
+	
+	if(!do_after(owner, build_time, TRUE, A, BUSY_ICON_BUILD))
+		return fail_activate()
+	
+	succeed_activate()
+
+	new /obj/structure/resin/giant_worm(A.loc)
+
+////////////////////
 /// Build xeno turret
 ///////////////////
 
