@@ -218,6 +218,8 @@
 /datum/action/innate/leave_worm/Activate()
 	if(!target)
 		remove_action(owner)
+		var/obj/structure/resin/giant_worm/worm = owner.loc
+		owner.forceMove(worm.loc) //Ew
 		return
 	var/mob/living/C = target
 	var/mob/camera/aiEye/remote/burrower_camera/eye = C.remote_control
