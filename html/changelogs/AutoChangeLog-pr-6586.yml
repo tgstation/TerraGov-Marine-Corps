@@ -1,0 +1,5 @@
+author: "David-Stormwell"
+delete-after: True
+changes: 
+  - balance: "Made Akimbo/Duel wielding less viable on the TP-14"
+  - refactor: "Adds vars for scatter on guns, you may now add specific values on a gun if required."
