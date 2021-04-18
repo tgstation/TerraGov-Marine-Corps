@@ -14,6 +14,11 @@ GLOBAL_LIST_EMPTY(gear_datums)
 	var/cost               //Number of points used.
 	var/slot               //Slot to equip to.
 
+/datum/gear/flower
+	display_name = "Flower Pin"
+	path = /obj/item/clothing/head/hairflower
+	cost = 1
+	slot = SLOT_HEAD
 
 /datum/gear/bandanna_red
 	display_name = "TGMC bandanna (red)"

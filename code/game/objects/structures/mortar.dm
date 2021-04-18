@@ -198,6 +198,22 @@
 		addtimer(CALLBACK(GLOBAL_PROC, .proc/playsound, T, 'sound/weapons/guns/misc/mortar_travel.ogg', 50, 1), travel_time)
 		addtimer(CALLBACK(src, .proc/detonate_shell, T, mortar_shell), travel_time + 45)//This should always be 45 ticks!
 
+	if(!istype(I, /obj/item/binoculars/tactical))
+		return
+	var/obj/item/binoculars/tactical/binocs = I
+	playsound(src, 'sound/effects/binoctarget.ogg', 35)
+	if(binocs.set_mortar(src))
+		to_chat(user, "<span class='notice'>You link the mortar to the [binocs] allowing for remote targeting.</span>")
+		return
+	to_chat(user, "<span class='notice'>You disconnect the [binocs] from their linked mortar.")
+
+///Proc called by tactical binoculars to send targeting information.
+/obj/structure/mortar/proc/recieve_target(turf/T, binocs, mob/user)
+	coords["targ_x"] = T.x
+	coords["targ_y"] = T.y
+	say("Remote targeting set by [user]. COORDINATES: X:[coords["targ_x"]] Y:[coords["targ_y"]] OFFSET: X:[coords["dial_x"]] Y:[coords["dial_y"]]")
+	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+
 /obj/structure/mortar/proc/detonate_shell(turf/target, obj/item/mortal_shell/mortar_shell)
 	target.ceiling_debris_check(2)
 	mortar_shell.detonate(target)
@@ -229,7 +245,6 @@
 	playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
 	new /obj/item/mortar_kit(loc)
 	qdel(src)
-
 
 /obj/structure/mortar/fixed
 	desc = "A manual, crew-operated mortar system intended to rain down 80mm goodness on anything it's aimed at. Uses manual targetting dials. Insert round to fire. This one is bolted and welded into the ground."
