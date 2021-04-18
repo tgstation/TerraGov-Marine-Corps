@@ -36,31 +36,82 @@
 	off_action = new
 	chose_head_location = new
 	actions = list()
+	center_turf = get_step(src, NORTHEAST)
+	xeno_giant_worms += src
 
-///Digging is starting, we enter end game mode
+/obj/structure/resin/giant_worm/Destroy()
+	. = ..()
+	xeno_giant_worms -= src
+	associated_hive.handle_silo_death_timer()
+	for(var/mob/living/carbon/xenomorph/xeno AS in src)
+		xeno.forceMove(center_turf)
+	xeno_message("The [tail? "tail" :"head"] of the giant worm has been destroyed!", "xenoannounce", hivenumber = associated_hive.hivenumber)
+
+///Digging is starting, we notify everyone and kill all silos
 /obj/structure/resin/giant_worm/proc/start_digging(turf/target)
 	message_admins("A giant worm started digging at [AREACOORD(src)]")
-	priority_announce("Sismic signal detected. An unknow object is burrowing into your direction") //Could use better name
+	priority_announce("Sismic signal detected. An unknow object is burrowing under the planet surface") //Could use better name
+	xeno_message("A giant worm has started digging and will reach its destination in 5 minutes", "xenoannounce", hivenumber = associated_hive.hivenumber, target = src)
 	for(var/obj/structure/resin/silo/silo AS in GLOB.xeno_resin_silos)
 		silo.destroy_silently()
 	SSpoints.xeno_points_by_hive[associated_hive.hivenumber] = 0
 	tunneling = TRUE
-	addtimer(CALLBACK(src, .proc/emerge, target), 5 SECONDS)
+	addtimer(CALLBACK(src, .proc/prepare_emerge, target), 10 SECONDS)
 
-/obj/structure/resin/giant_worm/proc/emerge(turf/target)
-	exit = new /obj/structure/resin/giant_worm(locate(target.x-1, target.y -1, target.z))
+///We create the ripples to signify where will the worm emerge
+/obj/structure/resin/giant_worm/proc/prepare_emerge(turf/middle_target)
+	var/list/turf/target_turfs = list()
+	for(var/x in -1 to 1)
+		for(var/y in -1 to 1)
+			var/turf/target = locate(middle_target.x + x, middle_target.y + y, middle_target.z)
+			new /obj/effect/abstract/ripple(target, 5 SECONDS)
+			target_turfs += target
+	addtimer(CALLBACK(src, .proc/emerge, target_turfs), 5 SECONDS)
+
+///Create the exit point of this giant worm
+/obj/structure/resin/giant_worm/proc/emerge(list/turf/target_turfs)
+	for(var/turf/target AS in target_turfs)
+		for(var/atom/to_destroy AS in target)
+			if(isliving(to_destroy))
+				var/mob/living/to_gib = to_destroy
+				to_gib.gib()
+				continue
+			qdel(to_destroy)
+	for(var/mob/living/carbon/xenomorph/xeno AS in src)
+		xeno.forceMove(pick(target_turfs))
+	exit = new /obj/structure/resin/giant_worm(target_turfs[1])
 	exit.tail = FALSE
-	
-
-
+	exit.exit = src
+	tunneling = FALSE
+	for(var/mob/living/nearby_mob AS in GLOB.mob_living_list)
+		if(!istype(nearby_mob, /mob/living/carbon/human))
+			continue
+		if(get_dist(nearby_mob, exit.center_turf) > 10)
+			continue
+		if(nearby_mob.buckled)
+			to_chat(nearby_mob, "<span class='warning'>You are jolted against [nearby_mob.buckled]!</span>")
+			shake_camera(nearby_mob, 3, 1)
+		else
+			to_chat(nearby_mob, "<span class='warning'>The floor jolts under your feet!</span>")
+			shake_camera(nearby_mob, 10, 1)
+			nearby_mob.Knockdown(5 SECONDS)
 
 /obj/structure/resin/giant_worm/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
-	if(!(X.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT))
+	if(!do_after(X, 2 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+		return
+	if(exit) 
+		X.forceMove(exit.center_turf)
+		return
+	if(tunneling)
+		X.forceMove(src)
+		give_action_by_type(/datum/action/innate/leave_worm, X)
+		return
+	if(!(X.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT) || !tail)
 		return 
 	createEye()
 	give_eye_control(X)
 
-
+/// Create the camera mob used to target the exit point
 /obj/structure/resin/giant_worm/proc/createEye()
 	eye = new /mob/camera/aiEye/remote/burrower_camera(null, src)
 	eye.origin = src
@@ -73,6 +124,7 @@
 			I.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 			eye.placement_images[I] = list(x_off, y_off)
 
+/// Give the necessary actions to be able to target the exit point
 /obj/structure/resin/giant_worm/proc/give_actions(mob/living/user)
 	if(off_action)
 		off_action.target = user
@@ -84,7 +136,8 @@
 		chose_head_location.give_action(user)
 		actions += chose_head_location
 
-/obj/structure/resin/giant_worm/proc/give_eye_control(mob/user)
+/// Set the remote control of the user
+/obj/structure/resin/giant_worm/give_eye_control(mob/user)
 	user.loc = src
 	give_actions(user)
 	current_user = user
@@ -124,6 +177,7 @@
 	user.client.eye = user
 	user.update_sight()
 
+/// Check if the exit point is not blocked by walls
 /obj/structure/resin/giant_worm/proc/checkExitSpot()
 	var/turf/eyeturf = get_turf(eye)
 	. = TRUE
@@ -141,15 +195,12 @@
 		if(!skip)
 			I.icon_state = "red"
 			. = FALSE
-
-
 /mob/camera/aiEye/remote/burrower_camera
 	name = "burrower camera"
 	visible_icon = FALSE
 	use_static = USE_STATIC_NONE
 	var/list/placement_images = list()
 	var/list/placed_images = list()
-
 
 /mob/camera/aiEye/remote/burrower_camera/setLoc(T)
 	..()
@@ -159,13 +210,15 @@
 /mob/camera/aiEye/remote/burrower_camera/update_remote_sight(mob/living/user)
 	user.sight = BLIND|SEE_TURFS
 	return TRUE
-
 /datum/action/innate/leave_worm
 	name = "Leave the worm"
 	background_icon_state = "template2"
 	action_icon_state = "camera_off" //Need icon
 
 /datum/action/innate/leave_worm/Activate()
+	if(!target)
+		remove_action(owner)
+		return
 	var/mob/living/C = target
 	var/mob/camera/aiEye/remote/burrower_camera/eye = C.remote_control
 	var/obj/structure/resin/giant_worm/worm = eye.origin

@@ -99,6 +99,16 @@
 	owner = null
 	SEND_SIGNAL(M, ACTION_REMOVED)
 
+///Helper to give a mob an action without storing it 
+/proc/give_action_by_type(action_type, mob/M)
+	var/datum/action/action_given = new action_type
+	action_given.give_action(M)
+
+///Helper to remove an action from a mob 
+/proc/remove_action_by_type(action_type, mob/M)
+	var/datum/action/action_removed = M.actions_by_path[action_type]
+	action_removed?.remove_action(M)
+
 //Should a AI element occasionally see if this ability should be used?
 /datum/action/proc/ai_should_start_consider()
 	return FALSE

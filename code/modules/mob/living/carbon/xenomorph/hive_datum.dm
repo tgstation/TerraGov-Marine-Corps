@@ -1155,7 +1155,7 @@ to_chat will check for valid clients itself already so no need to double check f
 			deltimer(D.siloless_hive_timer)
 			D.siloless_hive_timer = null
 		return
-	if(GLOB.xeno_resin_silos.len)
+	if(GLOB.xeno_resin_silos.len || GLOB.xeno_giant_worms.len)
 		if(D?.siloless_hive_timer)
 			deltimer(D.siloless_hive_timer)
 			D.siloless_hive_timer = null
