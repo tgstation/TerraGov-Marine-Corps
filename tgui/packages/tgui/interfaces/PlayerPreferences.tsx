@@ -453,7 +453,7 @@ const CharacterCustomization = (props, context) => {
                       checked={random_name === 1}
                       onClick={() => act('toggle_always_random')}
                     />
-                  </span>
+                  </Box>
                 }
               />
               <TextFieldPreference label={'Xenomorph'} value={'xeno_name'} />
@@ -1341,10 +1341,10 @@ const GearCustomization = (props, context) => {
   return (
     <Section title="Custom Gear" buttons={
       <>
-        <span
+        <Box as="span"
           style={{ "margin-right": "10px" }}>
           Points: {currentPoints} / 5
-        </span>
+        </Box>
         <Button
           inline
           color="red"
