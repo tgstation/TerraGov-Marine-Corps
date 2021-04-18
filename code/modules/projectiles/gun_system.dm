@@ -857,6 +857,9 @@ and you're good to go.
 		return FALSE
 	if((flags_gun_features & GUN_POLICE) && !police_allowed_check(user))
 		return FALSE
+	if((flags_gun_features & GUN_WIELDED_STABLE_FIRING_ONLY) && !wielded_stable())//If we must wait to finish wielding before shooting
+		to_chat(user, "<span class='warning'>You need a more secure grip to fire this weapon!")
+		return FALSE
 	return TRUE
 
 
