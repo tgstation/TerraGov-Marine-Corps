@@ -12,12 +12,12 @@
 	var/datum/hive_status/associated_hive
 	/// The other part of this giant worm
 	var/obj/structure/resin/giant_worm/exit
-	/// The targeted turf where the head of the worm will appear
-	var/turf/target
 	/// The eye object used to target the exit
 	var/mob/camera/aiEye/remote/burrower_camera/eye
 	/// What mob is actually targeting the exit turf
 	var/mob/current_user
+	/// If the giant worm is already tunneling or has finished it
+	var/tunneling = FALSE
 	/// The list of turf that will not entrave the exit
 	var/list/whitelist_turfs = list(/turf/open/ground, /turf/open/floor)
 	/// Which part of the worm is this
@@ -38,12 +38,21 @@
 	actions = list()
 
 ///Digging is starting, we enter end game mode
-/obj/structure/resin/giant_worm/proc/start_digging(turf_target)
+/obj/structure/resin/giant_worm/proc/start_digging(turf/target)
 	message_admins("A giant worm started digging at [AREACOORD(src)]")
 	priority_announce("Sismic signal detected. An unknow object is burrowing into your direction") //Could use better name
 	for(var/obj/structure/resin/silo/silo AS in GLOB.xeno_resin_silos)
 		silo.destroy_silently()
 	SSpoints.xeno_points_by_hive[associated_hive.hivenumber] = 0
+	tunneling = TRUE
+	addtimer(CALLBACK(src, .proc/emerge, target), 5 SECONDS)
+
+/obj/structure/resin/giant_worm/proc/emerge(turf/target)
+	exit = new /obj/structure/resin/giant_worm(locate(target.x-1, target.y -1, target.z))
+	exit.tail = FALSE
+	
+
+
 
 /obj/structure/resin/giant_worm/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(!(X.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT))
@@ -74,7 +83,6 @@
 		chose_head_location.target = user
 		chose_head_location.give_action(user)
 		actions += chose_head_location
-
 
 /obj/structure/resin/giant_worm/proc/give_eye_control(mob/user)
 	user.loc = src
@@ -175,5 +183,5 @@
 	if(!worm.checkExitSpot())
 		to_chat(target, "<span class='warning'>The worm head will not fit here")
 		return
-	worm.start_digging(eye.turf)
+	worm.start_digging(eye.loc)
 	worm.remove_eye_control(C)
