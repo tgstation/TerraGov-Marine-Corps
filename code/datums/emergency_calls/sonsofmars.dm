@@ -1,7 +1,8 @@
 //Sons of Mars
 /datum/emergency_call/som
 	name = "Sons of Mars Squad"
-	probability = 20
+	base_probability = 26
+	alignement_factor = 0
 
 
 /datum/emergency_call/som/print_backstory(mob/living/carbon/human/H)
@@ -56,7 +57,7 @@
 
 /datum/emergency_call/somhvh
 	name = "Sons of Mars Squad (Human vs. Human)"
-	probability = 0
+	base_probability = 0
 
 /datum/emergency_call/somhvh/print_backstory(mob/living/carbon/human/H)
 	to_chat(H, "<B>You [pick("grew up in the mines working in horrible conditions until signing up to", "were part of a poor family until you decided to leave to join", "were born on a colony on Mars to a family of several brothers and sisters before leaving to", "worked at horrible conditions in the mines until deciding to leave to join")] the Sons of Mars (SoM).</b>")

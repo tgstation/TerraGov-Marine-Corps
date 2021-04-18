@@ -568,9 +568,6 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 		var/list/valid_calls = list("Random")
 		for(var/datum/emergency_call/E in SSticker.mode.all_calls) //Loop through all potential candidates
-			if(E.probability < 1) //Those that are meant to be admin-only
-				continue
-
 			valid_calls.Add(E)
 
 		var/chosen_call = input(usr, "Select a distress to send", "Emergency Response") as null|anything in valid_calls

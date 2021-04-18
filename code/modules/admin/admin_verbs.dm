@@ -1297,3 +1297,40 @@
 	qdel(frommob)
 
 	return TRUE
+
+/client/proc/mass_replace()
+	set name = "Mass replace atom"
+	set category = "Fun"
+	if(!check_rights(R_SPAWN))
+		return
+	var/to_replace = pick_closest_path(input("Pick a movable atom path to be replaced", "Enter path as text") as text)
+	var/to_place = pick_closest_path(input("Pick atom path to replace with", "Enter path as text") as text)
+	var/current_caller = GLOB.AdminProcCaller
+	var/ckey = usr ? usr.client.ckey : GLOB.AdminProcCaller
+	if(!ckey)
+		CRASH("mass replace with no ckey")
+
+	if(current_caller && current_caller != ckey)
+		if(!GLOB.AdminProcCallSpamPrevention[ckey])
+			to_chat(usr, "<span class='adminnotice'>Another set of admin called procs are still running, your proc will be run after theirs finish.</span>")
+			GLOB.AdminProcCallSpamPrevention[ckey] = TRUE
+			UNTIL(!GLOB.AdminProcCaller)
+			to_chat(usr, "<span class='adminnotice'>Running your proc</span>")
+			GLOB.AdminProcCallSpamPrevention -= ckey
+		else
+			UNTIL(!GLOB.AdminProcCaller)
+
+	var/logging = "[ckey] is replacing all [to_replace] in world with [to_place]"
+	log_admin(logging)
+	message_admins(logging)
+	GLOB.AdminProcCaller = ckey	//if this runtimes, too bad for you
+	var/replaced = 0
+	for(var/atom/movable/thing in world)
+		if(istype(thing, to_replace))
+			new to_place (thing.loc)
+			qdel(thing)
+			replaced++
+	GLOB.AdminProcCaller = null
+	var/afterlogging = "[replaced] amounts of atoms replaced"
+	log_admin(afterlogging)
+	message_admins(afterlogging)
