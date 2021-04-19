@@ -421,8 +421,8 @@
 	desc = "A sturdy and easily assembled barricade made of metal plates, often used for quick fortifications. Use a blowtorch to repair."
 	icon_state = "metal_0"
 	max_integrity = 200
-	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 80, "acid" = 40)
 	coverage = 128
+	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 80, "acid" = 10)
 	stack_type = /obj/item/stack/sheet/metal
 	stack_amount = 4
 	destroyed_stack_amount = 2
@@ -753,7 +753,7 @@
 				if(CADE_TYPE_MELEE)
 					soft_armor = soft_armor.modifyRating(melee = -30, bullet = -30)
 				if(CADE_TYPE_ACID)
-					soft_armor = soft_armor.modifyRating(bio = 0, acid = -20)
+					soft_armor = soft_armor.modifyRating(bio = 0, acid = -40)
 
 			new /obj/item/stack/sheet/metal(loc, CADE_UPGRADE_REQUIRED_SHEETS)
 			barricade_upgrade_type = null
