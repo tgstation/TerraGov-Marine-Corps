@@ -1,7 +1,3 @@
-#define INFESTATION_MARINE_DEPLOYMENT 0
-#define INFESTATION_MARINE_CRASHING 1
-#define INFESTATION_DROPSHIP_CAPTURED_XENOS 2
-
 /datum/game_mode/infestation/distress
 	name = "Distress Signal"
 	config_tag = "Distress Signal"
@@ -32,12 +28,6 @@
 		/datum/job/xenomorph = 2,
 		/datum/job/xenomorph/queen = 1
 	)
-
-	var/round_stage = INFESTATION_MARINE_DEPLOYMENT
-
-	var/bioscan_current_interval = 45 MINUTES
-	var/bioscan_ongoing_interval = 20 MINUTES
-	var/orphan_hive_timer
 	var/siloless_hive_timer
 
 

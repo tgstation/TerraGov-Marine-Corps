@@ -135,3 +135,7 @@
 
 //The minimum round time before siloless timer can start (13:00)
 #define MINIMUM_TIME_SILO_LESS_COLLAPSE 36000 
+
+#define INFESTATION_MARINE_DEPLOYMENT 0
+#define INFESTATION_MARINE_CRASHING 1
+#define INFESTATION_DROPSHIP_CAPTURED_XENOS 2
