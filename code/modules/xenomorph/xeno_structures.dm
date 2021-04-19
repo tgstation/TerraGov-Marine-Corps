@@ -49,6 +49,7 @@
 	number++
 	GLOB.xeno_resin_silos += src
 	center_turf = get_step(src, NORTHEAST)
+	SEND_GLOBAL_SIGNAL(COMSIG_SILO_CREATED)
 	if(!istype(center_turf))
 		center_turf = loc
 
@@ -96,6 +97,7 @@
 
 	silo_area = null
 	center_turf = null
+	SEND_GLOBAL_SIGNAL(COMSIG_SILO_DESTROYED)
 	STOP_PROCESSING(SSslowprocess, src)
 	return ..()
 

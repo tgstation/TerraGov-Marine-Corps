@@ -73,7 +73,7 @@ OPERATIONS
 
 /datum/supply_packs/operations/pinpointer
 	name = "pool tracker crate"
-	contains = list(/obj/item/pinpointer/pool)
+	contains = list(/obj/item/psy_tracker)
 	cost = 20
 
 /datum/supply_packs/operations/flares

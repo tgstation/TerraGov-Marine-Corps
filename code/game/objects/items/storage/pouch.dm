@@ -57,7 +57,7 @@
 	. = ..()
 	new /obj/item/binoculars/tactical(src)
 	new /obj/item/megaphone(src)
-	new /obj/item/pinpointer/pool(src)
+	new /obj/item/psy_tracker(src)
 
 
 /obj/item/storage/pouch/general/som

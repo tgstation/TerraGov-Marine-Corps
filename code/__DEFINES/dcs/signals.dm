@@ -640,3 +640,7 @@
 #define COMSIG_GET_BURST_FIRE "get_burst_fire"
 	#define BURST_FIRING (1<<0)
 #define COMSIG_DISABLE_BURST_FIRE "disable_burst_fire"
+
+//Signals for psy tracker
+#define COMSIG_SILO_DESTROYED "silo destroyed"
+#define COMSIG_SILO_CREATED "silo created"
