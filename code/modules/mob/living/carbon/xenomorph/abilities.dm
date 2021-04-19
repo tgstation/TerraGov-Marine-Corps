@@ -985,9 +985,9 @@
 /// Build hunt den
 ///////////////////
 /datum/action/xeno_action/activable/build_hunt_den
-	name = "Create hunt den"
+	name = "Create Hunting Den"
 	action_icon_state = "resin_silo"
-	mechanics_text = "Creates a new hunt den, using 3 headbited bodies"
+	mechanics_text = "Create a new hunting den, using 3 headbiten corpses."
 	ability_name = "build hunt den"
 	plasma_cost = 150
 	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN_SILO
@@ -1008,7 +1008,7 @@
 			valid_mobs += turf_mob
 
 	if(length(valid_mobs) < required_mobs)
-		to_chat(owner, "<span class='warning'>There are not enough dead bodies, you need [required_mobs] bodies for a silo!</span>")
+		to_chat(owner, "<span class='warning'>There are not enough dead bodies, we need [required_mobs] bodies for a silo!</span>")
 		return fail_activate()
 
 	if(!do_after(owner, build_time, TRUE, A, BUSY_ICON_BUILD))
