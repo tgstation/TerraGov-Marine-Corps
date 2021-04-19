@@ -518,7 +518,7 @@
 		if(CADE_TYPE_MELEE)
 			soft_armor = soft_armor.modifyRating(melee = 30, bullet = 30)
 		if(CADE_TYPE_ACID)
-			soft_armor = soft_armor.modifyRating(bio = 0, acid = 20)
+			soft_armor = soft_armor.modifyRating(bio = 0, acid = 40)
 
 	barricade_upgrade_type = choice
 
