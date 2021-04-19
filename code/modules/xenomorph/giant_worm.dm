@@ -49,7 +49,7 @@
 
 ///Digging is starting, we notify everyone and kill all silos
 /obj/structure/resin/giant_worm/proc/start_digging(turf/target)
-	message_admins("A giant worm started digging at [AREACOORD(src)]")
+	message_admins("A giant worm started digging at [AREACOORD(src)]!")
 	priority_announce("Warning: unusual seismic readings detected. Our data suggests that an unidentified entity is starting to burrow under the area of operations, likely affiliated by Xenomorphs. Terminate it as soon as possible.", title = "TGMC Intel Division")
 	xeno_message("A giant worm has started digging and will reach its destination in 5 minutes", "xenoannounce", hivenumber = associated_hive.hivenumber, target = src)
 	for(var/obj/structure/resin/silo/silo AS in GLOB.xeno_resin_silos)
