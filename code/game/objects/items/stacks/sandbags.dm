@@ -106,6 +106,10 @@
 	user.visible_message("<span class='notice'>[user] starts assembling a sandbag barricade.</span>",
 	"<span class='notice'>You start assembling a sandbag barricade.</span>")
 	var/building_time = LERP(2 SECONDS, 1 SECONDS, user.skills.getPercent("construction", SKILL_ENGINEER_MASTER))
+	var/area/build_area = get_area(usr)
+	if(CHECK_BITFIELD(build_area.flags_area, NEAR_FOB))
+		building_time *= 3
+		to_chat(usr, "<span class ='warning'>The fuel residues of the space ship prevent us from using our power tool, we build slower!</span>")
 	if(!do_after(user, building_time, TRUE, src, BUSY_ICON_BUILD))
 		return
 	for(var/obj/O in user.loc) //Objects, we don't care about mobs. Turfs are checked elsewhere

@@ -171,6 +171,10 @@
 			else
 				usr.visible_message("<span class='notice'>[usr] starts building \a [R.title].</span>",
 				"<span class='notice'>You start building \a [R.title]...</span>")
+			var/area/build_area = get_area(usr)
+			if(CHECK_BITFIELD(build_area.flags_area, NEAR_FOB))
+				building_time *= 3
+				to_chat(usr, "<span class ='warning'>The fuel residues of the space ship prevent us from using our power tool, we build slower!</span>")
 			if(!do_after(usr, building_time, TRUE, src, BUSY_ICON_BUILD))
 				return
 			if(!building_checks(R, multiplier))
