@@ -186,6 +186,10 @@
 		to_chat(user, "<span class='notice'>[src] can only process humanoid anatomies!</span>")
 		return
 
+	if(victim.stat != DEAD)
+		to_chat(user, "<span class='notice'>[victim] is not dead!</span>")
+		return
+
 	if(victim.chestburst)
 		to_chat(user, "<span class='notice'>[victim] has already been exhausted to incubate a sister!</span>")
 		return

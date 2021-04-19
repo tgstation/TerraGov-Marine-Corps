@@ -100,7 +100,7 @@
 	min_val = 1
 
 /datum/config_entry/number/hunt_larvapoints_required
-	config_entry_value = 8
+	config_entry_value = 7
 	min_val = 1
 
 /datum/config_entry/keyed_list/lobby_music
