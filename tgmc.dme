@@ -340,6 +340,7 @@
 #include "code\datums\gamemodes\distress.dm"
 #include "code\datums\gamemodes\extended.dm"
 #include "code\datums\gamemodes\game_mode.dm"
+#include "code\datums\gamemodes\hunt.dm"
 #include "code\datums\gamemodes\infestation.dm"
 #include "code\datums\helper_datums\getrev.dm"
 #include "code\datums\helper_datums\stack_end_detector.dm"

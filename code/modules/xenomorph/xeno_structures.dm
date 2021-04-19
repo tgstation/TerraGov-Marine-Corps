@@ -80,10 +80,10 @@
 	if(associated_hive)
 		UnregisterSignal(associated_hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK))
 
-		if(isdistress(SSticker.mode)) //Silo can only be destroy in distress mode, but this check can create bugs if new gamemodes are added.
+		if(isdistress(SSticker.mode)) //Silo only matter on distress
 			var/datum/game_mode/infestation/distress/distress_mode
 			distress_mode = SSticker.mode
-			if (!(distress_mode.round_stage == DISTRESS_DROPSHIP_CRASHING))//No need to notify the xenos shipside
+			if (!(distress_mode.round_stage == INFESTATION_MARINE_CRASHING))//No need to notify the xenos shipside
 				associated_hive.xeno_message("A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!", "xenoannounce", 5, FALSE,src.loc, 'sound/voice/alien_help2.ogg',FALSE , null, /obj/screen/arrow/silo_damaged_arrow)
 				associated_hive.handle_silo_death_timer()
 				associated_hive = null

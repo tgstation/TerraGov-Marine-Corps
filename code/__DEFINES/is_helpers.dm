@@ -212,6 +212,7 @@
 
 //Gamemode
 #define isdistress(O) (istype(O, /datum/game_mode/infestation/distress))
+#define ishunt(O) (istype(O, /datum/game_mode/infestation/hunt))
 #define iscrashgamemode(O) (istype(O, /datum/game_mode/infestation/crash))
 
 #define isxenoresearcharea(A) (istype(A, /area/mainship/medical/medical_science))
