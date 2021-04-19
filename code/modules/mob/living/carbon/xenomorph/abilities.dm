@@ -1353,6 +1353,7 @@
 /datum/action/xeno_action/activable/devour/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
 	if(!LAZYLEN(X.stomach_contents))
+		. = ..()
 		return
 	var/channel = SSsounds.random_available_channel()
 	playsound(X, 'sound/vore/escape.ogg', 40, channel = channel)

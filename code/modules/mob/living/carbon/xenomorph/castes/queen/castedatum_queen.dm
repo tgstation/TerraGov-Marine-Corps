@@ -56,6 +56,7 @@
 		/datum/action/xeno_action/plant_weeds,
 		/datum/action/xeno_action/activable/secrete_resin,
 		/datum/action/xeno_action/activable/build_silo,
+		/datum/action/xeno_action/activable/build_hunt_den,
 		/datum/action/xeno_action/activable/build_turret,
 		/datum/action/xeno_action/place_acidwell,
 		/datum/action/xeno_action/activable/larval_growth_sting,
