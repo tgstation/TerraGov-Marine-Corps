@@ -236,7 +236,7 @@
 	var/mob/camera/aiEye/remote/burrower_camera/eye = C.remote_control
 	var/obj/structure/resin/giant_worm/worm = eye.origin
 	if(!worm.checkExitSpot())
-		to_chat(target, "<span class='warning'>The worm head will not fit here")
+		to_chat(target, "<span class='warning'>The worm cannot go there.</span>")
 		return
 	worm.start_digging(eye.loc)
 	worm.remove_eye_control(C)
