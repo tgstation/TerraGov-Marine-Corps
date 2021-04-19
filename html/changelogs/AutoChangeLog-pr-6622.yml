@@ -1,0 +1,4 @@
+author: "Wayland-Smithy"
+delete-after: True
+changes: 
+  - bugfix: "Xeno Queen overwatch from hivemind chat works again!"
