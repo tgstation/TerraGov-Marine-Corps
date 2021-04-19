@@ -61,8 +61,8 @@
 ///We create the ripples to signify where will the worm emerge
 /obj/structure/resin/giant_worm/proc/prepare_emerge(turf/middle_target)
 	var/list/turf/target_turfs = list()
-	for(var/x in -1 to 1)
-		for(var/y in -1 to 1)
+	for(var/x in -3 to 3)
+		for(var/y in -3 to 3)
 			var/turf/target = locate(middle_target.x + x, middle_target.y + y, middle_target.z)
 			new /obj/effect/abstract/ripple(target, 5 SECONDS)
 			target_turfs += target
@@ -77,12 +77,12 @@
 				to_gib.gib()
 				continue
 			qdel(to_destroy)
-	for(var/mob/living/carbon/xenomorph/xeno AS in src)
-		xeno.forceMove(pick(target_turfs))
-	exit = new /obj/structure/resin/giant_worm(target_turfs[1])
+	exit = new /obj/structure/resin/giant_worm(target_turfs[17])
 	exit.tail = FALSE
 	exit.exit = src
 	tunneling = FALSE
+	for(var/mob/living/carbon/xenomorph/xeno AS in src)
+		xeno.forceMove(exit.center_turf)
 	for(var/mob/living/nearby_mob AS in GLOB.mob_living_list)
 		if(!istype(nearby_mob, /mob/living/carbon/human))
 			continue
