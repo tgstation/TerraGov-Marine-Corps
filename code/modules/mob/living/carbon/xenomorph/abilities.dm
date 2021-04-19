@@ -1056,7 +1056,7 @@
 /datum/action/xeno_action/activable/build_giant_worm
 	name = "Transform to giant worm"
 	action_icon_state = "resin_silo"
-	mechanics_text = "Transform a silo into a giant burrower worm. Will destroy all our silo and reset our psych points reserve"
+	mechanics_text = "Transform a silo into a giant burrower worm. This ability will destroy all our silos in the field and reset our psych points reserve, however!"
 	ability_name = "create giant worm"
 	plasma_cost = 150
 	cooldown_timer = 60 SECONDS
