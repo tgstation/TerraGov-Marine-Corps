@@ -50,7 +50,9 @@
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/activable/psydrain,
+		/datum/action/xeno_action/activable/headbite,
 		/datum/action/xeno_action/activable/devour,
+		/datum/action/xeno_action/activable/cocoon,
 		/datum/action/xeno_action/plant_weeds,
 		/datum/action/xeno_action/activable/secrete_resin,
 		/datum/action/xeno_action/activable/build_silo,

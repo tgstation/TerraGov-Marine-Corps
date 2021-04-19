@@ -13,6 +13,7 @@
 	var/round_time_fog
 	var/flags_round_type = NONE
 	var/flags_landmarks = NONE
+	var/flags_xeno_abilities = NONE
 
 	var/distress_cancelled = FALSE
 

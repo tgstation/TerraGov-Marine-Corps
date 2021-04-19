@@ -721,10 +721,6 @@ TUNNEL
 		to_chat(X, "<span class='warning'>There are no other tunnels in the network!</span>")
 		return FALSE
 
-	if(LAZYLEN(X.stomach_contents))
-		to_chat(X, "<span class='warning'>We cannot take a tunnel with a victim in our belly!</span>")
-		return FALSE
-
 	pick_a_tunnel(X)
 
 /obj/structure/tunnel/attack_larva(mob/living/carbon/xenomorph/larva/L) //So larvas can actually use tunnels

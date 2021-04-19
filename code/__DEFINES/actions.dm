@@ -17,3 +17,9 @@
 #define XABB_MOB_TARGET			(1 << 1) // ability targets mobs
 
 #define XACT_KEYBIND_USE_ABILITY (1 << 0) // immediately activate even if selectable
+
+
+#define XACT_CRASH	(1<<0)
+#define XACT_DISTRESS (1<<1)
+#define XACT_HUNT (1<<2)
+#define XACT_ALL_GAMEMODE	(XACT_CRASH|XACT_DISTRESS|XACT_HUNT)

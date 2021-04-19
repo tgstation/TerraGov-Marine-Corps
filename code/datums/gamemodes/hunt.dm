@@ -4,6 +4,7 @@
 	required_players = 2
 	flags_round_type = MODE_INFESTATION|MODE_LZ_SHUTTERS|MODE_XENO_RULER
 	flags_landmarks = MODE_LANDMARK_SPAWN_XENO_TUNNELS|MODE_LANDMARK_SPAWN_MAP_ITEM
+	flags_xeno_abilities = XACT_HUNT
 	round_end_states = list(MODE_INFESTATION_X_MAJOR, MODE_INFESTATION_M_MAJOR, MODE_INFESTATION_X_MINOR, MODE_INFESTATION_M_MINOR, MODE_INFESTATION_DRAW_DEATH)
 
 	valid_job_types = list(
@@ -60,6 +61,8 @@
 
 /datum/game_mode/infestation/hunt/post_setup()
 	. = ..()
+	for(var/i in GLOB.xeno_resin_silo_turfs)
+		new /obj/structure/resin/silo(i)
 	scale_gear()
 	addtimer(CALLBACK(src, .proc/announce_bioscans, FALSE, 1), rand(30 SECONDS, 1 MINUTES)) //First scan shows no location but more precise numbers.
 

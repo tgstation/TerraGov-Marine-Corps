@@ -27,7 +27,7 @@
 /obj/structure/resin/silo
 	name = "resin silo"
 	icon = 'icons/Xeno/resin_silo.dmi'
-	icon_state = "resin_silo"
+	icon_state = "weed_silo"
 	desc = "A slimy, oozy resin bed filled with foul-looking egg-like ...things."
 	bound_width = 96
 	bound_height = 96
@@ -166,9 +166,72 @@
 	if(associated_hive)
 		silos += src
 
+
+//*******************
+//Corpse recyclinging
+//*******************
+/obj/structure/resin/silo/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(!isxeno(user)) //only xenos can deposit corpses
+		return
+
+	if(!istype(I, /obj/item/grab))
+		return
+
+	var/obj/item/grab/G = I
+	if(!iscarbon(G.grabbed_thing))
+		return
+	var/mob/living/carbon/victim = G.grabbed_thing
+	if(!(ishuman(victim) || ismonkey(victim))) //humans and monkeys only for now
+		to_chat(user, "<span class='notice'>[src] can only process humanoid anatomies!</span>")
+		return
+
+	if(victim.chestburst)
+		to_chat(user, "<span class='notice'>[victim] has already been exhausted to incubate a sister!</span>")
+		return
+
+	if(issynth(victim))
+		to_chat(user, "<span class='notice'>[victim] has no useful biomass for us.</span>")
+		return
+
+	visible_message("[user] starts putting [victim] into [src].", 3)
+
+	if(!do_after(user, 20, FALSE, victim, BUSY_ICON_DANGER) || QDELETED(src))
+		return
+
+	victim.chestburst = 2 //So you can't reuse corpses if the silo is destroyed
+	victim.update_burst()
+	victim.forceMove(src)
+
+	if(prob(5)) //5% chance to play
+		shake(4 SECONDS)
+	else
+		playsound(loc, 'sound/effects/blobattack.ogg', 25)
+
+	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+	xeno_job.add_job_points(1.75) //4.5 corpses per burrowed; 8 points per larva
+
+	log_combat(victim, user, "was consumed by a resin silo")
+	log_game("[key_name(victim)] was consumed by a resin silo at [AREACOORD(victim.loc)].")
+
+	GLOB.round_statistics.xeno_silo_corpses++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "xeno_silo_corpses")
+
+/obj/structure/resin/silo/proc/shake(duration)
+	var/offset = prob(50) ? -2 : 2
+	var/old_pixel_x = pixel_x
+	var/shake_sound = rand(1, 100) == 1 ? 'sound/machines/blender.ogg' : 'sound/machines/juicer.ogg'
+	playsound(src, shake_sound, 25, TRUE)
+	animate(src, pixel_x = pixel_x + offset, time = 2, loop = -1) //start shaking
+	addtimer(CALLBACK(src, .proc/stop_shake, old_pixel_x), duration)
+
+/obj/structure/resin/silo/proc/stop_shake(old_px)
+	animate(src)
+	pixel_x = old_px
+
 /obj/structure/resin/silo/small_silo
 	name = "small resin silo"
-	icon_state = "weed_silo"
+	icon_state = "purple_silo"
 	max_integrity = 500
 	larva_spawn_rate = 0.25
 
