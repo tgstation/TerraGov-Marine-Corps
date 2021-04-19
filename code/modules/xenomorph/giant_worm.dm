@@ -1,6 +1,6 @@
 /obj/structure/resin/giant_worm
 	name = "giant worm"
-	desc = "A giant burrowing worm created with the remains of a silo" //Need better name and desc
+	desc = "A giant burrowing worm created with the remains of a silo. The mouth is agape and it looks alive." //Need better name and desc
 	icon = 'icons/Xeno/resin_silo.dmi'
 	icon_state = "resin_silo"
 	resistance_flags = UNACIDABLE
