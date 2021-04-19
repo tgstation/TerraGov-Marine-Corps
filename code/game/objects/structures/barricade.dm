@@ -422,7 +422,6 @@
 	icon_state = "metal_0"
 	max_integrity = 200
 	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 80, "acid" = 40)
-	coverage = 128
 	stack_type = /obj/item/stack/sheet/metal
 	stack_amount = 4
 	destroyed_stack_amount = 2
@@ -791,7 +790,6 @@
 	icon_state = "plasteel_closed_0"
 	max_integrity = 500
 	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 80, "acid" = 40)
-	coverage = 128
 	stack_type = /obj/item/stack/sheet/plasteel
 	stack_amount = 5
 	destroyed_stack_amount = 2
@@ -1070,7 +1068,6 @@
 	icon_state = "sandbag_0"
 	max_integrity = 300
 	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 80, "acid" = 40)
-	coverage = 128
 	stack_type = /obj/item/stack/sandbags
 	hit_sound = "sound/weapons/genhit.ogg"
 	barricade_type = "sandbag"
