@@ -1,10 +1,10 @@
-/datum/game_mode/infestation/distress
-	name = "Distress Signal"
-	config_tag = "Distress Signal"
+/datum/game_mode/infestation/hunt
+	name = "Hunt party"
+	config_tag = "Hunt"
 	required_players = 2
-	flags_round_type = MODE_INFESTATION|MODE_LZ_SHUTTERS|MODE_XENO_RULER|MODE_PSY_POINTS|MODE_DEAD_GRAB_FORBIDDEN
-	flags_landmarks = MODE_LANDMARK_SPAWN_XENO_TUNNELS|MODE_LANDMARK_SPAWN_MAP_ITEM|MODE_LANDMARK_SPAWN_XENO_TURRETS
-	flags_xeno_abilities = XACT_DISTRESS
+	flags_round_type = MODE_INFESTATION|MODE_LZ_SHUTTERS|MODE_XENO_RULER
+	flags_landmarks = MODE_LANDMARK_SPAWN_XENO_TUNNELS|MODE_LANDMARK_SPAWN_MAP_ITEM
+	flags_xeno_abilities = XACT_HUNT
 	round_end_states = list(MODE_INFESTATION_X_MAJOR, MODE_INFESTATION_M_MAJOR, MODE_INFESTATION_X_MINOR, MODE_INFESTATION_M_MINOR, MODE_INFESTATION_DRAW_DEATH)
 
 	valid_job_types = list(
@@ -29,14 +29,13 @@
 		/datum/job/xenomorph = 2,
 		/datum/job/xenomorph/queen = 1
 	)
-	var/siloless_hive_timer
 
 
-/datum/game_mode/infestation/distress/announce()
+/datum/game_mode/infestation/hunt/announce()
 	to_chat(world, "<span class='round_header'>The current map is - [SSmapping.configs[GROUND_MAP].map_name]!</span>")
 
 
-/datum/game_mode/infestation/distress/can_start(bypass_checks = FALSE)
+/datum/game_mode/infestation/hunt/can_start(bypass_checks = FALSE)
 	. = ..()
 	if(!.)
 		return
@@ -55,28 +54,26 @@
 		return FALSE
 
 
-/datum/game_mode/infestation/distress/pre_setup()
+/datum/game_mode/infestation/hunt/pre_setup()
 	. = ..()
 	addtimer(CALLBACK(SSticker.mode, .proc/map_announce), 5 SECONDS)
 
 
-/datum/game_mode/infestation/distress/post_setup()
+/datum/game_mode/infestation/hunt/post_setup()
 	. = ..()
+	for(var/i in GLOB.xeno_resin_silo_turfs)
+		new /obj/structure/resin/silo(i)
 	scale_gear()
 	addtimer(CALLBACK(src, .proc/announce_bioscans, FALSE, 1), rand(30 SECONDS, 1 MINUTES)) //First scan shows no location but more precise numbers.
-	addtimer(CALLBACK(GLOB.hive_datums[XENO_HIVE_NORMAL], /datum/hive_status/proc/handle_silo_death_timer), MINIMUM_TIME_SILO_LESS_COLLAPSE)
 
-	for(var/i in GLOB.xeno_turret_turfs)
-		new /obj/structure/resin/xeno_turret(i)
-
-/datum/game_mode/infestation/distress/proc/map_announce()
+/datum/game_mode/infestation/hunt/proc/map_announce()
 	if(!SSmapping.configs[GROUND_MAP].announce_text)
 		return
 
 	priority_announce(SSmapping.configs[GROUND_MAP].announce_text, SSmapping.configs[SHIP_MAP].map_name)
 
 
-/datum/game_mode/infestation/distress/process()
+/datum/game_mode/infestation/hunt/process()
 	if(round_finished)
 		return FALSE
 
@@ -92,7 +89,7 @@
 		bioscan_current_interval += bioscan_ongoing_interval * bioscan_scaling_factor
 
 
-/datum/game_mode/infestation/distress/check_finished()
+/datum/game_mode/infestation/hunt/check_finished()
 	if(round_finished)
 		return TRUE
 
@@ -137,7 +134,7 @@
 	return FALSE
 
 
-/datum/game_mode/infestation/distress/declare_completion()
+/datum/game_mode/infestation/hunt/declare_completion()
 	. = ..()
 	to_chat(world, "<span class='round_header'>|Round Complete|</span>")
 
@@ -202,18 +199,18 @@
 	addtimer(CALLBACK(SSvote, /datum/controller/subsystem/vote/proc/automatic_vote), 1 MINUTES)
 
 
-/datum/game_mode/infestation/distress/scale_roles(initial_players_assigned)
+/datum/game_mode/infestation/hunt/scale_roles(initial_players_assigned)
 	. = ..()
 	if(!.)
 		return
 	var/datum/job/scaled_job = SSjob.GetJobType(/datum/job/xenomorph) //Xenos
-	scaled_job.job_points_needed  = CONFIG_GET(number/distress_larvapoints_required)
+	scaled_job.job_points_needed  = CONFIG_GET(number/hunt_larvapoints_required)
 
 	scaled_job = SSjob.GetJobType(/datum/job/survivor/rambo) //Survivors
 	scaled_job.job_points_needed  = 3
 
 
-/datum/game_mode/infestation/distress/proc/scale_gear()
+/datum/game_mode/infestation/hunt/proc/scale_gear()
 	var/marine_pop_size = 0
 
 	for(var/i in GLOB.alive_human_list)
@@ -227,7 +224,7 @@
 	SSpoints.scale_supply_points(scale)
 
 
-/datum/game_mode/infestation/distress/proc/announce_xenomorphs()
+/datum/game_mode/infestation/hunt/proc/announce_xenomorphs()
 	var/datum/hive_status/normal/HN = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	if(!HN.living_xeno_ruler)
 		return
@@ -237,7 +234,7 @@
 	to_chat(world, dat)
 
 
-/datum/game_mode/infestation/distress/orphan_hivemind_collapse()
+/datum/game_mode/infestation/hunt/orphan_hivemind_collapse()
 	if(!(flags_round_type & MODE_INFESTATION))
 		return
 	if(round_finished)
@@ -248,7 +245,7 @@
 	round_finished = MODE_INFESTATION_M_MAJOR
 
 
-/datum/game_mode/infestation/distress/get_hivemind_collapse_countdown()
+/datum/game_mode/infestation/hunt/get_hivemind_collapse_countdown()
 	if(!orphan_hive_timer)
 		return
 	var/eta = timeleft(orphan_hive_timer) * 0.1
@@ -256,29 +253,11 @@
 		return "[(eta / 60) % 60]:[add_leading(num2text(eta % 60), 2, "0")]"
 
 
-/datum/game_mode/infestation/distress/siloless_hive_collapse()
-	if(!(flags_round_type & MODE_INFESTATION))
-		return
-	if(round_finished)
-		return
-	if(round_stage == INFESTATION_MARINE_CRASHING)
-		return
-	round_finished = MODE_INFESTATION_M_MAJOR
-
-
-/datum/game_mode/infestation/distress/get_siloless_collapse_countdown()
-	if(!siloless_hive_timer)
-		return 0
-	var/eta = timeleft(siloless_hive_timer) * 0.1
-	if(eta > 0)
-		return "[(eta / 60) % 60]:[add_leading(num2text(eta % 60), 2, "0")]"
-
-
-/datum/game_mode/infestation/distress/attempt_to_join_as_larva(mob/dead/observer/observer)
+/datum/game_mode/infestation/hunt/attempt_to_join_as_larva(mob/dead/observer/observer)
 	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	return HS.add_to_larva_candidate_queue(observer)
 
 
-/datum/game_mode/infestation/distress/spawn_larva(mob/xeno_candidate, mob/living/carbon/xenomorph/mother)
+/datum/game_mode/infestation/hunt/spawn_larva(mob/xeno_candidate, mob/living/carbon/xenomorph/mother)
 	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	return HS.spawn_larva(xeno_candidate, mother)

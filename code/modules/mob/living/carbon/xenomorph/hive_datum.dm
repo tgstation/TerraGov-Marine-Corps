@@ -552,9 +552,9 @@ to_chat will check for valid clients itself already so no need to double check f
 
 
 /datum/hive_status/normal/handle_ruler_timer()
-	if(!isdistress(SSticker.mode))
+	if(!SSticker.mode?.flags_round_type & MODE_XENO_RULER)
 		return
-	var/datum/game_mode/infestation/distress/D = SSticker.mode
+	var/datum/game_mode/infestation/D = SSticker.mode
 
 	if(living_xeno_ruler)
 		if(D.orphan_hive_timer)
@@ -1153,7 +1153,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	if(world.time < MINIMUM_TIME_SILO_LESS_COLLAPSE)
 		return
 	var/datum/game_mode/infestation/distress/D = SSticker.mode
-	if(D.round_stage != DISTRESS_MARINE_DEPLOYMENT)
+	if(D.round_stage != INFESTATION_MARINE_DEPLOYMENT)
 		if(D?.siloless_hive_timer)
 			deltimer(D.siloless_hive_timer)
 			D.siloless_hive_timer = null

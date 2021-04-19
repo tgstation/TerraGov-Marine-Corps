@@ -10,6 +10,7 @@
 	var/keybind_signal
 	var/cooldown_id
 	var/target_flags = NONE
+	var/gamemode_flags = XACT_ALL_GAMEMODE
 
 /datum/action/xeno_action/New(Target)
 	. = ..()
