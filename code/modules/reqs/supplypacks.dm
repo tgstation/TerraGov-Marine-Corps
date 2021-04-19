@@ -72,7 +72,7 @@ OPERATIONS
 	cost = 20
 
 /datum/supply_packs/operations/pinpointer
-	name = "pool tracker crate"
+	name = "psy tracker crate"
 	contains = list(/obj/item/psy_tracker)
 	cost = 20
 
