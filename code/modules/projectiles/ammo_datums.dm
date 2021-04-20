@@ -1624,17 +1624,17 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/turf/T = get_turf(M)
 	if(!T)
 		T = get_turf(P)
-	for (var/atom in T)
-		if(istype(atom, /obj/flamer_fire))
-			var/obj/flamer_fire/FF = atom
+	for (var/thing in T)
+		if(istype(thing, /obj/flamer_fire))
+			var/obj/flamer_fire/FF = thing
 			if(FF.firelevel > 20)
 				FF.firelevel -= 20
 				FF.updateicon()
 				continue
-			qdel(atom)
+			qdel(thing)
 			continue
-		if(istype(atom, /mob/living))
-			var/mob/living/target = atom
+		if(istype(thing, /mob/living))
+			var/mob/living/target =thing
 			target.ExtinguishMob()
 	drop_nade(T)
 
@@ -1646,17 +1646,17 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	if(O.density && !(O.flags_atom & ON_BORDER))
 		T = get_turf(get_step(T, turn(P.dir, 180))) //If the object is dense and not a border object like barricades, we instead drop in the location just prior to the target
 
-	for (var/atom in T)
-		if(istype(atom, /obj/flamer_fire))
-			var/obj/flamer_fire/FF = atom
+	for (var/thing in T)
+		if(istype(thing, /obj/flamer_fire))
+			var/obj/flamer_fire/FF = thing
 			if(FF.firelevel > 20)
 				FF.firelevel -= 20
 				FF.updateicon()
 				continue
-			qdel(atom)
+			qdel(thing)
 			continue
-		if(istype(atom, /mob/living))
-			var/mob/living/target = atom
+		if(istype(thing, /mob/living))
+			var/mob/living/target = thing
 			target.ExtinguishMob()
 
 	drop_nade(T)
@@ -1667,17 +1667,17 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		T = get_turf(P)
 	if(isclosedturf(T))
 		T = get_turf(get_step(T, turn(P.dir, 180))) //If the turf is closed, we instead drop in the location just prior to the turf
-	for (var/atom in T)
-		if(istype(atom, /obj/flamer_fire))
-			var/obj/flamer_fire/FF = atom
+	for (var/thing in T)
+		if(istype(thing, /obj/flamer_fire))
+			var/obj/flamer_fire/FF = thing
 			if(FF.firelevel > 20)
 				FF.firelevel -= 20
 				FF.updateicon()
 				continue
-			qdel(atom)
+			qdel(thing)
 			continue
-		if(istype(atom, /mob/living))
-			var/mob/living/target = atom
+		if(istype(thing, /mob/living))
+			var/mob/living/target = thing
 			target.ExtinguishMob()
 	drop_nade(T)
 
