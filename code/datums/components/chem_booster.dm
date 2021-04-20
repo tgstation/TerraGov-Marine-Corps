@@ -2,6 +2,15 @@
 #define EXTRACT "Extract"
 #define LOAD "Load up"
 #define BOOST_CONFIG "Switch Boost"
+#define VALI_INFO "Information"
+
+#define BRUTE_AMP "brute_amp"
+#define BURN_AMP "burn_amp"
+#define TOX_HEAL "tox_heal"
+#define STAM_REG_AMP "stam_reg_amp"
+#define SPEED_BOOST "speed_boost"
+#define REQ "requirement"
+#define NAME "name"
 
 /**
  *	Chem booster component
@@ -47,6 +56,34 @@
 	///Image that gets added to the wearer's overlays and gets changed based on resource_storage_current
 	var/static/image/resource_overlay = image('icons/mob/hud.dmi', icon_state = "chemsuit_vis")
 	COOLDOWN_DECLARE(chemboost_activation_cooldown)
+	///Information about how reagents boost the system's effects.
+	var/reagent_info = ""
+	///Vali brute healing is multiplied by this
+	var/brute_heal_amp = 1
+	///Vali burn healing is multiplied by this
+	var/burn_heal_amp = 1
+	///Vali toxin healing is multiplied by this
+	var/tox_heal = 0
+	///Vali stamina regen is multiplied by this
+	var/stamina_regen_amp = 1
+	///Vali movement speed buff is this value
+	var/movement_boost = 0
+
+	/**
+	 * This list contains the vali stat increases that correspond to each reagent
+	 * They go in the order:
+	 * brute_heal_amp, burn_heal_amp, tox_heal, stamina_regen_amp, movement_boost, min required volume, entry name
+	 */
+	var/static/list/reagent_stats = list(
+		/datum/reagent/medicine/bicaridine = list(NAME = "Bicaridine", REQ = 5, BRUTE_AMP = 0.1, BURN_AMP = 0, TOX_HEAL = 0, STAM_REG_AMP = 0, SPEED_BOOST = 0),
+		/datum/reagent/medicine/kelotane = list(NAME = "Kelotane", REQ = 5, BRUTE_AMP = 0, BURN_AMP = 0.1, TOX_HEAL = 0, STAM_REG_AMP = 0, SPEED_BOOST = 0),
+		/datum/reagent/medicine/paracetamol = list(NAME = "Paracetamol", REQ = 5, BRUTE_AMP = 0, BURN_AMP = 0, TOX_HEAL = 0, STAM_REG_AMP = 0.2, SPEED_BOOST = -0.1),
+		/datum/reagent/medicine/meralyne = list(NAME = "Meralyne", REQ = 5, BRUTE_AMP = 0.2, BURN_AMP = 0, TOX_HEAL = 0, STAM_REG_AMP = 0, SPEED_BOOST = 0),
+		/datum/reagent/medicine/dermaline = list(NAME = "Dermaline", REQ = 5, BRUTE_AMP = 0, BURN_AMP = 0.2, TOX_HEAL = 0, STAM_REG_AMP = 0, SPEED_BOOST = 0),
+		/datum/reagent/medicine/dylovene = list(NAME = "Dylovene", REQ = 5, BRUTE_AMP = 0, BURN_AMP = 0, TOX_HEAL = 0.5, STAM_REG_AMP = 0, SPEED_BOOST = 0),
+		/datum/reagent/medicine/synaptizine = list(NAME = "Synaptizine", REQ = 3, BRUTE_AMP = 0, BURN_AMP = 0, TOX_HEAL = 1, STAM_REG_AMP = 0.1, SPEED_BOOST = 0),
+		/datum/reagent/medicine/neuraline = list(NAME = "Neuraline", REQ = 2, BRUTE_AMP = 1, BURN_AMP = 1, TOX_HEAL = -3, STAM_REG_AMP = 0, SPEED_BOOST = -0.3),
+	)
 
 /datum/component/chem_booster/Initialize()
 	if(!isitem(parent))
@@ -54,6 +91,7 @@
 	update_boost(boost_tier1)
 	analyzer = new
 	meds_beaker = new
+	setup_reagent_info()
 
 /datum/component/chem_booster/Destroy(force, silent)
 	QDEL_NULL(configure_action)
@@ -86,6 +124,25 @@
 	QDEL_NULL(configure_action)
 	QDEL_NULL(power_action)
 	QDEL_NULL(scan_action)
+
+///Shows info on what stats each reagent boosts and how much units they require
+/datum/component/chem_booster/proc/setup_reagent_info()
+	reagent_info = "<b>Vali Reagent Information:</b><br>"
+	for(var/datum/reagent/entry AS in reagent_stats)
+		reagent_info += "<span style= 'color:[initial(entry.color)]'><b>[reagent_stats[entry][NAME]]: </b></span>"
+		if(reagent_stats[entry][REQ])
+			reagent_info += "required [reagent_stats[entry][REQ]]u<br>"
+		if(reagent_stats[entry][BRUTE_AMP])
+			reagent_info += "- brute heal " + (reagent_stats[entry][BRUTE_AMP] > 0 ? "+" : "") + "[reagent_stats[entry][BRUTE_AMP]*100]%<br>"
+		if(reagent_stats[entry][BURN_AMP])
+			reagent_info += "- burn heal " + (reagent_stats[entry][BURN_AMP] > 0 ? "+" : "") + "[reagent_stats[entry][BURN_AMP]*100]%<br>"
+		if(reagent_stats[entry][TOX_HEAL])
+			reagent_info += "- toxin heal " + (reagent_stats[entry][TOX_HEAL] > 0 ? "+" : "") + "[reagent_stats[entry][TOX_HEAL]]<br>"
+		if(reagent_stats[entry][STAM_REG_AMP])
+			reagent_info += "- stamina regen " + (reagent_stats[entry][STAM_REG_AMP] > 0 ? "+" : "") + "[reagent_stats[entry][STAM_REG_AMP]*100]%<br>"
+		if(reagent_stats[entry][SPEED_BOOST])
+			reagent_info += "- slowdown " + (reagent_stats[entry][SPEED_BOOST] > 0 ? "+" : "") + "[reagent_stats[entry][SPEED_BOOST]]<br>"
+		reagent_info += "<br>"
 
 ///Adds additional text for the component when examining the item it is attached to
 /datum/component/chem_booster/proc/examine(datum/source, mob/user)
@@ -130,9 +187,10 @@
 		on_off()
 	update_resource(-resource_drain_amount)
 
-	wearer.heal_limb_damage(6*boost_amount, 6*boost_amount)
+	wearer.adjustToxLoss(-tox_heal*boost_amount)
+	wearer.heal_limb_damage(6*boost_amount*brute_heal_amp, 6*boost_amount*brute_heal_amp)
 	if(connected_weapon && world.time - processing_start < 20 SECONDS)
-		wearer.adjustStaminaLoss(-7*((20 - (world.time - processing_start)/10)/20)) //stamina gain scales inversely with passed time, up to 20 seconds
+		wearer.adjustStaminaLoss(-7*stamina_regen_amp*((20 - (world.time - processing_start)/10)/20)) //stamina gain scales inversely with passed time, up to 20 seconds
 	if(world.time - processing_start > 12 SECONDS && world.time - processing_start < 15 SECONDS)
 		wearer.overlay_fullscreen("degeneration", /obj/screen/fullscreen/infection, 1)
 		to_chat(wearer, "<span class='highdanger'>WARNING: You have [(200 - (world.time - processing_start))/10] seconds before necrotic tissue forms on your limbs.</span>")
@@ -151,6 +209,7 @@
 		BOOST_CONFIG = image(icon = 'icons/mob/radial.dmi', icon_state = "[boost_icon]"),
 		EXTRACT = image(icon = 'icons/mob/radial.dmi', icon_state = "cboost_extract"),
 		LOAD = image(icon = 'icons/mob/radial.dmi', icon_state = "cboost_load"),
+		VALI_INFO = image(icon = 'icons/mob/radial.dmi', icon_state = "cboost_info"),
 		)
 
 	var/choice = show_radial_menu(wearer, wearer, radial_options, null, 48, null, TRUE, TRUE)
@@ -171,6 +230,9 @@
 
 		if(LOAD)
 			load_up()
+
+		if(VALI_INFO)
+			to_chat(wearer, "<span class='notice'>[reagent_info]</span>")
 
 ///Handles turning on/off the processing part of the component, along with the negative effects related to this
 /datum/component/chem_booster/proc/on_off(datum/source)
@@ -199,6 +261,7 @@
 		boost_on = FALSE
 		to_chat(wearer, "<span class='warning'>Halting reagent injection.</span>")
 		COOLDOWN_START(src, chemboost_activation_cooldown, 10 SECONDS)
+		setup_bonus_effects()
 		return
 
 	if(!COOLDOWN_CHECK(src, chemboost_activation_cooldown))
@@ -221,14 +284,41 @@
 	if(automatic_meds_use)
 		show_meds_beaker_contents(wearer)
 		meds_beaker.reagents.trans_to(wearer, 30)
+	setup_bonus_effects()
 
 ///Updates the boost amount of the suit and effect_str of reagents if component is on. "amount" is the final level you want to set the boost to.
 /datum/component/chem_booster/proc/update_boost(amount, update_boost_amount = TRUE)
 	amount -= boost_amount
 	if(update_boost_amount)
 		boost_amount += amount
-		to_chat(wearer, "<span class='notice'>Power set to [boost_amount+1].</span>")
+		to_chat(wearer, "<span class='notice'>Power set to [boost_amount].</span>")
 	resource_drain_amount = boost_amount*(3 + boost_amount)
+
+///Handles Vali stat boosts and any other potential buffs on activation/deactivation
+/datum/component/chem_booster/proc/setup_bonus_effects()
+	if(!boost_on)
+		brute_heal_amp = initial(brute_heal_amp)
+		burn_heal_amp = initial(burn_heal_amp)
+		tox_heal = initial(tox_heal)
+		stamina_regen_amp = initial(stamina_regen_amp)
+		wearer.remove_movespeed_modifier(MOVESPEED_ID_VALI_BOOST)
+		movement_boost = initial(movement_boost)
+		return
+
+	for(var/datum/reagent/R AS in wearer.reagents.reagent_list)
+		if(!LAZYACCESS(reagent_stats, R.type))
+			continue
+		if(R.volume < reagent_stats[R.type][REQ])
+			continue
+
+		brute_heal_amp += reagent_stats[R.type][BRUTE_AMP]
+		burn_heal_amp += reagent_stats[R.type][BURN_AMP]
+		tox_heal += reagent_stats[R.type][TOX_HEAL]
+		stamina_regen_amp += reagent_stats[R.type][STAM_REG_AMP]
+		movement_boost += reagent_stats[R.type][SPEED_BOOST]
+
+	if(movement_boost)
+		wearer.add_movespeed_modifier(MOVESPEED_ID_VALI_BOOST, TRUE, 0, NONE, TRUE, movement_boost)
 
 ///Used to scan the person
 /datum/component/chem_booster/proc/scan_user(datum/source)
@@ -408,3 +498,12 @@
 #undef EXTRACT
 #undef LOAD
 #undef BOOST_CONFIG
+#undef VALI_INFO
+
+#undef BRUTE_AMP
+#undef BURN_AMP
+#undef TOX_HEAL
+#undef STAM_REG_AMP
+#undef SPEED_BOOST
+#undef REQ
+#undef NAME

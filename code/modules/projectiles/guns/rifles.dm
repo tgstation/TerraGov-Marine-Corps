@@ -18,6 +18,8 @@
 	scatter_unwielded = 40
 	recoil_unwielded = 4
 	damage_falloff_mult = 0.5
+	upper_akimbo_accuracy = 5
+	lower_akimbo_accuracy = 3
 
 
 /obj/item/weapon/gun/rifle/unique_action(mob/user)

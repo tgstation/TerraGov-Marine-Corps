@@ -255,7 +255,7 @@ should be alright.
 		unload(user,0,1)
 		to_chat(user, "<span class='notice'>You start a tactical reload.</span>")
 	var/tac_reload_time = max(0.5 SECONDS, 1.5 SECONDS - user.skills.getRating("firearms") * 5)
-	if(do_after(user,tac_reload_time, TRUE, new_magazine) && loc == user)
+	if(!do_after(user,tac_reload_time, TRUE, new_magazine) && loc == user)
 		return
 	if(istype(new_magazine.loc, /obj/item/storage))
 		var/obj/item/storage/S = new_magazine.loc
