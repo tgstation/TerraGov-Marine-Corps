@@ -26,7 +26,9 @@
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
-		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR)
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
+	)
+	minimap_icon = "captain"
 
 /datum/job/terragov/command/captain/announce(mob/living/announced_mob)
 	. = ..()
@@ -91,9 +93,11 @@ Godspeed, captain! And remember, you are not above the law."})
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_ISCOMMAND|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
-	 	/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
-	 	/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
-	 	/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR)
+		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
+		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
+	)
+	minimap_icon = "fieldcommander"
 
 /datum/job/terragov/command/fieldcommander/after_spawn(mob/living/L, mob/M, latejoin)
 	. = ..()
@@ -160,10 +164,17 @@ Make the TGMC proud!"})
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
-		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR)
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
+	)
+	minimap_icon = "staffofficer"
 
-/datum/job/terragov/command/staffofficer/after_spawn(mob/living/new_mob, mob/user, latejoin = FALSE)
-	.=..()
+/datum/job/terragov/command/staffofficer/radio_help_message(mob/M)
+	. = ..()
+	to_chat(M, {"Your job is to monitor the marines, man the CIC, and listen to your superior officers.
+You are in charge of logistics and the overwatch system. You are also in line to take command after the captain."})
+
+/datum/job/terragov/command/staffofficer/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
+	. = ..()
 	if(!ishuman(new_mob))
 		return
 	var/mob/living/carbon/human/new_human = new_mob
@@ -286,7 +297,9 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
-		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR)
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
+	)
+	minimap_icon = "cse"
 
 /datum/job/terragov/engineering/chief/after_spawn(mob/living/new_mob, mob/user, latejoin = FALSE)
 	.=..()
