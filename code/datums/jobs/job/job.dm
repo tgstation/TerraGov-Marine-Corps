@@ -54,6 +54,9 @@ GLOBAL_PROTECT(exp_specialmap)
 
 	var/list/jobworth = list() //Associative list of indexes increased when someone joins as this job.
 
+	///string; typepath for the icon that this job will show on the minimap
+	var/minimap_icon
+
 /datum/job/New()
 	if(outfit)
 		if(!ispath(outfit, /datum/outfit))
@@ -281,7 +284,7 @@ GLOBAL_PROTECT(exp_specialmap)
 
 	if(!src.assigned_squad && assigned_squad)
 		job.equip_spawning_squad(src, assigned_squad, player)
-	
+
 	hud_set_job()
 
 /datum/job/proc/equip_spawning_squad(mob/living/carbon/human/new_character, datum/squad/assigned_squad, client/player)

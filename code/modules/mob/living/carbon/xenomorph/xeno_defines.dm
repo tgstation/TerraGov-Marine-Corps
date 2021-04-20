@@ -186,6 +186,9 @@
 	///the 'abilities' available to a caste.
 	var/list/actions
 
+	///The iconstate for the xeno on the minimap
+	var/minimap_icon = "xeno"
+
 /mob/living/carbon/xenomorph
 	name = "Drone"
 	desc = "What the hell is THAT?"
