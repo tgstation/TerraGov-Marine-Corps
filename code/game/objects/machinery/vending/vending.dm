@@ -115,7 +115,7 @@
 	///Last time we spoke our slogan
 	var/last_slogan = 0
 	///The interval between slogans.
-	var/slogan_delay = 600
+	var/slogan_delay = 1 MINUTES
 	///Icon state when successfuly vending
 	var/icon_vend
 	///Icon state when failing to vend, be it by no access or money.
