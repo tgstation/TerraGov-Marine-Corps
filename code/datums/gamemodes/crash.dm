@@ -123,17 +123,10 @@
 
 
 /datum/game_mode/infestation/crash/process()
-	if(round_finished)
-		return
+	. = ..()
 
-	// Burrowed Larva
 	if(world.time > larva_check_interval)
 		balance_scales()
-
-	// Bioscan alerts
-	if(world.time > bioscan_interval)
-		announce_bioscans(TRUE, 0, FALSE, TRUE, TRUE)
-		bioscan_interval = world.time + 10 MINUTES
 
 /datum/game_mode/infestation/crash/proc/crash_shuttle(obj/docking_port/stationary/target)
 	shuttle_landed = TRUE

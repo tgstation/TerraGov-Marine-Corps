@@ -76,22 +76,6 @@
 	priority_announce(SSmapping.configs[GROUND_MAP].announce_text, SSmapping.configs[SHIP_MAP].map_name)
 
 
-/datum/game_mode/infestation/distress/process()
-	if(round_finished)
-		return FALSE
-
-	//Automated bioscan / Queen Mother message
-	if(world.time > bioscan_current_interval)
-		announce_bioscans()
-		var/total[] = count_humans_and_xenos(count_flags = COUNT_IGNORE_XENO_SPECIAL_AREA)
-		var/marines = total[1]
-		var/xenos = total[2]
-		var/bioscan_scaling_factor = xenos / max(marines, 1)
-		bioscan_scaling_factor = max(bioscan_scaling_factor, 0.25)
-		bioscan_scaling_factor = min(bioscan_scaling_factor, 1.5)
-		bioscan_current_interval += bioscan_ongoing_interval * bioscan_scaling_factor
-
-
 /datum/game_mode/infestation/distress/check_finished()
 	if(round_finished)
 		return TRUE
