@@ -168,17 +168,6 @@
 	//Scale the amount of cargo points through a direct multiplier
 	SSpoints.scale_supply_points(scale)
 
-
-/datum/game_mode/infestation/hunt/proc/announce_xenomorphs()
-	var/datum/hive_status/normal/HN = GLOB.hive_datums[XENO_HIVE_NORMAL]
-	if(!HN.living_xeno_ruler)
-		return
-
-	var/dat = "<span class='round_body'>The surviving xenomorph ruler was:<br>[HN.living_xeno_ruler.key] as <span class='boldnotice'>[HN.living_xeno_ruler]</span></span>"
-
-	to_chat(world, dat)
-
-
 /datum/game_mode/infestation/hunt/orphan_hivemind_collapse()
 	if(round_finished)
 		return

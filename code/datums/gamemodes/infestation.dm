@@ -17,9 +17,19 @@
 	if(round_finished)
 		return PROCESS_KILL
 
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_BIOSCAN_INTERVAL) && bioscan_interval != 0)
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_BIOSCAN) && bioscan_interval != 0)
 		announce_bioscans()
-		TIMER_COOLDOWN_START(src, COOLDOWN_BIOSCAN_INTERVAL, bioscan_interval)
+		TIMER_COOLDOWN_START(src, COOLDOWN_BIOSCAN, bioscan_interval)
+
+/// Announce to players the name of the surviving hive ruler
+/datum/game_mode/infestation/proc/announce_xenomorphs()
+	var/datum/hive_status/normal/HN = GLOB.hive_datums[XENO_HIVE_NORMAL]
+	if(!HN.living_xeno_ruler)
+		return
+
+	var/dat = "<span class='round_body'>The surviving xenomorph ruler was:<br>[HN.living_xeno_ruler.key] as <span class='boldnotice'>[HN.living_xeno_ruler]</span></span>"
+
+	to_chat(world, dat)
 
 /datum/game_mode/infestation/can_start(bypass_checks = FALSE)
 	. = ..()
