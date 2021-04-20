@@ -260,6 +260,14 @@
 	relativewall_neighbours()
 	if(!locate(/obj/effect/alien/weeds) in loc)
 		new /obj/effect/alien/weeds(loc)
+	for(var/direction in GLOB.alldirs)
+		RegisterSignal(get_step(loc, direction), COMSIG_ATOM_ENTERED, .proc/check_if_xeno)
+
+/obj/structure/mineral_door/resin/proc/check_if_xeno(datum/source, atom/atom_entering)
+	SIGNAL_HANDLER
+	if(isxeno(atom_entering))
+		Open()
+	
 
 /obj/structure/mineral_door/resin/proc/thicken()
 	var/oldloc = loc
@@ -295,7 +303,7 @@
 	X.visible_message("<span class='warning'>\The [X] digs into \the [src] and begins ripping it down.</span>", \
 	"<span class='warning'>We dig into \the [src] and begin ripping it down.</span>", null, 5)
 	playsound(src, "alien_resin_break", 25)
-	if(do_after(X, 80, FALSE, src, BUSY_ICON_HOSTILE))
+	if(do_after(X, 4 SECONDS, FALSE, src, BUSY_ICON_HOSTILE))
 		X.visible_message("<span class='danger'>[X] rips down \the [src]!</span>", \
 		"<span class='danger'>We rip down \the [src]!</span>", null, 5)
 		qdel(src)
@@ -313,22 +321,16 @@
 /obj/structure/mineral_door/resin/Open()
 	if(state || !loc)
 		return //already open
-	isSwitchingStates = TRUE
 	playsound(loc, "alien_resin_move", 25)
 	flick("[mineralType]opening",src)
-	addtimer(CALLBACK(src, .proc/do_open), 2)
-
-///Change the icon and density of the door
-/obj/structure/mineral_door/resin/proc/do_open()
 	density = FALSE
 	opacity = FALSE
 	state = 1
 	update_icon()
-	isSwitchingStates = 0
 	addtimer(CALLBACK(src, .proc/Close), close_delay)
 
 /obj/structure/mineral_door/resin/Close()
-	if(!state || !loc || isSwitchingStates)
+	if(!state || !loc ||isSwitchingStates)
 		return //already closed
 	//Can't close if someone is blocking it
 	for(var/turf/turf in locs)
