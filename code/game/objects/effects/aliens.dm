@@ -69,7 +69,7 @@
 	if(!ishuman(moved_in))
 		return
 	var/mob/living/carbon/human/victim = moved_in
-	if(vicim.flags_pass & HOVERING)
+	if(victim.flags_pass & HOVERING)
 		return
 	victim.acid_spray_entered(null, src, acid_damage, slow_amt)
 
