@@ -95,7 +95,6 @@ export const Vending = (props, context) => {
               textAlign="center">
               <Tabs>
                 <Stack
-                  inline
                   wrap="wrap">
                   {tabs.map(tabname => {
                     return (
