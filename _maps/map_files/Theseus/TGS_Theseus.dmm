@@ -6224,12 +6224,6 @@
 "asv" = (
 /turf/closed/wall/mainship,
 /area/mainship/command/self_destruct)
-"asw" = (
-/obj/machinery/vending/uniform_supply{
-	squad_tag = "Alpha"
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/squads/bravo)
 "asx" = (
 /turf/open/floor/mainship{
 	dir = 9;
@@ -11729,9 +11723,7 @@
 /turf/open/floor/mainship/red/corner,
 /area/mainship/shipboard/brig_cells)
 "aHo" = (
-/obj/machinery/vending/uniform_supply{
-	squad_tag = "Alpha"
-	},
+/obj/machinery/vending/uniform_supply,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/charlie)
 "aHp" = (
@@ -12076,12 +12068,6 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/mainship/command/telecomms)
-"aIg" = (
-/obj/machinery/vending/uniform_supply{
-	squad_tag = "Alpha"
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/squads/delta)
 "aIh" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -16788,9 +16774,7 @@
 /turf/closed/wall/mainship,
 /area/mainship/squads/alpha)
 "aWI" = (
-/obj/machinery/vending/uniform_supply{
-	squad_tag = "Alpha"
-	},
+/obj/machinery/vending/uniform_supply,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/alpha)
 "aWJ" = (
@@ -17682,9 +17666,7 @@
 /turf/open/floor/mainship/cargo,
 /area/mainship/squads/alpha)
 "aZL" = (
-/obj/machinery/vending/uniform_supply{
-	squad_tag = "Alpha"
-	},
+/obj/machinery/vending/uniform_supply,
 /obj/structure/window/reinforced{
 	dir = 1
 	},
@@ -19695,9 +19677,7 @@
 /turf/open/floor/mainship,
 /area/mainship/hallways/starboard_hallway)
 "bgG" = (
-/obj/machinery/vending/uniform_supply{
-	squad_tag = "Bravo"
-	},
+/obj/machinery/vending/uniform_supply,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/bravo)
 "bgH" = (
@@ -24155,9 +24135,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/briefing)
 "bxU" = (
-/obj/machinery/vending/uniform_supply{
-	squad_tag = "Alpha"
-	},
+/obj/machinery/vending/uniform_supply,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "bxX" = (
@@ -29739,12 +29717,6 @@
 	dir = 4
 	},
 /area/mainship/hallways/port_hallway)
-"bUr" = (
-/obj/machinery/vending/uniform_supply{
-	squad_tag = "Charlie"
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/squads/charlie)
 "bUs" = (
 /obj/machinery/vending/marine/shared,
 /turf/open/floor/mainship/mono,
@@ -32528,9 +32500,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/port_hallway)
 "cec" = (
-/obj/machinery/vending/uniform_supply{
-	squad_tag = "Delta"
-	},
+/obj/machinery/vending/uniform_supply,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/delta)
 "ced" = (
@@ -75707,7 +75677,7 @@ bQu
 bRh
 bGq
 bSQ
-bUr
+aHo
 bVT
 bWR
 bXO
@@ -75927,7 +75897,7 @@ aXd
 aZk
 aWI
 aWH
-asw
+bgG
 bcv
 bdo
 bdq
@@ -75971,7 +75941,7 @@ bVW
 bZh
 aHo
 bSQ
-aIg
+cec
 ccg
 ccQ
 ccS
