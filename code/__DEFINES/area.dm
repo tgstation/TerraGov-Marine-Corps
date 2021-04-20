@@ -10,3 +10,5 @@
 #define DISALLOW_WEEDING (1<<0)
 ///When present, monitor will consider marines inside it to be at FOB
 #define NEAR_FOB (1<<1)
+///When present, this will prevent the drop pod to land there (usually kill zones)
+#define NO_DROPPOD (1<<2)

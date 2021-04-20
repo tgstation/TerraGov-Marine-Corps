@@ -116,14 +116,11 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	if(target.density)
 		to_chat(user, "<span class='warning'>Dense landing zone detected. Invalid area.</span>")
 		return FALSE
-	if(isspaceturf(target)) // Just a failsafe.
-		to_chat(user, "<span class='warning'>Location outside mission parameters. Invalid area.</span>")
-		return FALSE
 	if(is_type_in_typecache(target, GLOB.blocked_droppod_tiles))
 		to_chat(user, "<span class='warning'>Extremely lethal hazard detected on the target location. Invalid area.</span>")
 		return FALSE
 	var/area/targetarea = get_area(target)
-	if(!targetarea.droppodable) // Thou shall not pass!
+	if(targetarea.flags_area & NO_DROPPOD) // Thou shall not pass!
 		to_chat(user, "<span class='warning'>Location outside mission parameters. Invalid area.</span>")
 		return FALSE
 	if(!targetarea.outside)

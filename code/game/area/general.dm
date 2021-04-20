@@ -9,7 +9,12 @@
 	ambience = list('sound/ambience/ambispace.ogg')
 	temperature = TCMB
 	pressure = 0
-	droppodable = FALSE
+
+/area/space/Initialize(mapload)
+	. = ..()
+	if(mapload)
+		var/area/ourarea = get_area(src)
+		ENABLE_BITFIELD(ourarea.flags_area, NO_DROPPOD)
 
 /area/space/Entered(atom/movable/AM, atom/oldloc)
 	. = ..()
@@ -1294,7 +1299,12 @@
 	requires_power = 0
 	name = "Abandoned Test Room"
 	icon_state = "storage"
-	droppodable = FALSE
+
+/area/storage/testroom/Initialize(mapload)
+	. = ..()
+	if(mapload)
+		var/area/ourarea = get_area(src)
+		ENABLE_BITFIELD(ourarea.flags_area, NO_DROPPOD)
 
 //DJSTATION
 
