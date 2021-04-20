@@ -131,6 +131,8 @@
 			/obj/item/ammo_magazine/pistol/standard_pocketpistol = 1000,
 			/obj/item/weapon/gun/pistol/vp70 = 250,
 			/obj/item/ammo_magazine/pistol/vp70 = 1000,
+			/obj/item/weapon/gun/pistol/plasma_pistol = 250,
+			/obj/item/ammo_magazine/pistol/plasma_pistol = 1000,
 		),
 		"Specialized" = list(
 			/obj/item/weapon/gun/launcher/m92/standardmarine = 250,
