@@ -207,10 +207,7 @@
 	victim.update_burst()
 	victim.forceMove(src)
 
-	if(prob(5)) //5% chance to play
-		shake(4 SECONDS)
-	else
-		playsound(loc, 'sound/effects/blobattack.ogg', 25)
+	shake(4 SECONDS)
 
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	xeno_job.add_job_points(1.75) //4.5 corpses per burrowed; 8 points per larva
@@ -221,14 +218,19 @@
 	GLOB.round_statistics.xeno_silo_corpses++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "xeno_silo_corpses")
 
+/// Make the silo shake
 /obj/structure/resin/silo/proc/shake(duration)
+	/// How important should be the shaking movement
 	var/offset = prob(50) ? -2 : 2
+	/// Track the last position of the silo for the animation
 	var/old_pixel_x = pixel_x
+	/// Sound played when shaking
 	var/shake_sound = rand(1, 100) == 1 ? 'sound/machines/blender.ogg' : 'sound/machines/juicer.ogg'
 	playsound(src, shake_sound, 25, TRUE)
 	animate(src, pixel_x = pixel_x + offset, time = 2, loop = -1) //start shaking
 	addtimer(CALLBACK(src, .proc/stop_shake, old_pixel_x), duration)
 
+/// Stop the shaking animation
 /obj/structure/resin/silo/proc/stop_shake(old_px)
 	animate(src)
 	pixel_x = old_px
