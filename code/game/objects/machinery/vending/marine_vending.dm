@@ -533,7 +533,7 @@
 	)
 	contraband = list()
 
-/obj/machinery/vending/MarineMed/Blood/build_inventory(productlist[], category)
+/obj/machinery/vending/MarineMed/Blood/build_inventory(list/productlist, category)
 	. = ..()
 	var/temp_list[] = productlist
 	var/obj/item/reagent_containers/blood/temp_path
