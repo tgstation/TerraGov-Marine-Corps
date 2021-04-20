@@ -19,7 +19,7 @@
 	var/last_dam = -1
 	var/supported = FALSE
 	///How many instances of damage the limb can take before its splints fall off
-	var/splint_stacks = 0
+	var/splint_health = 0
 
 	var/datum/armor/soft_armor
 	var/datum/armor/hard_armor
@@ -340,12 +340,12 @@
 		wounds += I
 		owner.custom_pain("You feel something rip in your [display_name]!", 1)
 
-	if(limb_status & LIMB_SPLINTED && damage > 10) //If they have it splinted and no splint stacks, the splint won't hold.
-		if(splint_stacks <= 0)
+	if(limb_status & LIMB_SPLINTED) //If they have it splinted and no splint health, the splint won't hold.
+		if(splint_health <= 0)
 			remove_limb_flags(LIMB_SPLINTED)
 			to_chat(owner, "<span class='userdanger'>The splint on your [display_name] comes apart!</span>")
 		else
-			splint_stacks -= 1
+			splint_health = max(splint_health - damage, 0)
 
 	// first check whether we can widen an existing wound
 	var/datum/wound/W
@@ -1049,7 +1049,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			new /datum/effect_system/spark_spread(owner, owner, 5, 0, TRUE, 1 SECONDS)
 
 
-/datum/limb/proc/apply_splints(obj/item/stack/medical/splint/S, applied_stacks, mob/living/user, mob/living/carbon/human/target)
+/datum/limb/proc/apply_splints(obj/item/stack/medical/splint/S, applied_health, mob/living/user, mob/living/carbon/human/target)
 
 	if(!istype(user))
 		return
@@ -1058,7 +1058,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		to_chat(user, "<span class='warning'>There's nothing there to splint!</span>")
 		return FALSE
 
-	if(limb_status & LIMB_SPLINTED && applied_stacks <= splint_stacks)
+	if(limb_status & LIMB_SPLINTED && applied_health <= splint_health)
 		to_chat(user, "<span class='warning'>This limb is already splinted!</span>")
 		return FALSE
 
@@ -1079,7 +1079,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		"[text1]",
 		"[text2]")
 		add_limb_flags(LIMB_SPLINTED)
-		splint_stacks = max(splint_stacks, applied_stacks)
+		splint_health = applied_health
 		return TRUE
 
 
