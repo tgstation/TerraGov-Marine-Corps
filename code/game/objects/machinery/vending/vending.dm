@@ -114,7 +114,7 @@
 	var/last_reply = 0
 	///Last time we spoke our slogan
 	var/last_slogan = 0
-	//The interval between slogans.
+	///The interval between slogans.
 	var/slogan_delay = 600
 	///Icon state when successfuly vending
 	var/icon_vend
