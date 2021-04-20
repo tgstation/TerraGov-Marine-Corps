@@ -174,7 +174,9 @@
 			var/area/build_area = get_area(usr)
 			if(CHECK_BITFIELD(build_area.flags_area, NEAR_FOB))
 				building_time *= 3
-				to_chat(usr, "<span class ='warning'>The fuel residues of the space ship prevent us from using our power tool, we build slower!</span>")
+				if(TIMER_COOLDOWN_CHECK(usr, COOLDOWN_NOTIFY_SLOW_BUILDING))
+					to_chat(usr, "<span class ='warning'>The fuel residues of the space ship prevent us from using our power tool, we build slower!</span>")
+					TIMER_COOLDOWN_START(usr, COOLDOWN_NOTIFY_SLOW_BUILDING, 30 SECONDS)
 			if(!do_after(usr, building_time, TRUE, src, BUSY_ICON_BUILD))
 				return
 			if(!building_checks(R, multiplier))
