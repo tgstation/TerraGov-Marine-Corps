@@ -110,7 +110,7 @@
 		),
 		"Shotgun" = list(
 			/obj/item/weapon/gun/shotgun/pump/t35 = 250,
-			/obj/item/weapon/gun/shotgun/combat = 250,
+			/obj/item/weapon/gun/shotgun/combat/standardmarine = 250,
 			/obj/item/weapon/gun/shotgun/pump/cmb = 250,
 			/obj/item/storage/belt/gun/ts34/full = 250,
 			/obj/item/ammo_magazine/shotgun = 500,
