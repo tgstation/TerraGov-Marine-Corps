@@ -649,9 +649,7 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 
 /obj/machinery/vending/proc/stock(obj/item/item_to_stock, mob/user, recharge = FALSE)
 	//More accurate comparison between absolute paths.
-	var/list/locallist = list()
-	locallist.Insert(product_records + hidden_records + coin_records) // this supposedly adds just the datums on a locallist so it aint nested in assocs.
-	for(var/datum/vending_product/R AS in locallist)
+	for(var/datum/vending_product/R AS in product_records + hidden_records + coin_records)
 		if(item_to_stock.type != R.product_path || istype(item_to_stock, /obj/item/storage)) //Nice try, specialists/engis
 			continue
 		if(istype(item_to_stock, /obj/item/weapon/gun))
