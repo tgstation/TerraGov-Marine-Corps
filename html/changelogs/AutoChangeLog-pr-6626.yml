@@ -1,0 +1,4 @@
+author: "Swagile"
+delete-after: True
+changes: 
+  - qol: "OB warheads and fuel bought in req now comes in a locked crate for easy movement to / from OB room and to prevent random opening / theft of the crate."
