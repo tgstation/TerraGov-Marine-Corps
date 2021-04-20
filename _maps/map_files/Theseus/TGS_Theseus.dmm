@@ -16794,7 +16794,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/alpha)
 "aWJ" = (
-/obj/machinery/vending/marine,
+/obj/machinery/vending/marine/shared,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/alpha)
 "aWK" = (
@@ -17668,13 +17668,13 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/alpha)
 "aZJ" = (
-/obj/machinery/vending/marine,
 /obj/structure/window/reinforced{
 	dir = 1
 	},
 /obj/structure/window/reinforced{
 	dir = 8
 	},
+/obj/machinery/vending/marine/shared,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/alpha)
 "aZK" = (
@@ -17691,10 +17691,10 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/alpha)
 "aZM" = (
-/obj/machinery/vending/marine,
 /obj/structure/window/reinforced{
 	dir = 1
 	},
+/obj/machinery/vending/marine/shared,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/alpha)
 "aZO" = (
@@ -18023,10 +18023,10 @@
 	},
 /area/mainship/living/basketball)
 "baQ" = (
-/obj/machinery/vending/dress_supply,
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/machinery/vending/marine/dress_supply,
 /turf/open/floor/mainship,
 /area/mainship/living/starboard_emb)
 "baR" = (
@@ -18057,11 +18057,11 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/bravo)
 "baX" = (
-/obj/machinery/vending/marine,
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
 	dir = 8
 	},
+/obj/machinery/vending/marine/shared,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/bravo)
 "baY" = (
@@ -18076,8 +18076,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/bravo)
 "bba" = (
-/obj/machinery/vending/marine,
 /obj/structure/window/reinforced,
+/obj/machinery/vending/marine/shared,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/bravo)
 "bbc" = (
@@ -19701,7 +19701,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/bravo)
 "bgH" = (
-/obj/machinery/vending/marine,
+/obj/machinery/vending/marine/shared,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/bravo)
 "bgI" = (
@@ -29746,7 +29746,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/charlie)
 "bUs" = (
-/obj/machinery/vending/marine,
+/obj/machinery/vending/marine/shared,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/charlie)
 "bUt" = (
@@ -31403,7 +31403,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/machinery/vending/dress_supply,
+/obj/machinery/vending/marine/dress_supply,
 /turf/open/floor/mainship,
 /area/mainship/living/port_emb)
 "bZN" = (
@@ -31427,13 +31427,13 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/charlie)
 "bZR" = (
-/obj/machinery/vending/marine,
 /obj/structure/window/reinforced{
 	dir = 1
 	},
 /obj/structure/window/reinforced{
 	dir = 8
 	},
+/obj/machinery/vending/marine/shared,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/charlie)
 "bZS" = (
@@ -31448,10 +31448,10 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/charlie)
 "bZU" = (
-/obj/machinery/vending/marine,
 /obj/structure/window/reinforced{
 	dir = 1
 	},
+/obj/machinery/vending/marine/shared,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/charlie)
 "bZX" = (
@@ -31775,10 +31775,10 @@
 /area/mainship/squads/delta)
 "cbp" = (
 /obj/structure/window/reinforced,
-/obj/machinery/vending/marine,
 /obj/structure/window/reinforced{
 	dir = 8
 	},
+/obj/machinery/vending/marine/shared,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/delta)
 "cbq" = (
@@ -31794,7 +31794,7 @@
 /area/mainship/squads/delta)
 "cbs" = (
 /obj/structure/window/reinforced,
-/obj/machinery/vending/marine,
+/obj/machinery/vending/marine/shared,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/delta)
 "cbv" = (
@@ -32534,7 +32534,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/delta)
 "ced" = (
-/obj/machinery/vending/marine,
+/obj/machinery/vending/marine/shared,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/delta)
 "cee" = (
@@ -34851,10 +34851,6 @@
 /obj/structure/platform,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
-"eZt" = (
-/obj/machinery/vending/marine/cargo_guns,
-/turf/open/floor/mainship,
-/area/mainship/squads/req)
 "fax" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -36217,8 +36213,7 @@
 	},
 /area/mainship/medical/upper_medical)
 "njG" = (
-/obj/machinery/vending/attachments,
-/obj/machinery/vending/marine/cargo_ammo,
+/obj/machinery/vending/marine/shared,
 /turf/open/floor/mainship,
 /area/mainship/squads/req)
 "nlp" = (
@@ -36933,10 +36928,6 @@
 /obj/structure/sign/safety/laser,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/aft_hallway)
-"rkW" = (
-/obj/machinery/vending/attachments,
-/turf/open/floor/mainship,
-/area/mainship/squads/req)
 "rrc" = (
 /turf/open/floor/mainship/orange{
 	dir = 8
@@ -37232,10 +37223,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/mainship,
 /area/mainship/hallways/aft_hallway)
-"tKy" = (
-/obj/machinery/vending/marine/cargo_ammo,
-/turf/open/floor/mainship,
-/area/mainship/squads/req)
 "tMR" = (
 /turf/open/floor/wood,
 /area/mainship/squads/req)
@@ -76729,10 +76716,10 @@ fVr
 rLe
 fkO
 wKa
-rkW
+njG
 bwf
 bAG
-eZt
+njG
 bwf
 bAG
 njG
@@ -77500,13 +77487,13 @@ bre
 bre
 buE
 vqs
-rkW
+njG
 bwf
 bAG
-eZt
+njG
 bwf
 bAG
-tKy
+njG
 oel
 bnF
 bJI
