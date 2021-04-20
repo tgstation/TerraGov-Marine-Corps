@@ -1055,7 +1055,7 @@
 ///////////////////
 /datum/action/xeno_action/activable/build_giant_worm
 	name = "Transform to giant worm"
-	action_icon_state = "resin_silo"
+	action_icon_state = "oldbuild_tunnel"
 	mechanics_text = "Transform a silo into a giant burrower worm. This ability will destroy all our silos in the field and reset our psych points reserve, however!"
 	ability_name = "create giant worm"
 	plasma_cost = 150
@@ -1086,7 +1086,10 @@
 	
 	succeed_activate()
 
-	new /obj/structure/resin/giant_worm(A.loc)
+	var/worm = new /obj/structure/resin/giant_worm(A.loc)
+	var/obj/structure/resin/silo/silo_used = A
+	silo_used.destroy_silently()
+	xeno_message("A giant worm has been created!", "xenoannounce", target = worm)
 
 ////////////////////
 /// Build xeno turret

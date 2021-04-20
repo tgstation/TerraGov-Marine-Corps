@@ -1,9 +1,10 @@
 /obj/structure/resin/giant_worm
 	name = "giant worm"
 	desc = "A giant burrowing worm created with the remains of a silo. The mouth is agape and it looks alive." //Need better name and desc
-	icon = 'icons/Xeno/resin_silo.dmi'
-	icon_state = "resin_silo"
+	icon = 'icons/Xeno/giant_worm.dmi'
+	icon_state = "nydus_closed"
 	resistance_flags = UNACIDABLE
+	max_integrity = 2000
 	bound_width = 96
 	bound_height = 96
 	/// Where is the center turf of this multitile object
@@ -38,6 +39,7 @@
 	actions = list()
 	center_turf = get_step(src, NORTHEAST)
 	GLOB.xeno_giant_worms += src
+	START_PROCESSING(SSprocessing, src)
 
 /obj/structure/resin/giant_worm/Destroy()
 	. = ..()
@@ -46,6 +48,20 @@
 	for(var/mob/living/carbon/xenomorph/xeno AS in src)
 		xeno.forceMove(center_turf)
 	xeno_message("The [tail? "tail" :"head"] of the giant worm has been destroyed!", "xenoannounce", hivenumber = associated_hive.hivenumber)
+	STOP_PROCESSING(SSprocessing, src)
+
+/obj/structure/resin/giant_worm/ex_act(severity) //Explosion immune
+	return
+
+/obj/structure/resin/giant_worm/fire_act() // Fire immune
+	return
+
+/obj/structure/resin/giant_worm/update_icon_state()
+	. = ..()
+	if(exit)
+		icon_state = "nydus_open"
+		return
+	icon_state = "nydus_closed"
 
 ///Digging is starting, we notify everyone and kill all silos
 /obj/structure/resin/giant_worm/proc/start_digging(turf/target)
@@ -70,6 +86,7 @@
 
 ///Create the exit point of this giant worm
 /obj/structure/resin/giant_worm/proc/emerge(list/turf/target_turfs)
+	playsound_z(loc.z, "sound/effect/worm_roar.ogg")
 	for(var/turf/target AS in target_turfs)
 		for(var/atom/to_destroy AS in target)
 			if(isliving(to_destroy))
@@ -80,6 +97,8 @@
 	exit = new /obj/structure/resin/giant_worm(target_turfs[17])
 	exit.tail = FALSE
 	exit.exit = src
+	update_icon()
+	exit.update_icon()
 	tunneling = FALSE
 	for(var/mob/living/carbon/xenomorph/xeno AS in src)
 		xeno.forceMove(exit.center_turf)
@@ -95,6 +114,19 @@
 			to_chat(nearby_mob, "<span class='warning'>The floor jolts under your feet!</span>")
 			shake_camera(nearby_mob, 10, 1)
 			nearby_mob.Knockdown(5 SECONDS)
+
+/obj/structure/resin/giant_worm/process()
+	. = ..()
+	for(var/mob/living/carbon/xenomorph/xeno AS in GLOB.alive_xeno_list)
+		if(xeno.loc.z != loc.z)
+			return
+		if(xeno.hivenumber != associated_hive.hivenumber)
+			return
+		if(get_dist(src, xeno) > 10)
+			return
+		xeno.frenzy_new = 6 //Extremely good pheros
+		xeno.warding_new = 6
+		xeno.recovery_new = 6
 
 /obj/structure/resin/giant_worm/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(!do_after(X, 2 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
@@ -229,7 +261,7 @@
 /datum/action/innate/select_exit_location
 	name = "Start digging"
 	background_icon_state = "template2"
-	action_icon_state = "camera_off" //Need icon
+	action_icon_state = "oldbuild_tunnel" //Need icon
 
 /datum/action/innate/select_exit_location/Activate()
 	var/mob/living/C = target
