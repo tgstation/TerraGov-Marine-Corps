@@ -141,7 +141,7 @@
 
 /obj/effect/landmark/xeno_turret_spawn/Initialize()
 	GLOB.xeno_turret_turfs += loc
-	. = ..()
+	..()
 	return INITIALIZE_HINT_QDEL
 
 
