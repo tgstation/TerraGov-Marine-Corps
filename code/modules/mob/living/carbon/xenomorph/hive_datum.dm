@@ -552,7 +552,7 @@ to_chat will check for valid clients itself already so no need to double check f
 
 
 /datum/hive_status/normal/handle_ruler_timer()
-	if(!isinfestation(SSticker.mode)) //Check just need for unit test
+	if(!isinfestationgamemode(SSticker.mode)) //Check just need for unit test
 		return
 	if(!SSticker.mode?.flags_round_type & MODE_XENO_RULER)
 		return
@@ -1150,7 +1150,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	return
 
 /datum/hive_status/normal/handle_silo_death_timer()
-	if(!isdistress(SSticker.mode))
+	if(!isdistressgamemode(SSticker.mode))
 		return
 	if(world.time < MINIMUM_TIME_SILO_LESS_COLLAPSE)
 		return

@@ -36,7 +36,7 @@
 	var/starting_squad = "Alpha"
 
 	var/larva_check_interval = 0
-	var/bioscan_interval = INFINITY
+	bioscan_interval = 0
 
 
 /datum/game_mode/infestation/crash/scale_roles()
@@ -242,18 +242,6 @@
 	announce_medal_awards()
 	announce_round_stats()
 	addtimer(CALLBACK(SSvote, /datum/controller/subsystem/vote/proc/automatic_vote), 1 MINUTES)
-
-
-
-/datum/game_mode/infestation/crash/attempt_to_join_as_larva(mob/dead/observer/observer)
-	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
-	return HS.add_to_larva_candidate_queue(observer)
-
-
-/datum/game_mode/infestation/crash/spawn_larva(mob/xeno_candidate, mob/living/carbon/xenomorph/mother)
-	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
-	return HS.spawn_larva(xeno_candidate, mother)
-
 
 /datum/game_mode/infestation/crash/proc/on_nuclear_diffuse(obj/machinery/nuclearbomb/bomb, mob/living/carbon/xenomorph/X)
 	SIGNAL_HANDLER

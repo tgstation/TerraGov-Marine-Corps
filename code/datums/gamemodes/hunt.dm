@@ -30,48 +30,12 @@
 		/datum/job/xenomorph/queen = 1
 	)
 
-
-/datum/game_mode/infestation/hunt/announce()
-	to_chat(world, "<span class='round_header'>The current map is - [SSmapping.configs[GROUND_MAP].map_name]!</span>")
-
-
-/datum/game_mode/infestation/hunt/can_start(bypass_checks = FALSE)
-	. = ..()
-	if(!.)
-		return
-	var/xeno_candidate = FALSE //Let's guarantee there's at least one xeno.
-	for(var/level = JOBS_PRIORITY_HIGH; level >= JOBS_PRIORITY_LOW; level--)
-		for(var/p in GLOB.ready_players)
-			var/mob/new_player/player = p
-			if(player.client.prefs.job_preferences[ROLE_XENO_QUEEN] == level && SSjob.AssignRole(player, SSjob.GetJobType(/datum/job/xenomorph/queen)))
-				xeno_candidate = TRUE
-				break
-			if(player.client.prefs.job_preferences[ROLE_XENOMORPH] == level && SSjob.AssignRole(player, SSjob.GetJobType(/datum/job/xenomorph)))
-				xeno_candidate = TRUE
-				break
-	if(!xeno_candidate && !bypass_checks)
-		to_chat(world, "<b>Unable to start [name].</b> No xeno candidate found.")
-		return FALSE
-
-
-/datum/game_mode/infestation/hunt/pre_setup()
-	. = ..()
-	addtimer(CALLBACK(SSticker.mode, .proc/map_announce), 5 SECONDS)
-
-
 /datum/game_mode/infestation/hunt/post_setup()
 	. = ..()
 	for(var/i in GLOB.xeno_resin_silo_turfs)
 		new /obj/structure/resin/silo(i)
 	scale_gear()
-	addtimer(CALLBACK(src, .proc/announce_bioscans, FALSE, 1), rand(30 SECONDS, 1 MINUTES)) //First scan shows no location but more precise numbers.
-
-/datum/game_mode/infestation/hunt/proc/map_announce()
-	if(!SSmapping.configs[GROUND_MAP].announce_text)
-		return
-
-	priority_announce(SSmapping.configs[GROUND_MAP].announce_text, SSmapping.configs[SHIP_MAP].map_name)
-
+	addtimer(CALLBACK(src, .proc/announce_bioscans, FALSE, 1), 5 MINUTES)
 
 /datum/game_mode/infestation/hunt/check_finished()
 	if(round_finished)
@@ -190,9 +154,6 @@
 	var/datum/job/scaled_job = SSjob.GetJobType(/datum/job/xenomorph) //Xenos
 	scaled_job.job_points_needed  = CONFIG_GET(number/hunt_larvapoints_required)
 
-	scaled_job = SSjob.GetJobType(/datum/job/survivor/rambo) //Survivors
-	scaled_job.job_points_needed  = 3
-
 
 /datum/game_mode/infestation/hunt/proc/scale_gear()
 	var/marine_pop_size = 0
@@ -219,8 +180,6 @@
 
 
 /datum/game_mode/infestation/hunt/orphan_hivemind_collapse()
-	if(!(flags_round_type & MODE_INFESTATION))
-		return
 	if(round_finished)
 		return
 	if(round_stage == INFESTATION_MARINE_CRASHING)
@@ -235,13 +194,3 @@
 	var/eta = timeleft(orphan_hive_timer) * 0.1
 	if(eta > 0)
 		return "[(eta / 60) % 60]:[add_leading(num2text(eta % 60), 2, "0")]"
-
-
-/datum/game_mode/infestation/hunt/attempt_to_join_as_larva(mob/dead/observer/observer)
-	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
-	return HS.add_to_larva_candidate_queue(observer)
-
-
-/datum/game_mode/infestation/hunt/spawn_larva(mob/xeno_candidate, mob/living/carbon/xenomorph/mother)
-	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
-	return HS.spawn_larva(xeno_candidate, mother)

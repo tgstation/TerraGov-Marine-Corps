@@ -211,10 +211,10 @@
 #define isainode(O) (istype(O, /obj/effect/ai_node))
 
 //Gamemode
-#define isdistress(O) (istype(O, /datum/game_mode/infestation/distress))
-#define ishunt(O) (istype(O, /datum/game_mode/infestation/hunt))
+#define isdistressgamemode(O) (istype(O, /datum/game_mode/infestation/distress))
+#define ishuntgamemode(O) (istype(O, /datum/game_mode/infestation/hunt))
 #define iscrashgamemode(O) (istype(O, /datum/game_mode/infestation/crash))
-#define isinfestation(O) (istype(O, /datum/game_mode/infestation))
+#define isinfestationgamemode(O) (istype(O, /datum/game_mode/infestation))
 
 #define isxenoresearcharea(A) (istype(A, /area/mainship/medical/medical_science))
 

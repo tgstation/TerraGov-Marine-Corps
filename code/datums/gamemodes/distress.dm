@@ -31,35 +31,6 @@
 	)
 	var/siloless_hive_timer
 
-
-/datum/game_mode/infestation/distress/announce()
-	to_chat(world, "<span class='round_header'>The current map is - [SSmapping.configs[GROUND_MAP].map_name]!</span>")
-
-
-/datum/game_mode/infestation/distress/can_start(bypass_checks = FALSE)
-	. = ..()
-	if(!.)
-		return
-	var/xeno_candidate = FALSE //Let's guarantee there's at least one xeno.
-	for(var/level = JOBS_PRIORITY_HIGH; level >= JOBS_PRIORITY_LOW; level--)
-		for(var/p in GLOB.ready_players)
-			var/mob/new_player/player = p
-			if(player.client.prefs.job_preferences[ROLE_XENO_QUEEN] == level && SSjob.AssignRole(player, SSjob.GetJobType(/datum/job/xenomorph/queen)))
-				xeno_candidate = TRUE
-				break
-			if(player.client.prefs.job_preferences[ROLE_XENOMORPH] == level && SSjob.AssignRole(player, SSjob.GetJobType(/datum/job/xenomorph)))
-				xeno_candidate = TRUE
-				break
-	if(!xeno_candidate && !bypass_checks)
-		to_chat(world, "<b>Unable to start [name].</b> No xeno candidate found.")
-		return FALSE
-
-
-/datum/game_mode/infestation/distress/pre_setup()
-	. = ..()
-	addtimer(CALLBACK(SSticker.mode, .proc/map_announce), 5 SECONDS)
-
-
 /datum/game_mode/infestation/distress/post_setup()
 	. = ..()
 	scale_gear()
@@ -68,12 +39,6 @@
 
 	for(var/i in GLOB.xeno_turret_turfs)
 		new /obj/structure/resin/xeno_turret(i)
-
-/datum/game_mode/infestation/distress/proc/map_announce()
-	if(!SSmapping.configs[GROUND_MAP].announce_text)
-		return
-
-	priority_announce(SSmapping.configs[GROUND_MAP].announce_text, SSmapping.configs[SHIP_MAP].map_name)
 
 
 /datum/game_mode/infestation/distress/check_finished()
@@ -193,9 +158,6 @@
 	var/datum/job/scaled_job = SSjob.GetJobType(/datum/job/xenomorph) //Xenos
 	scaled_job.job_points_needed  = CONFIG_GET(number/distress_larvapoints_required)
 
-	scaled_job = SSjob.GetJobType(/datum/job/survivor/rambo) //Survivors
-	scaled_job.job_points_needed  = 3
-
 
 /datum/game_mode/infestation/distress/proc/scale_gear()
 	var/marine_pop_size = 0
@@ -211,19 +173,7 @@
 	SSpoints.scale_supply_points(scale)
 
 
-/datum/game_mode/infestation/distress/proc/announce_xenomorphs()
-	var/datum/hive_status/normal/HN = GLOB.hive_datums[XENO_HIVE_NORMAL]
-	if(!HN.living_xeno_ruler)
-		return
-
-	var/dat = "<span class='round_body'>The surviving xenomorph ruler was:<br>[HN.living_xeno_ruler.key] as <span class='boldnotice'>[HN.living_xeno_ruler]</span></span>"
-
-	to_chat(world, dat)
-
-
 /datum/game_mode/infestation/distress/orphan_hivemind_collapse()
-	if(!(flags_round_type & MODE_INFESTATION))
-		return
 	if(round_finished)
 		return
 	if(round_stage == INFESTATION_MARINE_CRASHING)
@@ -256,13 +206,3 @@
 	var/eta = timeleft(siloless_hive_timer) * 0.1
 	if(eta > 0)
 		return "[(eta / 60) % 60]:[add_leading(num2text(eta % 60), 2, "0")]"
-
-
-/datum/game_mode/infestation/distress/attempt_to_join_as_larva(mob/dead/observer/observer)
-	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
-	return HS.add_to_larva_candidate_queue(observer)
-
-
-/datum/game_mode/infestation/distress/spawn_larva(mob/xeno_candidate, mob/living/carbon/xenomorph/mother)
-	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
-	return HS.spawn_larva(xeno_candidate, mother)
