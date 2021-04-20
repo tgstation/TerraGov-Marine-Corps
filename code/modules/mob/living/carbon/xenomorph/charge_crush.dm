@@ -549,7 +549,7 @@
 		if(CHARGE_BULL_GORE)
 			if(world.time > charge_datum.next_special_attack)
 				charge_datum.next_special_attack = world.time + 2 SECONDS
-				INVOKE_ASYNC(src, /atom/.proc/attack_alien, charger,  0, BODY_ZONE_CHEST, FALSE, FALSE, FALSE, INTENT_HARM) //Free gore attack.
+				attack_alien_harm(charger, 0, "chest", FALSE, TRUE, TRUE) //Free gore attack.
 				emote_gored()
 				var/turf/destination = get_step(loc, charger.dir)
 				if(destination)
