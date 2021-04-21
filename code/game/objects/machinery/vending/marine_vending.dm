@@ -120,6 +120,12 @@
 			/obj/item/ammo_magazine/rifle/tx15_flechette = 1000,
 			/obj/item/ammo_magazine/rifle/tx15_slug = 1000,
 		),
+		"Machinegun" = list(
+			/obj/item/weapon/gun/rifle/standard_lmg = 250,
+			/obj/item/ammo_magazine/standard_lmg = 1000,
+			/obj/item/weapon/gun/rifle/standard_gpmg = 250,
+			/obj/item/ammo_magazine/standard_gpmg = 1000,
+		),
 		"Sidearm" = list(
 			/obj/item/weapon/gun/pistol/standard_pistol = 250,
 			/obj/item/ammo_magazine/pistol/standard_pistol = 1000,
