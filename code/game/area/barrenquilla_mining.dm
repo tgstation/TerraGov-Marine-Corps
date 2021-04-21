@@ -12,6 +12,7 @@
 	name = "Caves"
 	ambience = list('sound/ambience/ambicave.ogg', 'sound/ambience/ambilava1.ogg', 'sound/ambience/ambilava2.ogg', 'sound/ambience/ambilava3.ogg')
 	ceiling = CEILING_NONE
+	minimap_color = MINIMAP_AREA_CAVES
 
 /area/barren/cave/central
 	name = "Central Caves"
@@ -55,6 +56,7 @@
 	name = "Medical Clinic"
 	icon_state = "lava_med"
 	outside = FALSE
+	minimap_color = MINIMAP_AREA_MEDBAY
 
 /area/barren/medical/chemistry
 	name = "Medical Clinic Chemistry"
@@ -72,7 +74,8 @@
 /area/barren/engie
 	outside = FALSE
 	icon_state = "lava_engine"
-
+	minimap_color = MINIMAP_AREA_ENGI
+	
 /area/barren/engie/one
 	name = "Generator One"
 	icon_state = "lava_eng1"
@@ -95,6 +98,7 @@
 	name = "Prison Facility"
 	icon_state = "lava_sec_prison"
 	outside = FALSE
+	minimap_color = MINIMAP_AREA_SEC
 
 /area/barren/security/storage
 	name = "Prison Facility Storage"
@@ -137,6 +141,9 @@
 	outside = FALSE
 
 //Misc Locations
+
+/area/barren/misc
+	minimap_color = MINIMAP_AREA_COLONY
 
 /area/barren/misc/stationed
 	name = "Stationed Ship"
