@@ -120,7 +120,7 @@
 	var/icon_vend
 	///Icon state when failing to vend, be it by no access or money.
 	var/icon_deny
-	///how many time we have left electrified
+	///how many seconds(duh) we have left electrified.
 	var/seconds_electrified = 0
 	///If we should fire items at customers! We're broken!
 	var/shoot_inventory = FALSE
@@ -220,6 +220,11 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 	/obj/item/storage/pouch/firstaid
 )))
 
+/*!
+ * Builds shared vendors inventory
+ * the first vendor that calls this uses build_inventory and makes their records in GLOB.vending_records[type] or premium or contraband, etc.
+ * the rest of vendors of same type just set all their records to the respective global lists
+*/
 /obj/machinery/vending/proc/build_shared_inventory()
 	if(!GLOB.vending_records[type])
 		build_inventory(products)
@@ -239,7 +244,7 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 	else
 		coin_records = GLOB.vending_coin_records[type]
 
-
+///Builds a vending machine inventory from the given list into their records depending of category.
 /obj/machinery/vending/proc/build_inventory(list/productlist, category = CAT_NORMAL)
 	var/list/recordlist = product_records
 	if(category == CAT_HIDDEN)
@@ -256,12 +261,13 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 					amount = 1
 				var/datum/vending_product/record = new(typepath = typepath, product_amount = amount, product_price = prices[typepath], category = category, tab = entry)
 				recordlist += record
-		else
-			var/amount = productlist[entry]
-			if(isnull(amount))
-				amount = 1
-			var/datum/vending_product/record = new(typepath = entry, product_amount = amount, product_price = prices[entry], category = category)
-			recordlist += record
+			continue
+		//This item is not tab dependent
+		var/amount = productlist[entry]
+		if(isnull(amount))
+			amount = 1
+		var/datum/vending_product/record = new(typepath = entry, product_amount = amount, product_price = prices[entry], category = category)
+		recordlist += record
 
 /obj/machinery/vending/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(X.status_flags & INCORPOREAL)
@@ -503,8 +509,6 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 
 ///Makes TGUI data from a /datum/vending_product
 /obj/machinery/vending/proc/make_record_data(datum/vending_product/R)
-	if(!R)
-		return
 	return list(
 		"product_name" = adminscrub(R.product_name),
 		"product_color" = R.display_color,
