@@ -21,12 +21,7 @@
 	name = "Magmoor Central Fissure"
 	ceiling = CEILING_NONE
 	outside = TRUE
-
-/area/magmoor/volcano/Initialize(mapload)
-	. = ..()
-	if(mapload)
-		var/area/ourarea = get_area(src)
-		ENABLE_BITFIELD(ourarea.flags_area, NO_DROPPOD)
+	flags_area = NO_DROPPOD
 
 //Caves
 

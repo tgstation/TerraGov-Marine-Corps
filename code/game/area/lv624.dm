@@ -330,9 +330,4 @@
 /area/lv624/lazarus/console
 	name = "\improper Shuttle Console"
 	icon_state = "tcomsatcham"
-
-/area/lv624/lazarus/console/Initialize(mapload)
-	. = ..()
-	if(mapload)
-		var/area/ourarea = get_area(src)
-		ENABLE_BITFIELD(ourarea.flags_area, NO_DROPPOD)
+	flags_area = NO_DROPPOD
