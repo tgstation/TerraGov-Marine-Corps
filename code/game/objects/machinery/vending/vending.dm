@@ -2,6 +2,15 @@
 #define CAT_HIDDEN 1
 #define CAT_COIN   2
 
+#define MAKE_VENDING_RECORD_DATA(R) list(\
+		"product_name" = adminscrub(R.product_name),\
+		"product_color" = R.display_color,\
+		"prod_price" = R.price,\
+		"prod_desc" = initial(R.product_path.desc),\
+		"ref" = REF(R),\
+		"tab" = R.tab,\
+	)
+
 /datum/vending_product
 	///Name of the product
 	var/product_name = "generic"
@@ -495,28 +504,17 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 	for(var/datum/vending_product/R AS in product_records)
 		if(R.tab && !(R.tab in .["tabs"]))
 			.["tabs"] += R.tab
-		.["displayed_records"] += list(make_record_data(R))
+		.["displayed_records"] += list(MAKE_VENDING_RECORD_DATA(R))
 
 	for(var/datum/vending_product/R AS in hidden_records)
 		if(R.tab && !(R.tab in .["tabs"]))
 			.["tabs"] += R.tab
-		.["hidden_records"] += list(make_record_data(R))
+		.["hidden_records"] += list(MAKE_VENDING_RECORD_DATA(R))
 
 	for(var/datum/vending_product/R AS in coin_records)
 		if(R.tab && !(R.tab in .["tabs"]))
 			.["tabs"] += R.tab
-		.["coin_records"] += list(make_record_data(R))
-
-///Makes TGUI data from a /datum/vending_product
-/obj/machinery/vending/proc/make_record_data(datum/vending_product/R)
-	return list(
-		"product_name" = adminscrub(R.product_name),
-		"product_color" = R.display_color,
-		"prod_price" = R.price,
-		"prod_desc" = initial(R.product_path.desc),
-		"ref" = REF(R),
-		"tab" = R.tab,
-	)
+		.["coin_records"] += list(MAKE_VENDING_RECORD_DATA(R))
 
 /obj/machinery/vending/ui_data(mob/user)
 	. = list()
@@ -525,7 +523,7 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 	for(var/datum/vending_product/R AS in product_records + hidden_records + coin_records)
 		.["stock"][R.product_name] = R.amount
 
-	.["currently_vending"] = make_record_data(currently_vending)
+	.["currently_vending"] = MAKE_VENDING_RECORD_DATA(currently_vending)
 	.["extended"] = extended_inventory
 	.["coin"] = coin ? coin.name : null
 	.["isshared"] = isshared
