@@ -27,7 +27,7 @@
 	x_offset = 0
 	y_offset = 0
 	open_prompt = FALSE
-	nvg_vision_mode = TRUE
+	nvg_vision_mode = FALSE
 	/// Action of landing to a custom zone
 	var/datum/action/innate/shuttledocker_land/land_action
 	/// Amount of fuel remaining to hover
