@@ -1,0 +1,4 @@
+author: "Wayland-Smithy"
+delete-after: True
+changes: 
+  - bugfix: "Bull's extra gore attack now always harms instead of using what ever intent is selected."
