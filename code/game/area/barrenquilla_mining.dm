@@ -7,6 +7,8 @@
 	icon_state = "lava"
 
 //Caves
+/area/lavaland/cave
+	minimap_color = MINIMAP_AREA_CAVES
 
 /area/barren/cave
 	name = "Caves"
@@ -55,6 +57,7 @@
 	name = "Medical Clinic"
 	icon_state = "lava_med"
 	outside = FALSE
+	minimap_color = MINIMAP_AREA_MEDBAY
 
 /area/barren/medical/chemistry
 	name = "Medical Clinic Chemistry"
@@ -72,6 +75,7 @@
 /area/barren/engie
 	outside = FALSE
 	icon_state = "lava_engine"
+	minimap_color = MINIMAP_AREA_ENGI
 
 /area/barren/engie/one
 	name = "Generator One"
@@ -95,6 +99,7 @@
 	name = "Prison Facility"
 	icon_state = "lava_sec_prison"
 	outside = FALSE
+	minimap_color = MINIMAP_AREA_SEC
 
 /area/barren/security/storage
 	name = "Prison Facility Storage"
@@ -137,6 +142,8 @@
 	outside = FALSE
 
 //Misc Locations
+/area/lavaland/misc
+	minimap_color = MINIMAP_AREA_COLONY
 
 /area/barren/misc/stationed
 	name = "Stationed Ship"
@@ -176,6 +183,7 @@
 /area/barren/misc/refinery
 	name = "Ore Processing Facility"
 	icon_state = "lava_misc_refinery"
+	minimap_color = MINIMAP_AREA_ENGI
 
 /area/barren/misc/crashed
 	name = "Crashed Ship"
