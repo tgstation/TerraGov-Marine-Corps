@@ -1,8 +1,8 @@
-// Lava "Lavaland" Outpost
+// Barrenquilla "Barren" Mining Facility
 
 //Base Area
 
-/area/lavaland
+/area/barren
 	name = "Lava"
 	icon_state = "lava"
 
@@ -10,167 +10,191 @@
 /area/lavaland/cave
 	minimap_color = MINIMAP_AREA_CAVES
 
-/area/lavaland/cave/central
+/area/barren/cave
+	name = "Caves"
+	ambience = list('sound/ambience/ambicave.ogg', 'sound/ambience/ambilava1.ogg', 'sound/ambience/ambilava2.ogg', 'sound/ambience/ambilava3.ogg')
+	ceiling = CEILING_NONE
+
+/area/barren/cave/central
 	name = "Central Caves"
 	icon_state = "lava_cave_c"
 
-/area/lavaland/cave/north
+/area/barren/cave/north
 	name = "North Caves"
 	icon_state = "lava_cave_n"
 
-/area/lavaland/cave/northeast
+/area/barren/cave/northeast
 	name = "North East Caves"
 	icon_state = "lava_cave_ne"
 
-/area/lavaland/cave/northwest
+/area/barren/cave/northwest
 	name = "North West Caves"
 	icon_state = "lava_cave_nw"
 
-/area/lavaland/cave/south
+/area/barren/cave/south
 	name = "South Caves"
 	icon_state = "lava_cave_s"
 
-/area/lavaland/cave/southeast
+/area/barren/cave/southeast
 	name = "South East Caves"
 	icon_state = "lava_cave_se"
 
-/area/lavaland/cave/southwest
+/area/barren/cave/southwest
 	name = "South West Caves"
 	icon_state = "lava_cave_sw"
 
-/area/lavaland/cave/east
+/area/barren/cave/east
 	name = "East Caves"
 	icon_state = "lava_cave_e"
 
-/area/lavaland/cave/west
+/area/barren/cave/west
 	name = "West Caves"
 	icon_state = "lava_cave_w"
 
 //Medical
 
-/area/lavaland/medical
+/area/barren/medical
 	name = "Medical Clinic"
 	icon_state = "lava_med"
 	outside = FALSE
 	minimap_color = MINIMAP_AREA_MEDBAY
 
-/area/lavaland/medical/chemistry
+/area/barren/medical/chemistry
 	name = "Medical Clinic Chemistry"
 	icon_state = "lava_chem"
 
-/area/lavaland/medical/cmo
+/area/barren/medical/cmo
 	name = "Chief Medical Office"
 	icon_state = "lava_cmo"
 
+/area/barren/medical/research
+	name = "Research Outpost"
+	icon_state = "lava_research"
+
 //"Engineer"
-/area/lavaland/engie
+/area/barren/engie
 	outside = FALSE
 	icon_state = "lava_engine"
 	minimap_color = MINIMAP_AREA_ENGI
 
-/area/lavaland/engie/one
+/area/barren/engie/one
 	name = "Generator One"
 	icon_state = "lava_eng1"
 
-/area/lavaland/engie/two
+/area/barren/engie/two
 	name = "Generator Two"
 	icon_state = "lava_eng2"
 
-/area/lavaland/engie/three
+/area/barren/engie/three
 	name = "Generator Three"
 	icon_state = "lava_eng3"
 
-/area/lavaland/engie/engine
+/area/barren/engie/engine
 	name = "Engineering Facility"
 	icon_state = "lava_eng4"
 
 //Security
 
-/area/lavaland/security
+/area/barren/security
 	name = "Prison Facility"
 	icon_state = "lava_sec_prison"
 	outside = FALSE
 	minimap_color = MINIMAP_AREA_SEC
 
-/area/lavaland/security/storage
+/area/barren/security/storage
 	name = "Prison Facility Storage"
 	icon_state = "lava_sec_secure"
 
-/area/lavaland/security/infocenter
+/area/barren/security/infocenter
 	name = "Prison Facility Information Center"
 	icon_state = "lava_sec"
 
-/area/lavaland/security/nuke
+/area/barren/security/nuke
 	name = "Emergency Nuclear Fission Facility"
 	icon_state = "lava_sec_nuke"
 
 //Civilian
 
-/area/lavaland/civilian
+/area/barren/civilian
 	name = "Civilian Housing"
 	icon_state = "lava_civ"
 	outside = FALSE
 
-/area/lavaland/civilian/cook
+/area/barren/civilian/cook
 	name = "Civilian Kitchen"
 	icon_state = "lava_civ_cook"
 
-/area/lavaland/civilian/botany
+/area/barren/civilian/botany
 	name = "Civilian Botany"
 	icon_state = "lava_civ_bot"
 
-/area/lavaland/civilian/garden
+/area/barren/civilian/garden
 	name = "Civilian Garden"
 	icon_state = "lava_civ_garden"
 
-/area/lavaland/civilian/cargo
+/area/barren/civilian/cargo
 	name = "Civilian Cargo"
 	icon_state = "lava_civ_cargo"
+
+/area/barren/civilian/workdorm
+	name = "Worker Dormitory"
+	icon_state = "lava_work_dorm"
+	outside = FALSE
 
 //Misc Locations
 /area/lavaland/misc
 	minimap_color = MINIMAP_AREA_COLONY
 
-/area/lavaland/misc/stationed
+/area/barren/misc/stationed
 	name = "Stationed Ship"
 	icon_state = "lava_misc_stationed"
 	outside = FALSE
 
-/area/lavaland/misc/outpost
+/area/barren/misc/outpost
 	name = "Abandoned Outpost"
 	icon_state = "lava_misc_outpost"
 	outside = FALSE
 
-/area/lavaland/misc/alienstorage
+/area/barren/misc/alienstorage
 	name = "Alien Storage"
 	icon_state = "lava_misc_alienstorage"
 	outside = FALSE
 
-/area/lavaland/misc/shack
+/area/barren/misc/shack
 	name = "Shack"
 	icon_state = "lava_misc_shack"
 	outside = FALSE
 
-/area/lavaland/misc/genstorage
+/area/barren/misc/genstorage
 	name = "General Storage"
 	icon_state =  "lava_misc_genstorage"
 	outside = FALSE
 
-/area/lavaland/misc/eastarmory
+/area/barren/misc/eastarmory
 	name = "Eastern Armory"
 	icon_state =  "lava_misc_armory1"
 	outside = FALSE
 
-/area/lavaland/misc/westarmory
+/area/barren/misc/westarmory
 	name = "Western Armory"
 	icon_state =  "lava_misc_armory2"
 	outside = FALSE
 
-/area/lavaland/misc/refinery
+/area/barren/misc/refinery
 	name = "Ore Processing Facility"
 	icon_state = "lava_misc_refinery"
 	minimap_color = MINIMAP_AREA_ENGI
 
-/area/lavaland/misc/crashed
+/area/barren/misc/crashed
 	name = "Crashed Ship"
 	icon_state = "lava_misc_crashed"
+
+/area/barren/misc/clocknuke //This'll come into play later
+	name = "The Brass Gavel"
+	icon_state = "lava_clock_nuke"
+	outside = FALSE
+
+/area/barren/misc/ashshelter
+	name = "Ash Shelter"
+	icon_state = "lava_ash_shelter"
+	outside = FALSE
