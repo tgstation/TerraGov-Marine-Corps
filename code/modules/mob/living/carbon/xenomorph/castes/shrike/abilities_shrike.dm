@@ -9,6 +9,7 @@
 	plasma_cost = 400
 	cooldown_timer = 2 MINUTES
 	keybind_signal = COMSIG_XENOABILITY_CALL_OF_THE_BURROWED
+	use_state_flags = XACT_USE_LYING
 
 
 /datum/action/xeno_action/call_of_the_burrowed/action_activate()
@@ -145,6 +146,7 @@
 	plasma_cost = 300
 	keybind_flags = XACT_KEYBIND_USE_ABILITY | XACT_IGNORE_SELECTED_ABILITY
 	keybind_signal = COMSIG_XENOABILITY_UNRELENTING_FORCE
+	alternate_keybind_signal = COMSIG_XENOABILITY_UNRELENTING_FORCE_SELECT
 
 
 /datum/action/xeno_action/activable/unrelenting_force/on_cooldown_finish()

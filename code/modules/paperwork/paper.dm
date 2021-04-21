@@ -438,8 +438,14 @@ then, for every time you included a field, increment fields. */
 /obj/item/paper/chemsystem
 	name = "Vali manual"
 	info = {"<b>How to use the Vali system</b><BR>
-	The Vali system uses green blood to empower reagents inside of your body.<BR>
+	The Vali system uses green blood to provide healing and other effects.<BR>
 	Green blood is collected by attacking with a connected weapon.<BR>
+	<BR>
+	<b>Active effect:</b><BR>
+	> You get brute and burn healing every 2 seconds.<BR>
+	> For the first 20 seconds you also get stamina regeneration every 2 seconds that gets decreased to 0 over time.<BR>
+	> These effects get boosted and new effects might be added for the time the system is active, if you have certain amount of certain reagents at the time of activation.
+	For this check the reagent information from the configurations menu.<BR>
 	<BR>
 	<b>Configurations menu:</b><BR>
 	From here you can configure the system.<BR>

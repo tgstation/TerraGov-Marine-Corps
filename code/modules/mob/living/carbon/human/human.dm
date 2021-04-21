@@ -43,6 +43,7 @@
 	RegisterSignal(src, COMSIG_KB_RAILATTACHMENT, .proc/do_activate_rail_attachment)
 	RegisterSignal(src, COMSIG_GRAB_SELF_ATTACK, .proc/fireman_carry_grabbed) // Fireman carry
 	AddComponent(/datum/component/footstep, FOOTSTEP_MOB_HUMAN)
+	AddComponent(/datum/component/bump_attack, FALSE, FALSE)
 
 /mob/living/carbon/human/proc/human_z_changed(datum/source, old_z, new_z)
 	SIGNAL_HANDLER

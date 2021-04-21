@@ -237,6 +237,7 @@
 #define COMSIG_ITEM_SHIFTCLICKON "item_shiftclickon"					//from base of mob/living/carbon/human/ShiftClickOn(): (/atom, /mob)
 #define COMSIG_ITEM_RIGHTCLICKON "item_rightclickon"					//from base of mob/living/carbon/human/RightClickOn(): (/atom, /mob)
 	#define COMPONENT_ITEM_CLICKON_BYPASS (1<<0)
+#define COMSIG_ITEM_TOGGLE_BUMP_ATTACK "item_toggle_bump_attack"		//from base of obj/item/proc/toggle_item_bump_attack(): (/mob/user, enable_bump_attack)
 
 #define COMSIG_ITEM_HYDRO_CANNON_TOGGLED "hydro_cannon_toggled"
 
@@ -562,10 +563,12 @@
 #define COMSIG_XENOABILITY_PSYCHIC_FLING "xenoability_psychic_fling"
 #define COMSIG_XENOABILITY_PSYCHIC_CURE "xenoability_psychic_cure"
 #define COMSIG_XENOABILITY_UNRELENTING_FORCE "xenoability_unrelenting_force"
+#define COMSIG_XENOABILITY_UNRELENTING_FORCE_SELECT "xenoability_unrelenting_force_select"
 //#define COMSIG_XENOABILITY_NIGHTFALL "xenoability_nightfall"
 
 #define COMSIG_XENOABILITY_RAVAGER_CHARGE "xenoability_ravager_charge"
 #define COMSIG_XENOABILITY_RAVAGE "xenoability_ravage"
+#define COMSIG_XENOABILITY_RAVAGE_SELECT "xenoability_ravage_select"
 #define COMSIG_XENOABILITY_SECOND_WIND "xenoability_second_wind"
 #define COMSIG_XENOABILITY_IGNORE_PAIN "xenoability_ignore_pain"
 

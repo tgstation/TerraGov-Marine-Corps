@@ -132,31 +132,36 @@ OPERATIONS
 	name = "Cluster orbital warhead"
 	contains = list(/obj/structure/ob_ammo/warhead/cluster)
 	cost = 20
-	containertype = null
+	access = ACCESS_MARINE_ENGINEERING
+	containertype = /obj/structure/closet/crate/secure/explosives
 
 /datum/supply_packs/operations/warhead_explosive
 	name = "HE orbital warhead"
 	contains = list(/obj/structure/ob_ammo/warhead/explosive)
 	cost = 30
-	containertype = null
+	access = ACCESS_MARINE_ENGINEERING
+	containertype = /obj/structure/closet/crate/secure/explosives
 
 /datum/supply_packs/operations/warhead_incendiary
 	name = "Incendiary orbital warhead"
 	contains = list(/obj/structure/ob_ammo/warhead/incendiary)
 	cost = 20
-	containertype = null
+	access = ACCESS_MARINE_ENGINEERING
+	containertype = /obj/structure/closet/crate/secure/explosives
 
 /datum/supply_packs/operations/warhead_plasmaloss
 	name = "Plasma draining orbital warhead"
 	contains = list(/obj/structure/ob_ammo/warhead/plasmaloss)
 	cost = 15
-	containertype = null
+	access = ACCESS_MARINE_ENGINEERING
+	containertype = /obj/structure/closet/crate/secure/explosives
 
 /datum/supply_packs/operations/ob_fuel
 	name = "Solid fuel"
 	contains = list(/obj/structure/ob_ammo/ob_fuel)
 	cost = 5
-	containertype = null
+	access = ACCESS_MARINE_ENGINEERING
+	containertype = /obj/structure/closet/crate/secure/explosives
 
 /datum/supply_packs/operations/cas_voucher
 	name = "100 dropship fabricator points"
@@ -233,8 +238,8 @@ WEAPONS
 	cost = MINIGUN_PRICE
 
 /datum/supply_packs/weapons/smartgun
-	name = "T-29 Smart Machinegun kit"
-	contains = list(/obj/item/storage/box/t26_system)
+	name = "T-29 Smart Machinegun"
+	contains = list(/obj/item/weapon/gun/rifle/standard_smartmachinegun)
 	cost = 40
 
 /datum/supply_packs/weapons/flamethrower
@@ -1073,7 +1078,7 @@ MEDICAL
 	name = "lemoline"
 	notes = "Contains 1 bottle of lemoline with 10 units."
 	contains = list(/obj/item/reagent_containers/glass/bottle/lemoline)
-	cost = 50
+	cost = 25
 
 /datum/supply_packs/medical/advancedKits
 	name = "Advanced medical packs"
