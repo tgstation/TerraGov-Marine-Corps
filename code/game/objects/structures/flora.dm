@@ -30,6 +30,7 @@
 	density = TRUE
 	pixel_x = -16
 	max_integrity = 500
+	layer = ABOVE_FLY_LAYER
 	var/log_amount = 10
 
 /obj/structure/flora/tree/Initialize()

@@ -110,7 +110,7 @@
 		open_prompt(user)
 
 
-/obj/machinery/computer/camera_advanced/proc/open_prompt(mob/user, premade_camera_location)
+/obj/machinery/computer/camera_advanced/proc/open_prompt(mob/user, turf/premade_camera_location)
 	if(current_user)
 		to_chat(user, "The console is already in use!")
 		return
@@ -203,7 +203,7 @@
 /mob/camera/aiEye/remote
 	name = "Inactive Camera Eye"
 	ai_detector_visible = FALSE
-	var/sprint = 5
+	var/sprint = 10 //This number is not doing anything if it's not a multiple of 20
 	var/cooldown = 0
 	var/acceleration = FALSE
 	var/mob/living/eye_user = null

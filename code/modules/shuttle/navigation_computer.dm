@@ -242,7 +242,7 @@
 	checkLandingSpot()
 
 /// Checks if the currently hovered area is accessible by the shuttle
-/obj/machinery/computer/camera_advanced/shuttle_docker/proc/checkHoveringSpot(turf/next_turf)
+/obj/machinery/computer/camera_advanced/shuttle_docker/proc/check_hovering_spot(turf/next_turf)
 	if(!next_turf)
 		return
 	var/mob/camera/aiEye/remote/shuttle_docker/the_eye = eyeobj

@@ -149,6 +149,7 @@
 	remove_eye_control(ui_user)
 	SSshuttle.moveShuttle(shuttleId, origin_port_id, TRUE)
 
+/// Toggle the vision between small nightvision and turf vision
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/proc/toggle_nvg()
 	if(!checkHoveringSpot(eyeobj.loc))
 		to_chat(ui_user, "<span class='warning'>Can not toggle night vision mode in caves</span>")
