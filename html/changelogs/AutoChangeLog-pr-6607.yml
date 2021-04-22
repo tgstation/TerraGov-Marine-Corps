@@ -1,0 +1,4 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - admin: "Bypassing respawn as an admin will leave a trace in admin logs"
