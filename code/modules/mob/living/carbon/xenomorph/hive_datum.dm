@@ -613,7 +613,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	if(!isnewplayer(xeno_candidate) && XENODEATHTIME_CHECK(xeno_candidate))
 		if(check_other_rights(xeno_candidate.client, R_ADMIN, FALSE))
 			if(tgui_alert(xeno_candidate, "You wouldn't normally qualify for this respawn. Are you sure you want to bypass it with your admin powers?", "Bypass Respawn", list("Yes", "No")) != "Yes")
-				log_admin("[xeno_candidate.client.ckey] used his admin power to bypass respawn before his timer was over")
+				log_admin("[key_name(xeno_candidate)] used his admin power to bypass respawn before his timer was over")
 				XENODEATHTIME_MESSAGE(xeno_candidate)
 				return FALSE
 		else
