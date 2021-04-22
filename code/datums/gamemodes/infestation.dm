@@ -1,11 +1,11 @@
 /datum/game_mode/infestation
+	round_end_states = list(MODE_INFESTATION_X_MAJOR, MODE_INFESTATION_M_MAJOR, MODE_INFESTATION_X_MINOR, MODE_INFESTATION_M_MINOR, MODE_INFESTATION_DRAW_DEATH)
 	/// If we are shipside or groundside
 	var/round_stage = INFESTATION_MARINE_DEPLOYMENT
 	/// Timer used to calculate how long till the hive collapse due to no ruler
 	var/orphan_hive_timer
 	/// Time between two bioscan
 	var/bioscan_interval = 15 MINUTES
-	round_end_states = list(MODE_INFESTATION_X_MAJOR, MODE_INFESTATION_M_MAJOR, MODE_INFESTATION_X_MINOR, MODE_INFESTATION_M_MINOR, MODE_INFESTATION_DRAW_DEATH)
 
 /datum/game_mode/infestation/scale_roles()
 	. = ..()
@@ -127,7 +127,7 @@
 	announce_xenomorphs()
 	announce_medal_awards()
 	announce_round_stats()
-	addtimer(CALLBACK(SSvote, /datum/controller/subsystem/vote/proc/automatic_vote), 1 MINUTES)
+	addtimer(CALLBACK(SSvote, /datum/controller/subsystem/vote/proc/automatic_vote), 5 SECONDS)
 
 /// Announce to players the name of the surviving hive ruler
 /datum/game_mode/infestation/proc/announce_xenomorphs()
