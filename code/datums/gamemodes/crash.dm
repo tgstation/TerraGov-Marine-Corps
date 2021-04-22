@@ -4,9 +4,8 @@
 	required_players = 2
 	flags_round_type = MODE_INFESTATION|MODE_XENO_SPAWN_PROTECT
 	flags_landmarks = MODE_LANDMARK_SPAWN_XENO_TUNNELS|MODE_LANDMARK_SPAWN_MAP_ITEM
-	flags_xeno_abilities = XACT_CRASH
+	flags_xeno_abilities = ABILITY_CRASH
 
-	round_end_states = list(MODE_CRASH_X_MAJOR, MODE_CRASH_M_MAJOR, MODE_CRASH_X_MINOR, MODE_CRASH_M_MINOR, MODE_CRASH_DRAW_DEATH)
 	deploy_time_lock = 45 MINUTES
 
 	squads_max_number = 1

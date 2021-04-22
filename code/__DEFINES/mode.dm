@@ -57,6 +57,8 @@
 #define MODE_INFESTATION_M_MINOR		"Marine Minor Victory"
 #define MODE_INFESTATION_DRAW_DEATH		"DRAW: Mutual Annihilation"
 
+#define MODE_GENERIC_DRAW_NUKE			"DRAW: Nuclear Explosion"
+
 #define MODE_BATTLEFIELD_NT_MAJOR		"NT PMC Major Success"
 #define MODE_BATTLEFIELD_M_MAJOR		"Marine Major Success"
 #define MODE_BATTLEFIELD_NT_MINOR		"NT PMC Minor Success"

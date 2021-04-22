@@ -5,6 +5,7 @@
 	var/orphan_hive_timer
 	/// Time between two bioscan
 	var/bioscan_interval = 15 MINUTES
+	round_end_states = list(MODE_INFESTATION_X_MAJOR, MODE_INFESTATION_M_MAJOR, MODE_INFESTATION_X_MINOR, MODE_INFESTATION_M_MINOR, MODE_INFESTATION_DRAW_DEATH)
 
 /datum/game_mode/infestation/scale_roles()
 	. = ..()
@@ -21,7 +22,49 @@
 		announce_bioscans()
 		TIMER_COOLDOWN_START(src, COOLDOWN_BIOSCAN, bioscan_interval)
 
-to_chat(world, "<span class='round_header'>|Round Complete|</span>")
+/datum/game_mode/infestation/check_finished()
+	if(round_finished)
+		return TRUE
+
+	if(world.time < (SSticker.round_start_time + 5 SECONDS))
+		return FALSE
+
+	var/living_player_list[] = count_humans_and_xenos(count_flags = COUNT_IGNORE_ALIVE_SSD|COUNT_IGNORE_XENO_SPECIAL_AREA)
+	var/num_humans = living_player_list[1]
+	var/num_xenos = living_player_list[2]
+	var/num_humans_ship = living_player_list[3]
+
+	if(SSevacuation.dest_status == NUKE_EXPLOSION_FINISHED)
+		message_admins("Round finished: [MODE_GENERIC_DRAW_NUKE]") //ship blows, no one wins
+		round_finished = MODE_GENERIC_DRAW_NUKE
+		return TRUE
+
+	if(round_stage == INFESTATION_DROPSHIP_CAPTURED_XENOS)
+		message_admins("Round finished: [MODE_INFESTATION_X_MINOR]")
+		round_finished = MODE_INFESTATION_X_MINOR
+		return TRUE
+
+	if(!num_humans)
+		if(!num_xenos)
+			message_admins("Round finished: [MODE_INFESTATION_DRAW_DEATH]") //everyone died at the same time, no one wins
+			round_finished = MODE_INFESTATION_DRAW_DEATH
+			return TRUE
+		message_admins("Round finished: [MODE_INFESTATION_X_MAJOR]") //xenos wiped out ALL the marines without hijacking, xeno major victory
+		round_finished = MODE_INFESTATION_X_MAJOR
+		return TRUE
+	if(!num_xenos)
+		if(round_stage == INFESTATION_MARINE_CRASHING)
+			message_admins("Round finished: [MODE_INFESTATION_X_MINOR]") //marines lost the ground operation but managed to wipe out Xenos on the ship at a greater cost, minor victory
+			round_finished = MODE_INFESTATION_M_MINOR
+			return TRUE
+		message_admins("Round finished: [MODE_INFESTATION_M_MAJOR]") //marines win big
+		round_finished = MODE_INFESTATION_M_MAJOR
+		return TRUE
+	if(round_stage == INFESTATION_MARINE_CRASHING && !num_humans_ship)
+		message_admins("Round finished: [MODE_INFESTATION_X_MAJOR]") //xenos wiped our marines, xeno major victory
+		round_finished = MODE_INFESTATION_X_MAJOR
+		return TRUE
+	return FALSE
 
 /datum/game_mode/infestation/declare_completion()
 	. = ..()

@@ -85,9 +85,6 @@ SUBSYSTEM_DEF(points)
 		return
 	xeno_points_by_hive[hivenumber] += amount
 
-/datum/controller/subsystem/points/proc/scale_supply_points(scale)
-	supply_points = round(supply_points * scale)
-
 
 /datum/controller/subsystem/points/proc/approve_request(datum/supply_order/O, mob/user)
 	var/cost = 0

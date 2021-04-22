@@ -25,7 +25,7 @@
 	use_state_flags = XACT_USE_STAGGERED|XACT_USE_FORTIFIED|XACT_USE_CRESTED //can't use while staggered, defender fortified or crest down
 	keybind_signal = COMSIG_XENOABILITY_HEADBITE
 	plasma_cost = 100
-	gamemode_flags = ABILITY_HUNT|XACT_CRASH
+	gamemode_flags = ABILITY_HUNT|ABILITY_CRASH
 
 /datum/action/xeno_action/activable/headbite/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..() //do after checking the below stuff
