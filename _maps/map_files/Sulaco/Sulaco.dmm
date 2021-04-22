@@ -2663,13 +2663,6 @@
 	},
 /turf/open/floor/wood,
 /area/sulaco/bridge/office)
-"alH" = (
-/obj/structure/bed,
-/obj/item/bedsheet/captain,
-/obj/item/storage/backpack/satchel/norm,
-/obj/machinery/alarm,
-/turf/open/floor/wood,
-/area/sulaco/bridge/office)
 "alI" = (
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -11163,6 +11156,14 @@
 	},
 /turf/open/floor/prison/darkyellow/corner,
 /area/sulaco/engineering)
+"cub" = (
+/obj/structure/bed,
+/obj/item/bedsheet/captain,
+/obj/item/storage/backpack/satchel/norm,
+/obj/machinery/alarm,
+/obj/structure/reagent_dispensers/wallmounted/peppertank/milk,
+/turf/open/floor/wood,
+/area/sulaco/bridge/office)
 "cvE" = (
 /obj/machinery/door/poddoor/mainship/umbilical/south{
 	dir = 2;
@@ -14206,10 +14207,6 @@
 	},
 /turf/open/floor/grass,
 /area/mainship/living/starboard_garden)
-"kkx" = (
-/obj/structure/reagent_dispensers/wallmounted/peppertank/milk,
-/turf/closed/wall/mainship/gray/outer,
-/area/sulaco/bridge/office)
 "kme" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 1
@@ -41943,8 +41940,8 @@ aaa
 aaa
 aaa
 nzi
-kkx
-alH
+pLJ
+cub
 nbD
 ghk
 ghk
