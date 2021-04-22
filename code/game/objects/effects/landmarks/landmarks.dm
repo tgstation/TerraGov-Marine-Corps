@@ -150,7 +150,7 @@
 
 /obj/effect/landmark/dropship_start_location/Initialize()
 	GLOB.minidropship_start_loc = loc
-	. = ..()
+	..()
 	return INITIALIZE_HINT_QDEL
 
 /obj/effect/landmark/weapon_spawn
