@@ -151,7 +151,7 @@
 
 /// Toggle the vision between small nightvision and turf vision
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/proc/toggle_nvg()
-	if(!checkHoveringSpot(eyeobj.loc))
+	if(!check_hovering_spot(eyeobj.loc))
 		to_chat(ui_user, "<span class='warning'>Can not toggle night vision mode in caves</span>")
 		return
 	nvg_vision_mode = !nvg_vision_mode

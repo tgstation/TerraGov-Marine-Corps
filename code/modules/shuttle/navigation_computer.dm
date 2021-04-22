@@ -355,7 +355,7 @@
 /mob/camera/aiEye/remote/shuttle_docker/relaymove(mob/user, direct)
 	var/turf/T = get_turf(get_step(src, direct))
 	var/obj/machinery/computer/camera_advanced/shuttle_docker/console = origin
-	if(console.checkHoveringSpot(T) != nvg_vision_possible) //Cannot see in caves
+	if(console.check_hovering_spot(T) != nvg_vision_possible) //Cannot see in caves
 		nvg_vision_possible = !nvg_vision_possible
 		update_remote_sight(user)
 	setLoc(T)
