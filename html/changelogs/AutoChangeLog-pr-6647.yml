@@ -1,0 +1,4 @@
+author: "MsSeraph"
+delete-after: True
+changes: 
+  - bugfix: "milk dispenser placements"
