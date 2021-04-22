@@ -9,8 +9,8 @@
 	idle_power_usage = 2
 	///flags that we want to be shown when you interact with this table
 	var/allowed_flags = MINIMAP_FLAG_MARINE
-	///by default Zlevel 3, groundside is targetted
-	var/targetted_zlevel = 3
+	///by default Zlevel 2, groundside is targetted
+	var/targetted_zlevel = 2
 	///minimap obj ref that we will display to users
 	var/obj/screen/minimap/map
 
