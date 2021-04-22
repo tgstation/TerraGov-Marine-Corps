@@ -183,6 +183,8 @@ SUBSYSTEM_DEF(vote)
 		var/ckey = ckey(initiator_key)
 		if(GLOB.admin_datums[ckey])
 			lower_admin = TRUE
+		else if(initiator_key == "SERVER")
+			lower_admin = TRUE
 
 	if(!mode)
 		if(started_time && !ignore_delay)
