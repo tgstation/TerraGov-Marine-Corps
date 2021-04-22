@@ -2761,9 +2761,6 @@
 /obj/structure/cable,
 /turf/open/lavaland/basalt,
 /area/barren/cave/southeast)
-"nc" = (
-/turf/open/space/basic,
-/area/barren/cave/west)
 "nd" = (
 /obj/structure/bed/alien,
 /obj/item/bedsheet,
@@ -33725,7 +33722,7 @@ ZN
 ZN
 ZN
 ZN
-nc
+ZN
 ZN
 ZN
 Ix
