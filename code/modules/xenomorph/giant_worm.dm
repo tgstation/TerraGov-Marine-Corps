@@ -1,8 +1,8 @@
 /obj/structure/resin/giant_worm
 	name = "giant worm"
 	desc = "A giant burrowing worm created with the remains of a silo. The mouth is agape and it looks alive." //Need better name and desc
-	icon = 'icons/Xeno/giant_worm.dmi'
-	icon_state = "nydus_closed"
+	icon = 'icons/Xeno/resin_silo.dmi'
+	icon_state = "tunnel_closed"
 	resistance_flags = UNACIDABLE
 	max_integrity = 2000
 	bound_width = 96
@@ -59,9 +59,9 @@
 /obj/structure/resin/giant_worm/update_icon_state()
 	. = ..()
 	if(exit)
-		icon_state = "nydus_open"
+		icon_state = "tunnel_opened"
 		return
-	icon_state = "nydus_closed"
+	icon_state = "tunnel_closed"
 
 ///Digging is starting, we notify everyone and kill all silos
 /obj/structure/resin/giant_worm/proc/start_digging(turf/target)
