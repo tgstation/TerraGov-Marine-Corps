@@ -1,6 +1,6 @@
 /datum/game_mode/infestation/hunt
 	name = "Bug Hunt"
-	config_tag = "Bug Hunt"
+	config_tag = "Hunt"
 	required_players = 2
 	flags_round_type = MODE_INFESTATION|MODE_LZ_SHUTTERS|MODE_XENO_RULER
 	flags_landmarks = MODE_LANDMARK_SPAWN_XENO_TUNNELS|MODE_LANDMARK_SPAWN_MAP_ITEM
