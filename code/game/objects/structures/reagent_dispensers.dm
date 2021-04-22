@@ -240,12 +240,6 @@
 	icon_state = "milktank"
 	amount_per_transfer_from_this = 10
 	list_reagents = list(/datum/reagent/consumable/drink/milk = 5000)
-	anchored = FALSE
-
-/obj/structure/reagent_dispensers/wallmounted/peppertank/milk/attackby(obj/item/I, mob/user, params)
-	.=..()
-	if(.)
-		return
 
 /obj/structure/reagent_dispensers/wallmounted/virusfood
 	name = "virus food dispenser"
