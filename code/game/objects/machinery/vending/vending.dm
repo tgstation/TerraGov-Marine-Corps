@@ -229,11 +229,11 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 	/obj/item/storage/pouch/firstaid
 )))
 
-/*!
+/**
  * Builds shared vendors inventory
  * the first vendor that calls this uses build_inventory and makes their records in GLOB.vending_records[type] or premium or contraband, etc.
  * the rest of vendors of same type just set all their records to the respective global lists
-*/
+ */
 /obj/machinery/vending/proc/build_shared_inventory()
 	if(!GLOB.vending_records[type])
 		build_inventory(products)
