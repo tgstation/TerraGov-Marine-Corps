@@ -14206,6 +14206,10 @@
 	},
 /turf/open/floor/grass,
 /area/mainship/living/starboard_garden)
+"kkx" = (
+/obj/structure/reagent_dispensers/wallmounted/peppertank/milk,
+/turf/closed/wall/mainship/gray/outer,
+/area/sulaco/bridge/office)
 "kme" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 1
@@ -41939,7 +41943,7 @@ aaa
 aaa
 aaa
 nzi
-pLJ
+kkx
 alH
 nbD
 ghk
@@ -66129,9 +66133,9 @@ aOs
 aOP
 mDu
 mDu
-hLm
-jCy
-jYl
+mDu
+mDu
+mDu
 mDu
 mDu
 mDu
@@ -66386,9 +66390,9 @@ aOt
 aOP
 mDu
 mDu
-wAh
-wth
-lde
+hLm
+jCy
+jYl
 mDu
 mDu
 mDu
@@ -66643,9 +66647,9 @@ aOt
 aOP
 mDu
 mDu
-feO
-mak
-ipF
+wAh
+wth
+lde
 mDu
 mDu
 mDu
@@ -66900,9 +66904,9 @@ aOu
 aOP
 mDu
 mDu
-mDu
-mDu
-mDu
+feO
+mak
+ipF
 mDu
 mDu
 mDu
