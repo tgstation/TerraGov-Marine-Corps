@@ -14647,6 +14647,10 @@
 	dir = 4
 	},
 /area/space)
+"UH" = (
+/obj/structure/reagent_dispensers/wallmounted/peppertank/milk,
+/turf/closed/wall/mainship,
+/area/mainship/living/numbertwobunks)
 "UI" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8
@@ -16170,7 +16174,7 @@ aa
 aa
 aa
 aa
-aa
+fI
 aa
 aa
 aa
@@ -38943,7 +38947,7 @@ WW
 bZ
 Ox
 Eo
-Ox
+UH
 uT
 vh
 tp
