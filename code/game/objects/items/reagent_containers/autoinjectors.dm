@@ -46,8 +46,8 @@
 	desc = "An autoinjector loaded with a dose of healing and painkilling chemicals. Intended for use in active combat."
 	icon_state = "autoinjector-4"
 	list_reagents = list(
-		/datum/reagent/medicine/bicaridine = 5,
-		/datum/reagent/medicine/kelotane = 5,
+		/datum/reagent/medicine/bicaridine = 10,
+		/datum/reagent/medicine/kelotane = 10,
 		/datum/reagent/medicine/tramadol = 5,
 	)
 
@@ -58,7 +58,7 @@
 	list_reagents = list(
 		/datum/reagent/medicine/meralyne = 5,
 		/datum/reagent/medicine/dermaline = 5,
-		/datum/reagent/medicine/tramadol = 5,
+		/datum/reagent/medicine/oxycodone = 5,
 	)
 
 /obj/item/reagent_containers/hypospray/autoinjector/quickclot
@@ -204,6 +204,24 @@
 	list_reagents = list(
 		/datum/reagent/medicine/peridaxon_plus = 3,
 		/datum/reagent/medicine/hyronalin = 6,
+	)
+
+/obj/item/reagent_containers/hypospray/autoinjector/larvaway
+	name = "tramadol autoinjector"
+	desc = "An auto-injector loaded with 3 doses of Larvaway, A blend of antibiotics and antifungal agents designed to inhibit the growth of xenomorph embryos."
+	icon_state = "autoinjector-10"
+	amount_per_transfer_from_this = 5
+	list_reagents = list(/datum/reagent/medicine/larvaway = 15)
+
+/obj/item/reagent_containers/hypospray/autoinjector/isotonic
+	name = "isotonic solution autoinjector"
+	desc = "An auto-injector loaded with 2 doses of isotonic solution, formulated to quickly recover fluid volume after blood loss or trauma."
+	amount_per_transfer_from_this = 25
+	icon_state = "autoinjector-8"
+	list_reagents = list(
+		/datum/reagent/iron = 20,
+		/datum/reagent/consumable/nutriment = 20,
+		/datum/reagent/consumable/sugar = 10,
 	)
 
 /obj/item/reagent_containers/hypospray/autoinjector/roulettium
