@@ -366,6 +366,12 @@
 	return TRUE
 
 /mob/living/carbon/xenomorph/can_be_facehugged(obj/item/clothing/mask/facehugger/F, check_death = TRUE, check_mask = TRUE, provoked = FALSE)
+	if(!F.combat_hugger) //Only combat huggers will attack aliens
+		return FALSE
+
+	if(check_death && stat == DEAD) //Don't attack dead aliens
+		return FALSE
+
 	if(F.issamexenohive(src)) //Check for our hive
 		return FALSE
 
