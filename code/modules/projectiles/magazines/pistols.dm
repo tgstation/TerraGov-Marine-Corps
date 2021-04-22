@@ -22,6 +22,18 @@
 	w_class = WEIGHT_CLASS_SMALL
 	default_ammo = /datum/ammo/bullet/pistol
 
+//-------------------------------------------------------
+//TX-7 Plasma Pistol
+/obj/item/ammo_magazine/pistol/plasma_pistol
+	name = "\improper TX-7 plasma cell"
+	desc = "An energy cell for the TX-7 plasma pistol."
+	caliber = "Ionized Plasma Bolt"
+	icon_state = "tx7"
+	max_rounds = 10
+	w_class = WEIGHT_CLASS_SMALL
+	default_ammo = /datum/ammo/energy/plasma_pistol
+	gun_type = /obj/item/weapon/gun/pistol/plasma_pistol
+	flags_magazine = NONE
 
 //-------------------------------------------------------
 //RT-3 PISTOL
@@ -228,4 +240,3 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	icon_state = "c70"
 	max_rounds = 300
 	gun_type = /obj/item/weapon/gun/pistol/chimp
-

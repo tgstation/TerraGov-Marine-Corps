@@ -80,7 +80,6 @@
 	barefootstep = FOOTSTEP_SAND
 	mediumxenofootstep = FOOTSTEP_SAND
 
-
 /turf/open/beach/sand
 	name = "sand"
 	icon_state = "sand"
@@ -167,13 +166,6 @@
 	barefootstep = FOOTSTEP_WATER
 	mediumxenofootstep = FOOTSTEP_WATER
 	heavyxenofootstep = FOOTSTEP_WATER
-
-/turf/open/beach/sea/Entered(atom/movable/AM, atom/oldloc)
-	. = ..()
-	if(isliving(AM))
-		to_chat(AM, "<span class='danger'>The cold vacuum instantly freezes you, maybe this was a bad idea?</span>")
-		var/mob/living/spaceman = AM
-		spaceman.adjustFireLoss(666) //Really bad idea, spessman.
 
 //Nostromo turfs
 

@@ -7,6 +7,8 @@
 	icon_state = "lava"
 
 //Caves
+/area/lavaland/cave
+	minimap_color = MINIMAP_AREA_CAVES
 
 /area/barren/cave
 	name = "Caves"
@@ -141,6 +143,8 @@
 	outside = FALSE
 
 //Misc Locations
+/area/lavaland/misc
+	minimap_color = MINIMAP_AREA_COLONY
 
 /area/barren/misc
 	minimap_color = MINIMAP_AREA_COLONY
@@ -183,6 +187,7 @@
 /area/barren/misc/refinery
 	name = "Ore Processing Facility"
 	icon_state = "lava_misc_refinery"
+	minimap_color = MINIMAP_AREA_ENGI
 
 /area/barren/misc/crashed
 	name = "Crashed Ship"

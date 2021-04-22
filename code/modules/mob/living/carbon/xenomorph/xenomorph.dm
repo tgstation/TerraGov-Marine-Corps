@@ -11,6 +11,8 @@
 	set_datum()
 	time_of_birth = world.time
 	add_inherent_verbs()
+	var/datum/action/minimap/xeno/mini = new
+	mini.give_action(src)
 	add_abilities()
 
 	create_reagents(1000)
@@ -61,6 +63,7 @@
 	ADD_TRAIT(src, TRAIT_BATONIMMUNE, TRAIT_XENO)
 	ADD_TRAIT(src, TRAIT_FLASHBANGIMMUNE, TRAIT_XENO)
 	hive.update_tier_limits()
+	SSminimaps.add_marker(src, z, hud_flags = MINIMAP_FLAG_XENO, iconstate = xeno_caste.minimap_icon)
 
 /mob/living/carbon/xenomorph/proc/set_datum()
 	if(!caste_base_type)

@@ -6,7 +6,7 @@
 	name = "Rest"
 	action_icon_state = "resting"
 	mechanics_text = "Rest on weeds to regenerate health and plasma."
-	use_state_flags = XACT_USE_LYING
+	use_state_flags = XACT_USE_LYING|XACT_USE_CRESTED|XACT_USE_AGILITY
 
 /datum/action/xeno_action/xeno_resting/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
@@ -107,6 +107,7 @@
 	plasma_cost = 75
 	mechanics_text = "Plant a weed node (purple sac) on your tile."
 	keybind_signal = COMSIG_XENOABILITY_DROP_WEEDS
+	use_state_flags = XACT_USE_LYING
 
 
 /datum/action/xeno_action/plant_weeds/action_activate()
@@ -355,7 +356,7 @@
 	name = "SHOULD NOT EXIST"
 	plasma_cost = 30 //Base plasma cost for begin to emit pheromones
 	var/aura_type = null //String for aura to emit
-	use_state_flags = XACT_USE_STAGGERED|XACT_USE_NOTTURF|XACT_USE_BUSY
+	use_state_flags = XACT_USE_STAGGERED|XACT_USE_NOTTURF|XACT_USE_BUSY|XACT_USE_LYING
 
 /datum/action/xeno_action/pheromones/ai_should_start_consider()
 	return TRUE
@@ -757,6 +758,7 @@
 	mechanics_text = "Spit neurotoxin or acid at your target up to 7 tiles away."
 	ability_name = "xeno spit"
 	keybind_signal = COMSIG_XENOABILITY_XENO_SPIT
+	use_state_flags = XACT_USE_LYING
 	plasma_cost = 10
 	target_flags = XABB_MOB_TARGET
 
@@ -784,6 +786,8 @@
 	if(!.)
 		return FALSE
 	var/mob/living/carbon/xenomorph/X = owner
+	if(!X.check_state())
+		return FALSE
 	if(X.ammo?.spit_cost > X.plasma_stored)
 		if(!silent)
 			to_chat(X, "<span class='warning'>We need [X.ammo?.spit_cost - X.plasma_stored] more plasma!</span>")
@@ -909,6 +913,7 @@
 	name = "Psychic Whisper"
 	action_icon_state = "psychic_whisper"
 	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_WHISPER
+	use_state_flags = XACT_USE_LYING
 	target_flags = XABB_MOB_TARGET
 
 
@@ -1132,6 +1137,7 @@
 	keybind_signal = COMSIG_XENOABILITY_RALLY_HIVE
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	cooldown_timer = 60 SECONDS
+	use_state_flags = XACT_USE_LYING
 
 /datum/action/xeno_action/activable/rally_hive/use_ability()
 
@@ -1171,7 +1177,6 @@
 	use_state_flags = XACT_USE_STAGGERED|XACT_USE_FORTIFIED|XACT_USE_CRESTED //can't use while staggered, defender fortified or crest down
 	keybind_signal = COMSIG_XENOABILITY_HEADBITE
 	plasma_cost = 100
-	target_flags = XABB_MOB_TARGET
 	///How much psy points it give
 	var/psy_points_reward = 60
 	///How much larva points it gives (8 points for one larva in distress)
@@ -1256,7 +1261,6 @@
 	use_state_flags = XACT_USE_STAGGERED|XACT_USE_FORTIFIED|XACT_USE_CRESTED //can't use while staggered, defender fortified or crest down
 	keybind_signal = COMSIG_XENOABILITY_REGURGITATE
 	plasma_cost = 100
-	target_flags = XABB_MOB_TARGET
 	///In how much time the cocoon will be ejected
 	var/cocoon_production_time = 3 SECONDS
 
