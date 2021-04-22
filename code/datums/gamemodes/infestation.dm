@@ -127,7 +127,6 @@
 	announce_xenomorphs()
 	announce_medal_awards()
 	announce_round_stats()
-	addtimer(CALLBACK(SSvote, /datum/controller/subsystem/vote/proc/automatic_vote), 5 SECONDS)
 
 /// Announce to players the name of the surviving hive ruler
 /datum/game_mode/infestation/proc/announce_xenomorphs()
