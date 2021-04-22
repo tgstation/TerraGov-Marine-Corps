@@ -92,7 +92,6 @@
 	playsound(victim, pick( 'sound/weapons/alien_tail_attack.ogg', 'sound/weapons/alien_bite1.ogg'), 50)
 	victim.death()
 	victim.headbitten = TRUE
-	victim.set_u
 	victim.update_headbite()
 
 	log_combat(victim, owner, "was headbitten.")
