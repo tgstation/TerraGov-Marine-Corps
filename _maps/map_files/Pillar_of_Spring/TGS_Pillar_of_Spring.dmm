@@ -9487,7 +9487,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
 "Em" = (
-/obj/machinery/prop/mainship/CICmap,
+/obj/machinery/prop/mainship/cic_maptable,
 /obj/structure/table/mainship,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
