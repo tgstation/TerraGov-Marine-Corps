@@ -14104,7 +14104,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "Ss" = (
-/obj/structure/reagent_dispensers/wallmounted/peppertank/milk,
+/obj/structure/reagent_dispensers/wallmounted/milk,
 /turf/open/floor/carpet{
 	dir = 9;
 	icon_state = "carpetside"
