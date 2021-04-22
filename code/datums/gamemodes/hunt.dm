@@ -4,7 +4,7 @@
 	required_players = 2
 	flags_round_type = MODE_INFESTATION|MODE_LZ_SHUTTERS|MODE_XENO_RULER
 	flags_landmarks = MODE_LANDMARK_SPAWN_XENO_TUNNELS|MODE_LANDMARK_SPAWN_MAP_ITEM
-	flags_xeno_abilities = XACT_HUNT
+	flags_xeno_abilities = ABILITY_HUNT
 	round_end_states = list(MODE_INFESTATION_X_MAJOR, MODE_INFESTATION_M_MAJOR, MODE_INFESTATION_X_MINOR, MODE_INFESTATION_M_MINOR, MODE_INFESTATION_DRAW_DEATH)
 
 	valid_job_types = list(
@@ -80,71 +80,6 @@
 		round_finished = MODE_INFESTATION_X_MAJOR
 		return TRUE
 	return FALSE
-
-
-/datum/game_mode/infestation/hunt/declare_completion()
-	. = ..()
-	to_chat(world, "<span class='round_header'>|Round Complete|</span>")
-
-	to_chat(world, "<span class='round_body'>Thus ends the story of the brave men and women of the [SSmapping.configs[SHIP_MAP].map_name] and their struggle on [SSmapping.configs[GROUND_MAP].map_name].</span>")
-	var/sound/xeno_track
-	var/sound/human_track
-	var/sound/ghost_track
-	switch(round_finished)
-		if(MODE_INFESTATION_X_MAJOR)
-			xeno_track = pick('sound/theme/winning_triumph1.ogg', 'sound/theme/winning_triumph2.ogg')
-			human_track = pick('sound/theme/sad_loss1.ogg', 'sound/theme/sad_loss2.ogg')
-			ghost_track = xeno_track
-		if(MODE_INFESTATION_M_MAJOR)
-			xeno_track = pick('sound/theme/sad_loss1.ogg', 'sound/theme/sad_loss2.ogg')
-			human_track = pick('sound/theme/winning_triumph1.ogg', 'sound/theme/winning_triumph2.ogg')
-			ghost_track = human_track
-		if(MODE_INFESTATION_X_MINOR)
-			xeno_track = pick('sound/theme/neutral_hopeful1.ogg', 'sound/theme/neutral_hopeful2.ogg')
-			human_track = pick('sound/theme/neutral_melancholy1.ogg', 'sound/theme/neutral_melancholy2.ogg')
-			ghost_track = xeno_track
-		if(MODE_INFESTATION_M_MINOR)
-			xeno_track = pick('sound/theme/neutral_melancholy1.ogg', 'sound/theme/neutral_melancholy2.ogg')
-			human_track = pick('sound/theme/neutral_hopeful1.ogg', 'sound/theme/neutral_hopeful2.ogg')
-			ghost_track = human_track
-		if(MODE_INFESTATION_DRAW_DEATH)
-			ghost_track = pick('sound/theme/nuclear_detonation1.ogg', 'sound/theme/nuclear_detonation2.ogg')
-			xeno_track = ghost_track
-			human_track = ghost_track
-
-	xeno_track = sound(xeno_track)
-	xeno_track.channel = CHANNEL_CINEMATIC
-	human_track = sound(human_track)
-	human_track.channel = CHANNEL_CINEMATIC
-	ghost_track = sound(ghost_track)
-	ghost_track.channel = CHANNEL_CINEMATIC
-
-	for(var/i in GLOB.xeno_mob_list)
-		var/mob/M = i
-		SEND_SOUND(M, xeno_track)
-
-	for(var/i in GLOB.human_mob_list)
-		var/mob/M = i
-		SEND_SOUND(M, human_track)
-
-	for(var/i in GLOB.observer_list)
-		var/mob/M = i
-		if(ishuman(M.mind.current))
-			SEND_SOUND(M, human_track)
-			continue
-
-		if(isxeno(M.mind.current))
-			SEND_SOUND(M, xeno_track)
-			continue
-
-		SEND_SOUND(M, ghost_track)
-
-	log_game("[round_finished]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [length(GLOB.clients)]\nTotal xenos spawned: [GLOB.round_statistics.total_xenos_created]\nTotal humans spawned: [GLOB.round_statistics.total_humans_created]")
-
-	announce_xenomorphs()
-	announce_medal_awards()
-	announce_round_stats()
-	addtimer(CALLBACK(SSvote, /datum/controller/subsystem/vote/proc/automatic_vote), 1 MINUTES)
 
 
 /datum/game_mode/infestation/hunt/scale_roles(initial_players_assigned)

@@ -25,7 +25,7 @@
 	use_state_flags = XACT_USE_STAGGERED|XACT_USE_FORTIFIED|XACT_USE_CRESTED //can't use while staggered, defender fortified or crest down
 	keybind_signal = COMSIG_XENOABILITY_HEADBITE
 	plasma_cost = 100
-	gamemode_flags = XACT_HUNT|XACT_CRASH
+	gamemode_flags = ABILITY_HUNT|XACT_CRASH
 
 /datum/action/xeno_action/activable/headbite/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..() //do after checking the below stuff
@@ -992,7 +992,7 @@
 	plasma_cost = 150
 	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN_SILO
 	cooldown_timer = 60 SECONDS
-	gamemode_flags = XACT_HUNT
+	gamemode_flags = ABILITY_HUNT
 	/// How long does it take to build
 	var/build_time = 10 SECONDS
 	/// how many dead / non-chestbursted mobs are required to build the silo
@@ -1038,7 +1038,7 @@
 	plasma_cost = 150
 	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN_SILO
 	cooldown_timer = 60 SECONDS
-	gamemode_flags = XACT_DISTRESS
+	gamemode_flags = ABILITY_DISTRESS
 	/// If we are building a small silo
 	var/build_small_silo = FALSE
 	/// How long does it take to build
@@ -1108,7 +1108,7 @@
 	ability_name = "secrete acid turret"
 	plasma_cost = 150
 	cooldown_timer = 60 SECONDS
-	gamemode_flags = XACT_DISTRESS
+	gamemode_flags = ABILITY_DISTRESS
 	/// How long does it take to build
 	var/build_time = 15 SECONDS
 	/// Pyschic point cost
@@ -1225,7 +1225,7 @@
 	mechanics_text = "Drain the victim of its life force to gain larva and psych points"
 	use_state_flags = XACT_USE_STAGGERED|XACT_USE_FORTIFIED|XACT_USE_CRESTED //can't use while staggered, defender fortified or crest down
 	keybind_signal = COMSIG_XENOABILITY_HEADBITE
-	gamemode_flags = XACT_DISTRESS
+	gamemode_flags = ABILITY_DISTRESS
 	plasma_cost = 100
 	///How much psy points it give
 	var/psy_points_reward = 60
@@ -1311,7 +1311,7 @@
 	use_state_flags = XACT_USE_STAGGERED|XACT_USE_FORTIFIED|XACT_USE_CRESTED //can't use while staggered, defender fortified or crest down
 	keybind_signal = COMSIG_XENOABILITY_REGURGITATE
 	plasma_cost = 100
-	gamemode_flags = XACT_HUNT
+	gamemode_flags = ABILITY_HUNT
 
 /datum/action/xeno_action/activable/devour/can_use_ability(atom/A, silent, override_flags)
 	. = ..()
@@ -1390,7 +1390,7 @@
 	use_state_flags = XACT_USE_STAGGERED|XACT_USE_FORTIFIED|XACT_USE_CRESTED //can't use while staggered, defender fortified or crest down
 	keybind_signal = COMSIG_XENOABILITY_REGURGITATE
 	plasma_cost = 100
-	gamemode_flags = XACT_DISTRESS
+	gamemode_flags = ABILITY_DISTRESS
 	///In how much time the cocoon will be ejected
 	var/cocoon_production_time = 3 SECONDS
 
