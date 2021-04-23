@@ -146,7 +146,7 @@
 // Entrenching tool.
 /obj/item/tool/shovel/etool
 	name = "entrenching tool"
-	desc = "Used to dig holes and bash heads in. Folds in to fit in small spaces. Use a sharp item on it to sharpen it. Use Space to Change between entrenching (to dig trenches) and digging (for dirt)"
+	desc = "Used to dig holes and bash heads in. Folds in to fit in small spaces. Use a sharp item on it to sharpen it. Use Space to change between entrenching (to dig trenches) and digging (for dirt)."
 	icon = 'icons/Marine/marine-items.dmi'
 	icon_state = "etool"
 	force = 30
@@ -216,4 +216,3 @@
 	if(!do_after(user, shovelspeed, TRUE, target, BUSY_ICON_BUILD))
 		return
 	new/obj/structure/trench(target)
-
