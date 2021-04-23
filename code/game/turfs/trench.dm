@@ -1,6 +1,6 @@
 obj/structure/trench
 	name = "Trench"
-	desc = "A wide, narrow earthwork designed to protect the user from any projectiles"
+	desc = "A wide, narrow earthwork designed to protect soldiers from any projectiles, since WWI!"
 	icon = 'icons/turf/trench.dmi'
 	icon_state = "gold0"
 	density = FALSE
