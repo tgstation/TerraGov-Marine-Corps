@@ -115,6 +115,21 @@
 
 	var/general_codex_key = "guns"
 
+	///The mob holding the gun
+	var/mob/gun_user
+	///The atom targeted by the user
+	var/atom/target
+	///How many bullets the gun fired while bursting/auto firing
+	var/shots_fired = 0
+	///If this gun is in inactive hands and shooting in akimbo
+	var/dual_wield = FALSE
+	///Used if a weapon need windup before firing
+	var/windup_checked = WEAPON_WINDUP_NOT_CHECKED
+
+	///determines upper accuracy modifier in akimbo
+	var/upper_akimbo_accuracy = 2
+	///determines lower accuracy modifier in akimbo
+	var/lower_akimbo_accuracy = 1
 
 //----------------------------------------------------------
 				//				    \\
@@ -145,7 +160,7 @@
 	handle_starting_attachment()
 
 	setup_firemodes()
-	AddComponent(/datum/component/automatic_fire, fire_delay, burst_delay, burst_amount, gun_firemode, loc) //This should go after handle_starting_attachment() and setup_firemodes() to get the proper values set.
+	AddComponent(/datum/component/automatedfire/autofire, fire_delay, burst_delay, burst_amount, gun_firemode, CALLBACK(src, .proc/set_bursting), CALLBACK(src, .proc/reset_fire), CALLBACK(src, .proc/Fire)) //This should go after handle_starting_attachment() and setup_firemodes() to get the proper values set.
 
 	muzzle_flash = new(src, muzzleflash_iconstate)
 
@@ -183,8 +198,24 @@
 
 /obj/item/weapon/gun/equipped(mob/user, slot)
 	unwield(user)
-
+	if(ishandslot(slot))
+		gun_user = user
+		RegisterSignal(gun_user, COMSIG_MOB_MOUSEDOWN, .proc/start_fire) //All of this should and will be put inside an aiming component
+		RegisterSignal(gun_user, COMSIG_MOB_MOUSEUP, .proc/stop_fire)
+		RegisterSignal(gun_user, COMSIG_MOB_MOUSEDRAG, .proc/change_target)
+		return ..()
+	if(gun_user)
+		UnregisterSignal(gun_user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG))
+		gun_user.client.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
+		gun_user = null	
 	return ..()
+
+/obj/item/weapon/gun/removed_from_inventory(mob/user)
+	if(!gun_user)
+		return
+	UnregisterSignal(gun_user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG))
+	gun_user.client?.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
+	gun_user = null
 
 /obj/item/weapon/gun/update_icon(mob/user)
 	if(!current_mag || current_mag.current_rounds <= 0)
@@ -396,7 +427,6 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 //Manually cock the gun
 //This only works on weapons NOT marked with UNUSUAL_DESIGN or INTERNAL_MAG or ENERGY
 /obj/item/weapon/gun/proc/cock(mob/user)
-
 	if(flags_gun_features & (GUN_BURST_FIRING|GUN_UNUSUAL_DESIGN|GUN_INTERNAL_MAG|GUN_ENERGY))
 		return FALSE
 	if(cock_cooldown > world.time)
@@ -471,17 +501,89 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 			//							    \\
 			//						   	    \\
 //----------------------------------------------------------
-
-/obj/item/weapon/gun/afterattack(atom/A, mob/living/user, flag, params)
-	if(flag)
-		return ..() //It's adjacent, is the user, or is on the user's person
-	if(QDELETED(A))
+///Check if the gun can fire and add it to bucket auto_fire system if needed, or just fire the gun if not
+/obj/item/weapon/gun/proc/start_fire(datum/source, atom/object, turf/location, control, params)
+	SIGNAL_HANDLER
+	if(gun_on_cooldown(gun_user))
 		return
-	if(flags_gun_features & GUN_BURST_FIRING)
+	if(gun_user.hand && !isgun(gun_user.l_hand) || !gun_user.hand && !isgun(gun_user.r_hand)) // If the object in our active hand is not a gun, abort
 		return
+	if(gun_user.hand && isgun(gun_user.r_hand) || !gun_user.hand && isgun(gun_user.l_hand)) // If we have a gun in our inactive hand too, both guns get innacuracy maluses
+		dual_wield = TRUE
+	if(gun_user.in_throw_mode)
+		return
+	if(gun_user.Adjacent(object)) //Dealt with by attack code
+		return
+	if(QDELETED(object))
+		return
+	var/list/modifiers = params2list(params)
+	if(istype(object, /obj/screen))
+		if(!istype(object, /obj/screen/click_catcher))
+			return
+		//Happens when you click a black tile
+		object = params2turf(modifiers["screen-loc"], get_turf(gun_user), gun_user.client)
+	set_target(object)
+	if(modifiers["right"] || modifiers["middle"] || modifiers["shift"])
+		if(active_attachable?.flags_attach_features & ATTACH_WEAPON)
+			do_fire_attachment()
+		return
+	if(gun_firemode == GUN_FIREMODE_SEMIAUTO)
+		if(!Fire() || windup_checked == WEAPON_WINDUP_CHECKING)
+			return
+		reset_fire()
+		return
+	gun_user.client.mouse_pointer_icon = 'icons/effects/supplypod_target.dmi'
+	SEND_SIGNAL(src, COMSIG_GUN_FIRE)
 
-	if(!istype(A, /obj/screen))
-		Fire(A, user, params) //Otherwise, fire normally.
+///Set the target and take care of hard delete
+/obj/item/weapon/gun/proc/set_target(atom/object)
+	if(object == target)
+		return
+	if(target)
+		UnregisterSignal(target, COMSIG_PARENT_QDELETING)
+	target = object
+	if(target)
+		RegisterSignal(target, COMSIG_PARENT_QDELETING, .proc/clean_target)
+
+///Set the target to it's turf, so we keep shooting even when it was qdeled
+/obj/item/weapon/gun/proc/clean_target()
+	SIGNAL_HANDLER
+	target = get_turf(target)
+
+///Reset variables used in firing and remove the gun from the autofire system
+/obj/item/weapon/gun/proc/stop_fire()
+	SIGNAL_HANDLER
+	gun_user.client.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
+	if(windup_checked != WEAPON_WINDUP_CHECKING && !CHECK_BITFIELD(flags_gun_features, GUN_BURST_FIRING))
+		reset_fire()
+	SEND_SIGNAL(src, COMSIG_GUN_STOP_FIRE)
+
+///Clean all references 
+/obj/item/weapon/gun/proc/reset_fire()
+	shots_fired = 0//Let's clean everything
+	set_target(null)
+	windup_checked = WEAPON_WINDUP_NOT_CHECKED
+	dual_wield = FALSE
+	gun_user.client.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
+
+///Inform the gun if he is currently bursting, to prevent reloading
+/obj/item/weapon/gun/proc/set_bursting(bursting)
+	if(bursting)
+		ENABLE_BITFIELD(flags_gun_features, GUN_BURST_FIRING)
+		return
+	DISABLE_BITFIELD(flags_gun_features, GUN_BURST_FIRING)
+	extra_delay = fire_delay * 1.5
+
+///Update the target if you draged your mouse
+/obj/item/weapon/gun/proc/change_target(datum/source, atom/src_object, atom/over_object, turf/src_location, turf/over_location, src_control, over_control, params)
+	SIGNAL_HANDLER
+	if(istype(over_object, /obj/screen))
+		if(!istype(over_object, /obj/screen/click_catcher))
+			return
+		var/list/modifiers = params2list(params)
+		over_object = params2turf(modifiers["screen-loc"], get_turf(gun_user), gun_user.client)
+	set_target(over_object)
+	gun_user.face_atom(target)
 
 /*
 load_into_chamber() and reload_into_chamber() do all of the heavy lifting.
@@ -562,115 +664,52 @@ and you're good to go.
 		//						   			   \\
 //----------------------------------------------------------
 
-/obj/item/weapon/gun/proc/Fire(atom/target, mob/living/user, params, reflex = 0, dual_wield)
-	set waitfor = 0
-
-	if(!able_to_fire(user))
+/obj/item/weapon/gun/proc/Fire()
+	if(QDELETED(gun_user) || !ismob(gun_user) || !able_to_fire(gun_user) || !target)
 		return
 
-	if(gun_on_cooldown(user))
+	//The gun should return the bullet that it already loaded from the end cycle of the last Fire().
+	var/obj/projectile/projectile_to_fire = load_into_chamber(gun_user) //Load a bullet in or check for existing one.
+	in_chamber = null //Projectiles live and die fast. It's better to null the reference early so the GC can handle it immediately.
+	if(!projectile_to_fire) //If there is nothing to fire, click.
+		click_empty(gun_user)
 		return
 
-	if(SEND_SIGNAL(src, COMSIG_GUN_FIRE, target, user) & COMPONENT_GUN_FIRED)
+	apply_gun_modifiers(projectile_to_fire, target)
+	setup_bullet_accuracy(projectile_to_fire, gun_user, shots_fired, dual_wield) //User can be passed as null.
+		
+	var/firing_angle = get_angle_with_scatter((gun_user || get_turf(src)), target, get_scatter(projectile_to_fire.scatter, gun_user), projectile_to_fire.p_x, projectile_to_fire.p_y)
+
+	//Finally, make with the pew pew!
+	if(!isobj(projectile_to_fire))
+		stack_trace("projectile malfunctioned while firing. User: [gun_user]")
 		return
 
-	var/turf/targloc = get_turf(target)
-
-	/*
-	This is where burst is established for the proceeding section. Which just means the proc loops around that many times.
-	If burst = 1, you must null it if you ever RETURN during the for() cycle. If for whatever reason burst is left on while
-	the gun is not firing, it will break a lot of stuff. BREAK is fine, as it will null it.
-	*/
-
-	//Number of bullets based on burst. If an active attachable is shooting, bursting is always zero.
-	var/bullets_fired = 1
-	if(gun_firemode == GUN_FIREMODE_BURSTFIRE && burst_amount > 1)
-		bullets_fired = burst_amount
-		flags_gun_features |= GUN_BURST_FIRING
-
-	var/i
-	for(i = 1 to bullets_fired)
-		if(loc != user)
-			break //If you drop it while bursting, for example.
-
-		if(i > 1 && !(flags_gun_features & GUN_BURST_FIRING))//no longer burst firing somehow
-			break
-
-		//The gun should return the bullet that it already loaded from the end cycle of the last Fire().
-		var/obj/projectile/projectile_to_fire = load_into_chamber(user) //Load a bullet in or check for existing one.
-		in_chamber = null //Projectiles live and die fast. It's better to null the reference early so the GC can handle it immediately.
-		if(!projectile_to_fire) //If there is nothing to fire, click.
-			click_empty(user)
-			break
-
-		if(QDELETED(target)) //This can happen on burstfire, as it's a sleeping proc.
-			if(QDELETED(targloc))
-				break
-			target = targloc //If the original targets gets destroyed, fire at its location.
-
-		var/recoil_comp = 0 //used by bipod and akimbo firing
-
-		//checking for a gun in other hand to fire akimbo
-		if(i == 1 && !reflex && !dual_wield)
-			if(user)
-				var/obj/item/IH = user.get_inactive_held_item()
-				if(istype(IH, /obj/item/weapon/gun))
-					var/obj/item/weapon/gun/OG = IH
-					if(!(OG.flags_gun_features & GUN_WIELDED_FIRING_ONLY) && OG.gun_skill_category == gun_skill_category)
-						OG.Fire(target,user,params, 0, TRUE)
-						dual_wield = TRUE
-						recoil_comp++
-
-		apply_gun_modifiers(projectile_to_fire, target)
-		setup_bullet_accuracy(projectile_to_fire, user, i, dual_wield) //User can be passed as null.
-
-		if(params)
-			var/list/mouse_control = params2list(params)
-			if(mouse_control["icon-x"])
-				projectile_to_fire.p_x = text2num(mouse_control["icon-x"])
-			if(mouse_control["icon-y"])
-				projectile_to_fire.p_y = text2num(mouse_control["icon-y"])
-
-		var/firing_angle = get_angle_with_scatter((user || get_turf(src)), target, get_scatter(projectile_to_fire.scatter, user), projectile_to_fire.p_x, projectile_to_fire.p_y)
-
-		//Finally, make with the pew pew!
-		if(!projectile_to_fire || !istype(projectile_to_fire,/obj))
-			stack_trace("projectile malfunctioned while firing. User: [user]")
-			flags_gun_features &= ~GUN_BURST_FIRING
-			return
-
-		if(!QDELETED(user))
-			play_fire_sound(user)
-			muzzle_flash(firing_angle, user)
-			simulate_recoil(recoil_comp, user)
+	
+	play_fire_sound(gun_user)
+	muzzle_flash(firing_angle, gun_user)
+	simulate_recoil(dual_wield, gun_user)
 
 
-		//This is where the projectile leaves the barrel and deals with projectile code only.
-		//vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-		projectile_to_fire.fire_at(target, user, src, projectile_to_fire.ammo.max_range, projectile_to_fire.ammo.shell_speed, firing_angle)
-		//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	//This is where the projectile leaves the barrel and deals with projectile code only.
+	//vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+	projectile_to_fire.fire_at(target, gun_user, src, projectile_to_fire.ammo.max_range, projectile_to_fire.ammo.shell_speed, firing_angle)
+	//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-		if(fire_animation) //Fires gun firing animation if it has any. ex: rotating barrel
-			flick("[fire_animation]", src)
+	shots_fired++
 
-		last_fired = world.time
+	if(fire_animation) //Fires gun firing animation if it has any. ex: rotating barrel
+		flick("[fire_animation]", src)
 
-		//This is where we load the next bullet in the chamber. We check for attachments too, since we don't want to load anything if an attachment is active.
-		if(!reload_into_chamber(user)) // It has to return a bullet, otherwise it's empty.
-			click_empty(user)
-			break //Nothing else to do here, time to cancel out.
+	last_fired = world.time
+	reload_into_chamber(gun_user)
+	SEND_SIGNAL(gun_user, COMSIG_MOB_GUN_FIRED, target, src)
 
-		if(i < bullets_fired) // We still have some bullets to fire.
-			extra_delay = min(extra_delay+(burst_delay*2), fire_delay*3) // The more bullets you shoot, the more delay there is, but no more than thrice the regular delay.
-			sleep(burst_delay)
 
-		SEND_SIGNAL(user, COMSIG_MOB_GUN_FIRED, target, src)
+	var/obj/screen/ammo/A = gun_user.hud_used.ammo //The ammo HUD
+	A.update_hud(gun_user)
 
-	flags_gun_features &= ~GUN_BURST_FIRING // We always want to turn off bursting when we're done.
-
-	var/obj/screen/ammo/A = user.hud_used.ammo //The ammo HUD
-	A.update_hud(user)
-
+	return TRUE
 
 /obj/item/weapon/gun/attack(mob/living/M, mob/living/user, def_zone)
 	if(!CHECK_BITFIELD(flags_gun_features, GUN_CAN_POINTBLANK)) // If it can't point blank, you can't suicide and such.
@@ -691,10 +730,10 @@ and you're good to go.
 			return
 
 		if(!active_attachable && gun_firemode == GUN_FIREMODE_BURSTFIRE && burst_amount > 1)
-			Fire(M, user)
+			set_target(M)
+			SEND_SIGNAL(src, COMSIG_GUN_FIRE)
 			return TRUE
 
-		DISABLE_BITFIELD(flags_gun_features, GUN_BURST_FIRING)
 		//Point blanking simulates firing the bullet proper but without actually firing it.
 		var/obj/projectile/projectile_to_fire = load_into_chamber(user)
 		in_chamber = null //Projectiles live and die fast. It's better to null the reference early so the GC can handle it immediately.
@@ -803,10 +842,8 @@ and you're good to go.
 //----------------------------------------------------------
 
 /obj/item/weapon/gun/proc/able_to_fire(mob/user)
-	if(flags_gun_features & GUN_BURST_FIRING)
-		return FALSE
-	if(!ismob(user)) //Could be an object firing the gun.
-		return TRUE
+	if(user.stat != CONSCIOUS || user.lying_angle)
+		return
 	if(!user.dextrous)
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return FALSE
@@ -823,6 +860,9 @@ and you're good to go.
 		to_chat(user, "<span class='warning'>You are doing something else currently.")
 		return FALSE
 	if((flags_gun_features & GUN_POLICE) && !police_allowed_check(user))
+		return FALSE
+	if((flags_gun_features & GUN_WIELDED_STABLE_FIRING_ONLY) && !wielded_stable())//If we must wait to finish wielding before shooting
+		to_chat(user, "<span class='warning'>You need a more secure grip to fire this weapon!")
 		return FALSE
 	return TRUE
 
@@ -844,7 +884,6 @@ and you're good to go.
 						added_delay -= 2 * user.skills.getRating(gun_skill_category)
 
 	if(world.time >= last_fired + added_delay + extra_delay) //check the last time it was fired.
-		extra_delay = 0 //Since we are ready to fire again, zero it up.
 		return FALSE
 
 	if(world.time % 3 && user.client && !user.client.prefs.mute_self_combat_messages)
@@ -853,7 +892,6 @@ and you're good to go.
 
 
 /obj/item/weapon/gun/proc/click_empty(mob/user)
-	SEND_SIGNAL(src, COMSIG_GUN_CLICKEMPTY)
 	if(user)
 		var/obj/screen/ammo/A = user.hud_used.ammo //The ammo HUD
 		A.update_hud(user)
@@ -906,12 +944,7 @@ and you're good to go.
 		gun_accuracy_mult = max(0.1, gun_accuracy_mult * burst_accuracy_mult)
 
 	if(dual_wield) //akimbo firing gives terrible accuracy
-		if(gun_skill_category == GUN_SKILL_PISTOLS)
-			gun_accuracy_mult = max(0.1, gun_accuracy_mult - 0.1*rand(1,2))
-			gun_scatter += 10*rand(1,3)
-		else
-			gun_accuracy_mult = max(0.1, gun_accuracy_mult - 0.1*rand(2,4))
-			gun_scatter += 10*rand(3,5)
+		gun_scatter += 10*rand(upper_akimbo_accuracy, lower_akimbo_accuracy)
 
 	if(user)
 		// Apply any skill-based bonuses to accuracy
@@ -1109,36 +1142,16 @@ and you're good to go.
 			GB.current_gun = null
 			GB.update_gun_icon()
 
-
-/obj/item/weapon/gun/proc/on_gun_attachment_attach(obj/item/attachable/attached_gun/attaching)
-	active_attachable = attaching
-	if(!(attaching.flags_attach_features & ATTACH_WEAPON))
-		return
-	if(attaching.flags_attach_features & ATTACH_PROJECTILE)
-		return //These are handled through regular Fire() for now.
-	RegisterSignal(src, list(COMSIG_ITEM_MIDDLECLICKON, COMSIG_ITEM_SHIFTCLICKON, COMSIG_ITEM_RIGHTCLICKON), .proc/do_fire_attachment) //For weapons with special projectiles not handled via Fire()
-
-
-/obj/item/weapon/gun/proc/on_gun_attachment_detach(obj/item/attachable/attached_gun/detaching)
-	active_attachable = null
-	UnregisterSignal(src, list(COMSIG_ITEM_MIDDLECLICKON, COMSIG_ITEM_SHIFTCLICKON, COMSIG_ITEM_RIGHTCLICKON))
-
-
-/obj/item/weapon/gun/proc/do_fire_attachment(datum/source, atom/target, mob/user)
-	SIGNAL_HANDLER
-	if(!able_to_fire(user))
-		return
-	if(gun_on_cooldown(user))
-		return
+/obj/item/weapon/gun/proc/do_fire_attachment()
 	if(!CHECK_BITFIELD(flags_item, WIELDED))
-		to_chat(user, "<span class='warning'>[active_attachable] must be wielded to fire!</span>")
+		to_chat(gun_user, "<span class='warning'>[active_attachable] must be wielded to fire!</span>")
 		return
 	if(active_attachable.current_rounds <= 0)
-		click_empty(user) //If it's empty, let them know.
-		to_chat(user, "<span class='warning'>[active_attachable] is empty!</span>")
+		click_empty(gun_user) //If it's empty, let them know.
+		to_chat(gun_user, "<span class='warning'>[active_attachable] is empty!</span>")
 		return
 	if(!wielded_stable())
-		to_chat(user, "<span class='warning'>[active_attachable] is not ready to fire!</span>")
+		to_chat(gun_user, "<span class='warning'>[active_attachable] is not ready to fire!</span>")
 		return
-	active_attachable.fire_attachment(target, src, user) //Fire it.
+	active_attachable.fire_attachment(target, src, gun_user) //Fire it.
 	last_fired = world.time

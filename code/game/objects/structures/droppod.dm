@@ -1,6 +1,8 @@
 #define DROPPOD_READY 1
 #define DROPPOD_ACTIVE 2
 #define DROPPOD_LANDED 3
+GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transit, /turf/open/space, /turf/open/ground/empty, /turf/open/beach/sea, /turf/open/lavaland/lava))) // Don't drop at these tiles.
+
 ///Marine steel rain style drop pods, very cool!
 /obj/structure/droppod
 	name = "TGMC Zeus orbital drop pod"
@@ -112,19 +114,22 @@
 /obj/structure/droppod/proc/checklanding(mob/user)
 	var/turf/target = locate(target_x, target_y, 2)
 	if(target.density)
-		to_chat(user, "<span class='warning'>Dense Landing zone detected. Invalid area.</span>")
+		to_chat(user, "<span class='warning'>Dense landing zone detected. Invalid area.</span>")
 		return FALSE
-	if(isspaceturf(target))
-		to_chat(user, "<span class='warning'>Location outside mission parameters. Invalid area.</span>")
+	if(is_type_in_typecache(target, GLOB.blocked_droppod_tiles))
+		to_chat(user, "<span class='warning'>Extremely lethal hazard detected on the target location. Invalid area.</span>")
 		return FALSE
 	var/area/targetarea = get_area(target)
+	if(targetarea.flags_area & NO_DROPPOD) // Thou shall not pass!
+		to_chat(user, "<span class='warning'>Location outside mission parameters. Invalid area.</span>")
+		return FALSE
 	if(!targetarea.outside)
 		to_chat(user, "<span class='warning'>Cannot launch pod at a roofed area.</span>")
 		return FALSE
 	for(var/x in target.contents)
 		var/atom/object = x
 		if(object.density)
-			to_chat(user, "<span class='warning'>Dense object detected in target location.</span>")
+			to_chat(user, "<span class='warning'>Dense object detected in target location. Invalid area.</span>")
 			return FALSE
 	to_chat(user, "<span class='notice'>Valid area confirmed!</span>")
 	return TRUE

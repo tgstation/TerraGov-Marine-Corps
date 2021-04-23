@@ -41,9 +41,13 @@
 #define OB_AVAILABLE_WEIGHT 20
 #define SPAWNING_POOL_WEIGHT -600
 
-//The weight of each statistics in the state calculator before shutters drop and shipside
+//The weight of each statistics in the state calculator before shutters drop
 #define XENOS_LIFE_WEIGHT_PREGAME -300
 #define HUMAN_LIFE_WEIGHT_PREGAME 100
+
+//The weight of each statistics in the state calculator when shipside
+#define XENOS_LIFE_WEIGHT_SHIPSIDE -200
+#define HUMAN_LIFE_WEIGHT_SHIPSIDE 100
 
 //Minimum proportion of burrowed larvas compared to live xenos for the unbalance join detector to show up
 #define TOO_MUCH_BURROWED_PROPORTION 0.2

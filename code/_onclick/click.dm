@@ -316,8 +316,6 @@ if(selected_ability.target_flags & flagname){\
 
 /mob/living/carbon/xenomorph/proc/ability_target(atom/A)
 	TARGET_FLAGS_MACRO(XABB_MOB_TARGET, /mob/living)
-	TARGET_FLAGS_MACRO(XABB_OBJ_TARGET, /obj)
-	TARGET_FLAGS_MACRO(XABB_WALL_TARGET, /turf/closed/wall)
 	if(selected_ability.target_flags & XABB_TURF_TARGET)
 		return get_turf(A)
 	return A
@@ -559,6 +557,9 @@ if(selected_ability.target_flags & flagname){\
 			modifiers["icon-y"] = num2text(ABS_PIXEL_TO_REL(text2num(modifiers["icon-y"])))
 			T.Click(location, control, list2params(modifiers))
 	. = TRUE
+
+/obj/screen/click_catcher/MouseMove(location, control, params)//This allow to catch mouse drag on click catcher, aka black tiles
+	return
 
 
 /* MouseWheelOn */

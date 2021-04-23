@@ -11,6 +11,8 @@
 	set_datum()
 	time_of_birth = world.time
 	add_inherent_verbs()
+	var/datum/action/minimap/xeno/mini = new
+	mini.give_action(src)
 	add_abilities()
 
 	create_reagents(1000)
@@ -61,6 +63,7 @@
 	ADD_TRAIT(src, TRAIT_BATONIMMUNE, TRAIT_XENO)
 	ADD_TRAIT(src, TRAIT_FLASHBANGIMMUNE, TRAIT_XENO)
 	hive.update_tier_limits()
+	SSminimaps.add_marker(src, z, hud_flags = MINIMAP_FLAG_XENO, iconstate = xeno_caste.minimap_icon)
 
 /mob/living/carbon/xenomorph/proc/set_datum()
 	if(!caste_base_type)
@@ -223,9 +226,6 @@
 	if(L.buckled)
 		return FALSE //to stop xeno from pulling marines on roller beds.
 	if(ishuman(L))
-		if(L.stat == UNCONSCIOUS && !bypass_crit_delay)
-			if(!do_mob(src, L , XENO_PULL_CHARGE_TIME, BUSY_ICON_HOSTILE))
-				return FALSE
 		if(L.stat == DEAD) //Can't drag dead human bodies
 			to_chat(usr,"<span class='xenowarning'>This looks gross, better not touch it</span>")
 			return FALSE

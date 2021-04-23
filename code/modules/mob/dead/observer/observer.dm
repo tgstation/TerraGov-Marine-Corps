@@ -399,7 +399,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 
 
-/mob/dead/observer/verb/teleport(area/A in GLOB.sorted_areas)
+/mob/dead/observer/verb/teleport(area/A AS in GLOB.sorted_areas)
 	set category = "Ghost"
 	set name = "Teleport"
 	set desc = "Teleport to an area."
@@ -407,7 +407,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	if(!A)
 		return
 
-	loc = pick(get_area_turfs(A))
+	forceMove(pick(get_area_turfs(A)))
 
 
 /mob/dead/observer/verb/follow_ghost()

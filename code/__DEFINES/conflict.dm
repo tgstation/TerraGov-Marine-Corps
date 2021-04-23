@@ -57,24 +57,25 @@
 
 //Gun defines for gun related thing. More in the projectile folder.
 //flags_gun_features
-#define GUN_CAN_POINTBLANK		(1<<0)
-#define GUN_TRIGGER_SAFETY		(1<<1)
-#define GUN_UNUSUAL_DESIGN		(1<<2)
-#define GUN_SILENCED			(1<<3)
-#define GUN_SHOTGUN_CHAMBER		(1<<4)
-#define GUN_INTERNAL_MAG		(1<<5)
-#define GUN_AUTO_EJECTOR		(1<<6)
-#define GUN_AMMO_COUNTER		(1<<7)
-#define GUN_LOAD_INTO_CHAMBER	(1<<8)
-#define GUN_ENERGY				(1<<9)
-#define GUN_FLASHLIGHT_ON		(1<<10)
-#define GUN_WIELDED_FIRING_ONLY	(1<<11)
-#define GUN_POLICE				(1<<12)
-#define GUN_BURST_FIRING		(1<<13)
-#define GUN_ALLOW_SYNTHETIC		(1<<14)
-#define GUN_HAS_AUTOBURST		(1<<15)
-#define GUN_IS_AIMING			(1<<16)
-#define AUTO_AIM_MODE			(1<<17)
+#define GUN_CAN_POINTBLANK			(1<<0)
+#define GUN_TRIGGER_SAFETY			(1<<1)
+#define GUN_UNUSUAL_DESIGN			(1<<2)
+#define GUN_SILENCED				(1<<3)
+#define GUN_SHOTGUN_CHAMBER			(1<<4)
+#define GUN_INTERNAL_MAG			(1<<5)
+#define GUN_AUTO_EJECTOR			(1<<6)
+#define GUN_AMMO_COUNTER			(1<<7)
+#define GUN_LOAD_INTO_CHAMBER		(1<<8)
+#define GUN_ENERGY					(1<<9)
+#define GUN_FLASHLIGHT_ON			(1<<10)
+#define GUN_WIELDED_FIRING_ONLY		(1<<11)
+#define GUN_POLICE					(1<<12)
+#define GUN_BURST_FIRING			(1<<13)
+#define GUN_ALLOW_SYNTHETIC			(1<<14)
+#define GUN_HAS_AUTOBURST			(1<<15)
+#define GUN_IS_AIMING				(1<<16)
+#define AUTO_AIM_MODE				(1<<17)
+#define GUN_WIELDED_STABLE_FIRING_ONLY	(1<<18)
 
 #define GUN_FIREMODE_SEMIAUTO "semi-auto fire mode"
 #define GUN_FIREMODE_BURSTFIRE "burst-fire mode"
@@ -142,6 +143,7 @@
 #define SMOKE_CHEM			(1<<14)
 #define SMOKE_EXTINGUISH	(1<<15) //Extinguishes fires and mobs that are on fire
 #define SMOKE_NEURO_LIGHT	(1<<16) //Effectively a sub-flag of Neuro; precludes higher impact effects
+#define SMOKE_HUGGER_PACIFY	(1<<17) //Smoke that pacifies huggers in its area; mainly used for vision blocking smoke
 
 //Incapacitated
 #define INCAPACITATED_IGNORE_RESTRAINED (1<<0)

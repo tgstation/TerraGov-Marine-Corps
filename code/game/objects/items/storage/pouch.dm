@@ -232,8 +232,8 @@
 	icon_state = "large_ammo_mag"
 	storage_slots = 3
 
-/obj/item/storage/pouch/magazine/large/m4rafull
-	fill_type = /obj/item/ammo_magazine/rifle/m4ra
+/obj/item/storage/pouch/magazine/large/tx8full
+	fill_type = /obj/item/ammo_magazine/rifle/tx8
 	fill_number = 3
 
 /obj/item/storage/pouch/magazine/large/t19full
@@ -621,7 +621,7 @@
 /obj/item/storage/pouch/construction
 	name = "construction pouch"
 	desc = "It's designed to hold construction materials - glass/metal sheets, metal rods, barbed wire, cable coil, and empty sandbags. It also has a hook for an entrenching tool."
-	storage_slots = 3
+	storage_slots = 4
 	max_w_class = 3
 	icon_state = "construction"
 	can_hold = list(

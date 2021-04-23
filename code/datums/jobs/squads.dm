@@ -126,6 +126,8 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 	if(istype(headset))
 		headset.set_frequency(radio_freq)
 		headset.recalculateChannels()
+		headset.remove_minimap()
+		headset.add_minimap()
 		if(headset.sl_direction && H != squad_leader)
 			SSdirection.start_tracking(tracking_id, H)
 
@@ -238,7 +240,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 
 	//Handle aSL skill level and radio
 	if(!ismarineleaderjob(squad_leader.job))
-		squad_leader.skills = squad_leader.skills.setRating(leadership = SKILL_LEAD_TRAINED)
+		squad_leader.skills = squad_leader.skills.setRating(leadership = SKILL_LEAD_EXPERT)
 		squad_leader.comm_title = "aSL"
 		var/obj/item/card/id/ID = squad_leader.get_idcard()
 		if(istype(ID))
