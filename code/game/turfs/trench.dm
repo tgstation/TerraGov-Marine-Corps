@@ -5,10 +5,10 @@ obj/structure/trench
 	icon_state = "gold0"
 	density = FALSE
 	anchored = TRUE
-	var/slowamt = 4
 	tiles_with = list(
 		/obj/structure/trench,
 	)
+	var/slowamt = 4
 
 obj/structure/trench/Initialize()
 	. = ..()

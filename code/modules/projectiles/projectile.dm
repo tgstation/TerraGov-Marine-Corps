@@ -1,5 +1,5 @@
 //Some debug variables. Toggle them to 1 in order to see the related debug messages. Helpful when testing out formulas.
-#define DEBUG_HIT_CHANCE	0
+#define DEBUG_HIT_CHANCE	1
 #define DEBUG_HUMAN_DEFENSE	0
 #define DEBUG_XENO_DEFENSE	0
 #define DEBUG_CREST_DEFENSE	0
@@ -649,10 +649,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		return FALSE
 	if((proj.ammo.flags_ammo_behavior & AMMO_XENO) && (isnestedhost(src) || stat == DEAD))
 		return FALSE
-	if(HAS_TRAIT(src, TRAIT_ISINTRENCH))
-		if(prob(75)) //75% chance to MISS.
-			return FALSE
-
 	. += proj.accuracy //We want a temporary variable so accuracy doesn't change every time the bullet misses.
 	BULLET_DEBUG("Base accuracy is <b>[.]; scatter:[proj.scatter]; distance:[proj.distance_travelled]</b>")
 	if(proj.distance_travelled <= proj.ammo.accurate_range) //If bullet stays within max accurate range + random variance.
@@ -669,6 +665,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	. = max(5, .) //default hit chance is at least 5%.
 	if(lying_angle && stat != CONSCIOUS)
 		. += 15 //Bonus hit against unconscious people.
+
 
 	var/obj/item/shot_source = proj.shot_from
 	if(isliving(proj.firer))
@@ -691,6 +688,10 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				. += shooter_human.marksman_aura * 3
 				. += proj.distance_travelled * shooter_human.marksman_aura * 0.35
 
+	if(HAS_TRAIT(src, TRAIT_ISINTRENCH))
+		BULLET_DEBUG("mob trench acc penalty(-50).")
+		. *= 0.35 //35% chance to hit, which is a 65% protection
+
 	BULLET_DEBUG("Hit zone penalty (-[GLOB.base_miss_chance[proj.def_zone]]) ([proj.def_zone])")
 	. -= GLOB.base_miss_chance[proj.def_zone] //Reduce accuracy based on spot.
 
@@ -700,6 +701,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		return FALSE
 
 	var/hit_roll = rand(0, 99) //Our randomly generated roll
+	BULLET_DEBUG("Hit Roll is <b> [hit_roll] </b>")
 
 	if(. > hit_roll) //Hit
 		return TRUE
