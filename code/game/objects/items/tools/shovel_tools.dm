@@ -23,7 +23,8 @@
 	var/dirt_amt = 0
 	var/dirt_amt_per_dig = 5
 
-	var/entrenchingmode = FALSE ///Toggles if the shovel will dig out dirt or a trench
+	///Toggles if the shovel will dig out dirt or a trench
+	var/entrenchingmode = FALSE
 
 
 /obj/item/tool/shovel/update_overlays()
@@ -210,8 +211,8 @@
 	else
 		user.visible_message("<span class='notice'>[user] reconfigures [src] to digging mode.</span>")
 
-
-/obj/item/tool/shovel/proc/dig_trench(turf/target, mob/user) ///Digs a trench if there is no trench in that tile already.
+///Digs a trench if there is no trench in that tile already.
+/obj/item/tool/shovel/proc/dig_trench(turf/target, mob/user)
 
 	to_chat(user, "<span class='notice'>You start digging a trench.</span>")
 	playsound(user.loc, 'sound/effects/thud.ogg', 40, 1, 6)
