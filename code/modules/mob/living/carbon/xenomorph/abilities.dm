@@ -1051,19 +1051,19 @@
 
 
 ////////////////////
-/// Build giant worm
+/// Build resin maw
 ///////////////////
-/datum/action/xeno_action/activable/build_giant_worm
-	name = "Transform to giant worm"
+/datum/action/xeno_action/activable/build_resin_maw
+	name = "Transform to resin maw"
 	action_icon_state = "oldbuild_tunnel"
-	mechanics_text = "Transform a silo into a giant burrower worm. This ability will destroy all our silos in the field and reset our psych points reserve, however!"
-	ability_name = "create giant worm"
+	mechanics_text = "Transform a silo into a resinmaw. This ability will destroy all our silos in the field and reset our psych points reserve, however!"
+	ability_name = "create resin maw"
 	plasma_cost = 150
 	cooldown_timer = 60 SECONDS
 	/// How long does it take to build
 	var/build_time = 10 SECONDS
 
-/datum/action/xeno_action/activable/build_giant_worm/can_use_ability(atom/A, silent, override_flags)
+/datum/action/xeno_action/activable/build_resin_maw/can_use_ability(atom/A, silent, override_flags)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -1078,18 +1078,24 @@
 			to_chat(owner, "<span class='warning'>We need to target a silo to be able to transform it!</span>")
 		return FALSE
 
-/datum/action/xeno_action/activable/build_giant_worm/use_ability(atom/A)
-	to_chat(owner, "<span class='notice'>We start the process of transforming this silo into a giant worm, which will also destroy all other silos.</span>")
-	
+	if(SSticker.round_start_time + RESIN_MAW_LOCK > world.time)
+		if(!silent)
+			to_chat(owner, "<span class='warning'>It is too soon to convert this silo into a resin maw!</span>")
+		return FALSE
+
+
+/datum/action/xeno_action/activable/build_resin_maw/use_ability(atom/A)
+	to_chat(owner, "<span class='notice'>We start the process of transforming this silo into a resin maw, which will also destroy all other silos.</span>")
+
 	if(!do_after(owner, build_time, TRUE, A, BUSY_ICON_BUILD))
 		return fail_activate()
-	
+
 	succeed_activate()
 
-	var/worm = new /obj/structure/resin/giant_worm(A.loc)
+	var/maw = new /obj/structure/resin/resin_maw(A.loc)
 	var/obj/structure/resin/silo/silo_used = A
 	silo_used.destroy_silently()
-	xeno_message("A giant worm has been created!", "xenoannounce", target = worm)
+	xeno_message("A resin maw has been created!", "xenoannounce", target = maw)
 
 ////////////////////
 /// Build xeno turret

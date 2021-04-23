@@ -585,7 +585,7 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/proc/attempt_to_spawn_larva(mob/xeno_candidate, larva_already_reserved = FALSE)
 	if(!xeno_candidate?.client)
 		return FALSE
-	
+
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	if((xeno_job.total_positions - xeno_job.current_positions) < 0)
 		return FALSE
@@ -1155,7 +1155,7 @@ to_chat will check for valid clients itself already so no need to double check f
 			deltimer(D.siloless_hive_timer)
 			D.siloless_hive_timer = null
 		return
-	if(GLOB.xeno_resin_silos.len || GLOB.xeno_giant_worms.len)
+	if(GLOB.xeno_resin_silos.len || GLOB.xeno_resin_maws.len)
 		if(D?.siloless_hive_timer)
 			deltimer(D.siloless_hive_timer)
 			D.siloless_hive_timer = null
