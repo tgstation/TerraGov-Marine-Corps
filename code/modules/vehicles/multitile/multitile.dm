@@ -193,10 +193,10 @@ Vehicles are placed on the map by a spawner or admin verb
 	return TRUE
 
 
-/obj/vehicle/multitile/root/proc/load_hitboxes(datum/coords/dimensions, datum/coords/root_pos)
+/obj/vehicle/multitile/root/proc/load_hitboxes()
 	return
 
-/obj/vehicle/multitile/root/proc/load_entrance_marker(datum/coords/rel_pos)
+/obj/vehicle/multitile/root/proc/load_entrance_marker()
 	return
 
 //Saves where everything is so we can revert
