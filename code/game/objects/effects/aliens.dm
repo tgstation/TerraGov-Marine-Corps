@@ -56,23 +56,31 @@
 	acid_damage = damage
 	xeno_owner = _xeno_owner
 	RegisterSignal(xeno_owner, COMSIG_PARENT_QDELETING, .proc/clean_mob_owner)
-	TIMER_COOLDOWN_START(src, COOLDOWN_PARALYSE_ACID, 1 SECONDS)
+	RegisterSignal(loc, COMSIG_ATOM_ENTERED, .proc/atom_enter_turf)
+	TIMER_COOLDOWN_START(src, COOLDOWN_PARALYSE_ACID, 5)
 
 /obj/effect/xenomorph/spray/Destroy()
 	STOP_PROCESSING(SSprocessing, src)
 	xeno_owner = null
 	return ..()
 
-/obj/effect/xenomorph/spray/Crossed(atom/movable/AM)
-	. = ..()
-	SEND_SIGNAL(AM, COMSIG_ATOM_ACIDSPRAY_ACT, src, acid_damage, slow_amt)
+/// Signal handler to check if an human is entering the acid spray turf
+/obj/effect/xenomorph/spray/proc/atom_enter_turf(datum/source, atom/movable/moved_in)
+	SIGNAL_HANDLER
+	if(!ishuman(moved_in))
+		return
+	var/mob/living/carbon/human/victim = moved_in
+	if(victim.flags_pass & HOVERING)
+		return
+	victim.acid_spray_entered(null, src, acid_damage, slow_amt)
 
 /// Set xeno_owner to null to avoid hard del
 /obj/effect/xenomorph/spray/proc/clean_mob_owner()
 	UnregisterSignal(xeno_owner, COMSIG_PARENT_QDELETING)
 	xeno_owner = null
 
-/mob/living/carbon/human/proc/acid_spray_crossed(datum/source, obj/effect/xenomorph/spray/acid_spray, acid_damage, slow_amt)
+/// Signal handler to burn and maybe stun the human entering the acid spray
+/mob/living/carbon/human/proc/acid_spray_entered(datum/source, obj/effect/xenomorph/spray/acid_spray, acid_damage, slow_amt)
 	SIGNAL_HANDLER
 	if(CHECK_MULTIPLE_BITFIELDS(flags_pass, HOVERING))
 		return
@@ -80,7 +88,7 @@
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ACID))
 		return
 	
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_PARALYSE_ACID)) //To prevent being able to walk "over" acid sprays
+	if(TIMER_COOLDOWN_CHECK(acid_spray, COOLDOWN_PARALYSE_ACID)) //To prevent being able to walk "over" acid sprays
 		acid_spray_act(acid_spray.xeno_owner)
 		return
 

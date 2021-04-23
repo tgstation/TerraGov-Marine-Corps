@@ -44,6 +44,7 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 		<br /><br />
 		<b>Duty</b>: Carry out orders made by your acting Squad Leader, deal with any threats that oppose the TGMC.
 	"}
+	minimap_icon = "private"
 
 /datum/job/terragov/squad/standard/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
@@ -122,6 +123,7 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 		<br /><br />
 		<b>Duty</b>: Construct and reinforce the FOB that has been ordered by your acting Squad Leader, fix power generators and mining drills in the AO and stay on guard for any dangers that threaten your FOB.
 	"}
+	minimap_icon = "engi"
 
 /datum/job/terragov/squad/engineer/radio_help_message(mob/M)
 	. = ..()
@@ -200,6 +202,7 @@ Your squaddies will look to you when it comes to construction in the field of ba
 		<br /><br />
 		<b>Duty</b>: Tend the injuries of your fellow marines or related personnel, keep them at fighting strength. Evacuate those who are incapacitated or rendered incapable of fighting due to severe wounds or larvae infections.
 	"}
+	minimap_icon = "medic"
 
 /datum/job/terragov/squad/corpsman/radio_help_message(mob/M)
 	. = ..()
@@ -280,6 +283,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
 	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_REGULAR)
 	job_points_needed  = 10 //Redefined via config.
+	minimap_icon = "smartgunner"
 
 /datum/job/terragov/squad/smartgunner/radio_help_message(mob/M)
 	. = ..()
@@ -404,6 +408,7 @@ You can serve a variety of roles, so choose carefully."})
 		<br /><br />
 		<b>Duty</b>: Be a responsible leader of your squad, make sure your squad communicates frequently all the time and ensure they are working together for the task at hand. Stay safe, as you’re a valuable leader.
 	"}
+	minimap_icon = "leader"
 
 
 /datum/job/terragov/squad/leader/radio_help_message(mob/M)
@@ -490,6 +495,7 @@ You are also in charge of communicating with command and letting them know about
 	total_positions = 0
 	job_flags = JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
 	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_REGULAR, /datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR)
+	minimap_icon = "private"
 
 /datum/job/terragov/squad/vatgrown/return_spawn_type(datum/preferences/prefs)
 	return /mob/living/carbon/human/species/vatgrown

@@ -408,7 +408,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	if(!A)
 		return
 
-	loc = pick(get_area_turfs(A))
+	forceMove(pick(get_area_turfs(A)))
 
 
 /mob/dead/observer/verb/follow_ghost()

@@ -55,6 +55,7 @@
 	for(var/i in RANGE_TURFS(XENO_SILO_DETECTION_RANGE, src))
 		RegisterSignal(i, COMSIG_ATOM_ENTERED, .proc/resin_silo_proxy_alert)
 
+	SSminimaps.add_marker(src, z, hud_flags = MINIMAP_FLAG_XENO, iconstate = "silo")
 	return INITIALIZE_HINT_LATELOAD
 
 
@@ -237,15 +238,15 @@
 		if(EXPLODE_LIGHT)
 			take_damage(300)
 
-/obj/structure/resin/flamer_fire_act()
+/obj/structure/resin/xeno_turret/flamer_fire_act()
 	take_damage(60, BURN, "fire")
 	ENABLE_BITFIELD(resistance_flags, ON_FIRE)
 
-/obj/structure/resin/fire_act()
+/obj/structure/resin/xeno_turret/fire_act()
 	take_damage(60, BURN, "fire")
 	ENABLE_BITFIELD(resistance_flags, ON_FIRE)
 
-/obj/structure/resin/update_overlays()
+/obj/structure/resin/xeno_turret/update_overlays()
 	. = ..()
 	if(obj_integrity <= max_integrity / 2)
 		. += image('icons/Xeno/acidturret.dmi', src, "+turret_damage") 
