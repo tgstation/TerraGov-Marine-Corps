@@ -1,0 +1,4 @@
+author: "Surrealaser"
+delete-after: True
+changes: 
+  - bugfix: "Fixes non-larval huggers not attacking infected humans."
