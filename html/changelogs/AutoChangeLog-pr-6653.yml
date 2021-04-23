@@ -1,0 +1,4 @@
+author: "Wayland-Smithy"
+delete-after: True
+changes: 
+  - bugfix: "Closing the \"Warning : the game is unbalanced\" dialog when joining late as a marine no longer proceeds to spawn you in."
