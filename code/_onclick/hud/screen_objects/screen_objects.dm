@@ -557,7 +557,7 @@
 	usr.update_action_buttons()
 	return TRUE
 
-/obj/screen/Leader_locator
+/obj/screen/locatorleader
 	name = "leader locator"
 	icon = 'icons/Marine/marine-items.dmi'
 	icon_state = "Blue_arrow"

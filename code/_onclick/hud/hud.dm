@@ -20,7 +20,8 @@
 	var/obj/screen/move_intent
 	var/obj/screen/alien_plasma_display
 	var/obj/screen/locate_leader
-	var/obj/screen/Leader_locator
+	var/obj/screen/locatorsl
+	var/obj/screen/locatorfc
 	
 	var/obj/screen/module_store_icon
 

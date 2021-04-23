@@ -340,7 +340,7 @@
 	.["Regenerate Icons"] = "?_src_=vars;[HrefToken()];regenerateicons=[REF(src)]"
 
 /mob/living/carbon/update_tracking(mob/living/carbon/C)
-	var/obj/screen/LL_dir = hud_used.SL_locator
+	var/obj/screen/LL_dir = hud_used.locatorsl
 
 	if(C.z != src.z || get_dist(src, C) < 1 || src == C)
 		LL_dir.icon_state = ""
@@ -350,8 +350,8 @@
 		LL_dir.transform = turn(LL_dir.transform, Get_Angle(src, C))
 
 /mob/living/carbon/clear_leader_tracking()
-	var/obj/screen/LL_dir = hud_used.SL_locator
-	LL_dir.icon_state = "SL_locator_off"
+	var/obj/screen/LL_dir = hud_used.locatorsl
+	LL_dir.icon_state = "locatorsl_off"
 
 
 /mob/living/carbon/proc/equip_preference_gear(client/C)

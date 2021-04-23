@@ -188,7 +188,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	if(istype(user) && headset_hud_on)
 		disable_squadhud()
 		squadhud.remove_hud_from(user)
-		user.hud_used.SL_locator.alpha = 0
+		user.hud_used.locatorsl.alpha = 0
 		wearer = null
 		squadhud = null
 	if(camera)
@@ -284,8 +284,8 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		to_chat(wearer, "<span class='warning'>You need to turn the HUD on first!</span>")
 		return
 
-	if(wearer.mind && wearer.assigned_squad && wearer.hud_used?.SL_locator)
-		wearer.hud_used.SL_locator.alpha = 128
+	if(wearer.mind && wearer.assigned_squad && wearer.hud_used?.locatorsl)
+		wearer.hud_used.locatorsl.alpha = 128
 		if(wearer.assigned_squad.squad_leader == wearer)
 			SSdirection.set_leader(wearer.assigned_squad.tracking_id, wearer)
 			SSdirection.start_tracking("marine-sl", wearer)
@@ -301,8 +301,8 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	if(!wearer.assigned_squad)
 		return
 
-	if(wearer.mind && wearer.hud_used?.SL_locator)
-		wearer.hud_used.SL_locator.alpha = 0
+	if(wearer.mind && wearer.hud_used?.locatorsl)
+		wearer.hud_used.locatorsl.alpha = 0
 
 	if(wearer.assigned_squad.squad_leader == wearer)
 		SSdirection.clear_leader(wearer.assigned_squad.tracking_id)

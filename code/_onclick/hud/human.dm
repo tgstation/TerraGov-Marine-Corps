@@ -194,11 +194,11 @@
 	static_inventory += rest_icon
 
 	//squad leader locator
-	SL_locator = new /obj/screen/Leader_locator
-	infodisplay += SL_locator
+	locatorsl = new /obj/screen/locatorleader
+	infodisplay += locatorsl
 	//Field Commander locator
-	FC_locator = new /obj/screen/Leader_locator
-	infodisplay += FC_locator
+	locatorfc = new /obj/screen/locatorleader
+	infodisplay += locatorfc
 
 	use_attachment = new /obj/screen/firearms/attachment()
 	static_inventory += use_attachment
