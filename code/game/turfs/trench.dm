@@ -10,14 +10,8 @@ obj/structure/trench
 		/obj/structure/trench,
 	)
 
-turf/open/ground/trenchturf
-	name = "trench floor"
-	desc = "Thats a Trench Floor"
-
-
 obj/structure/trench/Initialize()
 	. = ..()
-	new /turf/open/ground/trenchturf(src.loc)
 	relativewall()
 	relativewall_neighbours()
 

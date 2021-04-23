@@ -650,8 +650,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	if((proj.ammo.flags_ammo_behavior & AMMO_XENO) && (isnestedhost(src) || stat == DEAD))
 		return FALSE
 	if(HAS_TRAIT(src, TRAIT_ISINTRENCH))
-		//if(!istype(proj.starting_turf, /turf/open/ground/trenchturf))
-			//return FALSE
 		if(prob(75)) //75% chance to MISS.
 			return FALSE
 
