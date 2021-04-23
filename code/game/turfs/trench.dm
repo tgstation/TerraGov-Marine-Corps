@@ -3,6 +3,7 @@ obj/structure/trench
 	desc = "A wide, narrow earthwork designed to protect soldiers from any projectiles, since WWI!"
 	icon = 'icons/turf/trench.dmi'
 	icon_state = "gold0"
+	layer = TRENCH_LAYER
 	density = FALSE
 	anchored = TRUE
 	tiles_with = list(

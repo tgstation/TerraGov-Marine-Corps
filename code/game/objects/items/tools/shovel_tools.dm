@@ -208,12 +208,17 @@
 	entrenchingmode = !entrenchingmode
 	if(entrenchingmode)
 		user.visible_message("<span class='notice'>[user] reconfigures [src] to entrenching mode.</span>")
+		return
 	else
 		user.visible_message("<span class='notice'>[user] reconfigures [src] to digging mode.</span>")
+		return
 
 ///Digs a trench if there is no trench in that tile already.
 /obj/item/tool/shovel/proc/dig_trench(turf/target, mob/user)
-
+	var/obj/structure/B = locate() in target
+	if(B)
+		to_chat(user, "<span class='notice'>You cannot place a trench there!</span>")
+		return
 	to_chat(user, "<span class='notice'>You start digging a trench.</span>")
 	playsound(user.loc, 'sound/effects/thud.ogg', 40, 1, 6)
 	if(!do_after(user, shovelspeed, TRUE, target, BUSY_ICON_BUILD))
