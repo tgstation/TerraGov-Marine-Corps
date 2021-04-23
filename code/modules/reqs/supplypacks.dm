@@ -956,7 +956,7 @@ CLOTHING
 	contains = list(
 		/obj/item/jetpack_marine,
 	)
-	cost = 5
+	cost = 15
 
 /*******************************************************************************
 MEDICAL
