@@ -549,7 +549,7 @@
 		if(CHARGE_BULL_GORE)
 			if(world.time > charge_datum.next_special_attack)
 				charge_datum.next_special_attack = world.time + 2 SECONDS
-				attack_alien_harm(charger, 0, BODY_ZONE_CHEST, FALSE, TRUE, TRUE) //Free gore attack.
+				attack_alien_harm(charger, charger.xeno_caste.melee_damage, BODY_ZONE_PRECISE_GROIN, FALSE, TRUE, TRUE) //Free gore attack.
 				emote_gored()
 				var/turf/destination = get_step(loc, charger.dir)
 				if(destination)
