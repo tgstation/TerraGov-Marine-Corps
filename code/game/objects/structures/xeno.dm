@@ -240,7 +240,7 @@
 	hardness = 1.5
 	layer = RESIN_STRUCTURE_LAYER
 	max_integrity = 150
-	var/close_delay = 20 SECONDS
+	var/close_delay = 2 SECONDS
 
 	tiles_with = list(/turf/closed, /obj/structure/mineral_door/resin)
 
