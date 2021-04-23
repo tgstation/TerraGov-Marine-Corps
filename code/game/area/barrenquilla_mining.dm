@@ -197,6 +197,7 @@
 	name = "The Brass Gavel"
 	icon_state = "lava_clock_nuke"
 	outside = FALSE
+	requires_power = 0
 
 /area/barren/misc/ashshelter
 	name = "Ash Shelter"
