@@ -87,6 +87,7 @@
 #define THROW_TRAIT "throw"
 #define FORTIFY_TRAIT "fortify" //Defender fortify ability.
 #define TRAIT_STASIS	"stasis"//Subject to the stasis effect
+#define TRAIT_SOURCE_TRENCH "trench_state" //Source of trench
 
 //mob traits
 #define TRAIT_KNOCKEDOUT		"knockedout" //Forces the user to stay unconscious.
@@ -104,6 +105,7 @@
 #define TRAIT_UNDEFIBBABLE 		"undefibbable"//human can't be revived
 #define TRAIT_HEALING_INFUSION	"healing_infusion"//greatly improves natural healing for xenos
 #define TRAIT_PSY_DRAINED		"psy_drained"//mob was drained of life force by a xenos
+#define TRAIT_ISINTRENCH		"occupied_trench" //Use is within a trench's limits
 
 // item traits
 #define TRAIT_T_RAY_VISIBLE		"t-ray-visible" // Visible on t-ray scanners if the atom/var/level == 1
