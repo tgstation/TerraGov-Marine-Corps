@@ -104,7 +104,7 @@
 #define ui_wear_ear "WEST+2:10,3:9"
 #define ui_head "WEST+1:8,4:11"
 
-#define ui_sl_dir "CENTER,CENTER"
+#define ui_ll_dir "CENTER,CENTER"
 
 // Ghosts
 #define ui_ghost_slot1 "SOUTH:6,CENTER-2:24"

@@ -557,14 +557,13 @@
 	usr.update_action_buttons()
 	return TRUE
 
-/obj/screen/SL_locator
-	name = "sl locator"
+/obj/screen/Leader_locator
+	name = "leader locator"
 	icon = 'icons/Marine/marine-items.dmi'
 	icon_state = "Blue_arrow"
 	alpha = 0 //invisible
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	screen_loc = ui_sl_dir
-
+	screen_loc = ui_ll_dir
 /obj/screen/firearms
 
 /obj/screen/firearms/Click()
@@ -752,7 +751,7 @@
 /obj/screen/arrow
 	icon = 'icons/Marine/marine-items.dmi'
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	screen_loc = ui_sl_dir
+	screen_loc = ui_ll_dir
 	alpha = 128 //translucent
 	///The mob for which the arrow appears
 	var/mob/living/carbon/tracker
