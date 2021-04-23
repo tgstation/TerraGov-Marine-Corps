@@ -1078,6 +1078,11 @@
 			to_chat(owner, "<span class='warning'>We need to target a silo to be able to transform it!</span>")
 		return FALSE
 
+	if(loc.z != 2)
+		if(!silent)
+			to_chat(owner, "<span class='warning'>You must be on the planet to do this!</span>")
+		return FALSE
+
 	if(SSticker.round_start_time + RESIN_MAW_LOCK > world.time)
 		if(!silent)
 			to_chat(owner, "<span class='warning'>It is too soon to convert this silo into a resin maw!</span>")
