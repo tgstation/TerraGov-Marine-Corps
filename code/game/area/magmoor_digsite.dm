@@ -23,6 +23,8 @@
 	name = "Magmoor Central Fissure"
 	ceiling = CEILING_NONE
 	outside = TRUE
+	flags_area = NO_DROPPOD
+
 //Caves
 
 /area/magmoor/cave

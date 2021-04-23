@@ -6304,12 +6304,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/weapon_room)
-"uT" = (
-/turf/open/floor/carpet{
-	dir = 9;
-	icon_state = "carpetside"
-	},
-/area/mainship/living/numbertwobunks)
 "uU" = (
 /obj/structure/bed/chair/wood{
 	dir = 8
@@ -14109,6 +14103,13 @@
 /obj/structure/closet/crate/bravo,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
+"Ss" = (
+/obj/structure/reagent_dispensers/wallmounted/peppertank/milk,
+/turf/open/floor/carpet{
+	dir = 9;
+	icon_state = "carpetside"
+	},
+/area/mainship/living/numbertwobunks)
 "St" = (
 /obj/machinery/status_display,
 /turf/closed/wall/mainship,
@@ -16170,7 +16171,7 @@ aa
 aa
 aa
 aa
-aa
+fI
 aa
 aa
 aa
@@ -38944,7 +38945,7 @@ bZ
 Ox
 Eo
 Ox
-uT
+Ss
 vh
 tp
 Up
