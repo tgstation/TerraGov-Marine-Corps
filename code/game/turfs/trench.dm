@@ -4,7 +4,10 @@ obj/structure/trench
 	icon = 'icons/turf/trench.dmi'
 	icon_state = "gold0"
 	layer = TRENCH_LAYER
-	density = FALSE
+	generic_canpass = FALSE
+	climbable = TRUE
+	climb_delay = 20
+	density = TRUE
 	anchored = TRUE
 	tiles_with = list(
 		/obj/structure/trench,
@@ -19,8 +22,13 @@ obj/structure/trench/Initialize()
 obj/structure/trench/Crossed(atom/movable/AM)
 
 	var/mob/living/H = AM
-	H.next_move_slowdown += slowamt
 	ADD_TRAIT(H, TRAIT_ISINTRENCH, TRAIT_SOURCE_TRENCH)
 
 obj/structure/trench/Uncrossed(atom/movable/AM)
 	REMOVE_TRAIT(AM, TRAIT_ISINTRENCH, TRAIT_SOURCE_TRENCH)
+
+obj/structure/trench/CanAllowThrough(atom/movable/mover, turf/target)
+	if(HAS_TRAIT(mover, TRAIT_ISINTRENCH))
+		return TRUE
+	else
+		return FALSE
