@@ -56,7 +56,7 @@
 	name = "Advanced combat autoinjector"
 	desc = "An autoinjector loaded with two doses of advanced healing and painkilling chemicals. Intended for use in active combat."
 	icon_state = "autoinjector-7"
-	amount_per_transfer_from_this = 5
+	amount_per_transfer_from_this = 15
 	volume = 30
 	list_reagents = list(
 		/datum/reagent/medicine/meralyne = 10,
