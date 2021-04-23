@@ -11,7 +11,7 @@ obj/structure/trench
 	)
 
 turf/open/ground/trenchturf
-	name = "Trench Floor"
+	name = "trench floor"
 	desc = "Thats a Trench Floor"
 
 
