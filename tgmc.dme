@@ -904,7 +904,6 @@
 #include "code\game\turfs\plating.dm"
 #include "code\game\turfs\snow.dm"
 #include "code\game\turfs\space.dm"
-#include "code\game\turfs\trench.dm"
 #include "code\game\turfs\turf.dm"
 #include "code\game\turfs\space\transit.dm"
 #include "code\game\turfs\walls\r_wall.dm"

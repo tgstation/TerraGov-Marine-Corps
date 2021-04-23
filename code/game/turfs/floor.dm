@@ -490,10 +490,10 @@ GLOBAL_LIST_INIT(wood_icons, list("wood", "wood-broken"))
 		levelupdate()
 		playsound(src, 'sound/weapons/genhit.ogg', 25, 1)
 
-	//else if(istype(I, /obj/item/tool/shovel))
-		//if(!is_grass_floor())
-			//to_chat(user, "<span class='warning'>You cannot shovel this.</span>")
-			//return
+	else if(istype(I, /obj/item/tool/shovel))
+		if(!is_grass_floor())
+			to_chat(user, "<span class='warning'>You cannot shovel this.</span>")
+			return
 
 		new /obj/item/ore/glass(src)
 		new /obj/item/ore/glass(src) //Make some sand if you shovel grass

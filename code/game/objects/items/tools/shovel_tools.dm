@@ -6,7 +6,7 @@
 
 /obj/item/tool/shovel
 	name = "shovel"
-	desc = "A large tool for digging and moving dirt. Use Space to Change between entrenching (to dig trenches) and digging (for dirt)"
+	desc = "A large tool for digging and moving dirt."
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "shovel"
 	item_state = "shovel"
@@ -22,8 +22,6 @@
 	var/shovelspeed = 15
 	var/dirt_amt = 0
 	var/dirt_amt_per_dig = 5
-
-	var/entrenchingmode = FALSE //Toggles if the shovel will dig out dirt or a trench
 
 
 /obj/item/tool/shovel/update_overlays()
@@ -70,17 +68,16 @@
 		return
 	if(folded)
 		return
+
 	if(user.do_actions)
 		return
+
+
 	if(isturf(target))
 		if(!dirt_amt)
 			var/turf/T = target
 			var/turfdirt = T.get_dirt_type()
 			if(turfdirt)
-				if(entrenchingmode)
-					dig_trench(target, user)
-					//to_chat(user, "<span class='notice'>DEBUG: SHOVEL AFTER ATTACK OVERRIDDEN</span>") //Debug line
-					return
 				if(turfdirt == DIRT_TYPE_SNOW)
 					var/turf/open/floor/plating/ground/snow/ST = T
 					if(!ST.slayer)
@@ -121,7 +118,7 @@
 
 /obj/item/tool/shovel/spade
 	name = "spade"
-	desc = "A small tool for digging and moving dirt. Use Space to Change between entrenching (to dig trenches) and digging (for dirt)"
+	desc = "A small tool for digging and moving dirt."
 	icon_state = "spade"
 	item_state = "spade"
 	force = 5
@@ -146,7 +143,7 @@
 // Entrenching tool.
 /obj/item/tool/shovel/etool
 	name = "entrenching tool"
-	desc = "Used to dig holes and bash heads in. Folds in to fit in small spaces. Use a sharp item on it to sharpen it. Use Space to Change between entrenching (to dig trenches) and digging (for dirt)"
+	desc = "Used to dig holes and bash heads in. Folds in to fit in small spaces. Use a sharp item on it to sharpen it."
 	icon = 'icons/Marine/marine-items.dmi'
 	icon_state = "etool"
 	force = 30
@@ -161,7 +158,7 @@
 /obj/item/tool/shovel/etool/update_icon_state()
 	if(folded)
 		icon_state = "etool_c"
-	else if(sharp)
+	else if(sharp) 
 		icon_state = "etool_s"
 	else
 		icon_state = "etool"
@@ -203,17 +200,4 @@
 	. = ..()
 	if(sharp)
 		to_chat(user, "<span class='notice'> This one has been sharpened and can no longer be folded.</span>")
-/obj/item/tool/shovel/unique_action(mob/user)
-	entrenchingmode = !entrenchingmode
-	if(entrenchingmode)
-		user.visible_message("<span class='notice'>[user] reconfigures [src] to entrenching mode.</span>")
-	else
-		user.visible_message("<span class='notice'>[user] reconfigures [src] to digging mode.</span>")
-
-/obj/item/tool/shovel/proc/dig_trench(turf/target, mob/user)
-	to_chat(user, "<span class='notice'>You start digging a trench.</span>")
-	playsound(user.loc, 'sound/effects/thud.ogg', 40, 1, 6)
-	if(!do_after(user, shovelspeed, TRUE, target, BUSY_ICON_BUILD))
-		return
-	new/obj/structure/trench(target)
 
