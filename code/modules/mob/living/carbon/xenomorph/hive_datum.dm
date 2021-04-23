@@ -1088,6 +1088,8 @@ to_chat will check for valid clients itself already so no need to double check f
 	.["abilities"] = list()
 	for(var/ability in xeno.xeno_caste.actions)
 		var/datum/action/xeno_action/xeno_ability = ability
+		if(!(SSticker.mode.flags_xeno_abilities & initial(xeno_ability.gamemode_flags)))
+			continue
 		.["abilities"]["[ability]"] = list(
 			"name" = initial(xeno_ability.name),
 			"desc" = initial(xeno_ability.mechanics_text),
@@ -1100,6 +1102,8 @@ to_chat will check for valid clients itself already so no need to double check f
 		var/list/caste_data = list("type_path" = caste.caste_type_path, "name" = caste.display_name, "abilities" = list())
 		for(var/ability in caste.actions)
 			var/datum/action/xeno_action/xeno_ability = ability
+			if(!(SSticker.mode.flags_xeno_abilities & initial(xeno_ability.gamemode_flags)))
+				continue
 			caste_data["abilities"]["[ability]"] = list(
 				"name" = initial(xeno_ability.name),
 				"desc" = initial(xeno_ability.mechanics_text),
