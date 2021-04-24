@@ -7,38 +7,6 @@ on:
     branches:
     - master
 jobs:
-  run_linters:
-    runs-on: ubuntu-20.04
-    steps:
-      - uses: actions/checkout@v2
-      - name: Setup cache
-        uses: actions/cache@v2
-        with:
-          path: $HOME/SpacemanDMM
-          key: ${{ runner.os }}-spacemandmm
-      - name: Install Tools
-        run: |
-          pip3 install setuptools
-          bash tools/ci/install_build_tools.sh
-          bash tools/ci/install_spaceman_dmm.sh dreamchecker
-          sudo apt install pcregrep
-          tools/bootstrap/python -c ''
-      - name: Run Linters
-        run: |
-          bash tools/ci/check_filedirs.sh tgmc.dme
-          bash tools/ci/check_changelogs.sh
-          find . -name "*.php" -print0 | xargs -0 -n1 php -l
-          find . -name "*.json" -not -path "*/node_modules/*" -print0 | xargs -0 python3 ./tools/json_verifier.py
-          bash tools/ci/build_tgui.sh
-          bash tools/ci/check_grep.sh
-          tools/bootstrap/python -m dmi.test
-          tools/bootstrap/python -m mapmerge2.dmm_test
-          ~/dreamchecker > ${GITHUB_WORKSPACE}/output-annotations.txt 2>&1
-      - name: Annotate Lints
-        uses: yogstation13/DreamAnnotate@v1
-        if: always()
-        with:
-          outputFile: output-annotations.txt
   compile_all_maps:
     runs-on: ubuntu-20.04
     steps:
