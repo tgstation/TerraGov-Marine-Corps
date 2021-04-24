@@ -4246,8 +4246,7 @@
 /area/lv624/ground/compound/n)
 "rH" = (
 /obj/structure/sink/bathroom{
-	dir = 8;
-	
+	dir = 8
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/living/commandbunks)
