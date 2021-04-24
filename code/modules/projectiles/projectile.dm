@@ -1,5 +1,5 @@
 //Some debug variables. Toggle them to 1 in order to see the related debug messages. Helpful when testing out formulas.
-#define DEBUG_HIT_CHANCE	0
+#define DEBUG_HIT_CHANCE	1
 #define DEBUG_HUMAN_DEFENSE	0
 #define DEBUG_XENO_DEFENSE	0
 #define DEBUG_CREST_DEFENSE	0
@@ -687,10 +687,16 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				BULLET_DEBUG("marksman_aura (+[shooter_human.marksman_aura * 3] + [proj.distance_travelled * shooter_human.marksman_aura * 0.35]).")
 				. += shooter_human.marksman_aura * 3
 				. += proj.distance_travelled * shooter_human.marksman_aura * 0.35
-
 	if(HAS_TRAIT(src, TRAIT_ISINTRENCH))
-		BULLET_DEBUG("mob trench acc penalty(-50).")
-		. *= 0.35 //35% chance to hit, which is a 65% protection
+		var/atom/D
+		for(D in proj.permutated)
+			BULLET_DEBUG("[proj.name] has passed through [D.loc.name]")
+			var/obj/structure/trench/S = locate() in D.loc
+			if(!S)
+				BULLET_DEBUG("mob trench acc penalty(65%).")
+				. *= 0.35 //35% chance to hit, which is a 65% protection
+				break
+
 
 	BULLET_DEBUG("Hit zone penalty (-[GLOB.base_miss_chance[proj.def_zone]]) ([proj.def_zone])")
 	. -= GLOB.base_miss_chance[proj.def_zone] //Reduce accuracy based on spot.
