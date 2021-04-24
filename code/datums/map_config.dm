@@ -65,6 +65,7 @@
 
 #define CHECK_EXISTS(X) if(!istext(json[X])) { log_world("[##X] missing from json!"); return; }
 /datum/map_config/proc/LoadConfig(filename, error_if_missing, maptype)
+	log_world("Starts loading")
 	if(!fexists(filename))
 		if(error_if_missing)
 			log_world("map_config not found: [filename]")
