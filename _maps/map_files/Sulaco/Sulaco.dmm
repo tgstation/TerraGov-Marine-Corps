@@ -2557,9 +2557,7 @@
 /area/sulaco/cryosleep)
 "alh" = (
 /obj/structure/table/mainship,
-/obj/machinery/door_control/mainship/req{
-	pixel_z = -5
-	},
+/obj/machinery/door_control/mainship/req,
 /turf/open/floor/prison,
 /area/sulaco/cargo/office)
 "ali" = (

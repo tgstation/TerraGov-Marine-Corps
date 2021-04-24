@@ -13698,9 +13698,7 @@
 	pixel_y = 3
 	},
 /obj/item/whistle,
-/obj/machinery/door_control/mainship/req{
-	pixel_z = -5
-	},
+/obj/machinery/door_control/mainship/req,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "QT" = (
