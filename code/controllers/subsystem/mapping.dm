@@ -35,12 +35,11 @@ SUBSYSTEM_DEF(mapping)
 
 //dlete dis once #39770 is resolved
 /datum/controller/subsystem/mapping/proc/HACK_LoadMapConfig()
-	if(!config)
-#ifdef FORCE_MAP
-		config = load_map_config(FORCE_MAP)
-#else
-		config = load_map_config(error_if_missing = FALSE)
-#endif
+	if(!configs)
+		configs = load_map_configs(ALL_MAPTYPES, error_if_missing = FALSE)
+		for(var/i in GLOB.clients)
+			var/client/C = i
+			winset(C, null, "mainwindow.title='[CONFIG_GET(string/title)] - [SSmapping.configs[SHIP_MAP].map_name]'")
 
 
 /datum/controller/subsystem/mapping/Initialize(timeofday)
