@@ -41,6 +41,11 @@
 
 	var/datum/component/orbiter/orbiting
 
+	/// Either FALSE, [EMISSIVE_BLOCK_GENERIC], or [EMISSIVE_BLOCK_UNIQUE]
+	var/blocks_emissive = FALSE
+	///Internal holder for emissive blocker object, do not use directly use blocks_emissive
+	var/atom/movable/emissive_blocker/em_block
+
 	///Lazylist to keep track on the sources of illumination.
 	var/list/affected_dynamic_lights
 	///Highest-intensity light affecting us, which determines our visibility.
@@ -49,6 +54,17 @@
 //===========================================================================
 /atom/movable/Initialize(mapload, ...)
 	. = ..()
+	switch(blocks_emissive)
+		if(EMISSIVE_BLOCK_GENERIC)
+			var/mutable_appearance/gen_emissive_blocker = mutable_appearance(icon, icon_state, plane = EMISSIVE_PLANE, alpha = src.alpha)
+			gen_emissive_blocker.color = GLOB.em_block_color
+			gen_emissive_blocker.dir = dir
+			gen_emissive_blocker.appearance_flags |= appearance_flags
+			add_overlay(list(gen_emissive_blocker))
+		if(EMISSIVE_BLOCK_UNIQUE)
+			render_target = ref(src)
+			em_block = new(src, render_target)
+			add_overlay(list(em_block))
 	if(opacity)
 		AddElement(/datum/element/light_blocking)
 	if(light_system == MOVABLE_LIGHT)
@@ -58,6 +74,10 @@
 /atom/movable/Destroy()
 	QDEL_NULL(proximity_monitor)
 	QDEL_NULL(language_holder)
+	QDEL_NULL(em_block)
+
+	if(opacity)
+		RemoveElement(/datum/element/light_blocking)
 
 	if(LAZYLEN(buckled_mobs))
 		unbuckle_all_mobs(force = TRUE)
@@ -85,7 +105,27 @@
 		orbiting.end_orbit(src)
 		orbiting = null
 
+	vis_contents.Cut()
 
+///Updates this movables emissive overlay
+/atom/movable/proc/update_emissive_block()
+	if(!blocks_emissive)
+		return
+	else if (blocks_emissive == EMISSIVE_BLOCK_GENERIC)
+		var/mutable_appearance/gen_emissive_blocker = mutable_appearance(icon, icon_state, plane = EMISSIVE_PLANE, alpha = src.alpha)
+		gen_emissive_blocker.color = GLOB.em_block_color
+		gen_emissive_blocker.dir = dir
+		gen_emissive_blocker.appearance_flags |= appearance_flags
+		return gen_emissive_blocker
+	else if(blocks_emissive == EMISSIVE_BLOCK_UNIQUE)
+		if(!em_block)
+			render_target = ref(src)
+			em_block = new(src, render_target)
+		return em_block
+
+/atom/movable/update_overlays()
+	. = ..()
+	. += update_emissive_block()
 
 ////////////////////////////////////////
 // Here's where we rewrite how byond handles movement except slightly different
@@ -952,7 +992,7 @@
 		ENABLE_BITFIELD(flags_pass, HOVERING)
 		return
 	DISABLE_BITFIELD(flags_pass, HOVERING)
-	
+
 
 /atom/movable/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
