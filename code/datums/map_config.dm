@@ -48,14 +48,12 @@
 	var/list/configs = list()
 
 	for(var/i in maptypes)
-		log_world("Compiled one map")
 		var/filename = MAP_TO_FILENAME[i]
 		var/datum/map_config/config = new
 		if(default)
 			configs[i] = config
 			continue
-		if(!config.LoadConfig(filename, error_if_missing, i))
-			log_world("Failed to load")
+		if(!config.LoadConfig(filename, error_if_missing, i, TRUE))
 			qdel(config)
 			config = new /datum/map_config
 		if(delete_after)
@@ -64,11 +62,18 @@
 	return configs
 
 #define CHECK_EXISTS(X) if(!istext(json[X])) { log_world("[##X] missing from json!"); return; }
-/datum/map_config/proc/LoadConfig(filename, error_if_missing, maptype)
-	log_world("Starts loading")
+/datum/map_config/proc/LoadConfig(filename, error_if_missing, maptype, load_default)
 	if(!fexists(filename))
-		log_world("map_config not found: [filename]")
-		return
+		if(error_if_missing)
+			log_world("map_config not found: [filename]")
+		if(!load_default)
+			return
+		switch(maptype)
+			if(GROUND_MAP)
+				return LoadConfig("_maps/lv624.json", error_if_missing, maptype)
+			if(SHIP_MAP)
+				return LoadConfig("_maps/pillar_of_spring.json", error_if_missing, maptype)
+
 
 	var/json = file(filename)
 	if(!json)
