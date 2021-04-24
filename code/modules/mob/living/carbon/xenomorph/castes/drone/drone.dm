@@ -15,3 +15,4 @@
 	inherent_verbs = list(
 		/mob/living/carbon/xenomorph/proc/vent_crawl,
 	)
+	xenotrenchprotection = TRUE
