@@ -195,7 +195,7 @@
 	icon_state = "grille[junction]"
 
 /obj/structure/trench/handle_icon_junction(junction)
-	icon_state = "gold[junction]"
+	icon_state = "trench[junction]"
 
 /turf/open/floor/vault/relativewall()
 	return

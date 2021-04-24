@@ -1,8 +1,8 @@
 obj/structure/trench
 	name = "Trench"
 	desc = "A wide, narrow earthwork designed to protect soldiers from any projectiles, since WWI!"
-	icon = 'icons/turf/trench.dmi'
-	icon_state = "gold0"
+	icon = 'icons/turf/trenchicon.dmi'
+	icon_state = "trench0"
 	layer = TRENCH_LAYER
 	generic_canpass = FALSE
 	climbable = TRUE
