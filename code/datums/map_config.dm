@@ -21,6 +21,7 @@
 	var/space_empty_levels = 1
 	var/list/environment_traits = list()
 	var/armor_style = "default"
+	/// List of gamemode supported by the map
 	var/list/gamemodes = list()
 
 	var/allow_custom_shuttles = TRUE
