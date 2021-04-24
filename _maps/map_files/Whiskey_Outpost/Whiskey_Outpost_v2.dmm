@@ -181,10 +181,7 @@
 /obj/structure/table/woodentable,
 /obj/structure/paper_bin,
 /obj/item/tool/pen,
-/obj/item/flashlight/lamp{
-	pixel_w = 6;
-	
-	},
+/obj/item/flashlight/lamp,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "aU" = (
@@ -524,7 +521,6 @@
 	},
 /obj/structure/barricade/sandbags{
 	dir = 1;
-	pixel_w = 0;
 	
 	},
 /turf/open/floor/plating/asteroidwarning{
@@ -865,7 +861,6 @@
 "dp" = (
 /obj/structure/barricade/sandbags{
 	dir = 1;
-	pixel_w = 0;
 	
 	},
 /turf/open/floor/plating/asteroidwarning{
@@ -928,7 +923,6 @@
 	},
 /obj/structure/barricade/sandbags{
 	dir = 1;
-	pixel_w = 0;
 	
 	},
 /turf/open/floor/plating/warning{
@@ -1796,7 +1790,6 @@
 	},
 /obj/structure/barricade/sandbags{
 	dir = 1;
-	pixel_w = 0;
 	
 	},
 /turf/open/floor/plating/warning{
@@ -3954,7 +3947,6 @@
 "qg" = (
 /obj/structure/barricade/sandbags{
 	dir = 1;
-	pixel_w = 0;
 	
 	},
 /obj/structure/barricade/sandbags{
@@ -4190,7 +4182,6 @@
 "qN" = (
 /obj/structure/barricade/sandbags{
 	dir = 1;
-	pixel_w = 0;
 	
 	},
 /turf/open/floor/plating/warning{
@@ -4221,7 +4212,6 @@
 	},
 /obj/structure/barricade/sandbags{
 	dir = 1;
-	pixel_w = 0;
 	
 	},
 /turf/open/floor/plating/asteroidwarning{
@@ -5257,7 +5247,6 @@
 	},
 /obj/structure/barricade/sandbags{
 	dir = 1;
-	pixel_w = 0;
 	
 	},
 /turf/open/floor/plating/ground/dirt,

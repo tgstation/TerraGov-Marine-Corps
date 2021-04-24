@@ -1240,7 +1240,6 @@
 "eu" = (
 /obj/structure/sink{
 	dir = 8;
-	pixel_w = -9;
 	
 	},
 /turf/open/floor/prison/kitchen,
@@ -3063,7 +3062,6 @@
 "ky" = (
 /obj/structure/sink/bathroom{
 	dir = 8;
-	pixel_w = 12;
 	
 	},
 /turf/open/floor/mainship/sterile/dark,
@@ -4249,7 +4247,6 @@
 "rH" = (
 /obj/structure/sink/bathroom{
 	dir = 8;
-	pixel_w = 12;
 	
 	},
 /turf/open/floor/mainship/sterile/dark,
