@@ -126,6 +126,10 @@
 	///Used if a weapon need windup before firing
 	var/windup_checked = WEAPON_WINDUP_NOT_CHECKED
 
+	///determines upper accuracy modifier in akimbo
+	var/upper_akimbo_accuracy = 2
+	///determines lower accuracy modifier in akimbo
+	var/lower_akimbo_accuracy = 1
 
 //----------------------------------------------------------
 				//				    \\
@@ -573,8 +577,12 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 ///Update the target if you draged your mouse
 /obj/item/weapon/gun/proc/change_target(datum/source, atom/src_object, atom/over_object, turf/src_location, turf/over_location, src_control, over_control, params)
 	SIGNAL_HANDLER
-	if(!istype(over_object, /obj/screen))
-		set_target(over_object)
+	if(istype(over_object, /obj/screen))
+		if(!istype(over_object, /obj/screen/click_catcher))
+			return
+		var/list/modifiers = params2list(params)
+		over_object = params2turf(modifiers["screen-loc"], get_turf(gun_user), gun_user.client)
+	set_target(over_object)
 	gun_user.face_atom(target)
 
 /*
@@ -853,6 +861,9 @@ and you're good to go.
 		return FALSE
 	if((flags_gun_features & GUN_POLICE) && !police_allowed_check(user))
 		return FALSE
+	if((flags_gun_features & GUN_WIELDED_STABLE_FIRING_ONLY) && !wielded_stable())//If we must wait to finish wielding before shooting
+		to_chat(user, "<span class='warning'>You need a more secure grip to fire this weapon!")
+		return FALSE
 	return TRUE
 
 
@@ -933,12 +944,7 @@ and you're good to go.
 		gun_accuracy_mult = max(0.1, gun_accuracy_mult * burst_accuracy_mult)
 
 	if(dual_wield) //akimbo firing gives terrible accuracy
-		if(gun_skill_category == GUN_SKILL_PISTOLS)
-			gun_accuracy_mult = max(0.1, gun_accuracy_mult - 0.1*rand(1,2))
-			gun_scatter += 10*rand(1,3)
-		else
-			gun_accuracy_mult = max(0.1, gun_accuracy_mult - 0.1*rand(2,4))
-			gun_scatter += 10*rand(3,5)
+		gun_scatter += 10*rand(upper_akimbo_accuracy, lower_akimbo_accuracy)
 
 	if(user)
 		// Apply any skill-based bonuses to accuracy

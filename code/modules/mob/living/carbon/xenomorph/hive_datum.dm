@@ -322,9 +322,8 @@
 		X.remove_rally_hive_ability()
 
 /datum/hive_status/proc/update_leader_pheromones() // helper function to easily trigger an update of leader pheromones
-	for(var/i in xeno_leader_list)
-		var/mob/living/carbon/xenomorph/X = i
-		X.handle_xeno_leader_pheromones(living_xeno_queen)
+	for(var/mob/living/carbon/xenomorph/leader AS in xeno_leader_list)
+		leader.handle_xeno_leader_pheromones(living_xeno_queen)
 
 // ***************************************
 // *********** Status changes
@@ -471,7 +470,7 @@
 	living_xeno_queen = null
 	if(!xeno_queen_timer)
 		xeno_queen_timer = addtimer(CALLBACK(src, .proc/end_queen_death_timer), QUEEN_DEATH_TIMER, TIMER_STOPPABLE)
-
+	update_leader_pheromones()
 
 /mob/living/carbon/xenomorph/larva/proc/burrow()
 	if(ckey && client)
@@ -585,7 +584,7 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/proc/attempt_to_spawn_larva(mob/xeno_candidate, larva_already_reserved = FALSE)
 	if(!xeno_candidate?.client)
 		return FALSE
-	
+
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	if((xeno_job.total_positions - xeno_job.current_positions) < 0)
 		return FALSE
@@ -613,6 +612,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	if(!isnewplayer(xeno_candidate) && XENODEATHTIME_CHECK(xeno_candidate))
 		if(check_other_rights(xeno_candidate.client, R_ADMIN, FALSE))
 			if(tgui_alert(xeno_candidate, "You wouldn't normally qualify for this respawn. Are you sure you want to bypass it with your admin powers?", "Bypass Respawn", list("Yes", "No")) != "Yes")
+				log_admin("[key_name(xeno_candidate)] used his admin power to bypass respawn before his timer was over")
 				XENODEATHTIME_MESSAGE(xeno_candidate)
 				return FALSE
 		else
@@ -641,6 +641,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	if(!isnewplayer(xeno_candidate) && XENODEATHTIME_CHECK(xeno_candidate))
 		if(check_other_rights(xeno_candidate.client, R_ADMIN, FALSE))
 			if(tgui_alert(xeno_candidate, "You wouldn't normally qualify for this respawn. Are you sure you want to bypass it with your admin powers?", "Bypass Respawn", list("Yes", "No")) != "Yes")
+				log_admin("[key_name(xeno_candidate)] used his admin power to bypass respawn before his timer was over")
 				XENODEATHTIME_MESSAGE(xeno_candidate)
 				return FALSE
 		else
@@ -1169,7 +1170,7 @@ to_chat will check for valid clients itself already so no need to double check f
 		return
 
 	xeno_message("We don't have any silos! The hive will collapse if nothing is done", "xenoannounce", 6, TRUE)
-	D.siloless_hive_timer = addtimer(CALLBACK(D, /datum/game_mode.proc/siloless_hive_collapse), 10 MINUTES, TIMER_STOPPABLE)
+	D.siloless_hive_timer = addtimer(CALLBACK(D, /datum/game_mode.proc/siloless_hive_collapse), 5 MINUTES, TIMER_STOPPABLE)
 
 ///Add a mob to the candidate queue, the first mobs of the queue will have priority on new larva spots
 /datum/hive_status/proc/add_to_larva_candidate_queue(mob/dead/observer/observer)

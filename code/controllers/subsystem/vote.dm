@@ -24,6 +24,8 @@ SUBSYSTEM_DEF(vote)
 	var/list/voted = list()
 	/// Who can vote
 	var/list/voting = list()
+	/// If a vote is currently taking place
+	var/vote_happening = FALSE
 
 // Called by master_controller
 /datum/controller/subsystem/vote/fire()
@@ -45,6 +47,7 @@ SUBSYSTEM_DEF(vote)
 	time_remaining = 0
 	voted.Cut()
 	voting.Cut()
+	vote_happening = FALSE
 
 	remove_action_buttons()
 
@@ -110,6 +113,7 @@ SUBSYSTEM_DEF(vote)
 	else
 		text += "<b>Vote Result: Inconclusive - No Votes!</b>"
 	log_vote(text)
+	vote_happening = FALSE
 	remove_action_buttons()
 	to_chat(world, "\n<font color='purple'>[text]</font>")
 
@@ -169,18 +173,19 @@ SUBSYSTEM_DEF(vote)
 	return vote
 
 /// Start the vote, and prepare the choices to send to everyone
-/datum/controller/subsystem/vote/proc/initiate_vote(vote_type, initiator_key)
+/datum/controller/subsystem/vote/proc/initiate_vote(vote_type, initiator_key, ignore_delay = FALSE)
 	//Server is still intializing.
 	if(!Master.current_runlevel)
 		to_chat(usr, "<span class='warning'>Cannot start vote, server is not done initializing.</span>")
 		return FALSE
 	var/lower_admin = FALSE
-	var/ckey = ckey(initiator_key)
-	if(GLOB.admin_datums[ckey])
-		lower_admin = TRUE
+	if(initiator_key)
+		var/ckey = ckey(initiator_key)
+		if(GLOB.admin_datums[ckey])
+			lower_admin = TRUE
 
 	if(!mode)
-		if(started_time)
+		if(started_time && !ignore_delay)
 			var/next_allowed_time = (started_time + CONFIG_GET(number/vote_delay))
 			if(mode)
 				to_chat(usr, "<span class='warning'>There is already a vote in progress! please wait for it to finish.</span>")
@@ -206,7 +211,9 @@ SUBSYSTEM_DEF(vote)
 						continue
 					if(VM.config_max_users || VM.config_min_users)
 						var/players = length(GLOB.clients)
-						if(players > VM.config_max_users || players < VM.config_min_users)
+						if(VM.config_max_users && players > VM.config_max_users)
+							continue
+						if(VM.config_min_users && players < VM.config_min_users)
 							continue
 					maps += VM.map_name
 					shuffle_inplace(maps)
@@ -223,7 +230,9 @@ SUBSYSTEM_DEF(vote)
 						continue
 					if(VM.config_max_users || VM.config_min_users)
 						var/players = length(GLOB.clients)
-						if(players > VM.config_max_users || players < VM.config_min_users)
+						if(VM.config_max_users && players > VM.config_max_users)
+							continue
+						if(VM.config_min_users && players < VM.config_min_users)
 							continue
 					maps += VM.map_name
 					shuffle_inplace(maps)
@@ -243,7 +252,7 @@ SUBSYSTEM_DEF(vote)
 		mode = vote_type
 		initiator = initiator_key
 		started_time = world.time
-		var/text = "[capitalize(mode)] vote started by [initiator]."
+		var/text = "[capitalize(mode)] vote started by [initiator ? initiator : "server"]."
 		if(mode == "custom")
 			text += "<br>[question]"
 		log_vote(text)
@@ -251,6 +260,7 @@ SUBSYSTEM_DEF(vote)
 		SEND_SOUND(world, sound('sound/ambience/votestart.ogg', channel = CHANNEL_NOTIFY))
 		to_chat(world, "<br><font color='purple'><b>[text]</b><br>Type <b>vote</b> or click on vote action (top left) to place your votes.<br>You have [DisplayTimeText(vp)] to vote.</font>")
 		time_remaining = round(vp/10)
+		vote_happening = TRUE
 		for(var/c in GLOB.clients)
 			var/client/C = c
 			var/datum/action/innate/vote/V = new
@@ -265,6 +275,11 @@ SUBSYSTEM_DEF(vote)
 	set category = "OOC"
 	set name = "Vote"
 	SSvote.ui_interact(usr)
+
+///Starts the automatic map vote at the end of each round
+/datum/controller/subsystem/vote/proc/automatic_vote()
+	initiate_vote("groundmap", null, TRUE)
+	addtimer(CALLBACK(src, .proc/initiate_vote, "shipmap", null, TRUE), 65 SECONDS)
 
 /datum/controller/subsystem/vote/ui_state()
 	return GLOB.always_state
@@ -292,6 +307,7 @@ SUBSYSTEM_DEF(vote)
 		"allow_vote_shipmap" = CONFIG_GET(flag/allow_vote_shipmap),
 		"allow_vote_mode" = CONFIG_GET(flag/allow_vote_mode),
 		"allow_vote_restart" = CONFIG_GET(flag/allow_vote_restart),
+		"vote_happening" = vote_happening,
 	)
 
 	if(!!user.client?.holder)
@@ -375,7 +391,6 @@ SUBSYSTEM_DEF(vote)
 
 /datum/action/innate/vote/action_activate()
 	owner.vote()
-	remove_vote_action()
 
 /datum/action/innate/vote/proc/remove_from_client()
 	if(!owner)

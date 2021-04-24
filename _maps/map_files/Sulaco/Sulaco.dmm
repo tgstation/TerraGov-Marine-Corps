@@ -2663,13 +2663,6 @@
 	},
 /turf/open/floor/wood,
 /area/sulaco/bridge/office)
-"alH" = (
-/obj/structure/bed,
-/obj/item/bedsheet/captain,
-/obj/item/storage/backpack/satchel/norm,
-/obj/machinery/alarm,
-/turf/open/floor/wood,
-/area/sulaco/bridge/office)
 "alI" = (
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -11163,6 +11156,14 @@
 	},
 /turf/open/floor/prison/darkyellow/corner,
 /area/sulaco/engineering)
+"cub" = (
+/obj/structure/bed,
+/obj/item/bedsheet/captain,
+/obj/item/storage/backpack/satchel/norm,
+/obj/machinery/alarm,
+/obj/structure/reagent_dispensers/wallmounted/peppertank/milk,
+/turf/open/floor/wood,
+/area/sulaco/bridge/office)
 "cvE" = (
 /obj/machinery/door/poddoor/mainship/umbilical/south{
 	dir = 2;
@@ -41954,7 +41955,7 @@ aaa
 aaa
 nzi
 pLJ
-alH
+cub
 nbD
 ghk
 ghk
@@ -66143,9 +66144,9 @@ aOs
 aOP
 mDu
 mDu
-hLm
-jCy
-jYl
+mDu
+mDu
+mDu
 mDu
 mDu
 mDu
@@ -66400,9 +66401,9 @@ aOt
 aOP
 mDu
 mDu
-wAh
-wth
-lde
+hLm
+jCy
+jYl
 mDu
 mDu
 mDu
@@ -66657,9 +66658,9 @@ aOt
 aOP
 mDu
 mDu
-feO
-mak
-ipF
+wAh
+wth
+lde
 mDu
 mDu
 mDu
@@ -66914,9 +66915,9 @@ aOu
 aOP
 mDu
 mDu
-mDu
-mDu
-mDu
+feO
+mak
+ipF
 mDu
 mDu
 mDu
