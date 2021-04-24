@@ -34,7 +34,7 @@
 
 
 /datum/game_mode/proc/can_start(bypass_checks = FALSE)
-	if(!(config_tag in SSmapping.configs[GROUND_MAP].gamemodes) && !bypass_checks)
+	if(SSmapping.configs[GROUND_MAP].gamemodes && !(config_tag in SSmapping.configs[GROUND_MAP].gamemodes) && !bypass_checks)
 		log_world("attempted to start [src.type] on "+SSmapping.configs[GROUND_MAP].map_name+" which doesn't support it.")
 		// start a gamemode vote, in theory this should never happen.
 		addtimer(CALLBACK(SSvote, /datum/controller/subsystem/vote.proc/initiate_vote, "gamemode", "SERVER"), 10 SECONDS)
