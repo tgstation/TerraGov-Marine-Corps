@@ -209,12 +209,12 @@
 		/datum/reagent/medicine/hyronalin = 6,
 	)
 
-/obj/item/reagent_containers/hypospray/autoinjector/larvaway
+/obj/item/reagent_containers/hypospray/autoinjector/polyhexanide
 	name = "Larvaway autoinjector"
-	desc = "An auto-injector loaded with 3 doses of Larvaway, A blend of antibiotics and antifungal agents designed to inhibit the growth of xenomorph embryos."
+	desc = "An auto-injector loaded with a dose of Polyhexanide, a sterilizer for internal surgical use."
 	icon_state = "autoinjector-10"
-	amount_per_transfer_from_this = 5
-	list_reagents = list(/datum/reagent/medicine/larvaway = 15)
+	volume = 20
+	list_reagents = list(/datum/reagent/medicine/polyhexanide = 20)
 
 /obj/item/reagent_containers/hypospray/autoinjector/isotonic
 	name = "isotonic solution autoinjector"

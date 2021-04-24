@@ -410,11 +410,11 @@
 	. = ..()
 	new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/isotonic(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/larvaway(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/dexalinplus(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/polyhexanide(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin(src)
 
 /obj/item/storage/pouch/autoinjector/advanced
@@ -458,13 +458,12 @@
 	name = "Corps hypospray pouch"
 	desc = "It can contain hyposprays and autoinjectors, this one has a Terragov corpsman logo on its back."
 	icon_state = "syringe"
-	storage_slots = 5
+	storage_slots = 4
 	can_hold = list(/obj/item/reagent_containers/hypospray)
 
 /obj/item/storage/pouch/hypospray/corps/full/Initialize()
 	. = ..()
-	new /obj/item/reagent_containers/hypospray/advanced/meraderm(src)
-	new /obj/item/reagent_containers/hypospray/advanced/oxycodone(src)
+	new /obj/item/reagent_containers/hypospray/advanced/combat_advanced(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus(src)
