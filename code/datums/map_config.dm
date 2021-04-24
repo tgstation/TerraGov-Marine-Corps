@@ -48,12 +48,14 @@
 	var/list/configs = list()
 
 	for(var/i in maptypes)
+		log_world("Compiled one map")
 		var/filename = MAP_TO_FILENAME[i]
 		var/datum/map_config/config = new
 		if(default)
 			configs[i] = config
 			continue
 		if(!config.LoadConfig(filename, error_if_missing, i))
+			log_world("Failed to load")
 			qdel(config)
 			config = new /datum/map_config
 		if(delete_after)
