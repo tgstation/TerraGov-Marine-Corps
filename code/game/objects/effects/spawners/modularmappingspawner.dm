@@ -16,7 +16,7 @@
 	template = pick(SSmapping.modular_templates[mapid])
 	var/errored = FALSE
 	if(!istype(template, /datum/map_template/modular))
-		stack_trace("A spawner has an invalid template")
+		stack_trace("A spawner has an invalid template [template]")
 		errored = TRUE
 	if(spawner_height != template.template_height)
 		stack_trace("A spawner has an invalid height")
