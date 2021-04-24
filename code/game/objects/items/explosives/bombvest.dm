@@ -32,7 +32,7 @@
 		if(istype(E, /datum/limb/chest) || istype(E, /datum/limb/groin) || istype(E, /datum/limb/head))
 			continue
 		E.droplimb()
-	explosion(loc, 0, 2, 6, 5, 5)
+	explosion(loc, 1, 2, 6, 5, 5)
 	qdel(src)
 
 ///Gets a warcry to scream on Control Click, checks for non allowed warcries.
