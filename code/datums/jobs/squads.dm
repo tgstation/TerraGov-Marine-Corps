@@ -107,7 +107,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 		CRASH("attempted to insert marine [new_squaddie] into squad while already having one")
 
 	if(!(new_squaddie.job.type in current_positions))
-		CRASH("Attempted to insert [H.job.type] into squad [name]")
+		CRASH("Attempted to insert [new_squaddie.job.type] into squad [name]")
 
 	current_positions[new_squaddie.job.type]++
 
