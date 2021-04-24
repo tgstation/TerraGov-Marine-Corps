@@ -34,11 +34,11 @@
 
 
 /datum/game_mode/proc/can_start(bypass_checks = FALSE)
-	if(!(config_tag in SSmapping.configs[GROUND_MAP].gamemodes) && !bypass_checks)
+	/*if(!(config_tag in SSmapping.configs[GROUND_MAP].gamemodes) && !bypass_checks)
 		log_world("attempted to start [src.type] on "+SSmapping.configs[GROUND_MAP].map_name+" which doesn't support it.")
 		// start a gamemode vote, in theory this should never happen.
 		addtimer(CALLBACK(SSvote, /datum/controller/subsystem/vote.proc/initiate_vote, "gamemode", "SERVER"), 10 SECONDS)
-		return FALSE
+		return FALSE*/
 	if(length(GLOB.ready_players) < required_players && !bypass_checks)
 		to_chat(world, "<b>Unable to start [name].</b> Not enough players, [required_players] players needed.")
 		return FALSE
