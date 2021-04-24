@@ -58,7 +58,7 @@ jobs:
           bash tools/ci/install_byond.sh
           source $HOME/BYOND/byond/bin/byondsetup
           python3 tools/ci/template_dm_generator.py
-          --chmod +x tools/build/build
+          chmod +x tools/build/build
           tools/build/build
         env:
           CBT_BUILD_MODE : ALL_MAPS
@@ -98,7 +98,7 @@ jobs:
         run: |
           bash tools/ci/install_byond.sh
           source $HOME/BYOND/byond/bin/byondsetup
-          --chmod +x tools/build/build
+          chmod +x tools/build/build
           tools/build/build
           bash tools/ci/run_server.sh
         env:
