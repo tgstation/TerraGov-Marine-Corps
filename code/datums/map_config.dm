@@ -159,7 +159,8 @@
 	var/list/gamemode_names = list()
 	for(var/t in subtypesof(/datum/game_mode))
 		var/datum/game_mode/G = t
-		gamemode_names += initial(G.config_tag)
+		if(initial(G.config_tag))
+			gamemode_names += initial(G.config_tag)
 
 	if(islist(json["gamemodes"]))
 		for(var/g in json["gamemodes"])
@@ -176,7 +177,8 @@
 	else
 		for(var/a in subtypesof(/datum/game_mode))
 			var/datum/game_mode/G = a
-			gamemodes += initial(G.config_tag)
+			if(initial(G.config_tag))
+				gamemodes += initial(G.config_tag)
 
 	defaulted = FALSE
 	return TRUE
