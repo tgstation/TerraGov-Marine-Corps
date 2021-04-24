@@ -50,7 +50,7 @@ SUBSYSTEM_DEF(mapping)
 		var/datum/map_config/MC = configs[i]
 		if(MC.defaulted)
 			var/old_config = configs[i]
-			configs[i] = global.config.defaultmaps[i]
+			configs[i] = global.config?.defaultmaps[i]
 			if(!configs || configs[i].defaulted)
 				to_chat(world, "<span class='boldannounce'>Unable to load next or default map config, defaulting.</span>")
 				configs[i] = old_config
