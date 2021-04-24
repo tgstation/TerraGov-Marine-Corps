@@ -1,4 +1,4 @@
-# /tg/station build script
+# /tgmc build script
 
 This build script is the recommended way to compile the game, including not only the DM code but also the JavaScript and any other dependencies.
 
