@@ -27,7 +27,11 @@
 	else
 		message_admins("[activator] has detonated an explosive vest with no warcry.")
 		log_game("[activator] has detonated an explosive vest with no warcry.")
-	activator.adjustBruteLoss(1200) //Oops we blew all our limbs off
+
+	for(var/datum/limb/E in activator.limbs) //Oops we blew all our limbs off
+		if(istype(E, /datum/limb/chest) || istype(E, /datum/limb/groin) || istype(E, /datum/limb/head))
+			continue
+		E.droplimb()
 	explosion(loc, 0, 2, 6, 5, 5)
 	qdel(src)
 
@@ -61,6 +65,10 @@
 	activator.say("ORBITAL BOMBARDMENT INBOUND!!")
 	message_admins("[activator] has detonated an Orbital Bombardment vest! Unga!")
 	log_game("[activator] has detonated an Orbital Bombardment vest! Unga!")
-	activator.adjustBruteLoss(1200) //Oops we blew all our limbs off
+
+	for(var/datum/limb/E in activator.limbs) //Oops we blew all our limbs off
+		if(istype(E, /datum/limb/chest) || istype(E, /datum/limb/groin) || istype(E, /datum/limb/head))
+			continue
+		E.droplimb()
 	explosion(loc, 15, 15, 15, 15, 15)
 	qdel(src)
