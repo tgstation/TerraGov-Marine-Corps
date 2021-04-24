@@ -690,6 +690,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	if(HAS_TRAIT(src, TRAIT_ISINTRENCH))
 		var/atom/D
 		for(D in proj.permutated)
+			if(istype(src, /mob/living/carbon/xenomorph) && !src.xenotrenchprotection)
+				break
 			BULLET_DEBUG("[proj.name] has passed through [D.loc.name]")
 			var/obj/structure/trench/S = locate() in D.loc
 			if(!S)

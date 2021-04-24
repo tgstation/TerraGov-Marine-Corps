@@ -15,6 +15,7 @@
 	inherent_verbs = list(
 		/mob/living/carbon/xenomorph/proc/vent_crawl,
 	)
+	xenotrenchprotection = TRUE
 
 /mob/living/carbon/xenomorph/runner/set_stat()
 	. = ..()
@@ -23,7 +24,7 @@
 	if(. == CONSCIOUS && layer != initial(layer))
 		layer = MOB_LAYER
 
-/mob/living/carbon/xenomorph/roony 
+/mob/living/carbon/xenomorph/roony
 	caste_base_type = /mob/living/carbon/xenomorph/roony
 	name = "Roony"
 	desc = "A small red, out-of-place alien that looks like it could run fairly quickly... it looks adorable though!"

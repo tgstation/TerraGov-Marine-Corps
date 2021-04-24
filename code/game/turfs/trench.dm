@@ -35,7 +35,7 @@ obj/structure/trench/Uncrossed(atom/movable/AM)
 	REMOVE_TRAIT(AM, TRAIT_ISINTRENCH, TRAIT_SOURCE_TRENCH)
 
 obj/structure/trench/CanAllowThrough(atom/movable/mover, turf/target)
-	if(HAS_TRAIT(mover, TRAIT_ISINTRENCH))
+	if(HAS_TRAIT(mover, TRAIT_ISINTRENCH) || istype(mover, /mob/living/carbon/xenomorph/))
 		return TRUE
 	else
 		return FALSE
