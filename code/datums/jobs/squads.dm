@@ -109,6 +109,8 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 	if(!(H.job.type in current_positions))
 		CRASH("Attempted to insert [H.job.type] into squad [name]")
 
+	H.RegisterSignal(src, COMSIG_SQUAD_ORDER_SENT, /mob/living/carbon/human/proc/receive_order)
+
 	current_positions[H.job.type]++
 
 	if(ismarineleaderjob(H.job) && !squad_leader)
@@ -161,6 +163,8 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 
 	if(H.assigned_squad != src)
 		CRASH("attempted to remove marine [H] from squad [name] while being a member of squad [H.assigned_squad.name]")
+
+	H.UnregisterSignal(src, COMSIG_SQUAD_ORDER_SENT)
 
 	var/obj/item/card/id/C = H.get_idcard()
 	if(!istype(C))

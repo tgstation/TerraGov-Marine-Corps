@@ -44,7 +44,8 @@
 	return owner.skills.getRating(skill_name) >= skill_min
 
 /datum/action/innate/order/rally_order/action_activate()
-	if(send_order(owner))
+	var/mob/living/carbon/human/human = owner
+	if(send_order(human, human.assigned_squad))
 		var/message = pick(";TO ME MY MEN!", ";REGROUP TO ME!", ";FOLLOW MY LEAD!", ";RALLY ON ME!", ";FORWARD!")
 		owner.say(message)
 
@@ -65,7 +66,7 @@
 	UnregisterSignal(owner, COMSIG_ORDER_SELECTED)
 
 ///Print order visual to all marines squad hud and give them an arrow to follow the waypoint
-/datum/action/innate/order/proc/send_order(atom/target)
+/datum/action/innate/order/proc/send_order(atom/target, datum/squad/squad)
 	if(TIMER_COOLDOWN_CHECK(owner, COOLDOWN_CIC_ORDERS))
 		to_chat(owner, "<span class='warning'>Your last order was too recent.</span>")
 		return FALSE
@@ -75,21 +76,21 @@
 	if(visual_type)
 		target = get_turf(target)
 		new visual_type(target)
-	var/datum/atom_hud/squad/squad_hud = GLOB.huds[DATA_HUD_SQUAD]
-	var/list/final_list = squad_hud.hudusers
-	final_list -= owner //We don't want the eye to have an arrow, it's silly
-	var/obj/screen/arrow/arrow_hud
-	for(var/hud_user in final_list)
-		if(!ishuman(hud_user))
-			continue
-		if(arrow_type)
-			arrow_hud = new arrow_type
-			arrow_hud.add_hud(hud_user, target)
-		notify_marine(hud_user, target)
+	if(squad)
+		SEND_SIGNAL(squad, COMSIG_SQUAD_ORDER_SENT, target, arrow_type, verb_name)
+		return TRUE
+	var/datum/squad/each_squad
+	for(var/i in SSjob.squads)
+		each_squad = SSjob.squads[i]
+		SEND_SIGNAL(each_squad, COMSIG_SQUAD_ORDER_SENT, target, arrow_type, verb_name)
 	return TRUE
 
-///Send a message and a sound to the marine if he is on the same z level as the turf
-/datum/action/innate/order/proc/notify_marine(mob/living/marine, atom/target) ///Send an order to that specific marine if it's on the right z level
-	if(marine.z == target.z)
-		marine.playsound_local(marine, "sound/effects/CIC_order.ogg", 20, 1)
-		to_chat(marine,"<span class='ordercic'>Command is urging you to [verb_name] [target.loc.name]!</span>")
+/mob/living/carbon/human/proc/receive_order(datum/source, atom/target, arrow_type, verb_name)
+	if(z != target.z)
+		return
+	if(target == src)
+		return
+	var/obj/screen/arrow/arrow_hud = new arrow_type
+	arrow_hud.add_hud(src, target)
+	playsound_local(src, "sound/effects/CIC_order.ogg", 20, 1)
+	to_chat(src,"<span class='ordercic'>Command is urging you to [verb_name] [target.loc.name]!</span>")
