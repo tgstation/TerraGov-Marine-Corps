@@ -54,8 +54,9 @@
 	do_climb(target)
 
 /obj/structure/proc/can_climb(mob/living/user)
-	if(!climbable || !can_interact(user))
-		return FALSE
+	if(!climbable)
+		if(!can_interact(user) && !istype(src, /obj/structure/trench))
+			return FALSE
 
 	var/turf/T = src.loc
 	var/turf/U = get_turf(user)

@@ -322,6 +322,8 @@
 
 		if(mob_size < L.mob_size) //Can't go around pushing things larger than us.
 			return
+		if(!HAS_TRAIT(src, TRAIT_ISINTRENCH) && HAS_TRAIT(L, TRAIT_ISINTRENCH) || HAS_TRAIT(src, TRAIT_ISINTRENCH) && !HAS_TRAIT(L, TRAIT_ISINTRENCH)) //cant be pushing people out of trenches. It would be a dick move
+			return
 
 
 		if(L.pulledby && L.pulledby != src && L.restrained())
