@@ -206,6 +206,8 @@ SUBSYSTEM_DEF(vote)
 					return FALSE
 				var/list/maps = list()
 				for(var/map in config.maplist[GROUND_MAP])
+					if(!config.maplist)
+						return
 					var/datum/map_config/VM = config.maplist[GROUND_MAP][map]
 					if(!VM.voteweight)
 						continue
@@ -225,6 +227,8 @@ SUBSYSTEM_DEF(vote)
 					return FALSE
 				var/list/maps = list()
 				for(var/map in config.maplist[SHIP_MAP])
+					if(!config.maplist)
+						return
 					var/datum/map_config/VM = config.maplist[SHIP_MAP][map]
 					if(!VM.voteweight)
 						continue
