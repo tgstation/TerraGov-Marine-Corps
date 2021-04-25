@@ -68,13 +68,13 @@ type PlayerPreferencesData = {
   religions: string[],
   corporate_relations: string[],
   squads: string[]
-  clothing: ClothingTypeList,
+  clothing: PreferencesClothingTypeList,
   genders: string[],
   overflow_job: string[],
   ui_styles: string[],
-  gearsets: GearSets,
-  jobs: JobsList,
-  special_occupations: SpecialOccupations,
+  PreferencesGearSets: PreferencesGearSets,
+  jobs: PreferencesJobsList,
+  special_occupations: PreferencesSpecialOccupations,
   all_keybindings: AllKeybindingsList,
   mapRef: string,
 }
@@ -94,18 +94,18 @@ type AllKeybindingsList = {
   [ key: string ]: KeybindingsData[],
 }
 
-type ClothingTypeList = {
-  underwear: UnderWearTypes
+type PreferencesClothingTypeList = {
+  underwear: PreferencesUnderWearTypes
   undershirt: string[],
   backpack: string[],
 
 }
-type UnderWearTypes = {
+type PreferencesUnderWearTypes = {
   male: string[]
   female: string[]
 }
 
-type SpecialOccupations = {
+type PreferencesSpecialOccupations = {
   'Latejoin Xenomorph': number,
   'Xenomorph when unrevivable': number,
   'End of Round Deathmatch': number,
@@ -120,28 +120,28 @@ type AssocStringStringArray = {
   [ key: string ]: string[]
 }
 
-type GearSets = {
-  [ key: string ]: GearDatum
+type PreferencesGearSets = {
+  [ key: string ]: PreferencesGearDatum
 }
-type GearDatum = {
+type PreferencesGearDatum = {
   name: string,
   cost: number,
   slot: number,
 }
 
-type JobsList = {
-  [ key: string ]: JobDatum,
+type PreferencesJobsList = {
+  [ key: string ]: PreferencesJobDatum,
 }
 
-type JobDatum = {
+type PreferencesJobDatum = {
   color: string,
   description: string,
   banned: number,
   playtime_req: number,
   account_age_req: number,
-  flags: FlagsList
+  flags: PreferencesFlagsList
 }
 
-type FlagsList = {
+type PreferencesFlagsList = {
   bold: number,
 }
