@@ -77,24 +77,23 @@
 		target = get_turf(target)
 		new visual_type(target)
 	if(squad)
-		SEND_SIGNAL(squad, COMSIG_ORDER_SENT, target, arrow_type, verb_name)
+		for(var/mob/living/carbon/human/marine AS in squad.marines_list)
+			marine.receive_order(target, arrow_type, verb_name)
 		return TRUE
-	var/datum/squad/each_squad
-	for(var/i in SSjob.squads)
-		each_squad = SSjob.squads[i]
-		SEND_SIGNAL(each_squad, COMSIG_ORDER_SENT, target, arrow_type, verb_name)
-	SEND_GLOBAL_SIGNAL(COMSIG_ORDER_SENT, target, arrow_type, verb_name)
+	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
+		human.receive_order(target, arrow_type, verb_name)
 	return TRUE
 
 /**
- * Signal handler to give a marine an order
+ * Proc to give a marine an order
  * target : what atom to track
  * arrow_type : what kind of visual arrow will be spawned on the marine
  * verb_name : a word / sentence to describe the order
  */
-/mob/living/carbon/human/proc/receive_order(datum/source, atom/target, arrow_type, verb_name = "rally")
-	SIGNAL_HANDLER
+/mob/living/carbon/human/proc/receive_order(atom/target, arrow_type, verb_name = "rally")
 	if(!target || !arrow_type)
+		return
+	if(!(job.job_flags & JOB_FLAG_CAN_SEE_ORDERS))
 		return
 	if(z != target.z)
 		return

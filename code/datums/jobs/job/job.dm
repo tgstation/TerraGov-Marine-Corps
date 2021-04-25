@@ -69,9 +69,6 @@ GLOBAL_PROTECT(exp_specialmap)
 	if(!ishuman(L))
 		return
 
-	if(job_flags & JOB_FLAG_CAN_SEE_ORDERS)
-		L.RegisterSignal(SSdcs, COMSIG_ORDER_SENT, /mob/living/carbon/human/proc/receive_order)
-
 	if(job_flags & JOB_FLAG_PROVIDES_BANK_ACCOUNT)
 		var/datum/money_account/bank_account = create_account(L.real_name, rand(50, 500) * 10)
 		var/list/remembered_info = list()
