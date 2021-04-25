@@ -298,6 +298,8 @@ SUBSYSTEM_DEF(minimaps)
 
 /obj/screen/minimap/Initialize(mapload, target, flags)
 	. = ..()
+	if(!SSminimaps.minimaps_by_z["[target]"])
+		return
 	icon = SSminimaps.minimaps_by_z["[target]"].hud_image
 	SSminimaps.add_to_updaters(src, flags, target)
 
