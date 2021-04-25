@@ -66,7 +66,13 @@
 	if(!fexists(filename))
 		if(error_if_missing)
 			log_world("map_config not found: [filename]")
-		return
+		if(!load_default)
+			return
+		switch(maptype)
+			if(GROUND_MAP)
+				return LoadConfig("_maps/lv624.json", error_if_missing, maptype)
+			if(SHIP_MAP)
+				return LoadConfig("_maps/pillar_of_spring.json", error_if_missing, maptype)
 
 
 	var/json = file(filename)
