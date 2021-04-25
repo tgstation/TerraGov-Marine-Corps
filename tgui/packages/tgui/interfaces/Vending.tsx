@@ -2,7 +2,6 @@ import { useBackend, useLocalState } from '../backend';
 import { Button, Section, Box, LabeledList, ProgressBar, Modal, Divider, Tabs, Stack } from '../components';
 import { decodeHtmlEntities } from 'common/string';
 import { Window } from '../layouts';
-import { BooleanLike } from 'common/react';
 
 
 type VendingData = {
