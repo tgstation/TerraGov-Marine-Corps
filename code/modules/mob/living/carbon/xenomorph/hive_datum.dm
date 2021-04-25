@@ -552,9 +552,11 @@ to_chat will check for valid clients itself already so no need to double check f
 
 
 /datum/hive_status/normal/handle_ruler_timer()
-	if(!isdistress(SSticker.mode))
+	if(!isinfestationgamemode(SSticker.mode)) //Check just need for unit test
 		return
-	var/datum/game_mode/infestation/distress/D = SSticker.mode
+	if(!SSticker.mode?.flags_round_type & MODE_XENO_RULER)
+		return
+	var/datum/game_mode/infestation/D = SSticker.mode
 
 	if(living_xeno_ruler)
 		if(D.orphan_hive_timer)
@@ -733,7 +735,8 @@ to_chat will check for valid clients itself already so no need to double check f
 			continue
 		qdel(silo)
 
-	SSpoints.xeno_points_by_hive[hivenumber] = SILO_PRICE + XENO_TURRET_PRICE //Give a free silo when going shipside and a turret
+	if(SSticker.mode?.flags_round_type & MODE_PSY_POINTS)
+		SSpoints.xeno_points_by_hive[hivenumber] = SILO_PRICE + XENO_TURRET_PRICE //Give a free silo when going shipside and a turret
 
 	var/list/living_player_list = SSticker.mode.count_humans_and_xenos(count_flags = COUNT_IGNORE_HUMAN_SSD)
 	var/num_humans = living_player_list[1]
@@ -1087,6 +1090,8 @@ to_chat will check for valid clients itself already so no need to double check f
 	.["abilities"] = list()
 	for(var/ability in xeno.xeno_caste.actions)
 		var/datum/action/xeno_action/xeno_ability = ability
+		if(!(SSticker.mode.flags_xeno_abilities & initial(xeno_ability.gamemode_flags)))
+			continue
 		.["abilities"]["[ability]"] = list(
 			"name" = initial(xeno_ability.name),
 			"desc" = initial(xeno_ability.mechanics_text),
@@ -1099,6 +1104,8 @@ to_chat will check for valid clients itself already so no need to double check f
 		var/list/caste_data = list("type_path" = caste.caste_type_path, "name" = caste.display_name, "abilities" = list())
 		for(var/ability in caste.actions)
 			var/datum/action/xeno_action/xeno_ability = ability
+			if(!(SSticker.mode.flags_xeno_abilities & initial(xeno_ability.gamemode_flags)))
+				continue
 			caste_data["abilities"]["[ability]"] = list(
 				"name" = initial(xeno_ability.name),
 				"desc" = initial(xeno_ability.mechanics_text),
@@ -1150,12 +1157,12 @@ to_chat will check for valid clients itself already so no need to double check f
 	return
 
 /datum/hive_status/normal/handle_silo_death_timer()
-	if(!isdistress(SSticker.mode))
+	if(!isdistressgamemode(SSticker.mode))
 		return
 	if(world.time < MINIMUM_TIME_SILO_LESS_COLLAPSE)
 		return
 	var/datum/game_mode/infestation/distress/D = SSticker.mode
-	if(D.round_stage != DISTRESS_MARINE_DEPLOYMENT)
+	if(D.round_stage != INFESTATION_MARINE_DEPLOYMENT)
 		if(D?.siloless_hive_timer)
 			deltimer(D.siloless_hive_timer)
 			D.siloless_hive_timer = null

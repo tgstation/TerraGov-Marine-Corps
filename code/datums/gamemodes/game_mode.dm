@@ -13,6 +13,7 @@
 	var/round_time_fog
 	var/flags_round_type = NONE
 	var/flags_landmarks = NONE
+	var/flags_xeno_abilities = NONE
 
 	var/distress_cancelled = FALSE
 
@@ -525,7 +526,7 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 	return FALSE
 
 /datum/game_mode/infestation/distress/is_xeno_in_forbidden_zone(mob/living/carbon/xenomorph/xeno)
-	if(round_stage == DISTRESS_DROPSHIP_CRASHING)
+	if(round_stage == INFESTATION_MARINE_CRASHING)
 		return FALSE
 	if(isxenoresearcharea(get_area(xeno)))
 		return TRUE

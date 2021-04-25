@@ -620,15 +620,15 @@
 		if(confirm != "Yes")
 			return
 		priority_announce("The Alamo has been captured! Losing their main mean of accessing the ground, the marines have no choice but to retreat.", title = "ALAMO CAPTURED")
-		var/datum/game_mode/infestation/distress/distress_mode = SSticker.mode
-		distress_mode.round_stage = DISTRESS_DROPSHIP_CAPTURED_XENOS
+		var/datum/game_mode/infestation/infestation_mode = SSticker.mode
+		infestation_mode.round_stage = INFESTATION_DROPSHIP_CAPTURED_XENOS
 		return
 
 /obj/machinery/computer/shuttle/marine_dropship/proc/do_hijack(obj/docking_port/mobile/marine_dropship/crashing_dropship, obj/docking_port/stationary/marine_dropship/crash_target/crash_target, mob/living/carbon/xenomorph/user)
 	crashing_dropship.set_hijack_state(HIJACK_STATE_CRASHING)
-	if(isdistress(SSticker.mode))
-		var/datum/game_mode/infestation/distress/distress_mode = SSticker.mode
-		distress_mode.round_stage = DISTRESS_DROPSHIP_CRASHING
+	if(SSticker.mode?.flags_round_type & MODE_HIJACK_POSSIBLE)
+		var/datum/game_mode/infestation/infestation_mode = SSticker.mode
+		infestation_mode.round_stage = INFESTATION_MARINE_CRASHING
 	crashing_dropship.callTime = 120 * (GLOB.current_orbit/3) SECONDS
 	crashing_dropship.crashing = TRUE
 	crashing_dropship.unlock_all()
