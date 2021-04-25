@@ -523,7 +523,8 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 	for(var/datum/vending_product/R AS in product_records + hidden_records + coin_records)
 		.["stock"][R.product_name] = R.amount
 
-	.["currently_vending"] = MAKE_VENDING_RECORD_DATA(currently_vending)
+	if(currently_vending)
+		.["currently_vending"] = MAKE_VENDING_RECORD_DATA(currently_vending)
 	.["extended"] = extended_inventory
 	.["coin"] = coin ? coin.name : null
 	.["isshared"] = isshared

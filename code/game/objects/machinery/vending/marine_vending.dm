@@ -151,7 +151,7 @@
 			/obj/item/weapon/shield/riot/marine = 6,
 			/obj/item/weapon/powerfist = 100,
 			/obj/item/weapon/throwing_knife = 500,
-
+			/obj/item/ammo_magazine/standard_smartmachinegun = 4,
 		),
 		"Grenades" = list(
 			/obj/item/explosive/grenade/frag = 600,
@@ -185,7 +185,16 @@
 			/obj/item/attachable/attached_gun/flamer = 1000,
 			/obj/item/attachable/attached_gun/shotgun = 1000,
 			/obj/item/attachable/attached_gun/grenade = 1000,
-		)
+		),
+		"Boxes" = list(
+		/obj/item/ammo_magazine/box9mm = 100,
+		/obj/item/ammo_magazine/acp = 100,
+		/obj/item/ammo_magazine/magnum = 100,
+		/obj/item/ammo_magazine/box10x24mm = 100,
+		/obj/item/ammo_magazine/box10x26mm = 100,
+		/obj/item/ammo_magazine/box10x27mm = 100,
+		/obj/item/storage/box/ammo = 30,
+		),
 	)
 
 /// HvH version of the vending machine, containing no snipers or slugs. and MGs, shotguns, grenades and scoped weapons are rarer

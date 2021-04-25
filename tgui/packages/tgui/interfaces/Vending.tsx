@@ -13,8 +13,8 @@ type VendingData = {
   tabs: string[],
   stock: VendingStock,
   currently_vending: VendingRecord | null,
-  extended: BooleanLike,
-  isshared: BooleanLike,
+  extended: number,
+  isshared: number,
   coin: string,
 };
 
@@ -193,17 +193,20 @@ const ProductEntry = (props: VendingProductEntryProps, context) => {
       labelColor="white"
       buttons={
         <>
-          <ProgressBar
-            width="60px"
-            value={stock}
-            maxValue={stock}
-            ranges={{
-              good: [10, Infinity],
-              average: [5, 10],
-              bad: [-Infinity, 5],
-            }}>{stock} left
-          </ProgressBar>
-          <Box inline width="4px" />
+          <Box inline>
+            <ProgressBar
+              value={stock}
+              maxValue={stock}
+              ranges={{
+                good: [10, Infinity],
+                average: [5, 10],
+                bad: [-Infinity, 5],
+              }}>{stock} left
+            </ProgressBar>
+          </Box>
+          <Box
+            inline
+            width="4px" />
           <Button
             selected={currently_vending && (
               currently_vending.product_name === product_name
