@@ -1,0 +1,4 @@
+author: "TiviPlus"
+delete-after: True
+changes: 
+  - qol: "Medevac beds can be instantly activated with right click"
