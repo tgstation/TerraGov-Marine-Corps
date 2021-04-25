@@ -6,19 +6,14 @@
 	var/arrow_type
 	///the type of the visual added on the ground. If it has no visual type, the order can have any atom has a target
 	var/visual_type
-	///the next time an order can be sent by the owner
-	var/next_allowed_use = 0
 
 /datum/action/innate/order/give_action(mob/M)
 	. = ..()
-	RegisterSignal(M, COMSIG_ORDER_SENT, .proc/set_next_allowed_use)
-	RegisterSignal(M, COMSIG_ORDER_COOLDOWN_OVER, .proc/update_button_icon)
+	RegisterSignal(M, COMSIG_ORDER_UPDATED, .proc/update_button_icon)
 
-/// Signal handler to set the next allowed use and update the button icon
-/datum/action/innate/order/proc/set_next_allowed_use(datum/source, _next_allowed_use)
-	SIGNAL_HANDLER
-	next_allowed_use = _next_allowed_use
-	update_button_icon()
+/datum/action/innate/order/remove_action(mob/M)
+	. = ..()
+	UnregisterSignal(M, COMSIG_ORDER_UPDATED)
 
 /datum/action/innate/order/Activate()
 	active = TRUE
@@ -38,7 +33,8 @@
 
 /datum/action/innate/order/can_use_action()
 	. = ..()
-	if(world.time < next_allowed_use)
+	if(TIMER_COOLDOWN_CHECK(owner, COOLDOWN_CIC_ORDERS))
+		to_chat(owner, "<span class='warning'>Your last order was too recent.</span>")
 		return FALSE
 
 ///Print order visual to all marines squad hud and give them an arrow to follow the waypoint
@@ -50,8 +46,25 @@
 	if(visual_type)
 		target = get_turf(target)
 		new visual_type(target)
-	SEND_SIGNAL(owner, COMSIG_ORDER_SENT, world.time + ORDER_COOLDOWN)
+	TIMER_COOLDOWN_START(owner, COOLDOWN_CIC_ORDERS, ORDER_COOLDOWN)
+	SEND_SIGNAL(owner, COMSIG_ORDER_UPDATED)
+	addtimer(CALLBACK(owner, /mob/proc/update_all_icons_orders), ORDER_COOLDOWN)
+	var/datum/atom_hud/squad/squad_hud = GLOB.huds[DATA_HUD_SQUAD]
+	var/list/final_list = squad_hud.hudusers
+	final_list -= owner //We don't want the eye to have an arrow, it's silly
+	var/obj/screen/arrow/arrow_hud
+	for(var/hud_user in final_list)
+		if(!ishuman(hud_user))
+			continue
+		if(arrow_type)
+			arrow_hud = new arrow_type
+			arrow_hud.add_hud(hud_user, target)
+		notify_marine(hud_user, target)
 	return TRUE
+
+///Wrapper proc to update all icons of orders action of the mob
+mob/proc/update_all_icons_orders()
+	SEND_SIGNAL(src, COMSIG_ORDER_UPDATED)
 
 ///Send a message and a sound to the marine if he is on the same z level as the turf
 /datum/action/innate/order/proc/notify_marine(mob/living/marine, atom/target) ///Send an order to that specific marine if it's on the right z level

@@ -642,5 +642,4 @@
 #define COMSIG_DISABLE_BURST_FIRE "disable_burst_fire"
 
 //Signals for CIC orders
-#define COMSIG_ORDER_SENT "order_sent"
-#define COMSIG_ORDER_COOLDOWN_OVER "order_cooldown_over"
+#define COMSIG_ORDER_UPDATED "order_updated"
