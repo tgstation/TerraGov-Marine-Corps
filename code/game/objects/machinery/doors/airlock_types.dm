@@ -773,7 +773,17 @@
 	else
 		..()
 
-/obj/machinery/door/airlock/dropship_hatch/two
+/obj/machinery/door/airlock/dropship_hatch/left
+	dir = EAST
+
+/obj/machinery/door/airlock/dropship_hatch/right
+	dir = WEST
+
+/obj/machinery/door/airlock/dropship_hatch/left/two
+	icon = 'icons/obj/doors/mainship/dropship2_side.dmi' //Tiles with is here FOR SAFETY PURPOSES
+	id = "sh_dropship2"
+
+/obj/machinery/door/airlock/dropship_hatch/right/two
 	icon = 'icons/obj/doors/mainship/dropship2_side.dmi' //Tiles with is here FOR SAFETY PURPOSES
 	id = "sh_dropship2"
 

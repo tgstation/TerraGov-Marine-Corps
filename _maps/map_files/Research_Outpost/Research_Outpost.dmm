@@ -4502,7 +4502,7 @@
 /area/outpost/hallway/east)
 "yy" = (
 /obj/structure/table/reinforced,
-/obj/machinery/computer/shuttle/shuttle_control/dropship1,
+/obj/machinery/computer/shuttle/shuttle_control/dropship,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/lz1)
 "yB" = (
@@ -9486,7 +9486,7 @@
 /area/outpost/arrivals)
 "Zm" = (
 /obj/structure/table/reinforced,
-/obj/machinery/computer/shuttle/shuttle_control/dropship1,
+/obj/machinery/computer/shuttle/shuttle_control/dropship/two,
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 5
 	},

@@ -253,6 +253,18 @@
 	name = "RO Line 2 Shutters"
 	id = "ROlobby2"
 
+/obj/machinery/door_control/mainship/req/warehouse_south
+	name = "\improper Warehouse South Shutters"
+	id = "ROwarehousesouth"
+
+/obj/machinery/door_control/mainship/req/warehouse_north
+	name = "\improper Warehouse North Shutters"
+	id = "ROwarehousenorth"
+
+/obj/machinery/door_control/mainship/req/warehouse_west
+	name = "\improper Warehouse West Shutters"
+	id = "ROwarehousewest"
+
 /obj/machinery/door_control/directional
 	name = "autodirection door control"
 

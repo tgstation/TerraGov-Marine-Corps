@@ -379,7 +379,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "aby" = (
-/obj/machinery/computer/shuttle/shuttle_control/dropship1,
+/obj/machinery/computer/shuttle/shuttle_control/dropship,
 /obj/structure/table,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/console)
@@ -523,7 +523,7 @@
 	dir = 1
 	},
 /obj/structure/table/reinforced,
-/obj/machinery/computer/shuttle/shuttle_control/dropship1,
+/obj/machinery/computer/shuttle/shuttle_control/dropship,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
 "aca" = (
@@ -19635,7 +19635,7 @@
 /area/bigredv2/caves/lambda_lab)
 "ehV" = (
 /obj/structure/table/reinforced,
-/obj/machinery/computer/shuttle/shuttle_control/dropship1,
+/obj/machinery/computer/shuttle/shuttle_control/dropship/two,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 4
 	},

@@ -113,7 +113,7 @@
 /area/space)
 "aK" = (
 /obj/structure/table/reinforced,
-/obj/machinery/computer/shuttle/shuttle_control/dropship1,
+/obj/machinery/computer/shuttle/shuttle_control/dropship/two,
 /turf/open/floor/marking,
 /area/lv624/lazarus/console)
 "aL" = (
@@ -5309,7 +5309,7 @@
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/west)
 "TW" = (
-/obj/machinery/computer/shuttle/shuttle_control/dropship1,
+/obj/machinery/computer/shuttle/shuttle_control/dropship,
 /obj/structure/table/reinforced,
 /turf/open/floor/plating/asteroidfloor,
 /area/shuttle/drop1/lz1)

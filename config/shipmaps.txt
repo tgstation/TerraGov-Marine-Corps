@@ -23,6 +23,10 @@ endmap
 map pillar_of_spring
 endmap
 
+map gorgon
+	maxplayers 25
+endmap
+
 map risingstar
 endmap
 

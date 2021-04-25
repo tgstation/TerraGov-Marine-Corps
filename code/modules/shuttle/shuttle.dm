@@ -356,6 +356,8 @@
 	var/crashing = FALSE
 
 	var/shuttle_flags = NONE
+	///All shuttle_control computers that share at least one control flag is able to link to this shuttle
+	var/control_flags = NONE
 
 /obj/docking_port/mobile/register()
 	. = ..()

@@ -136,6 +136,8 @@ SUBSYSTEM_DEF(shuttle)
 
 	if(!M)
 		return 1
+	if(D.get_docked()?.id == M.id) //Shuttle is already docked on the same space.
+		return 2
 	if(timed)
 		if(M.request(D))
 			return 2

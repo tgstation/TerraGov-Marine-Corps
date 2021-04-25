@@ -1,0 +1,7 @@
+{
+    "map_name": "Gorgon",
+    "map_path": "map_files/Gorgon",
+    "map_file": "TGS_Gorgon.dmm",
+    "traits": [{"Marine Main Ship": true}],
+    "squads": 1
+}

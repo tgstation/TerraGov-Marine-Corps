@@ -8128,7 +8128,7 @@
 /obj/structure/window/reinforced/toughened{
 	dir = 1
 	},
-/obj/machinery/computer/shuttle/shuttle_control/dropship1,
+/obj/machinery/computer/shuttle/shuttle_control/dropship,
 /turf/open/floor/plating/mainship,
 /area/mainship/command/cic)
 "axS" = (
@@ -35300,7 +35300,7 @@
 /obj/structure/window/reinforced/toughened{
 	dir = 1
 	},
-/obj/machinery/computer/shuttle/shuttle_control/dropship2,
+/obj/machinery/computer/shuttle/shuttle_control/dropship/two,
 /turf/open/floor/plating/mainship,
 /area/mainship/command/cic)
 "hAT" = (
@@ -35938,7 +35938,7 @@
 /area/mainship/hallways/stern_hallway)
 "ltO" = (
 /obj/structure/table/mainship,
-/obj/machinery/computer/shuttle/shuttle_control/dropship2,
+/obj/machinery/computer/shuttle/shuttle_control/dropship/two,
 /turf/open/floor/mainship/red{
 	dir = 9
 	},
@@ -36410,7 +36410,7 @@
 /area/mainship/living/captain_mess)
 "oFG" = (
 /obj/structure/table/mainship,
-/obj/machinery/computer/shuttle/shuttle_control/dropship1,
+/obj/machinery/computer/shuttle/shuttle_control/dropship,
 /turf/open/floor/mainship/red{
 	dir = 5
 	},

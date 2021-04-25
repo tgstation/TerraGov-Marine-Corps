@@ -187,6 +187,18 @@
 	name = "\improper RO Line 2"
 	id = "ROlobby2"
 
+/obj/machinery/door/poddoor/shutters/mainship/req/warehouse_south
+	name = "\improper Warehouse South"
+	id = "ROwarehousesouth"
+
+/obj/machinery/door/poddoor/shutters/mainship/req/warehouse_north
+	name = "\improper Warehouse North"
+	id = "ROwarehousenorth"
+
+/obj/machinery/door/poddoor/shutters/mainship/req/warehouse_west
+	name = "\improper Warehouse West"
+	id = "ROwarehousewest"
+
 /obj/machinery/door/poddoor/shutters/mainship/containment
 	name = "\improper Containment Cell"
 	id = "containmentcell"

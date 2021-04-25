@@ -977,7 +977,7 @@
 /area/mainship/command/cic)
 "adY" = (
 /obj/structure/table/mainship,
-/obj/machinery/computer/shuttle/shuttle_control/dropship2,
+/obj/machinery/computer/shuttle/shuttle_control/dropship/two,
 /obj/structure/window/reinforced/toughened{
 	dir = 8
 	},
@@ -999,7 +999,7 @@
 /area/mainship/command/cic)
 "aeg" = (
 /obj/structure/table/mainship,
-/obj/machinery/computer/shuttle/shuttle_control/dropship1,
+/obj/machinery/computer/shuttle/shuttle_control/dropship,
 /obj/structure/window/reinforced/toughened{
 	dir = 4
 	},
