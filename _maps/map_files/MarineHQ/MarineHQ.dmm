@@ -169,7 +169,9 @@
 /obj/machinery/door/window{
 	dir = 2
 	},
-/obj/machinery/shower,
+/obj/machinery/shower{
+	pixel_z = 15
+	},
 /obj/item/tool/soap,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/bridgebunks)
@@ -208,7 +210,9 @@
 /obj/machinery/door/window{
 	dir = 2
 	},
-/obj/machinery/shower,
+/obj/machinery/shower{
+	pixel_z = 15
+	},
 /obj/item/tool/soap,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/squads/alpha)
@@ -501,7 +505,9 @@
 /obj/machinery/door/window{
 	dir = 2
 	},
-/obj/machinery/shower,
+/obj/machinery/shower{
+	pixel_z = 15
+	},
 /obj/item/tool/soap,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/numbertwobunks)
@@ -1240,7 +1246,8 @@
 "eu" = (
 /obj/structure/sink{
 	dir = 8;
-	
+	pixel_w = -9;
+	pixel_z = 1
 	},
 /turf/open/floor/prison/kitchen,
 /area/mainship/living/captain_mess)
@@ -3062,7 +3069,8 @@
 "ky" = (
 /obj/structure/sink/bathroom{
 	dir = 8;
-	
+	pixel_w = 12;
+	pixel_z = 2
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/living/grunt_rnr)
@@ -3526,7 +3534,7 @@
 "lW" = (
 /obj/structure/toilet{
 	dir = 4;
-	
+	pixel_z = 7
 	},
 /obj/structure/window/reinforced{
 	dir = 1
@@ -3889,7 +3897,7 @@
 "nb" = (
 /obj/structure/toilet{
 	dir = 4;
-	
+	pixel_z = 7
 	},
 /obj/machinery/light/small{
 	dir = 8
@@ -4246,7 +4254,9 @@
 /area/lv624/ground/compound/n)
 "rH" = (
 /obj/structure/sink/bathroom{
-	dir = 8
+	dir = 8;
+	pixel_w = 12;
+	pixel_z = 2
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/living/commandbunks)
@@ -4291,7 +4301,7 @@
 "rT" = (
 /obj/machinery/door_control{
 	id = 999;
-	
+	pixel_z = 8
 	},
 /turf/closed/wall,
 /area/mainship/squads/alpha)
@@ -4836,7 +4846,7 @@
 "wF" = (
 /obj/machinery/door_control{
 	id = 998;
-	
+	pixel_z = 8
 	},
 /turf/closed/wall,
 /area/mainship/living/bridgebunks)
@@ -5964,7 +5974,9 @@
 /obj/machinery/door/window{
 	dir = 2
 	},
-/obj/machinery/shower,
+/obj/machinery/shower{
+	pixel_z = 15
+	},
 /obj/item/tool/soap,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/squads/bravo)

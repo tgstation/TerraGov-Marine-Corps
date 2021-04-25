@@ -255,7 +255,7 @@
 //All of the armor below is mostly unused
 
 
-/obj/item/clothing/suit/armor/centcom
+/obj/item/clothing/suit/armor/centcomm
 	name = "Cent. Com. armor"
 	desc = "A suit that protects against some damage."
 	icon_state = "centcom"
