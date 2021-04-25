@@ -72,7 +72,7 @@ type PlayerPreferencesData = {
   genders: string[],
   overflow_job: string[],
   ui_styles: string[],
-  PreferencesGearSets: PreferencesGearSets,
+  gearsets: PreferencesGearSets,
   jobs: PreferencesJobsList,
   special_occupations: PreferencesSpecialOccupations,
   all_keybindings: AllKeybindingsList,

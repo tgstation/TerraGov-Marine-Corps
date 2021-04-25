@@ -1,5 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes: 
-  - qol: "monkey cubes now tell you when they're wrapped"
-  - code_imp: "cleaned up monkey cube code"
