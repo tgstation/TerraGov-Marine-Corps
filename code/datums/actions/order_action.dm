@@ -77,18 +77,24 @@
 		target = get_turf(target)
 		new visual_type(target)
 	if(squad)
-		SEND_SIGNAL(squad, COMSIG_SQUAD_ORDER_SENT, target, arrow_type, verb_name)
+		SEND_SIGNAL(squad, COMSIG_ORDER_SENT, target, arrow_type, verb_name)
 		return TRUE
 	var/datum/squad/each_squad
 	for(var/i in SSjob.squads)
 		each_squad = SSjob.squads[i]
-		SEND_SIGNAL(each_squad, COMSIG_SQUAD_ORDER_SENT, target, arrow_type, verb_name)
+		SEND_SIGNAL(each_squad, COMSIG_ORDER_SENT, target, arrow_type, verb_name)
+	SEND_GLOBAL_SIGNAL(COMSIG_ORDER_SENT, target, arrow_type, verb_name)
 	return TRUE
 
-/mob/living/carbon/human/proc/receive_order(datum/source, atom/target, arrow_type, verb_name)
+/mob/living/carbon/human/proc/receive_order(datum/source, atom/target, arrow_type, verb_name = "rally")
+	if(!target || !arrow_type)
+		return
 	if(z != target.z)
 		return
 	if(target == src)
+		return
+	var/datum/atom_hud/squad/squad_hud = GLOB.huds[DATA_HUD_SQUAD]
+	if(!squad_hud.hudusers[src])
 		return
 	var/obj/screen/arrow/arrow_hud = new arrow_type
 	arrow_hud.add_hud(src, target)

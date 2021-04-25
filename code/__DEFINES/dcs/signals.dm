@@ -642,5 +642,4 @@
 #define COMSIG_DISABLE_BURST_FIRE "disable_burst_fire"
 
 //Signals for orders
-#define COMSIG_SQUAD_ORDER_SENT "order_sent"
-#define COMSIG_GLOBAL_ORDER_SENT "global_order_sent"
+#define COMSIG_ORDER_SENT "order_sent"
