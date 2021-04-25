@@ -1,5 +1,0 @@
-author: "SplinterGP"
-delete-after: True
-changes: 
-  - refactor: "Vendors can now have tabs"
-  - qol: "all weapons vendor now has tab and share same items, Special vendors on prep are gone."

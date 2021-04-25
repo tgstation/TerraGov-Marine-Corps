@@ -1,4 +1,0 @@
-author: "Wayland-Smithy"
-delete-after: True
-changes: 
-  - bugfix: "Ghosts no longer have a fumble time when looking at the OB cannon console."
