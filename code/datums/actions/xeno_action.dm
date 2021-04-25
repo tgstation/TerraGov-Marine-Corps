@@ -10,6 +10,8 @@
 	var/keybind_signal
 	var/cooldown_id
 	var/target_flags = NONE
+	/// flags to restrict a xeno ability to certain gamemode
+	var/gamemode_flags = ABILITY_ALL_GAMEMODE
 
 /datum/action/xeno_action/New(Target)
 	. = ..()
