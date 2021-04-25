@@ -227,7 +227,8 @@
 	var/old_pixel_x = pixel_x
 	/// Sound played when shaking
 	var/shake_sound = rand(1, 100) == 1 ? 'sound/machines/blender.ogg' : 'sound/machines/juicer.ogg'
-	playsound(src, shake_sound, 25, TRUE)
+	if(prob(1))
+		playsound(src, shake_sound, 25, TRUE)
 	animate(src, pixel_x = pixel_x + offset, time = 2, loop = -1) //start shaking
 	addtimer(CALLBACK(src, .proc/stop_shake, old_pixel_x), duration)
 
