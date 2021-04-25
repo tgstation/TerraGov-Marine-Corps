@@ -399,7 +399,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 
 
-/mob/dead/observer/verb/teleport(area/A AS in GLOB.sorted_areas)
+/mob/dead/observer/verb/teleport(area/A in GLOB.sorted_areas)
 	set category = "Ghost"
 	set name = "Teleport"
 	set desc = "Teleport to an area."
