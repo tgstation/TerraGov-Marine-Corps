@@ -1,0 +1,5 @@
+author: "TiviPlus"
+delete-after: True
+changes: 
+  - rscadd: "The CIC minimap table will now display groundside"
+  - refactor: "Changed how minimaps were cached"
