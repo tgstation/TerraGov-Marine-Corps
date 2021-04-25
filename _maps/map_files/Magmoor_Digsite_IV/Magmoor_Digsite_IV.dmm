@@ -30,10 +30,6 @@
 	dir = 4
 	},
 /area/magmoor/compound/northeast)
-"act" = (
-/obj/structure/resin/xeno_turret,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/magmoor/cave/north)
 "acH" = (
 /turf/closed/wall,
 /area/storage/testroom)
@@ -3450,10 +3446,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/stripesquare,
 /area/magmoor/mining/garage)
-"cQP" = (
-/obj/structure/resin/xeno_turret,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/magmoor/cave/northwest)
 "cQZ" = (
 /obj/structure/rack,
 /obj/item/tool/pickaxe/drill,
@@ -5007,6 +4999,10 @@
 	dir = 8
 	},
 /area/magmoor/civilian/arrival)
+"dMK" = (
+/obj/effect/landmark/xeno_turret_spawn,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/magmoor/cave/north)
 "dMO" = (
 /obj/structure/bed/stool,
 /turf/open/floor/mainship/purple{
@@ -5152,6 +5148,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/magmoor/medical/morgue)
+"dQT" = (
+/obj/effect/landmark/xeno_turret_spawn,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/magmoor/cave/northwest)
 "dRl" = (
 /turf/open/floor/plating/ground/concrete,
 /area/magmoor/compound/northwest)
@@ -7621,10 +7621,6 @@
 	dir = 1
 	},
 /area/magmoor/compound/northeast)
-"fIc" = (
-/obj/structure/resin/xeno_turret,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/magmoor/cave/west)
 "fIf" = (
 /obj/structure/barricade/guardrail{
 	dir = 1
@@ -7695,6 +7691,10 @@
 "fJA" = (
 /turf/open/floor/plating/ground/concrete/lines,
 /area/magmoor/cave/central)
+"fJX" = (
+/obj/effect/landmark/xeno_turret_spawn,
+/turf/open/floor/mainship/sterile/dark,
+/area/magmoor/research/containment)
 "fJY" = (
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/medical/patient)
@@ -9466,6 +9466,11 @@
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/mainship/sterile/side,
 /area/magmoor/medical/patient)
+"hcq" = (
+/obj/structure/table/reinforced,
+/obj/machinery/computer/shuttle/shuttle_control/dropship/two,
+/turf/open/floor/plating,
+/area/lv624/lazarus/console)
 "hcs" = (
 /obj/structure/table/mainship,
 /obj/structure/flora/rock/pile/alt3,
@@ -11602,6 +11607,10 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/corner,
 /area/magmoor/medical/treatment)
+"iMw" = (
+/obj/effect/landmark/xeno_turret_spawn,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/magmoor/cave/northeast)
 "iMy" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	on = 1
@@ -12457,10 +12466,6 @@
 /obj/machinery/light/small,
 /turf/open/floor/mainship/sterile/side,
 /area/magmoor/medical/patient)
-"jpv" = (
-/obj/structure/resin/xeno_turret,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/magmoor/cave/northeast)
 "jpE" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -12557,11 +12562,6 @@
 "jtl" = (
 /turf/open/floor/plating/ground/concrete/edge,
 /area/magmoor/cave/east)
-"jtx" = (
-/obj/structure/table/reinforced,
-/obj/machinery/computer/shuttle/shuttle_control/dropship/two,
-/turf/open/floor/plating,
-/area/lv624/lazarus/console)
 "jtA" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 8
@@ -13008,6 +13008,12 @@
 	},
 /turf/open/floor/mainship/sterile/side,
 /area/magmoor/medical/lobby)
+"jKq" = (
+/obj/effect/landmark/xeno_turret_spawn,
+/turf/open/lavaland/basalt/cave/corner{
+	dir = 1
+	},
+/area/magmoor/cave/northeast)
 "jLI" = (
 /obj/structure/table/mainship,
 /turf/open/floor/mainship/sterile/side,
@@ -13144,6 +13150,10 @@
 	dir = 1
 	},
 /area/magmoor/landing)
+"jQq" = (
+/obj/effect/landmark/xeno_turret_spawn,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/magmoor/cave/central)
 "jQr" = (
 /turf/open/lavaland/basalt/cave{
 	dir = 10
@@ -15454,11 +15464,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/magmoor/cargo/storage)
-"lGc" = (
-/obj/machinery/computer/shuttle/shuttle_control/dropship,
-/obj/structure/table/reinforced,
-/turf/open/floor/plating,
-/area/magmoor/landing)
 "lGk" = (
 /turf/closed/wall/indestructible/mineral,
 /area/magmoor/compound/south)
@@ -15705,10 +15710,6 @@
 	dir = 1
 	},
 /area/magmoor/security/storage)
-"lNt" = (
-/obj/structure/resin/xeno_turret,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/magmoor/cave/central)
 "lNw" = (
 /obj/structure/table/woodentable,
 /obj/effect/landmark/corpsespawner/colonist,
@@ -15895,10 +15896,6 @@
 /obj/structure/closet/walllocker/hydrant/extinguisher,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/east)
-"lYH" = (
-/obj/structure/resin/xeno_turret,
-/turf/open/floor/mainship/sterile/dark,
-/area/magmoor/research/containment)
 "lZd" = (
 /obj/structure/lattice,
 /turf/open/lavaland/lava/single/middle{
@@ -16974,6 +16971,11 @@
 "mRb" = (
 /turf/open/floor/plating/ground/concrete/edge,
 /area/magmoor/compound/northeast)
+"mRc" = (
+/obj/machinery/computer/shuttle/shuttle_control/dropship,
+/obj/structure/table/reinforced,
+/turf/open/floor/plating,
+/area/magmoor/landing)
 "mRh" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -26570,12 +26572,6 @@
 	dir = 9
 	},
 /area/magmoor/compound/northwest)
-"tyC" = (
-/obj/structure/resin/xeno_turret,
-/turf/open/lavaland/basalt/cave/corner{
-	dir = 1
-	},
-/area/magmoor/cave/northeast)
 "tyL" = (
 /obj/effect/decal/cleanable/blood/drip,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -28210,6 +28206,10 @@
 	dir = 6
 	},
 /area/magmoor/compound/northeast)
+"uEL" = (
+/obj/effect/landmark/xeno_turret_spawn,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/magmoor/cave/west)
 "uFC" = (
 /obj/structure/closet/crate/science,
 /turf/open/floor/mainship/cargo,
@@ -37766,7 +37766,7 @@ aum
 qlL
 bCo
 pGg
-cQP
+dQT
 pGg
 rwF
 rwF
@@ -38252,7 +38252,7 @@ kal
 tvK
 rwF
 rwF
-fIc
+uEL
 kal
 fHm
 kal
@@ -42415,7 +42415,7 @@ nqC
 pGg
 pGg
 rRl
-cQP
+dQT
 pGg
 cdN
 bid
@@ -52206,7 +52206,7 @@ qkn
 aMD
 ebU
 aMD
-act
+dMK
 aMD
 dTv
 dSS
@@ -54707,7 +54707,7 @@ pVi
 uXC
 dxV
 pVi
-lGc
+mRc
 pVi
 jPH
 duF
@@ -55017,7 +55017,7 @@ vMR
 fcj
 vns
 vns
-lNt
+jQq
 vns
 cUK
 cUK
@@ -57556,7 +57556,7 @@ aNx
 aNx
 aqg
 idd
-jpv
+iMw
 idd
 idd
 jUo
@@ -62454,7 +62454,7 @@ utw
 cuI
 bax
 veX
-tyC
+jKq
 bNO
 bWx
 hVA
@@ -67105,7 +67105,7 @@ jUo
 jUo
 drL
 azI
-lYH
+fJX
 dWY
 mmA
 mmA
@@ -74205,7 +74205,7 @@ kUd
 xSV
 xSV
 xSV
-jtx
+hcq
 xSV
 xSV
 xSV

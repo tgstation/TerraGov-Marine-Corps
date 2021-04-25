@@ -10229,13 +10229,6 @@
 	dir = 8
 	},
 /area/shuttle/drop1/lz1)
-"aXE" = (
-/obj/machinery/computer/shuttle/shuttle_control/dropship,
-/obj/structure/table/reinforced,
-/turf/open/floor/marking/warning{
-	dir = 1
-	},
-/area/lv624/lazarus/console)
 "aXF" = (
 /turf/open/floor/marking/warning/corner{
 	dir = 4
@@ -14640,10 +14633,6 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/closed/gm/dense,
 /area/lv624/ground/jungle3)
-"etu" = (
-/obj/structure/resin/xeno_turret,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/west2)
 "euU" = (
 /obj/structure/mineral_door/resin/thick,
 /turf/open/floor/plating/ground/dirt,
@@ -15162,6 +15151,10 @@
 	dir = 4
 	},
 /area/shuttle/drop1/lz1)
+"ipB" = (
+/obj/effect/landmark/xeno_turret_spawn,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/east2)
 "iuG" = (
 /obj/structure/mineral_door/resin,
 /obj/effect/landmark/lv624/fog_blocker,
@@ -15721,13 +15714,6 @@
 	},
 /turf/open/floor,
 /area/lv624/lazarus/security)
-"mLT" = (
-/obj/machinery/computer/shuttle/shuttle_control/dropship/two,
-/obj/structure/table/reinforced,
-/turf/open/floor/marking/warning{
-	dir = 4
-	},
-/area/lv624/lazarus/console)
 "mMl" = (
 /obj/structure/cable/layer1,
 /turf/open/floor/plating,
@@ -15748,6 +15734,10 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/mineral,
 /area/lv624/ground/caves/central1)
+"ncK" = (
+/obj/effect/landmark/xeno_turret_spawn,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/west2)
 "ndi" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/structure/flora/ausbushes/fullgrass,
@@ -15881,10 +15871,6 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand5)
-"oph" = (
-/obj/structure/resin/xeno_turret,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/central1)
 "oqF" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/dirt,
@@ -16131,6 +16117,13 @@
 	dir = 1
 	},
 /area/lv624/ground/jungle9)
+"qyg" = (
+/obj/machinery/computer/shuttle/shuttle_control/dropship,
+/obj/structure/table/reinforced,
+/turf/open/floor/marking/warning{
+	dir = 1
+	},
+/area/lv624/lazarus/console)
 "qzs" = (
 /turf/closed/gm/dense,
 /area/shuttle/drop1/lz1)
@@ -16154,6 +16147,13 @@
 /obj/machinery/miner/damaged,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand5)
+"qOk" = (
+/obj/machinery/computer/shuttle/shuttle_control/dropship/two,
+/obj/structure/table/reinforced,
+/turf/open/floor/marking/warning{
+	dir = 4
+	},
+/area/lv624/lazarus/console)
 "qQj" = (
 /obj/machinery/light{
 	dir = 4
@@ -16430,6 +16430,10 @@
 	dir = 4
 	},
 /area/lv624/ground/jungle3)
+"tDN" = (
+/obj/effect/landmark/xeno_turret_spawn,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/central1)
 "tGT" = (
 /obj/machinery/floodlight/colony,
 /obj/structure/catwalk,
@@ -16482,10 +16486,6 @@
 	dir = 1
 	},
 /area/lv624/ground/jungle1)
-"ujY" = (
-/obj/structure/resin/xeno_turret,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/west1)
 "umw" = (
 /obj/effect/alien/egg,
 /turf/open/floor/plating/ground/dirt,
@@ -16575,6 +16575,10 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle3)
+"voz" = (
+/obj/effect/landmark/xeno_turret_spawn,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/west1)
 "vpr" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -16755,10 +16759,6 @@
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west1)
-"wMO" = (
-/obj/structure/resin/xeno_turret,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/east2)
 "wNe" = (
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle4)
@@ -19648,7 +19648,7 @@ ozL
 eOl
 eOl
 aej
-etu
+ncK
 aej
 aej
 aej
@@ -20583,7 +20583,7 @@ abb
 abb
 abb
 abc
-ujY
+voz
 abc
 abc
 abb
@@ -21362,7 +21362,7 @@ eYd
 jAh
 qQj
 jLW
-mLT
+qOk
 jTU
 aXb
 aXb
@@ -21783,7 +21783,7 @@ aej
 aej
 aej
 aej
-etu
+ncK
 aej
 aaa
 aaa
@@ -22166,7 +22166,7 @@ bLL
 bLL
 fDX
 abc
-ujY
+voz
 abc
 abu
 abc
@@ -32161,7 +32161,7 @@ abf
 abf
 abf
 abf
-oph
+tDN
 abf
 abf
 lFf
@@ -41830,7 +41830,7 @@ abI
 sez
 abI
 abI
-wMO
+ipB
 abn
 aaf
 aaf
@@ -42847,7 +42847,7 @@ aVk
 aVP
 aWt
 aWX
-aXE
+qyg
 aYi
 aWs
 aYi
@@ -44511,7 +44511,7 @@ abI
 abI
 aaj
 abI
-wMO
+ipB
 abI
 abI
 abI

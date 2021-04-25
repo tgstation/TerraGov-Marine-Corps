@@ -1691,13 +1691,6 @@
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/valley/southeast)
-"agV" = (
-/obj/structure/table/reinforced,
-/obj/machinery/computer/shuttle/shuttle_control/dropship,
-/turf/open/floor/tile/dark/brown2{
-	dir = 4
-	},
-/area/lv624/lazarus/console)
 "agW" = (
 /obj/item/lightstick/anchored,
 /turf/open/floor/plating/ground/snow/layer2,
@@ -31289,10 +31282,6 @@
 	dir = 1
 	},
 /area/ice_colony/exterior/underground/caves/ice_w)
-"cup" = (
-/obj/structure/resin/xeno_turret,
-/turf/open/floor/plating/ground/ice,
-/area/ice_colony/underground/maintenance/east)
 "cvo" = (
 /obj/machinery/landinglight/ds1,
 /turf/open/floor/tile/dark/brown2{
@@ -31435,6 +31424,10 @@
 /obj/structure/mineral_door/resin,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves/open)
+"dQR" = (
+/obj/effect/landmark/xeno_turret_spawn,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/underground/maintenance/east)
 "dRI" = (
 /obj/machinery/landinglight/ds1/delaythree{
 	dir = 8
@@ -31448,6 +31441,10 @@
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/landing_pad2)
+"ebB" = (
+/obj/effect/landmark/xeno_turret_spawn,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/ice_colony/exterior/underground/caves/ice_se)
 "edq" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -31537,6 +31534,10 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/underground/maintenance/south)
+"fdy" = (
+/obj/effect/landmark/xeno_turret_spawn,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/underground/maintenance/central)
 "fdT" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/r_wall/unmeltable,
@@ -31552,20 +31553,12 @@
 "fgG" = (
 /turf/closed/ice_rock/eastWall,
 /area/ice_colony/exterior/surface/landing_pad2)
-"fiX" = (
-/obj/structure/resin/xeno_turret,
-/turf/open/floor/plating/ground/ice,
-/area/ice_colony/exterior/underground/caves/open)
 "fjG" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/ice/straight{
 	dir = 4
 	},
 /area/ice_colony/exterior/underground/caves)
-"fnv" = (
-/obj/structure/resin/xeno_turret,
-/turf/open/floor/plating/ground/ice,
-/area/ice_colony/underground/maintenance/south)
 "fol" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -31680,10 +31673,6 @@
 	dir = 4
 	},
 /area/ice_colony/exterior/underground/caves/open)
-"gid" = (
-/obj/structure/resin/xeno_turret,
-/turf/open/floor/plating/ground/ice,
-/area/ice_colony/exterior/underground/caves)
 "gjB" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/alien/weeds/node,
@@ -31922,16 +31911,6 @@
 /obj/effect/alien/egg,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves)
-"iao" = (
-/obj/machinery/landinglight/ds1{
-	dir = 4
-	},
-/obj/structure/table/reinforced,
-/obj/machinery/computer/shuttle/shuttle_control/dropship/two,
-/turf/open/floor/plating/icefloor/warnplate{
-	dir = 4
-	},
-/area/ice_colony/exterior/surface/landing_pad)
 "iaC" = (
 /turf/closed/ice_rock/corners{
 	dir = 6
@@ -32272,6 +32251,10 @@
 /obj/effect/alien/weeds/node,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves)
+"kQj" = (
+/obj/effect/landmark/xeno_turret_spawn,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/underground/maintenance/engineering)
 "kQw" = (
 /obj/effect/turf_underlay/icefloor,
 /obj/effect/landmark/lv624/fog_blocker,
@@ -32334,6 +32317,10 @@
 	},
 /turf/closed/wall/r_wall,
 /area/ice_colony/surface/hangar/beta)
+"lwV" = (
+/obj/effect/landmark/xeno_turret_spawn,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/underground/maintenance/south)
 "lxk" = (
 /obj/effect/turf_underlay/icefloor,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
@@ -32407,6 +32394,16 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice,
 /area/ice_colony/exterior/surface/cliff)
+"mcO" = (
+/obj/machinery/landinglight/ds1{
+	dir = 4
+	},
+/obj/structure/table/reinforced,
+/obj/machinery/computer/shuttle/shuttle_control/dropship/two,
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 4
+	},
+/area/ice_colony/exterior/surface/landing_pad)
 "mcZ" = (
 /obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/snow/layer1,
@@ -32682,10 +32679,6 @@
 	dir = 5
 	},
 /area/ice_colony/exterior/surface/cliff)
-"nWj" = (
-/obj/structure/resin/xeno_turret,
-/turf/open/floor/plating/ground/snow/layer0,
-/area/ice_colony/exterior/underground/caves/ice_se)
 "nXf" = (
 /obj/machinery/floodlight/landing,
 /turf/open/floor/tile/dark/brown2{
@@ -33000,10 +32993,6 @@
 "qCb" = (
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves/ice_nw)
-"qCE" = (
-/obj/structure/resin/xeno_turret,
-/turf/open/floor/plating/ground/ice,
-/area/ice_colony/underground/maintenance/engineering)
 "qDA" = (
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/landing_pad2)
@@ -33017,10 +33006,6 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/resin/thick,
 /area/ice_colony/underground/maintenance/east)
-"qGt" = (
-/obj/structure/resin/xeno_turret,
-/turf/open/floor/plating/ground/ice,
-/area/ice_colony/underground/maintenance/central)
 "qIx" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -33074,6 +33059,10 @@
 	},
 /turf/open/floor/plating,
 /area/ice_colony/underground/engineering/substation)
+"qZy" = (
+/obj/effect/landmark/xeno_turret_spawn,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/exterior/underground/caves/open)
 "ram" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/ice,
@@ -33438,6 +33427,13 @@
 	dir = 4
 	},
 /area/ice_colony/surface/engineering/generator)
+"uqz" = (
+/obj/structure/table/reinforced,
+/obj/machinery/computer/shuttle/shuttle_control/dropship,
+/turf/open/floor/tile/dark/brown2{
+	dir = 4
+	},
+/area/lv624/lazarus/console)
 "uur" = (
 /obj/effect/turf_underlay/icefloor,
 /turf/closed/ice/thin/end{
@@ -33793,6 +33789,10 @@
 	},
 /turf/closed/ice_rock/corners,
 /area/ice_colony/exterior/surface/cliff)
+"xsQ" = (
+/obj/effect/landmark/xeno_turret_spawn,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/exterior/underground/caves)
 "xxm" = (
 /obj/structure/mineral_door/resin/thick,
 /turf/open/floor/plating/ground/ice,
@@ -38173,7 +38173,7 @@ aac
 aaC
 bmU
 bmU
-fiX
+qZy
 boD
 bmU
 bmU
@@ -38755,7 +38755,7 @@ bGw
 bGw
 bwK
 bwK
-gid
+xsQ
 bwK
 jyH
 bmU
@@ -41147,7 +41147,7 @@ abm
 abm
 abm
 adJ
-agV
+uqz
 abm
 adB
 abm
@@ -51850,7 +51850,7 @@ oTc
 bSb
 bSb
 bSb
-qGt
+fdy
 bSb
 bSb
 bSb
@@ -53160,7 +53160,7 @@ bqx
 boJ
 tit
 bQu
-fnv
+lwV
 tIS
 bQu
 qJj
@@ -64440,7 +64440,7 @@ byc
 bqP
 byc
 bRV
-qCE
+kQj
 bmk
 bmQ
 aZF
@@ -64966,7 +64966,7 @@ nKI
 bpj
 bBQ
 bUp
-cup
+dQR
 bFH
 bFH
 bEx
@@ -69286,7 +69286,7 @@ aac
 aae
 tKg
 bPX
-nWj
+ebB
 bPX
 tKg
 tKg
@@ -73169,7 +73169,7 @@ aZF
 bmU
 bmU
 bmU
-fiX
+qZy
 bmU
 bmU
 bmU
@@ -73461,7 +73461,7 @@ bmU
 bmU
 bmU
 bmU
-fiX
+qZy
 bmU
 boD
 bmU
@@ -82375,7 +82375,7 @@ aUP
 aUP
 aUP
 bbg
-iao
+mcO
 aXA
 aZw
 bbQ

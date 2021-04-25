@@ -378,11 +378,6 @@
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
-"aby" = (
-/obj/machinery/computer/shuttle/shuttle_control/dropship,
-/obj/structure/table,
-/turf/open/floor/tile/dark,
-/area/lv624/lazarus/console)
 "abz" = (
 /obj/structure/table,
 /obj/effect/spawner/random/powercell,
@@ -518,14 +513,6 @@
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/north)
-"abZ" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/structure/table/reinforced,
-/obj/machinery/computer/shuttle/shuttle_control/dropship,
-/turf/open/floor/asteroidfloor,
-/area/bigredv2/outside/space_port)
 "aca" = (
 /obj/machinery/light{
 	dir = 1
@@ -19557,6 +19544,13 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral/bigred,
 /area/bigredv2/caves/south)
+"dHv" = (
+/obj/structure/table/reinforced,
+/obj/machinery/computer/shuttle/shuttle_control/dropship/two,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 4
+	},
+/area/shuttle/drop2/lz2)
 "dIx" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
@@ -19633,13 +19627,6 @@
 /obj/structure/sign/safety/medical_supplies,
 /turf/closed/wall/r_wall,
 /area/bigredv2/caves/lambda_lab)
-"ehV" = (
-/obj/structure/table/reinforced,
-/obj/machinery/computer/shuttle/shuttle_control/dropship/two,
-/turf/open/floor/marking/asteroidwarning{
-	dir = 4
-	},
-/area/shuttle/drop2/lz2)
 "ekm" = (
 /obj/structure/cable,
 /turf/open/floor,
@@ -20194,6 +20181,11 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
+"iTO" = (
+/obj/machinery/computer/shuttle/shuttle_control/dropship,
+/obj/structure/table,
+/turf/open/floor/tile/dark,
+/area/lv624/lazarus/console)
 "iUZ" = (
 /obj/machinery/light{
 	dir = 1
@@ -20241,6 +20233,10 @@
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
+"jmg" = (
+/obj/effect/landmark/xeno_turret_spawn,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/south)
 "joZ" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating,
@@ -20376,6 +20372,10 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/outside/s)
+"ktr" = (
+/obj/effect/landmark/xeno_turret_spawn,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/northeast)
 "ktH" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -20518,6 +20518,14 @@
 	dir = 9
 	},
 /area/shuttle/drop2/lz2)
+"lEk" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/table/reinforced,
+/obj/machinery/computer/shuttle/shuttle_control/dropship,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/space_port)
 "lFT" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -20769,6 +20777,10 @@
 "ocv" = (
 /turf/open/floor/plating/ground/mars/dirttosand,
 /area/shuttle/drop2/lz2)
+"oev" = (
+/obj/effect/landmark/xeno_turret_spawn,
+/turf/open/floor/plating/ground/mars/random/cave/rock,
+/area/bigredv2/caves/east)
 "ojx" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -20970,6 +20982,10 @@
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/dorms)
+"pzR" = (
+/obj/effect/landmark/xeno_turret_spawn,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/north)
 "pJO" = (
 /obj/structure/mineral_door/resin,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -21062,10 +21078,6 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral/bigred,
 /area/bigredv2/caves/north)
-"qqG" = (
-/obj/structure/resin/xeno_turret,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southwest)
 "qtI" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	on = 1
@@ -21346,10 +21358,6 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
-"sQi" = (
-/obj/structure/resin/xeno_turret,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/south)
 "sUd" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -21417,10 +21425,6 @@
 	dir = 8
 	},
 /area/shuttle/drop2/lz2)
-"ttW" = (
-/obj/structure/resin/xeno_turret,
-/turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/east)
 "ttZ" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral/bigred,
@@ -21537,10 +21541,6 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
-"uhF" = (
-/obj/structure/resin/xeno_turret,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/north)
 "uja" = (
 /obj/structure/window/framed/colony/reinforced/hull,
 /obj/docking_port/stationary/crashmode,
@@ -21660,6 +21660,10 @@
 	dir = 4
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
+"vpU" = (
+/obj/effect/landmark/xeno_turret_spawn,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/southwest)
 "vsq" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/marking/asteroidwarning,
@@ -21673,10 +21677,6 @@
 "vwf" = (
 /turf/closed/mineral/bigred,
 /area/bigredv2/outside/space_port)
-"vyZ" = (
-/obj/structure/resin/xeno_turret,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/northeast)
 "vAP" = (
 /obj/docking_port/stationary/crashmode,
 /obj/structure/cable,
@@ -25868,7 +25868,7 @@ tvk
 tvk
 liu
 dSm
-qqG
+vpU
 puQ
 puQ
 puQ
@@ -26164,7 +26164,7 @@ jLQ
 aaf
 abC
 aae
-abZ
+lEk
 aaf
 aaf
 aaf
@@ -31044,7 +31044,7 @@ mAw
 mAw
 mAw
 bht
-ehV
+dHv
 soj
 gMM
 gMM
@@ -31591,7 +31591,7 @@ aaM
 aaX
 aaL
 abn
-aby
+iTO
 aaC
 abE
 aaw
@@ -39781,7 +39781,7 @@ hqP
 hqP
 dGX
 xEN
-sQi
+jmg
 xEN
 vFJ
 vFJ
@@ -50259,7 +50259,7 @@ qVr
 qVr
 qVr
 qoL
-uhF
+pzR
 xpB
 hEi
 xpB
@@ -51487,7 +51487,7 @@ owG
 iyn
 xWD
 vFJ
-sQi
+jmg
 xEN
 xEN
 xEN
@@ -60357,7 +60357,7 @@ tzo
 tzo
 tzo
 tzo
-ttW
+oev
 oOR
 uMP
 uMP
@@ -67443,7 +67443,7 @@ uLR
 miv
 vCh
 vCh
-vyZ
+ktr
 vCh
 dnl
 dnl
@@ -67633,7 +67633,7 @@ vCh
 kKe
 vCh
 vCh
-vyZ
+ktr
 vCh
 dnl
 dnl

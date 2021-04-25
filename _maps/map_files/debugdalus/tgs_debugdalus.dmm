@@ -166,32 +166,6 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
-"aaG" = (
-/obj/machinery/vending/marine,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/turf/open/floor/mainship,
-/area/mainship/squads/general)
-"aaH" = (
-/obj/machinery/vending/marine,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/turf/open/floor/mainship,
-/area/mainship/squads/general)
 "aaI" = (
 /obj/machinery/marine_selector/gear/smartgun,
 /obj/structure/window/reinforced,
@@ -391,13 +365,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/command/self_destruct)
-"abu" = (
-/obj/machinery/vending/attachments,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/turf/open/floor/mainship,
-/area/mainship/squads/general)
 "abv" = (
 /obj/machinery/marine_selector/clothes/engi,
 /obj/structure/window/reinforced{
@@ -425,13 +392,6 @@
 	icon_state = "floor8"
 	},
 /area/mainship/command/self_destruct)
-"abD" = (
-/obj/machinery/vending/marine/cargo_ammo,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/turf/open/floor/mainship,
-/area/mainship/squads/general)
 "abG" = (
 /obj/machinery/marine_selector/gear/engi,
 /obj/structure/window/reinforced{
@@ -456,14 +416,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/command/self_destruct)
-"abN" = (
-/obj/machinery/vending/marine/cargo_guns,
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/turf/open/floor/mainship,
-/area/mainship/squads/general)
 "abP" = (
 /obj/machinery/power/apc/mainship{
 	dir = 1
@@ -975,17 +927,6 @@
 /obj/effect/landmark/start/job/pilotofficer,
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
-"adY" = (
-/obj/structure/table/mainship,
-/obj/machinery/computer/shuttle/shuttle_control/dropship/two,
-/obj/structure/window/reinforced/toughened{
-	dir = 8
-	},
-/obj/structure/window/reinforced/toughened{
-	dir = 1
-	},
-/turf/open/floor/mainship,
-/area/mainship/command/cic)
 "adZ" = (
 /obj/structure/cable,
 /turf/open/floor/mainship,
@@ -995,17 +936,6 @@
 /area/mainship/hallways/exoarmor)
 "aef" = (
 /obj/machinery/door/window/northleft,
-/turf/open/floor/mainship,
-/area/mainship/command/cic)
-"aeg" = (
-/obj/structure/table/mainship,
-/obj/machinery/computer/shuttle/shuttle_control/dropship,
-/obj/structure/window/reinforced/toughened{
-	dir = 4
-	},
-/obj/structure/window/reinforced/toughened{
-	dir = 1
-	},
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
 "aeh" = (
@@ -2438,6 +2368,17 @@
 /obj/structure/closet/secure_closet/medical_doctor,
 /turf/open/floor/mainship,
 /area/mainship/medical/medical_science)
+"bZx" = (
+/obj/structure/table/mainship,
+/obj/machinery/computer/shuttle/shuttle_control/dropship,
+/obj/structure/window/reinforced/toughened{
+	dir = 4
+	},
+/obj/structure/window/reinforced/toughened{
+	dir = 1
+	},
+/turf/open/floor/mainship,
+/area/mainship/command/cic)
 "cCb" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
@@ -2481,6 +2422,13 @@
 /obj/machinery/light,
 /turf/open/floor/mainship,
 /area/mainship/hallways/exoarmor)
+"hvF" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/machinery/vending/armor_supply,
+/turf/open/floor/mainship,
+/area/mainship/squads/general)
 "hCx" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
@@ -2488,6 +2436,17 @@
 /obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
+"iCr" = (
+/obj/structure/table/mainship,
+/obj/machinery/computer/shuttle/shuttle_control/dropship/two,
+/obj/structure/window/reinforced/toughened{
+	dir = 8
+	},
+/obj/structure/window/reinforced/toughened{
+	dir = 1
+	},
+/turf/open/floor/mainship,
+/area/mainship/command/cic)
 "iUB" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
@@ -2533,11 +2492,12 @@
 /obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/medical/lower_medical)
-"moi" = (
-/obj/structure/cable,
-/obj/machinery/vending/armor_supply,
+"mBb" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
 /turf/open/floor/mainship,
-/area/mainship/hallways/hangar)
+/area/mainship/squads/general)
 "qko" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
@@ -2563,6 +2523,32 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
+"srR" = (
+/obj/machinery/vending/marine/shared,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/mainship,
+/area/mainship/squads/general)
+"tCw" = (
+/obj/machinery/vending/marine/shared,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/mainship,
+/area/mainship/squads/general)
 "tQD" = (
 /obj/machinery/light,
 /turf/open/floor/mainship,
@@ -2584,6 +2570,13 @@
 /obj/machinery/computer/orbital_cannon_console,
 /turf/open/floor/mainship,
 /area/mainship/shipboard/weapon_room)
+"vOj" = (
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/mainship,
+/area/mainship/squads/general)
 "way" = (
 /obj/structure/cable,
 /obj/machinery/landinglight/ds1/delaytwo,
@@ -3616,7 +3609,7 @@ adx
 adC
 aho
 ais
-adY
+iCr
 aeE
 aeT
 ais
@@ -3736,7 +3729,7 @@ adz
 adC
 aho
 ais
-aeg
+bZx
 aeG
 aeV
 ais
@@ -4682,9 +4675,9 @@ aaF
 aaJ
 aaR
 abc
-abu
-abD
-abN
+mBb
+hvF
+vOj
 aaC
 amH
 bOu
@@ -4798,10 +4791,10 @@ aal
 aap
 aaw
 aaA
-aaG
+srR
 aaA
 aaS
-aaG
+srR
 aaA
 aaS
 cCb
@@ -4866,7 +4859,7 @@ ade
 ade
 abP
 aaC
-moi
+amH
 bOu
 bOu
 afq
@@ -4918,10 +4911,10 @@ aal
 aas
 aaw
 aaA
-aaH
+tCw
 aaA
 aaT
-aaH
+tCw
 aaA
 aaT
 ade

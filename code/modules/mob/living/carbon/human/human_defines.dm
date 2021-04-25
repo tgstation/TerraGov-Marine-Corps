@@ -3,6 +3,7 @@
 	real_name = "unknown"
 	icon = 'icons/mob/human.dmi'
 	icon_state = "body_m_s"
+	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
 	hud_possible = list(HEALTH_HUD, STATUS_HUD_SIMPLE, STATUS_HUD, XENO_EMBRYO_HUD, XENO_REAGENT_HUD, WANTED_HUD, SQUAD_HUD, ORDER_HUD, PAIN_HUD)
 	health_threshold_crit = -50
 	melee_damage = 5
@@ -92,7 +93,7 @@
 
 
 	//Life variables
-	
+
 	///How long the human is dead, in life ticks, which is 2 seconds
 	var/dead_ticks = 0
 

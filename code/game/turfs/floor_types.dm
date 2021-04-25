@@ -324,6 +324,8 @@
 	return
 
 /turf/open/floor/engine/attackby(obj/item/I, mob/user, params)
+	if(iscrowbar(I)) // Prevent generation of infinite 'floor_tile' objs caused by the overridden make_plating() above never clearing the var
+		return
 	. = ..()
 
 	if(iswrench(I))
