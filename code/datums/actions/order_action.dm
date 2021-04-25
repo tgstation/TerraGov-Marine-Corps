@@ -86,7 +86,14 @@
 	SEND_GLOBAL_SIGNAL(COMSIG_ORDER_SENT, target, arrow_type, verb_name)
 	return TRUE
 
+/**
+ * Signal handler to give a marine an order
+ * target : what atom to track
+ * arrow_type : what kind of visual arrow will be spawned on the marine
+ * verb_name : a word / sentence to describe the order
+ */
 /mob/living/carbon/human/proc/receive_order(datum/source, atom/target, arrow_type, verb_name = "rally")
+	SIGNAL_HANDLER
 	if(!target || !arrow_type)
 		return
 	if(z != target.z)
