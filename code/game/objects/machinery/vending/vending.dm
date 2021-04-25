@@ -42,10 +42,10 @@
 
 	if(product_display_color)
 		display_color = product_display_color
-	else if(is_type_in_typecache(typepath, GLOB.vending_white_items))
-		display_color = "white"
-	else
+	else if(ispath(typepath, /obj/item/ammo_magazine))
 		display_color = "black"
+	else
+		display_color = "white"
 
 /obj/machinery/vending
 	name = "Vendomat"
@@ -201,33 +201,6 @@
 		if(EXPLODE_LIGHT)
 			if(prob(25))
 				INVOKE_ASYNC(src, .proc/malfunction)
-
-
-GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
-	/obj/item/ammo_magazine/pistol/standard_pistol,
-	/obj/item/ammo_magazine/revolver/standard_revolver,
-	/obj/item/weapon/gun/smg/standard_smg,
-	/obj/item/weapon/gun/rifle/standard_carbine,
-	/obj/item/weapon/gun/rifle/standard_assaultrifle,
-	/obj/item/weapon/gun/rifle/standard_lmg,
-	/obj/item/weapon/gun/rifle/standard_dmr,
-	/obj/item/weapon/gun/energy/lasgun/lasrifle,
-	/obj/item/weapon/gun/shotgun/pump/t35,
-	/obj/item/weapon/gun/rifle/standard_autoshotgun,
-	/obj/item/ammobox,
-	/obj/item/shotgunbox,
-	/obj/item/smartgun_powerpack,
-	/obj/item/weapon/combat_knife,
-	/obj/item/radio/headset/mainship/marine,
-	/obj/item/clothing/gloves/marine,
-	/obj/item/clothing/shoes/marine,
-	/obj/item/clothing/under/marine,
-	/obj/item/storage/backpack/marine/satchel,
-	/obj/item/clothing/suit/storage/marine,
-	/obj/item/storage/belt/marine,
-	/obj/item/storage/pouch/flare,
-	/obj/item/storage/pouch/firstaid
-)))
 
 /**
  * Builds shared vendors inventory
