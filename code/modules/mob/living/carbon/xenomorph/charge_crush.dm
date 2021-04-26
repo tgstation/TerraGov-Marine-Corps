@@ -286,6 +286,8 @@
 
 	if(isobj(crushed))
 		var/obj/crushed_obj = crushed
+		if(istype(crushed_obj, /obj/structure/resin/silo) || istype(crushed_obj, /obj/structure/resin/xeno_turret))
+			return precrush2signal(crushed_obj.post_crush_act(charger, src))
 		playsound(crushed_obj.loc, "punch", 25, 1)
 		var/crushed_behavior = crushed_obj.crushed_special_behavior()
 		crushed_obj.take_damage(precrush, BRUTE, "melee")
