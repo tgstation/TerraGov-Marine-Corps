@@ -67,7 +67,7 @@
 /obj/docking_port/shuttleRotate()
 	return //we don't rotate with shuttles via this code.
 
-///Copies the width, dwidth, height and dheight value of D onto itself
+///Copies the width, dwidth, height and dheight value of D onto itself.
 /obj/docking_port/proc/copy_size(obj/docking_port/D)
 	if (!D)
 		return FALSE
