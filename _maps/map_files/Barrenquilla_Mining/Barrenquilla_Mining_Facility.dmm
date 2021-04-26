@@ -1,8 +1,4 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"ab" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/closed/brock,
-/area/shuttle/drop1/lz1)
 "ac" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/lavaland/basalt,
@@ -33,11 +29,10 @@
 /turf/open/floor/plating/catwalk,
 /area/barren/cave/central)
 "aj" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
-	dir = 1
-	},
-/turf/closed/wall/r_wall,
-/area/shuttle/drop2/lz2)
+/obj/structure/table/reinforced,
+/obj/machinery/prop/mainship/computer,
+/turf/open/shuttle/blackfloor,
+/area/barren/misc/clocknuke)
 "ak" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 1
@@ -54,11 +49,10 @@
 /turf/closed/brock,
 /area/shuttle/drop2/lz2)
 "an" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
+/obj/structure/table/reinforced,
+/obj/item/paper/clockresearch2,
+/turf/open/shuttle/blackfloor,
+/area/barren/misc/clocknuke)
 "ao" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 8
@@ -441,7 +435,7 @@
 /area/barren/cave/north)
 "ci" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/open/floor/plating,
+/turf/closed/brock,
 /area/shuttle/drop1/lz1)
 "cj" = (
 /obj/structure/table,
@@ -1782,6 +1776,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/machinery/computer/nuke_disk_generator/red,
 /turf/open/floor/wood,
 /area/barren/security)
 "ix" = (
@@ -1828,11 +1823,12 @@
 	},
 /area/barren/medical)
 "iG" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+/obj/structure/cable,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 1
 	},
-/turf/closed/wall/r_wall,
-/area/shuttle/drop1/lz1)
+/turf/open/lavaland/basalt,
+/area/shuttle/drop2/lz2)
 "iH" = (
 /obj/item/storage/firstaid,
 /obj/effect/landmark/corpsespawner/doctor,
@@ -2180,8 +2176,10 @@
 /turf/open/floor/marking,
 /area/barren/cave/central)
 "ko" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/closed/wall/r_wall,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 1
+	},
+/turf/open/lavaland/basalt/glowing,
 /area/shuttle/drop1/lz1)
 "kp" = (
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor/medbay,
@@ -2715,9 +2713,6 @@
 /turf/closed/wall/indestructible/mineral,
 /area/barren/cave/northwest)
 "mH" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
-	dir = 1
-	},
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/shuttle/drop2/lz2)
@@ -3020,12 +3015,11 @@
 /turf/open/floor/plating,
 /area/barren/cave/east)
 "nU" = (
-/obj/structure/window/framed/colony/reinforced,
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
-	dir = 1
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
+	dir = 8
 	},
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
+/turf/open/lavaland/basalt/glowing,
+/area/shuttle/drop2/lz2)
 "nV" = (
 /obj/structure/table,
 /turf/open/floor/wood,
@@ -3344,9 +3338,9 @@
 /area/space)
 "pM" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
-	dir = 1
+	dir = 8
 	},
-/turf/open/floor/plating,
+/turf/open/lavaland/basalt,
 /area/shuttle/drop2/lz2)
 "pQ" = (
 /obj/structure/table,
@@ -3568,6 +3562,9 @@
 /turf/open/lavaland/basalt,
 /area/barren/cave/central)
 "rb" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 1
+	},
 /turf/closed/brock,
 /area/shuttle/drop1/lz1)
 "rd" = (
@@ -3836,7 +3833,7 @@
 /turf/open/floor,
 /area/barren/misc/genstorage)
 "ss" = (
-/obj/structure/table/reinforced,
+/obj/machinery/computer/nuke_disk_generator/blue,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 6
 	},
@@ -5291,8 +5288,8 @@
 /turf/closed/wall,
 /area/barren/misc/refinery)
 "Am" = (
-/obj/machinery/computer/nuke_disk_generator/blue,
 /obj/effect/decal/cleanable/cobweb,
+/obj/structure/table/reinforced,
 /turf/open/shuttle/blackfloor,
 /area/barren/misc/clocknuke)
 "An" = (
@@ -5486,11 +5483,6 @@
 /obj/item/weapon/gun/pistol/g22,
 /turf/open/floor/tile/red/full,
 /area/barren/security)
-"Bl" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/obj/structure/window/framed/colony/reinforced,
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
 "Bm" = (
 /obj/item/trash/cigbutt,
 /turf/open/floor/plating,
@@ -6071,13 +6063,6 @@
 /obj/machinery/autolathe,
 /turf/open/floor/tile/dark2,
 /area/barren/misc/refinery)
-"Ef" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
-	dir = 1
-	},
-/obj/machinery/door/airlock/multi_tile/mainship/generic,
-/turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
 "Eh" = (
 /obj/structure/filingcabinet,
 /turf/open/floor,
@@ -6314,12 +6299,6 @@
 /obj/structure/ore_box,
 /turf/open/lavaland/basalt,
 /area/barren/cave/southeast)
-"Fk" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
 "Fm" = (
 /obj/structure/window/framed/colony,
 /turf/open/floor/tile/bar{
@@ -6679,13 +6658,6 @@
 "He" = (
 /turf/open/lavaland/catwalk,
 /area/barren/cave/central)
-"Hf" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
-	dir = 8
-	},
-/obj/structure/window/framed/colony/reinforced,
-/turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
 "Hi" = (
 /obj/effect/decal/cleanable/generic,
 /turf/open/shuttle/blackfloor,
@@ -6953,10 +6925,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/shuttle/drop1/lz1)
 "Iz" = (
-/obj/structure/table/mainship,
-/obj/item/storage/belt/shotgun,
-/obj/item/storage/belt/shotgun,
-/obj/item/storage/belt/shotgun,
+/obj/effect/landmark/nuke_spawn,
 /turf/open/floor/prison/plate,
 /area/ai_monitored/storage/secure)
 "IA" = (
@@ -7260,9 +7229,6 @@
 /turf/open/floor/tile/dark2,
 /area/barren/engie/engine)
 "JU" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
-	dir = 8
-	},
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 2
 	},
@@ -7402,11 +7368,6 @@
 /obj/item/trash/raisins,
 /turf/open/floor/tile/blue/whitebluecorner,
 /area/barren/medical)
-"KD" = (
-/obj/structure/table/reinforced,
-/obj/item/paper/clockresearch2,
-/turf/open/shuttle/blackfloor,
-/area/barren/misc/clocknuke)
 "KE" = (
 /turf/open/lavaland/lava,
 /area/shuttle/drop2/lz2)
@@ -7451,10 +7412,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/barren/civilian/cook)
-"KW" = (
-/obj/machinery/computer/nuke_disk_generator/green,
-/turf/open/shuttle/blackfloor,
-/area/barren/misc/clocknuke)
 "KZ" = (
 /obj/machinery/shower{
 	dir = 8
@@ -7622,8 +7579,8 @@
 /turf/closed/wall/wood,
 /area/barren/misc/shack)
 "LW" = (
-/obj/machinery/vending/phoronresearch,
 /obj/structure/sign/poster,
+/obj/machinery/computer/nuke_disk_generator/green,
 /turf/open/floor/prison/sterilewhite,
 /area/barren/medical/research)
 "LX" = (
@@ -8149,7 +8106,6 @@
 /turf/open/floor/tile/dark2,
 /area/barren/engie/engine)
 "OQ" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1
 	},
@@ -8350,9 +8306,6 @@
 /area/bigredv2/outside/general_offices)
 "PV" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
-	dir = 1
-	},
 /turf/closed/wall/r_wall,
 /area/shuttle/drop1/lz1)
 "PX" = (
@@ -8447,13 +8400,6 @@
 	},
 /turf/open/floor/tile/dark2,
 /area/barren/engie/engine)
-"Qw" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
-	dir = 1
-	},
-/obj/structure/window/framed/colony/reinforced,
-/turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
 "Qx" = (
 /obj/machinery/door/airlock/vault,
 /turf/open/floor,
@@ -8834,9 +8780,6 @@
 /turf/open/floor/prison/bright_clean/two,
 /area/barren/security)
 "Sr" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
-	dir = 1
-	},
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 8
 	},
@@ -9683,10 +9626,6 @@
 	dir = 1
 	},
 /area/barren)
-"Xu" = (
-/obj/machinery/computer/nuke_disk_generator/red,
-/turf/open/shuttle/blackfloor,
-/area/barren/misc/clocknuke)
 "Xv" = (
 /obj/structure/rack,
 /turf/open/floor/prison/plate,
@@ -14332,8 +14271,8 @@ rK
 rK
 rK
 rK
-QR
-aj
+gt
+Gv
 yb
 MG
 vU
@@ -14589,8 +14528,8 @@ rK
 rK
 rK
 QR
-QR
-aj
+gt
+Gv
 mP
 mP
 mP
@@ -14846,8 +14785,8 @@ rK
 QR
 QR
 QR
-QR
-aj
+gt
+Gv
 zm
 mP
 mP
@@ -15103,8 +15042,8 @@ rK
 QR
 QR
 QR
-QR
-Ef
+gt
+OT
 mP
 mP
 mP
@@ -15360,8 +15299,8 @@ QR
 QR
 QR
 QR
-QR
-pM
+gt
+RF
 mP
 mP
 mP
@@ -15617,8 +15556,8 @@ QR
 QR
 QR
 Ls
-QR
-Qw
+gt
+gO
 mP
 mP
 mP
@@ -15874,8 +15813,8 @@ QR
 QR
 QR
 QR
-QR
-Ef
+gt
+OT
 mP
 mP
 mP
@@ -16131,7 +16070,7 @@ QR
 QR
 QR
 QR
-nu
+iG
 mH
 iI
 iI
@@ -16388,8 +16327,8 @@ nu
 nu
 nu
 nu
-nu
-aj
+iG
+Gv
 mP
 mP
 mP
@@ -16645,8 +16584,8 @@ QR
 QR
 QR
 QR
-QR
-aj
+gt
+Gv
 mP
 mP
 mP
@@ -16902,8 +16841,8 @@ rK
 rK
 QR
 QR
-QR
-aj
+gt
+Gv
 bf
 gG
 wo
@@ -17159,8 +17098,8 @@ rK
 rK
 rK
 rK
-rK
-aj
+ak
+Gv
 Gv
 Gv
 Gv
@@ -17416,12 +17355,12 @@ rK
 rK
 rK
 rK
-rK
+ak
 am
 am
 am
 am
-am
+ak
 Gv
 iI
 mP
@@ -18228,7 +18167,7 @@ TQ
 oB
 KE
 Gv
-aj
+ak
 ZW
 ZW
 ZW
@@ -18449,6 +18388,7 @@ rK
 rK
 rK
 rK
+ak
 am
 am
 am
@@ -18456,8 +18396,7 @@ am
 am
 am
 am
-am
-am
+ak
 Gv
 jt
 mP
@@ -18471,7 +18410,7 @@ PZ
 mP
 on
 Gv
-am
+ak
 am
 am
 am
@@ -18485,7 +18424,7 @@ FE
 FE
 FE
 aq
-aq
+ak
 ZW
 ZW
 ZW
@@ -19742,21 +19681,21 @@ rK
 rK
 rK
 rK
-am
-aq
-aq
-aq
-aq
-an
+ak
+Gv
+Gv
+Gv
+Gv
+RF
 JU
-Hf
-an
+gO
+RF
 JU
-aq
-aq
-aq
-aq
-am
+Gv
+Gv
+Gv
+Gv
+ak
 ZW
 ZW
 ZW
@@ -19999,21 +19938,21 @@ rK
 rK
 rK
 rK
-rK
-rK
-rK
-ZW
-Gn
-ZN
-ZN
-ZN
-ZN
-ZN
-ZN
-ZN
-ZW
-ZW
-ZW
+ak
+am
+am
+am
+nU
+pM
+pM
+pM
+pM
+pM
+pM
+pM
+am
+am
+ak
 ZW
 ZW
 ZW
@@ -26621,10 +26560,10 @@ aI
 aI
 Nd
 Am
-KD
+BL
 HS
 Hi
-Xu
+BL
 Nd
 aI
 aI
@@ -27391,7 +27330,7 @@ Qf
 aI
 aI
 Nd
-BL
+aj
 HS
 VZ
 Nd
@@ -27648,7 +27587,7 @@ Qf
 aI
 Qf
 Nd
-BL
+an
 HS
 HS
 eI
@@ -28937,7 +28876,7 @@ uY
 Qf
 Wx
 BL
-KW
+BL
 Nd
 aI
 aI
@@ -48243,22 +48182,22 @@ sa
 sa
 sa
 sa
-sa
-sa
-sa
-OD
-OD
-OD
-OD
-OD
-OD
-OD
-sa
-sa
-sa
-sa
-sa
-sa
+rb
+ci
+ci
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ci
+ci
+ci
+ci
+ci
+rb
 sa
 sa
 sa
@@ -48500,22 +48439,22 @@ sa
 sa
 sa
 sa
-sa
-ko
-ko
-ko
-ko
-ci
+rb
+AK
+AK
+AK
+AK
+HR
 OQ
-Bl
-ci
+WI
+HR
 OQ
-ko
-ko
-ko
-ko
+AK
+AK
+AK
+AK
 PV
-sa
+rb
 sa
 sa
 sa
@@ -48771,8 +48710,8 @@ kk
 QY
 hN
 eN
-iG
-sa
+AK
+rb
 sa
 sa
 sa
@@ -49028,8 +48967,8 @@ Kk
 Oi
 Mc
 ZB
-iG
-sa
+AK
+rb
 sa
 sa
 sa
@@ -49285,8 +49224,8 @@ lL
 Pw
 Pw
 Pw
-iG
-sa
+AK
+rb
 sa
 sa
 OD
@@ -49542,8 +49481,8 @@ Pw
 Pw
 Pw
 Pw
-iG
-sa
+AK
+rb
 OD
 OD
 OD
@@ -49799,8 +49738,8 @@ Pw
 yL
 Pw
 gf
-iG
-pr
+AK
+ko
 OD
 OD
 pr
@@ -50057,7 +49996,7 @@ yL
 Pw
 Pw
 Sr
-OD
+ag
 OD
 OD
 OD
@@ -50313,8 +50252,8 @@ Pw
 fN
 Pw
 Pw
-Fk
-OD
+HR
+ag
 OD
 OD
 OD
@@ -50570,8 +50509,8 @@ Pw
 mY
 Pw
 Pw
-nU
-OD
+WI
+ag
 OD
 OD
 OD
@@ -50828,7 +50767,7 @@ Ag
 Pw
 Pw
 Sr
-OD
+ag
 OD
 OD
 OD
@@ -51084,8 +51023,8 @@ Pw
 Pw
 Pw
 Pw
-Fk
-OD
+HR
+ag
 OD
 OD
 OD
@@ -51341,9 +51280,9 @@ Pw
 Pw
 Pw
 Jv
-iG
+AK
+ag
 RR
-OD
 OD
 OD
 OD
@@ -51598,8 +51537,8 @@ Pw
 Pw
 Pw
 gj
-iG
-sa
+AK
+rb
 OD
 OD
 OD
@@ -51855,14 +51794,14 @@ Pw
 Cq
 Pw
 Hs
-iG
-sa
-OD
-OD
-OD
-sa
-sa
-sa
+AK
+rb
+ac
+ac
+ac
+ci
+ci
+rb
 OD
 OD
 OD
@@ -52112,14 +52051,14 @@ TW
 AK
 WI
 AK
-ko
-ko
-Bl
-Bl
-ko
-ko
-ko
-ab
+AK
+AK
+WI
+WI
+AK
+AK
+AK
+rb
 OD
 OD
 OD
@@ -53404,7 +53343,7 @@ Pw
 Pw
 zr
 AK
-ac
+ag
 ac
 ac
 ag
