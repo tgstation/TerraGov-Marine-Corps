@@ -41,7 +41,6 @@ SUBSYSTEM_DEF(mapping)
 			var/client/C = i
 			winset(C, null, "mainwindow.title='[CONFIG_GET(string/title)] - [SSmapping.configs[SHIP_MAP].map_name]'")
 
-
 /datum/controller/subsystem/mapping/Initialize(timeofday)
 	HACK_LoadMapConfig()
 	if(initialized)
@@ -51,8 +50,6 @@ SUBSYSTEM_DEF(mapping)
 		var/datum/map_config/MC = configs[i]
 		if(MC.defaulted)
 			var/old_config = configs[i]
-			if(!global.config.defaultmaps)
-				continue
 			configs[i] = global.config.defaultmaps[i]
 			if(!configs || configs[i].defaulted)
 				to_chat(world, "<span class='boldannounce'>Unable to load next or default map config, defaulting.</span>")
