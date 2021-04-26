@@ -326,7 +326,6 @@
 /obj/item/clothing/head/modular
 	name = "Jaeger Pattern Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points."
-	icon = 'icons/mob/modular/modular_helmet_icon.dmi'
 	icon_state = "medium_helmet"
 	flags_armor_protection = HEAD
 	flags_armor_features = ARMOR_NO_DECAP
@@ -374,12 +373,8 @@
 
 /obj/item/clothing/head/modular/update_greyscale(list/colors, update)
 	. = ..()
-	item_icons = list(
-		slot_head_str = icon
-	)
-	item_state = list(
-		slot_head_str = ""
-	)
+	item_icons = list(slot_head_str = icon)
+	item_state = list(slot_head_str = "")
 
 /obj/item/clothing/head/modular/attackby(obj/item/I, mob/user, params)
 	. = ..()
