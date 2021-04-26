@@ -1349,6 +1349,40 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	return ..()
 
 
+// Laser 2 //
+
+/datum/ammo/energy/lasgun/marine
+	damage = 20
+	penetration = 10
+	sundering = 1
+
+/datum/ammo/energy/lasgun/marine/overcharge
+	name = "overcharged laser bolt"
+	icon_state = "overchargedlaser"
+	hud_state = "laser_sniper"
+	damage = 40
+	max_range = 40
+	penetration = 20
+	sundering = 2
+
+/datum/ammo/energy/lasgun/marine/pistol
+	damage = 25
+	penetration = 5
+
+/datum/ammo/energy/lasgun/marine/pistol/disabler
+	name = "disabler bolt"
+	icon_state = "disablershot"
+	hud_state = "laser_disabler"
+	damage = 100
+	penetration = 0
+	damage_type = STAMINA
+	bullet_color = COLOR_DISABLER_BLUE
+
+/datum/ammo/energy/lasgun/pistol/disabler/on_hit_mob(mob/M,obj/projectile/P)
+	staggerstun(M, P, stagger = 0.5, slowdown = 0.75)
+
+// Plasma //
+
 /datum/ammo/energy/plasma
 	name = "plasma bolt"
 	icon_state = "pulse2"
@@ -1374,11 +1408,11 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	bullet_color = COLOR_VIBRANT_LIME
 
 	///Fire burn time
-	var/heat = 12 
+	var/heat = 12
 	///Fire damage
 	var/burn_damage = 9
 	///Fire color
-	var/fire_color = "green" 
+	var/fire_color = "green"
 
 /datum/ammo/energy/plasma_pistol/on_hit_turf(turf/T, obj/projectile/proj)
 	T.ignite(heat, burn_damage, fire_color)

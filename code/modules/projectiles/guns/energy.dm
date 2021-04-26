@@ -574,10 +574,10 @@
 
 	playsound(user, 'sound/weapons/emitter.ogg', 5, FALSE, 2)
 
-	
+
 	gun_firemode = initial(choice.fire_mode)
 
-	
+
 	charge_cost = initial(choice.charge_cost)
 	ammo = GLOB.ammo_list[initial(choice.ammo)]
 	fire_delay = initial(choice.fire_delay)
@@ -594,3 +594,160 @@
 	A.update_hud(user)
 
 	return TRUE
+
+// Neat laser gun things
+
+//Ok the rifle
+
+/obj/item/weapon/gun/energy/lasgun/standard_marine
+	name = "\improper TEX-R Lasrifle"
+	desc = "A TerraGov standard issue Lasrifle with an integrated charge selector for normal and high settings. Uses standardized power cells."
+	force = 20
+	icon_state = "texr"
+	item_state = "texr"
+	icon = 'icons/Marine/gun64.dmi'
+	w_class = WEIGHT_CLASS_BULKY
+	max_shots = 60 //codex stuff
+	load_method = CELL //codex stuff
+	ammo = /datum/ammo/energy/lasgun/marine
+	ammo_diff = /datum/ammo/energy/lasgun/marine/overcharge
+	cell_type = /obj/item/cell/lasgun/marine
+	charge_cost = 10
+	attachable_allowed = list(
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/bipod,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/attached_gun/grenade,
+		/obj/item/attachable/scope,
+		/obj/item/attachable/scope/mini,
+	)
+
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
+	actions_types = list(/datum/action/item_action/aim_mode)
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 15, "stock_x" = 22, "stock_y" = 12)
+
+	fire_delay = 0.2 SECONDS
+	aim_slowdown = 0.5
+	wield_delay = 0.6 SECONDS
+	scatter = 0
+	scatter_unwielded = 10 //its a laser gun
+
+// AIM MODE
+
+	aim_fire_delay = 0.1 SECONDS
+	aim_slowdown = 0.4
+
+/obj/item/weapon/gun/energy/lasgun/standard_marine/unique_action(mob/user)
+	return toggle_chargemode(user)
+
+//Toggles Overcharge mode. Overcharge mode significantly increases damage and AP in exchange for doubled ammo usage and increased fire delay.
+/obj/item/weapon/gun/energy/lasgun/standard_marine/toggle_chargemode(mob/user)
+	if(overcharge == FALSE)
+		if(!cell)
+			playsound(user, 'sound/machines/buzz-two.ogg', 15, 0, 2)
+			to_chat(user, "<span class='warning'>You attempt to toggle on [src]'s high power mode but you have no battery loaded.</span>")
+			return
+		if(cell.charge < 20)
+			playsound(user, 'sound/machines/buzz-two.ogg', 15, 0, 2)
+			to_chat(user, "<span class='warning'>You attempt to toggle on [src]'s high power mode but your battery pack lacks adequate charge to do so.</span>")
+			return
+		//While overcharge is active, double ammo consumption, and
+		playsound(user, 'sound/weapons/emitter.ogg', 5, 0, 2)
+		charge_cost = 20
+		ammo = GLOB.ammo_list[ammo_diff]
+		fire_delay += 0.2 SECONDS // 0.4 FIRERATE
+		fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
+		to_chat(user, "[icon2html(src, user)] You [overcharge? "<B>disable</b>" : "<B>enable</b>" ] [src]'s high power mode.")
+		overcharge = TRUE
+	else
+		playsound(user, 'sound/weapons/emitter2.ogg', 5, 0, 2)
+		charge_cost = 10
+		ammo = GLOB.ammo_list[/datum/ammo/energy/lasgun/marine]
+		fire_delay -= 0.2 SECONDS
+		fire_sound = 'sound/weapons/guns/fire/laser.ogg'
+		to_chat(user, "[icon2html(src, user)] You [overcharge? "<B>disable</b>" : "<B>enable</b>" ] [src]'s high power mode.")
+		overcharge = FALSE
+
+//Ammo/Charge functions
+/obj/item/weapon/gun/energy/lasgun/standard_marine/update_icon(mob/user)
+	var/cell_charge = (!cell || cell.charge <= 0) ? 0 : CEILING((cell.charge / max(cell.maxcharge, 1)) * 100, 25)
+	icon_state = "[base_gun_icon]_[cell_charge]"
+	update_mag_overlay(user)
+
+
+/obj/item/weapon/gun/energy/lasgun/standard_marine/update_item_state(mob/user)// uhhhhh no
+	return
+
+/obj/item/weapon/gun/energy/lasgun/standard_marine/pistol
+	name = "\improper TEX-R Lasrifle"
+	desc = "A TerraGov standard issue Laspistol with an integrated charge selector for normal and disabler settings. Uses standardized power cells."
+	force = 10
+	icon_state = "texp"
+	item_state = "texp"
+	icon = 'icons/obj/items/gun.dmi'
+	w_class = WEIGHT_CLASS_NORMAL
+	max_shots = 60 //codex stuff
+	ammo = /datum/ammo/energy/lasgun/marine/pistol
+	ammo_diff = /datum/ammo/energy/lasgun/marine/pistol/disabler
+	charge_cost = 20
+	attachable_allowed = list(
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/bipod,
+	)
+
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
+	actions_types = list(/datum/action/item_action/aim_mode)
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 15, "stock_x" = 22, "stock_y" = 12)
+
+	fire_delay = 0.25 SECONDS
+	aim_slowdown = 0.2
+	wield_delay = 0.3 SECONDS
+	scatter = 0
+	scatter_unwielded = 10 //its a laser gun
+
+// AIM MODE
+
+	aim_fire_delay = 0.1 SECONDS
+	aim_slowdown = 0.3
+
+//Toggles Overcharge mode. Overcharge mode significantly increases damage and AP in exchange for doubled ammo usage and increased fire delay.
+/obj/item/weapon/gun/energy/lasgun/standard_marine/pistol/toggle_chargemode(mob/user)
+	if(overcharge == FALSE)
+		if(!cell)
+			playsound(user, 'sound/machines/buzz-two.ogg', 15, 0, 2)
+			to_chat(user, "<span class='warning'>You attempt to toggle on [src]'s disabler mode but you have no battery loaded.</span>")
+			return
+		if(cell.charge < 40)
+			playsound(user, 'sound/machines/buzz-two.ogg', 15, 0, 2)
+			to_chat(user, "<span class='warning'>You attempt to toggle on [src]'s disabler mode but your battery pack lacks adequate charge to do so.</span>")
+			return
+		//While overcharge is active, double ammo consumption, and
+		playsound(user, 'sound/weapons/emitter.ogg', 5, 0, 2)
+		charge_cost = 40
+		ammo = GLOB.ammo_list[ammo_diff]
+		fire_delay += 0.15 SECONDS // 0.4 FIRERATE
+		fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
+		to_chat(user, "[icon2html(src, user)] You [overcharge? "<B>disable</b>" : "<B>enable</b>" ] [src]'s disabler mode.")
+		overcharge = TRUE
+	else
+		playsound(user, 'sound/weapons/emitter2.ogg', 5, 0, 2)
+		charge_cost = 10
+		ammo = GLOB.ammo_list[/datum/ammo/energy/lasgun/marine/pistol]
+		fire_delay -= 0.15 SECONDS
+		fire_sound = 'sound/weapons/guns/fire/laser.ogg'
+		to_chat(user, "[icon2html(src, user)] You [overcharge? "<B>disable</b>" : "<B>enable</b>" ] [src]'s disabler mode.")
+		overcharge = FALSE
