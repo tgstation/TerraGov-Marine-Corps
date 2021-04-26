@@ -328,7 +328,6 @@
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points."
 	icon = 'icons/mob/modular/modular_helmet_icon.dmi'
 	icon_state = "medium_helmet"
-	item_icons = list(slot_head_str = 'icons/mob/modular/modular_helmet.dmi')
 	flags_armor_protection = HEAD
 	flags_armor_features = ARMOR_NO_DECAP
 	flags_inventory = BLOCKSHARPOBJ
@@ -340,6 +339,15 @@
 	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 15, "bio" = 15, "rad" = 15, "fire" = 15, "acid" = 15)
 
 	actions_types = list(/datum/action/item_action/toggle)
+	item_state = list(
+		slot_head_str = ""
+	)
+	greyscale_config = /datum/greyscale_config/modularhelmet_infantry
+	greyscale_colors = "#1861d5#c4d52e"
+	//head icon is generated so null this
+	item_state_slots = list(
+		slot_head_str = null,
+	)
 
 	/// Reference to the installed module
 	var/obj/item/helmet_module/installed_module
@@ -347,6 +355,30 @@
 	/// How long it takes to attach or detach to this item
 	var/equip_delay = 3 SECONDS
 
+	///Assoc list of color-hex for colors we're allowed to color this armor
+	var/static/list/colorable_colors = list(
+		"black" = "#000000",
+		"snow",
+		"desert",
+		"gray",
+		"brown",
+		"red",
+		"blue",
+		"yellow",
+		"green",
+		"aqua",
+		"purple",
+		"orange",
+	)
+
+/obj/item/clothing/head/modular/update_greyscale(list/colors, update)
+	. = ..()
+	item_icons = list(
+		slot_head_str = icon
+	)
+	item_state = list(
+		slot_head_str = ""
+	)
 
 /obj/item/clothing/head/modular/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -362,15 +394,18 @@
 		return TRUE
 	paint.uses--
 
-	var/new_color = tgui_input_list(user, "Pick a color", "Pick color", list(
-		"black", "snow", "desert", "gray", "brown", "red", "blue", "yellow", "green", "aqua", "purple", "orange"
-	))
+	var/new_color = tgui_input_list(user, "Pick a color", "Pick color", colorable_colors)
+	if(!new_color)
+		return
+	new_color = colorable_colors[new_color]
 
 	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 		return TRUE
 
-	icon_state = "[initial(icon_state)]_[new_color]"
-
+	var/list/raw_colors = splittext(greyscale_colors, "#")
+	var/list/split_colors = list(new_color)
+	split_colors += "#[raw_colors[3]]" //gets the visor color and keeps it(for now, rhis allows visor coloring later)
+	set_greyscale_colors(split_colors)
 	return TRUE
 
 
@@ -434,7 +469,9 @@
 /obj/item/clothing/head/modular/apply_custom(image/standing)
 	if(installed_module)
 		standing.overlays += image(installed_module.icon, ITEM_STATE_IF_SET(installed_module))
-
+	//var/mutable_appearance/MA = emissive_appearance('icons/mob/modular/skirmisher.dmi', visor)
+	//MA.color = rgb(245, 12, 12)
+	//overlays += MA
 
 /obj/item/clothing/head/modular/get_mechanics_info()
 	. = ..()
@@ -476,38 +513,47 @@
 	icon_state = "infantry_helmet"
 	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
 	accuracy_mod = 0
+	greyscale_config = /datum/greyscale_config/modularhelmet_infantry
 
 /obj/item/clothing/head/modular/marine/skirmisher
 	name = "Jaeger Pattern Skirmisher Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Skirmisher markings."
 	icon_state = "skirmisher_helmet"
+	greyscale_config = /datum/greyscale_config/modularhelmet_skirmisher
 
 /obj/item/clothing/head/modular/marine/assault
 	name = "Jaeger Pattern Assault Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Assault markings."
 	icon_state = "assault_helmet"
+	greyscale_config = /datum/greyscale_config/modularhelmet_assault
 
 /obj/item/clothing/head/modular/marine/eva
 	name = "Jaeger Pattern EVA Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has EVA markings."
 	icon_state = "eva_helmet"
+	greyscale_config = /datum/greyscale_config/modularhelmet_eva
 
 /obj/item/clothing/head/modular/marine/eva/skull
 	name = "Jaeger Pattern EVA Skull Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has EVA markings and a skull on the visor."
 	icon_state = "eva_skull_helmet"
+	greyscale_config = /datum/greyscale_config/modularhelmet_eva_skull
 
 /obj/item/clothing/head/modular/marine/eod
 	name = "Jaeger Pattern EOD Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has EOD markings"
 	icon_state = "eod_helmet"
+	greyscale_config = /datum/greyscale_config/modularhelmet_eod
 
 /obj/item/clothing/head/modular/marine/scout
 	name = "Jaeger Pattern Scout Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Scout markings"
 	icon_state = "scout_helmet"
+	greyscale_config = /datum/greyscale_config/modularhelmet_scout
 
 /obj/item/clothing/head/modular/marine/infantry
 	name = "Jaeger Pattern Infantry-Open Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Infantry markings and no visor."
 	icon_state = "infantryopen_helmet"
+	greyscale_colors = "#1861d5"
+	greyscale_config = /datum/greyscale_config/modularhelmet_infantry_open
