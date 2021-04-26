@@ -2,7 +2,7 @@
 	key = "fill"
 
 	use_corner_selection = TRUE
-	var/objholder = null
+	var/atom/objholder = null
 
 
 /datum/buildmode_mode/fill/show_help(client/c)

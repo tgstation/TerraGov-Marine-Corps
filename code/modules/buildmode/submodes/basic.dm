@@ -16,7 +16,7 @@
 
 /datum/buildmode_mode/basic/handle_click(client/c, params, obj/object)
 	var/list/modifiers = params2list(params)
-	
+
 	var/left_click = LAZYACCESS(modifiers, LEFT_CLICK)
 	var/right_click = LAZYACCESS(modifiers, RIGHT_CLICK)
 	var/alt_click = LAZYACCESS(modifiers, ALT_CLICK)
@@ -46,7 +46,10 @@
 		new /obj/machinery/door/airlock(get_turf(object))
 	else if(istype(object,/turf) && ctrl_click && left_click)
 		var/obj/structure/window/reinforced/window
-		window = new /obj/structure/window/reinforced(get_turf(object))
-		window.setDir(BM.build_dir)
+		if(BM.build_dir in GLOB.diagonals)
+			window = new /obj/structure/window/framed/mainship(get_turf(object))
+		else
+			window = new /obj/structure/window/reinforced(get_turf(object))
+			window.setDir(BM.build_dir)
 		log_admin("Build Mode: [key_name(c)] built a window at [AREACOORD(object)]")
 		to_chat(c, span_notice("Success."))

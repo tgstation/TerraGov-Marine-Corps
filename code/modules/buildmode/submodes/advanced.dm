@@ -1,6 +1,6 @@
 /datum/buildmode_mode/advanced
 	key = "advanced"
-	var/objholder = null
+	var/atom/objholder = null
 
 
 /datum/buildmode_mode/advanced/show_help(client/c)
@@ -49,6 +49,10 @@
 			log_admin("Build Mode: [key_name(c)] modified [T] in [AREACOORD(object)] to [objholder]")
 			T = T.ChangeTurf(objholder)
 			T.setDir(BM.build_dir)
+		else if(ispath(objholder, /obj/effect/turf_decal))
+			var/turf/T = get_turf(object)
+			//todo, decal element
+			log_admin("Build Mode: [key_name(c)] in [AREACOORD(object)] added a [initial(objholder.name)] decal with dir [BM.build_dir] to [T]")
 		else if(!isnull(objholder))
 			var/obj/A = new objholder (get_turf(object))
 			A.setDir(BM.build_dir)
