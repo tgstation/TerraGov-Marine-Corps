@@ -25,16 +25,15 @@ obj/structure/trench/Initialize()
 
 
 obj/structure/trench/Crossed(atom/movable/AM)
-
+	. = ..()
 	var/mob/living/H = AM
 	ADD_TRAIT(H, TRAIT_ISINTRENCH, TRAIT_SOURCE_TRENCH)
 
 obj/structure/trench/Uncrossed(atom/movable/AM)
-	var/mob/living/H = AM
-	H.next_move_slowdown += slowamt
 	REMOVE_TRAIT(AM, TRAIT_ISINTRENCH, TRAIT_SOURCE_TRENCH)
 
 obj/structure/trench/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(HAS_TRAIT(mover, TRAIT_ISINTRENCH))
 		return TRUE
 	else

@@ -73,14 +73,14 @@
 		return
 	if(user.do_actions)
 		return
+	if(target.loc.z == 2 && entrenchingmode)
+		dig_trench(target, user)
 	if(isturf(target))
 		if(!dirt_amt)
 			var/turf/T = target
 			var/turfdirt = T.get_dirt_type()
 			if(turfdirt)
 				if(entrenchingmode)
-					dig_trench(target, user)
-					//to_chat(user, "<span class='notice'>DEBUG: SHOVEL AFTER ATTACK OVERRIDDEN</span>") //Debug line
 					return
 				if(turfdirt == DIRT_TYPE_SNOW)
 					var/turf/open/floor/plating/ground/snow/ST = T
@@ -217,8 +217,9 @@
 /obj/item/tool/shovel/proc/dig_trench(turf/target, mob/user)
 	var/obj/structure/B = locate() in target
 	if(B)
-		to_chat(user, "<span class='notice'>You cannot place a trench there!</span>")
-		return
+		if(!istype(B, /obj/structure/cable))
+			to_chat(user, "<span class='notice'>You cannot place a trench there!</span>")
+			return
 	to_chat(user, "<span class='notice'>You start digging a trench.</span>")
 	playsound(user.loc, 'sound/effects/thud.ogg', 40, 1, 6)
 	if(!do_after(user, shovelspeed, TRUE, target, BUSY_ICON_BUILD))
