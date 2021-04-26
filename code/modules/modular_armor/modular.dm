@@ -470,14 +470,6 @@
 /obj/item/clothing/head/modular/apply_custom(image/standing)
 	if(installed_module)
 		standing.overlays += image(installed_module.icon, ITEM_STATE_IF_SET(installed_module))
-	var/icon/I = icon('icons/mob/modular/skirmisher.dmi', "visor")
-	I.Blend("#AF1A1A", ICON_MULTIPLY)
-	var/mutable_appearance/MA = emissive_appearance(I)
-	var/obj/b = new(get_turf(src))
-	b.plane = 500
-	usr.vis_contents += b
-	b.icon = I
-	usr.overlays += MA
 
 /obj/item/clothing/head/modular/get_mechanics_info()
 	. = ..()
