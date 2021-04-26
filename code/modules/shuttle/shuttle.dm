@@ -67,6 +67,16 @@
 /obj/docking_port/shuttleRotate()
 	return //we don't rotate with shuttles via this code.
 
+///Copies the width, dwidth, height and dheight value of D onto itself
+/obj/docking_port/proc/copy_size(obj/docking_port/D)
+	if (!D)
+		return FALSE
+	width = D.width
+	dwidth = D.dwidth
+	height = D.height
+	dheight = D.dheight
+	return TRUE
+
 //returns a list(x0,y0, x1,y1) where points 0 and 1 are bounding corners of the projected rectangle
 /obj/docking_port/proc/return_coords(_x, _y, _dir)
 	if(_dir == null)

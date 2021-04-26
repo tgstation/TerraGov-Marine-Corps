@@ -146,10 +146,25 @@
 	var/mob/living/living_user = user
 	living_user.handle_ventcrawl(src)
 
+/obj/machinery/atmospherics/components/unary/vent_scrubber/layer1
+	piping_layer = 1
+	icon_state = "scrub_map-1"
+
+/obj/machinery/atmospherics/components/unary/vent_scrubber/layer3
+	piping_layer = 3
+	icon_state = "scrub_map-3"
 
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on
 	on = TRUE
 	icon_state = "scrub_map_on-2"
+
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer1
+	piping_layer = 1
+	icon_state = "scrub_map_on-1"
+
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3
+	piping_layer = 3
+	icon_state = "scrub_map_on-3"
 
 #undef SIPHONING
 #undef SCRUBBING
