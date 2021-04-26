@@ -343,7 +343,7 @@
 		slot_head_str = ""
 	)
 	greyscale_config = /datum/greyscale_config/modularhelmet_infantry
-	greyscale_colors = "#1861d5#c4d52e"
+	greyscale_colors = "#5B6036#f7fb58"
 	//head icon is generated so null this
 	item_state_slots = list(
 		slot_head_str = null,
@@ -357,18 +357,19 @@
 
 	///Assoc list of color-hex for colors we're allowed to color this armor
 	var/static/list/colorable_colors = list(
-		"black" = "#000000",
-		"snow",
-		"desert",
-		"gray",
-		"brown",
-		"red",
-		"blue",
-		"yellow",
-		"green",
-		"aqua",
-		"purple",
-		"orange",
+		"black" = "#474A50",
+		"snow" = "#D5CCC3",
+		"desert" = "#A57F7C",
+		"gray" = "#828282",
+		"brown" = "#60452B",
+		"red" = "#CC2C32",
+		"blue" = "#2A4FB7",
+		"yellow" = "#B7B21F",
+		"green" = "#2B7F1E",
+		"aqua" = "#2098A0",
+		"purple" = "#871F8F",
+		"orange" = "#BC4D25",
+		"pink" = "#D354BA",
 	)
 
 /obj/item/clothing/head/modular/update_greyscale(list/colors, update)
@@ -469,9 +470,14 @@
 /obj/item/clothing/head/modular/apply_custom(image/standing)
 	if(installed_module)
 		standing.overlays += image(installed_module.icon, ITEM_STATE_IF_SET(installed_module))
-	//var/mutable_appearance/MA = emissive_appearance('icons/mob/modular/skirmisher.dmi', visor)
-	//MA.color = rgb(245, 12, 12)
-	//overlays += MA
+	var/icon/I = icon('icons/mob/modular/skirmisher.dmi', "visor")
+	I.Blend("#AF1A1A", ICON_MULTIPLY)
+	var/mutable_appearance/MA = emissive_appearance(I)
+	var/obj/b = new(get_turf(src))
+	b.plane = 500
+	usr.vis_contents += b
+	b.icon = I
+	usr.overlays += MA
 
 /obj/item/clothing/head/modular/get_mechanics_info()
 	. = ..()
