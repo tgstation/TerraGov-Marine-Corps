@@ -86,8 +86,6 @@
 			/obj/item/ammo_magazine/rifle/standard_carbine = 1000,
 			/obj/item/weapon/gun/rifle/tx11 = 250,
 			/obj/item/ammo_magazine/rifle/tx11 = 1000,
-			/obj/item/weapon/gun/energy/lasgun/lasrifle = 250,
-			/obj/item/cell/lasgun/lasrifle = 1000,
 		),
 		"SMGs" = list(
 			/obj/item/weapon/gun/smg/standard_smg = 250,
@@ -125,6 +123,11 @@
 			/obj/item/ammo_magazine/standard_lmg = 1000,
 			/obj/item/weapon/gun/rifle/standard_gpmg = 250,
 			/obj/item/ammo_magazine/standard_gpmg = 1000,
+		),
+		"Laser" = list(
+			/obj/item/weapon/gun/energy/lasgun/standard_marine/pistol = 1000,
+			/obj/item/weapon/gun/energy/lasgun/standard_marine = 250,
+			/obj/item/cell/lasgun/marine = 2000,
 		),
 		"Sidearm" = list(
 			/obj/item/weapon/gun/pistol/standard_pistol = 250,
