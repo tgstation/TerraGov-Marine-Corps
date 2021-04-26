@@ -4,7 +4,7 @@
 /atom/proc/set_light(l_range, l_power, l_color = NONSENSICAL_VALUE)
 	if(l_range > 0 && l_range < MINIMUM_USEFUL_LIGHT_RANGE)
 		l_range = MINIMUM_USEFUL_LIGHT_RANGE	//Brings the range up to 1.4, which is just barely brighter than the soft lighting that surrounds players.
-	
+
 	if(l_power != null)
 		light_power = l_power
 
@@ -43,11 +43,6 @@
 			light = new /datum/light_source(src, .)
 
 
-// If we have opacity, make sure to tell (potentially) affected light sources.
-/atom/movable/Destroy()
-	if(opacity)
-		RemoveElement(/datum/element/light_blocking)
-	return ..()
 
 /**
  * Updates the atom's opacity value.

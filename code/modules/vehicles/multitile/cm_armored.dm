@@ -202,36 +202,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 
 	return slots
 
-//Specialness for armored vics
-/obj/vehicle/multitile/root/cm_armored/load_hitboxes(datum/coords/dimensions, datum/coords/root_pos)
 
-	var/start_x = -1 * root_pos.x_pos
-	var/start_y = -1 * root_pos.x_pos
-	var/end_x = start_x + dimensions.x_pos - 1
-	var/end_y = start_y + dimensions.y_pos - 1
-
-	for(var/i = start_x to end_x)
-
-		for(var/j = start_y to end_y)
-
-			if(i == 0 && j == 0)
-				continue
-
-			var/datum/coords/C = new
-			C.x_pos = i
-			C.y_pos = j
-			C.z_pos = 0
-
-			var/obj/vehicle/multitile/hitbox/cm_armored/H = new(locate(x + C.x_pos, y + C.y_pos, z))
-			H.setDir(dir)
-			H.root = src
-			linked_objs[C] = H
-
-/obj/vehicle/multitile/root/cm_armored/load_entrance_marker(datum/coords/rel_pos)
-
-	entrance = new(locate(x + rel_pos.x_pos, y + rel_pos.y_pos, z))
-	entrance.master = src
-	linked_objs[rel_pos] = entrance
 
 //Normal examine() but tells the player what is installed and if it's broken
 /obj/vehicle/multitile/root/cm_armored/examine(mob/user)
