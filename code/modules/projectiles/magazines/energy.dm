@@ -92,7 +92,7 @@
 	var/remaining = CEILING((charge / max(maxcharge, 1)) * 100, 25)
 	icon_state = "[base_ammo_icon]_[remaining]"
 
-/obj/item/cell/marine
+/obj/item/cell/lasgun/marine
 	name = "\improper TEX Battery"
 	desc = "A specialized high density battery used to power most marine laser guns."
 	base_ammo_icon = "tex"
