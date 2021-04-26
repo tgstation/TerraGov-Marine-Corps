@@ -21,7 +21,6 @@
 	var/space_empty_levels = 1
 	var/list/environment_traits = list()
 	var/armor_style = "default"
-	/// List of gamemode supported by the map
 	var/list/gamemodes = list()
 
 	var/allow_custom_shuttles = TRUE
@@ -73,7 +72,6 @@
 				return LoadConfig("_maps/lv624.json", error_if_missing, maptype)
 			if(SHIP_MAP)
 				return LoadConfig("_maps/pillar_of_spring.json", error_if_missing, maptype)
-
 
 	var/json = file(filename)
 	if(!json)
