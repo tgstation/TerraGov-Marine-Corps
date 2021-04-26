@@ -403,6 +403,9 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	activate_medevac_teleport(usr)
 
 
+/obj/structure/bed/medevac_stretcher/attack_hand_alternate(mob/living/user)
+	activate_medevac_teleport(user)
+
 /obj/structure/bed/medevac_stretcher/proc/activate_medevac_teleport(mob/user)
 	if(!ishuman(user))
 		return
