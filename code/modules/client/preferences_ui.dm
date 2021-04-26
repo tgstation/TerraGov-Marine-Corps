@@ -80,6 +80,8 @@
 		"windowflashing" = windowflashing,
 		"auto_fit_viewport" = auto_fit_viewport,
 		"focus_chat" = focus_chat,
+		"tgui_fancy" = tgui_fancy,
+		"tgui_lock" = tgui_lock,
 		"clientfps" = clientfps,
 
 		"chat_on_map" = chat_on_map,
@@ -527,9 +529,15 @@
 			else
 				winset(user, null, "map.focus=true")
 
+		if("tgui_fancy")
+			tgui_fancy = !tgui_fancy
+
+		if("tgui_lock")
+			tgui_lock = !tgui_lock
+
 		if("clientfps")
-			var/desiredfps = params["newValue"]
-			if(isnull(desiredfps))
+			var/desiredfps = text2num(params["newValue"])
+			if(!isnum(desiredfps))
 				return
 			desiredfps = clamp(desiredfps, 0, 240)
 			clientfps = desiredfps
