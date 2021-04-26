@@ -205,8 +205,6 @@ SUBSYSTEM_DEF(vote)
 					to_chat(usr, "<span class='warning'>The next ground map has already been selected.</span>")
 					return FALSE
 				var/list/maps = list()
-				if(!config.maplist)
-					return
 				for(var/map in config.maplist[GROUND_MAP])
 					if(!config.maplist)
 						return
@@ -227,8 +225,6 @@ SUBSYSTEM_DEF(vote)
 				if(!lower_admin && SSmapping.shipmap_voted)
 					to_chat(usr, "<span class='warning'>The next ship map has already been selected.</span>")
 					return FALSE
-				if(!config.maplist)
-					return
 				var/list/maps = list()
 				for(var/map in config.maplist[SHIP_MAP])
 					if(!config.maplist)
