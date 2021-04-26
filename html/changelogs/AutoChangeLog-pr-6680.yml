@@ -1,0 +1,4 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - code_imp: "Prevent runtimes when config failed to load + backup solution when next_map.json is not found"
