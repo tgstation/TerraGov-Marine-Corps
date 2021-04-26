@@ -33,6 +33,7 @@
 #define COOLDOWN_XENO_TURRETS_ALERT "xeno_turrets_alert"
 #define COOLDOWN_HIVEMIND_DOOR "hivemind_manipulate_door"
 #define COOLDOWN_PARALYSE_ACID "acid_spray_paralyse"
+#define COOLDOWN_BIOSCAN "cooldown_bioscan"
 
 //// COOLDOWN SYSTEMS
 /*

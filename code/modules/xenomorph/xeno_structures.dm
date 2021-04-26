@@ -27,7 +27,7 @@
 /obj/structure/resin/silo
 	name = "resin silo"
 	icon = 'icons/Xeno/resin_silo.dmi'
-	icon_state = "resin_silo"
+	icon_state = "weed_silo"
 	desc = "A slimy, oozy resin bed filled with foul-looking egg-like ...things."
 	bound_width = 96
 	bound_height = 96
@@ -81,10 +81,10 @@
 	if(associated_hive)
 		UnregisterSignal(associated_hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK))
 
-		if(isdistress(SSticker.mode)) //Silo can only be destroy in distress mode, but this check can create bugs if new gamemodes are added.
+		if(isdistressgamemode(SSticker.mode)) //Silo only matter on distress
 			var/datum/game_mode/infestation/distress/distress_mode
 			distress_mode = SSticker.mode
-			if (!(distress_mode.round_stage == DISTRESS_DROPSHIP_CRASHING))//No need to notify the xenos shipside
+			if (!(distress_mode.round_stage == INFESTATION_MARINE_CRASHING))//No need to notify the xenos shipside
 				associated_hive.xeno_message("A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!", "xenoannounce", 5, FALSE,src.loc, 'sound/voice/alien_help2.ogg',FALSE , null, /obj/screen/arrow/silo_damaged_arrow)
 				associated_hive.handle_silo_death_timer()
 				associated_hive = null
@@ -167,9 +167,79 @@
 	if(associated_hive)
 		silos += src
 
+
+//*******************
+//Corpse recyclinging
+//*******************
+/obj/structure/resin/silo/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(!isxeno(user)) //only xenos can deposit corpses
+		return
+
+	if(!istype(I, /obj/item/grab))
+		return
+
+	var/obj/item/grab/G = I
+	if(!iscarbon(G.grabbed_thing))
+		return
+	var/mob/living/carbon/victim = G.grabbed_thing
+	if(!(ishuman(victim) || ismonkey(victim))) //humans and monkeys only for now
+		to_chat(user, "<span class='notice'>[src] can only process humanoid anatomies!</span>")
+		return
+
+	if(victim.stat != DEAD)
+		to_chat(user, "<span class='notice'>[victim] is not dead!</span>")
+		return
+
+	if(victim.chestburst)
+		to_chat(user, "<span class='notice'>[victim] has already been exhausted to incubate a sister!</span>")
+		return
+
+	if(issynth(victim))
+		to_chat(user, "<span class='notice'>[victim] has no useful biomass for us.</span>")
+		return
+
+	visible_message("[user] starts putting [victim] into [src].", 3)
+
+	if(!do_after(user, 20, FALSE, victim, BUSY_ICON_DANGER) || QDELETED(src))
+		return
+
+	victim.chestburst = 2 //So you can't reuse corpses if the silo is destroyed
+	victim.update_burst()
+	victim.forceMove(src)
+
+	shake(4 SECONDS)
+
+	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+	xeno_job.add_job_points(1.75) //4.5 corpses per burrowed; 8 points per larva
+
+	log_combat(victim, user, "was consumed by a resin silo")
+	log_game("[key_name(victim)] was consumed by a resin silo at [AREACOORD(victim.loc)].")
+
+	GLOB.round_statistics.xeno_silo_corpses++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "xeno_silo_corpses")
+
+/// Make the silo shake
+/obj/structure/resin/silo/proc/shake(duration)
+	/// How important should be the shaking movement
+	var/offset = prob(50) ? -2 : 2
+	/// Track the last position of the silo for the animation
+	var/old_pixel_x = pixel_x
+	/// Sound played when shaking
+	var/shake_sound = rand(1, 100) == 1 ? 'sound/machines/blender.ogg' : 'sound/machines/juicer.ogg'
+	if(prob(1))
+		playsound(src, shake_sound, 25, TRUE)
+	animate(src, pixel_x = pixel_x + offset, time = 2, loop = -1) //start shaking
+	addtimer(CALLBACK(src, .proc/stop_shake, old_pixel_x), duration)
+
+/// Stop the shaking animation
+/obj/structure/resin/silo/proc/stop_shake(old_px)
+	animate(src)
+	pixel_x = old_px
+
 /obj/structure/resin/silo/small_silo
 	name = "small resin silo"
-	icon_state = "weed_silo"
+	icon_state = "purple_silo"
 	max_integrity = 500
 	larva_spawn_rate = 0.25
 
@@ -238,15 +308,15 @@
 		if(EXPLODE_LIGHT)
 			take_damage(300)
 
-/obj/structure/resin/flamer_fire_act()
+/obj/structure/resin/xeno_turret/flamer_fire_act()
 	take_damage(60, BURN, "fire")
 	ENABLE_BITFIELD(resistance_flags, ON_FIRE)
 
-/obj/structure/resin/fire_act()
+/obj/structure/resin/xeno_turret/fire_act()
 	take_damage(60, BURN, "fire")
 	ENABLE_BITFIELD(resistance_flags, ON_FIRE)
 
-/obj/structure/resin/update_overlays()
+/obj/structure/resin/xeno_turret/update_overlays()
 	. = ..()
 	if(obj_integrity <= max_integrity / 2)
 		. += image('icons/Xeno/acidturret.dmi', src, "+turret_damage") 

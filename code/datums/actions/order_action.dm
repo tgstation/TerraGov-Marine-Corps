@@ -39,7 +39,7 @@
 
 /datum/action/innate/order/rally_order/should_show()
 	return can_use_action()
-	
+
 /datum/action/innate/order/rally_order/can_use_action()
 	return owner.skills.getRating(skill_name) >= skill_min
 
@@ -47,18 +47,18 @@
 	if(send_order(owner))
 		var/message = pick(";TO ME MY MEN!", ";REGROUP TO ME!", ";FOLLOW MY LEAD!", ";RALLY ON ME!", ";FORWARD!")
 		owner.say(message)
-	
+
 /datum/action/innate/order/Activate()
 	active = TRUE
 	add_selected_frame()
 	SEND_SIGNAL(owner, COMSIG_ORDER_SELECTED, src)
 	RegisterSignal(owner, COMSIG_ORDER_SELECTED, .proc/Deactivate_signal_handler)
 
-/// Signal handler for deactivating the order	
+/// Signal handler for deactivating the order
 /datum/action/innate/order/proc/Deactivate_signal_handler()
 	SIGNAL_HANDLER
 	Deactivate()
-		
+
 /datum/action/innate/order/Deactivate()
 	active = FALSE
 	remove_selected_frame()
@@ -70,7 +70,7 @@
 		to_chat(owner, "<span class='warning'>Your last order was too recent.</span>")
 		return FALSE
 	TIMER_COOLDOWN_START(owner, COOLDOWN_CIC_ORDERS, ORDER_COOLDOWN)
-	to_chat(owner ,"<span class='ordercic'>You ordered marines to [verb_name] [target.loc.name]!</span>")
+	to_chat(owner ,"<span class='ordercic'>You ordered marines to [verb_name] [get_area(target)]!</span>")
 	owner.playsound_local(owner, "sound/effects/CIC_order.ogg", 10, 1)
 	if(visual_type)
 		target = get_turf(target)
