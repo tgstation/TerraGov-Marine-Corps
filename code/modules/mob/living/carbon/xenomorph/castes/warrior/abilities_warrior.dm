@@ -115,11 +115,6 @@
 	if(!X.Adjacent(A))
 		return
 
-	if(isliving(A))
-		var/mob/living/L = A
-		if(L.stat == DEAD)
-			return
-
 	X.swap_hand()
 	X.start_pulling(A, lunge = TRUE)
 	X.swap_hand()
