@@ -21,7 +21,7 @@ if grep -nP 'step_[xy]' _maps/**/*.dmm;	then
     echo "step_x/step_y variables detected in maps, please remove them."
     st=1
 fi;
-echo "Checking for pixel_[xy]"
+echo "Checking for pixel_[wz]"
 if grep -nP 'pixel_[^xy]' _maps/**/*.dmm;	then
     echo "pixel_w/pixel_z variables detected in maps, please remove them."
     st=1
