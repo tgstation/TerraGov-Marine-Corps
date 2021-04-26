@@ -241,7 +241,7 @@
 		else if(tier == XENO_TIER_TWO && TO_XENO_TIER_3_FORMULA(tierzeros + tierones, tiertwos, tierthrees))
 			to_chat(src, "<span class='warning'>The hive cannot support another Tier 3, wait for either more aliens to be born or someone to die.</span>")
 			return
-		else if(isdistress(SSticker.mode) && !hive.living_xeno_ruler && potential_queens == 1)
+		else if(SSticker.mode?.flags_round_type & MODE_XENO_RULER && !hive.living_xeno_ruler && potential_queens == 1)
 			if(isxenolarva(src) && new_caste_type != /mob/living/carbon/xenomorph/drone)
 				to_chat(src, "<span class='xenonotice'>The hive currently has no sister able to become a ruler! The survival of the hive requires from us to be a Drone!</span>")
 				return

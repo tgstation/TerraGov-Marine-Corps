@@ -11,9 +11,11 @@
 /area/magmoor/landing
 	name = "Landing Zone One"
 	ceiling = CEILING_NONE
+	minimap_color = MINIMAP_AREA_LZ
 
 /area/magmoor/landing/two
 	name = "Landing Zone Two"
+	minimap_color = MINIMAP_AREA_LZ
 
 
 // Volcano
@@ -21,11 +23,14 @@
 	name = "Magmoor Central Fissure"
 	ceiling = CEILING_NONE
 	outside = TRUE
+	flags_area = NO_DROPPOD
+
 //Caves
 
-/area/magmoor/cave/
+/area/magmoor/cave
 	ceiling = CEILING_DEEP_UNDERGROUND
 	ambience = list('sound/ambience/ambicave.ogg', 'sound/ambience/ambilava1.ogg', 'sound/ambience/ambilava2.ogg', 'sound/ambience/ambilava3.ogg')
+	minimap_color = MINIMAP_AREA_CAVES
 
 /area/magmoor/cave/central
 	name = "Central Caves"
@@ -113,6 +118,7 @@
 	name = "Medical Clinic"
 	icon_state = "lava_med"
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
+	minimap_color = MINIMAP_AREA_MEDBAY
 
 /area/magmoor/medical/chemistry
 	name = "Medical Clinic Chemistry"
@@ -153,11 +159,12 @@
 
 //Engineer
 
-/area/magmoor/engi/
+/area/magmoor/engi
 	name = "Engineering"
 	icon_state = "lava_engie"
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 	ambience = list('sound/ambience/ambisin1.ogg', 'sound/ambience/ambisin2.ogg', 'sound/ambience/ambisin3.ogg', 'sound/ambience/ambisin4.ogg')
+	minimap_color = MINIMAP_AREA_ENGI
 
 /area/magmoor/engi/atmos
 	name = "Atmospheric Processing"
@@ -177,6 +184,7 @@
 	name = "Holding Cells"
 	icon_state = "lava_sec_prison"
 	ceiling = CEILING_METAL
+	minimap_color = MINIMAP_AREA_SEC
 
 /area/magmoor/security/storage
 	name = "Security Armory"
@@ -206,6 +214,7 @@
 
 /area/magmoor/civilian
 	ceiling = CEILING_METAL
+	minimap_color = MINIMAP_AREA_COLONY
 
 /area/magmoor/civilian/cook
 	name = "Kitchen"

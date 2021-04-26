@@ -38,12 +38,9 @@ const LoadoutItem = (props : Loadout, context) => {
     <LabeledList.Item
       labelColor="white"
       label={name}>
-      <Box>
-
-      </Box>
       <Button
         onClick={() => act('SelectLoadout', { loadout_name: name, loadout_job: job })}>
-        Sadness
+        Select Loadout
       </Button>
     </LabeledList.Item>
   );

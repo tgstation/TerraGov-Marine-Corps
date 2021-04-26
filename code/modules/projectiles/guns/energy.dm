@@ -145,6 +145,8 @@
 	accuracy_mult_unwielded = 0.6
 	scatter_unwielded = 80 //Heavy and unwieldy
 	damage_falloff_mult = 0.5
+	upper_akimbo_accuracy = 5
+	lower_akimbo_accuracy = 3
 
 /obj/item/weapon/gun/energy/lasgun/tesla
 	name = "\improper M43-T tesla shock rifle"

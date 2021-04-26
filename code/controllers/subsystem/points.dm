@@ -13,7 +13,7 @@ SUBSYSTEM_DEF(points)
 	wait = 10 SECONDS
 
 	var/dropship_points = 0
-	var/supply_points = 120
+	var/supply_points = 0
 	///Assoc list of xeno points: xeno_points_by_hive["hivenum"]
 	var/list/xeno_points_by_hive = list()
 
@@ -85,8 +85,7 @@ SUBSYSTEM_DEF(points)
 		return
 	xeno_points_by_hive[hivenumber] += amount
 
-/datum/controller/subsystem/points/proc/scale_supply_points(scale)
-	supply_points = round(supply_points * scale)
+
 /datum/controller/subsystem/points/proc/approve_request(datum/supply_order/O, mob/user)
 	var/cost = 0
 	for(var/i in O.pack)

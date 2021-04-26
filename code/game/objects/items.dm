@@ -1,6 +1,7 @@
 /obj/item
 	name = "item"
 	icon = 'icons/obj/items/items.dmi'
+	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
 	materials = list(/datum/material/metal = 50)
 
@@ -354,6 +355,16 @@
 ///Anything unique the item can do, like pumping a shotgun, spin or whatever.
 /obj/item/proc/unique_action(mob/user)
 	return FALSE
+
+///Used to enable/disable an item's bump attack. Grouped in a proc to make sure the signal or flags aren't missed
+/obj/item/proc/toggle_item_bump_attack(mob/user, enable_bump_attack)
+	SEND_SIGNAL(user, COMSIG_ITEM_TOGGLE_BUMP_ATTACK, enable_bump_attack)
+	if(flags_item & CAN_BUMP_ATTACK && enable_bump_attack)
+		return
+	if(enable_bump_attack)
+		flags_item |= CAN_BUMP_ATTACK
+		return
+	flags_item &= ~CAN_BUMP_ATTACK
 
 // The mob M is attempting to equip this item into the slot passed through as 'slot'. Return 1 if it can do this and 0 if it can't.
 // If you are making custom procs but would like to retain partial or complete functionality of this one, include a 'return ..()' to where you want this to happen.

@@ -484,6 +484,7 @@
 	max_w_class = 4
 	storage_slots = 30
 	max_storage_space = 60	//SMG and pistol sized (tiny and small) mags can fit all 30 slots, normal (LMG and AR) fit 20
+	use_to_pickup = TRUE
 	can_hold = list(
 		/obj/item/ammo_magazine/pistol,
 		/obj/item/ammo_magazine/smg,

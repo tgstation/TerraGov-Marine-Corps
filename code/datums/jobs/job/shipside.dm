@@ -28,6 +28,7 @@
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 	)
+	minimap_icon = "captain"
 
 /datum/job/terragov/command/captain/announce(mob/living/announced_mob)
 	. = ..()
@@ -96,6 +97,7 @@ Godspeed, captain! And remember, you are not above the law."})
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 	)
+	minimap_icon = "fieldcommander"
 
 /datum/job/terragov/command/fieldcommander/after_spawn(mob/living/L, mob/M, latejoin)
 	. = ..()
@@ -141,7 +143,7 @@ Make the TGMC proud!"})
 	r_store = /obj/item/storage/pouch/general/large/command
 	l_store = /obj/item/hud_tablet/fieldcommand
 	back = /obj/item/storage/backpack/marine/satchel
-	suit_store = /obj/item/storage/belt/gun/m4a3/fieldcommander/
+	suit_store = /obj/item/storage/belt/gun/pistol/m4a3/fieldcommander/
 
 
 //Staff Officer
@@ -164,7 +166,7 @@ Make the TGMC proud!"})
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 	)
-
+	minimap_icon = "staffofficer"
 
 /datum/job/terragov/command/staffofficer/radio_help_message(mob/M)
 	. = ..()
@@ -190,7 +192,7 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	jobtype = /datum/job/terragov/command/staffofficer
 
 	id = /obj/item/card/id/silver
-	belt = /obj/item/storage/belt/gun/m4a3/officer
+	belt = /obj/item/storage/belt/gun/pistol/m4a3/officer
 	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer/bridge
 	shoes = /obj/item/clothing/shoes/marine/full
@@ -250,7 +252,7 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 	jobtype = /datum/job/terragov/command/pilot
 
 	id = /obj/item/card/id/silver
-	belt = /obj/item/storage/belt/gun/m4a3/vp70
+	belt = /obj/item/storage/belt/gun/pistol/m4a3/vp70
 	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer/pilot
 	wear_suit = /obj/item/clothing/suit/armor/vest/pilot
@@ -291,6 +293,7 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 	)
+	minimap_icon = "cse"
 
 /datum/job/terragov/engineering/chief/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
