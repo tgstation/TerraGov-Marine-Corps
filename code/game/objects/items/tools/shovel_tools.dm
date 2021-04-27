@@ -6,7 +6,7 @@
 
 /obj/item/tool/shovel
 	name = "shovel"
-	desc = "A large tool for digging and moving dirt. Use Space to Change between entrenching (to dig trenches) and digging (for dirt)"
+	desc = "A large tool for digging and moving dirt. Use Space to change between entrenching (to dig trenches) and digging (for dirt)."
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "shovel"
 	item_state = "shovel"
