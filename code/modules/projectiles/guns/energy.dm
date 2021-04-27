@@ -923,7 +923,7 @@
 //Ok the mg
 
 /obj/item/weapon/gun/energy/lasgun/standard_marine/mg
-	name = "\improper TEX-MG MG"
+	name = "\improper TEX-MG Machinegun"
 	desc = "A TerraGov standard issue Laser MG with an integrated charge selector for normal and low power settings. Uses standardized power cells."
 	force = 30
 	icon_state = "texmg"
@@ -970,7 +970,7 @@
 	aim_speed_modifier = 3.5
 
 //Toggles Overcharge mode
-/obj/item/weapon/gun/energy/lasgun/standard_marine/sniper/toggle_chargemode(mob/user)
+/obj/item/weapon/gun/energy/lasgun/standard_marine/mg/toggle_chargemode(mob/user)
 	if(overcharge == FALSE)
 		if(!cell)
 			playsound(user, 'sound/machines/buzz-two.ogg', 15, 0, 2)
@@ -978,7 +978,7 @@
 			return
 		if(cell.charge < 1.5)
 			playsound(user, 'sound/machines/buzz-two.ogg', 15, 0, 2)
-			to_chat(user, "<span class='warning'>You attempt to toggle on [src]'s high power mode but your battery pack lacks adequate charge to do so.</span>")
+			to_chat(user, "<span class='warning'>You attempt to toggle on [src]'s low power mode but your battery pack lacks adequate charge to do so.</span>")
 			return
 		//While overcharge is active, double ammo consumption, and
 		playsound(user, 'sound/weapons/emitter.ogg', 5, 0, 2)
