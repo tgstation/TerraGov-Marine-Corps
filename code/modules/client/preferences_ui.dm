@@ -436,7 +436,7 @@
 			var/list/valid_facialhairstyles = list()
 			for(var/facialhairstyle in GLOB.facial_hair_styles_list)
 				var/datum/sprite_accessory/S = GLOB.facial_hair_styles_list[facialhairstyle]
-				if(gender != S.gender)
+				if(gender == FEMALE && S.gender == MALE)
 					continue
 				if(!(species in S.species_allowed))
 					continue

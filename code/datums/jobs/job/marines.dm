@@ -283,6 +283,15 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
 	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_REGULAR)
 	job_points_needed  = 10 //Redefined via config.
+	html_description = {"
+		<b>Difficulty</b>: Medium<br /><br />
+		<b>You answer to the</b> acting Squad Leader<br /><br />
+		<b>Unlock Requirement</b>: Starting Role<br /><br />
+		<b>Gamemode Availability</b>: Crash, Distress<br /><br /><br />
+		When it comes to heavy firepower during the early stages of an operation, TGMC has provided the squad with Smartgunners. They are those who trained to operate the T-29 Smart Machine Gun, an IFF heavy weapon that provides cover fire even directly behind the marines. Squad Smartgunners are best when fighting behind marines, as they can act as shields or during a hectic crossfire.
+		<br /><br />
+		<b>Duty</b>: Be the backline of your pointmen, provide heavy weapons support with your smart machine gun.
+	"}
 	minimap_icon = "smartgunner"
 
 /datum/job/terragov/squad/smartgunner/radio_help_message(mob/M)
