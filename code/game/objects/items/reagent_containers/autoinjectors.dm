@@ -169,7 +169,7 @@
 	)
 
 /obj/item/reagent_containers/hypospray/autoinjector/synaptizine
-	name = "Synaptizine autoinjector"
+	name = "synaptizine autoinjector"
 	desc = "An auto-injector freshly loaded with a safe-to-use synaptizine mix."
 	icon_state = "autoinjector-1"
 	amount_per_transfer_from_this = 3
@@ -180,7 +180,7 @@
 	)
 
 /obj/item/reagent_containers/hypospray/autoinjector/synaptizine_expired
-	name = "Expired synaptizine autoinjector"
+	name = "expired synaptizine autoinjector"
 	desc = "An auto-injector said to be loaded with a safe-to-use synaptizine mix, 3 months past it's expiration date."
 	icon_state = "autoinjector-1"
 	amount_per_transfer_from_this = 2
@@ -191,7 +191,7 @@
 	)
 
 /obj/item/reagent_containers/hypospray/autoinjector/neuraline
-	name = "Neuraline autoinjector"
+	name = "neuraline autoinjector"
 	desc = "An auto-injector loaded with 3 doses of neuraline, an extremely powerful stimulant. !DO NOT USE MORE THAN ONCE AT A TIME!"
 	icon_state = "autoinjector-6"
 	amount_per_transfer_from_this = 4
@@ -199,7 +199,7 @@
 	list_reagents = list(/datum/reagent/medicine/neuraline = 12)
 
 /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus
-	name = "Peridaxon Plus autoinjector"
+	name = "peridaxon Plus autoinjector"
 	desc = "An auto-injector loaded with 3 doses of Peridaxon Plus, a chemical that heals organs while causing a buildup of toxins. Use with antitoxin. !DO NOT USE IN ACTIVE COMBAT!"
 	icon_state = "autoinjector-8"
 	amount_per_transfer_from_this = 3
@@ -210,7 +210,7 @@
 	)
 
 /obj/item/reagent_containers/hypospray/autoinjector/polyhexanide
-	name = "Larvaway autoinjector"
+	name = "polyhexanide autoinjector"
 	desc = "An auto-injector loaded with a dose of Polyhexanide, a sterilizer for internal surgical use."
 	icon_state = "autoinjector-10"
 	volume = 20
@@ -229,7 +229,7 @@
 	)
 
 /obj/item/reagent_containers/hypospray/autoinjector/roulettium
-	name = "Roulettium autoinjector"
+	name = "roulettium autoinjector"
 	desc = "An auto-injector loaded with one shot of roulettium, an extremely powerful panacea. !THIS HAS A CHANCE OF UNRECOVERABLE DEATH!"
 	icon_state = "autoinjector-6"
 	amount_per_transfer_from_this = 1
@@ -237,7 +237,7 @@
 	list_reagents = list(/datum/reagent/medicine/roulettium = 1)
 
 /obj/item/reagent_containers/hypospray/autoinjector/hydrocodone //made for debugging
-	name = "Hydrocodone autoinjector"
+	name = "hydrocodone autoinjector"
 	desc = "An auto-injector loaded with hydrocodone."
 	icon_state = "autoinjector-6"
 	amount_per_transfer_from_this = 4
