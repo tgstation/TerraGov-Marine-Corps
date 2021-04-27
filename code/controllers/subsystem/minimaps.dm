@@ -285,7 +285,7 @@ SUBSYSTEM_DEF(minimaps)
 		return hashed_minimaps[hash]
 	var/obj/screen/minimap/map = new(null, zlevel, flags)
 	if (!map.icon) //Don't wanna save an unusable minimap for a z-level.
-		return
+		CRASH("Empty and unusable minimap generated for '[zlevel]-[flags]'") //Can be caused by atoms calling this proc before minimap subsystem initializing.
 	hashed_minimaps[hash] = map
 	return map
 
