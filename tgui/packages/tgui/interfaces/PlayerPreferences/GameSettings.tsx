@@ -26,6 +26,20 @@ export const GameSettings = (props, context) => {
                 rightLabel={'Disabled'}
               />
               <ToggleFieldPreference
+                label="TGUI Window Mode"
+                value="tgui_fancy"
+                action="tgui_fancy"
+                leftLabel={'Fancy (default)'}
+                rightLabel={'Compatible (slower)'}
+              />
+              <ToggleFieldPreference
+                label="TGUI Window Placement"
+                value="tgui_lock"
+                action="tgui_lock"
+                leftLabel={'Free (default)'}
+                rightLabel={'Primary monitor'}
+              />
+              <ToggleFieldPreference
                 label="Tooltips"
                 value="tooltips"
                 action="tooltips"
