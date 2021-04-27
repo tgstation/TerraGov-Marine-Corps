@@ -10,8 +10,8 @@
 
 /datum/preferences/ui_close(mob/user)
 	. = ..()
-	user.client.clear_map(map_name)
-	user.client.clear_character_previews()
+	user.client?.clear_map(map_name)
+	user.client?.clear_character_previews()
 
 /datum/preferences/ui_state(mob/user)
 	return GLOB.always_state
