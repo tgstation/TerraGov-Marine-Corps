@@ -28,6 +28,7 @@
 #include "code\__DEFINES\atom_hud.dm"
 #include "code\__DEFINES\autofire.dm"
 #include "code\__DEFINES\buckling.dm"
+#include "code\__DEFINES\calibers.dm"
 #include "code\__DEFINES\callbacks.dm"
 #include "code\__DEFINES\chat.dm"
 #include "code\__DEFINES\colors.dm"
