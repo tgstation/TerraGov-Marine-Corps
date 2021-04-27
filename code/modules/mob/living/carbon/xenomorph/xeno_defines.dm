@@ -218,6 +218,9 @@
 	gib_chance = 5
 	light_system = MOVABLE_LIGHT
 
+	///If a xeno is able to be protected by trench
+	var/xenotrenchprotection = FALSE
+
 	var/hivenumber = XENO_HIVE_NORMAL
 
 	var/datum/hive_status/hive

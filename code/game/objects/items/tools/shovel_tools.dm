@@ -73,15 +73,14 @@
 		return
 	if(user.do_actions)
 		return
-	if(target.loc.z == 2 && entrenchingmode)
+	if(is_ground_level(target.loc.z) && entrenchingmode)
 		dig_trench(target, user)
+		return
 	if(isturf(target))
 		if(!dirt_amt)
 			var/turf/T = target
 			var/turfdirt = T.get_dirt_type()
 			if(turfdirt)
-				if(entrenchingmode)
-					return
 				if(turfdirt == DIRT_TYPE_SNOW)
 					var/turf/open/floor/plating/ground/snow/ST = T
 					if(!ST.slayer)
@@ -215,9 +214,9 @@
 
 ///Digs a trench if there is no trench in that tile already.
 /obj/item/tool/shovel/proc/dig_trench(turf/target, mob/user)
-	var/obj/structure/B = locate() in target
-	if(B)
-		if(!istype(B, /obj/structure/cable))
+	var/obj/structure/StructureCheck = locate() in target
+	if(StructureCheck)
+		if(!istype(StructureCheck, /obj/structure/cable)) //If it is a cable, its fine. you can dig a trench on a cable. Just bend it or something, I dunno.
 			to_chat(user, "<span class='notice'>You cannot place a trench there!</span>")
 			return
 	to_chat(user, "<span class='notice'>You start digging a trench.</span>")

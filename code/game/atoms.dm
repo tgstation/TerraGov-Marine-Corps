@@ -16,8 +16,6 @@
 
 	var/resistance_flags = NONE
 
-	var/xenotrenchprotection = FALSE
-
 	var/germ_level = GERM_LEVEL_AMBIENT // The higher the germ level, the more germ on the atom.
 
 	///overlays that should remain on top and not normally removed when using cut_overlay functions, like c4.

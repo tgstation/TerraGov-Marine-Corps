@@ -1,5 +1,5 @@
 //Some debug variables. Toggle them to 1 in order to see the related debug messages. Helpful when testing out formulas.
-#define DEBUG_HIT_CHANCE	1
+#define DEBUG_HIT_CHANCE	0
 #define DEBUG_HUMAN_DEFENSE	0
 #define DEBUG_XENO_DEFENSE	0
 #define DEBUG_CREST_DEFENSE	0
@@ -687,14 +687,16 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				BULLET_DEBUG("marksman_aura (+[shooter_human.marksman_aura * 3] + [proj.distance_travelled * shooter_human.marksman_aura * 0.35]).")
 				. += shooter_human.marksman_aura * 3
 				. += proj.distance_travelled * shooter_human.marksman_aura * 0.35
-	if(HAS_TRAIT(src, TRAIT_ISINTRENCH))
-		var/atom/D
-		for(D in proj.permutated)
-			if(istype(src, /mob/living/carbon/xenomorph) && !src.xenotrenchprotection)
-				break
-			BULLET_DEBUG("[proj.name] has passed through [D.loc.name]")
-			var/obj/structure/trench/S = locate() in D.loc
-			if(!S)
+	if(HAS_TRAIT(src, TRAIT_ISINTRENCH)) //If the target is in a trench, run the line of sight check
+		var/atom/D //A placeholder VAR that represents the turf that is being checked (its an atom because of how permutated works)
+		for(D in proj.permutated) //go through all atoms in Permutated
+			if(istype(src, /mob/living/carbon/xenomorph)) //if the mob is a xeno, run a check for if it is small enough to have the bonus
+				var/mob/living/carbon/xenomorph/xenotobechecked = src
+				if(!xenotobechecked.xenotrenchprotection) //if not, break
+					break
+			BULLET_DEBUG("[proj.name] has passed through [D.loc.name]") //just a debug line to see all the turfs the bullet has gone through
+			var/obj/structure/trench/S = locate() in D.loc //find if theres a trench in the loc
+			if(!S) //if S returns NULL/False, the bonus is applied as the bullet has left the trench at one point
 				BULLET_DEBUG("mob trench acc penalty(65%).")
 				. *= 0.35 //35% chance to hit, which is a 65% protection
 				break
