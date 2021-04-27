@@ -14,7 +14,7 @@ export const JobPreferences = (props, context) => {
     null
   );
 
-  const xenoJobs = ['Hive Leader', 'Xenomorph'];
+  const xenoJobs = ['Xeno Queen', 'Xenomorph'];
   const commandRoles = [
     'Captain',
     'Field Commander',
@@ -34,6 +34,7 @@ export const JobPreferences = (props, context) => {
     'Squad Marine',
     'Squad Engineer',
     'Squad Corpsman',
+    'Squad Smartgunner',
     'Squad Leader',
   ];
   const flavourJobs = ['Corporate Liaison', 'Medical Researcher'];
