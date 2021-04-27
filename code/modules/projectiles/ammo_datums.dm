@@ -1352,6 +1352,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 // Laser 2 //
 
 /datum/ammo/energy/lasgun/marine
+	icon_state = "disablershot"
 	damage = 20
 	penetration = 10
 	sundering = 1
@@ -1360,7 +1361,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/energy/lasgun/marine/overcharge
 	name = "overcharged laser bolt"
-	icon_state = "overchargedlaser"
+	icon_state = "blue_overcharge"
 	hud_state = "laser_sniper"
 	damage = 40
 	max_range = 40
@@ -1369,7 +1370,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/energy/lasgun/marine/blast
 	name = "wide range laser blast"
-	icon_state = "heavylaser2"
+	icon_state = "disablershot"
 	hud_state = "laser_spread"
 	bonus_projectiles_type = /datum/ammo/energy/lasgun/marine/blast/spread
 	bonus_projectiles_amount = 2
@@ -1392,7 +1393,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/energy/lasgun/marine/pistol/disabler
 	name = "disabler bolt"
-	icon_state = "disablershot"
+	icon_state = "pulse2"
 	hud_state = "laser_disabler"
 	damage = 100
 	penetration = 0
@@ -1403,7 +1404,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/energy/lasgun/marine/sniper
 	name = "sniper bolt"
-	icon_state = "overchargedlaser"
+	icon_state = "blue_sniper"
 	hud_state = "laser_sniper"
 	damage = 60
 	max_range = 30
@@ -1412,6 +1413,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/energy/lasgun/marine/sniper/fire
 	name = "microwave sniper bolt"
+	icon_state = "microwavelaser" //Yes, this is red. I don't care. Something something visual clairty
 	damage = 40
 	penetration = 20
 	sundering = 1
@@ -1419,6 +1421,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/energy/lasgun/marine/mg
 	name = "machinegun bolt"
+	icon_state = "blue_mg"
 	damage = 15
 	penetration = 15
 	sundering = 1

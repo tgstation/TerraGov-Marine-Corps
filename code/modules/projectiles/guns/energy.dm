@@ -684,8 +684,15 @@
 	update_mag_overlay(user)
 
 
-/obj/item/weapon/gun/energy/lasgun/standard_marine/update_item_state(mob/user)// uhhhhh no
-	return
+/obj/item/weapon/gun/energy/lasgun/standard_marine/update_item_state(mob/user)// lasgun code thing i don't want so redfined
+	. = item_state
+	item_state = "[initial(icon_state)][flags_item & WIELDED ? "_w" : ""]"
+	if(. != item_state && ishuman(user))
+		var/mob/living/carbon/human/human_user = user
+		if(src == human_user.l_hand)
+			human_user.update_inv_l_hand()
+		else if (src == human_user.r_hand)
+			human_user.update_inv_r_hand()
 
 // other rifle
 
