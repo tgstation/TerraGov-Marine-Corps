@@ -461,7 +461,7 @@
 	if(!allowed(user))
 		return
 
-	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
+	if(!isobserver(user) && user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use the console.</span>",
 		"<span class='notice'>You fumble around figuring out how to use the console.</span>")
 		var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )

@@ -2649,6 +2649,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cryosleep)
 "amr" = (
+<<<<<<< HEAD
 /obj/effect/decal/warning_stripes/thick{
 	dir = 1
 	},
@@ -2666,6 +2667,16 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /turf/open/floor/prison,
 /area/sulaco/cargo/prep)
+=======
+/obj/structure/table/mainship,
+/obj/item/facepaint/green,
+/turf/open/floor/freezer,
+/area/sulaco/showers)
+"amu" = (
+/obj/machinery/light,
+/turf/open/floor/freezer,
+/area/sulaco/showers)
+>>>>>>> faccb4e16a0dd6f55fd50ab4b09203390e4ebefc
 "amI" = (
 /obj/machinery/power/apc/mainship,
 /obj/structure/cable,
@@ -6283,6 +6294,7 @@
 /turf/open/floor/mainship/ai,
 /area/sulaco/command/ai)
 "aDI" = (
+<<<<<<< HEAD
 /obj/structure/mirror,
 /turf/closed/wall/mainship/gray,
 /area/sulaco/showers)
@@ -6292,6 +6304,11 @@
 	},
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint2)
+=======
+/obj/structure/showcase,
+/turf/open/floor/prison,
+/area/sulaco/marine)
+>>>>>>> faccb4e16a0dd6f55fd50ab4b09203390e4ebefc
 "aDM" = (
 /turf/open/floor/prison/darkyellow{
 	dir = 1
@@ -10717,10 +10734,6 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /turf/open/floor/mainship/tcomms,
 /area/sulaco/telecomms)
-"cjh" = (
-/obj/machinery/vending/marine/cargo_guns,
-/turf/open/floor/prison,
-/area/sulaco/cargo/prep)
 "ckf" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
@@ -10730,6 +10743,11 @@
 	},
 /turf/open/floor/wood,
 /area/sulaco/liaison)
+"clh" = (
+/obj/machinery/vending/marine/shared,
+/obj/machinery/camera/autoname,
+/turf/open/floor/prison,
+/area/sulaco/marine)
 "cls" = (
 /obj/structure/table/mainship,
 /obj/item/tool/mop,
@@ -10826,6 +10844,7 @@
 	},
 /turf/open/floor/prison/darkyellow/corner,
 /area/sulaco/engineering)
+<<<<<<< HEAD
 "cub" = (
 /obj/structure/bed,
 /obj/item/bedsheet/captain,
@@ -10847,6 +10866,8 @@
 /obj/structure/flora/pottedplant/ten,
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_foreship)
+=======
+>>>>>>> faccb4e16a0dd6f55fd50ab4b09203390e4ebefc
 "cvE" = (
 /obj/machinery/door/poddoor/mainship/umbilical/south{
 	dir = 2;
@@ -11298,10 +11319,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/hallway/central_hall)
-"dfb" = (
-/obj/machinery/vending/dress_supply,
-/turf/open/floor/prison/red/full,
-/area/sulaco/bridge)
 "dhn" = (
 /obj/effect/decal/cleanable/cobweb{
 	dir = 1
@@ -12882,10 +12899,17 @@
 	dir = 1
 	},
 /area/sulaco/hangar/one)
+<<<<<<< HEAD
 "gwm" = (
 /obj/structure/window/framed/mainship/gray/toughened/hull,
 /turf/open/floor/plating/platebotc,
 /area/sulaco/marine/chapel)
+=======
+"gvZ" = (
+/obj/machinery/vending/marine/shared,
+/turf/open/floor/prison,
+/area/sulaco/cargo/prep)
+>>>>>>> faccb4e16a0dd6f55fd50ab4b09203390e4ebefc
 "gwK" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
@@ -13582,6 +13606,13 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/cargo)
+"hUc" = (
+/obj/machinery/vending/marine/shared,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/prison,
+/area/sulaco/marine)
 "hUr" = (
 /obj/structure/table/mainship,
 /obj/item/stack/cable_coil,
@@ -14241,6 +14272,12 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/prison/darkyellow/corner,
 /area/sulaco/engineering/ce)
+"jfw" = (
+/obj/machinery/vending/marine/shared,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
+/turf/open/floor/prison,
+/area/sulaco/cargo/prep)
 "jfN" = (
 /obj/machinery/firealarm{
 	dir = 8
@@ -14304,6 +14341,10 @@
 /obj/machinery/door/poddoor/telecomms,
 /turf/open/floor/plating/platebotc,
 /area/sulaco/telecomms/office)
+"jnu" = (
+/obj/machinery/vending/marine/shared,
+/turf/open/floor/prison,
+/area/sulaco/marine)
 "joP" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
@@ -15662,6 +15703,14 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor/prison,
 /area/mainship/shipboard/weapon_room)
+"lSN" = (
+/obj/structure/bed,
+/obj/item/bedsheet/captain,
+/obj/item/storage/backpack/satchel/norm,
+/obj/machinery/alarm,
+/obj/structure/reagent_dispensers/wallmounted/peppertank/milk,
+/turf/open/floor/wood,
+/area/sulaco/bridge/office)
 "lTe" = (
 /obj/machinery/door/airlock/mainship/secure/free_access{
 	dir = 2;
@@ -16278,6 +16327,7 @@
 	},
 /turf/open/floor/prison/red/corner,
 /area/mainship/shipboard/weapon_room)
+<<<<<<< HEAD
 "mVj" = (
 /obj/machinery/cryopod,
 /obj/machinery/light,
@@ -16291,6 +16341,8 @@
 	dir = 8
 	},
 /area/sulaco/marine)
+=======
+>>>>>>> faccb4e16a0dd6f55fd50ab4b09203390e4ebefc
 "mYf" = (
 /turf/open/floor/prison/red,
 /area/sulaco/hallway/central_hall3)
@@ -18882,10 +18934,6 @@
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/sulaco/hallway/central_hall3)
-"rzl" = (
-/obj/machinery/vending/attachments,
-/turf/open/floor/prison,
-/area/sulaco/cargo/prep)
 "rzq" = (
 /turf/open/floor/prison,
 /area/sulaco/engineering/atmos)
@@ -19078,11 +19126,15 @@
 	dir = 1
 	},
 /turf/open/floor/prison,
+<<<<<<< HEAD
 /area/sulaco/engineering/lower_engineering)
 "rQp" = (
 /obj/machinery/vending/marine/cargo_ammo,
 /turf/open/floor/prison,
 /area/sulaco/cargo/prep)
+=======
+/area/sulaco/engineering/engine)
+>>>>>>> faccb4e16a0dd6f55fd50ab4b09203390e4ebefc
 "rQB" = (
 /obj/machinery/alarm{
 	dir = 4
@@ -20459,6 +20511,7 @@
 	dir = 4
 	},
 /turf/open/floor/prison,
+<<<<<<< HEAD
 /area/sulaco/maintenance/upperdeck_AIcore_maint)
 "unp" = (
 /obj/structure/sink{
@@ -20468,6 +20521,13 @@
 	dir = 8
 	},
 /area/sulaco/medbay/west)
+=======
+/area/sulaco/maintenance/south_solar_maint)
+"unt" = (
+/obj/machinery/vending/armor_supply,
+/turf/open/floor/prison,
+/area/sulaco/cargo/prep)
+>>>>>>> faccb4e16a0dd6f55fd50ab4b09203390e4ebefc
 "uok" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 9
@@ -20932,6 +20992,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint2)
+"vhj" = (
+/obj/machinery/vending/marine/dress_supply,
+/turf/open/floor/prison/red/full,
+/area/sulaco/bridge)
 "vhq" = (
 /obj/machinery/status_display,
 /obj/structure/sign/prop1,
@@ -39965,11 +40029,37 @@ mqk
 aQw
 aQw
 cfA
+<<<<<<< HEAD
 aDK
 aQh
 fwb
 gpO
 cer
+=======
+jnu
+aEZ
+aGf
+aBk
+aIg
+aJS
+aGH
+aJV
+aJV
+aGH
+aJS
+cod
+aJV
+aLb
+aJS
+aJV
+aDT
+aJS
+cod
+aJV
+aog
+aJS
+cod
+>>>>>>> faccb4e16a0dd6f55fd50ab4b09203390e4ebefc
 aJV
 ayz
 hrG
@@ -40217,6 +40307,7 @@ aQh
 aQh
 nOn
 qzc
+<<<<<<< HEAD
 mOs
 aQh
 aQh
@@ -40228,6 +40319,37 @@ aQh
 vOr
 rpe
 vOr
+=======
+qyL
+aPQ
+mDu
+mDu
+cfA
+hUc
+aFa
+aGf
+aBk
+bij
+aJS
+aJS
+aJV
+aJV
+aJS
+aJS
+aJS
+aKW
+aJS
+aJS
+aLk
+aJS
+aJS
+aLX
+aJS
+aJS
+aJS
+aJS
+aMo
+>>>>>>> faccb4e16a0dd6f55fd50ab4b09203390e4ebefc
 aDz
 oro
 xYK
@@ -40475,12 +40597,21 @@ aLf
 ljR
 xJd
 rtA
+<<<<<<< HEAD
 gtD
 mAk
 aLf
 aQh
 aQw
 aQw
+=======
+aPQ
+mDu
+mDu
+cfA
+jnu
+aFa
+>>>>>>> faccb4e16a0dd6f55fd50ab4b09203390e4ebefc
 mqk
 mvV
 iTj
@@ -40738,6 +40869,7 @@ euR
 aPg
 aPg
 aPg
+<<<<<<< HEAD
 aPg
 rVm
 hMt
@@ -40763,6 +40895,40 @@ cOs
 cDU
 oHz
 xKi
+=======
+pgQ
+qzc
+qyL
+aPQ
+mDu
+mDu
+cfA
+clh
+aFa
+jyQ
+aBk
+aHY
+aCS
+aJU
+aKD
+aKD
+aKD
+jDL
+aKD
+bFu
+aKD
+aKD
+aKD
+aKD
+aKD
+aKD
+aKD
+aKD
+aKD
+aKD
+aKD
+rkM
+>>>>>>> faccb4e16a0dd6f55fd50ab4b09203390e4ebefc
 mDu
 qDO
 aaa
@@ -40994,11 +41160,39 @@ mAk
 euR
 mDu
 mDu
+<<<<<<< HEAD
 mDu
 vgl
 xHk
 iTj
 xHk
+=======
+cfA
+jnu
+aFa
+aGf
+aBk
+aBk
+aJS
+ahj
+aKE
+aJy
+aJV
+vhq
+aJV
+aJV
+aJV
+aJV
+aKE
+aJV
+aMd
+aJV
+aJV
+aJV
+aJV
+aJV
+aKE
+>>>>>>> faccb4e16a0dd6f55fd50ab4b09203390e4ebefc
 aDz
 iZY
 wNN
@@ -41244,6 +41438,7 @@ jZZ
 sRW
 aLf
 oHm
+<<<<<<< HEAD
 aeW
 cSb
 dty
@@ -41260,6 +41455,38 @@ aDz
 mFa
 aDz
 aDz
+=======
+sZM
+mSU
+nWB
+nWB
+nWB
+nWB
+jnu
+aFa
+aGf
+aBk
+mmI
+aJS
+aJS
+aJS
+aJS
+aJS
+aJS
+aJS
+aJS
+aJS
+aJS
+aJS
+aJS
+aJS
+aJS
+aJS
+aJS
+aJS
+aJS
+aJS
+>>>>>>> faccb4e16a0dd6f55fd50ab4b09203390e4ebefc
 aDz
 tjS
 ujJ
@@ -41490,6 +41717,7 @@ afG
 afG
 afG
 anw
+<<<<<<< HEAD
 lMh
 aLM
 qzc
@@ -41534,6 +41762,33 @@ cDU
 qzH
 qzH
 xKi
+=======
+jnu
+aFa
+aGf
+aBk
+aEM
+aJX
+aGJ
+aKa
+aNw
+aGJ
+aJX
+aKG
+aNw
+aLc
+aJX
+aNw
+aLo
+aJX
+aLZ
+aNw
+aMq
+aJX
+aLC
+aMv
+aMF
+>>>>>>> faccb4e16a0dd6f55fd50ab4b09203390e4ebefc
 mDu
 qDO
 aaa
@@ -41728,6 +41983,7 @@ nzi
 mDu
 mDu
 abq
+<<<<<<< HEAD
 akq
 amr
 riP
@@ -41763,6 +42019,60 @@ oJO
 dty
 mAk
 euR
+=======
+aaC
+aaH
+aaY
+aaY
+aaY
+aaY
+adY
+aaY
+aaY
+aaY
+afS
+aim
+mBy
+aaY
+aaY
+anw
+ane
+any
+any
+any
+pLR
+any
+any
+any
+any
+axG
+uVA
+jnu
+aFa
+aGf
+aBk
+aEL
+aJX
+aGJ
+aKa
+aKa
+aGJ
+aJX
+aKG
+aKa
+aLc
+aJX
+aKa
+aCr
+aJX
+aKa
+aKa
+kqp
+aJX
+aLD
+aKa
+aMF
+>>>>>>> faccb4e16a0dd6f55fd50ab4b09203390e4ebefc
 mDu
 mDu
 mDu
@@ -41997,6 +42307,7 @@ iXS
 aHY
 aaY
 aaY
+<<<<<<< HEAD
 abQ
 oRM
 aKG
@@ -42022,6 +42333,31 @@ lGX
 euR
 aFa
 nGN
+=======
+ads
+fKJ
+aeg
+aeg
+ads
+fKJ
+ads
+vAN
+aeg
+ads
+anw
+ano
+aoP
+aoP
+any
+pLR
+aoP
+aoP
+any
+aoP
+axH
+anw
+jnu
+>>>>>>> faccb4e16a0dd6f55fd50ab4b09203390e4ebefc
 aFa
 vgl
 cvB
@@ -42261,6 +42597,7 @@ adZ
 adZ
 adZ
 anw
+<<<<<<< HEAD
 aLo
 aMd
 xJd
@@ -42280,6 +42617,9 @@ euR
 fRw
 oEX
 jTI
+=======
+jnu
+>>>>>>> faccb4e16a0dd6f55fd50ab4b09203390e4ebefc
 aFa
 iRd
 cKu
@@ -42512,6 +42852,7 @@ aIj
 iNW
 iTc
 anw
+<<<<<<< HEAD
 eHj
 aKD
 ptE
@@ -42538,6 +42879,11 @@ cEY
 qXN
 qXN
 ulK
+=======
+hUc
+aFa
+mqk
+>>>>>>> faccb4e16a0dd6f55fd50ab4b09203390e4ebefc
 aHX
 qXN
 aYU
@@ -42786,6 +43132,7 @@ qzc
 rvr
 aLf
 bHs
+<<<<<<< HEAD
 xJd
 avL
 dty
@@ -42797,6 +43144,19 @@ aDO
 aDO
 aDO
 qXN
+=======
+aoS
+aoS
+any
+aoS
+aoS
+anw
+jnu
+aFa
+aGf
+aBk
+aIe
+>>>>>>> faccb4e16a0dd6f55fd50ab4b09203390e4ebefc
 aER
 iRd
 aKI
@@ -42926,7 +43286,7 @@ pLJ
 sBO
 sBO
 tbJ
-dfb
+vhj
 apu
 asr
 lVj
@@ -43045,11 +43405,18 @@ aLf
 oSV
 xJd
 avL
+<<<<<<< HEAD
 dty
 mAk
 aLf
 xPE
 qXN
+=======
+axx
+ayb
+anw
+jnu
+>>>>>>> faccb4e16a0dd6f55fd50ab4b09203390e4ebefc
 aFd
 hHU
 xba
@@ -44208,7 +44575,7 @@ aaa
 aaa
 nzi
 pLJ
-cub
+lSN
 nbD
 ghk
 ghk
@@ -48179,7 +48546,7 @@ alx
 jPn
 aoM
 alx
-lvm
+gvZ
 szj
 sbT
 yha
@@ -48690,10 +49057,14 @@ vRR
 sPk
 uOd
 alx
-rzl
+lvm
 aoM
 alx
+<<<<<<< HEAD
 lIE
+=======
+unt
+>>>>>>> faccb4e16a0dd6f55fd50ab4b09203390e4ebefc
 jSM
 ocn
 aWG
@@ -49204,10 +49575,10 @@ bgd
 aRj
 bhA
 alx
-cjh
+gvZ
 rEe
 alx
-cjh
+gvZ
 rpg
 sbT
 qLP
@@ -49718,10 +50089,10 @@ aia
 aje
 gvt
 oVi
-amG
+jfw
 aoU
 apk
-rQp
+gvZ
 atU
 ocn
 aWG
