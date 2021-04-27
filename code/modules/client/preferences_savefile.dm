@@ -570,8 +570,12 @@
 		return FALSE
 	loadout_manager = sanitize_loadout_manager(loadout_manager)
 	var/json_loadout_manager = jatum_serialize(loadout_manager)
+	var/json_loadouts_list = jatum_serialize(loadout_manager.loadouts_list)
 	S.cd = "/loadouts"
 	WRITE_FILE(S["loadouts_manager"], json_loadout_manager)
+	message_admins(json_loadout_manager)
+	WRITE_FILE(S["loadouts_list"], json_loadouts_list)
+	message_admins(json_loadouts_list)
 	return TRUE
 
 /datum/preferences/proc/load_loadout_manager()
@@ -584,10 +588,14 @@
 		return FALSE
 	S.cd = "/loadouts"
 	var/json_loadout_manager = ""
+	var/json_loadouts_list = ""
 	READ_FILE(S["loadouts_manager"], json_loadout_manager)
 	if(!json_loadout_manager)
 		return FALSE
 	loadout_manager = jatum_deserialize(json_loadout_manager)
+	READ_FILE(S["loadouts_list"], json_loadouts_list)
+	if(json_loadouts_list)
+		loadout_manager.loadouts_list = jatum_deserialize(json_loadouts_list)
 	loadout_manager = sanitize_loadout_manager(loadout_manager)
 	return TRUE
 

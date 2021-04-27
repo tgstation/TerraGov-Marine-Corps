@@ -1,19 +1,3 @@
-//List of all visible and accessible slot on loadouts
-GLOBAL_LIST_INIT(visible_item_slot_list, list(
-	slot_head_str,
-	slot_back_str,
-	slot_wear_mask_str,
-	slot_glasses_str,
-	slot_w_uniform_str,
-	slot_wear_suit_str,
-	slot_gloves_str,
-	slot_shoes_str,
-	slot_s_store_str,
-	slot_belt_str,
-	slot_l_store_str,
-	slot_r_store_str,
-))
-
 /datum/loadout
 	///Name of the loadout
 	var/name = ""
@@ -131,7 +115,50 @@ GLOBAL_LIST_INIT(visible_item_slot_list, list(
 /**
  * This will read all items on the mob, and if the item is supported by the loadout maker, will save it in the corresponding slot
  * An item is supported if it's path
-/datum/loadout/proc/save_mob_loadout(mob/user)
+ */
+///datum/loadout/proc/save_mob_loadout(mob/user)
+
+/datum/loadout/ui_interact(mob/user, datum/tgui/ui)
+	prepare_items_data(user)
+	ui = SStgui.try_update_ui(user, src, ui)
+
+	if(!ui)
+		ui = new(user, src, "LoadoutMaker", name)
+		ui.open()
+
+/datum/loadout/ui_static_data(mob/user)
+	var/data = list()
+	data["items"] = prepare_items_data()
+	return data
+
+/datum/loadout/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
+	switch(action)
+		if("equipLoadout")
+			equip_mob(ui.user, ui.user.loc)
+
+/datum/loadout/ui_assets(mob/user)
+	return list(
+		get_asset_datum(/datum/asset/simple/inventory),
+	)
+
+/datum/loadout/proc/prepare_items_data(mob/user)
+	var/items_data = list()
+	for (var/item_slot_key in GLOB.visible_item_slot_list)
+		var/list/result = list()
+
+		var/datum/item_representation/item = item_list[item_slot_key]
+		if (isnull(item))
+			result["icon"] = icon2base64(icon("icons/misc/empty.dmi", "empty"))
+			items_data[item_slot_key] = result
+			continue
+
+		var/obj/item/item_type = item.item_type
+		result["icon"] = icon2base64(icon(initial(item_type.icon), initial(item_type.icon_state)))
+		result["name"] = initial(item_type.name)
+
+		items_data[item_slot_key] = result
+	return items_data
 
 
 ///Return a new empty loayout

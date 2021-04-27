@@ -105,7 +105,15 @@
 	return crunch + .
 
 /proc/sanitize_loadout_manager(value)
-	if(value) ///TODO
-		return value
-	var/datum/loadout_manager/manager = new
+	var/datum/loadout_manager/manager
+	if(istype(value, /datum/loadout_manager))
+		manager = value
+		if(!islist(manager.loadouts_list))
+			manager = new
+			return manager
+		for(var/loadout in manager.loadouts_list)
+			if(!istype(loadout, /datum/loadout))
+				manager.loadouts_list -= loadout
+		return manager
+	manager = new
 	return manager

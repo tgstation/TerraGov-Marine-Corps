@@ -1,115 +1,19 @@
 import { range } from "common/collections";
-import { resolveAsset } from "../assets";
-import { useBackend } from "../backend";
-import { Box, Button, Icon, Section, Stack } from "../components";
-import { Window } from "../layouts";
-import { createLogger } from '../logging';
+import { resolveAsset } from "../../assets";
+import { useBackend } from "../../backend";
+import { Box, Button, Icon, Section, Stack } from "../../components";
+import { createLogger } from '../../logging';
+import { LoadoutManagerData, GridSpotKey, SLOTS, getGridSpotKey } from './Types';
 
 const ROWS = 4;
 const COLUMNS = 3;
 
-const BUTTON_DIMENSION_WIDTH = "70px";
+const BUTTON_DIMENSION_WIDTH = "70px"; 
 const BUTTON_DIMENSION_HEIGHT = "70px";
 
-type GridSpotKey = string;
 
-const getGridSpotKey = (spot: [number, number]): GridSpotKey => {
-  return `${spot[0]}/${spot[1]}`;
-};
-
-const SLOTS: Record<
-  string,
-  {
-    displayName: string;
-    gridSpot: GridSpotKey;
-    image?: string;
-  }
-> = {
-  slot_glasses: {
-    displayName: "eyewear",
-    gridSpot: getGridSpotKey([0, 0]),
-    image: "inventory-glasses.png",
-  },
-
-  slot_head: {
-    displayName: "headwear",
-    gridSpot: getGridSpotKey([0, 1]),
-    image: "inventory-head.png",
-  },
-
-  slot_wear_mask: {
-    displayName: "mask",
-    gridSpot: getGridSpotKey([0, 2]),
-    image: "inventory-mask.png",
-  },
-
-  slot_w_uniform: {
-    displayName: "uniform",
-    gridSpot: getGridSpotKey([1, 0]),
-    image: "inventory-uniform.png",
-  },
-
-  slot_suit: {
-    displayName: "armor",
-    gridSpot: getGridSpotKey([1, 1]),
-    image: "inventory-suit.png",
-  },
-
-  slot_gloves: {
-    displayName: "gloves",
-    gridSpot: getGridSpotKey([1, 2]),
-    image: "inventory-gloves.png",
-  },
-
-  slot_belt: {
-    displayName: "belt",
-    gridSpot: getGridSpotKey([2, 0]),
-    image: "inventory-belt.png",
-  },
-
-  slot_shoes: {
-    displayName: "shoes",
-    gridSpot: getGridSpotKey([2, 1]),
-    image: "inventory-shoes.png",
-  },
-
-  slot_s_store: {
-    displayName: "armor storage item",
-    gridSpot: getGridSpotKey([2, 2]),
-    image: "inventory-suit_storage.png",
-  },
-
-  slot_back: {
-    displayName: "back",
-    gridSpot: getGridSpotKey([3, 0]),
-    image: "inventory-back.png",
-  },
-
-  slot_l_store: {
-    displayName: "left pocket",
-    gridSpot: getGridSpotKey([3, 1]),
-    image: "inventory-pocket.png",
-  },
-
-  slot_r_store: {
-    displayName: "right pocket",
-    gridSpot: getGridSpotKey([3, 2]),
-    image: "inventory-pocket.png",
-  },
-};
-
-type SlotItem =
-  {
-    icon: string;
-    name: string;
-  }
-
-type SlotData = {
-  items: Record<keyof typeof SLOTS, SlotItem>;
-};
-
-const SlotSelector = (props, context) => {
-  const { act, data } = useBackend<SlotData>(context);
+export const SlotSelector = (props, context) => {
+  const { act, data } = useBackend<LoadoutManagerData>(context);
 
   const {
     items,
@@ -211,42 +115,5 @@ const SlotSelector = (props, context) => {
         ))}
       </Stack>
     </Section>
-  );
-};
-
-const LoadoutNavigator = (props, context) => {
-  const { act, data } = useBackend<SlotData>(context);
-
-  return (
-    <Section title="Loadout Navigator">
-      <Stack fill horizontal>
-        <Button
-          onClick={() => act("selectLoadout")}>
-          Select another Loadout
-        </Button>
-        <Button
-          onClick={() => act("equipLoadout")}>
-          Equip Loadout
-        </Button>
-      </Stack>
-    </Section>
-  );
-};
-
-export const LoadoutMaker = (props, context) => {
-  const { act, data } = useBackend<SlotData>(context);
-
-  return (
-    <Window 
-      title="Loadout Maker"
-      width={900} 
-      height={600}>
-      <Window.Content>
-        <Stack fill vertical>
-          <SlotSelector />
-          <LoadoutNavigator /> 
-        </Stack>
-      </Window.Content>
-    </Window>
   );
 };

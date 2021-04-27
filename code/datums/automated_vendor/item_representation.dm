@@ -1,7 +1,7 @@
 /**
  * Light weight representation of an obj/item
- * This allow us to manipulate and store a lot of item-like object, without it costing a ton of memory
- * This also allow to save loadout with jatum, because it doesn't accept obj/item
+ * This allow us to manipulate and store a lot of item-like objects, without it costing a ton of memory or having to instantiate all items
+ * This also allow to save loadouts with jatum, because it doesn't accept obj/item
  */
 /datum/item_representation
 	/// The type of the object represented, to allow us to create the object when needed
