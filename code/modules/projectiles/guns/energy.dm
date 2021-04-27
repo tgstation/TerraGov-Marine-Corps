@@ -638,11 +638,13 @@
 	wield_delay = 0.6 SECONDS
 	scatter = 0
 	scatter_unwielded = 10 //its a laser gun
+	accuracy_mult = 1.15
+	accuracy_mult_unwielded = 0.5 //Heavy and unwieldy; you don't one hand this.
 
 // AIM MODE
 
-	aim_fire_delay = 0.1 SECONDS
-	aim_slowdown = 0.4
+	aim_fire_delay = 0.2 SECONDS
+	aim_slowdown = 1.3
 
 /obj/item/weapon/gun/energy/lasgun/standard_marine/unique_action(mob/user)
 	return toggle_chargemode(user)
@@ -686,14 +688,14 @@
 	return
 
 /obj/item/weapon/gun/energy/lasgun/standard_marine/pistol
-	name = "\improper TEX-R Lasrifle"
+	name = "\improper TEX-R Laspistol"
 	desc = "A TerraGov standard issue Laspistol with an integrated charge selector for normal and disabler settings. Uses standardized power cells."
 	force = 10
 	icon_state = "texp"
 	item_state = "texp"
 	icon = 'icons/obj/items/gun.dmi'
 	w_class = WEIGHT_CLASS_NORMAL
-	max_shots = 60 //codex stuff
+	max_shots = 25 //codex stuff
 	ammo = /datum/ammo/energy/lasgun/marine/pistol
 	ammo_diff = /datum/ammo/energy/lasgun/marine/pistol/disabler
 	charge_cost = 20
@@ -718,11 +720,18 @@
 	wield_delay = 0.3 SECONDS
 	scatter = 0
 	scatter_unwielded = 10 //its a laser gun
+	accuracy_mult = 1.15
+	accuracy_mult_unwielded = 0.5 //Heavy and unwieldy; you don't one hand this.
+
+// AIM MODE
+
+	aim_fire_delay = 0.2 SECONDS
+	aim_slowdown = 1.3
 
 // AIM MODE
 
 	aim_fire_delay = 0.1 SECONDS
-	aim_slowdown = 0.3
+	aim_slowdown = 0.5
 
 //Toggles Overcharge mode. Overcharge mode significantly increases damage and AP in exchange for doubled ammo usage and increased fire delay.
 /obj/item/weapon/gun/energy/lasgun/standard_marine/pistol/toggle_chargemode(mob/user)

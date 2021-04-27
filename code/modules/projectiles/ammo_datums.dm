@@ -1355,6 +1355,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 20
 	penetration = 10
 	sundering = 1
+	damage_falloff = 0
+	bullet_color = COLOR_DISABLER_BLUE
 
 /datum/ammo/energy/lasgun/marine/overcharge
 	name = "overcharged laser bolt"
@@ -1376,7 +1378,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 100
 	penetration = 0
 	damage_type = STAMINA
-	bullet_color = COLOR_DISABLER_BLUE
 
 /datum/ammo/energy/lasgun/pistol/disabler/on_hit_mob(mob/M,obj/projectile/P)
 	staggerstun(M, P, stagger = 0.5, slowdown = 0.75)
