@@ -1,0 +1,7 @@
+author: "TiviPlus"
+delete-after: True
+changes: 
+  - qol: "Tank transfer rates can be changed with right click now"
+  - bugfix: "milk dispenser works now"
+  - bugfix: "You can now get liquids out of tanks properly (yes this includes huffing welding fuel)"
+  - refactor: "refactored reagent tanks a bit"
