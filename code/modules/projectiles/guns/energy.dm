@@ -698,7 +698,7 @@
 // other rifle
 
 /obj/item/weapon/gun/energy/lasgun/standard_marine/carbine
-	name = "\improper TEX-c Lascarbine"
+	name = "\improper TEX-C Lascarbine"
 	desc = "A TerraGov standard issue Lascarbine with an integrated charge selector for normal and high settings. Uses standardized power cells."
 	force = 20
 	icon_state = "texc"
@@ -789,15 +789,10 @@
 	ammo_diff = /datum/ammo/energy/lasgun/marine/pistol/disabler
 	charge_cost = 20
 	attachable_allowed = list(
-		/obj/item/attachable/bayonet,
-		/obj/item/attachable/bayonetknife,
 		/obj/item/attachable/reddot,
-		/obj/item/attachable/verticalgrip,
-		/obj/item/attachable/angledgrip,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/gyro,
 		/obj/item/attachable/flashlight,
-		/obj/item/attachable/bipod,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
@@ -872,10 +867,6 @@
 		/obj/item/attachable/gyro,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/bipod,
-		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/attached_gun/grenade,
-		/obj/item/attachable/scope,
-		/obj/item/attachable/scope/mini,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
@@ -943,16 +934,8 @@
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
-		/obj/item/attachable/reddot,
-		/obj/item/attachable/verticalgrip,
-		/obj/item/attachable/angledgrip,
-		/obj/item/attachable/lasersight,
-		/obj/item/attachable/gyro,
 		/obj/item/attachable/flashlight,
-		/obj/item/attachable/bipod,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/attached_gun/grenade,
-		/obj/item/attachable/scope,
 		/obj/item/attachable/scope/mini,
 	)
 
