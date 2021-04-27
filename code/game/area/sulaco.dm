@@ -24,7 +24,7 @@
 	icon_state = "maintcentral"
 
 /area/sulaco/security
-	name = "Sulaco Foreship Sec. Office"
+	name = "Sulaco Foreship Security Office"
 	icon_state = "security"
 
 /area/sulaco/hydro
