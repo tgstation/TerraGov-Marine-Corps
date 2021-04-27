@@ -700,7 +700,7 @@
 	max_shots = 40 //codex stuff
 	load_method = CELL //codex stuff
 	ammo = /datum/ammo/energy/lasgun/marine
-	ammo_diff = /datum/ammo/energy/lasgun/marine/spread
+	ammo_diff = /datum/ammo/energy/lasgun/marine/blast
 	cell_type = /obj/item/cell/lasgun/marine
 	charge_cost = 15
 	attachable_allowed = list(
