@@ -133,10 +133,11 @@ SUBSYSTEM_DEF(shuttle)
 
 /datum/controller/subsystem/shuttle/proc/moveShuttleToDock(shuttleId, obj/docking_port/stationary/D, timed)
 	var/obj/docking_port/mobile/M = getShuttle(shuttleId)
+	var/obj/docking_port/mobile/Docked = D.get_docked()
 
 	if(!M)
 		return 1
-	if(D.get_docked()?.id == M.id) //Shuttle is already docked on the same space.
+	if(Docked?.id == M.id) //Shuttle is already docked on the same space.
 		return 2
 	if(timed)
 		if(M.request(D))
