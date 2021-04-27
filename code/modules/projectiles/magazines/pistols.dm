@@ -126,7 +126,7 @@
 /obj/item/ammo_magazine/pistol/heavy
 	name = "\improper Desert Eagle magazine (.50)"
 	default_ammo = /datum/ammo/bullet/pistol/heavy
-	caliber = CALIBER_50CAL
+	caliber = CALIBER_50AE
 	icon_state = "50ae"
 	max_rounds = 7
 	gun_type = /obj/item/weapon/gun/pistol/heavy

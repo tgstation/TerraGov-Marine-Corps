@@ -266,7 +266,7 @@
 	desc = "A magnum chambered in .50AE that comes with a serious kick. This one is engraved, <i>\"Peace through superior firepower\"</i>."
 	icon_state = "deagle"
 	item_state = "deagle"
-	caliber = CALIBER_50CAL //codex
+	caliber = CALIBER_50AE //codex
 	muzzleflash_iconstate = "muzzle_flash_medium"
 	max_shells = 7 //codex
 	fire_sound = 'sound/weapons/guns/fire/deagle.ogg'

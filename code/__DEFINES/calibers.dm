@@ -9,7 +9,7 @@
 #define CALIBER_22LR ".22 LR"
 #define CALIBER_380ACP ".380 ACP"
 #define CALIBER_PLASMA "Ionized Plasma Bolt" //TX-7 Plasma Pistol
-#define CALIBER_50CAL ".50 AE"
+#define CALIBER_50AE ".50 AE"
 #define CALIBER_70MANKEY ".70 Mankey" //Don't ask
 
 // Revolvers
