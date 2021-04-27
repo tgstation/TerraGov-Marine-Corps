@@ -204,6 +204,7 @@
 	. = ..()
 	if(sharp)
 		to_chat(user, "<span class='notice'> This one has been sharpened and can no longer be folded.</span>")
+
 /obj/item/tool/shovel/unique_action(mob/user)
 	entrenchingmode = !entrenchingmode
 	if(entrenchingmode)
