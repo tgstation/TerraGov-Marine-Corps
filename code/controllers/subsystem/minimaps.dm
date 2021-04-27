@@ -284,6 +284,8 @@ SUBSYSTEM_DEF(minimaps)
 	if(hashed_minimaps[hash])
 		return hashed_minimaps[hash]
 	var/obj/screen/minimap/map = new(null, zlevel, flags)
+	if (!map.icon) //Don't wanna save an unusable minimap for a z-level.
+		return
 	hashed_minimaps[hash] = map
 	return map
 
