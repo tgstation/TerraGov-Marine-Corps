@@ -210,9 +210,7 @@
 	if(entrenchingmode)
 		user.visible_message("<span class='notice'>[user] reconfigures [src] to entrenching mode.</span>")
 		return
-	else
-		user.visible_message("<span class='notice'>[user] reconfigures [src] to digging mode.</span>")
-		return
+	user.visible_message("<span class='notice'>[user] reconfigures [src] to digging mode.</span>")
 
 ///Digs a trench if there is no trench in that tile already.
 /obj/item/tool/shovel/proc/dig_trench(turf/target, mob/user)
