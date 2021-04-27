@@ -461,6 +461,7 @@
 	desc = "A handgun holster"
 	icon_state = "holster"
 	hold = /obj/item/storage/internal/tie/holster
+
 /obj/item/storage/internal/tie/holster
 	storage_slots = 1
 	max_w_class = WEIGHT_CLASS_BULKY
