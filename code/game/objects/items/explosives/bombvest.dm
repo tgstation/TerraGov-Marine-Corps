@@ -28,10 +28,10 @@
 		message_admins("[activator] has detonated an explosive vest with no warcry.")
 		log_game("[activator] has detonated an explosive vest with no warcry.")
 
-	for(var/datum/limb/E in activator.limbs) //Oops we blew all our limbs off
-		if(istype(E, /datum/limb/chest) || istype(E, /datum/limb/groin) || istype(E, /datum/limb/head))
+	for(var/datum/limb/appendage AS in activator.limbs) //Oops we blew all our limbs off
+		if(istype(appendage, /datum/limb/chest) || istype(appendage, /datum/limb/groin) || istype(appendage, /datum/limb/head))
 			continue
-		E.droplimb()
+		appendage.droplimb()
 	explosion(loc, 2, 2, 6, 5, 5)
 	qdel(src)
 
@@ -66,9 +66,9 @@
 	message_admins("[activator] has detonated an Orbital Bombardment vest! Unga!")
 	log_game("[activator] has detonated an Orbital Bombardment vest! Unga!")
 
-	for(var/datum/limb/E in activator.limbs) //Oops we blew all our limbs off
-		if(istype(E, /datum/limb/chest) || istype(E, /datum/limb/groin) || istype(E, /datum/limb/head))
+	for(var/datum/limb/appendage AS in activator.limbs) //Oops we blew all our limbs off
+		if(istype(appendage, /datum/limb/chest) || istype(appendage, /datum/limb/groin) || istype(appendage, /datum/limb/head))
 			continue
-		E.droplimb()
+		appendage.droplimb()
 	explosion(loc, 15, 15, 15, 15, 15)
 	qdel(src)
