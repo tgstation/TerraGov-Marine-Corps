@@ -1367,6 +1367,25 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 20
 	sundering = 2
 
+/datum/ammo/energy/lasgun/marine/blast
+	name = "wide range laser blast"
+	icon_state = "heavylaser2"
+	hud_state = "laser_spread"
+	bonus_projectiles_type = /datum/ammo/energy/lasgun/marine/blast/spread
+	bonus_projectiles_amount = 2
+	bonus_projectiles_scatter = 10
+	accuracy_var_low = 9
+	accuracy_var_high = 9
+	accurate_range = 5
+	max_range = 7
+	damage = 35
+	damage_falloff = 10
+	penetration = 20
+	sundering = 1
+
+/datum/ammo/energy/lasgun/marine/blast/spread
+	name = "additional laser blast"
+
 /datum/ammo/energy/lasgun/marine/pistol
 	damage = 25
 	penetration = 5
@@ -1381,6 +1400,34 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/energy/lasgun/pistol/disabler/on_hit_mob(mob/M,obj/projectile/P)
 	staggerstun(M, P, stagger = 0.5, slowdown = 0.75)
+
+/datum/ammo/energy/lasgun/marine/sniper
+	name = "sniper bolt"
+	icon_state = "overchargedlaser"
+	hud_state = "laser_sniper"
+	damage = 60
+	max_range = 30
+	penetration = 20
+	sundering = 4
+
+/datum/ammo/energy/lasgun/marine/sniper/fire
+	name = "microwave sniper bolt"
+	damage = 40
+	penetration = 20
+	sundering = 1
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_SUNDERING
+
+/datum/ammo/energy/lasgun/marine/mg
+	name = "machinegun bolt"
+	damage = 15
+	penetration = 15
+	sundering = 1
+
+/datum/ammo/energy/lasgun/marine/mg/efficent
+	name = "low power machinegun bolt"
+	damage = 7.5
+	penetration = 15
+	sundering = 1
 
 // Plasma //
 
