@@ -945,7 +945,7 @@
 		/obj/item/attachable/scope/mini,
 	)
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
 	actions_types = list(/datum/action/item_action/aim_mode)
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 15, "stock_x" = 22, "stock_y" = 12)
 
@@ -955,7 +955,7 @@
 	scatter = 0
 	scatter_unwielded = 10 //its a laser gun
 	accuracy_mult = 1.35
-	accuracy_mult_unwielded = 0.75.
+	accuracy_mult_unwielded = 0.75
 
 // AIM MODE
 
@@ -969,7 +969,7 @@
 			playsound(user, 'sound/machines/buzz-two.ogg', 15, 0, 2)
 			to_chat(user, "<span class='warning'>You attempt to toggle on [src]'s high power mode but you have no battery loaded.</span>")
 			return
-		if(cell.charge < 150)
+		if(cell.charge < 1.5)
 			playsound(user, 'sound/machines/buzz-two.ogg', 15, 0, 2)
 			to_chat(user, "<span class='warning'>You attempt to toggle on [src]'s high power mode but your battery pack lacks adequate charge to do so.</span>")
 			return
