@@ -2661,9 +2661,9 @@
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cryosleep)
 "amG" = (
-/obj/machinery/vending/marine/cargo_ammo,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
+/obj/machinery/vending/marine/shared,
 /turf/open/floor/prison,
 /area/sulaco/cargo/prep)
 "amI" = (
@@ -3031,13 +3031,10 @@
 	},
 /area/sulaco/cargo/prep)
 "aoZ" = (
-/obj/machinery/vending/marine,
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/machinery/camera/autoname{
-	dir = 8
-	},
+/obj/machinery/vending/marine/shared,
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "apa" = (
@@ -5120,7 +5117,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/vending/marine,
+/obj/machinery/vending/marine/shared,
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "aym" = (
@@ -7452,7 +7449,7 @@
 /obj/machinery/door_control{
 	id = "mfshydroponics";
 	name = "Lockdown Shutter-Control Hydroponics";
-	pixel_x = 9;
+	pixel_x = 5;
 	pixel_y = 9
 	},
 /turf/open/floor/prison/bright_clean,
@@ -10471,7 +10468,7 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 8
 	},
-/obj/machinery/vending/marine,
+/obj/machinery/vending/marine/shared,
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "bHC" = (
@@ -10717,10 +10714,6 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /turf/open/floor/mainship/tcomms,
 /area/sulaco/telecomms)
-"cjh" = (
-/obj/machinery/vending/marine/cargo_guns,
-/turf/open/floor/prison,
-/area/sulaco/cargo/prep)
 "ckf" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
@@ -11298,10 +11291,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/hallway/central_hall)
-"dfb" = (
-/obj/machinery/vending/dress_supply,
-/turf/open/floor/prison/red/full,
-/area/sulaco/bridge)
 "dhn" = (
 /obj/effect/decal/cleanable/cobweb{
 	dir = 1
@@ -12957,7 +12946,7 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
 	},
-/obj/machinery/vending/marine,
+/obj/machinery/vending/marine/shared,
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "gHU" = (
@@ -15067,7 +15056,7 @@
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "kOQ" = (
-/obj/machinery/vending/marine,
+/obj/machinery/vending/marine/shared,
 /turf/open/floor/prison/green{
 	dir = 4
 	},
@@ -17416,7 +17405,7 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
 	},
-/obj/machinery/vending/marine,
+/obj/machinery/vending/marine/shared,
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "oTn" = (
@@ -18311,13 +18300,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison,
 /area/sulaco/marine)
-"qzl" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/machinery/vending/attachments,
-/turf/open/floor/prison,
-/area/sulaco/marine)
 "qzH" = (
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint3)
@@ -18882,10 +18864,6 @@
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/sulaco/hallway/central_hall3)
-"rzl" = (
-/obj/machinery/vending/attachments,
-/turf/open/floor/prison,
-/area/sulaco/cargo/prep)
 "rzq" = (
 /turf/open/floor/prison,
 /area/sulaco/engineering/atmos)
@@ -19080,7 +19058,7 @@
 /turf/open/floor/prison,
 /area/sulaco/engineering/lower_engineering)
 "rQp" = (
-/obj/machinery/vending/marine/cargo_ammo,
+/obj/machinery/vending/marine/shared,
 /turf/open/floor/prison,
 /area/sulaco/cargo/prep)
 "rQB" = (
@@ -19265,7 +19243,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/machinery/vending/marine,
+/obj/machinery/vending/marine/shared,
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "sgS" = (
@@ -19409,7 +19387,7 @@
 /turf/open/floor/cult,
 /area/sulaco/morgue)
 "stG" = (
-/obj/machinery/vending/marine,
+/obj/machinery/vending/marine/shared,
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "stV" = (
@@ -19858,7 +19836,7 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
 	},
-/obj/machinery/vending/marine,
+/obj/machinery/vending/marine/shared,
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "tfx" = (
@@ -42926,7 +42904,7 @@ pLJ
 sBO
 sBO
 tbJ
-dfb
+apb
 apu
 asr
 lVj
@@ -44842,7 +44820,7 @@ aoZ
 stG
 aLf
 lIp
-qzl
+cWP
 qzc
 bbP
 rOy
@@ -48690,7 +48668,7 @@ vRR
 sPk
 uOd
 alx
-rzl
+lIE
 aoM
 alx
 lIE
@@ -49204,10 +49182,10 @@ bgd
 aRj
 bhA
 alx
-cjh
+rQp
 rEe
 alx
-cjh
+rQp
 rpg
 sbT
 qLP
