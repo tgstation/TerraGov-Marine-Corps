@@ -6419,6 +6419,9 @@
 	id = "mfshydroponics";
 	name = "Hydropnics Lockdown"
 	},
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
+	dir = 4
+	},
 /turf/open/floor/tile/hydro,
 /area/sulaco/hydro)
 "aEr" = (
@@ -11301,10 +11304,9 @@
 /turf/open/floor/plating,
 /area/sulaco/maintenance/upperdeck_AIcore_maint)
 "dhK" = (
-/obj/machinery/power/apc/mainship,
 /obj/structure/cable,
 /turf/open/floor/prison/red{
-	dir = 5
+	dir = 4
 	},
 /area/mainship/shipboard/weapon_room)
 "djX" = (
@@ -12482,17 +12484,11 @@
 	},
 /area/sulaco/medbay/surgery_two)
 "fFy" = (
-/obj/machinery/light/small{
+/obj/effect/decal/cleanable/cobweb{
 	dir = 1
 	},
-/obj/structure/rack,
-/obj/structure/ob_ammo/warhead/explosive,
-/obj/structure/ob_ammo/warhead/explosive,
-/obj/structure/ob_ammo/warhead/explosive,
-/turf/open/floor/prison/red{
-	dir = 1
-	},
-/area/mainship/shipboard/weapon_room)
+/turf/closed/wall/mainship/gray,
+/area/sulaco/maintenance/lower_maint2)
 "fGh" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 8
@@ -12670,9 +12666,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/turf/open/floor/prison/red/corner{
-	dir = 1
-	},
+/turf/open/floor/prison,
 /area/mainship/shipboard/weapon_room)
 "gdq" = (
 /obj/machinery/camera/autoname{
@@ -13192,6 +13186,13 @@
 /obj/machinery/vending/nanomed,
 /turf/open/floor/prison/kitchen,
 /area/sulaco/cafeteria)
+"hgv" = (
+/obj/structure/cable,
+/obj/machinery/power/apc/mainship,
+/turf/open/floor/prison/red{
+	dir = 5
+	},
+/area/mainship/shipboard/weapon_room)
 "hgI" = (
 /obj/effect/decal/warning_stripes/thin,
 /obj/structure/cable,
@@ -13908,11 +13909,7 @@
 /turf/open/floor/tile/chapel,
 /area/sulaco/marine/chapel)
 "iCj" = (
-/obj/structure/rack,
-/obj/structure/ob_ammo/warhead/cluster,
-/obj/structure/ob_ammo/warhead/cluster,
-/obj/structure/ob_ammo/warhead/cluster,
-/turf/open/floor/prison/red{
+/turf/open/floor/prison/red/corner{
 	dir = 1
 	},
 /area/mainship/shipboard/weapon_room)
@@ -18619,6 +18616,15 @@
 /obj/structure/window/reinforced,
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cafeteria/kitchen)
+"rgZ" = (
+/obj/structure/rack,
+/obj/structure/ob_ammo/warhead/plasmaloss,
+/obj/structure/ob_ammo/warhead/plasmaloss,
+/obj/structure/ob_ammo/warhead/plasmaloss,
+/turf/open/floor/prison/red{
+	dir = 1
+	},
+/area/mainship/shipboard/weapon_room)
 "rhV" = (
 /obj/effect/decal/warning_stripes/thin,
 /obj/machinery/landinglight/ds2/delaytwo,
@@ -18979,11 +18985,10 @@
 /turf/open/floor/prison,
 /area/sulaco/engineering/atmos)
 "rJl" = (
-/obj/machinery/camera/autoname,
 /obj/structure/rack,
-/obj/structure/ob_ammo/warhead/incendiary,
-/obj/structure/ob_ammo/warhead/incendiary,
-/obj/structure/ob_ammo/warhead/incendiary,
+/obj/structure/ob_ammo/warhead/cluster,
+/obj/structure/ob_ammo/warhead/cluster,
+/obj/structure/ob_ammo/warhead/cluster,
 /turf/open/floor/prison/red{
 	dir = 1
 	},
@@ -19236,16 +19241,17 @@
 	},
 /area/sulaco/research)
 "sgH" = (
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
-	dir = 4
+/obj/structure/rack,
+/obj/structure/ob_ammo/warhead/explosive,
+/obj/structure/ob_ammo/warhead/explosive,
+/obj/structure/ob_ammo/warhead/explosive,
+/obj/machinery/light/small{
+	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
-	dir = 4
+/turf/open/floor/prison/red{
+	dir = 1
 	},
-/obj/structure/cable,
-/obj/machinery/vending/marine/shared,
-/turf/open/floor/prison,
-/area/sulaco/marine)
+/area/mainship/shipboard/weapon_room)
 "sgS" = (
 /obj/structure/dropship_equipment/electronics/spotlights,
 /turf/open/floor/prison,
@@ -20928,9 +20934,10 @@
 /area/sulaco/hangar/droppod)
 "viB" = (
 /obj/structure/rack,
-/obj/structure/ob_ammo/warhead/plasmaloss,
-/obj/structure/ob_ammo/warhead/plasmaloss,
-/obj/structure/ob_ammo/warhead/plasmaloss,
+/obj/structure/ob_ammo/warhead/incendiary,
+/obj/structure/ob_ammo/warhead/incendiary,
+/obj/structure/ob_ammo/warhead/incendiary,
+/obj/machinery/camera/autoname,
 /turf/open/floor/prison/red{
 	dir = 1
 	},
@@ -38135,7 +38142,7 @@ aPg
 aPg
 aIz
 aBO
-wjX
+iCj
 gcq
 aLx
 aHz
@@ -38386,14 +38393,14 @@ aQw
 aQw
 aQw
 aQw
+cfA
 aQw
 aQw
-aQw
-aQw
-kqQ
-aQh
+aDK
+fFy
 aDm
-iCj
+rJl
+aHz
 aHz
 ada
 qSH
@@ -38646,11 +38653,11 @@ aPg
 aPg
 aPg
 aPg
-aPg
 aQw
-aQh
+aQw
 aDm
-fFy
+sgH
+aHz
 aHz
 eCX
 sjB
@@ -38902,12 +38909,12 @@ mDu
 mDu
 mDu
 mDu
-mDu
 aPg
-phy
-aQh
+aPg
+aQw
 aDm
-rJl
+viB
+aHz
 hKJ
 gXA
 mVd
@@ -39162,9 +39169,9 @@ euR
 euR
 aPg
 aQw
-aQh
 aDm
-viB
+rgZ
+aHz
 abh
 aHz
 lkp
@@ -39418,9 +39425,9 @@ cJh
 bFu
 amf
 aPg
-aQw
-aQh
+phy
 aDm
+hgv
 dhK
 pxD
 tmj
@@ -39676,7 +39683,7 @@ aNX
 iTg
 aPg
 aQw
-aQh
+aDm
 aDm
 aDm
 rBM
@@ -43534,7 +43541,7 @@ sAb
 eDb
 aLf
 aLf
-sgH
+oSV
 xJd
 wYX
 dty
