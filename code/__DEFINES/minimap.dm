@@ -1,6 +1,4 @@
 
-#define COMSIG_MOB_HUDMAP_TOGGLED "mob_hudmap_toggle"
-
 #define MINIMAP_FLAG_XENO (1<<0)
 #define MINIMAP_FLAG_MARINE (1<<1)
 #define MINIMAP_FLAG_ALPHA (1<<2)

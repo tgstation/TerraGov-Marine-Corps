@@ -27,4 +27,5 @@ SUBSYSTEM_DEF(silo)
 /datum/controller/subsystem/silo/proc/start_spawning()
 	SIGNAL_HANDLER
 	UnregisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY))
-	can_fire = TRUE
+	if(SSticker.mode?.flags_round_type & MODE_PSY_POINTS)
+		can_fire = TRUE
