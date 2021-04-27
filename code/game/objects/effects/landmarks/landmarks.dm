@@ -135,6 +135,15 @@
 	. = ..()
 	return INITIALIZE_HINT_QDEL
 
+/obj/effect/landmark/xeno_turret_spawn
+	name = "xeno turret spawn landmark"
+	icon_state = "tdome_observer"
+
+/obj/effect/landmark/xeno_turret_spawn/Initialize()
+	GLOB.xeno_turret_turfs += loc
+	..()
+	return INITIALIZE_HINT_QDEL
+
 
 /obj/effect/landmark/nuke_spawn
 	name = "nuke spawn landmark"

@@ -525,6 +525,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	accurate_range_min = 0
 	accurate_range = 30
+	max_range = 40
 	damage = 65
 	scatter = -15
 	penetration = 15
@@ -1215,7 +1216,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 15
 	accurate_range = 10
 	bullet_color = COLOR_VIVID_YELLOW
-
 /datum/ammo/energy/taser/on_hit_mob(mob/M,obj/projectile/P)
 	staggerstun(M, P, stun = 10)
 
@@ -1657,18 +1657,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/turf/T = get_turf(M)
 	if(!T)
 		T = get_turf(P)
-	for (var/thing in T)
-		if(istype(thing, /obj/flamer_fire))
-			var/obj/flamer_fire/FF = thing
-			if(FF.firelevel > 20)
-				FF.firelevel -= 20
-				FF.updateicon()
-				continue
-			qdel(thing)
-			continue
-		if(istype(thing, /mob/living))
-			var/mob/living/target =thing
-			target.ExtinguishMob()
 	drop_nade(T)
 
 /datum/ammo/xeno/acid/heavy/on_hit_obj(obj/O,obj/projectile/P)
@@ -1679,39 +1667,16 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	if(O.density && !(O.flags_atom & ON_BORDER))
 		T = get_turf(get_step(T, turn(P.dir, 180))) //If the object is dense and not a border object like barricades, we instead drop in the location just prior to the target
 
-	for (var/thing in T)
-		if(istype(thing, /obj/flamer_fire))
-			var/obj/flamer_fire/FF = thing
-			if(FF.firelevel > 20)
-				FF.firelevel -= 20
-				FF.updateicon()
-				continue
-			qdel(thing)
-			continue
-		if(istype(thing, /mob/living))
-			var/mob/living/target = thing
-			target.ExtinguishMob()
-
 	drop_nade(T)
 
 
 /datum/ammo/xeno/acid/heavy/on_hit_turf(turf/T,obj/projectile/P)
 	if(!T)
 		T = get_turf(P)
+
 	if(isclosedturf(T))
 		T = get_turf(get_step(T, turn(P.dir, 180))) //If the turf is closed, we instead drop in the location just prior to the turf
-	for (var/thing in T)
-		if(istype(thing, /obj/flamer_fire))
-			var/obj/flamer_fire/FF = thing
-			if(FF.firelevel > 20)
-				FF.firelevel -= 20
-				FF.updateicon()
-				continue
-			qdel(thing)
-			continue
-		if(istype(thing, /mob/living))
-			var/mob/living/target = thing
-			target.ExtinguishMob()
+
 	drop_nade(T)
 
 /datum/ammo/xeno/acid/heavy/do_at_max_range(obj/projectile/P)

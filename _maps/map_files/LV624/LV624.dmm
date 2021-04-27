@@ -14643,7 +14643,7 @@
 /turf/closed/gm/dense,
 /area/lv624/ground/jungle3)
 "etu" = (
-/obj/structure/resin/xeno_turret,
+/obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west2)
 "euU" = (
@@ -15884,7 +15884,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand5)
 "oph" = (
-/obj/structure/resin/xeno_turret,
+/obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central1)
 "oqF" = (
@@ -16485,7 +16485,7 @@
 	},
 /area/lv624/ground/jungle1)
 "ujY" = (
-/obj/structure/resin/xeno_turret,
+/obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west1)
 "umw" = (
@@ -16758,7 +16758,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west1)
 "wMO" = (
-/obj/structure/resin/xeno_turret,
+/obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east2)
 "wNe" = (
