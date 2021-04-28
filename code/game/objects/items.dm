@@ -1,6 +1,7 @@
 /obj/item
 	name = "item"
 	icon = 'icons/obj/items/items.dmi'
+	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
 	materials = list(/datum/material/metal = 50)
 

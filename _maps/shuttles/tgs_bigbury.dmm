@@ -144,7 +144,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/machinery/vending/marine,
+/obj/machinery/vending/marine/shared,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "aN" = (
@@ -201,7 +201,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/machinery/vending/marine,
+/obj/machinery/vending/marine/shared,
 /obj/structure/window/reinforced{
 	dir = 1
 	},
@@ -235,7 +235,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
 "aZ" = (
-/obj/machinery/vending/marine,
+/obj/machinery/vending/marine/shared,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
@@ -419,16 +419,8 @@
 	},
 /turf/open/floor/mainship/blue/full,
 /area/shuttle/canterbury/cic)
-"bE" = (
-/obj/machinery/vending/marine/cargo_guns,
-/turf/open/floor/mainship/mono,
-/area/shuttle/canterbury)
-"bF" = (
-/obj/machinery/vending/attachments,
-/turf/open/floor/mainship/mono,
-/area/shuttle/canterbury)
 "bG" = (
-/obj/machinery/vending/marine/cargo_ammo,
+/obj/machinery/vending/marine/shared,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "bH" = (
@@ -551,7 +543,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/machinery/vending/marine,
+/obj/machinery/vending/marine/shared,
 /obj/structure/window/reinforced{
 	dir = 1
 	},
@@ -676,7 +668,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/machinery/vending/marine,
+/obj/machinery/vending/marine/shared,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "qh" = (
@@ -1076,7 +1068,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/machinery/vending/marine,
+/obj/machinery/vending/marine/shared,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "Wk" = (
@@ -1521,8 +1513,8 @@ Wk
 an
 ac
 FQ
-bF
-bE
+bG
+bG
 bG
 an
 ac

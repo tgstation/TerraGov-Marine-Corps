@@ -32,6 +32,8 @@ SUBSYSTEM_DEF(minimaps)
 	var/list/datum/minimap_updator/updators_by_datum = list()
 	///list of callbacks we need to invoke late because Initialize happens early
 	var/list/datum/callback/earlyadds = list()
+	///assoc list of minimap objects that are hashed so we have to update as few as possible
+	var/list/hashed_minimaps = list()
 
 /datum/controller/subsystem/minimaps/Initialize(start_timeofday)
 	for(var/level=1 to length(SSmapping.z_list))
@@ -268,3 +270,121 @@ SUBSYSTEM_DEF(minimaps)
 	images_by_source -= source
 	removal_cbs[source].Invoke()
 	removal_cbs -= source
+
+
+/**
+ * Fetches a /obj/screen/minimap instance or creates on if none exists
+ * Note this does not destroy them when the map is unused, might be a potential thing to do?
+ * Arguments:
+ * * zlevel: zlevel to fetch map for
+ * * flags: map flags to fetch from
+ */
+/datum/controller/subsystem/minimaps/proc/fetch_minimap_object(zlevel, flags)
+	var/hash = "[zlevel]-[flags]"
+	if(hashed_minimaps[hash])
+		return hashed_minimaps[hash]
+	var/obj/screen/minimap/map = new(null, zlevel, flags)
+	if (!map.icon) //Don't wanna save an unusable minimap for a z-level.
+		CRASH("Empty and unusable minimap generated for '[zlevel]-[flags]'") //Can be caused by atoms calling this proc before minimap subsystem initializing.
+	hashed_minimaps[hash] = map
+	return map
+
+///Default HUD screen minimap object
+/obj/screen/minimap
+	name = "Minimap"
+	icon = null
+	icon_state = ""
+	layer = ABOVE_HUD_LAYER
+	screen_loc = "1,1"
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+
+/obj/screen/minimap/Initialize(mapload, target, flags)
+	. = ..()
+	if(!SSminimaps.minimaps_by_z["[target]"])
+		return
+	icon = SSminimaps.minimaps_by_z["[target]"].hud_image
+	SSminimaps.add_to_updaters(src, flags, target)
+
+
+/**
+ * Action that gives the owner access to the minimap pool
+ */
+/datum/action/minimap
+	name = "Toggle Minimap"
+	action_icon_state = "minimap"
+	///Flags to allow the owner to see others of this type
+	var/minimap_flags = MINIMAP_FLAG_ALL
+	///marker flags this will give the target, mostly used for marine minimaps
+	var/marker_flags = MINIMAP_FLAG_ALL
+	///boolean as to whether the minimap is currently shown
+	var/minimap_displayed = FALSE
+	///Minimap object we'll be displaying
+	var/obj/screen/minimap/map
+
+/datum/action/minimap/Destroy()
+	map = null
+	return ..()
+
+/datum/action/minimap/action_activate()
+	. = ..()
+	if(!map)
+		return
+	if(minimap_displayed)
+		owner.client.screen -= map
+	else
+		owner.client.screen += map
+	minimap_displayed = !minimap_displayed
+
+/datum/action/minimap/give_action(mob/M)
+	. = ..()
+	RegisterSignal(M, COMSIG_MOVABLE_Z_CHANGED, .proc/on_owner_z_change)
+	if(!SSminimaps.minimaps_by_z["[M.z]"] || !SSminimaps.minimaps_by_z["[M.z]"].hud_image)
+		return
+	map = SSminimaps.fetch_minimap_object(M.z, minimap_flags)
+
+/datum/action/minimap/remove_action(mob/M)
+	. = ..()
+	if(minimap_displayed)
+		owner.client.screen -= map
+		minimap_displayed = FALSE
+	UnregisterSignal(M, COMSIG_MOVABLE_Z_CHANGED)
+
+/**
+ * Updates the map when the owner changes zlevel
+ */
+/datum/action/minimap/proc/on_owner_z_change(atom/movable/source, oldz, newz)
+	SIGNAL_HANDLER
+	if(minimap_displayed)
+		owner.client.screen -= map
+		minimap_displayed = FALSE
+	map = null
+	if(!SSminimaps.minimaps_by_z["[newz]"] || !SSminimaps.minimaps_by_z["[newz]"].hud_image)
+		return
+	map = SSminimaps.fetch_minimap_object(newz, minimap_flags)
+
+/datum/action/minimap/xeno
+	minimap_flags = MINIMAP_FLAG_XENO
+
+/datum/action/minimap/marine
+	minimap_flags = MINIMAP_FLAG_MARINE
+	marker_flags = MINIMAP_FLAG_MARINE
+
+/datum/action/minimap/alpha
+	minimap_flags = MINIMAP_FLAG_ALPHA
+	marker_flags = MINIMAP_FLAG_ALPHA|MINIMAP_FLAG_MARINE
+
+/datum/action/minimap/bravo
+	minimap_flags = MINIMAP_FLAG_BRAVO
+	marker_flags = MINIMAP_FLAG_BRAVO|MINIMAP_FLAG_MARINE
+
+/datum/action/minimap/charlie
+	minimap_flags = MINIMAP_FLAG_CHARLIE
+	marker_flags = MINIMAP_FLAG_CHARLIE|MINIMAP_FLAG_MARINE
+
+/datum/action/minimap/delta
+	minimap_flags = MINIMAP_FLAG_DELTA
+	marker_flags = MINIMAP_FLAG_DELTA|MINIMAP_FLAG_MARINE
+
+/datum/action/minimap/observer
+	minimap_flags = MINIMAP_FLAG_XENO|MINIMAP_FLAG_MARINE
+	marker_flags = NONE
