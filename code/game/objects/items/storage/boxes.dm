@@ -476,14 +476,18 @@
 		isopened = 1
 		icon_state = "mealpackopened"
 
-//Fillable Ammo Box
-/obj/item/storage/box/ammo
-	name = "\improper Ammo Box"
-	desc = "A large ammo box that can be filled with almost any magazine type. Compact and deployable for moving ammo to the front lines."
-	icon_state = "ammobox"
+//Fillable Funky Mag Box
+/obj/item/storage/box/magazine
+	name = "\improper Ammunition Box"
+	desc = "This box is able to hold a wide variety of supplies."
+	icon = "icons/obj/items/storage/ammo_boxes.dmi"
+	icon_state = "mag_box"
+	item_state = "mag_box"
+	w_class = WEIGHT_CLASS_HUGE
+	slowdown = 0.2 // Big unhandly box
 	max_w_class = 4
-	storage_slots = 30
-	max_storage_space = 60	//SMG and pistol sized (tiny and small) mags can fit all 30 slots, normal (LMG and AR) fit 20
+	storage_slots = 32 // 8 images x 4 items
+	max_storage_space = 64	//SMG and pistol sized (tiny and small) mags can fit all 32 slots, normal (LMG and AR) fit 21
 	use_to_pickup = TRUE
 	can_hold = list(
 		/obj/item/ammo_magazine/pistol,
@@ -497,24 +501,111 @@
 		/obj/item/ammo_magazine/m412l1_hpr,
 		/obj/item/ammo_magazine/shotgun,
 		/obj/item/ammo_magazine/sniper,
+		/obj/item/ammo_magazine/railgun,
+		/obj/item/ammo_magazine/packet,
+		/obj/item/ammo_magazine/standard_gpmg,
+		/obj/item/ammo_magazine/standard_lmg,
+		/obj/item/ammo_magazine/flamer_tank,
+		/obj/item/ammo_magazine/minigun,
+		/obj/item/ammo_magazine/handful,
 	)
-
+	cant_hold = list(
+		/obj/item/ammo_magazine/flamer_tank/backtank,
+	)
+	///Assoc list linking each item to it's corresponding icon_state for the overlays.
+	var/list/assoc_overlay = list(
+		/obj/item/ammo_magazine/pistol/plasma_pistol = "tx7",
+		/obj/item/ammo_magazine/pistol/hp = "mag_pistol_blue",
+		/obj/item/ammo_magazine/pistol/ap = "mag_pistol_green",
+		/obj/item/ammo_magazine/pistol/incendiary = "mag_pistol_red",
+		/obj/item/ammo_magazine/pistol/extended = "mag_pistol_yellow",
+		/obj/item/ammo_magazine/pistol = "mag_pistol",
+		/obj/item/ammo_magazine/smg/standard_smg = "mag_t90",
+		/obj/item/ammo_magazine/smg = "mag_smg",
+		/obj/item/ammo_magazine/rifle/extended = "mag_rifle_big_yellow",
+		/obj/item/ammo_magazine/rifle/incendiary = "mag_rifle_big_red",
+		/obj/item/ammo_magazine/rifle/ap = "mag_rifle_big_red",
+		/obj/item/ammo_magazine/rifle/standard_carbine = "mag_rifle_big",
+		/obj/item/ammo_magazine/rifle/standard_assaultrifle = "mag_rifle_big",
+		/obj/item/ammo_magazine/rifle/standard_dmr = "mag_dmr",
+		/obj/item/ammo_magazine/rifle/standard_dmr = "mag_dmr_red",
+		/obj/item/ammo_magazine/rifle/standard_br = "mag_rifle_big",
+		/obj/item/ammo_magazine/rifle/standard_br = "mag_rifle_big_red",
+		/obj/item/ammo_magazine/rifle/ak47/extended = "mag_rifle_yellow",
+		/obj/item/ammo_magazine/rifle/tx15_flechette = "mag_tx15_flechette",
+		/obj/item/ammo_magazine/rifle/tx15_slug = "mag_tx15_slug",
+		/obj/item/ammo_magazine/rifle/chamberedrifle = "mag_sniper",
+		/obj/item/ammo_magazine/rifle/autosniper = "mag_sniper",
+		/obj/item/ammo_magazine/rifle/bolt = "mosin",
+		/obj/item/ammo_magazine/rifle/tx8/incendiary = "mag_rifle_big_red",
+		/obj/item/ammo_magazine/rifle/tx8/impact = "mag_rifle_big_blue",
+		/obj/item/ammo_magazine/rifle/tx8 = "mag_rifle_big",
+		/obj/item/ammo_magazine/rifle = "mag_rifle",
+		/obj/item/ammo_magazine/revolver = "mag_revolver",
+		/obj/item/ammo_magazine/standard_smartmachinegun = "mag_t29",
+		/obj/item/ammo_magazine/m412l1_hpr = "mag_gpmg",
+		/obj/item/ammo_magazine/shotgun/incendiary = "incendiary",
+		/obj/item/ammo_magazine/shotgun/buckshot = "buckshot",
+		/obj/item/ammo_magazine/shotgun/flechette = "flechette",
+		/obj/item/ammo_magazine/shotgun/beanbag = "beanbag",
+		/obj/item/ammo_magazine/shotgun/tracker = "tracking",
+		/obj/item/ammo_magazine/shotgun/mbx900/buckshot = "mbx900_buckshot",
+		/obj/item/ammo_magazine/shotgun/mbx900/tracking = "mbx900_tracking",
+		/obj/item/ammo_magazine/shotgun/mbx900 = "mbx900_sabot",
+		/obj/item/ammo_magazine/shotgun = "slugs",
+		/obj/item/ammo_magazine/sniper/incendiary = "mag_sniper_red",
+		/obj/item/ammo_magazine/sniper/flak = "mag_sniper_blue",
+		/obj/item/ammo_magazine/sniper/svd = "mag_rifle",
+		/obj/item/ammo_magazine/sniper = "mag_sniper",
+		/obj/item/ammo_magazine/railgun = "mag_railgun",
+		/obj/item/ammo_magazine/standard_gpmg = "mag_gpmg",
+		/obj/item/ammo_magazine/standard_lmg = "mag_t42",
+		/obj/item/ammo_magazine/flamer_tank/large/B = "tank_green",
+		/obj/item/ammo_magazine/flamer_tank/large/X = "tank_blue",
+		/obj/item/ammo_magazine/flamer_tank/large = "tank_orange",
+		/obj/item/ammo_magazine/flamer_tank = "tank",
+		/obj/item/ammo_magazine/minigun = "mag_minigun",
+		/obj/item/ammo_magazine/handful = "bullets",
+	)
+	///Assoc list of how much weight every item type takes. Used to determine how many overlays to make.
+	var/list/contents_weight = list()
+	///Initial offset of the overlays.
+	var/overlay_pixel_x = 6
+	var/overlay_pixel_y = 12
 	var/deployed = FALSE
+	///Amount of different items in the ammo box.
+	var/variety = 0
+	///This is the maximum amount of weight a single overlay can cover.
+	var/overlay_w_class = 8
 
-/obj/item/storage/box/ammo/update_icon()
-	if(!deployed)
-		icon_state = "[initial(icon_state)]"
-	else if(!(length(contents)))
-		icon_state = "[initial(icon_state)]_empty"
-	else if(deployed)
-		icon_state = "[initial(icon_state)]_deployed"
+/obj/item/storage/box/magazine/examine(mob/user, distance, infix, suffix)
+	. = ..()
+	if (!deployed && !(loc = user)) //Closed and not in your hands
+		to_chat(user, "The [src] is closed shut and you cannot see inside.")
+		return
+	if(variety > 8) //Too much shit inside, a literal clusterfuck of supplies
+		to_chat(user, "The inside is cluttered with all sorts of supplies.")
+		return
+	if(variety < 0) //empy
+		to_chat(user, "The [src] is empty!")
+		return
+	to_chat(user, "Inside the [src] you notice:")
+	for(var/I in contents_weight)
+		if(contents_weight[I] < overlay_w_class)
+			to_chat(user, "A bit of [I.name]")
+		else if(contents_weight[I] < 3 * overlay_w_class)
+			to_chat(user, "Some [I.name]")
+		else
+			to_chat(user, "A lot of [I.name]")
 
-/obj/item/storage/box/ammo/attack_self(mob/user)
+/obj/item/storage/box/magazine/attack_self(mob/user)
 	deployed = TRUE
 	update_icon()
 	user.dropItemToGround(src)
+	pixel_x = 0 //Big sprite so lets not shift it around.
+	pixel_y = 0
 
-/obj/item/storage/box/ammo/attack_hand(mob/living/user)
+/obj/item/storage/box/magazine/attack_hand(mob/living/user)
 	if(loc == user)
 		return ..()
 
@@ -522,10 +613,13 @@
 		user.put_in_hands(src)
 		return
 
-	else if(deployed)
-		open(user)
+	if(deployed)
+		draw_mode = (veriety > 1)
+		..()
 
-/obj/item/storage/box/ammo/MouseDrop(atom/over_object)
+	return
+
+/obj/item/storage/box/magazine/MouseDrop(atom/over_object)
 	if(!deployed)
 		return
 
@@ -536,3 +630,31 @@
 	if(H == usr && !H.incapacitated() && Adjacent(H) && H.put_in_hands(src))
 		deployed = FALSE
 		update_icon()
+
+/obj/item/storage/box/magazine/proc/update_icon()
+	variety = 0
+	contents_weight = list()
+	for(var/obj/item/I in contents)
+		if(!contents_weight[I.type])
+			contents_weight[I.type] = 0
+			variety += 1
+		contents_weight[I.type] += I.w_class
+	if(!deployed)
+		icon_state = "[initial(icon_state)]"
+		return
+	if(variety > 8)
+		icon_state = "[initial(icon_state)_mixed]"
+		return
+	else
+		icon_state = "[initial(icon_state)_open]"
+	var/total_overlays = 0
+	for(var/W in contents_weight)
+		total_overlays += 1 + FLOOR(contents_weight[W]/8)
+
+	var/overlay_overflow = total_overlays - 8 // In case 6 overlays are for LMGs and then someone adds 8 unique tiny items into the mix
+
+	for(var/W in contents_weight)
+		var/overlays_to_draw = 1 + FLOOR(contents_weight[W]/8)
+		var/adjustment = max(0, overlays_to_draw - overlay_overflow) //This makes sure no matter the configuration, a
+		overlay_overflow -= adjustment
+		overlays_to_draw = max(1, adjustment)

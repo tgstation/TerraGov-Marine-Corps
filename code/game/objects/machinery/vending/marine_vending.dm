@@ -193,7 +193,7 @@
 		/obj/item/ammo_magazine/box10x24mm = 100,
 		/obj/item/ammo_magazine/box10x26mm = 100,
 		/obj/item/ammo_magazine/box10x27mm = 100,
-		/obj/item/storage/box/ammo = 30,
+		/obj/item/storage/box/magazine = 30,
 		),
 	)
 
@@ -271,7 +271,7 @@
 /// HvH version of the vending machine, containing no ammo for spec weapons and restricted ones
 /obj/machinery/vending/marine/cargo_supply/hvh
 	products = list(
-		/obj/item/storage/box/ammo = 30,
+		/obj/item/storage/box/magazine = 30,
 		/obj/item/storage/box/nade_box = 1,
 		/obj/item/storage/box/nade_box/HIDP = 1,
 		/obj/item/explosive/plastique = 2,
