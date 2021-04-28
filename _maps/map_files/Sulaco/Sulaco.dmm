@@ -5464,15 +5464,6 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/prison,
 /area/sulaco/engineering)
-"ayF" = (
-/obj/structure/window/reinforced,
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
-	dir = 4
-	},
-/obj/structure/table/mainship,
-/obj/machinery/computer/shuttle/shuttle_control/dropship,
-/turf/open/floor/prison/bright_clean,
-/area/sulaco/bridge)
 "ayI" = (
 /obj/structure/ladder{
 	height = 2;
@@ -9731,17 +9722,6 @@
 	},
 /turf/open/floor/plating,
 /area/sulaco/research)
-"aVU" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/machinery/camera/autoname{
-	dir = 4
-	},
-/obj/structure/table/mainship,
-/obj/machinery/computer/shuttle/shuttle_control/dropship,
-/turf/open/floor/prison/bright_clean,
-/area/sulaco/hangar)
 "aVY" = (
 /turf/closed/wall/mainship/gray,
 /area/sulaco/hallway/lower_main_hall)
@@ -14301,6 +14281,14 @@
 	},
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters)
+"kvM" = (
+/obj/structure/bed,
+/obj/item/bedsheet/captain,
+/obj/item/storage/backpack/satchel/norm,
+/obj/machinery/alarm,
+/obj/structure/reagent_dispensers/wallmounted/milk,
+/turf/open/floor/wood,
+/area/sulaco/bridge/office)
 "kxY" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -14945,14 +14933,6 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor/prison,
 /area/mainship/shipboard/weapon_room)
-"lSN" = (
-/obj/structure/bed,
-/obj/item/bedsheet/captain,
-/obj/item/storage/backpack/satchel/norm,
-/obj/machinery/alarm,
-/obj/structure/reagent_dispensers/wallmounted/peppertank/milk,
-/turf/open/floor/wood,
-/area/sulaco/bridge/office)
 "lTe" = (
 /obj/machinery/door/airlock/mainship/secure/free_access{
 	dir = 2;
@@ -17395,6 +17375,15 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/maintenance/lower_maint)
+"roN" = (
+/obj/structure/window/reinforced,
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 4
+	},
+/obj/structure/table/mainship,
+/obj/machinery/computer/shuttle/shuttle_control/dropship,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/bridge)
 "roQ" = (
 /turf/open/floor/prison/yellow{
 	dir = 4
@@ -19198,6 +19187,17 @@
 	resistance_flags = 3
 	},
 /area/sulaco/medbay/west)
+"vHw" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/camera/autoname{
+	dir = 4
+	},
+/obj/structure/table/mainship,
+/obj/machinery/computer/shuttle/shuttle_control/dropship,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "vIJ" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
@@ -39119,7 +39119,7 @@ asr
 asd
 aqu
 asV
-ayF
+roN
 asd
 asr
 qRA
@@ -41937,7 +41937,7 @@ aaa
 aaa
 nzi
 pLJ
-lSN
+kvM
 nbD
 ghk
 ghk
@@ -53622,7 +53622,7 @@ aPF
 aSi
 bbh
 scV
-aVU
+vHw
 aPF
 aPF
 idd
