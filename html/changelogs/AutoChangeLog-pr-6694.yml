@@ -1,0 +1,5 @@
+author: "TiviPlus"
+delete-after: True
+changes: 
+  - qol: "Jaeger can now be painted hot pink"
+  - refactor: "Jaeger is now greyscale"
