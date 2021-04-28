@@ -1,0 +1,4 @@
+author: "Wayland-Smithy"
+delete-after: True
+changes: 
+  - bugfix: "Crusher charge no longer damages resin silos and turrets. No more mystery silo damage alerts."
