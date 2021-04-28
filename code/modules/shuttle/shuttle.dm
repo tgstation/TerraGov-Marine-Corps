@@ -460,12 +460,12 @@
 		// This isn't an error, per se, but we can't let the shuttle code
 		// attempt to move us where we currently are, it will get weird.
 			return SHUTTLE_ALREADY_DOCKED
-	if(S.reservedId)
-		if(S.reservedId != id) // Checks so two shuttles don't get the same dock and conflict.
-			var/obj/docking_port/mobile/M = SSshuttle.getShuttle(S.reservedId)
-			if(M?.destination == S)
-				return SHUTTLE_RESERVED
-			S.reservedId = null //Assigned shuttle does not exist or doesn't have the port as it's destination.
+
+	if(S?.reservedId != id) // Checks so two shuttles don't get the same dock and conflict.
+		var/obj/docking_port/mobile/M = SSshuttle.getShuttle(S.reservedId)
+		if(M?.destination == S)
+			return SHUTTLE_RESERVED
+		S.reservedId = null //Assigned shuttle does not exist or doesn't have the port as it's destination.
 
 	return SHUTTLE_CAN_DOCK
 

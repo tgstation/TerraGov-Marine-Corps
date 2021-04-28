@@ -1008,63 +1008,68 @@
 		ui = new(user, src, "ShuttleControl")
 		ui.open()
 
+/obj/machinery/computer/shuttle/shuttle_control/ui_state(mob/user)
+	return GLOB.access_state
+
 /obj/machinery/computer/shuttle/shuttle_control/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	if(.)
 		return
 
-	if(isxeno(usr))
-		return
+	if(action != "selectDestination")
+		return FALSE
 
-	if(!allowed(usr))
-		to_chat(usr, "<span class='danger'>Access denied.</span>")
+	var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
+	if(!(M.shuttle_flags & GAMEMODE_IMMUNE) && world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
+		to_chat(usr, "<span class='warning'>The engines are still refueling.</span>")
+		return TRUE
 
-	switch(action)
-		if("selectDestination")
-			var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
-			if(!(M.shuttle_flags & GAMEMODE_IMMUNE) && world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
-				to_chat(usr, "<span class='warning'>The engines are still refueling.</span>")
-				return TRUE
-			if(!M.can_move_topic(usr))
-				return TRUE
-			if(params["destination"])
-				if(!(params["destination"] in valid_destinations()))
-					log_admin("[key_name(usr)] may be attempting a href dock exploit on [src] with target location \"[params["destination"]]\"")
-					message_admins("[ADMIN_TPMONTY(usr)] may be attempting a href dock exploit on [src] with target location \"[params["destination"]]\"")
-					return TRUE
-				var/previous_status = M.mode
-				log_game("[key_name(usr)] has sent the shuttle [M] to [params["destination"]]")
-				switch(SSshuttle.moveShuttle(shuttleId, params["destination"], 1))
-					if(0)
-						if(previous_status != SHUTTLE_IDLE)
-							visible_message("<span class='notice'>Destination updated, recalculating route.</span>")
-						else
-							visible_message("<span class='notice'>Shuttle departing. Please stand away from the doors.</span>")
-					if(1)
-						to_chat(usr, "<span class='warning'>Invalid shuttle requested.</span>")
-						return TRUE
-					else
-						to_chat(usr, "<span class='notice'>Unable to comply.</span>")
-						return TRUE
+	if(!M.can_move_topic(usr))
+		return TRUE
+
+	if(!params["destination"])
+		return TRUE
+
+	if(!(params["destination"] in valid_destinations()))
+		log_admin("[key_name(usr)] may be attempting a href dock exploit on [src] with target location \"[params["destination"]]\"")
+		message_admins("[ADMIN_TPMONTY(usr)] may be attempting a href dock exploit on [src] with target location \"[params["destination"]]\"")
+		return TRUE
+
+	var/previous_status = M.mode
+	log_game("[key_name(usr)] has sent the shuttle [M] to [params["destination"]]")
+
+	switch(SSshuttle.moveShuttle(shuttleId, params["destination"], 1))
+		if(0)
+			if(previous_status != SHUTTLE_IDLE)
+				visible_message("<span class='notice'>Destination updated, recalculating route.</span>")
+			else
+				visible_message("<span class='notice'>Shuttle departing. Please stand away from the doors.</span>")
 			return TRUE
-	return FALSE
+		if(1)
+			to_chat(usr, "<span class='warning'>Invalid shuttle requested.</span>")
+			return TRUE
+		else
+			to_chat(usr, "<span class='notice'>Unable to comply.</span>")
+			return TRUE
 
 /obj/machinery/computer/shuttle/shuttle_control/ui_data(mob/user)
 	var/list/data = list()
 	var/list/options = valid_destinations()
 	var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
-	if(M)
-		data["linked_shuttle_name"] = M.name
-		data["shuttle_status"] = M.getStatusText()
-		for(var/option in options)
-			for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
-				if(option!=(S.id))
-					continue
-				var/list/dataset = list()
-				dataset["id"] = S.id
-				dataset["name"] = S.name
-				dataset["locked"] = !M.check_dock(S, silent=TRUE)
-				data["destinations"] += list(dataset)
+	if(!M)
+		return data //empty but oh well
+
+	data["linked_shuttle_name"] = M.name
+	data["shuttle_status"] = M.getStatusText()
+	for(var/option AS in options)
+		for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
+			if(option != S.id)
+				continue
+			var/list/dataset = list()
+			dataset["id"] = S.id
+			dataset["name"] = S.name
+			dataset["locked"] = !M.check_dock(S, silent=TRUE)
+			data["destinations"] += list(dataset)
 	return data
 
 /// Relinks the shuttleId in the console to a valid shuttle currently existing. Will only relink to a shuttle with a matching control_flags flag. Returns true if successfully relinked
@@ -1081,8 +1086,8 @@
 		newId = M.id
 		shuttleName = M.name
 	else
-		for(var/k in SSshuttle.mobile)
-			M = k
+		M = null
+		for(M in SSshuttle.mobile)
 			if(M.control_flags & SHUTTLE_MARINE_PRIMARY_DROPSHIP)
 				newId = M.id
 				shuttleName = M.name
