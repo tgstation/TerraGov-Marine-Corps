@@ -186,11 +186,11 @@
 				affected.Shake(4, 4, 20)
 				continue
 			if(ishuman(affected)) //if they're human, they also should get knocked off their feet from the blast.
-				var/mob/living/L = affected
-				if(L.stat == DEAD) //unless they are dead, then the blast mysteriously ignores them.
+				var/mob/living/carbon/human/H = affected
+				if(H.stat == DEAD) //unless they are dead, then the blast mysteriously ignores them.
 					continue
-				L.apply_effects(1, 1) 	// Stun
-				shake_camera(L, 2, 1)
+				H.apply_effects(1, 1) 	// Stun
+				shake_camera(H, 2, 1)
 			var/throwlocation = affected.loc //first we get the target's location
 			for(var/x in 1 to 6)
 				throwlocation = get_step(throwlocation, owner.dir) //then we find where they're being thrown to, checking tile by tile.
