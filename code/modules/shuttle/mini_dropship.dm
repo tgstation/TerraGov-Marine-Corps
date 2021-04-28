@@ -124,7 +124,7 @@
 		to_chat(ui_user, "<span class='warning'>The engines are still refueling.</span>")
 		return
 	shuttle_port.shuttle_computer = src
-	SEND_GLOBAL_SIGNAL(COMSIG_TADPOLE_LAUNCHED)
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_TADPOLE_LAUNCHED)
 	if(fly_state == SHUTTLE_ON_GROUND)
 		next_fly_state = SHUTTLE_IN_ATMOSPHERE
 		shuttle_port.callTime = SHUTTLE_TAKEOFF_GROUND_CALLTIME
