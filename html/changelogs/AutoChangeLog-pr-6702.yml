@@ -1,0 +1,5 @@
+author: "Wayland-Smithy"
+delete-after: True
+changes: 
+  - qol: "Xenos now keep their selected targeting zone when evolving/regressing."
+  - bugfix: "Fixed a small bug with the zone selection hud."

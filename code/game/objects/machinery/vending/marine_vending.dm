@@ -818,7 +818,7 @@
 			/obj/item/clothing/tie/storage/brown_vest = 10,
 			/obj/item/clothing/tie/storage/white_vest/medic = 10,
 			/obj/item/clothing/tie/storage/webbing = 10,
-			/obj/item/clothing/tie/holster = 10,
+			/obj/item/clothing/tie/storage/holster = 10,
 		),
 		"Belts" = list(
 			/obj/item/storage/belt/marine = 10,

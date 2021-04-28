@@ -1,0 +1,14 @@
+author: "DerrickChamberlain"
+delete-after: True
+changes: 
+  - qol: "Overhauled marine prep, spawn and cafeteria on Sulaco"
+  - qol: "Added ladders in marine prep that lead outside CIC"
+  - qol: "Hardened Sulaco AI Core"
+  - qol: "Hardened Sulaco CIC APC"
+  - qol: "Moved dropship modules slightly closer on Sulaco"
+  - qol: "Moved two PACMAN gens to Sulaco Dropship Prep"
+  - qol: "Added some flavor to the Sulaco (think old marine prep)"
+  - rscdel: "Removed old marine prep from Sulaco"
+  - bugfix: "Returned Req blastdoors on Sulaco"
+  - bugfix: "Fixed airlock and shutter buttons appearing through walls"
+  - rscdel: "Removed a lot of old useless Sulaco areas, and repurposed some"
