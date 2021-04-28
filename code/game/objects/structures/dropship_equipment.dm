@@ -100,6 +100,12 @@
 	name = "rear attach point"
 	base_category = DROPSHIP_CREW_WEAPON
 
+/obj/effect/attach_point/crew_weapon/dropship1
+	ship_tag = "alamo"
+
+/obj/effect/attach_point/crew_weapon/dropship2
+	ship_tag = "normandy"
+
 /obj/effect/attach_point/crew_weapon/minidropship
 	ship_tag = "minidropship"
 
