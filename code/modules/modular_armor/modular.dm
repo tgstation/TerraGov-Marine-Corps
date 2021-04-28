@@ -395,6 +395,9 @@
 		return
 	new_color = colorable_colors[new_color]
 
+	if(!new_color)
+		return
+
 	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 		return TRUE
 
