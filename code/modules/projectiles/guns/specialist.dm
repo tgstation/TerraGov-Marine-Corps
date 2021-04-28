@@ -633,6 +633,8 @@
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/scope/marine,
+		/obj/item/attachable/scope,
 	)
 
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
@@ -836,7 +838,7 @@
 		return TRUE
 	else if (windup_checked == WEAPON_WINDUP_CHECKING)//We are already in windup, abort
 		return TRUE
-	
+
 	. = ..()
 
 
