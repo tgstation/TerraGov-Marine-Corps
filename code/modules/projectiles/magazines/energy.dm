@@ -93,7 +93,7 @@
 	icon_state = "[base_ammo_icon]_[remaining]"
 
 /obj/item/cell/lasgun/marine
-	name = "\improper TEX Battery"
+	name = "\improper TEX battery"
 	desc = "A specialized high density battery used to power most marine laser guns."
 	base_ammo_icon = "tex"
 	icon_state = "tex"

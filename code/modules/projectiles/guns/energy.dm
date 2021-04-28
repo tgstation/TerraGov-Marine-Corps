@@ -600,8 +600,8 @@
 //Ok the rifle
 
 /obj/item/weapon/gun/energy/lasgun/standard_marine
-	name = "\improper TEX-R Lasrifle"
-	desc = "A TerraGov standard issue Lasrifle with an integrated charge selector for normal and high settings. Uses standardized power cells."
+	name = "\improper TEX-R lasrifle"
+	desc = "A TerraGov standard issue laser rifle with an integrated charge selector for normal and high settings, fires bolts of laser energy. Uses standardized power cells."
 	force = 20
 	icon_state = "texr"
 	item_state = "texr"
@@ -698,8 +698,8 @@
 // other rifle
 
 /obj/item/weapon/gun/energy/lasgun/standard_marine/carbine
-	name = "\improper TEX-C Lascarbine"
-	desc = "A TerraGov standard issue Lascarbine with an integrated charge selector for normal and high settings. Uses standardized power cells."
+	name = "\improper TEX-C lascarbine"
+	desc = "A TerraGov standard issue laser firearm with an integrated charge selector for normal and high settings, this variant is a carbine, as such it is easier to handle in a pinch. Uses standardized power cells."
 	force = 20
 	icon_state = "texc"
 	item_state = "texc"
@@ -778,7 +778,7 @@
 
 /obj/item/weapon/gun/energy/lasgun/standard_marine/pistol
 	name = "\improper TEX-R Laspistol"
-	desc = "A TerraGov standard issue Laspistol with an integrated charge selector for normal and disabler settings. Uses standardized power cells."
+	desc = "A TerraGov standard issue laser pistol with an integrated charge selector for normal and disabler settings. This is a compact model, allowing extreme portability in a rather lethal package, though it remains to be a sidearm for some who prefer the 'pew pew'. Uses standardized power cells."
 	force = 10
 	icon_state = "texp"
 	item_state = "texp"
@@ -845,7 +845,7 @@
 
 /obj/item/weapon/gun/energy/lasgun/standard_marine/sniper
 	name = "\improper TEX-S Sniper"
-	desc = "A TerraGov standard issue Lassniper with an integrated charge selector for normal and high settings. Uses standardized power cells."
+	desc = "A specialized energy sniper rifle for TerraGov marines who prefer long-ranged shooting with dangerous accuracy. Primarily known as the 'strike rifle' for its energy capabilities in the marksmanship role. This comes with an integrated charge selector for normal and high settings. Uses standardized power cells."
 	force = 20
 	icon_state = "texsniper"
 	item_state = "texsniper"
@@ -919,7 +919,7 @@
 
 /obj/item/weapon/gun/energy/lasgun/standard_marine/mg
 	name = "\improper TEX-MG Machinegun"
-	desc = "A TerraGov standard issue Laser MG with an integrated charge selector for normal and low power settings. Uses standardized power cells."
+	desc = "A lightweight TerraGov energy machinegun for those who wanted a light show at the best way possible. This comes with a charge selector for normal or harmonized settings, the latter being a low-powered mode which is ideal for long-term suppression. Uses standardized power cells."
 	force = 30
 	icon_state = "texmg"
 	item_state = "texmg"
