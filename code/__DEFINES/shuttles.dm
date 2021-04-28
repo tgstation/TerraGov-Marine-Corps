@@ -21,6 +21,7 @@
 #define SHUTTLE_WIDTH_TOO_LARGE "width too large"
 #define SHUTTLE_DHEIGHT_TOO_LARGE "docking height too large"
 #define SHUTTLE_HEIGHT_TOO_LARGE "height too large"
+#define SHUTTLE_RESERVED "dock is reserved"
 #define SHUTTLE_ALREADY_DOCKED "we are already docked"
 #define SHUTTLE_SOMEONE_ELSE_DOCKED "someone else docked"
 
@@ -81,3 +82,6 @@
 //Shuttle defaults
 #define SHUTTLE_DEFAULT_SHUTTLE_AREA_TYPE /area/shuttle
 #define SHUTTLE_DEFAULT_UNDERLYING_AREA /area/space
+
+//Shuttle control flags
+#define SHUTTLE_MARINE_PRIMARY_DROPSHIP (1<<0)

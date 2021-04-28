@@ -67,6 +67,17 @@
 /obj/docking_port/shuttleRotate()
 	return //we don't rotate with shuttles via this code.
 
+
+///Copies the width, dwidth, height and dheight value of D onto itself.
+/obj/docking_port/proc/copy_size(obj/docking_port/D)
+	if (!D)
+		return FALSE
+	width = D.width
+	dwidth = D.dwidth
+	height = D.height
+	dheight = D.dheight
+	return TRUE
+
 //returns a list(x0,y0, x1,y1) where points 0 and 1 are bounding corners of the projected rectangle
 /obj/docking_port/proc/return_coords(_x, _y, _dir)
 	if(_dir == null)
@@ -203,6 +214,8 @@
 
 	var/datum/map_template/shuttle/roundstart_template
 	var/json_key
+	///The ID of the shuttle reserving this dock.
+	var/reservedId = null
 
 /obj/docking_port/stationary/register(replace = FALSE)
 	. = ..()
@@ -356,6 +369,8 @@
 	var/crashing = FALSE
 
 	var/shuttle_flags = NONE
+	///All shuttle_control computers that share at least one control flag is able to link to this shuttle
+	var/control_flags = NONE
 
 /obj/docking_port/mobile/register()
 	. = ..()
@@ -445,6 +460,12 @@
 		// This isn't an error, per se, but we can't let the shuttle code
 		// attempt to move us where we currently are, it will get weird.
 			return SHUTTLE_ALREADY_DOCKED
+	if(S.reservedId)
+		if(S.reservedId != id) // Checks so two shuttles don't get the same dock and conflict.
+			var/obj/docking_port/mobile/M = SSshuttle.getShuttle(S.reservedId)
+			if(M?.destination == S)
+				return SHUTTLE_RESERVED
+			S.reservedId = null //Assigned shuttle does not exist or doesn't have the port as it's destination.
 
 	return SHUTTLE_CAN_DOCK
 
@@ -455,7 +476,7 @@
 	if(status == SHUTTLE_CAN_DOCK)
 		return TRUE
 	else
-		if(status != SHUTTLE_ALREADY_DOCKED && !silent) // SHUTTLE_ALREADY_DOCKED is no cause for error
+		if((status != SHUTTLE_ALREADY_DOCKED || status != SHUTTLE_RESERVED) && !silent) // SHUTTLE_ALREADY_DOCKED is no cause for error
 			var/msg = "Shuttle [src] cannot dock at [S], error: [status]"
 			message_admins(msg)
 		// We're already docked there, don't need to do anything.
@@ -483,16 +504,19 @@
 					setTimer(callTime * engine_coeff)
 			else
 				destination = S
+				destination.reservedId = id
 				setTimer(callTime * engine_coeff)
 		if(SHUTTLE_RECALL)
 			if(S == destination)
 				setTimer(callTime * engine_coeff - timeLeft(1))
 			else
 				destination = S
+				destination.reservedId = id
 				setTimer(callTime * engine_coeff)
 			set_mode(SHUTTLE_CALL)
 		if(SHUTTLE_IDLE, SHUTTLE_IGNITING, SHUTTLE_RECHARGING)
 			destination = S
+			destination.reservedId = id
 			set_mode(SHUTTLE_IGNITING)
 			on_ignition()
 			setTimer(ignitionTime)
@@ -545,6 +569,7 @@
 			qdel(S0, TRUE)
 		else
 			previous = S0
+			previous.reservedId = null
 			return TRUE
 	else
 		WARNING("shuttle \"[id]\" could not enter transit space. S0=[S0 ? S0.id : "null"] S1=[S1 ? S1.id : "null"]")

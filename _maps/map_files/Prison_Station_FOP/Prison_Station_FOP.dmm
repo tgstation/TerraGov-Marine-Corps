@@ -26588,7 +26588,7 @@
 /area/prison/maintenance/hangar_barracks)
 "bEO" = (
 /obj/structure/table/reinforced,
-/obj/machinery/computer/shuttle/shuttle_control/dropship1{
+/obj/machinery/computer/shuttle/shuttle_control/dropship{
 	use_power = 0
 	},
 /turf/open/floor/prison/darkred/full,
@@ -42449,13 +42449,13 @@
 /area/prison/cellblock/maxsec/north)
 "lue" = (
 /obj/structure/table/reinforced,
-/obj/machinery/computer/shuttle/shuttle_control/dropship1,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
+/obj/machinery/computer/shuttle/shuttle_control/dropship/two,
 /turf/open/floor/plating,
 /area/prison/hangar/civilian)
 "lvG" = (

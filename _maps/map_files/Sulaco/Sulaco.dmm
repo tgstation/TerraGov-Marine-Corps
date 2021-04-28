@@ -5470,7 +5470,7 @@
 	dir = 4
 	},
 /obj/structure/table/mainship,
-/obj/machinery/computer/shuttle/shuttle_control/dropship1,
+/obj/machinery/computer/shuttle/shuttle_control/dropship,
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/bridge)
 "ayI" = (
@@ -9739,7 +9739,7 @@
 	dir = 4
 	},
 /obj/structure/table/mainship,
-/obj/machinery/computer/shuttle/shuttle_control/dropship1,
+/obj/machinery/computer/shuttle/shuttle_control/dropship,
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
 "aVY" = (

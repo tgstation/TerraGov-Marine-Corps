@@ -12558,8 +12558,8 @@
 /turf/open/floor/plating/ground/concrete/edge,
 /area/magmoor/cave/east)
 "jtx" = (
-/obj/machinery/computer/shuttle/shuttle_control/dropship1,
 /obj/structure/table/reinforced,
+/obj/machinery/computer/shuttle/shuttle_control/dropship/two,
 /turf/open/floor/plating,
 /area/lv624/lazarus/console)
 "jtA" = (
@@ -15455,7 +15455,7 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/cargo/storage)
 "lGc" = (
-/obj/machinery/computer/shuttle/shuttle_control/dropship1,
+/obj/machinery/computer/shuttle/shuttle_control/dropship,
 /obj/structure/table/reinforced,
 /turf/open/floor/plating,
 /area/magmoor/landing)

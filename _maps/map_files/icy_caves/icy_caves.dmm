@@ -3923,7 +3923,7 @@
 /area/icy_caves/caves)
 "xF" = (
 /obj/structure/table/reinforced,
-/obj/machinery/computer/shuttle/shuttle_control/dropship1,
+/obj/machinery/computer/shuttle/shuttle_control/dropship,
 /turf/open/floor/plating/ground/snow,
 /area/lv624/lazarus/console)
 "xH" = (
@@ -6471,7 +6471,7 @@
 /area/icy_caves/caves)
 "RF" = (
 /obj/structure/table/reinforced,
-/obj/machinery/computer/shuttle/shuttle_control/dropship1,
+/obj/machinery/computer/shuttle/shuttle_control/dropship/two,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ2)
 "RG" = (

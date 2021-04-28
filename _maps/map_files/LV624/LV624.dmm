@@ -10230,10 +10230,8 @@
 	},
 /area/shuttle/drop1/lz1)
 "aXE" = (
-/obj/machinery/computer/shuttle/shuttle_control/dropship1,
-/obj/structure/table/reinforced/flipped{
-	dir = 1
-	},
+/obj/machinery/computer/shuttle/shuttle_control/dropship,
+/obj/structure/table/reinforced,
 /turf/open/floor/marking/warning{
 	dir = 1
 	},
@@ -15724,7 +15722,7 @@
 /turf/open/floor,
 /area/lv624/lazarus/security)
 "mLT" = (
-/obj/machinery/computer/shuttle/shuttle_control/dropship2,
+/obj/machinery/computer/shuttle/shuttle_control/dropship/two,
 /obj/structure/table/reinforced,
 /turf/open/floor/marking/warning{
 	dir = 4

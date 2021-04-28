@@ -2760,7 +2760,7 @@
 /turf/open/floor/plating,
 /area/desert/outside/nw)
 "kk" = (
-/obj/machinery/computer/shuttle/shuttle_control/dropship1,
+/obj/machinery/computer/shuttle/shuttle_control/dropship,
 /obj/structure/table/reinforced,
 /turf/open/floor/tile/dark,
 /area/desert/interior/shipping/central)
