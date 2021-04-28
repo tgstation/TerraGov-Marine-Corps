@@ -1,0 +1,5 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - balance: "SL rally orders is sent only to his squad"
+  - code_imp: "no runtime in arrow process"
