@@ -23,6 +23,12 @@ obj/structure/trench/Initialize()
 	relativewall()
 	relativewall_neighbours()
 
+obj/structure/trench/Destroy()
+	var/mob/living/carbon/inhabitant = locate() in src.loc
+	if(inhabitant)
+		REMOVE_TRAIT(inhabitant, TRAIT_ISINTRENCH, TRAIT_SOURCE_TRENCH)
+	. = ..()
+
 
 obj/structure/trench/Crossed(atom/movable/AM)
 	. = ..()
