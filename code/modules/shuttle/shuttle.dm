@@ -476,7 +476,7 @@
 	if(status == SHUTTLE_CAN_DOCK)
 		return TRUE
 	else
-		if((status != SHUTTLE_ALREADY_DOCKED || status != SHUTTLE_RESERVED) && !silent) // SHUTTLE_ALREADY_DOCKED is no cause for error
+		if((status != SHUTTLE_ALREADY_DOCKED && status != SHUTTLE_RESERVED) && !silent) // SHUTTLE_ALREADY_DOCKED is no cause for error
 			var/msg = "Shuttle [src] cannot dock at [S], error: [status]"
 			message_admins(msg)
 		// We're already docked there, don't need to do anything.
