@@ -6,7 +6,7 @@
 
 /obj/item/tool/shovel
 	name = "shovel"
-	desc = "A large tool for digging and moving dirt. Use Space to Change between entrenching (to dig trenches) and digging (for dirt)"
+	desc = "A large tool for digging and moving dirt. Use Space to change between entrenching (to dig trenches) and digging (for dirt)."
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "shovel"
 	item_state = "shovel"
@@ -203,14 +203,13 @@
 	. = ..()
 	if(sharp)
 		to_chat(user, "<span class='notice'> This one has been sharpened and can no longer be folded.</span>")
+
 /obj/item/tool/shovel/unique_action(mob/user)
 	entrenchingmode = !entrenchingmode
 	if(entrenchingmode)
 		user.visible_message("<span class='notice'>[user] reconfigures [src] to entrenching mode.</span>")
 		return
-	else
-		user.visible_message("<span class='notice'>[user] reconfigures [src] to digging mode.</span>")
-		return
+	user.visible_message("<span class='notice'>[user] reconfigures [src] to digging mode.</span>")
 
 ///Digs a trench if there is no trench in that tile already.
 /obj/item/tool/shovel/proc/dig_trench(turf/target, mob/user)
