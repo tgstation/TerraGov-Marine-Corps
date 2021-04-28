@@ -777,7 +777,7 @@
 
 
 /obj/item/weapon/gun/energy/lasgun/standard_marine/pistol
-	name = "\improper TEX-R Laspistol"
+	name = "\improper TEX-R laspistol"
 	desc = "A TerraGov standard issue laser pistol with an integrated charge selector for normal and disabler settings. This is a compact model, allowing extreme portability in a rather lethal package, though it remains to be a sidearm for some who prefer the 'pew pew'. Uses standardized power cells."
 	force = 10
 	icon_state = "texp"
