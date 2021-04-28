@@ -208,6 +208,27 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			return
 		client.prefs.process_link(src, href_list)
 
+	else if(href_list["track_xeno_name"])
+		var/xeno_name = href_list["track_xeno_name"]
+		for(var/Y in GLOB.hive_datums[XENO_HIVE_NORMAL].get_all_xenos())
+			var/mob/living/carbon/xenomorph/X = Y
+			if(isnum(X.nicknumber))
+				if(num2text(X.nicknumber) != xeno_name)
+					continue
+			else
+				if(X.nicknumber != xeno_name)
+					continue
+			ManualFollow(X)
+			break
+
+	else if(href_list["track_silo_number"])
+		var/silo_number = href_list["track_silo_number"]
+		for(var/obj/structure/resin/silo/resin_silo as() in GLOB.xeno_resin_silos)
+			if(resin_silo.associated_hive == GLOB.hive_datums[XENO_HIVE_NORMAL] && num2text(resin_silo.number_silo) == silo_number)
+				var/mob/dead/observer/ghost = usr
+				ghost.forceMove(resin_silo.loc)
+				break
+
 /mob/proc/ghostize(can_reenter_corpse = TRUE)
 	if(!key || isaghost(src))
 		return FALSE
