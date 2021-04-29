@@ -18,8 +18,7 @@
 	if(activator.wear_suit != src)
 		to_chat(activator, "Due to the rigging of this device, it can only be detonated while worn.") //If you are going to use this, you have to accept death. No armor allowed.
 		return FALSE
-	if(!do_after(user, 3, TRUE, src, BUSY_ICON_DANGER, ignore_turf_checks = TRUE))
-		return FALSE
+	
 	if(bomb_message) //Checks for a non null bomb message.
 		activator.say("[bomb_message]!!")
 		message_admins("[activator] has detonated an explosive vest with the warcry \"[bomb_message]\".") //Incase disputes show up about marines killing themselves and others.
@@ -27,12 +26,15 @@
 	else
 		message_admins("[activator] has detonated an explosive vest with no warcry.")
 		log_game("[activator] has detonated an explosive vest with no warcry.")
+	
+	if(!do_after(user, 3, TRUE, src, BUSY_ICON_DANGER, ignore_turf_checks = TRUE))
+		return FALSE
 
 	for(var/datum/limb/appendage AS in activator.limbs) //Oops we blew all our limbs off
 		if(istype(appendage, /datum/limb/chest) || istype(appendage, /datum/limb/groin) || istype(appendage, /datum/limb/head))
 			continue
 		appendage.droplimb()
-	explosion(loc, 2, 2, 6, 5, 5)
+	explosion(loc, 0, 2, 6, 5, 5)
 	qdel(src)
 
 ///Gets a warcry to scream on Control Click, checks for non allowed warcries.
