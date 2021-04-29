@@ -249,7 +249,7 @@
 	icon_state = "svd"
 	item_state = "svd"
 	max_shells = 10 //codex
-	caliber = CALIBER_762x54 //codex
+	caliber = CALIBER_762X54 //codex
 	fire_sound = 'sound/weapons/guns/fire/svd.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/svd_unload.ogg'

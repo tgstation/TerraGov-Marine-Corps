@@ -102,7 +102,7 @@ can cause issues with ammo types getting mixed up during the burst.
 
 /obj/item/weapon/gun/shotgun/pump/bolt/retrieve_shell(selection)
 	var/obj/item/ammo_magazine/handful/new_handful = new /obj/item/ammo_magazine/handful()
-	new_handful.generate_handful(selection, CALIBER_762x54, 5, 1, /obj/item/weapon/gun/shotgun)
+	new_handful.generate_handful(selection, CALIBER_762X54, 5, 1, /obj/item/weapon/gun/shotgun)
 	return new_handful
 
 /obj/item/weapon/gun/shotgun/pump/lever/retrieve_shell(selection)
@@ -610,7 +610,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	fire_sound = 'sound/weapons/guns/fire/mosin.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	reload_sound = 'sound/weapons/guns/interact/mosin_reload.ogg'
-	caliber = CALIBER_762x54 //codex
+	caliber = CALIBER_762X54 //codex
 	load_method = SINGLE_CASING //codex
 	max_shells = 5 //codex
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump/bolt
