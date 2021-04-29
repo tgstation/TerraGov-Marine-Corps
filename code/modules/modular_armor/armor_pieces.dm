@@ -18,23 +18,23 @@
 	slowdown = 0
 
 	greyscale_config = /datum/greyscale_config/modularchest_infantry
-	greyscale_colors = "#444732"
+	greyscale_colors = "#665F44"
 
 	///Assoc list of color-hex for colors we're allowed to color this armor
 	var/static/list/colorable_colors = list(
-		"black" = "#474A50",
+		"black" = "#575A60",
 		"snow" = "#D5CCC3",
-		"desert" = "#A57F7C",
+		"desert" = "#958677",
 		"gray" = "#828282",
 		"brown" = "#60452B",
-		"red" = "#CC2C32",
-		"blue" = "#2A4FB7",
-		"yellow" = "#B7B21F",
-		"green" = "#2B7F1E",
-		"aqua" = "#2098A0",
-		"purple" = "#871F8F",
-		"orange" = "#BC4D25",
-		"pink" = "#D354BA",
+		"red" = "#A84D46",
+		"blue" = "#435872",
+		"yellow" = "#9F995D",
+		"green" = "#486B41",
+		"aqua" = "#2C6E73",
+		"purple" = "#733D65",
+		"orange" = "#C16737",
+		"pink" = "#753E4A",
 	)
 
 /obj/item/armor_module/armor/Initialize()
