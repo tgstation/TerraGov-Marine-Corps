@@ -206,7 +206,6 @@ WEAPONS
 	contains = list(/obj/item/storage/box/recoilless_system)
 	cost = 40
 
-
 /datum/supply_packs/weapons/railgun
 	name = "TX-220 Railgun"
 	contains = list(/obj/item/weapon/gun/rifle/railgun)
@@ -221,6 +220,11 @@ WEAPONS
 	name = "Demolitionist Specialist kit"
 	contains = list(/obj/item/weapon/gun/launcher/rocket/sadar)
 	cost = SADAR_PRICE
+
+/datum/supply_packs/weapons/quadlauncher
+	name = "M57A4 Quad Thermobaric Launcher"
+	contains = list(/obj/item/weapon/gun/launcher/rocket/m57a4)
+	cost = 250
 
 /datum/supply_packs/weapons/autosniper
 	name = "IFF Auto Sniper kit"
@@ -553,6 +557,11 @@ AMMO
 	name = "T-152 RPG WP rocket"
 	contains = list(/obj/item/ammo_magazine/rocket/sadar/wp)
 	cost = 7
+
+/datum/supply_packs/ammo/quadlauncher
+	name = "M57A4 thermobaric rocket array"
+	contains = list(/obj/item/ammo_magazine/rocket/m57a4)
+	cost = 25
 
 /datum/supply_packs/ammo/shell_regular
 	name = "T-160 RR HE shell"
