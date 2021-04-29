@@ -1,4 +1,0 @@
-author: "TheOneAndMightyRed"
-delete-after: True
-changes: 
-  - bugfix: "Map tables in conjuntion with command headset minimaps should work again."

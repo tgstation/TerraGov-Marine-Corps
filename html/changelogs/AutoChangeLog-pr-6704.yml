@@ -1,4 +1,0 @@
-author: "hyper2snyper"
-delete-after: True
-changes: 
-  - bugfix: "Fixes invisible jaeger helmets created when trying to cancel coloring them."
