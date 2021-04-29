@@ -1061,8 +1061,8 @@
 
 	data["linked_shuttle_name"] = M.name
 	data["shuttle_status"] = M.getStatusText()
-	for(var/option AS in options)
-		for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
+	for(var/option in options)
+		for(var/obj/docking_port/stationary/S AS in SSshuttle.stationary)
 			if(option != S.id)
 				continue
 			var/list/dataset = list()
@@ -1087,21 +1087,24 @@
 		shuttleName = M.name
 	else
 		M = null
-		for(M in SSshuttle.mobile)
-			if(M.control_flags & SHUTTLE_MARINE_PRIMARY_DROPSHIP)
-				newId = M.id
-				shuttleName = M.name
+		for(M AS in SSshuttle.mobile)
+			if(!(M.control_flags & compatible_control_flags)) //Need at least one matching control flag
+				continue
+			newId = M.id
+			shuttleName = M.name
 			if(M.id == preferredId) //Lock selection in if we get the initial shuttleId of this console.
 				break
-	if(newId)
-		if(newId == shuttleId)
-			return
-		shuttleId = newId
-		name = "\improper '[shuttleName]' dropship console"
-		desc = "The remote controls for the '[shuttleName]' Dropship."
-		say("Relinked Dropship Control Console to: '[shuttleName]'")
-		return TRUE //Did relink
-	return FALSE //Did not relink
+	if(!newId)
+		return FALSE //Did not relink
+
+	if(newId == shuttleId)
+		return TRUE //Did not relink but didn't have to since it is the same reference.
+
+	shuttleId = newId
+	name = "\improper '[shuttleName]' dropship console"
+	desc = "The remote controls for the '[shuttleName]' Dropship."
+	say("Relinked Dropship Control Console to: '[shuttleName]'")
+	return TRUE //Did relink
 
 
 
