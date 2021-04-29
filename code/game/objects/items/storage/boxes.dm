@@ -480,7 +480,7 @@
 /obj/item/storage/box/magazine
 	name = "\improper Ammunition Box"
 	desc = "This box is able to hold a wide variety of supplies."
-	icon = "icons/obj/items/storage/ammo_boxes.dmi"
+	icon = 'icons/obj/items/storage/ammo_boxes.dmi'
 	icon_state = "mag_box"
 	item_state = "mag_box"
 	w_class = WEIGHT_CLASS_HUGE
@@ -502,12 +502,11 @@
 		/obj/item/ammo_magazine/shotgun,
 		/obj/item/ammo_magazine/sniper,
 		/obj/item/ammo_magazine/railgun,
-		/obj/item/ammo_magazine/packet,
 		/obj/item/ammo_magazine/standard_gpmg,
 		/obj/item/ammo_magazine/standard_lmg,
-		/obj/item/ammo_magazine/flamer_tank,
 		/obj/item/ammo_magazine/minigun,
 		/obj/item/ammo_magazine/handful,
+		/obj/item/cell/lasgun,
 	)
 	cant_hold = list(
 		/obj/item/ammo_magazine/flamer_tank/backtank,
@@ -566,21 +565,37 @@
 		/obj/item/ammo_magazine/flamer_tank = "tank",
 		/obj/item/ammo_magazine/minigun = "mag_minigun",
 		/obj/item/ammo_magazine/handful = "bullets",
+		/obj/item/cell/lasgun = "mag_cell",
+		/obj/item = "", //Will default to the generic grey magazine thingies
 	)
 	///Assoc list of how much weight every item type takes. Used to determine how many overlays to make.
 	var/list/contents_weight = list()
 	///Initial offset of the overlays.
 	var/overlay_pixel_x = 6
 	var/overlay_pixel_y = 12
+	///Amount of horizontal overlay spaces.
+	var/amt_horizontal = 4
+	///Amount of pixels to shift each overlay around only on one axis.
+	var/shift_x = 6
+	var/shift_y = 4
+	///Whether or not the box is deployed on the ground
 	var/deployed = FALSE
 	///Amount of different items in the ammo box.
 	var/variety = 0
 	///This is the maximum amount of weight a single overlay can cover.
-	var/overlay_w_class = 8
+	var/overlay_w_class = 0
+	///Total max amount of overlay spaces
+	var/max_overlays = 0
+
+/obj/item/storage/box/magazine/Initialize(mapload, ...)
+	. = ..()
+	max_overlays = 2 * amt_horizontal
+	overlay_w_class = FLOOR(max_storage_space / max_overlays, 1)
+	can_hold -= cant_hold
 
 /obj/item/storage/box/magazine/examine(mob/user, distance, infix, suffix)
 	. = ..()
-	if (!deployed && !(loc = user)) //Closed and not in your hands
+	if (!deployed && !(loc = user)) //Closed and not in your posession
 		to_chat(user, "The [src] is closed shut and you cannot see inside.")
 		return
 	if(variety > 8) //Too much shit inside, a literal clusterfuck of supplies
@@ -590,13 +605,13 @@
 		to_chat(user, "The [src] is empty!")
 		return
 	to_chat(user, "Inside the [src] you notice:")
-	for(var/I in contents_weight)
+	for(var/obj/I AS in contents_weight)
 		if(contents_weight[I] < overlay_w_class)
-			to_chat(user, "A bit of [I.name]")
+			to_chat(user, "A bit of [initial(I.name)]")
 		else if(contents_weight[I] < 3 * overlay_w_class)
-			to_chat(user, "Some [I.name]")
+			to_chat(user, "Some [initial(I.name)]")
 		else
-			to_chat(user, "A lot of [I.name]")
+			to_chat(user, "A lot of [initial(I.name)]")
 
 /obj/item/storage/box/magazine/attack_self(mob/user)
 	deployed = TRUE
@@ -613,11 +628,8 @@
 		user.put_in_hands(src)
 		return
 
-	if(deployed)
-		draw_mode = (veriety > 1)
-		..()
-
-	return
+	else if(deployed)
+		open(user)
 
 /obj/item/storage/box/magazine/MouseDrop(atom/over_object)
 	if(!deployed)
@@ -631,7 +643,13 @@
 		deployed = FALSE
 		update_icon()
 
-/obj/item/storage/box/magazine/proc/update_icon()
+/obj/item/storage/box/magazine/update_icon()
+	message_admins("FIRE!")
+	. = ..()
+	for(var/obj/O in vis_contents)
+		message_admins("deleting [O]")
+		vis_contents -= O
+		qdel(O)
 	variety = 0
 	contents_weight = list()
 	for(var/obj/item/I in contents)
@@ -643,18 +661,38 @@
 		icon_state = "[initial(icon_state)]"
 		return
 	if(variety > 8)
-		icon_state = "[initial(icon_state)_mixed]"
+		icon_state = "[initial(icon_state)]_mixed"
 		return
 	else
-		icon_state = "[initial(icon_state)_open]"
+		icon_state = "[initial(icon_state)]_open"
+
 	var/total_overlays = 0
 	for(var/W in contents_weight)
-		total_overlays += 1 + FLOOR(contents_weight[W]/8)
+		total_overlays += 1 + FLOOR(contents_weight[W] / overlay_w_class, 1)
 
-	var/overlay_overflow = total_overlays - 8 // In case 6 overlays are for LMGs and then someone adds 8 unique tiny items into the mix
+	var/overlay_overflow = max(0, total_overlays - max_overlays) // In case 6 overlays are for a LMG and then someone adds 7 unique tiny items into the mix
+	var/current_iteration = 1
 
 	for(var/W in contents_weight)
-		var/overlays_to_draw = 1 + FLOOR(contents_weight[W]/8)
-		var/adjustment = max(0, overlays_to_draw - overlay_overflow) //This makes sure no matter the configuration, a
-		overlay_overflow -= adjustment
-		overlays_to_draw = max(1, adjustment)
+		var/overlays_to_draw = 1 + FLOOR(contents_weight[W] / overlay_w_class, 1)
+		if(overlay_overflow)
+			var/adjustment = min(overlay_overflow, overlays_to_draw - 1) //This makes sure no matter the configuration, a
+			overlay_overflow -= adjustment
+			overlays_to_draw -= adjustment
+			total_overlays -= adjustment
+		for(var/i = 0, i <= overlays_to_draw, i++)
+			var/obj/O = new()
+			message_admins("Made [O]")
+			O.icon = 'icons/obj/items/storage/ammo_mini.dmi'
+			for(var/A in assoc_overlay)
+				if(istype(text2path(W), text2path(A)))
+					message_admins("WORKS [W]: [contents_weight[W]] - [A]: [assoc_overlay[A]]")
+					icon_state = assoc_overlay[A]
+					break
+				else
+					message_admins("[W] - [A]")
+			if(MODULUS(current_iteration, 2) && (total_overlays - current_iteration) > 1) // We draw the top part first to account for overlaps.
+				O.pixel_y = overlay_pixel_y + shift_y
+			O.pixel_x = overlay_pixel_x + FLOOR((current_iteration / 2) - 0.5, 1) * shift_x
+			vis_contents += O
+			current_iteration++
