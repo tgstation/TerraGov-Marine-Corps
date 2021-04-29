@@ -1,0 +1,5 @@
+author: "Walarks"
+delete-after: True
+changes: 
+  - balance: "splints require taking a certain amount of damage to break, based on medical skill of the one applying it. Anyone with medical skill adds 15 splint health per medical skill rank. If you splint yourself, this is reduced by 15, but can't be lower than 0."
+  - balance: "removes small chance for splints to not be damaged"
