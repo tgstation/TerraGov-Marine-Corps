@@ -184,8 +184,8 @@
 /obj/machinery/standard_hmg/Initialize()
 	. = ..()
 	ammo = GLOB.ammo_list[ammo] //dunno how this works but just sliding this in from sentry-code.
-	update_icon()
 	prepare_huds() //Set up HUDS
+	update_icon()
 	for(var/datum/atom_hud/squad/sentry_status_hud in GLOB.huds) //Add to the squad HUD
 		sentry_status_hud.add_to_hud(src)
 
