@@ -37,9 +37,6 @@ map icy_caves
 	maxplayers 50
 endmap
 
-map desert
-endmap
-
 map research_outpost
 	maxplayers 40
 endmap
