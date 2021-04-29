@@ -453,7 +453,7 @@
 
 	if(choice != selecting)
 		selecting = choice
-		update_icon(user)
+		update_icon(usr)
 	return TRUE
 
 /obj/screen/zone_sel/update_icon(mob/user)
