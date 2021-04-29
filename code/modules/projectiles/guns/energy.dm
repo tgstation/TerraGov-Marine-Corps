@@ -482,7 +482,7 @@
 	scatter_unwielded = 100 //Heavy and unwieldy; you don't one hand this.
 	damage_falloff_mult = 0.25
 	fire_delay = 2
-	var/static/list/datum/lasrifle/base/mode_list = list(
+	var/list/datum/lasrifle/base/mode_list = list(
 		"Standard" = /datum/lasrifle/base/standard,
 		"Disabler" = /datum/lasrifle/base/disabler,
 		"Overcharge" = /datum/lasrifle/base/overcharge,
@@ -594,3 +594,776 @@
 	A.update_hud(user)
 
 	return TRUE
+
+//TE Tier 1 Series//
+
+//TE Standard Laser rifle
+
+obj/item/weapon/gun/energy/lasgun/standard_marine_rifle
+	name = "\improper TE-R Laser rifle"
+	desc = "A TerraGov standard issue laser rifle with an integrated charge selector for normal and high settings. Uses standard TE cells."
+	reload_sound = 'sound/weapons/guns/interact/TE-R Reload.ogg'
+	fire_sound = 'sound/weapons/guns/fire/Laser Rifle Standard.ogg'
+	force = 20
+	icon_state = "ter"
+	item_state = "ter"
+	icon = 'icons/Marine/gun64.dmi'
+	w_class = WEIGHT_CLASS_BULKY
+	max_shots = 60 //codex stuff
+	load_method = CELL //codex stuff
+	ammo = /datum/ammo/energy/lasgun/marine
+	ammo_diff = null
+	cell_type = /obj/item/cell/lasgun/marine
+	charge_cost = 10
+	gun_firemode = GUN_FIREMODE_AUTOMATIC
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
+
+	attachable_allowed = list(
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/bipod,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/attached_gun/grenade,
+		/obj/item/attachable/scope,
+		/obj/item/attachable/scope/mini,
+	)
+
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
+	actions_types = list(/datum/action/item_action/aim_mode)
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 15, "stock_x" = 22, "stock_y" = 12)
+
+	aim_slowdown = 0.5
+	wield_delay = 0.6 SECONDS
+	scatter = 0
+	scatter_unwielded = 10
+	aim_fire_delay = 0.2 SECONDS
+	fire_delay = 0.2 SECONDS
+	accuracy_mult = 1.15
+	accuracy_mult_unwielded = 0.55
+	scatter_unwielded = 10
+	var/list/datum/energy_rifle_mode/mode_list = list(
+		"Standard" = /datum/energy_rifle_mode/standard,
+		"Overcharge" = /datum/energy_rifle_mode/overcharge,
+	)
+
+
+/datum/energy_rifle_mode
+	///how much power the gun uses on this mode when shot.
+	var/charge_cost = 0
+	///the ammo datum this mode is.
+	var/ammo = null
+	///how long it takes between each shot of that mode, same as gun fire delay.
+	var/fire_delay = null
+	///The gun firing sound of this mode.
+	var/fire_sound = 0
+	///What message it sends to the user when you switch to this mode.
+	var/message_to_user = ""
+	///Used to change the gun firemode, like automatic, semi-automatic and burst.
+	var/fire_mode = GUN_FIREMODE_SEMIAUTO
+	///what to change the gun icon_state to when switching to this mode.
+	var/icon_state = "ter"
+	///Which icon file the radial menu will use.
+	var/radial_icon = 'icons/mob/radial.dmi'
+	///The icon state the radial menu will use.
+	var/radial_icon_state = "laser"
+
+/datum/energy_rifle_mode/standard
+	charge_cost = 10
+	ammo = /datum/ammo/energy/lasgun/marine
+	fire_delay = 0.2 SECONDS
+	fire_sound = 'sound/weapons/guns/fire/Laser Rifle Standard.ogg'
+	message_to_user = "You set the Laser rifle's charge mode to standard fire."
+	fire_mode = GUN_FIREMODE_AUTOMATIC
+	icon_state = "ter"
+
+/datum/energy_rifle_mode/overcharge
+	charge_cost = 20
+	ammo = /datum/ammo/energy/lasgun/marine/overcharge
+	fire_delay = 0.4 SECONDS
+	fire_sound = 'sound/weapons/guns/fire/LRO.ogg'
+	message_to_user = "You set the Laser rifle's charge mode to overcharge."
+	fire_mode = GUN_FIREMODE_AUTOMATIC
+	icon_state = "ter"
+	radial_icon_state = "laser_overcharge"
+
+/obj/item/weapon/gun/energy/lasgun/standard_marine_rifle/unique_action(mob/user)
+	return switch_modes(user)
+
+/obj/item/weapon/gun/energy/lasgun/standard_marine_rifle/proc/switch_modes(mob/user)
+	if(!user)
+		CRASH("switch_modes called with no user.")
+
+	var/list/available_modes = list()
+	for(var/mode in mode_list)
+		available_modes += list("[mode]" = image(icon = initial(mode_list[mode].radial_icon), icon_state = initial(mode_list[mode].radial_icon_state)))
+
+	var/datum/energy_rifle_mode/choice = mode_list[show_radial_menu(user, user, available_modes, null, 64, tooltips = TRUE)]
+	if(!choice)
+		return
+
+
+	playsound(user, 'sound/weapons/emitter.ogg', 5, FALSE, 2)
+
+
+	gun_firemode = initial(choice.fire_mode)
+
+
+	charge_cost = initial(choice.charge_cost)
+	ammo = GLOB.ammo_list[initial(choice.ammo)]
+	fire_delay = initial(choice.fire_delay)
+	fire_sound = initial(choice.fire_sound)
+	SEND_SIGNAL(src, COMSIG_GUN_AUTOFIREDELAY_MODIFIED, fire_delay)
+	SEND_SIGNAL(src, COMSIG_GUN_FIRE_MODE_TOGGLE, initial(choice.fire_mode), user.client)
+
+	base_gun_icon = initial(choice.icon_state)
+	update_icon()
+
+	to_chat(user, initial(choice.message_to_user))
+
+	var/obj/screen/ammo/A = user.hud_used.ammo //The ammo HUD
+	A.update_hud(user)
+
+	return TRUE
+
+
+
+//Ammo/Charge functions
+/obj/item/weapon/gun/energy/lasgun/standard_marine_rifle/update_icon(mob/user)
+	var/cell_charge = (!cell || cell.charge <= 0) ? 0 : CEILING((cell.charge / max(cell.maxcharge, 1)) * 100, 25)
+	icon_state = "[base_gun_icon]_[cell_charge]"
+	update_mag_overlay(user)
+
+
+/obj/item/weapon/gun/energy/lasgun/standard_marine_rifle/update_item_state(mob/user)// lasgun code thing i don't want so redfined
+    . = item_state
+    item_state = "[initial(icon_state)][flags_item & WIELDED ? "_w" : ""]"
+    if(. != item_state && ishuman(user))
+        var/mob/living/carbon/human/human_user = user
+        if(src == human_user.l_hand)
+            human_user.update_inv_l_hand()
+        else if (src == human_user.r_hand)
+            human_user.update_inv_r_hand()
+
+
+///TE Standard Laser Pistol
+
+obj/item/weapon/gun/energy/lasgun/standard_marine_pistol
+	name = "\improper TE-P Laser pistol"
+	desc = "A TerraGov standard issue laser pistol with an integrated charge selector for normal, heat and taser settings. Uses standard TE cells."
+	reload_sound = 'sound/weapons/guns/interact/TE-P Reload.ogg'
+	fire_sound = 'sound/weapons/guns/fire/Laser Pistol Standard.ogg'
+	force = 20
+	icon_state = "tep"
+	item_state = "tep"
+	icon = 'icons/Marine/gun64.dmi'
+	w_class = WEIGHT_CLASS_NORMAL
+	max_shots = 30 //codex stuff
+	load_method = CELL //codex stuff
+	ammo = /datum/ammo/energy/lasgun/marine
+	ammo_diff = null
+	cell_type = /obj/item/cell/lasgun/marine
+	charge_cost = 20
+	gun_firemode = GUN_FIREMODE_AUTOMATIC
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
+
+	attachable_allowed = list(
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/scope/mini,
+	)
+
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
+	actions_types = list(/datum/action/item_action/aim_mode)
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 15, "stock_x" = 22, "stock_y" = 12)
+
+	aim_slowdown = 0.2
+	wield_delay = 0.6 SECONDS
+	scatter = 0
+	scatter_unwielded = 0
+	aim_fire_delay = 0.1 SECONDS
+	fire_delay = 0.2 SECONDS
+	accuracy_mult = 1.1
+	accuracy_mult_unwielded = 0.9
+	scatter_unwielded = 0
+	var/list/datum/energy_pistol_mode/mode_list = list(
+		"Standard" = /datum/energy_pistol_mode/standard,
+		"Heat" = /datum/energy_pistol_mode/heat,
+		"Disabler" = /datum/energy_pistol_mode/disabler,
+	)
+
+
+/datum/energy_pistol_mode
+	///how much power the gun uses on this mode when shot.
+	var/charge_cost = 0
+	///the ammo datum this mode is.
+	var/ammo = null
+	///how long it takes between each shot of that mode, same as gun fire delay.
+	var/fire_delay = null
+	///The gun firing sound of this mode.
+	var/fire_sound = 0
+	///What message it sends to the user when you switch to this mode.
+	var/message_to_user = ""
+	///Used to change the gun firemode, like automatic, semi-automatic and burst.
+	var/fire_mode = GUN_FIREMODE_SEMIAUTO
+	///what to change the gun icon_state to when switching to this mode.
+	var/icon_state = "ter"
+	///Which icon file the radial menu will use.
+	var/radial_icon = 'icons/mob/radial.dmi'
+	///The icon state the radial menu will use.
+	var/radial_icon_state = "laser"
+
+/datum/energy_pistol_mode/standard
+	charge_cost = 20
+	ammo = /datum/ammo/energy/lasgun/marine/pistol
+	fire_delay = 0.25 SECONDS
+	fire_sound = 'sound/weapons/guns/fire/Laser Pistol Standard.ogg'
+	message_to_user = "You set the Laser Pistol's charge mode to standard fire."
+	fire_mode = GUN_FIREMODE_AUTOMATIC
+	icon_state = "tep"
+
+/datum/energy_pistol_mode/disabler
+	charge_cost = 80
+	ammo = /datum/ammo/energy/lasgun/marine/pistol/disabler
+	fire_delay = 10
+	fire_sound = 'sound/weapons/guns/fire/disabler.ogg'
+	message_to_user = "You set the Laser Pistol's charge mode to disabler fire."
+	fire_mode = GUN_FIREMODE_AUTOMATIC
+	icon_state = "tep"
+	radial_icon_state = "laser_disabler"
+
+/datum/energy_pistol_mode/heat
+	charge_cost = 110
+	ammo = /datum/ammo/energy/lasgun/marine/pistol/heat
+	fire_delay = 0.5 SECONDS
+	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
+	message_to_user = "You set the Laser Pistol's charge mode to wave heat."
+	fire_mode = GUN_FIREMODE_AUTOMATIC
+	icon_state = "tep"
+	radial_icon_state = "laser_heat"
+
+/obj/item/weapon/gun/energy/lasgun/standard_marine_pistol/unique_action(mob/user)
+	return switch_modes(user)
+
+/obj/item/weapon/gun/energy/lasgun/standard_marine_pistol/proc/switch_modes(mob/user)
+	if(!user)
+		CRASH("switch_modes called with no user.")
+
+	var/list/available_modes = list()
+	for(var/mode in mode_list)
+		available_modes += list("[mode]" = image(icon = initial(mode_list[mode].radial_icon), icon_state = initial(mode_list[mode].radial_icon_state)))
+
+	var/datum/energy_pistol_mode/choice = mode_list[show_radial_menu(user, user, available_modes, null, 64, tooltips = TRUE)]
+	if(!choice)
+		return
+
+
+	playsound(user, 'sound/weapons/emitter.ogg', 5, FALSE, 2)
+
+
+	gun_firemode = initial(choice.fire_mode)
+
+
+	charge_cost = initial(choice.charge_cost)
+	ammo = GLOB.ammo_list[initial(choice.ammo)]
+	fire_delay = initial(choice.fire_delay)
+	fire_sound = initial(choice.fire_sound)
+	SEND_SIGNAL(src, COMSIG_GUN_AUTOFIREDELAY_MODIFIED, fire_delay)
+	SEND_SIGNAL(src, COMSIG_GUN_FIRE_MODE_TOGGLE, initial(choice.fire_mode), user.client)
+
+	base_gun_icon = initial(choice.icon_state)
+	update_icon()
+
+	to_chat(user, initial(choice.message_to_user))
+
+	var/obj/screen/ammo/A = user.hud_used.ammo //The ammo HUD
+	A.update_hud(user)
+
+	return TRUE
+
+
+
+//Ammo/Charge functions
+/obj/item/weapon/gun/energy/lasgun/standard_marine_pistol/update_icon(mob/user)
+	var/cell_charge = (!cell || cell.charge <= 0) ? 0 : CEILING((cell.charge / max(cell.maxcharge, 1)) * 100, 25)
+	icon_state = "[base_gun_icon]_[cell_charge]"
+	update_mag_overlay(user)
+
+
+/obj/item/weapon/gun/energy/lasgun/standard_marine_pistol/update_item_state(mob/user)// lasgun code thing i don't want so redfined
+    . = item_state
+    item_state = "[initial(icon_state)][flags_item & WIELDED ? "_w" : ""]"
+    if(. != item_state && ishuman(user))
+        var/mob/living/carbon/human/human_user = user
+        if(src == human_user.l_hand)
+            human_user.update_inv_l_hand()
+        else if (src == human_user.r_hand)
+            human_user.update_inv_r_hand()
+
+
+//TE Standard Laser Carbine
+
+obj/item/weapon/gun/energy/lasgun/standard_marine_carbine
+	name = "\improper TE-C Laser carbine"
+	desc = "A TerraGov standard issue laser carbine with an integrated charge selector for normal and scatter settings. Uses standard TE cells."
+	reload_sound = 'sound/weapons/guns/interact/TE-R Reload.ogg'
+	fire_sound = 'sound/weapons/guns/fire/Laser Rifle Standard.ogg'
+	force = 20
+	icon_state = "tec"
+	item_state = "tec"
+	icon = 'icons/Marine/gun64.dmi'
+	w_class = WEIGHT_CLASS_BULKY
+	max_shots = 40 //codex stuff
+	load_method = CELL //codex stuff
+	ammo = /datum/ammo/energy/lasgun/marine
+	ammo_diff = null
+	cell_type = /obj/item/cell/lasgun/marine
+	charge_cost = 15
+	gun_firemode = GUN_FIREMODE_AUTOMATIC
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_BURSTFIRE)
+
+	attachable_allowed = list(
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/bipod,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/attached_gun/grenade,
+	)
+
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
+	actions_types = list(/datum/action/item_action/aim_mode)
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 15, "stock_x" = 22, "stock_y" = 12)
+
+	aim_slowdown = 0.3
+	wield_delay = 0.4 SECONDS
+	scatter = 0
+	scatter_unwielded = 15
+	aim_fire_delay = 0.2 SECONDS
+	fire_delay = 0.2 SECONDS
+	burst_amount = 1
+	accuracy_mult = 1.1
+	accuracy_mult_unwielded = 0.65
+	scatter_unwielded = 15
+	var/list/datum/energy_carbine_mode/mode_list = list(
+		"Standard" = /datum/energy_carbine_mode/standard,
+		"Spread" = /datum/energy_carbine_mode/base/spread,
+	)
+
+
+/datum/energy_carbine_mode
+	///how much power the gun uses on this mode when shot.
+	var/charge_cost = 0
+	///the ammo datum this mode is.
+	var/ammo = null
+	///how long it takes between each shot of that mode, same as gun fire delay.
+	var/fire_delay = null
+	///making sure the carbine doesn't have burst mode on scatter
+	var/burst_amount = 4
+	///such is life
+	var/gun_firemode_list = null
+	///The gun firing sound of this mode.
+	var/fire_sound = 0
+	///What message it sends to the user when you switch to this mode.
+	var/message_to_user = ""
+	///Used to change the gun firemode, like automatic, semi-automatic and burst.
+	var/fire_mode = GUN_FIREMODE_SEMIAUTO
+	///what to change the gun icon_state to when switching to this mode.
+	var/icon_state = "ter"
+	///Which icon file the radial menu will use.
+	var/radial_icon = 'icons/mob/radial.dmi'
+	///The icon state the radial menu will use.
+	var/radial_icon_state = "laser"
+
+/datum/energy_carbine_mode/standard
+	charge_cost = 15
+	ammo = /datum/ammo/energy/lasgun/marine
+	fire_delay = 0.2 SECONDS
+	burst_amount = 4
+	fire_sound = 'sound/weapons/guns/fire/Laser Rifle Standard.ogg'
+	message_to_user = "You set the Laser Carbine's charge mode to standard fire."
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
+	fire_mode = GUN_FIREMODE_BURSTFIRE
+	icon_state = "tec"
+
+/datum/energy_carbine_mode/base/spread
+	charge_cost = 60
+	ammo = /datum/ammo/energy/lasgun/marine/blast
+	fire_delay = 1.2 SECONDS
+	burst_amount = 1
+	fire_sound = 'sound/weapons/guns/fire/Laser Carbine Scatter.ogg'
+	message_to_user = "You set the Laser Carbine's charge mode to spread."
+	fire_mode = GUN_FIREMODE_SEMIAUTO
+	icon_state = "tec"
+	radial_icon_state = "laser_spread"
+
+/obj/item/weapon/gun/energy/lasgun/standard_marine_carbine/unique_action(mob/user)
+	return switch_modes(user)
+
+/obj/item/weapon/gun/energy/lasgun/standard_marine_carbine/proc/switch_modes(mob/user)
+	if(!user)
+		CRASH("switch_modes called with no user.")
+
+	var/list/available_modes = list()
+	for(var/mode in mode_list)
+		available_modes += list("[mode]" = image(icon = initial(mode_list[mode].radial_icon), icon_state = initial(mode_list[mode].radial_icon_state)))
+
+	var/datum/energy_carbine_mode/choice = mode_list[show_radial_menu(user, user, available_modes, null, 64, tooltips = TRUE)]
+	if(!choice)
+		return
+
+
+	playsound(user, 'sound/weapons/emitter.ogg', 5, FALSE, 2)
+
+
+	gun_firemode = initial(choice.fire_mode)
+
+
+	charge_cost = initial(choice.charge_cost)
+	ammo = GLOB.ammo_list[initial(choice.ammo)]
+	fire_delay = initial(choice.fire_delay)
+	burst_amount = initial(choice.burst_amount)
+	fire_sound = initial(choice.fire_sound)
+	SEND_SIGNAL(src, COMSIG_GUN_AUTOFIREDELAY_MODIFIED, fire_delay)
+	SEND_SIGNAL(src, COMSIG_GUN_BURST_SHOTS_TO_FIRE_MODIFIED, burst_amount)
+	SEND_SIGNAL(src, COMSIG_GUN_FIRE_MODE_TOGGLE, initial(choice.fire_mode), user.client)
+
+	base_gun_icon = initial(choice.icon_state)
+	update_icon()
+
+	to_chat(user, initial(choice.message_to_user))
+
+	var/obj/screen/ammo/A = user.hud_used.ammo //The ammo HUD
+	A.update_hud(user)
+
+	return TRUE
+
+
+
+//Ammo/Charge functions
+/obj/item/weapon/gun/energy/lasgun/standard_marine_carbine/update_icon(mob/user)
+	var/cell_charge = (!cell || cell.charge <= 0) ? 0 : CEILING((cell.charge / max(cell.maxcharge, 1)) * 100, 25)
+	icon_state = "[base_gun_icon]_[cell_charge]"
+	update_mag_overlay(user)
+
+
+/obj/item/weapon/gun/energy/lasgun/standard_marine_carbine/update_item_state(mob/user)
+    . = item_state
+    item_state = "[initial(icon_state)][flags_item & WIELDED ? "_w" : ""]"
+    if(. != item_state && ishuman(user))
+        var/mob/living/carbon/human/human_user = user
+        if(src == human_user.l_hand)
+            human_user.update_inv_l_hand()
+        else if (src == human_user.r_hand)
+            human_user.update_inv_r_hand()
+
+
+//TE Standard Sniper
+
+obj/item/weapon/gun/energy/lasgun/standard_marine_sniper
+	name = "\improper TE-S Sniper rifle"
+	desc = "A TerraGov standard issue sniper rifle with an integrated charge selector for normal, high and heat settings. Uses standard TE cells."
+	reload_sound = 'sound/weapons/guns/interact/TE-S Reload.ogg'
+	fire_sound = 'sound/weapons/guns/fire/Laser Sniper Standard.ogg'
+	force = 20
+	icon_state = "tes"
+	item_state = "tes"
+	icon = 'icons/Marine/gun64.dmi'
+	w_class = WEIGHT_CLASS_BULKY
+	max_shots = 12 //codex stuff
+	load_method = CELL //codex stuff
+	ammo = /datum/ammo/energy/lasgun/marine/sniper
+	ammo_diff = null
+	cell_type = /obj/item/cell/lasgun/marine
+	charge_cost = 50
+	gun_firemode = GUN_FIREMODE_AUTOMATIC
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
+
+	attachable_allowed = list(
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/bipod,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/attached_gun/grenade,
+		/obj/item/attachable/scope,
+		/obj/item/attachable/scope/mini,
+	)
+
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
+	actions_types = list(/datum/action/item_action/aim_mode)
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 15, "stock_x" = 22, "stock_y" = 12)
+
+	aim_slowdown = 0.9
+	wield_delay = 0.9 SECONDS
+	scatter = 0
+	scatter_unwielded = 10
+	aim_fire_delay = 0.5 SECONDS
+	fire_delay = 1 SECONDS
+	accuracy_mult = 1.35
+	accuracy_mult_unwielded = 0.5
+	scatter_unwielded = 10
+	var/list/datum/energy_sniper_mode/mode_list = list(
+		"Standard" = /datum/energy_sniper_mode/standard,
+		"Overcharge" = /datum/energy_sniper_mode/heat,
+	)
+
+
+/datum/energy_sniper_mode
+	///how much power the gun uses on this mode when shot.
+	var/charge_cost = 0
+	///the ammo datum this mode is.
+	var/ammo = null
+	///how long it takes between each shot of that mode, same as gun fire delay.
+	var/fire_delay = null
+	///The gun firing sound of this mode.
+	var/fire_sound = 0
+	///What message it sends to the user when you switch to this mode.
+	var/message_to_user = ""
+	///Used to change the gun firemode, like automatic, semi-automatic and burst.
+	var/fire_mode = GUN_FIREMODE_SEMIAUTO
+	///what to change the gun icon_state to when switching to this mode.
+	var/icon_state = "ter"
+	///Which icon file the radial menu will use.
+	var/radial_icon = 'icons/mob/radial.dmi'
+	///The icon state the radial menu will use.
+	var/radial_icon_state = "laser"
+
+/datum/energy_sniper_mode/standard
+	charge_cost = 50
+	ammo = /datum/ammo/energy/lasgun/marine/sniper
+	fire_delay = 1 SECONDS
+	fire_sound = 'sound/weapons/guns/fire/Laser Sniper Standard.ogg'
+	message_to_user = "You set the Laser rifle's charge mode to standard fire."
+	fire_mode = GUN_FIREMODE_AUTOMATIC
+	icon_state = "tes"
+
+/datum/energy_sniper_mode/heat
+	charge_cost = 150
+	ammo = /datum/ammo/energy/lasgun/marine/sniper_heat
+	fire_delay = 1.5 SECONDS
+	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
+	message_to_user = "You set the Laser Sniper's charge mode to wave heat."
+	fire_mode = GUN_FIREMODE_AUTOMATIC
+	icon_state = "tes"
+	radial_icon_state = "laser_heat"
+
+/obj/item/weapon/gun/energy/lasgun/standard_marine_sniper/unique_action(mob/user)
+	return switch_modes(user)
+
+/obj/item/weapon/gun/energy/lasgun/standard_marine_sniper/proc/switch_modes(mob/user)
+	if(!user)
+		CRASH("switch_modes called with no user.")
+
+	var/list/available_modes = list()
+	for(var/mode in mode_list)
+		available_modes += list("[mode]" = image(icon = initial(mode_list[mode].radial_icon), icon_state = initial(mode_list[mode].radial_icon_state)))
+
+	var/datum/energy_sniper_mode/choice = mode_list[show_radial_menu(user, user, available_modes, null, 64, tooltips = TRUE)]
+	if(!choice)
+		return
+
+
+	playsound(user, 'sound/weapons/emitter.ogg', 5, FALSE, 2)
+
+
+	gun_firemode = initial(choice.fire_mode)
+
+
+	charge_cost = initial(choice.charge_cost)
+	ammo = GLOB.ammo_list[initial(choice.ammo)]
+	fire_delay = initial(choice.fire_delay)
+	fire_sound = initial(choice.fire_sound)
+	SEND_SIGNAL(src, COMSIG_GUN_AUTOFIREDELAY_MODIFIED, fire_delay)
+	SEND_SIGNAL(src, COMSIG_GUN_FIRE_MODE_TOGGLE, initial(choice.fire_mode), user.client)
+
+	base_gun_icon = initial(choice.icon_state)
+	update_icon()
+
+	to_chat(user, initial(choice.message_to_user))
+
+	var/obj/screen/ammo/A = user.hud_used.ammo //The ammo HUD
+	A.update_hud(user)
+
+	return TRUE
+
+
+
+//Ammo/Charge functions
+/obj/item/weapon/gun/energy/lasgun/standard_marine_sniper/update_icon(mob/user)
+	var/cell_charge = (!cell || cell.charge <= 0) ? 0 : CEILING((cell.charge / max(cell.maxcharge, 1)) * 100, 25)
+	icon_state = "[base_gun_icon]_[cell_charge]"
+	update_mag_overlay(user)
+
+
+/obj/item/weapon/gun/energy/lasgun/standard_marine_sniper/update_item_state(mob/user)
+    . = item_state
+    item_state = "[initial(icon_state)][flags_item & WIELDED ? "_w" : ""]"
+    if(. != item_state && ishuman(user))
+        var/mob/living/carbon/human/human_user = user
+        if(src == human_user.l_hand)
+            human_user.update_inv_l_hand()
+        else if (src == human_user.r_hand)
+            human_user.update_inv_r_hand()
+
+
+//TE Standard ML //Yes Icon names are called TE-M/Machine gun, but I'm too lazy and i'm too sleepy to fix them
+
+obj/item/weapon/gun/energy/lasgun/standard_marine_mlaser
+	name = "\improper TE-ML Machine laser rifle"
+	desc = "A TerraGov standard issue sniper rifle with an integrated charge selector for normal, high and heat settings. Uses standard TE cells."
+	reload_sound = 'sound/weapons/guns/interact/TE-M Reload.ogg'
+	fire_sound = 'sound/weapons/guns/fire/Laser Rifle Standard.ogg'
+	force = 20
+	icon_state = "tem"
+	item_state = "tem"
+	icon = 'icons/Marine/gun64.dmi'
+	w_class = WEIGHT_CLASS_BULKY
+	max_shots = 200 //codex stuff
+	load_method = CELL //codex stuff
+	ammo = /datum/ammo/energy/lasgun/marine/autolaser
+	ammo_diff = null
+	cell_type = /obj/item/cell/lasgun/marine
+	charge_cost = 3
+	gun_firemode = GUN_FIREMODE_AUTOMATIC
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
+
+	attachable_allowed = list(
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/bipod,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/attached_gun/grenade,
+		/obj/item/attachable/scope,
+		/obj/item/attachable/scope/mini,
+	)
+
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
+	actions_types = list(/datum/action/item_action/aim_mode)
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 15, "stock_x" = 22, "stock_y" = 12)
+
+	aim_slowdown = 1
+	wield_delay = 1.2 SECONDS
+	scatter = 0
+	scatter_unwielded = 10
+	aim_fire_delay = 0.1 SECONDS
+	fire_delay = 0.2 SECONDS
+	accuracy_mult = -0.1
+	accuracy_mult_unwielded = 0.6
+	scatter_unwielded = 10
+	var/list/datum/energy_ml_mode/mode_list = list(
+		"Standard" = /datum/energy_ml_mode/standard,
+	)
+
+
+/datum/energy_ml_mode
+	///how much power the gun uses on this mode when shot.
+	var/charge_cost = 0
+	///the ammo datum this mode is.
+	var/ammo = null
+	///how long it takes between each shot of that mode, same as gun fire delay.
+	var/fire_delay = null
+	///The gun firing sound of this mode.
+	var/fire_sound = 0
+	///What message it sends to the user when you switch to this mode.
+	var/message_to_user = ""
+	///Used to change the gun firemode, like automatic, semi-automatic and burst.
+	var/fire_mode = GUN_FIREMODE_SEMIAUTO
+	///what to change the gun icon_state to when switching to this mode.
+	var/icon_state = "ter"
+	///Which icon file the radial menu will use.
+	var/radial_icon = 'icons/mob/radial.dmi'
+	///The icon state the radial menu will use.
+	var/radial_icon_state = "laser"
+
+/datum/energy_ml_mode/standard
+	charge_cost = 3
+	ammo = /datum/ammo/energy/lasgun/marine/autolaser
+	fire_delay = 0.2 SECONDS
+	fire_sound = 'sound/weapons/guns/fire/Laser Rifle Standard.ogg'
+	message_to_user = "You set the Laser rifle's charge mode to standard fire."
+	fire_mode = GUN_FIREMODE_AUTOMATIC
+	icon_state = "tem"
+
+/obj/item/weapon/gun/energy/lasgun/standard_marine_mlaser/unique_action(mob/user)
+	return switch_modes(user)
+
+/obj/item/weapon/gun/energy/lasgun/standard_marine_mlaser/proc/switch_modes(mob/user)
+	if(!user)
+		CRASH("switch_modes called with no user.")
+
+	var/list/available_modes = list()
+	for(var/mode in mode_list)
+		available_modes += list("[mode]" = image(icon = initial(mode_list[mode].radial_icon), icon_state = initial(mode_list[mode].radial_icon_state)))
+
+	var/datum/energy_sniper_mode/choice = mode_list[show_radial_menu(user, user, available_modes, null, 64, tooltips = TRUE)]
+	if(!choice)
+		return
+
+
+	playsound(user, 'sound/weapons/emitter.ogg', 5, FALSE, 2)
+
+
+	gun_firemode = initial(choice.fire_mode)
+
+
+	charge_cost = initial(choice.charge_cost)
+	ammo = GLOB.ammo_list[initial(choice.ammo)]
+	fire_delay = initial(choice.fire_delay)
+	fire_sound = initial(choice.fire_sound)
+	SEND_SIGNAL(src, COMSIG_GUN_AUTOFIREDELAY_MODIFIED, fire_delay)
+	SEND_SIGNAL(src, COMSIG_GUN_FIRE_MODE_TOGGLE, initial(choice.fire_mode), user.client)
+
+	base_gun_icon = initial(choice.icon_state)
+	update_icon()
+
+	to_chat(user, initial(choice.message_to_user))
+
+	var/obj/screen/ammo/A = user.hud_used.ammo //The ammo HUD
+	A.update_hud(user)
+
+	return TRUE
+
+
+
+//Ammo/Charge functions
+/obj/item/weapon/gun/energy/lasgun/standard_marine_mlaser/update_icon(mob/user)
+	var/cell_charge = (!cell || cell.charge <= 0) ? 0 : CEILING((cell.charge / max(cell.maxcharge, 1)) * 100, 25)
+	icon_state = "[base_gun_icon]_[cell_charge]"
+	update_mag_overlay(user)
+
+
+/obj/item/weapon/gun/energy/lasgun/standard_marine_mlaser/update_item_state(mob/user)
+    . = item_state
+    item_state = "[initial(icon_state)][flags_item & WIELDED ? "_w" : ""]"
+    if(. != item_state && ishuman(user))
+        var/mob/living/carbon/human/human_user = user
+        if(src == human_user.l_hand)
+            human_user.update_inv_l_hand()
+        else if (src == human_user.r_hand)
+            human_user.update_inv_r_hand()

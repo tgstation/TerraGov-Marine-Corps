@@ -1348,6 +1348,99 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 	return ..()
 
+// TE Lasers //
+
+/datum/ammo/energy/lasgun/marine
+	damage = 20
+	penetration = 10
+	sundering = 1
+	max_range = 40
+	damage_falloff = 0
+	bullet_color = COLOR_DISABLER_BLUE
+
+/datum/ammo/energy/lasgun/marine/overcharge
+	name = "overcharged laser bolt"
+	icon_state = "overchargedlaser"
+	hud_state = "laser_sniper"
+	damage = 40
+	penetration = 20
+	sundering = 2
+
+/datum/ammo/energy/lasgun/marine/blast
+	name = "wide range laser blast"
+	icon_state = "heavylaser2"
+	hud_state = "laser_spread"
+	bonus_projectiles_type = /datum/ammo/energy/lasgun/marine/spread
+	bonus_projectiles_amount = 2
+	bonus_projectiles_scatter = 5
+	accuracy_var_low = 9
+	accuracy_var_high = 9
+	accurate_range = 5
+	max_range = 8
+	damage = 35
+	penetration = 20
+	sundering = 1
+
+/datum/ammo/energy/lasgun/marine/spread
+	name = "additional laser blast"
+	icon_state = "laser2"
+	shell_speed = 2
+	accuracy_var_low = 9
+	accuracy_var_high = 9
+	accurate_range = 5
+	max_range = 8
+	damage = 35
+	penetration = 20
+	sundering = 1
+
+/datum/ammo/energy/lasgun/marine/autolaser
+	damage = 15
+	penetration = 15
+
+/datum/ammo/energy/lasgun/marine/sniper
+	name = "sniper laser bolt"
+	icon_state = "overchargedlaser"
+	hud_state = "laser_sniper"
+	damage = 60
+	penetration = 30
+	sundering = 4
+
+/datum/ammo/energy/lasgun/marine/sniper_heat
+	name = "sniper heat bolt"
+	icon_state = "microwavelaser"
+	hud_state = "laser_heat"
+	damage = 40 //requires mod with -0.15 multiplier should math out to 10
+	penetration = 0 // It's a laser that burns the skin! The fire stacks go threw anyway.
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_SUNDERING
+	sundering = 1
+
+
+/datum/ammo/energy/lasgun/marine/pistol
+	damage = 25
+	penetration = 5
+
+/datum/ammo/energy/lasgun/marine/pistol/disabler
+	name = "disabler bolt"
+	icon_state = "disablershot"
+	hud_state = "laser_disabler"
+	damage = 70
+	penetration = 0
+	damage_type = STAMINA
+
+/datum/ammo/energy/lasgun/marine/pistol/heat
+	name = "microwave heat bolt"
+	icon_state = "microwavelaser"
+	hud_state = "laser_heat"
+	damage = 20 //requires mod with -0.15 multiplier should math out to 10
+	penetration = 10 // It's a laser that burns the skin! The fire stacks go threw anyway.
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_SUNDERING
+	sundering = 0.5
+
+/datum/ammo/energy/lasgun/pistol/disabler/on_hit_mob(mob/M,obj/projectile/P)
+	staggerstun(M, P, stagger = 0.5, slowdown = 0.75)
+
+// Plasma //
+
 
 /datum/ammo/energy/plasma
 	name = "plasma bolt"
