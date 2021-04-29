@@ -15,7 +15,7 @@
 	icon = 'icons/Marine/marine-hmg.dmi'
 	icon_state = "mag"
 	flags_magazine = NONE //can't be refilled or emptied by hand
-	caliber = "10x30mm"
+	caliber = CALIBER_10X30
 	max_rounds = 300
 	default_ammo = /datum/ammo/bullet/smartgun
 	gun_type = null
@@ -328,7 +328,7 @@
 /obj/machinery/standard_hmg/take_damage(damage_amount, damage_type, damage_flag, effects, attack_dir, armour_penetration)
 	. = ..()
 	hud_set_machine_health()
-	
+
 
 /obj/machinery/standard_hmg/proc/load_into_chamber()
 	if(in_chamber)

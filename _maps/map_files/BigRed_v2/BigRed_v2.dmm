@@ -378,11 +378,6 @@
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
-"aby" = (
-/obj/machinery/computer/shuttle/shuttle_control/dropship,
-/obj/structure/table,
-/turf/open/floor/tile/dark,
-/area/lv624/lazarus/console)
 "abz" = (
 /obj/structure/table,
 /obj/effect/spawner/random/powercell,
@@ -518,14 +513,6 @@
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/north)
-"abZ" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/structure/table/reinforced,
-/obj/machinery/computer/shuttle/shuttle_control/dropship,
-/turf/open/floor/asteroidfloor,
-/area/bigredv2/outside/space_port)
 "aca" = (
 /obj/machinery/light{
 	dir = 1
@@ -1187,10 +1174,6 @@
 "aet" = (
 /obj/structure/bed/chair/comfy,
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor/wood,
-/area/bigredv2/outside/marshal_office)
-"aeu" = (
-/obj/item/clothing/tie/holster/armpit,
 /turf/open/floor/wood,
 /area/bigredv2/outside/marshal_office)
 "aev" = (
@@ -19354,6 +19337,14 @@
 /obj/machinery/miner/damaged,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/ne)
+"bXd" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/table/reinforced,
+/obj/machinery/computer/shuttle/shuttle_control/dropship,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/space_port)
 "bXE" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
@@ -19629,17 +19620,15 @@
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/south)
+"efF" = (
+/obj/machinery/computer/shuttle/shuttle_control/dropship,
+/obj/structure/table,
+/turf/open/floor/tile/dark,
+/area/lv624/lazarus/console)
 "efK" = (
 /obj/structure/sign/safety/medical_supplies,
 /turf/closed/wall/r_wall,
 /area/bigredv2/caves/lambda_lab)
-"ehV" = (
-/obj/structure/table/reinforced,
-/obj/machinery/computer/shuttle/shuttle_control/dropship/two,
-/turf/open/floor/marking/asteroidwarning{
-	dir = 4
-	},
-/area/shuttle/drop2/lz2)
 "ekm" = (
 /obj/structure/cable,
 /turf/open/floor,
@@ -21193,6 +21182,13 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/general_offices)
+"rao" = (
+/obj/structure/table/reinforced,
+/obj/machinery/computer/shuttle/shuttle_control/dropship/two,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 4
+	},
+/area/shuttle/drop2/lz2)
 "rdd" = (
 /obj/structure/table,
 /obj/item/trash/tray,
@@ -21755,6 +21751,10 @@
 /obj/structure/resin/xeno_turret,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/east)
+"wif" = (
+/obj/item/clothing/tie/storage/holster/armpit,
+/turf/open/floor/wood,
+/area/bigredv2/outside/marshal_office)
 "wmv" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -26164,7 +26164,7 @@ jLQ
 aaf
 abC
 aae
-abZ
+bXd
 aaf
 aaf
 aaf
@@ -31044,7 +31044,7 @@ mAw
 mAw
 mAw
 bht
-ehV
+rao
 soj
 gMM
 gMM
@@ -31591,7 +31591,7 @@ aaM
 aaX
 aaL
 abn
-aby
+efF
 aaC
 abE
 aaw
@@ -43541,7 +43541,7 @@ acP
 acP
 agm
 adX
-aeu
+wif
 aeR
 afs
 adW

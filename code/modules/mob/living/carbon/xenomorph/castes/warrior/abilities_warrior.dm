@@ -112,7 +112,7 @@
 
 /datum/action/xeno_action/activable/lunge/proc/lunge_grab(mob/living/carbon/xenomorph/warrior/X, atom/A)
 	X.remove_filter("warrior_lunge")
-	if (!X.Adjacent(A))
+	if(!X.Adjacent(A))
 		return
 
 	X.swap_hand()
@@ -148,6 +148,9 @@
 		return FALSE
 
 	if(!isliving(A))
+		return FALSE
+	var/mob/living/L = A
+	if(L.stat == DEAD)
 		return FALSE
 
 /datum/action/xeno_action/activable/fling/use_ability(atom/A)

@@ -2847,23 +2847,6 @@
 	icon_state = "carpetside"
 	},
 /area/mainship/command/corporateliaison)
-"aiO" = (
-/obj/item/weapon/gun/pistol/vp70,
-/obj/item/ammo_magazine/pistol/vp70,
-/obj/structure/closet/cabinet,
-/obj/item/clothing/under/liaison_suit/formal,
-/obj/item/clothing/under/liaison_suit,
-/obj/item/clothing/under/liaison_suit/outing,
-/obj/item/clothing/under/liaison_suit/suspenders,
-/obj/item/clipboard,
-/obj/item/clothing/suit/armor/bulletproof,
-/obj/item/attachable/suppressor,
-/obj/item/clothing/tie/holster,
-/turf/open/floor/carpet{
-	dir = 5;
-	icon_state = "carpetside"
-	},
-/area/mainship/command/corporateliaison)
 "aiP" = (
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/item/seeds/goldappleseed,
@@ -8113,17 +8096,6 @@
 /turf/open/floor/mainship/terragov/west{
 	dir = 9
 	},
-/area/mainship/command/cic)
-"axR" = (
-/obj/structure/table/mainship,
-/obj/structure/window/reinforced/toughened{
-	dir = 8
-	},
-/obj/structure/window/reinforced/toughened{
-	dir = 1
-	},
-/obj/machinery/computer/shuttle/shuttle_control/dropship,
-/turf/open/floor/plating/mainship,
 /area/mainship/command/cic)
 "axS" = (
 /obj/structure/window/reinforced/toughened{
@@ -34878,6 +34850,17 @@
 /obj/structure/closet/crate/ammo,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
+"fnU" = (
+/obj/structure/table/mainship,
+/obj/structure/window/reinforced/toughened{
+	dir = 8
+	},
+/obj/structure/window/reinforced/toughened{
+	dir = 1
+	},
+/obj/machinery/computer/shuttle/shuttle_control/dropship,
+/turf/open/floor/plating/mainship,
+/area/mainship/command/cic)
 "fqn" = (
 /turf/open/floor/mainship/orange{
 	dir = 9
@@ -35258,17 +35241,6 @@
 /obj/machinery/light,
 /turf/open/floor/prison/kitchen,
 /area/mainship/living/captain_mess)
-"hyX" = (
-/obj/structure/table/mainship,
-/obj/structure/window/reinforced/toughened{
-	dir = 4
-	},
-/obj/structure/window/reinforced/toughened{
-	dir = 1
-	},
-/obj/machinery/computer/shuttle/shuttle_control/dropship/two,
-/turf/open/floor/plating/mainship,
-/area/mainship/command/cic)
 "hAT" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/terragov/west{
@@ -35902,13 +35874,6 @@
 /obj/machinery/door/poddoor/shutters/mainship/selfdestruct,
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/stern_hallway)
-"ltO" = (
-/obj/structure/table/mainship,
-/obj/machinery/computer/shuttle/shuttle_control/dropship/two,
-/turf/open/floor/mainship/red{
-	dir = 9
-	},
-/area/mainship/hallways/hangar)
 "luI" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -36206,6 +36171,13 @@
 /obj/machinery/sleeper,
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/surgery_hallway)
+"nDy" = (
+/obj/structure/table/mainship,
+/obj/machinery/computer/shuttle/shuttle_control/dropship,
+/turf/open/floor/mainship/red{
+	dir = 5
+	},
+/area/mainship/hallways/hangar)
 "nDN" = (
 /turf/open/floor/mainship{
 	dir = 4;
@@ -36373,13 +36345,6 @@
 /obj/structure/window/framed/mainship,
 /turf/open/floor/plating,
 /area/mainship/living/captain_mess)
-"oFG" = (
-/obj/structure/table/mainship,
-/obj/machinery/computer/shuttle/shuttle_control/dropship,
-/turf/open/floor/mainship/red{
-	dir = 5
-	},
-/area/mainship/hallways/hangar)
 "oGv" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -36995,6 +36960,23 @@
 /obj/structure/platform_decoration,
 /turf/open/floor/mainship,
 /area/mainship/living/briefing)
+"shT" = (
+/obj/item/weapon/gun/pistol/vp70,
+/obj/item/ammo_magazine/pistol/vp70,
+/obj/structure/closet/cabinet,
+/obj/item/clothing/under/liaison_suit/formal,
+/obj/item/clothing/under/liaison_suit,
+/obj/item/clothing/under/liaison_suit/outing,
+/obj/item/clothing/under/liaison_suit/suspenders,
+/obj/item/clipboard,
+/obj/item/clothing/suit/armor/bulletproof,
+/obj/item/attachable/suppressor,
+/obj/item/clothing/tie/storage/holster,
+/turf/open/floor/carpet{
+	dir = 5;
+	icon_state = "carpetside"
+	},
+/area/mainship/command/corporateliaison)
 "sni" = (
 /obj/structure/flora/pottedplant/twentyone,
 /obj/machinery/light{
@@ -37166,6 +37148,17 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/shipboard/port_point_defense)
+"tzY" = (
+/obj/structure/table/mainship,
+/obj/structure/window/reinforced/toughened{
+	dir = 4
+	},
+/obj/structure/window/reinforced/toughened{
+	dir = 1
+	},
+/obj/machinery/computer/shuttle/shuttle_control/dropship/two,
+/turf/open/floor/plating/mainship,
+/area/mainship/command/cic)
 "tEQ" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/green{
@@ -37369,6 +37362,13 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/starboard_missiles)
+"uGt" = (
+/obj/structure/table/mainship,
+/obj/machinery/computer/shuttle/shuttle_control/dropship/two,
+/turf/open/floor/mainship/red{
+	dir = 9
+	},
+/area/mainship/hallways/hangar)
 "uJP" = (
 /mob/living/simple_animal/corgi/Ian{
 	desc = "An old, disarmingly reserved corgi who has seen many owners.";
@@ -53175,7 +53175,7 @@ awy
 ajU
 ajU
 aFS
-axR
+fnU
 azE
 aBw
 aCZ
@@ -53946,7 +53946,7 @@ arn
 ajU
 ajU
 aKC
-hyX
+tzY
 jjT
 mAE
 umA
@@ -56639,7 +56639,7 @@ ghx
 bdY
 bdY
 bAd
-ltO
+uGt
 yhs
 jTh
 cjo
@@ -57153,7 +57153,7 @@ hna
 bdY
 bdY
 bAd
-oFG
+nDy
 bCU
 sSm
 cjp
@@ -60104,7 +60104,7 @@ aag
 aag
 aag
 ahz
-aiO
+shT
 pJe
 akd
 pLK
