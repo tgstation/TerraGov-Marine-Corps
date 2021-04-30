@@ -39,57 +39,70 @@
 
 /datum/action/innate/order/rally_order/should_show()
 	return can_use_action()
-	
+
 /datum/action/innate/order/rally_order/can_use_action()
 	return owner.skills.getRating(skill_name) >= skill_min
 
 /datum/action/innate/order/rally_order/action_activate()
-	if(send_order(owner))
+	var/mob/living/carbon/human/human = owner
+	if(send_order(human, human.assigned_squad))
 		var/message = pick(";TO ME MY MEN!", ";REGROUP TO ME!", ";FOLLOW MY LEAD!", ";RALLY ON ME!", ";FORWARD!")
 		owner.say(message)
-	
+
 /datum/action/innate/order/Activate()
 	active = TRUE
 	add_selected_frame()
 	SEND_SIGNAL(owner, COMSIG_ORDER_SELECTED, src)
 	RegisterSignal(owner, COMSIG_ORDER_SELECTED, .proc/Deactivate_signal_handler)
 
-/// Signal handler for deactivating the order	
+/// Signal handler for deactivating the order
 /datum/action/innate/order/proc/Deactivate_signal_handler()
 	SIGNAL_HANDLER
 	Deactivate()
-		
+
 /datum/action/innate/order/Deactivate()
 	active = FALSE
 	remove_selected_frame()
 	UnregisterSignal(owner, COMSIG_ORDER_SELECTED)
 
 ///Print order visual to all marines squad hud and give them an arrow to follow the waypoint
-/datum/action/innate/order/proc/send_order(atom/target)
+/datum/action/innate/order/proc/send_order(atom/target, datum/squad/squad)
 	if(TIMER_COOLDOWN_CHECK(owner, COOLDOWN_CIC_ORDERS))
 		to_chat(owner, "<span class='warning'>Your last order was too recent.</span>")
 		return FALSE
 	TIMER_COOLDOWN_START(owner, COOLDOWN_CIC_ORDERS, ORDER_COOLDOWN)
-	to_chat(owner ,"<span class='ordercic'>You ordered marines to [verb_name] [target.loc.name]!</span>")
+	to_chat(owner ,"<span class='ordercic'>You ordered marines to [verb_name] [get_area(target)]!</span>")
 	owner.playsound_local(owner, "sound/effects/CIC_order.ogg", 10, 1)
 	if(visual_type)
 		target = get_turf(target)
 		new visual_type(target)
-	var/datum/atom_hud/squad/squad_hud = GLOB.huds[DATA_HUD_SQUAD]
-	var/list/final_list = squad_hud.hudusers
-	final_list -= owner //We don't want the eye to have an arrow, it's silly
-	var/obj/screen/arrow/arrow_hud
-	for(var/hud_user in final_list)
-		if(!ishuman(hud_user))
-			continue
-		if(arrow_type)
-			arrow_hud = new arrow_type
-			arrow_hud.add_hud(hud_user, target)
-		notify_marine(hud_user, target)
+	if(squad)
+		for(var/mob/living/carbon/human/marine AS in squad.marines_list)
+			marine.receive_order(target, arrow_type, verb_name)
+		return TRUE
+	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
+		human.receive_order(target, arrow_type, verb_name)
 	return TRUE
 
-///Send a message and a sound to the marine if he is on the same z level as the turf
-/datum/action/innate/order/proc/notify_marine(mob/living/marine, atom/target) ///Send an order to that specific marine if it's on the right z level
-	if(marine.z == target.z)
-		marine.playsound_local(marine, "sound/effects/CIC_order.ogg", 20, 1)
-		to_chat(marine,"<span class='ordercic'>Command is urging you to [verb_name] [target.loc.name]!</span>")
+/**
+ * Proc to give a marine an order
+ * target : what atom to track
+ * arrow_type : what kind of visual arrow will be spawned on the marine
+ * verb_name : a word / sentence to describe the order
+ */
+/mob/living/carbon/human/proc/receive_order(atom/target, arrow_type, verb_name = "rally")
+	if(!target || !arrow_type)
+		return
+	if(!(job.job_flags & JOB_FLAG_CAN_SEE_ORDERS))
+		return
+	if(z != target.z)
+		return
+	if(target == src)
+		return
+	var/datum/atom_hud/squad/squad_hud = GLOB.huds[DATA_HUD_SQUAD]
+	if(!squad_hud.hudusers[src])
+		return
+	var/obj/screen/arrow/arrow_hud = new arrow_type
+	arrow_hud.add_hud(src, target)
+	playsound_local(src, "sound/effects/CIC_order.ogg", 20, 1)
+	to_chat(src,"<span class='ordercic'>Command is urging you to [verb_name] [target.loc.name]!</span>")

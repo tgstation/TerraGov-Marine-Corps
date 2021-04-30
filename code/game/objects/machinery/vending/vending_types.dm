@@ -308,7 +308,7 @@
 	icon_deny = "nutri-deny"
 	products = list(/obj/item/reagent_containers/glass/fertilizer/ez = 35,/obj/item/reagent_containers/glass/fertilizer/l4z = 25,/obj/item/reagent_containers/glass/fertilizer/rh = 15,/obj/item/tool/plantspray/pests = 20,
 					/obj/item/reagent_containers/syringe = 5,/obj/item/storage/bag/plants = 5)
-	premium = list(/obj/item/reagent_containers/glass/bottle/ammonia = 10,/obj/item/reagent_containers/glass/bottle/diethylamine = 5)
+	contraband = list(/obj/item/reagent_containers/glass/bottle/ammonia = 10, /obj/item/reagent_containers/glass/bottle/diethylamine = 5)
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
 
 /obj/machinery/vending/hydroseeds
@@ -325,8 +325,7 @@
 					/obj/item/seeds/lemonseed = 3,/obj/item/seeds/orangeseed = 3,/obj/item/seeds/grassseed = 3,/obj/item/seeds/cocoapodseed = 3,/obj/item/seeds/plumpmycelium = 2,
 					/obj/item/seeds/cabbageseed = 3,/obj/item/seeds/grapeseed = 3,/obj/item/seeds/pumpkinseed = 3,/obj/item/seeds/cherryseed = 3,/obj/item/seeds/plastiseed = 3,/obj/item/seeds/riceseed = 3)
 	contraband = list(/obj/item/seeds/amanitamycelium = 2,/obj/item/seeds/glowshroom = 2,/obj/item/seeds/libertymycelium = 2,/obj/item/seeds/mtearseed = 2,
-					/obj/item/seeds/nettleseed = 2,/obj/item/seeds/reishimycelium = 2,/obj/item/seeds/reishimycelium = 2,/obj/item/seeds/shandseed = 2,)
-	premium = list(/obj/item/toy/waterflower = 1)
+					/obj/item/seeds/nettleseed = 2,/obj/item/seeds/reishimycelium = 2,/obj/item/seeds/reishimycelium = 2,/obj/item/seeds/shandseed = 2, /obj/item/toy/waterflower = 1)
 
 
 /obj/machinery/vending/magivend
@@ -363,8 +362,7 @@
 	icon_deny = "tool-deny"
 	products = list(/obj/item/stack/cable_coil = 10,/obj/item/tool/crowbar = 5,/obj/item/tool/weldingtool = 3,/obj/item/tool/wirecutters = 5,
 					/obj/item/tool/wrench = 5,/obj/item/analyzer = 5,/obj/item/t_scanner = 5,/obj/item/tool/screwdriver = 5)
-	contraband = list(/obj/item/tool/weldingtool/hugetank = 2,/obj/item/clothing/gloves/fyellow = 2)
-	premium = list(/obj/item/clothing/gloves/yellow = 1)
+	contraband = list(/obj/item/tool/weldingtool/hugetank = 2,/obj/item/clothing/gloves/fyellow = 2, /obj/item/clothing/gloves/yellow = 1)
 
 /obj/machinery/vending/engivend
 	name = "Engi-Vend"
@@ -373,8 +371,7 @@
 	icon_deny = "engivend-deny"
 	req_access = list(ACCESS_MARINE_ENGINEERING)
 	products = list(/obj/item/clothing/glasses/meson = 2,/obj/item/multitool = 4,/obj/item/circuitboard/airlock = 10,/obj/item/circuitboard/apc = 10,/obj/item/circuitboard/airalarm = 10, /obj/item/circuitboard/general = 20, /obj/item/cell/high = 10)
-	contraband = list(/obj/item/cell/potato = 3)
-	premium = list(/obj/item/storage/belt/utility = 3)
+	contraband = list(/obj/item/cell/potato = 3, /obj/item/storage/belt/utility = 3)
 
 //This one's from bay12
 /obj/machinery/vending/engineering
@@ -405,51 +402,4 @@
 // All instances of this vendor will share a single inventory for items in the shared list.
 // Meaning, if an item is taken from one vendor, it will not be available in any others as well.
 /obj/machinery/vending/shared_vending
-	var/list/shared = list()
-	var/static/list/shared_products = list()
 	isshared = TRUE
-
-/obj/machinery/vending/shared_vending/Initialize()
-	. = ..()
-
-	if(length(shared_products))
-		build_shared_inventory(shared)
-	else
-		build_inventory(shared)
-
-
-/obj/machinery/vending/shared_vending/proc/build_shared_inventory(list/productlist, hidden = FALSE, req_coin = TRUE)
-	var/i = 1
-
-	for(var/typepath in productlist)
-		var/amount = productlist[typepath]
-		var/price = prices[typepath]
-		if(isnull(amount))
-			amount = 1
-
-		var/obj/item/temp_path = typepath
-		var/datum/data/vending_product/R = shared_products[i]
-
-		if(!R.product_path)
-			R.product_path = typepath
-			R.amount = amount
-			R.price = price
-
-			if(ispath(typepath,/obj/item/weapon/gun) || ispath(typepath,/obj/item/ammo_magazine) || ispath(typepath,/obj/item/explosive/grenade) || ispath(typepath,/obj/item/weapon/gun/flamer) || ispath(typepath,/obj/item/storage) )
-				R.display_color = "black"
-			else
-				R.display_color = "white"
-
-		if(hidden)
-			R.category = CAT_HIDDEN
-			hidden_records += R
-		else if(req_coin)
-			R.category = CAT_COIN
-			coin_records += R
-		else
-			R.category = CAT_NORMAL
-			product_records += R
-
-		R.product_name = initial(temp_path.name)
-
-		i++

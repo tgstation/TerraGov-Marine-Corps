@@ -18,7 +18,7 @@
 	icon_state = "t26"
 	item_state = "t26"
 	max_shells = 15 //codex
-	caliber = "10x28mm"
+	caliber = CALIBER_10X28
 	fire_sound = 'sound/weapons/guns/fire/sniper.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/sniper_unload.ogg'
@@ -210,7 +210,7 @@
 	icon_state = "m42c"
 	item_state = "m42c"
 	max_shells = 6 //codex
-	caliber = "10x99mm"
+	caliber = CALIBER_10X99
 	fire_sound = 'sound/weapons/guns/fire/sniper_heavy.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/sniper_heavy_unload.ogg'
@@ -249,7 +249,7 @@
 	icon_state = "svd"
 	item_state = "svd"
 	max_shells = 10 //codex
-	caliber = "7.62x54mm Rimmed" //codex
+	caliber = CALIBER_762X54 //codex
 	fire_sound = 'sound/weapons/guns/fire/svd.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/svd_unload.ogg'
@@ -292,7 +292,7 @@
 	item_state = "tx8"
 	max_shells = 25 //codex
 	muzzleflash_iconstate = "muzzle_flash_medium"
-	caliber = "10x28mm caseless" //codex
+	caliber = CALIBER_10X28_CASELESS //codex
 	fire_sound = 'sound/weapons/guns/fire/t64.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m4ra_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m4ra_reload.ogg'
@@ -346,7 +346,7 @@
 	icon_state = "m56"
 	item_state = "m56"
 	max_shells = 100 //codex
-	caliber = "10x28mm Caseless" //codex
+	caliber = CALIBER_10X28_CASELESS //codex
 	fire_sound = "gun_smartgun"
 	load_method = POWERPACK //codex
 	current_mag = /obj/item/ammo_magazine/internal/smartgun
@@ -474,7 +474,7 @@
 	icon_state = "m92"
 	item_state = "m92"
 	max_shells = 6 //codex
-	caliber = "40mm grenades" //codex
+	caliber = CALIBER_40MM //codex
 	load_method = SINGLE_CASING //codex
 	w_class = WEIGHT_CLASS_BULKY
 	throw_speed = 2
@@ -616,7 +616,7 @@
 	item_state = "t70"
 	fire_animation = "t70_fire"
 	max_shells = 6 //codex
-	caliber = "40mm grenades" //codex
+	caliber = CALIBER_40MM //codex
 	load_method = SINGLE_CASING //codex
 	w_class = WEIGHT_CLASS_BULKY
 	flags_equip_slot = ITEM_SLOT_BACK
@@ -652,7 +652,7 @@
 	icon_state = "m81"
 	item_state = "m81"
 	max_shells = 1 //codex
-	caliber = "40mm grenades" //codex
+	caliber = CALIBER_40MM //codex
 	load_method = SINGLE_CASING //codex
 	materials = list(/datum/material/metal = 7000)
 	w_class = WEIGHT_CLASS_BULKY
@@ -787,7 +787,7 @@
 	icon_state = "m5"
 	item_state = "m5"
 	max_shells = 1 //codex
-	caliber = "84mm rockets" //codex
+	caliber = CALIBER_84MM //codex
 	load_method = SINGLE_CASING //codex
 	materials = list(/datum/material/metal = 10000)
 	current_mag = /obj/item/ammo_magazine/rocket
@@ -836,7 +836,7 @@
 		return TRUE
 	else if (windup_checked == WEAPON_WINDUP_CHECKING)//We are already in windup, abort
 		return TRUE
-	
+
 	. = ..()
 
 
@@ -965,7 +965,7 @@
 	icon_state = "m5"
 	item_state = "m5"
 	max_shells = 1 //codex
-	caliber = "84mm rockets" //codex
+	caliber = CALIBER_84MM //codex
 	load_method = SINGLE_CASING //codex
 	materials = list(/datum/material/metal = 10000)
 	current_mag = /obj/item/ammo_magazine/rocket/sadar
@@ -1009,7 +1009,7 @@
 	icon_state = "m57a4"
 	item_state = "m57a4"
 	max_shells = 4 //codex
-	caliber = "84mm rockets" //codex
+	caliber = CALIBER_ROCKETARRAY //codex
 	load_method = MAGAZINE //codex
 	current_mag = /obj/item/ammo_magazine/rocket/m57a4
 	aim_slowdown = 2.75
@@ -1033,7 +1033,7 @@
 	icon_state = "t160"
 	item_state = "t160"
 	max_shells = 1 //codex
-	caliber = "67mm shells" //codex
+	caliber = CALIBER_67MM //codex
 	load_method = SINGLE_CASING //codex
 	materials = list(/datum/material/metal = 10000)
 	current_mag = /obj/item/ammo_magazine/rocket/recoilless
@@ -1067,7 +1067,7 @@
 	icon_state = "t72"
 	item_state = "t72"
 	max_shells = 1 //codex
-	caliber = "84mm rockets" //codex
+	caliber = CALIBER_84MM //codex
 	load_method = SINGLE_CASING //codex
 	current_mag = /obj/item/ammo_magazine/rocket/oneuse
 	flags_equip_slot = ITEM_SLOT_BELT
@@ -1101,7 +1101,7 @@
 	icon_state = "minigun"
 	item_state = "minigun"
 	max_shells = 500 //codex
-	caliber = "7.62x51mm" //codex
+	caliber = CALIBER_762X51 //codex
 	load_method = MAGAZINE //codex
 	fire_sound = 'sound/weapons/guns/fire/minigun.ogg'
 	unload_sound = 'sound/weapons/guns/interact/minigun_unload.ogg'
@@ -1177,7 +1177,7 @@
 	icon_state = "railgun"
 	item_state = "railgun"
 	max_shells = 1 //codex
-	caliber = "rail projectile"
+	caliber = CALIBER_RAILGUN
 	fire_sound = 'sound/weapons/guns/fire/railgun.ogg'
 	fire_rattle = 'sound/weapons/guns/fire/railgun.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'

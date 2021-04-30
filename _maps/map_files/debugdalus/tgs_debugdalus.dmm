@@ -167,7 +167,7 @@
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "aaG" = (
-/obj/machinery/vending/marine,
+/obj/machinery/vending/marine/shared,
 /obj/structure/window/reinforced{
 	dir = 1
 	},
@@ -180,7 +180,7 @@
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "aaH" = (
-/obj/machinery/vending/marine,
+/obj/machinery/vending/marine/shared,
 /obj/structure/window/reinforced{
 	dir = 1
 	},
@@ -392,7 +392,6 @@
 /turf/open/floor/mainship,
 /area/mainship/command/self_destruct)
 "abu" = (
-/obj/machinery/vending/attachments,
 /obj/structure/window/reinforced{
 	dir = 8
 	},
@@ -426,10 +425,10 @@
 	},
 /area/mainship/command/self_destruct)
 "abD" = (
-/obj/machinery/vending/marine/cargo_ammo,
 /obj/structure/window/reinforced{
 	dir = 8
 	},
+/obj/machinery/vending/armor_supply,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "abG" = (
@@ -457,7 +456,6 @@
 /turf/open/floor/mainship,
 /area/mainship/command/self_destruct)
 "abN" = (
-/obj/machinery/vending/marine/cargo_guns,
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
 	dir = 8
@@ -1751,7 +1749,7 @@
 	},
 /obj/item/clothing/suit/armor/bulletproof,
 /obj/item/attachable/suppressor,
-/obj/item/clothing/tie/holster,
+/obj/item/clothing/tie/storage/holster,
 /obj/structure/closet/cabinet,
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
@@ -2533,11 +2531,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/medical/lower_medical)
-"moi" = (
-/obj/structure/cable,
-/obj/machinery/vending/armor_supply,
-/turf/open/floor/mainship,
-/area/mainship/hallways/hangar)
 "qko" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
@@ -4866,7 +4859,7 @@ ade
 ade
 abP
 aaC
-moi
+amH
 bOu
 bOu
 afq

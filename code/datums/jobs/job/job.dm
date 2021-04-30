@@ -54,6 +54,12 @@ GLOBAL_PROTECT(exp_specialmap)
 
 	var/list/jobworth = list() //Associative list of indexes increased when someone joins as this job.
 
+	/// Description shown in the player's job preferences
+	var/html_description = ""
+	
+	///string; typepath for the icon that this job will show on the minimap
+	var/minimap_icon
+
 /datum/job/New()
 	if(outfit)
 		if(!ispath(outfit, /datum/outfit))
@@ -195,7 +201,7 @@ GLOBAL_PROTECT(exp_specialmap)
 		var/datum/job/scaled_job = SSjob.GetJobType(index)
 		if(!(scaled_job in SSjob.active_joinable_occupations))
 			continue
-		if(isxenosjob(scaled_job) && respawn)
+		if(isxenosjob(scaled_job) && respawn && (SSticker.mode?.flags_round_type & MODE_PSY_POINTS))
 			continue
 		scaled_job.add_job_points(jobworth[index])
 
@@ -281,7 +287,7 @@ GLOBAL_PROTECT(exp_specialmap)
 
 	if(!src.assigned_squad && assigned_squad)
 		job.equip_spawning_squad(src, assigned_squad, player)
-	
+
 	hud_set_job()
 
 /datum/job/proc/equip_spawning_squad(mob/living/carbon/human/new_character, datum/squad/assigned_squad, client/player)

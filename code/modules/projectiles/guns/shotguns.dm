@@ -10,7 +10,7 @@ can cause issues with ammo types getting mixed up during the burst.
 /obj/item/weapon/gun/shotgun
 	w_class = WEIGHT_CLASS_BULKY
 	force = 14.0
-	caliber = "12 gauge shotgun shells" //codex
+	caliber = CALIBER_12G //codex
 	max_shells = 9 //codex
 	load_method = SINGLE_CASING //codex
 	fire_sound = 'sound/weapons/guns/fire/shotgun.ogg'
@@ -97,22 +97,22 @@ can cause issues with ammo types getting mixed up during the burst.
 		//this is the most resource efficient way to do it.
 /obj/item/weapon/gun/shotgun/proc/retrieve_shell(selection)
 	var/obj/item/ammo_magazine/handful/new_handful = new /obj/item/ammo_magazine/handful()
-	new_handful.generate_handful(selection, "12g", 5, 1, /obj/item/weapon/gun/shotgun)
+	new_handful.generate_handful(selection, CALIBER_12G, 5, 1, /obj/item/weapon/gun/shotgun)
 	return new_handful
 
 /obj/item/weapon/gun/shotgun/pump/bolt/retrieve_shell(selection)
 	var/obj/item/ammo_magazine/handful/new_handful = new /obj/item/ammo_magazine/handful()
-	new_handful.generate_handful(selection, "7.62x54mmR", 5, 1, /obj/item/weapon/gun/shotgun)
+	new_handful.generate_handful(selection, CALIBER_762X54, 5, 1, /obj/item/weapon/gun/shotgun)
 	return new_handful
 
 /obj/item/weapon/gun/shotgun/pump/lever/retrieve_shell(selection)
 	var/obj/item/ammo_magazine/handful/new_handful = new /obj/item/ammo_magazine/handful()
-	new_handful.generate_handful(selection, ".44", 8, 1, /obj/item/weapon/gun/shotgun)
+	new_handful.generate_handful(selection, CALIBER_44, 8, 1, /obj/item/weapon/gun/shotgun)
 	return new_handful
 
 /obj/item/weapon/gun/shotgun/pump/lever/mbx900/retrieve_shell(selection)
 	var/obj/item/ammo_magazine/handful/new_handful = new /obj/item/ammo_magazine/handful()
-	new_handful.generate_handful(selection, ".410", 8, 1, /obj/item/weapon/gun/shotgun)
+	new_handful.generate_handful(selection, CALIBER_410, 8, 1, /obj/item/weapon/gun/shotgun)
 	return new_handful
 
 
@@ -610,7 +610,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	fire_sound = 'sound/weapons/guns/fire/mosin.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	reload_sound = 'sound/weapons/guns/interact/mosin_reload.ogg'
-	caliber = "7.62x54mm Rimmed" //codex
+	caliber = CALIBER_762X54 //codex
 	load_method = SINGLE_CASING //codex
 	max_shells = 5 //codex
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump/bolt
@@ -676,7 +676,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	fire_sound = 'sound/weapons/guns/fire/leveraction.ogg'//I like how this one sounds.
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	reload_sound = 'sound/weapons/guns/interact/mosin_reload.ogg'
-	caliber = ".44 Magnum" //codex
+	caliber = CALIBER_44 //codex
 	load_method = SINGLE_CASING //codex
 	max_shells = 10 //codex
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump/lever
@@ -728,7 +728,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	fire_sound = 'sound/weapons/guns/fire/shotgun_light.ogg'//I like how this one sounds.
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	reload_sound = 'sound/weapons/guns/interact/mosin_reload.ogg'
-	caliber = ".410 bore"
+	caliber = CALIBER_410
 	load_method = SINGLE_CASING
 	max_shells = 10
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump/lever/mbx900

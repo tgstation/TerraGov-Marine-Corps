@@ -50,6 +50,7 @@
 #define CARBON_RECOVERY_OXYLOSS -5 //the amount of oxyloss recovery per successful breath tick.
 
 #define CARBON_KO_OXYLOSS 50
+#define HUMAN_CRITDRAG_OXYLOSS 3 //the amount of oxyloss taken per tile a human is dragged by a xeno while unconscious
 
 #define HEAT_DAMAGE_LEVEL_1 1 //Amount of damage applied when your body temperature just passes the 360.15k safety point
 #define HEAT_DAMAGE_LEVEL_2 2 //Amount of damage applied when your body temperature passes the 400K point
