@@ -138,7 +138,7 @@
 	aim_slowdown = 0.75
 	wield_delay = 1 SECONDS
 	gun_skill_category = GUN_SKILL_RIFLES
-	muzzle_flash_color = COLOR_LASER_RED
+	muzzle_flash_color = COLOR_LASER_BLUE
 
 	fire_delay = 3
 	accuracy_mult = 1.5
@@ -600,7 +600,7 @@
 //TE Standard Laser rifle
 
 obj/item/weapon/gun/energy/lasgun/standard_marine_rifle
-	name = "\improper TE-R Laser rifle"
+	name = "\improper TE-R laser rifle"
 	desc = "A TerraGov standard issue laser rifle with an integrated charge selector for normal and high settings. Uses standard TE cells."
 	reload_sound = 'sound/weapons/guns/interact/TE-R Reload.ogg'
 	fire_sound = 'sound/weapons/guns/fire/Laser Rifle Standard.ogg'
@@ -630,19 +630,17 @@ obj/item/weapon/gun/energy/lasgun/standard_marine_rifle
 		/obj/item/attachable/bipod,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/attached_gun/grenade,
-		/obj/item/attachable/scope,
+		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/scope/mini,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
-	actions_types = list(/datum/action/item_action/aim_mode)
-	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 15, "stock_x" = 22, "stock_y" = 12)
+	attachable_offset = list("muzzle_x" = 40, "muzzle_y" = 17,"rail_x" = 22, "rail_y" = 21, "under_x" = 29, "under_y" = 10, "stock_x" = 22, "stock_y" = 12)
 
 	aim_slowdown = 0.5
 	wield_delay = 0.6 SECONDS
 	scatter = 0
 	scatter_unwielded = 10
-	aim_fire_delay = 0.2 SECONDS
 	fire_delay = 0.2 SECONDS
 	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.55
@@ -678,7 +676,7 @@ obj/item/weapon/gun/energy/lasgun/standard_marine_rifle
 	ammo = /datum/ammo/energy/lasgun/marine
 	fire_delay = 0.2 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/Laser Rifle Standard.ogg'
-	message_to_user = "You set the Laser rifle's charge mode to standard fire."
+	message_to_user = "You set the laser rifle's charge mode to standard fire."
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	icon_state = "ter"
 
@@ -687,7 +685,7 @@ obj/item/weapon/gun/energy/lasgun/standard_marine_rifle
 	ammo = /datum/ammo/energy/lasgun/marine/overcharge
 	fire_delay = 0.4 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/LRO.ogg'
-	message_to_user = "You set the Laser rifle's charge mode to overcharge."
+	message_to_user = "You set the laser rifle's charge mode to overcharge."
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	icon_state = "ter"
 	radial_icon_state = "laser_overcharge"
@@ -754,8 +752,8 @@ obj/item/weapon/gun/energy/lasgun/standard_marine_rifle
 ///TE Standard Laser Pistol
 
 obj/item/weapon/gun/energy/lasgun/standard_marine_pistol
-	name = "\improper TE-P Laser pistol"
-	desc = "A TerraGov standard issue laser pistol with an integrated charge selector for normal, heat and taser settings. Uses standard TE cells."
+	name = "\improper TE-P laser pistol"
+	desc = "A TerraGov standard issue laser pistol with an integrated charge selector for normal, heat and taser settings. Uses standard TE cells. Due to how new they are, they may not fit in any standard sidearm belts, however all shoulder holsters and pouches are large enough to take them. "
 	reload_sound = 'sound/weapons/guns/interact/TE-P Reload.ogg'
 	fire_sound = 'sound/weapons/guns/fire/Laser Pistol Standard.ogg'
 	force = 20
@@ -763,6 +761,7 @@ obj/item/weapon/gun/energy/lasgun/standard_marine_pistol
 	item_state = "tep"
 	icon = 'icons/Marine/gun64.dmi'
 	w_class = WEIGHT_CLASS_NORMAL
+	flags_equip_slot = ITEM_SLOT_BELT
 	max_shots = 30 //codex stuff
 	load_method = CELL //codex stuff
 	ammo = /datum/ammo/energy/lasgun/marine
@@ -783,14 +782,12 @@ obj/item/weapon/gun/energy/lasgun/standard_marine_pistol
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
-	actions_types = list(/datum/action/item_action/aim_mode)
-	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 15, "stock_x" = 22, "stock_y" = 12)
+	attachable_offset = list("muzzle_x" = 23, "muzzle_y" = 22,"rail_x" = 12, "rail_y" = 22, "under_x" = 16, "under_y" = 14, "stock_x" = 22, "stock_y" = 12)
 
 	aim_slowdown = 0.2
 	wield_delay = 0.6 SECONDS
 	scatter = 0
 	scatter_unwielded = 0
-	aim_fire_delay = 0.1 SECONDS
 	fire_delay = 0.2 SECONDS
 	accuracy_mult = 1.1
 	accuracy_mult_unwielded = 0.9
@@ -827,7 +824,7 @@ obj/item/weapon/gun/energy/lasgun/standard_marine_pistol
 	ammo = /datum/ammo/energy/lasgun/marine/pistol
 	fire_delay = 0.25 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/Laser Pistol Standard.ogg'
-	message_to_user = "You set the Laser Pistol's charge mode to standard fire."
+	message_to_user = "You set the laser pistol's charge mode to standard fire."
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	icon_state = "tep"
 
@@ -836,7 +833,7 @@ obj/item/weapon/gun/energy/lasgun/standard_marine_pistol
 	ammo = /datum/ammo/energy/lasgun/marine/pistol/disabler
 	fire_delay = 10
 	fire_sound = 'sound/weapons/guns/fire/disabler.ogg'
-	message_to_user = "You set the Laser Pistol's charge mode to disabler fire."
+	message_to_user = "You set the laser pistol's charge mode to disabler fire."
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	icon_state = "tep"
 	radial_icon_state = "laser_disabler"
@@ -846,7 +843,7 @@ obj/item/weapon/gun/energy/lasgun/standard_marine_pistol
 	ammo = /datum/ammo/energy/lasgun/marine/pistol/heat
 	fire_delay = 0.5 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
-	message_to_user = "You set the Laser Pistol's charge mode to wave heat."
+	message_to_user = "You set the laser pistol's charge mode to wave heat."
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	icon_state = "tep"
 	radial_icon_state = "laser_heat"
@@ -913,8 +910,8 @@ obj/item/weapon/gun/energy/lasgun/standard_marine_pistol
 //TE Standard Laser Carbine
 
 obj/item/weapon/gun/energy/lasgun/standard_marine_carbine
-	name = "\improper TE-C Laser carbine"
-	desc = "A TerraGov standard issue laser carbine with an integrated charge selector for normal and scatter settings. Uses standard TE cells."
+	name = "\improper TE-C laser carbine"
+	desc = "A TerraGov standard issue laser carbine with an integrated charge selector for burst and scatter settings. Uses standard TE cells."
 	reload_sound = 'sound/weapons/guns/interact/TE-R Reload.ogg'
 	fire_sound = 'sound/weapons/guns/fire/Laser Rifle Standard.ogg'
 	force = 20
@@ -946,14 +943,12 @@ obj/item/weapon/gun/energy/lasgun/standard_marine_carbine
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
-	actions_types = list(/datum/action/item_action/aim_mode)
-	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 15, "stock_x" = 22, "stock_y" = 12)
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 17, "rail_y" = 21, "under_x" = 23, "under_y" = 10, "stock_x" = 22, "stock_y" = 12)
 
 	aim_slowdown = 0.3
 	wield_delay = 0.4 SECONDS
 	scatter = 0
 	scatter_unwielded = 15
-	aim_fire_delay = 0.2 SECONDS
 	fire_delay = 0.2 SECONDS
 	burst_amount = 1
 	accuracy_mult = 1.1
@@ -995,7 +990,7 @@ obj/item/weapon/gun/energy/lasgun/standard_marine_carbine
 	fire_delay = 0.2 SECONDS
 	burst_amount = 4
 	fire_sound = 'sound/weapons/guns/fire/Laser Rifle Standard.ogg'
-	message_to_user = "You set the Laser Carbine's charge mode to standard fire."
+	message_to_user = "You set the laser carbine's charge mode to standard fire."
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
 	fire_mode = GUN_FIREMODE_BURSTFIRE
 	icon_state = "tec"
@@ -1006,7 +1001,7 @@ obj/item/weapon/gun/energy/lasgun/standard_marine_carbine
 	fire_delay = 1.2 SECONDS
 	burst_amount = 1
 	fire_sound = 'sound/weapons/guns/fire/Laser Carbine Scatter.ogg'
-	message_to_user = "You set the Laser Carbine's charge mode to spread."
+	message_to_user = "You set the laser carbine's charge mode to spread."
 	fire_mode = GUN_FIREMODE_SEMIAUTO
 	icon_state = "tec"
 	radial_icon_state = "laser_spread"
@@ -1075,8 +1070,8 @@ obj/item/weapon/gun/energy/lasgun/standard_marine_carbine
 //TE Standard Sniper
 
 obj/item/weapon/gun/energy/lasgun/standard_marine_sniper
-	name = "\improper TE-S Sniper rifle"
-	desc = "A TerraGov standard issue sniper rifle with an integrated charge selector for normal, high and heat settings. Uses standard TE cells."
+	name = "\improper TE-S sniper rifle"
+	desc = "A TerraGov standard issue laser sniper rifle with an integrated charge selector for normal, high and heat settings. Uses standard TE cells."
 	reload_sound = 'sound/weapons/guns/interact/TE-S Reload.ogg'
 	fire_sound = 'sound/weapons/guns/fire/Laser Sniper Standard.ogg'
 	force = 20
@@ -1105,19 +1100,17 @@ obj/item/weapon/gun/energy/lasgun/standard_marine_sniper
 		/obj/item/attachable/bipod,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/attached_gun/grenade,
-		/obj/item/attachable/scope,
-		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/scope/marine/tes,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
-	actions_types = list(/datum/action/item_action/aim_mode)
-	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 15, "stock_x" = 22, "stock_y" = 12)
+	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 18,"rail_x" = 19, "rail_y" = 19, "under_x" = 28, "under_y" = 8, "stock_x" = 22, "stock_y" = 12)
+	starting_attachment_types = list(/obj/item/attachable/scope/marine/tes)
 
 	aim_slowdown = 0.9
 	wield_delay = 0.9 SECONDS
 	scatter = 0
 	scatter_unwielded = 10
-	aim_fire_delay = 0.5 SECONDS
 	fire_delay = 1 SECONDS
 	accuracy_mult = 1.35
 	accuracy_mult_unwielded = 0.5
@@ -1153,7 +1146,7 @@ obj/item/weapon/gun/energy/lasgun/standard_marine_sniper
 	ammo = /datum/ammo/energy/lasgun/marine/sniper
 	fire_delay = 1 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/Laser Sniper Standard.ogg'
-	message_to_user = "You set the Laser rifle's charge mode to standard fire."
+	message_to_user = "You set the sniper rifle's charge mode to standard fire."
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	icon_state = "tes"
 
@@ -1162,7 +1155,7 @@ obj/item/weapon/gun/energy/lasgun/standard_marine_sniper
 	ammo = /datum/ammo/energy/lasgun/marine/sniper_heat
 	fire_delay = 1.5 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
-	message_to_user = "You set the Laser Sniper's charge mode to wave heat."
+	message_to_user = "You set the sniper rifle's charge mode to wave heat."
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	icon_state = "tes"
 	radial_icon_state = "laser_heat"
@@ -1229,8 +1222,8 @@ obj/item/weapon/gun/energy/lasgun/standard_marine_sniper
 //TE Standard ML //Yes Icon names are called TE-M/Machine gun, but I'm too lazy and i'm too sleepy to fix them
 
 obj/item/weapon/gun/energy/lasgun/standard_marine_mlaser
-	name = "\improper TE-ML Machine laser rifle"
-	desc = "A TerraGov standard issue sniper rifle with an integrated charge selector for normal, high and heat settings. Uses standard TE cells."
+	name = "\improper TE-ML machine laser gun"
+	desc = "A TerraGov standard issue machine laser gun. Uses standard TE cells."
 	reload_sound = 'sound/weapons/guns/interact/TE-M Reload.ogg'
 	fire_sound = 'sound/weapons/guns/fire/Laser Rifle Standard.ogg'
 	force = 20
@@ -1254,24 +1247,20 @@ obj/item/weapon/gun/energy/lasgun/standard_marine_mlaser
 		/obj/item/attachable/verticalgrip,
 		/obj/item/attachable/angledgrip,
 		/obj/item/attachable/lasersight,
-		/obj/item/attachable/gyro,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/bipod,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/attached_gun/grenade,
-		/obj/item/attachable/scope,
+		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/scope/mini,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
-	actions_types = list(/datum/action/item_action/aim_mode)
-	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 15, "stock_x" = 22, "stock_y" = 12)
+	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 15,"rail_x" = 22, "rail_y" = 24, "under_x" = 30, "under_y" = 8, "stock_x" = 22, "stock_y" = 12)
 
 	aim_slowdown = 1
 	wield_delay = 1.2 SECONDS
 	scatter = 0
 	scatter_unwielded = 10
-	aim_fire_delay = 0.1 SECONDS
 	fire_delay = 0.2 SECONDS
 	accuracy_mult = -0.1
 	accuracy_mult_unwielded = 0.6
@@ -1306,7 +1295,7 @@ obj/item/weapon/gun/energy/lasgun/standard_marine_mlaser
 	ammo = /datum/ammo/energy/lasgun/marine/autolaser
 	fire_delay = 0.2 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/Laser Rifle Standard.ogg'
-	message_to_user = "You set the Laser rifle's charge mode to standard fire."
+	message_to_user = "You set the machine laser gun's charge mode to standard fire."
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	icon_state = "tem"
 
