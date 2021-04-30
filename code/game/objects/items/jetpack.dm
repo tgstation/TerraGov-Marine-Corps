@@ -10,7 +10,7 @@
 	icon_state = "jetpack_marine"
 	w_class = WEIGHT_CLASS_BULKY
 	flags_equip_slot = ITEM_SLOT_BACK
-	obj_flags = CAN_BE_HIT|IGNORE_INTENT
+	obj_flags = CAN_BE_HIT
 	///maximum amount of fuel in the jetpack
 	var/fuel_max = 75
 	///current amount of fuel in the jetpack
@@ -177,7 +177,8 @@
 	playsound(loc, 'sound/effects/refill.ogg', 30, 1, 3)
 	to_chat(user, "<span class='notice'>You refill [src] with [target].</span>")
 
-/obj/item/jetpack_marine/attacked_by(obj/item/I, mob/living/user, def_zone)
+/obj/item/jetpack_marine/attackby(obj/item/I, mob/user, params)
+	. = ..()
 	if(!istype(I, /obj/item/ammo_magazine/flamer_tank))
 		return 
 	var/obj/item/ammo_magazine/flamer_tank/FT = I
