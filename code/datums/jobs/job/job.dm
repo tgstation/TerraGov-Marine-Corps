@@ -316,7 +316,7 @@ GLOBAL_PROTECT(exp_specialmap)
 
 /datum/job/xenomorph/occupy_job_positions(amount, respawn)
 	if((total_positions - current_positions - amount) < 0)
-		log_debug("Occupy xenomorph position was call with amount = [amount] and respawn =[respawn ? "TRUE" : "FALSE"] \n \
+		CRASH("Occupy xenomorph position was call with amount = [amount] and respawn =[respawn ? "TRUE" : "FALSE"] \n \
 		This would have created a negative larva situation")
 		return FALSE
 	return ..()
