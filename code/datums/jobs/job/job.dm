@@ -318,5 +318,4 @@ GLOBAL_PROTECT(exp_specialmap)
 	if((total_positions - current_positions - amount) < 0)
 		CRASH("Occupy xenomorph position was call with amount = [amount] and respawn =[respawn ? "TRUE" : "FALSE"] \n \
 		This would have created a negative larva situation")
-		return FALSE
 	return ..()
