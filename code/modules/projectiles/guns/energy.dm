@@ -632,6 +632,7 @@ obj/item/weapon/gun/energy/lasgun/standard_marine_rifle
 		/obj/item/attachable/attached_gun/grenade,
 		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/attached_gun/flamer,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
@@ -776,7 +777,6 @@ obj/item/weapon/gun/energy/lasgun/standard_marine_pistol
 		/obj/item/attachable/bayonetknife,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/lasersight,
-		/obj/item/attachable/gyro,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/scope/mini,
 	)
@@ -940,6 +940,7 @@ obj/item/weapon/gun/energy/lasgun/standard_marine_carbine
 		/obj/item/attachable/bipod,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/attached_gun/grenade,
+		/obj/item/attachable/attached_gun/flamer,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
@@ -1091,15 +1092,10 @@ obj/item/weapon/gun/energy/lasgun/standard_marine_sniper
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
-		/obj/item/attachable/reddot,
 		/obj/item/attachable/verticalgrip,
-		/obj/item/attachable/angledgrip,
 		/obj/item/attachable/lasersight,
-		/obj/item/attachable/gyro,
-		/obj/item/attachable/flashlight,
 		/obj/item/attachable/bipod,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/attached_gun/grenade,
 		/obj/item/attachable/scope/marine/tes,
 	)
 
