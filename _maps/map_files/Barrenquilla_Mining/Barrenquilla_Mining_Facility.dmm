@@ -3,6 +3,9 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/lavaland/basalt,
 /area/shuttle/drop1/lz1)
+"ad" = (
+/turf/closed/wall/indestructible/mineral,
+/area/barren/misc/clocknuke)
 "ae" = (
 /obj/machinery/light{
 	dir = 4
@@ -11,11 +14,8 @@
 /turf/open/floor,
 /area/shuttle/drop1/lz1)
 "af" = (
-/obj/structure/lattice,
-/turf/open/lavaland/lava/side{
-	dir = 1
-	},
-/area/barren)
+/turf/closed/brock,
+/area/barren/misc/clocknuke)
 "ag" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 1
@@ -29,9 +29,7 @@
 /turf/open/floor/plating/catwalk,
 /area/barren/cave/central)
 "aj" = (
-/obj/structure/table/reinforced,
-/obj/machinery/prop/mainship/computer,
-/turf/open/shuttle/blackfloor,
+/turf/open/floor/cult/clock,
 /area/barren/misc/clocknuke)
 "ak" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
@@ -49,9 +47,8 @@
 /turf/closed/brock,
 /area/shuttle/drop2/lz2)
 "an" = (
-/obj/structure/table/reinforced,
-/obj/item/paper/clockresearch2,
-/turf/open/shuttle/blackfloor,
+/obj/effect/decal/remains/human,
+/turf/open/floor/cult/clock,
 /area/barren/misc/clocknuke)
 "ao" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
@@ -141,7 +138,6 @@
 	dir = 4;
 	pixel_y = 7
 	},
-/obj/structure/lattice,
 /obj/structure/barricade/guardrail{
 	dir = 8
 	},
@@ -235,7 +231,7 @@
 /turf/open/floor/tile/dark,
 /area/shuttle/drop2/lz2)
 "bh" = (
-/turf/open/floor/cult/clock,
+/turf/closed/wall/clock,
 /area/barren/misc/clocknuke)
 "bj" = (
 /obj/effect/alien/weeds/node,
@@ -433,6 +429,10 @@
 /obj/structure/fence,
 /turf/open/lavaland/basalt,
 /area/barren/cave/north)
+"ch" = (
+/obj/effect/decal/remains/marauder,
+/turf/open/floor/cult/clock,
+/area/barren/misc/clocknuke)
 "ci" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/brock,
@@ -479,16 +479,8 @@
 /turf/open/lavaland/basalt/glowing,
 /area/barren/cave/north)
 "cx" = (
-/obj/structure/barricade/guardrail{
-	dir = 4;
-	pixel_y = 7
-	},
-/obj/structure/barricade/guardrail,
-/obj/structure/lattice,
-/turf/open/lavaland/lava/lpiece{
-	dir = 1
-	},
-/area/barren)
+/turf/open/lavaland/basalt,
+/area/barren/misc/clocknuke)
 "cz" = (
 /obj/structure/barricade/guardrail,
 /obj/structure/barricade/guardrail{
@@ -619,12 +611,9 @@
 /turf/open/lavaland/basalt,
 /area/barren/cave/southwest)
 "db" = (
-/obj/structure/barricade/guardrail,
-/obj/structure/lattice,
-/turf/open/lavaland/lava/lpiece{
-	dir = 1
-	},
-/area/barren)
+/mob/living/simple_animal/parrot/clock_hawk,
+/turf/open/lavaland/basalt,
+/area/barren/misc/clocknuke)
 "dd" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -677,10 +666,6 @@
 /obj/structure/largecrate/supply/medicine/iv,
 /turf/open/floor,
 /area/barren/misc/genstorage)
-"do" = (
-/obj/effect/decal/remains/human,
-/turf/open/floor/cult/clock,
-/area/barren/misc/clocknuke)
 "dq" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark2,
@@ -895,7 +880,8 @@
 /turf/open/floor/freezer,
 /area/barren/medical/chemistry)
 "er" = (
-/turf/closed/wall/clock,
+/obj/item/paper/brassnote,
+/turf/open/lavaland/basalt,
 /area/barren/misc/clocknuke)
 "et" = (
 /obj/structure/window/framed/colony/reinforced/tinted,
@@ -989,18 +975,13 @@
 /turf/open/lavaland/basalt,
 /area/barren/cave/west)
 "eI" = (
-/obj/machinery/door/poddoor/shutters{
-	dir = 2;
-	id = "BGS3";
-	name = "Gamma"
-	},
-/turf/open/shuttle/blackfloor,
+/obj/effect/decal/remains/human,
+/turf/open/lavaland/basalt,
 /area/barren/misc/clocknuke)
 "eL" = (
 /obj/structure/barricade/guardrail{
 	dir = 8
 	},
-/obj/structure/lattice,
 /turf/open/lavaland/lava/corner{
 	dir = 1
 	},
@@ -1113,7 +1094,7 @@
 /area/barren/misc/alienstorage)
 "fs" = (
 /obj/effect/decal/remains/marauder,
-/turf/open/floor/cult/clock,
+/turf/open/lavaland/basalt,
 /area/barren/misc/clocknuke)
 "ft" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -1237,8 +1218,7 @@
 	},
 /area/barren/misc/shack)
 "fX" = (
-/mob/living/simple_animal/parrot/clock_hawk,
-/turf/open/lavaland/basalt,
+/turf/closed/wall/cult,
 /area/barren/misc/clocknuke)
 "fY" = (
 /obj/structure/closet/walllocker/hydrant/extinguisher,
@@ -1436,6 +1416,10 @@
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/plating,
 /area/shuttle/drop2/lz2)
+"gP" = (
+/obj/machinery/door/airlock/multi_tile/secure,
+/turf/open/floor/engine/cult,
+/area/barren/misc/clocknuke)
 "gS" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_pump,
@@ -1468,7 +1452,6 @@
 /obj/structure/barricade/guardrail{
 	dir = 8
 	},
-/obj/structure/lattice,
 /turf/open/lavaland/lava/corner{
 	dir = 8
 	},
@@ -1762,12 +1745,8 @@
 /turf/open/floor/marking,
 /area/barren/cave/central)
 "it" = (
-/obj/structure/barricade/guardrail{
-	dir = 8
-	},
-/obj/structure/lattice,
-/turf/open/lavaland/lava/lpiece,
-/area/barren)
+/turf/open/floor/engine/cult,
+/area/barren/misc/clocknuke)
 "iu" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/red/redtaupe{
@@ -1851,7 +1830,7 @@
 /turf/open/lavaland/basalt,
 /area/barren/cave/southwest)
 "iM" = (
-/obj/item/paper/brassnote,
+/mob/living/simple_animal/hostile/construct/armored,
 /turf/open/lavaland/basalt,
 /area/barren/misc/clocknuke)
 "iN" = (
@@ -1885,10 +1864,9 @@
 /turf/open/floor/tile/dark2,
 /area/barren/engie/engine)
 "iT" = (
-/obj/structure/barricade/guardrail,
-/obj/structure/lattice,
-/turf/open/lavaland/lava,
-/area/barren)
+/mob/living/simple_animal/hostile/construct/builder,
+/turf/open/lavaland/basalt,
+/area/barren/misc/clocknuke)
 "iU" = (
 /obj/effect/landmark/corpsespawner/pmc,
 /turf/open/floor/marking,
@@ -2103,7 +2081,7 @@
 /turf/open/lavaland/basalt,
 /area/barren/cave/southeast)
 "ka" = (
-/obj/effect/decal/remains/human,
+/mob/living/simple_animal/hostile/construct/wraith,
 /turf/open/lavaland/basalt,
 /area/barren/misc/clocknuke)
 "kb" = (
@@ -2301,15 +2279,9 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/barren/medical/research)
 "kP" = (
-/obj/structure/barricade/guardrail{
-	dir = 4;
-	pixel_y = 7
-	},
-/obj/structure/lattice,
-/turf/open/lavaland/lava/lpiece{
-	dir = 8
-	},
-/area/barren)
+/obj/effect/decal/cleanable/rune,
+/turf/open/lavaland/basalt,
+/area/barren/misc/clocknuke)
 "kQ" = (
 /obj/effect/landmark/start/job/survivor,
 /obj/structure/bed/alien,
@@ -2641,7 +2613,8 @@
 /turf/open/lavaland/basalt,
 /area/barren/cave/north)
 "mr" = (
-/obj/effect/decal/remains/marauder,
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/ash,
 /turf/open/lavaland/basalt,
 /area/barren/misc/clocknuke)
 "ms" = (
@@ -2743,11 +2716,8 @@
 /turf/open/floor,
 /area/shuttle/drop1/lz1)
 "mN" = (
-/obj/structure/lattice,
-/turf/open/lavaland/lava/side{
-	dir = 4
-	},
-/area/barren)
+/turf/closed/wall/indestructible,
+/area/barren/misc/clocknuke)
 "mP" = (
 /turf/open/floor/tile/dark,
 /area/shuttle/drop2/lz2)
@@ -2990,10 +2960,6 @@
 /obj/structure/window/framed/colony,
 /turf/open/floor/plating,
 /area/barren/engie/engine)
-"nP" = (
-/obj/structure/lattice,
-/turf/open/lavaland/lava,
-/area/barren)
 "nQ" = (
 /obj/effect/alien/weeds/node,
 /turf/closed/brock,
@@ -3009,8 +2975,6 @@
 	dir = 8
 	},
 /obj/structure/barricade/guardrail,
-/obj/structure/lattice,
-/obj/structure/lattice,
 /turf/open/lavaland/lava,
 /area/barren)
 "nT" = (
@@ -3431,8 +3395,9 @@
 /turf/open/floor/vault,
 /area/prison/laundry)
 "qn" = (
-/obj/machinery/door/airlock/multi_tile/secure,
-/turf/open/floor/engine/cult,
+/obj/structure/door_assembly,
+/obj/effect/decal/cleanable/blood/writing,
+/turf/open/shuttle/blackfloor,
 /area/barren/misc/clocknuke)
 "qo" = (
 /turf/open/floor/marking,
@@ -3613,19 +3578,9 @@
 /obj/item/storage/pill_bottle/zoom,
 /turf/open/floor/freezer,
 /area/barren/medical/chemistry)
-"ro" = (
-/obj/structure/barricade/guardrail,
-/obj/structure/lattice,
-/obj/structure/barricade/guardrail{
-	dir = 8
-	},
-/turf/open/lavaland/lava/side{
-	dir = 1
-	},
-/area/barren)
 "rp" = (
-/mob/living/simple_animal/hostile/construct/armored,
-/turf/open/lavaland/basalt,
+/obj/machinery/door/airlock/multi_tile,
+/turf/closed/wall/indestructible,
 /area/barren/misc/clocknuke)
 "rq" = (
 /obj/machinery/vending/snack,
@@ -3843,8 +3798,9 @@
 	},
 /area/barren/medical/chemistry)
 "st" = (
-/mob/living/simple_animal/hostile/construct/builder,
-/turf/open/lavaland/basalt,
+/obj/effect/decal/cleanable/cobweb,
+/obj/structure/table/reinforced,
+/turf/open/shuttle/blackfloor,
 /area/barren/misc/clocknuke)
 "su" = (
 /turf/open/floor/prison,
@@ -3859,15 +3815,19 @@
 /turf/open/floor,
 /area/barren/civilian)
 "sE" = (
-/obj/structure/lattice,
-/turf/open/lavaland/lava/side,
-/area/barren)
+/turf/open/shuttle/blackfloor,
+/area/barren/misc/clocknuke)
 "sG" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/corpsespawner/security,
 /obj/effect/decal/cleanable/blood/writing,
 /turf/open/floor/wood,
 /area/barren/security)
+"sI" = (
+/obj/item/tool/kitchen/knife/ritual,
+/obj/effect/decal/cleanable/blood,
+/turf/open/shuttle/blackfloor,
+/area/barren/misc/clocknuke)
 "sJ" = (
 /obj/structure/barricade/guardrail{
 	dir = 1
@@ -3944,12 +3904,10 @@
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
 "sZ" = (
-/obj/structure/barricade/guardrail,
-/obj/structure/lattice,
-/turf/open/lavaland/lava/side{
-	dir = 1
-	},
-/area/barren)
+/obj/structure/table/reinforced,
+/obj/machinery/prop/mainship/computer,
+/turf/open/shuttle/blackfloor,
+/area/barren/misc/clocknuke)
 "ta" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/airlock/multi_tile/mainship/secdoor,
@@ -3992,13 +3950,10 @@
 /turf/open/lavaland/basalt,
 /area/barren/cave/south)
 "th" = (
-/obj/structure/barricade/guardrail,
-/obj/structure/barricade/guardrail{
-	dir = 8
-	},
-/obj/structure/lattice,
-/turf/open/lavaland/lava,
-/area/barren)
+/obj/structure/table/reinforced,
+/obj/item/paper/clockresearch2,
+/turf/open/shuttle/blackfloor,
+/area/barren/misc/clocknuke)
 "tj" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood/drip,
@@ -4155,8 +4110,8 @@
 /turf/open/floor/plating/ground/dirt,
 /area/barren/civilian)
 "tV" = (
-/mob/living/simple_animal/hostile/construct/wraith,
-/turf/open/lavaland/basalt,
+/obj/effect/decal/cleanable/blood/writing,
+/turf/closed/wall/indestructible/mineral,
 /area/barren/misc/clocknuke)
 "tX" = (
 /obj/structure/largecrate/random/barrel,
@@ -4315,14 +4270,6 @@
 /obj/structure/ore_box,
 /turf/open/lavaland/basalt/glowing,
 /area/barren/cave/west)
-"uO" = (
-/obj/machinery/door/poddoor/shutters{
-	dir = 2;
-	id = "BGS2";
-	name = "Beta"
-	},
-/turf/open/shuttle/blackfloor,
-/area/barren/misc/clocknuke)
 "uR" = (
 /obj/structure/cable,
 /turf/open/lavaland/basalt/glowing,
@@ -4349,7 +4296,7 @@
 /turf/open/floor/wood,
 /area/barren/civilian/workdorm)
 "uY" = (
-/obj/effect/decal/cleanable/cobweb2,
+/obj/effect/decal/remains/human,
 /turf/closed/wall/indestructible/mineral,
 /area/barren/misc/clocknuke)
 "uZ" = (
@@ -4437,6 +4384,10 @@
 /obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/tile/hydro,
 /area/barren/civilian/botany)
+"vt" = (
+/obj/effect/decal/cleanable/cobweb2,
+/turf/closed/wall/indestructible/mineral,
+/area/barren/misc/clocknuke)
 "vv" = (
 /obj/structure/cable,
 /turf/open/lavaland/basalt/glowing,
@@ -4451,25 +4402,18 @@
 /turf/open/lavaland/basalt,
 /area/barren/cave/west)
 "vA" = (
-/obj/structure/lattice,
-/obj/structure/barricade/guardrail{
-	dir = 8
-	},
-/turf/open/lavaland/lava,
-/area/barren)
+/obj/structure/sign/poster,
+/turf/closed/wall/indestructible,
+/area/barren/misc/clocknuke)
 "vC" = (
 /obj/effect/landmark/corpsespawner/miner,
 /obj/effect/decal/cleanable/blood,
 /turf/open/lavaland/basalt,
 /area/barren/cave/south)
 "vE" = (
-/obj/structure/lattice,
-/obj/structure/barricade/guardrail{
-	dir = 4;
-	pixel_y = 7
-	},
-/turf/open/lavaland/lava,
-/area/barren)
+/obj/structure/table/reinforced,
+/turf/open/shuttle/blackfloor,
+/area/barren/misc/clocknuke)
 "vF" = (
 /turf/open/floor/tile/red/redtaupe{
 	dir = 4
@@ -4493,8 +4437,10 @@
 /turf/open/floor/wood,
 /area/barren/civilian)
 "vL" = (
-/obj/effect/decal/cleanable/rune,
-/turf/open/lavaland/basalt,
+/obj/item/storage/backpack/cultpack,
+/obj/effect/decal/remains/human,
+/obj/effect/decal/cleanable/blood,
+/turf/open/shuttle/blackfloor,
 /area/barren/misc/clocknuke)
 "vM" = (
 /obj/machinery/light,
@@ -4537,15 +4483,9 @@
 /turf/open/floor/freezer,
 /area/barren/civilian/cook)
 "wa" = (
-/obj/structure/barricade/guardrail,
-/obj/structure/barricade/guardrail{
-	dir = 8
-	},
-/obj/structure/lattice,
-/turf/open/lavaland/lava/lpiece{
-	dir = 4
-	},
-/area/barren)
+/obj/item/clothing/shoes/cult,
+/turf/open/shuttle/blackfloor,
+/area/barren/misc/clocknuke)
 "wc" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
@@ -4609,11 +4549,7 @@
 	},
 /area/barren/medical)
 "wq" = (
-/obj/machinery/door/poddoor/shutters{
-	dir = 2;
-	id = "BGS1";
-	name = "Alpha"
-	},
+/mob/living/simple_animal/shade,
 /turf/open/shuttle/blackfloor,
 /area/barren/misc/clocknuke)
 "ws" = (
@@ -4688,9 +4624,9 @@
 /turf/open/floor/wood,
 /area/barren/civilian/workdorm)
 "wM" = (
-/turf/open/floor/stairs/rampbottom{
-	dir = 1
-	},
+/obj/structure/table/reinforced,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/turf/open/shuttle/blackfloor,
 /area/barren/misc/clocknuke)
 "wQ" = (
 /obj/machinery/light/small{
@@ -4711,9 +4647,8 @@
 	},
 /area/barren/cave/west)
 "wV" = (
-/obj/effect/decal/cleanable/blood,
-/obj/effect/decal/cleanable/ash,
-/turf/open/lavaland/basalt,
+/obj/effect/decal/cleanable/generic,
+/turf/open/shuttle/blackfloor,
 /area/barren/misc/clocknuke)
 "wW" = (
 /obj/structure/barricade/guardrail,
@@ -4745,8 +4680,8 @@
 /turf/open/floor/plating,
 /area/barren/cave/south)
 "xc" = (
-/obj/structure/door_assembly,
-/obj/effect/decal/cleanable/blood/writing,
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/ash,
 /turf/open/shuttle/blackfloor,
 /area/barren/misc/clocknuke)
 "xd" = (
@@ -4847,15 +4782,10 @@
 	},
 /area/barren)
 "xE" = (
-/obj/structure/barricade/guardrail{
-	dir = 4;
-	pixel_y = 7
+/turf/open/floor/stairs/rampbottom{
+	dir = 1
 	},
-/obj/structure/lattice,
-/turf/open/lavaland/lava/side{
-	dir = 8
-	},
-/area/barren)
+/area/barren/misc/clocknuke)
 "xF" = (
 /obj/structure/table/mainship,
 /obj/item/storage/belt/marine,
@@ -4945,7 +4875,7 @@
 /area/barren/misc/stationed)
 "yf" = (
 /obj/effect/decal/cleanable/blood,
-/obj/effect/decal/cleanable/ash,
+/obj/effect/decal/remains/human,
 /turf/open/shuttle/blackfloor,
 /area/barren/misc/clocknuke)
 "yg" = (
@@ -4975,11 +4905,13 @@
 /turf/open/lavaland/basalt,
 /area/barren/cave/southwest)
 "yo" = (
-/obj/structure/lattice,
-/turf/open/lavaland/lava/side{
-	dir = 8
+/obj/machinery/door/poddoor/shutters/barren{
+	dir = 2;
+	id = "BGS3";
+	name = "Gamma"
 	},
-/area/barren)
+/turf/open/shuttle/blackfloor,
+/area/barren/misc/clocknuke)
 "yp" = (
 /obj/structure/rack,
 /obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
@@ -5050,7 +4982,6 @@
 /area/barren/security)
 "yQ" = (
 /obj/machinery/miner/damaged/platinum,
-/obj/structure/lattice,
 /turf/open/lavaland/lava/corner{
 	dir = 1
 	},
@@ -5113,15 +5044,13 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark2,
 /area/barren/civilian/cook)
+"zi" = (
+/turf/open/lavaland/catwalk,
+/area/barren/misc/clocknuke)
 "zj" = (
-/obj/structure/lattice,
-/obj/structure/barricade/guardrail{
-	dir = 8
-	},
-/turf/open/lavaland/lava/side{
-	dir = 4
-	},
-/area/barren)
+/obj/structure/girder/reinforced,
+/turf/closed/wall/indestructible/mineral,
+/area/barren/cave/north)
 "zl" = (
 /obj/structure/table/reinforced/prison,
 /obj/effect/decal/cleanable/dirt,
@@ -5160,10 +5089,6 @@
 /obj/structure/cable,
 /turf/open/lavaland/basalt,
 /area/barren/cave/east)
-"zt" = (
-/obj/machinery/door/airlock/multi_tile,
-/turf/closed/wall/indestructible,
-/area/barren/misc/clocknuke)
 "zw" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/hydro,
@@ -5236,6 +5161,16 @@
 "zP" = (
 /turf/closed/wall,
 /area/barren/civilian/cook)
+"zQ" = (
+/obj/machinery/door/poddoor/shutters/barren{
+	dir = 2;
+	id = "BGS2";
+	name = "Beta"
+	},
+/turf/open/lavaland/lava/side{
+	dir = 4
+	},
+/area/barren)
 "zT" = (
 /obj/structure/flora/pottedplant,
 /obj/effect/decal/cleanable/cobweb{
@@ -5292,10 +5227,13 @@
 /turf/closed/wall,
 /area/barren/misc/refinery)
 "Am" = (
-/obj/effect/decal/cleanable/cobweb,
-/obj/structure/table/reinforced,
-/turf/open/shuttle/blackfloor,
-/area/barren/misc/clocknuke)
+/obj/machinery/door/poddoor/shutters/barren{
+	dir = 2;
+	id = "BGS2";
+	name = "Beta"
+	},
+/turf/open/lavaland/lava,
+/area/barren)
 "An" = (
 /obj/structure/table/woodentable,
 /obj/effect/decal/cleanable/dirt,
@@ -5342,14 +5280,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison,
 /area/ai_monitored/storage/secure)
-"Ax" = (
-/obj/structure/barricade/guardrail{
-	dir = 4;
-	pixel_y = 7
-	},
-/obj/structure/lattice,
-/turf/open/lavaland/lava,
-/area/barren)
 "Ay" = (
 /obj/machinery/light{
 	dir = 8
@@ -5455,12 +5385,6 @@
 	dir = 1
 	},
 /area/barren)
-"Bd" = (
-/obj/structure/lattice,
-/turf/open/lavaland/lava/corner{
-	dir = 8
-	},
-/area/barren)
 "Bf" = (
 /turf/open/floor/plating,
 /area/barren/cave/north)
@@ -5523,11 +5447,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/dmg3,
 /area/barren/cave/central)
-"Bx" = (
-/obj/item/tool/kitchen/knife/ritual,
-/obj/effect/decal/cleanable/blood,
-/turf/open/shuttle/blackfloor,
-/area/barren/misc/clocknuke)
 "Bz" = (
 /turf/open/lavaland/catwalk,
 /area/barren/cave/northeast)
@@ -5590,9 +5509,15 @@
 /turf/open/lavaland/basalt,
 /area/barren/cave/east)
 "BL" = (
-/obj/structure/table/reinforced,
-/turf/open/shuttle/blackfloor,
-/area/barren/misc/clocknuke)
+/obj/machinery/door/poddoor/shutters/barren{
+	dir = 2;
+	id = "BGS2";
+	name = "Beta"
+	},
+/turf/open/lavaland/lava/side{
+	dir = 8
+	},
+/area/barren)
 "BM" = (
 /obj/structure/closet/secure_closet/security,
 /obj/effect/decal/cleanable/dirt,
@@ -5607,17 +5532,6 @@
 	dir = 8
 	},
 /area/barren/medical)
-"BP" = (
-/obj/structure/barricade/guardrail,
-/obj/structure/lattice,
-/obj/structure/barricade/guardrail{
-	dir = 4;
-	pixel_y = 7
-	},
-/turf/open/lavaland/lava/side{
-	dir = 1
-	},
-/area/barren)
 "BQ" = (
 /obj/machinery/chem_dispenser/soda,
 /turf/closed/wall,
@@ -5790,13 +5704,6 @@
 	dir = 1
 	},
 /area/barren/medical)
-"CC" = (
-/obj/structure/barricade/guardrail{
-	dir = 8
-	},
-/obj/structure/lattice,
-/turf/open/lavaland/lava,
-/area/barren)
 "CD" = (
 /obj/machinery/vending/cola,
 /obj/effect/decal/cleanable/dirt,
@@ -6662,10 +6569,6 @@
 "He" = (
 /turf/open/lavaland/catwalk,
 /area/barren/cave/central)
-"Hi" = (
-/obj/effect/decal/cleanable/generic,
-/turf/open/shuttle/blackfloor,
-/area/barren/misc/clocknuke)
 "Hj" = (
 /obj/structure/lattice,
 /obj/structure/cable,
@@ -6727,10 +6630,6 @@
 "Hv" = (
 /turf/open/floor/mainship/black/full,
 /area/barren/security)
-"Hw" = (
-/obj/effect/decal/cleanable/blood/writing,
-/turf/closed/wall/indestructible/mineral,
-/area/barren/misc/clocknuke)
 "Hz" = (
 /turf/open/floor/prison,
 /area/ai_monitored/storage/secure)
@@ -6763,9 +6662,6 @@
 "HG" = (
 /turf/open/floor/tile/red/redtaupe,
 /area/barren/security)
-"HH" = (
-/turf/closed/wall/cult,
-/area/barren/misc/clocknuke)
 "HJ" = (
 /obj/machinery/vending/coffee,
 /turf/open/floor/tile/red/redtaupe,
@@ -6806,9 +6702,6 @@
 "HR" = (
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
-"HS" = (
-/turf/open/shuttle/blackfloor,
-/area/barren/misc/clocknuke)
 "HT" = (
 /obj/machinery/portable_atmospherics/hydroponics,
 /turf/open/floor/plating/plating_catwalk,
@@ -6932,10 +6825,6 @@
 /obj/effect/landmark/nuke_spawn,
 /turf/open/floor/prison/plate,
 /area/ai_monitored/storage/secure)
-"IA" = (
-/obj/effect/decal/remains/human,
-/turf/closed/wall/indestructible/mineral,
-/area/barren/misc/clocknuke)
 "IB" = (
 /obj/structure/toilet{
 	dir = 1
@@ -7343,7 +7232,6 @@
 /obj/structure/barricade/guardrail{
 	dir = 8
 	},
-/obj/structure/lattice,
 /obj/structure/barricade/guardrail,
 /turf/open/lavaland/lava/lpiece{
 	dir = 1
@@ -7664,13 +7552,6 @@
 /obj/docking_port/stationary/crashmode,
 /turf/open/lavaland/basalt,
 /area/barren/cave/west)
-"Mp" = (
-/obj/structure/barricade/guardrail{
-	dir = 8
-	},
-/obj/structure/lattice,
-/turf/open/lavaland/lava/corner,
-/area/barren)
 "Mt" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/toolbox,
@@ -7680,8 +7561,15 @@
 /turf/open/lavaland/catwalk,
 /area/barren/cave/west)
 "Mx" = (
-/turf/open/lavaland/basalt,
-/area/barren/misc/clocknuke)
+/obj/machinery/door/poddoor/shutters/barren{
+	dir = 2;
+	id = "BGS1";
+	name = "Alpha"
+	},
+/turf/open/lavaland/lava/side{
+	dir = 4
+	},
+/area/barren)
 "My" = (
 /obj/machinery/power/apc,
 /obj/structure/cable,
@@ -7696,13 +7584,6 @@
 /obj/structure/table/woodentable,
 /turf/open/floor,
 /area/storage/testroom)
-"MD" = (
-/turf/open/floor/engine/cult,
-/area/barren/misc/clocknuke)
-"ME" = (
-/obj/structure/sign/poster,
-/turf/closed/wall/indestructible,
-/area/barren/misc/clocknuke)
 "MG" = (
 /obj/structure/cargo_container/horizontal{
 	dir = 4
@@ -7783,9 +7664,6 @@
 /obj/structure/lattice,
 /turf/open/lavaland/basalt,
 /area/barren/cave/south)
-"Nd" = (
-/turf/closed/wall/indestructible,
-/area/barren/misc/clocknuke)
 "Ne" = (
 /obj/structure/barricade/guardrail,
 /turf/open/lavaland/lava/single_intersection/direction,
@@ -7926,15 +7804,6 @@
 "NH" = (
 /turf/open/lavaland/lava,
 /area/barren/cave/west)
-"NI" = (
-/obj/structure/barricade/guardrail{
-	dir = 8
-	},
-/obj/structure/lattice,
-/turf/open/lavaland/lava/side{
-	dir = 4
-	},
-/area/barren)
 "NJ" = (
 /obj/structure/cable,
 /turf/open/lavaland/basalt/glowing,
@@ -8271,17 +8140,6 @@
 /obj/structure/cable,
 /turf/open/floor,
 /area/shuttle/drop1/lz1)
-"PG" = (
-/obj/structure/barricade/guardrail,
-/obj/structure/barricade/guardrail{
-	dir = 4;
-	pixel_y = 7
-	},
-/obj/structure/lattice,
-/turf/open/lavaland/lava/side{
-	dir = 1
-	},
-/area/barren)
 "PH" = (
 /obj/structure/cable,
 /turf/open/floor/freezer,
@@ -8352,13 +8210,6 @@
 	},
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/general_offices)
-"Qf" = (
-/turf/closed/wall/indestructible/mineral,
-/area/barren/misc/clocknuke)
-"Qg" = (
-/obj/structure/lattice,
-/turf/open/lavaland/lava/corner,
-/area/barren)
 "Qh" = (
 /obj/structure/xenoautopsy,
 /turf/open/floor/mainship/sterile/dark,
@@ -8435,15 +8286,6 @@
 "QC" = (
 /turf/open/lavaland/basalt/glowing,
 /area/barren/cave/southeast)
-"QE" = (
-/obj/structure/barricade/guardrail,
-/obj/structure/barricade/guardrail{
-	dir = 4;
-	pixel_y = 7
-	},
-/obj/structure/lattice,
-/turf/open/lavaland/lava,
-/area/barren)
 "QF" = (
 /obj/structure/cable,
 /obj/structure/cable,
@@ -8589,12 +8431,6 @@
 /obj/machinery/door/airlock/mainship/generic/bathroom/toilet,
 /turf/open/floor/prison/sterilewhite,
 /area/barren/civilian)
-"Rp" = (
-/obj/item/storage/backpack/cultpack,
-/obj/effect/decal/remains/human,
-/obj/effect/decal/cleanable/blood,
-/turf/open/shuttle/blackfloor,
-/area/barren/misc/clocknuke)
 "Rq" = (
 /obj/structure/cable,
 /turf/open/lavaland/basalt,
@@ -8637,11 +8473,6 @@
 /obj/item/bedsheet,
 /turf/open/floor/wood,
 /area/barren/civilian/workdorm)
-"RD" = (
-/obj/effect/decal/cleanable/blood,
-/obj/effect/decal/remains/human,
-/turf/open/shuttle/blackfloor,
-/area/barren/misc/clocknuke)
 "RF" = (
 /turf/open/floor/plating,
 /area/shuttle/drop2/lz2)
@@ -8823,17 +8654,18 @@
 	},
 /turf/open/floor/grimy,
 /area/barren/civilian/workdorm)
-"SI" = (
-/obj/structure/barricade/guardrail{
-	dir = 8
-	},
-/obj/structure/lattice,
-/turf/open/lavaland/lava/side,
-/area/barren)
 "SL" = (
 /obj/item/ore/phoron,
 /turf/open/lavaland/basalt,
 /area/barren/cave/west)
+"SM" = (
+/obj/machinery/door/poddoor/shutters/barren{
+	dir = 2;
+	id = "BGS1";
+	name = "Alpha"
+	},
+/turf/open/lavaland/lava,
+/area/barren)
 "SN" = (
 /obj/effect/decal/cleanable/blood/writing{
 	dir = 4
@@ -9384,9 +9216,15 @@
 /turf/open/floor/prison,
 /area/barren/security)
 "VZ" = (
-/obj/item/clothing/shoes/cult,
-/turf/open/shuttle/blackfloor,
-/area/barren/misc/clocknuke)
+/obj/machinery/door/poddoor/shutters/barren{
+	dir = 2;
+	id = "BGS1";
+	name = "Alpha"
+	},
+/turf/open/lavaland/lava/side{
+	dir = 8
+	},
+/area/barren)
 "Wa" = (
 /obj/structure/cable,
 /obj/machinery/door/poddoor/mainship/indestructible{
@@ -9425,10 +9263,6 @@
 	dir = 4
 	},
 /area/barren/medical/chemistry)
-"Wo" = (
-/mob/living/simple_animal/shade,
-/turf/open/shuttle/blackfloor,
-/area/barren/misc/clocknuke)
 "Wt" = (
 /obj/machinery/conveyor{
 	id = "lower_garbage"
@@ -9451,11 +9285,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
 /area/barren/civilian/cook)
-"Wx" = (
-/obj/structure/table/reinforced,
-/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
-/turf/open/shuttle/blackfloor,
-/area/barren/misc/clocknuke)
 "WA" = (
 /obj/structure/table/mainship,
 /turf/open/floor,
@@ -9661,7 +9490,6 @@
 /obj/structure/barricade/guardrail{
 	dir = 8
 	},
-/obj/structure/lattice,
 /turf/open/lavaland/lava/lpiece{
 	dir = 1
 	},
@@ -9837,9 +9665,6 @@
 	},
 /turf/open/floor/tile/dark2,
 /area/barren/civilian)
-"YN" = (
-/turf/closed/brock,
-/area/barren/misc/clocknuke)
 "YO" = (
 /obj/structure/kitchenspike,
 /obj/effect/decal/cleanable/dirt,
@@ -9857,9 +9682,6 @@
 /obj/structure/cable,
 /turf/open/lavaland/basalt,
 /area/barren/cave/south)
-"YW" = (
-/turf/open/lavaland/catwalk,
-/area/barren/misc/clocknuke)
 "YX" = (
 /obj/structure/table/reinforced,
 /obj/machinery/light{
@@ -17442,7 +17264,7 @@ Rx
 xj
 qs
 TO
-af
+US
 HQ
 Vz
 Vz
@@ -17697,9 +17519,9 @@ Vz
 Vz
 Vz
 Rx
-kP
-xE
-cx
+xj
+mw
+Uu
 Vz
 Vz
 Vz
@@ -19757,7 +19579,7 @@ Rx
 eE
 CS
 TO
-af
+US
 HQ
 HQ
 HQ
@@ -20014,7 +19836,7 @@ Rx
 Dt
 TO
 TO
-af
+US
 HQ
 HQ
 Vz
@@ -20271,7 +20093,7 @@ HQ
 Dt
 TO
 Ah
-cx
+Uu
 Vz
 Vz
 Vz
@@ -22325,8 +22147,8 @@ Vz
 Vz
 Vz
 Rx
-it
-NI
+eE
+Oa
 Oa
 eu
 HQ
@@ -25782,13 +25604,13 @@ aI
 aI
 aI
 aI
-Qf
-Qf
-Qf
-Qf
-Qf
-Qf
 aI
+ad
+ad
+ad
+ad
+ad
+ad
 aI
 aI
 aI
@@ -26037,17 +25859,17 @@ aI
 aI
 aI
 aI
-Qf
-Qf
-Qf
-YN
-YN
-YN
-YN
-Qf
-Qf
-Qf
 aI
+ad
+ad
+ad
+af
+af
+af
+af
+ad
+ad
+ad
 aI
 aI
 aI
@@ -26294,26 +26116,26 @@ aI
 aI
 aI
 aI
-Qf
-YN
-YN
-MD
-Mx
-HH
-HH
-HH
-HH
-Qf
+aI
+ad
+af
+af
+it
+cx
+fX
+fX
+fX
+fX
+ad
 aI
 aI
-Nd
-Nd
-ME
-Nd
-Nd
-Nd
-Nd
-aI
+mN
+mN
+vA
+mN
+mN
+mN
+mN
 aI
 aI
 aI
@@ -26543,34 +26365,34 @@ aI
 aI
 aI
 aI
-Qf
-Qf
-Qf
-Qf
-Qf
-Qf
-Qf
-Qf
-Qf
-YN
-HH
-MD
-Mx
-MD
-MD
-MD
-HH
-Qf
+aI
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+af
+fX
+it
+cx
+it
+it
+it
+fX
+ad
 aI
 aI
-Nd
-Am
-BL
-HS
-Hi
-BL
-Nd
-aI
+mN
+st
+vE
+sE
+wV
+vE
+mN
 aI
 aI
 aI
@@ -26800,34 +26622,34 @@ aI
 aI
 aI
 aI
-Qf
-YN
-YN
-YN
-YN
-YN
-YN
-YN
-Qf
-YN
-HH
-MD
-Mx
-tV
-vL
-MD
-HH
-Qf
+aI
+ad
+af
+af
+af
+af
+af
+af
+af
+ad
+af
+fX
+it
+cx
+ka
+kP
+it
+fX
+ad
 aI
 aI
-Nd
-HS
-HS
-HS
-HS
-BL
-Nd
-ah
+mN
+sE
+sE
+sE
+sE
+vE
+mN
 ah
 ah
 ah
@@ -27057,43 +26879,43 @@ aI
 aI
 aI
 aI
-Qf
-YN
-er
-do
+aI
+ad
+af
 bh
+an
+aj
+aj
+aj
 bh
-bh
-er
-Qf
-HH
-HH
-MD
-Mx
-Mx
-Mx
-MD
-HH
-Qf
+ad
+fX
+fX
+it
+cx
+cx
+cx
+it
+fX
+ad
 aI
 aI
-Nd
-Bx
-HS
-HS
-yf
-BL
-Nd
+mN
+sI
+sE
+sE
+xc
+vE
+mN
 ah
 ah
 ah
 ah
 ah
+zj
 ah
 ah
-ah
-ah
-ah
+zj
 ah
 ah
 ah
@@ -27103,8 +26925,8 @@ ah
 al
 al
 rr
-it
-wa
+eE
+xS
 aZ
 aZ
 aZ
@@ -27313,44 +27135,44 @@ aI
 aI
 aI
 aI
-Qf
-Qf
-YN
-fs
-bh
-bh
-bh
-fX
-Mx
-ka
-Mx
-qn
-MD
-Mx
-Mx
-Mx
-Mx
-YN
-Qf
 aI
-aI
-Nd
+ad
+ad
+af
+ch
 aj
-HS
-VZ
-Nd
-Nd
-Nd
-Nd
-Nd
-YN
+aj
+aj
+db
+cx
+eI
+cx
+gP
+it
+cx
+cx
+cx
+cx
+af
+ad
+aI
+aI
+mN
+sZ
+sE
+wa
+mN
+mN
+mN
+mN
+mN
+af
 Gs
 as
+zQ
 as
 as
-as
-as
-as
+Mx
 as
 as
 as
@@ -27361,7 +27183,7 @@ as
 as
 as
 CS
-Bd
+Tq
 as
 as
 xS
@@ -27570,44 +27392,44 @@ aI
 aI
 aI
 aI
-Qf
-YN
-bh
-bh
-Mx
-Mx
-Mx
-Mx
-Mx
-Mx
-Mx
-MD
-MD
-Mx
-Mx
-Mx
-Mx
-st
-Qf
 aI
-Qf
-Nd
-an
-HS
-HS
-eI
-wM
-uO
-wM
-wq
-YW
-YW
+ad
+af
+aj
+aj
+cx
+cx
+cx
+cx
+cx
+cx
+cx
+it
+it
+cx
+cx
+cx
+cx
+iT
+ad
+aI
+ad
+mN
+th
+sE
+sE
+sE
+xE
+sE
+xE
+yo
+zi
+zi
+TO
+Am
 TO
 TO
-TO
-TO
-TO
-TO
+SM
 TO
 TO
 TO
@@ -27827,58 +27649,58 @@ aI
 aI
 aI
 aI
-Qf
-YN
-bh
-Mx
-Mx
-Mx
-Mx
-iM
-Mx
-Mx
-Mx
-qn
-MD
-rp
-Mx
-Mx
-Mx
-Mx
-Qf
 aI
-Qf
-Nd
-HS
-Rp
-HS
-eI
-wM
-uO
-wM
-wq
-YW
-YW
-YW
+ad
+af
+aj
+cx
+cx
+cx
+cx
+er
+cx
+cx
+cx
+gP
+it
+iM
+cx
+cx
+cx
+cx
+ad
+aI
+ad
+mN
+sE
+vL
+sE
+sE
+xE
+sE
+xE
+yo
+zi
+zi
+zi
+Am
+TO
+TO
+SM
+TO
+Ah
+Va
+Va
+Va
+Va
+Va
+qs
 TO
 TO
 TO
 TO
 TO
-TO
-TO
-TO
-TO
-TO
-TO
-TO
-TO
-TO
-TO
-TO
-TO
-TO
-sZ
+Bb
 aZ
 aZ
 aZ
@@ -28084,58 +27906,58 @@ aI
 aI
 aI
 aI
-Qf
-YN
-do
-Mx
-Mx
-Mx
-Mx
-Mx
-Mx
-mr
-Mx
-MD
-MD
-Mx
-Mx
-Mx
-Mx
-wV
-Qf
 aI
-Qf
-xc
-Hw
-HS
-HS
-Nd
-Nd
-Nd
-Nd
-Nd
-YN
-YN
+ad
+af
+an
+cx
+cx
+cx
+cx
+cx
+cx
+fs
+cx
+it
+it
+cx
+cx
+cx
+cx
+mr
+ad
+aI
+ad
+qn
+tV
+sE
+sE
+mN
+mN
+mN
+mN
+mN
+af
+af
+Va
+BL
+Va
+Va
+VZ
+Va
+Fb
+ah
+ah
+ah
+ah
+ah
 QO
 Va
 Va
 Va
 Va
 Va
-Va
-Va
-Va
-Va
-Va
-Va
-Va
-Va
-Va
-Va
-Va
-yo
-yo
-db
+cp
 aZ
 aZ
 aZ
@@ -28341,34 +28163,44 @@ aI
 aI
 aI
 aI
-Qf
-YN
-er
-bh
-bh
-bh
-er
-YN
-YN
-Qf
-HH
-HH
-MD
-Mx
-Mx
-Mx
-tV
-Mx
-Qf
 aI
-Qf
-Nd
-Qf
-HS
-HS
-HS
-RD
-Nd
+ad
+af
+bh
+aj
+aj
+aj
+bh
+af
+af
+ad
+fX
+fX
+it
+cx
+cx
+cx
+ka
+cx
+ad
+aI
+ad
+mN
+ad
+sE
+sE
+sE
+yf
+mN
+ah
+ah
+ah
+ah
+ah
+zj
+ah
+ah
+zj
 ah
 ah
 ah
@@ -28376,16 +28208,6 @@ ah
 ah
 ah
 ah
-ah
-ah
-ah
-ah
-ah
-ah
-ah
-ah
-ah
-al
 al
 Px
 Px
@@ -28598,35 +28420,35 @@ aI
 aI
 aI
 aI
-Qf
-Qf
-YN
-YN
-YN
-YN
-YN
-YN
-Qf
-Qf
-Qf
-HH
-MD
-Mx
-Mx
-Mx
-Mx
-Mx
-Qf
 aI
-Qf
-zt
-IA
-Qf
-Wo
-HS
-HS
-Nd
-ah
+ad
+ad
+af
+af
+af
+af
+af
+af
+ad
+ad
+ad
+fX
+it
+cx
+cx
+cx
+cx
+cx
+ad
+aI
+ad
+rp
+uY
+ad
+wq
+sE
+sE
+mN
 ah
 ah
 ah
@@ -28856,34 +28678,34 @@ aI
 aI
 aI
 aI
-Qf
-Qf
-Qf
-Qf
-Qf
-Qf
-Qf
-Qf
-Qf
-Qf
-HH
-MD
-st
-Mx
-Mx
-Mx
-Mx
-Qf
 aI
-Qf
-Nd
-uY
-Qf
-Wx
-BL
-BL
-Nd
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+fX
+it
+iT
+cx
+cx
+cx
+cx
+ad
 aI
+ad
+mN
+vt
+ad
+wM
+vE
+vE
+mN
 aI
 aI
 aI
@@ -29122,25 +28944,25 @@ aI
 aI
 aI
 aI
-Qf
-HH
-MD
-MD
-MD
-MD
-YN
-YN
-Qf
 aI
-Qf
-Nd
-Nd
-Nd
-ME
-Nd
-Nd
-Nd
+ad
+fX
+it
+it
+it
+it
+af
+af
+ad
 aI
+ad
+mN
+mN
+mN
+vA
+mN
+mN
+mN
 aI
 aI
 aI
@@ -29379,16 +29201,16 @@ aI
 aI
 aI
 aI
-Qf
-HH
-HH
-HH
-HH
-YN
-Qf
-Qf
-Qf
 aI
+ad
+fX
+fX
+fX
+fX
+af
+ad
+ad
+ad
 aI
 aI
 aI
@@ -29637,13 +29459,13 @@ aI
 aI
 aI
 aI
-Qf
-Qf
-Qf
-Qf
-Qf
-Qf
 aI
+ad
+ad
+ad
+ad
+ad
+ad
 aI
 aI
 aI
@@ -38989,8 +38811,8 @@ VM
 nF
 Jl
 YL
-sE
-nP
+Dt
+TO
 FK
 FK
 Qb
@@ -39505,7 +39327,7 @@ Jl
 YL
 Dt
 TO
-nP
+TO
 FK
 bC
 Qb
@@ -41845,8 +41667,8 @@ Qb
 Qb
 Yy
 ZK
-SI
-Mp
+DJ
+LL
 Kv
 Yy
 Yy
@@ -42586,12 +42408,12 @@ Dt
 TO
 Tq
 He
-nP
+TO
 He
 He
 TO
-nP
-QE
+TO
+cZ
 He
 qc
 Ie
@@ -42843,10 +42665,10 @@ Dt
 TO
 TO
 He
-nP
-nP
+TO
+TO
 He
-nP
+TO
 He
 He
 qc
@@ -42857,7 +42679,7 @@ TO
 TO
 TO
 TO
-CC
+kF
 gi
 gi
 He
@@ -43105,7 +42927,7 @@ TO
 He
 He
 He
-th
+nC
 qc
 He
 Ie
@@ -43115,7 +42937,7 @@ TO
 TO
 TO
 TO
-nP
+TO
 FK
 He
 He
@@ -43356,7 +43178,7 @@ bC
 He
 He
 TO
-nP
+TO
 He
 TO
 TO
@@ -43372,7 +43194,7 @@ TO
 TO
 TO
 kr
-Ax
+kr
 pR
 He
 He
@@ -43608,11 +43430,11 @@ Gs
 as
 as
 as
-mN
+as
 He
 yQ
 He
-nP
+TO
 He
 He
 TO
@@ -43867,9 +43689,9 @@ TO
 TO
 He
 He
-nP
+TO
 He
-nP
+TO
 He
 TO
 TO
@@ -44123,8 +43945,8 @@ xj
 qs
 TO
 He
-nP
-nP
+TO
+TO
 He
 He
 He
@@ -44636,7 +44458,7 @@ Qb
 dZ
 Dt
 TO
-nP
+TO
 He
 TO
 US
@@ -45965,7 +45787,7 @@ TO
 TO
 TO
 aE
-iT
+QJ
 TO
 TO
 BI
@@ -46227,7 +46049,7 @@ BI
 BI
 BI
 QL
-Qg
+Ah
 cp
 xb
 Kq
@@ -49263,7 +49085,7 @@ as
 as
 as
 as
-wa
+xS
 EF
 Xd
 EF
@@ -49508,7 +49330,7 @@ QJ
 EK
 EK
 hV
-sZ
+Bb
 EF
 EF
 EF
@@ -49520,7 +49342,7 @@ qs
 TO
 TO
 TO
-sZ
+Bb
 EF
 Xd
 Pd
@@ -49765,7 +49587,7 @@ cZ
 EK
 EK
 hV
-sZ
+Bb
 EF
 EF
 EF
@@ -49776,13 +49598,13 @@ kl
 xj
 mw
 Ek
-vE
-BP
+kr
+cT
 EF
 Xd
 yx
 aH
-zj
+Oa
 Oa
 Nr
 cz
@@ -50802,9 +50624,9 @@ Xd
 EF
 EF
 yx
-it
+eE
 eL
-CC
+kF
 Dd
 EF
 EF
@@ -52851,7 +52673,7 @@ EK
 EK
 TO
 TO
-af
+US
 EF
 EF
 Xd
@@ -53108,7 +52930,7 @@ EK
 EK
 TO
 TO
-af
+US
 EF
 Pd
 Xd
@@ -53365,7 +53187,7 @@ EK
 hV
 kF
 kF
-ro
+Dd
 EF
 EF
 Xd
@@ -53621,8 +53443,8 @@ Hp
 Hp
 hV
 kr
-Ax
-PG
+kr
+cT
 EF
 EF
 Xd
@@ -54640,7 +54462,7 @@ ag
 OD
 OD
 lt
-SI
+DJ
 nS
 EK
 ZZ
@@ -54898,7 +54720,7 @@ OD
 OD
 lt
 Dt
-iT
+QJ
 EK
 ZZ
 hV
@@ -55155,7 +54977,7 @@ pr
 OD
 OD
 DJ
-vA
+kF
 EK
 ZZ
 hV
@@ -55416,7 +55238,7 @@ TO
 EK
 ZZ
 hV
-nP
+TO
 TO
 TO
 TO
@@ -55673,7 +55495,7 @@ TO
 EK
 ZZ
 hV
-nP
+TO
 TO
 TO
 TO
@@ -55931,7 +55753,7 @@ EK
 ZZ
 EK
 Xb
-nP
+TO
 TO
 TO
 TO
