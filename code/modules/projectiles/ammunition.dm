@@ -127,7 +127,7 @@ They're all essentially identical when it comes to getting the job done.
 		return
 
 	var/obj/item/ammo_magazine/handful/new_handful = new /obj/item/ammo_magazine/handful()
-	var/MR = (caliber in list(CALIBER_12G, CALIBER_762x54, CALIBER_410)) ? 5 : 8
+	var/MR = (caliber in list(CALIBER_12G, CALIBER_762X54, CALIBER_410)) ? 5 : 8
 	R = transfer_amount ? min(current_rounds, transfer_amount) : min(current_rounds, MR)
 	new_handful.generate_handful(default_ammo, caliber, MR, R, gun_type)
 	current_rounds -= R
@@ -223,7 +223,7 @@ If it is the same and the other stack isn't full, transfer an amount (default 1)
 	switch(new_caliber)
 		if(CALIBER_12G, CALIBER_410)
 			icon_state = ammo_name
-		if(CALIBER_762x54)
+		if(CALIBER_762X54)
 			icon_state = "mosin bullet"
 		else
 			icon_state = "bullet"
