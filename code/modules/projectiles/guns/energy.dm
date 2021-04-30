@@ -740,14 +740,14 @@ obj/item/weapon/gun/energy/lasgun/standard_marine_rifle
 
 
 /obj/item/weapon/gun/energy/lasgun/standard_marine_rifle/update_item_state(mob/user)// lasgun code thing i don't want so redfined
-    . = item_state
-    item_state = "[initial(icon_state)][flags_item & WIELDED ? "_w" : ""]"
-    if(. != item_state && ishuman(user))
-        var/mob/living/carbon/human/human_user = user
-        if(src == human_user.l_hand)
-            human_user.update_inv_l_hand()
-        else if (src == human_user.r_hand)
-            human_user.update_inv_r_hand()
+	. = item_state
+	item_state = "[initial(icon_state)][flags_item & WIELDED ? "_w" : ""]"
+	if(. != item_state && ishuman(user))
+		var/mob/living/carbon/human/human_user = user
+		if(src == human_user.l_hand)
+			human_user.update_inv_l_hand()
+		else if (src == human_user.r_hand)
+			human_user.update_inv_r_hand()
 
 
 ///TE Standard Laser Pistol
@@ -897,14 +897,14 @@ obj/item/weapon/gun/energy/lasgun/standard_marine_pistol
 
 
 /obj/item/weapon/gun/energy/lasgun/standard_marine_pistol/update_item_state(mob/user)// lasgun code thing i don't want so redfined
-    . = item_state
-    item_state = "[initial(icon_state)][flags_item & WIELDED ? "_w" : ""]"
-    if(. != item_state && ishuman(user))
-        var/mob/living/carbon/human/human_user = user
-        if(src == human_user.l_hand)
-            human_user.update_inv_l_hand()
-        else if (src == human_user.r_hand)
-            human_user.update_inv_r_hand()
+	. = item_state
+	item_state = "[initial(icon_state)][flags_item & WIELDED ? "_w" : ""]"
+	if(. != item_state && ishuman(user))
+		var/mob/living/carbon/human/human_user = user
+		if(src == human_user.l_hand)
+			human_user.update_inv_l_hand()
+		else if (src == human_user.r_hand)
+			human_user.update_inv_r_hand()
 
 
 //TE Standard Laser Carbine
@@ -1058,14 +1058,14 @@ obj/item/weapon/gun/energy/lasgun/standard_marine_carbine
 
 
 /obj/item/weapon/gun/energy/lasgun/standard_marine_carbine/update_item_state(mob/user)
-    . = item_state
-    item_state = "[initial(icon_state)][flags_item & WIELDED ? "_w" : ""]"
-    if(. != item_state && ishuman(user))
-        var/mob/living/carbon/human/human_user = user
-        if(src == human_user.l_hand)
-            human_user.update_inv_l_hand()
-        else if (src == human_user.r_hand)
-            human_user.update_inv_r_hand()
+	. = item_state
+	item_state = "[initial(icon_state)][flags_item & WIELDED ? "_w" : ""]"
+	if(. != item_state && ishuman(user))
+		var/mob/living/carbon/human/human_user = user
+		if(src == human_user.l_hand)
+			human_user.update_inv_l_hand()
+		else if (src == human_user.r_hand)
+			human_user.update_inv_r_hand()
 
 
 //TE Standard Sniper
@@ -1205,14 +1205,14 @@ obj/item/weapon/gun/energy/lasgun/standard_marine_sniper
 
 
 /obj/item/weapon/gun/energy/lasgun/standard_marine_sniper/update_item_state(mob/user)
-    . = item_state
-    item_state = "[initial(icon_state)][flags_item & WIELDED ? "_w" : ""]"
-    if(. != item_state && ishuman(user))
-        var/mob/living/carbon/human/human_user = user
-        if(src == human_user.l_hand)
-            human_user.update_inv_l_hand()
-        else if (src == human_user.r_hand)
-            human_user.update_inv_r_hand()
+	. = item_state
+	item_state = "[initial(icon_state)][flags_item & WIELDED ? "_w" : ""]"
+	if(. != item_state && ishuman(user))
+		var/mob/living/carbon/human/human_user = user
+		if(src == human_user.l_hand)
+			human_user.update_inv_l_hand()
+		else if (src == human_user.r_hand)
+			human_user.update_inv_r_hand()
 
 
 //TE Standard ML //Yes Icon names are called TE-M/Machine gun, but I'm too lazy and i'm too sleepy to fix them
@@ -1344,11 +1344,11 @@ obj/item/weapon/gun/energy/lasgun/standard_marine_mlaser
 
 
 /obj/item/weapon/gun/energy/lasgun/standard_marine_mlaser/update_item_state(mob/user)
-    . = item_state
-    item_state = "[initial(icon_state)][flags_item & WIELDED ? "_w" : ""]"
-    if(. != item_state && ishuman(user))
-        var/mob/living/carbon/human/human_user = user
-        if(src == human_user.l_hand)
-            human_user.update_inv_l_hand()
-        else if (src == human_user.r_hand)
-            human_user.update_inv_r_hand()
+	. = item_state
+	item_state = "[initial(icon_state)][flags_item & WIELDED ? "_w" : ""]"
+	if(. != item_state && ishuman(user))
+		var/mob/living/carbon/human/human_user = user
+		if(src == human_user.l_hand)
+			human_user.update_inv_l_hand()
+		else if (src == human_user.r_hand)
+			human_user.update_inv_r_hand()
