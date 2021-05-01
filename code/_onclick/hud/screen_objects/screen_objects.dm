@@ -453,7 +453,7 @@
 
 	if(choice != selecting)
 		selecting = choice
-		update_icon(usr)
+		update_icon(user)
 	return TRUE
 
 /obj/screen/zone_sel/update_icon(mob/user)
@@ -782,6 +782,8 @@
 	QDEL_IN(src, duration)
 
 /obj/screen/arrow/process() //We ping the target, revealing its direction with an arrow
+	if(!target || !tracker)
+		return PROCESS_KILL
 	if(target.z != tracker.z || get_dist(tracker, target) < 2 || tracker == target)
 		alpha = 0
 	else
