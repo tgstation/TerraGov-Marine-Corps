@@ -1,0 +1,4 @@
+author: "psykzz"
+delete-after: True
+changes: 
+  - bugfix: "bump attack toggle message was inverted"
