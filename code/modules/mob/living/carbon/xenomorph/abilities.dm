@@ -25,7 +25,7 @@
 	use_state_flags = XACT_USE_STAGGERED|XACT_USE_FORTIFIED|XACT_USE_CRESTED //can't use while staggered, defender fortified or crest down
 	keybind_signal = COMSIG_XENOABILITY_HEADBITE
 	plasma_cost = 100
-	gamemode_flags = ABILITY_HUNT|ABILITY_CRASH
+	gamemode_flags = ABILITY_HUNT
 
 /datum/action/xeno_action/activable/headbite/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..() //do after checking the below stuff
@@ -1050,6 +1050,10 @@
 /datum/action/xeno_action/activable/build_silo/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.selected_ability == src)
+		if(get_active_player_count() < SMALL_SILO_MAXIMUM_PLAYER_COUNT)
+			to_chat(X, "<span class ='notice'>There are too many players to place a small silo</span>")
+			build_small_silo = FALSE
+			return
 		build_small_silo = !build_small_silo
 		var/silo_type = build_small_silo ? "small" : "regular"
 		to_chat(X, "<span class ='notice'> You will now build a [silo_type] silo </span>")

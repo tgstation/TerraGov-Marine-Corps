@@ -397,6 +397,10 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 			if(!do_after(owner, 0.5 SECONDS, TRUE, owner, BUSY_ICON_HOSTILE)) //Grap-porting hostiles has a slight wind up
 				return fail_activate()
 			cooldown_mod = X.xeno_caste.wraith_blink_drag_nonfriendly_living_multiplier
+			if(ishuman(pulled_target))
+				var/mob/living/carbon/human/H = pulled_target
+				if(H.stat == UNCONSCIOUS) //Apply critdrag damage as if they were quickly pulled the same distance
+					H.adjustOxyLoss(HUMAN_CRITDRAG_OXYLOSS * get_dist(H.loc, T))
 
 		to_chat(X, "<span class='xenodanger'>We bring [pulled_target] with us. We won't be ready to blink again for [cooldown_timer * cooldown_mod * 0.1] seconds due to the strain of doing so.</span>")
 
@@ -638,4 +642,3 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	banish_check.banish_deactivate()
 	succeed_activate()
 	add_cooldown()
-

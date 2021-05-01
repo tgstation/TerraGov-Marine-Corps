@@ -278,6 +278,8 @@
 	icon_state = "splint"
 	amount = 5
 	max_amount = 5
+	///How much splint health per medical skill is applied
+	var/applied_splint_health = 15
 
 
 /obj/item/stack/medical/splint/attack(mob/living/carbon/M, mob/user)
@@ -314,5 +316,5 @@
 			user.visible_message("<span class='warning'>[user] starts to apply [src] to their [limb].</span>",
 			"<span class='notice'>You start to apply [src] to your [limb], hold still.</span>")
 
-		if(affecting.apply_splints(src, user, M)) // Referenced in external organ helpers.
+		if(affecting.apply_splints(src, user == M ? (applied_splint_health*max(user.skills.getRating("medical") - 1, 0)) : applied_splint_health*user.skills.getRating("medical"), user, M)) // Referenced in external organ helpers.
 			use(1)

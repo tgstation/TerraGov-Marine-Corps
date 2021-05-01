@@ -206,7 +206,29 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	else if(href_list["preference"])
 		if(!client?.prefs)
 			return
-		client.prefs.process_link(src, href_list)
+		stack_trace("This code path is no longer valid, migrate this to new TGUI prefs")
+		return
+
+	else if(href_list["track_xeno_name"])
+		var/xeno_name = href_list["track_xeno_name"]
+		for(var/Y in GLOB.hive_datums[XENO_HIVE_NORMAL].get_all_xenos())
+			var/mob/living/carbon/xenomorph/X = Y
+			if(isnum(X.nicknumber))
+				if(num2text(X.nicknumber) != xeno_name)
+					continue
+			else
+				if(X.nicknumber != xeno_name)
+					continue
+			ManualFollow(X)
+			break
+
+	else if(href_list["track_silo_number"])
+		var/silo_number = href_list["track_silo_number"]
+		for(var/obj/structure/resin/silo/resin_silo AS in GLOB.xeno_resin_silos)
+			if(resin_silo.associated_hive == GLOB.hive_datums[XENO_HIVE_NORMAL] && num2text(resin_silo.number_silo) == silo_number)
+				var/mob/dead/observer/ghost = usr
+				ghost.forceMove(resin_silo.loc)
+				break
 
 /mob/proc/ghostize(can_reenter_corpse = TRUE)
 	if(!key || isaghost(src))

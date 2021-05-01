@@ -594,7 +594,6 @@ to_chat will check for valid clients itself already so no need to double check f
 	var/list/possible_mothers = list()
 	var/list/possible_silos = list()
 	SEND_SIGNAL(src, COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, possible_mothers, possible_silos) //List variable passed by reference, and hopefully populated.
-
 	if(!length(possible_mothers))
 		if(length(possible_silos))
 			return attempt_to_spawn_larva_in_silo(xeno_candidate, possible_silos, larva_already_reserved)
@@ -628,8 +627,10 @@ to_chat will check for valid clients itself already so no need to double check f
 	var/obj/structure/resin/silo/chosen_silo
 	if(length(possible_silos) > 1)
 		chosen_silo = tgui_input_list(xeno_candidate, "Available Egg Silos", "Spawn location", possible_silos)
+		if(!chosen_silo)
+			return FALSE
 		xeno_candidate.forceMove(chosen_silo)
-		var/double_check = tgui_alert(xeno_candidate, "Spawn here?", "Spawn location", list("Yes","Pick another silo"))
+		var/double_check = tgui_alert(xeno_candidate, "Spawn here?", "Spawn location", list("Yes","Pick another silo","Abort"))
 		if(double_check == "Pick another silo")
 			return attempt_to_spawn_larva_in_silo(xeno_candidate, possible_silos)
 		else if(double_check != "Yes")
@@ -1183,7 +1184,10 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/proc/add_to_larva_candidate_queue(mob/dead/observer/observer)
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
-	if(stored_larva > 0 && !LAZYLEN(candidate) && length(GLOB.xeno_resin_silos))
+	var/list/possible_mothers = list()
+	var/list/possible_silos = list()
+	SEND_SIGNAL(src, COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, possible_mothers, possible_silos)
+	if(stored_larva > 0 && !LAZYLEN(candidate) && (length(possible_mothers) || length(possible_silos)))
 		attempt_to_spawn_larva(observer)
 		return
 	if(LAZYFIND(candidate, observer))
@@ -1196,18 +1200,29 @@ to_chat will check for valid clients itself already so no need to double check f
 
 ///Propose larvas until their is no more candidates, or no more burrowed
 /datum/hive_status/proc/give_larva_to_next_in_queue()
-	if(!length(GLOB.xeno_resin_silos))
+	var/list/possible_mothers = list()
+	var/list/possible_silos = list()
+	SEND_SIGNAL(src, COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, possible_mothers, possible_silos)
+	if(!length(possible_mothers) && !length(possible_silos))
 		return
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
+	var/stored_larva = round(xeno_job.total_positions - xeno_job.current_positions)
+	var/slot_occupied = min(stored_larva, LAZYLEN(candidate))
+	if(slot_occupied < 1)
+		return
+	var/slot_really_taken = 0
+	if(!xeno_job.occupy_job_positions(slot_occupied))
+		return
 	var/mob/dead/observer/observer_in_queue
 	while(stored_larva > 0 && LAZYLEN(candidate))
 		observer_in_queue = LAZYACCESS(candidate, 1)
 		LAZYREMOVE(candidate, observer_in_queue)
 		UnregisterSignal(observer_in_queue, COMSIG_PARENT_QDELETING)
-		xeno_job.occupy_job_positions(1)
-		stored_larva--
-		INVOKE_ASYNC(src, .proc/try_to_give_larva, observer_in_queue)
+		if(try_to_give_larva(observer_in_queue))
+			stored_larva--
+			slot_really_taken++
+	if(slot_occupied - slot_really_taken > 0)
+		xeno_job.free_job_positions(slot_occupied - slot_really_taken)
 	for(var/i in 1 to LAZYLEN(candidate))
 		observer_in_queue = LAZYACCESS(candidate, i)
 		observer_in_queue.larva_position = i
@@ -1220,9 +1235,7 @@ to_chat will check for valid clients itself already so no need to double check f
 ///Attempt to give a larva to the next in line, if not possible, free the xeno position and propose it to another candidate
 /datum/hive_status/proc/try_to_give_larva(mob/dead/observer/next_in_line)
 	next_in_line.larva_position = 0
-	if(attempt_to_spawn_larva(next_in_line, TRUE))
+	if(!attempt_to_spawn_larva(next_in_line, TRUE))
 		to_chat(next_in_line, "<span class='warning'>You failed to qualify to become a larva, you must join the queue again.</span>")
-		return
-	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	xeno_job.free_job_positions(1)
-	give_larva_to_next_in_queue()
+		return FALSE
+	return TRUE
