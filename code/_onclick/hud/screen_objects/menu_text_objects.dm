@@ -12,8 +12,8 @@
 	screen_loc = "CENTER"
 	maptext_height = 480
 	maptext_width = 480
-	maptext_x = 3
-	maptext_y = 5
+	maptext_x = 5
+	maptext_y = 7
 	maptext = "If you see this yell at coders"
 
 /**
