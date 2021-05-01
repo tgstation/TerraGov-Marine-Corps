@@ -1,10 +1,10 @@
-# Settings for modes. deploy_time_lock is in minutes
+# Settings for modes. deploytimelock is in minutes
 
 mode Crash
 	requiredplayers 2
 	squadmaxnumber 1
 	maximumplayers 40
-	deploy_time_lock 45
+	deploytimelock 45
 endmode
 
 mode Hunt
