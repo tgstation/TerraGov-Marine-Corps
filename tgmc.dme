@@ -26,6 +26,7 @@
 #include "code\__DEFINES\area.dm"
 #include "code\__DEFINES\atmospherics.dm"
 #include "code\__DEFINES\atom_hud.dm"
+#include "code\__DEFINES\attachments.dm"
 #include "code\__DEFINES\autofire.dm"
 #include "code\__DEFINES\buckling.dm"
 #include "code\__DEFINES\calibers.dm"
