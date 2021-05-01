@@ -5,7 +5,7 @@
 /obj/item/ammo_magazine/pistol/standard_pistol
 	name = "\improper TP-14 magazine (9mm)"
 	desc = "A pistol magazine."
-	caliber = "9x19mm Parabellum"
+	caliber = CALIBER_9X19
 	icon_state = "tp14"
 	max_rounds = 21
 	w_class = WEIGHT_CLASS_SMALL
@@ -15,7 +15,7 @@
 /obj/item/ammo_magazine/box9mm
 	name = "packet of 9mm"
 	desc = "A packet containing 70 rounds of 9mm."
-	caliber = "9x19mm Parabellum"
+	caliber = CALIBER_9X19
 	icon_state = "box_9mm"
 	current_rounds = 70
 	max_rounds = 70
@@ -27,7 +27,7 @@
 /obj/item/ammo_magazine/pistol/plasma_pistol
 	name = "\improper TX-7 plasma cell"
 	desc = "An energy cell for the TX-7 plasma pistol."
-	caliber = "Ionized Plasma Bolt"
+	caliber = CALIBER_PLASMA
 	icon_state = "tx7"
 	max_rounds = 10
 	w_class = WEIGHT_CLASS_SMALL
@@ -41,7 +41,7 @@
 /obj/item/ammo_magazine/pistol
 	name = "\improper RT-3 magazine (9mm)"
 	desc = "A pistol magazine."
-	caliber = "9x19mm Parabellum"
+	caliber = CALIBER_9X19
 	icon_state = "m4a3"
 	max_rounds = 14
 	w_class = WEIGHT_CLASS_SMALL
@@ -74,7 +74,7 @@
 /obj/item/ammo_magazine/pistol/m1911
 	name = "\improper M1911 magazine (.45)"
 	default_ammo = /datum/ammo/bullet/pistol/heavy
-	caliber = ".45 ACP"
+	caliber = CALIBER_45ACP
 	icon_state = "1911"
 	max_rounds = 10
 	gun_type = /obj/item/weapon/gun/pistol/m1911
@@ -83,7 +83,7 @@
 	name = "packet of .45 ACP"
 	icon_state = "box_45acp"
 	default_ammo = /datum/ammo/bullet/pistol/heavy
-	caliber = ".45 ACP"
+	caliber = CALIBER_45ACP
 	current_rounds = 50
 	max_rounds = 50
 
@@ -94,7 +94,7 @@
 /obj/item/ammo_magazine/pistol/standard_heavypistol
 	name = "\improper TP-23 magazine (.45)"
 	default_ammo = /datum/ammo/bullet/pistol/heavy
-	caliber = ".45 ACP"
+	caliber = CALIBER_45ACP
 	icon_state = ".45"
 	max_rounds = 14
 	gun_type = /obj/item/weapon/gun/pistol/standard_heavypistol
@@ -105,7 +105,7 @@
 
 /obj/item/ammo_magazine/pistol/g22
 	name = "\improper G-22 magazine (9mm)"
-	caliber = "9x19mm Parabellum"
+	caliber = CALIBER_9X19
 	icon_state = "g22"
 	max_rounds = 15
 	default_ammo = /datum/ammo/bullet/pistol
@@ -113,7 +113,7 @@
 
 /obj/item/ammo_magazine/pistol/g22tranq
 	name = "\improper G22 tranq magazine (9mm)"
-	caliber = "9x19mm tranquilizer"
+	caliber = CALIBER_9X19_TRANQUILIZER
 	icon_state = "g22"
 	max_rounds = 12
 	default_ammo = /datum/ammo/bullet/pistol/tranq
@@ -126,7 +126,7 @@
 /obj/item/ammo_magazine/pistol/heavy
 	name = "\improper Desert Eagle magazine (.50)"
 	default_ammo = /datum/ammo/bullet/pistol/heavy
-	caliber = ".50 AE"
+	caliber = CALIBER_50AE
 	icon_state = "50ae"
 	max_rounds = 7
 	gun_type = /obj/item/weapon/gun/pistol/heavy
@@ -139,7 +139,7 @@
 /obj/item/ammo_magazine/pistol/c99t
 	name = "\improper PK-9 tranq magazine (.22)"
 	default_ammo = /datum/ammo/bullet/pistol/tranq
-	caliber = ".22 LR"
+	caliber = CALIBER_22LR
 	icon_state = "pk-9_tranq"
 	max_rounds = 8
 	gun_type = /obj/item/weapon/gun/pistol/c99
@@ -147,7 +147,7 @@
 /obj/item/ammo_magazine/pistol/c99
 	name = "\improper PK-9 hollowpoint magazine (.22)"
 	default_ammo = /datum/ammo/bullet/pistol/hollow
-	caliber = ".22 LR"
+	caliber = CALIBER_22LR
 	icon_state = "pk-9"
 	max_rounds = 12
 	gun_type = /obj/item/weapon/gun/pistol/c99
@@ -159,7 +159,7 @@
 	name = "tiny pistol magazine (.22)"
 	desc = "A surprisingly small magazine, holding .22 bullets. No Kolibri, but it's getting there."
 	default_ammo = /datum/ammo/bullet/pistol/tiny
-	caliber = ".22 LR"
+	caliber = CALIBER_22LR
 	icon_state = ".22"
 	max_rounds = 5
 	w_class = WEIGHT_CLASS_TINY
@@ -172,7 +172,7 @@
 	name = "\improper TP-17 pocket pistol AP magazine (.380)"
 	desc = "A surprisingly small magazine used by the TP-17 pistol holding .380 ACP bullets."
 	default_ammo = /datum/ammo/bullet/pistol/tiny/ap
-	caliber = ".380 ACP"
+	caliber = CALIBER_380ACP
 	icon_state = "tp17"
 	max_rounds = 8
 	w_class = WEIGHT_CLASS_TINY
@@ -185,7 +185,7 @@
 /obj/item/ammo_magazine/pistol/highpower
 	name = "\improper Highpower magazine (9mm)"
 	default_ammo = /datum/ammo/bullet/pistol/ap
-	caliber = "9x19mm Parabellum"
+	caliber = CALIBER_9X19
 	icon_state = "m4a3" //PLACEHOLDER
 	max_rounds = 13
 	gun_type = /obj/item/weapon/gun/pistol/highpower
@@ -197,7 +197,7 @@
 /obj/item/ammo_magazine/pistol/vp70
 	name = "\improper 88M4 AP magazine (9mm)"
 	default_ammo = /datum/ammo/bullet/pistol/ap
-	caliber = "9x19mm Parabellum"
+	caliber = CALIBER_9X19
 	icon_state = "88m4"
 	max_rounds = 18
 	gun_type = /obj/item/weapon/gun/pistol/vp70
@@ -209,7 +209,7 @@
 /obj/item/ammo_magazine/pistol/vp78
 	name = "\improper VP78 magazine (9mm)"
 	default_ammo = /datum/ammo/bullet/pistol/squash
-	caliber = "9x19mm Parabellum"
+	caliber = CALIBER_9X19
 	icon_state = "50ae"
 	max_rounds = 18
 	gun_type = /obj/item/weapon/gun/pistol/vp78
@@ -224,7 +224,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 /obj/item/ammo_magazine/pistol/auto9
 	name = "\improper Auto-9 magazine (9mm)"
 	default_ammo = /datum/ammo/bullet/pistol/squash
-	caliber = "9x19mm Parabellum"
+	caliber = CALIBER_9X19
 	icon_state = "beretta"
 	max_rounds = 50
 	gun_type = /obj/item/weapon/gun/pistol/auto9
@@ -236,7 +236,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 /obj/item/ammo_magazine/pistol/chimp
 	name = "\improper CHIMP70 magazine (.70M)"
 	default_ammo = /datum/ammo/bullet/pistol/mankey
-	caliber = ".70 Mankey"
+	caliber = CALIBER_70MANKEY
 	icon_state = "c70"
 	max_rounds = 300
 	gun_type = /obj/item/weapon/gun/pistol/chimp

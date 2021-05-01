@@ -19,7 +19,7 @@ They're all essentially identical when it comes to getting the job done.
 	throw_range = 6
 	var/default_ammo = /datum/ammo/bullet
 	var/overcharge_ammo = /datum/ammo/bullet //Generally used for energy weapons
-	var/caliber = null // This is used for matching handfuls to each other or whatever the mag is. Examples are" "12g" ".44" ".357" etc.
+	var/caliber = null // This is used for matching handfuls to each other or whatever the mag is. Calibers in _DEFINES/caliber.dm.
 	var/current_rounds = -1 //Set this to something else for it not to start with different initial counts.
 	var/max_rounds = 7 //How many rounds can it hold?
 	var/gun_type = null //Path of the gun that it fits. Mags will fit any of the parent guns as well, so make sure you want this.
@@ -127,7 +127,7 @@ They're all essentially identical when it comes to getting the job done.
 		return
 
 	var/obj/item/ammo_magazine/handful/new_handful = new /obj/item/ammo_magazine/handful()
-	var/MR = (caliber in list("12g", "7.62x54mmR", ".410")) ? 5 : 8
+	var/MR = (caliber in list(CALIBER_12G, CALIBER_762X54, CALIBER_410)) ? 5 : 8
 	R = transfer_amount ? min(current_rounds, transfer_amount) : min(current_rounds, MR)
 	new_handful.generate_handful(default_ammo, caliber, MR, R, gun_type)
 	current_rounds -= R
@@ -221,9 +221,9 @@ If it is the same and the other stack isn't full, transfer an amount (default 1)
 
 	name = "handful of [ammo_name + (ammo_name == "shotgun buckshot"? " ":"s ") + "([new_caliber])"]"
 	switch(new_caliber)
-		if("12g",".410")
+		if(CALIBER_12G, CALIBER_410)
 			icon_state = ammo_name
-		if("7.62x54mmR")
+		if(CALIBER_762X54)
 			icon_state = "mosin bullet"
 		else
 			icon_state = "bullet"
@@ -242,7 +242,7 @@ If it is the same and the other stack isn't full, transfer an amount (default 1)
 	icon_state = "shotgun buckshot shell"
 	current_rounds = 5
 	default_ammo = /datum/ammo/bullet/shotgun/buckshot
-	caliber = "12g"
+	caliber = CALIBER_12G
 
 //----------------------------------------------------------------//
 
@@ -325,7 +325,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	var/default_ammo = /datum/ammo/bullet/rifle
 	var/bullet_amount = 800
 	var/max_bullet_amount = 800
-	var/caliber = "10x24mm caseless"
+	var/caliber = CALIBER_10X24_CASELESS
 
 /obj/item/big_ammo_box/update_icon()
 	if(bullet_amount) icon_state = base_icon_state
@@ -509,7 +509,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	var/max_rounds = 200
 	var/ammo_type = /datum/ammo/bullet/shotgun/slug
 	var/deployed = FALSE
-	var/caliber = "12g"
+	var/caliber = CALIBER_12G
 
 
 /obj/item/shotgunbox/update_icon()
@@ -603,7 +603,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 
 /obj/item/big_ammo_box/smg
 	name = "big ammo box (10x20mm)"
-	caliber = "10x20mm"
+	caliber = CALIBER_10X20
 	icon_state = "big_ammo_box_m25"
 	base_icon_state = "big_ammo_box_m25"
 	default_ammo = /datum/ammo/bullet/smg

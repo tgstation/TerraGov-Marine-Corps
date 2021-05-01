@@ -285,6 +285,8 @@
 
 
 /obj/item/reagent_containers/hypospray/advanced/oxycodone
+	name = "oxycodone hypospray"
+	desc = "A hypospray loaded with oxycodone."
 	list_reagents = list(/datum/reagent/medicine/oxycodone = 60)
 
 /obj/item/reagent_containers/hypospray/advanced/combat
@@ -302,7 +304,7 @@
 	list_reagents = list(
 		/datum/reagent/medicine/meralyne = 20,
 		/datum/reagent/medicine/dermaline = 20,
-		/datum/reagent/medicine/oxycodone = 20,
+		/datum/reagent/medicine/tramadol = 20,
 	)
 
 /obj/item/reagent_containers/hypospray/advanced/meraderm
