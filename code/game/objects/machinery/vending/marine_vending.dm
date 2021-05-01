@@ -37,11 +37,11 @@
 		/obj/item/ammo_magazine/rifle/standard_br = 25,
 		/obj/item/weapon/gun/rifle/chambered = 20,
 		/obj/item/ammo_magazine/rifle/chamberedrifle = 20,
-		/obj/item/weapon/gun/energy/lasgun/standard_marine_rifle = 10,
-		/obj/item/weapon/gun/energy/lasgun/standard_marine_sniper = 10,
-		/obj/item/weapon/gun/energy/lasgun/standard_marine_carbine = 10,
-		/obj/item/weapon/gun/energy/lasgun/standard_marine_mlaser = 10,
-		/obj/item/weapon/gun/energy/lasgun/standard_marine_pistol = 10,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle = 10,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_sniper = 10,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine = 10,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser = 10,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol = 10,
 		/obj/item/cell/lasgun/marine = 125,
 		/obj/item/weapon/gun/shotgun/pump/t35 = 10,
 		/obj/item/weapon/gun/shotgun/combat/standardmarine = 10,
@@ -92,11 +92,11 @@
 			/obj/item/ammo_magazine/rifle/tx11 = 1000,
 		),
 		"Energy Weapons" = list(
-			/obj/item/weapon/gun/energy/lasgun/standard_marine_rifle = 250,
-			/obj/item/weapon/gun/energy/lasgun/standard_marine_sniper = 200,
-			/obj/item/weapon/gun/energy/lasgun/standard_marine_carbine = 250,
-			/obj/item/weapon/gun/energy/lasgun/standard_marine_mlaser = 200,
-			/obj/item/weapon/gun/energy/lasgun/standard_marine_pistol = 250,
+			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle = 250,
+			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_sniper = 200,
+			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine = 250,
+			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser = 200,
+			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol = 250,
 			/obj/item/cell/lasgun/marine = 1000,
 		),
 		"SMGs" = list(
@@ -229,10 +229,10 @@
 		/obj/item/ammo_magazine/rifle/standard_assaultrifle = 25,
 		/obj/item/weapon/gun/rifle/standard_br = 2,
 		/obj/item/ammo_magazine/rifle/standard_br = 10,
-		/obj/item/weapon/gun/energy/lasgun/standard_marine_rifle = 10,
-		/obj/item/weapon/gun/energy/lasgun/standard_marine_carbine = 10,
-		/obj/item/weapon/gun/energy/lasgun/standard_marine_mlaser = 10,
-		/obj/item/weapon/gun/energy/lasgun/standard_marine_pistol = 10,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle = 10,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine = 10,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser = 10,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol = 10,
 		/obj/item/cell/lasgun/marine = 125,
 		/obj/item/explosive/grenade/frag = 15,
 		/obj/item/attachable/bayonetknife = 20,
@@ -316,10 +316,10 @@
 		/obj/item/weapon/gun/rifle/standard_gpmg = 1,
 		/obj/item/weapon/gun/rifle/standard_dmr = 1,
 		/obj/item/weapon/gun/rifle/standard_br = 2,
-		/obj/item/weapon/gun/energy/lasgun/standard_marine_rifle = 10,
-		/obj/item/weapon/gun/energy/lasgun/standard_marine_carbine = 10,
-		/obj/item/weapon/gun/energy/lasgun/standard_marine_mlaser = 10,
-		/obj/item/weapon/gun/energy/lasgun/standard_marine_pistol = 10,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle = 10,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine = 10,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser = 10,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol = 10,
 		/obj/item/weapon/gun/pistol/plasma_pistol = 10,
 		/obj/item/weapon/gun/shotgun/pump/t35 = 2,
 		/obj/item/weapon/gun/rifle/standard_autoshotgun = 1,
@@ -428,7 +428,7 @@
 	//More accurate comparison between absolute paths.
 	for(var/datum/vending_product/R AS in (product_records + hidden_records + coin_records ))
 		if(item_to_stock.type == R.product_path && !istype(item_to_stock,/obj/item/storage)) //Nice try, specialists/engis
-			if(istype(item_to_stock, /obj/item/cell/lasgun/marine) && recharge)
+			if(istype(item_to_stock, /obj/item/cell/lasgun) && recharge)
 				if(!recharge_lasguncell(item_to_stock, user))
 					return //Can't recharge so cancel out
 
