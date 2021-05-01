@@ -4,6 +4,7 @@
 	var/votable = TRUE
 	var/probability = 0
 	var/required_players = 0
+	var/maximum_players = INFINITY
 	var/squads_max_number = 4
 
 	var/round_finished
