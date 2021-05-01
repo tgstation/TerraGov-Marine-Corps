@@ -9,11 +9,11 @@
 
 /datum/action/innate/order/give_action(mob/M)
 	. = ..()
-	RegisterSignal(M, COMSIG_ORDER_UPDATED, .proc/update_button_icon)
+	RegisterSignal(M, COMSIG_ORDER_SENT, .proc/update_button_icon)
 
 /datum/action/innate/order/remove_action(mob/M)
 	. = ..()
-	UnregisterSignal(M, COMSIG_ORDER_UPDATED)
+	UnregisterSignal(M, COMSIG_ORDER_SENT)
 
 /datum/action/innate/order/Activate()
 	active = TRUE
@@ -47,7 +47,7 @@
 		target = get_turf(target)
 		new visual_type(target)
 	TIMER_COOLDOWN_START(owner, COOLDOWN_CIC_ORDERS, ORDER_COOLDOWN)
-	SEND_SIGNAL(owner, COMSIG_ORDER_UPDATED)
+	SEND_SIGNAL(owner, COMSIG_ORDER_SENT)
 	addtimer(CALLBACK(owner, /mob/proc/update_all_icons_orders), ORDER_COOLDOWN)
 	var/datum/atom_hud/squad/squad_hud = GLOB.huds[DATA_HUD_SQUAD]
 	var/list/final_list = squad_hud.hudusers
@@ -63,8 +63,10 @@
 	return TRUE
 
 ///Wrapper proc to update all icons of orders action of the mob
-mob/proc/update_all_icons_orders()
-	SEND_SIGNAL(src, COMSIG_ORDER_UPDATED)
+/mob/proc/update_all_icons_orders()
+	for(var/datum/action/action AS in actions)
+		if(istype(action, /datum/action/innate/order))
+			action.update_button_icon()
 
 ///Send a message and a sound to the marine if he is on the same z level as the turf
 /datum/action/innate/order/proc/notify_marine(mob/living/marine, atom/target) ///Send an order to that specific marine if it's on the right z level
