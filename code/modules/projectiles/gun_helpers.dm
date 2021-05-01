@@ -384,7 +384,7 @@ should be alright.
 		attachable_overlays[slot] = null
 		return
 	var/item_icon = attachie.icon_state
-	if(A.attach_icon)
+	if(attachie.attach_icon)
 		item_icon = attachie.attach_icon
 	overlay = image(attachie.icon, src, item_icon)
 	overlay.pixel_x = attachable_offset["[slot]_x"] - attachie.pixel_shift_x
