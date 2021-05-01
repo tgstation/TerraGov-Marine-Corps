@@ -470,6 +470,7 @@
 	can_hold = list(
 		/obj/item/weapon/gun/pistol,
 		/obj/item/weapon/gun/revolver,
+		/obj/item/weapon/gun/smg/standard_machinepistol,
 	)
 
 /obj/item/clothing/tie/storage/holster/armpit
