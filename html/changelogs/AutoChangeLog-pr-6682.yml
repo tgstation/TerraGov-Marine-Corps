@@ -1,5 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - qol: "CIC orders icons are now red when the order is on cooldown"
-  - balance: "Cooldown of orders is now 30 seconds"
