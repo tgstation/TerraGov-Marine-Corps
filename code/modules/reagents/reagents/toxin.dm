@@ -500,7 +500,7 @@
 	description = "A metabolic accelerant that dramatically increases the rate of larval growth in a host."
 	reagent_state = LIQUID
 	color = "#CF3600" // rgb: 207, 54, 0
-	purge_list = list(/datum/reagent/toxin/xeno_neurotoxin, /datum/reagent/medicine)
+	purge_list = list(/datum/reagent/medicine)
 	purge_rate = 3
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL

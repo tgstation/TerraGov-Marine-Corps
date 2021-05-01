@@ -45,11 +45,15 @@
 	aura_strength = 2 //The Shrike's aura is decent.
 	aura_allowed = list("frenzy", "warding", "recovery")
 
+	minimap_icon = "xenoshrike"
+
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/activable/psydrain,
+		/datum/action/xeno_action/activable/headbite,
 		/datum/action/xeno_action/activable/devour,
+		/datum/action/xeno_action/activable/cocoon,
 		/datum/action/xeno_action/plant_weeds,
 		/datum/action/xeno_action/lay_egg,
 		/datum/action/xeno_action/activable/larval_growth_sting,
@@ -57,6 +61,7 @@
 		/datum/action/xeno_action/activable/secrete_resin,
 		/datum/action/xeno_action/activable/build_silo,
 		/datum/action/xeno_action/activable/build_resin_maw,
+		/datum/action/xeno_action/activable/build_hunt_den,
 		/datum/action/xeno_action/activable/build_turret,
 		/datum/action/xeno_action/place_acidwell,
 		/datum/action/xeno_action/activable/corrosive_acid,

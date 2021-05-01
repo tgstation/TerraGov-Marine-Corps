@@ -240,169 +240,6 @@
 	desc = "An armband, worn by the crew to display which department they're assigned to. This one is white and green."
 	icon_state = "medgreen"
 
-
-
-
-//holsters
-/obj/item/clothing/tie/holster
-	name = "shoulder holster"
-	desc = "A handgun holster."
-	icon_state = "holster"
-	var/obj/item/weapon/gun/holstered = null
-
-/obj/item/clothing/tie/holster/Destroy()
-	if(holstered)
-		qdel(holstered)
-		holstered = null
-	. = ..()
-
-//subtypes can override this to specify what can be holstered
-/obj/item/clothing/tie/holster/proc/can_holster(obj/item/weapon/gun/W)
-	if(W.w_class <= 3) return 1
-	return 0
-
-/obj/item/clothing/tie/holster/proc/holster(obj/item/I, mob/user as mob)
-	if(holstered)
-		to_chat(user, "<span class='warning'>There is already a [holstered] holstered here!</span>")
-		return
-
-	if (!istype(I, /obj/item/weapon/gun))
-		to_chat(user, "<span class='warning'>Only guns can be holstered!</span>")
-		return
-
-	var/obj/item/weapon/gun/W = I
-	if (!can_holster(W))
-		to_chat(user, "<span class='warning'>This [W] won't fit in the [src]!</span>")
-		return
-
-	holstered = W
-	user.transferItemToLoc(holstered, src)
-	user.visible_message("<span class='notice'> [user] holsters the [holstered].</span>", "You holster the [holstered].")
-
-/obj/item/clothing/tie/holster/proc/unholster(mob/user as mob)
-	if(!holstered)
-		return FALSE
-
-	if(user.get_active_held_item() && user.get_inactive_held_item())
-		to_chat(user, "<span class='warning'>You need an empty hand to draw the [holstered]!</span>")
-		return FALSE
-	else
-		if(user.a_intent == INTENT_HARM)
-			usr.visible_message("<span class='danger'>[user] draws the [holstered], ready to shoot!</span>", \
-			"<span class='danger'>You draw [holstered], ready to shoot!</span>")
-		else
-			user.visible_message("<span class='notice'>[user] draws the [holstered], pointing it at the ground.</span>", \
-			"<span class='notice'>You draw the [holstered], pointing it at the ground.</span>")
-		user.put_in_hands(holstered)
-		holstered = null
-		return TRUE
-
-/obj/item/clothing/tie/holster/attack_hand(mob/living/user)
-	if (has_suit)	//if we are part of a suit
-		if (holstered)
-			unholster(user)
-		return
-
-	return ..()
-
-/obj/item/clothing/tie/holster/attackby(obj/item/I, mob/user, params)
-	holster(I, user)
-
-/obj/item/clothing/tie/holster/emp_act(severity)
-	if (holstered)
-		holstered.emp_act(severity)
-	..()
-
-/obj/item/clothing/tie/holster/examine(mob/user)
-	..()
-	if (holstered)
-		to_chat(user, "A [holstered] is holstered here.")
-	else
-		to_chat(user, "It is empty.")
-
-/obj/item/clothing/tie/holster/on_attached(obj/item/clothing/under/S, mob/user as mob)
-	..()
-	has_suit.verbs += /obj/item/clothing/tie/holster/verb/holster_verb
-
-/obj/item/clothing/tie/holster/on_removed()
-	has_suit.verbs -= /obj/item/clothing/tie/holster/verb/holster_verb
-	..()
-
-/obj/item/clothing/tie/holster/verb/holster_verb()
-	set name = "Holster"
-	set category = "Object"
-	set src in usr
-	if(!isliving(usr))
-		return
-	if(usr.stat) return
-
-	var/obj/item/clothing/tie/holster/H = null
-	if (istype(src, /obj/item/clothing/tie/holster))
-		H = src
-	else if (istype(src, /obj/item/clothing/under))
-		var/obj/item/clothing/under/S = src
-		if (S.hastie)
-			H = S.hastie
-
-	if (!H)
-		to_chat(usr, "/red Something is very wrong.")
-
-	if(!H.holstered)
-		if(!istype(usr.get_active_held_item(), /obj/item/weapon/gun))
-			to_chat(usr, "<span class='notice'>You need your gun equiped to holster it.</span>")
-			return
-		var/obj/item/weapon/gun/W = usr.get_active_held_item()
-		H.holster(W, usr)
-	else
-		H.unholster(usr)
-
-
-//For the holster hotkey
-/mob/living/carbon/human/proc/do_holster()
-	SIGNAL_HANDLER
-	. = COMSIG_KB_ACTIVATED //The return value must be a flag compatible with the signals triggering this.
-
-	if(incapacitated() || lying_angle)
-		return
-
-	if(!istype(w_uniform, /obj/item/clothing/under))
-		return
-
-	var/obj/item/clothing/under/S = w_uniform
-
-	if(!istype(S.hastie, /obj/item/clothing/tie/holster))
-		return
-
-	var/obj/item/clothing/tie/holster/H = S.hastie
-
-	if(!H.holstered)
-		var/obj/item/weapon/gun/G = get_active_held_item()
-		if(!istype(G))
-			return
-		H.holster(G, src)
-	else
-		H.unholster(src)
-
-
-/obj/item/clothing/tie/holster/rt3/Initialize()
-	. = ..()
-	holstered = new /obj/item/weapon/gun/pistol/rt3(src)
-
-/obj/item/clothing/tie/holster/armpit
-	name = "shoulder holster"
-	desc = "A worn-out handgun holster. Perfect for concealed carry"
-	icon_state = "holster"
-
-/obj/item/clothing/tie/holster/waist
-	name = "shoulder holster"
-	desc = "A handgun holster. Made of expensive leather."
-	icon_state = "holster"
-	item_state = "holster_low"
-
-
-
-
-
 //Ties that can store stuff
 
 /obj/item/clothing/tie/storage
@@ -558,6 +395,7 @@
 		/obj/item/tool/surgery,
 		/obj/item/stack/nanopaste,
 		/obj/item/stack/medical/advanced/bruise_pack,
+		/obj/item/tweezers,
 	)
 
 /obj/item/storage/internal/tie/white_vest/surgery/Initialize()
@@ -595,6 +433,7 @@
 		/obj/item/bodybag,
 		/obj/item/roller,
 		/obj/item/clothing/glasses/hud/health,
+		/obj/item/tweezers,
 	)
 
 /obj/item/clothing/tie/storage/knifeharness
@@ -619,7 +458,30 @@
 	new /obj/item/weapon/unathiknife(hold)
 	new /obj/item/weapon/unathiknife(hold)
 
+/obj/item/clothing/tie/storage/holster
+	name = "shoulder holster"
+	desc = "A handgun holster"
+	icon_state = "holster"
+	hold = /obj/item/storage/internal/tie/holster
 
+/obj/item/storage/internal/tie/holster
+	storage_slots = 1
+	max_w_class = WEIGHT_CLASS_BULKY
+	can_hold = list(
+		/obj/item/weapon/gun/pistol,
+		/obj/item/weapon/gun/revolver,
+	)
+
+/obj/item/clothing/tie/storage/holster/armpit
+	name = "shoulder holster"
+	desc = "A worn-out handgun holster. Perfect for concealed carry"
+	icon_state = "holster"
+
+/obj/item/clothing/tie/storage/holster/waist
+	name = "shoulder holster"
+	desc = "A handgun holster. Made of expensive leather."
+	icon_state = "holster"
+	item_state = "holster_low"
 
 
 

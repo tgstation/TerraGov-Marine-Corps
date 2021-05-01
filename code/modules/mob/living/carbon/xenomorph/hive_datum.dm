@@ -322,9 +322,8 @@
 		X.remove_rally_hive_ability()
 
 /datum/hive_status/proc/update_leader_pheromones() // helper function to easily trigger an update of leader pheromones
-	for(var/i in xeno_leader_list)
-		var/mob/living/carbon/xenomorph/X = i
-		X.handle_xeno_leader_pheromones(living_xeno_queen)
+	for(var/mob/living/carbon/xenomorph/leader AS in xeno_leader_list)
+		leader.handle_xeno_leader_pheromones(living_xeno_queen)
 
 // ***************************************
 // *********** Status changes
@@ -471,7 +470,7 @@
 	living_xeno_queen = null
 	if(!xeno_queen_timer)
 		xeno_queen_timer = addtimer(CALLBACK(src, .proc/end_queen_death_timer), QUEEN_DEATH_TIMER, TIMER_STOPPABLE)
-
+	update_leader_pheromones()
 
 /mob/living/carbon/xenomorph/larva/proc/burrow()
 	if(ckey && client)
@@ -553,9 +552,11 @@ to_chat will check for valid clients itself already so no need to double check f
 
 
 /datum/hive_status/normal/handle_ruler_timer()
-	if(!isdistress(SSticker.mode))
+	if(!isinfestationgamemode(SSticker.mode)) //Check just need for unit test
 		return
-	var/datum/game_mode/infestation/distress/D = SSticker.mode
+	if(!SSticker.mode?.flags_round_type & MODE_XENO_RULER)
+		return
+	var/datum/game_mode/infestation/D = SSticker.mode
 
 	if(living_xeno_ruler)
 		if(D.orphan_hive_timer)
@@ -613,6 +614,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	if(!isnewplayer(xeno_candidate) && XENODEATHTIME_CHECK(xeno_candidate))
 		if(check_other_rights(xeno_candidate.client, R_ADMIN, FALSE))
 			if(tgui_alert(xeno_candidate, "You wouldn't normally qualify for this respawn. Are you sure you want to bypass it with your admin powers?", "Bypass Respawn", list("Yes", "No")) != "Yes")
+				log_admin("[key_name(xeno_candidate)] used his admin power to bypass respawn before his timer was over")
 				XENODEATHTIME_MESSAGE(xeno_candidate)
 				return FALSE
 		else
@@ -641,6 +643,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	if(!isnewplayer(xeno_candidate) && XENODEATHTIME_CHECK(xeno_candidate))
 		if(check_other_rights(xeno_candidate.client, R_ADMIN, FALSE))
 			if(tgui_alert(xeno_candidate, "You wouldn't normally qualify for this respawn. Are you sure you want to bypass it with your admin powers?", "Bypass Respawn", list("Yes", "No")) != "Yes")
+				log_admin("[key_name(xeno_candidate)] used his admin power to bypass respawn before his timer was over")
 				XENODEATHTIME_MESSAGE(xeno_candidate)
 				return FALSE
 		else
@@ -728,7 +731,8 @@ to_chat will check for valid clients itself already so no need to double check f
 		if(xeno_job.total_positions < (-difference + xeno_job.current_positions))
 			xeno_job.set_job_positions(-difference + xeno_job.current_positions)
 
-	SSpoints.xeno_points_by_hive[hivenumber] = SILO_PRICE + XENO_TURRET_PRICE //Give a free silo when going shipside and a turret
+	if(SSticker.mode?.flags_round_type & MODE_PSY_POINTS)
+		SSpoints.xeno_points_by_hive[hivenumber] = SILO_PRICE + XENO_TURRET_PRICE //Give a free silo when going shipside and a turret
 
 	var/list/living_player_list = SSticker.mode.count_humans_and_xenos(count_flags = COUNT_IGNORE_HUMAN_SSD)
 	var/num_humans = living_player_list[1]
@@ -1082,6 +1086,8 @@ to_chat will check for valid clients itself already so no need to double check f
 	.["abilities"] = list()
 	for(var/ability in xeno.xeno_caste.actions)
 		var/datum/action/xeno_action/xeno_ability = ability
+		if(!(SSticker.mode.flags_xeno_abilities & initial(xeno_ability.gamemode_flags)))
+			continue
 		.["abilities"]["[ability]"] = list(
 			"name" = initial(xeno_ability.name),
 			"desc" = initial(xeno_ability.mechanics_text),
@@ -1094,6 +1100,8 @@ to_chat will check for valid clients itself already so no need to double check f
 		var/list/caste_data = list("type_path" = caste.caste_type_path, "name" = caste.display_name, "abilities" = list())
 		for(var/ability in caste.actions)
 			var/datum/action/xeno_action/xeno_ability = ability
+			if(!(SSticker.mode.flags_xeno_abilities & initial(xeno_ability.gamemode_flags)))
+				continue
 			caste_data["abilities"]["[ability]"] = list(
 				"name" = initial(xeno_ability.name),
 				"desc" = initial(xeno_ability.mechanics_text),
@@ -1145,12 +1153,12 @@ to_chat will check for valid clients itself already so no need to double check f
 	return
 
 /datum/hive_status/normal/handle_silo_death_timer()
-	if(!isdistress(SSticker.mode))
+	if(!isdistressgamemode(SSticker.mode))
 		return
 	if(world.time < MINIMUM_TIME_SILO_LESS_COLLAPSE)
 		return
 	var/datum/game_mode/infestation/distress/D = SSticker.mode
-	if(D.round_stage != DISTRESS_MARINE_DEPLOYMENT)
+	if(D.round_stage != INFESTATION_MARINE_DEPLOYMENT)
 		if(D?.siloless_hive_timer)
 			deltimer(D.siloless_hive_timer)
 			D.siloless_hive_timer = null

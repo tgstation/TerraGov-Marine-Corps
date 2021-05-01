@@ -173,7 +173,7 @@ SUBSYSTEM_DEF(vote)
 	return vote
 
 /// Start the vote, and prepare the choices to send to everyone
-/datum/controller/subsystem/vote/proc/initiate_vote(vote_type, initiator_key)
+/datum/controller/subsystem/vote/proc/initiate_vote(vote_type, initiator_key, ignore_delay = FALSE)
 	//Server is still intializing.
 	if(!Master.current_runlevel)
 		to_chat(usr, "<span class='warning'>Cannot start vote, server is not done initializing.</span>")
@@ -185,7 +185,7 @@ SUBSYSTEM_DEF(vote)
 			lower_admin = TRUE
 
 	if(!mode)
-		if(started_time)
+		if(started_time && !ignore_delay)
 			var/next_allowed_time = (started_time + CONFIG_GET(number/vote_delay))
 			if(mode)
 				to_chat(usr, "<span class='warning'>There is already a vote in progress! please wait for it to finish.</span>")
@@ -206,6 +206,8 @@ SUBSYSTEM_DEF(vote)
 					return FALSE
 				var/list/maps = list()
 				for(var/map in config.maplist[GROUND_MAP])
+					if(!config.maplist)
+						return
 					var/datum/map_config/VM = config.maplist[GROUND_MAP][map]
 					if(!VM.voteweight)
 						continue
@@ -225,6 +227,8 @@ SUBSYSTEM_DEF(vote)
 					return FALSE
 				var/list/maps = list()
 				for(var/map in config.maplist[SHIP_MAP])
+					if(!config.maplist)
+						return
 					var/datum/map_config/VM = config.maplist[SHIP_MAP][map]
 					if(!VM.voteweight)
 						continue
@@ -278,8 +282,9 @@ SUBSYSTEM_DEF(vote)
 
 ///Starts the automatic map vote at the end of each round
 /datum/controller/subsystem/vote/proc/automatic_vote()
-	initiate_vote("groundmap")
-	addtimer(CALLBACK(src, .proc/initiate_vote, "shipmap"), 70 SECONDS)
+	initiate_vote("groundmap", null, TRUE)
+	addtimer(CALLBACK(src, .proc/initiate_vote, "shipmap", null, TRUE), CONFIG_GET(number/vote_period) + 3 SECONDS)
+	addtimer(CALLBACK(src, .proc/initiate_vote, "gamemode", null, TRUE), CONFIG_GET(number/vote_period) * 2 + 6 SECONDS)
 
 /datum/controller/subsystem/vote/ui_state()
 	return GLOB.always_state

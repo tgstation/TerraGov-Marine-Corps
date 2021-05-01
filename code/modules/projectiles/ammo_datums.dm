@@ -525,6 +525,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	accurate_range_min = 0
 	accurate_range = 30
+	max_range = 40
 	damage = 65
 	scatter = -15
 	penetration = 15
@@ -1215,7 +1216,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 15
 	accurate_range = 10
 	bullet_color = COLOR_VIVID_YELLOW
-	
 /datum/ammo/energy/taser/on_hit_mob(mob/M,obj/projectile/P)
 	staggerstun(M, P, stun = 10)
 
@@ -1361,6 +1361,39 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 30
 	accuracy_var_low = 3
 	accuracy_var_high = 3
+
+/datum/ammo/energy/plasma_pistol
+	name = "ionized plasma bolt"
+	icon_state = "overchargedlaser"
+	hud_state = "laser_sniper"
+	damage = 40
+	max_range = 40
+	penetration = 5
+	shell_speed = 1.5
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_EXPLOSIVE
+	bullet_color = COLOR_VIBRANT_LIME
+
+	///Fire burn time
+	var/heat = 12 
+	///Fire damage
+	var/burn_damage = 9
+	///Fire color
+	var/fire_color = "green" 
+
+/datum/ammo/energy/plasma_pistol/on_hit_turf(turf/T, obj/projectile/proj)
+	T.ignite(heat, burn_damage, fire_color)
+
+/datum/ammo/energy/plasma_pistol/on_hit_mob(mob/M, obj/projectile/proj)
+	var/turf/T = get_turf(M)
+	if(!T)
+		T = get_turf(proj)
+	T.ignite(heat, burn_damage, fire_color)
+
+/datum/ammo/energy/plasma_pistol/on_hit_obj(obj/O, obj/projectile/proj)
+	var/turf/T = get_turf(O)
+	if(!T)
+		T = get_turf(proj)
+	T.ignite(heat, burn_damage, fire_color)
 
 /*
 //================================================

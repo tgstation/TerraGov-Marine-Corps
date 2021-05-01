@@ -132,31 +132,36 @@ OPERATIONS
 	name = "Cluster orbital warhead"
 	contains = list(/obj/structure/ob_ammo/warhead/cluster)
 	cost = 20
-	containertype = null
+	access = ACCESS_MARINE_ENGINEERING
+	containertype = /obj/structure/closet/crate/secure/explosives
 
 /datum/supply_packs/operations/warhead_explosive
 	name = "HE orbital warhead"
 	contains = list(/obj/structure/ob_ammo/warhead/explosive)
 	cost = 30
-	containertype = null
+	access = ACCESS_MARINE_ENGINEERING
+	containertype = /obj/structure/closet/crate/secure/explosives
 
 /datum/supply_packs/operations/warhead_incendiary
 	name = "Incendiary orbital warhead"
 	contains = list(/obj/structure/ob_ammo/warhead/incendiary)
 	cost = 20
-	containertype = null
+	access = ACCESS_MARINE_ENGINEERING
+	containertype = /obj/structure/closet/crate/secure/explosives
 
 /datum/supply_packs/operations/warhead_plasmaloss
 	name = "Plasma draining orbital warhead"
 	contains = list(/obj/structure/ob_ammo/warhead/plasmaloss)
 	cost = 15
-	containertype = null
+	access = ACCESS_MARINE_ENGINEERING
+	containertype = /obj/structure/closet/crate/secure/explosives
 
 /datum/supply_packs/operations/ob_fuel
 	name = "Solid fuel"
 	contains = list(/obj/structure/ob_ammo/ob_fuel)
 	cost = 5
-	containertype = null
+	access = ACCESS_MARINE_ENGINEERING
+	containertype = /obj/structure/closet/crate/secure/explosives
 
 /datum/supply_packs/operations/cas_voucher
 	name = "100 dropship fabricator points"
@@ -951,7 +956,7 @@ CLOTHING
 	contains = list(
 		/obj/item/jetpack_marine,
 	)
-	cost = 15
+	cost = 12
 
 /*******************************************************************************
 MEDICAL
