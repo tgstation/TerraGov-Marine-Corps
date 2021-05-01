@@ -1,0 +1,4 @@
+author: "psykzz"
+delete-after: True
+changes: 
+  - bugfix: "defenders laying down while fortified"
