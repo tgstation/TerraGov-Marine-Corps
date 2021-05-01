@@ -5010,12 +5010,6 @@
 	dir = 4
 	},
 /area/sulaco/showers)
-"axI" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/freezer,
-/area/sulaco/showers)
 "axN" = (
 /obj/structure/sign/directions/evac,
 /turf/open/floor/prison/red{
@@ -11455,7 +11449,6 @@
 /turf/open/floor/wood,
 /area/mainship/living/basketball)
 "dyO" = (
-/obj/machinery/light,
 /obj/machinery/camera/autoname{
 	dir = 1
 	},
@@ -11667,6 +11660,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 8
 	},
+/obj/machinery/light,
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "dTS" = (
@@ -22242,13 +22236,6 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor/prison,
 /area/sulaco/marine)
-"xOM" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/marine_selector/clothes/leader,
-/turf/open/floor/prison,
-/area/sulaco/marine)
 "xPc" = (
 /obj/structure/table/mainship,
 /obj/machinery/light{
@@ -22326,9 +22313,6 @@
 /turf/open/floor/prison/plate,
 /area/sulaco/maintenance/upperdeck_AIcore_maint)
 "xXD" = (
-/obj/machinery/light{
-	dir = 8
-	},
 /obj/structure/table/mainship,
 /turf/open/floor/prison,
 /area/sulaco/marine)
@@ -42739,7 +42723,7 @@ abu
 aeH
 aeH
 aBJ
-axI
+akZ
 dyO
 aBJ
 aeH
@@ -42756,7 +42740,7 @@ pjA
 wyw
 uwG
 anw
-xOM
+jUJ
 aMp
 xJd
 cAK
@@ -43016,7 +43000,7 @@ oEw
 aLC
 aMq
 aNX
-xJd
+rvr
 aLf
 ang
 wMn
