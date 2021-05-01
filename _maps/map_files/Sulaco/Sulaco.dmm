@@ -333,13 +333,7 @@
 	},
 /area/sulaco/medbay/west)
 "abc" = (
-/obj/machinery/holopad{
-	active_power_usage = 60;
-	desc = "It's a floor-mounted device for projecting holographic images. This one appears to have a smaller lense";
-	holo_range = 3;
-	idle_power_usage = 3;
-	name = "modifed holopad"
-	},
+/obj/machinery/holopad,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters)
 "abe" = (
@@ -980,13 +974,7 @@
 	},
 /area/sulaco/medbay/surgery_one)
 "ada" = (
-/obj/machinery/holopad{
-	active_power_usage = 60;
-	desc = "It's a floor-mounted device for projecting holographic images. This one appears to have a smaller lense";
-	holo_range = 3;
-	idle_power_usage = 3;
-	name = "modifed holopad"
-	},
+/obj/machinery/holopad,
 /turf/open/floor/prison,
 /area/mainship/shipboard/weapon_room)
 "adb" = (
@@ -7240,13 +7228,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/obj/machinery/holopad{
-	active_power_usage = 60;
-	desc = "It's a floor-mounted device for projecting holographic images. This one appears to have a smaller lense";
-	holo_range = 3;
-	idle_power_usage = 3;
-	name = "modifed holopad"
-	},
+/obj/machinery/holopad,
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cryosleep)
 "aJo" = (
@@ -8699,13 +8681,7 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 5
 	},
-/obj/machinery/holopad{
-	active_power_usage = 60;
-	desc = "It's a floor-mounted device for projecting holographic images. This one appears to have a smaller lense";
-	holo_range = 3;
-	idle_power_usage = 3;
-	name = "modifed holopad"
-	},
+/obj/machinery/holopad,
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/medbay/hangar)
 "aRP" = (
@@ -9920,13 +9896,7 @@
 /turf/closed/wall/mainship/gray/outer,
 /area/sulaco/cargo)
 "baW" = (
-/obj/machinery/holopad{
-	active_power_usage = 60;
-	desc = "It's a floor-mounted device for projecting holographic images. This one appears to have a smaller lense";
-	holo_range = 3;
-	idle_power_usage = 3;
-	name = "modifed holopad"
-	},
+/obj/machinery/holopad,
 /turf/open/floor/prison,
 /area/sulaco/telecomms/office)
 "bbd" = (
@@ -10284,13 +10254,7 @@
 /turf/open/floor/prison/plate,
 /area/sulaco/cargo)
 "bgd" = (
-/obj/machinery/holopad{
-	active_power_usage = 60;
-	desc = "It's a floor-mounted device for projecting holographic images. This one appears to have a smaller lense";
-	holo_range = 3;
-	idle_power_usage = 3;
-	name = "modifed holopad"
-	},
+/obj/machinery/holopad,
 /turf/open/floor/prison/red/full,
 /area/sulaco/hangar/one)
 "bgH" = (
@@ -10826,6 +10790,7 @@
 	},
 /obj/item/stack/sheet/mineral/phoron/medium_stack,
 /obj/item/stack/sheet/mineral/phoron/medium_stack,
+/obj/item/stack/sheet/mineral/phoron/medium_stack,
 /obj/machinery/door_control/unmeltable{
 	id = "prepblasteast";
 	name = "Dropship Prep door control";
@@ -11098,13 +11063,6 @@
 	},
 /obj/machinery/camera/autoname{
 	dir = 4
-	},
-/obj/machinery/holopad{
-	active_power_usage = 60;
-	desc = "It's a floor-mounted device for projecting holographic images. This one appears to have a smaller lense";
-	holo_range = 3;
-	idle_power_usage = 3;
-	name = "modifed holopad"
 	},
 /turf/open/floor/prison,
 /area/sulaco/marine)
@@ -11683,13 +11641,7 @@
 	dir = 6
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/holopad{
-	active_power_usage = 60;
-	desc = "It's a floor-mounted device for projecting holographic images. This one appears to have a smaller lense";
-	holo_range = 3;
-	idle_power_usage = 3;
-	name = "modifed holopad"
-	},
+/obj/machinery/holopad,
 /turf/open/floor/plating/mainship,
 /area/sulaco/engineering/engine)
 "dRt" = (
@@ -11868,13 +11820,7 @@
 /area/space)
 "enq" = (
 /obj/structure/cable,
-/obj/machinery/holopad{
-	active_power_usage = 60;
-	desc = "It's a floor-mounted device for projecting holographic images. This one appears to have a smaller lense";
-	holo_range = 3;
-	idle_power_usage = 3;
-	name = "modifed holopad"
-	},
+/obj/machinery/holopad,
 /turf/open/floor/prison/cleanmarked,
 /area/mainship/command/self_destruct)
 "enF" = (
@@ -13978,13 +13924,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/obj/machinery/holopad{
-	active_power_usage = 60;
-	desc = "It's a floor-mounted device for projecting holographic images. This one appears to have a smaller lense";
-	holo_range = 3;
-	idle_power_usage = 3;
-	name = "modifed holopad"
-	},
+/obj/machinery/holopad,
 /turf/open/floor/carpet,
 /area/sulaco/liaison)
 "iEv" = (
@@ -17663,13 +17603,7 @@
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
 "pkJ" = (
-/obj/machinery/holopad{
-	active_power_usage = 60;
-	desc = "It's a floor-mounted device for projecting holographic images. This one appears to have a smaller lense";
-	holo_range = 3;
-	idle_power_usage = 3;
-	name = "modifed holopad"
-	},
+/obj/machinery/holopad,
 /turf/open/floor/prison,
 /area/sulaco/cargo/office)
 "plb" = (
@@ -17755,13 +17689,7 @@
 /turf/open/floor/prison,
 /area/sulaco/hallway/central_hall3)
 "pnM" = (
-/obj/machinery/holopad{
-	active_power_usage = 60;
-	desc = "It's a floor-mounted device for projecting holographic images. This one appears to have a smaller lense";
-	holo_range = 3;
-	idle_power_usage = 3;
-	name = "modifed holopad"
-	},
+/obj/machinery/holopad,
 /turf/open/floor/prison/sterilewhite,
 /area/mainship/living/starboard_garden)
 "ppl" = (
@@ -17819,13 +17747,7 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/structure/cable,
-/obj/machinery/holopad{
-	active_power_usage = 60;
-	desc = "It's a floor-mounted device for projecting holographic images. This one appears to have a smaller lense";
-	holo_range = 3;
-	idle_power_usage = 3;
-	name = "modifed holopad"
-	},
+/obj/machinery/holopad,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
@@ -21654,13 +21576,7 @@
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold/yellow/hidden,
 /obj/structure/cable,
-/obj/machinery/holopad{
-	active_power_usage = 60;
-	desc = "It's a floor-mounted device for projecting holographic images. This one appears to have a smaller lense";
-	holo_range = 3;
-	idle_power_usage = 3;
-	name = "modifed holopad"
-	},
+/obj/machinery/holopad,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/hallway/central_hall)
 "wDy" = (
@@ -21678,9 +21594,9 @@
 /area/mainship/command/self_destruct)
 "wDG" = (
 /obj/machinery/holopad{
-	active_power_usage = 160;
+	active_power_usage = 235;
 	desc = "It's a floor-mounted device for projecting holographic images. This one appears to have a significantly larger lense.";
-	holo_range = 9;
+	holo_range = 14;
 	name = "Marine Room holopad"
 	},
 /turf/open/floor/prison,
