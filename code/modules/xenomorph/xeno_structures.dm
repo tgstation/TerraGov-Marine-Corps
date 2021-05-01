@@ -88,11 +88,11 @@
 			associated_hive.handle_silo_death_timer()
 			associated_hive = null
 			notify_ghosts("\ A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!", source = get_turf(src), action = NOTIFY_JUMP)
+			playsound(loc,'sound/effects/alien_egg_burst.ogg', 75)
 
 	for(var/i in contents)
 		var/atom/movable/AM = i
 		AM.forceMove(get_step(center_turf, pick(CARDINAL_ALL_DIRS)))
-	playsound(loc,'sound/effects/alien_egg_burst.ogg', 75)
 
 	silo_area = null
 	center_turf = null

@@ -40,6 +40,8 @@
 	center_turf = get_step(src, NORTHEAST)
 	GLOB.xeno_resin_maws += src
 	START_PROCESSING(SSprocessing, src)
+	if(!locate(/obj/effect/alien/weeds) in center_turf)
+		new /obj/effect/alien/weeds/node(center_turf)
 
 /obj/structure/resin/resin_maw/Destroy()
 	. = ..()
@@ -67,7 +69,7 @@
 /obj/structure/resin/resin_maw/proc/start_digging(turf/target)
 	message_admins("A resin maw started digging at [AREACOORD(src)]!")
 	priority_announce("Warning: unusual seismic readings detected. Our data suggests that an unidentified entity is starting to burrow under the area of operations, likely affiliated by Xenomorphs. Terminate it as soon as possible.", title = "TGMC Intel Division")
-	xeno_message("A resin maw has started digging and will reach its destination in 5 minutes", "xenoannounce", hivenumber = associated_hive.hivenumber, target = src)
+	xeno_message("A resin maw has started digging and will emerge at its destination in 5 minutes", "xenoannounce", hivenumber = associated_hive.hivenumber, target = src)
 	for(var/obj/structure/resin/silo/silo AS in GLOB.xeno_resin_silos)
 		silo.destroy_silently()
 	SSpoints.xeno_points_by_hive[associated_hive.hivenumber] = 0
@@ -86,7 +88,7 @@
 
 ///Create the exit point of this resin maw
 /obj/structure/resin/resin_maw/proc/emerge(list/turf/target_turfs)
-	playsound_z(loc.z, "sound/effect/worm_roar.ogg")
+	playsound_z(loc.z, "sound/effects/maw_opening.ogg")
 	for(var/turf/target AS in target_turfs)
 		for(var/atom/to_destroy AS in target)
 			if(isliving(to_destroy))
@@ -94,7 +96,7 @@
 				to_gib.gib()
 				continue
 			qdel(to_destroy)
-	exit = new /obj/structure/resin/resin_maw(target_turfs[17])
+	exit = new /obj/structure/resin/resin_maw(target_turfs[17]) //picking the 17th turf makes the resin maw perfectly centered in the destruction zone
 	exit.tail = FALSE
 	exit.exit = src
 	update_icon()
@@ -251,7 +253,7 @@
 /datum/action/innate/leave_maw
 	name = "Leave the maw"
 	background_icon_state = "template2"
-	action_icon_state = "camera_off" //Need icon
+	action_icon_state = "evasion" //Need icon
 
 /datum/action/innate/leave_maw/Activate()
 	if(!target)
