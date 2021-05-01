@@ -66,4 +66,4 @@
 	if(fortify) // Ensure the defender isn't fortified while laid down
 		to_chat(src, "<span class='warning'>You can't do that right now.</span>")
 		return
-	..()
+	return ..()
