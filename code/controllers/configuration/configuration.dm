@@ -285,6 +285,10 @@
 				currentmode.required_players = text2num(data)
 			if("maximumplayers")
 				currentmode.maximum_players = text2num(data)
+			if("squadmaxnumber")
+				currentmode.squads_max_number = text2num(data)
+			if("deploytimelock")
+				currentmode.deploy_time_lock = text2num(data) MINUTES
 			if("endmode")
 				currentmode = null
 			else

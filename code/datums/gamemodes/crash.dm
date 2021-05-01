@@ -5,10 +5,6 @@
 	flags_landmarks = MODE_LANDMARK_SPAWN_XENO_TUNNELS|MODE_LANDMARK_SPAWN_MAP_ITEM
 	flags_xeno_abilities = ABILITY_CRASH
 
-	deploy_time_lock = 45 MINUTES
-
-	squads_max_number = 1
-
 	valid_job_types = list(
 		/datum/job/terragov/squad/standard = -1,
 		/datum/job/terragov/squad/engineer = 8,
