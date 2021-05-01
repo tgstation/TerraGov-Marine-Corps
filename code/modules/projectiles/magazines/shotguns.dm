@@ -12,7 +12,7 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 	desc = "A box filled with heavy shotgun shells. A timeless classic. 12 Gauge."
 	icon_state = "slugs"
 	default_ammo = /datum/ammo/bullet/shotgun/slug
-	caliber = "12g" //All shotgun rounds are 12g right now.
+	caliber = CALIBER_12G //All shotgun rounds are 12g right now.
 	gun_type = /obj/item/weapon/gun/shotgun
 	max_rounds = 25 // Real shotgun boxes are usually 5 or 25 rounds. This works with the new system, five handfuls.
 	w_class = WEIGHT_CLASS_BULKY // Can't throw it in your pocket, friend.
@@ -52,7 +52,7 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 	desc = "A box filled with rifle bullets."
 	icon_state = "7.62" //Thank you Alterist
 	default_ammo = /datum/ammo/bullet/sniper/svd
-	caliber = "7.62x54mmR" //Cyka Blyat
+	caliber = CALIBER_762X54 //Cyka Blyat
 	gun_type = /obj/item/weapon/gun/shotgun/pump/bolt
 	max_rounds = 20 // Real rifle boxes are usually 20 rounds. This works with the new system, four handfuls.
 	w_class = WEIGHT_CLASS_SMALL // CAN throw it in your pocket, friend.
@@ -62,7 +62,7 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 	desc = "A box filled with .410 sabot rounds."
 	icon_state = "mbx900_sabot"
 	default_ammo = /datum/ammo/bullet/shotgun/mbx900_sabot
-	caliber = ".410"
+	caliber = CALIBER_410
 	gun_type = /obj/item/weapon/gun/shotgun/pump/lever/mbx900
 	max_rounds = 25
 	w_class = WEIGHT_CLASS_NORMAL
@@ -90,7 +90,7 @@ also doesn't really matter. You can only reload them with handfuls.
 	name = "shotgun tube"
 	desc = "An internal magazine. It is not supposed to be seen or removed."
 	default_ammo = /datum/ammo/bullet/shotgun/slug
-	caliber = "12g"
+	caliber = CALIBER_12G
 	max_rounds = 8
 	chamber_closed = 0
 
@@ -105,18 +105,18 @@ also doesn't really matter. You can only reload them with handfuls.
 /obj/item/ammo_magazine/internal/shotgun/pump/bolt
 	name = "internal magazine"
 	default_ammo = /datum/ammo/bullet/sniper/svd
-	caliber = "7.62x54mmR"
+	caliber = CALIBER_762X54
 	max_rounds = 5
 
 /obj/item/ammo_magazine/internal/shotgun/pump/lever
 	name = "tubular magazine"
 	default_ammo = /datum/ammo/bullet/revolver
-	caliber = ".44"
+	caliber = CALIBER_44
 	max_rounds = 10
 
 /obj/item/ammo_magazine/internal/shotgun/pump/lever/mbx900
 	default_ammo = /datum/ammo/bullet/shotgun/mbx900_buckshot
-	caliber = ".410"
+	caliber = CALIBER_410
 	current_rounds = 0
 
 /obj/item/ammo_magazine/internal/shotgun/double
