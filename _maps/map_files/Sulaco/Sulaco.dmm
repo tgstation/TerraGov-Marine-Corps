@@ -2398,9 +2398,6 @@
 /area/sulaco/showers)
 "alh" = (
 /obj/structure/table/mainship,
-<<<<<<< HEAD
-/obj/machinery/door_control/mainship/req,
-=======
 /obj/machinery/door_control/mainship/req{
 	pixel_x = -6;
 	pixel_y = 8;
@@ -2413,7 +2410,6 @@
 	pixel_y = -1;
 	resistance_flags = 3
 	},
->>>>>>> 5e37c6ddd7368089ba1b01ccf19be78ba77c2dc2
 /turf/open/floor/prison,
 /area/sulaco/cargo/office)
 "ali" = (
