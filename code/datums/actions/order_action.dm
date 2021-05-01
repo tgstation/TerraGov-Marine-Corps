@@ -57,7 +57,7 @@
 		human.receive_order(target, arrow_type, verb_name)
 	return TRUE
 
-///Wrapper proc to update all icons of orders action of the mob
+///Update all icons of orders action of the mob
 /mob/proc/update_all_icons_orders()
 	for(var/datum/action/action AS in actions)
 		if(istype(action, /datum/action/innate/order))
