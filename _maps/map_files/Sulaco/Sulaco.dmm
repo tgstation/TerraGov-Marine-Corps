@@ -2401,7 +2401,7 @@
 /obj/machinery/door_control/mainship/req{
 	pixel_x = -6;
 	pixel_y = 8;
-	pixel_z = -5
+	pixel_y = -5
 	},
 /obj/machinery/door_control/mainship/req{
 	id = "Reqshutters";
