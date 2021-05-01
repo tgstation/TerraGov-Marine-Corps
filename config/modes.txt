@@ -1,0 +1,12 @@
+mode Crash
+	requiredplayers 2
+	maximumplayers 40
+endmode
+
+mode Hunt
+	requiredplayers 2
+endmode
+
+mode Distress Signal
+	requiredplayers 2
+endmode

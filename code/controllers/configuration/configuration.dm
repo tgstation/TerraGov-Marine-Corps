@@ -237,12 +237,59 @@
 	votable_modes = list()
 	for(var/T in gamemode_cache)
 		var/datum/game_mode/M = new T()
-		if(M.config_tag)
-			if(!(M.config_tag in modes)) //Ensure each mode is added only once
-				modes += M.config_tag
-				mode_names[M.config_tag] = M.name
-				if(M.votable)
-					votable_modes += M
+		if(!M.config_tag)
+			continue
+		if((M.config_tag in modes)) //Ensure each mode is added only once
+			continue
+		modes += M.config_tag
+		mode_names[M.config_tag] = M.name
+		if(M.votable)
+			votable_modes += M
+	log_config("Loading config file [CONFIG_MODES_FILE]...")
+	var/filename = "[directory]/[CONFIG_MODES_FILE]"
+	var/list/Lines = file2list(filename)
+	var/datum/game_mode/currentmode
+	for(var/t in Lines)
+		if(!t)
+			continue
+
+		t = trim(t)
+		if(length(t) == 0)
+			continue
+		else if(copytext(t, 1, 2) == "#")
+			continue
+
+		var/pos = findtext(t, " ")
+		var/command = null
+		var/data = null
+
+		if(pos)
+			command = lowertext(copytext(t, 1, pos))
+			data = copytext(t, pos + 1)
+		else
+			command = lowertext(t)
+
+		if(!command)
+			continue
+
+		if(!currentmode && command != "mode")
+			continue
+
+		switch(command)
+			if("mode")
+				for(var/datum/game_mode/mode AS in votable_modes)
+					if(mode.config_tag == data)
+						currentmode = mode
+						break
+			if("requiredplayers")
+				currentmode.required_players = text2num(data)
+			if("maximumplayers")
+				currentmode.maximum_players = text2num(data)
+			if("endmode")
+				currentmode = null
+			else
+				log_config("Unknown command in map vote config: '[command]'")
+
 
 
 /datum/controller/configuration/proc/LoadMOTD()
