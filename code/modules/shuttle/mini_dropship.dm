@@ -30,10 +30,6 @@
 	nvg_vision_mode = FALSE
 	/// Action of landing to a custom zone
 	var/datum/action/innate/shuttledocker_land/land_action
-	/// Amount of fuel remaining to hover
-	var/fuel_left = 120
-	/// The maximum fuel the dropship can hold
-	var/fuel_max = 120
 	/// The current flying state of the shuttle
 	var/fly_state = SHUTTLE_ON_SHIP
 	/// The next flying state of the shuttle
@@ -58,15 +54,6 @@
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/LateInitialize()
 	shuttle_port = SSshuttle.getShuttle(shuttleId)
-
-/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/process()
-	if(fly_state == SHUTTLE_IN_ATMOSPHERE && destination_fly_state != SHUTTLE_ON_SHIP)
-		fuel_left--
-		if(fuel_left <= 0)
-			return_to_ship()
-		return
-	if(fly_state == SHUTTLE_ON_SHIP && fuel_left < fuel_max && destination_fly_state != SHUTTLE_IN_ATMOSPHERE)
-		fuel_left ++
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/give_actions(mob/living/user)
 	if(!user)
@@ -120,9 +107,6 @@
 	if(!(shuttle_port.shuttle_flags & GAMEMODE_IMMUNE) && world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
 		to_chat(ui_user, "<span class='warning'>The mothership is too far away from the theatre of operation, we cannot take off.</span>")
 		return
-	if(fuel_left <= 25)
-		to_chat(ui_user, "<span class='warning'>The engines are still refueling.</span>")
-		return
 	shuttle_port.shuttle_computer = src
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_TADPOLE_LAUNCHED)
 	if(fly_state == SHUTTLE_ON_GROUND)
@@ -134,7 +118,6 @@
 		next_fly_state = SHUTTLE_IN_SPACE
 		destination_fly_state = SHUTTLE_IN_ATMOSPHERE
 	SSshuttle.moveShuttleToTransit(shuttleId, TRUE)
-	fuel_left -= 20
 
 ///The action of sending the shuttle back to its shuttle port on main ship
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/proc/return_to_ship()
@@ -194,6 +177,7 @@
 		RegisterSignal(ui_user, COMSIG_PARENT_QDELETING, .proc/clean_ui_user)
 		ui = new(user, src, "Minidropship", name)
 		ui.open()
+
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/ui_close(mob/user)
 	. = ..()
 	remove_eye_control(ui_user)
