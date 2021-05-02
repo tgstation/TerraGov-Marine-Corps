@@ -1,0 +1,6 @@
+author: "TiviPlus"
+delete-after: True
+changes: 
+  - qol: "The Lobby UI title text now looks nicer"
+  - qol: "Fixed the lobby icon by Gohunt being squashed"
+  - bugfix: "fixed lobby UI not updating on character changes"
