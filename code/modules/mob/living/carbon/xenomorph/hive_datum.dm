@@ -1206,7 +1206,7 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/proc/remove_from_larva_candidate_queue(mob/dead/observer/observer)
 	LAZYREMOVE(candidate, observer)
 	UnregisterSignal(observer, COMSIG_PARENT_QDELETING)
-	to_chat(observer, "<span class='warning'>You left the larva queue</span>")
+	to_chat(observer, "<span class='warning'>You left the Larva queue.</span>")
 	var/mob/dead/observer/observer_in_queue
 	for(var/i in 1 to LAZYLEN(candidate))
 		observer_in_queue = LAZYACCESS(candidate, i)
