@@ -7,6 +7,14 @@
 	///The brightness of the floodlight
 	var/brightness_on = 7
 
+/obj/machinery/floodlight/Initialize()
+	. = ..()
+	GLOB.lights += src
+
+/obj/machinery/floodlight/Destroy()
+	. = ..()
+	GLOB.lights -= src
+
 /obj/machinery/floodlight/attack_hand(mob/living/user)
 	return
 

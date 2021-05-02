@@ -879,10 +879,10 @@ Proc for attack log creation, because really why not
  * originated_turf: if not null, will check if the obj_turf is closer than distance_max to originated_turf, and the proc will return if not
  * distance_max: used to check if originated_turf is close to obj.loc
 */
-/atom/proc/turn_light(mob/user = null, toggle_on , cooldown = 1 SECONDS, sparks = FALSE, forced = FALSE, originated_turf = null, distance_max = 0)
-	if(originated_turf && (get_dist(originated_turf, loc)<= distance_max))
+/atom/proc/turn_light(mob/user = null, toggle_on , cooldown = 1 SECONDS, sparks = FALSE, forced = FALSE, atom/originated_turf = null, distance_max = 0)
+	if(originated_turf && ((get_dist(originated_turf, loc) >= distance_max) || (originated_turf.z != loc.z)))
 		return OUT_OF_REACH
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_LIGHT) || forced)
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_LIGHT) && !forced)
 		return STILL_ON_COOLDOWN
 	TIMER_COOLDOWN_START(src, COOLDOWN_LIGHT, cooldown)
 	if(forced & !toggle_on) //Is true when turn light is called by nightfall

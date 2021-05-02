@@ -15,6 +15,14 @@
 	var/raillight_compatible = TRUE //Can this be turned into a rail light ?
 	var/activation_sound = 'sound/items/flashlight.ogg'
 
+/obj/item/flashlight/Initialize()
+	. = ..()
+	GLOB.lights += src
+
+/obj/item/flashlight/Destroy()
+	. = ..()
+	GLOB.lights -= src
+
 /obj/item/flashlight/turn_light(mob/user, toggle_on)
 	. = ..()
 	if(. != CHECKS_PASSED)
@@ -180,7 +188,9 @@
 	. = ..()
 	fuel = rand(800, 1000) // Sorry for changing this so much but I keep under-estimating how long X number of ticks last in seconds.
 
-/obj/item/flashlight/flare/turn_light(mob/user, toggle_on)
+/obj/item/flashlight/flare/turn_light(mob/user = null, toggle_on , cooldown = 1 SECONDS, sparks = FALSE, forced = FALSE, atom/originated_turf = null, distance_max = 0)
+	if(forced) //Flares are immune to nightfall
+		return
 	. = ..()
 	if(toggle_on)
 		return
