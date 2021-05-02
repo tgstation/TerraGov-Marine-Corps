@@ -483,11 +483,6 @@
 	damage_falloff_mult = 0.25
 	fire_delay = 2
 	var/list/datum/lasrifle/base/mode_list = list(
-		"Standard" = /datum/lasrifle/base/standard,
-		"Disabler" = /datum/lasrifle/base/disabler,
-		"Overcharge" = /datum/lasrifle/base/overcharge,
-		"Heat" = /datum/lasrifle/base/heat,
-		"Spread" = /datum/lasrifle/base/spread,
 	)
 
 /datum/lasrifle/base
@@ -497,9 +492,9 @@
 	var/ammo = null
 	///how long it takes between each shot of that mode, same as gun fire delay.
 	var/fire_delay = 0
-	///making sure the children doesn't have burst mode on scatter
+	///Mostly for the laser carbine.
 	var/burst_amount = 4
-	///such is life
+	///gives firemode selections for guns.
 	var/gun_firemode_list = null
 	///The gun firing sound of this mode.
 	var/fire_sound = null
@@ -513,52 +508,6 @@
 	var/radial_icon = 'icons/mob/radial.dmi'
 	///The icon state the radial menu will use.
 	var/radial_icon_state = "laser"
-
-/datum/lasrifle/base/standard
-	charge_cost = 20
-	ammo = /datum/ammo/energy/lasgun/M43
-	fire_delay = 2
-	fire_sound = 'sound/weapons/guns/fire/laser.ogg'
-	message_to_user = "You set the Lasrifle's charge mode to standard fire."
-	fire_mode = GUN_FIREMODE_AUTOMATIC
-	icon_state = "tx73"
-
-/datum/lasrifle/base/disabler
-	charge_cost = 80
-	ammo = /datum/ammo/energy/lasgun/M43/disabler
-	fire_delay = 10
-	fire_sound = 'sound/weapons/guns/fire/disabler.ogg'
-	message_to_user = "You set the Lasrifle's charge mode to disabler fire."
-	fire_mode = GUN_FIREMODE_AUTOMATIC
-	icon_state = "tx73_auto"
-	radial_icon_state = "laser_disabler"
-
-/datum/lasrifle/base/overcharge
-	charge_cost = 80
-	ammo = /datum/ammo/energy/lasgun/M43/overcharge
-	fire_delay = 10
-	fire_sound = 'sound/weapons/guns/fire/plasma_precision_3.ogg'
-	message_to_user = "You set the Lasrifle's charge mode to overcharge."
-	icon_state = "tx73_overcharge"
-	radial_icon_state = "laser_overcharge"
-
-/datum/lasrifle/base/heat
-	charge_cost = 80
-	ammo = /datum/ammo/energy/lasgun/M43/heat
-	fire_delay = 15
-	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
-	message_to_user = "You set the Lasrifle's charge mode to wave heat."
-	icon_state = "tx73_heat"
-	radial_icon_state = "laser_heat"
-
-/datum/lasrifle/base/spread
-	charge_cost = 80
-	ammo = /datum/ammo/energy/lasgun/M43/blast
-	fire_delay = 8
-	fire_sound = 'sound/weapons/guns/fire/laser_rifle_2.ogg'
-	message_to_user = "You set the Lasrifle's charge mode to spread."
-	icon_state = "tx73_spread"
-	radial_icon_state = "laser_spread"
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/unique_action(mob/user)
 	return switch_modes(user)
@@ -597,15 +546,9 @@
 	var/obj/screen/ammo/A = user.hud_used.ammo //The ammo HUD
 	A.update_hud(user)
 
-/obj/item/weapon/gun/energy/lasgun/lasrifle/update_item_state(mob/user)// lasgun code thing i don't want so redfined
+/obj/item/weapon/gun/energy/lasgun/lasrifle/update_item_state(mob/user) //Without this icon states for wielded guns won't show.
 	. = item_state
 	item_state = "[initial(icon_state)][flags_item & WIELDED ? "_w" : ""]"
-	if(. != item_state && ishuman(user))
-		var/mob/living/carbon/human/human_user = user
-		if(src == human_user.l_hand)
-			human_user.update_inv_l_hand()
-		else if (src == human_user.r_hand)
-			human_user.update_inv_r_hand()
 
 	return TRUE
 
@@ -614,9 +557,9 @@
 //TE Standard Laser rifle
 
 obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle
-	name = "\improper TE-R laser rifle"
-	desc = "A TerraGov standard issue laser rifle with an integrated charge selector for normal and high settings. Uses standard TE cells."
-	reload_sound = 'sound/weapons/guns/interact/TE-R Reload.ogg'
+	name = "\improper Terra Experimental laser rifle"
+	desc = "A TerraGov standard issue laser rifle otherwise known as TE-R abbreviated has an integrated charge selector for normal and high settings. Uses standard Terra Experimntal, TE abbreviated power cells."
+	reload_sound = 'sound/weapons/guns/interact/standard_laser_rifle_reload.ogg'
 	fire_sound = 'sound/weapons/guns/fire/Laser Rifle Standard.ogg'
 	force = 20
 	icon_state = "ter"
@@ -687,9 +630,9 @@ obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle
 ///TE Standard Laser Pistol
 
 obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol
-	name = "\improper TE-P laser pistol"
-	desc = "A TerraGov standard issue laser pistol with an integrated charge selector for normal, heat and taser settings. Uses standard TE cells. Due to how new they are, they may not fit in any standard sidearm belts, however all shoulder holsters and pouches are large enough to take them. "
-	reload_sound = 'sound/weapons/guns/interact/TE-P Reload.ogg'
+	name = "\improper Terra Experimental laser pistol"
+	desc = "A TerraGov standard issue laser pistol otherwise known as TE-P abbreviated has an integrated charge selector for normal, heat and taser settings. Uses standard Terra Experimntal, TE abbreviated power cells. "
+	reload_sound = 'sound/weapons/guns/interact/standard_laser_pistol_reload.ogg'
 	fire_sound = 'sound/weapons/guns/fire/Laser Pistol Standard.ogg'
 	force = 20
 	icon_state = "tep"
@@ -764,9 +707,9 @@ obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol
 //TE Standard Laser Carbine
 
 obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine
-	name = "\improper TE-C laser carbine"
-	desc = "A TerraGov standard issue laser carbine with an integrated charge selector for burst and scatter settings. Uses standard TE cells."
-	reload_sound = 'sound/weapons/guns/interact/TE-R Reload.ogg'
+	name = "\improper Terra Experimental laser carbine"
+	desc = "A TerraGov standard issue laser carbine otherwise known as TE-C abbreviated has an integrated charge selector for burst and scatter settings. Uses standard Terra Experimntal, TE abbreviated power cells."
+	reload_sound = 'sound/weapons/guns/interact/standard_laser_rifle_reload.ogg'
 	fire_sound = 'sound/weapons/guns/fire/Laser Rifle Standard.ogg'
 	force = 20
 	icon_state = "tec"
@@ -839,9 +782,9 @@ obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine
 //TE Standard Sniper
 
 obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_sniper
-	name = "\improper TE-S sniper rifle"
-	desc = "A TerraGov standard issue laser sniper rifle with an integrated charge selector for normal, high and heat settings. Uses standard TE cells."
-	reload_sound = 'sound/weapons/guns/interact/TE-S Reload.ogg'
+	name = "\improper Terra Experimental laser sniper rifle"
+	desc = "A Terra Experimental standard issue laser sniper rifle, otherwise known as TE-S abbreviated has an integrated charge selector for normal, high and heat settings. Uses standard Terra Experimntal, TE abbreviated power cells."
+	reload_sound = 'sound/weapons/guns/interact/standard_laser_sniper_reload.ogg'
 	fire_sound = 'sound/weapons/guns/fire/Laser Sniper Standard.ogg'
 	force = 20
 	icon_state = "tes"
@@ -903,12 +846,10 @@ obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_sniper
 	icon_state = "tes"
 	radial_icon_state = "laser_heat"
 
-//TE Standard ML //Yes Icon names are called TE-M/Machine gun, but I'm too lazy and i'm too sleepy to fix them
-
 obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser
-	name = "\improper TE-ML machine laser gun"
-	desc = "A TerraGov standard issue machine laser gun. Uses standard TE cells."
-	reload_sound = 'sound/weapons/guns/interact/TE-M Reload.ogg'
+	name = "\improper Terra Experimental laser machine gun"
+	desc = "A Terra Experimental standard issue machine laser gun otherwise known as TE-M abbreviated. Uses standard Terra Experimntal, TE abbreviated power cells."
+	reload_sound = 'sound/weapons/guns/interact/standard_machine_laser_reload.ogg'
 	fire_sound = 'sound/weapons/guns/fire/Laser Rifle Standard.ogg'
 	force = 20
 	icon_state = "tem"
@@ -950,10 +891,10 @@ obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser
 	accuracy_mult_unwielded = 0.6
 	scatter_unwielded = 10
 	mode_list = list(
-		"Standard" = /datum/lasrifle/base/energy_ml_mode/standard,
+		"Standard" = /datum/lasrifle/base/energy_machine_laser_mode/standard,
 	)
 
-/datum/lasrifle/base/energy_ml_mode/standard
+/datum/lasrifle/base/energy_machine_laser_mode/standard
 	charge_cost = 3
 	ammo = /datum/ammo/energy/lasgun/marine/autolaser
 	fire_delay = 0.2 SECONDS

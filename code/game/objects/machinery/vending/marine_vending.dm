@@ -364,7 +364,7 @@
 	)
 
 /obj/machinery/vending/lasgun
-	name = "\improper TE Cell Field Charger"
+	name = "\improper Terra Expermintal cell field charger"
 	desc = "An automated power cell dispenser and charger. Used to recharge energy weapon power cells, including in the field. Has an internal battery that charges off the power grid when wrenched down."
 	icon_state = "lascharger"
 	icon_vend = "lascharger-vend"
