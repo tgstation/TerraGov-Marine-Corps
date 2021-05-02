@@ -5,8 +5,8 @@
 	if(!check_rights(R_FUN))
 		return
 
-	if(usr.client.view != WORLD_VIEW)
-		usr.client.change_view(WORLD_VIEW)
+	if(usr.client.view_size.getView() == usr.client.view_size.default)
+		usr.client.view_size.resetToDefault()
 		return
 
 	var/newview = input("Select view range:", "Change View Range", 7) as null|num
@@ -17,7 +17,7 @@
 	if(newview == usr.client.view)
 		return
 
-	usr.client.change_view(newview)
+	usr.client.view_size.setTo(newview)
 
 	log_admin("[key_name(usr)] changed their view range to [usr.client.view].")
 	message_admins("[ADMIN_TPMONTY(usr)] changed their view range to [usr.client.view].")

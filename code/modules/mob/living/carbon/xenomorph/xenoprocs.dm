@@ -282,7 +282,7 @@
 			var/siloless_countdown = SSticker.mode?.get_siloless_collapse_countdown()
 			if(siloless_countdown)
 				stat("<b>Orphan hivemind collapse timer:</b>", siloless_countdown)
-			
+
 		if(XENO_HIVE_CORRUPTED)
 			stat("Hive Orders:","Follow the instructions of our masters")
 
@@ -455,7 +455,7 @@
 		return
 	zoom_turf = get_turf(src)
 	is_zoomed = 1
-	client.change_view(VIEW_NUM_TO_STRING(viewsize))
+	client.view_size.setTo(viewsize/2-2) //convert diameter to radius
 	var/viewoffset = 32 * tileoffset
 	switch(dir)
 		if(NORTH)
@@ -476,7 +476,7 @@
 	zoom_turf = null
 	if(!client)
 		return
-	client.change_view(WORLD_VIEW)
+	client.view_size.resetToDefault()
 	client.pixel_x = 0
 	client.pixel_y = 0
 

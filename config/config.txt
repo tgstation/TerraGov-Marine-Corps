@@ -193,3 +193,15 @@ CHECK_RANDOMIZER
 
 ##Set this number to the maximum number of players you want, after which game mode votes cannot be started
 MAXIMUM_CLIENTS_FOR_GAMEMODE_VOTE 40
+
+##Default view size, in tiles.
+##	By default, this is 15x15, which gets simplified to 7 by byond
+##  15x15 would be the standard square view. 21x15 is what goonstation uses for widescreen.
+##  Setting this to something different from DEFAULT_VIEW_SQUARE will enable widescreen toggles
+##	Do note that changing this value will affect the title screen. The title screen will have to be updated manually if this is changed.
+DEFAULT_VIEW 15x15
+
+##Default view size, in tiles. Should *always* be square.
+## The alternative square viewport size if you're using a widescreen view size
+## You probably shouldn't ever be changing this, but it's here if you want to.
+DEFAULT_VIEW_SQUARE 15x15

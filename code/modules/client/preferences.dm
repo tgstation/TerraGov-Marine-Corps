@@ -132,7 +132,15 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	///Whether emotes will be displayed on runechat. Requires chat_on_map to have effect.
 	var/see_rc_emotes = TRUE
 
+	///Should we automatically fit the viewport?
 	var/auto_fit_viewport = TRUE
+
+	///Should we be in the widescreen mode set by the config?
+	var/widescreenpref = TRUE
+	///What size should pixels be displayed as? 0 is strech to fit
+	var/pixel_size = 0
+	///What scaling method should we use? Distort means nearest neighbor
+	var/scaling_method = SCALING_METHOD_DISTORT
 
 	/// New TGUI Preference preview
 	var/map_name = "player_pref_map"
