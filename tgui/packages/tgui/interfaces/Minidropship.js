@@ -24,15 +24,6 @@ export const Minidropship = (_props, context) => {
             content="Toggle night vision mode"
             onClick={() => act('toggle_nvg')} />
         </Section>
-        <Section title={`Fuel left - ${data.fuel_left}/${data.fuel_max}`}>
-          <ProgressBar
-            ranges={{
-              good: [0.50, Infinity],
-              average: [0.25, 0.50],
-              bad: [-Infinity, 0.25],
-            }}
-            value={data.fuel_left/data.fuel_max} />
-        </Section>
         <WeaponSelection />
       </Window.Content>
     </Window>

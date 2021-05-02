@@ -191,8 +191,6 @@
 	. = list()
 	if(!shuttle_port)
 		shuttle_port = SSshuttle.getShuttle(shuttleId)
-	.["fuel_left"] = fuel_left
-	.["fuel_max"] = fuel_max
 	.["fly_state"] = fly_state
 	.["take_off_locked"] = ( !(fly_state == SHUTTLE_ON_GROUND || fly_state == SHUTTLE_ON_SHIP) || shuttle_port?.mode != SHUTTLE_IDLE)
 	.["return_to_ship_locked"] = (fly_state != SHUTTLE_IN_ATMOSPHERE || shuttle_port?.mode != SHUTTLE_IDLE)
@@ -232,9 +230,6 @@
 	var/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/origin = remote_eye.origin
 	if(origin.shuttle_port.mode != SHUTTLE_IDLE)
 		to_chat(owner, "<span class='warning'>The shuttle is not ready to land yet!</span>")
-		return
-	if(origin.fuel_left <= 35)
-		to_chat(owner, "<span class='warning'>You won't have enough fuel to land and then come back to ship!</span>")
 		return
 	if(!origin.placeLandingSpot(target))
 		to_chat(owner, "<span class='warning'>You cannot land here.</span>")
