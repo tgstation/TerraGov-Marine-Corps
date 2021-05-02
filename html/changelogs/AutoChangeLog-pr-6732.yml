@@ -1,4 +1,0 @@
-author: "TG-Eris"
-delete-after: True
-changes: 
-  - bugfix: "Edited the /obj/item/storage/internal/tie/holster path to allow for the standard_machinepistol"
