@@ -110,7 +110,6 @@
 
 /obj/attack_animal(mob/living/simple_animal/M)
 	if(!M.melee_damage && !M.obj_damage)
-		M.emote("custom", message = "[M.friendly] [src].")
 		return 0
 	else
 		var/play_soundeffect = 1
