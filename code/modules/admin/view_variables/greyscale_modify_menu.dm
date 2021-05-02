@@ -58,12 +58,12 @@
 		return
 	switch(action)
 		if("select_config")
-			var/datum/greyscale_config/new_config = input(
+			var/datum/greyscale_config/new_config = tgui_input_list(
 				usr,
 				"Choose a new greyscale configuration to use",
 				"Greyscale Modification Menu",
-				"[config.type]"
-			) as anything in SSgreyscale.configurations
+				SSgreyscale.configurations,
+			)
 			new_config = SSgreyscale.configurations[new_config]
 			if(!isnull(new_config) && config != new_config)
 				config = new_config
