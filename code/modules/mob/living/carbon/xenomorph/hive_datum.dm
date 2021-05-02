@@ -1199,7 +1199,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	LAZYADD(candidate, observer)
 	RegisterSignal(observer, COMSIG_PARENT_QDELETING, .proc/clean_observer)
 	observer.larva_position =  LAZYLEN(candidate)
-	to_chat(observer, "<span class='warning'>There are no burrowed larvas or no silos. You are in position [observer.larva_position] to become a xeno</span>")
+	to_chat(observer, "<span class='warning'>There are no burrowed Larvae or no silos. You are in position [observer.larva_position] to become a Xenomorph.</span>")
 	return TRUE
 
 /// Remove an observer from the larva candidate queue
