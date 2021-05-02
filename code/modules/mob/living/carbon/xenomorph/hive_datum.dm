@@ -1209,7 +1209,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	to_chat(observer, "<span class='warning'>You left the larva queue</span>")
 	var/mob/dead/observer/observer_in_queue
 	for(var/i in 1 to LAZYLEN(candidate))
-		observer_in_queue = LAZYACCESS(candidate, i)
+		observer_in_queue = candidate[i]
 		observer_in_queue.larva_position = i
 
 ///Propose larvas until their is no more candidates, or no more burrowed
