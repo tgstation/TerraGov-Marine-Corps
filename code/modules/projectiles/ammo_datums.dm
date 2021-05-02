@@ -1035,7 +1035,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_SUNDERING
 	armor_type = "bomb"
 	damage_falloff = 0
-	shell_speed = 2
+	shell_speed = 1.5
 	accuracy = 40
 	accurate_range = 20
 	max_range = 30
@@ -1064,6 +1064,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "rocket_ap"
 	damage_falloff = 0
 	accurate_range = 15
+	shell_speed = 2.5
 	penetration = 150
 	damage = 325
 
@@ -1123,7 +1124,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_SUNDERING
 	armor_type = "bomb"
 	damage_falloff = 0
-	shell_speed = 2
 	accuracy = 40
 	accurate_range = 20
 	max_range = 30
@@ -1142,7 +1142,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_SUNDERING
 	armor_type = "bomb"
 	damage_falloff = 0
-	shell_speed = 2
 	accuracy = 40
 	accurate_range = 20
 	max_range = 30
@@ -1161,7 +1160,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_ROCKET|AMMO_SUNDERING //We want this to specifically go farther than onscreen range.
 	armor_type = "bomb"
 	damage_falloff = 0
-	shell_speed = 3
+	shell_speed = 2.5
 	accuracy = 40
 	accurate_range = 15
 	max_range = 20
@@ -1374,11 +1373,11 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	bullet_color = COLOR_VIBRANT_LIME
 
 	///Fire burn time
-	var/heat = 12 
+	var/heat = 12
 	///Fire damage
 	var/burn_damage = 9
 	///Fire color
-	var/fire_color = "green" 
+	var/fire_color = "green"
 
 /datum/ammo/energy/plasma_pistol/on_hit_turf(turf/T, obj/projectile/proj)
 	T.ignite(heat, burn_damage, fire_color)
