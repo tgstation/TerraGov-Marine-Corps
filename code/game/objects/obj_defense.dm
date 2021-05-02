@@ -110,6 +110,7 @@
 
 /obj/attack_animal(mob/living/simple_animal/M)
 	if(!M.melee_damage && !M.obj_damage)
+		M.do_attack_animation(src, ATTACK_EFFECT_SMASH)
 		return 0
 	else
 		var/play_soundeffect = 1

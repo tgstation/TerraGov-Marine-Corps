@@ -4,11 +4,10 @@
 	return
 
 /mob/living/carbon/xenomorph/attack_animal(mob/living/M as mob)
-
 	if(isanimal(M))
 		var/mob/living/simple_animal/S = M
 		if(!S.melee_damage)
-			M.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
+			M.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 		else
 			M.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
 			visible_message("<span class='danger'>[S] [S.attacktext] [src]!</span>", null, null, 5)

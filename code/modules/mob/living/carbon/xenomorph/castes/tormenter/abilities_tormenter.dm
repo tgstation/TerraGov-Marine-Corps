@@ -11,11 +11,11 @@
 	to_chat(owner, "<span class='notice'>We gather enough mental strength to shut down lights again.</span>")
 	return ..()
 
-/datum/action/xeno_action/activable/nightfall/use_ability(atom/target)
+/datum/action/xeno_action/activable/nightfall/use_ability()
 	playsound(target,'sound/magic/nightfall.ogg', 50, 1)
 
 	for(var/atom/light AS in GLOB.lights)
-		light.turn_light(null, FALSE, duration, TRUE, TRUE, target, range)
+		light.turn_light(null, FALSE, duration, TRUE, TRUE, get_turf(owner), range)
 
 	succeed_activate()
 	add_cooldown()
@@ -49,6 +49,8 @@
 		mirror_image = new(get_turf(X))
 		mirror_image.copy_appearance(X, life_time)
 		mirror_image.retreat_distance = (X.a_intent == INTENT_HELP) ? INFINITY : 0
+		mirror_image.handle_automated_movement()
+		mirror_image.handle_automated_action()
 
 /datum/action/xeno_action/activable/deception/on_cooldown_finish()
 	to_chat(owner, "<span class='notice'>We gather enough mental strength to create clones of ourself.</span>")

@@ -127,9 +127,6 @@
 	if(!search_objects)
 		. = hearers(vision_range, targets_from) - src //Remove self, so we don't suicide
 
-		for(var/HM in range(vision_range, targets_from))
-			if(can_see(targets_from, HM, vision_range))
-				. += HM
 	else
 		. = list()
 		for (var/atom/movable/A in oview(vision_range, targets_from))

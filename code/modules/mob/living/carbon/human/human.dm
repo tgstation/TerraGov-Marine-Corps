@@ -155,6 +155,7 @@
 
 /mob/living/carbon/human/attack_animal(mob/living/M as mob)
 	if(M.melee_damage == 0)
+		M.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 		return
 	if(M.attack_sound)
 		playsound(loc, M.attack_sound, 25, 1)
