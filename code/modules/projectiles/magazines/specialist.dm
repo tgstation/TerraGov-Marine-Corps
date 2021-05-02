@@ -41,7 +41,7 @@
 /obj/item/ammo_magazine/sniper/svd
 	name = "\improper SVD magazine (7.62x54mmR)"
 	desc = "A large caliber magazine for the SVD sniper rifle."
-	caliber = CALIBER_762x54
+	caliber = CALIBER_762X54
 	icon_state = "svd"
 	default_ammo = /datum/ammo/bullet/sniper/svd
 	max_rounds = 10
