@@ -98,6 +98,14 @@
 	for(var/key in key_bindings)
 		for(var/kb_name in key_bindings[key])
 			.["key_bindings"][kb_name] += list(key)
+	
+	.["custom_emotes"] = list()
+	for(var/id in 1 to CUSTOM_EMOTE_SLOTS)
+		var/datum/custom_emote/emote = custom_emotes[id]
+		.["custom_emotes"]["Custom emote :[id]"] = list(
+			sentence = emote.message,
+			emote_type = (emote.spoke_emote ? "say" : "me"),
+			)
 
 	// Get save slot name
 	.["save_slot_names"] = list()
@@ -620,11 +628,23 @@
 				current_client.update_movement_keys()
 
 		if("setCustomSentence")
-			var/kb_name = params["keybinding"]
+			var/kb_name = params["name"]
 			if(!kb_name)
 				return
-			var/key = uppertext(params["key"])
-			var/datum/custom_emote/emote = custom_emotes[]
+			var/list/part = splittext(kb_name, ":")
+			var/id = text2num(part[2])
+			var/datum/custom_emote/emote = custom_emotes[id]
+			emote.message = params["sentence"]
+			custom_emotes[id] = emote
+
+		if("setEmoteType")
+			var/kb_name = params["name"]
+			if(!kb_name)
+				return
+			var/list/part = splittext(kb_name, ":")
+			var/id = text2num(part[2])
+			var/datum/custom_emote/emote = custom_emotes[id]
+			emote.spoke_emote = !emote.spoke_emote
 
 		if("reset-keybindings")
 			key_bindings = GLOB.hotkey_keybinding_list_by_key

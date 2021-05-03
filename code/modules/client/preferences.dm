@@ -44,8 +44,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	// Custom Keybindings
 	var/list/key_bindings = null
 
-	// Custome emotes
-
+	// Custom emotes list
 	var/list/custom_emotes = list()
 
 	///Saves chemical recipes based on client so they persist through games
@@ -172,7 +171,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	random_character()
 	menuoptions = list()
 	key_bindings = deepCopyList(GLOB.hotkey_keybinding_list_by_key) // give them default keybinds and update their movement keys
-	for(var/i in 1 to 10)
+	for(var/i in 1 to CUSTOM_EMOTE_SLOTS)
 		var/datum/custom_emote/emote = new
 		emote.id = i
 		custom_emotes += emote 

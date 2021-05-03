@@ -25,7 +25,7 @@ export const TextInputModal = (props: TextInputModalData, context) => {
   const [input, setInput] = useLocalState(context, label, "");
 
   return (
-    <Modal>
+    <Modal id="grab-focus">
       <Flex direction="column">
         <Flex.Item fontSize="16px" maxWidth="90vw" mb={1}>
           {label}:
@@ -39,7 +39,7 @@ export const TextInputModal = (props: TextInputModalData, context) => {
             backgroundColor="black"
             textColor="white"
             onInput={(_, value) => {
-              setInput(value.substring(0, 25));
+              setInput(value.substring(0, 300));
             }}
             value={input}
           />
@@ -61,6 +61,9 @@ export const TextInputModal = (props: TextInputModalData, context) => {
           />
         </Flex.Item>
       </Flex>
+      <script type="application/javascript">
+        {"document.getElementById('grab-focus').focus();"}
+      </script>
     </Modal>
   );
 };

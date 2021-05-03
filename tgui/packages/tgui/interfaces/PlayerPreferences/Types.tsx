@@ -60,6 +60,7 @@ type PlayerPreferencesData = {
   show_typing: number,
   tooltips: number,
   key_bindings: AssocStringStringArray,
+  custom_emotes: AssocStringEmoteArray,
   save_slot_names: AssocStringString,
   synth_types: string[],
   bodytypes: string[],
@@ -81,6 +82,15 @@ type PlayerPreferencesData = {
 
 type AssocStringNumber = {
   [ key:string ]: number
+}
+
+type AssocStringEmoteArray = {
+  [ key: string ]: EmoteData,
+}
+
+type EmoteData = {
+  sentence: string,
+  emote_type: string,
 }
 
 type KeybindingsData = {

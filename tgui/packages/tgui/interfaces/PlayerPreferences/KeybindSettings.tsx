@@ -211,13 +211,27 @@ const KeybindingPreference = (props, context) => {
 
 const CustomSentence = (props, context) => {
   const { act, data, config } = useBackend<PlayerPreferencesData>(context);
-  const { key_bindings } = data;
+  const { key_bindings, custom_emotes } = data;
   const { keybind, setCaptureSentence, setCapture } = props;
   const current = key_bindings[keybind.name];
+  const currentSentence = custom_emotes[keybind.name];
   return (
     <LabeledList.Item label={keybind.display_name}>
+      <Button.Checkbox
+        inline
+        content="Say"
+        checked={currentSentence.emote_type === "say"}
+        onClick={() => act('setEmoteType', { emote_type: "say", name: keybind.name })}
+      />
+      <Button.Checkbox
+        inline
+        content="Me"
+        checked={currentSentence.emote_type === "me"}
+        onClick={() => act('setEmoteType', { emote_type: "me", name: keybind.name })}
+      />
       <Button
-        onClick={() => setCaptureSentence({ name: keybind.name })}>
+        onClick={() => setCaptureSentence({ name: keybind.name })}
+        tooltip={currentSentence && currentSentence.sentence}>
         Chose custom sentence
       </Button>
       {current && (current.map(key => (

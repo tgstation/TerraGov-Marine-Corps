@@ -10,6 +10,8 @@
 
 /// Run the custome emote
 /datum/custom_emote/proc/run_custom_emote(mob/user)
+	if(!message)
+		return
 	if(!can_run_custom_emote(user))
 		return
 	if(spoke_emote)
@@ -19,6 +21,8 @@
 
 /// Check if the mob can currently use that emote
 /datum/custom_emote/proc/can_run_custom_emote(mob/user)
+	if(!istype(user))
+		return
 	if(!check_cooldown(user))
 		to_chat(user, "<span class='notice'>You used that emote too recently.</span>")
 		return FALSE

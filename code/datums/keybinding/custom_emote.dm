@@ -9,10 +9,10 @@
 /datum/keybinding/custom_emote/proc/set_id(id)
 	custom_emote_id = id
 	description = "Run the [id]th custom emote"
-	name = "Custom emote [id]"
+	name = "Custom emote :[id]"
 	full_name = name
 
 /datum/keybinding/custom_emote/down(client/user)
 	. = ..()
 	var/datum/custom_emote/emote = user.prefs.custom_emotes[custom_emote_id]
-	emote.run_custom_emote()
+	emote.run_custom_emote(user.mob)
