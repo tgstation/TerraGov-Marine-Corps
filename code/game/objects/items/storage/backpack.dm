@@ -733,7 +733,7 @@
 		reagents.remove_reagent(/datum/reagent/fuel, fuel_transfer_amount)
 		FT.current_rounds += fuel_transfer_amount
 		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
-		FT.caliber = "Fuel"
+		FT.caliber = CALIBER_FUEL
 		to_chat(user, "<span class='notice'>You refill [FT] with [lowertext(FT.caliber)].</span>")
 		FT.update_icon()
 

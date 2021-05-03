@@ -106,7 +106,7 @@
 	#define COMPONENT_CLIENT_MOUSEUP_INTERCEPT (1<<0)
 #define COMSIG_CLIENT_MOUSEDRAG "client_mousedrag"			//from base of client/MouseUp(): (/client, object, location, control, params)
 #define COMSIG_CLIENT_DISCONNECTED "client_disconnecred"	//from base of /client/Destroy(): (/client)
-
+#define COMSIG_CLIENT_PREFERENCES_UIACTED "client_preferences_uiacted" //called after preferences have been updated for this client after /datum/preferences/ui_act has completed
 
 // /atom signals
 #define COMSIG_PARENT_ATTACKBY "atom_attackby"			        //from base of atom/attackby(): (/obj/item, /mob/living)
@@ -640,3 +640,6 @@
 #define COMSIG_GET_BURST_FIRE "get_burst_fire"
 	#define BURST_FIRING (1<<0)
 #define COMSIG_DISABLE_BURST_FIRE "disable_burst_fire"
+
+//Signals for CIC orders
+#define COMSIG_ORDER_SENT "order_updated"

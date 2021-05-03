@@ -1498,6 +1498,71 @@
 /obj/machinery/chem_dispenser/beer,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)
+<<<<<<< HEAD
+=======
+"aiL" = (
+/obj/structure/table/mainship,
+/obj/machinery/faxmachine,
+/turf/open/floor/wood,
+/area/mainship/command/corporateliaison)
+"aiM" = (
+/obj/structure/table/mainship,
+/obj/machinery/computer/emails,
+/turf/open/floor/wood,
+/area/mainship/command/corporateliaison)
+"aiN" = (
+/obj/structure/bed,
+/obj/item/bedsheet/blue,
+/obj/item/toy/farwadoll{
+	pixel_x = 5
+	},
+/obj/machinery/keycard_auth{
+	pixel_y = 25
+	},
+/turf/open/floor/carpet{
+	dir = 9;
+	icon_state = "carpetside"
+	},
+/area/mainship/command/corporateliaison)
+"aiO" = (
+/obj/item/weapon/gun/pistol/vp70,
+/obj/item/ammo_magazine/pistol/vp70,
+/obj/structure/closet/cabinet,
+/obj/item/clothing/under/liaison_suit/formal,
+/obj/item/clothing/under/liaison_suit,
+/obj/item/clothing/under/liaison_suit/outing,
+/obj/item/clothing/under/liaison_suit/suspenders,
+/obj/item/clipboard,
+/obj/item/clothing/suit/armor/bulletproof,
+/obj/item/attachable/suppressor,
+/obj/item/clothing/tie/storage/holster,
+/turf/open/floor/carpet{
+	dir = 5;
+	icon_state = "carpetside"
+	},
+/area/mainship/command/corporateliaison)
+"aiP" = (
+/obj/machinery/portable_atmospherics/hydroponics,
+/obj/item/seeds/goldappleseed,
+/turf/open/floor/mainship{
+	dir = 5;
+	icon_state = "silver"
+	},
+/area/mainship/command/corporateliaison)
+"aiQ" = (
+/obj/structure/closet/secure_closet/personal/cabinet,
+/turf/open/floor/carpet{
+	dir = 4;
+	icon_state = "carpetside"
+	},
+/area/mainship/living/numbertwobunks)
+"aiR" = (
+/turf/open/floor/mainship{
+	dir = 1;
+	icon_state = "greencorner"
+	},
+/area/mainship/hallways/aft_hallway)
+>>>>>>> master
 "aiS" = (
 /obj/structure/cable,
 /turf/open/floor/mainship,

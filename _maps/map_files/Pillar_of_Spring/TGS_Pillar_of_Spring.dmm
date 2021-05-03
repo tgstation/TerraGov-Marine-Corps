@@ -2648,7 +2648,7 @@
 	},
 /obj/item/clothing/suit/armor/bulletproof,
 /obj/item/attachable/suppressor,
-/obj/item/clothing/tie/holster,
+/obj/item/clothing/tie/storage/holster,
 /turf/open/floor/carpet{
 	dir = 9;
 	icon_state = "carpetside"
@@ -13701,7 +13701,7 @@
 	},
 /obj/item/whistle,
 /obj/machinery/door_control/mainship/req{
-	pixel_z = -5
+	pixel_y = -5
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
@@ -15845,7 +15845,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/weapon_room)
 "ZQ" = (
-/obj/structure/reagent_dispensers/wallmounted/peppertank/milk,
+/obj/structure/reagent_dispensers/wallmounted/milk,
 /turf/open/floor/carpet{
 	dir = 9;
 	icon_state = "carpetside"

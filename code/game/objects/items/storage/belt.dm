@@ -152,6 +152,7 @@
 	max_storage_space = 42
 	max_w_class = 2
 	can_hold = list(
+		/obj/item/healthanalyzer,
 		/obj/item/reagent_containers/glass/bottle,
 		/obj/item/reagent_containers/pill,
 		/obj/item/reagent_containers/syringe,
@@ -195,6 +196,7 @@
 	max_storage_space = 42
 	max_w_class = 2
 	can_hold = list(
+		/obj/item/healthanalyzer,
 		/obj/item/reagent_containers/glass/bottle,
 		/obj/item/reagent_containers/pill,
 		/obj/item/reagent_containers/syringe,

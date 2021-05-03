@@ -316,12 +316,6 @@
 		items = I.store_in_cryo(items)
 	return ..()
 
-/obj/item/clothing/tie/holster/store_in_cryo(list/items, nullspace_it = TRUE)
-	if(holstered)
-		items = holstered.store_in_cryo(items)
-		holstered = null
-		update_icon()
-
 /obj/machinery/cryopod/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
