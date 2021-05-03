@@ -339,4 +339,4 @@ GLOBAL_LIST_INIT(ghost_others_options, list(GHOST_OTHERS_SIMPLE, GHOST_OTHERS_DE
 	set category = "Preferences"
 
 	show_popup_menus = !show_popup_menus
-	to_chat(src, "<span class='interface'>Right click [show_popup_menus ? "en" : "dis"]abled.</span>")
+	to_chat(src, "<span class='interface'>Right click menu [show_popup_menus ? "en" : "dis"]abled.</span>")
