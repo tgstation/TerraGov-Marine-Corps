@@ -1395,6 +1395,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sundering = 1
 
 /datum/ammo/energy/lasgun/marine/autolaser
+	name = "machine laser bolt"
 	damage = 15
 	penetration = 15
 
@@ -1417,6 +1418,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 
 /datum/ammo/energy/lasgun/marine/pistol
+	name = "pistol laser bolt"
 	damage = 25
 	penetration = 5
 

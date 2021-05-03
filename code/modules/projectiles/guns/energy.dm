@@ -527,14 +527,16 @@
 
 	playsound(user, 'sound/weapons/emitter.ogg', 5, FALSE, 2)
 
-	
+
 	gun_firemode = initial(choice.fire_mode)
 
-	
+
 	charge_cost = initial(choice.charge_cost)
 	ammo = GLOB.ammo_list[initial(choice.ammo)]
 	fire_delay = initial(choice.fire_delay)
+	burst_amount = initial(choice.burst_amount)
 	fire_sound = initial(choice.fire_sound)
+	SEND_SIGNAL(src, COMSIG_GUN_BURST_SHOTS_TO_FIRE_MODIFIED, burst_amount)
 	SEND_SIGNAL(src, COMSIG_GUN_AUTOFIREDELAY_MODIFIED, fire_delay)
 	SEND_SIGNAL(src, COMSIG_GUN_FIRE_MODE_TOGGLE, initial(choice.fire_mode), user.client)
 
@@ -749,6 +751,7 @@ obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine
 	scatter_unwielded = 15
 	fire_delay = 0.2 SECONDS
 	burst_amount = 1
+	burst_delay = 0.1 SECONDS
 	accuracy_mult = 1.1
 	accuracy_mult_unwielded = 0.65
 	scatter_unwielded = 15
@@ -807,12 +810,12 @@ obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_sniper
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/bipod,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/scope/marine/tes,
+		/obj/item/attachable/scope/unremovable/laser_sniper_scope,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 18,"rail_x" = 19, "rail_y" = 19, "under_x" = 28, "under_y" = 8, "stock_x" = 22, "stock_y" = 12)
-	starting_attachment_types = list(/obj/item/attachable/scope/marine/tes)
+	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/laser_sniper_scope)
 
 	aim_slowdown = 0.9
 	wield_delay = 0.9 SECONDS
@@ -890,15 +893,3 @@ obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser
 	accuracy_mult = -0.1
 	accuracy_mult_unwielded = 0.6
 	scatter_unwielded = 10
-	mode_list = list(
-		"Standard" = /datum/lasrifle/base/energy_machine_laser_mode/standard,
-	)
-
-/datum/lasrifle/base/energy_machine_laser_mode/standard
-	charge_cost = 3
-	ammo = /datum/ammo/energy/lasgun/marine/autolaser
-	fire_delay = 0.2 SECONDS
-	fire_sound = 'sound/weapons/guns/fire/Laser Rifle Standard.ogg'
-	message_to_user = "You set the machine laser gun's charge mode to standard fire."
-	fire_mode = GUN_FIREMODE_AUTOMATIC
-	icon_state = "tem"

@@ -782,12 +782,11 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	user.sync_lighting_plane_alpha()
 	return TRUE
 
-/obj/item/attachable/scope/marine/tes
-	name = "TE-S rail scope"
-	desc = "A marine standard mounted zoom sight scope made for the TE-S/laser sniper. Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
+/obj/item/attachable/scope/unremovable/laser_sniper_scope
+	name = "T rail scope"
+	desc = "A marine standard mounted zoom sight scope made for the Terra Experimental laser sniper rifle otherwise known as TE-S abbreviated, allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
 	icon_state = "tes"
 	attach_icon = "tes"
-	flags_attach_features = ATTACH_ACTIVATION
 
 /obj/item/attachable/scope/mini
 	name = "mini rail scope"
