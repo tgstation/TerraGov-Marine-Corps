@@ -105,6 +105,15 @@ export const KeybindSettings = (props, context) => {
               />
             ))}
           </Section>
+          <Section title="Emotes">
+            {all_keybindings['EMOTE']?.filter(filterSearch).map(kb => (
+              <KeybindingPreference
+                key={kb.name}
+                keybind={kb}
+                setCapture={setCapture}
+              />
+            ))}
+          </Section>
           {is_admin && (
             <Section title="Administration (admin only)">
               {all_keybindings['ADMIN']?.filter(filterSearch).map(kb => (

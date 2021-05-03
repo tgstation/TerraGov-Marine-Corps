@@ -23,6 +23,7 @@
 	var/stat_allowed = CONSCIOUS
 	var/sound //Sound to play when emote is called
 	var/flags_emote = NONE
+	var/cooldown = 2 SECONDS
 
 	var/static/list/emote_list = list()
 
@@ -85,6 +86,16 @@
 	else
 		user.visible_message(msg, visible_message_flags = EMOTE_MESSAGE, emote_prefix = prefix)
 
+/// For handling emote cooldown, return true to allow the emote to happen
+/datum/emote/proc/check_cooldown(mob/user, intentional)
+	if(!intentional)
+		return TRUE
+	if(user.emotes_used && user.emotes_used[src] + cooldown > world.time)
+		return FALSE
+	if(!user.emotes_used)
+		user.emotes_used = list()
+	user.emotes_used[src] = world.time
+	return TRUE
 
 /datum/emote/proc/get_sound(mob/living/user)
 	return sound //by default just return this var.
