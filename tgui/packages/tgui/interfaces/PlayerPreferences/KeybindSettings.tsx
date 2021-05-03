@@ -1,6 +1,6 @@
 import { useBackend, useLocalState } from '../../backend';
 import { Button, Input, Section, Tabs, LabeledList, Box, Grid, Modal } from '../../components';
-import { TextInputModal } from '../TextInputModal';
+import { TextInputModal } from './TextInputModal';
 
 type KeybindSettingCapture = {
   name: string,
@@ -25,7 +25,8 @@ export const KeybindSettings = (props, context) => {
   const [
     captureSentence,
     setCaptureSentence,
-  ] = useLocalState<KeybindSentenceCapture>(context, `setCaptureSentence`, null);
+  ] = useLocalState<KeybindSentenceCapture>(
+    context, `setCaptureSentence`, null);
   const [
     filter,
     setFilter,
@@ -64,7 +65,7 @@ export const KeybindSettings = (props, context) => {
           label="Chose a custom sentence"
           button_text="Confirm"
           onSubmit={(input) => {
-            act('setCustomSentence', { name:captureSentence.name, sentence:input });
+            act('setCustomSentence', { name: captureSentence.name, sentence: input });
             setCaptureSentence(null);
           }}
           onBack={() => setCaptureSentence(null)}
@@ -232,7 +233,7 @@ const CustomSentence = (props, context) => {
       </Button>
     </LabeledList.Item>
   );
-}
+};
 
 const CaptureKeybinding = (props, context) => {
   const { act, data, config } = useBackend(context);

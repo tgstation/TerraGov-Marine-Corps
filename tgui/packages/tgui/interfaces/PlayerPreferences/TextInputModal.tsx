@@ -1,5 +1,5 @@
-import { useLocalState } from "../../backend";
 import { Button, Flex, Modal, TextArea } from "../../components";
+import { useLocalState } from '../../backend';
 
 type TextInputModalData = {
 	label : string,

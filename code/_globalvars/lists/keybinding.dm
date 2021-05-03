@@ -33,3 +33,7 @@
 		var/datum/keybinding/emote/emote_kb = new
 		emote_kb.link_to_emote(faketype)
 		add_keybinding(emote_kb)
+	for(var/i in 1 to CUSTOM_EMOTE_SLOTS)
+		var/datum/keybinding/custom_emote/emote_kb = new
+		emote_kb.set_id(i)
+		add_keybinding(emote_kb)

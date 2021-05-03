@@ -619,6 +619,13 @@
 
 				current_client.update_movement_keys()
 
+		if("setCustomSentence")
+			var/kb_name = params["keybinding"]
+			if(!kb_name)
+				return
+			var/key = uppertext(params["key"])
+			var/datum/custom_emote/emote = custom_emotes[]
+
 		if("reset-keybindings")
 			key_bindings = GLOB.hotkey_keybinding_list_by_key
 			current_client.update_movement_keys()
