@@ -31,7 +31,7 @@
 	check_hive_status(usr)
 
 /datum/action/observer_action/join_larva_queue
-	name = "Join larva queue"
+	name = "Join Larva Queue"
 	action_icon_state = "larva_queue"
 
 /datum/action/observer_action/join_larva_queue/action_activate()

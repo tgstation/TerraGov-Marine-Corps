@@ -1199,14 +1199,14 @@ to_chat will check for valid clients itself already so no need to double check f
 	LAZYADD(candidate, observer)
 	RegisterSignal(observer, COMSIG_PARENT_QDELETING, .proc/clean_observer)
 	observer.larva_position =  LAZYLEN(candidate)
-	to_chat(observer, "<span class='warning'>There are no burrowed larvas or no silos. You are in position [observer.larva_position] to become a xeno</span>")
+	to_chat(observer, "<span class='warning'>There are no burrowed Larvae or no silos. You are in position [observer.larva_position] to become a Xenomorph.</span>")
 	return TRUE
 
 /// Remove an observer from the larva candidate queue
 /datum/hive_status/proc/remove_from_larva_candidate_queue(mob/dead/observer/observer)
 	LAZYREMOVE(candidate, observer)
 	UnregisterSignal(observer, COMSIG_PARENT_QDELETING)
-	to_chat(observer, "<span class='warning'>You left the larva queue</span>")
+	to_chat(observer, "<span class='warning'>You left the Larva queue.</span>")
 	var/mob/dead/observer/observer_in_queue
 	for(var/i in 1 to LAZYLEN(candidate))
 		observer_in_queue = candidate[i]
