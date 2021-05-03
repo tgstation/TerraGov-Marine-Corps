@@ -2858,7 +2858,7 @@
 /obj/item/clipboard,
 /obj/item/clothing/suit/armor/bulletproof,
 /obj/item/attachable/suppressor,
-/obj/item/clothing/tie/holster,
+/obj/item/clothing/tie/storage/holster,
 /turf/open/floor/carpet{
 	dir = 5;
 	icon_state = "carpetside"

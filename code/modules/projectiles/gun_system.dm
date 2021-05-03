@@ -92,7 +92,7 @@
 	var/ammo_diff		= null					//what ammo to use for overcharge
 
 	//Attachments.
-	var/list/attachable_overlays	= list("muzzle", "rail", "under", "stock", "mag") //List of overlays so we can switch them in an out, instead of using Cut() on overlays.
+	var/list/attachable_overlays	= list(ATTACHMENT_SLOT_MUZZLE, ATTACHMENT_SLOT_RAIL, ATTACHMENT_SLOT_UNDER, ATTACHMENT_SLOT_STOCK, ATTACHMENT_SLOT_MAGAZINE) //List of overlays so we can switch them in an out, instead of using Cut() on overlays.
 	var/list/attachable_offset 		= null		//Is a list, see examples of from the other files. Initiated on New() because lists don't initial() properly.
 	var/list/attachable_allowed		= null		//Must be the exact path to the attachment present in the list. Empty list for a default.
 	var/obj/item/attachable/muzzle 	= null		//Attachable slots. Only one item per slot.
@@ -167,10 +167,11 @@
 
 //Hotfix for attachment offsets being set AFTER the core New() proc. Causes a small graphical artifact when spawning, hopefully works even with lag
 /obj/item/weapon/gun/proc/handle_starting_attachment()
-	if(starting_attachment_types && starting_attachment_types.len)
-		for(var/path in starting_attachment_types)
-			var/obj/item/attachable/A = new path(src)
-			A.Attach(src)
+	if(!length(starting_attachment_types))
+		return
+	for(var/path in starting_attachment_types)
+		var/obj/item/attachable/A = new path(src)
+		A.attach_to_gun(src)
 
 
 /obj/item/weapon/gun/Destroy()
@@ -207,7 +208,7 @@
 	if(gun_user)
 		UnregisterSignal(gun_user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG))
 		gun_user.client.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
-		gun_user = null	
+		gun_user = null
 	return ..()
 
 /obj/item/weapon/gun/removed_from_inventory(mob/user)
@@ -558,7 +559,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		reset_fire()
 	SEND_SIGNAL(src, COMSIG_GUN_STOP_FIRE)
 
-///Clean all references 
+///Clean all references
 /obj/item/weapon/gun/proc/reset_fire()
 	shots_fired = 0//Let's clean everything
 	set_target(null)
@@ -677,7 +678,7 @@ and you're good to go.
 
 	apply_gun_modifiers(projectile_to_fire, target)
 	setup_bullet_accuracy(projectile_to_fire, gun_user, shots_fired, dual_wield) //User can be passed as null.
-		
+
 	var/firing_angle = get_angle_with_scatter((gun_user || get_turf(src)), target, get_scatter(projectile_to_fire.scatter, gun_user), projectile_to_fire.p_x, projectile_to_fire.p_y)
 
 	//Finally, make with the pew pew!
@@ -685,7 +686,7 @@ and you're good to go.
 		stack_trace("projectile malfunctioned while firing. User: [gun_user]")
 		return
 
-	
+
 	play_fire_sound(gun_user)
 	muzzle_flash(firing_angle, gun_user)
 	simulate_recoil(dual_wield, gun_user)

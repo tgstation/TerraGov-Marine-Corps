@@ -152,6 +152,8 @@
 	layer = PODDOOR_OPEN_LAYER
 	icon_state = "shutter0"
 
+/obj/machinery/door/poddoor/shutters/barren
+	resistance_flags = UNACIDABLE
 
 /obj/machinery/door/poddoor/shutters/mainship/pressure
 	name = "pressure shutters"
