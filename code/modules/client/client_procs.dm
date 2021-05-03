@@ -136,6 +136,8 @@
 	// Instantiate tgui panel
 	tgui_panel = new(src)
 
+	set_right_click_menu_mode(TRUE)
+
 	GLOB.ahelp_tickets.ClientLogin(src)
 
 	if(CONFIG_GET(flag/localhost_rank))
@@ -881,3 +883,13 @@ GLOBAL_VAR_INIT(automute_on, null)
 		SSambience.ambience_listening_clients[src] = world.time + 10 SECONDS //Just wait 10 seconds before the next one aight mate? cheers.
 	else
 		SSambience.ambience_listening_clients -= src
+
+/client/proc/set_right_click_menu_mode(shift_only)
+	if(shift_only)
+		winset(src, "mapwindow.map", "right-click=true")
+		winset(src, "ShiftUp", "is-disabled=false")
+		winset(src, "Shift", "is-disabled=false")
+	else
+		winset(src, "mapwindow.map", "right-click=false")
+		winset(src, "default.Shift", "is-disabled=true")
+		winset(src, "default.ShiftUp", "is-disabled=true")

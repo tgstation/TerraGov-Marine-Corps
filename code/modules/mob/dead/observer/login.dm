@@ -30,6 +30,7 @@
 
 	update_icon(client.prefs.ghost_form)
 	updateghostimages()
+	client.set_right_click_menu_mode(FALSE)
 
 	if(!length(actions) && client.prefs.observer_actions)
 		for(var/path in subtypesof(/datum/action/observer_action))
