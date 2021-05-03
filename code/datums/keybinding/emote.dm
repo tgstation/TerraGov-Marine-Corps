@@ -2,8 +2,10 @@
 	category = CATEGORY_EMOTE
 	weight = WEIGHT_EMOTE
 	keybind_signal = COMSIG_KB_EMOTE
+	/// They key of this emote
 	var/emote_key
 
+/// Associate that keybind with an emote
 /datum/keybinding/emote/proc/link_to_emote(datum/emote/faketype)
 	hotkey_keys = list("Unbound")
 	emote_key = initial(faketype.key)

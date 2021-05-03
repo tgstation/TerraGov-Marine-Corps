@@ -24,6 +24,7 @@
 		for(var/bound_key in instance.hotkey_keys)
 			LAZYADD(GLOB.hotkey_keybinding_list_by_key[bound_key], list(instance.name))
 
+/// Create a keybind for each datum/emote
 /proc/init_emote_keybinds()
 	for(var/i in subtypesof(/datum/emote))
 		var/datum/emote/faketype = i
