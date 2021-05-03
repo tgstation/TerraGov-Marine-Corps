@@ -1,7 +1,0 @@
-author: "AyyRobotics"
-delete-after: True
-changes: 
-  - rscadd: "Added the Barrenquilla Mining Facility"
-  - rscadd: "Added some fluff lore and things to be expanded upon later."
-  - rscdel: "Removed old Lava Outpost"
-  - imageadd: "added some sprites for areas and other non-important things."
