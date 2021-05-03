@@ -1,0 +1,4 @@
+author: "Wayland-Smithy"
+delete-after: True
+changes: 
+  - code_imp: "Two-handed weapons can no longer be picked up with a macro."
