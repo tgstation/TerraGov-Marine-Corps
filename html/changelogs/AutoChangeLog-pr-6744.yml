@@ -1,0 +1,4 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - qol: "You can leave the larva queue. Also, a new action to join/leave the queue gave to observers"
