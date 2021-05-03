@@ -98,8 +98,8 @@ type PreferencesClothingTypeList = {
   underwear: PreferencesUnderWearTypes
   undershirt: string[],
   backpack: string[],
-
 }
+
 type PreferencesUnderWearTypes = {
   male: string[]
   female: string[]

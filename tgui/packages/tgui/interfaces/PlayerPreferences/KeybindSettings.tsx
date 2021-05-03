@@ -7,6 +7,11 @@ type KeybindSettingCapture = {
   key: string,
 }
 
+type KeybindSentenceCapture = {
+  name: string,
+  sentence: string,
+}
+
 export const KeybindSettings = (props, context) => {
   const { act, data, config } = useBackend<PlayerPreferencesData>(context);
   const {
@@ -18,6 +23,10 @@ export const KeybindSettings = (props, context) => {
     capture,
     setCapture,
   ] = useLocalState<KeybindSettingCapture>(context, `setCapture`, null);
+  const [
+    captureSentence,
+    setCaptureSentence,
+  ] = useLocalState<KeybindSentenceCapture>(context, `setCaptureSentence`, null);
   const [
     filter,
     setFilter,
@@ -49,6 +58,13 @@ export const KeybindSettings = (props, context) => {
           kbName={capture.name}
           currentKey={capture.key}
           onClose={() => setCapture(null)}
+        />
+      )}
+      {captureSentence && (
+        <CaptureSentence
+          kbName={captureSentence.name}
+          currentSentence={captureSentence.sentence}
+          onClose={() => setCaptureSentence(null)}
         />
       )}
       <Box>
@@ -174,6 +190,55 @@ const KeybindingPreference = (props, context) => {
         [+]
       </Button>
     </LabeledList.Item>
+  );
+};
+
+const CustomSentence = (props, context) => {
+  const { act, data, config } = useBackend<PlayerPreferencesData>(context);
+  const { key_bindings } = data;
+  const { keybind, setCapture } = props;
+  const current = key_bindings[keybind.name];
+  return (
+    <LabeledList.Item label={keybind.display_name}>
+      <Button
+        onClick={() => setCaptureSentence({ name: keybind.name, key })}>
+        Custom Sentence
+      </Button>
+      {current && (current.map(key => (
+        <Button
+          key={key}
+          inline
+          onClick={() => setCapture({ name: keybind.name, key })}>
+          {key}
+        </Button>
+      )))}
+      <Button inline onClick={() => setCapture({ name: keybind.name })}>
+        [+]
+      </Button>
+    </LabeledList.Item>
+  );
+}
+
+const CaptureSentence = (props, context) => {
+  const { act, data, config } = useBackend(context);
+  const { onClose, currentSentence, kbName } = props;
+
+  return (
+    <Modal
+      id="grab-focus"
+      width="300px"
+      height="200px"
+      onKeyUp={e => captureKeyPress(e)}>
+      <Box>Press any key or press ESC to clear</Box>
+      <Box align="right">
+        <Button align="right" onClick={() => onClose()}>
+          X
+        </Button>
+      </Box>
+      <script type="application/javascript">
+        {"document.getElementById('grab-focus').focus();"}
+      </script>
+    </Modal>
   );
 };
 
