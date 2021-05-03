@@ -1,6 +1,6 @@
 import { useBackend, useLocalState } from '../../backend';
 import { Button, Input, Section, Tabs, LabeledList, Box, Grid, Modal } from '../../components';
-
+import { TextInputModal } from '../TextInputModal';
 
 type KeybindSettingCapture = {
   name: string,
@@ -9,7 +9,6 @@ type KeybindSettingCapture = {
 
 type KeybindSentenceCapture = {
   name: string,
-  sentence: string,
 }
 
 export const KeybindSettings = (props, context) => {
@@ -61,10 +60,16 @@ export const KeybindSettings = (props, context) => {
         />
       )}
       {captureSentence && (
-        <CaptureSentence
-          kbName={captureSentence.name}
-          currentSentence={captureSentence.sentence}
-          onClose={() => setCaptureSentence(null)}
+        <TextInputModal 
+          label="Chose a custom sentence"
+          button_text="Confirm"
+          onSubmit={(input) => {
+            act('setCustomSentence', { name:captureSentence.name, sentence:input });
+            setCaptureSentence(null);
+          }}
+          onBack={() => setCaptureSentence(null)}
+          areaHeigh="20vh"
+          areaWidth="40vw"
         />
       )}
       <Box>
@@ -127,6 +132,16 @@ export const KeybindSettings = (props, context) => {
                 key={kb.name}
                 keybind={kb}
                 setCapture={setCapture}
+              />
+            ))}
+          </Section>
+          <Section title="Custom emotes">
+            {all_keybindings['CUSTOM_EMOTE']?.filter(filterSearch).map(kb => (
+              <CustomSentence
+                key={kb.name}
+                keybind={kb}
+                setCapture={setCapture}
+                setCaptureSentence={setCaptureSentence}
               />
             ))}
           </Section>
@@ -196,13 +211,13 @@ const KeybindingPreference = (props, context) => {
 const CustomSentence = (props, context) => {
   const { act, data, config } = useBackend<PlayerPreferencesData>(context);
   const { key_bindings } = data;
-  const { keybind, setCapture } = props;
+  const { keybind, setCaptureSentence, setCapture } = props;
   const current = key_bindings[keybind.name];
   return (
     <LabeledList.Item label={keybind.display_name}>
       <Button
-        onClick={() => setCaptureSentence({ name: keybind.name, key })}>
-        Custom Sentence
+        onClick={() => setCaptureSentence({ name: keybind.name })}>
+        Chose custom sentence
       </Button>
       {current && (current.map(key => (
         <Button
@@ -218,29 +233,6 @@ const CustomSentence = (props, context) => {
     </LabeledList.Item>
   );
 }
-
-const CaptureSentence = (props, context) => {
-  const { act, data, config } = useBackend(context);
-  const { onClose, currentSentence, kbName } = props;
-
-  return (
-    <Modal
-      id="grab-focus"
-      width="300px"
-      height="200px"
-      onKeyUp={e => captureKeyPress(e)}>
-      <Box>Press any key or press ESC to clear</Box>
-      <Box align="right">
-        <Button align="right" onClick={() => onClose()}>
-          X
-        </Button>
-      </Box>
-      <script type="application/javascript">
-        {"document.getElementById('grab-focus').focus();"}
-      </script>
-    </Modal>
-  );
-};
 
 const CaptureKeybinding = (props, context) => {
   const { act, data, config } = useBackend(context);
