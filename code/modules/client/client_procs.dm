@@ -884,6 +884,7 @@ GLOBAL_VAR_INIT(automute_on, null)
 	else
 		SSambience.ambience_listening_clients -= src
 
+///Sets whether or not the user needs to hold shift to access the context menu
 /client/proc/set_right_click_menu_mode(shift_only)
 	if(shift_only)
 		winset(src, "mapwindow.map", "right-click=true")
