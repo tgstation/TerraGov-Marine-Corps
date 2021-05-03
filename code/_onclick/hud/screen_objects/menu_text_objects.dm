@@ -12,8 +12,8 @@
 	screen_loc = "CENTER"
 	maptext_height = 480
 	maptext_width = 480
-	maptext_x = 3
-	maptext_y = 5
+	maptext_x = 5
+	maptext_y = 7
 	maptext = "If you see this yell at coders"
 
 /**
@@ -25,17 +25,15 @@
  * This proc sets the maptext of the screen obj when it's updated
  */
 /obj/screen/text/lobby/proc/set_text()
+	SIGNAL_HANDLER
 	return
 
 /obj/screen/text/lobby/title
-	maptext = "<span class=menutext>Welcome to TGMC</span>"
+	maptext = "<span class=menutitle>Welcome to TGMC</span>"
 
 /obj/screen/text/lobby/title/Initialize()
 	. = ..()
-	maptext = "<span class=menutext>Welcome to TGMC[SSmapping?.configs ? " - [SSmapping.configs[SHIP_MAP].map_name]" : ""]</span>"
-	var/matrix/M = matrix()
-	M.Scale(1.1, 1.1)//make text bigger for title page
-	transform = M
+	maptext = "<span class=menutitle>Welcome to TGMC[SSmapping?.configs ? " - [SSmapping.configs[SHIP_MAP].map_name]" : ""]</span>"
 
 
 /obj/screen/text/lobby/year
@@ -52,6 +50,7 @@
 
 /obj/screen/text/lobby/owners_char/Initialize(mapload)
 	. = ..()
+	RegisterSignal(hud.mymob.client, COMSIG_CLIENT_PREFERENCES_UIACTED, .proc/set_text)
 	if(!mapload)
 		INVOKE_NEXT_TICK(src, .proc/set_text)//stupid fucking initialize bug fuck you
 		return

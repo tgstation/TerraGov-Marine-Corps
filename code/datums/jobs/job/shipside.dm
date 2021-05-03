@@ -115,7 +115,7 @@ Godspeed, captain! And remember, you are not above the law."})
 
 /datum/job/terragov/command/fieldcommander/after_spawn(mob/living/L, mob/M, latejoin)
 	. = ..()
-	SSdirection.set_leader("marine-sl", L)
+	SSdirection.set_leader(TRACKING_ID_MARINE_COMMANDER, L)
 
 
 /datum/job/terragov/command/fieldcommander/radio_help_message(mob/M)
