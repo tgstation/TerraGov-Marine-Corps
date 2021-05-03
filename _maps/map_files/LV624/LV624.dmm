@@ -2088,10 +2088,9 @@
 	},
 /area/lv624/ground/river2)
 "akD" = (
-/obj/structure/window_frame/colony/reinforced,
-/obj/structure/window/framed/colony/reinforced,
-/turf/open/floor/plating,
-/area/lv624/lazarus/engineering)
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/sand8)
 "akE" = (
 /turf/open/ground/coast{
 	dir = 1
@@ -10668,12 +10667,9 @@
 /turf/open/floor/plating/ground/dirt,
 /area/shuttle/drop2/lz2)
 "bcC" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 10
-	},
+/obj/machinery/miner/damaged,
 /turf/open/floor/plating/ground/dirt,
-/area/shuttle/drop2/lz2)
+/area/lv624/ground/river1)
 "bcD" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/dirtgrassborder,
@@ -13391,9 +13387,13 @@
 /turf/open/floor/plating/ground/dirtgrassborder,
 /area/lv624/ground/jungle2)
 "brF" = (
-/obj/structure/jungle/plantbot1,
+/obj/structure/cable,
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 8;
+	welded = 1
+	},
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/jungle2)
+/area/shuttle/drop2/lz2)
 "brH" = (
 /turf/open/ground/coast/corner{
 	dir = 8
@@ -14666,7 +14666,6 @@
 /area/lv624/lazarus/main_hall)
 "hHD" = (
 /obj/machinery/miner/damaged,
-/obj/effect/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle3)
 "hIj" = (
@@ -15818,10 +15817,6 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central3)
-"oqP" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/sand8)
 "oqW" = (
 /obj/structure/jungle/vines/heavy,
 /turf/open/floor/plating/ground/dirtgrassborder/corner,
@@ -20267,7 +20262,7 @@ aIj
 aJb
 fkc
 avL
-avL
+bcC
 avL
 avL
 auH
@@ -21744,7 +21739,7 @@ bcg
 bcg
 bcg
 bfM
-bnE
+hHD
 bnE
 bnE
 bph
@@ -26213,7 +26208,7 @@ rTb
 rTb
 bfM
 bnE
-hHD
+pId
 bfa
 bch
 bfM
@@ -28993,7 +28988,7 @@ ajG
 ajG
 ajG
 ajG
-ajG
+akD
 ajG
 ajG
 ajG
@@ -29170,7 +29165,7 @@ acO
 acO
 ajG
 ajG
-oqP
+ajG
 ajG
 ajG
 ajH
@@ -30321,7 +30316,7 @@ aZl
 bIG
 jvx
 jvx
-quk
+brF
 jvx
 jvx
 cQH
@@ -30500,7 +30495,7 @@ aZW
 lhf
 nsb
 jvx
-quk
+bfY
 jvx
 jvx
 nxx
@@ -30679,9 +30674,9 @@ aES
 bbL
 nsb
 jvx
-bcC
-vFc
-vFc
+bfY
+bfY
+bfY
 vfU
 xtK
 xtK
@@ -32209,7 +32204,7 @@ alg
 alg
 ako
 aFq
-akD
+ako
 alg
 alg
 alg
@@ -32571,7 +32566,7 @@ gXL
 lGO
 lGO
 lGO
-akD
+ako
 ajG
 ajG
 ajG
@@ -33467,7 +33462,7 @@ lGO
 akc
 lGO
 boP
-akD
+ako
 akH
 akH
 aln
@@ -34182,7 +34177,7 @@ alg
 blk
 bnY
 aiD
-akD
+ako
 ajG
 ajG
 ajG
@@ -34350,7 +34345,7 @@ adh
 acO
 acO
 alg
-akD
+ako
 ako
 alg
 alg
@@ -34640,7 +34635,7 @@ bpx
 bqO
 brE
 qkT
-brF
+qkT
 osh
 boU
 aab
