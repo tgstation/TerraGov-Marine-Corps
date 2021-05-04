@@ -431,8 +431,6 @@ GLOBAL_LIST_EMPTY_TYPED(exports_types, /datum/supply_export)
 					else
 						shopping_cart[P.type] = 1
 				if("addall")
-					if(!isliving(ui.user))
-						return
 					var/mob/living/ui_user = ui.user
 					var/cart_cost = 0
 					for(var/i in shopping_cart)
