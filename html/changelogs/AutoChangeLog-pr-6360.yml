@@ -1,0 +1,4 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - rscadd: "Tadpole is reworked. New layout, can hover, no cooldown to land/take off."
