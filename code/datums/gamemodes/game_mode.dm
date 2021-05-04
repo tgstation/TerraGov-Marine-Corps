@@ -279,15 +279,6 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 #undef BIOSCAN_DELTA
 #undef BIOSCAN_LOCATION
 
-/datum/game_mode/proc/setup_xeno_tunnels()
-	var/i = 0
-	while(length(GLOB.xeno_tunnel_landmarks) && i++ < MAX_TUNNELS_PER_MAP)
-		var/obj/effect/landmark/xeno_tunnel/tunnelmarker = pick(GLOB.xeno_tunnel_landmarks)
-		GLOB.xeno_tunnel_landmarks -= tunnelmarker
-		var/turf/T = tunnelmarker.loc
-		new /obj/structure/tunnel(T)
-
-
 /datum/game_mode/proc/setup_blockers()
 	set waitfor = FALSE
 	if(flags_round_type & MODE_FOG_ACTIVATED)

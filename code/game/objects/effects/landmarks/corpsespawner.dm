@@ -31,35 +31,42 @@
 	var/corpseidjob = null // Needs to be in quotes, such as "Clown" or "Chef." This just determines what the ID reads as, not their access
 	var/corpseidaccess = null //This is for access. See access.dm for which jobs give what access. Use CAPTAIN if you want it to be all access.
 	var/corpseidicon = null //For setting it to be a gold, silver, centcom etc ID
-	var/xenovictim = TRUE //whether this person was infected and killed by xenos
-
 
 /obj/effect/landmark/corpsespawner/Initialize()
 	. = ..()
-	var/mob/living/carbon/human/M = new /mob/living/carbon/human(loc)
+	GLOB.corpse_landmarks_list += src
+
+/// Create the mob and delete the corpse spawner
+/obj/effect/landmark/corpsespawner/proc/create_mob(death_type)
+	. = ..()
+	var/mob/living/carbon/human/victim = new /mob/living/carbon/human(loc)
 	GLOB.round_statistics.total_humans_created-- //corpses don't count
 	SSblackbox.record_feedback("tally", "round_statistics", -1, "total_humans_created")
+	victim.real_name = name
+	victim.death(silent = TRUE) //Kills the new mob
+	victim.timeofdeath = -CONFIG_GET(number/revive_grace_period)
+	INVOKE_ASYNC(src, .proc/equip_items_to_mob, victim)
+	switch(death_type)
+		if(COCOONED_DEATH) //Just cocooned
+			ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
+			new /obj/structure/cocoon/opened_cocoon(loc)
+		if(SILO_DEATH) //Headbite and siloed
+			var/datum/internal_organ/brain
+			brain = victim.internal_organs_by_name["brain"] //This removes (and later garbage collects) the organ. No brain means instant death.
+			victim.internal_organs_by_name -= "brain"
+			victim.internal_organs -= brain
+			victim.headbitten = TRUE
+			if(length(GLOB.xeno_resin_silos))
+				victim.loc = pick(GLOB.xeno_resin_silos)
+		if(HEADBITE_DEATH) //Headbite but left there
+			var/datum/internal_organ/brain
+			brain = victim.internal_organs_by_name["brain"] //This removes (and later garbage collects) the organ. No brain means instant death.
+			victim.internal_organs_by_name -= "brain"
+			victim.internal_organs -= brain
+			victim.headbitten = TRUE
+	qdel(src)
+			
 
-	M.real_name = name
-	M.death(silent = TRUE) //Kills the new mob
-	M.timeofdeath = -CONFIG_GET(number/revive_grace_period)
-	INVOKE_ASYNC(src, .proc/equip_items_to_mob, M)
-	if(xenovictim)
-		// no damage because limb updates are expensive
-		var/datum/internal_organ/O
-		var/i
-		for(i in list("heart","lungs"))
-			O = M.internal_organs_by_name[i]
-			M.internal_organs_by_name -= i
-			M.internal_organs -= O
-		M.chestburst = 2
-		ADD_TRAIT(M, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
-		M.update_burst()
-		//buckle to nest
-		var/obj/structure/bed/nest/victim_nest = locate() in get_turf(src)
-		if(victim_nest)
-			victim_nest.buckle_mob(M, silent = TRUE)
-	return INITIALIZE_HINT_QDEL
 
 /obj/effect/landmark/corpsespawner/proc/equip_items_to_mob(mob/living/carbon/human/corpse)
 	if(corpseuniform)

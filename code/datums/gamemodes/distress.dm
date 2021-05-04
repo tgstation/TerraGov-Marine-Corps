@@ -35,6 +35,8 @@
 
 	for(var/i in GLOB.xeno_turret_turfs)
 		new /obj/structure/resin/xeno_turret(i)
+	for(var/obj/effect/landmark/corpsespawner/corpse AS in GLOB.corpse_landmarks_list)
+		corpse.create_mob(COCOONED_DEATH)
 
 
 /datum/game_mode/infestation/distress/scale_roles(initial_players_assigned)

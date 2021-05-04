@@ -9,7 +9,6 @@
 /turf/closed/wall/desert,
 /area/desert/interior/command)
 "ad" = (
-/obj/effect/landmark/xeno_tunnel,
 /turf/open/floor/plating/ground,
 /area/desert/hive)
 "ae" = (

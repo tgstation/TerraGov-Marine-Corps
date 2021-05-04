@@ -158,7 +158,6 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/console)
 "aL" = (
-/obj/effect/landmark/xeno_tunnel,
 /turf/open/lavaland/basalt,
 /area/barren/cave/southwest)
 "aM" = (
@@ -3341,7 +3340,6 @@
 /turf/open/lavaland/basalt,
 /area/barren/cave/north)
 "pX" = (
-/obj/effect/landmark/xeno_tunnel,
 /turf/open/lavaland/basalt,
 /area/barren/cave/north)
 "pY" = (
@@ -9480,7 +9478,6 @@
 /turf/open/floor/plating/dmg2,
 /area/barren/misc/crashed)
 "XD" = (
-/obj/effect/landmark/xeno_tunnel,
 /turf/open/lavaland/basalt,
 /area/barren/cave/south)
 "XF" = (
