@@ -1407,7 +1407,6 @@
 /obj/structure/toilet{
 	dir = 4
 	},
-/obj/effect/landmark/monkey_spawn,
 /turf/open/floor/freezer,
 /area/bigredv2/outside/marshal_office)
 "afl" = (
@@ -1684,11 +1683,6 @@
 	dir = 1;
 	name = "\improper Lambda Lab Chemistry Lab"
 	},
-/turf/open/floor/tile/dark,
-/area/bigredv2/caves/lambda_lab)
-"agh" = (
-/obj/effect/landmark/monkey_spawn,
-/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/lambda_lab)
 "agi" = (
@@ -3202,10 +3196,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/purple/whitepurplefull,
 /area/bigredv2/caves/lambda_lab)
-"alR" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/floor/tile/purple/whitepurplefull,
-/area/bigredv2/caves/lambda_lab)
 "alS" = (
 /obj/effect/decal/cleanable/vomit,
 /turf/open/floor/tile/purple/whitepurplefull,
@@ -3465,10 +3455,6 @@
 /turf/open/floor/plating/warning{
 	dir = 10
 	},
-/area/bigredv2/caves/lambda_lab)
-"amK" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/floor/plating/warning,
 /area/bigredv2/caves/lambda_lab)
 "amL" = (
 /turf/open/floor/plating/warning,
@@ -3800,22 +3786,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
 /area/bigredv2/caves/lambda_lab)
-"anO" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/floor/plating/warning{
-	dir = 9
-	},
-/area/bigredv2/caves/lambda_lab)
 "anP" = (
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/open/floor/plating/warning{
-	dir = 1
-	},
-/area/bigredv2/caves/lambda_lab)
-"anQ" = (
-/obj/effect/landmark/monkey_spawn,
 /turf/open/floor/plating/warning{
 	dir = 1
 	},
@@ -4026,12 +4000,6 @@
 /obj/structure/table,
 /obj/structure/cable,
 /turf/open/floor/plating,
-/area/bigredv2/caves/lambda_lab)
-"aoG" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/floor/plating/warning{
-	dir = 10
-	},
 /area/bigredv2/caves/lambda_lab)
 "aoI" = (
 /obj/item/tool/surgery/scalpel/laser3,
@@ -5913,7 +5881,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/landmark/monkey_spawn,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark/purple2{
 	dir = 4
@@ -8075,10 +8042,6 @@
 /obj/machinery/light/small,
 /turf/open/floor/engine,
 /area/bigredv2/caves/lambda_lab)
-"aDk" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/floor/tile/purple/whitepurplecorner,
-/area/bigredv2/caves/lambda_lab)
 "aDl" = (
 /obj/structure/ore_box,
 /turf/open/floor/tile/purple/whitepurple,
@@ -9226,7 +9189,6 @@
 /area/bigredv2/outside/medical)
 "aHA" = (
 /obj/structure/bed,
-/obj/effect/landmark/monkey_spawn,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 6
 	},
@@ -9610,7 +9572,6 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aIR" = (
-/obj/effect/landmark/monkey_spawn,
 /obj/effect/landmark/weed_node,
 /obj/structure/mineral_door/resin,
 /turf/open/floor/podhatch/floor{
@@ -10378,11 +10339,6 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/wood,
 /area/bigredv2/outside/bar)
-"aLu" = (
-/obj/structure/table/woodentable,
-/obj/effect/landmark/monkey_spawn,
-/turf/open/floor/wood,
-/area/bigredv2/outside/bar)
 "aLv" = (
 /obj/machinery/vending/boozeomat,
 /obj/machinery/light{
@@ -10756,7 +10712,6 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aMW" = (
-/obj/effect/landmark/monkey_spawn,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/podhatch/floor{
 	icon_state = "bcircuitoff"
@@ -10817,10 +10772,6 @@
 /turf/closed/wall,
 /area/bigredv2/outside/virology)
 "aNi" = (
-/turf/open/floor/freezer,
-/area/bigredv2/outside/virology)
-"aNj" = (
-/obj/effect/landmark/monkey_spawn,
 /turf/open/floor/freezer,
 /area/bigredv2/outside/virology)
 "aNk" = (
@@ -18364,12 +18315,6 @@
 	dir = 1
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
-"bBe" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/floor/tile/dark/red2{
-	dir = 1
-	},
-/area/bigredv2/outside/nanotrasen_lab/inside)
 "bBf" = (
 /obj/machinery/light{
 	dir = 1
@@ -18467,10 +18412,6 @@
 	name = "\improper Eta Lab Maintenance Storage"
 	},
 /turf/open/floor/tile/dark,
-/area/bigredv2/outside/nanotrasen_lab/inside)
-"bBC" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/ground/jungle/clear,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bBE" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -19365,10 +19306,6 @@
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northwest)
-"cca" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/floor/tile/dark,
-/area/bigredv2/caves/lambda_lab)
 "ccP" = (
 /obj/docking_port/stationary/crashmode,
 /turf/closed/wall,
@@ -21140,10 +21077,6 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/northeast)
-"qJT" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/floor/tile/darkish,
-/area/bigredv2/caves/lambda_lab)
 "qKE" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -28401,8 +28334,8 @@ aFv
 aMz
 aNi
 aXy
-aNj
-aNj
+aNi
+aNi
 aNi
 aSz
 aNc
@@ -28837,7 +28770,7 @@ aNi
 aNi
 aNi
 aXy
-aNj
+aNi
 aSz
 aNc
 aNc
@@ -29050,7 +28983,7 @@ aHZ
 aFv
 aFv
 aMz
-aNj
+aNi
 aNi
 aPu
 aNi
@@ -42815,7 +42748,7 @@ bAh
 bAh
 bAO
 bwF
-bBe
+bBc
 bxg
 bxg
 bBK
@@ -44128,7 +44061,7 @@ byM
 bCq
 bCO
 bwF
-bBC
+bBp
 bBp
 bBp
 bwF
@@ -44137,7 +44070,7 @@ bBp
 bBp
 bwF
 bBp
-bBC
+bBp
 bBp
 qvO
 hqP
@@ -44350,8 +44283,8 @@ bBp
 bBp
 bwF
 bBp
-bBC
-bBC
+bBp
+bBp
 bwF
 bBp
 bBp
@@ -44572,7 +44505,7 @@ bBp
 bwF
 vTU
 bBI
-bBC
+bBp
 qvO
 vKO
 vKO
@@ -48577,7 +48510,7 @@ azb
 azb
 azb
 aKy
-aLu
+aFW
 aMi
 aMI
 aFW
@@ -48675,10 +48608,10 @@ bAJ
 bAV
 bwF
 bBp
-bBC
 bBp
 bBp
-bBC
+bBp
+bBp
 bwF
 bvP
 bvP
@@ -49112,7 +49045,7 @@ bBp
 bBp
 bBp
 bBp
-bBC
+bBp
 bwF
 bvP
 bvP
@@ -49326,7 +49259,7 @@ bAL
 bAX
 bwF
 bBp
-bBC
+bBp
 bBI
 bBp
 bBp
@@ -59831,8 +59764,8 @@ adZ
 alL
 amJ
 adZ
-anO
-aoG
+alL
+amJ
 adZ
 aqb
 aqb
@@ -60046,10 +59979,10 @@ adZ
 rvh
 adZ
 alM
-amK
+amL
 adZ
 anP
-amK
+amL
 adZ
 adZ
 adZ
@@ -60265,8 +60198,8 @@ adZ
 alN
 amL
 adZ
-anQ
-amK
+alN
+amL
 adZ
 aqc
 aqc
@@ -60937,7 +60870,7 @@ aAk
 afz
 aBB
 aCt
-alR
+alc
 alQ
 aFh
 adZ
@@ -61134,7 +61067,7 @@ alc
 amN
 anr
 anT
-alR
+alc
 alc
 aqe
 adZ
@@ -61347,7 +61280,7 @@ rvh
 adZ
 akA
 alc
-alR
+alc
 alc
 alc
 anT
@@ -61371,7 +61304,7 @@ adQ
 aAl
 aBC
 alQ
-aDk
+aEo
 aEp
 adZ
 adZ
@@ -62659,7 +62592,7 @@ afv
 efK
 adZ
 asw
-cca
+agd
 agj
 avk
 avk
@@ -62857,7 +62790,7 @@ vCh
 vCh
 vTV
 afv
-agh
+agj
 agd
 ahM
 agd
@@ -63726,7 +63659,7 @@ vCh
 vTV
 afH
 agj
-cca
+agd
 ahM
 agd
 agj
@@ -64163,7 +64096,7 @@ agj
 agd
 ahM
 agd
-cca
+agd
 agd
 adZ
 adZ
@@ -64627,7 +64560,7 @@ aBG
 aCz
 aDq
 agj
-cca
+agd
 agc
 agc
 aGX
@@ -67453,7 +67386,7 @@ aFr
 aGm
 aHc
 aHW
-qJT
+asu
 aKc
 aKY
 aLR

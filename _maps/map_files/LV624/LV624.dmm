@@ -298,10 +298,6 @@
 	},
 /turf/open/floor/plating,
 /area/lv624/ground/tfort)
-"abU" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/east2)
 "acd" = (
 /obj/structure/table/reinforced/flipped{
 	dir = 8
@@ -872,10 +868,6 @@
 "aeP" = (
 /turf/closed/wall/cult,
 /area/lv624/ground/caves/central3)
-"aeQ" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/floor,
-/area/lv624/ground/sand8)
 "aeR" = (
 /obj/structure/largecrate/random,
 /turf/open/floor/plating/ground/dirt,
@@ -4128,10 +4120,6 @@
 "atf" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner,
 /area/lv624/ground/compound/sw)
-"atg" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/sand1)
 "ati" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
 	dir = 1
@@ -4430,13 +4418,6 @@
 	},
 /turf/open/floor/plating,
 /area/lv624/lazarus/fitness)
-"auy" = (
-/obj/effect/landmark/monkey_spawn,
-/obj/effect/decal/remains/human,
-/turf/open/floor/tile/purple/whitepurple{
-	dir = 5
-	},
-/area/lv624/lazarus/research)
 "auA" = (
 /obj/structure/jungle/vines,
 /turf/closed/gm/dense,
@@ -5806,10 +5787,6 @@
 /obj/structure/fence,
 /turf/open/ground/grass,
 /area/lv624/lazarus/quartstorage/outdoors)
-"aAp" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/ground/grass,
-/area/lv624/ground/jungle7)
 "aAq" = (
 /obj/structure/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder/corner,
@@ -6251,10 +6228,6 @@
 /area/lv624/lazarus/medbay)
 "aCy" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner2,
-/area/lv624/ground/compound/n)
-"aCz" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/n)
 "aCA" = (
 /turf/open/floor/plating/ground/dirtgrassborder,
@@ -6923,10 +6896,6 @@
 	dir = 4
 	},
 /area/lv624/lazarus/fitness)
-"aGN" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/ground/grass,
-/area/lv624/ground/jungle9)
 "aGO" = (
 /obj/structure/cargo_container/green{
 	dir = 8
@@ -7683,7 +7652,6 @@
 /obj/machinery/shower{
 	pixel_y = 16
 	},
-/obj/effect/landmark/monkey_spawn,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -8725,11 +8693,6 @@
 /area/lv624/ground/compound/c)
 "aQS" = (
 /obj/structure/jungle/planttop1,
-/obj/structure/jungle/vines/heavy,
-/turf/open/ground/grass,
-/area/lv624/ground/jungle9)
-"aQT" = (
-/obj/effect/landmark/monkey_spawn,
 /obj/structure/jungle/vines/heavy,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle9)
@@ -11084,10 +11047,6 @@
 "bci" = (
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/jungle3)
-"bcj" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/ground/grass,
-/area/lv624/ground/jungle3)
 "bck" = (
 /obj/structure/jungle/vines,
 /turf/open/ground/grass,
@@ -11989,11 +11948,6 @@
 /turf/open/ground/grass/beach/corner{
 	dir = 1
 	},
-/area/lv624/ground/jungle9)
-"bhq" = (
-/obj/effect/landmark/monkey_spawn,
-/obj/structure/jungle/vines/heavy,
-/turf/open/ground/grass/grass2,
 /area/lv624/ground/jungle9)
 "bhs" = (
 /turf/closed/wall/r_wall,
@@ -13637,19 +13591,11 @@
 	dir = 4
 	},
 /area/lv624/ground/jungle1)
-"bpa" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/floor/plating/ground/dirtgrassborder,
-/area/lv624/ground/jungle1)
 "bpb" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner2,
 /area/lv624/ground/jungle1)
 "bpe" = (
 /turf/open/floor/tile/whiteyellow/full,
-/area/lv624/ground/ruin)
-"bpf" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/ruin)
 "bpg" = (
 /obj/structure/jungle/vines/heavy{
@@ -13782,10 +13728,6 @@
 /area/lv624/ground/jungle1)
 "bpT" = (
 /obj/item/weapon/claymore/mercsword/machete,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/jungle1)
-"bpU" = (
-/obj/effect/landmark/monkey_spawn,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle1)
 "bpV" = (
@@ -14180,10 +14122,6 @@
 "brP" = (
 /obj/structure/jungle/vines,
 /obj/structure/flora/tree/jungle/small,
-/turf/open/ground/grass,
-/area/lv624/ground/jungle2)
-"brQ" = (
-/obj/effect/landmark/monkey_spawn,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle2)
 "brR" = (
@@ -14714,10 +14652,6 @@
 	dir = 4
 	},
 /area/shuttle/drop2/lz2)
-"fca" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/closed/gm/dense,
-/area/lv624/ground/jungle3)
 "fcf" = (
 /turf/open/ground/coast,
 /area/lv624/ground/jungle6)
@@ -18709,7 +18643,7 @@ bck
 fvY
 bnD
 bol
-bpf
+hLW
 bpX
 hLW
 hLW
@@ -21204,7 +21138,7 @@ aVS
 vZo
 bcg
 bcg
-fca
+bcg
 bcg
 bcg
 bcg
@@ -24246,7 +24180,7 @@ aZl
 fRf
 bch
 bch
-bcj
+bch
 bch
 bck
 bcg
@@ -25078,7 +25012,7 @@ ara
 ara
 aqD
 arH
-atg
+aqD
 aqD
 aqD
 auC
@@ -27809,7 +27743,7 @@ aFB
 aFB
 aFB
 aES
-aGN
+aES
 aES
 aES
 aFB
@@ -28363,7 +28297,7 @@ aZl
 aZk
 aES
 aET
-aGN
+aES
 aES
 aES
 aET
@@ -30706,7 +30640,7 @@ fTB
 fTB
 bpx
 bpx
-brQ
+bpx
 bqO
 boU
 boU
@@ -30841,7 +30775,7 @@ aJq
 aKe
 aGb
 aLA
-auy
+aGA
 auW
 aOo
 aEO
@@ -31743,7 +31677,7 @@ aFB
 aFB
 aET
 bZw
-aQT
+aGk
 aET
 aHT
 aHT
@@ -32278,7 +32212,7 @@ aES
 aHT
 aET
 aGk
-aQT
+aGk
 aET
 aES
 aES
@@ -32615,7 +32549,7 @@ les
 aAb
 aAb
 aAb
-aCz
+aAb
 aCZ
 aDC
 aAb
@@ -33913,7 +33847,7 @@ aET
 aET
 aya
 aXg
-bhq
+bet
 aXg
 biZ
 bjH
@@ -34950,7 +34884,7 @@ axC
 aEx
 aKZ
 aFD
-aGN
+aES
 aES
 aET
 aIH
@@ -36877,7 +36811,7 @@ alm
 alm
 alm
 alm
-aeQ
+alm
 amU
 ang
 aod
@@ -41802,7 +41736,7 @@ bdi
 biN
 boZ
 boY
-bpU
+boY
 bkk
 bdh
 bdh
@@ -42277,7 +42211,7 @@ aro
 arV
 atX
 arW
-aAp
+arW
 arW
 arY
 arW
@@ -42873,7 +42807,7 @@ bmo
 bdi
 bdh
 bdh
-bpa
+biM
 bpT
 bkk
 bdh
@@ -43178,7 +43112,7 @@ atl
 arW
 arW
 arW
-aAp
+arW
 aAo
 aEA
 aAk
@@ -45227,7 +45161,7 @@ fgu
 abn
 aaj
 abI
-abU
+abI
 aaf
 aaf
 aaj

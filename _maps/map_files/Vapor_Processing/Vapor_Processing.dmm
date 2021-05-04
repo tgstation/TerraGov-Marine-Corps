@@ -206,15 +206,6 @@
 	dir = 4
 	},
 /area/shuttle/drop2/lz2)
-"aK" = (
-/obj/effect/landmark/monkey_spawn,
-/obj/machinery/landinglight/ds2/delaytwo{
-	dir = 8
-	},
-/turf/open/floor/plating/asteroidwarning{
-	dir = 8
-	},
-/area/shuttle/drop2/lz2)
 "aL" = (
 /obj/machinery/landinglight/ds2/delayone{
 	dir = 8
@@ -728,10 +719,6 @@
 /obj/machinery/light,
 /turf/open/floor/prison/sterilewhite,
 /area/lv624/lazarus/fitness)
-"cN" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/ground,
-/area/lv624/ground/compound/n)
 "cO" = (
 /obj/structure/largecrate/supply/machine,
 /turf/open/floor,
@@ -982,10 +969,6 @@
 	dir = 1
 	},
 /turf/open/ground/grass/grass2,
-/area/lv624/ground/compound/n)
-"dR" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/floor/grass,
 /area/lv624/ground/compound/n)
 "dT" = (
 /obj/structure/cable,
@@ -1295,10 +1278,6 @@
 /obj/structure/cable,
 /turf/open/floor/grass,
 /area/vapor_processing/west_compound)
-"fb" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/floor/grass,
-/area/vapor_processing/west_compound)
 "fd" = (
 /obj/structure/cable,
 /turf/closed/wall,
@@ -1401,10 +1380,6 @@
 	dir = 1
 	},
 /area/vapor_processing/cargo2)
-"fy" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/ground,
-/area/vapor_processing/east_compound)
 "fz" = (
 /turf/closed/wall/indestructible/mineral,
 /area/vapor_processing/caves/se)
@@ -1477,10 +1452,6 @@
 	dir = 1
 	},
 /area/lv624/lazarus/quart)
-"fX" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/ground,
-/area/lv624/ground/compound/c)
 "fY" = (
 /turf/closed/wall,
 /area/lv624/lazarus/engineering)
@@ -2814,10 +2785,6 @@
 	dir = 4
 	},
 /area/lv624/lazarus/comms)
-"kK" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/floor/grass,
-/area/lv624/ground/compound/c)
 "kL" = (
 /obj/machinery/door/airlock/engineering,
 /obj/structure/cable,
@@ -3010,10 +2977,6 @@
 /obj/machinery/light,
 /turf/open/floor/plating,
 /area/vapor_processing/cargo_maint_s)
-"lN" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/ground/grass/grass2,
-/area/lv624/ground/compound/sw)
 "lO" = (
 /obj/machinery/firealarm,
 /obj/machinery/light{
@@ -3033,10 +2996,6 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/green/whitegreen,
 /area/lv624/lazarus/medbay)
-"lS" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/floor/grass,
-/area/vapor_processing/south_compound)
 "lT" = (
 /turf/closed/wall,
 /area/lv624/lazarus/robotics)
@@ -3130,10 +3089,6 @@
 /obj/machinery/floodlight/colony,
 /turf/open/floor/grass,
 /area/lv624/ground/compound/se)
-"mq" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/ground/grass/grass2,
-/area/lv624/ground/compound/se)
 "mr" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor,
@@ -3159,11 +3114,6 @@
 /turf/open/floor/scorched/two,
 /area/storage/tools)
 "mw" = (
-/turf/open/floor,
-/area/lv624/lazarus/research)
-"mx" = (
-/obj/effect/landmark/monkey_spawn,
-/obj/structure/cable,
 /turf/open/floor,
 /area/lv624/lazarus/research)
 "my" = (
@@ -3204,10 +3154,6 @@
 	},
 /turf/open/floor,
 /area/lv624/lazarus/research)
-"mG" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/floor,
-/area/storage/tools)
 "mH" = (
 /obj/effect/spawner/random/tool,
 /turf/open/floor,
@@ -3268,10 +3214,6 @@
 "mU" = (
 /obj/machinery/photocopier,
 /obj/structure/cable,
-/turf/open/floor,
-/area/lv624/lazarus/research)
-"mV" = (
-/obj/effect/landmark/monkey_spawn,
 /turf/open/floor,
 /area/lv624/lazarus/research)
 "mW" = (
@@ -3497,10 +3439,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/sleep/bedrooms)
-"od" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/floor,
-/area/maintenance/substation)
 "oe" = (
 /turf/open/floor/wood,
 /area/crew_quarters/sleep/bedrooms)
@@ -4011,10 +3949,6 @@
 "qc" = (
 /turf/open/floor/grass,
 /area/lv624/ground/compound/sw)
-"qd" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/ground/grass/grass2,
-/area/vapor_processing/south_compound)
 "qe" = (
 /obj/machinery/vending/cigarette,
 /turf/open/floor/wood,
@@ -4971,11 +4905,6 @@
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor,
 /area/storage/tools)
-"te" = (
-/obj/effect/landmark/monkey_spawn,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor,
-/area/lv624/lazarus/research)
 "tf" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
@@ -5091,10 +5020,6 @@
 "tC" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/closed/wall,
-/area/lv624/lazarus/research)
-"tD" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/floor/plating/dmg1,
 /area/lv624/lazarus/research)
 "tE" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -7374,7 +7299,7 @@ aB
 ar
 aF
 aI
-aK
+aM
 aL
 aF
 aI
@@ -8219,7 +8144,7 @@ el
 el
 eK
 eK
-fb
+eK
 eK
 fa
 qC
@@ -8548,7 +8473,7 @@ ki
 ki
 kY
 kY
-lN
+ki
 ki
 ki
 kP
@@ -8568,7 +8493,7 @@ kQ
 kQ
 kP
 kR
-lN
+ki
 kY
 ki
 ki
@@ -8918,7 +8843,7 @@ bS
 cK
 bQ
 ah
-cN
+cs
 cs
 ah
 cV
@@ -9471,7 +9396,7 @@ lQ
 lQ
 lQ
 sQ
-mG
+lQ
 lQ
 lQ
 lQ
@@ -9495,7 +9420,7 @@ lh
 lh
 le
 le
-lS
+le
 le
 le
 aa
@@ -9585,7 +9510,7 @@ nd
 oi
 nx
 nx
-od
+nx
 nx
 nx
 nd
@@ -9844,7 +9769,7 @@ ah
 ah
 ah
 bf
-dR
+bf
 ah
 ah
 et
@@ -10174,7 +10099,7 @@ et
 et
 et
 ep
-kK
+ep
 ep
 le
 lf
@@ -10466,7 +10391,7 @@ ep
 GV
 ft
 eu
-fX
+eu
 eu
 eu
 eu
@@ -10690,7 +10615,7 @@ lg
 le
 le
 le
-lS
+le
 le
 lH
 sO
@@ -11223,7 +11148,7 @@ mo
 lh
 lh
 lh
-lS
+le
 pf
 uA
 pt
@@ -12121,7 +12046,7 @@ lh
 lT
 pI
 mk
-mx
+mE
 sV
 mE
 tb
@@ -12236,7 +12161,7 @@ mw
 mw
 nH
 tw
-tD
+tQ
 tN
 mo
 mw
@@ -12330,7 +12255,7 @@ sX
 sZ
 sZ
 sZ
-te
+sZ
 sZ
 sZ
 tk
@@ -12444,7 +12369,7 @@ tF
 tP
 mw
 mw
-mV
+mw
 mw
 lh
 lh
@@ -12504,7 +12429,7 @@ bD
 bD
 bD
 eO
-fy
+eO
 eO
 eO
 fZ
@@ -12537,7 +12462,7 @@ qI
 mw
 mw
 tb
-mx
+mE
 mw
 mw
 qI
@@ -12557,7 +12482,7 @@ lh
 lh
 lg
 lg
-qd
+lg
 lg
 aa
 "}
@@ -12944,7 +12869,7 @@ ll
 li
 li
 ll
-mq
+ll
 nn
 ll
 ll
@@ -14466,7 +14391,7 @@ li
 li
 ll
 ll
-mq
+ll
 ll
 ll
 ll
@@ -14481,7 +14406,7 @@ lm
 ll
 ll
 ll
-mq
+ll
 ll
 ll
 ll
@@ -14899,7 +14824,7 @@ ll
 ll
 ll
 ll
-mq
+ll
 ll
 ll
 ll
@@ -14984,7 +14909,7 @@ ll
 ll
 ll
 ll
-mq
+ll
 ll
 ll
 ll

@@ -1050,10 +1050,6 @@
 	dir = 8
 	},
 /area/ice_colony/surface/storage_unit/research)
-"aeE" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/floor/plating/ground/snow/layer2,
-/area/ice_colony/exterior/surface/clearing/north)
 "aeG" = (
 /obj/structure/rack,
 /obj/item/stack/cable_coil,
@@ -1671,10 +1667,6 @@
 	dir = 6
 	},
 /area/ice_colony/surface/engineering/generator)
-"agR" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/floor/tile/dark2,
-/area/ice_colony/surface/hydroponics/lobby)
 "agT" = (
 /obj/structure/table/reinforced,
 /obj/effect/spawner/random/technology_scanner,
@@ -10781,10 +10773,6 @@
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/valley/southeast)
-"aLJ" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/floor/plating/ground/ice,
-/area/ice_colony/exterior/surface/valley/southeast)
 "aLK" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -18864,10 +18852,6 @@
 	dir = 4
 	},
 /area/ice_colony/exterior/underground/caves)
-"bmR" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/floor/freezer,
-/area/ice_colony/surface/bar/canteen)
 "bmS" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/plating/ground/snow/layer1,
@@ -19928,12 +19912,6 @@
 	},
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/library)
-"bqv" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/shuttle{
-	icon_state = "floor6"
-	},
-/area/ice_colony/surface/hangar/alpha)
 "bqw" = (
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
@@ -22986,10 +22964,6 @@
 	},
 /turf/open/floor/wood,
 /area/ice_colony/underground/command/pv2)
-"bAv" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/floor/tile/dark2,
-/area/ice_colony/surface/research/temporary)
 "bAw" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
@@ -26337,10 +26311,6 @@
 	dir = 9
 	},
 /area/ice_colony/underground/security/brig)
-"bKP" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/floor/freezer,
-/area/ice_colony/underground/requesition/storage)
 "bKR" = (
 /obj/structure/table,
 /obj/item/tool/stamp{
@@ -26689,10 +26659,6 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/crew/disposals)
-"bMe" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/floor/tile/dark2,
-/area/ice_colony/underground/requesition)
 "bMf" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
@@ -28562,10 +28528,6 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/command/checkpoint)
-"bSn" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/floor/plating,
-/area/ice_colony/underground/maintenance/north)
 "bSo" = (
 /obj/machinery/light{
 	dir = 4
@@ -29052,24 +29014,7 @@
 	},
 /turf/closed/ice_rock/corners,
 /area/ice_colony/exterior/underground/caves)
-"bUe" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/floor/wood,
-/area/ice_colony/underground/crew/chapel)
-"bUf" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/floor/tile/dark2,
-/area/ice_colony/underground/crew/morgue)
-"bUg" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/floor/tile/dark2,
-/area/ice_colony/underground/medical/lobby)
-"bUh" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/floor/tile/white,
-/area/ice_colony/underground/medical/lobby)
 "bUi" = (
-/obj/effect/landmark/monkey_spawn,
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/medical/storage)
 "bUj" = (
@@ -29102,21 +29047,9 @@
 "bUp" = (
 /turf/closed/ice/end,
 /area/ice_colony/underground/maintenance/east)
-"bUq" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/floor/tile/dark2,
-/area/ice_colony/underground/storage)
 "bUr" = (
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/security/brig)
-"bUs" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/floor/tile/dark2,
-/area/ice_colony/underground/crew/lavatory)
-"bUt" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/floor/tile/dark/brown2,
-/area/ice_colony/underground/crew/disposals)
 "bUv" = (
 /obj/structure/rack,
 /obj/item/circuitboard/apc,
@@ -30277,10 +30210,6 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/security)
-"bYq" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/floor/plating/ground/snow/layer1,
-/area/ice_colony/exterior/surface/valley/south/excavation)
 "bYr" = (
 /obj/effect/turf_overlay/icerock{
 	dir = 1
@@ -39464,7 +39393,7 @@ mkx
 bdb
 aYN
 bcH
-bKP
+bcH
 bcH
 bdD
 bdt
@@ -41268,12 +41197,12 @@ bdL
 bpH
 bdL
 bdL
-bMe
+bdL
 bdL
 bgZ
 bdL
 bdL
-bMe
+bdL
 bdL
 bhY
 biB
@@ -42548,7 +42477,7 @@ uOC
 bdg
 bcl
 boL
-bMe
+bdL
 bfn
 bdK
 bfm
@@ -43555,7 +43484,7 @@ aRJ
 aSD
 aPQ
 aUf
-bAv
+aTd
 aVj
 aVC
 aVC
@@ -43614,7 +43543,7 @@ bqU
 bsC
 bsi
 btW
-bUg
+bsi
 bsi
 bsi
 bsi
@@ -43898,7 +43827,7 @@ bCu
 bGp
 bIg
 bIg
-bUq
+bIg
 bIF
 bIe
 bLu
@@ -44872,11 +44801,11 @@ bfv
 bgH
 bgH
 bgH
-bSn
 bgH
-bSn
 bgH
-bSn
+bgH
+bgH
+bgH
 bgH
 bfv
 bev
@@ -45131,7 +45060,7 @@ bgH
 pnD
 bgH
 bgH
-bSn
+bgH
 bgH
 bgH
 bgH
@@ -45140,7 +45069,7 @@ bev
 bgH
 bkD
 bkR
-bUe
+bkR
 bmC
 bnh
 bxl
@@ -45384,7 +45313,7 @@ bgI
 bev
 bhj
 bgH
-bSn
+bgH
 bgH
 bgH
 bgH
@@ -45416,7 +45345,7 @@ bsX
 btF
 buv
 bvg
-bUh
+bvg
 bwm
 bvg
 bxL
@@ -46168,7 +46097,7 @@ bev
 bgH
 bkX
 bkT
-bUf
+bkT
 bkT
 bkT
 bkT
@@ -46841,7 +46770,7 @@ iPp
 asn
 asN
 ati
-agR
+ati
 aun
 atQ
 auZ
@@ -46993,7 +46922,7 @@ bNt
 bIB
 bNb
 bPd
-bUt
+bPM
 bOR
 bPD
 bNt
@@ -48791,7 +48720,7 @@ bKW
 bNv
 bMx
 bOL
-bUs
+bOL
 bOL
 bOL
 bPN
@@ -49405,7 +49334,7 @@ aif
 aif
 uSa
 aax
-aeE
+aax
 aax
 aax
 asn
@@ -57725,7 +57654,7 @@ bcL
 bhz
 bci
 bbK
-bYq
+bbJ
 bbK
 bbK
 bpu
@@ -60516,7 +60445,7 @@ aRg
 aKw
 aRp
 aNZ
-bmR
+aNZ
 aUV
 aKw
 aKC
@@ -69516,7 +69445,7 @@ aSV
 aSV
 aSV
 aSV
-bqv
+aSV
 aSV
 aSV
 aYg
@@ -75139,7 +75068,7 @@ awx
 awL
 awL
 awL
-aLJ
+awL
 awL
 awL
 awL

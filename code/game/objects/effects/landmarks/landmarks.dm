@@ -114,17 +114,9 @@
 	GLOB.deathmatch += loc
 	return INITIALIZE_HINT_QDEL
 
-/obj/effect/landmark/monkey_spawn
-	icon_state = "monkey_spawn"
-
-/obj/effect/landmark/monkey_spawn/Initialize() // unused but i won't remove the landmarks for these yet
-	. = ..()
-	return INITIALIZE_HINT_QDEL
-
 /obj/effect/landmark/distress
 
 /obj/effect/landmark/distress_item
-
 
 /obj/effect/landmark/weed_node
 	name = "xeno weed node spawn landmark"
