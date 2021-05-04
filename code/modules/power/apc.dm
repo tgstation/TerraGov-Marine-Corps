@@ -212,7 +212,7 @@
 
 //Update the APC icon to show the three base states
 //Also add overlays for indicator lights
-/obj/machinery/power/apc/update_icon()
+/obj/machinery/power/apc/update_icon() //TODO JESUS CHRIST THIS IS SHIT
 	var/update = check_updates()	//Returns 0 if no need to update icons.
 									//1 if we need to update the icon_state
 									//2 if we need to update the overlays
@@ -230,12 +230,17 @@
 		if(CHECK_BITFIELD(update_overlay, APC_UPOVERLAY_CELL_IN))
 			overlays += "apco-cell"
 		else if(CHECK_BITFIELD(update_state, UPSTATE_ALLGOOD))
-			overlays += image(icon, "apcox-[locked]")
-			overlays += image(icon, "apco3-[charging]")
+			overlays += emissive_appearance(icon, "apcox-[locked]")
+			overlays += mutable_appearance(icon, "apcox-[locked]")
+			overlays += emissive_appearance(icon, "apco3-[charging]")
+			overlays += mutable_appearance(icon, "apco3-[charging]")
 			var/operating = CHECK_BITFIELD(update_overlay, APC_UPOVERLAY_OPERATING)
-			overlays += image(icon, "apco0-[operating ? equipment : 0]")
-			overlays += image(icon, "apco1-[operating ? lighting : 0]")
-			overlays += image(icon, "apco2-[operating ? environ : 0]")
+			overlays += emissive_appearance(icon, "apco0-[operating ? equipment : 0]")
+			overlays += mutable_appearance(icon, "apco0-[operating ? equipment : 0]")
+			overlays += emissive_appearance(icon, "apco1-[operating ? lighting : 0]")
+			overlays += mutable_appearance(icon, "apco1-[operating ? lighting : 0]")
+			overlays += emissive_appearance(icon, "apco2-[operating ? environ : 0]")
+			overlays += mutable_appearance(icon, "apco2-[operating ? environ : 0]")
 
 /obj/machinery/power/apc/proc/check_updates()
 
