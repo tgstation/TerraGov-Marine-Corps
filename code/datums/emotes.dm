@@ -23,7 +23,7 @@
 	var/stat_allowed = CONSCIOUS
 	var/sound //Sound to play when emote is called
 	var/flags_emote = NONE
-	/// Cooldown between two use of that emote. Every emote has its own coodldown
+	/// Cooldown between two uses of that emote. Every emote has its own coodldown
 	var/cooldown = 2 SECONDS
 
 	var/static/list/emote_list = list()

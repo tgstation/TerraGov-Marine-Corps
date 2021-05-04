@@ -12,30 +12,16 @@
 /datum/custom_emote/proc/run_custom_emote(mob/user)
 	if(!message)
 		return
-	if(!can_run_custom_emote(user))
-		return
-	if(spoke_emote)
-		user.say(message)
-		return
-	user.me_verb(message)
-
-/// Check if the mob can currently use that emote
-/datum/custom_emote/proc/can_run_custom_emote(mob/user)
-	if(!istype(user))
-		return
-	if(!check_cooldown(user))
-		to_chat(user, "<span class='notice'>You used that emote too recently.</span>")
-		return FALSE
-	if(user.stat > CONSCIOUS)
-		to_chat(user, "<span class='notice'>You cannot use that emote while unconscious.</span>")
-		return FALSE
-	return TRUE
-
-/// Check if that emote was used recently
-/datum/custom_emote/proc/check_cooldown(mob/user)
 	if(user.emotes_used && user.emotes_used[src] + cooldown > world.time)
-		return FALSE
+		to_chat(user, "<span class='notice'>You used that emote too recently.</span>")
+		return
 	if(!user.emotes_used)
 		user.emotes_used = list()
 	user.emotes_used[src] = world.time
-	return TRUE
+	if(user.stat > CONSCIOUS)
+		to_chat(user, "<span class='notice'>You cannot use that emote while unconscious.</span>")
+		return
+	if(spoken_emote)
+		user.say(message)
+		return
+	user.me_verb(message)

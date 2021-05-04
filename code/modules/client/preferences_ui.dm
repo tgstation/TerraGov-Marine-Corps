@@ -104,7 +104,7 @@
 		var/datum/custom_emote/emote = custom_emotes[id]
 		.["custom_emotes"]["Custom emote :[id]"] = list(
 			sentence = emote.message,
-			emote_type = (emote.spoke_emote ? "say" : "me"),
+			emote_type = (emote.spoken_emote ? "say" : "me"),
 			)
 
 	// Get save slot name
@@ -644,7 +644,7 @@
 			var/list/part = splittext(kb_name, ":")
 			var/id = text2num(part[2])
 			var/datum/custom_emote/emote = custom_emotes[id]
-			emote.spoke_emote = !emote.spoke_emote
+			emote.spoken_emote = !emote.spoken_emote
 
 		if("reset-keybindings")
 			key_bindings = GLOB.hotkey_keybinding_list_by_key
