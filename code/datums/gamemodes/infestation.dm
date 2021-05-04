@@ -5,7 +5,7 @@
 	/// Timer used to calculate how long till the hive collapse due to no ruler
 	var/orphan_hive_timer
 	/// Time between two bioscan
-	var/bioscan_interval = 15 MINUTES
+	var/bioscan_interval = 15 MINUTES	
 
 /datum/game_mode/infestation/scale_roles()
 	. = ..()

@@ -1,8 +1,8 @@
-/atom/movable/proc/supply_export()
+/atom/movable/proc/supply_export(mob/living/user)
 	return 0
 
 
-/mob/living/carbon/xenomorph/supply_export()
+/mob/living/carbon/xenomorph/supply_export(mob/living/user)
 	switch(tier)
 		if(XENO_TIER_ZERO)
 			. = 15
@@ -14,4 +14,4 @@
 			. = 50
 		if(XENO_TIER_FOUR)
 			. = 100
-	SSpoints.supply_points += .
+	SSpoints.supply_points[user.faction] += .

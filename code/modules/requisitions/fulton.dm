@@ -26,9 +26,11 @@
 /obj/item/fulton_extraction_pack/proc/extract(atom/movable/spirited_away, mob/user)
 	if(!do_checks(spirited_away, user))
 		return
+	if(isliving(user))
+		return
 	do_extract(spirited_away, user)
-
-	. = spirited_away.supply_export()
+	var/mob/living/living_user = user
+	. = spirited_away.supply_export(living_user)
 	user.visible_message("<span class='notice'>[user] finishes attaching [src] to [spirited_away] and activates it.</span>",\
 	"<span class='notice'>You attach the pack to [spirited_away] and activate it. This looks like it will yield [. ? . : "no"] point[. == 1 ? "" : "s"].</span>", null, 5)
 

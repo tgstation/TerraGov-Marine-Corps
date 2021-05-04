@@ -38,6 +38,8 @@
 	var/max_miner_integrity = 100
 	///What type of upgrade it has installed , used to change the icon of the miner.
 	var/miner_upgrade_type
+	///What faction secured that miner
+	var/faction = FACTION_TERRAGOV
 
 /obj/machinery/miner/damaged	//mapping and all that shebang
 	miner_status = MINER_DESTROYED
@@ -91,7 +93,7 @@
 			required_ticks = 60
 		if(MINER_AUTOMATED)
 			if(stored_mineral)
-				SSpoints.supply_points += mineral_value * stored_mineral
+				SSpoints.supply_points[faction] += mineral_value * stored_mineral
 				do_sparks(5, TRUE, src)
 				playsound(loc,'sound/effects/phasein.ogg', 50, FALSE)
 				say("Ore shipment has been sold for [mineral_value * stored_mineral] points.")
@@ -242,7 +244,7 @@
 		to_chat(user, "<span class='warning'>[src] is not ready to produce a shipment yet!</span>")
 		return
 
-	SSpoints.supply_points += mineral_value * stored_mineral
+	SSpoints.supply_points[faction] += mineral_value * stored_mineral
 	do_sparks(5, TRUE, src)
 	playsound(loc,'sound/effects/phasein.ogg', 50, FALSE)
 	say("Ore shipment has been sold for [mineral_value * stored_mineral] points.")
@@ -255,7 +257,7 @@
 		return
 	if(add_tick >= required_ticks)
 		if(miner_upgrade_type == MINER_AUTOMATED)
-			SSpoints.supply_points += mineral_value
+			SSpoints.supply_points[faction] += mineral_value
 			do_sparks(5, TRUE, src)
 			playsound(loc,'sound/effects/phasein.ogg', 50, FALSE)
 			say("Ore shipment has been sold for [mineral_value] points.")
