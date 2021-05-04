@@ -1064,6 +1064,17 @@
 	if(!.)
 		return FALSE
 
+	var/turf/T = A.loc
+	if(T?.density)
+		to_chat(owner, "<span class='xenowarning'>You need open ground to place that!</span>")
+		return FALSE
+
+	for(var/direction in GLOB.cardinals - REVERSE_DIR(Get_Angle(owner, A)))
+		T = get_step(A, direction)
+		if(!T || T.density)
+			to_chat(owner, "<span class='xenowarning'>You need open ground to place that!</span>")
+			return FALSE
+
 	if(!in_range(owner, A))
 		if(!silent)
 			to_chat(owner, "<span class='warning'>We need to get closer!.</span>")
