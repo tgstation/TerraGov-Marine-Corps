@@ -51,8 +51,6 @@
 
 
 /datum/game_mode/proc/pre_setup()
-	if(flags_landmarks & MODE_LANDMARK_SPAWN_XENO_TUNNELS)
-		setup_xeno_tunnels()
 
 	if(flags_landmarks & MODE_LANDMARK_SPAWN_MAP_ITEM)
 		spawn_map_items()
