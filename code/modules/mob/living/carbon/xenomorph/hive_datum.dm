@@ -732,6 +732,11 @@ to_chat will check for valid clients itself already so no need to double check f
 		if(xeno_job.total_positions < (-difference + xeno_job.current_positions))
 			xeno_job.set_job_positions(-difference + xeno_job.current_positions)
 
+	for(var/obj/structure/resin/silo/silo AS in GLOB.xeno_resin_silos)
+		if(!is_ground_level(silo.z))
+			continue
+		qdel(silo)
+
 	if(SSticker.mode?.flags_round_type & MODE_PSY_POINTS)
 		SSpoints.xeno_points_by_hive[hivenumber] = SILO_PRICE + XENO_TURRET_PRICE //Give a free silo when going shipside and a turret
 
