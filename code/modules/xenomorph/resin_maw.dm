@@ -250,6 +250,7 @@
 /mob/camera/aiEye/remote/burrower_camera/update_remote_sight(mob/living/user)
 	user.sight = BLIND|SEE_TURFS
 	return TRUE
+
 /datum/action/innate/leave_maw
 	name = "Leave the maw"
 	background_icon_state = "template2"
