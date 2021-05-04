@@ -14,11 +14,6 @@
 		/obj/structure/mineral_door/resin/thick,
 	)
 
-GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
-	/turf/closed/wall/resin,
-	/turf/closed/wall/resin/membrane,
-	/obj/structure/mineral_door/resin), FALSE, TRUE))
-
 /datum/action/xeno_action/activable/secrete_resin/hivelord/use_ability(atom/A)
 	if(get_dist(owner, A) != 1)
 		return ..()

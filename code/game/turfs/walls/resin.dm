@@ -11,7 +11,7 @@
 	walltype = "resin"
 	max_integrity = 200
 	layer = RESIN_STRUCTURE_LAYER
-	tiles_with = list(/turf/closed/wall/resin, /turf/closed/wall/resin/membrane, /obj/structure/mineral_door/resin)
+	tiles_with = list(/turf/closed/wall/resin, /obj/structure/mineral_door/resin)
 	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 
 
@@ -32,47 +32,6 @@
 
 /turf/closed/wall/resin/flamer_fire_act()
 	take_damage(50, BURN, "fire")
-
-
-/turf/closed/wall/resin/proc/thicken()
-	ChangeTurf(/turf/closed/wall/resin/thick)
-	return TRUE
-
-
-/turf/closed/wall/resin/thick
-	name = "thick resin wall"
-	desc = "Weird slime solidified into a thick wall."
-	max_integrity = 300
-	icon_state = "thickresin0"
-	walltype = "thickresin"
-
-
-/turf/closed/wall/resin/thick/thicken()
-	return FALSE
-
-
-/turf/closed/wall/resin/membrane
-	name = "resin membrane"
-	desc = "Weird slime translucent enough to let light pass through."
-	icon_state = "membrane0"
-	walltype = "membrane"
-	max_integrity = 120
-	opacity = FALSE
-	alpha = 180
-
-
-/turf/closed/wall/resin/membrane/thicken()
-	ChangeTurf(/turf/closed/wall/resin/membrane/thick)
-
-
-/turf/closed/wall/resin/membrane/thick
-	name = "thick resin membrane"
-	desc = "Weird thick slime just translucent enough to let light pass through."
-	max_integrity = 240
-	icon_state = "thickmembrane0"
-	walltype = "thickmembrane"
-	alpha = 210
-
 
 /turf/closed/wall/resin/ex_act(severity)
 	switch(severity)

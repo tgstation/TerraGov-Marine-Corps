@@ -1,6 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aa" = (
-/turf/closed/wall/resin/thick,
+/turf/closed/wall/sqdqsdqsdq/thick,
 /area/desert/hive)
 "ab" = (
 /turf/closed/wall/desert,
@@ -97,7 +97,7 @@
 /area/desert/interior/engineering/atmospherics)
 "ax" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/wall/resin/thick,
+/turf/closed/wall/sqdqsdqsdq/thick,
 /area/desert/hive)
 "ay" = (
 /obj/machinery/atmospherics/pipe/simple/supply/visible{
@@ -205,7 +205,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/desert/interior/shipping/north)
 "aR" = (
-/obj/structure/mineral_door/resin/thick,
+/obj/structure/mineral_door/sqdqsdqsdq/thick,
 /turf/open/floor/plating/ground,
 /area/desert/hive)
 "aS" = (
@@ -217,7 +217,7 @@
 /turf/open/floor/plating/dmg3,
 /area/desert/outside/nw)
 "aU" = (
-/turf/closed/wall/resin/thick,
+/turf/closed/wall/sqdqsdqsdq/thick,
 /area/desert/outside)
 "aV" = (
 /obj/machinery/telecomms/relay/preset/telecomms,
@@ -368,7 +368,7 @@
 /turf/open/floor/plating/ground,
 /area/desert/outside)
 "bB" = (
-/obj/structure/mineral_door/resin/thick,
+/obj/structure/mineral_door/sqdqsdqsdq/thick,
 /turf/open/floor/plating/ground,
 /area/desert/outside)
 "bC" = (
@@ -2943,7 +2943,7 @@
 /area/desert/interior/shipping/south)
 "kW" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/wall/resin/thick,
+/turf/closed/wall/sqdqsdqsdq/thick,
 /area/desert/outside)
 "kX" = (
 /obj/effect/landmark/lv624/fog_blocker,

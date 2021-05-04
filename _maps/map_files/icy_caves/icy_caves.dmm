@@ -1366,6 +1366,10 @@
 	dir = 9
 	},
 /area/icy_caves/caves/east)
+"gj" = (
+/obj/effect/landmark/xeno_turret_spawn,
+/turf/open/floor/plating/ground/ice,
+/area/icy_caves/caves/south)
 "gk" = (
 /turf/closed/ice/thin/straight,
 /area/icy_caves/caves/east)
@@ -3251,6 +3255,10 @@
 	dir = 8
 	},
 /area/icy_caves/outpost/medbay)
+"sB" = (
+/obj/effect/landmark/xeno_turret_spawn,
+/turf/open/floor/plating/ground/ice,
+/area/icy_caves/caves/northern)
 "sD" = (
 /obj/machinery/landinglight/ds1/delaythree{
 	dir = 8
@@ -3281,6 +3289,10 @@
 	dir = 1
 	},
 /area/icy_caves/outpost/security)
+"sP" = (
+/obj/effect/landmark/xeno_turret_spawn,
+/turf/open/floor/plating/ground/ice,
+/area/icy_caves/caves/west)
 "sQ" = (
 /obj/machinery/light/small,
 /turf/open/floor/freezer,
@@ -5749,6 +5761,10 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/refinery)
+"LY" = (
+/obj/effect/landmark/xeno_turret_spawn,
+/turf/open/floor/plating/ground/ice,
+/area/icy_caves/caves/east)
 "LZ" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
@@ -14414,7 +14430,7 @@ DK
 xa
 ZU
 ZW
-ZU
+sP
 ZU
 ZU
 ZU
@@ -21100,7 +21116,7 @@ ot
 Fu
 SR
 SR
-SR
+sB
 SR
 KU
 IC
@@ -21140,7 +21156,7 @@ ZB
 gq
 jA
 hJ
-ZT
+gj
 hR
 Xj
 ZT
@@ -23462,7 +23478,7 @@ wo
 YT
 YT
 Bz
-YT
+LY
 YT
 YT
 gc
@@ -26115,7 +26131,7 @@ SR
 YT
 YT
 YT
-YT
+LY
 YT
 YT
 YT

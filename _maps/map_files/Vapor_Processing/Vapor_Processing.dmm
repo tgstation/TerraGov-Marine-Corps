@@ -644,8 +644,8 @@
 /turf/open/ground,
 /area/lv624/ground/compound/n)
 "ct" = (
-/obj/structure/mineral_door/resin,
-/turf/open/ground,
+/obj/item/alien_embryo,
+/turf/open/floor/plating/ground/dirt,
 /area/space)
 "cu" = (
 /obj/machinery/door/airlock/engineering,
@@ -1529,9 +1529,6 @@
 /obj/structure/closet/secure_closet/medical_doctor,
 /turf/open/floor/tile/green/whitegreen,
 /area/lv624/lazarus/medbay)
-"go" = (
-/turf/closed/wall/resin,
-/area/space)
 "gp" = (
 /obj/structure/bed/nest,
 /obj/effect/landmark/corpsespawner/scientist{
@@ -1602,14 +1599,6 @@
 /obj/item/weapon/gun/pistol/holdout,
 /turf/open/floor/plating/ground/dirt,
 /area/space)
-"gw" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/wall/resin/membrane,
-/area/space)
-"gx" = (
-/turf/closed/wall/resin/membrane,
-/area/space)
 "gy" = (
 /obj/structure/bed/nest,
 /obj/effect/landmark/corpsespawner/engineer{
@@ -1619,10 +1608,6 @@
 	name = "Colonist Wes Uvin"
 	},
 /turf/open/floor/plating/ground/dirt,
-/area/space)
-"gz" = (
-/obj/structure/bed/nest,
-/turf/open/ground,
 /area/space)
 "gA" = (
 /turf/open/floor/plating/ground/dirt,
@@ -1664,7 +1649,6 @@
 /turf/open/floor/plating/ground/dirt,
 /area/space)
 "gF" = (
-/obj/structure/mineral_door/resin,
 /obj/effect/landmark/weed_node,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/dirt,
@@ -1677,11 +1661,6 @@
 	corpseidjob = "Laborer";
 	name = "Colonist Terrin Yin"
 	},
-/turf/open/floor/plating/ground/dirt,
-/area/space)
-"gH" = (
-/obj/structure/mineral_door/resin,
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/dirt,
 /area/space)
 "gI" = (
@@ -3442,9 +3421,6 @@
 "oe" = (
 /turf/open/floor/wood,
 /area/crew_quarters/sleep/bedrooms)
-"of" = (
-/turf/closed/wall/resin,
-/area/vapor_processing/caves/se)
 "og" = (
 /obj/structure/table/flipped,
 /obj/item/rsp,
@@ -3477,11 +3453,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/grass,
 /area/lv624/ground/compound/se)
-"oo" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/wall/resin,
-/area/vapor_processing/caves/se)
 "op" = (
 /obj/structure/bed/nest,
 /obj/effect/landmark/corpsespawner/scientist{
@@ -3548,9 +3519,6 @@
 /obj/structure/reagent_dispensers/water_cooler,
 /turf/open/floor/wood,
 /area/crew_quarters/sleep/bedrooms)
-"oC" = (
-/turf/closed/wall/resin/membrane,
-/area/vapor_processing/caves/se)
 "oD" = (
 /obj/structure/bed/nest,
 /turf/open/floor/plating/ground/dirt,
@@ -3577,11 +3545,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/sleep/bedrooms)
-"oK" = (
-/obj/structure/mineral_door/resin,
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/floor/plating/ground/dirt,
-/area/vapor_processing/caves/se)
 "oL" = (
 /turf/open/floor/plating/ground/dirt,
 /area/vapor_processing/caves/se)
@@ -3628,7 +3591,6 @@
 /turf/open/floor/wood,
 /area/crew_quarters/sleep/bedrooms)
 "oT" = (
-/obj/structure/mineral_door/resin,
 /obj/effect/landmark/weed_node,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/dirt,
@@ -5395,10 +5357,6 @@
 "zj" = (
 /turf/closed/wall/indestructible/mineral,
 /area/lv624/ground/compound/se)
-"Av" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/wall/resin,
-/area/space)
 "AB" = (
 /obj/structure/cable,
 /turf/open/floor/grass,
@@ -5422,7 +5380,7 @@
 /area/vapor_processing/caves/se)
 "CU" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/wall/resin/membrane,
+/turf/open/floor/plating/ground/dirt,
 /area/space)
 "FJ" = (
 /obj/docking_port/stationary/crashmode,
@@ -5464,7 +5422,7 @@
 /area/storage/tools)
 "Jt" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/wall/resin,
+/turf/open/floor/plating/ground/dirt,
 /area/vapor_processing/caves/se)
 "Jy" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -13613,17 +13571,17 @@ aa
 aa
 aa
 aa
-go
-go
-go
-ct
-ct
-ct
-ct
-ct
-go
-go
-go
+gA
+gA
+gA
+af
+af
+af
+af
+af
+gA
+gA
+gA
 ag
 bG
 bG
@@ -13715,10 +13673,10 @@ aa
 aa
 aa
 gp
-gx
-bd
+gA
+ct
 gv
-gz
+gI
 gC
 gD
 gG
@@ -13726,7 +13684,7 @@ gI
 gJ
 gL
 gN
-go
+gA
 bG
 bG
 bF
@@ -13817,9 +13775,9 @@ aa
 aa
 aa
 gq
-ct
 af
-gw
+gA
+gF
 CU
 CU
 CU
@@ -13828,7 +13786,7 @@ CU
 CU
 CU
 gI
-gx
+gA
 bH
 bG
 bF
@@ -13919,18 +13877,18 @@ aa
 aa
 aa
 gr
-gx
-af
-CU
-gA
-gA
-gA
-gA
 gA
 gA
 CU
+gA
+gA
+gA
+gA
+gA
+gA
+CU
 af
-gx
+gA
 bI
 bG
 bF
@@ -14021,7 +13979,7 @@ aa
 aa
 aa
 ag
-go
+gA
 gs
 CU
 gA
@@ -14030,9 +13988,9 @@ gE
 It
 gA
 gA
-gw
+gF
 af
-ct
+gA
 bJ
 bG
 bF
@@ -14123,7 +14081,7 @@ aa
 aa
 aa
 ag
-go
+gA
 gt
 CU
 CU
@@ -14134,7 +14092,7 @@ CU
 CU
 CU
 af
-gx
+gA
 bK
 bE
 bE
@@ -14225,7 +14183,7 @@ aa
 aa
 aa
 ag
-go
+gA
 gu
 gy
 gB
@@ -14236,7 +14194,7 @@ CU
 gK
 gM
 gR
-go
+gA
 bE
 bE
 bE
@@ -14327,18 +14285,18 @@ aa
 aa
 aa
 ag
-go
-go
-go
-go
-Av
+gA
+gA
+gA
+gA
+CU
 gF
-gH
-Av
-go
-go
-go
-go
+CU
+CU
+gA
+gA
+gA
+gA
 bG
 bG
 bF
@@ -15120,15 +15078,15 @@ ll
 li
 lm
 li
-of
-oo
+oL
+oT
 Jt
-oK
+Jt
 oT
 Jt
 Jt
 Jt
-of
+oL
 lm
 lm
 ll
@@ -15224,11 +15182,11 @@ li
 li
 Jt
 op
-oC
 oL
 oL
 oL
-oC
+oL
+oL
 ph
 Jt
 ll
@@ -15326,11 +15284,11 @@ li
 li
 Jt
 oq
-oC
+oL
 oL
 oU
 Ca
-oC
+oL
 os
 Jt
 ll
@@ -15428,11 +15386,11 @@ fz
 fz
 Jt
 or
-oC
-oC
-oC
-oC
-oC
+oL
+oL
+oL
+oL
+oL
 pi
 Jt
 ll
@@ -15630,7 +15588,7 @@ fz
 fz
 fz
 fz
-of
+oL
 Jt
 Jt
 Jt
