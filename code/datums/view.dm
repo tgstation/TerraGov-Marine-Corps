@@ -25,7 +25,7 @@
 /datum/view_data/proc/assertFormat()//T-Pose
 	winset(chief, "mapwindow.map", "zoom=0")
 
-/datum/view_data/proc/resetFormat()//Cuck
+/datum/view_data/proc/resetFormat()
 	winset(chief, "mapwindow.map", "zoom=[chief.prefs.pixel_size]")
 
 /datum/view_data/proc/setZoomMode()

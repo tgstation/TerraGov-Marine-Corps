@@ -5,7 +5,7 @@
 	if(!check_rights(R_FUN))
 		return
 
-	if(usr.client.view_size.getView() == usr.client.view_size.default)
+	if(usr.client.view_size.getView() != usr.client.view_size.default)
 		usr.client.view_size.resetToDefault()
 		return
 
