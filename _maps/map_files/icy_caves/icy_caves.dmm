@@ -6957,6 +6957,7 @@
 	dir = 1
 	},
 /obj/structure/cable,
+/obj/effect/landmark/dropship_start_location,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside)
 "Vk" = (

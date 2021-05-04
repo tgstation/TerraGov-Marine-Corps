@@ -5477,6 +5477,10 @@
 /obj/effect/landmark/nuke_spawn,
 /turf/open/floor/prison/yellow,
 /area/lv624/lazarus/engineering)
+"Sw" = (
+/obj/effect/landmark/dropship_start_location,
+/turf/open/ground,
+/area/lv624/ground/compound/c)
 "SJ" = (
 /obj/machinery/computer/intel_computer,
 /turf/open/floor/tile/whiteyellow/full,
@@ -11475,7 +11479,7 @@ eu
 eu
 eu
 eu
-eu
+Sw
 eu
 eu
 eu

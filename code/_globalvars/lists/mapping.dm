@@ -30,6 +30,8 @@ GLOBAL_LIST_EMPTY(tdome1)
 GLOBAL_LIST_EMPTY(tdome2)
 GLOBAL_LIST_EMPTY(deathmatch)
 
+GLOBAL_VAR_INIT(minidropship_start_loc, null)
+
 //used by jump-to-area etc. Updated by area/updateName()
 GLOBAL_LIST_EMPTY(sorted_areas)
 /// An association from typepath to area instance. Only includes areas with `unique` set.

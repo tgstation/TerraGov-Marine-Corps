@@ -1018,6 +1018,10 @@
 	dir = 10
 	},
 /area/outpost/engineering)
+"fP" = (
+/obj/effect/landmark/dropship_start_location,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/outpost/yard/west)
 "fQ" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -24335,7 +24339,7 @@ Jb
 Jb
 Jb
 Jb
-Jb
+fP
 Jb
 Jb
 Jb
