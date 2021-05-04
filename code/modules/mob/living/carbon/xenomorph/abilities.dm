@@ -1064,7 +1064,7 @@
 	if(!.)
 		return FALSE
 
-	var/turf/T = A.loc
+	var/turf/T = get_turf(A)
 	if(T?.density)
 		to_chat(owner, "<span class='xenowarning'>You need open ground to place that!</span>")
 		return FALSE
