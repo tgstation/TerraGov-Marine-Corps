@@ -91,11 +91,9 @@
 /datum/emote/proc/check_cooldown(mob/user, intentional)
 	if(!intentional)
 		return TRUE
-	if(user.emotes_used && user.emotes_used[src] + cooldown > world.time)
+	if(TIMER_COOLDOWN_CHECK(user, "Emote [key]"))
 		return FALSE
-	if(!user.emotes_used)
-		user.emotes_used = list()
-	user.emotes_used[src] = world.time
+	TIMER_COOLDOWN_START(user, "Emote [key]", cooldown)
 	return TRUE
 
 /datum/emote/proc/get_sound(mob/living/user)

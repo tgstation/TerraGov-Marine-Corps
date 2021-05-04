@@ -91,6 +91,3 @@
 
 	/// Can they interact with station electronics
 	var/has_unlimited_silicon_privilege = 0
-
-	/// Used for tracking last uses of emotes for cooldown purposes
-	var/list/emotes_used
