@@ -51,7 +51,6 @@
 	number++
 	GLOB.xeno_resin_silos += src
 	center_turf = get_step(src, NORTHEAST)
-	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, .proc/destroy_silently)
 	if(!istype(center_turf))
 		center_turf = loc
 

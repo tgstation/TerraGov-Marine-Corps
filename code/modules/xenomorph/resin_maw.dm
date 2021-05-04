@@ -22,9 +22,9 @@
 	/// The list of turf that will not entrave the exit
 	var/list/whitelist_turfs = list(/turf/open/ground, /turf/open/floor)
 	/// Which part of the maw is this
-	var/tail = TRUE
+	var/is_origin_of_resin_maw = TRUE
 	/// The actions gave to the user when controling the maw
-	var/list/actions
+	var/list/grantable_actions
 	/// The action of leaving the maw when you are piloting it
 	var/datum/action/innate/leave_maw/off_action
 	/// The action of seting the exit zone for the head of the maw
@@ -36,7 +36,7 @@
 	associated_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	off_action = new
 	chose_head_location = new
-	actions = list()
+	grantable_actions = list()
 	center_turf = get_step(src, NORTHEAST)
 	GLOB.xeno_resin_maws += src
 	START_PROCESSING(SSprocessing, src)
@@ -44,13 +44,13 @@
 		new /obj/effect/alien/weeds/node(center_turf)
 
 /obj/structure/resin/resin_maw/Destroy()
-	. = ..()
 	GLOB.xeno_resin_maws -= src
 	associated_hive.handle_silo_death_timer()
 	for(var/mob/living/carbon/xenomorph/xeno AS in src)
 		xeno.forceMove(center_turf)
-	xeno_message("The [tail? "tail" :"head"] of the resin maw has been destroyed!", "xenoannounce", hivenumber = associated_hive.hivenumber)
+	xeno_message("The [is_origin_of_resin_maw? "tail" :"head"] of the resin maw has been destroyed!", "xenoannounce", hivenumber = associated_hive.hivenumber)
 	STOP_PROCESSING(SSprocessing, src)
+	return ..()
 
 /obj/structure/resin/resin_maw/ex_act(severity) //Explosion immune
 	return
@@ -97,7 +97,7 @@
 				continue
 			qdel(to_destroy)
 	exit = new /obj/structure/resin/resin_maw(target_turfs[17]) //picking the 17th turf makes the resin maw perfectly centered in the destruction zone
-	exit.tail = FALSE
+	exit.is_origin_of_resin_maw = FALSE
 	exit.exit = src
 	update_icon()
 	exit.update_icon()
@@ -117,19 +117,6 @@
 			shake_camera(nearby_mob, 10, 1)
 			nearby_mob.Knockdown(5 SECONDS)
 
-/obj/structure/resin/resin_maw/process()
-	. = ..()
-	for(var/mob/living/carbon/xenomorph/xeno AS in GLOB.alive_xeno_list)
-		if(xeno.loc.z != loc.z)
-			return
-		if(xeno.hivenumber != associated_hive.hivenumber)
-			return
-		if(get_dist(src, xeno) > 10)
-			return
-		xeno.frenzy_new = 6 //Extremely good pheros
-		xeno.warding_new = 6
-		xeno.recovery_new = 6
-
 /obj/structure/resin/resin_maw/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(!do_after(X, 2 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 		return
@@ -140,7 +127,7 @@
 		X.forceMove(src)
 		give_action_by_type(/datum/action/innate/leave_maw, X)
 		return
-	if(!(X.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT) || !tail)
+	if(!(X.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT) || !is_origin_of_resin_maw)
 		return
 	createEye()
 	give_eye_control(X)
@@ -163,12 +150,12 @@
 	if(off_action)
 		off_action.target = user
 		off_action.give_action(user)
-		actions += off_action
+		grantable_actions += off_action
 
 	if(chose_head_location)
 		chose_head_location.target = user
 		chose_head_location.give_action(user)
-		actions += chose_head_location
+		grantable_actions += chose_head_location
 
 /// Set the remote control variable of the user
 /obj/structure/resin/resin_maw/proc/give_eye_control(mob/user)
@@ -187,13 +174,13 @@
 	user.update_sight()
 
 /obj/structure/resin/resin_maw/remove_eye_control(mob/user)
-	for(var/V in actions)
+	for(var/V in grantable_actions)
 		var/datum/action/A = V
 		A.remove_action(user)
-	actions.Cut()
+	grantable_actions.Cut()
 	for(var/V in eye.visibleCameraChunks)
-		var/datum/camerachunk/C = V
-		C.remove(eye)
+		var/datum/camerachunk/camera_chunk = V
+		camera_chunk.remove(eye)
 	if(user.client)
 		user.reset_perspective(null)
 		if(eye.visible_icon && user.client)
@@ -262,8 +249,8 @@
 		var/obj/structure/resin/resin_maw/maw = owner.loc
 		owner.forceMove(maw.loc) //Ew
 		return
-	var/mob/living/C = target
-	var/mob/camera/aiEye/remote/burrower_camera/eye = C.remote_control
+	var/mob/living/xeno_owner = target
+	var/mob/camera/aiEye/remote/burrower_camera/eye = xeno_owner.remote_control
 	var/obj/structure/resin/resin_maw/maw = eye.origin
 	maw.remove_eye_control(target)
 
@@ -273,11 +260,11 @@
 	action_icon_state = "oldbuild_tunnel" //Need icon
 
 /datum/action/innate/select_exit_location/Activate()
-	var/mob/living/C = target
-	var/mob/camera/aiEye/remote/burrower_camera/eye = C.remote_control
+	var/mob/living/xeno_owner = target
+	var/mob/camera/aiEye/remote/burrower_camera/eye = xeno_owner.remote_control
 	var/obj/structure/resin/resin_maw/maw = eye.origin
 	if(!maw.checkExitSpot())
 		to_chat(target, "<span class='warning'>The maw cannot go there.</span>")
 		return
 	maw.start_digging(eye.loc)
-	maw.remove_eye_control(C)
+	maw.remove_eye_control(xeno_owner)

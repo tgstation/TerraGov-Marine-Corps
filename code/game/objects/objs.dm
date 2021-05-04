@@ -151,6 +151,7 @@
 	. = ..()
 	ENABLE_BITFIELD(obj_flags, IN_USE)
 
+/// If this user has a remote control, null it
 /obj/proc/remove_eye_control(mob/living/user)
 	return
 
