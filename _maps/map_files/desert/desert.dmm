@@ -232,7 +232,7 @@
 /turf/closed/wall/r_wall,
 /area/desert/interior/shipping/central)
 "aY" = (
-/obj/effect/alien/weeds/node/strong,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground,
 /area/desert/hive)
 "aZ" = (
@@ -416,7 +416,7 @@
 /turf/open/floor/tile/red/full,
 /area/desert/interior/command/office)
 "bK" = (
-/obj/effect/alien/weeds/node/strong,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground,
 /area/desert/outside)
 "bL" = (
@@ -3182,7 +3182,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/desert/interior/shipping/south)
 "OJ" = (
-/obj/effect/alien/weeds/node/strong,
+/obj/effect/landmark/weed_node,
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/ground,
 /area/desert/outside)

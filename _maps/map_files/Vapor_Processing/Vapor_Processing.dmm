@@ -376,7 +376,7 @@
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/compound/n)
 "bl" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/ground,
 /area/lv624/ground/caves/central2)
 "bm" = (
@@ -478,7 +478,7 @@
 	corpseidjob = "Laborer";
 	name = "Colonist Kira Von"
 	},
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east1)
 "bJ" = (
@@ -491,7 +491,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east1)
 "bK" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/ground,
 /area/lv624/ground/caves/east1)
 "bL" = (
@@ -661,7 +661,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/lv624/lazarus/fitness)
 "cv" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/ground,
 /area/space)
 "cx" = (
@@ -1598,7 +1598,7 @@
 	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Lee Hesto"
 	},
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/space)
 "gt" = (
@@ -1632,7 +1632,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/space)
 "gw" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/resin/membrane,
 /area/space)
@@ -1685,16 +1685,16 @@
 	corpseidjob = "Doctor";
 	name = "Colonist Ted Koso"
 	},
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/space)
 "gE" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/space)
 "gF" = (
 /obj/structure/mineral_door/resin,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/dirt,
 /area/space)
@@ -3536,11 +3536,11 @@
 /turf/open/floor/wood/broken,
 /area/crew_quarters/sleep/bedrooms)
 "on" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/grass,
 /area/lv624/ground/compound/se)
 "oo" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/resin,
 /area/vapor_processing/caves/se)
@@ -3562,7 +3562,7 @@
 	corpseuniform = /obj/item/clothing/under/CM_uniform;
 	name = "Marshal Logan Bills"
 	},
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/vapor_processing/caves/se)
 "or" = (
@@ -3577,7 +3577,7 @@
 /area/vapor_processing/caves/se)
 "os" = (
 /obj/structure/bed/nest,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/vapor_processing/caves/se)
 "ot" = (
@@ -3691,18 +3691,18 @@
 /area/crew_quarters/sleep/bedrooms)
 "oT" = (
 /obj/structure/mineral_door/resin,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/dirt,
 /area/vapor_processing/caves/se)
 "oU" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/vapor_processing/caves/se)
 "oV" = (
 /obj/structure/bed/nest,
 /obj/item/weapon/gun/pistol/holdout,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/vapor_processing/caves/se)
 "oW" = (

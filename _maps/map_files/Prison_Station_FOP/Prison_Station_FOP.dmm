@@ -591,7 +591,7 @@
 /area/prison/research/secret/biolab)
 "adJ" = (
 /obj/effect/decal/cleanable/blood/splatter,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/prison/whitepurple{
 	dir = 1
 	},
@@ -3919,7 +3919,7 @@
 	},
 /area/prison/research/secret/chemistry)
 "anz" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/prison/green/full,
 /area/prison/cellblock/lowsec/nw)
 "anA" = (
@@ -5922,7 +5922,7 @@
 /turf/open/floor/marking/bot,
 /area/prison/research/RD)
 "atp" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
 /area/prison/cellblock/maxsec/north)
 "atq" = (
@@ -6895,7 +6895,7 @@
 /turf/open/floor/wood,
 /area/prison/residential/north)
 "awj" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/prison,
 /area/prison/cellblock/maxsec/north)
 "awk" = (
@@ -7371,7 +7371,7 @@
 	},
 /area/prison/security/checkpoint/maxsec)
 "axQ" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/prison/darkred/full,
 /area/prison/security/checkpoint/maxsec)
 "axR" = (
@@ -7525,7 +7525,7 @@
 /turf/open/floor/wood,
 /area/prison/residential/north)
 "ayl" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/prison/darkred/full,
 /area/prison/cellblock/maxsec/north)
 "aym" = (
@@ -7802,7 +7802,7 @@
 /turf/open/floor/carpet,
 /area/prison/residential/north)
 "azh" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
 /area/prison/cellblock/maxsec/south)
 "azi" = (
@@ -8121,7 +8121,7 @@
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/access/north)
 "azZ" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/prison,
 /area/prison/security/checkpoint/maxsec)
 "aAa" = (
@@ -8355,7 +8355,7 @@
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/access/north)
 "aAR" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/prison/bright_clean/two,
 /area/prison/hallway/central)
 "aAS" = (
@@ -8549,7 +8549,7 @@
 	},
 /area/prison/security/checkpoint/maxsec)
 "aBr" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/prison/darkred/full,
 /area/prison/cellblock/maxsec/south)
 "aBs" = (
@@ -8799,11 +8799,11 @@
 /turf/open/ground/grass,
 /area/prison/residential/north)
 "aBY" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/prison/plate,
 /area/prison/cellblock/lowsec/nw)
 "aBZ" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/prison/darkred{
 	dir = 1
 	},
@@ -9703,7 +9703,7 @@
 	},
 /area/prison/security/monitoring/maxsec/panopticon)
 "aEM" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/prison/green,
 /area/prison/cellblock/lowsec/ne)
 "aEO" = (
@@ -9946,7 +9946,7 @@
 /turf/open/floor/prison/bright_clean/two,
 /area/prison/medbay/foyer)
 "aFH" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/prison/cellstripe{
 	dir = 1
 	},
@@ -10528,7 +10528,7 @@
 /turf/open/floor/prison/darkyellow/full,
 /area/prison/hangar_storage/main)
 "aHj" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/prison/plate,
 /area/prison/cellblock/lowsec/ne)
 "aHk" = (
@@ -10580,7 +10580,7 @@
 /turf/open/floor/prison/bright_clean/two,
 /area/prison/residential/north)
 "aHt" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/prison/bright_clean,
 /area/prison/yard)
 "aHu" = (
@@ -14625,7 +14625,7 @@
 /turf/open/floor/wood,
 /area/prison/command/office)
 "aTR" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/prison/bright_clean/two,
 /area/prison/yard)
 "aTS" = (
@@ -15192,7 +15192,7 @@
 /turf/open/floor/prison/darkred/full,
 /area/prison/security/monitoring/maxsec/panopticon)
 "aVq" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/prison/bright_clean,
 /area/prison/security/checkpoint/maxsec)
 "aVr" = (
@@ -15909,7 +15909,7 @@
 /turf/open/floor/wood,
 /area/prison/residential/central)
 "aXw" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/prison/bright_clean,
 /area/prison/hallway/central)
 "aXx" = (
@@ -23807,7 +23807,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/prison/green{
 	dir = 8
 	},
@@ -25637,7 +25637,7 @@
 /turf/open/floor/prison/darkred/full,
 /area/prison/monorail/east)
 "bBZ" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/prison/yellow/full,
 /area/prison/security/checkpoint/medsec)
 "bCa" = (
@@ -25760,7 +25760,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/prison/green/corner{
 	dir = 4
 	},
@@ -28186,7 +28186,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/hallway/east)
 "bJX" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/prison/plate,
 /area/prison/cellblock/mediumsec/north)
 "bJY" = (
@@ -28196,13 +28196,13 @@
 	},
 /area/prison/cellblock/protective)
 "bJZ" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/prison/yellow{
 	dir = 4
 	},
 /area/prison/cellblock/mediumsec/north)
 "bKa" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/prison/yellow{
 	dir = 8
 	},
@@ -28488,7 +28488,7 @@
 /turf/open/floor/wood,
 /area/prison/residential/south)
 "bKZ" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/prison/plate,
 /area/prison/cellblock/mediumsec/south)
 "bLa" = (
@@ -28936,7 +28936,7 @@
 /turf/open/floor/wood,
 /area/prison/residential/south)
 "bMA" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/prison/yellow{
 	dir = 4
 	},
@@ -29244,7 +29244,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/prison/yellow{
 	dir = 8
 	},
@@ -29607,7 +29607,7 @@
 /turf/open/floor/prison/bright_clean/two,
 /area/prison/toilet/security)
 "bOu" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/prison/yellow{
 	dir = 8
 	},
@@ -29831,7 +29831,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/prison/residential/south)
 "bPe" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/prison/yellow/corner{
 	dir = 4
 	},
@@ -41154,7 +41154,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/disposalpipe/segment,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/prison/bright_clean,
 /area/prison/hallway/central)
 "cSJ" = (
@@ -41856,7 +41856,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/prison/darkpurple,
 /area/prison/research/secret/containment)
 "hDh" = (
@@ -41888,7 +41888,7 @@
 /turf/open/floor/prison/kitchen,
 /area/prison/residential/north)
 "hJL" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/prison/green,
 /area/prison/cellblock/lowsec/se)
 "hKf" = (
@@ -42085,7 +42085,7 @@
 	dir = 6
 	},
 /obj/structure/cable,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/prison/bright_clean,
 /area/prison/hallway/central)
 "iVD" = (
@@ -42135,7 +42135,7 @@
 	},
 /area/prison/cellblock/mediumsec/south)
 "jnN" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/prison/green{
 	dir = 4
 	},
@@ -42179,7 +42179,7 @@
 /turf/open/floor/plating,
 /area/prison/cellblock/maxsec/south)
 "jvl" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/prison/sterilewhite,
 /area/prison/cellblock/lowsec/se)
 "jzd" = (
@@ -42230,7 +42230,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/prison/yellow,
 /area/prison/cellblock/mediumsec/south)
 "jNw" = (
@@ -42318,7 +42318,7 @@
 /turf/open/floor/prison/bright_clean/two,
 /area/prison/holding/holding1)
 "kpB" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/prison/green,
 /area/prison/cellblock/lowsec/sw)
 "krU" = (
@@ -42397,7 +42397,7 @@
 /turf/open/floor/prison/darkred/full,
 /area/prison/monorail/east)
 "kQt" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/prison/darkred/full,
 /area/prison/security/monitoring/maxsec/panopticon)
 "kWF" = (
@@ -42405,7 +42405,7 @@
 /turf/open/floor/prison/plate,
 /area/prison/recreation/medsec)
 "kXs" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/carpet,
 /area/prison/residential/south)
 "kZy" = (
@@ -42438,7 +42438,7 @@
 /turf/open/floor/plating,
 /area/prison/hangar_storage/research)
 "lim" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/prison/yellow{
 	dir = 1
 	},
@@ -42528,11 +42528,11 @@
 /turf/open/floor/prison/darkred/full,
 /area/prison/cellblock/maxsec/north)
 "mmI" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
 /area/prison/cellblock/mediumsec/south)
 "mnR" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/prison/cellblock/maxsec/north)
@@ -42567,7 +42567,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/prison/bright_clean,
 /area/prison/hallway/central)
 "myW" = (
@@ -42689,7 +42689,7 @@
 /turf/open/floor/wood/broken,
 /area/prison/residential/south)
 "ndE" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/prison/darkpurple/corner{
 	dir = 8
 	},
@@ -42816,7 +42816,7 @@
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/nw)
 "nPv" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 10
 	},
@@ -42966,7 +42966,7 @@
 /turf/open/floor/plating,
 /area/prison/research/secret/biolab)
 "oGc" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/prison/darkpurple,
 /area/prison/research/secret/containment)
 "oMZ" = (
@@ -43038,7 +43038,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/prison/sterilewhite,
 /area/prison/research/secret/biolab)
 "pjO" = (
@@ -43271,7 +43271,7 @@
 /turf/open/floor/plating,
 /area/prison/hangar_storage/research)
 "qzh" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /obj/machinery/miner/damaged,
 /turf/open/floor/prison/bright_clean/two,
 /area/prison/hallway/central)
@@ -43305,7 +43305,7 @@
 "qJf" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/prison/yellow/corner{
 	dir = 1
 	},
@@ -43466,7 +43466,7 @@
 /turf/open/floor/prison,
 /area/prison/execution)
 "rFk" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /obj/structure/mineral_door/resin,
 /turf/open/floor/prison/whitepurple/full,
 /area/prison/research/secret/biolab)
@@ -43601,7 +43601,7 @@
 /area/prison/quarters/research)
 "sJB" = (
 /obj/structure/cable,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/prison/green/corner,
 /area/prison/cellblock/lowsec/se)
 "sMg" = (
@@ -43687,7 +43687,7 @@
 /turf/open/floor/prison,
 /area/prison/hangar/civilian)
 "tqX" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/prison/yellow{
 	dir = 4
 	},
@@ -43829,7 +43829,7 @@
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/sw)
 "ulZ" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/prison/green{
 	dir = 8
 	},
@@ -43859,7 +43859,7 @@
 /turf/open/floor/carpet,
 /area/prison/command/quarters)
 "uKB" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/prison/sterilewhite,
 /area/prison/research/secret/biolab)
 "uQX" = (
@@ -43996,7 +43996,7 @@
 /turf/open/space/sea,
 /area/space)
 "vtJ" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/prison/yellow{
 	dir = 8
 	},
@@ -44070,7 +44070,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/prison/green,
 /area/prison/cellblock/lowsec/nw)
 "vSy" = (
@@ -44088,7 +44088,7 @@
 /turf/open/floor/plating,
 /area/prison/hallway/central)
 "vVg" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/prison,
 /area/prison/research/secret/containment)
 "vYn" = (
@@ -44110,7 +44110,7 @@
 /turf/open/floor/plating,
 /area/prison/hangar/main)
 "wcU" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
 /area/prison/research/secret/biolab)
 "wfY" = (

@@ -234,7 +234,7 @@
 /turf/closed/wall/clock,
 /area/barren/misc/clocknuke)
 "bj" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/lavaland/basalt,
 /area/barren/cave/north)
 "bl" = (
@@ -2961,7 +2961,7 @@
 /turf/open/floor/plating,
 /area/barren/engie/engine)
 "nQ" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/closed/brock,
 /area/barren/cave/northwest)
 "nR" = (
@@ -3368,7 +3368,7 @@
 /turf/open/floor/prison/kitchen,
 /area/barren/civilian/cook)
 "qf" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/lavaland/basalt,
 /area/barren/cave/southeast)
 "qg" = (
@@ -4041,7 +4041,7 @@
 /area/barren/cave/southeast)
 "tD" = (
 /obj/effect/landmark/start/job/xenomorph,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/lavaland/basalt,
 /area/barren/cave/southeast)
 "tE" = (
@@ -6226,7 +6226,7 @@
 	},
 /area/barren/medical/chemistry)
 "Fp" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/lavaland/basalt,
 /area/barren/cave/south)
 "Fq" = (
@@ -7011,7 +7011,7 @@
 /area/barren/cave/south)
 "Jx" = (
 /obj/effect/landmark/start/job/xenomorph,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/lavaland/basalt,
 /area/barren/cave/south)
 "Jy" = (
@@ -8318,7 +8318,7 @@
 /turf/closed/wall/mainship,
 /area/barren/misc/stationed)
 "QM" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/lavaland/basalt,
 /area/barren/cave/southwest)
 "QN" = (
@@ -8940,7 +8940,7 @@
 /turf/open/floor/prison/kitchen,
 /area/barren/civilian/cook)
 "Uy" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/closed/wall/indestructible/mineral,
 /area/barren/cave/northwest)
 "Uz" = (

@@ -228,7 +228,7 @@
 	},
 /area/outpost/science/xenobiology)
 "bk" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/outpost/caves/north_east)
 "bm" = (
@@ -881,7 +881,7 @@
 /turf/open/floor/plating,
 /area/outpost/engineering/engine)
 "fh" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/cavetodirt,
 /area/outpost/caves/north_east)
 "fi" = (
@@ -1033,7 +1033,7 @@
 	},
 /area/outpost/medbay/storage)
 "fS" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /obj/effect/decal/cleanable/blood/writing{
 	dir = 1
 	},
@@ -1405,7 +1405,7 @@
 	},
 /area/outpost/lz1)
 "hS" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /obj/effect/decal/cleanable/blood/writing{
 	dir = 6
 	},
@@ -2331,7 +2331,7 @@
 	},
 /area/outpost/lz1)
 "mo" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/north_west)
 "mp" = (
@@ -2564,7 +2564,7 @@
 	},
 /area/outpost/science)
 "nP" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/south)
 "nQ" = (
@@ -3001,7 +3001,7 @@
 	},
 /area/outpost/engineering/hallway)
 "qa" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /obj/effect/landmark/start/job/xenomorph,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/north_east)
@@ -4204,7 +4204,7 @@
 	},
 /area/outpost/science/xenobiology)
 "wP" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/outpost/science/xenobiology)
 "wQ" = (
@@ -5786,7 +5786,7 @@
 /area/outpost/science/hydponics)
 "FS" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark/purple2{
 	dir = 8
 	},
@@ -5796,7 +5796,7 @@
 /turf/open/floor/plating/ground/mars/dirttosand,
 /area/outpost/caves/east)
 "FW" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /obj/effect/decal/cleanable/blood/writing{
 	dir = 9
 	},
@@ -6158,7 +6158,7 @@
 	},
 /area/outpost/engineering/hallway)
 "Il" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/cavetodirt{
 	dir = 4
 	},
@@ -7529,7 +7529,7 @@
 	},
 /area/outpost/cargo)
 "Pb" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/north)
 "Pe" = (
@@ -8456,7 +8456,7 @@
 	},
 /area/outpost/hallway/central)
 "TP" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/north_east)
 "TQ" = (
@@ -8709,7 +8709,7 @@
 	},
 /area/outpost/caves/north)
 "Vi" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/south_east)
 "Vk" = (
@@ -8955,7 +8955,7 @@
 /turf/open/floor/tile/dark/red2,
 /area/outpost/brig)
 "Wv" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/cavetodirt{
 	dir = 5
 	},
@@ -9133,7 +9133,7 @@
 	},
 /area/outpost/brig)
 "Xu" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /obj/effect/decal/cleanable/blood/writing,
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/outpost/caves/north_east)
@@ -9181,7 +9181,7 @@
 /turf/closed/mineral/bigred,
 /area/outpost/lz1)
 "XF" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /obj/effect/landmark/start/job/xenomorph,
 /obj/effect/decal/cleanable/blood/writing{
 	dir = 6
@@ -9276,7 +9276,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/outpost/yard/west)
 "Yh" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/outpost/caves/north_east)
 "Yi" = (

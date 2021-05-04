@@ -7,6 +7,11 @@
 	/// Time between two bioscan
 	var/bioscan_interval = 15 MINUTES
 
+/datum/game_mode/infestation/post_setup()
+	. = ..()
+	for(var/i in GLOB.xeno_weed_node_turfs)
+		new /obj/effect/alien/weeds/node(i)
+
 /datum/game_mode/infestation/scale_roles()
 	. = ..()
 	if(!.)

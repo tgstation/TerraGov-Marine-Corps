@@ -126,6 +126,16 @@
 /obj/effect/landmark/distress_item
 
 
+/obj/effect/landmark/weed_node
+	name = "xeno weed node spawn landmark"
+	icon_state = "tdome_observer"
+
+/obj/effect/landmark/weed_node/Initialize()
+	GLOB.xeno_weed_node_turfs += loc
+	. = ..()
+	return INITIALIZE_HINT_QDEL
+
+
 /obj/effect/landmark/xeno_silo_spawn
 	name = "xeno silo spawn landmark"
 	icon_state = "tdome_observer"
