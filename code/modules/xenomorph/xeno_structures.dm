@@ -32,6 +32,7 @@
 	bound_width = 96
 	bound_height = 96
 	max_integrity = 1000
+	resistance_flags = DROPSHIP_IMMUNE
 	///How many larva points one silo produce in one minute
 	var/larva_spawn_rate = 0.5
 	var/turf/center_turf

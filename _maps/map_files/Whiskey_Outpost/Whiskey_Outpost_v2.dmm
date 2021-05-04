@@ -2733,7 +2733,6 @@
 /area/whiskey_outpost/outside/south)
 "lb" = (
 /obj/effect/spawner/gibspawner/human,
-/obj/item/weapon/gun/pistol/m4a3,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/south)
 "lc" = (
@@ -2829,10 +2828,6 @@
 /obj/structure/flora/ausbushes/reedbush,
 /turf/open/ground/river,
 /area/whiskey_outpost/outside/south)
-"lx" = (
-/obj/item/weapon/gun/rifle/m41a1,
-/turf/open/ground/river,
-/area/whiskey_outpost/outside/south)
 "ly" = (
 /obj/structure/flora/ausbushes/stalkybush,
 /turf/open/ground/river,
@@ -2877,7 +2872,6 @@
 /obj/structure/grille/broken,
 /obj/effect/decal/cleanable/blood/writing,
 /obj/item/shard,
-/obj/item/weapon/gun/pistol/m4a3,
 /turf/open/floor/plating,
 /area/whiskey_outpost/outside/south)
 "lH" = (
@@ -2971,11 +2965,6 @@
 /area/whiskey_outpost)
 "lW" = (
 /obj/structure/rack,
-/obj/item/mortal_shell/flash,
-/obj/item/mortal_shell/flash,
-/obj/item/mortal_shell/flash,
-/obj/item/mortal_shell/flash,
-/obj/item/mortal_shell/flash,
 /turf/open/floor/plating/asteroidplating,
 /area/whiskey_outpost)
 "lX" = (
@@ -5714,6 +5703,10 @@
 /obj/structure/barricade/plasteel,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost/outside/west)
+"Lc" = (
+/obj/effect/landmark/dropship_start_location,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost/outside/north)
 "Lj" = (
 /turf/open/floor/asteroidfloor,
 /area/whiskey_outpost/outside/east)
@@ -10190,7 +10183,7 @@ hw
 lf
 lf
 ld
-lx
+kA
 lB
 kA
 lM
@@ -17189,7 +17182,7 @@ fs
 fs
 fs
 fs
-fs
+Lc
 fs
 fs
 hX
