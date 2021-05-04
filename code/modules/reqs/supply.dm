@@ -340,8 +340,7 @@ GLOBAL_LIST_EMPTY_TYPED(exports_types, /datum/supply_export)
 			continue
 		var/list/packs = list()
 		var/cost = 0
-		for(var/P in SO.pack)
-			var/datum/supply_packs/SP = P
+		for(var/datum/supply_packs/SP AS in SO.pack)
 			packs += SP.type
 			cost += SP.cost
 		.["approvedrequests"] += list(list("id" = SO.id, "orderer" = SO.orderer, "orderer_rank" = SO.orderer_rank, "reason" = SO.reason, "cost" = cost, "packs" = packs, "authed_by" = SO.authorised_by))
@@ -357,8 +356,7 @@ GLOBAL_LIST_EMPTY_TYPED(exports_types, /datum/supply_export)
 			continue
 		.["awaiting_delivery_orders"]++
 		var/list/packs = list()
-		for(var/P in SO.pack)
-			var/datum/supply_packs/SP = P
+		for(var/datum/supply_packs/SP AS in SO.pack)
 			packs += SP.type
 		.["awaiting_delivery"] += list(list("id" = SO.id, "orderer" = SO.orderer, "orderer_rank" = SO.orderer_rank, "reason" = SO.reason, "packs" = packs, "authed_by" = SO.authorised_by))
 	.["shopping_history"] = list()

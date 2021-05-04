@@ -212,6 +212,7 @@
 	user.visible_message("<span class='notice'>[user] repairs [src]'s tubing and plating.</span>",
 	"<span class='notice'>You repair [src]'s tubing and plating.</span>")
 	start_processing()
+	faction = user.faction
 	return TRUE
 
 /obj/machinery/miner/examine(mob/user)
