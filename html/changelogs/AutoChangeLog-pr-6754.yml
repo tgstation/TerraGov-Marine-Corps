@@ -1,0 +1,4 @@
+author: "Arturlang"
+delete-after: True
+changes: 
+  - rscadd: "You can now toggle TGUI window compability mode from the preferences tab too"
